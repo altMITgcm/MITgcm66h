@@ -280,6 +280,7 @@ C     Gradient of Sigma at U points
       ENDDO
 
 #ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE SlopeSqr(:,:)       = comlev1_bibj_k, key=kkey, byte=isbyte
 CADJ STORE dSigmaDx(:,:)       = comlev1_bibj_k, key=kkey, byte=isbyte
 CADJ STORE dSigmaDy(:,:)       = comlev1_bibj_k, key=kkey, byte=isbyte
 CADJ STORE dsigmadrreal(:,:)   = comlev1_bibj_k, key=kkey, byte=isbyte
@@ -297,6 +298,7 @@ C     Calculate slopes for use in tensor, taper and/or clip
 cph( NEW
 #ifdef ALLOW_AUTODIFF_TAMC
 cph(
+CADJ STORE SlopeSqr(:,:)       = comlev1_bibj_k, key=kkey, byte=isbyte
 CADJ STORE taperfct(:,:)       = comlev1_bibj_k, key=kkey, byte=isbyte
 cph)
 #endif /* ALLOW_AUTODIFF_TAMC */
