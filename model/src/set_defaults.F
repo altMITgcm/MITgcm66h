@@ -232,6 +232,7 @@ C--   Time stepping parameters
       adjDumpFreq       = deltaT*0
       diagFreq          = deltaT*0
       monitorFreq       = -1.
+      mon_iotype        = 1
       taveFreq          = deltaT*0
       tave_lastIter     = 0.5 _d 0
       writeStatePrec    = precFloat64

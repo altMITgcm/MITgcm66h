@@ -62,12 +62,11 @@ C                        heading out of bounds
       LOGICAL mon_overrideStop
 
 C     File names and time steps
-C     mon_fname      ::  monitor file group name
-C     mon_last_iter  ::  iteration for the last MNC write
+C     mon_fname    ::  monitor file group name
       COMMON /MON_F/ 
-     &     mon_fname, mon_do_fwrite
+     &     mon_fname, mon_write_stdout, mon_write_mnc
       CHARACTER*(MAX_LEN_MBUF) mon_fname
-      LOGICAL mon_do_fwrite
+      LOGICAL mon_write_stdout, mon_write_mnc
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 

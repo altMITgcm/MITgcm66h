@@ -186,6 +186,7 @@ C--   Time stepping parammeters
      & startTime, endTime, chkPtFreq,
      & dumpFreq, adjDumpFreq, taveFreq, tave_lastIter, deltaTClock,
      & diagFreq, monitorFreq, pChkPtFreq, cAdjFreq, 
+     & mon_iotype, 
      & tauThetaClimRelax, tauSaltClimRelax, latBandClimRelax, 
      & tauTr1ClimRelax,
      & periodicExternalForcing, externForcingPeriod, externForcingCycle

@@ -136,6 +136,7 @@ C     tempVertAdvScheme   :: Temp. Vert. Advection scheme selector
 C     saltAdvScheme       :: Salt. Horiz.advection scheme selector
 C     saltVertAdvScheme   :: Salt. Vert. Advection scheme selector
 C     debugLevel          :: debug level selector: higher -> more writing
+C     mon_iotype          :: flag for monitor output (MNC vs. STDOUT)
 
       COMMON /PARM_I/
      &        cg2dMaxIters,
@@ -150,7 +151,8 @@ C     debugLevel          :: debug level selector: higher -> more writing
      &        tempAdvScheme, tempVertAdvScheme,
      &        saltAdvScheme, saltVertAdvScheme,
      &        tracerAdvScheme,
-     &        debugLevel
+     &        debugLevel,
+     &        mon_iotype
       INTEGER cg2dMaxIters
       INTEGER cg2dChkResFreq
       INTEGER cg2dPreCondFreq
@@ -170,6 +172,7 @@ C     debugLevel          :: debug level selector: higher -> more writing
       INTEGER saltAdvScheme, saltVertAdvScheme
       INTEGER tracerAdvScheme
       INTEGER debugLevel
+      INTEGER mon_iotype
 
 C
       INTEGER debLevZero
