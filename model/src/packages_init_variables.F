@@ -123,9 +123,10 @@ c--   Map the control variables onto the model state.
 
 #ifdef ALLOW_EXF
       CALL EXF_INIT( mythid )
-#else
-      CALL INI_FORCING( mythid )
+cph#else
 #endif
+      CALL INI_FORCING( mythid )
+cph#endif
 
 #ifdef ALLOW_COST
 c--   Initialise the cost function.

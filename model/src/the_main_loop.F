@@ -6,6 +6,9 @@ C $Name$
 #ifdef ALLOW_PTRACERS
 # include "PTRACERS_OPTIONS.h"
 #endif
+#ifdef ALLOW_OBCS
+# include "OBCS_OPTIONS.h"
+#endif
 
 CBOP
 C     !ROUTINE: THE_MAIN_LOOP
