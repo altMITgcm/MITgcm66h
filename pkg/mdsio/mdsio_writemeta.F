@@ -109,7 +109,7 @@ C Write the integer time (integer iteration number) for later record
 C keeping. If the timestep number is less than 0 then we assume
 C that the information is superfluous and do not write it.
       if (myIter .ge. 0)
-     & write(mUnit,'(x,a,i8,a)') 'timeStepNumber = [ ',myIter,' ];'
+     & write(mUnit,'(x,a,i10,a)') 'timeStepNumber = [ ',myIter,' ];'
 
 C Close meta-file
       close(mUnit)
