@@ -8,7 +8,7 @@ CBOP
 C      !ROUTINE: FOOL_THE_COMPILER
 
 C      !INTERFACE:
-       SUBROUTINE FOOL_THE_COMPILER
+       SUBROUTINE FOOL_THE_COMPILER( foolishArg )
        IMPLICIT NONE
 C      !DESCRIPTION:
 C      *=================================================================*
@@ -21,5 +21,6 @@ C      | thread. Calling this routine introduces the possibility of side |
 C      | effects on global data ensuring that memory locs. are reread.   |
 C      *=================================================================*
 CEOP
+       INTEGER foolishArg
        RETURN
        END
