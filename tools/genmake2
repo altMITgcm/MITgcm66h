@@ -586,7 +586,7 @@ for ac_option ; do
 	-optfile=* | --optfile=* | -of=* | --of=*)
 	    OPTFILE=$ac_optarg ;;
 	
-	-adoptfile | --adoptfile | -ad | --ad)
+	-adoptfile | --adoptfile | -adof | --adof)
 	    ac_prev=AD_OPTFILE ;;
 	-adoptfile=* | --adoptfile=* | -adof=* | --adof=*)
 	    AD_OPTFILE=$ac_optarg ;;
