@@ -98,5 +98,7 @@ C Compute pressure profile to get methane and n2o values (bottom-up)
      .      nlatsq,nlevsq,ntimesq,latsq,levsq,stratq,
      .      Nrphys,pressure,n2o,methane,co2,cfc11,cfc12,cfc22)
 
+       print *,' Back from init chem '
+
        return
        end

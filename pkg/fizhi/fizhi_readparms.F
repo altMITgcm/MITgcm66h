@@ -44,8 +44,9 @@ C **********************************************************************
 C ****      Read Supplemental Ascii File with Current Time Info     ****
 C **********************************************************************
 
-      open(ku,file='datetime',form='formatted')
+      open(10,file='datetime',form='formatted')
       read(10,1000)nymdcurrent,nhmscurrent
+      close (10)
  1000 format(i8,2x,i6)
 
 C **********************************************************************
