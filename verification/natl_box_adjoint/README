@@ -39,7 +39,7 @@ Use air-sea fluxes as controls (standard case):
 grep ph-grd output.txt
 
 #A reference output is in:
-  ../verification/natl_box_adjoint/results/output.txt | more
+grep ph-grd ../verification/natl_box_adjoint/results/output.txt
 
 Comments:
 - The input data is real*8.
@@ -53,7 +53,7 @@ Experiment no. 2
 ################
 
 Use bulk formulae and atmos. state controls:
-(only differnce to experiment 1 is in ECCO_CPPOPITONS.h,
+(only differnce to experiment 1 is in ECCO_CPPOPTIONS.h,
 and runtime in data.grdchk).
 
 #Compile code in bin/:
