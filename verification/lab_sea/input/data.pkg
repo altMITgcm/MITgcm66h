@@ -2,7 +2,7 @@
  &PACKAGES
   useGMRedi = .TRUE.,
   useKPP    = .TRUE.,
-  useSBO    = .TRUE.,
   useSEAICE = .TRUE.,
+  useSBO    = .FALSE.,
   useECCO   = .FALSE.,
  &
