@@ -54,6 +54,7 @@ C     Blank the CW tables
         mnc_cw_ndim(g) = 0
         mnc_cw_fgnm(g)(1:MNC_MAX_CHAR) = blank(1:MNC_MAX_CHAR)
         mnc_cw_fgud(g) = 0
+        mnc_cw_fgis(g) = 0
         DO i = 1,MNC_CW_MAX_I
           mnc_cw_dn(i,g)(1:MNC_MAX_CHAR) = blank(1:MNC_MAX_CHAR)
           mnc_cw_vtnm(i,g)(1:MNC_MAX_CHAR) = blank(1:MNC_MAX_CHAR)

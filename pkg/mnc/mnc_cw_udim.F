@@ -52,6 +52,7 @@ C     Check that this name is not already defined
         CALL MNC_GET_NEXT_EMPTY_IND(
      &       MNC_MAX_ID, mnc_cw_fgnm, indfg, myThid)
         mnc_cw_fgud(indfg) = 0
+C       mnc_cw_fgis(indfg) = 0
       ENDIF
       mnc_cw_fgnm(indfg)(1:(fgl-fgf+1)) = fgname(fgf:fgl)
       IF (nudim .GT. 0) THEN
