@@ -25,3 +25,7 @@ C CPP Macros go here
 
 #endif /* ALLOW_PTRACERS */
 #endif /* PTRACERS_OPTIONS_H */
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***

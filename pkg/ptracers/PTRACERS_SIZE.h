@@ -20,3 +20,7 @@ C     Number of tracers
 
 CEOP
 #endif /* ALLOW_PTRACERS */
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***

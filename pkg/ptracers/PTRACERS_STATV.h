@@ -33,3 +33,8 @@ C     ptracertave    : tracer values (mol/m-3)
 
 #endif /* ALLOW_TIMEAVE */ 
 #endif /* ALLOW_PTRACERS */ 
+
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***

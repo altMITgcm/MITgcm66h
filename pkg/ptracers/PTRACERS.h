@@ -29,17 +29,29 @@ C     PTRACERS parameters
       LOGICAL PTRACERS_useKPP(PTRACERS_num)
       LOGICAL PTRACERS_useRecords
       CHARACTER*(MAX_LEN_FNAM) PTRACERS_initialFile(PTRACERS_num)
+      CHARACTER*(MAX_LEN_FNAM) PTRACERS_names(PTRACERS_num)
+      CHARACTER*(MAX_LEN_FNAM) PTRACERS_long_names(PTRACERS_num)
+      CHARACTER*(MAX_LEN_FNAM) PTRACERS_units(PTRACERS_num)
+      INTEGER PTRACERS_iotypes
+      LOGICAL PTRACERS_mnc_read
+      LOGICAL PTRACERS_mnc_write
       COMMON /PTRACERS_PARAMS/
-     &                   PTRACERS_taveFreq,
-     &                   PTRACERS_diffKh,
-     &                   PTRACERS_diffK4,
-     &                   PTRACERS_diffKr,
-     &                   PTRACERS_numInUse,
-     &                   PTRACERS_advScheme,
-     &                   PTRACERS_initialFile,
-     &                   PTRACERS_useGMRedi,
-     &                   PTRACERS_useKPP,
-     &                   PTRACERS_useRecords
+     &     PTRACERS_taveFreq,
+     &     PTRACERS_diffKh,
+     &     PTRACERS_diffK4,
+     &     PTRACERS_diffKr,
+     &     PTRACERS_numInUse,
+     &     PTRACERS_advScheme,
+     &     PTRACERS_initialFile,
+     &     PTRACERS_useGMRedi,
+     &     PTRACERS_useKPP,
+     &     PTRACERS_useRecords,
+     &     PTRACERS_names,
+     &     PTRACERS_long_names,
+     &     PTRACERS_units,
+     &     PTRACERS_mnc_read,
+     &     PTRACERS_mnc_write,
+     &     PTRACERS_iotypes
 
 C     pTracer  :: passive tracer concentration (tr per unit volume).
 C     gPtr     :: work-space for time-stepping
@@ -57,3 +69,7 @@ C     gPtrNM1  :: work-space for time-stepping
 
 CEOP
 #endif /* ALLOW_PTRACERS */
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***
