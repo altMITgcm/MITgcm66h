@@ -172,6 +172,7 @@ c       CALL WRITE_FLD_XYZ_RS('hFacS.',suff,hFacS,myIter,myThid)
 C     Write dynvars using the MNC package
       mnc_iter = myIter
       CALL MNC_CW_RL_W_D(myThid,'state',0,0,'iter',-1,mnc_iter)
+      CALL MNC_CW_RL_W_D(myThid,'state',0,0,'model_time',0,myTime)
       CALL MNC_CW_RL_W_D(myThid,'state',0,0,'U', 0, uVel)
       CALL MNC_CW_RL_W_D(myThid,'state',0,0,'V', 0, vVel)
       CALL MNC_CW_RL_W_D(myThid,'state',0,0,'T', 0, theta)
