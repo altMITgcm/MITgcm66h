@@ -9,7 +9,7 @@
 #   modified by aja 01/00
 
 # Default lists
-set DISABLE = ( aim autodiff cal cost ctrl ecco exf grdchk flt ptracers )
+set DISABLE = ( aim autodiff cal cost ctrl ecco exf grdchk flt ptracers seaice )
 set DEFINES = ( )
 set ENABLE  = ( )
 set MODS  = ( )

@@ -53,7 +53,8 @@ C     data.pkg namelists
      &          useSHAP_FILT,
      &          useZONAL_FILT,
      &          useFLT,
-     &          usePTRACERS
+     &          usePTRACERS,
+     &          useSEAICE
 CEOP
 
       _BEGIN_MASTER(myThid)
@@ -78,6 +79,7 @@ C--   Default package configuration
       useSHAP_FILT=.FALSE.
       useZONAL_FILT=.FALSE.
       useFLT=.FALSE.
+      usePTRACERS=.FALSE.
       usePTRACERS=.FALSE.
 
 C--   Read parameters from open data file
