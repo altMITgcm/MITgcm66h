@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint52 = ecco_c52_e35
+o after testing adjoints of checkpoint51u_post
+
 checkpoint51u_post
 o this is the post-merge tag of the ecco-branch
   (needs another clean checkout and re-testing)
