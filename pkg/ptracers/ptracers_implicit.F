@@ -89,6 +89,8 @@ C Loop over tracers
         ENDIF
 
 #ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE kappaRk(:,:,:) = comlev1_bibj_ptracers, 
+CADJ &     key=iptrkey, byte=isbyte
 CADJ STORE gPtr(:,:,:,bi,bj,iTracer) = comlev1_bibj_ptracers, 
 CADJ &     key=iptrkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
