@@ -21,8 +21,8 @@ nz=prod(size(z));
 if max(size(h)) ~= prod(size(h)) | prod(size(h)) ~= nx
  error('H must have dimensions of size(X)');
 end
-ndims(squeeze(a))
-size(squeeze(a))
+%ndims(squeeze(a))
+%size(squeeze(a))
 if ndims(squeeze(a)) ~= 2 | sum(size(squeeze(a)) ~= [nx nz])
  error('A must have dimensions of size(X) x size(H)');
 end
