@@ -35,6 +35,10 @@ C     == Global variables
 #endif
 #include "SOLVE_FOR_PRESSURE.h"
 
+C     === Functions ====
+      LOGICAL  DIFFERENT_MULTIPLE
+      EXTERNAL DIFFERENT_MULTIPLE
+
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     myTime - Current time in simulation
@@ -198,14 +202,18 @@ C     see CG2D.h for the interface to this routine.
       ENDIF
 #endif
 
-      _BEGIN_MASTER( myThid )
-      WRITE(msgBuf,'(A34,1PE24.14)') 'cg2d_init_res =',firstResidual
-      CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A34,I6)') 'cg2d_iters =',numIters
-      CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A34,1PE24.14)') 'cg2d_res =',lastResidual
-      CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      _END_MASTER( )
+C- dump CG2D output at monitorFreq (to reduce size of STD-OUTPUT files) :
+      IF ( DIFFERENT_MULTIPLE(monitorFreq,myTime,
+     &                                    myTime-deltaTClock) ) THEN
+       _BEGIN_MASTER( myThid )
+       WRITE(msgBuf,'(A34,1PE24.14)') 'cg2d_init_res =',firstResidual
+       CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+       WRITE(msgBuf,'(A34,I6)') 'cg2d_iters =',numIters
+       CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+       WRITE(msgBuf,'(A34,1PE24.14)') 'cg2d_res =',lastResidual
+       CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+       _END_MASTER( )
+      ENDIF
 
 C--   Transfert the 2D-solution to "etaN" :
       DO bj=myByLo(myThid),myByHi(myThid)
