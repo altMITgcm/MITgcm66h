@@ -127,8 +127,10 @@ C     == Local variables ==
      &'   /* Run start time ( s ). */')
       CALL WRITE_1D_R8( endTime,1, INDEX_NONE,'endTime =',
      &'   /* Integration ending time ( s ). */')
+      CALL WRITE_1D_R8( pChkPtFreq,1, INDEX_NONE,'pChkPtFreq =',
+     &'   /* Permanent restart/checkpoint file interval ( s ). */')
       CALL WRITE_1D_R8( chkPtFreq,1, INDEX_NONE,'chkPtFreq =',
-     &'   /* Restart/checkpoint file interval ( s ). */')
+     &'   /* Rolling restart/checkpoint file interval ( s ). */')
       CALL WRITE_1D_R8( dumpFreq,1, INDEX_NONE,'dumpFreq =',
      &'   /* Model state write out interval ( s ). */')
 

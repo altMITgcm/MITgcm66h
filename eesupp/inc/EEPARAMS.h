@@ -128,14 +128,17 @@ C     nTy         - No. of threads in Y
 C                   This assumes a simple cartesian
 C                   gridding of the threads which is not required elsewhere
 C                   but that makes it easier.
+C     ioErrorCount - IO Error Counter. Set to zero initially and increased
+C                    by one every time an IO error occurs.
       COMMON /EEPARAMS_I/ errorMessageUnit, standardMessageUnit,
      & scrUnit1, scrUnit2, eeDataUnit, modelDataUnit,
      & numberOfProcs, pidIO, myProcId,
      & myPx, myPy, myXGlobalLo, myYGlobalLo, nThreads,
      & myBxLo, myBxHi, myByLo, myByHi,
-     & nTx, nTy
+     & nTx, nTy, ioErrorCount
       INTEGER eeDataUnit
       INTEGER errorMessageUnit
+      INTEGER ioErrorCount(MAX_NO_THREADS)
       INTEGER modelDataUnit
       INTEGER myBxLo(MAX_NO_THREADS)
       INTEGER myBxHi(MAX_NO_THREADS)

@@ -7,6 +7,7 @@ C--    Contents
 C-- U DATE            - Returns date and time.
 C--   IFNBLNK         - Returns index of first non-blank string character.
 C--   ILNBLNK         - Returns index of last non-blank string character.
+C--   IO_ERRCOUNT     - Reads IO error counter.
 C--   LCASE           - Translates to lower case.
 C--UM MACHINE         - Returns character string identifying computer.
 C--   TIMER_INDEX     - Returns index associated with timer name.
@@ -107,6 +108,27 @@ C
    10 CONTINUE
    11 CONTINUE
 C
+      RETURN
+      END
+
+CStartofinterface
+      INTEGER FUNCTION IO_ERRCOUNT(myThid)
+C     /==========================================================\
+C     | FUNCTION IO_ERRCOUNT                                     |
+C     | o Reads IO error counter.                                |
+C     \==========================================================/
+
+C     == Global variables ==
+#include "SIZE.h"
+#include "EEPARAMS.h"
+#include "DFILE.h"
+
+C     == Routine arguments ==
+      INTEGER myThid
+CEndofinterface
+
+      IO_ERRCOUNT = ioErrorCount(myThid)
+
       RETURN
       END
 

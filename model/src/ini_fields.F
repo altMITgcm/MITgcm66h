@@ -31,6 +31,10 @@ C--   Set model variables to initial/restart conditions
        CALL INI_THETA( myThid )
        CALL INI_SALT( myThid )
       ELSE
+       IF ( nIter0 .EQ. 0 ) THEN
+        nIter0 = INT(startTime/deltaTClock )
+       ENDIF
+       CALL READ_CHECKPOINT( nIter0, myThid )
       ENDIF
 
       RETURN
