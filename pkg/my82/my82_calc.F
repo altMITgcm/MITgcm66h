@@ -170,7 +170,8 @@ C     M. Satoh: Eq. (11.3.43)
          MYdiffKr(I,J,K,bi,bj) = MYhbl(I,J,bi,bj)*tkel*SH(I,J,K)
 C     Set a minium (= background) value
          MYviscAr(I,J,K,bi,bj) = MAX(MYviscAr(I,J,K,bi,bj),viscAr)
-         MYdiffKr(I,J,K,bi,bj) = MAX(MYdiffKr(I,J,K,bi,bj),diffKrT)
+         MYdiffKr(I,J,K,bi,bj) = MAX(MYdiffKr(I,J,K,bi,bj),
+     &                               diffKrNrT(k) )
 C     Set a maximum and mask land point
          MYviscAr(I,J,K,bi,bj) = MIN(MYviscAr(I,J,K,bi,bj),MYviscMax)
      &        * maskC(I,J,K,bi,bj)

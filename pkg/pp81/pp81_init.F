@@ -40,7 +40,7 @@ C-----------------------------------------------------------------------
          do j = 1-OLy, sNy+OLy
           do i = 1-OLx, sNx+OLx
            PPviscAr (i,j,k,bi,bj) = viscAr
-           PPdiffKr (i,j,k,bi,bj) = diffKrT
+           PPdiffKr (i,j,k,bi,bj) = diffKrNrT(k)
           end do
          end do
         end do

@@ -87,7 +87,7 @@ CEOP
 C     assign a minium ( = background ) value
          PPviscAr(I,J,K,bi,bj) = MAX(PPviscTmp,viscAr)
          PPdiffKr(I,J,K,bi,bj) = MAX(PPviscAr(I,J,K,bi,bj)/denom,
-     &        diffKrT)
+     &        diffKrNrT(k))
 CML         if ( k.eq.2 .and. i.ge.1 .and. i.le.sNx .and. j.eq.1)
 CML     &        print '(A,3I3,5E14.5)', 'ml-pp81', I,J,K, RiLimit,
 CML     &        RiNumber(I,J),denom,

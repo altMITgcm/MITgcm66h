@@ -365,7 +365,7 @@ C     Eq. (11), (18) and (21)
          KappaH = KappaM/TKEPrandtlNumber(I,J,K)
 C     Set a minium (= background) value
          KappaM = MAX(KappaM,viscAr)
-         KappaH = MAX(KappaH,diffKrT)
+         KappaH = MAX(KappaH,diffKrNrT(k))
 C     Set a maximum and mask land point
          GGL90viscAr(I,J,K,bi,bj) = MIN(KappaM,GGL90viscMax)
      &        * maskC(I,J,K,bi,bj)
