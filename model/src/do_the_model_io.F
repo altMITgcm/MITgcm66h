@@ -96,6 +96,12 @@ C--   Do KPP diagnostics.
      & CALL KPP_DO_DIAGS( myCurrentTime, myIter, myThid )
 #endif
 
+#ifdef ALLOW_OBCS
+C--   Do OBCS diagnostics.
+      IF (useOBCS)
+     & CALL OBCS_DIAGS( myCurrentTime, myIter, myThid )
+#endif
+
       RETURN
       END
  
