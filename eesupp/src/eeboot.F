@@ -2,6 +2,7 @@ C $Header$
 C $Name$
 
 #include "CPP_EEOPTIONS.h"
+#include "PACKAGES_CONFIG.h"
 
 CBOP             
 C     !ROUTINE: EEBOOT
@@ -155,10 +156,10 @@ C--   Initiialise the multi-process IO package
       CALL DFILE_INIT
 #endif
 
-#ifdef USE_W2
+#ifdef ALLOW_EXCH2
 C--   Initialise WRAPPER2 execution environment
       CALL W2_EEBOOT
-#endif
+#endif /* ALLOW_EXCH2 */
 
  
   999 CONTINUE

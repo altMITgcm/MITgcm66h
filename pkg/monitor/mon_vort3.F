@@ -18,10 +18,10 @@ C     === Global data ===
 #include "DYNVARS.h"
 #include "MONITOR.h"
 #include "GRID.h"
-#ifdef USE_W2
+#ifdef ALLOW_EXCH2
 #include "W2_EXCH2_TOPOLOGY.h"
 #include "W2_EXCH2_PARAMS.h"
-#endif /* USE_W2 */
+#endif /* ALLOW_EXCH2 */
 
 C     === Routine arguments ===
       INTEGER myIter, myThid
@@ -140,7 +140,7 @@ c          AZcorner = 0.75 _d 0
            northWestCorner = .TRUE.
            northEastCorner = .TRUE.
            iG = bi+(myXGlobalLo-1)/sNx
-#ifdef USE_W2
+#ifdef ALLOW_EXCH2
            myTile = W2_myTileList(bi)
            iG = exch2_myFace(myTile)
            southWestCorner = exch2_isWedge(myTile).EQ.1 
@@ -151,7 +151,7 @@ c          AZcorner = 0.75 _d 0
      &                 .AND. exch2_isNedge(myTile).EQ.1
            northWestCorner = exch2_isWedge(myTile).EQ.1
      &                 .AND. exch2_isNedge(myTile).EQ.1
-#endif /* USE_W2 */
+#endif /* ALLOW_EXCH2 */
 
 C--        avoid to count 3 times the same corner:
            southEastCorner = southEastCorner .AND. iG.EQ.2

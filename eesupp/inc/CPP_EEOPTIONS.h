@@ -99,11 +99,6 @@ C           filled in some way.
 #define CAN_PREVENT_X_PERIODICITY
 #define CAN_PREVENT_Y_PERIODICITY
 
-C--   Select the new EXCH2 (wrapper2) exchange software
-C     Note: this is a temporarily mis-named CPP-macro that will be renamed
-C     later.
-#undef  USE_W2
-
 #endif /* _CPP_EEOPTIONS_H_ */
 
 #include "CPP_EEMACROS.h"

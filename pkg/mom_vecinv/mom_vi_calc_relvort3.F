@@ -19,10 +19,10 @@ C     == Global variables ==
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#ifdef USE_W2
+#ifdef ALLOW_EXCH2
 #include "W2_EXCH2_TOPOLOGY.h"
 #include "W2_EXCH2_PARAMS.h"
-#endif /* USE_W2 */
+#endif /* ALLOW_EXCH2 */
 C     == Routine arguments ==
 C     myThid - Instance number for this innvocation of CALC_MOM_RHS
       INTEGER bi,bj,k
@@ -36,9 +36,9 @@ C     == Local variables ==
       INTEGER i,j
       LOGICAL northWestCorner, northEastCorner,
      &        southWestCorner, southEastCorner
-#ifdef USE_W2
+#ifdef ALLOW_EXCH2
       INTEGER myTile
-#endif /* USE_W2 */
+#endif /* ALLOW_EXCH2 */
 
 #ifdef ALLOW_AUTODIFF_TAMC
       DO J=1-Oly,sNy+Oly
@@ -83,7 +83,7 @@ C     Special stuff for Cubed Sphere
        southEastCorner = .FALSE.
        northWestCorner = .FALSE.
        northEastCorner = .FALSE.
-#ifdef USE_W2
+#ifdef ALLOW_EXCH2
        myTile = W2_myTileList(bi)
        IF ( exch2_isWedge(myTile) .EQ. 1 .AND.
      &      exch2_isSedge(myTile) .EQ. 1 ) THEN
@@ -106,7 +106,7 @@ C     Special stuff for Cubed Sphere
        southEastCorner = .TRUE.
        northWestCorner = .TRUE.
        northEastCorner = .TRUE.
-#endif /* USE_W2 */
+#endif /* ALLOW_EXCH2 */
 C
        IF ( southWestCorner ) THEN
 C               U(0,1)     D(0,1)      U(1,1)     TILE
