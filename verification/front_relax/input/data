@@ -36,7 +36,7 @@
 # Time stepping parameters
  &PARM03
  startTime=0,
- endTime=8640000.,
+ nTimeSteps=20,
  deltaT=1800.0,
  cAdjFreq=-1.,
  abEps=0.1,
