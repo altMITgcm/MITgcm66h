@@ -134,7 +134,7 @@ c             2-m specific humidity
 c
 c             precipitation rate
               if ( (precip(i,j,bi,bj) .LT. 0. .OR.
-     &             precip(i,j,bi,bj) .GT. 1.E-6 ) .AND.
+     &             precip(i,j,bi,bj) .GT. 2.E-6 ) .AND.
      &             hFacC(i,j,1,bi,bj) .NE. 0. ) then
                  print *, 'EXF WARNING: precip out of range for i,j= ',
      &                i, j, precip(i,j,bi,bj)
@@ -145,7 +145,7 @@ c             precipitation rate
 #ifdef SHORTWAVE_HEATING
 c             Short wave radiative flux.
               if ( (swflux(i,j,bi,bj) .GT. 1. .OR.
-     &             swflux(i,j,bi,bj) .LT. -500. ) .AND.
+     &             swflux(i,j,bi,bj) .LT. -800. ) .AND.
      &             hFacC(i,j,1,bi,bj) .NE. 0. ) then
                  print *, 'EXF WARNING: swflux out of range for i,j= ',
      &                i, j, swflux(i,j,bi,bj)
