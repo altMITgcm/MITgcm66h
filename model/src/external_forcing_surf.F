@@ -51,6 +51,11 @@ C     === Local variables ===
       INTEGER i,j
 C     number of surface interface layer
       INTEGER ks
+#ifdef ALLOW_DIAGNOSTICS
+      LOGICAL  DIAGNOSTICS_IS_ON
+      EXTERNAL DIAGNOSTICS_IS_ON
+      _RL tmp1k(1:sNx,1:sNy)
+#endif /* ALLOW_DIAGNOSTICS */
 CEOP
 
       IF ( usingPCoords ) THEN
@@ -139,6 +144,30 @@ C--   No restoring for T & S : set surfaceForcingT,S to zero :
 
 C--   end restoring / no restoring block.
       ENDIF
+
+#ifdef ALLOW_DIAGNOSTICS
+C     tRelax (temperature relaxation [W/m2], positive <-> increasing Theta)
+      IF ( DIAGNOSTICS_IS_ON('TRELAX  ',myThid) ) THEN
+         DO j = 1,sNy
+            DO i = 1,sNx
+               tmp1k(i,j) = surfaceForcingT(i,j,bi,bj)
+     &              *HeatCapacity_Cp*recip_horiVertRatio*rhoConst
+            ENDDO
+         ENDDO
+         CALL DIAGNOSTICS_FILL(tmp1k,'TRELAX  ',0,1,3,bi,bj,myThid)
+      ENDIF
+
+C     sRelax (salt relaxation [g/m2/s], positive <-> increasing Salt)
+      IF ( DIAGNOSTICS_IS_ON('SRELAX  ',myThid) ) THEN
+         DO j = 1,sNy
+            DO i = 1,sNx
+               tmp1k(i,j) = surfaceForcingS(i,j,bi,bj)*
+     &              recip_horiVertRatio*rhoConst
+            ENDDO
+         ENDDO
+         CALL DIAGNOSTICS_FILL(tmp1k,'SRELAX  ',0,1,3,bi,bj,myThid)
+      ENDIF
+#endif /* ALLOW_DIAGNOSTICS */
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 

@@ -629,6 +629,10 @@ C--      Apply open boundary conditions
 #endif /* ndef MINIMAL_TAVE_OUTPUT */
 #endif /* ALLOW_TIMEAVE */ 
 
+#ifdef ALLOW_DIAGNOSTICS
+        IF ( usediagnostics ) CALL DIAGNOSTICS_FILL_SURF_FLUX(myThid)
+#endif
+
 #endif /* SINGLE_LAYER_MODE */
 
 C--   end bi,bj loops.
