@@ -59,6 +59,7 @@ C     data.pkg namelists
      &          useZONAL_FILT,
      &          useFLT,
      &          usePTRACERS,
+     &          useGCHEM,
      &          useSBO,
      &          useSEAICE,
      &          useBulkForce,
@@ -97,6 +98,7 @@ C--   Default package configuration
       useZONAL_FILT=.FALSE.
       useFLT=.FALSE.
       usePTRACERS=.FALSE.
+      useGCHEM=.FALSE.
       useSBO=.FALSE.
       useSeaIce=.FALSE.
       useBulkForce=.FALSE.

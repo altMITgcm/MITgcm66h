@@ -101,6 +101,12 @@ CEOP
       IF (usePTRACERS) CALL PACKAGES_CHECK_ERROR('PTRACERS', myThid)
 #endif
 
+#ifdef ALLOW_GCHEM
+      IF (useGCHEM) CALL GCHEM_CHECK( myThid )
+#else
+      IF (useGCHEM) CALL PACKAGES_CHECK_ERROR('GCHEM', myThid)
+#endif
+
 #ifndef ALLOW_SHAP_FILT
       IF (useSHAP_FILT) CALL PACKAGES_CHECK_ERROR('SHAP_FILT', myThid)
 #endif

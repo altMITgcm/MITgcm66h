@@ -162,7 +162,13 @@ cph#endif
 #endif
          CALL PTRACERS_INIT( mythid )
 #ifdef ALLOW_GCHEM
-         CALL GCHEM_INIT_VARI( mythid )
+# ifndef ALLOW_AUTODIFF_TAMC
+         IF (useGCHEM) THEN
+# endif
+          CALL GCHEM_INIT_VARI( mythid )
+# ifndef ALLOW_AUTODIFF_TAMC
+         ENDIF
+# endif
 #endif
 # ifndef ALLOW_AUTODIFF_TAMC
       ENDIF

@@ -718,6 +718,7 @@ C Logical flags for selecting packages
       LOGICAL useZONAL_FILT
       LOGICAL useFLT
       LOGICAL usePTRACERS
+      LOGICAL useGCHEM
       LOGICAL useSBO
       LOGICAL useSEAICE
       LOGICAL useBulkForce
@@ -730,8 +731,9 @@ C Logical flags for selecting packages
       COMMON /PARM_PACKAGES/
      &        useKPP, useGMRedi, useOBCS, useAIM, useLand, useECCO, 
      &        useSHAP_FILT, useZONAL_FILT, useGrdchk, useFLT,
-     &        usePTRACERS,  useSBO, useSEAICE, useThSIce, useBulkForce, 
-     &        usefizhi,  usegridalt, usediagnostics, useEBM, useMNC,
+     &        usePTRACERS, useGCHEM,
+     &        useSBO, useSEAICE, useThSIce, useBulkForce, 
+     &        usefizhi, usegridalt, usediagnostics, useEBM, useMNC,
      &        usePP81, useMY82, useOPPS, useGGL90
 
 CEH3 ;;; Local Variables: ***

@@ -165,9 +165,8 @@ C     Do seaice diagnostics.
 
 cswdptr ---  add ---
 #ifdef ALLOW_GCHEM
-ceh3 ???  why is one package depending upon another here?
 C--   Do ptracer diagnostics.
-      IF (usePTRACERS)
+      IF (useGCHEM)
      & CALL GCHEM_DIAGS( myTime, myIter, myThid )
 #endif
 cswdptr -- end add ---

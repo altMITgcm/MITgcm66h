@@ -161,7 +161,7 @@ C -- initialize Therm.Sea-Ice parameters
 
 cswdptr -- add --
 #ifdef ALLOW_GCHEM
-      IF (usePTRACERS) CALL GCHEM_READPARMS( myThid )
+      IF (useGCHEM) CALL GCHEM_READPARMS( myThid )
 #endif
 cswdptr -- end add ---
 

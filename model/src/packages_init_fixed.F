@@ -136,9 +136,7 @@ C--   Initialise the control variables
 
 #ifdef ALLOW_PTRACERS
 #ifdef ALLOW_GCHEM
-      IF (usePTRACERS) then
-       call GCHEM_INIT_FIXED(mythid)
-      ENDIF
+      IF (useGCHEM) CALL GCHEM_INIT_FIXED(mythid)
 #endif
 #endif
 
