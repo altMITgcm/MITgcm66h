@@ -42,7 +42,7 @@
 
 # Time stepping parameters
  &PARM03
- niter0=0,
+ niter0=25920,
  nTimeSteps=24,
 #endTime=31104000.,
  deltaT=300.0,
