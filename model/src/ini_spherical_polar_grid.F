@@ -79,8 +79,8 @@ C  NOTICE the extended range of indices!!
 C These functions return the "global" index with valid values beyond
 C halo regions
       INTEGER iGl,jGl
-      iGl(I,bi) = 1+mod(myXGlobalLo-1+(bi-1)*sNx+I+Nx-1,Nx)
-      jGl(J,bj) = 1+mod(myYGlobalLo-1+(bj-1)*sNy+J+Ny-1,Ny)
+      iGl(I,bi) = 1+mod(myXGlobalLo-1+(bi-1)*sNx+I+Olx*Nx-1,Nx)
+      jGl(J,bj) = 1+mod(myYGlobalLo-1+(bj-1)*sNy+J+Oly*Ny-1,Ny)
 
 C     For each tile ...
       DO bj = myByLo(myThid), myByHi(myThid)
@@ -98,7 +98,7 @@ C       Find the X-coordinate of the outer grid-line of the "real" tile
         ENDDO
 C       Back-step to the outer grid-line of the "halo" region
         DO i=1, Olx
-         xG0 = xG0 - delX( 1+mod(Nx-1+iG-i,Nx) )
+         xG0 = xG0 - delX( 1+mod(Olx*Nx-1+iG-i,Nx) )
         ENDDO
 C       Find the Y-coordinate of the outer grid-line of the "real" tile
         yG0 = phiMin
@@ -107,7 +107,7 @@ C       Find the Y-coordinate of the outer grid-line of the "real" tile
         ENDDO
 C       Back-step to the outer grid-line of the "halo" region
         DO j=1, Oly
-         yG0 = yG0 - delY( 1+mod(Ny-1+jG-j,Ny) )
+         yG0 = yG0 - delY( 1+mod(Oly*Ny-1+jG-j,Ny) )
         ENDDO
 
 C--     Calculate coordinates of cell corners for N+1 grid-lines
