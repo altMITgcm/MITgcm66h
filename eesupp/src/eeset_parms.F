@@ -35,7 +35,7 @@ C     errIO - IO unit error flag
       INTEGER  ILNBLNK
       EXTERNAL ILNBLNK
       NAMELIST /EEPARMS/
-     & nTx, nTy
+     & nTx, nTy,usingMPI
 
 
 C--   For now these options are fixed as the code does
