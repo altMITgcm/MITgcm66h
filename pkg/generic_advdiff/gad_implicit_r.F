@@ -73,7 +73,6 @@ C errCode   :: > 0 if singular matrix
       _RL rTransKp1(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RL localTijk(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
 #ifdef ALLOW_DIAGNOSTICS
-      INTEGER     kk
       CHARACTER*8 diagName
       CHARACTER*4 GAD_DIAG_SUFX, diagSufx
       EXTERNAL    GAD_DIAG_SUFX
@@ -299,8 +298,7 @@ C         otherwise counter is not incremented !!
              ENDDO
             ENDDO
           ENDIF
-          kk = -k
-          CALL DIAGNOSTICS_FILL(df,diagName, kk,1, 2,bi,bj, myThid)
+          CALL DIAGNOSTICS_FILL(df,diagName, k,1, 2,bi,bj, myThid)
          ENDDO
         ENDIF
       ENDIF
