@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o vertical grid option: allow to put the Interface at the middle between
+  2 cell-centers ; replace delZ in pkg/kpp by drF.
 o GM Advective form: Tracers are advected using the residual transport (=
   Euler+GM-bolus); set param GM_AdvSeparate=T to return to previous form.
 
