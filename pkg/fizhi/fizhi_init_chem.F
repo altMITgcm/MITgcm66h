@@ -170,9 +170,9 @@ c -------------------------------------
 C Note: 2 quantities in Ozone Dataset
       nrec = lev+(time-1)*nlev*2   
       read(ku,rec=nrec) o3
+      call mds_byteswapr4(nlat,o3)
            do lat=1,nlat
-C          oz(lat,nlev-lev+1,time) = o3(lat)
-           oz(lat,nlev-lev+1,time) = 1.e-9
+           oz(lat,nlev-lev+1,time) = o3(lat)
            enddo
       enddo
       enddo
