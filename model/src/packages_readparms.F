@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-#include "AD_CONFIG.h"
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
@@ -121,9 +120,7 @@ cswdptr -- add --
 #endif
 cswdptr -- end add ---
 
-#if (defined (ALLOW_ADJOINT_RUN) || \
-     defined (ALLOW_TANGENTLINEAR_RUN) || \
-     defined (ALLOW_ECCO_OPTIMIZATION))
+#ifdef ALLOW_AUTODIFF
 C--   Initialise the optim. parameters.
       call optim_readparms( myThid )
 C--   Initialise the control parameters
@@ -133,7 +130,7 @@ C--   Initialise the cost parameters
       _BARRIER
 #endif
 
-#ifdef ALLOW_GRADIENT_CHECK
+#ifdef ALLOW_GRDCHK
 C--   Initialise gradient check parameters
       if (useGrdchk) call grdchk_readparms( myThid )
 #endif

@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-#include "AD_CONFIG.h"
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
@@ -208,7 +207,7 @@ C--   end of if/else block useBulfforce --
       ENDIF
 #endif /* ALLOW_BULK_FORCE */
 
-#if (defined (ALLOW_ADJOINT_RUN) || defined (ALLOW_TANGENTLINEAR_RUN))
+#ifdef ALLOW_AUTODIFF
 c--   Add control vector for forcing and parameter fields
       if ( myiter .EQ. nIter0 )
      &     CALL CTRL_MAP_FORCING (mythid)

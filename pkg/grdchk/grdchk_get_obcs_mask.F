@@ -31,7 +31,7 @@ c     == routine arguments ==
 
       integer mythid
 
-#if (defined (ALLOW_GRADIENT_CHECK) && defined (ALLOW_OBCS_CONTROL))
+#if (defined (ALLOW_GRDCHK) && defined (ALLOW_OBCS_CONTROL))
 c     == local variables ==
 
       integer bi,bj
@@ -161,7 +161,7 @@ c
 
       _BARRIER
 
-#endif /* ALLOW_GRADIENT_CHECK */
+#endif /* ALLOW_GRDCHK */
 
       end
 

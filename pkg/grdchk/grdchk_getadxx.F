@@ -48,7 +48,7 @@ c     == routine arguments ==
       _RL     xx_comp
       integer mythid
 
-#ifdef ALLOW_GRADIENT_CHECK
+#ifdef ALLOW_GRDCHK
 c     == local variables ==
 
       integer il
@@ -393,7 +393,7 @@ c--   == end of interface ==
 ce      --> this index does not exist yet.
       endif
 
-#endif /* ALLOW_GRADIENT_CHECK */
+#endif /* ALLOW_GRDCHK */
 
       end
 

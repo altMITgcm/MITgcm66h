@@ -32,7 +32,7 @@ c     == routine arguments ==
 
       integer mythid
 
-#ifdef ALLOW_GRADIENT_CHECK
+#ifdef ALLOW_GRDCHK
 c     == local variables ==
 
       integer i,j,k
@@ -114,7 +114,7 @@ c--     Summarize the gradient check's setup.
 
       _BARRIER
 
-#endif /* ALLOW_GRADIENT_CHECK */
+#endif /* ALLOW_GRDCHK */
 
       end
 

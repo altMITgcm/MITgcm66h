@@ -40,7 +40,7 @@ c     == routine arguments ==
       integer ierr_grdchk
       integer mythid 
 
-#ifdef ALLOW_GRADIENT_CHECK
+#ifdef ALLOW_GRDCHK
 c     == local variables ==
 
       _RL fcref
@@ -207,7 +207,7 @@ c--   Print final lines.
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
 
-#endif /* ALLOW_GRADIENT_CHECK */
+#endif /* ALLOW_GRDCHK */
 
       return
       end

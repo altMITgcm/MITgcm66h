@@ -89,7 +89,7 @@ C     !INPUT/OUTPUT PARAMETERS:
 c     == routine arguments ==
       integer mythid 
 
-#ifdef ALLOW_GRADIENT_CHECK
+#ifdef ALLOW_GRDCHK
 C     !LOCAL VARIABLES:
 c     == local variables ==
       integer myiter
@@ -456,6 +456,6 @@ c--   Everyone has to wait for the component to be reset.
 c--   Print the results of the gradient check.
       call grdchk_print( ichknum, ierr_grdchk, mythid )
 
-#endif /* ALLOW_GRADIENT_CHECK */
+#endif /* ALLOW_GRDCHK */
 
       end

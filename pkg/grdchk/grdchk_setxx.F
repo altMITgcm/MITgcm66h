@@ -50,7 +50,7 @@ c     == routine arguments ==
       _RL     xx_comp_ref
       integer mythid
 
-#ifdef ALLOW_GRADIENT_CHECK
+#ifdef ALLOW_GRDCHK
 c     == local variables ==
 
       integer i,j,k
@@ -561,7 +561,7 @@ c--   == end of interface ==
 ce      --> this index does not exist yet.
       endif
 
-#endif /* ALLOW_GRADIENT_CHECK */
+#endif /* ALLOW_GRDCHK */
 
       end
 

@@ -33,7 +33,7 @@ c     == routine arguments ==
 
       integer       mythid
 
-#ifdef ALLOW_GRADIENT_CHECK
+#ifdef ALLOW_GRDCHK
 c     == local variables ==
 
       integer bi,bj
@@ -169,7 +169,7 @@ c--   components of the given control variable.
 
       _BARRIER
 
-#endif /* ALLOW_GRADIENT_CHECK */
+#endif /* ALLOW_GRDCHK */
 
       end
 

@@ -216,8 +216,11 @@ C     of sea water at p
      O        locPres,
      I        myThid ) 
 
-         CALL FIND_RHO( bi, bj, iMin, iMax, jMin, jMax,  k,
-     &        kRef, theta, salt, rhoLoc, myThid )
+c$$$         CALL FIND_RHO( bi, bj, iMin, iMax, jMin, jMax,  k,
+c$$$     &        kRef, theta, salt, rhoLoc, myThid )
+
+         CALL FIND_RHONUM( bi, bj, iMin, iMax, jMin, jMax, k,
+     &      locPres, theta, salt, rhoLoc, myThid )
 
          CALL FIND_RHODEN( bi, bj, iMin, iMax, jMin, jMax, k,
      &        locPres, theta, salt, rhoDen, myThid )
@@ -252,7 +255,7 @@ C     of sea water at p
      &              + p1*p1*(3.*eosMDJWFden(11)*t2 + eosMDJWFden(12)*p1)
             
                alphaLoc(i,j)    = rhoDen(i,j)*(dnum_dtheta 
-     &              - rhoLoc(i,j)*dden_dtheta)
+     &              - (rhoLoc(i,j)*rhoDen(i,j))*dden_dtheta)
             
          ENDDO
       ENDDO
@@ -452,8 +455,11 @@ C     of sea water at p
      O        locPres,
      I        myThid ) 
 
-         CALL FIND_RHO( bi, bj, iMin, iMax, jMin, jMax,  k,
-     &        kRef, theta, salt, rhoLoc, myThid )
+c$$$         CALL FIND_RHO( bi, bj, iMin, iMax, jMin, jMax,  k,
+c$$$     &        kRef, theta, salt, rhoLoc, myThid )
+
+         CALL FIND_RHONUM( bi, bj, iMin, iMax, jMin, jMax, k,
+     &      locPres, theta, salt, rhoLoc, myThid )
 
          CALL FIND_RHODEN( bi, bj, iMin, iMax, jMin, jMax, k,
      &        locPres, theta, salt, rhoDen, myThid )
@@ -481,7 +487,7 @@ C     of sea water at p
      &              + 1.5*sp5*(eosMDJWFden(8) + eosMDJWFden(9)*t2)
 
                betaLoc(i,j) = rhoDen(i,j)*( dnum_dsalt 
-     &              - rhoLoc(i,j)*dden_dsalt )
+     &              - (rhoLoc(i,j)*rhoDen(i,j))*dden_dsalt )
 
             ENDDO
          ENDDO

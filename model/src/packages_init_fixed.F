@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-#include "AD_CONFIG.h"
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
@@ -79,9 +78,7 @@ C--   Initialise & Read Land package parameters
       IF (useLand) CALL LAND_INITIALISE( myThid )
 #endif
 
-#if (defined (ALLOW_ADJOINT_RUN) || \
-     defined (ALLOW_TANGENTLINEAR_RUN) || \
-     defined (ALLOW_ECCO_OPTIMIZATION))
+#ifdef ALLOW_AUTODIFF
 C--   Initialise the control variables
       CALL CTRL_INIT( myThid )
       _BARRIER
