@@ -34,13 +34,11 @@ c     _EXCH_XYZ_R8( uVel , myThid )
 c     _EXCH_XYZ_R8( vVel , myThid )
 c     _EXCH_XYZ_R8( theta , myThid )
 c     _EXCH_XYZ_R8( salt , myThid )
-#ifdef ALLOW_CD
+
+#ifdef INCLUDE_CD_CODE
       _EXCH_XYZ_R8( guCD , myThid )
       _EXCH_XYZ_R8( gvCD , myThid )
 #endif
-CcnhDebugStarts
-Cdbg  _EXCH_XYZ_R8( phSave , myThid )
-CcnhDebugEnds
 
       RETURN
       END
