@@ -456,6 +456,7 @@ C      o Non-hydrosatic metric terms
         ENDDO
        ENDDO
                                                                                 
+      ENDIF
       IF (usingCylindricalGrid) THEN
          CALL MOM_U_METRIC_CYLINDER(bi,bj,k,uFld,vFld,mT,myThid)
          DO j=jMin,jMax
@@ -463,7 +464,6 @@ C      o Non-hydrosatic metric terms
              gU(i,j,k,bi,bj) = gU(i,j,k,bi,bj)+mTFacU*mT(i,j)
           ENDDO
        ENDDO
-      ENDIF
                                                                                 
       ENDIF
 C--   Set du/dt on boundaries to zero
