@@ -141,6 +141,10 @@ C     set UV mask to zero except for Arctic and Antarctic cube faces.
           DO I=1-OLx,sNx+OLx
            CSTICE(i,j,bi,bj) = ONE
            CSUICE(i,j,bi,bj) = ONE
+CML(
+           RECIP_CSTICE(I,J,bi,bj) = ONE
+           RECIP_CSUICE(I,J,bi,bj) = ONE
+CML)
            TNGTICE(i,j,bi,bj)= ZERO
            TNGICE(i,j,bi,bj) = ZERO
            DXTICE(i,j,bi,bj) = dxF(i,j,bi,bj)
