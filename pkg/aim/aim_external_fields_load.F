@@ -4,7 +4,7 @@ C $Name$
 #include "AIM_OPTIONS.h"
  
 CStartOfInterface
-      SUBROUTINE AIM_EXTERNAL_FIELDS_LOAD( 
+      SUBROUTINE AIM_FIELDS_LOAD( 
      I            myTime, myIter, myThid )
 C     /==========================================================\
 C     | SUBROUTINE AIM_EXTERNAL_FIELDS_LOAD                      |
