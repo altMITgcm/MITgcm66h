@@ -16,5 +16,23 @@ o Install
   setenv PARALLEL 1
   ../exe/barrier
 
+o Running
+  
+  eedata
+  data
+
+  - Serial execution
+
+  - Parallel execution. Threads
+    nSx, nSy
+    setenv PARALLEL n
+    nTx=2, nTy=2
+
+  - Parallel execution. MPI
+    mPx, nPy
+    dmpirun
+
+  - Parallel execution. Hybrid
+
 o References
 
