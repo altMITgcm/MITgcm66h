@@ -133,6 +133,10 @@ C - end bi,bj loops.
 
       CALL PLOT_FIELD_XYRS( tmpfld, 
      &         'Model Depths K Index' , 1, myThid )
+      CALL PLOT_FIELD_XYRS(R_low, 
+     &         'Model R_low (ini_masks_etc)', 1, myThid)
+      CALL PLOT_FIELD_XYRS(Ro_surf, 
+     &         'Model Ro_surf (ini_masks_etc)', 1, myThid)
 
 C     Calculate quantities derived from XY depth map
       DO bj = myByLo(myThid), myByHi(myThid)
@@ -153,8 +157,6 @@ C         Inverse of fluid column thickness (1/r_unit)
        ENDDO
       ENDDO
 C     _EXCH_XY_R4(   recip_Rcol, myThid )
-      CALL PLOT_FIELD_XYRS(tmpfld, 
-     &         'Model Depth (ini_masks_etc)', 1, myThid)
       CALL WRITE_FLD_XY_RS( 'Depth',' ',tmpfld,0,myThid)
       CALL WRITE_FLD_XYZ_RS( 'hFacC',' ',hFacC,0,myThid)
 C     CALL MDSWRITEFIELD( 'Depth', writeBinaryPrec, .TRUE.,
