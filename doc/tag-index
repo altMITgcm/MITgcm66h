@@ -2,6 +2,11 @@ $Header$
 
     Notes on tags used in MITgcmUV
     ==============================
+not yet tagged:
+o add salt flux to forcing fields (used when salty sea-ice forms or melts)
+o enable to apply restoring on S & T only in a latitude band.
+o update output (external_forcing_surf modif. change truncation errors)
+   global_ocean.cs32x15, global_ocean_pressure, lab_sea, natl_box
 
 checkpoint51k_post
 o change default to: useNHMTerms=.FALSE.
