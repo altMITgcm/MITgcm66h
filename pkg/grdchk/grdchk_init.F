@@ -88,6 +88,14 @@ c--   control variable on the current tile.
                enddo
             enddo
          enddo
+      else if ( ncvargrd(grdchkvarindex) .eq. 'v' ) then
+         do bj = jtlo,jthi
+            do bi = itlo,ithi
+               do k = 1,ncvarnrmax(grdchkvarindex)
+                  nwettile(bi,bj,k) = nwetvtile(bi,bj,k)
+               enddo
+            enddo
+         enddo
       else
 ce        --> wrong grid specification for the control variable.
       endif
