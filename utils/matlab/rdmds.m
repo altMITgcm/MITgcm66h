@@ -113,7 +113,7 @@ elseif (ndims == 3)
  AA(r0(1):rN(1),r0(2):rN(2),r0(3):rN(3),iter)=A;
 elseif (ndims == 4)
  AA(r0(1):rN(1),r0(2):rN(2),r0(3):rN(3),r0(4):rN(4),iter)=A;
-elseif (ndims == 4)
+elseif (ndims == 5)
  AA(r0(1):rN(1),r0(2):rN(2),r0(3):rN(3),r0(4):rN(4),r0(5):rN(5),iter)=A;
 else
  error('Dimension of data set is larger than currently coded. Sorry!')
