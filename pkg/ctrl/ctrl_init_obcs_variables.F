@@ -30,9 +30,8 @@ c     == global variables ==
 #ifdef ALLOW_OBCS_CONTROL
 # include "OBCS.h"
 #endif
-
 #ifdef ALLOW_ECCO_OPTIMIZATION
-#include "optim.h"
+# include "optim.h"
 #endif
 
 c     == routine arguments ==
@@ -122,7 +121,7 @@ c     == end of interface ==
       enddo
 #endif
 
-#ifdef BALANCE_CONTROL_VOLFLUX_GLOBAL
+#ifdef ALLOW_OBCS_CONTROL
         shiftvel(1) = 0. d0
         shiftvel(2) = 0. d0
 #endif

@@ -27,13 +27,6 @@ c     == global variables ==
 #include "GRID.h"
 #include "cal.h"
 #include "ctrl.h"
-#ifdef ALLOW_OBCS_CONTROL
-# include "OBCS.h"
-#endif
-
-#ifdef ALLOW_ECCO_OPTIMIZATION
-#include "optim.h"
-#endif
 
 c     == routine arguments ==
 
@@ -111,6 +104,62 @@ c     == end of interface ==
           enddo
         enddo
       enddo
+#endif
+
+#ifdef ALLOW_UWIND_CONTROL
+      do bj = jtlo,jthi
+        do bi = itlo,ithi
+          do j = jmin,jmax
+            do i = imin,imax
+              xx_uwind0(i,j,bi,bj) = 0. _d 0
+              xx_uwind1(i,j,bi,bj) = 0. _d 0
+            enddo
+          enddo
+        enddo
+      enddo
+#endif
+
+#ifdef ALLOW_VWIND_CONTROL
+      do bj = jtlo,jthi
+        do bi = itlo,ithi
+          do j = jmin,jmax
+            do i = imin,imax
+              xx_vwind0(i,j,bi,bj) = 0. _d 0
+              xx_vwind1(i,j,bi,bj) = 0. _d 0
+            enddo
+          enddo
+        enddo
+      enddo
+#endif
+
+#ifdef ALLOW_ATEMP_CONTROL
+      do bj = jtlo,jthi
+        do bi = itlo,ithi
+          do j = jmin,jmax
+            do i = imin,imax
+              xx_atemp0(i,j,bi,bj) = 0. _d 0
+              xx_atemp1(i,j,bi,bj) = 0. _d 0
+            enddo
+          enddo
+        enddo
+      enddo
+#endif
+
+#ifdef ALLOW_AQH_CONTROL
+      do bj = jtlo,jthi
+        do bi = itlo,ithi
+          do j = jmin,jmax
+            do i = imin,imax
+              xx_aqh0(i,j,bi,bj) = 0. _d 0
+              xx_aqh1(i,j,bi,bj) = 0. _d 0
+            enddo
+          enddo
+        enddo
+      enddo
+#endif
+
+#ifdef ALLOW_OBCS_CONTROL
+      IF (useOBCS) CALL CTRL_INIT_OBCS_VARIABLES( mythid )
 #endif
 
       return

@@ -29,6 +29,9 @@ c              Armin Koehl akoehl@ucsd.edu 05-Dec-2000
 c              - single processor reads global parameter file
 c               and writes multiple xx* and adxx* files
 c
+c              G Gebbie gebbie@mit.edu 18-Mar-2003
+c              - open boundary packing
+c
 c     ==================================================================
 c     SUBROUTINE ctrl_unpack
 c     ==================================================================
@@ -47,7 +50,7 @@ c     == global variables ==
 #include "cost.h"
 
 #ifdef ALLOW_ECCO_OPTIMIZATION
-#include "optim.h"
+# include "optim.h"
 #endif
 
 c     == routine arguments ==
@@ -392,7 +395,9 @@ c--     Only the master thread will do I/O.
 
 c *********************************************************************
 c if NOT very first iteration of optimization
-        if ( optimcycle .ne. 0 ) then
+cgg     OPTIMCYCLE 100 RESERVED for MANUAL CONTROL RESTARTS.
+cgg        if ( optimcycle .ne. 0 ) then
+        if ( optimcycle .ne. 0 .and. optimcycle .ne. 100) then
 c *********************************************************************
 
           call mdsfindunit( cunit, mythid )
@@ -525,16 +530,20 @@ c----------------------------------------------------------------------
 
 #ifdef ALLOW_THETA0_CONTROL
           ivartype = 1
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wtheta"
           call ctrl_set_unpack_xyz(
      &         cunit, ivartype, fname_theta, "hFacC",
-     &         wtheta, nwetcglobal, mythid)
+     &         weighttype, wtheta, nwetcglobal, mythid)
 #endif
 
 #ifdef ALLOW_SALT0_CONTROL
           ivartype = 2
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wsalt"
           call ctrl_set_unpack_xyz(
      &         cunit, ivartype, fname_salt, "hFacC",
-     &         wsalt, nwetcglobal, mythid)
+     &         weighttype, wsalt, nwetcglobal, mythid)
 #endif
 
 #if (defined (ALLOW_HFLUX_CONTROL) || \
@@ -619,7 +628,7 @@ c----------------------------------------------------------------------
           write(weighttype(1:80),'(a)') "wobcsn"
           call ctrl_set_unpack_xz(
      &         cunit, ivartype, fname_obcsn, "maskobcsn",
-     &         wobcsn, nWetobcsnGlo, mythid)
+     &         weighttype, wobcsn, nWetobcsnGlo, mythid)
 #endif
 
 #ifdef ALLOW_OBCSS_CONTROL
@@ -628,7 +637,7 @@ c----------------------------------------------------------------------
           write(weighttype(1:80),'(a)') "wobcss"
           call ctrl_set_unpack_xz(
      &         cunit, ivartype, fname_obcss, "maskobcss",
-     &         wobcss, nWetobcssGlo, mythid)
+     &         weighttype, wobcss, nWetobcssGlo, mythid)
 #endif
 
 #ifdef ALLOW_OBCSW_CONTROL
@@ -637,7 +646,7 @@ c----------------------------------------------------------------------
           write(weighttype(1:80),'(a)') "wobcsw"
           call ctrl_set_unpack_yz(
      &         cunit, ivartype, fname_obcsw, "maskobcsw",
-     &         wobcsw, nWetobcswGlo, mythid)
+     &         weighttype, wobcsw, nWetobcswGlo, mythid)
 #endif
 
 #ifdef ALLOW_OBCSE_CONTROL
@@ -646,28 +655,34 @@ c----------------------------------------------------------------------
           write(weighttype(1:80),'(a)') "wobcse"
           call ctrl_set_unpack_yz(
      &         cunit, ivartype, fname_obcse, "maskobcse",
-     &         wobcse, nWetobcseGlo, mythid)
+     &         weighttype, wobcse, nWetobcseGlo, mythid)
 #endif
 
 #ifdef ALLOW_DIFFKR_CONTROL
           ivartype    = 15
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wdiffkr"
           call ctrl_set_unpack_xyz(
      &         cunit, ivartype, fname_diffkr, "hFacC",
-     &         wunit, nwetcglobal, mythid)
+     &         weighttype, wunit, nwetcglobal, mythid)
 #endif
 
 #ifdef ALLOW_KAPGM_CONTROL
           ivartype    = 16
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wkapgm"
           call ctrl_set_unpack_xyz(
      &         cunit, ivartype, fname_kapgm, "hFacC",
-     &         wunit, nwetcglobal, mythid)
+     &         weighttype, wunit, nwetcglobal, mythid)
 #endif
 
 #ifdef ALLOW_TR10_CONTROL
           ivartype    = 17
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wtr1"
           call ctrl_set_unpack_xyz(
      &         cunit, ivartype, fname_tr1, "hFacC",
-     &         wunit, nwetcglobal, mythid)
+     &         weighttype, wunit, nwetcglobal, mythid)
 #endif
 
 #ifdef ALLOW_SST0_CONTROL
@@ -690,31 +705,35 @@ c----------------------------------------------------------------------
 
 #ifdef ALLOW_HFACC_CONTROL
           ivartype    = 20
-#ifdef ALLOW_HFACC3D_CONTROL
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "whfacc"
+# ifdef ALLOW_HFACC3D_CONTROL
           call ctrl_set_unpack_xyz(
      &         cunit, ivartype, fname_hfacc, "hFacC",
      &         wunit, nwetcglobal, mythid)
-#else
-          write(weighttype(1:80),'(80a)') ' '
-          write(weighttype(1:80),'(a)') "whfacc"
+# else
           call ctrl_set_unpack_xy(
      &         cunit, ivartype, fname_hfacc, "hFacC", weighttype,
-     &         nwetcglobal, mythid)
-#endif
+     &         weighttype, nwetcglobal, mythid)
+# endif
 #endif
 
 #ifdef ALLOW_EFLUXY0_CONTROL
           ivartype    = 21
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wefluxy0"
           call ctrl_set_unpack_xyz(
      &         cunit, ivartype, fname_efluxy, "hFacS",
-     &         wefluxy, nwetsglobal, mythid)
+     &         weighttype, wefluxy, nwetsglobal, mythid)
 #endif
 
 #ifdef ALLOW_EFLUXP0_CONTROL
           ivartype    = 22
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wefluxp0"
           call ctrl_set_unpack_xyz(
      &         cunit, ivartype, fname_efluxp, "hFacV",
-     &         wefluxp, nwetvglobal, mythid)
+     &         weighttype, wefluxp, nwetvglobal, mythid)
 #endif
 
 #ifdef ALLOW_BOTTOMDRAG_CONTROL
@@ -730,11 +749,14 @@ c----------------------------------------------------------------------
 
 c *********************************************************************
 c if very first iteration of optimization
+cgg   if optimcycle is 0 or 100.
         else
 c *********************************************************************
 
 c--       Write zeroes to file.
 
+cgg   if optimcycle is zero only.
+          if (optimcycle .eq. 0) then
 #ifdef ALLOW_THETA0_CONTROL
            ivartype = 1
            call ctrl_set_globfld_xyz( 
@@ -882,8 +904,11 @@ c--       Write zeroes to file.
      I          fname_bottomdrag, ivartype, mythid )
 #endif
 
-cgg( For optimcycle = 0, we need to output ecco_ctrl file to disk with the
-cgg  header information and everything else 0. 
+          endif
+cgg   End of conditional clause for optimcycle = 0.
+
+cgg( For optimcycle = 0 and 100, we need to output ecco_ctrl file to disk with
+cgg  the header information and everything else 0. 
 c     >>> Write control vector <<<
           lxxadxx = .TRUE.
 
@@ -939,16 +964,20 @@ cgg)
 
 #ifdef ALLOW_THETA0_CONTROL
           ivartype = 1
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wtheta"
           call ctrl_set_pack_xyz(
      &         cunit, ivartype, fname_theta, "hFacC",
-     &         wtheta, lxxadxx, mythid)
+     &         weighttype, wtheta, lxxadxx, mythid)
 #endif
 
 #ifdef ALLOW_SALT0_CONTROL
           ivartype = 2
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wsalt"
           call ctrl_set_pack_xyz(
      &         cunit, ivartype, fname_salt, "hFacC",
-     &         wsalt, lxxadxx, mythid)
+     &         weighttype, wsalt, lxxadxx, mythid)
 #endif
 
 #if (defined (ALLOW_HFLUX_CONTROL) || \
@@ -1029,51 +1058,65 @@ cgg)
 
 #ifdef ALLOW_OBCSN_CONTROL
           ivartype = 11
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wobcsn"
           call ctrl_set_pack_xz(
      &         cunit, ivartype, fname_obcsn, "maskobcsn",
-     &         wobcsn, lxxadxx, mythid)
+     &         weighttype, wobcsn, lxxadxx, mythid)
 #endif
 
 #ifdef ALLOW_OBCSS_CONTROL
           ivartype = 12
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wobcss"
           call ctrl_set_pack_xz(
      &         cunit, ivartype, fname_obcsn, "maskobcss",
-     &         wobcss, lxxadxx, mythid)
+     &         weighttype, wobcss, lxxadxx, mythid)
 #endif
 
 #ifdef ALLOW_OBCSW_CONTROL
           ivartype = 13
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wobcsw"
           call ctrl_set_pack_yz(
      &         cunit, ivartype, fname_obcsw, "maskobcsw",
-     &         wobcsw, lxxadxx, mythid)
+     &         weighttype, wobcsw, lxxadxx, mythid)
 #endif
 
 #ifdef ALLOW_OBCSE_CONTROL
           ivartype = 14
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wobcse"
           call ctrl_set_pack_yz(
      &         cunit, ivartype, fname_obcse, "maskobcse",
-     &         wobcse, lxxadxx, mythid)
+     &         weighttype, wobcse, lxxadxx, mythid)
 #endif
 
 #ifdef ALLOW_DIFFKR_CONTROL
           ivartype = 15
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wdiffkr"
           call ctrl_set_pack_xyz(
      &         cunit, ivartype, fname_diffkr, "hFacC",
-     &         wunit, lxxadxx, mythid)
+     &         weighttype, wunit, lxxadxx, mythid)
 #endif
 
 #ifdef ALLOW_KAPGM_CONTROL
           ivartype = 16
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wkapgm"
           call ctrl_set_pack_xyz(
      &         cunit, ivartype, fname_kapgm, "hFacC",
-     &         wunit, lxxadxx, mythid)
+     &         weighttype, wunit, lxxadxx, mythid)
 #endif
 
 #ifdef ALLOW_TR10_CONTROL
           ivartype = 17
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wtr1"
           call ctrl_set_pack_xyz(
      &         cunit, ivartype, fname_tr1, "hFacC",
-     &         wunit, lxxadxx, mythid)
+     &         weighttype, wunit, lxxadxx, mythid)
 #endif
 
 #ifdef ALLOW_SST0_CONTROL
@@ -1096,30 +1139,35 @@ cgg)
 
 #ifdef ALLOW_HFACC_CONTROL
           ivartype = 20
-#ifdef ALLOW_HFACC3D_CONTROL
-          call ctrl_set_pack_xyz(
-     &         cunit, ivartype, fname_hfacc, "hFacC",
-#else
           write(weighttype(1:80),'(80a)') ' '
           write(weighttype(1:80),'(a)') "whfacc"
+# ifdef ALLOW_HFACC3D_CONTROL
+          call ctrl_set_pack_xyz(
+     &         cunit, ivartype, fname_hfacc, "hFacC",
+     &         weighttype, wunit, lxxadxx, mythid)
+# else
           call ctrl_set_pack_xy(
      &         cunit, ivartype, fname_hfacc, "hFacC", weighttype,
      &         lxxadxx, mythid)
-#endif
+# endif
 #endif
 
 #ifdef ALLOW_EFLUXY0_CONTROL
           ivartype = 21
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wefluxy0"
           call ctrl_set_pack_xyz(
      &         cunit, ivartype, fname_efluxy, "hFacS",
-     &         wunit, lxxadxx, mythid)
+     &         weighttype, wunit, lxxadxx, mythid)
 #endif
 
 #ifdef ALLOW_EFLUXP0_CONTROL
           ivartype = 22
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wefluxp0"
           call ctrl_set_pack_xyz(
      &         cunit, ivartype, fname_efluxp, "hFacV",
-     &         wunit, lxxadxx, mythid)
+     &         weighttype, wunit, lxxadxx, mythid)
 #endif
 
 #ifdef ALLOW_BOTTOMDRAG_CONTROL
@@ -1135,7 +1183,7 @@ cgg)
 cgg)  End of the initialization of the ecco_ctrl file for optimcycle=0.
 
         endif
-cgg   End of optimcycle if.
+cgg   End of optimcycle 0 or 100 conditional clause.
  
       _END_MASTER( mythid )
 

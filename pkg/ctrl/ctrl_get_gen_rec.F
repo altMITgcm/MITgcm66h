@@ -3,8 +3,9 @@ C $Header$
 #include "CTRL_CPPOPTIONS.h"
 
 
-      subroutine ctrl_GetRec(
-     I                        thefield,
+      subroutine ctrl_get_gen_rec(
+     I                        xx_genstartdate,
+     I                        xx_genperiod,
      O                        fac,
      O                        first,
      O                        changed,
@@ -16,25 +17,15 @@ C $Header$
      &                      )
 
 c     ==================================================================
-c     SUBROUTINE ctrl_GetRec
+c     SUBROUTINE ctrl_get_gen_rec
 c     ==================================================================
 c
 c     o Get flags, counters, and the linear interpolation factor for a
 c       given control vector contribution.
-c
-c     started: Christian Eckert eckert@mit.edu  30-Jun-1999
-c
-c     changed: Christian Eckert eckert@mit.edu  14-Jan-2000
-c
-c              - Restructured the code in order to create a package
-c                for the MITgcmUV.
-c
-c              Christian Eckert eckert@mit.edu  24-Feb-2000
-c
-c              - Changed Routine names (package prefix: ecco_)
+c     o New, generic, for new routine ctrl_get_gen
 c
 c     ==================================================================
-c     SUBROUTINE ctrl_GetRec
+c     SUBROUTINE ctrl_get_gen_rec
 c     ==================================================================
 
       implicit none
@@ -50,7 +41,8 @@ c     == global variables ==
 
 c     == routine arguments ==
 
-      character*(*) thefield
+      integer xx_genstartdate(4)
+      _RL     xx_genperiod
       _RL     fac
       logical first
       logical changed
@@ -88,109 +80,19 @@ c     == end of interface ==
 
 c     Map the field parameters.
 
-      if ( thefield .eq. 'xx_hflux'   ) then
-         call cal_CopyDate(
-     I        xx_hfluxstartdate,
-     O        fldstartdate,
-     I        mythid
-     &        )
-         fldperiod = xx_hfluxperiod
-         lArgErr = .false.
-      else if ( thefield .eq. 'xx_atemp'   ) then
-         call cal_CopyDate(
-     I        xx_atempstartdate,
-     O        fldstartdate,
-     I        mythid
-     &        )
-         fldperiod = xx_atempperiod
-         lArgErr = .false.
-      else if ( thefield .eq. 'xx_sflux'   ) then
-         call cal_CopyDate(
-     I        xx_sfluxstartdate,
-     O        fldstartdate,
-     I        mythid
-     &        )
-         fldperiod = xx_sfluxperiod
-         lArgErr = .false.
-      else if ( thefield .eq. 'xx_aqh'   ) then
-         call cal_CopyDate(
-     I        xx_aqhstartdate,
-     O        fldstartdate,
-     I        mythid
-     &        )
-         fldperiod = xx_aqhperiod
-         lArgErr = .false.
-      else if ( thefield .eq. 'xx_tauu'   ) then
-         call cal_CopyDate(
-     I        xx_tauustartdate,
-     O        fldstartdate,
-     I        mythid
-     &        )
-         fldperiod = xx_tauuperiod
-         lArgErr = .false.
-      else if ( thefield .eq. 'xx_uwind'   ) then
-         call cal_CopyDate(
-     I        xx_uwindstartdate,
-     O        fldstartdate,
-     I        mythid
-     &        )
-         fldperiod = xx_uwindperiod
-         lArgErr = .false.
-      else if ( thefield .eq. 'xx_tauv'   ) then
-         call cal_CopyDate(
-     I        xx_tauvstartdate,
-     O        fldstartdate,
-     I        mythid
-     &        )
-         fldperiod = xx_tauvperiod
-         lArgErr = .false.
-      else if ( thefield .eq. 'xx_vwind'   ) then
-         call cal_CopyDate(
-     I        xx_vwindstartdate,
-     O        fldstartdate,
-     I        mythid
-     &           )
-         fldperiod = xx_vwindperiod
-         lArgErr = .false.
-      else if ( thefield .eq. 'xx_obcsn'   ) then
-         call cal_CopyDate(
-     I        xx_obcsnstartdate,
-     O        fldstartdate,
-     I        mythid
-     &        )
-         fldperiod = xx_obcsnperiod
-         lArgErr = .false.
-      else if ( thefield .eq. 'xx_obcss'   ) then
-         call cal_CopyDate(
-     I        xx_obcssstartdate,
-     O        fldstartdate,
-     I        mythid
-     &        )
-         fldperiod = xx_obcssperiod
-         lArgErr = .false.
-      else if ( thefield .eq. 'xx_obcsw'   ) then
-         call cal_CopyDate(
-     I        xx_obcswstartdate,
-     O        fldstartdate,
-     I        mythid
-     &        )
-         fldperiod = xx_obcswperiod
-         lArgErr = .false.
-      else if ( thefield .eq. 'xx_obcse'   ) then
-         call cal_CopyDate(
-     I        xx_obcsestartdate,
-     O        fldstartdate,
-     I        mythid
-     &        )
-         fldperiod = xx_obcseperiod
-         lArgErr = .false.
-      endif
+      call cal_CopyDate(
+     I     xx_genstartdate,
+     O     fldstartdate,
+     I     mythid
+     &     )
+      fldperiod = xx_genperiod
+      lArgErr = .false.
       
 c--   Check the field argument.
       if ( lArgErr ) then
-         print*,' The subroutine *ctrl_GetRec* has been called'
+         print*,' The subroutine *ctrl_get_gen_rec* has been called'
          print*,' with an illegal field specification.'
-         stop   ' ... stopped in ctrl_GetRec.'
+         stop   ' ... stopped in ctrl_get_gen_rec.'
       endif
 
 c--   Determine the current date.
@@ -200,7 +102,6 @@ c     Determine the flux record just before mycurrentdate.
       call cal_TimePassed( fldstartdate, mydate, difftime,
      &                     mythid )
       call cal_ToSeconds( difftime, fldsecs, mythid )
-cgg   Added a 0.5 safety net.
       fldsecs  = int((fldsecs+0.5)/fldperiod)*fldperiod
       fldcount = int((fldsecs+0.5)/fldperiod) + 1
 
@@ -216,7 +117,6 @@ c     Set switches for reading new records.
         call cal_TimePassed( fldstartdate, previousdate,
      &                       difftime, mythid )
         call cal_ToSeconds( difftime, prevfldsecs, mythid )
-cgg   Added a 0.5 safety net.
         prevfldsecs  = int((prevfldsecs+0.5)/fldperiod)*fldperiod
         prevfldcount = int((prevfldsecs+0.5)/fldperiod) + 1
 

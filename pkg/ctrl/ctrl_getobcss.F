@@ -20,6 +20,8 @@ c       to dyn. fields
 c
 c     started: heimbach@mit.edu, 29-Aug-2001
 c
+c     new flags: gebbie@mit.edu, 25 Jan 2003.
+c
 c     ==================================================================
 c     SUBROUTINE ctrl_getobcss
 c     ==================================================================
@@ -72,9 +74,9 @@ cgg      _RL maskxz   (1-olx:snx+olx,nr,nsx,nsy)
 
       character*(80) fnameobcss
 
-cgg(  Variables for balancing volume flux.
+cgg(  Variables for splitting barotropic/baroclinic vels.
       _RL vbaro
-      _RL vbarocount
+      _RL vtop
 cgg)
 
 c     == external functions ==
@@ -94,9 +96,10 @@ c     == end of interface ==
       imin = 1-olx
       imax = snx+olx
       jp1  = 1
+
 cgg(  Initialize variables for balancing volume flux.
       vbaro = 0.d0
-      vbarocount = 0.d0
+      vtop = 0.d0
 cgg)
 
 c--   Now, read the control vector.
@@ -107,88 +110,102 @@ c--   Now, read the control vector.
         ilobcss=ilnblnk( xx_obcss_file )
         write(fnameobcss(1:80),'(2a,i10.10)') 
      &       xx_obcss_file(1:ilobcss), '.', optimcycle
-      else
-        print*
-        print*,' ctrl_getobcss: optimcycle not set correctly.'
-        print*,' ... stopped in ctrl_getobcss.'
       endif
 
 c--   Get the counters, flags, and the interpolation factor.
-      call ctrl_GetRec( 'xx_obcss',
+      call ctrl_get_gen_rec(
+     I                   xx_obcssstartdate, xx_obcssperiod,
      O                   obcssfac, obcssfirst, obcsschanged,
      O                   obcsscount0,obcsscount1,
      I                   mytime, myiter, mythid )
 
       do iobcs = 1,nobcs
-       
-cgg        call active_read_xz( 'maskobcss', maskxz, 
-cgg     &                         iobcs,
-cgg     &                         doglobalread, ladinit, 0,
-cgg     &                         mythid, dummy )
-
         if ( obcssfirst ) then
           call active_read_xz( fnameobcss, tmpfldxz, 
      &                         (obcsscount0-1)*nobcs+iobcs,
      &                         doglobalread, ladinit, optimcycle,
      &                         mythid, xx_obcss_dummy )
 
-#ifdef BALANCE_CONTROL_VOLFLUX
           if ( optimcycle .gt. 0) then           
-            if (iobcs .eq. 4) then
-cgg(        Make sure that the xx velocity field has a balanced net volume flux.
-cgg         Find the barotropic flow normal to the boundary.
+            if (iobcs .eq. 3) then
+cgg         Special attention is needed for the normal velocity.
 cgg         For the north, this is the v velocity, iobcs = 4.
+cgg         This is done on a columnwise basis here.
               do bj = jtlo,jthi
                 do bi = itlo, ithi
                   do i = imin,imax
-                    vbaro = 0.d0
-                    vbarocount = 0.d0
-                    do k = 1,nr
-cgg(   If cells are not full, this should be modified with hFac.
-                      vbaro = tmpfldxz(i,k,bi,bj)*maskS(i,j+jp1,k,bi,bj)
-     &                      * delZ(k) + vbaro 
-                      vbarocount = maskS(i,j+jp1,k,bi,bj)
-     &                           * delZ(k) +vbarocount
+                    j = OB_Js(I,bi,bj)
+
+cgg         The barotropic velocity is stored in the level 1.
+                    vbaro = tmpfldxz(i,1,bi,bj)
+                    tmpfldxz(i,1,bi,bj) = 0.d0
+                    vtop = 0.d0
+
+                    do k = 1,Nr
+cgg    If cells are not full, this should be modified with hFac.
+cgg    
+cgg    The xx field (tmpfldxz) does not contain the velocity at the 
+cgg    surface level. This velocity is not independent; it must 
+cgg    exactly balance the volume flux, since we are dealing with
+cgg    the baroclinic velocity structure.. 
+                      vtop = tmpfldxz(i,k,bi,bj)*
+     &                maskS(i,j+jp1,k,bi,bj) * delZ(k) + vtop
+cgg    Add the barotropic velocity component. 
+                      if (maskS(i,j+jp1,k,bi,bj) .ne. 0.) then
+                        tmpfldxz(i,k,bi,bj) = tmpfldxz(i,k,bi,bj)+ vbaro
+                      endif
                     enddo
-                    if (vbarocount .eq. 0.) then
-                      vbaro = 0.
-                    else
-                      vbaro = vbaro / vbarocount
-                    endif
-                    do k = 1,nr
-                      tmpfldxz(i,k,bi,bj) = tmpfldxz(i,k,bi,bj) - vbaro
-                    enddo
+cgg    Compute the baroclinic velocity at level 1. Should balance flux.
+                    tmpfldxz(i,1,bi,bj) = tmpfldxz(i,1,bi,bj) 
+     &                                      - vtop / delZ(1)
                   enddo
                 enddo
               enddo
             endif
-          endif
-cgg)
-#endif
 
-#ifdef BALANCE_CONTROL_VOLFLUX_GLOBAL 
-          if (optimcycle .gt. 0) then
-            if ( iobcs .eq. 4) then
+            if (iobcs .eq. 4) then
+cgg         Special attention is needed for the normal velocity.
+cgg         For the north, this is the v velocity, iobcs = 4.
+cgg         This is done on a columnwise basis here.
               do bj = jtlo,jthi
                 do bi = itlo, ithi
-                  do k = 1,Nr
-                    do i = imin,imax
-                      j = OB_Js(I,bi,bj)
-                      tmpfldxz(i,k,bi,bj) = tmpfldxz(i,k,bi,bj) 
-     &                   - shiftvel(1) *maskS(i,j+jp1,k,bi,bj)
+                  do i = imin,imax
+                    j = OB_Js(I,bi,bj)
+
+cgg         The barotropic velocity is stored in the level 1.
+                    vbaro = tmpfldxz(i,1,bi,bj)
+                    tmpfldxz(i,1,bi,bj) = 0.d0
+                    vtop = 0.d0
+
+                    do k = 1,Nr
+cgg    If cells are not full, this should be modified with hFac.
+cgg    
+cgg    The xx field (tmpfldxz) does not contain the velocity at the 
+cgg    surface level. This velocity is not independent; it must 
+cgg    exactly balance the volume flux, since we are dealing with
+cgg    the baroclinic velocity structure.. 
+                      vtop = tmpfldxz(i,k,bi,bj)*
+     &                maskW(i,j,k,bi,bj) * delZ(k) + vtop
+cgg    Add the barotropic velocity component. 
+                      if (maskW(i,j,k,bi,bj) .ne. 0.) then
+                        tmpfldxz(i,k,bi,bj) = tmpfldxz(i,k,bi,bj)+ vbaro
+                      endif
                     enddo
+cgg    Compute the baroclinic velocity at level 1. Should balance flux.
+                    tmpfldxz(i,1,bi,bj) = tmpfldxz(i,1,bi,bj) 
+     &                                      - vtop / delZ(1)
                   enddo
                 enddo
               enddo
             endif
           endif
-#endif
 
           do bj = jtlo,jthi
             do bi = itlo,ithi
               do k = 1,nr
                 do i = imin,imax
                   xx_obcss1(i,k,bi,bj,iobcs)  = tmpfldxz (i,k,bi,bj)
+cgg     &                                        *   maskxz (i,k,bi,bj)
                 enddo
               enddo
             enddo
@@ -213,7 +230,7 @@ cgg)
             do bi = itlo,ithi
               do k = 1,nr
                 do i = imin,imax
-                  xx_obcss0(i,k,bi,bj,iobcs) = tmpfldxz2(i,k,bi,bj)        
+                  xx_obcss0(i,k,bi,bj,iobcs) = tmpfldxz2(i,k,bi,bj)
                 enddo
               enddo
             enddo
@@ -224,61 +241,86 @@ cgg)
      &                         doglobalread, ladinit, optimcycle,
      &                         mythid, xx_obcss_dummy )
 
-#ifdef BALANCE_CONTROL_VOLFLUX
-          if (optimcycle .gt. 0) then
-            if (iobcs .eq. 4) then
-cgg(        Make sure that the xx velocity field has a balanced net volume flux.
-cgg         Find the barotropic flow normal to the boundary.
+          if ( optimcycle .gt. 0) then           
+            if (iobcs .eq. 3) then
+cgg         Special attention is needed for the normal velocity.
 cgg         For the north, this is the v velocity, iobcs = 4.
+cgg         This is done on a columnwise basis here.
               do bj = jtlo,jthi
                 do bi = itlo, ithi
                   do i = imin,imax
-                    vbaro = 0.d0
-                    vbarocount = 0.d0
-                    do k = 1,nr
-cgg(   If cells are not full, this should be modified with hFac.
-                      vbaro = tmpfldxz(i,k,bi,bj)*maskS(i,j+jp1,k,bi,bj)
-     &                      * delZ(k) + vbaro 
-                      vbarocount = maskS(i,j+jp1,k,bi,bj)
-     &                           * delZ(k)+ vbarocount
+                    j = OB_Js(I,bi,bj)
+
+cgg         The barotropic velocity is stored in the level 1.
+                    vbaro = tmpfldxz(i,1,bi,bj)
+                    tmpfldxz(i,1,bi,bj) = 0.d0
+                    vtop = 0.d0
+
+                    do k = 1,Nr
+cgg    If cells are not full, this should be modified with hFac.
+cgg    
+cgg    The xx field (tmpfldxz) does not contain the velocity at the 
+cgg    surface level. This velocity is not independent; it must 
+cgg    exactly balance the volume flux, since we are dealing with
+cgg    the baroclinic velocity structure.. 
+                      vtop = tmpfldxz(i,k,bi,bj)*
+     &                maskS(i,j+jp1,k,bi,bj) * delZ(k) + vtop
+cgg    Add the barotropic velocity component. 
+                      if (maskS(i,j+jp1,k,bi,bj) .ne. 0.) then
+                        tmpfldxz(i,k,bi,bj) = tmpfldxz(i,k,bi,bj)+ vbaro
+                      endif
                     enddo
-                    if (vbarocount .eq. 0.) then
-                      vbaro = 0.
-                    else
-                      vbaro = vbaro / vbarocount
-                    endif
-                    do k = 1,nr
-                      tmpfldxz(i,k,bi,bj) = tmpfldxz(i,k,bi,bj) - vbaro
-                    enddo
+cgg    Compute the baroclinic velocity at level 1. Should balance flux.
+                    tmpfldxz(i,1,bi,bj) = tmpfldxz(i,1,bi,bj) 
+     &                                      - vtop / delZ(1)
                   enddo
                 enddo
               enddo
             endif
-          endif
-cgg)
-#endif
-#ifdef BALANCE_CONTROL_VOLFLUX_GLOBAL 
-          if (optimcycle .gt. 0) then
-            if ( iobcs .eq. 4) then
+
+            if (iobcs .eq. 4) then
+cgg         Special attention is needed for the normal velocity.
+cgg         For the north, this is the v velocity, iobcs = 4.
+cgg         This is done on a columnwise basis here.
               do bj = jtlo,jthi
                 do bi = itlo, ithi
-                  do k = 1,Nr
-                    do i = imin,imax
-                      j = OB_Js(I,bi,bj)
-                      tmpfldxz(i,k,bi,bj) = tmpfldxz(i,k,bi,bj) 
-     &                   - shiftvel(2) *maskS(i,j+jp1,k,bi,bj)
+                  do i = imin,imax
+                    j = OB_Js(I,bi,bj)
+
+cgg         The barotropic velocity is stored in the level 1.
+                    vbaro = tmpfldxz(i,1,bi,bj)
+                    tmpfldxz(i,1,bi,bj) = 0.d0
+                    vtop = 0.d0
+
+                    do k = 1,Nr
+cgg    If cells are not full, this should be modified with hFac.
+cgg    
+cgg    The xx field (tmpfldxz) does not contain the velocity at the 
+cgg    surface level. This velocity is not independent; it must 
+cgg    exactly balance the volume flux, since we are dealing with
+cgg    the baroclinic velocity structure.. 
+                      vtop = tmpfldxz(i,k,bi,bj)*
+     &                maskW(i,j,k,bi,bj) * delZ(k) + vtop
+cgg    Add the barotropic velocity component. 
+                      if (maskW(i,j,k,bi,bj) .ne. 0.) then
+                        tmpfldxz(i,k,bi,bj) = tmpfldxz(i,k,bi,bj)+ vbaro
+                      endif
                     enddo
+cgg    Compute the baroclinic velocity at level 1. Should balance flux.
+                    tmpfldxz(i,1,bi,bj) = tmpfldxz(i,1,bi,bj) 
+     &                                      - vtop / delZ(1)
                   enddo
                 enddo
               enddo
             endif
           endif
-#endif
+
           do bj = jtlo,jthi
             do bi = itlo,ithi
               do k = 1,nr
                 do i = imin,imax
                   xx_obcss1 (i,k,bi,bj,iobcs) = tmpfldxz (i,k,bi,bj)
+cgg     &                                        *   maskxz (i,k,bi,bj)
                  enddo
               enddo
             enddo
@@ -304,13 +346,13 @@ c--        Calculate mask for tracer cells (0 => land, 1 => water).
      &                 + (1. _d 0 - obcssfac)*xx_obcss1(i,k,bi,bj,iobcs)
                        OBSs(i,k,bi,bj) = OBSs(i,k,bi,bj)
      &                      *maskS(i,j+jp1,k,bi,bj)
-                    else if (iobcs .EQ. 3) then
+                    else if (iobcs .EQ. 4) then
                        OBSu(i,k,bi,bj) = OBSu (i,k,bi,bj)
      &                 + obcssfac            *xx_obcss0(i,k,bi,bj,iobcs)
      &                 + (1. _d 0 - obcssfac)*xx_obcss1(i,k,bi,bj,iobcs)
                        OBSu(i,k,bi,bj) = OBSu(i,k,bi,bj)
      &                      *maskW(i,j,k,bi,bj)
-                    else if (iobcs .EQ. 4) then
+                    else if (iobcs .EQ. 3) then
                        OBSv(i,k,bi,bj) = OBSv (i,k,bi,bj)
      &                 + obcssfac            *xx_obcss0(i,k,bi,bj,iobcs)
      &                 + (1. _d 0 - obcssfac)*xx_obcss1(i,k,bi,bj,iobcs)

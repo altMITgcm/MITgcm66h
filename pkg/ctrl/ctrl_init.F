@@ -66,13 +66,13 @@ c     == global variables ==
 #include "ctrl.h"
 
 #ifdef ALLOW_CALENDAR
-#include "cal.h"
+# include "cal.h"
 #endif
 #ifdef ALLOW_OBCS_CONTROL
 # include "OBCS.h"
 #endif
 #ifdef ALLOW_ECCO_OPTIMIZATION
-#include "optim.h"
+# include "optim.h"
 #endif
 
 c     == routine arguments ==
@@ -112,152 +112,18 @@ c     == external ==
 
 c     == end of interface ==
 
-c--   Read the namelist input.
-      namelist /ctrl_nml/
-     &  xx_theta_file,
-     &  xx_salt_file,
-     &  xx_hflux_file,
-     &  xx_hfluxstartdate1, xx_hfluxstartdate2, xx_hfluxperiod,
-     &  xx_sflux_file,
-     &  xx_sfluxstartdate1, xx_sfluxstartdate2, xx_sfluxperiod,
-     &  xx_tauu_file,
-     &  xx_tauustartdate1,  xx_tauustartdate2,  xx_tauuperiod,
-     &  xx_tauv_file,
-     &  xx_tauvstartdate1,  xx_tauvstartdate2,  xx_tauvperiod,
-     &  xx_atemp_file,
-     &  xx_atempstartdate1, xx_atempstartdate2, xx_atempperiod,
-     &  xx_aqh_file,
-     &  xx_aqhstartdate1, xx_aqhstartdate2, xx_aqhperiod,
-     &  xx_uwind_file,
-     &  xx_uwindstartdate1, xx_uwindstartdate2, xx_uwindperiod,
-     &  xx_vwind_file,
-     &  xx_vwindstartdate1, xx_vwindstartdate2, xx_vwindperiod,
-     &  xx_obcsn_file,
-     &  xx_obcsnstartdate1,  xx_obcsnstartdate2,  xx_obcsnperiod,
-     &  xx_obcss_file,
-     &  xx_obcssstartdate1,  xx_obcssstartdate2,  xx_obcssperiod,
-     &  xx_obcsw_file,
-     &  xx_obcswstartdate1,  xx_obcswstartdate2,  xx_obcswperiod,
-     &  xx_obcse_file,
-     &  xx_obcsestartdate1,  xx_obcsestartdate2,  xx_obcseperiod,
-     &  xx_diffkr_file,
-     &  xx_kapgm_file,
-     &  xx_tr1_file,
-     &  xx_sst_file,
-     &  xx_sss_file,
-     &  xx_hfacc_file,
-     &  xx_efluxy_file,
-     &  xx_efluxp_file,
-     &  xx_bottomdrag_file
-
-      namelist /ctrl_packnames/
-     &  yadmark, yctrlid,
-     &  ctrlname, costname, scalname, maskname, metaname
-
+c--   Set loop ranges.
       jtlo = mybylo(mythid)
       jthi = mybyhi(mythid)
       itlo = mybxlo(mythid)
       ithi = mybxhi(mythid)
-      jmin = 1-oly
-      jmax = sny+oly
-      imin = 1-olx
-      imax = snx+olx
+      jmin = 1
+      jmax = sny
+      imin = 1
+      imax = snx
+
 
       _BEGIN_MASTER( myThid )
-
-c--     Set default values.
-        xx_theta_file      = ' '
-        xx_salt_file       = ' '
-        xx_hfluxstartdate1 =   0
-        xx_hfluxstartdate2 =   0
-        xx_hfluxperiod     =   0. _d 0
-        xx_hflux_file      = ' '
-        xx_sfluxstartdate1 =   0
-        xx_sfluxstartdate2 =   0
-        xx_sfluxperiod     =   0. _d 0
-        xx_sflux_file      = ' '
-        xx_tauustartdate1  =   0
-        xx_tauustartdate2  =   0
-        xx_tauuperiod      =   0. _d 0
-        xx_tauu_file       = ' '
-        xx_tauvstartdate1  =   0
-        xx_tauvstartdate2  =   0
-        xx_tauvperiod      =   0. _d 0
-        xx_tauv_file       = ' '
-        xx_atempstartdate1  =   0
-        xx_atempstartdate2  =   0
-        xx_atempperiod      =   0. _d 0
-        xx_atemp_file       = ' '
-        xx_aqhstartdate1    =   0
-        xx_aqhstartdate2    =   0
-        xx_aqhperiod        =   0. _d 0
-        xx_aqh_file         = ' '
-        xx_uwindstartdate1  =   0
-        xx_uwindstartdate2  =   0
-        xx_uwindperiod      =   0. _d 0
-        xx_uwind_file       = ' '
-        xx_vwindstartdate1  =   0
-        xx_vwindstartdate2  =   0
-        xx_vwindperiod      =   0. _d 0
-        xx_vwind_file       = ' '
-        xx_obcsnstartdate1  =   0
-        xx_obcsnstartdate2  =   0
-        xx_obcsnperiod      =   0. _d 0
-        xx_obcsn_file       = ' '
-        xx_obcssstartdate1  =   0
-        xx_obcssstartdate2  =   0
-        xx_obcssperiod      =   0. _d 0
-        xx_obcss_file       = ' '
-        xx_obcswstartdate1  =   0
-        xx_obcswstartdate2  =   0
-        xx_obcswperiod      =   0. _d 0
-        xx_obcsw_file       = ' '
-        xx_obcsestartdate1  =   0
-        xx_obcsestartdate2  =   0
-        xx_obcseperiod      =   0. _d 0
-        xx_obcse_file       = ' '
-        xx_diffkr_file      = ' '
-        xx_kapgm_file       = ' '
-        xx_tr1_file         = ' '
-        xx_sst_file         = ' '
-        xx_sss_file         = ' '
-        xx_hfacc_file       = ' '
-        xx_efluxy_file      = ' '
-        xx_efluxp_file      = ' '
-        xx_bottomdrag_file  = ' '
-
-        yadmark             = 'ad'
-        yctrlid             = 'MIT_CE_000'
-        ctrlname            = ' '
-        costname            = ' '
-        scalname            = ' '
-        maskname            = ' '
-        metaname            = ' '
-
-c--     Check versions.
-
-        open(unit=scrunit1,status='scratch')
-
-c--     Next, read the ecco data file.
-        open(unit = modeldataunit,file = 'data.ctrl',
-     &       status = 'old', iostat = errio)
-        if ( errio .lt. 0 ) then
-          stop ' stopped in ctrl_init'
-        endif
-
-        do while ( .true. )
-          read(modeldataunit, fmt='(a)', end=1001) record
-          il = max(ilnblnk(record),1)
-          if ( record(1:1) .ne. commentcharacter )
-     &        write(unit=scrunit1, fmt='(a)') record(:il)
-        enddo
- 1001   continue
-        close( modeldataunit )
-
-        rewind( scrunit1 )
-        read(unit = scrunit1, nml = ctrl_nml)
-        read(unit = scrunit1, nml = ctrl_packnames)
-        close( scrunit1 )
 
 #ifdef ALLOW_CALENDAR
 
@@ -363,7 +229,7 @@ cph    index 21-22          for efluxy, efluxp
 cph    index 23-24          for bottom drag
 cph)
 
-c-------------------------------------------------------------------------------------------
+c-------------------------------------------------------------------------------
 c--
 #ifdef ALLOW_THETA0_CONTROL
 c--   Initial state temperature contribution.
@@ -380,7 +246,7 @@ c--   Initial state temperature contribution.
 
 #endif /* ALLOW_THETA0_CONTROL */
 
-c-------------------------------------------------------------------------------------------
+c-------------------------------------------------------------------------------
 c--
 #ifdef ALLOW_SALT0_CONTROL
 c--   Initial state salinity contribution.
@@ -401,7 +267,7 @@ c--   ===========================
 c--   Surface flux contributions.
 c--   ===========================
 
-c-------------------------------------------------------------------------------------------
+c-------------------------------------------------------------------------------
 c--
 #if (defined (ALLOW_HFLUX_CONTROL))
 c--   Heat flux.
@@ -470,7 +336,7 @@ c--   initial forcing only
 
 #endif /* ALLOW_HFLUX_CONTROL */
 
-c-------------------------------------------------------------------------------------------
+c-------------------------------------------------------------------------------
 c--
 #if (defined (ALLOW_SFLUX_CONTROL))
 c--   Salt flux.
@@ -539,7 +405,7 @@ c--   initial forcing only
 
 #endif /* ALLOW_SFLUX_CONTROL */
 
-c-------------------------------------------------------------------------------------------
+c-------------------------------------------------------------------------------
 c--
 #if (defined (ALLOW_USTRESS_CONTROL))
 c--   Zonal wind stress.
@@ -608,7 +474,7 @@ c--   initial forcing only
 
 #endif /* ALLOW_USTRESS_CONTROL */
 
-c-------------------------------------------------------------------------------------------
+c-------------------------------------------------------------------------------
 c--
 #if (defined (ALLOW_VSTRESS_CONTROL))
 c--   Meridional wind stress.
@@ -677,7 +543,7 @@ c--   initial forcing only
 
 #endif /* ALLOW_VSTRESS_CONTROL */
 
-c-------------------------------------------------------------------------------------------
+c-------------------------------------------------------------------------------
 c--
 #ifdef ALLOW_OBCSN_CONTROL
 c--   Northern obc.
@@ -687,19 +553,21 @@ c--   Northern obc.
         call cal_TimePassed( xx_obcsnstartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
-        startrec = int((modelstart + startTime - diffsecs)/
-     &                 xx_obcsnperiod) + 1
-        endrec   = int((modelend + startTime - diffsecs + modelstep/2)/
-     &                 xx_obcsnperiod) + 2
+cgg   O.B. future values are needed at the last timestep, so lets
+cgg   take this into account.
+        startrec = int((modelstart - diffsecs)/xx_obcsnperiod) + 1
+        endrec   = int((modelend   - diffsecs)/xx_obcsnperiod) + 2
 #else
         startrec = 1
         endrec   = 1
 #endif
         ivarindex                = 11
         ncvarindex(ivarindex)    = 111
+cgg( Implement heimbach fix for nobcs.
         ncvarrecs(ivarindex)     = (endrec - startrec + 1)*nobcs
         ncvarrecstart(ivarindex) = (startrec - 1)*nobcs + 1
         ncvarrecsend(ivarindex)  = endrec*nobcs
+cgg)
         ncvarxmax(ivarindex)     = snx
         ncvarymax(ivarindex)     =   1
         ncvarnrmax(ivarindex)    =  nr
@@ -711,26 +579,28 @@ c--   Northern obc.
 #ifdef ALLOW_OBCSS_CONTROL
 c--   Southern obc.
 
-c-------------------------------------------------------------------------------------------
+c-------------------------------------------------------------------------------
 c--
       _BEGIN_MASTER( mythid )
 #ifdef ALLOW_CALENDAR
         call cal_TimePassed( xx_obcssstartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
-        startrec = int((modelstart + startTime - diffsecs)/
-     &                 xx_obcssperiod) + 1
-        endrec   = int((modelend + startTime - diffsecs + modelstep/2)/
-     &                 xx_obcssperiod) + 2
+cgg   O.B. future values are needed at the last timestep, so lets
+cgg   take this into account.
+        startrec = int((modelstart - diffsecs)/xx_obcssperiod) + 1
+        endrec   = int((modelend   - diffsecs)/xx_obcssperiod) + 2
 #else
         startrec = 1
         endrec   = 1
 #endif
         ivarindex                = 12
         ncvarindex(ivarindex)    = 112
+cgg( Implement heimbach fix for nobcs.
         ncvarrecs(ivarindex)     = (endrec - startrec + 1)*nobcs
         ncvarrecstart(ivarindex) = (startrec - 1)*nobcs + 1
         ncvarrecsend(ivarindex)  = endrec*nobcs
+cph)
         ncvarxmax(ivarindex)     = snx
         ncvarymax(ivarindex)     =   1
         ncvarnrmax(ivarindex)    =  nr
@@ -739,7 +609,7 @@ c--
 
 #endif /* ALLOW_OBCSS_CONTROL */
 
-c-------------------------------------------------------------------------------------------
+c-------------------------------------------------------------------------------
 c--
 #ifdef ALLOW_OBCSW_CONTROL
 c--   Western obc.
@@ -749,19 +619,19 @@ c--   Western obc.
         call cal_TimePassed( xx_obcswstartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
-        startrec = int((modelstart + startTime - diffsecs)/
-     &                 xx_obcswperiod) + 1
-        endrec   = int((modelend + startTime - diffsecs + modelstep/2)/
-     &                 xx_obcswperiod) + 2
+        startrec = int((modelstart - diffsecs)/xx_obcswperiod) + 1
+        endrec   = int((modelend   - diffsecs)/xx_obcswperiod) + 2
 #else
         startrec = 1
         endrec   = 1
 #endif
         ivarindex                = 13
         ncvarindex(ivarindex)    = 113
+cgg( Implement heimbach fix for nobcs.
         ncvarrecs(ivarindex)     = (endrec - startrec + 1)*nobcs
         ncvarrecstart(ivarindex) = (startrec - 1)*nobcs + 1
         ncvarrecsend(ivarindex)  = endrec*nobcs
+cgg)
         ncvarxmax(ivarindex)     =   1
         ncvarymax(ivarindex)     = sny
         ncvarnrmax(ivarindex)    =  nr
@@ -770,7 +640,7 @@ c--   Western obc.
 
 #endif /* ALLOW_OBCSW_CONTROL */
 
-c-------------------------------------------------------------------------------------------
+c-------------------------------------------------------------------------------
 c--
 #ifdef ALLOW_OBCSE_CONTROL
 c--   Eastern obc.
@@ -780,19 +650,19 @@ c--   Eastern obc.
         call cal_TimePassed( xx_obcsestartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
-        startrec = int((modelstart + startTime - diffsecs)/
-     &                 xx_obcseperiod) + 1
-        endrec   = int((modelend + startTime - diffsecs + modelstep/2)/
-     &                 xx_obcseperiod) + 2
+        startrec = int((modelstart - diffsecs)/xx_obcseperiod) + 1
+        endrec   = int((modelend   - diffsecs)/xx_obcseperiod) + 2
 #else
         startrec = 1
         endrec   = 1
 #endif
         ivarindex                = 14
         ncvarindex(ivarindex)    = 114
+cgg( Implement heimbach fix for nobcs.
         ncvarrecs(ivarindex)     = (endrec - startrec + 1)*nobcs
         ncvarrecstart(ivarindex) = (startrec - 1)*nobcs + 1
         ncvarrecsend(ivarindex)  = endrec*nobcs
+cgg)
         ncvarxmax(ivarindex)     =   1
         ncvarymax(ivarindex)     = sny
         ncvarnrmax(ivarindex)    =  nr
@@ -801,7 +671,7 @@ c--   Eastern obc.
 
 #endif /* ALLOW_OBCSE_CONTROL */
 
-c-------------------------------------------------------------------------------------------
+c-------------------------------------------------------------------------------
 c--
 #ifdef ALLOW_DIFFKR_CONTROL
       _BEGIN_MASTER( mythid )
@@ -815,7 +685,7 @@ c--
       _END_MASTER( mythid )
 #endif /* ALLOW_DIFFKR_CONTROL */
 
-c-------------------------------------------------------------------------------------------
+c-------------------------------------------------------------------------------
 c--
 #ifdef ALLOW_KAPGM_CONTROL
       _BEGIN_MASTER( mythid )
@@ -829,7 +699,7 @@ c--
       _END_MASTER( mythid )
 #endif /* ALLOW_KAPGM_CONTROL */
 
-c-------------------------------------------------------------------------------------------
+c-------------------------------------------------------------------------------
 c--
 #ifdef ALLOW_TR10_CONTROL
       _BEGIN_MASTER( mythid )
@@ -843,7 +713,7 @@ c--
       _END_MASTER( mythid )
 #endif /* ALLOW_TR10_CONTROL */
 
-c-------------------------------------------------------------------------------------------
+c-------------------------------------------------------------------------------
 c--
 #ifdef ALLOW_SST0_CONTROL
       _BEGIN_MASTER( mythid )
@@ -857,7 +727,7 @@ c--
       _END_MASTER( mythid )
 #endif /* ALLOW_SST0_CONTROL */
 
-c-------------------------------------------------------------------------------------------
+c-------------------------------------------------------------------------------
 c--
 #ifdef ALLOW_SSS0_CONTROL
       _BEGIN_MASTER( mythid )
@@ -871,7 +741,7 @@ c--
       _END_MASTER( mythid )
 #endif /* ALLOW_SSS0_CONTROL */
 
-c-------------------------------------------------------------------------------------------
+c-------------------------------------------------------------------------------
 c--
 #ifdef ALLOW_HFACC_CONTROL
       _BEGIN_MASTER( mythid )
@@ -889,7 +759,7 @@ c--
       _END_MASTER( mythid )
 #endif /* ALLOW_HFACC_CONTROL */
 
-c-------------------------------------------------------------------------------------------
+c-------------------------------------------------------------------------------
 c--
 #ifdef ALLOW_EFLUXY0_CONTROL
       _BEGIN_MASTER( mythid )
@@ -903,7 +773,7 @@ c--
       _END_MASTER( mythid )
 #endif /* ALLOW_EFLUXY0_CONTROL */
 
-c-------------------------------------------------------------------------------------------
+c-------------------------------------------------------------------------------
 c--
 #ifdef ALLOW_EFLUXP0_CONTROL
       _BEGIN_MASTER( mythid )
@@ -917,7 +787,7 @@ c--
       _END_MASTER( mythid )
 #endif /* ALLOW_EFLUXP0_CONTROL */
 
-c-------------------------------------------------------------------------------------------
+c-------------------------------------------------------------------------------
 c--
 #ifdef ALLOW_BOTTOMDRAG_CONTROL
       _BEGIN_MASTER( mythid )
@@ -931,18 +801,12 @@ c--
       _END_MASTER( mythid )
 #endif /* ALLOW_BOTTOMDRAG_CONTROL */
 
-c-------------------------------------------------------------------------------------------
-c-------------------------------------------------------------------------------------------
-c-------------------------------------------------------------------------------------------
+c-------------------------------------------------------------------------------
+c-------------------------------------------------------------------------------
+c-------------------------------------------------------------------------------
 
 c--   Determine the number of wet points in each tile:
 c--   maskc, masks, and maskw.
-
-c--   Set loop ranges.
-      jmin = 1
-      jmax = sny
-      imin = 1
-      imax = snx
 
 c--   Initialise the counters.
       do bj = jtlo,jthi
@@ -1014,36 +878,28 @@ c--             Vertical mask.
 c--   Count wet points at Northern boundary.
 c--   mask conventions are adopted from obcs_apply_ts, obcs_apply_uv
       ymaskobcs = 'maskobcsn'
-      call ctrl_mask_set_xz(
-     &                       0, OB_Jn, nwetobcsn, ymaskobcs, mythid
-     &                     )
+      call ctrl_mask_set_xz( 0, OB_Jn, nwetobcsn, ymaskobcs, mythid )
 #endif
 
 #ifdef ALLOW_OBCSS_CONTROL
-c--   Count wet points at Northern boundary.
+c--   Count wet points at Southern boundary.
 c--   mask conventions are adopted from obcs_apply_ts, obcs_apply_uv
       ymaskobcs = 'maskobcss'
-      call ctrl_mask_set_xz(
-     &                       1, OB_Js, nwetobcss, ymaskobcs, mythid
-     &                     )
+      call ctrl_mask_set_xz( 1, OB_Js, nwetobcss, ymaskobcs, mythid )
 #endif
 
 #ifdef ALLOW_OBCSW_CONTROL
-c--   Count wet points at Northern boundary.
+c--   Count wet points at Western boundary.
 c--   mask conventions are adopted from obcs_apply_ts, obcs_apply_uv
       ymaskobcs = 'maskobcsw'
-      call ctrl_mask_set_yz(
-     &                       1, OB_Iw, nwetobcsw, ymaskobcs, mythid
-     &                     )
+      call ctrl_mask_set_yz( 1, OB_Iw, nwetobcsw, ymaskobcs, mythid )
 #endif
 
 #ifdef ALLOW_OBCSE_CONTROL
-c--   Count wet points at Northern boundary.
+c--   Count wet points at Eastern boundary.
 c--   mask conventions are adopted from obcs_apply_ts, obcs_apply_uv
       ymaskobcs = 'maskobcse'
-      call ctrl_mask_set_yz(
-     &                       0, OB_Ie, nwetobcse, ymaskobcs, mythid
-     &                     )
+      call ctrl_mask_set_yz( 0, OB_Ie, nwetobcse, ymaskobcs, mythid )
 #endif
 
       _BEGIN_MASTER( mythid )
@@ -1072,6 +928,8 @@ c
                      else if ( ncvargrd(i) .eq. 'm' ) then
 #ifdef ALLOW_OBCS_CONTROL
                         do iobcs = 1, nobcs
+cgg   This overcounts the number of o.b. control points by a factor of "nobcs".
+cgg   As an ad-hoc solution I've divided by nobcs everywhere.
                            if ( i .eq. 11 ) then
 #ifdef ALLOW_OBCSN_CONTROL
                               nvarlength = nvarlength + 
@@ -1176,8 +1034,7 @@ c
          enddo
          CALL GLOBAL_SUM_INT( ntmp,  myThid )
          nWetcGlobal(k)=ntmp
-
-         print *, 'ph-wet 14a: global nWet... vor k=', k, ntmp
+         print *, 'ph-wet 14a: global nWet... k=', k, ntmp
 
          ntmp=0
          do bj=1,nSy
@@ -1187,8 +1044,7 @@ c
          enddo
          CALL GLOBAL_SUM_INT( ntmp,  myThid )
          nWetsGlobal(k)=ntmp
-
-         print *, 'ph-wet 14b: global nWet... vor k=', k, ntmp
+         print *, 'ph-wet 14b: global nWet... k=', k, ntmp
 
          ntmp=0
          do bj=1,nSy
@@ -1198,8 +1054,7 @@ c
          enddo
          CALL GLOBAL_SUM_INT( ntmp,  myThid )
          nWetwGlobal(k)=ntmp
-
-         print *, 'ph-wet 14c: global nWet... vor k=', k, ntmp
+         print *, 'ph-wet 14c: global nWet... k=', k, ntmp
 
          ntmp=0
          do bj=1,nSy
@@ -1209,8 +1064,7 @@ c
          enddo
          CALL GLOBAL_SUM_INT( ntmp,  myThid )
          nWetvGlobal(k)=ntmp
-
-         print *, 'ph-wet 14d: global nWet... vor k=', k, ntmp
+         print *, 'ph-wet 14d: global nWet... k=', k, ntmp
 
 #ifdef ALLOW_OBCSN_CONTROL
          do iobcs = 1, nobcs
@@ -1222,6 +1076,7 @@ c
             enddo
             CALL GLOBAL_SUM_INT( ntmp,  myThid )
             nwetobcsnglo(k,iobcs)=ntmp
+            print *, 'ph-wet 15a: global nWet... k=', k, iobcs, ntmp
          enddo
 #endif
 #ifdef ALLOW_OBCSS_CONTROL
@@ -1234,6 +1089,7 @@ c
             enddo
             CALL GLOBAL_SUM_INT( ntmp,  myThid )
             nwetobcssglo(k,iobcs)=ntmp
+            print *, 'ph-wet 15b: global nWet... k=', k, iobcs, ntmp
          enddo
 #endif
 #ifdef ALLOW_OBCSW_CONTROL
@@ -1246,6 +1102,7 @@ c
             enddo
             CALL GLOBAL_SUM_INT( ntmp,  myThid )
             nwetobcswglo(k,iobcs)=ntmp
+            print *, 'ph-wet 15c: global nWet... k=', k, iobcs, ntmp
          enddo
 #endif
 #ifdef ALLOW_OBCSE_CONTROL
@@ -1258,6 +1115,7 @@ c
             enddo
             CALL GLOBAL_SUM_INT( ntmp,  myThid )
             nwetobcseglo(k,iobcs)=ntmp
+            print *, 'ph-wet 15d: global nWet... k=', k, iobcs, ntmp
          enddo
 #endif
 
