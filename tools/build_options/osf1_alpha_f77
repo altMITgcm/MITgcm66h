@@ -20,7 +20,7 @@ CPP='/usr/bin/cpp -P'
 # Tested and works:  Wed Jul 21 11:55:34 EDT 2004
 FC_NAMEMANGLE="#define FC_NAMEMANGLE(X) X ## _"
 INCLUDES="$INCLUDES -I/usr/ulocal/stow/netcdf-3.5.1/include"
-LIBS="-L/usr/ulocal/stow/netcdf-3.5.1/lib -lnetcdf"
+LIBS="-L/usr/ulocal/stow/netcdf-3.5.1/lib"
 
 FC='f77'
 LINK='f77'

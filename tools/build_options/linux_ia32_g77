@@ -21,6 +21,5 @@ else
     FOPTIM='-O0 -malign-double'
 fi
 
-# netcdf
-LIBS="-lnetcdf"
+
 

@@ -10,9 +10,6 @@ DEFINES='-D_BYTESWAPIO -DWORDLENGTH=4'
 CPP='cpp  -traditional -P'
 NOOPTFLAGS='-O0'
 
-# netcdf
-# LIBS="-lnetcdf"
-
 #  For IEEE, use the "-ffloat-store" option
 if test "x$IEEE" = x ; then
     FFLAGS='-Wimplicit -Wunused -Wuninitialized'

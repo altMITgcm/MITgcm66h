@@ -21,4 +21,4 @@ else
 fi
 
 #LIBS='-L/usr/local/mpich-1.2.1/pgi_fortran_binding/lib/ -lfmpich -lmpich'
-LIBS='-L/usr/local/lib/LINUX/ch_p4/ -lfmpich -lmpich -lnetcdf'
+LIBS='-L/usr/local/lib/LINUX/ch_p4/ -lfmpich -lmpich'
