@@ -12,6 +12,8 @@ o MNC:
   - write all MNC output to a freshly-created directory
 o thermodynamics sea-ice (thsice) is now tested with testreport.
 o test exp. advect_cs: use the standard cs32 grid ; update output.
+o Added functionality to grdchk:
+  pick global i,j,k position (or nearest wet) where to perform check.
 
 checkpoint52l_post
 o new land formulation:
