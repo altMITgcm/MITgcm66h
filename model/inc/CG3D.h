@@ -1,6 +1,8 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
+
 #ifdef ALLOW_NONHYDROSTATIC
 CBOP
 C     !ROUTINE: CG3D.h

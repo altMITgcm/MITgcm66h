@@ -1,6 +1,6 @@
 C $Header$
 C $Name$
-#include "CPP_OPTIONS.h"
+#include "TIMEAVE_OPTIONS.h"
 
 CStartofinterface
       SUBROUTINE TIMEAVE_NORMA_1K( fldtave, timeave, 

@@ -1,6 +1,7 @@
-c $Header$
+C $Header$
+C $Name$
 
-#include "EXF_CPPOPTIONS.h"
+#include "EXF_OPTIONS.h"
 
       subroutine exf_filter_rl(
      I                          arr,

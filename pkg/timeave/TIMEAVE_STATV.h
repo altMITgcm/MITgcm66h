@@ -1,6 +1,8 @@
 C $Header$
 C $Name$
 
+#include "TIMEAVE_OPTIONS.h"
+
 #ifdef ALLOW_TIMEAVE
 
 CBOP

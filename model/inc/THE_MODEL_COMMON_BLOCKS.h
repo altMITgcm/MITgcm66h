@@ -1,6 +1,8 @@
 C $Header$
 C $Name$
-C
+
+#include "PACKAGES_CONFIG.h"
+
 #include "PARAMS.h"
 #include "GRID.h"
 #include "DYNVARS.h"

@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CBOP
@@ -125,7 +126,7 @@ C--   Add source term arising from w=d/dt (p_s + p_nh)
         ELSEIF ( exactConserv ) THEN
 #else
         IF ( exactConserv ) THEN
-#endif
+#endif /* ALLOW_NONHYDROSTATIC */
          DO j=1,sNy
           DO i=1,sNx
            cg2d_b(i,j,bi,bj) = cg2d_b(i,j,bi,bj)

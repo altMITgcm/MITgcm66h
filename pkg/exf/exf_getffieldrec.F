@@ -1,6 +1,6 @@
 c $Header$
 
-#include "CPP_OPTIONS.h"
+#include "EXF_OPTIONS.h"
 
 
       subroutine exf_GetFFieldRec(

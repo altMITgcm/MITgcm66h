@@ -1,5 +1,7 @@
+C $Header$
+C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "BULK_FORCE_OPTIONS.h"
 
       SUBROUTINE BULKF_READPARMS( myThid )
 C     /==========================================================\

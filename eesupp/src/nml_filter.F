@@ -79,6 +79,10 @@ c--   open the filtered data file
          close(outunit)
          outunit = 0
          stop ' stopped in nml_filter'
+      else
+         write(msgBuf,'(3a)') 'Processing namelist file ', fname, ' ...'
+         call PRINT_MESSAGE(msgBuf,standardMessageUnit,
+     &                      SQUEEZE_RIGHT,myThid)
       endif
 
       do while ( .true. )

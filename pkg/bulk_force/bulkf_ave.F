@@ -1,4 +1,7 @@
-#include "CPP_OPTIONS.h"
+C $Header$
+C $Name$
+
+#include "BULK_FORCE_OPTIONS.h"
 
 C     !ROUTINE: BULKF_AVE
 C     !INTERFACE:

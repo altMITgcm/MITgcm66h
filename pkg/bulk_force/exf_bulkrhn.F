@@ -1,6 +1,7 @@
-c $Header$
+C $Header$
+C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "BULK_FORCE_OPTIONS.h"
 
       _RL function exf_BulkRhn(
      I                          stab

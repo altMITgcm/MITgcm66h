@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CBOP
@@ -74,6 +75,7 @@ C-      3D arrays
 #endif
 
 #ifdef ALLOW_NONHYDROSTATIC
+ceh3 needs an IF ( useNONHYDROSTATIC ) THEN
            gW(I,J,K,bi,bj)=0. _d 0
            gWnm1(I,J,K,bi,bj)=0. _d 0
 #endif

@@ -1,6 +1,6 @@
 C $Header$
 C $Name$
-#include "CPP_OPTIONS.h"
+#include "TIMEAVE_OPTIONS.h"
 
       SUBROUTINE TIMEAVE_STATVARS(
      I     myTime, myIter, bi, bj, myThid)

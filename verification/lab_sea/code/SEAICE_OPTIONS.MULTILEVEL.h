@@ -1,4 +1,4 @@
-C $Header:
+C $Header$
 
 C     /==========================================================\
 C     | SEAICE_OPTIONS.h                                         |
@@ -9,6 +9,7 @@ C     | package.  Sea ice model is enabled with ALLOW_SEAICE in  |
 C     | CPP_OPTIONS.h                                            |
 C     \==========================================================/
 
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 #ifdef ALLOW_SEAICE

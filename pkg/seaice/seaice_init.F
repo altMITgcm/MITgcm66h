@@ -1,4 +1,5 @@
-C $Header:
+C $Header$
+C $Name$
 
 #include "SEAICE_OPTIONS.h"
 

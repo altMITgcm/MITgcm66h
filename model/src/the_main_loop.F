@@ -1,5 +1,7 @@
 C $Header$
+C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CBOP
@@ -305,6 +307,7 @@ c--     >>> Loop body start <<<
 #ifdef ALLOW_COST
 C--     compare model with data and compute cost function
 C--     this is done after exchanges to allow interpolation
+ceh3 perhaps needs an IF ( useCOST ) THEN
         CALL TIMER_START('COST_TILE           [THE_MAIN_LOOP]',myThid)
         CALL COST_TILE  ( myThid )
         CALL TIMER_STOP ('COST_TILE           [THE_MAIN_LOOP]',myThid)

@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CBOP
@@ -321,6 +322,7 @@ C     _EXCH_XY_R4(recip_rAw, myThid )
 C     _EXCH_XY_R4(recip_rAs, myThid )
 
 #ifdef ALLOW_NONHYDROSTATIC
+ceh3 needs an IF ( useNONHYDROSTATIC ) THEN
 C--   Calculate the reciprocal hfac distance/volume for W cells
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)

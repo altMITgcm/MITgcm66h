@@ -1,5 +1,13 @@
+C $Header$
+C $Name$
 
-C 
+#ifndef ECCO_CPPOPTIONS_H
+#define ECCO_CPPOPTIONS_H
+#include "PACKAGES_CONFIG.h"
+#ifdef ALLOW_ECCO
+
+#include "CPP_OPTIONS.h"
+
 C CPP flags controlling which code is included in the files that
 C will be compiled.
 C
@@ -52,7 +60,6 @@ C
 
 C o Include the calendar tool.
 #define ALLOW_CALENDAR
-#define ALLOW_CAL_NENDITER
 
 C ********************************************************************
 C ***                Cost function Package                         ***
@@ -145,3 +152,7 @@ C   Relaxation to monthly climatologies.
 C   Relaxation to constant surface fields.
 #undef  ALLOW_CONST_SST_RELAXATION
 #undef  ALLOW_CONST_SSS_RELAXATION
+
+
+#endif /* ALLOW_ECCO */
+#endif /* ECCO_CPPOPTIONS_H */

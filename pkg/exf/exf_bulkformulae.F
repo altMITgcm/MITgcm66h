@@ -1,6 +1,6 @@
 c $Header$
 
-#include "EXF_CPPOPTIONS.h"
+#include "EXF_OPTIONS.h"
 
       subroutine exf_bulkformulae(mycurrenttime, mycurrentiter, mythid)
 
@@ -16,7 +16,7 @@ c
 c     NOTES:
 c     ======
 c
-c     See EXF_CPPOPTIONS.h for a description of the various possible
+c     See EXF_OPTIONS.h for a description of the various possible
 c     ocean-model forcing configurations.
 c
 c     The bulk formulae of pkg/exf are not valid for sea-ice covered

@@ -1,4 +1,4 @@
-C $Header:
+C $Header$
 
 C     /==========================================================\
 C     | SEAICE_OPTIONS.h                                         |
@@ -9,9 +9,12 @@ C     | package.  Sea ice model is enabled with ALLOW_SEAICE in  |
 C     | CPP_OPTIONS.h                                            |
 C     \==========================================================/
 
-#include "CPP_OPTIONS.h"
-
+#ifndef SEAICE_OPTIONS_H
+#define SEAICE_OPTIONS_H
+#include "PACKAGES_CONFIG.h"
 #ifdef ALLOW_SEAICE
+
+#include "CPP_OPTIONS.h"
 
 C--   Write "text-plots" of certain fields in STDOUT for debugging.
 #undef SEAICE_DEBUG
@@ -38,4 +41,9 @@ C     in a separate external package, for example, pkg/exf, and then
 C     modified for sea-ice effects by pkg/seaice.
 #undef SEAICE_EXTERNAL_FLUXES
 
+C-- This include is necessary because of awkward dependancies with pkg/exf
+#define INCLUDE_EXTERNAL_FORCING_PACKAGE
+#include "EXF_OPTIONS.h"
+
 #endif /* ALLOW_SEAICE */
+#endif /* SEAICE_OPTIONS_H */
