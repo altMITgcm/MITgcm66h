@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o change Qnet to always be the net heat flux, (+upward).
+  affects (truncation error) output of natl_box exp.: updated
 o define the max number of passive tracers in PTRACERS_SIZE.h
 o start to test mnc routinely in exp0
 o add sea-ice loading (sIceLoad) as a new forcing field.
