@@ -5,5 +5,5 @@
 #set DISABLE=( aim obcs zonal_filt shap_filt autodiff cost ctrl grdchk )
 
 # Enable packages that are needed but are disabled by default
-set ENABLE=( cal exf seaice )
+set ENABLE=( cal exf sbo seaice )
 

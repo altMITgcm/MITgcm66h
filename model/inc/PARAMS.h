@@ -201,6 +201,10 @@ C     usingZCoords     :: Set to indicate that we are working in height
 C                        coords.
 C     nonHydrostatic :: Using non-hydrostatic terms
 C     globalFiles    :: Selects between "global" and "tiled" files
+C     useSingleCpuIO :: On SGI platforms, option globalFiles is either
+C                       slow (f77) or does not work (f90).  When
+C                       useSingleCpuIO is set, mdsio_writefield.F
+C                       outputs from master mpi process only.
 C     allowFreezing  :: Allows water to freeze and form ice
 C     groundAtK1  :: put the surface(k=1) at the Lower Boundary (=ground)
 C     useJamartWetPoints :: Use wet-point method for Coriolis (Jamart and Ozer, 1986)
@@ -220,7 +224,7 @@ C     useJamartWetPoints :: Use wet-point method for Coriolis (Jamart and Ozer, 
      & implicitDiffusion, implicitViscosity,
      & doThetaClimRelax, doSaltClimRelax, doTr1ClimRelax, 
      & periodicExternalForcing, usingPCoords, usingZCoords,
-     & nonHydrostatic, globalFiles,
+     & nonHydrostatic, globalFiles, useSingleCpuIO,
      & allowFreezing, groundAtK1,
      & usePickupBeforeC35, debugMode,
      & readPickupWithTracer, writePickupWithTracer,
@@ -268,6 +272,7 @@ C     useJamartWetPoints :: Use wet-point method for Coriolis (Jamart and Ozer, 
       LOGICAL usingZCoords
       LOGICAL nonHydrostatic
       LOGICAL globalFiles
+      LOGICAL useSingleCpuIO
       LOGICAL allowFreezing
       LOGICAL groundAtK1
       LOGICAL usePickupBeforeC35

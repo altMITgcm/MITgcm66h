@@ -122,6 +122,7 @@ C--   Set default "physical" parameters
       implicitViscosity   = .FALSE.
       nonHydrostatic      = .FALSE.
       globalFiles         = .FALSE.
+      useSingleCpuIO      = .FALSE.
       allowFreezing       = .FALSE.
       ivdc_kappa          = 0.D0
       groundAtK1          = .FALSE.

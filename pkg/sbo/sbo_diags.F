@@ -58,7 +58,7 @@ C-----------------------------------------------------------------
 
       fName        = 'SBO_DIAG'
       narr         = 11
-      irecord      = myCurrentTime/deltaTClock+1
+      irecord      = myCurrentTime/deltaTClock
 
       CALL SBO_WRITEVECTOR(
      I   fName,

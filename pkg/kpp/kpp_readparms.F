@@ -26,9 +26,10 @@ C     === Local variables ===
 C     msgBuf      - Informational/error meesage buffer
 C     errIO       - IO error flag
 C     iUnit       - Work variable for IO unit number
+C     k           - Loop counter
 
       CHARACTER*(MAX_LEN_MBUF) msgBuf
-      INTEGER errIO, iUnit
+      INTEGER errIO, iUnit, k
 
 C--   KPP vertical mixing parameters
       NAMELIST /KPP_PARM01/
@@ -60,8 +61,8 @@ C--   KPP vertical mixing parameters
 
 C--   set default KPP vertical mixing parameters
       kpp_freq      = deltaTClock
-      kpp_dumpFreq  = 0.
-      kpp_taveFreq  = 0.
+      kpp_dumpFreq  = dumpFreq
+      kpp_taveFreq  = taveFreq
       KPPmixingMaps = .FALSE.
       KPPwriteState = .FALSE.
       minKPPhbl     = drF(1)*0.5

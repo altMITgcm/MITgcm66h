@@ -28,10 +28,10 @@ model time step:
 The file is direct access, real*8, binary.  Its dimensions are 11 X nt, where
 nt is number of records.  For example, in matlab you can use
 
-   sbo=readbin('SBO_DIAG.data',[11 nt],1,'real*8');
+   sbo=readbin('SBO_DIAG.data',[11 nt],1,'real*8',0,'native');
 
 to obtain the 11 X nt matlab array sbo.  A copy of readbin.m resides in
-subdirectory utils/matlab.
+subdirectory verification/lab_sea/matlab.
 
 ===========
 
@@ -81,9 +81,7 @@ SBO package file description
       model/src/packages_boot.F        - added call to SBO package
       model/src/packages_check.F       - added call to SBO package
       model/src/packages_readparms.F   - added call to SBO package
-      verification/natl_box/input/data - set globalFiles=.TRUE.
-      verification/natl_box/input/data.pkg - set useSBO=.TRUE.
 
 ===========
 
-Last modified: 06/26/01 by Dimitris Menemenlis
+Last modified: 02/04/03 by Dimitris Menemenlis

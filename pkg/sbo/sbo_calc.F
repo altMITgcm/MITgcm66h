@@ -12,7 +12,7 @@ C     | being but may need revisiting at some point in time.     |
 C     | 1) The model is volume-preserving and Boussinesq so      |
 C     |    quantities like oceanic mass need to be interpreted   |
 C     |    with some care.                                       |
-C     | 2) The sea surface height variable cg2d_x lags other     |
+C     | 2) The sea surface height variable etaN lags other       |
 C     |    prognostic variables by half a time step.  This lag   |
 C     |    is ignored in SBO computations.                       |
 C     | 3) Density is computed using function SBO_RHO which is   |
@@ -202,7 +202,7 @@ c     if land, flag it in obp and skip it
                         end if
 
                         radius = ae
-                        dradius = cg2d_x(I,J,bi,bj)
+                        dradius = etaN(I,J,bi,bj)
 c     assume surface has same vel and density as first layer
                         s = salt(I,J,1,bi,bj)
                         t = theta(I,J,1,bi,bj)

@@ -119,7 +119,7 @@ C--   Continuous equation parameters
      & viscAp, diffKpT, diffKpS, hFacMinDp,
      & rhoConst, buoyancyRelation, HeatCapacity_Cp,
      & writeBinaryPrec, readBinaryPrec, writeStatePrec,
-     & nonHydrostatic, globalFiles,
+     & nonHydrostatic, globalFiles, useSingleCpuIO,
      & allowFreezing, ivdc_kappa,
      & bottomDragLinear,bottomDragQuadratic,
      & usePickupBeforeC35, debugMode, 
