@@ -112,11 +112,11 @@ C--   Add source term arising from w=d/dt (p_s + p_nh)
          DO j=1,sNy
           DO i=1,sNx
            cg2d_b(i,j,bi,bj) = cg2d_b(i,j,bi,bj)
-     &       -freeSurfFac*_rA(i,j,bi,bj)/deltaTMom/deltaTMom
+     &       -freeSurfFac*_rA(i,j,bi,bj)/deltaTMom/deltaTfreesurf
      &         *( etaN(i,j,bi,bj)
      &           +phi_nh(i,j,1,bi,bj)*horiVertRatio/gravity )
            cg3d_b(i,j,1,bi,bj) = cg3d_b(i,j,1,bi,bj)
-     &       -freeSurfFac*_rA(i,j,bi,bj)/deltaTMom/deltaTMom
+     &       -freeSurfFac*_rA(i,j,bi,bj)/deltaTMom/deltaTfreesurf
      &         *( etaN(i,j,bi,bj)
      &           +phi_nh(i,j,1,bi,bj)*horiVertRatio/gravity )
           ENDDO
@@ -128,7 +128,7 @@ C--   Add source term arising from w=d/dt (p_s + p_nh)
          DO j=1,sNy
           DO i=1,sNx
            cg2d_b(i,j,bi,bj) = cg2d_b(i,j,bi,bj)
-     &       -freeSurfFac*_rA(i,j,bi,bj)/deltaTMom/deltaTMom
+     &       -freeSurfFac*_rA(i,j,bi,bj)/deltaTMom/deltaTfreesurf
      &         * etaH(i,j,bi,bj)
           ENDDO
          ENDDO
@@ -136,7 +136,7 @@ C--   Add source term arising from w=d/dt (p_s + p_nh)
          DO j=1,sNy
           DO i=1,sNx
            cg2d_b(i,j,bi,bj) = cg2d_b(i,j,bi,bj)
-     &       -freeSurfFac*_rA(i,j,bi,bj)/deltaTMom/deltaTMom
+     &       -freeSurfFac*_rA(i,j,bi,bj)/deltaTMom/deltaTfreesurf
      &         * etaN(i,j,bi,bj)
           ENDDO
          ENDDO

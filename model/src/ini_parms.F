@@ -139,7 +139,8 @@ C--   Elliptic solver parameters
 
 C--   Time stepping parammeters
       NAMELIST /PARM03/
-     & nIter0, nTimeSteps, nEndIter, deltaT, deltaTmom, deltaTtracer,
+     & nIter0, nTimeSteps, nEndIter,
+     & deltaT, deltaTmom, deltaTtracer, deltaTfreesurf,
      & forcing_In_AB, abEps, tauCD, rCD,
      & startTime, endTime, chkPtFreq,
      & dumpFreq, taveFreq, deltaTClock, diagFreq,
@@ -486,6 +487,12 @@ C     o Time step size
       IF ( deltaTmom    .EQ. 0. ) deltaTmom    = deltaT
       IF ( deltaTtracer .EQ. 0. ) deltaTtracer = deltaT
       IF ( deltaTClock  .EQ. 0. ) deltaTClock  = deltaT
+C Note that this line should set deltaTreesurf=deltaTmom
+C but this would change a lot of existing set-ups so we are
+C obliged to set the default inappropriately.
+C Be advised that when using asynchronous time stepping
+C it is better to set deltaTreesurf=deltaTtracer
+      IF ( deltaTfreesurf .EQ. 0. ) deltaTfreesurf  = deltaTmom
       IF ( periodicExternalForcing ) THEN
        IF ( externForcingCycle*externForcingPeriod .EQ. 0. ) THEN
         WRITE(msgBuf,'(A)')
