@@ -3,6 +3,11 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint54f_post
+o in verification/carbin/ remove experiment related to
+  ALLOW_PASSIVE_TRACER (array tr1 etc)
+  code_ad/ input_ad/ results_ad
+
 o add two new packages
   - ggl90, TKE-model of Gaspar et al. (1990), Blanke+Delecluse (1993)
     + subject to optimization (memory)
