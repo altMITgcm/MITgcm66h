@@ -135,13 +135,14 @@ C--   Make local copy of tracer array
 
 C--   Unless we have already calculated the advection terms we initialize
 C     the tendency to zero.
-      IF (calcAdvection) THEN
-       DO j=1-Oly,sNy+Oly
-        DO i=1-Olx,sNx+Olx
-         gTracer(i,j,k,bi,bj)=0. _d 0
-        ENDDO
-       ENDDO
-      ENDIF
+C     <== now done earlier at the beginning of thermodynamics.
+c     IF (calcAdvection) THEN
+c      DO j=1-Oly,sNy+Oly
+c       DO i=1-Olx,sNx+Olx
+c        gTracer(i,j,k,bi,bj)=0. _d 0
+c       ENDDO
+c      ENDDO
+c     ENDIF
 
 C--   Pre-calculate del^2 T if bi-harmonic coefficient is non-zero
       IF (diffK4 .NE. 0.) THEN
