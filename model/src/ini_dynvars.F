@@ -80,6 +80,7 @@ C-      3D arrays
            gWnm1(I,J,K,bi,bj)=0. _d 0
 #endif
 
+           totPhiHyd(I,J,K,bi,bj)=0. _d 0
           ENDDO
          ENDDO
         ENDDO
