@@ -8,7 +8,7 @@
 set DISABLE=( $DISABLE kpp gmredi obcs mom_fluxform zonal_filt )
 
 # Enable packages that are needed but are disabled by default
-# set ENABLE=( $ENABLE aim_v23 )
+set ENABLE=( $ENABLE aim_v23 land )
 
 # We can also specify other defaults
 set ROOTDIR=../../..
