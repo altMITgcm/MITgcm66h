@@ -437,10 +437,11 @@ createcodelet()
 #include <stdio.h>
 #include <math.h>
 int main( int argc, char** argv )  {
-  int linnum,best;
+  int linnum,best,lncnt;
   double a,b,diff;
   best = -16;
-  while( 1 )  {
+  lncnt = 0;
+  while( 1 & (lncnt+=1) < 999 )  {
     scanf("%d", &linnum);
     if (linnum == -1)  break;
     scanf("%lf", &a);  scanf("%lf", &b);
@@ -456,6 +457,7 @@ int main( int argc, char** argv )  {
       }
     }
   }
+  if (lncnt == 999) best=-29;
   printf("%d\n", -best);
   return 0;
 }
