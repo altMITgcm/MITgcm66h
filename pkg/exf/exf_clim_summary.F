@@ -152,7 +152,7 @@ c     Relaxation to pot. temperature climatology.
       write(msgbuf,'(a,i9.8,i7.6,1x,a,a)')
      &'   Climatological pot. temperature starts at         ',
      &    (climtempstartdate(i), i=1,2),
-     & dayofweek(climtempstartstartdate(4)),'.'
+     & dayofweek(climtempstartdate(4)),'.'
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
       write(msgbuf,'(a,i9.8,i7.6)')
@@ -183,7 +183,7 @@ c     Relaxation to salinity climatology.
       write(msgbuf,'(a,i9.8,i7.6,1x,a,a)')
      &'   Climatological salinity starts at         ',
      &    (climsaltstartdate(i), i=1,2),
-     & dayofweek(climsaltstartstartdate(4)),'.'
+     & dayofweek(climsaltstartdate(4)),'.'
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
       write(msgbuf,'(a,i9.8,i7.6)')

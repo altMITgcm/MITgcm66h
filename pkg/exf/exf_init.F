@@ -34,8 +34,6 @@ c     == routine arguments ==
 
 c     == local variables ==
 
-      integer i
-
 c     == end of interface ==
 
       call exf_init_hflux  ( mythid )
