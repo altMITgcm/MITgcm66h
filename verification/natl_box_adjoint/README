@@ -7,6 +7,7 @@
 # - The input data is real*8
 # - 4 timesteps
 
+
 ####################
 # Experiment no. 1 #
 ####################
@@ -150,23 +151,6 @@
 # A reference output is in:
  grep "ph-grd 3" ../verification/natl_box_adjoint/results_bulk/output.exp5
 
-# undef DO_WE_NEED_THIS in growth.F makes no difference to exp. 5
-# explicitly setting area to 0 in growth.F also makes no difference
-# commenting out dynsolver and advect in sea_model also makes litle difference
-
-# Following table compares adjoint gradient to finite difference gradient
-# for various choices of grdchk_eps.  The finite difference gradient
-# is stable for 1.d-6 < grdchk_eps < 1.d-2, but it does not match the
-# adjoint gradient, suggesting a problem with adjoint gradient.
-
- adj grad 0.282368284E-02 0.162042259E-03 0.350757987E-02 0.278077239E-03
- 1.d-10   0.227373675E-02 0.000000000E+00 0.341060513E-02 0.113686838E-02
- 1.d-8    0.274553713E-02 0.147792889E-03 0.349587026E-02 0.272848411E-03
- 1.d-6    0.274133072E-02 0.149270818E-03 0.349803031E-02 0.265913513E-03
- 1.d-4    0.274122783E-02 0.149204311E-03 0.349807408E-02 0.265789026E-03
- 1.d-2    0.274123143E-02 0.149203527E-03 0.349806868E-02 0.265792312E-03
- 1.d 0    0.271435042E-02 0.153830983E-03 0.349580377E-02 0.264401119E-03
- 1.d 1    0.276691733E-02 0.145168163E-03 0.355998258E-02 0.256034057E-03
 
 ####################
 # Experiment no. 6 #
@@ -292,7 +276,6 @@
  cp data.100day data
  cp ../verification/natl_box_adjoint/input_bulk/data.grdchk .
  ./mitgcmuv >&! output.txt
-
 # To verify the results of the gradient check, type:
  grep "ph-grd 3" output.txt
 
@@ -383,7 +366,6 @@
 # Go back and compile the code:
  cd ../bin
  make
-
 # To run:
  cd ../exe
  cp ../verification/natl_box_adjoint/input_seaice/* .
@@ -443,4 +425,79 @@
 #####################
 # Experiment no. 13 #
 #####################
+# Same as experiment 6, but with SEAICE_MULTILEVEL.
+
+# Compile code in bin/:
+ cd ../bin
+ rm -rf *.o *.f *.p rii_files
+ rm -rf *.F *.h *.c Makefile*
+ cp ../verification/natl_box_adjoint/code_seaice/*.h .
+ cp ../verification/natl_box_adjoint/code_seaice/.genmakerc .
+ cp ../verification/natl_box_adjoint/code_seaice/SEAICE_OPTIONS.h.MULTILEVEL SEAICE_OPTIONS.h
+# Configure and compile the code:
+ ../tools/genmake -makefile
+ make depend
+# Generate the adjoint code:
+ cd ../adjoint
+ cp ../verification/natl_box_adjoint/code_seaice/makefile .
+ make adtaf
+ make adchange
+ rm -f makefile
+# Go back and compile the code:
+ cd ../bin
+ make
+# To run:
+ cd ../exe
+ cp ../verification/natl_box_adjoint/input_seaice/* .
+ cp ../verification/natl_box_adjoint/input_bulk/data.grdchk .
+ ./mitgcmuv >&! output.txt
+# To verify the results of the gradient check, type:
+ grep "ph-grd 3" output.txt
+# The reference output, with SEAICE_MULTILEVEL undefined is in:
+ grep "ph-grd 3" ../verification/natl_box_adjoint/results_seaice/output.txt
+
+# This test suggests that SEAICE_MULTILEVEL decreases the accuracy of
+# the adjoint model, perhaps because the adjoint model is not handling
+# multiple recomputations in budget properly.
+
+
+#####################
+# Experiment no. 14 #
+#####################
+# Same as in 14 but for a 100-day sensitivity experiment.
+
+# Compile code in bin/:
+ cd ../bin
+ rm -rf *.o *.f *.p rii_files
+ rm -rf *.F *.h *.c Makefile*
+ cp ../verification/natl_box_adjoint/code_seaice/*.h .
+ rm -f tamc.h
+ cp ../verification/natl_box_adjoint/code_seaice/.genmakerc .
+ cp ../verification/natl_box_adjoint/code_seaice/SEAICE_OPTIONS.h.MULTILEVEL SEAICE_OPTIONS.h
+# Configure and compile the code:
+ ../tools/genmake -makefile
+ make depend
+# Generate the adjoint code:
+ cd ../adjoint
+ cp ../verification/natl_box_adjoint/code_seaice/makefile .
+ make adtaf
+ make adchange
+ rm -f makefile
+# Go back and compile the code:
+ cd ../bin
+ make
+# To run:
+ cd ../exe
+ cp ../verification/natl_box_adjoint/input_seaice/* .
+ cp data.100day data
+ cp ../verification/natl_box_adjoint/input_bulk/data.grdchk .
+ ./mitgcmuv >&! output.txt
+# To verify the results of the gradient check, type:
+ grep "ph-grd 3" output.txt
+
+
+#####################
+# Experiment no. 20 #
+#####################
 # Same as experiment 10, but using divided adjoint.
+
