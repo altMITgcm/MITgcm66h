@@ -3,6 +3,14 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint13
+ Release which corrects global_max problem and a couple
+ of KGM time-averaging diagnostic errors. Also contains
+ a double-gyre experiment setup as well as the baseline
+ 4 degree global template. The double gyre template is
+ organised to allow it to be applied automatically to
+ the baseline configuration.
+
 branch-point-rdot
  A few tidy-ups have been made bt the real point of this
  check-point (excuse the pun) is to allow a branch to be
