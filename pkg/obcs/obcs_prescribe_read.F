@@ -40,6 +40,7 @@ c     == local variables ==
 
       logical first, changed
       integer count0, count1
+      integer year0, year1
       _RL     fac
 
 c     == end of interface ==
