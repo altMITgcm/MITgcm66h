@@ -42,6 +42,9 @@ c     Calendar data.
       character*1 climsssmask
       parameter(  climsssmask = 's' )
 
+      _RL climsstconst
+      _RL climsssconst
+
       common /exf_clim_i/
      &                        climtempstartdate1, climtempstartdate2,
      &                        climsaltstartdate1, climsaltstartdate2,
@@ -62,7 +65,9 @@ c     Calendar data.
      &                        climtempperiod,
      &                        climsaltperiod,
      &                        climsstperiod,
-     &                        climsssperiod
+     &                        climsssperiod,
+     &                        climsstconst,
+     &                        climsssconst
 
 c     File names.
       character*(128) climtempfile

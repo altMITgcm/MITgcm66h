@@ -100,10 +100,10 @@ c     fldsecs cycle around
 c        print *,'repeat: ',fldsecs
 c     Determine the flux record just after mycurrentdate.
          count0 = int(fldsecs0/fldperiod) + 1
-         fldsecs1  = int((fldsecs+fldperiod)/fldperiod)*fldperiod
-         fldsecs1=mod(fldsecs1,repeatPeriod)
+         fldsecs1  = int((fldsecs+fldperiod+0.5)/fldperiod)*fldperiod
+         fldsecs1=mod(fldsecs1,repeatPeriod+0.5)
 c        print *,'repeat: ',fldsecs1
-         count1 = int(fldsecs1/fldperiod) + 1
+         count1 = int((fldsecs1+0.5)/fldperiod) + 1
       endif
 
 c     Set switches for reading new records.
@@ -118,8 +118,8 @@ c     Set switches for reading new records.
         call cal_TimePassed( fldstartdate, previousdate, difftime,
      &                       mythid )
         call cal_ToSeconds( difftime, prevfldsecs, mythid )
-        prevfldsecs  = int(prevfldsecs/fldperiod)*fldperiod
-        prevfldcount = int(prevfldsecs/fldperiod) + 1
+        prevfldsecs  = int((prevfldsecs+0.5)/fldperiod)*fldperiod
+        prevfldcount = int((prevfldsecs+0.5)/fldperiod) + 1
 
         if (fldcount .ne. prevfldcount) then
           changed = .true.
