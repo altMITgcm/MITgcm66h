@@ -64,5 +64,11 @@ CEOP
       IF (useFLT) CALL PACKAGES_CHECK_ERROR('FLT', myThid)
 #endif
 
+#ifdef ALLOW_SEAICE
+      IF (useSEAICE) CALL SEAICE_CHECK( myThid )
+#else
+      IF (useSEAICE) CALL PACKAGES_CHECK_ERROR('SEAICE', myThid)
+#endif
+
       RETURN
       END

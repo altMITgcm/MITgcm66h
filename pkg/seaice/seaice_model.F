@@ -52,13 +52,11 @@ C     pkg/exf, which does not update edges.
          _EXCH_XY_R8( vwind,  myThid )
          _EXCH_XY_R8( atemp,  myThid )
          _EXCH_XY_R8( aqh,    myThid )
-         _EXCH_XY_R8( lwflux, myThid )
+         _EXCH_XY_R8( lwdown, myThid )
+         _EXCH_XY_R8( swdown, mythid )
          _EXCH_XY_R8( precip, myThid )
          _EXCH_XY_R8( evap,   myThid )
          _EXCH_XY_R8( runoff, myThid )
-#ifndef ALLOW_KPP
-         _EXCH_XY_R8( swflux, mythid )
-#endif ALLOW_KPP
 #else SEAICE_EXTERNAL_FORCING
 C--   Load atmospheric state and runoff.
       CALL SEAICE_GET_FORCING ( myTime, myIter, myThid )

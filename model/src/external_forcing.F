@@ -202,7 +202,7 @@ C Penetrating SW radiation
       call SWFRAC(
      I     two,minusone,
      I     myCurrentTime,myThid,
-     O     swfracb)
+     U     swfracb)
       DO j=jMin,jMax
        DO i=iMin,iMax
         gT(i,j,klev,bi,bj) = gT(i,j,klev,bi,bj) 

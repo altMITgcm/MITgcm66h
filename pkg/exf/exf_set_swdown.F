@@ -1,19 +1,18 @@
 #include "EXF_CPPOPTIONS.h"
 
-      subroutine exf_set_aqh( mycurrenttime, mycurrentiter, mythid )
+      subroutine exf_set_swdown(mycurrenttime, mycurrentiter, mythid )
 
 c     ==================================================================
-c     SUBROUTINE exf_set_aqh
+c     SUBROUTINE exf_set_swdown
 c     ==================================================================
 c
-c     o set external forcing aqh
+c     o set external forcing swdown
 c
 c     started: Ralf.Giering@FastOpt.de 25-Mai-2000
-c     changed: heimbach@mit.edu 10-Jan-2002
 c     mods for pkg/seaice: menemenlis@jpl.nasa.gov 20-Dec-2002
 
 c     ==================================================================
-c     SUBROUTINE exf_set_aqh
+c     SUBROUTINE exf_set_swdown
 c     ==================================================================
 
       implicit none
@@ -34,7 +33,7 @@ c     == routine arguments ==
       integer mycurrentiter
       integer mythid
 
-#ifdef ALLOW_ATM_TEMP
+#ifdef ALLOW_DOWNWARD_RADIATION
 c     == local variables ==
 
       logical first, changed
@@ -46,37 +45,37 @@ c     == local variables ==
 
 c     == end of interface ==
 
-      if ( aqhfile .NE. ' ' ) then
+      if ( swdownfile .NE. ' ' ) then
 
-c     get record numbers and interpolation factor for aqh
+c     get record numbers and interpolation factor for swdown
          call exf_GetFFieldRec(
-     I        aqhstartdate, aqhperiod
+     I        swdownstartdate, swdownperiod
      O        , fac, first, changed
      O        , count0, count1
      I        , mycurrenttime, mycurrentiter, mythid
      &        )
 
          if ( first ) then
-            call mdsreadfield( aqhfile, exf_iprec, exf_yftype, 1
-     &           , aqh1, count0, mythid
+            call mdsreadfield( swdownfile, exf_iprec, exf_yftype, 1
+     &           , swdown1, count0, mythid
      &           )
             if (exf_yftype .eq. 'RL') then
-               call exf_filter_rl( aqh1, aqhmask, mythid )
+               call exf_filter_rl( swdown1, swdownmask, mythid )
             else
-               call exf_filter_rs( aqh1, aqhmask, mythid )
+               call exf_filter_rs( swdown1, swdownmask, mythid )
             end if
          endif
 
          if (( first ) .or. ( changed )) then
-            call exf_SwapFFields( aqh0, aqh1, mythid )
+            call exf_SwapFFields( swdown0, swdown1, mythid )
 
-            call mdsreadfield( aqhfile, exf_iprec, exf_yftype, 1
-     &           , aqh1, count1, mythid
+            call mdsreadfield( swdownfile, exf_iprec, exf_yftype, 1
+     &           , swdown1, count1, mythid
      &           )
             if (exf_yftype .eq. 'RL') then
-               call exf_filter_rl( aqh1, aqhmask, mythid )
+               call exf_filter_rl( swdown1, swdownmask, mythid )
             else
-               call exf_filter_rs( aqh1, aqhmask, mythid )
+               call exf_filter_rs( swdown1, swdownmask, mythid )
             end if
          endif
 
@@ -88,8 +87,8 @@ c     Loop over tiles.
 
 c     Interpolate linearly onto the current time.
 
-                     aqh(i,j,bi,bj) = fac * aqh0(i,j,bi,bj) +
-     &                    (exf_one - fac) *aqh1(i,j,bi,bj)
+                     swdown(i,j,bi,bj) = fac * swdown0(i,j,bi,bj) +
+     &                    (exf_one - fac) *swdown1(i,j,bi,bj)
 
                   enddo
                enddo
@@ -104,10 +103,10 @@ c     Interpolate linearly onto the current time.
 
 
 
-      subroutine exf_init_aqh( mythid )
+      subroutine exf_init_swdown( mythid )
 
 c     ==================================================================
-c     SUBROUTINE exf_init_aqh
+c     SUBROUTINE exf_init_swdown
 c     ==================================================================
 c
 c     o 
@@ -116,7 +115,7 @@ c     started: Ralf.Giering@FastOpt.de 25-Mai-2000
 c     changed: heimbach@mit.edu 10-Jan-2002
 c
 c     ==================================================================
-c     SUBROUTINE exf_init_aqh
+c     SUBROUTINE exf_init_swdown
 c     ==================================================================
 
       implicit none
@@ -133,7 +132,7 @@ c     == routine arguments ==
 
       integer mythid
 
-#ifdef ALLOW_ATM_TEMP
+#ifdef ALLOW_DOWNWARD_RADIATION
 c     == local variables ==
 
       integer bi, bj
@@ -145,9 +144,9 @@ c     == end of interface ==
         do bi = mybxlo(mythid), mybxhi(mythid)
           do j = 1, sny
             do i = 1, snx
-              aqh(i,j,bi,bj)  = 0. _d 0
-              aqh0(i,j,bi,bj) = 0. _d 0
-              aqh1(i,j,bi,bj) = 0. _d 0
+              swdown(i,j,bi,bj)  = 0. _d 0
+              swdown0(i,j,bi,bj) = 0. _d 0
+              swdown1(i,j,bi,bj) = 0. _d 0
             enddo
           enddo
         enddo

@@ -93,10 +93,16 @@ C     to South-West C-grid for forcing ocean model.
        DO bi=myBxLo(myThid),myBxHi(myThid)
         DO j=1,sNy
          DO i=1,sNx
-            fu(I,J,bi,bj)=HALF
-     &           *(WINDX(I-1,J-1,bi,bj)+WINDX(I-1,J,bi,bj))
-            fv(I,J,bi,bj)=HALF
-     &           *(WINDY(I-1,J-1,bi,bj)+WINDY(I,J-1,bi,bj))
+#ifdef SEAICE_EXTERNAL_FLUXES
+          IF (HEFF(I,J,1,bi,bj).GT.0.0) THEN
+#endif
+             fu(I,J,bi,bj)=HALF
+     &            *(WINDX(I-1,J-1,bi,bj)+WINDX(I-1,J,bi,bj))
+             fv(I,J,bi,bj)=HALF
+     &            *(WINDY(I-1,J-1,bi,bj)+WINDY(I,J-1,bi,bj))
+#ifdef SEAICE_EXTERNAL_FLUXES
+          ENDIF
+#endif
          ENDDO
         ENDDO
        ENDDO
