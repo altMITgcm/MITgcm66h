@@ -78,7 +78,7 @@ C--   Begin time stepping loop
 
 C--    Step forward fields and calculate time tendency terms
        CALL TIMER_START('FORWARD_STEP       [THE_MAIN_LOOP]',myThid)
-       CALL FORWARD_STEP( .FALSE., ILOOP,
+       CALL FORWARD_STEP( ILOOP,
      &                    myCurrentTime, myCurrentIter, myThid )
        CALL TIMER_STOP ('FORWARD_STEP       [THE_MAIN_LOOP]',myThid)
 
@@ -94,13 +94,10 @@ C--   Final checkpoint (incase the in-loop checkpoint was missed)
      &        .TRUE., myCurrentTime, myCurrentIter, myThid )
       CALL TIMER_STOP ('I/O (WRITE)        [THE_MAIN_LOOP]',myThid)
 
-C--   Step forward fields for purposes of final I/O processing
-      CALL TIMER_START('FORWARD_STEP       [THE_MAIN_LOOP]',myThid)
-      CALL FORWARD_STEP( .TRUE., ILOOP,
-     &                   myCurrentTime, myCurrentIter, myThid )
-      CALL TIMER_STOP ('FORWARD_STEP       [THE_MAIN_LOOP]',myThid)
-
-      CALL TIMER_STOP ('SPIN-DOWN          [THE_MAIN_LOOP]',myThid)
+C--   Write the final state
+      CALL TIMER_START('I/O (WRITE)        [THE_MAIN_LOOP]',myThid)
+      CALL WRITE_STATE( .TRUE., myCurrentTime, myCurrentIter, myThid )
+      CALL TIMER_STOP ('I/O (WRITE)        [THE_MAIN_LOOP]',myThid)
 
       RETURN
       END

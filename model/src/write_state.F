@@ -81,7 +81,7 @@ C     == Local variables ==
 
       IF ( 
      &     ( DIFFERENT_MULTIPLE(dumpFreq,myCurrentTime,
-     &     myCurrentTime-deltaTClock) .AND. myCurrentTime.NE.startTime )
+     &     myCurrentTime-deltaTClock) .AND. myCurrentTime.NE.endTime )
      &     .OR. forceOutput
      &     ) THEN
          iRec = int ( (myCurrentTime-startTime) / dumpFreq +1.5 )
