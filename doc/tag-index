@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint46m_post
 o modified testscript to return -- when there are no lines of "%MON" output 
 o added new flag "quasiHydrostatic" for QH mode
   and new routine quasihydrostaticterms()
