@@ -108,7 +108,7 @@ C    [d_xx+d_yy] tmpFld
      I                    tmpFldU(1-OLx,1-OLy,k,bi,bj),
      I                    tmpFldV(1-OLx,1-OLy,k,bi,bj),
      &                    hDiv,myThid)
-           CALL MOM_VI_CALC_RELVORT3(bi,bj,k,
+           CALL SHAP_FILT_RELVORT3(bi,bj,k,
      I                    tmpFldU(1-OLx,1-OLy,k,bi,bj),
      I                    tmpFldV(1-OLx,1-OLy,k,bi,bj),
      &                    hFacZ,vort3,myThid)
