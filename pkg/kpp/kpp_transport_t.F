@@ -1,0 +1,88 @@
+C $Header$
+C $Name$
+
+#include "KPP_OPTIONS.h"
+
+      subroutine KPP_TRANSPORT_T (
+     I     iMin,iMax,jMin,jMax,bi,bj,k,km1,
+     I     KappaRT,
+     U     df )
+C     /==========================================================\
+C     | o SUBROUTINE KPP_TRANSPORT_T                             |
+C     |   Add non local KPP transport term (ghat) to diffusive   |
+C     |   temperature flux.                                      |
+C     |==========================================================|
+C     | The nonlocal transport term is nonzero only for scalars  |
+C     | in unstable (convective) forcing conditions.             |
+C     | Note: [SurfaceTendencyT + Qsw * (1-KPPfrac)]             |
+C     |       is the total heat flux penetrating the mixed layer |
+C     |       from the surface in deg C / s referenced to the    |
+C     |       top layer.                                         |
+C     | Note: KappaRT(i,j,k) is defined at the top of grid cell  |
+C     |       k while KPPghat(i,j,k,bi,bj) is defined at the     |
+C     |       bottom of grid cell k.                             |
+C     |       For K=1, KappaRT(i,j,k) = 0 which insures no flux  |
+C     |       through the surface.                               |
+C     \==========================================================/
+      IMPLICIT NONE
+
+C     == GLobal variables ==
+#include "SIZE.h"
+#include "DYNVARS.h"
+#include "EEPARAMS.h"
+#include "PARAMS.h"
+#include "GRID.h"
+#include "FFIELDS.h"
+#include "KPP.h"
+#include "KPP_PARAMS.h"
+
+#ifdef ALLOW_SEAICE
+#include "SEAICE_EXTERNAL.h"
+#endif ALLOW_SEAICE
+
+C     == Routine arguments ==
+C     iMin,iMax,jMin,  - Range of points for which calculation
+C     jMax,bi,bj,k,km1   results will be set.
+C     KappaRT          - Total diffusion in vertical for T.
+C     df               - Diffusive flux component work array.
+      INTEGER iMin,iMax,jMin,jMax,bi,bj,k,km1
+      _RL KappaRT(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
+      _RL df     (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+
+#if defined(ALLOW_KPP) && defined(KPP_GHAT)
+
+C     == Local variables ==
+C     I, J - Loop counters
+      INTEGER I, J
+
+      DO j=jMin,jMax
+       DO i=iMin,iMax
+        if ( .NOT. useSEAICE )
+     &         df(i,j) = df(i,j) - _rA(i,j,bi,bj) * 
+     &         KappaRT(i,j,k) * KPPghat(i,j,km1,bi,bj) * drF(1) *
+     &         ( SurfaceTendencyT(i,j,bi,bj) -
+     &           Qsw(i,j,bi,bj)
+     &          *recip_Cp*recip_rhoConst*recip_dRf(1)
+     &          * (1.-KPPfrac(i,j,bi,bj))
+     &         )
+
+#ifdef ALLOW_SEAICE
+
+        if ( useSEAICE )
+     &         df(i,j) = df(i,j) - _rA(i,j,bi,bj) *
+     &         KappaRT(i,j,k) * KPPghat(i,j,km1,bi,bj) * drF(1) *
+     &         ( SurfaceTendencyT(i,j,bi,bj) +
+     &         SurfaceTendencyTice(i,j,bi,bj) -
+     &         Qsw(i,j,bi,bj)
+     &         *recip_Cp*recip_rhoConst*recip_dRf(1)
+     &         * (1.-KPPfrac(i,j,bi,bj))
+     &         )
+#endif ALLOW_SEAICE
+
+       ENDDO
+      ENDDO
+
+#endif /* ALLOW_KPP and KPP_GHAT */
+
+      RETURN
+      END

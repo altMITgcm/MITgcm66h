@@ -1,188 +1,132 @@
-C $Id$
+C $Header$
+C $Name$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
-CStartOfInterFace
+CBOP
+C     !ROUTINE: CALC_GT
+C     !INTERFACE:
       SUBROUTINE CALC_GT( 
      I           bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
-     I           xA,yA,uTrans,vTrans,wTrans,maskup,
-     U           af,df,fZon,fMer,fVerT,
-     I           myThid )
-C     /==========================================================\
-C     | SUBROUTINE CALC_GT                                       |
-C     | o Calculate the temperature tendency terms.              |
-C     |==========================================================|
-C     | A procedure called EXTERNAL_FORCING_T is called from     |
-C     | here. These procedures can be used to add per problem    |
-C     | heat flux source terms.                                  |
-C     | Note: Although it is slightly counter-intuitive the      |
-C     |       EXTERNAL_FORCING routine is not the place to put   |
-C     |       file I/O. Instead files that are required to       |
-C     |       calculate the external source terms are generally  |
-C     |       read during the model main loop. This makes the    |
-C     |       logisitics of multi-processing simpler and also    |
-C     |       makes the adjoint generation simpler. It also      |
-C     |       allows for I/O to overlap computation where that   |
-C     |       is supported by hardware.                          |
-C     | Aside from the problem specific term the code here       |
-C     | forms the tendency terms due to advection and mixing     |
-C     | The baseline implementation here uses a centered         |
-C     | difference form for the advection term and a tensorial   |
-C     | divergence of a flux form for the diffusive term. The    |
-C     | diffusive term is formulated so that isopycnal mixing and|
-C     | GM-style subgrid-scale terms can be incorporated b simply|
-C     | setting the diffusion tensor terms appropriately.        |
-C     \==========================================================/
-      IMPLICIT NONE
+     I           xA,yA,uTrans,vTrans,rTrans,maskUp,
+     I           KappaRT,
+     U           fVerT,
+     I           myTime,myIter,myThid )
+C     !DESCRIPTION: \bv
+C     *==========================================================*
+C     | SUBROUTINE CALC_GT                                        
+C     | o Calculate the temperature tendency terms.               
+C     *==========================================================*
+C     | A procedure called EXTERNAL_FORCING_T is called from      
+C     | here. These procedures can be used to add per problem     
+C     | heat flux source terms.                                   
+C     | Note: Although it is slightly counter-intuitive the       
+C     |       EXTERNAL_FORCING routine is not the place to put    
+C     |       file I/O. Instead files that are required to        
+C     |       calculate the external source terms are generally   
+C     |       read during the model main loop. This makes the     
+C     |       logisitics of multi-processing simpler and also     
+C     |       makes the adjoint generation simpler. It also       
+C     |       allows for I/O to overlap computation where that    
+C     |       is supported by hardware.                           
+C     | Aside from the problem specific term the code here        
+C     | forms the tendency terms due to advection and mixing      
+C     | The baseline implementation here uses a centered          
+C     | difference form for the advection term and a tensorial    
+C     | divergence of a flux form for the diffusive term. The     
+C     | diffusive term is formulated so that isopycnal mixing and 
+C     | GM-style subgrid-scale terms can be incorporated b simply 
+C     | setting the diffusion tensor terms appropriately.         
+C     *==========================================================*
+C     \ev
 
+C     !USES:
+      IMPLICIT NONE
 C     == GLobal variables ==
 #include "SIZE.h"
 #include "DYNVARS.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "GRID.h"
+#include "GAD.h"
 
+C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
-C     fZon    - Work array for flux of temperature in the east-west 
-C               direction at the west face of a cell.
-C     fMer    - Work array for flux of temperature in the north-south 
-C               direction at the south face of a cell.
-C     fVerT   - Flux of temperature (T) in the vertical 
-C               direction at the upper(U) and lower(D) faces of a cell.
-C     maskUp  - Land mask used to denote base of the domain.
-C     xA      - Tracer cell face area normal to X
-C     yA      - Tracer cell face area normal to X
-C     uTrans  - Zonal volume transport through cell face
-C     vTrans  - Meridional volume transport through cell face
-C     wTrans  - Vertical volume transport through cell face
-C     af      - Advective flux component work array
-C     df      - Diffusive flux component work array
-C     bi, bj, iMin, iMax, jMin, jMax - Range of points for which calculation
-C                                      results will be set.
-C     myThid - Instance number for this innvocation of CALC_GT
-      _RL fZon  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL fMer  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+C     fVerT   :: Flux of temperature (T) in the vertical 
+C                direction at the upper(U) and lower(D) faces of a cell.
+C     maskUp  :: Land mask used to denote base of the domain.
+C     xA      :: Tracer cell face area normal to X
+C     yA      :: Tracer cell face area normal to X
+C     uTrans  :: Zonal volume transport through cell face
+C     vTrans  :: Meridional volume transport through cell face
+C     rTrans  :: Vertical volume transport through cell face
+C     bi, bj, iMin, iMax, jMin, jMax :: Range of points for which calculation
+C                                       results will be set.
+C     myThid :: Instance number for this innvocation of CALC_GT
       _RL fVerT (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
       _RS xA    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS yA    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL uTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL vTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL wTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL rTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS maskUp(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL af    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL df    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      INTEGER kUp,kDown,kM1
+      _RL KappaRT(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
+      INTEGER k,kUp,kDown,kM1
       INTEGER bi,bj,iMin,iMax,jMin,jMax
+      _RL     myTime
+      INTEGER myIter
       INTEGER myThid
-CEndOfInterface
+CEOP
 
-C     == Local variables ==
-C     I, J, K - Loop counters
-      INTEGER i,j,k
-      REAL afFacT, dfFacT
-      REAL dutdxFac
+C     === Local variables ===
+      LOGICAL calcAdvection
 
-      afFacT = 1. _d 0
-      dfFacT = 1. _d 0
-      dutdxFac = afFacT
+#ifdef ALLOW_AUTODIFF_TAMC
+C--   only the kUp part of fverT is set in this subroutine
+C--   the kDown is still required
+      fVerT(1,1,kDown) = fVerT(1,1,kDown)
+#endif
 
-C---
-C---  Calculate advective and diffusive fluxes between cells.
-C---
+      calcAdvection = tempAdvection .AND. .NOT.tempMultiDimAdvec
+      CALL GAD_CALC_RHS(
+     I           bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
+     I           xA,yA,uTrans,vTrans,rTrans,maskUp,
+     I           diffKhT, diffK4T, KappaRT, theta,
+     I           GAD_TEMPERATURE, tempAdvScheme, calcAdvection,
+     U           fVerT, gT,
+     I           myThid )
 
-C--   Zonal flux (fZon is at west face of "theta" cell)
-C     Advective component of zonal flux
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-        af(i,j) = 
-     &   uTrans(i,j)*(theta(i,j,k,bi,bj)+theta(i-1,j,k,bi,bj))*0.5 _d 0
-       ENDDO
-      ENDDO
-C     Diffusive component of zonal flux
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-        df(i,j) = 
-     &   -diffKhT*xA(i,j)*rdxC(i,j,bi,bj)
-     &   *(theta(i,j,k,bi,bj)-theta(i-1,j,k,bi,bj))
-       ENDDO
-      ENDDO
-C     Net zonal flux
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-        fZon(i,j) = afFacT*af(i,j) + dfFacT*df(i,j)
-       ENDDO
-      ENDDO
+C--   External thermal forcing term(s) inside Adams-Bashforth:
+      IF ( tempForcing .AND. forcing_In_AB )
+     & CALL EXTERNAL_FORCING_T(
+     I     iMin,iMax,jMin,jMax,bi,bj,k,
+     I     myTime,myThid)
 
-C--   Meridional flux (fMer is at south face of "theta" cell)
-C     Advective component of meridional flux
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-C       Advective component of meridional flux
-        af(i,j) =
-     &   vTrans(i,j)*(theta(i,j,k,bi,bj)+theta(i,j-1,k,bi,bj))*0.5 _d 0
-       ENDDO
-      ENDDO
-C     Diffusive component of meridional flux
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-        df(i,j) =
-     &   -diffKhT*yA(i,j)*rdyC(i,j,bi,bj)
-C    &   -1.D3*rdyC(i,j,bi,bj)*dZF(K)*delX(1)*hFacC(i,j,k,bi,bj)*
-C    &    hFacC(i,j-1,k,bi,bj)
-     &   *(theta(i,j,k,bi,bj)-theta(i,j-1,k,bi,bj))
-       ENDDO
-      ENDDO
-C     Net meridional flux
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-        fMer(i,j) = afFacT*af(i,j) + dfFacT*df(i,j)
-       ENDDO
-      ENDDO
+      IF ( tempAdamsBashforth ) THEN
+        CALL ADAMS_BASHFORTH2(
+     I                        bi, bj, K,
+     U                        gT, gTnm1,
+     I                        myIter, myThid )
+      ENDIF
 
-C--   Vertical flux (fVerT) above
-C     Note: For K=1 then KM1=1 this gives a dT/dz = 0 upper
-C           boundary condition.
-C     Advective component of vertical flux
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-        af(i,j) =
-     &   wTrans(i,j)*(theta(i,j,k,bi,bj)+theta(i,j,kM1,bi,bj))*0.5 _d 0
-       ENDDO
-      ENDDO
-C     Diffusive component of vertical flux
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-        df(i,j) =
-     &   -diffKzT*zA(i,j,bi,bj)*rdzC(k)
-     &   *(theta(i,j,kM1,bi,bj)-theta(i,j,k,bi,bj))
-       ENDDO
-      ENDDO
-C     Net vertical flux
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-        fVerT(i,j,kUp) = (afFacT*af(i,j) + dfFacT*df(i,j))*maskUp(i,j)
-       ENDDO
-      ENDDO
+C--   External thermal forcing term(s) outside Adams-Bashforth:
+      IF ( tempForcing .AND. .NOT.forcing_In_AB )
+     & CALL EXTERNAL_FORCING_T(
+     I     iMin,iMax,jMin,jMax,bi,bj,k,
+     I     myTime,myThid)
 
-C--   Tendency is minus divergence of the fluxes.
-C     Note. Tendency terms will only be correct for range
-C           i=iMin+1:iMax-1, j=jMin+1:jMax-1. Edge points
-C           will contain valid floating point numbers but 
-C           they are not algorithmically correct. These points
-C           are not used.
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-        gT(i,j,k,bi,bj)=
-     &   -rHFacC(i,j,k,bi,bj)*rdzF(k)*rDxF(i,j,bi,bj)*rDyF(i,j,bi,bj)
-     &   *(
-     &    +( fZon(i+1,j)-fZon(i,j) )
-     &    +( fMer(i,j+1)-fMer(i,j) )
-     &    +( fVerT(i,j,kUp)-fVerT(i,j,kDown) )
-     &    )
-       ENDDO
-      ENDDO
-
-C--   External thermal forcing term(s)
+#ifdef NONLIN_FRSURF
+      IF (nonlinFreeSurf.GT.0) THEN
+        CALL FREESURF_RESCALE_G(
+     I                          bi, bj, K,
+     U                          gT,
+     I                          myThid )
+        IF ( tempAdamsBashforth )
+     &  CALL FREESURF_RESCALE_G(
+     I                          bi, bj, K,
+     U                          gTnm1,
+     I                          myThid )
+      ENDIF
+#endif /* NONLIN_FRSURF */
 
       RETURN
       END

@@ -1,0 +1,111 @@
+C $Header$
+C $Name$
+
+#include "AIM_OPTIONS.h"
+
+      SUBROUTINE AIM_DO_PHYSICS( bi, bj, myTime, myIter, myThid ) 
+                                      
+C     *==================================================================*
+C     | S/R AIM_DO_PHYSICS
+C     *==================================================================*
+C     | Interface between atmospheric physics package and the
+C     | dynamical model.
+C     | Routine calls physics pacakge after setting surface BC.
+C     | Package should derive and set tendency terms
+C     | which can be included as external forcing terms in the dynamical
+C     | tendency routines. Packages should communicate this information
+C     | through common blocks.
+C     *==================================================================*
+      IMPLICIT NONE
+
+C     -------------- Global variables ------------------------------------
+C-- size for MITgcm & Physics package :
+#include "AIM_SIZE.h"
+
+C-- MITgcm
+#include "EEPARAMS.h"
+#include "PARAMS.h"
+#include "DYNVARS.h"
+#include "GRID.h"
+#include "SURFACE.h"
+
+C-- Physics package
+#include "AIM_FFIELDS.h"
+#include "AIM_GRID.h"
+#include "com_physvar.h"
+#include "com_forcing.h"
+
+C     == Routine arguments ==
+C     bi,bj  - Tile index 
+C     myTime - Current time of simulation ( s )
+C     myIter - Current iteration number in simulation
+C     myThid - Number of this instance of the routine
+      INTEGER bi, bj, myIter, myThid
+      _RL myTime
+
+#ifdef ALLOW_AIM
+C     == Local variables ==
+C     I,J,K,I2      - Loop counters
+C     tYear         - Fraction into year
+C     Katm          - Atmospheric K index
+      INTEGER I,J,K,I2
+c     INTEGER Katm
+      _RL     tYear, yearLength
+
+C_jmc: Because AIM physics LSC is not applied in the stratosphere (top level),
+C      ==> move water wapor from the stratos to the surface level.
+      DO j = 1-Oly, sNy+Oly
+       DO i = 1-Olx, sNx+Olx
+        k = ksurfC(i,j,bi,bj)
+        IF (k.LE.Nr)
+     &    salt(i,j,k,bi,bj) = salt(i,j,k,bi,bj)
+     &                      + salt(i,j,Nr,bi,bj)*drF(Nr)*recip_drF(k)
+     &                  *hFacC(i,j,Nr,bi,bj)*recip_hFacC(i,j,k,bi,bj)
+        salt(i,j,Nr,bi,bj) = 0.
+       ENDDO
+      ENDDO
+
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+
+C-    Physics package needs to know time of year as a fraction
+      yearLength = 86400.*360.
+      tYear = mod(myTime/yearLength, 1. _d 0)
+c     tYear = myTime/(86400.*360.) -
+c    &        FLOAT(INT(myTime/(86400.*360.)))
+
+C--   Set surface Boundary Conditions for atmos. physics package:
+C     (Albedo, Soil moisture, Surf Temp, Land sea mask)
+C     includes some parts of S/R FORDATE from F.Molteni SPEDDY code (ver23)
+      CALL AIM_SURF_BC( tYear, myTime, myIter, bi, bj, myThid )
+
+C--   Set surface geopotential: (g * orographic height)
+      DO J=1,sNy
+       DO I=1,sNx
+         I2 = I+(J-1)*sNx
+         PHI0(I2) = gravity*topoZ(i,j,bi,bj)
+       ENDDO
+      ENDDO
+
+C--   Set topographic dependent FOROG var (originally in common SFLFIX);
+C      used to compute for wind stress over land
+
+c_FM  IF (IDAY.EQ.0) THEN
+c_FM    CALL SFLSET (PHIS0)
+        CALL SFLSET (PHI0, fOrogr(1,myThid), bi,bj,myThid)
+c_FM  ENDIF
+c_FM  CALL SOL_OZ (SOLC,TYEAR)
+
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+
+C-    Compute atmospheric-physics tendencies (call the main AIM S/R)
+      CALL PHY_DRIVER( tYear, myTime, myIter, bi, bj, myThid )
+
+C-    AIM diagnostics : write snap-shot & cumulate for TimeAve output
+      CALL AIM_DIAGNOSTICS( bi, bj, myTime, myIter, myThid )
+
+      CALL AIM_AIM2DYN( bi, bj, myTime, myIter, myThid )
+
+#endif /* ALLOW_AIM */
+
+      RETURN
+      END
