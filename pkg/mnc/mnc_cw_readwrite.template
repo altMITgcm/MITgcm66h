@@ -26,6 +26,7 @@ C     !USES:
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "MNC_PARAMS.h"
 
 C     !INPUT PARAMETERS:
       integer myThid, bi,bj, indu
@@ -360,6 +361,7 @@ C     !USES:
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "MNC_PARAMS.h"
 
 C     !INPUT PARAMETERS:
       integer myThid, bi,bj, indu

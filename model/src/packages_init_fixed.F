@@ -65,6 +65,7 @@ C--   Initialize fixed arrays for OBCS
        CALL OBCS_INIT_FIXED( myThid )
       ENDIF
 #endif
+
 #ifdef ALLOW_FLT
 C--   Initialise Float positions
       IF (useFLT) THEN
@@ -72,6 +73,13 @@ C--   Initialise Float positions
       _BARRIER
       ENDIF
 #endif
+
+#ifdef ALLOW_TIMEAVE
+C     IF (useTIMEAVE) THEN
+      CALL timeave_init( myThid )
+C     ENDIF
+#endif
+
 #ifdef ALLOW_ZONAL_FILT
 C--   Latitude circle filter initialisation
       IF (useZONAL_FILT) THEN
