@@ -72,7 +72,7 @@ C--   Load atmospheric state and runoff.
 C--   As a proxy for geostrophic velocity,
 C     choose the level that is >= 50 m with kgeo > 1
       KGEO = 2
-      DO WHILE ( abs(rC(KGEO)) .LT. 50 .AND. KGEO .LT. Nr )
+      DO WHILE ( abs(rC(KGEO)) .LT. 50.0 .AND. KGEO .LT. Nr )
          KGEO = KGEO + 1
       ENDDO
       DO bj=myByLo(myThid),myByHi(myThid)
