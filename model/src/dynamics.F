@@ -340,6 +340,12 @@ c should use sigmaR !!!
 C--     end of diagnostic k loop (Nr:1)
         ENDDO
 
+C--     Determines forcing terms based on external fields
+C       relaxation terms, etc.
+        CALL EXTERNAL_FORCING_SURF( 
+     I             bi, bj, iMin, iMax, jMin, jMax,
+     I             myThid )
+
 #ifdef  ALLOW_GMREDI
 C--     Calculate iso-neutral slopes for the GM/Redi parameterisation
         IF (useGMRedi) THEN
@@ -359,12 +365,6 @@ C--     Compute KPP mixing coefficients
      I                  bi, bj, myTime, myThid )
         ENDIF
 #endif  /* ALLOW_KPP */
-
-C--     Determines forcing terms based on external fields
-C       relaxation terms, etc.
-        CALL EXTERNAL_FORCING_SURF( 
-     I             bi, bj, iMin, iMax, jMin, jMax,
-     I             myThid )
 
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE KappaRT(:,:,:)     = comlev1_bibj, key = ikey, byte = isbyte
