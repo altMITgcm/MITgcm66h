@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+untagged
+o Merging pkg/exf and pkg/seaice from cvs tag ecco_ice2
+
 ecco_c44_e25
 o Merging some GM changes from main trunk (c47) to ecco-branch.
 o Updating verif. natl_box_adjoint with GMRedi.
