@@ -4,6 +4,9 @@
 # External Forcing Data
 # *********************
  &EXF_NML
+#
+ repeatPeriod      = 31622400
+#
  hfluxstartdate1   = 19781216,
  hfluxstartdate2   = 180000,
  hfluxperiod       = 2635200.0,
