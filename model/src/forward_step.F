@@ -136,6 +136,13 @@ C--   Switch on/off diagnostics for snap-shot output:
       ENDIF
 #endif
 
+C--   State-variables diagnostics
+      IF ( usediagnostics ) THEN
+        CALL TIMER_START('DO_STATEVARS_DIAGS  [FORWARD_STEP]',myThid)
+        CALL DO_STATEVARS_DIAGS( myTime, 0, myIter, myThid )
+        CALL TIMER_STOP ('DO_STATEVARS_DIAGS  [FORWARD_STEP]',myThid)
+      ENDIF
+
 C--   Call external forcing package
 #ifdef ALLOW_BULK_FORCE
       IF ( useBulkForce ) THEN
@@ -529,6 +536,13 @@ C--   do exchanges of U,V (needed for multiDim) when using stagger time-step :
         CALL DO_STAGGER_FIELDS_EXCHANGES( myTime, myIter, myThid )
         CALL TIMER_STOP ('BLOCKING_EXCHANGES  [FORWARD_STEP]',myThid)
 
+C--   State-variables diagnostics
+       IF ( usediagnostics ) THEN
+        CALL TIMER_START('DO_STATEVARS_DIAGS  [FORWARD_STEP]',myThid)
+        CALL DO_STATEVARS_DIAGS( myTime, 1, myIter, myThid )
+        CALL TIMER_STOP ('DO_STATEVARS_DIAGS  [FORWARD_STEP]',myThid)
+       ENDIF
+
 #ifdef ALLOW_DEBUG
         IF ( debugLevel .GE. debLevB ) 
      &    CALL DEBUG_CALL('THERMODYNAMICS',myThid)
@@ -603,10 +617,10 @@ C--   Calculate float trajectories
       ENDIF
 #endif
 
-C--   State-variables statistics (time-aver, diagnostics ...)
-      CALL TIMER_START('DO_STATEVARS_DIAGS  [FORWARD_STEP]',myThid)
-      CALL DO_STATEVARS_DIAGS( myTime, myIter, myThid )
-      CALL TIMER_STOP ('DO_STATEVARS_DIAGS  [FORWARD_STEP]',myThid)
+C--   State-variables time-averaging
+      CALL TIMER_START('DO_STATEVARS_TAVE   [FORWARD_STEP]',myThid)
+      CALL DO_STATEVARS_TAVE( myTime, myIter, myThid )
+      CALL TIMER_STOP ('DO_STATEVARS_TAVE   [FORWARD_STEP]',myThid)
 
 #ifndef ALLOW_OFFLINE
 #ifdef ALLOW_MONITOR
