@@ -5,7 +5,15 @@
 
 FC='g77'
 FFLAGS=' '
-FOPTIM='-ffast-math -fexpensive-optimizations -fomit-frame-pointer -O3'
 DEFINES='-DWORDLENGTH=4'
 CPP='cpp  -traditional -P'
+
+#  For IEEE, use the "-ffloat-store" option
+if test "x$IEEE" = x ; then
+    FOPTIM='-ffast-math -fexpensive-optimizations -fomit-frame-pointer -O3'
+    FOPTIM='-O3 -funroll-loops'
+else
+    FFLAGS='-Wimplicit -Wunused -ffloat-store'
+    FOPTIM='-O0'
+fi
 

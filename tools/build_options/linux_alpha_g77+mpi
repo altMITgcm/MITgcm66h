@@ -9,3 +9,14 @@ DEFINES='-DWORDLENGTH=4'
 LIBS='-L/usr/local/lib/LINUX/ch_p4/ -lfmpich -lmpich'
 INCLUDES='-I/usr/local/include'
 CPP='cpp  -traditional -P'
+
+
+#  For IEEE, use the "-ffloat-store" option
+if test "x$IEEE" = x ; then
+    FFLAGS='-Wimplicit -Wunused -Wuninitialized'
+    FOPTIM='-O3 -funroll-loops'
+else
+    FFLAGS='-Wimplicit -Wunused -ffloat-store'
+    FOPTIM='-O0'
+fi
+
