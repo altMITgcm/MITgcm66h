@@ -215,10 +215,12 @@ SRC_MODEL	= \
 		  						\
 		$(SOURCE_CODE)/gmredi_calc_diff.f		\
 		$(SOURCE_CODE)/gmredi_calc_tensor.f		\
+		$(SOURCE_CODE)/gmredi_calc_psi_b.f		\
 		$(SOURCE_CODE)/gmredi_diags.f			\
 		$(SOURCE_CODE)/gmredi_init.f			\
 		$(SOURCE_CODE)/gmredi_rtransport.f		\
 		$(SOURCE_CODE)/gmredi_slope_limit.f		\
+		$(SOURCE_CODE)/gmredi_slope_psi.f		\
 		$(SOURCE_CODE)/gmredi_xtransport.f		\
 		$(SOURCE_CODE)/gmredi_ytransport.f		\
 								\
