@@ -51,11 +51,7 @@ CEOP
           saltFlux        (i,j,bi,bj) = 0. _d 0
           SST             (i,j,bi,bj) = 0. _d 0
           SSS             (i,j,bi,bj) = 0. _d 0
-#ifdef SHORTWAVE_HEATING          
           Qsw             (i,j,bi,bj) = 0. _d 0
-#else
-          Qsw             (1,1,1,1)   = 0. _d 0
-#endif
 #ifdef ATMOSPHERIC_LOADING
           pload           (i,j,bi,bj) = 0. _d 0
 #endif
