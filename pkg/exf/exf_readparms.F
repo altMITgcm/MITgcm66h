@@ -32,6 +32,7 @@ c              Patrick Heimbach, heimbach@mit.edu  04-May-2000
 c              - added obcs parameters
 c     changed: Virginie Thierry, vthierry@ucsd.edu 04-June-2001
 c              - added new obcs parameters (for each boundaries) 
+c     included runoff D. Stammer, Nov. 25, 2001
 c
 c     ==================================================================
 c     SUBROUTINE exf_readparms
@@ -73,6 +74,7 @@ c     Surface flux data.
      &      aqhstartdate1,      aqhstartdate2,     aqhperiod,
      &    sfluxstartdate1,    sfluxstartdate2,   sfluxperiod,
      &   precipstartdate1,   precipstartdate2,  precipperiod,
+     &   runoffstartdate1,   runoffstartdate2,  runoffperiod,
      &  ustressstartdate1,  ustressstartdate2, ustressperiod,
      &  vstressstartdate1,  vstressstartdate2, vstressperiod,
      &    uwindstartdate1,    uwindstartdate2,   uwindperiod,
@@ -84,8 +86,9 @@ c     Surface flux data.
      &    obcsEstartdate1,    obcsEstartdate2,   obcsEperiod,
      &    obcsWstartdate1,    obcsWstartdate2,   obcsWperiod,
      &          hfluxfile,          atempfile,       aqhfile,
-     &         precipfile,          sfluxfile,   ustressfile,
-     &        vstressfile,          uwindfile,     vwindfile,
+     &          sfluxfile,         precipfile,    runofffile,
+     &        ustressfile,        vstressfile,
+     &          uwindfile,          vwindfile,
      &         swfluxfile,         lwfluxfile,
      &          exf_iprec,         exf_yftype
 
@@ -113,6 +116,10 @@ c     Calendar data.
       precipstartdate1   = 0
       precipstartdate2   = 0
       precipperiod       = 0.0 _d 0
+
+      runoffstartdate1   = 0
+      runoffstartdate2   = 0
+      runoffperiod       = 0.0 _d 0
 
       ustressstartdate1  = 0
       ustressstartdate2  = 0
@@ -160,6 +167,7 @@ c     Data files.
       aqhfile            = ' '
       precipfile         = ' '
       sfluxfile          = ' '
+      runofffile         = ' '
       ustressfile        = ' '
       vstressfile        = ' '
       uwindfile          = ' '
@@ -174,6 +182,7 @@ c     Initialise the date arrays.
          aqhstartdate(i)      = 0
          precipstartdate(i)   = 0
          sfluxstartdate(i)    = 0
+         runoffstartdate(i)   = 0
          ustressstartdate(i)  = 0
          vstressstartdate(i)  = 0
          uwindstartdate(i)    = 0
@@ -223,6 +232,11 @@ c     check for consistency
      &        ) then
          stop 'stop in exf_readparms: value of exf_yftype not allowed'
       end if
+
+#ifdef ALLOW_RUNOFF
+      call cal_FullDate(  runoffstartdate1,  runoffstartdate2,
+     &                    runoffstartdate,            mythid )
+#endif
 
 #ifdef ALLOW_BULKFORMULAE
 

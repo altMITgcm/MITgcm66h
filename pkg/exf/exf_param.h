@@ -64,6 +64,13 @@ c     Calendar data.
       character*1 precipmask
       parameter(  precipmask = 's' )
 
+      integer runoffstartdate1
+      integer runoffstartdate2
+      integer runoffstartdate(4)
+      _RL     runoffperiod
+      character*1 runoffmask
+      parameter(  runoffmask = 's' )
+
       integer ustressstartdate1
       integer ustressstartdate2
       integer ustressstartdate(4)
@@ -132,6 +139,7 @@ c     File names.
       character*(128) aqhfile
       character*(128) precipfile
       character*(128) sfluxfile
+      character*(128) runofffile
       character*(128) ustressfile
       character*(128) vstressfile
       character*(128) uwindfile
@@ -144,6 +152,7 @@ c     File names.
      &                          atempstartdate1,   atempstartdate2,
      &                          aqhstartdate1,     aqhstartdate2,
      &                          sfluxstartdate1,   sfluxstartdate2,
+     &                          runoffstartdate1,  runoffstartdate2,
      &                          precipstartdate1,  precipstartdate2,
      &                          ustressstartdate1, ustressstartdate2,
      &                          vstressstartdate1, vstressstartdate2,
@@ -160,6 +169,7 @@ c     File names.
      &                          aqhstartdate,
      &                          sfluxstartdate,
      &                          precipstartdate,
+     &                          runoffstartdate,
      &                          ustressstartdate,
      &                          vstressstartdate,
      &                          uwindstartdate,
@@ -177,6 +187,7 @@ c     File names.
      &                          aqhperiod,
      &                          sfluxperiod,
      &                          precipperiod,
+     &                          runoffperiod,
      &                          ustressperiod,
      &                          vstressperiod,
      &                          uwindperiod,
@@ -194,6 +205,7 @@ c     File names.
      &                          aqhfile,
      &                          sfluxfile,
      &                          precipfile,
+     &                          runofffile,
      &                          ustressfile,
      &                          vstressfile,
      &                          uwindfile,

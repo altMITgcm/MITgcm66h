@@ -8,7 +8,8 @@ c
 c     o Header file for the surface flux data.
 c
 c     started: Ralf.Giering@FastOpt.de 25-Mai-2000
-c     changed: heimbach@mit.edu 10-Jan-2002
+c     changed: field swap in adj. mode; heimbach@mit.edu 10-Jan-2002
+c     included runoff D. Stammer, Nov. 25, 2001
 c
 c     ==================================================================
 c     HEADER exf_fields
@@ -131,4 +132,11 @@ c--   define auxiliary fields for temporal interpolation
       common /exfl_vstress_r/ vstress0, vstress1
       _RL vstress0(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL vstress1(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+#endif
+
+#ifdef ALLOW_RUNOFF
+      common /exfl_runoff_r/ runoff, runoff0, runoff1
+      _RL runoff (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL runoff0(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL runoff1(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 #endif

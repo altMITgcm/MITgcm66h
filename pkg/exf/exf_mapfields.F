@@ -65,7 +65,10 @@ c     == global variables ==
 #include "exf_constants.h"
 #include "exf_fields.h"
 #include "exf_clim_fields.h"
-
+#ifdef ALLOW_AUTODIFF_TAMC
+# include "tamc.h"
+# include "tamc_keys.h"
+#endif
 c     == routine arguments ==
 
 c     mythid - thread number for this instance of the routine.
@@ -121,40 +124,114 @@ c     == end of interface ==
 
       do bj = jtlo,jthi
         do bi = itlo,ithi
+
+#ifdef ALLOW_AUTODIFF_TAMC
+          act1 = bi - myBxLo(myThid)
+          max1 = myBxHi(myThid) - myBxLo(myThid) + 1
+          act2 = bj - myByLo(myThid)
+          max2 = myByHi(myThid) - myByLo(myThid) + 1
+          act3 = myThid - 1
+          max3 = nTx*nTy
+          act4 = ikey_dynamics - 1
+          ikey = (act1 + 1) + act2*max1
+     &                      + act3*max1*max2
+     &                      + act4*max1*max2*max3
+#endif /* ALLOW_AUTODIFF_TAMC */
+
           do j = jmin,jmax
             do i = imin,imax
-
 c             Heat flux.
               qnet(i,j,bi,bj)  = scal_hfl*hflux(i,j,bi,bj)
+            enddo
+          enddo
 
+
+          do j = jmin,jmax
+            do i = imin,imax
 c             Salt flux.
 #if (defined (ALLOW_BULKFORMULAE)  && defined (ALLOW_ATM_TEMP))
               empmr(i,j,bi,bj) = scal_prc*precip(i,j,bi,bj)
 #else
               empmr(i,j,bi,bj) = scal_sfl*sflux(i,j,bi,bj)
 #endif
+            enddo
+          enddo
 
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE ustress(:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
+#endif
+          do j = jmin,jmax
+            do i = imin,imax
 c             Zonal wind stress.
+              if (ustress(i,j,bi,bj).gt.2.0D0) then
+                ustress(i,j,bi,bj)=2.0D0
+              endif
+            enddo
+          enddo
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE ustress(:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
+#endif
+          do j = jmin,jmax
+            do i = imin,imax
+              if (ustress(i,j,bi,bj).lt.-2.0D0) then
+                ustress(i,j,bi,bj)=-2.0D0
+              endif
+            enddo
+          enddo
+          do j = jmin,jmax
+            do i = imin,imax
               fu(i,j,bi,bj)    = scal_ust*ustress(i,j,bi,bj)
+            enddo
+          enddo
 
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE vstress(:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
+#endif
+          do j = jmin,jmax
+            do i = imin,imax
 c             Meridional wind stress.
+              if (vstress(i,j,bi,bj).gt.2.0D0) then
+                vstress(i,j,bi,bj)=2.0D0
+              endif
+            enddo
+          enddo
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE vstress(:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
+#endif
+          do j = jmin,jmax
+            do i = imin,imax
+              if (vstress(i,j,bi,bj).lt.-2.0D0) then
+                vstress(i,j,bi,bj)=-2.0D0
+              endif
+            enddo
+          enddo
+          do j = jmin,jmax
+            do i = imin,imax
               fv(i,j,bi,bj)    = scal_vst*vstress(i,j,bi,bj)
+            enddo
+          enddo
 
-#ifdef ALLOW_KPP || (defined (ALLOW_BULKFORMULAE) && defined (ALLOW_ATM_TEMP)))
+          do j = jmin,jmax
+            do i = imin,imax
+#ifdef ALLOW_KPP || \
+ (defined (ALLOW_BULKFORMULAE) && defined (ALLOW_ATM_TEMP)))
 c             Short wave radiative flux.
               qsw(i,j,bi,bj)   = scal_swf*swflux(i,j,bi,bj)
 #endif
+            enddo
+          enddo
 
+          do j = jmin,jmax
+            do i = imin,imax
 #ifdef ALLOW_CLIMSST_RELAXATION
               sst(i,j,bi,bj)   = scal_sst*climsst(i,j,bi,bj)
 #endif
-
 #ifdef ALLOW_CLIMSSS_RELAXATION
               sss(i,j,bi,bj)   = scal_sss*climsss(i,j,bi,bj)
 #endif
-
             enddo
           enddo
+
         enddo
       enddo
 
