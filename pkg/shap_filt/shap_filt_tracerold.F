@@ -18,6 +18,7 @@ C     == Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#include "SHAP_FILT.h"
 
 C     == Routine arguments
       INTEGER myThid

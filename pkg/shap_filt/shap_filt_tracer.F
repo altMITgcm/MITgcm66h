@@ -19,6 +19,7 @@ C     == Global variables ===
 #include "PARAMS.h"
 #include "GRID.h"
 #ifdef ALLOW_SHAP_FILT
+#include "SHAP_FILT.h"
 #include "SHAP_FILT_TRACER.h"
 #endif
 

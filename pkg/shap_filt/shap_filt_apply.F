@@ -18,6 +18,9 @@ C     == Global variables ===
 #include "PARAMS.h"
 #include "DYNVARS.h"
 #include "GRID.h"
+#ifdef ALLOW_SHAP_FILT
+#include "SHAP_FILT.h"
+#endif
 
 C     == Routine arguments ==
       _RL  uFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
@@ -60,15 +63,40 @@ C--        Update fields in top level according to tendency terms
         IF ( tempStepping ) _EXCH_XYZ_R8( tFld,myThid )
         IF ( saltStepping ) _EXCH_XYZ_R8( sFld,myThid )
 #else
-        CALL SHAP_FILT_UV(
-     U                    uFld, vFld,
-     I                    myTime, myThid )
-        IF ( tempStepping ) CALL SHAP_FILT_TRACER(
+        IF (Shap_uvtau.GT.0.) THEN
+          IF (Shap_funct.EQ.2) THEN
+            CALL SHAP_FILT_UV_S2(
+     U           uFld, vFld,
+     I           myTime, myThid )
+          ELSE
+            CALL SHAP_FILT_UV(
+     U           uFld, vFld,
+     I           myTime, myThid )
+          ENDIF
+        ENDIF
+
+        IF ( tempStepping .AND. Shap_Trtau.GT.0.) THEN
+          IF (Shap_funct.EQ.2) THEN
+            CALL SHAP_FILT_TRACER_S2(
      U           tFld,
      I           myTime, myThid )
-        IF ( saltStepping ) CALL SHAP_FILT_TRACER(
+          ELSE
+            CALL SHAP_FILT_TRACER(
+     U           tFld,
+     I           myTime, myThid )
+          ENDIF
+        ENDIF
+        IF ( saltStepping .AND. Shap_Trtau.GT.0.) THEN 
+          IF (Shap_funct.EQ.2) THEN
+            CALL SHAP_FILT_TRACER_S2(
      U           sFld,
      I           myTime, myThid )
+          ELSE
+            CALL SHAP_FILT_TRACER(
+     U           sFld,
+     I           myTime, myThid )
+          ENDIF
+        ENDIF
 #endif /* USE_OLD_SHAPIRO_FILTERS */
 
       ENDIF
