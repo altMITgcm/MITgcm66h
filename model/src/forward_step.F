@@ -145,21 +145,21 @@ c     Update the tile edges.
        _EXCH_XY_R8(fu     , mythid)
        _EXCH_XY_R8(fv     , mythid)
 cswdblk -- end add ---
-#endif
+#else
 #ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
-        IF ( .not. useSEAICE .and. .not. useBulkForce ) THEN 
+        IF ( .not. useSEAICE  ) THEN 
          CALL TIMER_START('EXF_GETFORCING     [FORWARD_STEP]',mythid)
          CALL EXF_GETFORCING( mytime, myiter, mythid )
          CALL TIMER_STOP ('EXF_GETFORCING     [FORWARD_STEP]',mythid)
         ENDIF
 #else
-        IF ( .not. useSEAICE .and. .not. useBulkForce ) THEN 
+        IF ( .not. useSEAICE  ) THEN 
          CALL TIMER_START('EXTERNAL_FIELDS_LOAD[FORWARD_STEP]',mythid)
          CALL EXTERNAL_FIELDS_LOAD( mytime, myiter, mythid )
          CALL TIMER_STOP ('EXTERNAL_FIELDS_LOAD[FORWARD_STEP]',mythid)
         ENDIF
 #endif /* INCLUDE_EXTERNAL_FORCING_PACKAGE */
-
+#endif
 
 
 
