@@ -115,8 +115,8 @@ C       fizhi_earth_coms.h
        tn = (jG - 1)*(nPx*nSx) + iG
 #endif /* ALLOW_EXCH2 */
 
-       write(dataFname(1:80),'(2a,i3.3,a,'.001',a)')
-     &              fn(1:ilst),'.',iG,'.','.data'
+       write(dataFname(1:80),'(2a,i3.3,a,i3.3,a)')
+     &              fn(1:ilst),'.',iG,'.',jG,'.data'
        open( iUnit, file=dataFName, status='unknown',
      &       access='direct', recl=length_of_rec )
 
@@ -372,8 +372,8 @@ C       fizhi_land_coms.h
        tn = (jG - 1)*(nPx*nSx) + iG
 #endif /* ALLOW_EXCH2 */
 
-       write(dataFname(1:80),'(2a,i3.3,a,'.001',a)')
-     &              fn(1:ilst),'.',iG,'.','.data'
+       write(dataFname(1:80),'(2a,i3.3,a,i3.3,a)')
+     &              fn(1:ilst),'.',iG,'.',jG,'.data'
        open( iUnit, file=dataFName, status='old',
      &       access='direct', recl=length_of_rec )
 
