@@ -40,6 +40,24 @@ esminput:
 
 ===================================================================
 
+ C   8 Calling G2OEIU  timestamp= 18:16:46                        44046.00
+ C   1 Calling G2OEIU  timestamp= 18:16:50                        44049.00
+ C   1 Exiting G2OEIU  timestamp= 18:16:50                            0
+ C   8 Exiting G2OEIU  timestamp= 18:16:50                            0
+ C   8 Calling O2GEIU  timestamp= 18:16:58                        44049.00
+ C   8 Exiting O2GEIU  timestamp= 18:16:58            
+ C   1 Calling O2GEIU  timestamp= 18:16:58                        44052.00
+ C   1 Exiting O2GEIU  timestamp= 18:16:58            
+
+Note, G2OEIU means AGCM to OGCM.  O2GEIU means OGCM to AGCM.  This particular
+example, a 7-CPU atmosphere and a 56-CPU ocean, shows that the ocean model,
+process 8, needs to wait for 4 seconds for the atmosphere model, process 1, to
+provide it with data.  While the atmosphere model receives data right away
+from the ocean.  So the atmosphere is slower than the ocean and needs to
+allocated more CPUs.
+
+===================================================================
+
 This is a 4-CPU experiment, which is based on global_ocean.90x40x15.
 
 Instructions for running verification/coupled_ucla:
