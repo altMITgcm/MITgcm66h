@@ -538,6 +538,10 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       implicit none
 #include "EEPARAMS.h"
 #include "SIZE.h"
+#ifdef ALLOW_EXCH2
+#include "W2_EXCH2_TOPOLOGY.h"
+#include "W2_EXCH2_PARAMS.h"
+#endif
 
 C     Arguments
       integer myThid, bi,bj, uniq_tnum
@@ -550,7 +554,6 @@ C     Local Variables
 
 #ifdef ALLOW_EXCH2
 
-#include "W2_EXCH2_PARAMS.h"
       uniq_tnum = W2_myTileList(bi)
 
 #else
