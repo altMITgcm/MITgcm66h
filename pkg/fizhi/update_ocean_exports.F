@@ -482,11 +482,11 @@ C  Write out header info
  1000    format(3(2x,i3,':',i8,2x,i8))
         enddo
         write(6,1000) (nn,nymdbc(nn),nhmsbc(nn),nn=ndby3*3+1,ndatebc)
-       endif  ! End error  Check
+       endif
 
        if( error ) call my_exit (101)
 
-      endif  ! New Year Info Check
+      endif
 
 C---------- Read SST data if necessary -------------------------------
 
