@@ -636,14 +636,10 @@ C Logical flags for selecting packages
       LOGICAL usePTRACERS
       LOGICAL useSBO
       LOGICAL useSEAICE
-cswdblk -- add ---
       LOGICAL useBulkforce
       LOGICAL useThermSEAICE
-cswdblk --- end add ---
       COMMON /PARM_PACKAGES/
      &        useKPP, useGMRedi, useOBCS, useAIM, useLand, useECCO, 
      &        useSHAP_FILT, useZONAL_FILT, useGrdchk, useFLT,
      &        usePTRACERS,  useSBO, useSEAICE, 
-cswdblk -- add ---
      &        useThermSEAICE, useBulkforce
-cswdblk --- end add ---

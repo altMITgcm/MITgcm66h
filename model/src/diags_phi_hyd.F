@@ -55,7 +55,6 @@ CEOP
         DO j=jMin,jMax
          DO i=iMin,iMax
            totPhiHyd(i,j,k,bi,bj) = phiHydC(i,j)
-c    &            - gravity*rC(k)*recip_horiVertRatio
      &            + Bo_surf(i,j,bi,bj)*etaN(i,j,bi,bj)
      &            + phi0surf(i,j,bi,bj) 
          ENDDO
