@@ -68,6 +68,10 @@ C     General curvilinear coordinate system
       usingCurvilinearGrid = .FALSE.
 C     General cylindrical coordinate system
       usingCylindricalGrid = .FALSE.
+C     Coriolis map:
+      useConstantF  = .FALSE.
+      useBetaPlaneF = .FALSE.
+      useSphereF    = .FALSE.
 
 
 C--   Set default "physical" parameters

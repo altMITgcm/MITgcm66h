@@ -1021,8 +1021,6 @@ C--   Make metric term settings consistent with underlying grid.
       ENDIF
 
       IF ( usingSphericalPolarGrid ) THEN
-       useConstantF  = .FALSE.
-       useBetaPlaneF = .FALSE.
        useSphereF    = .TRUE.
        usingSphericalPolarMterms = metricTerms
       ENDIF
