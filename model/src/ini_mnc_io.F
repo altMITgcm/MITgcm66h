@@ -57,6 +57,11 @@ C     Create MNC definitions for DYNVARS.h variables
      &     'free-surface_r-anomaly')
       CALL MNC_CW_ADD_VATTR_TEXT(myThid,'Eta',1,
      &     'coordinates','XC YC RC iter')
+      CALL MNC_CW_ADD_VNAME(myThid, 'EtaNH', 'Cen_xy_Hn__-__t', 3,4)
+      CALL MNC_CW_ADD_VATTR_TEXT(myThid,'EtaNH',1,'long_name',
+     &     'free-surface_r-anomaly')
+      CALL MNC_CW_ADD_VATTR_TEXT(myThid,'EtaNH',1,
+     &     'coordinates','XC YC RC iter')
 
       CALL MNC_CW_ADD_VNAME(myThid, 'W', 'Cen_xy_Hn__C__t', 4,5)
       CALL MNC_CW_ADD_VATTR_TEXT(myThid,'W',1,'units','m/s')
