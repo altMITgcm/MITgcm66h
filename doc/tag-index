@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o GM Advective form: Tracers are advected using the residual transport (=
+  Euler+GM-bolus); set param GM_AdvSeparate=T to return to previous form.
+
 checkpoint44g_post
 o fix surface correction term in multiDimAdvection (affects plume_on_slope 
   results) ; ifdef missing in thermodynamics.F
