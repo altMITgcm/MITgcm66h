@@ -85,7 +85,7 @@ C     Ptracers field monitor start
         IF ( PTRACERS_monitorFreq .NE. monitorFreq ) THEN
 C     repeat printing of time to make grepping easier, default is not
 C     to do this, because the default is to use the same monitorFreq
-C     for ptracers than for the dynamics variables.
+C     for ptracers as for the dynamics variables.
          CALL MON_SET_PREF('trctime',myThid)
          CALL MON_OUT_I( '_tsnumber', myIter,mon_string_none,myThid)
          CALL MON_OUT_RL('_secondsf', myTime,mon_string_none,myThid)
