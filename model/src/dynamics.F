@@ -432,7 +432,11 @@ C--      Prediction step (step forward all model variables)
          CALL TIMESTEP(
      I       bi,bj,iMin,iMax,jMin,jMax,K,
      I       myThid)
+C--      Apply open boundary conditions
          IF (openBoundaries) CALL APPLY_OBCS2( bi, bj, K, myThid )
+C--      Freeze water
+         IF (allowFreezing)
+     &   CALL FREEZE( bi, bj, iMin, iMax, jMin, jMax, K, myThid )
 C--      Diagnose barotropic divergence of predicted fields
          CALL CALC_DIV_GHAT(
      I       bi,bj,iMin,iMax,jMin,jMax,K,
