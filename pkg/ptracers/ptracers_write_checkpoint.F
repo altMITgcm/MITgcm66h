@@ -40,12 +40,16 @@ C  iRec    		:: record number
 C  fn   		:: character buffer for creating filename
 C  prec 		:: precision of pickup files
 C  lgf  		:: flag to write "global" files
-      INTEGER iTracer,prec,iRec
-      CHARACTER*(MAX_LEN_MBUF) fn
+      INTEGER iTracer,prec,iRec,iChar,lChar
+      CHARACTER*(MAX_LEN_FNAM) fn
       LOGICAL lgf
 CEOP
 
-      WRITE(fn,'(A,A)') 'pickup_ptracers.',suff
+      lChar = 0
+      DO iChar = 1,len(suff)
+       IF ( suff(iChar:iChar) .NE. ' ') lChar=iChar
+      ENDDO
+      WRITE(fn,'(A,A)') 'pickup_ptracers.',suff(1:lChar)
       prec = precFloat64
       lgf = globalFiles
 
@@ -55,6 +59,7 @@ C Write fields as consecutive records
        CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,
      &      pTracer(1-Olx,1-Oly,1,1,1,iTracer),iRec,myIter,myThid)
       ENDDO
+      print *, 'hallo 1'
 
 C Write historical tendancies as consecutive records
       DO iTracer=1,PTRACERS_num
