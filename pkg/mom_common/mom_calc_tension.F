@@ -52,10 +52,10 @@ CEOP
 C Calculate tension of horizontal flow (ignoring lopping factors)
 C *NOTE* that masking is implicit in the contents of the (u,v) fields.
         tension(i,j)= 
-     &    ( dyg( i , j ,bi,bj)*uFld( i , j )
-     &     -dyg(i-1, j ,bi,bj)*uFld(i-1, j )
-     &     -dxg( i , j ,bi,bj)*vFld( i , j )
-     &     +dxg( i ,j-1,bi,bj)*vFld( i ,j-1) )*recip_rAz(i,j,bi,bj)
+     &    ( dyg(i+1, j ,bi,bj)*uFld(i+1, j )
+     &     -dyg( i , j ,bi,bj)*uFld( i , j )
+     &     -dxg( i ,j+1,bi,bj)*vFld( i ,j+1)
+     &     +dxg( i , j ,bi,bj)*vFld( i , j ) )*recip_rA(i,j,bi,bj)
 c    &    (dyf(i,j,bi,bj)*recip_dxf(i,j,bi,bj))
 c    &   *( uFld(i+1, j )*recip_dyg(i+1, j ,bi,bj)
 c    &     -uFld( i , j )*recip_dyg( i , j ,bi,bj) )
