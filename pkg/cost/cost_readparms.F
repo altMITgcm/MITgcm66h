@@ -23,6 +23,7 @@ c     == global variables ==
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "GRID.h"
+#include "PARAMS.h"
 
 #include "cost.h"
 
@@ -55,6 +56,10 @@ c--     Next, read the cost data file.
         end if
         read(  scrunit1, nml = cost_nml )
         close( scrunit1 )
+
+        IF ( MOD(lastinterval,deltaTclock) .GT. 0. ) 
+     &       lastinterval = MAX(
+     &       INT(lastinterval/deltaTclock-1)*deltaTclock,deltaTclock)
 
       _END_MASTER( mythid )
 
