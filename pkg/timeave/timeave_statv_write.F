@@ -80,6 +80,10 @@ c         CALL TIMEAVE_NORMALIZ(hFacStave,TimeAve_half,Nr,bi,bj,myThid)
 
           CALL TIMEAVE_NORMALIZ(TdiffRtave,TimeAve_full,Nr,
      &                            bi,bj,myThid)
+#ifndef DISABLE_MOM_VECINV
+          CALL TIMEAVE_NORMALIZ(uZetatave,TimeAve_full,Nr,bi,bj,myThid)
+          CALL TIMEAVE_NORMALIZ(vZetatave,TimeAve_full,Nr,bi,bj,myThid)
+#endif
           CALL TIMEAVE_NORMALIZ(phiHydtave,TimeAve_full,Nr,
      &                            bi,bj,myThid)
           CALL TIMEAVE_NORMALIZ(phiHydLowtave,TimeAve_full,1,
@@ -123,6 +127,12 @@ c      CALL WRITE_FLD_XYZ_RL('KEtave.',suff,KEtave,myIter,myThid)
 
        IF (useVariableK)
      & CALL WRITE_FLD_XYZ_RL('Tdiftave.',suff,TdiffRtave,myIter,myThid)
+#ifndef DISABLE_MOM_VECINV
+       IF (vectorInvariantMomentum) THEN
+         CALL WRITE_FLD_XYZ_RL('uZtave.',suff,uZetatave,myIter,myThid)
+         CALL WRITE_FLD_XYZ_RL('vZtave.',suff,vZetatave,myIter,myThid)
+       ENDIF
+#endif
        CALL WRITE_FLD_XYZ_RL('PhHytave.',suff,phiHydtave,myIter,myThid)
        IF ( buoyancyRelation .NE. 'ATMOSPHERIC' ) THEN
        CALL WRITE_FLD_XY_RL('PHLtave.',suff,phiHydLowtave,

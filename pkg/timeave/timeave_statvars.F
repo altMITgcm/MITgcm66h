@@ -55,6 +55,10 @@ c       CALL TIMEAVE_RESET(KEtave,    Nr, bi, bj, myThid)
         CALL TIMEAVE_RESET(VTtave,    Nr, bi, bj, myThid)
         CALL TIMEAVE_RESET(WTtave,    Nr, bi, bj, myThid)
         CALL TIMEAVE_RESET(TdiffRtave,Nr, bi, bj, myThid)
+#ifndef DISABLE_MOM_VECINV
+        CALL TIMEAVE_RESET(uZetatave, Nr, bi, bj, myThid)
+        CALL TIMEAVE_RESET(vZetatave, Nr, bi, bj, myThid)
+#endif
         CALL TIMEAVE_RESET(phiHydtave,Nr, bi, bj, myThid)
         CALL TIMEAVE_RESET(phiHydLowtave,1, bi, bj, myThid)
         CALL TIMEAVE_RESET(phiHydLow2Tave,1, bi, bj, myThid)
