@@ -38,8 +38,8 @@ C     msgBuf      - Informational/error meesage buffer
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 C-- Set Temp & Salt muti-Dim Advec. flag according to advection scheme used
-      tempMultiDimAdvec = multiDimAdvection
-      saltMultiDimAdvec = multiDimAdvection
+      tempMultiDimAdvec = multiDimAdvection .AND. tempAdvection
+      saltMultiDimAdvec = multiDimAdvection .AND. saltAdvection
       IF ( tempAdvScheme.EQ.ENUM_CENTERED_2ND
      & .OR.tempAdvScheme.EQ.ENUM_UPWIND_3RD
      & .OR.tempAdvScheme.EQ.ENUM_CENTERED_4TH ) THEN
