@@ -125,6 +125,7 @@ C--   Set default "physical" parameters
       bottomDragLinear    = 0.
       bottomDragQuadratic = 0.
       usePickupBeforeC35  = .FALSE.
+      debugMode           = .FALSE.
 
 C--   Elliptic solver parameters
       cg2dMaxIters       = 150

@@ -106,7 +106,7 @@ C--   Continuous equation parameters
      & allowFreezing, ivdc_kappa,
      & zonal_filt_lat, zonal_filt_sinpow, zonal_filt_cospow,
      & bottomDragLinear,bottomDragQuadratic,
-     & usePickupBeforeC35
+     & usePickupBeforeC35, debugMode
 
 C--   Elliptic solver parameters
       NAMELIST /PARM02/
