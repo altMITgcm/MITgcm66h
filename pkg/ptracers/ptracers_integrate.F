@@ -15,7 +15,7 @@ C !INTERFACE: ==========================================================
       SUBROUTINE PTRACERS_INTEGRATE(
      I                               bi,bj,k,
      I                               xA,yA,uTrans,vTrans,rTrans,maskUp,
-     X                               KappaRtr,
+     X                               rFlx,KappaRtr,
      I                               myIter,myTime,myThid )
 
 C !DESCRIPTION:
@@ -82,16 +82,6 @@ CEOP
 C Loop over tracers
       DO iTracer=1,PTRACERS_numInUse
 
-C Initialize vertical flux to zero and set no-flux across k=Nr+1
-       IF (k.EQ.Nr) THEN
-        DO j=1-Oly,sNy+Oly
-         DO i=1-Olx,sNx+Olx
-          rFlx(i,j,1,iTracer)=0.
-          rFlx(i,j,2,iTracer)=0.
-         ENDDO
-        ENDDO
-       ENDIF
-
 C Loop ranges for daughter routines
        iMin = 1-OLx+2
        iMax = sNx+OLx-1
@@ -136,9 +126,10 @@ cswdptr --add --
 cswdptr - end add ---
        IF ( forcing_In_AB )
      &   CALL PTRACERS_FORCING(
-     I                        bi,bj,iMin,iMax,jMin,jMax,k,iTracer,
-     U                        gPtr(1-Olx,1-Oly,1,1,1,iTracer),
-     I                        myIter,myTime,myThid)
+     I                      bi,bj,iMin,iMax,jMin,jMax,k,
+     U                      gPtr(1-Olx,1-Oly,1,1,1,iTracer),
+     I                      surfaceTendencyPtr(1-Olx,1-Oly,1,1,iTracer),
+     I                      myIter,myTime,myThid)
 cswdptr --add---
 #endif
 cswdptr -- end add ---
@@ -168,9 +159,10 @@ cswdptr - add--
 cswdptr - end add ---
        IF ( .NOT.forcing_In_AB )
      &   CALL PTRACERS_FORCING(
-     I                        bi,bj,iMin,iMax,jMin,jMax,k,iTracer,
-     U                        gPtr(1-Olx,1-Oly,1,1,1,iTracer),
-     I                        myIter,myTime,myThid)
+     I                      bi,bj,iMin,iMax,jMin,jMax,k,
+     U                      gPtr(1-Olx,1-Oly,1,1,1,iTracer),
+     I                      surfaceTendencyPtr(1-Olx,1-Oly,1,1,iTracer),
+     I                      myIter,myTime,myThid)
 cswdptr - add--
 #endif
 cswdptr -- end add ---
