@@ -81,10 +81,10 @@ C     Account for periodicity if negative indices were supplied
       DO I=1,Nx
        IF (OB_Jnorth(I).lt.0) OB_Jnorth(I)=OB_Jnorth(I)+Ny+1
       ENDDO
-      write(0,*) 'OB Jn =',OB_Jnorth
-      write(0,*) 'OB Js =',OB_Jsouth
-      write(0,*) 'OB Ie =',OB_Ieast
-      write(0,*) 'OB Iw =',OB_Iwest
+      write(*,*) 'OB Jn =',OB_Jnorth
+      write(*,*) 'OB Js =',OB_Jsouth
+      write(*,*) 'OB Ie =',OB_Ieast
+      write(*,*) 'OB Iw =',OB_Iwest
 
 #ifdef ALLOW_ORLANSKI
 C     Default Orlanski radiation parameters

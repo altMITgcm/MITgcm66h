@@ -170,7 +170,7 @@ C Penetrating SW radiation
        DO i=iMin,iMax
         gT(i,j,klev,bi,bj) = gT(i,j,klev,bi,bj)
      &    -maskC(i,j)*Qsw(i,j,bi,bj)*(swfracb(1)-swfracb(2))
-     &    *recip_Cp*recip_rhoNil*recip_dRf(1)
+     &    *recip_Cp*recip_rhoNil*recip_dRf(klev)
        ENDDO
       ENDDO
 #endif

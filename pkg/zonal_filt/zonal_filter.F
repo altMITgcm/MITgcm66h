@@ -68,7 +68,7 @@ C     o Apply amplitude filter and normalize
           phi(i)=phi(i)*ampFactorV(i,j,bi,bj)/float(Nx)
          ENDDO
         ELSE
-         WRITE(0,*) 'Error: gridLoc = ',gridLoc
+         WRITE(*,*) 'Error: gridLoc = ',gridLoc
          STOP 'Error: gridLoc has illegal value'
         ENDIF
 

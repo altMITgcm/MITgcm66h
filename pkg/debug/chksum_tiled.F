@@ -42,7 +42,7 @@ C     Local
       ENDDO
       Frms=sqrt(Frms/float(cnt))
 
-      write(0,'(a,1p4e12.5,1x,a)')
+      write(*,'(a,1p4e12.5,1x,a)')
      &      'CHKSUM_TILED: ',Fmin,Fmax,Fmn,Frms,str
 
       RETURN

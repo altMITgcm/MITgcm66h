@@ -77,9 +77,7 @@ c Local
          enddo
          
       else
-cph(  write statement confuses TAMC
-cph         write(0,*) 'FIND_ALPHA: eqn = ',eqn
-cph)
+         write(*,*) 'FIND_ALPHA: eqn = ',eqn
          stop 'FIND_ALPHA: argument "eqn" has illegal value'
       endif
 
@@ -157,9 +155,7 @@ c Local
          enddo
 
       else
-cph(  write statement confuses TAMC
-cph         write(0,*) 'FIND_BETA: eqn = ',eqn
-cph)
+         write(*,*) 'FIND_BETA: eqn = ',eqn
          stop 'FIND_BETA: argument "eqn" has illegal value'
       endif
 

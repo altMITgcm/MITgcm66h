@@ -118,6 +118,7 @@ C--   Set default "physical" parameters
       zonal_filt_cospow   = 2
       bottomDragLinear    = 0.
       bottomDragQuadratic = 0.
+      usePickupBeforeC35  = .FALSE.
 
 C--   Elliptic solver parameters
       cg2dMaxIters       = 150

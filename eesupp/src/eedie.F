@@ -51,8 +51,8 @@ C     bug or you may need a different parallel compiler for main.F
      & 'S/R EEDIE: Only ',nThreadsDone,
      & ' threads have completed, ',nThreads,
      & ' are expected for this configuration!'
-       WRITE(0,*) msgBuf
-       WRITE(0,*) 
+       WRITE(*,*) msgBuf
+       WRITE(*,*) 
      & 'Possibly you have different setenv PARALLEL and nThreads?'
        eeEndError = .TRUE.
        fatalError = .TRUE.

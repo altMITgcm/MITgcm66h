@@ -104,7 +104,8 @@ C--   Continuous equation parameters
      & nonHydrostatic, globalFiles,
      & allowFreezing, ivdc_kappa,
      & nShap, zonal_filt_lat, zonal_filt_sinpow, zonal_filt_cospow,
-     & bottomDragLinear,bottomDragQuadratic
+     & bottomDragLinear,bottomDragQuadratic,
+     & usePickupBeforeC35
 
 C--   Elliptic solver parameters
       NAMELIST /PARM02/

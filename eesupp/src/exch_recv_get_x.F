@@ -147,7 +147,7 @@ C        i.e. we only lock waiting for data that we need.
           CALL FOOL_THE_COMPILER
           spinCount = spinCount+1
 C         IF ( myThid .EQ. 1 .AND. spinCount .GT. _EXCH_SPIN_LIMIT ) THEN
-C          WRITE(0,*) ' eBl = ', ebl
+C          WRITE(*,*) ' eBl = ', ebl
 C          STOP ' S/R EXCH_RECV_GET_X: spinCount .GT. _EXCH_SPIN_LIMIT'
 C         ENDIF
           IF ( westRecvAck(eBl,bi,bj) .EQ. 0. ) GOTO 10
@@ -464,7 +464,7 @@ C        i.e. we only lock waiting for data that we need.
           CALL FOOL_THE_COMPILER
           spinCount = spinCount+1
 C         IF ( myThid .EQ. 1 .AND. spinCount .GT. _EXCH_SPIN_LIMIT ) THEN
-C          WRITE(0,*) ' eBl = ', ebl
+C          WRITE(*,*) ' eBl = ', ebl
 C          STOP ' S/R EXCH_RECV_GET_X: spinCount .GT. _EXCH_SPIN_LIMIT'
 C         ENDIF
           IF ( westRecvAck(eBl,bi,bj) .EQ. 0. ) GOTO 10

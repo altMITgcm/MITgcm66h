@@ -157,12 +157,10 @@ C     see CG2D_INTERNAL.h for the interface to this routine.
       _EXCH_XY_R8(cg2d_x, myThid )
 
       _BEGIN_MASTER( myThid )
-#ifndef ALLOW_AUTODIFF_TAMC
-       WRITE(0,'(A,I6,1PE30.14)') ' CG2D iters, err = ',
+       WRITE(*,'(A,I6,1PE30.14)') ' CG2D iters, err = ',
      &                         0, tolerance
-       WRITE(0,'(A,I6,1PE30.14)') ' CG2D iters, err = ',
+       WRITE(*,'(A,I6,1PE30.14)') ' CG2D iters, err = ',
      &                         numIters, residual
-#endif
       _END_MASTER( )
 
 C--   Transfert the 2D-solution to "etaN" :

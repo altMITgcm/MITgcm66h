@@ -38,8 +38,7 @@ C               record corresponding to an earier time. *BE WARNED*
 
 
 CStartofinterface
-      SUBROUTINE WRITE_STATE ( forceOutput, myCurrentTime, 
-     &    myIter, myThid )
+      SUBROUTINE WRITE_STATE ( myCurrentTime, myIter, myThid )
 C     /==========================================================\
 C     | SUBROUTINE WRITE_STATE                                   |
 C     | o Controlling routine for IO to dump model state.        |
@@ -68,7 +67,6 @@ C     == Routine arguments ==
 C     myThid - Thread number for this instance of the routine.
 C     myIter - Iteration number
 C     myCurrentTime - Current time of simulation ( s )
-      LOGICAL forceOutput
       _RL     myCurrentTime
       INTEGER myThid
       INTEGER myIter
@@ -79,9 +77,10 @@ C     == Local variables ==
       INTEGER iRec
 
       IF ( 
-     &     ( DIFFERENT_MULTIPLE(dumpFreq,myCurrentTime,
-     &     myCurrentTime-deltaTClock) .AND. myCurrentTime.NE.endTime )
-     &     .OR. forceOutput
+     &     DIFFERENT_MULTIPLE(dumpFreq,myCurrentTime,
+     &     myCurrentTime-deltaTClock) .OR. 
+     &     myCurrentTime.EQ.endTime .OR.
+     &     myCurrentTime.EQ.startTime
      &     ) THEN
          iRec = int ( (myCurrentTime-startTime) / dumpFreq +1.5 )
          

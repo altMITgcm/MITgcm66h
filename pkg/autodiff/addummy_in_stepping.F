@@ -46,7 +46,7 @@ C     msgBuf - Error message buffer
      &                     mytime-deltaTClock)
      & ) THEN
 
-         write(0,*) 'myIter= ',myiter
+         write(*,*) 'myIter= ',myiter
 
        _BARRIER
        _BEGIN_MASTER( myThid )
