@@ -42,7 +42,7 @@ c  PTR_CO2              :: DIC tracer field
       INTEGER iMin,iMax,jMin,jMax, bi, bj
 
 C !OUTPUT PARAMETERS: ===================================================
-c GDC                   :: surface flux due to air-sea exchange
+c GDC                   :: tendency due to air-sea exchange
       _RL  GDC(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
 #ifdef ALLOW_PTRACERS
@@ -186,9 +186,8 @@ c
 C update tendency      
          DO j=1-OLy,sNy+OLy
           DO i=1-OLx,sNx+OLx
-           GDC(i,j)= maskC(i,j,kLev,bi,bj)*(
-     &                    FluxCO2(i,j,bi,bj)
-     &                    + VirtualFlux(i,j)
+           GDC(i,j)= maskC(i,j,kLev,bi,bj)*recip_drF(kLev)*(
+     &                    FluxCO2(i,j,bi,bj) + VirtualFlux(i,j)
      &                                              )
           ENDDO
          ENDDO
