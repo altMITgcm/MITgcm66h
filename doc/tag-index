@@ -3,8 +3,25 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
-untagged
+ecco_c44_e26
 o Merging pkg/exf and pkg/seaice from cvs tag ecco_ice2
+o exf: Modifications to correctly handle evap field for adjoint
+o grdchk:
+  Added code to perform gradient checks for bulk formulae/atmos. state
+  (atemp, aqh, uwind, vwind).
+  NOTE: 
+  This package is out of synch with c48 package.
+  The latter also has the tangent linear gradient checks.
+  Need to be merged.
+o verification/natl_box_adjoint:
+  * added new setup: code_bulk/, input_bulk, results_bulk
+    (Experiment 2, described in README)
+    uses bulk formulae and atmos. state as control instead of
+    air-sea fluxes.
+    Performs gradient checks for first 4 elements of atemp control.
+  * changed standard verification to perform
+    gradient checks on first 4 elements on hflux control.
+  * gmredi switched off (will come after merge with c48).
 
 ecco_c44_e25
 o Merging some GM changes from main trunk (c47) to ecco-branch.
