@@ -47,14 +47,6 @@ C     Nr  - No. points in Z for full process domain.
      &           Ny  = sNy*nSy*nPy,
      &           Nr  =   8)
 
-C     l - Runtime global problem size in X
-C     m - Runtime global problem size in Y
-C     n - Runtime global problem size in Z
-      COMMON /RUNSIZ/ l, m, n
-      INTEGER l
-      INTEGER m
-      INTEGER n
-
 C     MAX_OLX  - Set to the maximum overlap region size of any array
 C     MAX_OLY    that will be exchanged. Controls the sizing of exch
 C                routine buufers.
