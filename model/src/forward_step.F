@@ -485,6 +485,14 @@ C--   Check status of solution (statistics, cfl, etc...)
       CALL TIMER_STOP ('MONITOR             [FORWARD_STEP]',myThid)
 #endif /* ALLOW_MONITOR */
 
+C AMM  -- Testing diagnostics package
+#ifdef ALLOW_DIAGNOSTICS
+       if(usediagnostics)then
+        call diagnostics_fill_state(myThid)
+       endif
+#endif
+C AMM
+
 C--   Do IO if needed.
       CALL TIMER_START('DO_THE_MODEL_IO     [FORWARD_STEP]',myThid)
       CALL DO_THE_MODEL_IO( myTime, myIter, myThid )
