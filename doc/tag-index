@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint52b_pre
+
+o call "do_the_model_io" at the beginning (=> dump initial state) 
+o use rhoConstFresh to define convertEmP2rUnit (was done only in ocean-P)
 o sort out interplay between tamc.h and PTRACERS_OPTIONS.h
   (need info on NUMBER_OF_PTRACERS)
 o missing PTRACERS headers in some routines
