@@ -44,7 +44,7 @@ CEndOfInterface
 
 C     == Local variables ==
       _RL Small_Number
-      PARAMETER(Small_Number=1.E-12)
+      PARAMETER(Small_Number=1.D-12)
       _RL gradSmod,stratLimit,f1,Smod,f2,Rnondim,Cspd,Lrho
       _RL dSigmaDrLtd
       _RL fpi

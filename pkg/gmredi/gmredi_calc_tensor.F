@@ -118,7 +118,7 @@ C       Now we convert deltaH to a non-dimensional fraction
         if (K.eq.2) VisbeckK(i,j,bi,bj)=0.
 Calt?   if (dSigmaDrReal(i,j).NE.0.) then
 Calt?    N2=(-Gravity*recip_Rhonil)*dSigmaDrReal(i,j)
-        if (dRdSigmaLtd(i,j).NE.0.) then
+        if ( dRdSigmaLtd(i,j).NE.0. .AND. Ssq.NE.0. ) then
          N2=(-Gravity*recip_Rhonil)/dRdSigmaLtd(i,j)
          SN=sqrt(Ssq*N2)
          VisbeckK(i,j,bi,bj)=VisbeckK(i,j,bi,bj)+deltaH
