@@ -4,7 +4,7 @@
 
 path('../../lab_sea/matlab',path);
 load SSMI
-fn='../../../exe/xx_atemp.0000000000.001.001.data';
+fn='../../../exe/adxx_atemp.0000000000.001.001.data';
 a=readbin(fn,[20 16],1,'real*8',1);
 fn='../../../exe/ph-grd.txt';
 fin=fopen(fn,'r'); b=0*a; c=0*a; d=0*a;
