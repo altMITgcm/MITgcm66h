@@ -154,7 +154,7 @@ C--   Do seaice diagnostics.
 cswdice -- end add ---
 
 cswdptr ---  add ---
-#ifdef ALLOW_PTRACERS
+#ifdef ALLOW_GCHEM
 C--   Do ptracer diagnostics.
       IF (usePTRACERS)
      & CALL GCHEM_DIAGS( myCurrentTime, myIter, myThid )

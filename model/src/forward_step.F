@@ -2,9 +2,14 @@ C $Header$
 C $Name$
 
 #include "CPP_OPTIONS.h"
+#ifdef ALLOW_AUTODIFF_TAMC
+# ifdef ALLOW_PTRACERS
+#  include "PTRACERS_OPTIONS.h"
+# endif
+#endif /* ALLOW_AUTODIFF_TAMC */
 cswdptr -- add --
-#ifdef ALLOW_PTRACERS
-#include "GCHEM_OPTIONS.h"
+#ifdef ALLOW_GCHEM
+# include "GCHEM_OPTIONS.h"
 #endif
 cswdptr -- end add ---
 
@@ -64,7 +69,10 @@ C     == Global variables ==
 # ifdef ALLOW_OBCS
 #  include "OBCS.h"
 # endif
-#endif
+# ifdef ALLOW_PTRACERS
+#  include "PTRACERS.h"
+# endif
+#endif /* ALLOW_AUTODIFF_TAMC */
 
 C     !LOCAL VARIABLES:
 C     == Routine arguments ==
@@ -221,6 +229,12 @@ C     theta is dumped or time-averaged.
 # endif /* ALLOW_SEAICE */
 #endif /* ALLOW_BULK_FORCE */
 
+#ifdef ALLOW_AUTODIFF_TAMC
+# ifdef ALLOW_PTRACERS
+cph this replaces _bibj storing of ptracer within thermodynamics
+CADJ STORE ptracer  = comlev1, key = ikey_dynamics
+# endif
+#endif
 C--     Step forward fields and calculate time tendency terms.
 #ifndef DISABLE_DEBUGMODE
       IF (debugMode) CALL DEBUG_CALL('THERMODYNAMICS',myThid)
@@ -363,7 +377,7 @@ C--   Do "blocking" sends and receives for field "overlap" terms
 
 cswdptr -- add for seperate timestepping of chemical/biological/forcing
 cswdptr    of ptracers ---
-#ifdef ALLOW_PTRACERS
+#ifdef ALLOW_GCHEM
 #ifdef PTRACERS_SEPERATE_FORCING
         call GCHEM_FORCING( myTime,myIter,myThid )
 #endif
