@@ -16,7 +16,10 @@ c-----------------------------------------------------------------------
 #include "fizhi_SIZE.h"
 #include "fizhi_land_SIZE.h"
 #include "fizhi_coms.h"
+#include "gridalt_mapping.h"
 #include "EEPARAMS.h"
+#include "DYNVARS.h"
+#include "GRID.h"
 
        integer myTime, myIter, myThid 
 
@@ -26,6 +29,7 @@ c-----------------------------------------------------------------------
 
        _RL tempij(sNx,sNy)
        integer i,j,L
+       _RL psurf(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nsx,Nsy)
 
        idim1 = 1-OLx
        idim2 = sNx+OLx
@@ -80,6 +84,14 @@ c      print *,' sphy at level ',l,' ',tempij
       enddo
       endif
 
+        do j = jm1,jm2
+        do i = im1,im2
+         psurf(i,j,bi,bj)=Ro_surf(i,j,bi,bj) + etaH(i,j,bi,bj)
+        enddo
+        enddo
+
+        call qcheck (idim1,idim2,jdim1,jdim2,Nrphys,im1,im2,jm1,jm2,
+     .                                                dpphys,psurf,sphy)
 
        enddo
        enddo
