@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+ecco_c50_e32
 o Patrick's adjoint-model storage directives for pkg/seaice
 o merged with checkpoint50g_post (pkg/seaice and verification/lab_sea)
   - added SEAICE_MULTILEVEL for 8-category sea-ice thermodynamics
@@ -15,6 +16,8 @@ o Modifications for adjoint of SEAICE_ALLOW_DYNAMICS
   - avoid stoing in S/R budget for now
   - in dynsolver.F, avoid NPSEUDO loop for adjoint
   - new comlev1_lsr in the_main_loop
+o Small modif's in lsopt/, optim/ to ease compilation
+  New script to run optim (lsopt)
 
 ecco_c50_e31
 o exf totally restructured
