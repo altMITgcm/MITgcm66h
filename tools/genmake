@@ -10,7 +10,7 @@
 # Default lists
 set DISABLE = ( aim )
 set ENABLE  = ( )
-set MYMODS  = ( )
+set MODS  = ( )
 
 # Grab variables/lists from .genmakerc
 if (-r .genmakerc) source .genmakerc
@@ -51,14 +51,14 @@ while ($#allargs)
    endif
    set ROOTDIR = ( `echo $arg | sed 's/-rootdir=//' `)
    breaksw
- case -mymods:
- case -mymods=:
-   echo "To specify an additional source directory you must specify one with -mymods=dir"
-   echo "with NO space eg. -mymods=../code  or  -mymods=/usr/people/joe/src"
+ case -mods:
+ case -mods=:
+   echo "To specify an additional source directory you must specify one with -mods=dir"
+   echo "with NO space eg. -mods=../code  or  -mods=/usr/people/joe/src"
    exit
    breaksw
- case -mymods=*:
-   set MYMODS = ( $MYMODS `echo $arg | sed 's/-mymods=//' | sed 's/,/ /' `)
+ case -mods=*:
+   set MODS = ( $MODS `echo $arg | sed 's/-mods=//' | sed 's/,/ /' `)
    breaksw
  case -disable:
  case -disable=:
@@ -125,14 +125,14 @@ endif
 if (! -d $ROOTDIR) then
   echo Root directory $ROOTDIR not found.;exit 1
 endif
-# If -mymods wasn't specified then we will assume that we can find all the
+# If -mods wasn't specified then we will assume that we can find all the
 # source code in the standard directories
-if (! $?MYMODS) then
+if (! $?MODS) then
  set SOURCEDIRS  = ( )
  set INCLUDEDIRS = ( . )
 else
- set SOURCEDIRS  = ( $MYMODS )
- set INCLUDEDIRS = ( . $MYMODS )
+ set SOURCEDIRS  = ( $MODS )
+ set INCLUDEDIRS = ( . $MODS )
 endif
 if (! $?BUILDDIR) set BUILDDIR = ( . )
 if (! -d $BUILDDIR) then
@@ -152,9 +152,9 @@ if (! $?EXECUTABLE) set EXECUTABLE  = ( mitgcmuv )
 foreach dr ($SOURCEDIRS)
   set adr=$dr
   if (! -d $adr) then
-    echo Mymods directory $adr not found.; exit 1
+    echo mods directory $adr not found.; exit 1
   endif
-  echo Adding mymods directory $adr
+  echo Adding mods directory $adr
 end
 if (! $?STANDARDDIRS) set STANDARDDIRS=(eesupp model diags)
 foreach dr ($STANDARDDIRS)
