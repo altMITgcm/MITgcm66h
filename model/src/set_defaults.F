@@ -168,6 +168,7 @@ Cml      sBeta               = 7.4D-4
       useCDscheme         = .FALSE.
       useEnergyConservingCoriolis = .FALSE.
       useJamartWetPoints  = .FALSE.
+      useJamartMomAdv     = .FALSE.
       SadournyCoriolis    = .FALSE.
       upwindVorticity     = .FALSE.
       highOrderVorticity  = .FALSE.

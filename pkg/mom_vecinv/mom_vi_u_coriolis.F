@@ -94,7 +94,7 @@ c--      test a different formulation (relatively to hFac)
          ENDIF
         ENDIF
 
-        IF (useJamartWetpoints)
+        IF (useJamartMomAdv)
      &   vBarXY = vBarXY * 4. _d 0 * hFacW(i,j,k,bi,bj)
      &   * MAX( epsil, hFacS( i , j ,k,bi,bj)+hFacS(i-1, j ,k,bi,bj)
      &                +hFacS( j ,i+1,k,bi,bj)+hFacS(i-1,j+1,k,bi,bj) )

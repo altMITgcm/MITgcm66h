@@ -164,7 +164,7 @@ C--   Continuous equation parameters
      & readPickupWithTracer, writePickupWithTracer,
      & tempAdvScheme, saltAdvScheme, tracerAdvScheme,
      & multiDimAdvection, useEnergyConservingCoriolis,
-     & useCDscheme, useJamartWetPoints, useNHMTerms,
+     & useCDscheme, useJamartWetPoints, useJamartMomAdv, useNHMTerms,
      & SadournyCoriolis, upwindVorticity, highOrderVorticity,
      & useAbsVorticity,
      & useRealFreshWaterFlux, convertFW2Salt,

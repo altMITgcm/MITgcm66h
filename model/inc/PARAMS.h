@@ -213,6 +213,7 @@ C     useBetaPlaneF :: Coriolis parameter set to f0 + beta.y
 C     useSphereF    :: Coriolis parameter set to 2.omega.sin(phi)
 C     useCDscheme   :: use CD-scheme to calculate Coriolis terms.
 C     useJamartWetPoints :: Use wet-point method for Coriolis (Jamart and Ozer, 1986)
+C     useJamartMomAdv :: Use wet-point method for V.I. non-linear term
 C     SadournyCoriolis :: use the enstrophy conserving scheme by Sadourny
 C     upwindVorticity :: bias interpolation of vorticity in the Coriolis term
 C     highOrderVorticity :: use 3rd/4th order interp. of vorticity in Coriolis
@@ -261,7 +262,7 @@ C     groundAtK1  :: put the surface(k=1) at the Lower Boundary (=ground)
      & metricTerms, usingSphericalPolarMTerms, useNHMTerms,
      & useConstantF, useBetaPlaneF, useSphereF,
      & useCDscheme,
-     & useEnergyConservingCoriolis, useJamartWetPoints,
+     & useEnergyConservingCoriolis, useJamartWetPoints, useJamartMomAdv,
      & SadournyCoriolis, upwindVorticity, highOrderVorticity,
      & useAbsVorticity,
      & implicitDiffusion, implicitViscosity,
@@ -310,6 +311,7 @@ C     groundAtK1  :: put the surface(k=1) at the Lower Boundary (=ground)
       LOGICAL useCDscheme
       LOGICAL useEnergyConservingCoriolis
       LOGICAL useJamartWetPoints
+      LOGICAL useJamartMomAdv
       LOGICAL SadournyCoriolis
       LOGICAL upwindVorticity
       LOGICAL highOrderVorticity
