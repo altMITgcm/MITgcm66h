@@ -75,11 +75,11 @@ C Impose minimum fraction
             ENDIF
            ENDIF
 C Impose minimum size (dimensional)
-           IF (drF(k)*hFacC(I,J,K,bi,bj).LT.hFacMinDz) THEN
-            IF (drF(k)*hFacC(I,J,K,bi,bj).LT.hFacMinDz*0.5) THEN
+           IF (drF(k)*hFacC(I,J,K,bi,bj).LT.hFacMinDr) THEN
+            IF (drF(k)*hFacC(I,J,K,bi,bj).LT.hFacMinDr*0.5) THEN
              hFacC(I,J,K,bi,bj)=0.
             ELSE
-             hFacC(I,J,K,bi,bj)=hFacMinDz*recip_drF(k)
+             hFacC(I,J,K,bi,bj)=hFacMinDr*recip_drF(k)
             ENDIF
            ENDIF
           ENDDO

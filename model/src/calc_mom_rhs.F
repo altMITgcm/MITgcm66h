@@ -669,7 +669,7 @@ C     Bottom level boundary condition
 C---  Hydorstatic term (-1/rho . dp/dy )
       DO j=jMin,jMax
        DO i=iMin,iMax
-        pf(i,j) = - recip_dyC(i,j,bi,bj)
+        pF(i,j) = -recip_dyC(i,j,bi,bj)
      &   *(phi_hyd(i,j,k)-phi_hyd(i,j-1,k))/rhoConst
        ENDDO
       ENDDO
