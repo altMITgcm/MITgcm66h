@@ -28,6 +28,7 @@ C !OUTPUT PARAMETERS: ==================================================
 C  none
 
 #ifdef ALLOW_PTRACERS
+#ifdef  ALLOW_DEBUG
 
 C !LOCAL VARIABLES: ====================================================
 C  i,j,k,bi,bj,iTracer  :: loop indices
@@ -51,6 +52,7 @@ C Loop over tracers
 C end of tracer loop
       ENDDO
 
+#endif
 #endif /* ALLOW_PTRACERS */
 
       RETURN
