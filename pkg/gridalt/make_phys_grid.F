@@ -53,15 +53,36 @@ c
        integer nlperdyn(im1:im2,jm1:jm2,Nr,Nsx,Nsy)
 c
        integer i,j,L,Lbotij,Lnew
-c Require 12 bottom levels (300 mb worth) for the physics, the dp's are:
-       integer ntry
-       data ntry /12/
-       _RL dptry(12), dptry_accum(12)
-       data dptry /300.000, 600.000,1000.000,1400.000,1700.000,2500.000,
+c Require 12 (or 15) levels near the surface (300 mb worth) for fizhi. 
+c   the dp's are in the dptry arrays:
+       integer ntry,ntry10,ntry40
+       data ntry10 /12/
+       data ntry40 /15/
+       _RL dptry(15),dptry10(12),dptry40(15) 
+       _RL dptry_accum(15)
+       data dptry10/300.000,600.000,1000.000,1400.000,1700.000,2500.000,
      .            2500.000,2500.000,2500.000,5000.000,5000.000,5000.000/
+       data dptry40/300.000,600.000,1000.000,1400.000,1700.000,
+     .            2500.000,2500.000,2500.000,2500.000,2500.000,2500.000,
+     .            2500.000,2500.000,2500.000,2500.000/
        _RL deltap, dpstar_accum
        integer nlbotmax, nstart, nlevs, nlphys, ndone
        integer nextra
+c
+       if( (Nr.eq.10) .or. (Nr.eq.20) ) then
+        ntry = ntry10
+        do L = 1,ntry
+         dptry(L) = dptry10(L)
+        enddo
+       elseif(Nr.eq.40) then
+        ntry = ntry40
+        do L = 1,ntry
+         dptry(L) = dptry40(L)
+        enddo
+       else
+        print *,' Dont know how to make fizhi grid '
+        stop
+       endif
 c
        nextra = ntry
 c
@@ -217,8 +238,11 @@ c     them as thin (1 mb) layers near the top
         nlperdyn(i,j,Nr,bi,bj) = numlevphys
        endif
 c END OF LOOP OVER GRID POINTS
+
        enddo
        enddo
+
+       stop
 
        return
        end
