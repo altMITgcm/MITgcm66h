@@ -130,7 +130,8 @@ C     ab05, ab15 - Adams-Bashforth time-stepping weights.
       _RL cosfacU(1-Oly:sNy+Oly)
       _RL cosfacV(1-Oly:sNy+Oly)
       INTEGER km1,kp1
-      _RL maskDown,wVelBottomOverride
+      _RL maskDown,wVelBottomOverride,rdrckp1
+      LOGICAL bottomDragTerms
 
       km1=MAX(1,k-1)
       kp1=MIN(Nr,k+1)
@@ -193,9 +194,10 @@ C     o V momentum equation
       phyFac       = pfFacMom*1.
       vForcFac     = foFacMom*1.
 
-      IF (implicitViscosity) THEN
-       ArDudrFac = 0.
-       ArDvdrFac = 0.
+      IF (no_slip_bottom) THEN
+       bottomDragTerms=.TRUE.
+      ELSE
+       bottomDragTerms=.FALSE.
       ENDIF
 
 C-- with stagger time stepping, grad Phi_Hyp is directly incoporated in TIMESTEP
@@ -434,22 +436,8 @@ C       Note!!!! omitted.
 #else
 #define _RA_AT_W rAw(i,j,bi,bj)
 #endif /* OLD_UV_GEOMETRY */
-C     Eddy component of vertical flux
-      IF (no_slip_bottom) THEN
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         maskDown=_maskW(i,j,kp1,bi,bj)
-         IF (k.EQ.Nr) maskDown=0.
-         vf(i,j) =
-     &   -KappaRU(i,j,kp1)
-     & *_RA_AT_W
-     &   *( ( 2.-maskDown )*uVel(i,j,k,bi,bj)
-     &     -     maskDown  *uVel(i,j,kp1,bi,bj)
-     &    )*rkFac*recip_drC(kp1)
-         IF (k.EQ.Nr) vf(i,j)=vf(i,j)*drC(k)*recip_drF(k)
-        ENDDO
-       ENDDO
-      ELSE
+C     Eddy component of vertical flux (interior component only)
+      IF (.NOT.implicitViscosity) THEN
        DO j=jMin,jMax
         DO i=iMin,iMax
          vf(i,j) =
@@ -462,13 +450,22 @@ C     Eddy component of vertical flux
        ENDDO
       ENDIF
 #endif /* INCLUDE_LP_MOMENTUM_DIFFUSION_CODE */
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-        fVerU(i,j,kDown) = 0.
-     &  _ADM(           + rVelDudrFac  * af(i,j)     )
-     &  _LPM(           +    ArDudrFac * vf(i,j)     )
+      IF (implicitViscosity) THEN
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         fVerU(i,j,kDown) = 0.
+     &   _ADM(           + rVelDudrFac  * af(i,j)     )
+        ENDDO
        ENDDO
-      ENDDO
+      ELSE
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         fVerU(i,j,kDown) = 0.
+     &   _ADM(           + rVelDudrFac  * af(i,j)     )
+     &   _LPM(           +    ArDudrFac * vf(i,j)     )
+        ENDDO
+       ENDDO
+      ENDIF
 
 #ifdef INCLUDE_GRADPH_CODE
 C---  Hydrostatic term ( -1/rhoConst . dphi/dx )
@@ -501,8 +498,9 @@ C--   term
       ENDDO
 
 #ifdef INCLUDE_LP_MOMENTUM_DIFFUSION_CODE
+C-- No-slip and drag BCs appear as body forces in cell abutting topography 
       IF (no_slip_sides) THEN
-C-- No-slip BCs impose a drag at walls...
+C-  No-slip BCs impose a drag at walls...
       DO j=jMin,jMax
        DO i=iMin,iMax
         hFacZClosedS = _hFacW(i,j,k,bi,bj) - hFacZ(i,j)
@@ -518,6 +516,22 @@ C-- No-slip BCs impose a drag at walls...
      &               -viscA4*v4F(i,j) ) *cosFacU(J)
        ENDDO
       ENDDO
+      ENDIF
+C-  No-slip BCs impose a drag at bottom
+      IF (bottomDragTerms) THEN
+       rdrckp1=recip_drC(kp1)
+       IF (k.EQ.Nr) rdrckp1=recip_drF(k)
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         maskDown=_maskW(i,j,kp1,bi,bj)
+         IF (k.EQ.Nr) maskDown=0.
+         gU(i,j,k,bi,bj) = gU(i,j,k,bi,bj)
+     &   -_recip_hFacW(i,j,k,bi,bj)*recip_drF(k)
+     &   *(
+     &      2.*KappaRU(i,j,kp1)*rkFac*rdrckp1
+     &    )*(1.-maskDown)*uVel(i,j,k,bi,bj)
+        ENDDO
+       ENDDO
       ENDIF
 #endif /* INCLUDE_LP_MOMENTUM_DIFFUSION_CODE */
 
@@ -748,21 +762,7 @@ C       Note!!!! Is rVelMaskOverridde right for implicit free-surface?
 #define _RA_AT_S rAs(i,j,bi,bj)
 #endif /* OLD_UV_GEOMETRY */
 C     Eddy component of vertical flux
-      IF (no_slip_bottom) THEN
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         maskDown=_maskS(i,j,kp1,bi,bj)
-         IF (k.EQ.Nr) maskDown=0.
-         vf(i,j) =
-     &   -KappaRV(i,j,kp1)
-     & *_RA_AT_S
-     &   *( ( 2.-maskDown )*vVel(i,j,k,bi,bj)
-     &     -     maskDown  *vVel(i,j,kp1,bi,bj)
-     &    )*rkFac*recip_drC(kp1)
-         IF (k.EQ.Nr) vf(i,j)=vf(i,j)*drC(k)*recip_drF(k)
-        ENDDO
-       ENDDO
-      ELSE
+      IF (.NOT.implicitViscosity) THEN
        DO j=jMin,jMax
         DO i=iMin,iMax
          vf(i,j) =
@@ -775,12 +775,20 @@ C     Eddy component of vertical flux
        ENDDO
       ENDIF
 #endif /* INCLUDE_LP_MOMENTUM_DIFFUSION_CODE */
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-        fVerV(i,j,kDown) = rVelDvdrFac * af(i,j) 
-     &                 + ArDvdrFac   * vf(i,j)
+      IF (implicitViscosity) THEN
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         fVerV(i,j,kDown) = rVelDvdrFac * af(i,j) 
+        ENDDO
        ENDDO
-      ENDDO
+      ELSE
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         fVerV(i,j,kDown) = rVelDvdrFac * af(i,j) 
+     &                    + ArDvdrFac   * vf(i,j)
+        ENDDO
+       ENDDO
+      ENDIF
 
 #ifdef INCLUDE_GRADPH_CODE
 C---  Hydorstatic term (-1/rho . dp/dy )
@@ -812,8 +820,10 @@ C--   term
        ENDDO
       ENDDO
 
+#ifdef INCLUDE_LP_MOMENTUM_DIFFUSION_CODE
+C-- No-slip and drag BCs appear as body forces in cell abutting topography 
       IF (no_slip_sides) THEN
-C-- No-slip BCs impose a drag at walls...
+C-  No-slip BCs impose a drag at walls...
       DO j=jMin,jMax
        DO i=iMin,iMax
         hFacZClosedW = _hFacS(i,j,k,bi,bj) - hFacZ(i,j)
@@ -830,6 +840,23 @@ C-- No-slip BCs impose a drag at walls...
        ENDDO
       ENDDO
       ENDIF
+C-  No-slip BCs impose a drag at bottom
+      IF (bottomDragTerms) THEN
+       rdrckp1=recip_drC(kp1)
+       IF (k.EQ.Nr) rdrckp1=recip_drF(k)
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         maskDown=_maskS(i,j,kp1,bi,bj)
+         IF (k.EQ.Nr) maskDown=0.
+         gV(i,j,k,bi,bj) = gV(i,j,k,bi,bj)
+     &   -_recip_hFacS(i,j,k,bi,bj)*recip_drF(k)
+     &   *(
+     &      2.*KappaRV(i,j,kp1)*rkFac*rdrckp1
+     &    )*(1.-maskDown)*vVel(i,j,k,bi,bj)
+        ENDDO
+       ENDDO
+      ENDIF
+#endif /* INCLUDE_LP_MOMENTUM_DIFFUSION_CODE */
 
 #ifdef INCLUDE_MOMENTUM_FORCING_CODE
 C--   Forcing term
