@@ -520,8 +520,6 @@ C--     Compute KPP mixing coefficients
 
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE KPPghat   (:,:,:,bi,bj)
-CADJ &   , KPPdiffKzT(:,:,:,bi,bj)
-CADJ &   , KPPdiffKzS(:,:,:,bi,bj)
 CADJ &   , KPPfrac   (:,:  ,bi,bj)
 CADJ &                 = comlev1_bibj, key=itdkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */

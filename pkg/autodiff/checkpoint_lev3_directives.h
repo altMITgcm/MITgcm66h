@@ -17,6 +17,7 @@ CADJ STORE wvel      = tapelev3, key = ilev_3
 CADJ STORE etan      = tapelev3, key = ilev_3
 CADJ STORE totphihyd = tapelev3, key = ilev_3
 CADJ STORE surfacetendencyTice = tapelev3, key = ilev_3
+CADJ STORE ivdconvcount        = tapelev3, key = ilev_3
 CADJ STORE empmr     = tapelev3, key = ilev_3
 
 #ifdef EXACT_CONSERV
