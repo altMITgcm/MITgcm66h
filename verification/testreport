@@ -416,8 +416,8 @@ clean=0
 expts=''
 # ieee=1
 
-QUICK=f
 CLEANUP=f
+QUICK=f
 NOGENMAKE=f
 NOCLEAN=f
 NODEPEND=f
@@ -428,7 +428,7 @@ ADDRESSES=
 TESTDIRS=
 MPACKDIR="../tools/mpack-1.6"
 MPACK="$MPACKDIR/mpack"
-COMMAND="rm -f output.txt; make output.txt"
+COMMAND="make output.txt"
 MAKE=make
 MPI=f
 
@@ -480,6 +480,9 @@ for ac_option ; do
 	    ac_prev=MAKE ;;
 	-make=* | --make=*)
 	    MAKE=$ac_optarg ;;
+
+	-clean | --clean | -c | --c)
+	    CLEANUP=t ;;
 
 	-quick | --quick | -q | --q)
 	    QUICK=t ;;
@@ -583,6 +586,17 @@ for OPTFILE in $OPTFILES ; do
     #  ...and each test directory...
     for dir in $TESTDIRS ; do
 
+	#  Cleanup only!
+	if test "x$CLEANUP" = xt ; then
+	    if test -r $dir/build/Makefile ; then
+		( cd $dir/build ; make CLEAN )
+	    fi
+	    if test -r $dir/input/Makefile ; then
+		( cd $dir/input ; make CLEAN )
+	    fi
+	    continue
+	fi
+
 	#  Verify that the testdir exists and contains previous 
 	#  results in the correct location--or skip this directory!
 	if test ! -r $dir"/results/output.txt" ; then
@@ -600,15 +614,31 @@ for OPTFILE in $OPTFILES ; do
 		    | tee -a $SUMMARY
 		continue
 	    else
-		cp $dir"/code/CPP_EEOPTIONS.h_mpi" $dir"/code/CPP_EEOPTIONS.h"
-		cp $dir"/code/SIZE.h_mpi" $dir"/code/SIZE.h"
+		cmp $dir"/code/CPP_EEOPTIONS.h_mpi" $dir"/code/CPP_EEOPTIONS.h"
+		RETVAL=$?
+		if test "x$RETVAL" != x0 ; then
+		    cp $dir"/code/CPP_EEOPTIONS.h_mpi" $dir"/code/CPP_EEOPTIONS.h"
+		fi
+		cmp $dir"/code/SIZE.h_mpi" $dir"/code/SIZE.h"
+		RETVAL=$?
+		if test "x$RETVAL" != x0 ; then
+		    cp $dir"/code/SIZE.h_mpi" $dir"/code/SIZE.h"
+		fi
 	    fi
 	else
 	    if test -r $dir"/code/CPP_EEOPTIONS.h_nompi" ; then
-		cp $dir"/code/CPP_EEOPTIONS.h_nompi" $dir"/code/CPP_EEOPTIONS.h"
+		cmp $dir"/code/CPP_EEOPTIONS.h_nompi" $dir"/code/CPP_EEOPTIONS.h"
+		RETVAL=$?
+		if test "x$RETVAL" != x0 ; then
+		    cp $dir"/code/CPP_EEOPTIONS.h_nompi" $dir"/code/CPP_EEOPTIONS.h"
+		fi
 	    fi
             if test -r $dir"/code/SIZE.h_nompi" ; then
-                cp $dir"/code/SIZE.h_nompi" $dir"/code/SIZE.h"
+                cmp $dir"/code/SIZE.h_nompi" $dir"/code/SIZE.h"
+		RETVAL=$?
+		if test "x$RETVAL" != x0 ; then
+		    cp $dir"/code/SIZE.h_nompi" $dir"/code/SIZE.h"
+		fi
             fi
 	fi
 
