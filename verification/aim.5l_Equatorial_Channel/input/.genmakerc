@@ -6,7 +6,7 @@
 set FC=(ifc)
 
 # Disable packages that are not needed
-set DISABLE=( $DISABLE kpp gmredi obcs )
+set DISABLE=( $DISABLE kpp gmredi obcs aim_v23 )
 
 # Enable packages that are needed but are disabled by default
 set ENABLE=( aim )
