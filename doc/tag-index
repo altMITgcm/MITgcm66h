@@ -2,6 +2,10 @@ $Header$
 
     Notes on tags used in MITgcmUV
     ==============================
+o MNC:
+  - make myThid the last argument for all subroutines
+  - new default for the grid files: NO halos
+  - add useMNC run-time flag
 o thermodynamics sea-ice (thsice) is now tested with testreport.
 o test exp. advect_cs: use the standard cs32 grid ; update output.
 
