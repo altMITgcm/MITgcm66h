@@ -32,6 +32,13 @@ C--   ALLOW_SEAICE
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &     SQUEEZE_RIGHT , myThid )
 
+C--   SEAICE needs forcing_In_AB FALSE
+      IF (forcing_In_AB) THEN
+         WRITE(msgBuf,'(A)') 'Need forcing_In_AB = .FALSE.'
+         CALL PRINT_ERROR( msgBuf , 1)
+         STOP 'ABNORMAL END: S/R SEAICE_CHECK'
+      ENDIF
+
 C--   SEAICE_ALLOW_DYNAMICS and SEAICEuseDYNAMICS
 #ifndef SEAICE_ALLOW_DYNAMICS
       IF (SEAICEuseDYNAMICS) THEN

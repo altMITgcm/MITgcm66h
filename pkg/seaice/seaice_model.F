@@ -141,7 +141,6 @@ C--   Update overlap regions for a bunch of stuff
       CALL EXCH_UV_XY_RS(fu,fv,.TRUE.,myThid)
       _EXCH_XY_R4(EmPmR, myThid )
       _EXCH_XY_R4(Qnet , myThid )
-      _EXCH_XY_R4(surfaceTendencyTice, myThid )
 #ifdef SHORTWAVE_HEATING
       _EXCH_XY_R4(Qsw  , myThid )
 #endif

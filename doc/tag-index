@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o require forcing_In_AB=.FALSE. and remove surfaceTendencyTice from pkg/seaice
+  - modified verification/lab_sea and natl_box_adjoint accordingly
+
 checkpoint54
 checkpoint53g_post
 o prepare splitting of thermodynamics: store convect.counter in common block
