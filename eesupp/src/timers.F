@@ -30,7 +30,6 @@ C     *==========================================================*
 C     | Return index in timer data structure of timer named       
 C     | by the function argument "name".                          
 C     *==========================================================*
-      IMPLICIT NONE
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguements ==

@@ -939,7 +939,6 @@ C     |      plots - one for K=1, one for K=3 and one for K=5.
 C     |      Each plot would have extents iMin:iMax step iStr     
 C     |      and jMin:jMax step jStr.                             
 C     *==========================================================*
-      IMPLICIT NONE
 
 C     !USES:
 C     == Global variables ==
