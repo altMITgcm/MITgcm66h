@@ -3,8 +3,16 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
-release1_p1
+release1_p2
+o fixed array boundary problem for adjoint
+  (related to partial recomputation within subroutine
+  related to dynamics -> calc_viscosity -> mom_...
+o fixed recomputation in thermodynamics
+o prepare (but not complete) recomputation problem in impldiff
+o fixed problem for adjoint of global_max
+o switched off sponge layer code in external_forcing
 
+release1_p1
 o merged necessary patches:
   - AD-related changes for GMRedi
   - fixes i KPP (delZ -> drF)
