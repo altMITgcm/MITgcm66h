@@ -93,7 +93,7 @@ cswd QQ  need nIter0+1 since chem forcing after time step
 C      If the above condition is met then we need to read in
 C      data for the period ahead and the period behind myTime.
         WRITE(*,*)
-     &    'S/R EXTERNAL_FIELDS_LOAD: Reading new dic data',
+     &    'S/R EXTERNAL_FIELDS_LOAD: Reading new cfc data',
      &                 myTime,myIter
 
        IF ( WindFile .NE. ' '  ) THEN
