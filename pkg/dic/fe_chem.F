@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 #include "DIC_OPTIONS.h"
 #include "GCHEM_OPTIONS.h"
 
@@ -21,6 +24,7 @@ C     == GLobal variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 #include "DIC_BIOTIC.h"
+#include "PTRACERS_SIZE.h"
 #include "PTRACERS.h"
 
 C     == Routine arguments ==                

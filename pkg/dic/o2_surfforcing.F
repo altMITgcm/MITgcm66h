@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 #include "DIC_OPTIONS.h"
 #include "GCHEM_OPTIONS.h"
 
@@ -22,6 +25,7 @@ C !USES: ===============================================================
 #include "FFIELDS.h"
 #ifdef DIC_BIOTIC
 #include "DIC_ABIOTIC.h"
+#include "PTRACERS_SIZE.h"
 #include "PTRACERS.h"
 #endif
 
