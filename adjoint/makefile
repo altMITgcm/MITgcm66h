@@ -3,8 +3,8 @@ RM               = rm -f
 LOC              = $(PWD)
 TAMC             = tamc
 ###TAMC             = /data43/ralf/tamc/tamc
-TAF              = taf
-###TAF              = ~fastopt/bin/taf
+###TAF              = taf
+TAF              = ~fastopt/bin/taf
 DEST             = .
 SOURCE_CODE      = ../bin
 ADJOINT_SCRIPT   = ../adjoint
@@ -276,6 +276,7 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/ctrl_getobcsw.f			\
 		$(SOURCE_CODE)/ctrl_getobcse.f			\
 		$(SOURCE_CODE)/ctrl_getrec.f			\
+		$(SOURCE_CODE)/ctrl_init_variables.f		\
 		$(SOURCE_CODE)/ctrl_map.f			\
 		  						\
 		$(SOURCE_CODE)/ecco_init.f			\

@@ -55,6 +55,7 @@ c--   Initialise the time averages.
       call cost_AveragesInit( mythid )
 
 c--   Map the control variables onto the model state. 
+      call ctrl_init_variables ( mythid )
       call ctrl_map( mythid )
       _BARRIER
 #endif

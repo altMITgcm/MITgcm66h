@@ -57,4 +57,20 @@ cph not used so far
 cphCADJ STORE climtemp0  = comlev1, key = ikey_dynamics
 cphCADJ STORE climtemp1  = comlev1, key = ikey_dynamics
 # endif
+#ifdef ALLOW_HFLUX_CONTROL
+CADJ STORE xx_hflux0     = comlev1, key = ikey_dynamics
+CADJ STORE xx_hflux1     = comlev1, key = ikey_dynamics
 #endif
+#ifdef ALLOW_SFLUX_CONTROL
+CADJ STORE xx_sflux0     = comlev1, key = ikey_dynamics
+CADJ STORE xx_sflux1     = comlev1, key = ikey_dynamics
+#endif
+#ifdef ALLOW_USTRESS_CONTROL
+CADJ STORE xx_tauu0      = comlev1, key = ikey_dynamics
+CADJ STORE xx_tauu1      = comlev1, key = ikey_dynamics
+#endif
+#ifdef ALLOW_VSTRESS_CONTROL
+CADJ STORE xx_tauv0      = comlev1, key = ikey_dynamics
+CADJ STORE xx_tauv1      = comlev1, key = ikey_dynamics
+#endif
+#endif /* INCLUDE_EXTERNAL_FORCING_PACKAGE */

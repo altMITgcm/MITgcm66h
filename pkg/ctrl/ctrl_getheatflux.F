@@ -109,37 +109,19 @@ c--   Get the counters, flags, and the interpolation factor.
      O                   hflcount0,hflcount1,
      I                   mytime, myiter, mythid )
 
-        call active_read_xy( fnamehfl, tmpfld2d, hflcount0,
+      if ( hflfirst ) then
+        call active_read_xy( fnamehfl, xx_hflux1, hflcount0,
      &                       doglobalread, ladinit, optimcycle,
      &                       mythid, xx_hflux_dummy )
+      endif
 
-ce      myiter, mytime )
+      if (( hflfirst ) .or. ( hflchanged )) then
+        call exf_SwapFFields( xx_hflux0, xx_hflux1, mythid )
 
-        do bj = jtlo,jthi
-          do bi = itlo,ithi
-            do j = jmin,jmax
-              do i = imin,imax
-                xx_hflux0(i,j,bi,bj)  = tmpfld2d (i,j,bi,bj)
-              enddo
-            enddo
-          enddo
-        enddo
-
-        call active_read_xy( fnamehfl, tmpfld2d, hflcount1,
+        call active_read_xy( fnamehfl,xx_hflux1 , hflcount1,
      &                       doglobalread, ladinit, optimcycle,
      &                       mythid, xx_hflux_dummy )
-
-ce      myiter, mytime )
-
-        do bj = jtlo,jthi
-          do bi = itlo,ithi
-            do j = jmin,jmax
-              do i = imin,imax
-                xx_hflux1 (i,j,bi,bj) = tmpfld2d (i,j,bi,bj)
-              enddo
-            enddo
-          enddo
-        enddo
+      endif
 
 c--   Add control to model variable.
       do bj = jtlo,jthi

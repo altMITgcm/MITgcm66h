@@ -108,37 +108,19 @@ c--   Get the counters, flags, and the interpolation factor.
      O                  ustcount0,ustcount1,
      I                  mytime, myiter, mythid )
 
-        call active_read_xy( fnameust, tmpfld2d, ustcount0,
+      if ( ustfirst ) then
+       call active_read_xy( fnameust, xx_tauu1, ustcount0,
+     &                      doglobalread, ladinit, optimcycle,
+     &                      mythid, xx_tauu_dummy )
+      endif
+
+       if (( ustfirst ) .or. ( ustchanged )) then
+        call exf_SwapFFields( xx_tauu0, xx_tauu1, mythid )
+
+        call active_read_xy( fnameust,xx_tauu1 , ustcount1,
      &                       doglobalread, ladinit, optimcycle,
      &                       mythid, xx_tauu_dummy )
-
-ce      myiter, mytime )
-
-        do bj = jtlo,jthi
-          do bi = itlo,ithi
-            do j = jmin,jmax
-              do i = imin,imax
-                xx_tauu0(i,j,bi,bj)  = tmpfld2d (i,j,bi,bj)
-              enddo
-            enddo
-          enddo
-        enddo
-
-        call active_read_xy( fnameust, tmpfld2d, ustcount1,
-     &                       doglobalread, ladinit, optimcycle,
-     &                       mythid, xx_tauu_dummy )
-
-ce      myiter, mytime )
-
-        do bj = jtlo,jthi
-          do bi = itlo,ithi
-            do j = jmin,jmax
-              do i = imin,imax
-                xx_tauu1 (i,j,bi,bj) = tmpfld2d (i,j,bi,bj)
-              enddo
-            enddo
-          enddo
-        enddo
+      endif
 
 c--   Add control to model variable.
         do bj = jtlo,jthi

@@ -87,6 +87,22 @@ cph not used so far
 cphCADJ STORE climtemp0  = tapelev2, key = ilev_2
 cphCADJ STORE climtemp1  = tapelev2, key = ilev_2
 # endif
+#ifdef ALLOW_HFLUX_CONTROL
+CADJ STORE xx_hflux0     = tapelev2, key = ilev_2
+CADJ STORE xx_hflux1     = tapelev2, key = ilev_2
+#endif
+#ifdef ALLOW_SFLUX_CONTROL
+CADJ STORE xx_sflux0     = tapelev2, key = ilev_2
+CADJ STORE xx_sflux1     = tapelev2, key = ilev_2
+#endif
+#ifdef ALLOW_USTRESS_CONTROL
+CADJ STORE xx_tauu0      = tapelev2, key = ilev_2
+CADJ STORE xx_tauu1      = tapelev2, key = ilev_2
+#endif
+#ifdef ALLOW_VSTRESS_CONTROL
+CADJ STORE xx_tauv0      = tapelev2, key = ilev_2
+CADJ STORE xx_tauv1      = tapelev2, key = ilev_2
+#endif
 #endif /* INCLUDE_EXTERNAL_FORCING_PACKAGE */
 
 #ifdef ALLOW_OBCS
