@@ -226,6 +226,66 @@ c--   == end of interface ==
 
 #endif /* ALLOW_VWIND_CONTROL */
 
+#ifdef ALLOW_OBCSN_CONTROL
+      else if ( grdchkvarindex .eq. 11 ) then
+         il=ilnblnk( xx_obcsn_file )
+         write(fname(1:80),'(80a)') ' '
+         write(fname(1:80),'(3a,i10.10)')
+     &        yadmark, xx_obcsn_file(1:il),'.',optimcycle
+
+         call active_read_xz( fname, tmpfldxz, icvrec,
+     &                        doglobalread, ladinit, optimcycle,
+     &                        mythid, dummy)
+
+         xx_comp = tmpfldxz( itilepos,layer,itile,jtile )
+
+#endif /* ALLOW_OBCSN_CONTROL */
+
+#ifdef ALLOW_OBCSS_CONTROL
+      else if ( grdchkvarindex .eq. 12 ) then
+         il=ilnblnk( xx_obcss_file )
+         write(fname(1:80),'(80a)') ' '
+         write(fname(1:80),'(3a,i10.10)')
+     &        yadmark, xx_obcss_file(1:il),'.',optimcycle
+
+         call active_read_xz( fname, tmpfldxz, icvrec,
+     &                        doglobalread, ladinit, optimcycle,
+     &                        mythid, dummy)
+
+         xx_comp = tmpfldxz( itilepos,layer,itile,jtile )
+
+#endif /* ALLOW_OBCSS_CONTROL */
+
+#ifdef ALLOW_OBCSW_CONTROL
+      else if ( grdchkvarindex .eq. 13 ) then
+         il=ilnblnk( xx_obcsw_file )
+         write(fname(1:80),'(80a)') ' '
+         write(fname(1:80),'(3a,i10.10)')
+     &        yadmark, xx_obcsw_file(1:il),'.',optimcycle
+
+         call active_read_yz( fname, tmpfldyz, icvrec,
+     &                        doglobalread, ladinit, optimcycle,
+     &                        mythid, dummy)
+
+         xx_comp = tmpfldyz( jtilepos,layer,itile,jtile )
+
+#endif /* ALLOW_OBCSW_CONTROL */
+
+#ifdef ALLOW_OBCSE_CONTROL
+      else if ( grdchkvarindex .eq. 14 ) then
+         il=ilnblnk( xx_obcse_file )
+         write(fname(1:80),'(80a)') ' '
+         write(fname(1:80),'(3a,i10.10)')
+     &        yadmark, xx_obcse_file(1:il),'.',optimcycle
+
+         call active_read_yz( fname, tmpfldyz, icvrec,
+     &                        doglobalread, ladinit, optimcycle,
+     &                        mythid, dummy)
+
+         xx_comp = tmpfldyz( jtilepos,layer,itile,jtile )
+
+#endif /* ALLOW_OBCSE_CONTROL */
+
 #ifdef ALLOW_TR10_CONTROL
       else if ( grdchkvarindex .eq. 17 ) then
          il=ilnblnk( xx_tr1_file )

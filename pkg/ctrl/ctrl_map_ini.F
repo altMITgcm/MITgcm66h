@@ -103,8 +103,8 @@ c--   Temperature field.
               do i = imin,imax
                 theta(i,j,k,bi,bj) = theta(i,j,k,bi,bj) +
      &                               fac*tmpfld3d(i,j,k,bi,bj)
-cph                gtNm1(i,j,k,bi,bj) = gtNm1(i,j,k,bi,bj) +
-cph     &                               fac*tmpfld3d(i,j,k,bi,bj)
+                if(theta(i,j,k,bi,bj).lt.-2.0) 
+     &               theta(i,j,k,bi,bj)= -2.0  
               enddo
             enddo
           enddo
@@ -128,8 +128,6 @@ c--   Temperature field.
               do i = imin,imax
                 salt(i,j,k,bi,bj) = salt(i,j,k,bi,bj) +
      &                               fac*tmpfld3d(i,j,k,bi,bj)
-cph                gsNm1(i,j,k,bi,bj) = gsNm1(i,j,k,bi,bj) +
-cph     &                               fac*tmpfld3d(i,j,k,bi,bj)
               enddo
             enddo
           enddo
@@ -153,8 +151,6 @@ c--   Temperature field.
               do i = imin,imax
                 tr1(i,j,k,bi,bj) = tr1(i,j,k,bi,bj) +
      &                               fac*tmpfld3d(i,j,k,bi,bj)
-cph                gtr1Nm1(i,j,k,bi,bj) = gtr1Nm1(i,j,k,bi,bj) +
-cph     &                               fac*tmpfld3d(i,j,k,bi,bj)
               enddo
             enddo
           enddo
