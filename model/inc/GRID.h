@@ -405,7 +405,6 @@ C                 metric term in V equation.
       _RS tanPhiAtU      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS tanPhiAtV      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
-
 C--   COMMON /GRID_I/ Integer valued grid defining variables
 C     iDep  - Index of last "non-land" cell for each column f[X,Y].
       COMMON /GRID_I/
