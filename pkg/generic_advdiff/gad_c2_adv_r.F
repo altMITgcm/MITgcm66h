@@ -3,34 +3,51 @@ C $Name$
 
 #include "GAD_OPTIONS.h"
 
+CBOP
+C !ROUTINE: GAD_C2_ADV_R
+
+C !INTERFACE: ==========================================================
       SUBROUTINE GAD_C2_ADV_R( 
      I           bi,bj,k,
      I           rTrans,
      I           tracer,
      O           wT,
      I           myThid )
-C     /==========================================================\
-C     | SUBROUTINE GAD_C2_ADV_R                                  |
-C     | o Compute vertical advective Flux of Tracer using        |
-C     |   2nd Order Centered Scheme                              |
-C     |==========================================================|
-      IMPLICIT NONE
 
-C     == GLobal variables ==
+C !DESCRIPTION:
+C Calculates the vertical flux due to advection of a tracer using
+C centered second-order interpolation:
+C \begin{equation*}
+C F^r_{adv} = w \theta
+C \end{equation*}
+
+C !USES: ===============================================================
+      IMPLICIT NONE
 #include "SIZE.h"
 #include "GRID.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 
-C     == Routine arguments ==
+C !INPUT PARAMETERS: ===================================================
+C  bi,bj                :: tile indices
+C  k                    :: vertical level
+C  rTrans               :: vertical volume transport
+C  tracer               :: tracer field
+C  myThid               :: thread number
       INTEGER bi,bj,k
       _RL rTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL tracer(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-      _RL wT    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER myThid
 
-C     == Local variables ==
+C !OUTPUT PARAMETERS: ==================================================
+C  wT                   :: vertical advective flux
+      _RL wT    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+
+C !LOCAL VARIABLES: ====================================================
+C  i,j                  :: loop indices
+C  km1                  :: =k+1 for k<Nr, =Nr for k>=Nr
       INTEGER i,j,km1
+CEOP
 
       km1=max(1,k-1)
 
