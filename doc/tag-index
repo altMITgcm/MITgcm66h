@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+icebear4
 o Added cost_ice for sea-ice volume sensitivity experiment.
 o ecco_the_model_main.F: SEAICE_WRITE_PICKUP must precede WRITE_CHECKPOINT
 o Reduced derivative singularities in pkg/seaice.

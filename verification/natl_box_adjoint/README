@@ -200,3 +200,7 @@ grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.txt
  grep ph-grd output.txt
 # A reference output is in:
  grep ph-grd ../verification/natl_box_adjoint/results_seaice/output.txt
+
+# Notes:
+# variables xx_* contain control vector perturbation
+# variables adxx_* contain cost function gradient relative to control
