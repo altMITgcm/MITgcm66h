@@ -127,7 +127,7 @@ C               |                          |
 C   V(N,0) --- Z(N+1,0) --- V(N+1,0) ---
 C               |
 C              U(N+1,-1)
-         if(southEastCorner.and.i.eq.sNx+1.and.j.eq.0) Dij=hDiv(sNx+1,1)
+         if(southEastCorner.and.i.eq.sNx+1.and.j.eq.0)uDij=hDiv(sNx+1,1)
          if(southEastCorner.and.i.eq.sNx+1.and.j.eq.1) Dim=hDiv(sNx,0)
 C                U(N+1,N+2)
 C                 | 
