@@ -217,6 +217,30 @@ switch ($platform$USEMPI)
     set LINK       = ( 'f90' )
     set FFLAGS     = ( '-O 2,fusion' )
     breaksw
+  case T90:
+  case sn7113:
+    set FC         = ( 'f90' )
+    set LINK       = ( 'f90' )
+    set LN         = ( '/bin/ln -fs' )
+    set CPP        = ( '/opt/ctl/bin/cpp -P' )
+    set DEFINES    = ( ${DEFINES} '-DTARGET_CRAY_VECTOR -DCRAY_TS -DWORDLENGTH=4' )
+    set FFLAGS     = ( '-Rabc -N 132')
+    set FOPTIM     = ( '-O0' )
+    set NOOPTFLAGS = ( '-O0' )
+    set NOOPTFILES = ( 'barrier.F different_multiple.F load_external_fields.F')
+    breaksw
+  case SV1:
+  case sn3002:
+    set FC         = ( 'f90' )
+    set LINK       = ( 'f90' )
+    set LN         = ( '/bin/ln -fs' )
+    set CPP        = ( '/opt/ctl/bin/cpp -P' )
+    set DEFINES    = ( ${DEFINES} '-DTARGET_CRAY_VECTOR -DCRAY_TS -DWORDLENGTH=4' )
+    set FFLAGS     = ( '-m2 -ea -Rabc -N 132')
+    set FOPTIM     = ( '-O0' )
+    set NOOPTFLAGS = ( '-O0' )
+    set NOOPTFILES = ( 'barrier.F different_multiple.F load_external_fields.F')
+    breaksw
   default:
     echo "Error: platform not recognized: uname -p = " $platform$USEMPI
     exit
