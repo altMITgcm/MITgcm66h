@@ -2,12 +2,14 @@ C $Header$
 C $Name$
 
 #include "CPP_OPTIONS.h"
-#ifdef ALLOW_GMREDI
-# include "GMREDI_OPTIONS.h"
-#endif
-#ifdef ALLOW_KPP
-# include "KPP_OPTIONS.h"
-#endif
+#ifdef ALLOW_AUTODIFF_TAMC
+# ifdef ALLOW_GMREDI
+#  include "GMREDI_OPTIONS.h"
+# endif
+# ifdef ALLOW_KPP
+#  include "KPP_OPTIONS.h"
+# endif
+#endif /* ALLOW_AUTODIFF_TAMC */
 
 CBOP
 C     !ROUTINE: THERMODYNAMICS
@@ -257,9 +259,9 @@ C This is currently also used by IVDC and Diagnostics
          ENDDO
         ENDDO
 
-        iMin = 1-OLx+1
+        iMin = 1-OLx
         iMax = sNx+OLx
-        jMin = 1-OLy+1
+        jMin = 1-OLy
         jMax = sNy+OLy
 
 
