@@ -675,7 +675,9 @@ echo "OK"
 createcodelet
 
 #  build the mpack utility
-build_mpack
+if test "x$ADDRESSES" = xNONE -o "x$ADDRESSES" = x ; then
+    build_mpack
+fi
 
 #  Create a uniquely named directory to store results
 MACH=`hostname`
