@@ -1,8 +1,8 @@
 C $Header$
 C $Name$
 
-c Diagnostics Array Dimension
-c ---------------------------
+C     Diagnostics Array Dimension
+C     ---------------------------
       integer numdiags
       parameter (numdiags = 10)
 

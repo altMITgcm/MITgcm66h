@@ -66,6 +66,7 @@ CEOP
       integer dim(CW_DIMS), ib(CW_DIMS), ie(CW_DIMS)
       character*(NLEN) dn(CW_DIMS)
       character*(NLEN) dn_blnk
+      integer klevs(Nr+Nrphys)
 #endif /*  ALLOW_MNC  */
 
       undef = getcon('UNDEF')
@@ -187,6 +188,12 @@ C             Z is special since it varies
      &             tdiag(m),myThid)
               CALL MNC_CW_ADD_VATTR_TEXT(cdiag(m),1,'units',
      &             udiag(m),myThid)
+
+C              DO ii = 1,nlevels(listnum)
+C                klevs(ii) = 
+C              ENDDO
+C              CALL MNC_CW_ADD_VATTR_INT(cdiag(m),
+C     &             nlevels(listnum), 'klevels', )
 
               CALL MNC_CW_RL_W('D',diag_mnc_bn,0,0,
      &             cdiag(m), qtmp1, myThid)
