@@ -12,10 +12,10 @@ C        = 2  (S2) : [1 - (d_xx+d_yy)^n]
       COMMON /SHAP_FILT_INT/ nShapT, nShapUV, Shap_funct
 
 C     Shapiro Filter parameters
-      _RL Shap_Trtau, Shap_TrDamp
-      _RL Shap_uvtau, Shap_uvDamp
+      _RL Shap_Trtau, Shap_TrDamp, Shap_TrLength
+      _RL Shap_uvtau, Shap_uvDamp, Shap_uvLength
       COMMON /SHAP_FILT_PARAMS/ 
-     &                  Shap_Trtau, Shap_TrDamp,
-     &                  Shap_uvtau, Shap_uvDamp
+     &                  Shap_Trtau, Shap_TrDamp, Shap_TrLength,
+     &                  Shap_uvtau, Shap_uvDamp, Shap_uvLength
 
 #endif /* ALLOW_SHAP_FILT */

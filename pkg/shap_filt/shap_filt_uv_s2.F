@@ -18,10 +18,8 @@ C     == Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#ifdef ALLOW_SHAP_FILT
 #include "SHAP_FILT.h"
 #include "SHAP_FILT_UV.h"
-#endif
 
 C     == Routine arguments
       _RL uFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)

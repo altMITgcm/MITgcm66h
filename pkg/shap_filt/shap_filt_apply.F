@@ -34,7 +34,9 @@ C     == Routine arguments ==
 #ifdef ALLOW_SHAP_FILT
 C     == Local variables ==
 C     bi, bj, k
+#ifdef USE_OLD_SHAPIRO_FILTERS
       INTEGER bi, bj, k
+#endif /* USE_OLD_SHAPIRO_FILTERS */
 
       IF (nShapT.GT.0.OR.nShapUV.GT.0) THEN
 
@@ -88,6 +90,10 @@ C--        Update fields in top level according to tendency terms
             CALL SHAP_FILT_TRACER_S4(
      U           tFld,
      I           myTime, myThid )
+          ELSEIF (Shap_funct.EQ.20) THEN
+            CALL SHAP_FILT_TRACER_S2G(
+     U           tFld,
+     I           myTime, myThid )
           ELSE
            STOP 'SHAP_FILT_APPLY: Ooops'
           ENDIF
@@ -103,6 +109,10 @@ C--        Update fields in top level according to tendency terms
      I           myTime, myThid )
           ELSEIF (Shap_funct.EQ.4) THEN
             CALL SHAP_FILT_TRACER_S4(
+     U           sFld,
+     I           myTime, myThid )
+          ELSEIF (Shap_funct.EQ.20) THEN
+            CALL SHAP_FILT_TRACER_S2G(
      U           sFld,
      I           myTime, myThid )
           ELSE
