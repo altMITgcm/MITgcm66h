@@ -2,8 +2,8 @@
 # $Name$
 
 # Disable packages that are not needed
-#set DISABLE=( $DISABLE obcs zonal_filt shap_filt )
+#set DISABLE=( aim obcs zonal_filt shap_filt autodiff cost ctrl grdchk )
 
 # Enable packages that are needed but are disabled by default
-set ENABLE=( $ENABLE seaice )
+set ENABLE=( cal exf seaice )
 

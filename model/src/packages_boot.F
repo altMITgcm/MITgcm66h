@@ -43,7 +43,6 @@ C     iUnit       - Work variable for IO unit number
       INTEGER iUnit
 
 C     data.pkg namelists
-C     data.pkg namelists
 cswdblk -- add useBulkforce to NAMELIST
 cswdice -- addd useThermSeaIce to NAMELIST
 

@@ -24,6 +24,9 @@ c
 c              Patrick Heimbach, heimbach@mit.edu  01-May-2001
 c              - added obcs parameters
 c
+c              Dimitris Menemenlis, menemenlis@jpl.nasa.gov  20-Dec-2002
+c              - Added evaporation parameters, removed scal_prc.
+c
 c     ==================================================================
 c     HEADER exf_param
 c     ==================================================================
@@ -58,6 +61,13 @@ c     Calendar data.
       _RL     sfluxperiod
       character*1 sfluxmask
       parameter(  sfluxmask = 's' )
+
+      integer evapstartdate1
+      integer evapstartdate2
+      integer evapstartdate(4)
+      _RL     evapperiod
+      character*1 evapmask
+      parameter(  evapmask = 's' )
 
       integer precipstartdate1
       integer precipstartdate2
@@ -146,6 +156,7 @@ c     File names.
       character*(128) hfluxfile
       character*(128) atempfile
       character*(128) aqhfile
+      character*(128) evapfile
       character*(128) precipfile
       character*(128) sfluxfile
       character*(128) runofffile
@@ -163,6 +174,7 @@ c     File names.
      &                          atempstartdate1,   atempstartdate2,
      &                          aqhstartdate1,     aqhstartdate2,
      &                          sfluxstartdate1,   sfluxstartdate2,
+     &                          evapstartdate1,    evapstartdate2,
      &                          runoffstartdate1,  runoffstartdate2,
      &                          precipstartdate1,  precipstartdate2,
      &                          ustressstartdate1, ustressstartdate2,
@@ -180,6 +192,7 @@ c     File names.
      &                          atempstartdate,
      &                          aqhstartdate,
      &                          sfluxstartdate,
+     &                          evapstartdate,
      &                          precipstartdate,
      &                          runoffstartdate,
      &                          ustressstartdate,
@@ -199,6 +212,7 @@ c     File names.
      &                          atempperiod,
      &                          aqhperiod,
      &                          sfluxperiod,
+     &                          evapperiod,
      &                          precipperiod,
      &                          runoffperiod,
      &                          ustressperiod,
@@ -218,6 +232,7 @@ c     File names.
      &                          atempfile,
      &                          aqhfile,
      &                          sfluxfile,
+     &                          evapfile,
      &                          precipfile,
      &                          runofffile,
      &                          ustressfile,
@@ -246,7 +261,6 @@ c     scaling between exf units and MITgcm units
       _RL     scal_sst
       _RL     scal_sss
       _RL     scal_apressure
-      _RL     scal_prc
       _RL     scal_sfl
 
       common /exf_param_scal/
@@ -257,5 +271,4 @@ c     scaling between exf units and MITgcm units
      &                    , scal_sst
      &                    , scal_sss
      &                    , scal_apressure
-     &                    , scal_prc
      &                    , scal_sfl

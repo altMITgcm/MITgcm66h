@@ -49,6 +49,10 @@ c
 c              - sign change of ustress/vstress incorporated into
 c                scaling factors scal_ust, scal_vst
 c
+c              Dimitris Menemenlis, menemenlis@jpl.nasa.gov 20-Dec-2002
+c
+c              - removed: empmr(i,j,bi,bj) = scal_prc*precip(i,j,bi,bj)
+c
 c     ==================================================================
 c     SUBROUTINE exf_mapfields
 c     ==================================================================
@@ -125,11 +129,7 @@ c             Heat flux.
           do j = jmin,jmax
             do i = imin,imax
 c             Salt flux.
-#if (defined (ALLOW_BULKFORMULAE)  && defined (ALLOW_ATM_TEMP))
-              empmr(i,j,bi,bj) = scal_prc*precip(i,j,bi,bj)
-#else
               empmr(i,j,bi,bj) = scal_sfl*sflux(i,j,bi,bj)
-#endif
             enddo
           enddo
 

@@ -21,5 +21,5 @@ c     ==================================================================
       character*(5) externalforcingversion
       character*(5) usescalendarversion
 
-      parameter(    externalforcingversion = '0.2.0' )
+      parameter(    externalforcingversion = '0.2.1' )
       parameter(    usescalendarversion    = '0.2.0' )
