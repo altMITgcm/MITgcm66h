@@ -1,0 +1,5 @@
+C $Id$
+
+       SUBROUTINE FOOL_THE_COMPILER
+       RETURN
+       END
