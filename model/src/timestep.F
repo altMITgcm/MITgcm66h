@@ -10,16 +10,19 @@ C     \==========================================================/
      I                     K,
      I                     myIter, myThid )
       implicit none
-! Common
+
+C     == Global variables ==
 #include "SIZE.h"
 #include "DYNVARS.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
+
 C     == Routine Arguments ==
       INTEGER bi,bj,iMin,iMax,jMin,jMax
       INTEGER K
       INTEGER myIter, myThid
+
 C     == Local variables ==
       INTEGER i,j
       _RL ab15,ab05
