@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o merged mom_vi_calc_relvort3.F, mom_vi_del2uv.F and 
+  mon_vort3.F to make exch2 friendly with >1 tile per cube
+  face
+
 checkpoint52i_post
 o removed CPP_EEOPTIONS.h from verification/*/code
 o updated the tiling for global_ocean_pressure
