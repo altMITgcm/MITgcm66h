@@ -606,48 +606,6 @@ for OPTFILE in $OPTFILES ; do
 	    continue
 	fi
 
-	#  Is this an MPI run?
-	if test "x$MPI" = xt ; then
-	    if test ! -r $dir"/code/CPP_EEOPTIONS.h_mpi" -o ! -r $dir"/code/SIZE.h_mpi" ; then
-		echo | tee -a $SUMMARY
-		echo "can't read \"$dir/code/CPP_EEOPTIONS.h_mpi\" or \"$dir/code/SIZE.h_mpi\"" \
-		    | tee -a $SUMMARY
-		continue
-	    else
-		cmp $dir"/code/CPP_EEOPTIONS.h_mpi" $dir"/code/CPP_EEOPTIONS.h"
-		RETVAL=$?
-		if test "x$RETVAL" != x0 ; then
-		    cp $dir"/code/CPP_EEOPTIONS.h_mpi" $dir"/code/CPP_EEOPTIONS.h"
-		fi
-		cmp $dir"/code/SIZE.h_mpi" $dir"/code/SIZE.h"
-		RETVAL=$?
-		if test "x$RETVAL" != x0 ; then
-		    cp $dir"/code/SIZE.h_mpi" $dir"/code/SIZE.h"
-		fi
-	    fi
-	else
-	    if test -r $dir"/code/CPP_EEOPTIONS.h_nompi" ; then
-		cmp $dir"/code/CPP_EEOPTIONS.h_nompi" $dir"/code/CPP_EEOPTIONS.h"
-		RETVAL=$?
-		if test "x$RETVAL" != x0 ; then
-		    cp $dir"/code/CPP_EEOPTIONS.h_nompi" $dir"/code/CPP_EEOPTIONS.h"
-		fi
-	    fi
-            if test -r $dir"/code/SIZE.h_nompi" ; then
-                cmp $dir"/code/SIZE.h_nompi" $dir"/code/SIZE.h"
-		RETVAL=$?
-		if test "x$RETVAL" != x0 ; then
-		    cp $dir"/code/SIZE.h_nompi" $dir"/code/SIZE.h"
-		fi
-            fi
-	fi
-
-	#  Create an output dir for each OPTFILE/tdir combination
-	CDIR=$DRESULTS"/"$DRESULTS"_"$NDIR
-	mkdir $CDIR
-	CDIR=`pwd`"/$CDIR"
-
-	#  ...configue, make, run, and compare the output.
 	echo "-------------------------------------------------------------------------------"
 	echo
 	echo "Experiment:  $dir"
@@ -665,6 +623,47 @@ for OPTFILE in $OPTFILES ; do
 	    builddir=input
 	    rundir=input
 	fi
+
+	CODE_DIR=$dir/code
+	BUILD_DIR=$dir/$builddir
+	MPI_FILES="CPP_EEOPTIONS.h_mpi SIZE.h_mpi"
+	NOMPI_FILES="CPP_EEOPTIONS.h_nompi SIZE.h_nompi"
+	#  Is this an MPI run?
+	if test "x$MPI" = xt ; then
+	    FILES=$MPI_FILES
+	else
+	    FILES=$NOMPI_FILES
+	fi
+
+	#  Check to see that we have the files
+	have_files=t
+	for i in $FILES ; do
+	    if test ! -r $CODE_DIR/$i ; then
+		echo "Warning: can't read file $CODE_DIR/$i" | tee -a $SUMMARY
+		have_files=f
+	    fi
+	done
+	if test "x$have_files" != xt -a "x$MPI" = xt ; then
+	    echo "Skipping $dir due to lack of input files (see above warning)" \
+		| tee -a $SUMMARY
+	    continue
+	fi
+
+	#  If we have the $FILES and they differ, copy the $FILES to $BUILD_DIR
+	if "x$have_files" = xt ; then
+	    for i in $FILES ; do
+		cmp $CODE_DIR/$i $BUILD_DIR/$i > /dev/null 2>&1
+		RETVAL=$?
+		if test "x$RETVAL" != x0 ; then
+		    cp $CODE_DIR/$i $BUILD_DIR/$i
+		fi
+	    done
+	fi
+
+	#  Create an output dir for each OPTFILE/tdir combination
+	CDIR=$DRESULTS"/"$DRESULTS"_"$NDIR
+	mkdir $CDIR
+	CDIR=`pwd`"/$CDIR"
 
 	if test "x$CLEANUP" = xt ; then
 	    makeclean $dir/$builddir
