@@ -145,7 +145,7 @@ c             precipitation rate
 #ifdef SHORTWAVE_HEATING
 c             Short wave radiative flux.
               if ( (swflux(i,j,bi,bj) .GT. 1. .OR.
-     &             swflux(i,j,bi,bj) .LT. -800. ) .AND.
+     &             swflux(i,j,bi,bj) .LT. -1000. ) .AND.
      &             hFacC(i,j,1,bi,bj) .NE. 0. ) then
                  print *, 'EXF WARNING: swflux out of range for i,j= ',
      &                i, j, swflux(i,j,bi,bj)

@@ -285,26 +285,26 @@ c     Data files.
       apressurefile      = ' '
 
 c     Start dates.
-      hfluxstartdate     = 0
-      atempstartdate     = 0
-      aqhstartdate       = 0
-      evapstartdate      = 0
-      precipstartdate    = 0
-      sfluxstartdate     = 0
-      runoffstartdate    = 0
-      ustressstartdate   = 0
-      vstressstartdate   = 0
-      uwindstartdate     = 0
-      vwindstartdate     = 0
-      swfluxstartdate    = 0
-      lwfluxstartdate    = 0
-      swdownstartdate    = 0
-      lwdownstartdate    = 0
-      obcsNstartdate     = 0
-      obcsSstartdate     = 0
-      obcsEstartdate     = 0
-      obcsWstartdate     = 0
-      apressurestartdate = 0
+      hfluxstartdate     = 0.
+      atempstartdate     = 0.
+      aqhstartdate       = 0.
+      evapstartdate      = 0.
+      precipstartdate    = 0.
+      sfluxstartdate     = 0.
+      runoffstartdate    = 0.
+      ustressstartdate   = 0.
+      vstressstartdate   = 0.
+      uwindstartdate     = 0.
+      vwindstartdate     = 0.
+      swfluxstartdate    = 0.
+      lwfluxstartdate    = 0.
+      swdownstartdate    = 0.
+      lwdownstartdate    = 0.
+      obcsNstartdate     = 0.
+      obcsSstartdate     = 0.
+      obcsEstartdate     = 0.
+      obcsWstartdate     = 0.
+      apressurestartdate = 0.
 
 c     Initialise file type and field precision
       exf_iprec            = 32
@@ -585,7 +585,7 @@ c     fields to get a complete calendar date array.
 #endif
 
 #ifdef ALLOW_RUNOFF
-      if ( runofffile .NE. ' ' ) then
+      if ( runofffile .NE. ' ' .AND. runoffperiod .NE. 0. ) then
          call cal_FullDate  ( runoffstartdate1   ,     runoffstartdate2,
      &        date_array                        ,mythid )
          call cal_TimePassed(modelstartdate,date_array,difftime,mythid)
