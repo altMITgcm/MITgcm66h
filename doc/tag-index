@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint54c_post
 o replace surfaceTendency U,V,S,T,Tice,Ptr by surfaceForcing U,V,S,T,Tice,Ptr
   this affects (truncation error) output.txt of test-exp:
    global_ocean_ebm,_pressure,.cs32x15(&.thsice), lab_sea & natl_box
