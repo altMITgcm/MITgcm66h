@@ -14,8 +14,9 @@ DEFINES='-DWORDLENGTH=4'
 
 MPI='true'
 AWK='gawk'
-MAKE='gmake'
-MAKEDEPEND='makedepend'
+# if regular make does not work try gmake
+#MAKE='gmake'
+MAKEDEPEND='$(TOOLSDIR)/xmakedepend'
 # compiler
 FC='mpf77'
 LINK='mpf77'
