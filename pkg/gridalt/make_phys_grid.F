@@ -242,7 +242,5 @@ c END OF LOOP OVER GRID POINTS
        enddo
        enddo
 
-       stop
-
        return
        end
