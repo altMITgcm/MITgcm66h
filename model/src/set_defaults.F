@@ -58,6 +58,9 @@ C     Vertical gridding
       DO k=1,Nr
        delRdefault(k) = 0.
       ENDDO
+      DO k=1,Nr+1
+       delRc(k) = UNSET_RL
+      ENDDO
 
 C     Horizontal gridding
 C     In cartesian coords distances are in metres
