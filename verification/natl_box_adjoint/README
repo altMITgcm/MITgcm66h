@@ -483,6 +483,7 @@
  cp ../verification/natl_box_adjoint/input_seaice/* .
  cp data.100day data
  cp ../verification/natl_box_adjoint/input_bulk/data.grdchk .
+ cp data.seaice.lsr data.seaice
  ./mitgcmuv >&! output.txt
 # To verify the results of the gradient check, type:
  grep "ph-grd 3" output.txt
