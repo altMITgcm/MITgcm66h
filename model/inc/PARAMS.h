@@ -186,6 +186,7 @@ C     globalFiles    - Selects between "global" and "tiled" files
 C     allowFreezing  - Allows water to freeze and form ice
 C     groundAtK1  - put the surface(k=1) at the Lower Boundary (=ground)
       COMMON /PARM_L/ usingCartesianGrid, usingSphericalPolarGrid,
+     & usingCurvilinearGrid,
      & no_slip_sides,no_slip_bottom,
      & staggerTimeStep,
      & momViscosity, momAdvection, momForcing, useCoriolis, 
@@ -202,6 +203,7 @@ C     groundAtK1  - put the surface(k=1) at the Lower Boundary (=ground)
      & allowFreezing, groundAtK1
       LOGICAL usingCartesianGrid
       LOGICAL usingSphericalPolarGrid
+      LOGICAL usingCurvilinearGrid
       LOGICAL usingSphericalPolarMTerms
       LOGICAL no_slip_sides
       LOGICAL no_slip_bottom

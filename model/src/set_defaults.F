@@ -63,6 +63,8 @@ C     In spherical polar distances are in degrees
       phiMin               = 0.0
       thetaMin             = 0.
       rSphere              = 6370. * 1.D3
+C     General curvilinear coordinate system
+      usingCurvilinearGrid = .FALSE.
 
 C--   Set default "physical" parameters
       DO K =1,Nr

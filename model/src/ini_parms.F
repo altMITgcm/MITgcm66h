@@ -123,6 +123,7 @@ C--   Gridding parameters
       NAMELIST /PARM04/
      & usingCartesianGrid, dxSpacing, dySpacing, delX, delY, delZ,
      & usingSphericalPolarGrid, phiMin, thetaMin, rSphere,
+     & usingCurvilinearGrid,
      & delP, delR, rkFac, Ro_SeaLevel, groundAtK1,
      & delXfile, delYfile
 
@@ -689,9 +690,16 @@ C--   Check for conflicting grid definitions.
       goptCount = 0
       IF ( usingCartesianGrid )      goptCount = goptCount+1
       IF ( usingSphericalPolarGrid ) goptCount = goptCount+1
-      IF ( goptCount .NE. 1 ) THEN
+      IF ( usingCurvilinearGrid )    goptCount = goptCount+1
+      IF ( goptCount .GT. 1 ) THEN
        WRITE(msgBuf,'(A)')
      &  'S/R INI_PARMS: More than one coordinate system requested'
+       CALL PRINT_ERROR( msgBuf , myThid)
+       STOP 'ABNORMAL END: S/R INI_PARMS'
+      ENDIF
+      IF ( goptCount .LT. 1 ) THEN
+       WRITE(msgBuf,'(A)')
+     &  'S/R INI_PARMS: No coordinate system requested'
        CALL PRINT_ERROR( msgBuf , myThid)
        STOP 'ABNORMAL END: S/R INI_PARMS'
       ENDIF
