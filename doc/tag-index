@@ -3,6 +3,15 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o fixed the verification/global_ocean.90x40x15 experiment:
+ - new bathymetry (the world according to A., JMC, and M.)
+ - new initial fields and forcing fields (*.bin files)
+ - new POLY3.COEFFS (for the next release one should switch to a full
+   equation of state: JMD95P or MDJWF)
+ - fixed several errors and redundancies in the data file
+ - experiment uses looped cells
+ - added matlab directory with diagnostic scripts for plotting of output
+
 o S/R aim_initialise.F replace S/R aim_init from file aim_do_inphys.F:
  - read AIM physics parameters from a file (data.aimphys)
  - set defaults values = F.Molteni paper (Clim.Dyn., 2002)
