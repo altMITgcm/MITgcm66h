@@ -73,7 +73,7 @@ C     == Local variables ==
 
 C--   Load forcing/external data fields
       CALL TIMER_START('I/O (READ)         [FORWARD_STEP]',myThid)
-      CALL LOAD_EXTERNAL_FIELDS( myCurrentTime, myCurrentIter, myThid )
+      CALL EXTERNAL_FIELDS_LOAD( myCurrentTime, myCurrentIter, myThid )
       CALL TIMER_STOP ('I/O (READ)         [FORWARD_STEP]',myThid)
 
 #ifdef INCLUDE_SHAPIRO_FILTER_CODE
