@@ -29,6 +29,7 @@ o more obcs stuff
   - changed sponge layer relaxation parameter units for days to seconds
   - turned off sponge layer by default
   - changed argument list of OBCS_CALC to myTime+deltaTclock
+  - fixed about 35 bugs in obcs_external_fields_load
 
 checkpoint55c_post
 o obcs stuff
