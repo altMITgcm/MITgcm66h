@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "FIZHI_OPTIONS.h"
       subroutine fizhi_readparms (myThid)
 C***********************************************************************
 C  Purpose
@@ -13,7 +14,6 @@ C     myThid ... Process(or) number
 C***********************************************************************
       implicit none
 
-#include "CPP_OPTIONS.h"
 #include "chronos.h"
 #include "EEPARAMS.h"
 

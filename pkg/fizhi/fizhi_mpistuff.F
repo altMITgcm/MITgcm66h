@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "FIZHI_OPTIONS.h"
       subroutine my_finalize
       implicit none
 #ifdef ALLOW_USE_MPI

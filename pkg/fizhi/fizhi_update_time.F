@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "FIZHI_OPTIONS.h"
       subroutine fizhi_update_time (myThid,deltat)
 C***********************************************************************
 C  Purpose

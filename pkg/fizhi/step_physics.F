@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "FIZHI_OPTIONS.h"
        subroutine step_physics(uphy,vphy,thphy,sphy,dt,
      .  im1,im2,jm1,jm2,Nrphys,Nsx,Nsy,idim1,idim2,jdim1,jdim2,bi,bj,
      .                                         duphy,dvphy,dthphy,dsphy)
@@ -9,7 +10,6 @@ c Routine to step physics state forward using the increments
 c
 c-----------------------------------------------------------------------
        implicit none
-#include "CPP_EEOPTIONS.h"                                                               
        integer im1,im2,jm1,jm2,idim1,idim2,jdim1,jdim2
        integer Nrphys,Nsx,Nsy,bi,bj
        _RL uphy(im1:im2,jm1:jm2,Nrphys,Nsx,Nsy)

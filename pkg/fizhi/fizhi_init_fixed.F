@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "FIZHI_OPTIONS.h"
        subroutine fizhi_init_fixed (myThid)
 c-----------------------------------------------------------------------
 c  Routine to initialise the fizhi package.
@@ -21,7 +22,6 @@ c   3) For now, the fizhi package contains the alarms and clocks
 c      routines, so this routine will also initialize the alarms.
 c-----------------------------------------------------------------------
        implicit none
-#include "CPP_OPTIONS.h"
 #include "SIZE.h"
 #include "fizhi_SIZE.h"
 #include "fizhi_land_SIZE.h"

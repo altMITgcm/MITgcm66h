@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "FIZHI_OPTIONS.h"
        subroutine AtoC(myThid,fieldin1,fieldin2,mask,im1,im2,jm1,jm2,
      .  numlevs,Nsx,Nsy,idim1,idim2,jdim1,jdim2,fieldout1,fieldout2)
 c----------------------------------------------------------------------
@@ -25,7 +26,6 @@ c
 c Call:   exch_uv_agrid_xyz_RL - exchange on a-grid
 c-----------------------------------------------------------------------
        implicit none
-#include "CPP_EEOPTIONS.h"
 #include "EEPARAMS.h"
                                                                                      
        integer myThid, numlevs

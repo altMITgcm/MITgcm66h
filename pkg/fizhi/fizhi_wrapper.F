@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "FIZHI_OPTIONS.h"
        subroutine fizhi_wrapper (myTime, myIter, myThid)
 c-----------------------------------------------------------------------
 c  Subroutine fizhi_wrapper - 'Wrapper' routine to interface

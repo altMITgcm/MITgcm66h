@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "FIZHI_OPTIONS.h"
 CBOP
 C     !ROUTINE: FIZHI_WRITE_PICKUP 
 C     !INTERFACE:
@@ -18,7 +19,6 @@ CEOP
       IMPLICIT NONE
 
 C     == Global variables ===
-#include "CPP_OPTIONS.h"
 #include "SIZE.h"
 #include "fizhi_SIZE.h"
 #include "fizhi_land_SIZE.h"
