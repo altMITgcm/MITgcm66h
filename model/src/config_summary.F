@@ -124,8 +124,9 @@ C     == Local variables ==
      &'   /* Reference density ( kg/m^3 ) */')
       CALL WRITE_0D_R8( gravity, INDEX_NONE,'gravity =',
      &'   /* Gravitational acceleration ( m/s^2 ) */')
-      CALL WRITE_0D_R8( gBaro,   INDEX_NONE,'gBaro =',
-     &'   /* Barotropic gravity ( m/s^2 ) */')
+Cjmc gBaro : no longer used
+c     CALL WRITE_0D_R8( gBaro,   INDEX_NONE,'gBaro =',
+c    &'   /* Barotropic gravity ( m/s^2 ) */')
       CALL WRITE_0D_R8( f0,      INDEX_NONE,'f0 =',
      &'   /* Reference coriolis parameter ( 1/s ) */')
       CALL WRITE_0D_R8( beta,    INDEX_NONE,'beta =',
