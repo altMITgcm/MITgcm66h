@@ -22,3 +22,4 @@ branch-atmos-merge-phase7       Phase 7: new parameter for initializing
 branch-atmos-merge-shapiro      Shapiro code packaged.
 branch-atmos-merge-zonalfilt    Zonal filters packaged and test in
                                 verification/hs94.128x64x5
+branch-atmos-merge-freeze	Freeze prior to merge with main
