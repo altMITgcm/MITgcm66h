@@ -138,6 +138,9 @@ C     Initialise intermediate terms
         zStar(i,j) = 0.
         uDiss(i,j) = 0.
         vDiss(i,j) = 0.
+        vort3(i,j) = 0.
+        omega3(i,j) = 0.
+        ke(i,j) = 0.
        ENDDO
       ENDDO
 
@@ -250,8 +253,8 @@ C     Combine fluxes
 
 C---  Hydrostatic term ( -1/rhoConst . dphi/dx )
       IF (momPressureForcing) THEN
-       DO j=jMin,jMax
-        DO i=iMin,iMax
+       DO j=1-Olx,sNy+Oly
+        DO i=2-Olx,sNx+Olx
          pf(i,j) = - _recip_dxC(i,j,bi,bj)
      &    *(phi_hyd(i,j,k)-phi_hyd(i-1,j,k))
         ENDDO
@@ -259,8 +262,8 @@ C---  Hydrostatic term ( -1/rhoConst . dphi/dx )
       ENDIF
 
 C--   Tendency is minus divergence of the fluxes + coriolis + pressure term
-      DO j=jMin,jMax
-       DO i=iMin,iMax
+      DO j=2-Oly,sNy+Oly-1
+       DO i=2-Olx,sNx+Olx-1
         gU(i,j,k,bi,bj) = uDiss(i,j)
      &   -_recip_hFacW(i,j,k,bi,bj)*recip_drF(k)
      &   *recip_rAw(i,j,bi,bj)
@@ -399,26 +402,26 @@ C--   Set dv/dt on boundaries to zero
       ENDDO
 
 C--   Horizontal Coriolis terms
-c     CALL MOM_VI_CORIOLIS(bi,bj,K,uFld,vFld,omega3,r_hFacZ,
-c    &                     uCf,vCf,myThid)
-c     DO j=jMin,jMax
-c      DO i=iMin,iMax
-c       gU(i,j,k,bi,bj) = (gU(i,j,k,bi,bj)+uCf(i,j))
-c    &                    *_maskW(i,j,k,bi,bj)
-c       gV(i,j,k,bi,bj) = (gV(i,j,k,bi,bj)+vCf(i,j))
-c    &                    *_maskS(i,j,k,bi,bj)
-c      ENDDO
-c     ENDDO
-      CALL MOM_VI_U_CORIOLIS(bi,bj,K,vFld,omega3,r_hFacZ,uCf,myThid)
-c     CALL MOM_VI_U_CORIOLIS(bi,bj,K,vFld,vort3,r_hFacZ,uCf,myThid)
+      CALL MOM_VI_CORIOLIS(bi,bj,K,uFld,vFld,omega3,r_hFacZ,
+     &                     uCf,vCf,myThid)
+      DO j=jMin,jMax
+       DO i=iMin,iMax
+        gU(i,j,k,bi,bj) = (gU(i,j,k,bi,bj)+uCf(i,j))
+     &                    *_maskW(i,j,k,bi,bj)
+        gV(i,j,k,bi,bj) = (gV(i,j,k,bi,bj)+vCf(i,j))
+     &                    *_maskS(i,j,k,bi,bj)
+       ENDDO
+      ENDDO
+c     CALL MOM_VI_U_CORIOLIS(bi,bj,K,vFld,omega3,r_hFacZ,uCf,myThid)
+      CALL MOM_VI_U_CORIOLIS(bi,bj,K,vFld,vort3,r_hFacZ,uCf,myThid)
       DO j=jMin,jMax
        DO i=iMin,iMax
         gU(i,j,k,bi,bj) = (gU(i,j,k,bi,bj)+uCf(i,j))
      &                    *_maskW(i,j,k,bi,bj)
        ENDDO
       ENDDO
-      CALL MOM_VI_V_CORIOLIS(bi,bj,K,uFld,omega3,r_hFacZ,vCf,myThid)
-c     CALL MOM_VI_V_CORIOLIS(bi,bj,K,uFld,vort3,r_hFacZ,vCf,myThid)
+c     CALL MOM_VI_V_CORIOLIS(bi,bj,K,uFld,omega3,r_hFacZ,vCf,myThid)
+      CALL MOM_VI_V_CORIOLIS(bi,bj,K,uFld,vort3,r_hFacZ,vCf,myThid)
       DO j=jMin,jMax
        DO i=iMin,iMax
         gV(i,j,k,bi,bj) = (gV(i,j,k,bi,bj)+vCf(i,j))
@@ -426,6 +429,7 @@ c     CALL MOM_VI_V_CORIOLIS(bi,bj,K,uFld,vort3,r_hFacZ,vCf,myThid)
        ENDDO
       ENDDO
 
+      IF (momAdvection) THEN
 C--   Vertical shear terms (Coriolis)
       CALL MOM_VI_U_VERTSHEAR(bi,bj,K,uVel,wVel,uCf,myThid)
       DO j=jMin,jMax
@@ -457,6 +461,7 @@ C--   Bernoulli term
      &                    *_maskS(i,j,k,bi,bj)
        ENDDO
       ENDDO
+      ENDIF
 
       RETURN
       END
