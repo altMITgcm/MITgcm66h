@@ -415,13 +415,15 @@ C     \==========================================================/
 CEndOfInterface
       Real*4 ETIME, ACTUAL, TARRAY(2)
 #ifndef TARGET_T3E
+#ifndef TARGET_CRAY_VECTOR
       EXTERNAL ETIME
+#endif
 #endif
       Real*8 wtime
 C     Real*8 MPI_Wtime
 C     EXTERNAL MPI_Wtime
 
-#ifdef TARGET_T3E
+#if (defined (TARGET_T3E) || defined (TARGET_CRAY_VECTOR))
       userTime = 0.
       systemTime = 0.
 #else
@@ -430,7 +432,7 @@ C     EXTERNAL MPI_Wtime
       systemTime    = TARRAY(2)
 #endif
 
-#ifdef TARGET_T3E
+#if (defined (TARGET_T3E) || defined (TARGET_CRAY_VECTOR))
       wallClockTime = 0.
 #else
       CALL CLOC(wTime)
