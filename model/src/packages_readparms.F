@@ -145,6 +145,10 @@ ceh3 needs an IF ( useEXF ) THEN
       call exf_readparms  ( mythid )
 #endif
 
+#ifdef ALLOW_EBM
+      IF (useEBM) call ebm_readparms( mythid )
+#endif
+
 #ifdef ALLOW_ECCO
 c--   Initialize ECCO package parameters
       IF (useECCO) call ecco_readparms ( myThid )

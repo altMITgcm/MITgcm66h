@@ -128,6 +128,10 @@ cph#else
       CALL INI_FORCING( mythid )
 cph#endif
 
+#ifdef ALLOW_EBM
+      IF (useEBM) CALL EBM_INI_VARS( mythid )
+#endif
+
 #ifdef ALLOW_COST
 c--   Initialise the cost function.
 ceh3 needs an IF ( useCOST ) THEN

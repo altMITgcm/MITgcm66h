@@ -258,6 +258,7 @@ C AMM
      &                      myCurrentTime, myThid )
 #endif /* ALLOW_FIZHI */
 C AMM
+
 C     Add heat in top-layer
       IF ( kLev .EQ. kSurface ) THEN
        DO j=jMin,jMax
@@ -370,6 +371,7 @@ C AMM
      &                      myCurrentTime, myThid )
 #endif /* ALLOW_FIZHI */
 C AMM
+
 C     Add fresh-water in top-layer
       IF ( kLev .EQ. kSurface ) THEN
        DO j=jMin,jMax

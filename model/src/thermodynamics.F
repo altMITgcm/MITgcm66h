@@ -102,6 +102,9 @@ C     == Global variables ===
 # ifdef ALLOW_GMREDI
 #  include "GMREDI.h"
 # endif
+# ifdef ALLOW_GMREDI
+#  include "GMREDI.h"
+# endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C     !INPUT/OUTPUT PARAMETERS:

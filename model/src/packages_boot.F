@@ -62,7 +62,8 @@ C     data.pkg namelists
      &          useThSIce,
      &          usefizhi,
      &          usegridalt,
-     &          usediagnostics
+     &          usediagnostics,
+     &          useEBM
 
 
 CEOP
@@ -98,6 +99,7 @@ C--   Default package configuration
       usefizhi=.FALSE.
       usegridalt=.FALSE.
       usediagnostics=.FALSE.
+      useEBM=.FALSE.
 
 C--   Read parameters from open data file
       READ(UNIT=iUnit,NML=PACKAGES)

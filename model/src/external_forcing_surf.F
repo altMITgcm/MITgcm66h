@@ -187,12 +187,14 @@ c- converts EmPmR to virtual salt flux using uniform salinity (default=35)
        ENDIF
 
       ENDIF
+
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+
 #ifdef ALLOW_PTRACERS
       IF ( usePTRACERS ) THEN
          CALL PTRACERS_FORCING_SURF(
-     I                              bi, bj, iMin, iMax, jMin, jMax,
-     I                              myTime,myIter,myThid )
+     I        bi, bj, iMin, iMax, jMin, jMax,
+     I        myTime,myIter,myThid )
       ENDIF
 #endif /* ALLOW_PTRACERS */
 
@@ -219,6 +221,16 @@ C   (requires time varying dP(Nr) like dP(k-bottom) with NonLin FS).
       ENDIF
 
 #endif /* ATMOSPHERIC_LOADING */
+
+#ifdef ALLOW_EBM
+c--    Values for surfaceTendencyT, surfaceTendencyS
+c      are overwritten by those produced by EBM
+      IF ( useEBM ) THEN
+       CALL EBM_FORCING_SURF(
+     I        bi, bj, iMin, iMax, jMin, jMax,
+     I        myTime,myIter,myThid )
+      ENDIF
+#endif
 
 #ifdef ALLOW_TIMEAVE
       IF ( taveFreq .NE. 0. _d 0 ) THEN
