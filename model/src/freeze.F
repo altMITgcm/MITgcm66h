@@ -38,7 +38,7 @@ C     Tfreezing :: Freezing threshold temperature.
       _RL Tfreezing
 CEOP
 
-      Tfreezing=-1.9
+      Tfreezing=-1.9 _d 0
 
 C     Check for water that should have frozen
        DO j=jMin,jMax
