@@ -45,8 +45,8 @@ C     === Global data ===
 #include "EEPARAMS.h"
 #include "MONITOR.h"
 
-      EXTERNAL IFNBLNBK, ILNBLNK
-      INTEGER  IFNBLNK,  ILNBLNK
+      EXTERNAL IFNBLNK, ILNBLNK
+      INTEGER  IFNBLNK, ILNBLNK
 
 C     === Routine arguments ===
 C     prefString - String to use for prefixing monitor output
