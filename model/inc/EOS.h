@@ -17,8 +17,8 @@ CEOP
 
 C     PARAMETER SItoBar
       _RL SItoBar, SItodBar
-      PARAMETER ( SItoBar  = 1. _d -05 )
-      PARAMETER ( SItodBar = 1. _d -04 )
+      PARAMETER ( SItoBar  = 1.D-05 )
+      PARAMETER ( SItodBar = 1.D-04 )
 
 C Linear equation of state
 C     tAlpha    :: Linear EOS thermal expansion coefficient ( 1/degree ).
