@@ -1,3 +1,12 @@
+#!/bin/bash
+#
+#  $Header$
+#
+
+S64='$(TOOLSDIR)/set64bitConst.sh'
+MAKEDEPEND=makedepend
+DEFINES='-DWORDLENGTH=4'
+
 #ph: e.g. bluesky.ucar.edu, marcellus.navo.hpc.mil
 LN='ln -s'
 INCLUDES='-I/usr/lpp/ppe.poe/include'

@@ -1,3 +1,13 @@
+#!/bin/bash
+#
+#  $Header$
+#
+
+S64='$(TOOLSDIR)/set64bitConst.sh'
+MAKEDEPEND=makedepend
+DEFINES='-DWORDLENGTH=4'
+
+
 LN='/bin/ln -s'
 CPP='/lib/cpp -traditional -P'
 INCLUDES='-I/usr/local/pkg/mpi/mpi-1.2.4..8a-gm-1.5/pgi/include'

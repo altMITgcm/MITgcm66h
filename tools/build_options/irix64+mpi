@@ -1,3 +1,13 @@
+#!/bin/bash
+#
+#  $Header$
+#
+
+S64='$(TOOLSDIR)/set64bitConst.sh'
+MAKEDEPEND=makedepend
+DEFINES='-DWORDLENGTH=4'
+
+
 INCLUDES='-I/usr/local/mpi/include'
 FC='mpif77'
 LINK='mpif77'

@@ -1,3 +1,12 @@
+#!/bin/bash
+#
+#  $Header$
+#
+
+S64='$(TOOLSDIR)/set64bitConst.sh'
+MAKEDEPEND=makedepend
+DEFINES='-DWORDLENGTH=4'
+
 LN='/usr/bin/ln -s'
 CPP='/usr/ccs/lib/cpp -P'
 INCLUDES='-I/usr/local/mpi/include'
