@@ -19,10 +19,12 @@ c     o TODO: interpolate model grid to regular grid
 c             check mask
 c
 c     started: Detlef Stammer, Ralf Giering Jul-1996
-c
 c     changed: Ralf Giering Ralf.Giering@FastOpt.de 12-Jun-2001
-c
 c              - totally rewrite for parallel processing
+c              heimbach@mit.edu 13-Mar-2002
+c              - several wrong i-loop boundaries (spotted by G. Gebbie)
+c              - nprocs need to be replaced by nPx*nPy
+c              - geoid error does not work as of now
 c
 c     ==================================================================
 c     SUBROUTINE cost_ssh_mean
@@ -101,7 +103,7 @@ c--   compute misfit on local domain
       do bj = jtlo,jthi
         do bi = itlo,ithi
           do j = jmin,jmax
-            do i = jmin,jmax
+            do i = imin,imax
                if ( tpmeanmask(i,j,bi,bj) .gt. 0. ) then
                  misfit(i,j,bi,bj) =
      &           tpmean(i,j,bi,bj) - offset - psmean(i,j,bi,bj)
@@ -153,7 +155,7 @@ c--     get coordinates of processor (iporc-1)
           do bi = itlo,ithi
 
             do j = jmin,jmax
-              do i = jmin,jmax
+              do i = imin,imax
                 jglobe = joffset+ j + sNy*(bj-1) + sNy*nSy*(ipy-1)
                 iglobe =          i + sNx*(bi-1) + sNx*nSx*(ipx-1)
 
@@ -202,7 +204,7 @@ c--         --> no weighting by cosphi.
       do bj = jtlo,jthi
         do bi = itlo,ithi
           do j = jmin,jmax
-            do i = jmin,jmax
+            do i = imin,imax
               diff = psmean(i,j,bi,bj) - tpmean(i,j,bi,bj) - offset
               sumc = sumc + diff*diff
      &                    * wp(i,j,bi,bj)*tpmeanmask(i,j,bi,bj)
