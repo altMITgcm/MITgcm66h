@@ -3,6 +3,22 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+ecco_c44_e21
+o reversed order of ctrl/cost initialisation
+o gmredi_slope_psi.F: Inconsistent types in MIN/MAX expressions
+o modified to enable ctrl field swapping
+o bug fix for global sum of ncvarlength in ctrl_init
+o no more call to ctrl_unpack from ctrl_init
+o no more write of ctrl vector in ctrl_pack
+  however, init. of control vector from ctrl_unpack
+o various bug fixes & consistent nobcs handling in 
+  ctrl_pack/unpack routines (by G. Gebbie)
+o optim package: Added obcs control part for lsopt I/O
+  (by G. Gebbie)
+o missing call to obcs_diags
+o moved calls in packages_init_fixed to packages_readparms
+  because some quantities are needed earlier.
+
 ecco_c44_e20
 o before major merges from the Scripps setup
   here are two small updates:
