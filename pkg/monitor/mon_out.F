@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "MONITOR_OPTIONS.h"
 
       SUBROUTINE MON_OUT_I(pref, value, foot, myThid )
 C.sh  /==========================================================\

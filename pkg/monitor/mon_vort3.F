@@ -1,8 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
-#undef MONITOR_TEST_HFACZ
+#include "MONITOR_OPTIONS.h"
 
       SUBROUTINE MON_VORT3(
      I                     myIter, myThid )
