@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "MONITOR_OPTIONS.h"
 
       SUBROUTINE MON_VORT3(

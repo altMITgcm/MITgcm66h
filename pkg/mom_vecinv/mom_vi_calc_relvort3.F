@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
       SUBROUTINE MOM_VI_CALC_RELVORT3( 
@@ -76,6 +77,8 @@ c    &                            /hFacZ(i,j)
 
        ENDDO
       ENDDO
+
+C     RETURN
 
 C     Special stuff for Cubed Sphere
       IF (useCubedSphereExchange) THEN
