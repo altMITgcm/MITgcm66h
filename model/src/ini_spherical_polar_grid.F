@@ -300,9 +300,9 @@ C--     Calculate vertical face area (vorticity points)
         DO J=1-Oly,sNy+Oly
          DO I=1-Olx,sNx+Olx
 C         by formula
-          lat=yC(I,J,bi,bj)
-          dlon=delX( iGl(I,bi) )
-          dlat=0.5*( delY( jGl(J,bj) ) + delY( jGl(J-1,bj) ) )
+          lat =0.5 _d 0*(yGloc(I,J)+yGloc(I,J+1))
+          dlon=0.5 _d 0*( delX( iGl(I,bi) ) + delX( iGl(I-1,bi) ) )
+          dlat=0.5 _d 0*( delY( jGl(J,bj) ) + delY( jGl(J-1,bj) ) )
           rAz(I,J,bi,bj) = rSphere*rSphere*dlon*deg2rad
      &     *abs( sin(lat*deg2rad)-sin((lat-dlat)*deg2rad) )
           IF (abs(lat).GT.90..OR.abs(lat-dlat).GT.90.) rAz(I,J,bi,bj)=0.
