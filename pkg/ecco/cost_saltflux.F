@@ -151,7 +151,7 @@ c--     Loop over this thread's tiles.
             do j = jmin,jmax
               do i = imin,imax
                 xx_sflux_mean(i,j,bi,bj) = xx_sflux_mean(i,j,bi,bj)
-     &                                     + tmpfld2d(i,j,bi,bj)
+     &                  + tmpfld2d(i,j,bi,bj)*maskC(i,j,1,bi,bj)
               enddo
             enddo
           enddo

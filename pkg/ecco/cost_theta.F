@@ -133,6 +133,18 @@ c--   Read tiled data.
 
 #ifdef GENERIC_BAR_MONTH
 
+      do bj = jtlo,jthi
+         do bi = itlo,ithi
+            do k = 1,nr
+               do j = jmin,jmax
+                  do i = imin,imax
+                     tbar_gen(i,j,k,bi,bj) = 0.
+                  enddo
+               enddo
+            enddo
+         enddo
+      enddo
+
 c--   Loop over month
       if (nmonsrec.GT.12) then
          tmpmon = 12
