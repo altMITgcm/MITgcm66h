@@ -48,7 +48,7 @@ CEOP
 
       if ( buoyancyRelation .eq. 'OCEANICP' ) then
        kSurface        = Nr 
-       convertVol2Mass = horiVertRatio
+       convertVol2Mass = gravity*rhoConstFresh
       else
        kSurface        = 1
        convertVol2Mass = 1. _d 0
