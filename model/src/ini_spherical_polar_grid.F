@@ -197,6 +197,7 @@ C     Calculate vertical face area
         ENDDO
        ENDDO
       ENDDO
+      _EXCH_XY_R4(zA, myThid )
 C
       RETURN
       END

@@ -221,6 +221,7 @@ C     other threads.
       _EXCH_XYZ_R4(rHFacS    , myThid )
       _EXCH_XYZ_R4(maskW    , myThid )
       _EXCH_XYZ_R4(maskS    , myThid )
+      _EXCH_XY_R4 (zA       , myThid )
 
 C
       RETURN
