@@ -127,12 +127,11 @@ C Master thread of process 0, only, opens a global file
        _BEGIN_MASTER( myThid )
         IF( mpiMyId .EQ. 0 ) THEN
          write(dataFname(1:80),'(2a)') fName(1:IL),'.data'
+         length_of_rec=MDS_RECLEN( filePrec, Nx*Ny, mythid )
          if (irecord .EQ. 1) then
-          length_of_rec=MDS_RECLEN( filePrec, Nx*Ny, mythid )
           open( dUnit, file=dataFName, status=_NEW_STATUS,
      &        access='direct', recl=length_of_rec )
          else
-          length_of_rec=MDS_RECLEN( filePrec, Nx*Ny, mythid )
           open( dUnit, file=dataFName, status=_OLD_STATUS,
      &        access='direct', recl=length_of_rec )
          endif
@@ -153,15 +152,16 @@ C Gather array and write it to file, one vertical level at a time
         CALL GATHER_2D( global, local, myThid )
         _BEGIN_MASTER( myThid )
          IF( mpiMyId .EQ. 0 ) THEN
+          irec=k+nNz*(irecord-1)
           if (filePrec .eq. precFloat32) then
            DO J=1,Ny
             DO I=1,Nx
              global_r4(I,J) = global(I,J)
             ENDDO
            ENDDO
-           write(dUnit,rec=k) global_r4
+           write(dUnit,rec=irec) global_r4
           elseif (filePrec .eq. precFloat64) then
-           write(dUnit,rec=k) global
+           write(dUnit,rec=irec) global
           else
            write(msgbuf,'(a)')
      &       ' MDSWRITEFIELD: illegal value for filePrec'

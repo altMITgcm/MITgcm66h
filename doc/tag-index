@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+untagged modifications
+o Updated useSingleCpuIO option in mdsio_writefield.F to
+  work with multi-field files, e.g., for single-file pickup.
+
 release1_p11
 o Modifications for using pkg/exf with pkg/seaice
   - improved description of the various forcing configurations
