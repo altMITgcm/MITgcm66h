@@ -1,7 +1,10 @@
+#ifdef DIC_ABIOTIC
 C     /==========================================================\
 C     | DIC_ABIOTIC.h                                                |
 C     | o Carbon Variables                                      |
 C     |==========================================================|
+c modified from Micks TRACERS.h  --- swd Sep 2001
+c modified for c44 and ptracers   --- swd May 2002
 
        COMMON /CARBON_NEEDS/
      &              AtmospCO2, AtmosP, pH, pCO2, fluxCO2,
@@ -69,3 +72,5 @@ C schmidt number coefficients
       _RL  sox3
       _RL  sox4
 
+
+#endif

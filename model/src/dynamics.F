@@ -334,16 +334,7 @@ C--       kDown  Cycles through 2,1 to point to current layer
 
 #ifdef ALLOW_AUTODIFF_TAMC 
          kkey = (idynkey-1)*Nr + k
-c
 CADJ STORE totphihyd (:,:,k,bi,bj) 
-CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
-CADJ STORE gt (:,:,k,bi,bj) 
-CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
-CADJ STORE gs (:,:,k,bi,bj) 
-CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
-CADJ STORE theta (:,:,k,bi,bj) 
-CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
-CADJ STORE salt  (:,:,k,bi,bj) 
 CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 

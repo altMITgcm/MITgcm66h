@@ -52,13 +52,18 @@ c     == end of interface ==
       itlo = mybxlo(mythid)
       ithi = mybxhi(mythid)
 
-#if (defined (ALLOW_COST_VECTOR))
+#ifdef ALLOW_COST_VECTOR
 
       CALL COST_VECTOR (myThid)
 
-#elif (defined (ALLOW_COST_STATE_FINAL))
-
-      CALL COST_STATE_FINAL (myThid)
+      do bj = jtlo,jthi
+        do bi = itlo,ithi
+          do i = 1,sNx
+            print*,' --> objf_vector(i,bi,bj)  = ',
+     &            objf_vector(i,bi,bj)
+          end do
+        end do
+      end do
 
 #else /* ALLOW_COST_VECTOR undef */
 
@@ -85,14 +90,12 @@ c--   Sum up all contributions.
         enddo
       enddo
 
-      print*,' local fc = ', fc
+      print*,' fc = ', fc
 
 c--   Do global summation.
       _GLOBAL_SUM_R8( fc , myThid )
 
 #endif /* ALLOW_COST_VECTOR */
-
-      print*,' global fc = ', fc
 
 c--   set averaging freq. to zero to avoid re-write of
 c--   averaged fields in reverse checkpointing loops

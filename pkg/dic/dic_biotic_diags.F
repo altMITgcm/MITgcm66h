@@ -1,5 +1,7 @@
 C $Header$
 C $Name$
+cswdice modified for ice -- 25 Oct 01
+cswddic modified for dic -- 16 July 02
 
 #include "CPP_OPTIONS.h"
 #include "GCHEM_OPTIONS.h"
@@ -17,7 +19,11 @@ C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+cswdice --- add --
+#ifdef DIC_BIOTIC
 #include "DIC_BIOTIC.h"
+#endif
+cswdice -- end add ---
 
 C     == Routine arguments ==
 C     myTime - Current time of simulation ( s )
@@ -39,6 +45,25 @@ C     == Local variables ==
 
 
 #ifdef ALLOW_TIMEAVE
+
+c set arrays to zero if first timestep
+      IF ( myIter .EQ. nIter0+1 ) THEN
+        DO bj = myByLo(myThid), myByHi(myThid)
+         DO bi = myBxLo(myThid), myBxHi(myThid)
+          CALL TIMEAVE_RESET(BIOave,   Nr,  bi, bj, myThid)
+          CALL TIMEAVE_RESET(CARave,   Nr,  bi, bj, myThid)
+          CALL TIMEAVE_RESET(SURave,   1,  bi, bj, myThid)
+          CALL TIMEAVE_RESET(SUROave,   1,  bi, bj, myThid)
+          CALL TIMEAVE_RESET(pCO2ave,   1,  bi, bj, myThid)
+          CALL TIMEAVE_RESET(pHave,   1,  bi, bj, myThid)
+          CALL TIMEAVE_RESET(fluxCO2ave,   1,  bi, bj, myThid)
+          print*,'QQ start timeave'
+          do k=1,Nr
+            DIC_TimeAve(bi,bj,k)=0.d0
+          enddo
+         ENDDO
+        ENDDO
+      ENDIF
 
 C     Dump files and restart average computation if needed
       IF ( DIFFERENT_MULTIPLE(taveFreq,myTime,myTime-deltaTClock)

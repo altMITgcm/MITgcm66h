@@ -78,9 +78,6 @@ c     == global variables ==
 #include "PARAMS.h"
 #include "grdchk.h"
 #include "cost.h"
-#ifdef ALLOW_TANGENTLINEAR_RUN
-#include "g_cost.h"
-#endif
 
 C     !INPUT/OUTPUT PARAMETERS:
 c     == routine arguments ==
@@ -125,6 +122,11 @@ c     == local variables ==
       _RL tmpplot2(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
       _RL tmpplot3(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
 
+#ifdef ALLOW_TANGENTLINEAR_RUN
+      _RL     g_fc
+      common /g_cost_r/ g_fc
+#endif
+
 c     == end of interface ==
 CEOP
 
@@ -147,13 +149,8 @@ cph   Gradient via adjoint has already been computed,
 cph   and so has unperturbed cost function,
 cph   assuming all xx_ fields are initialised to zero.
 
-      ierr_grdchk = 0
-cphadmtlm(
       fcref = fc
-cphadmtlm      fcref = objf_state_final(45,4,1,1)
-cphadmtlm)
-
-      print *, 'ph-check fcref = ', fcref
+      ierr_grdchk = 0
 
       do bj = jtlo, jthi
          do bi = itlo, ithi
@@ -244,19 +241,9 @@ c--
 c--   2. perform tangent linear run
             mytime = starttime
             myiter = niter0
-cphadmtlm(
             g_fc = 0.
-cphadmtlm            do j=1,sny
-cphadmtlm               do i=1,snx
-cphadmtlm                  g_objf_state_final(i,j,1,1) = 0.
-cphadmtlm               enddo
-cphadmtlm            enddo
-cphadmtlm)
             call g_the_main_loop( mytime, myiter, mythid )
-cphadmtlm(
             ftlxxmemo = g_fc
-cphadmtlm            ftlxxmemo = g_objf_state_final(45,4,1,1)
-cphadmtlm)
             _BARRIER
 c--
 c--   3. reset control vector
@@ -294,10 +281,7 @@ c--   forward run with perturbed control vector
             mytime = starttime
             myiter = niter0
             call the_main_loop( mytime, myiter, mythid )
-cphadmtlm(
             fcpertplus = fc
-cphadmtlm            fcpertplus = objf_state_final(45,4,1,1)
-cphadmtlm)
             _BARRIER
                   
 c--   Reset control vector.

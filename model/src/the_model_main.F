@@ -502,13 +502,7 @@ C--   Set model configuration (fixed arrays)
       myCurrentTime = startTime
       myCurrentIter = nIter0
 
-#if ( defined (ALLOW_ADMTLM_RUN) )
-c
-      CALL TIMER_START('ADMTLM_DRIVER          [THE_MODEL_MAIN]',mythid)
-      CALL ADMTLM_DRIVER ( myThid )
-      CALL TIMER_STOP ('ADMTLM_DRIVER          [THE_MODEL_MAIN]',mythid)
-c
-#elif ( defined (ALLOW_ADJOINT_RUN) || \
+#if ( defined (ALLOW_ADJOINT_RUN) || \
       defined (ALLOW_TANGENTLINEAR_RUN) || \
       defined (ALLOW_GRADIENT_CHECK) || \
       defined (ALLOW_ECCO_OPTIMIZATION) )
@@ -528,15 +522,10 @@ c
       CALL COST_DEPENDENT_INIT ( mythid )
       _BARRIER
 
-# if ( defined (ALLOW_TANGENTLINEAR_RUN) )
+#ifndef ALLOW_TANGENTLINEAR_RUN
 c
-      CALL TIMER_START('G_THE_MAIN_LOOP           [TANGENT RUN]',mythid)
-      CALL G_THE_MAIN_LOOP ( myCurrentTime, myCurrentIter, myThid )
-      CALL TIMER_STOP ('G_THE_MAIN_LOOP           [TANGENT RUN]',mythid)
-c
-# elif ( defined (ALLOW_ADJOINT_RUN) || \
-         defined (ALLOW_ECCO_OPTIMIZATION) )
-c
+# if ( defined (ALLOW_ADJOINT_RUN) || \
+       defined (ALLOW_ECCO_OPTIMIZATION) )
 #  ifdef ALLOW_DIVIDED_ADJOINT
 c-- The following assumes the TAF option '-pure'
       inquire( file='costfinal', exist=exst )
@@ -557,8 +546,14 @@ c--
       CALL ADTHE_MAIN_LOOP ( mythid )
       CALL TIMER_STOP ('ADTHE_MAIN_LOOP          [ADJOINT RUN]', mythid)
 #  endif /* ALLOW_DIVIDED_ADJOINT */
-c
 # endif
+c--
+#else /* ALLOW_TANGENTLINEAR_RUN defined */
+      CALL TIMER_START('G_THE_MAIN_LOOP           [TANGENT RUN]',mythid)
+      CALL G_THE_MAIN_LOOP ( myCurrentTime, myCurrentIter, myThid )
+      CALL TIMER_STOP ('G_THE_MAIN_LOOP           [TANGENT RUN]',mythid)
+#endif /* ALLOW_TANGENTLINEAR_RUN */
+      _BARRIER
 
       _BEGIN_MASTER( mythid )
       IF ( myProcId .eq. 0 .AND. lastdiva ) THEN
@@ -568,18 +563,17 @@ c
       ENDIF
       _END_MASTER( mythid )
       _BARRIER
-c
 
-# ifdef ALLOW_GRADIENT_CHECK
+#ifdef ALLOW_GRADIENT_CHECK
       IF ( useGrdchk .AND. lastdiva ) THEN
          CALL TIMER_START('GRDCHK_MAIN         [THE_MODEL_MAIN]',mythid)
          CALL GRDCHK_MAIN( mythid )
          CALL TIMER_STOP ('GRDCHK_MAIN         [THE_MODEL_MAIN]',mythid)
          _BARRIER
       ENDIF
-# endif
+#endif
 
-#else /* ALL AD-related undef */
+#else /* ALLOW_ADJOINT_RUN undef */
 
 #ifndef DISABLE_DEBUGMODE
       IF (debugMode) CALL DEBUG_CALL('THE_MAIN_LOOP',myThid)
@@ -590,7 +584,7 @@ C--   Call time stepping loop of full model
       CALL THE_MAIN_LOOP( myCurrentTime, myCurrentIter, myThid )
       CALL TIMER_STOP ('THE_MAIN_LOOP          [THE_MODEL_MAIN]',myThid)
 
-#endif /* ALLOW_TANGENTLINEAR_RUN ALLOW_ADJOINT_RUN ALLOW_ADMTLM_RUN */
+#endif /* ALLOW_ADJOINT_RUN */
 
 C--   Sea-ice checkpoint (in case the in-loop checkpoint was missed)
 #ifdef ALLOW_SEAICE

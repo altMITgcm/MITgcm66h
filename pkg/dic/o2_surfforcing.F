@@ -33,6 +33,7 @@ C     == Routine arguments ==
       INTEGER iMin,iMax,jMin,jMax, bi, bj
 
 #ifdef ALLOW_PTRACERS
+#ifdef DIC_ABIOTIC
 
 
 C     == Local variables ==
@@ -119,6 +120,7 @@ C update surface tendencies
            GO2(i,j)= maskC(i,j,1,bi,bj)*FluxO2(i,j)*recip_drF(1) 
           ENDDO
          ENDDO
+#endif
 #endif
 
 

@@ -1,7 +1,6 @@
 #include "CPP_OPTIONS.h"
 #include "GCHEM_OPTIONS.h"
 
-#ifdef ALLOW_FE
 CStartOfInterFace
       SUBROUTINE Fe_CHEM(
      I           bi,bj,iMin,iMax,jMin,jMax,
@@ -73,4 +72,4 @@ C   Ligand,FeL,Fe calculation
 c
         RETURN
         END                      
-#endif
+

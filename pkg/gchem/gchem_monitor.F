@@ -31,8 +31,6 @@ C     === Functions ====
       LOGICAL  DIFFERENT_MULTIPLE
       EXTERNAL DIFFERENT_MULTIPLE
 
-#ifdef ALLOW_PTRACERS
-#ifdef ALLOW_GCHEM
 C     === Local variables ====
       CHARACTER*(MAX_LEN_MBUF) msgBuf   
       CHARACTER*(MAX_LEN_MBUF) suff
@@ -91,9 +89,6 @@ C      Dynamics field monitor finish
        _END_MASTER(myThid)
 
       ENDIF
-
-#endif
-#endif
 
       RETURN
       END
