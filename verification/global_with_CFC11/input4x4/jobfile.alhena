@@ -1,0 +1,27 @@
+#!/usr/bin/sh
+#
+#PBS -l ncpus=32
+#PBS -l host=alhena
+#PBS -l walltime=6:00:00
+#PBS -j oe
+#
+# compile with
+# ../tools/genmake -mpi -platform=o2k -makefile
+
+cd /tmp1/dmenem/release1_50yr/exe0
+mpirun -np 4 mitgcmuv &
+cd /tmp1/dmenem/release1_50yr/exe1
+mpirun -np 4 mitgcmuv &
+cd /tmp1/dmenem/release1_50yr/exe2
+mpirun -np 4 mitgcmuv &
+cd /tmp1/dmenem/release1_50yr/exe3
+mpirun -np 4 mitgcmuv &
+cd /tmp1/dmenem/release1_50yr/exe4
+mpirun -np 4 mitgcmuv &
+cd /tmp1/dmenem/release1_50yr/exe5
+mpirun -np 4 mitgcmuv &
+cd /tmp1/dmenem/release1_50yr/exe6
+mpirun -np 4 mitgcmuv &
+cd /tmp1/dmenem/release1_50yr/exe7
+mpirun -np 4 mitgcmuv &
+wait
