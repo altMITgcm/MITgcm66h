@@ -26,6 +26,12 @@ while ($#allargs)
  case -platform*:
    set platform = ( `echo $arg | sed 's/-platform=//' `)
    breaksw
+ case -rootdir=*:
+   set ROOTDIR = ( `echo $arg | sed 's/-rootdir=//' `)
+   breaksw
+ case -mymods=*:
+   set MYMODS = ( `echo $arg | sed 's/-mymods=//' `)
+   breaksw
  case -mpi:
    echo "Enabling MPI options"
    set USEMPI
@@ -47,12 +53,18 @@ while ($#allargs)
  shift allargs
 end
 
+# Default actions/options
+
+# If platform wasn't specified then determine platform type of the host
 if ($?platform == 0) then
  set platform = (`uname`)
 endif
-if ($?mfile == 0) set mfile = ( Makefile.$platform )
+# If name of makefile wasn't specified then use default "Makefile"
+if ($?mfile == 0) set mfile = ( Makefile )
+
 set mach  = ( `uname -a` )
 echo Operating system: $mach
+
 
 # Directories for source, includes, binaries and executables
 # Note
@@ -60,15 +72,29 @@ echo Operating system: $mach
 #   copy everything in ../eesupp/src, ../model/src,
 #   ../eesupp/inc and ../model/inc into a directory and then
 #   edit the paths below to ./
-set SOURCEDIRS  = ( ../eesupp/src/ ../model/src/ ../diags/src/ ../pkg/*/ )
-set INCLUDEDIRS = ( ./ ../eesupp/inc/ ../model/inc/ ../diags/inc/ ../pkg/*/ )
-set BUILDDIR    = ( ../bin/ )
-set EXEDIR      = ( ../exe/ )
-set EXECUTABLE  = ( mitgcmuv )
+#
+# If -rootdir wasn't specified then assume script is being run from bin
+# but if it was supplied then we should place the executable in the build dir
+if ($?ROOTDIR == 0) then
+  set ROOTDIR = ( .. )
+else
+  if ($?EXEDIR == 0) set EXEDIR = ( ./ )
+endif
+if ($?MYMODS == 0) then
+ set SOURCEDIRS  = ( $ROOTDIR/{eesupp,model,diags}/src/ $ROOTDIR/pkg/[a-z]*/ )
+ set INCLUDEDIRS = ( ./ $ROOTDIR/{eesupp,model,diags}/inc/ $ROOTDIR/pkg/[a-z]*/ )
+else
+ set SOURCEDIRS  = ( $ROOTDIR/{eesupp,model,diags}/src/ $ROOTDIR/pkg/[a-z]*/ $MYMODS/ )
+ set INCLUDEDIRS = ( ./ $MYMODS/ $ROOTDIR/{eesupp,model,diags}/inc/ $ROOTDIR/pkg/[a-z]*/ )
+endif
+if ($?BUILDDIR == 0) set BUILDDIR = ( ./ )
+if ($?EXEDIR == 0) set EXEDIR = ( $ROOTDIR/exe/ )
+if ($?EXECUTABLE == 0) set EXECUTABLE  = ( mitgcmuv )
+if ($?TOOLSDIR == 0) set TOOLSDIR = ( $ROOTDIR/tools/ )
 
 # This is the generic configuration.
 # Platform specific options are chosen below
-set LN         = ( 'ln -sf' )
+set LN         = ( 'ln -s' )
 set CPP        = ( '/lib/cpp -P' )
 set KPP        = (  )
 set FC         = ( 'f77' )
@@ -172,7 +198,7 @@ switch ($platform$USEMPI)
     set LIBS       = ( '-lmpi' )
     breaksw
   case SunOS:
-    set LN         = ( '/usr/bin/ln -fs' )
+    set LN         = ( '/usr/bin/ln -s' )
     set CPP        = ( '/usr/ccs/lib/cpp -P' )
     set DEFINES    = ( ${DEFINES} '-DTARGET_SUN -DWORDLENGTH=4' )
     set FFLAGS     = ( '-stackvar -explicitpar -vpara -e -u -noautopar')
@@ -181,7 +207,7 @@ switch ($platform$USEMPI)
     set NOOPTFILES = ( 'barrier.F different_multiple.F external_fields_load.F ini_vertical_grid.F')
     breaksw
   case SunOS+mpi:
-    set LN         = ( '/usr/bin/ln -fs' )
+    set LN         = ( '/usr/bin/ln -s' )
     set CPP        = ( '/usr/ccs/lib/cpp -P' )
     set DEFINES    = ( ${DEFINES} '-DTARGET_SUN -DWORDLENGTH=4' )
     set INCLUDES   = ( '-I/usr/local/mpi/include' )
@@ -222,7 +248,7 @@ switch ($platform$USEMPI)
     set LIBS       = ( '-L/usr/local/lib/LINUX/ch_p4/ -lfmpich -lmpich' )
     set INCLUDES   = ( '-I/usr/local/include' )
   case Linux:
-    set LN         = ( '/bin/ln -fs' )
+    set LN         = ( '/bin/ln -s' )
     set CPP        = ( '/lib/cpp  -traditional -P' )
     set DEFINES    = ( ${DEFINES} '-D_BYTESWAPIO -DWORDLENGTH=4' )
     set FC         = ( 'g77' )
@@ -239,7 +265,7 @@ switch ($platform$USEMPI)
      set LIBS       = ( '-L/usr/local/lib/LINUX/ch_p4/ -lfmpich -lmpich' )
     endif
   case Linux+pgi:
-    set LN         = ( '/bin/ln -fs' )
+    set LN         = ( '/bin/ln -s' )
     set CPP        = ( '/lib/cpp -traditional -P' )
     set DEFINES    = ( ${DEFINES} '-DWORDLENGTH=4' )
     set FC         = ( 'pgf77' )
@@ -259,7 +285,7 @@ switch ($platform$USEMPI)
   case sn7113:
     set FC         = ( 'f90' )
     set LINK       = ( 'f90' )
-    set LN         = ( '/bin/ln -fs' )
+    set LN         = ( '/bin/ln -s' )
     set CPP        = ( '/opt/ctl/bin/cpp -N -P' )
     set DEFINES    = ( ${DEFINES} '-DTARGET_CRAY_VECTOR -DWORDLENGTH=4' )
     set FFLAGS     = ( '-m3 -Rabc -N 132')
@@ -271,7 +297,7 @@ switch ($platform$USEMPI)
   case sn3002:
     set FC         = ( 'f90' )
     set LINK       = ( 'f90' )
-    set LN         = ( '/bin/ln -fs' )
+    set LN         = ( '/bin/ln -s' )
     set CPP        = ( '/opt/ctl/bin/cpp -N -P' )
     set DEFINES    = ( ${DEFINES} '-DTARGET_CRAY_VECTOR -DWORDLENGTH=4' )
     set FFLAGS     = ( '-m3 -Rabc -ei -eI -s cf77types -N 132')
@@ -362,11 +388,13 @@ cat >> ${mfile} <<EOF
 # LINK         : Command for link editor program
 # LIBS         : Library flags /or/ additional optimization/debugging flags
 
-BUILDDIR   = ${BUILDDIR}  
-SOURCEDIRS = ${SOURCEDIRS}
+ROOTDIR     = ${ROOTDIR}
+BUILDDIR    = ${BUILDDIR}  
+SOURCEDIRS  = ${SOURCEDIRS}
 INCLUDEDIRS = ${INCLUDEDIRS}
-EXEDIR     = ${EXEDIR}
-EXECUTABLE = \$(EXEDIR)${EXECUTABLE}
+EXEDIR      = ${EXEDIR}
+EXECUTABLE  = \$(EXEDIR)${EXECUTABLE}
+TOOLSDIR    = ${TOOLSDIR}
 
 EOF
 
@@ -408,7 +436,7 @@ cat >> ${mfile} <<EOF
 # Unix ln (link)
 LN = ${LN}
 # C preprocessor
-CPP = cat \$< | ../tools/set64bitConst.sh | ${CPP}
+CPP = cat \$< | \$(TOOLSDIR)/set64bitConst.sh | ${CPP}
 # Special preprocessor (KAP on DECs, FPP on Crays)
 KPP = ${KPP}
 # Fortran compiler
@@ -449,8 +477,8 @@ cat >> ${mfile} <<EOF
 all: \$(EXECUTABLE)
 \$(EXECUTABLE): \$(OBJFILES)
 	\$(LINK) -o \$@ \$(FFLAGS) \$(FOPTIM) \$(OBJFILES) \$(LIBS)
-links:
-	@-\$(LN) $SRCSTARS .
+links: \$(SRCFILES)
+#	@-\$(LN) $SRCSTARS .
 depend:
 	@make links
 	makedepend -o .f \$(INCLUDES) \$(SRCFILES)
@@ -465,8 +493,8 @@ Clean:
 	-rm Makefile.bak
 CLEAN:
 	@make Clean
-	-find ../verification/*/input/ -name "*.meta" -exec rm {} \;
-	-find ../verification/*/input/ -name "*.data" -exec rm {} \;
+	-find \$(ROOTDIR)/verification/*/input/ -name "*.meta" -exec rm {} \;
+	-find \$(ROOTDIR)/verification/*/input/ -name "*.data" -exec rm {} \;
 	-rm \$(EXECUTABLE)
 
 # The normal chain of rules is (  .F - .f - .o  )
@@ -492,7 +520,16 @@ foreach sf ($NOOPTFILES)
  echo "${fname:r}.o: ${fname:r}.f" >> ${mfile}
  echo '	$(FC) $(FFLAGS) $(NOOPTFLAGS) -c $<' >> ${mfile}
 end
-echo >> ${mfile}
+echo "" >> ${mfile}
+
+foreach dr ($SOURCEDIRS)
+set srcfiles=(`cd $dr; ls *.[cF]`:)
+echo "# These are the rules for creating the links from $dr" >> ${mfile}
+echo $srcfiles >> ${mfile}
+echo '\t$(LN) '$dr'$@ $@' >> ${mfile}
+end
+
+echo "" >> ${mfile}
 echo "# DO NOT DELETE" >> ${mfile}
 
 exit
