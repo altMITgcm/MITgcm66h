@@ -61,6 +61,8 @@ C     Zero out the qdiag array which accumulates during integration
       ENDDO
 
 
+#ifdef DIAGNOSTICS_HAS_PICKUP
+
 C     Add pickup capability
       IF (diag_pickup_read) THEN
 
@@ -166,6 +168,8 @@ C         Read ndiag()
 #endif /* ALLOW_MDSIO */
 
       ENDIF
+
+#endif /* DIAGNOSTICS_HAS_PICKUP */
 
       RETURN 
       END

@@ -37,6 +37,7 @@ C     myThid  :: Number of this instance
       INTEGER myThid
 
 #ifdef ALLOW_DIAGNOSTICS
+#ifdef DIAGNOSTICS_HAS_PICKUP
 
 C     !LOCAL VARIABLES:
 C     fn      :: character buffer for creating filename
@@ -188,6 +189,7 @@ C         Write ndiag()
       ENDIF
 
 #endif /* ALLOW_DIAGNOSTICS */
+#endif /* DIAGNOSTICS_HAS_PICKUP */
 
       RETURN
       END
