@@ -82,7 +82,7 @@ C     I, J, N     - Loop counters ( N counts CG iterations )
 
 
 CcnhDebugStarts
-      CHARACTER*(MAX_LEN_FNAM) suff
+C     CHARACTER*(MAX_LEN_FNAM) suff
 CcnhDebugEnds
 
 
