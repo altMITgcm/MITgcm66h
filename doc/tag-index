@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o New S/R for diagnostic of bottom pressure (phi0surf was missing in c48d_post)
+
 checkpoint48d_post
 o in preparation for r*:
  a) use pre-computed gradient of hydrostatic potential:
