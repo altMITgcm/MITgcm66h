@@ -108,6 +108,8 @@ c
       logical alarm
       external alarm
 
+      save
+
 c     save lwdt,lwdtclr,swdt,swdtclr,turbu,turbv,turbt,turbq
 c     save moistu,moistv,moistt,moistq
 c     save radswg,swgclr,fdirpar,fdifpar,osr,osrclr,tg0,radlwg

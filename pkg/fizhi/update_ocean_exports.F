@@ -138,6 +138,8 @@ C--------- Variable Initialization ---------------------------------
       data first /.true./
       data error /.false./
 
+      save
+
 c  save header info
 c     save imbc,jmbc,npxbc,npybc,lat0,lon0,ndatebc,undef,nymdbc,nhmsbc
 c     save nymdbc1, nymdbc2, nhmsbc1, nhmsbc2
