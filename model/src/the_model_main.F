@@ -463,11 +463,9 @@ C     == Global variables ===
 # include "CG3D.h"
 #endif
 
-#ifdef ALLOW_ECCO_OPTIMIZATION
-# include "optim.h"
-#endif
 #ifdef ALLOW_AUTODIFF_TAMC
 # include "tamc.h"
+# include "optim.h"
 #endif
 
 C     !INPUT/OUTPUT PARAMETERS:
