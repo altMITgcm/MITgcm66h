@@ -441,6 +441,14 @@ C--   compute the future surface level thickness according to etaH(n+1)
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       IF ( staggerTimeStep ) THEN
+C--   do exchanges of U,V (needed for multiDim) when using stagger time-step :
+#ifdef ALLOW_DEBUG
+        IF ( debugLevel .GE. debLevB )
+     &    CALL DEBUG_CALL('DO_STAGGER_FIELDS_EXCH.',myThid)
+#endif
+        CALL TIMER_START('BLOCKING_EXCHANGES  [FORWARD_STEP]',myThid)
+        CALL DO_STAGGER_FIELDS_EXCHANGES( myTime, myIter, myThid )
+        CALL TIMER_STOP ('BLOCKING_EXCHANGES  [FORWARD_STEP]',myThid)
 
 #ifdef ALLOW_DEBUG
         IF ( debugLevel .GE. debLevB ) 

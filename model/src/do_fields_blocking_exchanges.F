@@ -48,8 +48,10 @@ c     _EXCH_XYZ_R8( gTNm1 , myThid )
 c     _EXCH_XYZ_R8( gSNm1 , myThid )
 c     _EXCH_XYZ_R8( uVel , myThid )
 c     _EXCH_XYZ_R8( vVel , myThid )
-      CALL EXCH_UV_XYZ_RL(uVel,vVel,.TRUE.,myThid)
-      _EXCH_XYZ_R8( wVel , myThid )
+      IF ( .NOT.staggerTimeStep .OR. .NOT.useMultiDimAdvec ) THEN
+       CALL EXCH_UV_XYZ_RL(uVel,vVel,.TRUE.,myThid)
+       _EXCH_XYZ_R8( wVel , myThid )
+      ENDIF
 c     IF ( exactConserv .AND. implicDiv2Dflow .NE. 0. _d 0)
 c    & _EXCH_XY_R8( etaN , myThid )
       _EXCH_XYZ_R8( theta, myThid )
