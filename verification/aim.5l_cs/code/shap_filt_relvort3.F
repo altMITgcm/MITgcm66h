@@ -1,8 +1,7 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
-#include "CPP_OPTIONS.h"
+#include "SHAP_FILT_OPTIONS.h"
 
       SUBROUTINE SHAP_FILT_RELVORT3( 
      I        bi,bj,k,
