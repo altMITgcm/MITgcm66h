@@ -174,8 +174,8 @@ C (This is a place-holder for the active/passive mechanism
            if (globalFile) then
             iG = myXGlobalLo-1 + (bi-1)*sNx
             jG = (myYGlobalLo-1)/sNy + (bj-1)
-            irec=1 + INT(iG/sNx) + nSx*nPx*jG + nSx*nPx*nSy*nPy*(k-1)
-     &           + nSx*nPx*nSy*nPy*nNz*(irecord-1)
+            irec=1 + INT(iG/sNx) + nSx*nPx*jG + nSx*nPx*(k-1)
+     &           + nSx*nPx*nNz*(irecord-1)
            else
             iG = 0
             jG = 0
@@ -412,8 +412,8 @@ C (This is a place-holder for the active/passive mechanism
            if (globalFile) then
             iG = (myXGlobalLo-1)/sNx + (bi-1)
             jG = myYGlobalLo-1 + (bj-1)*sNy
-            irec=1 + INT(jG/sNy) + nSy*nPy*iG + nSx*nPx*nSy*nPy*(k-1)
-     &           + nSx*nPx*nSy*nPy*nNz*(irecord-1)
+            irec=1 + INT(jG/sNy) + nSy*nPy*iG + nSy*nPy*(k-1)
+     &           + nSy*nPy*nNz*(irecord-1)
            else
             iG = 0
             jG = 0
@@ -619,8 +619,8 @@ C If we are writing to a tiled MDS file then we open each one here
            if (globalFile) then
             iG = myXGlobalLo-1 + (bi-1)*sNx
             jG = (myYGlobalLo-1)/sNy + (bj-1)
-            irec=1 + INT(iG/sNx) + nSx*nPx*jG + nSx*nPx*nSy*nPy*(k-1)
-     &           + nSx*nPx*nSy*nPy*nNz*(irecord-1)
+            irec=1 + INT(iG/sNx) + nSx*nPx*jG + nSx*nPx*(k-1)
+     &           + nSx*nPx*nNz*(irecord-1)
            else
             iG = 0
             jG = 0
@@ -837,8 +837,8 @@ C If we are writing to a tiled MDS file then we open each one here
            if (globalFile) then
             iG = (myXGlobalLo-1)/sNx + (bi-1)
             jG = myYGlobalLo-1 + (bj-1)*sNy
-            irec=1 + INT(jG/sNy) + nSy*nPy*iG + nSx*nPx*nSy*nPy*(k-1)
-     &           + nSx*nPx*nSy*nPy*nNz*(irecord-1)
+            irec=1 + INT(jG/sNy) + nSy*nPy*iG + nSy*nPy*(k-1)
+     &           + nSy*nPy*nNz*(irecord1)
            else
             iG = 0
             jG = 0
