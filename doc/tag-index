@@ -3,6 +3,17 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint25
+ o updates for OBCs and NH
+ o dramatically reduced memory usage
+ o added "JAM" routines for use on Artic network
+ o parameterization of convection by implicit vertical diffusion
+ o added a diagnostic of convective index
+ o moved call to calc_divg_hat() from dynamics() to solve_for_pressure()
+   (this is was partly for OBCs and NH but also in anticipation of
+    an explicit free-surface option)
+ o initial state input files for U and V
+
 checkpoint24
  o Removed some spurious "REAL"s
  o Updated KPP to latest version from JPL
