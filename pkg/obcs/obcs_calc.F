@@ -255,7 +255,7 @@ c                OBWv(J,K,bi,bj) = 0.
             J_obc=OB_Jn(I,bi,bj)
             IF (J_obc.ne.0) THEN
 c                OBNu(I,K,bi,bj) = 0.
-                OBWv(I,K,bi,bj) = OBNv(I,K,bi,bj) + Tr_T
+                OBNv(I,K,bi,bj) = OBNv(I,K,bi,bj) + Tr_T
             ENDIF
           ENDDO
         ENDDO
