@@ -3,6 +3,11 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint24
+ o Removed some spurious "REAL"s
+ o Updated KPP to latest version from JPL
+ o Added a COS(latitude) in horizontal viscosity
+
 checkpoint23
  o Added del^4 diffusion for salt and temperature
  o Multiple minor fixes (implicit none's, arguments to global_sum, etc.)
