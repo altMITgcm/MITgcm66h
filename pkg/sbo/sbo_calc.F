@@ -1,4 +1,5 @@
-C $Header:
+C $Header$
+C $Name$
 
 #include "SBO_OPTIONS.h"
 

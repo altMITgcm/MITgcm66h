@@ -1,14 +1,6 @@
 C $Header$
 
-#include "CPP_OPTIONS.h"
-
-#undef  SAFE_IO
-
-#ifdef SAFE_IO
-#define _NEW_STATUS 'new'
-#else
-#define _NEW_STATUS 'unknown'
-#endif
+#include "MDSIO_OPTIONS.h"
 
 C=======================================================================
       SUBROUTINE MDSREADFIELDXZ_LOC(

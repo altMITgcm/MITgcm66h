@@ -1,5 +1,8 @@
 C $Header$
 C $Name$
+
+#include "ZONAL_FILT_OPTIONS"
+
 C     SUBROUTINE RFFTB (N,R,WSAVE)
 C     DIMENSION       R(1)       ,WSAVE(1)
 C     IF (N .EQ. 1) RETURN
@@ -10,6 +13,8 @@ C     END
 
       IMPLICIT REAL*8 (A-H,O-Z) 
       IMPLICIT INTEGER (I-N)
+
+#ifdef ALLOW_ZONAL_FILT
 
       DIMENSION       CC(IDO,2,L1)           ,CH(IDO,L1,2)           ,
      1                WA1(1)
@@ -1841,4 +1846,7 @@ C     END
          L1 = L2
   110 CONTINUE
       RETURN
+
+#endif /* ALLOW_ZONAL_FILT */
+
       END

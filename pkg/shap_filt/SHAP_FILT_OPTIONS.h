@@ -3,6 +3,11 @@ C $Name$
 
 C Header file for package pkg/shap_filt
 
+#ifndef SHAP_FILT_OPTIONS_H
+#define SHAP_FILT_OPTIONS_H
+#include "PACKAGES_CONF.h"
+#ifdef ALLOW_SHAP_FILT
+
 #include "CPP_OPTIONS.h"
 
 C Use [1-d_yy^n)(1-d_xx^n] instead of [1-d_xx^n-d_yy^n]
@@ -26,3 +31,5 @@ C   it is replaced by parameter "Shap_noSlip=1." in new S/R.
 #undef  NO_SLIP_SHAP
 #endif
 
+#endif /* ALLOW_SHAP_FILT */
+#endif /* SHAP_FILT_OPTIONS_H */

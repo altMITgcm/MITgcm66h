@@ -1,7 +1,13 @@
 C $Header$
-C
+C $Name$
+
+#ifndef EXF_OPTIONS_H
+#define EXF_OPTIONS_H
+#include "PACKAGE.h"
+#ifdef ALLOW_EXF
+
 #include "CPP_OPTIONS.h"
-C 
+
 C CPP flags controlling which code is included in the files that
 C will be compiled.
 C
@@ -130,3 +136,6 @@ c         |     |     |     |     | Compute open-water ustress, vstress,
 c         |     |     |     |     | hflux, swflux, and evap.
 c
 c   ====================================================================
+
+#endif /* ALLOW_EXF */
+#endif /* EXF_OPTIONS_H */

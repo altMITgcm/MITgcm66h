@@ -5,15 +5,18 @@ C     | KPP_OPTIONS.h                                            |
 C     | o CPP options file for KPP package.                      |
 C     |==========================================================|
 C     | Use this file for selecting options within the KPP       |
-C     | package.  KPP is enabled with ALLOW_KPP in CPP_OPTIONS.h |
+C     | package.                                                 |
 C     \==========================================================/
+
+#ifndef KPP_OPTIONS_H
+#define KPP_OPTIONS_H
+#include "PACKAGES_CONF.h"
+#ifdef ALLOW_KPP
 
 #include "CPP_OPTIONS.h"
 
 C o Set precision for KPP variables (Real*4 or Real*8)
 #define _KPP_RL Real*8
-
-#ifdef ALLOW_KPP
 
 C o When set, use exchange calls rather than recomputation
 C   to obtain KPP parameters in overlap region.  This option
@@ -64,3 +67,4 @@ C o Include/exclude KPP non/local transport terms
 #define KPP_GHAT
 
 #endif /* ALLOW_KPP */
+#endif /* KPP_OPTIONS_H */
