@@ -273,6 +273,9 @@ SRC_MODEL	= \
 # rules
 #--------------------------------------------------------
 
+small_f:
+	cd $(SOURCE_CODE); $(MAKE) depend; $(MAKE) small_f
+
 allcode:
 	cd $(DEST) ; cat $(SRC_MODEL) >! tamc_code.f
 
@@ -313,13 +316,13 @@ ftlrestore:
 	cp $(PKG)/autodiff/tangentlinear_model.F_template	\
            $(PKG)/autodiff/tangentlinear_model.F
 
-adtamc:  adrestore ftlrestore allcode admodeltamc
+adtamc:  adrestore ftlrestore small_f allcode admodeltamc
 
-adtaf:  adrestore ftlrestore allcode admodeltaf
+adtaf:  adrestore ftlrestore small_f allcode admodeltaf
 
-ftltamc:  adrestore ftlrestore allcode ftlmodeltamc
+ftltamc:  adrestore ftlrestore small_f allcode ftlmodeltamc
 
-ftltaf:  adrestore ftlrestore allcode ftlmodeltaf
+ftltaf:  adrestore ftlrestore small_f allcode ftlmodeltaf
 
 svdtaf:  adrestore ftlrestore allcode svdmodeltaf
 
