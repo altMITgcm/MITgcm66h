@@ -323,7 +323,7 @@ switch ($platform$USEMPI)
     echo "Configuring for SGI Mips"
     set DEFINES    = ( ${DEFINES} '-DTARGET_SGI -DWORDLENGTH=4' )
     set INCLUDES   = ( '-I/usr/local/mpi/include' )
-    set FFLAGS     = ( '-extend_source -mp -mpio -bytereclen -r10000 -mips4' )
+    set FFLAGS     = ( '-extend_source -mp -mpio -bytereclen -r10000 -mips4 -r8 -static' )
     set FOPTIM     = ( '-O3' )
 #   set NOOPTFLAGS = ( '-O0' )
 #   set NOOPTFILES = ( 'barrier.F different_multiple.F ' \
