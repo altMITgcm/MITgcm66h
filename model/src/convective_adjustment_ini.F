@@ -99,13 +99,6 @@ C-      Initialisation of Convection Counter
      &                      + act4*max1*max2*max3
 #endif /* ALLOW_AUTODIFF_TAMC */
 
-#ifdef  ALLOW_KPP
-C--       CONVECT not needed with KPP mixing
-        IF ( 
-     &      (.NOT.useKPP)
-     &     ) THEN
-#endif  /* ALLOW_KPP */
-
          IF ( buoyancyRelation .eq. 'OCEANIC' ) THEN
           kTop    =  2
           kBottom = Nr
@@ -203,11 +196,6 @@ C-          Convectively mix passive tracers across interface K
 C--       End DO K=1,Nr
           ENDDO
        
-#ifdef  ALLOW_KPP
-C--     End IF (.NOT.useKPP)
-        ENDIF
-#endif  /* ALLOW_KPP */
-
 C--   End IF (DIFFERENT_MULTIPLE)
       ENDIF
 
