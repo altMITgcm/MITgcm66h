@@ -4,7 +4,6 @@ C $Name$
 #include "DIC_OPTIONS.h"
 #include "GCHEM_OPTIONS.h"
 
-#ifdef ALLOW_FE
 CStartOfInterFace
       SUBROUTINE Fe_CHEM(
      I           bi,bj,iMin,iMax,jMin,jMax,
@@ -37,6 +36,7 @@ C     myThid - Instance number for this innvocation of CALC_GT
       INTEGER myIter,myThid
 CEndOfInterface
 
+#ifdef ALLOW_FE
 
       INTEGER I,J,K
       _RL  lig, FeL
@@ -75,6 +75,6 @@ C   Ligand,FeL,Fe calculation
         ENDDO
        ENDDO    
 c
+#endif 
         RETURN
         END                      
-#endif
