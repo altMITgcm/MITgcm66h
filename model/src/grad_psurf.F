@@ -27,7 +27,7 @@ C     == Local variables ==
 C     Zonal pressure term
       DO j=jMin,jMax
        DO i=iMin,iMax
-        pSurfX(i,j)=rDxC(i,j,bi,bj)*
+        pSurfX(i,j)=_rdxC(i,j,bi,bj)*
      &   (cg2d_x(i,j,bi,bj)-cg2d_x(i-1,j,bi,bj))
      &   *gBaro*rhonil
        ENDDO

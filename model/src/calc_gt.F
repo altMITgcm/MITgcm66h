@@ -104,7 +104,7 @@ C     Advective component of zonal flux
 C     Zonal tracer gradient
       DO j=jMin,jMax
        DO i=iMin,iMax
-        dTdx(i,j) = rdxC(i,j,bi,bj)*
+        dTdx(i,j) = _rdxC(i,j,bi,bj)*
      &  (theta(i,j,k,bi,bj)-theta(i-1,j,k,bi,bj))
        ENDDO
       ENDDO
@@ -156,13 +156,13 @@ C--   Interpolate terms for Redi/GM scheme
       DO j=jMin,jMax
        DO i=iMin,iMax
         dTdx(i,j) = 0.5*( 
-     &   +0.5*(maskW(i+1,j,k,bi,bj)*rdxC(i+1,j,bi,bj)*
+     &   +0.5*(maskW(i+1,j,k,bi,bj)*_rdxC(i+1,j,bi,bj)*
      &           (theta(i+1,j,k,bi,bj)-theta(i,j,k,bi,bj))
-     &        +maskW(i,j,k,bi,bj)*rdxC(i,j,bi,bj)*
+     &        +maskW(i,j,k,bi,bj)*_rdxC(i,j,bi,bj)*
      &           (theta(i,j,k,bi,bj)-theta(i-1,j,k,bi,bj)))
-     &   +0.5*(maskW(i+1,j,km1,bi,bj)*rdxC(i+1,j,bi,bj)*
+     &   +0.5*(maskW(i+1,j,km1,bi,bj)*_rdxC(i+1,j,bi,bj)*
      &           (theta(i+1,j,km1,bi,bj)-theta(i,j,km1,bi,bj))
-     &        +maskW(i,j,km1,bi,bj)*rdxC(i,j,bi,bj)*
+     &        +maskW(i,j,km1,bi,bj)*_rdxC(i,j,bi,bj)*
      &           (theta(i,j,km1,bi,bj)-theta(i-1,j,km1,bi,bj)))
      &       )
        ENDDO

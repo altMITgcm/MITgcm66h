@@ -64,8 +64,8 @@ C                         into fluxUD.
 C--    Calculate tracer cell face open areas
       DO j=jMin,jMax
        DO i=iMin,iMax
-        xA(i,j) = dyG(i,j,bi,bj)*dzF(k)*hFacW(i,j,k,bi,bj)
-        yA(i,j) = _dxG(i,j,bi,bj)*dzF(k)*hFacS(i,j,k,bi,bj)
+        xA(i,j) = _dyG(i,j,bi,bj)*dzF(k)*_hFacW(i,j,k,bi,bj)
+        yA(i,j) = _dxG(i,j,bi,bj)*dzF(k)*_hFacS(i,j,k,bi,bj)
        ENDDO
       ENDDO
 
@@ -92,9 +92,9 @@ C--    Calculate mask for tracer cells  (0 => land, 1 => water)
       DO j=jMin,jMax
        DO i=iMin,iMax
         maskC(i,j) = 1.
-        if (hFacC(i,j,k,bi,bj).eq.0.) maskC(i,j)=0.
+        if (_hFacC(i,j,k,bi,bj).eq.0.) maskC(i,j)=0.
         maskUp(i,j) = 1.
-        if (hFacC(i,j,kM1,bi,bj).eq.0.) maskUp(i,j)=0.
+        if (_hFacC(i,j,kM1,bi,bj).eq.0.) maskUp(i,j)=0.
        ENDDO
       ENDDO
 

@@ -100,7 +100,7 @@ C     Diffusive component of zonal flux
       DO j=jMin,jMax
        DO i=iMin,iMax
         df(i,j) = 
-     &   -diffKhS*xA(i,j)*rdxC(i,j,bi,bj)
+     &   -diffKhS*xA(i,j)*_rdxC(i,j,bi,bj)
      &   *(salt(i,j,k,bi,bj)-salt(i-1,j,k,bi,bj))
        ENDDO
       ENDDO
