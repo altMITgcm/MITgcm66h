@@ -154,7 +154,7 @@ c             Short wave radiative flux.
 
 #ifdef ALLOW_RUNOFF
 c             Runoff.
-              if ( (runoff(i,j,bi,bj) .LT. -5.E-8 .OR.
+              if ( (runoff(i,j,bi,bj) .LT. 0. .OR.
      &             runoff(i,j,bi,bj) .GT. 1.E-6 ) .AND.
      &             hFacC(i,j,1,bi,bj) .NE. 0. ) then
                  print *, 'EXF WARNING: runoff out of range for i,j= ',

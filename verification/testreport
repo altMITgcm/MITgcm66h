@@ -881,13 +881,15 @@ for dir in $TESTDIRS ; do
     fout=
     if test "x$ADM" = x ; then
 	fout=$dir"/results/output.txt"
-	check_for_add_mon_output  $fout
     else
 	fout=$dir"/results_ad/output.txt_adm"
     fi
     if test ! -r $fout ; then
 	echo "can't read \"$fout\" -- skipping $dir"
 	continue
+    fi
+    if test "x$ADM" = x ; then
+	check_for_add_mon_output  $fout
     fi
 
     # Check for additional types of monitor output
