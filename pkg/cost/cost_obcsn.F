@@ -238,8 +238,8 @@ c--         Determine the weights to be used.
      &               + wbaro*cosphi(i,j,bi,bj)
      &                 *tmpx*tmpx
      &                 *maskxz(i,1,bi,bj)
-                print*,'S bt fctile',i,j,wbaro,
-     &                 barofield(i,bi,bj),fctile
+cgg                print*,'S bt fctile',i,j,wbaro,
+cgg     &                 barofield(i,bi,bj),fctile
               enddo
             endif
 
@@ -253,7 +253,7 @@ cgg                 if (maskS(i,j+jp1,k,bi,bj) .ne. 0.) then
      &                 *tmpx*tmpx
      &                 *maskxz(i,k,bi,bj)
 cgg                endif
-                print*,'S fctile',fctile
+cgg                print*,'S fctile',fctile
               enddo
             enddo
 

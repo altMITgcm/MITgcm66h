@@ -212,7 +212,7 @@ c--         Determine the weights to be used.
      &               + wbaro*cosphi(i,j,bi,bj)
      &                 *tmpx*tmpx
      &                 *maskyz(j,1,bi,bj)
-                print*,'fctile barotropic W',fctile
+cgg                print*,'fctile barotropic W',fctile
               enddo
             endif
 

@@ -96,4 +96,9 @@ cgg   Would prefer to calculate this before the actual run.
       call cost_salt  ( myiter, mytime, mythid )
 #endif
 
+#if   (defined (ALLOW_OBCS_COST_CONTRIBUTION) && \
+       defined (OBCS_AGEOS_COST_CONTRIBUTION))
+      call cost_obcs_ageos ( myiter,mytime, mythid)
+#endif
+
       end

@@ -5,11 +5,7 @@ C $Header$
 # include "OBCS_OPTIONS.h"
 #endif
 
-      subroutine cost_obcs_ageos(
-     I                       myiter,
-     I                       mytime,
-     I                       mythid
-     &                     )
+      subroutine cost_obcs_ageos( myiter, mytime, mythid )
 
 c     ==================================================================
 c     SUBROUTINE cost_obcs_ageos
@@ -83,10 +79,6 @@ c     == local variables ==
       _RL yzdvel2   (1-oly:sny+oly,nr,nsx,nsy)
       _RL maskxzageos   (1-olx:snx+olx,nr,nsx,nsy)
       _RL maskyzageos   (1-oly:sny+oly,nr,nsx,nsy)
-cgg      _RL maskxzC   (1-olx:snx+olx,nr,nsx,nsy)
-cgg      _RL maskyzC   (1-oly:sny+oly,nr,nsx,nsy)
-cgg      _RL maskxzS   (1-olx:snx+olx,nr,nsx,nsy)
-cgg      _RL maskyzW   (1-oly:sny+oly,nr,nsx,nsy)
       _RL dummy
 
       character*(80) fnametheta
@@ -149,53 +141,40 @@ c--   Read tiled data.
         ilvvel = ilnblnk( vbarfile )
         write(fnamevvel(1:80),'(2a,i10.10)')
      &    vbarfile(1:ilvvel),'.',optimcycle
-      else
-        print*
-        print*,' cost_obcs_ageos: optimcycle has a wrong value.'
-        print*,'             optimcycle = ',optimcycle
-        print*
-        stop   '  ... stopped in cost_obcs_ageos.'
       endif
 
       fcthread = 0. _d 0
       fctile   = 0. _d 0
 
 cgg   Code safe: always initialize to zero.
-        do bj = jtlo,jthi
-          do bi = itlo,ithi
-            do k = 1,nr
-              do i = 1-olx,snx+olx
-                maskxzageos(i,k,bi,bj) = 0. _d 0
-                xzdvel1(i,k,bi,bj) = 0. _d 0
-                xzdvel2(i,k,bi,bj) = 0. _d 0
-                xzgrdrho(i,k,bi,bj) = 0. _d 0
-              enddo
+      do bj = jtlo,jthi
+        do bi = itlo,ithi
+          do k = 1,nr
+            do i = 1-olx,snx+olx
+              maskxzageos(i,k,bi,bj) = 0. _d 0
+              xzdvel1(i,k,bi,bj)     = 0. _d 0
+              xzdvel2(i,k,bi,bj)     = 0. _d 0
+              xzgrdrho(i,k,bi,bj)    = 0. _d 0
             enddo
-          enddo
-        enddo
-
-        do bj = jtlo,jthi
-          do bi = itlo,ithi
-            do k = 1,nr
-              do j = 1-oly,sny+oly
-                maskyzageos(j,k,bi,bj) = 0. _d 0
-                yzdvel1(j,k,bi,bj) = 0. _d 0
-                yzdvel2(j,k,bi,bj) = 0. _d 0
-                yzgrdrho(j,k,bi,bj) = 0. _d 0
-              enddo
-            enddo
-          enddo
-        enddo
-
-        do bj = jtlo,jthi
-          do bi = itlo,ithi
             do j = 1-oly,sny+oly
-              do i = 1-olx,snx+olx
-                rholoc(i,j,bi,bj) = 0. _d 0
-              enddo
+              maskyzageos(j,k,bi,bj) = 0. _d 0
+              yzdvel1(j,k,bi,bj)     = 0. _d 0
+              yzdvel2(j,k,bi,bj)     = 0. _d 0
+              yzgrdrho(j,k,bi,bj)    = 0. _d 0
             enddo
           enddo
         enddo
+      enddo
+
+      do bj = jtlo,jthi
+        do bi = itlo,ithi
+          do j = 1-oly,sny+oly
+            do i = 1-olx,snx+olx
+              rholoc(i,j,bi,bj) = 0. _d 0
+            enddo
+          enddo
+        enddo
+      enddo
 
 c--   Loop over records.
       do irec = 1,nmonsrec
@@ -236,17 +215,6 @@ cgg     Minor problem : grad T,S needs overlap values.
 #ifdef ALLOW_OBCSN_CONTROL
             jp1 = 0
 
-c--     Get mask information. Doesn't really have to read every time.
-cgg          call active_read_xz( 'maskobcsn', maskxzC, 
-cgg     &                           1,
-cgg     &                         doglobalread, ladinit, 0,
-cgg     &                         mythid, dummy )
-
-cgg          call active_read_xz( 'maskobcsn', maskxzS, 
-cgg     &                           4,
-cgg     &                         doglobalread, ladinit, 0,
-cgg     &                         mythid, dummy )
-
 cgg    Make a mask for the velocity shear comparison.
             do k = 1,nr-1
               do i = imin, imax
@@ -256,10 +224,6 @@ cgg    All these points need to be wet.
                   maskxzageos(i,k,bi,bj) = 0.
                 else
                   maskxzageos(i,k,bi,bj) = 
-cgg     &       maskxzC(i,k,bi,bj)*maskxzC(i+1,k,bi,bj) *
-cgg     &       maskxzC(i-1,k,bi,bj)*maskxzC(i,k+1,bi,bj)*
-cgg     &       maskxzC(i-1,k+1,bi,bj)*maskxzC(i+1,k+1,bi,bj)*
-cgg     &       maskxzS(i,k,bi,bj)*maskxzS(i,k+1,bi,bj)
      &       hfacC(i,j+jp1,k,bi,bj)*hfacC(i+1,j+jp1,k,bi,bj) *
      &       hfacC(i-1,j+jp1,k,bi,bj)*hfacC(i,j+jp1,k+1,bi,bj)*
      &       hfacC(i-1,j+jp1,k+1,bi,bj)*hfacC(i+1,j+jp1,k+1,bi,bj)*
@@ -270,7 +234,7 @@ cgg     &       maskxzS(i,k,bi,bj)*maskxzS(i,k+1,bi,bj)
     
             do k = 1,nr
               call find_rho(bi,bj,imin,imax,jmin,jmax,k,k,
-     &                      eosType,tbar,sbar,rholoc,mythid)
+     &                      tbar,sbar,rholoc,mythid)
               _EXCH_XY_R8(rholoc , myThid)
 
 cgg   Compute centered difference horizontal gradient on bdy.
@@ -299,27 +263,16 @@ cgg         Please get rid of the "4" ASAP. Ridiculous.
      &          (xzdvel2(i,k,bi,bj) - xzdvel1(i,k,bi,bj))*
      &          (xzdvel2(i,k,bi,bj) - xzdvel1(i,k,bi,bj))
       if (maskxzageos(i,k,bi,bj) .ne. 0) then
-      print*,'XX shear,geos shear',xzdvel1(i,k,bi,bj),xzdvel2(i,k,bi,bj)
-                print*,'i,j,k,fctile N',i,j,k,fctile
+cgg      print*,'XX shear,geos shear',xzdvel1(i,k,bi,bj),xzdvel2(i,k,bi,bj)
+cgg      print*,'i,j,k,fctile N',i,j,k,fctile
       endif
               enddo
             enddo
 c--         End of loop over layers.
-#endif
+#endif /* ALLOW_OBCSN_CONTROL */
 
 #ifdef ALLOW_OBCSS_CONTROL
             jp1 = 1
-
-c--     Get mask information. Doesn't really have to read every time.
-cgg          call active_read_xz( 'maskobcss', maskxzC, 
-cgg     &                           1,
-cgg     &                         doglobalread, ladinit, 0,
-cgg     &                         mythid, dummy )
-
-cgg          call active_read_xz( 'maskobcss', maskxzS, 
-cgg     &                           4,
-cgg     &                         doglobalread, ladinit, 0,
-cgg     &                         mythid, dummy )
 
 cgg    Make a mask for the velocity shear comparison.
             do k = 1,nr-1
@@ -330,10 +283,6 @@ cgg    Make a mask for the velocity shear comparison.
                 else
 cgg    All these points need to be wet. 
                   maskxzageos(i,k,bi,bj) = 
-cgg     &       maskxzC(i,k,bi,bj)*maskxzC(i+1,k,bi,bj) *
-cgg     &       maskxzC(i-1,k,bi,bj)*maskxzC(i,k+1,bi,bj)*
-cgg     &       maskxzC(i-1,k+1,bi,bj)*maskxzC(i+1,k+1,bi,bj)*
-cgg     &       maskxzS(i,k,bi,bj)*maskxzS(i,k+1,bi,bj)
      &       hfacC(i,j+jp1,k,bi,bj)*hfacC(i+1,j+jp1,k,bi,bj) *
      &       hfacC(i-1,j+jp1,k,bi,bj)*hfacC(i,j+jp1,k+1,bi,bj)*
      &       hfacC(i-1,j+jp1,k+1,bi,bj)*hfacC(i+1,j+jp1,k+1,bi,bj)*
@@ -345,7 +294,7 @@ cgg     &       maskxzS(i,k,bi,bj)*maskxzS(i,k+1,bi,bj)
             do k = 1,nr
 
               call find_rho(bi,bj,imin,imax,jmin,jmax,k,k,
-     &                      eosType,tbar,sbar,rholoc,mythid)
+     &                      tbar,sbar,rholoc,mythid)
               _EXCH_XY_R8(rholoc , myThid)
 
 cgg   Compute centered difference horizontal gradient on bdy.
@@ -384,21 +333,10 @@ c--         End of loop over layers.
 #ifdef ALLOW_OBCSW_CONTROL
             ip1 = 1
 
-c--     Get mask information. Doesn't really have to read every time.
-cgg          call active_read_yz( 'maskobcsw', maskyzC, 
-cgg     &                           1,
-cgg     &                         doglobalread, ladinit, 0,
-cgg     &                         mythid, dummy )
-
-cgg          call active_read_yz( 'maskobcsw', maskyzW, 
-cgg     &                           3,
-cgg     &                         doglobalread, ladinit, 0,
-cgg     &                         mythid, dummy )
-
 cgg    Make a mask for the velocity shear comparison.
             do k = 1,nr-1
               do j = jmin, jmax
-                i = ob_iw(i,bi,bj)
+                i = ob_iw(j,bi,bj)
 cgg    All these points need to be wet.
                 if (i.eq. 0) then
                   maskyzageos(j,k,bi,bj) = 0.
@@ -415,7 +353,7 @@ cgg    All these points need to be wet.
             do k = 1,nr
 
               call find_rho(bi,bj,imin,imax,jmin,jmax,k,k,
-     &                      eosType,tbar,sbar,rholoc,mythid)
+     &                      tbar,sbar,rholoc,mythid)
               _EXCH_XY_R8(rholoc , myThid)
 
 cgg   Compute centered difference horizontal gradient on bdy.
@@ -454,30 +392,15 @@ c--         End of loop over layers.
 #ifdef ALLOW_OBCSE_CONTROL
             ip1 = 0
 
-c--     Get mask information. Doesn't really have to read every time.
-cgg          call active_read_yz( 'maskobcse', maskyzC, 
-cgg     &                           1,
-cgg     &                         doglobalread, ladinit, 0,
-cgg     &                         mythid, dummy )
-
-cgg          call active_read_yz( 'maskobcse', maskyzW, 
-cgg     &                           3,
-cgg     &                         doglobalread, ladinit, 0,
-cgg     &                         mythid, dummy )
-
 cgg    Make a mask for the velocity shear comparison.
             do k = 1,nr-1
               do j = jmin, jmax
-                i = ob_ie(i,bi,bj)
+                i = ob_ie(j,bi,bj)
                 if (i.eq.0) then
                   maskyzageos(j,k,bi,bj) =0.
                 else
 cgg    All these points need to be wet. 
                   maskyzageos(j,k,bi,bj) = 
-cgg     &       maskyzC(j,k,bi,bj)*maskyzC(j+1,k,bi,bj) *
-cgg     &       maskyzC(j-1,k,bi,bj)*maskyzC(j,k+1,bi,bj)*
-cgg     &       maskyzC(j-1,k+1,bi,bj)*maskyzC(j+1,k+1,bi,bj)*
-cgg     &       maskyzW(j,k,bi,bj)*maskyzW(j,k+1,bi,bj)
      &       hfacC(i+ip1,j,k,bi,bj)*hfacC(i+ip1,j+1,k,bi,bj) *
      &       hfacC(i+ip1,j-1,k,bi,bj)*hfacC(i+ip1,j,k+1,bi,bj)*
      &       hfacC(i+ip1,j-1,k+1,bi,bj)*hfacC(i+ip1,j+1,k+1,bi,bj)*
@@ -489,7 +412,7 @@ cgg     &       maskyzW(j,k,bi,bj)*maskyzW(j,k+1,bi,bj)
             do k = 1,nr
 
               call find_rho(bi,bj,imin,imax,jmin,jmax,k,k,
-     &                      eosType,tbar,sbar,rholoc,mythid)
+     &                      tbar,sbar,rholoc,mythid)
               _EXCH_XY_R8(rholoc , myThid)
 
 cgg   Compute centered difference horizontal gradient on bdy.
@@ -573,31 +496,6 @@ c--     Print cost function for all tiles.
 
       enddo
 c--   End of loop over records.
-
-#else
-c--   Do not enter the calculation of the temperature contribution to
-c--   the final cost function.
-
-#ifdef ECCO_VERBOSE
-      _BEGIN_MASTER( mythid )
-        write(msgbuf,'(a)') ' '
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-        write(msgbuf,'(a,a)')
-     &    ' cost_Theta: no contribution of temperature field ',
-     &                 'to cost function.'
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-        write(msgbuf,'(a,a,i9.8)')
-     &    ' cost_Theta: number of records that would have',
-     &                ' been processed: ',nmonsrec
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-        write(msgbuf,'(a)') ' '
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-      _END_MASTER( mythid )
-#endif
 
 #endif
 

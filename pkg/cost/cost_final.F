@@ -382,6 +382,7 @@ c--   Each process has calculated the global part for itself.
         write(ifc,*) 'f_ctds =', f_ctds
         write(ifc,*) 'f_ctdtclim =', f_ctdtclim
         write(ifc,*) 'f_ctdsclim =', f_ctdsclim
+        write(ifc,*) 'f_curmtr =', f_curmtr
         write(ifc,*) 'f_xbt =', f_xbt
         write(ifc,*) 'f_argot =', f_argot
         write(ifc,*) 'f_argos =', f_argos

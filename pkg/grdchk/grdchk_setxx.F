@@ -321,13 +321,13 @@ c--   == end of interface ==
      &           xx_obcsn_file(1:il),'.',optimcycle
          end if
 
-         call active_read_xz( fname, tmpfldxz, 1,
+         call active_read_xz( fname, tmpfldxz, icvrec,
      &                         doglobalread, ladinit, optimcycle,
      &                         mythid, dummy)
 
          tmpfldxz( itilepos,layer,itile,jtile ) = xx_comp_ref
 
-         call active_write_xz( fname, tmpfldxz, 1,
+         call active_write_xz( fname, tmpfldxz, icvrec,
      &                          optimcycle,
      &                          mythid, dummy)
 
@@ -344,13 +344,13 @@ c--   == end of interface ==
      &           xx_obcss_file(1:il),'.',optimcycle
          end if
 
-         call active_read_xz( fname, tmpfldxz, 1,
+         call active_read_xz( fname, tmpfldxz, icvrec,
      &                         doglobalread, ladinit, optimcycle,
      &                         mythid, dummy)
 
          tmpfldxz( itilepos,layer,itile,jtile ) = xx_comp_ref
 
-         call active_write_xz( fname, tmpfldxz, 1,
+         call active_write_xz( fname, tmpfldxz, icvrec,
      &                          optimcycle,
      &                          mythid, dummy)
 
@@ -367,13 +367,13 @@ c--   == end of interface ==
      &           xx_obcsw_file(1:il),'.',optimcycle
          end if
 
-         call active_read_yz( fname, tmpfldyz, 1,
+         call active_read_yz( fname, tmpfldyz, icvrec,
      &                         doglobalread, ladinit, optimcycle,
      &                         mythid, dummy)
 
          tmpfldyz( jtilepos,layer,itile,jtile ) = xx_comp_ref
 
-         call active_write_yz( fname, tmpfldyz, 1,
+         call active_write_yz( fname, tmpfldyz, icvrec,
      &                          optimcycle,
      &                          mythid, dummy)
 
@@ -390,13 +390,13 @@ c--   == end of interface ==
      &           xx_obcse_file(1:il),'.',optimcycle
          end if
 
-         call active_read_yz( fname, tmpfldyz, 1,
+         call active_read_yz( fname, tmpfldyz, icvrec,
      &                         doglobalread, ladinit, optimcycle,
      &                         mythid, dummy)
 
          tmpfldyz( jtilepos,layer,itile,jtile ) = xx_comp_ref
 
-         call active_write_yz( fname, tmpfldyz, 1,
+         call active_write_yz( fname, tmpfldyz, icvrec,
      &                          optimcycle,
      &                          mythid, dummy)
 

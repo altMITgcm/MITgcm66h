@@ -94,6 +94,7 @@ c     == local variables ==
       integer j,  jmin, jmax
       integer k
 
+      integer iobcs
       integer icomp
       integer ichknum
       integer icvrec

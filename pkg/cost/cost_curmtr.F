@@ -116,26 +116,14 @@ c--   Read state record from global file.
 
       if (optimcycle .ge. 0) then
         ilu=ilnblnk( ubarfile )
-        write(fnameuvel(1:80),'(2a,i10.10)') ubarfile(1:ilu),'.',
-     &                                   optimcycle
-      else
-        print*
-        print*,' cost_CurMtr: optimcycle has a wrong value.'
-        print*,'                 optimcycle = ',optimcycle
-        print*
-        stop   '  ... stopped in cost_CurMtr.'
+        write(fnameuvel(1:80),'(2a,i10.10)') 
+     &       ubarfile(1:ilu), '.', optimcycle
       endif
 
       if (optimcycle .ge. 0) then
         ilu=ilnblnk( vbarfile )
-        write(fnamevvel(1:80),'(2a,i10.10)') vbarfile(1:ilu),'.',
-     &                                   optimcycle
-      else
-        print*
-        print*,' cost_CurMtr: optimcycle has a wrong value.'
-        print*,'                 optimcycle = ',optimcycle
-        print*
-        stop   '  ... stopped in cost_CurMtr.'
+        write(fnamevvel(1:80),'(2a,i10.10)') 
+     &       vbarfile(1:ilu), '.', optimcycle
       endif
       
       fcthread_curmtr = 0. _d 0
@@ -218,8 +206,8 @@ cgg                  endif
 
               do j = jmin,jmax
                 do i = imin,imax
-                  wwwu(i,j)    = cosphi(i,j,bi,bj)*umask(i,j)                
-                  wwwv(i,j)    = cosphi(i,j,bi,bj)*vmask(i,j)                
+                  wwwu(i,j)    = cosphi(i,j,bi,bj)*umask(i,j)
+                  wwwv(i,j)    = cosphi(i,j,bi,bj)*vmask(i,j)
 
                   tmpuobs(i,j) = curmtruobs(i,j,k,bi,bj)
                   tmpubar(i,j) = ubar(i,j,k,bi,bj)
@@ -264,13 +252,13 @@ cgg                  wtmp(i,j) = wtheta2(i,j,k,bi,bj)
               do j = jmin,jmax
                 do i = imin,imax
 c--               The array tmpuobs contains current meter velocities.
-                  if(umask(i,j).eq.1.0 .and.tmpubar(i,j) .ne. 0. ) then 
-                   print *,'cost_curmtr U',i,j,tmpubar(i,j),tmpuobs(i,j)
-                  endif
+cgg                  if(umask(i,j).eq.1.0 .and.tmpubar(i,j) .ne. 0. ) then 
+cgg                   print *,'cost_curmtr U',i,j,tmpubar(i,j),tmpuobs(i,j)
+cgg                  endif
 
-                  if(vmask(i,j).eq.1.0.and.tmpvbar(i,j) .ne. 0.) then 
-                   print *,'cost_curmtr V',i,j,tmpvbar(i,j),tmpvobs(i,j)
-                  endif
+cgg                  if(vmask(i,j).eq.1.0.and.tmpvbar(i,j) .ne. 0.) then 
+cgg                   print *,'cost_curmtr V',i,j,tmpvbar(i,j),tmpvobs(i,j)
+cgg                  endif
 
 cgg( Add one more zero check.
                   if (tmpubar(i,j) .ne. 0.) then

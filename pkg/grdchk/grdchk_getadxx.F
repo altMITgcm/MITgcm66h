@@ -61,6 +61,8 @@ c     == local variables ==
 
       character*(80) fname
 
+      integer i,j,k
+
 c--   == external ==
 
       integer  ilnblnk

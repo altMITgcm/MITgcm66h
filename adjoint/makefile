@@ -312,6 +312,7 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/cost_obcss.f			\
 		$(SOURCE_CODE)/cost_obcsw.f			\
 		$(SOURCE_CODE)/cost_obcse.f			\
+		$(SOURCE_CODE)/cost_obcs_ageos.f		\
 		$(SOURCE_CODE)/cost_ice.f			\
                 $(SOURCE_CODE)/sw_ptmp.f                        \
                 $(SOURCE_CODE)/sw_adtg.f                        \
@@ -322,6 +323,7 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/cost_ctdsclim.f			\
 		$(SOURCE_CODE)/cost_readtmifields.f		\
 		$(SOURCE_CODE)/cost_tmi.f			\
+		$(SOURCE_CODE)/cost_curmtr.f			\
 		  						\
 		$(SOURCE_CODE)/ctrl_get_gen.f			\
 		$(SOURCE_CODE)/ctrl_get_gen_rec.f		\
@@ -332,6 +334,9 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/ctrl_getrec.f			\
 		$(SOURCE_CODE)/ctrl_init_variables.f		\
 		$(SOURCE_CODE)/ctrl_map_ini.f			\
+		$(SOURCE_CODE)/ctrl_volflux.f			\
+		$(SOURCE_CODE)/ctrl_init_obcs_variables.f	\
+		$(SOURCE_CODE)/ctrl_obcsbal.f			\
 		  						\
 		$(SOURCE_CODE)/ecco_the_main_loop.f		\
 		  						\
