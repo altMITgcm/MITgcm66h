@@ -145,8 +145,9 @@ C      Strictly we are allowed more procs. but knowing there
 C      is an exact match makes things easier.
        IF ( numberOfProcs .NE. nPx*nPy ) THEN
         eeBootError = .TRUE.
-        WRITE(msgBuffer,'(A)')
-     &  'S/R INI_PROCS: No. of processes not equal to nPx*nPy'
+        WRITE(msgBuffer,'(A,2(X,I))')
+     &  'S/R INI_PROCS: No. of processes not equal to nPx*nPy',
+     &  numberOfProcs, nPx*nPy
         CALL PRINT_ERROR( msgBuffer , myThid)
         GOTO 999
        ENDIF
