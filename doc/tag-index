@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o AIM: read land-Fraction earlier (from ini-fixed) and monitor land at nIter0
 o mnc: cleanup "full" files--fixes out-of-memory problem
 
 checkpoint55j_post
