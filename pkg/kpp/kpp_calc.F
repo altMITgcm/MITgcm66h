@@ -136,7 +136,7 @@ c     imin, imax, jmin, jmax  - array computation indices
 #ifdef FRUGAL_KPP
       parameter( imin=1    , imax=sNx    , jmin=1    , jmax=sNy     )
 #else
-      parameter( imin=-2   , imax=sNx+3  , jmin=-2   , jmax=sNy+3   )
+      parameter(imin=2-OLx,imax=sNx+OLx-1,jmin=2-OLy,jmax=sNy+OLy-1)
 #endif
 
 c Local arrays and variables
