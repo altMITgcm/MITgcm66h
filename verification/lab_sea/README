@@ -20,13 +20,13 @@ Surface salinity relaxation is to the monthly mean Levitus climatology
 
 Forcing files are a 1979-1999 monthly climatology computed from the
 NCEP reanalysis (see pkg/seaice/SEAICE_FFIELDS.h for units and signs)
-  gairxFile      = 'u10m.labsea79'    # 10-m zonal wind
-  gairyFile      = 'v10m.labsea79'    # 10-m meridional wind
-  tairFile       = 'tair.labsea1979'  # 2-m air temperature
-  qaFile         = 'qa.labsea1979'    # 2-m specific humidity
-  floFile        = 'flo.labsea1979'   # longwave radiation
-  fshFile        = 'fsh.labsea1979'   # shortwave radiation
-  rainFile       = 'prate.labsea1979' # precipitation
+  uwindFile      = 'u10m.labsea79'    # 10-m zonal wind
+  vwindFile      = 'v10m.labsea79'    # 10-m meridional wind
+  atempFile      = 'tair.labsea1979'  # 2-m air temperature
+  aqhFile        = 'qa.labsea1979'    # 2-m specific humidity
+  lwfluxFile     = 'flo.labsea1979'   # longwave radiation
+  swfluxFile     = 'fsh.labsea1979'   # shortwave radiation
+  precipFile     = 'prate.labsea1979' # precipitation
   evapFile       = 'evap.labsea1979'  # evaporation
 
 
@@ -36,6 +36,8 @@ Using testscript to test sea-ice code
 Running the testscript experiment:
   cd verification
   ./testscript -force lab_sea
+The default experiment is Experiment 8, below.
+It uses pkg/gmredi, pkg/kpp, pkg/seaice, and pkg/exf.
 
 Note that fairly large differences in accuracy occur across different
 platforms.  For example, testscript comparisons between g77 (Linux)
@@ -117,9 +119,10 @@ Generating 2-CPU executable:
 Instructions for running Experiment 1
 =====================================
 
-This is a 1-cpu, 10-hour integration used to make sure that all the
-files are available and that the model compiles and integrates.  It
-is the default experiment of "verification/testscript lab_sea".
+This is a 1-cpu, 10-hour integration used to make sure that all
+the files are available and that the sea-ice model compiles and
+runs.  The reading of atmospheric forcing files and the computation
+of open-water bulk fluxes are carried out within pkg/seaice.
 
 To run Experiment 1:
   cd ../../../verification/lab_sea/input
@@ -318,8 +321,8 @@ Instructions for running Experiment 9
 =====================================
 
 This is a 1-cpu, 10-hour integration used to test CPP option
-SEAICE_EXTERNAL_FLUXES.  Atmospheric state and open-water surface
-fluxes are computed by pkg/exf, rather than pkg/seaice routines.
+SEAICE_EXTERNAL_FLUXES.  Both the atmospheric state and the
+open-water surface fluxes are provided by pkg/exf.
 
 To run Experiment 9:
   cd ../../../verification/lab_sea/input
