@@ -80,7 +80,9 @@ C     aS2d: integral in Z Ay/dY
       _BEGIN_MASTER( myThid )
        cg2dNorm = myNorm
 CcnhDebugStarts
-       WRITE(msgBuf,*) ' CG2D normalisation factor = ', cg2dNorm
+       WRITE(msgBuf,'(A,F)') '// CG2D normalisation factor = ', cg2dNorm
+       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+       WRITE(msgBuf,*) '                               '
        CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
 CcnhDebugEnds
       _END_MASTER( myThid )

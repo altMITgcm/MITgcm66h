@@ -29,6 +29,10 @@ C     PRINT_MAP_XZ        - Flag indicating to plot map as XZ slices
 C     PRINT_MAP_YZ        - Flag indicating to plot map as YZ slices
 C     commentCharacter    - Variable used in column 1 of parameter files to
 C                           indicate comments.
+C     INDEX_I             - Variable used to select an index label
+C     INDEX_J               for formatted input parameters.
+C     INDEX_K
+C     INDEX_NONE
       CHARACTER*(*) SQUEEZE_RIGHT
       PARAMETER ( SQUEEZE_RIGHT = 'R' )
       CHARACTER*(*) SQUEEZE_LEFT
@@ -43,6 +47,14 @@ C                           indicate comments.
       PARAMETER ( PRINT_MAP_YZ = 'YZ' )
       CHARACTER*(*) commentCharacter
       PARAMETER ( commentCharacter = '#' )
+      INTEGER INDEX_I
+      INTEGER INDEX_J
+      INTEGER INDEX_K   
+      INTEGER INDEX_NONE
+      PARAMETER ( INDEX_I    = 1,
+     &            INDEX_J    = 2,
+     &            INDEX_K    = 3,
+     &            INDEX_NONE = 4 )
 
 C     Particularly weird and obscure voodoo numbers
 C     lShare  - This wants to be the length in
