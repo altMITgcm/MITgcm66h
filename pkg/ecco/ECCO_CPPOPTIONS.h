@@ -25,6 +25,9 @@ C o include dump of snap shots for checks
 #undef  ALLOW_ECCO_GRADIENT_CHECK
 #undef  ALLOW_ECCO_OPTIMIZATION
 
+C Flag to include (dirty adhoc) balancing of boudary fluxes
+#undef ALLOW_CTRL_OBCS_BALANCE
+
 C       >>> Do a long protocol.
 #undef ECCO_VERBOSE
 
