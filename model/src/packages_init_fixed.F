@@ -142,6 +142,12 @@ C--   Initialise the control variables
 #endif
 #endif
 
+#ifdef ALLOW_CD_CODE
+      IF (useCDscheme) then
+       call CD_CODE_INIT_FIXED(mythid)
+      ENDIF
+#endif
+
 #ifdef ALLOW_OPPS
       IF (useOPPS) CALL OPPS_INIT( myThid )
 #endif /* ALLOW_OPPS */
