@@ -43,9 +43,9 @@ C      |-- PACKAGES_BOOT
 C      |
 C      |-- PACKAGES_READPARMS
 C      |
-C      |-- PACKAGES_CHECK
-C      |
 C      |-- PACKAGES_INIT_FIXED
+C      |
+C      |-- PACKAGES_CHECK
 C      |
 C      |-- INI_LINEAR_PHSURF
 C      |
@@ -108,11 +108,11 @@ C--   Configure packages
 C--   Read configuration parameters for packages
       CALL PACKAGES_READPARMS( myThid )
 
-C--   Check dependances between packages
-      CALL PACKAGES_CHECK( myThid )
-
 C--   Call fixed data initialization phase of packages
       CALL PACKAGES_INIT_FIXED( myThid )
+
+C--   Check dependances between packages
+      CALL PACKAGES_CHECK( myThid )
 
 C--   Set Bo_surf => define the Linear Relation: Phi_surf(eta)
       CALL INI_LINEAR_PHISURF( myThid )
