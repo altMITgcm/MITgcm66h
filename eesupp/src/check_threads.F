@@ -76,7 +76,9 @@ C       but this causes KAP to insert a call to mppjoin - which then deadlocks!
        GOTO 11
       ENDIF
       IF ( numberThreadsRunning .NE. nThreads ) THEN
+#ifndef TARGET_T3E
        CALL SYSTEM('sleep 1')
+#endif
        GOTO 10
       ENDIF
    11 CONTINUE

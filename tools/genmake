@@ -203,6 +203,14 @@ switch ($platform$USEMPI)
     set LINK       = ( 'pgf77' )
     set LIBS       = ( '-L/usr/local/lib/LINUX/ch_p4/ -lfmpich -lmpich -Kieee' )
     breaksw
+  case T3E:
+  case sn6312:
+    set CPP        = ( '/opt/ctl/bin/cpp -P')
+    set DEFINES    = ( ${DEFINES} '-DTARGET_T3E -DWORDLENGTH=4' )
+    set FC         = ( 'f90' )
+    set LINK       = ( 'f90' )
+    set FFLAGS     = ( '-O 2,fusion' )
+    breaksw
   default:
     echo "Error: platform not recognized: uname -p = " $platform$USEMPI
     exit

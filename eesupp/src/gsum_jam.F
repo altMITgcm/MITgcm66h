@@ -11,12 +11,12 @@ C $Header$
 #include "mpif.h"
 #endif
 
-      REAL*8 ans
+      Real*8 ans
       INTEGER myThid
 
 #ifdef LETS_MAKE_JAM
 
-      REAL*8 phi
+      Real*8 phi
       INTEGER RC
 
       phi = ans

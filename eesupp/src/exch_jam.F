@@ -197,7 +197,7 @@ C     == Global variables ==
 #include "JAM_INFO.h"
 
 C     == Routine arguments ==
-      REAL*8 arr(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      Real*8 arr(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
 C     == Local variables ==
       INTEGER I, J
@@ -390,7 +390,7 @@ C     == Global variables ==
 #include "JAM_INFO.h"
 
 C     == Routine arguments ==
-      REAL*8 arr(1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:Nr)
+      Real*8 arr(1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:Nr)
 
 C     == Local variables ==
       INTEGER I, J, K
@@ -600,7 +600,7 @@ C     == Global variables ==
 C      == Compile time constants ==
 
 C     == Routine arguments ==
-      REAL*4 arr(1-_OLx:sNx+_OLx,1-_OLy:sNy+_OLy)
+      Real*4 arr(1-_OLx:sNx+_OLx,1-_OLy:sNy+_OLy)
 
 C     == Local variables ==
       INTEGER I, J
@@ -767,7 +767,7 @@ C     == Global variables ==
 #include "JAM_INFO.h"
 
 C     == Routine arguments ==
-      REAL*4 arr(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      Real*4 arr(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
 C     == Local variables ==
       INTEGER I, J
@@ -960,7 +960,7 @@ C     == Global variables ==
 #include "JAM_INFO.h"
 
 C     == Routine arguments ==
-      REAL*4 arr(1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:Nr)
+      Real*4 arr(1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:Nr)
 
 C     == Local variables ==
       INTEGER I, J, K
