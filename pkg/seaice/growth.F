@@ -55,7 +55,7 @@ C     number of surface interface layer
       endif
 
       salinity_ice=4.0 _d 0      ! ICE SALINITY
-      TBC=271.2 _d 0-273.16 _d 0 ! FREEZING TEMP. OF SEA WATER
+      TBC=SEAICE_freeze          ! FREEZING TEMP. OF SEA WATER
       SDF=1000.0 _d 0/330.0 _d 0 ! RATIO OF WATER DESITY AND SNOW DENSITY
       Q0=1.0D-06/302.0 _d +00    ! INVERSE HEAT OF FUSION OF ICE
       QS=1.1 _d +08              ! HEAT OF FUSION OF SNOW
