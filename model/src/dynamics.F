@@ -678,16 +678,6 @@ CADJ STORE theta(:,:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
 CADJ STORE salt (:,:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
 CADJ STORE uvel (:,:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
 CADJ STORE vvel (:,:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
-=======
-C-- R.G. We need to define a new tape since Kw use mythid instead of bi,bj
-CADJ STORE Kwx(:,:,:,myThid)  = comlev1_bibj, key=ikey, byte=isbyte
-CADJ STORE Kwy(:,:,:,myThid)  = comlev1_bibj, key=ikey, byte=isbyte
-CADJ STORE Kwz(:,:,:,myThid)  = comlev1_bibj, key=ikey, byte=isbyte
-
-CADJ STORE theta(:,:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
-CADJ STORE salt (:,:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
-CADJ STORE uvel (:,:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
-CADJ STORE vvel (:,:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
 
 C--     dummy initialization to break data flow because
 C--     calc_div_ghat has a condition for initialization
