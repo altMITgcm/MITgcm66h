@@ -55,7 +55,7 @@ C     vTrans :: Volume transports ( vVel.yA )
       INTEGER i,j,k
       _RL uTrans(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RL vTrans(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
-      _RL wSurf
+      _RL wSurf, facEmP
 CEOP
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
@@ -133,6 +133,38 @@ C     Incorporate the Implicit part of -Divergence(Barotropic_Flow)
 
       ENDIF
 #endif /* EXACT_CONSERV */
+
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+
+#ifdef NONLIN_FRSURF
+      IF (select_rStar .NE. 0) THEN
+        facEmP = 0.
+        IF (useRealFreshWaterFlux) facEmP = convertEmP2rUnit
+       
+        IF ( useRealFreshWaterFlux .AND. myTime.EQ.startTime ) THEN
+C     needs previous time-step value of E-P-R, that has not been loaded
+C     and was not in pickup-file ; try to use etaN & etaH instead.
+          DO j=1,sNy
+           DO i=1,sNx
+            rStarDhCDt(i,j,bi,bj) = 
+     &         ( etaN(i,j,bi,bj)-etaH(i,j,bi,bj) )
+     &           /(implicDiv2Dflow*deltaTfreesurf)
+     &           * recip_Rcol(i,j,bi,bj)
+           ENDDO
+          ENDDO      
+        ELSE
+         DO j=1,sNy
+          DO i=1,sNx
+            rStarDhCDt(i,j,bi,bj) = 
+     &         (-hDivFlow(i,j,bi,bj)*recip_rA(i,j,bi,bj)
+     &          -facEmP*EmPmR(i,j,bi,bj)
+     &         ) * recip_Rcol(i,j,bi,bj)
+          ENDDO
+         ENDDO
+        ENDIF
+
+      ENDIF
+#endif /* NONLIN_FRSURF */
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 

@@ -7,7 +7,7 @@ CBOP
 C     !ROUTINE: FREESURF_RESCALE_G
 C     !INTERFACE:
       SUBROUTINE FREESURF_RESCALE_G(
-     I                     bi, bj, K,
+     I                     bi, bj, k,
      U                     gTracer,
      I                     myThid )
 C     !DESCRIPTION: \bv
@@ -29,27 +29,36 @@ C     == Global variables ===
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine Arguments ==
-      INTEGER bi,bj,K
+      INTEGER bi,bj,k
       _RL  gTracer(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       INTEGER myIter, myThid
+#ifdef NONLIN_FRSURF
 C     == Local variables ==
       INTEGER i,j
-      _RL ab15,ab05
 CEOP
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
-#ifdef NONLIN_FRSURF
       IF (nonlinFreeSurf.GT.0) THEN
-       DO j=1-Oly,sNy+Oly
-        DO i=1-Olx,sNx+Olx
-         IF (k.EQ.ksurfC(i,j,bi,bj)) THEN
-          gTracer(i,j,k,bi,bj) = gTracer(i,j,k,bi,bj)
-     &          *hFacC(i,j,k,bi,bj)/hFac_surfC(i,j,bi,bj) 
-         ENDIF
+       IF (select_rStar.GT.0) THEN
+        DO j=1-Oly,sNy+Oly
+         DO i=1-Olx,sNx+Olx
+           gTracer(i,j,k,bi,bj) = gTracer(i,j,k,bi,bj)
+     &                          /rStarExpC(i,j,bi,bj)
+         ENDDO
         ENDDO
-       ENDDO
+       ELSE
+        DO j=1-Oly,sNy+Oly
+         DO i=1-Olx,sNx+Olx
+          IF (k.EQ.ksurfC(i,j,bi,bj)) THEN
+           gTracer(i,j,k,bi,bj) = gTracer(i,j,k,bi,bj)
+     &           *hFacC(i,j,k,bi,bj)/hFac_surfC(i,j,bi,bj) 
+          ENDIF
+         ENDDO
+        ENDDO
+       ENDIF
       ENDIF
+
 #endif /* NONLIN_FRSURF */
 
       RETURN

@@ -72,14 +72,22 @@ C-    Compute effective gU term (including Adams-Bashforth weights) :
 #ifdef NONLIN_FRSURF
       IF (.NOT. vectorInvariantMomentum 
      &    .AND. nonlinFreeSurf.GT.1) THEN
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         IF ( k.EQ.ksurfW(i,j,bi,bj) ) THEN
+       IF (select_rStar.GT.0) THEN
+        DO j=jMin,jMax
+         DO i=iMin,iMax
+           gUtmp(i,j) = gUtmp(i,j)/rStarExpW(i,j,bi,bj)
+         ENDDO
+        ENDDO
+       ELSE
+        DO j=jMin,jMax
+         DO i=iMin,iMax
+          IF ( k.EQ.ksurfW(i,j,bi,bj) ) THEN
            gUtmp(i,j) = gUtmp(i,j)
      &         *hFacW(i,j,k,bi,bj)/hFac_surfW(i,j,bi,bj)
-         ENDIF
+          ENDIF
+         ENDDO
         ENDDO
-       ENDDO
+       ENDIF
       ENDIF
 #endif 
 
@@ -123,14 +131,22 @@ C-    Compute effective gV term (including Adams-Bashforth weights) :
 #ifdef NONLIN_FRSURF
       IF (.NOT. vectorInvariantMomentum 
      &    .AND. nonlinFreeSurf.GT.1) THEN
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         IF ( k.EQ.ksurfS(i,j,bi,bj) ) THEN
+       IF (select_rStar.GT.0) THEN
+        DO j=jMin,jMax
+         DO i=iMin,iMax
+           gVtmp(i,j) = gVtmp(i,j)/rStarExpS(i,j,bi,bj)
+         ENDDO
+        ENDDO
+       ELSE
+        DO j=jMin,jMax
+         DO i=iMin,iMax
+          IF ( k.EQ.ksurfS(i,j,bi,bj) ) THEN
            gVtmp(i,j) = gVtmp(i,j)
      &         *hFacS(i,j,k,bi,bj)/hFac_surfS(i,j,bi,bj)
-         ENDIF
+          ENDIF
+         ENDDO
         ENDDO
-       ENDDO
+       ENDIF
       ENDIF
 #endif 
 
