@@ -104,6 +104,9 @@ C      Reset averages to zero
          CALL TIMEAVE_RESET(PRECNVtave,1, bi, bj, myThid)
          CALL TIMEAVE_RESET(PRECLStave,1, bi, bj, myThid)
          CALL TIMEAVE_RESET(CLOUDCtave,1, bi, bj, myThid)
+         DO k=1,Nr
+           AIM_TimeAve(k,bi,bj)=0.
+         ENDDO                     
         ENDDO
        ENDDO
 
