@@ -57,9 +57,9 @@ C     - Laplacian  and bi-harmonic terms
        DO i=1-Olx,sNx+Olx-1
         hFacZClosedW = _hFacS(i,j,k,bi,bj) - hFacZ(i,j)
         hFacZClosedE = _hFacS(i,j,k,bi,bj) - hFacZ(i+1,j)
-        Ahtmp=min(viscAh+viscAhGrid*rA(i,j,bi,bj)/deltaTmom,
+        Ahtmp=min(viscAh+viscAhGrid*rAs(i,j,bi,bj)/deltaTmom,
      &            viscAhMax)
-        A4tmp=min(viscA4+viscA4Grid*(rA(i,j,bi,bj)**2)/deltaTmom,
+        A4tmp=min(viscA4+viscA4Grid*(rAs(i,j,bi,bj)**2)/deltaTmom,
      &            viscA4Max)
         vDragTerms(i,j) =
      &   -_recip_hFacS(i,j,k,bi,bj)
