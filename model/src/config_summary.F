@@ -35,9 +35,9 @@ C     == Local variables ==
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       INTEGER                  I,J,K
       INTEGER                  bi, bj
-      REAL                     xcoord(Nx)
-      REAL                     ycoord(Ny)
-      REAL                     rcoord(Nr)
+      _RL                      xcoord(Nx)
+      _RL                      ycoord(Ny)
+      _RL                      rcoord(Nr)
 
 
       _BARRIER

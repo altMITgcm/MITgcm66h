@@ -37,7 +37,7 @@ C     myThid - Thread no. that called this routine.
 C     myTime - Simulation time
 C     myIter - Simulation timestep number
       INTEGER myThid
-      REAL    myTime
+      _RL     myTime
       INTEGER myIter
 CEndOfInterface
  
@@ -70,7 +70,7 @@ C     msgBuf - Error message buffer
       INTEGER bi,bj,i,j,intime0,intime1
       CHARACTER*(40) filename
 
-      REAL aWght,bWght,rdt,naoWght
+      _RL aWght,bWght,rdt
       INTEGER nForcingPeriods,Imytm,Ifprd,Ifcyc,Iftm,Imth,Iyr
 
       IF ( .NOT. periodicExternalForcing ) RETURN

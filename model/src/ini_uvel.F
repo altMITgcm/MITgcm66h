@@ -33,8 +33,6 @@ CEndOfInterface
 C     == Local variables ==
 C     iC, jC - Center of domain
 C     iD, jD - Disitance from domain center.
-C     rad    - Radius of initial patch
-C     rD     - Radial displacement of point I,J
 C     iG, jG - Global coordinate index
 C     bi,bj  - Loop counters
 C     I,J,K
@@ -42,7 +40,6 @@ C     I,J,K
       INTEGER iG, jG
       INTEGER bi, bj
       INTEGER  I,  J, K
-      REAL rad, rD
 
 C--   Initialise velocity field to zero
       DO bj = myByLo(myThid), myByHi(myThid)

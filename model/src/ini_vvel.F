@@ -37,7 +37,6 @@ C     I,J,K
       INTEGER iG, jG
       INTEGER bi, bj
       INTEGER  I,  J, K
-      REAL rad, rD
 
 C--   Initialise velocity field to zero
       DO bj = myByLo(myThid), myByHi(myThid)

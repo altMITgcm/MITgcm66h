@@ -43,8 +43,8 @@ C     I,J,K
       INTEGER iC, jC, iD, jD
       INTEGER iG, jG
       INTEGER bi, bj
-      INTEGER  I,  J, K
-      REAL rad, rD
+      INTEGER I, J, K
+      _RL     rad, rD
 
       _BARRIER
 

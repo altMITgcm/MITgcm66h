@@ -237,7 +237,7 @@ C     myCurrentTime - Current time of simulation ( s )
       LOGICAL modelEnd    
       INTEGER myThid
       INTEGER myIt
-      REAL    myCurrentTime
+      _RL     myCurrentTime
 CEndofinterface
 
 C     == Common blocks ==

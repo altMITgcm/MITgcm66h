@@ -105,8 +105,7 @@ C     myCurrentIter - Iteration counter for this thread
 C     myCurrentTime - Time counter for this thread
 C     I             - Loop counter
       INTEGER I, myCurrentIter
-      REAL    myCurrentTime
-      CHARACTER*(30) suff
+      _RL     myCurrentTime
 
 C--   This timer encompasses the whole code
       CALL TIMER_START('ALL',myThid)

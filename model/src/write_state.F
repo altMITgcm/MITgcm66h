@@ -38,7 +38,7 @@ C     myThid - Thread number for this instance of the routine.
 C     myIter - Iteration number
 C     myCurrentTime - Current time of simulation ( s )
       LOGICAL forceOutput
-      REAL    myCurrentTime
+      _RL     myCurrentTime
       INTEGER myThid
       INTEGER myIter
 CEndofinterface

@@ -69,7 +69,7 @@ C     filNam - Name of file to read.
 C     filFmt - Format to use to read the file.
 C     myNz   - No. vertical layers for array fld.
 C     myThid - Thread number for this instance of the routine.
-      REAL fld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:Nr,nSx, nSy )
+      _RL fld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:Nr,nSx, nSy )
       CHARACTER*(*) filNam
       CHARACTER*(*) filFmt
       INTEGER       myThid
