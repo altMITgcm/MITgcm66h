@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o move out off EQUIVALENCE all diagnostics that fizhi does not use ;
+  NOTE: change ptracer diagnostics name: use 2 characters to work with 
+        more than 9 tracers. Add also diagnostics of advect & diffus flux.
 o more CF compliance: convert all MNC 'iter' variables to 'T' so that it 
   becomes the coordinate variable for the 'T' dimension
 o add CF-style coordinate variables to MNC
