@@ -53,10 +53,10 @@ C     === Local variables ====
 
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
-        theDel2 = 0.
-        theVol = 0.
-        theMean = 0.
-        theVar = 0.
+        theDel2Tile = 0.
+        theVolTile = 0.
+        theMeanTile = 0.
+        theVarTile = 0.
         DO K=1,myNr
          DO J=1,sNy
           DO I=1,sNx
