@@ -155,5 +155,12 @@ C--   set Coupling parameters
       IF ( useCoupler ) CALL CPL_READPARMS( myThid )
 #endif /* COMPONENT_MODULE */
 
+CAMM
+#ifdef ALLOW_DIAGNOSTICS
+C--   set diagnostics choices
+      IF ( usediagnostics ) call diag_readparms(myThid )
+#endif /* ALLOW_DIAGNOSTICS */
+CAMM
+
       RETURN
       END

@@ -111,6 +111,13 @@ C--   Initialise the control variables
 #endif
 #endif
 
+CAMM
+#ifdef ALLOW_DIAGNOSTICS
+      IF (usediagnostics) then
+       call diagnostics_init(mythid)
+      ENDIF
+#endif
+CAMM
 
       RETURN
       END
