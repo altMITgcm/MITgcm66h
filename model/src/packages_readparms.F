@@ -42,6 +42,8 @@ C       |-- ZONAL_FILT_READPARMS
 C       |
 C       |-- OBCS_READPARMS
 C       |
+C       |-- OFFLINE_READPARMS
+C       |
 C       |-- COST_READPARMS
 C       |
 C       |-- CTRL_INIT
@@ -96,6 +98,10 @@ C--   Initialize SEAICE parameters
 
 #ifdef ALLOW_OBCS
       IF (useOBCS) CALL OBCS_READPARMS( myThid )
+#endif
+
+#ifdef ALLOW_OFFLINE
+      call OFFLINE_READPARMS( myThid )
 #endif
 
 #ifdef ALLOW_BULK_FORCE
