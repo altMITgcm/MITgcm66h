@@ -150,6 +150,7 @@ Cml      sBeta               = 7.4D-4
       saltAdvScheme       = 2
       tracerAdvScheme     = 2
       multiDimAdvection   = .TRUE.
+      useCDscheme         = .FALSE.
       useEnergyConservingCoriolis = .FALSE.
       useJamartWetPoints  = .FALSE.
 
