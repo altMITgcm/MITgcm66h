@@ -2,6 +2,9 @@ C $Header$
 C Tag $Name$
 
 #include "CPP_OPTIONS.h"
+#ifdef ALLOW_GCHEM
+#include "GCHEM_OPTIONS.h"
+#endif
 
 CBOP
 C     !ROUTINE: THE_CORRECTION_STEP
@@ -194,7 +197,9 @@ C--     for vertical velocity and "etaN" (exact volume conservation) :
         ENDIF
 cswdptr -- add ---
 #ifdef ALLOW_PTRACERS
+#ifndef PTRACERS_SEPARATE_FORCING
           CALL PTRACERS_STATVARS(myTime, myIter, bi, bj, myThid)
+#endif
 #endif
 cswdptr -- end add ---
 #endif /* ALLOW_TIMEAVE */
