@@ -60,6 +60,10 @@ CEOP
       IF (useAIM) CALL PACKAGES_CHECK_ERROR('AIM', myThid)
 #endif
 
+#ifndef ALLOW_LAND
+      IF (useLand) CALL PACKAGES_CHECK_ERROR('LAND', myThid)
+#endif
+
 #ifndef ALLOW_PTRACERS
       IF (usePTRACERS) CALL PACKAGES_CHECK_ERROR('PTRACERS', myThid)
 #endif

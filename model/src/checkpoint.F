@@ -470,6 +470,13 @@ C--     Write restart file for floats
         ENDIF
 #endif
 
+#ifdef ALLOW_LAND
+C--     Write pickup file for Lnad package:
+        IF (useLand) THEN
+          CALL LAND_WRITE_PICKUP(fn,myTime,myIter,myThid)
+        ENDIF
+#endif
+
         IF ( .NOT. permCheckPoint ) THEN
          nCheckLev = MOD(nCheckLev, maxNoChkptLev)+1
         ENDIF
