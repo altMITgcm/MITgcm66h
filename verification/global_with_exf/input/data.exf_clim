@@ -11,7 +11,7 @@
  climsst_lon0    = 2
  climsst_lon_inc = 4
  climsst_lat0    = -78
- climsst_lat_inc = 40*4
+ climsst_lat_inc = 39*4
  climsst_nlon    = 90
  climsst_nlat    = 40
 #
@@ -21,7 +21,7 @@
  climsss_lon0    = 2
  climsss_lon_inc = 4
  climsss_lat0    = -78
- climsss_lat_inc = 40*4
+ climsss_lat_inc = 39*4
  climsss_nlon    = 90
  climsss_nlat    = 40
 #
