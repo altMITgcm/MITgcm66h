@@ -75,6 +75,7 @@ c          IF (tmpVal.NE.0.) THEN
      &                               )
             numPnts=numPnts+1
             tmpVol = arrArea(I,J,bi,bj)*arrhFac(I,J,K,bi,bj)*arrDr(K)
+     &                                 *arrMask(I,J,K,bi,bj)
             theVol = theVol   + tmpVol
             theMean = theMean + tmpVol*tmpVal
             theVar = theVar   + tmpVol*tmpVal**2
@@ -115,6 +116,7 @@ c          IF (tmpVal.NE.0.) THEN
 c           IF (tmpVal.NE.0.) THEN
             IF (arrMask(I,J,K,bi,bj).NE.0.) THEN
              tmpVol=arrArea(I,J,bi,bj)*arrhFac(I,J,K,bi,bj)*arrDr(K)
+     &                                *arrMask(I,J,K,bi,bj)
              theSD = theSD + tmpVol*(tmpVal-theMean)**2
             ENDIF
            ENDDO
