@@ -42,9 +42,15 @@ C     == Local variables
       itlo = mybxlo(mythid)
       ithi = mybxhi(mythid)
 
-      iLocOut =  80
-      jLocOut =  30
-      kLocOut =  1
+      if ( useCubedSphereExchange) then
+         iLocOut =  7
+         jLocOut =  28
+         kLocOut =  1
+      else
+         iLocOut =  80
+         jLocOut =  30
+         kLocOut =  1
+      endif
 
 ce    some reference temperature
       thetaRef = 24.0D0
