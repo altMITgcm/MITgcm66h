@@ -16,6 +16,8 @@ for i=1:150
   b(arr1(4),arr1(5))=arr2(7);
   c(arr1(4),arr1(5))=arr2(8);
   d(arr1(4),arr1(5))=arr2(9);
+  tmp=fgetl(fin);
+  tmp=fgetl(fin);
 end
 
 clf reset, orient tall, wysiwyg
