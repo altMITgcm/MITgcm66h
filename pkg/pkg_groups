@@ -11,3 +11,4 @@
 
 oceanic : debug generic_advdiff gmredi kpp mdsio mom_fluxform mom_vecinv monitor obcs rw sbo shap_filt timeave zonal_filt
 
+atmospheric : debug generic_advdiff mdsio mom_fluxform mom_vecinv monitor rw shap_filt timeave
