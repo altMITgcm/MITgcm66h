@@ -3,22 +3,18 @@ C $Header$
 #include "CPP_OPTIONS.h"
 
 CStartOfInterface
-      SUBROUTINE INITIALISE(myThid)
+      SUBROUTINE INITIALISE_FIXED(myThid)
 C     /==========================================================\
-C     | SUBROUTINE INITIALISE                                    |
-C     | o Master controlling routine for setting model initial   |
-C     |   conditions.                                            |
+C     | SUBROUTINE INITIALISE_FIXED                              |
+C     | o Routine for setting fixed model arrays such as         |
+C     |   topography, grid, solver matrices, etc.                |
 C     |==========================================================|
-C     | INITIALISE is invoked at the start of the model to set   |
-C     | the model arrays. It reads data from an input file and   |
-C     | from various binary files.                               |
+C     | INITIALISE_FIXED is invoked at the start of the model to |
+C     | set fixed model arrays. It reads data from an input file |
+C     | and from various binary files.                           |
 C     | Each thread invokes an instance of this routine as does  |
 C     | each process in a multi-process parallel environment like|
 C     | MPI.                                                     |
-C     | Notes                                                    |
-C     | =====                                                    |
-C     | C*P* comments indicating place holders for which code is |
-C     |      presently being developed.                          |
 C     \==========================================================/
       IMPLICIT NONE
 
@@ -68,24 +64,6 @@ C--   Latitude circle filter initialisation
       _BARRIER
 #endif
 
-#ifdef ALLOW_KPP
-C--   Initialize kppmix vertical mixing scheme.
-      CALL KMIXINIT( myThid )
-      _BARRIER
-#endif
-
-C--   Initialise model fields.
-C     Starting values of U, V, W, temp., salt. and tendency terms
-C     are set here. Fields are either set to default or read from
-C     stored files.
-      CALL INI_FIELDS( myThid )
-      _BARRIER
-
-C--   Initialise time-stepping (predictor variables are carried in G)
-      IF ( startTime .EQ. 0. ) 
-     & CALL INI_PREDICTOR( myThid )
-      _BARRIER
-
 C--   Set coriolis operators
       CALL INI_CORI( myThid )
 
@@ -97,25 +75,7 @@ C--   Set laplace operators for use in 3D conjugate gradient solver.
       CALL INI_CG3D( myThid )
 #endif
 
-C--   Custom routine to set forcing fields
-      CALL INI_FORCING( myThid )
-
-#ifdef ALLOW_OBCS
-C--   Calculate values on open boundaries at iter=nIter0
-      IF (openBoundaries) THEN
-        DO bj = myByLo(myThid), myByHi(myThid)
-         DO bi = myBxLo(myThid), myBxHi(myThid)
-          DO K=1,Nr
-           CALL SET_OBCS( K, bi, bj, startTime, myThid )
-Caja       CALL CYCLE_OBCS( K, bi, bj, myThid )
-          ENDDO
-         ENDDO
-        ENDDO
-      ENDIF
-#endif
-
-C--   Finally summarise the model cofiguration and state
+C--   Finally summarise the model cofiguration
       CALL CONFIG_SUMMARY( myThid )
-      CALL STATE_SUMMARY( myThid )
 
       END
