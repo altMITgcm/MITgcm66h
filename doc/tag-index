@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/shap_filt: fix for multi-tiles per face (CS-grid with EXCH2)
+
 checkpoint57d_post
 o pkg/thsice used in the ocean: fix tile Pb related to sIceLoad forcing
 o modify verification/ideal_2D_oce so that it tests the creation of mnc 
