@@ -100,7 +100,7 @@ C     write a summary of the (long) list of all available diagnostics:
 
         WRITE(msgBuf,'(2A)')
      &   ' write list of available Diagnostics to file: ',
-     &   'available_diagnostics'
+     &   'available_diagnostics.log'
         CALL PRINT_MESSAGE( msgBuf, stdUnit,SQUEEZE_RIGHT, myThid)
 
         WRITE(ccHead,'(2A)')
