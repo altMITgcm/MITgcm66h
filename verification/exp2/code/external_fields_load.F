@@ -202,9 +202,6 @@ C--   Interpolate fu,fv,Qnet,EmPmR,SST,SSS,Qsw
        ENDDO
       ENDDO
 
-C     Convert units and signs
-      CALL EXTERNAL_FIELDS_SCALE( myThid )
-
 C endif for periodicForcing
       ENDIF
 

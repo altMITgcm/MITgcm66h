@@ -56,8 +56,10 @@ C     I, J - Loop counters
        DO i=iMin,iMax
         df(i,j) = df(i,j) - _rA(i,j,bi,bj) * maskC(i,j) *
      &         KappaRT(i,j,k) * KPPghat(i,j,km1,bi,bj) * delZ(1) *
-     &         ( SurfaceTendencyT(i,j,bi,bj) +
-     &           Qsw(i,j,bi,bj) * (1.-KPPfrac(i,j,bi,bj))
+     &         ( SurfaceTendencyT(i,j,bi,bj) -
+     &           Qsw(i,j,bi,bj)
+     &          *recip_Cp*recip_rhoNil*recip_dRf(1)
+     &          * (1.-KPPfrac(i,j,bi,bj))
      &         )
        ENDDO
       ENDDO

@@ -87,8 +87,5 @@ C
 C     CALL PLOT_FIELD_XYRS( fu, 'S/R INI_FORCING FU',1,myThid)
 C     CALL PLOT_FIELD_XYRS( fv, 'S/R INI_FORCING FV',1,myThid)
 
-C     Convert units and signs
-      CALL EXTERNAL_FIELDS_SCALE( myThid )
-
       RETURN
       END

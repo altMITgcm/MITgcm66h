@@ -202,9 +202,6 @@ C--   Interpolate fu,fv,Qnet,EmPmR,SST,SSS,Qsw
        ENDDO
       ENDDO
 
-C     Convert units and signs (!)
-      CALL EXTERNAL_FIELDS_SCALE( myThid )
-
 C-- Diagnostics
       IF (myThid.EQ.1 .AND. myTime.LT.62208000.) THEN
         write(0,'(a,1p7e12.4,2i6,2e12.4)')
