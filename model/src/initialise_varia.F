@@ -130,6 +130,11 @@ C--   Initialise 3-dim. diffusivities
       CALL INI_MIXING( myThid )
       _BARRIER
 
+#ifdef ALLOW_TAU_EDDY
+C--  Initialise eddy diffusivities
+      CALL TAUEDDY_INIT_VARIA( myThid )
+#endif
+
 C--   Initialize DYNVARS arrays (state fields + G terms: Gu,Gv,...) to zero [always]
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_CALL('INI_DYNVARS',myThid)

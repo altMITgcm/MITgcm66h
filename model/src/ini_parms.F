@@ -211,6 +211,7 @@ C--   Input files
      & surfQfile, surfQnetFile, surfQswFile, EmPmRfile, saltFluxFile,
      & uVelInitFile, vVelInitFile, pSurfInitFile,
      & dQdTFile, ploadFile,tCylIn,tCylOut,
+     & eddyTauxFile, eddyTauyFile,
      & mdsioLocalDir,
      & the_run_name
 CEOP

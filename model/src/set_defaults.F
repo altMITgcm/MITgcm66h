@@ -276,6 +276,8 @@ C--   Input files
       pSurfInitFile   = ' '
       dQdTFile        = ' '
       ploadFile       = ' '
+      eddyTauxFile    = ' '
+      eddyTauyFile    = ' '
       mdsioLocalDir   = ' '
 
 C
