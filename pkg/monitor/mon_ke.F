@@ -18,7 +18,6 @@ C     === Global data ===
 #include "DYNVARS.h"
 
 C     === Routine arguments ===
-      CHARACTER*(*) label
       INTEGER myThid
 
 C     === Local variables ====
