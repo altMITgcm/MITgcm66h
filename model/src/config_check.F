@@ -341,7 +341,7 @@ c     ENDIF
 
       IF ( useRealFreshWaterFlux .AND. exactConserv
      &     .AND. implicDiv2DFlow.EQ.0. _d 0
-     &     .AND. startTime.NE.0. .AND. usePickupBeforeC54 ) THEN
+     &     .AND. startTime.NE.baseTime .AND. usePickupBeforeC54 ) THEN
         WRITE(msgBuf,'(A)') 
      &   'CONFIG_CHECK: RealFreshWaterFlux+implicSurfP=0+exactConserv:'
         CALL PRINT_ERROR( msgBuf , myThid)

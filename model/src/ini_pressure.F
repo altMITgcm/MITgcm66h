@@ -73,8 +73,6 @@ CEOP
        ENDDO
       ENDDO
 
-c     IF ( startTime .NE. 0. ) RETURN
-c     IF ( buoyancyRelation .EQ. 'OCEANIC' ) THEN
       IF ( useDynP_inEos_Zc ) THEN
 
 #ifndef ALLOW_AUTODIFF_TAMC

@@ -309,7 +309,7 @@ C     CALL PLOT_FIELD_XYRS( zML, 'zML INI_CG3D.1' , Nr, 1, myThid )
 CcnhDebugEnds
 
 C--   Set default values for initial guess and RHS
-      IF ( startTime .EQ. 0 ) THEN
+      IF ( startTime .EQ. baseTime ) THEN
        DO bj=myByLo(myThid),myByHi(myThid)
         DO bi=myBxLo(myThid),myBxHi(myThid)
          DO K=1,Nr

@@ -42,8 +42,6 @@ C     === Global variables ===
 #include "FFIELDS.h"
 #include "GRID.h"
 #include "DYNVARS.h"
-      LOGICAL DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
  
 C     !INPUT/OUTPUT PARAMETERS:
 C     === Routine arguments ===

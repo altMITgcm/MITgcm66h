@@ -104,7 +104,7 @@ C-    End DO k=1,Nr
 C------------------------------------
        facEmP = 0.
        IF (useRealFreshWaterFlux) facEmP = convertEmP2rUnit
-       IF ( myTime.EQ.startTime .AND. myTime.NE. 0. _d 0 
+       IF ( myTime.EQ.startTime .AND. myTime.NE.baseTime
      &                          .AND. useRealFreshWaterFlux) THEN
 
 C     needs previous time-step value of E-P-R, that has not been loaded

@@ -119,8 +119,8 @@ CEOP
 
 #ifdef ALLOW_AUTODIFF_TAMC
 C--   Reset the model iteration counter and the model time.
-      myiter = nIter0 + (iloop-1)
-      mytime = startTime + float(iloop-1)*deltaTclock
+      myIter = nIter0 + (iloop-1)
+      myTime = startTime + float(iloop-1)*deltaTclock
 #endif
 
 #ifdef ALLOW_AUTODIFF_TAMC

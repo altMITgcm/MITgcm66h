@@ -56,8 +56,8 @@ C     !USES:
 #include "GRID.h" 
 #include "EOS.h"
 
-      LOGICAL  DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
+      LOGICAL  DIFF_BASE_MULTIPLE
+      EXTERNAL DIFF_BASE_MULTIPLE
       INTEGER  IO_ERRCOUNT
       EXTERNAL IO_ERRCOUNT
 
@@ -75,8 +75,7 @@ C     !LOCAL VARIABLES:
 CEOP
 
       IF ( 
-     &     DIFFERENT_MULTIPLE(dumpFreq,myTime,
-     &     myTime-deltaTClock)
+     &     DIFF_BASE_MULTIPLE(baseTime,dumpFreq,myTime,deltaTClock)
 #ifndef MINIMAL_TAVE_OUTPUT
      &     .OR. myTime.EQ.endTime
      &     .OR. myTime.EQ.startTime

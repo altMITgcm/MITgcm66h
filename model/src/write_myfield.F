@@ -34,8 +34,8 @@ C     == Global variables ===
 #include "DYNVARS.h"
 #include "GRID.h" 
 #include "EOS.h"
-      LOGICAL  DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
+      LOGICAL  DIFF_BASE_MULTIPLE
+      EXTERNAL DIFF_BASE_MULTIPLE
       INTEGER  IO_ERRCOUNT
       EXTERNAL IO_ERRCOUNT
 
@@ -64,15 +64,14 @@ c     == external ==
 CEOP
 
       IF ( 
-     &     DIFFERENT_MULTIPLE(dumpFreq,myTime,
-     &     myTime-deltaTClock) .OR. 
-     &     myTime.EQ.endTime .OR.
-     &     myTime.EQ.startTime
+     &     DIFF_BASE_MULTIPLE(baseTime,dumpFreq,myTime,deltaTClock)
+     &     .OR. myTime.EQ.endTime
+     &     .OR. myTime.EQ.startTime
      &     ) THEN
          IF ( dumpFreq .EQ. 0.0 ) THEN
             iRec = 1
          ELSE
-            iRec = int ( (myTime-startTime) / dumpFreq +1.5 )
+            iRec = NINT ( (myTime-startTime) / dumpFreq + 1. )
          ENDIF
          
 C--   Going to really do some IO. Make everyone except master thread wait.

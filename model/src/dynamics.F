@@ -160,9 +160,6 @@ C                      index into fVerTerm.
       INTEGER i, j
       INTEGER k, km1, kp1, kup, kDown
 
-      LOGICAL  DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
-
 #ifdef ALLOW_DIAGNOSTICS
       _RL tmpFld  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       LOGICAL  DIAGNOSTICS_IS_ON

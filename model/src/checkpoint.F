@@ -296,8 +296,8 @@ C     !USES:
 #ifdef ALLOW_MNC
 #include "MNC_PARAMS.h"
 #endif
-      LOGICAL  DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
+      LOGICAL  DIFF_BASE_MULTIPLE
+      EXTERNAL DIFF_BASE_MULTIPLE
       INTEGER  IO_ERRCOUNT
       EXTERNAL IO_ERRCOUNT
 
@@ -323,9 +323,9 @@ C                       checkpoint (that will be permanent if permCheckPoint=T)
       permCheckPoint = .FALSE.
       tempCheckPoint = .FALSE.
       permCheckPoint =
-     &     DIFFERENT_MULTIPLE(pChkptFreq,myTime,myTime-deltaTClock)
+     &     DIFF_BASE_MULTIPLE(baseTime,pChkptFreq,myTime,deltaTClock)
       tempCheckPoint =
-     &     DIFFERENT_MULTIPLE( ChkptFreq,myTime,myTime-deltaTClock)
+     &     DIFF_BASE_MULTIPLE(baseTime, ChkptFreq,myTime,deltaTClock)
 
 #ifdef ALLOW_CAL
       IF ( calendarDumps ) THEN

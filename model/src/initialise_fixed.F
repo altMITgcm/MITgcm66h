@@ -150,7 +150,7 @@ C     to the core dynamical model
 
 C--   Write grid data and geometry arrays
 #ifdef MINIMAL_TAVE_OUTPUT
-      IF ( startTime .EQ. 0.0 ) CALL WRITE_GRID( myThid )
+      IF ( startTime .EQ. baseTime ) CALL WRITE_GRID( myThid )
 #else
       CALL WRITE_GRID( myThid )
 #endif /* MINIMAL_TAVE_OUTPUT */
