@@ -2,9 +2,7 @@ C
 C $Header$
 C $Name$
 
-#include "AD_CONFIG.h"
 #include "CTRL_CPPOPTIONS.h"
-
 
       subroutine ctrl_init_obcs_variables( mythid )
 

@@ -2,12 +2,9 @@ C
 C $Header$
 C $Name$
 
-#include "AD_CONFIG.h"
 #include "CTRL_CPPOPTIONS.h"
 
-
-      subroutine ctrl_set_fname( 
-     I     xx_fname,fname, adfname, mythid )
+      subroutine ctrl_set_fname( xx_fname, fname, mythid )
 
 c     ==================================================================
 c     SUBROUTINE ctrl_set_fname
@@ -40,8 +37,7 @@ c     == global variables ==
 c     == routine arguments ==
 
       character*(MAX_LEN_FNAM) xx_fname
-      character*( 80)   fname
-      character*( 80) adfname
+      character*( 80)   fname(2)
       integer mythid
 
 c     == local variables ==
@@ -69,13 +65,13 @@ c--   Only the master thread will do I/O.
 
       il=ilnblnk( xx_fname )
 
-      write(  fname(1:80),'(80a)') ' '
-      write(adfname(1:80),'(80a)') ' '
+      write(fname(1)(1:80),'(80a)') ' '
+      write(fname(2)(1:80),'(80a)') ' '
 
       if ( il .GT. 0 .AND. il .LE. 80 ) then
-         write(fname(1:80),'(2a,i10.10)')
+         write(fname(1)(1:80),'(2a,i10.10)')
      &        xx_fname(1:il) ,'.', optimcycle
-         write(adfname(1:80),'(3a,i10.10)')
+         write(fname(2)(1:80),'(3a,i10.10)')
      &        yadprefix, xx_fname(1:il), '.', optimcycle
       endif
 
