@@ -17,7 +17,8 @@ C     | o Contains problem specific forcing for tracer Tr1.
 C     *==========================================================*
 C     | Adds terms to gTr1 for forcing by external sources.
 C     | This routine is hardcoded for OCMIP CFC-11 experiment.
-C     | It assumes that myTime = on January 1, 1930.
+C     | It assumes that myTime=0 on January 1 for FICE, XKW,
+C     | and PATM, and data.cal provides the date for cfc1112.atm.
 C     | See the OCMIP-2 CFC HOWTO for details.
 C     *==========================================================*
 C     \ev
@@ -148,7 +149,7 @@ C     Find records and interpolation weights for PCFC
             timeint=0
          endif
          fprd    = 31557600
-         ftm     = myTime + timeint + fprd / 2
+         ftm     = timeint + fprd / 2
          intime0 = int( ftm / fprd )
          intime1 = intime0 + 1
          aWght   = ( ftm - fprd * intime0 ) / ( fprd )

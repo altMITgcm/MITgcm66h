@@ -17,7 +17,7 @@ C     | o Contains problem specific forcing for tracer Tr1.
 C     *==========================================================*
 C     | Adds terms to gTr1 for forcing by external sources.
 C     | This routine is hardcoded for OCMIP CFC-11 experiment.
-C     | It assumes that myTime = on January 1, 1930.
+C     | It assumes that myTime=0 on January 1, 1930.
 C     | See the OCMIP-2 CFC HOWTO for details.
 C     *==========================================================*
 C     \ev
