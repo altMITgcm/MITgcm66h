@@ -80,7 +80,7 @@ c     == local variables ==
 
       character*(MAX_LEN_MBUF) msgbuf
 #ifdef GENERIC_BAR_MONTH
-      integer mrec, nyears, iyear
+      integer mrec, nyears, iyear, tmpmon
 #endif      
 c     == external functions ==
 
@@ -131,7 +131,12 @@ c--   Read tiled data.
 
 #ifdef GENERIC_BAR_MONTH
 c--   Loop over month
-      do irec = 1,12
+      if (nmonsrec.GT.12) then
+         tmpmon = 12
+      else
+         tmpmon = nmonsrec
+      endif
+      do irec = 1,tmpmon
          nyears=int((nmonsrec-irec)/12)+1
          if(nyears.gt.0) then
             do iyear=1,nyears

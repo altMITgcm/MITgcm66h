@@ -81,7 +81,7 @@ c     == local variables ==
       character*(MAX_LEN_MBUF) msgbuf
 
 #ifdef GENERIC_BAR_MONTH
-      integer mrec, nyears, iyear
+      integer mrec, nyears, iyear, tmpmon
 #endif
 
 c     == external functions ==
@@ -134,11 +134,18 @@ c--   Read tiled data.
 #ifdef GENERIC_BAR_MONTH
 
 c--   Loop over month
-      do irec = 1,12
+      if (nmonsrec.GT.12) then
+         tmpmon = 12
+      else
+         tmpmon = nmonsrec
+      endif
+      do irec = 1,tmpmon
          nyears=int((nmonsrec-irec)/12)+1
          if(nyears.gt.0) then
             do iyear=1,nyears
             mrec=irec+(iyear-1)*12
+          print *, 'ph-rec irec, iyear, mrec ',
+     &               irec, iyear, mrec
 c--     Read time averages and the monthly mean data.
             call active_read_xyz( fnametheta, tbar, mrec,
      &           doglobalread, ladinit,
@@ -183,6 +190,7 @@ c--     Determine the month to be read.
         levmon = (irec-1) + levoff
         levmon = mod(levmon-1,12)+1
 
+        print *, 'ph-rec irec, levmon ', irec, levmon
         call mdsreadfield( tdatfile, cost_iprec, cost_yftype, 
      &                     nr, tdat, levmon, mythid)
 
