@@ -107,7 +107,7 @@ c Do not use a zero field as the top edge pressure for interpolation
        do bj = myByLo(myThid), myByHi(myThid)
        do bi = myBxLo(myThid), myBxHi(myThid)
         call get_landfrac(im2,jm2,Nsx,Nsy,bi,bj,maxtyp,
-     .        surftype,tilefrac,fracland)
+     .        surftype,tilefrac,fracland(1,1,bi,bj))
 c
 c Compute physics increments
 
