@@ -460,6 +460,12 @@ C--     End implicit Vertical advection & viscosity
        ENDDO
       ENDDO
 
+#ifdef ALLOW_OBCS
+      IF (useOBCS) THEN
+       CALL OBCS_PRESCRIBE_EXCHANGES(myThid)
+      ENDIF
+#endif
+
 Cml(
 C     In order to compare the variance of phiHydLow of a p/z-coordinate
 C     run with etaH of a z/p-coordinate run the drift of phiHydLow
