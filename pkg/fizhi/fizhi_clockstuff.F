@@ -720,8 +720,6 @@ C  WHERE:
 C  RA AND COSZ(I) ARE THE TWO OUTPUTS OF THIS SUBROUTINE.
 C
 C***********************************************************************
-C*                  GODDARD LABORATORY FOR ATMOSPHERES                 *
-C***********************************************************************
 
       implicit none
 #include "CPP_EEOPTIONS.h"
@@ -859,8 +857,6 @@ C
 C     imnm .... Previous   Time Index for Interpolation
 C     imnp .... Subsequent Time Index for Interpolation
 C
-C***********************************************************************
-C*                  GODDARD LABORATORY FOR ATMOSPHERES                 *
 C***********************************************************************
 
       implicit none

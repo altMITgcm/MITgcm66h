@@ -15,10 +15,10 @@ c ---------------------
      .   albvisdr, albvisdf, albnirdr, albnirdf, emiss,
      .   landtype, tgz, nchpland, ityp
       integer nchpland
-      integer ityp(nchp)
-      _RL chfr(nchp)
-      _RL alai(nchp)
-      _RL agrn(nchp)
+      integer ityp(nchp,Nsx,Nsy)
+      _RL chfr(nchp,Nsx,Nsy)
+      _RL alai(nchp,Nsx,Nsy)
+      _RL agrn(nchp,Nsx,Nsy)
       _RL albvisdr(sNx,sNy,Nsx,Nsy)
       _RL albvisdf(sNx,sNy,Nsx,Nsy)
       _RL albnirdr(sNx,sNy,Nsx,Nsy)
