@@ -11,12 +11,6 @@ C CPP flags controlling which code in included in the files that
 C will be compiled.
 CEOP
 
-C o Include/exclude code for AIM package
-#undef  ALLOW_AIM
-
-C o Include/exclude IERS Special Bureau for the Oceans diagnostics
-#define   ALLOW_SBO
-
 C o Include/exclude code for sea-ice model
 #define  ALLOW_SEAICE
 
@@ -30,9 +24,6 @@ C o Shortwave heating as extra term in external_forcing.F
 #ifdef ALLOW_KPP
 #define  SHORTWAVE_HEATING
 #endif
-
-C o Include/exclude code for Shapiro filters
-#undef  ALLOW_SHAP_FILT
 
 C o Include/exclude code for C-D grid method of integrating the 
 C   coriolis terms
@@ -149,10 +140,8 @@ C          because the old code did not have no-slip BCs
 C o Execution environment support options
 #include "CPP_EEOPTIONS.h"
 
-C o Include/exclude the external forcing package. To use this package,
-C   you have to include the calendar tool as well. KPP can be switched
-C   on or off. The implementation automatically takes care of this.
-#define INCLUDE_EXTERNAL_FORCING_PACKAGE
-#ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
-# include "ECCO_CPPOPTIONS.h"
+C o Include/exclude code specific to the ECCO/SEALION version.
+#define INCLUDE_ECCO_PACKAGE
+#ifdef INCLUDE_ECCO_PACKAGE
+#include "ECCO_CPPOPTIONS.h"
 #endif
