@@ -93,6 +93,14 @@ C     v : Vtype index
 C
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
+      COMMON /MNC_OPTIONS/
+     &     mnc_echo_gtypes,
+     &     mnc_pickup_create, mnc_pickup_read
+
+      logical 
+     &     mnc_echo_gtypes,
+     &     mnc_pickup_create, mnc_pickup_read
+
       integer MNC_MAX_ID, MNC_MAX_CHAR, MNC_MAX_INFO
       integer MNC_CW_MAX_I
       parameter ( MNC_MAX_ID   = 1000 )
