@@ -71,9 +71,7 @@ C--    Where statically unstable, mix the heat and salt
           theta(i,j,k  ,bi,bj) = tMix(i,j)/dSum(i,j)
           salt(i,j,k-1,bi,bj)  = sMix(i,j)/dSum(i,j)
           salt(i,j,k  ,bi,bj)  = sMix(i,j)/dSum(i,j)
-#ifdef INCLUDE_CONVECT_CALL
-C         ConvectCount(i,j,k) = ConvectCount(i,j,k) + 1.
-#endif
+          ConvectCount(i,j,k) = ConvectCount(i,j,k) + 1.
          ENDIF
         ENDDO
        ENDDO

@@ -118,6 +118,12 @@ C--     Convectively adjust new fields to be statically stable
      I       bi, bj, iMin, iMax, jMin, jMax,
      I       myTime, myIter, myThid )
 
+#ifdef INCLUDE_DIAGNOSTICS_INTERFACE_CODE
+        IF (taveFreq.GT.0.) THEN 
+          CALL DO_TIME_AVERAGES(myTime, myIter, bi, bj, myThid)
+        ENDIF
+#endif /* INCLUDE_DIAGNOSTICS_INTERFACE_CODE */
+
        ENDDO
       ENDDO
 
