@@ -2,6 +2,8 @@ $Header$
 
     Notes on tags used in MITgcmUV
     ==============================
+o gmredi: fix few bugs and restore parameter values (e.g., Small_Number=1.D-12)
+  and scheme (e.g., Large_SlopeSqr=1.D+48) of checkpoint47f_post
 
 checkpoint48
 This will be a good checkpoint to plug into the ecco-branch.
