@@ -162,7 +162,9 @@ C      Reset averages to zero
 
 C     Dump a snap-shot of main state variables:
       IF ( DIFFERENT_MULTIPLE(thSIce_diagFreq,myTime,myTime-deltaTClock)
-     &     .OR. myIter.EQ.nIter0 ) THEN
+     &     .OR. myTime.EQ.startTime
+     &     .OR. myTime.EQ.endTime ) THEN
+
        WRITE(suff,'(I10.10)') myIter
 
        CALL WRITE_FLD_XY_RL('ice_icemask.',  suff,iceMask,
