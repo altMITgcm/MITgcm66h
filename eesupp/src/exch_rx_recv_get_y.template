@@ -158,7 +158,7 @@ C        i.e. we only lock waiting for data that we need.
          northCommMode = _tileCommModeN(bi,bj)
          spinCount = 0
    10    CONTINUE
-          CALL FOOL_THE_COMPILER
+          CALL FOOL_THE_COMPILER( spinCount )
           spinCount = spinCount+1
 C         IF ( myThid .EQ. 1 .AND. spinCount .GT. _EXCH_SPIN_LIMIT ) THEN
 C          STOP ' S/R EXCH_RECV_GET_Y: spinCount .GT. _EXCH_SPIN_LIMIT'

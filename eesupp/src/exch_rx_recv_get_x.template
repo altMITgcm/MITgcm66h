@@ -153,7 +153,7 @@ C        i.e. we only lock waiting for data that we need.
          westCommMode = _tileCommModeW(bi,bj)
          eastCommMode = _tileCommModeE(bi,bj)
    10    CONTINUE
-          CALL FOOL_THE_COMPILER
+          CALL FOOL_THE_COMPILER( spinCount )
           spinCount = spinCount+1
 C         IF ( myThid .EQ. 1 .AND. spinCount .GT. _EXCH_SPIN_LIMIT ) THEN
 C          WRITE(*,*) ' eBl = ', ebl
