@@ -65,12 +65,13 @@ C--
          ENDDO
         ENDDO
       ELSE
+C-  gBaro = gravity (except for External mode test with reduced gravity)
         DO bj=myByLo(myThid),myByHi(myThid)
          DO bi=myBxLo(myThid),myBxHi(myThid)
           DO J=1-Oly,sNy+Oly
            DO I=1-Olx,sNx+Olx
-             Bo_surf(I,J,bi,bj) = gravity
-             recip_Bo(I,J,bi,bj) = recip_Gravity
+             Bo_surf(I,J,bi,bj) = gBaro
+             recip_Bo(I,J,bi,bj) = 1. _d 0 / gBaro
            ENDDO
           ENDDO
          ENDDO
