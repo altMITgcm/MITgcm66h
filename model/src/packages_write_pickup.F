@@ -143,6 +143,14 @@ C--     Write pickup file for Lnad package:
         ENDIF
 #endif
 
+#ifdef ALLOW_FIZHI
+C--     Write pickup file for fizhi package
+        IF (usefizhi) THEN
+          CALL FIZHI_WRITE_PICKUP(fn,myTime,myIter,myThid)
+        ENDIF
+#endif
+
+
        _END_MASTER( myThid )
        _BARRIER
 
