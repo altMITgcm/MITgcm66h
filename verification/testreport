@@ -481,7 +481,7 @@ for ac_option ; do
 	-make=* | --make=*)
 	    MAKE=$ac_optarg ;;
 
-	-clean | --clean | -c | --c)
+	-clean | --clean)
 	    CLEANUP=t ;;
 
 	-quick | --quick | -q | --q)
