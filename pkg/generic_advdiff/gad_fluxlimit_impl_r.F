@@ -102,7 +102,7 @@ C--   Compute the upwind fraction:
 C--    Add centered & upwind contributions
        DO j=jMin,jMax
          DO i=iMin,iMax
-           rCenter = 0.5 _d 0 *deltaTtracer*rTrans(i,j)
+           rCenter = 0.5 _d 0 *deltaTarg*rTrans(i,j)
      &                        *recip_rA(i,j,bi,bj)*rkFac
            rUpwind = abs(rCenter)*upwindFac(i,j)
            a3d(i,j,k)   = a3d(i,j,k)

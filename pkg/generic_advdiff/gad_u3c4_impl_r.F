@@ -87,7 +87,7 @@ CEOP
 C--    Add centered & upwind contributions
        DO j=jMin,jMax
          DO i=iMin,iMax
-           rCenter= 0.5 _d 0 *deltaTtracer*rTrans(i,j)
+           rCenter= 0.5 _d 0 *deltaTarg*rTrans(i,j)
      &                        *recip_rA(i,j,bi,bj)*rkFac
            mskM   = maskC(i,j,km2,bi,bj)*maskM2
            mskP   = maskC(i,j,kp1,bi,bj)*maskP1
