@@ -393,14 +393,26 @@
  cp ../verification/natl_box_adjoint/code_seaice/.genmakerc .
  cp ../verification/natl_box_adjoint/code_seaice/SEAICE_OPTIONS.h.DYN SEAICE_OPTIONS.h
 # Configure and compile the code:
- ../tools/genmake -mpi -makefile
+ ../tools/genmake -makefile
  make depend
 # Generate the adjoint code:
  cd ../adjoint
  cp ../verification/natl_box_adjoint/code_seaice/makefile.dyn makefile
  make adtaf
-
-# *ERROR* : control flow graph of subroutine lsr is irreducible
+ make adchange
+ rm -f makefile
+# Go back and compile the code:
+ cd ../bin
+ make
+# To run:
+ cd ../exe
+ cp ../verification/natl_box_adjoint/input_seaice/* .
+ cp ../verification/natl_box_adjoint/input_bulk/data.grdchk .
+ ./mitgcmuv >&! output.txt
+# To verify the results of the gradient check, type:
+ grep "ph-grd 3" output.txt
+# The reference output, without dynamics is in:
+ grep "ph-grd 3" ../verification/natl_box_adjoint/results_seaice/output.txt
 
 
 #####################
@@ -476,7 +488,7 @@
 # To verify the results of the gradient check, type:
  grep "ph-grd 3" output.txt
 
-# For 100-day experiment, the adjoint gradient blows up.
+# For 100-day experiment, the adjoint gradient blows up, as in Exp. 10
  adj grad  -.160660304+210 -.378763253+210 -.239235971+211 -.386444881+209
  1.d-4     0.251994583E+11 -.899637862E+10 0.372048919E+10 -.344972301E+10
 
