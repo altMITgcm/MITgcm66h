@@ -173,8 +173,6 @@ C     Check that enough parameters were specified
 C       Set the default I/O Types
         IF (PTRACERS_read_mnc) PTRACERS_read_mdsio = .FALSE.
         IF ( (.NOT. outputTypesInclusive) 
-     &       .AND. PTRACERS_write_mnc ) pickup_write_mdsio = .FALSE.
-        IF ( (.NOT. outputTypesInclusive) 
      &       .AND. PTRACERS_write_mnc ) PTRACERS_write_mdsio = .FALSE.
         
 C       Initialize the MNC variable types for PTRACERS 
