@@ -167,11 +167,11 @@ C     tempAdvection :: Flag which turns advection of temperature on
 C                     and off.
 C     tempForcing   :: Flag which turns external forcing of temperature on
 C                     and off.
-C     saltDiffusion :: Flag which turns diffusion of salinit on
+C     saltDiffusion :: Flag which turns diffusion of salinity on
 C                     and off.
-C     saltAdvection :: Flag which turns advection of salinit on
+C     saltAdvection :: Flag which turns advection of salinity on 
 C                     and off.
-C     saltForcing   :: Flag which turns external forcing of salinit on
+C     saltForcing   :: Flag which turns external forcing of salinity on
 C                     and off.
 C     useRealFreshWaterFlux :: if true (=Natural BCS), treats P+R-E flux 
 C                         as a real Fresh Water (=> changes the seal level)
