@@ -156,12 +156,12 @@ C         Dynamics field monitor finish
           ENDIF
 #endif /* ALLOW_USE_MPI */
 
-          mon_write_stdout = .FALSE.
-          mon_write_mnc    = .FALSE.
-
           _END_MASTER(myThid)
         ENDIF
-        
+
+        mon_write_stdout = .FALSE.
+        mon_write_mnc    = .FALSE.
+
       ENDIF
 
       RETURN
