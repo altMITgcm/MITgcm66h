@@ -48,7 +48,6 @@ C     nWv   - No. of waves that fit on grid.
       _RL one
       PARAMETER( one = 1.0 )
       _RS ampfact,Y
-      _RL yGCur
       ampfact(Y,I) = min( one, 
      &   ( cos( abs(Y)*deg2rad )
      &      /cos( zonal_filt_lat*deg2rad ) )**zonal_filt_cospow
@@ -67,12 +66,11 @@ C     o Set amplitude scale factor as function of latitude and mode number
         DO j=1-oLy,sNy+Oly
          ampFactor(1,J,bi,bj) = one
          ampFactorV(1,J,bi,bj) = one
-         yGCur=yG(1,J,bi,bj)
          DO i=1,Nx/2-1
           ampFactor(2*I,J,bi,bj) = ampfact( yC(1,J,bi,bj) , I )
 C         IF (ampFactor(2*I,J,bi,bj).LE..9) ampFactor(2*I,J,bi,bj)=0.
           ampFactor(2*I+1,J,bi,bj) = ampFactor(2*I,J,bi,bj)
-          ampFactorV(2*I,J,bi,bj) = ampfact( yGCur , I )
+          ampFactorV(2*I,J,bi,bj) = ampfact( yG(1,J,bi,bj) , I )
 C         IF (ampFactorV(2*I,J,bi,bj).LE..9) ampFactorV(2*I,J,bi,bj)=0.
           ampFactorV(2*I+1,J,bi,bj) = ampFactorV(2*I,J,bi,bj)
          ENDDO
@@ -81,7 +79,7 @@ Cajatest
          ampFactor(Nx,J,bi,bj) = 0.
          ampFactorV(Nx,J,bi,bj) = 0.
 C        ampFactor(Nx,J,bi,bj) = ampfact( yC(1,J,bi,bj) , I )
-C        ampFactorV(Nx,J,bi,bj) = ampfact( yG , I )
+C        ampFactorV(Nx,J,bi,bj) = ampfact( yG(1,J,bi,bj) , I )
 Cajatest
         ENDDO
        ENDDO
