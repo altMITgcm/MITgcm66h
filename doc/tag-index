@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint53c_post
 o new version of coupler for AIM+thSIce and Ocean models
  - new fields (SSS,h_MixLayer ...) are exchanged through the coupler
  - land: change Evaporation of snow
@@ -15,6 +16,9 @@ o changes to calc_gw.F
     and plume on slope), change the lateral boundary condition from half slip
     to the value of no_slip_sides
 o ebm package wasnt quite up to the parallel task. Fixed that.
+o Adjoint of EBM package + verification
+  * TLM OK
+  * ADM not sufficient accuracy yet (needs further testing)
 
 checkpoint53b_post
 o Commiting new energy balance model to repository
