@@ -45,7 +45,7 @@ C     cg2d_b - Conjugate Gradient 2-D solver : Right-hand side vector
       _RS vf(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RL cg2d_x(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL cg2d_b(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RL tolerance,residual
+      _RL firstResidual,lastResidual
       INTEGER numIters
 
 C--   Save previous solution & Initialise Vector solution and source term :
@@ -157,24 +157,24 @@ C Western boundary
 
 C--   Find the surface pressure using a two-dimensional conjugate
 C--   gradient solver.
-C     see CG2D_INTERNAL.h for the interface to this routine.
-      tolerance=cg2dTargetResidual
-      residual=0.
+C     see CG2D.h for the interface to this routine.
+      firstResidual=0.
+      lastResidual=0.
       numIters=cg2dMaxIters
       CALL CG2D(
-     I           cg2d_b,
+     U           cg2d_b,
      U           cg2d_x,
-     U           tolerance,
-     U           residual,
+     O           firstResidual,
+     O           lastResidual,
      U           numIters,
      I           myThid )
       _EXCH_XY_R8(cg2d_x, myThid )
 
       _BEGIN_MASTER( myThid )
        WRITE(0,'(A,I6,1PE30.14)') ' CG2D iters, err = ',
-     &                         0, tolerance
+     &                               0, firstResidual
        WRITE(0,'(A,I6,1PE30.14)') ' CG2D iters, err = ',
-     &                         numIters, residual
+     &                         numIters, lastResidual
       _END_MASTER( )
 
 C--   Transfert the 2D-solution to "etaN" :
