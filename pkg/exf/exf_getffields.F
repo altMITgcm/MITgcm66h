@@ -140,9 +140,10 @@ c     == local variables ==
 
 #ifdef ALLOW_BULKFORMULAE
 
+      _RL     aln
+
 #ifdef ALLOW_ATM_TEMP
       integer iter
-      _RL     aln
       _RL     delq
       _RL     deltap
       _RL     hqol
