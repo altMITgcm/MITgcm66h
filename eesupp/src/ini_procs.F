@@ -66,6 +66,7 @@ C--   Variables needed for mpi gather scatter routines.
       INTEGER mpi_myXGlobalLo(nPx*nPy)
       INTEGER mpi_myYGlobalLo(nPx*nPy)
       INTEGER npe,itemp,ierr,istatus(MPI_STATUS_SIZE)
+      INTEGER mpiBufSize,mpiRequest
 
 #endif /* ALLOW_USE_MPI */
       INTEGER myThid
@@ -188,20 +189,26 @@ C     and myYGlobalLo from each process are transferred to
 C     a common block array.  This allows process 0 to know
 C     the location of the domains controlled by each process.
        DO npe = 0, numberOfProcs-1
-          CALL MPI_SEND (myXGlobalLo, 1, MPI_INTEGER,
-     &         npe, mpiMyId, MPI_COMM_MODEL, ierr)
+          mpiBufSize=1
+          mpiRequest=0
+          CALL MPI_ISEND (myXGlobalLo, mpiBufSize, MPI_INTEGER,
+     &         npe, mpiMyId, MPI_COMM_MODEL, mpiRequest, ierr)
        ENDDO
        DO npe = 0, numberOfProcs-1
-          CALL MPI_RECV (itemp, 1, MPI_INTEGER,
+          mpiBufSize=1
+          CALL MPI_RECV (itemp, mpiBufSize, MPI_INTEGER,
      &         npe, npe, MPI_COMM_MODEL, istatus, ierr)
           mpi_myXGlobalLo(npe+1) = itemp
        ENDDO
        DO npe = 0, numberOfProcs-1
-          CALL MPI_SEND (myYGlobalLo, 1, MPI_INTEGER,
-     &         npe, mpiMyId, MPI_COMM_MODEL, ierr)
+          mpiBufSize=1
+          mpiRequest=0
+          CALL MPI_ISEND (myYGlobalLo, mpiBufSize, MPI_INTEGER,
+     &         npe, mpiMyId, MPI_COMM_MODEL, mpiRequest, ierr)
        ENDDO
        DO npe = 0, numberOfProcs-1
-          CALL MPI_RECV (itemp, 1, MPI_INTEGER,
+          mpiBufSize=1
+          CALL MPI_RECV (itemp, mpiBufSize, MPI_INTEGER,
      &         npe, npe, MPI_COMM_MODEL, istatus, ierr)
           mpi_myYGlobalLo(npe+1) = itemp
        ENDDO
