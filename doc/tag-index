@@ -2,6 +2,9 @@ $Header$
 
     Notes on tags used in MITgcmUV
     ==============================
+
+checkpoint52l_pre
+
 o fix problem (when 1 tile is empty) in min/max monitor.
 o fix bug in timeAve (u,vZetatave in common block) 
 o no restoring terms under ice for pkg/seaice
