@@ -178,4 +178,9 @@ C
       _RL OBWw (1-Oly:sNy+Oly,Nr,nSx,nSy)
 #endif /* ALLOW_NONHYDROSTATIC */
 
+#ifdef ALLOW_OBCS_CONTROL
+       common /gg_volflux/ shiftvel
+       _RL shiftvel(2)
+#endif
+
 #endif /* ALLOW_OBCS */

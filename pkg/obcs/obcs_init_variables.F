@@ -114,7 +114,7 @@ C     == Local variables ==
           OBWt1(J,K,bi,bj)=0. _d 0
           OBWs1(J,K,bi,bj)=0. _d 0
 # endif
-#endif /* ALLOW_OBCS_EAST */
+#endif /* ALLOW_OBCS_WEST */
          ENDDO
         ENDDO
 
