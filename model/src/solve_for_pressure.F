@@ -57,6 +57,8 @@ C     see CG2D.h for the interface to this routine.
      U           cg2d_x,
      I           myThid )
 
+      _EXCH_XY_R8(cg2d_x, myThid )
+
 #ifdef ALLOW_NONHYDROSTATIC
       IF ( nonHydrostatic ) THEN
 
@@ -117,6 +119,8 @@ c           cg3d_x(i,j,k,bi,bj) = 0.
        ENDDO ! bj
 
        CALL CG3D( myThid )
+
+       _EXCH_XYZ_R8(cg3d_x, myThid )
 
       ENDIF
 #endif

@@ -347,7 +347,7 @@ C--   Un-normalise the answer
        ENDDO
       ENDDO
 
-      _EXCH_XY_R8(cg2d_x, myThid )
+Cadj  _EXCH_XY_R8(cg2d_x, myThid )
       _BEGIN_MASTER( myThid )
        WRITE(0,'(A,I6,1PE30.14)') ' CG2D iters, err = ', 
      & actualIts, actualResidual
