@@ -327,6 +327,9 @@ EXECUTABLE=
 EXEHOOK=
 EXEDIR=
 PACKAGES_CONF=
+if test "x$MITGCM_IEEE" != x ; then
+    IEEE=$MITGCM_IEEE
+fi
 
 #  The following state can be set directly by command-line switches
 gm_s1="OPTFILE PDEPEND PDEFAULT MAKEFILE PLATFORM ROOTDIR MODS DISABLE ENABLE NOOPT"
@@ -462,14 +465,14 @@ for ac_option ; do
 	    FC=$ac_optarg ;;
 	
 	-ieee | --ieee)
-	    IEEE=1 ;;
+	    IEEE=true ;;
 	-noieee | --noieee)
-	    IEEE=0 ;;
+	    IEEE= ;;
 	
 	-mpi | --mpi)
-	    MPI=1 ;;
+	    MPI=true ;;
 	-nompi | --nompi)
-	    MPI=0 ;;
+	    MPI= ;;
 	
 	-jam | --jam)
 	    JAM=1 ;;
