@@ -28,6 +28,10 @@
  aqhstartdate2     = 60000,
  aqhperiod         = 86400.0,
 #
+ evapstartdate1    = 19920601,
+ evapstartdate2    = 60000,
+ evapperiod        = 86400.0,
+#
  precipstartdate1  = 19920601,
  precipstartdate2  = 60000,
  precipperiod      = 86400.0,
@@ -56,10 +60,34 @@
  aqhfile           = 'PH_atm_humid_020_016_23',
  uwindfile         = 'PH_atm_uwind_020_016_23',
  vwindfile         = 'PH_atm_vwind_020_016_23',
+ evapfile          = ' ',
  precipfile        = 'PH_pratesfc_020_016_23',
  lwfluxfile        = 'PH_lwflsfc_020_016_23',
  swfluxfile        = 'PH_swflsfc_020_016_23',
+ runoffFile        = ' '
 #
  exf_iprec         = 32,
  exf_yftype        = 'RL',
- /
+#
+#     input scaling factors
+      exf_inscalhfl       =  1. _d 0
+      exf_inscalust       =  1. _d 0
+      exf_inscalvst       =  1. _d 0
+      exf_inscalswf       =  1. _d 0
+      exf_inscalsst       =  1. _d 0
+      exf_inscalsss       =  1. _d 0
+      exf_inscalapressure =  1. _d 0
+      exf_inscalsfl       =  1. _d 0
+#     convert runoff from m/yr to m/s and change sign.
+      exf_inscalrunoff    = -1.0/(86400.*365.0)
+#     output scaling factors
+      exf_outscalhfl      =  1. _d 0
+      exf_outscalust      =  1. _d 0
+      exf_outscalvst      =  1. _d 0
+      exf_outscalswf      =  1. _d 0
+      exf_outscalsst      =  1. _d 0
+      exf_outscalsss      =  1. _d 0
+      exf_outscalapressure=  1. _d 0
+      exf_outscalsfl      =  1. _d 0
+      exf_outscalrunoff   =  1. _d 0
+ &

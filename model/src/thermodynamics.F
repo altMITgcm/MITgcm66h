@@ -581,7 +581,7 @@ C--      Apply open boundary conditions
 #endif   /* ALLOW_OBCS */
 
 C--      Freeze water
-         IF (allowFreezing) THEN
+         IF ( allowFreezing .AND. .NOT. useSEAICE ) THEN
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE gT(:,:,k,bi,bj) = comlev1_bibj_k
 CADJ &   , key = kkey, byte = isbyte

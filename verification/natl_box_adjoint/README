@@ -15,10 +15,22 @@ Configure and compile the code:
   make depend
   make small_f
 
+Generate the adjoint code:
+  cd ../adjoint
+  make adtaf
+  make adchange
+
+Go back and compile the code:
+  cd ../bin
+  make
+
 To run:
   cd ../exe
   cp ../verification/natl_box_adjoint/input/* .
-  mitgcmuv >&! run.out
+  mitgcmuv >&! output.txt
+
+There is comparison output in:
+  diff output.txt ../verification/natl_box_adjoint/results/output.txt | more
 
 Comments:
 The input data is real*8.

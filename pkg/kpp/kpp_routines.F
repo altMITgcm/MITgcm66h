@@ -183,14 +183,16 @@ c-----------------------------------------------------------------------
 
 c-----------------------------------------------------------------------
 c combine interior and boundary layer coefficients and nonlocal term
+c !!!NOTE!!! In shallow (2-level) regions and for shallow mixed layers
+c (< 1 level), diffusivity blmc can become negative.  The max's below
+c are a hack until this problem is properly diagnosed and fixed.
 c-----------------------------------------------------------------------
-
       do k = 1, Nr
          do i = 1, imt
             if (k .lt. kbl(i)) then
-               do md = 1, mdiff
-                  diffus(i,k,md) = blmc(i,k,md)
-               end do
+               diffus(i,k,1) = max ( blmc(i,k,1), viscAr  )
+               diffus(i,k,2) = max ( blmc(i,k,2), diffKrS )
+               diffus(i,k,3) = max ( blmc(i,k,3), diffKrT )
             else
                ghat(i,k) = 0.
             endif
@@ -661,10 +663,11 @@ c     fRi, fcon             function of Rig
       _KPP_RL Rig
       _KPP_RL fRi, fcon
       _KPP_RL ratio
-      integer i, ki, mr
+      integer i, ki
       _KPP_RL c1, c0
 
 #ifdef ALLOW_KPP_VERTICALLY_SMOOTH
+      integer mr
 CADJ INIT kpp_ri_tape_mr = common, 1
 #endif
 

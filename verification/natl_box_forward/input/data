@@ -1,6 +1,9 @@
 #
+# ====================
+# | Model parameters |
+# ====================
+#
 # ******************************
-# Model parameters
 # Continuous equation parameters
 # ******************************
 #
@@ -96,7 +99,7 @@
 #
  &PARM03
  startTime         = 0.0,
- endTime           = 2613600.0,
+ endTime           = 72000.0,
  deltaTmom         = 3600.0,
  deltaTtracer      = 3600.0,
  deltaTClock       = 3600.0,
@@ -105,7 +108,7 @@
  cAdjFreq          = 0.0,
  pChkptFreq        = 0.0,
  chkptFreq         = 0.0,
- dumpFreq          = 864000.0,
+ dumpFreq          = 72000.0,
  tauThetaClimRelax = 2592000.0,
  tauSaltClimRelax  = 2592000.0,
  &
@@ -127,8 +130,8 @@
  delX = 20*2.E0,
  delY = 16*2.E0,
  delZ = 10.,10.,15.,20.,20.,25.,35.,50.,75.,100.,
-        150.,200.,275.,350.,415.,450.,500.,500.,500.,500.,
-        500.,500.,500.,
+        150.,200.,275.,350.,415.,450.,500.,500.,
+        500.,500.,500.,500.,500.,
  phimin=10.,
  thetamin=-42.,
  &
@@ -139,6 +142,10 @@
 #   bathyFile       - File containing bathymetry
 #   hydrogThetaFile - File containing initial potential temperature data
 #   hydrogSaltFile  - File containing initial salinity data
+#   zonalWindFile   - File containing zonal wind data
+#   meridWindFile   - File containing meridional wind data
+#   thetaClimFile   - File containing theta climatology used for relaxation
+#   saltClimFile    - File containing salt climatology used for relaxation
 #
  &PARM05
  bathyFile       = 'kf_topog',

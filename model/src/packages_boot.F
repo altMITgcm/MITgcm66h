@@ -52,7 +52,8 @@ C     data.pkg namelists
      &          useECCO,
      &          useSHAP_FILT,
      &          useZONAL_FILT,
-     &          useFLT
+     &          useFLT,
+     &          useSEAICE
 CEOP
 
       _BEGIN_MASTER(myThid)
@@ -77,6 +78,7 @@ C--   Default package configuration
       useSHAP_FILT=.FALSE.
       useZONAL_FILT=.FALSE.
       useFLT=.FALSE.
+      useSEAICE=.FALSE.
 
 C--   Read parameters from open data file
       READ(UNIT=iUnit,NML=PACKAGES)
