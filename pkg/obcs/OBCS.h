@@ -33,7 +33,7 @@ C
      & spongeThickness,
      & useOrlanskiNorth,useOrlanskiSouth,
      & useOrlanskiEast,useOrlanskiWest,
-     & useOBCSsponge
+     & useOBCSsponge, useOBCSbalance
       INTEGER OB_Jnorth(Nx)
       INTEGER OB_Jsouth(Nx)
       INTEGER OB_Ieast(Ny)
