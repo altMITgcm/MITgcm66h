@@ -285,7 +285,7 @@ C     In spherical polar distances are in degrees
        STOP 'ABNORMAL END: S/R INI_PARMS'
       ENDIF
  
-C--   Offline config. parameters
+C--   Example offline config. parameters
 C     Set to 12 equal length one month periods
       oBandBeg(1) = 0. _d 0
       oBandEnd(1) = 2592000. _d 0
