@@ -3,10 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
-Revision history for branch release1_coupled
-   (branch for coupling to UCLA atmospheric model)
+Branch release1_coupled contains code for coupling
+to UCLA atmospheric model:
 
-12/01/03
+cvs tag ucla1
   Branched off tag release1_beta1
   Modified eesupp/src/eeboot_minimal.F, eedie.F, exch_jam.F,
     global_max.F, global_sum.F, gsum_jam.F, ini_procs.F, and main.F
