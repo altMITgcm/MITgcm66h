@@ -40,6 +40,8 @@ C     == Local variables ==
       INTEGER bi, bj
       CHARACTER*(MAX_LEN_MBUF) suff
 
+      INTEGER I,J
+
 #ifdef ALLOW_BULK_FORCE
 
 

@@ -29,7 +29,6 @@ C     Storage arrays for time-averages
       _RL BULK_ssq_AVE      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
 
-
       COMMON /BULKF_TAVE_ARRAYS/
      &                       BULK_Qnet_AVE, BULK_EmPmR_AVE, 
      &                       BULK_fu_AVE, BULK_fv_AVE,
