@@ -46,7 +46,7 @@ Compiling the code:
   make
 
 Running the code:
-  mitgcmuv >&! output.txt
+  ./mitgcmuv >&! output.txt
 
 There is comparison output in:
   diff output.txt ../results/output.txt | more

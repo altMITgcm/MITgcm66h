@@ -42,5 +42,5 @@ subplot(414), mypcolor(lon,lat,d'); caxis([-2 2]), colorbar
 xlabel('Longitude East'), ylabel('Latitude North')
 title('( adjoint minus finite-difference ) / adjoint')
 
-print -djpeg -r0 FIG1
-print -dpsc FIG1
+% print -djpeg -r0 FIG1
+% print -dpsc FIG1
