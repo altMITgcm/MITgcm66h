@@ -3,6 +3,16 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+ecco-branch-mod3
+o this is the first part of changes necessary to reconcile
+  natl_box_adjoint verification (with and without grdchk).
+  This set of changes is relevant for ECCO only.
+  The next set/tag of changes (ecco-branch-mod4)
+  should be merged into the main trunk.
+  - update some options
+  - parameter lists of ecco_the_model_main and ecco_the_main_loop
+    differed from those of the MITgcm counterparts.
+
 ecco-branch-mod2
 o update ecco-branch-mod1 to checkpoint44
 o exclude from updates:
