@@ -140,9 +140,10 @@ c     == local variables ==
 
 #ifdef ALLOW_BULKFORMULAE
 
+      _RL     aln
+
 #ifdef ALLOW_ATM_TEMP
       integer iter
-      _RL     aln
       _RL     delq
       _RL     deltap
       _RL     hqol
@@ -293,6 +294,11 @@ c     Downward longwave radiation.
 
 #endif
 
+#ifdef ATMOSPHERIC_LOADING
+c     Atmos. pressure forcing
+      call exf_set_apressure ( mycurrenttime, mycurrentiter, mythid )
+#endif
+
 c--   Use atmospheric state to compute surface fluxes.
 
 c     Loop over tiles.
@@ -309,9 +315,8 @@ CHPF$  INDEPENDENT
 
           k = 1
 
-cdm? can olx, oly be eliminated?
-          do j = 1-oly,sny+oly
-            do i = 1-olx,snx+olx
+          do j = 1,sny
+            do i = 1,snx
 
 #ifdef ALLOW_BULKFORMULAE
 
@@ -324,8 +329,8 @@ cdm? can olx, oly be eliminated?
                max3 = nTx*nTy
                act4 = ikey_dynamics - 1
 
-               ikey_1 = i+olx
-     &              + sNx*(j+oly-1)
+               ikey_1 = i
+     &              + sNx*(j-1)
      &              + sNx*sNy*act1
      &              + sNx*sNy*max1*act2
      &              + sNx*sNy*max1*max2*act3
@@ -451,8 +456,8 @@ CADJ STORE sh     = comlev1_exf_1, key = ikey_1
 
 #ifdef ALLOW_AUTODIFF_TAMC
                    ikey_2 = iter
-     &                  + niter_bulk*(i+olx-1)
-     &                  + sNx*niter_bulk*(j+oly-1)
+     &                  + niter_bulk*(i-1)
+     &                  + sNx*niter_bulk*(j-1)
      &                  + sNx*niter_bulk*sNy*act1
      &                  + sNx*niter_bulk*sNy*max1*act2
      &                  + sNx*niter_bulk*sNy*max1*max2*act3
@@ -593,11 +598,16 @@ c             Salt flux from Precipitation and Evaporation.
 c     Update the tile edges.
       _EXCH_XY_R8(hflux,   mythid)
       _EXCH_XY_R8(sflux,   mythid)
-      _EXCH_XY_R8(ustress, mythid)
-      _EXCH_XY_R8(vstress, mythid)
+c      _EXCH_XY_R8(ustress, mythid)
+c      _EXCH_XY_R8(vstress, mythid)
+       CALL EXCH_UV_XY_RL(ustress, vstress, .TRUE., myThid)
 
 #ifdef SHORTWAVE_HEATING
       _EXCH_XY_R8(swflux, mythid)
+#endif
+
+#ifdef ATMOSPHERIC_LOADING
+      _EXCH_XY_R8(apressure, mythid)
 #endif
 
       end
