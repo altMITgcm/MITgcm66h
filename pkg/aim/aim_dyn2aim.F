@@ -70,9 +70,12 @@ C     Depth in levels
           NLEVxyU(I2,myThid)=0
           NLEVxyV(I2,myThid)=0
           DO k=1,NLEV
-            NLEVxy(I2,myThid) = NLEVxy(I2,myThid)  +int( hFacC(I,J,K,bi,bj) )
-            NLEVxyU(I2,myThid)= NLEVxyU(I2,myThid) +int( hFacW(I,J,K,bi,bj) )
-            NLEVxyV(I2,myThid)= NLEVxyV(I2,myThid) +int( hFacS(I,J,K,bi,bj) )
+            NLEVxy(I2,myThid) = NLEVxy(I2,myThid)
+     &                        + INT( maskC(I,J,K,bi,bj) )
+            NLEVxyU(I2,myThid)= NLEVxyU(I2,myThid)
+     &                        + INT( maskW(I,J,K,bi,bj) )
+            NLEVxyV(I2,myThid)= NLEVxyV(I2,myThid)
+     &                        + INT( maskS(I,J,K,bi,bj) )
           ENDDO
         ENDDO
       ENDDO
