@@ -1,11 +1,11 @@
 #
 # ***************
-# Open boundaries
+# package flags
 # ***************
  &PACKAGES
- useKPP	      = .FALSE.,
- useGMRedi    = .FALSE.,
+ useKPP	      = .TRUE.,
+ useGMRedi    = .TRUE.,
  useECCO      = .TRUE.,
  useSeaice    = .FALSE.,
- useGrdchk    = .FALSE.,
+ useGrdchk    = .TRUE.,
  &
