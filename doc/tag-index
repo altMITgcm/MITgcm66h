@@ -3,6 +3,15 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+ecco_c50_e31
+o exf totally restructured
+  - replaced all exf_set_ routines by one generic exf_set_gen.F
+    and made sure it's still differentiable
+  - split exf_getffields.F into new exf_bulkformulae.F
+  - exf_inscal_/exf_outscal_ suffixes consistent with field names
+o New cost function: Tini-Tfin to do model spinup optimization.
+o Started new verification exp for Tini-Tfin optimization.
+
 ecco_c50_e30
 o corrected CPP option mismatch in exf_Bulk... functions for case 
   #define ALLOW_ATM_WIND && #undef ALLOW_ATM_TEMP
