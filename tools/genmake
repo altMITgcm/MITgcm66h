@@ -92,10 +92,6 @@ while ($#allargs)
    set include_jam_libs
    echo "Including paths to JAM libraries"
    breaksw
- case -arpack:
-   echo "Enabling ARPACK libraries"
-   set USEARPACK
-   breaksw
  case -help:
    echo "usage: $0 [-help] [-makefile[=...]] [-platform=...] [-mpi] [-jam] [-disable=pkg1[,pkg2,...]] [-enable=pkg1[,pkg2,...]] [-mods=dir1[,dir2,...]] [-rootdir=dir]"
 cat << EOF
@@ -317,15 +313,8 @@ else
 # set DEFINES = ( ${DEFINES} '-UALLOW_USE_MPI -UALWAYS_USE_MPI' )
 endif
 
-if ($?USEARPACK) then
-  set USEARPACK  = ( '+arpack' )
-  set LIBS       = ( '-L/usr/lib -larpack -llapack' )
-else
-  set USEARPACK
-endif
-
 # Platform specific options
-switch ($platform$USEMPI$USEARPACK)
+switch ($platform$USEMPI)
   case OSF1+mpi:
     echo "Configuring for DEC Alpha with MPI"
     set LIBS       = ( '-lfmpi -lmpi -lkmp_osfp10 -pthread' )
@@ -608,14 +597,6 @@ switch ($platform$USEMPI$USEARPACK)
     set FOPTIM     = ( '-O3 -malign-double -funroll-loops' )
     set LIBS       = ( '-L/usr/local/mpich/mpich-1.2.1..7b_gnu/lib/ -lfmpich -lmpich' )
     set INCLUDES   = ( '-I/usr/local/mpich/mpich-1.2.1..7b_gnu/include/' )
-    breaksw
-  case gfdl-sgi-o3k
-    echo "Configuring for " $platform
-    set DEFINES    = ( ${DEFINES} '-DTARGET_SGI -DWORDLENGTH=4' )
-    set FFLAGS     = ( '-extend_source -mp -mpio -bytereclen -mips4 -r8 -static' )
-    set FOPTIM     = ( '-O3' )
-    set LIBS       = ( '-L/opt/mpt/1510/usr/lib64 -lmpi' )
-    set INCLUDES   = ( '-I/opt/mpt/1510/usr/include' )
     breaksw
   default:
     echo "Error: platform not recognized: uname -p = " $platform$USEMPI
