@@ -12,9 +12,9 @@ C     \==========================================================/
       IMPLICIT NONE
 C     == Global variables ==
 #include "SIZE.h"
+#include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#include "EEPARAMS.h"
 #include "CG2D.h"
 C     == Routine Arguments ==
       INTEGER bi,bj,iMin,iMax,jMin,jMax

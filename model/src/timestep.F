@@ -13,6 +13,7 @@ C     \==========================================================/
 ! Common
 #include "SIZE.h"
 #include "DYNVARS.h"
+#include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
 C     == Routine Arguments ==

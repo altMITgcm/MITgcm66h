@@ -15,6 +15,7 @@ C     == Global variables ==
 #include "SIZE.h"
 #include "DYNVARS.h"
 #include "GRID.h"
+#include "EEPARAMS.h"
 #include "PARAMS.h"
 C     == Routine arguments ==
       INTEGER bi,bj,iMin,iMax,jMin,jMax,K

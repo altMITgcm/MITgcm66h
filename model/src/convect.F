@@ -14,6 +14,7 @@ C     \==========================================================/
 
 C     == Global data ==
 #include "SIZE.h"
+#include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "DYNVARS.h"
 #include "GRID.h"

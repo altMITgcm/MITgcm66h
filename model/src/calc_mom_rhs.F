@@ -35,9 +35,9 @@ C     == Global variables ==
 #include "SIZE.h"
 #include "DYNVARS.h"
 #include "FFIELDS.h"
+#include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#include "EEPARAMS.h"
 #include "CG2D.h"
 
 C     == Routine arguments ==

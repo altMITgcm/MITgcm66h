@@ -18,6 +18,7 @@ C     \==========================================================/
 
 C     == GLobal variables ==
 #include "SIZE.h"
+#include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "DYNVARS.h"
 

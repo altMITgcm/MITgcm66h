@@ -33,8 +33,22 @@ C     Checkpoint data
 
 C--   COMMON /PARM_C/ Character valued parameters used by the model.
 C     checkPtSuff - List of checkpoint file suffices
-      COMMON /PARM_C/ checkPtSuff
+C     bathyFile   - File containing bathymetry. If not defined bathymetry
+C                   is taken from inline function.
+C     hydrogThetaFile - File containing initial hydrographic data for potential
+C                       temperature.
+C     hydrogSaltFile  - File containing initial hydrographic data for salinity.
+C     zonalWindFile   - File containing zonal wind data
+C     meridWindFile   - File containing meridional wind data
+      COMMON /PARM_C/ checkPtSuff,
+     &                bathyFile, hydrogThetaFile, hydrogSaltFile,
+     &                zonalWindFile, meridWindFile
       CHARACTER*(5) checkPtSuff(maxNoChkptLev)
+      CHARACTER*(MAX_LEN_FNAM) bathyFile
+      CHARACTER*(MAX_LEN_FNAM) hydrogThetaFile
+      CHARACTER*(MAX_LEN_FNAM) hydrogSaltFile
+      CHARACTER*(MAX_LEN_FNAM) zonalWindFile
+      CHARACTER*(MAX_LEN_FNAM) meridWindFile
 
 C--   COMMON /PARM_I/ Integer valued parameters used by the model.
 C     cg2dMaxIters        - Maximum number of iterations in the

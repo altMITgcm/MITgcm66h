@@ -80,6 +80,11 @@ C--   Gridding parameters
      & usingSphericalPolarGrid, phiMin, thetaMin, rSphere,
      & l, m, n
 
+C--   Input files
+      NAMELIST /PARM05/
+     & bathyFile, hydrogThetaFile, hydrogSaltFile, 
+     & zonalWindFile, meridWindFile
+
 C
       _BEGIN_MASTER(myThid)
 
@@ -431,6 +436,31 @@ C     Initialize EOS coefficients (3rd order polynomial)
        metricTerms = .TRUE.
        mTFacMom = 1
       ENDIF
+
+C--   Input files
+      bathyFile       = ' '
+      hydrogSaltFile  = ' '
+      hydrogThetaFile = ' '
+      zonalWindFile   = ' '
+      meridWindFile   = ' '
+      READ(UNIT=iUnit,NML=PARM05,IOSTAT=errIO,err=11)
+      IF ( errIO .GE. 0 ) GOTO 12
+   11 CONTINUE
+       WRITE(msgBuf,'(A)')
+     &  'S/R INI_PARMS'
+       CALL PRINT_ERROR( msgBuf , 1)
+       WRITE(msgBuf,'(A)')
+     &  'Error reading numerical model '
+       CALL PRINT_ERROR( msgBuf , 1)
+       WRITE(msgBuf,'(A)')
+     &  'parameter file "data"'
+       CALL PRINT_ERROR( msgBuf , 1)
+       WRITE(msgBuf,'(A)')
+     &  'Problem in namelist PARM05'
+       CALL PRINT_ERROR( msgBuf , 1)
+       CALL MODELDATA_EXAMPLE( myThid )
+       STOP 'ABNORMAL END: S/R INI_PARMS'
+  12  CONTINUE
 
       _END_MASTER(myThid)
 
