@@ -15,7 +15,7 @@ C !INTERFACE: ==========================================================
      I           tracerIdentity, advectionScheme, vertAdvecScheme,
      I           calcAdvection, implicitAdvection,
      U           fVerT, gTracer,
-     I           myThid )
+     I           myTime, myIter, myThid )
 
 C !DESCRIPTION:
 C Calculates the tendancy of a tracer due to advection and diffusion.
@@ -72,6 +72,8 @@ C advectionScheme  :: advection scheme to use (Horizontal plane)
 C vertAdvecScheme  :: advection scheme to use (Vertical direction)
 C calcAdvection    :: =False if Advec computed with multiDim scheme
 C implicitAdvection:: =True if vertical Advec computed implicitly
+C myTime           :: current time
+C myIter           :: iteration number
 C myThid           :: thread number
       INTEGER bi,bj,iMin,iMax,jMin,jMax
       INTEGER k,kUp,kDown,kM1
@@ -92,7 +94,8 @@ C myThid           :: thread number
       INTEGER advectionScheme, vertAdvecScheme
       LOGICAL calcAdvection
       LOGICAL implicitAdvection
-      INTEGER myThid
+      _RL     myTime
+      INTEGER myIter, myThid
 
 C !OUTPUT PARAMETERS: ==================================================
 C gTracer          :: tendancy array
@@ -176,18 +179,21 @@ C-    Advective flux in X
       IF (advectionScheme.EQ.ENUM_CENTERED_2ND) THEN
        CALL GAD_C2_ADV_X(bi,bj,k,uTrans,localT,af,myThid)
       ELSEIF (advectionScheme.EQ.ENUM_FLUX_LIMIT) THEN
-       CALL GAD_FLUXLIMIT_ADV_X(
-     &      bi,bj,k,deltaTtracer,uTrans,uVel,localT,af,myThid)
+       CALL GAD_FLUXLIMIT_ADV_X( bi,bj,k, deltaTtracer,
+     I          uTrans, uVel, maskW(1-Olx,1-Oly,k,bi,bj), localT,
+     O          af, myThid )
       ELSEIF (advectionScheme.EQ.ENUM_UPWIND_3RD ) THEN
        CALL GAD_U3_ADV_X(bi,bj,k,uTrans,localT,af,myThid)
       ELSEIF (advectionScheme.EQ.ENUM_CENTERED_4TH) THEN
        CALL GAD_C4_ADV_X(bi,bj,k,uTrans,localT,af,myThid)
       ELSEIF (advectionScheme.EQ.ENUM_DST3 ) THEN
-       CALL GAD_DST3_ADV_X(
-     &       bi,bj,k,deltaTtracer,uTrans,uVel,localT,af,myThid)
+       CALL GAD_DST3_ADV_X( bi,bj,k, deltaTtracer,
+     I          uTrans, uVel, maskW(1-Olx,1-Oly,k,bi,bj), localT,
+     O          af, myThid )
       ELSEIF (advectionScheme.EQ.ENUM_DST3_FLUX_LIMIT ) THEN
-       CALL GAD_DST3FL_ADV_X(
-     &       bi,bj,k,deltaTtracer,uTrans,uVel,localT,af,myThid)
+       CALL GAD_DST3FL_ADV_X( bi,bj,k, deltaTtracer,
+     I          uTrans, uVel, maskW(1-Olx,1-Oly,k,bi,bj), localT,
+     O          af, myThid )
       ELSE
        STOP 'GAD_CALC_RHS: Bad advectionScheme (X)'
       ENDIF
@@ -248,18 +254,21 @@ C-    Advective flux in Y
       IF (advectionScheme.EQ.ENUM_CENTERED_2ND) THEN
        CALL GAD_C2_ADV_Y(bi,bj,k,vTrans,localT,af,myThid)
       ELSEIF (advectionScheme.EQ.ENUM_FLUX_LIMIT) THEN
-       CALL GAD_FLUXLIMIT_ADV_Y(
-     &       bi,bj,k,deltaTtracer,vTrans,vVel,localT,af,myThid)
+       CALL GAD_FLUXLIMIT_ADV_Y( bi,bj,k, deltaTtracer,
+     I          vTrans, vVel, maskS(1-Olx,1-Oly,k,bi,bj), localT,
+     O          af, myThid )
       ELSEIF (advectionScheme.EQ.ENUM_UPWIND_3RD ) THEN
        CALL GAD_U3_ADV_Y(bi,bj,k,vTrans,localT,af,myThid)
       ELSEIF (advectionScheme.EQ.ENUM_CENTERED_4TH) THEN
        CALL GAD_C4_ADV_Y(bi,bj,k,vTrans,localT,af,myThid)
       ELSEIF (advectionScheme.EQ.ENUM_DST3 ) THEN
-       CALL GAD_DST3_ADV_Y(
-     &       bi,bj,k,deltaTtracer,vTrans,vVel,localT,af,myThid)
+       CALL GAD_DST3_ADV_Y( bi,bj,k, deltaTtracer,
+     I          vTrans, vVel, maskS(1-Olx,1-Oly,k,bi,bj), localT,
+     O          af, myThid )
       ELSEIF (advectionScheme.EQ.ENUM_DST3_FLUX_LIMIT ) THEN
-       CALL GAD_DST3FL_ADV_Y(
-     &       bi,bj,k,deltaTtracer,vTrans,vVel,localT,af,myThid)
+       CALL GAD_DST3FL_ADV_Y( bi,bj,k, deltaTtracer,
+     I          vTrans, vVel, maskS(1-Olx,1-Oly,k,bi,bj), localT,
+     O          af, myThid )
       ELSE
        STOP 'GAD_CALC_RHS: Bad advectionScheme (Y)'
       ENDIF
@@ -430,5 +439,15 @@ C--   Divergence of fluxes
        ENDDO
       ENDDO
 
+#ifdef ALLOW_DEBUG
+      IF ( debugLevel .GE. debLevB
+     &   .AND. k.EQ.2 .AND. myIter.EQ.1+nIter0
+     &   .AND. nPx.EQ.1 .AND. nPy.EQ.1
+     &   .AND. useCubedSphereExchange ) THEN
+        CALL DEBUG_CS_CORNER_UV( ' fZon,fMer from GAD_CALC_RHS',
+     &             fZon,fMer, k, standardMessageUnit,bi,bj,myThid )
+      ENDIF
+#endif /* ALLOW_DEBUG */
+ 
       RETURN
       END
