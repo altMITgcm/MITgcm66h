@@ -54,7 +54,7 @@ CEOP
 
       dT=deltaTclock
 
-      IF (myIter.LE.nIter0+1.OR.DIFFERENT_MULTIPLE(
+      IF (DIFFERENT_MULTIPLE(
      &     PTRACERS_monitorFreq,myTime,myTime-dT)) THEN
 
 C     Ptracers field monitor start 

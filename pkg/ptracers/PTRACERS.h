@@ -19,6 +19,7 @@ C     PTRACERS_taveFreq :: Frequency with which time-averaged PTRACERS
 C                          are written to post-processing files.
 
 C     PTRACERS parameters
+      _RL PTRACERS_dumpFreq
       _RL PTRACERS_taveFreq
       _RL PTRACERS_monitorFreq
       _RL PTRACERS_diffKh(PTRACERS_num)
@@ -38,6 +39,7 @@ C     PTRACERS parameters
       LOGICAL PTRACERS_write_mdsio
       LOGICAL PTRACERS_write_mnc
       COMMON /PTRACERS_PARAMS/
+     &     PTRACERS_dumpFreq,
      &     PTRACERS_taveFreq,
      &     PTRACERS_monitorFreq,
      &     PTRACERS_diffKh,
