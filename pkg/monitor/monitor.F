@@ -101,7 +101,7 @@ C       Print some statistics about input forcing fields
 
 #ifdef ALLOW_SEAICE
 C       Print some statistics about pkg/seaice fields
-        IF (useSEAICE) CALL EXF_SEAICE( myIter, myTime, myThid )
+        IF (useSEAICE) CALL SEAICE_MONITOR( myIter, myTime, myThid )
 #endif /* ALLOW_SEAICE */
 
 C       Print the basic statistics of model state variables
