@@ -125,6 +125,14 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 C-  check parameter consistency :
 
+      IF ( viscA4.NE.0. .AND. (Olx.LT.3 .OR. Oly.LT.3)) THEN
+        WRITE(msgBuf,'(A,A)')
+     &  'CONFIG_CHECK: cannot use Biharmonic Visc. (viscA4) with',
+     &  ' overlap (Olx,Oly) smaller than 3'
+        CALL PRINT_ERROR( msgBuf , myThid)
+        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
+      ENDIF                 
+
       IF ( rigidLid .AND. implicitFreeSurface ) THEN
         WRITE(msgBuf,'(A,A)')
      &  'CONFIG_CHECK: Cannot select both implicitFreeSurface',

@@ -280,10 +280,10 @@ C--     Set up work arrays that need valid initial values
         ENDDO
 
 C--     Start computation of dynamics
-        iMin = 1-OLx+2
-        iMax = sNx+OLx-1
-        jMin = 1-OLy+2
-        jMax = sNy+OLy-1
+        iMin = 0
+        iMax = sNx+1
+        jMin = 0
+        jMax = sNy+1
 
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE wvel (:,:,:,bi,bj) = 
