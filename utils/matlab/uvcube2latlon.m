@@ -53,7 +53,7 @@ end
 U=reshape(U,[nnx ny nz]);
 V=reshape(V,[nnx ny nz]);
 
-xc=-179:2:179;
-yc=-89:2:89;
+% xc=-179:2:179;
+% yc=-89:2:89;
 U=cube2latlon(LON,LAT,U,xc,yc);
 V=cube2latlon(LON,LAT,V,xc,yc);
