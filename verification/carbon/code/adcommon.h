@@ -7,7 +7,7 @@ C
 C     heimbach@mit.edu 11-Jan-2001
 
       common /addynvars_r/ 
-     &                     adetan,
+     &                     adetan, 
      &                     aduvel, advvel, adwvel, 
      &                     adtheta, adsalt, 
      &                     adgu, adgv, adgt, adgs, 

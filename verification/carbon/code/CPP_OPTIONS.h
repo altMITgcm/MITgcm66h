@@ -134,10 +134,13 @@ C o Read/write of checkpoint files for restarting.
 #undef OLD_STYLE_WITH_MANY_FILES
 
 C o Exact volume conservation
-#define EXACT_CONSERV
+#undef EXACT_CONSERV
 
 C o Add passive tracer advection routines
 #define ALLOW_PASSIVE_TRACER
+
+C o Include/exclude monitor package
+#define EXCLUDE_MONITOR
 
 C o Execution environment support options
 #include "CPP_EEOPTIONS.h"

@@ -44,8 +44,8 @@ C
 C       >>> Cost function contributions
 #define ALLOW_COST
 #undef ALLOW_COST_TEST
-#undef ALLOW_COST_TRACER
-#define ALLOW_COST_ATLANTIC_HEAT
+#define ALLOW_COST_TRACER
+#undef ALLOW_COST_ATLANTIC_HEAT
 
 C ********************************************************************
 C ***               Control vector Package                         ***

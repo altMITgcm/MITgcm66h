@@ -14,7 +14,7 @@ C GM/Redi is enabled with ALLOW_GMREDI in CPP_OPTIONS.h
 
 C This allows the leading diagonal (top two rows) to be non-unity
 C (a feature required when tapering adiabatically).
-#define GM_NON_UNITY_DIAGONAL
+#undef GM_NON_UNITY_DIAGONAL
 
 C Allows to use different values of K_GM and K_Redi ; also to
 C be used with the advective form (Bolus velocity) of GM
