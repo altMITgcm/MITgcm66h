@@ -5,7 +5,7 @@ C $Header$
       SUBROUTINE KPP_CALC_DIFF( 
      I        bi,bj,iMin,iMax,jMin,jMax,K,
      I        maskUp,
-     O        KappaRT,KappaRS,KappaRU,KappaRV,
+     U        KappaRT,KappaRS,KappaRU,KappaRV,
      I        myThid)
 
 C     /==========================================================\
