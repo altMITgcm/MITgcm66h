@@ -153,11 +153,15 @@ CADJ STORE vvel      = tapelev3, key = ilev_3
 CADJ STORE wvel      = tapelev3, key = ilev_3
 CADJ STORE etan      = tapelev3, key = ilev_3
 CADJ STORE etanm1    = tapelev3, key = ilev_3
+CADJ STORE gu        = tapelev3, key = ilev_3
+CADJ STORE gv        = tapelev3, key = ilev_3
 #ifdef INCLUDE_CD_CODE
 CADJ STORE uveld     = tapelev3, key = ilev_3
 CADJ STORE vveld     = tapelev3, key = ilev_3
 CADJ STORE unm1      = tapelev3, key = ilev_3
 CADJ STORE vnm1      = tapelev3, key = ilev_3
+CADJ STORE gucd      = tapelev3, key = ilev_3
+CADJ STORE gvcd      = tapelev3, key = ilev_3
 #endif
 #ifdef ALLOW_COST_TRACER
 CADJ STORE tr1       = tapelev3, key = ilev_3
@@ -180,11 +184,15 @@ CADJ STORE vvel      = tapelev2, key = ilev_2
 CADJ STORE wvel      = tapelev2, key = ilev_2
 CADJ STORE etan      = tapelev2, key = ilev_2
 CADJ STORE etanm1    = tapelev2, key = ilev_2
+CADJ STORE gu        = tapelev2, key = ilev_2
+CADJ STORE gv        = tapelev2, key = ilev_2
 #ifdef INCLUDE_CD_CODE
 CADJ STORE uveld     = tapelev2, key = ilev_2
 CADJ STORE vveld     = tapelev2, key = ilev_2
 CADJ STORE unm1      = tapelev2, key = ilev_2
 CADJ STORE vnm1      = tapelev2, key = ilev_2
+CADJ STORE gucd      = tapelev2, key = ilev_2
+CADJ STORE gvcd      = tapelev2, key = ilev_2
 #endif
 #ifdef ALLOW_COST_TRACER
 CADJ STORE tr1       = tapelev2, key = ilev_2
