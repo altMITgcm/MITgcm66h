@@ -1,24 +1,23 @@
-C $Header$
 
 #include "COST_CPPOPTIONS.h"
 
 
-      subroutine cost_sst(
+      subroutine cost_mean_heatflux(
      I                       myiter,
      I                       mytime,
      I                       mythid
      &                     )
 
 c     ==================================================================
-c     SUBROUTINE cost_sst
+c     SUBROUTINE cost_mean_heatflux
 c     ==================================================================
 c
-c     o Evaluate cost function contribution of temperature.
+c     o Evaluate cost function contribution of sea surface salinity.
 c
-c     started: Ralf Giering 17-Jan-2001 copy from cost_theta.F
+c     started: Elisabeth Remy 19-mar-2001 copy from cost_sst.F
 c
 c     ==================================================================
-c     SUBROUTINE cost_sst
+c     SUBROUTINE cost_mean_heatflux
 c     ==================================================================
 
       implicit none
@@ -45,7 +44,7 @@ c     == routine arguments ==
 c     == local variables ==
 
       integer bi,bj
-      integer i,j,k
+      integer i,j,k,kk
       integer itlo,ithi
       integer jtlo,jthi
       integer jmin,jmax
@@ -53,15 +52,15 @@ c     == local variables ==
       integer irec
       integer levmon
       integer levoff
-      integer iltheta
+      integer ilsalt
 
-      _RL fctile_sst
-      _RL fcthread_sst
+      _RL fctilemm
+      _RL fcthreadmm
+      _RL tmpx
+      _RL sumcos
 
-      _RL cmask (1-olx:snx+olx,1-oly:sny+oly)  
-      _RL spval
 
-      character*(80) fnametheta
+      character*(80) fnamehflux
 
       logical doglobalread
       logical ladinit
@@ -84,13 +83,11 @@ c     == end of interface ==
       imin = 1
       imax = snx
 
-      spval = -9990.
-
 c--   Read tiled data.
       doglobalread = .false.
       ladinit      = .false.
 
-#ifdef ALLOW_SST_COST_CONTRIBUTION
+#ifdef ALLOW_MEAN_HFLUX_COST_CONTRIBUTION
 
 #ifdef ECCO_VERBOSE
       _BEGIN_MASTER( mythid )
@@ -98,7 +95,7 @@ c--   Read tiled data.
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,i8.8)')
-     &    ' cost_sst: number of records to process = ',nmonsrec
+     &    ' cost_mean_heatflux: number of records to process = ',nmonsrec
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a)') ' '
@@ -108,113 +105,85 @@ c--   Read tiled data.
 #endif
 
       if (optimcycle .ge. 0) then
-        iltheta = ilnblnk( tbarfile )
-        write(fnametheta(1:80),'(2a,i10.10)')
-     &    tbarfile(1:iltheta),'.',optimcycle
+        ilsalt = ilnblnk( hfluxbarfile )
+        write(fnamehflux(1:80),'(2a,i10.10)')
+     &    hfluxbarfile(1:ilsalt),'.',optimcycle
       else
         print*
-        print*,' cost_sst: optimcycle has a wrong value.'
+        print*,' cost_mean_heatflux: optimcycle has a wrong value.'
         print*,'           optimcycle = ',optimcycle
         print*
-        stop   '  ... stopped in cost_sst.'
+        stop   '  ... stopped in cost_mean_heatflux'
       endif
 
-      fcthread_sst = 0. _d 0
+      fcthreadmm       = 0. _d 0
 
-c--   Loop over records.
-      do irec = 1,nmonsrec
+      irec = 1
 
 c--     Read time averages and the monthly mean data.
-        call active_read_xyz( fnametheta, tbar, irec,
-     &                        doglobalread, ladinit,
-     &                        optimcycle, mythid,
-     &                        xx_tbar_mean_dummy )
+        call active_read_xy( fnamehflux, tmpfld2d, irec,
+     &                       doglobalread, ladinit,
+     &                       optimcycle, mythid,
+     &                       xx_hflux_mean_dummy )
 
         do bj = jtlo,jthi
           do bi = itlo,ithi
-
-c--         Loop over the model layers
-            fctile_sst = 0. _d 0
-            k = 1
-
-            call cost_ReadSSTFields( irec, mythid )
-
-c--           Determine the mask on weights
-              do j = jmin,jmax
-                do i = imin,imax
-                  cmask(i,j) = 1. _d 0
-                  if (sstdat(i,j,bi,bj) .eq. 0.) then
-                    cmask(i,j) = 0. _d 0
-                  endif
-                 
-                  if (sstdat(i,j,bi,bj) .lt. spval) then
-                    cmask(i,j) = 0. _d 0
-                  endif
-                  
-cph(
-cph               print *, 'WARNING: SPECIFIC SETUP FOR ECCO'
-cph               below statement could be replaced by following
-cph               to make it independnet of Nr:
-cph
-cph               if ( rC(K) .GT. -1000. ) then
-cph)
-c                 set cmask=0 in areas shallower than 1000m 
-                  if (_hFacC(i,j,13,bi,bj) .eq. 0.) then
-                    cmask(i,j) = 0. _d 0
-                  endif
-
-                enddo
-              enddo
-
-c--         Compute cost rel. to monthly SST climatology field.
+            kk = 1
+            fctilemm = 0. _d 0
+            sumcos   = 0. _d 0
             do j = jmin,jmax
               do i = imin,imax
-                if (_hFacC(i,j,k,bi,bj) .ne. 0.) then
-                   fctile_sst = fctile_sst +
-     &                  wsst(i,j,bi,bj)*cosphi(i,j,bi,bj)*cmask(i,j)*
-     &                  ( (tbar(i,j,k,bi,bj)-sstdat(i,j,bi,bj))*
-     &                    (tbar(i,j,k,bi,bj)-sstdat(i,j,bi,bj))*
-     &                           sstmask(i,j,bi,bj) )
+                tmpx=tmpfld2d(i,j,bi,bj)
+                if (maskw(i,j,kk,bi,bj) .ne. 0.) then
+                  fctilemm = fctilemm + tmpx*cosphi(i,j,bi,bj)
+                  sumcos = sumcos + cosphi(i,j,bi,bj)
                 endif
               enddo
             enddo
 
+            fctilemm = (fctilemm / sumcos)
+            fctilemm = whfluxmm(bi,bj) * (fctilemm * fctilemm )
 
-            fcthread_sst     = fcthread_sst + fctile_sst
-            objf_sst(bi,bj)  = objf_sst(bi,bj)  + fctile_sst
+            objf_hfluxmm(bi,bj) = fctilemm
+            fcthreadmm          = fcthreadmm + fctilemm
 
 #ifdef ECCO_VERBOSE
-c--         Print cost function for each tile in each thread.
-            write(msgbuf,'(a)') ' '
-            call print_message( msgbuf, standardmessageunit,
-     &                          SQUEEZE_RIGHT , mythid)
-            write(msgbuf,'(a,i8.8,1x,i3.3,1x,i3.3)')
-     &        ' cost_sst: irec,bi,bj          =  ',irec,bi,bj
-            call print_message( msgbuf, standardmessageunit,
-     &                          SQUEEZE_RIGHT , mythid)
-            write(msgbuf,'(a,d22.15)')
-     &        '     cost function (sst)         = ',
-     &        fctile_sst
-            call print_message( msgbuf, standardmessageunit,
+c--     Print cost function for all tiles.
+        _GLOBAL_SUM_R8( fcthreadmm , myThid )
+        write(msgbuf,'(a)') ' '
+        call print_message( msgbuf, standardmessageunit,
+     &                      SQUEEZE_RIGHT , mythid)
+        write(msgbuf,'(a,i8.8)')
+     &    ' cost_heatflux:                       irec =  ',irec
+        call print_message( msgbuf, standardmessageunit,
+     &                      SQUEEZE_RIGHT , mythid)
+        write(msgbuf,'(a,d22.15)')
+     &    '                 global cost function value = ',
+     &    fcthreadmm
+        call print_message( msgbuf, standardmessageunit,
+     &                      SQUEEZE_RIGHT , mythid)
+        write(msgbuf,'(a)') ' '
+        call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
 #endif
 
           enddo
         enddo
 
+
 #ifdef ECCO_VERBOSE
 c--     Print cost function for all tiles.
-        _GLOBAL_SUM_R8( fcthread_sst   , myThid )
+        _GLOBAL_SUM_R8( fcthreadmm       , myThid )
         write(msgbuf,'(a)') ' '
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,i8.8)')
-     &    ' cost_sst: irec = ',irec
+     &    ' cost_: irec = ',irec
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,a,d22.15)')
      &    ' global cost function value',
-     &    ' (    SST    ) = ',fcthread_sst
+     &    ' (        ) = ',fcthreadmm    
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a)') ' '
@@ -222,28 +191,24 @@ c--     Print cost function for all tiles.
      &                      SQUEEZE_RIGHT , mythid)
 #endif
 
-      enddo
-c--   End of loop over records.
-
 #else
 c--   Do not enter the calculation of the temperature contribution to
 c--   the final cost function.
 
-      fctile_sst     = 0. _d 0
-      fcthread_sst   = 0. _d 0
+      fctilemm         = 0. _d 0
+      fcthreadmm       = 0. _d 0
 
-#ifdef ECCO_VERBOSE
       _BEGIN_MASTER( mythid )
         write(msgbuf,'(a)') ' '
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,a)')
-     &    ' cost_sst: no contribution of temperature field ',
+     &    ' cost_: no contribution of temperature field ',
      &                 'to cost function.'
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,a,i9.8)')
-     &    ' cost_sst: number of records that would have',
+     &    ' cost_: number of records that would have',
      &                ' been processed: ',nmonsrec
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
@@ -251,8 +216,6 @@ c--   the final cost function.
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
       _END_MASTER( mythid )
-#endif
-
 #endif
 
       return

@@ -38,11 +38,10 @@ c     == global variables ==
 #include "SIZE.h"
 #include "PARAMS.h"
 
-#include "EESUPPORT.h"
-
 #include "cost.h"
 
 #ifdef ALLOW_EGM96_ERROR_COV
+# include "EESUPPORT.h"
 # include "cost_sph.h"
 #endif
 
@@ -205,7 +204,7 @@ c--         --> no weighting by cosphi.
         do bi = itlo,ithi
           do j = jmin,jmax
             do i = imin,imax
-              diff = psmean(i,j,bi,bj) - tpmean(i,j,bi,bj) - offset
+              diff = psmean(i,j,bi,bj) - tpmean(i,j,bi,bj) + offset
               sumc = sumc + diff*diff
      &                    * wp(i,j,bi,bj)*tpmeanmask(i,j,bi,bj)
 ce            --> check masks!

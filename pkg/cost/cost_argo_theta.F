@@ -3,31 +3,23 @@ C $Header$
 #include "COST_CPPOPTIONS.h"
 
 
-      subroutine cost_Salt(
-     I                       myiter,
-     I                       mytime,
-     I                       mythid
-     &                     )
+      subroutine cost_argo_theta(
+     I                     myiter,
+     I                     mytime,
+     I                     mythid
+     &                   )
 
 c     ==================================================================
-c     SUBROUTINE cost_Salt
+c     SUBROUTINE cost_argo_theta
 c     ==================================================================
 c
-c     o Evaluate cost function contribution of salinity.
+c     o Evaluate cost function contribution of ARGO temperature data.
 c
-c     started: Christian Eckert eckert@mit.edu 30-Jun-1999
+c     started:  Elisabeth Remy eremy@ucsd.edu 30-Aug-2000
 c
-c     changed: Christian Eckert eckert@mit.edu 25-Feb-2000
-c
-c              - Restructured the code in order to create a package
-c                for the MITgcmUV.
-c
-c     changed: Patrick Heimbach heimbach@mit.edu 27-May-2000
-c
-c              - set ladinit to .true. to initialise adsbar file
 c
 c     ==================================================================
-c     SUBROUTINE cost_Salt
+c     SUBROUTINE cost_argo_theta
 c     ==================================================================
 
       implicit none
@@ -53,27 +45,25 @@ c     == routine arguments ==
 
 c     == local variables ==
 
-      _RS        one_rs
-      parameter( one_rs = 1. )
-
       integer bi,bj
       integer i,j,k
       integer itlo,ithi
       integer jtlo,jthi
       integer jmin,jmax
       integer imin,imax
+      integer nrec
       integer irec
-      integer levmon
-      integer levoff
-      integer ilsalt
-
-      _RL fctile
-      _RL fcthread
-
+      integer ilu
+      
+      _RL fctile_argot
+      _RL fcthread_argot
+      _RL www (1-olx:snx+olx,1-oly:sny+oly)
+      _RL tmpobs (1-olx:snx+olx,1-oly:sny+oly)
       _RL cmask (1-olx:snx+olx,1-oly:sny+oly)  
       _RL spval
-
-      character*(80) fnamesalt
+      _RL ztop,rl_35,rl_0
+      
+      character*(80) fnametheta
 
       logical doglobalread
       logical ladinit
@@ -84,6 +74,8 @@ c     == external functions ==
 
       integer  ilnblnk
       external ilnblnk
+      _RL SW_PTMP
+      external SW_PTMP
 
 c     == end of interface ==
 
@@ -95,79 +87,77 @@ c     == end of interface ==
       jmax = sny
       imin = 1
       imax = snx
-
-      spval = -9990.
-
-c--   Read tiled data.
+      
+      spval = -2.
+      ztop  = -.981*1.027
+      rl_35= 35.0
+      rl_0  = 0.0
+c--   Read state record from global file.
       doglobalread = .false.
       ladinit      = .false.
-
-#ifdef ALLOW_SALT_COST_CONTRIBUTION
+      
+#ifdef ALLOW_ARGO_THETA_COST_CONTRIBUTION
 
 #ifdef ECCO_VERBOSE
-      _BEGIN_MASTER( mythid )
-        write(msgbuf,'(a)') ' '
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-        write(msgbuf,'(a,i8.8)')
-     &    ' cost_Salt: number of records to process = ',nmonsrec
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-        write(msgbuf,'(a)') ' '
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-      _END_MASTER( mythid )
+      write(msgbuf,'(a)') ' '
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a,i8.8)')
+     &  ' cost_ARGO_THETA: number of records to process =', nmonsrec
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a)') ' '
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
 #endif
 
       if (optimcycle .ge. 0) then
-        ilsalt = ilnblnk( sbarfile )
-        write(fnamesalt(1:80),'(2a,i10.10)')
-     &    sbarfile(1:ilsalt),'.',optimcycle
+        ilu=ilnblnk( tbarfile )
+        write(fnametheta(1:80),'(2a,i10.10)') tbarfile(1:ilu),'.',
+     &                                   optimcycle
       else
         print*
-        print*,' cost_Salt: optimcycle has a wrong value.'
-        print*,'             optimcycle = ',optimcycle
+        print*,' cost_ARGO_THETA: optimcycle has a wrong value.'
+        print*,'                 optimcycle = ',optimcycle
         print*
-        stop   '  ... stopped in cost_Salt.'
+        stop   '  ... stopped in cost_ARGO_THETA.'
       endif
-
-      fcthread = 0. _d 0
+      
+      fcthread_argot = 0. _d 0
 
 c--   Loop over records.
       do irec = 1,nmonsrec
 
 c--     Read time averages and the monthly mean data.
-        call active_read_xyz( fnamesalt, sbar, irec,
-     &                        doglobalread, ladinit,
-     &                        optimcycle, mythid,
-     &                        xx_sbar_mean_dummy )
+        call active_read_xyz( fnametheta, tbar, irec,
+     &          doglobalread, ladinit,
+     &          optimcycle, mythid
+     &   , xx_tbar_mean_dummy )
+  
+        call mdsreadfield( argotfile, cost_iprec, 'RL', nr, argotobs, 
+     &                    irec, mythid)
 
-c--     Determine the month to be read.
-        levoff = mod(modelstartdate(1)/100,100)
-        levmon = (irec-1) + levoff
-        levmon = mod(levmon-1,12)+1
-
-        call mdsreadfield( sdatfile, cost_iprec, cost_yftype, 
-     &                     nr, sdat, levmon, mythid)
-
+c--     Loop over this thread's tiles.
         do bj = jtlo,jthi
           do bi = itlo,ithi
-
 c--         Loop over the model layers
-            fctile = 0. _d 0
+
+            fctile_argot = 0. _d 0
+
             do k = 1,nr
 
-c--           Determine the mask or weights
+c--           Determine the weights to be used.
               do j = jmin,jmax
                 do i = imin,imax
                   cmask(i,j) = 1. _d 0
-                  if (sdat(i,j,k,bi,bj) .eq. 0.) then
+                  if (argotobs(i,j,k,bi,bj) .eq. 0.) then
                     cmask(i,j) = 0. _d 0
                   endif
-                  if (sdat(i,j,k,bi,bj) .lt. spval) then
+                 
+                  if (argotobs(i,j,k,bi,bj) .lt. spval) then
                     cmask(i,j) = 0. _d 0
                   endif
-                  
+
 cph(
 cph               print *, 'WARNING: SPECIFIC SETUP FOR ECCO'
 cph               below statement could be replaced by following
@@ -175,45 +165,46 @@ cph               to make it independnet of Nr:
 cph
 cph               if ( rC(K) .GT. -1000. ) then
 cph)
-c                 set cmask=0 in areas shallower than 1000m 
+c--               set cmask=0 in areas shallower than 1000m 
                   if (_hFacC(i,j,13,bi,bj) .eq. 0.) then
                     cmask(i,j) = 0. _d 0
-                  endif
-
+                  endif           
+       
+                  if (_hFacC(i,j,k,bi,bj) .eq. 0.) then
+                    cmask(i,j) = 0. _d 0
+                  endif                  
+                  
                 enddo
               enddo
-
-c--           Compute model data misfit and cost function term for
-c             the salinity field.
+              
               do j = jmin,jmax
                 do i = imin,imax
-                  if (_hFacC(i,j,k,bi,bj) .ne. 0.) then
-                     fctile = fctile +
-     &                    (wsalt(k,bi,bj)*cosphi(i,j,bi,bj)*cmask(i,j)*
-     &                    (sbar(i,j,k,bi,bj) - sdat(i,j,k,bi,bj))*
-     &                    (sbar(i,j,k,bi,bj) - sdat(i,j,k,bi,bj))   )
-                  endif
+                  www(i,j)    = cosphi(i,j,bi,bj)*cmask(i,j)
+                  tmpobs(i,j) = SW_PTMP(rl_35,
+     $                 argotobs(i,j,k,bi,bj),ztop*rc(k),rl_0) 
+
+                  fctile_argot = fctile_argot + 
+     &                 wtheta2(i,j,k,bi,bj)*www(i,j)*
+     &                 (tbar(i,j,k,bi,bj)-tmpobs(i,j))*
+     &                 (tbar(i,j,k,bi,bj)-tmpobs(i,j))
                 enddo
               enddo
-
-            enddo
 c--         End of loop over layers.
+            enddo
 
-            fcthread         = fcthread         + fctile
-            objf_salt(bi,bj) = objf_salt(bi,bj) + fctile
+            fcthread_argot    = fcthread_argot    + fctile_argot
+            objf_argot(bi,bj) = objf_argot(bi,bj) + fctile_argot   
 
 #ifdef ECCO_VERBOSE
-c--         Print cost function for each tile in each thread.
             write(msgbuf,'(a)') ' '
             call print_message( msgbuf, standardmessageunit,
      &                          SQUEEZE_RIGHT , mythid)
             write(msgbuf,'(a,i8.8,1x,i3.3,1x,i3.3)')
-     &        ' cost_Salt: irec,bi,bj          =  ',irec,bi,bj
+     &        ' COST_ARGO_THETA: irec,bi,bj            =  ',irec,bi,bj
             call print_message( msgbuf, standardmessageunit,
      &                          SQUEEZE_RIGHT , mythid)
             write(msgbuf,'(a,d22.15)')
-     &        '     cost function (salinity) = ',
-     &        fctile
+     &        ' COST_ARGO_THETA: cost function         = ', fctile_argot
             call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
             write(msgbuf,'(a)') ' '
@@ -221,22 +212,22 @@ c--         Print cost function for each tile in each thread.
      &                          SQUEEZE_RIGHT , mythid)
 #endif
 
-          enddo
+         enddo
         enddo
 
 #ifdef ECCO_VERBOSE
 c--     Print cost function for all tiles.
-        _GLOBAL_SUM_R8( fcthread , myThid )
+c        _GLOBAL_SUM_R8( fcthread_argot , myThid )
         write(msgbuf,'(a)') ' '
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,i8.8)')
-     &    ' cost_Salt: irec = ',irec
+     &    ' cost_ARGOT: irec =  ',irec
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,a,d22.15)')
      &    ' global cost function value',
-     &    ' (salinity) = ',fcthread
+     &    ' ( ARGO temp. )  = ',fcthread_argot
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a)') ' '
@@ -245,24 +236,31 @@ c--     Print cost function for all tiles.
 #endif
 
       enddo
-c--   End of loop over records.
+c--   End of second loop over records.
 
 #else
-c--   Do not enter the calculation of the salinity contribution to
-c--   the final cost function.
+c--   Do not enter the calculation of the CTD temperature contribution
+c--   to the final cost function.
+      
+      fctile_argot   = 0. _d 0
+      fcthread_argot = 0. _d 0
+
+crg
+      nrec = 1
+crg
 
       _BEGIN_MASTER( mythid )
         write(msgbuf,'(a)') ' '
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,a)')
-     &    ' cost_Salt: no contribution of salinity field ',
-     &                 'to cost function.'
+     &    ' cost_ARGOT: no contribution of ARGO temperature ',
+     &                    ' to cost function.'
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,a,i9.8)')
-     &    ' cost_Salt: number of records that would have',
-     &                ' been processed: ',nmonsrec
+     &    ' cost_ARGOT: number of records that would have',
+     &                      ' been processed: ',nrec
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a)') ' '
@@ -273,4 +271,3 @@ c--   the final cost function.
 
       return
       end
-

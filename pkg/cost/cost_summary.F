@@ -112,7 +112,19 @@ c     == end of interface ==
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
       write(msgbuf,'(a,e10.3)')
+     &'  Temperature (3d):             ',mult_temp0
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a,e10.3)')
+     &'  Salinity (3d):                ',mult_salt0
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a,e10.3)')
      &'  Sea surface temperature:      ',mult_sst
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a,e10.3)')
+     &'  Sea surface salinity:        ',mult_sss
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
       write(msgbuf,'(a,e10.3)')
@@ -123,9 +135,37 @@ c     == end of interface ==
      &'  CTD salinity:                 ',mult_ctds
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a,e10.3)')
+     &'  XBT Temperature:              ',mult_xbt
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a,e10.3)')
+     &'  ARGO Temperature:              ',mult_argot
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a,e10.3)')
+     &'  ARGO Salt:                     ',mult_argos
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a,e10.3)')
+     &'  drifter velocities:           ',mult_drift
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a,e10.3)')
+     &'  drift between last and 1st year:',mult_tdrift
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a,e10.3)')
+     &'  drift between last and 1st year:',mult_sdrift
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a)')
+     &' '
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
      
 
-       write(msgbuf,'(a)')
+      write(msgbuf,'(a)')
      &' '
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
@@ -142,14 +182,17 @@ c     == end of interface ==
      &                    SQUEEZE_RIGHT , mythid)
 
 #ifdef ALLOW_SSH_MEAN_COST_CONTRIBUTION
+      if (using_topex) then
         il = ilnblnk(topexmeanfile)
         write(msgbuf,'(a,a)')
      &  '  T/P mean is read from:          ',topexmeanfile(1:il)
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
+      endif
 #endif /* ALLOW_SSH_MEAN_COST_CONTRIBUTION */
 
 #ifdef ALLOW_SSH_TPANOM_COST_CONTRIBUTION
+      if (using_topex) then
         il = ilnblnk(topexfile)
         write(msgbuf,'(a,a)')
      &  '  T/P data are read from:         ',topexfile(1:il)
@@ -166,9 +209,11 @@ c     == end of interface ==
      &                        topexperiod
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
+      endif
 #endif /* ALLOW_SSH_TPANOM_COST_CONTRIBUTION */
 
 #ifdef ALLOW_SSH_ERSANOM_COST_CONTRIBUTION
+      if (using_ers) then
         il = ilnblnk(ersfile)
         write(msgbuf,'(a,a)')
      &  '  ERS data are read from:         ',ersfile(1:il)
@@ -185,105 +230,8 @@ c     == end of interface ==
      &                        ersperiod
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
+      endif
 #endif /* ALLOW_SSH_ERSANOM_COST_CONTRIBUTION */
-
-      il = ilnblnk(sstdatfile)
-      write(msgbuf,'(a,a)')
-     &'  SST data are read from:         ',sstdatfile(1:il)
-      call print_message( msgbuf, standardmessageunit,
-     &                    SQUEEZE_RIGHT , mythid)
-      write(msgbuf,'(a,i10,i8)')
-     &'  SST start date is:              ',
-     &                      sststartdate(1),
-     &                      sststartdate(2)
-      call print_message( msgbuf, standardmessageunit,
-     &                    SQUEEZE_RIGHT , mythid)
-     
-      write(msgbuf,'(a,a)')
-     &'  CTD temperature data are read from:',ctdtfile(1:il)
-      call print_message( msgbuf, standardmessageunit,
-     &                    SQUEEZE_RIGHT , mythid)
-     
-      write(msgbuf,'(a,a)')
-     &'  CTD salinity data are read from: ',ctdsfile(1:il)
-      call print_message( msgbuf, standardmessageunit,
-     &                    SQUEEZE_RIGHT , mythid)
-     
-     
-     
-
-      il = ilnblnk(data_errfile)
-      write(msgbuf,'(a,a)')
-     &'  Error "data" file:              ',data_errfile(1:il)
-      call print_message( msgbuf, standardmessageunit,
-     &                    SQUEEZE_RIGHT , mythid)
-      il = ilnblnk(hflux_errfile)
-      write(msgbuf,'(a,a)')
-     &'  Heat flux error file:           ',hflux_errfile(1:il)
-      call print_message( msgbuf, standardmessageunit,
-     &                    SQUEEZE_RIGHT , mythid)
-      il = ilnblnk(sflux_errfile)
-      write(msgbuf,'(a,a)')
-     &'  Salt flux error file:           ',sflux_errfile(1:il)
-      call print_message( msgbuf, standardmessageunit,
-     &                    SQUEEZE_RIGHT , mythid)
-      il = ilnblnk(tauu_errfile)
-      write(msgbuf,'(a,a)')
-     &'  Zonal wind stress error file:   ',tauu_errfile(1:il)
-      call print_message( msgbuf, standardmessageunit,
-     &                    SQUEEZE_RIGHT , mythid)
-      il = ilnblnk(tauv_errfile)
-      write(msgbuf,'(a,a)')
-     &'  Merid. wind stress error file:  ',tauv_errfile(1:il)
-      call print_message( msgbuf, standardmessageunit,
-     &                    SQUEEZE_RIGHT , mythid)
-      il = ilnblnk(ssh_errfile)
-      write(msgbuf,'(a,a)')
-     &'  SSH error file:                 ',ssh_errfile(1:il)
-      call print_message( msgbuf, standardmessageunit,
-     &                    SQUEEZE_RIGHT , mythid)
-      il = ilnblnk(geoid_errfile)
-      write(msgbuf,'(a,a)')
-     &'  Geoid error file:               ',geoid_errfile(1:il)
-      call print_message( msgbuf, standardmessageunit,
-     &                    SQUEEZE_RIGHT , mythid)
-      il = ilnblnk(geoid_covariancefile)
-      write(msgbuf,'(a,a)')
-     &'  Geoid error covariance file:    ',geoid_covariancefile(1:il)
-      call print_message( msgbuf, standardmessageunit,
-     &                    SQUEEZE_RIGHT , mythid)
-c      il = ilnblnk(ctdt_errfile)
-c      write(msgbuf,'(a,a)')
-c     &'  CTD temperature error file:    ',ctdt_errfile(1:il)
-c      call print_message( msgbuf, standardmessageunit,
-c     &                    SQUEEZE_RIGHT , mythid)
-c      il = ilnblnk(ctdt_errfile)
-c      write(msgbuf,'(a,a)')
-c     &'  CTD salinity error file:       ',ctds_errfile(1:il)
-c      call print_message( msgbuf, standardmessageunit,
-c     &                    SQUEEZE_RIGHT , mythid)
-      
-      
-      write(msgbuf,'(a)')
-     &' '
-      call print_message( msgbuf, standardmessageunit,
-     &                    SQUEEZE_RIGHT , mythid)
-      write(msgbuf,'(a)')
-     &'// ======================================================='
-      call print_message( msgbuf, standardmessageunit,
-     &                    SQUEEZE_RIGHT , mythid)
-      write(msgbuf,'(a)')
-     &'// Optimization configuration  >>> END <<<'
-      call print_message( msgbuf, standardmessageunit,
-     &                    SQUEEZE_RIGHT , mythid)
-      write(msgbuf,'(a)')
-     &'// ======================================================='
-      call print_message( msgbuf, standardmessageunit,
-     &                    SQUEEZE_RIGHT , mythid)
-      write(msgbuf,'(a)')
-     &' '
-      call print_message( msgbuf, standardmessageunit,
-     &                    SQUEEZE_RIGHT , mythid)
 
       return
       end

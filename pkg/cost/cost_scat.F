@@ -3,31 +3,22 @@ C $Header$
 #include "COST_CPPOPTIONS.h"
 
 
-      subroutine cost_Salt(
+      subroutine cost_scat(
      I                       myiter,
      I                       mytime,
      I                       mythid
      &                     )
 
 c     ==================================================================
-c     SUBROUTINE cost_Salt
+c     SUBROUTINE cost_scat
 c     ==================================================================
 c
-c     o Evaluate cost function contribution of salinity.
+c     o Evaluate cost function contribution of surface wind stress observations.
 c
-c     started: Christian Eckert eckert@mit.edu 30-Jun-1999
-c
-c     changed: Christian Eckert eckert@mit.edu 25-Feb-2000
-c
-c              - Restructured the code in order to create a package
-c                for the MITgcmUV.
-c
-c     changed: Patrick Heimbach heimbach@mit.edu 27-May-2000
-c
-c              - set ladinit to .true. to initialise adsbar file
+c     started: Detlef Satmmer 01-mar-2002 copy from cost_sst.F
 c
 c     ==================================================================
-c     SUBROUTINE cost_Salt
+c     SUBROUTINE cost_scat
 c     ==================================================================
 
       implicit none
@@ -53,9 +44,6 @@ c     == routine arguments ==
 
 c     == local variables ==
 
-      _RS        one_rs
-      parameter( one_rs = 1. )
-
       integer bi,bj
       integer i,j,k
       integer itlo,ithi
@@ -67,13 +55,13 @@ c     == local variables ==
       integer levoff
       integer ilsalt
 
-      _RL fctile
-      _RL fcthread
+      _RL fctile_scatx
+      _RL fcthread_scatx
+      _RL fctile_scaty
+      _RL fcthread_scaty
 
-      _RL cmask (1-olx:snx+olx,1-oly:sny+oly)  
-      _RL spval
-
-      character*(80) fnamesalt
+      character*(80) fnametaux
+      character*(80) fnametauy
 
       logical doglobalread
       logical ladinit
@@ -96,13 +84,11 @@ c     == end of interface ==
       imin = 1
       imax = snx
 
-      spval = -9990.
-
 c--   Read tiled data.
       doglobalread = .false.
       ladinit      = .false.
 
-#ifdef ALLOW_SALT_COST_CONTRIBUTION
+#ifdef ALLOW_SCAT_COST_CONTRIBUTION
 
 #ifdef ECCO_VERBOSE
       _BEGIN_MASTER( mythid )
@@ -110,7 +96,7 @@ c--   Read tiled data.
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,i8.8)')
-     &    ' cost_Salt: number of records to process = ',nmonsrec
+     &    ' cost_scat: number of records to process = ',nmonsrec
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a)') ' '
@@ -120,105 +106,94 @@ c--   Read tiled data.
 #endif
 
       if (optimcycle .ge. 0) then
-        ilsalt = ilnblnk( sbarfile )
-        write(fnamesalt(1:80),'(2a,i10.10)')
-     &    sbarfile(1:ilsalt),'.',optimcycle
+        ilsalt = ilnblnk( tauxbarfile )
+        write(fnametaux(1:80),'(2a,i10.10)')
+     &    tauxbarfile(1:ilsalt),'.',optimcycle
+       ilsalt = ilnblnk( tauybarfile )
+        write(fnametauy(1:80),'(2a,i10.10)')
+     &    tauybarfile(1:ilsalt),'.',optimcycle
       else
         print*
-        print*,' cost_Salt: optimcycle has a wrong value.'
-        print*,'             optimcycle = ',optimcycle
+        print*,' cost_scat: optimcycle has a wrong value.'
+        print*,'           optimcycle = ',optimcycle
         print*
-        stop   '  ... stopped in cost_Salt.'
+        stop   '  ... stopped in cost_scat.'
       endif
 
-      fcthread = 0. _d 0
+      fcthread_scatx = 0. _d 0
+      fcthread_scaty = 0. _d 0
 
 c--   Loop over records.
       do irec = 1,nmonsrec
 
 c--     Read time averages and the monthly mean data.
-        call active_read_xyz( fnamesalt, sbar, irec,
+        call active_read_xy( fnametaux, tauxbar, irec,
      &                        doglobalread, ladinit,
      &                        optimcycle, mythid,
-     &                        xx_sbar_mean_dummy )
+     &                        xx_taux_mean_dummy )
 
-c--     Determine the month to be read.
-        levoff = mod(modelstartdate(1)/100,100)
-        levmon = (irec-1) + levoff
-        levmon = mod(levmon-1,12)+1
+        call active_read_xy( fnametauy, tauybar, irec, 
+     &                        doglobalread, ladinit,
+     &                        optimcycle, mythid,
+     &                        xx_tauy_mean_dummy )    
 
-        call mdsreadfield( sdatfile, cost_iprec, cost_yftype, 
-     &                     nr, sdat, levmon, mythid)
 
         do bj = jtlo,jthi
           do bi = itlo,ithi
 
-c--         Loop over the model layers
-            fctile = 0. _d 0
-            do k = 1,nr
+            fctile_scatx = 0. _d 0
+            fctile_scaty = 0. _d 0
 
-c--           Determine the mask or weights
-              do j = jmin,jmax
-                do i = imin,imax
-                  cmask(i,j) = 1. _d 0
-                  if (sdat(i,j,k,bi,bj) .eq. 0.) then
-                    cmask(i,j) = 0. _d 0
-                  endif
-                  if (sdat(i,j,k,bi,bj) .lt. spval) then
-                    cmask(i,j) = 0. _d 0
-                  endif
-                  
-cph(
-cph               print *, 'WARNING: SPECIFIC SETUP FOR ECCO'
-cph               below statement could be replaced by following
-cph               to make it independnet of Nr:
-cph
-cph               if ( rC(K) .GT. -1000. ) then
-cph)
-c                 set cmask=0 in areas shallower than 1000m 
-                  if (_hFacC(i,j,13,bi,bj) .eq. 0.) then
-                    cmask(i,j) = 0. _d 0
-                  endif
+            k = 1
 
-                enddo
+c--         Compute cost rel. to monthly SCAT field.
+            call cost_ReadscatXFields( irec, mythid )
+            do j = jmin,jmax
+              do i = imin,imax
+                if (_hFacC(i,j,k,bi,bj) .ne. 0.) then
+                   fctile_scatx = fctile_scatx +
+     &                  wscatx(i,j,bi,bj)*cosphi(i,j,bi,bj)*
+     &                  ( (tauxbar(i,j,bi,bj)-scatxdat(i,j,bi,bj))*
+     &                    (tauxbar(i,j,bi,bj)-scatxdat(i,j,bi,bj))*
+     &                           scatxmask(i,j,bi,bj) )
+                endif
               enddo
-
-c--           Compute model data misfit and cost function term for
-c             the salinity field.
-              do j = jmin,jmax
-                do i = imin,imax
-                  if (_hFacC(i,j,k,bi,bj) .ne. 0.) then
-                     fctile = fctile +
-     &                    (wsalt(k,bi,bj)*cosphi(i,j,bi,bj)*cmask(i,j)*
-     &                    (sbar(i,j,k,bi,bj) - sdat(i,j,k,bi,bj))*
-     &                    (sbar(i,j,k,bi,bj) - sdat(i,j,k,bi,bj))   )
-                  endif
-                enddo
-              enddo
-
             enddo
-c--         End of loop over layers.
 
-            fcthread         = fcthread         + fctile
-            objf_salt(bi,bj) = objf_salt(bi,bj) + fctile
+c--         Compute cost rel. to monthly SCAT field.
+            call cost_ReadscatYFields( irec, mythid )
+            do j = jmin,jmax
+              do i = imin,imax 
+                if (_hFacC(i,j,k,bi,bj) .ne. 0.) then
+                   fctile_scaty = fctile_scaty +
+     &                  wscaty(i,j,bi,bj)*cosphi(i,j,bi,bj)*
+     &                  ( (tauybar(i,j,bi,bj)-scatydat(i,j,bi,bj))*
+     &                    (tauybar(i,j,bi,bj)-scatydat(i,j,bi,bj))*
+     &                           scatymask(i,j,bi,bj) )  
+                endif       
+              enddo
+            enddo
+
+
+            fcthread_scatx     = fcthread_scatx + fctile_scatx
+            objf_scatx(bi,bj)  = objf_scatx(bi,bj)  + fctile_scatx
+            fcthread_scaty     = fcthread_scaty + fctile_scaty
+            objf_scaty(bi,bj)  = objf_scaty(bi,bj)  + fctile_scaty
 
 #ifdef ECCO_VERBOSE
-c--         Print cost function for each tile in each thread.
+c--         Print cost fscat for each tile in each thread.
             write(msgbuf,'(a)') ' '
             call print_message( msgbuf, standardmessageunit,
      &                          SQUEEZE_RIGHT , mythid)
             write(msgbuf,'(a,i8.8,1x,i3.3,1x,i3.3)')
-     &        ' cost_Salt: irec,bi,bj          =  ',irec,bi,bj
+     &        ' cost_scat: irec,bi,bj          =  ',irec,bi,bj
             call print_message( msgbuf, standardmessageunit,
      &                          SQUEEZE_RIGHT , mythid)
-            write(msgbuf,'(a,d22.15)')
-     &        '     cost function (salinity) = ',
-     &        fctile
+            write(msgbuf,'(a,2d22.15)')
+     &        '     cost function (scat)         = ',
+     &        fctile_scatx, fctile_scaty
             call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
-            write(msgbuf,'(a)') ' '
-            call print_message( msgbuf, standardmessageunit,
-     &                          SQUEEZE_RIGHT , mythid)
 #endif
 
           enddo
@@ -226,17 +201,17 @@ c--         Print cost function for each tile in each thread.
 
 #ifdef ECCO_VERBOSE
 c--     Print cost function for all tiles.
-        _GLOBAL_SUM_R8( fcthread , myThid )
+        _GLOBAL_SUM_R8( fcthread_scatx   , myThid )
         write(msgbuf,'(a)') ' '
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,i8.8)')
-     &    ' cost_Salt: irec = ',irec
+     &    ' cost_scatx: irec = ',irec
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,a,d22.15)')
      &    ' global cost function value',
-     &    ' (salinity) = ',fcthread
+     &    ' (    SCAT    ) = ',fcthread_scatx
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a)') ' '
@@ -248,20 +223,25 @@ c--     Print cost function for all tiles.
 c--   End of loop over records.
 
 #else
-c--   Do not enter the calculation of the salinity contribution to
+c--   Do not enter the calculation of the temperature contribution to
 c--   the final cost function.
+
+      fctile_scatx     = 0. _d 0
+      fcthread_scatx   = 0. _d 0
+      fctile_scaty     = 0. _d 0
+      fcthread_scaty   = 0. _d 0
 
       _BEGIN_MASTER( mythid )
         write(msgbuf,'(a)') ' '
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,a)')
-     &    ' cost_Salt: no contribution of salinity field ',
+     &    ' cost_scat: no contribution of temperature field ',
      &                 'to cost function.'
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,a,i9.8)')
-     &    ' cost_Salt: number of records that would have',
+     &    ' cost_scat: number of records that would have',
      &                ' been processed: ',nmonsrec
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)

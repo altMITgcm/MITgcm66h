@@ -85,12 +85,23 @@ c--   Convert mean ssh from cm to m
               if (tpmean(i,j,bi,bj) .eq. 0. _d 0 ) then
                  tpmeanmask(i,j,bi,bj) = 0. _d 0
               endif
-              tpmeanmask(i,j,bi,bj) = tpmeanmask(i,j,bi,bj)*frame(i,j)
-              if (tpmeanmask(i,j,bi,bj) .eq. 0. _d 0 ) then
-                 tpmean(i,j,bi,bj) = 0. _d 0
-              else
-                tpmean(i,j,bi,bj) = tpmean(i,j,bi,bj)*factor
+
+cph(
+cph               print *, 'WARNING: SPECIFIC SETUP FOR ECCO'
+cph               below statement could be replaced by following
+cph               to make it independnet of Nr:
+cph
+cph               if ( rC(K) .GT. -1000. ) then
+cph)
+c             set tpmask=0 in areas shallower than 1000m 
+              if (_hFacC(i,j,13,bi,bj) .eq. 0.) then
+                ersmask(i,j,bi,bj) = 0. _d 0
               endif
+
+              tpmeanmask(i,j,bi,bj) = tpmeanmask(i,j,bi,bj)*frame(i,j)
+              tpmean(i,j,bi,bj) = tpmean(i,j,bi,bj)*
+     &                            tpmeanmask(i,j,bi,bj)*
+     &                             factor
             enddo
           enddo
         enddo

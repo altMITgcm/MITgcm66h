@@ -105,6 +105,19 @@ c     == end of interface ==
               if (abs(tpobs(i,j,bi,bj)) .lt. 1.d-8 ) then
                  tpmask(i,j,bi,bj) = 0. _d 0
               endif
+
+cph(
+cph               print *, 'WARNING: SPECIFIC SETUP FOR ECCO'
+cph               below statement could be replaced by following
+cph               to make it independnet of Nr:
+cph
+cph               if ( rC(K) .GT. -1000. ) then
+cph)
+c             set tpmask=0 in areas shallower than 1000m 
+              if (_hFacC(i,j,13,bi,bj) .eq. 0.) then
+                tpmask(i,j,bi,bj) = 0. _d 0
+              endif
+
               tpmask(i,j,bi,bj) = tpmask(i,j,bi,bj)*frame(i,j)
               tpobs(i,j,bi,bj)  = tpobs(i,j,bi,bj)*
      &                            tpmask(i,j,bi,bj)*

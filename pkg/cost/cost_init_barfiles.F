@@ -50,11 +50,21 @@ c     == local variables ==
       character*(128) fnamesbar
       character*(128) fnameubar
       character*(128) fnamevbar
+      character*(128) fnamewbar
+      character*(128) fnametauxbar
+      character*(128) fnametauybar
+      character*(128) fnamehfluxbar
+      character*(128) fnamesfluxbar
       character*(128) adfnamepsbar
       character*(128) adfnametbar
       character*(128) adfnamesbar
       character*(128) adfnameubar
       character*(128) adfnamevbar
+      character*(128) adfnamewbar
+      character*(128) adfnametauxbar
+      character*(128) adfnametauybar
+      character*(128) adfnamehfluxbar
+      character*(128) adfnamesfluxbar
 
 c     == external functions ==
 
@@ -94,13 +104,12 @@ c     == end of interface ==
       enddo
 
 #ifdef ALLOW_SSH_COST_CONTRIBUTION
-
 c--   Save psbar on file.
       ilps=ilnblnk( psbarfile )
       write(fnamepsbar,'(2a,i10.10)') 
      &     psbarfile(1:ilps), '.', optimcycle
       write(adfnamepsbar,'(3a,i10.10)')
-     &     yadmark, psbarfile(1:ilps), '.', optimcycle
+     &     yadprefix, psbarfile(1:ilps), '.', optimcycle
 
       do irec = 1, ndaysrec
         call active_write_xy( fnamepsbar, tmpfld2d, irec,
@@ -108,21 +117,19 @@ c--   Save psbar on file.
         call active_write_xy( adfnamepsbar, tmpfld2d, irec,
      &                         optimcycle,mythid, xx_psbar_mean_dummy )
       enddo
-
 #endif /* ALLOW_SSH_COST_CONTRIBUTION */
 
 #if (defined (ALLOW_THETA_COST_CONTRIBUTION) || \
-     defined (ALLOW_SST_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDT_COST_CONTRIBUTION) || \
      defined (ALLOW_XBT_COST_CONTRIBUTION) || \
+     defined (ALLOW_DRIFT_COST_CONTRIBUTION) || \
      defined (ALLOW_OBCS_COST_CONTRIBUTION))
-
 c--   Save tbar on file.
       ilt=ilnblnk( tbarfile )
       write(fnametbar,'(2a,i10.10)') 
      &     tbarfile(1:ilt), '.', optimcycle
       write(adfnametbar,'(3a,i10.10)') 
-     &     yadmark, tbarfile(1:ilt), '.', optimcycle
+     &     yadprefix, tbarfile(1:ilt), '.', optimcycle
 
       do irec = 1,nmonsrec
         call active_write_xyz( fnametbar, tmpfld3d, nmonsrec,
@@ -130,20 +137,33 @@ c--   Save tbar on file.
         call active_write_xyz( adfnametbar, tmpfld3d, nmonsrec, 
      &                         optimcycle, mythid, xx_tbar_mean_dummy )
       enddo
-
+#else
+#ifdef ALLOW_SST_COST_CONTRIBUTION
+c--   Save tbar on file.
+      ilt=ilnblnk( tbarfile )
+      write(fnametbar,'(2a,i10.10)') 
+     &     tbarfile(1:ilt), '.', optimcycle
+      write(adfnametbar,'(3a,i10.10)') 
+     &     yadprefix, tbarfile(1:ilt), '.', optimcycle
+      do irec = 1,nmonsrec
+        call active_write_xy( fnametbar, tmpfld2d, nmonsrec,
+     &                        optimcycle, mythid, xx_tbar_mean_dummy )
+        call active_write_xy( adfnametbar, tmpfld2d, nmonsrec, 
+     &                        optimcycle, mythid, xx_tbar_mean_dummy )
+      enddo
+#endif
 #endif
 
 #if (defined (ALLOW_SALT_COST_CONTRIBUTION) || \
-     defined (ALLOW_SSS_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDS_COST_CONTRIBUTION) || \
+     defined (ALLOW_DRIFT_COST_CONTRIBUTION) || \
      defined (ALLOW_OBCS_COST_CONTRIBUTION))
-
 c--   Save sbar.
       ils=ilnblnk( sbarfile )
       write(fnamesbar,'(2a,i10.10)') 
      &     sbarfile(1:ils), '.', optimcycle
       write(adfnamesbar,'(3a,i10.10)') 
-     &     yadmark, sbarfile(1:ils), '.', optimcycle
+     &     yadprefix, sbarfile(1:ils), '.', optimcycle
 
       do irec = 1,nmonsrec
         call active_write_xyz( fnamesbar, tmpfld3d, nmonsrec,
@@ -151,12 +171,26 @@ c--   Save sbar.
         call active_write_xyz( adfnamesbar, tmpfld3d, nmonsrec,
      &                         optimcycle, mythid, xx_sbar_mean_dummy)
       enddo
+#else
+#ifdef ALLOW_SST_COST_CONTRIBUTION
+c--   Save sbar.
+      ils=ilnblnk( sbarfile )
+      write(fnamesbar,'(2a,i10.10)') 
+     &     sbarfile(1:ils), '.', optimcycle
+      write(adfnamesbar,'(3a,i10.10)') 
+     &     yadprefix, sbarfile(1:ils), '.', optimcycle
 
+      do irec = 1,nmonsrec
+        call active_write_xy( fnamesbar, tmpfld2d, nmonsrec,
+     &                        optimcycle, mythid, xx_sbar_mean_dummy)
+        call active_write_xy( adfnamesbar, tmpfld2d, nmonsrec,
+     &                        optimcycle, mythid, xx_sbar_mean_dummy)
+      enddo
+#endif
 #endif
 
 #if (defined (ALLOW_DRIFTER_COST_CONTRIBUTION) || \
      defined (ALLOW_OBCS_COST_CONTRIBUTION))
-
 c--   Save ubar and vbar.
       ils=ilnblnk( ubarfile )
       write(fnameubar,'(2a,i10.10)') 
@@ -164,9 +198,9 @@ c--   Save ubar and vbar.
       write(fnamevbar,'(2a,i10.10)') 
      &     vbarfile(1:ils), '.', optimcycle
       write(adfnameubar,'(3a,i10.10)') 
-     &     yadmark, ubarfile(1:ils), '.', optimcycle
+     &     yadprefix, ubarfile(1:ils), '.', optimcycle
       write(adfnamevbar,'(3a,i10.10)') 
-     &     yadmark, vbarfile(1:ils), '.', optimcycle
+     &     yadprefix, vbarfile(1:ils), '.', optimcycle
 
         call active_write_xyz( fnameubar, ubar, 1,
      &                         optimcycle, mythid, xx_ubar_mean_dummy)
@@ -176,7 +210,79 @@ c--   Save ubar and vbar.
      &                         optimcycle, mythid, xx_ubar_mean_dummy)
         call active_write_xyz( adfnamevbar, vbar, 1,
      &                         optimcycle, mythid, xx_vbar_mean_dummy)
+#endif
 
+#ifdef ALLOW_DRIFTW_COST_CONTRIBUTION
+c--   Save wbar
+      ils=ilnblnk( wbarfile )
+      write(fnamewbar,'(2a,i10.10)') 
+     &     wbarfile(1:ils), '.', optimcycle
+      write(adfnamewbar,'(3a,i10.10)') 
+     &     yadprefix, wbarfile(1:ils), '.', optimcycle
+
+      do irec = 1, 12
+        call active_write_xyz( fnamewbar, wbar, irec,
+     &                         optimcycle, mythid, xx_wbar_mean_dummy)
+        call active_write_xyz( adfnamewbar, wbar, irec,
+     &                         optimcycle, mythid, xx_wbar_mean_dummy)
+      enddo
+#endif
+
+#ifdef ALLOW_SCAT_COST_CONTRIBUTION
+c--   Save tauxbar, tauybar on file.
+      ilps=ilnblnk( tauxbarfile )
+      write(fnametauxbar,'(2a,i10.10)') 
+     &     tauxbarfile(1:ilps), '.', optimcycle
+      write(adfnametauxbar,'(3a,i10.10)')
+     &     yadprefix, tauxbarfile(1:ilps), '.', optimcycle
+      ilps=ilnblnk( tauybarfile )
+      write(fnametauybar,'(2a,i10.10)') 
+     &     tauybarfile(1:ilps), '.', optimcycle
+      write(adfnametauybar,'(3a,i10.10)')
+     &     yadprefix, tauybarfile(1:ilps), '.', optimcycle
+
+      do irec = 1, nmonsrec
+        call active_write_xy( fnametauxbar, tmpfld2d, irec,
+     &                        optimcycle, mythid, xx_taux_mean_dummy )
+        call active_write_xy( adfnametauxbar, tmpfld2d, irec,
+     &                         optimcycle,mythid, xx_taux_mean_dummy )
+        call active_write_xy( fnametauybar, tmpfld2d, irec,
+     &                        optimcycle, mythid, xx_tauy_mean_dummy )
+        call active_write_xy( adfnametauybar, tmpfld2d, irec,
+     &                         optimcycle,mythid, xx_tauy_mean_dummy )
+      enddo
+#endif
+
+#ifdef ALLOW_MEAN_HFLUX_COST_CONTRIBUTION
+c--   Save hfluxbar on file.
+      ilps=ilnblnk( hfluxbarfile )
+      write(fnamehfluxbar,'(2a,i10.10)') 
+     &     hfluxbarfile(1:ilps), '.', optimcycle
+      write(adfnamehfluxbar,'(3a,i10.10)')
+     &     yadprefix, hfluxbarfile(1:ilps), '.', optimcycle
+
+      do irec = 1, 1
+        call active_write_xy( fnamehfluxbar, tmpfld2d, irec,
+     &                        optimcycle, mythid, xx_hflux_mean_dummy )
+        call active_write_xy( adfnamehfluxbar, tmpfld2d, irec,
+     &                         optimcycle,mythid, xx_hflux_mean_dummy )
+      enddo
+#endif
+
+#ifdef ALLOW_MEAN_SFLUX_COST_CONTRIBUTION
+c--   Save sfluxbar on file.
+      ilps=ilnblnk( sfluxbarfile )
+      write(fnamesfluxbar,'(2a,i10.10)') 
+     &     sfluxbarfile(1:ilps), '.', optimcycle
+      write(adfnamesfluxbar,'(3a,i10.10)')
+     &     yadprefix, sfluxbarfile(1:ilps), '.', optimcycle
+
+      do irec = 1, 1
+        call active_write_xy( fnamesfluxbar, tmpfld2d, irec,
+     &                        optimcycle, mythid, xx_sflux_mean_dummy )
+        call active_write_xy( adfnamesfluxbar, tmpfld2d, irec,
+     &                         optimcycle,mythid, xx_sflux_mean_dummy )
+      enddo
 #endif
 
 #endif /* ALLOW_COST */

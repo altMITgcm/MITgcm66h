@@ -43,22 +43,25 @@ c     == global variables ==
 c     == routine arguments ==
 
       _RL     sphcost
-      _RL     shc( ncshc )
+      _RL     shc( ncShc )
       integer mythid
 
 #ifdef ALLOW_EGM96_ERROR_COV
 
 c     == local variables ==
-      Real*8  pinv( ncshc )
-      Real*8  cost
 
-      integer    egmsize
+      Real*8  pinv( ncshc )
+
+      integer i,j
+      integer ilo,ihi
+      integer ilnblnk
+      integer ifnblnk
+      integer ireads
+      integer egmunit
+      integer egmsize
       parameter( egmsize = 8 )
 
-      integer ilo,ihi
-      integer i
       integer jsize, joff, jbeg, jend, j
-      integer egmunit
 
       _RL factor
       _RL recip_rr
@@ -71,12 +74,15 @@ c     == external functions ==
 
 c     == end of interface ==
 
-c--   initialise cost variable for all threads
-c--   to allow usage of global_sum_r8
-      cost = 0.
-
 c--   Only the master thread is doing I/O
       _BEGIN_MASTER( mythid )
+
+c--   initialise cost variable for all threads
+c--   to allow usage of global_sum_r8
+      sphcost = 0. _d 0
+      do i=1,ncShc
+         pinv(i) = 0. _d 0
+      enddo
 
 c--   Initialise variables.
       recip_rr = recip_rsphere*recip_rsphere

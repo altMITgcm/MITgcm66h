@@ -58,6 +58,9 @@ c     == local variables ==
       _RL fctile_sss
       _RL fcthread_sss
 
+      _RL cmask (1-olx:snx+olx,1-oly:sny+oly)  
+      _RL spval
+
       character*(80) fnamesalt
 
       logical doglobalread
@@ -80,6 +83,8 @@ c     == end of interface ==
       jmax = sny
       imin = 1
       imax = snx
+
+      spval = -9.0
 
 c--   Read tiled data.
       doglobalread = .false.
@@ -132,13 +137,41 @@ c--         Loop over the model layers
             fctile_sss = 0. _d 0
             k = 1
 
-c--         Compute cost rel. to monthly SSS field.
             call cost_ReadSSSFields( irec, mythid )
+
+c--           Determine the mask on weights
+              do j = jmin,jmax
+                do i = imin,imax
+                  cmask(i,j) = 1. _d 0
+                  if (sssdat(i,j,bi,bj) .eq. 0.) then
+                    cmask(i,j) = 0. _d 0
+                  endif
+                 
+                  if (sssdat(i,j,bi,bj) .lt. spval) then
+                    cmask(i,j) = 0. _d 0
+                  endif
+                  
+cph(
+cph               print *, 'WARNING: SPECIFIC SETUP FOR ECCO'
+cph               below statement could be replaced by following
+cph               to make it independnet of Nr:
+cph
+cph               if ( rC(K) .GT. -1000. ) then
+cph)
+c                 set cmask=0 in areas shallower than 1000m 
+                  if (_hFacC(i,j,13,bi,bj) .eq. 0.) then
+                    cmask(i,j) = 0. _d 0
+                  endif
+
+                enddo
+              enddo
+
+c--         Compute cost rel. to monthly SSS field.
             do j = jmin,jmax
               do i = imin,imax
                 if (_hFacC(i,j,k,bi,bj) .ne. 0.) then
                    fctile_sss = fctile_sss +
-     &                  wsss(i,j,bi,bj)*cosphi(i,j,bi,bj)*
+     &                  wsss(i,j,bi,bj)*cosphi(i,j,bi,bj)*cmask(i,j)*
      &                  ( (sbar(i,j,k,bi,bj)-sssdat(i,j,bi,bj))*
      &                    (sbar(i,j,k,bi,bj)-sssdat(i,j,bi,bj))*
      &                           sssmask(i,j,bi,bj) )
@@ -199,6 +232,7 @@ c--   the final cost function.
       fctile_sss     = 0. _d 0
       fcthread_sss   = 0. _d 0
 
+#ifdef ECCO_VERBOSE
       _BEGIN_MASTER( mythid )
         write(msgbuf,'(a)') ' '
         call print_message( msgbuf, standardmessageunit,
@@ -217,6 +251,8 @@ c--   the final cost function.
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
       _END_MASTER( mythid )
+#endif
+
 #endif
 
       return

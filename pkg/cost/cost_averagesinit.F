@@ -76,9 +76,9 @@ c--       Initialise surface pressure average.
 #endif
 
 #if (defined (ALLOW_THETA_COST_CONTRIBUTION) || \
-     defined (ALLOW_SST_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDT_COST_CONTRIBUTION) || \
      defined (ALLOW_XBT_COST_CONTRIBUTION) || \
+     defined (ALLOW_DRIFT_COST_CONTRIBUTION) || \
      defined (ALLOW_OBCS_COST_CONTRIBUTION))
 c--       Initialise temperature average (3d).
           do k = 1,nr
@@ -88,13 +88,23 @@ c--       Initialise temperature average (3d).
               enddo
             enddo
           enddo
-
           xx_tbar_mean_dummy = 0. _d 0
+#else
+#ifdef ALLOW_SST_COST_CONTRIBUTION
+c--       Initialise temperature average (2d).
+          k = 1
+          do j = jmin,jmax
+            do i =  imin,imax
+              tbar(i,j,bi,bj) = 0. _d 0
+            enddo
+          enddo
+          xx_tbar_mean_dummy = 0. _d 0
+#endif
 #endif
 
 #if (defined (ALLOW_SALT_COST_CONTRIBUTION) || \
-     defined (ALLOW_SSS_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDS_COST_CONTRIBUTION) || \
+     defined (ALLOW_DRIFT_COST_CONTRIBUTION) || \
      defined (ALLOW_OBCS_COST_CONTRIBUTION))
 c--       Initialise salt average.
           do k = 1,nr
@@ -104,8 +114,18 @@ c--       Initialise salt average.
               enddo
             enddo
           enddo
-
           xx_sbar_mean_dummy = 0. _d 0
+#else
+#ifdef ALLOW_SSS_COST_CONTRIBUTION
+c--       Initialise salinity average (2d).
+          k = 1
+          do j = jmin,jmax
+            do i =  imin,imax
+              sbar(i,j,bi,bj) = 0. _d 0
+            enddo
+          enddo
+          xx_sbar_mean_dummy = 0. _d 0
+#endif          
 #endif
 
 #if (defined (ALLOW_DRIFTER_COST_CONTRIBUTION) || \
@@ -119,10 +139,53 @@ c--       Initialise uvel, vvel average.
               enddo
             enddo
           enddo
-
           xx_ubar_mean_dummy = 0. _d 0
           xx_vbar_mean_dummy = 0. _d 0
 #endif
+
+#ifdef ALLOW_DRIFTW_COST_CONTRIBUTION
+c--       Initialise uvel, vvel average.
+          do k = 1,nr
+            do j = jmin,jmax
+              do i =  imin,imax
+                wbar(i,j,k,bi,bj) = 0. _d 0
+              enddo
+            enddo
+          enddo
+          xx_wbar_mean_dummy = 0. _d 0
+#endif
+
+#ifdef ALLOW_SCAT_COST_CONTRIBUTION
+c--       Initialise salinity average (2d).
+          do j = jmin,jmax
+            do i =  imin,imax
+              tauxbar(i,j,bi,bj) = 0. _d 0
+              tauybar(i,j,bi,bj) = 0. _d 0
+            enddo
+          enddo
+          xx_taux_mean_dummy = 0. _d 0
+          xx_tauy_mean_dummy = 0. _d 0
+#endif
+
+#ifdef ALLOW_MEAN_HFLUX_COST_CONTRIBUTION
+c--       Initialise salinity average (2d).
+          do j = jmin,jmax
+            do i =  imin,imax
+              hfluxbar(i,j,bi,bj) = 0. _d 0
+            enddo
+          enddo
+          xx_hflux_mean_dummy = 0. _d 0
+#endif
+
+#ifdef ALLOW_MEAN_SFLUX_COST_CONTRIBUTION
+c--       Initialise salinity average (2d).
+          do j = jmin,jmax
+            do i =  imin,imax
+              sfluxbar(i,j,bi,bj) = 0. _d 0
+            enddo
+          enddo  
+          xx_sflux_mean_dummy = 0. _d 0
+#endif    
 
         enddo
       enddo

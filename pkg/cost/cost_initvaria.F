@@ -62,25 +62,45 @@ c     == end of interface ==
 c--   Initialize the tiled cost function contributions.
       do bj = jtlo,jthi
         do bi = itlo,ithi
-          objf_hflux(bi,bj)   = 0. _d 0
-          objf_sflux(bi,bj)   = 0. _d 0
-          objf_tauu(bi,bj)    = 0. _d 0
-          objf_tauv(bi,bj)    = 0. _d 0
-          objf_temp(bi,bj)    = 0. _d 0
-          objf_salt(bi,bj)    = 0. _d 0
-          objf_sst(bi,bj)     = 0. _d 0
-          objf_h(bi,bj)       = 0. _d 0
-          objf_atl(bi,bj)     = 0. _d 0
-          objf_ctdt(bi,bj)    = 0. _d 0
-          objf_ctds(bi,bj)    = 0. _d 0
-          objf_atemp(bi,bj)   = 0. _d 0
-          objf_aqh(bi,bj)     = 0. _d 0
-          objf_uwind(bi,bj)   = 0. _d 0
-          objf_vwind(bi,bj)   = 0. _d 0
-          objf_obcsn(bi,bj)   = 0. _d 0
-          objf_obcss(bi,bj)   = 0. _d 0
-          objf_obcsw(bi,bj)   = 0. _d 0
-          objf_obcse(bi,bj)   = 0. _d 0
+          objf_hflux(bi,bj)    = 0. _d 0
+          objf_hfluxm(bi,bj)   = 0. _d 0
+          objf_hfluxmm(bi,bj)  = 0. _d 0
+          objf_sflux(bi,bj)    = 0. _d 0
+          objf_sfluxm(bi,bj)   = 0. _d 0
+          objf_sfluxmm(bi,bj)  = 0. _d 0
+          objf_tauu(bi,bj)     = 0. _d 0
+          objf_tauum(bi,bj)    = 0. _d 0
+          objf_tauv(bi,bj)     = 0. _d 0
+          objf_tauvm(bi,bj)    = 0. _d 0
+          objf_temp(bi,bj)     = 0. _d 0
+          objf_salt(bi,bj)     = 0. _d 0
+          objf_temp0(bi,bj)    = 0. _d 0
+          objf_salt0(bi,bj)    = 0. _d 0
+          objf_sst(bi,bj)      = 0. _d 0
+          objf_sss(bi,bj)      = 0. _d 0
+          objf_h(bi,bj)        = 0. _d 0
+          objf_atl(bi,bj)      = 0. _d 0
+          objf_ctdt(bi,bj)     = 0. _d 0
+          objf_ctds(bi,bj)     = 0. _d 0
+          objf_xbt(bi,bj)      = 0. _d 0
+          objf_argot(bi,bj)    = 0. _d 0
+          objf_argos(bi,bj)    = 0. _d 0
+          objf_drift(bi,bj)    = 0. _d 0
+          objf_wdrift(bi,bj)   = 0. _d 0
+          objf_sdrift(bi,bj)   = 0. _d 0
+          objf_tdrift(bi,bj)   = 0. _d 0
+          objf_scatx(bi,bj)    = 0. _d 0
+          objf_scaty(bi,bj)    = 0. _d 0
+          objf_scatxm(bi,bj)   = 0. _d 0
+          objf_scatym(bi,bj)   = 0. _d 0
+          objf_atemp(bi,bj)    = 0. _d 0
+          objf_aqh(bi,bj)      = 0. _d 0
+          objf_uwind(bi,bj)    = 0. _d 0
+          objf_vwind(bi,bj)    = 0. _d 0
+          objf_obcsn(bi,bj)    = 0. _d 0
+          objf_obcss(bi,bj)    = 0. _d 0
+          objf_obcsw(bi,bj)    = 0. _d 0
+          objf_obcse(bi,bj)    = 0. _d 0
         enddo
       enddo
 
@@ -120,6 +140,14 @@ c--   Initialize the tiled cost function contributions.
                   sstmask(i,j,bi,bj) = 1. _d 0
                endif
                sstdat(i,j,bi,bj)     = 0. _d 0
+#endif
+#ifdef ALLOW_SSS_COST_CONTRIBUTION
+               if (_hFacC(i,j,k,bi,bj) .eq. 0.) then
+                  sssmask(i,j,bi,bj) = 0. _d 0
+               else
+                  sssmask(i,j,bi,bj) = 1. _d 0
+               endif
+               sssdat(i,j,bi,bj)     = 0. _d 0
 #endif
             enddo
           enddo

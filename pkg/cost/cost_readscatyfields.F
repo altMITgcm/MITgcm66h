@@ -3,13 +3,13 @@ C $Header$
 #include "COST_CPPOPTIONS.h"
 
 
-      subroutine cost_ReadSSSFields(
+      subroutine cost_ReadscatyFields(
      I                               irec,
      I                               mythid
      &                             )
 
 c     ==================================================================
-c     SUBROUTINE cost_ReadSSSFields
+c     SUBROUTINE cost_ReadscatyFields
 c     ==================================================================
 c
 c     o Read a given record of the SST data.
@@ -22,7 +22,7 @@ c              - Restructured the code in order to create a package
 c                for the MITgcmUV.
 c
 c     ==================================================================
-c     SUBROUTINE cost_ReadSSSFields
+c     SUBROUTINE cost_ReadscatyFields
 c     ==================================================================
 
       implicit none
@@ -51,8 +51,8 @@ c     == local variables ==
       integer jmin,jmax
       integer imin,imax
       integer nobs
-      integer sssrec
-      integer beginsss
+      integer scatyrec
+      integer beginscaty
       integer beginrun
 
       _RL spval
@@ -60,30 +60,30 @@ c     == local variables ==
 
 c     == end of interface ==
 
-      parameter (spval = -90.0 ) 
+      parameter (spval = -1.8 ) 
 ce    --> there is certainly a better place for this.
 
       jtlo = mybylo(mythid)
       jthi = mybyhi(mythid)
-      itlo = mybxlo(mythid) 
+      itlo = mybxlo(mythid)
       ithi = mybxhi(mythid)
       jmin = 1
       jmax = sny
       imin = 1
       imax = snx
 
-      beginsss = sssstartdate(1)/10000
+      beginscaty = scatystartdate(1)/10000
       beginrun = modelstartdate(1)/10000
-      if ( beginsss .eq. beginrun ) then
-        sssrec = mod(modelstartdate(1)/100,100) -
-     &           mod(sssstartdate(1)/100,100) + irec
+      if ( beginscaty .eq. beginrun ) then
+        scatyrec = mod(modelstartdate(1)/100,100) -
+     &           mod(scatystartdate(1)/100,100) + irec
       else
-        sssrec = ( beginrun - beginsss - 1)*nmonthyear +
-     &           (nmonthyear - mod(sssstartdate(1)/100,100) +
+        scatyrec = ( beginrun - beginscaty - 1)*nmonthyear +
+     &           (nmonthyear - mod(scatystartdate(1)/100,100) +
      &            1) + mod(modelstartdate(1)/100,100) - 1 + irec
       endif
-      call mdsreadfield( sssdatfile, cost_iprec, cost_yftype, 1, sssdat,
-     &                   sssrec, mythid )
+      call mdsreadfield( scatydatfile, cost_iprec, cost_yftype, 1, 
+     &                   scatydat, scatyrec, mythid )
 
       nobs = 0
       do bj = jtlo,jthi
@@ -92,19 +92,20 @@ ce    --> there is certainly a better place for this.
           do j = jmin,jmax
             do i = imin,imax
               if (_hFacC(i,j,k,bi,bj) .eq. 0.) then
-                sssmask(i,j,bi,bj) = 0. _d 0
+                scatymask(i,j,bi,bj) = 0. _d 0
               else
-                sssmask(i,j,bi,bj) = 1. _d 0
+                scatymask(i,j,bi,bj) = 1. _d 0
               endif
-              if (sssdat(i,j,bi,bj) .lt. spval) then
-                sssmask(i,j,bi,bj) = 0. _d 0
+              if (scatydat(i,j,bi,bj) .lt. spval) then
+                scatymask(i,j,bi,bj) = 0. _d 0
               endif
-              if (sssdat(i,j,bi,bj) .eq. 0. _d 0 ) then
-                 sssmask(i,j,bi,bj) = 0. _d 0
+              if (scatydat(i,j,bi,bj) .eq. 0. _d 0 ) then
+                 scatymask(i,j,bi,bj) = 0. _d 0
               endif
-              sssmask(i,j,bi,bj) = sssmask(i,j,bi,bj)*frame(i,j)
-              sssdat(i,j,bi,bj) = sssdat(i,j,bi,bj)*sssmask(i,j,bi,bj)
-              nobs = nobs + int(sssmask(i,j,bi,bj))
+              scatymask(i,j,bi,bj) = scatymask(i,j,bi,bj)*frame(i,j)
+              scatydat(i,j,bi,bj) = scatydat(i,j,bi,bj)*
+     &                              scatymask(i,j,bi,bj)
+              nobs = nobs + int(scatymask(i,j,bi,bj))
             enddo
           enddo
         enddo
@@ -117,7 +118,7 @@ c--   One could of course do a global sum here.
         do bi = itlo,ithi
           do j = jmin,jmax
             do i = imin,imax
-              vartile = vartile + sssdat(i,j,bi,bj)*sssdat(i,j,bi,bj)
+            vartile=vartile+scatydat(i,j,bi,bj)*scatydat(i,j,bi,bj)
             enddo
           enddo
         enddo

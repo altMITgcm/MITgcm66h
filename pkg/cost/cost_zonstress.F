@@ -62,8 +62,13 @@ c     == local variables ==
       integer ilfld
 
       _RL fctile
+      _RL fctilem
+      _RL fctilemm
       _RL fcthread
       _RL tmpx
+      _RL sumcos
+
+      _RL xx_tauu_mean (1-olx:snx+olx,1-oly:sny+oly,    nsx,nsy)
 
       logical doglobalread
       logical ladinit
@@ -129,14 +134,86 @@ c     Number of records to be used.
 
       fcthread = 0. _d 0
 
-c--   Loop over records.
+c--   Loop 1 to compute mean forcing:
+      do bj = jtlo,jthi
+        do bi = itlo,ithi  
+          do j = jmin,jmax
+            do i = imin,imax
+              xx_tauu_mean(i,j,bi,bj) = 0. _d 0 
+            enddo
+          enddo
+        enddo
+      enddo
+
       do irec = 1,nrec
 
         call active_read_xy( fnamefld, tmpfld2d, irec, doglobalread,
      &                       ladinit, optimcycle, mythid
      &        , xx_tauu_dummy )
 
-ce     &                       myiter, mytime )
+c--     Loop over this thread's tiles.
+        do bj = jtlo,jthi
+          do bi = itlo,ithi
+            do j = jmin,jmax
+              do i = imin,imax
+                xx_tauu_mean(i,j,bi,bj) = xx_tauu_mean(i,j,bi,bj) 
+     &                                    + tmpfld2d(i,j,bi,bj)
+              enddo
+            enddo
+          enddo
+        enddo
+
+      enddo
+
+      do bj = jtlo,jthi
+        do bi = itlo,ithi
+
+c--       Determine the weights to be used.
+          kk = 1
+          fctilem = 0. _d 0
+          do j = jmin,jmax
+            do i = imin,imax
+              xx_tauu_mean(i,j,bi,bj)
+     &              = xx_tauu_mean(i,j,bi,bj)/float(nrec)
+              tmpx = xx_tauu_mean(i,j,bi,bj)/0.1
+              if (maskw(i,j,kk,bi,bj) .ne. 0.) then
+                fctilem = fctilem
+     &                    + cosphi(i,j,bi,bj)
+     &                    *tmpx*tmpx
+              endif
+            enddo
+          enddo
+
+          objf_tauum(bi,bj) = objf_tauum(bi,bj) + fctilem
+          fcthread          = fcthread + fctilem
+
+#ifdef ECCO_VERBOSE
+c--         Print cost function for each tile in each thread.
+            write(msgbuf,'(a)') ' '
+            call print_message( msgbuf, standardmessageunit,
+     &                          SQUEEZE_RIGHT , mythid)
+            write(msgbuf,'(a,i8.8,1x,i3.3,1x,i3.3)')
+     &        ' cost_zonstress: irec,bi,bj          =  ',irec,bi,bj
+            call print_message( msgbuf, standardmessageunit,
+     &                          SQUEEZE_RIGHT , mythid)
+            write(msgbuf,'(a,d22.15)')
+     &        '               cost function (zonal) = ',
+     &        fctilem
+            call print_message( msgbuf, standardmessageunit,
+     &                      SQUEEZE_RIGHT , mythid)
+#endif
+
+        enddo
+      enddo
+
+      fcthread = 0. _d 0
+
+c--   Loop 2 over records.
+      do irec = 1,nrec
+
+        call active_read_xy( fnamefld, tmpfld2d, irec, doglobalread,
+     &                       ladinit, optimcycle, mythid
+     &        , xx_tauu_dummy )
 
 c--     Loop over this thread's tiles.
         do bj = jtlo,jthi
@@ -148,7 +225,7 @@ c--         Determine the weights to be used.
             do j = jmin,jmax
               do i = imin,imax
                 if (maskw(i,j,kk,bi,bj) .ne. 0.) then
-                  tmpx = tmpfld2d(i,j,bi,bj)
+                  tmpx = tmpfld2d(i,j,bi,bj)-xx_tauu_mean(i,j,bi,bj)
                   fctile = fctile
      &                 + wtauu(i,j,bi,bj)*cosphi(i,j,bi,bj)
      &                 *tmpx*tmpx

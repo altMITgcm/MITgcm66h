@@ -3,9 +3,7 @@ C $Header$
 #include "COST_CPPOPTIONS.h"
 
 
-      subroutine cost_weights(
-     I                         mythid
-     &                       )
+      subroutine cost_weights( mythid )
 
 c     ==================================================================
 c     SUBROUTINE cost_weights
@@ -64,8 +62,11 @@ c     == local variables ==
       _RL wui(nr)
       _RL wvi(nr)
       _RL whflux0
+      _RL whflux0m
       _RL wsflux0
+      _RL wsflux0m
       _RL wtau0
+      _RL wtau0m
       _RL ratio
       _RL dummy
 
@@ -82,10 +83,10 @@ c     == end of interface ==
       jthi = mybyhi(mythid)
       itlo = mybxlo(mythid)
       ithi = mybxhi(mythid)
-      jmin = 1
-      jmax = sny
-      imin = 1
-      imax = snx
+      jmin = 1-oly
+      jmax = sny+oly
+      imin = 1-olx
+      imax = snx+olx
 
 c--   Initialize variance (weight) fields.
       do k = 1,nr
@@ -99,9 +100,13 @@ c--   Initialize variance (weight) fields.
           do j = jmin,jmax
             do i = imin,imax
               whflux  (i,j,bi,bj) = 0. _d 0
+              whfluxm (i,j,bi,bj) = 0. _d 0
               wsflux  (i,j,bi,bj) = 0. _d 0
+              wsfluxm (i,j,bi,bj) = 0. _d 0
               wtauu   (i,j,bi,bj) = 0. _d 0
+              wtauum  (i,j,bi,bj) = 0. _d 0
               wtauv   (i,j,bi,bj) = 0. _d 0
+              wtauvm  (i,j,bi,bj) = 0. _d 0
               watemp  (i,j,bi,bj) = 0. _d 0
               waqh    (i,j,bi,bj) = 0. _d 0
               wuwind  (i,j,bi,bj) = 0. _d 0
@@ -124,10 +129,17 @@ c--   Initialize variance (weight) fields.
             wsalt  (k,bi,bj) = 0. _d 0
             wctdt  (k,bi,bj) = 0. _d 0
             wctds  (k,bi,bj) = 0. _d 0
+            do j = jmin,jmax
+              do i = imin,imax
+                wtheta2 (i,j,k,bi,bj) = 0. _d 0
+                wsalt2  (i,j,k,bi,bj) = 0. _d 0
+              enddo
+            enddo
           enddo
         enddo
       enddo
 
+#ifdef ALLOW_OBCS_COST_CONTRIBUTION
       do iobcs = 1,nobcs
         do k = 1,Nr
 #ifdef ALLOW_OBCSN_COST_CONTRIBUTION
@@ -144,6 +156,7 @@ c--   Initialize variance (weight) fields.
 #endif
         enddo
       enddo
+#endif
 
 c--   Build area weighting matrix used in the cost function
 c--   contributions.
@@ -172,8 +185,9 @@ c--   First account for the grid used.
         do bi = itlo,ithi
           do j = jmin,jmax
             do i = imin,imax
-              cosphi(i,j,bi,bj) = cos(yc(i,j,bi,bj)*deg2rad*factor)*
-     &                            frame(i,j)
+cds              cosphi(i,j,bi,bj) = cos(yc(i,j,bi,bj)*deg2rad*factor)*
+cds     &                            frame(i,j)
+              cosphi(i,j,bi,bj) = frame(i,j)
             enddo
           enddo
         enddo
@@ -192,17 +206,23 @@ c--   Read error information and set up weight matrices.
           read(gwunit,*) wti(k), wsi(k)
         end do
         close(gwunit)
+        whflux0m = whflux0
+        wsflux0m = wsflux0
+        wtau0m   = wtau0
       _END_MASTER(myThid)
 
       _BARRIER
 
-      jmin = 1
-      jmax = sny
-      imin = 1
-      imax = snx
+cph      jmin = 1
+cph      jmax = sny
+cph      imin = 1
+cph      imax = snx
 
       do bj = jtlo,jthi
         do bi = itlo,ithi
+
+          wsfluxmm(bi,bj) = 1.
+          whfluxmm(bi,bj) = 1.
 
 c--       The "classic" state estimation tool wastes memory here;
 c--       as long as there is not more information available there
@@ -246,26 +266,123 @@ c--       is no need to add the zonal and meridional directions.
                 wsst(i,j,bi,bj) = 0. _d 0
                 wsss(i,j,bi,bj) = 0. _d 0
               else
-                wsst(i,j,bi,bj) = wtheta(k,bi,bj)*10.
-                wsss(i,j,bi,bj) = wsalt(k,bi,bj)*10.
+cph                wsst(i,j,bi,bj) = wtheta(k,bi,bj)*10.
+cph                wsss(i,j,bi,bj) = wsalt(k,bi,bj)*10.
+cph       factor 5. by D Stammer
+                wsst(i,j,bi,bj) = wtheta(k,bi,bj)*frame(i,j)*5.
+                wsss(i,j,bi,bj) = wsalt(k,bi,bj)*frame(i,j)*5.
               endif
             enddo
           enddo
         enddo
       enddo
 
-#ifdef ALLOW_EGM96_ERROR_COV
+#if (defined (ALLOW_ARGO_SALT_COST_CONTRIBUTION) || \
+     defined (ALLOW_CTDS_COST_CONTRIBUTION))
+
+      if ( salterrfile .NE. ' ' ) then
+         call mdsreadfield( salterrfile, 32, 'RL', 1, wsalt2, 1,
+     &                      mythid)
+
+         do bj = jtlo,jthi
+          do bi = itlo,ithi
+           do k = 1,nr
+            do j = jmin,jmax
+             do i = imin,imax
+c--           Test for missing values.
+              if (wsalt(k,bi,bj).eq.0 .and. 
+     $            wsalt2(i,j,k,bi,bj).eq.0) then
+                 wsalt2(i,j,k,bi,bj) = 0. _d 0
+              else
+                 wsalt2(i,j,k,bi,bj)=
+     $                ( ratio/(wsalt(k,bi,bj)*wsalt(k,bi,bj) 
+     $                  +wsalt2(i,j,k,bi,bj)*wsalt2(i,j,k,bi,bj)) )
+     $                *frame(i,j)
+              endif
+             enddo
+            enddo
+           enddo
+          enddo
+         enddo
+      else
+         do bj = jtlo,jthi
+          do bi = itlo,ithi
+           do k = 1,nr
+            do j = jmin,jmax
+             do i = imin,imax
+                wsalt2(i,j,k,bi,bj) = wsalt(k,bi,bj)*frame(i,j)
+             enddo
+            enddo
+           enddo
+          enddo
+         enddo            
+      endif
+#endif
+
+#if (defined (ALLOW_ARGO_THETA_COST_CONTRIBUTION) || \
+     defined (ALLOW_CTDT_COST_CONTRIBUTION) || \
+     defined (ALLOW_XBT_COST_CONTRIBUTION))
+
+      if ( temperrfile .NE. ' ' ) then
+         call mdsreadfield( temperrfile, 32, 'RL', 1, wtheta2, 1,
+     &                      mythid)
+         do bj = jtlo,jthi
+          do bi = itlo,ithi
+           do k = 1,nr
+            do j = jmin,jmax
+             do i = imin,imax
+c--           Test for missing values.
+              if (wtheta(k,bi,bj).eq.0 .and. 
+     $            wtheta2(i,j,k,bi,bj).eq.0) then
+                 wtheta2(i,j,k,bi,bj) = 0. _d 0
+              else
+                 wtheta2(i,j,k,bi,bj)=
+     $                ( ratio/(wtheta(k,bi,bj)*wtheta(k,bi,bj) 
+     $                  +wtheta2(i,j,k,bi,bj)*wtheta2(i,j,k,bi,bj)) )
+     $                *frame(i,j)
+              endif
+             enddo
+            enddo
+           enddo
+          enddo
+         enddo
+      else
+         do bj = jtlo,jthi
+          do bi = itlo,ithi
+           do k = 1,nr
+            do j = jmin,jmax
+             do i = imin,imax
+                wtheta2(i,j,k,bi,bj) = wtheta(k,bi,bj)*frame(i,j)
+             enddo
+            enddo
+           enddo
+          enddo
+         enddo            
+      endif
+#endif
+
+#ifdef ALLOW_EGM96_ERROR_DIAG
 c--   Read egm-96 geoid covariance. Data in units of meters.
       nnz   =  1
       irec  =  1
       call mdsreadfield( geoid_errfile, cost_iprec, cost_yftype, nnz, 
      &                   wp, irec, mythid )
+c--   Set all tile edges to zero.
+      do bj = jtlo,jthi
+        do bi = itlo,ithi
+          do j = jmin,jmax
+            do i = imin,imax
+              wp    (i,j,bi,bj) = wp(i,j,bi,bj)*frame(i,j)
+            enddo
+          enddo
+        enddo
+      enddo
 #else
       do bj = jtlo,jthi
         do bi = itlo,ithi
           do j = jmin,jmax
             do i = imin,imax
-              wp(i,j,bi,bj) = 0. _d 0
+              wp(i,j,bi,bj) = frame(i,j)
             enddo
           enddo
         enddo
@@ -290,8 +407,10 @@ c--           T/P error + 5cm
                 wtp (i,j,bi,bj) = 0. _d 0
                 wers(i,j,bi,bj) = 0. _d 0
               else
-                wtp (i,j,bi,bj) = wtp(i,j,bi,bj) * 0.01 * 0.5
-                wers(i,j,bi,bj) = wtp(i,j,bi,bj) + 0.05
+                wtp (i,j,bi,bj) = ( wtp(i,j,bi,bj) * 0.01 * 0.5 )
+     &                            *frame(i,j)
+                wers(i,j,bi,bj) = ( wtp(i,j,bi,bj) + 0.05 )
+     &                            *frame(i,j)
               endif
             enddo
           enddo
@@ -300,11 +419,14 @@ c--           T/P error + 5cm
 #endif /* ALLOW_SSH_COST_CONTRIBUTION */
 
 c--   Read zonal wind stress variance.
-#if (defined (ALLOW_NSCAT_DATA))
+#if (defined (ALLOW_SCAT_COST_CONTRIBUTION))
+
       nnz   =   1
       irec  =   1
-      call mdsreadfield( tauu_errfile, cost_iprec, cost_yftype, nnz, 
-     &                   wtauu, irec, mythid )
+      call mdsreadfield( scatx_errfile, cost_iprec, cost_yftype, nnz, 
+     &                   wscatx, irec, mythid )
+      call mdsreadfield( scaty_errfile, cost_iprec, cost_yftype, nnz, 
+     &                   wscaty, irec, mythid )
 
       do bj = jtlo,jthi
         do bi = itlo,ithi
@@ -312,18 +434,60 @@ c--   Read zonal wind stress variance.
           do j = jmin,jmax
             do i = imin,imax
 c--           Test for missing values.
-              if (wtauu(i,j,bi,bj) .lt. -9900.) then
-                wtauu(i,j,bi,bj) = 0. _d 0
+              if (wscatx(i,j,bi,bj) .lt. -9900.) then
+                wscatx(i,j,bi,bj) = 0. _d 0
               endif
-              wtauu(i,j,bi,bj) = wtauu(i,j,bi,bj)*0.1
-              wtauu(i,j,bi,bj) = max(wtauu(i,j,bi,bj),wtau0)
-              wtauu(i,j,bi,bj) = wtauu(i,j,bi,bj)*maskw(i,j,k,bi,bj)*
-     &                         frame(i,j)
+              wscatx(i,j,bi,bj) = wscatx(i,j,bi,bj)*0.1
+              wscatx(i,j,bi,bj) = max(wscatx(i,j,bi,bj),wtau0)
+              wscatx(i,j,bi,bj) = wscatx(i,j,bi,bj)*maskw(i,j,k,bi,bj)
+     &                            *frame(i,j)
+              if (wscaty(i,j,bi,bj) .lt. -9900.) then
+                wscaty(i,j,bi,bj) = 0. _d 0
+              endif
+              wscaty(i,j,bi,bj) = wscaty(i,j,bi,bj)*0.1
+              wscaty(i,j,bi,bj) = max(wscaty(i,j,bi,bj),wtau0)
+              wscaty(i,j,bi,bj) = wscaty(i,j,bi,bj)*masks(i,j,k,bi,bj)
+     &                            *frame(i,j)
             enddo
           enddo
         enddo
       enddo
-#elif (defined (ALLOW_USTRESS_COST_CONTRIBUTION))
+
+#endif
+
+c--   Read zonal wind stress variance.
+#if (defined (ALLOW_STRESS_MEAN_COST_CONTRIBUTION))
+      nnz   =   1
+      irec  =   1
+cph      call mdsreadfield( tauum_errfile, cost_iprec, cost_yftype,
+cph     &                   nnz, wtauum, irec, mythid )
+cph      call mdsreadfield( tauvm_errfile, cost_iprec, cost_yftype,
+cph     &                   nnz, wtauvm, irec, mythid )
+
+      do bj = jtlo,jthi
+        do bi = itlo,ithi
+          k = 1
+          do j = jmin,jmax
+            do i = imin,imax
+c--           Test for missing values.
+              if (wtauum(i,j,bi,bj) .lt. -9900.) then
+                wtauum(i,j,bi,bj) = 0. _d 0
+              endif
+              wtauum(i,j,bi,bj) = max(wtauum(i,j,bi,bj),wtau0m)
+     &                            *frame(i,j)
+c--           Test for missing values.
+              if (wtauvm(i,j,bi,bj) .lt. -9900.) then
+                wtauvm(i,j,bi,bj) = 0. _d 0
+              endif
+              wtauvm(i,j,bi,bj) = max(wtauvm(i,j,bi,bj),wtau0m)
+     &                            *frame(i,j)
+            enddo
+          enddo
+        enddo
+      enddo
+#endif
+
+#if (defined (ALLOW_USTRESS_COST_CONTRIBUTION))
       nnz   =   1
 ce      irec  =   2
 ce(   due to Patrick's processing:
@@ -343,13 +507,15 @@ c--           Test for missing values.
               endif
               wtauu(i,j,bi,bj) = wtauu(i,j,bi,bj)*0.1
               wtauu(i,j,bi,bj) = max(wtauu(i,j,bi,bj),wtau0)
-              wtauu(i,j,bi,bj) = wtauu(i,j,bi,bj)*maskw(i,j,k,bi,bj)*
-     &                         frame(i,j)
+              wtauu(i,j,bi,bj) = wtauu(i,j,bi,bj)*maskw(i,j,k,bi,bj)
+     &                            *frame(i,j)
              enddo
           enddo
         enddo
       enddo
+
 #elif (defined (ALLOW_UWIND_COST_CONTRIBUTION))
+
       nnz   =   1
 ce      irec  =   2
 ce(   due to Patrick's processing:
@@ -369,8 +535,8 @@ c--           Test for missing values.
               endif
               wuwind(i,j,bi,bj) = wuwind(i,j,bi,bj)*0.1
               wuwind(i,j,bi,bj) = max(wuwind(i,j,bi,bj),wtau0)
-              wuwind(i,j,bi,bj) = wuwind(i,j,bi,bj)*maskw(i,j,k,bi,bj)*
-     &                         frame(i,j)
+              wuwind(i,j,bi,bj) = wuwind(i,j,bi,bj)*maskw(i,j,k,bi,bj)
+     &                            *frame(i,j)
              enddo
           enddo
         enddo
@@ -381,30 +547,7 @@ cph)
 #endif
 
 c--   Read meridional wind stress variance.
-#if (defined (ALLOW_NSCAT_DATA))
-      nnz   =   1
-      irec  =   1
-      call mdsreadfield( tauv_errfile, cost_iprec, cost_yftype, nnz, 
-     &                   wtauv, irec, mythid )
-
-      do bj = jtlo,jthi
-        do bi = itlo,ithi
-          k = 1
-          do j = jmin,jmax
-            do i = imiin,imax
-c--           Test for missing values.
-              if (wtauv(i,j,bi,bj) .lt. -9900.) then
-                wtauv(i,j,bi,bj) = 0. _d 0
-              endif
-              wtauv(i,j,bi,bj) = wtauv(i,j,bi,bj)*0.1
-              wtauv(i,j,bi,bj) = max(wtauv(i,j,bi,bj),wtau0)
-              wtauv(i,j,bi,bj) = wtauv(i,j,bi,bj)*masks(i,j,k,bi,bj)*
-     &                         frame(i,j)
-            enddo
-          enddo
-        enddo
-      enddo
-#elif (defined (ALLOW_VSTRESS_COST_CONTRIBUTION))
+#if (defined (ALLOW_VSTRESS_COST_CONTRIBUTION))
       nnz   =   1
 ce      irec  =   2
 ce(   due to Patrick's processing:
@@ -424,13 +567,15 @@ c--           Test for missing values.
               endif
               wtauv(i,j,bi,bj) = wtauv(i,j,bi,bj)*0.1
               wtauv(i,j,bi,bj) = max(wtauv(i,j,bi,bj),wtau0)
-              wtauv(i,j,bi,bj) = wtauv(i,j,bi,bj)*masks(i,j,k,bi,bj)*
-     &                         frame(i,j)
+              wtauv(i,j,bi,bj) = wtauv(i,j,bi,bj)*masks(i,j,k,bi,bj)
+     &                            *frame(i,j)
             enddo
           enddo
         enddo
       enddo
+
 #elif (defined (ALLOW_VWIND_COST_CONTRIBUTION))
+
       nnz   =   1
 ce      irec  =   2
 ce(   due to Patrick's processing:
@@ -450,8 +595,8 @@ c--           Test for missing values.
               endif
               wvwind(i,j,bi,bj) = wvwind(i,j,bi,bj)*0.1
               wvwind(i,j,bi,bj) = max(wvwind(i,j,bi,bj),wtau0)
-              wvwind(i,j,bi,bj) = wvwind(i,j,bi,bj)*masks(i,j,k,bi,bj)*
-     &                         frame(i,j)
+              wvwind(i,j,bi,bj) = wvwind(i,j,bi,bj)*masks(i,j,k,bi,bj)
+     &                            *frame(i,j)
             enddo
           enddo
         enddo
@@ -478,9 +623,12 @@ c--           Test for missing values.
               if (whflux(i,j,bi,bj) .lt. -9900.) then
                 whflux(i,j,bi,bj) = 0. _d 0
               endif
-              whflux(i,j,bi,bj) = max(whflux(i,j,bi,bj),whflux0)
 c--           Data are in units of W/m**2.
               whflux(i,j,bi,bj) = whflux(i,j,bi,bj)/3.
+              whflux(i,j,bi,bj) = max(whflux(i,j,bi,bj),whflux0)
+     &                            *frame(i,j)
+              whfluxm(i,j,bi,bj) = max(whfluxm(i,j,bi,bj),whflux0m)
+     &                            *frame(i,j)
             enddo
           enddo
         enddo
@@ -505,9 +653,10 @@ c--           Test for missing values.
               if (watemp(i,j,bi,bj) .lt. -9900.) then
                 watemp(i,j,bi,bj) = 0. _d 0
               endif
-              watemp(i,j,bi,bj) = max(watemp(i,j,bi,bj),whflux0)
 c--           Data are in units of W/m**2.
               watemp(i,j,bi,bj) = watemp(i,j,bi,bj)/3.
+              watemp(i,j,bi,bj) = max(watemp(i,j,bi,bj),whflux0)
+     &                            *frame(i,j)
             enddo
           enddo
         enddo
@@ -537,8 +686,12 @@ c--           Test for missing values.
               if (wsflux(i,j,bi,bj) .lt. -9900.) then
                 wsflux(i,j,bi,bj) = 0. _d 0
               endif
-              wsflux(i,j,bi,bj) = max(wsflux(i,j,bi,bj),wsflux0)
 c--           Data are in units of m/s.
+              wsflux(i,j,bi,bj) = wsflux(i,j,bi,bj) / 3.
+              wsflux(i,j,bi,bj) = max(wsflux(i,j,bi,bj),wsflux0)
+     &                            *frame(i,j)
+              wsfluxm(i,j,bi,bj) = max(wsfluxm(i,j,bi,bj),wsflux0m)
+     &                            *frame(i,j)
             enddo
           enddo
         enddo
@@ -563,8 +716,10 @@ c--           Test for missing values.
               if (waqh(i,j,bi,bj) .lt. -9900.) then
                 waqh(i,j,bi,bj) = 0. _d 0
               endif
-              waqh(i,j,bi,bj) = max(waqh(i,j,bi,bj),wsflux0)
 c--           Data are in units of m/s.
+              waqh(i,j,bi,bj) = waqh(i,j,bi,bj) / 3.
+              waqh(i,j,bi,bj) = max(waqh(i,j,bi,bj),wsflux0)
+     &                            *frame(i,j)
             enddo
           enddo
         enddo
@@ -599,10 +754,34 @@ c--   Units have to be checked!
               else
                 wtauu(i,j,bi,bj) = 1.0 _d 0
               endif
+              if (wtauum(i,j,bi,bj) .ne. 0.) then
+                wtauum(i,j,bi,bj) = 
+     &            1./wtauum(i,j,bi,bj)/wtauum(i,j,bi,bj)
+              else
+                wtauum(i,j,bi,bj) = 1.0 _d 0
+              endif
+              if (wscatx(i,j,bi,bj) .ne. 0.) then
+                wscatx(i,j,bi,bj) = 
+     &            1./wscatx(i,j,bi,bj)/wscatx(i,j,bi,bj)
+              else
+                wscatx(i,j,bi,bj) = 1.0 _d 0
+              endif
               if (wtauv(i,j,bi,bj) .ne. 0.) then
                 wtauv(i,j,bi,bj) = 1./wtauv(i,j,bi,bj)/wtauv(i,j,bi,bj)
               else
                 wtauv(i,j,bi,bj) = 1.0 _d 0
+              endif
+              if (wtauvm(i,j,bi,bj) .ne. 0.) then
+                wtauvm(i,j,bi,bj) =
+     &           1./wtauvm(i,j,bi,bj)/wtauvm(i,j,bi,bj)
+              else
+                wtauvm(i,j,bi,bj) = 1.0 _d 0
+              endif
+              if (wscaty(i,j,bi,bj) .ne. 0.) then
+                wscaty(i,j,bi,bj) =
+     &           1./wscaty(i,j,bi,bj)/wscaty(i,j,bi,bj)
+              else
+                wscaty(i,j,bi,bj) = 1.0 _d 0
               endif
               if (whflux(i,j,bi,bj) .ne. 0.) then
                 whflux(i,j,bi,bj) =
@@ -610,11 +789,23 @@ c--   Units have to be checked!
               else
                 whflux(i,j,bi,bj) = 1.0 _d 0
               endif
+              if (whfluxm(i,j,bi,bj) .ne. 0.) then
+                whfluxm(i,j,bi,bj) = 
+     &                1./whfluxm(i,j,bi,bj)/whfluxm(i,j,bi,bj)
+              else    
+                whfluxm(i,j,bi,bj) = 1.0 _d 0
+              endif
               if (wsflux(i,j,bi,bj) .ne. 0.) then
                 wsflux(i,j,bi,bj) =
      &                1./wsflux(i,j,bi,bj)/wsflux(i,j,bi,bj)
               else
                 wsflux(i,j,bi,bj) = 1.0 _d 0
+              endif
+              if (wsfluxm(i,j,bi,bj) .ne. 0.) then
+                wsfluxm(i,j,bi,bj) = 
+     &                1./wsfluxm(i,j,bi,bj)/wsfluxm(i,j,bi,bj)
+              else
+                wsfluxm(i,j,bi,bj) = 1.0 _d 0
               endif
               if (wuwind(i,j,bi,bj) .ne. 0.) then
                 wuwind(i,j,bi,bj) = 
@@ -640,6 +831,12 @@ c--   Units have to be checked!
               else
                 waqh(i,j,bi,bj) = 1.0 _d 0
               endif
+
+              if (wsfluxmm(bi,bj).ne.0.) 
+     &             wsfluxmm(bi,bj) = 1./wsfluxmm(bi,bj)*wsfluxmm(bi,bj)
+              if (whfluxmm(bi,bj).ne.0.) 
+     &             whfluxmm(bi,bj) = 1./whfluxmm(bi,bj)*whfluxmm(bi,bj)
+
             enddo
           enddo
 
@@ -654,8 +851,25 @@ c--   Units have to be checked!
             else
               wsalt(k,bi,bj) = 1.0 _d 0
             endif
+            do j = jmin,jmax
+              do i = imin,imax
+                 if (wtheta2(i,j,k,bi,bj) .ne. 0.) then
+                    wtheta2(i,j,k,bi,bj) = ratio
+     &                   /wtheta2(i,j,k,bi,bj)/wtheta2(i,j,k,bi,bj)
+                 else
+                    wtheta(k,bi,bj) = 1.0 _d 0
+                 endif
+                 if (wsalt2(i,j,k,bi,bj) .ne. 0.) then
+                    wsalt2(i,j,k,bi,bj) = ratio
+     &                   /wsalt2(i,j,k,bi,bj)/wsalt2(i,j,k,bi,bj)
+                 else
+                    wsalt2(i,j,k,bi,bj) = 1.0 _d 0
+                 endif
+              enddo
+            enddo
           enddo
 
+#ifdef ALLOW_OBCS_COST_CONTRIBUTION
           do iobcs = 1,nobcs
             do k = 1,nr
 #ifdef ALLOW_OBCSN_COST_CONTRIBUTION
@@ -692,40 +906,11 @@ c--   Units have to be checked!
 #endif
             enddo
           enddo
+#endif
 
         enddo
       enddo
 
-c--   Loop over the whole tile.
-      jmin = 1
-      jmax = sny
-      imin = 1
-      imax = snx
-
-c--   Set all tile edges to zero.
-      do bj = jtlo,jthi
-        do bi = itlo,ithi
-          do j = jmin,jmax
-            do i = imin,imax
-              cosphi(i,j,bi,bj) = cosphi(i,j,bi,bj)*frame(i,j)
-              whflux(i,j,bi,bj) = whflux(i,j,bi,bj)*frame(i,j)
-              wsflux(i,j,bi,bj) = wsflux(i,j,bi,bj)*frame(i,j)
-              wtauu (i,j,bi,bj) = wtauu (i,j,bi,bj)*frame(i,j)
-              wtauv (i,j,bi,bj) = wtauv (i,j,bi,bj)*frame(i,j)
-              watemp(i,j,bi,bj) = watemp(i,j,bi,bj)*frame(i,j)
-              waqh  (i,j,bi,bj) = waqh  (i,j,bi,bj)*frame(i,j)
-              wuwind(i,j,bi,bj) = wuwind(i,j,bi,bj)*frame(i,j)
-              wvwind(i,j,bi,bj) = wvwind(i,j,bi,bj)*frame(i,j)
-              wsst  (i,j,bi,bj) = wsst  (i,j,bi,bj)*frame(i,j)
-              wsss  (i,j,bi,bj) = wsss  (i,j,bi,bj)*frame(i,j)
-              wtp   (i,j,bi,bj) = wtp   (i,j,bi,bj)*frame(i,j)
-              wers  (i,j,bi,bj) = wers  (i,j,bi,bj)*frame(i,j)
-              wp    (i,j,bi,bj) = wp    (i,j,bi,bj)*frame(i,j)
-            enddo
-          enddo
-        enddo
-      enddo
-      
 c
 c     write masks and weights to files to be read by a master process
 c

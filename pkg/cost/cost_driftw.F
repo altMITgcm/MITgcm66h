@@ -3,31 +3,25 @@ C $Header$
 #include "COST_CPPOPTIONS.h"
 
 
-      subroutine cost_Salt(
+      subroutine cost_driftw(
      I                       myiter,
      I                       mytime,
      I                       mythid
      &                     )
 
 c     ==================================================================
-c     SUBROUTINE cost_Salt
+c     SUBROUTINE cost_Driftw
 c     ==================================================================
 c
-c     o Evaluate cost function contribution of salinity.
+c     o Evaluate cost function contribution of the w difference
+c       between the first and the last year.
 c
-c     started: Christian Eckert eckert@mit.edu 30-Jun-1999
+c     started: from cost_drift
 c
-c     changed: Christian Eckert eckert@mit.edu 25-Feb-2000
-c
-c              - Restructured the code in order to create a package
-c                for the MITgcmUV.
-c
-c     changed: Patrick Heimbach heimbach@mit.edu 27-May-2000
-c
-c              - set ladinit to .true. to initialise adsbar file
+c     Armin Koehl  akoehl@ucsd.edu  26-Feb-2002
 c
 c     ==================================================================
-c     SUBROUTINE cost_Salt
+c     SUBROUTINE cost_Driftw
 c     ==================================================================
 
       implicit none
@@ -63,17 +57,13 @@ c     == local variables ==
       integer jmin,jmax
       integer imin,imax
       integer irec
-      integer levmon
-      integer levoff
-      integer ilsalt
+      integer ilw
+      integer nf, nl
 
-      _RL fctile
-      _RL fcthread
+      _RL fctilew
+      _RL fcthread_wdrift
 
-      _RL cmask (1-olx:snx+olx,1-oly:sny+oly)  
-      _RL spval
-
-      character*(80) fnamesalt
+      character*(80) fnamew
 
       logical doglobalread
       logical ladinit
@@ -96,13 +86,11 @@ c     == end of interface ==
       imin = 1
       imax = snx
 
-      spval = -9990.
-
 c--   Read tiled data.
       doglobalread = .false.
       ladinit      = .false.
 
-#ifdef ALLOW_SALT_COST_CONTRIBUTION
+#ifdef ALLOW_DRIFTW_COST_CONTRIBUTION
 
 #ifdef ECCO_VERBOSE
       _BEGIN_MASTER( mythid )
@@ -110,7 +98,7 @@ c--   Read tiled data.
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,i8.8)')
-     &    ' cost_Salt: number of records to process = ',nmonsrec
+     &    ' cost_driftw: number of records to process = ',nmonsrec
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a)') ' '
@@ -120,123 +108,158 @@ c--   Read tiled data.
 #endif
 
       if (optimcycle .ge. 0) then
-        ilsalt = ilnblnk( sbarfile )
-        write(fnamesalt(1:80),'(2a,i10.10)')
-     &    sbarfile(1:ilsalt),'.',optimcycle
+        ilw = ilnblnk( wbarfile )
+        write(fnamew(1:80),'(2a,i10.10)')
+     &    wbarfile(1:ilw),'.',optimcycle
+     
       else
         print*
-        print*,' cost_Salt: optimcycle has a wrong value.'
+        print*,' cost_Driftw: optimcycle has a wrong value.'
         print*,'             optimcycle = ',optimcycle
         print*
-        stop   '  ... stopped in cost_Salt.'
+        stop   '  ... stopped in cost_Driftw.'
+      endif
+      
+      if (nmonsrec.lt.12) then 
+        print*
+        print*,' cost_Driftw: assimilation period smaller' 
+        print*,'             than 1 year, no drift computed.'
+        print*
+        stop   '  ... stopped in cost_Driftw.'
       endif
 
-      fcthread = 0. _d 0
+      fcthread_wdrift = 0. _d 0
+      
+      do bj = jtlo,jthi
+        do bi = itlo,ithi
+          do k = 1,nr     
+            do j = jmin,jmax
+              do i = imin,imax
+                wfmean(i,j,k,bi,bj) = 0.0
+                wlmean(i,j,k,bi,bj) = 0.0
+              enddo
+            enddo                
+          enddo
+        enddo
+      enddo
+      
+      nf = 0
+      nl = 0
 
 c--   Loop over records.
-      do irec = 1,nmonsrec
+      do irec = 1,12
 
 c--     Read time averages and the monthly mean data.
-        call active_read_xyz( fnamesalt, sbar, irec,
+        call active_read_xyz( fnamew, wbar, irec,
      &                        doglobalread, ladinit,
      &                        optimcycle, mythid,
-     &                        xx_sbar_mean_dummy )
-
-c--     Determine the month to be read.
-        levoff = mod(modelstartdate(1)/100,100)
-        levmon = (irec-1) + levoff
-        levmon = mod(levmon-1,12)+1
-
-        call mdsreadfield( sdatfile, cost_iprec, cost_yftype, 
-     &                     nr, sdat, levmon, mythid)
-
+     &                        xx_wbar_mean_dummy )
+     
+        nf = nf + 1
         do bj = jtlo,jthi
           do bi = itlo,ithi
-
-c--         Loop over the model layers
-            fctile = 0. _d 0
-            do k = 1,nr
-
-c--           Determine the mask or weights
+            do k = 1,nr     
               do j = jmin,jmax
                 do i = imin,imax
-                  cmask(i,j) = 1. _d 0
-                  if (sdat(i,j,k,bi,bj) .eq. 0.) then
-                    cmask(i,j) = 0. _d 0
-                  endif
-                  if (sdat(i,j,k,bi,bj) .lt. spval) then
-                    cmask(i,j) = 0. _d 0
-                  endif
-                  
-cph(
-cph               print *, 'WARNING: SPECIFIC SETUP FOR ECCO'
-cph               below statement could be replaced by following
-cph               to make it independnet of Nr:
-cph
-cph               if ( rC(K) .GT. -1000. ) then
-cph)
-c                 set cmask=0 in areas shallower than 1000m 
-                  if (_hFacC(i,j,13,bi,bj) .eq. 0.) then
-                    cmask(i,j) = 0. _d 0
-                  endif
-
+                  wfmean(i,j,k,bi,bj) = wfmean(i,j,k,bi,bj) + 
+     &                  wbar(i,j,k,bi,bj)
                 enddo
-              enddo
-
-c--           Compute model data misfit and cost function term for
-c             the salinity field.
-              do j = jmin,jmax
-                do i = imin,imax
-                  if (_hFacC(i,j,k,bi,bj) .ne. 0.) then
-                     fctile = fctile +
-     &                    (wsalt(k,bi,bj)*cosphi(i,j,bi,bj)*cmask(i,j)*
-     &                    (sbar(i,j,k,bi,bj) - sdat(i,j,k,bi,bj))*
-     &                    (sbar(i,j,k,bi,bj) - sdat(i,j,k,bi,bj))   )
-                  endif
-                enddo
-              enddo
-
+              enddo                
             enddo
-c--         End of loop over layers.
+          enddo
+        enddo
+        
+      enddo
+        
+      do irec = nmonsrec-12+1, nmonsrec
 
-            fcthread         = fcthread         + fctile
-            objf_salt(bi,bj) = objf_salt(bi,bj) + fctile
+c--     Read time averages and the monthly mean data.
+        call active_read_xyz( fnamew, wbar, irec,
+     &                        doglobalread, ladinit,
+     &                        optimcycle, mythid,
+     &                        xx_wbar_mean_dummy )
+     
+        nl = nl + 1  
+     
+        do bj = jtlo,jthi
+          do bi = itlo,ithi
+            do k = 1,nr     
+              do j = jmin,jmax
+                do i = imin,imax
+                  wlmean(i,j,k,bi,bj) = wlmean(i,j,k,bi,bj) + 
+     &                  wbar(i,j,k,bi,bj)
+                enddo
+              enddo                
+            enddo
+          enddo
+        enddo
+      
+      enddo
+ 
+        
+      do bj = jtlo,jthi
+        do bi = itlo,ithi
+
+c--       Loop over the model layers
+          fctilew = 0. _d 0
+          
+          do k = 1,nr
+
+c--         Compute model misfit and cost function term for
+c           the vertical velovity field. The error is 1e-4 m/s.
+            do j = jmin,jmax
+              do i = imin,imax
+                  if (_hFacC(i,j,k,bi,bj) .ne. 0.) then
+                     fctilew = fctilew +
+     &                  (1e12*cosphi(i,j,bi,bj)*
+     &          (wlmean(i,j,k,bi,bj)/nl - wfmean(i,j,k,bi,bj)/nf)*
+     &          (wlmean(i,j,k,bi,bj)/nl - wfmean(i,j,k,bi,bj)/nf))
+                  endif
+              enddo
+            enddo
+
+          enddo
+c--       End of loop over layers.
+
+          fcthread_wdrift    = fcthread_wdrift    + fctilew
+          objf_wdrift(bi,bj) = objf_wdrift(bi,bj) + fctilew
 
 #ifdef ECCO_VERBOSE
-c--         Print cost function for each tile in each thread.
-            write(msgbuf,'(a)') ' '
-            call print_message( msgbuf, standardmessageunit,
+c--       Print cost function for each tile in each thread.
+          write(msgbuf,'(a)') ' '
+          call print_message( msgbuf, standardmessageunit,
      &                          SQUEEZE_RIGHT , mythid)
-            write(msgbuf,'(a,i8.8,1x,i3.3,1x,i3.3)')
-     &        ' cost_Salt: irec,bi,bj          =  ',irec,bi,bj
-            call print_message( msgbuf, standardmessageunit,
+          write(msgbuf,'(a,i8.8,1x,i3.3,1x,i3.3)')
+     &        ' cost_Driftw: irec,bi,bj          =  ',irec,bi,bj
+          call print_message( msgbuf, standardmessageunit,
      &                          SQUEEZE_RIGHT , mythid)
-            write(msgbuf,'(a,d22.15)')
-     &        '     cost function (salinity) = ',
-     &        fctile
-            call print_message( msgbuf, standardmessageunit,
+          write(msgbuf,'(a,d22.15)')
+     &        '     cost function (wvel) = ',
+     &        fctilet+fctiles
+          call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
-            write(msgbuf,'(a)') ' '
-            call print_message( msgbuf, standardmessageunit,
+          write(msgbuf,'(a)') ' '
+          call print_message( msgbuf, standardmessageunit,
      &                          SQUEEZE_RIGHT , mythid)
 #endif
 
-          enddo
         enddo
+      enddo
 
 #ifdef ECCO_VERBOSE
 c--     Print cost function for all tiles.
-        _GLOBAL_SUM_R8( fcthread , myThid )
+        _GLOBAL_SUM_R8( fcthread_tdrift , myThid )
+        _GLOBAL_SUM_R8( fcthread_tdrifs , myThid )
         write(msgbuf,'(a)') ' '
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,i8.8)')
-     &    ' cost_Salt: irec = ',irec
+     &    ' cost_Drift: irec = ',irec
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,a,d22.15)')
-     &    ' global cost function value',
-     &    ' (salinity) = ',fcthread
+     &    '  cost function value',
+     &    ' (wvel) = ',fcthread_tdrifw
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a)') ' '
@@ -244,11 +267,8 @@ c--     Print cost function for all tiles.
      &                      SQUEEZE_RIGHT , mythid)
 #endif
 
-      enddo
-c--   End of loop over records.
-
 #else
-c--   Do not enter the calculation of the salinity contribution to
+c--   Do not enter the calculation of the drift contribution to
 c--   the final cost function.
 
       _BEGIN_MASTER( mythid )
@@ -256,12 +276,12 @@ c--   the final cost function.
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,a)')
-     &    ' cost_Salt: no contribution of salinity field ',
-     &                 'to cost function.'
+     &    ' cost_Driftw: no contribution of drift between the first ',
+     &                 'and the last year to cost function.'
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,a,i9.8)')
-     &    ' cost_Salt: number of records that would have',
+     &    ' cost_Driftw: number of records that would have',
      &                ' been processed: ',nmonsrec
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)

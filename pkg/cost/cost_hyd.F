@@ -42,32 +42,46 @@ c     == local variables ==
 
 c     == end of interface ==
 
-#ifdef ALLOW_THETA_COST_CONTRIBUTION
-      call cost_theta ( myiter, mytime, mythid )
-#endif
 
-#ifdef ALLOW_SST_COST_CONTRIBUTION
-      call cost_sst   ( myiter, mytime, mythid )
-#endif
+#ifdef ALLOW_XBT_COST_CONTRIBUTION
+      call cost_xbt   ( myiter, mytime, mythid )
+#endif 
 
-#ifdef ALLOW_SSS_COST_CONTRIBUTION
-      call cost_sss   ( myiter, mytime, mythid )
-#endif
-
-#ifdef ALLOW_SALT_COST_CONTRIBUTION
-      call cost_salt  ( myiter, mytime, mythid )
+#ifdef ALLOW_ARGO_THETA_COST_CONTRIBUTION
+      call cost_argo_theta ( myiter, mytime, mythid )
 #endif
 
 #ifdef ALLOW_CTDT_COST_CONTRIBUTION
       call cost_ctdt  ( myiter, mytime, mythid )
 #endif
 
+#ifdef ALLOW_SSS_COST_CONTRIBUTION
+      call cost_sss   ( myiter, mytime, mythid )
+#endif
+
+
 #ifdef ALLOW_CTDS_COST_CONTRIBUTION
       call cost_ctds  ( myiter, mytime, mythid )
 #endif
 
-#ifdef ALLOW_XBT_COST_CONTRIBUTION
-      call cost_xbt  ( myiter, mytime, mythid )
-#endif      
+#ifdef ALLOW_ARGO_SALT_COST_CONTRIBUTION
+      call cost_argo_salt ( myiter, mytime, mythid )
+#endif
+
+#ifdef ALLOW_THETA0_COST_CONTRIBUTION
+      call cost_theta0 ( myiter, mytime, mythid )
+#endif
+
+#ifdef ALLOW_SALT0_COST_CONTRIBUTION
+      call cost_salt0  ( myiter, mytime, mythid )
+#endif
+
+#ifdef ALLOW_THETA_COST_CONTRIBUTION
+      call cost_theta ( myiter, mytime, mythid )
+#endif
+
+#ifdef ALLOW_SALT_COST_CONTRIBUTION
+      call cost_salt  ( myiter, mytime, mythid )
+#endif
 
       end

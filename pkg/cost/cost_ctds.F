@@ -93,9 +93,6 @@ c--   Read state record from global file.
       doglobalread = .false.
       ladinit      = .false.
       
-c      call cal_TimePassed( topexstartdate, middate, difftime, mythid )
-c      call cal_ToSeconds( difftime, diffsecs, mythid )
-
 #ifdef ALLOW_CTDS_COST_CONTRIBUTION
 
 #ifdef ECCO_VERBOSE
@@ -129,22 +126,12 @@ c--   Loop over records.
       do irec = 1,nmonsrec
 
 c--     Read time averages and the monthly mean data.
-        call active_read_xy( fnamesalt, sbar, irec,
+        call active_read_xyz( fnamesalt, sbar, irec,
      &          doglobalread, ladinit,
-     &          optimcycle, mythid
-     &   , xx_sbar_mean_dummy )
+     &          optimcycle, mythid, xx_sbar_mean_dummy )
   
-ce     &                       myiter, mytime )
-
-c--     Determine the record to be read on observations.
-
-c        levoff = mod(modelstartdate(1)/100,100)
-c        levmon = (irec-1) + levoff
-c        levmon = mod(levmon-1,12)+1
-              
-ccc        call cost_ReadCtd( mythid )
-        call mdsreadfield( ctdsfile, 64, 'RL', nr, ctdsobs, irec,
-     &                     mythid)
+        call mdsreadfield( ctdsfile, cost_iprec, 'RL', nr, ctdsobs,
+     &                     irec, mythid)
 
 c--     Loop over this thread's tiles.
         do bj = jtlo,jthi
@@ -166,6 +153,22 @@ c--           Determine the weights to be used.
                   if (ctdsobs(i,j,k,bi,bj) .lt. spval) then
                     cmask(i,j) = 0. _d 0
                   endif
+
+cph(
+cph               print *, 'WARNING: SPECIFIC SETUP FOR ECCO'
+cph               below statement could be replaced by following
+cph               to make it independnet of Nr:
+cph
+cph               if ( rC(K) .GT. -1000. ) then
+cph)
+c                 set cmask=0 in areas shallower than 1000m 
+                  if (_hFacC(i,j,13,bi,bj) .eq. 0.) then
+                    cmask(i,j) = 0. _d 0
+                  endif
+                  
+                  if (_hFacC(i,j,k,bi,bj) .eq. 0.) then
+                    cmask(i,j) = 0. _d 0
+                  endif
                   
                 enddo
               enddo
@@ -175,16 +178,14 @@ c--           Determine the weights to be used.
                   www(i,j)    = cosphi(i,j,bi,bj)*cmask(i,j)                
                   tmpobs(i,j) = ctdsobs(i,j,k,bi,bj)
                   tmpbar(i,j) = sbar(i,j,k,bi,bj)
-                  wtmp(i,j) = wsalt(k,bi,bj)
+c                  wtmp(i,j) = wsalt(k,bi,bj)
+                  wtmp(i,j) = wsalt2(i,j,k,bi,bj)
                 enddo
               enddo
 
               do j = jmin,jmax
                 do i = imin,imax
 c--               The array ctdsobs contains CTD salinity.
-                  if(cmask(i,j).eq.1.0) then 
-                    print *,'cost_ctds',i,j,tmpbar(i,j),tmpobs(i,j)
-                  endif
                   fctile_ctds = fctile_ctds + 
      &                             (wtmp(i,j)*www(i,j))*
      &                             (tmpbar(i,j)-tmpobs(i,j))*

@@ -3,23 +3,23 @@ C $Header$
 #include "COST_CPPOPTIONS.h"
 
 
-      subroutine cost_XBT(
+      subroutine cost_argo_salt(
      I                     myiter,
      I                     mytime,
      I                     mythid
      &                   )
 
 c     ==================================================================
-c     SUBROUTINE cost_XBT
+c     SUBROUTINE cost_argo_salt
 c     ==================================================================
 c
-c     o Evaluate cost function contribution of XBT temperature data.
+c     o Evaluate cost function contribution of ARGO salt data.
 c
 c     started:  Elisabeth Remy eremy@ucsd.edu 30-Aug-2000
 c
 c
 c     ==================================================================
-c     SUBROUTINE cost_XBT
+c     SUBROUTINE cost_argo_salt
 c     ==================================================================
 
       implicit none
@@ -55,15 +55,15 @@ c     == local variables ==
       integer irec
       integer ilu
       
-      _RL fctile_xbt
-      _RL fcthread_xbt
+      _RL fctile_argos
+      _RL fcthread_argos
       _RL www (1-olx:snx+olx,1-oly:sny+oly)
+      _RL wtmp (1-olx:snx+olx,1-oly:sny+oly)
       _RL tmpobs (1-olx:snx+olx,1-oly:sny+oly)
-      _RL cmask (1-olx:snx+olx,1-oly:sny+oly)  
+      _RL tmpbar (1-olx:snx+olx,1-oly:sny+oly)
       _RL spval
-      _RL ztop,rl_35,rl_0
       
-      character*(80) fnametheta
+      character*(80) fnamesalt
 
       logical doglobalread
       logical ladinit
@@ -74,8 +74,6 @@ c     == external functions ==
 
       integer  ilnblnk
       external ilnblnk
-      _RL SW_PTMP
-      external SW_PTMP
 
 c     == end of interface ==
 
@@ -88,23 +86,20 @@ c     == end of interface ==
       imin = 1
       imax = snx
       
-      spval = -2.
-      ztop  = -.981*1.027
-      rl_35 = 35.0
-      rl_0  = 0.0
+      spval = -1.
 
 c--   Read state record from global file.
       doglobalread = .false.
       ladinit      = .false.
       
-#ifdef ALLOW_XBT_COST_CONTRIBUTION
+#ifdef ALLOW_ARGO_SALT_COST_CONTRIBUTION
 
 #ifdef ECCO_VERBOSE
       write(msgbuf,'(a)') ' '
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
       write(msgbuf,'(a,i8.8)')
-     &  ' cost_XBT: number of records to process =', nmonsrec
+     &  ' cost_ARGO_SALT: number of records to process =', nmonsrec
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
       write(msgbuf,'(a)') ' '
@@ -113,31 +108,29 @@ c--   Read state record from global file.
 #endif
 
       if (optimcycle .ge. 0) then
-        ilu=ilnblnk( tbarfile )
-        write(fnametheta(1:80),'(2a,i10.10)') tbarfile(1:ilu),'.',
-     &                                   optimcycle
+        ilu=ilnblnk( sbarfile )
+        write(fnamesalt(1:80),'(2a,i10.10)') 
+     &    sbarfile(1:ilu),'.', optimcycle
       else
         print*
-        print*,' cost_XBT: optimcycle has a wrong value.'
+        print*,' cost_ARGO_SALT: optimcycle has a wrong value.'
         print*,'                 optimcycle = ',optimcycle
         print*
-        stop   '  ... stopped in cost_XBT.'
+        stop   '  ... stopped in cost_ARGO_SALT.'
       endif
       
-      fcthread_xbt = 0. _d 0
+      fcthread_argos = 0. _d 0
 
 c--   Loop over records.
       do irec = 1,nmonsrec
 
 c--     Read time averages and the monthly mean data.
-        call active_read_xy( fnametheta, tbar, irec,
+        call active_read_xyz( fnamesalt, sbar, irec,
      &          doglobalread, ladinit,
      &          optimcycle, mythid
-     &   , xx_tbar_mean_dummy )
+     &   , xx_sbar_mean_dummy )
   
-c--     Determine the record to be read on observations.
-
-        call mdsreadfield( xbtfile, cost_iprec, 'RL', nr, xbtobs,
+        call mdsreadfield( argosfile, cost_iprec, 'RL', nr, argosobs,
      &                     irec, mythid)
 
 c--     Loop over this thread's tiles.
@@ -145,22 +138,10 @@ c--     Loop over this thread's tiles.
           do bi = itlo,ithi
 c--         Loop over the model layers
 
-            fctile_xbt = 0. _d 0
-
+            fctile_argos = 0. _d 0
             do k = 1,nr
 
-c--           Determine the weights to be used.
-              do j = jmin,jmax
-                do i = imin,imax
-                  cmask(i,j) = 1. _d 0
-                  if (xbtobs(i,j,k,bi,bj) .eq. 0.) then
-                    cmask(i,j) = 0. _d 0
-                  endif
-                 
-                  if (xbtobs(i,j,k,bi,bj) .lt. spval) then
-                    cmask(i,j) = 0. _d 0
-                  endif
-
+c--        
 cph(
 cph               print *, 'WARNING: SPECIFIC SETUP FOR ECCO'
 cph               below statement could be replaced by following
@@ -168,47 +149,34 @@ cph               to make it independnet of Nr:
 cph
 cph               if ( rC(K) .GT. -1000. ) then
 cph)
-c--               set cmask=0 in areas shallower than 1000m 
-                  if (_hFacC(i,j,13,bi,bj) .eq. 0.) then
-                    cmask(i,j) = 0. _d 0
-                  endif           
-       
-                  if (_hFacC(i,j,k,bi,bj) .eq. 0.) then
-                    cmask(i,j) = 0. _d 0
-                  endif                  
-                  
-                enddo
-              enddo
-              
               do j = jmin,jmax
-                do i = imin,imax
-                  www(i,j)    = cosphi(i,j,bi,bj)*cmask(i,j)
-                  tmpobs(i,j) = SW_PTMP(rl_35,
-     $                 xbtobs(i,j,k,bi,bj),ztop*rc(k),rl_0) 
-c--               The array ctdtobs contains CTD temperature.
-
-                  fctile_xbt = fctile_xbt + 
-     &                 (wtheta2(i,j,k,bi,bj)*www(i,j))*
-     &                 (tbar(i,j,k,bi,bj)-tmpobs(i,j))*
-     &                 (tbar(i,j,k,bi,bj)-tmpobs(i,j))
+                do i = imin,imax                 
+                   if (argosobs(i,j,k,bi,bj) .gt. spval .and.
+     $                  _hFacC(i,j,13,bi,bj) .ne. 0. .and.
+     $                  _hFacC(i,j,k,bi,bj) .ne. 0.) then
+                      fctile_argos = fctile_argos + 
+     &           wsalt2(i,j,k,bi,bj)*cosphi(i,j,bi,bj)*
+     &                 (sbar(i,j,k,bi,bj)-argosobs(i,j,k,bi,bj))*
+     &                 (sbar(i,j,k,bi,bj)-argosobs(i,j,k,bi,bj))
+                  endif                  
                 enddo
               enddo
-c--         End of loop over layers.
             enddo
+c--         End of loop over layers.
 
-            fcthread_xbt    = fcthread_xbt    + fctile_xbt
-            objf_xbt(bi,bj) = objf_xbt(bi,bj) + fctile_xbt   
+            fcthread_argos    = fcthread_argos    + fctile_argos
+            objf_argos(bi,bj) = objf_argos(bi,bj) + fctile_argos   
 
 #ifdef ECCO_VERBOSE
             write(msgbuf,'(a)') ' '
             call print_message( msgbuf, standardmessageunit,
      &                          SQUEEZE_RIGHT , mythid)
-            write(msgbuf,'(a,i8.8,1x,i3.3,1x,i3.3)')
-     &        ' COST_XBT: irec,bi,bj            =  ',irec,bi,bj
+            write(msgbuf,'(a,i8.8,1x,i3.3,1x,i3.3,i6)')
+     &        ' COST_ARGO_SALT: irec,bi,bj   =  ',irec,bi,bj,nprof
             call print_message( msgbuf, standardmessageunit,
      &                          SQUEEZE_RIGHT , mythid)
             write(msgbuf,'(a,d22.15)')
-     &        ' COST_XBT: cost function         = ', fctile_xbt
+     &        ' COST_ARGO_SALT: cost function         = ', fctile_argos
             call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
             write(msgbuf,'(a)') ' '
@@ -221,17 +189,17 @@ c--         End of loop over layers.
 
 #ifdef ECCO_VERBOSE
 c--     Print cost function for all tiles.
-        _GLOBAL_SUM_R8( fcthread_xbt , myThid )
+c        _GLOBAL_SUM_R8( fcthread_argos , myThid )
         write(msgbuf,'(a)') ' '
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,i8.8)')
-     &    ' cost_XBT: irec =  ',irec
+     &    ' cost_ARGOT: irec =  ',irec
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,a,d22.15)')
      &    ' global cost function value',
-     &    ' ( XBT temp. )  = ',fcthread_xbt
+     &    ' ( ARGO salt. )  = ',fcthread_argos
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a)') ' '
@@ -243,11 +211,11 @@ c--     Print cost function for all tiles.
 c--   End of second loop over records.
 
 #else
-c--   Do not enter the calculation of the XBT temperature contribution
+c--   Do not enter the calculation of the ARGO salinity contribution
 c--   to the final cost function.
       
-      fctile_xbt   = 0. _d 0
-      fcthread_xbt = 0. _d 0
+      fctile_argos   = 0. _d 0
+      fcthread_argos = 0. _d 0
 
 crg
       nrec = 1
@@ -258,12 +226,12 @@ crg
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,a)')
-     &    ' cost_XBT: no contribution of XBT temperature ',
+     &    ' cost_ARGOS: no contribution of ARGO salt ',
      &                    ' to cost function.'
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,a,i9.8)')
-     &    ' cost_XBT: number of records that would have',
+     &    ' cost_ARGOS: number of records that would have',
      &                      ' been processed: ',nrec
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
