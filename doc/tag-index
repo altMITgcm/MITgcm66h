@@ -3,6 +3,11 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint48c_post
+Modifications in treatment of initial flux forcing controls
+to avoid extra storing of flux fields.
+
+checkpoint48c_pre
 o Added tidal_basin_2d experiment (currently 1D!)
 o can use r* Coordinate with OBC (but Orlanski Rad. BC not yet implemented) 
 
