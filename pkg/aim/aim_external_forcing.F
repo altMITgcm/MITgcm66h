@@ -147,7 +147,7 @@ C--   Forcing term
       pGround = 1.E5
       RD      = 287.
       CPAIR   = 1004
-      DO J=1,1
+      DO J=1,sNy-1
        DO I=1,sNx
         I2 = sNx*(J-1)+I
         katm = _KD2KA( Klev )
@@ -211,7 +211,7 @@ C     == Local variables ==
 C     Loop counters
       INTEGER I, J
 
-      DO J=1,sNy
+      DO J=1,sNy-1
        DO I=1,sNx
         katm = _KD2KA( kLev )
         I2 = sNx*(J-1)+I
