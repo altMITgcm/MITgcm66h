@@ -62,7 +62,12 @@ c--   Optimization parameters.
      &                  nend,
      &                  grdchkvarindex,
      &                  useCentralDiff,
-     &                  grdchkwhichproc
+     &                  grdchkwhichproc,
+     &                  iGloPos,
+     &                  jGloPos,
+     &                  kGloPos,
+     &                  obcsglo,
+     &                  recglo
 
       jtlo = mybylo(mythid)
       jthi = mybyhi(mythid)
@@ -77,11 +82,16 @@ c--   Optimization parameters.
 
 c--     Set default values.
         grdchk_eps      = 1. _d 0
-        nbeg            = 1
-        nend            = 1
-        nstep           = 1
+        nbeg            = 0
+        nend            = 0
+        nstep           = 0
         useCentralDiff  = .TRUE.
         grdchkwhichproc = 0
+        iGloPos         = 0
+        jGloPos         = 0
+        kGloPos         = 1
+        obcsglo         = 1
+        recglo          = 1
 
 c--     Check versions.
 
