@@ -1743,6 +1743,8 @@ for d in $alldirs ; do
 			;;
                   ./FC_NAMEMANGLE.h)
 			;;
+                  ./BUILD_INFO.h)
+			;;
                   *)
 		  	touch .links.tmp/$sf
 		  	deplist="$deplist $sf"
