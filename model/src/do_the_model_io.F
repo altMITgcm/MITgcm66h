@@ -127,6 +127,12 @@ C--   Do SBO diagnostics.
       ENDIF
 #endif
 
+#ifdef  ALLOW_SEAICE
+        IF ( useSEAICE ) THEN
+           CALL SEAICE_DO_DIAGS( myTime, myIter, myThid )
+        ENDIF
+#endif  /* ALLOW_SEAICE */
+
 #ifdef ALLOW_BULK_FORCE
 C--   Do bulkf diagnostics.
       IF (useBulkForce .AND. myIter.NE.nIter0 )

@@ -378,6 +378,7 @@ C/\  | | | |-GMREDI_DIAGS        :: GM diags. see pkg/gmredi
 C/\  | | | |-KPP_DO_DIAGS        :: KPP diags. see pkg/kpp
 C/\  | | | |-SBO_CALC            :: SBO diags. see pkg/sbo
 C/\  | | | |-SBO_DIAGS           :: SBO diags. see pkg/sbo
+C/\  | | | |-SEAICE_DO_DIAGS     :: SEAICE diags. see pkg/seaice
 C/\  | | | |-GCHEM_DIAGS         :: gchem diags. see pkg/gchem
 C/\  | | |
 C/\  | | |-WRITE_CHECKPOINT :: Do I/O for restart files.

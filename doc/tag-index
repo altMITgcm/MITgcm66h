@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o moved SEAICE_DO_DIAGS to S/R do_the_model_io
+o bug fix for pkg/seaice pickups
 o change MNC call locations and add coordinate attributes
 o mask vorticity at the corner ; affects global_ocean.cs output
 o fix ini_curvilinear_grid ; test CS experiments with mpi
