@@ -52,14 +52,22 @@ C     Create MNC definitions for DYNVARS.h variables
       CALL MNC_CW_ADD_VATTR_TEXT(myThid,'S',1,
      &     'coordinates','XC YC RC iter')
 
+      CALL MNC_CW_ADD_VNAME(myThid, 'Unm1', 'U_xy_Hn__C__t', 4,5)
+      CALL MNC_CW_ADD_VNAME(myThid, 'Vnm1', 'V_xy_Hn__C__t', 4,5)
+      CALL MNC_CW_ADD_VNAME(myThid, 'Tnm1', 'Cen_xy_Hn__C__t', 4,5)
+      CALL MNC_CW_ADD_VNAME(myThid, 'Snm1', 'Cen_xy_Hn__C__t', 4,5)
+
       CALL MNC_CW_ADD_VNAME(myThid, 'Eta', 'Cen_xy_Hn__-__t', 3,4)
       CALL MNC_CW_ADD_VATTR_TEXT(myThid,'Eta',1,'long_name',
      &     'free-surface_r-anomaly')
+      CALL MNC_CW_ADD_VATTR_TEXT(myThid,'Eta',1,'units','m')
       CALL MNC_CW_ADD_VATTR_TEXT(myThid,'Eta',1,
      &     'coordinates','XC YC RC iter')
+
       CALL MNC_CW_ADD_VNAME(myThid, 'EtaNH', 'Cen_xy_Hn__-__t', 3,4)
       CALL MNC_CW_ADD_VATTR_TEXT(myThid,'EtaNH',1,'long_name',
-     &     'free-surface_r-anomaly')
+     &     'NLFS_r-anomaly')
+      CALL MNC_CW_ADD_VATTR_TEXT(myThid,'EtaNH',1,'units','m')
       CALL MNC_CW_ADD_VATTR_TEXT(myThid,'EtaNH',1,
      &     'coordinates','XC YC RC iter')
 

@@ -83,10 +83,10 @@ C     Check for sufficient space in memory
       i = ds_last + ndim
       j = 3 + 3*(ngrid + 1)
       IF ((i .GE. MNC_MAX_INFO) .OR. (j .GE. MNC_MAX_INFO)) THEN
-        write(msgbuf,'(2a)') 'MNC ERROR: insufficient space--',
-     &       'please increase MNC_MAX_INFO'
+        write(msgbuf,'(2a)') 'MNC_GRID_INIT_ALL ERROR: insufficient',
+     &       ' space--please increase MNC_MAX_INFO'
         CALL print_error( msgbuf, mythid )
-        stop 'ABNORMAL END: S/R MNC_GRID_INIT'
+        stop 'ABNORMAL END: S/R MNC_GRID_INIT_ALL'
       ENDIF
 
 C     Enter DEFINE mode
