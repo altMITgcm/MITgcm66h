@@ -18,7 +18,7 @@ C o Shortwave heating as extra term in external_forcing.F
 #endif
 
 C o Include/exclude code for Shapiro filters
-#undef  ALLOW_SHAP_FILT
+#define  ALLOW_SHAP_FILT
 
 C o Include/exclude code for C-D grid method of integrating the 
 C   coriolis terms
@@ -143,8 +143,11 @@ C o Include/exclude code specific to the ECCO/SEALION version.
 #undef INCLUDE_ECCO_PACKAGE
 #define ALLOW_ADJOINT_RUN
 #define ALLOW_GRADIENT_CHECK
+#undef ALLOW_TANGENTLINEAR_RUN
 
-#if (defined (INCLUDE_ECCO_PACKAGE) || defined (ALLOW_ADJOINT_RUN))
+#if (defined (INCLUDE_ECCO_PACKAGE) || \
+     defined (ALLOW_ADJOINT_RUN) || \
+     defined (ALLOW_TANGENTLINEAR_RUN))
 #include "ECCO_CPPOPTIONS.h"
 #endif
 

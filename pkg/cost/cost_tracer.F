@@ -1,6 +1,6 @@
 C $Header$
 
-#include "CPP_OPTIONS.h"
+#include "COST_CPPOPTIONS.h"
 
       subroutine cost_tracer( bi, bj, myThid )
 C     /==========================================================\

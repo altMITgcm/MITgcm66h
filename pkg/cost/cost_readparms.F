@@ -3,9 +3,7 @@ C $Header$
 #include "COST_CPPOPTIONS.h"
 
 
-      subroutine cost_readparms(
-     I                           mythid
-     &                         )
+      subroutine cost_readparms( mythid )
 
 c     ==================================================================
 c     SUBROUTINE cost_readparms
