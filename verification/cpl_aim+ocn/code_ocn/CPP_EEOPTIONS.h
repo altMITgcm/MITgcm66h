@@ -106,5 +106,3 @@ C           filled in some way.
 #endif /* _CPP_EEOPTIONS_H_ */
 
 #include "CPP_EEMACROS.h"
-
-#include "BUILD_INFO.h"

@@ -123,10 +123,6 @@ C     xxxFac - On-off tracer parameters used for switching terms off.
       _RL vort3(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL hDiv(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
-#ifdef ALLOW_MNC
-      INTEGER offsets(9)
-#endif
-
 #ifdef ALLOW_AUTODIFF_TAMC
 C--   only the kDown part of fverU/V is set in this subroutine
 C--   the kUp is still required
@@ -142,21 +138,6 @@ C--   (at least in part)
       IF (k.EQ.Nr) wVelBottomOverride=0.
       writeDiag = DIFFERENT_MULTIPLE(diagFreq, myTime,
      &                                         myTime-deltaTClock)
-
-#ifdef ALLOW_MNC
-      IF (useMNC .AND. snapshot_mnc .AND. writeDiag) THEN
-        IF ((bi .EQ. 1).AND.(bj .EQ. 1).AND.(k .EQ. 1)) THEN
-          CALL MNC_CW_SET_UDIM('mom_vi', -1, myThid)
-          CALL MNC_CW_I_W_S('I','mom_vi',0,0,'iter',myIter,myThid)
-          CALL MNC_CW_SET_UDIM('mom_vi', 0, myThid)
-        ENDIF
-        DO i = 1,9
-          offsets(i) = 0
-        ENDDO
-        offsets(3) = k
-C       write(*,*) 'offsets = ',(offsets(i),i=1,9)
-      ENDIF
-#endif /*  ALLOW_MNC  */
 
 C     Initialise intermediate terms
       DO J=1-OLy,sNy+OLy
@@ -432,18 +413,8 @@ C--   Horizontal Coriolis terms
         ENDDO
        ENDDO
        IF ( writeDiag ) THEN
-         IF (snapshot_mdsio) THEN
-           CALL WRITE_LOCAL_RL('fV','I10',1,uCf,bi,bj,k,myIter,myThid)
-           CALL WRITE_LOCAL_RL('fU','I10',1,vCf,bi,bj,k,myIter,myThid)
-         ENDIF
-#ifdef ALLOW_MNC
-         IF (useMNC .AND. snapshot_mnc) THEN
-           CALL MNC_CW_RL_W_OFFSET('D','mom_vi',bi,bj, 'fV', uCf,
-     &          offsets, myThid)
-           CALL MNC_CW_RL_W_OFFSET('D','mom_vi',bi,bj, 'fU', vCf,
-     &          offsets, myThid)
-         ENDIF
-#endif /*  ALLOW_MNC  */
+        CALL WRITE_LOCAL_RL('fV','I10',1,uCf,bi,bj,k,myIter,myThid)
+        CALL WRITE_LOCAL_RL('fU','I10',1,vCf,bi,bj,k,myIter,myThid)
        ENDIF
       ENDIF
 
@@ -477,20 +448,9 @@ c      CALL MOM_VI_V_CORIOLIS_C4(bi,bj,K,uFld,vort3,r_hFacZ,vCf,myThid)
        ENDDO
 
        IF ( writeDiag ) THEN
-         IF (snapshot_mdsio) THEN
-           CALL WRITE_LOCAL_RL('zV','I10',1,uCf,bi,bj,k,myIter,myThid)
-           CALL WRITE_LOCAL_RL('zU','I10',1,vCf,bi,bj,k,myIter,myThid)
-         ENDIF
-#ifdef ALLOW_MNC
-         IF (useMNC .AND. snapshot_mnc) THEN
-           CALL MNC_CW_RL_W_OFFSET('D','mom_vi',bi,bj, 'zV', uCf,
-     &          offsets, myThid)
-           CALL MNC_CW_RL_W_OFFSET('D','mom_vi',bi,bj, 'zU', vCf,
-     &          offsets, myThid)
-         ENDIF
-#endif /*  ALLOW_MNC  */
+        CALL WRITE_LOCAL_RL('zV','I10',1,uCf,bi,bj,k,myIter,myThid)
+        CALL WRITE_LOCAL_RL('zU','I10',1,vCf,bi,bj,k,myIter,myThid)
        ENDIF
-
 #ifdef ALLOW_TIMEAVE
 #ifndef HRCUBE
        IF (taveFreq.GT.0.) THEN
@@ -532,18 +492,8 @@ C--   Bernoulli term
         ENDDO
        ENDDO
        IF ( writeDiag ) THEN
-         IF (snapshot_mdsio) THEN
-           CALL WRITE_LOCAL_RL('KEx','I10',1,uCf,bi,bj,k,myIter,myThid)
-           CALL WRITE_LOCAL_RL('KEy','I10',1,vCf,bi,bj,k,myIter,myThid)
-         ENDIF
-#ifdef ALLOW_MNC
-         IF (useMNC .AND. snapshot_mnc) THEN
-           CALL MNC_CW_RL_W_OFFSET('D','mom_vi',bi,bj, 'KEx', uCf,
-     &          offsets, myThid)
-           CALL MNC_CW_RL_W_OFFSET('D','mom_vi',bi,bj, 'KEy', vCf,
-     &          offsets, myThid)
-        ENDIF
-#endif /*  ALLOW_MNC  */
+        CALL WRITE_LOCAL_RL('KEx','I10',1,uCf,bi,bj,k,myIter,myThid)
+        CALL WRITE_LOCAL_RL('KEy','I10',1,vCf,bi,bj,k,myIter,myThid)
        ENDIF
 
 C--   end if momAdvection
@@ -568,39 +518,16 @@ C--   Set du/dt & dv/dt on boundaries to zero
 #endif /* ALLOW_DEBUG */
 
       IF ( writeDiag ) THEN
-        IF (snapshot_mdsio) THEN
-          CALL WRITE_LOCAL_RL('Ds','I10',1,strain,bi,bj,k,myIter,myThid)
-          CALL WRITE_LOCAL_RL('Dt','I10',1,tension,bi,bj,k,myIter,
-     &         myThid)
-          CALL WRITE_LOCAL_RL('Du','I10',1,uDiss,bi,bj,k,myIter,myThid)
-          CALL WRITE_LOCAL_RL('Dv','I10',1,vDiss,bi,bj,k,myIter,myThid)
-          CALL WRITE_LOCAL_RL('Z3','I10',1,vort3,bi,bj,k,myIter,myThid)
-          CALL WRITE_LOCAL_RL('W3','I10',1,omega3,bi,bj,k,myIter,myThid)
-          CALL WRITE_LOCAL_RL('KE','I10',1,KE,bi,bj,k,myIter,myThid)
-          CALL WRITE_LOCAL_RL('D','I10',1,hdiv,bi,bj,k,myIter,myThid)
-        ENDIF
-#ifdef ALLOW_MNC
-        IF (useMNC .AND. snapshot_mnc) THEN
-          CALL MNC_CW_RL_W_OFFSET('D','mom_vi',bi,bj,'Ds',strain,
-     &          offsets, myThid)
-          CALL MNC_CW_RL_W_OFFSET('D','mom_vi',bi,bj,'Dt',tension,
-     &          offsets, myThid)
-          CALL MNC_CW_RL_W_OFFSET('D','mom_vi',bi,bj,'Du',uDiss,
-     &          offsets, myThid)
-          CALL MNC_CW_RL_W_OFFSET('D','mom_vi',bi,bj,'Dv',vDiss,
-     &          offsets, myThid)
-          CALL MNC_CW_RL_W_OFFSET('D','mom_vi',bi,bj,'Z3',vort3,
-     &          offsets, myThid)
-          CALL MNC_CW_RL_W_OFFSET('D','mom_vi',bi,bj,'W3',omega3,
-     &          offsets, myThid)
-          CALL MNC_CW_RL_W_OFFSET('D','mom_vi',bi,bj,'KE',KE,
-     &          offsets, myThid)
-          CALL MNC_CW_RL_W_OFFSET('D','mom_vi',bi,bj,'D', hdiv,
-     &          offsets, myThid)
-        ENDIF
-#endif /*  ALLOW_MNC  */
+       CALL WRITE_LOCAL_RL('Ds','I10',1,strain,bi,bj,k,myIter,myThid)
+       CALL WRITE_LOCAL_RL('Dt','I10',1,tension,bi,bj,k,myIter,myThid)
+       CALL WRITE_LOCAL_RL('Du','I10',1,uDiss,bi,bj,k,myIter,myThid)
+       CALL WRITE_LOCAL_RL('Dv','I10',1,vDiss,bi,bj,k,myIter,myThid)
+       CALL WRITE_LOCAL_RL('Z3','I10',1,vort3,bi,bj,k,myIter,myThid)
+       CALL WRITE_LOCAL_RL('W3','I10',1,omega3,bi,bj,k,myIter,myThid)
+       CALL WRITE_LOCAL_RL('KE','I10',1,KE,bi,bj,k,myIter,myThid)
+       CALL WRITE_LOCAL_RL('D','I10',1,hdiv,bi,bj,k,myIter,myThid)
       ENDIF
-      
+
 #endif /* ALLOW_MOM_VECINV */
 
       RETURN

@@ -95,7 +95,7 @@ C--   Initialize grid info
           CSTICE(i,j,bi,bj) =cos(yC(I,J,bi,bj)*deg2rad)
           CSUICE(i,j,bi,bj) =cos(yG(I,J,bi,bj)*deg2rad)
 CML(
-C     inverses of CSTICE and CSUICE. Lets hope we are never
+C     inverses of CSTICE and CSUICE. Let's hope we are never
 C     at the poles
           IF ( CSTICE(I,J,bi,bj) .ne. 0. _d 0 ) THEN
            RECIP_CSTICE(I,J,bi,bj) = 1./CSTICE(I,J,bi,bj)
@@ -241,7 +241,7 @@ C--   Choose a proxy level for geostrophic velocity,
 C--   Update overlap regions
       _EXCH_XY_R8(UVM, myThid)
 
-C--   Now lets look at all these beasts
+C--   Now let's look at all these beasts
       IF ( debugLevel .GE. debLevB ) THEN
          myIter=0
          CALL PLOT_FIELD_XYRL( CSTICE  , 'Current CSTICE  ' ,

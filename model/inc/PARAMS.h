@@ -268,14 +268,6 @@ C     pickup_write_immed :: echo the pickup immediately (for conversion)
 C     timeave_mdsio      :: use mdsio for timeave output
 C     snapshot_mdsio     :: use mdsio for "snapshot" (dumpfreq/diagfreq) output
 C     monitor_stdio      :: use stdio for monitor output
-C     useMNC           :: overall package run-time flag
-C     mnc_use_indir    :: use "mnc_indir_str" as input filename prefix
-C     mnc_use_outdir   :: use "mnc_outdir_str" as output filename prefix
-C     mnc_outdir_date  :: use a date string within the output dir name
-C     mnc_echo_gvtypes :: echo type names (fails on many platforms)
-C     pickup_write_mnc :: use mnc to write pickups
-C     pickup_read_mnc  :: use mnc to read  pickups
-C     mon_write_mnc    :: use mnc to write monitor output
       COMMON /PARM_L/ usingCartesianGrid, usingSphericalPolarGrid,
      & usingCurvilinearGrid, usingCylindricalGrid,
      & no_slip_sides,no_slip_bottom,
@@ -303,11 +295,6 @@ C     mon_write_mnc    :: use mnc to write monitor output
      & allowFreezing, useOldFreezing, groundAtK1,
      & usePickupBeforeC35, usePickupBeforeC54, debugMode,
      & readPickupWithTracer, writePickupWithTracer,
-     &     useMNC,
-     &     mnc_use_indir, mnc_use_outdir, mnc_outdir_date,
-     &     mnc_echo_gvtypes,
-     &     pickup_write_mnc, pickup_read_mnc,
-     &     timeave_mnc, snapshot_mnc, monitor_mnc, autodiff_mnc,
      & pickup_read_mdsio, pickup_write_mdsio, pickup_write_immed,
      & timeave_mdsio, snapshot_mdsio, monitor_stdio
       LOGICAL usingCartesianGrid
@@ -379,12 +366,6 @@ C     mon_write_mnc    :: use mnc to write monitor output
       LOGICAL debugMode
       LOGICAL readPickupWithTracer
       LOGICAL writePickupWithTracer
-      LOGICAL 
-     &     useMNC,
-     &     mnc_use_indir, mnc_use_outdir, mnc_outdir_date,
-     &     mnc_echo_gvtypes,
-     &     pickup_write_mnc, pickup_read_mnc,
-     &     timeave_mnc, snapshot_mnc, monitor_mnc, autodiff_mnc
       LOGICAL pickup_read_mdsio, pickup_write_mdsio
       LOGICAL pickup_write_immed
       LOGICAL timeave_mdsio, snapshot_mdsio, monitor_stdio
@@ -434,9 +415,6 @@ C     omega     :: Angular velocity ( rad/s )
 C     rotationPeriod :: Rotation period (s) (= 2.pi/omega)
 C     viscAh    :: Eddy viscosity coeff. for mixing of
 C                 momentum laterally ( m^2/s )
-C     viscAhW   :: Eddy viscosity coeff. for mixing of vertical
-C                 momentum laterally, no effect for hydrostatic
-C                 model, defaults to viscAh if unset ( m^2/s )
 C     viscAr    :: Eddy viscosity coeff. for mixing of
 C                 momentum vertically ( units of r^2/s )
 C     viscA4    :: Biharmonic viscosity coeff. for mixing of
@@ -544,7 +522,7 @@ C      --"-"--  Quadratic  ( linear: 1/s, quadratic: 1/m )
      & abeps, startTime, 
      & phiMin, thetaMin, rSphere, recip_RSphere, f0, beta,
      & fCori, fCoriG, fCoriCos,
-     & viscAh, viscAhW, viscAhMax, viscAhGrid, viscC2leith,
+     & viscAh,  viscAhMax, viscAhGrid, viscC2leith,
      & viscA4,  viscA4Max, viscA4Grid, viscC4leith,
      & viscAr, viscAstrain, viscAtension,
      & diffKhT, diffK4T, diffKrT,
@@ -600,7 +578,6 @@ C      --"-"--  Quadratic  ( linear: 1/s, quadratic: 1/m )
       _RL hFacSup
       _RL beta
       _RL viscAh
-      _RL viscAhW
       _RL viscAhMax
       _RL viscAhGrid
       _RL viscC2leith

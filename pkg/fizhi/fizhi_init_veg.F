@@ -53,7 +53,9 @@ C                100:  OCEAN
 C***********************************************************************
       implicit none
 #include "EEPARAMS.h"
-#include "PARAMS.h"
+#ifdef ALLOW_MNC
+#include "MNC_PARAMS.h"
+#endif
 
       integer mythid,im,jm,maxtyp,nchp,nchptot,nchpland,Nsx,Nsy,Nxg,Nyg
       integer surftype(im,jm,maxtyp,Nsx,Nsy)
