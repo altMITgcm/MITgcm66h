@@ -24,7 +24,7 @@ C This allows to use Visbeck et al formulation to compute K_GM+Redi
 
 C This allows the leading diagonal (top two rows) to be non-unity
 C (a feature required when tapering adiabatically).
-#undef  GM_NON_UNITY_DIAGONAL
+#define  GM_NON_UNITY_DIAGONAL
 
 C Allows to use different values of K_GM and K_Redi ; also to
 C be used with the advective form (Bolus velocity) of GM

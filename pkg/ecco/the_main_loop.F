@@ -163,6 +163,7 @@ c--   Initialize storage for the initialisations.
 CADJ  INIT tapelev3 = USER
 c--   Some more initialisations to please TAMC
 CADJ INIT tapelev_ini_bibj_k   = USER
+CADJ INIT tapelev_init = USER
 # ifdef ALLOW_DIVIDED_ADJOINT
 CADJ INIT onetape = user
 cphCADJ INIT onetape = common, 1
