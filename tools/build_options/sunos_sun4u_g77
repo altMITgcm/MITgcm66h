@@ -11,7 +11,8 @@
 FC_NAMEMANGLE="#define FC_NAMEMANGLE(X) X ## _"
 DEFINES='-DWORDLENGTH=4'
 AWK='gawk'
-MAKEDEPEND='$(TOOLSDIR)/xmakedepend'
+MAKEDEPEND='$(TOOLSDIR)/cyrus-imapd-makedepend/makedepend'
+#MAKEDEPEND='$(TOOLSDIR)/xmakedepend'
 #MAKE='gmake'
 CPP='/usr/ccs/lib/cpp -P'
 # this one works, too

@@ -16,7 +16,8 @@ MPI='true'
 AWK='gawk'
 # if regular make does not work try gmake
 #MAKE='gmake'
-MAKEDEPEND='$(TOOLSDIR)/xmakedepend'
+MAKEDEPEND='$(TOOLSDIR)/cyrus-imapd-makedepend/makedepend'
+#MAKEDEPEND='$(TOOLSDIR)/xmakedepend'
 # compiler
 FC='mpf77'
 LINK='mpf77'
