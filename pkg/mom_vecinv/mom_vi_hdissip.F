@@ -42,27 +42,40 @@ C     - Laplacian  and bi-harmonic terms
 c       Dim=dyF( i ,j-1,bi,bj)*hFacC( i ,j-1,k,bi,bj)*hDiv( i ,j-1)
 c       Dij=dyF( i , j ,bi,bj)*hFacC( i , j ,k,bi,bj)*hDiv( i , j )
 c       Dmj=dyF(i-1, j ,bi,bj)*hFacC(i-1, j ,k,bi,bj)*hDiv(i-1, j )
-        Dim=dyF( i ,j-1,bi,bj)*                       hDiv( i ,j-1)
-        Dij=dyF( i , j ,bi,bj)*                       hDiv( i , j )
-        Dmj=dyF(i-1, j ,bi,bj)*                       hDiv(i-1, j )
+c       Dim=dyF( i ,j-1,bi,bj)*                       hDiv( i ,j-1)
+c       Dij=dyF( i , j ,bi,bj)*                       hDiv( i , j )
+c       Dmj=dyF(i-1, j ,bi,bj)*                       hDiv(i-1, j )
+        Dim=                                          hDiv( i ,j-1)
+        Dij=                                          hDiv( i , j )
+        Dmj=                                          hDiv(i-1, j )
 
-        Zip=dxV( i ,j+1,bi,bj)*hFacZ( i ,j+1)*vort3( i ,j+1)
-        Zij=dxV( i , j ,bi,bj)*hFacZ( i , j )*vort3( i , j )
-        Zpj=dxV(i+1, j ,bi,bj)*hFacZ(i+1, j )*vort3(i+1, j )
+c       Zip=dxV( i ,j+1,bi,bj)*hFacZ( i ,j+1)*vort3( i ,j+1)
+c       Zij=dxV( i , j ,bi,bj)*hFacZ( i , j )*vort3( i , j )
+c       Zpj=dxV(i+1, j ,bi,bj)*hFacZ(i+1, j )*vort3(i+1, j )
+        Zip=                   hFacZ( i ,j+1)*vort3( i ,j+1)
+        Zij=                   hFacZ( i , j )*vort3( i , j )
+        Zpj=                   hFacZ(i+1, j )*vort3(i+1, j )
 
 c       uD2 = recip_rAw(i,j,bi,bj)*(
 c    &    recip_hFacW(i,j,k,bi,bj)*viscAh*( (Dij-Dmj)*cosFacU(j,bi,bj) )
 c    &   -recip_hFacW(i,j,k,bi,bj)*viscAh*( Zip-Zij ) )
-        uD2 = recip_rAw(i,j,bi,bj)*(
-     &                             viscAh*( (Dij-Dmj)*cosFacU(j,bi,bj) )
-     &   -recip_hFacW(i,j,k,bi,bj)*viscAh*( Zip-Zij ) )
+c       uD2 = recip_rAw(i,j,bi,bj)*(
+c    &                             viscAh*( (Dij-Dmj)*cosFacU(j,bi,bj) )
+c    &   -recip_hFacW(i,j,k,bi,bj)*viscAh*( Zip-Zij ) )
+        uD2 = viscAh*(
+     &               cosFacU(j,bi,bj)*( Dij-Dmj )*recip_DXC(i,j,bi,bj)
+     &      -recip_hFacW(i,j,k,bi,bj)*( Zip-Zij )*recip_DYU(i,j,bi,bj) )
 
 c       vD2 = recip_rAs(i,j,bi,bj)*(
 c    &    recip_hFacS(i,j,k,bi,bj)*viscAh*( (Zpj-Zij)*cosFacV(j,bi,bj) )
 c    &   +recip_hFacS(i,j,k,bi,bj)*viscAh*( Dij-Dim ) )
-        vD2 = recip_rAs(i,j,bi,bj)*(
-     &    recip_hFacS(i,j,k,bi,bj)*viscAh*( (Zpj-Zij)*cosFacV(j,bi,bj) )
-     &   +                         viscAh*( Dij-Dim ) )
+c       vD2 = recip_rAs(i,j,bi,bj)*(
+c    &    recip_hFacS(i,j,k,bi,bj)*viscAh*( (Zpj-Zij)*cosFacV(j,bi,bj) )
+c    &   +                         viscAh*( Dij-Dim ) )
+        vD2 = viscAh*(
+     &       recip_hFacS(i,j,k,bi,bj)*( Zpj-Zij )*recip_DXV(i,j,bi,bj)
+     &                                           *cosFacV(j,bi,bj)
+     &                               +( Dij-Dim )*recip_DYC(i,j,bi,bj) )
 
 c       Dim=dyF( i ,j-1,bi,bj)*hFacC( i ,j-1,k,bi,bj)*dStar( i ,j-1)
 c       Dij=dyF( i , j ,bi,bj)*hFacC( i , j ,k,bi,bj)*dStar( i , j )
