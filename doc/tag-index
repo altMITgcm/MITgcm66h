@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o no restoring terms under ice for pkg/seaice
 o moved SEAICE_DO_DIAGS to S/R do_the_model_io
 o bug fix for pkg/seaice pickups
 o change MNC call locations and add coordinate attributes

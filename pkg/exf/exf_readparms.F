@@ -73,7 +73,7 @@ c     == end of interface ==
 
 c     Surface flux data.
       namelist /exf_nml/
-     &    repeatPeriod,
+     &       repeatPeriod,         exf_albedo,
      &    hfluxstartdate1,    hfluxstartdate2,   hfluxperiod,
      &    atempstartdate1,    atempstartdate2,   atempperiod,
      &      aqhstartdate1,      aqhstartdate2,     aqhperiod,
@@ -266,6 +266,7 @@ c     Calendar data.
       apressureconst         = 0.0 _d 0
 
       repeatPeriod           = 0.0 _d 0
+      exf_albedo             = 0.1 _d 0
 
 c     Data files.
       hfluxfile          = ' '

@@ -33,6 +33,9 @@ c     ==================================================================
 c     Calendar data.
       _RL     repeatPeriod
 
+c     Sea-water albedo
+      _RL     exf_albedo
+
       integer hfluxstartdate1
       integer hfluxstartdate2
       _RL     hfluxstartdate
@@ -200,7 +203,6 @@ c     File names.
       character*(128) apressurefile
 
       common /exf_param_i/
-     &                          repeatPeriod,
      &                          hfluxstartdate1,   hfluxstartdate2,
      &                          atempstartdate1,   atempstartdate2,
      &                          aqhstartdate1,     aqhstartdate2,
@@ -223,6 +225,7 @@ c     File names.
      &                          apressurestartdate1,apressurestartdate2
 
       common /exf_param_r/
+     &                          repeatPeriod,      exf_albedo,
      &                          hfluxperiod,       hfluxstartdate,
      &                          atempperiod,       atempstartdate,
      &                          aqhperiod,         aqhstartdate,

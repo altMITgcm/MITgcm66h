@@ -263,9 +263,9 @@ c     swflux = - ( 1 - albedo ) * swdown
 
 #if defined(ALLOW_ATM_TEMP) || defined(SHORTWAVE_HEATING)
       if ( swfluxfile .EQ. ' ' .AND. swdownfile .NE. ' ' )
-     &     swflux(i,j,bi,bj) = -0.9 _d 0 * swdown(i,j,bi,bj)
+     &     swflux(i,j,bi,bj) = -(1.0-exf_albedo) * swdown(i,j,bi,bj)
       if ( swfluxfile .NE. ' ' .AND. swdownfile .EQ. ' ' )
-     &     swdown(i,j,bi,bj) = -1.111111 _d 0 * swflux(i,j,bi,bj)
+     &     swdown(i,j,bi,bj) = -swflux(i,j,bi,bj) / (1.0-exf_albedo)
 #endif
 
 #endif /* ALLOW_DOWNWARD_RADIATION */
