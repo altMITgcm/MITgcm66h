@@ -99,7 +99,7 @@ C--   Do AIM time averages
 #ifdef ALLOW_LAND
 C--   Do LAND time averages
       IF ( useLAND )
-     &  CALL LAND_WRITE_TAVE( myTime, myIter, myThid )
+     &  CALL LAND_WRITE_DIAGS( myTime, myIter, myThid )
 #endif                                                             
 
 #ifdef ALLOW_OBCS
