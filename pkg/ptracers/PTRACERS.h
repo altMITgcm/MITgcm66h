@@ -20,6 +20,7 @@ C                          are written to post-processing files.
 
 C     PTRACERS parameters
       _RL PTRACERS_taveFreq
+      _RL PTRACERS_monitorFreq
       _RL PTRACERS_diffKh(PTRACERS_num)
       _RL PTRACERS_diffK4(PTRACERS_num)
       _RL PTRACERS_diffKrNr(Nr,PTRACERS_num)
@@ -38,6 +39,7 @@ C     PTRACERS parameters
       LOGICAL PTRACERS_write_mnc
       COMMON /PTRACERS_PARAMS/
      &     PTRACERS_taveFreq,
+     &     PTRACERS_monitorFreq,
      &     PTRACERS_diffKh,
      &     PTRACERS_diffK4,
      &     PTRACERS_diffKrNr,
