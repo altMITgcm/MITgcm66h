@@ -1237,6 +1237,7 @@ echo 'F90FILES =  $(F90SRCFILES:.F90=.f90)'                                    >
 echo 'OBJFILES =  $(SRCFILES:.F=.o) $(CSRCFILES:.c=.o) $(F90SRCFILES:.F90=.o)' >> $MAKEFILE
 
 rm -f srclist.inc csrclist.inc hlist.inc flist.tmp clist.tmp f90srclist.inc
+rm -f ad_flow_files.inc
 
 cat >>$MAKEFILE <<EOF
 
