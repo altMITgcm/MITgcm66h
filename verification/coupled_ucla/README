@@ -27,7 +27,7 @@ esm_input : 16 4  -> atmospheric CPUs + 1; oceanic CPUs
 
 esminput:
 
- tbegin=1835.0,   -> time in days (5 years + 10 days from Jan 1 ????)
+ tbegin=1835.0,   -> time in days from 0000 (Jan. 10, 0005 00:00 GMT)
  tfinal=10601.0,  -> 10-year integration
  GM_run=0,        -> no AGCM output to FE_datdir
  GM_run=1,        -> allow AGCM output to FE_datdir
@@ -128,7 +128,7 @@ Instructions for creating library for JPL-ECCO-1/3-deg, 64cpu ocean model:
 
 ===================================================================
 
-Hi-res ocean, low-res atmosphere on alhena, 64-CPU:
+Hi-res ocean, low-res atmosphere on 64-CPU:
 Note that with 1-hour time steps, ocean model fails after 35 days.
 
   ssh gemini.jpl.nasa.gov
@@ -164,12 +164,16 @@ Note that with 1-hour time steps, ocean model fails after 35 days.
   cp POLY3.COEFFS.46 POLY3.COEFFS
   cp esm_input.56 esm_input
   cp esminput.56 esminput
-  rm -f STD*
-  cd /alhena/tmp1/dmenem
-  \rm -rf oldpbl
+
+Submitting a job on castor:
+
+  cd /castor/tmp1/dmenem
+  mv oldpbl recycle_bin
   mkdir oldpbl
   cd oldpbl
   mkdir data
-  cp -r /tmp1/dmenem/oldpbl/camel_7.2p_042903 .
-  cd camel_7.2p_042903/bin
-  qsub submit.long64a
+  mkdir camel_7.2p_042903
+  cd camel_7.2p_042903
+  cp -r /tmp1/dmenem/oldpbl/camel_7.2p_042903/bin .
+  cd bin
+  qsub submit.long64c

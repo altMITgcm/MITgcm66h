@@ -1,7 +1,6 @@
 #
 #PBS -l host=castor
 #PBS -l walltime=6:00:00
-#PBS -l mem=1gb
 #PBS -l ncpus=64
 
 cd /tmp1/dmenem/oldpbl/camel_7.2p_042903/bin
