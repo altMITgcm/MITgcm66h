@@ -173,15 +173,10 @@ grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.txt
 #To run:
   cd ../exe
   cp ../verification/natl_box_adjoint/input_bulk/* .
-  cp ../verification/natl_box_adjoint/input_seaice/data.seaice .
+  cp ../verification/natl_box_adjoint/input_seaice/data.seaice.cgrid data.seaice
   cp ../verification/natl_box_adjoint/input_seaice/data.pkg .
   cp ../verification/natl_box_adjoint/input/PH_*.data .
   ./mitgcmuv >&! output.txt
-
-#I've changed the run setup:
-#We now perform gradient checks for the first for elements of 
-#the air temperture part of the control vector (grdchkvarindex = 7).
-#To verify the results of the gradient check, type
 
 grep ph-grd output.txt
 
