@@ -63,7 +63,8 @@ C                        get buoyancy.
      &                bathyFile, hydrogThetaFile, hydrogSaltFile,
      &                zonalWindFile, meridWindFile, thetaClimFile,
      &                saltClimFile, buoyancyRelation,
-     &                EmPmRfile,surfQfile
+     &                EmPmRfile, surfQfile,
+     &                uVelInitFile, vVelInitFile
       CHARACTER*(5) checkPtSuff(maxNoChkptLev)
       CHARACTER*(MAX_LEN_FNAM) bathyFile
       CHARACTER*(MAX_LEN_FNAM) hydrogThetaFile
@@ -75,6 +76,8 @@ C                        get buoyancy.
       CHARACTER*(MAX_LEN_FNAM) surfQfile
       CHARACTER*(MAX_LEN_FNAM) EmPmRfile
       CHARACTER*(MAX_LEN_FNAM) buoyancyRelation
+      CHARACTER*(MAX_LEN_FNAM) uVelInitFile
+      CHARACTER*(MAX_LEN_FNAM) vVelInitFile
 
 C--   COMMON /PARM_I/ Integer valued parameters used by the model.
 C     cg2dMaxIters        - Maximum number of iterations in the

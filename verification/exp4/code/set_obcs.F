@@ -25,6 +25,8 @@ C     myThid -  Number of this instance of INI_DEPTHS
       INTEGER myThid
 CEndOfInterface
 
+#ifdef ALLOW_OBCS
+
 C     == Local variables ==
 C     xG, yG - Global coordinate location.
 C     zG
@@ -139,7 +141,6 @@ C         Outgoing
       ENDDO
 #endif
 
-
-C
+#endif
       RETURN
       END

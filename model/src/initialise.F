@@ -31,6 +31,9 @@ C     == Routine arguments ==
       INTEGER myThid
 CEndOfInterface
 
+C     == Local variables ==
+      INTEGER bi,bj,K
+
 C--   Set model parameters.
 C     Parameters are set to defaults and then updates are read from
 C     an input file called data.
@@ -94,6 +97,20 @@ C--   Set laplace operators for use in 3D conjugate gradient solver.
 
 C--   Custom routine to set forcing fields
       CALL INI_FORCING( myThid )
+
+#ifdef ALLOW_OBCS
+C--   Calculate values on open boundaries at iter=nIter0
+      IF (openBoundaries) THEN
+        DO bj = myByLo(myThid), myByHi(myThid)
+         DO bi = myBxLo(myThid), myBxHi(myThid)
+          DO K=1,Nr
+           CALL SET_OBCS( K, bi, bj, startTime, myThid )
+Caja       CALL CYCLE_OBCS( K, bi, bj, myThid )
+          ENDDO
+         ENDDO
+        ENDDO
+      ENDIF
+#endif
 
 C--   Finally summarise the model cofiguration and state
       CALL CONFIG_SUMMARY( myThid )

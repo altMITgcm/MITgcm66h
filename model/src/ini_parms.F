@@ -128,7 +128,8 @@ C--   Input files
      & bathyFile, hydrogThetaFile, hydrogSaltFile, 
      & zonalWindFile, meridWindFile,
      & thetaClimFile, saltClimFile,
-     & surfQfile, EmPmRfile
+     & surfQfile, EmPmRfile,
+     & uVelInitFile, vVelInitFile
 
 C--   Open Boundaries
       NAMELIST /PARM06/

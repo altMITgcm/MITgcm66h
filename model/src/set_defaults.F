@@ -160,6 +160,8 @@ C--   Input files
       saltClimFile    = ' '
       EmPmRfile       = ' '
       surfQfile       = ' '
+      uVelInitFile    = ' '
+      vVelInitFile    = ' '
 
 C--   OBCS
       DO I=1,Nx
