@@ -175,6 +175,9 @@ C     simple:
       IF ( (.NOT. outputTypesInclusive) 
      &     .AND. monitor_mnc ) monitor_stdio = .FALSE.
 
+C     Reads are always an exclusive relationship
+      IF (pickup_read_mnc) pickup_read_mdsio = .FALSE.
+
 C     Create the MNC output directory
       IF (mnc_use_outdir) THEN
         CALL MNC_SET_OUTDIR(myThid)
