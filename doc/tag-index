@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o cpl_aim+ocn test: update output (optfile & default GMREDI_OPTIONS.h)
 o move state variable diagnostics to the beginning of the time step ;
   (note: still needs some work specially for snap-shot diagnostics)
   duplicate & replace UVELVVEL diagnostics with UV_VEL_C & UV_VEL_Z
