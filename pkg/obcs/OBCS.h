@@ -70,34 +70,89 @@ C
 #ifdef ALLOW_OBCS_NORTH
       COMMON /GRID_N_OB/ 
      &      OBNu,OBNv,OBNt,OBNs
-      _RS OBNu (1-Olx:sNx+Olx,Nr,nSx,nSy)
-      _RS OBNv (1-Olx:sNx+Olx,Nr,nSx,nSy)
-      _RS OBNt (1-Olx:sNx+Olx,Nr,nSx,nSy)
-      _RS OBNs (1-Olx:sNx+Olx,Nr,nSx,nSy)
+      _RL OBNu (1-Olx:sNx+Olx,Nr,nSx,nSy)
+      _RL OBNv (1-Olx:sNx+Olx,Nr,nSx,nSy)
+      _RL OBNt (1-Olx:sNx+Olx,Nr,nSx,nSy)
+      _RL OBNs (1-Olx:sNx+Olx,Nr,nSx,nSy)
+#ifdef ALLOW_OBCS_PRESCRIBE
+      COMMON /GRID_N_OB_AUX/ 
+     &      OBNu0,OBNv0,OBNt0,OBNs0,
+     &      OBNu1,OBNv1,OBNt1,OBNs1
+      _RL OBNu0 (1-Olx:sNx+Olx,Nr,nSx,nSy)
+      _RL OBNv0 (1-Olx:sNx+Olx,Nr,nSx,nSy)
+      _RL OBNt0 (1-Olx:sNx+Olx,Nr,nSx,nSy)
+      _RL OBNs0 (1-Olx:sNx+Olx,Nr,nSx,nSy)
+      _RL OBNu1 (1-Olx:sNx+Olx,Nr,nSx,nSy)
+      _RL OBNv1 (1-Olx:sNx+Olx,Nr,nSx,nSy)
+      _RL OBNt1 (1-Olx:sNx+Olx,Nr,nSx,nSy)
+      _RL OBNs1 (1-Olx:sNx+Olx,Nr,nSx,nSy)
 #endif
+#endif /* ALLOW_OBCS_NORTH */
+
 #ifdef ALLOW_OBCS_SOUTH
       COMMON /GRID_S_OB/ 
      &      OBSu,OBSv,OBSt,OBSs
-      _RS OBSu (1-Olx:sNx+Olx,Nr,nSx,nSy)
-      _RS OBSv (1-Olx:sNx+Olx,Nr,nSx,nSy)
-      _RS OBSt (1-Olx:sNx+Olx,Nr,nSx,nSy)
-      _RS OBSs (1-Olx:sNx+Olx,Nr,nSx,nSy)
+      _RL OBSu (1-Olx:sNx+Olx,Nr,nSx,nSy)
+      _RL OBSv (1-Olx:sNx+Olx,Nr,nSx,nSy)
+      _RL OBSt (1-Olx:sNx+Olx,Nr,nSx,nSy)
+      _RL OBSs (1-Olx:sNx+Olx,Nr,nSx,nSy)
+#ifdef ALLOW_OBCS_PRESCRIBE
+      COMMON /GRID_S_OB_AUX/ 
+     &      OBSu0,OBSv0,OBSt0,OBSs0,
+     &      OBSu1,OBSv1,OBSt1,OBSs1
+      _RL OBSu0 (1-Olx:sNx+Olx,Nr,nSx,nSy)
+      _RL OBSv0 (1-Olx:sNx+Olx,Nr,nSx,nSy)
+      _RL OBSt0 (1-Olx:sNx+Olx,Nr,nSx,nSy)
+      _RL OBSs0 (1-Olx:sNx+Olx,Nr,nSx,nSy)
+      _RL OBSu1 (1-Olx:sNx+Olx,Nr,nSx,nSy)
+      _RL OBSv1 (1-Olx:sNx+Olx,Nr,nSx,nSy)
+      _RL OBSt1 (1-Olx:sNx+Olx,Nr,nSx,nSy)
+      _RL OBSs1 (1-Olx:sNx+Olx,Nr,nSx,nSy)
 #endif
+#endif
+
 #ifdef ALLOW_OBCS_EAST
       COMMON /GRID_E_OB/ 
      &      OBEu,OBEv,OBEt,OBEs
-      _RS OBEu (1-Oly:sNy+Oly,Nr,nSx,nSy)
-      _RS OBEv (1-Oly:sNy+Oly,Nr,nSx,nSy)
-      _RS OBEt (1-Oly:sNy+Oly,Nr,nSx,nSy)
-      _RS OBEs (1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL OBEu (1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL OBEv (1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL OBEt (1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL OBEs (1-Oly:sNy+Oly,Nr,nSx,nSy)
+#ifdef ALLOW_OBCS_PRESCRIBE
+      COMMON /GRID_E_OB_AUX/ 
+     &      OBEu0,OBEv0,OBEt0,OBEs0,
+     &      OBEu1,OBEv1,OBEt1,OBEs1
+      _RL OBEu0 (1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL OBEv0 (1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL OBEt0 (1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL OBEs0 (1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL OBEu1 (1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL OBEv1 (1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL OBEt1 (1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL OBEs1 (1-Oly:sNy+Oly,Nr,nSx,nSy)
 #endif
+#endif
+
 #ifdef ALLOW_OBCS_WEST
       COMMON /GRID_W_OB/ 
      &      OBWu,OBWv,OBWt,OBWs
-      _RS OBWu (1-Oly:sNy+Oly,Nr,nSx,nSy)
-      _RS OBWv (1-Oly:sNy+Oly,Nr,nSx,nSy)
-      _RS OBWt (1-Oly:sNy+Oly,Nr,nSx,nSy)
-      _RS OBWs (1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL OBWu (1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL OBWv (1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL OBWt (1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL OBWs (1-Oly:sNy+Oly,Nr,nSx,nSy)
+#ifdef ALLOW_OBCS_PRESCRIBE
+      COMMON /GRID_W_OB_AUX/ 
+     &      OBWu0,OBWv0,OBWt0,OBWs0,
+     &      OBWu1,OBWv1,OBWt1,OBWs1
+      _RL OBWu0 (1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL OBWv0 (1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL OBWt0 (1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL OBWs0 (1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL OBWu1 (1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL OBWv1 (1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL OBWt1 (1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL OBWs1 (1-Oly:sNy+Oly,Nr,nSx,nSy)
+#endif
 #endif
 
       COMMON /OB_FILES/
@@ -117,10 +172,10 @@ C
 #ifdef ALLOW_NONHYDROSTATIC
       COMMON /GRID_OBNH/ 
      &  OBNw,OBSw,OBEw,OBWw
-      _RS OBNw (1-Olx:sNx+Olx,Nr,nSx,nSy)
-      _RS OBSw (1-Olx:sNx+Olx,Nr,nSx,nSy)
-      _RS OBEw (1-Oly:sNy+Oly,Nr,nSx,nSy)
-      _RS OBWw (1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL OBNw (1-Olx:sNx+Olx,Nr,nSx,nSy)
+      _RL OBSw (1-Olx:sNx+Olx,Nr,nSx,nSy)
+      _RL OBEw (1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL OBWw (1-Oly:sNy+Oly,Nr,nSx,nSy)
 #endif /* ALLOW_NONHYDROSTATIC */
 
 #endif /* ALLOW_OBCS */

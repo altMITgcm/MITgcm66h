@@ -1,4 +1,7 @@
 #include "EXF_CPPOPTIONS.h"
+#ifdef ALLOW_OBCS
+# include "OBCS_OPTIONS.h"
+#endif
 
       subroutine exf_getobcs (   mycurrenttime
      I                         , mycurrentiter
@@ -52,18 +55,23 @@ c     == end of interface ==
      I                     , mycurrenttime, mycurrentiter, mythid
      &                     )
 
-      call exf_set_obcs_xz(  OBNu, OBNufile, 'u'
+      call exf_set_obcs_xz(  OBNu, OBNu0, OBNu1, OBNufile, 'u'
      I                     , fac, first, changed, count0, count1
      I                     , mycurrenttime, mycurrentiter, mythid )
-      call exf_set_obcs_xz(  OBNv, OBNvfile, 'v'
+      call exf_set_obcs_xz(  OBNv, OBNv0, OBNv1, OBNvfile, 'v'
      I                     , fac, first, changed, count0, count1
      I                     , mycurrenttime, mycurrentiter, mythid )
-      call exf_set_obcs_xz(  OBNt, OBNtfile, 's'
+      call exf_set_obcs_xz(  OBNt, OBNt0, OBNt1, OBNtfile, 's'
      I                     , fac, first, changed, count0, count1
      I                     , mycurrenttime, mycurrentiter, mythid )
-      call exf_set_obcs_xz(  OBNs, OBNsfile, 's'
+      call exf_set_obcs_xz(  OBNs, OBNs0, OBNs1, OBNsfile, 's'
      I                     , fac, first, changed, count0, count1
      I                     , mycurrenttime, mycurrentiter, mythid )
+cph(
+      print *, 'ph-obn a ', mycurrenttime, mycurrentiter, count0, count1
+      print *, 'ph-obn b ', OBNu(10,1,1,1),
+     &     OBNu0(10,1,1,1),OBNu1(10,1,1,1)
+cph)
 #endif
 
 #ifdef ALLOW_OBCS_SOUTH
@@ -73,16 +81,16 @@ c     == end of interface ==
      I                     , mycurrenttime, mycurrentiter, mythid
      &                     )
 
-      call exf_set_obcs_xz(  OBSu, OBSufile, 'u'
+      call exf_set_obcs_xz(  OBSu, OBSu0, OBSu1, OBSufile, 'u'
      I                     , fac, first, changed, count0, count1
      I                     , mycurrenttime, mycurrentiter, mythid )
-      call exf_set_obcs_xz(  OBSv, OBSvfile, 'v'
+      call exf_set_obcs_xz(  OBSv, OBSv0, OBSv1, OBSvfile, 'v'
      I                     , fac, first, changed, count0, count1
      I                     , mycurrenttime, mycurrentiter, mythid )
-      call exf_set_obcs_xz(  OBSt, OBStfile, 's'
+      call exf_set_obcs_xz(  OBSt, OBSt0, OBSt1, OBStfile, 's'
      I                     , fac, first, changed, count0, count1
      I                     , mycurrenttime, mycurrentiter, mythid )
-      call exf_set_obcs_xz(  OBSs, OBSsfile, 's'
+      call exf_set_obcs_xz(  OBSs, OBSs0, OBSs1, OBSsfile, 's'
      I                     , fac, first, changed, count0, count1
      I                     , mycurrenttime, mycurrentiter, mythid )
 
@@ -95,16 +103,16 @@ c     == end of interface ==
      I                     , mycurrenttime, mycurrentiter, mythid
      &                     )
 
-      call exf_set_obcs_yz(  OBEu, OBEufile, 'u'
+      call exf_set_obcs_yz(  OBEu, OBEu0, OBEu1, OBEufile, 'u'
      I                     , fac, first, changed, count0, count1
      I                     , mycurrenttime, mycurrentiter, mythid )
-      call exf_set_obcs_yz(  OBEv, OBEvfile, 'v'
+      call exf_set_obcs_yz(  OBEv, OBEv0, OBEv1, OBEvfile, 'v'
      I                     , fac, first, changed, count0, count1
      I                     , mycurrenttime, mycurrentiter, mythid )
-      call exf_set_obcs_yz(  OBEt, OBEtfile, 's'
+      call exf_set_obcs_yz(  OBEt, OBEt0, OBEt1, OBEtfile, 's'
      I                     , fac, first, changed, count0, count1
      I                     , mycurrenttime, mycurrentiter, mythid )
-      call exf_set_obcs_yz(  OBEs, OBEsfile, 's'
+      call exf_set_obcs_yz(  OBEs, OBEs0, OBEs1, OBEsfile, 's'
      I                     , fac, first, changed, count0, count1
      I                     , mycurrenttime, mycurrentiter, mythid )
 
@@ -117,16 +125,16 @@ c     == end of interface ==
      I                     , mycurrenttime, mycurrentiter, mythid
      &                     )
 
-      call exf_set_obcs_yz(  OBWu, OBWufile, 'u'
+      call exf_set_obcs_yz(  OBWu, OBWu0, OBWu1, OBWufile, 'u'
      I                     , fac, first, changed, count0, count1
      I                     , mycurrenttime, mycurrentiter, mythid )
-      call exf_set_obcs_yz(  OBWv, OBWvfile, 'v'
+      call exf_set_obcs_yz(  OBWv, OBWv0, OBWv1, OBWvfile, 'v'
      I                     , fac, first, changed, count0, count1
      I                     , mycurrenttime, mycurrentiter, mythid )
-      call exf_set_obcs_yz(  OBWt, OBWtfile, 's'
+      call exf_set_obcs_yz(  OBWt, OBWt0, OBWt1, OBWtfile, 's'
      I                     , fac, first, changed, count0, count1
      I                     , mycurrenttime, mycurrentiter, mythid )
-      call exf_set_obcs_yz(  OBWs, OBWsfile, 's'
+      call exf_set_obcs_yz(  OBWs, OBWs0, OBWs1, OBWsfile, 's'
      I                     , fac, first, changed, count0, count1
      I                     , mycurrenttime, mycurrentiter, mythid )
 
