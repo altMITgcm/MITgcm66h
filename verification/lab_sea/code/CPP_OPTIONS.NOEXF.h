@@ -14,6 +14,9 @@ CEOP
 C o Include/exclude code for AIM package
 #undef  ALLOW_AIM
 
+C o Include/exclude IERS Special Bureau for the Oceans diagnostics
+#define   ALLOW_SBO
+
 C o Include/exclude code for sea-ice model
 #define  ALLOW_SEAICE
 
