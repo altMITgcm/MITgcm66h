@@ -9,7 +9,9 @@ C $Name$
 C***********************************************************************
       implicit none
 
+#ifdef ALLOW_DIAGNOSTICS
 #include "diagnostics.h"
+#endif
 
       integer myThid,im1,im2,jm1,jm2,Nrphys,Nsx,Nsy,bi,bj
       real p(im2,jm2,Nsx,Nsy)
