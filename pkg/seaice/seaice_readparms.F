@@ -33,8 +33,8 @@ C     iUnit       - Work variable for IO unit number
 
 C--   SEAICE parameters
       NAMELIST /SEAICE_PARM01/
-     & SEAICEwriteState, SEAICEuseDYNAMICS, SEAICEuseADI,
-     & LAD, IMAX_TICE, NPSEUDO,
+     & SEAICEwriteState, SEAICEuseDYNAMICS,
+     & LAD, IMAX_TICE,
      & SEAICE_dumpFreq, SEAICE_taveFreq, SEAICE_initialHEFF,
      & SEAICE_drag, SEAICE_waterDrag, SEAICE_dryIceAlb,
      & SEAICE_wetIceAlb, SEAICE_drySnowAlb, SEAICE_wetSnowAlb,
@@ -71,7 +71,6 @@ C--   set default sea ice parameters
 #else
       SEAICEuseDYNAMICS  = .FALSE.
 #endif
-      SEAICEuseADI       = .FALSE.
       SEAICE_dumpFreq    = dumpFreq
       SEAICE_taveFreq    = taveFreq
       SEAICE_initialHEFF = ZERO
@@ -104,7 +103,6 @@ C--   set default sea ice parameters
       HeffFile   = ' '
       LAD        = 2
       IMAX_TICE  = 10
-      NPSEUDO    = -99999.
       LSR_ERROR  = 0.0001    _d 0
       DIFF1      = .002      _d 0
       DIFF1      = 2.0*DIFF1
@@ -194,14 +192,6 @@ C--   Everyone else must wait for the parameters to be loaded
 
       IF ( SEAICE_EPS_SQ .EQ. -99999. )
      &     SEAICE_EPS_SQ = SEAICE_EPS * SEAICE_EPS
-
-      IF ( NPSEUDO .EQ. -99999. ) THEN
-         IF ( SEAICEuseADI ) THEN
-            NPSEUDO = 20
-         ELSE
-            NPSEUDO = 1
-         ENDIF
-      ENDIF
 
 #endif /* ALLOW_SEAICE */
 
