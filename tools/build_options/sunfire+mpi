@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+#  $Header$
+#
+
+S64='$(TOOLSDIR)/set64bitConst.sh'
+MAKEDEPEND=makedepend
+DEFINES='-DWORDLENGTH=4'
+
+FC='mpf77'
+LINK='mpf77'
+CPP='/usr/ccs/lib/cpp -P'
+INCLUDES='-I/opt/SUNWhpc/include'
+LIBS='-lmpi -lthread -lsocket -lnsl'
+FOPTIM='-dalign -O4 -xarch=native'
+CFLAGS='-dalign -xO4 -xarch=native'
+NOOPTFLAGS='-dalign -O0 -xarch=native'

@@ -62,8 +62,7 @@ c     == end of interface ==
             do i = imin,imax
 c
 c             Heat flux.
-              if ( ( hflux(i,j,bi,bj) .GT. 1300. .OR.
-     &               hflux(i,j,bi,bj) .LT. -500. ) .AND.
+              if ( ABS(hflux(i,j,bi,bj)) .GT. 1100. .AND.
      &              hFacC(i,j,1,bi,bj) .NE. 0. ) then
                  print *, 'EXF WARNING: hflux out of range for i,j= ',
      &                i, j, hflux(i,j,bi,bj)
@@ -134,7 +133,7 @@ c             2-m specific humidity
 c
 c             precipitation rate
               if ( (precip(i,j,bi,bj) .LT. 0. .OR.
-     &             precip(i,j,bi,bj) .GT. 1.E-6 ) .AND.
+     &             precip(i,j,bi,bj) .GT. 0.1 ) .AND.
      &             hFacC(i,j,1,bi,bj) .NE. 0. ) then
                  print *, 'EXF WARNING: precip out of range for i,j= ',
      &                i, j, precip(i,j,bi,bj)

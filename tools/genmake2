@@ -1101,7 +1101,7 @@ fi
 
 #  Find the MITgcm ${ROOTDIR}
 if test "x${ROOTDIR}" = x ; then
-    tmp=`echo $PWD | sed -e 's/\// /g' | $AWK '{print $NR}'`
+    tmp=`echo $PWD | sed -e 's/\// /g' | awk '{print $NR}'`
     if test "x$tmp" = "xbin" -a -d ../model -a -d ../eesup -a -d ../pkg ; then
 	ROOTDIR=".."
     else
@@ -1388,7 +1388,7 @@ if test "x${PLATFORM}" = x ; then
 fi
 
 if test "x${EXEDIR}" = x ; then
-    tmp=`echo $PWD | sed -e 's/\// /g' | $AWK '{print $NR}'`
+    tmp=`echo $PWD | sed -e 's/\// /g' | awk '{print $NR}'`
     if test "x$tmp" = "xbin" -a -d ../exe -a $ROOTDIR = .. ; then
 	EXEDIR=../exe
     else
