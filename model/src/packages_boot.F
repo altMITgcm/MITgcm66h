@@ -43,8 +43,6 @@ C     iUnit       - Work variable for IO unit number
       INTEGER iUnit
 
 C     data.pkg namelists
-cswdblk -- add useBulkforce to NAMELIST
-cswdice -- addd useThermSeaIce to NAMELIST
 
       NAMELIST /PACKAGES/
      &          useKPP,
@@ -60,8 +58,8 @@ cswdice -- addd useThermSeaIce to NAMELIST
      &          usePTRACERS,
      &          useSBO,
      &          useSEAICE,
-     &          useBulkforce,
-     &          useThermSEAICE
+     &          useBulkForce,
+     &          useThSIce
 
 
 CEOP
@@ -93,10 +91,10 @@ C--   Default package configuration
       useSBO=.FALSE.
       useSeaIce=.FALSE.
 cswdblk -- add
-      useBulkforce=.FALSE.
+      useBulkForce=.FALSE.
 cswdblk -- end add ---
 cswdice --- add ---
-      useThermSeaIce=.FALSE.
+      useThSIce=.FALSE.
 cswdice --- end add ---
 
 

@@ -44,7 +44,7 @@ C       |-- COST_INIT
 C       |
 C       |-- BULKF_INIT
 C       |
-C       |-- ICE_INIT
+C       |-- THSICE_INI_VARS
 
 C     !USES:
       IMPLICIT NONE
@@ -128,17 +128,13 @@ C--   Open boundaries data
       IF (useOBCS) CALL OBCS_INIT_VARIABLES( myThid )
 #endif
 
-cswdblk -- begin add ---
 #ifdef ALLOW_BULK_FORCE
-      IF (useBulkForce) call BULKF_INIT( mythid)
+      IF (useBulkForce) CALL BULKF_INIT( mythid)
 #endif
-cswdblk ---end add ---
 
-cswdice ---begin add ---
-#ifdef ALLOW_THERM_SEAICE
-      IF (useThermSeaIce) call ICE_INIT( mythid)
+#ifdef ALLOW_THSICE
+      IF (useThSIce) CALL THSICE_INI_VARS( mythid)
 #endif
-cswdice ---end add ---
 
 
       RETURN

@@ -428,12 +428,12 @@ C SPK 4/9/01: Open boundary checkpointing
         ENDIF
 #endif  /* ALLOW_OBCS */
 
-#ifdef ALLOW_THERM_SEAICE
-        IF (useThermSeaIce) THEN
-          CALL ICE_WRITE_CHECKPOINT(
+#ifdef ALLOW_THSICE
+        IF (useThSIce) THEN
+          CALL THSICE_WRITE_CHECKPOINT(
      &               prec, lgf, permCheckPoint, myIter, myThid)
         ENDIF
-#endif /* ALLOW_THERM_SEAICE */
+#endif /* ALLOW_THSICE */
 
 #ifdef ALLOW_FLT
 C--     Write restart file for floats

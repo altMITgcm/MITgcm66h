@@ -125,14 +125,14 @@ C--   Do SBO diagnostics.
 
 #ifdef ALLOW_BULK_FORCE
 C--   Do bulkf diagnostics.
-      IF (useBulkforce .AND. myIter.NE.nIter0 )
+      IF (useBulkForce .AND. myIter.NE.nIter0 )
      & CALL BULKF_DIAGS( myTime, myIter, myThid )
 #endif
 
-#ifdef ALLOW_THERM_SEAICE
+#ifdef ALLOW_THSICE
 C--   Do seaice diagnostics.
-      IF (useThermSeaice)
-     & CALL ICE_DIAGS( myTime, myIter, myThid )
+      IF (useThSIce)
+     & CALL THSICE_DIAGS( myTime, myIter, myThid )
 #endif
 
 cswdptr ---  add ---

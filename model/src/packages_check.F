@@ -58,12 +58,11 @@ CEOP
 #endif
 
 #ifndef ALLOW_BULK_FORCE
-      IF (useBulkforce) CALL PACKAGES_CHECK_ERROR('BULK?FORCE',myThid)
+      IF (useBulkForce) CALL PACKAGES_CHECK_ERROR('BULK?FORCE',myThid)
 #endif
 
-#ifndef ALLOW_THERM_SEAICE
-      IF (useThermSeaIce) 
-     &   CALL PACKAGES_CHECK_ERROR('THERM?SEAICE', myThid)
+#ifndef ALLOW_THSICE
+      IF (useThSIce) CALL PACKAGES_CHECK_ERROR('THSICE', myThid)
 #endif
 
 #ifndef ALLOW_AIM
