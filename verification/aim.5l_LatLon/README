@@ -1,0 +1,27 @@
+Intermediate Atmospheric physics, 5 layers Molteni Physics package.
+Global spherical-grid configuration, 128x64x5 resolution.
+====================================================================
+
+o To reproduce the run :
+
+The genmake options are in .genmakerc, so that the simplest form
+of genmake can be used :
+cd input 
+../../../tools/genmake
+make depend 
+make
+
+mitgcmuv
+
+---------------------------
+Note: 
+This experiment has been run for 1 year on cote (d')azur (Linux 4 cpu)
+with compiler pgf77
+This set up is very close to the one in 
+/development/adcroft/atmos/verification/molteni.128x64x5
+with few modifications taken from run on hyades.
+
+An upgrade of this experiment will be done to improve the
+quality of the results (e.g., a less diffuse Advection Schemme for Q)
+
+---------------------------
