@@ -30,6 +30,9 @@ c     ==================================================================
 c     HEADER exf_param
 c     ==================================================================
 
+c     year in seconds
+      _RL     year2sec
+
 c     Calendar data.
       _RL     repeatPeriod
 
@@ -235,7 +238,7 @@ c     File names.
      &                          apressurestartdate1,apressurestartdate2
 
       common /exf_param_r/
-     &                          windstressmax,
+     &                          year2sec,          windstressmax,
      &                          repeatPeriod,      exf_albedo,
      &                          hfluxperiod,       hfluxstartdate,
      &                          atempperiod,       atempstartdate,

@@ -163,6 +163,8 @@ c     Surface flux data.
 
 c     Set default values.
 
+      year2sec           = 365.*86400.
+
 c     Calendar data.
       hfluxstartdate1    = 0
       hfluxstartdate2    = 0
@@ -328,7 +330,8 @@ c     Input scaling factors.
       exf_inscal_evap      =  1. _d 0
       exf_inscal_apressure =  1. _d 0
 cds   convert runoff from m/yr to m/s and change sign.
-      exf_inscal_runoff    = -1.0/(86400.*365.0)
+cph   do this later, in exf_init_runoff
+      exf_inscal_runoff    =  1. _d 0
       exf_inscal_swdown    =  1. _d 0
       exf_inscal_lwdown    =  1. _d 0
 

@@ -144,7 +144,7 @@ c     Apply runoff, masks and exchanges
           do j = 1,sny
             do i = 1,snx
 #ifdef ALLOW_RUNOFF
-              sflux(i,j,bi,bj) = sflux(i,j,bi,bj) - runoff(i,j,bi,bj)
+              sflux(i,j,bi,bj) = sflux(i,j,bi,bj) + runoff(i,j,bi,bj)
 #endif
 
               hflux(i,j,bi,bj) = hflux(i,j,bi,bj)*maskc(i,j,1,bi,bj)
