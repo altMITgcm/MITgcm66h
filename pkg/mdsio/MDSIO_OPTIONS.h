@@ -3,7 +3,7 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-C Defining SAFE_IO stops the model from overwriting it's own files
+C Defining SAFE_IO stops the model from overwriting its own files
 #undef  SAFE_IO
 
 #ifdef SAFE_IO
