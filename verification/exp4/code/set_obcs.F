@@ -73,7 +73,7 @@ c    &       *max(myCurrentTime/obTimeScale,1.)
 
 #ifdef SIMPLE_OBCS
 C This is an example of some rudimentary OBCs.
-C These work but aren't very sophisticated...
+C These work but are not very sophisticated...
 C (The above specified OBCs produce nicer results!)
 C [Remove the CPP #ifdef and #endif to use this code]
 
