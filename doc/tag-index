@@ -1,0 +1,264 @@
+$Header$
+
+    Notes on tags used in MITgcmUV
+    ==============================
+
+checkpoint33
+ o Fixed bug in lower BC in impldiff.F
+ o Fixed confusion about units of forcing arrays in FFIELDS.h
+   namely Fu,Fv,Qnet,Qsw,EmPmR:
+   - Removed verification/natl_box/code/external_fields_scale.F
+     (did not differ from that in model/src)
+   - Changed units of fu,fv,Qnet,Qsw,EmPmR back to proper units
+     (see FFIELDS.h for description)
+   - Scale fu,fv,Qnet,Qsw,EmPmR when used in external_forcing_surf.F,
+     kpp_calc.F and kpp_transport_t.F
+   - Removed model/src/external_fields_scale.F and calls to it
+   - verification/natl_box uses flux data with "atmospheric" sign so
+     a special version of external_fields_load.F is used to
+     change the data as it's read in. This way, the arrays
+     have the right units and signs at all times tha a user could
+     possibly use them.
+ o Corrected genmake to delete a temporary file during configuration
+
+checkpoint32
+ o Scaling of forcing fields moved from external_forcing.F to
+   external_fields_scale.F, called directly after loading fields.
+ o Surface relaxation terms added to surface tendency fields in
+   extra subroutine.
+ o impldiff.F changed to avoid storing by TAMC of huge intermediate
+   fields.
+ o Changes in GMRedi to comply with packaging structure.
+ o Modifications and bug fixes in KPP package.
+ o Verification experiment for KPP added (verification/nat_box/)
+
+checkpoint31
+ o Packages interface brought in line with defined standard
+   -> new routines packages_...F
+   -> changes in initialise_fixed.F, initialise_varia.F
+   -> enables initialisation interface for ECCO package
+ o Rescaling of external forcing fields immediately after read
+   (removed from external_forcing.F) 
+   -> new: surface_fields_scale.F
+   -> affects ini_foorcing.F, external_fields_load.F
+ o Computation of surface tendencies before tendency updates.
+   -> new: external_forcing_surf.F
+ o Change of variable names useGMRedi, useKPP, useECCO
+ o Further changes in dynamics.F, impldiff.F for TAMC
+ o Tested for experiments 0, 2, 4.
+   - not yet tested for GMRedi.
+   - not yet tested for KPP.
+
+checkpoint30
+ o Updates for OBCs
+ o New experiment for test OBCs (internal_wave)
+ o New output.txt in verification/exp4/results/
+ o Updates for KPP: calculation of viscosity corrected, new variables
+   kpp_dumpFreq and kpp_taveFreq
+ o CPP'd calls to system routines for TARGET_CRAY_VECTOR (P.H.)
+   and entry for T90 in genmake
+
+checkpoint29
+ o packaged KPP and GM/Redi
+
+checkpoint28
+ o Corrected initialization of hFacMin for difference vertical coordinates
+ o Modified calculation of partial cell thickness to more robust algorithm
+ o config_summary.F: replaced write_1D_... by write_0D_...
+   read_write.F: added subroutines write_0D_...
+ o routines calc_common_factors, calc_gs, calc_gt, calc_phi_hyd, find_rho:
+   included some initialisations required for TAMC.
+ o routine calc_isoslopes: modified sqrt computation to make it 
+   differentiable for zero argument.
+ o routines dynamics, impldiff:
+   included store directives and tape key computations required for TAMC.
+ o ALL TAMC related changes are between ifdef ALLOW_AUTODIFF_TAMC
+
+checkpoint27
+ o fixed calc_isoslopes() to so that cancellation of terms in tensor
+   formulation works properly with variable resolution.
+ o restructured the calling tree between the_model_main() and dynamics()
+ o split initialise() into initialise_fixed() and initialise_varia()
+ o introduced initialization file pSurfInitFile for free surface (cg2d_x)
+   in new routine ini_psurf()
+
+checkpoint26
+ o moved some #ifdef in optional routines to encompass everything
+   except the argument declarations. This was using up some memory.
+ o fixed macros like _ADT to work with both versions of Linux cpp
+ o cleaned up some unused and uninitialized variables
+   (helps when debugging with strict compile options)
+ o split up CPP_EEOPTIONS.h into options and macros
+   (macros are now in eesupp/inc/CPP_EEMACROS.h)
+ o patch for 2 processor JAM mode
+
+checkpoint25
+ o updates for OBCs and NH
+ o dramatically reduced memory usage
+ o added "JAM" routines for use on Artic network
+ o parameterization of convection by implicit vertical diffusion
+ o added a diagnostic of convective index
+ o moved call to calc_divg_hat() from dynamics() to solve_for_pressure()
+   (this is was partly for OBCs and NH but also in anticipation of
+    an explicit free-surface option)
+ o initial state input files for U and V
+
+checkpoint24
+ o Removed some spurious "REAL"s
+ o Updated KPP to latest version from JPL
+ o Added a COS(latitude) in horizontal viscosity
+
+checkpoint23
+ o Added del^4 diffusion for salt and temperature
+ o Multiple minor fixes (implicit none's, arguments to global_sum, etc.)
+
+checkpoint22
+ o Made many small changes: implicit none, format(i5), etc...
+ o Introduced KPP mixing scheme (compiles and runs but *not* tested)
+
+checkpoint21
+ o Introduced new I/O package that supports direct-access records (mdsio.F)
+ o Split-up mid-level I/O routines
+ o Updated input data for experiments 0,1,2,4 and 5
+ o Finally removed the genmake.* scripts (everyone seems happy with genmake)
+
+checkpoint20
+ o Tidied up open-boundaries some more
+ o Added non-hydrostatic code
+ o Fixed some input data
+ o Modified MPI start-up to work in "coupled" context.
+
+checkpoint19
+ o Tidied up directory structure for verification experiments.
+ o Added new code for open boundaries.
+ o Corrected advective terms near boundaries.
+ o Added CPP flag for "old UV" geometry and corrected spherical geometry.
+ o Implemented free-slip/no-slip BCs and del^4 dissipation.
+ o Split default parameters out of ini_parms.F into set_defaults.F.
+
+checkpoint18
+ o Further changes for optional code generation with 
+   CPP - ugh!
+
+checkpoint17
+ o Beginning to incorporating modularity
+   for supporting atmos. and ocean configs.
+ o Small changes for TAMC complinace
+ o New ultra simple test case. Barotropic box
+   configuration "exp0".
+
+checkpoint16
+ o Minor changes to exchange routines to support 
+   accumulation in reverse mode. Adjoint of an
+   assignment is an addition.
+ o Changes to support compilation by TAMC (LR(1) 
+   syntax) and by g77 under Linux ( 72 character
+   limit ).
+
+checkpoint15
+ Rewrote exchange routines to allow
+ o General tile <-> tile connectivity.
+ o TAMC reverse mode flag ( is this really needed? )
+ o Variable width overlap and exchange region widths.
+ o Hooks for sharing data via DMA, Arctic, Memory Channel, 
+   shmput/shmget, VIA, SYSV shmem and every other cool 
+   communication method.
+
+checkpoint14
+ Consistent isomorphism chages made. These allow dynamical core
+ to support both pressure and meters as a vertical coordinate.
+
+checkpoint13
+ Release which corrects global_max problem and a couple
+ of KGM time-averaging diagnostic errors. Also contains
+ a double-gyre experiment setup as well as the baseline
+ 4 degree global template. The double gyre template is
+ organised to allow it to be applied automatically to
+ the baseline configuration.
+
+branch-point-rdot
+ A few tidy-ups have been made bt the real point of this
+ check-point (excuse the pun) is to allow a branch to be
+ made for the purposes of adding the rDot alterations.
+ I don't want to commit the rDot to the main-trunk until
+ we've actually tested it...
+
+checkpoint12
+ Tidy up and added generic genmake script (formerly
+ configure script). 
+ Released to testers.
+
+checkpoint11
+ Re-arranged initialise() and introduced ini_vertical_grid()
+ and ini_masks_etc().
+
+checkpoint10
+ Introduced the configure script.
+ Separated out the diags package.
+ Added template for writing time-averages of tile/intermediate quantities.
+ Updated SIZE.h in exp2 and made the data big-endian.
+
+checkpoint9
+ MPI fix. Filename changes (meta/data). salbin*y stuff.
+ General tidy-up.
+ SST.bin SSS.bin added to verification/exp2
+
+checkpoint8
+ Inludes time-dependant forcing and time-averaging.
+ Works at 4x4 and 2.8125x2.8125 global
+
+checkpoint7-4degree-ref
+ Branch from checkpoint7. Released for application to
+ global modeling and general modeling - process studies, regional
+ model etc.. 
+ Configured for verification/exp2 - 4 degree global, two process.
+
+checkpoint7
+ Created by cnh
+ Simple 4 degree global simulation 
+ configuration.
+ Includes climatological wind, 
+ hydrography, bathymetry etc
+ Does not include Heat Flux and E-P
+
+checkpoint6
+ Created by cnh
+ merged checkpoint5 with CD and 
+ spherical polar code. 
+ Still some problems with GM Redi
+ abd full topography.
+
+checkpoint5
+ Created by AJA
+ contains updates to GM Redi
+ and reordered timestepping loop
+ for Implicit Diffusion.
+
+checkpoint4
+ Created by cnh
+ Contains memory saving macros ( _rdxc etc..) for when
+ grid variations are limited.
+ Contains polynomial coeffs for EOS and knudsen program
+ for generation.
+
+checkpoint3
+ Created by cnh
+ Added extra flags for runtime options
+ Added this file
+ Added implicit free-surface
+ Added pre-conditioner
+ Put compare01 into repository ( compare01/... )
+ Put data and eedata into repository ( verification/exp1 )
+
+checkpoint2
+ Created by AJA
+ Added GM/Redi
+
+checkpoint1
+ Created by AJA
+ Restructured kloop in dynamics.F
+ Added non-linear EOS
+
+baseline
+ Original checked in code
+

@@ -1,0 +1,498 @@
+#!/bin/csh -f
+#
+# $Header$
+#
+# Makefile generator for MITgcm UV codes
+#   created by cnh 03/98
+#   adapted by aja 06/98
+
+# Process command-line arguments
+set allargs=( $argv )
+while ($#allargs)
+ set arg = $allargs[1]
+ switch ($arg)
+ case -makefile:
+   set mfile = ( Makefile )
+   breaksw
+ case -makefile=*:
+   set mfile = ( `echo $arg | sed 's/-makefile=//' `)
+   breaksw
+ case -platform:
+ case -platform=:
+   echo "To change platform you must specify one with -platform="
+   echo "eg. -platform=sparc  or  -platform=mips"
+   exit
+   breaksw
+ case -platform*:
+   set platform = ( `echo $arg | sed 's/-platform=//' `)
+   breaksw
+ case -mpi:
+   echo "Enabling MPI options"
+   set USEMPI
+   breaksw
+ case -jam:
+   set include_jam_libs
+   echo "Including paths to JAM libraries"
+   breaksw
+ case -help:
+   echo "usage: $0 [-help] [-makefile[=...]] [-platform=...] [-mpi]"
+   exit
+   breaksw
+ default:
+   echo "Unknown command-line option: " $arg
+   echo $0 "-help to show usage"
+   exit
+   breaksw
+ endsw
+ shift allargs
+end
+
+if ($?platform == 0) then
+ set platform = (`uname`)
+endif
+if ($?mfile == 0) set mfile = ( Makefile.$platform )
+set mach  = ( `uname -a` )
+echo Operating system: $mach
+
+# Directories for source, includes, binaries and executables
+# Note
+# o If you prefer/need everything under a single directory
+#   copy everything in ../eesupp/src, ../model/src,
+#   ../eesupp/inc and ../model/inc into a directory and then
+#   edit the paths below to ./
+set SOURCEDIRS  = ( ../eesupp/src/ ../model/src/ ../diags/src/ ../pkg/*/ )
+set INCLUDEDIRS = ( ./ ../eesupp/inc/ ../model/inc/ ../diags/inc/ ../pkg/*/ )
+set BUILDDIR    = ( ../bin/ )
+set EXEDIR      = ( ../exe/ )
+set EXECUTABLE  = ( mitgcmuv )
+
+# This is the generic configuration.
+# Platform specific options are chosen below
+set LN         = ( 'ln -sf' )
+set CPP        = ( '/lib/cpp -P' )
+set KPP        = (  )
+set FC         = ( 'f77' )
+set LINK       = ( 'f77' )
+set DEFINES    = (  )
+set INCLUDES   = (  )
+set FFLAGS     = (  )
+set FOPTIM     = (  )
+set KFLAGS1    = (  )
+set KFLAGS2    = (  )
+set LIBS       = (  )
+set KPPFILES   = (  )
+set NOOPTFILES = (  )
+set NOOPTFLAGS = (  )
+set RMFILES    = (  )
+
+# We often want to use different compile/link options is using MPI
+if ($?USEMPI) then
+  set USEMPI = ( '+mpi' )
+  set DEFINES = ( ${DEFINES} '-DALLOW_USE_MPI -DALWAYS_USE_MPI' )
+else
+  set USEMPI
+# set DEFINES = ( ${DEFINES} '-UALLOW_USE_MPI -UALWAYS_USE_MPI' )
+endif
+
+# Platform specific options
+switch ($platform$USEMPI)
+  case OSF1:
+  case OSF1+mpi:
+    echo "Configuring for DEC Alpha"
+    set CPP        = ( '/usr/bin/cpp -P' )
+    set DEFINES    = ( ${DEFINES}  '-DTARGET_DEC -DWORDLENGTH=1' )
+    set KPP        = ( 'kapf' )
+    set KPPFILES   = ( 'main.F' )
+    set KFLAGS1    = ( '-scan=132 -noconc -cmp=' )
+    set FC         = ( 'f77' )
+    set FFLAGS     = ( '-convert big_endian -r8 -extend_source -u -automatic -call_shared -notransform_loops -align dcommons' )
+    set FOPTIM     = ( '-O5 -fast -tune host -inline all' )
+    set NOOPTFLAGS = ( '-O0' )
+    set LIBS       = ( '-lfmpi -lmpi -lkmp_osfp10 -pthread' )
+    set NOOPTFILES = ( 'barrier.F different_multiple.F external_fields_load.F')
+    set RMFILES    = ( '*.p.out' )
+    breaksw
+  case IRIX64+mpi:
+    echo "Configuring for SGI Mips with MPI"
+    set DEFINES    = ( ${DEFINES} '-DTARGET_SGI -DWORDLENGTH=4' )
+    set INCLUDES   = ( '-I/usr/local/mpi/include' )
+    set FC         = ( 'mpif77' )
+    set LINK       = ( 'mpif77' )
+    set FFLAGS     = ( '-extend_source -bytereclen -r10000 -mips4' )
+    set FOPTIM     = ( '-O3' )
+    set RMFILES    = ( 'rii_files' )
+    breaksw
+  case IRIX64:
+    echo "Configuring for SGI Mips"
+    set DEFINES    = ( ${DEFINES} '-DTARGET_SGI -DWORDLENGTH=4' )
+    set INCLUDES   = ( '-I/usr/local/mpi/include' )
+    set FFLAGS     = ( '-extend_source -mp -mpio -bytereclen -r10000 -mips4' )
+    set FOPTIM     = ( '-O3' )
+#   set NOOPTFLAGS = ( '-O0' )
+#   set NOOPTFILES = ( 'barrier.F different_multiple.F ' \
+#                      'external_fields_load.F' )
+    set RMFILES    = ( 'rii_files' )
+    breaksw
+  case o2:
+  case IRIX:
+    echo "Configuring for SGI O2 running IRIX 6.5"
+    set DEFINES    = ( ${DEFINES} '-DTARGET_SGI -DWORDLENGTH=4' )
+    set FFLAGS     = ( '-extend_source -bytereclen -r10000 -mips4' )
+    set FOPTIM     = ( '-O2' )
+    set NOOPTFLAGS = ( '-O0' )
+    breaksw
+  case o2+mpi:
+  case IRIX+mpi:
+    echo "Configuring for SGI O2 running IRIX 6.5 with MPI"
+    set DEFINES    = ( ${DEFINES} '-DTARGET_SGI -DWORDLENGTH=4' )
+    set FFLAGS     = ( '-extend_source -bytereclen -r10000 -mips4' )
+    set FOPTIM     = ( '-O2' )
+    set NOOPTFILES = ( 'barrier.F different_multiple.F external_fields_load.F' )
+    set NOOPTFLAGS = ( '-O0' )
+    set LIBS       = ( '-lmpi' )
+    breaksw
+  case o2k+mpi:
+    echo "Configuring for SGI Origin2000 running IRIX 6.5"
+    set DEFINES    = ( ${DEFINES} '-DTARGET_SGI -DWORDLENGTH=4' )
+    set INCLUDES   = ( '-I/usr/include' )
+    set FFLAGS     = ( '-n32 -extend_source -bytereclen' )
+    set FOPTIM     = ( '-O2' )
+    set NOOPTFILES = ( 'calc_mom_rhs.F' )
+    set NOOPTFLAGS = ( '-O1' )
+    set LIBS       = ( '-lmpi -lscs' )
+    breaksw
+  case onyx:
+  case onyx+mpi:
+    echo "Configuring for SGI ONYX running IRIX64"
+    set DEFINES    = ( ${DEFINES} '-DTARGET_SGI -DWORDLENGTH=4' )
+    set FFLAGS     = ( '-extend_source -bytereclen -r10000 -64' )
+    set FOPTIM     = ( '-O2' )
+    set NOOPTFLAGS = ( '-O0' )
+    set NOOPTFILES = ( 'barrier.F different_multiple.F external_fields_load.F' )
+    set LIBS       = ( '-lmpi' )
+    breaksw
+  case SunOS:
+    set LN         = ( '/usr/bin/ln -fs' )
+    set CPP        = ( '/usr/ccs/lib/cpp -P' )
+    set DEFINES    = ( ${DEFINES} '-DTARGET_SUN -DWORDLENGTH=4' )
+    set FFLAGS     = ( '-stackvar -explicitpar -vpara -e -u -noautopar')
+    set FOPTIM     = ( '-fast -O3' )
+    set NOOPTFLAGS = ( '-O0' )
+    set NOOPTFILES = ( 'barrier.F different_multiple.F external_fields_load.F ini_vertical_grid.F')
+    breaksw
+  case SunOS+mpi:
+    set LN         = ( '/usr/bin/ln -fs' )
+    set CPP        = ( '/usr/ccs/lib/cpp -P' )
+    set DEFINES    = ( ${DEFINES} '-DTARGET_SUN -DWORDLENGTH=4' )
+    set INCLUDES   = ( '-I/usr/local/mpi/include' )
+    set FFLAGS     = ( '-stackvar -explicitpar -vpara -e -u -noautopar')
+    set FOPTIM     = ( '-fast -O3' )
+    set NOOPTFLAGS = ( '-O0' )
+    set LIBS       = ( '-L/usr/local/mpi/lib/solaris/ch_shmem -lmpi -lthread' \
+                       '-lsocket -lnsl' )
+    set NOOPTFILES = ( 'barrier.F different_multiple.F external_fields_load.F ini_vertical_grid.F')
+    breaksw
+  case IRIX32:
+    echo "Configuring for SGI ONYX running IRIX64"
+    set DEFINES    = ( ${DEFINES} '-DTARGET_SGI -DWORDLENGTH=4' )
+    set INCLUDES   = ( '-I/usr/include' )
+    set FFLAGS     = ( '-extend_source -bytereclen -r10000 -64' )
+    set FOPTIM     = ( '-O2' )
+    set NOOPTFLAGS = ( '-O0' )
+    set NOOPTFILES = ( 'barrier.F different_multiple.F ' \
+                       'external_fields_load.F' )
+    set LIBS       = ( '-lmpi' )
+    breaksw
+  case HP-UX+mpi:
+    set FC         = ( 'mpif77' )
+    set LINK       = ( 'mpif77' )
+    set INCLUDES   = ( '-I/opt/mpi/include' )
+  case HP-UX:
+    echo "Configuring for HP Exemplar"
+    set CPP        = ( '/usr/ccs/lbin/cpp -P' )
+    set DEFINES    = ( ${DEFINES}  '-DTARGET_HP -DWORDLENGTH=4' )
+    set FFLAGS     = ( '+es +U77 +Onoautopar +Oexemplar_model' \
+                       '+Okernel_threads' )
+    set FOPTIM     = ( '+O2' )
+    set NOOPTFLAGS = ( '+O0' )
+    set NOOPTFILES = ( 'barrier.F different_multiple.F' \
+                       'external_fields_load.F' )
+    breaksw
+  case Linux+mpi:
+    set LIBS       = ( '-L/usr/local/lib/LINUX/ch_p4/ -lfmpich -lmpich' )
+    set INCLUDES   = ( '-I/usr/local/include' )
+  case Linux:
+    set LN         = ( '/bin/ln -fs' )
+    set CPP        = ( '/lib/cpp  -traditional -P' )
+    set DEFINES    = ( ${DEFINES} '-D_BYTESWAPIO -DWORDLENGTH=4' )
+    set FC         = ( 'g77' )
+    set FFLAGS     = ( '-Wimplicit -Wunused -Wuninitialized' )
+    set FOPTIM     = ( '-O3 -malign-double -funroll-loops ' )
+    set LINK       = ( 'g77' )
+    breaksw
+  case Linux+pgi+mpi:
+    if ($?include_jam_libs) then
+     set INCLUDES   = ( '-I/usr/local//mpich-cnh-install/include' )
+     set LIBS       = ( '-L/usr/local/mpich-cnh-install/lib/LINUX/ch_p4/ -lfmpich -lmpich' )
+    else
+     set INCLUDES   = ( '-I/usr/local/include' )
+     set LIBS       = ( '-L/usr/local/lib/LINUX/ch_p4/ -lfmpich -lmpich' )
+    endif
+  case Linux+pgi:
+    set LN         = ( '/bin/ln -fs' )
+    set CPP        = ( '/lib/cpp -traditional -P' )
+    set DEFINES    = ( ${DEFINES} '-DWORDLENGTH=4' )
+    set FC         = ( 'pgf77' )
+    set FFLAGS     = ( '-byteswapio' )
+    set FOPTIM     = ( '-tp p6 -v -O2 -Munroll -Mvect=cachesize:512000,transform -Kieee' )
+    set LINK       = ( 'pgf77' )
+    breaksw
+  case T3E:
+  case sn6312:
+    set CPP        = ( '/opt/ctl/bin/cpp -P')
+    set DEFINES    = ( ${DEFINES} '-DTARGET_T3E -DWORDLENGTH=4' )
+    set FC         = ( 'f90' )
+    set LINK       = ( 'f90' )
+    set FFLAGS     = ( '-O 2,fusion' )
+    breaksw
+  case T90:
+  case sn7113:
+    set FC         = ( 'f90' )
+    set LINK       = ( 'f90' )
+    set LN         = ( '/bin/ln -fs' )
+    set CPP        = ( '/opt/ctl/bin/cpp -N -P' )
+    set DEFINES    = ( ${DEFINES} '-DTARGET_CRAY_VECTOR -DWORDLENGTH=4' )
+    set FFLAGS     = ( '-m3 -Rabc -N 132')
+    set FOPTIM     = ( '-O0' )
+    set NOOPTFLAGS = ( '-O0' )
+    set NOOPTFILES = ( 'barrier.F different_multiple.F external_fields_load.F')
+    breaksw
+  case SV1:
+  case sn3002:
+    set FC         = ( 'f90' )
+    set LINK       = ( 'f90' )
+    set LN         = ( '/bin/ln -fs' )
+    set CPP        = ( '/opt/ctl/bin/cpp -N -P' )
+    set DEFINES    = ( ${DEFINES} '-DTARGET_CRAY_VECTOR -DWORDLENGTH=4' )
+    set FFLAGS     = ( '-m3 -Rabc -ei -eI -s cf77types -N 132')
+    set FOPTIM     = ( '-O0' )
+    set NOOPTFLAGS = ( '-O0' )
+    set NOOPTFILES = ( 'barrier.F different_multiple.F external_fields_load.F')
+    breaksw
+  default:
+    echo "Error: platform not recognized: uname -p = " $platform$USEMPI
+    exit
+    breaksw
+endsw      
+
+###############################################################################
+##                                                                           ##
+##  Everything below here should not need to be changed. Platform specific   ##
+##  changes and code specific changes should be configured above this line.  ##
+##                                                                           ##
+###############################################################################
+
+# Create list of files
+set flist = `ls -1 ${SOURCEDIRS} | grep '.*\.[F]$'`
+if ( $#flist ) then
+ echo -n 'SRCFILES = ' > srclist.inc
+ foreach ff ( ${flist} )
+  set fname = ( ${ff:t}       )
+  echo    ' \'                       >> srclist.inc
+  echo -n "           " ${fname:r}.F >> srclist.inc
+ end
+else
+ echo No source files found...\!
+ exit
+endif
+echo " " >> srclist.inc
+
+set flist = `ls -1 ${SOURCEDIRS} | grep '.*\.[c]$'`
+if ( $#flist ) then
+ echo -n 'CSRCFILES = ' > csrclist.inc
+ foreach ff ( ${flist} )
+  set fname = ( ${ff:t}       )
+  echo    ' \'                   >> csrclist.inc
+  echo -n "           " ${fname} >> csrclist.inc
+else
+ echo -n 'CSRCFILES =' > csrclist.inc
+endif
+echo " " >> csrclist.inc
+
+# Convert lists of directories into command-line options
+foreach inc ($INCLUDEDIRS)
+ set INCLUDES = ($INCLUDES -I$inc)
+end
+set SRCSTARS = ( )
+foreach dr ($SOURCEDIRS)
+ set SRCSTARS = ("${SRCSTARS}" $dr\*.\[Fc\] )
+end
+
+set THISHOSTNAME = ( `hostname` )
+set THISCWD = ( `pwd` )
+set THISDATE = ( `date` )
+
+###########################################
+## This is the template for the makefile ##
+###########################################
+echo Creating makefile: $mfile
+echo "# Multithreaded + multi-processing makefile for $mach" > ${mfile}
+echo "# This makefile was generated automatically pn" >> ${mfile}
+echo "#    $THISDATE" >> ${mfile}
+echo "# by the command:" >> ${mfile}
+echo "#    ${0} $argv" >> ${mfile}
+echo "# executed by:" >> ${mfile}
+echo "#    $USER@${THISHOSTNAME}:${THISCWD}" >> ${mfile}
+cat >> ${mfile} <<EOF
+# 
+# BUILDDIR     : Directory where object files are written
+# SOURCEDIRS   : Directories containing the source (.F) files
+# INCLUDEDIRS  : Directories containing the header-source (.h) files
+# EXEDIR       : Directory where executable that is generated is written
+# EXECUTABLE   : Full path of executable binary
+#
+# CPP          : C-preprocessor command
+# INCLUDES     : Directories searched for header files
+# DEFINES      : Macro definitions for CPP
+# KPP          : Special preprocessor command (specific to platform)
+# KFLAGS       : Flags for KPP
+# FC           : Fortran compiler command
+# FFLAGS       : Configuration/debugging options for FC
+# FOPTIM       : Optimization options for FC
+# LINK         : Command for link editor program
+# LIBS         : Library flags /or/ additional optimization/debugging flags
+
+BUILDDIR   = ${BUILDDIR}  
+SOURCEDIRS = ${SOURCEDIRS}
+INCLUDEDIRS = ${INCLUDEDIRS}
+EXEDIR     = ${EXEDIR}
+EXECUTABLE = \$(EXEDIR)${EXECUTABLE}
+
+EOF
+
+
+# JAM libraries on Hyades
+if ($?include_jam_libs) then
+cat >> ${mfile} <<EOF
+# extra stuff for Hyades ............................................
+HYADES_DIR = /u/u0/cnh/jam-lib/software
+HYADES_DIR = /u/u0/cnh/jam-lib-twoproc
+WORK_DIR   = \$(HYADES_DIR)
+DEPOSIT_DIR = linux_bin
+
+STARTXOBJDIR = startx_util/\$(DEPOSIT_DIR)
+STARTXOBJ = \$(WORK_DIR)/startx_util/\$(DEPOSIT_DIR)/startx_timer.o \
+            \$(WORK_DIR)/startx_util/\$(DEPOSIT_DIR)/startx_util.o \
+            \$(WORK_DIR)/startx_util/\$(DEPOSIT_DIR)/client.o \
+            \$(WORK_DIR)/startx_util/\$(DEPOSIT_DIR)/csutil.o
+
+JAMOBJDIR  = jam/\$(DEPOSIT_DIR)
+JAMOBJ     = \$(WORK_DIR)/jam/\$(DEPOSIT_DIR)/jam_init.o \
+             \$(WORK_DIR)/jam/\$(DEPOSIT_DIR)/jam_kernel.o \
+             \$(WORK_DIR)/jam/\$(DEPOSIT_DIR)/jam_malloc.o \
+             \$(WORK_DIR)/jam/\$(DEPOSIT_DIR)/jam_vmalloc.o \
+             \$(WORK_DIR)/jam/\$(DEPOSIT_DIR)/jam_mutex.o
+
+JAMCOBJDIR = jam_collective/\$(DEPOSIT_DIR)
+JAMCOBJ    = \$(WORK_DIR)/jam_collective/\$(DEPOSIT_DIR)/jam_collective.o
+
+XLIBS      = \$(STARTXOBJ) \$(JAMOBJ) \$(JAMCOBJ)
+
+# ..................................................................
+
+EOF
+endif
+
+
+cat >> ${mfile} <<EOF
+# Unix ln (link)
+LN = ${LN}
+# C preprocessor
+CPP = cat \$< | ../tools/set64bitConst.sh | ${CPP}
+# Special preprocessor (KAP on DECs, FPP on Crays)
+KPP = ${KPP}
+# Fortran compiler
+FC = ${FC}
+# Link editor
+LINK = ${LINK}
+
+# Defines for CPP
+DEFINES = ${DEFINES}
+# Includes for CPP
+INCLUDES = ${INCLUDES}
+# Flags for KPP
+KFLAGS1 = ${KFLAGS1}
+KFLAGS2 = ${KFLAGS2}
+# Optim./debug for FC
+FFLAGS = ${FFLAGS}
+FOPTIM = ${FOPTIM}
+# Files that should not be optimized
+NOOPTFILES = ${NOOPTFILES}
+NOOPTFLAGS = ${NOOPTFLAGS}
+# Flags and libraries needed for linking
+LIBS = ${LIBS} \$(XLIBS)
+
+EOF
+
+cat srclist.inc  >> ${mfile}
+cat csrclist.inc >> ${mfile}
+echo 'F77FILES =  $(SRCFILES:.F=.f)'                    >> ${mfile}
+echo 'OBJFILES =  $(SRCFILES:.F=.o) $(CSRCFILES:.c=.o)' >> ${mfile}
+
+rm -f srclist.inc csrclist.inc
+
+cat >> ${mfile} <<EOF
+
+.SUFFIXES:
+.SUFFIXES: .o .f .p .F .c
+
+all: \$(EXECUTABLE)
+\$(EXECUTABLE): \$(OBJFILES)
+	\$(LINK) -o \$@ \$(FFLAGS) \$(FOPTIM) \$(OBJFILES) \$(LIBS)
+links:
+	@-\$(LN) $SRCSTARS .
+depend:
+	@make links
+	makedepend -o .f \$(INCLUDES) \$(SRCFILES)
+
+small_f: \$(F77FILES)
+
+clean:
+	-rm -rf *.o *.f *.p ${RMFILES}
+Clean:
+	@make clean
+	-find . -type l -exec rm {} \;
+	-rm Makefile.bak
+CLEAN:
+	@make Clean
+	-find ../verification/*/input/ -name "*.meta" -exec rm {} \;
+	-find ../verification/*/input/ -name "*.data" -exec rm {} \;
+	-rm \$(EXECUTABLE)
+
+# The normal chain of rules is (  .F - .f - .o  )
+.F.f:
+	\$(CPP) \$(DEFINES) \$(INCLUDES) > \$@
+.f.o:
+	\$(FC) \$(FFLAGS) \$(FOPTIM) -c \$<
+
+# Special exceptions that use the ( .F - .p - .f - .o ) rule-chain
+.F.p:
+	\$(CPP) \$(DEFINES) \$(INCLUDES) > \$@
+.p.f:
+	\$(KPP) \$(KFLAGS1)\$@ \$(KFLAGS2) \$<
+EOF
+
+# Make list of "exceptions" that need ".p" files
+foreach sf ($KPPFILES)
+ set fname=( ${sf:t} )
+ echo "${fname:r}.f: ${fname:r}.p" >> ${mfile}
+end
+foreach sf ($NOOPTFILES)
+ set fname=( ${sf:t} )
+ echo "${fname:r}.o: ${fname:r}.f" >> ${mfile}
+ echo '	$(FC) $(FFLAGS) $(NOOPTFLAGS) -c $<' >> ${mfile}
+end
+echo >> ${mfile}
+echo "# DO NOT DELETE" >> ${mfile}
+
+exit

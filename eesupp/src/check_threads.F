@@ -1,4 +1,4 @@
-C $Id$
+C $Header$
 
 #include "CPP_EEOPTIONS.h"
 
@@ -24,6 +24,7 @@ C     | and allow a programmer to modify this routine and the    |
 C     | barrier code to allow threads to be scheduled more       |
 C     | appropriately.                                           |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global data ===
 #include "SIZE.h"
@@ -59,12 +60,12 @@ C
       IF ( nChecks .GT. 10 ) THEN
        thError(myThid) = .TRUE.
        eeBootError     = .TRUE.
-       WRITE(msgBuffer,'(A,I,A,I,A)')
+       WRITE(msgBuffer,'(A,I5,A,I5,A)')
      &  'S/R INI_CHECK_THREADS: Only ',numberThreadsRunning,
      &  ' thread(s), ',nThreads,' are needed for this configuration!'
         CALL PRINT_ERROR( msgBuffer , myThid)
 C--     Not enough threads are running so halt the program.
-C       I didn't want this here but it is the only place I have found that
+C       I did not want this here but it is the only place I have found that
 C       KAP deadlocks if it there are fewer threads than iterations in a BLOCKED(1)
 C       loop. The deadlock appears to be in the routine mppjoin which never 
 C       returns. I tried putting the STOP in main or breaking out of the loop in main
@@ -75,7 +76,11 @@ C       but this causes KAP to insert a call to mppjoin - which then deadlocks!
        GOTO 11
       ENDIF
       IF ( numberThreadsRunning .NE. nThreads ) THEN
+#ifndef TARGET_T3E
+#ifndef TARGET_CRAY_VECTOR
        CALL SYSTEM('sleep 1')
+#endif
+#endif
        GOTO 10
       ENDIF
    11 CONTINUE
@@ -83,5 +88,3 @@ C
 C
       RETURN
       END
-
-C $Id$

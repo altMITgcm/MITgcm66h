@@ -1,4 +1,4 @@
-C $Id$
+C $Header$
 
 C--   File global_max.F: Routines that perform global max reduction on an array
 C                        of thread values.
@@ -9,8 +9,7 @@ C      o global_max_r8
 
 CStartOfInterface
       SUBROUTINE GLOBAL_MAX_R4( 
-     I                       phi, 
-     O                       maxPhi,
+     U                       maxPhi,
      I                       myThid )
 C     /==========================================================\
 C     | SUBROUTINE GLOBAL_MAX_R4                                 |
@@ -26,6 +25,7 @@ C     | The same thread also does the inter-process max for      |
 C     | example with MPI and then writes the result into a shared|
 C     | location. All threads wait until the max is avaiailable. |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     == Global data ==
 #include "SIZE.h"
@@ -33,24 +33,27 @@ C     == Global data ==
 #include "EESUPPORT.h"
 
 C     == Routine arguments ==
-C     phi    - Array to be maxed.
 C     maxPhi - Result of max.
 C     myThid - My thread id.
-      Real*4 phi(lShare4,MAX_NO_THREADS)
       Real*4 maxPhi
       INTEGER myThid
 CEndOfInterface
 
 C     == Local variables ==
+C     phi    - Array to be maxed.
 C     I      - Loop counters
 C     mpiRC  - MPI return code
+      Real*4 phi(lShare4,MAX_NO_THREADS)
       INTEGER I
       Real*4  tmp
 #ifdef   ALLOW_USE_MPI
       INTEGER mpiRC
 #endif /* ALLOW_USE_MPI */
 
-C--   Can't start until everyone is ready
+C--   write local max into array
+      phi(1,myThid) = maxPhi
+
+C--   Can not start until everyone is ready
       _BARRIER
 
 C--   Max within the process first
@@ -74,14 +77,16 @@ C--   Max within the process first
       _END_MASTER( myThid )
 C--
       _BARRIER
-C
+
+C--   set result for every process
+      maxPhi = phi(1,1)
+
       RETURN
       END
       
 
 CStartOfInterface
       SUBROUTINE GLOBAL_MAX_R8( 
-     I                       phi, 
      O                       maxPhi,
      I                       myThid )
 C     /==========================================================\
@@ -98,6 +103,7 @@ C     | The same thread also does the inter-process max for      |
 C     | example with MPI and then writes the result into a shared|
 C     | location. All threads wait until the max is avaiailable. |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global data ===
 #include "SIZE.h"
@@ -105,24 +111,27 @@ C     === Global data ===
 #include "EESUPPORT.h"
 
 C     === Routine arguments ===
-C     phi    - Array to be maxed. 
 C     maxPhi - Result of max.
 C     myThid - My thread id.
-      Real*8 phi(lShare8,MAX_NO_THREADS)
       Real*8 maxPhi
       INTEGER myThid
 CEndOfInterface
 
 C     === Local variables ===
+C     phi    - Array to be maxed. 
 C     I      - Loop counters
 C     mpiRC  - MPI return code
+      Real*8 phi(lShare8,MAX_NO_THREADS)
       INTEGER I
       Real*8  tmp
 #ifdef   ALLOW_USE_MPI
       INTEGER mpiRC
 #endif   /* ALLOW_USE_MPI */
 
-C--   Can't start until everyone is ready
+C--   write local max into array
+      phi(1,myThid) = maxPhi
+
+C--   Can not start until everyone is ready
       _BARRIER
 
 C--   Max within the process first
@@ -146,10 +155,11 @@ C--     Write solution to place where all threads can see it
         phi(1,1) = maxPhi
       _END_MASTER( myThid )
 
-C--   Don't leave until we are sure that the max is done
+C--   Do not leave until we are sure that the max is done
       _BARRIER
-C
+
+C--   set result for every process
+      maxPhi = phi(1,1)
+
       RETURN
       END
-
-C $Id$

@@ -1,6 +1,6 @@
-C $Id$
+C $Header$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
 CStartOfInterface
       SUBROUTINE INI_SPHERICAL_POLAR_GRID( myThid )
@@ -33,6 +33,7 @@ C     | Under the spherical polar grid mode primitive distances  |
 C     | in X and Y are in degrees. Distance in Z are in m or Pa  |
 C     | depending on the vertical gridding mode.                 |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global variables ===
 #include "SIZE.h"
@@ -47,12 +48,8 @@ CEndOfInterface
 
 C     == Local variables ==
 C     xG, yG - Global coordinate location.
-C     zG
 C     xBase  - South-west corner location for process.
 C     yBase
-C     zUpper - Work arrays for upper and lower 
-C     zLower   cell-face heights.
-C     phi    - Temporary scalar
 C     iG, jG - Global coordinate index. Usually used to hold
 C              the south-west global coordinate of a tile.
 C     bi,bj  - Loop counters
@@ -63,13 +60,11 @@ C     yBase
 C     lat, latN, - Temporary variables used to hold latitude
 C     latS         values.
 C     I,J,K
-      _RL    xG, yG, zG
-      _RL    phi
-      _RL    zUpper(Nz), zLower(Nz)
+      _RL    xG, yG
       _RL    xBase, yBase
       INTEGER iG, jG
       INTEGER bi, bj
-      INTEGER  I,  J, K
+      INTEGER  I,  J
       _RL lat, latS, latN
 
 C--   Example of inialisation for spherical polar grid
@@ -81,6 +76,8 @@ C     Set up my local grid first
 C     Note: In the spherical polar case delX and delY are given in
 C           degrees and are relative to some starting latitude and
 C           longitude - phiMin and thetaMin.
+      xC0 = thetaMin
+      yC0 = phiMin
       DO bj = myByLo(myThid), myByHi(myThid)
        jG = myYGlobalLo + (bj-1)*sNy
        DO bi = myBxLo(myThid), myBxHi(myThid)
@@ -100,7 +97,8 @@ C           longitude - phiMin and thetaMin.
           xc(I,J,bi,bj)  = xG + delX(iG+i-1)*0.5 _d 0
           yc(I,J,bi,bj)  = yG + delY(jG+j-1)*0.5 _d 0
           xG = xG + delX(iG+I-1)
-          dxF(I,J,bi,bj) = delX(iG+i-1)*deg2rad*rSphere*COS(yc(I,J,bi,bj)*deg2rad)
+          dxF(I,J,bi,bj) = delX(iG+i-1)*deg2rad
+     &    *rSphere*COS(yc(I,J,bi,bj)*deg2rad)
           dyF(I,J,bi,bj) = delY(jG+j-1)*deg2rad*rSphere
          ENDDO
          yG = yG + delY(jG+J-1)
@@ -132,19 +130,6 @@ C     dxG, dyG are separations between cell corners along cell faces.
       ENDDO
       _EXCH_XY_R4(dxG, myThid )
       _EXCH_XY_R4(dyG, myThid )
-C     dxV, dyU are separations between velocity points along cell faces.
-      DO bj = myByLo(myThid), myByHi(myThid)
-       DO bi = myBxLo(myThid), myBxHi(myThid)
-        DO J=1,sNy
-         DO I=1,sNx
-          dxV(I,J,bi,bj) = (dxG(I,J,bi,bj)+dxG(I-1,J,bi,bj))*0.5 _d 0
-          dyU(I,J,bi,bj) = (dyG(I,J,bi,bj)+dyG(I,J-1,bi,bj))*0.5 _d 0
-         ENDDO
-        ENDDO
-       ENDDO
-      ENDDO
-      _EXCH_XY_R4(dxV, myThid )
-      _EXCH_XY_R4(dyU, myThid )
 C     dxC, dyC is separation between cell centers
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
@@ -158,47 +143,72 @@ C     dxC, dyC is separation between cell centers
       ENDDO
       _EXCH_XY_R4(dxC, myThid )
       _EXCH_XY_R4(dyC, myThid )
-C     Calculate recipricols
+C     dxV, dyU are separations between velocity points along cell faces.
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
         DO J=1,sNy
          DO I=1,sNx
-          rDxG(I,J,bi,bj)=1.d0/dxG(I,J,bi,bj)
-          rDyG(I,J,bi,bj)=1.d0/dyG(I,J,bi,bj)
-          rDxC(I,J,bi,bj)=1.d0/dxC(I,J,bi,bj)
-          rDyC(I,J,bi,bj)=1.d0/dyC(I,J,bi,bj)
-          rDxF(I,J,bi,bj)=1.d0/dxF(I,J,bi,bj)
-          rDyF(I,J,bi,bj)=1.d0/dyF(I,J,bi,bj)
-          rDxV(I,J,bi,bj)=1.d0/dxV(I,J,bi,bj)
-          rDyU(I,J,bi,bj)=1.d0/dyU(I,J,bi,bj)
+          dxV(I,J,bi,bj) = (dxG(I,J,bi,bj)+dxG(I-1,J,bi,bj))*0.5 _d 0
+#ifdef OLD_UV_GEOMETRY
+          dyU(I,J,bi,bj) = (dyG(I,J,bi,bj)+dyG(I,J-1,bi,bj))*0.5 _d 0
+#else
+          dyU(I,J,bi,bj) = (dyC(I,J,bi,bj)+dyC(I-1,J,bi,bj))*0.5 _d 0
+#endif
          ENDDO
         ENDDO
        ENDDO
       ENDDO
-      _EXCH_XY_R4(rDxG, myThid )
-      _EXCH_XY_R4(rDyG, myThid )
-      _EXCH_XY_R4(rDxC, myThid )
-      _EXCH_XY_R4(rDyC, myThid )
-      _EXCH_XY_R4(rDxF, myThid )
-      _EXCH_XY_R4(rDyF, myThid )
-      _EXCH_XY_R4(rDxV, myThid )
-      _EXCH_XY_R4(rDyU, myThid )
-C     Calculate vertical face area 
+      _EXCH_XY_R4(dxV, myThid )
+      _EXCH_XY_R4(dyU, myThid )
+C     Calculate vertical face area and trigonometric terms
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
         DO J=1,sNy
          DO I=1,sNx
           jG = myYGlobalLo + (bj-1)*sNy + J-1
+          iG = myXGlobalLo + (bi-1)*sNx + I-1
           latS = yc(i,j,bi,bj)-delY(jG)*0.5 _d 0
           latN = yc(i,j,bi,bj)+delY(jG)*0.5 _d 0
-          zA(I,J,bi,bj) = dyF(I,J,bi,bj)
+#ifdef OLD_UV_GEOMETRY
+          rA(I,J,bi,bj) = dyF(I,J,bi,bj)
      &    *rSphere*(SIN(latN*deg2rad)-SIN(latS*deg2rad))
+#else
+          rA(I,J,bi,bj) = rSphere*delX(iG)*deg2rad
+     &    *rSphere*(SIN(latN*deg2rad)-SIN(latS*deg2rad))
+#endif
+C         Area cannot be zero but sin can be if lat if < -90.
+          IF ( rA(I,J,bi,bj) .LT. 0. ) rA(I,J,bi,bj) = -rA(I,J,bi,bj)
+          tanPhiAtU(i,j,bi,bj)=tan(_yC(i,j,bi,bj)*deg2rad)
+          tanPhiAtV(i,j,bi,bj)=tan(latS*deg2rad)
          ENDDO
         ENDDO
        ENDDO
       ENDDO
+      _EXCH_XY_R4 (rA       , myThid )
+      _EXCH_XY_R4 (tanPhiAtU , myThid )
+      _EXCH_XY_R4 (tanPhiAtV , myThid )
+      DO bj = myByLo(myThid), myByHi(myThid)
+       DO bi = myBxLo(myThid), myBxHi(myThid)
+        DO J=1,sNy
+         DO I=1,sNx
+          iG = myXGlobalLo + (bi-1)*sNx + I-1
+          jG = myYGlobalLo + (bj-1)*sNy + J-1
+          latS = yc(i,j-1,bi,bj)
+          latN = yc(i,j,bi,bj)
+#ifdef OLD_UV_GEOMETRY
+          rAw(I,J,bi,bj) = 0.5*(rA(I,J,bi,bj)+rA(I-1,J,bi,bj))
+          rAs(I,J,bi,bj) = 0.5*(rA(I,J,bi,bj)+rA(I,J-1,bi,bj))
+#else
+          rAw(I,J,bi,bj) = 0.5*(rA(I,J,bi,bj)+rA(I-1,J,bi,bj))
+          rAs(I,J,bi,bj) = rSphere*delX(iG)*deg2rad
+     &    *rSphere*(SIN(latN*deg2rad)-SIN(latS*deg2rad))
+#endif
+         ENDDO
+        ENDDO
+       ENDDO
+      ENDDO
+      _EXCH_XY_R4 (rAw      , myThid )
+      _EXCH_XY_R4 (rAs      , myThid )
 C
       RETURN
       END
-
-C     $Id$

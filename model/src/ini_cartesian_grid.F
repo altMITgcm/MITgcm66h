@@ -1,6 +1,6 @@
-C $Id$
+C $Header$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
 CStartOfInterface
       SUBROUTINE INI_CARTESIAN_GRID( myThid )
@@ -33,6 +33,7 @@ C     | Under the cartesian grid mode primitive distances in X   |
 C     | and Y are in metres. Disktance in Z are in m or Pa       |
 C     | depending on the vertical gridding mode.                 |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global variables ===
 #include "SIZE.h"
@@ -47,12 +48,8 @@ CEndOfInterface
 
 C     == Local variables ==
 C     xG, yG - Global coordinate location.
-C     zG
 C     xBase  - South-west corner location for process.
 C     yBase
-C     zUpper - Work arrays for upper and lower 
-C     zLower   cell-face heights.
-C     phi    - Temporary scalar
 C     xBase  - Temporaries for lower corner coordinate
 C     yBase
 C     iG, jG - Global coordinate index. Usually used to hold
@@ -61,13 +58,11 @@ C     bi,bj  - Loop counters
 C     zUpper - Temporary arrays holding z coordinates of
 C     zLower   upper and lower faces.
 C     I,J,K
-      _RL    xG, yG, zG
-      _RL    phi
-      _RL    zUpper(Nz), zLower(Nz)
+      _RL    xG, yG
       _RL    xBase, yBase
       INTEGER iG, jG
       INTEGER bi, bj
-      INTEGER  I,  J, K
+      INTEGER  I,  J
 
 C--   Simple example of inialisation on cartesian grid
 C--   First set coordinates of cell centers
@@ -75,6 +70,8 @@ C     This operation is only performed at start up so for more
 C     complex configurations it is usually OK to pass iG, jG to a custom 
 C     function and have it return xG and yG.
 C     Set up my local grid first
+      xC0 = 0. _d 0
+      yC0 = 0. _d 0
       DO bj = myByLo(myThid), myByHi(myThid)
        jG = myYGlobalLo + (bj-1)*sNy
        DO bi = myBxLo(myThid), myBxHi(myThid)
@@ -141,89 +138,34 @@ C     dxC, dyC is separation between cell centers
        DO bi = myBxLo(myThid), myBxHi(myThid)
         DO J=1,sNy
          DO I=1,sNx
-          dxC(I,J,bi,bj)    = (dxF(I,J,bi,bj)+dxF(I-1,J,bi,bj))*0.5 D0
-          dyC(I,J,bi,bj)    = (dyF(I,J,bi,bj)+dyF(I,J-1,bi,bj))*0.5 D0
+          dxC(I,J,bi,bj)    = (dxF(I,J,bi,bj)+dxF(I-1,J,bi,bj))*0.5 _d 0
+          dyC(I,J,bi,bj)    = (dyF(I,J,bi,bj)+dyF(I,J-1,bi,bj))*0.5 _d 0
          ENDDO
         ENDDO
        ENDDO
       ENDDO
       _EXCH_XY_R4(dxC, myThid )
       _EXCH_XY_R4(dyC, myThid )
-C     Calculate recipricols
-      DO bj = myByLo(myThid), myByHi(myThid)
-       DO bi = myBxLo(myThid), myBxHi(myThid)
-        DO J=1,sNy
-         DO I=1,sNx
-          rDxG(I,J,bi,bj)=1.d0/dxG(I,J,bi,bj)
-          rDyG(I,J,bi,bj)=1.d0/dyG(I,J,bi,bj)
-          rDxC(I,J,bi,bj)=1.d0/dxC(I,J,bi,bj)
-          rDyC(I,J,bi,bj)=1.d0/dyC(I,J,bi,bj)
-          rDxF(I,J,bi,bj)=1.d0/dxF(I,J,bi,bj)
-          rDyF(I,J,bi,bj)=1.d0/dyF(I,J,bi,bj)
-          rDxV(I,J,bi,bj)=1.d0/dxV(I,J,bi,bj)
-          rDyU(I,J,bi,bj)=1.d0/dyU(I,J,bi,bj)
-         ENDDO
-        ENDDO
-       ENDDO
-      ENDDO
-      _EXCH_XY_R4(rDxG, myThid )
-      _EXCH_XY_R4(rDyG, myThid )
-      _EXCH_XY_R4(rDxC, myThid )
-      _EXCH_XY_R4(rDyC, myThid )
-      _EXCH_XY_R4(rDxF, myThid )
-      _EXCH_XY_R4(rDyF, myThid )
-      _EXCH_XY_R4(rDxV, myThid )
-      _EXCH_XY_R4(rDyU, myThid )
 C     Calculate vertical face area 
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
         DO J=1,sNy
          DO I=1,sNx
-          zA(I,J,bi,bj) = dxF(I,J,bi,bj)*dyF(I,J,bi,bj)
+          rA (I,J,bi,bj) = dxF(I,J,bi,bj)*dyF(I,J,bi,bj)
+          rAw(I,J,bi,bj) = dxC(I,J,bi,bj)*dyG(I,J,bi,bj)
+          rAs(I,J,bi,bj) = dxG(I,J,bi,bj)*dyC(I,J,bi,bj)
+          tanPhiAtU(I,J,bi,bj) = 0. _d 0
+          tanPhiAtV(I,J,bi,bj) = 0. _d 0
          ENDDO
         ENDDO
        ENDDO
       ENDDO
-
-      DO bj = myByLo(myThid), myByHi(myThid)
-       DO bi = myBxLo(myThid), myBxHi(myThid)
-        DO K=1,Nz
-         DO J=1,sNy
-          DO I=1,sNx
-           IF (HFacC(I,J,K,bi,bj) .NE. 0. D0 ) THEN
-            rHFacC(I,J,K,bi,bj) = 1. D0 / HFacC(I,J,K,bi,bj)
-           ELSE
-            rHFacC(I,J,K,bi,bj) = 0. D0
-           ENDIF
-           IF (HFacW(I,J,K,bi,bj) .NE. 0. D0 ) THEN
-            rHFacW(I,J,K,bi,bj) = 1. D0 / HFacW(I,J,K,bi,bj)
-            maskW(I,J,K,bi,bj) = 1. D0
-           ELSE
-            rHFacW(I,J,K,bi,bj) = 0. D0
-            maskW(I,J,K,bi,bj) = 0.0 D0
-           ENDIF
-           IF (HFacS(I,J,K,bi,bj) .NE. 0. D0 ) THEN
-            rHFacS(I,J,K,bi,bj) = 1. D0 / HFacS(I,J,K,bi,bj)
-            maskS(I,J,K,bi,bj) = 1. D0
-           ELSE
-            rHFacS(I,J,K,bi,bj) = 0. D0
-            maskS(I,J,K,bi,bj) = 0. D0
-           ENDIF
-          ENDDO
-         ENDDO
-        ENDDO
-       ENDDO
-      ENDDO
-C     Now sync. and get/send edge regions that are shared with
-C     other threads.
-      _EXCH_XYZ_R4(rHFacC    , myThid )
-      _EXCH_XYZ_R4(rHFacW    , myThid )
-      _EXCH_XYZ_R4(rHFacS    , myThid )
-      _EXCH_XYZ_R4(maskW    , myThid )
-      _EXCH_XYZ_R4(maskS    , myThid )
+      _EXCH_XY_R4 (rA       , myThid )
+      _EXCH_XY_R4 (rAw      , myThid )
+      _EXCH_XY_R4 (rAs      , myThid )
+      _EXCH_XY_R4 (tanPhiAtU , myThid )
+      _EXCH_XY_R4 (tanPhiAtV , myThid )
 
 C
       RETURN
       END
-
-C     $Id$

@@ -1,4 +1,4 @@
-C $Id$
+C $Header$
 
 #include "CPP_EEOPTIONS.h"
 
@@ -13,6 +13,7 @@ C     | Note: This routine can also be compiled with CPP         |
 C     | directives set so that no multi-processing is initialised|
 C     | This is OK and should work fine.                         |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     == Global variables ==
 #include "SIZE.h"
@@ -21,10 +22,8 @@ C     == Global variables ==
 CEndOfInterface
 
 C     == Local variables ==
-C     msgBuf - Variable for building informational messages
 C     I - Loop counter
       INTEGER I
-      CHARACTER*(MAX_LEN_MBUF) msgBuf
 
 C--   Set error reporting flags and I/O streams
 C     fatalError is a flag used to indicate that the program
@@ -56,6 +55,7 @@ C                     the threads are running.
        allMyEdgesAreSharedMemory(I) = .TRUE.
        threadIsRunning(I)           = .FALSE.
        threadIsComplete(I)          = .FALSE.
+       ioErrorCount(I)              = 0
       ENDDO
       scrUnit1      = 11
       scrUnit2      = 12
@@ -101,6 +101,9 @@ C     o Do other miscellaneous multi-processing set up steps. For
 C       example under MPI we create datatypes for communication
 C       of array edges.
       CALL INI_PROCS
+#ifdef LETS_MAKE_JAM
+      CALL INI_JAM
+#endif
       IF ( eeBootError ) GOTO 999
 
 C--   Initialise variables to support "nThreads" of computation.
@@ -108,8 +111,12 @@ C     o Note the program is still running with a single thread of
 C       execution at this stage.
       CALL INI_THREADING_ENVIRONMENT
       IF ( eeBootError ) GOTO 999
+
+#ifdef USE_DFILE
+C--   Initiialise the multi-process IO package
+      CALL DFILE_INIT
+#endif
  
   999 CONTINUE
       RETURN
       END
-C $Id$

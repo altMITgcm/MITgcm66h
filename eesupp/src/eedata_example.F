@@ -1,7 +1,8 @@
-C $Id$
+C $Header$
 
 #include "CPP_EEOPTIONS.h"
 
+      SUBROUTINE EEDATA_EXAMPLE
 C     /==========================================================\
 C     | S/R EEDATA_EXAMPLE                                       |
 C     | o Write example eedata file                              |
@@ -11,7 +12,7 @@ C     | =====                                                    |
 C     | Some systems require & as the namelist terminator.       |
 C     | Other systems use a / character.                         |
 C     \==========================================================/
-      SUBROUTINE EEDATA_EXAMPLE
+      IMPLICIT NONE
 #include "SIZE.h"
 #include "EEPARAMS.h"
 
