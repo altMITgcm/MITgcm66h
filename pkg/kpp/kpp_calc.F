@@ -100,10 +100,6 @@ c     to OLx=1, OLy=1.
 #include "FFIELDS.h"
 #include "GRID.h"
 
-#ifdef ALLOW_SEAICE
-#include "SEAICE_EXTERNAL.h"
-#endif /* ALLOW_SEAICE */
-
 #ifdef ALLOW_AUTODIFF_TAMC
 #include "tamc.h"
 #include "tamc_keys.h"
@@ -372,22 +368,11 @@ cph)
            ustar(i,j) = SQRT( tempVar2 )
         endif
 
-        if ( .NOT. useSEAICE )
-     &       bo(I,J) = - gravity *
-     &       ( vddiff(I,J,1,1) * SurfaceTendencyT(i,j,bi,bj) +
-     &         vddiff(I,J,1,2) * SurfaceTendencyS(i,j,bi,bj)
-     &       ) *
-     &       drF(1) / work2(I,J)
-
-#ifdef ALLOW_SEAICE
-        if ( useSEAICE )
-     &       bo(I,J) = - gravity *
+        bo(I,J) = - gravity *
      &       ( vddiff(I,J,1,1) * (SurfaceTendencyT(i,j,bi,bj)+
-     &                            SurfaceTendencyTice(i,j,bi,bj)) +
-     &         vddiff(I,J,1,2) * SurfaceTendencyS(i,j,bi,bj)
-     &       ) *
+     &       SurfaceTendencyTice(i,j,bi,bj)) +
+     &       vddiff(I,J,1,2) * SurfaceTendencyS(i,j,bi,bj) ) *
      &       drF(1) / work2(I,J)
-#endif /* ALLOW_SEAICE */
 
         bosol(I,J) = gravity * vddiff(I,J,1,1) * Qsw(i,j,bi,bj) *
      &       recip_Cp*recip_rhoConst*recip_dRf(1) *

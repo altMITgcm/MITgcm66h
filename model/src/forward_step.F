@@ -236,6 +236,21 @@ C     theta is dumped or time-averaged.
       ENDIF
 # endif /* ALLOW_SEAICE */
 
+C--   Freeze water at the surface
+      IF ( allowFreezing .AND. .NOT. useSEAICE
+     &                   .AND. .NOT. useThermSeaIce )
+     &   CALL FREEZE( myThid )
+
+C--     Determines forcing terms based on external fields
+C       relaxation terms, etc.
+       IF ( .NOT. useThermSeaIce ) THEN
+#ifndef DISABLE_DEBUGMODE
+        IF ( debugLevel .GE. debLevB ) 
+     &    CALL DEBUG_CALL('EXTERNAL_FORCING_SURF',myThid)
+#endif
+        CALL EXTERNAL_FORCING_SURF( myTime, myIter, myThid )
+       ENDIF
+
 #ifdef ALLOW_AUTODIFF_TAMC
 # ifdef ALLOW_PTRACERS
 cph this replaces _bibj storing of ptracer within thermodynamics
