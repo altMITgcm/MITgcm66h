@@ -5,7 +5,7 @@
 #
 # tested without NetCDF support on
 # SunOS model 5.9 Generic_112233-11 sun4u sparc SUNW,Sun-Fire-15000
-# with f90: Forte Developer 7 Fortran 95 7.0 Patch 111714-03 2002/11/19
+# with g77 version 2.95.3 20010315 (release) (from FSF-g77 version 0.5.25 20010315 (release))
 
 
 DEFINES='-DWORDLENGTH=4'
