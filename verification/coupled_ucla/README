@@ -1,3 +1,41 @@
+before starting, on alhena use:
+
+source /opt/modules/modules/init/tcsh
+module load modules
+module load MIPSpro.73
+
+===================================================================
+
+explicit paths in coupled model is in:
+./include/UserOptions.h
+#define ESM_INPUT_FILE "/u/menemenl/camel_7.2p/bin/esm_input"
+
+then:
+ cd ./esm/service
+ make
+
+also in ./bin/esminput
+ FE_datdir='/nobackup2/menemenl/coupled2/data',
+ FE_mssdir='/nobackup2/menemenl/coupled2/data',
+
+and in cshrc.setup
+setenv CAMILLEHOME /nobackup2/menemenl/coupled2/camel_7.2p
+
+===================================================================
+
+esm_input : 16 4  -> atmospheric CPUs + 1; oceanic CPUs
+
+esminput:
+
+ GM_run=0,        -> no AGCM output to FE_datdir
+ GM_run=1,        -> allow AGCM output to FE_datdir
+
+ NP_agcm=6,       -> total # of atmospheric CPUs
+ NPI_agcm=2,      -> x-direction CPUS, better if rather small
+ NPJ_agcm=3,      -> y-direction CPUS
+
+===================================================================
+
 This is a 4-CPU experiment, which is based on global_ocean.90x40x15.
 
 Instructions for running verification/coupled_ucla:
@@ -21,7 +59,6 @@ Instructions for running verification/coupled_ucla:
 Comparison output:
   cmp Eta.*10.data ../verification/coupled_ucla/results/Eta.*
 
-
 ===================================================================
 
 Instructions for creating library for 4x4, 4cpu ocean model:
@@ -31,9 +68,7 @@ Instructions for creating library for 4x4, 4cpu ocean model:
   cp ../verification/coupled_ucla/code/CPP_EEOPTIONS.h .
   cp ../verification/coupled_ucla/code/CPP_OPTIONS.h.coupled_nokpp CPP_OPTIONS.h
   ../tools/genmake -mpi -makefile
-==> on alhena use:
-  ../tools/genmake -mpi -platform=o2k -makefile
-==> on turing use:
+==> on alhena and turing use:
   ../tools/genmake -mpi -platform=ames_opt -makefile
   make depend
   make
@@ -52,6 +87,7 @@ Instructions for creating library for 4x4, 4cpu ocean model:
   ln -sf data.gmredi.gkw91 data.gmredi
   ln -sf POLY3.COEFFS.15 POLY3.COEFFS
   rm -f output.txt STD*
+  
   mpirun -np 20 camel2 >& output.txt
 
 
@@ -64,9 +100,7 @@ Instructions for creating library for JPL-ECCO-1/3-deg, 64cpu ocean model:
   cp ../verification/coupled_ucla/code/CPP_EEOPTIONS.h .
   cp ../verification/coupled_ucla/code/CPP_OPTIONS.h.coupled_kpp CPP_OPTIONS.h
   ../tools/genmake -mpi -makefile
-==> on alhena use:
-  ../tools/genmake -mpi -platform=o2k -makefile
-==> on turing use:
+==> on alhena and turing use:
   ../tools/genmake -mpi -platform=ames_opt -makefile
   make depend
   make
