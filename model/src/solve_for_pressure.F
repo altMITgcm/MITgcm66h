@@ -63,6 +63,14 @@ C     == Local variables ==
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 CEOP
 
+#ifdef TIME_PER_TIMESTEP
+CCE107 common block for per timestep timing
+C     !TIMING VARIABLES
+C     == Timing variables ==
+      REAL*8 utnew, utold, stnew, stold, wtnew, wtold
+      COMMON /timevars/ utnew, utold, stnew, stold, wtnew, wtold
+#endif
+
 C--   Save previous solution & Initialise Vector solution and source term :
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
@@ -375,5 +383,33 @@ C Western boundary
       ENDIF
 #endif
 
+#ifdef TIME_PER_TIMESTEP
+CCE107 Time per timestep information
+      _BEGIN_MASTER( myThid )
+      CALL TIMER_GET_TIME( utnew, stnew, wtnew )
+C Only output timing information after the 1st timestep
+      IF ( wtold .NE. 0.0D0 ) THEN
+        WRITE(msgBuf,'(A34,3F10.6)')
+     $        'User, system and wallclock time:', utnew - utold,
+     $        stnew - stold, wtnew - wtold
+         CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      ENDIF
+      utold = utnew
+      stold = stnew
+      wtold = wtnew
+      _END_MASTER( myThid )
+#endif
+
       RETURN
       END
+
+#ifdef TIME_PER_TIMESTEP
+CCE107 Initialization of common block for per timestep timing
+      BLOCK DATA settimers
+C     !TIMING VARIABLES
+C     == Timing variables ==
+      REAL*8 utnew, utold, stnew, stold, wtnew, wtold
+      COMMON /timevars/ utnew, utold, stnew, stold, wtnew, wtold
+      DATA utnew, utold, stnew, stold, wtnew, wtold /6*0.0D0/
+      END
+#endif
