@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint56b_post
 o collect all ptracers output in an new routine (PTRACERS_OUTPUT) that
   is called from DO_THE_MODEL_IO
   - rename PTRACERS_STATV_WRITE to PTRACERS_WRITE_TIMEAVE
