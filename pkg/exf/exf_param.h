@@ -272,28 +272,46 @@ c     file precision and field type
       integer exf_iprec
       character*(2) exf_yftype
 
-c     scaling between exf units and MITgcm units
+c     input and output scaling factors
 
-      _RL     scal_hfl
-      _RL     scal_ust
-      _RL     scal_vst
-      _RL     scal_swf
-      _RL     scal_sst
-      _RL     scal_sss
-      _RL     scal_apressure
-      _RL     scal_sfl
-      _RL     scal_runoff
+      _RL     exf_inscal_hfl
+      _RL     exf_inscal_ust
+      _RL     exf_inscal_vst
+      _RL     exf_inscal_swf
+      _RL     exf_inscal_sst
+      _RL     exf_inscal_sss
+      _RL     exf_inscal_apressure
+      _RL     exf_inscal_sfl
+      _RL     exf_inscal_runoff
+      _RL     exf_outscal_hfl
+      _RL     exf_outscal_ust
+      _RL     exf_outscal_vst
+      _RL     exf_outscal_swf
+      _RL     exf_outscal_sst
+      _RL     exf_outscal_sss
+      _RL     exf_outscal_apressure
+      _RL     exf_outscal_sfl
+      _RL     exf_outscal_runoff
 
       common /exf_param_scal/
-     &                      scal_hfl
-     &                    , scal_ust
-     &                    , scal_vst
-     &                    , scal_swf
-     &                    , scal_sst
-     &                    , scal_sss
-     &                    , scal_apressure
-     &                    , scal_sfl
-     &                    , scal_runoff
+     &                      exf_inscal_hfl
+     &                    , exf_inscal_ust
+     &                    , exf_inscal_vst
+     &                    , exf_inscal_swf
+     &                    , exf_inscal_sst
+     &                    , exf_inscal_sss
+     &                    , exf_inscal_apressure
+     &                    , exf_inscal_sfl
+     &                    , exf_inscal_runoff
+     &                    , exf_outscal_hfl
+     &                    , exf_outscal_ust
+     &                    , exf_outscal_vst
+     &                    , exf_outscal_swf
+     &                    , exf_outscal_sst
+     &                    , exf_outscal_sss
+     &                    , exf_outscal_apressure
+     &                    , exf_outscal_sfl
+     &                    , exf_outscal_runoff
 
 c     EXFwindOnBgrid - By default wind files, uwind and vwind,
 c     are defined on Southwest C-grid U and V points.

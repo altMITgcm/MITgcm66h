@@ -59,6 +59,10 @@ C     i,j,bi,bj - Loop counters
           AR(I,J,bi,bj)=MIN(AREA(I,J,2,bi,bj),
      &         HEFF(I,J,2,bi,bj)*1.0 _d +04)
 C NOW BALANCE THE HEAT IN OCEAN FIRT LEVEL
+C Here YNEG is m of sea-water converted to sea-ice.
+C To convert temperature change, delta(theta), to m of water:
+C delta(theta) * dRf(1) * (sea water heat capacity = 3.99e3 J/kg/K) /
+C                (latent heat of fusion of sea-ice = 2.93e5 J/kg)
           YNEG(I,J,bi,bj)=(theta(I,J,1,bi,bj)-TBC)*dRf(1)/72.0764 _d 0
           IF(YNEG(I,J,bi,bj).LE.ZERO) THEN
 C SUPERCOOLING, CONVERT TO ICE
@@ -100,8 +104,6 @@ C INCLUDING SNOWFALL
 C NOW CALCULATE CORRECTED GROWTH
         DO J=1,sNy
          DO I=1,sNx
-cdm ===> why is following line here?
-cdm       FICE(I,J,bi,bj)=FICE(I,J,bi,bj)
           GHEFF(I,J)=-DELTAT*FICE(I,J,bi,bj)
           GAREA(I,J)=HSNOW(I,J,bi,bj)*QS
           IF(GHEFF(I,J).GT.ZERO.AND.GHEFF(I,J).LE.GAREA(I,J)) THEN

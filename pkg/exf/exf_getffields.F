@@ -334,9 +334,10 @@ cdm? can olx, oly be eliminated?
 #ifdef ALLOW_DOWNWARD_RADIATION
 c--   Compute net longwave and shortwave radiation:
 c     lwflux = Stefan-Boltzman constant * emissivity * SST - lwdown
-c     swflux = swdown * albedo - swdown
-               lwflux(i,j,bi,bj) = 5.5 _d -08 * (theta(i,j,k,bi,bj)**4)
-     &                             - lwdown(i,j,bi,bj)
+c     swflux = - ( 1 - albedo ) * swdown
+               lwflux(i,j,bi,bj) = 5.5 _d -08 *
+     &              ((theta(i,j,k,bi,bj)+cen2kel)**4)
+     &              - lwdown(i,j,bi,bj)
                swflux(i,j,bi,bj) = -0.9 _d 0 * swdown(i,j,bi,bj)
 #endif
 
@@ -511,7 +512,9 @@ CADJ STORE sw     = comlev1_exf_1, key = ikey_1
                 hs(i,j,bi,bj)      = atmcp*tau*tstar/ustar
                 hl(i,j,bi,bj)      = flamb*tau*qstar/ustar
 #ifndef EXF_READ_EVAP
-                evap(i,j,bi,bj)    = tau*qstar/ustar
+cdm             evap(i,j,bi,bj)    = tau*qstar/ustar
+cdm !!! need to change sign and to convert from kg/m^2/s to m/s !!!
+                evap(i,j,bi,bj)    = -recip_rhonil*tau*qstar/ustar
 #endif
                 ustress(i,j,bi,bj) = tau*cw
                 vstress(i,j,bi,bj) = tau*sw
@@ -536,7 +539,6 @@ CADJ STORE sw     = comlev1_exf_1, key = ikey_1
         enddo
       enddo
 
-cdm? can second loop be eliminated?
 c     Add all contributions.
       do bj = mybylo(mythid),mybyhi(mythid)
         do bi = mybxlo(mythid),mybxhi(mythid)

@@ -95,9 +95,12 @@ c     Surface flux data.
      &         swfluxfile,         lwfluxfile, apressurefile,
      &         swdownfile,         lwdownfile,
      &          exf_iprec,         exf_yftype,
-     &           scal_hfl,           scal_ust,       scal_vst,
-     &           scal_swf,           scal_sst,       scal_sss,
-     &     scal_apressure,           scal_sfl,       scal_runoff,
+     &     exf_inscal_hfl,     exf_inscal_ust, exf_inscal_vst,
+     &     exf_inscal_swf,     exf_inscal_sst, exf_inscal_sss,
+     &     exf_inscal_sfl,  exf_inscal_runoff,exf_inscal_apressure,
+     &    exf_outscal_hfl,    exf_outscal_ust,exf_outscal_vst,
+     &    exf_outscal_swf,    exf_outscal_sst,exf_outscal_sss,
+     &    exf_outscal_sfl, exf_outscal_runoff,exf_outscal_apressure,
      &     EXFwindOnBgrid
 
       _BEGIN_MASTER(mythid)
@@ -231,19 +234,28 @@ c     Initialise file type and field precision
       exf_iprec       = 32
       exf_yftype      = 'RL'
 
-c     scaling between exf units and MITgcm units
-      scal_hfl       =  1. _d 0
-      scal_ust       =  1. _d 0
-      scal_vst       =  1. _d 0
-      scal_swf       =  1. _d 0
-      scal_sst       =  1. _d 0
-      scal_sss       =  1. _d 0
-      scal_apressure =  1. _d 0
-      scal_sfl       =  1. _d 0     
-      scal_runoff    =  1. _d 0
-
+c     Input scaling factors.
+      exf_inscal_hfl       =  1. _d 0
+      exf_inscal_ust       =  1. _d 0
+      exf_inscal_vst       =  1. _d 0
+      exf_inscal_swf       =  1. _d 0
+      exf_inscal_sst       =  1. _d 0
+      exf_inscal_sss       =  1. _d 0
+      exf_inscal_apressure =  1. _d 0
+      exf_inscal_sfl       =  1. _d 0
 cds   convert runoff from m/yr to m/s and change sign.
-      scal_runoff    = -1.0/(86400.*365.0)
+      exf_inscal_runoff    = -1.0/(86400.*365.0)
+
+c     Output scaling factors.
+      exf_outscal_hfl      =  1. _d 0
+      exf_outscal_ust      =  1. _d 0
+      exf_outscal_vst      =  1. _d 0
+      exf_outscal_swf      =  1. _d 0
+      exf_outscal_sst      =  1. _d 0
+      exf_outscal_sss      =  1. _d 0
+      exf_outscal_apressure=  1. _d 0
+      exf_outscal_sfl      =  1. _d 0
+      exf_outscal_runoff   =  1. _d 0
 c
       EXFwindOnBgrid = .FALSE.
 

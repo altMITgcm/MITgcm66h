@@ -122,6 +122,7 @@ c      CALL PLOT_FIELD_XYRS( swdown,'Current swdown ', myIter, myThid )
        CALL PLOT_FIELD_XYRL( fu    ,'Current fu '    , myIter, myThid )
        CALL PLOT_FIELD_XYRL( fv    ,'Current fv '    , myIter, myThid )
        CALL PLOT_FIELD_XYRL( Qnet  ,'Current Qnet '  , myIter, myThid )
+       CALL PLOT_FIELD_XYRL( evap  ,'Current evap '  , myIter, myThid )
 #endif SEAICE_DEBUG
 
          ENDIF

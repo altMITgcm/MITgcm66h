@@ -17,7 +17,7 @@ c     HEADER exf_fields
 c     ==================================================================
 c
 c
-c     Default pkg/exf input/output field definitions:
+c     Field definitions, units, and sign conventions:
 c     ===============================================
 c
 c     ustress   :: Zonal surface wind stress in N/m^2
@@ -103,8 +103,8 @@ c                  > 0 for decrease in salt (ocean salinity)
 c                  Typical range: 0 < runoff < ????
 c                  Southwest C-grid tracer point
 c                  Input or input/output field
-c                  !!! WATCH OUT: Default scal_runoff !!!
-c                  !!! in exf_readparms.F is not 1.0  !!!
+c                  !!! WATCH OUT: Default exf_inscal_runoff !!!
+c                  !!! in exf_readparms.F is not 1.0        !!!
 c
 c     swdown    :: Downward shortwave radiation in W/m^2
 c                  > 0 for increase in theta (ocean warming)
@@ -128,9 +128,9 @@ c
 c     NOTES:
 c     ======
 c
-c     Input and output unit and sign conventions can be customized
-c     using variables scal_ust, scal_vst, scal_hfl, scal_swf,
-c     scal_sfl, etc., which are set in exf_readparms.F
+c     Input and output units and sign conventions can be customized
+c     using variables exf_inscal_* and exf_outscal_*, which are set
+c     by exf_readparms.F
 c
 c     Output fields fu, fv, Qnet, Qsw, and EmPmR are
 c     defined in FFIELDS.h

@@ -108,7 +108,9 @@ C--   Update overlap regions
       _EXCH_XY_R8(DYUICE, myThid)
 
 C--   Set model variables to initial/restart conditions
-      IF ( nIter0 .EQ. 0 ) THEN
+      IF ( nIter0 .NE. 0 .OR. SEAICEreadInitialConditions ) THEN
+         CALL SEAICE_READ_PICKUP ( myThid )
+      ELSE
          DO bj=myByLo(myThid),myByHi(myThid)
             DO bi=myBxLo(myThid),myBxHi(myThid)
                DO j=1-OLy,sNy+OLy
@@ -126,8 +128,6 @@ C--   Set model variables to initial/restart conditions
                ENDDO
             ENDDO
          ENDDO
-      ELSE
-         CALL SEAICE_READ_PICKUP ( myThid )
       ENDIF
 
 C---  Complete initialization

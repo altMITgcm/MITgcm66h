@@ -23,11 +23,18 @@ C        are defined on North-East B-grid U and V points.
 C        When this flag is set, wind files are defined on
 C        South-West C-grid U and V points.
 C
+C     SEAICEreadInitialConditions
+C                       - By default, initial sea-ice conditions are
+C        HEFF=1 and AREA=1.  This means that there can be large
+C        artificial fluxes of heat and freshwater in the surface layer
+C        during the first model time step.   When this flag is set, the
+C        initial conditions are read-in using SEAICE_READ_PICKUP.
+C
       LOGICAL SEAICEwriteState, SEAICEuseDYNAMICS, SEAICEuseLSR,
-     &        SEAICEwindOnCgrid
+     &        SEAICEwindOnCgrid, SEAICEreadInitialConditions
       COMMON /SEAICE_PARM_L/
      &        SEAICEwriteState, SEAICEuseDYNAMICS, SEAICEuseLSR,
-     &        SEAICEwindOnCgrid
+     &        SEAICEwindOnCgrid, SEAICEreadInitialConditions
 
 C--   COMMON /SEAICE_PARM_I/ Integer valued parameters of sea ice model.
 C     LAD        - time stepping used for sea-ice advection:

@@ -42,20 +42,20 @@ c     2. physical constants
 #ifdef ALLOW_ATM_TEMP
 c     is identical to "gravity" used in MITgcmUV
 c     needs to be marmonized through common constants.h file
-      _RL     gravity_mks
-      parameter (gravity_mks = 9.81D0)
+      _RL         gravity_mks
+      parameter ( gravity_mks = 9.81 _d 0 )
 #endif
 
 c     3. empirical parameters
 
       _RL         climtempfreeze
-      parameter ( climtempfreeze = -1.9 )
+      parameter ( climtempfreeze = -1.9 _d 0 )
 
 #ifdef ALLOW_BULKFORMULAE
 
 c     atmrho       - mean atmospheric density [kg/(m*3)]
-c     atmcp        - mean atmospheric specific heat [ ? ]
-c     flamb        - latent heat of evaporation [ ? ]
+c     atmcp        - mean atmospheric specific heat [J/kg/deg K]
+c     flamb        - latent heat of evaporation [J/kg]
 c     cdrag_[n]    - n = 1,2,3 coefficients used to evaluate
 c                    drag coefficient
 c     cstanton_[n] - n = 1,2   coefficients used to evaluate
@@ -97,29 +97,29 @@ c     hq           - height of mean rel. humidity
       _RL ht
       _RL hq
 
-      parameter ( cdrag_1     =       0.0027000,
-     &            cdrag_2     =       0.0001420,
-     &            cdrag_3     =       0.0000764,
-     &            cstanton_1  =       0.0327000,
-     &            cstanton_2  =       0.0180000,
-     &            cdalton     =       0.0346000,
-     &            atmrho      =       1.200,
-     &            atmcp       =    1005.000,
-     &            flamb       = 2500000.000,
-     &            umin        =       0.500,
-     &            zolmin      =    -100.000,
-     &            zref        =      10.000,
-     &            karman      =       0.400,
-     &            cvapor_fac  =  640380.000,
-     &            cvapor_exp  =    5107.400,
-     &            humid_fac   =       0.606,
-     &            gamma_blk   =       0.010,
-     &            saltsat     =       0.980,
-     &            psim_fac    =       5.000,
-     &            cen2kel     =     273.150,
-     &            hu          =      10.000,
-     &            ht          =       2.000,
-     &            hq          =       2.000
+      parameter ( cdrag_1     =       0.0027000 _d 0 ,
+     &            cdrag_2     =       0.0001420 _d 0 ,
+     &            cdrag_3     =       0.0000764 _d 0 ,
+     &            cstanton_1  =       0.0327000 _d 0 ,
+     &            cstanton_2  =       0.0180000 _d 0 ,
+     &            cdalton     =       0.0346000 _d 0 ,
+     &            atmrho      =       1.200     _d 0 ,
+     &            atmcp       =    1005.000     _d 0 ,
+     &            flamb       = 2500000.000     _d 0 ,
+     &            umin        =       0.500     _d 0 ,
+     &            zolmin      =    -100.000     _d 0 ,
+     &            zref        =      10.000     _d 0 ,
+     &            karman      =       0.400     _d 0 ,
+     &            cvapor_fac  =  640380.000     _d 0 ,
+     &            cvapor_exp  =    5107.400     _d 0 ,
+     &            humid_fac   =       0.606     _d 0 ,
+     &            gamma_blk   =       0.010     _d 0 ,
+     &            saltsat     =       0.980     _d 0 ,
+     &            psim_fac    =       5.000     _d 0 ,
+     &            cen2kel     =     273.150     _d 0 ,
+     &            hu          =      10.000     _d 0 ,
+     &            ht          =       2.000     _d 0 ,
+     &            hq          =       2.000     _d 0
      &          )
 
 
@@ -147,10 +147,10 @@ c       ustofu11     - ustar = 0.3818 m/s, corresponding to u = 11 m/s
       _RL ustofu11
 
       parameter (
-     &            ustofu11    =         0.381800 ,
-     &            u11         =        11.       ,
-     &            clindrag_1  =         0.000065 ,
-     &            clindrag_2  =         0.000490 ,
+     &            ustofu11    =         0.381800 _d 0 ,
+     &            u11         =        11.       _d 0 ,
+     &            clindrag_1  =         0.000065 _d 0 ,
+     &            clindrag_2  =         0.000490 _d 0 ,
      &            cquadrag_1  = clindrag_1/u11/2 ,
      &            cquadrag_2  = clindrag_1*u11/2 + clindrag_2
      &          )

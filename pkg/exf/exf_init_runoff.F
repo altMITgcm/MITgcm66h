@@ -62,15 +62,15 @@ c     == end of interface ==
          
 c--   scale runoff array
          do bj = mybylo(mythid), mybyhi(mythid)
-            do bi = mybxlo(mythid), mybxhi(mythid)
-               do j = 1, sny
-                  do i = 1, snx
-                     if (runoff(i,j,bi,bj).gt.20.) runoff(i,j,bi,bj)=0.
-                     runoff(i,j,bi,bj) = scal_runoff*runoff(i,j,bi,bj)
-                  enddo
-               enddo
+           do bi = mybxlo(mythid), mybxhi(mythid)
+             do j = 1, sny
+               do i = 1, snx
+                 if (runoff(i,j,bi,bj).gt.20.) runoff(i,j,bi,bj)=0.
+                 runoff(i,j,bi,bj) = exf_inscal_runoff*runoff(i,j,bi,bj)
+              enddo
             enddo
-         enddo
+          enddo
+        enddo
       endif
 
 #endif
