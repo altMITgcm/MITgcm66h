@@ -329,7 +329,16 @@ CEOP
      &'   /* Rolling restart/checkpoint file interval ( s ). */')
       CALL WRITE_0D_R8( dumpFreq, INDEX_NONE,'dumpFreq =',
      &'   /* Model state write out interval ( s ). */')
-
+      CALL WRITE_0D_R8( externForcingPeriod, INDEX_NONE,
+     &   'externForcingPeriod =', '   /* forcing period (s) */')
+      CALL WRITE_0D_R8( externForcingCycle, INDEX_NONE,
+     &   'externForcingCycle =', '   /* period of the cyle (s). */')
+      CALL WRITE_0D_R8( tauThetaClimRelax, INDEX_NONE,
+     &   'tauThetaClimRelax =', '   /* relaxation time scale (s) */')
+      CALL WRITE_0D_R8( tauSaltClimRelax, INDEX_NONE,
+     &   'tauSaltClimRelax =',  '   /* relaxation time scale (s) */')
+      CALL WRITE_0D_R8( latBandClimRelax, INDEX_NONE,
+     &   'latBandClimRelax =', '   /* max. Lat. where relaxation */')
       WRITE(msgBuf,'(A)') '//  '
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, 
      &                    SQUEEZE_RIGHT , 1)

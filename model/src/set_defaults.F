@@ -85,7 +85,6 @@ C--   Set default "physical" parameters
        tRef(K) = 30.D0 - FLOAT( K )
 Cml       sRef(K) = 35.D0
       ENDDO
-      gravitySign         = 1.D0
       gravity             = 9.81D0
       rhoNil              = 999.8D0
       rhoConstFresh       = 999.8D0
