@@ -232,6 +232,9 @@ C-- Global diagnostic :
       _EXCH_XY_R4(hFac_surfC, myThid ) 
       CALL EXCH_UV_XY_RS(hFac_surfW,hFac_surfS,.FALSE.,myThid)
 
+      IF (useRealFreshWaterFlux .AND. myTime.EQ.startTime)
+     & _EXCH_XY_R4( PmEpR, myThid )
+
 C-----
 C Note: testing ksurfW,S is equivalent to a full height mask 
 C   ==> no need for applying the mask here.
