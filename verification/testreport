@@ -179,7 +179,7 @@ genmakemodel()
 	cd $1;
 	printf 'genmake ... ' 1>&2
         # ../../../tools/genmake -ieee -mods=../code > make.log 2>&1
-	$GENMAKE2  -ds --mods=../code "--optfile="$OPTFILE > make.log 2>&1
+	$GENMAKE2  -ds -m $MAKE --mods=../code "--optfile="$OPTFILE > make.log 2>&1
 	RETVAL=$?
 	for i in gm_state gm_optfile gm_local Makefile ; do
 	    if test -r $i ; then
