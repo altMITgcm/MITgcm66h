@@ -3,9 +3,13 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint55h_post
+o add verification test "vermix"
 o remove all the *_ioinc flags and replace with the single global
   outputTypesInclusive flag
 o allow to set a vertical profile of vertical diffusivity for T & S
+o call PACKAGE_BOOT & PACKAGES_READPARMS just after INI_PARMS
+o useMNC moved from data.mnc to data.pkg
 
 checkpoint55g_post
 o Renaming carbon AD experiments to comply with testreport conventions
