@@ -2,6 +2,7 @@ $Header$
 
     Notes on tags used in MITgcmUV
     ==============================
+o fix bug in dxV,dyU definition of cubed-sphere grid (ini_curvilinear_grid)
 
 checkpoint51c_post
 o introducing integer flag debugLevel
