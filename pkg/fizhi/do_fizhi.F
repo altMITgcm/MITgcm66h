@@ -155,7 +155,7 @@ C***********************************************************************
 
       if( (nhms.eq.nhms0) .and. (nymd.eq.nymd0) ) then
        _BEGIN_MASTER(myid)
-       if(myid.eq.1) print *,' Initializing fizhi arrays '
+       if(bi.eq.1) print *,' Initializing fizhi arrays '
        _END_MASTER(myid)
        imstturblw = 0
        imstturbsw = 0

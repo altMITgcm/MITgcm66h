@@ -167,7 +167,6 @@ C ====================
 C LONG WAVE RADIATION
 C ===================
       IF ( alarm('radlw') ) THEN
-       print *,' calling lw '
 
 c Set Reference Ground Temperature
 c --------------------------------

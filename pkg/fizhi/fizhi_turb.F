@@ -323,7 +323,7 @@ c **********************************************************************
 
       if( const.eq.0.0 ) then
       qbeg = .true.
-          if( myid.eq.0 ) then
+          if( myid.eq.1 .and. bi.eq.1 ) then
           print *
           print *, 'Warning!'
           print *, 'Turbulent Kinetic Energy has not been initialized.'

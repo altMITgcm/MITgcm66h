@@ -188,7 +188,7 @@ c Determine Total number of Random Clouds to Check
 c ---------------------------------------------
       ncrnd = (lm-nltop+1)/2
 
-      if(first .and. myid.eq.1) then
+      if(first .and. myid.eq.1 .and. bi.eq.1 ) then
        print *
        print *,'Top Level Allowed for Convection : ',nltop
        print *,'          Highest Sub-Cloud Level: ',nsubmax
