@@ -6,6 +6,24 @@ $Header$
 untagged:
 o minor changes to pkg/seaice pkg/cost/cost_ice.F
   and verification/natl_box_adjoint/README
+o Modif's to enable tangent linear run in ECCO environment
+  including time-dependent forcing
+  * main problem is missing call mdsreadfield out of exf_set_gen
+    (i.e. computation of trajectory in TLM mode)
+  * incorrect g_active_write_...
+  * (re-) init of bar files and g_bar files
+  * still a problem for TLM of seaice code... later.
+o Reverted back to 3-dim. tbar, sbar for SST, SSS bar files.
+o MERGES:
+  * obcs/ ctrl/ G. Gebbie code
+    (major changes in ctrl handling, volume flux balancing etc.)
+  * cost/ ctrl/ A. Koehl code
+    - new cost contributions (new data types)
+    - efficient pack/unpack for time-dependent 2-d fields
+o replaced mutiple ctrl_get... by single generic ctrl_get_gen.F
+  (except obcs)
+o somewhat cleaned package initialisation sequence for
+  ctrl/ cost/ ecco/
 
 ecco_c50_e32
 o Patrick's adjoint-model storage directives for pkg/seaice
