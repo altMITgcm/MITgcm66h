@@ -492,7 +492,7 @@ C     Tick the Clock by NDT (seconds)
 C
 C***********************************************************************
 
-      include 'time.com'
+#include 'chronos.h'
 
       IF(NDT.NE.0) THEN
       NSEC = NSECF(NHMS) + NDT

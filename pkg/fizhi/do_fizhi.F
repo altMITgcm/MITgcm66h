@@ -32,7 +32,7 @@ c-----------------------------------------------------------------------
 c
       integer i,j,L
 
-      call physdrv (nymd,nhms,myid,im,jm,lm,ptracer,ntracer,
+      call fizhi_driver (nymd,nhms,myid,im,jm,lm,ptracer,ntracer,
      . ndmoist,ndturb,ndlw,ndsw,xlats,xlons,
      . p,u,v,t,q,pl,ple,dpres,pkht,pkl,fracland,landtype,radswt,
      . maxtyp,surftype,tilefrac,phis_var,sea_ice,
