@@ -15,6 +15,8 @@ function [varargout] = stats(A)
 %
 % $Header$
 
+A=A(:);
+
 %ii=find(A~=0);
 ii=find(isfinite(A));
 if isempty(ii)
@@ -25,7 +27,7 @@ minA=min(A(ii));
 maxA=max(A(ii));
 meanA=mean(A(ii));
 sdA=sqrt( mean( (A(ii)-meanA).^2 ) );
-nZ=prod(sum(sum(sum(~isfinite(A)))));
+nZ=sum(~isfinite(A));
 switch max(nargout)
  case {0}
   disp( ...
