@@ -166,5 +166,12 @@ C--   set diagnostics choices
 #endif /* ALLOW_DIAGNOSTICS */
 CAMM
 
+CAMM
+#ifdef ALLOW_FIZHI
+C--   set model date and time and other fizhi parameters
+      IF ( usefizhi ) call fizhi_readparms(myThid )
+#endif /* ALLOW_FIZHI */
+CAMM
+
       RETURN
       END
