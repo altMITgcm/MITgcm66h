@@ -137,7 +137,7 @@ C     Fill Diagnostics Common Block with Namelist Info
      &          nfields(n).LT.numperlist ) THEN
              nfields(n) = nfields(n) + 1
              flds(nfields(n),n) = fields(m,l)
-           ELSEIF ( fields(m,n).NE.blk8c ) THEN
+           ELSEIF ( fields(m,l).NE.blk8c ) THEN
              WRITE(msgBuf,'(2A,I3)') 'DIAGNOSTICS_READPARMS: ',
      &        'Exceed Max.Num. of Fields/list numperlist=', numperlist
              CALL PRINT_ERROR( msgBuf , myThid )
@@ -151,6 +151,7 @@ C     Fill Diagnostics Common Block with Namelist Info
            ENDIF
          ENDDO
          nlists = nlists + 1
+c        write(6,*) 'list summary:',n,nfields(n),nlevels(n)
        ELSEIF ( frequency(l).NE.0 ) THEN
          WRITE(msgBuf,'(2A,I3)') 'DIAGNOSTICS_READPARMS: ',
      &            'Exceed Max.Num. of list numlists=', numlists
