@@ -97,7 +97,8 @@ C--   Continuous equation parameters
      & viscAp, diffKpT, diffKpS, hFacMinDp,
      & rhoConst, buoyancyRelation, HeatCapacity_Cp,
      & writeBinaryPrec, readBinaryPrec, writeStatePrec,
-     & openBoundaries, nonHydrostatic
+     & openBoundaries, nonHydrostatic, globalFiles,
+     & allowFreezing
 
 C--   Elliptic solver parameters
       NAMELIST /PARM02/
@@ -357,6 +358,12 @@ C--   z,p,r coord input switching.
       ELSE
        recip_gravity = 1.D0 / gravity
       ENDIF
+C     Set globalFiles flag for READ_WRITE_FLD package
+      CALL SET_WRITE_GLOBAL_FLD( globalFiles )
+C     Set globalFiles flag for READ_WRITE_REC package
+      CALL SET_WRITE_GLOBAL_REC( globalFiles )
+C     Set globalFiles flag for READ_WRITE_REC package
+      CALL SET_WRITE_GLOBAL_PICKUP( globalFiles )
 
 C--   Elliptic solver parameters
       READ(UNIT=iUnit,NML=PARM02) !,IOSTAT=errIO)

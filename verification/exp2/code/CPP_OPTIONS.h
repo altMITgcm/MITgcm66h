@@ -114,7 +114,7 @@ C o Include/exclude call to S/R CALC_DIFFUSIVITY
 
 C o Use "natural" boundary conditions for salinity
 C   instead of the "virtual salt flux"
-#undef USE_NATURAL_BCS
+#undef  USE_NATURAL_BCS
 
 C o Use "OLD" UV discretisation near boundaries (*not* recommended)
 C   Note - only works with  #undef NO_SLIP_LATERAL  in calc_mom_rhs.F

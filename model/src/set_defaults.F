@@ -109,6 +109,8 @@ C--   Set default "physical" parameters
       implicitDiffusion   = .FALSE.
       openBoundaries      = .FALSE.
       nonHydrostatic      = .FALSE.
+      globalFiles         = .FALSE.
+      allowFreezing       = .FALSE.
 
 C--   Elliptic solver parameters
       cg2dMaxIters       = 150

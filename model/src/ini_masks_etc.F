@@ -37,24 +37,6 @@ C     I,J,K
       _RL hFacUpper,hFacLower
 #endif
 
-C     Calculate quantities derived from XY depth map
-      DO bj = myByLo(myThid), myByHi(myThid)
-       DO bi = myBxLo(myThid), myBxHi(myThid)
-        DO J=1,sNy
-         DO I=1,sNx
-C         Inverse of depth
-          IF ( h(i,j,bi,bj) .EQ. 0. _d 0 ) THEN
-           recip_H(i,j,bi,bj) = 0. _d 0
-          ELSE
-           recip_H(i,j,bi,bj) = 1. _d 0 /  abs( H(i,j,bi,bj) )
-          ENDIF
-          depthInK(i,j,bi,bj) = 0.
-         ENDDO
-        ENDDO
-       ENDDO
-      ENDDO
-      _EXCH_XY_R4(   recip_H, myThid )
-
 C     Calculate lopping factor hFacC
       DO bj=myByLo(myThid), myByHi(myThid)
        DO bi=myBxLo(myThid), myBxHi(myThid)
@@ -109,6 +91,43 @@ C Impose minimum size (dimensional)
 
       CALL PLOT_FIELD_XYRS( depthInK, 
      & 'Model Depths K Index' , 1, myThid )
+
+C Re-calculate depth of ocean, taking into account hFacC
+      DO bj=myByLo(myThid), myByHi(myThid)
+       DO bi=myBxLo(myThid), myBxHi(myThid)
+        DO J=1,sNy
+         DO I=1,sNx
+          H(I,J,bi,bj)=0.
+          DO K=1,Nr
+           H(I,J,bi,bj)=H(I,J,bi,bj)-
+     &       rkFac*drF(k)*hFacC(I,J,K,bi,bj)
+          ENDDO
+         ENDDO
+        ENDDO
+       ENDDO
+      ENDDO
+      _EXCH_XY_R4(H , myThid )
+      CALL WRITE_FLD_XY_RS( 'Depth',' ',H,0,myThid)
+C     CALL MDSWRITEFIELD( 'Depth', writeBinaryPrec, .TRUE.,
+C    &                    'RS', 1, H, 1, -1, myThid )
+
+C     Calculate quantities derived from XY depth map
+      DO bj = myByLo(myThid), myByHi(myThid)
+       DO bi = myBxLo(myThid), myBxHi(myThid)
+        DO J=1,sNy
+         DO I=1,sNx
+C         Inverse of depth
+          IF ( h(i,j,bi,bj) .EQ. 0. _d 0 ) THEN
+           recip_H(i,j,bi,bj) = 0. _d 0
+          ELSE
+           recip_H(i,j,bi,bj) = 1. _d 0 /  abs( H(i,j,bi,bj) )
+          ENDIF
+          depthInK(i,j,bi,bj) = 0.
+         ENDDO
+        ENDDO
+       ENDDO
+      ENDDO
+      _EXCH_XY_R4(   recip_H, myThid )
 
 C     hFacW and hFacS (at U and V points)
       DO bj=myByLo(myThid), myByHi(myThid)
