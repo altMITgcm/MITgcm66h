@@ -106,7 +106,7 @@ C
 #ifdef USE_ETIME
       TIM1 = ETIME(TARR1)
 #endif
-      IF ( pickupRun ) THEN
+C     IF ( pickupRun ) THEN
 CMIC$  PARALLEL
 CMIC$&  SHARED(T,S,rPrm)
 CMIC$&  PRIVATE(LEV,K)
@@ -123,7 +123,7 @@ CMIC$  END PARALLEL
        DO K = 2, nz
         rPrmBz(_I3(K,:,:)) = ( rPrm(_I3(K,:,:))+rPrm(_I3(K-1,:,:)) )*0.5
        ENDDO
-      ENDIF
+C     ENDIF
 C     /----------------------------------------------------------------\
 C     | Load wind stress data                                          |
 C     \----------------------------------------------------------------/

@@ -78,7 +78,7 @@ C          fu(i,j,bi,bj) = -tauMax
         DO bi = myBxLo(myThid), myBxHi(myThid)
          DO j=1,sNy
           DO i=1,sNx
-           fu(i,j,bi,bj) = fu(i,j,bi,bj)/(delZ(1)*rhonil)
+           fu(i,j,bi,bj) = fu(i,j,bi,bj)/(delZ(1)*rhonil)*0.1
           ENDDO
          ENDDO
         ENDDO
@@ -105,7 +105,7 @@ C
         DO bi = myBxLo(myThid), myBxHi(myThid)
          DO j=1,sNy
           DO i=1,sNx
-           fv(i,j,bi,bj) = fv(i,j,bi,bj)/(delZ(1)*rhonil)
+           fv(i,j,bi,bj) = fv(i,j,bi,bj)/(delZ(1)*rhonil)*0.1
           ENDDO
          ENDDO
         ENDDO
@@ -120,7 +120,8 @@ CcnhDebugStarts
 Cdbg  WRITE(0,*) ' distY = ', distY
 Cdbg  WRITE(0,*) '    ly = ', lY
 Cdbg  WRITE(0,*) ' tauMax= ', tauMax
-Cdbg  CALL PLOT_FIELD_XYR8( fu, 'INI_FORCING FU',1,myThid)
+      CALL PLOT_FIELD_XYR8( fu, 'INI_FORCING FU',1,myThid)
+      CALL PLOT_FIELD_XYR8( fv, 'INI_FORCING FV',1,myThid)
 Cdbg  STOP 'INI_FORCING'
 CcnhDebugEnds
 

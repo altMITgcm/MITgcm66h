@@ -319,13 +319,13 @@ C--    Do "plot" using textual contour map "execution environment" routine
 C      Substitute other plotting utilities here!
        iStart   =  1-OLx
        iEnd     =  sNx+OLx
-C      iStart   =  1
-C      iEnd     =  sNx
+       iStart   =  1
+       iEnd     =  sNx
        iStride  =  1
        jStart   =  sNy+OLy
        jEnd     =  1-OLy
-C      jStart   =  sNy
-C      jEnd     =  1
+       jStart   =  sNy
+       jEnd     =  1
        jStride  = -1
        kStart   =  1
        kEnd     =  fldNz

@@ -1,6 +1,6 @@
 C $Header$
 C
 
-#undef ALLOW_CD
+#define ALLOW_CD
 
 #include "CPP_EEOPTIONS.h"

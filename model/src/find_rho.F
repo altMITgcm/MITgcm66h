@@ -53,7 +53,7 @@ C **********
      &   -tAlpha*(theta(i,j,k,bi,bj)-refTemp) )
         enddo
        enddo
-
+       
       elseif (eqn.eq.'POLY3') then
 
        refTemp=eosRefT(kRef)

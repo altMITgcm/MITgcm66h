@@ -185,7 +185,7 @@ C     \========================================================================/
        DO K = 1, Nz
        DO I = 1, Nx
        DO J = 1, Ny
-         PMASK(_I3(Nz-K+1,I,J)) = TMPARRCM(I,J,K)
+         PMASK(_I3(K,I,J)) = TMPARRCM(I,J,K)
        ENDDO
        ENDDO
        ENDDO

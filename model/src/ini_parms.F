@@ -436,6 +436,7 @@ C     Initialize EOS coefficients (3rd order polynomial)
        usingSphericalPolarMterms = .TRUE.
        metricTerms = .TRUE.
        mTFacMom = 1
+
       ENDIF
 
 C--   Input files
