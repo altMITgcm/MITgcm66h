@@ -70,7 +70,6 @@ C--    Write "text-plots" of certain fields
 C--   Write model state to binary file
       CALL WRITE_STATE( .FALSE., myCurrentTime, myIter, myThid )
 
-      _BARRIER
 C
       RETURN
       END
