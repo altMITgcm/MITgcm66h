@@ -236,7 +236,7 @@ C-    update also CG2D matrix (and preconditioner)
       IF ( momStepping .AND. nonlinFreeSurf.GT.2 ) THEN
         CALL TIMER_START('UPDATE_CG2D        [FORWARD_STEP]',myThid)
         CALL UPDATE_CG2D( myTime, myIter, myThid )
-        CALL TIMER_STOP ('UPDATE_CG2D       [FORWARD_STEP]',myThid)
+        CALL TIMER_STOP ('UPDATE_CG2D        [FORWARD_STEP]',myThid)
       ENDIF
 #endif
 
