@@ -99,13 +99,13 @@ C     aS2d: integral in Z Ay/dY
            faceArea = _dyG(I,J,bi,bj)*drF(K)
      &               *_hFacW(I,J,K,bi,bj)
            aW2d(I,J,bi,bj) = aW2d(I,J,bi,bj) + 
-     &      implicSurfPress*implicDiv2DFlow*
-     &      gBaro*faceArea*recip_dxC(I,J,bi,bj)
+     &      implicSurfPress*implicDiv2DFlow
+     &           *faceArea*recip_dxC(I,J,bi,bj)
            faceArea = _dxG(I,J,bi,bj)*drF(K)
      &               *_hFacS(I,J,K,bi,bj)
            aS2d(I,J,bi,bj) = aS2d(I,J,bi,bj) + 
-     &      implicSurfPress*implicDiv2DFlow*
-     &      gBaro*faceArea*recip_dyC(I,J,bi,bj)
+     &      implicSurfPress*implicDiv2DFlow
+     &           *faceArea*recip_dyC(I,J,bi,bj)
           ENDDO
          ENDDO
         ENDDO
@@ -194,19 +194,19 @@ C           defaults to 0.51 but can be set at runtime.
           aC = -(
      &     aW2d(I,J,bi,bj) + aW2d(I+1,J  ,bi,bj)
      &    +aS2d(I,J,bi,bj) + aS2d(I  ,J+1,bi,bj)
-     &    +freeSurfFac*myNorm* horiVertRatio*
+     &    +freeSurfFac*myNorm*recip_Bo(I,J,bi,bj)* 
      &     rA(I,J,bi,bj)/deltaTMom/deltaTMom
      &    )
           aCs = -(
      &     aW2d(I,J-1,bi,bj) + aW2d(I+1,J-1,bi,bj)
      &    +aS2d(I,J-1,bi,bj) + aS2d(I  ,J  ,bi,bj)
-     &    +freeSurfFac*myNorm* horiVertRatio*
+     &    +freeSurfFac*myNorm*recip_Bo(I,J-1,bi,bj)* 
      &     rA(I,J-1,bi,bj)/deltaTMom/deltaTMom
      &    )
           aCw = -(
      &     aW2d(I-1,J,bi,bj) + aW2d(I  ,J  ,bi,bj)
      &    +aS2d(I-1,J,bi,bj) + aS2d(I-1,J+1,bi,bj)
-     &    +freeSurfFac*myNorm* horiVertRatio*
+     &    +freeSurfFac*myNorm*recip_Bo(I-1,J,bi,bj)* 
      &     rA(I-1,J,bi,bj)/deltaTMom/deltaTMom
      &    )
           IF ( aC .EQ. 0. ) THEN
