@@ -481,6 +481,12 @@ c
 CADJ STORE surfaceForcingS    = comlev1, key = ikey_dynamics
 CADJ STORE surfaceForcingT    = comlev1, key = ikey_dynamics
 CADJ STORE surfaceForcingTice = comlev1, key = ikey_dynamics
+ctest(
+CADJ STORE IVDConvCount       = comlev1, key = ikey_dynamics
+ctest)
+# ifdef ALLOW_PTRACERS
+CADJ STORE surfaceForcingPtr  = comlev1, key = ikey_dynamics
+# endif
 c
 # ifdef ALLOW_GMREDI
 CADJ STORE Kwx                = comlev1, key = ikey_dynamics
@@ -495,6 +501,8 @@ c
 # ifdef ALLOW_KPP
 CADJ STORE KPPghat            = comlev1, key = ikey_dynamics
 CADJ STORE KPPfrac            = comlev1, key = ikey_dynamics
+CADJ STORE KPPdiffKzS         = comlev1, key = ikey_dynamics
+CADJ STORE KPPdiffKzT         = comlev1, key = ikey_dynamics
 # endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
