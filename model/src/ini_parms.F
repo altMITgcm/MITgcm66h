@@ -127,7 +127,7 @@ C--   Continuous equation parameters
      & gravitySign,
      & gravity, gBaro, rhonil, tAlpha, sBeta, 
      & f0, beta, omega, rotationPeriod,
-     & viscAh, viscAhW, viscAhMax, viscAhGrid, viscC2leith,
+     & viscAh, viscAhMax, viscAhGrid, viscC2leith,
      & viscA4, viscA4Max, viscA4Grid, viscC4leith,
      & viscAz,  cosPower, viscAstrain, viscAtension,
      & diffKhT, diffKzT, diffK4T, 
@@ -299,7 +299,6 @@ C--   Read settings from model parameter file "data".
       REWIND(iUnit)
 
 C--   Set default "physical" parameters
-      viscAhW  = UNSET_RL
       viscAz   = UNSET_RL    
       viscAr   = UNSET_RL
       viscAp   = UNSET_RL
@@ -429,8 +428,6 @@ C--   Advection and Forcing for Temp and salt  on/off flags
       saltImplVertAdv = saltAdvection .AND. saltImplVertAdv
       IF (tempVertAdvScheme.EQ.0) tempVertAdvScheme = tempAdvScheme
       IF (saltVertAdvScheme.EQ.0) saltVertAdvScheme = saltAdvScheme
-C--  horizontal viscosity for vertical moments
-      IF ( viscAhW .EQ. UNSET_RL ) viscAhW = viscAh
 C--   z,p,r coord input switching.
       IF ( viscAz .NE. UNSET_RL ) zCoordInputData = .TRUE.
       IF ( viscAp .NE. UNSET_RL ) pCoordInputData = .TRUE.

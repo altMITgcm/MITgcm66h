@@ -415,9 +415,6 @@ C     omega     :: Angular velocity ( rad/s )
 C     rotationPeriod :: Rotation period (s) (= 2.pi/omega)
 C     viscAh    :: Eddy viscosity coeff. for mixing of
 C                 momentum laterally ( m^2/s )
-C     viscAhW   :: Eddy viscosity coeff. for mixing of vertical
-C                 momentum laterally, no effect for hydrostatic
-C                 model, defaults to viscAh if unset ( m^2/s )
 C     viscAr    :: Eddy viscosity coeff. for mixing of
 C                 momentum vertically ( units of r^2/s )
 C     viscA4    :: Biharmonic viscosity coeff. for mixing of
@@ -525,7 +522,7 @@ C      --"-"--  Quadratic  ( linear: 1/s, quadratic: 1/m )
      & abeps, startTime, 
      & phiMin, thetaMin, rSphere, recip_RSphere, f0, beta,
      & fCori, fCoriG, fCoriCos,
-     & viscAh, viscAhW, viscAhMax, viscAhGrid, viscC2leith,
+     & viscAh,  viscAhMax, viscAhGrid, viscC2leith,
      & viscA4,  viscA4Max, viscA4Grid, viscC4leith,
      & viscAr, viscAstrain, viscAtension,
      & diffKhT, diffK4T, diffKrT,
@@ -581,7 +578,6 @@ C      --"-"--  Quadratic  ( linear: 1/s, quadratic: 1/m )
       _RL hFacSup
       _RL beta
       _RL viscAh
-      _RL viscAhW
       _RL viscAhMax
       _RL viscAhGrid
       _RL viscC2leith

@@ -160,10 +160,9 @@ c
         IF (useMNC .AND. autodiff_mnc) THEN
 c
           CALL MNC_CW_SET_UDIM('adstate', -1, myThid)
-          CALL MNC_CW_I_W_S('I','adstate',0,0,'iter',myIter,myThid)
+          CALL MNC_CW_I_W('I','adstate',0,0,'iter', myIter, myThid)
           CALL MNC_CW_SET_UDIM('adstate', 0, myThid)
-          CALL MNC_CW_RL_W_S('D','adstate',0,0,'model_time',myTime,
-     &         myThid)
+          CALL MNC_CW_RL_W('D','adstate',0,0,'model_time',myTime,myThid)
 c
           CALL MNC_CW_RL_W('D','adstate',0,0,'adU', aduVel, myThid)
           CALL MNC_CW_RL_W('D','adstate',0,0,'adV', advVel, myThid)

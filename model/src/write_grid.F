@@ -139,14 +139,12 @@ C       Grid spacing, areas and hFacs
      &       'y u-velocity separation',myThid)
         CALL MNC_CW_ADD_VATTR_TEXT('rA','description',
      &       'r-face area',myThid)
-C       Its pointless to write blank attributes so these should be
-C       filled in.
-C        CALL MNC_CW_ADD_VATTR_TEXT('rAw','description',
-C     &       '',myThid)
-C        CALL MNC_CW_ADD_VATTR_TEXT('rAs','description',
-C     &       '',myThid)
-C        CALL MNC_CW_ADD_VATTR_TEXT('rAz','description',
-C       &       '',myThid)
+        CALL MNC_CW_ADD_VATTR_TEXT('rAw','description',
+     &       '',myThid)
+        CALL MNC_CW_ADD_VATTR_TEXT('rAs','description',
+     &       '',myThid)
+        CALL MNC_CW_ADD_VATTR_TEXT('rAz','description',
+     &       '',myThid)
         CALL MNC_CW_ADD_VATTR_TEXT('fCori','description',
      &       'Coriolis f',myThid)
         CALL MNC_CW_ADD_VATTR_TEXT('fCoriG','description',
