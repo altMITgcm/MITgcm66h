@@ -60,27 +60,6 @@ C     within ptracers_forcing.
      &       + gchemTendency(I,J,K,bi,bj,iTracer)
        ENDDO
       ENDDO
-CML We will keep the old way of calling CFC??_FORCING for now, but eventually
-CML this can be deleted.
-CML#  ifdef ALLOW_CFC
-CMLccccccccccccccccccccccccc
-CMLc chemical forcing      c
-CMLccccccccccccccccccccccccc
-CMLccccccccccccccccccccccccccc CFC cccccccccccccccccccccccccccccccc
-CMLc
-CML         IF (iTracer.EQ.1.AND.k.EQ.1) THEN
-CML     &     call CFC11_Forcing( Ptracer(1-Olx,1-Oly,1,bi,bj,1),
-CML     &                          gPtr(1-Olx,1-Oly,1,bi,bj,1),
-CML     &                          bi,bj,imin,imax,jmin,jmax,
-CML     &                          myIter,myTime,myThid)
-CML        IF (iTracer.EQ.2.AND.k.EQ.1) 
-CML     &    call CFC12_Forcing( Ptracer(1-Olx,1-Oly,1,bi,bj,2),
-CML     &                          gPtr(1-Olx,1-Oly,1,bi,bj,2),
-CML     &                          bi,bj,imin,imax,jmin,jmax,
-CML     &                          myIter,myTime,myThid)
-CMLcccccccccccccccccccccccccc END CFC cccccccccccccccccccccccccccccccccc
-CMLc
-CML#  endif /* ALLOW_CFC */
 # endif /* GCHEM_SEPARATE_FORCING */
 #endif /* ALLOW_GCHEM */
 
