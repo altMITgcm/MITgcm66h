@@ -7,7 +7,7 @@ C Use this file for selecting options within the OBCS package
 
 #ifndef OBCS_OPTIONS_H
 #define OBCS_OPTIONS_H
-#include "PACKAGES_CONF.h"
+#include "PACKAGES_CONFIG.h"
 #ifdef ALLOW_OBCS
 
 #include "CPP_OPTIONS.h"

@@ -3,7 +3,7 @@ C $Name$
 cswdice modified for ice -- 25 Oct 01
 cswddic modified for dic -- 16 July 02
 
-#include "CPP_OPTIONS.h"
+#include "DIC_OPTIONS.h"
 #include "GCHEM_OPTIONS.h"
 
 CStartOfInterface

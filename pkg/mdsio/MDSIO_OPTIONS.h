@@ -3,7 +3,7 @@ C $Name$
 
 #ifndef MDSIO_OPTIONS_H
 #define MDSIO_OPTIONS_H
-#include "PACKAGES_CONF.h"
+#include "PACKAGES_CONFIG.h"
 #ifdef ALLOW_MDSIO
 
 #include "CPP_OPTIONS.h"

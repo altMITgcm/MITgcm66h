@@ -1,6 +1,6 @@
 C $Header$
 
-#include "CAL_CPPOPTIONS.h"
+#include "CAL_OPTIONS.h"
 
       integer function cal_NumInts(
      I                              date_a,

@@ -17,7 +17,7 @@ C Use this file for selecting options within the GAD package
 
 #ifndef GAD_OPTIONS_H
 #define GAD_OPTIONS_H
-#include "PACKAGES_CONF.h"
+#include "PACKAGES_CONFIG.h"
 #ifndef DISABLE_GENERIC_ADVDIFF
 
 #include "CPP_OPTIONS.h"

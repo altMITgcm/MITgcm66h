@@ -5,7 +5,7 @@ C Header file for package pkg/shap_filt
 
 #ifndef SHAP_FILT_OPTIONS_H
 #define SHAP_FILT_OPTIONS_H
-#include "PACKAGES_CONF.h"
+#include "PACKAGES_CONFIG.h"
 #ifdef ALLOW_SHAP_FILT
 
 #include "CPP_OPTIONS.h"

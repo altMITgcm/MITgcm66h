@@ -11,7 +11,7 @@ C     \==========================================================/
 
 #ifndef SBO_OPTIONS_H
 #define SBO_OPTIONS_H
-#include "PACKAGES_CONF.h"
+#include "PACKAGES_CONFIG.h"
 #ifdef ALLOW_SBO
 
 #include "CPP_OPTIONS.h"

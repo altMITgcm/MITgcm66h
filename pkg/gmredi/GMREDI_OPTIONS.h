@@ -7,7 +7,7 @@ C Use this file for selecting options within the GM/Redi package
 
 #ifndef GMREDI_OPTIONS_H
 #define GMREDI_OPTIONS_H
-#include "PACKAGES_CONF.h"
+#include "PACKAGES_CONFIG.h"
 #ifdef ALLOW_GMREDI
 
 #include "CPP_OPTIONS.h"

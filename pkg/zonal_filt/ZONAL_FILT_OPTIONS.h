@@ -3,7 +3,7 @@ C $Name$
 
 #ifndef ZONAL_FILT_OPTIONS_H
 #define ZONAL_FILT_OPTIONS_H
-#include "PACKAGES_CONF.h"
+#include "PACKAGES_CONFIG.h"
 #ifdef ALLOW_ZONAL_FILT
 
 #include "CPP_OPTIONS.h"

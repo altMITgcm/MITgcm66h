@@ -3,7 +3,7 @@ C $Name$
 
 #ifndef TIMEAVE_OPTIONS_H
 #define TIMEAVE_OPTIONS_H
-#include "PACKAGES_CONF.h"
+#include "PACKAGES_CONFIG.h"
 #ifdef ALLOW_TIMEAVE
 
 #include "CPP_OPTIONS.h"

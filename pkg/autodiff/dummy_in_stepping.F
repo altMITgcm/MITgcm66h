@@ -1,6 +1,6 @@
 C $Header$
 
-#include "CPP_OPTIONS.h"
+#include "AUTODIFF_OPTIONS.h"
 
       subroutine dummy_in_stepping( mytime, myiter, myThid )
       IMPLICIT NONE

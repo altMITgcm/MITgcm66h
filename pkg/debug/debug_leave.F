@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "DEBUG_OPTIONS.h"
 
       SUBROUTINE DEBUG_LEAVE(
      I                text,

@@ -7,7 +7,7 @@ C Use this file for selecting options within the monitor package
 
 #ifndef MONITOR_OPTIONS_H
 #define MONITOR_OPTIONS_H
-#include "PACKAGES_CONF.h"
+#include "PACKAGES_CONFIG.h"
 #ifdef ALLOW_MONITOR
 
 #include "CPP_OPTIONS.h"

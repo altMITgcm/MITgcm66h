@@ -5,7 +5,7 @@ C  CPP options file for AIM package
 
 #ifndef AIM_OPTIONS_H
 #define AIM_OPTIONS_H
-#include "PACKAGES_CONF.h"
+#include "PACKAGES_CONFIG.h"
 #ifdef ALLOW_AIM
 
 #include "CPP_OPTIONS.h"

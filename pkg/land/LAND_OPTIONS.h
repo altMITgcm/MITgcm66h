@@ -5,7 +5,7 @@ C  CPP options file for Land package
 
 #ifndef LAND_OPTIONS_H
 #define LAND_OPTIONS_H
-#include "PACKAGES_CONF.h"
+#include "PACKAGES_CONFIG.h"
 #ifdef ALLOW_LAND
 
 #include "CPP_OPTIONS.h"

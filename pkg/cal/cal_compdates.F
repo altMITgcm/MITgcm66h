@@ -1,6 +1,6 @@
 C $Header$
 
-#include "CAL_CPPOPTIONS.h"
+#include "CAL_OPTIONS.h"
 
       logical function cal_CompDates(
      I                                date_a,

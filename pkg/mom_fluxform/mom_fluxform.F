@@ -25,7 +25,7 @@ C where ${\bf v}=(u,v,w)$ and $\tau$, the stress tensor, includes surface
 C stresses as well as internal viscous stresses.
 CEOI
 
-#include "CPP_OPTIONS.h"
+#include "MOM_FLUXFORM_OPTIONS.h"
 
 CBOP
 C !ROUTINE: MOM_FLUXFORM

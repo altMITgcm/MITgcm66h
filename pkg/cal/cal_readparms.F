@@ -1,5 +1,5 @@
 
-#include "CAL_CPPOPTIONS.h"
+#include "CAL_OPTIONS.h"
 
       subroutine cal_readparms( mythid )
 

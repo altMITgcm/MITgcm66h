@@ -1,6 +1,6 @@
 C $Header$
 
-#include "CAL_CPPOPTIONS.h"
+#include "CAL_OPTIONS.h"
 
       subroutine cal_PrintDate(
      I                          caldate,

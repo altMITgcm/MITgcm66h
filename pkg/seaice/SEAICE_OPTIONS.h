@@ -11,7 +11,7 @@ C     \==========================================================/
 
 #ifndef SEAICE_OPTIONS_H
 #define SEAICE_OPTIONS_H
-#include "PACKAGES_CONF.h"
+#include "PACKAGES_CONFIG.h"
 #ifdef ALLOW_SEAICE
 
 #include "CPP_OPTIONS.h"

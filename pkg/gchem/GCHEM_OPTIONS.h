@@ -3,7 +3,7 @@ C $Name$
 
 #ifndef GCHEM_OPTIONS_H
 #define GCHEM_OPTIONS_H
-#include "PACKAGES_CONF.h"
+#include "PACKAGES_CONFIG.h"
 #ifdef ALLOW_GCHEM
 
 CBOP

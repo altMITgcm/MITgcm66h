@@ -7,7 +7,7 @@ C Use this file for selecting CPP options within the mom_fluxform package
 
 #ifndef MOM_FLUXFORM_OPTIONS_H
 #define MOM_FLUXFORM_OPTIONS_H
-#include "PACKAGES_CONF.h"
+#include "PACKAGES_CONFIG.h"
 #ifdef ALLOW_MOM_FLUXFORM
 
 #include "CPP_OPTIONS.h"

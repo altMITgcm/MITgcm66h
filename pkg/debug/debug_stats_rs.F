@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "DEBUG_OPTIONS.h"
 
       SUBROUTINE DEBUG_STATS_RS(
      I                myNr, arr, arrName,
