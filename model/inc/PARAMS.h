@@ -180,7 +180,6 @@ C     usingPCoords     - Set to indicate that we are working in pressure
 C                        coords.
 C     usingZCoords     - Set to indicate that we are working in height
 C                        coords.
-C     openBoundaries - Using open-boundaries
 C     nonHydrostatic - Using non-hydrostatic terms
 C     globalFiles    - Selects between "global" and "tiled" files
 C     allowFreezing  - Allows water to freeze and form ice
@@ -198,7 +197,7 @@ C     groundAtK1  - put the surface(k=1) at the Lower Boundary (=ground)
      & implicitDiffusion, implicitViscosity,
      & doThetaClimRelax, doSaltClimRelax,
      & periodicExternalForcing, usingPCoords, usingZCoords,
-     & openBoundaries, nonHydrostatic, globalFiles,
+     & nonHydrostatic, globalFiles,
      & allowFreezing, groundAtK1
       LOGICAL usingCartesianGrid
       LOGICAL usingSphericalPolarGrid
@@ -233,7 +232,6 @@ C     groundAtK1  - put the surface(k=1) at the Lower Boundary (=ground)
       LOGICAL periodicExternalForcing
       LOGICAL usingPCoords
       LOGICAL usingZCoords
-      LOGICAL openBoundaries
       LOGICAL nonHydrostatic
       LOGICAL globalFiles
       LOGICAL allowFreezing
@@ -484,37 +482,10 @@ C     sBeta     - Linear EOS haline contraction coefficient.
       _RL sBeta
       character*(6) eosType
 
-C These are input arrays (of integers) that contain the *absolute*
-C computational index of an open-boundary (OB) point.
-C A zero (0) element means there is no corresponding OB in that column/row.
-C The computational coordinate refers to "tracer" cells.
-C For a northern/southern OB, the OB V point is to the south/north.
-C For an eastern/western OB, the OB U point is to the west/east.
-C eg.
-C     OB_Jnorth(3)=34  means that: 
-C          T( 3 ,34) is a an OB point
-C          U(3:4,34) is a an OB point
-C          V( 4 ,34) is a an OB point
-C while
-C     OB_Jsouth(3)=1  means that:
-C          T( 3 ,1) is a an OB point
-C          U(3:4,1) is a an OB point
-C          V( 4 ,2) is a an OB point
-C 
-C For convenience, negative values for Jnorth/Ieast refer to
-C points relative to the Northern/Eastern edges of the model
-C eg. OB_Jnorth(3)=-1  means that the point (3,Ny-1) is a northern O-B.
-C
-      COMMON /PARM_OB/
-     & OB_Jnorth,OB_Jsouth,OB_Ieast,OB_Iwest
-      INTEGER OB_Jnorth(Nx)
-      INTEGER OB_Jsouth(Nx)
-      INTEGER OB_Ieast(Ny)
-      INTEGER OB_Iwest(Ny)
-
 C Logical flags for selecting packages
       LOGICAL useKPP
       LOGICAL useGMRedi
+      LOGICAL useOBCS
       LOGICAL useECCO
       COMMON /PARM_PACKAGES/
-     &        useKPP, useGMRedi, useECCO
+     &        useKPP, useGMRedi, useOBCS, useECCO

@@ -104,7 +104,7 @@ CADJ STORE vvel (:,:,k,bi,bj) = comlev1_bibj, key = ikey, byte = isbyte
 CADJ STORE theta(:,:,k,bi,bj) = comlev1_bibj, key = ikey, byte = isbyte
 CADJ STORE salt (:,:,k,bi,bj) = comlev1_bibj, key = ikey, byte = isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
-          IF (openBoundaries) THEN
+          IF (useOBCS) THEN
             CALL OBCS_APPLY_UV(bi,bj,K,uVel,vVel,myThid)
           ENDIF
 #endif    /* ALLOW_OBCS */

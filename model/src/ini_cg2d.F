@@ -71,7 +71,7 @@ C     aS2d: integral in Z Ay/dY
          ENDDO
         ENDDO
 #ifdef ALLOW_OBCS
-        IF (openBoundaries) THEN
+        IF (useOBCS) THEN
          DO I=1,sNx
           IF (OB_Jn(I,bi,bj).NE.0) aS2d(I,OB_Jn(I,bi,bj),bi,bj)=0.
           IF (OB_Jn(I,bi,bj).NE.0) aS2d(I,OB_Jn(I,bi,bj)+1,bi,bj)=0.

@@ -1,11 +1,12 @@
 C $Header$
+C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "OBCS_OPTIONS.h"
 
-      SUBROUTINE OBCS_INIT( myThid )
+      SUBROUTINE OBCS_INIT_FIXED( myThid )
 C     /==========================================================\
-C     | SUBROUTINE OBCS_INIT                                     |
-C     | o Initialise OBCs arrays                                 |
+C     | SUBROUTINE OBCS_INIT_FIXED                               |
+C     | o Initialise OBCs fixed arrays                           |
 C     |==========================================================|
 C     |                                                          |
 C     \==========================================================/
@@ -27,7 +28,6 @@ C     == Local variables ==
       INTEGER iG, jG, iGm, jGm
       INTEGER bi, bj
       INTEGER I, J, K
-c
 
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
@@ -63,36 +63,9 @@ c
          ENDDO
         ENDDO
 
-        DO K=1,Nr
-         DO I=1-Olx,sNx+Olx
-          OBNu(I,K,bi,bj)=0.
-          OBNv(I,K,bi,bj)=0.
-          OBNt(I,K,bi,bj)=0.
-          OBSu(I,K,bi,bj)=0.
-          OBSv(I,K,bi,bj)=0.
-          OBSt(I,K,bi,bj)=0.
-#ifdef ALLOW_NONHYDROSTATIC
-          OBNw(I,K,bi,bj)=0.
-          OBSw(I,K,bi,bj)=0.
-#endif
-         ENDDO
-         DO J=1-Oly,sNy+Oly
-          OBEu(J,K,bi,bj)=0.
-          OBEv(J,K,bi,bj)=0.
-          OBEt(J,K,bi,bj)=0.
-          OBWu(J,K,bi,bj)=0.
-          OBWv(J,K,bi,bj)=0.
-          OBWt(J,K,bi,bj)=0.
-#ifdef ALLOW_NONHYDROSTATIC
-          OBEw(J,K,bi,bj)=0.
-          OBWw(J,K,bi,bj)=0.
-#endif
-         ENDDO
-        ENDDO
-
        ENDDO
       ENDDO
 
-#endif
+#endif /* ALLOW_OBCS */
       RETURN
       END

@@ -283,15 +283,12 @@ C--       Integrate continuity vertically for vertical velocity
      I                         myThid )
 
 #ifdef    ALLOW_OBCS
+#ifdef    ALLOW_NONHYDROSTATIC
 C--       Calculate future values on open boundaries
-          IF (openBoundaries) THEN
-#ifdef      ALLOW_NONHYDROSTATIC
-            IF (nonHydrostatic) THEN
-              CALL OBCS_APPLY_W( bi, bj, k, wVel, myThid )
-            ENDIF
-#endif      /* ALLOW_NONHYDROSTATIC */
-            CALL OBCS_CALC( bi, bj, k, myTime+deltaT, myThid )
+          IF (useOBCS.AND.nonHydrostatic) THEN
+            CALL OBCS_APPLY_W( bi, bj, k, wVel, myThid )
           ENDIF
+#endif    /* ALLOW_NONHYDROSTATIC */
 #endif    /* ALLOW_OBCS */
 
 C--       Calculate gradients of potential density for isoneutral
@@ -327,6 +324,15 @@ c ==> should use sigmaR !!!
 
 C--     end of diagnostic k loop (Nr:1)
         ENDDO
+
+#ifdef  ALLOW_OBCS
+C--     Calculate future values on open boundaries
+        IF (useOBCS) THEN
+          CALL OBCS_CALC( bi, bj, myTime+deltaT,
+     I            uVel, vVel, wVel, theta, salt,
+     I            myThid )
+        ENDIF
+#endif  /* ALLOW_OBCS */
 
 C--     Determines forcing terms based on external fields
 C       relaxation terms, etc.
@@ -436,7 +442,7 @@ C        and step forward storing result in gTnm1, gSnm1, etc.
 
 #ifdef   ALLOW_OBCS
 C--      Apply open boundary conditions
-         IF (openBoundaries) THEN
+         IF (useOBCS) THEN
            CALL OBCS_APPLY_TS( bi, bj, k, gTnm1, gSnm1, myThid )
          END IF
 #endif   /* ALLOW_OBCS */
@@ -487,7 +493,7 @@ C--     Implicit diffusion
 
 #ifdef   ALLOW_OBCS
 C--      Apply open boundary conditions
-         IF (openBoundaries) THEN
+         IF (useOBCS) THEN
            DO K=1,Nr
              CALL OBCS_APPLY_TS( bi, bj, k, gTnm1, gSnm1, myThid )
            ENDDO
@@ -546,7 +552,7 @@ C        and step forward storing the result in gUnm1, gVnm1, etc...
 
 #ifdef   ALLOW_OBCS
 C--      Apply open boundary conditions
-         IF (openBoundaries) THEN
+         IF (useOBCS) THEN
            CALL OBCS_APPLY_UV( bi, bj, k, gUnm1, gVnm1, myThid )
          END IF
 #endif   /* ALLOW_OBCS */
@@ -591,7 +597,7 @@ C--     Implicit viscosity
 
 #ifdef   ALLOW_OBCS
 C--      Apply open boundary conditions
-         IF (openBoundaries) THEN
+         IF (useOBCS) THEN
            DO K=1,Nr
              CALL OBCS_APPLY_UV( bi, bj, k, gUnm1, gVnm1, myThid )
            ENDDO

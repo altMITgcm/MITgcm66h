@@ -103,7 +103,7 @@ caja &     +drF(K-1)*_hFacC(i,j,k-1,bi,bj)*0.5
         ENDDO
 #ifdef ALLOW_OBCS
         DO K=1,Nr
-         IF (openBoundaries) THEN
+         IF (useOBCS) THEN
           DO I=1,sNx
            IF (OB_Jn(I,bi,bj).NE.0) THEN
             aS3d(I,OB_Jn(I,bi,bj),K,bi,bj)=0.

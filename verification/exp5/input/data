@@ -64,7 +64,3 @@
  &PARM05
  surfQfile='Qnet.circle',
  &
-
-# Open-boundaries
- &PARM06
- &

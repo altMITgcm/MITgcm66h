@@ -100,7 +100,7 @@ C--   Continuous equation parameters
      & viscAp, diffKpT, diffKpS, hFacMinDp,
      & rhoConst, buoyancyRelation, HeatCapacity_Cp,
      & writeBinaryPrec, readBinaryPrec, writeStatePrec,
-     & openBoundaries, nonHydrostatic, globalFiles,
+     & nonHydrostatic, globalFiles,
      & allowFreezing, ivdc_kappa,
      & nShap, zonal_filt_lat, zonal_filt_sinpow, zonal_filt_cospow,
      & bottomDragLinear,bottomDragQuadratic
@@ -132,10 +132,6 @@ C--   Input files
      & thetaClimFile, saltClimFile,
      & surfQfile, EmPmRfile, surfQswfile, 
      & uVelInitFile, vVelInitFile, pSurfInitFile
-
-C--   Open Boundaries
-      NAMELIST /PARM06/
-     & OB_Jnorth, OB_Jsouth, OB_Ieast, OB_Iwest
 
 C
       _BEGIN_MASTER(myThid)
@@ -774,21 +770,6 @@ C     being combined and a single frame of reference is needed.
       recip_horiVertRatio = 1./horiVertRatio
       IF ( zCoordInputData ) usingZCoords = .TRUE.
       IF ( pCoordInputData ) usingPCoords = .TRUE.
-
-C-- OBCS
-      IF (openBoundaries) THEN
-       READ(UNIT=iUnit,NML=PARM06)
-       DO J=1,Ny
-        if (OB_Ieast(J).lt.0) OB_Ieast(J)=OB_Ieast(J)+Nx+1
-       ENDDO
-       DO I=1,Nx
-        if (OB_Jnorth(I).lt.0) OB_Jnorth(I)=OB_Jnorth(I)+Ny+1
-       ENDDO
-       write(0,*) 'OB Jn =',OB_Jnorth
-       write(0,*) 'OB Js =',OB_Jsouth
-       write(0,*) 'OB Ie =',OB_Ieast
-       write(0,*) 'OB Iw =',OB_Iwest
-      ENDIF
 
 C
       CLOSE(iUnit)

@@ -40,6 +40,10 @@ C--   Initialize KPP parameters
       IF (useKPP) CALL KPP_READPARMS( myThid )
 #endif
 
+#ifdef ALLOW_OBCS
+      IF (useOBCS) CALL OBCS_READPARMS( myThid )
+#endif
+
 #ifdef INCLUDE_ECCO_PACKAGE
 c--   Initialize ECCO package parameters
       IF (useECCO) CALL ECCO_READPARMS ( myThid )

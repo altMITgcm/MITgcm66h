@@ -62,7 +62,3 @@
  hydrogSaltFile='salt.bin',
  bathyFile='topog.bin',
  &
-
-# Open-boundaries
- &PARM06
- &

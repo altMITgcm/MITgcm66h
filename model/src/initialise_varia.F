@@ -40,13 +40,6 @@ C     stored files.
       CALL INI_FIELDS( myThid )
       _BARRIER
 
-#ifdef ALLOW_OBCS
-C--   Open boundaries data
-      IF (openBoundaries) THEN
-        CALL OBCS_INIT( myThid )
-      ENDIF
-#endif
-
 C--   Initial conditions are convectively adjusted (for historical reasons)
       IF ( startTime .EQ. 0. ) THEN
         DO bj = myByLo(myThid), myByHi(myThid)
@@ -63,23 +56,8 @@ C--   Initial conditions are convectively adjusted (for historical reasons)
         _BARRIER
       END IF
 
-C--   Check dependances between packages
-      CALL PACKAGES_INIT( myThid )
-
-#ifdef ALLOW_OBCS
-C--   Calculate values on open boundaries at iter=nIter0
-      IF (openBoundaries) THEN
-        DO bj = myByLo(myThid), myByHi(myThid)
-         DO bi = myBxLo(myThid), myBxHi(myThid)
-          DO K=1,Nr
-           CALL OBCS_CALC( bi, bj, K, startTime, myThid )
-           CALL OBCS_APPLY_UV( bi, bj, k, uVel, vVel, myThid )
-           CALL OBCS_APPLY_TS( bi, bj, k, theta, salt, myThid )
-          ENDDO
-         ENDDO
-        ENDDO
-      ENDIF
-#endif
+C--   Initialize variable data for packages
+      CALL PACKAGES_INIT_VARIABLES( myThid )
 
 C--   Finally summarise the model state
       CALL STATE_SUMMARY( myThid )

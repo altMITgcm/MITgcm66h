@@ -150,8 +150,6 @@ C     == Local variables ==
      & '  /* Momentum pressure term on/off flag */')
       CALL WRITE_0D_L( tempStepping,  INDEX_NONE,
      & 'tempStepping =', '  /* Temperature equation on/off flag */')
-      CALL WRITE_0D_L( openBoundaries, INDEX_NONE,
-     & 'openBoundaries =', '  /* OpenBoundaries on/off flag */')
       CALL WRITE_0D_L( nonHydrostatic, INDEX_NONE,
      & 'nonHydrostatic =', '  /* Non-Hydrostatic on/off flag */')
       WRITE(msgBuf,'(A)') '//  '

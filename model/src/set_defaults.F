@@ -105,7 +105,6 @@ C--   Set default "physical" parameters
       metricTerms         = .FALSE.
       implicitDiffusion   = .FALSE.
       implicitViscosity   = .FALSE.
-      openBoundaries      = .FALSE.
       nonHydrostatic      = .FALSE.
       globalFiles         = .FALSE.
       allowFreezing       = .FALSE.
@@ -167,16 +166,6 @@ C--   Input files
       uVelInitFile    = ' '
       vVelInitFile    = ' '
       pSurfInitFile   = ' '
-
-C--   OBCS
-      DO I=1,Nx
-       OB_Jnorth(I)=0
-       OB_Jsouth(I)=0
-      ENDDO
-      DO J=1,Ny
-       OB_Ieast(J)=0
-       OB_Iwest(J)=0
-      ENDDO
 
 C
       RETURN

@@ -35,14 +35,6 @@ C     an input file called data.
       CALL INI_PARMS( myThid )
       _BARRIER
 
-#ifdef ALLOW_OBCS
-C--   Open boundaries positions
-      IF (openBoundaries) THEN
-        CALL OBCS_INIT( myThid )
-      ENDIF
-#endif
-      _BARRIER
-
 C--   Set model grid.
 C     Variables defining model grid spacing are defined.
       CALL INI_GRID( myThid )
@@ -60,6 +52,18 @@ C     Volumes and areas are set according to grid and depth map.
 C--   Set coriolis operators
       CALL INI_CORI( myThid )
 
+C--   Configure packages
+      CALL PACKAGES_BOOT( myThid )
+
+C--   Read configuration parameters for packages
+      CALL PACKAGES_READPARMS( myThid )
+
+C--   Check dependances between packages
+      CALL PACKAGES_CHECK( myThid )
+
+C--   Call fixed data initialization phase of packages
+      CALL PACKAGES_INIT_FIXED( myThid )
+
 #ifdef ALLOW_ZONAL_FILT
 C--   Latitude circle filter initialisation
       CALL ZONAL_FILT_INIT(myThid)
@@ -73,15 +77,6 @@ C--   Set laplace operators for use in 2D conjugate gradient solver.
 C--   Set laplace operators for use in 3D conjugate gradient solver.
       CALL INI_CG3D( myThid )
 #endif
-
-C--   Configure packages
-      CALL PACKAGES_BOOT( myThid )
-
-C--   Read configuration parameters for packages
-      CALL PACKAGES_READPARMS( myThid )
-
-C--   Check dependances between packages
-      CALL PACKAGES_CHECK( myThid )
 
 C--   Finally summarise the model cofiguration
       CALL CONFIG_SUMMARY( myThid )

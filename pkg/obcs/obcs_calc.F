@@ -35,25 +35,17 @@ C     == Routine arguments ==
 
 C     == Local variables ==
       INTEGER I, J ,K
-      _RL recip_TimeScale,Uinflow
-c
-      recip_TimeScale=0./2000.
-      Uinflow = 0.25
 
 C     Eastern OB
       IF (useOrlanskiEast) THEN
-#ifdef ALLOW_ORLANSKI
         CALL ORLANSKI_EAST(
      &          bi, bj, futureTime, 
      &          uVel, vVel, wVel, theta, salt, 
      &          myThid )
-#endif
       ELSE
         DO K=1,Nr
           DO J=1-Oly,sNy+Oly
-            OBEu(J,K,bi,bj)=Uinflow
-     &       *cos(2.*PI*futureTime*recip_TimeScale)
-     &       *max(futureTime*recip_TimeScale,1.)
+            OBEu(J,K,bi,bj)=0.
             OBEv(J,K,bi,bj)=0.
             OBEt(J,K,bi,bj)=tRef(K)
             OBEs(J,K,bi,bj)=sRef(K)
@@ -66,18 +58,14 @@ C     Eastern OB
 
 C     Western OB
       IF (useOrlanskiWest) THEN
-#ifdef ALLOW_ORLANSKI
         CALL ORLANSKI_WEST(
      &          bi, bj, futureTime, 
      &          uVel, vVel, wVel, theta, salt, 
      &          myThid )
-#endif
       ELSE
         DO K=1,Nr
           DO J=1-Oly,sNy+Oly
-            OBWu(J,K,bi,bj)=Uinflow
-     &       *cos(2.*PI*futureTime*recip_TimeScale)
-     &       *max(futureTime*recip_TimeScale,1.)
+            OBWu(J,K,bi,bj)=0.
             OBWv(J,K,bi,bj)=0.
             OBWt(J,K,bi,bj)=tRef(K)
             OBWs(J,K,bi,bj)=sRef(K)
@@ -90,19 +78,15 @@ C     Western OB
 
 C         Northern OB, template for forcing
       IF (useOrlanskiNorth) THEN
-#ifdef ALLOW_ORLANSKI
         CALL ORLANSKI_NORTH(
      &          bi, bj, futureTime, 
      &          uVel, vVel, wVel, theta, salt, 
      &          myThid )
-#endif
       ELSE
         DO K=1,Nr
           DO I=1-Olx,sNx+Olx
-            OBNu(I,K,bi,bj)=Uinflow
-     &       *cos(2.*PI*futureTime*recip_TimeScale)
-     &       *max(futureTime*recip_TimeScale,1.)
             OBNv(I,K,bi,bj)=0.
+            OBNu(I,K,bi,bj)=0.
             OBNt(I,K,bi,bj)=tRef(K)
             OBNs(I,K,bi,bj)=sRef(K)
 #ifdef ALLOW_NONHYDROSTATIC
@@ -114,18 +98,14 @@ C         Northern OB, template for forcing
 
 C         Southern OB, template for forcing
       IF (useOrlanskiSouth) THEN   
-#ifdef ALLOW_ORLANSKI
         CALL ORLANSKI_SOUTH(
      &          bi, bj, futureTime, 
      &          uVel, vVel, wVel, theta, salt, 
      &          myThid )
-#endif
       ELSE
         DO K=1,Nr
           DO I=1-Olx,sNx+Olx
-            OBSu(I,K,bi,bj)=Uinflow
-     &       *cos(2.*PI*futureTime*recip_TimeScale)
-     &       *max(futureTime*recip_TimeScale,1.)
+            OBSu(I,K,bi,bj)=0.
             OBSv(I,K,bi,bj)=0.
             OBSt(I,K,bi,bj)=tRef(K)
             OBSs(I,K,bi,bj)=sRef(K)

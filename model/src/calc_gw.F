@@ -178,7 +178,7 @@ caja           and an hFacUS (above V points) too...
       ENDDO
 
 #ifdef ALLOW_OBCS
-      IF (openBoundaries) THEN
+      IF (useOBCS) THEN
 C--   This call is aesthetic: it makes the W field
 C     consistent with the OBs but this has no algorithmic
 C     impact. This is purely for diagnostic purposes.

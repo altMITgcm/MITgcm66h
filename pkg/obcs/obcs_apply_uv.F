@@ -1,6 +1,7 @@
 C $Header$
+C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "OBCS_OPTIONS.h"
 
       SUBROUTINE OBCS_APPLY_UV( bi, bj, K,
      U                          uFld, vFld,

@@ -41,5 +41,11 @@ C     msgBuf      - Informational/error meesage buffer
       IF (useGMRedi) CALL PACKAGES_CHECK_ERROR('GMREDI', myThid)
 #endif
 
-      return
-      end
+#ifdef ALLOW_OBCS
+      IF (useOBCS) CALL OBCS_CHECK( myThid )
+#else
+      IF (useOBCS) CALL PACKAGES_CHECK_ERROR('OBCS', myThid)
+#endif
+
+      RETURN
+      END

@@ -31,6 +31,7 @@ C--   data.pkg namelists
       NAMELIST /PACKAGES/
      &          useKPP,
      &          useGMRedi,
+     &          useOBCS,
      &          useECCO
 
 C     === Local variables ===
@@ -54,8 +55,8 @@ C     iUnit       - Work variable for IO unit number
 C--   Default package configuration
       useGMRedi=.FALSE.
       useKPP=.FALSE.
+      useOBCS=.FALSE.
       useECCO=.FALSE.
-
 
 C--   Read parameters from open data file
       READ(UNIT=iUnit,NML=PACKAGES)
