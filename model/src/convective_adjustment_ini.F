@@ -59,6 +59,8 @@ C     ConvectCount :: Convection freq. counter
       INTEGER i, j, K
       _RL rhoKm1(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL rhoK  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL weightA(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL weightB(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL ConvectCount(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
 CEOP
 
@@ -134,10 +136,36 @@ CADJ STORE rhoKm1(:,:)  = tapelev_ini_bibj_k, key=kkey, byte=isbyte
 CADJ STORE rhoK  (:,:)  = tapelev_ini_bibj_k, key=kkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 C-          Check static stability with layer below and mix as needed.
-            CALL CONVECT(
-     I           bi,bj,iMin,iMax,jMin,jMax,K,rhoKm1,rhoK,
-     U           ConvectCount,
-     I           myTime,myIter,myThid)
+c           CALL CONVECT(
+c    I           bi,bj,iMin,iMax,jMin,jMax,K,rhoKm1,rhoK,
+c    U           ConvectCount,
+c    I           myTime,myIter,myThid)
+
+C-          Pre-calculate mixing weights for interface K
+            CALL CONVECTIVE_WEIGHTS(
+     I           bi,bj,K,rhoKm1,rhoK,
+     O           weightA,weightB,ConvectCount,
+     I           myThid)
+
+C-          Convectively mix heat across interface K
+            CALL CONVECTIVELY_MIXTRACER(
+     I                              bi,bj,k,weightA,weightB,
+     U                              theta,
+     I                              myThid)
+
+C-          Convectively mix salt across interface K
+            CALL CONVECTIVELY_MIXTRACER(
+     I                              bi,bj,k,weightA,weightB,
+     U                              salt,
+     I                              myThid)
+
+#ifdef ALLOW_PASSIVE_TRACER
+C-          Convectively mix passive tracer across interface K
+            CALL CONVECTIVELY_MIXTRACER(
+     I                              bi,bj,k,weightA,weightB,
+     U                              Tr1,
+     I                              myThid)
+#endif /* ALLOW_PASSIVE_TRACER */
 
 C--       End DO K=1,Nr
           ENDDO
