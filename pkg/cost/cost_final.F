@@ -28,6 +28,7 @@ c     == global variables ==
 
 #include "EEPARAMS.h"
 #include "SIZE.h"
+#include "PARAMS.h"
 
 #include "cost.h"
 #include "ctrl.h"
@@ -95,6 +96,10 @@ c--   Do global summation.
       _GLOBAL_SUM_R8( fc , myThid )
 
 #endif /* ALLOW_COST_VECTOR */
+
+c--   set averaging freq. to zero to avoid re-write of
+c--   averaged fields in reverse checkpointing loops
+      taveFreq = 0.
 
 #endif /* ALLOW_COST */
 
