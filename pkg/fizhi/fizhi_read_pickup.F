@@ -75,8 +75,8 @@ C       Read fields as consecutive records
        CALL MDSREADFIELD(fn,prec,'RL',Nrphys,fccavesw,16,myThid)
        CALL MDSREADFIELD(fn,prec,'RL',Nrphys,temp,17,myThid)
 
-       do bj = 1,Nsy 
-       do bi = 1,Nsx 
+       do bj = 1,myByLo(myThid), myByHi(myThid)
+       do bi = 1,myBxLo(myThid), myBxHi(myThid)
        do j = 1-OLy,sNy+OLy
        do i = 1-OLx,sNx+OLx
         raincon(i,j,bi,bj) = temp(i,j,1,bi,bj)

@@ -49,8 +49,8 @@ C     lgf     :: flag to write "global" files
       integer i,j,k,bi,bj
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
-      do bj = 1,Nsy
-      do bi = 1,Nsx
+      do bj = 1,myByLo(myThid), myByHi(myThid)
+      do bi = 1,myBxLo(myThid), myBxHi(myThid)
       do k = 1,Nrphys
       do j = 1-OLy,sNy+OLy
       do i = 1-OLx,sNx+OLx
@@ -100,8 +100,8 @@ C--   Write fields as consecutive records
       CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nrphys,fccavesw,16,myIter,
      .                                                          myThid)
 
-      do bj = 1,Nsy
-      do bi = 1,Nsx
+      do bj = myByLo(myThid), myByHi(myThid)
+      do bi = myBxLo(myThid), myBxHi(myThid)
       do j = 1,sNy
       do i = 1,sNx
        temp(i,j,1,bi,bj) = raincon(i,j,bi,bj)
