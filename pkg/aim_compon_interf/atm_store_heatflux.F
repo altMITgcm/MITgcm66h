@@ -57,7 +57,6 @@ C       is the incoming short-wave radiation that is absorbed by the ocean/land.
 C       Variable ALHC is the latent heat of evaporation/condensation (see 
 C       COMMON/PHYCON/, com_phycon.h).
 C        HeatFlux is defined with positive into the atmosphere, units are W/m^2 
-C       (* deltaTtracer).
 
        cplTimeFraction = 1. _d 0 / DFLOAT(cplSendFrq_iter)
        HeatFluxTime(bi,bj) = HeatFluxTime(bi,bj) + cplTimeFraction
