@@ -107,9 +107,6 @@ C--   Define the initial state : read from file
        ENDIF
        _END_MASTER(myThid)
 
-C-     to have a consistent initial stater: derive surface Temp, 
-C       & enthalpy (assuming liquid water only):
-
       ELSEIF ( land_calc_grT .OR. land_calc_grW ) THEN
 
 C--   Read Land package state variables from pickup file
@@ -123,8 +120,8 @@ C        load grT & grW from AIM surf. BC in S/R aim_land2aim
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
 
-C-     to have a consistent initial state: derive surface Temp, 
-C       & enthalpy (assuming liquid water only):
+C-     to have a consistent initial state: set surface Temp & enthalpy
+C       assuming all the water in 1 phase only (solid or liquid):
         IF ( ( startTime.EQ.0. .AND. nIter0.EQ.0 ) .OR.
      &   .NOT.( land_calc_grT .OR. land_calc_grW ) .OR.
      &       land_oldPickup ) THEN
