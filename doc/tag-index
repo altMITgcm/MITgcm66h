@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o add time-average diagnostic of U*V and vertical diffusive flux for theta.
+o bug fixed in convective adjustment diagnostic (multi-tile set-up).
+o 4th Order Adv scheme: return to previous (c40pre7) masking near boundaries.
+
 checkpoint50c_pre
 Merging from release1_p13:
 o bug fix for pkg/seaice dynamic solver
