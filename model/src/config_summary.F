@@ -57,7 +57,7 @@ C     == Local variables ==
 
       RETURN
   100 FORMAT(A,
-     &'$Name$'
+     &' '
      &)
       END
 
