@@ -213,7 +213,7 @@ C $Name$
          enddo
         enddo
         enddo
-        call fill_diagnostics(myThid,'UVELMASS',0,Nr,0,1,1,salt)
+        call fill_diagnostics(myThid,'UVELMASS',0,Nr,0,1,1,dummy)
 
         do bj = myByLo(myThid), myByHi(myThid)
         do bi = myBxLo(myThid), myBxHi(myThid)
