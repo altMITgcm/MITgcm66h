@@ -74,6 +74,7 @@ C       range is all but first row and column in overlaps.
 C-      Calculate gradient of surface pressure
         CALL CALC_GRAD_ETA_SURF(
      I       bi,bj,iMin,iMax,jMin,jMax,
+     I       etaN,
      O       etaSurfX,etaSurfY,
      I       myThid )
 
@@ -118,11 +119,11 @@ C--     Convectively adjust new fields to be statically stable
      I       bi, bj, iMin, iMax, jMin, jMax,
      I       myTime, myIter, myThid )
 
-#ifdef INCLUDE_DIAGNOSTICS_INTERFACE_CODE
+#ifdef ALLOW_TIMEAVE
         IF (taveFreq.GT.0.) THEN 
-          CALL DO_TIME_AVERAGES(myTime, myIter, bi, bj, myThid)
+          CALL TIMEAVE_STATVARS(myTime, myIter, bi, bj, myThid)
         ENDIF
-#endif /* INCLUDE_DIAGNOSTICS_INTERFACE_CODE */
+#endif /* ALLOW_TIMEAVE */
 
        ENDDO
       ENDDO
