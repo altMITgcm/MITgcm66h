@@ -29,6 +29,14 @@ C     msgBuf      - Informational/error meesage buffer
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &     SQUEEZE_RIGHT , 1)
 
+C     So far, MY82 works only with oceanic z-coordinates
+      IF ( buoyancyRelation .NE. 'OCEANIC' ) THEN
+         WRITE(msgBuf,'(A)')
+     &      'MY82 works only with buoyancyRelation = ''OCEANIC'''
+         CALL PRINT_ERROR( msgBuf , 1)
+         STOP 'ABNORMAL END: S/R MY82_CHECK'
+      ENDIF
+
 C     MY82 needs convection turned off (will be packaged later)
       IF (cAdjFreq.NE.0.  .OR.
      &     ivdc_kappa.NE.0. ) THEN

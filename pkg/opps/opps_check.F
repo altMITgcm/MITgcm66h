@@ -29,6 +29,14 @@ C     msgBuf      - Informational/error meesage buffer
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &     SQUEEZE_RIGHT , 1)
 
+C     So far, OPPS works only with oceanic z-coordinates
+      IF ( buoyancyRelation .NE. 'OCEANIC' ) THEN
+         WRITE(msgBuf,'(A)')
+     &      'OPPS works only with buoyancyRelation = ''OCEANIC'''
+         CALL PRINT_ERROR( msgBuf , 1)
+         STOP 'ABNORMAL END: S/R OPPS_CHECK'
+      ENDIF
+
 C     OPPS needs convection turned off (will be packaged later)
       IF (cAdjFreq.NE.0. .OR.
      &     ivdc_kappa.NE.0. ) THEN
