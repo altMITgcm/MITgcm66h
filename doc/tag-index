@@ -3,6 +3,12 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint5
+ Created by AJA
+ contains updates to GM Redi
+ and reordered timestepping loop
+ for Implicit Diffusion.
+
 checkpoint4
  Created by cnh
  Contains memory saving macros ( _rdxc etc..) for when
