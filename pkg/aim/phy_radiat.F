@@ -401,7 +401,7 @@ C
 
       REAL FLUX(NGP), BRAD(NGP), STCOR(NGP)
       INTEGER NL1(NGP)
-      INTEGER IMODE, J0, Jl
+      INTEGER IMODE, J0, Jl, I2
 C
 Cchdbg
       INteger npas
