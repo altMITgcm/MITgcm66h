@@ -34,6 +34,9 @@ C     == Local variables ==
       INTEGER bi,bj,K,iMin,iMax,jMin,jMax
 
       _BARRIER
+C--   Initialize non-state field arrays (ie. Gu,Gv,...) to zero [always]
+      CALL INI_GARRAYS( myThid )
+
 C--   Initialise model fields.
 C     Starting values of U, V, W, temp., salt. and tendency terms
 C     are set here. Fields are either set to default or read from
