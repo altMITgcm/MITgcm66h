@@ -64,7 +64,7 @@ C       CALL LOAD_OFFLINE_FIELDS( myCurrentTime, myCurrentIter, myThid )
        ENDIF
 
 C--    Step forward fields and calculate time tendency terms
-       CALL DYNAMICS( myThid )
+       CALL DYNAMICS( myCurrentTime, myCurrentIter, myThid )
 
 C--    Do IO if needed.
 C      Note:

@@ -85,17 +85,13 @@ C     == Local variables ==
 C     I, J, K - Loop counters
       INTEGER i,j
       _RL afFacT, dfFacT
-      _RL dutdxFac
       _RL dTdx(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL dTdy(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
       afFacT = 1. _d 0
       dfFacT = 1. _d 0
-      dutdxFac = afFacT
 
-C---
 C---  Calculate advective and diffusive fluxes between cells.
-C---
 
 C--   Zonal flux (fZon is at west face of "theta" cell)
 C     Advective component of zonal flux
