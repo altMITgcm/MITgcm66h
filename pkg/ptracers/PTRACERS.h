@@ -22,7 +22,7 @@ C     PTRACERS parameters
       _RL PTRACERS_taveFreq
       _RL PTRACERS_diffKh(PTRACERS_num)
       _RL PTRACERS_diffK4(PTRACERS_num)
-      _RL PTRACERS_diffKr(PTRACERS_num)
+      _RL PTRACERS_diffKrNr(Nr,PTRACERS_num)
       INTEGER PTRACERS_advScheme(PTRACERS_num)
       INTEGER PTRACERS_numInUse
       LOGICAL PTRACERS_useGMRedi(PTRACERS_num)
@@ -36,12 +36,11 @@ C     PTRACERS parameters
       LOGICAL PTRACERS_read_mnc
       LOGICAL PTRACERS_write_mdsio
       LOGICAL PTRACERS_write_mnc
-      LOGICAL PTRACERS_write_ioinc
       COMMON /PTRACERS_PARAMS/
      &     PTRACERS_taveFreq,
      &     PTRACERS_diffKh,
      &     PTRACERS_diffK4,
-     &     PTRACERS_diffKr,
+     &     PTRACERS_diffKrNr,
      &     PTRACERS_numInUse,
      &     PTRACERS_advScheme,
      &     PTRACERS_initialFile,
@@ -54,8 +53,7 @@ C     PTRACERS parameters
      &     PTRACERS_read_mdsio,
      &     PTRACERS_read_mnc, 
      &     PTRACERS_write_mdsio,
-     &     PTRACERS_write_mnc,
-     &     PTRACERS_write_ioinc
+     &     PTRACERS_write_mnc
 
 C     pTracer  :: passive tracer concentration (tr per unit volume).
 C     gPtr     :: work-space for time-stepping
