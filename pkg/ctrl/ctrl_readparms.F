@@ -106,7 +106,10 @@ c--   Read the namelist input.
      &  xx_efluxp_file,
      &  xx_bottomdrag_file,
      &  doInitXX,
-     &  doPackDiag
+     &  doPackDiag,
+     &  doZscaleUnpack,
+     &  doZscalePack
+
 
       namelist /ctrl_packnames/
      &  yadmark, yctrlid, yctrlposunpack, yctrlpospack,
@@ -122,6 +125,8 @@ c--     Set default values.
         doAdmTlm            = .FALSE.
 #endif
         doPackDiag          = .FALSE.
+        doZscaleUnpack      = .FALSE.
+        doZscalePack        = .FALSE.
 
         xx_theta_file      = ' '
         xx_salt_file       = ' '
