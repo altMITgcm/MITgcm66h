@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+ecco_c50_e30
 o corrected CPP option mismatch in exf_Bulk... functions for case 
   #define ALLOW_ATM_WIND && #undef ALLOW_ATM_TEMP
 o Merging from release1_p13 and from icebear5
