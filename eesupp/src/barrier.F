@@ -1,4 +1,4 @@
-C $Id$
+C $Header$
 
 #include "CPP_EEOPTIONS.h"
 
@@ -210,5 +210,3 @@ CcnhDebugEnds
      
       RETURN
       END
-
-C $Id$

@@ -1,4 +1,3 @@
-C $Id$
 C $Header$
 
 C--   Get C preprocessor options
