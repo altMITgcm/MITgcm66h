@@ -59,7 +59,7 @@ C     aS2d: integral in Z Ay/dY
      &      gBaro*faceArea*_rdxC(I,J,bi,bj)
            faceArea = _dxG(I,J,bi,bj)*dzF(K)*_hFacS(I,J,K,bi,bj)
            aS2d(I,J,bi,bj) = aS2d(I,J,bi,bj) + 
-     &      gBaro*faceArea*rDyC(I,J,bi,bj)
+     &      gBaro*faceArea*_rdyC(I,J,bi,bj)
           ENDDO
          ENDDO
         ENDDO

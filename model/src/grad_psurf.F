@@ -36,7 +36,7 @@ C     Zonal pressure term
 C     Meridional pressure term
       DO j=jMin,jMax
        DO i=iMin,iMax
-        pSurfY(i,j)=rDyC(i,j,bi,bj)*
+        pSurfY(i,j)=_rdyC(i,j,bi,bj)*
      &   (cg2d_x(i,j,bi,bj)-cg2d_x(i,j-1,bi,bj))
      &   *gBaro*rhonil
        ENDDO

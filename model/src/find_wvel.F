@@ -58,7 +58,7 @@ C $Header$
        do j=jMin,jMax
         do i=iMin,iMax
          Wvel(i,j,k)=Wtrans(i,j)
-     &          *rdxF(i,j,bi,bj)*rdyF(i,j,bi,bj)	! should be 1/zA(...)
+     &          *_rdxF(i,j,bi,bj)*_rdyF(i,j,bi,bj)	! should be 1/zA(...)
         enddo
        enddo
 
