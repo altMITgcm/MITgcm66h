@@ -3,7 +3,9 @@
 # Open boundaries
 # ***************
  &PACKAGES
- useKPP	      = .TRUE.,
+ useKPP	      = .FALSE.,
  useGMRedi    = .FALSE.,
  useECCO      = .TRUE.,
+ useSeaice    = .FALSE.,
+ useGrdchk    = .FALSE.,
  &
