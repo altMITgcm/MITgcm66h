@@ -4,6 +4,7 @@ $Header$
     ==============================
 
 untagged
+o update advect_xz/output.txt (left from chekpoint50f_pre, ini_vel modif)
 o Mods and bug fixes to pkg/cal, pkg/exf, etc., needed for computation
   of tracer Green's fucntions for ocean inversion project.
 
