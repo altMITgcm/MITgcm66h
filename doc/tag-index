@@ -3,6 +3,11 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint50c_pre
+Merging from release1_p13:
+o bug fix for pkg/seaice dynamic solver
+o Added SEAICE_initialHEFF to pkg/seaice
+
 checkpoint50b_post
 o store u*,v* in gU,V instead of in guNm1,gvNm1
 o in order to put the momForcing out of the Adams-Bashforth:
