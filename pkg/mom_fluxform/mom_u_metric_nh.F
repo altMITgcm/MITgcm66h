@@ -53,8 +53,7 @@ CEOP
 
       DO j=1-Olx,sNy+Oly
        DO i=1-Olx+1,sNx+Olx
-         uMetricTerms(i,j) = 
-     &    -1.* uFld(i,j)*recip_RSphere
+         uMetricTerms(i,j) = uFld(i,j)*recip_RSphere
      &    *0.25*(wVelBottomOverride*
      &            (wFld(i-1,j,kp1,bi,bj)+wFld(i,j,kp1,bi,bj))
      &            +wFld(i-1,j, k ,bi,bj)+wFld(i,j, k ,bi,bj)

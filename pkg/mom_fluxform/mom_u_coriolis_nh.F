@@ -53,7 +53,7 @@ C Energy conserving discretization of 2*Omega*cos(phi)*w
       DO j=1-Oly,sNy+Oly-1
        DO i=1-Olx+1,sNx+Olx
         uCoriolisTerm(i,j) =
-     &   -0.5*( fCoriCos( i ,j,bi,bj)
+     &    0.5*( fCoriCos( i ,j,bi,bj)
      &         *0.5*( wFld( i ,j,k,bi,bj)+wFld( i ,j,kp1,bi,bj)*wMsk )
      &        + fCoriCos(i-1,j,bi,bj)
      &         *0.5*( wFld(i-1,j,k,bi,bj)+wFld(i-1,j,kp1,bi,bj)*wMsk ) )
