@@ -313,10 +313,10 @@ C--     end of diagnostic k loop (Nr:1)
         ENDDO
 
 #ifdef ALLOW_DIAGNOSTICS
-        IF ( usediagnostics .AND. 
+        IF ( useDiagnostics .AND. 
      &       (useGMRedi .OR. ivdc_kappa.NE.0.) ) THEN
-          CALL fill_diagnostics (myThid, 'DRHODR  ', 0, Nr,
-     &         3, bi, bj, sigmaR)
+          CALL DIAGNOSTICS_FILL (sigmaR, 'DRHODR  ', 0, Nr,
+     &         2, bi, bj, myThid)
         ENDIF
 #endif
 
