@@ -141,7 +141,7 @@ C--     Read model fields
         CALL MDSREADFIELD(fn,prec,'RL',Nr,gSnm1, 12,myThid)
         CALL MDSREADFIELD(fn,prec,'RL', 1,etaN,12*Nr+1,myThid)
 #ifdef NONLIN_FRSURF
-        IF ( nonlinFreeSurf.GE.0)
+        IF ( nonlinFreeSurf.GT.0)
      &  CALL MDSREADFIELD(fn,prec,'RL',1,etaH,12*Nr+2,myThid)
 #endif
 
