@@ -1588,7 +1588,7 @@ EOF
 	PACKAGES=`echo $PACKAGES | sed -e 's/mnc//g'`
 	DISABLE="$DISABLE mnc"
     else
-	( cd $ROOTDIR"/pkg/mnc" && $MAKE templates ) > make_mnc.errors 2>&1
+	( cd $ROOTDIR"/pkg/mnc" && $MAKE testclean && $MAKE templates ) > make_mnc.errors 2>&1
 	RETVAL=$?
 	if test "x${RETVAL}" = x0 ; then
 	    rm -f make_mnc.errors
