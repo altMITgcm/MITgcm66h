@@ -729,7 +729,7 @@ LN=
 S64=
 KPP=
 FC=
-CC=
+#CC=gcc
 CPP=
 LINK=
 DEFINES=
@@ -1138,14 +1138,14 @@ EOF
     exit 1
 fi
 if test "x$CC" = x ; then
-    cat <<EOF 1>&2
-
-Error: no C compiler: please specify using one of the following:
-  1) within the options file ("CC=...") as specified by "-of=OPTFILE"
-  2) the "-cc=XXX" command-line option
-  3) the "./genmake_local" file
-EOF
-    exit 1
+    CC=cc
+#     cat <<EOF 1>&2
+# Error: no C compiler: please specify using one of the following:
+#   1) within the options file ("CC=...") as specified by "-of=OPTFILE"
+#   2) the "-cc=XXX" command-line option
+#   3) the "./genmake_local" file
+# EOF
+#     exit 1
 fi
 if test "x$LINK" = x ; then
     LINK=$FC
