@@ -8,6 +8,11 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
+C Despite the comments below, this package is currently configured by
+C ECCO_CPPOPTIONS.h and so you should not customize this file.
+#define ALLOW_ECCO
+#include "ECCO_CPPOPTIONS.h"
+
 C CPP flags controlling which code is included in the files that
 C will be compiled.
 C
