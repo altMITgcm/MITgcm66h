@@ -600,9 +600,9 @@ for OPTFILE in $OPTFILES ; do
 	#  Verify that the testdir exists and contains previous 
 	#  results in the correct location--or skip this directory!
 	if test ! -r $dir"/results/output.txt" ; then
-	    echo | tee -a $SUMMARY
-	    echo "can't read \"$dir/results/output.txt\" -- skipping $dir" \
-		| tee -a $SUMMARY
+	    echo
+	    echo "can't read \"$dir/results/output.txt\" -- skipping $dir"
+	    echo
 	    continue
 	fi
 
