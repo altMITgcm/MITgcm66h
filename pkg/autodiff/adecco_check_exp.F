@@ -69,7 +69,9 @@ cph#include "CG2D_EXTERNAL.h"
 #include "FFIELDS.h"
 #include "GRID.h"
 #include "ctrl.h"
+#ifdef ALLOW_AUTODIFF_MONITOR
 #include "adcommon.h"
+#endif
 
 #ifdef ALLOW_KPP
 # include "KPP_OPTIONS.h"
@@ -86,6 +88,8 @@ c     mythid        - thread number for this instance of the routine.
       integer mycurrentiter
       _RL     mycurrenttime
       character yprefix*3
+
+#ifdef ALLOW_AUTODIFF_MONITOR
 
 cph#ifdef ALLOW_SNAPSHOTS
 
@@ -388,6 +392,8 @@ c--     SSS climatology:
       endif
 
 cph#endif / * ALLOW_SNAPSHOTS * /
+
+#endif /* ALLOW_AUTODIFF_MONITOR */
 
       return
       end
