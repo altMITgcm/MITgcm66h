@@ -88,7 +88,7 @@ C **********************************************************************
       do L=1,lm
        do j=1,jm
        do i=1,im
-        rf(i,j,L) = dampcoef*(1+tanh((z(i,j,L)-80000.)/5000.))/86400.
+        rf(i,j,L) = dampcoef*(1+tanh((z(i,j,L)-50000.)/5000.))/86400.
         rfu(i,j,L) = - rf(i,j,L) * u(i,j,L)
         rfv(i,j,L) = - rf(i,j,L) * v(i,j,L)
         rft(i,j,L) = -(u(i,j,L)*rfu(i,j,L) + v(i,j,L)*rfv(i,j,L) )*cpinv
