@@ -128,12 +128,14 @@ C       Note: if no fluid (continent) ==> ksurf = Nr+1
          DO I=1-Olx,sNx+Olx
           tmpfld(I,J,bi,bj) = 0.
           ksurfC(I,J,bi,bj) = Nr+1
+          maskH(i,j,bi,bj) = 0.
           Ro_surf(I,J,bi,bj) = R_low(I,J,bi,bj)
           DO K=Nr,1,-1
            Ro_surf(I,J,bi,bj) = Ro_surf(I,J,bi,bj)
      &                        + drF(k)*hFacC(I,J,K,bi,bj)
            IF (hFacC(I,J,K,bi,bj).NE.0.) THEN
             ksurfC(I,J,bi,bj) = k
+            maskH(i,j,bi,bj) = 1.
             tmpfld(i,j,bi,bj) = tmpfld(i,j,bi,bj) + 1.
            ENDIF
           ENDDO
