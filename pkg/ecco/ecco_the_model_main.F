@@ -102,13 +102,17 @@ c-- The following assumes the TAF option '-pure'
          CALL TIMER_STOP ('ADTHE_MAIN_LOOP            [MD RUN]', mythid)
          CALL COST_FINAL_STORE ( mythid )
          lastdiva = .FALSE.
+      ELSE
+         CALL TIMER_START('ADTHE_MAIN_LOOP       [ADJOINT RUN]', mythid)
+         CALL ADTHE_MAIN_LOOP ( mythid )
+         CALL TIMER_STOP ('ADTHE_MAIN_LOOP       [ADJOINT RUN]', mythid)
+         CALL COST_FINAL_RESTORE ( mythid, lastdiva )
       ENDIF
-# endif
+c--
+# else
       CALL TIMER_START('ADTHE_MAIN_LOOP          [ADJOINT RUN]', mythid)
       CALL ADTHE_MAIN_LOOP ( mythid )
       CALL TIMER_STOP ('ADTHE_MAIN_LOOP          [ADJOINT RUN]', mythid)
-# ifdef ALLOW_DIVIDED_ADJOINT
-      CALL COST_FINAL_RESTORE ( mythid, lastdiva )
 # endif
 c--
 #elif (defined (ALLOW_TANGENTLINEAR_RUN))
