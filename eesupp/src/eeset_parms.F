@@ -74,8 +74,8 @@ C
       notUsingXPeriodicity       = .FALSE.
       notUsingYPeriodicity       = .FALSE.
       usingMPI                   = .FALSE.
-      nTx                        = 2
-      nTy                        = 2
+      nTx                        = 1
+      nTy                        = 1
 
 C--   Read in data from eedata file
 C     We really ought to be using our environment file reading
