@@ -22,22 +22,24 @@ EOF
 
 BARRIER=
 
-for ac_option ; do
- case $ac_option in
+# Process arguments
+for arg in $@
+do
+ case $arg in
   -b*)
-	BARRIER=`echo $ac_option | sed 's/-b//'`
-	echo "#ifndef ${BARRIER}"
-	echo "#define ${BARRIER}"
-	;;
+        BARRIER=`echo $arg | sed 's/-b//'`
+        echo "#ifndef ${BARRIER}"
+        echo "#define ${BARRIER}"
+        ;;
   -D*)
-	echo $ac_option | sed 's/-D/#define /' | sed 's/=/ /'
-	;;
+        echo $arg | sed 's/-D/#define /' | sed 's/=/ /'
+        ;;
   -U*)
-	echo $ac_option | sed 's/-U/#undef  /' | sed 's/=/ /'
-	;;
+        echo $arg | sed 's/-U/#undef  /' | sed 's/=/ /'
+        ;;
   *)
-	echo "/* " $ac_option " */"
-	;;
+        echo "/* " $arg " */"
+        ;;
  esac
 done
 
