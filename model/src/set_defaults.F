@@ -130,6 +130,9 @@ C--   Set default "physical" parameters
       debugMode             = .FALSE.
       readPickupWithTracer  = .FALSE.
       writePickupWithTracer = .FALSE.
+      tempAdvScheme       = 2
+      saltAdvScheme       = 2
+      tracerAdvScheme     = 2
 
 C--   Atmospheric physical parameters (e.g.: EOS)
       atm_po =  1.D5

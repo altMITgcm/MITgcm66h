@@ -107,7 +107,8 @@ C--   Continuous equation parameters
      & zonal_filt_lat, zonal_filt_sinpow, zonal_filt_cospow,
      & bottomDragLinear,bottomDragQuadratic,
      & usePickupBeforeC35, debugMode, 
-     & readPickupWithTracer, writePickupWithTracer
+     & readPickupWithTracer, writePickupWithTracer,
+     & tempAdvScheme, saltAdvScheme, tracerAdvScheme
 
 C--   Elliptic solver parameters
       NAMELIST /PARM02/
