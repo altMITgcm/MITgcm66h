@@ -75,7 +75,7 @@ C***********************************************************************
       _RL voltomas
       parameter ( voltomas = 0.622e-6 )
 
-      open(ku,file='sage.data',form='formatted')
+      open(ku,file='data.sage',form='formatted')
       rewind ku
 
 c Set Moisture Data Latitudes
@@ -162,7 +162,7 @@ c ------------------------
 c Read Ozone Amounts by Month and Level
 c -------------------------------------
       close (ku)
-      open(ku,file='gcmo3.data',form='unformatted',access='direct',
+      open(ku,file='data.gcmo3',form='unformatted',access='direct',
      .                                                 recl=nlat*4)
 
       do time0=1,ntime
