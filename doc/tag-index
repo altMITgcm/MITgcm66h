@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o corrected CPP option mismatch in exf_Bulk... functions for case 
+  #define ALLOW_ATM_WIND && #undef ALLOW_ATM_TEMP
+
 checkpoint50a_post
 o Bug fix for merging between c50 and KPP.
   ikey was passed from thermodynamics to kpp_calc via
