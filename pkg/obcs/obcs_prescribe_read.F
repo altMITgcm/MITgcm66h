@@ -49,7 +49,7 @@ c     == end of interface ==
       call exf_getffieldrec(
      I                       obcsNstartdate, obcsNperiod
      I                     , obcsNstartdate1, obcsNstartdate2
-     I                     , false.
+     I                     , .false.
      O                     , fac, first, changed,
      O                     , count0, count1, year0, year1
      I                     , mycurrenttime, mycurrentiter, mythid
@@ -73,8 +73,9 @@ c     == end of interface ==
       call exf_getffieldrec(
      I                       obcsSstartdate, obcsSperiod
      I                     , obcsSstartdate1, obcsSstartdate2
-     I                     , false.
-     O                     , fac, first, changed, count0, count1
+     I                     , .false.
+     O                     , fac, first, changed
+     O                     , count0, count1, year0, year1
      I                     , mycurrenttime, mycurrentiter, mythid
      &                     )
 
@@ -97,8 +98,9 @@ c     == end of interface ==
       call exf_getffieldrec(
      I                       obcsEstartdate, obcsEperiod
      I                     , obcsEstartdate1, obcsEstartdate2
-     I                     , false.
-     O                     , fac, first, changed, count0, count1
+     I                     , .false.
+     O                     , fac, first, changed
+     O                     , count0, count1, year0, year1
      I                     , mycurrenttime, mycurrentiter, mythid
      &                     )
 
@@ -121,8 +123,9 @@ c     == end of interface ==
       call exf_getffieldrec(
      I                       obcsWstartdate, obcsWperiod
      I                     , obcsWstartdate1, obcsWstartdate2
-     I                     , false.
-     O                     , fac, first, changed, count0, count1
+     I                     , .false.
+     O                     , fac, first, changed
+     O                     , count0, count1, year0, year1
      I                     , mycurrenttime, mycurrentiter, mythid
      &                     )
 
