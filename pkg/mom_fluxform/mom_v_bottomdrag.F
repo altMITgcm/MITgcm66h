@@ -3,6 +3,13 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
+crg butterflies
+crg using undefined values of kapparv in mom_v_bottomdrag
+crg mom_v_bottomdrag must have iMin,iMax,jMin,jMax as arguments
+crg and only use values being calculated in calc_viscosity
+crg There are probably many more routines in mom_fluxform and mom_vecin
+crg using undefined values.
+
 CBOP
 C !ROUTINE: MOM_V_BOTTOMDRAG
 
