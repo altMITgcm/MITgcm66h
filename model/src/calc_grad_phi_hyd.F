@@ -61,8 +61,8 @@ CEOP
 
       DO j=jMin-1,jMax
        DO i=iMin-1,iMax
-c       varLoc(i,j) = phiHyd(i,j,k)+phi0surf(i,j,bi,bj)
-        varLoc(i,j) = phiHyd(i,j,k)
+        varLoc(i,j) = phiHyd(i,j,k)+phi0surf(i,j,bi,bj)
+c       varLoc(i,j) = phiHyd(i,j,k)
        ENDDO
       ENDDO
 
