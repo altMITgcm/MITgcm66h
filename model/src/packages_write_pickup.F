@@ -192,7 +192,7 @@ C     Write pickup file for Lnad package:
 C     Write pickup file for fizhi package
       IF (usefizhi) THEN
         CALL FIZHI_WRITE_PICKUP(fn,myTime,myIter,myThid)
-C        CALL FIZHI_WRITE_VEGTILES(fn,'D',myTime,myIter,myThid)
+        CALL FIZHI_WRITE_VEGTILES(fn,'D',myTime,myIter,myThid)
       ENDIF
 #endif
 
