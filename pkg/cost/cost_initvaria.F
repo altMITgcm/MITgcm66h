@@ -14,11 +14,10 @@ c
 c     o Initialise the variable cost function part.
 c
 c     started: Christian Eckert eckert@mit.edu 30-Jun-1999
-c
 c     changed: Christian Eckert eckert@mit.edu 18-Apr-2000
-c
 c              - Restructured the code in order to create a package
 c                for the MITgcmUV.
+c     added sea-ice term: menemenlis@jpl.nasa.gov 26-Feb-2003
 c
 c     ==================================================================
 c     SUBROUTINE cost_InitVaria
@@ -101,6 +100,7 @@ c--   Initialize the tiled cost function contributions.
           objf_obcss(bi,bj)    = 0. _d 0
           objf_obcsw(bi,bj)    = 0. _d 0
           objf_obcse(bi,bj)    = 0. _d 0
+          objf_ice(bi,bj)      = 0. _d 0
         enddo
       enddo
 

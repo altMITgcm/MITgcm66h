@@ -114,6 +114,9 @@ c       >>> Make sure that ALLOW_OBCS is defined
 #  define ALLOW_OBCS_COST_CONTRIBUTION
 # endif
 
+c       >>> Sea-ice volume
+# define ALLOW_COST_ICE
+
 #endif /* ALLOW_COST */
 
 C ********************************************************************

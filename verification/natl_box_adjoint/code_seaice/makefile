@@ -272,6 +272,7 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/cost_obcss.f			\
 		$(SOURCE_CODE)/cost_obcsw.f			\
 		$(SOURCE_CODE)/cost_obcse.f			\
+		$(SOURCE_CODE)/cost_ice.f			\
                 $(SOURCE_CODE)/sw_ptmp.f                        \
                 $(SOURCE_CODE)/sw_adtg.f                        \
 		  						\
