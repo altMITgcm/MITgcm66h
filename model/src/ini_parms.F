@@ -391,7 +391,7 @@ C--   Time stepping parameters
       chkPtFreq         = 3600.*25
       dumpFreq          = 3600.*100
       taveFreq          = 0.
-      writeStatePrec    = precFloat32
+      writeStatePrec    = precFloat64
       nCheckLev         = 1
       checkPtSuff(1)    = 'ckptA'
       checkPtSuff(2)    = 'ckptB'
