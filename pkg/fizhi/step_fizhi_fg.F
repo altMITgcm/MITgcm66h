@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
        subroutine step_fizhi_fg (myTime, myIter, myThid, dt)
 c-----------------------------------------------------------------------
 c  Subroutine step_fizhi_fg - 'Wrapper' routine to advance

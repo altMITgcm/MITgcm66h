@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
        subroutine update_earth_exports (myTime, myIter, myThid)
 c----------------------------------------------------------------------
 c  Subroutine update_earth_exports - 'Wrapper' routine to update

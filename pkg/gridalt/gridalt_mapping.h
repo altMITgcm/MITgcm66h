@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 c Alternate grid Mapping Common
 c ------------------------------
       common /gridalt_mapping/ nlperdyn,dpphys0,dpphys,

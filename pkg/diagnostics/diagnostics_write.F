@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
       subroutine diagnostics_write (myThid, myIter) 
 C***********************************************************************
 C  Purpose

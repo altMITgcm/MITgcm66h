@@ -1,3 +1,5 @@
+C $Header$
+C $Name$
 
 C The physics state uses the dynamics dimensions in the horizontal
 C     and the land dimensions in the horizontal for turbulence variables

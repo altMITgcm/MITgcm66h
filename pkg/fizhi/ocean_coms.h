@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 c Ocean Exports
 c -------------------
       common /ocean_exports/ sst, sice

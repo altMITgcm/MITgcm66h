@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
        subroutine step_physics(uphy,vphy,thphy,sphy,dt,
      .  im1,im2,jm1,jm2,Nrphys,Nsx,Nsy,idim1,idim2,jdim1,jdim2,bi,bj,
      .                                         duphy,dvphy,dthphy,dsphy)

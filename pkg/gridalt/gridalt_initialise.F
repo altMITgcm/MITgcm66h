@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
        subroutine gridalt_initialise (myThid)
 c-----------------------------------------------------------------------
 c  Routine to initialise the gridalt package.

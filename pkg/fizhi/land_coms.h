@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 c Land State Common
 c -----------------
       common /land_state/ tcanopy, tdeep, ecanopy, 

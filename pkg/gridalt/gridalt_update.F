@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
        subroutine gridalt_update(myThid)
 c***********************************************************************
 c subroutine gridalt_update

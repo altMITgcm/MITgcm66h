@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
       subroutine diagnostics_setunits (myThid, chardiag, diagunits)
 C***********************************************************************
 C  Purpose

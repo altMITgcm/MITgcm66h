@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 CBOP
 C     !ROUTINE: FIZHI_WRITE_PICKUP 
 C     !INTERFACE:

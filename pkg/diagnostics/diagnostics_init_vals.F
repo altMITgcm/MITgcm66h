@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
       subroutine diagnostics_init_vals (myThid)
 C ***********************************************************************
 C *****                                                              ****

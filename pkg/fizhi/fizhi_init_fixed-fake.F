@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
        subroutine fizhi_init_fixed (myThid)
 c-----------------------------------------------------------------------
 c  Routine to initialise the fizhi package.

@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
       subroutine fill_diagnostics (myThid, chardiag, levflg, nlevs, 
      .          bibjflg, bi, bj, arrayin) 
 C***********************************************************************

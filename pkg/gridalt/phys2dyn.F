@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
       subroutine phys2dyn(qphy,pephy,im1,im2,jm1,jm2,lmphy,Nsx,Nsy,
      .     idim1,idim2,jdim1,jdim2,bi,bj,pedyn,Lbot,lmdyn,nlperdyn,qdyn)
 C***********************************************************************

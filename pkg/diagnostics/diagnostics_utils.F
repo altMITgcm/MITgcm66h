@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
       subroutine getdiag (myThid,lev,ipoint,undef,qtmp)
 C***********************************************************************        
 C  PURPOSE                                                                      

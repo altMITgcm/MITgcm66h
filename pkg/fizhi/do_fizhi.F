@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
        subroutine do_fizhi(uphy,vphy,thphy,sphy,
      .                              ctmt,xxmt,yymt,zetamt,xlmt,khmt,tke,
      .im1,im2,jm1,jm2,Nrphys,Nsx,Nsy,idim1,idim2,jdim1,jdim2,bi,bj,nchp,

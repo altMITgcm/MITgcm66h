@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
       subroutine fizhi_tendency_apply_u(iMin, iMax, jMin, jMax,
      .    bi,bj,kLev,myTime,myThid)
 C=======================================================================

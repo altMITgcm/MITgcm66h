@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 c Chemistry Variables Dimensions
 c -------------------------------
       integer nlatsoz, nlevsoz, ntimesoz, nlatsq, nlevsq, ntimesq,

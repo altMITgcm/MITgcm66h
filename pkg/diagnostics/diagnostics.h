@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 C ======================================================================
 C  Common blocks for diagnostics package.
 C  - diagarrays contains the master list of diagnostics and parameters

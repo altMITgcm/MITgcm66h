@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 c Solid-Earth State Variables
 c ---------------------------
       common /earth_state/ phis_var, lwmask, tilefrac, surftype 

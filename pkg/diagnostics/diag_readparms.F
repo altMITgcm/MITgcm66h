@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
       subroutine diag_readparms (myThid)
 C***********************************************************************
 C  Purpose

@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
        subroutine CtoA(myThid,fieldin1,fieldin2,mask1,mask2,im1,im2,jm1,
      .  jm2,numlevs,Nsx,Nsy,idim1,idim2,jdim1,jdim2,fieldout1,fieldout2)
 c----------------------------------------------------------------------
