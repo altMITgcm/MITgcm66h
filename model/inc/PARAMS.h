@@ -118,8 +118,6 @@ C     diffKzS   - Laplacian diffusion coeff. for mixing of
 C                 salt vertically ( m^2/s )
 C     diffK4S   - Biharmonic diffusion coeff. for mixing of
 C                 salt laterally ( m^4/s )
-C     tAlpha    - Linear EOS thermal expansion coefficient ( 1/degree ).
-C     sBeta     - Linear EOS haline contraction coefficient.
 C     deltaT    - Default timestep ( s )
 C     deltaTMom    - Timestep for momemtum equations ( s )
 C     deltaTtracer - Timestep for tracer equations ( s )
@@ -134,7 +132,7 @@ C                 post-processing files ( s ).
      & deltaTmom, deltaTtracer, abeps, startTime, phiMin, thetaMin, 
      & rSphere, f0, fCori, beta, viscAh, viscAz, viscA4, diffKhT, diffKzT, 
      & diffK4T, diffKhS, diffKzS, diffK4S, delT, tauCD, rCD,
-     & tAlpha, sBeta, gravity, rhonil, tRef, sRef,
+     & gravity, rhonil, tRef, sRef,
      & endTime, chkPtFreq, dumpFreq
       REAL cg2dTargetResidual
       REAL delZ(Nz)
@@ -161,8 +159,6 @@ C                 post-processing files ( s ).
       REAL delt
       REAL tauCD
       REAL rCD
-      REAL tAlpha
-      REAL sBeta
       REAL gravity
       REAL rhonil
       REAL tRef(Nz)
@@ -176,3 +172,13 @@ C                 post-processing files ( s ).
      &                Lamba_theta
       REAL HeatCapacity_Cp
       REAL Lamba_theta
+
+C Equation of State (polynomial coeffients)
+      COMMON /PARM_EOS_NL/ eosC,eosSig0,eosRefT,eosRefS
+      REAL eosC(Nz+1,9),eosSig0(Nz+1),eosRefT(Nz+1),eosRefS(Nz+1)
+C Linear equation of state
+C     tAlpha    - Linear EOS thermal expansion coefficient ( 1/degree ).
+C     sBeta     - Linear EOS haline contraction coefficient.
+      COMMON /PARM_EOS_LIN/ tAlpha,sBeta
+      REAL tAlpha
+      REAL sBeta
