@@ -1804,6 +1804,14 @@ C diag_choices common
       _RL levs (numperlist,numlists)
       character*8 flds (numperlist,numlists)
       character*8 fnames(numlists)
+      logical diag_use_mdsio
+      logical diag_use_mnc
 
-      common /diag_choices/ levs,flds,fnames,freq,nlevels,nfields,nlists
+      common /diag_choices/ 
+     &     levs, flds, fnames, freq, nlevels, nfields, nlists,
+     &     diag_use_mdsio, diag_use_mnc
 
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***
