@@ -129,9 +129,10 @@ C                      index into fVerTerm.
       _RL sigmaY  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
       _RL sigmaR  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
 
-#ifdef INCLUDE_CONVECT_CALL
+C This is currently also used by IVDC and Diagnostics
+C #ifdef INCLUDE_CONVECT_CALL
       _RL ConvectCount (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
-#endif
+C #endif
 
       INTEGER iMin, iMax
       INTEGER jMin, jMax
