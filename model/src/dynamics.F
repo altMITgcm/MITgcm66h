@@ -576,7 +576,7 @@ C        and step forward storing the result in gUnm1, gVnm1, etc...
          IF ( momStepping ) THEN
            CALL CALC_MOM_RHS(
      I         bi,bj,iMin,iMax,jMin,jMax,k,km1,kup,kDown,
-     I         xA,yA,uTrans,vTrans,rTrans,rVel,maskC,
+     I         xA,yA,uTrans,vTrans,maskC,
      I         phiHyd,KappaRU,KappaRV,
      U         fVerU, fVerV,
      I         myTime, myThid)

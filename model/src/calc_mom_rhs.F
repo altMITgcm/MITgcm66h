@@ -19,7 +19,7 @@ C     | deal "properly" with thin walls.                         |
 C     \==========================================================/
       SUBROUTINE CALC_MOM_RHS( 
      I        bi,bj,iMin,iMax,jMin,jMax,k,km1,kUp,kDown,
-     I        xA,yA,uTrans,vTrans,rTrans,rVel,maskC,
+     I        xA,yA,uTrans,vTrans,maskC,
      I        phi_hyd,KappaRU,KappaRV,
      U        fVerU, fVerV,
      I        myCurrentTime, myThid)
@@ -47,8 +47,6 @@ C     xA      - Tracer cell face area normal to X
 C     yA      - Tracer cell face area normal to X
 C     uTrans  - Zonal volume transport through cell face
 C     vTrans  - Meridional volume transport through cell face
-C     rTrans  - Vertical volume transport through cell upper face
-C     rVel    - Vertical velocities at upper (kUp) and lower cell faces (kDown)
 C     phi_hyd - Hydrostatic pressure
 C     bi, bj, iMin, iMax, jMin, jMax - Range of points for which calculation
 C                                      results will be set.
@@ -58,8 +56,6 @@ C     myThid - Instance number for this innvocation of CALC_MOM_RHS
       _RS      yA(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL  uTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL  vTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL  rTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL  rVel  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
       _RS   maskC(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL      phi_hyd(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
       _RL      KappaRU(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
@@ -376,7 +372,6 @@ C     Mean flow component of vertical flux
       DO j=jMin,jMax
        DO i=iMin,iMax
         af(i,j) =
-c    &   rVelMaskOverride*(rTrans(i,j)+rTrans(i-1,j))
      &   wVelBottomOverride*(
      &        wVel( i ,j,kp1,bi,bj)*rA( i ,j,bi,bj)
      &       +wVel(i-1,j,kp1,bi,bj)*rA(i-1,j,bi,bj)
@@ -537,8 +532,6 @@ C      o Spherical polar grid metric terms
        DO j=jMin,jMax
         DO i=iMin,iMax
          mT(i,j) = -1.* uVel(i,j,k,bi,bj)*recip_RSphere
-c    &    *0.25 _d 0*( rVel(i-1,j,kUp  )+rVel(i  ,j,kUp  )
-c    &                +rVel(i-1,j,KDown)+rVel(i  ,j,KDown)
      &    *0.25 _d 0*(wVelBottomOverride*
      &                (wVel(i-1,j,kp1,bi,bj)+wVel(i,j,kp1,bi,bj))
      &                +wVel(i-1,j, k ,bi,bj)+wVel(i,j, k ,bi,bj)
@@ -716,7 +709,6 @@ C     o Mean flow component of vertical flux
       DO j=jMin,jMax
        DO i=iMin,iMax
         af(i,j) =
-c    &   rVelMaskOverride*(rTrans(i,j)+rTrans(i,j-1))
      &   rVelMaskOverride*wVelBottomOverride*(
      &        wVel(i, j ,kp1,bi,bj)*rA(i, j ,bi,bj)
      &       +wVel(i,j-1,kp1,bi,bj)*rA(i,j-1,bi,bj)
@@ -874,8 +866,6 @@ C      o Spherical polar grid metric terms
        DO j=jMin,jMax
         DO i=iMin,iMax
          mT(i,j) = -vVel(i,j,k,bi,bj)*recip_RSphere
-c    &    *0.25 _d 0*( rVel(i,j,kUp  )+rVel(i,j-1,kUp  )
-c    &               + rVel(i,j,KDown)+rVel(i,j-1,KDown)
      &    *0.25 _d 0*(wVelBottomOverride*
      &                (wVel(i,j,kp1,bi,bj)+wVel(i,j-1,kp1,bi,bj))
      &               + wVel(i,j, k ,bi,bj)+wVel(i,j-1, k ,bi,bj)
