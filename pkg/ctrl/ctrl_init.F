@@ -394,7 +394,7 @@ c--   Northern obc.
         startrec = 1
         endrec   = 1
 # endif
-        diffrec  = endrec*nobcs
+        diffrec  = endrec
         call ctrl_init_ctrlvar ( 
      &       xx_obcsn_file, 11, 111, diffrec, startrec, endrec,
      &       snx, sny, nr, 'm', 'xz', mythid )
@@ -420,7 +420,7 @@ c--   Southern obc.
         startrec = 1
         endrec   = 1
 # endif
-        diffrec  = endrec*nobcs
+        diffrec  = endrec
         call ctrl_init_ctrlvar ( 
      &       xx_obcss_file, 12, 112, diffrec, startrec, endrec,
      &       snx, sny, nr, 'm', 'xz', mythid )
@@ -446,7 +446,7 @@ c--   Western obc.
         startrec = 1
         endrec   = 1
 # endif
-        diffrec  = endrec*nobcs
+        diffrec  = endrec
         call ctrl_init_ctrlvar ( 
      &       xx_obcsw_file, 13, 113, diffrec, startrec, endrec,
      &       snx, sny, nr, 'm', 'yz', mythid )
@@ -472,7 +472,7 @@ c--   Eastern obc.
         startrec = 1
         endrec   = 1
 # endif
-        diffrec  = endrec*nobcs
+        diffrec  = endrec
         call ctrl_init_ctrlvar ( 
      &       xx_obcse_file, 14, 114, diffrec, startrec, endrec,
      &       snx, sny, nr, 'm', 'yz', mythid )
