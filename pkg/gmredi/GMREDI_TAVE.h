@@ -3,10 +3,10 @@ C $Name$
 
 #ifdef ALLOW_GMREDI
 
-C     /==========================================================\
-C     | GM_DIAGS.h                                               |
-C     | o Header for GM?Redi diagnostic output                   |
-C     \==========================================================/
+C     *==========================================================*
+C     | GMREDI_TAVE.h
+C     | o Header for GM-Redi time-average output
+C     *==========================================================*
 
 #ifdef ALLOW_TIMEAVE
 
