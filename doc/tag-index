@@ -6,6 +6,13 @@ $Header$
 Branch release1_50yr
 Code used for 50-year JPL telescoping integration.
 
+o merged with release1_p17 updates:
+  modifications to pkg/seaice and verification/lab_sea
+  added SEAICE_MULTILEVEL for 8-category sea-ice thermodynamics
+  and pkg/seaice/lsr.F modifications
+
+o fixed gather/scatter inital MPI dialogue in ini_procs.F
+
 Branched off release1_p15
 Modified pkg/exf/exf_clim_param.h, exf_clim_readparms.F,
    exf_set_climsss.F, and exf_set_climsst.F to add new_interp
@@ -694,4 +701,3 @@ checkpoint1
 
 baseline
  Original checked in code
-

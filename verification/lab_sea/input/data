@@ -101,7 +101,7 @@
  abEps=0.1,
  pChkptFreq=36000.,
  chkptFreq= 0.,
- dumpFreq = 0.,
+ dumpFreq = 3600.,
  tavefreq = 36000.,
  tauSaltClimRelax = 4142330.,
  tauThetaClimRelax = 0.,
@@ -144,6 +144,13 @@
  bathyFile       = 'bathy.labsea',
  hydrogThetaFile = 'LevCli_temp.labsea',
  hydrogSaltFile  = 'LevCli_salt.labsea',
+ zonalWindFile   = ' ',
+ meridWindFile   = ' ',
+ EmPmRFile       = ' ',
+ surfQFile       = ' ',
+ surfQswFile     = ' ',
+ thetaClimFile   = ' ',
+ saltClimFile    = 'SSS.labsea'
  &
 
 # Open-boundaries
