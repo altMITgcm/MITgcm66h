@@ -25,7 +25,6 @@ C     !USES:
 #include "EESUPPORT.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#include "DYNVARS.h"
 #ifdef ALLOW_EXCH2
 #include "W2_EXCH2_TOPOLOGY.h"
 #include "W2_EXCH2_PARAMS.h"
@@ -52,9 +51,9 @@ C     Grid info included as attributes
       CALL MNC_FILE_ADD_ATTR_INT(fname,'bj', 1, bj, myThid)
       CALL MNC_FILE_ADD_ATTR_DBL(fname,'xC0', 1, xC0, myThid)
       CALL MNC_FILE_ADD_ATTR_DBL(fname,'yC0', 1, yC0, myThid)
-      CALL MNC_FILE_ADD_ATTR_DBL(fname,'gravitySign', 
-     &     1, gravitySign, myThid )
-      CALL MNC_FILE_ADD_ATTR_DBL(fname,'rkFac', 1, rkFac, myThid)
+c     CALL MNC_FILE_ADD_ATTR_DBL(fname,'gravitySign', 
+c    &     1, gravitySign, myThid )
+c     CALL MNC_FILE_ADD_ATTR_DBL(fname,'rkFac', 1, rkFac, myThid)
 
 #ifdef ALLOW_EXCH2
 C     W2/exch2 information
