@@ -12,7 +12,7 @@ C Use this file for selecting options within the GM/Redi package
 
 #include "CPP_OPTIONS.h"
 
-C Design to simplify the Ajoint code: 
+C Designed to simplify the Ajoint code:
 C  exclude the clipping/tapering part of the code that is not used
 C #define GM_EXCLUDE_CLIPPING
 C #define GM_EXCLUDE_AC02_TAP
