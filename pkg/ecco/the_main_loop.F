@@ -717,7 +717,7 @@ c--   Accumulate time averages of temperature, salinity, and SSH.
       call timer_stop ('cost_averagesfields [ECCO SPIN-DOWN]', mythid)
 #ifdef ALLOW_DIVIDED_ADJOINT
 c**************************************
-#include "checkpoint_bar_directives.h"
+#include "cost_averages_bar_directives.h"
 c**************************************
 #endif
 
