@@ -57,6 +57,36 @@ C     SSS    - Sea surface salinity (psu) for relaxation
       _RS  SST      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  SSS      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
+#ifndef INCLUDE_EXTERNAL_FORCING_PACKAGE
+C     taux[01]  :: Temp. for zonal wind stress
+C     tauy[01]  :: Temp. for merid. wind stress
+C     qnet[01]  :: Temp. for heat flux
+C     empmr[01] :: Temp. for fresh water flux
+C     sst[01]   :: Temp. for theta climatalogy
+C     sss[01]   :: Temp. for theta climatalogy
+C     qsw[01]   :: Temp. for short wave component of heat flux
+C     [01]      :: End points for interpolation
+C     Above use static heap storage to allow exchange.
+
+      COMMON /TDFIELDS/
+     &                 taux0, tauy0, Qnet0, EmPmR0, SST0, SSS0, Qsw0,
+     &                 taux1, tauy1, Qnet1, EmPmR1, SST1, SSS1, Qsw1
+      _RS  taux0    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  tauy0    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  Qnet0    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  EmPmR0   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  SST0     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  SSS0     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  Qsw0     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  taux1    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  tauy1    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  Qnet1    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  EmPmR1   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  SST1     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  SSS1     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  Qsw1     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+#endif /* INCLUDE_EXTERNAL_FORCING_PACKAGE undef */
+
 C     surfaceTendencyU       (units are  m/s^2)
 C                -> usage in gU:     gU = gU + surfaceTendencyU[m/s^2]
 C

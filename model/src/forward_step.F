@@ -78,7 +78,6 @@ C     mythid - thread number for this instance of the routine.
 
 CEOP
 
-
 #ifdef ALLOW_AUTODIFF_TAMC
 C--     Reset the model iteration counter and the model time.
         myiter = nIter0 + (iloop-1)
@@ -119,16 +118,18 @@ C      according to etaH(n+1)
 #endif /* NONLIN_FRSURF */
 
 C--     Load forcing/external data fields.
-#ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
-C       NOTE, that although the exf package is part of the
-C       distribution, it is not currently maintained, i.e.
-C       exf is disabled by default in genmake.
 #ifdef ALLOW_AUTODIFF_TAMC
 c**************************************
 #include "checkpoint_lev1_directives.h"
 c**************************************
 #endif
+#ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
+C       NOTE, that although the exf package is part of the
+C       distribution, it is not currently maintained, i.e.
+C       exf is disabled by default in genmake.
+        CALL TIMER_START('EXF_GETFORCING      [THE_MAIN_LOOP]',mythid)
         CALL EXF_GETFORCING( mytime, myiter, mythid )
+        CALL TIMER_STOP ('EXF_GETFORCING      [THE_MAIN_LOOP]',mythid)
 #else
         CALL TIMER_START('EXTERNAL_FIELDS_LOAD[THE_MAIN_LOOP]',mythid)
         CALL EXTERNAL_FIELDS_LOAD( mytime, myiter, mythid )
@@ -175,14 +176,16 @@ C--   Step forward W field in N-H algorithm
 
 #ifdef NONLIN_FRSURF
 C--   update hfacC,W,S and recip_hFac according to etaH(n+1) :
-      IF ( momStepping ) THEN
       IF ( nonlinFreeSurf.GT.0) THEN
+        CALL TIMER_START('UPDATE_SURF_DR     [THE_MAIN_LOOP]',myThid)
         CALL UPDATE_SURF_DR( myTime, myIter, myThid )
+        CALL TIMER_STOP ('UPDATE_SURF_DR     [THE_MAIN_LOOP]',myThid)
       ENDIF
 C-    update also CG2D matrix (and preconditioner)
-      IF ( nonlinFreeSurf.GT.2) THEN
+      IF ( momStepping .AND. nonlinFreeSurf.GT.2 ) THEN
+        CALL TIMER_START('UPDATE_CG2D        [THE_MAIN_LOOP]',myThid)
         CALL UPDATE_CG2D( myTime, myIter, myThid )
-      ENDIF
+        CALL TIMER_STOP ('UPDATE_CG2D       [THE_MAIN_LOOP]',myThid)
       ENDIF
 #endif
 
@@ -250,7 +253,9 @@ C--   Calculate float trajectories
 
 #ifndef EXCLUDE_MONITOR
 C--   Check status of solution (statistics, cfl, etc...)
+      CALL TIMER_START('MONITOR             [THE_MAIN_LOOP]',myThid)
       CALL MONITOR( myIter, myTime, myThid )
+      CALL TIMER_STOP ('MONITOR             [THE_MAIN_LOOP]',myThid)
 #endif /* EXCLUDE_MONITOR */
 
 C--   Do IO if needed.

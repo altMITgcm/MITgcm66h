@@ -54,6 +54,22 @@ CEOP
           surfaceTendencyV(i,j,bi,bj) = 0. _d 0
           surfaceTendencyT(i,j,bi,bj) = 0. _d 0
           surfaceTendencyS(i,j,bi,bj) = 0. _d 0
+#ifndef INCLUDE_EXTERNAL_FORCING_PACKAGE
+          taux0           (i,j,bi,bj) = 0. _d 0
+          taux1           (i,j,bi,bj) = 0. _d 0
+          tauy0           (i,j,bi,bj) = 0. _d 0
+          tauy1           (i,j,bi,bj) = 0. _d 0
+          Qnet0           (i,j,bi,bj) = 0. _d 0
+          Qnet1           (i,j,bi,bj) = 0. _d 0
+          EmPmR0          (i,j,bi,bj) = 0. _d 0
+          EmPmR1          (i,j,bi,bj) = 0. _d 0
+          SST0            (i,j,bi,bj) = 0. _d 0
+          SST1            (i,j,bi,bj) = 0. _d 0
+          SSS0            (i,j,bi,bj) = 0. _d 0
+          SSS1            (i,j,bi,bj) = 0. _d 0
+          Qsw0            (i,j,bi,bj) = 0. _d 0
+          Qsw1            (i,j,bi,bj) = 0. _d 0
+#endif
          ENDDO
         ENDDO
        ENDDO
