@@ -285,6 +285,7 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/cost_heatflux.f			\
 		$(SOURCE_CODE)/cost_hyd.f			\
 		$(SOURCE_CODE)/cost_initvaria.f			\
+		$(SOURCE_CODE)/cost_init_barfiles.f		\
 		$(SOURCE_CODE)/cost_merstress.f			\
 		$(SOURCE_CODE)/cost_readers.f			\
 		$(SOURCE_CODE)/cost_readsssfields.f		\

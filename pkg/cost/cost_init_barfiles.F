@@ -139,12 +139,15 @@ c--   Save psbar on file.
       do irec = 1, ndaysrec
         call active_write_xy( fnamepsbar, tmpfld2d, irec,
      &                        optimcycle, mythid, xx_psbar_mean_dummy )
+#ifndef ALLOW_TANGENTLINEAR_RUN
         call active_write_xy( adfnamepsbar, tmpfld2d, irec,
      &                         optimcycle,mythid, xx_psbar_mean_dummy )
+#endif
       enddo
 #endif /* ALLOW_SSH_COST_CONTRIBUTION */
 
 #if (defined (ALLOW_THETA_COST_CONTRIBUTION) || \
+     defined (ALLOW_SST_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDT_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDTCLIM_COST_CONTRIBUTION) || \
      defined (ALLOW_XBT_COST_CONTRIBUTION) || \
@@ -160,27 +163,15 @@ c--   Save tbar on file.
       do irec = 1,nmonsrec
         call active_write_xyz( fnametbar, tmpfld3d, irec,
      &                         optimcycle, mythid, xx_tbar_mean_dummy )
+#ifndef ALLOW_TANGENTLINEAR_RUN
         call active_write_xyz( adfnametbar, tmpfld3d, irec, 
      &                         optimcycle, mythid, xx_tbar_mean_dummy )
-      enddo
-#else
-#ifdef ALLOW_SST_COST_CONTRIBUTION
-c--   Save tbar on file.
-      ilt=ilnblnk( tbarfile )
-      write(fnametbar,'(2a,i10.10)') 
-     &     tbarfile(1:ilt), '.', optimcycle
-      write(adfnametbar,'(3a,i10.10)') 
-     &     yadprefix, tbarfile(1:ilt), '.', optimcycle
-      do irec = 1,nmonsrec
-        call active_write_xy( fnametbar, tmpfld2d, irec,
-     &                        optimcycle, mythid, xx_tbar_mean_dummy )
-        call active_write_xy( adfnametbar, tmpfld2d, irec, 
-     &                        optimcycle, mythid, xx_tbar_mean_dummy )
-      enddo
 #endif
+      enddo
 #endif
 
 #if (defined (ALLOW_SALT_COST_CONTRIBUTION) || \
+     defined (ALLOW_SSS_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDS_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDSCLIM_COST_CONTRIBUTION) || \
      defined (ALLOW_DRIFT_COST_CONTRIBUTION) || \
@@ -195,25 +186,11 @@ c--   Save sbar.
       do irec = 1,nmonsrec
         call active_write_xyz( fnamesbar, tmpfld3d, irec,
      &                         optimcycle, mythid, xx_sbar_mean_dummy)
+#ifndef ALLOW_TANGENTLINEAR_RUN
         call active_write_xyz( adfnamesbar, tmpfld3d, irec,
      &                         optimcycle, mythid, xx_sbar_mean_dummy)
-      enddo
-#else
-#ifdef ALLOW_SST_COST_CONTRIBUTION
-c--   Save sbar.
-      ils=ilnblnk( sbarfile )
-      write(fnamesbar,'(2a,i10.10)') 
-     &     sbarfile(1:ils), '.', optimcycle
-      write(adfnamesbar,'(3a,i10.10)') 
-     &     yadprefix, sbarfile(1:ils), '.', optimcycle
-
-      do irec = 1,nmonsrec
-        call active_write_xy( fnamesbar, tmpfld2d, irec,
-     &                        optimcycle, mythid, xx_sbar_mean_dummy)
-        call active_write_xy( adfnamesbar, tmpfld2d, irec,
-     &                        optimcycle, mythid, xx_sbar_mean_dummy)
-      enddo
 #endif
+      enddo
 #endif
 
 #if (defined (ALLOW_DRIFTER_COST_CONTRIBUTION) || \
@@ -242,10 +219,12 @@ c--   Save ubar and vbar.
      &                         optimcycle, mythid, xx_ubar_mean_dummy)
         call active_write_xyz( fnamevbar, tmpfld3d, irec,
      &                         optimcycle, mythid, xx_vbar_mean_dummy)
+#ifndef ALLOW_TANGENTLINEAR_RUN
         call active_write_xyz( adfnameubar, tmpfld3d, irec,
      &                         optimcycle, mythid, xx_ubar_mean_dummy)
         call active_write_xyz( adfnamevbar, tmpfld3d, irec,
      &                         optimcycle, mythid, xx_vbar_mean_dummy)
+#endif
       enddo
 #endif
 
@@ -260,8 +239,10 @@ c--   Save wbar
       do irec = 1,nmonsrec
         call active_write_xyz( fnamewbar, tmpfld3d, irec,
      &                         optimcycle, mythid, xx_wbar_mean_dummy)
+#ifndef ALLOW_TANGENTLINEAR_RUN
         call active_write_xyz( adfnamewbar, tmpfld3d, irec,
      &                         optimcycle, mythid, xx_wbar_mean_dummy)
+#endif
       enddo
 #endif
 
@@ -281,12 +262,14 @@ c--   Save tauxbar, tauybar on file.
       do irec = 1, nmonsrec
         call active_write_xy( fnametauxbar, tmpfld2d, irec,
      &                        optimcycle, mythid, xx_taux_mean_dummy )
-        call active_write_xy( adfnametauxbar, tmpfld2d, irec,
-     &                         optimcycle,mythid, xx_taux_mean_dummy )
         call active_write_xy( fnametauybar, tmpfld2d, irec,
      &                        optimcycle, mythid, xx_tauy_mean_dummy )
+#ifndef ALLOW_TANGENTLINEAR_RUN
+        call active_write_xy( adfnametauxbar, tmpfld2d, irec,
+     &                         optimcycle,mythid, xx_taux_mean_dummy )
         call active_write_xy( adfnametauybar, tmpfld2d, irec,
      &                         optimcycle,mythid, xx_tauy_mean_dummy )
+#endif
       enddo
 #endif
 
@@ -301,8 +284,10 @@ c--   Save hfluxbar on file.
       do irec = 1, 1
         call active_write_xy( fnamehfluxbar, tmpfld2d, irec,
      &                        optimcycle, mythid, xx_hflux_mean_dummy )
+#ifndef ALLOW_TANGENTLINEAR_RUN
         call active_write_xy( adfnamehfluxbar, tmpfld2d, irec,
      &                         optimcycle,mythid, xx_hflux_mean_dummy )
+#endif
       enddo
 #endif
 
@@ -317,8 +302,10 @@ c--   Save sfluxbar on file.
       do irec = 1, 1
         call active_write_xy( fnamesfluxbar, tmpfld2d, irec,
      &                        optimcycle, mythid, xx_sflux_mean_dummy )
+#ifndef ALLOW_TANGENTLINEAR_RUN
         call active_write_xy( adfnamesfluxbar, tmpfld2d, irec,
      &                         optimcycle,mythid, xx_sflux_mean_dummy )
+#endif
       enddo
 #endif
 

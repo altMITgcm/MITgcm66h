@@ -14,6 +14,8 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 
+#include "ctrl.h"
+
 C     === Routine arguments ===
 C     myThid -  Number of this instance
       INTEGER myThid
@@ -28,6 +30,18 @@ C     msgBuf      - Informational/error meesage buffer
 
 C     KPP needs convection turned off (will be packaged later)
 C     Can't have both atmos. state and flux field as control
+
+#ifdef ALLOW_TANGENTLINEAR_RUN
+      if ( yadmark .NE. 'g_' ) then
+         WRITE(msgBuf,'(A)') 
+     &        'yadmark very likely wrong in data.ctrl for case '
+         CALL PRINT_ERROR( msgBuf , 1)
+         WRITE(msgBuf,'(A)') 
+     &        'ALLOW_TANGENTLINEAR_RUN; should be g_ '
+         CALL PRINT_ERROR( msgBuf , 1)
+         STOP 'ABNORMAL END: S/R CTRL_CHECK'
+      end if
+#endif
 
 #if (defined (ALLOW_HFLUX_CONTROL) && defined (ALLOW_ATEMP_CONTROL))
       WRITE(msgBuf,'(A)') 

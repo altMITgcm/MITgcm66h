@@ -13,6 +13,7 @@ C o include dump of snap shots for checks
 #undef  ALLOW_ECCO_FORWARD_RUN
 #undef  ALLOW_ECCO_DIAGNOSTICS_RUN
 #undef  ALLOW_ADJOINT_RUN
+#undef  ALLOW_TANGENTLINEAR_RUN
 #define  ALLOW_GRADIENT_CHECK
 #define  ALLOW_ECCO_OPTIMIZATION
 
@@ -100,6 +101,7 @@ C       >>> Cost function contributions
 # undef ALLOW_CTDT_COST_CONTRIBUTION
 # undef ALLOW_CTDS_COST_CONTRIBUTION
 # undef ALLOW_XBT_COST_CONTRIBUTION
+
 # undef ALLOW_COST_ATLANTIC
 
 c       >>> Open boundaries

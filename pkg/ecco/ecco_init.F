@@ -43,8 +43,8 @@ c     == end of interface ==
 
 #ifdef ALLOW_COST
 c--   Initialise the time averages.
-      call cost_AveragesInit( mythid )
-      _BARRIER
+cph      call cost_AveragesInit( mythid )
+cph      _BARRIER
 #endif
 
 #endif

@@ -126,10 +126,15 @@ cph(
 cph   The following init. shoud not be applied if in the middle
 cph   of a divided adjoint run
 cph)
+#ifndef ALLOW_TANGENTLINEAR_RUN
+cph!!! and I think it needs to be seen by TAF
+cph!!! for repeated TLM runs
+cph!!!
       inquire( file='costfinal', exist=exst )
       if ( .NOT. exst) then
          call cost_init_barfiles( mythid )
       endif
+#endif
 
 c--   Summarize the cost function's setup.
       _BEGIN_MASTER( mythid )
