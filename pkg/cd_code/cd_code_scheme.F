@@ -4,10 +4,10 @@ C $Name$
 #include "CD_CODE_OPTIONS.h"
 
 CBOP
-C !ROUTINE: CD_SCHEME
+C !ROUTINE: CD_CODE_SCHEME
 
 C !INTERFACE: ==========================================================
-      SUBROUTINE CD_SCHEME( 
+      SUBROUTINE CD_CODE_SCHEME( 
      I        bi,bj,k, dPhiHydX,dPhiHydY, guFld,gvFld,
      O        guCor,gvCor,
      I        myTime, myIter, myThid)

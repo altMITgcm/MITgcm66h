@@ -159,7 +159,7 @@ C-     for CD-scheme, compute gU,Vtmp = gU,V^n + forcing
       IF (useCDscheme) THEN
 C-     Step forward D-grid velocity using C-grid gU,Vtmp = gU,V^n + forcing
 C      and return coriolis terms on C-grid (guCor,gvCor)
-        CALL CD_SCHEME(
+        CALL CD_CODE_SCHEME(
      I                  bi,bj,k, dPhiHydX,dPhiHydY, gUtmp,gVtmp,
      O                  guCor,gvCor,
      I                  myTime, myIter, myThid)

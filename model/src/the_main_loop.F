@@ -45,6 +45,9 @@ c They provide the fields to be stored.
 # include "FFIELDS.h"
 # include "EOS.h"
 # include "GAD.h"
+# ifdef ALLOW_CD_CODE
+#  include "CD_CODE_VARS.h"
+# endif
 # ifdef ALLOW_PASSIVE_TRACER
 #  include "TR1.h"
 # endif
