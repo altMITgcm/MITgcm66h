@@ -160,5 +160,9 @@ CAMM
 #endif
 CAMM
 
+#ifdef COMPONENT_MODULE
+      IF ( useCoupler ) CALL CPL_INIT_FIXED( mythid )
+#endif
+
       RETURN
       END

@@ -70,3 +70,7 @@ C                  coupler (m2/s2)
       _RL SSTocn2cpl(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL SSSocn2cpl(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL vSqocn2cpl(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***

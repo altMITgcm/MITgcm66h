@@ -20,13 +20,18 @@ C     useImportSIce :: True => use the Imported Sea-Ice mass as ice-loading
       COMMON /CPL_OCN_PAR_L/
      &  cpl_earlyExpImpCall,
      &  useImportHFlx, useImportFW, useImportTau, 
-     &  useImportSLP, useImportSIce
+     &  useImportSLP, useImportSIce, 
+     &  cpl_snapshot_mdsio, cpl_snapshot_mnc,
+     &  cpl_timeave_mdsio, cpl_timeave_mnc
       LOGICAL cpl_earlyExpImpCall
       LOGICAL useImportHFlx
       LOGICAL useImportFW
       LOGICAL useImportTau
       LOGICAL useImportSLP
       LOGICAL useImportSIce
+      LOGICAL 
+     &     cpl_snapshot_mdsio, cpl_snapshot_mnc,
+     &     cpl_timeave_mdsio, cpl_timeave_mnc
 
 C--   COMMON /CPL_OCN_PAR_C/: Character valued parameters
 c     CHARACTER*(MAX_LEN_FNAM) cpl_ocnFile
@@ -38,3 +43,7 @@ C     cpl_taveFreq   :: Frequency^-1 for time-Aver. output (s)
       _RL cpl_taveFreq
 
 #endif /* COMPONENT_MODULE */ 
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***
