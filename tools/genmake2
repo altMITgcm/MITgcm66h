@@ -197,9 +197,9 @@ EOF
       end
 EOF
 	makedepend genmake_tc.f > /dev/null 2>&1
+	RV1=$?
 	test -f $MAKEFILE  &&  rm -f $MAKEFILE
 	test -f $MAKEFILE".tst"  &&  mv -f $MAKEFILE".tst" $MAKEFILE
-	RV1=$?
 	if test "x${RV0}${RV1}" = x00 ; then
 	    MAKEDEPEND=makedepend
 	else
