@@ -829,10 +829,16 @@ C--   Check for conflicting grid definitions.
        STOP 'ABNORMAL END: S/R INI_PARMS'
       ENDIF
       IF ( goptCount .LT. 1 ) THEN
+C-     No horizontal grid is specified => use Cartesian grid as default:
        WRITE(msgBuf,'(A)')
-     &  'S/R INI_PARMS: No coordinate system requested'
-       CALL PRINT_ERROR( msgBuf , myThid)
-       STOP 'ABNORMAL END: S/R INI_PARMS'
+     &  'S/R INI_PARMS: No horizontal grid requested'
+       CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                    SQUEEZE_RIGHT , myThid)
+       WRITE(msgBuf,'(A)')
+     &  'S/R INI_PARMS: => Use Cartesian Grid as default'
+       CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                    SQUEEZE_RIGHT , myThid)
+       usingCartesianGrid = .TRUE.
       ENDIF
 C--   Make metric term settings consistent with underlying grid.
       IF ( usingCartesianGrid ) THEN

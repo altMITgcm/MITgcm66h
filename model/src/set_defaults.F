@@ -65,7 +65,7 @@ C     Vertical gridding
 
 C     Horizontal gridding
 C     In cartesian coords distances are in metres
-      usingCartesianGrid = .TRUE.
+      usingCartesianGrid = .FALSE.
       DO i=1,Nx
        delX(i) = UNSET_RL
       ENDDO
