@@ -6,15 +6,12 @@ C CPP flags controlling which code in included in the files that
 C will be compiled.
 C
 
+C o Include/exclude code for KPP mixing scheme
+#undef  ALLOW_KPP
+
 C o Include/exclude code for C-D grid method of integrating the 
 C   coriolis terms
 #undef   INCLUDE_CD_CODE
-
-C o Allow nonHydrostatic code
-#define ALLOW_NONHYDROSTATIC
-
-C o Use natural boundary conditions for surface fresh water flux
-#undef USE_NATURAL_BCS
 
 C o Include/exclude diagnostics package interface code
 #define  INCLUDE_DIAGNOSTICS_INTERFACE_CODE
@@ -117,6 +114,13 @@ C o Include/exclude call to S/R CALC_ISOSLOPES
 
 C o Include/exclude call to S/R CALC_DIFFUSIVITY
 #define INCLUDE_CALC_DIFFUSIVITY_CALL
+
+C o Allow nonHydrostatic code
+#define ALLOW_NONHYDROSTATIC
+
+C o Use "natural" boundary conditions for salinity
+C   instead of the "virtual salt flux"
+#undef  USE_NATURAL_BCS
 
 C o Use "OLD" UV discretisation near boundaries (*not* recommended)
 C   Note - only works with  #undef NO_SLIP_LATERAL  in calc_mom_rhs.F
