@@ -603,9 +603,11 @@ CADJ STORE gS(:,:,:,bi,bj) = comlev1_bibj , key=itdkey, byte=isbyte
 #endif
 
 #ifdef ALLOW_PTRACERS
-        IF     ( usePTRACERS .AND. implicitDiffusion ) THEN
-C--     Vertical diffusion (implicit) for passive tracers
-           CALL PTRACERS_IMPLDIFF( bi,bj,kappaRk,myThid )
+        IF     ( usePTRACERS ) THEN
+C--     Vertical advection/diffusion (implicit) for passive tracers
+           CALL PTRACERS_IMPLICIT( 
+     U                             kappaRk,
+     I                             bi, bj, myTime, myIter, myThid )
         ENDIF
 #endif /* ALLOW_PTRACERS */
 

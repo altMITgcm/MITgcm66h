@@ -25,8 +25,9 @@ C     PTRACERS parameters
       _RL PTRACERS_diffKh(PTRACERS_num)
       _RL PTRACERS_diffK4(PTRACERS_num)
       _RL PTRACERS_diffKrNr(Nr,PTRACERS_num)
-      INTEGER PTRACERS_advScheme(PTRACERS_num)
       INTEGER PTRACERS_numInUse
+      INTEGER PTRACERS_advScheme(PTRACERS_num)
+      LOGICAL PTRACERS_ImplVertAdv(PTRACERS_num)
       LOGICAL PTRACERS_useGMRedi(PTRACERS_num)
       LOGICAL PTRACERS_useKPP(PTRACERS_num)
       LOGICAL PTRACERS_useRecords
@@ -47,10 +48,11 @@ C     PTRACERS parameters
      &     PTRACERS_diffKrNr,
      &     PTRACERS_numInUse,
      &     PTRACERS_advScheme,
-     &     PTRACERS_initialFile,
+     &     PTRACERS_ImplVertAdv,
      &     PTRACERS_useGMRedi,
      &     PTRACERS_useKPP,
      &     PTRACERS_useRecords,
+     &     PTRACERS_initialFile,
      &     PTRACERS_names,
      &     PTRACERS_long_names,
      &     PTRACERS_units,

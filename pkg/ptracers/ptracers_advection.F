@@ -56,7 +56,7 @@ C Loop over tracers
      &     PTRACERS_advScheme(iTracer).NE.ENUM_UPWIND_3RD .AND.
      &     PTRACERS_advScheme(iTracer).NE.ENUM_CENTERED_4TH ) THEN
             CALL GAD_ADVECTION(
-     I                        .FALSE.,
+     I                        PTRACERS_ImplVertAdv(iTracer),
      I                        PTRACERS_advScheme(iTracer),
      I                        PTRACERS_advScheme(iTracer),
      I                        GAD_TR1,

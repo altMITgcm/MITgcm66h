@@ -106,7 +106,7 @@ C (advection, [explicit] diffusion, parameterizations,...)
      I                   GAD_TR,
      I                   PTRACERS_advScheme(iTracer),
      I                   PTRACERS_advScheme(iTracer),
-     I                   calcAdvection, .FALSE.,
+     I                   calcAdvection, PTRACERS_ImplVertAdv(iTracer),
      U                   rFlx(1-Olx,1-Oly,1,iTracer),
      U                   gPtr(1-Olx,1-Oly,1,1,1,iTracer),
      I                   myTime, myIter, myThid )
