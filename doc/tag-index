@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o Added tidal_basin_2d experiment (currently 1D!)
 o can use r* Coordinate with OBC (but Orlanski Rad. BC not yet implemented) 
 
 checkpoint48b_post
