@@ -55,10 +55,10 @@ C     === Local variables ====
       IF (tmpVal.NE.0.) theMean=theMean*tmpVal
 
       _BEGIN_MASTER( myThid )
-      WRITE(*,'(A,24x,A,1PE22.14)')
-     &      'MON_KE: ','  max=',theMax
-      WRITE(*,'(A,24x,A,1PE22.14)')
-     &      'MON_KE: ',' mean=',theMean
+      WRITE(*,'(A,29x,A,1PE22.14)')
+     &      'MON_KE: ',' KE max=',theMax
+      WRITE(*,'(A,29x,A,1PE22.14)')
+     &      'MON_KE: ','KE mean=',theMean
       _END_MASTER( )
 
       RETURN

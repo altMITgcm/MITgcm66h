@@ -45,7 +45,7 @@ C     === Local variables ====
       _GLOBAL_MAX_R8(theMax,myThid)
 
       _BEGIN_MASTER( myThid )
-      WRITE(*,'(A,A20,A,1PE22.14)')
+      WRITE(*,'(A,A27,A,1PE22.14)')
      &      'MON_ADVCFL: ',label,'  max=',theMax
       _END_MASTER( )
 
