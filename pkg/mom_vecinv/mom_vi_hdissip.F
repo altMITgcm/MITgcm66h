@@ -41,6 +41,7 @@ C     == Local variables ==
       _RL Zip,Zij,Zpj,Dim,Dij,Dmj,uD2,vD2,uD4,vD4
       _RL Alin,Alth,grdVrt,vg2,vg4
       LOGICAL useVariableViscosity
+      integer klev
 
       useVariableViscosity=
      &      (viscAhGrid*deltaTmom.NE.0.)
@@ -195,7 +196,8 @@ C and should be less than 1/8, for example viscAh=0.01
 
 #ifdef ALLOW_DIAGNOSTICS
       if (useDiagnostics) then
-       call fill_diagnostics(myThid,'VISCA4  ',k,1,3,bi,bj,viscA4_D)
+       klev = -1 * k
+       call fill_diagnostics(myThid,'VISCA4  ',klev,1,3,bi,bj,visca4_d)
       endif
 #endif
 
