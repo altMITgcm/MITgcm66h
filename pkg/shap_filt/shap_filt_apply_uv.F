@@ -44,12 +44,16 @@ C     myThid :: Thread number for this instance of SHAP_FILT_APPLY_UV
 
 #ifdef ALLOW_SHAP_FILT
 
+      LOGICAL  DIFFERENT_MULTIPLE
+      EXTERNAL DIFFERENT_MULTIPLE
+
 C     !LOCAL VARIABLES:
-#ifdef USE_OLD_SHAPIRO_FILTERS
 C     == Local variables ==
+#ifdef USE_OLD_SHAPIRO_FILTERS
 C     bi,bj,k :: loop index
       INTEGER bi, bj, k
 #endif /* USE_OLD_SHAPIRO_FILTERS */
+      CHARACTER*(MAX_LEN_MBUF) suff
 
 CEOP
 
@@ -95,6 +99,24 @@ CEOP
           ELSE
            STOP 'SHAP_FILT_APPLY_UV: Ooops! Bad Shap_funct in UV block'
           ENDIF
+
+C-----    Diagnostic of Shapiro Filter effect on Momentum :
+C         Note: Shap_tmpFld1,2 from shap_filt_tracer_s2 (and not s1, s4)
+C               are directly proportional to Delta-U,V due to the Filter
+          IF ( Shap_funct.NE.1 .AND. Shap_funct.NE.4 .AND.
+     &     DIFFERENT_MULTIPLE(Shap_diagFreq,myTime,myTime-deltaTClock)
+     &       ) THEN
+           _BARRIER
+           _BEGIN_MASTER( myThid )
+           WRITE(suff,'(I10.10)') myIter
+           CALL WRITE_FLD_XYZ_RL( 'shap_dU.', suff, Shap_tmpFld1,
+     &                             myIter,myThid)
+           CALL WRITE_FLD_XYZ_RL( 'shap_dV.', suff, Shap_tmpFld2,
+     &                             myIter,myThid)
+           _END_MASTER( myThid )
+           _BARRIER
+          ENDIF
+
         ENDIF
 
 #endif /* USE_OLD_SHAPIRO_FILTERS */
