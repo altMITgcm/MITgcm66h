@@ -33,8 +33,8 @@ echo Operating system: $mach
 #   copy everything in ../eesupp/src, ../model/src,
 #   ../eesupp/inc and ../model/inc into a directory and then
 #   edit the paths below to ./
-set SOURCEDIRS  = ( ../eesupp/src/ ../model/src/ )
-set INCLUDEDIRS = ( ../eesupp/inc/ ../model/inc/ )
+set SOURCEDIRS  = ( ../eesupp/src/ ../model/src/ ../diags/src/)
+set INCLUDEDIRS = ( ../eesupp/inc/ ../model/inc/ ../diags/inc/)
 set BUILDDIR    = ( ../bin/ )
 set EXEDIR      = ( ../exe/ )
 set EXECUTABLE  = ( mitgcmuv )
@@ -231,7 +231,7 @@ OBJFILES = ${objlist}
 
 all: \$(EXECUTABLE)
 \$(EXECUTABLE): \$(OBJFILES)
-	\$(LINK) -o \$@ \$(FFLAGS) \$(FOPTIM) \$(LIBS) \$(OBJFILES)
+	\$(LINK) -o \$@ \$(FFLAGS) \$(FOPTIM) \$(OBJFILES) \$(LIBS)
 links:
 	@-\$(LN) $SRCSTARS .
 depend:
