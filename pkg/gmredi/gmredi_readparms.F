@@ -18,7 +18,6 @@ C     === Global variables ===
 #include "PARAMS.h"
 #include "GRID.h"
 #include "GMREDI.h"
-#include "GMREDI_DIAGS.h"
 
 C     === Routine arguments ===
       INTEGER myThid

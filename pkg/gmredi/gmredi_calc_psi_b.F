@@ -23,7 +23,6 @@ C     == Global variables ==
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GMREDI.h"
-#include "GMREDI_DIAGS.h"
 
 #ifdef ALLOW_AUTODIFF_TAMC
 #include "tamc.h"
