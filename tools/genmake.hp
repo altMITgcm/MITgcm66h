@@ -123,10 +123,10 @@ if ( ${PSUPP_SDIR} != ${MODEL_SDIR} ) then
 #  concurrently. Optimisation knows nothing about parallel access
 #  it assumes sequential semantics and rearranges code on that 
 #  basis.
-   if ( "${fname}" != "fbar.F" ) then
-    echo '	@ $(FCOMP) '$pf >> ${mfile}.$$
-   else
+   if ( "${fname}" == "fbar.F" || "${fname}" == "different_multiple.F" ) then
     echo '	@ $(FCOMP0) '$pf >> ${mfile}.$$
+   else
+    echo '	@ $(FCOMP) '$pf >> ${mfile}.$$
    endif   
    set psupp_files = ( ${psupp_files} ${fname}  )
    set psupp_slist = ( ${psupp_slist} ${f}  )
