@@ -110,7 +110,7 @@ c--   Read the namelist input.
      &  xx_bottomdrag_file
 
       namelist /ctrl_packnames/
-     &  yadmark, yctrlid,
+     &  yadmark, yctrlid, yctrlposunpack, yctrlpospack,
      &  ctrlname, costname, scalname, maskname, metaname
 
       _BEGIN_MASTER( myThid )
@@ -184,6 +184,8 @@ c--     Set default values.
         yadmark             = 'ad'
 #endif
         yctrlid             = 'MIT_CE_000'
+        yctrlposunpack      = '.opt'
+        yctrlpospack        = '.opt'
         ctrlname            = ' '
         costname            = ' '
         scalname            = ' '
