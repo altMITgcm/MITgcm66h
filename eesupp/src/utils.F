@@ -141,7 +141,8 @@ C     L, LS :: Temps. used in scanning string
 CEOP
 C
       LS      = LEN(string)
-      ILNBLNK = LS
+c     ILNBLNK = LS
+      ILNBLNK = 0
       DO 10 L = LS, 1, -1
         IF ( string(L:L) .EQ. ' ' ) GOTO 10
          ILNBLNK = L
