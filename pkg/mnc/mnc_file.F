@@ -289,6 +289,69 @@ C     Clear all the file, grid, variable, and dim names and refs
 
 C==================================================================
 
+      SUBROUTINE MNC_FILE_CLOSE_ALL_MATCHING( 
+     I     myThid, 
+     I     fname ) 
+
+      implicit none
+#include "netcdf.inc"
+#include "mnc_common.h"
+#include "EEPARAMS.h"
+
+C     Arguments
+      integer myThid
+      character*(*) fname
+
+C     Functions
+      integer ILNBLNK
+
+C     Local Variables
+      integer i,n
+
+      n = ILNBLNK(fname)
+      DO i = 1,MNC_MAX_ID
+
+C       Check that the file is open
+        IF (fname(1:n) .EQ. mnc_f_names(i)(1:n)) THEN
+          CALL MNC_FILE_CLOSE(myThid,mnc_f_names(i))
+        ENDIF
+
+      ENDDO
+
+      RETURN
+      END
+
+C==================================================================
+
+      SUBROUTINE MNC_FILE_CLOSE_ALL( 
+     I     myThid ) 
+
+      implicit none
+#include "netcdf.inc"
+#include "mnc_common.h"
+#include "EEPARAMS.h"
+
+C     Arguments
+      integer myThid
+
+C     Local Variables
+      integer i
+
+      DO i = 1,MNC_MAX_ID
+
+C       Check that the file is open
+        IF (mnc_f_names(i)(1:MNC_MAX_CHAR) 
+     &       .NE. mnc_blank_name(1:MNC_MAX_CHAR)) THEN
+          CALL MNC_FILE_CLOSE(myThid,mnc_f_names(i))
+        ENDIF
+
+      ENDDO
+
+      RETURN
+      END
+
+C==================================================================
+
       SUBROUTINE MNC_FILE_REDEF( 
      I     myThid,
      I     fname )

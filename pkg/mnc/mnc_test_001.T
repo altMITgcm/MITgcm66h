@@ -49,11 +49,11 @@ C     Local Variables
       dims(1) =  7
       dims(2) =  4
       dims(3) =  2
-      dims(4) = -1 ! -1 
+      dims(4) = -1
       dnames(1)(1:1) = 'X'
       dnames(2)(1:1) = 'Y'
       dnames(3)(1:1) = 'Z'
-      dnames(4)(1:1) = 'T '
+      dnames(4)(1:1) = 'T'
       myThid = 1
 C     In FORTRAN, the first variable cycles most quickly
       DO ii = 1,MAX_STOR
