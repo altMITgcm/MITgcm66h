@@ -49,7 +49,7 @@ C     undef this option.
 C--   Control MPI based parallel processing
 #define ALLOW_USE_MPI
 #define ALWAYS_USE_MPI
- 
+
 C--   Control use of communication that might overlap computation.
 C     Under MPI selects/deselects "non-blocking" sends and receives.
 #define ALLOW_ASYNC_COMMUNICATION
