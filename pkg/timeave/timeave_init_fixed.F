@@ -4,10 +4,10 @@ C $Name$
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 CBOP
-C     !ROUTINE: TIMEAVE_INIT
+C     !ROUTINE: TIMEAVE_INIT_FIXED
 
 C     !INTERFACE:
-      SUBROUTINE TIMEAVE_INIT( myThid )
+      SUBROUTINE TIMEAVE_INIT_FIXED( myThid )
 
 C     !DESCRIPTION:
 C     At the end of average period, write the time-average

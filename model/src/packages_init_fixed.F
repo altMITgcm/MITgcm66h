@@ -78,7 +78,7 @@ C--   Initialise Float positions
 
 #ifdef ALLOW_TIMEAVE
 C     IF (useTIMEAVE) THEN
-      CALL timeave_init( myThid )
+      CALL TIMEAVE_INIT_FIXED( myThid )
 C     ENDIF
 #endif
 
