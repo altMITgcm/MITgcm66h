@@ -25,6 +25,7 @@ c     == global variables ==
 
 #include "EEPARAMS.h"
 #include "SIZE.h"
+#include "PARAMS.h"
 #include "cal.h"
 #include "exf.h"
 #include "exf_param.h"
@@ -100,6 +101,28 @@ c     Initialise file type and field precision
       exf_clim_iprec  = 32
       exf_clim_yftype = 'RL'
 
+#ifdef USE_EXF_INTERPOLATION
+      climsst_lon0    = thetaMin + delX(1) / 2
+      climsss_lon0    = thetaMin + delX(1) / 2
+      climsst_lat0    = phimin   + delY(1) / 2
+      climsss_lat0    = phimin   + delY(1) / 2
+      climsst_nlon    = Nx
+      climsst_nlat    = Ny
+      climsss_nlon    = Nx
+      climsss_nlat    = Ny
+      climsst_lon_inc = delX(1)
+      climsss_lon_inc = delX(1)
+      DO i=1,MAX_LAT_INC
+         IF (i.LT.Ny) THEN
+            climsst_lat_inc(i)   = (delY(i) + delY(i)) / 2.
+            climsss_lat_inc(i)   = (delY(i) + delY(i)) / 2.
+         ELSE
+            climsst_lat_inc(i)   = 0.
+            climsss_lat_inc(i)   = 0.
+         ENDIF
+      ENDDO
+#endif /* USE_EXF_INTERPOLATION */
+
 c     Check for the availability of the right calendar version.
       if ( calendarversion .ne. usescalendarversion ) then
          print*,' exf_Init: You are not using the appropriate'
@@ -134,35 +157,43 @@ c     check for consistency
       end if           
 
 #ifdef ALLOW_CLIMTEMP_RELAXATION
-        call cal_FullDate( climtempstartdate1, climtempstartdate2,
-     &                     date_array,                    mythid )
-        call cal_TimePassed(modelstartdate,date_array,difftime,mythid)
-        call cal_ToSeconds (difftime,      climtempstartdate  ,mythid)
-        climtempstartdate=modelstart+climtempstartdate
+      if ( climtempfile .NE. ' ' ) then
+         call cal_FullDate( climtempstartdate1, climtempstartdate2,
+     &        date_array,                    mythid )
+         call cal_TimePassed(modelstartdate,date_array,difftime,mythid)
+         call cal_ToSeconds (difftime,      climtempstartdate  ,mythid)
+         climtempstartdate=modelstart+climtempstartdate
+      endif
 #endif
 
 #ifdef ALLOW_CLIMSALT_RELAXATION
+      if ( climsaltfile .NE. ' ' ) then      
         call cal_FullDate( climsaltstartdate1, climsaltstartdate2,
      &                     date_array,                    mythid )
         call cal_TimePassed(modelstartdate,date_array,difftime,mythid)
         call cal_ToSeconds (difftime,      climsaltstartdate  ,mythid)
         climsaltstartdate=modelstart+climsaltstartdate
+      endif
 #endif
 
 #ifdef ALLOW_CLIMSST_RELAXATION
-        call cal_FullDate( climsststartdate1, climsststartdate2,
-     &                     date_array,                  mythid )
-        call cal_TimePassed(modelstartdate,date_array,difftime,mythid)
-        call cal_ToSeconds (difftime,       climsststartdate  ,mythid)
-        climsststartdate=modelstart+climsststartdate
+      if ( climsstfile .NE. ' ' ) then
+         call cal_FullDate( climsststartdate1, climsststartdate2,
+     &        date_array,                  mythid )
+         call cal_TimePassed(modelstartdate,date_array,difftime,mythid)
+         call cal_ToSeconds (difftime,       climsststartdate  ,mythid)
+         climsststartdate=modelstart+climsststartdate
+      endif
 #endif
 
 #ifdef ALLOW_CLIMSSS_RELAXATION
-        call cal_FullDate( climsssstartdate1, climsssstartdate2,
-     &                     date_array,                  mythid )
-        call cal_TimePassed(modelstartdate,date_array,difftime,mythid)
-        call cal_ToSeconds (difftime,       climsssstartdate  ,mythid)
-        climsssstartdate=modelstart+climsssstartdate
+      if ( climsssfile .NE. ' ' ) then
+         call cal_FullDate( climsssstartdate1, climsssstartdate2,
+     &        date_array,                  mythid )
+         call cal_TimePassed(modelstartdate,date_array,difftime,mythid)
+         call cal_ToSeconds (difftime,       climsssstartdate  ,mythid)
+         climsssstartdate=modelstart+climsssstartdate
+      endif
 #endif
 
       _END_MASTER( mythid )

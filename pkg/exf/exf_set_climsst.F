@@ -57,23 +57,27 @@ c     == end of interface ==
 
       if ( climsstfile .NE. ' ' ) then
 
-#ifdef ALLOW_CLIM_CYCLIC
+         if ( climsstperiod .EQ. 0 ) then
+
 c     record numbers are assumed 1 to 12 corresponding to
 c     Jan. through Dec.
-         call cal_GetMonthsRec(
-     O        fac, first, changed,
-     O        count0, count1,
-     I        mycurrenttime, mycurrentiter, mythid
-     &        )
-#else 
+            call cal_GetMonthsRec(
+     O           fac, first, changed,
+     O           count0, count1,
+     I           mycurrenttime, mycurrentiter, mythid
+     &           )
+
+         else 
+
 c     get record numbers and interpolation factor for climsst
-         call exf_GetFFieldRec(
-     I        climsststartdate, climsstperiod
-     O        , fac, first, changed
-     O        , count0, count1
-     I        , mycurrenttime, mycurrentiter, mythid
-     &        )
-#endif
+            call exf_GetFFieldRec(
+     I           climsststartdate, climsstperiod
+     O           , fac, first, changed
+     O           , count0, count1
+     I           , mycurrenttime, mycurrentiter, mythid
+     &           )
+
+         endif
 
          if ( first ) then
 #ifdef USE_EXF_INTERPOLATION

@@ -128,6 +128,13 @@ c     Get values of climatological fields.
 c     Get the surface forcing fields.
       call exf_getffields( mytime, myiter, mythid )
 
+      if ( debugLevel .GE. debLevB ) then
+#ifdef ALLOW_DEBUG
+         call debug_call( 'exf_check_range', myThid )
+#endif
+         call exf_check_range( mytime, myiter, mythid )
+      endif
+
 c     Compute bulk formulae
 #ifdef ALLOW_BULKFORMULAE
       call exf_bulkformulae( mytime, myiter, mythid )
