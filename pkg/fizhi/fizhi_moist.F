@@ -1455,7 +1455,7 @@ c --------------------------------------------------------------------
       _RL rand
       random_numbx = rand()
 #else
-      seed = iseed
+      seed = -1.d0
       random_numbx = port_rand(seed)
 #endif
 #endif
@@ -1466,11 +1466,17 @@ c --------------------------------------------------------------------
       integer  iseed
 #ifdef CRAY
       call ranset (iseed)
-#endif
+#else
 #ifdef SGI
       integer*4   seed
                   seed = iseed
       call srand (seed)
+#else
+      real*8 tmpRdN
+      real*8 seed
+      seed = iseed
+      tmpRdN = port_rand(seed)
+#endif
 #endif
       return
       end

@@ -62,8 +62,10 @@ c     == local variables ==
 #undef _USE_INTEGERS
 #ifdef _USE_INTEGERS
       integer seed
+      seed = -1
 #else
       Real*8 seed
+      seed = -1.d0
 #endif
 #endif
 
