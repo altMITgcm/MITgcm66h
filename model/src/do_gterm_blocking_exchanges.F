@@ -1,6 +1,6 @@
-C $Id$
+C $Header$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
       SUBROUTINE DO_GTERM_BLOCKING_EXCHANGES(myThid)
 C     /==========================================================\
@@ -37,9 +37,22 @@ C     == Routine arguments ==
 C     myThid - Thread number for this instance of the routine.
       INTEGER myThid
 
-      _EXCH_XYZ_R8( Gu , myThid )
-      _EXCH_XYZ_R8( Gv , myThid )
-      _EXCH_XYZ_R8( Gt , myThid )
+c     _EXCH_XYZ_R8( Gu , myThid )
+c     _EXCH_XYZ_R8( Gv , myThid )
+c     _EXCH_XYZ_R8( Gt , myThid )
+c     _EXCH_XYZ_R8( Gs , myThid )
+      _EXCH_XYZ_R8( gUNm1 , myThid )
+      _EXCH_XYZ_R8( gVNm1 , myThid )
+      _EXCH_XYZ_R8( gTNm1 , myThid )
+      _EXCH_XYZ_R8( gSNm1 , myThid )
+c     _EXCH_XYZ_R8( uVel , myThid )
+c     _EXCH_XYZ_R8( vVel , myThid )
+c     _EXCH_XYZ_R8( theta , myThid )
+c     _EXCH_XYZ_R8( salt , myThid )
+#ifdef ALLOW_CD
+      _EXCH_XYZ_R8( guCD , myThid )
+      _EXCH_XYZ_R8( gvCD , myThid )
+#endif
 CcnhDebugStarts
 Cdbg  _EXCH_XYZ_R8( phSave , myThid )
 CcnhDebugEnds

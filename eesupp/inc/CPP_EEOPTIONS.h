@@ -1,4 +1,4 @@
-C $Id$
+C $Header$
 C
 C     /==========================================================\
 C     | CPP_EEOPTIONS.h                                          |
@@ -22,6 +22,9 @@ C     |       once an experimental configuration has been        |
 C     |       identified, rebuild the code with the appropriate  |
 C     |       options set at compile time.                       |
 C     \==========================================================/
+
+#ifndef _CPP_EEOPTIONS_H_
+#define _CPP_EEOPTIONS_H_
 
 C     In general the following convention applies:
 C     ALLOW  - indicates an feature will be included but it may
@@ -59,7 +62,7 @@ C                              system F90 compiler.
 #endif
 
 #ifdef TARGET_DEC
-#define USE_KAP_THREADING
+#undef  USE_KAP_THREADING
 #endif
 
 #ifdef TARGET_SGI
@@ -95,8 +98,8 @@ C     it alone execute the BEGIN_MASTER..., END_MASTER.. sections.
 #define _END_MASTER(a)    ENDIF
 
 C--   Control MPI based parallel processing
-#undef  ALLOW_USE_MPI
-#undef  ALWAYS_USE_MPI
+#define ALLOW_USE_MPI
+#define ALWAYS_USE_MPI
  
 C--   Control use of communication that might overlap computation.
 C     Under MPI selects/deselects "non-blocking" sends and receives.
@@ -116,7 +119,7 @@ C     can use 4-byte precision, reducing memory utilisation and
 C     boosting performance because of a smaller working
 C     set size. However, on vector CRAY systems this degrades
 C     performance.
-#define REAL4_IS_SLOW
+#undef  REAL4_IS_SLOW
  
 #ifdef REAL4_IS_SLOW
 #define real Real*8
@@ -172,3 +175,5 @@ C     precision when they see .Dnn which runs very slowly!
 #ifndef REAL_D0_IS_16BYTES
 #define _d D
 #endif
+
+#endif /* _CPP_EEOPTIONS_H_ */

@@ -1,4 +1,4 @@
-C $Id$
+C $Header$
 C
 C     /==========================================================\
 C     | SIZE.h Declare size of underlying computational grid.    |
@@ -35,17 +35,17 @@ C     Nz  - No. points in Z for full process domain.
       INTEGER Ny
       INTEGER Nz
       PARAMETER (
-     &           sNx =  60, 
-     &           sNy =  60,
+     &           sNx =  90,
+     &           sNy =  20,
      &           OLx =   3,
      &           OLy =   3,
      &           nSx =   1,
      &           nSy =   1,
      &           nPx =   1,
-     &           nPy =   1,
+     &           nPy =   2,
      &           Nx  = sNx*nSx*nPx,
      &           Ny  = sNy*nSy*nPy,
-     &           Nz  =   2)
+     &           Nz  =  20)
 
 C     l - Runtime global problem size in X
 C     m - Runtime global problem size in Y

@@ -1,4 +1,4 @@
-C $Id$
+C $Header$
 
 #include "CPP_EEOPTIONS.h"
 
@@ -45,39 +45,49 @@ C     I,J,K
       INTEGER  I,  J, K
       REAL rad, rD
 
-C--   Initialise temperature field to a circular patch.
-      iC  = Nx/2
-      jC  = Ny/2
-      rad = MIN(Ny/8,Nx/8)
-      DO bj = myByLo(myThid), myByHi(myThid)
-       DO bi = myBxLo(myThid), myBxHi(myThid)
-        DO K=1,Nz
-         DO J=1,sNy
-          DO I=1,sNx
-           theta(I,J,K,bi,bj) = 0. _d 0
-           iG = myXGlobalLo-1+(bi-1)*sNx+I
-           jG = myYGlobalLo-1+(bj-1)*sNy+J
-           iD = iG-iC
-           jD = jG-jC
-           rD = SQRT(FLOAT(iD*iD+jD*jD))
-           IF ( rD .LT. rad ) theta(I,J,K,bi,bj) = 1. _d 0
+      _BARRIER
+
+      IF ( hydrogThetaFile .EQ. ' ' ) THEN
+C--    Example 1
+C--    Initialise temperature field to a circular patch.
+       iC  = Nx/2
+       jC  = Ny/2
+       rad = MIN(Ny/8,Nx/8)
+       DO bj = myByLo(myThid), myByHi(myThid)
+        DO bi = myBxLo(myThid), myBxHi(myThid)
+         DO K=1,Nz
+          DO J=1,sNy
+           DO I=1,sNx
+            theta(I,J,K,bi,bj) = 0. _d 0
+            iG = myXGlobalLo-1+(bi-1)*sNx+I
+            jG = myYGlobalLo-1+(bj-1)*sNy+J
+            iD = iG-iC
+            jD = jG-jC
+            rD = SQRT(FLOAT(iD*iD+jD*jD))
+            IF ( rD .LT. rad ) theta(I,J,K,bi,bj) = 1. _d 0
+           ENDDO
           ENDDO
          ENDDO
         ENDDO
        ENDDO
-      ENDDO
-C--   Initialise temperature field to the vertical reference profile
-      DO bj = myByLo(myThid), myByHi(myThid)
-       DO bi = myBxLo(myThid), myBxHi(myThid)
-        DO K=1,Nz
-         DO J=1,sNy
-          DO I=1,sNx
-           theta(I,J,K,bi,bj) = tRef(K)
+C--    Example 2
+C--    Initialise temperature field to the vertical reference profile
+       DO bj = myByLo(myThid), myByHi(myThid)
+        DO bi = myBxLo(myThid), myBxHi(myThid)
+         DO K=1,Nz
+          DO J=1,sNy
+           DO I=1,sNx
+            theta(I,J,K,bi,bj) = tRef(K)
+           ENDDO
           ENDDO
          ENDDO
         ENDDO
        ENDDO
-      ENDDO
+      ELSE
+       _BEGIN_MASTER( myThid )
+       CALL READ_FLD_XYZ_RL( hydrogThetaFile, ' ', theta, 0, myThid )
+       _END_MASTER(myThid)
+      ENDIF
 C     Set initial tendency terms
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
@@ -95,5 +105,8 @@ C
       _EXCH_XYZ_R8(theta , myThid )
       _EXCH_XYZ_R8(gt , myThid )
       _EXCH_XYZ_R8(gtNM1 , myThid )
+
+      CALL PLOT_FIELD_XYZRL( theta, 'Initial Temperature' , Nz, 1, myThid )
+
       RETURN
       END

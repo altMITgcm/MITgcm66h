@@ -1,4 +1,4 @@
-C $Id$
+C $Header$
 
 #include "CPP_EEOPTIONS.h"
 
@@ -81,6 +81,8 @@ C     Set up my local grid first
 C     Note: In the spherical polar case delX and delY are given in
 C           degrees and are relative to some starting latitude and
 C           longitude - phiMin and thetaMin.
+      xC0 = thetaMin
+      yC0 = phiMin
       DO bj = myByLo(myThid), myByHi(myThid)
        jG = myYGlobalLo + (bj-1)*sNy
        DO bi = myBxLo(myThid), myBxHi(myThid)
@@ -158,32 +160,7 @@ C     dxC, dyC is separation between cell centers
       ENDDO
       _EXCH_XY_R4(dxC, myThid )
       _EXCH_XY_R4(dyC, myThid )
-C     Calculate recipricols
-      DO bj = myByLo(myThid), myByHi(myThid)
-       DO bi = myBxLo(myThid), myBxHi(myThid)
-        DO J=1,sNy
-         DO I=1,sNx
-          rDxG(I,J,bi,bj)=1.d0/dxG(I,J,bi,bj)
-          rDyG(I,J,bi,bj)=1.d0/dyG(I,J,bi,bj)
-          rDxC(I,J,bi,bj)=1.d0/dxC(I,J,bi,bj)
-          rDyC(I,J,bi,bj)=1.d0/dyC(I,J,bi,bj)
-          rDxF(I,J,bi,bj)=1.d0/dxF(I,J,bi,bj)
-          rDyF(I,J,bi,bj)=1.d0/dyF(I,J,bi,bj)
-          rDxV(I,J,bi,bj)=1.d0/dxV(I,J,bi,bj)
-          rDyU(I,J,bi,bj)=1.d0/dyU(I,J,bi,bj)
-         ENDDO
-        ENDDO
-       ENDDO
-      ENDDO
-      _EXCH_XY_R4(rDxG, myThid )
-      _EXCH_XY_R4(rDyG, myThid )
-      _EXCH_XY_R4(rDxC, myThid )
-      _EXCH_XY_R4(rDyC, myThid )
-      _EXCH_XY_R4(rDxF, myThid )
-      _EXCH_XY_R4(rDyF, myThid )
-      _EXCH_XY_R4(rDxV, myThid )
-      _EXCH_XY_R4(rDyU, myThid )
-C     Calculate vertical face area 
+C     Calculate vertical face area and trigonometric terms
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
         DO J=1,sNy
@@ -193,12 +170,16 @@ C     Calculate vertical face area
           latN = yc(i,j,bi,bj)+delY(jG)*0.5 _d 0
           zA(I,J,bi,bj) = dyF(I,J,bi,bj)
      &    *rSphere*(SIN(latN*deg2rad)-SIN(latS*deg2rad))
+          tanPhiAtU(i,j,bi,bj)=tan(_yC(i,j,bi,bj)*deg2rad)
+          tanPhiAtV(i,j,bi,bj)=tan(latS*deg2rad)
          ENDDO
         ENDDO
        ENDDO
       ENDDO
+      _EXCH_XY_R4 (zA       , myThid )
+      _EXCH_XY_R4 (tanPhiAtU , myThid )
+      _EXCH_XY_R4 (tanPhiAtV , myThid )
+
 C
       RETURN
       END
-
-C     $Id$

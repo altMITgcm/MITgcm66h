@@ -1,8 +1,8 @@
-C $Id$
+C $Header$
 
 #include "CPP_EEOPTIONS.h"
 
-      SUBROUTINE DO_THE_MODEL_IO(myIter, myThid)
+      SUBROUTINE DO_THE_MODEL_IO(myCurrentTime, myIter, myThid)
 C     /==========================================================\
 C     | SUBROUTINE DO_THE_MODEL_IO                               |
 C     | o Controlling routine for IO in model main time-stepping |
@@ -35,26 +35,41 @@ C     == Global variables ===
 #include "DYNVARS.h"
 #include "CG2D.h"
 
+      LOGICAL  DIFFERENT_MULTIPLE
+      EXTERNAL DIFFERENT_MULTIPLE
+
 C     == Routine arguments ==
 C     myThid - Thread number for this instance of the routine.
 C     myIter - Iteration number
+C     myCurrentTime - Current time of simulation ( s )
       INTEGER myThid
       INTEGER myIter
+      REAL    myCurrentTime
 
 C     == Local variables ==
+C     suff - Hold suffix part of a filename
+      CHARACTER*(MAX_LEN_FNAM) suff
+      
 
 C--   Generaly only thread 1 does IO here. It can't start until everyone's
 C--   fields are ready.
-      IF ( MOD(myIter,10) .NE. 0 ) RETURN
-      _BARRIER
+      IF (
+     &  DIFFERENT_MULTIPLE(dumpFreq,myCurrentTime,myCurrentTime-deltaTClock)
+     & ) THEN
 
-C--   Write "text-plots" of certain fields
-      CALL PLOT_FIELD_XYZR8( uVel , 'uVel  ' , Nz, myIter, myThid )
-      CALL PLOT_FIELD_XYZR8( vVel , 'vVel  ' , Nz, myIter, myThid )
-      CALL PLOT_FIELD_XYZR8( theta, 'Theta ' , Nz, myIter, myThid )
-      CALL PLOT_FIELD_XYZR8( rho, 'rho ' , Nz, myIter, myThid )
-      CALL PLOT_FIELD_XYR8( cg2d_x, 'cg2d_x ' , myIter, myThid )
-      _BARRIER
+       _BARRIER
+
+C--    Write "text-plots" of certain fields
+       CALL PLOT_FIELD_XYZRL( uVel , 'Current uVel  ' , Nz, myIter, myThid )
+       CALL PLOT_FIELD_XYZRL( vVel , 'Current vVel  ' , Nz, myIter, myThid )
+       CALL PLOT_FIELD_XYZRL( theta, 'Current theta ' , Nz, myIter, myThid )
+       CALL PLOT_FIELD_XYRL( cg2d_x, 'Current cg2d_x ' , myIter, myThid )
+
+      ENDIF
+
+C--   Write model state to binary file
+      CALL WRITE_STATE( .FALSE., myCurrentTime, myIter, myThid )
+
 C
       RETURN
       END

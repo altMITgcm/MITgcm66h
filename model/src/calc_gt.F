@@ -1,11 +1,12 @@
-C $Id$
+C $Header$
 
 #include "CPP_EEOPTIONS.h"
 
 CStartOfInterFace
       SUBROUTINE CALC_GT( 
      I           bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
-     I           xA,yA,uTrans,vTrans,wTrans,maskup,
+     I           xA,yA,uTrans,vTrans,wTrans,maskup,maskC,
+     I           K13,K23,KappaZT,KapGM,
      U           af,df,fZon,fMer,fVerT,
      I           myThid )
 C     /==========================================================\
@@ -41,6 +42,7 @@ C     == GLobal variables ==
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#include "FFIELDS.h"
 
 C     == Routine arguments ==
 C     fZon    - Work array for flux of temperature in the east-west 
@@ -50,6 +52,7 @@ C               direction at the south face of a cell.
 C     fVerT   - Flux of temperature (T) in the vertical 
 C               direction at the upper(U) and lower(D) faces of a cell.
 C     maskUp  - Land mask used to denote base of the domain.
+C     maskC   - Land mask for theta cells (used in TOP_LAYER only)
 C     xA      - Tracer cell face area normal to X
 C     yA      - Tracer cell face area normal to X
 C     uTrans  - Zonal volume transport through cell face
@@ -69,26 +72,31 @@ C     myThid - Instance number for this innvocation of CALC_GT
       _RL vTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL wTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS maskUp(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RS maskC (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL K13   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nz)
+      _RL K23   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nz)
+      _RL KappaZT(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nz)
+      _RL KapGM (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL af    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL df    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      INTEGER kUp,kDown,kM1
+      INTEGER k,kUp,kDown,kM1
       INTEGER bi,bj,iMin,iMax,jMin,jMax
       INTEGER myThid
 CEndOfInterface
 
 C     == Local variables ==
 C     I, J, K - Loop counters
-      INTEGER i,j,k
-      REAL afFacT, dfFacT
-      REAL dutdxFac
+      INTEGER i,j
+      LOGICAL TOP_LAYER
+      _RL afFacT, dfFacT
+      _RL dTdx(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL dTdy(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
       afFacT = 1. _d 0
       dfFacT = 1. _d 0
-      dutdxFac = afFacT
+      TOP_LAYER = K .EQ. 1
 
-C---
 C---  Calculate advective and diffusive fluxes between cells.
-C---
 
 C--   Zonal flux (fZon is at west face of "theta" cell)
 C     Advective component of zonal flux
@@ -98,12 +106,18 @@ C     Advective component of zonal flux
      &   uTrans(i,j)*(theta(i,j,k,bi,bj)+theta(i-1,j,k,bi,bj))*0.5 _d 0
        ENDDO
       ENDDO
+C     Zonal tracer gradient
+      DO j=jMin,jMax
+       DO i=iMin,iMax
+        dTdx(i,j) = _rdxC(i,j,bi,bj)*
+     &  (theta(i,j,k,bi,bj)-theta(i-1,j,k,bi,bj))
+       ENDDO
+      ENDDO
 C     Diffusive component of zonal flux
       DO j=jMin,jMax
        DO i=iMin,iMax
-        df(i,j) = 
-     &   -diffKhT*xA(i,j)*rdxC(i,j,bi,bj)
-     &   *(theta(i,j,k,bi,bj)-theta(i-1,j,k,bi,bj))
+        df(i,j) = -(diffKhT+0.5*(KapGM(i,j)+KapGM(i-1,j)))*
+     &            xA(i,j)*dTdx(i,j)
        ENDDO
       ENDDO
 C     Net zonal flux
@@ -122,14 +136,18 @@ C       Advective component of meridional flux
      &   vTrans(i,j)*(theta(i,j,k,bi,bj)+theta(i,j-1,k,bi,bj))*0.5 _d 0
        ENDDO
       ENDDO
+C     Zonal tracer gradient
+      DO j=jMin,jMax
+       DO i=iMin,iMax
+        dTdy(i,j) = _rdyC(i,j,bi,bj)*
+     &  (theta(i,j,k,bi,bj)-theta(i,j-1,k,bi,bj))
+       ENDDO
+      ENDDO
 C     Diffusive component of meridional flux
       DO j=jMin,jMax
        DO i=iMin,iMax
-        df(i,j) =
-     &   -diffKhT*yA(i,j)*rdyC(i,j,bi,bj)
-C    &   -1.D3*rdyC(i,j,bi,bj)*dZF(K)*delX(1)*hFacC(i,j,k,bi,bj)*
-C    &    hFacC(i,j-1,k,bi,bj)
-     &   *(theta(i,j,k,bi,bj)-theta(i,j-1,k,bi,bj))
+        df(i,j) = -(diffKhT+0.5*(KapGM(i,j)+KapGM(i,j-1)))*
+     &            yA(i,j)*dTdy(i,j)
        ENDDO
       ENDDO
 C     Net meridional flux
@@ -139,10 +157,40 @@ C     Net meridional flux
        ENDDO
       ENDDO
 
+C--   Interpolate terms for Redi/GM scheme
+      DO j=jMin,jMax
+       DO i=iMin,iMax
+        dTdx(i,j) = 0.5*( 
+     &   +0.5*(_maskW(i+1,j,k,bi,bj)*_rdxC(i+1,j,bi,bj)*
+     &           (theta(i+1,j,k,bi,bj)-theta(i,j,k,bi,bj))
+     &        +_maskW(i,j,k,bi,bj)*_rdxC(i,j,bi,bj)*
+     &           (theta(i,j,k,bi,bj)-theta(i-1,j,k,bi,bj)))
+     &   +0.5*(_maskW(i+1,j,km1,bi,bj)*_rdxC(i+1,j,bi,bj)*
+     &           (theta(i+1,j,km1,bi,bj)-theta(i,j,km1,bi,bj))
+     &        +_maskW(i,j,km1,bi,bj)*_rdxC(i,j,bi,bj)*
+     &           (theta(i,j,km1,bi,bj)-theta(i-1,j,km1,bi,bj)))
+     &       )
+       ENDDO
+      ENDDO
+      DO j=jMin,jMax
+       DO i=iMin,iMax
+        dTdy(i,j) = 0.5*(
+     &   +0.5*(_maskS(i,j,k,bi,bj)*_rdyC(i,j,bi,bj)*
+     &           (theta(i,j,k,bi,bj)-theta(i,j-1,k,bi,bj))
+     &        +_maskS(i,j+1,k,bi,bj)*_rdyC(i,j+1,bi,bj)*
+     &           (theta(i,j+1,k,bi,bj)-theta(i,j,k,bi,bj)))
+     &   +0.5*(_maskS(i,j,km1,bi,bj)*_rdyC(i,j,bi,bj)*
+     &           (theta(i,j,km1,bi,bj)-theta(i,j-1,km1,bi,bj))
+     &        +_maskS(i,j+1,km1,bi,bj)*_rdyC(i,j+1,bi,bj)*
+     &           (theta(i,j+1,km1,bi,bj)-theta(i,j,km1,bi,bj)))
+     &       )
+       ENDDO
+      ENDDO
+
 C--   Vertical flux (fVerT) above
-C     Note: For K=1 then KM1=1 this gives a dT/dz = 0 upper
-C           boundary condition.
 C     Advective component of vertical flux
+C     Note: For K=1 then KM1=1 this gives a barZ(T) = T
+C     (this plays the role of the free-surface correction)
       DO j=jMin,jMax
        DO i=iMin,iMax
         af(i,j) =
@@ -150,19 +198,39 @@ C     Advective component of vertical flux
        ENDDO
       ENDDO
 C     Diffusive component of vertical flux
+C     Note: For K=1 then KM1=1 this gives a dT/dz = 0 upper
+C           boundary condition.
       DO j=jMin,jMax
        DO i=iMin,iMax
-        df(i,j) =
-     &   -diffKzT*zA(i,j,bi,bj)*rdzC(k)
-     &   *(theta(i,j,kM1,bi,bj)-theta(i,j,k,bi,bj))
+        df(i,j) = _zA(i,j,bi,bj)*(
+     &   -KapGM(i,j)*K13(i,j,k)*dTdx(i,j)
+     &   -KapGM(i,j)*K23(i,j,k)*dTdy(i,j)
+     &   )
        ENDDO
       ENDDO
+      IF (.NOT.implicitDiffusion) THEN
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         df(i,j) = df(i,j) + _zA(i,j,bi,bj)*(
+     &    -KappaZT(i,j,k)*rdzC(k)
+     &    *(theta(i,j,kM1,bi,bj)-theta(i,j,k,bi,bj))
+     &    )
+        ENDDO
+       ENDDO
+      ENDIF
 C     Net vertical flux
       DO j=jMin,jMax
        DO i=iMin,iMax
-        fVerT(i,j,kUp) = (afFacT*af(i,j) + dfFacT*df(i,j))*maskUp(i,j)
+        fVerT(i,j,kUp) = ( afFacT*af(i,j)+  dfFacT*df(i,j) )*maskUp(i,j)
        ENDDO
       ENDDO
+      IF ( TOP_LAYER ) THEN
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         fVerT(i,j,kUp) = afFacT*af(i,j)*freeSurfFac
+        ENDDO
+       ENDDO
+      ENDIF
 
 C--   Tendency is minus divergence of the fluxes.
 C     Note. Tendency terms will only be correct for range
@@ -172,8 +240,12 @@ C           they are not algorithmically correct. These points
 C           are not used.
       DO j=jMin,jMax
        DO i=iMin,iMax
+C    &   -_rhFacC(i,j,k,bi,bj)*rdzF(k)*_rdxF(i,j,bi,bj)*_rdyF(i,j,bi,bj)
+C    &   -_rhFacC(i,j,k,bi,bj)*rdzF(k)/_zA(i,j,bi,bj)
+C #define _rVolT(i,j,k,bi,bj) _rhFacC(i,j,k,bi,bj)*rdzF(k)*_rdxF(i,j,bi,bj)*_rdyF(i,j,bi,bj)
+#define _rVolT(i,j,k,bi,bj) _rhFacC(i,j,k,bi,bj)*rdzF(k)/_zA(i,j,bi,bj)
         gT(i,j,k,bi,bj)=
-     &   -rHFacC(i,j,k,bi,bj)*rdzF(k)*rDxF(i,j,bi,bj)*rDyF(i,j,bi,bj)
+     &   -_rVolT(i,j,k,bi,bj)
      &   *(
      &    +( fZon(i+1,j)-fZon(i,j) )
      &    +( fMer(i,j+1)-fMer(i,j) )
@@ -183,6 +255,17 @@ C           are not used.
       ENDDO
 
 C--   External thermal forcing term(s)
+C     o Surface relaxation term
+      IF ( TOP_LAYER ) THEN
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         gT(i,j,k,bi,bj)=gT(i,j,k,bi,bj)
+     &  +maskC(i,j)*(
+     &   -lambdaThetaClimRelax*(theta(i,j,k,bi,bj)-SST(i,j,bi,bj))
+     &   -Qnet(i,j,bi,bj) )
+        ENDDO
+       ENDDO
+      ENDIF
 
       RETURN
       END

@@ -1,0 +1,91 @@
+$Header$
+
+    Notes on tags used in MITgcmUV
+    ==============================
+
+branch-point-rdot
+ A few tidy-ups have been made bt the real point of this
+ check-point (excuse the pun) is to allow a branch to be
+ made for the purposes of adding the rDot alterations.
+ I don't want to commit the rDot to the main-trunk until
+ we've actually tested it...
+
+checkpoint12
+ Tidy up and added generic genmake script (formerly
+ configure script). 
+ Released to testers.
+
+checkpoint11
+ Re-arranged initialise() and introduced ini_vertical_grid()
+ and ini_masks_etc().
+
+checkpoint10
+ Introduced the configure script.
+ Separated out the diags package.
+ Added template for writing time-averages of tile/intermediate quantities.
+ Updated SIZE.h in exp2 and made the data big-endian.
+
+checkpoint9
+ MPI fix. Filename changes (meta/data). salbin*y stuff.
+ General tidy-up.
+ SST.bin SSS.bin added to verification/exp2
+
+checkpoint8
+ Inludes time-dependant forcing and time-averaging.
+ Works at 4x4 and 2.8125x2.8125 global
+
+checkpoint7-4degree-ref
+ Branch from checkpoint7. Released for application to
+ global modeling and general modeling - process studies, regional
+ model etc.. 
+ Configured for verification/exp2 - 4 degree global, two process.
+
+checkpoint7
+ Created by cnh
+ Simple 4 degree global simulation 
+ configuration.
+ Includes climatological wind, 
+ hydrography, bathymetry etc
+ Does not include Heat Flux and E-P
+
+checkpoint6
+ Created by cnh
+ merged checkpoint5 with CD and 
+ spherical polar code. 
+ Still some problems with GM Redi
+ abd full topography.
+
+checkpoint5
+ Created by AJA
+ contains updates to GM Redi
+ and reordered timestepping loop
+ for Implicit Diffusion.
+
+checkpoint4
+ Created by cnh
+ Contains memory saving macros ( _rdxc etc..) for when
+ grid variations are limited.
+ Contains polynomial coeffs for EOS and knudsen program
+ for generation.
+
+checkpoint3
+ Created by cnh
+ Added extra flags for runtime options
+ Added this file
+ Added implicit free-surface
+ Added pre-conditioner
+ Put compare01 into repository ( compare01/... )
+ Put data and eedata into repository ( verification/exp1 )
+
+checkpoint2
+ Created by AJA
+ Added GM/Redi
+
+checkpoint1
+ Created by AJA
+ Restructured kloop in dynamics.F
+ Added non-linear EOS
+
+baseline
+ Original checked in code
+

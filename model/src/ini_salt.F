@@ -1,4 +1,4 @@
-C $Id$
+C $Header$
 
 #include "CPP_EEOPTIONS.h"
 
@@ -45,18 +45,26 @@ C     I,J,K
       INTEGER  I,  J, K
       REAL rad, rD
 
-C--   Initialise salinity field to the vertical reference profile
-      DO bj = myByLo(myThid), myByHi(myThid)
-       DO bi = myBxLo(myThid), myBxHi(myThid)
-        DO K=1,Nz
-         DO J=1,sNy
-          DO I=1,sNx
-           salt(I,J,K,bi,bj) = sRef(K)
+      _BARRIER
+
+      IF ( hydrogSaltFile .EQ. ' ' ) THEN
+C--    Initialise salinity field to the vertical reference profile
+       DO bj = myByLo(myThid), myByHi(myThid)
+        DO bi = myBxLo(myThid), myBxHi(myThid)
+         DO K=1,Nz
+          DO J=1,sNy
+           DO I=1,sNx
+            salt(I,J,K,bi,bj) = sRef(K)
+           ENDDO
           ENDDO
          ENDDO
         ENDDO
        ENDDO
-      ENDDO
+      ELSE
+       _BEGIN_MASTER( myThid )
+       CALL READ_FLD_XYZ_RL( hydrogSaltFile, ' ', salt, 0, myThid )
+       _END_MASTER(myThid)
+      ENDIF
 C     Set initial tendency terms
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
@@ -74,5 +82,8 @@ C
       _EXCH_XYZ_R8(salt  , myThid )
       _EXCH_XYZ_R8(gs , myThid )
       _EXCH_XYZ_R8(gsNM1 , myThid )
+
+      CALL PLOT_FIELD_XYZRL( salt, 'Initial Salinity' , Nz, 1, myThid )
+
       RETURN
       END

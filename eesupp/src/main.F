@@ -1,4 +1,4 @@
-C $Id$
+C $Header$
 
 C--   Get C preprocessor options
 #include "CPP_OPTIONS.h"
@@ -88,5 +88,3 @@ C--   Write closedown status
       ENDIF
 C
       END
-
-C $Id$

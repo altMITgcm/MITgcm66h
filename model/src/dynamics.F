@@ -1,8 +1,8 @@
-C $Id$
+C $Header$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
-      SUBROUTINE DYNAMICS(myThid)
+      SUBROUTINE DYNAMICS(myTime, myIter, myThid)
 C     /==========================================================\
 C     | SUBROUTINE DYNAMICS                                      |
 C     | o Controlling routine for the explicit part of the model |
@@ -25,17 +25,25 @@ C     == Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "CG2D.h"
+#include "PARAMS.h"
+#include "DYNVARS.h"
 
 C     == Routine arguments ==
+C     myTime - Current time in simulation
+C     myIter - Current iteration number in simulation
 C     myThid - Thread number for this instance of the routine.
       INTEGER myThid
+      _RL myTime
+      INTEGER myIter
 
 C     == Local variables
 C     xA, yA                 - Per block temporaries holding face areas
 C     uTrans, vTrans, wTrans - Per block temporaries holding flow transport
-C                              o uTrans: Zonal transport
+C     wVel                     o uTrans: Zonal transport
 C                              o vTrans: Meridional transport
 C                              o wTrans: Vertical transport
+C                              o wVel:   Vertical velocity at upper and lower
+C                                        cell faces.
 C     maskC,maskUp             o maskC: land/water mask for tracer cells
 C                              o maskUp: land/water mask for W points
 C     aTerm, xTerm, cTerm    - Work arrays for holding separate terms in
@@ -62,6 +70,7 @@ C                          into fVerTerm
       _RL uTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL vTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL wTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL wVel  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
       _RS maskC (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS maskUp(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL aTerm (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
@@ -76,11 +85,69 @@ C                          into fVerTerm
       _RL fVerU (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
       _RL fVerV (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
       _RL pH    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nz)
+      _RL rhokm1(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL rhokp1(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL rhok  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL rhotmp(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL pSurfX(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL pSurfY(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL K13   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nz)
+      _RL K23   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nz)
+      _RL K33   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nz)
+      _RL KapGM (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL KappaZT(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nz)
+      _RL KappaZS(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nz)
+
       INTEGER iMin, iMax
       INTEGER jMin, jMax
       INTEGER bi, bj
       INTEGER i, j
       INTEGER k, kM1, kUp, kDown
+      LOGICAL BOTTOM_LAYER
+
+C---    The algorithm...
+C
+C       "Correction Step"
+C       =================
+C       Here we update the horizontal velocities with the surface
+C       pressure such that the resulting flow is either consistent
+C       with the free-surface evolution or the rigid-lid:
+C         U[n] = U* + dt x d/dx P
+C         V[n] = V* + dt x d/dy P
+C
+C       "Calculation of Gs"
+C       ===================
+C       This is where all the accelerations and tendencies (ie.
+C       physics, parameterizations etc...) are calculated
+C         w = sum_z ( div. u[n] )
+C         rho = rho ( theta[n], salt[n] )
+C         K31 = K31 ( rho )
+C         Gu[n] = Gu( u[n], v[n], w, rho, Ph, ... )
+C         Gv[n] = Gv( u[n], v[n], w, rho, Ph, ... )
+C         Gt[n] = Gt( theta[n], u[n], v[n], w, K31, ... )
+C         Gs[n] = Gs( salt[n], u[n], v[n], w, K31, ... )
+C
+C       "Time-stepping" or "Prediction"
+C       ================================
+C       The models variables are stepped forward with the appropriate
+C       time-stepping scheme (currently we use Adams-Bashforth II)
+C       - For momentum, the result is always *only* a "prediction"
+C       in that the flow may be divergent and will be "corrected"
+C       later with a surface pressure gradient.
+C       - Normally for tracers the result is the new field at time
+C       level [n+1} *BUT* in the case of implicit diffusion the result
+C       is also *only* a prediction.
+C       - We denote "predictors" with an asterisk (*).
+C         U* = U[n] + dt x ( 3/2 Gu[n] - 1/2 Gu[n-1] )
+C         V* = V[n] + dt x ( 3/2 Gv[n] - 1/2 Gv[n-1] )
+C         theta[n+1] = theta[n] + dt x ( 3/2 Gt[n] - 1/2 atG[n-1] )
+C         salt[n+1] = salt[n] + dt x ( 3/2 Gt[n] - 1/2 atG[n-1] )
+C       With implicit diffusion:
+C         theta* = theta[n] + dt x ( 3/2 Gt[n] - 1/2 atG[n-1] )
+C         salt* = salt[n] + dt x ( 3/2 Gt[n] - 1/2 atG[n-1] )
+C         (1 + dt * K * d_zz) theta[n] = theta*
+C         (1 + dt * K * d_zz) salt[n] = salt*
+C---
 
 C--   Set up work arrays with valid (i.e. not NaN) values
 C     These inital values do not alter the numerical results. They
@@ -89,62 +156,167 @@ C     point numbers. This prevents spurious hardware signals due to
 C     uninitialised but inert locations.
       DO j=1-OLy,sNy+OLy
        DO i=1-OLx,sNx+OLx
-        xA(i,j)      = 0.*1. _d 37
-        yA(i,j)      = 0.*1. _d 37
-        uTrans(i,j)  = 0.*1. _d 37
-        vTrans(i,j)  = 0.*1. _d 37
-        aTerm(i,j)   = 0.*1. _d 37
-        xTerm(i,j)   = 0.*1. _d 37
-        cTerm(i,j)   = 0.*1. _d 37
-        mTerm(i,j)   = 0.*1. _d 37
-        pTerm(i,j)   = 0.*1. _d 37
-        fZon(i,j)    = 0.*1. _d 37
-        fMer(i,j)    = 0.*1. _d 37
+        xA(i,j)      = 0. _d 0
+        yA(i,j)      = 0. _d 0
+        uTrans(i,j)  = 0. _d 0
+        vTrans(i,j)  = 0. _d 0
+        aTerm(i,j)   = 0. _d 0
+        xTerm(i,j)   = 0. _d 0
+        cTerm(i,j)   = 0. _d 0
+        mTerm(i,j)   = 0. _d 0
+        pTerm(i,j)   = 0. _d 0
+        fZon(i,j)    = 0. _d 0
+        fMer(i,j)    = 0. _d 0
         DO K=1,nZ
-         pH (i,j,k)  = 0.*1. _d 37
+         pH (i,j,k)  = 0. _d 0
+         K13(i,j,k) = 0. _d 0
+         K23(i,j,k) = 0. _d 0
+         K33(i,j,k) = 0. _d 0
+         KappaZT(i,j,k) = 0. _d 0
         ENDDO
-       ENDDO
-      ENDDO
-C--   Set up work arrays that need valid initial values
-      DO j=1-OLy,sNy+OLy
-       DO i=1-OLx,sNx+OLx
-        wTrans(i,j)  = 0. _d 0
-        fVerT(i,j,1) = 0. _d 0
-        fVerT(i,j,2) = 0. _d 0
-        fVerS(i,j,1) = 0. _d 0
-        fVerS(i,j,2) = 0. _d 0
-        fVerU(i,j,1) = 0. _d 0
-        fVerU(i,j,2) = 0. _d 0
-        fVerV(i,j,1) = 0. _d 0
-        fVerV(i,j,2) = 0. _d 0
+        rhokm1(i,j)  = 0. _d 0
+        rhok  (i,j)  = 0. _d 0
+        rhokp1(i,j)  = 0. _d 0
+        rhotmp(i,j)  = 0. _d 0
+        maskC (i,j)  = 0. _d 0
        ENDDO
       ENDDO
 
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
 
+C--     Set up work arrays that need valid initial values
+        DO j=1-OLy,sNy+OLy
+         DO i=1-OLx,sNx+OLx
+          wTrans(i,j)  = 0. _d 0
+          wVel  (i,j,1) = 0. _d 0
+          wVel  (i,j,2) = 0. _d 0
+          fVerT(i,j,1) = 0. _d 0
+          fVerT(i,j,2) = 0. _d 0
+          fVerS(i,j,1) = 0. _d 0
+          fVerS(i,j,2) = 0. _d 0
+          fVerU(i,j,1) = 0. _d 0
+          fVerU(i,j,2) = 0. _d 0
+          fVerV(i,j,1) = 0. _d 0
+          fVerV(i,j,2) = 0. _d 0
+          pH(i,j,1) = 0. _d 0
+          K13(i,j,1) = 0. _d 0
+          K23(i,j,1) = 0. _d 0
+          K33(i,j,1) = 0. _d 0
+          KapGM(i,j) = GMkbackground
+         ENDDO
+        ENDDO
+
         iMin = 1-OLx+1
         iMax = sNx+OLx
         jMin = 1-OLy+1
         jMax = sNy+OLy
 
-C--     Update fields according to tendency terms
-        CALL TIMESTEP(
-     I       bi,bj,iMin,iMax,jMin,jMax,myThid)
+        K = 1
+        BOTTOM_LAYER = K .EQ. Nz
 
-C--     Calculate rho with the appropriate equation of state
+C--     Calculate gradient of surface pressure
+        CALL GRAD_PSURF(
+     I       bi,bj,iMin,iMax,jMin,jMax,
+     O       pSurfX,pSurfY,
+     I       myThid)
+
+C--     Update fields in top level according to tendency terms
+        CALL CORRECTION_STEP(
+     I       bi,bj,iMin,iMax,jMin,jMax,K,pSurfX,pSurfY,myTime,myThid)
+
+        IF ( .NOT. BOTTOM_LAYER ) THEN
+C--      Update fields in layer below according to tendency terms
+         CALL CORRECTION_STEP(
+     I        bi,bj,iMin,iMax,jMin,jMax,K+1,pSurfX,pSurfY,myTime,myThid)
+        ENDIF
+
+C--     Density of 1st level (below W(1)) reference to level 1
         CALL FIND_RHO(
-     I       bi,bj,iMin,iMax,jMin,jMax,myThid)
+     I     bi, bj, iMin, iMax, jMin, jMax, K, K, eosType,
+     O     rhoKm1,
+     I     myThid )
 
-C--     Calculate static stability and mix where convectively unstable
-        CALL CONVECT(
-     I       bi,bj,iMin,iMax,jMin,jMax,myThid)
+        IF ( .NOT. BOTTOM_LAYER ) THEN
+C--      Check static stability with layer below
+C        and mix as needed.
+         CALL FIND_RHO(
+     I      bi, bj, iMin, iMax, jMin, jMax, K+1, K, eosType,
+     O      rhoKp1,
+     I      myThid )
+         CALL CONVECT(
+     I       bi,bj,iMin,iMax,jMin,jMax,K+1,rhoKm1,rhoKp1,
+     I       myTime,myIter,myThid)
+C--      Recompute density after mixing
+         CALL FIND_RHO(
+     I      bi, bj, iMin, iMax, jMin, jMax, K, K, eosType,
+     O      rhoKm1,
+     I      myThid )
+        ENDIF
 
 C--     Integrate hydrostatic balance for pH with BC of pH(z=0)=0
         CALL CALC_PH(
-     I       bi,bj,iMin,iMax,jMin,jMax,
-     O       pH,
+     I      bi,bj,iMin,iMax,jMin,jMax,K,rhoKm1,rhoKm1,
+     U      pH,
+     I      myThid )
+
+        DO K=2,Nz
+
+         BOTTOM_LAYER = K .EQ. Nz
+
+         IF ( .NOT. BOTTOM_LAYER ) THEN
+C--       Update fields in layer below according to tendency terms
+          CALL CORRECTION_STEP(
+     I         bi,bj,iMin,iMax,jMin,jMax,K+1,pSurfX,pSurfY,myTime,myThid)
+         ENDIF
+C--      Update fields in layer below according to tendency terms
+C        CALL CORRECTION_STEP(
+C    I        bi,bj,iMin,iMax,jMin,jMax,K,pSurfX,pSurfY,myTime,myThid)
+
+C--      Density of K level (below W(K)) reference to K level
+         CALL FIND_RHO(
+     I      bi, bj, iMin, iMax, jMin, jMax,  K, K, eosType,
+     O      rhoK,
+     I      myThid )
+         IF ( .NOT. BOTTOM_LAYER ) THEN
+C--       Check static stability with layer below
+C         and mix as needed.
+C--       Density of K+1 level (below W(K+1)) reference to K level
+          CALL FIND_RHO(
+     I       bi, bj, iMin, iMax, jMin, jMax,  K+1, K, eosType,
+     O       rhoKp1,
      I       myThid )
+          CALL CONVECT(
+     I        bi,bj,iMin,iMax,jMin,jMax,K+1,rhoK,rhoKp1,
+     I        myTime,myIter,myThid)
+C--       Recompute density after mixing
+          CALL FIND_RHO(
+     I       bi, bj, iMin, iMax, jMin, jMax, K, K, eosType,
+     O       rhoK,
+     I       myThid )
+         ENDIF
+C--      Integrate hydrostatic balance for pH with BC of pH(z=0)=0
+         CALL CALC_PH(
+     I       bi,bj,iMin,iMax,jMin,jMax,K,rhoKm1,rhoK,
+     U       pH,
+     I       myThid )
+C--      Calculate iso-neutral slopes for the GM/Redi parameterisation
+         CALL FIND_RHO(
+     I      bi, bj, iMin, iMax, jMin, jMax, K-1, K, eosType,
+     O      rhoTmp,
+     I      myThid )
+         CALL CALC_ISOSLOPES(
+     I             bi, bj, iMin, iMax, jMin, jMax, K,
+     I             rhoKm1, rhoK, rhotmp,
+     O             K13, K23, K33, KapGM,
+     I             myThid )
+         DO J=jMin,jMax
+          DO I=iMin,iMax
+           rhoKm1(I,J)=rhoK(I,J)
+          ENDDO
+         ENDDO
+
+        ENDDO ! K
 
         DO K = Nz, 1, -1
          kM1  =max(1,k-1)   ! Points to level above k (=k-1)
@@ -158,34 +330,106 @@ C--     Integrate hydrostatic balance for pH with BC of pH(z=0)=0
 C--      Get temporary terms used by tendency routines
          CALL CALC_COMMON_FACTORS (
      I        bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
-     O        xA,yA,uTrans,vTrans,wTrans,maskC,maskUp,
+     O        xA,yA,uTrans,vTrans,wTrans,wVel,maskC,maskUp,
+     I        myThid)
+
+C--      Calculate the total vertical diffusivity
+         CALL CALC_DIFFUSIVITY(
+     I        bi,bj,iMin,iMax,jMin,jMax,K,
+     I        maskC,maskUp,KapGM,K33,
+     O        KappaZT,KappaZS,
      I        myThid)
 
 C--      Calculate accelerations in the momentum equations
-         CALL CALC_MOM_RHS(
-     I        bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
-     I        xA,yA,uTrans,vTrans,wTrans,maskC,
-     I        pH,
-     U        aTerm,xTerm,cTerm,mTerm,pTerm,
-     U        fZon, fMer, fVerU, fVerV,
-     I        myThid)
+         IF ( momStepping ) THEN
+          CALL CALC_MOM_RHS(
+     I         bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
+     I         xA,yA,uTrans,vTrans,wTrans,wVel,maskC,
+     I         pH,
+     U         aTerm,xTerm,cTerm,mTerm,pTerm,
+     U         fZon, fMer, fVerU, fVerV,
+     I         myThid)
+         ENDIF
 
 C--      Calculate active tracer tendencies
-         CALL CALC_GT(
-     I        bi,bj,iMin,iMax,jMin,jMax, k,kM1,kUp,kDown,
-     I        xA,yA,uTrans,vTrans,wTrans,maskUp,
-     U        aTerm,xTerm,fZon,fMer,fVerT,
-     I        myThid)
-Cdbg     CALL CALC_GS(
-Cdbg I        bi,bj,iMin,iMax,jMin,jMax, k,kM1,kUp,kDown,
-Cdbg I        xA,yA,uTrans,vTrans,wTrans,maskUp,
-Cdbg U        aTerm,xTerm,fZon,fMer,fVerS,
-Cdbg I        myThid)
+         IF ( tempStepping ) THEN
+          CALL CALC_GT(
+     I         bi,bj,iMin,iMax,jMin,jMax, k,kM1,kUp,kDown,
+     I         xA,yA,uTrans,vTrans,wTrans,maskUp,maskC,
+     I         K13,K23,KappaZT,KapGM,
+     U         aTerm,xTerm,fZon,fMer,fVerT,
+     I         myThid)
+         ENDIF
+         IF ( saltStepping ) THEN
+          CALL CALC_GS(
+     I         bi,bj,iMin,iMax,jMin,jMax, k,kM1,kUp,kDown,
+     I         xA,yA,uTrans,vTrans,wTrans,maskUp,maskC,
+     I         K13,K23,KappaZS,KapGM,
+     U         aTerm,xTerm,fZon,fMer,fVerS,
+     I         myThid)
+         ENDIF
 
-        ENDDO
+C--      Prediction step (step forward all model variables)
+         CALL TIMESTEP(
+     I       bi,bj,iMin,iMax,jMin,jMax,K,
+     I       myThid)
+
+C--      Diagnose barotropic divergence of predicted fields
+         CALL DIV_G(
+     I       bi,bj,iMin,iMax,jMin,jMax,K,
+     I       xA,yA,
+     I       myThid)
+
+C--      Cumulative diagnostic calculations (ie. time-averaging)
+#ifdef ALLOW_DIAGNOSTICS
+         IF (taveFreq.GT.0.) THEN
+          CALL DO_TIME_AVERAGES(
+     I                           myTime, myIter, bi, bj, K, kUp, kDown,
+     I                           K13, K23, wVel,
+     I                           myThid )
+         ENDIF
+#endif
+
+        ENDDO ! K
+
+C--     Implicit diffusion
+        IF (implicitDiffusion) THEN
+         CALL IMPLDIFF( bi, bj, iMin, iMax, jMin, jMax,
+     I                  KappaZT,KappaZS,
+     I                  myThid )
+        ENDIF
  
        ENDDO
       ENDDO
+
+C     write(0,*) 'dynamics: pS ',minval(cg2d_x(1:sNx,1:sNy,:,:)),
+C    &                           maxval(cg2d_x(1:sNx,1:sNy,:,:))
+C     write(0,*) 'dynamics: U  ',minval(uVel(1:sNx,1:sNy,1,:,:),mask=uVel(1:sNx,1:sNy,1,:,:).NE.0.),
+C    &                           maxval(uVel(1:sNx,1:sNy,1,:,:),mask=uVel(1:sNx,1:sNy,1,:,:).NE.0.)
+C     write(0,*) 'dynamics: V  ',minval(vVel(1:sNx,1:sNy,1,:,:),mask=vVel(1:sNx,1:sNy,1,:,:).NE.0.),
+C    &                           maxval(vVel(1:sNx,1:sNy,1,:,:),mask=vVel(1:sNx,1:sNy,1,:,:).NE.0.)
+C     write(0,*) 'dynamics: wVel(1) ',
+C    &            minval(wVel(1:sNx,1:sNy,1),mask=wVel(1:sNx,1:sNy,1).NE.0.),
+C    &            maxval(wVel(1:sNx,1:sNy,1),mask=wVel(1:sNx,1:sNy,1).NE.0.)
+C     write(0,*) 'dynamics: wVel(2) ',
+C    &            minval(wVel(1:sNx,1:sNy,2),mask=wVel(1:sNx,1:sNy,2).NE.0.),
+C    &            maxval(wVel(1:sNx,1:sNy,2),mask=wVel(1:sNx,1:sNy,2).NE.0.)
+cblk  write(0,*) 'dynamics: K13',minval(K13(1:sNx,1:sNy,:)),
+cblk &                           maxval(K13(1:sNx,1:sNy,:))
+cblk  write(0,*) 'dynamics: K23',minval(K23(1:sNx,1:sNy,:)),
+cblk &                           maxval(K23(1:sNx,1:sNy,:))
+cblk  write(0,*) 'dynamics: K33',minval(K33(1:sNx,1:sNy,:)),
+cblk &                           maxval(K33(1:sNx,1:sNy,:))
+C     write(0,*) 'dynamics: gT ',minval(gT(1:sNx,1:sNy,:,:,:)),
+C    &                           maxval(gT(1:sNx,1:sNy,:,:,:))
+C     write(0,*) 'dynamics: T  ',minval(Theta(1:sNx,1:sNy,:,:,:)),
+C    &                           maxval(Theta(1:sNx,1:sNy,:,:,:))
+C     write(0,*) 'dynamics: gS ',minval(gS(1:sNx,1:sNy,:,:,:)),
+C    &                           maxval(gS(1:sNx,1:sNy,:,:,:))
+C     write(0,*) 'dynamics: S  ',minval(salt(1:sNx,1:sNy,:,:,:)),
+C    &                           maxval(salt(1:sNx,1:sNy,:,:,:))
+C     write(0,*) 'dynamics: pH ',minval(pH/(Gravity*Rhonil),mask=ph.NE.0.),
+C    &                           maxval(pH/(Gravity*Rhonil))
 
       RETURN
       END
