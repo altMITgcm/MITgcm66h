@@ -340,9 +340,9 @@ arr=reshape(arr,N);
 %
 function [iters] = scanforfiles(fname)
 
-allfiles=dir([fname '.*.001.001.meta'])
+allfiles=dir([fname '.*.001.001.meta']);
 if isempty(allfiles)
- allfiles=dir([fname '.*.meta'])
+ allfiles=dir([fname '.*.meta']);
  ioff=0;
 else
  ioff=8;
