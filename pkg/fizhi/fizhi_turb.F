@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
       subroutine turbio (im,jm,nlay,istrip,nymd,nhms,bi,bj
      1 ,ndturb,ptop, pz, uz, vz, tz, qz, ntracers,ptracers,

@@ -2,6 +2,7 @@ C $Header$
 C $Name$
 
 #include "CPP_OPTIONS.h"
+#include "PACKAGES_CONFIG.h"
       subroutine swrio (nymd,nhms,bi,bj,ndswr,myid,istrip,npcs,
      .        low_level,mid_level,
      .        pz,plz,plze,dpres,pkht,pkz,tz,qz,oz,co2,
