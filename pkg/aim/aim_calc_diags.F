@@ -66,6 +66,11 @@ C     == Local variables ==
        ENDDO
       ENDDO
 
+C-    Keep record of how much time has been integrated over
+      DO K=1,Nr
+        AIM_TimeAve(k,bi,bj)=AIM_TimeAve(k,bi,bj)+DDTT
+      ENDDO                                                                                    
+
 
 #endif /* ALLOW_TIMEAVE */
 
