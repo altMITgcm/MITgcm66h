@@ -115,8 +115,6 @@ c ---------------
       _RL ptop
       logical lpnt
 
-      _RL tempij(im,jm)
-
       istrip = im*jm
       npcs   = 1
 
@@ -225,7 +223,6 @@ C ===============
      .    nswcld,cldtot_sw,cldras_sw,cldlsp_sw,nswlz,swlz,
      .    nlwcld,cldtot_lw,cldras_lw,cldlsp_lw,nlwlz,lwlz,
      .              .false.,myid)
-
       endif
 
       return

@@ -109,16 +109,17 @@ C--   Write fields as consecutive records
        temp(i,j,3,bi,bj) = snowfall(i,j,bi,bj)
       enddo
       enddo
-      enddo
-      enddo
 
-      temp(1,1,4,1,1) = float(iras)
-      temp(2,1,4,1,1) = float(nlwcld)
-      temp(3,1,4,1,1) = float(nlwlz)
-      temp(4,1,4,1,1) = float(nswcld)
-      temp(5,1,4,1,1) = float(nswlz)
-      temp(6,1,4,1,1) = float(imstturbsw)
-      temp(7,1,4,1,1) = float(imstturblw)
+      temp(1,1,4,bi,bj) = float(iras(bi,bj))
+      temp(2,1,4,bi,bj) = float(nlwcld(bi,bj))
+      temp(3,1,4,bi,bj) = float(nlwlz(bi,bj))
+      temp(4,1,4,bi,bj) = float(nswcld(bi,bj))
+      temp(5,1,4,bi,bj) = float(nswlz(bi,bj))
+      temp(6,1,4,bi,bj) = float(imstturbsw(bi,bj))
+      temp(7,1,4,bi,bj) = float(imstturblw(bi,bj))
+
+      enddo
+      enddo
 
       CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nrphys,temp,17,myIter,myThid)
 

@@ -61,6 +61,7 @@ c ----------------------------------------------------------------------
       _RL raincon(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nsx,Nsy)
       _RL rainlsp(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nsx,Nsy)
       _RL snowfall(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nsx,Nsy)
-      integer iras,nlwcld,nlwlz,nswcld,nswlz
-      integer imstturbsw,imstturblw
-
+      integer iras(Nsx,Nsy)
+      integer nlwcld(Nsx,Nsy),nlwlz(Nsx,Nsy)
+      integer nswcld(Nsx,Nsy),nswlz(Nsx,Nsy)
+      integer imstturbsw(Nsx,Nsy),imstturblw(Nsx,Nsy)
