@@ -200,8 +200,8 @@ c     Determine the flux record just before mycurrentdate.
       call cal_TimePassed( fldstartdate, mydate, difftime,
      &                     mythid )
       call cal_ToSeconds( difftime, fldsecs, mythid )
-      fldsecs  = int(fldsecs/fldperiod)*fldperiod
-      fldcount = int(fldsecs/fldperiod) + 1
+      fldsecs  = int((fldsecs+0.5)/fldperiod)*fldperiod
+      fldcount = int((fldsecs+0.5)/fldperiod) + 1
 
 c     Set switches for reading new records.
       first = ((mytime - modelstart) .lt. 0.5*modelstep)
