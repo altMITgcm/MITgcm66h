@@ -37,8 +37,8 @@ C      o Constant F case
        DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
          DO K=1,Nr
-          DO J=1,sNy
-           DO I=1,sNx
+          DO J=1-Oly,sNy+Oly
+           DO I=1-Olx,sNx+Olx
             fCori(i,j,bi,bj)=f0
             fCoriG(i,j,bi,bj)=f0
            ENDDO
@@ -53,8 +53,8 @@ C      o Beta plane case
        DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
          DO K=1,Nr
-          DO J=1,sNy
-           DO I=1,sNx
+          DO J=1-Oly,sNy+Oly
+           DO I=1-Olx,sNx+Olx
             fCori(i,j,bi,bj)=f0+beta*_yC(i,j,bi,bj)*facGrid
             fCoriG(i,j,bi,bj)=f0+beta*yG(i,j,bi,bj)*facGrid
            ENDDO
@@ -68,8 +68,8 @@ C        Note in this case we assume yC is in degrees.
        DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
          DO K=1,Nr
-          DO J=1,sNy
-           DO I=1,sNx
+          DO J=1-Oly,sNy+Oly
+           DO I=1-Olx,sNx+Olx
             fCori(i,j,bi,bj)=
      &       2. _d 0*omega*sin(_yC(i,j,bi,bj)*deg2rad)
             fCoriG(i,j,bi,bj)=
@@ -84,8 +84,8 @@ C      o Special custom form
        DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
          DO K=1,Nr
-          DO J=1,sNy
-           DO I=1,sNx
+          DO J=1-Oly,sNy+Oly
+           DO I=1-Olx,sNx+Olx
             fCori(i,j,bi,bj)=0.
             fCoriG(i,j,bi,bj)=0.
            ENDDO
@@ -95,9 +95,8 @@ C      o Special custom form
        ENDDO
       ENDIF
 C
-      _EXCH_XY_R4(fCori,myThid)
-      _EXCH_XY_R4(fCoriG,myThid)
-Ccs   CALL EXCH_Z_XY_RS(fCoriG,myThid)
+c     _EXCH_XY_R4(fCori,myThid)
+c     CALL EXCH_Z_XY_RS(fCoriG,myThid)
 
       RETURN
       END
