@@ -31,6 +31,10 @@ CEndOfInterface
 C     == Local variables ==
       INTEGER bi,bj,K,iMin,iMax,jMin,jMax
 
+#ifdef ALLOW_TAMC_CHECKPOINTING
+       nIter0 = INT( startTime/deltaTClock )
+#endif
+
       _BARRIER
 C--   Initialize DYNVARS arrays (state fields + G terms: Gu,Gv,...) to zero [always]
       CALL INI_DYNVARS( myThid )
