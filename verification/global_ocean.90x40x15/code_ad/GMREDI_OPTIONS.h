@@ -18,7 +18,7 @@ C  exclude the clipping/tapering part of the code that is not used
 #undef  GM_EXCLUDE_TAPERING 
  
 C This allows to use Visbeck et al formulation to compute K_GM+Redi
-#define GM_VISBECK_VARIABLE_K
+#undef GM_VISBECK_VARIABLE_K
 
 C This allows the leading diagonal (top two rows) to be non-unity
 C (a feature required when tapering adiabatically).
