@@ -493,7 +493,7 @@ C     ENDIF
 C
       fType='RS'
       nNz=1
-      globalFile=.FALSE.
+C     globalFile=.FALSE.
       CALL MDSWRITEFIELD( fullName, writeBinaryPrec, globalFile,
      &     fType, nNz, field, irec, myIter, myThid )
 C
@@ -548,7 +548,7 @@ C     ENDIF
 C
       fType='RL'
       nNz=1
-      globalFile=.FALSE.
+C     globalFile=.FALSE.
       CALL MDSWRITEFIELD( fullName, writeBinaryPrec, globalFile,
      &     fType, nNz, field, irec, myIter, myThid )
 C
@@ -603,7 +603,7 @@ C     ENDIF
 C
       fType='RS'
       nNz=Nr
-      globalFile=.FALSE.
+C     globalFile=.FALSE.
       CALL MDSWRITEFIELD( fullName, writeBinaryPrec, globalFile,
      &     fType, nNz, field, irec, myIter, myThid )
 C
@@ -658,7 +658,7 @@ C     ENDIF
 C
       fType='RL'
       nNz=Nr
-      globalFile=.FALSE.
+C     globalFile=.FALSE.
       CALL MDSWRITEFIELD( fullName, writeBinaryPrec, globalFile,
      &     fType, nNz, field, irec, myIter, myThid )
 C
