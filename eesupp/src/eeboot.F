@@ -1,30 +1,55 @@
-C $Id$
+C $Header$
+C $Name$
 
 #include "CPP_EEOPTIONS.h"
 
-CStartOfInterface
-      SUBROUTINE EEBOOT
-C     /==========================================================\
-C     | SUBROUTINE EEBOOT                                        |
-C     | o Set up execution "environment", particularly perform   |
-C     |   steps to initialise parallel processing.               |
-C     |==========================================================|
-C     | Note: This routine can also be compiled with CPP         |
-C     | directives set so that no multi-processing is initialised|
-C     | This is OK and should work fine.                         |
-C     \==========================================================/
+CBOP             
+C     !ROUTINE: EEBOOT
 
+C     !INTERFACE:
+      SUBROUTINE EEBOOT
+      IMPLICIT NONE
+
+C     !DESCRIPTION:
+C     *==========================================================*
+C     | SUBROUTINE EEBOOT                                         
+C     | o Set up execution "environment", particularly perform    
+C     |   steps to initialise parallel processing.                
+C     *==========================================================*
+C     | Note: This routine can also be compiled with CPP          
+C     | directives set so that no multi-processing is initialised 
+C     | This is OK and works fine.                          
+C     *==========================================================*
+
+C     !CALLING SEQUENCE:
+C     eeboot()
+C       |
+C       |-- eeboot_minimal() :: Minimal startup. Just enough to 
+C       |                       allow basic I/O.
+C       |
+C       |-- eeintro_msg()    :: Write startup greeting.
+C       |
+C       |-- eeset_parms()    :: Set WRAPPER parameters
+C       |
+C       |-- eewrite_eeenv()  :: Print WRAPPER parameter settings
+C       |
+C       |-- ini_procs()      :: Associate processes with grid regions.
+C       |
+C       |-- ini_threading_environment() :: Associate threads with grid regions.
+C       |
+C       |-- dfile_init()     :: Initialise simple multi-process I/O pacakge.
+
+C     !USES:
 C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
-CEndOfInterface
 
+C     !LOCAL VARIABLES:
 C     == Local variables ==
-C     msgBuf - Variable for building informational messages
-C     I - Loop counter
+C     I :: Loop counter
       INTEGER I
-      CHARACTER*(MAX_LEN_MBUF) msgBuf
+CEOP
 
 C--   Set error reporting flags and I/O streams
 C     fatalError is a flag used to indicate that the program
@@ -47,8 +72,6 @@ C                               it does is using shared memory.
 C     threadIsRunning used during startup to enable check that all 
 C                     the threads are running.
       fatalError          = .FALSE.
-      errorMessageUnit    = 0
-      standardMessageUnit = 6
       eeBootError         = .FALSE.
       eeEndError          = .FALSE.
       DO I=1, MAX_NO_THREADS
@@ -56,11 +79,16 @@ C                     the threads are running.
        allMyEdgesAreSharedMemory(I) = .TRUE.
        threadIsRunning(I)           = .FALSE.
        threadIsComplete(I)          = .FALSE.
+       ioErrorCount(I)              = 0
       ENDDO
-      scrUnit1      = 11
-      scrUnit2      = 12
-      eeDataUnit    = 13
-      modelDataUnit = 14
+      standardMessageUnit = 6
+      scrUnit1            = 11
+      scrUnit2            = 12
+      eeDataUnit          = 13
+      modelDataUnit       = 14
+      errorMessageUnit    = 15
+cph   errorMessageUnit = 0 is not allowed on some platforms, e.g. SP3
+C
 C     Annoyingly there is no universal way to have the usingMPI
 C     parameter work as one might expect. This is because, on some
 C     systems I/O does not work until MPI_Init has been called. The
@@ -101,6 +129,9 @@ C     o Do other miscellaneous multi-processing set up steps. For
 C       example under MPI we create datatypes for communication
 C       of array edges.
       CALL INI_PROCS
+#ifdef LETS_MAKE_JAM
+      CALL INI_JAM
+#endif
       IF ( eeBootError ) GOTO 999
 
 C--   Initialise variables to support "nThreads" of computation.
@@ -108,8 +139,12 @@ C     o Note the program is still running with a single thread of
 C       execution at this stage.
       CALL INI_THREADING_ENVIRONMENT
       IF ( eeBootError ) GOTO 999
+
+#ifdef USE_DFILE
+C--   Initiialise the multi-process IO package
+      CALL DFILE_INIT
+#endif
  
   999 CONTINUE
       RETURN
       END
-C $Id$

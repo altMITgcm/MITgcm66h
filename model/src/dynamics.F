@@ -1,191 +1,497 @@
-C $Id$
+C $Header$
+C $Name$
 
-#include "CPP_EEOPTIONS.h"
+#include "PACKAGES_CONFIG.h"
+#include "CPP_OPTIONS.h"
 
-      SUBROUTINE DYNAMICS(myThid)
-C     /==========================================================\
-C     | SUBROUTINE DYNAMICS                                      |
-C     | o Controlling routine for the explicit part of the model |
-C     |   dynamics.                                              |
-C     |==========================================================|
-C     | This routine evaluates the "dynamics" terms for each     |
-C     | block of ocean in turn. Because the blocks of ocean have |
-C     | overlap regions they are independent of one another.     |
-C     | If terms involving lateral integrals are needed in this  |
-C     | routine care will be needed. Similarly finite-difference |
-C     | operations with stencils wider than the overlap region   |
-C     | require special consideration.                           |
-C     | Notes                                                    |
-C     | =====                                                    |
-C     | C*P* comments indicating place holders for which code is |
-C     |      presently being developed.                          |
-C     \==========================================================/
-
+CBOP
+C     !ROUTINE: DYNAMICS
+C     !INTERFACE:
+      SUBROUTINE DYNAMICS(myTime, myIter, myThid)
+C     !DESCRIPTION: \bv
+C     *==========================================================*
+C     | SUBROUTINE DYNAMICS                                       
+C     | o Controlling routine for the explicit part of the model  
+C     |   dynamics.                                               
+C     *==========================================================*
+C     | This routine evaluates the "dynamics" terms for each      
+C     | block of ocean in turn. Because the blocks of ocean have  
+C     | overlap regions they are independent of one another.      
+C     | If terms involving lateral integrals are needed in this   
+C     | routine care will be needed. Similarly finite-difference  
+C     | operations with stencils wider than the overlap region    
+C     | require special consideration.                            
+C     | The algorithm...
+C     |
+C     | "Correction Step"
+C     | =================
+C     | Here we update the horizontal velocities with the surface
+C     | pressure such that the resulting flow is either consistent
+C     | with the free-surface evolution or the rigid-lid:
+C     |   U[n] = U* + dt x d/dx P
+C     |   V[n] = V* + dt x d/dy P
+C     |
+C     | "Calculation of Gs"
+C     | ===================
+C     | This is where all the accelerations and tendencies (ie.
+C     | physics, parameterizations etc...) are calculated
+C     |   rho = rho ( theta[n], salt[n] )
+C     |   b   = b(rho, theta)
+C     |   K31 = K31 ( rho )
+C     |   Gu[n] = Gu( u[n], v[n], wVel, b, ... )
+C     |   Gv[n] = Gv( u[n], v[n], wVel, b, ... )
+C     |   Gt[n] = Gt( theta[n], u[n], v[n], wVel, K31, ... )
+C     |   Gs[n] = Gs( salt[n], u[n], v[n], wVel, K31, ... )
+C     |
+C     | "Time-stepping" or "Prediction"
+C     | ================================
+C     | The models variables are stepped forward with the appropriate
+C     | time-stepping scheme (currently we use Adams-Bashforth II)
+C     | - For momentum, the result is always *only* a "prediction"
+C     | in that the flow may be divergent and will be "corrected"
+C     | later with a surface pressure gradient.
+C     | - Normally for tracers the result is the new field at time
+C     | level [n+1} *BUT* in the case of implicit diffusion the result
+C     | is also *only* a prediction.
+C     | - We denote "predictors" with an asterisk (*).
+C     |   U* = U[n] + dt x ( 3/2 Gu[n] - 1/2 Gu[n-1] )
+C     |   V* = V[n] + dt x ( 3/2 Gv[n] - 1/2 Gv[n-1] )
+C     |   theta[n+1] = theta[n] + dt x ( 3/2 Gt[n] - 1/2 atG[n-1] )
+C     |   salt[n+1] = salt[n] + dt x ( 3/2 Gt[n] - 1/2 atG[n-1] )
+C     | With implicit diffusion:
+C     |   theta* = theta[n] + dt x ( 3/2 Gt[n] - 1/2 atG[n-1] )
+C     |   salt* = salt[n] + dt x ( 3/2 Gt[n] - 1/2 atG[n-1] )
+C     |   (1 + dt * K * d_zz) theta[n] = theta*
+C     |   (1 + dt * K * d_zz) salt[n] = salt*
+C     |
+C     *==========================================================*
+C     \ev
+C     !USES:
+      IMPLICIT NONE
 C     == Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
-#include "CG2D.h"
+#include "PARAMS.h"
+#include "DYNVARS.h"
+#ifdef ALLOW_CD_CODE
+#include "CD_CODE_VARS.h"
+#endif
+#include "GRID.h"
+#ifdef ALLOW_PASSIVE_TRACER
+#include "TR1.h"
+#endif
+#ifdef ALLOW_AUTODIFF_TAMC
+# include "tamc.h"
+# include "tamc_keys.h"
+# include "FFIELDS.h"
+# include "EOS.h"
+# ifdef ALLOW_KPP
+#  include "KPP.h"
+# endif
+#endif /* ALLOW_AUTODIFF_TAMC */
 
+C     !CALLING SEQUENCE:
+C     DYNAMICS()
+C      |
+C      |-- CALC_GRAD_PHI_SURF
+C      |
+C      |-- CALC_VISCOSITY
+C      |
+C      |-- CALC_PHI_HYD  
+C      |
+C      |-- MOM_FLUXFORM  
+C      |
+C      |-- MOM_VECINV    
+C      |
+C      |-- TIMESTEP      
+C      |
+C      |-- OBCS_APPLY_UV 
+C      |
+C      |-- IMPLDIFF      
+C      |
+C      |-- OBCS_APPLY_UV
+C      |
+C      |-- CALL TIMEAVE_CUMUL_1T
+C      |-- CALL DEBUG_STATS_RL
+
+C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
+C     myTime - Current time in simulation
+C     myIter - Current iteration number in simulation
 C     myThid - Thread number for this instance of the routine.
+      _RL myTime
+      INTEGER myIter
       INTEGER myThid
 
+C     !LOCAL VARIABLES:
 C     == Local variables
-C     xA, yA                 - Per block temporaries holding face areas
-C     uTrans, vTrans, wTrans - Per block temporaries holding flow transport
-C                              o uTrans: Zonal transport
-C                              o vTrans: Meridional transport
-C                              o wTrans: Vertical transport
-C     maskC,maskUp             o maskC: land/water mask for tracer cells
-C                              o maskUp: land/water mask for W points
-C     aTerm, xTerm, cTerm    - Work arrays for holding separate terms in
-C     mTerm, pTerm,            tendency equations.
-C     fZon, fMer, fVer[STUV]   o aTerm: Advection term
-C                              o xTerm: Mixing term
-C                              o cTerm: Coriolis term
-C                              o mTerm: Metric term
-C                              o pTerm: Pressure term
-C                              o fZon: Zonal flux term
-C                              o fMer: Meridional flux term
-C                              o fVer: Vertical flux term - note fVer
+C     fVer[STUV]               o fVer: Vertical flux term - note fVer
 C                                      is "pipelined" in the vertical
 C                                      so we need an fVer for each
 C                                      variable.
-C     iMin, iMax - Ranges and sub-block indices on which calculations
-C     jMin, jMax   are applied.
+C     phiHydC    :: hydrostatic potential anomaly at cell center
+C                   In z coords phiHyd is the hydrostatic potential
+C                      (=pressure/rho0) anomaly
+C                   In p coords phiHyd is the geopotential height anomaly.
+C     phiHydF    :: hydrostatic potential anomaly at middle between 2 centers
+C     dPhiHydX,Y :: Gradient (X & Y directions) of hydrostatic potential anom.
+C     phiSurfX,  ::  gradient of Surface potential (Pressure/rho, ocean)
+C     phiSurfY             or geopotential (atmos) in X and Y direction
+C     iMin, iMax     - Ranges and sub-block indices on which calculations
+C     jMin, jMax       are applied.
 C     bi, bj
-C     k, kUp, kDown, kM1 - Index for layer above and below. kUp and kDown
-C                          are switched with layer to be the appropriate index
-C                          into fVerTerm
-      _RS xA    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RS yA    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL uTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL vTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL wTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RS maskC (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RS maskUp(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL aTerm (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL xTerm (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL cTerm (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL mTerm (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL pTerm (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL fZon  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL fMer  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL fVerT (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
-      _RL fVerS (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
-      _RL fVerU (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
-      _RL fVerV (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
-      _RL pH    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nz)
+C     k, kup,        - Index for layer above and below. kup and kDown
+C     kDown, km1       are switched with layer to be the appropriate 
+C                      index into fVerTerm.
+      _RL fVerU   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
+      _RL fVerV   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
+      _RL phiHydF (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL phiHydC (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL dPhiHydX(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
+      _RL dPhiHydY(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
+      _RL phiSurfX(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL phiSurfY(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL KappaRU (1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
+      _RL KappaRV (1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
+
       INTEGER iMin, iMax
       INTEGER jMin, jMax
       INTEGER bi, bj
       INTEGER i, j
-      INTEGER k, kM1, kUp, kDown
+      INTEGER k, km1, kp1, kup, kDown
+
+      LOGICAL  DIFFERENT_MULTIPLE
+      EXTERNAL DIFFERENT_MULTIPLE
+ 
+C---    The algorithm...
+C
+C       "Correction Step"
+C       =================
+C       Here we update the horizontal velocities with the surface
+C       pressure such that the resulting flow is either consistent
+C       with the free-surface evolution or the rigid-lid:
+C         U[n] = U* + dt x d/dx P
+C         V[n] = V* + dt x d/dy P
+C
+C       "Calculation of Gs"
+C       ===================
+C       This is where all the accelerations and tendencies (ie.
+C       physics, parameterizations etc...) are calculated
+C         rho = rho ( theta[n], salt[n] )
+C         b   = b(rho, theta)
+C         K31 = K31 ( rho )
+C         Gu[n] = Gu( u[n], v[n], wVel, b, ... )
+C         Gv[n] = Gv( u[n], v[n], wVel, b, ... )
+C         Gt[n] = Gt( theta[n], u[n], v[n], wVel, K31, ... )
+C         Gs[n] = Gs( salt[n], u[n], v[n], wVel, K31, ... )
+C
+C       "Time-stepping" or "Prediction"
+C       ================================
+C       The models variables are stepped forward with the appropriate
+C       time-stepping scheme (currently we use Adams-Bashforth II)
+C       - For momentum, the result is always *only* a "prediction"
+C       in that the flow may be divergent and will be "corrected"
+C       later with a surface pressure gradient.
+C       - Normally for tracers the result is the new field at time
+C       level [n+1} *BUT* in the case of implicit diffusion the result
+C       is also *only* a prediction.
+C       - We denote "predictors" with an asterisk (*).
+C         U* = U[n] + dt x ( 3/2 Gu[n] - 1/2 Gu[n-1] )
+C         V* = V[n] + dt x ( 3/2 Gv[n] - 1/2 Gv[n-1] )
+C         theta[n+1] = theta[n] + dt x ( 3/2 Gt[n] - 1/2 atG[n-1] )
+C         salt[n+1] = salt[n] + dt x ( 3/2 Gt[n] - 1/2 atG[n-1] )
+C       With implicit diffusion:
+C         theta* = theta[n] + dt x ( 3/2 Gt[n] - 1/2 atG[n-1] )
+C         salt* = salt[n] + dt x ( 3/2 Gt[n] - 1/2 atG[n-1] )
+C         (1 + dt * K * d_zz) theta[n] = theta*
+C         (1 + dt * K * d_zz) salt[n] = salt*
+C---
+CEOP
+
+C-- Call to routine for calculation of
+C   Eliassen-Palm-flux-forced U-tendency,
+C   if desired:
+#ifdef INCLUDE_EP_FORCING_CODE
+      CALL CALC_EP_FORCING(myThid)
+#endif
+
+#ifdef ALLOW_AUTODIFF_TAMC
+C--   HPF directive to help TAMC
+CHPF$ INDEPENDENT
+#endif /* ALLOW_AUTODIFF_TAMC */
+
+      DO bj=myByLo(myThid),myByHi(myThid)
+
+#ifdef ALLOW_AUTODIFF_TAMC
+C--    HPF directive to help TAMC
+CHPF$  INDEPENDENT, NEW (fVerU,fVerV
+CHPF$&                  ,phiHydF
+CHPF$&                  ,KappaRU,KappaRV
+CHPF$&                  )
+#endif /* ALLOW_AUTODIFF_TAMC */
+
+       DO bi=myBxLo(myThid),myBxHi(myThid)
+
+#ifdef ALLOW_AUTODIFF_TAMC
+          act1 = bi - myBxLo(myThid)
+          max1 = myBxHi(myThid) - myBxLo(myThid) + 1
+          act2 = bj - myByLo(myThid)
+          max2 = myByHi(myThid) - myByLo(myThid) + 1
+          act3 = myThid - 1
+          max3 = nTx*nTy
+          act4 = ikey_dynamics - 1
+          idynkey = (act1 + 1) + act2*max1
+     &                      + act3*max1*max2
+     &                      + act4*max1*max2*max3
+#endif /* ALLOW_AUTODIFF_TAMC */
 
 C--   Set up work arrays with valid (i.e. not NaN) values
 C     These inital values do not alter the numerical results. They
 C     just ensure that all memory references are to valid floating
 C     point numbers. This prevents spurious hardware signals due to
 C     uninitialised but inert locations.
-      DO j=1-OLy,sNy+OLy
-       DO i=1-OLx,sNx+OLx
-        xA(i,j)      = 0.*1. _d 37
-        yA(i,j)      = 0.*1. _d 37
-        uTrans(i,j)  = 0.*1. _d 37
-        vTrans(i,j)  = 0.*1. _d 37
-        aTerm(i,j)   = 0.*1. _d 37
-        xTerm(i,j)   = 0.*1. _d 37
-        cTerm(i,j)   = 0.*1. _d 37
-        mTerm(i,j)   = 0.*1. _d 37
-        pTerm(i,j)   = 0.*1. _d 37
-        fZon(i,j)    = 0.*1. _d 37
-        fMer(i,j)    = 0.*1. _d 37
-        DO K=1,nZ
-         pH (i,j,k)  = 0.*1. _d 37
+
+        DO k=1,Nr
+         DO j=1-OLy,sNy+OLy
+          DO i=1-OLx,sNx+OLx
+           KappaRU(i,j,k) = 0. _d 0
+           KappaRV(i,j,k) = 0. _d 0
+#ifdef ALLOW_AUTODIFF_TAMC
+cph(
+c--   need some re-initialisation here to break dependencies
+c--   totphihyd is assumed zero from ini_pressure, i.e.
+c--   avoiding iterate pressure p = integral of (g*rho(p)*dz)
+cph)
+           totPhiHyd(i,j,k,bi,bj) = 0. _d 0
+           gu(i,j,k,bi,bj) = 0. _d 0
+           gv(i,j,k,bi,bj) = 0. _d 0
+#endif
+          ENDDO
+         ENDDO
         ENDDO
-       ENDDO
-      ENDDO
-C--   Set up work arrays that need valid initial values
-      DO j=1-OLy,sNy+OLy
-       DO i=1-OLx,sNx+OLx
-        wTrans(i,j)  = 0. _d 0
-        fVerT(i,j,1) = 0. _d 0
-        fVerT(i,j,2) = 0. _d 0
-        fVerS(i,j,1) = 0. _d 0
-        fVerS(i,j,2) = 0. _d 0
-        fVerU(i,j,1) = 0. _d 0
-        fVerU(i,j,2) = 0. _d 0
-        fVerV(i,j,1) = 0. _d 0
-        fVerV(i,j,2) = 0. _d 0
-       ENDDO
-      ENDDO
-
-      DO bj=myByLo(myThid),myByHi(myThid)
-       DO bi=myBxLo(myThid),myBxHi(myThid)
-
-        iMin = 1-OLx+1
-        iMax = sNx+OLx
-        jMin = 1-OLy+1
-        jMax = sNy+OLy
-
-C--     Update fields according to tendency terms
-        CALL TIMESTEP(
-     I       bi,bj,iMin,iMax,jMin,jMax,myThid)
-
-C--     Calculate rho with the appropriate equation of state
-        CALL FIND_RHO(
-     I       bi,bj,iMin,iMax,jMin,jMax,myThid)
-
-C--     Calculate static stability and mix where convectively unstable
-        CALL CONVECT(
-     I       bi,bj,iMin,iMax,jMin,jMax,myThid)
-
-C--     Integrate hydrostatic balance for pH with BC of pH(z=0)=0
-        CALL CALC_PH(
-     I       bi,bj,iMin,iMax,jMin,jMax,
-     O       pH,
-     I       myThid )
-
-        DO K = Nz, 1, -1
-         kM1  =max(1,k-1)   ! Points to level above k (=k-1)
-         kUp  =1+MOD(k+1,2) ! Cycles through 1,2 to point to layer above
-         kDown=1+MOD(k,2)   ! Cycles through 2,1 to point to current layer
-         iMin = 1-OLx+2
-         iMax = sNx+OLx-1
-         jMin = 1-OLy+2
-         jMax = sNy+OLy-1
-
-C--      Get temporary terms used by tendency routines
-         CALL CALC_COMMON_FACTORS (
-     I        bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
-     O        xA,yA,uTrans,vTrans,wTrans,maskC,maskUp,
-     I        myThid)
-
-C--      Calculate accelerations in the momentum equations
-         CALL CALC_MOM_RHS(
-     I        bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
-     I        xA,yA,uTrans,vTrans,wTrans,maskC,
-     I        pH,
-     U        aTerm,xTerm,cTerm,mTerm,pTerm,
-     U        fZon, fMer, fVerU, fVerV,
-     I        myThid)
-
-C--      Calculate active tracer tendencies
-         CALL CALC_GT(
-     I        bi,bj,iMin,iMax,jMin,jMax, k,kM1,kUp,kDown,
-     I        xA,yA,uTrans,vTrans,wTrans,maskUp,
-     U        aTerm,xTerm,fZon,fMer,fVerT,
-     I        myThid)
-Cdbg     CALL CALC_GS(
-Cdbg I        bi,bj,iMin,iMax,jMin,jMax, k,kM1,kUp,kDown,
-Cdbg I        xA,yA,uTrans,vTrans,wTrans,maskUp,
-Cdbg U        aTerm,xTerm,fZon,fMer,fVerS,
-Cdbg I        myThid)
-
+        DO j=1-OLy,sNy+OLy
+         DO i=1-OLx,sNx+OLx
+          fVerU  (i,j,1) = 0. _d 0
+          fVerU  (i,j,2) = 0. _d 0
+          fVerV  (i,j,1) = 0. _d 0
+          fVerV  (i,j,2) = 0. _d 0
+          phiHydF (i,j)  = 0. _d 0 
+          phiHydC (i,j)  = 0. _d 0 
+          dPhiHydX(i,j)  = 0. _d 0
+          dPhiHydY(i,j)  = 0. _d 0 
+          phiSurfX(i,j)  = 0. _d 0
+          phiSurfY(i,j)  = 0. _d 0
+         ENDDO
         ENDDO
+
+C--     Start computation of dynamics
+        iMin = 0
+        iMax = sNx+1
+        jMin = 0
+        jMax = sNy+1
+
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE wvel (:,:,:,bi,bj) = 
+CADJ &     comlev1_bibj, key = idynkey, byte = isbyte
+#endif /* ALLOW_AUTODIFF_TAMC */
+
+C--     Explicit part of the Surface Potentiel Gradient (add in TIMESTEP)
+C       (note: this loop will be replaced by CALL CALC_GRAD_ETA)
+        IF (implicSurfPress.NE.1.) THEN
+          CALL CALC_GRAD_PHI_SURF(
+     I         bi,bj,iMin,iMax,jMin,jMax,
+     I         etaN,
+     O         phiSurfX,phiSurfY,
+     I         myThid )                         
+        ENDIF
+
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE uvel (:,:,:,bi,bj) = comlev1_bibj, key=idynkey, byte=isbyte
+CADJ STORE vvel (:,:,:,bi,bj) = comlev1_bibj, key=idynkey, byte=isbyte
+#ifdef ALLOW_KPP
+CADJ STORE KPPviscAz (:,:,:,bi,bj) 
+CADJ &                 = comlev1_bibj, key=idynkey, byte=isbyte
+#endif /* ALLOW_KPP */
+#endif /* ALLOW_AUTODIFF_TAMC */
+
+#ifdef  INCLUDE_CALC_DIFFUSIVITY_CALL
+C--      Calculate the total vertical diffusivity
+        DO k=1,Nr
+         CALL CALC_VISCOSITY(
+     I        bi,bj,iMin,iMax,jMin,jMax,k,
+     O        KappaRU,KappaRV,
+     I        myThid)
+       ENDDO
+#endif
+
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE KappaRU(:,:,:) 
+CADJ &                 = comlev1_bibj, key=idynkey, byte=isbyte
+CADJ STORE KappaRV(:,:,:) 
+CADJ &                 = comlev1_bibj, key=idynkey, byte=isbyte
+#endif /* ALLOW_AUTODIFF_TAMC */
+
+C--     Start of dynamics loop
+        DO k=1,Nr
+
+C--       km1    Points to level above k (=k-1)
+C--       kup    Cycles through 1,2 to point to layer above
+C--       kDown  Cycles through 2,1 to point to current layer
+
+          km1  = MAX(1,k-1)
+          kp1  = MIN(k+1,Nr)
+          kup  = 1+MOD(k+1,2)
+          kDown= 1+MOD(k,2)
+
+#ifdef ALLOW_AUTODIFF_TAMC 
+         kkey = (idynkey-1)*Nr + k
+c
+CADJ STORE totphihyd (:,:,k,bi,bj) 
+CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ STORE gt (:,:,k,bi,bj) 
+CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ STORE gs (:,:,k,bi,bj) 
+CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ STORE theta (:,:,k,bi,bj) 
+CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ STORE salt  (:,:,k,bi,bj) 
+CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
+#endif /* ALLOW_AUTODIFF_TAMC */
+
+C--      Integrate hydrostatic balance for phiHyd with BC of 
+C        phiHyd(z=0)=0
+C        distinguishe between Stagger and Non Stagger time stepping
+         IF (staggerTimeStep) THEN
+           CALL CALC_PHI_HYD(
+     I        bi,bj,iMin,iMax,jMin,jMax,k,
+     I        gT, gS,
+     U        phiHydF,
+     O        phiHydC, dPhiHydX, dPhiHydY,
+     I        myTime, myIter, myThid )
+         ELSE
+           CALL CALC_PHI_HYD(
+     I        bi,bj,iMin,iMax,jMin,jMax,k,
+     I        theta, salt,
+     U        phiHydF,
+     O        phiHydC, dPhiHydX, dPhiHydY,
+     I        myTime, myIter, myThid )
+         ENDIF
+
+C--      Calculate accelerations in the momentum equations (gU, gV, ...)
+C        and step forward storing the result in gU, gV, etc...
+         IF ( momStepping ) THEN
+#ifdef ALLOW_MOM_FLUXFORM
+           IF (.NOT. vectorInvariantMomentum) CALL MOM_FLUXFORM(
+     I         bi,bj,iMin,iMax,jMin,jMax,k,kup,kDown,
+     I         dPhiHydX,dPhiHydY,KappaRU,KappaRV,
+     U         fVerU, fVerV,
+     I         myTime, myIter, myThid)
+#endif
+#ifdef ALLOW_MOM_VECINV
+           IF (vectorInvariantMomentum) CALL MOM_VECINV(
+     I         bi,bj,iMin,iMax,jMin,jMax,k,kup,kDown,
+     I         dPhiHydX,dPhiHydY,KappaRU,KappaRV,
+     U         fVerU, fVerV,
+     I         myTime, myIter, myThid)
+#endif
+           CALL TIMESTEP(
+     I         bi,bj,iMin,iMax,jMin,jMax,k,
+     I         dPhiHydX,dPhiHydY, phiSurfX, phiSurfY,
+     I         myTime, myIter, myThid)
+
+#ifdef   ALLOW_OBCS
+C--      Apply open boundary conditions
+           IF (useOBCS) THEN
+             CALL OBCS_APPLY_UV( bi, bj, k, gU, gV, myThid )
+           ENDIF
+#endif   /* ALLOW_OBCS */
+
+         ENDIF
+
+
+C--     end of dynamics k loop (1:Nr)
+        ENDDO
+
+C--     Implicit viscosity
+        IF (implicitViscosity.AND.momStepping) THEN
+#ifdef    ALLOW_AUTODIFF_TAMC
+CADJ STORE KappaRU(:,:,:) = comlev1_bibj , key=idynkey, byte=isbyte
+CADJ STORE gU(:,:,:,bi,bj) = comlev1_bibj , key=idynkey, byte=isbyte
+#endif    /* ALLOW_AUTODIFF_TAMC */
+          CALL IMPLDIFF(
+     I         bi, bj, iMin, iMax, jMin, jMax,
+     I         deltaTmom, KappaRU,recip_HFacW,
+     U         gU,
+     I         myThid )
+#ifdef    ALLOW_AUTODIFF_TAMC
+CADJ STORE KappaRV(:,:,:) = comlev1_bibj , key=idynkey, byte=isbyte
+CADJ STORE gV(:,:,:,bi,bj) = comlev1_bibj , key=idynkey, byte=isbyte
+#endif    /* ALLOW_AUTODIFF_TAMC */
+          CALL IMPLDIFF(
+     I         bi, bj, iMin, iMax, jMin, jMax,
+     I         deltaTmom, KappaRV,recip_HFacS,
+     U         gV,
+     I         myThid )
+
+#ifdef   ALLOW_OBCS
+C--      Apply open boundary conditions
+         IF (useOBCS) THEN
+           DO K=1,Nr
+             CALL OBCS_APPLY_UV( bi, bj, k, gU, gV, myThid )
+           ENDDO
+         END IF
+#endif   /* ALLOW_OBCS */
+
+#ifdef    ALLOW_CD_CODE
+#ifdef    ALLOW_AUTODIFF_TAMC
+CADJ STORE vVelD(:,:,:,bi,bj) = comlev1_bibj , key=idynkey, byte=isbyte
+#endif    /* ALLOW_AUTODIFF_TAMC */
+          CALL IMPLDIFF(
+     I         bi, bj, iMin, iMax, jMin, jMax,
+     I         deltaTmom, KappaRU,recip_HFacW,
+     U         vVelD,
+     I         myThid )
+#ifdef    ALLOW_AUTODIFF_TAMC
+CADJ STORE uVelD(:,:,:,bi,bj) = comlev1_bibj , key=idynkey, byte=isbyte
+#endif    /* ALLOW_AUTODIFF_TAMC */
+          CALL IMPLDIFF(
+     I         bi, bj, iMin, iMax, jMin, jMax,
+     I         deltaTmom, KappaRV,recip_HFacS,
+     U         uVelD,
+     I         myThid )
+#endif    /* ALLOW_CD_CODE */
+C--     End If implicitViscosity.AND.momStepping
+        ENDIF
  
        ENDDO
       ENDDO
+
+Cml(
+C     In order to compare the variance of phiHydLow of a p/z-coordinate
+C     run with etaH of a z/p-coordinate run the drift of phiHydLow
+C     has to be removed by something like the following subroutine:
+C      CALL REMOVE_MEAN_RL( 1, phiHydLow, maskH, maskH, rA, drF,
+C     &                'phiHydLow', myThid )
+Cml)
+
+#ifdef ALLOW_DEBUG
+      If ( debugLevel .GE. debLevB ) THEN
+       CALL DEBUG_STATS_RL(1,EtaN,'EtaN (DYNAMICS)',myThid)
+       CALL DEBUG_STATS_RL(Nr,uVel,'Uvel (DYNAMICS)',myThid)
+       CALL DEBUG_STATS_RL(Nr,vVel,'Vvel (DYNAMICS)',myThid)
+       CALL DEBUG_STATS_RL(Nr,wVel,'Wvel (DYNAMICS)',myThid)
+       CALL DEBUG_STATS_RL(Nr,theta,'Theta (DYNAMICS)',myThid)
+       CALL DEBUG_STATS_RL(Nr,salt,'Salt (DYNAMICS)',myThid)
+       CALL DEBUG_STATS_RL(Nr,Gu,'Gu (DYNAMICS)',myThid)
+       CALL DEBUG_STATS_RL(Nr,Gv,'Gv (DYNAMICS)',myThid)
+       CALL DEBUG_STATS_RL(Nr,Gt,'Gt (DYNAMICS)',myThid)
+       CALL DEBUG_STATS_RL(Nr,Gs,'Gs (DYNAMICS)',myThid)
+       CALL DEBUG_STATS_RL(Nr,GuNm1,'GuNm1 (DYNAMICS)',myThid)
+       CALL DEBUG_STATS_RL(Nr,GvNm1,'GvNm1 (DYNAMICS)',myThid)
+       CALL DEBUG_STATS_RL(Nr,GtNm1,'GtNm1 (DYNAMICS)',myThid)
+       CALL DEBUG_STATS_RL(Nr,GsNm1,'GsNm1 (DYNAMICS)',myThid)
+      ENDIF
+#endif
 
       RETURN
       END

@@ -1,0 +1,191 @@
+C $Header$
+C $Name$
+
+#include "BULK_FORCE_OPTIONS.h"
+
+      SUBROUTINE BULKF_READPARMS( myThid )
+C     /==========================================================\
+C     | SUBROUTINE BULKF_READPARMS                               |
+C     | o Routine to initialize BULKF variables and constants.   |
+C     |==========================================================|
+C     | Initialize BULKF    parameters, read in data.blk         |
+C     \==========================================================/
+      IMPLICIT NONE
+
+C     === Global variables ===
+#include "SIZE.h"
+#include "EEPARAMS.h"
+#include "PARAMS.h"
+#include "BULKF_PARAMS.h"
+#include "BULKF.h"
+#ifdef CONSERV_BULKF
+#include "BULKF_CONSERV.h"
+#endif
+
+C     === Routine arguments ===
+      INTEGER myThid
+
+#ifdef ALLOW_BULK_FORCE
+C     === Local variables ===
+C     msgBuf      - Informational/error meesage buffer
+C     iUnit       - Work variable for IO unit number
+      CHARACTER*(MAX_LEN_MBUF) msgBuf
+      INTEGER iUnit
+
+C--   Bulk Formula parameter
+      NAMELIST /BULKF_CONST/
+     &  rhoa, rhofw,
+     &  cpair, cpwv,
+     &  Lvap, Lfresh,
+     &  Tf0kel,
+     &  cdrag_1, cdrag_2, cdrag_3,
+     &  stefan, xkar, Rvap,
+     &  p0,
+     &  humid_fac, saltsat, gamma_blk,
+     &  Lvap_ice, Rgas,
+     &  atm_emissivity, ocean_emissivity,
+     &  snow_emissivity, ice_emissivity,
+     &         blk_taveFreq
+
+      NAMELIST /BULKF_PARM01/
+     &         AirTempFile, AirHumidityFile, RainFile,
+     &         SolarFile, LongwaveFile, UWindFile,
+     &         VWindFile,  RunoffFile, WSpeedFile, QnetFile,
+     &         EmPFile, CloudFile, readwindstress, readsurface
+
+#ifdef CONSERV_BULKF
+c-    conserving qnet, empmr
+      NAMELIST /BULKF_PARM02/
+     &         qnet_off, empmr_off, conservcycle
+#endif
+
+
+      _BEGIN_MASTER(myThid)
+
+      WRITE(msgBuf,'(A)') ' BULKF_READPARMS: opening data.blk'
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT , 1)
+    
+
+      CALL OPEN_COPY_DATA_FILE(
+     I                          'data.blk', 'BULKF_READPARMS',
+     O                          iUnit,
+     I                          myThid )
+
+C--   Default values 
+C-    Physical constant :
+      rhoa   = 1.3 _d 0
+      rhofw  = rhoConstFresh
+      cpair  = atm_Cp
+      cpwv   = 1.81 _d 3
+      Lvap   = 2.5 _d 6
+      Lfresh = 3.34 _d 5
+      Tf0kel = celsius2K
+      cdrag_1= 0.0027000 _d 0
+      cdrag_2= 0.0001420 _d 0
+      cdrag_3= 0.0000764 _d 0
+      stefan = 5.67 _d -8
+      xkar   = 0.4  _d 0
+      Rvap   = 461. _d 0
+      p0     = atm_Po / 100.
+      humid_fac =  0.606 _d 0
+      saltsat   =  0.980 _d 0
+      gamma_blk =  0.010 _d 0
+      Lvap_ice  = 2.83 _d 6
+      Rgas   = atm_Rd
+      atm_emissivity  = .90 _d 0
+      ocean_emissivity= .985 _d 0
+      snow_emissivity = .98 _d 0
+      ice_emissivity  = .98 _d 0
+
+C-    bulk-forcing parameters:
+      blk_taveFreq = taveFreq
+
+C-    Input data files names :
+      AirTempFile=' '
+      AirHumidityFile=' '
+      RainFile=' '
+      SolarFile=' '
+      LongwaveFile=' '
+      UWindFile=' '
+      VWindFile=' '
+      WspeedFile=' '
+      RunoffFile=' '
+      QnetFile=' '
+      EmPFile=' '
+      CloudFile=' '
+      SnowFile=' '
+      readwindstress=.TRUE.
+      readsurface=.TRUE.
+
+C--   Read parameters from open data file
+      READ(UNIT=iUnit,NML=BULKF_CONST)
+      WRITE(msgBuf,'(A)') ' BULKF_READPARMS: read BULKF_CONST'
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT , 1)
+
+      READ(UNIT=iUnit,NML=BULKF_PARM01)
+      WRITE(msgBuf,'(A)') ' BULKF_READPARMS: read BULKF_PARM01'
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT , 1)
+
+#ifdef CONSERV_BULKF
+c -- default
+      qnet_off=0.d0
+      empmr_off=0.d0
+      READ(UNIT=iUnit,NML=BULKF_PARM02)
+      WRITE(msgBuf,'(A)') ' BULKF_READPARMS: read BULKF_PARM02'
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT , 1)
+
+#endif /* CONSERV_BULKF */
+
+C--   Close the open data file
+      CLOSE(iUnit)
+
+C-    Define other constants (from previous ones):
+      Qcoef  = 6.11 _d 0 * 0.622 _d 0 / p0
+      Sha    = Rgas / .286 _d 0
+
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+      iUnit = standardMessageUnit
+c     iUnit=88
+c     OPEN(iUnit,file='bulkf_check_params',status='unknown')
+      WRITE(iUnit,*) 'BlkF: rhoa     =',rhoa
+      WRITE(iUnit,*) 'BlkF: rhofw    =',rhofw
+      WRITE(iUnit,*) 'BlkF: cpair    =',cpair
+      WRITE(iUnit,*) 'BlkF: cpwv     =',cpwv
+      WRITE(iUnit,*) 'BlkF: Lvap     =',Lvap
+      WRITE(iUnit,*) 'BlkF: Lfresh   =',Lfresh
+      WRITE(iUnit,*) 'BlkF: Tf0kel   =',Tf0kel
+      WRITE(iUnit,*) 'BlkF: cdrag_1  =',cdrag_1
+      WRITE(iUnit,*) 'BlkF: cdrag_2  =',cdrag_2
+      WRITE(iUnit,*) 'BlkF: cdrag_3  =',cdrag_3
+      WRITE(iUnit,*) 'BlkF: stefan   =',stefan
+      WRITE(iUnit,*) 'BlkF: xkar     =',xkar
+      WRITE(iUnit,*) 'BlkF: Rvap     =',Rvap
+      WRITE(iUnit,*) 'BlkF: p0       =',p0
+      WRITE(iUnit,*) 'BlkF: Qcoef    =',Qcoef
+      WRITE(iUnit,*) 'BlkF: humid_fac=',humid_fac
+      WRITE(iUnit,*) 'BlkF: saltsat  =',saltsat
+      WRITE(iUnit,*) 'BlkF: gamma_blk=',gamma_blk
+      WRITE(iUnit,*) 'BlkF: Lvap_ice =',Lvap_ice
+      WRITE(iUnit,*) 'BlkF: Rgas     =',Rgas
+      WRITE(iUnit,*) 'BlkF: Sha      =',Sha
+      WRITE(iUnit,*) 'BlkF: atm_emissivity  =',atm_emissivity
+      WRITE(iUnit,*) 'BlkF: ocean_emissivity=',ocean_emissivity
+      WRITE(iUnit,*) 'BlkF: snow_emissivity =',snow_emissivity
+      WRITE(iUnit,*) 'BlkF: ice_emissivity  =',ice_emissivity
+      WRITE(iUnit,*) 'BlkF: blk_taveFreq=',blk_taveFreq
+      IF (iUnit.EQ.88) CLOSE(iUnit)
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+
+      _END_MASTER(myThid)
+
+C--   Everyone else must wait for the parameters to be loaded
+      _BARRIER
+
+#endif /* ALLOW_BULK_FORCE */
+
+      RETURN
+      END
