@@ -3,11 +3,11 @@ RM               = rm -f
 LOC              = $(PWD)
 TAMC             = tamc
 ###TAMC             = /data43/ralf/tamc/tamc
-###TAF              = taf
-TAF              = ~fastopt/bin/taf
+TAF              = taf
+###TAF              = ~fastopt/bin/taf
 DEST             = .
-SOURCE_CODE      = ../bin
-ADJOINT_SCRIPT   = ../adjoint
+SOURCE_CODE      = ../flux_bin
+ADJOINT_SCRIPT   = ../flux_adjoint
 BASE             = ..
 PKG		= $(BASE)/pkg
 #
@@ -285,8 +285,6 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/cost_heatflux.f			\
 		$(SOURCE_CODE)/cost_hyd.f			\
 		$(SOURCE_CODE)/cost_initvaria.f			\
-		$(SOURCE_CODE)/cost_mean_heatflux.f		\
-		$(SOURCE_CODE)/cost_mean_saltflux.f		\
 		$(SOURCE_CODE)/cost_merstress.f			\
 		$(SOURCE_CODE)/cost_readers.f			\
 		$(SOURCE_CODE)/cost_readsssfields.f		\
@@ -314,27 +312,26 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/cost_obcss.f			\
 		$(SOURCE_CODE)/cost_obcsw.f			\
 		$(SOURCE_CODE)/cost_obcse.f			\
-		$(SOURCE_CODE)/cost_theta_ini_fin.f		\
-		$(SOURCE_CODE)/cost_salt_ini_fin.f		\
 		$(SOURCE_CODE)/cost_ice.f			\
                 $(SOURCE_CODE)/sw_ptmp.f                        \
                 $(SOURCE_CODE)/sw_adtg.f                        \
+		$(SOURCE_CODE)/cost_kapgm.f			\
+		$(SOURCE_CODE)/cost_readargot.f			\
+		$(SOURCE_CODE)/cost_readargos.f			\
+		$(SOURCE_CODE)/cost_ctdtclim.f			\
+		$(SOURCE_CODE)/cost_ctdsclim.f			\
+		$(SOURCE_CODE)/cost_readtmifields.f		\
+		$(SOURCE_CODE)/cost_tmi.f			\
 		  						\
-		$(SOURCE_CODE)/ctrl_getheatflux.f		\
-		$(SOURCE_CODE)/ctrl_getsaltflux.f		\
-		$(SOURCE_CODE)/ctrl_getzonstress.f		\
-		$(SOURCE_CODE)/ctrl_getmerstress.f		\
-		$(SOURCE_CODE)/ctrl_getatemp.f			\
-		$(SOURCE_CODE)/ctrl_getaqh.f			\
-		$(SOURCE_CODE)/ctrl_getuwind.f			\
-		$(SOURCE_CODE)/ctrl_getvwind.f			\
+		$(SOURCE_CODE)/ctrl_get_gen.f			\
+		$(SOURCE_CODE)/ctrl_get_gen_rec.f		\
 		$(SOURCE_CODE)/ctrl_getobcsn.f			\
 		$(SOURCE_CODE)/ctrl_getobcss.f			\
 		$(SOURCE_CODE)/ctrl_getobcsw.f			\
 		$(SOURCE_CODE)/ctrl_getobcse.f			\
 		$(SOURCE_CODE)/ctrl_getrec.f			\
 		$(SOURCE_CODE)/ctrl_init_variables.f		\
-		$(SOURCE_CODE)/ctrl_map.f			\
+		$(SOURCE_CODE)/ctrl_map_ini.f			\
 		  						\
 		$(SOURCE_CODE)/ecco_init.f			\
 		$(SOURCE_CODE)/ecco_the_main_loop.f		\
@@ -397,18 +394,17 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/cal_timestamp.f			\
 		$(SOURCE_CODE)/cal_toseconds.f			\
 		$(SOURCE_CODE)/cal_weekday.f			\
+								\
+		$(SOURCE_CODE)/obcs_apply_sloc.f		\
+		$(SOURCE_CODE)/obcs_apply_tloc.f		\
+		$(SOURCE_CODE)/obcs_apply_ts.f			\
+		$(SOURCE_CODE)/obcs_apply_uv.f			\
+		$(SOURCE_CODE)/obcs_calc.f			\
+		$(SOURCE_CODE)/obcs_init_variables.f		\
+		$(SOURCE_CODE)/obcs_sponge.f			\
+								\
 
 
-#		$(SOURCE_CODE)/obcs_apply_sloc.f		\
-#		$(SOURCE_CODE)/obcs_apply_tloc.f		\
-#		$(SOURCE_CODE)/obcs_apply_ts.f			\
-#		$(SOURCE_CODE)/obcs_apply_uv.f			\
-#		$(SOURCE_CODE)/obcs_calc.f			\
-#		$(SOURCE_CODE)/obcs_init_variables.f		\
-#		$(SOURCE_CODE)/obcs_sponge.f			\
-
-#		$(SOURCE_CODE)/adi.f				\
-#		$(SOURCE_CODE)/lsr.f				\
 #		$(SOURCE_CODE)/advect.f				\
 #		$(SOURCE_CODE)/budget.f				\
 #		$(SOURCE_CODE)/diffus.f				\
@@ -423,7 +419,10 @@ SRC_MODEL	= \
 #		$(SOURCE_CODE)/seaice_model.f			\
 #		$(SOURCE_CODE)/seaice_pickup.f			\
 #		$(SOURCE_CODE)/seaice_readparms.f		\
-#		$(SOURCE_CODE)/seaice_exch.f
+#		$(SOURCE_CODE)/seaice_exch.f                    \
+#		$(SOURCE_CODE)/lsr.f
+#		$(SOURCE_CODE)/adi.f
+
 
 #--------------------------------------------------------
 # rules
