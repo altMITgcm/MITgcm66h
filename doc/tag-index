@@ -3,16 +3,19 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
-release1_p12_pre
+untagged
 o Added missing /* */ to CPP comments in pkg/seaice, pkg/exf,
   kpp_transport_t.F, forward_step.F, and the_main_loop.F
+o pkg/seaice:
+  - adjoint-friendly modifications
+
+release1_p12_pre
 o Updated useSingleCpuIO option in mdsio_writefield.F to
   work with multi-field files, e.g., for single-file pickup.
 o pkg/seaice:
   - bug fix in growth.F: QNET for no shortwave case
   - added HeffFile for specifying initial sea-ice thickness
   - changed SEAICE_EXTERNAL_FLUXES wind stress implementation
-  - adjoint-friendly modifications
 
 release1_p11
 o Modifications for using pkg/exf with pkg/seaice
