@@ -267,7 +267,7 @@ C     Eddy component of vertical flux
      &   -viscAr*_RAatU(i,j,k,bi,bj)
      &   *( ( 2.-_maskW(i,j,k,bi,bj) )*uVel(i,j,kM1,bi,bj) 
      &      - uVel(i,j,k,bi,bj)*_maskW(i,j,k,bi,bj)
-     &    )*rkFac*rDzC(k)
+     &    )*rkFac*recip_drC(k)
 #else
         vf(i,j) =
      &   -viscAr*_dxC(i,j,bi,bj)*_dyG(i,j,bi,bj)
