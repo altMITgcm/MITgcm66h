@@ -214,8 +214,12 @@ C     _EXCH_XY_R8( cg2d_s, myThid )
        err = SQRT(err)
        actualIts      = 0
        actualResidual = err
-      
+
+#ifdef MINIMAL_TAVE_OUTPUT
+       IF ( debugLevel .GT. debLevZero ) THEN
+#else
        IF ( debugLevel .GE. debLevZero ) THEN
+#endif /* MINIMAL_TAVE_OUTPUT */
         _BEGIN_MASTER( myThid )
         write(*,'(A,1P2E22.14)')' cg2d: Sum(rhs),rhsMax = ',
      &                                  sumRHS,rhsMax 
