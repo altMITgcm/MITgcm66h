@@ -257,7 +257,7 @@ EOF
 cat srclist.inc >> ${mfile}
 cat f77list.inc >> ${mfile}
 cat objlist.inc >> ${mfile}
-#rm -f srclist.inc f77list.inc objlist.inc
+rm -f srclist.inc f77list.inc objlist.inc
 
 cat >> ${mfile} <<EOF
 
