@@ -13,14 +13,15 @@ C     \==========================================================/
       implicit none
 ! Common
 #include "SIZE.h"
+#include "EEPARAMS.h"
 #include "DYNVARS.h"
 C     == Routine Arguments ==
       INTEGER myThid
 C     == Local variables ==
       INTEGER i,j,k,bi,bj
 
-      DO bj=1,nSy
-       DO bi=1,nSx
+      DO bj = myByLo(myThid), myByHi(myThid)
+       DO bi = myBxLo(myThid), myBxHi(myThid)
         DO k=1,Nr
          DO j=1-Oly,sNy+Oly
           DO i=1-Olx,sNx+Olx
