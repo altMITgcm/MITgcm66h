@@ -55,8 +55,7 @@ fi
 if test $kpr = 1
 then
 
- # cp -p ../../tools/build_options/linux_ia32_ifc+mpi_cg01 genmake_optfile
- cp optfile genmake_optfile
+ cp -p ../../tools/build_options/linux_ia32_ifc+mpi_cg01 genmake_optfile
  echo '==== compile coupler:'
  cd build_cpl
  echo ' --- genmake2 (cpl):'
