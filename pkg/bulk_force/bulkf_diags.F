@@ -35,14 +35,14 @@ CEndOfInterface
 #ifdef ALLOW_TIMEAVE
 
 C     == Function
-      LOGICAL  DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
+      LOGICAL  DIFF_BASE_MULTIPLE
+      EXTERNAL DIFF_BASE_MULTIPLE
 C     == Local variables ==
       INTEGER bi, bj
       CHARACTER*(MAX_LEN_MBUF) suff
 
 C     Dump files and restart average computation if needed
-      IF ( DIFFERENT_MULTIPLE(blk_taveFreq,myTime,myTime-deltaTClock)
+      IF ( DIFF_BASE_MULTIPLE(baseTime,blk_taveFreq,myTime,deltaTClock)
      &     ) THEN
 
        

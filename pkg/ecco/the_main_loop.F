@@ -366,7 +366,7 @@ c--   NOT enabled.
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 #ifdef ALLOW_TAMC_CHECKPOINTING
-        nIter0 = INT( startTime/deltaTClock )
+        nIter0 = NINT( (startTime-baseTime)/deltaTClock )
         ikey_dynamics = ilev_1
 #endif
 

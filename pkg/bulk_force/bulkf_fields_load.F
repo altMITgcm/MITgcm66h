@@ -43,8 +43,6 @@ c #include "DYNVARS.h"
 #ifdef ALLOW_THSICE
 #include "THSICE_VARS.h"
 #endif
-      LOGICAL DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
  
 C     !INPUT/OUTPUT PARAMETERS:
 C     === Routine arguments ===

@@ -81,7 +81,7 @@ c       vVelGroundTime(bi,bj) = 0.
        ENDDO
       ENDDO
 
-      IF ( startTime .NE. 0. .OR. nIter0 .NE. 0 ) THEN
+      IF ( startTime .NE. baseTime .OR. nIter0 .NE. 0 ) THEN
        CALL ATM_CPL_READ_PICKUP( nIter0, myThid )
       ENDIF
 

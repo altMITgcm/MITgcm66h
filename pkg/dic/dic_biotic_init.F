@@ -28,8 +28,6 @@ C  myThid               :: thread number
 
 
 C !LOCAL VARIABLES: ====================================================
-      LOGICAL  DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
       INTEGER bi, bj, k
       CHARACTER*(MAX_LEN_MBUF) suff
 CEOP

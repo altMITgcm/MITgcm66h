@@ -40,8 +40,6 @@ C     == Routine arguments ==
 #ifdef ALLOW_DIC_COST
 
 C     == Local variables ==
-      LOGICAL  DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
       INTEGER i, j, bi, bj, k, it
       _RL po4av(nR)
       _RL o2av(nR)

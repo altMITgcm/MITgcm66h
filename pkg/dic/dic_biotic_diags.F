@@ -30,8 +30,8 @@ CEndOfInterface
 
 
 C     == Local variables ==
-      LOGICAL  DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
+      LOGICAL  DIFF_BASE_MULTIPLE
+      EXTERNAL DIFF_BASE_MULTIPLE
       INTEGER bi, bj, k
       CHARACTER*(MAX_LEN_MBUF) suff
 
@@ -41,7 +41,7 @@ C     == Local variables ==
 #ifdef ALLOW_TIMEAVE
 
 C     Dump files and restart average computation if needed
-      IF ( DIFFERENT_MULTIPLE(taveFreq,myTime,myTime-deltaTClock)
+      IF ( DIFF_BASE_MULTIPLE(baseTime,taveFreq,myTime,deltaTClock)
      &     ) THEN
          
 C      Normalize by integrated time

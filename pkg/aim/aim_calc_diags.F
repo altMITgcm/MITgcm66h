@@ -21,9 +21,6 @@ C-- size for MITgcm & Physics package :
 #include "AIM_DIAGS.h"
 #include "com_physvar.h"
 
-      LOGICAL  DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
-
 C     == Routine arguments ==
 C     myTime - Current time of simulation ( s )
 C     myThid - Number of this instance of the routine

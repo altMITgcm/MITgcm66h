@@ -17,8 +17,8 @@ C     === Global variables ===
 #include "PARAMS.h"
 #include "AIM_PARAMS.h"
 #include "AIM_DIAGS.h"
-      LOGICAL  DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
+      LOGICAL  DIFF_BASE_MULTIPLE
+      EXTERNAL DIFF_BASE_MULTIPLE
 
 C     == Routine arguments ==
 C     myTime - Current time of simulation ( s )
@@ -74,9 +74,8 @@ C     Initialize average arrays to zero
 
 C     Dump files and restart average computation if needed
       IF ( myIter.NE.nIter0 .AND.
-     &     DIFFERENT_MULTIPLE(aim_taveFreq,myTime,
-     &     myTime-deltaTClock)
-     &     ) THEN
+     &     DIFF_BASE_MULTIPLE(baseTime,aim_taveFreq,myTime,deltaTClock)
+     &   ) THEN
 
 C      Normalize by integrated time
        DO bj = myByLo(myThid), myByHi(myThid)

@@ -39,8 +39,6 @@ C     myIter - Simulation timestep number
 CEndOfInterface
  
 C     === Functions ===
-      LOGICAL DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
 
 #ifdef ALLOW_AIM
 C     === Local variables ===
