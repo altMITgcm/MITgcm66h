@@ -309,9 +309,9 @@ C      ----------------|--||-------
 C                      |  \/
 C                      |   x T(sNx+1,    0)
        IF ( southWestCorner ) THEN
-        DO J=1,OLy
-         DO I=1,OLx
-          localTij(1-I, 1-J   )= localTij(1-J  ,1  )
+        DO j=1,OLy
+         DO i=1,OLx
+          localTij( 1-i , 1-j )=localTij( 1-j , i  )
          ENDDO
         ENDDO
        ENDIF
