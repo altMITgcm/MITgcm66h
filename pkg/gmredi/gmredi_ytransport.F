@@ -71,8 +71,10 @@ C     I, J - Loop counters
      &                      + act3*max0*max1*max2
      &                      + act4*max0*max1*max2*max3
           kkey = (igadkey-1)*Nr + k
-          if (tracerIdentity.GT.maxpass)
-     &         STOP 'maxpass seems smaller than tracerIdentity'
+          if (tracerIdentity.GT.maxpass) then
+             print *, 'ph-pass gmredi_ytrans ', maxpass, tracerIdentity
+             STOP 'maxpass seems smaller than tracerIdentity'
+          endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
       IF (useGMRedi) THEN
