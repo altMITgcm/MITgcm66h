@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o added printMapIncludesZeros to EEPARMS namelist
+
 checkpoint53a_post
 o restore TAMC compatiility for exf_constants.h
   (no usage of _d in .h)

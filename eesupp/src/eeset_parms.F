@@ -45,7 +45,8 @@ C     record :: Temp. for textual I/O
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       CHARACTER*(MAX_LEN_PREC) record
       NAMELIST /EEPARMS/
-     & nTx, nTy, usingMPI, useCoupler, useCubedSphereExchange
+     & nTx, nTy, usingMPI, useCoupler, useCubedSphereExchange,
+     & printMapIncludesZeros
 CEOP
 
 
