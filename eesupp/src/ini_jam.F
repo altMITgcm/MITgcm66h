@@ -67,6 +67,19 @@ C     Set up connectivity
       numberOfProcs = jam_np
       myProcId      = jam_pid
 
+#ifdef JAM_WITH_TWO_PROCS_PER_NODE
+C     The following fixes the instance where MPI and
+C     James JAM arrive at a different id for this process
+C     *note* this assumes nPx=1 (no parallization in X)
+      myPid         = jam_pid
+      pidN          = mod(jam_pid+1,jam_np)
+      pidS          = mod(jam_pid-1+jam_np,jam_np)
+      pidW          = jam_pid
+      pidE          = jam_pid
+      myYGlobalLo   = sNy*nSy*jam_pid+1
+      myXGlobalLo   = 1
+#endif
+
 #endif
 #endif /* LETS_MAKE_JAM */
 
