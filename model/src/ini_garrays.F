@@ -14,6 +14,9 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "DYNVARS.h"
+#ifdef ALLOW_NONHYDROSTATIC
+#include "GW.h"
+#endif
 
 C     == Routine arguments ==
 C     myThid -  Number of this instance of INI_UVEL 
