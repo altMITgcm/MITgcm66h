@@ -98,8 +98,8 @@ C     === Local variables ====
 
        _GLOBAL_SUM_R8(theSD,myThid)
 
-c      theSD=sqrt(theSD*rNumPnts)
-       theSD=sqrt(theVar-theMean**2)
+       theSD=sqrt(theSD*rNumPnts)
+c      theSD=sqrt(theVar-theMean**2)
       ENDIF
 
       RETURN
