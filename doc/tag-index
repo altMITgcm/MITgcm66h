@@ -2,6 +2,7 @@ $Header$
 
     Notes on tags used in MITgcmUV
     ==============================
+o add new exp. (ideal_2D_oce) to test "exotic" parameters and options.
 
 checkpoint47i_post
 o GM_EXCLUDE_() replace GM_TAPER_(): by default, all the code is compiled.
