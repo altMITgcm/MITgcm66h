@@ -202,6 +202,7 @@ C     uninitialised but inert locations.
        ENDDO
       ENDDO
 
+
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
 
@@ -231,6 +232,7 @@ C--     Set up work arrays that need valid initial values
         iMax = sNx+OLx
         jMin = 1-OLy+1
         jMax = sNy+OLy
+
 
         K = 1
         BOTTOM_LAYER = K .EQ. Nr

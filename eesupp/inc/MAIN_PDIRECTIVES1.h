@@ -21,6 +21,7 @@ C$PAR& ,SCHEDTYPE(SELF(1))
 C
 #endif
 
+#define USE_KAP_THREADING
 #ifdef USE_KAP_THREADING
 C--
 C--  Parallel directives for Kuck and Associates compiler.

@@ -220,7 +220,10 @@ C--   Dump for end state
       CALL TIMER_STOP ('ALL',myThid)
 
 C--   Write timer statistics
-      IF ( myThid .EQ. 1 ) CALL TIMER_PRINTALL( myThid )
+      IF ( myThid .EQ. 1 ) THEN
+       CALL TIMER_PRINTALL( myThid )
+       CALL COMM_STATS
+      ENDIF
 
       RETURN
       END

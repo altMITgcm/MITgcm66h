@@ -3,6 +3,8 @@ C $Header$
 #include "CPP_EEOPTIONS.h"
 
       SUBROUTINE BARRIER_INIT
+
+#include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 #include "BARRIER.h"
@@ -60,6 +62,8 @@ C     |        lines to make your code "work" If the code is     |
 C     |        stopping in these PANIC blocks then something is  |
 C     |        wrong with your program and it needs to be fixed. |
 C     \==========================================================/
+
+#include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 #include "BARRIER.h"

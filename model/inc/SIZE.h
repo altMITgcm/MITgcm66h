@@ -54,3 +54,13 @@ C     n - Runtime global problem size in R
       INTEGER l
       INTEGER m
       INTEGER n
+
+C     MAX_OLX  - Set to the maximum overlap region size of any array 
+C     MAX_OLY    that will be exchanged. Controls the sizing of exch 
+C                routine buufers.
+      INTEGER MAX_OLX
+      INTEGER MAX_OLY
+      PARAMETER ( MAX_OLX = OLx,
+     &            MAX_OLY = OLy )
+
+

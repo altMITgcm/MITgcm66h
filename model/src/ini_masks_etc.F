@@ -49,6 +49,7 @@ C         Inverse of depth
        ENDDO
       ENDDO
       _EXCH_XY_R4(   recip_H, myThid )
+      IF ( myThid .EQ. 1 ) WRITE(0,*) 'AAAA'
 
 C     Calculate lopping factor hFacC
       DO bj=myByLo(myThid), myByHi(myThid)
@@ -99,9 +100,12 @@ C Impose minimum size (dimensional)
         ENDDO
        ENDDO
       ENDDO
+      IF ( myThid .EQ. 1 ) WRITE(0,*) 'BBBB'
       _EXCH_XYZ_R4(hFacC , myThid )
+      IF ( myThid .EQ. 1 ) WRITE(0,*) 'CCCC'
       _EXCH_XY_R4( depthInK, myThid )
 
+      IF ( myThid .EQ. 1 ) WRITE(0,*) 'DDDD'
       CALL PLOT_FIELD_XYRS( depthInK, 'Model Depths K Index' , 1, myThid )
 
 C     hFacW and hFacS (at U and V points)

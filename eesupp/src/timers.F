@@ -358,12 +358,15 @@ CEndOfInterface
     
       userTime      = TARRAY(1)
       systemTime    = TARRAY(2)
-#ifdef ALLOW_USE_MPI
-      wtime         = MPI_Wtime()
+      CALL CLOC(wTime)
       wallClockTime = wtime
+
+#ifdef ALLOW_USE_MPI
+C     wtime         = MPI_Wtime()
+C     wallClockTime = wtime
 #endif /* ALLOW_USE_MPI */
 #ifndef ALLOW_USE_MPI
-      wallClockTime = 0.
+C     wallClockTime = 0.
 #endif
       
       RETURN

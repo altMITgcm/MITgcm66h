@@ -52,8 +52,8 @@ C     cg2d_b   Right-hand side vector
       COMMON /CG2D_WK_R/
      & cg2d_b, cg2d_q, cg2d_r, cg2d_s, cg2d_x
       _RL  cg2d_q(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RL  cg2d_r(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RL  cg2d_s(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL  cg2d_r(1-1:sNx+1,1-1:sNy+1,nSx,nSy)
+      _RL  cg2d_s(1-1:sNx+1,1-1:sNy+1,nSx,nSy)
       _RL  cg2d_x(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL  cg2d_b(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
