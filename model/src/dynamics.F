@@ -62,9 +62,7 @@ C     fVer[STUV]               o fVer: Vertical flux term - note fVer
 C                                      is "pipelined" in the vertical
 C                                      so we need an fVer for each
 C                                      variable.
-C     rhoK, rhoKM1   - Density at current level, level above and level 
-C                      below.
-C     rhoKP1                                                                  
+C     rhoK, rhoKM1   - Density at current level, and level above 
 C     buoyK, buoyKM1 - Buoyancy at current level and level above.
 C     phiHyd         - Hydrostatic part of the potential phiHydi.
 C                      In z coords phiHydiHyd is the hydrostatic 
@@ -96,11 +94,9 @@ C                      index into fVerTerm.
       _RL fVerV   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
       _RL phiHyd  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
       _RL rhokm1  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL rhokp1  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL rhok    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL buoyKM1 (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL buoyK   (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL rhotmp  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL KappaRT (1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
       _RL KappaRS (1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
       _RL KappaRU (1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
@@ -201,8 +197,6 @@ C     uninitialised but inert locations.
         ENDDO
         rhoKM1 (i,j) = 0. _d 0
         rhok   (i,j) = 0. _d 0
-        rhoKP1 (i,j) = 0. _d 0
-        rhoTMP (i,j) = 0. _d 0
         buoyKM1(i,j) = 0. _d 0
         buoyK  (i,j) = 0. _d 0
         maskC  (i,j) = 0. _d 0
@@ -309,12 +303,13 @@ C--       Calculate future values on open boundaries
 
 C--       Calculate gradients of potential density for isoneutral
 C         slope terms (e.g. GM/Redi tensor or IVDC diffusivity)
-          IF ( k.GT.1 .AND. (useGMRedi.OR.ivdc_kappa.NE.0.) ) THEN
+c         IF ( k.GT.1 .AND. (useGMRedi.OR.ivdc_kappa.NE.0.) ) THEN
+          IF ( useGMRedi .OR. (k.GT.1 .AND. ivdc_kappa.NE.0.) ) THEN
             CALL FIND_RHO(
      I        bi, bj, iMin, iMax, jMin, jMax, k, k, eosType,
      O        rhoK,
      I        myThid )
-            CALL FIND_RHO(
+            IF (k.GT.1) CALL FIND_RHO(
      I        bi, bj, iMin, iMax, jMin, jMax, k-1, k, eosType,
      O        rhoKm1,
      I        myThid )
@@ -326,11 +321,11 @@ C         slope terms (e.g. GM/Redi tensor or IVDC diffusivity)
           ENDIF
 
 C--       Implicit Vertical Diffusion for Convection
+c ==> should use sigmaR !!!
           IF (k.GT.1 .AND. ivdc_kappa.NE.0.) THEN
             CALL CALC_IVDC(
      I        bi, bj, iMin, iMax, jMin, jMax, k,
      I        rhoKm1, rhoK,
-c should use sigmaR !!!
      U        ConvectCount, KappaRT, KappaRS,
      I        myTime, myIter, myThid)
           END IF
