@@ -45,6 +45,18 @@ CEOP
       IF (useKPP) CALL PACKAGES_CHECK_ERROR('KPP', myThid)
 #endif
 
+#ifdef ALLOW_PP81
+      IF (usePP81) CALL PP81_CHECK( myThid )
+#else
+      IF (usePP81) CALL PACKAGES_CHECK_ERROR('PP81', myThid)
+#endif
+
+#ifdef ALLOW_MY82
+      IF (useMY82) CALL MY82_CHECK( myThid )
+#else
+      IF (useMY82) CALL PACKAGES_CHECK_ERROR('MY82', myThid)
+#endif
+
 #ifdef ALLOW_GMREDI
       IF (useGMRedi) CALL GMREDI_CHECK( myThid )
 #else

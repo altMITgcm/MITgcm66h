@@ -424,6 +424,30 @@ CADJ &                 = comlev1_bibj, key=itdkey, byte=isbyte
 
 #endif  /* ALLOW_KPP */
 
+#ifdef  ALLOW_PP81
+C--     Compute PP81 mixing coefficients
+        IF (usePP81) THEN
+#ifdef ALLOW_DEBUG
+          IF ( debugLevel .GE. debLevB ) 
+     &     CALL DEBUG_CALL('PP81_CALC',myThid)
+#endif
+          CALL PP81_CALC(
+     I                  bi, bj, myTime, myThid )
+        ENDIF
+#endif /* ALLOW_PP81 */
+
+#ifdef  ALLOW_MY82
+C--     Compute MY82 mixing coefficients
+        IF (useMY82) THEN
+#ifdef ALLOW_DEBUG
+          IF ( debugLevel .GE. debLevB ) 
+     &     CALL DEBUG_CALL('MY82_CALC',myThid)
+#endif
+          CALL MY82_CALC(
+     I                  bi, bj, myTime, myThid )
+        ENDIF
+#endif /* ALLOW_MY82 */
+
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE theta(:,:,:,bi,bj) = comlev1_bibj, key=itdkey, byte=isbyte
 CADJ STORE salt (:,:,:,bi,bj) = comlev1_bibj, key=itdkey, byte=isbyte

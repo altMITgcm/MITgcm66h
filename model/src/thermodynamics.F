@@ -634,7 +634,8 @@ C--      Apply open boundary conditions
           CALL TIMEAVE_CUMULATE(ConvectCountTave, IVDConvCount,
      I                           Nr, deltaTclock, bi, bj, myThid)
         ENDIF
-        useVariableK = useKPP .OR. useGMredi .OR. ivdc_kappa.NE.0.
+        useVariableK = useKPP .OR. usePP81 .OR. useMY82
+     &       .OR. useGMredi .OR. ivdc_kappa.NE.0.
         IF (taveFreq.GT.0. .AND. useVariableK ) THEN
          IF (implicitDiffusion) THEN
           CALL TIMEAVE_CUMUL_DIF_1T(TdiffRtave, gT, kappaRT,

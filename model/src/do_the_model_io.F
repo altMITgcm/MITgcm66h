@@ -119,6 +119,18 @@ C--   Do KPP diagnostics.
      & CALL KPP_DO_DIAGS( myTime, myIter, myThid )
 #endif
 
+#ifdef ALLOW_PP81
+C--   Do PP81 diagnostics.
+      IF (usePP81 .AND. myIter.NE.nIter0 )
+     & CALL PP81_DO_DIAGS( myTime, myIter, myThid )
+#endif
+
+#ifdef ALLOW_MY82
+C--   Do MY82 diagnostics.
+      IF (useMY82 .AND. myIter.NE.nIter0 )
+     & CALL MY82_DO_DIAGS( myTime, myIter, myThid )
+#endif
+
 #ifdef ALLOW_SBO
 C--   Do SBO diagnostics.
       IF (useSBO .AND. myIter.NE.nIter0 ) THEN

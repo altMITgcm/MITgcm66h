@@ -45,6 +45,8 @@ C     iUnit       - Work variable for IO unit number
 C     data.pkg namelists
 
       NAMELIST /PACKAGES/
+     &          usePP81,
+     &          useMY82,
      &          useKPP,
      &          useGMRedi,
      &          useOBCS,
@@ -81,6 +83,8 @@ CEOP
      I                          myThid )
 
 C--   Default package configuration
+      usePP81=.FALSE.
+      useMY82=.FALSE.
       useKPP=.FALSE.
       useGMRedi=.FALSE.
       useOBCS=.FALSE.
@@ -112,7 +116,7 @@ C--   Read parameters from open data file
 C--   Close the open data file
       CLOSE(iUnit)
       _END_MASTER(myThid)
-
+ 
 C--   Everyone else must wait for the parameters to be loaded
       _BARRIER
 

@@ -32,6 +32,10 @@ C       |-- GMREDI_READPARMS
 C       |
 C       |-- KPP_READPARMS
 C       |
+C       |-- PP81_READPARMS
+C       |
+C       |-- MY82_READPARMS
+C       |
 C       |-- SBO_READPARMS
 C       |
 C       |-- SEAICE_READPARMS
@@ -76,6 +80,16 @@ C--   Initialize GM/Redi parameters
 #ifdef ALLOW_KPP
 C--   Initialize KPP parameters
       IF (useKPP) CALL KPP_READPARMS( myThid )
+#endif
+
+#ifdef ALLOW_PP81
+C--   Initialize PP81 parameters
+      IF (usePP81) CALL PP81_READPARMS( myThid )
+#endif
+
+#ifdef ALLOW_MY82
+C--   Initialize MY82 parameters
+      IF (useMY82) CALL MY82_READPARMS( myThid )
 #endif
 
 #ifdef ALLOW_SBO
