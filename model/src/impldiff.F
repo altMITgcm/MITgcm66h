@@ -130,7 +130,7 @@ C--    Beginning of forward sweep (top level)
       ENDIF
 
 C--   Middle of forward sweep
-      IF (Nr.GT.2) THEN
+      IF (Nr.GE.2) THEN
 
 CADJ loop = sequential
        DO k=2,Nr
