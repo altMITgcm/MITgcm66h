@@ -3,8 +3,8 @@ RM               = rm -f
 LOC              = $(PWD)
 TAMC             = tamc
 ###TAMC             = /data43/ralf/tamc/tamc
-TAF              = taf
-###TAF              = ~fastopt/bin/taf
+###TAF              = taf
+TAF              = ~fastopt/bin/taf
 DEST             = .
 SOURCE_CODE      = ../bin
 ADJOINT_SCRIPT   = ../adjoint
@@ -312,6 +312,7 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/exf_filter_rs.f			\
 		$(SOURCE_CODE)/exf_set_aqh.f			\
 		$(SOURCE_CODE)/exf_set_atemp.f			\
+		$(SOURCE_CODE)/exf_set_evap.f			\
 		$(SOURCE_CODE)/exf_set_hflux.f			\
 		$(SOURCE_CODE)/exf_set_lwflux.f			\
 		$(SOURCE_CODE)/exf_set_precip.f			\

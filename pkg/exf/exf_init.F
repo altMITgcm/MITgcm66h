@@ -59,7 +59,7 @@ c     == end of interface ==
       call exf_init_swflux   ( mythid )
 #endif
 
-#ifdef EXF_READ_EVAP
+#if defined(ALLOW_ATM_TEMP) || defined(EXF_READ_EVAP)
       call exf_init_evap     ( mythid )
 #endif
 

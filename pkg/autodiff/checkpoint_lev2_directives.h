@@ -48,6 +48,12 @@ CADJ STORE lwflux0   = tapelev2, key = ilev_2
 CADJ STORE lwflux1   = tapelev2, key = ilev_2
 CADJ STORE swflux0   = tapelev2, key = ilev_2
 CADJ STORE swflux1   = tapelev2, key = ilev_2
+#  ifdef EXF_READ_EVAP
+CADJ STORE evap0     = tapelev2, key = ilev_2
+CADJ STORE evap1     = tapelev2, key = ilev_2
+#  else
+CADJ STORE evap      = tapelev2, key = ilev_2
+#  endif
 # else
 CADJ STORE hflux0    = tapelev2, key = ilev_2
 CADJ STORE hflux1    = tapelev2, key = ilev_2

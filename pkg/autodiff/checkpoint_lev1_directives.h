@@ -15,6 +15,12 @@ CADJ STORE lwflux0   = comlev1, key = ikey_dynamics
 CADJ STORE lwflux1   = comlev1, key = ikey_dynamics
 CADJ STORE swflux0   = comlev1, key = ikey_dynamics
 CADJ STORE swflux1   = comlev1, key = ikey_dynamics
+#  ifdef EXF_READ_EVAP
+CADJ STORE evap0     = comlev1, key = ikey_dynamics
+CADJ STORE evap1     = comlev1, key = ikey_dynamics
+#  else
+CADJ STORE evap      = comlev1, key = ikey_dynamics
+#  endif
 # else
 CADJ STORE hflux0    = comlev1, key = ikey_dynamics
 CADJ STORE hflux1    = comlev1, key = ikey_dynamics

@@ -292,6 +292,8 @@ cph        call mdswritefield( yprefix//'snapshot_xx_tauv', 32, .false.,
 cph     &                      'RS', 1, xx_tauv, irec,
 cph     &                      mycurrentiter, mythid )
 
+#ifdef I_HAVE_FIXED_THIS
+
 #ifdef ALLOW_BULKFORMULAE
 c--     Atmospheric zonal wind:
         write(yfname,'(128a)') ' '
@@ -344,6 +346,8 @@ c--     Long wave radiative flux:
      &                      'RS', 1, lwflux, irec,
      &                      mycurrentiter, mythid )
 #endif / * ALLOW_BULKFORMULAE * /
+
+#endif /* I_HAVE_FIXED_THIS */
 
 #ifdef ALLOW_KPP
 c--     Short wave radiative flux:
