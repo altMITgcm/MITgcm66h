@@ -1,0 +1,114 @@
+C $Header$
+C $Name$
+
+#include "PACKAGES_CONFIG.h"
+#include "CPP_OPTIONS.h"
+
+CBOP
+C     !ROUTINE: PACKAGES_CHECK
+C     !INTERFACE:
+      SUBROUTINE PACKAGES_CHECK( myThid )
+C     !DESCRIPTION: \bv
+C     *==========================================================*
+C     | SUBROUTINE PACKAGES_CHECK                                 
+C     | o Check runtime activated packages have been built in.    
+C     *==========================================================*
+C     | All packages can be selected/deselected at build time     
+C     | ( when code is compiled ) and activated/deactivated at    
+C     | runtime. This routine does a quick check to trap packages 
+C     | that were activated at runtime but that were not compiled 
+C     | in at build time.                                         
+C     *==========================================================*
+C     \ev
+
+C     !USES:
+      IMPLICIT NONE
+C     === Global variables ===
+#include "SIZE.h"
+#include "EEPARAMS.h"
+#include "PARAMS.h"
+
+C     !INPUT/OUTPUT PARAMETERS:
+C     === Routine arguments ===
+C     myThid ::  Number of this instances
+      INTEGER myThid
+
+C     !LOCAL VARIABLES:
+C     === Local variables ===
+C     msgBuf      :: Informational/error meesage buffer
+      CHARACTER*(MAX_LEN_MBUF) msgBuf
+CEOP
+
+#ifdef ALLOW_KPP
+      IF (useKPP) CALL KPP_CHECK( myThid )
+#else
+      IF (useKPP) CALL PACKAGES_CHECK_ERROR('KPP', myThid)
+#endif
+
+#ifdef ALLOW_GMREDI
+      IF (useGMRedi) CALL GMREDI_CHECK( myThid )
+#else
+      IF (useGMRedi) CALL PACKAGES_CHECK_ERROR('GMREDI', myThid)
+#endif
+
+#ifdef ALLOW_OBCS
+      IF (useOBCS) CALL OBCS_CHECK( myThid )
+#else
+      IF (useOBCS) CALL PACKAGES_CHECK_ERROR('OBCS', myThid)
+#endif
+
+#ifndef ALLOW_BULK_FORCE
+      IF (useBulkforce) CALL PACKAGES_CHECK_ERROR('BULK?FORCE',myThid)
+#endif
+
+#ifndef ALLOW_THERM_SEAICE
+      IF (useThermSeaIce) 
+     &   CALL PACKAGES_CHECK_ERROR('THERM?SEAICE', myThid)
+#endif
+
+#ifndef ALLOW_AIM
+      IF (useAIM) CALL PACKAGES_CHECK_ERROR('AIM', myThid)
+#endif
+
+#ifndef ALLOW_LAND
+      IF (useLand) CALL PACKAGES_CHECK_ERROR('LAND', myThid)
+#endif
+
+#ifndef ALLOW_PTRACERS
+      IF (usePTRACERS) CALL PACKAGES_CHECK_ERROR('PTRACERS', myThid)
+#endif
+
+#ifndef ALLOW_SHAP_FILT
+      IF (useSHAP_FILT) CALL PACKAGES_CHECK_ERROR('SHAP_FILT', myThid)
+#endif
+
+#ifndef ALLOW_ZONAL_FILT
+      IF (useZONAL_FILT) CALL PACKAGES_CHECK_ERROR('ZONAL_FILT',myThid)
+#endif
+
+#ifndef ALLOW_FLT
+      IF (useFLT) CALL PACKAGES_CHECK_ERROR('FLT', myThid)
+#endif
+
+#ifdef ALLOW_SBO
+      IF (useSBO) CALL SBO_CHECK( myThid )
+#else
+      IF (useSBO) CALL PACKAGES_CHECK_ERROR('SBO', myThid)
+#endif
+
+#ifdef ALLOW_SEAICE
+      IF (useSEAICE) CALL SEAICE_CHECK( myThid )
+#else
+      IF (useSEAICE) CALL PACKAGES_CHECK_ERROR('SEAICE', myThid)
+#endif
+
+#if ( defined (ALLOW_ADJOINT_RUN) || \
+      defined (ALLOW_TANGENTLINEAR_RUN) || \
+      defined (ALLOW_GRADIENT_CHECK) || \
+      defined (ALLOW_ECCO_OPTIMIZATION) )
+      CALL CTRL_CHECK( myThid )
+      CALL COST_CHECK( myThid )
+#endif
+
+      RETURN
+      END

@@ -1,0 +1,18 @@
+# $Header$
+# $Name$
+
+# Force use of PGI f77
+#if (`uname` == 'Linux') set platform=( Linux+pgi )
+
+# Disable packages that are not needed
+set DISABLE=( $DISABLE kpp gmredi obcs aim_v23 )
+
+# Enable packages that are needed but are disabled by default
+set ENABLE=( aim )
+
+# We can also specify other defaults
+set ROOTDIR=../../..
+set MODS=../code
+
+# high Optimization level causes Pb to some compilers with those S/R:
+set NOOPTFILES=( aim_do_atmos_physics.F )

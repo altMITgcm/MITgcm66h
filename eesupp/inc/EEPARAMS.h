@@ -1,12 +1,19 @@
-C $Id$
+C $Header$
+C $Name$
+CBOP
+C     !ROUTINE: EEPARAMS.h
+C     !INTERFACE:
+C     include "EEPARAMS.h"
 C
-C     /==========================================================\
+C     !DESCRIPTION:
+C     *==========================================================*
 C     | EEPARAMS.h                                               |
-C     |==========================================================|
+C     *==========================================================*
 C     | Parameters for "execution environemnt". These are used   |
-C     | by both the particular numerical model and the "execution|
-C     | environment" support routines.                           |
-C     \==========================================================/
+C     | by both the particular numerical model and the execution |
+C     | environment support routines.                            |
+C     *==========================================================*
+CEOP
 
 C     MAX_LEN_MBUF         - Default message buffer max. size
 C     MAX_LEN_FNAM         - Default file name max. size
@@ -29,6 +36,10 @@ C     PRINT_MAP_XZ        - Flag indicating to plot map as XZ slices
 C     PRINT_MAP_YZ        - Flag indicating to plot map as YZ slices
 C     commentCharacter    - Variable used in column 1 of parameter files to
 C                           indicate comments.
+C     INDEX_I             - Variable used to select an index label
+C     INDEX_J               for formatted input parameters.
+C     INDEX_K
+C     INDEX_NONE
       CHARACTER*(*) SQUEEZE_RIGHT
       PARAMETER ( SQUEEZE_RIGHT = 'R' )
       CHARACTER*(*) SQUEEZE_LEFT
@@ -43,6 +54,34 @@ C                           indicate comments.
       PARAMETER ( PRINT_MAP_YZ = 'YZ' )
       CHARACTER*(*) commentCharacter
       PARAMETER ( commentCharacter = '#' )
+      INTEGER INDEX_I
+      INTEGER INDEX_J
+      INTEGER INDEX_K   
+      INTEGER INDEX_NONE
+      PARAMETER ( INDEX_I    = 1,
+     &            INDEX_J    = 2,
+     &            INDEX_K    = 3,
+     &            INDEX_NONE = 4 )
+
+
+C     EXCH_IGNORE_CORNERS - Flag to select ignoring or
+C     EXCH_UPDATE_CORNERS   updating of corners during
+C                           an edge exchange.
+      INTEGER EXCH_IGNORE_CORNERS
+      INTEGER EXCH_UPDATE_CORNERS
+      PARAMETER ( EXCH_IGNORE_CORNERS = 0,
+     &            EXCH_UPDATE_CORNERS = 1 )
+
+C     FORWARD_SIMULATION
+C     REVERSE_SIMULATION
+C     TANGENT_SIMULATION
+      INTEGER FORWARD_SIMULATION
+      INTEGER REVERSE_SIMULATION
+      INTEGER TANGENT_SIMULATION
+      PARAMETER ( FORWARD_SIMULATION = 0,
+     &            REVERSE_SIMULATION = 1,
+     &            TANGENT_SIMULATION = 2 )
+
 
 C     Particularly weird and obscure voodoo numbers
 C     lShare  - This wants to be the length in
@@ -57,18 +96,20 @@ C               The buffer arrays are usually short arrays
 C               and are declared REAL ARRA(lShare[148],LBUFF).
 C               Setting lShare[148] to 1 is like making these arrays
 C               one dimensional.
+      INTEGER cacheLineSize
       INTEGER lShare1
       INTEGER lShare4
       INTEGER lShare8
-      PARAMETER ( lShare1 = 8 * 32 )
-      PARAMETER ( lShare4 = 2 * 32 )
-      PARAMETER ( lShare8 = 1 * 32 )
+      PARAMETER ( cacheLineSize = 256 )
+      PARAMETER ( lShare1 =  cacheLineSize )
+      PARAMETER ( lShare4 =  cacheLineSize/4 )
+      PARAMETER ( lShare8 =  cacheLineSize/8 )
 
 C     MAX_NO_THREADS  - Maximum number of threads allowed.
 C     MAX_NO_PROCS    - Maximum number of processes allowed.
 C     MAX_NO_BARRIERS - Maximum number of distinct thread "barriers"
       INTEGER MAX_NO_THREADS
-      PARAMETER ( MAX_NO_THREADS =   16 )
+      PARAMETER ( MAX_NO_THREADS =   32 )
       INTEGER MAX_NO_PROCS
       PARAMETER ( MAX_NO_PROCS   =  128 )
       INTEGER MAX_NO_BARRIERS
@@ -79,10 +120,12 @@ C     eeBootError - Flag indicating error during multi-processing
 C     eeEndError    initialisation/termination.
 C     fatalError  - Flag used to indicate that the model is ended with
 C                   an error
-      COMMON /EEPARAMS_L/ eeBootError, fatalError, eeEndError
+      COMMON /EEPARAMS_L/ eeBootError, fatalError, eeEndError,
+     &  useCubedSphereExchange
       LOGICAL eeBootError
       LOGICAL eeEndError
       LOGICAL fatalError
+      LOGICAL useCubedSphereExchange
 
 C--   COMMON /EPARAMS_I/ Execution environment public integer variables.
 C     errorMessageUnit    - Fortran IO unit for error messages
@@ -116,14 +159,17 @@ C     nTy         - No. of threads in Y
 C                   This assumes a simple cartesian
 C                   gridding of the threads which is not required elsewhere
 C                   but that makes it easier.
+C     ioErrorCount - IO Error Counter. Set to zero initially and increased
+C                    by one every time an IO error occurs.
       COMMON /EEPARAMS_I/ errorMessageUnit, standardMessageUnit,
      & scrUnit1, scrUnit2, eeDataUnit, modelDataUnit,
      & numberOfProcs, pidIO, myProcId,
      & myPx, myPy, myXGlobalLo, myYGlobalLo, nThreads,
      & myBxLo, myBxHi, myByLo, myByHi,
-     & nTx, nTy
+     & nTx, nTy, ioErrorCount
       INTEGER eeDataUnit
       INTEGER errorMessageUnit
+      INTEGER ioErrorCount(MAX_NO_THREADS)
       INTEGER modelDataUnit
       INTEGER myBxLo(MAX_NO_THREADS)
       INTEGER myBxHi(MAX_NO_THREADS)
@@ -142,5 +188,3 @@ C                   but that makes it easier.
       INTEGER scrUnit1
       INTEGER scrUnit2
       INTEGER standardMessageUnit
-
-C $Id$

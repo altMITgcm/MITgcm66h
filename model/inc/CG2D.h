@@ -1,15 +1,26 @@
-C $Id$
+C $Header$
+C $Name$
+
+CBOP
+C     !ROUTINE: CG2D.h
+C     !INTERFACE:
+C     include "CG2D.h"
 C
-C     /==========================================================\
-C     | CG2D.h                                                   |
-C     | o Two-dimensional conjugate gradient solver header.      |
-C     |==========================================================|
-C     | The common blocks set up here are used in the elliptic   |
-C     | equation inversion. They are also used as the interface  |
-C     | to the rest of the model. To set the source term for the |
-C     | solver set the appropriate array below. To read the      |
-C     | solution read from the appropriate array below.          |
-C     \==========================================================/
+C     !DESCRIPTION:
+C     \bv
+C     *==========================================================*
+C     | CG2D.h                                                    
+C     | o Two-dimensional conjugate gradient solver header.       
+C     *==========================================================*
+C     | Internal (private) data structures.                       
+C     *==========================================================*
+C     \ev
+CEOP
+
+C--   COMMON /CG2D_I_L/ cg2dNormaliseRHS
+C     cg2dNormaliseRHS - flag set to TRUE if normalise RHS in the Solver
+      COMMON /CG2D_I_L/ cg2dNormaliseRHS
+      LOGICAL cg2dNormaliseRHS
 
 C--   COMMON /CG2D_R/ DEL**2 Laplacian operators
 C     aW2d - East-west operator.
@@ -22,38 +33,31 @@ C     alphaBuf
 C     errBuf
 C     nrmBuf
 C     cg2dNorm - A matrix normalisation factor.
-      COMMON /CG2D_R/
+C     cg2dTolerance - cg2d solver Tolerance (solver unit = m2/s2 or no unit,
+C                                            depending on cg2dNormaliseRHS) 
+      COMMON /CG2D_I_R/
      &      aW2d,
      &      aS2d,
      &      pW, pS, pC,
-     &      errBuf, nrmBuf, etaNbuf, etaNM1Buf, alphaBuf, sumRhsBuf,
-     &      cg2dNBuf,cg2dNorm, rhsMaxBuf
+     &      cg2dNorm, cg2dTolerance
       _RS  aW2d (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  aS2d (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  pW   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  pS   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  pC   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RL  etaNBuf(lShare8,MAX_NO_THREADS)
-      _RL  etaNM1Buf(lShare8,MAX_NO_THREADS)
-      _RL  alphaBuf(lShare8,MAX_NO_THREADS)
-      _RL  errBuf(lShare8,MAX_NO_THREADS)
-      _RL  nrmBuf(lShare8,MAX_NO_THREADS)
-      _RL  sumRHSBuf(lShare8,MAX_NO_THREADS)
-      _RL  cg2dNBuf(lShare8,MAX_NO_THREADS)
-      _RL  rhsMaxBuf(lShare8,MAX_NO_THREADS)
-      _RL  cg2dNorm
+      _RL  cg2dNorm, cg2dTolerance
 
-C--   COMMON /CG2D_WK_R/  Work array common block
+C--   COMMON /CG2D_I_WK_R/  Work array common block
 C     cg2d_q - Intermediate matrix-vector product term
-C     cg2d_r -   "
-C     cg2d_s -   "
-C     cg2d_x   Solution vector
-C     cg2d_b   Right-hand side vector
-      COMMON /CG2D_WK_R/
-     & cg2d_b, cg2d_q, cg2d_r, cg2d_s, cg2d_x
+C     cg2d_r -   *same*
+C     cg2d_s -   *same*
+      COMMON /CG2D_I_WK_R/
+     & cg2d_q, cg2d_r, cg2d_s
       _RL  cg2d_q(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+#ifdef LETS_MAKE_JAM
+      _RL  cg2d_r(1-1:sNx+1,1-1:sNy+1,nSx,nSy)
+      _RL  cg2d_s(1-1:sNx+1,1-1:sNy+1,nSx,nSy)
+#else
       _RL  cg2d_r(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL  cg2d_s(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RL  cg2d_x(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RL  cg2d_b(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-
+#endif

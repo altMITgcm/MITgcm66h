@@ -1,0 +1,1347 @@
+$Header$
+
+    Notes on tags used in MITgcmUV
+    ==============================
+not yet tagged:
+o add salt flux to forcing fields (used when salty sea-ice forms or melts)
+o enable to apply restoring on S & T only in a latitude band.
+o update output (external_forcing_surf modif. change truncation errors)
+   global_ocean.cs32x15, global_ocean_pressure, lab_sea, natl_box
+
+checkpoint51k_post
+o change default to: useNHMTerms=.FALSE.
+ - new output.txt for atmos. exp (NHMTerms were wrong but now turned off):
+   adjustment.128x64x1, aim.5l_Eq_Ch, aim.5l_LatLon, hs94.128x64x5, hs94.1x64x5
+ - new output.txt for idealized oceanic exp (NHMTerms are now turned off):
+    exp1, ideal_2D_oce
+ - change data file of oceanic exp (leave the results unchanged for now)
+   exp2, global_ocean[90x40x15,pressure,with_exf], lab_sea, natl_box
+o set gravitySign automatically according to the vertical coordinate used
+  (and change sign: back to "logical" value: +1 when R increases downward)
+o added an include barrier to the default CPP_OPTIONS.h and 
+  removed the #include "PACKAGES_CONFIG.h" from it
+o fix a bug in mom_fluxform (from chk51j_post)
+
+checkpoint51j_post
+o Added some AD-related initialisations in mom_vecinv/ mom_fluxform/
+o adjusted some flow directives (dynamics, thermodynamics)
+o added cubed-sphere case to test cost function
+o heckpoint_lev?_directives.h now include
+  pkg-specific directives, whenever those are enabled.
+o Moving pkg-specific flow directives to corresponding pkg
+  Moving pkg-specific differentiation list to corresponding pkg
+  Moving pkg-specific checkpoint-lev storing to corresponding pkg
+  ---> conventions are
+       - pkg_ad.flow
+       - pkg_ad_diff.list
+       - pkg_ad_check_lev?_dir.h
+
+checkpoint51i_post
+o merge of the branch-genmake2
+  - knowingly breaks the older genmake
+  - automatic generation of all ALLOW_${PKG_NAME} defines
+  - new testreport supersedes older testscript
+o large number of package inclusion and header cleanups
+checkpoint51i_pre
+
+o new output for adjoin of global ocean vector invariant
+o fix for checkpoint of thermodynamic seaice and bulk_force
+o Steph gchem various cleanups
+
+checkpoint 51h_pre
+o fixed some single quotes
+o modify gchem pkg to be more versatile
+o modifications to clean up dic pkg
+o add pkg/cfc
+
+checkpoint51g_post
+o provide links for ARPACK and ADM*TLM
+o start removing verification/vero/
+o update AD-related stuff
+  (in particular some IF-statements in model/src/ routines)
+o adding to verification/global_ocean.90x40x15/ adjoint of
+  vector invariant setup
+
+checkpoint51f_post
+o update advect_xz/output.txt (left from chekpoint50f_pre, ini_vel modif)
+o Mods and bug fixes to pkg/cal, pkg/exf, etc., needed for computation
+  of tracer Green's fucntions for ocean inversion project.
+
+checkpoint51f_pre
+o Added on-the-fly spatial interpolation capability
+    "USE_EXF_INTERPOLATION" to pkg/exf.
+  - This is a temporary Cartesian-grid hack until
+    the super-duper ESMF coupler becomes available.
+  - See verification/global_with_exf/README for usage example.
+  - Removed obsolete EXFwindOnBgrid and SEAICEwindOnCgrid
+    flags and modified pkg/seaice accordingly.
+o Bug fix to pkg/ptracers, pkg/generic_advdiff/gad_calc_rhs.F,
+    and pkg/kpp/kpp_transport_ptr.F for dealing with tracer
+    non-local transport term.
+
+checkpoint51e_post
+o pkg/mom_vecinv: 
+  - changes related to hFac: use S/R from aim.5l_cs/code (coriolis & vort.advec)
+  - add time-ave diagnostic of vorticity advection.
+o add diagnostic (instantaneous) of Shapiro Filter effect for T,S & UV.
+o atmospheric geopotential: - include water vapor effect; 
+                            - use p^kappa in p* scaling.
+o land pkg: read initial state from files.
+o AIM : add stratospheric drag in the upper level
+
+checkpoint51d_post
+o change function ILNBLNK (=> last non-blank char.) to return zero
+  (instead of the string length) when the string. char is empty
+o fix bug in dxV,dyU definition of cubed-sphere grid (ini_curvilinear_grid)
+o modif's to restore TAMC compatibility
+  - avoid "_d" constructs in PARAMETER declarations
+  - avoid interrupting lines by comment lines
+o Use cluster local disks for purely local I/O
+  vs. globally visible disks needed for ctrl stuff
+  (merged from ecco-branch)
+  - new active_file_loc... and mdsio_..._loc routines
+  - affected packages: autodiff, ctrl, grdchk, mdsio
+
+checkpoint51c_post
+o introducing integer flag debugLevel
+  - debLevZero: suppress all output
+  - debLevA: standard
+  - debLevB: equivalent to current debugMode=.TRUE.
+o introducing pathname variable mdsioLocalDir for mdsio
+  that can be specified at runtime
+  (relevant for cluster I/O to local disk)
+`
+>>>checkpoint51b_post
+adjoint of ptracers
+o disentangled ALLOW_PTRACERS using new ALLOW_GCHEM
+o extended state in checkpoint_lev?, etc.
+o alternative ctrl/cost with tr1 or ptracer
+o new comlev1_bibj_ptracers
+o new ptracers.flow
+o made ptracers_forcing same as external_forcing_s
+o added verification for adjoint with ptracers
+  - adm. grdchk fail so far
+  - tlm. grdchk OK
+  - checked tapelev/comlev recomputations: OK
+<<<checkpoint51b_pre
+
+checkpoint51a_post
+o added code for biogeochemistry package
+  - new pkgs: dic, gchem
+  - new subroutine in ptracers
+o modify code for biogeo packages
+  - in model/src and pkg/ptracers
+
+checkpoint51
+o merged improved packages from ecco-branch (ecco_c51_e34) to MAIN
+  - autodiff, ctrl, exf, grdchk, seaice
+  kept separate packages
+  - cost, ecco, obcs
+o updating verification/internal_wave, verification/lab_sea
+  (all verif's pass on faulks.lcs.mit.edu RH7.3, g77)
+
+checkpoint50i_post
+o Preparing next differentiable checkpoint and sync
+  of MAIN vs. ecco-branch
+  - 1st step: this one is differentiable
+  - 2nd step: next(! not this) checkpoint will have updated packages 
+              from ecco-branch)
+
+checkpoint50h_post
+o new package "land": provide surface BC for AIM.
+o pkg/ptracers: apply exchange to all tracers after reading a pickup.
+o AIM: use true log-P extrapolation for near surface temp (= as in 
+    F.Molteni paper) ; update aim.5l_cs output.
+o New variable in PARM03 for more flexible pickups
+o somewhat cleaned package initialisation sequence for
+  ctrl/ cost/ ecco/ in packages_... routines
+
+checkpoint50g_post
+o merged with release1_p17 (pkg/seaice and verification/lab_sea)
+  - added SEAICE_MULTILEVEL for 8-category sea-ice thermodynamics
+  - LSR sea-ice dynamic solver moved to SouthWest B-grid location and
+    made the default because of faster convergence than ADI
+
+checkpoint50f_post
+o exf totally restructured
+  - replaced all exf_set_ routines by one generic exf_set_gen.F
+    and made sure it's still differentiable
+  - split exf_getffields.F into new exf_bulkformulae.F
+  - exf_inscal_/exf_outscal_ suffixes consistent with field names
+  - updated adjoint/makefile and relevant verif. accordingly
+
+checkpoint50f_pre
+ o AIM: near surface temp evaluated from Pot.Temp: fixed for Part Cell ;
+      + change Evap over land. (update aim.5l_cs output)
+ o added missing .cvsignores and made uniform across expts
+ o changed configuration of tidal_basin_2d expt
+ o added pkg/debug functions for tracing code in fatal crashes
+ o tidied pkg/monitor to use MONITOR_OPTIONS.h
+ o new fn in pkg/monitor to stop model if solution grows too big
+ o removed lots of single quotes from comments
+
+checkpoint50e_post
+o make KPP work with PTRACERS
+ - fix gad_calc_rhs to call new routine kpp_transport_ptr, which is
+   nearly a copy of kpp_transport_s
+ - there is no analogue to SurfaceTendencyS, so I have to use 
+   gPtr(of the surface layer) instead
+o add a new platform SunFire+mpi (SunFire 15000) to genmake
+checkpoint50e_pre
+
+checkpoint50d_post
+o change kpp output from multiple-record state files to single-record state 
+  files analogous to write_state.F
+o reduce the output frequency of cg3d-related stuff to the monitor frequency, 
+  analogous to the cg2d-related output. 
+o fix small problem with in ptracers_write_checkpoint.F: len(suff)=512, 
+  so that writing to internal file fn (with length 512) fails.
+checkpoint50d_pre
+
+checkpoint50c_post
+o fix problem in ini_procs.F when using MPI (was there since checkpoint48f)
+o add monitor diagnostic of vorticity (mon_vort3.F) and potential energy.
+o add time-average diagnostic of U*V and vertical diffusive flux for theta.
+o bug fixed in convective adjustment diagnostic (multi-tile set-up).
+o 4th Order Adv scheme: return to previous (c40pre7) masking near boundaries.
+
+checkpoint50c_pre
+Merging from release1_p13:
+o bug fix for pkg/seaice dynamic solver
+o Added SEAICE_initialHEFF to pkg/seaice
+
+checkpoint50b_post
+o store u*,v* in gU,V instead of in guNm1,gvNm1
+o in order to put the momForcing out of the Adams-Bashforth:
+  move forcing & CD-scheme calls from mom_fluxform & mom_vecinv
+  to timestep.F
+o new flag "useCDscheme" (default=F); replace guCD,gvCD by local arrays
+o re-generate output for highly sensitive test-exp:
+   global_ocean_pressure, ideal_2D_oce, lab_sea, natl_box
+
+checkpoint50b_pre
+o restore the use of momAdvection & useCoriolis flags (mom_vecinv)
+o corrected CPP option mismatch in exf_Bulk... functions for case 
+  #define ALLOW_ATM_WIND && #undef ALLOW_ATM_TEMP
+
+checkpoint50a_post
+o Bug fix for merging between c50 and KPP.
+  ikey was passed from thermodynamics to kpp_calc via
+  common block rather than being recomputed in kpp_calc,
+  in contradiction with new key itdkey.
+  New key ikppkey created, and tamc.h headers updated.
+
+checkpoint50
+- 2nd step of merge with ecco-branch:
+  merge changes in ecco-branch back into main trunk
+- bug fix in find_alpha
+- more storing in gmredi_calc_tensor.F, kpp_routines.F
+- avoid iterative loop in ini_pressure for ALLOW_AUTODIFF_TAMC
+- merged some sliced AD support routines
+
+checkpoint49
+merged from ecco-branch:
+o exf:
+  - Enable initialisation of forcing fields to constant 
+    (runtime) values.
+  - in exf_getffields.F
+    Reduce i-/j-loop to interior domain, discarding overlaps.
+    That also fixes wrong TAF-key computations for key_1, key_2
+    with bulf formulae.
+  - exf_init.F modify #ifdef for exf_init_evap
+  - exf_getffieldrec.F, ctrl_getrec.F
+    The following INT-usages are not safe:
+      fldsecs  = int(fldsecs/fldperiod)*fldperiod
+      fldcount = int(fldsecs/fldperiod) + 1
+    and were modified.
+o autodiff: checkpoint_lev...
+  - updated storing for bulk formulae (some arrays were missing)
+  - added state for seaice package
+  - synchronized with main branch
+o DIVA:
+  Modif.s in
+  - the_main_loop.F
+  - the_model_main.F
+  and added cost_final_restore.F cost_final_store.F
+  o With these changes, it is possible to fully separate
+    the first forward run to compute the cost function (mdthe_main_loop)
+    and adjoint runs over individual DIVA intervals (adthe_main_loop)
+    into separate model executions.
+    This enables better tuning of DIVA to given queue sizes.
+  o Loss of cost function value in consecutive DIVA runs is
+    fixed by storing to 'costfinal' file.
+  o Appropriate call of ctrl_unpack/_pack,grdchk_main at 
+    beginning/end of adjoint integration is accounted for.
+  The current changes apply to TAF-1.4.26.
+  TAF has one remaining bug, requiring one manual change
+  (see MITgcm manual).
+o cal: synchronized between MAIN and ecco-branch
+
+checkpoint48i_post
+o Changes to restore differentiability of code w.r.t. previous tag
+  (mostly adding new routines to make list and replacing
+  pressure by totPhiHyd).
+o Updated and merged grdchk package
+  - has both ADM and TLM checks
+  - works for single- and multi-proc.
+  - output cleaned
+  - worked successfully for parallel DIVA
+o genmake:
+  - Adding -platform=SP4
+  - Modif. for DEC Alpha (many don't have makedepend; use mkdep instead).
+o Modif. for DIVA:
+  ctrl_unpack should not be called in intermediate DIVA interval.
+  (similar thing would apply for active files such as
+  tbar, sbar, psbar, which should not be reinitialised;
+  only relevant for ecco-branch)
+
+checkpoint48h_post
+o improve "ini_p_ground" when using finite difference form for calc_phi_hyd
+o Added net flux to downward flux conversion to pkg/exf/exf_getffields.F
+o Added SEAICE_initialHEFF to pkg/seaice
+o ecco_the_model_main.F: SEAICE_WRITE_PICKUP must precede WRITE_CHECKPOINT
+
+checkpoint48g_post
+--- EOS:
+o compute locally the pressure for use in EOS: UNESCO, JMD95P, MDJWF
+  store total Potential in totPhyHyd for diagnostics & EOS.
+o fix restart and overlap Pb when using Z-coord and EOS funct. of P
+--- Pressure/geopotential gradient:
+o use Ro_surf & R_low instead of hFac in cal_phi_hyd:
+o NLFS + p-coord.: eta*Alpha' is not longer lagging 1.time-step behind
+  ( changes results of global_ocean_pressure )
+o NLFS + z-coord.: add eta*Rho' contribution.
+o accurate phiHyd when using interface-W at the middle between 2 centers
+ ( changes results of ideal_2D_oce )
+o includes r* 2nd term in potential gradient.
+
+checkpoint48f_post
+Merging from release1_p12:
+o Modifications for using pkg/exf with pkg/seaice
+  - improved description of the various forcing configurations
+  - added basic radiation bulk formulae to pkg/exf
+  - units/sign fix for evap computation in exf_getffields.F
+  - updated verification/global_with_exf/results/output.txt
+o Added pkg/sbo for computing IERS Special Bureau for the Oceans
+  (SBO) core products, including oceanic mass, center-of-mass,
+  angular, and bottom pressure (see pkg/sbo/README.sbo).
+o Lower bound for viscosity/diffusivity in pkg/kpp/kpp_routines.F
+  to avoid negative values in shallow regions.
+  - updated verification/natl_box/results/output.txt
+  - updated verification/lab_sea/results/output.txt
+o MPI gather, scatter: eesupp/src/gather_2d.F and scatter_2d.F
+o Added useSingleCpuIO option (see PARAMS.h).
+o Updated useSingleCpuIO option in mdsio_writefield.F to
+  work with multi-field files, e.g., for single-file pickup.
+o pkg/seaice:
+  - bug fix in growth.F: QNET for no shortwave case
+  - added HeffFile for specifying initial sea-ice thickness
+  - changed SEAICE_EXTERNAL_FLUXES wind stress implementation
+o Added missing /* */ to CPP comments in pkg/seaice, pkg/exf,
+  kpp_transport_t.F, forward_step.F, and the_main_loop.F
+o pkg/seaice:
+  - adjoint-friendly modifications
+  - added a SEAICE_WRITE_PICKUP at end of the_model_main.F
+
+checkpoint48e_post
+o New S/R for diagnostic of bottom pressure (phi0surf was missing in c48d_post)
+o dynamics: change definition of computational domain & adapt mom_fluxform
+  accordingly ; when viscA4=0, allows to run the dynamics with Olx=Oly=2. 
+o following exp works with Olx=Oly=2 (and pass through checkbounds option):
+    adjust_nlfs.cs-32x32x1 adjustment.128x64x1 adjustment.cs-32x32x1
+    exp0 exp1 exp2 exp4 exp5 hs94.cs-32x32x5 hs94.128x64x5 hs94.1x64x5
+    global_ocean.90x40x15 global_with_exf global_ocean_pressure 
+    inverted_barometer solid-body.cs-32x32x1
+  (high order AdvScheme and/or multiDimAd works with Olx=Oly=2 ? not sure)
+
+checkpoint48d_post
+o in preparation for r*:
+ a) use pre-computed gradient of hydrostatic potential:
+    changes in timestep.F & mom_cdscheme.F affects results of ideal_2D_oce
+ b) move phi0surf from calc_phi_hyd to calc_grad_phi_hyd:
+    => affects results of glob_oce_pressure (different truncation error)  
+  update output.txt of ideal_2D_oce & global_ocean_pressure
+
+checkpoint48d_pre
+o in preparation for r*:
+  new S/R (calc_grad_phi_hyd.F) to compute Hydrostatic potential gradient.
+  pass the 2 comp. of the grad. as arguments to momentum S/R.
+  but for the moment, only used if it does not change the results. 
+o add finite volume form of calc_phi_hyd for buoyancyRelation OCEANIC & OCEANICP
+
+checkpoint48c_post
+Modifications in treatment of initial flux forcing controls
+to avoid extra storing of flux fields.
+
+checkpoint48c_pre
+o Added tidal_basin_2d experiment (currently 1D!)
+o can use r* Coordinate with OBC (but Orlanski Rad. BC not yet implemented) 
+
+checkpoint48b_post
+o r* coordinate added in #ifdef NONLIN_FRSURF block.
+ (modification to pressure gradient not yet implemented)
+o mom_fluxform: new S/R mom_calc_rtrans.F computes vertical transports
+  (for U & V) that are used for vertical advection of momentum.
+
+checkpoint48a_post
+o In preparation for r*, use temp. array to compute vertical transport
+   in flux-form momentum pkg. => change results of few test-exp. 
+  Update output of: exp4, exp5, front_relax, global_ocean_pressure, 
+                    lab_sea, natl_box & plume_on_slope
+
+checkpoint48
+o fix small bug that was causing lot of warning (TIMER_STOP 'UPDATE_CG2D')
+
+checkpoint47j_post
+o add new exp. (ideal_2D_oce) to test "exotic" parameters and options.
+o moved adexch from forward_step to addummy_in_stepping
+o added exch in ctrl_map_...
+o aveFreq.=0. at end of cost_final to avoid overwrite in
+  reverse checkpointing loop
+o Yet more changes in gmredi:
+  * adgmredi_calc_tensor
+    avoiding all recomputation of gmredi_slope_limit
+  * adgmredi_x/y/rtransport
+    added flag for excessive storing to avoid recomp. of
+    u/v/rtans, dTdx/y/z
+    -> this is not really necessary and very memory-consuming
+  * adgmredi_slope_psi:
+    consistency with gmredi_slope_limit in treatment of GM_slopeSqCutoff
+  * gmredi_slope_limit
+    re-activated full calculation of taperfct for case 'ac02'
+o updating verification/ adjoints of carbon, global_ocean.90x40x15
+
+checkpoint47i_post
+o GM_EXCLUDE_() replace GM_TAPER_(): by default, all the code is compiled.
+o add GM_Small_Number & GM_slopeSqCutoff as run-time parameters (data.gmredi)
+  default values = 1.D-12 & 1.D+48 (=> give same results as checkpoint47f_post)
+o cg2dTargetResWunit: define tolerance using deltaTmom (and not deltaTfreesurf) 
+o gmredi: fix few bugs.
+
+checkpoint47h_post (duplicate tag for PH's c48 tag, in order to move c48)
+This will be a good checkpoint to plug into the ecco-branch.
+o few modif.'s to get latest version adjointed
+  (mainly kick out code in ini_linear_phisurf)
+o modif's to run adjoint with exactConserv
+o case GM_BOLUS_ADVEC should be cleaned
+  S/R gmredi_slope_psi should be cleaned
+o verification/carbon now has exactConserv=.TRUE.
+
+checkpoint47g_post
+o time-average AIM output: becomes independent from statvars time-average
+  (can be used with #undef ALLOW_TIMEAVE) ; add new variables (e.g., RH)
+o After TAF bug fix:
+  Tested adjoint of gmredi package.
+  Tests were done with checkpoint47 rather than with latest
+  checkpoint47f_post since the latter is broken for the adjoint
+  verification/carbon/ contains both ADM and TLM gradient checks.
+Here they are, before they get changed/lost/stolen.
+Mostly modif.'s to fix numerical sensitivities.
+Gradient checks OK for
+- GM_taper_scheme:
+  * clipping
+  * ac02
+  * linear
+  * glw91
+  * dm95
+  * ldd97
+- GMREDI_OPTIONS:
+  * GM_VISBECK_VARIABLE_K
+  * GM_NON_UNITY_DIAGONAL
+  * GM_EXTRA_DIAGONAL
+  * GM_BOLUS_ADVEC
+in conjunction with data.gmredi parameters to be checked in
+in a few minutes under verification/carbon/code/
+
+checkpoint47f_post
+Merging from release1_p10:
+o modifications for using pkg/exf with pkg/seaice
+  - pkg/seaice CPP options SEAICE_EXTERNAL_FORCING
+    and SEAICE_EXTERNAL_FLUXES
+  - pkg/exf CPP options EXF_READ_EVAP and
+    EXF_NO_BULK_COMPUTATIONS
+  - usage examples are Experiments 8 and 9 in
+    verification/lab_sea/README
+  - verification/lab_sea default experiment now uses
+    pkg/gmredi, pkg/kpp, pkg/seaice, and pkg/exf
+
+checkpoint47e_post
+o created a tag prior to creating a branch
+
+checkpoint47d_post
+o fixed bug in the oceanic pressure coordinates code: vertical viscosity 
+  at the bottom boundary had an erroneous half slip boundary condition
+o added bottom drag and no slip boundary condition capabilities to 
+  oceanic pressure coordinates code
+o added new verification experiment global_ocean_pressure, this experiment is
+  also described in the tutorial section of the manual
+checkpoint47d_pre
+
+checkpoint47c_post
+o Added a verification experiment for a global cubed-sphere ocean run
+  -  verification/global_ocean.cubed32x32x30
+  -  uses pkg/therm_seaice and pkg/bulk_forcing
+
+o allow to run AIM physics with SPEEDY input files (from Franco Molteni)
+o allow a more accurate definition of Ro_Surf (selectFindRoSurf=1)
+  when using P-coordinate; only implemented for atmospheric config.
+o OCEANICP & realFreshWater: include P-E direct effect on wVel ;
+  NOTES: requires option NONLIN_FRSURF to be "#define".
+o update advect_xz/results/output.txt (left from checkpoint44g_post)
+
+checkpoint47b_post
+Merging from release1_p9:
+o pkg/seaice
+  - removed GOTO's and added taf directives
+  - double precision constants to reduce the g77 (Linux)
+    to F77 (SGI) differences reported in release1_p8
+o tools/genmake
+  - added SGI options
+o verification/testscript
+  - updated to that of checkpoint47a_post
+o verification/global_ocean.90x40x15/input/eedata
+  - modified for SGI f77 compatibility
+o verification/lab_sea
+  - added description of sea-ice model
+  - added missing matlab routines
+  - added test of thermodynamics parallelization
+
+checkpoint47a_post
+o new pkg: aim_v23 
+ = F. Molteni atmos.physics (SPEEDY, ver23) adapted to MITgcm. 
+   for now, keep the same surface forcing as before.
+ - Part-Cell implemented into AIM; check that Heat & Water are conserved
+ - aim.5l_cs: use new aim pkg (run 10yr & get better results than before)
+ - aim.5l_LatLon & aim.5l_Equatorial_Channel are still using old aim pkg
+o add diagnostic of surface correction term in monitor output
+
+o bulk_force and therm_seaice 
+- Two packages:  bulk_force (Bulk forcing)
+  and therm_seaice (thermodynamic_seaice) - adopted from LANL CICE.v2.0.2
+- Earlier integration from Stephaine Dutkiewicz
+  and Patrick Heimbach.
+- Two ifdef statements for compile time,
+   ALLOW_THERM_SEAICE and ALLOW_BULK_FORCE
+
+checkpoint47
+differentiable version of checkpoint46n_post
+o bug fix in quasihydrostaticterms
+o * "clean" adjoint code (in terms of extensive recomputations)
+    can now be obtained for all GMREDI options (i.e. for 
+    - GM_VISBECK_VARIABLE_K
+    - GM_NON_UNITY_DIAGONAL
+    - GM_EXTRA_DIAGONAL
+    - GM_BOLUS_ADVEC )
+  * However, wrong gradient check problem remains unsolved.
+  * New CPP options have been introduced for different
+    tapering schemes
+o external_fields_load now part of differentiation list
+o pressure needs multiple storing;
+  would be nice to have store_pressure at beginning or
+  end of forward_step, e.g. by having phiHyd global (5-dim.)
+  (NB: pressure is needed for certain cases in find_rho,
+  which is also invoked through convective_adjustment).
+o recomputations in find_rho for cases 
+ 'JMD95'/'UNESCO' or 'MDJWF' are OK.
+o #define ATMOSPHERIC_LOADING should be differentiable
+o ini_forcing shifted to begining of initialise_varia
+o Incorporating QNVS line search routines into MITgcm
+  (this is separate code, and therefore not under pkg)
+  lsopt/, optim/
+o Updated verification/carbon/
+  - #define GM_VISBECK_VARIABLE_K
+  - GM_taper_scheme    = 'ldd97'    
+
+checkpoint46n_post
+Merging from release1_p8:
+o verification/natl_box:
+  updating new external_fields_load routine
+o New package: pkg/seaice
+  Sea ice model by D. Menemenlis (JPL) and Jinlun Zhang (Seattle).
+  The sea-ice code is based on Hibler (1979-1980).
+  Two sea-ice dynamic solvers, ADI and LSR, are included.
+  In addition to computing prognostic sea-ice variables and diagnosing 
+  the forcing/external data fields that drive the ocean model, 
+  SEAICE_MODEL also sets theta to the freezing point under sea-ice.
+  The implied surface heat flux is then stored in variable 
+  surfaceTendencyTice, which is needed by KPP package (kpp_calc.F and 
+  kpp_transport_t.F) to diagnose surface buoyancy fluxes and for the 
+  non-local transport term.  Because this call precedes model 
+  thermodynamics, temperature under sea-ice may not be "exactly" at 
+  the freezing point by the time theta is dumped or time-averaged.
+  N.B.: fairly large differences in accuracy occur across
+        different platforms/compilers; comparison between
+        g77 (Linux) and F77 (SGI Origin 2000/MIPSpro) 
+        generated output gives:
+   T           S           U           V
+  C D M    c        m  s        m  s        m  s        m  s
+  n p a R  g  m  m  e  .  m  m  e  .  m  m  e  .  m  m  e  .
+  f n k u  2  i  a  a  d  i  a  a  d  i  a  a  d  i  a  a  d
+  g d e n  d  n  x  n  .  n  x  n  .  n  x  n  .  n  x  n  .
+
+  Y Y Y Y  5  5  7  7  7  8 10  9  6  6  6  6  7  5  7  5  7 FAIL  lab_sea
+o GAD: 
+  - generated new common blocks to account for call of
+    same gad routines with differing traceridentities
+    (needed to modify tracerIdentity indices in GAD.h)
+  - generated separate common blocks for case useCubedSphereExchange
+    (Department of Futurology)
+  - parameter lists to gmredi_?transport: added tracerIdentity
+  - added new key indices to tamc.h
+o external_fields_load:
+  - added this routine to TAF list
+  - needed to make some common blocks global and additional storing
+    along the same lines as exf package (checkpoint_lev?_directives.h)
+o exf:
+  updated external forcing package
+  - bug fixes carried over from ecco-branch
+    (missing OBCS_OPTIONS.h in two routines)
+  - enable easy to use "no forcing".
+  - added exf I/O for atmospheric loading
+  - added exf I/O for runoff data
+  - transfered scaling between exf <-> MITgcm to exf namelist
+o Adding new verification experiment global_with_exf.
+  This verification experiment is almost identical to the
+  global_ocean.90x40x15 experiment, except that it uses
+  the exf (and cal) package instead of the
+  external_fields_load routine (cf README file).
+
+checkpoint46m_post
+o modified testscript to return -- when there are no lines of "%MON" output 
+o added new flag "quasiHydrostatic" for QH mode
+  and new routine quasihydrostaticterms()
+o added 2*Omega*Cos(phi)*W to u equations (non-hydrostatic Coriolis term)
+  New routine: mom_u_coriolis_nh()
+o fixed sign of non-hydrostatic metric terms in u and v equations.
+  Depend on correct sign of gravitySign.
+o added work.pc* to .cvsignore in aim directories using ifc
+o introduced flag for controllin non-hydrostatic metric terms
+o removed gravitySign from PARM04
+o switched to g77/ifc from pgf77 in aim experiments
+
+checkpoint46l_post
+o made convective adjustment work with pressure coordinates:
+ - changed the direction of k-loop in convective_adjustment.F for the
+   case of pressure coordinates (OCEANICP,ATMOSPHERIC buoyancyRelation)
+ - adjusted the reference pressure k-index in convective_adjustment.F
+ - adjusted the convection condition in convect.F (in analogy to
+   calc_ivdc.F)
+ - convective_adjustment no longer computes anything on the halos
+ - removed the warnings about negative salinity from find_rho.F and
+   find_alpha.F; instead the new routine look_for_neg_salinity, called
+   at the beginning of find_rho, find_alpha, and find_beta, does a 
+   check of the entire slice, if CPP-option 
+   CHECK_SALINITY_FOR_NEGATIVE_VALUES is defined
+checkpoint46l_pre
+
+checkpoint46k_post
+o fixed the verification/global_ocean.90x40x15 experiment:
+ - new bathymetry (the world according to A., JMC, and M.)
+ - new initial fields and forcing fields (*.bin files)
+ - new POLY3.COEFFS (for the next release one should switch to a full
+   equation of state: JMD95P or MDJWF)
+ - fixed several errors and redundancies in the data file
+ - experiment uses looped cells
+ - added matlab directory with diagnostic scripts for plotting of output
+
+o S/R aim_initialise.F replace S/R aim_init from file aim_do_inphys.F:
+ - read AIM physics parameters from a file (data.aimphys)
+ - set defaults values = F.Molteni paper (Clim.Dyn., 2002)
+
+checkpoint46j_post
+o split calc_exact_eta in 2 S/R : integr_continuity & update_etaH
+o move wVel computation at the end of the time step, in S/R integr_continuity
+o create specific S/R to exchange T,S before DYNAMICS (for stagger time step)
+o update timeave pkg for wVel diagnostic.
+checkpoint46j_pre
+
+checkpoint46i_post
+o Clean up AIM package (and keep the results unchanged):
+  include CPP_OPTION and use IMPLICT NONE in all routines ; 
+  declare all the variables _RL ; use _d 0 for all numerical constants.
+  use ifdef ALLOW_AIM everywhere. And now AIM can be used with g77 !
+
+checkpoint46h_post
+o cleaned up the use of rhoNil and rhoConst. 
+  - rhoNil should only appear in the LINEAR equation of state, everywhere 
+    else rhoNil is replaced by rhoConst, e.g. find_rho computes rho-rhoConst
+    and the dynamical equations are all divided by rhoConst
+o introduced new parameter rhoConstFresh, a reference density of fresh 
+  water, to remove the fresh water flux's dependence on rhoNil. The default
+  value is 999.8 kg/m^3
+o cleanup up external_forcing.F and external_forcing_surf.F
+  - can now be used by both OCEANIC and OCEANICP
+checkpoint46h_pre
+
+ Added code to convert surface volume flux (fresh water) into
+ a mass flux when using P coordinates in the ocean (OCEANICP).
+ Note: It assumes you have set rho0=rhoConst=density of fresh water.
+
+checkpoint46g_post
+o Include a new diagnostic variable phiHydLow for the ocean model
+  - in z-coordinates, it is the bottom pressure anomaly
+  - in p-coordinates, it is the sea surface elevation
+  - in both cases, these variable have global drift, reflecting the mass
+    drift in z-coordinates and the volume drift in p-coordinates
+  - included time averaging for phiHydLow, be aware of the drift!
+o depth-dependent computation of Bo_surf for pressure coordinates 
+  in the ocean (buoyancyRelation='OCEANICP')
+  - requires a new routine (FIND_RHO_SCALAR) to compute density with only 
+    Theta, Salinity, and Pressure in the parameter list. This routine is 
+    presently contained in find_rho.F. This routine does not give the
+    correct density for 'POLY3', which would be a z-dependent reference
+    density.
+o cleaned up find_rho
+  - removed obsolete 'eqn' from the parameter list.
+o added two new verification experiments: gop and goz
+  (4x4 degree global ocean, 15 layers in pressure and height coordinates)
+checkpoint46g_pre
+
+checkpoint46f_post
+o Enable tangent linear (forward mode) gradient checks:
+  - extended active file handling to g_... files
+  - added TANGENT_SIMULATION to theSimulationMode
+  - extended grdchk package accordingly
+o added tangent linear setup in verification/carbon/code_ftl
+o added adjoint setup in verification/front_relax/code_ad
+
+checkpoint46e_post
+o Added new equation of state -> MDJWF
+  - EOS of McDougall et al., 2002, JAOT, submitted
+  - caveat: the equation of state is only valid for a smaller (more
+    realistic?) range of values than JMD95P/Z and UNESCO
+  - added masks to the calculation of pressure in store_pressure
+  - added more check values for density in check_eos (ini_eos.F), some of 
+    the old check values are out of the range of the MDJWF-eos, so don't
+    expect perfect matches for those 
+checkpoint46e_pre
+
+checkpoint46d_post
+o fixed store_pressure to work with both buoyancy relation = 'OCEANIC' and
+  'OCEANICP', also initialised field pressure correctly in ini_eos in the 
+  case of pressure coordinates. eosType='JMD95Z' in 
+  combination with buoyancyRelation='OCEANICP' now causes an error.
+o Changed p = pressure(i,j,k,bi,bj)  to  p = pressure(i,j,kRef,bi,bj)
+  in find_alpha/beta.
+checkpoint46d_pre
+
+o Changed p = pressure(i,j,k,bi,bj)  to  p = pressure(i,j,kRef,bi,bj)
+  so that JMD95Z and JMD95P give approptiate static stability in find_rho. 
+
+checkpoint46c_post
+o Changes necessary for ocean in p-coordinates
+ -  Added new buoyancy relation = 'OCEANICP'
+ -  Added new parameters = gravitySign (this used to be contained inside
+    the factor dRdZ which I added when we first switched to R coordinates).
+ X GM/Redi is not compatible (yet)
+ X bottom drag and no-slip need to be debugged.
+checkpoint46c_pre
+
+checkpoint46b_post
+o Added new equation of state -> JMD95Z and JMD95P
+  - EOS of Jackett and McDougall, 1995, JAOT
+  - moved all EOS parameters into EOS.h
+  - new routines ini_eos.F, store_pressure.F
+o Added UNESCO EOS, but not recommended because it requires 
+  in-situ temperature (see JMD95)
+o Modified formatting for knudsen2.f in utils/knudsen2 and added
+  unesco.f to be used with POLY3
+checkpoint46b_pre
+
+checkpoint46a_post
+o Added (atmospheric) pressure loading
+  - new field in FFIELDS.h, etc...
+  - new cpp flag ATMOSPHERIC_LOADING
+o Changed hFacC to _hFacC in calc_phi_hyd.F
+o Added SHORTWAVE_HEATING to some files for consistency
+checkpoint46a_pre
+
+checkpoint46
+further merges from release1_p5
+o new ctrl package
+  - adopted from ECCO environment to enable optimization
+  - added Eliassen Palm fluxes to controls
+o added Eliassen Palm flux controls to gradient check package
+o cost package
+  - Compatible with new ctrl package
+  - added Eliassen Palm cost hooks
+  - modif's of existing cost functions
+o Adjoint-related bug fixes in kpp:
+  - kpp_calc: sore of kpphbl avoids recomputation/call to S/R kppmix
+  - kpp_routines: store of Rib avoids partial recomputation bug of TAF.
+o autodiff package
+  - flow directives:
+    + new for S/R do_the_model_io
+    + enhanced for S/R checkpoint
+    + new gmredi.flow
+  - Introduced CPP option ALLOW_AUTODIFF_MONITOR to
+    disable adcommon.h/g_common.h by default.
+  - fixed problem for adjoint of global_max
+o modified verification/carbon/
+o New setup for adjoint of global_ocean
+o added hooks for Eliassen Palm fluxes (dynamics.F, ini_fields.F)
+o cleaned TAF keys iikey, idkey (dynamics.F, thermodynamics.F)
+o incorporated hooks for sponge layer code (external_forcing.F)
+
+checkpoint45d_post
+o import 2 fixes from release1_p5 (CG2D.h & packages_readparms.F)
+o use recip_dx*,recip_dy* instead of /dx*,/dy* in orlanski_E,W,N,S
+  (affects plume_on_slope "cg2d" output)
+o add new parameter deltaTfreesurf for free-surface time stepping
+o exchange gT,gS when using staggerTimeStep & GM & Oly<4 
+o NONLIN_FRSURF: rescale gNm1 to get a better conservation with A-B
+o change phiMin in exp1 (to agree with documentation)
+o add new flags: 
+ - T,S forcing inside/outside Adams-Bashforth
+ - turn off temp,salt advection and/or forcing
+ - for each tracer, define internal flag for multiDimAdvection & A-B
+o monitor: change definition of KE to check conservation of Energy
+
+checkpoint45c_post
+o Removed f90 comments ("!")
+o Modified initialisations to enable exf package for MITgcm
+  (without invoking ECCO_PACKAGE).
+o modifications to gradient check package (Martin Losch)
+  - enable centered differences
+  - modified format of standard output
+
+checkpoint45b_post
+o cleaned exchange calls in cg2d
+o Included CPP option ALLOW_AUTODIFF_MONITOR in forward_step
+o included CPP option SINGLE_LAYER_MODE in thermodynamics
+  to configure barotropic setup (Martin Losch)
+o moved some initialisations within bi,bj loop in dynamics
+  (TAF flow dependency)
+o in initialise_varia, moved call packages_init_variables
+  before convective_adjustment_init
+  (corresponding adjustment of TAF tape initialisation).
+o in calc_diffusivity/calc_viscosity extended domain to full overlap.
+
+checkpoint45a_post
+o compute Rho over the whole domain (extend iMin,jMin indices)
+o specific exchange for X-slice domain (case Ny=1)
+o argument futureIter of S/R obcs_calc missing in exp4 & internal_wave /code
+o solve_for_pressure : set cg2d_x to zero where OBCS are applied
+
+checkpoint44h_post = checkpoint45
+o Fix to restore differentiability:
+  place at which packages_init_variables is called in
+  initialise_varia is crucial for reverse control flow.
+o modifications in GMRedi to enable stable adjoint
+  (corresponding modif's in thermodynamics, dynamics)
+o added missing hook for sponge layer code in external_forcing
+o modified test cost functions
+o storing in gad_advection (plus removal of write(0,*)!
+o missing headers TR1.h added in convective_adjustment routines
+o errorMessageUnit set non-equal zero in eeboot
+  (conflict on some platforms, e.g. IBM SP3)
+o modified carbon verif.
+
+checkpoint44h_pre
+o vertical grid option: allow to put the Interface at the middle between
+  2 cell-centers ; replace delZ in pkg/kpp by drF.
+o GM Advective form: Tracers are advected using the residual transport (=
+  Euler+GM-bolus); set param GM_AdvSeparate=T to return to previous form.
+
+checkpoint44g_post
+o fix surface correction term in multiDimAdvection (affects plume_on_slope 
+  results) ; ifdef missing in thermodynamics.F
+
+checkpoint44f_pre,checkpoint44f_post
+o added PTRACERS package
+  This allows an arbitrary number of passive tracers to be integrated
+  forward simultaneously with the dynamicaly model.
+  + Implemented so far:
+    - basic forward algorithm (time-stepping, advection, diffusion, convection)
+    - I/O and checkpointing
+    - GM/Redi  *but*  using the GM/Redi coefficient of Salt
+  + Not implemented so far:
+    - KPP
+    - OBCS
+  + No specific example supplied (yet) but global_ocean.90x40x15 has the
+    necessary data.ptracer file. Simply use -enable=ptracers and uncomment
+    line in data.pkg.
+  + This package is disabled by default since it increases storage.
+
+
+o testscript: added -cleanup option
+o Shap_filt: a) new shap_filt S/R to use no-slip BC with S2 filter
+             b) enable to filter 2D fields.
+
+checkpoint44e_pre,post
+o re-wrote convective adjustment to use pre-calculated weights
+  Affects: model/src/convective_adjustment.F, convective_adjustment_ini.F
+  Adds:    model/src/convective_weights.F, convectively_mixtracer.F
+  Original calls to convect() still in place.
+
+chkpt44d_pre,post
+o added missing EXCLUDE_MONITOR flags
+o changed "e" to "_d" in gmredi_slope_limit, gmredi_slope_psi
+  (incompatible typ in MIN/MAX expressions caused problems
+  on IBM SP3)
+o in genmake added variable MAKEDEPEND
+  plus resetting for case SunOS
+o added timer_stats.c routine for IBM SP3
+o removed variables in dynamics
+!!! I forgot to create tag chkpt44d_pre !!!
+!!! But chkpt44d_pre = chkpt44c_post    !!!
+
+o real fresh water flux implemented with non-linear free-surface.
+
+chkpt44c_pre,post
+o few fix (mask in shap_s2, EmPmR in external_field_load, 
+  USE_NATURAL_BCS in solve_for_P); 
+o add arguments myIter & myTime to S/R obcs_calc & solve_for_P
+
+checkpoint44b_pre/_post
+o merge of relevant stuff from the ecco-branch:
+  - genmake: removed $S64 overwrite for case SunOS
+  - pkg/exf: update and corrections for field swapping and obcs
+  - pkg/ecco: parameter lists for the_model_main, the_main_loop
+              harmonized between ECCO and MITgcm
+  - pkg/autodiff: added flow directives for obcs, mdsio_gl_slice
+                  updated checkpointing_lev... lists for obcs
+  - model/src: minor changes in forward_step, plot_field
+               added directive for divided adjoint in the_main_loop
+  - pkg/mdsio: added mdsio_gl_slice
+
+o check parameters & config (chkpt44a_pre,post)
+o OBC and NonLin_FrSurf.
+
+checkpoint44
+o fix bug in mom_vi_del2uv
+o select when filters are applied ; add options to zonal_filter (data.zonfilt)
+o gmredi: fix Pb in the adiabatic form ; add options (.e.g. Bolus advection)
+o update AIM experiments (NCEP input files)
+o improve and extend diagnostics (Monitor, TimeAve with NonLin-FrSurf)
+o added some stuff for AD
+
+checkpoint43
+o added two new advection tests
+o added global 4x4 degree ocean test
+o added test of H&S94 with free surface on cube
+o some final mods for gradient check, adjoint,...
+
+checkpoint42
+  Fixed AD-related problems:
+o Store directives up-to-date with re-arranged Adams-Bashforth
+  (mainly thermodynamics.F)
+o New store directives for multi-dim. advection schemes
+  * new CPP flag ALLOW_MULTI_DIM_ADVECTION
+  * new common block and key passkey
+  (mainly gad_advection.F)
+o Modified store directives for split of dynamics/thermodynamics
+  for the case ALLOW_KPP
+o Cleaned argument list for timestep_tracer.F
+
+checkpoint41
+o re-formatted/added comments in prologues of key subroutines
+  to work with protex
+
+checkpoint40
+o moved calc_gs, calc_gt and calc_tr1 back to model/src
+o added FLT (floats) package from Arne along with demo. experiment
+o re-arranged Adams-Bashforth scheme for tracers to allow easier
+  implementation of forward-in-time forcing terms
+o more mods for non-linear free-surface including new variable
+o modified multi-dim method to work on cube
+o bug fix in KPP (from DM)
+
+checkpoint40pre9
+o added DST advection schemes
+o fix MPI bug on SGI's
+o modifications for non-linear free-surface
+o fixed conditionals for fixed flow/passive tracer only mode
+o added tension/strain form of stress tensor
+o changes to commenting of arguments for TAF/TAMC
+o added/updated many matlab scripts
+o added multi-dimensional advection method for tracers
+  
+checkpoint40pre8
+o new package rw/
+  Added method for dumping intermediate local arrays:
+  mdsio_writetile - same as mdsio_writefield except works from inside
+                    bi,bj loop
+  mdsio_writelocal - same as mdsio_writetile except works for local
+                     arrays
+  write_local_r? - higher-level wrapper for mdsio_writelocal
+  Controlled by diagFreq. Defaults to zero (ie. no dumps)
+  Example given at end of mom_vecinv.F that dumps some local arrays.
+o replaced calc_mom_rhs.F by mom_fluxform.F/mom_vecinc.F to
+  control flux-form versus vector invariant code.
+  Switch is runtime flag vectorInvariantMomentum (defaults to false)
+  or genmake -DISABLE ...
+o TAMC-related update to cope with mom_fluxform.F/mom_vecinc.F
+  (additional storing is now needed for case vecinv;
+  currently nothing implemented to switch this storing off
+  in case fluxform is used since no CPP flag available).
+
+checkpoint40pre7
+o bug fix in dynamics.F
+  calc_viscosity called before k=1,Nr loop.
+o added some #ifdef's ALLOW_PASSIVE_TRACER
+o cleaned initialisations in ctrl_map_ini
+  related to TAF
+
+checkpoint40pre6
+o split dynamics into thermodynamics & dynamics
+o corresponding split of calc_diffusivity into
+  calc_diffusivity, calc_viscosity
+  (kpp_calc_diff, kpp_calc_visc).
+o Added diffkr, kapgm to control variables
+o bug fix in gmredi_slope_limit for ldd97
+
+checkpoint40pre5
+o proper initialization of Adams-Bashforth time stepping
+  + uses forward step for very first step of model (iter=0)
+o re-generated *all* output since almost all output is modified by this
+  change (sorry but we've been putting this one off for about 2 years)
+  + natl_box, aim.5l_Equatorial_Channel and aim.5l_zon-ave were
+    *not* regenerated since they are already out of date and I don't
+    want to create the impression that they are suddenly working.
+o removed KAP stuff for DEC's
+o modified/added many .cvsignore files in */code and */input
+o added new expt "solid-body.cs-32x32x1"
+  + this uses an alternative form of ini_curvilinear_grid.F which
+    is not necessarily any better than the current one...
+
+checkpoint40pre4
+o added re-initialisations of utrans,vtrans,rtrans in
+  calc_common_factors which are crucial for TAF.
+o extended iMin,jMin range for calc_common_factors,
+  calc_diffusivity
+o added option ALLOW_PASSIVE_TRACER
+o a few minor updates and fixes
+
+checkpoint40pre3
+o created calc_gtr1.F for gad package
+o split the_main_loop and re-introduced forward_step
+o some recomputations of nIter0 for TAMC
+
+checkpoint40pre2
+o Updated to latest branch of AJA, JMC
+o Added gradient check package
+o Added routines for passive tracer handling
+o Added carbon sequestration sensitivity experiment
+
+checkpoint39
+ o Modifications and fixes to support TAMC
+   (mainly missing or wrong directives)
+ o Corrected common blocks when fooling TAMC to produce adjoint I/O
+   in addummy_in_stepping
+ o Updated verification/vero/ (bug fixes in code/, correct pickups in input/)
+ o Enabled "sliced" (xz-,yz-) exchanges, needed for obcs.
+ o Included following packages:
+   cal: calendar
+   exf: external forcing
+   ecco: essential routines to control use of cal, exf
+         (NB: this is not the full ECCO environment)
+ o disabled some packages by default in genmake
+
+checkpoint38
+ o see notes_c37_adj.txt
+ o corrected wrong layer index in external_forcing_t
+ o replaced the_main_loop/forward_step by the_main_loop
+ o removed forceoutput from write_state
+   (replaced criteria for initial/final state)
+ o added runtime flag for pre-C35 pickups: usePickupBeforeC35
+
+checkpoint37
+ o mdsio.F routine split and packaged in pkg/mdsio
+   (mdsio.F and mdsio_gl.F still exist in eesupp/src but are not
+    used unless genmake -disable=mdsio)
+ o allow a more precise surface-geopotential gradient for the atmosphere
+   taking into account the change in space of Alpha (=1/rho) at the surface.
+ o variable "etaN" (replace cg2d_x) is the surface R-anomaly [r unit]
+   (ocean: sea surface height [m] / atmos: surface pressure anomaly [Pa])
+ o Change units: Phi_Hydrostatic (=phiHyd), Phi_Surface(=cg2d_x) and
+   Phi_NonHydrostatic (=cg3d_x), all have now the dimension of a potential
+   [m2/s2] (pressure/rhoConst in the ocean ; Geo-Potential in the atmosphere).
+ o Time-Average diagnostics defined as a pseudo package "timeave".
+ o pickup files : old pickup (before c35) did not work with new code (c35
+   and after) unless activating 2 commented lines in initialise-varia.
+ o Non-Hydrostatic pickup file Pb fixed.
+ o bug with Rigid-lid version (since c35) fixed.  
+
+checkpoint36
+ o implement Crank-Nickelson barotropic time-stepping
+ o recover Time-Average diagnostics
+ o fix Pb in checkpoint (PR#19) 
+ o AIM become a standard package ; clean unused CPP_kees
+
+checkpoint35
+ o subtantial rewrite of dynamics.f
+ o allows staggered time-stepping
+ o packaged obcs, aim (Atmospheric Physics), zonal_filt, shap_filt
+ o added bottom drag (linear + quadratic)
+
+checkpoint34
+ o Modified exchange routines for correct reverse simulation.
+ o Added verification output to comply with bug fix in impldiff.F
+   as of c33 (exp2, natl_box).
+ o Corrected store directives in dynamics.F
+ o Corrected array boundaries in impldiff.F
+ o Corrected array dimensions in gmredi.
+   Added temporary scalars to avoid storage by TAMC (gmredi, kpp).
+ o Added routine GLOBAL_SUM_INT to global_sum.F
+ o Added mdsio_gl.F for ECCO purposes.
+
+checkpoint33
+ o Fixed bug in lower BC in impldiff.F
+ o Fixed confusion about units of forcing arrays in FFIELDS.h
+   namely Fu,Fv,Qnet,Qsw,EmPmR:
+   - Removed verification/natl_box/code/external_fields_scale.F
+     (did not differ from that in model/src)
+   - Changed units of fu,fv,Qnet,Qsw,EmPmR back to proper units
+     (see FFIELDS.h for description)
+   - Scale fu,fv,Qnet,Qsw,EmPmR when used in external_forcing_surf.F,
+     kpp_calc.F and kpp_transport_t.F
+   - Removed model/src/external_fields_scale.F and calls to it
+   - verification/natl_box uses flux data with "atmospheric" sign so
+     a special version of external_fields_load.F is used to
+     change the data as it's read in. This way, the arrays
+     have the right units and signs at all times tha a user could
+     possibly use them.
+ o Corrected genmake to delete a temporary file during configuration
+
+checkpoint32
+ o Scaling of forcing fields moved from external_forcing.F to
+   external_fields_scale.F, called directly after loading fields.
+ o Surface relaxation terms added to surface tendency fields in
+   extra subroutine.
+ o impldiff.F changed to avoid storing by TAMC of huge intermediate
+   fields.
+ o Changes in GMRedi to comply with packaging structure.
+ o Modifications and bug fixes in KPP package.
+ o Verification experiment for KPP added (verification/nat_box/)
+
+checkpoint31
+ o Packages interface brought in line with defined standard
+   -> new routines packages_...F
+   -> changes in initialise_fixed.F, initialise_varia.F
+   -> enables initialisation interface for ECCO package
+ o Rescaling of external forcing fields immediately after read
+   (removed from external_forcing.F) 
+   -> new: surface_fields_scale.F
+   -> affects ini_foorcing.F, external_fields_load.F
+ o Computation of surface tendencies before tendency updates.
+   -> new: external_forcing_surf.F
+ o Change of variable names useGMRedi, useKPP, useECCO
+ o Further changes in dynamics.F, impldiff.F for TAMC
+ o Tested for experiments 0, 2, 4.
+   - not yet tested for GMRedi.
+   - not yet tested for KPP.
+
+checkpoint30
+ o Updates for OBCs
+ o New experiment for test OBCs (internal_wave)
+ o New output.txt in verification/exp4/results/
+ o Updates for KPP: calculation of viscosity corrected, new variables
+   kpp_dumpFreq and kpp_taveFreq
+ o CPP'd calls to system routines for TARGET_CRAY_VECTOR (P.H.)
+   and entry for T90 in genmake
+
+checkpoint29
+ o packaged KPP and GM/Redi
+
+checkpoint28
+ o Corrected initialization of hFacMin for difference vertical coordinates
+ o Modified calculation of partial cell thickness to more robust algorithm
+ o config_summary.F: replaced write_1D_... by write_0D_...
+   read_write.F: added subroutines write_0D_...
+ o routines calc_common_factors, calc_gs, calc_gt, calc_phi_hyd, find_rho:
+   included some initialisations required for TAMC.
+ o routine calc_isoslopes: modified sqrt computation to make it 
+   differentiable for zero argument.
+ o routines dynamics, impldiff:
+   included store directives and tape key computations required for TAMC.
+ o ALL TAMC related changes are between ifdef ALLOW_AUTODIFF_TAMC
+
+checkpoint27
+ o fixed calc_isoslopes() to so that cancellation of terms in tensor
+   formulation works properly with variable resolution.
+ o restructured the calling tree between the_model_main() and dynamics()
+ o split initialise() into initialise_fixed() and initialise_varia()
+ o introduced initialization file pSurfInitFile for free surface (cg2d_x)
+   in new routine ini_psurf()
+
+checkpoint26
+ o moved some #ifdef in optional routines to encompass everything
+   except the argument declarations. This was using up some memory.
+ o fixed macros like _ADT to work with both versions of Linux cpp
+ o cleaned up some unused and uninitialized variables
+   (helps when debugging with strict compile options)
+ o split up CPP_EEOPTIONS.h into options and macros
+   (macros are now in eesupp/inc/CPP_EEMACROS.h)
+ o patch for 2 processor JAM mode
+
+checkpoint25
+ o updates for OBCs and NH
+ o dramatically reduced memory usage
+ o added "JAM" routines for use on Artic network
+ o parameterization of convection by implicit vertical diffusion
+ o added a diagnostic of convective index
+ o moved call to calc_divg_hat() from dynamics() to solve_for_pressure()
+   (this is was partly for OBCs and NH but also in anticipation of
+    an explicit free-surface option)
+ o initial state input files for U and V
+
+checkpoint24
+ o Removed some spurious "REAL"s
+ o Updated KPP to latest version from JPL
+ o Added a COS(latitude) in horizontal viscosity
+
+checkpoint23
+ o Added del^4 diffusion for salt and temperature
+ o Multiple minor fixes (implicit none's, arguments to global_sum, etc.)
+
+checkpoint22
+ o Made many small changes: implicit none, format(i5), etc...
+ o Introduced KPP mixing scheme (compiles and runs but *not* tested)
+
+checkpoint21
+ o Introduced new I/O package that supports direct-access records (mdsio.F)
+ o Split-up mid-level I/O routines
+ o Updated input data for experiments 0,1,2,4 and 5
+ o Finally removed the genmake.* scripts (everyone seems happy with genmake)
+
+checkpoint20
+ o Tidied up open-boundaries some more
+ o Added non-hydrostatic code
+ o Fixed some input data
+ o Modified MPI start-up to work in "coupled" context.
+
+checkpoint19
+ o Tidied up directory structure for verification experiments.
+ o Added new code for open boundaries.
+ o Corrected advective terms near boundaries.
+ o Added CPP flag for "old UV" geometry and corrected spherical geometry.
+ o Implemented free-slip/no-slip BCs and del^4 dissipation.
+ o Split default parameters out of ini_parms.F into set_defaults.F.
+
+checkpoint18
+ o Further changes for optional code generation with 
+   CPP - ugh!
+
+checkpoint17
+ o Beginning to incorporating modularity
+   for supporting atmos. and ocean configs.
+ o Small changes for TAMC complinace
+ o New ultra simple test case. Barotropic box
+   configuration "exp0".
+
+checkpoint16
+ o Minor changes to exchange routines to support 
+   accumulation in reverse mode. Adjoint of an
+   assignment is an addition.
+ o Changes to support compilation by TAMC (LR(1) 
+   syntax) and by g77 under Linux ( 72 character
+   limit ).
+
+checkpoint15
+ Rewrote exchange routines to allow
+ o General tile <-> tile connectivity.
+ o TAMC reverse mode flag ( is this really needed? )
+ o Variable width overlap and exchange region widths.
+ o Hooks for sharing data via DMA, Arctic, Memory Channel, 
+   shmput/shmget, VIA, SYSV shmem and every other cool 
+   communication method.
+
+checkpoint14
+ Consistent isomorphism chages made. These allow dynamical core
+ to support both pressure and meters as a vertical coordinate.
+
+checkpoint13
+ Release which corrects global_max problem and a couple
+ of KGM time-averaging diagnostic errors. Also contains
+ a double-gyre experiment setup as well as the baseline
+ 4 degree global template. The double gyre template is
+ organised to allow it to be applied automatically to
+ the baseline configuration.
+
+branch-point-rdot
+ A few tidy-ups have been made bt the real point of this
+ check-point (excuse the pun) is to allow a branch to be
+ made for the purposes of adding the rDot alterations.
+ I don't want to commit the rDot to the main-trunk until
+ we've actually tested it...
+
+checkpoint12
+ Tidy up and added generic genmake script (formerly
+ configure script). 
+ Released to testers.
+
+checkpoint11
+ Re-arranged initialise() and introduced ini_vertical_grid()
+ and ini_masks_etc().
+
+checkpoint10
+ Introduced the configure script.
+ Separated out the diags package.
+ Added template for writing time-averages of tile/intermediate quantities.
+ Updated SIZE.h in exp2 and made the data big-endian.
+
+checkpoint9
+ MPI fix. Filename changes (meta/data). salbin*y stuff.
+ General tidy-up.
+ SST.bin SSS.bin added to verification/exp2
+
+checkpoint8
+ Inludes time-dependant forcing and time-averaging.
+ Works at 4x4 and 2.8125x2.8125 global
+
+checkpoint7-4degree-ref
+ Branch from checkpoint7. Released for application to
+ global modeling and general modeling - process studies, regional
+ model etc.. 
+ Configured for verification/exp2 - 4 degree global, two process.
+
+checkpoint7
+ Created by cnh
+ Simple 4 degree global simulation 
+ configuration.
+ Includes climatological wind, 
+ hydrography, bathymetry etc
+ Does not include Heat Flux and E-P
+
+checkpoint6
+ Created by cnh
+ merged checkpoint5 with CD and 
+ spherical polar code. 
+ Still some problems with GM Redi
+ abd full topography.
+
+checkpoint5
+ Created by AJA
+ contains updates to GM Redi
+ and reordered timestepping loop
+ for Implicit Diffusion.
+
+checkpoint4
+ Created by cnh
+ Contains memory saving macros ( _rdxc etc..) for when
+ grid variations are limited.
+ Contains polynomial coeffs for EOS and knudsen program
+ for generation.
+
+checkpoint3
+ Created by cnh
+ Added extra flags for runtime options
+ Added this file
+ Added implicit free-surface
+ Added pre-conditioner
+ Put compare01 into repository ( compare01/... )
+ Put data and eedata into repository ( verification/exp1 )
+
+checkpoint2
+ Created by AJA
+ Added GM/Redi
+
+checkpoint1
+ Created by AJA
+ Restructured kloop in dynamics.F
+ Added non-linear EOS
+
+baseline
+ Original checked in code
+
