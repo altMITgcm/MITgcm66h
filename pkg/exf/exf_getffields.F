@@ -119,14 +119,14 @@ c     Zonal and meridional wind.
 #ifdef ALLOW_UWIND_CONTROL
       call ctrl_get_gen (
      &     xx_uwind_file, xx_uwindstartdate, xx_uwindperiod,
-     &     maskw, uwind, xx_uwind0, xx_uwind1, xx_uwind_dummy,
+     &     maskc, uwind, xx_uwind0, xx_uwind1, xx_uwind_dummy,
      &     mycurrenttime, mycurrentiter, mythid )
 #endif /* ALLOW_UWIND_CONTROL */
 
 #ifdef ALLOW_VWIND_CONTROL
       call ctrl_get_gen (
      &     xx_vwind_file, xx_vwindstartdate, xx_vwindperiod,
-     &     masks, vwind, xx_vwind0, xx_vwind1, xx_vwind_dummy,
+     &     maskc, vwind, xx_vwind0, xx_vwind1, xx_vwind_dummy,
      &     mycurrenttime, mycurrentiter, mythid )
 #endif /* ALLOW_VWIND_CONTROL */
 
