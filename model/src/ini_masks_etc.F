@@ -183,10 +183,14 @@ C     hFacW and hFacS (at U and V points)
       DO bj=myByLo(myThid), myByHi(myThid)
        DO bi=myBxLo(myThid), myBxHi(myThid)
         DO K=1, Nr
-         DO J=1,sNy
-          DO I=1,sNx
+         DO J=1-Oly,sNy+Oly
+          DO I=2-Olx,sNx+Olx
            hFacW(I,J,K,bi,bj)=
      &       MIN(hFacC(I,J,K,bi,bj),hFacC(I-1,J,K,bi,bj))
+          ENDDO
+         ENDDO
+         DO J=2-Oly,sNy+oly
+          DO I=1-Olx,sNx+Olx
            hFacS(I,J,K,bi,bj)=
      &       MIN(hFacC(I,J,K,bi,bj),hFacC(I,J-1,K,bi,bj))
           ENDDO
@@ -322,7 +326,6 @@ C     _EXCH_XY_R4(recip_rAw, myThid )
 C     _EXCH_XY_R4(recip_rAs, myThid )
 
 #ifdef ALLOW_NONHYDROSTATIC
-ceh3 needs an IF ( useNONHYDROSTATIC ) THEN
 C--   Calculate the reciprocal hfac distance/volume for W cells
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
