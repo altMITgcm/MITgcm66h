@@ -371,20 +371,16 @@ CADJ STORE sigmaR(:,:,:) = comlev1, key=ikey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 C--     Calculate iso-neutral slopes for the GM/Redi parameterisation
         IF (useGMRedi) THEN
-          DO k=1,Nr
-            CALL GMREDI_CALC_TENSOR(
-     I             bi, bj, iMin, iMax, jMin, jMax, k,
+          CALL GMREDI_CALC_TENSOR(
+     I             bi, bj, iMin, iMax, jMin, jMax,
      I             sigmaX, sigmaY, sigmaR,
      I             myThid )
-          ENDDO
 #ifdef ALLOW_AUTODIFF_TAMC
         ELSE
-          DO k=1, Nr
-            CALL GMREDI_CALC_TENSOR_DUMMY(
-     I             bi, bj, iMin, iMax, jMin, jMax, k,
+          CALL GMREDI_CALC_TENSOR_DUMMY(
+     I             bi, bj, iMin, iMax, jMin, jMax,
      I             sigmaX, sigmaY, sigmaR,
      I             myThid )
-          ENDDO
 #endif /* ALLOW_AUTODIFF_TAMC */
         ENDIF
 
