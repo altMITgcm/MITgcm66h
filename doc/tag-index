@@ -3,6 +3,11 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+chkpt44c_pre,post
+o few fix (mask in shap_s2, EmPmR in external_field_load, 
+  USE_NATURAL_BCS in solve_for_P); 
+o add arguments myIter & myTime to S/R obcs_calc & solve_for_P
+
 checkpoint44b_pre/_post
 o merge of relevant stuff from the ecco-branch:
   - genmake: removed $S64 overwrite for case SunOS
@@ -15,7 +20,6 @@ o merge of relevant stuff from the ecco-branch:
                added directive for divided adjoint in the_main_loop
   - pkg/mdsio: added mdsio_gl_slice
 
-next checkpoint:
 o check parameters & config (chkpt44a_pre,post)
 o OBC and NonLin_FrSurf.
 
