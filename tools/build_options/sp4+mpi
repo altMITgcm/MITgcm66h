@@ -3,21 +3,19 @@
 #  $Header$
 #
 
-#  tested on bluesky, EH3 2003-09-04
-#  using the following invocation:
-#    ../../../tools/genmake2 -mods=../code -of=../../../tools/build_options/sp4 -make=gmake
+#  tested on bluesky, ce107 Jan 2005
 
 
 S64='$(TOOLSDIR)/set64bitConst.sh'
 MAKEDEPEND=makedepend
 DEFINES='-DALLOW_USE_MPI -DALWAYS_USE_MPI -DTARGET_AIX -DWORDLENGTH=4'
 
-#ph: e.g. bluesky.ucar.edu, marcellus.navo.hpc.mil
 INCLUDES='-I/usr/lpp/ppe.poe/include'
 CPP='/lib/cpp -P'
-FC='mpxlf95'
-LINK='mpxlf95'
+CC='mpcc_r -q64'
+FC='mpxlf95 -q64'
+LINK='mpxlf95_r -q64'
 LIBS='-L/usr/local/apps/mass -lmass'
-FFLAGS='-qfixed=132 -bmaxdata:0x80000000'
+FFLAGS='-qfixed=132' 
 FOPTIM='-O3 -qarch=pwr4 -qtune=pwr4 -qcache=auto -qmaxmem=-1'
 FC_NAMEMANGLE="#define FC_NAMEMANGLE(X) X"
