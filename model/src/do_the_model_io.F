@@ -87,6 +87,10 @@ C--   Do time averages
       ENDIF
 #endif
 
+#ifdef ALLOW_FIZHI
+      if(useFIZHI) call fizhi_write_state( myTime, myIter, myThid )
+#endif
+
 #ifdef ALLOW_AIM
 C--   Do AIM time averages
       IF ( useAIM )
