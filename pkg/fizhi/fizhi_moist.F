@@ -886,34 +886,6 @@ c -------------------------------
       enddo
       endif
 
-c Moist Processes Change in U-Momentum (Cumulus Friction)
-c ------------------------------------------------------
-      if(iudiag1.gt.0) then
-      do L = 1,lm
-      do j = 1,jm
-      do i = 1,im
-       indgath = (j-1)*im + i
-      qdiag(i,j,iudiag1+L-1,bi,bj) = qdiag(i,j,iudiag1+L-1,bi,bj) + 
-     .    dumoist(i,j,L)*sday
-      enddo
-      enddo
-      enddo
-      endif
-
-c Moist Processes Change in V-Momentum (Cumulus Friction)
-c ------------------------------------------------------
-      if(iudiag2.gt.0) then
-      do L = 1,lm
-      do j = 1,jm
-      do i = 1,im
-       indgath = (j-1)*im + i
-      qdiag(i,j,iudiag2+L-1,bi,bj) = qdiag(i,j,iudiag2+L-1,bi,bj) + 
-     .    dvmoist(i,j,L)*sday
-      enddo
-      enddo
-      enddo
-      endif
-
 c Cloud Mass Flux
 c ---------------
       if(icldmas.gt.0) then
