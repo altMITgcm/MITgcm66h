@@ -31,6 +31,9 @@ C     === Routine arguments ===
       CHARACTER*(*) arrName
       INTEGER myThid
 
+#ifdef ALLOW_PTRACERS
+#ifdef ALLOW_GCHEM
+
 C     === Local variables ====
       _RL theMin
       _RL theMax
@@ -49,6 +52,9 @@ C     === Local variables ====
       CALL MON_OUT_RL( arrName, theMax,  mon_foot_max  ,myThid)
       CALL MON_OUT_RL( arrName, theMin,  mon_foot_min  ,myThid)
       CALL MON_OUT_RL( arrName, theMean, mon_foot_mean ,myThid)
+
+#endif
+#endif
 
       RETURN
       END
