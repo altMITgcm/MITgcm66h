@@ -583,6 +583,7 @@ c--
 #  else /* ALLOW_DIVIDED_ADJOINT undef */
       CALL TIMER_START('ADTHE_MAIN_LOOP          [ADJOINT RUN]', mythid)
       CALL ADTHE_MAIN_LOOP ( myCurrentTime, myCurrentIter, mythid )
+cph      CALL ADTHE_MAIN_LOOP ( mythid )
       CALL TIMER_STOP ('ADTHE_MAIN_LOOP          [ADJOINT RUN]', mythid)
 #  endif /* ALLOW_DIVIDED_ADJOINT */
 c
