@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint57f_pre
+
 o mnc-ifying the seaice package
 o introduced an alternative length scale calculation for use in the limiting
   maximum viscosity (off by default, see mom_vi_hdissip.F for details)
