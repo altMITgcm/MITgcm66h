@@ -88,7 +88,7 @@
 #
  &PARM03
  tauCD=172800.,
- startTime=0.0,
+ startTime=360000.0,
  nTimeSteps=4,
  deltaTmom=3600.0,
  deltaTtracer=3600.0,
