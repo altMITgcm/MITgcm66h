@@ -52,7 +52,7 @@ C     number of surface interface layer
       INTEGER kSurface
 CEOP
 
-      if ( buoyancyRelation .eq. 'AMTMOSPHERIC' ) then
+      if ( buoyancyRelation .eq. 'ATMOSPHERIC' ) then
        kSurface = 0
       elseif ( buoyancyRelation .eq. 'OCEANICP' ) then
        kSurface = Nr
@@ -133,7 +133,7 @@ C     number of surface interface layer
       INTEGER kSurface
 CEOP
 
-      if ( buoyancyRelation .eq. 'AMTMOSPHERIC' ) then
+      if ( buoyancyRelation .eq. 'ATMOSPHERIC' ) then
        kSurface = 0
       elseif ( buoyancyRelation .eq. 'OCEANICP' ) then
        kSurface = Nr
@@ -221,7 +221,7 @@ C     number of surface interface layer
       INTEGER kSurface
 CEOP
 
-      if ( buoyancyRelation .eq. 'AMTMOSPHERIC' ) then
+      if ( buoyancyRelation .eq. 'ATMOSPHERIC' ) then
        kSurface = 0
       elseif ( buoyancyRelation .eq. 'OCEANICP' ) then
        kSurface = Nr
@@ -319,7 +319,7 @@ C     number of surface interface layer
       INTEGER kSurface
 CEOP
 
-      if ( buoyancyRelation .eq. 'AMTMOSPHERIC' ) then
+      if ( buoyancyRelation .eq. 'ATMOSPHERIC' ) then
        kSurface = 0
       elseif ( buoyancyRelation .eq. 'OCEANICP' ) then
        kSurface = Nr
