@@ -3,6 +3,17 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+ecco_c51_e34d
+o modif's to restore TAMC compatibility
+  - avoid "_d" constructs in PARAMETER declarations
+  - avoid interrupting lines by comment lines
+o Use cluster local disks for purely local I/O
+  vs. globally visible disks needed for ctrl stuff
+  - new active_file_loc... and mdsio_..._loc routines
+  - affected packages: autodiff, ctrl, grdchk, mdsio
+o bug fixes for 3d packing and I/O of sliced (xz/yz) fields
+  to increase I/O performance.
+
 ecco_c51_e34c
 o introducing integer flag debugLevel
   - debLevZero: suppress all output
