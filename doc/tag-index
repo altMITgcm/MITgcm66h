@@ -27,6 +27,7 @@ o grdchk: updated and merged
 o autodiff: checkpoint_lev...
   - updated storing for bulk formulae (some arrays were missing)
   - added state for seaice package
+  - synchronized with main branch
 o DIVA:
   Modif.s in
   - cost_init.F
@@ -46,6 +47,7 @@ o DIVA:
   The current changes apply to TAF-1.4.26.
   TAF has one remaining bug, requiring one manual change
   (see MITgcm manual).
+o bug fix plus modif for ubar, vbar in cost_averagesfields
 
 icebear4
 o Added cost_ice for sea-ice volume sensitivity experiment.
