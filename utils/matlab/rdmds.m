@@ -73,7 +73,9 @@ for ind=1:size(varargin,2);
   if arg>=9999999999
    error(sprintf('Argument %i > 9999999999',arg))
   end
-  if prod(arg>=0) & prod(round(arg)==arg)
+  if isnan(arg)
+   iters=scanforfiles(fname);
+  elseif prod(arg>=0) & prod(round(arg)==arg)
    iters=arg;
   else
    error(sprintf('Argument %i must be a positive integer',arg))
@@ -100,7 +102,7 @@ allfiles=dir( sprintf('%s*.meta',fname) );
 
 if size(allfiles,1)==0
  disp(sprintf('No files match the search: %s.*.meta',fname));
- error('No files found.')
+%allow partial reads%  error('No files found.')
 end
 
 % Loop through allfiles
@@ -329,3 +331,14 @@ if count ~= nnn
 end
 st=fclose(fid);
 arr=reshape(arr,N);
+
+%
+function [iters] = scanforfiles(fname)
+
+allfiles=dir([fname '.*.meta']);
+for k=1:size(allfiles,1);
+ hh=allfiles(k).name;
+ iters(k)=str2num( hh(end-14:end-5) );
+end
+
+disp([ sprintf('Reading %i time levels:',size(allfiles,1)) sprintf(' %i',iters) ]);
