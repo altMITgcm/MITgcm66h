@@ -130,10 +130,9 @@ caja &     +drF(K-1)*_hFacC(i,j,k-1,bi,bj)*0.5
         ENDDO
        ENDDO
       ENDDO
-      cg3dNbuf(1,myThid) = myNorm
-      _GLOBAL_MAX_R4( cg3dNbuf, myNorm, myThid )
-      IF ( cg3dNbuf(1,1) .NE. 0. _d 0 ) THEN
-       myNorm = 1. _d 0/cg3dNbuf(1,1)
+      _GLOBAL_MAX_R4( myNorm, myThid )
+      IF ( myNorm .NE. 0. _d 0 ) THEN
+       myNorm = 1. _d 0/myNorm
       ELSE
        myNorm = 1. _d 0
       ENDIF
@@ -295,7 +294,7 @@ C--   Set default values for initial guess and RHS
            DO I=1-OLx,sNx+OLx
             cg3d_x(I,J,K,bi,bj) = 0. _d 0
             cg3d_b(I,J,K,bi,bj) = 0. _d 0
-#ifdef ALLOW_CD
+#ifdef INCLUDE_CD_CODE
             cg3d_xNM1(I,J,K,bi,bj) = 0. _d 0
 #endif
            ENDDO
@@ -306,7 +305,7 @@ C--   Set default values for initial guess and RHS
 C--    Update overlap regions
        _EXCH_XYZ_R8(cg3d_x, myThid)
        _EXCH_XYZ_R8(cg3d_b, myThid)
-#ifdef ALLOW_CD
+#ifdef INCLUDE_CD_CODE
        _EXCH_XYZ_R8(cg3d_xNM1, myThid)
 #endif
       ENDIF
