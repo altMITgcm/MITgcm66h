@@ -24,7 +24,7 @@ C     == Global data ==
 #endif
 
 C     == Local variables ==
-      REAL*8  dummyVal
+      Real*8  dummyVal
       INTEGER rc
       CHARACTER*(MAX_LEN_FNAM) fnam
 #ifdef JAM_WITH_TWO_PROCS_PER_NODE
