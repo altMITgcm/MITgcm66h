@@ -3,6 +3,19 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+next patch:
+o bug fix in packages_readparms (missing ALLOW_CALENDAR)
+o bug fix in CG2D.h (correct array size for LETS_MAKE_JAM
+o Adjoint-related bug fixes in kpp:
+  - kpp_calc: sore of kpphbl avoids recomputation/call to S/R kppmix
+  - kpp_routines: store of Rib avoids partial recomputation bug of TAF.
+o added Eliassen-Palm flux hooks (dynamics,ini_fields)
+o removed unused TAF keys iikey, idkey (dynamics,thermodynamics)
+o flow directives:
+  - new for S/R do_the_model_io
+  - enhanced for S/R checkpoint
+o added E-P fluxes to gradient check package
+
 release1_p4
 o Removed f90 comments ("!")
 o Modified initialisations to enable exf package for MITgcm
