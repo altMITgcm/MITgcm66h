@@ -78,7 +78,7 @@ C--   External thermal forcing term(s)
      & .OR.tracerAdvScheme.EQ.ENUM_CENTERED_4TH ) THEN
         CALL ADAMS_BASHFORTH2(
      I                        bi, bj, K,
-     U                        gT, gTnm1,
+     U                        gTr1, gTr1nm1,
      I                        myIter, myThid )
       ENDIF
 
