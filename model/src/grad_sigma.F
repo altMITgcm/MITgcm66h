@@ -3,26 +3,31 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
+CBOP
+C     !ROUTINE: GRAD_SIGMA
+C     !INTERFACE:
       SUBROUTINE GRAD_SIGMA(
      I             bi, bj, iMin, iMax, jMin, jMax, K,
      I             rhoK, sigKm1, sigKp1,
      O             sigmaX, sigmaY, sigmaR,
      I             myThid )
-C     /==========================================================\
-C     | SUBROUTINE CALC_ISOSLOPES                                |
-C     | o Calculate isoneutral gradients                         |
-C     |==========================================================|
-C     \==========================================================/
-      IMPLICIT NONE
+C     !DESCRIPTION: \bv
+C     *==========================================================*
+C     | SUBROUTINE CALC_ISOSLOPES                                 
+C     | o Calculate isoneutral gradients                          
+C     *==========================================================*
+C     \ev
 
+C     !USES:
+      IMPLICIT NONE
 C     == Global variables ==
 #include "SIZE.h"
 #include "GRID.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 
+C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
-C
       INTEGER bi,bj,iMin,iMax,jMin,jMax,K
       _RL rhoK(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RL sigKm1(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
@@ -32,8 +37,10 @@ C
       _RL sigmaR(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
       INTEGER myThid
 
+C     !LOCAL VARIABLES:
 C     == Local variables ==
       INTEGER i,j
+CEOP
 
       DO j=1-Oly,sNy+Oly
        DO i=1-Olx+1,sNx+Olx

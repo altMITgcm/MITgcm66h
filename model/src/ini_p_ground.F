@@ -3,17 +3,24 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
+CBOP
+C     !ROUTINE: INI_P_GROUND
+C     !INTERFACE:
       SUBROUTINE INI_P_GROUND( 
      I                        Hfld, 
      O                        Pfld, 
      I                        myThid )
-C     /==========================================================\
-C     | SUBROUTINE INI_P_GROUND                                  |
-C     | o Convert Topography [m] to (reference) Surface Pressure |
-C     |   according to tRef profile,                             |
-C     |   using same discretisation as in calc_phi_hyd           |
-C     |                                                          |
-C     \==========================================================/
+C     !DESCRIPTION: \bv
+C     *==========================================================*
+C     | SUBROUTINE INI_P_GROUND                                    
+C     | o Convert Topography [m] to (reference) Surface Pressure  
+C     |   according to tRef profile,                              
+C     |   using same discretisation as in calc_phi_hyd            
+C     |                                                           
+C     *==========================================================*
+C     \ev
+
+C     !USES:
       IMPLICIT NONE
 C     == Global variables ==
 #include "SIZE.h"
@@ -21,19 +28,22 @@ C     == Global variables ==
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 
+C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
-C  Hfld (input)  : Ground elevation [m] 
-C  Pfld (output) : reference Pressure at the ground [Pa] 
+C     Hfld (input)  :: Ground elevation [m] 
+C     Pfld (output) :: reference Pressure at the ground [Pa] 
       _RS Hfld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS Pfld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       INTEGER myThid
 
 c #ifdef INCLUDE_PHIHYD_CALCULATION_CODE
 
+C     !LOCAL VARIABLES:
 C     == Local variables ==
       INTEGER bi,bj,i,j,K, Ks
       _RL ddPI, Po_surf
       _RL phiRef(2*Nr+1), rHalf(2*Nr+1)
+CEOP
 
       DO K=1,Nr
         rHalf(2*K-1) = rF(K)

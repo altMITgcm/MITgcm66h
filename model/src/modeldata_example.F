@@ -3,27 +3,37 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
+CBOP
+C     !ROUTINE: MODELDATA_EXAMPLE
+C     !INTERFACE:
       SUBROUTINE MODELDATA_EXAMPLE( myThid )
-C     /==========================================================\
-C     | S/R MODELDATA_EXAMPLE                                    |
-C     | o Write example data file                                |
-C     |==========================================================|
-C     | Notes                                                    |
-C     | =====                                                    |
-C     | Some systems require & as the namelist terminator.       |
-C     | Other systems use a / character.                         |
-C     \==========================================================/
-      IMPLICIT NONE
 
+C     !DESCRIPTION: \bv
+C     *==========================================================*
+C     | S/R MODELDATA_EXAMPLE                                     
+C     | o Write example data file                                 
+C     *==========================================================*
+C     | Notes                                                     
+C     | =====                                                     
+C     | Some systems require & as the namelist terminator.        
+C     | Other systems use a / character.                          
+C     *==========================================================*
+C     \ev
+
+C     !USES:
+      IMPLICIT NONE
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 
-C     -- Routine arguments --
+C     !INPUT/OUTPUT PARAMETERS:
+C     == Routine arguments ==
       INTEGER myThid
 
-C     -- Local variables --
+C     !LOCAL VARIABLES:
+C     == Local variables ==
       CHARACTER*(MAX_LEN_MBUF) msgBuf
+CEOP
       
       WRITE(msgBuf,'(A)') '// Shown below is an example "data" file.'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)

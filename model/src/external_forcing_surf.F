@@ -3,17 +3,22 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
  
-CStartOfInterface
+CBOP
+C     !ROUTINE: EXTERNAL_FORCING_SURF
+C     !INTERFACE:
       SUBROUTINE EXTERNAL_FORCING_SURF( 
      I             bi, bj, iMin, iMax, jMin, jMax,
      I             myThid )
-C     /==========================================================\
-C     | SUBROUTINE EXTERNAL_FORCING_SURF                         |
-C     | o Determines forcing terms based on external fields      |
-C     |   relaxation terms etc.                                  |
-C     \==========================================================/
+C     !DESCRIPTION: \bv
+C     *==========================================================*
+C     | SUBROUTINE EXTERNAL_FORCING_SURF                          
+C     | o Determines forcing terms based on external fields       
+C     |   relaxation terms etc.                                   
+C     *==========================================================*
+C     \ev
+
+C     !USES:
       IMPLICIT NONE
- 
 C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -22,19 +27,18 @@ C     === Global variables ===
 #include "DYNVARS.h"
 #include "GRID.h"
  
+C     !INPUT/OUTPUT PARAMETERS:
 C     === Routine arguments ===
-C     myThid - Thread no. that called this routine.
+C     myThid :: Thread no. that called this routine.
       INTEGER myThid
-CEndOfInterface
- 
-C     === Functions ===
-
-C     === Local arrays ===
-
-C     === Local variables ===
-      INTEGER i,j,bi,bj
+      INTEGER bi,bj
       INTEGER iMin, iMax
       INTEGER jMin, jMax
+
+C     !LOCAL VARIABLES:
+C     === Local variables ===
+      INTEGER i,j
+CEOP
 
       DO j = jMin, jMax
          DO i = iMin, iMax

@@ -3,24 +3,29 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CStartOfInterface
+CBOP
+C     !ROUTINE: INI_SALT
+C     !INTERFACE:
       SUBROUTINE INI_SALT ( myThid )
-C     /==========================================================\
-C     | SUBROUTINE INI_SALT                                      |
-C     | o Set model initial salinity field.                      |
-C     |==========================================================|
-C     | There are several options for setting the initial        |
-C     | temperature file                                         |
-C     |  1. Inline code                                          |
-C     |  2. Vertical profile ( uniform S in X and Y )            |
-C     |  3. Three-dimensional data from a file. For example from |
-C     |     Levitus or from a checkpoint file from a previous    |
-C     |     integration.                                         |
-C     | In addition to setting the salinity field we also        |
-C     | set the initial salinity tendency term here.             |
-C     \==========================================================/
-      IMPLICIT NONE
+C     !DESCRIPTION: \bv
+C     *==========================================================*
+C     | SUBROUTINE INI_SALT                                       
+C     | o Set model initial salinity field.                       
+C     *==========================================================*
+C     | There are several options for setting the initial         
+C     | temperature file                                          
+C     |  1. Inline code                                           
+C     |  2. Vertical profile ( uniform S in X and Y )             
+C     |  3. Three-dimensional data from a file. For example from  
+C     |     Levitus or from a checkpoint file from a previous     
+C     |     integration.                                          
+C     | In addition to setting the salinity field we also         
+C     | set the initial salinity tendency term here.              
+C     *==========================================================*
+C     \ev
 
+C     !USES:
+      IMPLICIT NONE
 C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -28,17 +33,19 @@ C     === Global variables ===
 #include "GRID.h"
 #include "DYNVARS.h"
 
+C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     myThid -  Number of this instance of INI_SALT 
       INTEGER myThid
-CEndOfInterface
 
+C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     bi,bj  - Loop counters
 C     I,J,K
       INTEGER bi, bj
       INTEGER  I,  J, K, localWarnings
       CHARACTER*(MAX_LEN_MBUF) msgBuf
+CEOP
 
 C--   Initialise salinity field to the vertical reference profile
       DO bj = myByLo(myThid), myByHi(myThid)

@@ -3,30 +3,35 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CStartOfInterface
+CBOP
+C     !ROUTINE: INI_VERTICAL_GRID
+C     !INTERFACE:
       SUBROUTINE INI_VERTICAL_GRID( myThid )
-C     /==========================================================\
-C     | SUBROUTINE INI_VERTICAL_GRID                             |
-C     | o Initialise vertical gridding arrays                    |
-C     |==========================================================|
-C     |                                                          |
-C     \==========================================================/
-      IMPLICIT NONE
+C     !DESCRIPTION: \bv
+C     *==========================================================*
+C     | SUBROUTINE INI_VERTICAL_GRID                              
+C     | o Initialise vertical gridding arrays                     
+C     *==========================================================*
+C     \ev
 
+C     !USES:
+      IMPLICIT NONE
 C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
 
+C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     myThid -  Number of this instance of INI_DEPTHS
       INTEGER myThid
-CEndOfInterface
 
+C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     K
       INTEGER K
+CEOP
 
 C     Calculate depths of centers and interfaces
       rF(1) = Ro_SeaLevel

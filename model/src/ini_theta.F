@@ -3,24 +3,29 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CStartOfInterface
+CBOP
+C     !ROUTINE: INI_THETA
+C     !INTERFACE:
       SUBROUTINE INI_THETA( myThid )
-C     /==========================================================\
-C     | SUBROUTINE INI_THETA                                     |
-C     | o Set model initial temperature field.                   |
-C     |==========================================================|
-C     | There are several options for setting the initial        |
-C     | temperature file                                         |
-C     |  1. Inline code                                          |
-C     |  2. Vertical profile ( uniform T in X and Y )            |
-C     |  3. Three-dimensional data from a file. For example from |
-C     |     Levitus or from a checkpoint file from a previous    |
-C     |     integration.                                         |
-C     | In addition to setting the temperature field we also     |
-C     | set the initial temperature tendency term here.          |
-C     \==========================================================/
-      IMPLICIT NONE
+C     !DESCRIPTION: \bv
+C     *==========================================================*
+C     | SUBROUTINE INI_THETA                                      
+C     | o Set model initial temperature field.                    
+C     *==========================================================*
+C     | There are several options for setting the initial         
+C     | temperature file                                          
+C     |  1. Inline code                                           
+C     |  2. Vertical profile ( uniform T in X and Y )             
+C     |  3. Three-dimensional data from a file. For example from  
+C     |     Levitus or from a checkpoint file from a previous     
+C     |     integration.                                          
+C     | In addition to setting the temperature field we also      
+C     | set the initial temperature tendency term here.           
+C     *==========================================================*
+C     \ev
 
+C     !USES:
+      IMPLICIT NONE
 C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -28,11 +33,12 @@ C     === Global variables ===
 #include "GRID.h"
 #include "DYNVARS.h"
 
+C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     myThid -  Number of this instance of INI_THETA
       INTEGER myThid
-CEndOfInterface
 
+C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     iC, jC - Center of domain
 C     iD, jD - Disitance from domain center.
@@ -47,6 +53,7 @@ C     I,J,K
       INTEGER I, J, K, localWarnings
       _RL     rad, rD
       CHARACTER*(MAX_LEN_MBUF) msgBuf
+CEOP
 
 C--   Initialise temperature field to the vertical reference profile
       DO bj = myByLo(myThid), myByHi(myThid)
