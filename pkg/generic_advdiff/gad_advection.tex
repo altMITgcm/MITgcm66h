@@ -20,11 +20,11 @@ There are two high-level routines:
 \begin{itemize}
 \item{GAD\_CALC\_RHS} calculates all fluxes at time level ``n'' and is
   used for the standard linear schemes. This must be used in
-  conjuction with Adams-Bashforth time-stepping. Diffusive and
+  conjuction with Adams--Bashforth time stepping. Diffusive and
   parameterized fluxes are always calculated here.
   
 \item{GAD\_ADVECTION} calculates just the advective fluxes using the
   non-linear schemes and can not be used in conjuction with
-  Adams-Bashforth time-stepping.
+  Adams--Bashforth time stepping.
 \end{itemize} 
 

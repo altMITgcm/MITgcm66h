@@ -133,6 +133,10 @@ api_main.pdf: api_main.ps
 
 all_protex: api_main.pdf
 
+distclean:
+	@make clean
+	-rm -f Makefile
+
 clean:
 	-rm -f *.aux *.dvi *.log *.toc *.out
 	-rm -f api_main.*

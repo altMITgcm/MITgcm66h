@@ -279,7 +279,7 @@ CEOP
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 CBOP
-C     !ROUTINE: 
+C     !ROUTINE: MNC_VAR_ADD_ATTR_REAL
 
 C     !INTERFACE:
       SUBROUTINE MNC_VAR_ADD_ATTR_REAL( 
