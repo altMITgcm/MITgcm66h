@@ -1,5 +1,7 @@
 C $Header$
 
+#include "CPP_EEOPTIONS.h"
+
       SUBROUTINE MEMSYNC
 
 C     /==========================================================\
