@@ -174,6 +174,7 @@ C     uninitialised but inert locations.
         rhokm1(i,j)  = 0. _d 0
         rhokp1(i,j)  = 0. _d 0
         rhotmp(i,j)  = 0. _d 0
+        maskC (i,j)  = 0. _d 0
        ENDDO
       ENDDO
 
