@@ -19,15 +19,20 @@ C     Functions
       integer ILNBLNK
 
 C     Locals
-      integer lenm
+      integer i,lenm
       character*(MAX_LEN_MBUF) msgbuf
+      DO i = 1,MAX_LEN_MBUF
+        msgbuf(i:i) = ' '
+      ENDDO
 
       IF ( status .NE. NF_NOERR ) THEN
         write(msgbuf,'(2a)') 'NetCDF ERROR: ', NF_STRERROR(status)
         lenm = ILNBLNK(msgbuf)
+        print *, msgbuf(1:lenm)
         CALL print_error(msgbuf(1:lenm), mythid)
         write(msgbuf,'(2a)') 'MNC ERROR: ', msg
         lenm = ILNBLNK(msgbuf)
+        print *, msgbuf(1:lenm)
         CALL print_error(msgbuf(1:lenm), mythid)
         stop 'ABNORMAL END: package MNC'
       ENDIF
