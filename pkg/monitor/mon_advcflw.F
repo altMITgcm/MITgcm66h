@@ -45,7 +45,7 @@ C     === Local variables ====
       ENDDO
       _GLOBAL_MAX_R8(theMax,myThid)
 
-      CALL MON_OUT_RL( label, theMax, mon_foot_max )
+      CALL MON_OUT_RL( label, theMax, mon_foot_max ,myThid)
 
       RETURN
       END

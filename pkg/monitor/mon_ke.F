@@ -55,8 +55,8 @@ C     === Local variables ====
       _GLOBAL_SUM_R8(tmpVal,myThid)
       IF (tmpVal.NE.0.) theMean=theMean/tmpVal
 
-      CALL MON_OUT_RL( mon_string_none, theMax, mon_foot_max   )
-      CALL MON_OUT_RL( mon_string_none, theMean, mon_foot_mean )
+      CALL MON_OUT_RL( mon_string_none, theMax, mon_foot_max   ,myThid)
+      CALL MON_OUT_RL( mon_string_none, theMean, mon_foot_mean ,myThid)
 
       RETURN
       END

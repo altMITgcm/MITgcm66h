@@ -53,10 +53,10 @@ C      Dynamics field monitor start
 
 C      Print the time to make grepping the stdout easier
        CALL MON_SET_PREF('time',myThid)
-       CALL MON_OUT_I( '_tsnumber', myIter,mon_string_none)
-       CALL MON_OUT_RL('_secondsf', myTime,mon_string_none)
+       CALL MON_OUT_I( '_tsnumber', myIter,mon_string_none,myThid)
+       CALL MON_OUT_RL('_secondsf', myTime,mon_string_none,myThid)
        time_as_int = NINT( myTime )
-       CALL MON_OUT_I( '_secondsi', time_as_int,mon_string_none)
+       CALL MON_OUT_I( '_secondsi', time_as_int,mon_string_none,myThid)
 C      Print the basic statistics of model state variables
        CALL MON_SET_PREF('dynstat',myThid)
        CALL MON_PRINTSTATS_RL(1,EtaN,'_eta',myThid)
