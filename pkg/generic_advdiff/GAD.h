@@ -59,7 +59,7 @@ C GAD_TEMPERATURE :: temperature
 C GAD_SALINITY :: salinity
       INTEGER GAD_SALINITY
       PARAMETER(GAD_SALINITY=2)
-C GAD_TR1 :: pssive tracer 1
+C GAD_TR1 :: passive tracer 1
       INTEGER GAD_TR1
       PARAMETER(GAD_TR1=3)
 CEOP

@@ -38,7 +38,7 @@ C     |         but needs new code and parameters in this new method)
 C     *==========================================================*
 C     \ev
 
-C     !USES
+C     !USES:
       IMPLICIT NONE
 C     === Global variables ===
 #include "SIZE.h"
@@ -66,6 +66,7 @@ C     == Local variables ==
       EXTERNAL DIFFERENT_MULTIPLE
       INTEGER bi, bj, K
       _RL DDTT
+CEOP
 
 C----------------------------------------------------------------
 C     Dump snapshot of KPP variables.
