@@ -137,7 +137,7 @@ C     Echo History List Data Structure
         CALL PRINT_MESSAGE(
      &       msgBuf, standardMessageUnit, SQUEEZE_RIGHT, mythid)
 	do L=1,nlevels(n),20
-        levrest = min(nlevels(n),20)
+        levrest = min(nlevels(n)-L+1,20)
         WRITE(msgBuf,*) 'Levels:    ',(levs(LL,n),LL=L,L+levrest-1)
         CALL PRINT_MESSAGE(
      &       msgBuf, standardMessageUnit, SQUEEZE_RIGHT, mythid)
@@ -147,6 +147,7 @@ C     Echo History List Data Structure
      &       msgBuf, standardMessageUnit, SQUEEZE_RIGHT, mythid)
       enddo
 
+ 1000 format(' ',a11,' ',20f4.0)
       _END_MASTER(myThid)
 
       return
