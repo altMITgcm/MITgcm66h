@@ -1079,7 +1079,7 @@ c ----------------
       tends(i) = ( th(i,l)-tmpstrip(i) )
       enddo
 
-      if(1.eq.1)then
+      if(2.eq.1)then
       print *,' In turbio, tendencies for strip ',nn,' level ',l
       print *,' field: th ',tends
       endif
@@ -1092,7 +1092,7 @@ c ----------------
       tends(i) = ( sh(i,l)-tmpstrip(i) )
       enddo
 
-      if(1.eq.1)then
+      if(2.eq.1)then
       print *,' In turbio, tendencies for strip ',nn,' level ',l
       print *,' field: sh ',tends
       endif
