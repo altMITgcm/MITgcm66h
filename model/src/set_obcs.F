@@ -58,7 +58,6 @@ C     I,i,K
        OBSv(I,K,bi,bj)=0.
        OBSt(I,K,bi,bj)=tRef(K)
       ENDDO
-     ENDDO
 
 #endif
       RETURN
