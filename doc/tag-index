@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o mnc-ifying the seaice package
 o introduced an alternative length scale calculation for use in the limiting
   maximum viscosity (off by default, see mom_vi_hdissip.F for details)
 o S/R ptracers_calc_diff: argument list bug for CALL KPP_CALC_DIFF_S

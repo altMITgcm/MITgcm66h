@@ -120,7 +120,7 @@ CEOP
       integer MNC_CW_MAX_I, MNC_CW_CVDAT
       parameter ( MNC_MAX_ID   =   1000 )
       parameter ( MNC_MAX_CHAR =    100 )
-      parameter ( MNC_MAX_INFO =    400 )
+      parameter ( MNC_MAX_INFO =    800 )
       parameter ( MNC_CW_MAX_I =    150 )
       parameter ( MNC_CW_CVDAT =  50000 )
 

@@ -221,5 +221,10 @@ C     yet been tried nor thought through.
 C--   Summarise pkg/seaice cofiguration
       CALL SEAICE_SUMMARY( myThid )
 
+C     Initialize MNC variable information for SEAICE
+      IF ( useMNC ) THEN
+        CALL SEAICE_MNC_INIT( myThid )
+      ENDIF
+
       return
       end
