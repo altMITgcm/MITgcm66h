@@ -57,6 +57,7 @@ c     == local variables ==
       integer nsecs
       integer hhmmss
       integer ierr
+      _RL     tmp1, tmp2
 
 c     == end of interface ==
 
@@ -68,7 +69,9 @@ c     == end of interface ==
       if (timeunit .eq. 'secs') then
 
         date(1) = int(timeint/float(secondsperday))
-        nsecs   = int(timeint - float(date(1)) * float(secondsperday))
+        tmp1    = date(1)
+        tmp2    = secondsperday
+        nsecs   = int(timeint - tmp1 * tmp2 )
 
       else if (timeunit .eq. 'model') then
 

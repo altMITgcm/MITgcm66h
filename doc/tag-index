@@ -2,7 +2,15 @@ $Header$
 
     Notes on tags used in MITgcmUV
     ==============================
-not yet tagged:
+
+checkpoint51l_post
+o changes to pkg/cal and pkg/exf that allow and speed-up long integrations
+ - faster algorithm for cal_addtime.F
+ - higher precision arithmetic, where needed
+ - pkg/exf *startdate variables changed from calendar date to
+   model integration time
+
+checkpoint51l_pre
 o add salt flux to forcing fields (used when salty sea-ice forms or melts)
 o enable to apply restoring on S & T only in a latitude band.
 o update output (external_forcing_surf modif. change truncation errors)
