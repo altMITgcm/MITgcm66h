@@ -5,6 +5,7 @@ $Header$
 
 o AIM: use true log-P extrapolation for near surface temp (= as in 
     F.Molteni paper) ; update aim.5l_cs output.
+o New variable in PARM03 for more flexible pickups
 
 checkpoint50g_post
 o merged with release1_p17 (pkg/seaice and verification/lab_sea)
