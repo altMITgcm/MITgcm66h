@@ -5,7 +5,7 @@ C $Header$
       SUBROUTINE CALC_PHI_HYD(
      I                         bi, bj, iMin, iMax, jMin, jMax, K,
      I                         theta, salt,
-     U                         phiHyd, phiHydInterface,
+     U                         phiHyd,
      I                         myThid)
 C     /==========================================================\
 C     | SUBROUTINE CALC_PHI_HYD                                  |
@@ -18,14 +18,14 @@ C     |   phiHyd(i,j,1:k-1) is the hydrostatic pressure/geopot.  |
 C     |                 at cell centers (tracer points)          |
 C     |                 - 1:k-1 layers are valid                 |
 C     |                 - k:Nr layers are invalid                |
-C     |   phiHydInterface(i,j) is the hydrostatic pressure/geop. |
+C     |   phiHyd(i,j,k) is the hydrostatic pressure/geop.        |
 C     |                 at cell the interface k (w point above)  |
 C     | On exit:                                                 |
 C     |   phiHyd(i,j,1:k) is the hydrostatic pressure/geopot.    |
 C     |                 at cell centers (tracer points)          |
 C     |                 - 1:k layers are valid                   |
 C     |                 - k+1:Nr layers are invalid              |
-C     |   phiHydInterface(i,j) is the hydrostatic pressure/geop. |
+C     |   phiHyd(i,j,k+1) is the hydrostatic pressure/geop.      |
 C     |                 at cell the interface k+1 (w point below)|
 C     |                                                          |
 C     \==========================================================/
@@ -40,7 +40,6 @@ C     == Routine arguments ==
       _RL theta(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL salt(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL phiHyd(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
-      _RL phiHydInterface(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER myThid
 
 #ifdef INCLUDE_PHIHYD_CALCULATION_CODE
@@ -71,7 +70,6 @@ C       P(z=eta) = P(atmospheric_loading)
           DO j=jMin,jMax
             DO i=iMin,iMax
 C             *NOTE* The loading should go here but has not been implemented yet
-              phiHydInterface(i,j)=0.
               phiHyd(i,j,k)=0.
             ENDDO
           ENDDO
@@ -94,10 +92,10 @@ C---------- This discretization is the "finite volume" form
 C           which has not been used to date since it does not
 C           conserve KE+PE exactly even though it is more natural
 C
-c           phiHyd(i,j,k)=phiHydInterface(i,j)+
-c    &          0.5*drF(K)*gravity*alphaRho(i,j)
-c           phiHydInterface(i,j)=phiHydInterface(i,j)+
+c           IF (k.LT.Nr) phiHyd(i,j,k+1)=phiHyd(i,j,k)+
 c    &              drF(K)*gravity*alphaRho(i,j)
+c           phiHyd(i,j,k)=phiHyd(i,j,k)+
+c    &          0.5*drF(K)*gravity*alphaRho(i,j)
 C-----------------------------------------------------------------------
 
 C---------- This discretization is the "energy conserving" form
@@ -105,7 +103,7 @@ C           which has been used since at least Adcroft et al., MWR 1997
 C
             phiHyd(i,j,k)=phiHyd(i,j,k)+
      &          0.5*dRloc*gravity*alphaRho(i,j)
-            phiHyd(i,j,k+1)=phiHyd(i,j,k)+
+            IF (k.LT.Nr) phiHyd(i,j,k+1)=phiHyd(i,j,k)+
      &          0.5*dRlocKp1*gravity*alphaRho(i,j)
 C-----------------------------------------------------------------------
           ENDDO

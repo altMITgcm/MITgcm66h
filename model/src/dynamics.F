@@ -92,7 +92,6 @@ C                      index into fVerTerm.
       _RL fVerU   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
       _RL fVerV   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
       _RL phiHyd  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
-      _RL phiHydInterface(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL rhokm1  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL rhok    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL KappaRT (1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
@@ -523,13 +522,13 @@ C        distinguishe between Stagger and Non Stagger time stepping
            CALL CALC_PHI_HYD(
      I        bi,bj,iMin,iMax,jMin,jMax,k,
      I        gTnm1, gSnm1,
-     U        phiHyd, phiHydInterface,
+     U        phiHyd,
      I        myThid )
          ELSE
            CALL CALC_PHI_HYD(
      I        bi,bj,iMin,iMax,jMin,jMax,k,
      I        theta, salt,
-     U        phiHyd, phiHydInterface,
+     U        phiHyd,
      I        myThid )
          ENDIF
 
