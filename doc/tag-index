@@ -3,6 +3,30 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+ecco_c44_e24
+o modifications to gradient check package (Martin Losch)
+  - enable centered differences
+  - modified format of standard output
+o bug fix for nwettile contents
+  so far assumed global sum  in first entry (1,1,k),
+  needed for global control vector
+  -> introduced new variable nwet[c/w/s]global(nr)
+o shifts of calls to cal/exf package to be accessible
+  in MITgcm stand-alone
+o shifted packages_init_variables before convective_adjustment_ini
+  (corresponding update of TAF tape initialisation).
+o removed auxiliary field in impldiff
+  (caused numerical differences for GMRedi cases)
+o updated obcs control part (G. Gebbie)
+o removed some f90 comments ("!")
+o Bug fixes and updates in cost package
+ * cost_final: correct multiplier mult_tauv, mult_sflux
+ * cost_hyd: added call cost_ssh
+ * cost_init_barfiles.F: replaced arrays by tmpfld's
+ * cost_readtopexmean.F: ersmask -> tpmeanmask
+ * cost_weights.F: corrected wtheta[2], wsalt[2]
+o cleaned exchanges in cg2d.F
+
 ecco_c44_e23
 merged patches between release1_p1 and release1_p2:
 o fixed array boundary problem for adjoint
