@@ -78,17 +78,17 @@ C--   Initialise & Read Land package parameters
       IF (useLand) CALL LAND_INITIALISE( myThid )
 #endif
 
+#if (defined (ALLOW_ECCO) && defined (ALLOW_COST))
+C--   Initialise ecco-specific cost function.
+C--   This needs to preceed the call ctrl_init
+C--   in order to provide the weight files
+      IF (useECCO) CALL ECCO_COST_INIT_FIXED( myThid )
+#endif
+
 #ifdef ALLOW_AUTODIFF
 C--   Initialise the control variables
       CALL CTRL_INIT( myThid )
       _BARRIER
-#endif
-
-#ifdef INCLUDE_ECCO_PACKAGE
-# ifdef ALLOW_COST
-C--   Initialise ecco-specific cost function.
-       IF (useECCO) CALL COST_INIT_FIXED( myThid )
-# endif
 #endif
 
 #ifdef ALLOW_PTRACERS

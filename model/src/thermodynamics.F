@@ -102,6 +102,9 @@ C     == Global variables ===
 # ifdef ALLOW_GMREDI
 #  include "GMREDI.h"
 # endif
+# ifdef ALLOW_SEAICE
+#  include "SEAICE_EXTERNAL.h"
+# endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C     !INPUT/OUTPUT PARAMETERS:
@@ -471,6 +474,10 @@ CADJ STORE surfacetendencyS(:,:,bi,bj)
 CADJ &     = comlev1_bibj, key=itdkey, byte=isbyte
 CADJ STORE surfacetendencyT(:,:,bi,bj)
 CADJ &     = comlev1_bibj, key=itdkey, byte=isbyte
+# ifdef ALLOW_SEAICE
+CADJ STORE surfacetendencyTice(:,:,bi,bj)
+CADJ &     = comlev1_bibj, key=itdkey, byte=isbyte
+# endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C--     Attention: by defining "SINGLE_LAYER_MODE" in CPP_OPTIONS.h 

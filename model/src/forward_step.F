@@ -139,13 +139,11 @@ C--   compute the future surface level thickness according to etaH(n+1)
       ENDIF
 #endif /* NONLIN_FRSURF */
 
-C--   Load forcing/external data fields.
 #ifdef ALLOW_AUTODIFF_TAMC
 c**************************************
 #include "checkpoint_lev1_directives.h"
 c**************************************
 #endif
-
 
 C--   Call external forcing package
 #ifdef ALLOW_BULK_FORCE
@@ -173,13 +171,10 @@ C       _EXCH_XY_R8(fv     , mythid)
 #endif /* ALLOW_BULK_FORCE */
 
 # ifdef ALLOW_EXF
-C     NOTE, that although the exf package is part of the
-C     distribution, it is not currently maintained, i.e.
-C     exf is disabled by default in genmake.
-#ifdef ALLOW_DEBUG
+#  ifdef ALLOW_DEBUG
       IF ( debugLevel .GE. debLevB ) 
      &    CALL DEBUG_CALL('EXF_GETFORCING',myThid)
-#endif
+#  endif
       CALL TIMER_START('EXF_GETFORCING     [FORWARD_STEP]',mythid)
       CALL EXF_GETFORCING( mytime, myiter, mythid )
       CALL TIMER_STOP ('EXF_GETFORCING     [FORWARD_STEP]',mythid)
