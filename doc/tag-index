@@ -8,6 +8,13 @@ o merged with checkpoint50g_post (pkg/seaice and verification/lab_sea)
   - added SEAICE_MULTILEVEL for 8-category sea-ice thermodynamics
   - LSR sea-ice dynamic solver moved to SouthWest B-grid location and
     made the default because of faster convergence than ADI
+o Modifications for adjoint of SEAICE_ALLOW_DYNAMICS
+  - extended state in checkpoint_lev...
+  - in lsr.F, replaced GO TO by fixed loop index (also avoid DO WHILE)
+  - YEAH: in lsr.F, (first) successful use of CADJ LOOP = ITERATION
+  - avoid stoing in S/R budget for now
+  - in dynsolver.F, avoid NPSEUDO loop for adjoint
+  - new comlev1_lsr in the_main_loop
 
 ecco_c50_e31
 o exf totally restructured

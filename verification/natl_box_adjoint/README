@@ -412,8 +412,8 @@
  ./mitgcmuv >&! output.txt
 # To verify the results of the gradient check, type:
  grep "ph-grd 3" output.txt
-# The reference output, without dynamics is in:
- grep "ph-grd 3" ../verification/natl_box_adjoint/results_seaice/output.txt
+# A reference output is in:
+ grep "ph-grd 3" ../verification/natl_box_adjoint/results_seaice/output.txt.exp12
 
 
 #####################

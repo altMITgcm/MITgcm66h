@@ -4,7 +4,9 @@ C $Header$
 #ifdef ALLOW_OBCS
 # include "OBCS_OPTIONS.h"
 #endif
-
+#ifdef ALLOW_SEAICE
+# include "SEAICE_OPTIONS.h"
+#endif
 
       subroutine the_main_loop( myTime, myIter, mythid )
 
@@ -278,6 +280,12 @@ CADJ &     = COMMON,nchklev_1*snx*nsx*sny*nsy*nthreads_chkpt
 CADJ INIT comlev1_exf_2
 CADJ &     = COMMON,niter_bulk*nchklev_1*snx*nsx*sny*nsy*nthreads_chkpt
 # endif
+c--
+#ifdef ALLOW_SEAICE
+# ifdef SEAICE_ALLOW_DYNAMICS
+CADJ INIT comlev1_lsr = COMMON,nchklev_1*2
+# endif
+#endif /* ALLOW_SEAICE */
 c--
 #endif /* ALLOW_AUTODIFF_TAMC */
 c**************************************

@@ -3,7 +3,7 @@ C $Header:
 #include "SEAICE_OPTIONS.h"
 
 CStartOfInterface
-      SUBROUTINE lsr( myThid )
+      SUBROUTINE lsr( ilcall, myThid )
 C     /==========================================================\
 C     | SUBROUTINE  lsr                                          |
 C     | o Solve ice momentum equation with an LSR dynamics solver|
@@ -23,9 +23,13 @@ C     === Global variables ===
 #include "SEAICE_PARAMS.h"
 #include "SEAICE_GRID.h"
 
+#ifdef ALLOW_AUTODIFF_TAMC
+# include "tamc.h"
+#endif
 
 C     === Routine arguments ===
 C     myThid - Thread no. that called this routine.
+      INTEGER ilcall
       INTEGER myThid
 CEndOfInterface
 
@@ -37,6 +41,8 @@ C     i,j,bi,bj - Loop counters
 
       INTEGER i, j, m, bi, bj, j1, j2, im, jm
       INTEGER ICOUNT1, ICOUNT2, SOLV_MAX_ITERS, SOLV_NCHECK
+      INTEGER phexit
+
       _RL  RADIUS, RADIUS2
       _RL  WFAU, WFAV, WFAU1, WFAV1, WFAU2, WFAV2
       _RL  AA1, AA2, AA3, AA4, AA5, AA6, S1, S2, S1A, S2A
@@ -80,9 +86,17 @@ C SET SOME VALUES
       ICOUNT1=SOLV_MAX_ITERS
       ICOUNT2=SOLV_MAX_ITERS
 
-C-----------------------
-C--   NOW SOLVE FOR UICE
-C-----------------------
+C SOLVE FOR UICE
+
+#ifdef ALLOW_AUTODIFF_TAMC
+cph That's an important one! Note, that
+cph * lsr is called twice, thus the icall index
+cph * this storing is still outside the iteration loop
+CADJ STORE uice = comlev1_lsr, 
+CADJ &            key = ikey_dynamics + (ilcall-1)*nchklev_1
+CADJ STORE vice = comlev1_lsr, 
+CADJ &            key = ikey_dynamics + (ilcall-1)*nchklev_1
+#endif /* ALLOW_AUTODIFF_TAMC */
 
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
@@ -134,14 +148,14 @@ C-----------------------
      &           +AMASS(I,J,bi,bj)/DELTAT+DRAGS(I,J,bi,bj))
      &           *UVM(I,J,bi,bj)+(ONE-UVM(I,J,bi,bj))
           CU(I,J,bi,bj)=-AA1*DELX2(I,J,bi,bj)*UVM(I,J,bi,bj)
-         ENDDO
-        ENDDO
+         END DO
+        END DO
 
         DO J=1,sNy
          AU(1,J,bi,bj)=ZERO
          CU(sNx,J,bi,bj)=ZERO
          CU(1,J,bi,bj)=CU(1,J,bi,bj)/BU(1,J,bi,bj)
-        ENDDO
+        END DO
 
         DO J=1,sNy
          DO I=1,sNx
@@ -215,105 +229,124 @@ C-----------------------
      &            *TNGICE(I,J+1,bi,bj)
      &            -ETAMEAN(I,J,bi,bj)*DELYR(I,J,bi,bj)
      &            *TWO*TNGICE(I,J,bi,bj)
-         ENDDO
-        ENDDO
+         END DO
+        END DO
 
        ENDDO
       ENDDO
 
-C NOW DO ITERATION FOR UICE
-      M  = 1
-      S1 = LSR_ERROR + 1
-      DO WHILE ( M .LE. solv_max_iters .AND. S1 .GE. LSR_ERROR )
-       M = M + 1
+C NOW DO ITERATION
+100   CONTINUE
+
+cph--- iteration starts here
+cph--- need to kick out goto
+      phexit = -1
+
+C ITERATION START -----------------------------------------------------
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ LOOP = iteration uice
+#endif /* ALLOW_AUTODIFF_TAMC */
+
+      DO 8000 M=1, solv_max_iters
+cph(
+      IF ( phexit .EQ. -1 ) THEN
+cph)
+      DO bj=myByLo(myThid),myByHi(myThid)
+       DO bi=myBxLo(myThid),myBxHi(myThid)
+C NOW SET U(3)=U(1)
+        DO J=1,sNy
+         DO I=1,sNx
+          UICE(I,J,3,bi,bj)=UICE(I,J,1,bi,bj)
+         END DO
+        END DO
+
+        DO 1200 J=1,sNy
+         DO I=1,sNx
+          IF(I.EQ.1) THEN
+           AA2=((ETA(I-1,J-1,bi,bj)+ZETA(I-1,J-1,bi,bj))
+     &            /CSTICE(I-1,J-1,bi,bj)
+     &            +(ETA(I-1,J,bi,bj)+ZETA(I-1,J,bi,bj))
+     &            /CSTICE(I-1,J,bi,bj))/CSUICE(I,J,bi,bj)
+           AA3=AA2*DELX2(I,J,bi,bj)*UICE(I-1,J,1,bi,bj)*UVM(I,J,bi,bj)
+          ELSE IF(I.EQ.sNx) THEN
+           AA1=((ETA(I,J-1,bi,bj)+ZETA(I,J-1,bi,bj))
+     &            /CSTICE(I-1,J-1,bi,bj)
+     &            +(ETA(I,J,bi,bj)+ZETA(I,J,bi,bj))
+     &            /CSTICE(I-1,J,bi,bj))/CSUICE(I,J,bi,bj)
+           AA3=AA1*DELX2(I,J,bi,bj)*UICE(I+1,J,1,bi,bj)*UVM(I,J,bi,bj)
+          ELSE
+           AA3=ZERO
+          END IF
+          URT(I)=FXY(I,J,bi,bj)+AA3
+     &          +UVRT1(I,J,bi,bj)*UICE(I,J-1,1,bi,bj)
+     &          +UVRT2(I,J,bi,bj)*UICE(I,J+1,1,bi,bj)
+          URT(I)=URT(I)*UVM(I,J,bi,bj)
+         END DO
+
+         DO I=1,sNx
+          CUU(I)=CU(I,J,bi,bj)
+         END DO
+         URT(1)=URT(1)/BU(1,J,bi,bj)
+         DO I=2,sNx
+          IM=I-1
+          CUU(I)=CUU(I)/(BU(I,J,bi,bj)-AU(I,J,bi,bj)*CUU(IM))
+          URT(I)=(URT(I)-AU(I,J,bi,bj)*URT(IM))
+     &          /(BU(I,J,bi,bj)-AU(I,J,bi,bj)*CUU(IM))
+         END DO
+         DO I=1,sNx-1
+          J1=sNx-I
+          J2=J1+1
+          URT(J1)=URT(J1)-CUU(J1)*URT(J2)
+         END DO
+         DO I=1,sNx
+          UICE(I,J,1,bi,bj)=UICE(I,J,3,bi,bj)
+     &        +WFAU*(URT(I)-UICE(I,J,3,bi,bj))
+         END DO
+
+1200    CONTINUE
+
+       ENDDO
+      ENDDO
+
+      IF(MOD(M,SOLV_NCHECK).EQ.0) THEN
        DO bj=myByLo(myThid),myByHi(myThid)
         DO bi=myBxLo(myThid),myBxHi(myThid)
-
-C NOW SET U(3)=U(1)
+         S1=ZERO
          DO J=1,sNy
           DO I=1,sNx
-           UICE(I,J,3,bi,bj)=UICE(I,J,1,bi,bj)
-          ENDDO
-         ENDDO
-
-         DO J=1,sNy
-          DO I=1,sNx
-           IF(I.EQ.1) THEN
-            AA2=((ETA(I-1,J-1,bi,bj)+ZETA(I-1,J-1,bi,bj))
-     &             /CSTICE(I-1,J-1,bi,bj)
-     &             +(ETA(I-1,J,bi,bj)+ZETA(I-1,J,bi,bj))
-     &             /CSTICE(I-1,J,bi,bj))/CSUICE(I,J,bi,bj)
-            AA3=AA2*DELX2(I,J,bi,bj)*UICE(I-1,J,1,bi,bj)*UVM(I,J,bi,bj)
-           ELSE IF(I.EQ.sNx) THEN
-            AA1=((ETA(I,J-1,bi,bj)+ZETA(I,J-1,bi,bj))
-     &             /CSTICE(I-1,J-1,bi,bj)
-     &             +(ETA(I,J,bi,bj)+ZETA(I,J,bi,bj))
-     &             /CSTICE(I-1,J,bi,bj))/CSUICE(I,J,bi,bj)
-            AA3=AA1*DELX2(I,J,bi,bj)*UICE(I+1,J,1,bi,bj)*UVM(I,J,bi,bj)
-           ELSE
-            AA3=ZERO
-           END IF
-           URT(I)=FXY(I,J,bi,bj)+AA3
-     &           +UVRT1(I,J,bi,bj)*UICE(I,J-1,1,bi,bj)
-     &           +UVRT2(I,J,bi,bj)*UICE(I,J+1,1,bi,bj)
-           URT(I)=URT(I)*UVM(I,J,bi,bj)
-          ENDDO
-       
-          DO I=1,sNx
-           CUU(I)=CU(I,J,bi,bj)
-          ENDDO
-          URT(1)=URT(1)/BU(1,J,bi,bj)
-          DO I=2,sNx
-           IM=I-1
-           CUU(I)=CUU(I)/(BU(I,J,bi,bj)-AU(I,J,bi,bj)*CUU(IM))
-           URT(I)=(URT(I)-AU(I,J,bi,bj)*URT(IM))
-     &           /(BU(I,J,bi,bj)-AU(I,J,bi,bj)*CUU(IM))
-          ENDDO
-          DO I=1,sNx-1
-           J1=sNx-I
-           J2=J1+1
-           URT(J1)=URT(J1)-CUU(J1)*URT(J2)
-          ENDDO
-          DO I=1,sNx
-           UICE(I,J,1,bi,bj)=UICE(I,J,3,bi,bj)
-     &         +WFAU*(URT(I)-UICE(I,J,3,bi,bj))
-          ENDDO
-         ENDDO
+           UERR(I,J,bi,bj)=(UICE(I,J,1,bi,bj)-UICE(I,J,3,bi,bj))
+     &             *UVM(I,J,bi,bj)
+           S1=MAX(ABS(UERR(I,J,bi,bj)),S1)
+          END DO
+         END DO
+         _GLOBAL_MAX_R8( S1, myThid )
         ENDDO
        ENDDO
-       
-       IF(MOD(M,SOLV_NCHECK).EQ.0) THEN
-        DO bj=myByLo(myThid),myByHi(myThid)
-         DO bi=myBxLo(myThid),myBxHi(myThid)
-          S1=ZERO
-          DO J=1,sNy
-           DO I=1,sNx
-            UERR(I,J,bi,bj)=(UICE(I,J,1,bi,bj)-UICE(I,J,3,bi,bj))
-     &              *UVM(I,J,bi,bj)
-            S1=MAX(ABS(UERR(I,J,bi,bj)),S1)
-           ENDDO
-          ENDDO
-          _GLOBAL_MAX_R8( S1, myThid )
-         ENDDO
-        ENDDO
-
 C SAFEGUARD AGAINST BAD FORCING ETC
-        IF(M.GT.1.AND.S1.GT.S1A) WFAU=WFAU2
-        S1A=S1
-        IF(S1.LT.LSR_ERROR) THEN
-         ICOUNT1=M
-        END IF
+       IF(M.GT.1.AND.S1.GT.S1A) WFAU=WFAU2
+       S1A=S1
+       IF(S1.LT.LSR_ERROR) THEN
+        ICOUNT1=M
+cph(
+cph        GO TO 8001
+        phexit = 1
+cph)
        END IF
-       CALL SEAICE_EXCH ( UICE, myThid )
+      END IF
+      CALL SEAICE_EXCH ( UICE, myThid )
 
-C END OF ITERATION FOR UICE
-      ENDDO
-      write(*,'(A,I6,1P2E22.14)')' U lsr iters, error = ',ICOUNT1,S1
+cph(
+      END IF
+cph)
 
-C-----------------------
-C--   NOW SOLVE FOR VICE
-C-----------------------
+8000  CONTINUE
+cph 8001  CONTINUE
+C ITERATION END -----------------------------------------------------
 
+
+       write(*,'(A,I6,1P2E22.14)')' U lsr iters, error = ',ICOUNT1,S1
+
+C NOW FOR VICE
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
 
@@ -349,14 +382,14 @@ C-----------------------
      &     *TNGICE(I,J+1,bi,bj)*DELYR(I,J,bi,bj)
      &     +ETAMEAN(I,J,bi,bj)*TWO*TNGICE(I,J,bi,bj)*DELYR(I,J,bi,bj))
      &     *UVM(I,J,bi,bj)
-         ENDDO
-        ENDDO
+         END DO
+        END DO
 
         DO I=1,sNx
          AV(I,1,bi,bj)=ZERO
          CV(I,sNy,bi,bj)=ZERO
          CV(I,1,bi,bj)=CV(I,1,bi,bj)/BV(I,1,bi,bj)
-        ENDDO
+        END DO
 
         DO J=1,sNy
          DO I=1,sNx
@@ -410,108 +443,131 @@ C-----------------------
      &            +ETA(I,J,bi,bj)/CSUICE(I,J,bi,bj))
      &            *DELX2(I,J,bi,bj)/CSUICE(I,J,bi,bj)
 
-         ENDDO
+         END DO
+        END DO
+
+       ENDDO
+      ENDDO
+
+C NOW DO ITERATION
+300   CONTINUE
+
+cph--- iteration starts here
+cph--- need to kick out goto
+      phexit = -1
+
+C ITERATION START -----------------------------------------------------
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ LOOP = iteration vice
+#endif /* ALLOW_AUTODIFF_TAMC */
+
+      DO 9000 M=1, solv_max_iters
+cph(
+      IF ( phexit .EQ. -1 ) THEN
+cph)
+C NOW SET U(3)=U(1)
+      DO bj=myByLo(myThid),myByHi(myThid)
+       DO bi=myBxLo(myThid),myBxHi(myThid)
+
+        DO J=1,sNy
+         DO I=1,sNx
+          VICE(I,J,3,bi,bj)=VICE(I,J,1,bi,bj) 
+         END DO
+        END DO
+
+        DO I=1,sNx
+         DO J=1,sNy
+           IF(J.EQ.1) THEN
+            AA2=ETA(I-1,J-1,bi,bj)+ZETA(I-1,J-1,bi,bj)
+     &         +ETA(I,J-1,bi,bj)+ZETA(I,J-1,bi,bj)
+            AA3=(AA2*DELY2(I,J,bi,bj)
+     &         +(ZETAMEAN(I,J,bi,bj)-ETAMEAN(I,J,bi,bj))
+     &         *TNGICE(I,J-1,bi,bj)*DELYR(I,J,bi,bj)
+     &         +ETAMEAN(I,J,bi,bj)*TWO*TNGICE(I,J,bi,bj)
+     &         *DELYR(I,J,bi,bj))
+     &         *VICE(I,J-1,1,bi,bj)*UVM(I,J,bi,bj)
+           ELSE IF(J.EQ.sNy) THEN
+            AA1=ETA(I-1,J,bi,bj)+ZETA(I-1,J,bi,bj)+ETA(I,J,bi,bj)
+     &         +ZETA(I,J,bi,bj)
+            AA3=(AA1*DELY2(I,J,bi,bj)
+     &         -(ZETAMEAN(I,J,bi,bj)-ETAMEAN(I,J,bi,bj))
+     &         *TNGICE(I,J+1,bi,bj)*DELYR(I,J,bi,bj)
+     &         -ETAMEAN(I,J,bi,bj)*TWO*TNGICE(I,J,bi,bj)
+     &         *DELYR(I,J,bi,bj))
+     &         *VICE(I,J+1,1,bi,bj)*UVM(I,J,bi,bj)
+           ELSE
+            AA3=ZERO
+           END IF
+
+          VRT(J)=FXY(I,J,bi,bj)+AA3+UVRT1(I,J,bi,bj)*VICE(I-1,J,1,bi,bj)
+     &                       +UVRT2(I,J,bi,bj)*VICE(I+1,J,1,bi,bj)
+          VRT(J)=VRT(J)*UVM(I,J,bi,bj)
+         END DO
+
+         DO J=1,sNy
+          CVV(J)=CV(I,J,bi,bj)
+         END DO
+         VRT(1)=VRT(1)/BV(I,1,bi,bj)
+         DO J=2,sNy
+          JM=J-1
+          CVV(J)=CVV(J)/(BV(I,J,bi,bj)-AV(I,J,bi,bj)*CVV(JM))
+          VRT(J)=(VRT(J)-AV(I,J,bi,bj)*VRT(JM))
+     &          /(BV(I,J,bi,bj)-AV(I,J,bi,bj)*CVV(JM))
+         END DO
+         DO J=1,sNy-1
+          J1=sNy-J
+          J2=J1+1
+          VRT(J1)=VRT(J1)-CVV(J1)*VRT(J2)
+         END DO
+         DO J=1,sNy
+          VICE(I,J,1,bi,bj)=VICE(I,J,3,bi,bj)
+     &        +WFAV*(VRT(J)-VICE(I,J,3,bi,bj))
+         END DO
         ENDDO
 
        ENDDO
       ENDDO
 
-C NOW DO ITERATION FOR VICE
-      M  = 1
-      S1 = LSR_ERROR + 1
-      DO WHILE ( M .LE. solv_max_iters .AND. S1 .GE. LSR_ERROR )
-       M = M + 1
+      IF(MOD(M,SOLV_NCHECK).EQ.0) THEN
        DO bj=myByLo(myThid),myByHi(myThid)
         DO bi=myBxLo(myThid),myBxHi(myThid)
-       
-C NOW SET U(3)=U(1)
+         S2=ZERO
          DO J=1,sNy
           DO I=1,sNx
-           VICE(I,J,3,bi,bj)=VICE(I,J,1,bi,bj) 
-          ENDDO
-         ENDDO
-       
-         DO I=1,sNx
-          DO J=1,sNy
-            IF(J.EQ.1) THEN
-             AA2=ETA(I-1,J-1,bi,bj)+ZETA(I-1,J-1,bi,bj)
-     &          +ETA(I,J-1,bi,bj)+ZETA(I,J-1,bi,bj)
-             AA3=(AA2*DELY2(I,J,bi,bj)
-     &          +(ZETAMEAN(I,J,bi,bj)-ETAMEAN(I,J,bi,bj))
-     &          *TNGICE(I,J-1,bi,bj)*DELYR(I,J,bi,bj)
-     &          +ETAMEAN(I,J,bi,bj)*TWO*TNGICE(I,J,bi,bj)
-     &          *DELYR(I,J,bi,bj))
-     &          *VICE(I,J-1,1,bi,bj)*UVM(I,J,bi,bj)
-            ELSE IF(J.EQ.sNy) THEN
-             AA1=ETA(I-1,J,bi,bj)+ZETA(I-1,J,bi,bj)+ETA(I,J,bi,bj)
-     &          +ZETA(I,J,bi,bj)
-             AA3=(AA1*DELY2(I,J,bi,bj)
-     &          -(ZETAMEAN(I,J,bi,bj)-ETAMEAN(I,J,bi,bj))
-     &          *TNGICE(I,J+1,bi,bj)*DELYR(I,J,bi,bj)
-     &          -ETAMEAN(I,J,bi,bj)*TWO*TNGICE(I,J,bi,bj)
-     &          *DELYR(I,J,bi,bj))
-     &          *VICE(I,J+1,1,bi,bj)*UVM(I,J,bi,bj)
-            ELSE
-             AA3=ZERO
-            END IF
-       
-           VRT(J)=FXY(I,J,bi,bj)+AA3+
-     &            UVRT1(I,J,bi,bj)*VICE(I-1,J,1,bi,bj)+
-     &            UVRT2(I,J,bi,bj)*VICE(I+1,J,1,bi,bj)
-           VRT(J)=VRT(J)*UVM(I,J,bi,bj)
-          ENDDO
-       
-          DO J=1,sNy
-           CVV(J)=CV(I,J,bi,bj)
-          ENDDO
-          VRT(1)=VRT(1)/BV(I,1,bi,bj)
-          DO J=2,sNy
-           JM=J-1
-           CVV(J)=CVV(J)/(BV(I,J,bi,bj)-AV(I,J,bi,bj)*CVV(JM))
-           VRT(J)=(VRT(J)-AV(I,J,bi,bj)*VRT(JM))
-     &           /(BV(I,J,bi,bj)-AV(I,J,bi,bj)*CVV(JM))
-          ENDDO
-          DO J=1,sNy-1
-           J1=sNy-J
-           J2=J1+1
-           VRT(J1)=VRT(J1)-CVV(J1)*VRT(J2)
-          ENDDO
-          DO J=1,sNy
-           VICE(I,J,1,bi,bj)=VICE(I,J,3,bi,bj)
-     &         +WFAV*(VRT(J)-VICE(I,J,3,bi,bj))
-          ENDDO
-         ENDDO
+           UERR(I,J,bi,bj)=(VICE(I,J,1,bi,bj)-VICE(I,J,3,bi,bj))
+     &             *UVM(I,J,bi,bj)
+           S2=MAX(ABS(UERR(I,J,bi,bj)),S2)
+          END DO
+         END DO
+         _GLOBAL_MAX_R8( S2, myThid )
         ENDDO
        ENDDO
-
-       IF(MOD(M,SOLV_NCHECK).EQ.0) THEN
-        DO bj=myByLo(myThid),myByHi(myThid)
-         DO bi=myBxLo(myThid),myBxHi(myThid)
-          S2=ZERO
-          DO J=1,sNy
-           DO I=1,sNx
-            UERR(I,J,bi,bj)=(VICE(I,J,1,bi,bj)-VICE(I,J,3,bi,bj))
-     &              *UVM(I,J,bi,bj)
-            S2=MAX(ABS(UERR(I,J,bi,bj)),S2)
-           ENDDO
-          ENDDO
-          _GLOBAL_MAX_R8( S2, myThid )
-         ENDDO
-        ENDDO
-
 C SAFEGUARD AGAINST BAD FORCING ETC
-        IF(M.GT.1.AND.S2.GT.S2A) WFAV=WFAV2
-        S2A=S2
-        IF(S2.LT.LSR_ERROR) THEN
-         ICOUNT2=M
-        END IF
+       IF(M.GT.1.AND.S2.GT.S2A) WFAV=WFAV2
+       S2A=S2
+       IF(S2.LT.LSR_ERROR) THEN
+        ICOUNT2=M
+cph(
+cph        GO TO 9001
+        phexit = 1
+cph)
        END IF
-       CALL SEAICE_EXCH ( VICE, myThid )
+      END IF
 
-C END OF ITERATION FOR VICE
-      ENDDO
+      CALL SEAICE_EXCH ( VICE, myThid )
+
+cph(
+      END IF
+cph)
+
+9000  CONTINUE
+cph 9001  CONTINUE
+C ITERATION END -----------------------------------------------------
+
+
       write(*,'(A,I6,1P2E22.14)')' V lsr iters, error = ',ICOUNT2,S2
 
+C NOW END
 C NOW MAKE COROLIS TERM IMPLICIT
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
@@ -519,8 +575,8 @@ C NOW MAKE COROLIS TERM IMPLICIT
          DO I=1,sNx
           UICE(I,J,1,bi,bj)=UICE(I,J,1,bi,bj)*UVM(I,J,bi,bj)
           VICE(I,J,1,bi,bj)=VICE(I,J,1,bi,bj)*UVM(I,J,bi,bj)
-         ENDDO
-        ENDDO
+         END DO
+        END DO
        ENDDO
       ENDDO
       CALL SEAICE_EXCH ( UICE, myThid )
