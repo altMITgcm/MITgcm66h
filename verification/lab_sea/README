@@ -113,7 +113,21 @@ Generating 1-CPU executable with SEAICE_EXTERNAL_FLUXES:
   make depend
   make
   mv mitgcmuv mitgcmuv_exf_fluxes
-  
+ 
+Generating 1-CPU executable with SEAICE_MULTILEVEL:
+  cd ../../../verification/lab_sea/input
+  ln -sf ../code/SIZE.h .
+  ln -sf ../code/CPP_EEOPTIONS.h .
+  ln -sf ../code/CPP_OPTIONS.NOEXF.h CPP_OPTIONS.h
+  ln -sf ../code/SEAICE_OPTIONS.MULTILEVEL.h SEAICE_OPTIONS.h
+  ../../../tools/genmake -makefile
+    ==> on alhena use:
+    ../../../tools/genmake -platform=o2k_noopt -makefile
+  make clean
+  make depend
+  make
+  mv mitgcmuv mitgcmuv_multilevel
+ 
 Generating 2-CPU executable:
   cd ../../../verification/lab_sea/input
   ln -sf ../code/SIZE.2x1.h SIZE.h
@@ -375,3 +389,24 @@ the output of exp10 to that of exp8:
   cd ../../../verification/lab_sea/matlab
   matlab
   lookat_exp10
+
+
+Instructions for running Experiment 11
+======================================
+
+This is a 1-cpu, 10-hour integration similar to exp1, but
+with multi-level sea-ice thermodynamics.
+
+To run Experiment 10:
+  cd ../../../verification/lab_sea/input
+  ln -sf DATA.10hours data
+  ln -sf DATA.SEAICE.lsr data.seaice
+  mitgcmuv_multilevel >&! output.txt
+  mkdir exp11
+  mv *tave.0000000010.data exp11
+
+Use matlab script lookat_exp11.m to compare
+the output of exp11 to that of exp1:
+  cd ../../../verification/lab_sea/matlab
+  matlab
+  lookat_exp11

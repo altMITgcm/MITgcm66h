@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+release1_p17
+o added SEAICE_MULTILEVEL for 8-category sea-ice thermodynamics
+
 release1_p16
 o fixed gather/scatter inital MPI dialogue in ini_procs.F
 o pkg/seaice/lsr.F has been moved to SouthWest B-grid location

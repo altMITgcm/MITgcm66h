@@ -89,6 +89,11 @@ C---  initialize grid info
         DO j=1-OLy,sNy+OLy
          DO i=1-OLx,sNx+OLx
           TICE(I,J,bi,bj)=273.0 _d 0
+#ifdef SEAICE_MULTILEVEL
+          DO k=1,7
+           TICES(I,J,k,bi,bj)=273.0 _d 0
+          ENDDO
+#endif
           UICEC(I,J,bi,bj)=ZERO
           VICEC(I,J,bi,bj)=ZERO
           AMASS(I,J,bi,bj)=1000.0 _d 0

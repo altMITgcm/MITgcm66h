@@ -154,10 +154,10 @@ C--   Wind stress computed here from wind on South-West B-grid
 C first ocean surface stress
            DAIRN(I,J,bi,bj)=RHOAIR*OCEAN_drag
      &          *(2.70 _d 0+0.142 _d 0*AAA+0.0764 _d 0*AAA*AAA)
-           WINDX(I,J,bi,bj)=DAIRN(I,J,bi,bj)*(COSWIN*UWIND(I,J,bi,bj)
-     &          -SINWIN*VWIND(I,J,bi,bj))
-           WINDY(I,J,bi,bj)=DAIRN(I,J,bi,bj)*(SINWIN*UWIND(I,J,bi,bj)
-     &          +COSWIN*VWIND(I,J,bi,bj))
+           WINDX(I,J,bi,bj)=DAIRN(I,J,bi,bj)*
+     &          (COSWIN*UWIND(I,J,bi,bj)-SINWIN*VWIND(I,J,bi,bj))
+           WINDY(I,J,bi,bj)=DAIRN(I,J,bi,bj)*
+     &          (SINWIN*UWIND(I,J,bi,bj)+COSWIN*VWIND(I,J,bi,bj))
 
 C now ice surface stress
            DAIRN(I,J,bi,bj)=RHOAIR*(SEAICE_drag*AAA*AREA(I,J,1,bi,bj)
