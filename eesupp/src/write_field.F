@@ -2,7 +2,7 @@ C $Header$
 
 #include "CPP_EEOPTIONS.h"
 
-      SUBROUTINE READ_FIELD_XYZR8(
+      SUBROUTINE WRITE_FIELD_XYZR8(
      O                   fld,
      I                   filNam, filFmt, myThid )
 C     /==========================================================\
