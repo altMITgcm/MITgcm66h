@@ -120,7 +120,8 @@ C--   Time stepping parammeters
       NAMELIST /PARM03/
      & nIter0, nTimeSteps, nEndIter, deltaT, deltaTmom, deltaTtracer,
      & abEps, tauCD, rCD,
-     & startTime, endTime, chkPtFreq, dumpFreq, taveFreq, deltaTClock,
+     & startTime, endTime, chkPtFreq,
+     & dumpFreq, taveFreq, deltaTClock, diagFreq,
      & monitorFreq, pChkPtFreq, cAdjFreq, 
      & tauThetaClimRelax, tauSaltClimRelax, tauTr1ClimRelax,
      & periodicExternalForcing, externForcingPeriod, externForcingCycle
@@ -562,6 +563,8 @@ C     o Monitor (should also add CPP flag for monitor?)
       IF (monitorFreq.LT.0.) THEN
        monitorFreq=0.
        IF (dumpFreq.NE.0.) monitorFreq=dumpFreq
+       IF (diagFreq.NE.0..AND.diagFreq.LT.monitorFreq)
+     &         monitorFreq=diagFreq
        IF (taveFreq.NE.0..AND.taveFreq.LT.monitorFreq)
      &         monitorFreq=taveFreq
        IF (chkPtFreq.NE.0..AND.chkPtFreq.LT.monitorFreq)

@@ -162,6 +162,7 @@ C--   Time stepping parameters
       pchkPtFreq        = deltaT*0
       chkPtFreq         = deltaT*0
       dumpFreq          = deltaT*0
+      diagFreq          = deltaT*0
       monitorFreq       = -1.
       taveFreq          = deltaT*0
       writeStatePrec    = precFloat64

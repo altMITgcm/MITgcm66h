@@ -287,14 +287,14 @@ C        and step forward storing the result in gUnm1, gVnm1, etc...
      I         bi,bj,iMin,iMax,jMin,jMax,k,kup,kDown,
      I         phiHyd,KappaRU,KappaRV,
      U         fVerU, fVerV,
-     I         myTime, myThid)
+     I         myTime, myIter, myThid)
 #endif
 #ifndef DISABLE_MOM_VECINV
            IF (vectorInvariantMomentum) CALL MOM_VECINV(
      I         bi,bj,iMin,iMax,jMin,jMax,k,kup,kDown,
      I         phiHyd,KappaRU,KappaRV,
      U         fVerU, fVerV,
-     I         myTime, myThid)
+     I         myTime, myIter, myThid)
 #endif
            CALL TIMESTEP(
      I         bi,bj,iMin,iMax,jMin,jMax,k,
