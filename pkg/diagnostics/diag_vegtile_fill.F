@@ -148,7 +148,7 @@ C-      Check for consistency with Nb of levels reserved in storage array
         if( check ) then
          undef = getcon('UNDEF')
          do i= 1,Lena
-          jindx = 1.0001 + (indx(i+offset-1)-1/sNx)
+          jindx = 1 + int((indx(i+offset-1)-1)/sNx)
           newindx = indx(i+offset-1)+(jindx-1)*2*Olx+(sNx+2*Olx)*Oly+Olx
           if(qdiag(newindx,1,kd,bi,bj).eq.undef 
      .                                  .or.field(i,k).eq.undef)then
@@ -160,7 +160,7 @@ C-      Check for consistency with Nb of levels reserved in storage array
          enddo
         else
          do i= 1,Lena
-          jindx = 1.0001 + (indx(i+offset-1)-1/sNx)
+          jindx = 1 + int((indx(i+offset-1)-1)/sNx)
           newindx = indx(i+offset-1)+(jindx-1)*2*Olx+(sNx+2*Olx)*Oly+Olx
           qdiag(newindx,1,kd,bi,bj)=qdiag(newindx,1,kd,bi,bj)+
      .                                             field(i,k)*chfr(i)
