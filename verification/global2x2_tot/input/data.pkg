@@ -1,0 +1,9 @@
+#
+# ***************
+# Open boundaries
+# ***************
+ &PACKAGES
+ useKPP	      = .TRUE.,
+ useGMRedi    = .FALSE.,
+ useECCO      = .TRUE.,
+ &
