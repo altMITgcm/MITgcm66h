@@ -25,6 +25,7 @@ C     !USES:
 # include "MONITOR.h"
 #endif
 #include "exf_fields.h"
+#include "exf_clim_fields.h"
       LOGICAL  DIFFERENT_MULTIPLE
       EXTERNAL DIFFERENT_MULTIPLE
 
@@ -83,6 +84,22 @@ C       Print some statistics about input forcing fields
 #if defined (ALLOW_RUNOFF) || defined (ALLOW_SEAICE)
         CALL MON_PRINTSTATS_RL(1,runoff,'_runoff',
      &       maskH,maskH,rA ,drF,myThid)
+#endif
+#ifdef ALLOW_CLIMSST_RELAXATION
+        CALL MON_PRINTSTATS_RL(1,climsst,'_climsst',
+     &       maskH,maskH,rA ,drF,myThid)
+#endif
+#ifdef ALLOW_CLIMSSS_RELAXATION
+        CALL MON_PRINTSTATS_RL(1,climsss,'_climsss',
+     &       maskH,maskH,rA ,drF,myThid)
+#endif
+#ifdef ALLOW_CLIMTEMP_RELAXATION
+        CALL MON_PRINTSTATS_RL(Nr,climtemp,'_climtemp',
+     &       maskC,hFacC,rA ,drF,myThid)
+#endif
+#ifdef ALLOW_CLIMSALT_RELAXATION
+        CALL MON_PRINTSTATS_RL(Nr,climsalt,'_rclimsalt',
+     &       maskC,hFacC,rA ,drF,myThid)
 #endif
 
 #endif /* ALLOW_MONITOR */
