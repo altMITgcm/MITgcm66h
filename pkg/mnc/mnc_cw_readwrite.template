@@ -238,6 +238,9 @@ C           based on the byte count per unlimited dimension
               fsnu = (1.0 _d 0 + 1.0 _d 0 / DBLE(unlim_sz))
      &             * DBLE(nbytes)
               IF (fsnu .GT. mnc_max_fsize) THEN
+C               Delete the now-full fname from the lookup tables since
+C               we are all done writing to it.
+                CALL MNC_FILE_CLOSE(fname, myThid)
                 iseq = iseq + 1
                 indu = 1
                 mnc_cw_fgud(indfg) = 1
