@@ -92,7 +92,6 @@ C     uDudxFac, AhDudxFac, etc ... individual term tracer parameters
       _RS      yA(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL  uTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL  vTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RS   maskC(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 C     I,J,K - Loop counters
       INTEGER i,j,k
 C     rVelMaskOverride - Factor for imposing special surface boundary conditions
@@ -138,8 +137,8 @@ C     ab05, ab15 - Adams-Bashforth time-stepping weights.
 
       km1=MAX(1,k-1)
       kp1=MIN(Nr,k+1)
-      rVelMaskOverride=1.
-      IF ( k .EQ. 1 ) rVelMaskOverride=freeSurfFac
+      rVelMaskOverride=afFacMom
+      IF ( k .EQ. 1 ) rVelMaskOverride=freeSurfFac*afFacMom
       wVelBottomOverride=1.
       IF (k.EQ.Nr) wVelBottomOverride=0.
 
@@ -224,13 +223,6 @@ C--   Calculate open water fraction at vorticity points
       ENDDO
 
 C---- Calculate common quantities used in both U and V equations
-C     Calculate tracer cell mask
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-        maskC(i,j) = 1.
-        IF (_hFacC(i,j,k,bi,bj).eq.0.) maskC(i,j)=0.
-       ENDDO
-      ENDDO
 C     Calculate tracer cell face open areas
       DO j=1-OLy,sNy+OLy
        DO i=1-OLx,sNx+OLx

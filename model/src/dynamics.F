@@ -58,8 +58,7 @@ C                              transport
 C                              o uTrans: Zonal transport
 C                              o vTrans: Meridional transport
 C                              o rTrans: Vertical transport
-C     maskC,maskUp             o maskC: land/water mask for tracer cells
-C                              o maskUp: land/water mask for W points
+C     maskUp                   o maskUp: land/water mask for W points
 C     fVer[STUV]               o fVer: Vertical flux term - note fVer
 C                                      is "pipelined" in the vertical
 C                                      so we need an fVer for each
@@ -85,7 +84,6 @@ C                      index into fVerTerm.
       _RL uTrans  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL vTrans  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL rTrans  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RS maskC   (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS maskUp  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL fVerT   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
       _RL fVerS   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
@@ -199,7 +197,6 @@ C     uninitialised but inert locations.
         ENDDO
         rhoKM1 (i,j) = 0. _d 0
         rhok   (i,j) = 0. _d 0
-        maskC  (i,j) = 0. _d 0
         phiSurfX(i,j) = 0. _d 0
         phiSurfY(i,j) = 0. _d 0
        ENDDO
@@ -216,7 +213,7 @@ CHPF$ INDEPENDENT
 #ifdef ALLOW_AUTODIFF_TAMC
 C--    HPF directive to help TAMC
 CHPF$  INDEPENDENT, NEW (rTrans,fVerT,fVerS,fVerU,fVerV
-CHPF$&                  ,phiHyd,utrans,vtrans,maskc,xA,yA
+CHPF$&                  ,phiHyd,utrans,vtrans,xA,yA
 CHPF$&                  ,KappaRT,KappaRS,KappaRU,KappaRV
 CHPF$&                  )
 #endif /* ALLOW_AUTODIFF_TAMC */
@@ -420,15 +417,15 @@ CADJ STORE KappaRS(:,:,:)    = comlev1_bibj_k, key = kkey, byte = isbyte
 
 C--      Get temporary terms used by tendency routines
          CALL CALC_COMMON_FACTORS (
-     I        bi,bj,iMin,iMax,jMin,jMax,k,km1,kup,kDown,
-     O        xA,yA,uTrans,vTrans,rTrans,maskC,maskUp,
+     I        bi,bj,iMin,iMax,jMin,jMax,k,
+     O        xA,yA,uTrans,vTrans,rTrans,maskUp,
      I        myThid)
 
 #ifdef  INCLUDE_CALC_DIFFUSIVITY_CALL
 C--      Calculate the total vertical diffusivity
          CALL CALC_DIFFUSIVITY(
      I        bi,bj,iMin,iMax,jMin,jMax,k,
-     I        maskC,maskup,
+     I        maskUp,
      O        KappaRT,KappaRS,KappaRU,KappaRV,
      I        myThid)
 #endif
@@ -438,7 +435,7 @@ C        and step forward storing result in gTnm1, gSnm1, etc.
          IF ( tempStepping ) THEN
            CALL CALC_GT(
      I         bi,bj,iMin,iMax,jMin,jMax, k,km1,kup,kDown,
-     I         xA,yA,uTrans,vTrans,rTrans,maskUp,maskC,
+     I         xA,yA,uTrans,vTrans,rTrans,maskUp,
      I         KappaRT,
      U         fVerT,
      I         myTime, myThid)
@@ -451,7 +448,7 @@ C        and step forward storing result in gTnm1, gSnm1, etc.
          IF ( saltStepping ) THEN
            CALL CALC_GS(
      I         bi,bj,iMin,iMax,jMin,jMax, k,km1,kup,kDown,
-     I         xA,yA,uTrans,vTrans,rTrans,maskUp,maskC,
+     I         xA,yA,uTrans,vTrans,rTrans,maskUp,
      I         KappaRS,
      U         fVerS,
      I         myTime, myThid)
