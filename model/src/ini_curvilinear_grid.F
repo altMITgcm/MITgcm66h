@@ -83,20 +83,20 @@ C       *********** this are not degbugged ************
       CALL MDSREADFIELD('LONG.bin',readBinaryPrec,'RL',1,XG,  1,myThid)
       CALL MDSREADFIELD('LATG.bin',readBinaryPrec,'RL',1,YG,  1,myThid)
 cs-   this block needed by cubed sphere until we write more useful I/O routines
-      CALL EXCH_Z_XY_RS(XG,myThid)
-      CALL EXCH_Z_XY_RS(YG,myThid)
-      DO bj = myByLo(myThid), myByHi(myThid)
-       DO bi = myBxLo(myThid), myBxHi(myThid)
-        XG(sNx+1,1,bi,bj)=XG(sNx+1,2,bi,bj)-0.5*XG(sNx+1,3,bi,bj)
-     &                   +XG(sNx,1,bi,bj)-0.5*XG(sNx-1,1,bi,bj)
-        YG(sNx+1,1,bi,bj)=YG(sNx+1,2,bi,bj)-0.5*YG(sNx+1,3,bi,bj)
-     &                   +YG(sNx,1,bi,bj)-0.5*YG(sNx-1,1,bi,bj)
-        XG(1,sNy+1,bi,bj)=XG(2,sNy+1,bi,bj)-0.5*XG(3,sNy+1,bi,bj)
-     &                   +XG(1,sNy,bi,bj)-0.5*XG(1,sNy-1,bi,bj)
-        YG(1,sNy+1,bi,bj)=YG(2,sNy+1,bi,bj)-0.5*YG(3,sNy+1,bi,bj)
-     &                   +YG(1,sNy,bi,bj)-0.5*YG(1,sNy-1,bi,bj)
-       ENDDO
-      ENDDO
+      bi=3
+      bj=1
+      YG(1,sNy+1,bj,1)=YG(1,1,bi,1)
+      bj=bj+2
+      YG(1,sNy+1,bj,1)=YG(1,1,bi,1)
+      bj=bj+2
+      YG(1,sNy+1,bj,1)=YG(1,1,bi,1)
+      bi=6
+      bj=2
+      YG(sNx+1,1,bj,1)=YG(1,1,bi,1)
+      bj=bj+2
+      YG(sNx+1,1,bj,1)=YG(1,1,bi,1)
+      bj=bj+2
+      YG(sNx+1,1,bj,1)=YG(1,1,bi,1)
 cs-   end block
       CALL EXCH_Z_XY_RS(XG,myThid)
       CALL EXCH_Z_XY_RS(YG,myThid)
@@ -110,14 +110,10 @@ cs!   this is not correct <= need paired exchange for dxv,dyu
       CALL EXCH_Z_XY_RS(DYU,myThid)
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
-        DXV(sNx+1,1,bi,bj)=DXV(sNx+1,2,bi,bj)-0.5*DXV(sNx+1,3,bi,bj)
-     &                    +DXV(sNx,1,bi,bj)-0.5*DXV(sNx-1,1,bi,bj)
-        DYU(sNx+1,1,bi,bj)=DYU(sNx+1,2,bi,bj)-0.5*DYU(sNx+1,3,bi,bj)
-     &                    +DYU(sNx,1,bi,bj)-0.5*DYU(sNx-1,1,bi,bj)
-        DXV(1,sNy+1,bi,bj)=DXV(2,sNy+1,bi,bj)-0.5*DXV(3,sNy+1,bi,bj)
-     &                    +DXV(1,sNy,bi,bj)-0.5*DXV(1,sNy-1,bi,bj)
-        DYU(1,sNy+1,bi,bj)=DYU(2,sNy+1,bi,bj)-0.5*DYU(3,sNy+1,bi,bj)
-     &                    +DYU(1,sNy,bi,bj)-0.5*DYU(1,sNy-1,bi,bj)
+        DXV(sNx+1,1,bi,bj)=DXV(1,1,bi,bj)
+        DXV(1,sNy+1,bi,bj)=DXV(1,1,bi,bj)
+        DYU(sNx+1,1,bi,bj)=DYU(1,1,bi,bj)
+        DYU(1,sNy+1,bi,bj)=DYU(1,1,bi,bj)
        ENDDO
       ENDDO
 cs-   end block
@@ -131,10 +127,8 @@ cs-   this block needed by cubed sphere until we write more useful I/O routines
       CALL EXCH_Z_XY_RS(RAZ , myThid )
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
-        RAZ(sNx+1,1,bi,bj)=RAZ(sNx+1,2,bi,bj)-0.5*RAZ(sNx+1,3,bi,bj)
-     &                    +RAZ(sNx,1,bi,bj)-0.5*RAZ(sNx-1,1,bi,bj)
-        RAZ(1,sNy+1,bi,bj)=RAZ(2,sNy+1,bi,bj)-0.5*RAZ(3,sNy+1,bi,bj)
-     &                    +RAZ(1,sNy,bi,bj)-0.5*RAZ(1,sNy-1,bi,bj)
+        RAZ(sNx+1,1,bi,bj)=RAZ(1,1,bi,bj)
+        RAZ(1,sNy+1,bi,bj)=RAZ(1,1,bi,bj)
        ENDDO
       ENDDO
 cs-   end block
@@ -143,16 +137,6 @@ cs-   end block
 C-    Staggered (u,v pairs) quantities
       CALL MDSREADFIELD('DXC.bin',readBinaryPrec,'RL',1,DXC,  1,myThid)
       CALL MDSREADFIELD('DYC.bin',readBinaryPrec,'RL',1,DYC,  1,myThid)
-cs-   this block needed by cubed sphere until we write more useful I/O routines
-      DO bj = myByLo(myThid), myByHi(myThid)
-       DO bi = myBxLo(myThid), myBxHi(myThid)
-        DO J = 1,sNy
-         DXC(sNx+1,J,bi,bj)=DXC(1,J,bi,bj)
-         DYC(J,sNy+1,bi,bj)=DYC(J,1,bi,bj)
-        ENDDO
-       ENDDO
-      ENDDO
-cs-   end block
       CALL EXCH_UV_XY_RS(DXC,DYC,.FALSE.,myThid)
 
       CALL MDSREADFIELD('RAW.bin',readBinaryPrec,'RL',1,RAW,  1,myThid)
@@ -161,8 +145,8 @@ cs-   this block needed by cubed sphere until we write more useful I/O routines
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
         DO J = 1,sNy
-         RAW(sNx+1,J,bi,bj)=RAW(1,J,bi,bj)
-         RAS(J,sNy+1,bi,bj)=RAS(J,1,bi,bj)
+c        RAW(sNx+1,J,bi,bj)=RAW(1,J,bi,bj)
+c        RAS(J,sNy+1,bi,bj)=RAS(J,1,bi,bj)
         ENDDO
        ENDDO
       ENDDO
@@ -175,8 +159,8 @@ cs-   this block needed by cubed sphere until we write more useful I/O routines
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
         DO J = 1,sNy
-         DYG(sNx+1,J,bi,bj)=DYG(1,J,bi,bj)
-         DXG(J,sNy+1,bi,bj)=DXG(J,1,bi,bj)
+c        DYG(sNx+1,J,bi,bj)=DYG(1,J,bi,bj)
+c        DXG(J,sNy+1,bi,bj)=DXG(J,1,bi,bj)
         ENDDO
        ENDDO
       ENDDO
