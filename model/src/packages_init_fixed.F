@@ -36,6 +36,8 @@ C       |-- FLT_INIT
 C       |
 C       |-- TIMEAVE_INIT_FIXED
 C       |
+C       |-- SHAP_FILT_INIT_FIZED
+C       |
 C       |-- ZONAL_FILT_INIT
 C       |
 C       |-- ATM_DIAGNOSTICS_INIT
@@ -121,8 +123,16 @@ C--   Initialise Float positions
 
 #ifdef ALLOW_TIMEAVE
 C     IF (useTIMEAVE) THEN
-      CALL TIMEAVE_INIT_FIXED( myThid )
-C     ENDIF
+      IF ( taveFreq.GT.0. ) THEN
+       CALL TIMEAVE_INIT_FIXED( myThid )
+      ENDIF
+#endif
+
+#ifdef ALLOW_SHAP_FILT
+C--   Shapiro filter initialisation
+      IF (useSHAP_FILT) THEN
+       CALL SHAP_FILT_INIT_FIXED( myThid )
+      ENDIF
 #endif
 
 #ifdef ALLOW_ZONAL_FILT
