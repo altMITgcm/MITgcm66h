@@ -21,7 +21,6 @@ RL_FILES = exch_xy_rl.F  exch_uv_xy_rl.F  \
            exch_uv_agrid_xy_rl.F \
            exch_uv_agrid_xyz_rl.F
 
-
 RS_FILES = exch_xy_rs.F  exch_uv_xy_rs.F  \
            exch_uv_xyz_rs.F \
            exch2_recv_rs1.F \
@@ -76,7 +75,7 @@ R8_FILES = exch_xy_r8.F  exch_uv_xy_r8.F  \
 all: $(RL_FILES) $(RS_FILES) $(R4_FILES) $(R8_FILES)
 
 clean:
-	-rm -f $(RL_FILES) $(RS_FILES)
+	-rm -f $(RL_FILES) $(RS_FILES) $(R4_FILES) $(R8_FILES)
 
 # exch_xy_rx
 exch_xy_rl.F: exch_xy_rx.template
