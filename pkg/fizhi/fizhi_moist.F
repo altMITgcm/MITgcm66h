@@ -186,7 +186,8 @@ C Threshold for Cloud Liquid Water Memory
 
 c Determine Total number of Random Clouds to Check
 c ---------------------------------------------
-      ncrnd = (lm-nltop+1)/2
+C     ncrnd = (lm-nltop+1)/2
+      ncrnd = 0
 
       if(first .and. myid.eq.1 .and. bi.eq.1 ) then
        print *
