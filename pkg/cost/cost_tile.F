@@ -50,7 +50,7 @@ c         |   enddo
 c         |
 c         |-- cost_final
 C \ev
-CEOP
+CEOI
 
 CBOP
 C     !ROUTINE: THE_MAIN_LOOP

@@ -46,7 +46,7 @@ c         |  ...                                 control variables
 c         |
 c         |-- ctrl_pack                        - pack control vector
 C \ev
-CEOP
+CEOI
 
 CBOP
 C     !ROUTINE: ctrl_unpack
