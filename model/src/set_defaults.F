@@ -270,6 +270,9 @@ C--   Input files
       dQdTFile        = ' '
       ploadFile       = ' '
       mdsioLocalDir   = ' '
+      DO k = 1,MAX_LEN_FNAM
+        the_run_name(k:k) = ' '
+      ENDDO
 
 C
       RETURN

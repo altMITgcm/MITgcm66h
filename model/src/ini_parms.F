@@ -206,7 +206,8 @@ C--   Input files
      & surfQfile, surfQnetFile, surfQswFile, EmPmRfile,
      & uVelInitFile, vVelInitFile, pSurfInitFile,
      & dQdTFile, ploadFile,tCyl,
-     & mdsioLocalDir
+     & mdsioLocalDir,
+     & the_run_name
 
 C
       _BEGIN_MASTER(myThid)
