@@ -11,31 +11,31 @@
 # Search for particular CPP #cmds associated with packages
 # usage: test_for_package_in_cpp_options CPP_file package_name
 test_for_package_in_cpp_options() {
-   cpp_options=$1
-   pkg=$2
-   grep -i "#define.*ALLOW_$pkg" $cpp_options > /dev/null 2>&1
-   RETVAL=$?
-   if test "x${RETVAL}" = x0 ; then
-      echo "Error: In $cpp_options there is an illegal line: #define ALLOW_$pkg"
-      exit 99
-   fi
-   grep -i "#undef.*ALLOW_$pkg" $cpp_options > /dev/null 2>&1
-   RETVAL=$?
-   if test "x${RETVAL}" = x0 ; then
-      echo "Error: In $cpp_options there is an illegal line: #undef ALLOW_$pkg"
-      exit 99
-   fi
-   grep -i "#define.*DISABLE_$pkg" $cpp_options > /dev/null 2>&1
-   RETVAL=$?
-   if test "x${RETVAL}" = x0 ; then
-      echo "Error: In $cpp_options there is an illegal line: #define DISABLE_$pkg"
-      exit 99
-   fi
-   grep -i "#undef.*DISABLE_$pkg" $cpp_options > /dev/null 2>&1
-   RETVAL=$?
-   if test "x${RETVAL}" = x0 ; then
-      echo "Error: In $cpp_options there is an illegal line: #undef DISABLE_$pkg"
-      exit 99
+    cpp_options=$1
+    pkg=$2
+    grep -i "#define.*ALLOW_$pkg" $cpp_options > /dev/null 2>&1
+    RETVAL=$?
+    if test "x${RETVAL}" = x0 ; then
+	echo "Error: In $cpp_options there is an illegal line: #define ALLOW_$pkg"
+	exit 99
+    fi
+    grep -i "#undef.*ALLOW_$pkg" $cpp_options > /dev/null 2>&1
+    RETVAL=$?
+    if test "x${RETVAL}" = x0 ; then
+	echo "Error: In $cpp_options there is an illegal line: #undef ALLOW_$pkg"
+	exit 99
+    fi
+    grep -i "#define.*DISABLE_$pkg" $cpp_options > /dev/null 2>&1
+    RETVAL=$?
+    if test "x${RETVAL}" = x0 ; then
+	echo "Error: In $cpp_options there is an illegal line: #define DISABLE_$pkg"
+	exit 99
+    fi
+    grep -i "#undef.*DISABLE_$pkg" $cpp_options > /dev/null 2>&1
+    RETVAL=$?
+    if test "x${RETVAL}" = x0 ; then
+	echo "Error: In $cpp_options there is an illegal line: #undef DISABLE_$pkg"
+	exit 99
    fi
 }
 
@@ -795,14 +795,11 @@ done
 # Create a list of #define and #undef to enable/disable packages
 PACKAGES_DOT_H=PACKAGES.h
 if test -e $PACKAGES_DOT_H ; then
-    if test ! -e $PACKAGES_DOT_H.bak ; then
-	cp -f $PACKAGES_DOT_H $PACKAGES_DOT_H.bak
-    fi
     cat $PACKAGES_DOT_H \
 	| awk 'BEGIN{p=1;} ($1=="C===" && $2=="GENMAKE"){p=0;} {if (p==1) print $0}' \
-	> $PACKAGES_DOT_H.tmp
+	> $PACKAGES_DOT_H".tmp"
 fi
-cat <<EOF >>$PACKAGES_DOT_H.tmp
+cat <<EOF >>$PACKAGES_DOT_H".tmp"
 C=== GENMAKE v2 ===
 C  The following defines have been set by GENMAKE, so please do not
 C  edit anything below these comments.  In general, you should
@@ -828,7 +825,7 @@ for n in $names ; do
 	done
 	if test "x$has_pack" = xf ; then
 	    undef=`echo "ALLOW_$n" | awk '{print toupper($0)}'`
-	    echo "#undef $undef" >> $PACKAGES_DOT_H.tmp
+	    echo "#undef $undef" >> $PACKAGES_DOT_H".tmp"
 #           DEFINES="$DEFINES -U$undef"
 
 #EH3  WARNING :  This is an UGLY HACK that needs to be removed!!!
@@ -848,27 +845,32 @@ for n in $names ; do
 	fi
     fi
 done
-cat <<EOF >>$PACKAGES_DOT_H.tmp
+cat <<EOF >>$PACKAGES_DOT_H".tmp"
 
 C  Packages enabled by genmake:
 EOF
 for i in $PACKAGES ; do
     def=`echo "ALLOW_$i" | awk '{print toupper($0)}'`
-    echo "#define $def" >> $PACKAGES_DOT_H.tmp
-    DEFINES="$DEFINES -D$def"
+    echo "#define $def" >> $PACKAGES_DOT_H".tmp"
+#eh3 DEFINES="$DEFINES -D$def"
 
 #EH3  WARNING :  This is an UGLY HACK that needs to be removed!!!
     case $i in 
 	aim_v23)
-	    echo "#define   ALLOW_AIM" >> $PACKAGES_DOT_H.tmp
-            DEFINES="$DEFINES -DALLOW_AIM"
+	    echo "#define   ALLOW_AIM" >> $PACKAGES_DOT_H".tmp"
+	    DEFINES="$DEFINES -DALLOW_AIM"
 	    echo "Warning: ALLOW_AIM is set to enable aim_v23. This is REALLY ugly Jean-Michel :-)"
 	    ;;
     esac
 #EH3  WARNING :  This is an UGLY HACK that needs to be removed!!!
 
 done
-mv -f $PACKAGES_DOT_H.tmp $PACKAGES_DOT_H
+cmp $PACKAGES_DOT_H".tmp" $PACKAGES_DOT_H
+RETVAL=$?
+if test "x$RETVAL" = x0 ; then
+    mv -f $PACKAGES_DOT_H".tmp" $PACKAGES_DOT_H".bak"
+    mv -f $PACKAGES_DOT_H".tmp" $PACKAGES_DOT_H
+fi
 
 echo "  Adding STANDARDDIRS"
 BUILDDIR=${BUILDDIR:-.}
@@ -892,7 +894,8 @@ for d in $STANDARDDIRS ; do
     fi
 done
 
-echo "  Searching for CPP_OPTIONS.h (macros and flags for configuring the model):"
+echo " Searching for CPP_OPTIONS.h in order to warn about the presence"
+echo " of \"#define ALLOW_PKGNAME\"-type statements:"
 CPP_OPTIONS=
 spaths=". $INCLUDEDIRS"
 for i in $spaths ; do
@@ -901,9 +904,6 @@ for i in $spaths ; do
     if test -f $try -a -r $try ; then
 	echo "    found CPP_OPTIONS=\"$try\""
 	CPP_OPTIONS="$try"
-#aja	if test "x$i" != "x." ; then
-#aja	    cp -f $CPP_OPTIONS .
-#aja	fi
 	break
     fi
 done
@@ -982,8 +982,6 @@ echo "" >> srclist.inc
 echo "" >> csrclist.inc
 echo "" >> f90srclist.inc
 echo "" >> hlist.inc
-
-echo $DEFINES
 
 if test -e $MAKEFILE ; then
     mv -f $MAKEFILE "$MAKEFILE.bak"
