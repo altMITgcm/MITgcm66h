@@ -59,6 +59,11 @@ c      _EXCH_XYZ_R8(uVel  , myThid )
 c      _EXCH_XYZ_R8(vVel  , myThid )
       ENDIF
 
+c     IF (uVelInitFile .NE. ' ' .OR. vVelInitFile .NE. ' ') THEN
+       CALL EXCH_UV_XYZ_RL(uVel,vVel,.TRUE.,myThid)
+       _EXCH_XYZ_R8(wVel,myThid)
+c     ENDIF
+
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
         DO k=1,Nr
@@ -75,11 +80,6 @@ c      _EXCH_XYZ_R8(vVel  , myThid )
         ENDDO
        ENDDO
       ENDDO
-
-c     IF (uVelInitFile .NE. ' ' .OR. vVelInitFile .NE. ' ') THEN
-       CALL EXCH_UV_XYZ_RL(uVel,vVel,.TRUE.,myThid)
-       _EXCH_XYZ_R8(wVel,myThid)
-c     ENDIF
 
       RETURN
       END
