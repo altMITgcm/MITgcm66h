@@ -10,7 +10,7 @@
 
 S64='$(TOOLSDIR)/set64bitConst.sh'
 MAKEDEPEND=makedepend
-DEFINES='-DTARGET_PWR3 -DTARGET_SGI -DWORDLENGTH=4'
+DEFINES='-DALLOW_USE_MPI -DALWAYS_USE_MPI -DTARGET_PWR3 -DTARGET_SGI -DWORDLENGTH=4'
 
 #ph: e.g. bluesky.ucar.edu, marcellus.navo.hpc.mil
 INCLUDES='-I/usr/lpp/ppe.poe/include'
