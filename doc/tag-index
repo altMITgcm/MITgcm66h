@@ -3,6 +3,13 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+ecco_c50_e29
+Bug fix for merging between c50 and KPP.
+ikey was passed from thermodynamics to kpp_calc via
+common block rather than being recomputed in kpp_calc,
+in contradiction with new key itdkey.
+New key ikppkey created, and tamc.h headers updated.
+
 ecco_c50_e28
 o major merge:
   ecco-branch merged with checkpoint50
