@@ -2,6 +2,9 @@ $Header$
 
     Notes on tags used in MITgcmUV
     ==============================
+
+o mask vorticity at the corner ; affects global_ocean.cs output
+o fix ini_curvilinear_grid ; test CS experiments with mpi
 o aim.5l_cs: modify sea-ice fraction input file ; update output
 
 checkpoint52k_post
