@@ -3,6 +3,18 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+ecco_c44_e16
+o new ECCO checkpoint, the first since ecco_c43_e15
+  which is branched from MITgcm.
+  All changes were merged in between (see ecco-branch-mod? tags).
+o last changes:
+  * assuming path for TAF and TAMC are known (e.g. in $path)
+  * genmake:
+    - added tools/xmakedepend to circumvene shortcoming of
+      SUN's makedepend (size too small)
+    - invoking ../tools/xmakedepend instead of makedepend
+    - changed compiler flags for case SunOS
+
 ecco-branch-mod5
 o mod's to reproduce open boundary run
 o enable field swapping for OB's and climatology
