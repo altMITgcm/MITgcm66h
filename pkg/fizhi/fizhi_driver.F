@@ -38,8 +38,8 @@ c Diagnostic Common
 c -----------------
 #ifdef ALLOW_DIAGNOSTICS
 #include "SIZE.h"
-#include "diagnostics_SIZE.h"
-#include "diagnostics.h"
+#include "DIAGNOSTICS_SIZE.h"
+#include "DIAGNOSTICS.h"
 #endif
 
 c Timers Common
