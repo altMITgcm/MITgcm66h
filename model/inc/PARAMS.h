@@ -610,16 +610,18 @@ C     atm_Po    :: standard reference pressure
 C     atm_Cp    :: specific heat (Cp) of the (dry) air at constant pressure
 C     atm_Rd    :: gas constant for dry air
 C     atm_kappa :: kappa = R/Cp (R: constant of Ideal Gas EOS)
+C     atm_Rq    :: water vapour specific volume anomaly relative to dry air
+C                  (e.g. typical value = (29/18 -1) 10^-3 with q [g/kg])
 C     integr_GeoPot :: option to select the way we integrate the geopotential
 C                     (still a subject of discussions ...) 
 C     selectFindRoSurf :: select the way surf. ref. pressure (=Ro_surf) is
 C             derived from the orography. Implemented: 0,1 (see INI_P_GROUND)
       COMMON /PARM_ATM/ 
      &            celsius2K,
-     &            atm_Cp, atm_Rd, atm_kappa, atm_Po,
+     &            atm_Cp, atm_Rd, atm_kappa, atm_Rq, atm_Po,
      &            integr_GeoPot, selectFindRoSurf
       _RL celsius2K
-      _RL atm_Po, atm_Cp, atm_Rd, atm_kappa 
+      _RL atm_Po, atm_Cp, atm_Rd, atm_kappa, atm_Rq
       INTEGER integr_GeoPot, selectFindRoSurf
 
 C Logical flags for selecting packages

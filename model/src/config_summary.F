@@ -145,6 +145,8 @@ CEOP
      & '  /* specific heat (Cp) of dry air ( J/kg/K ) */')
       CALL WRITE_0D_R8( atm_kappa, INDEX_NONE, 'atm_kappa =',
      & '  /* kappa (=Rd/Cp ) of dry air */')
+       CALL WRITE_0D_R8( atm_Rq, INDEX_NONE, 'atm_Rq =',
+     &  ' /* water vap. specific vol. anomaly relative to dry air */')
       CALL WRITE_0D_R8( atm_Po, INDEX_NONE, 'atm_Po =',
      & '  /* standard reference pressure ( Pa ) */')
       CALL WRITE_0D_I( integr_GeoPot, INDEX_NONE, 'integr_GeoPot =',

@@ -177,6 +177,7 @@ C--   Atmospheric physical parameters (e.g.: EOS)
       atm_Cp = 1004. _d 0
       atm_Rd = UNSET_RL
       atm_kappa = 2. _d 0 / 7. _d 0
+      atm_Rq = 0. _d 0
       integr_GeoPot = 2
       selectFindRoSurf = 0
 

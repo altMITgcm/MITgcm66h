@@ -111,7 +111,7 @@ C--   Continuous equation parameters
      & diffKhT, diffKzT, diffK4T, 
      & diffKhS, diffKzS, diffK4S,
      & tRef, sRef, eosType, integr_GeoPot, selectFindRoSurf,
-     & atm_Cp, atm_Rd,
+     & atm_Cp, atm_Rd, atm_Rq,
      & no_slip_sides,no_slip_bottom,
      & momViscosity,  momAdvection, momForcing, useCoriolis,
      & momPressureForcing, metricTerms, vectorInvariantMomentum,
