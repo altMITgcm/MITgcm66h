@@ -91,8 +91,14 @@ C     TFrzOce   :: sea-water freezing temperature [oC] (function of S)
 
       LOGICAL dBug
 
-      dBug = .FALSE.
  1010 FORMAT(A,1P4E11.3)
+      dBug = .FALSE.
+C-    Initialise flxAtm
+       DO j = 1-Oly, sNy+Oly
+        DO i = 1-Olx, sNx+Olx
+          flxAtm(i,j) = 0.
+        ENDDO
+       ENDDO
 
       IF ( buoyancyRelation(1:7) .EQ. 'OCEANIC' ) THEN
        DO j = jMin, jMax
