@@ -115,6 +115,8 @@ C--   Set default "physical" parameters
       zonal_filt_lat      = 90.
       zonal_filt_sinpow   = 2
       zonal_filt_cospow   = 4
+      bottomDragLinear    = 0.
+      bottomDragQuadratic = 0.
 
 C--   Elliptic solver parameters
       cg2dMaxIters       = 150

@@ -132,6 +132,7 @@ C     ab05, ab15 - Adams-Bashforth time-stepping weights.
       INTEGER km1,kp1
       _RL maskDown,wVelBottomOverride,rdrckp1
       LOGICAL bottomDragTerms
+      _RL KE(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
       km1=MAX(1,k-1)
       kp1=MIN(Nr,k+1)
@@ -151,6 +152,15 @@ C     Initialise intermediate terms
         pF(i,j)   = 0.
         fZon(i,j) = 0.
         fMer(i,j) = 0.
+       ENDDO
+      ENDDO
+      DO J=1-OLy,sNy+OLy-1
+       DO I=1-OLx,sNx+OLx-1
+        KE(i,j) = 0.25*(
+     &       uVel( i , j ,k,bi,bj)*uVel( i , j ,k,bi,bj)
+     &      +uVel(i+1, j ,k,bi,bj)*uVel(i+1, j ,k,bi,bj)
+     &      +vVel( i , j ,k,bi,bj)*vVel( i , j ,k,bi,bj)
+     &      +vVel( i ,j+1,k,bi,bj)*vVel( i ,j+1,k,bi,bj) )
        ENDDO
       ENDDO
 C     COS(latitude) at U points and V points
@@ -529,6 +539,8 @@ C-  No-slip BCs impose a drag at bottom
      &   -_recip_hFacW(i,j,k,bi,bj)*recip_drF(k)
      &   *(
      &      2.*KappaRU(i,j,kp1)*rkFac*rdrckp1
+     &     + bottomDragLinear
+     &     + bottomDragQuadratic*sqrt(KE(i,j)+KE(i-1,j))
      &    )*(1.-maskDown)*uVel(i,j,k,bi,bj)
         ENDDO
        ENDDO
@@ -852,6 +864,8 @@ C-  No-slip BCs impose a drag at bottom
      &   -_recip_hFacS(i,j,k,bi,bj)*recip_drF(k)
      &   *(
      &      2.*KappaRV(i,j,kp1)*rkFac*rdrckp1
+     &     + bottomDragLinear
+     &     + bottomDragQuadratic*sqrt(KE(i,j)+KE(i,j-1))
      &    )*(1.-maskDown)*vVel(i,j,k,bi,bj)
         ENDDO
        ENDDO

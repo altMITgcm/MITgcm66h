@@ -102,7 +102,8 @@ C--   Continuous equation parameters
      & writeBinaryPrec, readBinaryPrec, writeStatePrec,
      & openBoundaries, nonHydrostatic, globalFiles,
      & allowFreezing, ivdc_kappa,
-     & nShap, zonal_filt_lat, zonal_filt_sinpow, zonal_filt_cospow
+     & nShap, zonal_filt_lat, zonal_filt_sinpow, zonal_filt_cospow,
+     & bottomDragLinear,bottomDragQuadratic
 
 C--   Elliptic solver parameters
       NAMELIST /PARM02/
