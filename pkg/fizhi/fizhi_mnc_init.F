@@ -79,7 +79,7 @@ C           Loop just ONCE if the Horiz component is "-"
               ENDIF
             ENDIF
             
-            DO ivert = 1,5
+            DO ivert = 1,2
               DO itime = 1,2
                 
 C               horiz and hsub
