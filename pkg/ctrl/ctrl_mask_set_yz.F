@@ -101,8 +101,8 @@ c--   mask conventions are adopted from obcs_apply_ts, obcs_apply_uv
             do j = jmin,jmax
               i = OB_I(J,bi,bj)
                 if ( i .NE. 0 ) then
-c--               South mask for T, S
-                  if (maskS(i+ip1,j,k,bi,bj) .ne. 0.) then
+c--               West mask for T, S
+                  if (maskW(i+ip1,j,k,bi,bj) .ne. 0.) then
                     nwetobcs(bi,bj,k,1) = nwetobcs(bi,bj,k,1) + 1
                     nwetobcs(bi,bj,k,2) = nwetobcs(bi,bj,k,2) + 1
                     maskyz(j,k,bi,bj,1)  = 1

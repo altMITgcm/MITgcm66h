@@ -375,6 +375,11 @@ CADJ &     = comlev1_bibj, key=ikey, byte=isbyte
 
 #ifdef  ALLOW_GMREDI
 
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE sigmaX(:,:,k)        = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ STORE sigmaY(:,:,k)        = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ STORE sigmaR(:,:,k)        = comlev1_bibj_k, key=kkey, byte=isbyte
+#endif /* ALLOW_AUTODIFF_TAMC */
 C--     Calculate iso-neutral slopes for the GM/Redi parameterisation
         IF (useGMRedi) THEN
           CALL GMREDI_CALC_TENSOR(

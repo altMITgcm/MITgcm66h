@@ -395,6 +395,9 @@ SRC_MODEL	= \
 # rules
 #--------------------------------------------------------
 
+small_f:
+	cd $(SOURCE_CODE); $(MAKE) depend; $(MAKE) small_f
+
 adcode:
 	cd $(DEST) ; cat $(SRC_MODEL) >! tamc_code_ecco.f
 admodeltamc:
@@ -417,6 +420,6 @@ adchange:
            $(PKG)/autodiff/adjoint_model.F;		\
         cat tamc_code_ecco_sed_ad.f >> $(PKG)/autodiff/adjoint_model.F
 
-adtamc:  adrestore adcode admodeltamc
+adtamc:  adrestore small_f adcode admodeltamc
 
-adtaf:  adrestore adcode admodeltaf
+adtaf:  adrestore small_f adcode admodeltaf
