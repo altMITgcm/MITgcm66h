@@ -178,7 +178,7 @@ c     == end of interface ==
         do bi = mybxlo(mythid), mybxhi(mythid)
           do j = 1, sny
             do i = 1, snx
-              climsst (i,j,bi,bj) = 0. _d 0
+              climsst (i,j,bi,bj) = climsstconst
               climsst0(i,j,bi,bj) = 0. _d 0
               climsst1(i,j,bi,bj) = 0. _d 0
             enddo
