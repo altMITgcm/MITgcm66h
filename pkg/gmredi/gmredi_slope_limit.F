@@ -258,23 +258,6 @@ C-      Large, Danabasoglu and Doney, JPO 1997
         DO j=1-Oly+1,sNy+Oly-1
          DO i=1-Olx+1,sNx+Olx-1
 
-<<<<<<< gmredi_slope_limit.F
-          Smod = SlopeSqr(i,j)
-          if (Smod.NE.0.) Smod=sqrt(Smod)
-          f1=0.5*(1.+tanh( (GM_Scrit-Smod)/GM_Sd ))
-          Cspd=2.
-          Lrho=100.e3
-          if (FCori(i,j,bi,bj).NE.0.) Lrho=Cspd/abs(Fcori(i,j,bi,bj))
-          Lrho=min(Lrho,100.e3)
-          Lrho=max(Lrho,15.e3)
-          if (Smod.NE.0.) then
-            Rnondim=depthZ/(Lrho*Smod)
-          else
-            Rnondim=0.
-          endif
-          f2=0.5*(1.+sin( fpi*(Rnondim-0.5)))
-          taperFct(i,j)=f1*f2
-=======
           IF (SlopeSqr(i,j) .EQ. 0.) THEN
            taperFct(i,j) = 1. _d 0
           ELSE
@@ -289,7 +272,6 @@ C-      Large, Danabasoglu and Doney, JPO 1997
            f2=0.5*(1.+sin( fpi*(Rnondim-0.5)))
            taperFct(i,j)=f1*f2
           ENDIF
->>>>>>> 1.11.2.1
 
          ENDDO
         ENDDO
