@@ -22,6 +22,14 @@ C Non-linear flux limiter
       INTEGER ENUM_FLUX_LIMIT
       PARAMETER(ENUM_FLUX_LIMIT=77)
 
+C 3-DST 
+      INTEGER ENUM_DST3
+      PARAMETER(ENUM_DST3=30)
+
+C 3-DST flux limited
+      INTEGER ENUM_DST3_FLUX_LIMIT
+      PARAMETER(ENUM_DST3_FLUX_LIMIT=33)
+
 C Third/fourth order interpolation factor
       _RL oneSixth
       PARAMETER(oneSixth=1.D0/6.D0)

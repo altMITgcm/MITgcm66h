@@ -58,7 +58,9 @@ C-    with Adams-Bashforth weights:
         ENDDO
        ENDDO
 
-      ELSEIF (advection_scheme.EQ.ENUM_FLUX_LIMIT) THEN
+      ELSEIF (advection_scheme.EQ.ENUM_FLUX_LIMIT
+     &    .OR.advection_scheme.EQ.ENUM_DST3
+     &    .OR.advection_scheme.EQ.ENUM_DST3_FLUX_LIMIT ) THEN
 
 C-    with no Adams-Bashforth weights:
        DO j=jMin,jMax
