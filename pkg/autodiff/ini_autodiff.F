@@ -53,7 +53,8 @@ C-      2D arrays
         DO J=1-Oly,sNy+Oly
          DO I=1-Olx,sNx+Olx
 #ifdef EXACT_CONSERV
-          hDivFlow(I,J,bi,bj)=0. _d 0
+         dEtaHdt(i,j,bi,bj) = 0. _d 0
+cph          hDivFlow(I,J,bi,bj)=0. _d 0
 #endif
 #ifdef ALLOW_EXF
           EmPmR(I,J,bi,bj) = 0. _d 0

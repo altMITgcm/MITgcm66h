@@ -21,7 +21,8 @@ CADJ STORE empmr     = tapelev3, key = ilev_3
 
 #ifdef EXACT_CONSERV
 CADJ STORE etaH      = tapelev3, key = ilev_3
-CADJ STORE hDivFlow  = tapelev3, key = ilev_3
+CADJ STORE dEtaHdt   = tapelev3, key = ilev_3
+cphCADJ STORE hDivFlow  = tapelev3, key = ilev_3
 #endif /* EXACT_CONSERV */
 
 #ifdef ALLOW_PASSIVE_TRACER

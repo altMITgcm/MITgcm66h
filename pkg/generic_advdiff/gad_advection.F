@@ -198,7 +198,9 @@ C--   Make local copy of tracer array
        ENDDO
       ENDDO
 
-      IF (useCubedSphereExchange) THEN
+cph  The following block is needed for useCubedSphereExchange only,
+cph  but needs to be set for all cases to avoid spurious 
+cph  TAF dependencies
        southWestCorner = .TRUE.
        southEastCorner = .TRUE.
        northWestCorner = .TRUE.
@@ -217,6 +219,7 @@ C--   Make local copy of tracer array
 #else
        nCFace = bi
 #endif
+      IF (useCubedSphereExchange) THEN
 
        nipass=3
 #ifdef ALLOW_AUTODIFF_TAMC
