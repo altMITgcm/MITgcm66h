@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint41
+o re-formatted/added comments in prologues of key subroutines
+  to work with protex
+
 checkpoint40
 o moved calc_gs, calc_gt and calc_tr1 back to model/src
 o added FLT (floats) package from Arne along with demo. experiment
