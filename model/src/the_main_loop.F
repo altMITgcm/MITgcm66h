@@ -146,7 +146,7 @@ C--   Set initial conditions (variable arrays)
 #endif
 C--   Check status of solution (statistics, cfl, etc...)
       CALL TIMER_START('MONITOR             [THE_MAIN_LOOP]', mythid)
-      CALL MONITOR( myIter, myTime, myThid )
+      CALL MONITOR( nIter0, startTime, myThid )
       CALL TIMER_STOP ('MONITOR             [THE_MAIN_LOOP]', mythid)
 #endif /* ALLOW_MONITOR */
 
@@ -155,7 +155,7 @@ C--   Do IO if needed (Dump for start state).
       IF (debugMode) CALL DEBUG_CALL('DO_THE_MODEL_IO',myThid)
 #endif
       CALL TIMER_START('DO_THE_MODEL_IO     [THE_MAIN_LOOP]', mythid)
-      CALL DO_THE_MODEL_IO( myTime, myIter, mythid )
+      CALL DO_THE_MODEL_IO( startTime, nIter0, mythid )
       CALL TIMER_STOP ('DO_THE_MODEL_IO     [THE_MAIN_LOOP]', mythid)
 
 #ifdef ALLOW_AUTODIFF_TAMC
