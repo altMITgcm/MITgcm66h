@@ -58,6 +58,14 @@ C     Add windstress momentum impulse into the top-layer
        ENDDO
       ENDIF
 
+#ifdef ALLOW_OBCS
+      IF (useOBCS) THEN
+       CALL OBCS_SPONGE_U(
+     I           iMin, iMax, jMin, jMax,bi,bj,kLev,
+     I           myCurrentTime,myThid)
+      ENDIF
+#endif
+
       RETURN
       END
 CBOP
@@ -114,6 +122,14 @@ C     Add windstress momentum impulse into the top-layer
         ENDDO
        ENDDO
       ENDIF
+
+#ifdef ALLOW_OBCS
+      IF (useOBCS) THEN
+       CALL OBCS_SPONGE_V(
+     I           iMin, iMax, jMin, jMax,bi,bj,kLev,
+     I           myCurrentTime,myThid)
+      ENDIF
+#endif
 
       RETURN
       END
@@ -194,6 +210,15 @@ C Penetrating SW radiation
        ENDDO
       ENDDO
 #endif
+
+#ifdef ALLOW_OBCS
+      IF (useOBCS) THEN
+       CALL OBCS_SPONGE_T(
+     I           iMin, iMax, jMin, jMax,bi,bj,kLev,
+     I           myCurrentTime,myThid)
+      ENDIF
+#endif
+
       RETURN
       END
 CBOP
@@ -250,6 +275,14 @@ C     Add fresh-water in top-layer
         ENDDO
        ENDDO
       ENDIF
+
+#ifdef ALLOW_OBCS
+      IF (useOBCS) THEN
+       CALL OBCS_SPONGE_S(
+     I           iMin, iMax, jMin, jMax,bi,bj,kLev,
+     I           myCurrentTime,myThid)
+      ENDIF
+#endif
 
       RETURN
       END
