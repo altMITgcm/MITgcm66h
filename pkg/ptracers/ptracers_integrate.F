@@ -29,6 +29,7 @@ C !USES: ===============================================================
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "DYNVARS.h"
+#include "PTRACERS_SIZE.h"
 #include "PTRACERS.h"
 #include "GAD.h"
 

@@ -4,7 +4,7 @@ C $Name$
 #include "PTRACERS_OPTIONS.h"
 
 CBOP
-C !ROUTINE: PTRACERS_FORCING
+C !ROUTINE: PTRACERS_FORCING_SURF
 
 C !INTERFACE: ==========================================================
       SUBROUTINE PTRACERS_FORCING_SURF(
@@ -20,6 +20,7 @@ C !USES: ===============================================================
       IMPLICIT NONE
 #include "SIZE.h"
 #include "EEPARAMS.h"
+#include "PTRACERS_SIZE.h"
 #include "PTRACERS.h"
 #include "PARAMS.h"
 #include "FFIELDS.h"

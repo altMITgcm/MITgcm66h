@@ -1,4 +1,5 @@
-cswdptr --- added routine ----
+C $Header$
+C $Name$
 
 #ifdef ALLOW_PTRACERS
 #ifdef ALLOW_TIMEAVE
@@ -31,4 +32,4 @@ C     ptracertave    : tracer values (mol/m-3)
       _RL ptracer_half(Nr,nSx,nSy), ptracer_full(Nr,nSx,nSy)
 
 #endif /* ALLOW_TIMEAVE */ 
-#endif
+#endif /* ALLOW_PTRACERS */ 

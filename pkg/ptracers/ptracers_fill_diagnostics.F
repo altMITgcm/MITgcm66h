@@ -10,6 +10,7 @@ C $Name$
 #include "EEPARAMS.h"
 #include "GRID.h"
 #include "DYNVARS.h"
+#include "PTRACERS_SIZE.h"
 #include "PTRACERS.h"
 
       integer myThid 

@@ -3,9 +3,6 @@ C $Name$
 
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
-c #ifdef ALLOW_PTRACERS
-c # include "PTRACERS_OPTIONS.h"
-c #endif
 
 #ifdef ALLOW_AUTODIFF_TAMC
 # ifdef ALLOW_GMREDI
@@ -43,6 +40,7 @@ c #ifdef ALLOW_PASSIVE_TRACER
 c #include "TR1.h"
 c #endif
 c #ifdef ALLOW_PTRACERS
+c #include "PTRACERS_SIZE.h"
 c #include "PTRACERS.h"
 c #endif
 c #ifdef ALLOW_TIMEAVE

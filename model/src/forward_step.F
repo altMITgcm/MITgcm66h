@@ -72,6 +72,7 @@ C     == Global variables ==
 #  include "OBCS.h"
 # endif
 # ifdef ALLOW_PTRACERS
+#  include "PTRACERS_SIZE.h"
 #  include "PTRACERS.h"
 # endif
 # ifdef ALLOW_CD_CODE
