@@ -66,6 +66,7 @@ c--   Initialize the tiled cost function contributions.
           objf_ctdt(bi,bj) = 0. _d 0
           objf_ctds(bi,bj) = 0. _d 0
           objf_test(bi,bj) = 0. _d 0
+          objf_tracer(bi,bj) = 0. _d 0
         enddo
       enddo
 

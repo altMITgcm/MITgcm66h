@@ -71,7 +71,7 @@ c--   Read the namelist input.
      &                   mult_hq,    mult_hs, mult_tauu, mult_tauv,
      &                   mult_hmean, mult_h,  mult_temp, mult_salt,
      &                   mult_sst, mult_atl, mult_ctdt, mult_ctds, 
-     &                   mult_test,
+     &                   mult_test, mult_tracer,
      &                   iprec_cost, yftype_cost
 
       _BEGIN_MASTER( myThid )
@@ -119,6 +119,7 @@ c--     Set default values.
         mult_ctdt             =      0. _d 0
         mult_ctds             =      0. _d 0
         mult_test             =      0. _d 0
+        mult_tracer           =      0. _d 0
 
 c--     Check versions.
 
