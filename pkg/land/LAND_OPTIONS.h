@@ -2,16 +2,14 @@ C $Header$
 C $Name$
 
 C  CPP options file for Land package 
-
-#ifndef LAND_OPTIONS_H
-#define LAND_OPTIONS_H
-#include "PACKAGES_CONFIG.h"
-#ifdef ALLOW_LAND
-
+C
+#ifndef _CPP_EEOPTIONS_H_
 #include "CPP_OPTIONS.h"
+#endif
+
+#ifdef ALLOW_LAND
 
 C  allow time average diagnostic:
 #define ALLOW_LAND_TAVE
 
 #endif /* ALLOW_LAND */
-#endif /* LAND_OPTIONS_H */

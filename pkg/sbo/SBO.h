@@ -1,5 +1,4 @@
-C $Header$
-C $Name$
+C $Header:
 
 #ifdef ALLOW_SBO
 

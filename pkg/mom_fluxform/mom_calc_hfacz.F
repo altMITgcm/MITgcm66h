@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "MOM_FLUXFORM_OPTIONS.h"
+#include "CPP_OPTIONS.h"
 
 CBOP
 C !ROUTINE: MOM_CALC_HFACZ

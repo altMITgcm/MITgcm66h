@@ -155,7 +155,6 @@ C-     for CD-scheme, compute gU,Vtmp = gU,V^n + forcing
       ENDIF
 
 #ifdef INCLUDE_CD_CODE
-#ifdef ALLOW_MOM_FLUXFORM
       IF (useCDscheme) THEN
 C-     Step forward D-grid velocity using C-grid gU,Vtmp = gU,V^n + forcing
 C      and return coriolis terms on C-grid (guCor,gvCor)
@@ -172,7 +171,6 @@ C      and return coriolis terms on C-grid (guCor,gvCor)
          ENDDO
         ENDDO
       ENDIF
-#endif /* ALLOW_MOM_FLUXFORM */
 #endif /* INCLUDE_CD_CODE */
 
 #ifdef NONLIN_FRSURF

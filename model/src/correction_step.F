@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CBOP
@@ -71,7 +70,6 @@ C     Step forward zonal velocity
         uVel(i,j,k,bi,bj)=( gU(i,j,k,bi,bj)
      &       -deltaTmom*hxFac*implicSurfPress*phiSurfX(i,j)
 #ifdef ALLOW_NONHYDROSTATIC
-ceh3 needs an IF ( useNONHYDROSTATIC ) THEN
      &       -deltaTmom*hx3dFac*_recip_dxC(i,j,bi,bj)*
      &          (phi_nh(i,j,k,bi,bj)-phi_nh(i-1,j,k,bi,bj))
 #endif
@@ -85,7 +83,6 @@ C     Step forward meridional velocity
         vVel(i,j,k,bi,bj)=( gV(i,j,k,bi,bj)
      &       -deltaTmom*hyFac*implicSurfPress*phiSurfY(i,j)
 #ifdef ALLOW_NONHYDROSTATIC
-ceh3 needs an IF ( useNONHYDROSTATIC ) THEN
      &       -deltaTmom*hy3dFac*_recip_dyC(i,j,bi,bj)*
      &          (phi_nh(i,j,k,bi,bj)-phi_nh(i,j-1,k,bi,bj))
 #endif

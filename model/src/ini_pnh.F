@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CBOP
@@ -41,7 +40,6 @@ C     == Local variables ==
 CEOP
 
 #ifdef ALLOW_NONHYDROSTATIC
-ceh3 needs an IF ( useNONHYDROSTATIC ) THEN
 
 C--   Initialise surface position anomaly to zero
       DO bj = myByLo(myThid), myByHi(myThid)

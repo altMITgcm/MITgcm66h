@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "GMREDI_OPTIONS.h"
+#include "CPP_OPTIONS.h"
 
       SUBROUTINE GMREDI_CHECK( myThid )
 C     /==========================================================\

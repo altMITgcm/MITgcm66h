@@ -1,5 +1,5 @@
 
-#include "AUTODIFF_OPTIONS.h"
+#include "CPP_OPTIONS.h"
 
 CBOP
 C     !ROUTINE: INI_AUTODIFF

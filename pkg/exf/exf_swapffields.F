@@ -1,6 +1,6 @@
 c $Header$
 
-#include "EXF_OPTIONS.h"
+#include "EXF_CPPOPTIONS.h"
 
 
       subroutine exf_SwapFFields(

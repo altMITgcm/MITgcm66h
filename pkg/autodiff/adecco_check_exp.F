@@ -1,4 +1,4 @@
-#include "AUTODIFF_OPTIONS.h"
+#include "CPP_OPTIONS.h"
 
       subroutine adecco_check_exp( 
      &     mythid, mycurrentiter, mycurrenttime, yprefix )

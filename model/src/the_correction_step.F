@@ -1,7 +1,6 @@
 C $Header$
-C $Name$
+C Tag $Name$
 
-#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 #ifdef ALLOW_GCHEM
 #include "GCHEM_OPTIONS.h"
@@ -123,7 +122,6 @@ C-        Update tracer fields:  T(n) = T**, Gt(n-1) = Gt(n)
      U           salt,gS,gSNm1,
      I           myTime,myThid )
 #ifdef ALLOW_PASSIVE_TRACER
-ceh3 ??? should this have IF ( usePASSIVE_TRACER .AND. tr1Stepping )
           IF (tr1Stepping)
      &      CALL CYCLE_TRACER(
      I           bi,bj,iMin,iMax,jMin,jMax,K,
@@ -199,9 +197,7 @@ C--     for vertical velocity and "etaN" (exact volume conservation) :
         ENDIF
 cswdptr -- add ---
 #ifdef ALLOW_PTRACERS
-ceh3 this define should not be visible!
 #ifndef PTRACERS_SEPARATE_FORCING
-ceh3 this should have an IF ( usePTRACERS ) THEN 
           CALL PTRACERS_STATVARS(myTime, myIter, bi, bj, myThid)
 #endif
 #endif

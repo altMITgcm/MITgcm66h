@@ -7,7 +7,6 @@ C Use this file for selecting options within the GM/Redi package
 C
 C GM/Redi is enabled with ALLOW_GMREDI in CPP_OPTIONS.h
 
-#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 #ifdef ALLOW_GMREDI

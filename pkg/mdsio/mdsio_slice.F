@@ -1,7 +1,14 @@
 C $Header$
-C $Name$
 
-#include "MDSIO_OPTIONS.h"
+#include "CPP_OPTIONS.h"
+
+#undef  SAFE_IO
+
+#ifdef SAFE_IO
+#define _NEW_STATUS 'new'
+#else
+#define _NEW_STATUS 'unknown'
+#endif
 
 C=======================================================================
       SUBROUTINE MDSREADFIELDXZ(

@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 C--  File read_write.F: Routines to handle mid-level I/O interface.
@@ -98,7 +97,6 @@ C       Raw fields
         CALL READ_REC_XYZ_RL( 'gsNm1',  gSNm1, 1,myIter, myThid)
         CALL READ_REC_XY_RL ('etaN', etaN, 1,myIter, myThid)
 #ifdef INCLUDE_CD_CODE
-        IF (useCDscheme) THEN
         CALL READ_REC_XY_RL ('etaNm1', etaNm1, 1,myIter, myThid)
         CALL READ_REC_XYZ_RL(  'uVelD', uVelD, 1,myIter, myThid)
         CALL READ_REC_XYZ_RL(  'vVelD', vVelD, 1,myIter, myThid)
@@ -106,7 +104,6 @@ C       Raw fields
         CALL READ_REC_XYZ_RL(  'vNm1',  vNM1, 1,myIter, myThid)
 c       CALL READ_REC_XYZ_RL(  'guCD',  guCD, 1,myIter, myThid)
 c       CALL READ_REC_XYZ_RL(  'gvCD',  gvCD, 1,myIter, myThid)
-        ENDIF
 #endif
 
 #ifdef ALLOW_NONHYDROSTATIC
@@ -153,7 +150,6 @@ C--     Read model fields
         ENDIF
 
 #ifdef INCLUDE_CD_CODE
-        IF (useCDscheme) THEN
         WRITE(fn,'(A,A10)') 'pickup_cd.',suff
         CALL MDSREADFIELD(fn,prec,'RL',Nr,uVelD,    1,myThid)
         CALL MDSREADFIELD(fn,prec,'RL',Nr,vVelD,    2,myThid)
@@ -162,7 +158,6 @@ C--     Read model fields
 c       CALL MDSREADFIELD(fn,prec,'RL',Nr,guCD,     5,myThid)
 c       CALL MDSREADFIELD(fn,prec,'RL',Nr,gvCD,     6,myThid)
         CALL MDSREADFIELD(fn,prec,'RL', 1,etaNm1,6*Nr+1,myThid)
-        ENDIF
 #endif /* INCLUDE_CD_CODE */
 
 #ifdef ALLOW_NONHYDROSTATIC
@@ -221,7 +216,6 @@ c     _EXCH_XYZ_R8(gvNM1 , myThid )
      & _EXCH_XYZ_RL( totPhiHyd, myThid )
 
 #ifdef INCLUDE_CD_CODE
-       IF (useCDscheme) THEN
 c**** CALL EXCH_DUV_XYZ_RL(uVelD,vVelD,.TRUE.,myThid)
 c**** CALL EXCH_DUV_XYZ_RL(guCD,gvCD,.TRUE.,myThid)
       _EXCH_XYZ_R8( uVelD,    myThid )
@@ -232,8 +226,7 @@ c     _EXCH_XYZ_R8( vNM1,     myThid )
 c     _EXCH_XYZ_R8( guCD,     myThid )
 c     _EXCH_XYZ_R8( gvCD,     myThid )
       _EXCH_XY_R8( etaNm1, myThid )
-      ENDIF
-#endif /* INCLUDE_CD_CODE */
+#endif
 #ifdef ALLOW_NONHYDROSTATIC
         IF ( nonHydrostatic ) THEN
          _EXCH_XYZ_R8(phi_nh, myThid )
@@ -365,7 +358,6 @@ C       Raw fields
         CALL WRITE_REC_XYZ_RL( 'gSNm1',  gSNm1,  1,myIter, myThid)
         CALL WRITE_REC_XY_RL ('etaN', etaN,  1,myIter, myThid)
 #ifdef INCLUDE_CD_CODE
-        IF (useCDscheme) THEN
         CALL WRITE_REC_XY_RL
      &   ( 'etaNm1', etaNm1,  1,myIter, myThid)
         CALL WRITE_REC_XYZ_RL(  'uVelD', uVelD,  1,myIter, myThid)
@@ -374,8 +366,8 @@ C       Raw fields
         CALL WRITE_REC_XYZ_RL(  'vNM1',  vNM1,  1,myIter, myThid)
 c       CALL WRITE_REC_XYZ_RL(  'guCD',  guCD,  1,myIter, myThid)
 c       CALL WRITE_REC_XYZ_RL(  'gvCD',  gvCD,  1,myIter, myThid)
-        ENDIF
-#endif /* INCLUDE_CD_CODE */
+#endif
+
 
 
 #ifdef ALLOW_NONHYDROSTATIC
@@ -426,7 +418,6 @@ C--     Write model fields
      &                      1,myIter,myThid)
         ENDIF
 #ifdef INCLUDE_CD_CODE
-        IF (useCDscheme) THEN
         IF ( permCheckPoint ) THEN
          WRITE(fn,'(A,I10.10)') 'pickup_cd.',myIter
         ELSE
@@ -444,7 +435,6 @@ c       CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,gvCD, 6,myIter,myThid)
         CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,vNM1, 6,myIter,myThid)
         CALL MDSWRITEFIELD(fn,prec,lgf,'RL', 1,etaNm1,6*Nr+1,
      &                     myIter,myThid)
-        ENDIF
 #endif /* INCLUDE_CD_CODE */
 #ifdef ALLOW_NONHYDROSTATIC
         IF ( nonHydrostatic ) THEN
@@ -474,13 +464,6 @@ C SPK 4/9/01: Open boundary checkpointing
      &               prec, lgf, permCheckPoint, myIter, myThid)
         ENDIF
 #endif  /* ALLOW_OBCS */
-
-#ifdef ALLOW_THERM_SEAICE
-        IF (useThermSeaIce) THEN
-          CALL ICE_WRITE_CHECKPOINT(
-     &               prec, lgf, permCheckPoint, myIter, myThid)
-        ENDIF
-#endif /* ALLOW_THERM_SEAICE */
 
 #ifdef ALLOW_FLT
 C--     Write restart file for floats

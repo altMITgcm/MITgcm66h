@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CBOP
@@ -93,12 +92,10 @@ C--   Write model state to binary file
 
 #ifdef ALLOW_TIMEAVE
 C--   Do time averages
-ceh3 should this have an IF ( useTIMEAVE ) THEN
       IF (taveFreq.GT.0.) THEN
        CALL TIMEAVE_STATV_WRITE( myCurrentTime, myIter, myThid )
 cswdptr -- add ---
 #ifdef ALLOW_PTRACERS
-ceh3 this needs an IF ( usePTRACERS ) THEN
        CALL PTRACERS_STATV_WRITE( myCurrentTime, myIter, myThid )
 #endif
 cswdptr -- end add ---
@@ -158,7 +155,6 @@ cswdice -- end add ---
 
 cswdptr ---  add ---
 #ifdef ALLOW_GCHEM
-ceh3 ???  why is one package depending upon another here?
 C--   Do ptracer diagnostics.
       IF (usePTRACERS)
      & CALL GCHEM_DIAGS( myCurrentTime, myIter, myThid )

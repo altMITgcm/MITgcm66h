@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "DEBUG_OPTIONS.h"
+#include "CPP_OPTIONS.h"
 
       SUBROUTINE DEBUG_MSG(
      I                text,

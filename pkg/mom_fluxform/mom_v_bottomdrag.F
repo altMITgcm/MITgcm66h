@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "MOM_FLUXFORM_OPTIONS.h"
+#include "CPP_OPTIONS.h"
 
 crg butterflies
 crg using undefined values of kapparv in mom_v_bottomdrag

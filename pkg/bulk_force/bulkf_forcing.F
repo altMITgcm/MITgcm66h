@@ -1,8 +1,6 @@
-C $Header$
-C $Name$
 c swd -- bulkf formula pkg
 
-#include "BULK_FORCE_OPTIONS.h"
+#include "CPP_OPTIONS.h"
 
       subroutine bulkf_forcing(  bi,bj,
      I                           mycurrenttime,

@@ -1,10 +1,9 @@
 C $Header$
-C $Name$
 
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 CC     Modified from calc_gs.F, 27/8/98, Mick       CC
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
-#include "DIC_OPTIONS.h"
+#include "CPP_OPTIONS.h"
 #include "GCHEM_OPTIONS.h"
 
 CStartOfInterFace
@@ -333,7 +332,7 @@ CC                             Taka Ito             CC
 CC                             Stephanie Dutkiewicz CC
 CC  20 April 2003                                   CC
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
-#include "DIC_OPTIONS.h"
+#include "CPP_OPTIONS.h"
 CStartOfInterFace
        SUBROUTINE CALC_PCO2_APPROX(
      I                       t,s,diclocal,pt,sit,ta,

@@ -32,6 +32,9 @@ C     == GLobal variables ==
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#ifdef ALLOW_NONHYDROSTATIC
+#include "GW.h"
+#endif
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==

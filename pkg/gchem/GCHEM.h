@@ -1,6 +1,3 @@
-C $Header$
-C $Name$
-
 #ifdef ALLOW_PTRACERS
 #ifdef ALLOW_GCHEM
 

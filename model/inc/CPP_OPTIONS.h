@@ -1,21 +1,126 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
+  These lines are here to deliberately cause a compile-time error.
+  If you see these lines in your .F files or the compiler shows them
+  as an error then it means you have not placed your configuration
+  files in the appropriate place.
+  You need to place you own copy of CPP_OPTIONS.h in the include
+  path for the model.
 
-C CPP flags controlling particular source code features
+C
+
+CBOP
+C !ROUTINE: CPP_OPTIONS.h
+C !INTERFACE: 
+C include "CPP_OPTIONS.h"
+C !DESCRIPTION:
+C CPP flags controlling which code in included in the files that
+C will be compiled.
+CEOP
+
+C o Include/exclude code for AIM package
+#undef  ALLOW_AIM
+
+C o Include/exclude code for GM/Redi parameterization
+#undef  ALLOW_GMREDI
+
+C o Include/exclude code for KPP mixing scheme
+#define  ALLOW_KPP
+
+cswdblk --- add ---
+C o Include/exclude code for bulk formula
+#define  ALLOW_BULK_FORCE
+#ifdef ALLOW_BULK_FORCE
+cswdice -- add ---
+C o allow seaice
+#define ALLOW_THERM_SEAICE
+cswdice -- end add ---
+
+C o try to conserve qnet and emp
+#define CONSERV_BULKF
+#endif
+cswdblk -- end add ---
+
+
+C o Shortwave heating as extra term in external_forcing.F
+#ifdef ALLOW_KPP
+#define  SHORTWAVE_HEATING
+#endif
+
+C o Include/exclude code for Shapiro filters
+#define ALLOW_SHAP_FILT
 
 C o Include/exclude code for C-D grid method of integrating the 
 C   coriolis terms
-#undef  INCLUDE_CD_CODE
+#define  INCLUDE_CD_CODE
+
+C o Include/exclude code for open-boundary conditions
+#undef  ALLOW_OBCS
+
+C o Include/exclude diagnostics package interface code
+#define  ALLOW_TIMEAVE
+
+C o Include/exclude zonal FFT filter code
+#undef  ALLOW_ZONAL_FILT
+
+C o Include/exclude temperature advection code
+#define  INCLUDE_T_ADVECTION_CODE
+#ifdef   INCLUDE_T_ADVECTION_CODE
+#define  _ADT(a)a
+#endif
+#ifndef  INCLUDE_T_ADVECTION_CODE
+#define  _ADT(a)
+#endif
+
+C o Include/exclude temperature diffusion code
+#define  INCLUDE_T_DIFFUSION_CODE
+#ifdef   INCLUDE_T_DIFFUSION_CODE
+#define  _LPT(a)a
+#define  _BHT(a)a
+#endif
+#ifndef  INCLUDE_T_DIFFUSION_CODE
+#define  _LPT(a)
+#define  _BHT(a)
+#endif
 
 C o Include/exclude temperature forcing code
-C#define  INCLUDE_T_FORCING_CODE
+#define  INCLUDE_T_FORCING_CODE
 
-C o Shortwave heating as extra term in external_forcing.F
-C Note: this should be a run-time option and not necessarily dependent on KPP
-#ifdef ALLOW_KPP
-#define  SHORTWAVE_HEATING
+C o Include/exclude momentum advection code
+#define  INCLUDE_MOMENTUM_ADVECTION_CODE
+#ifdef   INCLUDE_MOMENTUM_ADVECTION_CODE
+#define  _ADM(a)a
+#endif
+#ifndef  INCLUDE_MOMENTUM_ADVECTION_CODE
+#define  _ADM(a)
+#endif
+
+C o Include/exclude laplacian viscosity code
+#define  INCLUDE_LP_MOMENTUM_DIFFUSION_CODE
+#ifdef   INCLUDE_LP_MOMENTUM_DIFFUSION_CODE
+#define  _LPM(a)a
+#endif
+#ifndef  INCLUDE_LP_MOMENTUM_DIFFUSION_CODE
+#define  _LPM(a)
+#endif
+
+C o Include/exclude biharmonic viscosity code
+#define  INCLUDE_BH_MOMENTUM_DIFFUSION_CODE
+#ifdef   INCLUDE_BH_MOMENTUM_DIFFUSION_CODE
+#define  _BHM(a)a
+#endif
+#ifndef  INCLUDE_BH_MOMENTUM_DIFFUSION_CODE
+#define  _BHM(a)
+#endif
+
+C o Include/exclude gradient of phy_hyd code
+#define INCLUDE_GRADPH_CODE
+#ifdef  INCLUDE_GRADPH_CODE
+#define _PHM(a)a
+#endif
+#ifndef INCLUDE_GRADPH_CODE
+#define _PHM(a)
 #endif
 
 C o Include/exclude momentum forcing code
@@ -33,15 +138,16 @@ C o Include/exclude call to S/R CONVECT
 C o Include/exclude call to S/R CALC_DIFFUSIVITY
 #define INCLUDE_CALC_DIFFUSIVITY_CALL
 
-C o Include/exclude nonHydrostatic code
-#undef ALLOW_NONHYDROSTATIC
+C o Allow nonHydrostatic code
+#undef  ALLOW_NONHYDROSTATIC
 
-C o Include pressure loading code
-#define ATMOSPHERIC_LOADING
+C o Use "natural" boundary conditions for salinity
+C   instead of the "virtual salt flux"
+#undef  USE_NATURAL_BCS
 
 C o Use "Exact Convervation" of fluid in Free-Surface formulation
 C   so that d/dt(eta) is exactly equal to - Div.Transport
-#define EXACT_CONSERV
+#undef EXACT_CONSERV
 
 C o Allow the use of Non-Linear Free-Surface formulation
 C   this implies that surface thickness (hFactors) vary with time
@@ -57,6 +163,12 @@ C   Note - only works with  #undef NO_SLIP_LATERAL  in calc_mom_rhs.F
 C          because the old code did not have no-slip BCs
 #undef  OLD_UV_GEOMETRY
 
+C o Include/exclude IERS Special Bureau for the Oceans diagnostics
+#undef  ALLOW_SBO
+
+C o Include/exclude code for sea-ice model
+#undef  ALLOW_SEAICE
+
 C o Execution environment support options
 #include "CPP_EEOPTIONS.h"
 
@@ -65,3 +177,4 @@ C o Include/exclude code specific to the ECCO/SEALION version.
 #ifdef INCLUDE_ECCO_PACKAGE
 #include "ECCO_CPPOPTIONS.h"
 #endif
+

@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "DEBUG_OPTIONS.h"
+#include "CPP_OPTIONS.h"
 
       SUBROUTINE CHKSUM_TILED( str,fld,NN,bi,bj,myThid )
       IMPLICIT NONE

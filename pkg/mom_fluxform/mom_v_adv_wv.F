@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "MOM_FLUXFORM_OPTIONS.h"
+#include "CPP_OPTIONS.h"
 #undef OLD_MOM_ADV_W
 
 CBOP

@@ -1,5 +1,5 @@
 
-#include "DIC_OPTIONS.h"
+#include "CPP_OPTIONS.h"
 #include "GCHEM_OPTIONS.h"
 
 C     Procedure name: INSOL

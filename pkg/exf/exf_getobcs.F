@@ -1,4 +1,4 @@
-#include "EXF_OPTIONS.h"
+#include "EXF_CPPOPTIONS.h"
 #ifdef ALLOW_OBCS
 # include "OBCS_OPTIONS.h"
 #endif

@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CBOP
@@ -31,7 +30,6 @@ C     myThid -  Number of this instance of INI_GW
 CEndOfInterface
 
 #ifdef ALLOW_NONHYDROSTATIC
-ceh3 needs an IF ( useNONHYDROSTATIC ) THEN
 
 C     !LOCAL VARIABLES:
 C     == Local variables ==

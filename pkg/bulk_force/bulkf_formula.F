@@ -1,8 +1,6 @@
-C $Header$
-C $Name$
 c swd -- bulkf formula used in bulkf and ice pkgs
 
-#include "BULK_FORCE_OPTIONS.h"
+#include "CPP_OPTIONS.h"
       subroutine bulkf_formula(
      I                           uw, vw, us, Ta, Qa, nc, tsf_in,
      I                           flwup, flha, fsha, df0dT,

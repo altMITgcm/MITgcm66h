@@ -1,20 +1,17 @@
-C $Header$
-C $Name$
+C $Header:
 
 C     /==========================================================\
 C     | SEAICE_OPTIONS.h                                         |
 C     | o CPP options file for sea ice package.                  |
 C     |==========================================================|
 C     | Use this file for selecting options within the sea ice   |
-C     | package.                                                 |
+C     | package.  Sea ice model is enabled with ALLOW_SEAICE in  |
+C     | CPP_OPTIONS.h                                            |
 C     \==========================================================/
 
-#ifndef SEAICE_OPTIONS_H
-#define SEAICE_OPTIONS_H
-#include "PACKAGES_CONFIG.h"
-#ifdef ALLOW_SEAICE
-
 #include "CPP_OPTIONS.h"
+
+#ifdef ALLOW_SEAICE
 
 C--   Write "text-plots" of certain fields in STDOUT for debugging.
 #undef SEAICE_DEBUG
@@ -51,4 +48,3 @@ C     !!! in the middle of an integration.                         !!!
 #undef SEAICE_MULTILEVEL
 
 #endif /* ALLOW_SEAICE */
-#endif /* SEAICE_OPTIONS_H */

@@ -4,15 +4,14 @@ C $Name$
 C CPP options file for GM/Redi package
 C
 C Use this file for selecting options within the GM/Redi package
-
-#ifndef GMREDI_OPTIONS_H
-#define GMREDI_OPTIONS_H
-#include "PACKAGES_CONFIG.h"
-#ifdef ALLOW_GMREDI
+C
+C GM/Redi is enabled with ALLOW_GMREDI in CPP_OPTIONS.h
 
 #include "CPP_OPTIONS.h"
 
-C Designed to simplify the Ajoint code:
+#ifdef ALLOW_GMREDI
+
+C Design to simplify the Ajoint code: 
 C  exclude the clipping/tapering part of the code that is not used
 C #define GM_EXCLUDE_CLIPPING
 C #define GM_EXCLUDE_AC02_TAP
@@ -35,4 +34,3 @@ C  instead of the Skew-Flux form (=default)
 
 
 #endif /* ALLOW_GMREDI */
-#endif /* GMREDI_OPTIONS_H */

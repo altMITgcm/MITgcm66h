@@ -2,7 +2,7 @@ C $Header$
 C $Name$
 cswdblk modified for bulk formula -- Dec 01
 
-#include "BULK_FORCE_OPTIONS.h"
+#include "CPP_OPTIONS.h"
 
 CStartOfInterface
       SUBROUTINE BULKF_DIAGS( myTime, myIter, myThid )

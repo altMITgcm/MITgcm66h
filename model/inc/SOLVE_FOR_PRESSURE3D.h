@@ -1,8 +1,6 @@
 C $Header$
 C $Name$
-
-#include "PACKAGES_CONFIG.h"
-
+C
 CBOP
 C    !ROUTINE: SOLVE_FOR_PRESSURE3D.h
 C    !INTERFACE:

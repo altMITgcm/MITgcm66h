@@ -1,5 +1,5 @@
 cswdcost -- add sunroutine ---
-#include "DIC_OPTIONS.h"
+#include "CPP_OPTIONS.h"
 #include "GCHEM_OPTIONS.h"
 
 

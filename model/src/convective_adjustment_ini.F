@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CBOP
@@ -185,7 +184,6 @@ C-          Convectively mix salt across interface K
 
 #ifdef ALLOW_PASSIVE_TRACER
 C-          Convectively mix passive tracer across interface K
-ceh3 needs an IF ( usePASSIVE_TRACER ) THEN
             CALL CONVECTIVELY_MIXTRACER(
      I                              bi,bj,k,weightA,weightB,
      U                              Tr1,

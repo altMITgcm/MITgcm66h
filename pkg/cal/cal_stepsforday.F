@@ -1,7 +1,6 @@
 C $Header$
-C $Name$
 
-#include "CAL_OPTIONS.h"
+#include "CAL_CPPOPTIONS.h"
 
       subroutine cal_StepsForDay(
      I                            iday,

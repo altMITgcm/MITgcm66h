@@ -1,6 +1,6 @@
 C $Header$
 C $Name$
-#include "TIMEAVE_OPTIONS.h"
+#include "CPP_OPTIONS.h"
 
       SUBROUTINE TIMEAVE_STATV_WRITE(myTime, myIter, myThid)
 C     /==========================================================\

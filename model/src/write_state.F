@@ -1,7 +1,5 @@
 C $Header$
 C $Name$
-
-#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 #undef  MULTIPLE_RECORD_STATE_FILES
@@ -111,9 +109,8 @@ C       - creates relatively few files but these files can become huge
         CALL WRITE_REC_XY_RL('Eta',etaN,iRec,myIter,myThid)
         CALL WRITE_REC_XYZ_RL( 'W',wVel,iRec,myIter,myThid)
 #ifdef ALLOW_PASSIVE_TRACER
-ceh3 needs an IF ( usePASSIVE_TRACER ) THEN
         CALL WRITE_REC_XYZ_RL( 'TR1',tr1,iRec,myIter,myThid)
-#endif /* ALLOW_PASSIVE_TRACER */
+#endif
 #ifdef ALLOW_NONHYDROSTATIC
         IF (nonHydroStatic) THEN
          CALL WRITE_REC_XYZ_RL( 'PNH',phi_nh,iRec,myIter,myThid)
@@ -142,7 +139,6 @@ C         transfer analyse a particular snap-shots
         IF (buoyancyRelation.NE.'ATMOSPHERIC' .AND. myIter.NE.nIter0)
      &   CALL WRITE_FLD_XY_RL('PHL.',suff,phiHydLow,myIter,myThid)
 #ifdef ALLOW_PASSIVE_TRACER
-ceh3 needs an IF ( usePASSIVE_TRACER ) THEN
         CALL WRITE_FLD_XYZ_RL( 'TR1.',suff,tr1,myIter,myThid)
 #endif
 #ifdef ALLOW_NONHYDROSTATIC

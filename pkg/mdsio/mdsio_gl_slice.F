@@ -1,7 +1,4 @@
-C $Header$
-C $Name$
-
-#include "MDSIO_OPTIONS.h"
+#include "CPP_OPTIONS.h"
 
 C The five "public" routines supplied here are:
 C
@@ -26,6 +23,20 @@ C Modified: 07/28/99 eckert@mit.edu
 C           inserted calls to *print_message* and *print_error*
 C
 C To be modified to work with MITgcmuv message routines.
+
+#undef  SAFE_IO
+
+#ifdef SAFE_IO
+#define _NEW_STATUS 'new'
+#else
+#define _NEW_STATUS 'unknown'
+#endif
+
+#ifdef ALLOW_AUTODIFF_TAMC
+#define _OLD_STATUS 'unknown'
+#else
+#define _OLD_STATUS 'old'
+#endif
 
 C=======================================================================
       SUBROUTINE MDSREADFIELD_XZ_GL(

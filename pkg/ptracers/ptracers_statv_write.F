@@ -1,6 +1,5 @@
-C $Header$
-C $Name$
-
+cswdptr -- added routine ---
+#include "CPP_OPTIONS.h"
 #include "PTRACERS_OPTIONS.h"
 #ifdef ALLOW_GCHEM
 # include "GCHEM_OPTIONS.h"
@@ -138,7 +137,7 @@ C    2) Start to cumulate state-variables with Half time step.
       ENDIF
  
 #endif /* ALLOW_TIMEAVE */
-#endif /* ALLOW_PTRACERS */
+#endif
 
       RETURN
       END

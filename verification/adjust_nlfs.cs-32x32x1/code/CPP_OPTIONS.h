@@ -1,21 +1,98 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
+C 
+C CPP flags controlling which code in included in the files that
+C will be compiled.
+C
 
-C CPP flags controlling particular source code features
+C o Include/exclude code for AIM package
+#undef  ALLOW_AIM
+
+C o Include/exclude code for GM/Redi parameterization
+#undef  ALLOW_GMREDI
+
+C o Include/exclude code for KPP mixing scheme
+#undef  ALLOW_KPP
+
+C o Shortwave heating as extra term in external_forcing.F
+#ifdef ALLOW_KPP
+#define  SHORTWAVE_HEATING
+#endif
+
+C o Include/exclude code for Shapiro filters
+#define ALLOW_SHAP_FILT
 
 C o Include/exclude code for C-D grid method of integrating the 
 C   coriolis terms
 #undef  INCLUDE_CD_CODE
 
-C o Include/exclude temperature forcing code
-C#define  INCLUDE_T_FORCING_CODE
+C o Include/exclude code for open-boundary conditions
+#undef  ALLOW_OBCS
 
-C o Shortwave heating as extra term in external_forcing.F
-C Note: this should be a run-time option and not necessarily dependent on KPP
-#ifdef ALLOW_KPP
-#define  SHORTWAVE_HEATING
+C o Include/exclude diagnostics package interface code
+#define ALLOW_TIMEAVE
+
+C o Include/exclude zonal FFT filter code
+#define ALLOW_ZONAL_FILT
+
+C o Include/exclude temperature advection code
+#define  INCLUDE_T_ADVECTION_CODE
+#ifdef   INCLUDE_T_ADVECTION_CODE
+#define  _ADT(a)a
+#endif
+#ifndef  INCLUDE_T_ADVECTION_CODE
+#define  _ADT(a)
+#endif
+
+C o Include/exclude temperature diffusion code
+#define  INCLUDE_T_DIFFUSION_CODE
+#ifdef   INCLUDE_T_DIFFUSION_CODE
+#define  _LPT(a)a
+#define  _BHT(a)a
+#endif
+#ifndef  INCLUDE_T_DIFFUSION_CODE
+#define  _LPT(a)
+#define  _BHT(a)
+#endif
+
+C o Include/exclude temperature forcing code
+#define  INCLUDE_T_FORCING_CODE
+
+C o Include/exclude momentum advection code
+#define  INCLUDE_MOMENTUM_ADVECTION_CODE
+#ifdef   INCLUDE_MOMENTUM_ADVECTION_CODE
+#define  _ADM(a)a
+#endif
+#ifndef  INCLUDE_MOMENTUM_ADVECTION_CODE
+#define  _ADM(a)
+#endif
+
+C o Include/exclude laplacian viscosity code
+#define  INCLUDE_LP_MOMENTUM_DIFFUSION_CODE
+#ifdef   INCLUDE_LP_MOMENTUM_DIFFUSION_CODE
+#define  _LPM(a)a
+#endif
+#ifndef  INCLUDE_LP_MOMENTUM_DIFFUSION_CODE
+#define  _LPM(a)
+#endif
+
+C o Include/exclude biharmonic viscosity code
+#define  INCLUDE_BH_MOMENTUM_DIFFUSION_CODE
+#ifdef   INCLUDE_BH_MOMENTUM_DIFFUSION_CODE
+#define  _BHM(a)a
+#endif
+#ifndef  INCLUDE_BH_MOMENTUM_DIFFUSION_CODE
+#define  _BHM(a)
+#endif
+
+C o Include/exclude gradient of phy_hyd code
+#define INCLUDE_GRADPH_CODE
+#ifdef  INCLUDE_GRADPH_CODE
+#define _PHM(a)a
+#endif
+#ifndef INCLUDE_GRADPH_CODE
+#define _PHM(a)
 #endif
 
 C o Include/exclude momentum forcing code
@@ -33,11 +110,12 @@ C o Include/exclude call to S/R CONVECT
 C o Include/exclude call to S/R CALC_DIFFUSIVITY
 #define INCLUDE_CALC_DIFFUSIVITY_CALL
 
-C o Include/exclude nonHydrostatic code
-#undef ALLOW_NONHYDROSTATIC
+C o Allow nonHydrostatic code
+#undef  ALLOW_NONHYDROSTATIC
 
-C o Include pressure loading code
-#define ATMOSPHERIC_LOADING
+C o Use "natural" boundary conditions for salinity
+C   instead of the "virtual salt flux"
+#undef  USE_NATURAL_BCS
 
 C o Use "Exact Convervation" of fluid in Free-Surface formulation
 C   so that d/dt(eta) is exactly equal to - Div.Transport
@@ -65,3 +143,4 @@ C o Include/exclude code specific to the ECCO/SEALION version.
 #ifdef INCLUDE_ECCO_PACKAGE
 #include "ECCO_CPPOPTIONS.h"
 #endif
+

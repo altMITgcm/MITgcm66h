@@ -39,7 +39,7 @@ c     http://www.fastopt.de
 C \ev
 CBOI
 
-#include "AUTODIFF_OPTIONS.h"
+#include "CPP_OPTIONS.h"
 
 CBOP
 C     !ROUTINE: adjoint_model

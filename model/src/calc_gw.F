@@ -1,8 +1,6 @@
 C $Header$
 C     !DESCRIPTION: \bv
 C $Name$
-
-#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CBOP
@@ -71,8 +69,6 @@ C     I,J,K - Loop counters
 #define J0 1
 #define Jn sNy
 CEOP
-
-ceh3 needs an IF ( useNONHYDROSTATIC ) THEN
 
 C     Adams-Bashforth timestepping weights
       ab15=1.5+abeps

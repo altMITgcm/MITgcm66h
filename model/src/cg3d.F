@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 #define VERBOSE
@@ -108,9 +107,6 @@ C     I, J, N     - Loop counters ( N counts CG iterations )
       INTEGER myNz
       _RL     topLevTerm
 CEOP
-
-ceh3 needs an IF ( useNONHYDROSTATIC ) THEN
-
 
 C--   Initialise inverter
       eta_qrNM1 = 1. D0

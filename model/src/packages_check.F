@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CBOP
@@ -55,15 +54,6 @@ CEOP
       IF (useOBCS) CALL OBCS_CHECK( myThid )
 #else
       IF (useOBCS) CALL PACKAGES_CHECK_ERROR('OBCS', myThid)
-#endif
-
-#ifndef ALLOW_BULK_FORCE
-      IF (useBulkforce) CALL PACKAGES_CHECK_ERROR('BULK?FORCE',myThid)
-#endif
-
-#ifndef ALLOW_THERM_SEAICE
-      IF (useThermSeaIce) 
-     &   CALL PACKAGES_CHECK_ERROR('THERM?SEAICE', myThid)
 #endif
 
 #ifndef ALLOW_AIM

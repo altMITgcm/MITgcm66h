@@ -1,13 +1,5 @@
-C $Header$
-C $Name$
 
-#ifndef ECCO_CPPOPTIONS_H
-#define ECCO_CPPOPTIONS_H
-#include "PACKAGES_CONFIG.h"
-#ifdef ALLOW_ECCO
-
-#include "CPP_OPTIONS.h"
-
+C 
 C CPP flags controlling which code is included in the files that
 C will be compiled.
 C
@@ -82,6 +74,3 @@ C   Use bicubic spatial interpolation to interpolate
 C   forcing files from input grid to model grid.
 #define USE_EXF_INTERPOLATION
 #define BICUBIC
-
-#endif /* ALLOW_ECCO */
-#endif /* ECCO_CPPOPTIONS_H */

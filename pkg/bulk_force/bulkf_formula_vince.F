@@ -1,9 +1,7 @@
-C $Header$
-C $Name$
 c swd -- bulkf formula used in bulkf and ice pkgs
 c cswd -- adapted from vince/andrei surf_flux.f
 
-#include "BULK_FORCE_OPTIONS.h"
+#include "CPP_OPTIONS.h"
       subroutine bulkf_formula_vince(
      I                           uw, vw, us, Ta, Qa, nc, tsf_in,
      I                           UFocean, flwup, flha, fsha, df0dT,

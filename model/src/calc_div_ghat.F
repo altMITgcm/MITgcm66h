@@ -1,9 +1,7 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
-
 CBOP
 C     !ROUTINE: CALC_DIV_GHAT
 C     !INTERFACE:

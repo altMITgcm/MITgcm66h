@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CBOP
@@ -78,7 +77,6 @@ C
 CEOP
 
 #ifdef ALLOW_CALENDAR
-ceh3 this should have an IF ( useCALENDAR ) THEN
       myiter=0
       call  cal_GetMonthsRec(
      O     fac, first, changed, count0, count1,

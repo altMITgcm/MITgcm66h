@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CBOP
@@ -46,7 +45,6 @@ c     _EXCH_XYZ_R8( theta , myThid )
 c     _EXCH_XYZ_R8( salt , myThid )
 
 #ifdef ALLOW_PTRACERS
-ceh3 add an IF ( usePTRACERS ) THEN
       CALL PTRACERS_GTERM_BLOCKING_EXCHANGES(myThid)
 #endif /* ALLOW PTRACERS */
 

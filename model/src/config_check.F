@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CBOP
@@ -131,7 +130,6 @@ C       code is being compiled
 C     o If taveFreq is finite, then we must make sure the diagnostics
 C       code is being compiled
 #ifndef ALLOW_TIMEAVE
-ceh3 needs an IF ( useTIMEAVE ) THEN
       IF (taveFreq.NE.0.) THEN
         WRITE(msgBuf,'(A)')
      &  'CONFIG_CHECK: taveFreq <> 0  but you have'
