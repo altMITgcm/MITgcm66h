@@ -36,7 +36,7 @@ C     Tfreezing :: Freezing threshold temperature.
       _RL Tfreezing
 CEOP
 
-      Tfreezing=-1.9
+      Tfreezing=-3
 
 C     Check for water that should have frozen
       DO bj=myByLo(myThid),myByHi(myThid)
