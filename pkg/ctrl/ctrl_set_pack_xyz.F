@@ -66,7 +66,7 @@ c     == local variables ==
 
       integer cbuffindex
 
-      _RL     cbuff    ( snx*nsx*npx*sny*nsy*npy )
+      real*4     cbuff    ( snx*nsx*npx*sny*nsy*npy )
       _RL     globmsk  ( snx,nsx,npx,sny,nsy,npy,nr )
       _RL     globfld3d( snx,nsx,npx,sny,nsy,npy,nr )
 #ifdef CTRL_PACK_PRECISE

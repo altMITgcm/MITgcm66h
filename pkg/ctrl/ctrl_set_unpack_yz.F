@@ -58,7 +58,7 @@ c     == local variables ==
       integer bi,bj
       integer ip,jp
       integer i,j,k
-      integer ii,kk
+      integer ii,jj,kk
       integer il
       integer irec,iobcs,nrec_nl
       integer itlo,ithi
@@ -68,7 +68,7 @@ c     == local variables ==
 
       integer cbuffindex
 
-      _RL     cbuff    ( nsx*npx*sny*nsy*npy )
+      real*4     cbuff    ( nsx*npx*sny*nsy*npy )
       _RL     globfldyz( nsx,npx,sny,nsy,npy,nr )
       _RL     globfld3d( snx,nsx,npx,sny,nsy,npy,nr )
       _RL     globmskyz( nsx,npx,sny,nsy,npy,nr,nobcs )
@@ -227,15 +227,16 @@ cgg      And now back-calculate what iobcs should be.
                  do j = jmin,jmax
                   do ip = 1,nPx
                    do bi = itlo,ithi
+                    ii=mod((i-1)*nr*sny+(k-1)*sny+j-1,snx)+1
+                    jj=mod(((i-1)*nr*sny+(k-1)*sny+j-1)/snx,sny)+1
+                    kk=int((i-1)*nr*sny+(k-1)*sny+j-1)/(snx*sny)+1
                     if ( globmskyz(bi,ip,j,bj,jp,k,iobcs) .ne. 0. ) then
                        cbuffindex = cbuffindex + 1
-                       ii=mod((i-1)*nr+k-1,snx)+1
-                       kk=int((i-1)*nr+k-1)/snx+1
-                       globfld3d(ii,bi,ip,j,bj,jp,kk) = 
+                       globfld3d(ii,bi,ip,jj,bj,jp,kk) = 
      &                      cbuff(cbuffindex)
 #ifdef ALLOW_NONDIMENSIONAL_CONTROL_IO
-                       globfld3d(ii,bi,ip,j,bj,jp,kk) = 
-     &                      globfld3d(ii,bi,ip,j,bj,jp,kk)/
+                       globfld3d(ii,bi,ip,jj,bj,jp,kk) = 
+     &                      globfld3d(ii,bi,ip,jj,bj,jp,kk)/
 # ifdef CTRL_UNPACK_PRECISE
      &                      sqrt(weightfldyz(bi,ip,j,bj,jp,k,iobcs))
 # else
@@ -243,7 +244,7 @@ cgg      And now back-calculate what iobcs should be.
 # endif
 #endif /* ALLOW_NONDIMENSIONAL_CONTROL_IO */
                     else
-                       globfld3d(ii,bi,ip,j,bj,jp,kk) = 0. _d 0
+                       globfld3d(ii,bi,ip,jj,bj,jp,kk) = 0. _d 0
                     endif
                    enddo
                   enddo
