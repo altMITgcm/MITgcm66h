@@ -29,6 +29,7 @@ C     == Local variables ==
       INTEGER i,j
 
 C     Set model variables to OB values on North/South Boundaries
+#ifdef ALLOW_OBCS_NORTH
       DO I=1-Olx,sNx+Olx
 C Northern boundary
        IF (OB_Jn(I,bi,bj).NE.0) THEN
@@ -39,6 +40,10 @@ C Northern boundary
         vFld(I,OB_Jn(I,bi,bj)+1,K,bi,bj)=OBNv(I,K,bi,bj)
      &                              *_maskS(I,OB_Jn(I,bi,bj),K,bi,bj)
        ENDIF
+      ENDDO
+#endif
+#ifdef ALLOW_OBCS_SOUTH
+      DO I=1-Olx,sNx+Olx
 C Southern boundary
        IF (OB_Js(I,bi,bj).NE.0) THEN
         vFld(I,OB_Js(I,bi,bj)+1,K,bi,bj)=OBSv(I,K,bi,bj)
@@ -49,10 +54,11 @@ C Southern boundary
      &                              *_maskS(I,OB_Js(I,bi,bj)+1,K,bi,bj)
        ENDIF
       ENDDO
-
+#endif
 
 
 C     Set model variables to OB values on East/West Boundaries
+#ifdef ALLOW_OBCS_EAST
       DO J=1-Oly,sNy+Oly
 C Eastern boundary
        IF (OB_Ie(J,bi,bj).NE.0) THEN
@@ -63,6 +69,10 @@ C Eastern boundary
         uFld(OB_Ie(J,bi,bj)+1,J,K,bi,bj)=OBEu(J,K,bi,bj)
      &                              *_maskW(OB_Ie(J,bi,bj),J,K,bi,bj)
        ENDIF
+      ENDDO
+#endif
+#ifdef ALLOW_OBCS_WEST
+      DO J=1-Oly,sNy+Oly
 C Western boundary
        IF (OB_Iw(J,bi,bj).NE.0) THEN
         uFld(OB_Iw(J,bi,bj)+1,J,K,bi,bj)=OBWu(J,K,bi,bj)
@@ -73,6 +83,7 @@ C Western boundary
      &                              *_maskW(OB_Iw(J,bi,bj)+1,J,K,bi,bj)
        ENDIF
       ENDDO
+#endif
 
 #endif
       RETURN

@@ -76,6 +76,7 @@ C     == Routine arguments ==
       INTEGER myThid
 
 #ifdef ALLOW_ORLANSKI
+#ifdef ALLOW_OBCS_NORTH
 
 C     == Local variables ==
       INTEGER  I, K, J_obc
@@ -244,6 +245,7 @@ C              copy (current time) t to t-1 arrays
          ENDDO
        ENDDO
 
+#endif /* ALLOW_OBCS_NORTH */
 #endif /* ALLOW_ORLANSKI */
       RETURN
       END

@@ -3,6 +3,14 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint55a_post
+o merged code to 
+  * prescribe/read time-dependent open boundaries
+    (works in conjunction with exf, cal)
+  * sponge layer code for open boundaries
+  * each boundary N/S/E/W now has its own CPP option
+    (healthy for the adjoint)
+
 checkpoint55
 o up-to-date adjoint of previous breaks
   - natl_box_adjoint: problem for exp 12, 13: cost = 0. needs fix
