@@ -2,7 +2,7 @@ C $Header$
 C $Name$
 
 #include "FIZHI_OPTIONS.h"
-      subroutine fizhi_alarms (nymdb,nhmsb,ndt)
+      subroutine fizhi_alarms (nymdb,nhmsb,deltaT)
 
 C***********************************************************************        
 C  Purpose                                                                      
@@ -22,7 +22,8 @@ C***********************************************************************
 
 c Input Parameters
 c ----------------
-      integer  nymdb,nhmsb,ndt
+      integer  nymdb,nhmsb
+      _RL deltaT
 
 c MPI Utilities
 c -------------
@@ -34,6 +35,7 @@ c -------------
 
 c Physics Frequencies
 c -------------------
+      integer ndt
       integer  nhmsf, m,n, nd
       integer  ndlw, ndsw, ndturb, ndmoist
                                                                                 
@@ -42,6 +44,9 @@ c -------------------
 #else
       myid = 1
 #endif
+
+      ndt = deltaT
+
       if( ndt.ne.0 ) then
 
 C Longwave  Radiation Frequency

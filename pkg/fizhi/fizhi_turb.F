@@ -280,6 +280,9 @@ c
        timstp2  = nsecf(ndmoist)
        dtfac    = min( 1.0, timstp/timstp2 )
 
+       print *,' turb time step ',timstp
+       print *,' moist time step ',timstp2
+
 c delttrb is the internal turbulence time step
 c a value equal to ndturb means one internal iteration
        delttrb = nsecf(ndturb)
