@@ -35,9 +35,9 @@ C     == Local variables ==
       _RL Rjm,Rj,Rjp,cfl,d0,d1,psiP,psiM,thetaP,thetaM
 
       DO i=1-Olx,sNx+Olx
-       vT(i,1-Oly)=0.
-       vT(i,2-Oly)=0.
-       vT(i,sNy+Oly)=0.
+       vT(i,1-Oly)=0.D0
+       vT(i,2-Oly)=0.D0
+       vT(i,sNy+Oly)=0.D0
       ENDDO
       DO j=1-Oly+2,sNy+Oly-1
        DO i=1-Olx,sNx+Olx
@@ -46,18 +46,20 @@ C     == Local variables ==
         Rjm=(tracer(i,j-1)-tracer(i,j-2))*maskS(i,j-1,k,bi,bj)
 
         cfl=abs(vVel(i,j,k,bi,bj)*deltaT*recip_dyc(i,j,bi,bj))
-        d0=(2.-cfl)*(1.-cfl)*oneSixth
-        d1=(1.-cfl*cfl)*oneSixth
-c       thetaP=0.
-c       IF (Rj.NE.0.) thetaP=Rjm/Rj
+        d0=(2.D0-cfl)*(1.D0-cfl)*oneSixth
+        d1=(1.D0-cfl*cfl)*oneSixth
+c       thetaP=0.D0
+c       IF (Rj.NE.0.D0) thetaP=Rjm/Rj
         thetaP=Rjm/(1.D-20+Rj)
         psiP=d0+d1*thetaP
-        psiP=max(0., min(min(1.,psiP),(1.-cfl)/(1.D-20+cfl)*thetaP))
+        psiP=max(0.D0, min(min(1.D0,psiP),
+     &       (1.D0-cfl)/(1.D-20+cfl)*thetaP))
         thetaM=Rjp/(1.D-20+Rj)
-c       thetaM=0.
-c       IF (Rj.NE.0.) thetaM=Rjp/Rj
+c       thetaM=0.D0
+c       IF (Rj.NE.0.D0) thetaM=Rjp/Rj
         psiM=d0+d1*thetaM
-        psiM=max(0., min(min(1.,psiM),(1.-cfl)/(1.D-20+cfl)*thetaM))
+        psiM=max(0.D0, min(min(1.D0,psiM),
+     &       (1.D0-cfl)/(1.D-20+cfl)*thetaM))
         vT(i,j)=
      &   0.5*(vTrans(i,j)+abs(vTrans(i,j)))
      &      *( Tracer(i,j-1) + psiP*Rj )

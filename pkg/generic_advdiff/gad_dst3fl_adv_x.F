@@ -35,27 +35,29 @@ C     == Local variables ==
       _RL Rjm,Rj,Rjp,cfl,d0,d1,psiP,psiM,thetaP,thetaM
 
       DO j=1-Oly,sNy+Oly
-       uT(1-Olx,j)=0.
-       uT(2-Olx,j)=0.
-       uT(sNx+Olx,j)=0.
+       uT(1-Olx,j)=0.D0
+       uT(2-Olx,j)=0.D0
+       uT(sNx+Olx,j)=0.D0
        DO i=1-Olx+2,sNx+Olx-1
         Rjp=(tracer(i+1,j)-tracer(i,j))*maskW(i+1,j,k,bi,bj)
         Rj =(tracer(i,j)-tracer(i-1,j))*maskW(i,j,k,bi,bj)
         Rjm=(tracer(i-1,j)-tracer(i-2,j))*maskW(i-1,j,k,bi,bj)
 
         cfl=abs(uVel(i,j,k,bi,bj)*deltaT*recip_dxc(i,j,bi,bj))
-        d0=(2.-cfl)*(1.-cfl)*oneSixth
-        d1=(1.-cfl*cfl)*oneSixth
-c       thetaP=0.
-c       IF (Rj.NE.0.) thetaP=Rjm/Rj
+        d0=(2.D0-cfl)*(1.D0-cfl)*oneSixth
+        d1=(1.D0-cfl*cfl)*oneSixth
+c       thetaP=0.D0
+c       IF (Rj.NE.0.D0) thetaP=Rjm/Rj
         thetaP=Rjm/(1.D-20+Rj)
         psiP=d0+d1*thetaP
-        psiP=max(0., min(min(1.,psiP),(1.-cfl)/(1.D-20+cfl)*thetaP))
+        psiP=max(0.D0, min(min(1.D0,psiP),
+     &       (1.D0-cfl)/(1.D-20+cfl)*thetaP))
         thetaM=Rjp/(1.D-20+Rj)
-c       thetaM=0.
-c       IF (Rj.NE.0.) thetaM=Rjp/Rj
+c       thetaM=0.D0
+c       IF (Rj.NE.0.D0) thetaM=Rjp/Rj
         psiM=d0+d1*thetaM
-        psiM=max(0., min(min(1.,psiM),(1.-cfl)/(1.D-20+cfl)*thetaM))
+        psiM=max(0.D0, min(min(1.D0,psiM),
+     &       (1.D0-cfl)/(1.D-20+cfl)*thetaM))
         uT(i,j)=
      &   0.5*(uTrans(i,j)+abs(uTrans(i,j)))
      &      *( Tracer(i-1,j) + psiP*Rj )
