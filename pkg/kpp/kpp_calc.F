@@ -777,9 +777,9 @@ c Local constants
             KPPfrac(i,j,bi,bj) = 0.0
             DO k = 1,Nr
                KPPghat   (i,j,k,bi,bj) = 0.0
-               KPPviscAz (i,j,k,bi,bj) = viscAz
-               KPPdiffKzT(i,j,k,bi,bj) = diffKzT
-               KPPdiffKzS(i,j,k,bi,bj) = diffKzS
+               KPPviscAz (i,j,k,bi,bj) = viscAr
+               KPPdiffKzT(i,j,k,bi,bj) = diffKrT
+               KPPdiffKzS(i,j,k,bi,bj) = diffKrS
             ENDDO
          ENDDO
       ENDDO
