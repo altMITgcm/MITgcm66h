@@ -494,7 +494,7 @@ C If global file was opened then close it
 
 C Create meta-file for the global-file
       if (globalFile) then
-C We can't do this operation using threads (yet) because of the
+C We can not do this operation using threads (yet) because of the
 C "barrier" at the next step. The barrier could be removed but
 C at the cost of "safe" distributed I/O.
        if (nThreads.NE.1) then
