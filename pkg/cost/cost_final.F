@@ -14,11 +14,10 @@ c
 c     o Sum of all cost function contributions.
 c
 c     started: Christian Eckert eckert@mit.edu 30-Jun-1999
-c
 c     changed: Christian Eckert eckert@mit.edu 25-Feb-2000
-c
 c              - Restructured the code in order to create a package
 c                for the MITgcmUV.
+c     added sea-ice term: menemenlis@jpl.nasa.gov 26-Feb-2003
 c
 c     ==================================================================
 c     SUBROUTINE cost_Final
@@ -161,6 +160,7 @@ c--   Sum up all contributions.
           print*,' --> objf_obcss(bi,bj)   =',objf_obcss(bi,bj)
           print*,' --> objf_obcsw(bi,bj)   =',objf_obcsw(bi,bj)
           print*,' --> objf_obcse(bi,bj)   =',objf_obcse(bi,bj)
+          print*,' --> objf_ice(bi,bj)     =',objf_ice(bi,bj)
 
           fc = fc
      &            + mult_temp    * objf_temp(bi,bj)
@@ -202,6 +202,7 @@ c--   Sum up all contributions.
      &            + mult_obcss   * objf_obcss(bi,bj)  
      &            + mult_obcsw   * objf_obcsw(bi,bj)  
      &            + mult_obcse   * objf_obcse(bi,bj)  
+     &            + mult_ice     * objf_ice(bi,bj)  
 
           f_temp = f_temp + objf_temp(bi,bj)
           f_salt = f_salt + objf_salt(bi,bj)

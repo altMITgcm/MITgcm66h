@@ -86,6 +86,7 @@ c--   Read the namelist input.
      &                   mult_scatx, mult_scaty,
      &                   mult_sdrift, mult_tdrift, mult_wdrift,
      &                   mult_temp0, mult_salt0,
+     &                   mult_ice,
      &                   cost_iprec, cost_yftype
 
       _BEGIN_MASTER( myThid )
@@ -176,6 +177,7 @@ c--     Set default values.
         mult_wdrift           =      0. _d 0
         mult_scatx            =      0. _d 0
         mult_scaty            =      0. _d 0
+        mult_ice              =      0. _d 0
 
 c--     Check versions.
 

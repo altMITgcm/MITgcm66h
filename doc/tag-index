@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o Added cost_ice for sea-ice volume sensitivity experiment.
+
 icebear3
 o Removed spurious iikey and idkey
 o pkg/exf

@@ -7,11 +7,10 @@ c     o Header for averaged temperature, salinity, and surface pressure
 c       fields and counters associated with the averaging.
 c
 c     started: Christian Eckert eckert@mit.edu  30-Jun-1999
-c
 c     changed: Christian Eckert eckert@mit.edu  01-Mar-2000
-c
 c              - Restructured the code in order to create a package
 c                for the MITgcmUV.
+c     added sea-ice term: menemenlis@jpl.nasa.gov 26-Feb-2003
 c
 c     ==================================================================
 c     HEADER AVERAGES
@@ -266,6 +265,7 @@ c     objf_scatxm - time-mean zonal SCAT  contribution
 c     objf_scatym - time-mean meridional SCAT  contribution
 c     objf_scatx  - zonal SCAT  contribution
 c     objf_scaty  - meridional SCAT  contribution
+c     objf_ice    - sea-ice volume
 c
 c     mult_"var" - multipliers for the individual cost
 c                  function contributions.
@@ -311,7 +311,8 @@ c                  function contributions.
      &                objf_obcsn,
      &                objf_obcss,
      &                objf_obcsw,
-     &                objf_obcse
+     &                objf_obcse,
+     &                objf_ice
       _RL  fc
       _RL  objf_hflux  (nsx,nsy)
       _RL  objf_hfluxm (nsx,nsy)
@@ -353,6 +354,7 @@ c                  function contributions.
       _RL  objf_obcss(nsx,nsy)
       _RL  objf_obcsw(nsx,nsy)
       _RL  objf_obcse(nsx,nsy)
+      _RL  objf_ice  (nsx,nsy)
 
       common /cost_aux_r/
      &                    mult_hflux,
@@ -386,7 +388,8 @@ c                  function contributions.
      &                    mult_obcsn,
      &                    mult_obcss,
      &                    mult_obcsw,
-     &                    mult_obcse
+     &                    mult_obcse,
+     &                    mult_ice
       _RL  mult_hflux
       _RL  mult_sflux
       _RL  mult_tauu
@@ -419,6 +422,7 @@ c                  function contributions.
       _RL  mult_obcss
       _RL  mult_obcsw
       _RL  mult_obcse
+      _RL  mult_ice
 
 
 c     Record counters relevant for the cost function evaluation.
