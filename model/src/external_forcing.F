@@ -155,6 +155,17 @@ C     Add heat in top-layer
        ENDDO
       ENDIF
 
+#ifdef SHORTWAVE_HEATING
+C Penetrating SW radiation
+      DO j=jMin,jMax
+       DO i=iMin,iMax
+        gT(i,j,k,bi,bj) = gT(i,j,k,bi,bj)
+     &    - maskC(i,j)*Qsw(i,j,bi,bj)*swfracb(k)
+     &      *recip_Cp*recip_rhoNil*recip_dRf(k)
+       ENDDO
+      ENDDO
+#endif
+
       RETURN
       END
 CStartOfInterface
