@@ -50,7 +50,7 @@ c     SHAPIsOn=.TRUE.
 C--   Default flags and values for Shapiro Filter
       nShapT = 0
       nShapUV = 0
-      Shap_funct = 1
+      Shap_funct = 2
       Shap_Trtau = deltaTtracer
       Shap_uvtau = deltaTMom
       Shap_TrDamp = 0.

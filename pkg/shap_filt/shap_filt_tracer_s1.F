@@ -3,7 +3,7 @@ C $Name$
 
 #include "SHAP_FILT_OPTIONS.h"
 
-      SUBROUTINE SHAP_FILT_TRACER( 
+      SUBROUTINE SHAP_FILT_TRACER_S1( 
      U           field, 
      I           myTime, myThid )
 C     /==========================================================\
@@ -31,9 +31,7 @@ C     == Routine arguments
 C     == Local variables ==
       INTEGER bi,bj,K,I,J,N
       _RL tmpGrd(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-#ifndef SEQUENTIAL_2D_SHAP
       _RL tmpScal
-#endif
 
       IF (nShapT.gt.0) THEN
 
@@ -88,14 +86,9 @@ C      F <-  [1-d_xx^n]F
          DO K=1,Nr
           DO J=1,sNy
            DO I=1,sNx
-#ifdef      SEQUENTIAL_2D_SHAP
-            tmpFld(i,j,k,bi,bj)=field(i,j,k,bi,bj)-tmpFld(i,j,k,bi,bj)
-            field(i,j,k,bi,bj)=tmpFld(i,j,k,bi,bj)
-#else
             tmpScal=tmpFld(i,j,k,bi,bj)
             tmpFld(i,j,k,bi,bj)=field(i,j,k,bi,bj)
             field(i,j,k,bi,bj)=field(i,j,k,bi,bj)-0.5*tmpScal
-#endif   /* SEQUENTIAL_2D_SHAP */
            ENDDO
           ENDDO
          ENDDO
@@ -141,12 +134,8 @@ C      F <-  [1-d_yy^n]F
          DO K=1,Nr
           DO J=1,sNy
            DO I=1,sNx
-#ifdef      SEQUENTIAL_2D_SHAP
-            field(i,j,k,bi,bj)=field(i,j,k,bi,bj)-tmpFld(i,j,k,bi,bj)
-#else
             tmpScal=tmpFld(i,j,k,bi,bj)
             field(i,j,k,bi,bj)=field(i,j,k,bi,bj)-0.5*tmpScal
-#endif   /* SEQUENTIAL_2D_SHAP */
            ENDDO
           ENDDO
          ENDDO

@@ -76,25 +76,37 @@ C--        Update fields in top level according to tendency terms
         ENDIF
 
         IF ( tempStepping .AND. nShapT.GT.0) THEN
-          IF (Shap_funct.EQ.2) THEN
+          IF (Shap_funct.EQ.1) THEN
+            CALL SHAP_FILT_TRACER_S1(
+     U           tFld,
+     I           myTime, myThid )
+          ELSEIF (Shap_funct.EQ.2) THEN
             CALL SHAP_FILT_TRACER_S2(
      U           tFld,
      I           myTime, myThid )
-          ELSE
-            CALL SHAP_FILT_TRACER(
+          ELSEIF (Shap_funct.EQ.4) THEN
+            CALL SHAP_FILT_TRACER_S4(
      U           tFld,
      I           myTime, myThid )
+          ELSE
+           STOP 'SHAP_FILT_APPLY: Ooops'
           ENDIF
         ENDIF
         IF ( saltStepping .AND. nShapT.GT.0) THEN 
-          IF (Shap_funct.EQ.2) THEN
+          IF (Shap_funct.EQ.1) THEN
+            CALL SHAP_FILT_TRACER_S1(
+     U           sFld,
+     I           myTime, myThid )
+          ELSEIF (Shap_funct.EQ.2) THEN
             CALL SHAP_FILT_TRACER_S2(
      U           sFld,
      I           myTime, myThid )
-          ELSE
-            CALL SHAP_FILT_TRACER(
+          ELSEIF (Shap_funct.EQ.4) THEN
+            CALL SHAP_FILT_TRACER_S4(
      U           sFld,
      I           myTime, myThid )
+          ELSE
+           STOP 'SHAP_FILT_APPLY: Ooops'
           ENDIF
         ENDIF
 #endif /* USE_OLD_SHAPIRO_FILTERS */

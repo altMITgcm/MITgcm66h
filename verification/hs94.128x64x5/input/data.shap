@@ -2,7 +2,7 @@
  &SHAP_PARM01
  nShapT=4,
  nShapUV=4,
- Shap_funct=1,
+ Shap_funct=4,
 #Shap_Trtau=3600., 
 #Shap_TrDamp=0.,
 #Shap_uvtau=3600.,
