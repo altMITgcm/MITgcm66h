@@ -510,6 +510,16 @@ C--       Get temporary terms used by tendency routines
      O         xA,yA,uTrans,vTrans,rTrans,maskUp,
      I         myThid)
 
+#ifdef ALLOW_GMREDI
+C--   Residual transp = Bolus transp + Eulerian transp
+          IF (useGMRedi) THEN
+            CALL GMREDI_CALC_UVFLOW(
+     &            uTrans, vTrans, bi, bj, k, myThid) 
+            IF (K.GE.2) CALL GMREDI_CALC_WFLOW(
+     &                    rTrans, bi, bj, k, myThid) 
+          ENDIF
+#endif /* ALLOW_GMREDI */
+
 #ifdef ALLOW_AUTODIFF_TAMC 
 CADJ STORE KappaRT(:,:,k)    = comlev1_bibj_k, key=kkey, byte=isbyte
 CADJ STORE KappaRS(:,:,k)    = comlev1_bibj_k, key=kkey, byte=isbyte
