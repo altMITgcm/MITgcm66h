@@ -118,7 +118,7 @@ C (advection, [explicit] diffusion, parameterizations,...)
      I                   calcAdvection, .FALSE.,
      U                   rFlx(1-Olx,1-Oly,1,iTracer),
      U                   gPtr(1-Olx,1-Oly,1,1,1,iTracer),
-     I                   myThid )
+     I                   myTime, myIter, myThid )
 
 C External forcing term(s)
 cswdptr --add --

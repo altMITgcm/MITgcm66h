@@ -97,7 +97,7 @@ C--   the kDown is still required
      I           GAD_TEMPERATURE, tempAdvScheme, tempVertAdvScheme,
      I           calcAdvection, tempImplVertAdv,
      U           fVerT, gT,
-     I           myThid )
+     I           myTime, myIter, myThid )
 
 C--   External thermal forcing term(s) inside Adams-Bashforth:
       IF ( tempForcing .AND. forcing_In_AB )

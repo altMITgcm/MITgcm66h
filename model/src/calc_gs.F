@@ -98,7 +98,7 @@ C--   the kDown is still required
      I           GAD_SALINITY, saltAdvScheme, saltVertAdvScheme,
      I           calcAdvection, saltImplVertAdv,
      U           fVerS, gS,
-     I           myThid )
+     I           myTime, myIter, myThid )
 
 C--   External salinity forcing term(s) inside Adams-Bashforth:
       IF ( saltForcing .AND. forcing_In_AB )
