@@ -5,6 +5,12 @@ $Header$
 
 o real fresh water flux implemented with non-linear free-surface.
 
+checkpoint44e_pre,post
+o re-wrote convective adjustment to use pre-calculated weights
+  Affects: model/src/convective_adjustment.F, convective_adjustment_ini.F
+  Adds:    model/src/convective_weights.F, convectively_mixtracer.F
+  Original calls to convect() still in place.
+
 chkpt44d_pre,post
 o added missing EXCLUDE_MONITOR flags
 o changed "e" to "_d" in gmredi_slope_limit, gmredi_slope_psi
