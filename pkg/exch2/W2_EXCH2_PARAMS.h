@@ -16,7 +16,9 @@ C     process and subgrid indicies).
       COMMON /W2_EXCH2_PARAMS_C/ W2_myCommFlag
 
       INTEGER e2BufrRecSize
-      PARAMETER ( e2BufrRecSize = ( (sNx+2*OLx)*2+(sNy+2*OLy)*2)*Nr )
+      PARAMETER ( 
+     & e2BufrRecSize = ( (sNx+2*OLx)*2*OLy+(sNy+2*OLy)*2*OLx)*Nr 
+     &)
       _RL E2BUFR1_RL( e2BufrRecSize, MAX_NEIGHBOURS, nSx, 2 )
       _RL E2BUFR2_RL( e2BufrRecSize, MAX_NEIGHBOURS, nSx, 2 )
       _RL E2BUFR1_RS( e2BufrRecSize, MAX_NEIGHBOURS, nSx, 2 )
