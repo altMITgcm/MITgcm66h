@@ -3,6 +3,15 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint46c_post
+o Changes necessary for ocean in p-coordinates
+ -  Added new buoyancy relation = 'OCEANICP'
+ -  Added new parameters = gravitySign (this used to be contained inside
+    the factor dRdZ which I added when we first switched to R coordinates).
+ X GM/Redi is not compatible (yet)
+ X bottom drag and no-slip need to be debugged.
+checkpoint46c_pre
+
 checkpoint46b_post
 o Added new equation of state -> JMD95Z and JMD95P
   - EOS of Jackett and McDougall, 1995, JPO

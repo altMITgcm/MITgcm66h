@@ -319,6 +319,10 @@ C              "lopped" a cell is (dimensionless scale factor).
 C              Note: The code needs terms like MIN(hFac,hFac(I+1))
 C                    On some platforms it may be better to precompute
 C                    hFacW, hFacE, ... here than do MIN on the fly.
+C     gravitySign - indicates whether gravity points in the opposite
+C                   direction of R or not.
+C                 ( = +1 for R=Z (gravity points downward in Z)
+C                 ( = -1 for R=P (gravity points upward in P)
 C     rkFac     - Vertical coordinate to vertical index orientation.
 C                 ( -1 same orientation, 1 opposite orientation )
 C                 ( vertical coord == m  -> rkFac =  1 )
@@ -376,6 +380,7 @@ C                 metric term in V equation.
      &  tanPhiAtU, tanPhiAtV,
      &  cosfacU,cosfacV,sqcosfacU,sqcosfacV,
      &  drC,drF,recip_drC,recip_drF,rC,rF,
+     &  gravitySign,
      &  rkFac, recip_rkFac, xC0, yC0
       _RS dxC            (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS dxF            (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
@@ -431,6 +436,7 @@ C                 metric term in V equation.
       _RS saFac          (1:Nr)
       _RS rC             (1:Nr)
       _RS rF             (1:Nr+1)
+      _RL gravitySign
       _RS rkFac
       _RS recip_rkFac
       _RS xC0

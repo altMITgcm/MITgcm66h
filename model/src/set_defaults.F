@@ -84,6 +84,7 @@ C--   Set default "physical" parameters
       DO K =1,Nr
        tRef(K) = 30.D0 - FLOAT( K )
       ENDDO
+      gravitySign         = 1.D0
       gravity             = 9.81D0
       rhoNil              = 999.8D0
       f0                  = 1.D-4
