@@ -3,8 +3,8 @@ RM               = rm -f
 LOC              = $(PWD)
 TAMC             = tamc
 ###TAMC             = /data43/ralf/tamc/tamc
-###TAF              = taf
-TAF              = ~fastopt/bin/taf
+TAF              = taf
+###TAF              = ~fastopt/bin/taf
 DEST             = .
 SOURCE_CODE      = ../bin
 ADJOINT_SCRIPT   = ../adjoint
@@ -285,8 +285,6 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/cost_heatflux.f			\
 		$(SOURCE_CODE)/cost_hyd.f			\
 		$(SOURCE_CODE)/cost_initvaria.f			\
-		$(SOURCE_CODE)/cost_mean_heatflux.f		\
-		$(SOURCE_CODE)/cost_mean_saltflux.f		\
 		$(SOURCE_CODE)/cost_merstress.f			\
 		$(SOURCE_CODE)/cost_readers.f			\
 		$(SOURCE_CODE)/cost_readsssfields.f		\
@@ -341,6 +339,7 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/exf_init_runoff.f		\
 		$(SOURCE_CODE)/exf_readparms.f			\
 		$(SOURCE_CODE)/exf_summary.f			\
+		$(SOURCE_CODE)/exf_bulkformulae.f		\
 		$(SOURCE_CODE)/exf_bulkcdn.f			\
 		$(SOURCE_CODE)/exf_bulkqsat.f			\
 		$(SOURCE_CODE)/exf_bulkrhn.f			\
@@ -353,20 +352,7 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/exf_swapffields.f		\
 		$(SOURCE_CODE)/exf_filter_rl.f			\
 		$(SOURCE_CODE)/exf_filter_rs.f			\
-		$(SOURCE_CODE)/exf_set_aqh.f			\
-		$(SOURCE_CODE)/exf_set_atemp.f			\
-		$(SOURCE_CODE)/exf_set_evap.f			\
-		$(SOURCE_CODE)/exf_set_hflux.f			\
-		$(SOURCE_CODE)/exf_set_lwflux.f			\
-		$(SOURCE_CODE)/exf_set_lwdown.f			\
-		$(SOURCE_CODE)/exf_set_precip.f			\
-		$(SOURCE_CODE)/exf_set_sflux.f			\
-		$(SOURCE_CODE)/exf_set_swflux.f			\
-		$(SOURCE_CODE)/exf_set_swdown.f			\
-		$(SOURCE_CODE)/exf_set_ustress.f		\
-		$(SOURCE_CODE)/exf_set_uwind.f			\
-		$(SOURCE_CODE)/exf_set_vstress.f		\
-		$(SOURCE_CODE)/exf_set_vwind.f			\
+		$(SOURCE_CODE)/exf_set_gen.f			\
 		$(SOURCE_CODE)/exf_set_obcs.f			\
 								\
 		$(SOURCE_CODE)/exf_clim_init.f			\
@@ -407,33 +393,34 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/cal_timestamp.f			\
 		$(SOURCE_CODE)/cal_toseconds.f			\
 		$(SOURCE_CODE)/cal_weekday.f			\
+								\
+		$(SOURCE_CODE)/obcs_apply_sloc.f		\
+		$(SOURCE_CODE)/obcs_apply_tloc.f		\
+		$(SOURCE_CODE)/obcs_apply_ts.f			\
+		$(SOURCE_CODE)/obcs_apply_uv.f			\
+		$(SOURCE_CODE)/obcs_calc.f			\
+		$(SOURCE_CODE)/obcs_init_variables.f		\
+		$(SOURCE_CODE)/obcs_sponge.f			\
+								\
+		$(SOURCE_CODE)/advect.f				\
+		$(SOURCE_CODE)/budget.f				\
+		$(SOURCE_CODE)/diffus.f				\
+		$(SOURCE_CODE)/dynsolver.f			\
+		$(SOURCE_CODE)/groatb.f				\
+		$(SOURCE_CODE)/growth.f				\
+		$(SOURCE_CODE)/ostres.f				\
+		$(SOURCE_CODE)/seaice_check.f			\
+		$(SOURCE_CODE)/seaice_do_diags.f		\
+		$(SOURCE_CODE)/seaice_get_forcing.f		\
+		$(SOURCE_CODE)/seaice_init.f			\
+		$(SOURCE_CODE)/seaice_model.f			\
+		$(SOURCE_CODE)/seaice_pickup.f			\
+		$(SOURCE_CODE)/seaice_readparms.f		\
+		$(SOURCE_CODE)/seaice_exch.f
 
+#		$(SOURCE_CODE)/adi.f
+#		$(SOURCE_CODE)/lsr.f
 
-#		$(SOURCE_CODE)/obcs_apply_sloc.f		\
-#		$(SOURCE_CODE)/obcs_apply_tloc.f		\
-#		$(SOURCE_CODE)/obcs_apply_ts.f			\
-#		$(SOURCE_CODE)/obcs_apply_uv.f			\
-#		$(SOURCE_CODE)/obcs_calc.f			\
-#		$(SOURCE_CODE)/obcs_init_variables.f		\
-#		$(SOURCE_CODE)/obcs_sponge.f			\
-
-#		$(SOURCE_CODE)/adi.f				\
-#		$(SOURCE_CODE)/lsr.f				\
-#		$(SOURCE_CODE)/advect.f				\
-#		$(SOURCE_CODE)/budget.f				\
-#		$(SOURCE_CODE)/diffus.f				\
-#		$(SOURCE_CODE)/dynsolver.f			\
-#		$(SOURCE_CODE)/groatb.f				\
-#		$(SOURCE_CODE)/growth.f				\
-#		$(SOURCE_CODE)/ostres.f				\
-#		$(SOURCE_CODE)/seaice_check.f			\
-#		$(SOURCE_CODE)/seaice_do_diags.f		\
-#		$(SOURCE_CODE)/seaice_get_forcing.f		\
-#		$(SOURCE_CODE)/seaice_init.f			\
-#		$(SOURCE_CODE)/seaice_model.f			\
-#		$(SOURCE_CODE)/seaice_pickup.f			\
-#		$(SOURCE_CODE)/seaice_readparms.f		\
-#		$(SOURCE_CODE)/seaice_exch.f
 
 #--------------------------------------------------------
 # rules

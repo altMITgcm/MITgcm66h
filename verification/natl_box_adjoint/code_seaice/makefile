@@ -339,6 +339,7 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/exf_init_runoff.f		\
 		$(SOURCE_CODE)/exf_readparms.f			\
 		$(SOURCE_CODE)/exf_summary.f			\
+		$(SOURCE_CODE)/exf_bulkformulae.f		\
 		$(SOURCE_CODE)/exf_bulkcdn.f			\
 		$(SOURCE_CODE)/exf_bulkqsat.f			\
 		$(SOURCE_CODE)/exf_bulkrhn.f			\
@@ -351,20 +352,7 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/exf_swapffields.f		\
 		$(SOURCE_CODE)/exf_filter_rl.f			\
 		$(SOURCE_CODE)/exf_filter_rs.f			\
-		$(SOURCE_CODE)/exf_set_aqh.f			\
-		$(SOURCE_CODE)/exf_set_atemp.f			\
-		$(SOURCE_CODE)/exf_set_evap.f			\
-		$(SOURCE_CODE)/exf_set_hflux.f			\
-		$(SOURCE_CODE)/exf_set_lwflux.f			\
-		$(SOURCE_CODE)/exf_set_lwdown.f			\
-		$(SOURCE_CODE)/exf_set_precip.f			\
-		$(SOURCE_CODE)/exf_set_sflux.f			\
-		$(SOURCE_CODE)/exf_set_swflux.f			\
-		$(SOURCE_CODE)/exf_set_swdown.f			\
-		$(SOURCE_CODE)/exf_set_ustress.f		\
-		$(SOURCE_CODE)/exf_set_uwind.f			\
-		$(SOURCE_CODE)/exf_set_vstress.f		\
-		$(SOURCE_CODE)/exf_set_vwind.f			\
+		$(SOURCE_CODE)/exf_set_gen.f			\
 		$(SOURCE_CODE)/exf_set_obcs.f			\
 								\
 		$(SOURCE_CODE)/exf_clim_init.f			\
