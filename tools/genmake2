@@ -833,7 +833,7 @@ echo -n 'SRCFILES = '    > srclist.inc
 echo -n 'CSRCFILES = '   > csrclist.inc
 echo -n 'F90SRCFILES = ' > f90srclist.inc
 echo -n 'HEADERFILES = ' > hlist.inc
-alldirs=". $SOURCEDIRS $INCLUDEDIRS"
+alldirs="$SOURCEDIRS $INCLUDEDIRS ."
 for d in $alldirs ; do
     deplist=
     sfiles=`( cd $d; echo *.[h,c,F] )`
