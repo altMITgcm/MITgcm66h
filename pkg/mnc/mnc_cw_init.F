@@ -75,6 +75,7 @@ C     ......12345....12345....12345....12345....12345...
       data time_dat /
      &     '-    ', 't    ', '     ', '     ', '     '  /
 
+C     Create the types
       ncomb = 0
       DO ihorz = 1,5
         DO is = 1,3

@@ -55,6 +55,7 @@ C     Blank the CW tables
         mnc_cw_fgnm(g)(1:MNC_MAX_CHAR) = blank(1:MNC_MAX_CHAR)
         mnc_cw_fgud(g) = 0
         mnc_cw_fgis(g) = 0
+C       mnc_cw_cvnm(g)(1:MNC_MAX_CHAR) = blank(1:MNC_MAX_CHAR)
         DO i = 1,MNC_CW_MAX_I
           mnc_cw_dn(i,g)(1:MNC_MAX_CHAR) = blank(1:MNC_MAX_CHAR)
           mnc_cw_vtnm(i,g)(1:MNC_MAX_CHAR) = blank(1:MNC_MAX_CHAR)
@@ -72,8 +73,13 @@ C     Blank the CW tables
         ENDDO
         DO i = 1,2
            mnc_cw_vbij(i,g) = 0
+C          mnc_cw_cvse(i,g) = 0
         ENDDO
       ENDDO
+      
+C     DO i = 1,MNC_CW_CVDAT
+C     mnc_cw_cvdt(i) = 0.0D0
+C     ENDDO
 
       RETURN
       END
