@@ -109,6 +109,7 @@ for ind=1:size(varargin,2);
    end
    disp([ sprintf('Found %i time levels, reading %i',size(iters,2),iters(end)) ]);
    iters=iters(end);
+% elseif prod(double(arg>=0)) & prod(double(round(arg)==arg))
 % elseif prod(arg>=0) & prod(round(arg)==arg)
   elseif min(arg)>=0 & isempty(find(round(arg)~=arg))
    if arg>=9999999999
