@@ -111,6 +111,7 @@ C--   Set default "physical" parameters
       allowFreezing       = .FALSE.
       ivdc_kappa          = 0.D0
       groundAtK1          = .FALSE.
+      nShap               = 0
 
 C--   Elliptic solver parameters
       cg2dMaxIters       = 150

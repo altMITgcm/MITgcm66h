@@ -83,13 +83,6 @@ C--   Load forcing/external data fields
       CALL EXTERNAL_FIELDS_LOAD( myCurrentTime, myCurrentIter, myThid )
       CALL TIMER_STOP ('I/O (READ)         [FORWARD_STEP]',myThid)
 
-#ifdef INCLUDE_SHAPIRO_FILTER_CODE
-C--   Step forward all tiles, filter and exchange.
-      CALL TIMER_START('SHAP_FILT          [FORWARD_STEP]',myThid)
-      CALL SHAP_FILT( myCurrentTime, myCurrentIter, myThid )
-      CALL TIMER_STOP ('SHAP_FILT          [FORWARD_STEP]',myThid)
-#endif
-
 C--   Step forward fields and calculate time tendency terms
       CALL TIMER_START('DYNAMICS           [FORWARD_STEP]',myThid)
       CALL DYNAMICS( myCurrentTime, myCurrentIter, myThid )
@@ -102,6 +95,15 @@ C--   Step forward W field in N-H algorithm
        CALL CALC_GW( myThid)
        CALL TIMER_STOP ('CALC_GW            [FORWARD_STEP]',myThid)
       ENDIF
+#endif
+
+#ifdef INCLUDE_SHAPIRO_FILTER_CODE
+C--   Step forward all tiles, filter and exchange.
+      CALL TIMER_START('SHAP_FILT          [FORWARD_STEP]',myThid)
+      CALL SHAP_FILT_APPLY( 
+     I                     gUnm1, gVnm1, gTnm1, gSnm1,
+     I                     myCurrentTime, myCurrentIter, myThid )
+      CALL TIMER_STOP ('SHAP_FILT          [FORWARD_STEP]',myThid)
 #endif
 
 C--   Do IO if needed.

@@ -101,7 +101,7 @@ C--   Continuous equation parameters
      & rhoConst, buoyancyRelation, HeatCapacity_Cp,
      & writeBinaryPrec, readBinaryPrec, writeStatePrec,
      & openBoundaries, nonHydrostatic, globalFiles,
-     & allowFreezing, ivdc_kappa
+     & allowFreezing, ivdc_kappa, nShap
 
 C--   Elliptic solver parameters
       NAMELIST /PARM02/
