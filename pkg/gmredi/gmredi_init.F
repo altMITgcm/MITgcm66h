@@ -27,10 +27,6 @@ C     myThid -  Number of this instance of KPP_INIT
 #ifdef ALLOW_GMREDI
 
 C     === Local variables ===
-C     msgBuf      - Informational/error meesage buffer
-C     iUnit       - Work variable for IO unit number
-      CHARACTER*(MAX_LEN_MBUF) msgBuf
-      INTEGER iUnit
       INTEGER i,j,k,bi,bj
 
       DO bj = myByLo(myThid), myByHi(myThid)
