@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o removed top-level directory "diags"
+  - we migrated these functions to pkg/timeave a long time ago
+o fixed bug introduced in pkg/monitor
+
 checkpoint52j_post
 o fix nchklev in tamc.h for global_ocean...
 o Bringing flow and store directives up-to-date
