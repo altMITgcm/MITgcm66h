@@ -173,7 +173,7 @@ C       _EXCH_XY_R8(fv     , mythid)
 #else /* ALLOW_BULK_FORCE undef */
       IF ( .TRUE. ) THEN
 #endif /* ALLOW_BULK_FORCE */
-# ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
+# ifdef ALLOW_EXF
 C     NOTE, that although the exf package is part of the
 C     distribution, it is not currently maintained, i.e.
 C     exf is disabled by default in genmake.
@@ -184,7 +184,7 @@ C     exf is disabled by default in genmake.
       CALL TIMER_START('EXF_GETFORCING     [FORWARD_STEP]',mythid)
       CALL EXF_GETFORCING( mytime, myiter, mythid )
       CALL TIMER_STOP ('EXF_GETFORCING     [FORWARD_STEP]',mythid)
-# else /* INCLUDE_EXTERNAL_FORCING_PACKAGE undef */
+# else /* ALLOW_EXF undef */
 cph The following IF-statement creates an additional dependency
 cph for the forcing fields requiring additional storing.
 cph Therefore, the IF-statement will be put between CPP-OPTIONS,
@@ -202,7 +202,7 @@ cph assuming that ALLOW_SEAICE has not yet been differentiated.
 #  ifdef ALLOW_SEAICE
       ENDIF
 #  endif
-# endif /* INCLUDE_EXTERNAL_FORCING_PACKAGE */
+# endif /* ALLOW_EXF */
 C--   end of if/else block useBulfforce --
       ENDIF
 
