@@ -178,8 +178,8 @@ C-      Large, Danabasoglu and Doney, JPO 1997
             Rnondim=0.
           endif
           f2=0.5*(1.+sin( fpi*(Rnondim-0.5)))
-          SlopeX(i,j) = sx*f1
-          SlopeY(i,j) = sy*f1
+          SlopeX(i,j) = sx*f1*f2
+          SlopeY(i,j) = sy*f1*f2
 
          ENDDO
         ENDDO
