@@ -203,6 +203,11 @@ C     o V momentum equation
       phyFac       = pfFacMom*1.
       vForcFac     = foFacMom*1.
 
+      IF (implicitViscosity) THEN
+       ArDudrFac = 0.
+       ArDvdrFac = 0.
+      ENDIF
+
 C--   Adams-Bashforth weighting factors
       ab15   =  1.5 _d 0 + abEps
       ab05   = -0.5 _d 0 - abEps

@@ -108,6 +108,7 @@ C--   Set default "physical" parameters
       saltStepping        = .TRUE.
       metricTerms         = .FALSE.
       implicitDiffusion   = .FALSE.
+      implicitViscosity   = .FALSE.
       openBoundaries      = .FALSE.
       nonHydrostatic      = .FALSE.
       globalFiles         = .FALSE.

@@ -501,6 +501,9 @@ C--     Implicit diffusion
      I         deltaTtracer, KappaRS,recip_HFacC,
      U         gSNm1,
      I         myThid )
+        ENDIF ! implicitDiffusion
+C--     Implicit viscosity
+        IF (implicitViscosity) THEN
          IF (momStepping) THEN
           CALL IMPLDIFF(
      I         bi, bj, iMin, iMax, jMin, jMax,
@@ -525,7 +528,7 @@ C--     Implicit diffusion
      I         myThid )
 #endif
          ENDIF ! momStepping
-        ENDIF ! implicitDiffusion
+        ENDIF ! implicitViscosity
  
        ENDDO
       ENDDO
