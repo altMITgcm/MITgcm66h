@@ -467,6 +467,7 @@ C AMM
          CALL TIMER_START('GRIDALT_UPDATE      [FORWARD_STEP]',mythid)
          CALL GRIDALT_UPDATE(myThid)
          CALL TIMER_STOP ('GRIDALT_UPDATE      [FORWARD_STEP]',mythid)
+        endif
 #endif
 C AMM
 

@@ -78,7 +78,12 @@ C--   Initialise & Read AIM physical parameters
 C AMM
 #ifdef ALLOW_GRIDALT
 C--   Initialise GRIDALT parameters - the alternative grid
-      IF (useGRIDALT) CALL GRIDALT_INITIALISE( myThid )
+      IF (useGRIDALT) then
+       CALL TIMER_START('GRIDALT_INITIALISE  [PACKAGES_INIT_F]',mythid)
+       CALL GRIDALT_INITIALISE( myThid )
+       CALL TIMER_STOP ('GRIDALT_INITIALISE  [PACKAGES_INIT_F]',mythid)
+      ENDIF
+
 #endif
 
 #ifdef ALLOW_FIZHI

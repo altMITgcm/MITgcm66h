@@ -204,7 +204,11 @@ C--   end bi,bj loop.
 
 C AMM
 #ifdef ALLOW_GRIDALT
-        if (useGRIDALT) CALL GRIDALT_UPDATE(myThid)
+        if (useGRIDALT) then
+         CALL TIMER_START('GRIDALT_UPDATE  [INITIALISE_VARIA]',mythid)
+         CALL GRIDALT_UPDATE(myThid)
+         CALL TIMER_STOP ('GRIDALT_UPDATE  [INITIALISE_VARIA]',mythid)
+        endif
 #endif
 C AMM
 
