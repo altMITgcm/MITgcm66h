@@ -96,7 +96,8 @@ C       Write each snap-shot as a new file (original and default method)
 C       - creates many files but for large configurations is easier to
 C         transfer analyse a particular snap-shots
         WRITE(suff,'(I10.10)') myIter
-        CALL WRITE_FLD_XYZ_RL( localfile,suff,myField,myIter,myThid)
+        STOP 'WRITE_FLD_XYZ_RL CALL INCORRECT - CONTACT SUPPORT'
+C       CALL WRITE_FLD_XYZ_RL( localfile,suff,myField,myIter,myThid)
 
 #endif /* MULTIPLE_RECORD_STATE_FILES */
 
