@@ -67,11 +67,6 @@ c     == end of interface ==
       call exf_set_obcs_xz(  OBNs, OBNs0, OBNs1, OBNsfile, 's'
      I                     , fac, first, changed, count0, count1
      I                     , mycurrenttime, mycurrentiter, mythid )
-cph(
-      print *, 'ph-obn a ', mycurrenttime, mycurrentiter, count0, count1
-      print *, 'ph-obn b ', OBNu(10,1,1,1),
-     &     OBNu0(10,1,1,1),OBNu1(10,1,1,1)
-cph)
 #endif
 
 #ifdef ALLOW_OBCS_SOUTH
