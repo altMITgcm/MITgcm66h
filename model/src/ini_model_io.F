@@ -112,6 +112,20 @@ C     RF
      &     'R coordinate of cell interface',myThid)
       CALL MNC_CW_ADD_VATTR_TEXT('RF',
      &     'units', 'm', myThid)
+
+C     RL
+      CALL MNC_CW_ADD_VNAME('RL', '-_-_--__L__-', 0,0, myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('RL','description',
+     &     'R coordinate of lower interface',myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('RL',
+     &     'units', 'm', myThid)
+
+C     RU
+      CALL MNC_CW_ADD_VNAME('RU', '-_-_--__U__-', 0,0, myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('RU','description',
+     &     'R coordinate of upper interface',myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('RU',
+     &     'units', 'm', myThid)
 C     End define coordinates for all MNC files ----------------------------
 
 

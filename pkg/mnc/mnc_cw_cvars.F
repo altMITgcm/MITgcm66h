@@ -152,6 +152,30 @@ C     Check all the coordinate variables that we know about
           rtmp(i) = rF(i)
         ENDDO
 
+      ELSEIF (cvname(nnf:nnl) .EQ. 'Zu') THEN
+
+        cv_start(1) = 1
+        cv_count(1) = Nr
+        DO i = cv_start(1),cv_count(1)
+          rtmp(i) = rF(i + 1)
+        ENDDO
+
+      ELSEIF (cvname(nnf:nnl) .EQ. 'Zl') THEN
+
+        cv_start(1) = 1
+        cv_count(1) = Nr
+        DO i = cv_start(1),cv_count(1)
+          rtmp(i) = rF(i)
+        ENDDO
+
+      ELSEIF (cvname(nnf:nnl) .EQ. 'Zm1') THEN
+
+        cv_start(1) = 1
+        cv_count(1) = Nr - 1
+        DO i = cv_start(1),cv_count(1)
+          rtmp(i) = rF(i + 1)
+        ENDDO
+
       ELSE
 
         doit = 0
