@@ -3,21 +3,15 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C     !ROUTINE: SOLVE_FOR_PRESSURE
-C     !INTERFACE:
+CStartOfInterface
       SUBROUTINE SOLVE_FOR_PRESSURE( myThid )
-
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | SUBROUTINE SOLVE_FOR_PRESSURE                             
-C     | o Controls inversion of two and/or three-dimensional      
-C     |   elliptic problems for the pressure field.               
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================\
+C     | SUBROUTINE SOLVE_FOR_PRESSURE                            |
+C     | o Controls inversion of two and/or three-dimensional     |
+C     |   elliptic problems for the pressure field.              |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == Global variables
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -34,12 +28,11 @@ C     == Global variables
 #endif
 #include "SOLVE_FOR_PRESSURE.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     myThid - Number of this instance of SOLVE_FOR_PRESSURE
       INTEGER myThid
+CEndOfInterface
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
       INTEGER i,j,k,bi,bj
       _RS uf(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
@@ -47,16 +40,13 @@ C     == Local variables ==
       _RL firstResidual,lastResidual
       INTEGER numIters
       CHARACTER*(MAX_LEN_MBUF) msgBuf
-CEOP
 
 C--   Save previous solution & Initialise Vector solution and source term :
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
         DO j=1-OLy,sNy+OLy
          DO i=1-OLx,sNx+OLx
-#ifdef INCLUDE_CD_CODE
           etaNm1(i,j,bi,bj) = etaN(i,j,bi,bj)
-#endif
           cg2d_x(i,j,bi,bj) = Bo_surf(i,j,bi,bj)*etaN(i,j,bi,bj)
           cg2d_b(i,j,bi,bj) = 0.
 #ifdef USE_NATURAL_BCS
@@ -102,27 +92,21 @@ C--   Add source term arising from w=d/dt (p_s + p_nh)
      &      -freeSurfFac*_rA(i,j,bi,bj)/deltaTMom/deltaTMom
      &        *( etaN(i,j,bi,bj)
      &          +phi_nh(i,j,1,bi,bj)*horiVertRatio/gravity )
+C-jmc
+c    &      -freeSurfFac*_rA(i,j,bi,bj)*recip_Bo(i,j,bi,bj)
+c    &        *( cg2d_x(i,j,bi,bj) + phi_nh(i,j,1,bi,bj) )
+c    &        /deltaTMom/deltaTMom
+C-jmc
          ENDDO
         ENDDO
 #else
-        IF ( exactConserv ) THEN
-c       IF (nonlinFreeSurf.GT.0) THEN
-         DO j=1,sNy
-          DO i=1,sNx
-           cg2d_b(i,j,bi,bj) = cg2d_b(i,j,bi,bj)
-     &       -freeSurfFac*_rA(i,j,bi,bj)/deltaTMom/deltaTMom
-     &         * etaH(i,j,bi,bj)
-          ENDDO
+        DO j=1,sNy
+         DO i=1,sNx
+          cg2d_b(i,j,bi,bj) = cg2d_b(i,j,bi,bj)
+     &      -freeSurfFac*_rA(i,j,bi,bj)/deltaTMom/deltaTMom
+     &        * etaN(i,j,bi,bj)
          ENDDO
-        ELSE
-         DO j=1,sNy
-          DO i=1,sNx
-           cg2d_b(i,j,bi,bj) = cg2d_b(i,j,bi,bj)
-     &       -freeSurfFac*_rA(i,j,bi,bj)/deltaTMom/deltaTMom
-     &         * etaN(i,j,bi,bj)
-          ENDDO
-         ENDDO
-        ENDIF
+        ENDDO
 #endif
 
 #ifdef ALLOW_OBCS

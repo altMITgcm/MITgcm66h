@@ -3,23 +3,17 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C     !ROUTINE: INI_DYNVARS
-C     !INTERFACE:
       SUBROUTINE INI_DYNVARS( myThid )
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | SUBROUTINE INI_DYNVARS                                    
-C     | o Initialise to zero all DYNVARS.h arrays                  
-C     *==========================================================*
-C     | Sets all the State variables to zero.
-C     | Sets all the Gs (arrays used for multi-level time-stepping)
-C     | to zero.
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================\
+C     | SUBROUTINE INI_DYNVARS                                   |
+C     | o Initialise to zero all DYNVARS.h arrays                | 
+C     \==========================================================/
       IMPLICIT NONE
+
+C     Sets all the State variables to zero.
+C     Sets all the Gs (arrays used for multi-level time-stepping)
+C     to zero.
+
 C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -29,18 +23,16 @@ C     === Global variables ===
 #include "GW.h"
 #endif
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     myThid -  Number of this instance of INI_UVEL 
       INTEGER myThid
+CEndOfInterface
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     bi,bj  - Loop counters
 C     I,J,K
       INTEGER bi, bj
       INTEGER  I,  J, K
-CEOP
 
 C--   Over all tiles
       DO bj = myByLo(myThid), myByHi(myThid)
@@ -88,10 +80,7 @@ C-      2D arrays
         DO J=1-Oly,sNy+Oly
          DO I=1-Olx,sNx+Olx
           etaN(I,J,bi,bj)=0. _d 0
-          etaH(I,J,bi,bj)=0. _d 0
-#ifdef INCLUDE_CD_CODE
           etaNm1(I,J,bi,bj)=0. _d 0
-#endif
          ENDDO
         ENDDO
 

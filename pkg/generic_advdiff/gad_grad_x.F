@@ -3,45 +3,27 @@ C $Name$
 
 #include "GAD_OPTIONS.h"
 
-CBOP
-C !ROUTINE: GAD_GRAD_X
-
-C !INTERFACE: ==========================================================
       SUBROUTINE GAD_GRAD_X( 
      I           bi,bj,k,
      I           xA,
      I           tracer,
      O           dTdx,
      I           myThid )
-
-C !DESCRIPTION:
-C Calculates the zonal gradient of a tracer: $\partial_x \theta
-C = \frac{1}{\Delta x_c} \delta_i \theta$
-C and multiplies by the area.
-
-C !USES: ===============================================================
       IMPLICIT NONE
+
+C     == GLobal variables ==
 #include "SIZE.h"
 #include "GRID.h"
 
-C !INPUT PARAMETERS: ===================================================
-C  bi,bj                :: tile indices
-C  k                    :: vertical level
-C  tracer               :: tracer field
-C  myThid               :: thread number
+C     == Routine arguments ==
       INTEGER bi,bj,k
       _RS xA    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL tracer(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL dTdx  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER myThid
 
-C !OUTPUT PARAMETERS: ==================================================
-C  dTdx                 :: zonal gradient
-      _RL dTdx  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-
-C !LOCAL VARIABLES: ====================================================
-C  i,j                  :: loop indices
+C     == Local variables ==
       INTEGER i,j
-CEOP
 
 C     o Zonal tracer gradient
       DO j=1-Oly,sNy+Oly

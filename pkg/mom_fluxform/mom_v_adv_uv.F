@@ -3,47 +3,32 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C !ROUTINE: MOM_V_ADV_UV
-
-C !INTERFACE: ==========================================================
       SUBROUTINE MOM_V_ADV_UV(
      I        bi,bj,k,
      I        uTrans, vFld,
      O        AdvectFluxUV,
      I        myThid)
-
-C !DESCRIPTION:
-C Calculates the zonal advective flux of meridional momentum:
-C \begin{equation*}
-C F^x = \overline{U}^j \overline{v}^{i}
-C \end{equation*}
-
-C !USES: ===============================================================
       IMPLICIT NONE
+C
+C     Calculate zonal advective flux of V using centered second order diff.
+C       - is not vector invariant ...
+C
+
+C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
 
-C !INPUT PARAMETERS: ===================================================
-C  bi,bj                :: tile indices
-C  k                    :: vertical level
-C  uTrans               :: zonal transport
-C  vFld                 :: meridional flow
-C  myThid               :: thread number
+C     == Routine arguments ==
       INTEGER bi,bj,k
       _RL uTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL vFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      INTEGER myThid
-C !OUTPUT PARAMETERS: ==================================================
-C  AdvectFluxUV         :: advective flux
       _RL AdvectFluxUV(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      INTEGER myThid
 
-C !LOCAL VARIABLES: ====================================================
-C  i,j                  :: loop indices
+C     == Local variables ==
       INTEGER I,J
-CEOP
 
       DO j=1-Oly+1,sNy+Oly
        DO i=1-Olx+1,sNx+Olx

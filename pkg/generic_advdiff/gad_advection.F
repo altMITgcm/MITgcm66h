@@ -1,65 +1,19 @@
 C $Header$
 C $Name$
 
-CBOI
-C !TITLE: pkg/generic\_advdiff
-C !AUTHORS: adcroft@mit.edu
-C !INTRODUCTION:
-C \section{Generica Advection Diffusion Package}
-C
-C Package "generic\_advdiff" provides a common set of routines for calculating
-C advective/diffusive fluxes for tracers (cell centered quantities on a C-grid).
-C
-C Many different advection schemes are available: the standard centered
-C second order, centered fourth order and upwind biased third order schemes
-C are known as linear methods and require some stable time-stepping method
-C such as Adams-Bashforth. Alternatives such as flux-limited schemes are
-C stable in the forward sense and are best combined with the multi-dimensional
-C method provided in gad\_advection.
-C
-C There are two high-level routines:
-C  \begin{itemize}
-C  \item{GAD\_CALC\_RHS} calculates all fluxes at time level "n" and is used
-C  for the standard linear schemes. This must be used in conjuction with
-C  Adams-Bashforth time-stepping. Diffusive and parameterized fluxes are
-C  always calculated here.
-C  \item{GAD\_ADVECTION} calculates just the advective fluxes using the
-C  non-linear schemes and can not be used in conjuction with Adams-Bashforth
-C  time-stepping.
-C  \end{itemize}
-CEOI
-
 #include "GAD_OPTIONS.h"
 
-CBOP
-C !ROUTINE: GAD_ADVECTION
-
-C !INTERFACE: ==========================================================
       SUBROUTINE GAD_ADVECTION(bi,bj,advectionScheme,tracerIdentity,
      U                         Tracer,Gtracer,
      I                         myTime,myIter,myThid)
-
-C !DESCRIPTION:
-C Calculates the tendancy of a tracer due to advection.
-C It uses the multi-dimensional method given in \ref{sect:multiDimAdvection}
-C and can only be used for the non-linear advection schemes such as the
-C direct-space-time method and flux-limiters. 
-C
-C The algorithm is as follows:
-C \begin{itemize}
-C \item{$\theta^{(n+1/3)} = \theta^{(n)}
-C      - \Delta t \partial_x (u\theta^{(n)}) + \theta^{(n)} \partial_x u$}
-C \item{$\theta^{(n+2/3)} = \theta^{(n+1/3)}
-C      - \Delta t \partial_y (v\theta^{(n+1/3)}) + \theta^{(n)} \partial_y v$}
-C \item{$\theta^{(n+3/3)} = \theta^{(n+2/3)}
-C      - \Delta t \partial_r (w\theta^{(n+2/3)}) + \theta^{(n)} \partial_r w$}
-C \item{$G_\theta = ( \theta^{(n+3/3)} - \theta^{(n)} )/\Delta t$}
-C \end{itemize}
-C
-C The tendancy (output) is over-written by this routine.
-
-C !USES: ===============================================================
+C     /==========================================================\
+C     | SUBROUTINE GAD_ADVECTION                                 |
+C     | o Solves the pure advection tracer equation.             |
+C     |==========================================================|
+C     \==========================================================/
       IMPLICIT NONE
+
+C     == Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
@@ -67,44 +21,17 @@ C !USES: ===============================================================
 #include "GRID.h"
 #include "GAD.h"
 
-C !INPUT PARAMETERS: ===================================================
-C  bi,bj                :: tile indices
-C  advectionScheme      :: advection scheme to use
-C  tracerIdentity       :: identifier for the tracer (required only for OBCS)
-C  Tracer               :: tracer field
-C  myTime               :: current time
-C  myIter               :: iteration number
-C  myThid               :: thread number
+C     == Routine arguments ==
       INTEGER bi,bj
       INTEGER advectionScheme
       INTEGER tracerIdentity
+      _RL Tracer(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy)
       _RL Gtracer(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy)
       _RL myTime
       INTEGER myIter
       INTEGER myThid
 
-C !OUTPUT PARAMETERS: ==================================================
-C  gTracer              :: tendancy array
-      _RL Tracer(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy)
-
-C !LOCAL VARIABLES: ====================================================
-C  maskUp               :: 2-D array for mask at W points
-C  iMin,iMax,jMin,jMax  :: loop range for called routines
-C  i,j,k                :: loop indices
-C  kup                  :: index into 2 1/2D array, toggles between 1 and 2
-C  kdown                :: index into 2 1/2D array, toggles between 2 and 1
-C  kp1                  :: =k+1 for k<Nr, =Nr for k=Nr
-C  xA,yA                :: areas of X and Y face of tracer cells
-C  uTrans,vTrans,rTrans :: 2-D arrays of volume transports at U,V and W points
-C  af                   :: 2-D array for horizontal advective flux
-C  fVerT                :: 2 1/2D arrays for vertical advective flux
-C  localTij             :: 2-D array used as temporary local copy of tracer fld
-C  localTijk            :: 3-D array used as temporary local copy of tracer fld
-C  kp1Msk               :: flag (0,1) to act as over-riding mask for W levels
-C  calc_fluxes_X        :: logical to indicate to calculate fluxes in X dir
-C  calc_fluxes_Y        :: logical to indicate to calculate fluxes in Y dir
-C  nipass               :: number of passes to make in multi-dimensional method
-C  ipass                :: number of the current pass being made
+C     == Local variables
       _RS maskUp  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER iMin,iMax,jMin,jMax
       INTEGER i,j,k,kup,kDown,kp1
@@ -118,9 +45,6 @@ C  ipass                :: number of the current pass being made
       _RL localTij(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL localTijk(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
       _RL kp1Msk
-      LOGICAL calc_fluxes_X,calc_fluxes_Y
-      INTEGER nipass,ipass
-CEOP
 
 C--   Set up work arrays with valid (i.e. not NaN) values
 C     These inital values do not alter the numerical results. They
@@ -159,52 +83,6 @@ C--   Make local copy of tracer array
         localTij(i,j)=tracer(i,j,k,bi,bj)
        ENDDO
       ENDDO
-
-      IF (useCubedSphereExchange) THEN
-       nipass=3
-      ELSE
-       nipass=1
-      ENDIF
-       nipass=1
-
-C--   Multiple passes for different directions on different tiles
-      DO ipass=1,nipass
-
-      IF (nipass.EQ.3) THEN
-       calc_fluxes_X=.FALSE.
-       calc_fluxes_Y=.FALSE.
-       IF (ipass.EQ.1 .AND. (bi.EQ.1 .OR. bi.EQ.2) ) THEN
-        calc_fluxes_X=.TRUE.
-       ELSEIF (ipass.EQ.1 .AND. (bi.EQ.4 .OR. bi.EQ.5) ) THEN
-        calc_fluxes_Y=.TRUE.
-       ELSEIF (ipass.EQ.2 .AND. (bi.EQ.1 .OR. bi.EQ.6) ) THEN
-        calc_fluxes_Y=.TRUE.
-       ELSEIF (ipass.EQ.2 .AND. (bi.EQ.3 .OR. bi.EQ.4) ) THEN
-        calc_fluxes_X=.TRUE.
-       ELSEIF (ipass.EQ.3 .AND. (bi.EQ.2 .OR. bi.EQ.3) ) THEN
-        calc_fluxes_Y=.TRUE.
-       ELSEIF (ipass.EQ.3 .AND. (bi.EQ.5 .OR. bi.EQ.6) ) THEN
-        calc_fluxes_X=.TRUE.
-       ENDIF
-      ELSE
-       calc_fluxes_X=.TRUE.
-       calc_fluxes_Y=.TRUE.
-      ENDIF
- 
-C--   X direction
-      IF (calc_fluxes_X) THEN
-
-C--   Internal exchange for calculations in X
-      IF (useCubedSphereExchange) THEN
-       DO j=1,Oly
-        DO i=1,Olx
-         localTij( 1-i , 1-j )=localTij( 1-j ,    i    )
-         localTij( 1-i ,sNy+j)=localTij( 1-j , sNy+1-i )
-         localTij(sNx+i, 1-j )=localTij(sNx+j,    i    )
-         localTij(sNx+i,sNy+j)=localTij(sNx+j, sNy+1-i )
-        ENDDO
-       ENDDO
-      ENDIF
 
 C-    Advective flux in X
       DO j=1-Oly,sNy+Oly
@@ -246,24 +124,6 @@ C--   Apply open boundary conditions
       END IF
 #endif /* ALLOW_OBCS */
 
-C--   End of X direction
-      ENDIF
-
-C--   Y direction
-      IF (calc_fluxes_Y) THEN
-
-C--   Internal exchange for calculations in Y
-      IF (useCubedSphereExchange) THEN
-       DO j=1,Oly
-        DO i=1,Olx
-         localTij( 1-i , 1-j )=localTij(   j   , 1-i )
-         localTij( 1-i ,sNy+j)=localTij(   j   ,sNy+i)
-         localTij(sNx+i, 1-j )=localTij(sNx+1-j, 1-i )
-         localTij(sNx+i,sNy+j)=localTij(sNx+1-j,sNy+i)
-        ENDDO
-       ENDDO
-      ENDIF
-
 C-    Advective flux in Y
       DO j=1-Oly,sNy+Oly
        DO i=1-Olx,sNx+Olx
@@ -292,7 +152,6 @@ C-    Advective flux in Y
      &     )
        ENDDO
       ENDDO
-
 #ifdef ALLOW_OBCS
 C--   Apply open boundary conditions
       IF (useOBCS) THEN
@@ -303,18 +162,12 @@ C--   Apply open boundary conditions
        END IF
       END IF
 #endif /* ALLOW_OBCS */
-
-C--   End of Y direction
-      ENDIF
-
-      DO j=1-Oly,sNy+Oly
+      DO j=1-Oly,sNy+Oly-1
        DO i=1-Olx,sNx+Olx
         localTijk(i,j,k)=localTij(i,j)
        ENDDO
       ENDDO
 
-C--   End of ipass loop
-      ENDDO
 
 C--   End of K loop for horizontal fluxes
       ENDDO

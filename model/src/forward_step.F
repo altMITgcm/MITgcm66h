@@ -3,30 +3,23 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C     !ROUTINE: FORWARD_STEP
-C     !INTERFACE:
       SUBROUTINE FORWARD_STEP( iloop, myTime, myIter, myThid )
-
-C     !DESCRIPTION: \bv
-C     *==================================================================
-C     | SUBROUTINE forward_step
-C     | o Run the ocean model and, optionally, evaluate a cost function.
-C     *==================================================================
-C     |
-C     | THE_MAIN_LOOP is the toplevel routine for the Tangent Linear and
-C     | Adjoint Model Compiler (TAMC). For this purpose the initialization
-C     | of the model was split into two parts. Those parameters that do
-C     | not depend on a specific model run are set in INITIALISE_FIXED,   
-C     | whereas those that do depend on the specific realization are
-C     | initialized in INITIALISE_VARIA.   
-C     |
-C     *==================================================================
-C     \ev
-
-C     !USES:
       IMPLICIT NONE
-C     == Global variables ==
+
+c     ==================================================================
+c     SUBROUTINE forward_step
+c     ==================================================================
+c
+c     o Run the ocean model and evaluate the specified cost function.
+c
+c     *the_main_loop* is the toplevel routine for the Tangent Linear and
+c     Adjoint Model Compiler (TAMC). For this purpose the initialization
+c     of the model was split into two parts. Those parameters that do
+c     not depend on a specific model run are set in *initialise_fixed*,
+c     whereas those that do depend on the specific realization are
+c     initialized in *initialise_varia*. 
+
+C     == global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
@@ -44,8 +37,7 @@ C     == Global variables ==
 #include "cost.h"
 #endif
 
-C     !LOCAL VARIABLES:
-C     == Routine arguments ==
+C     == routine arguments ==
 C     note: under the multi-threaded model myiter and 
 C           mytime are local variables passed around as routine 
 C           arguments. Although this is fiddly it saves the need to 
@@ -58,9 +50,8 @@ C     mythid - thread number for this instance of the routine.
       integer mythid 
       integer myiter
       _RL     mytime
-      INTEGER bi,bj
 
-CEOP
+C     == local variables ==
 
 
 #ifdef ALLOW_AUTODIFF_TAMC
@@ -79,27 +70,13 @@ C       (DO_GTERM_BLOCKING_EXCHANGES).
         CALL DUMMY_IN_STEPPING( myTime, myIter, myThid )
 #endif
 
-#ifdef EXACT_CONSERV
-      IF (exactConserv) THEN
-C--   Update etaH(n+1) :
-        DO bj=myByLo(myThid),myByHi(myThid)
-         DO bi=myBxLo(myThid),myBxHi(myThid)
-           CALL CALC_EXACT_ETA( .FALSE., bi,bj, uVel,vVel,
-     I                          startTime, nIter0, myThid )
-         ENDDO
-        ENDDO
-        IF (implicDiv2Dflow .NE. 1. _d 0 )
-     &     _EXCH_XY_R8(etaH, myThid )
-      ENDIF
-#endif /* EXACT_CONSERV */ 
-
 #ifdef NONLIN_FRSURF
 C--   compute the future surface level thickness
-C      according to etaH(n+1) 
+C      according to the current Eta field 
         IF ( nonlinFreeSurf.GT.0) THEN
-          CALL CALC_SURF_DR(etaH, myTime, myIter, myThid )
+          CALL CALC_SURF_DR(etaN, myTime, myIter, myThid )
         ENDIF
-#endif /* NONLIN_FRSURF */
+#endif
 
 C--     Load forcing/external data fields.
 #ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
@@ -137,7 +114,7 @@ C--   Step forward W field in N-H algorithm
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 #ifdef NONLIN_FRSURF
-C--   update hfacC,W,S and recip_hFac according to etaH(n+1) :
+C--   update hfacC,W,S and recip_hFac according to the current Eta field
       IF ( momStepping ) THEN
       IF ( nonlinFreeSurf.GT.0) THEN
         CALL UPDATE_SURF_DR( myTime, myIter, myThid )
@@ -204,15 +181,6 @@ C--   Do "blocking" sends and receives for field "overlap" terms
       CALL TIMER_START('BLOCKING_EXCHANGES  [THE_MAIN_LOOP]',myThid)
       CALL DO_FIELDS_BLOCKING_EXCHANGES( myThid )
       CALL TIMER_STOP ('BLOCKING_EXCHANGES  [THE_MAIN_LOOP]',myThid)
-
-#ifdef ALLOW_FLT
-C--   Calculate float trajectories
-      IF (useFLT) THEN
-        CALL TIMER_START('FLOATS            [THE_MAIN_LOOP]',myThid)
-        CALL FLT_MAIN(myIter,myTime, myThid)
-        CALL TIMER_STOP ('FLOATS            [THE_MAIN_LOOP]',myThid)
-      ENDIF
-#endif
 
 #ifndef EXCLUDE_MONITOR
 C--   Check status of solution (statistics, cfl, etc...)

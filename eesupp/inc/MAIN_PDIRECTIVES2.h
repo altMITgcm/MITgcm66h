@@ -1,22 +1,17 @@
 C $Header$
 C $Name$
-CBOP
-C     !ROUTINE: MAIN_PDIRECTIVES2.h
-C     !INTERFACE:
-C     include "MAIN_PDIRECTIVES2.h"
-C     !DESCRIPTION:
-C     *==========================================================*
-C     | MAIN_PDIRECTIVES2.h                                       
-C     *==========================================================*
-C     | Parallel directives to generate multithreaded code for    
-C     | various different compilers. The master preprocessor      
-C     | file CPP_OPTIONS is used to select which of these options 
-C     | is included in the code.                                  
-C     | Note: Only some of the directives require end blocks.     
-C     |      For directives which do not require end blocks there 
-C     |      is no entry here.                                    
-C     *==========================================================*
-CEOP
+C
+C     /==========================================================\
+C     | MAIN_PDIRECTIVES2.h                                      |
+C     |==========================================================|
+C     | Parallel directives to generate multithreaded code for   |
+C     | various different compilers. The master preprocessor     |
+C     | file CPP_OPTIONS is used to select which of these options|
+C     | is included in the code.                                 |
+C     | Note: Only some of the directives require end blocks.    |
+C     |      For directives which do not require end blocks there|
+C     |      is no entry here.                                   |
+C     \==========================================================/
 
 #if defined USE_KAP_THREADING
 C--

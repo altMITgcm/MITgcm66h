@@ -3,24 +3,19 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C     !ROUTINE: EXTERNAL_FORCING_U
-C     !INTERFACE:
+CStartOfInterface
       SUBROUTINE EXTERNAL_FORCING_U(
      I           iMin, iMax, jMin, jMax,bi,bj,kLev,
      I           myCurrentTime,myThid)
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | S/R EXTERNAL_FORCING_U                                    
-C     | o Contains problem specific forcing for zonal velocity.   
-C     *==========================================================*
-C     | Adds terms to gU for forcing by external sources          
-C     | e.g. wind stress, bottom friction etc..................   
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================\
+C     | S/R EXTERNAL_FORCING_U                                   |
+C     | o Contains problem specific forcing for zonal velocity.  |
+C     |==========================================================|
+C     | Adds terms to gU for forcing by external sources         |
+C     | e.g. wind stress, bottom friction etc..................  |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == Global data ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -28,8 +23,6 @@ C     == Global data ==
 #include "GRID.h"
 #include "DYNVARS.h"
 #include "FFIELDS.h"
-
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     iMin - Working range of tile for applying forcing.
 C     iMax
@@ -39,12 +32,11 @@ C     kLev
       INTEGER iMin, iMax, jMin, jMax, kLev, bi, bj
       _RL myCurrentTime
       INTEGER myThid
+CEndOfInterface
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     Loop counters
       INTEGER I, J
-CEOP
 
 C--   Forcing term
 C     Add windstress momentum impulse into the top-layer
@@ -60,24 +52,19 @@ C     Add windstress momentum impulse into the top-layer
 
       RETURN
       END
-CBOP
-C     !ROUTINE: EXTERNAL_FORCING_V
-C     !INTERFACE:
+CStartOfInterface
       SUBROUTINE EXTERNAL_FORCING_V(
      I           iMin, iMax, jMin, jMax,bi,bj,kLev,
      I           myCurrentTime,myThid)
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | S/R EXTERNAL_FORCING_V                                    
-C     | o Contains problem specific forcing for merid velocity.   
-C     *==========================================================*
-C     | Adds terms to gV for forcing by external sources          
-C     | e.g. wind stress, bottom friction etc..................   
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================\
+C     | S/R EXTERNAL_FORCING_V                                   |
+C     | o Contains problem specific forcing for merid velocity.  |
+C     |==========================================================|
+C     | Adds terms to gV for forcing by external sources         |
+C     | e.g. wind stress, bottom friction etc..................  |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == Global data ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -86,7 +73,7 @@ C     == Global data ==
 #include "DYNVARS.h"
 #include "FFIELDS.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
+
 C     == Routine arguments ==
 C     iMin - Working range of tile for applying forcing.
 C     iMax
@@ -96,12 +83,10 @@ C     kLev
       INTEGER iMin, iMax, jMin, jMax, kLev, bi, bj
       _RL myCurrentTime
       INTEGER myThid
-
-C     !LOCAL VARIABLES:
+CEndOfInterface
 C     == Local variables ==
 C     Loop counters
       INTEGER I, J
-CEOP
 
 C--   Forcing term
 C     Add windstress momentum impulse into the top-layer
@@ -117,24 +102,19 @@ C     Add windstress momentum impulse into the top-layer
 
       RETURN
       END
-CBOP
-C     !ROUTINE: EXTERNAL_FORCING_T
-C     !INTERFACE:
+CStartOfInterface
       SUBROUTINE EXTERNAL_FORCING_T(
      I           iMin, iMax, jMin, jMax,bi,bj,kLev,
      I           myCurrentTime,myThid)
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | S/R EXTERNAL_FORCING_T                                    
-C     | o Contains problem specific forcing for temperature.      
-C     *==========================================================*
-C     | Adds terms to gT for forcing by external sources          
-C     | e.g. heat flux, climatalogical relaxation..............   
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================\
+C     | S/R EXTERNAL_FORCING_T                                   |
+C     | o Contains problem specific forcing for temperature.     |
+C     |==========================================================|
+C     | Adds terms to gT for forcing by external sources         |
+C     | e.g. heat flux, climatalogical relaxation..............  |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == Global data ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -149,7 +129,7 @@ C     == Global data ==
       _RL swfracb(two)
 #endif
 
-C     !INPUT/OUTPUT PARAMETERS:
+
 C     == Routine arguments ==
 C     iMin - Working range of tile for applying forcing.
 C     iMax
@@ -161,11 +141,9 @@ C     kLev
       INTEGER myThid
 CEndOfInterface
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     Loop counters
       INTEGER I, J
-CEOP
 
 C--   Forcing term
 C     Add heat in top-layer
@@ -196,25 +174,19 @@ C Penetrating SW radiation
 #endif
       RETURN
       END
-CBOP
-C     !ROUTINE: EXTERNAL_FORCING_S
-C     !INTERFACE:
+CStartOfInterface
       SUBROUTINE EXTERNAL_FORCING_S(
      I           iMin, iMax, jMin, jMax,bi,bj,kLev,
      I           myCurrentTime,myThid)
-
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | S/R EXTERNAL_FORCING_S                                    
-C     | o Contains problem specific forcing for merid velocity.   
-C     *==========================================================*
-C     | Adds terms to gS for forcing by external sources          
-C     | e.g. fresh-water flux, climatalogical relaxation.......   
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================\
+C     | S/R EXTERNAL_FORCING_S                                   |
+C     | o Contains problem specific forcing for merid velocity.  |
+C     |==========================================================|
+C     | Adds terms to gS for forcing by external sources         |
+C     | e.g. fresh-water flux, climatalogical relaxation.......  |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == Global data ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -223,7 +195,6 @@ C     == Global data ==
 #include "DYNVARS.h"
 #include "FFIELDS.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     iMin - Working range of tile for applying forcing.
 C     iMax
@@ -233,12 +204,11 @@ C     kLev
       INTEGER iMin, iMax, jMin, jMax, kLev, bi, bj
       _RL myCurrentTime
       INTEGER myThid
+CEndOfInterface
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     Loop counters
       INTEGER I, J
-CEOP
 
 C--   Forcing term
 C     Add fresh-water in top-layer

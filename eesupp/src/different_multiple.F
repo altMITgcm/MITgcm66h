@@ -2,40 +2,24 @@ C     $Header$
 C $Name$
 #include "CPP_EEOPTIONS.h"
 
-CBOP
-C     !ROUTINE: DIFFERENT_MULTIPLE
-
-C     !INTERFACE:
+CStartofinterface
       LOGICAL FUNCTION DIFFERENT_MULTIPLE( freq, val1, val2 )
+C     /==========================================================\
+C     | LOGICAL FUNCTION DIFFERENT_MULTIPLE                      |
+C     | o Checks two numbers multiple of a third number.         |
+C     |==========================================================|
+C     | This routine is used for diagnostic and other periodic   |
+C     | operations. It is very sensitive to arithmetic precision.|
+C     | For IEEE conforming arithmetic is works well but for     |
+C     | cases where short cut arithmetic  is used it may not work|
+C     | as expected. To overcome this issue compile this routine |
+C     | separately with no optimisation.                         |
+C     \==========================================================/
       IMPLICIT NONE
-
-C     !DESCRIPTION:
-C     *==========================================================*
-C     | LOGICAL FUNCTION DIFFERENT_MULTIPLE                       
-C     | o Checks two numbers multiple of a third number.          
-C     *==========================================================*
-C     | This routine is used for diagnostic and other periodic    
-C     | operations. It is very sensitive to arithmetic precision. 
-C     | For IEEE conforming arithmetic it works well but for      
-C     | cases where short cut arithmetic  is used it may not work 
-C     | as expected. To overcome this issue compile this routine  
-C     | separately with no optimisation.                          
-C     *==========================================================*
-
-C     !INPUT PARAMETERS:
-C     == Routine arguments ==
-C     val1, val2 :: Two times that are checked 
-C     freq       :: Frequency by which times are divided.
+C     Returns TRUE if val1 and val2 are different multiples of freq.
       _RL  freq, val1, val2
-
-C     !LOCAL VARIABLES:
-C     == Local variables ==
-C     f              :: Temp. for holding freq
-C     v1, v2, v3, v4 :: Temp. for holding time
-C     d1, d2, d3     :: Temp. for hold difference
-C     step           :: Temp. for hold difference used as increment
+CEndofinterface
       _RL  f, v1, v2, v3, v4, d1, d2, d3, step
-CEOP
 
 C     o Do easy cases first.
       DIFFERENT_MULTIPLE = .FALSE.

@@ -1,20 +1,13 @@
 C $Header$
 C $Name$
-CBOP
-C     !ROUTINE: FFIELDS.h 
-C     !INTERFACE:
-C     include "FFIELDS.h"
-C     !DESCRIPTION:
-C     \bv
-C     *==========================================================*
-C     | FFIELDS.h                                                 
-C     | o Model forcing fields                                    
-C     *==========================================================*
-C     | The arrays here will need changing and customising for a  
-C     | particular experiment.                                    
-C     *==========================================================*
-C     \ev
-CEOP
+C
+C     /==========================================================\
+C     | FFIELDS.h                                                |
+C     | o Model forcing fields                                   |
+C     |==========================================================|
+C     | The arrays here will need changing and customising for a |
+C     | particular experiment.                                   |
+C     \==========================================================/
 C
 C--   For a classical "gyre" type experiment just one term is needed.
 C

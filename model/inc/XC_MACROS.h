@@ -1,20 +1,13 @@
 C $Header$
 C $Name$
 C
-CBOP
-C    !ROUTINE: XC_MACROS.h
-C    !INTERFACE:
-C    include XC_MACROS.h
-C    !DESCRIPTION: \bv
-C     *==========================================================*
-C     | XC_MACROS.h                                               
-C     *==========================================================*
-C     | These macros are used to reduce memory requirement and/or 
-C     | memory references when variables are fixed along a given  
-C     | axis or axes.                                             
-C     *==========================================================*
-C     \ev
-CEOP
+C     /==========================================================\
+C     | XC_MACROS.h                                              |
+C     |==========================================================|
+C     | These macros are used to reduce memory requirement and/or|
+C     | memory references when variables are fixed along a given |
+C     | axis or axes.                                            |
+C     \==========================================================/
 
 #ifdef XC_CONST
 #define  _xC(i,j,bi,bj) xC(1,1,1,1)

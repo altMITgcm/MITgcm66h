@@ -9,47 +9,31 @@ C Single processor JAM stuff
 #undef  USE_MPI_EXCH
 #define USE_JAM_EXCH
 
-CBOP
-C     !ROUTINE: EXCH_XY_O1_R8_JAM
-
-C     !INTERFACE:
       SUBROUTINE EXCH_XY_O1_R8_JAM( arr )
+
       IMPLICIT NONE
+C     Width 1. Single tile. No X-axis decomp.
+C     No. corner update. Exchange.
 
-C     !DESCRIPTION:
-C     *======================================================================*
-C     | SUBROUTINE EXCH_XY_O1_R8_JAM
-C     | o Specialiased OL=1, JAM binding exchage routine
-C     *======================================================================*
-C     | Routine for high-speed communication directly over JAM library.
-C     | Communication is coded for decomposition in Y only as well as for
-C     | overlap regions of width one. Operates on 64-bit fields only.
-C     *======================================================================*
-
-C     !USES:
 #define _OLx 1
 #define _OLy 1
+
 C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EXCH_JAM.h"
+
 #include "MPI_INFO.h"
 #include "JAM_INFO.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
+C      == Compile time constants ==
+
 C     == Routine arguments ==
-C     arr :: Array to exchange
       Real*8 arr(1-_OLx:sNx+_OLx,1-_OLy:sNy+_OLy)
 
 #ifdef LETS_MAKE_JAM
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
-C     I,J :: Loop counters
-C     northProc, southProc :: Process id numbers
-C     farProc1, farProc2
-C     toPid, fromPid
-C     rc                   :: Return code
       INTEGER I, J
       INTEGER northProc, southProc
       INTEGER farProc1, farProc2
@@ -59,7 +43,6 @@ C     rc                   :: Return code
 #ifdef ALLOW_MPI
       INTEGER mpiStatus(MPI_STATUS_SIZE)
 #endif
-CEOP
 
 C     East-west halo update (without corners)
       DO J=1,sNy
@@ -198,45 +181,26 @@ C     Fill overlap regions from the buffers
       RETURN
       END
 
-CBOP
-C     !ROUTINE: EXCH_XY_R8_JAM
-
-C     !INTERFACE:
       SUBROUTINE EXCH_XY_R8_JAM( arr )
+
       IMPLICIT NONE
 
-C     !DESCRIPTION:
-C     *======================================================================*
-C     | SUBROUTINE EXCH_XY_R8_JAM
-C     | o Specialiased JAM binding exchange routine
-C     *======================================================================*
-C     | Routine for high-speed communication directly over JAM library.
-C     | Communication is coded for decomposition in Y only as. Overlaps are
-C     | of width OLy. Operates on 2d array only. Operates on 64-bit fields
-C     | only.
-C     *======================================================================*
+C     Full width. Single tile. No X-axis decomp.
+C     exchange.
 
-C     !USES:
 C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 #include "EXCH_JAM.h"
+
 #include "MPI_INFO.h"
 #include "JAM_INFO.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
-C     arr :: Array to exchange
       Real*8 arr(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
-C     I,J,iLo,iHi,i0       :: Loop counters
-C     northProc, southProc :: Process id numbers
-C     farProc1, farProc2 
-C     toPid, fromPid
-C     rc                   :: Error code
       INTEGER I, J
       INTEGER iLo, iHi, I0
       INTEGER northProc, southProc
@@ -245,10 +209,8 @@ C     rc                   :: Error code
       INTEGER rc
 
 #ifdef ALLOW_MPI
-C     mpiStatus            :: MPI error code
       INTEGER mpiStatus(MPI_STATUS_SIZE)
 #endif
-CEOP
 
 C     East-west halo update
       DO J=1-OLy,sNy+OLy
@@ -413,44 +375,25 @@ C      recvBuf2  = &arr(1-OLx,sNy+1    )
 
       RETURN
       END
-CBOP
-C     !ROUTINE: EXCH_XYZ_R8_JAM
-
-C     !INTERFACE:
       SUBROUTINE EXCH_XYZ_R8_JAM( arr )
       IMPLICIT NONE
 
-C     !DESCRIPTION:
-C     *======================================================================*
-C     | SUBROUTINE EXCH_XYZ_R8_JAM
-C     | o Specialiased JAM binding exchange routine
-C     *======================================================================*
-C     | Routine for high-speed communication directly over JAM library.
-C     | Communication is coded for decomposition in Y only as. Overlaps are
-C     | of width OLy. Operates on 64-bit fields only.
-C     *======================================================================*
+C     Full width, 3d. Single tile. No X-axis decomp.
+C     exchange.
 
-C     !USES:
 C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 #include "EXCH_JAM.h"
+
 #include "MPI_INFO.h"
 #include "JAM_INFO.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
-C     arr :: Array to exchange
       Real*8 arr(1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:Nr)
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
-C     I,J,K,iLo,iHi,I0     :: Loop counters
-C     northProc, southProc :: Process id numbers
-C     farProc1, farProc2
-C     toPid, fromPid
-C     rc                   :: Error code
       INTEGER I, J, K
       INTEGER iLo, iHi, I0
       INTEGER northProc, southProc
@@ -459,10 +402,8 @@ C     rc                   :: Error code
       INTEGER rc
 
 #ifdef ALLOW_MPI
-C     mpiStatus :: MPI error code
       INTEGER mpiStatus(MPI_STATUS_SIZE)
 #endif
-CEOP
 
 C     East-west halo update
       DO K=1,Nr
@@ -638,41 +579,30 @@ C       recvBuf2  = &arr(1-OLx,sNy+1    )
 #undef  USE_MPI_EXCH
 #define USE_JAM_EXCH
 
-CBOP
-C     !ROUTINE: EXCH_XY_O1_R4_JAM
-
-C     !INTERFACE:
       SUBROUTINE EXCH_XY_O1_R4_JAM( arr )
+
       IMPLICIT NONE
+C     Width 1. Single tile. No X-axis decomp.
+C     No. corner update. Exchange.
 
-C     !DESCRIPTION:
-C     *======================================================================*
-C     | SUBROUTINE EXCH_XY_O1_R4_JAM
-C     | o Specialiased JAM binding exchange routine
-C     *======================================================================*
-C     | Routine for high-speed communication directly over JAM library.
-C     | Communication is coded for decomposition in Y only as. Overlaps are
-C     | of width 1. Operates on 32-bit fields only.
-C     *======================================================================*
-
-C     !USES:
 #define ALLOW_MPI
 #define _OLx 1
 #define _OLy 1
+
 C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 #include "EXCH_JAM.h"
+
 #include "MPI_INFO.h"
 #include "JAM_INFO.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
+C      == Compile time constants ==
+
 C     == Routine arguments ==
-C     arr :: Array to exchange
       Real*4 arr(1-_OLx:sNx+_OLx,1-_OLy:sNy+_OLy)
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
       INTEGER I, J
       INTEGER northProc, southProc
@@ -683,7 +613,6 @@ C     == Local variables ==
 #ifdef ALLOW_MPI
       INTEGER mpiStatus(MPI_STATUS_SIZE)
 #endif
-CEOP
 
 C     East-west halo update (without corners)
       DO J=1,sNy
@@ -822,55 +751,36 @@ C     Fill overlap regions from the buffers
       RETURN
       END
 
-CBOP
-C     !ROUTINE: EXCH_XY_R4_JAM
-
-C     !INTERFACE:
       SUBROUTINE EXCH_XY_R4_JAM( arr )
+
       IMPLICIT NONE
 
-C     !DESCRIPTION:
-C     *======================================================================*
-C     | SUBROUTINE EXCH_XY_R4_JAM
-C     | o Specialiased JAM binding exchange routine
-C     *======================================================================*
-C     | Routine for high-speed communication directly over JAM library.
-C     | Communication is coded for decomposition in Y only as. Overlaps are
-C     | of width Oly. Operates on two-dimensional, 32-bit fields only.
-C     *======================================================================*
+C     Full width. Single tile. No X-axis decomp.
+C     exchange.
 
-C     !USES:
 C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 #include "EXCH_JAM.h"
+
 #include "MPI_INFO.h"
 #include "JAM_INFO.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
-C     arr :: Array to exchange
       Real*4 arr(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
-C     I,J,iLo,iHi,i0       :: Loop counters
-C     northProc, southProc :: Process ids
-C     farProc1, farProc2
-C     toPid, fromPid
-C     rc                   :: Error code
       INTEGER I, J
       INTEGER iLo, iHi, I0
       INTEGER northProc, southProc
       INTEGER farProc1, farProc2
       INTEGER toPid, fromPid
       INTEGER rc
+
 #ifdef ALLOW_MPI
-C     mpiStatus :: MPI error code
       INTEGER mpiStatus(MPI_STATUS_SIZE)
 #endif
-CEOP
 
 C     East-west halo update
       DO J=1-OLy,sNy+OLy
@@ -1035,55 +945,35 @@ C      recvBuf2  = &arr(1-OLx,sNy+1    )
 
       RETURN
       END
-CBOP
-C     !ROUTINE: EXCH_XYZ_R4_JAM
-
-C     !INTERFACE:
       SUBROUTINE EXCH_XYZ_R4_JAM( arr )
       IMPLICIT NONE
 
-C     !DESCRIPTION:
-C     *======================================================================*
-C     | SUBROUTINE EXCH_XYZ_R4_JAM
-C     | o Specialiased JAM binding exchange routine
-C     *======================================================================*
-C     | Routine for high-speed communication directly over JAM library.
-C     | Communication is coded for decomposition in Y only as. Overlaps are
-C     | of width Oly. Operates on three-dimensional, 32-bit fields only.
-C     *======================================================================*
+C     Full width, 3d. Single tile. No X-axis decomp.
+C     exchange.
 
-C     !USES:
 C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 #include "EXCH_JAM.h"
+
 #include "MPI_INFO.h"
 #include "JAM_INFO.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
-C     arr :: Array to exchange
       Real*4 arr(1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:Nr)
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
-C     I,J,K,iLo,iHi,i0     :: Loop counters
-C     northProc, southProc :: Process ids
-C     farProc1, farProc2
-C     toPid, fromPid 
-C     rc                   :: Error code
       INTEGER I, J, K
       INTEGER iLo, iHi, I0
       INTEGER northProc, southProc
       INTEGER farProc1, farProc2
       INTEGER toPid, fromPid
       INTEGER rc
+
 #ifdef ALLOW_MPI
-C     mpiStatus :: MPI error code
       INTEGER mpiStatus(MPI_STATUS_SIZE)
 #endif
-CEOP
 
 C     East-west halo update
       DO K=1,Nr
@@ -1264,49 +1154,31 @@ C Dual processor JAM stuff
 
 #undef  USE_MPI_EXCH
 #define USE_JAM_EXCH
-CBOP
-C     !ROUTINE: EXCH_XY_O1_R8_JAM
 
-C     !INTERFACE:
       SUBROUTINE EXCH_XY_O1_R8_JAM( arr )
+
       IMPLICIT NONE
+C     Width 1. Single tile. No X-axis decomp.
+C     No. corner update. Exchange.
 
-C     !DESCRIPTION:
-C     *======================================================================*
-C     | SUBROUTINE EXCH_XY_O1_R8_JAM
-C     | o Specialiased JAM binding exchange routine for dual-proc SMP node.
-C     *======================================================================*
-C     | Routine for high-speed communication directly over JAM library.
-C     | Communication is coded for decomposition in Y only as. Overlaps are
-C     | of width 1. Operates on two-dimensional, 64-bit fields only.
-C     *======================================================================*
-
-C     !USES:
 #define ALLOW_MPI
 #define _OLx 1
 #define _OLy 1
+
 C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EXCH_JAM.h"
+
 #include "MPI_INFO.h"
 #include "JAM_INFO.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
+C      == Compile time constants ==
+
 C     == Routine arguments ==
-C     arr :: Array to exchange
       Real*8 arr(1-_OLx:sNx+_OLx,1-_OLy:sNy+_OLy)
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
-C     I, J                 :: Loop counters
-C     northProc, southProc :: Process id numbers
-C     farProc1, farProc2    
-C     toPid, fromPid
-C     rc                   :: Error code
-C     myFourWayRank        :: Code indicating ranking in four
-C                             member subgroup of processes
-C     exchangePhase        :: Step counter for multi-stage exchange.
       INTEGER I, J
       INTEGER northProc, southProc
       INTEGER farProc1, farProc2
@@ -1314,7 +1186,6 @@ C     exchangePhase        :: Step counter for multi-stage exchange.
       INTEGER rc
       INTEGER myFourWayRank
       INTEGER exchangePhase
-CEOP
 
 C     East-west halo update (without corners)
       DO J=1,sNy
@@ -1392,47 +1263,26 @@ C
       RETURN
       END
 
-CBOP
-C     !ROUTINE: EXCH_XY_R8_JAM
-
-C     !INTERFACE:
       SUBROUTINE EXCH_XY_R8_JAM( arr )
+
       IMPLICIT NONE
 
-C     !DESCRIPTION:
-C     *======================================================================*
-C     | SUBROUTINE EXCH_XY_R8_JAM
-C     | o Specialiased JAM binding exchange routine for dual-proc SMP node.
-C     *======================================================================*
-C     | Routine for high-speed communication directly over JAM library.
-C     | Communication is coded for decomposition in Y only as. Overlaps are
-C     | of width OLy. Operates on two-dimensional, 64-bit fields only.
-C     *======================================================================*
+C     Full width. Single tile. No X-axis decomp.
+C     exchange.
 
-C     !USES:
 C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 #include "EXCH_JAM.h"
+
 #include "MPI_INFO.h"
 #include "JAM_INFO.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
-C     arr :: Array to exchange
       Real*8 arr(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
-C     I,J,iLo,iHi,I0       :: Loop counter
-C     northProc, southProc :: Process id
-C     farProc1, farProc2
-C     toPid, fromPid
-C     rc                   :: Error code
-C     myFourWayRank        :: Code indicating ranking in four
-C                             member subgroup of processes
-C     exchangePhase        :: Step counter for multi-stage exchange.
       INTEGER I, J
       INTEGER iLo, iHi, I0
       INTEGER northProc, southProc
@@ -1444,7 +1294,6 @@ C     exchangePhase        :: Step counter for multi-stage exchange.
 #ifdef ALLOW_MPI
       INTEGER mpiStatus(MPI_STATUS_SIZE)
 #endif
-CEOP
 
 C     East-west halo update
       DO J=1-OLy,sNy+OLy
@@ -1543,47 +1392,26 @@ C      recvBuf2  = &arr(1-OLx,sNy+1    )
 
       RETURN
       END
-CBOP
-C     !ROUTINE: EXCH_XYZ_R8_JAM
-
-C     !INTERFACE:
       SUBROUTINE EXCH_XYZ_R8_JAM( arr )
       IMPLICIT NONE
 
-C     !DESCRIPTION:
-C     *======================================================================*
-C     | SUBROUTINE EXCH_XYZ_R8_JAM
-C     | o Specialiased JAM binding exchange routine for dual-proc SMP node.
-C     *======================================================================*
-C     | Routine for high-speed communication directly over JAM library.
-C     | Communication is coded for decomposition in Y only as. Overlaps are
-C     | of width OLy. Operates on three-dimensional, 64-bit fields only.
-C     *======================================================================*
+C     Full width, 3d. Single tile. No X-axis decomp.
+C     exchange.
 
-C     !USES:
 C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 #include "EXCH_JAM.h"
+
 #include "MPI_INFO.h"
 #include "JAM_INFO.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
-C     arr :: Array to exchange
+      INTEGER myThid
       Real*8 arr(1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:Nr)
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
-C     I,J,K,iHi,iLo,I0     :: Loop counters
-C     northProc, southProc :: Process ids
-C     farProc1, farProc2
-C     toPid, fromPid
-C     rc                   :: Error code
-C     myFourWayRank        :: Code indicating ranking in four
-C                             member subgroup of processes
-C     exchangePhase        :: Step counter for multi-stage exchange.
       INTEGER I, J, K
       INTEGER iLo, iHi, I0
       INTEGER northProc, southProc
@@ -1591,11 +1419,10 @@ C     exchangePhase        :: Step counter for multi-stage exchange.
       INTEGER toPid, fromPid
       INTEGER rc
       INTEGER myFourWayRank, exchangePhase
+
 #ifdef ALLOW_MPI
-C     mpiStatus :: MPI error code
       INTEGER mpiStatus(MPI_STATUS_SIZE)
 #endif
-CEOP
 
 C     East-west halo update
       DO K=1,Nr

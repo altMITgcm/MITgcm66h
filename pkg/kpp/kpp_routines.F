@@ -674,7 +674,7 @@ C     break data flow dependence on diffus
 
       do ki = 1, Nr
          do i = 1, imt
-            if     (kmtj(i) .LE. 1      ) then
+            if     (kmtj(i) .EQ. 0      ) then
                diffus(i,ki,1) = 0.
                diffus(i,ki,2) = 0.
             elseif (ki      .GE. kmtj(i)) then

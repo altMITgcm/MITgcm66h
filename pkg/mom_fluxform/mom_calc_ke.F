@@ -3,46 +3,30 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C !ROUTINE: MOM_CALC_KE
-
-C !INTERFACE: ==========================================================
       SUBROUTINE MOM_CALC_KE(
      I        bi,bj,k,
      I        uFld, vFld,
      O        KE,
      I        myThid)
-
-C !DESCRIPTION:
-C Calculates the Kinetic energy of horizontal flow
-C \begin{equation*}
-C KE = \frac{1}{2} \left( h_w \overline{u^2}^i + h_s \overline{v^2}^j \right)
-C \end{equation*}
-
-C !USES: ===============================================================
       IMPLICIT NONE
+C
+C     Calculate Kinetic Energy, KE, with units (m/s)^2
+C       - assumes hydrostatic formulation only
+C
+
+C     == Global variables ==
 #include "SIZE.h"
 #include "GRID.h"
 
-C !INPUT PARAMETERS: ===================================================
-C  bi,bj                :: tile indices
-C  k                    :: vertical level
-C  uFld                 :: zonal flow
-C  vFld                 :: meridional flow
-C  myThid               :: thread number
+C     == Routine arguments ==
       INTEGER bi,bj,k
       _RL uFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL vFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL KE(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER myThid
 
-C !OUTPUT PARAMETERS: ==================================================
-C  KE                   :: Kinetic energy
-      _RL KE(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-
-C !LOCAL VARIABLES: ====================================================
-C  i,j                  :: loop indices
+C     == Local variables ==
       INTEGER I,J
-CEOP
 
       DO J=1-OLy,sNy+OLy-1
        DO I=1-OLx,sNx+OLx-1

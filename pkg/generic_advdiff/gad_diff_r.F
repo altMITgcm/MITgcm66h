@@ -3,51 +3,30 @@ C $Name$
 
 #include "GAD_OPTIONS.h"
 
-CBOP
-C !ROUTINE: GAD_DIFF_R
-
-C !INTERFACE: ==========================================================
       SUBROUTINE GAD_DIFF_R( 
      I           bi,bj,k,
      I           KappaR,
      I           tracer,
      O           dfr,
      I           myThid )
-
-C !DESCRIPTION:
-C Calculates the area integrated vertical flux due to down-gradient
-C diffusion of a tracer:
-C \begin{equation*}
-C F^r_{diff} = - A^r \kappa_r \frac{1}{\Delta r_c} \delta_k \theta
-C \end{equation*}
-
-C !USES: ===============================================================
       IMPLICIT NONE
+
+C     == GLobal variables ==
 #include "SIZE.h"
 #include "GRID.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 
-C !INPUT PARAMETERS: ===================================================
-C  bi,bj                :: tile indices
-C  k                    :: vertical level
-C  KappaR               :: vertical diffusivity
-C  tracer               :: tracer field
-C  myThid               :: thread number
+C     == Routine arguments ==
       INTEGER bi,bj,k
       _RL KappaR(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
       _RL tracer(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      _RL dfr   (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER myThid
 
-C !OUTPUT PARAMETERS: ==================================================
-C  dfr                  :: vertical diffusive flux
-      _RL dfr   (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-
-C !LOCAL VARIABLES: ====================================================
-C  i,j                  :: loop indices
-C  km1                  :: =k+1 for k<Nr, =Nr for k>-Nr
+C     == Local variables ==
       INTEGER i,j,km1
-CEOP
+      LOGICAL TOP_LAYER
 
       km1=max(1,k-1)
 

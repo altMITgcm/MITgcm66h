@@ -1,20 +1,13 @@
 C $Header$
 C $Name$
 C
-CBOP
-C    !ROUTINE: DXG_MACROS.h
-C    !INTERFACE:
-C    include DXG_MACROS.h
-C    !DESCRIPTION: \bv
-C     *==========================================================*
-C     | DXG_MACROS.h                                              
-C     *==========================================================*
-C     | These macros are used to reduce memory requirement and/or 
-C     | memory references when variables are fixed along a given  
-C     | axis or axes.                                             
-C     *==========================================================*
-C     \ev
-CEOP
+C     /==========================================================\
+C     | DXG_MACROS.h                                             |
+C     |==========================================================|
+C     | These macros are used to reduce memory requirement and/or|
+C     | memory references when variables are fixed along a given |
+C     | axis or axes.                                            |
+C     \==========================================================/
 
 #ifdef DXG_CONST
 #define  _dxG(i,j,bi,bj) dxG(1,1,1,1)

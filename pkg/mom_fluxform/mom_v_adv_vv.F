@@ -3,47 +3,31 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C !ROUTINE: MOM_V_ADV_VV
-
-C !INTERFACE: ==========================================================
       SUBROUTINE MOM_V_ADV_VV(
      I        bi,bj,k,
      I        vTrans, vFld,
      O        AdvectFluxVV,
      I        myThid)
-
-C !DESCRIPTION:
-C Calculates the meridional advective flux of meridional momentum:
-C \begin{equation*}
-C F^y = \overline{V}^j \overline{v}^{j}
-C \end{equation*}
-
-C !USES: ===============================================================
       IMPLICIT NONE
+C
+C     Calculate meridional advective flux of V using centered second order diff.
+C       - is not vector invariant ...
+C
+
+C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 
-C !INPUT PARAMETERS: ===================================================
-C  bi,bj                :: tile indices
-C  k                    :: vertical level
-C  vTrans               :: meridional transport
-C  vFld                 :: meridional flow
-C  myThid               :: thread number
+C     == Routine arguments ==
       INTEGER bi,bj,k
       _RL vTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL vFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL AdvectFluxVV(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER myThid
 
-C !OUTPUT PARAMETERS: ==================================================
-C  AdvectFluxVV         :: advective flux
-      _RL AdvectFluxVV(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-
-C !LOCAL VARIABLES: ====================================================
-C  i,j                  :: loop indices
+C     == Local variables ==
       INTEGER I,J
-CEOP
 
       DO j=1-Oly,sNy+Oly-1
        DO i=1-Olx,sNx+Olx-1

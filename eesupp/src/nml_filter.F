@@ -5,59 +5,60 @@ C $Name$
 
 #define FTN_NML_F90
 
-CBOP
-
-C     !ROUTINE: NML_FILTER
-
-C     !INTERFACE:
-      SUBROUTINE NML_FILTER(
-     I                       fName
-     O                     , outUnit
+      subroutine nml_filter(
+     I                       fname
+     O                     , outunit
      I                     , myThid
      &                    )
-      IMPLICIT NONE
 
-C     !DESCRIPTION:
-C     *=================================================================*
-C     | SUBROUTINE NML_FILTER
-C     | o Remove comments from namelist.
-C     *=================================================================*
-C     |
-C     | Started: Ralf.Giering@FastOpt.de 15-Mai-2000
-C     |
-C     |        - remove comments from namelist file
-c     |        - usage
-C     |
-C     |    CALL NML_FILTER( 'datafile', iUnit, myThid )
-C     |    READ  ( UNIT = iunit, NML = the_namelist )
-C     |    CLOSE ( iUnit )
-C     |
-C     *=================================================================*
+c     ==================================================================
+c     SUBROUTINE nml_filter
+c     ==================================================================
+c
+c     o 
+c
+c     started: Ralf.Giering@FastOpt.de 15-Mai-2000
+c
+c              - remove comments from namelist file
+c              - usage
+c
+c          call nml_filter( 'datafile', iunit, myThid )
+c          read  ( unit = iunit, nml = the_namelist )
+c          close ( iunit )
+c
+c     ==================================================================
+c     SUBROUTINE nml_filter
+c     ==================================================================
 
-C     !USES:
-C     == Global variables ==
+      implicit none
+
+c     == global variables ==
+
 #include "EEPARAMS.h"
-      INTEGER  ILNBLNK
-      EXTERNAL ILNBLNK
 
-C     !INPUT/OUTPUT PARAMETERS:
-C     == Routine arguments ==
-      CHARACTER*(*) fName
-      INTEGER outUnit
-      INTEGER myThid
+c     == routine arguments ==
+      character*(*) fname
+      integer outunit
+      integer myThid
 
-C     !LOCAL VARIABLES:
-C     == Local variables ==
-      INTEGER errIo
-      INTEGER il
-      INTEGER inUnit
-      CHARACTER*(MAX_LEN_MBUF) msgBuf
-      CHARACTER*(MAX_LEN_PREC) record
-CEOP
+c     == local variables ==
+      integer errio
+      integer il
+      integer inunit
 
-C--   Open the data file
+      character*(MAX_LEN_MBUF) msgBuf
+      character*(MAX_LEN_PREC) record
 
-      CALL mdsFindUnit(  inunit, mythid )
+c     == external ==
+
+      integer  ilnblnk
+      external ilnblnk
+
+c     == end of interface ==
+
+c--  open the data file
+
+      call mdsfindunit(  inunit, mythid )
 
       open( unit   = inunit
      &    , file   = fname

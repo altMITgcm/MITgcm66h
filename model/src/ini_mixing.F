@@ -1,21 +1,14 @@
-C $Header$
-C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C     !ROUTINE: INI_MIXING
-C     !INTERFACE:
+CStartOfInterface
       SUBROUTINE INI_MIXING( myThid )
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | SUBROUTINE INI_MIXING                                     
-C     | o Initialise diapycnal diffusivity to default constant val.
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================\
+C     | SUBROUTINE INI_MIXING                                    |
+C     | o Initialise diapycnal diffusivity                       |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -23,18 +16,17 @@ C     === Global variables ===
 #include "GRID.h"
 #include "DYNVARS.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     myThid -  Number of this instance
       INTEGER myThid
+CEndOfInterface
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     bi,bj  - Loop counters
 C     I,J
+
       INTEGER bi, bj
       INTEGER i, j, k
-CEOP
 
        DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)

@@ -28,12 +28,8 @@ C Local
 C     ------------------------------------------------------------------
       write(msgbuf,'(a,i9.8,2x,i9.8)')
      &  ' MDS_WRITE_RL_VEC: irec = ',irec,narr
-cab change start
-#ifndef ALLOW_FLT
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
-#endif
-can change end
       write(dUnit,rec=irec) arr
 C     ------------------------------------------------------------------
       return

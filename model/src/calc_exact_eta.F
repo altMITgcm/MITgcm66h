@@ -2,23 +2,17 @@ C $Header$
 C $Name$
 
 #include "CPP_OPTIONS.h"
+#undef DBUG_EXACT_ETA
 
-CBOP
-C     !ROUTINE: CALC_EXACT_ETA
-C     !INTERFACE:
-      SUBROUTINE CALC_EXACT_ETA( UpdateEtaN_EtaH, 
-     I                           bi,bj, uFld,vFld,
+      SUBROUTINE CALC_EXACT_ETA( bi,bj, uFld,vFld,
      I                           myTime, myIter, myThid )
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | SUBROUTINE CALC_EXACT_ETA                                 
-C     | o Compute again the surface "r-anomaly" (eta) to satisfy  
-C     |   exactly the convervation of the Total Volume            
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================\
+C     | SUBROUTINE CALC_EXACT_ETA                                |
+C     | o Compute again the surface "r-anomaly" (eta) to satisfy |
+C     |   exactly the convervation of the Total Volume           |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == Global variables
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -27,44 +21,59 @@ C     == Global variables
 #include "GRID.h"
 #include "SURFACE.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
-C    UpdateEtaN_EtaH :: flag to distinguishe if this S/R is called
-C           at the end of a time step (TRUE) to update EtaN,
-C        or at the beginning of the time sptep (FALSE) to update EtaH
-C     uFld    :: Zonal velocity ( m/s )
-C     vFld    :: Meridional velocity ( m/s )
-C     bi,bj   :: tile index
-C     myTime  :: Current time in simulation
-C     myIter  :: Current iteration number in simulation
-C     myThid  :: Thread number for this instance of the routine.
+C     bi,bj   - tile index
+C     myTime - Current time in simulation
+C     myIter - Current iteration number in simulation
+C     myThid - Thread number for this instance of the routine.
       _RL myTime
       INTEGER myIter
       INTEGER myThid
       INTEGER bi,bj
-      LOGICAL UpdateEtaN_EtaH
       _RL uFld(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy)
       _RL vFld(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy) 
 
-C     !LOCAL VARIABLES:
 #ifdef EXACT_CONSERV
 C     Local variables in common block
-C     hDivFlow :: Div. Barotropic Flow at current time [transport unit m3/s]
+C     hDivFlow - Div. Barotropic Flow at current time_step [transport unit m3/s]
       COMMON /EXACT_ETA_LOCAL/ hDivFlow
       _RL hDivFlow(1-Olx:sNx+Olx,1-Oly:sNy+Oly,nSx,nSy)
 
 C     Local variables
-C     i,j,k  :: Loop counters
-C     uTrans :: Volume transports ( uVel.xA )
-C     vTrans :: Volume transports ( vVel.yA )
       INTEGER i,j,k
       _RL uTrans(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RL vTrans(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
-CEOP
+
+#ifdef DBUG_EXACT_ETA
+C     sumArea - Work variable used to compute the total Domain Area
+C     eta_sum1,2 - Eta mean value before and after this routine
+C     eta_dif1,2,3 - Mean change of Eta: 1=before this call - iterNm1
+C                                        2=this call
+C                                        3=iterN-iterNm1
+      _RL eta_tmp(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
+      _RL  sumArea, eta_sum1, eta_sum2, eta_dif1, eta_dif2, eta_dif3
+      SAVE sumArea, eta_sum1, eta_sum2, eta_dif1, eta_dif2, eta_dif3
+      _RL  recip_sumArea
+      DATA recip_sumArea / 0. _d 0 / 
+#endif
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
-      IF ( UpdateEtaN_EtaH .OR. myTime.EQ.StartTime ) THEN
+C--   Change of Eta <== -Divergence of The Barotropic Flow : Explicit part
+      IF ( myTime.NE.StartTime ) THEN
+        DO j=1,sNy
+         DO i=1,sNx
+#ifdef DBUG_EXACT_ETA
+           eta_tmp(i,j) = etaN(i,j,bi,bj) 
+#endif
+           etaN(i,j,bi,bj) = etaNm1(i,j,bi,bj) 
+     &      - (1. - implicDiv2Dflow)*hDivFlow(i,j,bi,bj)
+     &                              *recip_rA(i,j,bi,bj)*DeltaTmom
+         ENDDO
+        ENDDO
+      ENDIF
+        
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 C--   Compute the Divergence of The Barotropic Flow :
 
@@ -99,53 +108,65 @@ C-    Integrate vertically the Horizontal Divergence
 C-    End DO k=1,Nr
       ENDDO
 
-      ENDIF
-
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
-      IF ( UpdateEtaN_EtaH ) THEN
-
-C--   Update etaN at the end of the time step : 
-C     Incorporate the Implicit part of -Divergence(Barotropic_Flow)
-       IF (implicDiv2Dflow .NE. 0. _d 0 ) THEN
+C--   Change of Eta <== -Divergence of The Barotropic Flow : Implicit part
+      IF ( myTime.NE.StartTime ) THEN
         DO j=1,sNy
          DO i=1,sNx
-           etaN(i,j,bi,bj) = etaH(i,j,bi,bj)
+           etaN(i,j,bi,bj) = etaN(i,j,bi,bj) 
      &      - implicDiv2Dflow*hDivFlow(i,j,bi,bj)
      &                       *recip_rA(i,j,bi,bj)*DeltaTmom
          ENDDO
         ENDDO
-       ELSE
-        DO j=1-Oly,sNy+Oly
-         DO i=1-Olx,sNx+Olx
-           etaN(i,j,bi,bj) = etaH(i,j,bi,bj) 
-         ENDDO
-        ENDDO
-       ENDIF
-
-      ELSE
-
-C--   Update etaH at the beginning of the time step : 
-C     Incorporate the Explicit part of -Divergence(Barotropic_Flow)
-       IF (implicDiv2Dflow .NE. 1. _d 0 ) THEN
+#ifdef DBUG_EXACT_ETA
+        IF (bi.EQ.1 .AND. bj.EQ.1) THEN
+          eta_sum1 = 0.
+          eta_sum2 = 0.
+          eta_dif1 = 0.
+          eta_dif2 = 0.
+          eta_dif3 = 0.
+        ENDIF
         DO j=1,sNy
          DO i=1,sNx
-           etaH(i,j,bi,bj) = etaN(i,j,bi,bj) 
-     &      - (1. - implicDiv2Dflow)*hDivFlow(i,j,bi,bj)
-     &                              *recip_rA(i,j,bi,bj)*DeltaTmom
+           eta_sum1 = eta_sum1
+     &              + rA(i,j,bi,bj)*eta_tmp(i,j)
+           eta_sum2 = eta_sum2
+     &              + rA(i,j,bi,bj)*etaN(i,j,bi,bj)
+           eta_dif1 = eta_dif1
+     &              + rA(i,j,bi,bj)*abs(etaNm1(i,j,bi,bj)-eta_tmp(i,j))
+           eta_dif2 = eta_dif2
+     &              + rA(i,j,bi,bj)*abs( etaN(i,j,bi,bj) -eta_tmp(i,j))
+           eta_dif3 = eta_dif3
+     &           + rA(i,j,bi,bj)*abs(etaN(i,j,bi,bj)-etaNm1(i,j,bi,bj))
          ENDDO
         ENDDO
-       ELSE
-        DO j=1-Oly,sNy+Oly
-         DO i=1-Olx,sNx+Olx
-           etaH(i,j,bi,bj) = etaN(i,j,bi,bj) 
+        IF (bi.EQ.nSx .AND. bj.EQ.nSy) THEN
+          eta_sum1 = recip_sumArea*eta_sum1
+          eta_sum2 = recip_sumArea*eta_sum2
+          eta_dif1 = recip_sumArea*eta_dif1
+          eta_dif2 = recip_sumArea*eta_dif2
+          eta_dif3 = recip_sumArea*eta_dif3
+         write(6,'(A,I9,I2,1P5E14.6)') 'ETA_SUM,DIF:',
+     &    myIter,myThid, eta_sum1,eta_sum2, eta_dif1,eta_dif2,eta_dif3
+        ENDIF
+      ELSE
+        IF (bi.EQ.1 .AND. bj.EQ.1) sumArea = 0.
+        DO j=1,sNy
+         DO i=1,sNx
+           k = ksurfC(i,j,bi,bj)
+           if (k.le.Nr) sumArea = sumArea + rA(i,j,bi,bj)
          ENDDO
         ENDDO
-       ENDIF
-
-      ENDIF
-
+        IF (bi.EQ.nSx .AND. bj.EQ.nSy .AND. recip_sumArea.EQ.0.
+     &                .AND. sumArea.GT.0.) THEN
+          recip_sumArea=1./sumArea
+          write(6,'(2A,I9,I2,1P2E22.14)') 'ETA_SUM,DIF:',
+     &     ' sumArea,recip_=', myIter,myThid, sumArea, recip_sumArea
+        ENDIF
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+#endif /* DBUG_EXACT_ETA */
+      ENDIF
 
 #endif /* EXACT_CONSERV */
 

@@ -28,20 +28,16 @@ C
       RETURN
       END
 
-CBOP
-C     !ROUTINE: READ_CHECKPOINT
-C     !INTERFACE:
+CStartofinterface
       SUBROUTINE READ_CHECKPOINT ( myIter, myThid )
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | SUBROUTINE READ_PICKUP                                    
-C     | o Controlling routine for IO to write restart file.       
-C     *==========================================================*
-C     | Read model checkpoint files for use in restart.           
-C     *==========================================================*
-C     \ev
-C     !USES:
+C     /==========================================================\
+C     | SUBROUTINE READ_PICKUP                                   |
+C     | o Controlling routine for IO to write restart file.      |
+C     |==========================================================|
+C     | Read model checkpoint files for use in restart.          |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -51,25 +47,21 @@ C     == Global variables ===
 #include "GW.h"
 #include "SOLVE_FOR_PRESSURE3D.h"
 #endif
+
       INTEGER  IO_ERRCOUNT
       EXTERNAL IO_ERRCOUNT
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     myThid - Thread number for this instance of the routine.
 C     myIter - Iteration number
       INTEGER myThid
       INTEGER myIter
+CEndofinterface
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
-C     oldPrec :: Temp. for hold I/O precision information
-C     prec    
-C     fn      :: Temp. for building file name.
       INTEGER oldPrec
       CHARACTER*(MAX_LEN_FNAM) fn
       INTEGER prec
-CEOP
 
 C--    Going to really do some IO. Make everyone except master thread wait.
        _BARRIER
@@ -96,7 +88,8 @@ C       Raw fields
         CALL READ_REC_XYZ_RL( 'gsNm1',  gSNm1, 1,myIter, myThid)
         CALL READ_REC_XY_RL ('etaN', etaN, 1,myIter, myThid)
 #ifdef INCLUDE_CD_CODE
-        CALL READ_REC_XY_RL ('etaNm1', etaNm1, 1,myIter, myThid)
+        CALL READ_REC_XY_RL
+     &               ( 'etaNm1', etaNm1, 1,myIter, myThid)
         CALL READ_REC_XYZ_RL(  'uVelD', uVelD, 1,myIter, myThid)
         CALL READ_REC_XYZ_RL(  'vVelD', vVelD, 1,myIter, myThid)
         CALL READ_REC_XYZ_RL(  'uNm1',  uNM1, 1,myIter, myThid)
@@ -132,7 +125,7 @@ C--     Read model fields
         CALL MDSREADFIELD(fn,prec,'RL', 1,etaN,12*Nr+1,myThid)
 #ifdef NONLIN_FRSURF
         IF ( nonlinFreeSurf.GE.0)
-     &  CALL MDSREADFIELD(fn,prec,'RL',1,etaH,12*Nr+2,myThid)
+     &  CALL MDSREADFIELD(fn,prec,'RL',1,etaNm1,12*Nr+2,myThid)
 #endif
 #ifdef INCLUDE_CD_CODE
         WRITE(fn,'(A,I10.10)') 'pickup_cd.',myIter
@@ -142,7 +135,12 @@ C--     Read model fields
         CALL MDSREADFIELD(fn,prec,'RL',Nr,vNM1,     4,myThid)
         CALL MDSREADFIELD(fn,prec,'RL',Nr,guCD,     5,myThid)
         CALL MDSREADFIELD(fn,prec,'RL',Nr,gvCD,     6,myThid)
+#ifdef NONLIN_FRSURF
+        IF ( nonlinFreeSurf.LT.0)
+     &  CALL MDSREADFIELD(fn,prec,'RL', 1,etaNm1,6*Nr+1,myThid)
+#else
         CALL MDSREADFIELD(fn,prec,'RL', 1,etaNm1,6*Nr+1,myThid)
+#endif
 #endif /* INCLUDE_CD_CODE */
 
 #ifdef ALLOW_NONHYDROSTATIC
@@ -186,7 +184,7 @@ c     _EXCH_XYZ_R8(gvNM1 , myThid )
       _EXCH_XYZ_R8(gs    , myThid )
       _EXCH_XYZ_R8(gsNM1 , myThid )
       _EXCH_XY_R8 (etaN, myThid )
-      _EXCH_XY_R8( etaH, myThid )
+      _EXCH_XY_R8( etaNm1, myThid )
 
 #ifdef INCLUDE_CD_CODE
 c**** CALL EXCH_DUV_XYZ_RL(uVelD,vVelD,.TRUE.,myThid)
@@ -198,7 +196,6 @@ c     _EXCH_XYZ_R8( uNM1,     myThid )
 c     _EXCH_XYZ_R8( vNM1,     myThid )
       _EXCH_XYZ_R8( guCD,     myThid )
       _EXCH_XYZ_R8( gvCD,     myThid )
-      _EXCH_XY_R8( etaNm1, myThid )
 #endif
 #ifdef ALLOW_NONHYDROSTATIC
         IF ( nonHydrostatic ) THEN
@@ -211,33 +208,28 @@ c        _EXCH_XYZ_R8(gWNM1 , myThid )
       RETURN
       END
 
-CBOP
-C     !ROUTINE: WRITE_CHECKPOINT
-C     !INTERFACE:
+CStartofinterface
       SUBROUTINE WRITE_CHECKPOINT ( modelEnd, myCurrentTime, 
      &                              myIter, myThid )
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | SUBROUTINE WRITE_CHECKPOINT                               
-C     | o Controlling routine for IO to write restart file.       
-C     *==========================================================*
-C     | Write model checkpoint files for use in restart.          
-C     | This routine writes both "rolling-checkpoint" files       
-C     | and permanent checkpoint files. A rolling checkpoint      
-C     | works through a circular list of suffices. Generally the  
-C     | circular list has two entries so that a rolling           
-C     | checkpoint will overwrite the last rolling checkpoint     
-C     | but one. This is useful for running long jobs without     
-C     | filling too much disk space.                              
-C     |  In a permanent checkpoint data is written suffixed by    
-C     | the current timestep number. This sort of checkpoint can  
-C     | be used to provided a snap-shot from which the model      
-C     | can be rerun.                                             
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================\
+C     | SUBROUTINE WRITE_PICKUP                                  |
+C     | o Controlling routine for IO to write restart file.      |
+C     |==========================================================|
+C     | Write model checkpoint files for use in restart.         |
+C     | This routine writes both "rolling-checkpoint" files      |
+C     | and permanent checkpoint files. A rolling checkpoint     |
+C     | works through a circular list of suffices. Generally the |
+C     | circular list has two entries so that a rolling          |
+C     | checkpoint will overwrite the last rolling checkpoint    |
+C     | but one. This is useful for running long jobs without    |
+C     | filling too much disk space.                             |
+C     |  In a permanent checkpoint data is written suffixed by   |
+C     | the current timestep number. This sort of checkpoint can |
+C     | be used to provided a snap-shot from which the model     |
+C     | can be rerun.                                            |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -247,39 +239,35 @@ C     == Global variables ===
 #include "GW.h"
 #include "SOLVE_FOR_PRESSURE3D.h"
 #endif
+
       LOGICAL  DIFFERENT_MULTIPLE
       EXTERNAL DIFFERENT_MULTIPLE
       INTEGER  IO_ERRCOUNT
       EXTERNAL IO_ERRCOUNT
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
-C     modelEnd    :: Checkpoint call at end of model run.
-C     myThid :: Thread number for this instance of the routine.
-C     myIter :: Iteration number
-C     myCurrentTime :: Current time of simulation ( s )
+C     modelEnd    - Checkpoint call at end of model run.
+C     myThid - Thread number for this instance of the routine.
+C     myIter - Iteration number
+C     myCurrentTime - Current time of simulation ( s )
       LOGICAL modelEnd    
       INTEGER myThid
       INTEGER myIter
       _RL     myCurrentTime
+CEndofinterface
 
 C     == Common blocks ==
       COMMON /PCKP_GBLFLS/ globalFile
       LOGICAL globalFile
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
-C     permCheckPoint :: Flag indicating whether a permanent checkpoint will
-C                       be written.
-C     oldPrc :: Temp. for holding I/O precision
-C     fn     :: Temp. for building file name string.
-C     lgf    :: Flag to indicate whether to use global file mode.
+C     permCheckPoint - Flag indicating whether a permanent checkpoint will
+C                      be written.
       LOGICAL permCheckPoint  
       INTEGER oldPrec
       CHARACTER*(MAX_LEN_FNAM) fn
       INTEGER prec
       LOGICAL lgf
-CEOP
 
       permCheckPoint = .FALSE.
       permCheckPoint=
@@ -373,7 +361,7 @@ C--     Write model fields
         CALL MDSWRITEFIELD(fn,prec,lgf,'RL', 1,etaN,12*Nr+1,
      &                     myIter,myThid)
 #ifdef NONLIN_FRSURF
-        CALL MDSWRITEFIELD(fn,prec,lgf,'RL', 1,etaH,12*Nr+2,
+        CALL MDSWRITEFIELD(fn,prec,lgf,'RL', 1,etaNm1,12*Nr+2,
      &                     myIter,myThid)
 #endif
 #ifdef INCLUDE_CD_CODE
@@ -388,8 +376,10 @@ C--     Write model fields
         CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,vNM1, 4,myIter,myThid)
         CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,guCD, 5,myIter,myThid)
         CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,gvCD, 6,myIter,myThid)
+#ifndef NONLIN_FRSURF
         CALL MDSWRITEFIELD(fn,prec,lgf,'RL', 1,etaNm1,6*Nr+1,
      &                     myIter,myThid)
+#endif
 #endif /* INCLUDE_CD_CODE */
 #ifdef ALLOW_NONHYDROSTATIC
         IF ( nonHydrostatic ) THEN
@@ -405,20 +395,13 @@ c        CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,gWnm1,3,myIter,myThid)
         ENDIF
 #endif
 
-#ifdef  ALLOW_OBCS
 C SPK 4/9/01: Open boundary checkpointing
+#ifdef  ALLOW_OBCS
         IF (useOBCS) THEN
           CALL OBCS_WRITE_CHECKPOINT(
      &               prec, lgf, permCheckPoint, myIter, myThid)
         ENDIF
 #endif  /* ALLOW_OBCS */
-
-#ifdef ALLOW_FLT
-C--     Write restart file for floats
-        IF (useFLT) THEN
-          CALL FLT_RESTART(myCurrentTime, myIter, myThid)
-        ENDIF
-#endif
 
         IF ( .NOT. permCheckPoint ) THEN
          nCheckLev = MOD(nCheckLev, maxNoChkptLev)+1

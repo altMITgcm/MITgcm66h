@@ -2,27 +2,22 @@ C $Header$
 C $Name$
 
 #include "CPP_OPTIONS.h"
-CBOP
-C     !ROUTINE: CALC_DIV_GHAT
-C     !INTERFACE:
-      SUBROUTINE CALC_DIV_GHAT(
+#undef ALLOW_ZONAL_FILT
+#undef ALLOW_SHAP_FILT
+
+C     /==========================================================\
+C     | S/R CALC_DIV_GHAT                                        |
+C     | o Form the right hand-side of the surface pressure eqn.  |
+C     |==========================================================|
+C     \==========================================================/
+      SUBROUTINE CALC_DIV_GHAT( 
      I        bi,bj,iMin,iMax,jMin,jMax,K,
      I        xA,yA,
      U        cg2d_b,
      I        myThid)
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | S/R CALC_DIV_GHAT                                         
-C     | o Form the right hand-side of the surface pressure eqn.   
-C     *==========================================================*
-C     | Right hand side of pressure equation is divergence
-C     | of veclocity tendency (GHAT) term along with a relaxation
-C     | term equal to the barotropic flow field divergence.
-C     *==========================================================*
-C     \ev
 
-C     !USES:
       IMPLICIT NONE
+
 C     == Global variables ==
 #include "SIZE.h"
 #include "DYNVARS.h"
@@ -32,7 +27,6 @@ C     == Global variables ==
 #include "GRID.h"
 #include "SOLVE_FOR_PRESSURE3D.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     bi, bj, iMin, iMax, jMin, jMax - Range of points for which calculation
 C                                      results will be set.
@@ -47,50 +41,33 @@ C     myThid - Instance number for this call of CALC_DIV_GHAT
       _RL cg2d_b(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       INTEGER myThid
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
-C     i,j :: Loop counters
-C     pf  :: Intermediate array for building RHS source term.
       INTEGER i,j
       _RL pf (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-CEOP
 
 C--   Pressure equation source term
 C     Term is the vertical integral of the divergence of the 
 C     time tendency terms along with a relaxation term that
 C     pulls div(U) + dh/dt back toward zero.
 
-      IF (implicDiv2Dflow.EQ.1.) THEN
+      IF (implicDiv2Dflow.EQ.1.) then
 C     Fully Implicit treatment of the Barotropic Flow Divergence
         DO j=1,sNy
          DO i=1,sNx+1
           pf(i,j) = xA(i,j)*gUNm1(i,j,k,bi,bj) / deltaTmom
          ENDDO
         ENDDO
-      ELSEIF (exactConserv) THEN
-c     ELSEIF (nonlinFreeSurf.GT.0) THEN
-C     Implicit treatment of the Barotropic Flow Divergence
-        DO j=1,sNy
-         DO i=1,sNx+1
-          pf(i,j) = implicDiv2Dflow 
-     &             *xA(i,j)*gUNm1(i,j,k,bi,bj) / deltaTmom
-         ENDDO
-        ENDDO
       ELSE
 C     Explicit+Implicit part of the Barotropic Flow Divergence
 C      => Filtering of uVel,vVel is necessary
-C-- Now the filter are applied in the_correction_step().
-C   We have left this code here to indicate where the filters used to be
-C   in the algorithm before JMC moved them to after the pressure solver. 
-C- 
-C#ifdef ALLOW_ZONAL_FILT
-C        IF (zonal_filt_lat.LT.90.) THEN 
-C          CALL ZONAL_FILTER(
-C     &      uVel, hFacW, 1-1, sNy+1, k, k, bi, bj, 1, myThid)
-C          CALL ZONAL_FILTER(
-C     &      vVel, hFacS, 1-1, sNy+1, k, k, bi, bj, 2, myThid)
-C        ENDIF
-C#endif
+#ifdef ALLOW_ZONAL_FILT
+        IF (zonal_filt_lat.LT.90.) THEN 
+          CALL ZONAL_FILTER(
+     &      uVel, hFacW, 1-1, sNy+1, k, k, bi, bj, 1, myThid)
+          CALL ZONAL_FILTER(
+     &      vVel, hFacS, 1-1, sNy+1, k, k, bi, bj, 2, myThid)
+        ENDIF
+#endif
         DO j=1,sNy
          DO i=1,sNx+1
           pf(i,j) = ( implicDiv2Dflow * gUNm1(i,j,k,bi,bj)
@@ -116,20 +93,11 @@ C#endif
       ENDIF
 #endif
 
-      IF (implicDiv2Dflow.EQ.1.) THEN
+      IF (implicDiv2Dflow.EQ.1.) then
 C     Fully Implicit treatment of the Barotropic Flow Divergence
         DO j=1,sNy+1
          DO i=1,sNx
           pf(i,j) = yA(i,j)*gVNm1(i,j,k,bi,bj) / deltatmom
-         ENDDO
-        ENDDO
-      ELSEIF (exactConserv) THEN
-c     ELSEIF (nonlinFreeSurf.GT.0) THEN
-C     Implicit treatment of the Barotropic Flow Divergence
-        DO j=1,sNy+1
-         DO i=1,sNx
-          pf(i,j) = implicDiv2Dflow
-     &             *yA(i,j)*gVNm1(i,j,k,bi,bj) / deltatmom
          ENDDO
         ENDDO
       ELSE

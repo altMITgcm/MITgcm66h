@@ -1,21 +1,12 @@
 C $Header$
 C $Name$
-
-CBOP
-C     !ROUTINE: CG2D.h
-C     !INTERFACE:
-C     include "CG2D.h"
-C
-C     !DESCRIPTION:
-C     \bv
-C     *==========================================================*
-C     | CG2D.h                                                    
-C     | o Two-dimensional conjugate gradient solver header.       
-C     *==========================================================*
-C     | Internal (private) data structures.                       
-C     *==========================================================*
-C     \ev
-CEOP
+ 
+C     /==========================================================\
+C     | CG2D.h                                                   |
+C     | o Two-dimensional conjugate gradient solver header.      |
+C     |==========================================================|
+C     | Internal (private) data structures.                      |
+C     \==========================================================/
 
 C--   COMMON /CG2D_I_L/ cg2dNormaliseRHS
 C     cg2dNormaliseRHS - flag set to TRUE if normalise RHS in the Solver

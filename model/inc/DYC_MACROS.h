@@ -1,20 +1,13 @@
 C $Header$
 C $Name$
 C
-CBOP
-C    !ROUTINE: DYC_MACROS.h
-C    !INTERFACE:
-C    include DYC_MACROS.h
-C    !DESCRIPTION: \bv
-C     *==========================================================*
-C     | DYC_MACROS.h                                              
-C     *==========================================================*
-C     | These macros are used to reduce memory requirement and/or 
-C     | memory references when variables are fixed along a given  
-C     | axis or axes.                                             
-C     *==========================================================*
-C     \ev
-CEOP
+C     /==========================================================\
+C     | DYC_MACROS.h                                             |
+C     |==========================================================|
+C     | These macros are used to reduce memory requirement and/or|
+C     | memory references when variables are fixed along a given |
+C     | axis or axes.                                            |
+C     \==========================================================/
 
 #ifdef DYC_CONST
 #define  _dyC(i,j,bi,bj) dyC(1,1,1,1)

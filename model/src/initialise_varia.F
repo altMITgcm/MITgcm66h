@@ -3,75 +3,33 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C     !ROUTINE: INITIALISE_VARIA
-C     !INTERFACE:
+CStartOfInterface
       SUBROUTINE INITIALISE_VARIA(myThid)
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | SUBROUTINE INITIALISE_VARIA                               
-C     | o Set the initial conditions for dynamics variables       
-C     |   and time dependent arrays                               
-C     *==========================================================*
-C     | This routine reads/writes  data from an input file and    
-C     | from various binary files.                                
-C     | Each thread invokes an instance of this routine as does   
-C     | each process in a multi-process parallel environment like 
-C     | MPI.                                                      
-C     *==========================================================*
-C     \ev
-
-C     !CALLING SEQUENCE:
-C     INITIALISE_VARIA
-C       |
-C       |-- INI_LINEAR_PHISURF
-C       |
-C       |-- INI_CORI
-C       |
-C       |-- INI_CG2D
-C       |
-C       |-- INI_CG3D
-C       |
-C       |-- INI_MIXING
-C       |
-C       |-- INI_DYNVARS
-C       |
-C       |-- INI_FIELDS
-C       |
-C       |-- INI_TR1
-C       |
-C       |-- THE_CORRECTION_STEP
-C       |
-C       |-- CALL CONVECTIVE_ADJUSTMENT_INI
-C       |
-C       |-- PACKAGES_INIT_VARIABLES
-C       |
-C       |-- CALC_SURF_DR
-C       |
-C       |-- UPDATE_SURF_DR
-C       |
-C       |-- UPDATE_CG2D
-C       |
-C       |-- STATE_SUMMARY
-C       |
-C       |-- TIMEAVE_STATVARS
-
-C     !USES:
+C     /==========================================================\
+C     | SUBROUTINE INITIALISE_VARIA                              |
+C     | o Set the initial conditions for dynamics variables      |
+C     |   and time dependent arrays                              |
+C     |==========================================================|
+C     | This routine reads/writes  data from an input file and   |
+C     | from various binary files.                               |
+C     | Each thread invokes an instance of this routine as does  |
+C     | each process in a multi-process parallel environment like|
+C     | MPI.                                                     |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "DYNVARS.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
       INTEGER myThid
+CEndOfInterface
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
       INTEGER bi,bj,K,iMin,iMax,jMin,jMax
-CEOP
 
 #ifdef ALLOW_TAMC_CHECKPOINTING
 
@@ -146,10 +104,10 @@ C--   Initialize variable data for packages
       CALL PACKAGES_INIT_VARIABLES( myThid )
 
 #ifdef NONLIN_FRSURF
-C--   Compute the surface level thickness <-- function of etaH(n)
+C--   Compute the surface level thickness, function of eta_n-1
 C     and modify hFac(C,W,S) accordingly :
       IF (nonlinFreeSurf.GT.0) THEN
-        CALL CALC_SURF_DR(etaH, startTime, nIter0, myThid )
+        CALL CALC_SURF_DR(etaNm1, startTime, nIter0, myThid )
         CALL UPDATE_SURF_DR( startTime, nIter0, myThid )
       ENDIF
 C-    update also CG2D matrix (and preconditioner)
@@ -172,5 +130,17 @@ C--   initialise time-average arrays with initial state values
       ENDIF
 #endif /* ALLOW_TIMEAVE */
 
+#ifdef EXACT_CONSERV
+      IF (exactConserv) THEN
+C--   Compute the initial Barotropic Flow Divergence :
+        DO bj=myByLo(myThid),myByHi(myThid)
+         DO bi=myBxLo(myThid),myBxHi(myThid)
+           CALL CALC_EXACT_ETA( bi,bj, uVel,vVel,
+     I                          startTime, nIter0, myThid )
+         ENDDO
+        ENDDO
+      ENDIF
+#endif /* EXACT_CONSERV */ 
+      
       RETURN
       END

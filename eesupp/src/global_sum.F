@@ -8,45 +8,39 @@ C      o global_sum_r4
 C      o global_sum_r8
 #include "CPP_EEOPTIONS.h"
 
-CBOP
-C     !ROUTINE: GLOBAL_SUM_R4
-
-C     !INTERFACE:
+CStartOfInterface
       SUBROUTINE GLOBAL_SUM_R4( 
      U                       sumPhi,
      I                       myThid )
+C     /==========================================================\
+C     | SUBROUTINE GLOBAL_SUM_R4                                 |
+C     | o Handle sum for real*4 data.                            |
+C     |==========================================================|
+C     | Perform sum an array of one value per thread and then    |
+C     | sum result of all the processes.                         |
+C     | Notes                                                    |
+C     | =====                                                    |
+C     | Within a process only one thread does the sum, each      |
+C     | thread is assumed to have already summed its local data. |
+C     | The same thread also does the inter-process sum for      |
+C     | example with MPI and then writes the result into a shared|
+C     | location. All threads wait until the sum is avaiailable. |
+C     \==========================================================/
       IMPLICIT NONE
-C     !DESCRIPTION:
-C     *==========================================================*
-C     | SUBROUTINE GLOBAL_SUM_R4                                  
-C     | o Handle sum for real*4 data.                             
-C     *==========================================================*
-C     | Perform sum an array of one value per thread and then     
-C     | sum result of all the processes.                          
-C     | Notes                                                     
-C     | =====                                                     
-C     | Within a process only one thread does the sum, each       
-C     | thread is assumed to have already summed its local data.  
-C     | The same thread also does the inter-process sum for       
-C     | example with MPI and then writes the result into a shared 
-C     | location. All threads wait until the sum is avaiailable.  
-C     *==========================================================*
 
-C     !USES:
 C     == Global data ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 #include "GLOBAL_SUM.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     sumPhi - Result of sum.
 C     myThid - My thread id.
       Real*4 sumPhi
       INTEGER myThid
+CEndOfInterface
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     I      - Loop counters
 C     mpiRC  - MPI return code
@@ -55,7 +49,6 @@ C     mpiRC  - MPI return code
 #ifdef   ALLOW_USE_MPI
       INTEGER mpiRC
 #endif /* ALLOW_USE_MPI */
-CEOP
 
 C--   write local sum into array
       CALL BAR2( myThid )
@@ -96,45 +89,39 @@ C--   set result for every process
       END
       
 
-CBOP
-C     !ROUTINE: GLOBAL_SUM_R8
-
-C     !INTERFACE:
+CStartOfInterface
       SUBROUTINE GLOBAL_SUM_R8( 
      U                       sumPhi,
      I                       myThid )
-      IMPLICIT NONE 
-C     !DESCRIPTION:
-C     *==========================================================*
-C     | SUBROUTINE GLOBAL_SUM_R8                                  
-C     | o Handle sum for real*8 data.                             
-C     *==========================================================*
-C     | Perform sum an array of one value per thread and then     
-C     | sum result of all the processes.                          
-C     | Notes                                                     
-C     | =====                                                     
-C     | Within a process only one thread does the sum, each       
-C     | thread is assumed to have already summed its local data.  
-C     | The same thread also does the inter-process sum for       
-C     | example with MPI and then writes the result into a shared 
-C     | location. All threads wait until the sum is avaiailable.  
-C     *==========================================================*
+C     /==========================================================\
+C     | SUBROUTINE GLOBAL_SUM_R8                                 |
+C     | o Handle sum for real*8 data.                            |
+C     |==========================================================|
+C     | Perform sum an array of one value per thread and then    |
+C     | sum result of all the processes.                         |
+C     | Notes                                                    |
+C     | =====                                                    |
+C     | Within a process only one thread does the sum, each      |
+C     | thread is assumed to have already summed its local data. |
+C     | The same thread also does the inter-process sum for      |
+C     | example with MPI and then writes the result into a shared|
+C     | location. All threads wait until the sum is avaiailable. |
+C     \==========================================================/
+      IMPLICIT NONE
 
-C     !USES:
 C     === Global data ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 #include "GLOBAL_SUM.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     === Routine arguments ===
 C     sumPhi - Result of sum.
 C     myThid - My thread id.
       Real*8 sumPhi
       INTEGER myThid
+CEndOfInterface
 
-C     !LOCAL VARIABLES:
 C     === Local variables ===
 C     I      - Loop counters
 C     mpiRC  - MPI return code
@@ -143,7 +130,6 @@ C     mpiRC  - MPI return code
 #ifdef   ALLOW_USE_MPI
       INTEGER mpiRC
 #endif   /* ALLOW_USE_MPI */
-CEOP
 
       CALL BAR2( myThid )
 C--   write local sum into array
@@ -192,45 +178,39 @@ C--   set result for every process
 
       RETURN
       END
-
-CBOP
-C     !ROUTINE: GLOBAL_SUM_INT
-C     !INTERFACE:
+CStartOfInterface
       SUBROUTINE GLOBAL_SUM_INT( 
      U                       sumPhi,
      I                       myThid )
+C     /==========================================================\
+C     | SUBROUTINE GLOBAL_SUM_INT                                |
+C     | o Handle sum for integer data.                           |
+C     |==========================================================|
+C     | Perform sum an array of one value per thread and then    |
+C     | sum result of all the processes.                         |
+C     | Notes                                                    |
+C     | =====                                                    |
+C     | Within a process only one thread does the sum, each      |
+C     | thread is assumed to have already summed its local data. |
+C     | The same thread also does the inter-process sum for      |
+C     | example with MPI and then writes the result into a shared|
+C     | location. All threads wait until the sum is avaiailable. |
+C     \==========================================================/
       IMPLICIT NONE
-C     !DESCRIPTION:
-C     *==========================================================*
-C     | SUBROUTINE GLOBAL_SUM_INT                                 
-C     | o Handle sum for integer data.                            
-C     *==========================================================*
-C     | Perform sum an array of one value per thread and then     
-C     | sum result of all the processes.                          
-C     | Notes                                                     
-C     | =====                                                     
-C     | Within a process only one thread does the sum, each       
-C     | thread is assumed to have already summed its local data.  
-C     | The same thread also does the inter-process sum for       
-C     | example with MPI and then writes the result into a shared 
-C     | location. All threads wait until the sum is avaiailable.  
-C     *==========================================================*
 
-C     !USES:
 C     === Global data ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 #include "GLOBAL_SUM.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     === Routine arguments ===
 C     sumPhi - Result of sum.
 C     myThid - My thread id.
       INTEGER sumPhi
       INTEGER myThid
+CEndOfInterface
 
-C     !LOCAL VARIABLES:
 C     === Local variables ===
 C     I      - Loop counters
 C     mpiRC  - MPI return code
@@ -239,7 +219,6 @@ C     mpiRC  - MPI return code
 #ifdef   ALLOW_USE_MPI
       INTEGER mpiRC
 #endif   /* ALLOW_USE_MPI */
-CEOP
 
       _BARRIER
 C--   write local sum into array

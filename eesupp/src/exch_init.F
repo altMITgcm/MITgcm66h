@@ -1,31 +1,22 @@
 C $Header$
 C $Name$
-
-CBOP
-C     !ROUTINE: EXCH_INIT
-
-C     !INTERFACE:
       SUBROUTINE EXCH_INIT
-      IMPLICIT NONE
-
-C     !DESCRIPTION:
-C     *==========================================================*
+C     /==========================================================\
 C     | SUBROUTINE EXCH_INIT                                     |
-C     | o Initialise WRAPPER exchange data structures.           |
-C     *==========================================================*
-
-C     !USES:
-C     == Global variables ==
+C     | o Initialise model exchange data structures.             |
+C     \==========================================================/
+      IMPLICIT NONE
+C     == Global data ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 #include "EXCH.h"
 
-C     !LOCAL VARIABLES:
+C     == Routine arguments ==
+
 C     == Local variables ==
 C     bi, bj - Loop counters
       INTEGER bi, bj
-CEOP
 
       DO bj=1,nSy
        DO bi=1,nSx

@@ -3,23 +3,15 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C !ROUTINE: MOM_U_CORIOLIS
-
-C !INTERFACE: ==========================================================
       SUBROUTINE MOM_U_CORIOLIS( 
      I        bi,bj,k,vFld,
      U        uCoriolisTerm,
      I        myThid)
-
-C !DESCRIPTION:
-C Calculates the horizontal Coriolis term in the zonal equation:
-C \begin{equation*}
-C \overline{f}^i \overline{v}^{ij}
-C \end{equation*}
-
-C !USES: ===============================================================
       IMPLICIT NONE
+
+C     Calculates Coriolis term, f*V, in U equation
+
+C     == Global variables ==
 #include "SIZE.h"
 #include "DYNVARS.h"
 #include "EEPARAMS.h"
@@ -27,23 +19,15 @@ C !USES: ===============================================================
 #include "GRID.h"
 #include "SURFACE.h"
 
-C !INPUT PARAMETERS: ===================================================
-C  bi,bj                :: tile indices
-C  k                    :: vertical level
-C  vFld                 :: meridional flow
-C  myThid               :: thread number
+C     == Routine arguments ==
+C     myThid - Instance number for this innvocation of CALC_MOM_RHS
       INTEGER bi,bj,K
       _RL vFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL uCoriolisTerm(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER myThid
 
-C !OUTPUT PARAMETERS: ==================================================
-C  uCoriolisTerm        :: Coriolis term
-      _RL uCoriolisTerm(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-
-C !LOCAL VARIABLES: ====================================================
-C  i,j                  :: loop indices
-      INTEGER I,J
-CEOP
+C     == Local variables ==
+      INTEGER i,j
 
       DO j=1-Oly,sNy+Oly-1
        DO i=1-Olx+1,sNx+Olx

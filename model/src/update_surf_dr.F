@@ -3,20 +3,14 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C     !ROUTINE: UPDATE_SURF_DR
-C     !INTERFACE:
       SUBROUTINE UPDATE_SURF_DR( myTime, myIter, myThid )
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | SUBROUTINE UPDATE_SURF_DR                                 
-C     | o Update the surface-level thickness fraction (hFacC,W,S) 
-C     |   according to the surface r-position = Non-Linear FrSurf 
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================\
+C     | SUBROUTINE UPDATE_SURF_DR                                |
+C     | o Update the surface-level thickness fraction (hFacC,W,S)|
+C     |   according to the surface r-position = Non-Linear FrSurf|
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == Global variables
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -25,7 +19,6 @@ c #include "DYNVARS.h"
 #include "GRID.h"
 #include "SURFACE.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     myTime - Current time in simulation
 C     myIter - Current iteration number in simulation
@@ -34,14 +27,13 @@ C     myThid - Thread number for this instance of the routine.
       INTEGER myIter
       INTEGER myThid
 
-C     !LOCAL VARIABLES:
 #ifdef NONLIN_FRSURF
+
 C     Local variables
 C     i,j,k,bi,bj - loop counter
       INTEGER i,j,k,bi,bj
       INTEGER ks
       CHARACTER*(MAX_LEN_MBUF) suff 
-CEOP
 
       DO bj=myByLo(myThid), myByHi(myThid)
        DO bi=myBxLo(myThid), myBxHi(myThid)  

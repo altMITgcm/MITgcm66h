@@ -3,55 +3,36 @@ C $Name$
 
 #include "GAD_OPTIONS.h"
 
-CBOP
-C !ROUTINE: GAD_C4_ADV_Y
-
-C !INTERFACE: ==========================================================
       SUBROUTINE GAD_C4_ADV_Y( 
      I           bi,bj,k,
      I           vTrans,
      I           tracer,
      O           vT,
      I           myThid )
-
-C !DESCRIPTION:
-C Calculates the area integrated meridional flux due to advection of a tracer
-C using centered fourth-order interpolation:
-C \begin{equation*}
-C F^y_{adv} = V \overline{ \theta - \frac{1}{6} \delta_{jj} \theta }^j
-C \end{equation*}
-C Near boundaries, the scheme reduces to a second if the flow is away
-C from the boundary and to third order if the flow is towards
-C the boundary.
-
-C !USES: ===============================================================
+C     /==========================================================\
+C     | SUBROUTINE GAD_C4_ADV_Y                                  |
+C     | o Compute Meridional advective Flux of Tracer using      |
+C     |   4th Order Centered Scheme                              |
+C     | o reduced to 2nd or 3rd Order near a boundary            |
+C     |==========================================================|
       IMPLICIT NONE
+
+C     == GLobal variables ==
 #include "SIZE.h"
 #include "GRID.h"
 #include "GAD.h"
 
-C !INPUT PARAMETERS: ===================================================
-C  bi,bj                :: tile indices
-C  k                    :: vertical level
-C  vTrans               :: meridional volume transport
-C  tracer               :: tracer field
-C  myThid               :: thread number
+C     == Routine arguments ==
       INTEGER bi,bj,k
       _RL vTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL tracer(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL vT    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER myThid
 
-C !OUTPUT PARAMETERS: ==================================================
-C  uT                   :: zonal advective flux
-      _RL vT    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-
-C !LOCAL VARIABLES: ====================================================
-C  i,j                  :: loop indices
-C  Rjm,Rj,Rjp           :: differences at j-1,j,j+1
-C  Rjjm,Rjjp            :: second differences at j-1,j
+C     == Local variables ==
       INTEGER i,j
       _RL Rjm,Rj,Rjp,Rjjm,Rjjp
-CEOP
+
 
       DO i=1-Olx,sNx+Olx
        vT(i,1-Oly)=0.
