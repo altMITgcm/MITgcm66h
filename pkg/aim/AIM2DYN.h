@@ -8,7 +8,7 @@ C     | AIM2DYN.h                                                |
 C     | o AIM output fields in dynamics conforming arrays        |
 C     \==========================================================/
 
-C     aim_drag - Holds AIM surface C_drag*|V| term ( s-1 )
+C     aim_drag - Holds AIM surface drag term : C_drag*Rho*|V| ( kg.m-2.s-1 )
 C                location : AIM "A" grid = center of the dynamics "C" grid
 C     aim_dTdt - Net tendency for potential temperature ( oK/s    )
 C     aim_dSdt - Net tendency for water vapor           ( g/kg/s )

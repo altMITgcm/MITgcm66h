@@ -15,27 +15,25 @@ C     \==========================================================/
       IMPLICIT NONE
 
 C     == Global data ==
-#include "SIZE.h"
+#include "SIZE.h" 
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
 #include "DYNVARS.h"
 
-#ifdef ALLOW_AIM
 #include "AIM2DYN.h"
-#endif /* ALLOW_AIM */
 
 C     == Routine arguments ==
       _RL myCurrentTime
       INTEGER myThid
 CEndOfInterface
 
+#ifdef ALLOW_AIM
+
 C     == Local variables ==
 C     I,J,K - Loop counters
 C     bi,bj
-      INTEGER I,J,K, bi,bj 
-
-#ifdef ALLOW_AIM
+c     INTEGER I,J,K, bi,bj 
 
       _EXCH_XY_R8( aim_drag, myThid )
 c     _EXCH_XYZ_R8( gT, myThid )

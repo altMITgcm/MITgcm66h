@@ -3,17 +3,19 @@ C $Name$
 
 #include "AIM_OPTIONS.h"
 
-      SUBROUTINE AIM_INIT( myThid )
-C     /==================================================================\
-C     | S/R AIM_INIT                                                     |
-C     |==================================================================|
-C     | Interface between AIM atmospheric physics package and the        |
-C     | dynamical model for initialisation.                              |
-C     \==================================================================/
-      IMPLICIT rEAL*8 (A-H,O-Z)
+      SUBROUTINE AIM_INITIALISE( myThid )
+C     *==================================================================*
+C     | S/R AIM_INITIALISE
+C     *==================================================================*
+C     | Initialisation of AIM atmospheric physics package :
+C     | 1) call iniphys (=> set parameters to default value)
+C     | 2) read AIM parameters 
+C     | 3) initialisation of AIM arrays (time-ave)
+C     *==================================================================*
+      IMPLICIT NONE
 
 C     -------------- Global variables ------------------------------------
-#include "SIZE.h"
+#include "SIZE.h" 
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "DYNVARS.h"
@@ -31,9 +33,10 @@ C     HSG  - Cell face in vertical
 C     RLAT - Call mid-point latitude
 C     pGround - Lower boundary pressure
 C     J, K, bi,bj  - Loop counters
-      REAL FSG( Nr)
-      REAL HSG( Nr+1)
-      REAL RLAT(sNy)
+      _RL FSG( Nr)
+      _RL HSG(0:Nr)
+      _RL RLAT(sNy)
+      _RL pGround
       INTEGER J, K
       INTEGER Katm
       INTEGER bi,bj
@@ -41,10 +44,12 @@ C     J, K, bi,bj  - Loop counters
       pground = 1. _d 5
       DO K=1,Nr
        Katm = _KD2KA( K )
-       FSG(Katm  ) = rC(K)/pGround
-       HSG(Katm+1) = rF(K)/pGround
+       FSG(Katm) = rC(K)/pGround
+       HSG(Katm) = rF(K)/pGround
       ENDDO
-      HSG(1) = rF(Nr+1)/pGround
+       K=Nr+1
+       Katm = _KD2KA( K )
+       HSG(Katm) = rF(K)/pGround
 
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
@@ -54,6 +59,8 @@ C     J, K, bi,bj  - Loop counters
         CALL INPHYS( FSG, HSG, RLAT, myThid )
        ENDDO
       ENDDO
+
+      CALL AIM_READ_PHYSPARMS( myThid )
 
 #ifdef ALLOW_TIMEAVE 
 C     Initialise diagnostic counters ( these are cleared on model starti i.e. not

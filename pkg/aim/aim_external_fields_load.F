@@ -53,7 +53,7 @@ C     mnthNam
 C     pfact       - used to convert Pot.Temp. to in-situ Temp.
       INTEGER bi,bj, i, j
       _RL pfact
-      REAL tYear
+      _RL tYear
       INTEGER mnthIndex
       INTEGER prevMnthIndex
       DATA    prevMnthIndex / 0 /
