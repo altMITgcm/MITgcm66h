@@ -27,7 +27,9 @@ C     == Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "DYNVARS.h"
+#ifdef ALLOW_PASSIVE_TRACER
 #include "TR1.h"
+#endif
 
 #ifdef ALLOW_AUTODIFF_TAMC
 #include "tamc.h"
@@ -127,11 +129,13 @@ C-        Update tracer fields:  T(n) = T**, Gt(n-1) = Gt(n)
      I           bi,bj,iMin,iMax,jMin,jMax,K,
      U           salt,gS,gSNm1,
      I           myTime,myThid )
+#ifdef ALLOW_PASSIVE_TRACER
           IF (tr1Stepping)
      &      CALL CYCLE_TRACER(
      I           bi,bj,iMin,iMax,jMin,jMax,K,
      U           Tr1,gTr1,gTr1Nm1,
      I           myTime,myThid )
+#endif
 
 #ifdef    ALLOW_OBCS
 #ifdef ALLOW_AUTODIFF_TAMC
