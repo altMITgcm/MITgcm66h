@@ -256,7 +256,7 @@ CADJ STORE localTij(:,:)  = comlev1_bibj_pass, key=passkey, byte=isbyte
        CALL GAD_DST3FL_ADV_X(
      &       bi,bj,k,deltaTtracer,uTrans,uVel,localTij,af,myThid)
       ELSE
-       STOP 'GAD_ADVECTION: adv. scheme incompatibale with mutli-dim'
+       STOP 'GAD_ADVECTION: adv. scheme incompatibale with multi-dim'
       ENDIF
 
       DO j=1-Oly,sNy+Oly
