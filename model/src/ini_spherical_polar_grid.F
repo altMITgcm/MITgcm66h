@@ -172,6 +172,7 @@ C     Calculate vertical face area and trigonometric terms
         DO J=1,sNy
          DO I=1,sNx
           jG = myYGlobalLo + (bj-1)*sNy + J-1
+          iG = myXGlobalLo + (bi-1)*sNx + I-1
           latS = yc(i,j,bi,bj)-delY(jG)*0.5 _d 0
           latN = yc(i,j,bi,bj)+delY(jG)*0.5 _d 0
 #ifdef OLD_UV_GEOMETRY
