@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o fix in ini_eos.F (one "_d 0" was missing): now g77 & ifc give much closer 
+  results; update global_ocean_pressure & global_ocean.cs32x15 output.txt
 o add saltFlux(+File) forcing capability with periodicExternalForcing
 o allow to use pkg diagnostics for GM-Redi & ThSIce output
 o diagnostics_fill: fill in up to sNx+1 or sNy+1 (if U,V or Z pt) for mnc.
