@@ -111,7 +111,7 @@ C     Under MPI selects/deselects "blocking" sends and receives.
 #define ALLOW_SYNC_COMMUNICATION
 #undef  ALWAYS_USE_SYNC_COMMUNICATION
 
---   Control use of JAM routines for Artic network
+C--   Control use of JAM routines for Artic network
 C     These invoke optimized versions of "exchange" and "sum" that
 C     utilize the programmable aspect of Artic cards.
 #undef  LETS_MAKE_JAM
