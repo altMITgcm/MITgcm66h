@@ -27,10 +27,6 @@ C     === Global variables ===
 #include "AIM_FFIELDS.h"
 #endif
 
-C Common (shared with RD_WR_FLD routines in read_write_fld.F)
-      COMMON /RD_WR_FLD/ globalFile
-      LOGICAL globalFile 
-
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     myTime - Current time of simulation ( s )
@@ -50,7 +46,6 @@ C     == Local variables ==
       INTEGER bi, bj, k, nrec
       CHARACTER*(MAX_LEN_MBUF) msgBuf, suff, fn
       LOGICAL gf
-      gf = globalFile
 
 #ifdef ALLOW_AIM
 c     IF ( land_monFreq.NE.0. ) THEN
@@ -107,6 +102,9 @@ C      Normalize by integrated time
 
        _BARRIER
        _BEGIN_MASTER( myThid )
+
+C-     find wether we are writing globalFile or tile-files:
+        CALL GET_WRITE_GLOBAL_FLD( gf )
 
         WRITE(fn,'(A,I10.10)') 'land_tave.', myIter
         CALL MDSWRITEFIELD(fn,writeBinaryPrec,gf,
