@@ -8,7 +8,7 @@ C !ROUTINE: MOM_CDSCHEME
 
 C !INTERFACE: ==========================================================
       SUBROUTINE MOM_CDSCHEME( 
-     I        bi,bj,k,phi_hyd,
+     I        bi,bj,k,dPhiHydX,dPhiHydY,
      I        myThid)
 
 C !DESCRIPTION:
@@ -27,10 +27,11 @@ C     == Global variables ==
 C !INPUT PARAMETERS: ===================================================
 C  bi,bj                :: tile indices
 C  k                    :: vertical level
-C  phi_hyd              :: hydrostatic pressure
+C     dPhiHydX,Y        :: Gradient (X & Y dir.) of Hydrostatic Potential
 C  myThid               :: thread number
-      INTEGER bi,bj,K
-      _RL phi_hyd(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
+      INTEGER bi,bj,k
+      _RL dPhiHydX(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
+      _RL dPhiHydY(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       INTEGER myThid
 
 
@@ -45,6 +46,7 @@ C  aF                   :: work space
       _RL aF(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER i,j,iMin,iMax,jMin,jMax
       _RL ab15,ab05
+      _RL phxFac, phyFac
 CEOP
 
 C     Compute ranges
@@ -57,6 +59,15 @@ C     Adams-Bashforth weighting factors
       ab15   =  1.5 + abEps
       ab05   = -0.5 - abEps
 
+C-- stagger time stepping: grad Phi_Hyp is not in gU,gV and needs to be added:
+      IF (staggerTimeStep) THEN
+        phxFac = pfFacMom
+        phyFac = pfFacMom
+      ELSE
+        phxFac = 0.
+        phyFac = 0.
+      ENDIF
+
 C     Pressure extrapolated forward in time
       DO j=1-Oly,sNy+Oly
        DO i=1-Olx,sNx+Olx
@@ -65,13 +76,6 @@ C     Pressure extrapolated forward in time
      &  +ab05*(etaNm1(i,j,bi,bj)*Bo_surf(i,j,bi,bj) )
        ENDDO
       ENDDO
-      IF (staggerTimeStep) THEN
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         pf(i,j) = pf(i,j)+phi_hyd(i,j,k)
-        ENDDO
-       ENDDO
-      ENDIF
 
 C--   Zonal velocity coriolis term
 C     Note. As coded here, coriolis will not work with "thin walls"
@@ -79,10 +83,10 @@ C--   Coriolis with CD scheme allowed
 C     grady(p) + gV
       DO j=1-Oly+1,sNy+Oly
        DO i=1-Olx,sNx+Olx
-        af(i,j) = -_maskS(i,j,k,bi,bj)
-     &            *_recip_dyC(i,j,bi,bj)
-     &            *(pf(i,j)-pf(i,j-1))
-     &            +gV(i,j,k,bi,bj)
+        af(i,j) = -_maskS(i,j,k,bi,bj)*(
+     &            _recip_dyC(i,j,bi,bj)*(pf(i,j)-pf(i,j-1))
+     &           +phyFac*dPhiHydY(i,j) )
+     &          + gV(i,j,k,bi,bj)
        ENDDO
       ENDDO
 C     Average to Vd point and add coriolis
@@ -135,10 +139,10 @@ C--   Meridional velocity coriolis term
 C     gradx(p)+gU
       DO j=1-Oly,sNy+Oly
        DO i=1-Olx+1,sNx+Olx
-        af(i,j) = -_maskW(i,j,k,bi,bj)
-     &            *_recip_dxC(i,j,bi,bj)*
-     &            (pf(i,j)-pf(i-1,j))
-     &            +gU(i,j,k,bi,bj)
+        af(i,j) = -_maskW(i,j,k,bi,bj)*(
+     &            _recip_dxC(i,j,bi,bj)*(pf(i,j)-pf(i-1,j))
+     &           +phxFac*dPhiHydX(i,j) )
+     &          + gU(i,j,k,bi,bj)
        ENDDO
       ENDDO
 C     Average to Ud point and add coriolis

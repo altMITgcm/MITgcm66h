@@ -2,6 +2,7 @@ C $Header$
 C $Name$
 
 #include "CPP_OPTIONS.h"
+#undef OLD_MOM_ADV_W
 
 CBOP
 C !ROUTINE: MOM_V_ADV_WV
@@ -9,7 +10,7 @@ C !ROUTINE: MOM_V_ADV_WV
 C !INTERFACE: ==========================================================
       SUBROUTINE MOM_V_ADV_WV(
      I        bi,bj,k,
-     I        vFld,wFld,
+     I        vFld,wFld,rTrans,
      O        advectiveFluxWV,
      I        myThid)
 
@@ -29,12 +30,14 @@ C !USES: ===============================================================
 C !INPUT PARAMETERS: ===================================================
 C  bi,bj                :: tile indices
 C  k                    :: vertical level
-C  rTrans               :: vertical transport
-C  vFld                 :: meridional flow
+C  vFld                 :: meridional velocity
+C  wFld                 :: vertical velocity
+C  rTrans               :: vertical transport (above V point)
 C  myThid               :: thread number
       INTEGER bi,bj,k
       _RL vFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL wFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      _RL rTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER myThid
 
 C !OUTPUT PARAMETERS: ==================================================
@@ -45,9 +48,18 @@ C !LOCAL VARIABLES: ====================================================
 C  i,j                  :: loop indices
       INTEGER I,J
 CEOP
+      _RL tmpFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
-      IF ( k.GT.Nr .OR.
-     &    (k.EQ.1.AND.rigidLid) ) THEN
+      IF ( k.EQ.Nr+1 .AND.
+     &     useRealFreshWaterFlux .AND.
+     &     buoyancyRelation .EQ. 'OCEANICP' ) THEN
+       DO j=1-Oly+1,sNy+Oly
+        DO i=1-Olx+1,sNx+Olx
+         advectiveFluxWV(i,j) = rTrans(i,j)*vFld(i,j,k-1,bi,bj)
+        ENDDO
+       ENDDO
+
+      ELSEIF ( k.GT.Nr .OR. (k.EQ.1.AND.rigidLid) ) THEN
 C     Advective flux = 0  at k=Nr+1 ; = 0 at k=1 if rigid-lid
 
       DO j=1-Oly,sNy+Oly
@@ -60,12 +72,8 @@ C     Advective flux = 0  at k=Nr+1 ; = 0 at k=1 if rigid-lid
 C     (linear) Free-surface correction at k=1
 
       DO j=1-Oly+1,sNy+Oly
-       DO i=1-Olx,sNx+Olx
-        advectiveFluxWV(i,j) =
-     &     0.5*(
-     &        wFld(i, j ,k,bi,bj)*rA(i, j ,bi,bj)
-     &       +wFld(i,j-1,k,bi,bj)*rA(i,j-1,bi,bj)
-     &         )*vFld(i,j,k,bi,bj)
+       DO i=1-Olx+1,sNx+Olx
+        advectiveFluxWV(i,j) = rTrans(i,j)*vFld(i,j,k,bi,bj)
        ENDDO
       ENDDO
 
@@ -73,19 +81,16 @@ C     (linear) Free-surface correction at k=1
 
 C     Vertical advection - interior ; assume vFld & wFld are masked 
       DO j=1-Oly+1,sNy+Oly
-       DO i=1-Olx,sNx+Olx
-        advectiveFluxWV(i,j) =
-     &    0.25*(
-     &        wFld(i, j ,k,bi,bj)*rA(i, j ,bi,bj)
-     &       +wFld(i,j-1,k,bi,bj)*rA(i,j-1,bi,bj)
-     &         )*( vFld(i,j,k,bi,bj)+vFld(i,j,k-1,bi,bj) )
+       DO i=1-Olx+1,sNx+Olx
+        advectiveFluxWV(i,j) = rTrans(i,j)*
+     &   0.5 _d 0*( vFld(i,j,k,bi,bj)+vFld(i,j,k-1,bi,bj) ) 
        ENDDO
       ENDDO
 
-      IF (.NOT. rigidLid) THEN
+      IF ( select_rStar.EQ.0 .AND. .NOT.rigidLid ) THEN
 C     (linear) Free-surface correction at k>1
         DO j=1-Oly+1,sNy+Oly
-         DO i=1-Olx,sNx+Olx
+         DO i=1-Olx+1,sNx+Olx
           advectiveFluxWV(i,j) = advectiveFluxWV(i,j)
      &     +0.25*(
      &          wFld(i, j ,k,bi,bj)*rA(i, j ,bi,bj)*

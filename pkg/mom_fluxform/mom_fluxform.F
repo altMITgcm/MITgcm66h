@@ -33,9 +33,9 @@ C !ROUTINE: MOM_FLUXFORM
 C !INTERFACE: ==========================================================
       SUBROUTINE MOM_FLUXFORM( 
      I        bi,bj,iMin,iMax,jMin,jMax,k,kUp,kDown,
-     I        phi_hyd,KappaRU,KappaRV,
+     I        dPhihydX,dPhiHydY,KappaRU,KappaRV,
      U        fVerU, fVerV,
-     I        myCurrentTime,myIter,myThid)
+     I        myTime,myIter,myThid)
 
 C !DESCRIPTION:
 C Calculates all the horizontal accelerations except for the implicit surface
@@ -58,22 +58,23 @@ C  iMin,iMax,jMin,jMAx  :: loop ranges
 C  k                    :: vertical level
 C  kUp                  :: =1 or 2 for consecutive k
 C  kDown                :: =2 or 1 for consecutive k
-C  phi_hyd              :: hydrostatic pressure (perturbation)
+C  dPhiHydX,Y           :: Gradient (X & Y dir.) of Hydrostatic Potential 
 C  KappaRU              :: vertical viscosity
 C  KappaRV              :: vertical viscosity
 C  fVerU                :: vertical flux of U, 2 1/2 dim for pipe-lining
 C  fVerV                :: vertical flux of V, 2 1/2 dim for pipe-lining
-C  myCurrentTime        :: current time
+C  myTime               :: current time
 C  myIter               :: current time-step number
 C  myThid               :: thread number
       INTEGER bi,bj,iMin,iMax,jMin,jMax
       INTEGER k,kUp,kDown
-      _RL phi_hyd(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
+      _RL dPhiHydX(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL dPhiHydY(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL KappaRU(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
       _RL KappaRV(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
       _RL fVerU(1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
       _RL fVerV(1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
-      _RL     myCurrentTime
+      _RL     myTime
       INTEGER myIter
       INTEGER myThid
 
@@ -119,6 +120,8 @@ C     uDudxFac, AhDudxFac, etc ... individual term tracer parameters
       _RL  vTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL  uFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL  vFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL  rTransU(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL  rTransV(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 C     I,J,K - Loop counters
 C     rVelMaskOverride - Factor for imposing special surface boundary conditions
 C                        ( set according to free-surface condition ).
@@ -174,6 +177,8 @@ C     Initialise intermediate terms
         pF(i,j)   = 0.
         fZon(i,j) = 0.
         fMer(i,j) = 0.
+        rTransU(i,j) = 0.
+        rTransV(i,j) = 0.
        ENDDO
       ENDDO
 
@@ -250,10 +255,45 @@ C     Calculate velocity field "volume transports" through tracer cell faces.
 
       CALL MOM_CALC_KE(bi,bj,k,uFld,vFld,KE,myThid)
 
+C---  First call (k=1): compute vertical adv. flux fVerU(kUp) & fVerV(kUp)
+      IF (momAdvection.AND.k.EQ.1) THEN
+
+C-    Calculate vertical transports above U & V points (West & South face):
+       CALL MOM_CALC_RTRANS( k, bi, bj,
+     O                       rTransU, rTransV,
+     I                       myTime, myIter, myThid)
+
+C-    Free surface correction term (flux at k=1)
+       CALL MOM_U_ADV_WU(bi,bj,k,uVel,wVel,rTransU,af,myThid)
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         fVerU(i,j,kUp) = af(i,j)
+        ENDDO
+       ENDDO
+
+       CALL MOM_V_ADV_WV(bi,bj,k,vVel,wVel,rTransV,af,myThid)
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         fVerV(i,j,kUp) = af(i,j)
+        ENDDO
+       ENDDO
+
+C---  endif momAdvection & k=1
+      ENDIF
+
+
+C---  Calculate vertical transports (at k+1) below U & V points :
+      IF (momAdvection) THEN
+       CALL MOM_CALC_RTRANS( k+1, bi, bj,
+     O                       rTransU, rTransV,
+     I                       myTime, myIter, myThid)
+      ENDIF
+
+
 C---- Zonal momentum equation starts here
 
 C     Bi-harmonic term del^2 U -> v4F
-      IF (momViscosity)
+      IF (momViscosity .AND. viscA4.NE.0. ) 
      & CALL MOM_U_DEL2U(bi,bj,k,uFld,hFacZ,v4f,myThid)
 
 C---  Calculate mean and eddy fluxes between cells for zonal flow.
@@ -286,7 +326,7 @@ C     Laplacian and bi-harmonic term
      & CALL MOM_U_YVISCFLUX(bi,bj,k,uFld,v4F,hFacZ,vF,myThid)
 
 C     Combine fluxes -> fMer
-      DO j=jMin,jMax
+      DO j=jMin,jMax+1
        DO i=iMin,iMax
         fMer(i,j) = vDudyFac*aF(i,j) + AhDudyFac*vF(i,j)
        ENDDO
@@ -294,18 +334,9 @@ C     Combine fluxes -> fMer
 
 C--   Vertical flux (fVer is at upper face of "u" cell)
 
-C--   Free surface correction term (flux at k=1)
-      IF (momAdvection.AND.k.EQ.1) THEN
-       CALL MOM_U_ADV_WU(bi,bj,k,uVel,wVel,af,myThid)
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         fVerU(i,j,kUp) = af(i,j)
-        ENDDO
-       ENDDO
-      ENDIF
 C     Mean flow component of vertical flux (at k+1) -> aF
       IF (momAdvection)
-     & CALL MOM_U_ADV_WU(bi,bj,k+1,uVel,wVel,af,myThid)
+     & CALL MOM_U_ADV_WU(bi,bj,k+1,uVel,wVel,rTransU,af,myThid)
 
 C     Eddy component of vertical flux (interior component only) -> vrF
       IF (momViscosity.AND..NOT.implicitViscosity)
@@ -317,16 +348,6 @@ C     Combine fluxes
         fVerU(i,j,kDown) = rVelDudrFac*aF(i,j) + ArDudrFac*vrF(i,j)
        ENDDO
       ENDDO
-
-C---  Hydrostatic term ( -1/rhoConst . dphi/dx )
-      IF (momPressureForcing) THEN
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         pf(i,j) = - _recip_dxC(i,j,bi,bj)
-     &    *(phi_hyd(i,j,k)-phi_hyd(i-1,j,k))
-        ENDDO
-       ENDDO
-      ENDIF
 
 C--   Tendency is minus divergence of the fluxes + coriolis + pressure term
       DO j=jMin,jMax
@@ -343,9 +364,30 @@ C--   Tendency is minus divergence of the fluxes + coriolis + pressure term
      &   +fMer(i,j+1)          - fMer(i  ,j)
      &   +fVerU(i,j,kUp)*rkFac - fVerU(i,j,kDown)*rkFac
      &   )
-     & _PHM( +phxFac * pf(i,j) )
+     &  - phxFac*dPhiHydX(i,j)
        ENDDO
       ENDDO
+
+#ifdef NONLIN_FRSURF
+C-- account for 3.D divergence of the flow in rStar coordinate:
+      IF ( momAdvection .AND. select_rStar.GT.0 ) THEN
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         gU(i,j,k,bi,bj) = gU(i,j,k,bi,bj)
+     &     - (rStarExpW(i,j,bi,bj) - 1. _d 0)/deltaTfreesurf
+     &       *uVel(i,j,k,bi,bj)
+        ENDDO
+       ENDDO
+      ENDIF
+      IF ( momAdvection .AND. select_rStar.LT.0 ) THEN
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         gU(i,j,k,bi,bj) = gU(i,j,k,bi,bj)
+     &     - rStarDhWDt(i,j,bi,bj)*uVel(i,j,k,bi,bj)
+        ENDDO
+       ENDDO
+      ENDIF
+#endif /* NONLIN_FRSURF */
 
 C-- No-slip and drag BCs appear as body forces in cell abutting topography 
       IF (momViscosity.AND.no_slip_sides) THEN
@@ -371,17 +413,19 @@ C--   Forcing term
       IF (momForcing)
      &  CALL EXTERNAL_FORCING_U(
      I     iMin,iMax,jMin,jMax,bi,bj,k,
-     I     myCurrentTime,myThid)
+     I     myTime,myThid)
 
 C--   Metric terms for curvilinear grid systems
-      IF (usingSphericalPolarMTerms) THEN
-C      o Spherical polar grid metric terms
+      IF (useNHMTerms) THEN
+C      o Non-hydrosatic metric terms
        CALL MOM_U_METRIC_NH(bi,bj,k,uFld,wVel,mT,myThid)
        DO j=jMin,jMax
         DO i=iMin,iMax
          gU(i,j,k,bi,bj) = gU(i,j,k,bi,bj)+mTFacU*mT(i,j)
         ENDDO
        ENDDO
+      ENDIF
+      IF (usingSphericalPolarMTerms) THEN
        CALL MOM_U_METRIC_SPHERE(bi,bj,k,uFld,vFld,mT,myThid)
        DO j=jMin,jMax
         DO i=iMin,iMax
@@ -401,7 +445,7 @@ C--   Set du/dt on boundaries to zero
 C---- Meridional momentum equation starts here
 
 C     Bi-harmonic term del^2 V -> v4F
-      IF (momViscosity)
+      IF (momViscosity .AND. viscA4.NE.0. ) 
      & CALL MOM_V_DEL2V(bi,bj,k,vFld,hFacZ,v4f,myThid)
 
 C---  Calculate mean and eddy fluxes between cells for meridional flow.
@@ -418,7 +462,7 @@ C     Laplacian and bi-harmonic terms -> vF
 
 C     Combine fluxes -> fZon
       DO j=jMin,jMax
-       DO i=iMin,iMax
+       DO i=iMin,iMax+1
         fZon(i,j) = uDvdxFac*aF(i,j) + AhDvdxFac*vF(i,j)
        ENDDO
       ENDDO
@@ -442,18 +486,9 @@ C     Combine fluxes -> fMer
 
 C--   Vertical flux (fVer is at upper face of "v" cell)
 
-C--   Free surface correction term (flux at k=1)
-      IF (momAdvection.AND.k.EQ.1) THEN
-       CALL MOM_V_ADV_WV(bi,bj,k,vVel,wVel,af,myThid)
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         fVerV(i,j,kUp) = af(i,j)
-        ENDDO
-       ENDDO
-      ENDIF
 C     o Mean flow component of vertical flux
       IF (momAdvection)
-     & CALL MOM_V_ADV_WV(bi,bj,k+1,vVel,wVel,af,myThid)
+     & CALL MOM_V_ADV_WV(bi,bj,k+1,vVel,wVel,rTransV,af,myThid)
 
 C     Eddy component of vertical flux (interior component only) -> vrF
       IF (momViscosity.AND..NOT.implicitViscosity)
@@ -465,16 +500,6 @@ C     Combine fluxes -> fVerV
         fVerV(i,j,kDown) = rVelDvdrFac*aF(i,j) + ArDvdrFac*vrF(i,j)
        ENDDO
       ENDDO
-
-C---  Hydorstatic term (-1/rhoConst . dphi/dy )
-      IF (momPressureForcing) THEN
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         pF(i,j) = -_recip_dyC(i,j,bi,bj)
-     &    *(phi_hyd(i,j,k)-phi_hyd(i,j-1,k))
-        ENDDO
-       ENDDO
-      ENDIF
 
 C--   Tendency is minus divergence of the fluxes + coriolis + pressure term
       DO j=jMin,jMax
@@ -491,9 +516,30 @@ C--   Tendency is minus divergence of the fluxes + coriolis + pressure term
      &   +fMer(i,j  )          - fMer(i,j-1)
      &   +fVerV(i,j,kUp)*rkFac - fVerV(i,j,kDown)*rkFac
      &   )
-     & _PHM( +phyFac*pf(i,j) )
+     &  - phyFac*dPhiHydY(i,j)
        ENDDO
       ENDDO
+
+#ifdef NONLIN_FRSURF
+C-- account for 3.D divergence of the flow in rStar coordinate:
+      IF ( momAdvection .AND. select_rStar.GT.0 ) THEN
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         gV(i,j,k,bi,bj) = gV(i,j,k,bi,bj)
+     &     - (rStarExpS(i,j,bi,bj) - 1. _d 0)/deltaTfreesurf
+     &       *vVel(i,j,k,bi,bj)
+        ENDDO
+       ENDDO
+      ENDIF
+      IF ( momAdvection .AND. select_rStar.LT.0 ) THEN
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         gV(i,j,k,bi,bj) = gV(i,j,k,bi,bj)
+     &     - rStarDhSDt(i,j,bi,bj)*vVel(i,j,k,bi,bj)
+        ENDDO
+       ENDDO
+      ENDIF
+#endif /* NONLIN_FRSURF */
 
 C-- No-slip and drag BCs appear as body forces in cell abutting topography 
       IF (momViscosity.AND.no_slip_sides) THEN
@@ -519,10 +565,10 @@ C--   Forcing term
       IF (momForcing)
      & CALL EXTERNAL_FORCING_V(
      I     iMin,iMax,jMin,jMax,bi,bj,k,
-     I     myCurrentTime,myThid)
+     I     myTime,myThid)
 
 C--   Metric terms for curvilinear grid systems
-      IF (usingSphericalPolarMTerms) THEN
+      IF (useNHMTerms) THEN
 C      o Spherical polar grid metric terms
        CALL MOM_V_METRIC_NH(bi,bj,k,vFld,wVel,mT,myThid)
        DO j=jMin,jMax
@@ -530,6 +576,8 @@ C      o Spherical polar grid metric terms
          gV(i,j,k,bi,bj) = gV(i,j,k,bi,bj)+mTFacV*mT(i,j)
         ENDDO
        ENDDO
+      ENDIF
+      IF (usingSphericalPolarMTerms) THEN
        CALL MOM_V_METRIC_SPHERE(bi,bj,k,uFld,mT,myThid)
        DO j=jMin,jMax
         DO i=iMin,iMax
@@ -548,7 +596,7 @@ C--   Set dv/dt on boundaries to zero
 C--   Coriolis term
 C     Note. As coded here, coriolis will not work with "thin walls"
 #ifdef INCLUDE_CD_CODE
-      CALL MOM_CDSCHEME(bi,bj,k,phi_hyd,myThid)
+      CALL MOM_CDSCHEME(bi,bj,k,dPhiHydX,dPhiHydY,myThid)
 #else
       CALL MOM_U_CORIOLIS(bi,bj,k,vFld,cf,myThid)
       DO j=jMin,jMax
@@ -563,6 +611,14 @@ C     Note. As coded here, coriolis will not work with "thin walls"
        ENDDO
       ENDDO
 #endif /* INCLUDE_CD_CODE */
+      IF (nonHydrostatic.OR.quasiHydrostatic) THEN
+       CALL MOM_U_CORIOLIS_NH(bi,bj,k,wVel,cf,myThid)
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         gU(i,j,k,bi,bj) = gU(i,j,k,bi,bj)+fuFac*cf(i,j)
+        ENDDO
+       ENDDO
+      ENDIF
 
       RETURN
       END

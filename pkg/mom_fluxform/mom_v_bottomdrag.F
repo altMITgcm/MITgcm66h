@@ -54,25 +54,41 @@ C  vDragTerms           :: drag term
 C !LOCAL VARIABLES: ====================================================
 C  i,j                  :: loop indices
 C  Kp1                  :: =k+1 for k<Nr, =Nr for k>=Nr
-      INTEGER I,J,Kp1
+      INTEGER I,J,kDown,kDownC,kBottom
       _RL rdrckp1,maskDown
 CEOP
 
 C-  No-slip BCs impose a drag at bottom
-      Kp1=min(k+1,Nr)
-      rdrckp1=recip_drC(kp1)
+      IF ( buoyancyRelation .EQ. 'OCEANIC' ) THEN
+       kBottom = Nr
+       kDown   = min(k+1,kBottom)
+       kDownC  = kDown
+      ELSEIF ( buoyancyRelation .EQ. 'OCEANICP' .OR.
+     &         buoyancyRelation .EQ. 'ATMOSPHERIC' ) THEN
+       kBottom = 1
+       kDown   = max(k-1,kBottom)
+       kDownC  = k
+      ELSE	
+       STOP 'S/R MOM_U_BOTTOMDRAG: We should never reach this point!'
+      ENDIF	
+      rdrckp1=recip_drC(kDownC)
       viscFac=1.
       IF (.NOT. no_slip_bottom) viscFac=0.
-      IF (k.EQ.Nr) rdrckp1=recip_drF(k)
+      IF (k.EQ.kBottom) rdrckp1=recip_drF(k)
       DO j=1-Oly+1,sNy+Oly-1
        DO i=1-Olx,sNx+Olx-1
-        maskDown=_maskS(i,j,kp1,bi,bj)
-        IF (k.EQ.Nr) maskDown=0.
+        maskDown=_maskS(i,j,kdown,bi,bj)
+        IF (k.EQ.kBottom) maskDown=0.
         vDragTerms(i,j)=
      &   -_recip_hFacS(i,j,k,bi,bj)*recip_drF(k)
      &   *( 
-     &      2.*KappaRV(i,j,kp1)*rkFac*rdrckp1*viscFac
+     &      2.*KappaRV(i,j,kDownC)*rkFac*rdrckp1*viscFac
+#if (defined (ALLOW_AUTODIFF_TAMC) && \
+    defined (ALLOW_BOTTOMDRAG_CONTROL))
+     &     + bottomdragfld(i,j,bi,bj)
+#else
      &     + bottomDragLinear
+#endif
      &    )*(1.-maskDown)*vFld(i,j)
         IF ( (KE(i,j)+KE(i,j-1)) .NE. 0. ) THEN
          vDragTerms(i,j)=vDragTerms(i,j)
