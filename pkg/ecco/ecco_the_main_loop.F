@@ -74,13 +74,6 @@ c These includes are needed for
 c AD-checkpointing. 
 c They provide the fields to be stored.
 
-# ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
-#  include "exf_fields.h"
-#  include "exf_clim_fields.h"
-#  ifdef ALLOW_BULKFORMULAE
-#   include "exf_constants.h"
-#  endif
-# endif /* INCLUDE_EXTERNAL_FORCING_PACKAGE */
 # ifdef ALLOW_PASSIVE_TRACER
 #  include "TR1.h"
 # endif
@@ -93,6 +86,13 @@ c They provide the fields to be stored.
 # ifdef ALLOW_OBCS
 #  include "OBCS.h"
 # endif
+# ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
+#  include "exf_fields.h"
+#  include "exf_clim_fields.h"
+#  ifdef ALLOW_BULKFORMULAE
+#   include "exf_constants.h"
+#  endif
+# endif /* INCLUDE_EXTERNAL_FORCING_PACKAGE */
 # ifdef ALLOW_SEAICE
 #  include "SEAICE.h"
 # endif
@@ -142,10 +142,11 @@ c     == local variables ==
 c--   == end of interface ==
 
 #ifdef ALLOW_AUTODIFF_TAMC
-c--   Initialize storage for the outermost loop.
+c--   Initialize storage for the initialisations.
 CADJ  INIT tapelev3 = USER
 c--   Some more initialisations to please TAMC
 CADJ INIT tapelev_ini_bibj_k   = USER
+# ifdef ALLOW_DIVIDED_ADJOINT
 CADJ INIT onetape = user
 cphCADJ INIT onetape = common, 1
 cph We want to avoid common blocks except in the inner loop.
@@ -154,10 +155,11 @@ cph         in separate model executions for which the info
 cph         in common blocks are lost.
 cph Thus, we can only store real values (no integers)
 cph because we only have active file handling to real available.
-#ifdef ALLOW_TAMC_CHECKPOINTING
+# endif
+# ifdef ALLOW_TAMC_CHECKPOINTING
        nIter0 = INT( startTime/deltaTClock )
        ikey_dynamics = 1
-#endif
+# endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
       myTime = startTime
@@ -173,12 +175,10 @@ C--   Set initial conditions (variable arrays)
       CALL INITIALISE_VARIA( mythid )
       CALL TIMER_STOP ('INITIALISE_VARIA    [THE_MAIN_LOOP]', mythid)
 
-#ifndef ALLOW_AUTODIFF_TAMC
 c--   Dump for start state.
       CALL TIMER_START('WRITE_STATE         [THE_MAIN_LOOP]', mythid)
       CALL WRITE_STATE( mytime, myiter, mythid )
       CALL TIMER_STOP ('WRITE_STATE         [THE_MAIN_LOOP]', mythid)
-#endif
 
 #ifndef EXCLUDE_MONITOR
 C--   Check status of solution (statistics, cfl, etc...)
@@ -192,7 +192,7 @@ C--   Check status of solution (statistics, cfl, etc...)
 c--   Compute the cost function contribution of the boundary forcing,
 c--   i.e. heat flux, salt flux, zonal and meridional wind stress.
       call timer_start('COST_FORCING       [ECCO SPIN-UP]', mythid)
-      call cost_Forcing( myiter, mytime, mythid )
+      call cost_forcing( myiter, mytime, mythid )
       call timer_stop ('COST_FORCING       [ECCO SPIN-UP]', mythid)
 #endif
 
@@ -247,23 +247,40 @@ c**************************************
 c**************************************
 
 
+c**************************************
+#ifdef ALLOW_AUTODIFF_TAMC
 c--       Initialize storage for the innermost loop.
 c--       Always check common block sizes for the checkpointing!
+c--
 CADJ INIT comlev1        = COMMON,nchklev_1
 CADJ INIT comlev1_bibj   = COMMON,nchklev_1*nsx*nsy*nthreads_chkpt
 CADJ INIT comlev1_bibj_k = COMMON,nchklev_1*nsx*nsy*nr*nthreads_chkpt
+c--
+# ifdef ALLOW_KPP
 CADJ INIT comlev1_kpp    = COMMON,nchklev_1*nsx*nsy
-CADJ INIT comlev1_exf    = COMMON,nchklev_1*nthreads_chkpt
-#ifndef DISABLE_MULTIDIM_ADVECTION
-CADJ INIT comlev1_bibj_pass
+# endif /* ALLOW_KPP */
+c--
+# ifdef ALLOW_GMREDI
+CADJ INIT comlev1_gmredi_k_gad
 CADJ &    = COMMON,nchklev_1*nsx*nsy*nr*nthreads_chkpt*maxpass
-#endif
-#ifdef ALLOW_BULKFORMULAE
+# endif /* ALLOW_GMREDI */
+c--
+# ifndef DISABLE_MULTIDIM_ADVECTION
+CADJ INIT comlev1_bibj_k_gad
+CADJ &    = COMMON,nchklev_1*nsx*nsy*nr*nthreads_chkpt*maxpass
+CADJ INIT comlev1_bibj_k_gad_pass
+CADJ &    = COMMON,nchklev_1*nsx*nsy*nr*nthreads_chkpt*maxpass*maxcube
+# endif /* DISABLE_MULTIDIM_ADVECTION */
+c--
+# ifdef ALLOW_BULKFORMULAE
 CADJ INIT comlev1_exf_1
 CADJ &     = COMMON,nchklev_1*snx*nsx*sny*nsy*nthreads_chkpt
 CADJ INIT comlev1_exf_2
 CADJ &     = COMMON,niter_bulk*nchklev_1*snx*nsx*sny*nsy*nthreads_chkpt
-#endif
+# endif
+c--
+#endif /* ALLOW_AUTODIFF_TAMC */
+c**************************************
 
           do ilev_1 = 1,nchklev_1
 
@@ -320,7 +337,7 @@ c--     Set the model iteration counter and the model time.
 
 c--     Accumulate time averages of temperature, salinity, and SSH.
         call timer_start('COST_AVERAGESFIELDS   [ECCO MAIN]', mythid)
-        call cost_AveragesFields( mytime, mythid )
+        call cost_averagesFields( mytime, mythid )
         call timer_stop ('COST_AVERAGESFIELDS   [ECCO MAIN]', mythid)
 #ifdef ALLOW_COST_ATLANTIC
 c--     Compute meridional heat transport 
@@ -333,23 +350,24 @@ c--     Compute meridional heat transport
 #ifdef EXACT_CONSERV
       IF (exactConserv) THEN
 C--   Update etaH(n+1) :
-        DO bj=myByLo(myThid),myByHi(myThid)
-         DO bi=myBxLo(myThid),myBxHi(myThid)
-           CALL CALC_EXACT_ETA( .FALSE., bi,bj, uVel,vVel,
-     I                          startTime, nIter0, myThid )
-         ENDDO
-        ENDDO
-        IF (implicDiv2Dflow .NE. 1. _d 0 )
-     &     _EXCH_XY_R8(etaH, myThid )
+         CALL TIMER_START('UPDATE_ETAH        [FORWARD_STEP]',mythid)
+         CALL UPDATE_ETAH( myTime, myIter, myThid )
+         CALL TIMER_STOP ('UPDATE_ETAH        [FORWARD_STEP]',mythid)
       ENDIF
 #endif /* EXACT_CONSERV */ 
 
 #ifdef NONLIN_FRSURF
-C--   compute the future surface level thickness
-C      according to etaH(n+1) 
-        IF ( nonlinFreeSurf.GT.0) THEN
+      IF ( select_rStar.NE.0 ) THEN
+C--   r* : compute the future level thickness according to etaH(n+1) 
+          CALL TIMER_START('CALC_R_STAR       [FORWARD_STEP]',mythid)
+          CALL CALC_R_STAR(etaH, myTime, myIter, myThid )
+          CALL TIMER_STOP ('CALC_R_STAR       [FORWARD_STEP]',mythid)
+      ELSEIF ( nonlinFreeSurf.GT.0) THEN
+C--   compute the future surface level thickness according to etaH(n+1) 
+          CALL TIMER_START('CALC_SURF_DR      [FORWARD_STEP]',mythid)
           CALL CALC_SURF_DR(etaH, myTime, myIter, myThid )
-        ENDIF
+          CALL TIMER_STOP ('CALC_SURF_DR      [FORWARD_STEP]',mythid)
+      ENDIF
 #endif /* NONLIN_FRSURF */
 
 c--     Get forcing fluxes of heat, salt, zonal and meridional
@@ -360,10 +378,9 @@ c**************************************
 #include "checkpoint_lev1_directives.h"
 c**************************************
 #endif
-        call timer_start('EXF_GETFORCING        [ECCO MAIN]', mythid)
-        call exf_GetForcing( mytime, myiter, mythid )
-        _BARRIER
-        call timer_stop ('EXF_GETFORCING        [ECCO MAIN]', mythid)
+      CALL TIMER_START('EXF_GETFORCING     [FORWARD_STEP]',mythid)
+      CALL EXF_GETFORCING( mytime, myiter, mythid )
+      CALL TIMER_STOP ('EXF_GETFORCING     [FORWARD_STEP]',mythid)
 
 #ifdef ALLOW_SEAICE
 C--   Call sea ice model to compute forcing/external data fields.  In
@@ -387,7 +404,8 @@ cph      IF ( useSEAICE ) THEN
 cph      ENDIF
 #endif /* ALLOW_SEAICE */
 
-#ifdef ALLOW_AUTODIFF_TAMC
+#if (defined (ALLOW_AUTODIFF_TAMC) && \
+     defined (ALLOW_AUTODIFF_MONITOR))
 C       Include call to a dummy routine. Its adjoint will be 
 C       called at the proper place in the adjoint code.
 C       The adjoint routine will print out adjoint values 
@@ -410,110 +428,147 @@ cph(
 cph)
 
 C--     Step forward fields and calculate time tendency terms.
-        CALL TIMER_START('THERMODYNAMICS      [THE_MAIN_LOOP]',mythid)
+        CALL TIMER_START('THERMODYNAMICS      [FORWARD_STEP]',mythid)
         CALL THERMODYNAMICS( myTime, myIter, myThid )
-        CALL TIMER_STOP ('THERMODYNAMICS      [THE_MAIN_LOOP]',mythid)
+        CALL TIMER_STOP ('THERMODYNAMICS      [FORWARD_STEP]',mythid)
 
-C--     Step forward fields and calculate time tendency terms.
-        IF ( momStepping ) THEN
-        CALL TIMER_START('DYNAMICS            [THE_MAIN_LOOP]',mythid)
+C--   do exchanges (needed for DYNAMICS) when using stagger time-step :
+        CALL TIMER_START('BLOCKING_EXCHANGES  [FORWARD_STEP]',myThid)
+        CALL DO_STAGGER_FIELDS_EXCHANGES( myTime, myIter, myThid )
+        CALL TIMER_STOP ('BLOCKING_EXCHANGES  [FORWARD_STEP]',myThid)
+
+#ifdef ALLOW_SHAP_FILT
+      IF (useSHAP_FILT .AND. 
+     &     staggerTimeStep .AND. shap_filt_TrStagg ) THEN
+        CALL TIMER_START('SHAP_FILT           [FORWARD_STEP]',myThid)
+        CALL SHAP_FILT_APPLY_TS( gT, gS, myTime, myIter, myThid )
+        CALL TIMER_STOP ('SHAP_FILT           [FORWARD_STEP]',myThid)
+      ENDIF
+#endif
+#ifdef ALLOW_ZONAL_FILT
+      IF (useZONAL_FILT .AND. 
+     &     staggerTimeStep .AND. zonal_filt_TrStagg ) THEN
+        CALL TIMER_START('ZONAL_FILT_APPLY    [FORWARD_STEP]',myThid)
+        CALL ZONAL_FILT_APPLY_TS( gT, gS, myThid )
+        CALL TIMER_STOP ('ZONAL_FILT_APPLY    [FORWARD_STEP]',myThid)
+      ENDIF
+#endif   
+
+C--   Step forward fields and calculate time tendency terms.
+      IF ( momStepping ) THEN
+        CALL TIMER_START('DYNAMICS            [FORWARD_STEP]',mythid)
         CALL DYNAMICS( myTime, myIter, myThid )
-        CALL TIMER_STOP ('DYNAMICS            [THE_MAIN_LOOP]',mythid)
-        ENDIF
+        CALL TIMER_STOP ('DYNAMICS            [FORWARD_STEP]',mythid)
+      ENDIF
 
-#ifndef ALLOW_AUTODIFF_TAMC
 #ifdef ALLOW_NONHYDROSTATIC
 C--   Step forward W field in N-H algorithm
-        IF ( nonHydrostatic ) THEN
-          CALL TIMER_START('CALC_GW          [THE_MAIN_LOOP]',myThid)
-          CALL CALC_GW(myThid)
-          CALL TIMER_STOP ('CALC_GW          [THE_MAIN_LOOP]',myThid)
-        ENDIF
+      IF ( momStepping .AND. nonHydrostatic ) THEN
+         CALL TIMER_START('CALC_GW          [FORWARD_STEP]',myThid)
+         CALL CALC_GW(myThid)
+         CALL TIMER_STOP ('CALC_GW          [FORWARD_STEP]',myThid)
+      ENDIF
 #endif
-#endif /* ALLOW_AUTODIFF_TAMC */
 
 #ifdef NONLIN_FRSURF
 C--   update hfacC,W,S and recip_hFac according to etaH(n+1) :
-      IF ( momStepping ) THEN
       IF ( nonlinFreeSurf.GT.0) THEN
+       IF ( select_rStar.GT.0 ) THEN
+        CALL TIMER_START('UPDATE_R_STAR      [FORWARD_STEP]',myThid)
+        CALL UPDATE_R_STAR( myTime, myIter, myThid )
+        CALL TIMER_STOP ('UPDATE_R_STAR      [FORWARD_STEP]',myThid)
+       ELSE
+        CALL TIMER_START('UPDATE_SURF_DR     [FORWARD_STEP]',myThid)
         CALL UPDATE_SURF_DR( myTime, myIter, myThid )
+        CALL TIMER_STOP ('UPDATE_SURF_DR     [FORWARD_STEP]',myThid)
+       ENDIF
       ENDIF
 C-    update also CG2D matrix (and preconditioner)
-      IF ( nonlinFreeSurf.GT.2) THEN
+      IF ( momStepping .AND. nonlinFreeSurf.GT.2 ) THEN
+        CALL TIMER_START('UPDATE_CG2D        [FORWARD_STEP]',myThid)
         CALL UPDATE_CG2D( myTime, myIter, myThid )
-      ENDIF
+        CALL TIMER_STOP ('UPDATE_CG2D        [FORWARD_STEP]',myThid)
       ENDIF
 #endif
 
-#ifndef ALLOW_AUTODIFF_TAMC
+C--   Apply Filters to u*,v* before SOLVE_FOR_PRESSURE
 #ifdef ALLOW_SHAP_FILT
-CC--   Step forward all tiles, filter and exchange.
-C      CALL TIMER_START('SHAP_FILT           [THE_MAIN_LOOP]',myThid)
-C      CALL SHAP_FILT_APPLY( 
-C     I                     gUnm1, gVnm1, gTnm1, gSnm1,
-C     I                     myTime, myIter, myThid )
-C      IF (implicDiv2Dflow.LT.1.) THEN
-CC--   Explicit+Implicit part of the Barotropic Flow Divergence
-CC      => Filtering of uVel,vVel is necessary
-C         CALL SHAP_FILT_UV( uVel, vVel, myTime, myThid )
-C      ENDIF
-C      CALL TIMER_STOP ('SHAP_FILT           [THE_MAIN_LOOP]',myThid)
+      IF (useSHAP_FILT .AND. shap_filt_uvStar) THEN
+        CALL TIMER_START('SHAP_FILT           [FORWARD_STEP]',myThid)
+        CALL SHAP_FILT_APPLY_UV( gUnm1,gVnm1, myTime,myIter,myThid )
+        IF (implicDiv2Dflow.LT.1.) THEN
+C--   Explicit+Implicit part of the Barotropic Flow Divergence
+C      => Filtering of uVel,vVel is necessary
+          CALL SHAP_FILT_APPLY_UV( uVel,vVel, myTime,myIter,myThid )
+        ENDIF
+        CALL TIMER_STOP ('SHAP_FILT           [FORWARD_STEP]',myThid)
+      ENDIF
 #endif
 #ifdef ALLOW_ZONAL_FILT
-C      IF (zonal_filt_lat.LT.90.) THEN 
-C        CALL TIMER_START('ZONAL_FILT_APPLY    [THE_MAIN_LOOP]',myThid)
-C        CALL ZONAL_FILT_APPLY(
-C     U           gUnm1, gVnm1, gTnm1, gSnm1,
-C     I           myThid )
-C        CALL TIMER_STOP ('ZONAL_FILT_APPLY    [THE_MAIN_LOOP]',myThid)
-C      ENDIF
-#endif
-#endif /* ALLOW_AUTODIFF_TAMC */
+      IF (useZONAL_FILT .AND. zonal_filt_uvStar) THEN
+        CALL TIMER_START('ZONAL_FILT_APPLY    [FORWARD_STEP]',myThid)
+        CALL ZONAL_FILT_APPLY_UV( gUnm1, gVnm1, myThid )
+        IF (implicDiv2Dflow.LT.1.) THEN
+C--   Explicit+Implicit part of the Barotropic Flow Divergence
+C      => Filtering of uVel,vVel is necessary
+          CALL ZONAL_FILT_APPLY_UV( uVel, vVel, myThid )
+        ENDIF
+        CALL TIMER_STOP ('ZONAL_FILT_APPLY    [FORWARD_STEP]',myThid)
+      ENDIF
+#endif  
 
 C--   Solve elliptic equation(s).
 C     Two-dimensional only for conventional hydrostatic or 
 C     three-dimensional for non-hydrostatic and/or IGW scheme.
-      CALL TIMER_START('SOLVE_FOR_PRESSURE  [THE_MAIN_LOOP]',myThid)
-      CALL SOLVE_FOR_PRESSURE( myThid )
-      CALL TIMER_STOP ('SOLVE_FOR_PRESSURE  [THE_MAIN_LOOP]',myThid)
+      IF ( momStepping ) THEN
+      CALL TIMER_START('SOLVE_FOR_PRESSURE  [FORWARD_STEP]',myThid)
+      CALL SOLVE_FOR_PRESSURE(myTime, myIter, myThid)
+      CALL TIMER_STOP ('SOLVE_FOR_PRESSURE  [FORWARD_STEP]',myThid)
+      ENDIF
 
+#ifdef ALLOW_AUTODIFF_TAMC
+cph This is needed because convective_adjustment calls
+cph find_rho which may use pressure()
+CADJ STORE totphihyd  = comlev1, key = ikey_dynamics
+#endif
 C--   Correct divergence in flow field and cycle time-stepping
 C     arrays (for all fields) ; update time-counter
-      myiter = niter0 + iloop
-      mytime = starttime + float(iloop)*deltaTClock
-      CALL TIMER_START('THE_CORRECTION_STEP [THE_MAIN_LOOP]',myThid)
+      myIter = nIter0 + iLoop
+      myTime = startTime + deltaTClock * float(iLoop)
+      CALL TIMER_START('THE_CORRECTION_STEP [FORWARD_STEP]',myThid)
       CALL THE_CORRECTION_STEP(myTime, myIter, myThid)
-      CALL TIMER_STOP ('THE_CORRECTION_STEP [THE_MAIN_LOOP]',myThid)
+      CALL TIMER_STOP ('THE_CORRECTION_STEP [FORWARD_STEP]',myThid)
 
 C--   Do "blocking" sends and receives for tendency "overlap" terms
-c     CALL TIMER_START('BLOCKING_EXCHANGES  [THE_MAIN_LOOP]',myThid)
+c     CALL TIMER_START('BLOCKING_EXCHANGES  [FORWARD_STEP]',myThid)
 c     CALL DO_GTERM_BLOCKING_EXCHANGES( myThid )
-c     CALL TIMER_STOP ('BLOCKING_EXCHANGES  [THE_MAIN_LOOP]',myThid)
+c     CALL TIMER_STOP ('BLOCKING_EXCHANGES  [FORWARD_STEP]',myThid)
 
 C--   Do "blocking" sends and receives for field "overlap" terms
-      CALL TIMER_START('BLOCKING_EXCHANGES  [THE_MAIN_LOOP]',myThid)
+      CALL TIMER_START('BLOCKING_EXCHANGES  [FORWARD_STEP]',myThid)
       CALL DO_FIELDS_BLOCKING_EXCHANGES( myThid )
-      CALL TIMER_STOP ('BLOCKING_EXCHANGES  [THE_MAIN_LOOP]',myThid)
+      CALL TIMER_STOP ('BLOCKING_EXCHANGES  [FORWARD_STEP]',myThid)
 
 #ifdef ALLOW_FLT
 C--   Calculate float trajectories
       IF (useFLT) THEN
-        CALL TIMER_START('FLOATS            [THE_MAIN_LOOP]',myThid)
+        CALL TIMER_START('FLOATS            [FORWARD_STEP]',myThid)
         CALL FLT_MAIN(myIter,myTime, myThid)
-        CALL TIMER_STOP ('FLOATS            [THE_MAIN_LOOP]',myThid)
+        CALL TIMER_STOP ('FLOATS            [FORWARD_STEP]',myThid)
       ENDIF
 #endif
 
 #ifndef EXCLUDE_MONITOR
 C--   Check status of solution (statistics, cfl, etc...)
+      CALL TIMER_START('MONITOR             [FORWARD_STEP]',myThid)
       CALL MONITOR( myIter, myTime, myThid )
+      CALL TIMER_STOP ('MONITOR             [FORWARD_STEP]',myThid)
 #endif /* EXCLUDE_MONITOR */
 
-#ifndef ALLOW_AUTODIFF_TAMC
 C--   Do IO if needed.
-      CALL TIMER_START('DO_THE_MODEL_IO     [THE_MAIN_LOOP]',myThid)
+      CALL TIMER_START('DO_THE_MODEL_IO     [FORWARD_STEP]',myThid)
       CALL DO_THE_MODEL_IO( myTime, myIter, myThid )
-      CALL TIMER_STOP ('DO_THE_MODEL_IO     [THE_MAIN_LOOP]',myThid)
+      CALL TIMER_STOP ('DO_THE_MODEL_IO     [FORWARD_STEP]',myThid)
 
 C--   Save state for restarts
 C     Note:    (jmc: is it still the case after ckp35 ?)
@@ -528,18 +583,15 @@ C     Thus a checkpoint contains U.0000000000, GU.0000000001 and
 C     etaN.0000000001 in the indexing scheme used for the model 
 C     "state" files. This example is referred to as a checkpoint 
 C     at time level 1 
-      CALL TIMER_START('WRITE_CHECKPOINT    [THE_MAIN_LOOP]',myThid)
+      CALL TIMER_START('WRITE_CHECKPOINT    [FORWARD_STEP]',myThid)
       CALL WRITE_CHECKPOINT(
      &        .FALSE., myTime, myIter, myThid )
-      CALL TIMER_STOP ('WRITE_CHECKPOINT    [THE_MAIN_LOOP]',myThid)
+      CALL TIMER_STOP ('WRITE_CHECKPOINT    [FORWARD_STEP]',myThid)
 
-#endif /* ALLOW_AUTODIFF_TAMC */
-
-              myiter = niter0 + iloop
-              mytime = starttime + float(iloop)*deltaTClock
-
-c             Calculate current date.
-              call cal_TimeStamp( myiter, mytime, mydate, mythid )
+ctest      myiter = niter0 + iloop
+ctest      mytime = starttime + float(iloop)*deltaTClock
+c     Calculate current date.
+ctest      call cal_TimeStamp( myiter, mytime, mydate, mythid )
 
 #ifdef ALLOW_AUTODIFF_TAMC
 #ifdef ALLOW_TAMC_CHECKPOINTING
@@ -564,14 +616,14 @@ c             Calculate current date.
 
 #ifdef ALLOW_COST
 
-#ifdef ALLOW_TAMC_CHECKPOINTING
+#ifdef ALLOW_DIVIDED_ADJOINT
 CADJ STORE mytime = onetape
 #endif
 c--   Accumulate time averages of temperature, salinity, and SSH.
       call timer_start('cost_AveragesFields [ECCO SPIN-DOWN]', mythid)
       call cost_AveragesFields( mytime, mythid )
       call timer_stop ('cost_AveragesFields [ECCO SPIN-DOWN]', mythid)
-#ifdef ALLOW_TAMC_CHECKPOINTING
+#ifdef ALLOW_DIVIDED_ADJOINT
 c**************************************
 #include "checkpoint_bar_directives.h"
 c**************************************
