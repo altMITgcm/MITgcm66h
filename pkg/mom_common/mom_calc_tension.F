@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "MOM_COMMON_OPTIONS.h"
 
 CBOP
 C !ROUTINE: MOM_CALC_TENSION

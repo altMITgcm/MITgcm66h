@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "MOM_COMMON_OPTIONS.h"
 
       SUBROUTINE MOM_HDISSIP(
      I        bi,bj,k,
