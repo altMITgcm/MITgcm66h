@@ -3,6 +3,21 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+ecco-branch-mod4
+o this is the second part of changes necessary to reconcile
+  the natl_box_adjoint verification (with and without grdchk).
+  >>>!!! CHANGES BETWEEN THE TAGS ecco-branch-mod3 !!!<<<
+  >>>!!!                      AND ecco-branch-mod4 !!!<<<
+  >>>!!! SHOULD BE MERGED INTO THE MAIN TRUNK      !!!<<<
+  - genmake: removed $S64 overwrite for case SunOS
+  - pkg/exf: update and corrections for field swapping and obcs
+  - pkg/ecco: parameter lists for the_model_main, the_main_loop
+              harmonized between ECCO and MITgcm
+  - pkg/autodiff: added flow directives for obcs, mdsio_gl_slice
+                  updated checkpointing_lev... lists for obcs
+  - model/src: minor changes in forward_step, plot_field
+  - pkg/mdsio: added mdsio_gl_slice
+
 ecco-branch-mod3
 o this is the first part of changes necessary to reconcile
   natl_box_adjoint verification (with and without grdchk).
