@@ -123,7 +123,7 @@ C      F <-  [1-d_xx^n]F
            DO I=1,sNx
             tmpScal=tmpFldV(i,j,k,bi,bj)
             tmpFldV(i,j,k,bi,bj)=vFld(i,j,k,bi,bj)
-     &                *_maskW(i,j,k,bi,bj)
+     &                *_maskS(i,j,k,bi,bj)
             vFld(i,j,k,bi,bj)=vFld(i,j,k,bi,bj)-0.5*tmpScal
            ENDDO
           ENDDO
