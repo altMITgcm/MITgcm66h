@@ -6,6 +6,8 @@ $Header$
 Branch release1_coupled contains code for coupling
 to UCLA atmospheric model:
 
+fixed gather/scatter inital MPI dialogue in ini_procs.F
+
 updated useSingleCpuIO option in mdsio_writefield.F
 to work with multi-field files, e.g., the pickup files
 
