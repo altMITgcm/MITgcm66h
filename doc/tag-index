@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o first attempt to solve vertical advection (momemtum & T,S) Implicitly
+  for now, only implemented with Lax-Wendroff (tracer) and VectInv (mom)
 checkpoint52e_pre
 
 o fix bug in impldiff when Nr=1 or Nr=2.
