@@ -61,7 +61,7 @@ C     !LOCAL VARIABLES:
             theMin=min(theMin,tmpVal)
             theMax=max(theMax,tmpVal)
             theMeanTile=theMeanTile+tmpVal
-            theVarTile=theVarTile+tmpVal**2
+            theVarTile=theVarTile+tmpVal*tmpVal
             numPnts=numPnts+1
            ENDIF
           ENDDO
@@ -76,10 +76,10 @@ C     !LOCAL VARIABLES:
       _GLOBAL_SUM_R8(theVar,myThid)
       tmpVal=FLOAT(numPnts)
       _GLOBAL_SUM_R8(tmpVal,myThid)
-      numPnts=INT(tmpVal+0.5)
+      numPnts=NINT(tmpVal)
 
       IF (tmpVal.GT.0.) THEN
-       rNumPnts=1./tmpVal
+       rNumPnts=1. _d 0/tmpVal
        theMean=theMean*rNumPnts
        theVar=theVar*rNumPnts
        IF ( noPnts ) theMin = theMean

@@ -79,7 +79,7 @@ C     !LOCAL VARIABLES:
      &                                 *arrMask(I,J,K,bi,bj)
             theVolTile = theVolTile   + tmpVol
             theMeanTile = theMeanTile + tmpVol*tmpVal
-            theVarTile = theVarTile   + tmpVol*tmpVal**2
+            theVarTile = theVarTile   + tmpVol*tmpVal*tmpVal
            ENDIF
           ENDDO
          ENDDO
@@ -100,7 +100,7 @@ C     !LOCAL VARIABLES:
       numPnts=NINT(tmpVal)
 
       IF (tmpVal.GT.0.) THEN
-       rNumPnts=1./tmpVal
+       rNumPnts=1. _d 0/tmpVal
        theDel2=theDel2*rNumPnts
       ENDIF
 
