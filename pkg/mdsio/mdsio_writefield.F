@@ -311,7 +311,7 @@ C End of k loop
        enddo
        else ! not global file
 
-#else /* .not. USE_W2 */
+#endif /* USE_W2 */
 C Loop over all tiles
       do bj=1,nSy
        do bi=1,nSx
@@ -420,7 +420,7 @@ C Create meta-file for each tile if we are tiling
 C End of bi,bj loops
        enddo
       enddo
-#endif /* USE_W2 */
+c#endif /* USE_W2 */
 
 #ifdef USE_W2
       endif ! global fle

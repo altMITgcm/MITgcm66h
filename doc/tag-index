@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o modfied mdsio_writefield.F to handle non-global files under exch2
 o update AIM Cubed-Sphere exp (aim.5l_cs):
   use land, p*, and Franco.M forcing fields with fractional land-sea mask.
 o update AIM Equatorial Channel exp:
