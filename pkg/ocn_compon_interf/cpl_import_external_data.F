@@ -5,7 +5,7 @@ C $Name$
 
 CStartOfInterface
       SUBROUTINE CPL_IMPORT_EXTERNAL_DATA(
-     I           myCurrentIter, myCurrentTime, myThid )
+     I           myIter, myTime, myThid )
 C     /==========================================================\
 C     | SUBROUTINE CPL_IMPORT_EXTERNAL_DATA                      |
 C     | o Routine for controlling import of coupling data from   |
@@ -21,35 +21,28 @@ C     \==========================================================/
 #include "PARAMS.h"
 
 C     == Routine arguments ==
-C     myCurrentIter - Current timestep number.
-C     myCurrentTime - Current internal time.
-C     myThid        - Thread number for this instance 
-C                     of the routine.
-      INTEGER myCurrentIter
-      _RL     myCurrentTime
+C     myIter - Current timestep number.
+C     myTime - Current internal time.
+C     myThid - Thread number for this instance of the routine.
+      INTEGER myIter
+      _RL     myTime
       INTEGER myThid
 CEndOfInterface
 
 C     == Local variables ==
       INTEGER bi,bj
 
-C     Fetch data from coupling layer. Note MIT Coupler checkpoint1
+C-    Fetch data from coupling layer. Note MIT Coupler checkpoint1
 C     does not allow asynchronous extraction of data, so ordering 
 C     has to be consistent with ordering coupling layer.
-      CALL OCN_IMPORT_TAUX (         myThid )
-      CALL OCN_IMPORT_TAUY (         myThid )
-      CALL OCN_IMPORT_HEATFLUX (     myThid )
-      CALL OCN_IMPORT_FWFLUX (       myThid )
-      CALL OCN_IMPORT_UVELGROUND (   myThid )
-      CALL OCN_IMPORT_VVELGROUND (   myThid )
-      CALL OCN_IMPORT_QLATENT (      myThid )
-      CALL OCN_IMPORT_QSENSIBLE (    myThid )
-      CALL OCN_IMPORT_QLONGWAVE (    myThid )
-      CALL OCN_IMPORT_QSHORTWAVE (   myThid )
+      CALL OCN_IMPORT_FIELDS ( myThid )
+
+C-    Modify forcing according to Imported fields from coupler
+c     CALL OCN_APPLY_IMPORT( myTime, myIter, myThid )
 
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
-        CALL CPL_CALC_DIAGS( bi, bj, myCurrentTime, myThid )
+        CALL OCN_CPL_DIAGS( bi, bj, myTime, myThid )
        ENDDO
       ENDDO
 
