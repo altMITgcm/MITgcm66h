@@ -12,6 +12,7 @@ c
 c     o count sliced (xz) wet points and set xz masks
 c     
 c     heimbach@mit.edu, 30-Aug-2001
+c     gebbie@mit.edu, corrected array bounds
 c
 c     ==================================================================
 
@@ -57,6 +58,8 @@ c     == local variables ==
       _RL     diffsecs
       _RL     dummy
       _RL     maskxz   (1-olx:snx+olx,nr,nsx,nsy,nobcs)
+      _RL     gg       (1-olx:snx+olx,nr,nsx,nsy)
+
       character*( 80)   fname
 
 c     == external ==
@@ -70,16 +73,15 @@ c     == end of interface ==
       jthi = mybyhi(mythid)
       itlo = mybxlo(mythid)
       ithi = mybxhi(mythid)
-      jmin = 1-oly
-      jmax = sny+oly
-      imin = 1-olx
-      imax = snx+olx
+      jmin = 1
+      jmax = sny
+      imin = 1
+      imax = snx
 
       _BEGIN_MASTER( myThid )
 
 c--   Count wet points at Northern boundary.
 c--   mask conventions are adopted from obcs_apply_ts, obcs_apply_uv
-
       do bj = jtlo,jthi
         do bi = itlo,ithi
           do k = 1,nr
@@ -126,12 +128,24 @@ c--               South mask for V
       write(fname(1:80),'(a)') ymaskobcs
 
       do iobcs = 1,nobcs
-         call active_write_xz(  fname, 
-     &        maskxz(1,1,1,1,iobcs),   iobcs, 0, mythid, dummy)
+        do bj = jtlo,jthi
+          do bi = itlo,ithi
+            do k = 1,nr
+              do i = imin,imax
+                 gg(i,k,bi,bj) = maskxz(i,k,bi,bj,iobcs)
+              enddo
+            enddo
+          enddo
+        enddo
+        call active_write_xz( fname, gg, iobcs, 0, mythid, dummy )
+
       enddo
 
       _END_MASTER( mythid )
 
       return
       end
+
+
+
 

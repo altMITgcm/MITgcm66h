@@ -146,7 +146,7 @@ c--   Only the master thread will do I/O.
          read(cunit) filencvarindex(ivartype)
          if (filencvarindex(ivartype) .NE. ncvarindex(ivartype))
      &        then
-            print *, 'WARNING: wrong ncvarindex ',
+            print *, 'ctrl_set_unpack_xy:WARNING: wrong ncvarindex ',
      &           filencvarindex(ivartype), ncvarindex(ivartype)
             STOP 'in S/R ctrl_unpack'
          endif

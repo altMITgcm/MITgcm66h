@@ -12,6 +12,7 @@ c
 c     o count sliced (yz) wet points and set yz masks
 c     
 c     heimbach@mit.edu, 30-Aug-2001
+c     gebbie@mit.edu, corrected array bounds
 c
 c     ==================================================================
 
@@ -57,6 +58,8 @@ c     == local variables ==
       _RL     diffsecs
       _RL     dummy
       _RL     maskyz   (1-oly:sny+oly,nr,nsx,nsy,nobcs)
+      _RL     gg       (1-oly:sny+oly,nr,nsx,nsy)
+
       character*( 80)   fname
 
 c     == external ==
@@ -70,10 +73,10 @@ c     == end of interface ==
       jthi = mybyhi(mythid)
       itlo = mybxlo(mythid)
       ithi = mybxhi(mythid)
-      jmin = 1-oly
-      jmax = sny+oly
-      imin = 1-olx
-      imax = snx+olx
+      jmin = 1
+      jmax = sny
+      imin = 1
+      imax = snx
 
       _BEGIN_MASTER( myThid )
 
@@ -126,8 +129,16 @@ c--               South mask for V
       write(fname(1:80),'(a)') ymaskobcs
 
       do iobcs = 1,nobcs
-         call active_write_yz(  fname, 
-     &        maskyz(1,1,1,1,iobcs),   iobcs, 0, mythid, dummy)
+        do bj = jtlo,jthi
+          do bi = itlo,ithi
+            do k = 1,nr
+              do j = jmin,jmax
+                 gg(j,k,bi,bj) = maskyz(j,k,bi,bj,iobcs)
+              enddo
+            enddo
+          enddo
+        enddo
+        call active_write_yz( fname, gg, iobcs, 0, mythid, dummy)
       enddo
 
       _END_MASTER( mythid )

@@ -69,9 +69,9 @@ c--   Only the master thread will do I/O.
       write(adfname(1:80),'(80a)') ' '
 
       write(fname(1:80),'(2a,i10.10)')
-     &     xx_fname(1:il),'.',optimcycle
+     &     xx_fname(1:il) ,'.', optimcycle
       write(adfname(1:80),'(3a,i10.10)')
-     &     yadmark,xx_fname(1:il),'.',optimcycle
+     &     yadprefix, xx_fname(1:il), '.', optimcycle
 
       _END_MASTER( mythid )
 

@@ -96,6 +96,8 @@ c--   Temperature field.
               do i = imin,imax
                 theta(i,j,k,bi,bj) = theta(i,j,k,bi,bj) +
      &                               fac*tmpfld3d(i,j,k,bi,bj)
+                if(theta(i,j,k,bi,bj).lt.-2.0) 
+     &               theta(i,j,k,bi,bj)= -2.0  
 cph                gtNm1(i,j,k,bi,bj) = gtNm1(i,j,k,bi,bj) +
 cph     &                               fac*tmpfld3d(i,j,k,bi,bj)
               enddo

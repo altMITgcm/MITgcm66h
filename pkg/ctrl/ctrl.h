@@ -26,6 +26,9 @@ c                       south (s), and western (w) mask, resp. .
       integer     ctrlprec
       parameter ( ctrlprec = 64 )
 
+      character*2 yadprefix
+      parameter ( yadprefix = 'ad')
+
       common /controlvars_i/
      &                       nvartype,
      &                       nvarlength,

@@ -61,6 +61,10 @@ c     == local variables ==
       integer imin,imax
 
       integer cbuffindex
+cgg(
+      integer igg
+      _RL     gg
+cgg)
 
       _RL     cbuff      ( snx*nsx*npx*nsy*npy )
       _RL     globmskxz  ( snx,nsx,npx,nsy,npy,nr )
@@ -106,14 +110,18 @@ c--   Only the master thread will do I/O.
       _BEGIN_MASTER( mythid )
 
       do irec = 1, ncvarrecs(ivartype)
-       do iobcs = 1, nobcs
+cgg       do iobcs = 1, nobcs
+cgg    Need to solve for what iobcs would have been.
+          gg   = (irec-1)/nobcs
+          igg  = int(gg)
+          iobcs = irec - igg*nobcs
 
          call MDSREADFIELD_XZ_GL( 
      &        masktype, ctrlprec, 'RL',
      &        Nr, globmskxz, iobcs, mythid)
 
          call MDSREADFIELD_XZ_GL( fname, ctrlprec, 'RL',
-     &        nr, globfldxz, (irec-1)*nobcs+iobcs, mythid)
+     &        nr, globfldxz, irec, mythid)
 
          write(cunit) ncvarindex(ivartype)
          write(cunit) 1
@@ -155,7 +163,7 @@ c           --> check cbuffindex.
          enddo
 c
 c     -- end of iobcs loop --
-       enddo
+cgg       enddo
 c     -- end of irec loop --
       enddo
 
@@ -163,4 +171,8 @@ c     -- end of irec loop --
 
       return
       end
+
+
+
+
 

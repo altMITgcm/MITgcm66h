@@ -67,6 +67,7 @@ c     == local variables ==
       integer irec
       integer ig,jg
       integer ivartype
+      integer iobcs
 
       logical doglobalread
       logical ladinit
@@ -244,6 +245,18 @@ c--       Header information.
           write(cunit) (ncvarnrmax(i), i=1,maxcvars)
           write(cunit) (ncvargrd(i),   i=1,maxcvars)
           write(cunit)
+#ifdef ALLOW_OBCSN_CONTROL
+          write(cunit) ((nWetobcsn(1,1,k,iobcs), k=1,nr),iobcs= 1,nobcs)
+#endif
+#ifdef ALLOW_OBCSS_CONTROL
+          write(cunit) ((nWetobcss(1,1,k,iobcs), k=1,nr),iobcs= 1,nobcs)
+#endif
+#ifdef ALLOW_OBCSW_CONTROL
+          write(cunit) ((nWetobcsw(1,1,k,iobcs), k=1,nr),iobcs= 1,nobcs)
+#endif
+#ifdef ALLOW_OBCSE_CONTROL
+          write(cunit) ((nWetobcse(1,1,k,iobcs), k=1,nr),iobcs= 1,nobcs)
+#endif
 
 #ifdef ALLOW_THETA0_CONTROL
           ivartype = 1

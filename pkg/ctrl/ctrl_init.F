@@ -85,12 +85,11 @@ c     == local variables ==
       _RL     diffsecs
       _RL     dummy
 
+      character*(80)   ymaskobcs
       character*(max_len_prec) record
       character*(max_len_mbuf) msgbuf
 
-cph(
       integer nwetc3d
-cph)
 
 c     == external ==
 
@@ -554,9 +553,9 @@ c--   Northern obc.
      &                 xx_obcsnperiod) + 2
         ivarindex                = 11
         ncvarindex(ivarindex)    = 111
-        ncvarrecs(ivarindex)     = endrec - startrec + 1
-        ncvarrecstart(ivarindex) = startrec
-        ncvarrecsend(ivarindex)  = endrec
+        ncvarrecs(ivarindex)     = (endrec - startrec + 1)*nobcs
+        ncvarrecstart(ivarindex) = (startrec - 1)*nobcs + 1
+        ncvarrecsend(ivarindex)  = endrec*nobcs
         ncvarxmax(ivarindex)     = snx
         ncvarymax(ivarindex)     =   1
         ncvarnrmax(ivarindex)    =  nr
@@ -578,9 +577,9 @@ c--   Southern obc.
      &                 xx_obcssperiod) + 2
         ivarindex                = 12
         ncvarindex(ivarindex)    = 112
-        ncvarrecs(ivarindex)     = endrec - startrec + 1
-        ncvarrecstart(ivarindex) = startrec
-        ncvarrecsend(ivarindex)  = endrec
+        ncvarrecs(ivarindex)     = (endrec - startrec + 1)*nobcs
+        ncvarrecstart(ivarindex) = (startrec - 1)*nobcs + 1
+        ncvarrecsend(ivarindex)  = endrec*nobcs
         ncvarxmax(ivarindex)     = snx
         ncvarymax(ivarindex)     =   1
         ncvarnrmax(ivarindex)    =  nr
@@ -602,9 +601,9 @@ c--   Western obc.
      &                 xx_obcswperiod) + 2
         ivarindex                = 13
         ncvarindex(ivarindex)    = 113
-        ncvarrecs(ivarindex)     = endrec - startrec + 1
-        ncvarrecstart(ivarindex) = startrec
-        ncvarrecsend(ivarindex)  = endrec
+        ncvarrecs(ivarindex)     = (endrec - startrec + 1)*nobcs
+        ncvarrecstart(ivarindex) = (startrec - 1)*nobcs + 1
+        ncvarrecsend(ivarindex)  = endrec*nobcs
         ncvarxmax(ivarindex)     =   1
         ncvarymax(ivarindex)     = sny
         ncvarnrmax(ivarindex)    =  nr
@@ -626,9 +625,9 @@ c--   Eastern obc.
      &                 xx_obcseperiod) + 2
         ivarindex                = 14
         ncvarindex(ivarindex)    = 114
-        ncvarrecs(ivarindex)     = endrec - startrec + 1
-        ncvarrecstart(ivarindex) = startrec
-        ncvarrecsend(ivarindex)  = endrec
+        ncvarrecs(ivarindex)     = (endrec - startrec + 1)*nobcs
+        ncvarrecstart(ivarindex) = (startrec - 1)*nobcs + 1
+        ncvarrecsend(ivarindex)  = endrec*nobcs
         ncvarxmax(ivarindex)     =   1
         ncvarymax(ivarindex)     = sny
         ncvarnrmax(ivarindex)    =  nr
@@ -657,6 +656,7 @@ c--   Initialise the counters.
         enddo
       enddo
 
+#ifdef ALLOW_OBCS_CONTROL
 c--   Initialise obcs counters.
       do bj = jtlo,jthi
         do bi = itlo,ithi
@@ -678,6 +678,7 @@ c--   Initialise obcs counters.
           enddo
         enddo
       enddo
+#endif
 
 c--   Count wet points on each tile.
       do bj = jtlo,jthi
@@ -706,32 +707,36 @@ c--             West mask.
 #ifdef ALLOW_OBCSN_CONTROL
 c--   Count wet points at Northern boundary.
 c--   mask conventions are adopted from obcs_apply_ts, obcs_apply_uv
+      ymaskobcs = 'maskobcsn'
       call ctrl_mask_set_xz(
-     &                       0, OB_Jn, nwetobcsn, 'maskobcsn', mythid
+     &                       0, OB_Jn, nwetobcsn, ymaskobcs, mythid
      &                     )
 #endif
 
 #ifdef ALLOW_OBCSS_CONTROL
 c--   Count wet points at Northern boundary.
 c--   mask conventions are adopted from obcs_apply_ts, obcs_apply_uv
+      ymaskobcs = 'maskobcss'
       call ctrl_mask_set_xz(
-     &                       1, OB_Js, nwetobcss, 'maskobcss', mythid
+     &                       1, OB_Js, nwetobcss, ymaskobcs, mythid
      &                     )
 #endif
 
 #ifdef ALLOW_OBCSW_CONTROL
 c--   Count wet points at Northern boundary.
 c--   mask conventions are adopted from obcs_apply_ts, obcs_apply_uv
+      ymaskobcs = 'maskobcsw'
       call ctrl_mask_set_yz(
-     &                       1, OB_Iw, nwetobcsw, 'maskobcsw', mythid
+     &                       1, OB_Iw, nwetobcsw, ymaskobcs, mythid
      &                     )
 #endif
 
 #ifdef ALLOW_OBCSE_CONTROL
 c--   Count wet points at Northern boundary.
 c--   mask conventions are adopted from obcs_apply_ts, obcs_apply_uv
+      ymaskobcs = 'maskobcse'
       call ctrl_mask_set_yz(
-     &                       0, OB_Ie, nwetobcse, 'maskobcse', mythid
+     &                       0, OB_Ie, nwetobcse, ymaskobcs, mythid
      &                     )
 #endif
 
@@ -756,29 +761,35 @@ c
                         nvarlength = nvarlength + 
      &                       ncvarrecs(i)*nwetwtile(bi,bj,k)
                      else if ( ncvargrd(i) .eq. 'm' ) then
+#ifdef ALLOW_OBCS_CONTROL
                         do iobcs = 1, nobcs
                            if ( i .eq. 11 ) then
 #ifdef ALLOW_OBCSN_CONTROL
                               nvarlength = nvarlength + 
-     &                             ncvarrecs(i)*nwetobcsn(bi,bj,k,iobcs)
+     &                             (ncvarrecs(i)/nobcs)
+     &                             *nwetobcsn(bi,bj,k,iobcs)
 #endif
                            else if ( i .eq. 12 ) then
 #ifdef ALLOW_OBCSS_CONTROL
                               nvarlength = nvarlength + 
-     &                             ncvarrecs(i)*nwetobcss(bi,bj,k,iobcs)
+     &                             (ncvarrecs(i)/nobcs)
+     &                             *nwetobcss(bi,bj,k,iobcs)
 #endif
                            else if ( i .eq. 13 ) then
 #ifdef ALLOW_OBCSW_CONTROL
                               nvarlength = nvarlength + 
-     &                             ncvarrecs(i)*nwetobcsw(bi,bj,k,iobcs)
+     &                             (ncvarrecs(i)/nobcs)
+     &                             *nwetobcsw(bi,bj,k,iobcs)
 #endif
                            else if ( i .eq. 14 ) then
 #ifdef ALLOW_OBCSE_CONTROL
                               nvarlength = nvarlength + 
-     &                             ncvarrecs(i)*nwetobcse(bi,bj,k,iobcs)
+     &                             (ncvarrecs(i)/nobcs)
+     &                             *nwetobcse(bi,bj,k,iobcs)
 #endif
                            end if
                         enddo
+#endif
                      else
                         print*,'ctrl_init: invalid grid location'
                         print*,'     control variable = ',ncvarindex(i)
@@ -838,12 +849,14 @@ cph(
 #endif
 cph)
       
+      CALL GLOBAL_SUM_INT( nvarlength,  myThid )
+
+      print *, 'ph-wet 13: global nvarlength vor k=', k, nvarlength
+
 c
 c     Summation of wet point counters 
 c
       do k = 1, nr
-
-         CALL GLOBAL_SUM_INT( nvarlength,  myThid )
 
          ntmp=0
          do bj=1,nSy
@@ -854,6 +867,8 @@ c
          CALL GLOBAL_SUM_INT( ntmp,  myThid )
          nWetcTile(1,1,k)=ntmp
 
+         print *, 'ph-wet 14a: global nWet... vor k=', k, ntmp
+
          ntmp=0
          do bj=1,nSy
             do bi=1,nSx
@@ -863,6 +878,8 @@ c
          CALL GLOBAL_SUM_INT( ntmp,  myThid )
          nWetsTile(1,1,k)=ntmp
 
+         print *, 'ph-wet 14b: global nWet... vor k=', k, ntmp
+
          ntmp=0
          do bj=1,nSy
             do bi=1,nSx
@@ -871,6 +888,8 @@ c
          enddo
          CALL GLOBAL_SUM_INT( ntmp,  myThid )
          nWetwTile(1,1,k)=ntmp
+
+         print *, 'ph-wet 14c: global nWet... vor k=', k, ntmp
 
 #ifdef ALLOW_OBCSN_CONTROL
          do iobcs = 1, nobcs
@@ -927,14 +946,6 @@ c
       print*, 'ctrl_init: control vector length:    ', nvarlength
       _END_MASTER( mythid )
 
-c--   Unpack the control vector.
-      _BARRIER
-      _BEGIN_MASTER( mythid )
-      if (myProcId .eq. 0) then
-      call ctrl_unpack( modeliter0, modelstart, mythid )
-      endif
-      _END_MASTER( mythid )
-      _BARRIER
 c--   Summarize the control vector's setup.
       _BEGIN_MASTER( mythid )
         call ctrl_Summary( mythid )

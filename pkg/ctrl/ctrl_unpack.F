@@ -100,8 +100,22 @@ c     == local variables ==
       integer        filencvarxmax(maxcvars)
       integer        filencvarymax(maxcvars)
       integer        filencvarnrmax(maxcvars)
+cgg(  Add OBCS mask names.
+#ifdef ALLOW_OBCSN_CONTROL
+      integer        filenWetobcsn(nr,nobcs)
+#endif
+#ifdef ALLOW_OBCSS_CONTROL
+      integer        filenWetobcss(nr,nobcs)
+#endif
+#ifdef ALLOW_OBCSW_CONTROL
+      integer        filenWetobcsw(nr,nobcs)
+#endif
+#ifdef ALLOW_OBCSE_CONTROL
+      integer        filenWetobcse(nr,nobcs)
+#endif
+      integer iobcs
+cgg)
       character*( 1) filencvargrd(maxcvars)
-
       character*( 80)   fname_theta
       character*( 80) adfname_theta
       character*( 80)   fname_salt
@@ -130,6 +144,11 @@ c     == local variables ==
       character*( 80) adfname_obcsw
       character*( 80)   fname_obcse
       character*( 80) adfname_obcse
+
+cgg(  Initialization of ecco_ctrl requires two new local var.
+      _RL     tmpvar
+      logical lxxadxx
+cgg)
 
 c     == external ==
 
@@ -298,6 +317,21 @@ c--       Header information.
           read(cunit) (filenWetcTile(k),   k=1,nr)
           read(cunit) (filenWetsTile(k),   k=1,nr)
           read(cunit) (filenWetwTile(k),   k=1,nr)
+
+cgg(     Add OBCS mask information to the header.
+#ifdef ALLOW_OBCSN_CONTROL
+          read(cunit) ((filenWetobcsn(k,iobcs), k=1,nr), iobcs= 1,nobcs)
+#endif
+#ifdef ALLOW_OBCSS_CONTROL
+          read(cunit) ((filenWetobcss(k,iobcs), k=1,nr), iobcs= 1,nobcs)
+#endif
+#ifdef ALLOW_OBCSW_CONTROL
+          read(cunit) ((filenWetobcsw(k,iobcs), k=1,nr), iobcs= 1,nobcs)
+#endif
+#ifdef ALLOW_OBCSE_CONTROL
+          read(cunit) ((filenWetobcse(k,iobcs), k=1,nr), iobcs= 1,nobcs)
+#endif
+cgg)
           read(cunit) (filencvarindex(i), i=1,maxcvars)
           read(cunit) (filencvarrecs(i),  i=1,maxcvars)
           read(cunit) (filencvarxmax(i),  i=1,maxcvars)
@@ -325,6 +359,53 @@ c
                 STOP
              endif
           end do
+
+cgg(   Lets also check the OBCS mask info in the header.
+
+#ifdef ALLOW_OBCSN_CONTROL
+       do iobcs = 1, nobcs
+         do k = 1, nr
+           if ( filenWetobcsn(k,iobcs) .NE. nWetobcsn(1,1,k,iobcs)) then
+             print *, 'WARNING: OBCSN wrong nWet?Tile for k = ', k
+             STOP
+           endif
+         end do
+       end do
+#endif
+
+#ifdef ALLOW_OBCSS_CONTROL
+       do iobcs = 1, nobcs
+         do k = 1, nr
+           if ( filenWetobcss(k,iobcs) .NE. nWetobcss(1,1,k,iobcs)) then
+             print *, 'WARNING: OBCSS wrong nWet?Tile for k = ', k
+             STOP
+           endif
+         end do
+       end do
+#endif
+
+#ifdef ALLOW_OBCSW_CONTROL
+       do iobcs = 1, nobcs
+         do k = 1, nr
+           if ( filenWetobcsw(k,iobcs) .NE. nWetobcsw(1,1,k,iobcs)) then
+             print *, 'WARNING: OBCSW wrong nWet?Tile for k = ', k
+             STOP
+           endif
+         end do
+       end do
+#endif
+
+#ifdef ALLOW_OBCSE_CONTROL
+       do iobcs = 1, nobcs
+         do k = 1, nr
+           if ( filenWetobcse(k,iobcs) .NE. nWetobcse(1,1,k,iobcs)) then
+             print *, 'WARNING: OBCSE wrong nWet?Tile for k = ', k
+             STOP
+           endif
+         end do
+       end do
+#endif
+cgg)  End OBCS mask check.
 
 c----------------------------------------------------------------------
 
@@ -543,11 +624,182 @@ c--       Write zeroes to file.
      I          fname_obcse, ivartype, mythid )
 #endif
 
-        endif
+cgg( For optimcycle = 0, we need to output ecco_ctrl file to disk with the
+cgg  header information and everything else 0. 
+c     >>> Write control vector <<<
+          lxxadxx = .TRUE.
 
-        _END_MASTER( mythid )
+          call mdsfindunit( cunit, mythid )
+          write(cfile(1:128),'(4a,i4.4)')
+     &      ctrlname(1:9),'_',expId(1:10),'.opt',
+     &      optimcycle
+
+          open( cunit, file   = cfile,
+     &                 status = 'unknown',
+     &                 form   = 'unformatted',
+     &                 access = 'sequential'   )
+
+c--       Header information.
+          
+          write(cunit) nvartype
+          write(cunit) nvarlength
+          write(cunit) expId
+          write(cunit) optimCycle
+          write(cunit) tmpvar
+          write(cunit) 1
+          write(cunit) 1
+          write(cunit) 1
+          write(cunit) 1
+          write(cunit) (nWetcTile(1,1,k), k=1,nr)
+          write(cunit) (nWetsTile(1,1,k), k=1,nr)
+          write(cunit) (nWetwTile(1,1,k), k=1,nr)
+
+cgg(    Add OBCS Mask information into the header section for optimization.
+#ifdef ALLOW_OBCSN_CONTROL
+          write(cunit) ((nWetobcsn(1,1,k,iobcs), k=1,nr),iobcs= 1,nobcs)
+#endif
+#ifdef ALLOW_OBCSS_CONTROL
+          write(cunit) ((nWetobcss(1,1,k,iobcs), k=1,nr),iobcs= 1,nobcs)
+#endif
+#ifdef ALLOW_OBCSW_CONTROL
+          write(cunit) ((nWetobcsw(1,1,k,iobcs), k=1,nr),iobcs= 1,nobcs)
+#endif
+#ifdef ALLOW_OBCSE_CONTROL
+          write(cunit) ((nWetobcse(1,1,k,iobcs), k=1,nr),iobcs= 1,nobcs)
+#endif
+cgg)
+          write(cunit) (ncvarindex(i), i=1,maxcvars)
+          write(cunit) (ncvarrecs(i),  i=1,maxcvars)
+          write(cunit) (nx,  i=1,maxcvars)
+          write(cunit) (ny,  i=1,maxcvars)
+          write(cunit) (ncvarnrmax(i), i=1,maxcvars)
+          write(cunit) (ncvargrd(i),   i=1,maxcvars)
+          write(cunit)
+
+#ifdef ALLOW_THETA0_CONTROL
+          ivartype = 1
+          call ctrl_set_pack_xyz(
+     &         cunit, ivartype, fname_theta, "hFacC",
+     &         wtheta, lxxadxx, mythid)
+#endif
+
+#ifdef ALLOW_SALT0_CONTROL
+          ivartype = 2
+          call ctrl_set_pack_xyz(
+     &         cunit, ivartype, fname_salt, "hFacC",
+     &         wsalt, lxxadxx, mythid)
+#endif
+
+#ifdef ALLOW_HFLUX_CONTROL
+          ivartype = 3
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "whflux"
+          call ctrl_set_pack_xy(
+     &         cunit, ivartype, fname_hflux, "hFacC", weighttype,
+     &         lxxadxx, mythid)
+#endif
+
+#ifdef ALLOW_SFLUX_CONTROL
+          ivartype = 4
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wsflux"
+          call ctrl_set_pack_xy(
+     &         cunit, ivartype, fname_sflux, "hFacC", weighttype,
+     &         lxxadxx, mythid)
+#endif
+
+#ifdef ALLOW_USTRESS_CONTROL
+          ivartype = 5
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wtauu"
+          call ctrl_set_pack_xy(
+     &         cunit, ivartype, fname_tauu, "maskW", weighttype,
+     &         lxxadxx, mythid)
+#endif
+
+#ifdef ALLOW_VSTRESS_CONTROL
+          ivartype = 6
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wtauv"
+          call ctrl_set_pack_xy(
+     &         cunit, ivartype, fname_tauv, "maskS", weighttype,
+     &         lxxadxx, mythid)
+#endif
+
+#ifdef ALLOW_ATEMP_CONTROL
+          ivartype = 7
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "watemp"
+          call ctrl_set_pack_xy(
+     &         cunit, ivartype, fname_atemp, "hFacC", weighttype,
+     &         lxxadxx, mythid)
+#endif
+
+#ifdef ALLOW_AQH_CONTROL
+          ivartype = 8
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "waqh"
+          call ctrl_set_pack_xy(
+     &         cunit, ivartype, fname_aqh, "hFacC", weighttype,
+     &         lxxadxx, mythid)
+#endif
+
+#ifdef ALLOW_UWIND_CONTROL
+          ivartype = 9
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wuwind"
+          call ctrl_set_pack_xy(
+     &         cunit, ivartype, fname_uwind, "maskW", weighttype,
+     &         lxxadxx, mythid)
+#endif
+
+#ifdef ALLOW_VWIND_CONTROL
+          ivartype = 10
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wvwind"
+          call ctrl_set_pack_xy(
+     &         cunit, ivartype, fname_vwind, "maskS", weighttype,
+     &         lxxadxx, mythid)
+#endif
+
+#ifdef ALLOW_OBCSN_CONTROL
+          ivartype = 11
+          call ctrl_set_pack_xz(
+     &         cunit, ivartype, fname_obcsn, "maskobcsn",
+     &         wobcsn, lxxadxx, mythid)
+#endif
+
+#ifdef ALLOW_OBCSS_CONTROL
+          ivartype = 12
+          call ctrl_set_pack_xz(
+     &         cunit, ivartype, fname_obcsn, "maskobcss",
+     &         wobcss, lxxadxx, mythid)
+#endif
+
+#ifdef ALLOW_OBCSW_CONTROL
+          ivartype = 13
+          call ctrl_set_pack_yz(
+     &         cunit, ivartype, fname_obcsw, "maskobcsw",
+     &         wobcsw, lxxadxx, mythid)
+#endif
+
+#ifdef ALLOW_OBCSE_CONTROL
+          ivartype = 14
+          call ctrl_set_pack_yz(
+     &         cunit, ivartype, fname_obcse, "maskobcse",
+     &         wobcse, lxxadxx, mythid)
+#endif
+
+          close ( cunit )
+cgg)  End of the initialization of the ecco_ctrl file for optimcycle=0.
+
+        endif
+cgg   End of optimcycle if.
+ 
+      _END_MASTER( mythid )
 
       endif
+cgg   End of "first" if.
 
       return
       end

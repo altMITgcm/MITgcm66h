@@ -85,6 +85,10 @@ c     == local variables ==
       integer        filencvarymax(maxcvars)
       integer        filencvarnrmax(maxcvars)
       character*( 1) filencvargrd(maxcvars)
+cgg(
+      integer igg
+      _RL     gg
+cgg)
 
 c     == external ==
 
@@ -126,7 +130,13 @@ c--   Only the master thread will do I/O.
       _BEGIN_MASTER( mythid )
 
       do irec = 1, ncvarrecs(ivartype)
-       do iobcs = 1, nobcs
+cgg       do iobcs = 1, nobcs
+cgg      Iobcs has already been included in the calculation
+cgg      of ncvarrecs.
+cgg      And now back-calculate what iobcs should be.
+          gg   = (irec-1)/nobcs
+          igg  = int(gg)
+          iobcs = irec - igg*nobcs
 
          call MDSREADFIELD_XZ_GL( 
      &        masktype, ctrlprec, 'RL',
@@ -135,7 +145,7 @@ c--   Only the master thread will do I/O.
          read(cunit) filencvarindex(ivartype)
          if (filencvarindex(ivartype) .NE. ncvarindex(ivartype))
      &        then
-            print *, 'WARNING: wrong ncvarindex ',
+            print *, 'ctrl-set_unpack:xz:WARNING: wrong ncvarindex ',
      &           filencvarindex(ivartype), ncvarindex(ivartype)
             STOP 'in S/R ctrl_unpack'
          endif
@@ -184,11 +194,13 @@ c
          enddo
              
          call MDSWRITEFIELD_XZ_GL( fname, ctrlprec, 'RL',
-     &                             Nr, globfldxz, (irec-1)*nobcs+iobcs,
+     &                             Nr, globfldxz, irec,
      &                             optimcycle, mythid)
+cgg     &                             Nr, globfldxz, (irec-1)*nobcs+iobcs,
+cgg     &                             optimcycle, mythid)
 
-c     -- end of iobcs loop --
-       enddo
+c     -- end of iobcs loop -- This loop removed. 3-28-02.
+cgg       enddo
 c     -- end of irec loop --
       enddo
 
@@ -196,4 +208,8 @@ c     -- end of irec loop --
 
       return
       end
+
+
+
+
 
