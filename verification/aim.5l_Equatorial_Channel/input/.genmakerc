@@ -1,5 +1,11 @@
+# $Header$
+# $Name$
+
+# Force use of PGI f77
+if (`uname` == 'Linux') set platform=( Linux+pgi )
+
 # Disable packages that are not needed
-set DISABLE=( kpp gmredi obcs )
+set DISABLE=( $DISABLE kpp gmredi obcs )
 
 # Enable packages that are needed but are disabled by default
 set ENABLE=( aim )
