@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 #include "GCHEM_OPTIONS.h"
 
       COMMON /dic_load/
@@ -20,3 +23,7 @@
 	      _RS feinput1 (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 #endif
 
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***

@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 DIC_COST.h
          _RL totcost
 c control variables
@@ -11,3 +14,7 @@ cQQ      _RL ligand_tot
      &    totcost
 cQQ  &   ,alpha, rain_ratio, KScav, ligand_stab, ligand_tot
 
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***
