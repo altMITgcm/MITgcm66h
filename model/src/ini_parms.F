@@ -119,7 +119,7 @@ C--   Gridding parameters
       NAMELIST /PARM04/
      & usingCartesianGrid, dxSpacing, dySpacing, delX, delY, delZ,
      & usingSphericalPolarGrid, phiMin, thetaMin, rSphere,
-     & l, m, n, delP, delR, rkFac,
+     & delP, delR, rkFac,
      & delXfile, delYfile
 
 C--   Input files
@@ -127,7 +127,7 @@ C--   Input files
      & bathyFile, hydrogThetaFile, hydrogSaltFile, 
      & zonalWindFile, meridWindFile,
      & thetaClimFile, saltClimFile,
-     & surfQfile, EmPmRfile,
+     & surfQfile, EmPmRfile, surfQswfile, 
      & uVelInitFile, vVelInitFile, pSurfInitFile
 
 C--   Open Boundaries
