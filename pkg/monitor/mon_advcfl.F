@@ -16,6 +16,7 @@ C     \==========================================================/
 C     === Global data ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
+#include "MONITOR.h"
 
 C     === Routine arguments ===
       CHARACTER*(*) label
@@ -44,10 +45,7 @@ C     === Local variables ====
       ENDDO
       _GLOBAL_MAX_R8(theMax,myThid)
 
-      _BEGIN_MASTER( myThid )
-      WRITE(*,'(A,A27,A,1PE22.14)')
-     &      'MON_ADVCFL: ',label,'  max=',theMax
-      _END_MASTER( )
+      CALL MON_OUT_RL( label, theMax, mon_foot_max )
 
       RETURN
       END

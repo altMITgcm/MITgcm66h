@@ -49,9 +49,17 @@ C     Loop counters
 
 C     Legendre polynomials 
       DO J=1,NLAT
-       FMU(J,1,myThid)=SIN(yC(1,J,bi,bj)*deg2rad)
-       FMU(J,2,myThid)=1.5 _d 0*FMU(J,1,myThid)**2-0.5 _d 0
+       DO I=1,NLON
+        I2=J
+        I2=NLON*(J-1)+I
+        FMU(I2,1,myThid)=SIN(yC(I,J,bi,bj)*deg2rad)
+        FMU(I2,2,myThid)=1.5 _d 0*FMU(I2,1,myThid)**2-0.5 _d 0
+       ENDDO
       ENDDO
+C     DO J=1,NLAT
+C      FMU(J,1,myThid)=SIN(yC(1,J,bi,bj)*deg2rad)
+C      FMU(J,2,myThid)=1.5 _d 0*FMU(J,1,myThid)**2-0.5 _d 0
+C     ENDDO
 
 C     Depth in levels
       I2=0

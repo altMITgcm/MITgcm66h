@@ -25,4 +25,4 @@ C--    FMU    = legendre polinomials in sin(lat)
 
       COMMON /FSIGMU/ SIG(NLEV), SIGL(NLEV), SIGH(0:NLEV), DSIG(NLEV),
      *                POUT(NLEV), GRDSIG(NLEV), GRDSCP(NLEV), 
-     *                WVI(NLEV,2), FMU(NLAT,2,MAX_NO_THREADS)
+     *                WVI(NLEV,2), FMU(NGP,2,MAX_NO_THREADS)

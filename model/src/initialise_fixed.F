@@ -36,6 +36,13 @@ C     an input file called data.
       CALL INI_PARMS( myThid )
       _BARRIER
 
+#ifndef EXCLUDE_MONITOR
+C--   Initialise MONITOR I/O streams so we can report config. info
+      CALL MON_INIT( myThid )
+      _BARRIER
+#endif
+
+
 C--   Set model grid.
 C     Variables defining model grid spacing are defined.
       CALL INI_GRID( myThid )
