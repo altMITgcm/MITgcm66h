@@ -781,9 +781,13 @@ C     Text Attributes
       DO i = 1,ntat
         n1 = IFNBLNK(tnames(i))
         n2 = ILNBLNK(tnames(i))
+        mnc_cw_vtnm(n+i,indv)(1:MNC_MAX_CHAR) =
+     &       mnc_blank_name(1:MNC_MAX_CHAR)
         mnc_cw_vtnm(n+i,indv)(1:(n2-n1+1)) = tnames(i)(n1:n2)
         n1 = IFNBLNK(tvals(i))
         n2 = ILNBLNK(tvals(i))
+        mnc_cw_vtat(n+i,indv)(1:MNC_MAX_CHAR) =
+     &       mnc_blank_name(1:MNC_MAX_CHAR)
         mnc_cw_vtat(n+i,indv)(1:(n2-n1+1)) = tvals(i)(n1:n2)
       ENDDO
       mnc_cw_vnat(1,indv) = n + ntat
