@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+                                                                                    
       subroutine moistio (ndmoist,istrip,npcs,pz,tz,qz,ntracer,ptracer,
      .   pkht,qqz,dumoist,dvmoist,dtmoist,dqmoist,
      .   im,jm,lm,sige,sig,dsig,ptop,

@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+                                                                                    
       subroutine turbio (im,jm,nlay,maxtypes,istrip,nymd,nhms
      1 ,ndturb,ptop, pz, uz, vz, tz, qz, ntracers,ptracers,
      2 ,plz,plze,dpres,pkht,pkz,ctmt,xxmt,yymt,zetamt,xlmt,khmt,tke

@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
       subroutine lwrio (nymd,nhms,istrip,npcs,
      .                  pz,tz,qz,plz,plze,pkz,pkht,oz,co2,
      .                  cfc11,cfc12,cfc22,
