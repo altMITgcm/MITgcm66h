@@ -548,6 +548,19 @@ switch ($platform$USEMPI)
     set NOOPTFILES = ( 'barrier.F different_multiple.F' \
                        'external_fields_load.F' )
     breaksw
+  case Linux-ia64+mpi:
+    echo "Configuring with MPI"
+  case Linux-ia64:
+    echo "Configuring for " $platform
+    set LN = ( '/bin/ln -s' )
+    set CPP = ( '/lib/cpp -traditional -P' )
+    set DEFINES = ( ${DEFINES} '-D_BYTESWAPIO -DWORDLENGTH=4' )
+    set FC = ( 'efc' )
+    set FFLAGS = ( '-WB -Vaxlib -u -w' )
+    set FOPTIM = ( '-O2 ' )
+    set LINK = ( 'efc' )
+    set LIBS       = ( '-lmpi -lscs -lpthread' )
+    breaksw
   case Linux-alpha+mpi:
     echo "Configuring with MPI"
     set LIBS       = ( '-L/usr/local/lib/LINUX/ch_p4/ -lfmpich -lmpich' )
