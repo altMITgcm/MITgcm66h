@@ -69,8 +69,6 @@ C     rUpwind              :: upwind   contribution
       _RL Cr,Rjm,Rj,Rjp, w_CFL
       _RL upwindFac(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL rCenter, rUpwind
-      _RL zero, one, two
-
 
 C Statement function provides Limiter(Cr)
 #include "GAD_FLUX_LIMITER.h"
