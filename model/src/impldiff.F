@@ -113,7 +113,7 @@ C--   Old and new gam, bet are the same
       DO k=1,Nr
        DO j=jMin,jMax
         DO i=iMin,iMax
-          bet(i,j,k) = 0. _d 0
+          bet(i,j,k) = 1. _d 0
           gam(i,j,k) = 0. _d 0
         ENDDO
        ENDDO
