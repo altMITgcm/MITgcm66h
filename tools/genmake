@@ -584,6 +584,20 @@ switch ($platform$USEMPI)
     set LIBS       = ( '-L/opt/mpich/lib/ -lfmpich -lmpich' )
     set INCLUDES   = ( '-I/opt/mpich/include' )
     breaksw
+  case itrda-linux-cluster+mpi
+    echo "Configuring for " $platform
+    set LN         = ( '/bin/ln -s' )
+    set CPP        = ( '/lib/cpp  -traditional -P' )
+    set DEFINES    = ( ${DEFINES} '-DWORDLENGTH=4' )
+    set FC         = ( '/usr/local/mpich/mpich-1.2.1..7b_gnu/bin/mpif77' )
+    set LINK       = ( '/usr/local/mpich/mpich-1.2.1..7b_gnu/bin/mpif77' )
+#pgi    set FFLAGS     = ( '-byteswapio -r8 -Mnodclchk -Mextend' )
+    set FFLAGS     = ( '-Wimplicit -Wunused -Wuninitialized' )
+#pgi    set FOPTIM     = ( '-tp p6 -v -O2 -Munroll -Mvect=cachesize:512000,transform -Kieee' )
+    set FOPTIM     = ( '-O3 -malign-double -funroll-loops' )
+    set LIBS       = ( '-L/usr/local/mpich/mpich-1.2.1..7b_gnu/lib/ -lfmpich -lmpich' )
+    set INCLUDES   = ( '-I/usr/local/mpich/mpich-1.2.1..7b_gnu/include/' )
+    breaksw
   default:
     echo "Error: platform not recognized: uname -p = " $platform$USEMPI
     exit
