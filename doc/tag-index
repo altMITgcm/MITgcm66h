@@ -8,6 +8,8 @@ o merged improved packages from ecco-branch (ecco_c51_e34) to MAIN
   - autodiff, ctrl, exf, grdchk, seaice
   kept separate packages
   - cost, ecco, obcs
+o updating verification/internal_wave, verification/lab_sea
+  (all verif's pass on faulks.lcs.mit.edu RH7.3, g77)
 
 checkpoint50i_post
 o Preparing next differentiable checkpoint and sync
