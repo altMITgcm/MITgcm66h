@@ -147,11 +147,6 @@ c         CALL WRITE_FLD_XYZ_RS('hFacS.',suff,hFacS,myIter,myThid)
 
         ENDIF
         
-#ifdef ALLOW_PTRACERS
-        IF (usePTRACERS) THEN
-          CALL PTRACERS_WRITE_STATE(myIter,myTime,myThid)
-        ENDIF
-#endif /* ALLOW_PTRACERS */
         _END_MASTER( myThid )
         _BARRIER
 

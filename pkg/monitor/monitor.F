@@ -164,11 +164,5 @@ C         Dynamics field monitor finish
         
       ENDIF
 
-#ifdef ALLOW_PTRACERS
-      IF ( usePTRACERS ) THEN
-       CALL PTRACERS_MONITOR( myIter, myTime, myThid )
-      ENDIF
-#endif /* ALLOW_PTRACERS */
-
       RETURN
       END
