@@ -496,9 +496,13 @@ c -----------------------------------
       enddo
 
       if( iqice.gt.0 ) then
-      tmpdiag(:,:) = 0.0
+      do i =1,ijall
+      tmpdiag(i,1) = 0.0
+      enddo
       call msc2grd (igrd,chfr,qice,nchp,nchp,fracland,tmpdiag,im,jm)
-      qdiag(:,:,iqice) = qdiag(:,:,iqice) + tmpdiag(:,:)
+      do i =1,ijall
+      qdiag(i,1,iqice) = qdiag(i,1,iqice) + tmpdiag(i,1)
+      enddo
       nqice = nqice + 1
       endif
 
