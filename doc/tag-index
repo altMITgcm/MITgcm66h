@@ -3,6 +3,11 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint57a_post
+o this set of changes restores TAMC compatibility
+  tested for global_ocean.90x40x15 adjoint on trough
+  (what a pain)
+
 checkpoint57a_pre
 o some modifs in tools/build_options for sunos
 o call ctrl_pack for ctrl at end for optimcycle=0
