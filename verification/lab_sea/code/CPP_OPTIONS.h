@@ -12,19 +12,19 @@ C will be compiled.
 CEOP
 
 C o Include/exclude code for AIM package
-#undef  ALLOW_AIM
+c#cndef  ALLOW_AIM
 
 C o Include/exclude IERS Special Bureau for the Oceans diagnostics
-#define   ALLOW_SBO
+c#cefine   ALLOW_SBO
 
 C o Include/exclude code for sea-ice model
-#define  ALLOW_SEAICE
+c#cefine  ALLOW_SEAICE
 
 C o Include/exclude code for GM/Redi parameterization
-#define  ALLOW_GMREDI
+c#cefine  ALLOW_GMREDI
 
 C o Include/exclude code for KPP mixing scheme
-#define  ALLOW_KPP
+c#cefine  ALLOW_KPP
 
 C o Shortwave heating as extra term in external_forcing.F
 #ifdef ALLOW_KPP
@@ -32,20 +32,20 @@ C o Shortwave heating as extra term in external_forcing.F
 #endif
 
 C o Include/exclude code for Shapiro filters
-#undef  ALLOW_SHAP_FILT
+c#cndef  ALLOW_SHAP_FILT
 
 C o Include/exclude code for C-D grid method of integrating the 
 C   coriolis terms
-#define  INCLUDE_CD_CODE
+c#cefine  INCLUDE_CD_CODE
 
 C o Include/exclude code for open-boundary conditions
-#undef  ALLOW_OBCS
+c#cndef  ALLOW_OBCS
 
 C o Include/exclude diagnostics package interface code
-#define  ALLOW_TIMEAVE
+c#cefine  ALLOW_TIMEAVE
 
 C o Include/exclude zonal FFT filter code
-#undef  ALLOW_ZONAL_FILT
+c#cndef  ALLOW_ZONAL_FILT
 
 C o Include/exclude temperature advection code
 #define  INCLUDE_T_ADVECTION_CODE

@@ -9,9 +9,12 @@ C     | package.  Sea ice model is enabled with ALLOW_SEAICE in  |
 C     | CPP_OPTIONS.h                                            |
 C     \==========================================================/
 
-#include "CPP_OPTIONS.h"
-
+#ifndef SEAICE_OPTIONS_H
+#define SEAICE_OPTIONS_H
+#include "PACKAGES_CONFIG.h"
 #ifdef ALLOW_SEAICE
+
+#include "CPP_OPTIONS.h"
 
 C--   Write "text-plots" of certain fields in STDOUT for debugging.
 #undef SEAICE_DEBUG
@@ -39,3 +42,4 @@ C     modified for sea-ice effects by pkg/seaice.
 #undef SEAICE_EXTERNAL_FLUXES
 
 #endif /* ALLOW_SEAICE */
+#endif /* SEAICE_OPTIONS_H */
