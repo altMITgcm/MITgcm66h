@@ -1,6 +1,12 @@
 C $Header$
 C $Name$
-C      Parameters used with JAM.
+CBOP
+C      !ROUTINE: JAM_INFO.h
+C      !INTERFACE:
+C      include "JAM_INFO.h"
+C      !DESCRIPTION:
+C      Global parameters used with JAM.
+CEOP
 
        COMMON /JAM_INFO/
      &  jam_pid,     jam_np, jam_exchKey,

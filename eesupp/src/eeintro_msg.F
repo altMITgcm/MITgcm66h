@@ -2,25 +2,34 @@ C $Header$
 
 #include "CPP_EEOPTIONS.h"
 
-CStartOfInterface
+CBOP
+C     !ROUTINE: EEINTRO_MSG
+
+C     !INTERFACE:  
       SUBROUTINE EEINTRO_MSG
-C     /==========================================================\
-C     | SUBROUTINE EEINTRO_MSG                                   |
-C     | o Write basic introductory message.                      |
-C     |==========================================================|
-C     | This routine could be customised for different platforms.|
-C     \==========================================================/
       IMPLICIT NONE
 
+C     !DESCRIPTION:
+C     *==========================================================
+C     | SUBROUTINE EEINTRO_MSG                                   
+C     | o Write basic WRAPPER introductory message.                      
+C     *==========================================================
+C     | This routine could be customised for different platforms.
+C     | Output includes which checkpoint of the code is running.
+C     | The routine doesn't currently report the user id or      
+C     | machine name correctly.                                  
+C     *==========================================================
+
+C     !USES:
 C     === Global data ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 
-CEndOfInterface
-
+C     !LOCAL VARIABLES:
 C     === Local variables ===
       CHARACTER*(MAX_LEN_MBUF) msgBuf
+CEOP
       
 
       WRITE(msgBuf,'(A)') '                '

@@ -3,28 +3,53 @@ C $Name$
 
 #include "CPP_EEOPTIONS.h"
 
-CStartOfInterface
+CBOP             
+C     !ROUTINE: EEBOOT
+
+C     !INTERFACE:
       SUBROUTINE EEBOOT
-C     /==========================================================\
-C     | SUBROUTINE EEBOOT                                        |
-C     | o Set up execution "environment", particularly perform   |
-C     |   steps to initialise parallel processing.               |
-C     |==========================================================|
-C     | Note: This routine can also be compiled with CPP         |
-C     | directives set so that no multi-processing is initialised|
-C     | This is OK and should work fine.                         |
-C     \==========================================================/
       IMPLICIT NONE
 
+C     !DESCRIPTION:
+C     *==========================================================*
+C     | SUBROUTINE EEBOOT                                         
+C     | o Set up execution "environment", particularly perform    
+C     |   steps to initialise parallel processing.                
+C     *==========================================================*
+C     | Note: This routine can also be compiled with CPP          
+C     | directives set so that no multi-processing is initialised 
+C     | This is OK and works fine.                          
+C     *==========================================================*
+
+C     !CALLING SEQUENCE:
+C     eeboot()
+C       |
+C       |-- eeboot_minimal() :: Minimal startup. Just enough to 
+C       |                       allow basic I/O.
+C       |
+C       |-- eeintro_msg()    :: Write startup greeting.
+C       |
+C       |-- eeset_parms()    :: Set WRAPPER parameters
+C       |
+C       |-- eewrite_eeenv()  :: Print WRAPPER parameter settings
+C       |
+C       |-- ini_procs()      :: Associate processes with grid regions.
+C       |
+C       |-- ini_threading_environment() :: Associate threads with grid regions.
+C       |
+C       |-- dfile_init()     :: Initialise simple multi-process I/O pacakge.
+
+C     !USES:
 C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
-CEndOfInterface
 
+C     !LOCAL VARIABLES:
 C     == Local variables ==
-C     I - Loop counter
+C     I :: Loop counter
       INTEGER I
+CEOP
 
 C--   Set error reporting flags and I/O streams
 C     fatalError is a flag used to indicate that the program

@@ -5,32 +5,47 @@ C $Name$
 
 #define USE_JAM_INIT
 
-      SUBROUTINE INI_JAM
+CBOP
 
-C     Initialise JAM based communication
+C     !ROUTINE: INI_JAM
+
+C     !INTERFACE:
+      SUBROUTINE INI_JAM
       IMPLICIT NONE
 
-#ifdef LETS_MAKE_JAM
+C     !DESCRIPTION:
+C     *=================================================================================*
+C     | SUBROUTINE INI_JAM
+C     | o Initialise JAM based communication
+C     *=================================================================================*
+C     | Connect to synchronising daemon process that allocates jam network ids to
+C     | each process and initialises network once all processes are connected.
+C     *=================================================================================*
 
+
+C     !USES:
 C     == Global data ==
+#ifdef LETS_MAKE_JAM
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
-
 #include "JAM_INFO.h"
 #include "MPI_INFO.h"
-
 #ifdef ALLOW_MPI
 #include "mpif.h"
 #endif
 
+C     !LOCAL VARIABLES:
 C     == Local variables ==
+C     dummyVal :: Variable which is used in sync. call
+C     rc       :: Return code
+C     myTwoProcRank :: Temp. for holding ranking within processor pairs.
       Real*8  dummyVal
       INTEGER rc
-      CHARACTER*(MAX_LEN_FNAM) fnam
 #ifdef JAM_WITH_TWO_PROCS_PER_NODE
       INTEGER myTwoProcRank
 #endif
+CEOP
 
 C     Names used in JAM exch testing for MPI based exchange
       mpi_northId = mpiPidN

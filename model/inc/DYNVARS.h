@@ -1,13 +1,20 @@
 C $Header$
 C $Name$
-C
-C     /==========================================================\
-C     | DYNVARS.h                                                |
-C     | o Dynamical model variables (common block DYNVARS_R)     |
-C     |==========================================================|
-C     | The value and two levels of time tendency are held for   |
-C     | each prognostic variable.                                |
-C     \==========================================================/
+CBOP
+C     !ROUTINE: DYNVARS.h
+C     !INTERFACE:
+C     include "DYNVARS.h"
+C     !DESCRIPTION:
+C     \bv
+C     *==========================================================*
+C     | DYNVARS.h                                                 
+C     | o Dynamical model variables (common block DYNVARS_R)      
+C     *==========================================================*
+C     | The value and two levels of time tendency are held for    
+C     | each prognostic variable.                                 
+C     *==========================================================*
+C     \ev
+CEOP
 C
 C     etaN  - free-surface r-anomaly (r unit) at current time level
 C     uVel  - zonal velocity (m/s, i=1 held at western face)

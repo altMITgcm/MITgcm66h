@@ -1,13 +1,20 @@
 C $Header$
 C $Name$
 C
-C     /==========================================================\
-C     | EXCH.h                                                   |
-C     |==========================================================|
-C     | Support data structures for the MITgcm UV "exchange      |
-C     | routines" code. This data should be private to the       |
+CBOP
+C     !ROUTINE: EXCH.h
+C     !INTERFACE: 
+C     include "EXCH.h"
+C
+C     !DESCRIPTION:
+C     *==========================================================*
+C     | EXCH.h                                                    
+C     *==========================================================*
+C     | Support data structures for the MITgcm UV "exchange       
+C     | routines" code. This data should be private to the        
 C     | execution environment routines.
-C     \==========================================================/
+C     *==========================================================*
+CEOP
 
 #ifndef _RL
 #define _RL Real*8

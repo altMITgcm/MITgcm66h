@@ -3,29 +3,36 @@ C $Name$
 
 #include "CPP_EEOPTIONS.h"
 
-CStartOfInterface
+CBOP
+C     !ROUTINE: EEWRITE_EEENV
+
+C     !INTERFACE:
       SUBROUTINE EEWRITE_EEENV
-C     /==========================================================\
-C     | SUBROUTINE EERWITE_EEENV                                 |
-C     | o Write execution environment summary                    |
-C     |==========================================================|
-C     | Write a summary of the execution environment as          |
-C     | configured for this run. The execution environment is    |
-C     | the computational mode in which the model operatoes. It  |
-C     | includes the computational grid but does not include any |
-C     | model specific nuerical parameters.                      |
-C     \==========================================================/
       IMPLICIT NONE
 
-C     === Global data ===
+C     !DESCRIPTION:
+C     *==========================================================*
+C     | SUBROUTINE EERWITE_EEENV                                  
+C     | o Write execution environment summary                     
+C     *==========================================================*
+C     | Write a summary of the execution environment as           
+C     | configured for this run. The execution environment is     
+C     | the computational mode in which the model operatoes. It   
+C     | includes the computational grid but does not include any  
+C     | model specific nuerical parameters.                       
+C     *==========================================================*
+
+C     !USES:
+C     == Global data ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 
-CEndOfInterface
-
-C     === Local variables ===
+C     !LOCAL VARIABLES:
+C     == Local variables ==
+C     msgBuf :: Temp. for building text messages.
       CHARACTER*(MAX_LEN_MBUF) msgBuf
+CEOP
       
       WRITE(msgBuf,'(A)') 
      & '// ======================================================='

@@ -2,13 +2,19 @@ C $Header$
 C $Name$
 
 #ifdef USE_EEIO
-
-C     /==========================================================\
-C     | EEIO.h                                                   |
-C     |==========================================================|
-C     | Support data structures for the MITgcm UV "execution     |
-C     | environment" IO code.                                    |
-C     \==========================================================/
+CBOP
+C     !ROUTINE: EEIO.h
+C     !INTERFACE:
+C     include "EEIO.h"
+C
+C     !DESCRIPTION:
+C     *==========================================================*
+C     | EEIO.h                                                    
+C     *==========================================================*
+C     | Support data structures for the MITgcm UV "execution      
+C     | environment" IO code.                                     
+C     *==========================================================*
+CEOP
 
 C--   COMMON /EEIO_R/ IO supporting real arrays
 C     tmpXY_R8 - XY Real*8 IO buffer.

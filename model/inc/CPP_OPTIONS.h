@@ -10,10 +10,14 @@ C $Name$
 
 C
 
-C 
+CBOP
+C !ROUTINE: CPP_OPTIONS.h
+C !INTERFACE: 
+C include "CPP_OPTIONS.h"
+C !DESCRIPTION:
 C CPP flags controlling which code in included in the files that
 C will be compiled.
-C
+CEOP
 
 C o Include/exclude code for AIM package
 #undef  ALLOW_AIM
