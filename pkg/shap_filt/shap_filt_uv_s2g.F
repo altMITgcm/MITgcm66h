@@ -138,12 +138,18 @@ C      F <-  [1 - (d_xx+d_yy)^n *deltaT/tau].F
        DO bj=myByLo(myThid),myByHi(myThid)
         DO bi=myBxLo(myThid),myBxHi(myThid)
          DO K=1,kSize
-          DO J=1,sNy+1
-           DO I=1,sNx+1
+          DO j=1,sNy
+           DO i=1,sNx+1
             uFld(i,j,k,bi,bj)=uFld(i,j,k,bi,bj)
      &             -tmpFldU(i,j,k,bi,bj)*deltaTmom/Shap_uvtau
+            tmpFldU(i,j,k,bi,bj)= -tmpFldU(i,j,k,bi,bj)/Shap_uvtau
+           ENDDO
+          ENDDO
+          DO j=1,sNy+1
+           DO i=1,sNx
             vFld(i,j,k,bi,bj)=vFld(i,j,k,bi,bj)
-     &             -tmpFldV(i,j,k,bi,bj)*deltaTmom/Shap_uvtau
+     &                  -tmpFldV(i,j,k,bi,bj)*deltaTmom/Shap_uvtau
+            tmpFldV(i,j,k,bi,bj)= -tmpFldV(i,j,k,bi,bj)/Shap_uvtau
            ENDDO
           ENDDO
          ENDDO
