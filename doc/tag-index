@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+ecco-C51_e34e
+o bug fix in cost_drifter
+o updating timeave package in ecco-branch to c51
+
 ecco_c51_e34d
 o modif's to restore TAMC compatibility
   - avoid "_d" constructs in PARAMETER declarations
