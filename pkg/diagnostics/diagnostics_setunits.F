@@ -19,8 +19,8 @@ C     Wrapper routine to set the units of an active diagnostic
 C     !USES:
        implicit none
 #include "SIZE.h"
-#include "diagnostics_SIZE.h"
-#include "diagnostics.h"
+#include "DIAGNOSTICS_SIZE.h"
+#include "DIAGNOSTICS.h"
 
 C     !INPUT PARAMETERS:
       integer myThid
