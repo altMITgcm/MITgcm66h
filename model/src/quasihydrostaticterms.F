@@ -41,7 +41,7 @@ C--   == Local variables ==
         effectiveBuoy(i,j)=effectiveBuoy(i,j)
      &    -scalingFactor*
      &     fCoriCos(i,j,bi,bj)*
-     &     *0.5*( uVel(i,j,k,bi,bj)+uVel(i+1,j,k,bi,bj) )
+     &     0.5*( uVel(i,j,k,bi,bj)+uVel(i+1,j,k,bi,bj) )
        ENDDO
       ENDDO
 
