@@ -248,7 +248,7 @@ grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.txt
 
 
 ####################
-# Experiment no. 7 #
+# Experiment no. 8 #
 ####################
 # Same as experiment 7, but starting from a checkpoint file.
 
