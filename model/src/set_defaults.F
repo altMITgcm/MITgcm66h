@@ -92,6 +92,8 @@ C--   Set default "physical" parameters
       buoyancyRelation    = 'OCEANIC'
       implicitFreeSurface = .TRUE.
       rigidLid            = .FALSE.
+      implicSurfPress     = 1.D0
+      implicDiv2DFlow     = 1.D0
       hFacMin             = 1.D0
       hFacMinDrDefault    = 0.D0
       staggerTimeStep     = .FALSE.

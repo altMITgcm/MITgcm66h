@@ -93,6 +93,7 @@ C--   Continuous equation parameters
      & momPressureForcing, metricTerms,
      & tempDiffusion, tempAdvection, tempForcing,
      & saltDiffusion, saltAdvection, saltForcing,
+     & implicSurfPress, implicDiv2DFlow,
      & implicitFreeSurface, rigidLid, freeSurfFac, hFacMin, hFacMinDz,
      & staggerTimeStep,
      & tempStepping, saltStepping, momStepping,
@@ -328,6 +329,17 @@ C--   z,p,r coord input switching.
        CALL PRINT_ERROR( msgBuf , myThid)
        STOP 'ABNORMAL END: S/R INI_PARMS'
       ENDIF
+      IF ( (implicSurfPress.NE.1. .OR. implicDiv2DFlow.NE.1.)
+     &    .AND. nonHydrostatic ) THEN 
+       WRITE(msgBuf,'(A,A)') 'S/R INI_PARMS: nonHydrostatic', 
+     & ' NOT SAFE with non-fully implicit Barotropic solver' 
+       CALL PRINT_ERROR( msgBuf , myThid)
+       WRITE(msgBuf,'(A,A)') 'S/R INI_PARMS: To by-pass this',
+     &    'STOP, comment this test and re-compile ini_params'
+       CALL PRINT_ERROR( msgBuf , myThid)
+       STOP 'ABNORMAL END: S/R INI_PARMS'
+      ENDIF
+
       coordsSet = 0
       IF ( zCoordInputData ) coordsSet = coordsSet + 1
       IF ( pCoordInputData ) coordsSet = coordsSet + 1
