@@ -207,7 +207,8 @@ c--         --> no weighting by cosphi.
               diff = psmean(i,j,bi,bj) - tpmean(i,j,bi,bj) + offset
               sumc = sumc + diff*diff
      &                    * wp(i,j,bi,bj)*tpmeanmask(i,j,bi,bj)
-ce            --> check masks!
+              if ( wp(i,j,bi,bj)*tpmeanmask(i,j,bi,bj) .ne. 0. )
+     &             num_hmean = num_hmean + 1. _d 0
             enddo
           enddo
         enddo
@@ -215,6 +216,7 @@ ce            --> check masks!
 
 c--   Do the global summation.
       _GLOBAL_SUM_R8( sumc, mythid )
+      _GLOBAL_SUM_R8( num_hmean, mythid )
       costmean = sumc
 #endif
 

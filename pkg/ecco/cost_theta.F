@@ -69,6 +69,7 @@ c     == local variables ==
 
       _RL cmask (1-olx:snx+olx,1-oly:sny+oly)  
       _RL spval
+      _RL spmax
 
       character*(80) fnametheta
 
@@ -96,6 +97,7 @@ c     == end of interface ==
       imax = snx
 
       spval = -1.8
+      spmax = 40.
 
 c--   Read tiled data.
       doglobalread = .false.
@@ -171,12 +173,12 @@ c--         Loop over the model layers
 c--           Determine the mask on weights
               do j = jmin,jmax
                 do i = imin,imax
-                  cmask(i,j) = 1. _d 0
+                  cmask(i,j) = cosphi(i,j,bi,bj)
                   if (tdat(i,j,k,bi,bj) .eq. 0.) then
                     cmask(i,j) = 0. _d 0
-                  endif
-                 
-                  if (tdat(i,j,k,bi,bj) .lt. spval) then
+                  else if (tdat(i,j,k,bi,bj) .lt. spval) then
+                    cmask(i,j) = 0. _d 0
+                  else if (tdat(i,j,k,bi,bj) .gt. spmax) then
                     cmask(i,j) = 0. _d 0
                   endif
                   
@@ -187,10 +189,6 @@ cph               to make it independnet of Nr:
 cph
 cph               if ( rC(K) .GT. -1000. ) then
 cph)
-c                 set cmask=0 in areas shallower than 1000m 
-                  if (_hFacC(i,j,13,bi,bj) .eq. 0.) then
-                    cmask(i,j) = 0. _d 0
-                  endif
                 enddo
               enddo
 
@@ -198,11 +196,14 @@ c--           Compute model data misfit and cost function term for
 c             the temperature field.
               do j = jmin,jmax
                 do i = imin,imax
-                  if (_hFacC(i,j,k,bi,bj) .ne. 0.) then
+                  if ( _hFacC(i,j,k,bi,bj) .ne. 0. .AND.
+     &                 _hFacC(i,j,13,bi,bj) .ne. 0. ) then
                      fctile = fctile +
-     &                    (wtheta(k,bi,bj)*cosphi(i,j,bi,bj)*cmask(i,j)*
+     &                    (wtheta(k,bi,bj)*cmask(i,j)*
      &                    (tbar(i,j,k,bi,bj) - tdat(i,j,k,bi,bj))*
-     &                    (tbar(i,j,k,bi,bj) - tdat(i,j,k,bi,bj))      )
+     &                    (tbar(i,j,k,bi,bj) - tdat(i,j,k,bi,bj)) )
+                     if ( wtheta(k,bi,bj)*cmask(i,j) .ne. 0. )
+     &                    num_temp(bi,bj) = num_temp(bi,bj) + 1. _d 0
                   endif
                 enddo
               enddo

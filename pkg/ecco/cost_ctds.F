@@ -180,6 +180,8 @@ cph)
      &                             (wtmp(i,j)*www(i,j))*
      &                             (tmpbar(i,j)-tmpobs(i,j))*
      &                             (tmpbar(i,j)-tmpobs(i,j))
+                     if ( wtmp(i,j)*www(i,j) .ne. 0. )
+     &                    num_ctds(bi,bj) = num_ctds(bi,bj) + 1. _d 0
 		  endif
                 enddo
               enddo

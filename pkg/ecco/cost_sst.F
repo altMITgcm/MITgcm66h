@@ -123,7 +123,7 @@ c--         Loop over the model layers
 c--           Determine the mask on weights
               do j = jmin,jmax
                 do i = imin,imax
-                  cmask(i,j) = 1. _d 0
+                  cmask(i,j) = cosphi(i,j,bi,bj)
                   if (sstdat(i,j,bi,bj) .lt. spval .or.
      &		      sstdat(i,j,bi,bj) .gt. spmax .or.
      &                sstdat(i,j,bi,bj) .eq. 0.) then
@@ -145,9 +145,11 @@ cph                  endif
 c--         Compute cost rel. to monthly SST climatology field.
                 if (_hFacC(i,j,k,bi,bj) .ne. 0.) then
                    fctile_sst = fctile_sst +
-     &                  wsst(i,j,bi,bj)*cosphi(i,j,bi,bj)*cmask(i,j)*
+     &                  wsst(i,j,bi,bj)*cmask(i,j)*
      &                  ( (tbar(i,j,k,bi,bj)-sstdat(i,j,bi,bj))*
      &                    (tbar(i,j,k,bi,bj)-sstdat(i,j,bi,bj)) )
+                   if ( wsst(i,j,bi,bj)*cmask(i,j) .ne. 0. )
+     &                  num_sst(bi,bj)  = num_sst(bi,bj)  + 1. _d 0
                 endif
               enddo
             enddo

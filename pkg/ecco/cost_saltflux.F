@@ -158,6 +158,8 @@ c--       Determine the weights to be used.
                 fctilem = fctilem
      &                + cosphi(i,j,bi,bj)
      &                *tmpx*tmpx
+                if ( cosphi(i,j,bi,bj) .ne. 0. )
+     &               num_sfluxm(bi,bj) = num_sfluxm(bi,bj) + 1. _d 0
               endif
             enddo
           enddo
@@ -209,6 +211,8 @@ c--         Determine the weights to be used.
                   fctile = fctile
      &                 + wsflux(i,j,bi,bj)*cosphi(i,j,bi,bj)
      &                 *tmpx*tmpx
+                  if ( wsflux(i,j,bi,bj)*cosphi(i,j,bi,bj) .ne. 0. )
+     &                 num_sflux(bi,bj) = num_sflux(bi,bj) + 1. _d 0
                 endif
               enddo
             enddo

@@ -202,7 +202,6 @@ c                 set mask13c=0 in areas shallower than 1000m
                   mask13c(i,j,bi,bj) = 0. _d 0
                endif
 
-               www(i,j,bi,bj)     = cosphi(i,j,bi,bj)
             enddo
          enddo
 
@@ -300,12 +299,20 @@ c             drifters.
          do j = jmin,jmax-1,2
             do i = i6min,imax-5, 6
                fctile_drift = fctile_drift 
-     &              + (wud(i,j,bi,bj)*www(i,j,bi,bj)*mask6c(i,j,bi,bj)*
+     &              + (wud(i,j,bi,bj)*cosphi(i,j,bi,bj)*
+     &                 mask6c(i,j,bi,bj)*
      &                (u6bar(i,j,bi,bj) - uddat(i,j,bi,bj))*
      &                (u6bar(i,j,bi,bj) - uddat(i,j,bi,bj))   ) 
-     &              + (wvd(i,j,bi,bj)*www(i,j,bi,bj)*mask6c(i,j,bi,bj)*
+     &              + (wvd(i,j,bi,bj)*cosphi(i,j,bi,bj)*
+     &                 mask6c(i,j,bi,bj)*
      &                (v6bar(i,j,bi,bj) - vddat(i,j,bi,bj))*
      &                (v6bar(i,j,bi,bj) - vddat(i,j,bi,bj))   )
+               if ( cosphi(i,j,bi,bj)*mask6c(i,j,bi,bj) .ne. 0. ) then
+                  if ( wud(i,j,bi,bj) .ne. 0. )
+     &                 num_drift(bi,bj) = num_drift(bi,bj) + 1. _d 0
+                  if ( wvd(i,j,bi,bj) .ne. 0. )
+     &                 num_drift(bi,bj) = num_drift(bi,bj) + 1. _d 0
+               endif
             enddo
          enddo
 

@@ -184,7 +184,8 @@ c--                  The array ctdtobs contains CTD temperature.
      &                             (wtmp(i,j)*www(i,j))*
      &                             (tmpbar(i,j)-tmpobs(i,j))*
      &                             (tmpbar(i,j)-tmpobs(i,j))
-
+                     if ( wtmp(i,j)*www(i,j) .ne. 0. )
+     &                    num_ctdt(bi,bj) = num_ctdt(bi,bj) + 1. _d 0
                   endif
                 enddo
               enddo

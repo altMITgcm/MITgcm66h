@@ -246,6 +246,8 @@ c--             The array psobs contains SSH anomalies.
                 junk       = ((psbar(i,j,bi,bj) - psmean(i,j,bi,bj)) -
      &                         tpobs(i,j,bi,bj))*tpmask(i,j,bi,bj)
                 tpcost   = tpcost + junk*junk*wwwtp(i,j)
+                if ( wwwtp(i,j) .ne. 0. )
+     &               num_h(bi,bj) = num_h(bi,bj) + 1. _d 0
               enddo
             enddo
 #endif
@@ -258,6 +260,8 @@ c--             The array ersobs contains SSH anomalies.
                 junk        = ((psbar(i,j,bi,bj) - psmean(i,j,bi,bj)) -
      &                         ersobs(i,j,bi,bj))*ersmask(i,j,bi,bj)
                 erscost   = erscost + junk*junk*wwwers(i,j)
+                if ( wwwers(i,j) .ne. 0. )
+     &               num_h(bi,bj) = num_h(bi,bj) + 1. _d 0
               enddo
 
             enddo

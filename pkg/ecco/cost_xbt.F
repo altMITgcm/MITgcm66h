@@ -159,7 +159,7 @@ c--         Loop over the model layers
 c--           Determine the weights to be used.
               do j = jmin,jmax
                 do i = imin,imax
-                  cmask(i,j) = 1. _d 0
+                  cmask(i,j) = cosphi(i,j,bi,bj)
                   if ( xbtobs(i,j,k,bi,bj) .lt. spval .or.
      &		       xbtobs(i,j,k,bi,bj) .gt. spmax .or.
      &                 xbtobs(i,j,k,bi,bj) .eq. 0. ) then
@@ -173,29 +173,24 @@ cph               to make it independnet of Nr:
 cph
 cph               if ( rC(K) .GT. -1000. ) then
 cph)
-c--               set cmask=0 in areas shallower than 1000m 
-                  if (_hFacC(i,j,13,bi,bj) .eq. 0.) then
-                    cmask(i,j) = 0. _d 0
-                  endif           
-       
-                  if (_hFacC(i,j,k,bi,bj) .eq. 0.) then
-                    cmask(i,j) = 0. _d 0
-                  endif                  
                   
                 enddo
               enddo
               
               do j = jmin,jmax
                 do i = imin,imax
-                  www(i,j)    = cosphi(i,j,bi,bj)*cmask(i,j)
-                  tmpobs(i,j) = SW_PTMP(rl_35,
-     $                 xbtobs(i,j,k,bi,bj),ztop*rc(k),rl_0) 
+                  if ( _hFacC(i,j,k,bi,bj) .ne. 0. .AND.
+     &                 _hFacC(i,j,13,bi,bj) .ne. 0. ) then
+                    tmpobs(i,j) = SW_PTMP(rl_35,
+     $                   xbtobs(i,j,k,bi,bj),ztop*rc(k),rl_0) 
 c--               The array ctdtobs contains CTD temperature.
 
-                  fctile_xbt = fctile_xbt + 
-     &                 (wtheta2(i,j,k,bi,bj)*www(i,j))*
-     &                 (tbar(i,j,k,bi,bj)-tmpobs(i,j))*
-     &                 (tbar(i,j,k,bi,bj)-tmpobs(i,j))
+                    fctile_xbt = fctile_xbt + 
+     &                   (wtheta2(i,j,k,bi,bj)*cmask(i,j))*
+     &                   (tbar(i,j,k,bi,bj)-tmpobs(i,j))*
+     &                   (tbar(i,j,k,bi,bj)-tmpobs(i,j))
+                    if ( wtheta2(i,j,k,bi,bj)*cmask(i,j) .ne. 0. )
+     &                   num_xbt(bi,bj) = num_xbt(bi,bj) + 1. _d 0
                 enddo
               enddo
 c--         End of loop over layers.

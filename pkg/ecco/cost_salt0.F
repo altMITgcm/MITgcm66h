@@ -121,6 +121,8 @@ c--         Determine the weights to be used.
 		  fctile = fctile
      &                 + wsalt(k,bi,bj)*cosphi(i,j,bi,bj)
      &                 *tmpx*tmpx
+                  if ( wsalt(k,bi,bj)*cosphi(i,j,bi,bj) .ne. 0. )
+     &                 num_salt0(bi,bj) = num_salt0(bi,bj) + 1. _d 0
                 endif
               enddo
             enddo

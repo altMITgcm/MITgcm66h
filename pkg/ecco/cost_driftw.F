@@ -186,14 +186,16 @@ c--       Loop over the model layers
 c--         Compute model misfit and cost function term for
 c           the vertical velovity field. The error is 1e-4 m/s.
             do j = jmin,jmax
-              do i = imin,imax
-                  if (_hFacC(i,j,k,bi,bj) .ne. 0.) then
+             do i = imin,imax
+              if (_hFacC(i,j,k,bi,bj) .ne. 0.) then
                      fctilew = fctilew +
      &                  (2.5e11*cosphi(i,j,bi,bj)*
      &          (wlmean(i,j,k,bi,bj)/nl - wfmean(i,j,k,bi,bj)/nf)*
      &          (wlmean(i,j,k,bi,bj)/nl - wfmean(i,j,k,bi,bj)/nf))
-                  endif
-              enddo
+                     if ( cosphi(i,j,bi,bj) .ne. 0. )
+     &                 num_wdrift(bi,bj) = num_wdrift(bi,bj) + 1. _d 0
+              endif
+             enddo
             enddo
 
           enddo

@@ -60,6 +60,7 @@ c     == local variables ==
 
       _RL cmask (1-olx:snx+olx,1-oly:sny+oly)  
       _RL spval
+      _RL spmax
 
       character*(80) fnametheta
 
@@ -85,6 +86,7 @@ c     == end of interface ==
       imax = snx
 
       spval = -1.8
+      spmax = 40.
 
 c--   Read tiled data.
       doglobalread = .false.
@@ -122,12 +124,12 @@ c--         Compute cost rel. to monthly TMI SST climatology field.
 c--           Determine the mask on weights
               do j = jmin,jmax
                 do i = imin,imax
-                  cmask(i,j) = 1. _d 0
+                  cmask(i,j) = cosphi(i,j,bi,bj)
                   if (tmidat(i,j,bi,bj) .eq. 0.) then
                     cmask(i,j) = 0. _d 0
-                  endif
-                 
-                  if (tmidat(i,j,bi,bj) .lt. spval) then
+                  else if (tmidat(i,j,bi,bj) .lt. spval) then
+                    cmask(i,j) = 0. _d 0
+                  else if (tmidat(i,j,bi,bj) .gt. spmax) then
                     cmask(i,j) = 0. _d 0
                   endif
                   
@@ -142,9 +144,11 @@ c--   set cmask=0 in areas shallower than 1000m
               do i = imin,imax
                 if (_hFacC(i,j,k,bi,bj) .ne. 0.) then
                    fctile_tmi = fctile_tmi +
-     &                  wsst(i,j,bi,bj)*cosphi(i,j,bi,bj)*cmask(i,j)*
+     &                  wsst(i,j,bi,bj)*cmask(i,j)*
      &                  ( (tbar(i,j,k,bi,bj)-tmidat(i,j,bi,bj))*
      &                    (tbar(i,j,k,bi,bj)-tmidat(i,j,bi,bj)) )
+                   if ( wsst(i,j,bi,bj)*cmask(i,j) .ne. 0. )
+     &                  num_tmi(bi,bj)  = num_tmi(bi,bj) + 1. _d 0
                 endif
               enddo
             enddo

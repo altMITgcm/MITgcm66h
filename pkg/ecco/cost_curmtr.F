@@ -266,6 +266,8 @@ cgg( Add one more zero check.
      &                             (wu(i,j)*wwwu(i,j))*
      &                             (tmpubar(i,j)-tmpuobs(i,j))*
      &                             (tmpubar(i,j)-tmpuobs(i,j))
+                    if ( wu(i,j)*wwwu(i,j)) .ne. 0. )
+     &                  num_curmtr(bi,bj) = num_curmtr(bi,bj) + 1. _d 0
                   endif
 
 cgg( Add one more zero check.
@@ -274,6 +276,8 @@ cgg( Add one more zero check.
      &                             (wv(i,j)*wwwv(i,j))*
      &                             (tmpvbar(i,j)-tmpvobs(i,j))*
      &                             (tmpvbar(i,j)-tmpvobs(i,j))
+                    if ( wv(i,j)*wwwv(i,j)) .ne. 0. )
+     &                  num_curmtr(bi,bj) = num_curmtr(bi,bj) + 1. _d 0
                   endif
                 enddo
               enddo

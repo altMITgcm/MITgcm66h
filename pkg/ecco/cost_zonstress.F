@@ -158,6 +158,8 @@ c--       Determine the weights to be used.
                  fctilem = fctilem
      &                    + cosphi(i,j,bi,bj)
      &                    *tmpx*tmpx
+                 if ( cosphi(i,j,bi,bj) .ne. 0. )
+     &                num_tauum(bi,bj) = num_tauum(bi,bj) + 1. _d 0
               endif
             enddo
           enddo
@@ -209,6 +211,8 @@ c--         Determine the weights to be used.
                   fctile = fctile
      &                 + wtauu(i,j,bi,bj)*cosphi(i,j,bi,bj)
      &                 *tmpx*tmpx
+                  if ( wtauu(i,j,bi,bj)*cosphi(i,j,bi,bj) .ne. 0. )
+     &                 num_tauu(bi,bj) = num_tauu(bi,bj) + 1. _d 0
                 endif
               enddo
             enddo

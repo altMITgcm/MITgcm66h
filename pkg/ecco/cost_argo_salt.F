@@ -159,17 +159,19 @@ cph
 cph               if ( rC(K) .GT. -1000. ) then
 cph)
               do j = jmin,jmax
-                do i = imin,imax                 
-                   if (argosobs(i,j,k,bi,bj) .ge. spval .and.
-     $                 argosobs(i,j,k,bi,bj) .lt. spmax .and.
-     $                  _hFacC(i,j,13,bi,bj) .ne. 0. .and.
-     $                  _hFacC(i,j,k,bi,bj) .ne. 0.) then
-                      fctile_argos = fctile_argos + 
-     &           wsalt2(i,j,k,bi,bj)*cosphi(i,j,bi,bj)*
-     &                 (sbar(i,j,k,bi,bj)-argosobs(i,j,k,bi,bj))*
-     &                 (sbar(i,j,k,bi,bj)-argosobs(i,j,k,bi,bj))
-                  endif                  
-                enddo
+               do i = imin,imax                 
+                if ( (argosobs(i,j,k,bi,bj) .ge. spval) .and.
+     $              (argosobs(i,j,k,bi,bj) .lt. spmax) .and.
+     $              (_hFacC(i,j,13,bi,bj) .ne. 0.) .and.
+     $              (_hFacC(i,j,k,bi,bj) .ne. 0.) ) then
+                 fctile_argos = fctile_argos + 
+     &             wsalt2(i,j,k,bi,bj)*cosphi(i,j,bi,bj)*
+     &             (sbar(i,j,k,bi,bj)-argosobs(i,j,k,bi,bj))*
+     &             (sbar(i,j,k,bi,bj)-argosobs(i,j,k,bi,bj))
+                 if ( wsalt2(i,j,k,bi,bj)*cosphi(i,j,bi,bj) .ne. 0. )
+     &             num_argos(bi,bj) = num_argos(bi,bj) + 1. _d 0
+                endif                  
+               enddo
               enddo
             enddo
 c--         End of loop over layers.
