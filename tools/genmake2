@@ -1722,14 +1722,14 @@ for n in $names ; do
 	    fi
 	done
 	if test "x$has_pack" = xf ; then
-	    undef=`echo "ALLOW_$n" | $AWK '{print toupper($0)}'`
+	    undef=`echo "ALLOW_$n" | sed -e 'y/abcdefghijklmnopqrstuvwxyz/ABCDEFGHIJKLMNOPQRSTUVWXYZ/'`
             DISABLED_PACKAGES="$DISABLED_PACKAGES -U$undef"
 	fi
     fi
 done
 ENABLED_PACKAGES=
 for i in $PACKAGES ; do
-    def=`echo "ALLOW_$i" | $AWK '{print toupper($0)}'`
+    def=`echo "ALLOW_$i" | sed -e 'y/abcdefghijklmnopqrstuvwxyz/ABCDEFGHIJKLMNOPQRSTUVWXYZ/'`
     ENABLED_PACKAGES="$ENABLED_PACKAGES -D$def"
 #eh3 DEFINES="$DEFINES -D$def"
 
