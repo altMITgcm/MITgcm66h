@@ -25,7 +25,6 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#include "CG2D.h"
 
 C     === Routine arguments ===
 C     myThid - Number of this instance of INI_PARMS
@@ -105,7 +104,7 @@ C--   Set default "physical" parameters
       momStepping         = .TRUE.
       tempStepping        = .TRUE.
       saltStepping        = .TRUE.
-      metricTerms         = .FALSE.
+      metricTerms         = .TRUE.
       implicitDiffusion   = .FALSE.
       implicitViscosity   = .FALSE.
       nonHydrostatic      = .FALSE.
