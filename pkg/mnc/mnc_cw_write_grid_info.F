@@ -58,9 +58,9 @@ C     Create MNC definitions for GRID.h variables
       CALL MNC_CW_ADD_VNAME(myThid, 'fCoriG', 'Cen_xy_Hy__-__-', 3,4)
       CALL MNC_CW_ADD_VNAME(myThid, 'R_low', 'Cen_xy_Hy__-__-', 3,4)
       CALL MNC_CW_ADD_VNAME(myThid, 'Ro_surf', 'Cen_xy_Hy__-__-', 3,4)
-      CALL MNC_CW_ADD_VNAME(myThid, 'HFacC', 'Cen_xy_Hy__C__-', 3,4)
-      CALL MNC_CW_ADD_VNAME(myThid, 'HFacW', 'Cen_xy_Hy__C__-', 3,4)
-      CALL MNC_CW_ADD_VNAME(myThid, 'HFacS', 'Cen_xy_Hy__C__-', 3,4)
+      CALL MNC_CW_ADD_VNAME(myThid, 'HFacC', 'Cen_xy_Hy__C__-', 4,5)
+      CALL MNC_CW_ADD_VNAME(myThid, 'HFacW', 'Cen_xy_Hy__C__-', 4,5)
+      CALL MNC_CW_ADD_VNAME(myThid, 'HFacS', 'Cen_xy_Hy__C__-', 4,5)
 
       CALL MNC_CW_ADD_VATTR_TEXT(myThid,'rC',1,'description',
      &     'r of cell center')
