@@ -3,6 +3,9 @@ C $Name$
 
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
+#ifdef ALLOW_PTRACERS
+# include "PTRACERS_OPTIONS.h"
+#endif
 
 #ifdef ALLOW_AUTODIFF_TAMC
 # ifdef ALLOW_GMREDI
@@ -11,9 +14,6 @@ C $Name$
 # ifdef ALLOW_KPP
 #  include "KPP_OPTIONS.h"
 # endif
-#ifdef ALLOW_PTRACERS
-# include "PTRACERS_OPTIONS.h"
-#endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 CBOP
