@@ -3,6 +3,12 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint35
+ o subtantial rewrite of dynamics.f
+ o allows staggered time-stepping
+ o packaged obcs, aim (Atmospheric Physics), zonal_filt, shap_filt
+ o added bottom drag (linear + quadratic)
+
 checkpoint34
  o Modified exchange routines for correct reverse simulation.
  o Added verification output to comply with bug fix in impldiff.F
