@@ -13,6 +13,8 @@ NOOPTFLAGS='-O0'
 #EH3  works much better on machines such as "halem"
 #EH3  MAKEDEPEND='mkdep -f depend.out'
 
+FC_NAMEMANGLE="#define FC_NAMEMANGLE(X) X ## _"
+
 # netcdf
 # DOES NOT (YET) WORK because the netcdf library installed on Halem
 # was compiled with the "f77" compiler and the library is not 
