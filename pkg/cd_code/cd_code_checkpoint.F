@@ -49,18 +49,18 @@ C--   Suffix for pickup files
       CALL MDSREADFIELD(fn,prec,'RL',Nr,vNM1,     4,myThid)
       CALL MDSREADFIELD(fn,prec,'RL', 1,etaNm1,6*Nr+1,myThid)
       
+      _END_MASTER( myThid )
+      _BARRIER
+      
       _EXCH_XYZ_R8( uVelD,    myThid )
       _EXCH_XYZ_R8( vVelD,    myThid )
       CALL EXCH_UV_XYZ_RL(uNM1,vNM1,.TRUE.,myThid)
       _EXCH_XY_R8( etaNm1, myThid )
       
-      _END_MASTER( myThid )
-      _BARRIER
-      
 #endif /*  ALLOW_CD_CODE  */
 
-      return
-      end
+      RETURN
+      END
 
 
 
@@ -81,10 +81,6 @@ C     myThid -  Number of this instance of INI_UVEL
       LOGICAL permCheckPoint  
       INTEGER myIter
       INTEGER myThid
-
-C     == Common blocks ==
-      COMMON /PCKP_GBLFLS/ globalFile
-      LOGICAL globalFile
 
 C     !LOCAL VARIABLES:
 C     == Local variables ==

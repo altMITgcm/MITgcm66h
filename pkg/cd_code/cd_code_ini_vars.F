@@ -37,12 +37,10 @@ C-      3D arrays
         DO K=1,Nr
          DO J=1-Oly,sNy+Oly
           DO I=1-Olx,sNx+Olx
-
            uNM1(I,J,K,bi,bj)=0. _d 0
            vNM1(I,J,K,bi,bj)=0. _d 0
            uVeld(I,J,K,bi,bj)=0. _d 0
            vVeld(I,J,K,bi,bj)=0. _d 0
-
           ENDDO
          ENDDO
         ENDDO
@@ -50,14 +48,16 @@ C-      3D arrays
 C-      2D arrays
         DO J=1-Oly,sNy+Oly
          DO I=1-Olx,sNx+Olx
-
           etaNm1(I,J,bi,bj)=0. _d 0
-
          ENDDO
         ENDDO
 
        ENDDO
       ENDDO
+
+      IF ( nIter0.NE.0 ) THEN
+        CALL CD_CODE_READ_CHECKPOINT( nIter0, myThid )
+      ENDIF
 
 #endif /*  ALLOW_CD_CODE  */
 
