@@ -3,7 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
-checkpoint49
+checkpoint48i_post
 o Changes to restore differentiability of code w.r.t. previous tag
   (mostly adding new routines to make list and replacing
   pressure by totPhiHyd).
