@@ -98,5 +98,8 @@ C
 c     _EXCH_XY_R4(fCori,myThid)
 c     CALL EXCH_Z_XY_RS(fCoriG,myThid)
 
+      CALL MON_PRINTSTATS_RS(1,fCori,'fCori',myThid)
+      CALL MON_PRINTSTATS_RS(1,fCoriG,'fCoriG',myThid)
+
       RETURN
       END
