@@ -52,9 +52,15 @@ C     pi, pj - Process loop counter
       INTEGER biE, biW, bjN, bjS
       INTEGER thePx, thePy, theBj, theBi
 
-C--   Turn off memsync by default
+#ifndef ALWAYS_USE_MPI
+C--   Turn off memsync by default (e.g. needed for threads on SUNs)
       exchNeedsMemsync = .TRUE.
       exchUsesBarrier  = .TRUE.
+#else
+C--   ... except that MPI needs this until some counter problem is fixed.
+      exchNeedsMemsync = .FALSE.
+      exchUsesBarrier  = .FALSE.
+#endif
 
 C--   Define a globally unique tile numbers for each tile.
 C--   We aslo define the tile numbers for our east, west, south
