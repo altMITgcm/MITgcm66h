@@ -1,0 +1,10 @@
+
+#
+# ***************
+# Open boundaries
+# ***************
+ &KPP_PARM01
+ KPPmixingMaps   = .FALSE.,
+ KPPwriteState   = .TRUE.,
+ kpp_dumpFreq    = 43200.0
+ /

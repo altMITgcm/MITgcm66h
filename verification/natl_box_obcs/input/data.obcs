@@ -1,0 +1,67 @@
+
+#
+# ***************
+# Open boundaries
+# ***************
+ &OBCS_PARM01
+ OB_Jnorth= 20*16,
+ OB_Jsouth= 20*2,
+ OB_Iwest= 16*1,
+ OB_Ieast  = 0,
+# OB_Jnorth=  0,
+# OB_Jsouth=  0,
+# OB_Iwest=   0,
+ 
+ useOrlanskiNorth=.FALSE.,
+ useOrlanskiSouth=.FALSE.,
+ useOrlanskiEast=.FALSE., 
+ useOrlanskiWest=.FALSE.,
+
+ OBNuFile='DS_Nu_020_016_23',
+ OBNvFile='DS_Nv_bal_020_016_23',
+ OBNtFile='DS_Nt_020_016_23',
+ OBNsFile='DS_Ns_020_016_23',
+
+ OBSuFile='DS_Su_020_016_23',
+ OBSvFile='DS_Sv_bal_020_016_23',
+ OBStFile='DS_St_020_016_23',
+ OBSsFile='DS_Ss_020_016_23',
+
+ OBEuFile=' ',
+ OBEvFile=' ',
+ OBEtFile=' ',
+ OBEsFile=' ',
+
+ OBWuFile='DS_Wu_bal_020_016_23',
+ OBWvFile='DS_Wv_bal_020_016_23',
+ OBWtFile='DS_Wt_020_016_23',
+ OBWsFile='DS_Ws_020_016_23',
+
+ useOBCSsponge=.TRUE.,
+ &
+
+# *****************************************
+# Orlanski Boundary Condition Parameters.
+# *****************************************
+ &OBCS_PARM02
+ &
+
+# *****************************************
+# Sponge Layer Parameters.
+# *****************************************
+ &OBCS_PARM03
+ Urelaxobcsinner=20.E0,
+ Urelaxobcsbound=5.E0,
+ Vrelaxobcsinner=20.E0,
+ Vrelaxobcsbound=5.E0,
+ spongeThickness=3,
+ &
+
+ 
+
+
+
+
+
+
+

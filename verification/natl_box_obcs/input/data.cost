@@ -1,0 +1,68 @@
+#
+#
+# ******************
+# ECCO cost function
+# ******************
+ &COST_NML
+ data_errfile    = 'data.err',
+ tbarfile        = 'tbar',
+ sbarfile        = 'sbar',
+ psbarfile       = 'psbar',
+ ubarfile        = 'ubar',
+ vbarfile        = 'vbar',
+# using_topex     = .false.,
+ topexstartdate1 = 19920602,
+ topexstartdate2 = 000000,
+ topexperiod     = 86400.0,
+ topexfile       = 'CK_TP_fields_020_016',
+ topexmeanfile   = 'PH_TP_mean__020_016_23',
+# using_ers       = .false.,
+ ersstartdate1   = 19920602,
+ ersstartdate2   = 000000,
+ ersperiod       = 86400.0,
+#
+ ersfile         = 'PH_ERS_fields__020_016_23',
+ ssh_errfile     = 'PH_ssh.err__020_016_23',
+ sststartdate1   = 19920602,
+ sststartdate2   = 000000,
+ sstdatfile      = 'PH_SST_fields_JunMay_020_016',
+ tdatfile        = 'PH_Lev.ptmp_JanDec_020_016_23',
+ sdatfile        = 'PH_Lev.salt_JanDec_020_016_23',
+ ctdtfile        = 'SubEx.ptmp__020_016_23.strict',
+ curmtrufile     = 'SubEx.uvel__020_016_23',
+ curmtrvfile     = 'SubEx.vvel__020_016_23',
+ hflux_errfile   = 'PH_totflux.err__020_016_23',
+ sflux_errfile   = 'PH_pme.err__020_016_23',
+ tauu_errfile    = 'PH_ustress.err__020_016_23',
+ tauv_errfile    = 'PH_vstress.err__020_016_23',
+ geoid_errfile   = 'PH_geoid.err__020_016_23',
+ temperrfile     = 'GG_Eddy_ptmp.err_020_016_23',
+ salterrfile     = ' ',
+ velerrfile      = 'GG_Eddy_vel.err_020_016_23',
+ geoid_covariancefile = 'egm96.pinv',
+ mult_temp0  = 1.,
+ mult_salt0  = 1.,
+ mult_hflux  = 1.,
+ mult_sflux  = 1.,
+ mult_tauu   = 1.,
+ mult_tauv   = 1.,
+ mult_hmean  = 1.,
+ mult_h      = 1.,
+ mult_temp   = .25,
+ mult_salt   = .25,
+ mult_sst    = .25,
+ mult_ctdt   = 1.,
+ mult_obcsn  = 1.,
+ mult_obcss  = 1.,
+ mult_obcsw  = 1.,
+ mult_obcse  = 0.,
+ mult_obcsvol= 0.,
+ mult_curmtr = 1.,
+ mult_ageos  = 0.01,
+#
+ cost_iprec  = 64,
+ cost_yftype = 'RL',
+ /
+
+
+

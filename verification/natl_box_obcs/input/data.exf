@@ -1,0 +1,60 @@
+# $Header$
+#
+# *********************
+# External Forcing Data
+# *********************
+ &EXF_NML
+#
+ hfluxstartdate1 = 19920602,
+ hfluxstartdate2 = 30000,
+ hfluxperiod     = 86400.0,
+#
+ sfluxstartdate1 = 19920602,
+ sfluxstartdate2 = 30000,
+ sfluxperiod     = 864000000.0,
+#
+ ustressstartdate1 = 19920602,
+ ustressstartdate2 = 00000,
+ ustressperiod     = 43200.0,
+#
+ vstressstartdate1 = 19920602,
+ vstressstartdate2 = 00000,
+ vstressperiod     = 43200.0,
+#
+ swfluxstartdate1  = 19920602,
+ swfluxstartdate2  = 30000,
+ swfluxperiod      = 86400.0,
+#
+ lwfluxstartdate1  = 19920602,
+ lwfluxstartdate2  = 30000,
+ lwfluxperiod      = 86400.0,
+#
+ obcsNstartdate1=19920116,   
+ obcsNstartdate2=220000,  
+ obcsNperiod=2592000.0,
+#
+ obcsSstartdate1=19920116,   
+ obcsSstartdate2=220000,  
+ obcsSperiod=2592000.0,
+#
+ obcsEstartdate1=19920116,   
+ obcsEstartdate2=220000,  
+ obcsEperiod=2592000.0,
+#
+ obcsWstartdate1=19920116,   
+ obcsWstartdate2=220000,  
+ obcsWperiod=2592000.0,
+#
+ hfluxfile   = 'PH_totflsfc__020_016_23',
+ sfluxfile   = 'PH_pratesfc__020_016_23',
+ ustressfile = 'PH_ustress__020_016_23',
+ vstressfile = 'PH_vstress__020_016_23',
+ lwfluxfile  = 'PH_lwflsfc__020_016_23',
+ swfluxfile  = 'PH_swflsfc__020_016_23',
+#
+ exf_iprec   = 64,
+ exf_yftype  = 'RL',
+#
+ exf_outscal_ustress = -1.,
+ exf_outscal_vstress = -1.,
+ /
