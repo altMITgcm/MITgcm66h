@@ -565,9 +565,9 @@ c--   Accumulate time averages of temperature, salinity, and SSH.
       call cost_AveragesFields( mytime, myiter, mythid )
       call timer_stop ('cost_AveragesFields [ECCO SPIN-DOWN]', mythid)
 #ifdef ALLOW_TAMC_CHECKPOINTING
-CADJ STORE xx_psbar_mean_dummy = onetape
-CADJ STORE xx_tbar_mean_dummy = onetape
-CADJ STORE xx_sbar_mean_dummy = onetape
+c**************************************
+#include "checkpoint_bar_directives.h"
+c**************************************
 #endif
 
 #ifdef ALLOW_COST_ATLANTIC
