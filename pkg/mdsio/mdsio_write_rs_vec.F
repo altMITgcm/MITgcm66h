@@ -28,7 +28,7 @@ C Arguments
 C Local
       character*(max_len_mbuf) msgbuf
 C     ------------------------------------------------------------------
-      if ( debugLevel .GE. debLevA ) then
+      if ( debugLevel .GE. debLevB ) then
        write(msgbuf,'(a,i9.8,2x,i9.8)')
      &  ' MDS_WRITE_RS_VEC: irec = ',irec,narr
        call print_message( msgbuf, standardmessageunit,
