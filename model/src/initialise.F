@@ -36,6 +36,10 @@ C     an input file called data.
       CALL INI_PARMS(  myThid )
       _BARRIER
 
+C--   Open boundaries positions
+      CALL INI_OBCS( myThid )
+      _BARRIER
+
 C--   Set model grid.
 C     Variables defining model grid spacing are defined.
       CALL INI_GRID( myThid )

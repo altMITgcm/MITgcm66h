@@ -139,6 +139,12 @@ C--    Step forward all tiles, filter and exchange.
        CALL TIMER_STOP ('SHAP_FILT          [MAIN LOOP]',myThid)
 #endif
 
+C--    Set Open Boundaries Values
+       IF (openBoundaries) THEN
+        CALL TIMER_START('OBCS               [MAIN LOOP]',myThid)
+        CALL SET_OBCS( myCurrentTime, myThid )
+        CALL TIMER_STOP ('OBCS               [MAIN LOOP]',myThid)
+       ENDIF
 
 C--    Step forward fields and calculate time tendency terms
        CALL TIMER_START('DYNAMICS           [MAIN LOOP]',myThid)
@@ -206,6 +212,13 @@ C--   Final checkpoint (incase the in-loop checkpoint was missed)
       CALL 
      & WRITE_CHECKPOINT( .TRUE., myCurrentTime, myCurrentIter, myThid )
       CALL TIMER_STOP ('I/O (WRITE)         [SPIN-DOWN]',myThid)
+
+C--   Set Open Boundaries Values
+      IF (openBoundaries) THEN
+       CALL TIMER_START('OBCS               [SPIN_DOWN]',myThid)
+       CALL SET_OBCS( myCurrentTime, myThid )
+       CALL TIMER_STOP ('OBCS               [SPIN_DOWN]',myThid)
+      ENDIF
 
 C--   Step-forward U/V/Theta/Salt for purposes of final I/O dump
       CALL TIMER_START('DYNAMICS            [SPIN-DOWN]',myThid)

@@ -251,11 +251,13 @@ C--     Update fields in top level according to tendency terms
         CALL CORRECTION_STEP(
      I       bi,bj,iMin,iMax,jMin,jMax,K,
      I       etaSurfX,etaSurfY,myTime,myThid)
+        IF (openBoundaries) CALL APPLY_OBCS1( bi, bj, K, myThid )
         IF ( .NOT. BOTTOM_LAYER ) THEN
 C--      Update fields in layer below according to tendency terms
          CALL CORRECTION_STEP(
      I        bi,bj,iMin,iMax,jMin,jMax,K+1,
      I        etaSurfX,etaSurfY,myTime,myThid)
+         IF (openBoundaries) CALL APPLY_OBCS1( bi, bj, K+1, myThid )
         ENDIF
 #endif
 C--     Density of 1st level (below W(1)) reference to level 1
@@ -308,6 +310,7 @@ C--       Update fields in layer below according to tendency terms
           CALL CORRECTION_STEP(
      I         bi,bj,iMin,iMax,jMin,jMax,K+1,
      I         etaSurfX,etaSurfY,myTime,myThid)
+          IF (openBoundaries) CALL APPLY_OBCS1( bi, bj, K+1, myThid )
          ENDIF
 #endif
 C--      Density of K level (below W(K)) reference to K level
@@ -428,6 +431,7 @@ C--      Prediction step (step forward all model variables)
          CALL TIMESTEP(
      I       bi,bj,iMin,iMax,jMin,jMax,K,
      I       myThid)
+         IF (openBoundaries) CALL APPLY_OBCS2( bi, bj, K, myThid )
 C--      Diagnose barotropic divergence of predicted fields
          CALL CALC_DIV_GHAT(
      I       bi,bj,iMin,iMax,jMin,jMax,K,
