@@ -2,7 +2,17 @@ $Header$
 
     Notes on tags used in MITgcmUV
     ==============================
+
+checkpoint51d_post
 o fix bug in dxV,dyU definition of cubed-sphere grid (ini_curvilinear_grid)
+o modif's to restore TAMC compatibility
+  - avoid "_d" constructs in PARAMETER declarations
+  - avoid interrupting lines by comment lines
+o Use cluster local disks for purely local I/O
+  vs. globally visible disks needed for ctrl stuff
+  (merged from ecco-branch)
+  - new active_file_loc... and mdsio_..._loc routines
+  - affected packages: autodiff, ctrl, grdchk, mdsio
 
 checkpoint51c_post
 o introducing integer flag debugLevel
