@@ -360,9 +360,7 @@ CEndOfInterface
       systemTime    = TARRAY(2)
 #ifdef ALLOW_USE_MPI
       wtime         = MPI_Wtime()
-      WRITE(0,*) ' Wtime = ', wtime
       wallClockTime = wtime
-      WRITE(0,*) ' WallClocktime = ', wallClockTime
 #endif /* ALLOW_USE_MPI */
 #ifndef ALLOW_USE_MPI
       wallClockTime = 0.
