@@ -149,7 +149,7 @@ C--     Do check to see if there are nThreads threads running
 C--     Invoke nThreads instances of the numerical model
         IF ( .NOT. eeBootError ) THEN
 #ifdef ALLOW_ADMTLM
-         CALL DSVD(myThid)
+         CALL ADMTLM_DSVD(myThid)
 #else
          CALL THE_MODEL_MAIN(myThid)
 #endif
