@@ -551,6 +551,62 @@ c--   Compute cost function contribution of SSH.
       call cost_SSH( myiter, mytime, mythid )
       call timer_stop ('cost_SSH           [ECCO SPIN-DOWN]', mythid)
 #endif
+
+c--   Compute cost function contribution of SSS. 
+#ifdef ALLOW_SST_COST_CONTRIBUTION 
+      call timer_start('cost_SST           [ECCO SPIN-DOWN]', mythid)
+      call cost_SST( myiter, mytime, mythid )
+      call timer_stop ('cost_SST           [ECCO SPIN-DOWN]', mythid)
+#endif
+
+c--   Compute cost function contribution of SSS.
+#ifdef ALLOW_SSS_COST_CONTRIBUTION
+      call timer_start('cost_SSS           [ECCO SPIN-DOWN]', mythid)
+      call cost_SSS( myiter, mytime, mythid )
+      call timer_stop ('cost_SSS           [ECCO SPIN-DOWN]', mythid)
+#endif
+
+c--   Compute cost function contribution of drifter's velocities.
+#ifdef ALLOW_DRIFTER_COST_CONTRIBUTION
+      call timer_start('cost_Drifter         [ECCO SPIN-DOWN]', mythid)
+      call cost_drifter( myiter, mytime, mythid )
+      call timer_stop ('cost_Drifter         [ECCO SPIN-DOWN]', mythid)
+#endif
+
+c--   Compute cost function contribution of wind stress observations.
+#ifdef ALLOW_SCAT_COST_CONTRIBUTION
+      call timer_start('cost_scat            [ECCO SPIN-DOWN]', mythid) 
+      call cost_scat( myiter, mytime, mythid )
+      call timer_stop ('cost_scat            [ECCO SPIN-DOWN]', mythid)
+#endif
+
+c--   Compute cost function contribution of wind stress observations.  
+#ifdef ALLOW_MEAN_HFLUX_COST_CONTRIBUTION
+      call timer_start('cost_mean_heatflux   [ECCO SPIN-DOWN]', mythid)
+      call cost_mean_heatflux( myiter, mytime, mythid )
+      call timer_stop ('cost_mean_heatflux   [ECCO SPIN-DOWN]', mythid)
+#endif
+
+c--   Compute cost function contribution of wind stress observations.
+#ifdef ALLOW_MEAN_SFLUX_COST_CONTRIBUTION
+      call timer_start('cost_mean_saltflux   [ECCO SPIN-DOWN]', mythid)
+      call cost_mean_saltflux( myiter, mytime, mythid )
+      call timer_stop ('cost_mean_saltflux   [ECCO SPIN-DOWN]', mythid)        
+#endif
+
+c--   Compute cost function contribution of drift between the first 
+c     and the last year.
+#ifdef ALLOW_DRIFT_COST_CONTRIBUTION
+      call timer_start('cost_Drift         [ECCO SPIN-DOWN]', mythid)
+      call cost_drift( myiter, mytime, mythid )
+      call timer_stop ('cost_Drift         [ECCO SPIN-DOWN]', mythid)
+#endif
+#ifdef ALLOW_DRIFTW_COST_CONTRIBUTION
+      call timer_start('cost_Driftw        [ECCO SPIN-DOWN]', mythid)
+      call cost_driftw( myiter, mytime, mythid )
+      call timer_stop ('cost_Driftw        [ECCO SPIN-DOWN]', mythid)
+#endif
+
       _BARRIER
 
 c--   Sum all cost function contributions.

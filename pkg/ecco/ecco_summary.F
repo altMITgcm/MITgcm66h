@@ -244,15 +244,15 @@ c--   Read the EGM data from file.
      &                    SQUEEZE_RIGHT , mythid)
 #endif
 
-#ifdef ALLOW_NSCAT_DATA 
+#ifdef ALLOW_SCAT_COST_CONTRIBUTION 
 c--   Use NSCAT data for getting the weights.
       write(msgbuf,'(a)')
-     &'// ALLOW_NSCAT_DATA:                     defined'
+     &'// ALLOW_SCAT_COST_CONTRIBUTION:                     defined'
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
 #else
       write(msgbuf,'(a)')
-     &'// ALLOW_NSCAT_DATA:                 NOT defined'
+     &'// ALLOW_SCAT_COST_CONTRIBUTION:                 NOT defined'
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
 #endif
