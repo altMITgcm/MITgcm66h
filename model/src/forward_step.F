@@ -302,7 +302,7 @@ C     three-dimensional for non-hydrostatic and/or IGW scheme.
 #ifdef ALLOW_AUTODIFF_TAMC
 cph This is needed because convective_adjustment calls
 cph find_rho which may use pressure()
-CADJ STORE pressure  = comlev1, key = ikey_dynamics
+CADJ STORE totphihyd  = comlev1, key = ikey_dynamics
 #endif
 C--   Correct divergence in flow field and cycle time-stepping
 C     arrays (for all fields) ; update time-counter
