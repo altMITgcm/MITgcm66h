@@ -1,76 +1,107 @@
-C $Id$
+C $Header$
+C $Name$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
-CStartOfInterFace
+CBOP
+C     !ROUTINE: CALC_COMMON_FACTORS
+C     !INTERFACE: 
       SUBROUTINE CALC_COMMON_FACTORS( 
-     I        bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
-     O        xA,yA,uTrans,vTrans,wTrans,maskC,maskUp,
+     I        bi,bj,iMin,iMax,jMin,jMax,k,
+     O        xA,yA,uTrans,vTrans,rTrans,maskUp,
      I        myThid)
+C     !DESCRIPTION: \bv
+C     *==========================================================*
+C     | SUBROUTINE CALC_COMMON_FACTORS                            
+C     | o Calculate common data (such as volume flux) for use     
+C     |   by "Right hand side" subroutines.                       
+C     *==========================================================*
+C     | Here, we calculate terms or spatially varying factors     
+C     | that are used at various points in the "RHS" subroutines. 
+C     | This reduces the amount of total work, total memory       
+C     | and therefore execution time and is generally a good      
+C     | idea.                                                     
+C     *==========================================================*
+C     \ev
 
-C     /==========================================================\
-C     | SUBROUTINE CALC_COMMON_FACTORS                           |
-C     | o Calculate common data (such as volume flux) for use    |
-C     |   by "Right hand side" subroutines.                      |
-C     |==========================================================|
-C     | Here, we calculate terms or spatially varying factors    |
-C     | that are used at various points in the "RHS" subroutines.|
-C     | This reduces the amount of total work, total memory      |
-C     | and therefore execution time and is generally a good     |
-C     | idea.                                                    |
-C     | We also think lower taxes are a good idea but we doubt   |
-C     | whether we'll ever get them.                             |
-C     \==========================================================/
+C     !USES:
       IMPLICIT NONE
-
 C     == GLobal variables ==
 #include "SIZE.h"
 #include "DYNVARS.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#ifdef ALLOW_NONHYDROSTATIC
+#include "GW.h"
+#endif
 
+C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
-C     bi, bj, iMin, iMax, jMin, jMax - Range of points for which calculation
+C     bi, bj, iMin, iMax, jMin, jMax :: Range of points for which calculation
 C                                      results will be set.
-C     xA      - Tracer cell face area normal to X
-C     yA      - Tracer cell face area normal to X
-C     uTrans  - Zonal volume transport through cell face
-C     vTrans  - Meridional volume transport through cell face
-C     wTrans  - Vertical volume transport through cell face
-C     maskC   - land/water mask for tracer points
-C     maskUp  - land/water mask for Wvel points (above tracer level)
-C     myThid - Instance number for this innvocation of CALC_COMMON_FACTORS
+C     xA      :: Tracer cell face area normal to X
+C     yA      :: Tracer cell face area normal to X
+C     uTrans  :: Zonal volume transport through cell face
+C     vTrans  :: Meridional volume transport through cell face
+C     rTrans  :: R-direction volume transport through cell face
+C     maskUp  :: land/water mask for Wvel points (above tracer level)
+C     myThid  ::Instance number for this innvocation of CALC_COMMON_FACTORS
 C
-      INTEGER bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown
+      INTEGER bi,bj,iMin,iMax,jMin,jMax,k
       _RS xA    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS yA    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL uTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL vTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL wTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RS maskC (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL rTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS maskUp(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 C
       INTEGER myThid
-CEndOfInterface
 
+C     !LOCAL VARIABLES:
 C     == Local variables ==
-C     I, J, K - Loop counters
-C     kUp, kDown, kM1 - Index for layer above and below. K_UP and K_DOWN
-C                         are switched with layer to be the appropriate index 
-C                         into fluxUD.
+C     I, J :: Loop counters
       INTEGER i,j
+CEOP
 
-C--    Calculate tracer cell face open areas
+C--   Initialisation
+      DO j=1-OLy,sNy+OLy
+       DO i=1-OLx,sNx+OLx
+        xA(i,j)      = 0. _d 0
+        yA(i,j)      = 0. _d 0
+        uTrans(i,j)  = 0. _d 0
+        vTrans(i,j)  = 0. _d 0
+        rTrans(i,j)  = 0. _d 0
+       ENDDO
+      ENDDO      
+
+C--   Calculate mask for tracer cells  (0 => land, 1 => water)
+      IF (K .EQ. 1) THEN
+        DO j=jMin,jMax
+         DO i=iMin,iMax
+          maskUp(i,j) = 0.
+         ENDDO
+        ENDDO
+      ELSE
+        DO j=jMin,jMax
+         DO i=iMin,iMax
+          maskUp(i,j) = maskC(i,j,k-1,bi,bj)*maskC(i,j,k,bi,bj)
+         ENDDO
+        ENDDO
+      ENDIF
+
+C--   Calculate tracer cell face open areas
       DO j=jMin,jMax
        DO i=iMin,iMax
-        xA(i,j) = dyG(i,j,bi,bj)*dzF(k)*hFacW(i,j,k,bi,bj)
-        yA(i,j) = dxG(i,j,bi,bj)*dzF(k)*hFacS(i,j,k,bi,bj)
+        xA(i,j) = _dyG(i,j,bi,bj)
+     &   *drF(k)*_hFacW(i,j,k,bi,bj)
+        yA(i,j) = _dxG(i,j,bi,bj)
+     &   *drF(k)*_hFacS(i,j,k,bi,bj)
        ENDDO
       ENDDO
 
-C--    Calculate velocity field "volume transports" through
-C--    tracer cell faces.
+C--   Calculate velocity field "volume transports" through
+C--   tracer cell faces.
       DO j=jMin,jMax
        DO i=iMin,iMax
         uTrans(i,j) = uVel(i,j,k,bi,bj)*xA(i,j)
@@ -78,24 +109,12 @@ C--    tracer cell faces.
        ENDDO
       ENDDO
 
-C--    Calculate vertical "volume transport" through
-C--    tracer cell face *above* this level.
+C--   Calculate vertical "volume transport" through
+C--   tracer cell face *above* this level.
       DO j=jMin,jMax
-       DO i=iMin,iMax
-        wTrans(i,j) = uTrans(i,j)-uTrans(i+1,j)
-     &               +vTrans(i,j)-vTrans(i,j+1)
-     &               +wTrans(i,j)
-       ENDDO
-      ENDDO
-
-C--    Calculate mask for tracer cells  (0 => land, 1 => water)
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-        maskC(i,j) = 1.
-        if (hFacC(i,j,k,bi,bj).eq.0.) maskC(i,j)=0.
-        maskUp(i,j) = 1.
-        if (hFacC(i,j,kM1,bi,bj).eq.0.) maskUp(i,j)=0.
-       ENDDO
+        DO i=iMin,iMax
+          rTrans(i,j) = wVel(i,j,k,bi,bj)*rA(i,j,bi,bj)
+        ENDDO
       ENDDO
 
       RETURN

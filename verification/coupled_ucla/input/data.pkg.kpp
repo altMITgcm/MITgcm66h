@@ -1,0 +1,8 @@
+# Packages
+ &PACKAGES
+ useGMRedi=.TRUE.,
+ useKPP=.TRUE.
+# use genmake with  -enable=ptracers  before uncommenting this line.
+#usePTRACERS=.TRUE.,
+ &
+  

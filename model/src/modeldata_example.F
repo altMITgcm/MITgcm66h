@@ -1,26 +1,39 @@
-C $Id$
+C $Header$
+C $Name$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
-C     /==========================================================\
-C     | S/R MODELDATA_EXAMPLE                                    |
-C     | o Write example data file                                |
-C     |==========================================================|
-C     | Notes                                                    |
-C     | =====                                                    |
-C     | Some systems require & as the namelist terminator.       |
-C     | Other systems use a / character.                         |
-C     \==========================================================/
+CBOP
+C     !ROUTINE: MODELDATA_EXAMPLE
+C     !INTERFACE:
       SUBROUTINE MODELDATA_EXAMPLE( myThid )
+
+C     !DESCRIPTION: \bv
+C     *==========================================================*
+C     | S/R MODELDATA_EXAMPLE                                     
+C     | o Write example data file                                 
+C     *==========================================================*
+C     | Notes                                                     
+C     | =====                                                     
+C     | Some systems require & as the namelist terminator.        
+C     | Other systems use a / character.                          
+C     *==========================================================*
+C     \ev
+
+C     !USES:
+      IMPLICIT NONE
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 
-C     -- Routine arguments --
+C     !INPUT/OUTPUT PARAMETERS:
+C     == Routine arguments ==
       INTEGER myThid
 
-C     -- Local variables --
+C     !LOCAL VARIABLES:
+C     == Local variables ==
       CHARACTER*(MAX_LEN_MBUF) msgBuf
+CEOP
       
       WRITE(msgBuf,'(A)') '// Shown below is an example "data" file.'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
@@ -43,37 +56,47 @@ C     -- Local variables --
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#   rhonil  - Reference density (kg/m^3)'   
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A)') '>#   tAlpha  - Thermal expansion coefficient (1/oC)'
+      WRITE(msgBuf,'(A)') 
+     & '>#   tAlpha  - Thermal expansion coefficient (1/oC)'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A)') '>#   sBeta   - Haline contraction coefficient (1/ppt)'
+      WRITE(msgBuf,'(A)') 
+     & '>#   sBeta   - Haline contraction coefficient (1/ppt)'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A)') '>#   f0      - Reference coriolis parameter ( 1/s ).'
+      WRITE(msgBuf,'(A)') 
+     & '>#   f0      - Reference coriolis parameter ( 1/s ).'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A)') '>#             ( South edge f on beta plane.)'
+      WRITE(msgBuf,'(A)') 
+     & '>#             ( South edge f on beta plane.)'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#   beta    - df/dy ( s^-1.m^-1 ).'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A)') '>#   viscAh  - Horizontal eddy viscosity coefficient '
+      WRITE(msgBuf,'(A)') 
+     & '>#   viscAh  - Horizontal eddy viscosity coefficient '
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#             ( m^2/s ).'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A)') '>#   viscAz  - Vertical eddy viscosity coefficient '
+      WRITE(msgBuf,'(A)') 
+     & '>#   viscAz  - Vertical eddy viscosity coefficient '
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#             ( m^2/s ).'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A)') '>#   viscA4  - Biharmonic eddy viscosity coefficient '
+      WRITE(msgBuf,'(A)') 
+     & '>#   viscA4  - Biharmonic eddy viscosity coefficient '
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#             ( m^4/s ).'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A)') '>#   diffKhT - Horizontal temperature diffusivity '
+      WRITE(msgBuf,'(A)') 
+     & '>#   diffKhT - Horizontal temperature diffusivity '
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#             ( m^2/s ).'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A)') '>#   diffKzT - Vertical temperature diffusivity '
+      WRITE(msgBuf,'(A)') 
+     & '>#   diffKzT - Vertical temperature diffusivity '
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#             ( m^2/s ).'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A)') '>#   diffK4T - Biharmonic temperature diffusivity '
+      WRITE(msgBuf,'(A)') 
+     & '>#   diffK4T - Biharmonic temperature diffusivity '
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#             ( m^4/s ).'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
@@ -89,6 +112,10 @@ C     -- Local variables --
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#             ( m^4/s ).'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') '>#   momStepping - On/Off flag for momentum'
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') '>#                  equation.          '
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#   momViscosity - On/Off flag for momentum'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#                  mixing.                 '
@@ -97,18 +124,33 @@ C     -- Local variables --
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#                  self transport.         '
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') 
+     & '>#   momPressureForcing - On/Off flag for momentum'
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') 
+     & '>#                        pressure terms.         '
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#   useCoriolis  - On/Off flag for momentum'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#                  equation coriolis term. '
-      WRITE(msgBuf,'(A)') '>#   tempDiffusion- On/Off flag for temperature'
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') 
+     & '>#   tempStepping - On/Off flag for temperature'
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') '>#                  eqaution.         '
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') 
+     & '>#   tempDiffusion- On/Off flag for temperature'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#                  mixing.                 '
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A)') '>#   tempAdvection- On/Off flag for temperature'
+      WRITE(msgBuf,'(A)') 
+     & '>#   tempAdvection- On/Off flag for temperature'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#                  transport.         '
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A)') '>#   tempForcing  - On/Off flag for temperature'
+      WRITE(msgBuf,'(A)') 
+     & '>#   tempForcing  - On/Off flag for temperature'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#                  forcing.'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
@@ -124,9 +166,11 @@ C     -- Local variables --
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#                  forcing.'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A)') '>#   tRef         - Reference vertical pot. temp'
+      WRITE(msgBuf,'(A)') 
+     & '>#   tRef         - Reference vertical pot. temp'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A)') '>#   sRef         - Reference vertical salinity'
+      WRITE(msgBuf,'(A)') 
+     & '>#   sRef         - Reference vertical salinity'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>&PARM01'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
@@ -158,13 +202,19 @@ C     -- Local variables --
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '> diffK4S=0.'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') '> momStepping=.TRUE.'
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '> momViscosity=.TRUE.'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '> momAdvection=.TRUE.'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') '> momPressureForcing=.TRUE.'
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '> momForcing=.TRUE.'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '> useCoriolis=.TRUE.'
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') '> tempStepping=.TRUE.'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '> tempDiffusion=.TRUE.'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
@@ -182,6 +232,20 @@ C     -- Local variables --
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '> sRef=35.,'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') '> implicitFreeSurface=.TRUE.,'
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') '> rigidLid=.FALSE.,'
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') '> GMmaxSlope=1.d-2,'
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') '> GMlength=200.d3,'
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') '> GMalpha=200.d3,'
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') '> GMdepth=1000.,'
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') '> GMkBackground=0.,'
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>/                     '
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
 
@@ -193,7 +257,8 @@ C     -- Local variables --
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#                  solver iterations.   '
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A)') '>#   cg2dChkReqFreq - Frequency solver tests '
+      WRITE(msgBuf,'(A)') 
+     & '>#   cg2dChkReqFreq - Frequency solver tests '
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#                    convergence.       '
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
@@ -218,7 +283,8 @@ C     -- Local variables --
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#   nIter0 - Start timestep index'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A)') '>#   nTimeSteps - Number of timesteps in run.'
+      WRITE(msgBuf,'(A)') 
+     & '>#   nTimeSteps - Number of timesteps in run.'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#   delT - Timestep ( s ).'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
@@ -228,11 +294,16 @@ C     -- Local variables --
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#           factor.                     '
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A)') '>#   tauCD - CD scheme coupling timescale (s)'
+      WRITE(msgBuf,'(A)') 
+     & '>#   tauCD - CD scheme coupling timescale (s)'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A)') '>#   startTime - Integration starting time (s)'
+      WRITE(msgBuf,'(A)') 
+     & '>#   startTime - Integration starting time (s)'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#   endTime - Integration ending time (s)'
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') 
+     & '>#   cAdjFreq - Convective adjustment period (s)'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#   chkPtFreq - Frequency at which check  '
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
@@ -264,6 +335,8 @@ C     -- Local variables --
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '> dumpFreq=2592000.,'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') '> cAdjFreq=86400.,'
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>/                     '
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
 
@@ -277,9 +350,11 @@ C     -- Local variables --
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#   n - Grid-points in Z'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A)') '>#   usingSphericalPolarGrid - On/Off flag for'
+      WRITE(msgBuf,'(A)') 
+     & '>#   usingSphericalPolarGrid - On/Off flag for'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A)') '>#       selecting spherical polar coordinates'
+      WRITE(msgBuf,'(A)') 
+     & '>#       selecting spherical polar coordinates'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#   usingCartesianGrid - On/Off flag for'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
@@ -289,7 +364,8 @@ C     -- Local variables --
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#          for spherical polar and m for'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A)') '>#          cartesian. A value for each point'
+      WRITE(msgBuf,'(A)') 
+     & '>#          cartesian. A value for each point'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#          in X can be specified.'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
@@ -297,7 +373,8 @@ C     -- Local variables --
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#          for spherical polar and m for'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A)') '>#          cartesian. A value for each point'
+      WRITE(msgBuf,'(A)') 
+     & '>#          cartesian. A value for each point'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#          in Y can be specified.'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)

@@ -1,13 +1,19 @@
-C $Id$
-C
-C     /==========================================================\
-C     | MAIN_PDIRECTIVES1.h                                      |
-C     |==========================================================|
-C     | Parallel directives to generate multithreaded code for   |
-C     | various different compilers. The master preprocessor     |
-C     | file CPP_OPTIONS is used to select which of these options|
-C     | is included in the code.                                 |
-C     \==========================================================/
+C $Header$
+C $Name$
+CBOP
+C     !ROUTINE: MAIN_PDIRECTIVES1.h
+C     !INTERFACE:
+C     include "MAIN_PDIRECTIVES1.h"
+C     !DESCRIPTION:
+C     *==========================================================*
+C     | MAIN_PDIRECTIVES1.h                                       
+C     *==========================================================*
+C     | Parallel directives to generate multithreaded code for    
+C     | various different compilers. The master preprocessor      
+C     | file CPP_OPTIONS is used to select which of these options 
+C     | is included in the code.                                  
+C     *==========================================================*
+CEOP
 
 #ifdef USE_SOLARIS_THREADING
 C--
@@ -21,6 +27,7 @@ C$PAR& ,SCHEDTYPE(SELF(1))
 C
 #endif
 
+#define USE_KAP_THREADING
 #ifdef USE_KAP_THREADING
 C--
 C--  Parallel directives for Kuck and Associates compiler.
