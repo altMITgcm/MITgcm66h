@@ -3,6 +3,12 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint36
+ o implement Crank-Nirotropic time-stepping
+ o recover Time-Average diagnostics
+ o fix Pb in checkpoint (PR#19) 
+ o AIM become a standard package ; clean unused CPP_kees
+
 checkpoint35
  o subtantial rewrite of dynamics.f
  o allows staggered time-stepping
