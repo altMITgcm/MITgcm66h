@@ -3,7 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
-untagged
+icebear2
 o Added missing /* */ to CPP comments in pkg/seaice, pkg/exf,
   kpp_transport_t.F,and ecco_the_main_loop.F
 o adjoint-friendly modifications to pkg/seaice
