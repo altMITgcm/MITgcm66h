@@ -125,7 +125,6 @@ Same as exp. 2, but with ALLOW_SEAICE defined:
 #Go back and compile the code:
   cd ../bin
   make
-
 #To run:
   cd ../exe
   cp ../verification/natl_box_adjoint/input_bulk/* .
@@ -159,19 +158,24 @@ North Atlantic subduction region):
 
 #Compile code in bin/:
   cd bin
-  ln -s ../verification/natl_box_adjoint/code_seaice/.genmakerc .
-  ln -s ../verification/natl_box_adjoint/code_seaice/*.h .
+  rm -rf *.o *.f *.p rii_files
+  rm -rf *.F *.h *.c Makefile*
+  cp ../verification/natl_box_adjoint/code_seaice/*.h .
+  cp ../verification/natl_box_adjoint/code_seaice/.genmakerc .
 #Configure and compile the code:
   ../tools/genmake -makefile
   make depend
 #Generate the adjoint code:
   cd ../adjoint
+  mv makefile makefile.old
+  cp ../verification/natl_box_adjoint/code_seaice/makefile .
   make adtaf
   make adchange
+  rm -f makefile
+  mv makefile.old makefile
 #Go back and compile the code:
   cd ../bin
   make
-
 #To run:
   cd ../exe
   cp ../verification/natl_box_adjoint/input_seaice/* .
