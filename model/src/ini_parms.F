@@ -144,7 +144,7 @@ C--   Continuous equation parameters
      & exactConserv,uniformLin_PhiSurf,nonlinFreeSurf,hFacInf,hFacSup,
      & select_rStar,
      & staggerTimeStep,
-     & tempStepping, saltStepping, momStepping, tr1Stepping,
+     & tempStepping, saltStepping, momStepping,
      & implicitDiffusion, implicitViscosity,
      & tempImplVertAdv, saltImplVertAdv, momImplVertAdv,
      & viscAr, diffKrT, diffKrS, hFacMinDr,

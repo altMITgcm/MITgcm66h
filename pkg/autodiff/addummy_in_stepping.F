@@ -85,9 +85,6 @@ CEOP
 #ifdef ALLOW_EDTAUY_CONTROL
        call adexch_xyz_rl( mythid,adeddytauy )
 #endif
-#ifdef ALLOW_TR1_CONTROL
-       call adexch_xyz_rl( mythid,adtr1 )
-#endif
 #ifdef ALLOW_DIFFKR_CONTROL
        call adexch_xyz_rl( mythid,addiffkr )
 #endif
@@ -128,10 +125,6 @@ C--     Read IO error counter
         CALL WRITE_FLD_XY_RL ( 'ADJqnet.',suff, adqnet, myIter, myThid)
         CALL WRITE_FLD_XY_RL ( 'ADJempr.',suff, adempmr, myIter, myThid)
 c
-#ifdef ALLOW_TR1_CONTROL
-        CALL WRITE_FLD_XYZ_RL( 
-     &       'ADJtr1. ',suff, adtr1, myIter, myThid)
-#endif
 #ifdef ALLOW_DIFFKR_CONTROL
         CALL WRITE_FLD_XYZ_RL ( 'ADJdiffkr.',suff, addiffkr, 
      &       myIter, myThid)

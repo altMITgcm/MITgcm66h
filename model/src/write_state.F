@@ -55,9 +55,7 @@ C     !USES:
 #include "DYNVARS.h"
 #include "GRID.h" 
 #include "EOS.h"
-#ifdef ALLOW_PASSIVE_TRACER
-#include "TR1.h"
-#endif
+
       LOGICAL  DIFFERENT_MULTIPLE
       EXTERNAL DIFFERENT_MULTIPLE
       INTEGER  IO_ERRCOUNT

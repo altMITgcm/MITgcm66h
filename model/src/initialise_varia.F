@@ -39,8 +39,6 @@ C       |-- INI_DYNVARS
 C       |
 C       |-- INI_FIELDS
 C       |
-C       |-- INI_TR1
-C       |
 C       |-- INI_AUTODIFF
 C       |
 C       |-- PACKAGES_INIT_VARIABLES
@@ -124,12 +122,6 @@ C     stored files.
       CALL INI_FIELDS( myThid )
 #endif
       _BARRIER
-
-#ifdef ALLOW_PASSIVE_TRACER
-C--   Initialise passive tracer(s)
-      CALL INI_TR1( myThid )
-      _BARRIER
-#endif
 
 #ifdef ALLOW_AUTODIFF_TAMC
 C--   Initialise active fields to help TAMC

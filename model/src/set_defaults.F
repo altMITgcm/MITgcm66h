@@ -129,7 +129,6 @@ Cml      sBeta               = 7.4D-4
       saltStepping        = .TRUE.
       saltAdvection       = .TRUE.
       saltForcing         = .TRUE.
-      tr1Stepping         = .FALSE.
       metricTerms         = .TRUE.
       useNHMTerms         = .FALSE.
       implicitDiffusion   = .FALSE.

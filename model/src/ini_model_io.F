@@ -186,9 +186,6 @@ C     Create MNC definitions for DYNVARS.h variables
       CALL MNC_CW_ADD_VNAME('phi_nh', 'Cen_xy_Hn__C__t', 4,5, myThid)
       CALL MNC_CW_ADD_VNAME('gW', 'Cen_xy_Hn__C__t', 4,5, myThid)
 
-      CALL MNC_CW_ADD_VNAME('tr1', 'Cen_xy_Hn__C__t', 4,5, myThid)
-      CALL MNC_CW_ADD_VATTR_TEXT('tr1',1,
-     &     'long_name','passive_tracer_1', myThid)
       CALL MNC_CW_ADD_VATTR_TEXT('T',1,
      &     'coordinates','XC YC RC iter', myThid)
 

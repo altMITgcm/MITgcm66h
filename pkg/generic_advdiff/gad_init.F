@@ -64,18 +64,6 @@ C-- Set Temp & Salt Adams-Bashforth flag according to advection scheme used
            saltAdamsBashforth = .TRUE.
       ENDIF
 
-#ifdef ALLOW_PASSIVE_TRACER
-      tr1_MultiDimAdvec = multiDimAdvection
-      tr1_AdamsBashforth = .FALSE.
-      IF ( tracerAdvScheme.EQ.ENUM_CENTERED_2ND
-     & .OR.tracerAdvScheme.EQ.ENUM_UPWIND_3RD
-     & .OR.tracerAdvScheme.EQ.ENUM_CENTERED_4TH ) THEN
-           tr1_MultiDimAdvec = .FALSE.
-           tr1_AdamsBashforth = .TRUE.
-      ENDIF
-      useMultiDimAdvec = useMultiDimAdvec.OR.tr1_MultiDimAdvec
-#endif
-
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 C-- Print out GAD parameters :
