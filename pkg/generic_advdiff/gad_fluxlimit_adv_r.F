@@ -68,13 +68,13 @@ C      for maskC(...) and wVel(...)
          Rjm=(tracer(i,j,km1,bi,bj)-tracer(i,j,kM2,bi,bj))
      &        *maskC(i,j,km2,bi,bj)
          IF (Rj.NE.0.) THEN
-          IF (rTrans(i,j).LT.0) THEN
+          IF (rTrans(i,j).LT.0.) THEN
             Cr=Rjm/Rj
           ELSE
             Cr=Rjp/Rj
           ENDIF
          ELSE
-          IF (rTrans(i,j).LT.0) THEN
+          IF (rTrans(i,j).LT.0.) THEN
             Cr=Rjm*1.E20
           ELSE
             Cr=Rjp*1.E20
