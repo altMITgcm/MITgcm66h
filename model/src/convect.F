@@ -5,7 +5,7 @@ C $Header$
       SUBROUTINE CONVECT( bi, bj, iMin, iMax, jMin, jMax, myThid )
 C     /==========================================================\
 C     | SUBROUTINE CONVECT                                       |
-C     | o Does vertical mizing of unstable water column          |
+C     | o Does vertical mixing of unstable water column          |
 C     |==========================================================|
 C     |                                                          |
 C     \==========================================================/
