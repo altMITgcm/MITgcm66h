@@ -32,6 +32,8 @@ C--   Monitor head and tail strings
       PARAMETER ( mon_foot_volmean = '_volmean' )
       CHARACTER*(*) mon_foot_del2
       PARAMETER ( mon_foot_del2 = '_del2' )
+      CHARACTER*(*) mon_foot_vol
+      PARAMETER ( mon_foot_vol = '_vol' )     
       CHARACTER*(*) mon_string_none
       PARAMETER ( mon_string_none = 'NONE')
 

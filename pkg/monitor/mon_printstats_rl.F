@@ -36,10 +36,11 @@ C     === Local variables ====
       _RL theMean
       _RL theSD
       _RL theDel2
+      _RL theVol
 
       CALL MON_STATS_RL(
      I                myNr, arr, arrMask,arrhFac,arrArea,arrDr,
-     O                theMin,theMax,theMean,theSD,theDel2,
+     O                theMin,theMax,theMean,theSD,theDel2,theVol,
      I                myThid )
 
       CALL MON_OUT_RL( arrName, theMax,  mon_foot_max  ,myThid)
@@ -47,6 +48,7 @@ C     === Local variables ====
       CALL MON_OUT_RL( arrName, theMean, mon_foot_mean ,myThid)
       CALL MON_OUT_RL( arrName, theSD,   mon_foot_sd   ,myThid)
       CALL MON_OUT_RL( arrName, theDel2, mon_foot_del2 ,myThid)
+c     CALL MON_OUT_RL( arrName, theVol,  mon_foot_vol  ,myThid)
 
       RETURN
       END
