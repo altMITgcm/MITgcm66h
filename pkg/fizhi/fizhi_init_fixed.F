@@ -52,8 +52,8 @@ c-----------------------------------------------------------------------
        nhmsb = nhms0
 
        call fizhi_alarms(nymdb,nhmsb,deltaTClock)
-       call fizhi_init_veg ( mythid, vegdata,idim2,jdim2,Nsx,Nsy,maxtyp,
-     .            surftype,tilefrac,igrd,ityp,chfr )
+       call fizhi_init_veg ( mythid, vegdata,idim2,jdim2,Nsx,Nsy,
+     .  nSx*nPx,nSy*nPy,maxtyp,nchp,surftype,tilefrac,igrd,ityp,chfr )
 
 C Compute pressure profile to get methane and n2o values (bottom-up)
 
