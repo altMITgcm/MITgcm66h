@@ -44,6 +44,7 @@ c     == local variables ==
 
 c     == end of interface ==
 
+#ifdef ALLOW_EXF
 #ifdef ALLOW_OBCS_NORTH
       call exf_getffieldrec(
      I                       obcsNstartdate, obcsNperiod
@@ -153,6 +154,10 @@ cgg    calendar information as other boundaries.
       call ctrl_getobcse ( mycurrenttime, mycurrentiter, mythid )
 #endif
 
+#else /* not ALLOW_EXF */
+      CALL OBCS_EXTERNAL_FIELDS_LOAD( 
+     &     myCurrentTime, myCurrentIter, myThid )
+#endif /*  ALLOw_EXF */
 
 #endif /* ALLOW_OBCS */
 

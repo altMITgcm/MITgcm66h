@@ -61,16 +61,7 @@ C     msgBuf      - Informational/error meesage buffer
        ENDIF
       ENDIF
 
-#ifdef ALLOW_OBCS_PRESCRIBE
-# ifndef ALLOW_EXF
-        WRITE(msgBuf,'(A)')
-     &  'OBCS_CHECK: ERROR: ALLOW_OBCS_PRESCRIBE'
-        CALL PRINT_ERROR( msgBuf , 1)
-        WRITE(msgBuf,'(A)')
-     &  'OBCS_CHECK: needs to ALLOW_EXF, ALLOW_CAL'
-        STOP 'ABNORMAL END: S/R OBCS_CHECK'
-# endif
-#else
+#ifndef ALLOW_OBCS_PRESCRIBE
         IF (useOBCSprescribe) THEN
          WRITE(msgBuf,'(A)')
      &   'OBCS_CHECK: ERROR: useOBCSprescribe = .TRUE. for'
