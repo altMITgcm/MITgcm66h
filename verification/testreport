@@ -55,6 +55,9 @@ build_mpack()
 	    HAVE_MPACK=f
 	fi
 	echo -n "building mpack...  "
+	if test "x$CC" = x ; then
+	    export CC=cc
+	fi
 	( cd $MPACKDIR && ./configure && $MAKE ) > tr_build_mpack.out 2>&1
 	RETVAL=$?
 	if test "x$RETVAL" != x0 ; then
