@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CBOP
@@ -51,7 +50,8 @@ C     ab15, ab05 :: Adams bashforth extrapolation weights.
 CEOP
 
 C     Adams-Bashforth timestepping weights
-      IF (myIter .EQ. 0) THEN
+      IF ( myIter.EQ.0 .OR.
+     &    (myIter.EQ.1 .AND. staggerTimeStep) ) THEN
        ab15=1.0
        ab05=0.0
       ELSE
