@@ -159,6 +159,9 @@ C--   Report contents of model parameter file
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &     SQUEEZE_RIGHT , 1)
 
+C     Pickups must always be read in an EXCLUSIVE fashion
+      IF (pickup_read_mnc)  pickup_read_mdsio = .FALSE.
+
 C     IO handling is done in one of two senses:
 C     (1) outputTypesInclusive=.TRUE. is an "inclusive-or" meaning that
 C     one or more write methods can occur simultaneously and
