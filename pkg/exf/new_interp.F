@@ -9,8 +9,7 @@ C added Bicubic (bnc 1/2003)               C
 C                                          C
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 
-cdm Does not work with BICUBIC undefined because
-cdm lat_inc is used as a scalar while it is an array.
+cdm WARNING: non-constant lat_inc needs BICUBIC option defined.
 #define BICUBIC
 #ifdef BICUBIC
         real*8 function lagran(i,x,a)
@@ -91,14 +90,13 @@ Clocal variables
       integer interp_unit
 
 C read in input data
-c      call mdsfindunit( interp_unit, mythid)
-      interp_unit=2003
-
+      call mdsfindunit( interp_unit, mythid)
       open(interp_unit,file=infile,status='old',access='direct',
      & recl=nx_in*ny_in*4)
-
       read(interp_unit,rec=irecord) ((arrayin(i,j),i=1,nx_in),j=1,ny_in)
-
+#ifdef _BYTESWAPIO
+      call MDS_BYTESWAPR4((nx_in+4)*(ny_in+4), arrayin )
+#endif
       close(interp_unit)
 
 C setup input grid
@@ -200,13 +198,13 @@ Cinterpolate
          do i=1,snx
 
            ne_fac=(xG(i,1) - x_in(w_ind(i)))*(yG(1,j)-y_in(s_ind(j)))/
-     $                   (lon_inc*lat_inc)
+     $                   (lon_inc*lat_inc(1))
            se_fac=(xG(i,1) - x_in(w_ind(i)))*(y_in(n_ind(j))-yG(1,j))/
-     $                   (lon_inc*lat_inc)
+     $                   (lon_inc*lat_inc(1))
            nw_fac=(x_in(e_ind(i)) - xG(i,1))*(yG(1,j)-y_in(s_ind(j)))/
-     $                   (lon_inc*lat_inc)
+     $                   (lon_inc*lat_inc(1))
            sw_fac=(x_in(e_ind(i)) - xG(i,1))*(y_in(n_ind(j))-yG(1,j))/
-     $                   (lon_inc*lat_inc)
+     $                   (lon_inc*lat_inc(1))
  
            arrayout(i,j,bi,bj) = ne_fac*arrayin(e_ind(i),n_ind(j)) +
      $                         se_fac*arrayin(e_ind(i),s_ind(j)) +

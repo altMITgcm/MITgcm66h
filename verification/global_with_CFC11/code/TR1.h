@@ -29,24 +29,39 @@ C     GTR1NM1 :: tracer concentration (TR1 per second).
       COMMON /TR1_S/ fice, fice0, fice1,
      &                xkw,  xkw0,  xkw1,
      &               patm, patm0, patm1
-      _RS  fice    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RS  fice0   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RS  fice1   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RS  xkw     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RS  xkw0    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RS  xkw1    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RS  patm    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RS  patm0   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RS  patm1   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL  fice    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL  fice0   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL  fice1   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL  xkw     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL  xkw0    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL  xkw1    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL  patm    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL  patm0   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL  patm1   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
       COMMON /TR1_C/           FiceFile, XkwFile, PatmFile
       CHARACTER*(MAX_LEN_FNAM) FiceFile, XkwFile, PatmFile
 
-      INTEGER nyrbeg, nyrend, nt
-      PARAMETER (nyrbeg=1930, nyrend=2001, nt=2)
+      INTEGER    nyrbeg     , nyrend     , nt
+      PARAMETER( nyrbeg=1930, nyrend=2001, nt=2 )
       COMMON /TR1_CFC/ CFCyear, CFCp11, CFCp12, pCFCw1, pCFCw2
       _RL  CFCyear(nyrbeg:nyrend)
       _RL  CFCp11(nyrbeg:nyrend,nt), CFCp12(nyrbeg:nyrend,nt)
       _RL  pCFCw1  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL  pCFCw2  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
+C--   Parameters that specify size of input files
+      INTEGER    nlon     , nlat
+      PARAMETER( nlon=360 , nlat=180 )
+      real*8     lon0     , lon_inc     , lat0
+      PARAMETER( lon0=0.5 , lon_inc=1.0 , lat0=-89.5 )
+      real*8 lat_inc(nlat)
+      DATA   lat_inc /1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+     &                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+     &                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+     &                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+     &                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+     &                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+     &                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+     &                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+     &                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1/

@@ -51,7 +51,8 @@ C     == Local variables ==
 C     i,j          :: Loop counters
 C     aWght, bWght :: Interpolation weights
       INTEGER i,j,intime0,intime1,nForcingPeriods
-      _RL aWght,bWght,rdt
+      INTEGER currentdate(4), tempdate(4), timediff(4)
+      _RL aWght,bWght,rdt,timeint
       _RL fprd,fcyc,ftm,ftmold
       _RL KW,CSAT,ALPHA,PCFC,PCFC1,PCFC2,TMP1,TMP2
 CEOP
@@ -81,6 +82,26 @@ C     data for the period ahead and the period behind myTime.
             _BEGIN_MASTER(myThid)
             WRITE(*,*)
      &           'S/R EXTERNAL_FORCING_TR: Reading new data',myTime
+
+#define CFC_USE_INTERP
+C-- CFC_USE_INTERP option is useful for high-resolution integrations.
+C   For low-resolution, less that 1-deg, it's best to generate files
+C   separately because of sea-ice fraction.
+C   Caution: CFC_USE_INTERP as used is not thread-safe.
+#ifdef CFC_USE_INTERP
+            CALL NEW_INTERP( FiceFile,readBinaryPrec,fice0,intime0,
+     &           xC,yC,lon0,lon_inc,lat0,lat_inc,nlon,nlat,mythid )
+            CALL NEW_INTERP( FiceFile,readBinaryPrec,fice1,intime1,
+     &           xC,yC,lon0,lon_inc,lat0,lat_inc,nlon,nlat,mythid )
+            CALL NEW_INTERP( XkwFile,readBinaryPrec,xkw0,intime0,
+     &           xC,yC,lon0,lon_inc,lat0,lat_inc,nlon,nlat,mythid )
+            CALL NEW_INTERP( XkwFile,readBinaryPrec,xkw1,intime1,
+     &           xC,yC,lon0,lon_inc,lat0,lat_inc,nlon,nlat,mythid )
+            CALL NEW_INTERP( PatmFile,readBinaryPrec,patm0,intime0,
+     &           xC,yC,lon0,lon_inc,lat0,lat_inc,nlon,nlat,mythid )
+            CALL NEW_INTERP( PatmFile,readBinaryPrec,patm1,intime1,
+     &           xC,yC,lon0,lon_inc,lat0,lat_inc,nlon,nlat,mythid )
+#else
             CALL MDSREADFIELD ( FiceFile, readBinaryPrec,
      &           'RS', 1, fice0, intime0, myThid )
             CALL MDSREADFIELD ( FiceFile, readBinaryPrec,
@@ -93,6 +114,8 @@ C     data for the period ahead and the period behind myTime.
      &           'RS', 1, patm0, intime0, myThid )
             CALL MDSREADFIELD ( PatmFile, readBinaryPrec,
      &           'RS', 1, patm1, intime1, myThid )
+#endif
+
             _END_MASTER(myThid)
             _EXCH_XY_R4(fice0 , myThid )
             _EXCH_XY_R4(fice1 , myThid )
@@ -116,8 +139,16 @@ C--   Interpolate in time
          ENDDO
 
 C     Find records and interpolation weights for PCFC
+         call cal_FullDate( 19310101, 0, tempdate, mythid )
+         call cal_GetDate( 0, mytime, currentdate, mythid )
+         call cal_SubDates( currentdate, tempdate, timediff, mythid )
+         if( timediff(1) .GT. 0 ) then
+            call cal_ToSeconds( timediff, timeint, mythid )
+         else
+            timeint=0
+         endif
          fprd    = 31557600
-         ftm     = myTime + fprd / 2
+         ftm     = myTime + timeint + fprd / 2
          intime0 = int( ftm / fprd )
          intime1 = intime0 + 1
          aWght   = ( ftm - fprd * intime0 ) / ( fprd )
@@ -166,6 +197,11 @@ c_ $Author$ ;  $Locker$
 c_
 c_ ---------------------------------------------------------------------
 c_ $Log$
+c_ Revision 1.1.2.2  2003/05/02 22:55:33  dimitri
+c_ release1_p15
+c_ o Added CFC-11 diagnostics, see
+c_   verification/global_with_CFC11/README
+c_
 c_ Revision 1.1.2.1  2003/05/01 18:18:29  dimitri
 c_ release1_p15
 c_ o Added CFC-11 diagnostics, see
@@ -225,6 +261,11 @@ c_ $Author$ ;  $Locker$
 c_
 c_ ---------------------------------------------------------------------
 c_ $Log$
+c_ Revision 1.1.2.2  2003/05/02 22:55:33  dimitri
+c_ release1_p15
+c_ o Added CFC-11 diagnostics, see
+c_   verification/global_with_CFC11/README
+c_
 c_ Revision 1.1.2.1  2003/05/01 18:18:29  dimitri
 c_ release1_p15
 c_ o Added CFC-11 diagnostics, see
