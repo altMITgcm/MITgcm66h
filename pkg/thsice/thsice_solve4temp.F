@@ -282,8 +282,7 @@ C Compute final flux values at surfaces.
       IF ( useBlkFlx ) THEN
         evpAtm = evap
 C--   needs to update also Evap (Tsf changes) since Latent heat has been updated
-C     Note: this fix affects the results and is postponed for now.
-c       evpAtm = evap + dEvdT*dTsf
+        evpAtm = evap + dEvdT*dTsf
 C-    energy flux to Atmos: use net short-wave flux at surf. and
 C     use latent heat = Lvap (energy=0 for liq. water at 0.oC)
         flxAtm = flxSW + flxExceptSw + df0dT*dTsf
