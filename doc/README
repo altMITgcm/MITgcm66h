@@ -24,7 +24,7 @@ o Installing
   the steps below:
 
   1. Extract MITgcmUV from the downloadable archive
-     tar -xvf checkpoint12.tar 
+     tar -xvf cNN.tar 
 
   2. Create platform specific make file
      For example on a Digital UNIX machine the script "genmake.dec" can

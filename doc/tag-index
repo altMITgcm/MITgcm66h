@@ -3,6 +3,14 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint16
+ o Minor changes to exchange routines to support 
+   accumulation in reverse mode. Adjoint of an
+   assignment is an addition.
+ o Changes to support compilation by TAMC (LR(1) 
+   syntax) and by g77 under Linux ( 72 character
+   limit ).
+
 checkpoint15
  Rewrote exchange routines to allow
  o General tile <-> tile connectivity.
