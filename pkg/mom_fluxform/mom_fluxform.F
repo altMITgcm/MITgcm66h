@@ -455,8 +455,17 @@ C      o Non-hydrosatic metric terms
          gU(i,j,k,bi,bj) = gU(i,j,k,bi,bj)+mTFacU*mT(i,j)
         ENDDO
        ENDDO
+                                                                                
+      IF (usingCylindricalGrid) THEN
+         CALL MOM_U_METRIC_CYLINDER(bi,bj,k,uFld,vFld,mT,myThid)
+         DO j=jMin,jMax
+          DO i=iMin,iMax
+             gU(i,j,k,bi,bj) = gU(i,j,k,bi,bj)+mTFacU*mT(i,j)
+          ENDDO
+       ENDDO
       ENDIF
-
+                                                                                
+      ENDIF
 C--   Set du/dt on boundaries to zero
       DO j=jMin,jMax
        DO i=iMin,iMax
@@ -607,6 +616,14 @@ C      o Spherical polar grid metric terms
          gV(i,j,k,bi,bj) = gV(i,j,k,bi,bj)+mTFacV*mT(i,j)
         ENDDO
        ENDDO
+      ENDIF
+      IF (usingCylindricalGrid) THEN
+         CALL MOM_V_METRIC_CYLINDER(bi,bj,k,uFld,vFld,mT,myThid)
+         DO j=jMin,jMax
+            DO i=iMin,iMax
+               gV(i,j,k,bi,bj) = gV(i,j,k,bi,bj)+mTFacV*mT(i,j)
+            ENDDO
+         ENDDO
       ENDIF
 
 C--   Set dv/dt on boundaries to zero

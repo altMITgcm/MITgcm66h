@@ -395,6 +395,9 @@ c    &'   /* Laplacian diffusion of salt vertically ( m^2/s ) */')
       CALL WRITE_0D_L( usingSphericalPolarGrid, INDEX_NONE,
      & 'usingSphericalPolarGrid =',
      &'   /* Spherical coordinates flag ( True / False ) */')
+      CALL WRITE_0D_L( usingCylindricalGrid, INDEX_NONE,
+     & 'usingCylindricalGrid =',
+     &'   /* Spherical coordinates flag ( True / False ) */')
       CALL WRITE_0D_L( groundAtK1, INDEX_NONE, 'groundAtK1 =',
      &'   /* Lower Boundary (ground) at the surface(k=1) ( T / F ) */')
       CALL WRITE_0D_R8( Ro_SeaLevel, INDEX_NONE,'Ro_SeaLevel =',
