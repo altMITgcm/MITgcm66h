@@ -189,8 +189,13 @@ c--   Save sbar.
 #endif
 #endif
 
-#if (defined (ALLOW_DRIFTER_COST_CONTRIBUTION) || \
-     defined (ALLOW_OBCS_COST_CONTRIBUTION))
+#if (defined (ALLOW_OBCS_COST_CONTRIBUTION))
+cph  defined (ALLOW_DRIFTER_COST_CONTRIBUTION) || \
+cph   There's a mismatch between the cost_drifer and the 
+cph   cost_obcs usage of ubar, vbar.
+cph   cost_obcs refers to monthly means, cost_drifer to total mean.
+cph   Needs to be updated for cost_drifer.
+
 c--   Save ubar and vbar.
       ils=ilnblnk( ubarfile )
       write(fnameubar,'(2a,i10.10)') 

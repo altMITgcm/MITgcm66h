@@ -440,7 +440,7 @@ c--     Save sbar (2d) on file.
         endif
 
         call active_write_xy( fnamesbar, sbar, monrec, optimcycle,
-     &                        mythid, xx_tbar_mean_dummy)
+     &                        mythid, xx_sbar_mean_dummy)
 
 
       else if (       (       inmonth         ) .and.
@@ -540,10 +540,15 @@ c--     Accumulate the array holding the average.
       endif
 #endif
 
-#if (defined (ALLOW_DRIFTER_COST_CONTRIBUTION) || \
-     defined (ALLOW_OBCS_COST_CONTRIBUTION))
+#if (defined (ALLOW_OBCS_COST_CONTRIBUTION))
+cph   defined (ALLOW_DRIFTER_COST_CONTRIBUTION) || \
+cph   There's a mismatch between the cost_drifer and the 
+cph   cost_obcs usage of ubar, vbar.
+cph   cost_obcs refers to monthly means, cost_drifer to total mean.
+cph   Needs to be updated for cost_drifer.
+     
 c--   Next, do the averages for velocitty.
-      if (first) then
+      if (first .or. startofmonth) then
         do bj = jtlo,jthi
           do bi = itlo,ithi
             do k = 1,nr
@@ -556,7 +561,7 @@ c--   Next, do the averages for velocitty.
             enddo
           enddo
         enddo
-      else if (last) then
+      else if (last .or. endofmonth) then
         do bj = jtlo,jthi
           do bi = itlo,ithi
             do k = 1,nr
@@ -588,14 +593,15 @@ c--     Save ubar and vbar.
           stop   ' ... stopped in cost_AveragesFields; sbar part.'
         endif
 
-        call active_write_xyz( fnameubar, ubar, 1, optimcycle,
+        call active_write_xyz( fnameubar, ubar, monrec, optimcycle,
      &                         mythid, xx_ubar_mean_dummy)
 
-        call active_write_xyz( fnamevbar, vbar, 1, optimcycle,
+        call active_write_xyz( fnamevbar, vbar, monrec, optimcycle,
      &                         mythid, xx_vbar_mean_dummy)
 
-      else if ( .not. (first) .and.
-     &          .not. (last)       ) then
+      else if (       (       inmonth         ) .and.
+     &          .not. (first .or. startofmonth) .and.
+     &          .not. (last  .or. endofmonth)       ) then
 c--     Accumulate ubar and vbar.
         do bj = jtlo,jthi
           do bi = itlo,ithi

@@ -97,11 +97,10 @@ c--
 c-- The following assumes the TAF option '-pure'
       inquire( file='costfinal', exist=exst )
       IF ( .NOT. exst) THEN
-         CALL TIMER_START('ADTHE_MAIN_LOOP            [MD RUN]', mythid)
+         CALL TIMER_START('MDTHE_MAIN_LOOP            [MD RUN]', mythid)
          CALL MDTHE_MAIN_LOOP ( myCurrentTime, myCurrentIter, mythid )
-         CALL TIMER_STOP ('ADTHE_MAIN_LOOP            [MD RUN]', mythid)
-         CALL COST_FINAL_STORE ( mythid )
-         lastdiva = .FALSE.
+         CALL TIMER_STOP ('MDTHE_MAIN_LOOP            [MD RUN]', mythid)
+         CALL COST_FINAL_STORE ( mythid, lastdiva )
       ELSE
          CALL TIMER_START('ADTHE_MAIN_LOOP       [ADJOINT RUN]', mythid)
          CALL ADTHE_MAIN_LOOP ( mythid )
@@ -125,20 +124,20 @@ c--
 
       _BEGIN_MASTER( mythid )
       IF ( myProcId .eq. 0 .AND. lastdiva ) THEN
-         CALL TIMER_START('CTLR_PACK           [THE_MODEL_MAIN]',mythid)
+         CALL TIMER_START('CTRL_PACK           [THE_MODEL_MAIN]',mythid)
          CALL CTRL_PACK( mycurrentiter, mycurrenttime, mythid )
-         CALL TIMER_STOP ('CTLR_PACK           [THE_MODEL_MAIN]',mythid)
+         CALL TIMER_STOP ('CTRL_PACK           [THE_MODEL_MAIN]',mythid)
       ENDIF
       _END_MASTER( mythid )
       _BARRIER
 
 #ifdef ALLOW_GRADIENT_CHECK
-      if ( useGrdchk .AND. lastdiva ) then
+      IF ( useGrdchk .AND. lastdiva ) THEN
          CALL TIMER_START('GRDCHK_MAIN          [ADJOINT RUN]', mythid)
          CALL GRDCHK_MAIN( mythid )
          CALL TIMER_STOP ('GRDCHK_MAIN          [ADJOINT RUN]', mythid)
          _BARRIER
-      end if
+      ENDIF
 #endif
 
 #else /* ALLOW_ADJOINT_RUN undef */

@@ -9,6 +9,10 @@ c     ==================================================================
 c     SUBROUTINE cost_final_restore
 c     ==================================================================
 c
+c     Restore cost function value
+c     This is required in conjunction with DIVA
+c     heimbach@mit.edu 5-Mar-2003
+c
 c     ==================================================================
 c     SUBROUTINE cost_final_restore
 c     ==================================================================
@@ -26,6 +30,8 @@ c     == routine arguments ==
 
       integer mythid
       logical lastdiva
+
+# ifdef ALLOW_DIVIDED_ADJOINT
 
 c     == local variables ==
       logical exst
@@ -56,5 +62,7 @@ c
          _END_MASTER( mythid )
       ENDIF
       _BARRIER
+
+#endif
 
       end
