@@ -704,6 +704,8 @@ for dir in $TESTDIRS ; do
 	    rm -f $DRESULTS"/"$NDIR".tar*"
 	fi
     fi
+
+    echo "-------------------------------------------------------------------------------"
     
     NDIR=$(( $NDIR + 1 ))
     
