@@ -48,7 +48,7 @@ C     == Local variables ==
       _RL gradSmod,stratLimit,f1,Smod,f2,Rnondim,Cspd,Lrho
       _RL dSigmaDrLtd
       _RL fpi
-      PARAMETER(fpi=3.141592653589793047592)
+      PARAMETER(fpi=3.141592653589793047592d0)
       INTEGER i,j
       _RL     sx, sy
 
