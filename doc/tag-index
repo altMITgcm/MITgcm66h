@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/thSIce: read initial state from 6 files ; allow monitor to use MNC.
 o add diagnostics of advective & diffusive flux for T & S (pTracers coming soon)
   this is based directly on what the model compute, so that the content of
   each diagnostics might be affected by switching options (e.g., implicitDiffusion)
