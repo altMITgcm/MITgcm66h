@@ -1,61 +1,171 @@
-C $Id$
+C $Header$
+C $Name$
 
-#include "CPP_EEOPTIONS.h"
+#include "PACKAGES_CONFIG.h"
+#include "CPP_OPTIONS.h"
 
-      SUBROUTINE DO_THE_MODEL_IO(myIter, myThid)
-C     /==========================================================\
-C     | SUBROUTINE DO_THE_MODEL_IO                               |
-C     | o Controlling routine for IO in model main time-stepping |
-C     |   loop.                                                  |
-C     |==========================================================|
-C     | Many systems do not have thread safe IO so it is easier  |
-C     | to lump everything together and do dumping of fields     |
-C     | and updating of forcing terms in a single place.         |
-C     | The approach to IO used here is that writes are only     |
-C     | performed by thread 1 and that a process only writes out |
-C     | its data ( since it doen't know about anyone elses data!)|
-C     | Reading on the other hand is assumed to be from a file   |
-C     | containing all the data for all the processes. Only the  |
-C     | portion of data of interest to this process is actually  |
-C     | loaded. To work well this assumes the existence of some  |
-C     | reliable tool to join datasets together at the end of a  |
-C     | run.                                                     |
-C     | Notes                                                    |
-C     | =====                                                    |
-C     | We allow thread 2-nThreads to continue whilst thread 1   |
-C     | does IO. The assumption is that the other threads won't  |
-C     | do anything to update their interior regions before      |
-C     | thread 1 has finished writing them out.                  |
-C     \==========================================================/
+CBOP
+C     !ROUTINE: DO_THE_MODEL_IO
+C     !INTERFACE:
+      SUBROUTINE DO_THE_MODEL_IO(myCurrentTime, myIter, myThid)
+C     !DESCRIPTION: \bv
+C     *==========================================================*
+C     | SUBROUTINE DO_THE_MODEL_IO                                
+C     | o Controlling routine for IO in model main time-stepping  
+C     |   loop.                                                   
+C     *==========================================================*
+C     | Many systems do not have thread safe IO so it is easier   
+C     | to lump everything together and do dumping of fields      
+C     | and updating of forcing terms in a single place.          
+C     | The approach to IO used here is that writes are only      
+C     | performed by thread 1 and that a process only writes out  
+C     | its data ( it does not know about anyone elses data!)     
+C     | Reading on the other hand is assumed to be from a file    
+C     | containing all the data for all the processes. Only the   
+C     | portion of data of interest to this process is actually   
+C     | loaded. To work well this assumes the existence of some   
+C     | reliable tool to join datasets together at the end of a   
+C     | run - see joinds.p                                        
+C     *==========================================================*
+C     \ev
 
+C     !USES:
+      IMPLICIT NONE
 C     == Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "DYNVARS.h"
-#include "CG2D.h"
+cswdblk --- add ---
+#ifdef ALLOW_BULK_FORCE
+#include "BULKF.h"
+#include "FFIELDS.h"
+#endif
+cswdblk -- end add ---
+cswdice -- add ---
+#ifdef ALLOW_THERM_SEAICE
+#include "ICE.h"
+#include "ICE_DIAGS.h"
+#endif
+cswdice -- end add ---
 
+
+
+      LOGICAL  DIFFERENT_MULTIPLE
+      EXTERNAL DIFFERENT_MULTIPLE
+
+C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     myThid - Thread number for this instance of the routine.
 C     myIter - Iteration number
+C     myCurrentTime - Current time of simulation ( s )
       INTEGER myThid
       INTEGER myIter
+      _RL    myCurrentTime
 
-C     == Local variables ==
+CEOP
 
-C--   Generaly only thread 1 does IO here. It can't start until everyone's
-C--   fields are ready.
-      IF ( MOD(myIter,10) .NE. 0 ) RETURN
-      _BARRIER
+C--   Generaly only thread 1 does IO here. It can not start until 
+C--   all threads fields are ready.
+      IF (
+     &  DIFFERENT_MULTIPLE(dumpFreq,myCurrentTime,
+     &                     myCurrentTime-deltaTClock)
+     & ) THEN
 
-C--   Write "text-plots" of certain fields
-      CALL PLOT_FIELD_XYZR8( uVel , 'uVel  ' , Nz, myIter, myThid )
-      CALL PLOT_FIELD_XYZR8( vVel , 'vVel  ' , Nz, myIter, myThid )
-      CALL PLOT_FIELD_XYZR8( theta, 'Theta ' , Nz, myIter, myThid )
-      CALL PLOT_FIELD_XYZR8( rho, 'rho ' , Nz, myIter, myThid )
-      CALL PLOT_FIELD_XYR8( cg2d_x, 'cg2d_x ' , myIter, myThid )
-      _BARRIER
-C
+       _BARRIER
+
+       IF (debugMode) THEN 
+C--    Write "text-plots" of certain fields
+       CALL PLOT_FIELD_XYZRL( uVel , 'Current uVel  ' , 
+     &                        Nr, myIter, myThid )
+       CALL PLOT_FIELD_XYZRL( vVel , 'Current vVel  ' , 
+     &                        Nr, myIter, myThid )
+       CALL PLOT_FIELD_XYZRL( theta, 'Current theta ' , 
+     &                        Nr, myIter, myThid )
+       CALL PLOT_FIELD_XYRL( etaN  , 'Current etaN  ' , 
+     &                        myIter, myThid )
+       ENDIF
+
+      ENDIF
+
+C--   Write model state to binary file
+      CALL WRITE_STATE( myCurrentTime, myIter, myThid )
+
+#ifdef ALLOW_TIMEAVE
+C--   Do time averages
+ceh3 should this have an IF ( useTIMEAVE ) THEN
+      IF (taveFreq.GT.0.) THEN
+       CALL TIMEAVE_STATV_WRITE( myCurrentTime, myIter, myThid )
+cswdptr -- add ---
+#ifdef ALLOW_PTRACERS
+ceh3 this needs an IF ( usePTRACERS ) THEN
+       CALL PTRACERS_STATV_WRITE( myCurrentTime, myIter, myThid )
+#endif
+cswdptr -- end add ---
+      ENDIF
+#endif
+#ifdef ALLOW_AIM
+C--   Do AIM time averages
+      IF (useAIM)
+     &  CALL AIM_WRITE_TAVE( myCurrentTime, myIter, myThid )
+#endif                                                             
+#ifdef ALLOW_LAND
+C--   Do LAND time averages
+      IF (useLAND)
+     &  CALL LAND_WRITE_TAVE( myCurrentTime, myIter, myThid )
+#endif                                                             
+
+#ifdef ALLOW_OBCS
+      IF (useOBCS)
+     & CALL OBCS_DIAGS( myCurrentTime, myIter, myThid )
+#endif
+
+#ifdef ALLOW_GMREDI
+C--   Do KPP diagnostics.
+      IF (useGMRedi)
+     & CALL GMREDI_DIAGS( myCurrentTime, myIter, myThid )
+#endif
+
+#ifdef ALLOW_KPP
+C--   Do KPP diagnostics.
+      IF (useKPP)
+     & CALL KPP_DO_DIAGS( myCurrentTime, myIter, myThid )
+#endif
+
+#ifdef ALLOW_SBO
+C--   Do SBO diagnostics.
+      IF (useSBO) THEN
+         CALL SBO_CALC ( myCurrentTime, myIter, myThid )
+         CALL SBO_DIAGS( myCurrentTime, myIter, myThid )
+      ENDIF
+#endif
+
+cswdblk ---  add ---
+#ifdef ALLOW_BULK_FORCE
+C--   Do bulkf diagnostics.
+      IF (useBulkforce)
+     & CALL BULKF_DIAGS( myCurrentTime, myIter, myThid )
+#endif
+cswdblk -- end add ---
+
+cswdice ---  add ---
+#ifdef ALLOW_THERM_SEAICE
+C--   Do seaice diagnostics.
+      IF (useThermSeaice)
+     & CALL ICE_DIAGS( myCurrentTime, myIter, myThid )
+#endif
+cswdice -- end add ---
+
+cswdptr ---  add ---
+#ifdef ALLOW_GCHEM
+ceh3 ???  why is one package depending upon another here?
+C--   Do ptracer diagnostics.
+      IF (usePTRACERS)
+     & CALL GCHEM_DIAGS( myCurrentTime, myIter, myThid )
+#endif
+cswdptr -- end add ---
+
+
       RETURN
       END
  

@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+#  $Header$
+#
+
+FC='g77'
+FOPTIM='-ffast-math -fexpensive-optimizations -fomit-frame-pointer -O3'
+DEFINES='-DWORDLENGTH=4'
+LIBS='-L/usr/local/lib/LINUX/ch_p4/ -lfmpich -lmpich'
+INCLUDES='-I/usr/local/include'
+CPP='cpp  -traditional -P'

@@ -1,0 +1,20 @@
+remove output of surface forcing files
+they are redundant
+
+more consistent integration with saltFlux/EmPmR
+input variables in FFIELDS.h
+
+push for unit consistency in FFIELDS.h
+for oceanic convention, sign of saltFlux, Qnet, and Qsw
+need to be reversed.
+
+eventually move all code for reading files into pkg/exf
+
+
+ask Alistair about multi-advection and advection schemes for 1/4-deg
+
+
+maybe best is to compute surfacetendencyTice inside sea-ice packages,
+but then apply these corrections inside thermodynamics in what was
+formelly freeze.F
+
