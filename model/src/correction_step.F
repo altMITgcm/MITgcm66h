@@ -26,11 +26,7 @@ C     == Routine Arguments ==
       INTEGER myThid
 C     == Local variables ==
       INTEGER i,j
-      _RL ab15,ab05,hxFac,hyFac,rRhoNil
-
-C     Adams-Bashforth timestepping weights
-      ab15=1.5+abeps
-      ab05=-0.5-abeps
+      _RL hxFac,hyFac,rRhoNil
 
 C     On/off scaling paramters
       hxFac = pfFacMom
