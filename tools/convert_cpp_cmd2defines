@@ -20,8 +20,15 @@ cat << EOF
 
 EOF
 
+BARRIER=
+
 for ac_option ; do
  case $ac_option in
+  -b*)
+	BARRIER=`echo $ac_option | sed 's/-b//'`
+	echo "#ifndef ${BARRIER}"
+	echo "#define ${BARRIER}"
+	;;
   -D*)
 	echo $ac_option | sed 's/-D/#define /' | sed 's/=/ /'
 	;;
@@ -33,3 +40,7 @@ for ac_option ; do
 	;;
  esac
 done
+
+if test ! "x${BARRIER}" = x ; then
+ echo "#endif /* ${BARRIER} */"
+fi
