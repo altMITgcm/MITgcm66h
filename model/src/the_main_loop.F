@@ -37,6 +37,7 @@ C     == Global variables ==
 # include "cost.h"
 # include "DYNVARS.h"
 # include "FFIELDS.h"
+# include "EOS.h"
 # include "GAD.h"
 # ifdef ALLOW_PASSIVE_TRACER
 #  include "TR1.h"
@@ -245,7 +246,6 @@ c--     >>> Loop body start <<<
         nIter0 = INT( startTime/deltaTClock )
         ikey_dynamics = ilev_1
 #endif
-
 
         CALL TIMER_START('FORWARD_STEP        [THE_MAIN_LOOP]',mythid)
         CALL FORWARD_STEP( iloop, mytime, myiter, mythid )

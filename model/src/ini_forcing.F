@@ -56,8 +56,6 @@ CEOP
 #endif
 #ifdef ATMOSPHERIC_LOADING
           pload           (i,j,bi,bj) = 0. _d 0
-#else
-          pload           (1,1,1,1)   = 0. _d 0
 #endif
           surfaceTendencyU(i,j,bi,bj) = 0. _d 0
           surfaceTendencyV(i,j,bi,bj) = 0. _d 0

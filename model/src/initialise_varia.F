@@ -96,6 +96,13 @@ C--   Set laplace operators for use in 3D conjugate gradient solver.
 #endif /* ALLOW_TAMC_CHECKPOINTING */
       _BARRIER
 
+c--   Initialise surface fluxes
+#ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
+      CALL EXF_INIT( mythid )
+#else
+      CALL INI_FORCING( mythid )
+#endif
+
 C--   Initialise 3-dim. diffusivities
       CALL INI_MIXING( myThid )
       _BARRIER

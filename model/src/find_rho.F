@@ -142,6 +142,12 @@ C     nonlinear equation of state in pressure coordinates
      O        bulkMod,
      I        myThid )
          
+#ifdef ALLOW_AUTODIFF_TAMC 
+cph can't do storing here since find_rho is called multiple times;
+cph additional recomp. should be acceptable
+cphCADJ STORE rhoP0(:,:)   = comlev1_bibj_k ,  key=kkey , byte=isbyte
+cphCADJ STORE bulkMod(:,:) = comlev1_bibj_k ,  key=kkey , byte=isbyte
+#endif /* ALLOW_AUTODIFF_TAMC */
          do j=jMin,jMax
             do i=iMin,iMax
 
@@ -161,7 +167,12 @@ C     density of sea water at pressure p
 
          CALL FIND_RHODEN( bi, bj, iMin, iMax, jMin, jMax, k, kRef,
      &      tFld, sFld, rhoDen, myThid )
-
+#ifdef ALLOW_AUTODIFF_TAMC 
+cph can't do storing here since find_rho is called multiple times;
+cph additional recomp. should be acceptable
+cphCADJ STORE rhoNum(:,:) = comlev1_bibj_k ,  key=kkey , byte=isbyte
+cphCADJ STORE rhoDen(:,:) = comlev1_bibj_k ,  key=kkey , byte=isbyte
+#endif /* ALLOW_AUTODIFF_TAMC */
          do j=jMin,jMax
             do i=iMin,iMax
 
@@ -169,6 +180,7 @@ C     density of sea water at pressure p
 
             end do
          end do
+
       elseif( equationOfState .eq. 'IDEALG' ) then
 C     
       else
