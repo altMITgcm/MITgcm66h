@@ -26,7 +26,7 @@ C=======================================================================
 #include "EEPARAMS.h"
 #include "DYNVARS.h"
 #include "fizhi_SIZE.h"
-#include "land_SIZE.h"
+#include "fizhi_land_SIZE.h"
 #include "fizhi_coms.h"
 
       integer iMin, iMax, jMin, jMax, kLev, bi, bj, myThid
@@ -68,7 +68,7 @@ C=======================================================================
 #include "EEPARAMS.h"
 #include "DYNVARS.h"
 #include "fizhi_SIZE.h"
-#include "land_SIZE.h"
+#include "fizhi_land_SIZE.h"
 #include "fizhi_coms.h"
 
       integer iMin, iMax, jMin, jMax, kLev, bi, bj, myThid
@@ -109,7 +109,7 @@ C=======================================================================
 #include "EEPARAMS.h"
 #include "DYNVARS.h"
 #include "fizhi_SIZE.h"
-#include "land_SIZE.h"
+#include "fizhi_land_SIZE.h"
 #include "fizhi_coms.h"
 
       integer iMin, iMax, jMin, jMax, kLev, bi, bj, myThid
@@ -150,7 +150,7 @@ C=======================================================================
 #include "EEPARAMS.h"
 #include "DYNVARS.h"
 #include "fizhi_SIZE.h"
-#include "land_SIZE.h"
+#include "fizhi_land_SIZE.h"
 #include "fizhi_coms.h"
 
       integer iMin, iMax, jMin, jMax, kLev, bi, bj, myThid

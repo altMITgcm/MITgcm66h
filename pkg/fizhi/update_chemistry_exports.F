@@ -16,7 +16,7 @@ c-----------------------------------------------------------------------
 #include "fizhi_SIZE.h"
 #include "GRID.h"
 #include "DYNVARS.h"
-#include "chemistry_coms.h"
+#include "fizhi_chemistry_coms.h"
 #include "gridalt_mapping.h"
 #include "EEPARAMS.h"
 

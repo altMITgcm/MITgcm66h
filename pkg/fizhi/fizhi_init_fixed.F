@@ -24,10 +24,10 @@ c-----------------------------------------------------------------------
 #include "CPP_OPTIONS.h"
 #include "SIZE.h"
 #include "fizhi_SIZE.h"
-#include "land_SIZE.h"
+#include "fizhi_land_SIZE.h"
 #include "EEPARAMS.h"
-#include "chemistry_coms.h"
-#include "earth_coms.h"
+#include "fizhi_chemistry_coms.h"
+#include "fizhi_earth_coms.h"
 
        integer myThid
 

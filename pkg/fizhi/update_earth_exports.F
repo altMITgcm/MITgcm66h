@@ -18,12 +18,12 @@ c-----------------------------------------------------------------------
 #include "CPP_OPTIONS.h"
 #include "SIZE.h"
 #include "GRID.h"
-#include "land_SIZE.h"
+#include "fizhi_land_SIZE.h"
 #include "fizhi_SIZE.h"
 #include "DYNVARS.h"
 #include "fizhi_coms.h"
 #include "gridalt_mapping.h"
-#include "land_coms.h"
+#include "fizhi_land_coms.h"
 #include "EEPARAMS.h"
 
        integer myTime, myIter, myThid

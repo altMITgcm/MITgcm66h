@@ -15,7 +15,7 @@ c-----------------------------------------------------------------------
 #include "CPP_OPTIONS.h"
 #include "SIZE.h"
 #include "GRID.h"
-#include "ocean_coms.h"
+#include "fizhi_ocean_coms.h"
 #include "EEPARAMS.h"
 
        integer myTime, myIter, myThid
