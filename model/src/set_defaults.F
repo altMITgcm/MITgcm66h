@@ -169,6 +169,8 @@ Cml      sBeta               = 7.4D-4
       highOrderVorticity  = .FALSE.
       useAbsVorticity     = .FALSE.
       debugLevel          = debLevA
+      inAdMode            = .FALSE.
+      inAdExact           = .TRUE.
 
 C--   Set (free)surface-related parameters
       implicitFreeSurface = .TRUE.
@@ -232,6 +234,7 @@ C--   Time stepping parameters
       diagFreq          = deltaT*0
       snapshot_mdsio    = .TRUE.
       monitorFreq       = -1.
+      adjMonitorFreq    = 0.
       monitor_stdio     = .TRUE.
       taveFreq          = deltaT*0
       timeave_mdsio     = .TRUE.
