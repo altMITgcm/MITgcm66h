@@ -24,8 +24,6 @@ c     == global variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 
-#include "cal.h"
-#include "ecco.h"
 #include "ctrl.h"
 #include "cost.h"
 

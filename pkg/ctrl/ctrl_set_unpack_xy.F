@@ -24,8 +24,6 @@ c     == global variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 
-#include "cal.h"
-#include "ecco.h"
 #include "ctrl.h"
 #include "cost.h"
 
@@ -131,12 +129,14 @@ c     Initialise temporary file
 c--   Only the master thread will do I/O.
       _BEGIN_MASTER( mythid )
 
+#ifdef ALLOW_NONDIMENSIONAL_CONTROL_IO
       il=ilnblnk( weighttype)
       write(weightname(1:80),'(80a)') ' '
       write(weightname(1:80),'(a)') weighttype(1:il)
       call MDSREADFIELD_2D_GL( 
      &     weightname, ctrlprec, 'RL',
      &     1, globfld2d, 1, mythid)
+#endif
       
       call MDSREADFIELD_3D_GL( 
      &     masktype, ctrlprec, 'RL',

@@ -49,12 +49,14 @@ c     == global variables ==
 #include "SIZE.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#include "cal.h"
 #include "ctrl.h"
+
+#ifdef ALLOW_CALENDAR
+#include "cal.h"
+#endif
 #ifdef ALLOW_OBCS_CONTROL
 # include "OBCS.h"
 #endif
-
 #ifdef ALLOW_ECCO_OPTIMIZATION
 #include "optim.h"
 #endif
@@ -123,10 +125,19 @@ c--   Read the namelist input.
      &  xx_obcsw_file,
      &  xx_obcswstartdate1,  xx_obcswstartdate2,  xx_obcswperiod,
      &  xx_obcse_file,
-     &  xx_obcsestartdate1,  xx_obcsestartdate2,  xx_obcseperiod
+     &  xx_obcsestartdate1,  xx_obcsestartdate2,  xx_obcseperiod,
+     &  xx_diffkr_file,
+     &  xx_kapgm_file,
+     &  xx_tr1_file,
+     &  xx_sst_file,
+     &  xx_sss_file,
+     &  xx_hfacc_file,
+     &  xx_efluxy_file,
+     &  xx_efluxp_file,
+     &  xx_bottomdrag_file
 
       namelist /ctrl_packnames/
-     &  yadmark,
+     &  yadmark, yctrlid,
      &  ctrlname, costname, scalname, maskname, metaname
 
       jtlo = mybylo(mythid)
@@ -191,12 +202,23 @@ c--     Set default values.
         xx_obcsestartdate2  =   0
         xx_obcseperiod      =   0. _d 0
         xx_obcse_file       = ' '
-        yadmark            = 'ad'
-        ctrlname           = ' '
-        costname           = ' '
-        scalname           = ' '
-        maskname           = ' '
-        metaname           = ' '
+        xx_diffkr_file      = ' '
+        xx_kapgm_file       = ' '
+        xx_tr1_file         = ' '
+        xx_sst_file         = ' '
+        xx_sss_file         = ' '
+        xx_hfacc_file       = ' '
+        xx_efluxy_file      = ' '
+        xx_efluxp_file      = ' '
+        xx_bottomdrag_file  = ' '
+
+        yadmark             = 'ad'
+        yctrlid             = 'MIT_CE_000'
+        ctrlname            = ' '
+        costname            = ' '
+        scalname            = ' '
+        maskname            = ' '
+        metaname            = ' '
 
 c--     Check versions.
 
@@ -222,6 +244,8 @@ c--     Next, read the ecco data file.
         read(unit = scrunit1, nml = ctrl_nml)
         read(unit = scrunit1, nml = ctrl_packnames)
         close( scrunit1 )
+
+#ifdef ALLOW_CALENDAR
 
 c--     Get the complete dates of the control variables.
 #if     (defined  (ALLOW_HFLUX_CONTROL))
@@ -275,6 +299,8 @@ c--     Merid. wind speed contribution.
      &                     xx_obcsestartdate,   mythid )
 #endif
 
+#endif /* ALLOW_CALENDAR */
+
 c--     Set default values.
         do ivarindex = 1,maxcvars
           ncvarindex(ivarindex) = -1
@@ -318,8 +344,13 @@ cph    index 11-14 reserved for open boundaries,
 cph    index 15-16 reserved for mixing coeff.
 cph    index 17    reserved for passive tracer TR1
 cph    index 18,19 reserved for sst, sss
+cph    index 20             for hFacC
+cph    index 21-22          for efluxy, efluxp
+cph    index 23-24          for bottom drag
 cph)
 
+c-------------------------------------------------------------------------------------------
+c--
 #ifdef ALLOW_THETA0_CONTROL
 c--   Initial state temperature contribution.
 
@@ -335,6 +366,8 @@ c--   Initial state temperature contribution.
 
 #endif /* ALLOW_THETA0_CONTROL */
 
+c-------------------------------------------------------------------------------------------
+c--
 #ifdef ALLOW_SALT0_CONTROL
 c--   Initial state salinity contribution.
 
@@ -354,10 +387,13 @@ c--   ===========================
 c--   Surface flux contributions.
 c--   ===========================
 
+c-------------------------------------------------------------------------------------------
+c--
 #if (defined (ALLOW_HFLUX_CONTROL))
 c--   Heat flux.
 
       _BEGIN_MASTER( mythid )
+#ifdef ALLOW_CALENDAR
         call cal_TimePassed( xx_hfluxstartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
@@ -365,6 +401,10 @@ c--   Heat flux.
      &                 xx_hfluxperiod) + 1
         endrec   = int((modelend   - diffsecs - modelstep)/
      &                 xx_hfluxperiod) + 2
+#else
+        startrec = 1
+        endrec   = 1
+#endif
         ivarindex                = 3
         ncvarindex(ivarindex)    = 103
         ncvarrecs(ivarindex)     = endrec - startrec + 1
@@ -380,6 +420,7 @@ c--   Heat flux.
 c--   Atmos. temperature
 
       _BEGIN_MASTER( mythid )
+#ifdef ALLOW_CALENDAR
         call cal_TimePassed( xx_atempstartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
@@ -387,6 +428,10 @@ c--   Atmos. temperature
      &                 xx_atempperiod) + 1
         endrec   = int((modelend   - diffsecs - modelstep)/
      &                 xx_atempperiod) + 2
+#else
+        startrec = 1
+        endrec   = 1
+#endif
         ivarindex                = 7
         ncvarindex(ivarindex)    = 107
         ncvarrecs(ivarindex)     = endrec - startrec + 1
@@ -398,12 +443,26 @@ c--   Atmos. temperature
         ncvargrd(ivarindex)      = 'c'
       _END_MASTER( mythid )
 
+#elif (defined (ALLOW_HFLUX0_CONTROL))
+c--   initial forcing only
+      _BEGIN_MASTER( mythid )
+        ncvarindex(3) = 103
+        ncvarrecs(3)  =   1
+        ncvarxmax(3)  = snx
+        ncvarymax(3)  = sny
+        ncvarnrmax(3) =   1
+        ncvargrd(3)   = 'c'
+      _END_MASTER( mythid )
+
 #endif /* ALLOW_HFLUX_CONTROL */
 
+c-------------------------------------------------------------------------------------------
+c--
 #if (defined (ALLOW_SFLUX_CONTROL))
 c--   Salt flux.
 
       _BEGIN_MASTER( mythid )
+#ifdef ALLOW_CALENDAR
         call cal_TimePassed( xx_sfluxstartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
@@ -411,6 +470,10 @@ c--   Salt flux.
      &                 xx_sfluxperiod) + 1
         endrec   = int((modelend   - diffsecs - modelstep)/
      &                 xx_sfluxperiod) + 2
+#else
+        startrec = 1
+        endrec   = 1
+#endif
         ivarindex                = 4
         ncvarindex(ivarindex)    = 104
         ncvarrecs(ivarindex)     = endrec - startrec + 1
@@ -426,6 +489,7 @@ c--   Salt flux.
 c--   Atmos. humidity
 
       _BEGIN_MASTER( mythid )
+#ifdef ALLOW_CALENDAR
         call cal_TimePassed( xx_aqhstartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
@@ -433,6 +497,10 @@ c--   Atmos. humidity
      &                 xx_aqhperiod) + 1
         endrec   = int((modelend   - diffsecs - modelstep)/
      &                 xx_aqhperiod) + 2
+#else
+        startrec = 1
+        endrec   = 1
+#endif
         ivarindex                = 8
         ncvarindex(ivarindex)    = 108
         ncvarrecs(ivarindex)     = endrec - startrec + 1
@@ -444,12 +512,26 @@ c--   Atmos. humidity
         ncvargrd(ivarindex)      = 'c'
       _END_MASTER( mythid )
 
+#elif (defined (ALLOW_SFLUX0_CONTROL))
+c--   initial forcing only
+      _BEGIN_MASTER( mythid )
+        ncvarindex(4) = 104
+        ncvarrecs(4)  =   1
+        ncvarxmax(4)  = snx
+        ncvarymax(4)  = sny
+        ncvarnrmax(4) =   1
+        ncvargrd(4)   = 'c'
+      _END_MASTER( mythid )
+
 #endif /* ALLOW_SFLUX_CONTROL */
 
+c-------------------------------------------------------------------------------------------
+c--
 #if (defined (ALLOW_USTRESS_CONTROL))
 c--   Zonal wind stress.
 
       _BEGIN_MASTER( mythid )
+#ifdef ALLOW_CALENDAR
         call cal_TimePassed( xx_tauustartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
@@ -457,6 +539,10 @@ c--   Zonal wind stress.
      &                 xx_tauuperiod) + 1
         endrec   = int((modelend   - diffsecs - modelstep)/
      &                 xx_tauuperiod) + 2
+#else
+        startrec = 1
+        endrec   = 1
+#endif
         ivarindex                = 5
         ncvarindex(ivarindex)    = 105
         ncvarrecs(ivarindex)     = endrec - startrec + 1
@@ -472,6 +558,7 @@ c--   Zonal wind stress.
 c--   Zonal wind speed.
 
       _BEGIN_MASTER( mythid )
+#ifdef ALLOW_CALENDAR
         call cal_TimePassed( xx_uwindstartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
@@ -479,6 +566,10 @@ c--   Zonal wind speed.
      &                 xx_uwindperiod) + 1
         endrec   = int((modelend   - diffsecs - modelstep)/
      &                 xx_uwindperiod) + 2
+#else
+        startrec = 1
+        endrec   = 1
+#endif
         ivarindex                = 9
         ncvarindex(ivarindex)    = 109
         ncvarrecs(ivarindex)     = endrec - startrec + 1
@@ -490,12 +581,26 @@ c--   Zonal wind speed.
         ncvargrd(ivarindex)      = 'w'
       _END_MASTER( mythid )
 
+#elif (defined (ALLOW_TAUU0_CONTROL))
+c--   initial forcing only
+      _BEGIN_MASTER( mythid )
+        ncvarindex(5) = 105
+        ncvarrecs(5)  =   1
+        ncvarxmax(5)  = snx
+        ncvarymax(5)  = sny
+        ncvarnrmax(5) =   1
+        ncvargrd(5)   = 'w'
+      _END_MASTER( mythid )
+
 #endif /* ALLOW_USTRESS_CONTROL */
 
+c-------------------------------------------------------------------------------------------
+c--
 #if (defined (ALLOW_VSTRESS_CONTROL))
 c--   Meridional wind stress.
 
       _BEGIN_MASTER( mythid )
+#ifdef ALLOW_CALENDAR
         call cal_TimePassed( xx_tauvstartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
@@ -503,6 +608,10 @@ c--   Meridional wind stress.
      &                 xx_tauvperiod) + 1
         endrec   = int((modelend   - diffsecs - modelstep)/
      &                 xx_tauvperiod) + 2
+#else
+        startrec = 1
+        endrec   = 1
+#endif
         ivarindex                = 6
         ncvarindex(ivarindex)    = 106
         ncvarrecs(ivarindex)     = endrec - startrec + 1
@@ -518,6 +627,7 @@ c--   Meridional wind stress.
 c--   Meridional wind speed.
 
       _BEGIN_MASTER( mythid )
+#ifdef ALLOW_CALENDAR
         call cal_TimePassed( xx_vwindstartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
@@ -525,6 +635,10 @@ c--   Meridional wind speed.
      &                 xx_vwindperiod) + 1
         endrec   = int((modelend   - diffsecs - modelstep)/
      &                 xx_vwindperiod) + 2
+#else
+        startrec = 1
+        endrec   = 1
+#endif
         ivarindex                = 10
         ncvarindex(ivarindex)    = 110
         ncvarrecs(ivarindex)     = endrec - startrec + 1
@@ -536,12 +650,26 @@ c--   Meridional wind speed.
         ncvargrd(ivarindex)      = 's'
       _END_MASTER( mythid )
 
+#elif (defined (ALLOW_TAUV0_CONTROL))
+c--   initial forcing only
+      _BEGIN_MASTER( mythid )
+        ncvarindex(6) = 106
+        ncvarrecs(6)  =   1
+        ncvarxmax(6)  = snx
+        ncvarymax(6)  = sny
+        ncvarnrmax(6) =   1
+        ncvargrd(6)   = 's'
+      _END_MASTER( mythid )
+
 #endif /* ALLOW_VSTRESS_CONTROL */
 
+c-------------------------------------------------------------------------------------------
+c--
 #ifdef ALLOW_OBCSN_CONTROL
 c--   Northern obc.
 
       _BEGIN_MASTER( mythid )
+#ifdef ALLOW_CALENDAR
         call cal_TimePassed( xx_obcsnstartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
@@ -549,6 +677,10 @@ c--   Northern obc.
      &                 xx_obcsnperiod) + 1
         endrec   = int((modelend   - diffsecs)/
      &                 xx_obcsnperiod) + 2
+#else
+        startrec = 1
+        endrec   = 1
+#endif
         ivarindex                = 11
         ncvarindex(ivarindex)    = 111
         ncvarrecs(ivarindex)     = (endrec - startrec + 1)*nobcs
@@ -565,7 +697,10 @@ c--   Northern obc.
 #ifdef ALLOW_OBCSS_CONTROL
 c--   Southern obc.
 
+c-------------------------------------------------------------------------------------------
+c--
       _BEGIN_MASTER( mythid )
+#ifdef ALLOW_CALENDAR
         call cal_TimePassed( xx_obcssstartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
@@ -573,6 +708,10 @@ c--   Southern obc.
      &                 xx_obcssperiod) + 1
         endrec   = int((modelend   - diffsecs)/
      &                 xx_obcssperiod) + 2
+#else
+        startrec = 1
+        endrec   = 1
+#endif
         ivarindex                = 12
         ncvarindex(ivarindex)    = 112
         ncvarrecs(ivarindex)     = (endrec - startrec + 1)*nobcs
@@ -586,10 +725,13 @@ c--   Southern obc.
 
 #endif /* ALLOW_OBCSS_CONTROL */
 
+c-------------------------------------------------------------------------------------------
+c--
 #ifdef ALLOW_OBCSW_CONTROL
 c--   Western obc.
 
       _BEGIN_MASTER( mythid )
+#ifdef ALLOW_CALENDAR
         call cal_TimePassed( xx_obcswstartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
@@ -597,6 +739,10 @@ c--   Western obc.
      &                 xx_obcswperiod) + 1
         endrec   = int((modelend   - diffsecs)/
      &                 xx_obcswperiod) + 2
+#else
+        startrec = 1
+        endrec   = 1
+#endif
         ivarindex                = 13
         ncvarindex(ivarindex)    = 113
         ncvarrecs(ivarindex)     = (endrec - startrec + 1)*nobcs
@@ -610,10 +756,13 @@ c--   Western obc.
 
 #endif /* ALLOW_OBCSW_CONTROL */
 
+c-------------------------------------------------------------------------------------------
+c--
 #ifdef ALLOW_OBCSE_CONTROL
 c--   Eastern obc.
 
       _BEGIN_MASTER( mythid )
+#ifdef ALLOW_CALENDAR
         call cal_TimePassed( xx_obcsestartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
@@ -621,6 +770,10 @@ c--   Eastern obc.
      &                 xx_obcseperiod) + 1
         endrec   = int((modelend   - diffsecs)/
      &                 xx_obcseperiod) + 2
+#else
+        startrec = 1
+        endrec   = 1
+#endif
         ivarindex                = 14
         ncvarindex(ivarindex)    = 114
         ncvarrecs(ivarindex)     = (endrec - startrec + 1)*nobcs
@@ -634,6 +787,8 @@ c--   Eastern obc.
 
 #endif /* ALLOW_OBCSE_CONTROL */
 
+c-------------------------------------------------------------------------------------------
+c--
 #ifdef ALLOW_DIFFKR_CONTROL
       _BEGIN_MASTER( mythid )
         ivarindex                = 15
@@ -646,6 +801,8 @@ c--   Eastern obc.
       _END_MASTER( mythid )
 #endif /* ALLOW_DIFFKR_CONTROL */
 
+c-------------------------------------------------------------------------------------------
+c--
 #ifdef ALLOW_KAPGM_CONTROL
       _BEGIN_MASTER( mythid )
         ivarindex                = 16
@@ -658,6 +815,8 @@ c--   Eastern obc.
       _END_MASTER( mythid )
 #endif /* ALLOW_KAPGM_CONTROL */
 
+c-------------------------------------------------------------------------------------------
+c--
 #ifdef ALLOW_TR10_CONTROL
       _BEGIN_MASTER( mythid )
         ivarindex                = 17
@@ -670,17 +829,68 @@ c--   Eastern obc.
       _END_MASTER( mythid )
 #endif /* ALLOW_TR10_CONTROL */
 
+c-------------------------------------------------------------------------------------------
+c--
+#ifdef ALLOW_SST0_CONTROL
+      _BEGIN_MASTER( mythid )
+        ivarindex                = 18
+        ncvarindex(ivarindex)    = 118
+        ncvarrecs (ivarindex)    =   1
+        ncvarxmax (ivarindex)    = snx
+        ncvarymax (ivarindex)    = sny
+        ncvarnrmax(ivarindex)    =   1
+        ncvargrd  (ivarindex)    = 'c'
+      _END_MASTER( mythid )
+#endif /* ALLOW_SST0_CONTROL */
+
+c-------------------------------------------------------------------------------------------
+c--
+#ifdef ALLOW_SSS0_CONTROL
+      _BEGIN_MASTER( mythid )
+        ivarindex                = 19
+        ncvarindex(ivarindex)    = 119
+        ncvarrecs (ivarindex)    =   1
+        ncvarxmax (ivarindex)    = snx
+        ncvarymax (ivarindex)    = sny
+        ncvarnrmax(ivarindex)    =   1
+        ncvargrd  (ivarindex)    = 'c'
+      _END_MASTER( mythid )
+#endif /* ALLOW_SSS0_CONTROL */
+
+c-------------------------------------------------------------------------------------------
+c--
+#ifdef ALLOW_HFACC_CONTROL
+      _BEGIN_MASTER( mythid )
+        ivarindex                = 20
+        ncvarindex(ivarindex)    = 120
+        ncvarrecs (ivarindex)    =   1
+        ncvarxmax (ivarindex)    = snx
+        ncvarymax (ivarindex)    = sny
+        ncvargrd  (ivarindex)    = 'c'
+#ifdef ALLOW_HFACC3D_CONTROL
+        ncvarnrmax(ivarindex)    =  nr
+#else
+        ncvarnrmax(ivarindex)    =   1
+#endif /*ALLOW_HFACC3D_CONTROL*/
+      _END_MASTER( mythid )
+#endif /* ALLOW_HFACC_CONTROL */
+
+c-------------------------------------------------------------------------------------------
+c--
 #ifdef ALLOW_EFLUXY0_CONTROL
       _BEGIN_MASTER( mythid )
         ivarindex                = 21
         ncvarindex(ivarindex)    = 121
         ncvarrecs(ivarindex)     =   1
         ncvarxmax(ivarindex)     = snx
+        ncvarymax(ivarindex)     = sny
         ncvarnrmax(ivarindex)    =  nr
         ncvargrd(ivarindex)      = 's'
       _END_MASTER( mythid )
 #endif /* ALLOW_EFLUXY0_CONTROL */
 
+c-------------------------------------------------------------------------------------------
+c--
 #ifdef ALLOW_EFLUXP0_CONTROL
       _BEGIN_MASTER( mythid )
         ivarindex                = 22
@@ -692,6 +902,24 @@ c--   Eastern obc.
         ncvargrd(ivarindex)      = 'v'
       _END_MASTER( mythid )
 #endif /* ALLOW_EFLUXP0_CONTROL */
+
+c-------------------------------------------------------------------------------------------
+c--
+#ifdef ALLOW_BOTTOMDRAG_CONTROL
+      _BEGIN_MASTER( mythid )
+        ivarindex                = 23
+        ncvarindex(ivarindex)    = 123
+        ncvarrecs (ivarindex)    =   1
+        ncvarxmax (ivarindex)    = snx
+        ncvarymax (ivarindex)    = sny
+        ncvarnrmax(ivarindex)    =   1
+        ncvargrd  (ivarindex)    = 'c'
+      _END_MASTER( mythid )
+#endif /* ALLOW_BOTTOMDRAG_CONTROL */
+
+c-------------------------------------------------------------------------------------------
+c-------------------------------------------------------------------------------------------
+c-------------------------------------------------------------------------------------------
 
 c--   Determine the number of wet points in each tile:
 c--   maskc, masks, and maskw.
@@ -758,7 +986,7 @@ c--             West mask.
                 endif
 #if (defined (ALLOW_EFLUXP0_CONTROL))
 c--             Vertical mask.
-                if (hFacV(i,j,k,bi,bj) .eq. 1.) then
+                if (hFacV(i,j,k,bi,bj) .ne. 0.) then
                   nwetvtile(bi,bj,k) = nwetvtile(bi,bj,k) + 1
                 endif
 #endif
@@ -880,7 +1108,7 @@ cph(
          nwetc3d = nwetc3d + nwetctile(1,1,k)
       end do
       print *, 'ph-wet 5: 3D wet points = ', nwetc3d
-      do i = 1, 14
+      do i = 1, maxcvars
          print *, 'ph-wet 6: no recs for i = ', i, ncvarrecs(i)
       end do
       print *, 'ph-wet 7: ',
@@ -917,8 +1145,6 @@ cph(
 #endif
 cph)
       
-c     Summation of wet point counters 
-c
       CALL GLOBAL_SUM_INT( nvarlength,  myThid )
 
       print *, 'ph-wet 13: global nvarlength vor k=', k, nvarlength
@@ -937,6 +1163,8 @@ c
          CALL GLOBAL_SUM_INT( ntmp,  myThid )
          nWetcGlobal(k)=ntmp
 
+         print *, 'ph-wet 14a: global nWet... vor k=', k, ntmp
+
          ntmp=0
          do bj=1,nSy
             do bi=1,nSx
@@ -946,6 +1174,8 @@ c
          CALL GLOBAL_SUM_INT( ntmp,  myThid )
          nWetsGlobal(k)=ntmp
 
+         print *, 'ph-wet 14b: global nWet... vor k=', k, ntmp
+
          ntmp=0
          do bj=1,nSy
             do bi=1,nSx
@@ -954,6 +1184,19 @@ c
          enddo
          CALL GLOBAL_SUM_INT( ntmp,  myThid )
          nWetwGlobal(k)=ntmp
+
+         print *, 'ph-wet 14c: global nWet... vor k=', k, ntmp
+
+         ntmp=0
+         do bj=1,nSy
+            do bi=1,nSx
+               ntmp=ntmp+nWetvTile(bi,bj,k)
+            enddo
+         enddo
+         CALL GLOBAL_SUM_INT( ntmp,  myThid )
+         nWetvGlobal(k)=ntmp
+
+         print *, 'ph-wet 14d: global nWet... vor k=', k, ntmp
 
 #ifdef ALLOW_OBCSN_CONTROL
          do iobcs = 1, nobcs
@@ -1010,12 +1253,18 @@ c
       print*, 'ctrl_init: control vector length:    ', nvarlength
       _END_MASTER( mythid )
 
-c--   Unpack the control vector.
-cph   No longer needed here
+c     write masks and weights to files to be read by a master process
+c
+      call active_write_xyz( 'hFacC', hFacC,   1, 0, mythid, dummy)
+      call active_write_xyz( 'maskW', maskW,   1, 0, mythid, dummy)
+      call active_write_xyz( 'maskS', maskS,   1, 0, mythid, dummy)
+#if (defined (ALLOW_EFLUXP0_CONTROL))
+      call active_write_xyz( 'hFacV', hFacV,   1, 0, mythid, dummy)
+#endif
 
 c--   Summarize the control vector's setup.
       _BEGIN_MASTER( mythid )
-        call ctrl_Summary( mythid )
+cph        call ctrl_Summary( mythid )
       _END_MASTER( mythid )
 
       _BARRIER

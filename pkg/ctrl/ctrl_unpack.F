@@ -1,4 +1,3 @@
-C $Header$
 
 #include "CTRL_CPPOPTIONS.h"
 
@@ -43,7 +42,6 @@ c     == global variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 
-#include "cal.h"
 #include "ecco.h"
 #include "ctrl.h"
 #include "cost.h"
@@ -81,7 +79,7 @@ c     == local variables ==
       
       integer        filenvartype
       integer        filenvarlength
-      character*(10) fileExpId
+      character*(10) fileYctrlid
       integer        fileOptimCycle
       integer        filencbuffindex
       _RL            fileDummy
@@ -95,6 +93,7 @@ c     == local variables ==
       integer        filenWetcGlobal(nr)
       integer        filenWetsGlobal(nr)
       integer        filenWetwGlobal(nr)
+      integer        filenWetvGlobal(nr)
       integer        filencvarindex(maxcvars)
       integer        filencvarrecs(maxcvars)
       integer        filencvarxmax(maxcvars)
@@ -144,6 +143,24 @@ cgg)
       character*( 80) adfname_obcsw
       character*( 80)   fname_obcse
       character*( 80) adfname_obcse
+      character*( 80)   fname_diffkr
+      character*( 80) adfname_diffkr
+      character*( 80)   fname_kapgm
+      character*( 80) adfname_kapgm
+      character*( 80)   fname_tr1
+      character*( 80) adfname_tr1
+      character*( 80)   fname_sst
+      character*( 80) adfname_sst
+      character*( 80)   fname_sss
+      character*( 80) adfname_sss
+      character*( 80)   fname_hfacc
+      character*( 80) adfname_hfacc
+      character*( 80)   fname_efluxy
+      character*( 80) adfname_efluxy
+      character*( 80)   fname_efluxp
+      character*( 80) adfname_efluxp
+      character*( 80)   fname_bottomdrag
+      character*( 80) adfname_bottomdrag
 
 cgg(  Initialization of ecco_ctrl requires two new local var.
       _RL     tmpvar
@@ -164,7 +181,7 @@ c     == end of interface ==
       tmpvar = 0. _d 0
 
 c--   Check if this is the first model time step.
-      if ( mytime .lt. modelstart + 0.5*modelstep ) then
+      if ( mytime .lt. startTime + 0.5*deltaTClock ) then
         first = .true.
       else
         first = .false.
@@ -194,7 +211,8 @@ c--     Only the master thread will do I/O.
      &       adfname_salt, ivartype, mythid)
 #endif
 
-#ifdef ALLOW_HFLUX_CONTROL
+#if (defined (ALLOW_HFLUX_CONTROL) || \
+     defined (ALLOW_HFLUX0_CONTROL))
         ivartype = 3
         call ctrl_set_fname(
      I       xx_hflux_file, fname_hflux, adfname_hflux, mythid )
@@ -202,7 +220,8 @@ c--     Only the master thread will do I/O.
      &       adfname_hflux, ivartype, mythid)
 #endif
 
-#ifdef ALLOW_SFLUX_CONTROL
+#if (defined (ALLOW_SFLUX_CONTROL) || \
+     defined (ALLOW_SFLUX0_CONTROL))
         ivartype = 4
         call ctrl_set_fname(
      I       xx_sflux_file, fname_sflux, adfname_sflux, mythid )
@@ -210,7 +229,8 @@ c--     Only the master thread will do I/O.
      &       adfname_sflux, ivartype, mythid)
 #endif
 
-#ifdef ALLOW_USTRESS_CONTROL
+#if (defined (ALLOW_USTRESS_CONTROL) || \
+     defined (ALLOW_TAUU0_CONTROL))
         ivartype = 5
         call ctrl_set_fname(
      I       xx_tauu_file, fname_tauu, adfname_tauu, mythid )
@@ -218,7 +238,8 @@ c--     Only the master thread will do I/O.
      &       adfname_tauu, ivartype, mythid)
 #endif
 
-#ifdef ALLOW_VSTRESS_CONTROL
+#if (defined (ALLOW_VSTRESS_CONTROL) || \
+     defined (ALLOW_TAUV0_CONTROL))
         ivartype = 6
         call ctrl_set_fname(
      I       xx_tauv_file, fname_tauv, adfname_tauv, mythid )
@@ -290,15 +311,94 @@ c--     Only the master thread will do I/O.
      &       adfname_obcse, ivartype, mythid)
 #endif
 
+#ifdef ALLOW_DIFFKR_CONTROL
+        ivartype = 15
+        call ctrl_set_fname(
+     I       xx_diffkr_file, fname_diffkr, adfname_diffkr, mythid )
+        call ctrl_set_globfld_xyz(
+     &       adfname_diffkr, ivartype, mythid)
+#endif
+
+#ifdef ALLOW_KAPGM_CONTROL
+        ivartype = 16
+        call ctrl_set_fname(
+     I       xx_kapgm_file, fname_kapgm, adfname_kapgm, mythid )
+        call ctrl_set_globfld_xyz(
+     &       adfname_kapgm, ivartype, mythid)
+#endif
+
+#ifdef ALLOW_TR10_CONTROL
+        ivartype = 17
+        call ctrl_set_fname(
+     I       xx_tr1_file, fname_tr1, adfname_tr1, mythid )
+        call ctrl_set_globfld_xyz(
+     &       adfname_tr1, ivartype, mythid)
+#endif
+
+#ifdef ALLOW_SST0_CONTROL
+        ivartype = 18
+        call ctrl_set_fname(
+     I       xx_sst_file, fname_sst, adfname_sst, mythid )
+        call ctrl_set_globfld_xy(
+     &       adfname_sst, ivartype, mythid)
+#endif
+
+#ifdef ALLOW_SSS0_CONTROL
+        ivartype = 19
+        call ctrl_set_fname(
+     I       xx_sss_file, fname_sss, adfname_sss, mythid )
+        call ctrl_set_globfld_xy(
+     &       adfname_sss, ivartype, mythid)
+#endif
+
+#ifdef ALLOW_HFACC_CONTROL
+        ivartype = 20
+        call ctrl_set_fname(
+     I       xx_hfacc_file, fname_hfacc, adfname_hfacc, mythid )
+#ifdef ALLOW_HFACC3D_CONTROL
+        call ctrl_set_globfld_xyz(
+     &       adfname_hfacc, ivartype, mythid)
+#else
+        call ctrl_set_globfld_xy(
+     &       adfname_hfacc, ivartype, mythid)
+#endif
+#endif
+
+#ifdef ALLOW_EFLUXY0_CONTROL
+        ivartype = 21
+        call ctrl_set_fname(
+     I       xx_efluxy_file, fname_efluxy, adfname_efluxy, mythid )
+        call ctrl_set_globfld_xyz(
+     &       adfname_efluxy, ivartype, mythid)
+#endif
+
+#ifdef ALLOW_EFLUXP0_CONTROL
+        ivartype = 22
+        call ctrl_set_fname(
+     I       xx_efluxp_file, fname_efluxp, adfname_efluxp, mythid )
+        call ctrl_set_globfld_xyz(
+     &       adfname_efluxp, ivartype, mythid)
+#endif
+
+#ifdef ALLOW_BOTTOMDRAG_CONTROL
+        ivartype = 23
+        call ctrl_set_fname(
+     I       xx_bottomdrag_file, fname_bottomdrag, adfname_bottomdrag
+     I     , mythid )
+        call ctrl_set_globfld_xy(
+     &       adfname_bottomdrag, ivartype, mythid)
+#endif
+
+
 c *********************************************************************
 c if NOT very first iteration of optimization
-        if ( optimcycle .GT. 0 ) then
+        if ( optimcycle .ne. 0 ) then
 c *********************************************************************
 
           call mdsfindunit( cunit, mythid )
 
           write(cfile(1:128),'(4a,i4.4)')
-     &      ctrlname(1:9),'_',expId(1:10),'.opt',
+     &      ctrlname(1:9),'_',yctrlid(1:10),'.opt',
      &      optimcycle
 
           open( cunit, file   = cfile,
@@ -309,7 +409,7 @@ c *********************************************************************
 c--       Header information.
           read(cunit) filenvartype
           read(cunit) filenvarlength
-          read(cunit) fileExpId
+          read(cunit) fileYctrlid
           read(cunit) fileOptimCycle
           read(cunit) fileDummy
           read(cunit) fileIg
@@ -319,22 +419,25 @@ c--       Header information.
           read(cunit) (filenWetcGlobal(k),   k=1,nr)
           read(cunit) (filenWetsGlobal(k),   k=1,nr)
           read(cunit) (filenWetwGlobal(k),   k=1,nr)
+#ifdef ALLOW_CTRL_WETV
+          read(cunit) (filenWetvGlobal(k),   k=1,nr)
+#endif
 
 cgg(     Add OBCS mask information to the header.
 #ifdef ALLOW_OBCSN_CONTROL
-          read(cunit) ((filenWetobcsnGlo(k,iobcs), 
+          read(cunit) ((filenWetobcsnGlo(k,iobcs),
      &         k=1,nr), iobcs= 1,nobcs)
 #endif
 #ifdef ALLOW_OBCSS_CONTROL
-          read(cunit) ((filenWetobcssGlo(k,iobcs), 
+          read(cunit) ((filenWetobcssGlo(k,iobcs),
      &         k=1,nr), iobcs= 1,nobcs)
 #endif
 #ifdef ALLOW_OBCSW_CONTROL
-          read(cunit) ((filenWetobcswGlo(k,iobcs), 
+          read(cunit) ((filenWetobcswGlo(k,iobcs),
      &         k=1,nr), iobcs= 1,nobcs)
 #endif
 #ifdef ALLOW_OBCSE_CONTROL
-          read(cunit) ((filenWetobcseGlo(k,iobcs), 
+          read(cunit) ((filenWetobcseGlo(k,iobcs),
      &         k=1,nr), iobcs= 1,nobcs)
 #endif
 cgg)
@@ -360,8 +463,9 @@ c
           do k = 1, nr
              if ( filenWetcGlobal(k) .NE. nWetcGlobal(k) .OR.
      &            filenWetsGlobal(k) .NE. nWetsGlobal(k) .OR.
-     &            filenWetwGlobal(k) .NE. nWetwGlobal(k) ) then
-                print *, 'WARNING: wrong nWet?Tile for k = ', k
+     &            filenWetwGlobal(k) .NE. nWetwGlobal(k) .OR.
+     &            filenWetvGlobal(k) .NE. nWetvGlobal(k)  ) then
+                print *, 'WARNING: wrong nWet?Global for k = ', k
                 STOP
              endif
           end do
@@ -371,9 +475,9 @@ cgg(   Lets also check the OBCS mask info in the header.
 #ifdef ALLOW_OBCSN_CONTROL
        do iobcs = 1, nobcs
          do k = 1, nr
-           if ( filenWetobcsnGlo(k,iobcs) .NE. 
+           if (filenWetobcsnGlo(k,iobcs) .NE. 
      &           nWetobcsnGlo(k,iobcs)) then
-             print *, 'WARNING: OBCSN wrong nWet?Tile for k = ', k
+             print *, 'WARNING: OBCSN wrong nWet?Global for k = ', k
              STOP
            endif
          end do
@@ -383,9 +487,9 @@ cgg(   Lets also check the OBCS mask info in the header.
 #ifdef ALLOW_OBCSS_CONTROL
        do iobcs = 1, nobcs
          do k = 1, nr
-           if ( filenWetobcssGlo(k,iobcs) .NE. 
+           if (filenWetobcssGlo(k,iobcs) .NE. 
      &           nWetobcssGlo(k,iobcs)) then
-             print *, 'WARNING: OBCSS wrong nWet?Tile for k = ', k
+             print *, 'WARNING: OBCSS wrong nWet?Global for k = ', k
              STOP
            endif
          end do
@@ -395,9 +499,9 @@ cgg(   Lets also check the OBCS mask info in the header.
 #ifdef ALLOW_OBCSW_CONTROL
        do iobcs = 1, nobcs
          do k = 1, nr
-           if ( filenWetobcswGlo(k,iobcs) .NE. 
+           if (filenWetobcswGlo(k,iobcs) .NE. 
      &           nWetobcswGlo(k,iobcs)) then
-             print *, 'WARNING: OBCSW wrong nWet?Tile for k = ', k
+             print *, 'WARNING: OBCSW wrong nWet?Global for k = ', k
              STOP
            endif
          end do
@@ -407,9 +511,9 @@ cgg(   Lets also check the OBCS mask info in the header.
 #ifdef ALLOW_OBCSE_CONTROL
        do iobcs = 1, nobcs
          do k = 1, nr
-           if ( filenWetobcseGlo(k,iobcs) .NE. 
+           if (filenWetobcseGlo(k,iobcs) .NE. 
      &           nWetobcseGlo(k,iobcs)) then
-             print *, 'WARNING: OBCSE wrong nWet?Tile for k = ', k
+             print *, 'WARNING: OBCSE wrong nWet?Global for k = ', k
              STOP
            endif
          end do
@@ -433,7 +537,8 @@ c----------------------------------------------------------------------
      &         wsalt, nwetcglobal, mythid)
 #endif
 
-#ifdef ALLOW_HFLUX_CONTROL
+#if (defined (ALLOW_HFLUX_CONTROL) || \
+     defined (ALLOW_HFLUX0_CONTROL))
           ivartype    = 3
           write(weighttype(1:80),'(80a)') ' '
           write(weighttype(1:80),'(a)') "whflux"
@@ -442,7 +547,8 @@ c----------------------------------------------------------------------
      &         nwetcglobal, mythid)
 #endif
 
-#ifdef ALLOW_SFLUX_CONTROL
+#if (defined (ALLOW_SFLUX_CONTROL) || \
+     defined (ALLOW_SFLUX0_CONTROL))
           ivartype = 4
           write(weighttype(1:80),'(80a)') ' '
           write(weighttype(1:80),'(a)') "wsflux"
@@ -451,7 +557,8 @@ c----------------------------------------------------------------------
      &         nwetcglobal, mythid)
 #endif
 
-#ifdef ALLOW_USTRESS_CONTROL
+#if (defined (ALLOW_USTRESS_CONTROL) || \
+     defined (ALLOW_TAUU0_CONTROL))
           ivartype = 5
           write(weighttype(1:80),'(80a)') ' '
           write(weighttype(1:80),'(a)') "wtauu"
@@ -460,7 +567,8 @@ c----------------------------------------------------------------------
      &         nwetwglobal, mythid)
 #endif
 
-#ifdef ALLOW_VSTRESS_CONTROL
+#if (defined (ALLOW_VSTRESS_CONTROL) || \
+     defined (ALLOW_TAUV0_CONTROL))
           ivartype = 6
           write(weighttype(1:80),'(80a)') ' '
           write(weighttype(1:80),'(a)') "wtauv"
@@ -511,7 +619,7 @@ c----------------------------------------------------------------------
           write(weighttype(1:80),'(a)') "wobcsn"
           call ctrl_set_unpack_xz(
      &         cunit, ivartype, fname_obcsn, "maskobcsn",
-     &         wobcsn, nwetobcsnglo, mythid)
+     &         wobcsn, nWetobcsnGlo, mythid)
 #endif
 
 #ifdef ALLOW_OBCSS_CONTROL
@@ -520,7 +628,7 @@ c----------------------------------------------------------------------
           write(weighttype(1:80),'(a)') "wobcss"
           call ctrl_set_unpack_xz(
      &         cunit, ivartype, fname_obcss, "maskobcss",
-     &         wobcss, nwetobcssglo, mythid)
+     &         wobcss, nWetobcssGlo, mythid)
 #endif
 
 #ifdef ALLOW_OBCSW_CONTROL
@@ -529,7 +637,7 @@ c----------------------------------------------------------------------
           write(weighttype(1:80),'(a)') "wobcsw"
           call ctrl_set_unpack_yz(
      &         cunit, ivartype, fname_obcsw, "maskobcsw",
-     &         wobcsw, nwetobcswglo, mythid)
+     &         wobcsw, nWetobcswGlo, mythid)
 #endif
 
 #ifdef ALLOW_OBCSE_CONTROL
@@ -538,7 +646,84 @@ c----------------------------------------------------------------------
           write(weighttype(1:80),'(a)') "wobcse"
           call ctrl_set_unpack_yz(
      &         cunit, ivartype, fname_obcse, "maskobcse",
-     &         wobcse, nwetobcseglo, mythid)
+     &         wobcse, nWetobcseGlo, mythid)
+#endif
+
+#ifdef ALLOW_DIFFKR_CONTROL
+          ivartype    = 15
+          call ctrl_set_unpack_xyz(
+     &         cunit, ivartype, fname_diffkr, "hFacC",
+     &         wunit, nwetcglobal, mythid)
+#endif
+
+#ifdef ALLOW_KAPGM_CONTROL
+          ivartype    = 16
+          call ctrl_set_unpack_xyz(
+     &         cunit, ivartype, fname_kapgm, "hFacC",
+     &         wunit, nwetcglobal, mythid)
+#endif
+
+#ifdef ALLOW_TR10_CONTROL
+          ivartype    = 17
+          call ctrl_set_unpack_xyz(
+     &         cunit, ivartype, fname_tr1, "hFacC",
+     &         wunit, nwetcglobal, mythid)
+#endif
+
+#ifdef ALLOW_SST0_CONTROL
+          ivartype    = 18
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wsst"
+          call ctrl_set_unpack_xy(
+     &         cunit, ivartype, fname_sst, "hFacC", weighttype,
+     &         nwetcglobal, mythid)
+#endif
+
+#ifdef ALLOW_SSS0_CONTROL
+          ivartype    = 19
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wsss"
+          call ctrl_set_unpack_xy(
+     &         cunit, ivartype, fname_sss, "hFacC", weighttype,
+     &         nwetcglobal, mythid)
+#endif
+
+#ifdef ALLOW_HFACC_CONTROL
+          ivartype    = 20
+#ifdef ALLOW_HFACC3D_CONTROL
+          call ctrl_set_unpack_xyz(
+     &         cunit, ivartype, fname_hfacc, "hFacC",
+     &         wunit, nwetcglobal, mythid)
+#else
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "whfacc"
+          call ctrl_set_unpack_xy(
+     &         cunit, ivartype, fname_hfacc, "hFacC", weighttype,
+     &         nwetcglobal, mythid)
+#endif
+#endif
+
+#ifdef ALLOW_EFLUXY0_CONTROL
+          ivartype    = 21
+          call ctrl_set_unpack_xyz(
+     &         cunit, ivartype, fname_efluxy, "hFacS",
+     &         wefluxy, nwetsglobal, mythid)
+#endif
+
+#ifdef ALLOW_EFLUXP0_CONTROL
+          ivartype    = 22
+          call ctrl_set_unpack_xyz(
+     &         cunit, ivartype, fname_efluxp, "hFacV",
+     &         wefluxp, nwetvglobal, mythid)
+#endif
+
+#ifdef ALLOW_BOTTOMDRAG_CONTROL
+          ivartype    = 23
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wbottomdrag"
+          call ctrl_set_unpack_xy(
+     &         cunit, ivartype, fname_bottomdrag, "hFacC", weighttype,
+     &         nwetcglobal, mythid)
 #endif
 
          close ( cunit )
@@ -562,25 +747,29 @@ c--       Write zeroes to file.
      I          fname_salt, ivartype, mythid )
 #endif
 
-#ifdef ALLOW_HFLUX_CONTROL
+#if (defined (ALLOW_HFLUX_CONTROL) || \
+     defined (ALLOW_HFLUX0_CONTROL))
            ivartype = 3
            call ctrl_set_globfld_xy( 
      I          fname_hflux, ivartype, mythid )
 #endif
 
-#ifdef ALLOW_SFLUX_CONTROL
+#if (defined (ALLOW_SFLUX_CONTROL) || \
+     defined (ALLOW_SFLUX0_CONTROL))
            ivartype = 4
            call ctrl_set_globfld_xy( 
      I          fname_sflux, ivartype, mythid )
 #endif
 
-#ifdef ALLOW_USTRESS_CONTROL
+#if (defined (ALLOW_USTRESS_CONTROL) || \
+     defined (ALLOW_TAUU0_CONTROL))
            ivartype = 5
            call ctrl_set_globfld_xy( 
      I          fname_tauu, ivartype, mythid )
 #endif
 
-#ifdef ALLOW_VSTRESS_CONTROL
+#if (defined (ALLOW_VSTRESS_CONTROL) || \
+     defined (ALLOW_TAUV0_CONTROL))
            ivartype = 6
            call ctrl_set_globfld_xy( 
      I          fname_tauv, ivartype, mythid )
@@ -634,6 +823,65 @@ c--       Write zeroes to file.
      I          fname_obcse, ivartype, mythid )
 #endif
 
+#ifdef ALLOW_DIFFKR_CONTROL
+           ivartype = 15
+           call ctrl_set_globfld_xyz( 
+     I          fname_diffkr, ivartype, mythid )
+#endif
+
+#ifdef ALLOW_KAPGM_CONTROL
+           ivartype = 16
+           call ctrl_set_globfld_xyz( 
+     I          fname_kapgm, ivartype, mythid )
+#endif
+
+#ifdef ALLOW_TR10_CONTROL
+           ivartype = 17
+           call ctrl_set_globfld_xyz( 
+     I          fname_tr1, ivartype, mythid )
+#endif
+
+#ifdef ALLOW_SST0_CONTROL
+           ivartype = 18
+           call ctrl_set_globfld_xy( 
+     I          fname_sst, ivartype, mythid )
+#endif
+
+#ifdef ALLOW_SSS0_CONTROL
+           ivartype = 19
+           call ctrl_set_globfld_xy( 
+     I          fname_sss, ivartype, mythid )
+#endif
+
+#ifdef ALLOW_HFACC_CONTROL
+           ivartype = 20
+#ifdef ALLOW_HFACC3D_CONTROL
+           call ctrl_set_globfld_xyz( 
+     I          fname_hfacc, ivartype, mythid )
+#else
+           call ctrl_set_globfld_xy( 
+     I          fname_hfacc, ivartype, mythid )
+#endif
+#endif
+
+#ifdef ALLOW_EFLUXY0_CONTROL
+           ivartype = 21
+           call ctrl_set_globfld_xyz( 
+     I          fname_efluxy, ivartype, mythid )
+#endif
+
+#ifdef ALLOW_EFLUXP0_CONTROL
+           ivartype = 22
+           call ctrl_set_globfld_xyz( 
+     I          fname_efluxp, ivartype, mythid )
+#endif
+
+#ifdef ALLOW_BOTTOMDRAG_CONTROL
+           ivartype = 23
+           call ctrl_set_globfld_xy( 
+     I          fname_bottomdrag, ivartype, mythid )
+#endif
+
 cgg( For optimcycle = 0, we need to output ecco_ctrl file to disk with the
 cgg  header information and everything else 0. 
 c     >>> Write control vector <<<
@@ -641,7 +889,7 @@ c     >>> Write control vector <<<
 
           call mdsfindunit( cunit, mythid )
           write(cfile(1:128),'(4a,i4.4)')
-     &      ctrlname(1:9),'_',expId(1:10),'.opt',
+     &      ctrlname(1:9),'_',yctrlid(1:10),'.opt',
      &      optimcycle
 
           open( cunit, file   = cfile,
@@ -653,7 +901,7 @@ c--       Header information.
           
           write(cunit) nvartype
           write(cunit) nvarlength
-          write(cunit) expId
+          write(cunit) yctrlid
           write(cunit) optimCycle
           write(cunit) tmpvar
           write(cunit) 1
@@ -663,6 +911,9 @@ c--       Header information.
           write(cunit) (nWetcGlobal(k), k=1,nr)
           write(cunit) (nWetsGlobal(k), k=1,nr)
           write(cunit) (nWetwGlobal(k), k=1,nr)
+#ifdef ALLOW_CTRL_WETC
+          write(cunit) (nWetvGlobal(k), k=1,nr)
+#endif
 
 cgg(    Add OBCS Mask information into the header section for optimization.
 #ifdef ALLOW_OBCSN_CONTROL
@@ -700,7 +951,8 @@ cgg)
      &         wsalt, lxxadxx, mythid)
 #endif
 
-#ifdef ALLOW_HFLUX_CONTROL
+#if (defined (ALLOW_HFLUX_CONTROL) || \
+     defined (ALLOW_HFLUX0_CONTROL))
           ivartype = 3
           write(weighttype(1:80),'(80a)') ' '
           write(weighttype(1:80),'(a)') "whflux"
@@ -709,7 +961,8 @@ cgg)
      &         lxxadxx, mythid)
 #endif
 
-#ifdef ALLOW_SFLUX_CONTROL
+#if (defined (ALLOW_SFLUX_CONTROL) || \
+     defined (ALLOW_SFLUX0_CONTROL))
           ivartype = 4
           write(weighttype(1:80),'(80a)') ' '
           write(weighttype(1:80),'(a)') "wsflux"
@@ -718,7 +971,8 @@ cgg)
      &         lxxadxx, mythid)
 #endif
 
-#ifdef ALLOW_USTRESS_CONTROL
+#if (defined (ALLOW_USTRESS_CONTROL) || \
+     defined (ALLOW_TAUU0_CONTROL))
           ivartype = 5
           write(weighttype(1:80),'(80a)') ' '
           write(weighttype(1:80),'(a)') "wtauu"
@@ -727,7 +981,8 @@ cgg)
      &         lxxadxx, mythid)
 #endif
 
-#ifdef ALLOW_VSTRESS_CONTROL
+#if (defined (ALLOW_VSTRESS_CONTROL) || \
+     defined (ALLOW_TAUV0_CONTROL))
           ivartype = 6
           write(weighttype(1:80),'(80a)') ' '
           write(weighttype(1:80),'(a)') "wtauv"
@@ -798,6 +1053,82 @@ cgg)
           call ctrl_set_pack_yz(
      &         cunit, ivartype, fname_obcse, "maskobcse",
      &         wobcse, lxxadxx, mythid)
+#endif
+
+#ifdef ALLOW_DIFFKR_CONTROL
+          ivartype = 15
+          call ctrl_set_pack_xyz(
+     &         cunit, ivartype, fname_diffkr, "hFacC",
+     &         wunit, lxxadxx, mythid)
+#endif
+
+#ifdef ALLOW_KAPGM_CONTROL
+          ivartype = 16
+          call ctrl_set_pack_xyz(
+     &         cunit, ivartype, fname_kapgm, "hFacC",
+     &         wunit, lxxadxx, mythid)
+#endif
+
+#ifdef ALLOW_TR10_CONTROL
+          ivartype = 17
+          call ctrl_set_pack_xyz(
+     &         cunit, ivartype, fname_tr1, "hFacC",
+     &         wunit, lxxadxx, mythid)
+#endif
+
+#ifdef ALLOW_SST0_CONTROL
+          ivartype = 18
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wsst"
+          call ctrl_set_pack_xy(
+     &         cunit, ivartype, fname_sst, "hFacC", weighttype,
+     &         lxxadxx, mythid)
+#endif
+
+#ifdef ALLOW_SSS0_CONTROL
+          ivartype = 19
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wsss"
+          call ctrl_set_pack_xy(
+     &         cunit, ivartype, fname_sss, "hFacC", weighttype,
+     &         lxxadxx, mythid)
+#endif
+
+#ifdef ALLOW_HFACC_CONTROL
+          ivartype = 20
+#ifdef ALLOW_HFACC3D_CONTROL
+          call ctrl_set_pack_xyz(
+     &         cunit, ivartype, fname_hfacc, "hFacC",
+#else
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "whfacc"
+          call ctrl_set_pack_xy(
+     &         cunit, ivartype, fname_hfacc, "hFacC", weighttype,
+     &         lxxadxx, mythid)
+#endif
+#endif
+
+#ifdef ALLOW_EFLUXY0_CONTROL
+          ivartype = 21
+          call ctrl_set_pack_xyz(
+     &         cunit, ivartype, fname_efluxy, "hFacS",
+     &         wunit, lxxadxx, mythid)
+#endif
+
+#ifdef ALLOW_EFLUXP0_CONTROL
+          ivartype = 22
+          call ctrl_set_pack_xyz(
+     &         cunit, ivartype, fname_efluxp, "hFacV",
+     &         wunit, lxxadxx, mythid)
+#endif
+
+#ifdef ALLOW_BOTTOMDRAG_CONTROL
+          ivartype = 23
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wbottomdrag"
+          call ctrl_set_pack_xy(
+     &         cunit, ivartype, fname_bottomdrag, "hFacC", weighttype,
+     &         lxxadxx, mythid)
 #endif
 
           close ( cunit )
