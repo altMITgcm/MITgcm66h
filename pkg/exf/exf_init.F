@@ -42,6 +42,10 @@ c     == end of interface ==
       call exf_init_ustress( mythid )
       call exf_init_vstress( mythid )
 
+#ifdef ALLOW_RUNOFF
+      call exf_init_runoff ( mythid )
+#endif /* ALLOW_RUNOFF */
+
 #ifdef ALLOW_BULKFORMULAE
 c     Use bulk formulae estimates of the surface fluxes.
 
