@@ -6,6 +6,9 @@ $Header$
 Branch release1_coupled contains code for coupling
 to UCLA atmospheric model:
 
+updated useSingleCpuIO option in mdsio_writefield.F
+to work with multi-field files, e.g., the pickup files
+
 Added lower bound diffusivity to kpp_routines.F (see !!!NOTE!!!).
 
 cvs tag ucla1
