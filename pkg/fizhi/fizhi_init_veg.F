@@ -71,7 +71,6 @@ C***********************************************************************
 
       integer i,j,k,bi,bj,ierr1,kveg
 
-
       call mdsfindunit( kveg, myThid )
       close(kveg)
       open(kveg,file=vegdata,form='unformatted',access='sequential', 
@@ -174,11 +173,11 @@ c         ------------
             enddo
           enddo
           
-          print *,'Number of Total Tiles for bi=',bi,': ',nchptot(bi,bj)
-          print *,'Number of Land  Tiles for bi=',bi,': ',nchpland(bi,bj)
+          print *,'No of Total Tiles for bi=',bi,': ',nchptot(bi,bj)
+          print *,'No of Land  Tiles for bi=',bi,': ',nchpland(bi,bj)
 
         ENDDO
       ENDDO
-      
+
       RETURN
       END
