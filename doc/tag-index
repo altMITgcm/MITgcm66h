@@ -4,6 +4,9 @@ $Header$
     ==============================
 
 
+o recoded the lateral boundary conditions for non-hydrostatic w, this time
+  hopefully without new bugs
+  - still to do: biharmonic friction for non-hydrostatic w
 o bug fix for mom_*_sidedrag: rA -> rAs,rAw
 o regenerated output for global_ocean_ebm (using -ieee)
 o fix mom_common/mom_*_sidedrag.F to recover numeric output prior to creation
