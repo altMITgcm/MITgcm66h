@@ -3,7 +3,12 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o land pkg: read initial state from files.
+o AIM : add stratospheric drag in the upper level
+
 checkpoint51d_post
+o change function ILNBLNK (=> last non-blank char.) to return zero
+  (instead of the string length) when the string. char is empty
 o fix bug in dxV,dyU definition of cubed-sphere grid (ini_curvilinear_grid)
 o modif's to restore TAMC compatibility
   - avoid "_d" constructs in PARAMETER declarations
