@@ -540,9 +540,11 @@ c
       IF (myProcId .eq. 0) THEN
          inquire( file='costfinal', exist=exst )
          IF ( .NOT. exst .AND. niter0 .EQ. 0 ) THEN
-            CALL TIMER_START('CTRL_UNPACK      [THE_MODEL_MAIN]',mythid)
-            CALL CTRL_UNPACK( .TRUE. , mythid )
-            CALL TIMER_STOP ('CTRL_UNPACK      [THE_MODEL_MAIN]',mythid)
+            IF ( optimcycle.NE.0 ) THEN
+               CALL TIMER_START('CTRL_UNPACK   [THE_MODEL_MAIN]',mythid)
+               CALL CTRL_UNPACK( .TRUE. , mythid )
+               CALL TIMER_STOP ('CTRL_UNPACK   [THE_MODEL_MAIN]',mythid)
+            ENDIF
             IF ( optimcycle.EQ.0 .AND. mycurrentiter.EQ.niter0 ) THEN
                CALL TIMER_START('CTRL_PACK     [THE_MODEL_MAIN]',mythid)
                CALL CTRL_PACK( .TRUE. , mythid )
