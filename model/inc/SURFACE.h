@@ -21,10 +21,12 @@ C--   COMMON /SURF_FIXED/  fixed surface arrays (Real)
 C     Bo_surf  :: Boyancy|1/rho [ocean|atmos] at surface level [=g|alpha(p_o)]
 C     recip_Bo :: 1/Bo_surf
 C     topoZ    :: topographic height [m] (used mainly for atmosphere)
-      COMMON /SURF_FIXED/ Bo_surf, recip_Bo, topoZ
+C     phi0surf :: starting point for integrating phi'_Hyd
+      COMMON /SURF_FIXED/ Bo_surf, recip_Bo, topoZ, phi0surf
       _RL  Bo_surf (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL  recip_Bo(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  topoZ   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  phi0surf(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
 C--   COMMON /SURF_INDEX/ Common block for surface related index
 C     ksurfC ::  vertical index of the surface tracer cell
