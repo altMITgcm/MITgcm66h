@@ -32,6 +32,10 @@ C                        Stored internally by the coupling library.
       INTEGER MPI_COMM_Coupler
 
       CALL MPI_Init(iErr)
+
+C--   Set the running directory (= rank_0 )
+      CALL SETDIR( 0 )
+
 C     Register this process as the "coupler" participant. Currently there can
 C     only be one coupler participant all others are "component" participants.
       CALL MITCOUPLER_INIT( cplCompName, MPI_COMM_Coupler )
