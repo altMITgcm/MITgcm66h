@@ -20,3 +20,7 @@ Change log for branch "pre38".
  o cg2d: added CPP flag for using "regular" overlaps instead of Olx=Oly=1
  o added inheritence of -disable option to package sub-directories
  o testscript has -skip option and puts full output into output.txt
+ o added pkg/mom_fluxform: conservative form of momentum equations
+   - *should* produce identical results to original calc_mom_rhs.F
+ o added pkg/mom_vecinv: vectgor invariant form of momentum equations
+   - no-slip side conditions not implemented. Don't try to use them!
