@@ -174,9 +174,21 @@ grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.txt
 ####################
 # Experiment no. 6 #
 ####################
-# Same as experiment 5, but in the Labrador Sea rather
-# than in the North Atlantic subduction region.  This 
-# experiment does include sea-ice.
+# Same as experiment 5, but in the Labrador Sea rather than in
+# the North Atlantic subduction region.  This experiment does
+# include sea-ice, but cost function data files are bogus:
+# labsea_TP_fields   : filled with -9999
+# labsea_TP_mean     : hour 100 ssh (cm) of lab_sea experiment
+# labsea_ERS_fields  : filled with -9999
+# labsea_SST_fields  : 14 * Levitus annual mean SST
+# labsea_Lev.ptmp    : 14 * Levitus annual mean temperature
+# labsea_Lev.salt    : 14 * Levitus annual mean salinity
+# labsea_ssh.err     : filled with -9999
+# labsea_geoid.err   : constant 0.2 with -9999 landmask
+# labsea_totflux.err : 100 with -9999 landmask
+# labsea_pme.err     : 4e-8 with -9999 landmask
+# labsea_ustress.err : 3 with -9999 landmask
+# labsea_vstress.err : 3 with -9999 landmask
 
 # To run:
  cd ../exe
