@@ -112,7 +112,7 @@ C--   Start to compute preconditioner matrix (use cg2d_q as temporary array)
      &     aW2d(I,J,bi,bj) + aW2d(I+1,J  ,bi,bj)
      &    +aS2d(I,J,bi,bj) + aS2d(I  ,J+1,bi,bj)
      &    +freeSurfFac*cg2dNorm*recip_Bo(I,J,bi,bj)* 
-     &     rA(I,J,bi,bj)/deltaTMom/deltaTMom
+     &     rA(I,J,bi,bj)/deltaTMom/deltaTfreesurf
      &    )
          ENDDO
         ENDDO
