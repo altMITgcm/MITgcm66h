@@ -636,11 +636,14 @@ Ccs-
       IF ( useAIM ) THEN
        CALL AIM_AIM2DYN_EXCHANGES( myTime, myThid )
       ENDIF
-#endif /* ALLOW_AIM */
-c     IF (staggerTimeStep.AND.useCubedSphereExchange) THEN
        _EXCH_XYZ_R8(gTnm1,myThid)
        _EXCH_XYZ_R8(gSnm1,myThid)
-c     ENDIF
+#else
+      IF (staggerTimeStep.AND.useCubedSphereExchange) THEN
+       _EXCH_XYZ_R8(gTnm1,myThid)
+       _EXCH_XYZ_R8(gSnm1,myThid)
+      ENDIF
+#endif /* ALLOW_AIM */
 
       RETURN
       END
