@@ -120,3 +120,51 @@ Instructions for creating library for JPL-ECCO-1/3-deg, 64cpu ocean model:
   ln -sf POLY3.COEFFS.46 POLY3.COEFFS
   rm -f output.txt STD*
   mpirun -np 80 camel2 >& output.txt
+
+
+===================================================================
+
+Hi-res ocean, low-res atmosphere on alhena, 64-CPU:
+
+  ssh gemini.jpl.nasa.gov
+  cd /tmp1/dmenem
+  mkdir oldpbl
+  cd oldpbl
+  dmget /silo/dmenem/coupled/camel_7.2p_042903.tar
+  tar xvf /silo/dmenem/coupled/camel_7.2p_042903.tar
+  mitcvs co -r release1_coupled MITgcm
+  cd MITgcm/bin
+  cp ../verification/coupled_ucla/code/SIZE.h.56 SIZE.h
+  cp ../verification/coupled_ucla/code/GMREDI_OPTIONS.h .
+  cp ../verification/coupled_ucla/code/CPP_EEOPTIONS.h .
+  cp ../verification/coupled_ucla/code/CPP_OPTIONS.h.coupled_kpp CPP_OPTIONS.h
+  ../tools/genmake -mpi -platform=ames_opt -makefile
+  make depend
+  make
+  rm -f libocean.a
+  ar r libocean.a *.o
+  chmod 644 libocean.a
+  cp libocean.a ../../camel_7.2p_042903/esm/lib/
+  cd ../../camel_7.2p_042903
+  cp ../MITgcm/verification/coupled_ucla/input/UserOptions.h include
+  cp ../MITgcm/verification/coupled_ucla/input/cshrc.setup .
+  source cshrc.setup
+  make clean
+  make
+  cd bin
+  cp ../../MITgcm/verification/coupled_ucla/input/* .
+  ln -sf data.coupled_360x224 data
+  ln -sf data.pkg.kpp data.pkg
+  ln -sf data.gmredi.ldd97 data.gmredi
+  ln -sf POLY3.COEFFS.46 POLY3.COEFFS
+  cp esm_input.56 esm_input
+  cp esminput.56 esminput
+  rm -f STD*
+  cd /alhena/tmp1/dmenem
+  \rm -rf oldpbl
+  mkdir oldpbl
+  cd oldpbl
+  mkdir data
+  cp -r /tmp1/dmenem/oldpbl/camel_7.2p_042903 .
+  cd camel_7.2p_042903/bin
+  qsub submit.long64a
