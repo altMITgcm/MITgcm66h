@@ -59,7 +59,8 @@ C     i,j :: Loop variables
        ENDDO
       ENDIF
 #ifdef NONLIN_FRSURF
-      IF ( nonlinFreeSurf.GT.0 .AND. .NOT.cpl_earlyExpImpCall ) THEN
+      IF ( nonlinFreeSurf.GT.0 .AND.
+     &    (staggerTimeStep .OR. .NOT.cpl_earlyExpImpCall ) ) THEN 
        IF ( select_rStar.GT.0 ) THEN
         DO j=1,sNy
          DO i=1,sNx
