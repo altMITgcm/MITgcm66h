@@ -14,8 +14,8 @@ LINK=g77
 NOOPTFLAGS='-O0'
 
 S64='$(TOOLSDIR)/set64bitConst.sh'
-#MAKEDEPEND='${TOOLSDIR}/xmakedepend'
-MAKEDEPEND=makedepend
+#EH3 MAKEDEPEND='${TOOLSDIR}/xmakedepend'
+#EH3 MAKEDEPEND=makedepend
 DEFINES='-DWORDLENGTH=4'
 
 #  For IEEE, use the "-ffloat-store" option
