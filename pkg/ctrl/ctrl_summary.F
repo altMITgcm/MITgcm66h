@@ -1,11 +1,9 @@
 C $Header$
 
+#include "PACKAGES_CONFIG.h"
 #include "CTRL_CPPOPTIONS.h"
 
-
-      subroutine ctrl_Summary(
-     I                         mythid
-     &                       )
+      subroutine ctrl_Summary( mythid )
 
 c     ==================================================================
 c     SUBROUTINE ctrl_Summary
@@ -28,7 +26,7 @@ c     == global variables ==
 #include "EEPARAMS.h"
 #include "SIZE.h"
 
-#ifdef ALLOW_CALENDAR
+#ifdef ALLOW_CAL
 # include "cal.h"
 #endif
 #include "ctrl.h"

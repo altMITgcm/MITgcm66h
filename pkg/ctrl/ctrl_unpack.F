@@ -2,6 +2,7 @@ C
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "CTRL_CPPOPTIONS.h"
 
       subroutine ctrl_unpack( first, mythid )
@@ -45,9 +46,14 @@ c     == global variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 
-#include "ecco.h"
 #include "ctrl.h"
 #include "cost.h"
+
+#ifdef ALLOW_ECCO
+# include "ecco_cost.h"
+#else
+# include "ctrl_weights.h"
+#endif
 
 #ifdef ALLOW_ECCO_OPTIMIZATION
 # include "optim.h"

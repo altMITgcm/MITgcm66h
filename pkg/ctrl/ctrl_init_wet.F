@@ -374,6 +374,16 @@ c
       print*, 'ctrl_init: control vector length:    ', nvarlength
       _END_MASTER( mythid )
 
+c     Set unit weight to 1
+c
+      do bj=1,nSy
+         do bi=1,nSx
+            do k=1, nr
+               wunit(k,bi,bj) = 1. _d 0
+            enddo
+         enddo
+      enddo
+
 c     write masks and weights to files to be read by a master process
 c
       call active_write_xyz( 'hFacC', hFacC,   1, 0, mythid, dummy)

@@ -4,7 +4,6 @@ C $Name$
 
 #include "CTRL_CPPOPTIONS.h"
 
-
       subroutine ctrl_set_globfld_xy( 
      I     fname, ivartype, mythid )
 
@@ -33,7 +32,6 @@ c     == global variables ==
 #include "GRID.h"
 
 #include "ctrl.h"
-#include "cost.h"
 
 #ifdef ALLOW_ECCO_OPTIMIZATION
 #include "optim.h"

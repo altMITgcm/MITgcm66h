@@ -29,9 +29,6 @@ c     == global variables ==
 #include "GRID.h"
 
 #include "ctrl.h"
-#ifdef ALLOW_CALENDAR
-# include "cal.h"
-#endif
 #ifdef ALLOW_OBCS_CONTROL
 # include "OBCS.h"
 #endif
