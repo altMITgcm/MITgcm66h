@@ -5,7 +5,7 @@ C $Name$
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 CBOP
-C     !ROUTINE: MON_KE
+C     !ROUTINE: MON_PRINTSTATS_RL
 
 C     !INTERFACE:
       SUBROUTINE MON_PRINTSTATS_RL(
