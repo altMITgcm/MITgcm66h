@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o tweaked pkg/mdsio/mdsio_readfield.F to have more useful logic and
+  error messages
 o fix errorMessageUnit problem. remove old version of mdsio from eesup/src
 o modified pkg/mdsio/mdsio_readfield.F -- commented out diskspace-eating
   debug output
