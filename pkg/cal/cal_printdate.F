@@ -15,7 +15,7 @@ c
 c     o Print a calendar date.
 c
 c     Purpose: Print a date as used by the calendar tool in some nice
-c              format by using the MITgcmuv's print routine
+c              format by using the MITgcmuvs print routine
 c
 c     started: Christian Eckert eckert@mit.edu  30-Jun-1999
 c

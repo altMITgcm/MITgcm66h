@@ -12,7 +12,7 @@ c     ==================================================================
 c     SUBROUTINE cal_PrintError
 c     ==================================================================
 c
-c     Purpose: Use the MITgcmuv's print routines to document errors that
+c     Purpose: Use the MITgcmuvs print routines to document errors that
 c              occured during the execution of the calendar tool.
 c
 c     o Calling this routine allows to print out an error message for
