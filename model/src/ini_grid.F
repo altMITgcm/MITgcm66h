@@ -46,7 +46,10 @@ C     == Local variables ==
 C     msgBuf - Used for informational I/O.
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 
-C--   Set up grid coordinate system
+C--   Set up vertical grid and coordinate system
+      CALL INI_VERTICAL_GRID( myThid )
+
+C--   Set up horizontal grid and coordinate system
       IF ( usingCartesianGrid ) THEN
        CALL INI_CARTESIAN_GRID( myThid )
       ELSEIF ( usingSphericalPolarGrid ) THEN
