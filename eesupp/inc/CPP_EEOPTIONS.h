@@ -62,7 +62,7 @@ C                              system F90 compiler.
 #endif
 
 #ifdef TARGET_DEC
-#define USE_KAP_THREADING
+#undef  USE_KAP_THREADING
 #endif
 
 #ifdef TARGET_SGI
