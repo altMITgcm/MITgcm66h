@@ -40,6 +40,7 @@
 #
  exf_inscal_ustress    = -1.,
  exf_inscal_vstress    = -1.,
+ exf_inscal_runoff     = -1.,
 #
  exf_iprec         = 32,
  exf_yftype        = 'RL',
