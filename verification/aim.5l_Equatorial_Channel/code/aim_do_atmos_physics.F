@@ -3,7 +3,7 @@ C     $Name$
 
 #include "AIM_OPTIONS.h"
 
-      SUBROUTINE AIM_DO_ATMOS_PHYSICS( bi, bj, currentTime, myThid )
+      SUBROUTINE AIM_DO_PHYSICS( bi, bj, currentTime, myIter, myThid )
 
 C     /==================================================================\
 C     | S/R AIM_DO_ATMOS_PHYSICS                                         |
@@ -38,7 +38,7 @@ C-- Physics package
 C     -------------- Routine arguments -----------------------------------
 c     _RL phi_hyd(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
       _RL currentTime
-      INTEGER myThid
+      INTEGER myIter, myThid
       INTEGER bi, bj
 
 #ifdef ALLOW_AIM
