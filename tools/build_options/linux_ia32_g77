@@ -11,7 +11,7 @@ CPP='cpp  -traditional -P'
 NOOPTFLAGS='-O0'
 
 # netcdf
-LIBS="-lnetcdf"
+# LIBS="-lnetcdf"
 
 #  For IEEE, use the "-ffloat-store" option
 if test "x$IEEE" = x ; then
