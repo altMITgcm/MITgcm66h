@@ -259,7 +259,7 @@ CEOP
       strTmp = 'UNKNOWN'
       iFree  = 1
       idSize = LEN(string)
-#if (defined (TARGET_T3E) || defined (TARGET_CRAY_VECTOR))
+#if (defined (TARGET_T3E) || defined (TARGET_CRAY_VECTOR) && !defined (TARGET_NEC_VECTOR))
       IFirst = 0
       CALL PXFGETENV('USER',iFirst,strTmp,ILast,Iend  )
 #else
@@ -279,7 +279,7 @@ CEOP
         ENDIF
       ENDIF
       strTmp = 'UNKNOWN'
-#if (defined (TARGET_T3E) || defined (TARGET_CRAY_VECTOR))
+#if (defined (TARGET_T3E) || defined (TARGET_CRAY_VECTOR) && !defined (TARGET_NEC_VECTOR))
       IFirst = 0
       CALL PXFGETENV('HOST',iFirst,strTmp,ILast,Iend  )
 #else

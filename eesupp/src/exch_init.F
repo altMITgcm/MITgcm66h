@@ -1,6 +1,8 @@
 C $Header$
 C $Name$
 
+#include "CPP_EEOPTIONS.h"
+
 CBOP
 C     !ROUTINE: EXCH_INIT
 
