@@ -80,7 +80,10 @@ C-      2D arrays
         DO J=1-Oly,sNy+Oly
          DO I=1-Olx,sNx+Olx
           etaN(I,J,bi,bj)=0. _d 0
+          etaH(I,J,bi,bj)=0. _d 0
+#ifdef INCLUDE_CD_CODE
           etaNm1(I,J,bi,bj)=0. _d 0
+#endif
          ENDDO
         ENDDO
 
