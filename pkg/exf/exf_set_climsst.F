@@ -21,7 +21,7 @@ c                for the MITgcmUV.
 c              Christian Eckert eckert@mit.edu 12-Feb-2000
 c              - Changed Routine names (package prefix: exf_)
 c     changed: heimbach@mit.edu 08-Feb-2002
-c     changed: menemenlis@jpl.nasa.gov 20-Dec-2002
+c     mods for pkg/seaice: menemenlis@jpl.nasa.gov 20-Dec-2002
 c
 c     ==================================================================
 c     SUBROUTINE exf_set_climsst

@@ -68,4 +68,16 @@
 #
  exf_iprec         = 32,
  exf_yftype        = 'RL',
+#
+#     scaling factors
+      scal_hfl       =  1. _d 0
+      scal_ust       =  1. _d 0
+      scal_vst       =  1. _d 0
+      scal_swf       =  1. _d 0
+      scal_sst       =  1. _d 0
+      scal_sss       =  1. _d 0
+      scal_apressure =  1. _d 0
+      scal_sfl       =  1. _d 0     
+#     convert runoff from m/yr to m/s and change sign.
+      scal_runoff    = -1.0/(86400.*365.0)
  &

@@ -84,7 +84,7 @@ c       model. However, the wind stress forcing is not treated
 c       this way. A positive zonal wind stress accelerates the
 c       model ocean towards the east.
 c       started: eckert@mit.edu, heimbach@mit.edu, ralf@ocean.mit.edu
-c       changed: menemenlis@jpl.nas.gov
+c       mods for pkg/seaice: menemenlis@jpl.nasa.gov 20-Dec-2002
 c     *=================================================================
 c     | SUBROUTINE exf_getforcing
 c     *=================================================================

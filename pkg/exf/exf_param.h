@@ -24,8 +24,7 @@ c
 c              Patrick Heimbach, heimbach@mit.edu  01-May-2001
 c              - added obcs parameters
 c
-c              Dimitris Menemenlis, menemenlis@jpl.nasa.gov  20-Dec-2002
-c              - Added evaporation parameters, removed scal_prc.
+c     mods for pkg/seaice: menemenlis@jpl.nasa.gov 20-Dec-2002
 c
 c     ==================================================================
 c     HEADER exf_param
@@ -123,6 +122,20 @@ c     Calendar data.
       character*1 lwfluxmask
       parameter(  lwfluxmask = 's' )
 
+      integer swdownstartdate1
+      integer swdownstartdate2
+      integer swdownstartdate(4)
+      _RL     swdownperiod
+      character*1 swdownmask
+      parameter(  swdownmask = 's' )
+
+      integer lwdownstartdate1
+      integer lwdownstartdate2
+      integer lwdownstartdate(4)
+      _RL     lwdownperiod
+      character*1 lwdownmask
+      parameter(  lwdownmask = 's' )
+
       integer obcsNstartdate1
       integer obcsNstartdate2
       integer obcsNstartdate(4)
@@ -164,6 +177,8 @@ c     File names.
       character*(128) vwindfile
       character*(128) swfluxfile
       character*(128) lwfluxfile
+      character*(128) swdownfile
+      character*(128) lwdownfile
       character*(128) apressurefile
 
       common /exf_param_i/
@@ -180,6 +195,8 @@ c     File names.
      &                          vwindstartdate1,   vwindstartdate2,
      &                          swfluxstartdate1,  swfluxstartdate2,
      &                          lwfluxstartdate1,  lwfluxstartdate2,
+     &                          swdownstartdate1,  swdownstartdate2,
+     &                          lwdownstartdate1,  lwdownstartdate2,
      &                          obcsNstartdate1,   obcsNstartdate2,
      &                          obcsSstartdate1,   obcsSstartdate2,
      &                          obcsEstartdate1,   obcsEstartdate2,
@@ -198,6 +215,8 @@ c     File names.
      &                          vwindstartdate,
      &                          swfluxstartdate,
      &                          lwfluxstartdate,
+     &                          swdownstartdate,
+     &                          lwdownstartdate,
      &                          obcsNstartdate,
      &                          obcsSstartdate,
      &                          obcsEstartdate,
@@ -218,6 +237,8 @@ c     File names.
      &                          vwindperiod,
      &                          swfluxperiod,
      &                          lwfluxperiod,
+     &                          swdownperiod,
+     &                          lwdownperiod,
      &                          obcsNperiod,
      &                          obcsSperiod,
      &                          obcsEperiod,
@@ -238,6 +259,8 @@ c     File names.
      &                          vwindfile,
      &                          swfluxfile,
      &                          lwfluxfile,
+     &                          swdownfile,
+     &                          lwdownfile,
      &                          apressurefile
 
 c     file precision and field type
@@ -259,6 +282,7 @@ c     scaling between exf units and MITgcm units
       _RL     scal_sss
       _RL     scal_apressure
       _RL     scal_sfl
+      _RL     scal_runoff
 
       common /exf_param_scal/
      &                      scal_hfl
@@ -269,3 +293,11 @@ c     scaling between exf units and MITgcm units
      &                    , scal_sss
      &                    , scal_apressure
      &                    , scal_sfl
+     &                    , scal_runoff
+
+c     EXFwindOnBgrid - By default wind files, uwind and vwind,
+c     are defined on Southwest C-grid U and V points.
+c     When this flag is set, wind files are defined on
+c     northeast B-grid U and V points.
+      LOGICAL             EXFwindOnBgrid
+      COMMON /EXF_PARM_L/ EXFwindOnBgrid

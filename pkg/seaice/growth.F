@@ -172,6 +172,9 @@ C NOW GET TOTAL QNET AND QSW
      &                    +(ONE-AR(I,J,bi,bj))*QNETO(I,J,bi,bj)
           QSW(I,J,bi,bj)=QSWI(I,J,bi,bj)*AR(I,J,bi,bj)
      &                    +(ONE-AR(I,J,bi,bj))*QSWO(I,J,bi,bj)
+#ifndef SHORTWAVE_HEATING
+          QNET(I,J,bi,bj)=QNETI(I,J,bi,bj)+QSW(I,J,bi,bj)
+#endif SHORTWAVE_HEATING
          ENDDO
         ENDDO
 

@@ -4,19 +4,25 @@ c
 c   Atmospheric forcing
 c
 c      1. Test ALLOW_ATM_TEMP with evaporation files (check units)
-c
-c      2. Enable inclusion of atmospheric fields as part of the
-c         control vector. 
-c
+
 c   Selection of forcing fields
 c
-c      1. 'No forcing' should be possible for each field type,
-c         e.g., by leaving file name blank.
-c
-c      2. Cyclic forcing should be available for each field type
+c      1. Cyclic forcing should be available for each field type
 c         (surface forcing and relaxation to climatology).
 c
-c   Cleaning package (reduce number of subroutines)
+c   Cleaning package
+c
+c      1. Reduce number of subroutines.
+c
+c      2. Separate routine for bulk formulae and atmospheric control
+c         moved to exf_getsurfacefluxes as per calling tree below:
+c
+c  exf_getforcing
+c  |-- exf_getclim
+c  |-- exf_getffields <- this one does almost everything
+c  |-- exf_getsurfacefluxes
+c  |-- exf_bulk_formulae
+c  |-- exf_mapfields
 c
 c
 c   Many assumptions that are made in the current version should, and

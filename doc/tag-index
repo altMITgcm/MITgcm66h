@@ -3,6 +3,11 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+release1_??? (not taged yet)
+o modifications for using pkg/exf with pkg/seaice
+  - improved description of the various forcing configurations
+  - added basic radiation bulk formulae to pkg/exf
+
 release1_p10
 o modifications for using pkg/exf with pkg/seaice
   - pkg/seaice CPP options SEAICE_EXTERNAL_FORCING

@@ -13,7 +13,7 @@ c
 c     o List all the settings of the external forcing.
 c
 c     started: Ralf.Giering@FastOpt.de 25-Mai-2000
-c     changed: menemenlis@jpl.nasa.gov 20-Dec-2002
+c     mods for pkg/seaice: menemenlis@jpl.nasa.gov 20-Dec-2002
 c
 c     ==================================================================
 c     SUBROUTINE exf_clim_summary

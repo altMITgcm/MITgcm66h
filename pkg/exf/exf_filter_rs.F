@@ -15,7 +15,7 @@ c
 c     o Read a flux record for external forcing.
 c
 c     started: Ralf.Giering@FastOpt.de 24-Mai-2000
-c     changed: menemenlis@jpl.nasa.gov 20-Dec-2002
+c     mods for pkg/seaice: menemenlis@jpl.nasa.gov 20-Dec-2002
 c
 c     ==================================================================
 c     SUBROUTINE exf_filter_rs
@@ -108,5 +108,6 @@ c         Set land points to zero
       enddo
 
       ENDIF
+c     END IF ( .NOT. useSEAICE )
 
       end

@@ -10,7 +10,7 @@ c     o set external forcing sflux
 c
 c     started: Ralf.Giering@FastOpt.de 25-Mai-2000
 c     changed: heimbach@mit.edu 10-Jan-2002
-c              menemenlis@jpl.nasa.gov 20-Dec-2002
+c     mods for pkg/seaice: menemenlis@jpl.nasa.gov 20-Dec-2002
 
 c     ==================================================================
 c     SUBROUTINE exf_set_sflux
@@ -97,7 +97,7 @@ c             Interpolate linearly onto the current time.
         enddo
       enddo
 
-#endif ALLOW_ATM_TEMP
+#endif
 
       end
 

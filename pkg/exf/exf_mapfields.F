@@ -9,49 +9,35 @@ c     ==================================================================
 c     SUBROUTINE exf_mapfields
 c     ==================================================================
 c
-c     o Map the external forcing fields on the ocean model arrays. This
-c       routine is included to separate the ocean state estimation tool
-c       as much as possible from the ocean model. Unit conversion factors
-c       are to be set by the user.
-c
-c       The units have to be such that the individual forcing record has
-c       units equal to [quantity/s]. See the header file *FFIELDS.h* of
-c       the MITgcmuv.
-c
-c       Required units such that no scaling has to be applied:
-c
-c       heat flux:          input file W/m^2
-c       salt flux:          input file m/s
-c       zonal wind stress:  input file N/m^2
-c       merid. wind stress: input file N/m^2
-c
-c       To allow for such unit conversions this routine contains scaling
-c       factors scal_quantity.
+c     o Map external forcing fields (ustress, vstress, hflux, sflux,
+c       swflux, apressure, climsss, climsst, etc.) onto ocean model
+c       arrays (fu, fv, Qnet, EmPmR, Qsw, pload, sss, sst, etc.).
+c       This routine is included to separate the ocean state estimation
+c       tool as much as possible from the ocean model.  Unit and sign
+c       conventions can be customized using variables scal_ust,
+c       scal_vst, scal_hfl, scal_swf, scal_sfl, etc., which are set in
+c       exf_readparms.F.  See the header files exf_fields.h and
+c       FFIELDS.h for definitions of the various input and output fields
+c       and for default unit and sign convetions.
 c
 c     started: Christian Eckert eckert@mit.edu  09-Aug-1999
 c
 c     changed: Christian Eckert eckert@mit.edu  11-Jan-2000
-c
 c              - Restructured the code in order to create a package
 c                for the MITgcmUV.
 c
 c              Christian Eckert eckert@mit.edu  12-Feb-2000
-c
 c              - Changed Routine names (package prefix: exf_)
 c
 c              Patrick Heimbach, heimbach@mit.edu  06-May-2000
-c
 c              - added and changed CPP flag structure for
 c                ALLOW_BULKFORMULAE, ALLOW_ATM_TEMP
 c
 c              Patrick Heimbach, heimbach@mit.edu  23-May-2000
-c
 c              - sign change of ustress/vstress incorporated into
 c                scaling factors scal_ust, scal_vst
 c
-c              Dimitris Menemenlis, menemenlis@jpl.nasa.gov 20-Dec-2002
-c
-c              - removed: empmr(i,j,bi,bj) = scal_prc*precip(i,j,bi,bj)
+c     mods for pkg/seaice: menemenlis@jpl.nasa.gov 20-Dec-2002
 c
 c     ==================================================================
 c     SUBROUTINE exf_mapfields
@@ -187,8 +173,7 @@ CADJ STORE vstress(:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
             enddo
           enddo
 
-#ifdef ALLOW_KPP || \
- (defined (ALLOW_BULKFORMULAE) && defined (ALLOW_ATM_TEMP)))
+#ifdef SHORTWAVE_HEATING
 c             Short wave radiative flux.
           do j = jmin,jmax
             do i = imin,imax
@@ -221,7 +206,6 @@ c             Short wave radiative flux.
           enddo
 #endif
 
-
         enddo
       enddo
 
@@ -231,7 +215,7 @@ c     Update the tile edges.
       _EXCH_XY_R4( empmr, mythid )
       _EXCH_XY_R4(    fu, mythid )
       _EXCH_XY_R4(    fv, mythid )
-#ifdef ALLOW_KPP
+#ifdef SHORTWAVE_HEATING
       _EXCH_XY_R4(   qsw, mythid )
 #endif
 #ifdef ALLOW_CLIMSST_RELAXATION

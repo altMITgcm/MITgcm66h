@@ -10,6 +10,7 @@ c     o set external forcing swflux
 c
 c     started: Ralf.Giering@FastOpt.de 25-Mai-2000
 c     changed: heimbach@mit.edu 10-Jan-2002
+c     mods for pkg/seaice: menemenlis@jpl.nasa.gov 20-Dec-2002
 
 c     ==================================================================
 c     SUBROUTINE exf_set_swflux
@@ -33,7 +34,7 @@ c     == routine arguments ==
       integer mycurrentiter
       integer mythid
 
-#if (defined (ALLOW_ATM_TEMP) || defined (ALLOW_KPP))
+#if defined(ALLOW_ATM_TEMP) || defined(SHORTWAVE_HEATING)
 c     == local variables ==
 
       logical first, changed
@@ -130,7 +131,7 @@ c     == routine arguments ==
 
       integer mythid
 
-#if (defined (ALLOW_ATM_TEMP) || defined (ALLOW_KPP))
+#if defined(ALLOW_ATM_TEMP) || defined(SHORTWAVE_HEATING)
 c     == local variables ==
 
       integer bi, bj

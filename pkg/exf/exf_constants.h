@@ -12,7 +12,7 @@ c                      - empirical parameters
 c                      - control parameters (e.g. max. no of iteration)
 c
 c     started: Patrick Heimbach heimbach@mit.edu  06-May-2000
-c     changed: Dimitris Menemenlis menemenlis@jpl.nasa.gov 20-Dec-2002
+c     mods for pkg/seaice: menemenlis@jpl.nasa.gov 20-Dec-2002
 c
 c     ==================================================================
 c     HEADER exf_constants
@@ -29,11 +29,10 @@ c     exf_two    2.0
       _RL exf_two
 
       parameter(
-     &              exf_half =  0.5,
-     &              exf_one  =  1.0,
-     &              exf_two  =  2.0
+     &              exf_half =  0.5 _d 0 ,
+     &              exf_one  =  1.0 _d 0 ,
+     &              exf_two  =  2.0 _d 0
      &         )
-
 
       real       exf_undef
       parameter( exf_undef = -9000. )
@@ -163,12 +162,7 @@ c       ustofu11     - ustar = 0.3818 m/s, corresponding to u = 11 m/s
       parameter ( czol = hu*karman*gravity_mks )
 #endif
 
-#endif
-
 c     4. control parameters
-
-
-#ifdef ALLOW_BULKFORMULAE
 
 c     niter_bulk   - Number of iterations to be performed for the
 c                    evaluation of the bulk surface fluxes. The ncom
@@ -178,5 +172,4 @@ c
       integer     niter_bulk
       parameter ( niter_bulk = 2 )
 
-#endif
-
+#endif /* ALLOW_BULKFORMULAE */

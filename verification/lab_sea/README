@@ -24,8 +24,8 @@ NCEP reanalysis (see pkg/seaice/SEAICE_FFIELDS.h for units and signs)
   vwindFile      = 'v10m.labsea79'    # 10-m meridional wind
   atempFile      = 'tair.labsea1979'  # 2-m air temperature
   aqhFile        = 'qa.labsea1979'    # 2-m specific humidity
-  lwfluxFile     = 'flo.labsea1979'   # downward longwave radiation
-  swfluxFile     = 'fsh.labsea1979'   # downward shortwave radiation
+  lwdownFile     = 'flo.labsea1979'   # downward longwave radiation
+  swdownFile     = 'fsh.labsea1979'   # downward shortwave radiation
   precipFile     = 'prate.labsea1979' # precipitation
   evapFile       = 'evap.labsea1979'  # evaporation
 

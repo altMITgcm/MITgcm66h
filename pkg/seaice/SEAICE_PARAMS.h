@@ -46,8 +46,8 @@ C     uwindFile       - File containing
 C     vwindFile       - File containing 
 C     atempFile       - File containing 
 C     aqhFile         - File containing 
-C     lwfluxFile      - File containing 
-C     swfluxFile      - File containing 
+C     lwdownFile      - File containing 
+C     swdownFile      - File containing 
 C     precipFile      - File containing 
 C     evapFile        - File containing 
 C     runoffFile      - File containing 
@@ -56,13 +56,13 @@ C
       CHARACTER*(MAX_LEN_FNAM) vwindFile
       CHARACTER*(MAX_LEN_FNAM) atempFile
       CHARACTER*(MAX_LEN_FNAM) aqhFile
-      CHARACTER*(MAX_LEN_FNAM) lwfluxFile
-      CHARACTER*(MAX_LEN_FNAM) swfluxFile
+      CHARACTER*(MAX_LEN_FNAM) lwdownFile
+      CHARACTER*(MAX_LEN_FNAM) swdownFile
       CHARACTER*(MAX_LEN_FNAM) precipFile
       CHARACTER*(MAX_LEN_FNAM) evapFile
       CHARACTER*(MAX_LEN_FNAM) runoffFile
       COMMON /SEAICE_PARM_C/ uwindFile, vwindFile, atempFile, aqhFile,
-     &     lwfluxFile, swfluxFile, precipFile, evapFile, runoffFile
+     &     lwdownFile, swdownFile, precipFile, evapFile, runoffFile
 
 C--   COMMON /SEAICE_PARM_RL/ Real valued parameters of sea ice model.
 C     SEAICE_dumpFreq    - SEAICE dump frequency.                     (s)
@@ -132,13 +132,13 @@ C
 C--   COMMON /SEAICE_BOUND_RL/ Various bounding values
 C     MAX_HEFF   - maximum ice thickness (m)
 C     MIN_ATEMP  - minimum air temperature (deg C)
-C     MIN_LWFLUX - minimum incoming longwave (W/m^2)
+C     MIN_LWDOWN - minimum downward longwave (W/m^2)
 C     MAX_TICE   - maximum ice temperature (deg C)
 C     MIN_TICE   - minimum ice temperature (deg C)
 C
-      _RL MAX_HEFF, MIN_ATEMP, MIN_LWFLUX, MAX_TICE, MIN_TICE
+      _RL MAX_HEFF, MIN_ATEMP, MIN_LWDOWN, MAX_TICE, MIN_TICE
       COMMON /SEAICE_BOUND_RL/
-     &    MAX_HEFF, MIN_ATEMP, MIN_LWFLUX, MAX_TICE, MIN_TICE
+     &    MAX_HEFF, MIN_ATEMP, MIN_LWDOWN, MAX_TICE, MIN_TICE
 
 C--   Seaice time step
       COMMON /SEAICE_R/ SEAICE_DT

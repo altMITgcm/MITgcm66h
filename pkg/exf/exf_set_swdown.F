@@ -1,18 +1,18 @@
 #include "EXF_CPPOPTIONS.h"
 
-      subroutine exf_set_evap( mycurrenttime, mycurrentiter, mythid )
+      subroutine exf_set_swdown(mycurrenttime, mycurrentiter, mythid )
 
 c     ==================================================================
-c     SUBROUTINE exf_set_evap
+c     SUBROUTINE exf_set_swdown
 c     ==================================================================
 c
-c     o set external forcing evap
+c     o set external forcing swdown
 c
 c     started: Ralf.Giering@FastOpt.de 25-Mai-2000
 c     mods for pkg/seaice: menemenlis@jpl.nasa.gov 20-Dec-2002
 
 c     ==================================================================
-c     SUBROUTINE exf_set_evap
+c     SUBROUTINE exf_set_swdown
 c     ==================================================================
 
       implicit none
@@ -33,7 +33,7 @@ c     == routine arguments ==
       integer mycurrentiter
       integer mythid
 
-#ifdef EXF_READ_EVAP
+#ifdef ALLOW_DOWNWARD_RADIATION
 c     == local variables ==
 
       logical first, changed
@@ -45,37 +45,37 @@ c     == local variables ==
 
 c     == end of interface ==
 
-c     get record numbers and interpolation factor for evap
+c     get record numbers and interpolation factor for swdown
       call exf_GetFFieldRec(
-     I                       evapstartdate, evapperiod
+     I                       swdownstartdate, swdownperiod
      O                     , fac, first, changed
      O                     , count0, count1
      I                     , mycurrenttime, mycurrentiter, mythid
      &                     )
 
       if ( first ) then
-        if ( evapfile .NE. ' ' )
-     &        call mdsreadfield( evapfile, exf_iprec, exf_yftype, 1
-     &                   , evap1, count0, mythid
+        if ( swdownfile .NE. ' ' )
+     &        call mdsreadfield( swdownfile, exf_iprec, exf_yftype, 1
+     &                   , swdown1, count0, mythid
      &                   )
         if (exf_yftype .eq. 'RL') then
-           call exf_filter_rl( evap1, evapmask, mythid )
+           call exf_filter_rl( swdown1, swdownmask, mythid )
         else
-           call exf_filter_rs( evap1, evapmask, mythid )
+           call exf_filter_rs( swdown1, swdownmask, mythid )
         end if
       endif
 
       if (( first ) .or. ( changed )) then
-        call exf_SwapFFields( evap0, evap1, mythid )
+        call exf_SwapFFields( swdown0, swdown1, mythid )
 
-        if ( evapfile .NE. ' ' )
-     &       call mdsreadfield( evapfile, exf_iprec, exf_yftype, 1
-     &                   , evap1, count1, mythid
+        if ( swdownfile .NE. ' ' )
+     &       call mdsreadfield( swdownfile, exf_iprec, exf_yftype, 1
+     &                   , swdown1, count1, mythid
      &                   )
         if (exf_yftype .eq. 'RL') then
-           call exf_filter_rl( evap1, evapmask, mythid )
+           call exf_filter_rl( swdown1, swdownmask, mythid )
         else
-           call exf_filter_rs( evap1, evapmask, mythid )
+           call exf_filter_rs( swdown1, swdownmask, mythid )
         end if
       endif
 
@@ -87,8 +87,8 @@ c     Loop over tiles.
 
 c             Interpolate linearly onto the current time.
 
-              evap(i,j,bi,bj) = fac          *evap0(i,j,bi,bj)+
-     &                          (exf_one - fac) *evap1(i,j,bi,bj)
+              swdown(i,j,bi,bj) = fac          *swdown0(i,j,bi,bj)+
+     &                          (exf_one - fac) *swdown1(i,j,bi,bj)
 
             enddo
           enddo
@@ -101,19 +101,19 @@ c             Interpolate linearly onto the current time.
 
 
 
-      subroutine exf_init_evap( mythid )
+      subroutine exf_init_swdown( mythid )
 
 c     ==================================================================
-c     SUBROUTINE exf_init_evap
+c     SUBROUTINE exf_init_swdown
 c     ==================================================================
 c
 c     o 
 c
 c     started: Ralf.Giering@FastOpt.de 25-Mai-2000
-c     mods for pkg/seaice: menemenlis@jpl.nasa.gov 20-Dec-2002
+c     changed: heimbach@mit.edu 10-Jan-2002
 c
 c     ==================================================================
-c     SUBROUTINE exf_init_evap
+c     SUBROUTINE exf_init_swdown
 c     ==================================================================
 
       implicit none
@@ -130,7 +130,7 @@ c     == routine arguments ==
 
       integer mythid
 
-#ifdef EXF_READ_EVAP
+#ifdef ALLOW_DOWNWARD_RADIATION
 c     == local variables ==
 
       integer bi, bj
@@ -142,9 +142,9 @@ c     == end of interface ==
         do bi = mybxlo(mythid), mybxhi(mythid)
           do j = 1, sny
             do i = 1, snx
-              evap(i,j,bi,bj)  = 0. _d 0
-              evap0(i,j,bi,bj) = 0. _d 0
-              evap1(i,j,bi,bj) = 0. _d 0
+              swdown(i,j,bi,bj)  = 0. _d 0
+              swdown0(i,j,bi,bj) = 0. _d 0
+              swdown1(i,j,bi,bj) = 0. _d 0
             enddo
           enddo
         enddo
