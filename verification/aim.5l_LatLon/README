@@ -15,13 +15,12 @@ mitgcmuv
 
 ---------------------------
 Note: 
-This experiment has been run for 1 year on cote (d')azur (Linux 4 cpu)
-with compiler pgf77
-This set up is very close to the one in 
+Originally, this set up was very close to the one in 
 /development/adcroft/atmos/verification/molteni.128x64x5
 with few modifications taken from run on hyades.
 
-An upgrade of this experiment will be done to improve the
-quality of the results (e.g., a less diffuse Advection Schemme for Q)
-
+Others modifications have been added to improve the stability of the
+model (fixed some bugs) and to get a less diffuse Q distribution:
+o 3rd order scheme for the Horizontal advection of Q 
+o changes in the mapping between C-grid and A-grid  for surface stress
 ---------------------------
