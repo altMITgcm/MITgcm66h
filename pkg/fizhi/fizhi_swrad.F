@@ -5,7 +5,7 @@ C $Name$
       subroutine swrio (nymd,nhms,ndswr,myid,istrip,npcs,
      .        pz,tz,qz,pkht,oz,co2,
      .        albvisdr,albvisdf,albnirdr,albnirdf,
-     .        dtradsw,dtswclr,radswg,swgclr,albedo,
+     .        dtradsw,dtswclr,radswg,swgclr,
      .        fdifpar,fdirpar,osr,osrclr,
      .        im,jm,lm,sige,sig,dsig,ptop,
      .        nswcld,cldsw,cswmo,nswlz,swlz,
@@ -41,7 +41,6 @@ c ---------------
 
       real   radswg(im,jm)    
       real   swgclr(im,jm)    
-      real   albedo(im,jm)    
       real  fdifpar(im,jm)    
       real  fdirpar(im,jm)    
       real      osr(im,jm)    
@@ -92,6 +91,7 @@ c ---------------
       real      tauhi  (im,jm)
       real      tautype(im,jm,lm,3)
       real      tau    (im,jm,lm)
+      real      albedo(im,jm)    
 
       real          PK(ISTRIP,lm)
       real         qzl(ISTRIP,lm),  CLRO(ISTRIP,lm)

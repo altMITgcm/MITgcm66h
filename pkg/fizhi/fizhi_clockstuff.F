@@ -133,6 +133,7 @@ c -------------
 #endif
 
       logical set,alarm
+      external alarm
       integer n,nymd,nhms,nalarm,nsecf
 
 #ifdef ALLOW_USE_MPI

@@ -27,6 +27,8 @@ c-----------------------------------------------------------------------
 
       integer myTime, myIter, myThid
 
+      logical alarm
+      external alarm
       _RL lats(sNx,sNy), lons(sNx,sNy), cosz(sNx,sNy)
       _RL fraci(sNx,sNy), fracl(sNx,sNy)
       _RL ficetile(nchp)
