@@ -93,7 +93,7 @@ C    &                    'RS', 1, H, 1, myThid )
        _END_MASTER(myThid)
       ENDIF
 
-      _EXCH_XY_R4(    H, myThid )
+C     _EXCH_XY_R4(    H, myThid )
 
       IF (usingSphericalPolarGrid) THEN
        DO bj = myByLo(myThid), myByHi(myThid)
@@ -107,7 +107,7 @@ C    &                    'RS', 1, H, 1, myThid )
        ENDDO
       ENDIF
 C
-      CALL PLOT_FIELD_XYRS(H,'Model depths (ini_depths)',1,myThid)
+C     CALL PLOT_FIELD_XYRS(H,'Model depths (ini_depths)',1,myThid)
 C
       IF (groundAtK1) THEN
        DO bj = myByLo(myThid), myByHi(myThid)
@@ -132,6 +132,9 @@ C
         ENDDO
        ENDDO
       ENDIF
+
+      _EXCH_XY_R4(    R_low, myThid )
+      _EXCH_XY_R4(    Ro_surf, myThid )
 
       RETURN
       END
