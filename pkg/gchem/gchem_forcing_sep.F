@@ -79,10 +79,10 @@ C$taf loop = parallel
 C$taf loop = parallel
         DO bi=myBxLo(myThid),myBxHi(myThid)
 
-        jMin=1-OLy
-        jMax=sNy+OLy
-        iMin=1-OLx
-        iMax=sNx+OLx
+        jMin=1
+        jMax=sNy
+        iMin=1
+        iMax=sNx
 c
 ccccccccccccccccccccccccccc DIC cccccccccccccccccccccccccccccccc
 c
