@@ -385,7 +385,7 @@ C--      Cumulative diagnostic calculations (ie. time-averaging)
          IF (taveFreq.GT.0.) THEN
           CALL DO_TIME_AVERAGES(
      I                           myTime, myIter, bi, bj, K, kUp, kDown,
-     I                           K13, K23, wVel,
+     I                           K13, K23, wVel, KapGM,
      I                           myThid )
          ENDIF
 #endif
