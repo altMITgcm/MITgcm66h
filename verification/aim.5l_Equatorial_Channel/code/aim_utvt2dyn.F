@@ -31,7 +31,6 @@ C     MITgcm
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "DYNVARS.h"
-#include "CG2D.h"
 #include "GRID.h"
 
 C     === Routine arguments ===
