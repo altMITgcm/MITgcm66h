@@ -1,7 +1,11 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "KPP_OPTIONS.h"
+#ifdef ALLOW_PTRACERS
+# include "PTRACERS_OPTIONS.h"
+#endif
 
       subroutine KPP_TRANSPORT_PTR (
      I     iMin,iMax,jMin,jMax,bi,bj,k,km1,

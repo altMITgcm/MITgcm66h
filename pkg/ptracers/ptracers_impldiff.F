@@ -1,7 +1,11 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "PTRACERS_OPTIONS.h"
+#ifdef ALLOW_AUTODIFF
+# include "CPP_OPTIONS.h"
+#endif
 
 CBOP
 C !ROUTINE: PTRACERS_IMPLDIFF
