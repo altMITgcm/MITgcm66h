@@ -156,7 +156,7 @@ c
        _END_MASTER( myThid )
        _BARRIER
 
-        print *, 'ph-mnc in addummy param ', useMNC, autodiff_mnc
+        print *, 'ph-mnc in addummy param ', useMNC
 #ifdef ALLOW_MNC
         IF (useMNC .AND. autodiff_mnc) THEN
 c
@@ -175,8 +175,17 @@ c
           CALL MNC_CW_RL_W('D','adstate',0,0,'adEta', adetaN, myThid)
           CALL MNC_CW_RL_W('D','adstate',0,0,'adW', adwVel, myThid)
 
+          CALL MNC_CW_RL_W('D','adstate',0,0,'adQnet', adQnet, myThid)
+          CALL MNC_CW_RL_W('D','adstate',0,0,'adEmpmr', adEmpmr, myThid)
+          CALL MNC_CW_RL_W('D','adstate',0,0,'adFu', adfu, myThid)
+          CALL MNC_CW_RL_W('D','adstate',0,0,'adFv', adfv, myThid)
+
+#ifdef ALLOW_SST0_CONTROL
           CALL MNC_CW_RL_W('D','adstate',0,0,'adSST', adsst, myThid)
+#endif
+#ifdef ALLOW_SSS0_CONTROL
           CALL MNC_CW_RL_W('D','adstate',0,0,'adSSS', adsss, myThid)
+#endif
 c
         ENDIF
 #endif /* ALLOW_MNC */
