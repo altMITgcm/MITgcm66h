@@ -41,9 +41,10 @@ cg2dTargetResidual=1.E-13,
 # Time stepping parameters
 &PARM03
  startTime=0,
- endTime=3110400000,
- deltaTmom=3600.0,
-tauCD=321428.,
+#endTime=3110400000,
+ endTime=2808000.,
+ deltaTmom=2400.0,
+ tauCD=321428.,
  deltaTtracer=108000.0,
  deltaTClock =108000.0,
  abEps=0.1,
