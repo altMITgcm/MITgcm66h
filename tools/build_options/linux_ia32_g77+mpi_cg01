@@ -23,5 +23,5 @@ else
 fi
 
 # netcdf
-# LIBS="-lnetcdf"
+LIBS="-lnetcdf"
 

@@ -15,7 +15,7 @@ else
     FFLAGS='-mp -132 -r8 -i4 -w95 -W0 -WB'
 fi
 
-LIBS='-lPEPCF90'
+LIBS='-lPEPCF90 -lnetcdf'
 NOOPTFLAGS='-O0'
 FC='/usr/local/pkg/mpi/mpi-1.2.4..8a-gm-1.5/intel/bin/mpif77'
 LINK='/usr/local/pkg/mpi/mpi-1.2.4..8a-gm-1.5/intel/bin/mpif77'
