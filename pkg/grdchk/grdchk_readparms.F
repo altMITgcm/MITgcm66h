@@ -62,7 +62,8 @@ c--   Optimization parameters.
      &                  nbeg,
      &                  nstep,
      &                  nend,
-     &                  grdchkvarindex
+     &                  grdchkvarindex,
+     &                  useCentralDiff
 
       jtlo = mybylo(mythid)
       jthi = mybyhi(mythid)
@@ -80,6 +81,7 @@ c--     Set default values.
         nbeg       = 1
         nend       = 1
         nstep      = 1
+        useCentralDiff = .TRUE.
 
 c--     Check versions.
 

@@ -126,7 +126,7 @@ c--   Start to loop over records.
                 do i = iwrk, snx
                  if (ierr .ne. 0) then
                   if ( ncvargrd(grdchkvarindex) .eq. 'c' ) then
-                     if ( _hFacC(i,j,k,bi,bj) .ne. 0.) then
+                     if ( maskC(i,j,k,bi,bj) .gt. 0.) then
                         icomptest = icomptest + 1
                      endif
                   else if ( ncvargrd(grdchkvarindex) .eq. 's' ) then
