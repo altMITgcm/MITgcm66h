@@ -1,4 +1,6 @@
-C
+C $Header$
+C $Name$
+
       SUBROUTINE SUFLUX (PSA,UA,VA,TA,QA,RH,QSAT,PHI,
      *                   PHI0,FMASK,TLAND,TSEA,SWAV,SSR,SLR,
      *                   USTR,VSTR,SHF,EVAP,T0,Q0,QSAT0,SPEED0)
@@ -52,17 +54,17 @@ C
 C
       REAL USTR(NGP,3), VSTR(NGP,3), SHF(NGP,3), EVAP(NGP,3)
 C									
-      REAL U0(NGP), V0(NGP), T0(NGP,2), Q0(NGP), QSAT0(NGP,2), DENVV(NGP,3)
+      REAL U0(NGP),V0(NGP),T0(NGP,2),Q0(NGP),QSAT0(NGP,2),DENVV(NGP,3)
       REAL SPEED0(NGP)
       REAL WORK(NGP)
       INTEGER NL1(NGP)
       REAL AUX(NGP)
 C
       REAL    pSurfs(NLEV)
-      DATA    pSurfs / 75 _d 2, 250 _d 2, 500 _d 2, 775 _d 2, 950 _d 2 /
+      DATA    pSurfs /75 _d 2,250 _d 2,500 _d 2,775 _d 2,950 _d 2 /
 C
       REAL    pSurfw(NLEV)
-      DATA    pSurfw /150 _d 2, 350 _d 2, 650 _d 2, 900 _d 2, 1000 _d 2/
+      DATA    pSurfw /150 _d 2,350 _d 2,650 _d 2,900 _d 2,1000 _d 2/
 Cchdbg
       INTEGER NPAS
       SAVE NPAS
@@ -259,7 +261,7 @@ C
 
       DO J=1,NGP
 Cdj        EVAP(J,1) = CHL*DENVV(J,1)*MAX(0. _d 0,SWAV(J)*QSAT0(J,1)-Q0(J))
-        EVAP(J,1) = CHL*DENVV(J,1)*MIN(1. _d 0,SWAV(J))*(QSAT0(J,1)-Q0(J))
+        EVAP(J,1)=CHL*DENVV(J,1)*MIN(1. _d 0,SWAV(J))*(QSAT0(J,1)-Q0(J))
 cdj try new scheme : assume that the net heat flux on land is zero
 cdj                  at all time and at all points (this is equivalent
 cdj                  to say that the land has a zero heat capacity)
@@ -283,4 +285,3 @@ cdj
 C--
       RETURN
       END
-C      $Id$

@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 
 #include "CPP_OPTIONS.h"
 
@@ -74,7 +75,8 @@ C
 C
       DO K=1,NLEV
        SIG(K)  = FSG(K)
-       SIGL(K) = DLOG(FSG(K))
+Cg77   SIGL(K) = DLOG(FSG(K))
+       SIGL(K) = LOG(FSG(K))
        SIGH(K) = HSG(K)
        DSIG(K) = HSG(K)-HSG(K-1)
 C      POUT(K) = PRLEV(FSG(K))
