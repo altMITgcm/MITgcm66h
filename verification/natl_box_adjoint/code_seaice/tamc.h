@@ -68,7 +68,7 @@ c--   Note always check for the correct sizes of the common blocks!
 #else /* ALLOW_TAMC_CHECKPOINTING undefined */
 
       integer    nchklev_0
-      parameter( nchklev_0      =  64800 )
+      parameter( nchklev_0      =   48 )
 
 #endif /* ALLOW_TAMC_CHECKPOINTING */
 
