@@ -638,9 +638,9 @@ C--   Calculate field range
        ENDDO
       ENDDO
       fRange = fMax-fMin
-      IF ( fRange .GT. small ) THEN
-       validRange = .TRUE.
-      ENDIF
+      IF ( fRange .GT. small .AND.
+     &     (MAX_LEN_PLOTBUF-35) .GT. sNx*nSx .AND.
+     &     (MAX_LEN_PLOTBUF-35) .GT. sNy*nSy ) validRange = .TRUE.
 
 C--   Write field title and statistics
       msgBuf = 
@@ -799,7 +799,7 @@ C      X across, Z down slice
        pltStep = sNy
        pltLab  = 'J ='
       ENDIF
-C     IF ( validRange ) THEN
+      IF ( validRange ) THEN
 C      Header
 C      Data
        DO bk=pltBlo, pltBhi, pltBstr
@@ -883,7 +883,7 @@ C      Data
          ENDDO
         ENDDO
        ENDDO
-C     ENDIF
+      ENDIF
 C--   Write delimiter
       msgBuf = 
      & '// ======================================================='
@@ -1055,9 +1055,9 @@ C--   Calculate field range
        ENDDO
       ENDDO
       fRange = fMax-fMin
-      IF ( fRange .GT. small ) THEN
-       validRange = .TRUE.
-      ENDIF
+      IF ( fRange .GT. small .AND.
+     &     (MAX_LEN_PLOTBUF-35) .GT. sNx*nSx .AND.
+     &     (MAX_LEN_PLOTBUF-35) .GT. sNy*nSy ) validRange = .TRUE.
 
 C--   Write field title and statistics
       msgBuf = 
@@ -1216,7 +1216,7 @@ C      X across, Z down slice
        pltStep = sNy
        pltLab  = 'J ='
       ENDIF
-C     IF ( validRange ) THEN
+      IF ( validRange ) THEN
 C      Header
 C      Data
        DO bk=pltBlo, pltBhi, pltBstr
@@ -1297,7 +1297,7 @@ C      Data
          ENDDO
         ENDDO
        ENDDO
-C     ENDIF
+      ENDIF
 C--   Write delimiter
       msgBuf = 
      & '// ======================================================='
