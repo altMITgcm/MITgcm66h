@@ -65,6 +65,11 @@ C                         into fluxUD.
       INTEGER i,j
       LOGICAL TOP_LAYER
 
+#ifdef ALLOW_AUTODIFF_TAMC
+C--   rvel(:,:kDown) is still required
+      rVel(1,1,kDown) = rVel(1,1,kDown)
+#endif
+
       TOP_LAYER = K .EQ. 1
 
 C--   Calculate mask for tracer cells  (0 => land, 1 => water)

@@ -97,6 +97,20 @@ C     I, J, K - Loop counters
       _RL dSdy(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL df4   (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
+#ifdef ALLOW_AUTODIFF_TAMC
+C--   only the kUp part of fverS is set in this subroutine
+C--   the kDown is still required
+
+      fVerS(1,1,kDown) = fVerS(1,1,kDown)
+      DO j=1-OLy,sNy+OLy
+       DO i=1-OLx,sNx+OLx
+        fZon(i,j)      = 0.0
+        fMer(i,j)      = 0.0
+        fVerS(i,j,kUp) = 0.0
+       ENDDO
+      ENDDO
+#endif
+
       afFacS = 1. _d 0
       dfFacS = 1. _d 0
       TOP_LAYER = K .EQ. 1
