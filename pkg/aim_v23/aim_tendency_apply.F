@@ -88,10 +88,6 @@ C        is not supposed to be applied in stratosphere
        ENDDO
       ENDIF
 c---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
-#ifdef COMPONENT_MODULE
-      IF ( useCoupler .AND. kLev.EQ.1 )
-     &  CALL ATM_STORE_TAUX( bi,bj, myTime, kLev, myThid )
-#endif /* COMPONENT_MODULE */
 
 #endif /* ALLOW_AIM */
 
@@ -182,11 +178,6 @@ C        is not supposed to be applied in the stratosphere
        ENDDO
       ENDIF
 c---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
-
-#ifdef COMPONENT_MODULE
-      IF ( useCoupler .AND. kLev.EQ.1 )
-     &  CALL ATM_STORE_TAUY( bi,bj, myTime, kLev, myThid )
-#endif /* COMPONENT_MODULE */
 
 #endif /* ALLOW_AIM */
 

@@ -35,6 +35,7 @@ CEndOfInterface
 #ifdef ALLOW_AIM
 
 C     == Local variables ==
+      INTEGER bi,bj
 
       _EXCH_XY_R8( aim_drag, myThid )
 c     _EXCH_XYZ_R8( gT, myThid )
@@ -45,6 +46,17 @@ c     _EXCH_XYZ_R8( gSNM1, myThid )
 #ifdef ALLOW_THSICE
       IF (useThSIce)  _EXCH_XY_R8( iceMask, myThid )
 #endif
+
+#ifdef COMPONENT_MODULE
+      IF ( useCoupler ) THEN
+       DO bj=myByLo(myThid),myByHi(myThid)
+        DO bi=myBxLo(myThid),myBxHi(myThid)
+          CALL ATM_STORE_TAUX( bi,bj, myTime, myIter, myThid )
+          CALL ATM_STORE_TAUY( bi,bj, myTime, myIter, myThid )
+        ENDDO
+       ENDDO
+      ENDIF
+#endif /* COMPONENT_MODULE */
 
 #endif /* ALLOW_AIM */
 
