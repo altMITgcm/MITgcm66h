@@ -57,6 +57,9 @@ C     Volumes and areas are set according to grid and depth map.
       CALL INI_MASKS_ETC( myThid )
       _BARRIER
 
+C--   Set Bo_surf => define the Linear Relation: Phi_surf(eta)
+      CALL INI_LINEAR_PHISURF( myThid )
+
 C--   Set coriolis operators
       CALL INI_CORI( myThid )
 
