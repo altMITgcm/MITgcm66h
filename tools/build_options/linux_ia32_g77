@@ -21,5 +21,10 @@ else
     FOPTIM='-O0 -malign-double'
 fi
 
-INCLUDES='-I/usr/include/netcdf'
+if test -d /usr/include/netcdf-3 ; then
+    INCLUDES='-I/usr/include/netcdf-3'
+    LIBS='-L/usr/lib/netcdf-3'
+elif test -d /usr/include/netcdf ; then
+    INCLUDES='-I/usr/include/netcdf'
+fi
 
