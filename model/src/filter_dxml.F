@@ -38,7 +38,8 @@ C     STOP
 
       RETURN
       END
-      SUBROUTINE FILTER_DXML_DFFT_APPLY( phi, j, bi, bj, gridLoc, myThid )
+      SUBROUTINE FILTER_DXML_DFFT_APPLY(
+     &         phi, j, bi, bj, gridLoc, myThid )
 
 C     /==========================================================\
 C     | S/R FILTER_DXML_DFFT_APPLY                               |
