@@ -76,6 +76,19 @@ C     == Routine arguments ==
       INTEGER myThid
 CEOP
 
+#ifdef ALLOW_MNC
+C     Read run-time flags and initialize look-up tables for MNC
+      IF (useMNC) THEN
+        CALL MNC_READPARMS( myThid )
+        CALL MNC_INIT(myThid)
+        CALL MNC_CW_INIT(sNx,sNy,OLx,OLy,nSx,nSy,nPx,nPy,
+     &       Nr,myThid)
+CEH3       IF ( mnc_echo_gvtypes ) THEN
+CEH3       CALL MNC_CW_DUMP( myThid )
+CEH3       ENDIF
+      ENDIF
+#endif
+
 #ifdef ALLOW_GMREDI
 C--   Initialize GM/Redi parameters
       IF (useGMRedi) CALL GMREDI_READPARMS( myThid )
