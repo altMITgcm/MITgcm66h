@@ -103,7 +103,6 @@ CADJ STORE area  = comlev1, key = ikey_dynamics
 C solve ice momentum equations and calculate ocean surface stress
       IF ( DIFFERENT_MULTIPLE(
      &     SEAICE_deltaTdyn,myTime,myTime-SEAICE_deltaTtherm) ) THEN
-       print*,'###dynsolver',myTime,SEAICE_deltaTdyn,SEAICE_deltaTtherm
          CALL TIMER_START('DYNSOLVER          [SEAICE_MODEL]',myThid)
          CALL DYNSOLVER ( myTime, myIter, myThid )
          CALL TIMER_STOP ('DYNSOLVER          [SEAICE_MODEL]',myThid)
