@@ -117,6 +117,16 @@ C               are directly proportional to Delta-U,V due to the Filter
            _BARRIER
           ENDIF
 
+#ifdef ALLOW_DIAGNOSTICS
+          IF ( Shap_funct.NE.1 .AND. Shap_funct.NE.4
+     &                         .AND. useDiagnostics ) THEN
+            CALL DIAGNOSTICS_FILL(Shap_tmpFld1,'SHAP_dU ',0,Nr,
+     &                                                  0,1,1,myThid)
+            CALL DIAGNOSTICS_FILL(Shap_tmpFld2,'SHAP_dV ',0,Nr,
+     &                                                  0,1,1,myThid)
+          ENDIF
+#endif /* ALLOW_DIAGNOSTICS */
+
         ENDIF
 
 #endif /* USE_OLD_SHAPIRO_FILTERS */
