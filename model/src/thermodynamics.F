@@ -696,7 +696,11 @@ Ccs-
        CALL DEBUG_STATS_RL(Nr,Gs,'Gs (THERMODYNAMICS)',myThid)
        CALL DEBUG_STATS_RL(Nr,GtNm1,'GtNm1 (THERMODYNAMICS)',myThid)
        CALL DEBUG_STATS_RL(Nr,GsNm1,'GsNm1 (THERMODYNAMICS)',myThid)
-       CALL PTRACERS_DEBUG(myThid)
+#ifdef ALLOW_PTRACERS
+       IF ( usePTRACERS ) THEN
+         CALL PTRACERS_DEBUG(myThid)
+       ENDIF
+#endif /* ALLOW_PTRACERS */
       ENDIF
 #endif
 
