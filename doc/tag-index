@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o surface flux time-av diagnostic modified for NLFS & RealFreshWater 
+
 checkpoint52c_post
 o Fixing OPTIONS files for use of exf:
   - ALLOW_ECCO not needed
