@@ -43,6 +43,8 @@ C  vCoriolisTerm        :: Coriolis term
 C !LOCAL VARIABLES: ====================================================
 C  i,j                  :: loop indices
       INTEGER I,J
+      _RL one
+      PARAMETER(one=1.d0)
 CEOP
 
       IF (useEnergyConservingCoriolis) THEN
