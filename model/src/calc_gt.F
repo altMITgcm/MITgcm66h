@@ -374,6 +374,5 @@ C--   Zonal FFT filter of tendency
      I     1, sNy, k, k, bi, bj, 1, myThid)
 #endif /* INCLUDE_LAT_CIRC_FFT_FILTER_CODE */
 
-
       RETURN
       END

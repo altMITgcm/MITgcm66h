@@ -70,7 +70,6 @@ C     myThid - Thread number for this instance of the routine.
 
 C     == Local variables ==
 
-
 C--   Load forcing/external data fields
       CALL TIMER_START('I/O (READ)         [FORWARD_STEP]',myThid)
       CALL EXTERNAL_FIELDS_LOAD( myCurrentTime, myCurrentIter, myThid )

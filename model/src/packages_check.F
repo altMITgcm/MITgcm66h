@@ -26,13 +26,13 @@ C     msgBuf      - Informational/error meesage buffer
 #ifdef ALLOW_KPP
       IF (useKPP) CALL KPP_CHECK( myThid )
 #else
-      IF (useKPP) CALL PACKAGES_CHECK_ERROR('KPP')
+      IF (useKPP) CALL PACKAGES_CHECK_ERROR('KPP', myThid)
 #endif
 
 #ifdef ALLOW_GMREDI
       IF (useGMRedi) CALL GMREDI_CHECK( myThid )
 #else
-      IF (useGMRedi) CALL PACKAGES_CHECK_ERROR('GMREDI')
+      IF (useGMRedi) CALL PACKAGES_CHECK_ERROR('GMREDI', myThid)
 #endif
 
       return

@@ -44,37 +44,35 @@ C     myCurrentTime - Current time of simulation ( s )
 CEndofinterface
 
 C     == Local variables ==
-C     suff - Hold suffix part of a filename
-      CHARACTER*(MAX_LEN_MBUF) suff
+      INTEGER iRec
 
       IF ( 
-     &  ( DIFFERENT_MULTIPLE(dumpFreq,myCurrentTime,
-     &    myCurrentTime-deltaTClock) .AND. myCurrentTime.NE.startTime )
-     &  .OR. forceOutput
-     & ) THEN
-
-C--    Going to really do some IO. Make everyone except master thread wait.
-       _BARRIER
-       _BEGIN_MASTER( myThid )
-
-        WRITE(suff,'(I10.10)') myIter
+     &     ( DIFFERENT_MULTIPLE(dumpFreq,myCurrentTime,
+     &     myCurrentTime-deltaTClock) .AND. myCurrentTime.NE.startTime )
+     &     .OR. forceOutput
+     &     ) THEN
+         iRec = int ( (myCurrentTime-startTime) / dumpFreq +1.5 )
+         
+C--   Going to really do some IO. Make everyone except master thread wait.
+         _BARRIER
+         _BEGIN_MASTER( myThid )
 
 C--     Write model fields
-        CALL WRITE_FLD_XYZ_RL( 'U.',suff,uVel,myIter,myThid)
-        CALL WRITE_FLD_XYZ_RL( 'V.',suff,vVel,myIter,myThid)
-        CALL WRITE_FLD_XYZ_RL( 'T.',suff,theta,myIter,myThid)
-        CALL WRITE_FLD_XYZ_RL( 'S.',suff,salt,myIter,myThid)
-        CALL WRITE_FLD_XY_RL( 'PS.',suff,cg2d_x,myIter,myThid)
+        CALL WRITE_REC_XYZ_RL( 'U',  uVel,iRec,myIter,myThid)
+        CALL WRITE_REC_XYZ_RL( 'V',  vVel,iRec,myIter,myThid)
+        CALL WRITE_REC_XYZ_RL( 'T', theta,iRec,myIter,myThid)
+        CALL WRITE_REC_XYZ_RL( 'S',  salt,iRec,myIter,myThid)
+        CALL WRITE_REC_XY_RL ('PS',cg2d_x,iRec,myIter,myThid)
 
 #ifdef ALLOW_NONHYDROSTATIC
         IF (nonHydroStatic) THEN
-         CALL WRITE_FLD_XYZ_RL( 'PNH.',suff,cg3d_x,myIter,myThid)
+         CALL WRITE_REC_XYZ_RL( 'PNH',cg3d_x,iRec,myIter,myThid)
         ENDIF
-        CALL WRITE_FLD_XYZ_RL( 'W.',suff,wVel,myIter,myThid)
+        CALL WRITE_REC_XYZ_RL( 'W',wVel,iRec,myIter,myThid)
 #endif
 
-       _END_MASTER( myThid )
-       _BARRIER
+         _END_MASTER( myThid )
+         _BARRIER
 
       ENDIF
 

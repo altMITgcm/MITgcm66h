@@ -11,7 +11,7 @@ C     \==========================================================/
       SUBROUTINE INI_PREDICTOR( 
      I                       myThid )
       implicit none
-! Common
+C Common
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "DYNVARS.h"

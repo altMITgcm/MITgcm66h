@@ -38,14 +38,14 @@ C     stored files.
       CALL INI_FIELDS( myThid )
       _BARRIER
 
-C--   Check dependances between packages
-      CALL PACKAGES_INIT( myThid )
-
 C--   Initialise time-stepping (predictor variables are carried in G)
       IF ( startTime .EQ. 0. ) THEN
         CALL INI_PREDICTOR( myThid )
         _BARRIER
       END IF
+
+C--   Check dependances between packages
+      CALL PACKAGES_INIT( myThid )
 
 #ifdef ALLOW_OBCS
 C--   Calculate values on open boundaries at iter=nIter0
