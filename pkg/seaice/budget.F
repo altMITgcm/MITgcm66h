@@ -171,6 +171,13 @@ crg check wether a2 is needed in the list of variables
 cdm Ralf, the line below causes following error message
 cdm INTERNAL ERROR: cannot find var clone to ada2
 cdm c$taf loop = iteration TICE,A2
+cdm iterative solver for ice growth rate
+cdm inputs:  TICE  ice temperature
+cdm          UG    forcing
+cdm          HSNOW snow thickness
+cdm          HICE  ice thickness
+cdm outputs: A2 is needed for FICE1, which is ice growth rate
+cdm          TICE
          DO ITER=1,IMAX_TICE
 
           DO J=1,sNy
@@ -198,13 +205,12 @@ C NOW DETERMINE NEW ICE TEMPERATURE
             TICE(I,J,bi,bj)=MAX(273.16 _d 0+MIN_TICE,TICE(I,J,bi,bj))
            ENDDO
           ENDDO
-C NOW DECIDE IF ITERATIONS ARE COMPLETE                  
 C NOW SET ICE TEMP TO MIN OF TMELT/ITERATION RESULT  
-            DO J=1,sNy
-             DO I=1,sNx
-              TICE(I,J,bi,bj)=MIN(TICE(I,J,bi,bj),TMELT)            
-             ENDDO
-            ENDDO
+          DO J=1,sNy
+           DO I=1,sNx
+            TICE(I,J,bi,bj)=MIN(TICE(I,J,bi,bj),TMELT)
+           ENDDO
+          ENDDO
 
 C END OF ITERATION
          ENDDO

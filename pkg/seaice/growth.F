@@ -266,7 +266,7 @@ C NOW TRUNCATE AREA
           HEFF(I,J,1,bi,bj)=HEFF(I,J,1,bi,bj)*HEFFM(I,J,bi,bj)
 #ifdef DO_WE_NEED_THIS
 c          HEFF(I,J,1,bi,bj)=MIN(MAX_HEFF,HEFF(I,J,1,bi,bj))
-#endif DO_WE_NEED_THIS
+#endif
           HSNOW(I,J,bi,bj)=HSNOW(I,J,bi,bj)*HEFFM(I,J,bi,bj)
          ENDDO
         ENDDO

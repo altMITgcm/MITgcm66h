@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o adjoint-friendly modifications to pkg/seaice
+
 release1_p17
 o added SEAICE_MULTILEVEL for 8-category sea-ice thermodynamics
 

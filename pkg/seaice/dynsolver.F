@@ -44,7 +44,8 @@ C     i,j,bi,bj - Loop counters
 
       INTEGER i, j, bi, bj, kii
       _RL DWAT, DAIR, RHOICE, RHOAIR, SINWIN, COSWIN, SINWAT, COSWAT
-      _RL GRAV, ECCEN, ECM2, GMIN, RADIUS, DELT1, DELT2, PSTAR, AAA
+      _RL GRAV, ECCEN, ECM2, RADIUS, DELT1, DELT2, PSTAR, AAA
+      _RL TEMPVAR
 
       _RL PRESS      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
       _RL PRESS0     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
@@ -67,7 +68,6 @@ C--   FIRST SET UP BASIC CONSTANTS
       GRAV=9.832 _d 0
       ECCEN=TWO
       ECM2=ONE/(ECCEN**2)
-      GMIN=1.0 _d -20
       RADIUS=6370. _d 3
       PSTAR=SEAICE_strength
 
@@ -109,7 +109,7 @@ C--   Wind stress computed here from wind on South-West C-grid
           DO i=1,sNx
            AAA=(HALF*(UWIND(I,J,bi,bj)+UWIND(I,J-1,bi,bj)))**2+
      &         (HALF*(VWIND(I,J,bi,bj)+VWIND(I-1,J,bi,bj)))**2
-           IF ( AAA .LT. SEAICE_EPS_SQ ) THEN
+           IF ( AAA .LE. SEAICE_EPS_SQ ) THEN
               AAA=SEAICE_EPS
            ELSE
               AAA=SQRT(AAA)
@@ -146,7 +146,7 @@ C--   Wind stress computed here from wind on South-West B-grid
          DO j=1,sNy
           DO i=1,sNx
            AAA=UWIND(I,J,bi,bj)**2+VWIND(I,J,bi,bj)**2
-           IF ( AAA .LT. SEAICE_EPS_SQ ) THEN
+           IF ( AAA .LE. SEAICE_EPS_SQ ) THEN
               AAA=SEAICE_EPS
            ELSE
               AAA=SQRT(AAA)
@@ -163,10 +163,10 @@ C now ice surface stress
            DAIRN(I,J,bi,bj)=RHOAIR*(SEAICE_drag*AAA*AREA(I,J,1,bi,bj)
      &          +OCEAN_drag*(2.70 _d 0+0.142 _d 0*AAA
      &          +0.0764 _d 0*AAA*AAA)*(ONE-AREA(I,J,1,bi,bj)))
-           FORCEX(I,J,bi,bj)=DAIRN(I,J,bi,bj)*(COSWIN*UWIND(I,J,bi,bj)
-     &          -SINWIN*VWIND(I,J,bi,bj))
-           FORCEY(I,J,bi,bj)=DAIRN(I,J,bi,bj)*(SINWIN*UWIND(I,J,bi,bj)
-     &          +COSWIN*VWIND(I,J,bi,bj))
+           FORCEX(I,J,bi,bj)=DAIRN(I,J,bi,bj)*
+     &          (COSWIN*UWIND(I,J,bi,bj)-SINWIN*VWIND(I,J,bi,bj))
+           FORCEY(I,J,bi,bj)=DAIRN(I,J,bi,bj)*
+     &          (SINWIN*UWIND(I,J,bi,bj)+COSWIN*VWIND(I,J,bi,bj))
           ENDDO
          ENDDO
         ENDDO
@@ -203,7 +203,7 @@ C DO PSEUDO-TIMESTEPS TO OBTAIN AN ACCURATE VISCOUS-PLASTIC SOLUTION
 C 1 PSEUDO-TIMESTEP IS SUGGESTED FOR LSR SLOVER
 C A RANGE OF 5-200 PSEUDO-TIMESTEPS IS SUGGESTED FOR ADI SLOVER
 C DEPENDING ON ACCURACY REQUIREMENTS OF SPECIFIC APPLICATION
-C NPSEUDO is now set in data.seaice input file
+C NPSEUDO is set in data.seaice input file
 C TIMESTEP FOR PSEUDO-TIMESTEPPING
       SEAICE_DT = DELTAT/NPSEUDO
 
@@ -213,8 +213,8 @@ crg later c$taf loop = iteration uice,vice
 
       DO 5000 KII=1,NPSEUDO
 
-c$taf store uice,vice = comlev1_seaice_ds,
-c$taf&                key = kii + (ikey_dynamics-1)*NPSEUDO
+cdm c$taf store uice,vice = comlev1_seaice_ds,
+cdm c$taf&                key = kii + (ikey_dynamics-1)*NPSEUDO
 
 C NOW DO PREDICTOR TIME STEP
       DO bj=myByLo(myThid),myByHi(myThid)
@@ -257,8 +257,11 @@ C  NOW EVALUATE VISCOSITIES
           DELT1=(E11(I,J,bi,bj)**2+E22(I,J,bi,bj)**2)*(ONE+ECM2)
      &        +4.0 _d 0*ECM2*E12(I,J,bi,bj)**2
      1        +TWO*E11(I,J,bi,bj)*E22(I,J,bi,bj)*(ONE-ECM2)
-          DELT2=SQRT(DELT1)
-          DELT2=MAX(GMIN,DELT2)
+          IF ( DELT1 .LE. SEAICE_EPS_SQ ) THEN
+             DELT2=SEAICE_EPS
+          ELSE
+             DELT2=SQRT(DELT1)
+          ENDIF
           ZETA(I,J,bi,bj)=HALF*PRESS0(I,J,bi,bj)/DELT2
 C NOW PUT MIN AND MAX VISCOSITIES IN
           ZETA(I,J,bi,bj)=MIN(ZMAX(I,J,bi,bj),ZETA(I,J,bi,bj))
@@ -282,10 +285,13 @@ C--   Update overlap regions
         DO j=1,sNy
          DO i=1,sNx
 C NOW SET UP NON-LINEAR WATER DRAG, FORCEX, FORCEY
-          DWATN(I,J,bi,bj)=SEAICE_waterDrag*SQRT((UICE(I,J,1,bi,bj)
-     &                    -GWATX(I,J,bi,bj))**2
-     &                    +(VICE(I,J,1,bi,bj)-GWATY(I,J,bi,bj))**2)
-          DWATN(I,J,bi,bj)=MAX(DWATN(I,J,bi,bj),QUART) 
+          TEMPVAR=(UICE(I,J,1,bi,bj)-GWATX(I,J,bi,bj))**2
+     &           +(VICE(I,J,1,bi,bj)-GWATY(I,J,bi,bj))**2
+          IF ( TEMPVAR .LE. (QUART/SEAICE_waterDrag)**2 ) THEN
+             DWATN(I,J,bi,bj)=QUART
+          ELSE
+             DWATN(I,J,bi,bj)=SEAICE_waterDrag*SQRT(TEMPVAR)
+          ENDIF
 C NOW SET UP SYMMETTRIC DRAG
           DRAGS(I,J,bi,bj)=DWATN(I,J,bi,bj)*COSWAT
 C NOW SET UP ANTI SYMMETTRIC DRAG PLUS CORIOLIS
@@ -312,11 +318,15 @@ C NOW CALCULATE PRESSURE FORCE AND ADD TO EXTERNAL FORCE
 
 C NOW LSR SCHEME (ZHANG-J/HIBLER 1997)
 C OR  ADI SCHEME (ZHANG-J/ROTHROCK 1999)
+#ifdef ALLOW_AUTODIFF_TAMC
+      CALL LSR( myThid )
+#else /* ALLOW_AUTODIFF_TAMC */
       IF ( SEAICEuseADI ) THEN
          CALL ADI( myThid )
       ELSE
          CALL LSR( myThid )
       ENDIF
+#endif /* ALLOW_AUTODIFF_TAMC */
 
 C NOW DO MODIFIED EULER STEP
       DO bj=myByLo(myThid),myByHi(myThid)
@@ -359,8 +369,11 @@ C  NOW EVALUATE VISCOSITIES
           DELT1=(E11(I,J,bi,bj)**2+E22(I,J,bi,bj)**2)*(ONE+ECM2)
      &        +4. _d 0*ECM2*E12(I,J,bi,bj)**2
      1        +TWO*E11(I,J,bi,bj)*E22(I,J,bi,bj)*(ONE-ECM2)
-          DELT2=SQRT(DELT1)
-          DELT2=MAX(GMIN,DELT2)
+          IF ( DELT1 .LE. SEAICE_EPS_SQ ) THEN
+             DELT2=SEAICE_EPS
+          ELSE
+             DELT2=SQRT(DELT1)
+          ENDIF
           ZETA(I,J,bi,bj)=HALF*PRESS0(I,J,bi,bj)/DELT2
 C NOW PUT MIN AND MAX VISCOSITIES IN
           ZETA(I,J,bi,bj)=MIN(ZMAX(I,J,bi,bj),ZETA(I,J,bi,bj))
@@ -369,7 +382,6 @@ C NOW SET VISCOSITIES TO ZERO AT HEFFMFLOW PTS
           ZETA(I,J,bi,bj)=ZETA(I,J,bi,bj)*HEFFM(I,J,bi,bj) 
           ETA(I,J,bi,bj)=ECM2*ZETA(I,J,bi,bj)
           PRESS(I,J,bi,bj)=TWO*ZETA(I,J,bi,bj)*DELT2
-c          PRESS(I,J,bi,bj)=PRESS0(I,J,bi,bj)
          ENDDO
         ENDDO
        ENDDO
@@ -384,11 +396,14 @@ C--   Update overlap regions
        DO bi=myBxLo(myThid),myBxHi(myThid)
         DO j=1,sNy
          DO i=1,sNx
-C NOW SET UP NON-LINEAR WATER DRAG
-          DWATN(I,J,bi,bj)=SEAICE_waterDrag*SQRT((UICE(I,J,1,bi,bj)
-     &                    -GWATX(I,J,bi,bj))**2
-     &                    +(VICE(I,J,1,bi,bj)-GWATY(I,J,bi,bj))**2)
-          DWATN(I,J,bi,bj)=MAX(DWATN(I,J,bi,bj),QUART) 
+C NOW SET UP NON-LINEAR WATER DRAG, FORCEX, FORCEY
+          TEMPVAR=(UICE(I,J,1,bi,bj)-GWATX(I,J,bi,bj))**2
+     &           +(VICE(I,J,1,bi,bj)-GWATY(I,J,bi,bj))**2
+          IF ( TEMPVAR .LE. (QUART/SEAICE_waterDrag)**2 ) THEN
+             DWATN(I,J,bi,bj)=QUART
+          ELSE
+             DWATN(I,J,bi,bj)=SEAICE_waterDrag*SQRT(TEMPVAR)
+          ENDIF
 C NOW SET UP SYMMETTRIC DRAG
           DRAGS(I,J,bi,bj)=DWATN(I,J,bi,bj)*COSWAT
 C NOW SET UP ANTI SYMMETTRIC DRAG PLUS CORIOLIS
@@ -429,15 +444,19 @@ C GET READY FOR SECOND CALL OF ADI
 
 C NOW LSR SCHEME (ZHANG-J/HIBLER 1997)
 C OR  ADI SCHEME (ZHANG-J/ROTHROCK 1999)
+#ifdef ALLOW_AUTODIFF_TAMC
+      CALL LSR( myThid )
+#else /* ALLOW_AUTODIFF_TAMC */
       IF ( SEAICEuseADI ) THEN
          CALL ADI( myThid )
       ELSE
          CALL LSR( myThid )
       ENDIF
+#endif /* ALLOW_AUTODIFF_TAMC */
 
 5000  CONTINUE
 
-c$taf store uice,vice = comlev1, key=ikey_dynamics
+cdm c$taf store uice,vice = comlev1, key=ikey_dynamics
 
       ENDIF
 #endif /* SEAICE_ALLOW_DYNAMICS */
