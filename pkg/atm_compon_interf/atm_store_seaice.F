@@ -1,29 +1,33 @@
 C $Header$
 C $Name$  
 
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CStartOfInterface
-      SUBROUTINE ATM_STORE_EVMPR( bi,bj,
+      SUBROUTINE ATM_STORE_SEAICE( bi,bj,
      I                             myTime, 
      I                             myIter, 
      I                             myThid )
 C     /==========================================================\
-C     | SUBROUTINE ATM_STORE_EVMPR                               |
-C     | o Routine for saving atmos. fresh water flux             |
-C     |   (=Evap-Precip) for export to coupling layer.           |
+C     | SUBROUTINE ATM_STORE_SEAICE                              |
+C     | o Routine for saving atmos. Sea-Ice Mass from thSIce pkg |
+C     |   for export to coupling layer.                          |
 C     |==========================================================|
-C     | This version interfaces to the MITgcm AIMPHYS package.   |
+C     | This version interfaces to the LAND package.             |
 C     \==========================================================/
       IMPLICIT NONE
 
 C     == Global variables ==
-#include "AIM_SIZE.h"
+#include "SIZE.h"
+
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "CPL_PARAMS.h"
-C     == Global variables (main model)
-#include "FFIELDS.h"
+#ifdef ALLOW_THSICE
+#include "THSICE_PARAMS.h"
+#include "THSICE_VARS.h"
+#endif
 C     == Global variables for coupling interface ==
 #include "ATMCPL.h"
 
@@ -39,27 +43,30 @@ C     myTime - Current model time
       INTEGER myThid
 CEndOfInterface
 
-#ifdef COMPONENT_MODULE
+#ifdef ALLOW_THSICE
 C     == Local variables ==
 C     i,j - Loop counters
       INTEGER i,j
       _RL cplTimeFraction
 
-C     o Accumulate fresh water flux that will be exported to the 
-C       coupling layer. Fresh-water flux is in units of g/m^2/s. 
-C       To convert to meters per second divide by density in 
-C       g/m^3. Positive flux is into the atmosphere (E-P).
-
+C     o Accumulate Sea-Ice Mass from thSIce pkg that will be exported
+C       to the coupling layer. seaIceMass is per surface unit, in kg/m2. 
        cplTimeFraction = 1. _d 0 / DFLOAT(cplSendFrq_iter)
-       EvMPrTime(bi,bj) = EvMPrTime(bi,bj) + cplTimeFraction
+       seaIceTime(bi,bj) = seaIceTime(bi,bj) + cplTimeFraction
+C-     Needs really to store the last time-step value and not the average
+       cplTimeFraction = 1. _d 0
+       seaIceTime(bi,bj) = cplTimeFraction
        DO j=1,sNy
          DO i=1,sNx
-          EvMPrFlux(i,j,bi,bj) = EvMPrFlux(i,j,bi,bj) 
-     &                         + EmPmR(i,j,bi,bj)*cplTimeFraction
+c         seaIceMass(i,j,bi,bj) = seaIceMass(i,j,bi,bj) +
+          seaIceMass(i,j,bi,bj) = 
+     &                   ( snowHeight(i,j,bi,bj)*rhos 
+     &                    + iceHeight(i,j,bi,bj)*rhoi 
+     &                   )*iceMask(i,j,bi,bj)*cplTimeFraction
          ENDDO
        ENDDO
 
-#endif /* COMPONENT_MODULE */
+#endif /* ALLOW_THSICE */
 
       RETURN
       END
