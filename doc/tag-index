@@ -2,7 +2,10 @@ $Header$
 
     Notes on tags used in MITgcmUV
     ==============================
-
+o parameter calendarDumps: when set, approximate months (30-31 days) and years
+  (360-372 days) for parameters chkPtFreq, pChkPtFreq, taveFreq, SEAICE_taveFreq,
+  KPP_taveFreq, and freq in pkg/diagnostics are converted to exact calendar
+  months and years.  Requires pkg/cal.
 o diagnostics: add pickup functionality
   - off by default for backwards compatibility
   - current version only uses MDSIO -- MNC will be added

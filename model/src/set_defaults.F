@@ -255,6 +255,7 @@ C--   Time stepping parameters
       externForcingCycle      = 0.
       tCylIn             = 0.
       tCylOut            = 20.
+      calendarDumps     = .FALSE.
 
 C--   Input files
       bathyFile       = ' '
