@@ -161,7 +161,6 @@ CADJ STORE vnm1      = tapelev3, key = ilev_3
 #ifdef ALLOW_COST_TRACER
 CADJ STORE tr1       = tapelev3, key = ilev_3
 CADJ STORE gtr1nm1   = tapelev3, key = ilev_3
-cphCADJ STORE objf_tracer = tapelev3, key = ilev_3
 #endif
 
 c--     Initialise storage for the middle loop.
@@ -189,7 +188,6 @@ CADJ STORE vnm1      = tapelev2, key = ilev_2
 #ifdef ALLOW_COST_TRACER
 CADJ STORE tr1       = tapelev2, key = ilev_2
 CADJ STORE gtr1nm1   = tapelev2, key = ilev_2
-cphCADJ STORE objf_tracer = tapelev2, key = ilev_2
 #endif
 
 c--       Initialize storage for the innermost loop.
