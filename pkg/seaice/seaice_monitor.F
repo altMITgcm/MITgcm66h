@@ -25,8 +25,6 @@ C     !USES:
 # include "MONITOR.h"
 #endif
 #include "SEAICE.h"
-      LOGICAL  DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
 
 C     !INPUT PARAMETERS:
       INTEGER myIter

@@ -24,8 +24,8 @@ C     !USES:
 #include "DYNVARS.h"
 #include "GRID.h"
 #include "TIMEAVE_STATV.h"
-      LOGICAL  DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
+      LOGICAL  DIFF_BASE_MULTIPLE
+      EXTERNAL DIFF_BASE_MULTIPLE
       INTEGER  IO_ERRCOUNT
       EXTERNAL IO_ERRCOUNT
 
@@ -55,7 +55,7 @@ C     useVariableK :: T when vertical diffusion is not constant
  
 C     Final Time Averages and Dump Files if needed
       dumpFiles = .FALSE.
-      IF (DIFFERENT_MULTIPLE(taveFreq,myTime,myTime-deltaTClock))
+      IF ( DIFF_BASE_MULTIPLE(baseTime,taveFreq,myTime,deltaTClock) )
      &     dumpFiles = .TRUE.
 #ifdef ALLOW_CAL
       IF ( calendarDumps .AND. (

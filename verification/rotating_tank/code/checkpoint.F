@@ -261,8 +261,8 @@ C     == Global variables ===
 #include "GW.h"
 #include "SOLVE_FOR_PRESSURE3D.h"
 #endif
-      LOGICAL  DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
+      LOGICAL  DIFF_BASE_MULTIPLE
+      EXTERNAL DIFF_BASE_MULTIPLE
       INTEGER  IO_ERRCOUNT
       EXTERNAL IO_ERRCOUNT
 
@@ -297,15 +297,15 @@ CEOP
 
       permCheckPoint = .FALSE.
       permCheckPoint=
-     & DIFFERENT_MULTIPLE(pChkptFreq,myTime,
-     &                    myTime-deltaTClock)
+     & DIFF_BASE_MULTIPLE(baseTime,pChkptFreq,
+     &                    myTime,deltaTClock)
 
       IF (
      &    (.NOT. modelEnd .AND. (
      &     permCheckPoint
      &     .OR.
-     &     DIFFERENT_MULTIPLE(chkptFreq,
-     &    myTime,myTime-deltaTClock)
+     &     DIFF_BASE_MULTIPLE(baseTime,chkptFreq,
+     &                        myTime,deltaTClock)
      &     ) .AND. myIter.NE.nIter0
      &    ) 
      &     .OR.
@@ -314,8 +314,8 @@ CEOP
      &     .AND. .NOT.
      &     permCheckPoint 
      &     .AND. .NOT.
-     &     DIFFERENT_MULTIPLE(chkptFreq,
-     &    myTime,myTime-deltaTClock)
+     &     DIFF_BASE_MULTIPLE(baseTime,chkptFreq,
+     &                        myTime,deltaTClock)
      &    )
      & ) THEN
 

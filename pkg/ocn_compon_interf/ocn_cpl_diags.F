@@ -19,9 +19,6 @@ C     === Global variables ===
 #include "OCNCPL.h"
 #include "CPL_DIAGS.h"
 
-      LOGICAL  DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
-
 C     == Routine arguments ==
 C     bi,bj  - Tile index
 C     myTime - Current time of simulation ( s )

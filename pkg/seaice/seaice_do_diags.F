@@ -33,8 +33,8 @@ C     myThid        - Number of this instance of SEAICE_DO_DIAGS
 
 C     == Local variables ==
       CHARACTER*(MAX_LEN_MBUF) suff
-      LOGICAL  DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
+      LOGICAL  DIFF_BASE_MULTIPLE
+      EXTERNAL DIFF_BASE_MULTIPLE
       INTEGER i, j, k, bi, bj
       _RS arr(1-oLx:sNx+oLx,1-oLy:sNy+oLy,nSx,nSy)
       INTEGER thisdate(4), prevdate(4)
@@ -42,8 +42,8 @@ C     == Local variables ==
          
       IF (SEAICEwriteState) THEN
 
-         IF ( DIFFERENT_MULTIPLE(SEAICE_dumpFreq,myTime,
-     &        myTime-deltaTClock) ) THEN
+         IF ( DIFF_BASE_MULTIPLE(baseTime,SEAICE_dumpFreq,
+     &        myTime,deltaTClock) ) THEN
             
 #ifdef ALLOW_MNC
            IF (useMNC .AND. seaice_mnc) THEN
@@ -214,7 +214,8 @@ C--   Time-cumulations
 C     Dump files and restart average computation if needed
       dumpFiles = .FALSE.
       IF ( myIter .NE. nIter0 ) THEN
-      IF (DIFFERENT_MULTIPLE(SEAICE_taveFreq,myTime,myTime-deltaTClock))
+      IF ( DIFF_BASE_MULTIPLE(baseTime,SEAICE_taveFreq,
+     &                        myTime,deltaTClock))
      &     dumpFiles = .TRUE.
 #ifdef ALLOW_CAL
       IF ( calendarDumps .AND. (

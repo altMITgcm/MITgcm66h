@@ -40,8 +40,8 @@ C sFld                  :: input and filtered salinity field
 
 #ifdef ALLOW_SHAP_FILT
 
-      LOGICAL  DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
+      LOGICAL  DIFF_BASE_MULTIPLE
+      EXTERNAL DIFF_BASE_MULTIPLE
 
 C !LOCAL VARIABLES: ====================================================
 C     == Local variables ==
@@ -101,7 +101,7 @@ C-----    Diagnostic of Shapiro Filter effect on temperature :
 C         Note: Shap_tmpFld1 from shap_filt_tracer_s2 (and not s1, s4)
 C               is directly proportional to Delta-Tr due to the Filter
           IF ( Shap_funct.NE.1 .AND. Shap_funct.NE.4 .AND.
-     &     DIFFERENT_MULTIPLE(Shap_diagFreq,myTime,myTime-deltaTClock)
+     &     DIFF_BASE_MULTIPLE(baseTime,Shap_diagFreq,myTime,deltaTClock)
      &       ) THEN
            _BARRIER
            _BEGIN_MASTER( myThid )
@@ -147,7 +147,7 @@ C-----    Diagnostic of Shapiro Filter effect on salinity :
 C         Note: Shap_tmpFld1 from shap_filt_tracer_s2 (and not s1, s4) 
 C               is directly proportional to Delta-Tr due to the Filter
           IF ( Shap_funct.NE.1 .AND. Shap_funct.NE.4 .AND.
-     &     DIFFERENT_MULTIPLE(Shap_diagFreq,myTime,myTime-deltaTClock)
+     &     DIFF_BASE_MULTIPLE(baseTime,Shap_diagFreq,myTime,deltaTClock)
      &       ) THEN
            _BARRIER
            _BEGIN_MASTER( myThid )

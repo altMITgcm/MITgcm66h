@@ -46,8 +46,8 @@ CEOP
 
 #ifdef ALLOW_THSICE
 C     == Local variables ==
-      LOGICAL  DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
+      LOGICAL  DIFF_BASE_MULTIPLE
+      EXTERNAL DIFF_BASE_MULTIPLE
       INTEGER wrtIter
 
 #ifdef ALLOW_TIMEAVE
@@ -119,7 +119,8 @@ C-- average of Ocean Mixed-Layer temp. & salinity
       ENDIF
 #endif /* ALLOW_TIMEAVE */
 
-      IF ( DIFFERENT_MULTIPLE(thSIce_diagFreq,myTime+deltaTClock,myTime)
+      IF ( DIFF_BASE_MULTIPLE(baseTime,thSIce_diagFreq,
+     &                        myTime+deltaTClock,deltaTClock)
      &     .AND. fluidIsWater ) THEN 
         wrtIter = myIter+1
         CALL WRITE_LOCAL_RL('ice_flxAtm','I10',1,flxAtm,

@@ -58,8 +58,8 @@ C !LOCAL VARIABLES: ====================================================
 C     === Local variables ===
 C     i,j,bi,bj - Loop counters
       INTEGER i, j, bi, bj
-      LOGICAL  DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
+      LOGICAL  DIFF_BASE_MULTIPLE
+      EXTERNAL DIFF_BASE_MULTIPLE
 CEOP
 
 #ifdef SEAICE_EXTERNAL_FORCING
@@ -109,8 +109,8 @@ CADJ STORE area  = comlev1, key = ikey_dynamics
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C solve ice momentum equations and calculate ocean surface stress
-      IF ( DIFFERENT_MULTIPLE(
-     &     SEAICE_deltaTdyn,myTime,myTime-SEAICE_deltaTtherm) ) THEN
+      IF ( DIFF_BASE_MULTIPLE(
+     &     baseTime,SEAICE_deltaTdyn,myTime,SEAICE_deltaTtherm) ) THEN
          CALL TIMER_START('DYNSOLVER          [SEAICE_MODEL]',myThid)
          CALL DYNSOLVER ( myTime, myIter, myThid )
          CALL TIMER_STOP ('DYNSOLVER          [SEAICE_MODEL]',myThid)

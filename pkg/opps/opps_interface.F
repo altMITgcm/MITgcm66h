@@ -46,9 +46,6 @@ C     == Global data ==
 #include "TIMEAVE_STATV.h"
 #endif 
 
-      EXTERNAL DIFFERENT_MULTIPLE
-      LOGICAL  DIFFERENT_MULTIPLE
-
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     bi,bj,iMin,iMax,jMin,jMax,K - Loop counters

@@ -21,8 +21,8 @@ C     === Global variables ===
 #include "OCNCPL.h"
 #include "CPL_DIAGS.h"
 
-      LOGICAL  DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
+      LOGICAL  DIFF_BASE_MULTIPLE
+      EXTERNAL DIFF_BASE_MULTIPLE
 
 C     == Routine arguments ==
 C     myTime - Current time of simulation ( s )
@@ -45,7 +45,7 @@ C     bi,bj  - Tile index
 
 C     Dump files and restart average computation if needed
       IF ( myIter.NE.nIter0 .AND.
-     &     DIFFERENT_MULTIPLE(cpl_taveFreq,myTime,myTime-deltaTClock)
+     &     DIFF_BASE_MULTIPLE(baseTime,cpl_taveFreq,myTime,deltaTClock)
      &     ) THEN
 
 C       Normalize by integrated time
