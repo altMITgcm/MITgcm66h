@@ -23,7 +23,6 @@ C  myThid               :: thread number
       INTEGER myThid
 CEOP
 
-#ifdef ALLOW_PTRACERS
 #ifdef ALLOW_GCHEM
 
          _BEGIN_MASTER( mythid )
@@ -39,12 +38,11 @@ c --
           CALL DIC_INI_FORCING(myThid)
           call DIC_SURFFORCING_INIT(myThid)
           call DIC_BIOTIC_INIT(myThid )
-#endif
+#endif /* DIC_BIOTIC */
           _END_MASTER( mythid )
 
 
 #endif /* ALLOW_GCHEM */
-#endif /* ALLOW_PTRACERS */
 
       RETURN
       END

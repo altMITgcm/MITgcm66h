@@ -16,9 +16,7 @@ C    !DESCRIPTION:
 c options for biogeochemistry package
 CEOP
 
-#ifdef ALLOW_PTRACERS
 #define PTRACERS_SEPARATE_FORCING
-#endif
 #define DIC_BIOTIC
 #undef  ALLOW_CFC
 #undef  ALLOW_FE

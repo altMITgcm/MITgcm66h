@@ -25,7 +25,6 @@ C  myThid               :: thread number
 C !OUTPUT PARAMETERS: ==================================================
 C  none
 
-#ifdef ALLOW_PTRACERS
 #ifdef ALLOW_GCHEM
 
 C !LOCAL VARIABLES: ====================================================
@@ -69,8 +68,7 @@ C Close the open data file
 C Everyone else must wait for the parameters to be loaded
       _BARRIER
 
-#endif
-#endif /* ALLOW_PTRACERS */
+#endif /* ALLOW_GCHEM */
 
       RETURN
       END

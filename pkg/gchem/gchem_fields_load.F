@@ -25,7 +25,6 @@ C  myTime               :: current timestep
 C !LOCAL VARIABLES: ====================================================
 CEOP
 
-#ifdef ALLOW_PTRACERS
 #ifdef ALLOW_GCHEM
 
          _BEGIN_MASTER( mythid )
@@ -48,7 +47,6 @@ c
          _END_MASTER(mythid)
 
 #endif /* ALLOW_GCHEM */
-#endif /* ALLOW_PTRACERS */
 
       RETURN
       END

@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-#ifdef ALLOW_PTRACERS
 #ifdef ALLOW_GCHEM
 
 CBOP
@@ -53,5 +52,4 @@ C
      &                   nsubtime
 CEOP
 
-#endif
-#endif /* ALLOW_PTRACERS */
+#endif /* ALLOW_GCHEM */

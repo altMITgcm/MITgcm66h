@@ -25,7 +25,6 @@ C  myThid               :: thread number
       _RL myTime
 CEOP
 
-#ifdef ALLOW_PTRACERS
 #ifdef ALLOW_GCHEM
 cccccccccccccccccccccc
 c diagnostics        c
@@ -35,8 +34,8 @@ cccccccccccccccccccccc
 #ifdef ALLOW_TIMEAVE
        IF (myIter.NE.nIter0)
      & call dic_biotic_diags( myTime, myIter, myThid )
-#endif
-#endif
+#endif /* ALLOW_TIMEAVE */
+#endif /* DIC_BIOTIC */
 
 ccccccccccccccccccccccccc
 c  monitor              c
@@ -44,7 +43,6 @@ ccccccccccccccccccccccccc
         call gchem_monitor(myIter, myTime, myThid )
 
 #endif /* ALLOW_GCHEM */
-#endif /* ALLOW_PTRACERS */
 
       RETURN
       END

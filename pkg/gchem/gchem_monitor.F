@@ -107,8 +107,8 @@ C      Dynamics field monitor finish
 
       ENDIF
 
-#endif
-#endif
+#endif /* ALLOW_MONITOR */
+#endif /* ALLOW_GCHEM */
 
       RETURN
       END
