@@ -97,7 +97,7 @@ C--   Step forward W field in N-H algorithm
 
 #ifdef ALLOW_SHAP_FILT
       IF (useSHAP_FILT) THEN
-C--   Step forward all tiles, filter and exchange.
+C--   Filter (and exchange).
       CALL TIMER_START('SHAP_FILT          [FORWARD_STEP]',myThid)
       CALL SHAP_FILT_APPLY( 
      I                     gUnm1, gVnm1, gTnm1, gSnm1,
@@ -105,7 +105,7 @@ C--   Step forward all tiles, filter and exchange.
       IF (implicDiv2Dflow.LT.1.) THEN
 C--   Explicit+Implicit part of the Barotropic Flow Divergence
 C      => Filtering of uVel,vVel is necessary
-         CALL SHAP_FILT_UV( uVel, vVel, myCurrentTime, myThid )
+         CALL SHAP_FILT_UV_S4( uVel,vVel, myCurrentTime, myThid )
       ENDIF
       CALL TIMER_STOP ('SHAP_FILT          [FORWARD_STEP]',myThid)
       ENDIF
