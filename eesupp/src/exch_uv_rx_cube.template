@@ -87,7 +87,7 @@ C     theSimulationMode - Holds working copy of simulation mode
 C     theCornerMode     - Holds working copy of corner mode
       INTEGER theSimulationMode
       INTEGER theCornerMode
-      INTEGER I,J,K
+      INTEGER I,J,K,repeat
       INTEGER bl,bt,bn,bs,be,bw
       _RL negOne,Utmp,Vtmp
 
@@ -100,6 +100,8 @@ C     == Statement function ==
 
       negOne = 1.
       IF (withSigns) negOne = -1.
+
+      DO repeat=1,2
 
       DO bl = 1, 5, 2
 
@@ -251,6 +253,8 @@ C        Top right
         ENDDO
        ENDDO
       ENDIF
+
+      ENDDO
 
       RETURN
       END

@@ -81,7 +81,7 @@ C     theSimulationMode - Holds working copy of simulation mode
 C     theCornerMode     - Holds working copy of corner mode
       INTEGER theSimulationMode
       INTEGER theCornerMode
-      INTEGER I,J,K
+      INTEGER I,J,K,repeat
       INTEGER bl,bt,bn,bs,be,bw
 
 C     == Statement function ==
@@ -90,6 +90,8 @@ C     == Statement function ==
 
       theSimulationMode = simulationMode
       theCornerMode     = cornerMode
+
+      DO repeat=1,2
 
       DO bl = 1, 5, 2
 
@@ -150,6 +152,8 @@ C Tile Even:Even-1 [get] [West<-East]
          ENDDO
         ENDDO
        ENDDO
+
+      ENDDO
 
       ENDDO
 
