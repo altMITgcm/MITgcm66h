@@ -378,7 +378,7 @@ set THISDATE = ( `date` )
 ###########################################
 echo Creating makefile: $mfile
 echo "# Multithreaded + multi-processing makefile for $mach" > ${mfile}
-echo "# This makefile was generated automatically pn" >> ${mfile}
+echo "# This makefile was generated automatically on" >> ${mfile}
 echo "#    $THISDATE" >> ${mfile}
 echo "# by the command:" >> ${mfile}
 echo "#    ${0} $argv" >> ${mfile}
