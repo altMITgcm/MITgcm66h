@@ -40,7 +40,7 @@ c-----------------------------------------------------------------------
        integer i, j, L, bi, bj
 
 c Call the exchange routine to fill in the halo regions
-       call exch_uv_agrid_xyz_RL (fieldin1,fieldin2,myThid)
+       call exch_uv_agrid_xyz_RL (fieldin1,fieldin2,.true.,myThid)
 
 c Now take average 
        do bj = myByLo(myThid), myByHi(myThid)
