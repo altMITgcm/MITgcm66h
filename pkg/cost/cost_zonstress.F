@@ -122,14 +122,8 @@ c     Number of records to be used.
 
       if (optimcycle .ge. 0) then
         ilfld = ilnblnk( xx_tauu_file )
-        write(fnamefld(1:80),'(2a,i10.10)') xx_tauu_file(1:ilfld),'.',
-     &                                   optimcycle
-      else
-        print*
-        print*,' cost_zonstress: optimcycle has a wrong value.'
-        print*,'                 optimcycle = ',optimcycle
-        print*
-        stop   '  ... stopped in cost_zonstress.'
+        write(fnamefld(1:80),'(2a,i10.10)') 
+     &       xx_tauu_file(1:ilfld),'.',optimcycle
       endif
 
       fcthread = 0. _d 0
@@ -147,7 +141,7 @@ c--   Loop 1 to compute mean forcing:
 
       do irec = 1,nrec
 
-        call active_read_xy( fnamefld, tmpfld2d, irec, doglobalread,
+        call active_read_xy_loc( fnamefld, tmpfld2d, irec, doglobalread,
      &                       ladinit, optimcycle, mythid
      &        , xx_tauu_dummy )
 
@@ -211,7 +205,7 @@ c--         Print cost function for each tile in each thread.
 c--   Loop 2 over records.
       do irec = 1,nrec
 
-        call active_read_xy( fnamefld, tmpfld2d, irec, doglobalread,
+        call active_read_xy_loc( fnamefld, tmpfld2d, irec, doglobalread,
      &                       ladinit, optimcycle, mythid
      &        , xx_tauu_dummy )
 

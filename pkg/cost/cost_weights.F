@@ -1324,39 +1324,39 @@ cgg   Pick out the proper slices.
 
 c     write masks and weights to files to be read by a master process
 c
-      call active_write_xyz( 'hFacC',hFacC ,   1, 0, mythid, dummy)
-      call active_write_xyz( 'maskW', maskW,   1, 0, mythid, dummy)
-      call active_write_xyz( 'maskS', maskS,   1, 0, mythid, dummy)
+      call active_write_xyz_loc( 'hFacC',hFacC ,   1, 0, mythid, dummy)
+      call active_write_xyz_loc( 'maskW', maskW,   1, 0, mythid, dummy)
+      call active_write_xyz_loc( 'maskS', maskS,   1, 0, mythid, dummy)
 
 #if   (defined (ALLOW_HFLUX_COST_CONTRIBUTION))
-      call active_write_xy(  'whflux', whflux, 1, 0, mythid, dummy)
+      call active_write_xy_loc(  'whflux', whflux, 1, 0, mythid, dummy)
 #elif (defined (ALLOW_ATEMP_COST_CONTRIBUTION))
-      call active_write_xy(  'watemp', watemp, 1, 0, mythid, dummy)
+      call active_write_xy_loc(  'watemp', watemp, 1, 0, mythid, dummy)
 #endif
 
 #if   (defined (ALLOW_SFLUX_COST_CONTRIBUTION))
-      call active_write_xy(  'wsflux', wsflux, 1, 0, mythid, dummy)
+      call active_write_xy_loc(  'wsflux', wsflux, 1, 0, mythid, dummy)
 #elif (defined (ALLOW_AQH_COST_CONTRIBUTION))
-      call active_write_xy(  'waqh', waqh, 1, 0, mythid, dummy)
+      call active_write_xy_loc(  'waqh', waqh, 1, 0, mythid, dummy)
 #endif
 
 #if   (defined (ALLOW_USTRESS_COST_CONTRIBUTION))
-      call active_write_xy(  'wtauu', wtauu,   1, 0, mythid, dummy)
+      call active_write_xy_loc(  'wtauu', wtauu,   1, 0, mythid, dummy)
 #elif (defined (ALLOW_UWIND_COST_CONTRIBUTION))
-      call active_write_xy(  'wuwind', wuwind, 1, 0, mythid, dummy)
+      call active_write_xy_loc(  'wuwind', wuwind, 1, 0, mythid, dummy)
 #endif
 
 #if   (defined (ALLOW_VSTRESS_COST_CONTRIBUTION))
-      call active_write_xy(  'wtauv', wtauv,   1, 0, mythid, dummy)
+      call active_write_xy_loc(  'wtauv', wtauv,   1, 0, mythid, dummy)
 #elif (defined (ALLOW_VWIND_COST_CONTRIBUTION))
-      call active_write_xy(  'wvwind', wvwind, 1, 0, mythid, dummy)
+      call active_write_xy_loc(  'wvwind', wvwind, 1, 0, mythid, dummy)
 #endif
 
 #ifdef ALLOW_THETA0_COST_CONTRIBUTION
-      CALL active_write_xyz( 'wtheta',wthetaLev, 1,0,mythid,dummy)
+      CALL active_write_xyz_loc( 'wtheta',wthetaLev, 1,0,mythid,dummy)
 #endif 
 #ifdef ALLOW_SALT0_COST_CONTRIBUTION
-      CALL active_write_xyz( 'wsalt',wsaltLev, 1,0,mythid,dummy)
+      CALL active_write_xyz_loc( 'wsalt',wsaltLev, 1,0,mythid,dummy)
 #endif 
 
 #ifdef ALLOW_OBCS_COST_CONTRIBUTION
@@ -1373,7 +1373,7 @@ c
             enddo
           enddo
         enddo
-        call active_write_xz( 'wobcsn', 
+        call active_write_xz_loc( 'wobcsn', 
      &        tmpfldxz,   iobcs, 0, mythid, dummy)
 #endif
 #ifdef ALLOW_OBCSS_COST_CONTRIBUTION
@@ -1387,7 +1387,7 @@ c
             enddo
           enddo
         enddo
-        call active_write_xz( 'wobcss', 
+        call active_write_xz_loc( 'wobcss', 
      &        tmpfldxz,   iobcs, 0, mythid, dummy)
 #endif
 #ifdef ALLOW_OBCSW_COST_CONTRIBUTION
@@ -1400,7 +1400,7 @@ c
             enddo
           enddo
         enddo
-        call active_write_yz( 'wobcsw', 
+        call active_write_yz_loc( 'wobcsw', 
      &        tmpfldyz,   iobcs, 0, mythid, dummy)
 #endif
 #ifdef ALLOW_OBCSE_COST_CONTRIBUTION
@@ -1413,7 +1413,7 @@ c
             enddo
           enddo
         enddo
-        call active_write_yz( 'wobcse', 
+        call active_write_yz_loc( 'wobcse', 
      &        tmpfldyz,   iobcs, 0, mythid, dummy)
 #endif
       enddo

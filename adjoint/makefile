@@ -69,6 +69,7 @@ SRC_MODEL	= \
 		$(PKG)/autodiff/dummy_in_stepping.flow	\
 		$(PKG)/autodiff/eesupp.flow		\
 		$(PKG)/autodiff/active_file.flow	\
+		$(PKG)/autodiff/active_file_loc.flow	\
 		$(PKG)/autodiff/write_state.flow	\
 		$(PKG)/autodiff/ecco_check_exp.flow	\
 		$(PKG)/autodiff/exch_ad.flow		\

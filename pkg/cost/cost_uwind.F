@@ -109,14 +109,8 @@ c     Number of records to be used.
 
       if (optimcycle .ge. 0) then
         ilfld = ilnblnk( xx_uwind_file )
-        write(fnamefld(1:80),'(2a,i10.10)') xx_uwind_file(1:ilfld),'.',
-     &                                   optimcycle
-      else
-        print*
-        print*,' cost_uwind: optimcycle has a wrong value.'
-        print*,'                 optimcycle = ',optimcycle
-        print*
-        stop   '  ... stopped in cost_uwind.'
+        write(fnamefld(1:80),'(2a,i10.10)') 
+     &       xx_uwind_file(1:ilfld),'.',optimcycle
       endif
 
       fcthread = 0. _d 0
@@ -124,7 +118,7 @@ c     Number of records to be used.
 c--   Loop over records.
       do irec = 1,nrec
 
-        call active_read_xy( fnamefld, tmpfld2d, irec, doglobalread,
+        call active_read_xy_loc( fnamefld, tmpfld2d, irec, doglobalread,
      &                       ladinit, optimcycle, mythid
      &        , xx_uwind_dummy )
 

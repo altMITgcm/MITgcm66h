@@ -92,14 +92,8 @@ c--   Read state record from global file.
 
       if (optimcycle .ge. 0) then
         ilfld = ilnblnk( xx_kapgm_file )
-        write(fnamefld(1:80),'(2a,i10.10)') xx_kapgm_file(1:ilfld),'.',
-     &                                   optimcycle
-      else
-        print*
-        print*,' cost_kapgm: optimcycle has a wrong value.'
-        print*,'                 optimcycle = ',optimcycle
-        print*
-        stop   '  ... stopped in cost_kapgm.'
+        write(fnamefld(1:80),'(2a,i10.10)') 
+     &       xx_kapgm_file(1:ilfld),'.',optimcycle
       endif
 
       fcthread = 0. _d 0

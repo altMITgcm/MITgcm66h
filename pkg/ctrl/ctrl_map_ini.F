@@ -92,7 +92,7 @@ c--   Temperature field.
       il=ilnblnk( xx_theta_file )
       write(fnametheta(1:80),'(2a,i10.10)')
      &     xx_theta_file(1:il),'.',optimcycle
-      call active_read_xyz( fnametheta, tmpfld3d, 1,
+      call active_read_xyz_loc( fnametheta, tmpfld3d, 1,
      &                      doglobalread, ladinit, optimcycle,
      &                      mythid, xx_theta_dummy )
 
@@ -117,7 +117,7 @@ c--   Temperature field.
       il=ilnblnk( xx_salt_file )
       write(fnamesalt(1:80),'(2a,i10.10)')
      &     xx_salt_file(1:il),'.',optimcycle
-      call active_read_xyz( fnamesalt, tmpfld3d, 1,
+      call active_read_xyz_loc( fnamesalt, tmpfld3d, 1,
      &                      doglobalread, ladinit, optimcycle,
      &                      mythid, xx_salt_dummy )
 
@@ -140,7 +140,7 @@ c--   Temperature field.
       il=ilnblnk( xx_tr1_file )
       write(fnametr1(1:80),'(2a,i10.10)')
      &     xx_tr1_file(1:il),'.',optimcycle
-      call active_read_xyz( fnametr1, tmpfld3d, 1,
+      call active_read_xyz_loc( fnametr1, tmpfld3d, 1,
      &                      doglobalread, ladinit, optimcycle,
      &                      mythid, xx_tr1_dummy )
 
@@ -163,7 +163,7 @@ c--   diffkr.
       il=ilnblnk( xx_diffkr_file )
       write(fnamediffkr(1:80),'(2a,i10.10)')
      &     xx_diffkr_file(1:il),'.',optimcycle
-      call active_read_xyz( fnamediffkr, tmpfld3d, 1,
+      call active_read_xyz_loc( fnamediffkr, tmpfld3d, 1,
      &                      doglobalread, ladinit, optimcycle,
      &                      mythid, xx_diffkr_dummy )
       do bj = jtlo,jthi
@@ -185,7 +185,7 @@ c--   kapgm.
       il=ilnblnk( xx_kapgm_file )
       write(fnamekapgm(1:80),'(2a,i10.10)')
      &     xx_kapgm_file(1:il),'.',optimcycle
-      call active_read_xyz( fnamekapgm, tmpfld3d, 1,
+      call active_read_xyz_loc( fnamekapgm, tmpfld3d, 1,
      &                      doglobalread, ladinit, optimcycle,
      &                      mythid, xx_kapgm_dummy )
       do bj = jtlo,jthi
@@ -207,7 +207,7 @@ c--   y-component EP-flux field.
       il=ilnblnk( xx_efluxy_file )
       write(fnameefluxy(1:80),'(2a,i10.10)')
      &     xx_efluxy_file(1:il),'.',optimcycle
-      call active_read_xyz( fnameefluxy, tmpfld3d, 1,
+      call active_read_xyz_loc( fnameefluxy, tmpfld3d, 1,
      &                      doglobalread, ladinit, optimcycle,
      &                      mythid, xx_efluxy_dummy )
 
@@ -234,7 +234,7 @@ c--   p-component EP-flux field.
       il=ilnblnk( xx_efluxp_file )
       write(fnameefluxp(1:80),'(2a,i10.10)')
      &     xx_efluxp_file(1:il),'.',optimcycle
-      call active_read_xyz( fnameefluxp, tmpfld3d, 1,
+      call active_read_xyz_loc( fnameefluxp, tmpfld3d, 1,
      &                      doglobalread, ladinit, optimcycle,
      &                      mythid, xx_efluxp_dummy )
 
@@ -263,7 +263,7 @@ c--   bottom drag
       il=ilnblnk( xx_bottomdrag_file )
       write(fnamebottomdrag(1:80),'(2a,i10.10)')
      &     xx_bottomdrag_file(1:il),'.',optimcycle
-      call active_read_xy ( fnamebottomdrag, tmpfld2d, 1,
+      call active_read_xy_loc ( fnamebottomdrag, tmpfld2d, 1,
      &                      doglobalread, ladinit, optimcycle,
      &                      mythid, xx_bottomdrag_dummy )
       do bj = jtlo,jthi

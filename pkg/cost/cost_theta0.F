@@ -94,19 +94,13 @@ c--   Read state record from global file.
 
       if (optimcycle .ge. 0) then
         ilfld = ilnblnk( xx_theta_file )
-        write(fnamefld(1:80),'(2a,i10.10)') xx_theta_file(1:ilfld),'.',
-     &                                   optimcycle
-      else
-        print*
-        print*,' cost_theta: optimcycle has a wrong value.'
-        print*,'                 optimcycle = ',optimcycle
-        print*
-        stop   '  ... stopped in cost_theta.'
+        write(fnamefld(1:80),'(2a,i10.10)') 
+     &       xx_theta_file(1:ilfld),'.',optimcycle
       endif
 
       fcthread = 0. _d 0
 
-      call active_read_xyz( fnamefld, tmpfld3d, irec, doglobalread,
+      call active_read_xyz_loc( fnamefld, tmpfld3d, irec, doglobalread,
      &                       ladinit, optimcycle, mythid
      &        , xx_theta_dummy )
 
