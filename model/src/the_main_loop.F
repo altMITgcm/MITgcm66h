@@ -35,6 +35,7 @@ C     == Global variables ==
 # include "ctrl.h"
 # include "ctrl_dummy.h"
 # include "cost.h"
+# include "GRID.h"
 # include "DYNVARS.h"
 # include "FFIELDS.h"
 # include "EOS.h"

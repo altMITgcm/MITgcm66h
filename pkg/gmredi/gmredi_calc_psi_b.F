@@ -65,6 +65,11 @@ C-    Initialization : <= done in S/R gmredi_init
      &                      + act4*max1*max2*max3
 #endif /* ALLOW_AUTODIFF_TAMC */
 
+#ifdef ALLOW_AUTODIFF_TAMC
+# ifdef GM_VISBECK_VARIABLE_K
+CADJ STORE VisbeckK(:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
+# endif
+#endif
       IF (GM_AdvForm) THEN
        DO k=2,Nr
        km1 = k-1
