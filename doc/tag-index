@@ -3,6 +3,13 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint51a_post
+o added code for biogeochemistry package
+  - new pkgs: dic, gchem
+  - new subroutine in ptracers
+o modify code for biogeo packages
+  - in model/src and pkg/ptracers
+
 checkpoint51
 o merged improved packages from ecco-branch (ecco_c51_e34) to MAIN
   - autodiff, ctrl, exf, grdchk, seaice
