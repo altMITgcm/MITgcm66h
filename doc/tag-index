@@ -5,6 +5,10 @@ $Header$
 
 untagged
 o Removed spurious iikey and idkey
+o pkg/exf
+  - bug fix in treatment of downward radiation
+o pkg/seaice
+  - added initial sea-ice thickness parameter SEAICE_initialHEFF
 
 icebear2
 o Added missing /* */ to CPP comments in pkg/seaice, pkg/exf,

@@ -47,7 +47,6 @@ Comments:
 - 4 timesteps
 
 
-
 ####################
 # Experiment no. 2 #
 ####################
@@ -123,50 +122,22 @@ grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.txt
   cp ../verification/natl_box_adjoint/input/PH_*.data .
   ./mitgcmuv >&! output.txt
 
-#I've changed the run setup:
-#We now perform gradient checks for the first for elements of 
-#the air temperture part of the control vector (grdchkvarindex = 7).
-#To verify the results of the gradient check, type
-
 grep ph-grd output.txt
 
 #A reference output is in:
-grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.exp3
+grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.txt
 
 Comments:
 - Produces following error message during "make adtaf" compilation:
     INTERNAL ERROR: cannot find var clone to ada2
-- The gradient check results should be identical to those of Exp. 2,
-  but aren't.  Compare results_bulk/output.txt to output.exp3
 
 
 ####################
 # Experiment no. 4 #
 ####################
 
-#Same as exp. 3, but with useseaice = .true.
+#Uses same executable as exp. 3, but with useseaice = .true.
 
-#Compile code in bin/:
-  cd ../bin
-  rm -rf *.o *.f *.p rii_files
-  rm -rf *.F *.h *.c Makefile*
-  cp ../verification/natl_box_adjoint/code_seaice/*.h .
-  cp ../verification/natl_box_adjoint/code_seaice/.genmakerc .
-  cp ../verification/natl_box_adjoint/code_seaice/SEAICE_OPTIONS.h.FLUXES SEAICE_OPTIONS.h
-#Configure and compile the code:
-  ../tools/genmake -makefile
-  make depend
-#Generate the adjoint code:
-  cd ../adjoint
-  mv makefile makefile.old
-  cp ../verification/natl_box_adjoint/code_seaice/makefile .
-  make adtaf
-  make adchange
-  rm -f makefile
-  mv makefile.old makefile
-#Go back and compile the code:
-  cd ../bin
-  make
 #To run:
   cd ../exe
   cp ../verification/natl_box_adjoint/input_bulk/* .
@@ -174,11 +145,6 @@ Comments:
   cp ../verification/natl_box_adjoint/input_seaice/data.pkg .
   cp ../verification/natl_box_adjoint/input/PH_*.data .
   ./mitgcmuv >&! output.txt
-
-#I've changed the run setup:
-#We now perform gradient checks for the first for elements of 
-#the air temperture part of the control vector (grdchkvarindex = 7).
-#To verify the results of the gradient check, type
 
 grep ph-grd output.txt
 
@@ -189,7 +155,7 @@ Comments:
 - Produces following error message during "make adtaf" compilation:
     INTERNAL ERROR: cannot find var clone to ada2
 - The gradient check results are different from those of exp. 3,
-  perhaps because of big initial pulse of freshwater?
+  because of big initial pulse of freshwater, corrected below?
 
 
 ####################
@@ -198,31 +164,10 @@ Comments:
 
 #Same as exp. 4, but with HEFF=0 initial condition
 
-#Compile code in bin/:
-  cd ../bin
-  rm -rf *.o *.f *.p rii_files
-  rm -rf *.F *.h *.c Makefile*
-  cp ../verification/natl_box_adjoint/code_seaice/*.h .
-  cp ../verification/natl_box_adjoint/code_seaice/.genmakerc .
-  cp ../verification/natl_box_adjoint/code_seaice/SEAICE_OPTIONS.h.FLUXES SEAICE_OPTIONS.h
-#Configure and compile the code:
-  ../tools/genmake -makefile
-  make depend
-#Generate the adjoint code:
-  cd ../adjoint
-  mv makefile makefile.old
-  cp ../verification/natl_box_adjoint/code_seaice/makefile .
-  make adtaf
-  make adchange
-  rm -f makefile
-  mv makefile.old makefile
-#Go back and compile the code:
-  cd ../bin
-  make
 #To run:
   cd ../exe
   cp ../verification/natl_box_adjoint/input_bulk/* .
-  cp ../verification/natl_box_adjoint/input_seaice/data.seaice.cgrid data.seaice
+  cp ../verification/natl_box_adjoint/input_seaice/data.seaice.heff data.seaice
   cp ../verification/natl_box_adjoint/input_seaice/data.pkg .
   cp ../verification/natl_box_adjoint/input/PH_*.data .
   ./mitgcmuv >&! output.txt
@@ -230,12 +175,11 @@ Comments:
 grep ph-grd output.txt
 
 #A reference output is in:
-grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.exp5
+grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.txt
 
 Comments:
 - Produces following error message during "make adtaf" compilation:
     INTERNAL ERROR: cannot find var clone to ada2
-- Gradient check results are closer to exp3 than were those of exp4.
 
 
 ####################
@@ -268,7 +212,7 @@ Comments:
 #To run:
   cd ../exe
   cp ../verification/natl_box_adjoint/input_bulk/* .
-  cp ../verification/natl_box_adjoint/input_seaice/data.seaice.cgrid data.seaice
+  cp ../verification/natl_box_adjoint/input_seaice/data.seaice.heff data.seaice
   cp ../verification/natl_box_adjoint/input_seaice/data.pkg .
   cp ../verification/natl_box_adjoint/input/PH_*.data .
   ./mitgcmuv >&! output.txt
@@ -281,8 +225,9 @@ grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.exp6
 Comments:
 - Produces following error message during "make adtaf" compilation:
     INTERNAL ERROR: cannot find var clone to ada2
-- The gradient check results should be identical than those of Exp. 2,
-  but aren't.  Compare results_bulk/output.txt to output.exp3
+- The gradient check results should be comparable to that of Exps. 2, 3, and
+  5, but it is not.  Also there is a 3-4% discrepancy between ajoint model
+  and finite difference gradients.
 
 
 ####################
