@@ -22,6 +22,7 @@ C     !USES:
 C     == Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
+#include "PARAMS.h"
 #include "DYNVARS.h"
 #ifdef ALLOW_PASSIVE_TRACER
 #include "TR1.h"
@@ -44,8 +45,13 @@ c     _EXCH_XYZ_R8( gSNm1 , myThid )
 c     _EXCH_XYZ_R8( uVel , myThid )
 c     _EXCH_XYZ_R8( vVel , myThid )
       CALL EXCH_UV_XYZ_RL(uVel,vVel,.TRUE.,myThid)
+      _EXCH_XYZ_R8( wVel , myThid )
+      IF ( exactConserv .AND. implicDiv2Dflow .NE. 0. _d 0)
+     & _EXCH_XY_R8( etaN , myThid )
+      IF ( .NOT.staggerTimeStep .OR. cAdjFreq .NE. 0. _d 0) THEN
       _EXCH_XYZ_R8( theta , myThid )
       _EXCH_XYZ_R8( salt , myThid )
+      ENDIF
 #ifdef ALLOW_PASSIVE_TRACER
       _EXCH_XYZ_R8( Tr1  , myThid )
 #endif
