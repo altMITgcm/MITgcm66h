@@ -37,14 +37,20 @@ C     == Local variables ==
 C     iG, jG - Global coordinate index
 C     bi,bj  - Loop counters
 C     I,J,K
+C     H      - Depth of base of fluid from upper surface f[X,Y] (m).
 C     Hdefault - default r-coordinate of the lower boundary (=ground)
 C                (=minus(Total_depth) in the ocean model)
 C                (=Total Pressure at Sea Level in the atmos model)
+C--------------------
+C NOTE: will change soon: 2 separed files for r_lower and r_surface boudaries 
+C        and for the atmosphere, topography will be defined in term of height
+C--------------------
 C     oldPrec - Temporary used in controlling binary input dataset precision
       INTEGER iG, jG
       INTEGER bi, bj
       INTEGER  I, J, K
       _RL Hdefault
+      _RS H(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
       _BARRIER
       IF ( bathyFile .EQ. ' '  ) THEN
@@ -52,11 +58,10 @@ C      Set up a flat bottom box with doubly periodic topology.
 C      H is the basic variable from which other terms are derived. It
 C      is the term that would be set from an external file for a 
 C      realistic problem.
-       Hdefault = rF(1)
-       IF (.NOT. groundAtK1) THEN
-        DO K = 1, Nr
-         Hdefault = Hdefault - rkfac*drF(K)
-        ENDDO
+       IF (groundAtK1) THEN
+         Hdefault = Ro_SeaLevel
+       ELSE
+         Hdefault = rF(Nr+1)
        ENDIF
        DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
@@ -104,5 +109,29 @@ C    &                    'RS', 1, H, 1, myThid )
 C
       CALL PLOT_FIELD_XYRS(H,'Model depths (ini_depths)',1,myThid)
 C
+      IF (groundAtK1) THEN
+       DO bj = myByLo(myThid), myByHi(myThid)
+        DO bi = myBxLo(myThid), myBxHi(myThid)
+         DO j=1-Oly,sNy+Oly
+          DO i=1-Olx,sNx+Olx
+           R_low(I,J,bi,bj) = rF(Nr+1)
+           Ro_surf(I,J,bi,bj) = H(I,J,bi,bj)
+          ENDDO
+         ENDDO
+        ENDDO
+       ENDDO
+      ELSE
+       DO bj = myByLo(myThid), myByHi(myThid)
+        DO bi = myBxLo(myThid), myBxHi(myThid)
+         DO j=1-Oly,sNy+Oly
+          DO i=1-Olx,sNx+Olx
+           R_low(I,J,bi,bj) = H(I,J,bi,bj)
+           Ro_surf(I,J,bi,bj) = Ro_SeaLevel
+          ENDDO
+         ENDDO
+        ENDDO
+       ENDDO
+      ENDIF
+
       RETURN
       END
