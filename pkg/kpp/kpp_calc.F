@@ -149,8 +149,8 @@ c                            for ri_iwmix and bldepth                 (m/s^2)
 c     Ritop  (nx,ny,Nr)    - numerator of bulk richardson number
 c                            at grid levels for bldepth
 c     vddiff (nx,ny,Nrp2,1)- vertical viscosity on "t-grid"           (m^2/s)
-c     vddiff (nx,ny,Nrp2,2)- vert. diff. on next row for temperature  (m^2/s)
-c     vddiff (nx,ny,Nrp2,3)- vert. diff. on next row for salt&tracers (m^2/s)
+c     vddiff (nx,ny,Nrp2,2)- vert. diff. on next row for salt&tracers (m^2/s)
+c     vddiff (nx,ny,Nrp2,3)- vert. diff. on next row for temperature  (m^2/s)
 c     ghat   (nx,ny,Nr)    - nonlocal transport coefficient           (s/m^2)
 c     hbl    (nx,ny)       - mixing layer depth                           (m)
 c     kmtj   (nx,ny)       - maximum number of wet levels in each column
