@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
       subroutine my_finalize
       implicit none
       integer  ierror

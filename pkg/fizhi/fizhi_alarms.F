@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
       subroutine fizhi_alarms (nymdb,nhmsb,ndt)
 
 C***********************************************************************        

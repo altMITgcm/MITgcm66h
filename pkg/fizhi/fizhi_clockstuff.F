@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
       subroutine set_alarm (tag,date,time,freq)
 C***********************************************************************        
 C  Purpose                                                                      
