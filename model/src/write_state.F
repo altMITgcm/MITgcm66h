@@ -68,7 +68,6 @@ C     == Global variables ===
       EXTERNAL IO_ERRCOUNT
 
 C     !INPUT/OUTPUT PARAMETERS:
-C     == Routine arguments ==
 C     myThid - Thread number for this instance of the routine.
 C     myIter - Iteration number
 C     myTime - Current time of simulation ( s )
@@ -77,7 +76,6 @@ C     myTime - Current time of simulation ( s )
       INTEGER myIter
 
 C     !LOCAL VARIABLES:
-C     == Local variables ==
       CHARACTER*(MAX_LEN_MBUF) suff
       INTEGER iRec
 #ifdef ALLOW_MNC
