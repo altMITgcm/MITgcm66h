@@ -173,6 +173,18 @@ C     Calculate vertical face area
       _EXCH_XY_R4 (tanPhiAtU , myThid )
       _EXCH_XY_R4 (tanPhiAtV , myThid )
 
+C--     Cosine(lat) scaling
+      DO bj = myByLo(myThid), myByHi(myThid)
+       DO bi = myBxLo(myThid), myBxHi(myThid)
+        DO J=1-OLy,sNy+OLy
+         cosFacU(J,bi,bj)=1.
+         cosFacV(J,bi,bj)=1.
+         sqcosFacU(J,bi,bj)=1.
+         sqcosFacV(J,bi,bj)=1.
+        ENDDO
+       ENDDO
+      ENDDO
+
 C
       RETURN
       END

@@ -1,2 +1,11 @@
 Change log for branch "pre38".
 
+ o cosine(latitude) scaling of viscosity and diffusion
+   - moved declaration of "cosFac" from calc_mom_rhs.F to GRID.h
+   - now calculated in ini_spherical_grid.F  (set to 1 in ini_cartesian_grid.F)
+   - "Method III" (preferred) available for bi-harmonic term
+   - an-isotropic (preferred) scaling available
+   - added scaling for diffusion (same features as for viscosity above)
+   x thought for the future: lateral GM/Redi fluxes are currently scaled.
+     If we scale them we would have to scale the other tensor components
+     in order to retain the adiabatic property of scheme.

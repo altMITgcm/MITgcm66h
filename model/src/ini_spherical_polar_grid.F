@@ -309,6 +309,25 @@ C--     Calculate trigonometric terms
          ENDDO
         ENDDO
 
+C--     Cosine(lat) scaling
+        DO J=1-OLy,sNy+OLy
+         jG = myYGlobalLo + (bj-1)*sNy + J-1
+         jG = min(max(1,jG),Ny)
+         IF (cosPower.NE.0.) THEN
+          cosFacU(J,bi,bj)=COS(yC(1,J,bi,bj)*deg2rad)
+     &                    **cosPower
+          cosFacV(J,bi,bj)=COS((yC(1,J,bi,bj)-0.5*delY(jG))*deg2rad)
+     &                    **cosPower
+          sqcosFacU(J,bi,bj)=sqrt(cosFacU(J,bi,bj))
+          sqcosFacV(J,bi,bj)=sqrt(cosFacV(J,bi,bj))
+         ELSE
+          cosFacU(J,bi,bj)=1.
+          cosFacV(J,bi,bj)=1.
+          sqcosFacU(J,bi,bj)=1.
+          sqcosFacV(J,bi,bj)=1.
+         ENDIF
+        ENDDO
+
        ENDDO ! bi
       ENDDO ! bj
 

@@ -3,6 +3,9 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
+#define COSINEMETH_III
+#undef  ISOTROPIC_COS_SCALING
+
 CStartOfInterFace
       SUBROUTINE CALC_GT( 
      I           bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
@@ -80,8 +83,6 @@ C     I, J, K - Loop counters
       INTEGER i,j
       LOGICAL TOP_LAYER
       _RL afFacT, dfFacT
-      _RL dTdx(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL dTdy(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL df4   (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL fZon  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL fMer  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
@@ -111,18 +112,25 @@ C---  Calculate advective and diffusive fluxes between cells.
 C     o Zonal tracer gradient
       DO j=1-Oly,sNy+Oly
        DO i=1-Olx+1,sNx+Olx
-        dTdx(i,j) = _recip_dxC(i,j,bi,bj)*
-     &  (theta(i,j,k,bi,bj)-theta(i-1,j,k,bi,bj))
+        fZon(i,j) = _recip_dxC(i,j,bi,bj)*xA(i,j)
+     &  *(theta(i,j,k,bi,bj)-theta(i-1,j,k,bi,bj))
+#ifdef COSINEMETH_III
+     &   *sqCosFacU(j,bi,bj)
+#endif
        ENDDO
       ENDDO
 C     o Meridional tracer gradient
       DO j=1-Oly+1,sNy+Oly
        DO i=1-Olx,sNx+Olx
-        dTdy(i,j) = _recip_dyC(i,j,bi,bj)*
-     &  (theta(i,j,k,bi,bj)-theta(i,j-1,k,bi,bj))
+        fMer(i,j) = _recip_dyC(i,j,bi,bj)*yA(i,j)
+     &  *(theta(i,j,k,bi,bj)-theta(i,j-1,k,bi,bj))
+#ifdef ISOTROPIC_COS_SCALING
+#ifdef COSINEMETH_III
+     &   *sqCosFacV(j,bi,bj)
+#endif
+#endif
        ENDDO
       ENDDO
-
 C--   del^2 of T, needed for bi-harmonic (del^4) term
       IF (diffK4T .NE. 0.) THEN
        DO j=1-Oly+1,sNy+Oly-1
@@ -130,8 +138,8 @@ C--   del^2 of T, needed for bi-harmonic (del^4) term
          df4(i,j)= _recip_hFacC(i,j,k,bi,bj)
      &             *recip_drF(k)/_rA(i,j,bi,bj)
      &            *(
-     &             +( xA(i+1,j)*dTdx(i+1,j)-xA(i,j)*dTdx(i,j) )
-     &             +( yA(i,j+1)*dTdy(i,j+1)-yA(i,j)*dTdy(i,j) )
+     &             +( fZon(i+1,j)-fZon(i,j) )
+     &             +( fMer(i,j+1)-fMer(i,j) )
      &             )
         ENDDO
        ENDDO
@@ -152,7 +160,9 @@ C     o Advective component of zonal flux
 C     o Diffusive component of zonal flux
       DO j=jMin,jMax
        DO i=iMin,iMax
-        df(i,j) = -diffKhT*xA(i,j)*dTdx(i,j)
+        df(i,j) = -diffKhT*xA(i,j)*_recip_dxC(i,j,bi,bj)*
+     &  (theta(i,j,k,bi,bj)-theta(i-1,j,k,bi,bj))
+     &   *CosFacU(j,bi,bj)
        ENDDO
       ENDDO
 #ifdef ALLOW_GMREDI
@@ -168,6 +178,11 @@ C     o Add the bi-harmonic contribution
         DO i=iMin,iMax
          df(i,j) = df(i,j) + xA(i,j)*
      &    diffK4T*(df4(i,j)-df4(i-1,j))*_recip_dxC(i,j,bi,bj)
+#ifdef COSINEMETH_III
+     &   *sqCosFacU(j,bi,bj)
+#else
+     &   *CosFacU(j,bi,bj)
+#endif
         ENDDO
        ENDDO
       ENDIF
@@ -195,7 +210,11 @@ C     o Advective component of meridional flux
 C     o Diffusive component of meridional flux
       DO j=jMin,jMax
        DO i=iMin,iMax
-        df(i,j) = -diffKhT*yA(i,j)*dTdy(i,j)
+        df(i,j) = -diffKhT*yA(i,j)*_recip_dyC(i,j,bi,bj)*
+     &  (theta(i,j,k,bi,bj)-theta(i,j-1,k,bi,bj))
+#ifdef ISOTROPIC_COS_SCALING
+     &   *CosFacV(j,bi,bj)
+#endif
        ENDDO
       ENDDO
 #ifdef ALLOW_GMREDI
@@ -211,6 +230,13 @@ C     o Add the bi-harmonic contribution
         DO i=iMin,iMax
          df(i,j) = df(i,j) + yA(i,j)*
      &    diffK4T*(df4(i,j)-df4(i,j-1))*_recip_dyC(i,j,bi,bj)
+#ifdef ISOTROPIC_COS_SCALING
+#ifdef COSINEMETH_III
+     &   *sqCosFacV(j,bi,bj)
+#else
+     &   *CosFacV(j,bi,bj)
+#endif
+#endif
         ENDDO
        ENDDO
       ENDIF
