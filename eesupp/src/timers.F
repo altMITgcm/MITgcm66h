@@ -498,9 +498,13 @@ C     EXTERNAL MPI_Wtime
       ACTUAL = ETIME(TARRAY)
       userTime      = TARRAY(1)
       systemTime    = TARRAY(2)
+#ifdef HAVE_CLOC
       CALL CLOC(wTime)
+#else 
+      wtime = 0.
+#endif /* HAVE_CLOC */
       wallClockTime = wtime
-#endif
+#endif /* CRAY defines */
 
 #ifdef ALLOW_USE_MPI
 C     wtime         = MPI_Wtime()
