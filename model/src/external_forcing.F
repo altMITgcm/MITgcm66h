@@ -30,7 +30,8 @@ C     jMin
 C     jMax
 C     kLev
       INTEGER iMin, iMax, jMin, jMax, kLev, bi, bj
-      INTEGER myCurrentTime, myThid
+      _RL myCurrentTime
+      INTEGER myThid
 CEndOfInterface
 
 C     == Local variables ==
@@ -81,7 +82,8 @@ C     jMin
 C     jMax
 C     kLev
       INTEGER iMin, iMax, jMin, jMax, kLev, bi, bj
-      INTEGER myCurrentTime, myThid
+      _RL myCurrentTime
+      INTEGER myThid
 CEndOfInterface
 C     == Local variables ==
 C     Loop counters
@@ -132,7 +134,8 @@ C     jMax
 C     kLev
       _RS maskC (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER iMin, iMax, jMin, jMax, kLev, bi, bj
-      INTEGER myCurrentTime, myThid
+      _RL myCurrentTime
+      INTEGER myThid
 CEndOfInterface
 
 C     == Local variables ==
@@ -184,7 +187,8 @@ C     jMax
 C     kLev
       _RS maskC (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER iMin, iMax, jMin, jMax, kLev, bi, bj
-      INTEGER myCurrentTime, myThid
+      _RL myCurrentTime
+      INTEGER myThid
 CEndOfInterface
 
 C     == Local variables ==
