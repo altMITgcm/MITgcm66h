@@ -209,11 +209,15 @@ c     File names.
       character*(128) lwdownfile
       character*(128) apressurefile
 
-      logical useExfYearlyFields
+C     useExfYearlyFields :: when set, automatically add extension
+C                           _YEAR to input file names
+C     twoDigitYear       :: when set, use 2-digit year extension YR
+C                           instead of _YEAR for useExfYearlyFields
+      logical useExfYearlyFields, twoDigitYear
       logical useExfCheckRange
 
       common /exf_param_l/
-     &                          useExfYearlyFields,
+     &                          useExfYearlyFields, twoDigitYear,
      &                          useExfCheckRange
       common /exf_param_i/
      &                          hfluxstartdate1,   hfluxstartdate2,
