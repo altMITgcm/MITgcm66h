@@ -62,6 +62,7 @@ c     == local variables ==
       integer optimcycle
 #endif
       character*( 80) fname(2)
+      logical  exst
 
 #ifndef ALLOW_ECCO_OPTIMIZATION
       optimcycle = 0
@@ -80,25 +81,30 @@ c     == local variables ==
 
       call ctrl_set_fname( xx_fname, fname, mythid )
 
-      if ( whichxyz .EQ. '3d') then
-         call ctrl_set_globfld_xyz( fname(2), ivarindex, mythid)
-         if (optimcycle .eq. 0)
-     &        call ctrl_set_globfld_xyz( fname(1), ivarindex, mythid )
-      else if ( whichxyz .EQ. 'xy') then
-         call ctrl_set_globfld_xy( fname(2), ivarindex, mythid)
-         if (optimcycle .eq. 0)
-     &        call ctrl_set_globfld_xy( fname(1), ivarindex, mythid )
-      else if ( whichxyz .EQ. 'xz') then
-         call ctrl_set_globfld_xz( fname(2), ivarindex, mythid)
-         if (optimcycle .eq. 0)
-     &        call ctrl_set_globfld_xz( fname(1), ivarindex, mythid )
-      else if ( whichxyz .EQ. 'yz') then
-         call ctrl_set_globfld_yz( fname(2), ivarindex, mythid)
-         if (optimcycle .eq. 0)
-     &        call ctrl_set_globfld_yz( fname(1), ivarindex, mythid )
-      else
-         STOP 'whichxyz option not implemented'
-      end if
+      inquire( file='costfinal', exist=exst )
+      IF ( .NOT. exst) THEN
+
+         if ( whichxyz .EQ. '3d') then
+            call ctrl_set_globfld_xyz( fname(2), ivarindex, mythid)
+            if (optimcycle .eq. 0)
+     &           call ctrl_set_globfld_xyz( fname(1), ivarindex, mythid)
+         else if ( whichxyz .EQ. 'xy') then
+            call ctrl_set_globfld_xy( fname(2), ivarindex, mythid)
+            if (optimcycle .eq. 0)
+     &           call ctrl_set_globfld_xy( fname(1), ivarindex, mythid )
+         else if ( whichxyz .EQ. 'xz') then
+            call ctrl_set_globfld_xz( fname(2), ivarindex, mythid)
+            if (optimcycle .eq. 0)
+     &           call ctrl_set_globfld_xz( fname(1), ivarindex, mythid )
+         else if ( whichxyz .EQ. 'yz') then
+            call ctrl_set_globfld_yz( fname(2), ivarindex, mythid)
+            if (optimcycle .eq. 0)
+     &           call ctrl_set_globfld_yz( fname(1), ivarindex, mythid )
+         else
+            STOP 'whichxyz option not implemented'
+         end if
+
+      ENDIF
 
       _END_MASTER( mythid )
 

@@ -117,6 +117,7 @@ c They provide the fields to be stored.
 # include "ctrl.h"
 # include "ctrl_dummy.h"
 # include "cost.h"
+# include "ecco_cost.h"
 
 #endif /* ALLOW_AUTODIFF_TAMC */
 c**************************************

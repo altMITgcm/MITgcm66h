@@ -1,5 +1,6 @@
 C $Header$
 
+#include "AD_CONFIG.h"
 #include "COST_CPPOPTIONS.h"
 
       subroutine ecco_cost_initvaria( mythid )
@@ -69,7 +70,7 @@ cph   of a divided adjoint run
 cph)
       inquire( file='costfinal', exist=exst )
       if ( .NOT. exst) then
-         call cost_init_barfiles( mythid )
+         call ecco_cost_init_barfiles( mythid )
       endif
 #endif
 
