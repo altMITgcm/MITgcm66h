@@ -217,7 +217,7 @@ C     Two-dimensional only for conventional hydrostatic or
 C     three-dimensional for non-hydrostatic and/or IGW scheme.
       IF ( momStepping ) THEN
       CALL TIMER_START('SOLVE_FOR_PRESSURE  [THE_MAIN_LOOP]',myThid)
-      CALL SOLVE_FOR_PRESSURE( myThid )
+      CALL SOLVE_FOR_PRESSURE(myTime, myIter, myThid)
       CALL TIMER_STOP ('SOLVE_FOR_PRESSURE  [THE_MAIN_LOOP]',myThid)
       ENDIF
 
