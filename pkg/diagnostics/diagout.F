@@ -65,7 +65,8 @@ C***********************************************************************
          if(ndiag(m).ne.0.and.parse1(5).ne.'D')then
           if( myThid.eq.1 ) write(6,2000) m,cdiag(m),ndiag(m),gdiag(m)
           if(parse1(5).ne.'C') then
-           do k=1,kdiag(m)
+c          do k=1,kdiag(m)
+           do k=1,nlevels(listnum)
             call getdiag ( myThid,k,m,undef,qtmp1)
            enddo
 
@@ -85,7 +86,8 @@ c -------------------------------------
 c Check for Mate of a Counter Diagnostic
 c --------------------------------------
            read (mate_index,100) mate
-           do k=1,kdiag(m)
+c          do k=1,kdiag(m)
+           do k=1,nlevels(listnum)
             call getdiag2 ( myThid,k,m,undef,qtmp1)
             call getdiag2 ( myThid,k,mate,undef,qtmp2)
             do bj=myByLo(myThid), myByHi(myThid)
@@ -106,8 +108,9 @@ c --------------------------------------
 
           endif
          endif
-         call mdswritefield_new(fn,64,glf,'RL',Nr+Nrphys,kdiag(m),qtmp1,
-     .                                                  n,myIter,myThid)
+         call mdswritefield_new(fn,64,glf,'RL',Nr+Nrphys,
+     .                           nlevels(listnum),qtmp1,n,myIter,myThid)
+c                                        kdiag(m),qtmp1,n,myIter,myThid)
         endif
        enddo
       enddo
