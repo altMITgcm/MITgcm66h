@@ -36,9 +36,11 @@ C     iG, jG - Global coordinate index
 C     bi,bj  - Loop counters
 C     I,J,K
 C     phi    - total depth of model
+C     oldPrec - Temporary used in controlling binary input dataset precision
       INTEGER iG, jG
       INTEGER bi, bj
       INTEGER  I,  J, K
+      INTEGER oldPrec
       _RL phi
 
       _BARRIER
@@ -69,7 +71,17 @@ C          Island
        ENDDO
       ELSE
        _BEGIN_MASTER( myThid )
+
+CcnhDebugStarts
+C       Force 64-bit IO
+        oldPrec        = readBinaryPrec
+        readBinaryPrec = precFloat64
+CcnhDEbugEnds
        CALL READ_FLD_XY_RS( bathyFile, ' ', H, 0, myThid )
+CcnhDebugStarts
+       readBinaryPrec = oldPrec
+CcnhdDebugEnds
+
        _END_MASTER(myThid)
       ENDIF
       _EXCH_XY_R4(    H, myThid )

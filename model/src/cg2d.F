@@ -73,8 +73,8 @@ C--   Initialise inverter
       etaNM1              = 1. D0
 
 CcnhDebugStarts
-      _EXCH_XY_R8( cg2d_b, myThid )
-      CALL PLOT_FIELD_XYRL( cg2d_b, 'CG2D.0 CG2D_B' , 1, myThid )
+C     _EXCH_XY_R8( cg2d_b, myThid )
+C     CALL PLOT_FIELD_XYRL( cg2d_b, 'CG2D.0 CG2D_B' , 1, myThid )
 CcnhDebugEnds
 
 C--   Normalise RHS
@@ -109,7 +109,7 @@ C--   Update overlaps
       _EXCH_XY_R8( cg2d_b, myThid )
       _EXCH_XY_R8( cg2d_x, myThid )
 CcnhDebugStarts
-      CALL PLOT_FIELD_XYRL( cg2d_b, 'CG2D.1 CG2D_B' , 1, myThid )
+C     CALL PLOT_FIELD_XYRL( cg2d_b, 'CG2D.1 CG2D_B' , 1, myThid )
 CcnhDebugEnds
 
 C--   Initial residual calculation
