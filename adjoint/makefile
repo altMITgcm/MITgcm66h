@@ -343,6 +343,7 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/exf_init_runoff.f		\
 		$(SOURCE_CODE)/exf_readparms.f			\
 		$(SOURCE_CODE)/exf_summary.f			\
+		$(SOURCE_CODE)/exf_bulkformulae.f		\
 		$(SOURCE_CODE)/exf_bulkcdn.f			\
 		$(SOURCE_CODE)/exf_bulkqsat.f			\
 		$(SOURCE_CODE)/exf_bulkrhn.f			\
