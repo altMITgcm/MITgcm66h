@@ -17,6 +17,7 @@ C !USES: ===============================================================
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PTRACERS.h"
+#include "PARAMS.h"
 
 C !INPUT PARAMETERS: ===================================================
 C  myThid               :: thread number
@@ -43,12 +44,12 @@ C internal flag to indicate we are in business
 C Set defaults values for parameters in PTRACERS.h
       PTRACERS_numInUse=-1
       DO iTracer=1,PTRACERS_num
-       PTRACERS_advScheme(iTracer)=0
-       PTRACERS_diffKh(iTracer)=0.
-       PTRACERS_diffK4(iTracer)=0.
-       PTRACERS_diffKr(iTracer)=0.
-       PTRACERS_useGMRedi(iTracer)=.FALSE.
-       PTRACERS_useKPP(iTracer)=.FALSE.
+       PTRACERS_advScheme(iTracer)=saltAdvScheme
+       PTRACERS_diffKh(iTracer)=diffKhS
+       PTRACERS_diffK4(iTracer)=diffK4S
+       PTRACERS_diffKr(iTracer)=diffKrS
+       PTRACERS_useGMRedi(iTracer)=useGMRedi
+       PTRACERS_useKPP(iTracer)=useKPP
        PTRACERS_initialFile(iTracer)=' '
       ENDDO
 

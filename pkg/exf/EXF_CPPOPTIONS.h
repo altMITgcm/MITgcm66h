@@ -24,7 +24,7 @@ c       humidity fields can be read-in from files.
 c                                        
 c   >>> ALLOW_DOWNWARD_RADIATION <<<
 c       If defined, downward long-wave and short-wave radiation
-c       can be read-in form files.
+c       can be read-in form files or computed from lwflux and swflux.
 c
 c   >>> ALLOW_BULKFORMULAE <<<
 c       Allows the use of bulk formulae in order to estimate

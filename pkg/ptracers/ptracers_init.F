@@ -94,6 +94,21 @@ cswdptr -- end change ---
          CALL READ_FLD_XYZ_RL(PTRACERS_initialFile(iTracer),' ',
      &            pTracer(1-Olx,1-Oly,1,1,1,iTracer) ,0,myThid)
          _END_MASTER(myThid)
+
+C        Apply mask
+         DO bj = myByLo(myThid), myByHi(myThid)
+          DO bi = myBxLo(myThid), myBxHi(myThid)
+           DO K=1,Nr
+            DO J=1,sNy
+             DO I=1,sNx
+              IF(hFacC(I,J,K,bi,bj).EQ.0)
+     &         pTracer(i,j,k,bi,bj,iTracer)=0.
+             ENDDO
+            ENDDO
+           ENDDO
+          ENDDO
+         ENDDO
+
         ELSE
 cswdptr -- add ---
 cswdptr -- end add ---

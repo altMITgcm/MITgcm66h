@@ -78,10 +78,19 @@ c     get record numbers and interpolation factor for climsst
 #endif
 
          if ( first ) then
+#ifdef USE_EXF_INTERPOLATION
+          call new_interp(
+     &    climsstfile, exf_clim_iprec
+     &  , climsst1, count0, xC, yC
+     &  ,climsst_lon0,climsst_lon_inc
+     &  ,climsst_lat0,climsst_lat_inc
+     &  ,climsst_nlon,climsst_nlat,mythid )
+#else
             call mdsreadfield( climsstfile, exf_clim_iprec
      &           , exf_clim_yftype, 1
      &           , climsst1, count0, mythid
      &           )
+#endif
             if (exf_clim_yftype .eq. 'RL') then
                call exf_filter_rl( climsst1, climsstmask, mythid )
             else
@@ -91,10 +100,20 @@ c     get record numbers and interpolation factor for climsst
 
          if (( first ) .or. ( changed )) then
             call exf_SwapFFields( climsst0, climsst1, mythid )
+            
+#ifdef USE_EXF_INTERPOLATION
+          call new_interp(
+     &    climsstfile, exf_iprec
+     &  , climsst1, count1, xC, yC
+     &  ,climsst_lon0,climsst_lon_inc
+     &  ,climsst_lat0,climsst_lat_inc
+     &  ,climsst_nlon,climsst_nlat,mythid )
+#else
             call mdsreadfield( climsstfile, exf_clim_iprec
      &           , exf_clim_yftype, 1
      &           , climsst1, count1, mythid
      &           )
+#endif
             if (exf_clim_yftype .eq. 'RL') then
                call exf_filter_rl( climsst1, climsstmask, mythid )
             else
