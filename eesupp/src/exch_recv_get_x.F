@@ -68,7 +68,7 @@ C                                  tile face uses.
       INTEGER spinCount
 #ifdef ALLOW_USE_MPI
       INTEGER theProc, theTag, theType, theSize
-      INTEGER mpiStatus(MPI_STATUS_SIZE), mpiRc
+      INTEGER mpiStatus(MPI_STATUS_SIZE,4), mpiRc
 #endif
 
 
@@ -379,7 +379,7 @@ C                                  tile face uses.
       INTEGER spinCount
 #ifdef ALLOW_USE_MPI
       INTEGER theProc, theTag, theType, theSize
-      INTEGER mpiStatus(MPI_STATUS_SIZE), mpiRc
+      INTEGER mpiStatus(MPI_STATUS_SIZE,4), mpiRc
 #endif
 
 
