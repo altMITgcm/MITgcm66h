@@ -149,7 +149,11 @@ C     to the core dynamical model
       CALL INI_MODEL_IO( myThid )
 
 C--   Write grid data and geometry arrays
+#ifdef MINIMAL_TAVE_OUTPUT
+      IF ( startTime .EQ. 0.0 ) CALL WRITE_GRID( myThid )
+#else
       CALL WRITE_GRID( myThid )
+#endif /* MINIMAL_TAVE_OUTPUT */
 
 #ifdef COMPONENT_MODULE
 C--   Post component-model configuration information to coupler
