@@ -48,6 +48,7 @@ c     == routine arguments ==
 c     == local variables ==
 
       logical output_xC_yC
+      integer i, j, bi, bj
 
 c     == end of interface ==
 
@@ -141,6 +142,15 @@ c     Atmospheric temperature.
      &     atemp_nlon, atemp_nlat, xC, yC,
 #endif
      &     mycurrenttime, mycurrentiter, mythid )
+      do bj = mybylo(mythid),mybyhi(mythid)
+         do bi = mybxlo(mythid),mybxhi(mythid)
+            do j = 1,sny
+               do i = 1,snx
+                  atemp(i,j,bi,bj) = atemp(i,j,bi,bj) + exf_offset_atemp
+               enddo
+            enddo
+         enddo
+      enddo
 
 c     Atmospheric humidity.
       call exf_set_gen( 

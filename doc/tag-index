@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o added exf_offset_atemp for Celsius to Kelvin conversion of atemp
+
 checkpoint52d_post
 o add infrastructure in model routines for fizhi and gridalt packages
 o change global_ocean.cs32x15 because of Pb with GM on CS-grid.
