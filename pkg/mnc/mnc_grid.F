@@ -161,7 +161,7 @@ C         a new definition for this grid.
       ENDDO
 
 C     Reaching this point means the grid was NOT previously defined and
-C     will must therefore create a new definition.
+C     we must therefore create a new definition.
       CALL MNC_GET_NEXT_EMPTY_IND(MNC_MAX_ID, mnc_g_names,
      &     indg, myThid)
       mnc_g_names(indg)(1:MNC_MAX_CHAR) =

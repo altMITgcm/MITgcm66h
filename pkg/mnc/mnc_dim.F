@@ -51,7 +51,7 @@ C     !INPUT PARAMETERS:
       character*(1) doWrite
 CEOP
 
-      CALL MNC_DIM_INIT_ALL_CV(fname, dname, dlen, 'Y', -1,-1, myThid)
+      CALL MNC_DIM_INIT_ALL_CV(fname,dname,dlen,doWrite,-1,-1,myThid)
       
       RETURN
       END
