@@ -3,6 +3,17 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+ecco_c50_e28
+o major merge:
+  ecco-branch merged with checkpoint50
+  gmredi now available, grdchk, DIVA up-to-date for MPI
+  However, two outstanding problems:
+  - kpp adjoint is broken, needs fixing!
+  - a few minor modif's in handling of CPP option
+    ALLOW_TANGENTLINEAR_RUN in conjunction with
+    ALLOW_ECCO_OPTIMIZATION are necessary to enable
+    TLM runs with ECCO setup
+
 ecco_c44_e27
 o exf:
   - Enable initialisation of forcing fields to constant 
