@@ -85,7 +85,7 @@ c--   == end of interface ==
          write(fname(1:80),'(3a,i10.10)')
      &        yadmark, xx_theta_file(1:il),'.',optimcycle
 
-         call active_read_xyz( fname, tmpfld3d, 1,
+         call active_read_xyz_loc( fname, tmpfld3d, 1,
      &                         doglobalread, ladinit, optimcycle,
      &                         mythid, dummy)
 
@@ -100,7 +100,7 @@ c--   == end of interface ==
          write(fname(1:80),'(3a,i10.10)')
      &        yadmark, xx_salt_file(1:il),'.',optimcycle
          
-         call active_read_xyz( fname, tmpfld3d, 1,
+         call active_read_xyz_loc( fname, tmpfld3d, 1,
      &                         doglobalread, ladinit, optimcycle,
      &                         mythid, dummy)
 
@@ -115,7 +115,7 @@ c--   == end of interface ==
          write(fname(1:80),'(3a,i10.10)')
      &        yadmark, xx_hflux_file(1:il),'.',optimcycle
 
-         call active_read_xy( fname, tmpfld2d, icvrec,
+         call active_read_xy_loc( fname, tmpfld2d, icvrec,
      &                        doglobalread, ladinit, optimcycle,
      &                        mythid, dummy)
 
@@ -130,7 +130,7 @@ c--   == end of interface ==
          write(fname(1:80),'(3a,i10.10)')
      &        yadmark, xx_sflux_file(1:il),'.',optimcycle
 
-         call active_read_xy( fname, tmpfld2d, icvrec,
+         call active_read_xy_loc( fname, tmpfld2d, icvrec,
      &                        doglobalread, ladinit, optimcycle,
      &                        mythid, dummy)
 
@@ -145,7 +145,7 @@ c--   == end of interface ==
          write(fname(1:80),'(3a,i10.10)')
      &        yadmark, xx_tauu_file(1:il),'.',optimcycle
 
-         call active_read_xy( fname, tmpfld2d, icvrec,
+         call active_read_xy_loc( fname, tmpfld2d, icvrec,
      &                        doglobalread, ladinit, optimcycle,
      &                        mythid, dummy)
 
@@ -160,7 +160,7 @@ c--   == end of interface ==
          write(fname(1:80),'(3a,i10.10)')
      &        yadmark, xx_tauv_file(1:il),'.',optimcycle
 
-         call active_read_xy( fname, tmpfld2d, icvrec,
+         call active_read_xy_loc( fname, tmpfld2d, icvrec,
      &                        doglobalread, ladinit, optimcycle,
      &                        mythid, dummy)
 
@@ -175,7 +175,7 @@ c--   == end of interface ==
          write(fname(1:80),'(3a,i10.10)')
      &        yadmark, xx_atemp_file(1:il),'.',optimcycle
 
-         call active_read_xy( fname, tmpfld2d, icvrec,
+         call active_read_xy_loc( fname, tmpfld2d, icvrec,
      &                        doglobalread, ladinit, optimcycle,
      &                        mythid, dummy)
 
@@ -190,7 +190,7 @@ c--   == end of interface ==
          write(fname(1:80),'(3a,i10.10)')
      &        yadmark, xx_aqh_file(1:il),'.',optimcycle
 
-         call active_read_xy( fname, tmpfld2d, icvrec,
+         call active_read_xy_loc( fname, tmpfld2d, icvrec,
      &                        doglobalread, ladinit, optimcycle,
      &                        mythid, dummy)
 
@@ -205,7 +205,7 @@ c--   == end of interface ==
          write(fname(1:80),'(3a,i10.10)')
      &        yadmark, xx_uwind_file(1:il),'.',optimcycle
 
-         call active_read_xy( fname, tmpfld2d, icvrec,
+         call active_read_xy_loc( fname, tmpfld2d, icvrec,
      &                        doglobalread, ladinit, optimcycle,
      &                        mythid, dummy)
 
@@ -220,7 +220,7 @@ c--   == end of interface ==
          write(fname(1:80),'(3a,i10.10)')
      &        yadmark, xx_vwind_file(1:il),'.',optimcycle
 
-         call active_read_xy( fname, tmpfld2d, icvrec,
+         call active_read_xy_loc( fname, tmpfld2d, icvrec,
      &                        doglobalread, ladinit, optimcycle,
      &                        mythid, dummy)
 
@@ -235,7 +235,7 @@ c--   == end of interface ==
          write(fname(1:80),'(3a,i10.10)')
      &        yadmark, xx_obcsn_file(1:il),'.',optimcycle
 
-         call active_read_xz( fname, tmpfldxz, icvrec,
+         call active_read_xz_loc( fname, tmpfldxz, icvrec,
      &                        doglobalread, ladinit, optimcycle,
      &                        mythid, dummy)
 
@@ -250,7 +250,7 @@ c--   == end of interface ==
          write(fname(1:80),'(3a,i10.10)')
      &        yadmark, xx_obcss_file(1:il),'.',optimcycle
 
-         call active_read_xz( fname, tmpfldxz, icvrec,
+         call active_read_xz_loc( fname, tmpfldxz, icvrec,
      &                        doglobalread, ladinit, optimcycle,
      &                        mythid, dummy)
 
@@ -265,7 +265,7 @@ c--   == end of interface ==
          write(fname(1:80),'(3a,i10.10)')
      &        yadmark, xx_obcsw_file(1:il),'.',optimcycle
 
-         call active_read_yz( fname, tmpfldyz, icvrec,
+         call active_read_yz_loc( fname, tmpfldyz, icvrec,
      &                        doglobalread, ladinit, optimcycle,
      &                        mythid, dummy)
 
@@ -280,7 +280,7 @@ c--   == end of interface ==
          write(fname(1:80),'(3a,i10.10)')
      &        yadmark, xx_obcse_file(1:il),'.',optimcycle
 
-         call active_read_yz( fname, tmpfldyz, icvrec,
+         call active_read_yz_loc( fname, tmpfldyz, icvrec,
      &                        doglobalread, ladinit, optimcycle,
      &                        mythid, dummy)
 
@@ -295,7 +295,7 @@ c--   == end of interface ==
          write(fname(1:80),'(3a,i10.10)')
      &        yadmark, xx_tr1_file(1:il),'.',optimcycle
          
-         call active_read_xyz( fname, tmpfld3d, 1,
+         call active_read_xyz_loc( fname, tmpfld3d, 1,
      &                         doglobalread, ladinit, optimcycle,
      &                         mythid, dummy)
 
@@ -310,7 +310,7 @@ c--   == end of interface ==
          write(fname(1:80),'(3a,i10.10)')
      &        yadmark, xx_sst_file(1:il),'.',optimcycle
 
-         call active_read_xy( fname, tmpfld2d, icvrec,
+         call active_read_xy_loc( fname, tmpfld2d, icvrec,
      &                        doglobalread, ladinit, optimcycle,
      &                        mythid, dummy)
 
@@ -325,7 +325,7 @@ c--   == end of interface ==
          write(fname(1:80),'(3a,i10.10)')
      &        yadmark, xx_sss_file(1:il),'.',optimcycle
 
-         call active_read_xy( fname, tmpfld2d, icvrec,
+         call active_read_xy_loc( fname, tmpfld2d, icvrec,
      &                        doglobalread, ladinit, optimcycle,
      &                        mythid, dummy)
 
@@ -342,7 +342,7 @@ c--   == end of interface ==
 
 #ifdef ALLOW_HFACC3D_CONTROL
 
-         call active_read_xyz( fname, tmpfld3d, icvrec,
+         call active_read_xyz_loc( fname, tmpfld3d, icvrec,
      &                        doglobalread, ladinit, optimcycle,
      &                        mythid, dummy)
 
@@ -350,7 +350,7 @@ c--   == end of interface ==
 
 #else
 
-         call active_read_xy( fname, tmpfld2d, icvrec,
+         call active_read_xy_loc( fname, tmpfld2d, icvrec,
      &                        doglobalread, ladinit, optimcycle,
      &                        mythid, dummy)
 
@@ -366,7 +366,7 @@ c--   == end of interface ==
          write(fname(1:80),'(3a,i10.10)')
      &        yadmark, xx_efluxy_file(1:il),'.',optimcycle
 
-         call active_read_xyz( fname, tmpfld3d, 1,
+         call active_read_xyz_loc( fname, tmpfld3d, 1,
      &                         doglobalread, ladinit, optimcycle,
      &                         mythid, dummy)
 
@@ -381,7 +381,7 @@ c--   == end of interface ==
          write(fname(1:80),'(3a,i10.10)')
      &        yadmark, xx_efluxp_file(1:il),'.',optimcycle
 
-         call active_read_xyz( fname, tmpfld3d, 1,
+         call active_read_xyz_loc( fname, tmpfld3d, 1,
      &                         doglobalread, ladinit, optimcycle,
      &                         mythid, dummy)
 
