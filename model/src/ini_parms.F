@@ -20,9 +20,6 @@ C     !USES:
 #include "PARAMS.h"
 #include "GRID.h"
 #include "EOS.h"
-#ifdef ALLOW_MNC
-#include "MNC_PARAMS.h"
-#endif
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     myThid - Number of this instance of INI_PARMS

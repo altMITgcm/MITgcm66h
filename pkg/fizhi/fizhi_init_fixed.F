@@ -34,9 +34,6 @@ c-----------------------------------------------------------------------
 #include "gridalt_mapping.h"
 #include "GRID.h"
 #include "PARAMS.h"
-#ifdef ALLOW_MNC
-#include "MNC_PARAMS.h"
-#endif
 
        integer myThid
 

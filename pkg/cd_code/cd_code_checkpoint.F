@@ -18,9 +18,6 @@ C     !USES:
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#ifdef ALLOW_MNC
-#include "MNC_PARAMS.h"
-#endif
 #include "CD_CODE_VARS.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
@@ -106,9 +103,6 @@ C     !USES:
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#ifdef ALLOW_MNC
-#include "MNC_PARAMS.h"
-#endif
 #include "CD_CODE_VARS.h"
 
 C     !INPUT/OUTPUT PARAMETERS:

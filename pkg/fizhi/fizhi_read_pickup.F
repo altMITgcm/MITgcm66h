@@ -28,9 +28,6 @@ C     == Global variables ===
 #include "fizhi_io_comms.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#ifdef ALLOW_MNC
-#include "MNC_PARAMS.h"
-#endif
 
 C     == Routine Arguments ==
 C     myIter  :: time-step number

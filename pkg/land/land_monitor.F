@@ -22,9 +22,6 @@ C     !USES:
 #ifdef ALLOW_MONITOR
 #include "MONITOR.h"
 #endif
-#ifdef ALLOW_MNC
-#include "MNC_PARAMS.h"
-#endif
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     land_frc :: land fraction [0-1]

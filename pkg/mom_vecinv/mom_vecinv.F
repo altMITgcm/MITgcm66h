@@ -30,9 +30,6 @@ C     == Global variables ==
 #include "DYNVARS.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#ifdef ALLOW_MNC
-#include "MNC_PARAMS.h"
-#endif
 #include "GRID.h"
 #ifdef ALLOW_TIMEAVE
 #include "TIMEAVE_STATV.h"

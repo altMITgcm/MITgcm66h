@@ -29,9 +29,6 @@ C     == Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h" 
-#ifdef ALLOW_MNC
-# include "MNC_PARAMS.h"
-#endif
 #ifdef ALLOW_AUTODIFF_MONITOR
 # include "adcommon.h"
 #endif
