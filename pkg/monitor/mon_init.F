@@ -19,9 +19,6 @@ C     !USES:
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "MONITOR.h"
-#ifdef ALLOW_MNC
-#include "MNC_PARAMS.h"
-#endif
 
 C     !INPUT PARAMETERS:
       INTEGER myThid

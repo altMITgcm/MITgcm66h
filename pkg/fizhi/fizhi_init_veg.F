@@ -53,6 +53,9 @@ C                100:  OCEAN
 C***********************************************************************
       implicit none
 #include "EEPARAMS.h"
+#ifdef ALLOW_MNC
+#include "MNC_PARAMS.h"
+#endif
 
       integer mythid,im,jm,maxtyp,nchp,nchptot,nchpland,Nsx,Nsy,Nxg,Nyg
       integer surftype(im,jm,maxtyp,Nsx,Nsy)
@@ -133,24 +136,26 @@ C     Allow for MDSIO format if someday needed
 #endif
 
 #ifdef ALLOW_MNC
-      _BEGIN_MASTER( myThid )
+      IF (useMNC) THEN
+        _BEGIN_MASTER( myThid )
       
-      do i = 1,MAX_LEN_FNAM
-        fizhi_veg_bn(i:i) = ' '
-      enddo
+        do i = 1,MAX_LEN_FNAM
+          fizhi_veg_bn(i:i) = ' '
+        enddo
       
-C     The following base name should be handled by some sort of input
-C     name parameter in FIZHI_READPARMS() plus a possible size.
+C       The following base name should be handled by some sort of input
+C       name parameter in FIZHI_READPARMS() plus a possible size.
       
-C     Set the base name     1234567890
-      fizhi_veg_bn(1:10) = 'fizhi_veg '
+C       Set the base name     1234567890
+        fizhi_veg_bn(1:10) = 'fizhi_veg '
       
-      CALL MNC_CW_I_R('I', fizhi_veg_bn, 0,0, 
-     &     'surftype',surftype,myThid)
-      CALL MNC_CW_RL_R('R', fizhi_veg_bn, 0,0,
-     &     'tilefrac', tilefrac, myThid)
+        CALL MNC_CW_I_R('I', fizhi_veg_bn, 0,0, 
+     &       'surftype',surftype,myThid)
+        CALL MNC_CW_RL_R('R', fizhi_veg_bn, 0,0,
+     &       'tilefrac', tilefrac, myThid)
       
-      _END_MASTER( myThid )
+        _END_MASTER( myThid )
+      ENDIF
 #endif
 
 c     create chip arrays for :

@@ -20,6 +20,9 @@ C     == Global variables ===
 #include "fizhi_land_coms.h"
 #include "fizhi_earth_coms.h"
 #include "EEPARAMS.h"
+#ifdef ALLOW_MNC
+#include "MNC_PARAMS.h"
+#endif
       EXTERNAL ILNBLNK
       INTEGER ILNBLNK
 
@@ -112,6 +115,9 @@ C     == Global variables ===
 #include "fizhi_land_coms.h"
 #include "fizhi_earth_coms.h"
 #include "EEPARAMS.h"
+#ifdef ALLOW_MNC
+#include "MNC_PARAMS.h"
+#endif
       EXTERNAL ILNBLNK
       INTEGER ILNBLNK
 
