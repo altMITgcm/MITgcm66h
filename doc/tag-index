@@ -3,6 +3,13 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint40pre7
+o bug fix in dynamics.F
+  calc_viscosity called before k=1,Nr loop.
+o added some #ifdef's ALLOW_PASSIVE_TRACER
+o cleaned initialisations in ctrl_map_ini
+  related to TAF
+
 checkpoint40pre6
 o split dynamics into thermodynamics & dynamics
 o corresponding split of calc_diffusivity into
