@@ -259,6 +259,10 @@ cfpp$ expand (qsat)
 
 c   compute variables that do not change
 c
+
+       print *,' Just inside turb '
+       stop
+
        pi = 4.*atan(1.)
        secday   = getcon('SDAY')
        sdayopi2 = getcon('SDAY') / (pi*2.)

@@ -865,7 +865,7 @@ C*********************************************************************
       return
       end
 
-      subroutine pkappa (ple,pkle,im,jm,lm,pkz)
+      subroutine pkappa (im,jm,lm,ple,pkle,pkz)
 C***********************************************************************
 C  Purpose
 C     Calculate Phillips P**Kappa

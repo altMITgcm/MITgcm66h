@@ -3,12 +3,12 @@ C $Name$
 
 #include "FIZHI_OPTIONS.h"
       subroutine lwrio (nymd,nhms,bi,bj,istrip,npcs,low_level,mid_level,
+     .                  im,jm,lm,
      .                  pz,plz,plze,dpres,pkht,pkz,tz,qz,oz,
      .                  co2,cfc11,cfc12,cfc22,methane,n2o,emissivity,
      .                  tgz,radlwg,st4,dst4,
      .                  dtradlw,dlwdtg,dtradlwc,lwgclr,
-     .                  im,jm,lm,ptop,
-     .                  nlwcld,cldlw,clwmo,nlwlz,lwlz,
+     .                  ptop,nlwcld,cldlw,clwmo,nlwlz,lwlz,
      .                  lpnt,imstturb,qliqave,fccave,landtype)
 
       implicit none
