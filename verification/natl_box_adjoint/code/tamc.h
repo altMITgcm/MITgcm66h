@@ -106,7 +106,7 @@ c     and writing data.
 
       INTEGER act1, act2, act3, act4
       INTEGER max1, max2, max3
-      INTEGER iikey, kkey, passkey
+      INTEGER iikey, kkey, passkey, igmkey
 
 c     ==================================================================
 c     END OF HEADER TAMC

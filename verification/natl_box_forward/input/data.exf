@@ -56,4 +56,7 @@
 #
  exf_iprec         = 32,
  exf_yftype        = 'RL',
+#
+ scal_ust    = -1.,
+ scal_vst    = -1.,
  /
