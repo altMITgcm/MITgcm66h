@@ -27,6 +27,8 @@ o extended grdchk to enable obcs gradient checks
 o some generalizations for easier TLM <-> ADM switches
 o added configuration example for parallel divided adjoint
   (see verification/natl_box_adjoint/code_diva_mpi/README )
+o started verification exp. for obcs control
+  (still needs checking)
 
 ecco_c50_e32
 o Patrick's adjoint-model storage directives for pkg/seaice
