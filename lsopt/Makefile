@@ -15,22 +15,32 @@
 SRC         = lsopt_top.F   lsupdxx.F     lsline.F   \
               hessupd.F     cubic.F       dgscale.F  \
               instore.F     dostore.F     outstore.F \
-              lswri.F       write_control.F
+              lswri.F
 
 ECCOSRC     = lsopt_top.F   lsupdxx.F     lsline.F   \
               hessupd.F     cubic.F       dgscale.F  \
               instore.F     dostore.F     outstore.F \
               lswri.F
 
-# SUN double precision.
-FFLAGS      = -u -r8 -e -g
-CPPFLAGS    = -I. -DIS_DOUBLE -DINTEGER_BYTE=4 -DONLINE
-
 # Note for MIT users:
 # -------------------
 #   LAPACK/BLAS routines can be obtained directly from e.g.
 #   /opt/SUNWspro/SC4.2/lib/v7.
 #   --> man lapack
+
+# Default (Linux)
+FC          = f77
+FFLAGS      = 
+CPPFLAGS    = -I. -DIS_DOUBLE
+
+# AER cluster:
+# FC          = /opt/mpich/bin/mpif77
+# FFLAGS      = -byteswapio -r8 -Mnodclchk -Mextend
+# CPPFLAGS    = -I. -DIS_DOUBLE
+
+# SUN double precision.
+# FFLAGS      = -u -r8 -e -g
+# CPPFLAGS    = -I. -DIS_DOUBLE
 
 # SUN single precision.
 #FFLAGS      = -u 

@@ -29,22 +29,25 @@ OBJ		= optim_main.o			\
 
 EXEDIR     = ./
 
-# Location of library for optimization.
+# Location of cpp preprocessor
+# default is (Linux)
+CPP             = cat $< | /lib/cpp
 # on SUNOS
 # CPP		= cat $< | /usr/ccs/lib/cpp
-# on linux
-CPP		= cat $< | /lib/cpp
+
 INCLUDEDIRS     = -I.				\
 		  -I../bin/			\
-                  -I../eesupp/inc/		\
-                  -I../model/inc/ 		\
-                  -I../diags/inc/ 		\
-                  -I../pkg/ecco/ 		\
-                  -I../pkg/ctrl/
+
+# the following ones should not be used as they
+# may not contain the specific configuration headers.
+#                  -I../eesupp/inc/		\
+#                  -I../model/inc/ 		\
+#                  -I../diags/inc/ 		\
+#                  -I../pkg/ecco/ 		\
+#                  -I../pkg/ctrl/
 
 LIBDIRS         = -L.				\
-                  -L../lsopt/			\
-		  -L/opt/SUNWspro/SC4.2/lib/v7
+                  -L../lsopt/
 
 LIBS            = -llsopt_ecco			\
 		  -lblas1
@@ -54,14 +57,18 @@ OPTMODE         = OFFLINE
 EXECUTABLE      = $(EXEDIR)optim.x
 
 # The cpp flags.
-CPPFLAGS	= -DREAL_BYTE=8			\
-                  -DMAX_INDEPEND=29804		\
+CPPFLAGS	= -DREAL_BYTE=4			\
+                  -DMAX_INDEPEND=1000000		\
                   -D_RL='double precision'	\
                   -D$(OPTMODE)
 
 # FORTRAN compiler and its flags.
-FC		= f77
-FFLAGS		= -C
+# default is (Linux)
+FC              = f77
+FFLAGS          =
+# AER cluster
+#FC		= /opt/mpich/bin/mpif77
+#FFLAGS		= -byteswapio -r8 -Mnodclchk -Mextend
 
 # File removal.
 RM		= rm -f
@@ -82,7 +89,7 @@ depend:
 
 # Cleaning options.
 clean:
-	$(RM) $(EXEDIR)optim.x $(OBJ)
+	$(RM) $(EXEDIR)optim.x *.o *.f
 
 scratch:
 	$(RM) OPWARMD OPWARMI $(EXEDIR)optim.x $(OBJ)
