@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint52n_post
+o various build (mostly genmake2) changes including:
+  - ability to build/run more easily within Cygwin and MacOS X
+  - more complicated Makefiles with a stronger dependence on Gnu Make
 o pkg/seaice modifications
   - added SEAICE_deltaTtherm and SEAICE_deltaTdyn in order to reduce cost
     of pkg/seaice.  For time being, SEAICE_deltaTtherm = deltaTtracer
