@@ -120,7 +120,7 @@ C External forcing term(s)
 cswdptr --add --
 #ifdef ALLOW_GCHEM
 #ifndef PTRACERS_SEPARATE_FORCING
-       IF ( forcing_In_AB )
+       IF ( forcing_In_AB .AND. useGCHEM )
      &    CALL GCHEM_FORCING_INT(
      I                        bi,bj,iMin,iMax,jMin,jMax,k,
      I                        iTracer,
@@ -153,7 +153,7 @@ C External forcing term(s)
 cswdptr - add--
 #ifdef ALLOW_GCHEM
 #ifndef PTRACERS_SEPARATE_FORCING
-       IF ( .NOT.forcing_In_AB )
+       IF ( .NOT.forcing_In_AB .AND. useGCHEM )
      &    CALL GCHEM_FORCING_INT(
      I                        bi,bj,iMin,iMax,jMin,jMax,k,
      I                        iTracer,
