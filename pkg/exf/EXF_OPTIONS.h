@@ -75,9 +75,6 @@ c
 c   >>> USE_EXF_INTERPOLATION <<<
 c       Allows specification of arbitrary Cartesian input grids.
 c
-c   >>> BICUBIC <<<
-c       Use bicubic instead of bilinear spatial interpolation.
-c
 c   ====================================================================
 c
 c       The following CPP options:
