@@ -64,6 +64,6 @@
  exf_iprec   = 64,
  exf_yftype  = 'RL',
 #
- scal_ust    = -1.,
- scal_vst    = -1.,
+ exf_inscal_ust    = -1.,
+ exf_inscal_vst    = -1.,
  &
