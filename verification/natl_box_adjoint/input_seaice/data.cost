@@ -9,18 +9,18 @@
  sbarfile   = 'sbar',
  psbarfile  = 'psbar',
 #
- topexstartdate1 = 19920102,
+ topexstartdate1 = 19790101,
  topexstartdate2 = 00000,
  topexperiod     = 2635200.0,
  topexfile       = 'labsea_TP_fields',
  topexmeanfile   = 'labsea_TP_mean',
 #
  ersfile       = 'labsea_ERS_fields',
- ersstartdate1 = 19920102,
+ ersstartdate1 = 19790101,
  ersstartdate2 = 00000,
  ersperiod     = 2635200.0,
 #
- sststartdate1        = 19920102,
+ sststartdate1        = 19790101,
  sststartdate2        = 00000,
  sstdatfile           = 'labsea_SST_fields',
  tdatfile             = 'labsea_Lev.ptmp',

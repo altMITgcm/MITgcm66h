@@ -193,7 +193,8 @@ grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.txt
 # To run:
  cd ../exe
  cp ../verification/natl_box_adjoint/input_seaice/* .
- cp ../verification/natl_box_adjoint/input/PH_*.data .
  ./mitgcmuv >&! output.txt
 # To verify the results of the gradient check, type:
  grep ph-grd output.txt
+# A reference output is in:
+ grep ph-grd ../verification/natl_box_adjoint/results_seaice/output.txt
