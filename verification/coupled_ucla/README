@@ -28,7 +28,11 @@ esm_input : 16 4  -> atmospheric CPUs + 1; oceanic CPUs
 esminput:
 
  tbegin=1835.0,   -> time in days from 0000 (Jan. 10, 0005 00:00 GMT)
- tfinal=10601.0,  -> 10-year integration
+ tfinal=2017.5,   -> 1/2-year, 182.5-day integration
+ year0=5, day0=10, hour0=00.0, seconds0=0.0,
+                  -> this is the reference date relative to which
+                     OD_dtom, dt_agcmedit, and dt_agcmhist_outcoupling
+                     are computed
  GM_run=0,        -> no AGCM output to FE_datdir
  GM_run=1,        -> allow AGCM output to FE_datdir
  OD_dtom=6.0,     -> coupling interval in hours
@@ -36,7 +40,8 @@ esminput:
  NP_agcm=6,       -> total # of atmospheric CPUs
  NPI_agcm=2,      -> x-direction CPUS, better if rather small
  NPJ_agcm=3,      -> y-direction CPUS
- dt_agcmhist_out=5184000.0, -> atmosphere model checkpointing in seconds
+ dt_agcmedit=864000.0,      -> interval for diagnostic averages (s)
+ dt_agcmhist_out=5184000.0, -> atmosphere model checkpointing (s)
 
 ===================================================================
 
@@ -226,9 +231,8 @@ Chaining a job starting on OGCM day 180, AGCM day 2015 on castor:
 
   cd /castor/tmp1/dmenem/oldpbl/camel_7.2p_042903/bin
   rm -f data tmp tmp1 tmp2 esminput
-  sed -e "s/startTime   = 0.0/startTime=15552000./" data.coupled_360x224 > data
-  sed -e "s/tbegin=1835/tbegin=2015/" esminput.56 > tmp
-  sed -e "s/tfinal=10601/tfinal=2195/" tmp > tmp1
-  sed -e "s/year0=5, day0=10/year0=5, day0=190/" tmp1 > tmp2
-  sed -e "s/'agcm_infile'/'E231_new_PAC__hist003.nc'/" tmp2 > esminput
+  sed -e "s/startTime   = 0.0/startTime=15768000./" data.coupled_360x224 > data
+  sed -e "s/tbegin=1835.0/tbegin=2017.5/" esminput.56 > tmp
+  sed -e "s/tfinal=2017.5/tfinal=2200.0/" tmp > tmp1
+  sed -e "s/'agcm_infile'/'E231_new_PAC__hist001.nc'/" tmp1 > esminput
   qsub submit.long64c
