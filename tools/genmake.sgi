@@ -32,7 +32,7 @@ set EDIR       = ( ../exe/       )
 set EXE        = ( barrier       )
 
 set CPP   = ( '/lib/cpp -P $(INCLUDES) -DUSE_IRIX' )
-set FCOMP = ( 'f77 -mp -mpio -bytereclen -O3 -r10000 -c' )
+set FCOMP = ( 'f77 -extend_source -mp -mpio -bytereclen -O3 -r10000 -c' )
 set LINK  = ( 'f77 -mp -mpio -bytereclen -O3 -r10000 ' )
 set INCLUDES = ( '-I. -I$(PSUPP_IDIR) -I$(MODEL_IDIR) ' \
                  '-I/usr/local/mpi/include' )
