@@ -124,7 +124,7 @@ C If we are writing to a tiled MDS file then we open each one here
          iG=bi+(myXGlobalLo-1)/sNx ! Kludge until unstructered tiles
          jG=bj+(myYGlobalLo-1)/sNy ! Kludge until unstructered tiles
          write(dataFname(1:80),'(2a,i3.3,a,i3.3,a)')
-     &              fName(1:IL),'.',iG,'.',jG,'.data'
+     &              pfName(1:pIL),'.',iG,'.',jG,'.data'
          if (irecord .EQ. 1) then
           length_of_rec = MDS_RECLEN( filePrec, narr, mythid )
           open( dUnit, file=dataFName, status=_NEW_STATUS,
