@@ -128,7 +128,8 @@ c     Get values of climatological fields.
 c     Get the surface forcing fields.
       call exf_getffields( mytime, myiter, mythid )
 
-      if ( useExfCheckRange ) then
+      if ( useExfCheckRange .AND.
+     &     ( myiter.EQ.niter0 .OR. debugLevel.GE.debLevB ) ) then
          call exf_check_range( mytime, myiter, mythid )
       endif
 

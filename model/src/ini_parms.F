@@ -1120,7 +1120,11 @@ c      rkFac = -1.D0
       recip_horiVertRatio = 1./horiVertRatio
 
 c-- gradually replacing debugMode by debugLevel
-      IF ( debugMode ) debugLevel = debLevB
+      IF ( debugMode ) THEN
+       debugLevel = debLevB
+      ELSE
+       debugLevel = debLevA
+      ENDIF
 C
       CLOSE(iUnit)
 
