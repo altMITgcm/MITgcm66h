@@ -1,5 +1,6 @@
 C $Header$
 C $Name$
+cc
 
 #include "OBCS_OPTIONS.h"
 
@@ -36,7 +37,7 @@ C     === Routine arguments ===
 
 #ifdef ALLOW_ORLANSKI
       NAMELIST /OBCS_PARM02/
-     & CMAX, cvelTimeScale
+     & CMAX, cvelTimeScale, CFIX, useFixedCEast, useFixedCWest
 #endif
 
 C     === Local variables ===
@@ -111,6 +112,9 @@ C     Account for periodicity if negative indices were supplied
 C     Default Orlanski radiation parameters
       CMAX = 0.45 _d 0 /* maximum allowable phase speed-CFL for AB-II */
       cvelTimeScale = 2000.0 _d 0 /* Averaging period for phase speed in sec. */
+      CFIX = 0.8 _d 0 /* Fixed boundary phase speed in m/s */
+      useFixedCEast=.FALSE.
+      useFixedCWest=.FALSE.
       IF (useOrlanskiNorth.OR.
      &    useOrlanskiSouth.OR.
      &    useOrlanskiEast.OR.

@@ -7,12 +7,14 @@ C
 C SPK 7/18/00: Added dimensional phase speed arrays CVEL_**, 
 C              where **=Variable(U,V,T,S,W)Boundary(E,W,N,S). 
 C
+cc
 
 #ifdef ALLOW_ORLANSKI
 
       COMMON /ORLANSKI_PARAMS/
-     &      CMax, cVelTimeScale
-      _RL   CMax, cVelTimeScale
+     &      CMax, cVelTimeScale, CFix, useFixedCEast, useFixedCWest
+      _RL   CMax, cVelTimeScale, CFix
+      LOGICAL useFixedCEast, useFixedCWest
 
 C     Storage arrays
       COMMON /ORLANSKI_STORE/ 
