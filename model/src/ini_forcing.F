@@ -97,6 +97,8 @@ C
       ENDIF
       IF ( surfQFile .NE. ' '  ) THEN
        CALL READ_FLD_XY_RS( surfQFile, ' ', Qnet, 0, myThid )
+      ELSEIF ( surfQnetFile .NE. ' '  ) THEN
+       CALL READ_FLD_XY_RS( surfQnetFile, ' ', Qnet, 0, myThid )
       ENDIF
       IF ( EmPmRfile .NE. ' '  ) THEN
        CALL READ_FLD_XY_RS( EmPmRfile, ' ', EmPmR, 0, myThid )
@@ -110,6 +112,14 @@ C
 #ifdef SHORTWAVE_HEATING
       IF ( surfQswFile .NE. ' '  ) THEN
        CALL READ_FLD_XY_RS( surfQswFile, ' ', Qsw, 0, myThid )
+       IF ( surfQFile .NE. ' '  ) THEN
+C-     Qnet is now (after c54) the net Heat Flux (including SW)
+         DO j=1-OLy,sNy+OLy
+          DO i=1-OLx,sNx+OLx
+            Qnet(i,j,bi,bj) = Qnet(i,j,bi,bj) + Qsw(i,j,bi,bj)
+          ENDDO
+         ENDDO
+       ENDIF
       ENDIF
 #endif
 #ifdef ATMOSPHERIC_LOADING
