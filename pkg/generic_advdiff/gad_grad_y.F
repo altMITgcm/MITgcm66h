@@ -47,10 +47,12 @@ C  i,j              :: loop indices
       INTEGER i,j
 CEOP
 
+#ifndef ALLOW_AUTODIFF_TAMC
 C--   Internal exchange for calculations in Y
       IF (useCubedSphereExchange) THEN
         CALL FILL_CS_CORNER_TR_RL(.FALSE., tracer, bi,bj, myThid )
       ENDIF
+#endif
 
 C     o Meridional tracer gradient
       DO i=1-Olx,sNx+Olx
