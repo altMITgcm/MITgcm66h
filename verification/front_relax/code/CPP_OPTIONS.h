@@ -7,7 +7,7 @@ C will be compiled.
 C
 
 C o Include/exclude code for GM/Redi parameterization
-#undef  ALLOW_GMREDI
+#define  ALLOW_GMREDI
 
 C o Include/exclude code for KPP mixing scheme
 #undef  ALLOW_KPP

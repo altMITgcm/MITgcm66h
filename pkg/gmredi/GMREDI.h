@@ -3,7 +3,8 @@ C $Header$
 #ifdef ALLOW_GMREDI
 
 C     Package flag
-      logical gmrediIsOn
+      logical GMREDIisON
+      COMMON /GM_PACKAGE/ GMREDIisON
 
 C     GM/Redi parameters
       _RL GM_background_K

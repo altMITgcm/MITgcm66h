@@ -144,11 +144,13 @@ C--     Time-average
      &  Visbeck_K_T(i,j,bi,bj)=Visbeck_K_T(i,j,bi,bj)
      &                       +VisbeckK(i,j,bi,bj)*deltaTclock
 #endif
+#endif /* INCLUDE_DIAGNOSTICS_INTERFACE_CODE */
        ENDDO
       ENDDO
-      GM_TimeAve(k,bi,bj)=GM_TimeAve(k,bi,bj)+deltaTclock
-#endif /* INCLUDE_DIAGNOSTICS_INTERFACE_CODE */
 
+#ifdef INCLUDE_DIAGNOSTICS_INTERFACE_CODE
+      GM_TimeAve(k,bi,bj)=GM_TimeAve(k,bi,bj)+deltaTclock
+#endif
 
 
 #ifdef GM_NON_UNITY_DIAGONAL
