@@ -36,7 +36,7 @@ C     errIO - IO unit error flag
       INTEGER  ILNBLNK
       EXTERNAL ILNBLNK
       NAMELIST /EEPARMS/
-     & nTx, nTy,usingMPI
+     & nTx, nTy,usingMPI,useCubedSphereExchange
 
 
 C--   For now these options are fixed as the code does
@@ -74,6 +74,7 @@ C     is made.
 C
       notUsingXPeriodicity       = .FALSE.
       notUsingYPeriodicity       = .FALSE.
+      useCubedSphereExchange     = .FALSE.
       usingMPI                   = .FALSE.
       nTx                        = 1
       nTy                        = 1
