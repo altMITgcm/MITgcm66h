@@ -30,11 +30,11 @@ C o Include/exclude code for KPP mixing scheme
 
 cswdblk --- add ---
 C o Include/exclude code for bulk formula
-#define  ALLOW_BULKFORMULA
-#ifdef ALLOW_BULKFORMULA
+#define  ALLOW_BULK_FORCE
+#ifdef ALLOW_BULK_FORCE
 cswdice -- add ---
 C o allow seaice
-#define ALLOW_TSEAICE
+#define ALLOW_THERM_SEAICE
 cswdice -- end add ---
 
 C o try to conserve qnet and emp

@@ -10,7 +10,7 @@ C $Name$
 #  include "KPP_OPTIONS.h"
 # endif
 cswdice --- add ----
-#ifdef ALLOW_TSEAICE
+#ifdef ALLOW_THERM_SEAICE
 #include "ICE.h"
 #endif
 cswdice ------
@@ -395,7 +395,7 @@ C--     Calculate future values on open boundaries
 
 c********************************************
 cswdice --- add ---
-#ifdef ALLOW_TSEAICE
+#ifdef ALLOW_THERM_SEAICE
 C--     Determines forcing terms based on external fields
 c--     including effects from ice
         CALL ICE_FORCING(
@@ -617,6 +617,13 @@ C        and step forward storing result in gTnm1, gSnm1, etc.
      I         theta, gT,
      I         myIter, myThid)
          ENDIF
+cswdice ---- add ---
+#ifdef ALLOW_THERM_SEAICE
+       if (k.eq.1) then
+        call ICE_FREEZE(bi, bj, iMin, iMax, jMin, jMax, myThid )
+       endif
+#endif
+cswdice -- end add ---
          IF ( saltStepping ) THEN
            CALL CALC_GS(
      I         bi,bj,iMin,iMax,jMin,jMax, k,km1,kup,kDown,
@@ -673,7 +680,7 @@ C--     end of thermodynamic k loop (Nr:1)
         ENDDO
 
 cswdice -- add ---
-#ifdef ALLOW_TSEAICE
+#ifdef ALLOW_THERM_SEAICE
 c timeaveraging for ice model values
            CALL ICE_AVE(bi,bj,iMin,iMax,jMin,jMax,myThid )
 #endif
