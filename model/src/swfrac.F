@@ -78,7 +78,7 @@ C
      I     mytime, myiter, mythid )
       jwtype=jerl(count0)
 #else /* ALLOW_CALENDAR undef */
-      jwtype=3
+      jwtype=2
 #endif /* ALLOW_CALENDAR */
 
       DO i = 1,imax
