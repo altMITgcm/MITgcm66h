@@ -38,6 +38,14 @@ C     \==========================================================/
       character*(max_len_mbuf) msgbuf
 ! -----------------------------------------------------------------
 
+#ifdef ALLOW_AUTODIFF_TAMC
+      DO j=1-OLy,sNy+OLy
+       DO i=1-OLx,sNx+OLx
+        rholoc(i,j) = 0.0
+       ENDDO
+      ENDDO
+#endif
+
       if (eqn.eq.'LINEAR') then
 
 C ***NOTE***

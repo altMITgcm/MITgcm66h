@@ -51,6 +51,9 @@ C     (This is now the actual hydrostatic pressure|height at the T/S
 C     points)
       DO j=jMin,jMax
        DO i=iMin,iMax
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ GENERAL
+#endif
         phiHyd(i,j,K)=phiHyd(i,j,Km1)-rhoConst*halfLayer
      &  *0.5 _d 0*( drF(Km1)+drF(K) )*gamma
      &  *0.5 _d 0*( buoyKM1(i,j)+buoyKP1(i,j) )

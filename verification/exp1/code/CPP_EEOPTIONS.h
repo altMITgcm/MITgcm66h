@@ -45,8 +45,8 @@ C     undef this option.
 #undef  FMTFTN_IO_THREADSAFE
 
 C--   Control MPI based parallel processing
-#define ALLOW_USE_MPI
-#define ALWAYS_USE_MPI
+#undef  ALLOW_USE_MPI
+#undef  define ALWAYS_USE_MPI
  
 C--   Control use of communication that might overlap computation.
 C     Under MPI selects/deselects "non-blocking" sends and receives.

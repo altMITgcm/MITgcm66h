@@ -104,6 +104,20 @@ C     I, J, K - Loop counters
       integer jwtype 				! index for Jerlov water type
 #endif
 
+#ifdef ALLOW_AUTODIFF_TAMC
+C--   only the kUp part of fverT is set in this subroutine
+C--   the kDown is still required
+
+      fVerT(1,1,kDown) = fVerT(1,1,kDown)
+      DO j=1-OLy,sNy+OLy
+       DO i=1-OLx,sNx+OLx
+        fZon(i,j)      = 0.0
+        fMer(i,j)      = 0.0
+        fVerT(i,j,kUp) = 0.0
+       ENDDO
+      ENDDO
+#endif
+
       afFacT = 1. _d 0
       dfFacT = 1. _d 0
       TOP_LAYER = K .EQ. 1
