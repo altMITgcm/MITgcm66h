@@ -165,6 +165,19 @@ Note that with 1-hour time steps, ocean model fails after 35 days.
   cp esm_input.56 esm_input
   cp esminput.56 esminput
 
+Submitting a job on alhena:
+
+  cd /alhena/tmp1/dmenem
+  mv oldpbl recycle_bin
+  mkdir oldpbl
+  cd oldpbl
+  mkdir data
+  mkdir camel_7.2p_042903
+  cd camel_7.2p_042903
+  cp -r /tmp1/dmenem/oldpbl/camel_7.2p_042903/bin .
+  cd bin
+  qsub submit.long64a
+
 Submitting a job on castor:
 
   cd /castor/tmp1/dmenem
@@ -177,3 +190,16 @@ Submitting a job on castor:
   cp -r /tmp1/dmenem/oldpbl/camel_7.2p_042903/bin .
   cd bin
   qsub submit.long64c
+
+Submitting a job on pollux:
+
+  cd /pollux/tmp1/dmenem
+  mv oldpbl recycle_bin
+  mkdir oldpbl
+  cd oldpbl
+  mkdir data
+  mkdir camel_7.2p_042903
+  cd camel_7.2p_042903
+  cp -r /tmp1/dmenem/oldpbl/camel_7.2p_042903/bin .
+  cd bin
+  qsub submit.long64p
