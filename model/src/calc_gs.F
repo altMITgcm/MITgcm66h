@@ -121,6 +121,11 @@ C--   External salinity forcing term(s) outside Adams-Bashforth:
      I                          bi, bj, K,
      U                          gS,
      I                          myThid )
+        IF ( saltAdamsBashforth )
+     &  CALL FREESURF_RESCALE_G(
+     I                          bi, bj, K,
+     U                          gSnm1,
+     I                          myThid )
       ENDIF
 #endif /* NONLIN_FRSURF */
 

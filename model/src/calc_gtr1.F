@@ -105,6 +105,11 @@ C--   External forcing term(s) outside Adams-Bashforth:
      I                          bi, bj, K,
      U                          gTr1,
      I                          myThid )
+        IF ( tr1_AdamsBashforth )
+     &  CALL FREESURF_RESCALE_G(
+     I                          bi, bj, K,
+     U                          gTr1nm1,
+     I                          myThid )
       ENDIF
 #endif /* NONLIN_FRSURF */
 

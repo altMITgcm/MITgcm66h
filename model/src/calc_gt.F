@@ -120,6 +120,11 @@ C--   External thermal forcing term(s) outside Adams-Bashforth:
      I                          bi, bj, K,
      U                          gT,
      I                          myThid )
+        IF ( tempAdamsBashforth )
+     &  CALL FREESURF_RESCALE_G(
+     I                          bi, bj, K,
+     U                          gTnm1,
+     I                          myThid )
       ENDIF
 #endif /* NONLIN_FRSURF */
 

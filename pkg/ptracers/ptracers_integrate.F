@@ -145,6 +145,13 @@ C Account for change in level thickness
      I                          bi,bj,K,
      U                          gPtr(1-Olx,1-Oly,1,1,1,iTracer),
      I                          myThid )
+        IF ( PTRACERS_advScheme(iTracer).EQ.ENUM_CENTERED_2ND
+     &   .OR.PTRACERS_advScheme(iTracer).EQ.ENUM_UPWIND_3RD
+     &   .OR.PTRACERS_advScheme(iTracer).EQ.ENUM_CENTERED_4TH )
+     &  CALL FREESURF_RESCALE_G(
+     I                          bi,bj,K,
+     U                          gPtrNm1(1-Olx,1-Oly,1,1,1,iTracer),
+     I                          myThid )
       ENDIF
 #endif /* NONLIN_FRSURF */
 
