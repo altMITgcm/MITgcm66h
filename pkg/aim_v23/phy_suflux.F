@@ -94,7 +94,7 @@ C-- Local variables:
 
 C- jmc: declare all local variables:
       _RL GTEMP0, GHUM0, RCP, PRD, VG2, RDTH
-      _RL FSLAND, FSSEA, QDUMMY, RDUMMY, TL4, TS4
+      _RL FSLAND, FSSEA, QDUMMY(1), RDUMMY(1), TL4, TS4
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 C--   1. Extrapolation of wind, temp, hum. and density to the surface
