@@ -4,8 +4,7 @@ C $Name$
 CBOI
 C !TITLE: pkg/mom\_advdiff
 C !AUTHORS: adcroft@mit.edu
-C !INTRODUCTION:
-C \section{Flux-form Momentum Equations Package}
+C !INTRODUCTION: Flux-form Momentum Equations Package
 C
 C Package "mom\_fluxform" provides methods for calculating explicit terms
 C in the momentum equation cast in flux-form:

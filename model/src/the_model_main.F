@@ -7,7 +7,7 @@ C !TITLE: MITGCM KERNEL CODE SYNOPSIS
 C !AUTHORS: mitgcm developers ( support@mitgcm.org )
 C !AFFILIATION: Massachussetts Institute of Technology
 C !DATE:
-C !INTRODUCTION: model/ subdirectory
+C !INTRODUCTION: Kernel dynamical routines
 C This document summarises MITgcm code under the model/ subdirectory.
 C The code under model/ ( src/ and inc/ ) contains most of
 C the driver routines for the baseline forms of the kernel equations in the
