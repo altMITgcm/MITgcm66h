@@ -3,6 +3,12 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint10
+ Introduced the configure script.
+ Separated out the diags package.
+ Added template for writing time-averages of tile/intermediate quantities.
+ Updated SIZE.h in exp2 and made the data big-endian.
+
 checkpoint9
  MPI fix. Filename changes (meta/data). salbin*y stuff.
  General tidy-up.
