@@ -15,14 +15,14 @@ C For a northern/southern OB, the OB V point is to the south/north.
 C For an eastern/western OB, the OB U point is to the west/east.
 C eg.
 C     OB_Jnorth(3)=34  means that:
-C          T( 3 ,34) is a an OB point
-C          U(3:4,34) is a an OB point
-C          V( 4 ,34) is a an OB point
+C          T(3,34) is a an OB point
+C          U(3,34) is a an OB point
+C          V(3,34) is a an OB point
 C while
 C     OB_Jsouth(3)=1  means that:
-C          T( 3 ,1) is a an OB point
-C          U(3:4,1) is a an OB point
-C          V( 4 ,2) is a an OB point
+C          T(3,1) is a an OB point
+C          U(3,1) is a an OB point
+C          V(3,2) is a an OB point
 C
 C For convenience, negative values for Jnorth/Ieast refer to
 C points relative to the Northern/Eastern edges of the model
