@@ -159,6 +159,9 @@ c     >>> Write gradient vector <<<
        endif
 
           call mdsfindunit( cunit, mythid )
+
+#ifndef ALLOW_ADMTLM
+
           open( cunit, file   = cfile,
      &         status = 'old',
      &         form   = 'unformatted',
@@ -278,6 +281,8 @@ cgg(   Lets also check the OBCS mask info in the header.
        end do
 #endif
 cgg)  End OBCS mask check.
+
+#endif /* ndef ALLOW_ADMTLM */
 
 c----------------------------------------------------------------------
 

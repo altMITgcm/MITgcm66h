@@ -52,11 +52,14 @@ CEOP
       myCurrentIter = nIter0
       yadprefix = 'g_'
 
-      _BEGIN_MASTER( mythid )
-      IF ( myProcId .eq. 0 .AND. optimcycle .GT. 0 ) THEN
-         CALL CTRL_UNPACK( .false., mythid )
+      IF (optimcycle .GT. 0 ) THEN
+         _BEGIN_MASTER( mythid )
+         IF ( myProcId .eq. 0 ) THEN
+            CALL CTRL_UNPACK( .false., mythid )
+         ENDIF
+         _END_MASTER( mythid )
+         CALL ADMTLM_UPXX( mythid )
       ENDIF
-      _END_MASTER( mythid )
 c
       CALL TIMER_START('G_THE_MAIN_LOOP           [TANGENT RUN]',mythid)
       CALL G_THE_MAIN_LOOP ( myCurrentTime, myCurrentIter, myThid )
