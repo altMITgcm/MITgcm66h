@@ -23,8 +23,6 @@ c     == global variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 
-#include "cal.h"
-#include "ecco.h"
 #include "ctrl.h"
 #include "cost.h"
 
@@ -75,7 +73,11 @@ c     Initialise temporary file
                do j = jmin,jmax
                   do ip = 1,nPx
                      do bi = itlo,ithi
+#ifdef ALLOW_TANGENTLINEAR_RUN
                         globfldyz(bi,ip,j,bj,jp,k) = 0. _d 0
+#else
+                        globfldyz(bi,ip,j,bj,jp,k) = 0. _d 0
+#endif
                      enddo
                   enddo
                enddo
