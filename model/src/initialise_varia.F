@@ -36,9 +36,9 @@ C       |-- INI_MIXING
 C       |
 C       |-- INI_DYNVARS
 C       |
-C       |-- INI_FIELDS
-C       |
 C       |-- INI_TR1
+C       |
+C       |-- INI_FIELDS
 C       |
 C       |-- THE_CORRECTION_STEP
 C       |
@@ -101,18 +101,18 @@ C--   Initialise 3-dim. diffusivities
 C--   Initialize DYNVARS arrays (state fields + G terms: Gu,Gv,...) to zero [always]
       CALL INI_DYNVARS( myThid )
 
+#ifdef ALLOW_PASSIVE_TRACER
+C--   Initialise passive tracer(s)
+      CALL INI_TR1( myThid )
+      _BARRIER
+#endif
+
 C--   Initialise model fields.
 C     Starting values of U, V, W, temp., salt. and tendency terms
 C     are set here. Fields are either set to default or read from
 C     stored files.
       CALL INI_FIELDS( myThid )
       _BARRIER
-
-#ifdef ALLOW_PASSIVE_TRACER
-C--   Initialise passive tracer(s)
-      CALL INI_TR1( myThid )
-      _BARRIER
-#endif
 
 #ifdef ALLOW_AUTODIFF_TAMC
 C--   Initialise active fields to help TAMC

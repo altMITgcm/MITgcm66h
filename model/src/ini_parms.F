@@ -142,7 +142,7 @@ C--   Time stepping parammeters
      & nIter0, nTimeSteps, nEndIter, deltaT, deltaTmom, deltaTtracer,
      & abEps, tauCD, rCD,
      & startTime, endTime, chkPtFreq,
-     & dumpFreq, taveFreq, deltaTClock, diagFreq,
+     & dumpFreq, tr1dumpFreq, taveFreq, deltaTClock, diagFreq,
      & monitorFreq, pChkPtFreq, cAdjFreq, 
      & tauThetaClimRelax, tauSaltClimRelax, tauTr1ClimRelax,
      & periodicExternalForcing, externForcingPeriod, externForcingCycle

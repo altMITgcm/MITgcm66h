@@ -385,6 +385,7 @@ C     chkPtFreq     :: Frequency of rolling check pointing ( s ).
 C     pChkPtFreq    :: Frequency of permanent check pointing ( s ).
 C     dumpFreq      :: Frequency with which model state is written to
 C                     post-processing files ( s ).
+C     tr1dumpFreq   :: dumpFreq for passive tracer field (s)
 C     diagFreq      :: Frequency with which model writes diagnostic output
 C                     of intermediate quantities.
 C     afFacMom      :: Advection of momentum term tracer parameter
@@ -434,7 +435,7 @@ C      --"-"--  Quadratic  ( linear: 1/s, quadratic: 1/m )
      & hFacMin, hFacMinDz, hFacInf, hFacSup,
      & gravity, recip_Gravity, gBaro, rhonil, recip_rhonil, 
      & recip_rhoConst, rhoConst, tRef, sRef,
-     & endTime, chkPtFreq, pchkPtFreq, dumpFreq,
+     & endTime, chkPtFreq, pchkPtFreq, dumpFreq, tr1dumpFreq,
      & diagFreq, taveFreq, monitorFreq,
      & afFacMom, vfFacMom, pfFacMom, cfFacMom, foFacMom, mtFacMom,
      & cosPower, cAdjFreq, omega, 
@@ -513,6 +514,7 @@ C      --"-"--  Quadratic  ( linear: 1/s, quadratic: 1/m )
       _RL chkPtFreq
       _RL pChkPtFreq
       _RL dumpFreq
+      _RL tr1dumpFreq
       _RL diagFreq
       _RL taveFreq
       _RL monitorFreq

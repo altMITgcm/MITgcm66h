@@ -51,6 +51,9 @@ C     == Global variables ===
 #include "GW.h"
 #include "SOLVE_FOR_PRESSURE3D.h"
 #endif
+#ifdef ALLOW_PASSIVE_TRACER
+#include "TR1.h"
+#endif
       INTEGER  IO_ERRCOUNT
       EXTERNAL IO_ERRCOUNT
 
@@ -161,6 +164,13 @@ C SPK 4/9/01: Open boundary checkpointing
         ENDIF
 #endif  /* ALLOW_OBCS */
 
+#ifdef ALLOW_PASSIVE_TRACER
+        WRITE(fn,'(A,I10.10)') 'pickup_tr1.',myIter
+        CALL MDSREADFIELD(fn,prec,'RL',Nr,tr1,    1,myThid)
+        CALL MDSREADFIELD(fn,prec,'RL',Nr,gtr1,   2,myThid)
+        CALL MDSREADFIELD(fn,prec,'RL',Nr,gtr1NM1,3,myThid)
+#endif
+
 #endif /* OLD_STYLE_WITH_MANY_FILES */
 
 C       Reset default IO precision
@@ -208,6 +218,12 @@ c        _EXCH_XYZ_R8(gWNM1 , myThid )
         ENDIF
 #endif
 
+#ifdef ALLOW_PASSIVE_TRACER
+        _EXCH_XYZ_R8( tr1    , myThid )
+        _EXCH_XYZ_R8( gtr1   , myThid )
+        _EXCH_XYZ_R8( gtr1NM1, myThid )
+#endif
+
       RETURN
       END
 
@@ -246,6 +262,9 @@ C     == Global variables ===
 #ifdef ALLOW_NONHYDROSTATIC
 #include "GW.h"
 #include "SOLVE_FOR_PRESSURE3D.h"
+#endif
+#ifdef ALLOW_PASSIVE_TRACER
+#include "TR1.h"
 #endif
       LOGICAL  DIFFERENT_MULTIPLE
       EXTERNAL DIFFERENT_MULTIPLE
@@ -418,6 +437,17 @@ C--     Write restart file for floats
         IF (useFLT) THEN
           CALL FLT_RESTART(myCurrentTime, myIter, myThid)
         ENDIF
+#endif
+
+#ifdef ALLOW_PASSIVE_TRACER
+        IF ( permCheckPoint ) THEN
+         WRITE(fn,'(A,I10.10)') 'pickup_tr1.',myIter
+        ELSE
+         WRITE(fn,'(A,A)') 'pickup_tr1.',checkPtSuff(nCheckLev)
+        ENDIF
+        CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,tr1,    1,myIter,myThid)
+        CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,gtr1,   2,myIter,myThid)
+        CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,gtr1NM1,3,myIter,myThid)
 #endif
 
         IF ( .NOT. permCheckPoint ) THEN
