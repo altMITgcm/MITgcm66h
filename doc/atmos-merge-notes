@@ -14,3 +14,4 @@ branch-atmos-merge-phase3       Phase 3: sorted out OBCs in new dynamics(),
 branch-atmos-merge-phase4       Phase 4: re-wrote calc_phi_hyd(),
                                 find_rho() and deleted calc_buoyancy()
 branch-atmos-merge-phase5       Phase 5: added and tested staggered time-step
+branch-atmos-merge-phase6       Phase 6: tested staggered time-step with CD scheme
