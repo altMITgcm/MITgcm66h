@@ -44,7 +44,7 @@ C Loop over tracers
 
        CALL CONVECTIVELY_MIXTRACER(
      I         bi,bj,k,weightA,weightB,
-     U         pTracer(1-Olx,1-Oly,1,bi,bj,iTracer),
+     U         pTracer(1-Olx,1-Oly,1,1,1,iTracer),
      I         myThid)
 
 C End of tracer loop
