@@ -3,6 +3,23 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+ecco_c44_e19
+o will contain merges from main trunk
+
+ecco_c44_e18
+o sponge layer code for obcs was missing
+  - added hook in external_forcing.F
+  - added storing for TAF
+o new routine cost_init_barfiles to initialise
+  adjoint fields adtbar, adsbar, adpsbar
+  (needed in conjunction with corrected ladinit for active I/O)
+o cleaned up and corrected order in packages_readparms, ecco_readparms
+o corrected and simplified weights for obcs controls
+  - weight fields simplified
+  - bug fix in ctrl_pack
+  - no more write of control vector in ctrl_pack
+o i/j index bug fixes in cost_ssh_mean
+
 ecco_c44_e17
 o bug fixes in cost package
   * wrong identifier for active I/O of monthly mean psbar
