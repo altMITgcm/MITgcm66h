@@ -67,6 +67,7 @@ C-        fluxes :
             sHeating(i,j,bi,bj) = 0. _d 0
             flxCndBt(i,j,bi,bj) = 0. _d 0
             snowPrc(i,j,bi,bj)  = 0. _d 0
+            siceAlb(i,j,bi,bj)  = 0. _d 0
 #ifdef COUPLE_MODEL
             dFdT(i,j,bi,bj)     = 0. _d 0
 #endif

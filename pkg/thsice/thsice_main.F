@@ -119,6 +119,7 @@ C--     Mixed layer thickness: take the 1rst layer
            evpAtm(i,j) = 0.
            flxSW (i,j) = 0.
            snowPrc(i,j,bi,bj) = 0. _d 0
+           siceAlb(i,j,bi,bj) = 0. _d 0
 #ifdef ALLOW_BULK_FORCE
            prcAtm(i,j) = ( rain(i,j,bi,bj)+runoff(i,j,bi,bj) )*rhofw
            flxSW (i,j) = solar(i,j,bi,bj)
