@@ -11,3 +11,5 @@ branch-atmos-merge-phase2	Phase 2: re-arranged calling order in
 branch-atmos-merge-phase3       Phase 3: sorted out OBCs in new dynamics(),
                                 tested in exp4, sorted out gmredi, tested
                                 in front_relax
+branch-atmos-merge-phase4       Phase 4: re-wrote calc_phi_hyd(),
+                                find_rho() and deleted calc_buoyancy()
