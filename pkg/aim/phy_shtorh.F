@@ -1,3 +1,5 @@
+C $Header$
+C $Name$
  
       SUBROUTINE SHTORH (IMODE,NGP,TA,PS,SIG,QA,RH,QSAT)
 C--
@@ -115,4 +117,3 @@ C--
       RETURN
       END
 C
-C      $Id$

@@ -1,3 +1,6 @@
+C $Header$
+C $Namer: $
+
 C--   /LSMASK/ land-sea masks 
       common /LSMASK/ fmask1(ngp)	! fractional land-sea mask
 
@@ -11,5 +14,3 @@ C--   /FORCIN/ Forcing fields
      .                stl1(ngp),	! land-surface temperature
      .                snow1(ngp),	! snow depth (mm water)
      .                soilq1(ngp)	! soil wetness (mm water)
-
-C      $Id$

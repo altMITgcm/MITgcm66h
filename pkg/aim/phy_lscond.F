@@ -1,3 +1,5 @@
+C $Header$
+C $Name$
 
       SUBROUTINE LSCOND (PSA,QA,QSAT,
      *                   PRECLS,DTLSC,DQLSC)
@@ -77,4 +79,3 @@ C--   3. Large-scale precipitation
 C--
       RETURN
       END
-C      $Id$

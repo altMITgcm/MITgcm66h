@@ -1,3 +1,5 @@
+C $Header$
+C $Name$
 
       SUBROUTINE SOL_OZ (SOLC,TYEAR,FSOL,OZONE)
 
@@ -540,4 +542,3 @@ C
 C---						
       RETURN
       END
-C      $Id$

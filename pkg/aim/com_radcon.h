@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 C--
 C--   /RADCON/: Radiation constants (initial. in INPHYS)
 C--    ABSSW  = shortwave absorptivity for dry air (per dp = 10^5 Pa)
@@ -23,4 +26,3 @@ C--    TAU    = transmissivity of atmospheric layers
 C--    ST4A   = blackbody emission from full and half atmospheric levels 
 
       COMMON /RADFLD/ TAU(NGP,NLEV), ST4A(NGP,NLEV,2)
-C      $Id$

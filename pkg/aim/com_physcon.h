@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 C--
 C--   /PHYCON/: Physical constants (initial. in INPHYS)
 C--    P0   = reference pressure
@@ -23,8 +26,3 @@ C--    FMU    = legendre polinomials in sin(lat)
       COMMON /FSIGMU/ SIG(NLEV), SIGL(NLEV), SIGH(0:NLEV), DSIG(NLEV),
      *                POUT(NLEV), GRDSIG(NLEV), GRDSCP(NLEV), 
      *                WVI(NLEV,2), FMU(NLAT,2)
-C
-C
-C
-C
-C      $Id$

@@ -1,3 +1,6 @@
+C $Header$
+C $Namer: $
+
 C--
 C--   /FORCON/: Constants for forcing fields (initial. in INPHYS)
 C--    SOLC   = Solar constant (area averaged) in W/m^2
@@ -10,6 +13,3 @@ C--    SWWIL  = Soil wetness at wilting point
 
       COMMON /FORCON/ SOLC, ALBSEA, ALBICE, ALBSN, SDALB,
      &                SWCAP, SWWIl
-
- 
-C      $Id$

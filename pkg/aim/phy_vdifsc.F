@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 cch      SUBROUTINE VDIFSC (UA,VA,SE,RH,QA,QSAT,
       SUBROUTINE VDIFSC (UA,VA,Ta,RH,QA,QSAT,
      &                   UTENVD,VTENVD,TTENVD,QTENVD)
@@ -182,4 +185,3 @@ C
 C
       RETURN
       END
-

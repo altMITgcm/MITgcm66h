@@ -1,3 +1,6 @@
+C $Header$
+C $Namer: $
+
       INTEGER ISC
       PARAMETER (ISC=1)
 
@@ -8,4 +11,3 @@
       PARAMETER (MX=MTRUN+1 , MX2=2*MX)
       PARAMETER (IL=sNy, NTRUN1=NTRUN+1 )
       PARAMETER ( MXP=ISC*MTRUN+1 )
-C     $Id$

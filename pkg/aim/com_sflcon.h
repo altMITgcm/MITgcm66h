@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 C--
 C--   /SFLCON/: Constants for surface fluxes (initial. in INPHYS)
 C--    FWIND0 = ratio of near-sfc wind to lowest-level wind
@@ -16,6 +19,3 @@ C--    SWMAX  = Soil wetness (in mm) corresp. to potential evapotranspiration
 
       COMMON /SFLCON/ FWIND0, FTEMP0, FHUM0,
      *                CDL, CDS, CHL, CHS, VGUST, SWMAX
-
- 
-C      $Id$

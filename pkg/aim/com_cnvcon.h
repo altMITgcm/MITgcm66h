@@ -1,3 +1,6 @@
+C $Header$
+C $Namer: $
+
 C--
 C--   /CNVCON/: Convection constants (init. in INPHYS)
 C--    RHBL   = relative hum. threshold in the boundary (lowest) layer

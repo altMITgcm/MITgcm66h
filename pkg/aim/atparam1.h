@@ -1,3 +1,5 @@
+C $Header$
+C $Namer: $
 
       INTEGER KX
       PARAMETER (KX=NR)
