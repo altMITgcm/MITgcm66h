@@ -63,27 +63,23 @@ C     tracer cell face *above* this level.
           ENDDO
         ENDDO
       ELSEIF (k.eq.Nr) THEN
-C       DO j=1-Oly,sNy+Oly-1
-C         DO i=1-Olx,sNx+Olx-1
-        DO j=1-1,sNy+1
-          DO i=1-1,sNx+1
+        DO j=1-Oly,sNy+Oly-1
+          DO i=1-Olx,sNx+Olx-1
             wFld(i,j,k,bi,bj) =
      &         -(
      &            uTrans(i+1,j)-uTrans(i,j)
      &           +vTrans(i,j+1)-vTrans(i,j)
-     &          )/rA(i,j,bi,bj)
+     &          )*recip_rA(i,j,bi,bj)
           ENDDO
         ENDDO
       ELSE
-C      DO j=1-Oly,sNy+Oly-1
-C        DO i=1-Olx,sNx+Olx-1
-       DO j=1-1,sNy+1
-         DO i=1-1,sNx+1
+       DO j=1-Oly,sNy+Oly-1
+         DO i=1-Olx,sNx+Olx-1
            wFld(i,j,k,bi,bj) = wFld(i,j,k+1,bi,bj)
      &         -(
      &            uTrans(i+1,j)-uTrans(i,j)
      &           +vTrans(i,j+1)-vTrans(i,j)
-     &          )/rA(i,j,bi,bj)
+     &          )*recip_rA(i,j,bi,bj)
           ENDDO
         ENDDO
       ENDIF
