@@ -27,7 +27,7 @@ C Non-linear flux limiter
 
 C Third/fourth order interpolation factor
       _RL oneSixth
-      PARAMETER(oneSixth=1. _d 0/6. _d 0)
+      PARAMETER(oneSixth=1.D0/6.D0)
 
 C Differentiate between tracers (only needed for KPP -  arrgh!!!)
       INTEGER GAD_TEMPERATURE
