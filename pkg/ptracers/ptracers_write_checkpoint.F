@@ -59,16 +59,11 @@ C Write fields as consecutive records
        CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,
      &      pTracer(1-Olx,1-Oly,1,1,1,iTracer),iRec,myIter,myThid)
       ENDDO
-      print *, 'hallo 1'
+c     print *, 'hallo 1'
 
-C Write historical tendancies as consecutive records
+C Write tendancies as consecutive records (needed for AB restart)
       DO iTracer=1,PTRACERS_num
        iRec = iTracer + PTRACERS_num
-       CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,
-     &      gPtr(1-Olx,1-Oly,1,1,1,iTracer),iRec,myIter,myThid)
-      ENDDO
-      DO iTracer=1,PTRACERS_num
-       iRec = iTracer + PTRACERS_num*2
        CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,
      &      gPtrNm1(1-Olx,1-Oly,1,1,1,iTracer),iRec,myIter,myThid)
       ENDDO
