@@ -12,6 +12,7 @@ C     | Note: This routine can also be compiled with CPP         |
 C     | directives set so that no multi-processing is initialise.|
 C     | This is OK and should work fine.                         |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global data ===
 #include "SIZE.h"

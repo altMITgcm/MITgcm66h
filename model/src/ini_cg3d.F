@@ -11,6 +11,7 @@ C     |==========================================================|
 C     | These arrays are purely a function of the basin geom.    |
 C     | We set then here once and them use then repeatedly.      |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global variables ===
 #include "SIZE.h"
