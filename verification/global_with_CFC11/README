@@ -13,7 +13,7 @@ Configuring and running the 50-year JPL telescoping integration:
 
 setenv CVSROOT :pserver:cvsanon@mitgcm.org:/u/u0/gcmpack
 cvs login ( CVS password: cvsanon )
-cvs co -r release1_P15 MITgcm
+cvs co -r release1_50yr MITgcm
 
 2) compile code:
 

@@ -79,8 +79,6 @@ c     file precision and field type
       character*(2) exf_clim_yftype
 
 c for lat interpolation, arraysize currently set to 200 max data values
-       integer MAX_LAT_INC
-       parameter(MAX_LAT_INC = 200)
       _RL climsst_lon0, climsst_lon_inc
       _RL climsst_lat0, climsst_lat_inc(MAX_LAT_INC)
       INTEGER climsst_nlon, climsst_nlat
@@ -93,4 +91,4 @@ c for lat interpolation, arraysize currently set to 200 max data values
      & climsst_nlon, climsst_nlat,
      & climsss_lon0, climsss_lon_inc,
      & climsss_lat0, climsss_lat_inc,
-     & climsss_nlon, climsss_nlat,
+     & climsss_nlon, climsss_nlat

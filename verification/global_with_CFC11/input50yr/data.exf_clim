@@ -47,7 +47,7 @@
  climsss_nlon        = 192, 
  climsss_nlat        = 94,
 #
- climsstfile        = 'NCEP_1949_sst',
+ climsstfile        = 'NCEP_1948_sst',
  climsssfile        = 'salt_14months.bin',
 #
  exf_clim_iprec     = 32,

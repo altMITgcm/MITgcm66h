@@ -27,7 +27,7 @@ c     == global variables ==
 #include "SIZE.h"
 #include "cal.h"
 #include "exf.h"
-
+#include "exf_param.h"
 #include "exf_clim_param.h"
 
 c     == routine arguments ==
