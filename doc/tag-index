@@ -3,6 +3,11 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint47e_post
+o created a tag prior to creating a branch
+
+
+
 checkpoint47d_post
 o fixed bug in the oceanic pressure coordinates code: vertical viscosity 
   at the bottom boundary had an erroneous half slip boundary condition
