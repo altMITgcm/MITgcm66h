@@ -95,11 +95,11 @@ C--   Surface restoring term :
 C     Don't restore under sea-ice
 C     Heat Flux (restoring term) : 
           surfaceTendencyT(i,j,bi,bj) = surfaceTendencyT(i,j,bi,bj)
-     &      -lambdaThetaClimRelax * (1-AREA(i,j,1,bi,bj)
+     &      -lambdaThetaClimRelax * (1-AREA(i,j,1,bi,bj))
      &         *(theta(i,j,kSurface,bi,bj)-SST(i,j,bi,bj))
 C     Salt Flux (restoring term) : 
           surfaceTendencyS(i,j,bi,bj) = surfaceTendencyS(i,j,bi,bj)
-     &      -lambdaSaltClimRelax * (1-AREA(i,j,1,bi,bj)
+     &      -lambdaSaltClimRelax * (1-AREA(i,j,1,bi,bj))
      &         *(salt(i,j,kSurface,bi,bj)-SSS(i,j,bi,bj))
 #else /* ifndef ALLOW_SEAICE */
 C     Heat Flux (restoring term) : 
