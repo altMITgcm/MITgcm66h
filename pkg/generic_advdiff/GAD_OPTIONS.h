@@ -1,6 +1,16 @@
 C $Header$
 C $Name$
 
+CBOP
+C !ROUTINE: GAD_OPTIONS.h
+
+C !INTERFACE:
+C #include "GAD_OPTIONS.h" 
+
+C !DESCRIPTION:
+C Contains CPP macros/flags for controlling optional features of package.
+CEOP
+
 C CPP options file for GAD (Generic Advection Diffusion) package
 C
 C Use this file for selecting options within the GAD package
