@@ -1452,14 +1452,20 @@ C                   for output stream # n
       integer jdiag(numperlist,numlists)
       character*8 flds (numperlist,numlists)
       character*8 fnames(numlists)
-      logical diag_mdsio
-      logical diag_mnc
+      logical
+     &     diag_mdsio, diag_mnc,
+     &     diag_pickup_read,        diag_pickup_write,
+     &     diag_pickup_read_mdsio,  diag_pickup_write_mdsio,
+     &     diag_pickup_read_mnc,    diag_pickup_write_mnc
 
       common /diag_choices/ 
      &     levs, jdiag, flds, fnames, 
      &     freq, nlevels, nfields, nActive, nlists,
-     &     diag_mdsio, diag_mnc
-
+     &     diag_mdsio, diag_mnc,
+     &     diag_pickup_read,        diag_pickup_write,
+     &     diag_pickup_read_mdsio,  diag_pickup_write_mdsio,
+     &     diag_pickup_read_mnc,    diag_pickup_write_mnc
+           
 
 CEH3 ;;; Local Variables: ***
 CEH3 ;;; mode:fortran ***

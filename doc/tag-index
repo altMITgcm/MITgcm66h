@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o diagnostics: add pickup functionality
+  - off by default for backwards compatibility
+  - current version only uses MDSIO -- MNC will be added
 o allow to use pkg diagnostics for LAND pkg output & Shapiro Tendencies.
 o pkg/shap_filt: fix for multi-tiles per face (CS-grid with EXCH2)
 

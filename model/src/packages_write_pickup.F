@@ -197,6 +197,13 @@ C     Write pickup file for fizhi package
       ENDIF
 #endif
 
+#ifdef ALLOW_DIAGNOSTICS
+C     Write pickup file for diagnostics package
+      IF (useDiagnostics) THEN
+        CALL DIAGNOSTICS_WRITE_PICKUP(fn,myTime,myIter,myThid)
+      ENDIF
+#endif
+
 #ifdef  ALLOW_GGL90
       IF ( useGGL90 ) THEN
         CALL GGL90_WRITE_CHECKPOINT(
