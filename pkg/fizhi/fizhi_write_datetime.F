@@ -16,7 +16,8 @@ C     Write Fizhi date and time to ascii file
 #include "chronos.h"
 
 C     !INPUT PARAMETERS:
-      integer myTime, myIter, myThid
+      integer myIter, myThid
+      _RL myTime
 CEOP
 
       integer ku

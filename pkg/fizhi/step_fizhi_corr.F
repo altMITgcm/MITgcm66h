@@ -29,7 +29,8 @@ c-----------------------------------------------------------------------
 #include "EEPARAMS.h"
 #include "SURFACE.h"
 
-       integer myTime, myIter, myThid
+       integer myIter, myThid
+       _RL myTime
 
 c pe on dynamics and physics grid refers to bottom edge
        _RL pephy(1-OLx:sNx+Olx,1-Oly:sNy+Oly,Nrphys+1,nSx,nSy)

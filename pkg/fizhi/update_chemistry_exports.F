@@ -23,7 +23,8 @@ c-----------------------------------------------------------------------
 #include "EEPARAMS.h"
 #include "chronos.h"
 
-      integer myTime, myIter, myThid
+      integer myIter, myThid
+      _RL myTime
 
 c pe on physics grid refers to bottom edge
       _RL pephy(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nrphys+1,nSx,nSy)

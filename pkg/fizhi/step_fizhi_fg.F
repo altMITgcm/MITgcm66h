@@ -21,7 +21,8 @@ c-----------------------------------------------------------------------
 #include "DYNVARS.h"
 #include "GRID.h"
 
-       integer myTime, myIter, myThid 
+       integer myIter, myThid 
+       _RL myTime
 
        integer bi, bj
        integer im1, im2, jm1, jm2, idim1, idim2, jdim1, jdim2

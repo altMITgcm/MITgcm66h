@@ -30,7 +30,8 @@ c-----------------------------------------------------------------------
 #include "fizhi_ocean_coms.h"
 #include "fizhi_chemistry_coms.h"
 
-       integer myTime, myIter, myThid 
+       integer myIter, myThid 
+       _RL myTime
 
 c pe on dynamics and physics grid refers to bottom edge
        _RL pephy4fiz(1-OLx:sNx+Olx,1-Oly:sNy+Oly,Nrphys+1,nSx,nSy)

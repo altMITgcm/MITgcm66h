@@ -27,7 +27,8 @@ c-----------------------------------------------------------------------
 #include "fizhi_ocean_coms.h"
 #include "EEPARAMS.h"
 
-      integer myTime, myIter, myThid
+      integer myIter, myThid
+      _RL myTime
 
       logical alarm
       external alarm
