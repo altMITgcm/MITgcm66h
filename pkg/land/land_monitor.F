@@ -87,6 +87,8 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       IF ( DIFFERENT_MULTIPLE(land_monFreq,myTime,myTime-deltaTclock)
      &     .OR. myIter.EQ.nIter0 ) THEN
 
+        mon_write_stdout = .TRUE.
+
         DO k=1,land_nLev
           locDr(k)= 1.
         ENDDO
@@ -280,6 +282,8 @@ c       CALL MON_OUT_RL(mon_var, theMax(3), mon_sufx(3), myThid)
      &'// ======================================================='
         CALL PRINT_MESSAGE( msgBuf, mon_ioUnit, SQUEEZE_RIGHT , 1)
        _END_MASTER(myThid)
+
+        mon_write_stdout = .FALSE.
 
       ENDIF
 
