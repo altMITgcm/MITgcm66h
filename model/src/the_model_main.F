@@ -462,6 +462,8 @@ C     myCurrentIter - Iteration counter for this thread
       logical  exst
       logical  lastdiva
 CEOP
+c--   set default:
+      lastdiva = .TRUE.
 
 C--   This timer encompasses the whole code
       CALL TIMER_START('ALL                    [THE_MODEL_MAIN]',myThid)
@@ -526,9 +528,9 @@ c--
 
       _BEGIN_MASTER( mythid )
       IF ( myProcId .eq. 0 .AND. lastdiva ) THEN
-         CALL TIMER_START('CTLR_PACK           [THE_MODEL_MAIN]',mythid)
+         CALL TIMER_START('CTRL_PACK           [THE_MODEL_MAIN]',mythid)
          call CTRL_PACK( mycurrentiter, mycurrenttime, mythid )
-         CALL TIMER_STOP ('CTLR_PACK           [THE_MODEL_MAIN]',mythid)
+         CALL TIMER_STOP ('CTRL_PACK           [THE_MODEL_MAIN]',mythid)
       ENDIF
       _END_MASTER( mythid )
       _BARRIER
