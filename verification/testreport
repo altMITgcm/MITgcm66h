@@ -413,7 +413,7 @@ runmodel()
 	cd $1
 	printf 'runmodel ... ' 1>&2
 	# make output.txt
-	$COMMAND >> run.log 2>&1
+	( $COMMAND ) >> run.log 2>&1
 	RETVAL=$?
 	if test "x$RETVAL" = x0 ; then
 	    echo successful 1>&2
