@@ -88,7 +88,6 @@ C Loop over tracers
          CALL KPP_CALC_DIFF_S(
      I        bi,bj,iMin+1,iMax,jMin+1,jMax,k,1,
      U        KappaRtr(1-Olx,1-Oly,iTr),
-     U        KappaRtr,
      I        myThid)
         ENDIF
 #endif
