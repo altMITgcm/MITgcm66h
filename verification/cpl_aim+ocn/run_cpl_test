@@ -46,7 +46,7 @@ fi
 
 if test $kpr = 0
 then
- rm -f genmake_optfile pr_group std_outp Coupler.0000.clog
+ rm -f genmake_optfile pr_group std_outp
  rm -f build_???/TTT.*make.* build_???/TTT.mkdepend.*
  /bin/rm -r -f rank_0 rank_1 rank_2
  if test -f build_cpl/Makefile ; then cd build_cpl ; make CLEAN ; cd .. ; fi
