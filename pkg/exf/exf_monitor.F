@@ -21,7 +21,9 @@ C     !USES:
 #include "PARAMS.h"
 #include "EESUPPORT.h"
 #include "GRID.h"
-#include "MONITOR.h"
+#ifdef ALLOW_MONITOR
+# include "MONITOR.h"
+#endif
 #include "exf_fields.h"
       LOGICAL  DIFFERENT_MULTIPLE
       EXTERNAL DIFFERENT_MULTIPLE
@@ -31,6 +33,8 @@ C     !INPUT PARAMETERS:
       _RL myTime
       INTEGER myThid
 CEOP
+
+#ifdef ALLOW_MONITOR
 
 C       Print some statistics about input forcing fields
         CALL MON_SET_PREF('exf',myThid)
@@ -80,6 +84,8 @@ C       Print some statistics about input forcing fields
         CALL MON_PRINTSTATS_RL(1,runoff,'_runoff',
      &       maskH,maskH,rA ,drF,myThid)
 #endif
+
+#endif /* ALLOW_MONITOR */
 
       RETURN
       END
