@@ -183,7 +183,7 @@ c      integer  mpi_comm_model,ierror
 #include "chronos.h"
 
       integer n,modalarm,nalarm,freq,date0,time0
-      modalarm(freq,date0,time0) = nalarm (freq,datein,timein,date0,time0 )
+      modalarm(freq,date0,time0)=nalarm(freq,datein,timein,date0,time0)
 
       call get_time (datein,timein)
 
