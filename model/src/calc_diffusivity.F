@@ -113,6 +113,13 @@ CEOP
      I        myThid)
 #endif
 
-
+#ifdef ALLOW_MY82
+      IF (useMY82) CALL MY82_CALC_DIFF(
+     I        bi,bj,iMin+1,iMax,jMin+1,jMax,K,
+     I        maskUp,
+     O        KappaRT,KappaRS,
+     I        myThid)
+#endif
+      
       RETURN
       END
