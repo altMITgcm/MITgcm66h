@@ -74,6 +74,7 @@ C--   Old aLower
         DO i=iMin,iMax
           a(i,j,k) = -deltaTX*recip_hFac(i,j,k,bi,bj)*recip_drF(k)
      &               *KappaRX(i,j, k )*recip_drC( k )
+          IF (recip_hFac(i,j,k-1,bi,bj).EQ.0.) a(i,j,k)=0.
         ENDDO
        ENDDO
       ENDDO
