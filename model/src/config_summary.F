@@ -201,6 +201,11 @@ CEOP
       CALL WRITE_0D_R8( hFacSup, INDEX_NONE,
      &'hFacSup =',
      &'   /* upper threshold for hFac (nonlinFreeSurf only)*/')
+      CALL WRITE_0D_I( select_rStar, INDEX_NONE,
+     &'select_rStar =',
+     &'   /* r* Coordinate options (not yet implemented)*/')
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, 
+     &                    SQUEEZE_RIGHT , 1)
       CALL WRITE_0D_L( useRealFreshWaterFlux, INDEX_NONE,
      &'useRealFreshWaterFlux =',
      &'   /* Real Fresh Water Flux on/off flag*/')

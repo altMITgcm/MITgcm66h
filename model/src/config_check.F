@@ -251,6 +251,17 @@ c     ENDIF
         CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
      &                    SQUEEZE_RIGHT , myThid)                      
       ENDIF
+
+      IF (select_rStar .NE. 0) THEN
+        WRITE(msgBuf,'(A)') 
+     &   'CONFIG_CHECK: rStar is part of NonLin-FS '
+        CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                    SQUEEZE_RIGHT , myThid)                      
+        WRITE(msgBuf,'(A)')
+     &   'CONFIG_CHECK: ==> use #define NONLIN_FRSURF to use it'
+        CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                    SQUEEZE_RIGHT , myThid)                      
+      ENDIF
 #endif /* NONLIN_FRSURF */
 
       WRITE(msgBuf,'(A)') 'CONFIG_CHECK: OK'

@@ -119,6 +119,7 @@ C--   Continuous equation parameters
      & implicSurfPress, implicDiv2DFlow,
      & implicitFreeSurface, rigidLid, freeSurfFac, hFacMin, hFacMinDz,
      & exactConserv,uniformLin_PhiSurf,nonlinFreeSurf,hFacInf,hFacSup,
+     & select_rStar,
      & staggerTimeStep,
      & tempStepping, saltStepping, momStepping, tr1Stepping,
      & implicitDiffusion, implicitViscosity,
