@@ -28,8 +28,8 @@ c     == global variables ==
 #include "SIZE.h"
 #include "GRID.h"
 #include "exf_constants.h"
-#include "exfa.h"
-#include "exfa_param.h"
+#include "exf.h"
+#include "exf_param.h"
 
 c     == routine arguments ==
 

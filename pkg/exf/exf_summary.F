@@ -149,6 +149,35 @@ c     and the corresponding file from which the data will be read.
      &                    SQUEEZE_RIGHT , mythid)
 #endif
 
+#ifdef ALLOW_RUNOFF
+      il = ilnblnk(runofffile)
+      call cal_TimeInterval( runoffperiod, 'secs', timeint, mythid )
+
+      write(msgbuf,'(a)')
+     &' '
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a,i9.8,i7.6,1x,a,a)')
+     &'   Runnoff starts at     ',
+     &    (runoffstartdate(i), i=1,2), dayofweek(runoffstartdate(4)),
+     &    '.'
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a,i9.8,i7.6)')
+     &'   Runoff period is     ',
+     &    (timeint(i), i=1,2)
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a)')
+     &'   Runoff is read from file:'
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a,a,a)')
+     &'   >>  ',runofffile(1:il),'  <<'
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+#endif
+
 #ifdef ALLOW_BULKFORMULAE
 
 #ifdef ALLOW_ATM_TEMP
