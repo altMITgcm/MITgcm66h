@@ -634,7 +634,18 @@ fi
 source ./.pd_tmp
 rm -f ./.pd_tmp
 
+#  Search for default packages.  Note that a "$ROOTDIR/pkg/pkg_groups"
+#  file should eventually be added so that, for convenience, one can 
+#  specify groups of packages using names like "ocean" and "atmosphere".
 echo  -n "  checking default package list:  "
+if test "x${PDEFAULT}" = x ; then
+    for i in "." $MODS ; do
+	if test -r $i"/packages.conf" ; then
+		PDEFAULT=$i"/packages.conf"
+		break
+	fi
+    done
+fi
 if test "x${PDEFAULT}" = x ; then
     PDEFAULT="$ROOTDIR/pkg/pkg_default"
 fi
