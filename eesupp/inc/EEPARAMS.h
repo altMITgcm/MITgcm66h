@@ -111,10 +111,12 @@ C     eeBootError - Flag indicating error during multi-processing
 C     eeEndError    initialisation/termination.
 C     fatalError  - Flag used to indicate that the model is ended with
 C                   an error
-      COMMON /EEPARAMS_L/ eeBootError, fatalError, eeEndError
+      COMMON /EEPARAMS_L/ eeBootError, fatalError, eeEndError,
+     &  useCubedSphereExchange
       LOGICAL eeBootError
       LOGICAL eeEndError
       LOGICAL fatalError
+      LOGICAL useCubedSphereExchange
 
 C--   COMMON /EPARAMS_I/ Execution environment public integer variables.
 C     errorMessageUnit    - Fortran IO unit for error messages

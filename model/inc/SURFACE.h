@@ -17,3 +17,7 @@ C     recip_Bo     = 1/Bo_surf
       _RL  Bo_surf(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL  recip_Bo(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
+C--   COMMON /SURF_INDEX/ Common block for surface related index
+C     k_surf - vertical index of the surface tracer cell
+      COMMON /SURF_INDEX/ k_surf
+      INTEGER k_surf(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)

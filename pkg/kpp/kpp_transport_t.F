@@ -5,7 +5,7 @@ C $Name$
 
       subroutine KPP_TRANSPORT_T (
      I     iMin,iMax,jMin,jMax,bi,bj,k,km1,
-     I     maskC,KappaRT,
+     I     KappaRT,
      U     df )
 C     /==========================================================\
 C     | o SUBROUTINE KPP_TRANSPORT_T                             |
@@ -39,11 +39,9 @@ C     == GLobal variables ==
 C     == Routine arguments ==
 C     iMin,iMax,jMin,  - Range of points for which calculation
 C     jMax,bi,bj,k,km1   results will be set.
-C     maskC            - Land mask for salt cells.
 C     KappaRT          - Total diffusion in vertical for T.
 C     df               - Diffusive flux component work array.
       INTEGER iMin,iMax,jMin,jMax,bi,bj,k,km1
-      _RS maskC  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL KappaRT(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
       _RL df     (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
@@ -55,7 +53,7 @@ C     I, J - Loop counters
 
       DO j=jMin,jMax
        DO i=iMin,iMax
-        df(i,j) = df(i,j) - _rA(i,j,bi,bj) * maskC(i,j) *
+        df(i,j) = df(i,j) - _rA(i,j,bi,bj) * 
      &         KappaRT(i,j,k) * KPPghat(i,j,km1,bi,bj) * delZ(1) *
      &         ( SurfaceTendencyT(i,j,bi,bj) -
      &           Qsw(i,j,bi,bj)

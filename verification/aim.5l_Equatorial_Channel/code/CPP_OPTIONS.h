@@ -118,6 +118,14 @@ C o Use "natural" boundary conditions for salinity
 C   instead of the "virtual salt flux"
 #undef  USE_NATURAL_BCS
 
+C o Use "Exact Convervation" of fluid in Free-Surface formulation
+C   so that d/dt(eta) is exactly equal to - Div.Transport
+#define EXACT_CONSERV
+
+C o Allow the use of Non-Linear Free-Surface formulation
+C   this implies that surface thickness (hFactors) vary with time
+#undef NONLIN_FRSURF
+
 C o Use "OLD" UV discretisation near boundaries (*not* recommended)
 C   Note - only works with  #undef NO_SLIP_LATERAL  in calc_mom_rhs.F
 C          because the old code did not have no-slip BCs

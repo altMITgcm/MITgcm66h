@@ -40,6 +40,10 @@ C--   Initialize KPP parameters
       IF (useKPP) CALL KPP_READPARMS( myThid )
 #endif
 
+#ifdef ALLOW_SHAP_FILT 
+      IF (useSHAP_FILT) CALL SHAP_FILT_READPARMS( myThid )
+#endif
+
 #ifdef ALLOW_OBCS
       IF (useOBCS) CALL OBCS_READPARMS( myThid )
 #endif

@@ -33,7 +33,8 @@ C--   data.pkg namelists
      &          useGMRedi,
      &          useOBCS,
      &          useAIM,
-     &          useECCO
+     &          useECCO,
+     &          useSHAP_FILT
 
 C     === Local variables ===
 C     msgBuf      - Informational/error meesage buffer
@@ -59,6 +60,7 @@ C--   Default package configuration
       useOBCS=.FALSE.
       useAIM=.FALSE.
       useECCO=.FALSE.
+      useSHAP_FILT=.FALSE.
 
 C--   Read parameters from open data file
       READ(UNIT=iUnit,NML=PACKAGES)

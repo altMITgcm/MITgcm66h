@@ -119,8 +119,8 @@ C Now calculate whether it is time to update the forcing arrays
 
 C      If the above condition is met then we need to read in
 C      data for the period ahead and the period behind myTime.
-       write(0,*)
-     &  'S/R LOAD_INTERPOLATE_FORCING: Reading new data',myTime,myIter
+       WRITE(*,*)
+     &  'S/R EXTERNAL_FIELDS_LOAD: Reading new data',myTime,myIter
 
       IF ( zonalWindFile .NE. ' '  ) THEN
        CALL READ_REC_XY_RS( zonalWindFile,taux0,intime0,myIter,myThid )
