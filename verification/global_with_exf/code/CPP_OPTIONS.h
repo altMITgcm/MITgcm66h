@@ -10,8 +10,64 @@ C o Include/exclude code for C-D grid method of integrating the
 C   coriolis terms
 #define  INCLUDE_CD_CODE
 
+C o Include/exclude temperature advection code
+#define  INCLUDE_T_ADVECTION_CODE
+#ifdef   INCLUDE_T_ADVECTION_CODE
+#define  _ADT(a)a
+#endif
+#ifndef  INCLUDE_T_ADVECTION_CODE
+#define  _ADT(a)
+#endif
+
+C o Include/exclude temperature diffusion code
+#define  INCLUDE_T_DIFFUSION_CODE
+#ifdef   INCLUDE_T_DIFFUSION_CODE
+#define  _LPT(a)a
+#define  _BHT(a)a
+#endif
+#ifndef  INCLUDE_T_DIFFUSION_CODE
+#define  _LPT(a)
+#define  _BHT(a)
+#endif
+
 C o Include/exclude temperature forcing code
 #define  INCLUDE_T_FORCING_CODE
+
+C o Include/exclude momentum advection code
+#define  INCLUDE_MOMENTUM_ADVECTION_CODE
+#ifdef   INCLUDE_MOMENTUM_ADVECTION_CODE
+#define  _ADM(a)a
+#endif
+#ifndef  INCLUDE_MOMENTUM_ADVECTION_CODE
+#define  _ADM(a)
+#endif
+
+C o Include/exclude laplacian viscosity code
+#define  INCLUDE_LP_MOMENTUM_DIFFUSION_CODE
+#ifdef   INCLUDE_LP_MOMENTUM_DIFFUSION_CODE
+#define  _LPM(a)a
+#endif
+#ifndef  INCLUDE_LP_MOMENTUM_DIFFUSION_CODE
+#define  _LPM(a)
+#endif
+
+C o Include/exclude biharmonic viscosity code
+#define  INCLUDE_BH_MOMENTUM_DIFFUSION_CODE
+#ifdef   INCLUDE_BH_MOMENTUM_DIFFUSION_CODE
+#define  _BHM(a)a
+#endif
+#ifndef  INCLUDE_BH_MOMENTUM_DIFFUSION_CODE
+#define  _BHM(a)
+#endif
+
+C o Include/exclude gradient of phy_hyd code
+#define INCLUDE_GRADPH_CODE
+#ifdef  INCLUDE_GRADPH_CODE
+#define _PHM(a)a
+#endif
+#ifndef INCLUDE_GRADPH_CODE
+#define _PHM(a)
+#endif
 
 C o Include/exclude momentum forcing code
 #define INCLUDE_MOMENTUM_FORCING_CODE

@@ -186,7 +186,6 @@ genmakemodel()
 	GENMAKE2="$BASH ../../../tools/genmake2"
 	(
 	    cd $1;
-	    printf 'genmake ... ' 1>&2
 	    command="$GENMAKE2  -ds -m $MAKE --mods=../code"
 	    if test "x$OPTFILE" != xNONE ; then
 		command="$command --optfile=$OPTFILE"
@@ -195,6 +194,8 @@ genmakemodel()
 	    if test "x$IEEE" != x ; then
 		command="$command -ieee"
 	    fi
+	    # echo "command: \"$command\""
+	    printf 'genmake ... ' 1>&2
 	    $command > make.log 2>&1
 	    RETVAL=$?
 	    for i in genmake_state genmake_optfile genmake_local Makefile ; do
@@ -638,8 +639,10 @@ for dir in $TESTDIRS ; do
     #  Is this an MPI run?
     if test "x$MPI" = xt ; then
 	FILES=$MPI_FILES
+	endings="_mpi"
     else
 	FILES=$NOMPI_FILES
+	endings="_nompi"
     fi
     
     #  Check to see that we have the files
@@ -658,10 +661,12 @@ for dir in $TESTDIRS ; do
     #  If we have the $FILES and they differ, copy the $FILES to $BUILD_DIR
     if test "x$have_files" = xt ; then
 	for i in $FILES ; do
-	    cmp $CODE_DIR/$i $BUILD_DIR/$i > /dev/null 2>&1
+	    sstr="s|$endings||"
+	    name=`echo $i | sed -e $sstr `
+	    cmp $CODE_DIR/$i $BUILD_DIR/$name > /dev/null 2>&1
 	    RETVAL=$?
 	    if test "x$RETVAL" != x0 ; then
-		cp $CODE_DIR/$i $BUILD_DIR/$i
+		cp $CODE_DIR/$i $BUILD_DIR/$name
 	    fi
 	done
     fi

@@ -1,6 +1,10 @@
 C $Header$
 C $Name$
 
+ceh3
+#define GM_VISBECK_VARIABLE_K
+ceh3
+
 C 
 C CPP flags controlling which code in included in the files that
 C will be compiled.
