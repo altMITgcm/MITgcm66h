@@ -81,14 +81,14 @@ C  myThid               :: thread number
       INTEGER bi,bj
       INTEGER advectionScheme
       INTEGER tracerIdentity
-      _RL Gtracer(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL Tracer(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy)
       _RL myTime
       INTEGER myIter
       INTEGER myThid
 
 C !OUTPUT PARAMETERS: ==================================================
 C  gTracer              :: tendancy array
-      _RL Tracer(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL gTracer(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy)
 
 C !LOCAL VARIABLES: ====================================================
 C  maskUp               :: 2-D array for mask at W points
@@ -411,14 +411,16 @@ C-    Surface "correction" term at k>1 :
         DO i=1-Olx,sNx+Olx
          af(i,j) = af(i,j)
      &           + (maskC(i,j,k,bi,bj)-maskC(i,j,k-1,bi,bj))*
-     &             rTrans(i,j)*localTijk(i,j,k)
+     &             rTrans(i,j)*tracer(i,j,k,bi,bj)
+c    &             rTrans(i,j)*localTijk(i,j,k)
         ENDDO
        ENDDO 
       ELSE
 C-    Surface "correction" term at k=1 :
        DO j=1-Oly,sNy+Oly
         DO i=1-Olx,sNx+Olx
-         af(i,j) = rTrans(i,j)*localTijk(i,j,k)
+         af(i,j) = rTrans(i,j)*tracer(i,j,k,bi,bj)
+c        af(i,j) = rTrans(i,j)*localTijk(i,j,k)
         ENDDO
        ENDDO 
       ENDIF
