@@ -31,8 +31,8 @@ C     == Local variables ==
 C     Check for water that should have frozen
        DO j=jMin,jMax
         DO i=iMin,iMax
-         IF (gTNm1(i,j,k,bi,bj) .LT. Tfreezing) THEN
-          gTNm1(i,j,k,bi,bj)=Tfreezing
+         IF (gT(i,j,k,bi,bj) .LT. Tfreezing) THEN
+          gT(i,j,k,bi,bj)=Tfreezing
          ENDIF
         ENDDO
        ENDDO

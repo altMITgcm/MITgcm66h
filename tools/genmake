@@ -259,6 +259,8 @@ foreach dr ($PACKAGES)
         set DEFINES = ($DEFINES '-DDISABLE_MOM_FLUXFORM'); breaksw
       case mom_vecinv:
         set DEFINES = ($DEFINES '-DDISABLE_MOM_VECINV'); breaksw
+      case generic_advdiff:
+        set DEFINES = ($DEFINES '-DDISABLE_GENERIC_ADVDIFF'); breaksw
       default:
         breaksw
     endsw
@@ -689,7 +691,7 @@ all: \$(EXECUTABLE)
 	\$(LINK) -o \$@ \$(FFLAGS) \$(FOPTIM) \$(OBJFILES) \$(LIBS)
 depend:
 	@make links
-	makedepend -o .f \$(INCLUDES) \$(SRCFILES)
+	makedepend -o .f \$(DEFINES) \$(INCLUDES) \$(SRCFILES)
 
 links: \$(SRCFILES) \$(CSRCFILES) \$(HEADERFILES)
 

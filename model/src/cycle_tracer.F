@@ -36,8 +36,7 @@ C     == Local variables ==
 C     Rotate tracer/gTracer/gTrNm1
       DO j=jMin,jMax
        DO i=iMin,iMax
-        tracer(i,j,k,bi,bj)=gTrNm1(i,j,k,bi,bj)
-        gTrNm1(i,j,k,bi,bj)=gTracer(i,j,k,bi,bj)
+        tracer(i,j,k,bi,bj)=gTracer(i,j,k,bi,bj)
        ENDDO
       ENDDO
 

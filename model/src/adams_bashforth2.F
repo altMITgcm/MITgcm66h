@@ -3,15 +3,14 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-      SUBROUTINE TIMESTEP_TRACER(
-     I                     bi, bj, iMin, iMax, jMin, jMax, K,
-     I                     advection_scheme,
-     I                     tracer, gTracer,
-     O                     gTrNm1,
+      SUBROUTINE ADAMS_BASHFORTH2(
+     I                     bi, bj, K,
+     U                     gTracer, gTrNm1,
      I                     myIter, myThid )
 C     /==========================================================\
-C     | S/R TIMESTEP_TRACER                                      |
-C     | o Step model tracer field forward in time                |
+C     | S/R ADAMS_BASHFORTH2                                     |
+C     | o Extrapolate tendancies forward in time using           |
+C     |   quasi-second order Adams-Bashforth method.             |
 C     \==========================================================/
       IMPLICIT NONE
 
@@ -24,16 +23,14 @@ C     == Global variables ===
 #include "SURFACE.h"
 
 C     == Routine Arguments ==
-      INTEGER bi,bj,iMin,iMax,jMin,jMax,K
-      INTEGER advection_scheme
-      _RL  tracer (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      INTEGER bi,bj,K
       _RL  gTracer(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  gTrNm1 (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       INTEGER myIter, myThid
 C     == Local variables ==
       INTEGER i,j
       _RL ab15,ab05
-      _RL gTrtmp(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL gTrtmp
 
 C     Adams-Bashforth timestepping weights
       IF (myIter .EQ. 0) THEN
@@ -46,11 +43,13 @@ C     Adams-Bashforth timestepping weights
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
-C-    Step forward tracer
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-         gTracer(i,j,k,bi,bj)=tracer(i,j,k,bi,bj)
-     &            +deltaTtracer*gTracer(i,j,k,bi,bj)
+C-    Compute effective G-term with Adams-Bashforth weights:
+      DO j=1-Oly,sNy+Oly
+       DO i=1-Olx,sNx+Olx
+        gTrtmp = ab15*gTracer(i,j,k,bi,bj) 
+     &         + ab05*gTrNm1(i,j,k,bi,bj)
+        gTrNm1(i,j,k,bi,bj) = gTracer(i,j,k,bi,bj)
+        gTracer(i,j,k,bi,bj) = gTrtmp
        ENDDO
       ENDDO
 

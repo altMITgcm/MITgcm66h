@@ -268,7 +268,7 @@ C        distinguishe between Stagger and Non Stagger time stepping
          IF (staggerTimeStep) THEN
            CALL CALC_PHI_HYD(
      I        bi,bj,iMin,iMax,jMin,jMax,k,
-     I        gTnm1, gSnm1,
+     I        gT, gS,
      U        phiHyd,
      I        myThid )
          ELSE
