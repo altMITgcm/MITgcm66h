@@ -28,11 +28,6 @@ C     == Global variables
 #endif
 #include "SOLVE_FOR_PRESSURE.h"
 
-#ifdef EXACT_CONSERV
-      COMMON /TEMP_SURF_POS/ etaStar
-      _RL etaStar(1-Olx:sNx+Olx,1-Oly:sNy+Oly,nSx,nSy)
-#endif
-
 C     == Routine arguments ==
 C     myThid - Number of this instance of SOLVE_FOR_PRESSURE
       INTEGER myThid
@@ -50,9 +45,7 @@ C--   Save previous solution & Initialise Vector solution and source term :
        DO bi=myBxLo(myThid),myBxHi(myThid)
         DO j=1-OLy,sNy+OLy
          DO i=1-OLx,sNx+OLx
-#ifdef INCLUDE_CD_CODE
           etaNm1(i,j,bi,bj) = etaN(i,j,bi,bj)
-#endif
           cg2d_x(i,j,bi,bj) = Bo_surf(i,j,bi,bj)*etaN(i,j,bi,bj)
           cg2d_b(i,j,bi,bj) = 0.
 #ifdef USE_NATURAL_BCS
@@ -114,15 +107,6 @@ C-jmc
          ENDDO
         ENDDO
 #endif
-
-#ifdef EXACT_CONSERV
-C--     For exact conservation of fluid, store Explicit term in etaStar :
-        DO j=1,sNy
-         DO i=1,sNx
-          etaStar(i,j,bi,bj) = -cg2d_b(i,j,bi,bj)
-         ENDDO
-        ENDDO
-#endif /* EXACT_CONSERV */
 
 #ifdef ALLOW_OBCS
         IF (useOBCS) THEN
