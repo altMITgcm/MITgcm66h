@@ -119,11 +119,11 @@ C*********************************************************************
         tmpij(i,j) = 0.
        enddo
        enddo
-       do i = 1,nchptot
+       do i = 1,nchpland
         tmpchp(i) = tcanopy(i,bi,bj)
        enddo
        call msc2grd(igrd(1,bi,bj),chfr(1,bi,bj),tmpchp,
-     .                           nchp,nchptot,fracl,tmpij,im2,jm2)
+     .                           nchp,nchpland,fracl,tmpij,im2,jm2)
        do j = jm1,jm2
        do i = im1,im2
         tgz(i,j,bi,bj) = tmpij(i,j)
