@@ -102,14 +102,14 @@ C     Do LAND time averages
 #endif
 
 #ifdef ALLOW_GMREDI
-C     Do GMRedi diagnostics.
+C     Do KPP diagnostics.
       IF (useGMRedi .AND. myIter.NE.nIter0 )
      &     CALL GMREDI_DIAGS( myTime, myIter, myThid )
 #endif
 
 #ifdef ALLOW_KPP
 C     Do KPP diagnostics.
-      IF ( useKPP )
+      IF (useKPP .AND. myIter.NE.nIter0 )
      &     CALL KPP_DO_DIAGS( myTime, myIter, myThid )
 #endif
 

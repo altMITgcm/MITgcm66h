@@ -20,6 +20,9 @@ C     !USES:
 #include "PTRACERS_SIZE.h"
 #include "PTRACERS.h"
 #include "PARAMS.h"
+#ifdef ALLOW_MNC
+#include "MNC_PARAMS.h"
+#endif
 
 C     !INPUT PARAMETERS:
       INTEGER myThid

@@ -2,7 +2,6 @@ C $Header$
 C $Name$
 
 #include "FIZHI_OPTIONS.h"
-C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 CBOP
 C     !ROUTINE: FIZHI_WRITE_VEGTILES 
 C     !INTERFACE:
@@ -19,7 +18,9 @@ C     !USES:
 #include "fizhi_land_coms.h"
 #include "fizhi_earth_coms.h"
 #include "EEPARAMS.h"
-#include "PARAMS.h"
+#ifdef ALLOW_MNC
+#include "MNC_PARAMS.h"
+#endif
 #ifdef ALLOW_EXCH2
 #include "W2_EXCH2_TOPOLOGY.h"
 #include "W2_EXCH2_PARAMS.h"
@@ -99,7 +100,6 @@ C       fizhi_earth_coms.h
 
       ENDIF
 #else /*  Next Peice for not ALLOW_MNC  */
-
 
       call MDSFINDUNIT( iunit, mythid )
       length_of_rec=MDS_RECLEN( fileprec, nchp, mythid )
@@ -275,6 +275,7 @@ C End of bi bj loop
 
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+
 CBOP
 C     !ROUTINE: FIZHI_READ_VEGTILES
 C     !INTERFACE:
@@ -291,7 +292,9 @@ C     !USES:
 #include "fizhi_land_coms.h"
 #include "fizhi_earth_coms.h"
 #include "EEPARAMS.h"
-#include "PARAMS.h"
+#ifdef ALLOW_MNC
+#include "MNC_PARAMS.h"
+#endif
 #ifdef ALLOW_EXCH2
 #include "W2_EXCH2_TOPOLOGY.h"
 #include "W2_EXCH2_PARAMS.h"

@@ -18,6 +18,9 @@ C     !USES:
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#ifdef ALLOW_MNC        
+#include "MNC_PARAMS.h"
+#endif
 #include "DYNVARS.h"
 #include "GRID.h"
 #include "TIMEAVE_STATV.h"
@@ -26,9 +29,9 @@ C     !INPUT PARAMETERS:
       INTEGER myThid
 CEOP
 
-#ifdef ALLOW_TIMEAVE
+#ifdef ALLOW_TIMEAVE        
 
-#ifdef ALLOW_MNC
+#ifdef ALLOW_MNC        
       IF (useMNC) THEN
 
       CALL MNC_CW_ADD_VNAME('ETAtave', 'Cen_xy_Hn__-__t',3,4,myThid)

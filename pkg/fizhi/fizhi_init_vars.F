@@ -165,30 +165,6 @@ c         Physics works top-down. so -> need to flip arrays
         enddo
         enddo
 
-c Zero out fizhi tendency arrays on the fizhi grid
-        do L = 1,Nrphys
-        do j = 1,sNy
-        do i = 1,sNx
-         duphy(i,j,L,bi,bj) = 0.
-         dvphy(i,j,L,bi,bj) = 0.
-         dthphy(i,j,L,bi,bj) = 0.
-         dsphy(i,j,L,bi,bj) = 0.
-        enddo
-        enddo
-        enddo
-
-c Zero out fizhi tendency arrays on the dynamics grid
-        do L = 1,Nr
-        do j = jm1,jm2
-        do i = im1,im2
-         guphy(i,j,L,bi,bj) = 0.
-         gvphy(i,j,L,bi,bj) = 0.
-         gthphy(i,j,L,bi,bj) = 0.
-         gsphy(i,j,L,bi,bj) = 0.
-        enddo
-        enddo
-        enddo
-
 c Now initialize tke, xlmt, khmt, xxmt, yymt, ctmt, zetamt,
 c Now initialize land state too - tcanopy, etc...
         do i = 1,nchp

@@ -17,13 +17,13 @@ C     !USES:
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#ifdef ALLOW_MNC
-#include "MNC_PARAMS.h"
-#endif
 #include "GRID.h"
 #include "DYNVARS.h"
 #ifdef ALLOW_MONITOR
 #include "MONITOR.h"
+#endif
+#ifdef ALLOW_MNC
+#include "MNC_PARAMS.h"
 #endif
 
 C     !INPUT/OUTPUT PARAMETERS:

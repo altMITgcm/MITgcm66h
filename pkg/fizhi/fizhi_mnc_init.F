@@ -20,7 +20,6 @@ C     !USES:
 #include "fizhi_SIZE.h"
 #include "fizhi_land_SIZE.h"
 #include "EEPARAMS.h"
-#include "PARAMS.h"
 #ifdef ALLOW_MNC
 #include "MNC_PARAMS.h"
 #include "mnc_common.h"

@@ -147,15 +147,11 @@ cph#endif
 #endif
 
 #ifdef ALLOW_AUTODIFF
-CADJ STORE theta = tapelev_init, key = 1
+CADJ STORE theta = tapelev_ini_bibj_k, key = 1
 c--   Initialise auxiliary xx_ fields
       CALL CTRL_INIT_VARIABLES ( mythid )
 c--   Map the control variables onto the model state.
-#ifdef ALLOW_ECCO
-      CALL CTRL_MAP_INI_ECCO( mythid )
-#else
       CALL CTRL_MAP_INI( mythid )
-#endif
       _BARRIER
 #endif
 
@@ -168,7 +164,7 @@ cph#endif
 
 #ifdef ALLOW_EBM
 # ifdef ALLOW_AUTODIFF
-CADJ STORE theta = tapelev_init, key = 1
+CADJ STORE theta = tapelev3, key = 1
 # endif
       IF (useEBM) CALL EBM_INI_VARS( mythid )
 #endif

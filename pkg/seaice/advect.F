@@ -56,7 +56,7 @@ C BACKWARD EULER
          K3=2
       ENDIF
 
-C NOW REARRANGE HS
+C NOW REARRANGE H'S
 
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)

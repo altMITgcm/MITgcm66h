@@ -7,7 +7,6 @@ C will be compiled.
 #define CPP_OPTIONS_H
 
 #include "PACKAGES_CONFIG.h"
-#include "AD_CONFIG.h"
 
 C o Shortwave heating as extra term in external_forcing.F
 #ifdef ALLOW_KPP

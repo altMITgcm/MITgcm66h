@@ -752,16 +752,10 @@ C       write(*,*) atype,tname(n1:n2)
         mnc_cw_vtnm(n,indv)(1:(n2-n1+1)) = tname(n1:n2)
         n1 = IFNBLNK(tval)
         n2 = ILNBLNK(tval)
-        IF ((n1 .EQ. 0) .OR. (n2 .EQ. 0)) THEN
-          mnc_cw_vtat(n,indv)(1:MNC_MAX_CHAR) =
-     &         mnc_blank_name(1:MNC_MAX_CHAR)          
-          mnc_cw_vnat(1,indv) = n
-        ELSE
-          mnc_cw_vtat(n,indv)(1:MNC_MAX_CHAR) =
-     &         mnc_blank_name(1:MNC_MAX_CHAR)
-          mnc_cw_vtat(n,indv)(1:(n2-n1+1)) = tval(n1:n2)
-          mnc_cw_vnat(1,indv) = n
-        ENDIF
+        mnc_cw_vtat(n,indv)(1:MNC_MAX_CHAR) =
+     &       mnc_blank_name(1:MNC_MAX_CHAR)
+        mnc_cw_vtat(n,indv)(1:(n2-n1+1)) = tval(n1:n2)
+        mnc_cw_vnat(1,indv) = n
       ENDIF
         
       IF (atype .EQ. 2) THEN

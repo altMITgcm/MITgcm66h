@@ -70,7 +70,7 @@ CEOP
 C----------------------------------------------------------------
 C     Dump snapshot of KPP variables.
 
-      IF ( myIter.NE.nIter0 .AND. 
+      IF (
      &     DIFFERENT_MULTIPLE(kpp_dumpFreq,myCurrentTime,
      &     myCurrentTime-deltaTClock)
      &     ) THEN
@@ -149,7 +149,6 @@ C     Do KPP time averaging.
 
 C     Initialize averages to zero
       IF ( myIter.EQ.nIter0 ) THEN
-
         DO bj = myByLo(myThid), myByHi(myThid)
           DO bi = myBxLo(myThid), myBxHi(myThid)
             CALL TIMEAVE_RESET(KPPviscAztave, Nr,bi,bj,myThid)
@@ -162,12 +161,18 @@ C     Initialize averages to zero
             ENDDO
           ENDDO
         ENDDO
-
-      ELSE
+      ENDIF
       
 C     Time Average KPP fields
-       DDTT=deltaTclock
-       DO bj = myByLo(myThid), myByHi(myThid)
+      IF ( myIter .EQ. nIter0 .OR.
+     &     DIFFERENT_MULTIPLE
+     &     (kpp_taveFreq,myCurrentTime,myCurrentTime-deltaTClock) )
+     &     THEN
+        DDTT=0.5*deltaTclock
+      ELSE
+        DDTT=deltaTclock
+      ENDIF
+      DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
           CALL TIMEAVE_CUMULATE(
      &         KPPviscAztave, KPPviscAz, Nr,DDTT,bi,bj,myThid)
@@ -184,9 +189,7 @@ C         Keep record of how much time has been integrated over
             kpp_TimeAve(k,bi,bj)=kpp_TimeAve(k,bi,bj)+DDTT
           ENDDO
         ENDDO
-       ENDDO
-
-      ENDIF
+      ENDDO
       
 C     Dump files and restart average computation if needed
       IF ( myIter.NE.nIter0 .AND. 
@@ -278,11 +281,32 @@ C       Reset averages to zero
           ENDDO
         ENDDO
         
+C       Time Average KPP fields
+        DDTT=0.5*deltaTclock
+        DO bj = myByLo(myThid), myByHi(myThid)
+          DO bi = myBxLo(myThid), myBxHi(myThid)
+            CALL TIMEAVE_CUMULATE(
+     &           KPPviscAztave, KPPviscAz, Nr,DDTT,bi,bj,myThid)
+            CALL TIMEAVE_CUMULATE(
+     &           KPPdiffKzTtave,KPPdiffKzT,Nr,DDTT,bi,bj,myThid)
+            CALL TIMEAVE_CUMULATE(
+     &           KPPghattave,   KPPghat,   Nr,DDTT,bi,bj,myThid)
+            CALL TIMEAVE_CUMULATE(
+     &           KPPdiffKzStave,KPPdiffKzS,Nr,DDTT,bi,bj,myThid)
+            CALL TIMEAVE_CUMULATE(
+     &           KPPhbltave,    KPPhbl,    1, DDTT,bi,bj,myThid)
+C           Keep record of how much time has been integrated over
+            DO k=1,Nr
+              kpp_TimeAve(k,bi,bj)=kpp_TimeAve(k,bi,bj)+DDTT
+            ENDDO
+          ENDDO
+        ENDDO
+
       ENDIF
       
-#endif /* ALLOW_TIMEAVE */
+#endif
       
-#endif /* ALLOW_KPP */
+#endif
       
       RETURN
       END

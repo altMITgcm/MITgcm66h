@@ -16,14 +16,14 @@ C     !USES:
 #include "LAND_SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#ifdef ALLOW_MNC
-#include "MNC_PARAMS.h"
-#endif
 #include "GRID.h"
 #include "LAND_PARAMS.h"
 #include "LAND_VARS.h"
 #ifdef ALLOW_MONITOR
 #include "MONITOR.h"
+#endif
+#ifdef ALLOW_MNC
+#include "MNC_PARAMS.h"
 #endif
 
 C     !INPUT/OUTPUT PARAMETERS:
