@@ -4,6 +4,8 @@ $Header$
     ==============================
 
 
+o bug fix for mom_*_sidedrag: rA -> rAs,rAw
+o regenerated output for global_ocean_ebm (using -ieee)
 o fix mom_common/mom_*_sidedrag.F to recover numeric output prior to creation
   of mom_common/
   - simple re-arrangement of instructions within computing loop
