@@ -41,9 +41,6 @@ C
 C 
       DO 110 J=1,NGP
         QSAT(J)=0.
-CcnhDebugStarts
-        WRITE(0,*) TA(J)
-CcnhDebugEnds
         IF (TA(J).GE.T0) THEN
           QSAT(J)=E0*EXP(C1*(TA(J)-T0)/(TA(J)-T1))
         ELSE IF ( TA(J).GT.0.) then
