@@ -103,12 +103,21 @@ C     Fill Diagnostics Common Block with Namelist Info
           nlevels(n) = 0
           nfields(n) = 0
           do m=1,ndim
-            if (levels(m,n) .ne. undef) nlevels(n) = nlevels(n) + 1
+            if (levels(m,n) .ne. undef) then
+              nlevels(n) = nlevels(n) + 1
+            endif
             if (fields(m,n) .ne. blank) nfields(n) = nfields(n) + 1
           enddo
-          do m=1,nlevels(n)
-            levs(m,n) = levels(m,n)
-          enddo
+          if (levels(1,n) .ne. undef) then
+            do m=1,nlevels(n)
+              levs(m,n) = levels(m,n)
+            enddo
+          else
+            nlevels(n) = Nr
+            do m=1,nlevels(n)
+              levs(m,n) = m
+            enddo
+          endif
           do m=1,nfields(n)
             flds(m,n) = fields(m,n)
           enddo
