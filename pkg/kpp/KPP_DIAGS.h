@@ -26,7 +26,7 @@ C----------------------------------------------------------------
 C     kpp_TimeAve - time of temporal integration (s) for each thread
 C----------------------------------------------------------------
 
-      REAL kpp_TimeAve(Nr,nSx,nSy)
+      _RL kpp_TimeAve(Nr,nSx,nSy)
       COMMON /KPP_TAVE/ kpp_TimeAve
 
 C----------------------------------------------------------------
