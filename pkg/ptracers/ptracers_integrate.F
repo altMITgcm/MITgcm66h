@@ -111,7 +111,7 @@ C (advection, [explicit] diffusion, parameterizations,...)
 C External forcing term(s)
          CALL PTRACERS_FORCING(
      I                        bi,bj,k,iTracer,
-     U                        gPtr,
+     U                        gPtr(1-Olx,1-Oly,1,1,1,iTracer),
      I                        myIter,myTime,myThid)
 
 C If using Adams-Bashforth II, then extrapolate tendancies
