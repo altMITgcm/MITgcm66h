@@ -1066,8 +1066,6 @@ s/call adwrite(/call adwrite( mythid,\\
      \&           /g
 
 EOF
-chmod +x adjoint_sed
-
 
 echo
 echo "===  Creating the Makefile  ==="
@@ -1328,14 +1326,11 @@ echo >> $MAKEFILE
 
 cat >>$MAKEFILE <<EOF
 
-# AD_FILES_SMALLF = \$(AD_FILES:.F=.f)
-
-EXE_AD_TAMC    = ${EXECUTABLE}_ad_tamc
-\$(EXE_AD_TAMC): \$(OBJFILES)
 
 ad_input_code.f: \$(F77FILES)
 	@make \$(AD_FLOW_FILES)
 	cat \$(AD_FLOW_FILES) \$(AD_FILES) > ad_input_code.f
+
 
 ad_taf_output.f: ad_input_code.f
 	\$(TAF) \$(AD_TAF_FLAGS) ad_input_code.f
@@ -1344,11 +1339,23 @@ ad_taf_output.f: ad_input_code.f
 ad_taf: ad_taf_output.o \$(OBJFILES)
 	\$(LINK) -o ${EXECUTABLE} \$(FFLAGS) \$(FOPTIM) \$(OBJFILES) ad_taf_output.o \$(LIBS) 
 
-EXE_FTL_TAMC   = ${EXECUTABLE}_ftl_tamc
-EXE_FTL_TAF    = ${EXECUTABLE}_ftl_taf
 
-EXE_SVD_TAF    = ${EXECUTABLE}_ftl_taf
-EXE_BOTH_TAF   = ${EXECUTABLE}_ftl_taf
+ad_tamc_output.f: ad_input_code.f
+	\$(TAMC) \$(AD_TAMC_FLAGS) ad_input_code.f
+	cat ad_input_code_ad.f | sed -f adjoint_sed > ad_taf_output.f
+
+ad_tamc: ad_tamc_output.o \$(OBJFILES)
+	\$(LINK) -o ${EXECUTABLE} \$(FFLAGS) \$(FOPTIM) \$(OBJFILES) ad_tamc_output.o \$(LIBS) 
+
+
+flt_taf_output.f: ad_input_code.f
+	\$(TAF) \$(FTL_TAF_FLAGS) ad_input_code.f
+	cat ad_input_code_ad.f | sed -f adjoint_sed > flt_taf_output.f
+
+flt_taf: flt_taf_output.o \$(OBJFILES)
+	\$(LINK) -o ${EXECUTABLE} \$(FFLAGS) \$(FOPTIM) \$(OBJFILES) flt_taf_output.o \$(LIBS) 
+
+
 
 #=========================================
 
