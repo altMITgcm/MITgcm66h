@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint55f_post
+o rename to timeave_init_fixed
+
 checkpoint55e_post
 o some delicate re-shuffle of store directives to avoid one
   extra call of do_oceanic_physics
