@@ -18,6 +18,7 @@ C     === Global variables ===
 #include "DYNVARS.h"
 #include "FFIELDS.h"
 #include "SEAICE.h"
+#include "SEAICE_PARAMS.h"
 #include "SEAICE_FFIELDS.h"
  
 C     === Routine arguments ===
