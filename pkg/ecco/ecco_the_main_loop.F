@@ -73,6 +73,7 @@ c They provide the fields to be stored.
 
 # ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
 #  include "exf_fields.h"
+#  include "exf_clim_fields.h"
 #  ifdef ALLOW_BULKFORMULAE
 #   include "exf_constants.h"
 #  endif
@@ -113,6 +114,7 @@ c     mythid - thread number for this instance of the routine.
 
 c     == local variables ==
 
+      integer bi,bj
       integer iloop
       integer mydate(4)
       logical forceOutput
