@@ -21,6 +21,7 @@ C !USES: ===============================================================
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#include "PTRACERS_SIZE.h"
 #include "PTRACERS.h"
 cswdptr -- add ---
 #ifdef ALLOW_GCHEM
