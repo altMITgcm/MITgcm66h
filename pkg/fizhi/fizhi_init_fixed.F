@@ -40,7 +40,7 @@ c-----------------------------------------------------------------------
        integer nymdb,nhmsb
        character*40 vegdata
        _RL pressure(Nrphys)
-       real lats(sNx,sNy,nSx,nSy), lons(sNx,sNy,nSx,nSy)
+       _RL lats(sNx,sNy,nSx,nSy), lons(sNx,sNy,nSx,nSy)
 
        im1 = 1-OLx
        im2 = sNx+OLx
