@@ -75,7 +75,8 @@ c     get record numbers and interpolation factor for climsst
 #endif
 
       if ( first ) then
-        call mdsreadfield( climsstfile, exf_clim_iprec
+        if ( climsstfile .NE. ' ' )
+     &        call mdsreadfield( climsstfile, exf_clim_iprec
      &                   , exf_clim_yftype, 1
      &                   , climsst1, count0, mythid
      &                   )

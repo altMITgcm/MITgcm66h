@@ -54,7 +54,8 @@ c     == local variables ==
 c     == end of interface ==
 
       if ( first ) then
-        call mdsreadfieldxz( obcs_file, exf_iprec, exf_yftype, Nr
+        if ( obcs_file .NE. ' ' )
+     &        call mdsreadfieldxz( obcs_file, exf_iprec, exf_yftype, Nr
      &                     , obcs_xz_1, count0, mythid
      &                     )
       endif
@@ -62,7 +63,8 @@ c     == end of interface ==
       if (( first ) .or. ( changed )) then
         call exf_swapffields_xz( obcs_xz_0, obcs_xz_1, mythid )
 
-        call mdsreadfieldxz( obcs_file, exf_iprec, exf_yftype, Nr
+        if ( obcs_file .NE. ' ' )
+     &       call mdsreadfieldxz( obcs_file, exf_iprec, exf_yftype, Nr
      &                     , obcs_xz_1, count1, mythid
      &                     )
       endif
@@ -136,7 +138,8 @@ c     == local variables ==
 c     == end of interface ==
 
       if ( first ) then
-        call mdsreadfieldyz( obcs_file, exf_iprec, exf_yftype, Nr
+        if ( obcs_file .NE. ' ' )
+     &        call mdsreadfieldyz( obcs_file, exf_iprec, exf_yftype, Nr
      &                     , obcs_yz_1, count0, mythid
      &                     )
       endif
@@ -144,7 +147,8 @@ c     == end of interface ==
       if (( first ) .or. ( changed )) then
         call exf_swapffields_yz( obcs_yz_0, obcs_yz_1, mythid )
 
-        call mdsreadfieldyz( obcs_file, exf_iprec, exf_yftype, Nr
+        if ( obcs_file .NE. ' ' )
+     &       call mdsreadfieldyz( obcs_file, exf_iprec, exf_yftype, Nr
      &                     , obcs_yz_1, count1, mythid
      &                     )
       endif

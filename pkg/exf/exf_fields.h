@@ -140,3 +140,12 @@ c--   define auxiliary fields for temporal interpolation
       _RL runoff0(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL runoff1(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 #endif
+
+#ifdef ATMOSPHERIC_LOADING
+c     atmospheric pressure field.
+      common /exf_apressure_r/ apressure, apressure0, apressure1
+      _RL apressure  (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL apressure0 (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL apressure1 (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+#endif
+

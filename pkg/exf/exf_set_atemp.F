@@ -54,7 +54,8 @@ c     get record numbers and interpolation factor for atemp
      &                     )
 
       if ( first ) then
-        call mdsreadfield( atempfile, exf_iprec, exf_yftype, 1
+        if ( atempfile .NE. ' ' )
+     &        call mdsreadfield( atempfile, exf_iprec, exf_yftype, 1
      &                   , atemp1, count0, mythid
      &                   )
         if (exf_yftype .eq. 'RL') then
@@ -67,7 +68,8 @@ c     get record numbers and interpolation factor for atemp
       if (( first ) .or. ( changed )) then
         call exf_SwapFFields( atemp0, atemp1, mythid )
 
-        call mdsreadfield( atempfile, exf_iprec, exf_yftype, 1
+        if ( atempfile .NE. ' ' )
+     &       call mdsreadfield( atempfile, exf_iprec, exf_yftype, 1
      &                   , atemp1, count1, mythid
      &                   )
         if (exf_yftype .eq. 'RL') then

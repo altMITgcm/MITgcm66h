@@ -76,7 +76,8 @@ c     get record numbers and interpolation factor for climtemp
 #endif
 
       if ( first ) then
-        call mdsreadfield( climtempfile, exf_clim_iprec
+        if ( climtempfile .NE. ' ' )
+     &        call mdsreadfield( climtempfile, exf_clim_iprec
      &                   , exf_clim_yftype, nr
      &                   , climtemp1, count0, mythid
      &                   )
@@ -90,7 +91,8 @@ c     get record numbers and interpolation factor for climtemp
       if (( first ) .or. ( changed )) then
         call exf_SwapFFields_3d( climtemp0, climtemp1, mythid )
 
-        call mdsreadfield( climtempfile, exf_clim_iprec
+        if ( climtempfile .NE. ' ' )
+     &        call mdsreadfield( climtempfile, exf_clim_iprec
      &                   , exf_clim_yftype, nr
      &                   , climtemp1, count1, mythid
      &                   )

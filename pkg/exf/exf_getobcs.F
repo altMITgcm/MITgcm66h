@@ -3,10 +3,10 @@
 # include "OBCS_OPTIONS.h"
 #endif
 
-      subroutine exf_getobcs (   mycurrenttime
-     I                         , mycurrentiter
-     I                         , mythid
-     &                       )
+      subroutine exf_getobcs ( mycurrenttime
+     I                   , mycurrentiter
+     I                   , mythid
+     &                   )
 
 c     ==================================================================
 c     SUBROUTINE exf_getobcs

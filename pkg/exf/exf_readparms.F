@@ -1,11 +1,11 @@
 c $Header$
 
 #include "EXF_CPPOPTIONS.h"
+#ifdef ALLOW_OBCS
+# include "OBCS_OPTIONS.h"
+#endif
 
-
-      subroutine exf_readparms(
-     I                          mythid
-     &                        )
+      subroutine exf_readparms( mythid )
 
 c     ==================================================================
 c     SUBROUTINE exf_readparms
@@ -33,6 +33,7 @@ c              - added obcs parameters
 c     changed: Virginie Thierry, vthierry@ucsd.edu 04-June-2001
 c              - added new obcs parameters (for each boundaries) 
 c     included runoff D. Stammer, Nov. 25, 2001
+c     included pressure forcing. heimbach@mit.edu 05-Nov-2002
 c
 c     ==================================================================
 c     SUBROUTINE exf_readparms
@@ -48,9 +49,6 @@ c     == global variables ==
 #include "exf.h"
 #include "exf_param.h"
 #include "exf_constants.h"
-#ifdef ALLOW_OBCS
-# include "OBCS_OPTIONS.h"
-#endif
 
 c     == routine arguments ==
 
@@ -85,12 +83,16 @@ c     Surface flux data.
      &    obcsSstartdate1,    obcsSstartdate2,   obcsSperiod,
      &    obcsEstartdate1,    obcsEstartdate2,   obcsEperiod,
      &    obcsWstartdate1,    obcsWstartdate2,   obcsWperiod,
+     &apressurestartdate1,apressurestartdate2,apressureperiod,
      &          hfluxfile,          atempfile,       aqhfile,
      &          sfluxfile,         precipfile,    runofffile,
      &        ustressfile,        vstressfile,
      &          uwindfile,          vwindfile,
-     &         swfluxfile,         lwfluxfile,
-     &          exf_iprec,         exf_yftype
+     &         swfluxfile,         lwfluxfile, apressurefile,
+     &          exf_iprec,         exf_yftype,
+     &           scal_hfl,           scal_ust,       scal_vst,
+     &           scal_swf,           scal_sst,       scal_sss,
+     &     scal_apressure,           scal_prc,       scal_sfl
 
       _BEGIN_MASTER(mythid)
 
@@ -161,6 +163,10 @@ c     Calendar data.
       obcsWstartdate2    = 0
       obcsWperiod        = 0.0 _d 0
 
+      apressurestartdate1    = 0
+      apressurestartdate2    = 0
+      apressureperiod        = 0.0 _d 0
+
 c     Data files.
       hfluxfile          = ' '
       atempfile          = ' '
@@ -174,6 +180,7 @@ c     Data files.
       vwindfile          = ' '
       swfluxfile         = ' '
       lwfluxfile         = ' '
+      apressurefile      = ' '
 
 c     Initialise the date arrays.
       do i = 1,4
@@ -193,11 +200,26 @@ c     Initialise the date arrays.
          obcsSstartdate(i)    = 0
          obcsEstartdate(i)    = 0
          obcsWstartdate(i)    = 0
+         apressurestartdate(i)= 0
       enddo
 
 c     Initialise file type and field precision
       exf_iprec       = 32
       exf_yftype      = 'RL'
+
+c     scaling between exf units and MITgcm units
+      scal_hfl       =  1. _d 0
+      scal_ust       =  1. _d 0
+      scal_vst       =  1. _d 0
+      scal_swf       =  1. _d 0
+      scal_sst       =  1. _d 0
+      scal_sss       =  1. _d 0
+      scal_apressure =  1. _d 0
+#if (defined (ALLOW_BULKFORMULAE) && defined (ALLOW_ATM_TEMP))
+      scal_prc       =  1. _d 0
+#else
+      scal_sfl       =  1. _d 0     
+#endif
 
 c     Check for the availability of the right calendar version.
       if ( calendarversion .ne. usescalendarversion ) then
@@ -308,6 +330,11 @@ c     check for consistency
       call cal_FullDate(  obcsWstartdate1,  obcsWstartdate2,
      &                    obcsWstartdate,           mythid )
 #endif
+#endif
+
+#ifdef ATMOSPHERIC_LOADING
+      call cal_FullDate(   apressurestartdate1, apressurestartdate2,
+     &                     apressurestartdate,          mythid )
 #endif
 
       _END_MASTER( mythid )

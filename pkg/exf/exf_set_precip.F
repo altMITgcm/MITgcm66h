@@ -54,7 +54,8 @@ c     get record numbers and interpolation factor for precip
      &                     )
 
       if ( first ) then
-        call mdsreadfield( precipfile, exf_iprec, exf_yftype, 1
+        if ( precipfile .NE. ' ' )
+     &        call mdsreadfield( precipfile, exf_iprec, exf_yftype, 1
      &                   , precip1, count0, mythid
      &                   )
         if (exf_yftype .eq. 'RL') then
@@ -67,7 +68,8 @@ c     get record numbers and interpolation factor for precip
       if (( first ) .or. ( changed )) then
         call exf_SwapFFields( precip0, precip1, mythid )
 
-        call mdsreadfield( precipfile, exf_iprec, exf_yftype, 1
+        if ( precipfile .NE. ' ' )
+     &       call mdsreadfield( precipfile, exf_iprec, exf_yftype, 1
      &                   , precip1, count1, mythid
      &                   )
         if (exf_yftype .eq. 'RL') then

@@ -76,7 +76,8 @@ c     get record numbers and interpolation factor for climsalt
 #endif
 
       if ( first ) then
-        call mdsreadfield( climsaltfile, exf_clim_iprec
+        if ( climsaltfile .NE. ' ' )
+     &        call mdsreadfield( climsaltfile, exf_clim_iprec
      &                   , exf_clim_yftype, nr
      &                   , climsalt1, count0, mythid
      &                   )
@@ -90,7 +91,8 @@ c     get record numbers and interpolation factor for climsalt
       if (( first ) .or. ( changed )) then
         call exf_SwapFFields_3d( climsalt0, climsalt1, mythid )
 
-        call mdsreadfield( climsaltfile, exf_clim_iprec
+        if ( climsaltfile .NE. ' ' )
+     &       call mdsreadfield( climsaltfile, exf_clim_iprec
      &                   , exf_clim_yftype, nr
      &                   , climsalt1, count1, mythid
      &                   )

@@ -133,6 +133,13 @@ c     Calendar data.
       integer obcsWstartdate(4)
       _RL     obcsWperiod
 
+      integer apressurestartdate1
+      integer apressurestartdate2
+      integer apressurestartdate(4)
+      _RL     apressureperiod
+      character*1 apressuremask
+      parameter(  apressuremask = 's' )
+
 c     File names.
       character*(128) hfluxfile
       character*(128) atempfile
@@ -146,6 +153,7 @@ c     File names.
       character*(128) vwindfile
       character*(128) swfluxfile
       character*(128) lwfluxfile
+      character*(128) apressurefile
 
       common /exf_param_i/
      &                          hfluxstartdate1,   hfluxstartdate2,
@@ -164,6 +172,7 @@ c     File names.
      &                          obcsSstartdate1,   obcsSstartdate2,
      &                          obcsEstartdate1,   obcsEstartdate2,
      &                          obcsWstartdate1,   obcsWstartdate2,
+     &                          apressurestartdate1,apressurestartdate2,
      &                          hfluxstartdate,
      &                          atempstartdate,
      &                          aqhstartdate,
@@ -179,7 +188,8 @@ c     File names.
      &                          obcsNstartdate,
      &                          obcsSstartdate,
      &                          obcsEstartdate,
-     &                          obcsWstartdate
+     &                          obcsWstartdate,
+     &                          apressurestartdate
 
       common /exf_param_r/
      &                          hfluxperiod,
@@ -197,7 +207,8 @@ c     File names.
      &                          obcsNperiod,
      &                          obcsSperiod,
      &                          obcsEperiod,
-     &                          obcsWperiod
+     &                          obcsWperiod,
+     &                          apressureperiod
 
       common /exf_param_c/
      &                          hfluxfile,
@@ -211,7 +222,8 @@ c     File names.
      &                          uwindfile,
      &                          vwindfile,
      &                          swfluxfile,
-     &                          lwfluxfile
+     &                          lwfluxfile,
+     &                          apressurefile
 
 c     file precision and field type
 
@@ -221,3 +233,26 @@ c     file precision and field type
 
       integer exf_iprec
       character*(2) exf_yftype
+
+c     scaling between exf units and MITgcm units
+
+      _RL     scal_hfl
+      _RL     scal_ust
+      _RL     scal_vst
+      _RL     scal_swf
+      _RL     scal_sst
+      _RL     scal_sss
+      _RL     scal_apressure
+      _RL     scal_prc
+      _RL     scal_sfl
+
+      common /exf_param_scal/
+     &                      scal_hfl
+     &                    , scal_ust
+     &                    , scal_vst
+     &                    , scal_swf
+     &                    , scal_sst
+     &                    , scal_sss
+     &                    , scal_apressure
+     &                    , scal_prc
+     &                    , scal_sfl

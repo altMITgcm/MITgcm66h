@@ -54,7 +54,8 @@ c     get record numbers and interpolation factor for hflux
      &                     )
 
       if ( first ) then
-        call mdsreadfield( hfluxfile, exf_iprec, exf_yftype, 1
+        if ( hfluxfile .NE. ' ' )
+     &        call mdsreadfield( hfluxfile, exf_iprec, exf_yftype, 1
      &                   , hflux1, count0, mythid
      &                   )
 
@@ -68,7 +69,8 @@ c     get record numbers and interpolation factor for hflux
       if (( first ) .or. ( changed )) then
         call exf_SwapFFields( hflux0, hflux1, mythid )
 
-        call mdsreadfield( hfluxfile, exf_iprec, exf_yftype, 1
+        if ( hfluxfile .NE. ' ' )
+     &       call mdsreadfield( hfluxfile, exf_iprec, exf_yftype, 1
      &                   , hflux1, count1, mythid
      &                   )
 
