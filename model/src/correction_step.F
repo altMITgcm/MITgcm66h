@@ -11,7 +11,8 @@ C     \==========================================================/
      I                       K, etaSurfX, etaSurfY,
      I                       myCurrentTime, myThid )
       IMPLICIT NONE
-! Common
+
+C     == Global variables ==
 #include "SIZE.h"
 #include "DYNVARS.h"
 #include "EEPARAMS.h"

@@ -3,7 +3,6 @@ C $Header$
 #include "CPP_OPTIONS.h"
 #define USE_FACTORIZED_POLY
 
-! ================================================================
       subroutine FIND_RHO(
      I      bi, bj, iMin, iMax, jMin, jMax,  k, kRef, eqn,
      O      rholoc,
@@ -20,23 +19,24 @@ C     | eqn - determines the eqn. of state: 'LINEAR' or 'POLY3'  |
 C     |                                                          |
 C     \==========================================================/
       implicit none
-! Common
+C     == Global variables ==
 #include "SIZE.h"
 #include "DYNVARS.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-! Arguments
+
+C     == Routine arguments ==
       integer bi,bj,iMin,iMax,jMin,jMax
       integer k			! Level of Theta/Salt slice
       integer kRef		! Pressure reference level
       character*(*) eqn
       _RL rholoc(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       integer myThid
-! Local
+
+C     == Local variables ==
       integer i,j
       _RL refTemp,refSalt,sigRef,tP,sP,deltaSig
       character*(max_len_mbuf) msgbuf
-! -----------------------------------------------------------------
 
 #ifdef ALLOW_AUTODIFF_TAMC
       DO j=1-OLy,sNy+OLy
@@ -104,7 +104,5 @@ C **********
        stop 'ABNORMAL END: S/R FIND_RHO'
       endif
 
-! ------------------------------------------------------------------------------
       return
       end
-! ==============================================================================
