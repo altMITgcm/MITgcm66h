@@ -328,6 +328,11 @@ C--   Do "blocking" sends and receives for field "overlap" terms
       CALL DO_FIELDS_BLOCKING_EXCHANGES( myThid )
       CALL TIMER_STOP ('BLOCKING_EXCHANGES [FORWARD_STEP]',myThid)
 
+#ifndef EXCLUDE_MONITOR
+C--   Check status of solution (statistics, cfl, etc...)
+      CALL MONITOR( myIter, myTime, myThid )
+#endif /* EXCLUDE_MONITOR */
+
 #ifndef ALLOW_AUTODIFF_TAMC
 C--   Do IO if needed.
       CALL TIMER_START('I/O (WRITE)        [FORWARD_STEP]',myThid)
