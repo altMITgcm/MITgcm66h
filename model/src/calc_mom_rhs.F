@@ -389,6 +389,18 @@ C     o Laplacian and bi-harmonic term
       ENDDO
 C--   Vertical flux (fVer is at upper face of "u" cell)
 #ifdef INCLUDE_MOMENTUM_ADVECTION_CODE
+C--   Free surface correction temr
+      IF (k.EQ.1) THEN
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         fVerU(i,j,kUp)=rVelMaskOverride*(
+     &        wVel( i ,j,k,bi,bj)*rA( i ,j,bi,bj)
+     &       +wVel(i-1,j,k,bi,bj)*rA(i-1,j,bi,bj)
+     &                    )*0.5
+     &        *uVel(i,j,k,bi,bj)
+        ENDDO
+       ENDDO
+      ENDIF
 C     Mean flow component of vertical flux
       DO j=jMin,jMax
        DO i=iMin,iMax
@@ -409,18 +421,6 @@ C       Note!!!! FV paper used a different bc in which this line is
 C       Note!!!! omitted.
        ENDDO
       ENDDO
-C--   Free surface correction temr
-      IF (k.EQ.1) THEN
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         fVerU(i,j,kUp)=rVelMaskOverride*(
-     &        wVel( i ,j,k,bi,bj)*rA( i ,j,bi,bj)
-     &       +wVel(i-1,j,k,bi,bj)*rA(i-1,j,bi,bj)
-     &                    )*0.5
-     &        *uVel(i,j,k,bi,bj)
-        ENDDO
-       ENDDO
-      ENDIF
 #endif /* INCLUDE_MOMENTUM_ADVECTION_CODE */
 #ifdef INCLUDE_LP_MOMENTUM_DIFFUSION_CODE
 #ifdef OLD_UV_GEOMETRY
@@ -463,30 +463,6 @@ C     Eddy component of vertical flux
      &  _LPM(           +    ArDudrFac * vf(i,j)     )
        ENDDO
       ENDDO
-#ifdef INCLUDE_LP_MOMENTUM_DIFFUSION_CODE
-#ifdef OLD_UV_GEOMETRY
-#define _RA_AT_W2 (RA(i,j,bi,bj)+RA(i-1,j,bi,bj))*0.5 _d 0
-#else
-#define _RA_AT_W2 rAw(i,j,bi,bj)
-#endif /* OLD_UV_GEOMETRY */
-C     Bottom boundary condition
-c     IF ( no_slip_bottom .AND. k .EQ. Nr ) THEN
-c      DO j=jMin,jMax
-c       DO i=iMin,iMax
-c        vf(i,j) =
-c    &    -KappaRU(i,j,k)
-c    & *_RA_AT_W2
-c    &    *_maskW(i,j,k,bi,bj)
-c    &    *uVel(i,j,k,bi,bj)*rkFac*recip_DrF(k)*2. _d 0
-c       ENDDO
-c      ENDDO
-c      DO j=jMin,jMax
-c       DO i=iMin,iMax
-c        fVerU(i,j,kDown) = ArDudrFac * vf(i,j)
-c       ENDDO
-c      ENDDO
-c     ENDIF
-#endif /* INCLUDE_LP_MOMENTUM_DIFFUSION_CODE */
 
 #ifdef INCLUDE_GRADPH_CODE
 C---  Hydrostatic term ( -1/rhoConst . dphi/dx )
@@ -726,6 +702,18 @@ C     o Laplacian term
       ENDDO
 C--   Vertical flux (fVer is at upper face of "v" cell)
 #ifdef INCLUDE_MOMENTUM_ADVECTION_CODE
+C--   Free surface correction temr
+      IF (k.EQ.1) THEN
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         fVerV(i,j,kUp)=rVelMaskOverride*(
+     &        wVel(i, j ,k,bi,bj)*rA(i, j ,bi,bj)
+     &       +wVel(i,j-1,k,bi,bj)*rA(i,j-1,bi,bj)
+     &                    )*0.5
+     &        *vVel(i,j,k,bi,bj)
+        ENDDO
+       ENDDO
+      ENDIF
 C     o Mean flow component of vertical flux
       DO j=jMin,jMax
        DO i=iMin,iMax
@@ -746,18 +734,6 @@ C       Note!!!! omitted.
 C       Note!!!! Is rVelMaskOverridde right for implicit free-surface?
        ENDDO
       ENDDO
-C--   Free surface correction temr
-      IF (k.EQ.1) THEN
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         fVerV(i,j,kUp)=rVelMaskOverride*(
-     &        wVel(i, j ,k,bi,bj)*rA(i, j ,bi,bj)
-     &       +wVel(i,j-1,k,bi,bj)*rA(i,j-1,bi,bj)
-     &                    )*0.5
-     &        *vVel(i,j,k,bi,bj)
-        ENDDO
-       ENDDO
-      ENDIF
 #endif /* INCLUDE_MOMENTUM_ADVECTION_CODE */
 #ifdef INCLUDE_LP_MOMENTUM_DIFFUSION_CODE
 #ifdef OLD_UV_GEOMETRY
@@ -799,30 +775,6 @@ C     Eddy component of vertical flux
      &                 + ArDvdrFac   * vf(i,j)
        ENDDO
       ENDDO
-C     Bottom level boundary condition
-#ifdef INCLUDE_LP_MOMENTUM_DIFFUSION_CODE
-#ifdef OLD_UV_GEOMETRY
-#define _RA_AT_S2 (RA(i,j,bi,bj)+RA(i,j-1,bi,bj))*0.5 _d 0
-#else
-#define _RA_AT_S2 rAs(i,j,bi,bj)
-#endif /* OLD_UV_GEOMETRY */
-c     IF ( no_slip_bottom .AND. k .EQ. Nr ) THEN
-c     DO j=jMin,jMax
-c      DO i=iMin,iMax
-c      vf(i,j) =
-c    & -KappaRV(i,j,k)
-c    & *_RA_AT_S2
-c    & *_maskS(i,j,k,bi,bj)
-c    & *vVel(i,j,k,bi,bj)*rkFac*recip_drF(k)*2. _d 0
-c      ENDDO
-c     ENDDO
-c     DO j=jMin,jMax
-c      DO i=iMin,iMax
-c       fVerV(i,j,kDown) = ArDvdrFac * vf(i,j)
-c      ENDDO
-c     ENDDO
-c     ENDIF
-#endif /* INCLUDE_LP_MOMENTUM_DIFFUSION_CODE */
 
 #ifdef INCLUDE_GRADPH_CODE
 C---  Hydorstatic term (-1/rho . dp/dy )
