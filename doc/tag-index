@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o AIM: use true log-P extrapolation for near surface temp (= as in 
+    F.Molteni paper) ; update aim.5l_cs output.
+
 checkpoint50g_post
 o merged with release1_p17 (pkg/seaice and verification/lab_sea)
   - added SEAICE_MULTILEVEL for 8-category sea-ice thermodynamics
