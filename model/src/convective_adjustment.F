@@ -85,8 +85,9 @@ C-      Initialisation of Convection Counter
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 #ifdef  ALLOW_KPP
+C-        CONVECT not needed with KPP mixing
         IF ( 
-     &      (.NOT.useKPP) ! CONVECT not needed with KPP mixing
+     &      (.NOT.useKPP)
      &     ) THEN
 #endif  /* ALLOW_KPP */
 
