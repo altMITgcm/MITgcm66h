@@ -506,9 +506,9 @@
 (PID.TID 0000.0001) // =======================================================
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)   eps:                              0.100E-03
-(PID.TID 0000.0001)   First location:                           1
-(PID.TID 0000.0001)   Last location:                            4
-(PID.TID 0000.0001)   Increment:                                1
+(PID.TID 0000.0001)   First location:                          20
+(PID.TID 0000.0001)   Last location:                           80
+(PID.TID 0000.0001)   Increment:                               20
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001) // =======================================================
 (PID.TID 0000.0001) // Gradient check configuration  >>> END <<<
@@ -751,9 +751,9 @@
 (PID.TID 0000.0001) // =======================================================
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)   eps:                              0.100E-03
-(PID.TID 0000.0001)   First location:                           1
-(PID.TID 0000.0001)   Last location:                            4
-(PID.TID 0000.0001)   Increment:                                1
+(PID.TID 0000.0001)   First location:                          20
+(PID.TID 0000.0001)   Last location:                           80
+(PID.TID 0000.0001)   Increment:                               20
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001) // =======================================================
 (PID.TID 0000.0001) // Gradient check configuration  >>> END <<<
@@ -1616,7 +1616,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -1655,10 +1655,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -1695,10 +1695,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADFIELD: opening file: tbar.0000000000.001.001.data
 (PID.TID 0000.0001)  MDSREADFIELD: opening global file: PH_SST_fields__020_016_23.data
 (PID.TID 0000.0001)  MDSREADFIELD: opening file: tbar.0000000000.001.001.data
@@ -1759,6 +1759,7 @@
   --> objf_obcss(bi,bj)   =  0.
   --> objf_obcsw(bi,bj)   =  0.
   --> objf_obcse(bi,bj)   =  0.
+  --> objf_ice(bi,bj)     =  0.
   --> objf_hmean           =  0.879448611
   --> fc               =  887.332401
 (PID.TID 0000.0001) %MON fCori_max                    =   9.5419917861011E-05
@@ -2186,7 +2187,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -2225,10 +2226,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -2265,10 +2266,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001) %MON fCori_max                    =   9.5419917861011E-05
 (PID.TID 0000.0001) %MON fCori_min                    =   2.7752043431195E-05
 (PID.TID 0000.0001) %MON fCori_mean                   =   6.2936249243167E-05
@@ -2448,7 +2449,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -2487,10 +2488,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -2527,10 +2528,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001) %MON fCori_max                    =   9.5419917861011E-05
 (PID.TID 0000.0001) %MON fCori_min                    =   2.7752043431195E-05
 (PID.TID 0000.0001) %MON fCori_mean                   =   6.2936249243167E-05
@@ -2818,7 +2819,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -2857,10 +2858,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -2897,10 +2898,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev3_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev3_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -3066,7 +3067,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -3105,10 +3106,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -3145,10 +3146,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev3_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev3_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -3314,7 +3315,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -3353,10 +3354,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -3393,10 +3394,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev3_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev3_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -3562,7 +3563,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -3601,10 +3602,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -3641,10 +3642,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev3_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev3_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -3879,10 +3880,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.16666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   9.02056207507940E-17  5.54442406394681E-01
+ cg2d: Sum(rhs),rhsMax =   8.62157567560473E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895984076725E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895986445088E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -3921,10 +3922,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =  -4.75314232417645E-16  5.85222510543335E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.50713623578904E-01
+ cg2d: Sum(rhs),rhsMax =   1.91166527052644E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.57580149617153E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157360474E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -3961,10 +3962,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =  -1.59074142747073E-15  6.09906415158200E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    2.98098531663357E-01
+ cg2d: Sum(rhs),rhsMax =   3.20923843055709E-16  6.06444949240818E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461547E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.85792936117601E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151587460E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -4130,7 +4131,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -4169,10 +4170,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -4209,10 +4210,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -4378,7 +4379,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -4417,10 +4418,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -4457,10 +4458,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -4626,7 +4627,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -4665,10 +4666,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -4705,10 +4706,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -4874,7 +4875,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -4913,10 +4914,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -4953,10 +4954,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -5122,7 +5123,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -5161,10 +5162,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -5201,10 +5202,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -5370,7 +5371,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -5409,10 +5410,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -5449,10 +5450,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -5618,7 +5619,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -5657,10 +5658,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -5697,10 +5698,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -5866,7 +5867,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -5905,10 +5906,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -5945,10 +5946,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -6114,7 +6115,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -6153,10 +6154,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -6193,10 +6194,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -6362,7 +6363,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -6401,10 +6402,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -6441,10 +6442,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -6610,7 +6611,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -6649,10 +6650,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -6689,10 +6690,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -6858,7 +6859,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -6897,10 +6898,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -6937,10 +6938,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -7106,7 +7107,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -7145,10 +7146,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -7185,10 +7186,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -7354,7 +7355,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -7393,10 +7394,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -7433,10 +7434,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -7602,7 +7603,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -7641,10 +7642,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -7681,10 +7682,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -7850,7 +7851,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -7889,10 +7890,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -7929,10 +7930,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -8098,7 +8099,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -8137,10 +8138,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -8177,10 +8178,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -8346,7 +8347,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -8385,10 +8386,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -8425,10 +8426,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -8594,7 +8595,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -8633,10 +8634,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -8673,10 +8674,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -8842,7 +8843,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -8881,10 +8882,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -8921,10 +8922,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_1_the_main_loop_gsnm1.it0000.001.001.data
 (PID.TID 0000.0001)  MDS_READ_RL_VEC: irec =  00000001   00015456
 (PID.TID 0000.0001)  MDSREADVECTOR: opening file: tapelev2_2_the_main_loop_gtnm1.it0000.001.001.data
@@ -9090,7 +9091,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -9129,10 +9130,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -9169,10 +9170,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -9209,7 +9210,7 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   1.93031553364873E+00  1.01346719853274E-04
+ cg2d: Sum(rhs),rhsMax =   1.93031553364874E+00  1.01346719853274E-04
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -9443,7 +9444,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -9482,10 +9483,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -9522,10 +9523,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -9564,7 +9565,7 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   6.44047990786120E+00  6.07504876704409E-05
+ cg2d: Sum(rhs),rhsMax =   6.44047990723242E+00  6.07504876763719E-05
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -9802,7 +9803,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -9841,10 +9842,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -9881,10 +9882,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   2   3
@@ -9921,7 +9922,7 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.16666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   6.04799694919943E+00  9.70393086803809E-05
+ cg2d: Sum(rhs),rhsMax =   6.04801939555768E+00  9.70389485328775E-05
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   2   3
@@ -10156,7 +10157,7 @@
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895982645622E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   T   0.10000000E+01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -10195,10 +10196,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =   1.97411531566161E-15  5.82560400620241E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478567E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479157415660E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.91666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   3   4
@@ -10235,10 +10236,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
+ cg2d: Sum(rhs),rhsMax =   3.36536354339501E-16  6.06444949240818E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438151306684E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   T   F   0.16666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   2   3
@@ -10289,7 +10290,7 @@
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  MDSREADFIELD: opening global file: PH_swflsfc__020_016_23.data
 (PID.TID 0000.0001)  MDSREADFIELD: opening global file: PH_swflsfc__020_016_23.data
- cg2d: Sum(rhs),rhsMax =   1.09470903662042E+00  2.68059102107725E-04
+ cg2d: Sum(rhs),rhsMax =   1.09471486944661E+00  2.68057673843439E-04
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   T   F   0.16666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   2   3
@@ -10813,10 +10814,10 @@
  pathei: in check_exp: empmr  -9.48599615E-10
  pathei: in check_exp: fu     -0.0180827156
  pathei: in check_exp: fv     -0.0262043065
- cg2d: Sum(rhs),rhsMax =   5.06539254985228E-16  4.50105091564508E-01
+ cg2d: Sum(rhs),rhsMax =  -3.81639164714898E-16  4.50105091564508E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    3.98356711449730E+00
 (PID.TID 0000.0001)                       cg2d_iters =    50
-(PID.TID 0000.0001)                         cg2d_res =    7.11486940545882E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.11486940216302E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          1 time =  0.36000000E+04
 (PID.TID 0000.0001)                 date =   19920102      230000
@@ -10857,10 +10858,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.16666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
+ cg2d: Sum(rhs),rhsMax =   3.00107161343988E-16  5.54442406394681E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    9.20832557377731E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17896659921052E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          2 time =  0.72000000E+04
 (PID.TID 0000.0001)                 date =   19920103           0
@@ -10903,10 +10904,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =  -8.04911692853238E-16  5.82560400620382E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432969187E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87477301249231E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          3 time =  0.10800000E+05
 (PID.TID 0000.0001)                 date =   19920103       10000
@@ -10947,10 +10948,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
+ cg2d: Sum(rhs),rhsMax =  -1.04777297948999E-15  6.06444949241586E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    2.97705997597015E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438636510703E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          4 time =  0.14400000E+05
 (PID.TID 0000.0001)                 date =   19920103       20000
@@ -11009,12 +11010,13 @@
   --> objf_scatym(bi,bj)  =  0.
   --> objf_uwind(bi,bj)   =  0.
   --> objf_vwind(bi,bj)   =  0.
-  --> objf_atemp(bi,bj)   =  1.65404014E-11
+  --> objf_atemp(bi,bj)   =  1.4755665E-11
   --> objf_aqh(bi,bj)     =  0.
   --> objf_obcsn(bi,bj)   =  0.
   --> objf_obcss(bi,bj)   =  0.
   --> objf_obcsw(bi,bj)   =  0.
   --> objf_obcse(bi,bj)   =  0.
+  --> objf_ice(bi,bj)     =  0.
   --> objf_hmean           =  0.879448611
   --> fc               =  887.332401
 (PID.TID 0000.0001)  MDSREADFIELD: opening file: xx_atemp.0000000000.001.001.data
@@ -11224,10 +11226,10 @@
  pathei: in check_exp: empmr  -9.48599615E-10
  pathei: in check_exp: fu     -0.0180827156
  pathei: in check_exp: fv     -0.0262043065
- cg2d: Sum(rhs),rhsMax =   5.06539254985228E-16  4.50105091564508E-01
+ cg2d: Sum(rhs),rhsMax =  -3.81639164714898E-16  4.50105091564508E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    3.98356711449730E+00
 (PID.TID 0000.0001)                       cg2d_iters =    50
-(PID.TID 0000.0001)                         cg2d_res =    7.11486940545882E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.11486940216302E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          1 time =  0.36000000E+04
 (PID.TID 0000.0001)                 date =   19920102      230000
@@ -11268,10 +11270,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.16666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    9.20832557928922E-01
+ cg2d: Sum(rhs),rhsMax =   3.00107161343988E-16  5.54442406394681E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    9.20832558480111E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895985132898E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895307571261E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          2 time =  0.72000000E+04
 (PID.TID 0000.0001)                 date =   19920103           0
@@ -11314,10 +11316,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.27515792264421E-15  5.82560400620241E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432478566E-01
+ cg2d: Sum(rhs),rhsMax =  -5.75928194024300E-16  5.82560400620101E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318431987922E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479157122007E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87481013452421E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          3 time =  0.10800000E+05
 (PID.TID 0000.0001)                 date =   19920103       10000
@@ -11358,10 +11360,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.63677968348475E-15  6.06444949240818E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    2.97705997461545E-01
+ cg2d: Sum(rhs),rhsMax =  -2.91086599268908E-15  6.06444949240059E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    2.97705997326014E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438151171711E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92437666044639E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          4 time =  0.14400000E+05
 (PID.TID 0000.0001)                 date =   19920103       20000
@@ -11420,18 +11422,19 @@
   --> objf_scatym(bi,bj)  =  0.
   --> objf_uwind(bi,bj)   =  0.
   --> objf_vwind(bi,bj)   =  0.
-  --> objf_atemp(bi,bj)   =  1.65404014E-11
+  --> objf_atemp(bi,bj)   =  1.4755665E-11
   --> objf_aqh(bi,bj)     =  0.
   --> objf_obcsn(bi,bj)   =  0.
   --> objf_obcss(bi,bj)   =  0.
   --> objf_obcsw(bi,bj)   =  0.
   --> objf_obcse(bi,bj)   =  0.
+  --> objf_ice(bi,bj)     =  0.
   --> objf_hmean           =  0.879448611
-  --> fc               =  887.332401
+  --> fc               =  887.3324
 (PID.TID 0000.0001)  MDSREADFIELD: opening file: xx_atemp.0000000000.001.001.data
  ph-grd 3 -------------------------------
- ph-grd 3     0    1    2    2    1   0.887332401E+03 0.887332401E+03 0.887332401E+03
- ph-grd 3     0    1    1    1    0   0.000000000E+00 0.000000000E+00 0.000000000E+00
+ ph-grd 3     0    1    8    3    1   0.887332401E+03 0.887332401E+03 0.887332400E+03
+ ph-grd 3     0    1    1   20    0   0.283924395E-02 0.275631294E-02 0.292088363E-01
 (PID.TID 0000.0001)  MDSREADFIELD: opening file: adxx_atemp.0000000000.001.001.data
 (PID.TID 0000.0001)  MDSREADFIELD: opening file: xx_atemp.0000000000.001.001.data
 (PID.TID 0000.0001) 
@@ -11683,10 +11686,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.16666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =  -8.15320033709099E-17  5.54442406394681E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    9.20832557940897E-01
+ cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    9.20832558000439E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17896096421773E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17896042244657E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          2 time =  0.72000000E+04
 (PID.TID 0000.0001)                 date =   19920103           0
@@ -11729,10 +11732,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   1.77288739244830E-15  5.82560400620273E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432495152E-01
+ cg2d: Sum(rhs),rhsMax =   3.01841884819964E-15  5.82560400620259E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432533004E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87478864334618E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87478976471345E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          3 time =  0.10800000E+05
 (PID.TID 0000.0001)                 date =   19920103       10000
@@ -11773,10 +11776,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   9.59302082215174E-16  6.06444949241009E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    2.97705997524289E-01
+ cg2d: Sum(rhs),rhsMax =  -2.65412691824451E-16  6.06444949240916E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    2.97705997525609E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438253343608E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438198276785E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          4 time =  0.14400000E+05
 (PID.TID 0000.0001)                 date =   19920103       20000
@@ -11835,12 +11838,13 @@
   --> objf_scatym(bi,bj)  =  0.
   --> objf_uwind(bi,bj)   =  0.
   --> objf_vwind(bi,bj)   =  0.
-  --> objf_atemp(bi,bj)   =  1.58315182E-11
+  --> objf_atemp(bi,bj)   =  1.56072452E-11
   --> objf_aqh(bi,bj)     =  0.
   --> objf_obcsn(bi,bj)   =  0.
   --> objf_obcss(bi,bj)   =  0.
   --> objf_obcsw(bi,bj)   =  0.
   --> objf_obcse(bi,bj)   =  0.
+  --> objf_ice(bi,bj)     =  0.
   --> objf_hmean           =  0.879448611
   --> fc               =  887.332401
 (PID.TID 0000.0001)  MDSREADFIELD: opening file: xx_atemp.0000000000.001.001.data
@@ -12095,9 +12099,9 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
  cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    9.20832557916950E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    9.20832557857402E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895866152105E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895925040051E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          2 time =  0.72000000E+04
 (PID.TID 0000.0001)                 date =   19920103           0
@@ -12140,10 +12144,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   2.36963226818432E-15  5.82560400620209E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432461977E-01
+ cg2d: Sum(rhs),rhsMax =   7.04297731246584E-16  5.82560400620223E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432424129E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479451790935E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87479338846608E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          3 time =  0.10800000E+05
 (PID.TID 0000.0001)                 date =   19920103       10000
@@ -12184,10 +12188,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =  -1.83186799063151E-15  6.06444949240631E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    2.97705997398765E-01
+ cg2d: Sum(rhs),rhsMax =  -1.77288739244830E-15  6.06444949240723E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    2.97705997397475E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438049348869E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438106010157E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          4 time =  0.14400000E+05
 (PID.TID 0000.0001)                 date =   19920103       20000
@@ -12246,18 +12250,19 @@
   --> objf_scatym(bi,bj)  =  0.
   --> objf_uwind(bi,bj)   =  0.
   --> objf_vwind(bi,bj)   =  0.
-  --> objf_atemp(bi,bj)   =  1.58315182E-11
+  --> objf_atemp(bi,bj)   =  1.56072452E-11
   --> objf_aqh(bi,bj)     =  0.
   --> objf_obcsn(bi,bj)   =  0.
   --> objf_obcss(bi,bj)   =  0.
   --> objf_obcsw(bi,bj)   =  0.
   --> objf_obcse(bi,bj)   =  0.
+  --> objf_ice(bi,bj)     =  0.
   --> objf_hmean           =  0.879448611
   --> fc               =  887.332401
 (PID.TID 0000.0001)  MDSREADFIELD: opening file: xx_atemp.0000000000.001.001.data
  ph-grd 3 -------------------------------
- ph-grd 3     0    2    3    2    1   0.887332401E+03 0.887332401E+03 0.887332401E+03
- ph-grd 3     0    2    2    2    0   0.320202144E-03 0.328218448E-03 -.250351340E-01
+ ph-grd 3     0    2    2    5    1   0.887332401E+03 0.887332401E+03 0.887332401E+03
+ ph-grd 3     0    2    2   40    0   0.161168182E-03 0.148411345E-03 0.791523264E-01
 (PID.TID 0000.0001)  MDSREADFIELD: opening file: adxx_atemp.0000000000.001.001.data
 (PID.TID 0000.0001)  MDSREADFIELD: opening file: xx_atemp.0000000000.001.001.data
 (PID.TID 0000.0001) 
@@ -12468,7 +12473,7 @@
  cg2d: Sum(rhs),rhsMax =   5.06539254985228E-16  4.50105091564508E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    3.98356711449730E+00
 (PID.TID 0000.0001)                       cg2d_iters =    50
-(PID.TID 0000.0001)                         cg2d_res =    7.11486940545882E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.11486939906289E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          1 time =  0.36000000E+04
 (PID.TID 0000.0001)                 date =   19920102      230000
@@ -12509,10 +12514,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.16666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =  -8.15320033709099E-17  5.54442406394681E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    9.20832558109740E-01
+ cg2d: Sum(rhs),rhsMax =   2.76167977375508E-15  5.54442406394681E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    9.20832558322307E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895731845338E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17896232092663E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          2 time =  0.72000000E+04
 (PID.TID 0000.0001)                 date =   19920103           0
@@ -12555,10 +12560,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   1.76247905159244E-15  5.82560400620308E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432381948E-01
+ cg2d: Sum(rhs),rhsMax =   1.51267887105178E-15  5.82560400620601E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432210445E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479842304438E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87477251355736E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          3 time =  0.10800000E+05
 (PID.TID 0000.0001)                 date =   19920103       10000
@@ -12599,10 +12604,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =  -3.95516952522712E-16  6.06444949241209E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    2.97705997578573E-01
+ cg2d: Sum(rhs),rhsMax =  -2.75821032680312E-16  6.06444949242356E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    2.97705997332832E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92437926074762E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438375853929E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          4 time =  0.14400000E+05
 (PID.TID 0000.0001)                 date =   19920103       20000
@@ -12661,12 +12666,13 @@
   --> objf_scatym(bi,bj)  =  0.
   --> objf_uwind(bi,bj)   =  0.
   --> objf_vwind(bi,bj)   =  0.
-  --> objf_atemp(bi,bj)   =  1.5252184E-11
+  --> objf_atemp(bi,bj)   =  1.31847804E-11
   --> objf_aqh(bi,bj)     =  0.
   --> objf_obcsn(bi,bj)   =  0.
   --> objf_obcss(bi,bj)   =  0.
   --> objf_obcsw(bi,bj)   =  0.
   --> objf_obcse(bi,bj)   =  0.
+  --> objf_ice(bi,bj)     =  0.
   --> objf_hmean           =  0.879448611
   --> fc               =  887.332401
 (PID.TID 0000.0001)  MDSREADFIELD: opening file: xx_atemp.0000000000.001.001.data
@@ -12879,7 +12885,7 @@
  cg2d: Sum(rhs),rhsMax =   5.06539254985228E-16  4.50105091564508E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    3.98356711449730E+00
 (PID.TID 0000.0001)                       cg2d_iters =    50
-(PID.TID 0000.0001)                         cg2d_res =    7.11486940545882E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.11486939442206E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          1 time =  0.36000000E+04
 (PID.TID 0000.0001)                 date =   19920102      230000
@@ -12920,10 +12926,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.16666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =  -8.15320033709099E-17  5.54442406394681E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    9.20832557748105E-01
+ cg2d: Sum(rhs),rhsMax =   1.81972492629967E-15  5.54442406394681E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    9.20832557535537E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17896235887307E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895733218406E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          2 time =  0.72000000E+04
 (PID.TID 0000.0001)                 date =   19920103           0
@@ -12966,10 +12972,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   1.06858966120171E-15  5.82560400620175E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432575189E-01
+ cg2d: Sum(rhs),rhsMax =   3.08780778723872E-15  5.82560400619880E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432746677E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87478472889644E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87481063199569E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          3 time =  0.10800000E+05
 (PID.TID 0000.0001)                 date =   19920103       10000
@@ -13010,10 +13016,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   1.42247325030098E-16  6.06444949240433E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    2.97705997344503E-01
+ cg2d: Sum(rhs),rhsMax =   1.35481903473789E-15  6.06444949239334E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    2.97705997590124E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438379255266E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92437927915057E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          4 time =  0.14400000E+05
 (PID.TID 0000.0001)                 date =   19920103       20000
@@ -13072,18 +13078,19 @@
   --> objf_scatym(bi,bj)  =  0.
   --> objf_uwind(bi,bj)   =  0.
   --> objf_vwind(bi,bj)   =  0.
-  --> objf_atemp(bi,bj)   =  1.5252184E-11
+  --> objf_atemp(bi,bj)   =  1.31847804E-11
   --> objf_aqh(bi,bj)     =  0.
   --> objf_obcsn(bi,bj)   =  0.
   --> objf_obcss(bi,bj)   =  0.
   --> objf_obcsw(bi,bj)   =  0.
   --> objf_obcse(bi,bj)   =  0.
+  --> objf_ice(bi,bj)     =  0.
   --> objf_hmean           =  0.879448611
   --> fc               =  887.3324
 (PID.TID 0000.0001)  MDSREADFIELD: opening file: xx_atemp.0000000000.001.001.data
  ph-grd 3 -------------------------------
- ph-grd 3     0    3    4    2    1   0.887332401E+03 0.887332401E+03 0.887332400E+03
- ph-grd 3     0    3    3    3    0   0.132847977E-02 0.138134567E-02 -.397942811E-01
+ ph-grd 3     0    3    9    6    1   0.887332401E+03 0.887332401E+03 0.887332400E+03
+ ph-grd 3     0    3    3   60    0   0.350385801E-02 0.349437641E-02 0.270604347E-02
 (PID.TID 0000.0001)  MDSREADFIELD: opening file: adxx_atemp.0000000000.001.001.data
 (PID.TID 0000.0001)  MDSREADFIELD: opening file: xx_atemp.0000000000.001.001.data
 (PID.TID 0000.0001) 
@@ -13294,7 +13301,7 @@
  cg2d: Sum(rhs),rhsMax =   5.06539254985228E-16  4.50105091564508E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    3.98356711449730E+00
 (PID.TID 0000.0001)                       cg2d_iters =    50
-(PID.TID 0000.0001)                         cg2d_res =    7.11486940545882E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.11486938574760E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          1 time =  0.36000000E+04
 (PID.TID 0000.0001)                 date =   19920102      230000
@@ -13335,10 +13342,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.16666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   8.06646416329215E-16  5.54442406394681E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    9.20832558281190E-01
+ cg2d: Sum(rhs),rhsMax =   5.48172618408671E-16  5.54442406394681E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    9.20832558273564E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17896274187836E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17896111995860E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          2 time =  0.72000000E+04
 (PID.TID 0000.0001)                 date =   19920103           0
@@ -13381,10 +13388,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   1.42941214420489E-15  5.82560400620310E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432402905E-01
+ cg2d: Sum(rhs),rhsMax =   9.19403442267708E-16  5.82560400620335E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432259637E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87478381800064E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87478256579690E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          3 time =  0.10800000E+05
 (PID.TID 0000.0001)                 date =   19920103       10000
@@ -13425,10 +13432,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =  -6.59194920871187E-17  6.06444949241221E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    2.97705997710074E-01
+ cg2d: Sum(rhs),rhsMax =  -5.60315682740509E-16  6.06444949241259E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    2.97705997151019E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92438396791793E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438256982384E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          4 time =  0.14400000E+05
 (PID.TID 0000.0001)                 date =   19920103       20000
@@ -13487,12 +13494,13 @@
   --> objf_scatym(bi,bj)  =  0.
   --> objf_uwind(bi,bj)   =  0.
   --> objf_vwind(bi,bj)   =  0.
-  --> objf_atemp(bi,bj)   =  1.52177948E-11
+  --> objf_atemp(bi,bj)   =  1.07970903E-11
   --> objf_aqh(bi,bj)     =  0.
   --> objf_obcsn(bi,bj)   =  0.
   --> objf_obcss(bi,bj)   =  0.
   --> objf_obcsw(bi,bj)   =  0.
   --> objf_obcse(bi,bj)   =  0.
+  --> objf_ice(bi,bj)     =  0.
   --> objf_hmean           =  0.879448611
   --> fc               =  887.332401
 (PID.TID 0000.0001)  MDSREADFIELD: opening file: xx_atemp.0000000000.001.001.data
@@ -13705,7 +13713,7 @@
  cg2d: Sum(rhs),rhsMax =   5.06539254985228E-16  4.50105091564508E-01
 (PID.TID 0000.0001)                    cg2d_init_res =    3.98356711449730E+00
 (PID.TID 0000.0001)                       cg2d_iters =    50
-(PID.TID 0000.0001)                         cg2d_res =    7.11486940545882E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.11486941489525E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          1 time =  0.36000000E+04
 (PID.TID 0000.0001)                 date =   19920102      230000
@@ -13746,10 +13754,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.16666667E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =  -8.15320033709099E-17  5.54442406394681E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    9.20832557576654E-01
+ cg2d: Sum(rhs),rhsMax =   1.75554015768853E-15  5.54442406394681E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    9.20832557584281E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    7.17895693653588E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.17895857738167E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          2 time =  0.72000000E+04
 (PID.TID 0000.0001)                 date =   19920103           0
@@ -13792,10 +13800,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.12500000E+00
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =   3.02188829515160E-15  5.82560400620171E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432554237E-01
+ cg2d: Sum(rhs),rhsMax =   1.89431803576667E-15  5.82560400620147E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    5.51318432697482E-01
 (PID.TID 0000.0001)                       cg2d_iters =    46
-(PID.TID 0000.0001)                         cg2d_res =    7.87479932961355E-14
+(PID.TID 0000.0001)                         cg2d_res =    7.87480058532185E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          3 time =  0.10800000E+05
 (PID.TID 0000.0001)                 date =   19920103       10000
@@ -13836,10 +13844,10 @@
 (PID.TID 0000.0001)  exf_GetFFieldsRec: first, changed, fac:   F   F   0.83333333E-01
 (PID.TID 0000.0001)  exf_GetFFieldsRec:      count0, count1:   1   2
 (PID.TID 0000.0001) 
- cg2d: Sum(rhs),rhsMax =  -7.44196371194050E-16  6.06444949240418E-01
-(PID.TID 0000.0001)                    cg2d_init_res =    2.97705997212969E-01
+ cg2d: Sum(rhs),rhsMax =   8.67361737988404E-18  6.06444949240398E-01
+(PID.TID 0000.0001)                    cg2d_init_res =    2.97705997771939E-01
 (PID.TID 0000.0001)                       cg2d_iters =    47
-(PID.TID 0000.0001)                         cg2d_res =    4.92437908079326E-14
+(PID.TID 0000.0001)                         cg2d_res =    4.92438047240608E-14
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)  cal_TimeStamp: iter =          4 time =  0.14400000E+05
 (PID.TID 0000.0001)                 date =   19920103       20000
@@ -13898,18 +13906,19 @@
   --> objf_scatym(bi,bj)  =  0.
   --> objf_uwind(bi,bj)   =  0.
   --> objf_vwind(bi,bj)   =  0.
-  --> objf_atemp(bi,bj)   =  1.52177948E-11
+  --> objf_atemp(bi,bj)   =  1.07970903E-11
   --> objf_aqh(bi,bj)     =  0.
   --> objf_obcsn(bi,bj)   =  0.
   --> objf_obcss(bi,bj)   =  0.
   --> objf_obcsw(bi,bj)   =  0.
   --> objf_obcse(bi,bj)   =  0.
+  --> objf_ice(bi,bj)     =  0.
   --> objf_hmean           =  0.879448611
-  --> fc               =  887.3324
+  --> fc               =  887.332401
 (PID.TID 0000.0001)  MDSREADFIELD: opening file: xx_atemp.0000000000.001.001.data
  ph-grd 3 -------------------------------
- ph-grd 3     0    4    5    2    1   0.887332401E+03 0.887332401E+03 0.887332400E+03
- ph-grd 3     0    4    4    4    0   0.183614592E-02 0.191560616E-02 -.432755626E-01
+ ph-grd 3     0    4    3    8    1   0.887332401E+03 0.887332401E+03 0.887332401E+03
+ ph-grd 3     0    4    4   80    0   0.275599249E-03 0.263457878E-03 0.440544420E-01
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001) // =======================================================
 (PID.TID 0000.0001) // Gradient check results  >>> START <<<
@@ -13919,14 +13928,14 @@
 (PID.TID 0000.0001)  EPS =  0.100E-03
 (PID.TID 0000.0001) grdchk output:                 I        ITILEPOS        JTILEPOS           LAYER            X(I)      X(I)+/-EPS
 (PID.TID 0000.0001) grdchk output:                FC             FC1             FC2 FC1-FC2/(2*EPS)        GRAD(FC)   1-FDGRD/ADGRD
-(PID.TID 0000.0001) grdchk output:                 1               2               2               1 0.000000000E+00 -.100000000E-03
-(PID.TID 0000.0001) grdchk output:   0.887332401E+03 0.887332401E+03 0.887332401E+03 0.000000000E+00 0.000000000E+00 0.000000000E+00
+(PID.TID 0000.0001) grdchk output:                 1               8               3               1 0.000000000E+00 -.100000000E-03
+(PID.TID 0000.0001) grdchk output:   0.887332401E+03 0.887332401E+03 0.887332401E+03 0.275631294E-02 0.283924395E-02 0.292088363E-01
 (PID.TID 0000.0001) 
-(PID.TID 0000.0001) grdchk output:                 2               3               2               1 0.000000000E+00 -.100000000E-03
-(PID.TID 0000.0001) grdchk output:   0.887332401E+03 0.887332401E+03 0.887332401E+03 0.328218448E-03 0.320202144E-03 -.250351340E-01
+(PID.TID 0000.0001) grdchk output:                 2               2               5               1 0.000000000E+00 -.100000000E-03
+(PID.TID 0000.0001) grdchk output:   0.887332401E+03 0.887332401E+03 0.887332401E+03 0.148411345E-03 0.161168182E-03 0.791523264E-01
 (PID.TID 0000.0001) 
-(PID.TID 0000.0001) grdchk output:                 3               4               2               1 0.000000000E+00 -.100000000E-03
-(PID.TID 0000.0001) grdchk output:   0.887332401E+03 0.887332401E+03 0.887332401E+03 0.138134567E-02 0.132847977E-02 -.397942811E-01
+(PID.TID 0000.0001) grdchk output:                 3               9               6               1 0.000000000E+00 -.100000000E-03
+(PID.TID 0000.0001) grdchk output:   0.887332401E+03 0.887332401E+03 0.887332401E+03 0.349437641E-02 0.350385801E-02 0.270604347E-02
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001) // =======================================================
@@ -13934,172 +13943,171 @@
 (PID.TID 0000.0001) // =======================================================
 (PID.TID 0000.0001) 
 (PID.TID 0000.0001)   Seconds in section "ALL                [THE_MODEL_MAIN]":
-(PID.TID 0000.0001)           User time:  44.2999992
-(PID.TID 0000.0001)         System time:  1.08000004
-(PID.TID 0000.0001)     Wall clock time:  47.3440759
+(PID.TID 0000.0001)           User time:  44.6300011
+(PID.TID 0000.0001)         System time:  1.02999996
+(PID.TID 0000.0001)     Wall clock time:  46.150128
 (PID.TID 0000.0001)          No. starts: 1
 (PID.TID 0000.0001)           No. stops: 1
 (PID.TID 0000.0001)   Seconds in section "INITIALISE_FIXED   [THE_MODEL_MAIN]":
-(PID.TID 0000.0001)           User time:  0.119999997
-(PID.TID 0000.0001)         System time:  0.0599999987
-(PID.TID 0000.0001)     Wall clock time:  0.201575041
+(PID.TID 0000.0001)           User time:  0.109999999
+(PID.TID 0000.0001)         System time:  0.0600000005
+(PID.TID 0000.0001)     Wall clock time:  0.264294028
 (PID.TID 0000.0001)          No. starts: 1
 (PID.TID 0000.0001)           No. stops: 1
 (PID.TID 0000.0001)   Seconds in section "ADTHE_MAIN_LOOP          [ADJOINT RUN]":
-(PID.TID 0000.0001)           User time:  33.5399991
-(PID.TID 0000.0001)         System time:  0.789999992
-(PID.TID 0000.0001)     Wall clock time:  36.247022
+(PID.TID 0000.0001)           User time:  33.8199995
+(PID.TID 0000.0001)         System time:  0.729999989
+(PID.TID 0000.0001)     Wall clock time:  34.805811
 (PID.TID 0000.0001)          No. starts: 1
 (PID.TID 0000.0001)           No. stops: 1
 (PID.TID 0000.0001)   Seconds in section "I/O (WRITE)        [ADJOINT LOOP]":
-(PID.TID 0000.0001)           User time:  0.0199985504
+(PID.TID 0000.0001)           User time:  0.0100002289
 (PID.TID 0000.0001)         System time:  0.
-(PID.TID 0000.0001)     Wall clock time:  0.00707662106
+(PID.TID 0000.0001)     Wall clock time:  0.0070630312
 (PID.TID 0000.0001)          No. starts: 172
 (PID.TID 0000.0001)           No. stops: 172
 (PID.TID 0000.0001)   Seconds in section "STATEKPP      [KPP_CALC]":
-(PID.TID 0000.0001)           User time:  0.820008516
+(PID.TID 0000.0001)           User time:  0.840005457
 (PID.TID 0000.0001)         System time:  0.
-(PID.TID 0000.0001)     Wall clock time:  0.841571808
+(PID.TID 0000.0001)     Wall clock time:  0.844978213
 (PID.TID 0000.0001)          No. starts: 156
 (PID.TID 0000.0001)           No. stops: 156
 (PID.TID 0000.0001)   Seconds in section "KPPMIX [KPP_CALC]":
-(PID.TID 0000.0001)           User time:  3.70998096
+(PID.TID 0000.0001)           User time:  3.61000109
 (PID.TID 0000.0001)         System time:  0.
-(PID.TID 0000.0001)     Wall clock time:  3.65156388
+(PID.TID 0000.0001)     Wall clock time:  3.61283326
 (PID.TID 0000.0001)          No. starts: 156
 (PID.TID 0000.0001)           No. stops: 156
 (PID.TID 0000.0001)   Seconds in section "GRDCHK_MAIN          [ADJOINT RUN]":
-(PID.TID 0000.0001)           User time:  10.5699997
-(PID.TID 0000.0001)         System time:  0.190000057
-(PID.TID 0000.0001)     Wall clock time:  10.773051
+(PID.TID 0000.0001)           User time:  10.6300011
+(PID.TID 0000.0001)         System time:  0.199999988
+(PID.TID 0000.0001)     Wall clock time:  10.881017
 (PID.TID 0000.0001)          No. starts: 1
 (PID.TID 0000.0001)           No. stops: 1
 (PID.TID 0000.0001)   Seconds in section "ECCO SPIN-UP":
 (PID.TID 0000.0001)           User time:  3.81999969
-(PID.TID 0000.0001)         System time:  0.0199999809
-(PID.TID 0000.0001)     Wall clock time:  3.84431767
+(PID.TID 0000.0001)         System time:  0.0200001001
+(PID.TID 0000.0001)     Wall clock time:  3.84489584
 (PID.TID 0000.0001)          No. starts: 8
 (PID.TID 0000.0001)           No. stops: 8
 (PID.TID 0000.0001)   Seconds in section "INITIALISE_VARIA    [THE_MAIN_LOOP]":
-(PID.TID 0000.0001)           User time:  3.72999573
-(PID.TID 0000.0001)         System time:  0.00999999046
-(PID.TID 0000.0001)     Wall clock time:  3.74656999
+(PID.TID 0000.0001)           User time:  3.72999191
+(PID.TID 0000.0001)         System time:  0.0200001001
+(PID.TID 0000.0001)     Wall clock time:  3.74589682
 (PID.TID 0000.0001)          No. starts: 8
 (PID.TID 0000.0001)           No. stops: 8
 (PID.TID 0000.0001)   Seconds in section "MONITOR             [THE_MAIN_LOOP]":
-(PID.TID 0000.0001)           User time:  0.0800018311
+(PID.TID 0000.0001)           User time:  0.0800094604
 (PID.TID 0000.0001)         System time:  0.
-(PID.TID 0000.0001)     Wall clock time:  0.0787929296
+(PID.TID 0000.0001)     Wall clock time:  0.0804361105
 (PID.TID 0000.0001)          No. starts: 8
 (PID.TID 0000.0001)           No. stops: 8
 (PID.TID 0000.0001)   Seconds in section "COST_FORCING       [ECCO SPIN-UP]":
-(PID.TID 0000.0001)           User time:  0.0100021362
-(PID.TID 0000.0001)         System time:  0.00999999046
-(PID.TID 0000.0001)     Wall clock time:  0.0163670778
+(PID.TID 0000.0001)           User time:  0.00999832153
+(PID.TID 0000.0001)         System time:  0.
+(PID.TID 0000.0001)     Wall clock time:  0.0160089731
 (PID.TID 0000.0001)          No. starts: 8
 (PID.TID 0000.0001)           No. stops: 8
 (PID.TID 0000.0001)   Seconds in section "ECCO MAIN LOOP":
-(PID.TID 0000.0001)           User time:  6.5
-(PID.TID 0000.0001)         System time:  0.0999999642
-(PID.TID 0000.0001)     Wall clock time:  6.6040591
+(PID.TID 0000.0001)           User time:  6.5399971
+(PID.TID 0000.0001)         System time:  0.109999895
+(PID.TID 0000.0001)     Wall clock time:  6.71296191
 (PID.TID 0000.0001)          No. starts: 8
 (PID.TID 0000.0001)           No. stops: 8
 (PID.TID 0000.0001)   Seconds in section "COST_AVERAGESFIELDS   [ECCO MAIN]":
 (PID.TID 0000.0001)           User time:  0.0199966431
-(PID.TID 0000.0001)         System time:  0.00999999046
-(PID.TID 0000.0001)     Wall clock time:  0.029099822
+(PID.TID 0000.0001)         System time:  0.
+(PID.TID 0000.0001)     Wall clock time:  0.0288959742
 (PID.TID 0000.0001)          No. starts: 32
 (PID.TID 0000.0001)           No. stops: 32
 (PID.TID 0000.0001)   Seconds in section "EXF_GETFORCING        [ECCO MAIN]":
-(PID.TID 0000.0001)           User time:  0.259990692
-(PID.TID 0000.0001)         System time:  0.0100000501
-(PID.TID 0000.0001)     Wall clock time:  0.236552477
+(PID.TID 0000.0001)           User time:  0.229995728
+(PID.TID 0000.0001)         System time:  0.0199999809
+(PID.TID 0000.0001)     Wall clock time:  0.233160138
 (PID.TID 0000.0001)          No. starts: 32
 (PID.TID 0000.0001)           No. stops: 32
 (PID.TID 0000.0001)   Seconds in section "SEAICE_MODEL       [FORWARD_STEP]":
-(PID.TID 0000.0001)           User time:  0.110004425
-(PID.TID 0000.0001)         System time:  0.00999999046
-(PID.TID 0000.0001)     Wall clock time:  0.139719963
+(PID.TID 0000.0001)           User time:  0.100006104
+(PID.TID 0000.0001)         System time:  0.0199999809
+(PID.TID 0000.0001)     Wall clock time:  0.141085505
 (PID.TID 0000.0001)          No. starts: 32
 (PID.TID 0000.0001)           No. stops: 32
 (PID.TID 0000.0001)   Seconds in section "THERMODYNAMICS      [THE_MAIN_LOOP]":
-(PID.TID 0000.0001)           User time:  2.87999725
-(PID.TID 0000.0001)         System time:  0.00999999046
-(PID.TID 0000.0001)     Wall clock time:  2.88612008
+(PID.TID 0000.0001)           User time:  2.88000107
+(PID.TID 0000.0001)         System time:  0.
+(PID.TID 0000.0001)     Wall clock time:  2.89114022
 (PID.TID 0000.0001)          No. starts: 32
 (PID.TID 0000.0001)           No. stops: 32
 (PID.TID 0000.0001)   Seconds in section "DYNAMICS            [THE_MAIN_LOOP]":
-(PID.TID 0000.0001)           User time:  2.64998627
+(PID.TID 0000.0001)           User time:  2.73000336
 (PID.TID 0000.0001)         System time:  0.
-(PID.TID 0000.0001)     Wall clock time:  2.65336025
+(PID.TID 0000.0001)     Wall clock time:  2.71748412
 (PID.TID 0000.0001)          No. starts: 32
 (PID.TID 0000.0001)           No. stops: 32
 (PID.TID 0000.0001)   Seconds in section "SOLVE_FOR_PRESSURE  [THE_MAIN_LOOP]":
-(PID.TID 0000.0001)           User time:  0.15001297
+(PID.TID 0000.0001)           User time:  0.149993896
 (PID.TID 0000.0001)         System time:  0.
-(PID.TID 0000.0001)     Wall clock time:  0.155658722
+(PID.TID 0000.0001)     Wall clock time:  0.172864556
 (PID.TID 0000.0001)          No. starts: 32
 (PID.TID 0000.0001)           No. stops: 32
 (PID.TID 0000.0001)   Seconds in section "THE_CORRECTION_STEP [THE_MAIN_LOOP]":
-(PID.TID 0000.0001)           User time:  0.130001068
+(PID.TID 0000.0001)           User time:  0.160011292
 (PID.TID 0000.0001)         System time:  0.
-(PID.TID 0000.0001)     Wall clock time:  0.147017837
+(PID.TID 0000.0001)     Wall clock time:  0.145389318
 (PID.TID 0000.0001)          No. starts: 32
 (PID.TID 0000.0001)           No. stops: 32
 (PID.TID 0000.0001)   Seconds in section "BLOCKING_EXCHANGES  [THE_MAIN_LOOP]":
-(PID.TID 0000.0001)           User time:  0.0699996948
+(PID.TID 0000.0001)           User time:  0.0799980164
 (PID.TID 0000.0001)         System time:  0.
-(PID.TID 0000.0001)     Wall clock time:  0.09006989
-(PID.TID 0000.0001)          No. starts: STOP NORMAL END statement executed
-32
+(PID.TID 0000.0001)     Wall clock time:  0.0932532549
+(PID.TID 0000.0001)          No. starts: 32
 (PID.TID 0000.0001)           No. stops: 32
 (PID.TID 0000.0001)   Seconds in section "ECCO SPIN-DOWN":
-(PID.TID 0000.0001)           User time:  0.219997406
-(PID.TID 0000.0001)         System time:  0.0600001216
-(PID.TID 0000.0001)     Wall clock time:  0.279772639
+(PID.TID 0000.0001)           User time:  0.270004272
+(PID.TID 0000.0001)         System time:  0.0400000215
+(PID.TID 0000.0001)     Wall clock time:  0.28116715
 (PID.TID 0000.0001)          No. starts: 8
 (PID.TID 0000.0001)           No. stops: 8
 (PID.TID 0000.0001)   Seconds in section "COST_AVERAGESFIELDS [ECCO SPIN-DOWN]":
-(PID.TID 0000.0001)           User time:  0.0600013733
-(PID.TID 0000.0001)         System time:  0.0300001502
-(PID.TID 0000.0001)     Wall clock time:  0.0939650536
+(PID.TID 0000.0001)           User time:  0.0900001526
+(PID.TID 0000.0001)         System time:  0.030000031
+(PID.TID 0000.0001)     Wall clock time:  0.095930934
 (PID.TID 0000.0001)          No. starts: 8
 (PID.TID 0000.0001)           No. stops: 8
 (PID.TID 0000.0001)   Seconds in section "COST_HYD           [ECCO SPIN-DOWN]":
 (PID.TID 0000.0001)           User time:  0.119998932
-(PID.TID 0000.0001)         System time:  0.0199999809
-(PID.TID 0000.0001)     Wall clock time:  0.133127809
+(PID.TID 0000.0001)         System time:  0.
+(PID.TID 0000.0001)     Wall clock time:  0.132843852
 (PID.TID 0000.0001)          No. starts: 8
 (PID.TID 0000.0001)           No. stops: 8
 (PID.TID 0000.0001)   Seconds in section "COST_SSH           [ECCO SPIN-DOWN]":
-(PID.TID 0000.0001)           User time:  0.0100021362
+(PID.TID 0000.0001)           User time:  0.00999832153
 (PID.TID 0000.0001)         System time:  0.
-(PID.TID 0000.0001)     Wall clock time:  0.0198339224
+(PID.TID 0000.0001)     Wall clock time:  0.0194388628
 (PID.TID 0000.0001)          No. starts: 8
 (PID.TID 0000.0001)           No. stops: 8
 (PID.TID 0000.0001)   Seconds in section "COST_SST           [ECCO SPIN-DOWN]":
-(PID.TID 0000.0001)           User time:  0.0299949646
+(PID.TID 0000.0001)           User time:  0.030002594
 (PID.TID 0000.0001)         System time:  0.00999999046
-(PID.TID 0000.0001)     Wall clock time:  0.0262957811
+(PID.TID 0000.0001)     Wall clock time:  0.0261858702
 (PID.TID 0000.0001)          No. starts: 8
 (PID.TID 0000.0001)           No. stops: 8
 (PID.TID 0000.0001)   Seconds in section "COST_FINAL         [ECCO SPIN-DOWN]":
-(PID.TID 0000.0001)           User time:  0.
+(PID.TID 0000.0001)           User time:  0.0100021362
 (PID.TID 0000.0001)         System time:  0.
-(PID.TID 0000.0001)     Wall clock time:  0.00392603874
+(PID.TID 0000.0001)     Wall clock time:  0.00411701202
 (PID.TID 0000.0001)          No. starts: 8
 (PID.TID 0000.0001)           No. stops: 8
 (PID.TID 0000.0001)   Seconds in section "COST_AVERAGESFINAL [ECCO SPIN-DOWN]":
 (PID.TID 0000.0001)           User time:  0.
 (PID.TID 0000.0001)         System time:  0.
-(PID.TID 0000.0001)     Wall clock time:  0.000316977501
+(PID.TID 0000.0001)     Wall clock time:  0.000312924385
 (PID.TID 0000.0001)          No. starts: 8
 (PID.TID 0000.0001)           No. stops: 8
 (PID.TID 0000.0001)   Seconds in section "WRITE_CHECKPOINT   [THE_MODEL_MAIN]":
 (PID.TID 0000.0001)           User time:  0.
 (PID.TID 0000.0001)         System time:  0.
-(PID.TID 0000.0001)     Wall clock time:  4.19616699E-05
+(PID.TID 0000.0001)     Wall clock time:  3.9935112E-05
 (PID.TID 0000.0001)          No. starts: 1
 (PID.TID 0000.0001)           No. stops: 1
 (PID.TID 0000.0001) // ======================================================
@@ -14117,8 +14125,9 @@
 (PID.TID 0000.0001) //          Total. Y spins =              0
 (PID.TID 0000.0001) //            Avg. Y spins =       0.00E+00
 (PID.TID 0000.0001) // o Thread number: 000001
-(PID.TID 0000.0001) //            No. barriers =          99804
+(PID.TID 0000.0001) //            No. barriers =          99816
 (PID.TID 0000.0001) //      Max. barrier spins =              1
 (PID.TID 0000.0001) //      Min. barrier spins =              1
-(PID.TID 0000.0001) //     Total barrier spins =          99804
-(PID.TID 0000.0001) //      Avg. barrier spins =       1.00E+00
+(PID.TID 0000.0001) //     Total barrier spins =          99816
+(PID.TID 0000.0001) //   STOP NORMAL END statement executed
+   Avg. barrier spins =       1.00E+00
