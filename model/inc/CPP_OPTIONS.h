@@ -1,5 +1,13 @@
 C $Header$
 C $Name$
+
+  These lines are here to deliberately cause a compile-time error.
+  If you see these lines in your .F files or the compiler shows them
+  as an error then it means you have not placed your configuration
+  files in the appropriate place.
+  You need to place you own copy of CPP_OPTIONS.h in the include
+  path for the model.
+
 C
 
 C 
