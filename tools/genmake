@@ -180,7 +180,10 @@ foreach dr ($SOURCEDIRS)
   echo Adding mods directory $adr
 end
 if (! $?PACKAGES) then
-  set PACKAGES=(`cd $ROOTDIR/pkg; ls -1 | grep -v CVS`)
+  set PACKAGES=()
+  foreach pkg (`cd $ROOTDIR/pkg; ls -1 | grep -v CVS`)
+   if (-d $ROOTDIR/pkg/$pkg) set PACKAGES=($PACKAGES $pkg)
+  end
 endif
 foreach dr ($PACKAGES)
   set enable
