@@ -12,9 +12,9 @@
 FC_NAMEMANGLE="#define FC_NAMEMANGLE(X) X ## _"
 S64='$(TOOLSDIR)/set64bitConst.sh'
 DEFINES='-DWORDLENGTH=4'
-AWK='gawk'
+#AWK='gawk'
 MAKEDEPEND='$(TOOLSDIR)/xmakedepend'
-#MAKE='make'
+#MAKE='gmake'
 CPP='/usr/ccs/lib/cpp -P'
 # this one works, too
 #CPP='/opt/sfw/bin/cpp -traditional -P'
