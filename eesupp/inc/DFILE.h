@@ -1,4 +1,7 @@
 C $Header$
+
+#ifdef USE_DFILE
+
 C     /==========================================================\
 C     | DFILE.h                                                  |
 C     |==========================================================|
@@ -81,3 +84,4 @@ C                ( but without overlaps )
       Real*8 ioBuf_R8( sNx*nSx*nPx * sNy*nSy*nPy * Nr )
       Real*4 ioBuf_R4( sNx*nSx*nPx * sNy*nSy*nPy * Nr )
 
+#endif /* USE_DFILE */

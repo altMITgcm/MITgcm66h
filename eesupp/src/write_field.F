@@ -37,6 +37,8 @@ C     myThid - Thread number for this instance of the routine.
       CHARACTER*(*) filFmt
       INTEGER       myThid
 
+#ifdef USE_EEIO
+
 C     == Local variables ==
 C     msgBuf       - Variable for writing error messages
 C     I,J,K, bi,bj - Loop counters
@@ -113,5 +115,7 @@ C--    Copy data into per thread data structures
 C
       _EXCH_XYZ_R8(fld, myThid )
 C
+#endif
+
       RETURN
       END

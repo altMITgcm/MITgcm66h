@@ -114,8 +114,10 @@ C       execution at this stage.
       CALL INI_THREADING_ENVIRONMENT
       IF ( eeBootError ) GOTO 999
 
+#ifdef USE_DFILE
 C--   Initiialise the multi-process IO package
       CALL DFILE_INIT
+#endif
  
   999 CONTINUE
       RETURN

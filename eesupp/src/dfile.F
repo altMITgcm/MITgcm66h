@@ -66,6 +66,8 @@ C     == Routine arguments ==
       INTEGER myThid
       INTEGER fileHandle
 
+#ifdef USE_DFILE
+
 C     == Local variables ==
 C     msgBuf - Error message buffer
 C     I      - Work variables
@@ -779,5 +781,7 @@ C--   Now write meta information
        ENDIF
        ioErrorCount(myThid) = ioErrorCount(myThid)  + 1
       GOTO 1000
+
+#endif /* USE_DFILE */
 
       END

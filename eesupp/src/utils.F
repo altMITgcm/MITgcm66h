@@ -126,7 +126,6 @@ C     \==========================================================/
 C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
-#include "DFILE.h"
 
 C     == Routine arguments ==
       INTEGER myThid
