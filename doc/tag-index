@@ -3,6 +3,22 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+release1_p9
+o pkg/seaice
+  - removed GOTO's and added taf directives
+  - double precision constants to reduce the g77 (Linux)
+    to F77 (SGI) differences reported in release1_p8
+o tools/genmake
+  - added SGI options
+o verification/testscript
+  - updated to that of checkpoint47a_post
+o verification/global_ocean.90x40x15/input/eedata
+  - modified for SGI f77 compatibility
+o verification/lab_sea
+  - added description of sea-ice model
+  - added missing matlab routines
+  - added test of thermodynamics parallelization
+
 release1_p8
 o verification/natl_box:
   updating new external_fields_load routine
