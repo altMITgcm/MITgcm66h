@@ -14,7 +14,7 @@ c ---------------------
      .   chfr, alai, agrn, 
      .   albvisdr, albvisdf, albnirdr, albnirdf, emiss,
      .   landtype, tgz, nchptot, nchpland, ityp
-      integer nchptot,nchpland
+      integer nchptot(Nsx,Nsy),nchpland(Nsx,Nsy)
       integer ityp(nchp,Nsx,Nsy)
       integer landtype(sNx,sNy,Nsx,Nsy)
       _RL chfr(nchp,Nsx,Nsy)

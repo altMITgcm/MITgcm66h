@@ -168,7 +168,7 @@ c         Physics works top-down. so -> need to flip arrays
 c Now initialize tke, xlmt, khmt, xxmt, yymt, ctmt, zetamt,
 c Now initialize land state too - tcanopy, etc...
         do L = 1,Nrphys
-        do i = 1,nchptot
+        do i = 1,nchptot(bi,bj)
          tke(i,L,bi,bj) = 0.
          xlmt(i,L,bi,bj) = 0.
          khmt(i,L,bi,bj) = 0.
@@ -176,7 +176,7 @@ c Now initialize land state too - tcanopy, etc...
         enddo
 c Now initialize land state too - tcanopy, etc... SET FOR NOW, 
 c                                              READ CLIM FOR REAL
-        do i = 1,nchptot
+        do i = 1,nchptot(bi,bj)
         tcanopy(i,bi,bj) = 283.
         tdeep(i,bi,bj) = 282.5
         ecanopy(i,bi,bj) = 2.e-2

@@ -1186,8 +1186,6 @@ C
        ENDIF
        IB = IC(NC)
 
-       print *,' Calling cloud for cloud ',nc,' det at ',ic(nc)
-
 c Initialize Cloud Fraction Array
 c -------------------------------
       do i = 1,lenc
