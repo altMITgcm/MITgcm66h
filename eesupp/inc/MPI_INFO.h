@@ -1,3 +1,5 @@
+C $Header$
+C $Name$
 C      Parameters used with MPI.
 
        COMMON /MPI_INFO/

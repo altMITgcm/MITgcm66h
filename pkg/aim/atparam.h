@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 C $Namer: $
 
 C     MITgcm declaration of grid size. 

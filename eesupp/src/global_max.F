@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 
 C--   File global_max.F: Routines that perform global max reduction on an array
 C                        of thread values.

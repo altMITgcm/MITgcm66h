@@ -1,3 +1,5 @@
+C $Header$
+C $Name$
 #include "CPP_EEOPTIONS.h"
 
       SUBROUTINE WRITE_TIME_AVERAGES(myCurrentTime, myIter, myThid)

@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 
 C--   File global_sum.F: Routines that perform global sum on an array
 C                        of thread values.

@@ -1,3 +1,5 @@
+C $Header$
+C $Name$
 C--   File exch.F: Routines that perform atomic communication operations 
 C                  i.e. communication operations that are completed by
 C                  time the routines return. 

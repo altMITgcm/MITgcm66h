@@ -1,3 +1,5 @@
+C $Header$
+C $Name$
 #include "CPP_EEOPTIONS.h"
 
       SUBROUTINE DO_TIME_AVERAGES(

@@ -1,3 +1,5 @@
+C $Header$
+C $Name$
 #include "CPP_EEOPTIONS.h"
 
       SUBROUTINE GSUM_R8_INIT( myThid )

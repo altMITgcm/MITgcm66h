@@ -1,3 +1,5 @@
+C $Header$
+C $Name$
 #include "CPP_EEOPTIONS.h"
 
       SUBROUTINE COMM_STATS

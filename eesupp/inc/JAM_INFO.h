@@ -1,3 +1,5 @@
+C $Header$
+C $Name$
 C      Parameters used with JAM.
 
        COMMON /JAM_INFO/

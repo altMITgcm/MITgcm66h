@@ -1,3 +1,5 @@
+C $Header$
+C $Name$
       SUBROUTINE EXCH_INIT
 C     /==========================================================\
 C     | SUBROUTINE EXCH_INIT                                     |

@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 #include "CPP_EEOPTIONS.h"
 
       SUBROUTINE EXCH_RL_RECV_GET_Y( array,

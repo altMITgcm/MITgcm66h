@@ -1,3 +1,5 @@
+C $Header$
+C $Name$
 C     Compare KPPhbl_01_01.00000_00720_240 to KPPhbl_orig.
 C     for North Atlantic test domain.
 C     Maximum difference between two files is reported.
