@@ -57,7 +57,6 @@ C     == Local variables ==
       _RL bet(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
       _RL gam(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
 #ifdef ALLOW_DIAGNOSTICS
-      INTEGER     kk
       CHARACTER*8 diagName
       CHARACTER*4 diagSufx
 #ifdef ALLOW_GENERIC_ADVDIFF
@@ -240,8 +239,7 @@ C         otherwise counter is not incremented !!
              ENDDO
             ENDDO
           ENDIF
-          kk = -k
-          CALL DIAGNOSTICS_FILL(df,diagName, kk,1, 2,bi,bj, myThid)
+          CALL DIAGNOSTICS_FILL(df,diagName, k,1, 2,bi,bj, myThid)
          ENDDO
         ENDIF
       ENDIF
