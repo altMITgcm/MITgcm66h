@@ -6,6 +6,8 @@ $Header$
 o fix deltaTfreesurf in update_cg2d.F (left from c45d_post): affects 2
   ocean exp. that use NLFS: global_ocean.cs32x15 & global_ocean_pressure
 o added exf_offset_atemp for Celsius to Kelvin conversion of atemp
+o eesupp/inc/EEPARAMS.h: MAX_NO_PROCS=1024
+o pkg/cal/cal_toseconds.F fix for long (>60 years) integrations
 
 checkpoint52d_post
 o re-tiled many expts to allow comparison in multi-processor mode
