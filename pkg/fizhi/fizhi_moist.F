@@ -1464,6 +1464,7 @@ c --------------------------------------------------------------------
       subroutine random_seedx (iseed)
       implicit none
       integer  iseed
+      real *8 port_rand
 #ifdef CRAY
       call ranset (iseed)
 #else
