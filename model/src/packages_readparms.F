@@ -165,14 +165,16 @@ cswdptr -- add --
 #endif
 cswdptr -- end add ---
 
-#ifdef ALLOW_AUTODIFF
+#ifdef ALLOW_CTRL
 C--   Initialise the optim. parameters.
       call optim_readparms( myThid )
 C--   Initialise the control parameters
       call ctrl_readparms( myThid )
+#endif
+
+#ifdef ALLOW_COST
 C--   Initialise the cost parameters
       call cost_readparms( mythid )
-      _BARRIER
 #endif
 
 #ifdef ALLOW_GRDCHK

@@ -538,8 +538,10 @@ c
       _BARRIER
 # endif /* EXCLUDE_CTRL_PACK */
 
+# ifdef ALLOW_COST
       CALL COST_DEPENDENT_INIT ( mythid )
       _BARRIER
+# endif
 
 # if ( defined (ALLOW_TANGENTLINEAR_RUN) )
 c

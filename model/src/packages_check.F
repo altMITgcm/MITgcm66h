@@ -137,7 +137,13 @@ CEOP
 
 #ifdef ALLOW_AUTODIFF
       CALL AUTODIFF_CHECK( myThid )
+#endif
+
+#ifdef ALLOW_CTRL
       CALL CTRL_CHECK( myThid )
+#endif
+
+#ifdef ALLOW_COST
       CALL COST_CHECK( myThid )
 #endif
 
