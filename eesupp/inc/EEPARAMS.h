@@ -1,4 +1,4 @@
-C $Id$
+C $Header$
 C
 C     /==========================================================\
 C     | EEPARAMS.h                                               |
@@ -142,5 +142,3 @@ C                   but that makes it easier.
       INTEGER scrUnit1
       INTEGER scrUnit2
       INTEGER standardMessageUnit
-
-C $Id$
