@@ -14,6 +14,7 @@ C     | and fractional height factors (0<hFac<1). The latter     |
 C     | distinguish between the lopped-cell and full-step        |
 C     | topographic representations.                             |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global variables ===
 #include "SIZE.h"

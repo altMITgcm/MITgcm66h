@@ -9,6 +9,7 @@ C     | SUBROUTINE GET_OFFLINE_FIELDS                            |
 C     | o Make ee support calls for loading data for offline     |
 C     |   experiments.                                           |
 C     \==========================================================/
+      IMPLICIT NONE
  
 C     === Global variables ===
 #include "SIZE.h"

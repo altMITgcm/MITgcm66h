@@ -28,6 +28,7 @@ C     | solving the same problem. On the other hand if you want  |
 C     | the threads to solve several different problems          | 
 C     | concurrently this implementation will not work.          |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global data ===
 #include "SIZE.h"

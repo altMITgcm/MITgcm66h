@@ -33,6 +33,7 @@ C     | Under the cartesian grid mode primitive distances in X   |
 C     | and Y are in metres. Disktance in Z are in m or Pa       |
 C     | depending on the vertical gridding mode.                 |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global variables ===
 #include "SIZE.h"

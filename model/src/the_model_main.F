@@ -22,6 +22,7 @@ C     | =====                                                    |
 C     | C*P* comments indicating place holders for which code is |
 C     |      presently being developed.                          |
 C     \==========================================================/
+      IMPLICIT NONE
 C
 C     Call Tree
 C     =========

@@ -9,6 +9,7 @@ C     | SUBROUTINE SOLVE_FOR_PRESSURE                            |
 C     | o Controls inversion of two and/or three-dimensional     |
 C     |   elliptic problems for the pressure field.              |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     == Global variables
 #include "SIZE.h"

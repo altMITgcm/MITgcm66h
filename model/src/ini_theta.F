@@ -18,6 +18,7 @@ C     |     integration.                                         |
 C     | In addition to setting the temperature field we also     |
 C     | set the initial temperature tendency term here.          |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global variables ===
 #include "SIZE.h"

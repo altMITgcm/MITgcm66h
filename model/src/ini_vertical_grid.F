@@ -10,6 +10,7 @@ C     | o Initialise vertical gridding arrays                    |
 C     |==========================================================|
 C     |                                                          |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global variables ===
 #include "SIZE.h"

@@ -2,6 +2,7 @@ C $Header$
 
 #include "CPP_OPTIONS.h"
 
+      SUBROUTINE MODELDATA_EXAMPLE( myThid )
 C     /==========================================================\
 C     | S/R MODELDATA_EXAMPLE                                    |
 C     | o Write example data file                                |
@@ -11,7 +12,8 @@ C     | =====                                                    |
 C     | Some systems require & as the namelist terminator.       |
 C     | Other systems use a / character.                         |
 C     \==========================================================/
-      SUBROUTINE MODELDATA_EXAMPLE( myThid )
+      IMPLICIT NONE
+
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"

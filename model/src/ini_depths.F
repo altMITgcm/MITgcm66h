@@ -19,6 +19,7 @@ C     | This default doubly periodic topology is "supressed"     |
 C     | if a depth map is defined which closes off all wrap      |
 C     | around flow.                                             |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global variables ===
 #include "SIZE.h"

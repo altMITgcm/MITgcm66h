@@ -13,6 +13,7 @@ C     | set here. For continuation runs a restart file will be   |
 C     | used. For original runs custom rules can be included     |
 C     | here.                                                    |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global variables ===
 #include "SIZE.h"

@@ -10,6 +10,7 @@ C     | o Set boundary conditions at open boundaries             |
 C     |==========================================================|
 C     |                                                          |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global variables ===
 #include "SIZE.h"

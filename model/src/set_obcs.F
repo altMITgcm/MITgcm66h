@@ -10,6 +10,7 @@ C     | o Set boundary conditions at open boundaries             |
 C     |==========================================================|
 C     |                                                          |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global variables ===
 #include "SIZE.h"
@@ -38,22 +39,22 @@ C     I,i,K
       INTEGER iG, jG
       INTEGER bi, bj
       INTEGER  I,  J, K
-      _RL rampTime
+      _RL OBtimeScale
 c
-      rampTime = 2000.0
+      OBtimeScale = 2000.0
 
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
         DO K=1,Nr
          DO J=1-Oly,sNy+Oly
           OBEu(J,K,bi,bj)=0.
-c    &       *sin(2.*PI*myCurrentTime/rampTime)
-c    &       *max(myCurrentTime/rampTime,1.)
+c    &       *sin(2.*PI*myCurrentTime/OBtimeScale)
+c    &       *max(myCurrentTime/OBtimeScale,1.)
           OBEv(J,K,bi,bj)=0.
           OBEt(J,K,bi,bj)=tRef(K)
           OBWu(J,K,bi,bj)=0.
-c    &       *sin(2.*PI*myCurrentTime/rampTime)
-c    &       *max(myCurrentTime/rampTime,1.)
+c    &       *sin(2.*PI*myCurrentTime/OBtimeScale)
+c    &       *max(myCurrentTime/OBtimeScale,1.)
           OBWv(J,K,bi,bj)=0.
           OBWt(J,K,bi,bj)=tRef(K)
          ENDDO

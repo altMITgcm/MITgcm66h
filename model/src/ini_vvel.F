@@ -16,6 +16,7 @@ C     |     a checkpoint file from a previous integration.       |
 C     | In addition to setting the velocity field we also        |
 C     | set the initial velocity tendency term here.             |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global variables ===
 #include "SIZE.h"

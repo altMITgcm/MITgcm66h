@@ -11,6 +11,7 @@ C     | One key trick used in UV us that we over-compute and     |
 C     | arrange our time-stepping loop so that we only need one  |
 C     | edge exchange for the explicit code per timestep.        |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     == Global variables ===
 #include "SIZE.h"

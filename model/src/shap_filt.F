@@ -14,6 +14,7 @@ C     /==========================================================\
 C     | S/R SHAP_FILT                                            |
 C     | Controls shapiro filtering of prognostic variables       |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     == Global variables ===
 #include "SIZE.h"

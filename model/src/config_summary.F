@@ -17,6 +17,7 @@ C     |  2. Under multi-threading the summary is produced by     |
 C     |     the master thread. This threads reads data managed by|
 C     |     other threads.                                       |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global variables ===
 #include "SIZE.h"

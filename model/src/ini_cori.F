@@ -8,6 +8,7 @@ C     /==========================================================\
 C     | SUBROUTINE INI_CORI                                      |
 C     | o Initialise coriolis term.                              |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global variables ===
 #include "SIZE.h"

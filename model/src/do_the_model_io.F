@@ -21,6 +21,7 @@ C     | loaded. To work well this assumes the existence of some  |
 C     | reliable tool to join datasets together at the end of a  |
 C     | run - see joinds.p                                       |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     == Global variables ===
 #include "SIZE.h"

@@ -30,6 +30,7 @@ C     |   Both of the above also require modifying the support   |
 C     |   routines that map computational blocks to simulation   |
 C     |   domain blocks.                                         |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global variables ===
 #include "SIZE.h"

@@ -8,6 +8,7 @@ C     /==========================================================\
 C     | SUBROUTINE INI_FORCING                                   |
 C     | o Set model initial forcing fields.                      |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global variables ===
 #include "SIZE.h"

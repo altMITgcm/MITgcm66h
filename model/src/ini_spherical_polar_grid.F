@@ -33,6 +33,7 @@ C     | Under the spherical polar grid mode primitive distances  |
 C     | in X and Y are in degrees. Distance in Z are in m or Pa  |
 C     | depending on the vertical gridding mode.                 |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global variables ===
 #include "SIZE.h"

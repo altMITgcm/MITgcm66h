@@ -24,6 +24,7 @@ C     | o Controlling routine for IO to write restart file.      |
 C     |==========================================================|
 C     | Read model checkpoint files for use in restart.          |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     == Global variables ===
 #include "SIZE.h"
@@ -162,6 +163,7 @@ C     |==========================================================|
 C     | Call low-level routines to read a 2d model field.        |
 C     | Handles _RL type data ( generally _RL == REAL*8 )        |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     == Global variables ==
 #include "SIZE.h"
@@ -332,6 +334,7 @@ C     |==========================================================|
 C     | Call low-level routines to read a 2d model field.        |
 C     | Handles _RS type data ( generally _RS == REAL*4 )        |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     == Global variables ==
 #include "SIZE.h"
@@ -509,6 +512,7 @@ C     |==========================================================|
 C     | Call low-level routines to read a 3d model field.        |
 C     | Handles _RL type data ( generally _RL == REAL*8 )        |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     == Global variables ==
 #include "SIZE.h"
@@ -688,6 +692,7 @@ C     |==========================================================|
 C     | Call low-level routines to read a 3d model field.        |
 C     | Handles _RS type data ( generally _RS == REAL*4 )        |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     == Global variables ==
 #include "SIZE.h"
@@ -870,6 +875,7 @@ C     | one-dimensional INTEGER data in textual form. The format |
 C     | is designed to be readily parsed by a post-processing    |
 C     | utility.                                                 |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     == Global data ==
 #include "SIZE.h"
@@ -915,6 +921,7 @@ C     | one-dimensional LOGICAL data in textual form. The format |
 C     | is designed to be readily parsed by a post-processing    |
 C     | utility.                                                 |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     == Global data ==
 #include "SIZE.h"
@@ -960,6 +967,7 @@ C     | one-dimensional real*8 data in textual form. The format  |
 C     | is designed to be readilya parsed by a post-processing   |
 C     | utility.                                                 |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     == Global data ==
 #include "SIZE.h"
@@ -1002,6 +1010,7 @@ C     |==========================================================|
 C     | Call low-level routines to write a model 2d model field. |
 C     | Handles _RL type data ( generally _RL == REAL*8 )        |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     == Global variables ==
 #include "SIZE.h"
@@ -1160,6 +1169,7 @@ C     |==========================================================|
 C     | Call low-level routines to write a model 3d model field. |
 C     | Handles _RL type data ( generally _RL == REAL*8 )        |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     == Global variables ==
 #include "SIZE.h"
@@ -1338,6 +1348,7 @@ C     | the current timestep number. This sort of checkpoint can |
 C     | be used to provided a snap-shot from which the model     |
 C     | can be rerun.                                            |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     == Global variables ===
 #include "SIZE.h"
@@ -1502,6 +1513,7 @@ C     |==========================================================|
 C     | Write model state files for post-processing. This file   |
 C     | includes code for diagnosing W and RHO for output.       |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     == Global variables ===
 #include "SIZE.h"
