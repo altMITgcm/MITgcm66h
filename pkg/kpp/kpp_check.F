@@ -60,7 +60,7 @@ C     Check that overlap region is adequate.
 C     When horizontal smoothing is turned on,
 C     KPP_CALC computes vertical viscosity and diffusivity for region
 C     (-2:sNx+3,-2:sNy+3) as required by CALC_DIFFUSIVITY and requires
-C     values of uVel, vVel, SurfaceTendencyU, SurfaceTendencyV in the
+C     values of uVel, vVel, surfaceForcingU, surfaceForcingV in the
 C     region (-2:sNx+4,-2:sNy+4).
 C     Hence overlap region needs to be set OLx=4, OLy=4.
 C     When option FRUGAL_KPP is used, computation in overlap regions

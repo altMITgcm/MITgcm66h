@@ -55,8 +55,8 @@ C     I, J - Loop counters
       DO j=jMin,jMax
        DO i=iMin,iMax
          df(i,j) = df(i,j) - _rA(i,j,bi,bj) * 
-     &          KappaRtr(i,j,k) * KPPghat(i,j,km1,bi,bj) * drF(1) *
-     &          surfaceTendencyPtr(i,j,bi,bj,tracerIdentity)
+     &          KappaRtr(i,j,k) * KPPghat(i,j,km1,bi,bj) *
+     &          surfaceForcingPtr(i,j,bi,bj,tracerIdentity)
        ENDDO
       ENDDO
 
