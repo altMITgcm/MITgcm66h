@@ -14,6 +14,7 @@ C--   Constants for boundary forcing (common FORCON):
 
       SWCAP = 0.30 _d 0
       SWWIL = 0.17 _d 0
+      hSnowWetness = 1. _d -2
 
 C--   Constants for convection (common CNVCON):
 
