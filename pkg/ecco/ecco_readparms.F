@@ -51,6 +51,9 @@ c     == end of interface ==
 c--   ECCO parameters.
       namelist /ECCO_PARMS/
      &                      expId
+
+c--   initialise
+      expId = 'MITECCO_0.'
     
       _BEGIN_MASTER( myThid )
         open( unit=scrunit1, status='scratch' )
