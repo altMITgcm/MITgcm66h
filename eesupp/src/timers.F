@@ -467,15 +467,11 @@ C     wallClockTime :: Wall clock time returned
       Real*8 wallClockTime
 
 C     !USES:
-#ifndef TARGET_T3E
-# ifndef TARGET_CRAY_VECTOR
-#  ifdef TARGET_PWR3
+#ifndef HAVE_FDATE
       Real*8 system_time, user_time, timenow
-#  else
+#else
       Real*4 ETIME
       EXTERNAL ETIME
-#  endif
-# endif
 #endif
 
 C     !LOCAL VARIABLES:

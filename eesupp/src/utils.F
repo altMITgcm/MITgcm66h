@@ -48,10 +48,8 @@ C
       lDate = 24
       IF ( LEN(string) .LT. lDate ) GOTO 901
       string = ' '
-#ifndef TARGET_T3E
-#ifndef TARGET_CRAY_VECTOR
+#ifdef HAVE_FDATE
       CALL FDATE( string )
-#endif
 #endif
 C   
  1000 CONTINUE
