@@ -214,7 +214,8 @@ C     groundAtK1  - put the surface(k=1) at the Lower Boundary (=ground)
      & nonHydrostatic, globalFiles,
      & allowFreezing, groundAtK1,
      & usePickupBeforeC35, debugMode,
-     & readPickupWithTracer, writePickupWithTracer
+     & readPickupWithTracer, writePickupWithTracer,
+     & multiDimAdvection
       LOGICAL usingCartesianGrid
       LOGICAL usingSphericalPolarGrid
       LOGICAL usingCurvilinearGrid
@@ -262,6 +263,7 @@ C     groundAtK1  - put the surface(k=1) at the Lower Boundary (=ground)
       LOGICAL debugMode
       LOGICAL readPickupWithTracer
       LOGICAL writePickupWithTracer
+      LOGICAL multiDimAdvection
 
 C--   COMMON /PARM_R/ "Real" valued parameters used by the model.
 C     gg2dTargetResidual

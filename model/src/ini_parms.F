@@ -108,7 +108,8 @@ C--   Continuous equation parameters
      & bottomDragLinear,bottomDragQuadratic,
      & usePickupBeforeC35, debugMode, 
      & readPickupWithTracer, writePickupWithTracer,
-     & tempAdvScheme, saltAdvScheme, tracerAdvScheme
+     & tempAdvScheme, saltAdvScheme, tracerAdvScheme,
+     & multiDimAdvection
 
 C--   Elliptic solver parameters
       NAMELIST /PARM02/

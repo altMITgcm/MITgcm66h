@@ -18,6 +18,7 @@ C     == Global variables ===
 #include "PARAMS.h"
 #include "DYNVARS.h"
 #include "GRID.h"
+#include "GAD.h"
 #ifdef ALLOW_PASSIVE_TRACER
 #include "TR1.h"
 #endif
@@ -433,6 +434,25 @@ C note(jmc) : phiHyd=0 at this point but is not really used in Molteni Physics
          CALL TIMER_STOP ('AIM_DO_ATMOS_PHYS      [DYNAMICS]', myThid)
         ENDIF
 #endif /* ALLOW_AIM */
+
+C--     Some advection schemes are better calculated using a multi-dimensional
+C       method in the absence of any other terms and, if used, is done here.
+        IF (multiDimAdvection) THEN
+         IF (tempStepping .AND.
+     &       tempAdvScheme.NE.ENUM_CENTERED_2ND .AND.
+     &       tempAdvScheme.NE.ENUM_UPWIND_3RD .AND.
+     &       tempAdvScheme.NE.ENUM_CENTERED_4TH )
+     &   CALL GAD_ADVECTION(bi,bj,tempAdvScheme,GAD_TEMPERATURE,theta,
+     U                      gT,
+     I                      myTime,myIter,myThid)
+         IF (saltStepping .AND.
+     &       saltAdvScheme.NE.ENUM_CENTERED_2ND .AND.
+     &       saltAdvScheme.NE.ENUM_UPWIND_3RD .AND.
+     &       saltAdvScheme.NE.ENUM_CENTERED_4TH )
+     &   CALL GAD_ADVECTION(bi,bj,saltAdvScheme,GAD_SALINITY,salt,
+     U                      gS,
+     I                      myTime,myIter,myThid)
+        ENDIF
 
 
 C--     Start of thermodynamics loop
