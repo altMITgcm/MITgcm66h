@@ -105,7 +105,8 @@ C
           DO i=1-Olx,sNx+Olx
            R_low(I,J,bi,bj) = rF(Nr+1)
            Ro_surf(I,J,bi,bj) = H(I,J,bi,bj)
-           IF (usingSphericalPolarGrid .AND. abs(yC(I,J,bi,bj)).GE.90. ) THEN
+           IF (usingSphericalPolarGrid .AND. abs(yC(I,J,bi,bj)).GE.90. ) 
+     &     THEN
             Ro_surf(I,J,bi,bj) = 0.
            ENDIF
           ENDDO
@@ -119,7 +120,8 @@ C
           DO i=1-Olx,sNx+Olx
            R_low(I,J,bi,bj) = H(I,J,bi,bj)
            Ro_surf(I,J,bi,bj) = Ro_SeaLevel
-           IF (usingSphericalPolarGrid .AND. abs(yC(I,J,bi,bj)).GE.90. ) THEN
+           IF (usingSphericalPolarGrid .AND. abs(yC(I,J,bi,bj)).GE.90. ) 
+     &     THEN
             R_low(I,J,bi,bj) = 0.
            ENDIF
           ENDDO
