@@ -21,7 +21,6 @@ C     == Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "DYNVARS.h"
-#include "GAD.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
