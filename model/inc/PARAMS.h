@@ -182,6 +182,7 @@ C     openBoundaries - Using open-boundaries
 C     nonHydrostatic - Using non-hydrostatic terms
 C     globalFiles    - Selects between "global" and "tiled" files
 C     allowFreezing  - Allows water to freeze and form ice
+C     groundAtK1  - put the surface(k=1) at the Lower Boundary (=ground)
       COMMON /PARM_L/ usingCartesianGrid, usingSphericalPolarGrid,
      & no_slip_sides,no_slip_bottom,
      & staggerTimeStep,
@@ -196,7 +197,7 @@ C     allowFreezing  - Allows water to freeze and form ice
      & doThetaClimRelax, doSaltClimRelax,
      & periodicExternalForcing, usingPCoords, usingZCoords,
      & openBoundaries, nonHydrostatic, globalFiles,
-     & allowFreezing
+     & allowFreezing, groundAtK1
       LOGICAL usingCartesianGrid
       LOGICAL usingSphericalPolarGrid
       LOGICAL usingSphericalPolarMTerms
@@ -234,6 +235,7 @@ C     allowFreezing  - Allows water to freeze and form ice
       LOGICAL nonHydrostatic
       LOGICAL globalFiles
       LOGICAL allowFreezing
+      LOGICAL groundAtK1
 
 C--   COMMON /PARM_R/ "Real" valued parameters used by the model.
 C     cg2dTargetResidual
@@ -353,6 +355,8 @@ C     recip_horiVertRatio  ( 1 if horiz in m and vertical in m ).
 C                          ( g*rho if horiz in m and vertical in Pa ).
 C     latFFTFiltLo       - Low latitude for FFT filtering of latitude
 C                          circles ( see filter*.F )
+C     Ro_SeaLevel        - standard position of Sea-Level in "R" coordinate, used as
+C                          starting value (k=1) for vertical coordinate (rf(1)=Ro_SeaLevel)
       COMMON /PARM_R/ cg2dTargetResidual, cg2dpcOffDFac, 
      & cg3dTargetResidual,
      & delP, delZ, delR, delX, delY, 
@@ -372,7 +376,7 @@ C                          circles ( see filter*.F )
      & externForcingCycle, externForcingPeriod,
      & viscAp, diffKpT, diffKpS, hFacMinDr, hFacMinDp,
      & theta_S, specVol_S, horiVertRatio, recip_horiVertRatio,
-     & latFFTFiltLo, ivdc_kappa
+     & latFFTFiltLo, ivdc_kappa, Ro_SeaLevel
 
       _RL cg2dTargetResidual
       _RL cg3dTargetResidual
@@ -453,6 +457,7 @@ C                          circles ( see filter*.F )
       _RL recip_horiVertRatio
       _RL latFFTFiltLo
       _RL ivdc_kappa
+      _RL Ro_SeaLevel
 
       COMMON /PARM_A/ HeatCapacity_Cp,recip_Cp,
      &                Lamba_theta

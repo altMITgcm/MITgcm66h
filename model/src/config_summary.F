@@ -228,6 +228,14 @@ C     == Local variables ==
       CALL WRITE_0D_L( usingSphericalPolarGrid, INDEX_NONE,
      & 'usingSphericalPolarGrid =',
      &'   /* Spherical coordinates flag ( True / False ) */')
+      CALL WRITE_0D_L( groundAtK1, INDEX_NONE, 'groundAtK1 =',
+     &'   /* Lower Boundary (ground) at the surface(k=1) ( T / F ) */')
+      CALL WRITE_1D_R8( Ro_SeaLevel,1, INDEX_NONE,'Ro_SeaLevel =',
+     &'   /* r(1) ( units of r ) */')
+      CALL WRITE_1D_R8( rkFac,1, INDEX_NONE,'rkFac =',
+     &'   /* minus Vertical index orientation  */')
+      CALL WRITE_1D_R8( horiVertRatio,1, INDEX_NONE,'horiVertRatio =',
+     &'   /* Ratio on units : Horiz - Vertical */')
       CALL WRITE_1D_R8( delZ,Nr, INDEX_K,'delZ = ',
      &'   /* W spacing ( m ) */')
       CALL WRITE_1D_R8( delP,Nr, INDEX_K,'delP = ',

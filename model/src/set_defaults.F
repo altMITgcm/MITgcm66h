@@ -44,6 +44,7 @@ C--   Grid parameters
 C     Vertical gridding
       rkFacDefault         = 1.D0
       horiVertRatio        = 1.D0
+      Ro_SeaLevel = 0.
       DO k=1,Nr
        delRdefault(k) = 0.
       ENDDO
@@ -109,6 +110,7 @@ C--   Set default "physical" parameters
       globalFiles         = .FALSE.
       allowFreezing       = .FALSE.
       ivdc_kappa          = 0.D0
+      groundAtK1          = .FALSE.
 
 C--   Elliptic solver parameters
       cg2dMaxIters       = 150

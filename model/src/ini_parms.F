@@ -120,7 +120,7 @@ C--   Gridding parameters
       NAMELIST /PARM04/
      & usingCartesianGrid, dxSpacing, dySpacing, delX, delY, delZ,
      & usingSphericalPolarGrid, phiMin, thetaMin, rSphere,
-     & delP, delR, rkFac,
+     & delP, delR, rkFac, Ro_SeaLevel, groundAtK1,
      & delXfile, delYfile
 
 C--   Input files
@@ -765,6 +765,8 @@ C     being combined and a single frame of reference is needed.
        rkFac =  1.D0
        horiVertRatio = 1.D0
       ENDIF
+      IF (buoyancyRelation.EQ.'ATMOSPHERIC')
+     &   horiVertRatio = Gravity * rhoConst                                     
       IF ( rkFac .EQ. UNSET_RS ) rkFac=rkFacDefault
       recip_rkFac = 1.D0 / rkFac
       recip_horiVertRatio = 1./horiVertRatio
