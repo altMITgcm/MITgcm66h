@@ -49,7 +49,7 @@ C     Nr  - No. points in R for full process domain.
 
 C     l - Runtime global problem size in X
 C     m - Runtime global problem size in Y
-C     n - Runtime global problem size in Z
+C     n - Runtime global problem size in R
       COMMON /RUNSIZ/ l, m, n
       INTEGER l
       INTEGER m
