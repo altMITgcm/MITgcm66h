@@ -752,6 +752,7 @@ Cjmc(end)
       ENDDO
 
 #ifndef EXCLUDE_DEBUGMODE
+      If (debugMode) THEN
        CALL DEBUG_STATS_RL(1,EtaN,'EtaN (DYNAMICS)',myThid)
        CALL DEBUG_STATS_RL(Nr,vVel,'Vvel (DYNAMICS)',myThid)
        CALL DEBUG_STATS_RL(Nr,wVel,'Wvel (DYNAMICS)',myThid)
@@ -765,6 +766,7 @@ Cjmc(end)
        CALL DEBUG_STATS_RL(Nr,GvNm1,'GvNm1 (DYNAMICS)',myThid)
        CALL DEBUG_STATS_RL(Nr,GtNm1,'GtNm1 (DYNAMICS)',myThid)
        CALL DEBUG_STATS_RL(Nr,GsNm1,'GsNm1 (DYNAMICS)',myThid)
+      ENDIF
 #endif
 
       RETURN
