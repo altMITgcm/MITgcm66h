@@ -70,6 +70,10 @@ C--        Update fields in top level according to tendency terms
             CALL SHAP_FILT_UV_S1(
      U           uFld, vFld,
      I           myTime, myThid )
+          ELSEIF (Shap_funct.EQ.2) THEN
+            CALL SHAP_FILT_UV_S2(
+     U           uFld, vFld,
+     I           myTime, myThid )
           ELSEIF (Shap_funct.EQ.4) THEN
             CALL SHAP_FILT_UV_S4(
      U           uFld, vFld,
