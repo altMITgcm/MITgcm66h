@@ -25,7 +25,8 @@ c     == routine arguments ==
 
 c     mythid - thread number for this instance of the routine.
 
-      integer mytime, myiter, mythid
+      _RL mytime
+      integer myiter, mythid
 
 c     == local variables ==
 
