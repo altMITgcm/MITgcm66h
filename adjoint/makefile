@@ -1,9 +1,10 @@
 SHELL		 = /bin/tcsh
 RM               = rm -f
 LOC              = $(PWD)
-TAMC             = /data43/ralf/tamc/tamc
-TAF              = ~fastopt/bin/taf
-###TAF              = ~fastopt/taf-1.3.5/bin/taf
+TAMC             = tamc
+###TAMC             = /data43/ralf/tamc/tamc
+TAF              = taf
+###TAF              = ~fastopt/bin/taf
 DEST             = .
 SOURCE_CODE      = ../bin
 ADJOINT_SCRIPT   = ../adjoint
