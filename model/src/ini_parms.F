@@ -160,7 +160,7 @@ C--   Continuous equation parameters
      & nonHydrostatic, quasiHydrostatic, globalFiles, useSingleCpuIO,
      & allowFreezing, useOldFreezing, ivdc_kappa,
      & bottomDragLinear,bottomDragQuadratic,
-     & usePickupBeforeC35, debugMode, debugLevel,
+     & usePickupBeforeC35, usePickupBeforeC54, debugMode, debugLevel,
      & readPickupWithTracer, writePickupWithTracer,
      & tempAdvScheme, tempVertAdvScheme, 
      & saltAdvScheme, saltVertAdvScheme, tracerAdvScheme,

@@ -171,6 +171,7 @@ C     Create MNC definitions for DYNVARS.h variables
       CALL MNC_CW_ADD_VATTR_TEXT('EtaH',1,'units','m', myThid)
       CALL MNC_CW_ADD_VATTR_TEXT('EtaH',1,
      &     'coordinates','XC YC RC iter', myThid)
+      CALL MNC_CW_ADD_VNAME('dEtaHdt', 'Cen_xy_Hn__-__t', 3,4, myThid)
 
       CALL MNC_CW_ADD_VNAME('W', 'Cen_xy_Hn__C__t', 4,5, myThid)
       CALL MNC_CW_ADD_VATTR_TEXT('W',1,'units','m/s', myThid)

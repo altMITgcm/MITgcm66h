@@ -161,6 +161,7 @@ Cml      sBeta               = 7.4D-4
       bottomDragLinear    = 0.
       bottomDragQuadratic = 0.
       usePickupBeforeC35    = .FALSE.
+      usePickupBeforeC54    = .FALSE.
       debugMode             = .FALSE.
       readPickupWithTracer  = .FALSE.
       writePickupWithTracer = .FALSE.
