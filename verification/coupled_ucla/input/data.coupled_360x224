@@ -81,13 +81,14 @@
  &PARM03
  startTime   = 0.0
  endTime     = 100000000000.0,
- deltaTmom   = 3600.0,
- deltaTtracer= 3600.0,
- deltaTClock = 3600.0,
+ deltaTmom   = 2700.0,
+ deltaTtracer= 2700.0,
+ deltaTClock = 2700.0,
  tauCD       = 172800.,
- dumpFreq=   0.0,
- taveFreq=   2628000.0,
- monitorFreq=1.,
+ dumpFreq    = 0.0,
+ taveFreq    = 2628000.0,
+ pChkPtFreq  = 5184000.0,
+ monitorFreq = 86400.0,
  &
 
 # Gridding parameters

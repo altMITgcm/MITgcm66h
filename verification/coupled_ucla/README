@@ -27,12 +27,16 @@ esm_input : 16 4  -> atmospheric CPUs + 1; oceanic CPUs
 
 esminput:
 
+ tbegin=1835.0,   -> time in days (5 years + 10 days from Jan 1 ????)
+ tfinal=10601.0,  -> 10-year integration
  GM_run=0,        -> no AGCM output to FE_datdir
  GM_run=1,        -> allow AGCM output to FE_datdir
+ OD_dtom=6.0,     -> coupling interval in hours
 
  NP_agcm=6,       -> total # of atmospheric CPUs
  NPI_agcm=2,      -> x-direction CPUS, better if rather small
  NPJ_agcm=3,      -> y-direction CPUS
+ dt_agcmhist_out=5184000.0, -> atmosphere model checkpointing in seconds
 
 ===================================================================
 
@@ -125,6 +129,7 @@ Instructions for creating library for JPL-ECCO-1/3-deg, 64cpu ocean model:
 ===================================================================
 
 Hi-res ocean, low-res atmosphere on alhena, 64-CPU:
+Note that with 1-hour time steps, ocean model fails after 35 days.
 
   ssh gemini.jpl.nasa.gov
   cd /tmp1/dmenem
