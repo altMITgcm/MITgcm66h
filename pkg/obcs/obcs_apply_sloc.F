@@ -35,7 +35,9 @@ C Northern boundary
        J_obc = OB_Jn(I,bi,bj)
        IF (J_obc.NE.0) THEN
         obc_mask = _maskS(I,J_obc,K,bi,bj)
-        sFld(I,J_obc)=OBNs(I,K,bi,bj)*obc_mask
+        DO J = J_obc, J_obc+Oly
+         sFld(I,J)=OBNs(I,K,bi,bj)*obc_mask
+        ENDDO
        ENDIF
 #endif
 C Southern boundary
@@ -43,7 +45,9 @@ C Southern boundary
        J_obc = OB_Js(I,bi,bj)
        IF (J_obc.NE.0) THEN
         obc_mask = _maskS(I,J_obc+1,K,bi,bj)
-        sFld(I,J_obc)=OBSs(I,K,bi,bj)*obc_mask
+        DO J = J_obc-Oly, J_obc
+         sFld(I,J)=OBSs(I,K,bi,bj)*obc_mask
+        ENDDO
        ENDIF
 #endif
       ENDDO
@@ -55,7 +59,9 @@ C Eastern boundary
        I_obc = OB_Ie(J,bi,bj)
        IF (I_obc.NE.0) THEN
         obc_mask = _maskW(I_obc,J,K,bi,bj)
-        sFld(I_obc,J)=OBEs(J,K,bi,bj)*obc_mask
+        DO I = I_obc, I_obc+Olx
+         sFld(I,J)=OBEs(J,K,bi,bj)*obc_mask
+        ENDDO	
        ENDIF
 #endif
 C Western boundary
@@ -63,7 +69,9 @@ C Western boundary
        I_obc=OB_Iw(J,bi,bj)
        IF (I_obc.NE.0) THEN
         obc_mask = _maskW(I_obc+1,J,K,bi,bj)
-        sFld(I_obc,J)=OBWs(J,K,bi,bj) * obc_mask
+        DO I = I_obc-Olx, I_obc
+         sFld(I,J)=OBWs(J,K,bi,bj)*obc_mask
+        ENDDO
        ENDIF
 #endif
       ENDDO
