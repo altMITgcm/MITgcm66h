@@ -268,7 +268,7 @@ C--   Apply Filters to u*,v* before SOLVE_FOR_PRESSURE
 #ifdef ALLOW_SHAP_FILT
       IF (useSHAP_FILT .AND. shap_filt_uvStar) THEN
         CALL TIMER_START('SHAP_FILT           [FORWARD_STEP]',myThid)
-        CALL SHAP_FILT_APPLY_UV( gUnm1,gVnm1, myTime,myIter,myThid )
+        CALL SHAP_FILT_APPLY_UV( gU,gV, myTime,myIter,myThid )
         IF (implicDiv2Dflow.LT.1.) THEN
 C--   Explicit+Implicit part of the Barotropic Flow Divergence
 C      => Filtering of uVel,vVel is necessary
@@ -280,7 +280,7 @@ C      => Filtering of uVel,vVel is necessary
 #ifdef ALLOW_ZONAL_FILT
       IF (useZONAL_FILT .AND. zonal_filt_uvStar) THEN
         CALL TIMER_START('ZONAL_FILT_APPLY    [FORWARD_STEP]',myThid)
-        CALL ZONAL_FILT_APPLY_UV( gUnm1, gVnm1, myThid )
+        CALL ZONAL_FILT_APPLY_UV( gU, gV, myThid )
         IF (implicDiv2Dflow.LT.1.) THEN
 C--   Explicit+Implicit part of the Barotropic Flow Divergence
 C      => Filtering of uVel,vVel is necessary
