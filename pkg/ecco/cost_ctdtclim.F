@@ -125,12 +125,6 @@ c--   Read tiled data.
         ilctdtclim = ilnblnk( tbarfile )
         write(fnametheta(1:80),'(2a,i10.10)')
      &    tbarfile(1:ilctdtclim),'.',optimcycle
-      else
-        print*
-        print*,' cost_Ctdtclim: optimcycle has a wrong value.'
-        print*,'             optimcycle = ',optimcycle
-        print*
-        stop   '  ... stopped in cost_Ctdtclim.'
       endif
 
       fcthread = 0. _d 0

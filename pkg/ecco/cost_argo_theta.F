@@ -127,7 +127,9 @@ c--     Read time averages and the monthly mean data.
      &          optimcycle, mythid
      &   , xx_tbar_mean_dummy )
   
-        call cost_readargot( irec, mythid )
+cph        call cost_readargot( irec, mythid )
+        call mdsreadfield( argotfile, cost_iprec, 'RL', nr, argotobs,
+     &                    irec, mythid)
 
 c--     Loop over this thread's tiles.
         do bj = jtlo,jthi

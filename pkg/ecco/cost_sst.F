@@ -111,12 +111,6 @@ c--   Read tiled data.
         iltheta = ilnblnk( tbarfile )
         write(fnametheta(1:80),'(2a,i10.10)')
      &    tbarfile(1:iltheta),'.',optimcycle
-      else
-        print*
-        print*,' cost_sst: optimcycle has a wrong value.'
-        print*,'           optimcycle = ',optimcycle
-        print*
-        stop   '  ... stopped in cost_sst.'
       endif
 
       fcthread_sst = 0. _d 0

@@ -110,14 +110,8 @@ c--   Read state record from global file.
 
       if (optimcycle .ge. 0) then
         ilu=ilnblnk( tbarfile )
-        write(fnametheta(1:80),'(2a,i10.10)') tbarfile(1:ilu),'.',
-     &                                   optimcycle
-      else
-        print*
-        print*,' cost_CTDT: optimcycle has a wrong value.'
-        print*,'                 optimcycle = ',optimcycle
-        print*
-        stop   '  ... stopped in cost_CTDT.'
+        write(fnametheta(1:80),'(2a,i10.10)') 
+     &       tbarfile(1:ilu), '.', optimcycle
       endif
       
       fcthread_ctdt = 0. _d 0

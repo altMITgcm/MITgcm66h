@@ -114,14 +114,8 @@ c--   Read state record from global file.
 
       if (optimcycle .ge. 0) then
         ilu=ilnblnk( tbarfile )
-        write(fnametheta(1:80),'(2a,i10.10)') tbarfile(1:ilu),'.',
-     &                                   optimcycle
-      else
-        print*
-        print*,' cost_XBT: optimcycle has a wrong value.'
-        print*,'                 optimcycle = ',optimcycle
-        print*
-        stop   '  ... stopped in cost_XBT.'
+        write(fnametheta(1:80),'(2a,i10.10)') 
+     &       tbarfile(1:ilu), '.', optimcycle
       endif
       
       fcthread_xbt = 0. _d 0
@@ -130,7 +124,7 @@ c--   Loop over records.
       do irec = 1,nmonsrec
 
 c--     Read time averages and the monthly mean data.
-        call active_read_xy( fnametheta, tbar, irec,
+        call active_read_xyz( fnametheta, tbar, irec,
      &          doglobalread, ladinit,
      &          optimcycle, mythid
      &   , xx_tbar_mean_dummy )

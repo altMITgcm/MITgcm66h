@@ -111,12 +111,6 @@ c--   Read tiled data.
         ilsalt = ilnblnk( sbarfile )
         write(fnamesalt(1:80),'(2a,i10.10)')
      &    sbarfile(1:ilsalt),'.',optimcycle
-      else
-        print*
-        print*,' cost_sss: optimcycle has a wrong value.'
-        print*,'           optimcycle = ',optimcycle
-        print*
-        stop   '  ... stopped in cost_sss.'
       endif
 
       fcthread_sss = 0. _d 0

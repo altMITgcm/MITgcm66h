@@ -234,12 +234,12 @@ c           the temperature field.
               do i = imin,imax
                   if (_hFacC(i,j,k,bi,bj) .ne. 0.) then
                      fctiles = fctiles +
-     &                  (wsalt(k,bi,bj)*cosphi(i,j,bi,bj)*100.0*
+     &                  (wsalt(k,bi,bj)*cosphi(i,j,bi,bj)*2.5*
      &          (Slmean(i,j,k,bi,bj)/nl - Sfmean(i,j,k,bi,bj)/nf)*
      &          (Slmean(i,j,k,bi,bj)/nl - Sfmean(i,j,k,bi,bj)/nf))
      &                  
                      fctilet = fctilet +
-     &                  (wtheta(k,bi,bj)*cosphi(i,j,bi,bj)*100.0*
+     &                  (wtheta(k,bi,bj)*cosphi(i,j,bi,bj)*2.5*
      &          (Tlmean(i,j,k,bi,bj)/nl - Tfmean(i,j,k,bi,bj)/nf)*
      &          (Tlmean(i,j,k,bi,bj)/nl - Tfmean(i,j,k,bi,bj)/nf))
                   endif
