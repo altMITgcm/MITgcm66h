@@ -63,6 +63,7 @@ CEOP
           surfaceTendencyV(i,j,bi,bj) = 0. _d 0
           surfaceTendencyT(i,j,bi,bj) = 0. _d 0
           surfaceTendencyS(i,j,bi,bj) = 0. _d 0
+          surfaceTendencyTice(i,j,bi,bj) = 0. _d 0
 #ifndef ALLOW_EXF
           taux0           (i,j,bi,bj) = 0. _d 0
           taux1           (i,j,bi,bj) = 0. _d 0

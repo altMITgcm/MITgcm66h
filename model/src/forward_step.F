@@ -230,6 +230,11 @@ C     theta is dumped or time-averaged.
       ENDIF
 # endif /* ALLOW_SEAICE */
 
+C--   Freeze water at the surface
+      IF ( allowFreezing .AND. .NOT. useSEAICE
+     &                   .AND. .NOT. useThermSeaIce )
+     &   CALL FREEZE( myThid )
+
 #ifdef ALLOW_AUTODIFF_TAMC
 # ifdef ALLOW_PTRACERS
 cph this replaces _bibj storing of ptracer within thermodynamics

@@ -226,6 +226,7 @@ C/\  | | | |                    :: for forcing datasets.
 C/\  | | | |                  
 C/\  | | | |-EXCH :: Sync forcing. in overlap regions.
 C/\  | | |-SEAICE_MODEL   :: Compute sea-ice terms. ( pkg/seaice )
+C/\  | | |-FREEZE         :: Limit surface temperature.
 C/\  | | |-GCHEM_FIELD_LOAD :: load tracer forcing fields (pkg/gchem)
 C/\  | | |
 C/\  | | |-THERMODYNAMICS :: theta, salt + tracer equations driver.
@@ -303,7 +304,6 @@ C/\  | | | | |-FREESURF_RESCALE_G :: Re-scale Gs for free-surface height.
 C/\  | | | | |-TIMESTEP_TRACER    :: Step tracer field forward in time
 C/\  | | | |
 C/\  | | | |-OBCS_APPLY_TS        :: Open bndy. package (see pkg/obcs ).
-C/\  | | | |-FREEZE               :: Limit range of temperature.
 C/\  | | | |
 C/\  | | | |-IMPLDIFF             :: Solve vertical implicit diffusion equation.
 C/\  | | | |-OBCS_APPLY_TS        :: Open bndy. package (see pkg/obcs ). 

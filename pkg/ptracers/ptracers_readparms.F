@@ -42,6 +42,7 @@ C internal flag to indicate we are in business
       PTRACERSisON=.TRUE.
 
 C Set defaults values for parameters in PTRACERS.h
+      PTRACERS_taveFreq=taveFreq
       PTRACERS_numInUse=-1
       DO iTracer=1,PTRACERS_num
        PTRACERS_advScheme(iTracer)=saltAdvScheme

@@ -22,7 +22,6 @@ C     === Global variables ===
 #include "SEAICE_PARAMS.h"
 #include "SEAICE.h"
 #include "SEAICE_FFIELDS.h"
-#include "SEAICE_EXTERNAL.h"
 
 #ifdef ALLOW_AUTODIFF_TAMC
 # include "tamc.h"
