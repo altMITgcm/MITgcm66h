@@ -3,6 +3,15 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint40
+o moved calc_gs, calc_gt and calc_tr1 back to model/src
+o added FLT (floats) package from Arne along with demo. experiment
+o re-arranged Adams-Bashforth scheme for tracers to allow easier
+  implementation of forward-in-time forcing terms
+o more mods for non-linear free-surface including new variable
+o modified multi-dim method to work on cube
+o bug fix in KPP (from DM)
+
 checkpoint40pre9
 o added DST advection schemes
 o fix MPI bug on SGI's
@@ -11,6 +20,7 @@ o fixed conditionals for fixed flow/passive tracer only mode
 o added tension/strain form of stress tensor
 o changes to commenting of arguments for TAF/TAMC
 o added/updated many matlab scripts
+o added multi-dimensional advection method for tracers
   
 checkpoint40pre8
 o new package rw/
