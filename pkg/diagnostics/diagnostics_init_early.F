@@ -24,8 +24,9 @@ C       \begin{tabular}[h]{|c|c|}\hline
 C         \textbf{Positions}  &  \textbf{Characters}
 C         &  \textbf{Meanings} \\\hline
 C         parse(1)  &  S  &  scalar \\
-C                   &  U  &  U-vector component  \\
-C                   &  V  &  V-vector component  \\
+C                   &  U  &  vector component in X direction \\
+C                   &  V  &  vector component in Y direction \\
+C                   &  W  &  vector component in vertical direction \\
 C         parse(2)  &  U  &  C-grid U-Point  \\
 C                   &  V  &  C-grid V-Point  \\
 C                   &  M  &  C-grid Mass Point  \\
