@@ -217,7 +217,7 @@ C     write(*,*) 'mon_write_stdout = ''', mon_write_stdout, ''''
 #ifdef ALLOW_USE_MPI
         ENDIF
 #endif /* ALLOW_USE_MPI */
-      _END_MASTER()
+      _END_MASTER(myThid)
 
       RETURN
       END

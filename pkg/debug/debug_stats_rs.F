@@ -46,7 +46,7 @@ C     === Local variables ====
      &      'DEBUG_STATS_RS: ',arrName,' mean=',theMean
       WRITE(*,'(A,A30,A,1PE22.14)')
      &      'DEBUG_STATS_RS: ',arrName,' S.D.=',theSD
-      _END_MASTER( )
+      _END_MASTER( myThid )
 
       RETURN
       END

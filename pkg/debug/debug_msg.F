@@ -28,7 +28,7 @@ C     === Local variables ====
       WRITE(msgBuf,'(A11,A40)') 'DEBUG_MSG: ',text
       CALL PRINT_MESSAGE( msgBuf,
      &   standardMessageUnit, SQUEEZE_RIGHT, myThid )
-      _END_MASTER( )
+      _END_MASTER( myThid )
 
       RETURN
       END

@@ -347,7 +347,7 @@ C ITERATION END -----------------------------------------------------
       IF ( debugLevel .GE. debLevB ) THEN
        _BEGIN_MASTER( myThid )
         write(*,'(A,I6,1P2E22.14)')' U lsr iters, error = ',ICOUNT1,S1
-       _END_MASTER( )
+       _END_MASTER( myThid )
       ENDIF
 
 C NOW FOR VICE
@@ -572,7 +572,7 @@ C ITERATION END -----------------------------------------------------
       IF ( debugLevel .GE. debLevB ) THEN
        _BEGIN_MASTER( myThid )
         write(*,'(A,I6,1P2E22.14)')' V lsr iters, error = ',ICOUNT2,S2
-       _END_MASTER( )
+       _END_MASTER( myThid )
       ENDIF
 
 C NOW END

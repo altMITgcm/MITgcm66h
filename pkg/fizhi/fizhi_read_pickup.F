@@ -109,7 +109,7 @@ C       Read fields as consecutive records
         CALL MNC_CW_RL_R('D',fn,0,0,'sphy',sphy,myThid)
 
 
-        _END_MASTER()
+        _END_MASTER(myThid)
 
       ENDIF
 #endif

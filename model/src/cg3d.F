@@ -219,7 +219,7 @@ C     _EXCH_XYZ_R8( cg3d_s, myThid )
       _BEGIN_MASTER( myThid )
       write(*,'(A,1P2E22.14)')
      &     ' cg3d: Sum(rhs),rhsMax = ',sumRHS,rhsMax
-      _END_MASTER( )
+      _END_MASTER( myThid )
 
       actualIts      = 0
       actualResidual = SQRT(err)
@@ -227,7 +227,7 @@ C     _BARRIER
 c     _BEGIN_MASTER( myThid )
 c      WRITE(*,'(A,I6,1PE30.14)') ' CG3D iters, err = ',
 c    &  actualIts, actualResidual
-c     _END_MASTER( )
+c     _END_MASTER( myThid )
       firstResidual=actualResidual
 
 C     >>>>>>>>>>>>>>> BEGIN SOLVER <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -494,7 +494,7 @@ Cadj  _EXCH_XYZ_R8(cg3d_x, myThid )
 c     _BEGIN_MASTER( myThid )
 c      WRITE(*,'(A,I6,1PE30.14)') ' CG3D iters, err = ',
 c    &  actualIts, actualResidual
-c     _END_MASTER( )
+c     _END_MASTER( myThid )
       lastResidual=actualResidual
       numIters=actualIts
 

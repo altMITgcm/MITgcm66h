@@ -223,13 +223,13 @@ C     _EXCH_XY_R8( cg2d_s, myThid )
         _BEGIN_MASTER( myThid )
         write(*,'(A,1P2E22.14)')' cg2d: Sum(rhs),rhsMax = ',
      &                                  sumRHS,rhsMax 
-        _END_MASTER( )
+        _END_MASTER( myThid )
        ENDIF
 C     _BARRIER
 c     _BEGIN_MASTER( myThid )
 c      WRITE(*,'(A,I6,1PE30.14)') ' CG2D iters, err = ', 
 c    & actualIts, actualResidual
-c     _END_MASTER( )
+c     _END_MASTER( myThid )
       firstResidual=actualResidual
 
       IF ( err .LT. cg2dTolerance ) GOTO 11
@@ -381,7 +381,7 @@ C     _EXCH_XY_R8(cg2d_x, myThid )
 c     _BEGIN_MASTER( myThid )
 c      WRITE(*,'(A,I6,1PE30.14)') ' CG2D iters, err = ', 
 c    & actualIts, actualResidual
-c     _END_MASTER( )
+c     _END_MASTER( myThid )
 
 C--   Return parameters to caller
       lastResidual=actualResidual
