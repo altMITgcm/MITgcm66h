@@ -34,7 +34,7 @@ C--   KPP vertical mixing parameters
       NAMELIST /KPP_PARM01/
      & kpp_freq, kpp_dumpFreq, kpp_taveFreq,
      & KPPmixingMaps, KPPwriteState,
-     & minKPPhbl,
+     & minKPPhbl, maxKPPhbl,
      & epsln, phepsi, epsilon, vonk, dB_dz,
      & conc1, conam, concm, conc2, zetam,
      & conas, concs, conc3, zetas,
@@ -65,6 +65,7 @@ C--   set default KPP vertical mixing parameters
       KPPmixingMaps = .FALSE.
       KPPwriteState = .FALSE.
       minKPPhbl     = drF(1)*0.5
+      maxKPPhbl     = drF(1)*0.5
 
 C-----------------------------------------------------------------------
 C define some non-dimensional constants and

@@ -74,9 +74,10 @@ C-----------------------------------------------------------------------
      &        KPPmixingMaps, KPPwriteState
 
       _KPP_RL minKPPhbl
+      _KPP_RL maxKPPhbl
 
       COMMON /KPP_PARM_R/
-     &        minKPPhbl
+     &        minKPPhbl, maxKPPhbl
 
 c======================  file "kmixcom.h" =======================
 c
