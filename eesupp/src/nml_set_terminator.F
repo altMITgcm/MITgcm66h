@@ -5,7 +5,9 @@ C $Name$
 
 #define FTN_NML_F90
 #ifndef NML_TERMINATOR
-#define NML_TERMINATOR ' &'
+#define NML_TERMINATOR  ' &'
+#else
+#define NML_TERMINATOR  ' /'
 #endif
 
 CBOP
