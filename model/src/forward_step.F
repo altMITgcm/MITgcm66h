@@ -420,12 +420,12 @@ C--   Calculate float trajectories
       ENDIF
 #endif
 
-#ifndef EXCLUDE_MONITOR
+#ifdef ALLOW_MONITOR
 C--   Check status of solution (statistics, cfl, etc...)
       CALL TIMER_START('MONITOR             [FORWARD_STEP]',myThid)
       CALL MONITOR( myIter, myTime, myThid )
       CALL TIMER_STOP ('MONITOR             [FORWARD_STEP]',myThid)
-#endif /* EXCLUDE_MONITOR */
+#endif /* ALLOW_MONITOR */
 
 C--   Do IO if needed.
       CALL TIMER_START('DO_THE_MODEL_IO     [FORWARD_STEP]',myThid)

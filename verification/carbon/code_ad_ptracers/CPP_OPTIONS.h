@@ -35,9 +35,6 @@ C   instead of the "virtual salt flux"
 C o Exact volume conservation
 #define EXACT_CONSERV
 
-C o Include/exclude monitor package
-#define EXCLUDE_MONITOR
-
 c o Allow atmospheric loading
 #define ATMOSPHERIC_LOADING 
 

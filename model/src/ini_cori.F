@@ -111,7 +111,7 @@ c     _EXCH_XY_R4(fCori,myThid)
 c     CALL EXCH_Z_XY_RS(fCoriG,myThid)
 c     _EXCH_XY_R4(fCoriCos,myThid)
 
-#ifndef EXCLUDE_MONITOR
+#ifdef ALLOW_MONITOR
       CALL MON_PRINTSTATS_RS(1,fCori,'fCori',myThid)
       CALL MON_PRINTSTATS_RS(1,fCoriG,'fCoriG',myThid)
       CALL MON_PRINTSTATS_RS(1,fCoriCos,'fCoriCos',myThid)

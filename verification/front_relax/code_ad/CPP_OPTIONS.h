@@ -48,9 +48,6 @@ C o Execution environment support options
 C o Add passive tracer advection routines
 #define ALLOW_PASSIVE_TRACER
 
-C o Include/exclude monitor package
-#define EXCLUDE_MONITOR
-
 #ifdef ALLOW_AUTODIFF 
 # include "ECCO_CPPOPTIONS.h"
 #endif

@@ -38,9 +38,6 @@ C o Exact volume conservation
 C o Add passive tracer advection routines
 #define ALLOW_PASSIVE_TRACER
 
-C o Include/exclude monitor package
-#define EXCLUDE_MONITOR
-
 c o Allow atmospheric loading
 #define ATMOSPHERIC_LOADING 
 

@@ -40,9 +40,6 @@ C o Read/write of checkpoint files for restarting.
 C o Exact volume conservation
 #define EXACT_CONSERV
 
-C o Include/exclude monitor package
-#define EXCLUDE_MONITOR
-
 C o Execution environment support options
 #include "CPP_EEOPTIONS.h"
 
