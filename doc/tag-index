@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o added 2*Omega*Cos(phi)*W to u equations (non-hydrostatic Coriolis term)
+  New routine: mom_u_coriolis_nh()
 o fixed sign of non-hydrostatic metric terms in u and v equations.
   Depend on correct sign of gravitySign.
 o added work.pc* to .cvsignore in aim directories using ifc

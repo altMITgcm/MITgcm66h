@@ -443,7 +443,7 @@ C      --"-"--  Quadratic  ( linear: 1/s, quadratic: 1/m )
      & deltaT, deltaTmom, deltaTtracer, deltaTfreesurf, deltaTClock,
      & abeps, startTime, 
      & phiMin, thetaMin, rSphere, recip_RSphere, f0, beta,
-     & fCori, fCoriG,
+     & fCori, fCoriG, fCoriCos,
      & viscAh,  viscAz,  viscA4,  viscAr, viscAstrain, viscAtension,
      & diffKhT, diffKzT, diffK4T, diffKrT,
      & diffKhS, diffKzS, diffK4S, diffKrS,
@@ -530,6 +530,7 @@ C      --"-"--  Quadratic  ( linear: 1/s, quadratic: 1/m )
       _RL sRef(Nr)
       _RS fCori(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS fCoriG(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS fCoriCos(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL startTime
       _RL endTime
       _RL chkPtFreq
