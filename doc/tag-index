@@ -3,7 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
-o allow to use pkg diagnostics for LAND pkg output.
+o allow to use pkg diagnostics for LAND pkg output & Shapiro Tendencies.
 o pkg/shap_filt: fix for multi-tiles per face (CS-grid with EXCH2)
 
 checkpoint57d_post
