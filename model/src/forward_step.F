@@ -111,13 +111,17 @@ C--   Update etaH(n+1) :
 #endif /* EXACT_CONSERV */ 
 
 #ifdef NONLIN_FRSURF
-C--   compute the future surface level thickness
-C      according to etaH(n+1) 
-        IF ( nonlinFreeSurf.GT.0) THEN
+      IF ( select_rStar.NE.0 ) THEN
+C--   r* : compute the future level thickness according to etaH(n+1) 
+          CALL TIMER_START('CALC_R_STAR       [FORWARD_STEP]',mythid)
+          CALL CALC_R_STAR(etaH, myTime, myIter, myThid )
+          CALL TIMER_STOP ('CALC_R_STAR       [FORWARD_STEP]',mythid)
+      ELSEIF ( nonlinFreeSurf.GT.0) THEN
+C--   compute the future surface level thickness according to etaH(n+1) 
           CALL TIMER_START('CALC_SURF_DR      [FORWARD_STEP]',mythid)
           CALL CALC_SURF_DR(etaH, myTime, myIter, myThid )
           CALL TIMER_STOP ('CALC_SURF_DR      [FORWARD_STEP]',mythid)
-        ENDIF
+      ENDIF
 #endif /* NONLIN_FRSURF */
 
 C--   Load forcing/external data fields.
@@ -228,9 +232,15 @@ C--   Step forward W field in N-H algorithm
 #ifdef NONLIN_FRSURF
 C--   update hfacC,W,S and recip_hFac according to etaH(n+1) :
       IF ( nonlinFreeSurf.GT.0) THEN
+       IF ( select_rStar.GT.0 ) THEN
+        CALL TIMER_START('UPDATE_R_STAR      [FORWARD_STEP]',myThid)
+        CALL UPDATE_R_STAR( myTime, myIter, myThid )
+        CALL TIMER_STOP ('UPDATE_R_STAR      [FORWARD_STEP]',myThid)
+       ELSE
         CALL TIMER_START('UPDATE_SURF_DR     [FORWARD_STEP]',myThid)
         CALL UPDATE_SURF_DR( myTime, myIter, myThid )
         CALL TIMER_STOP ('UPDATE_SURF_DR     [FORWARD_STEP]',myThid)
+       ENDIF
       ENDIF
 C-    update also CG2D matrix (and preconditioner)
       IF ( momStepping .AND. nonlinFreeSurf.GT.2 ) THEN
