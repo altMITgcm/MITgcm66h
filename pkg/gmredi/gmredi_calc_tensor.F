@@ -170,7 +170,7 @@ C       Components of Redi/GM tensor
 #ifdef GM_VISBECK_VARIABLE_K
 
 C- note (jmc) : moved here since only used in VISBECK_VARIABLE_K 
-C           but do not know if *taperFct (or **2 ?) is necessary 
+C           but don't know if *taperFct (or **2 ?) is necessary 
         Ssq(i,j)=SlopeSqr(i,j)*taperFct(i,j)
 
 C--     Depth average of M^2/N^2 * N
