@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "ZONAL_FILT_OPTIONS"
+#include "ZONAL_FILT_OPTIONS.h"
 
 C     SUBROUTINE RFFTB (N,R,WSAVE)
 C     DIMENSION       R(1)       ,WSAVE(1)

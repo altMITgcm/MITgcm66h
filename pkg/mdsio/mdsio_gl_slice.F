@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "MDSIO.h"
+#include "MDSIO_OPTIONS.h"
 
 C The five "public" routines supplied here are:
 C
