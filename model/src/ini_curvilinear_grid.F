@@ -54,7 +54,11 @@ C     == Local variables ==
 #ifdef ALLOW_MNC
       CHARACTER*(80) mncFn
 #endif
+#ifdef ALLOW_EXCH2
+      _RL buf(sNx*nSx*nPx+1)
+#else
       _RL buf(sNx+1,sNy+1)
+#endif
       INTEGER iG, iL
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       INTEGER  ILNBLNK
