@@ -3,8 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
-checkpoint40
-o all changes of checkpoint40pre?
+checkpoint40pre8
 o new package rw/
   Added method for dumping intermediate local arrays:
   mdsio_writetile - same as mdsio_writefield except works from inside
