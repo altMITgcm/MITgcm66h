@@ -4,16 +4,19 @@ C $Name$
 #include "GCHEM_OPTIONS.h"
 
 CBOP
-C !ROUTINE: GCHEM_FORCING_INT
+C !ROUTINE: GCHEM_ADD_TENDENCY
 
 C !INTERFACE: ==========================================================
-      SUBROUTINE GCHEM_FORCING_INT(bi,bj,iMin,iMax,jMin,jMax,k,
+      SUBROUTINE GCHEM_ADD_TENDENCY(bi,bj,iMin,iMax,jMin,jMax,k,
      &                           iTracer, myTime,myIter, myThid )
 
 C !DESCRIPTION:
-C calls subroutine that will update tracer tendencies
-C this will be incorporated into regular timestepping in
-C ptracers_intergrate.F
+C     In the case of GCHEM_SEPARATE_FORCING undefined, GCHEM_ADD_TENDENCY 
+C     will update passive tracer tendencies gPtr with gchemTendency,
+C     the latter having been computed in GCHEM_CALC_TENDENDY, so that
+C     they will be incorporated into regular timestepping in 
+C     PTRACERS_INTERGRATE.
+C     IF GCHEM_SEPARATE_FORCING is defined, this routine is empty.
 
 C !USES: ===============================================================
       IMPLICIT NONE
@@ -48,7 +51,7 @@ CEOP
 # ifndef GCHEM_SEPARATE_FORCING
 C     apply the tendencies computed in GCHEM_CALC_TENDENCY to the passive
 C     tracers tendendy terms. The part of the code could also go into
-C     ptracers_forcing and replace the call to gchem_forcing_int there,
+C     ptracers_forcing and replace the call to gchem_add_tendency there,
 C     but this way, no gchem-related header files and CPP-flags are required
 C     within ptracers_forcing.
       DO j=jMin,jMax

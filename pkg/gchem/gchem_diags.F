@@ -37,11 +37,6 @@ cccccccccccccccccccccc
 #endif /* ALLOW_TIMEAVE */
 #endif /* DIC_BIOTIC */
 
-ccccccccccccccccccccccccc
-c  monitor              c
-ccccccccccccccccccccccccc
-        call gchem_monitor(myIter, myTime, myThid )
-
 #endif /* ALLOW_GCHEM */
 
       RETURN
