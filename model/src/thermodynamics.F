@@ -479,23 +479,15 @@ C to be able to exclude this scheme to avoid excessive storage and
 C recomputation. It *is* differentiable, if you need it.
 C Edit GAD_OPTIONS.h and #define DISABLE_MULTIDIM_ADVECTION to
 C disable this section of code.
-        IF (multiDimAdvection) THEN
-         IF (tempStepping .AND.
-     &       tempAdvScheme.NE.ENUM_CENTERED_2ND .AND.
-     &       tempAdvScheme.NE.ENUM_UPWIND_3RD .AND.
-     &       tempAdvScheme.NE.ENUM_CENTERED_4TH ) THEN
+        IF (tempAdvection .AND. tempMultiDimAdvec) THEN
           CALL GAD_ADVECTION(bi,bj,tempAdvScheme,GAD_TEMPERATURE,
      U                      theta,gT,
      I                      myTime,myIter,myThid)
-         ENDIF
-         IF (saltStepping .AND.
-     &       saltAdvScheme.NE.ENUM_CENTERED_2ND .AND.
-     &       saltAdvScheme.NE.ENUM_UPWIND_3RD .AND.
-     &       saltAdvScheme.NE.ENUM_CENTERED_4TH ) THEN
+        ENDIF
+        IF (saltAdvection .AND. saltMultiDimAdvec) THEN
           CALL GAD_ADVECTION(bi,bj,saltAdvScheme,GAD_SALINITY,
      U                      salt,gS,
      I                      myTime,myIter,myThid)
-         ENDIF
         ENDIF
 C Since passive tracers are configurable separately from T,S we
 C call the multi-dimensional method for PTRACERS regardless
