@@ -170,9 +170,9 @@ C-----------------------------------------------------------------------
               phiHyd(i,j,K)=phiHyd(i,j,K-1)
      &           -( ddRm*(theta(I,J,K-1,bi,bj)-tRef(K-1))
      &             +ddRp*(theta(I,J, K ,bi,bj)-tRef( K )) )
-C             Old code bug looked like this
-Cold          phiHyd(i,j,K)=phiHyd(i,j,K-1)-(ddRm1*
-Cold &      (theta(I,J,K-1,bi,bj)+theta(I,J,K,bi,bj))-tRef(K))
+C             Old code (atmos-exact) looked like this
+Cold          phiHyd(i,j,K)=phiHyd(i,j,K-1) - ddRm1*
+Cold &      (theta(I,J,K-1,bi,bj)+theta(I,J,K,bi,bj)-2.*tRef(K))
             ENDDO
           ENDDO
         ENDIF
