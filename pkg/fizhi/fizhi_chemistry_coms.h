@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 c Chemistry Variables Dimensions
 c -------------------------------
       common /chemistry_grid/ nlatsoz, nlevsoz, ntimesoz, latsoz, levsoz
