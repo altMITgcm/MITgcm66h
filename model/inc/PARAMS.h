@@ -56,6 +56,7 @@ C                       in relaxation term -lambda(theta-theta*)
 C     saltClimFile    - File containing salt climataology used
 C                       in relaxation term -lambda(salt-salt*)
 C     surfQfile       - File containing surface heat flux
+C     surfQswfile     - File containing surface shortwave radiation
 C     EmPmRfile       - File containing surface fresh water flux
 C     buoyancyRelation - Flag used to indicate which relation to use to
 C                        get buoyancy.
@@ -63,7 +64,7 @@ C                        get buoyancy.
      &                bathyFile, hydrogThetaFile, hydrogSaltFile,
      &                zonalWindFile, meridWindFile, thetaClimFile,
      &                saltClimFile, buoyancyRelation,
-     &                EmPmRfile, surfQfile,
+     &                EmPmRfile, surfQfile, surfQswfile,
      &                uVelInitFile, vVelInitFile, pSurfInitFile
       CHARACTER*(5) checkPtSuff(maxNoChkptLev)
       CHARACTER*(MAX_LEN_FNAM) bathyFile
@@ -74,6 +75,7 @@ C                        get buoyancy.
       CHARACTER*(MAX_LEN_FNAM) thetaClimFile
       CHARACTER*(MAX_LEN_FNAM) saltClimFile
       CHARACTER*(MAX_LEN_FNAM) surfQfile
+      CHARACTER*(MAX_LEN_FNAM) surfQswfile
       CHARACTER*(MAX_LEN_FNAM) EmPmRfile
       CHARACTER*(MAX_LEN_FNAM) buoyancyRelation
       CHARACTER*(MAX_LEN_FNAM) uVelInitFile
@@ -495,7 +497,8 @@ C
       INTEGER OB_Iwest(Ny)
 
 C Logical flags for selecting packages
-      LOGICAL use_KPPmixing
-      LOGICAL use_GMRedi
+      LOGICAL useKPP
+      LOGICAL useGMRedi
+      LOGICAL useECCO
       COMMON /PARM_PACKAGES/
-     &        use_KPPmixing,use_GMRedi
+     &        useKPP, useGMRedi, useECCO
