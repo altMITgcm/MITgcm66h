@@ -51,6 +51,12 @@ c     == local variables ==
       character*(max_len_mbuf) msgbuf
       _RL npart_dist
       Real*8 PORT_RAND
+#undef _USE_INTEGERS
+#ifdef _USE_INTEGERS
+      integer seed
+#else
+      Real*8 seed
+#endif
 
 c     == end of interface ==
 
@@ -107,8 +113,8 @@ c
 #endif
 
             if (iup(ip,bi,bj).ne.-2.) then
-               uu = uu + uu*(PORT_RAND()-0.5)*flt_noise
-               vv = vv + vv*(PORT_RAND()-0.5)*flt_noise
+               uu = uu + uu*(PORT_RAND(seed)-0.5)*flt_noise
+               vv = vv + vv*(PORT_RAND(seed)-0.5)*flt_noise
             endif
 
 c xx and xt are in indices. Therefore it is necessary to multiply
@@ -135,8 +141,8 @@ c
 #endif
 
             if (iup(ip,bi,bj).ne.-2.) then
-               u1 = u1 + u1*(PORT_RAND()-0.5)*flt_noise
-               v1 = v1 + v1*(PORT_RAND()-0.5)*flt_noise
+               u1 = u1 + u1*(PORT_RAND(seed)-0.5)*flt_noise
+               v1 = v1 + v1*(PORT_RAND(seed)-0.5)*flt_noise
             endif
 
 c xpart is in coordinates. Therefore it is necessary to multiply
