@@ -104,7 +104,7 @@ C    [d_xx+d_yy]^n tmpFld
 C    [d_xx+d_yy] tmpFld
          IF (N.LE.nShapUVPhys) THEN
            CALL MOM_CALC_HFACZ(bi,bj,k,hFacZ,r_hFacZ,myThid)
-           CALL MOM_VI_CALC_HDIV(bi,bj,k,
+           CALL MOM_CALC_HDIV(bi,bj,k,2,
      I                    tmpFldU(1-OLx,1-OLy,k,bi,bj),
      I                    tmpFldV(1-OLx,1-OLy,k,bi,bj),
      &                    hDiv,myThid)
