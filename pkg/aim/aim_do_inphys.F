@@ -46,11 +46,14 @@ C     J, K, bi,bj  - Loop counters
       ENDDO
       HSG(1) = rF(Nr+1)/pGround
 
-      DO J=1,sNy
-       RLAT(J) = yC(1,J,1,1)*deg2rad
+      DO bj = myByLo(myThid), myByHi(myThid)
+       DO bi = myBxLo(myThid), myBxHi(myThid)
+        DO J=1,sNy
+         RLAT(J) = yC(1,J,bi,bj)*deg2rad
+        ENDDO
+        CALL INPHYS( FSG, HSG, RLAT, myThid )
+       ENDDO
       ENDDO
-
-      CALL INPHYS( FSG, HSG, RLAT )
 
 #ifdef ALLOW_TIMEAVE 
 C     Initialise diagnostic counters ( these are cleared on model starti i.e. not

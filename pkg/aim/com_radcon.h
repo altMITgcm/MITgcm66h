@@ -25,4 +25,4 @@ C--   /FLDRAD/: Transmissivity and blackbody radiation (workspace)
 C--    TAU    = transmissivity of atmospheric layers
 C--    ST4A   = blackbody emission from full and half atmospheric levels 
 
-      COMMON /RADFLD/ TAU(NGP,NLEV), ST4A(NGP,NLEV,2)
+      COMMON /RADFLD/ TAUORIG(NGP,NLEV),ST4AORIG(NGP,NLEV,2)

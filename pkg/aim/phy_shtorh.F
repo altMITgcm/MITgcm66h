@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
  
-      SUBROUTINE SHTORH (IMODE,NGP,TA,PS,SIG,QA,RH,QSAT)
+      SUBROUTINE SHTORH (IMODE,NGP,TA,PS,SIG,QA,RH,QSAT,myThid)
 C--
 C--   SUBROUTINE SHTORH (IMODE,NGP,TA,PS,SIG,QA,RH,QSAT)
 C--
@@ -22,6 +22,7 @@ C--
 
 
       IMPLICIT rEAL*8 (A-H,O-Z)
+      INTEGER  myThid
 
 
 CcnhDebugStarts
