@@ -93,10 +93,10 @@ C--   Update etaH(n+1) :
         DO bj=myByLo(myThid),myByHi(myThid)
          DO bi=myBxLo(myThid),myBxHi(myThid)
            CALL CALC_EXACT_ETA( .FALSE., bi,bj, uVel,vVel,
-     I                          startTime, nIter0, myThid )
+     I                          myTime, myIter, myThid )
          ENDDO
         ENDDO
-        IF (implicDiv2Dflow .NE. 1. _d 0 )
+        IF (implicDiv2Dflow .NE. 1. _d 0 .OR. useOBCS )
      &     _EXCH_XY_R8(etaH, myThid )
       ENDIF
 #endif /* EXACT_CONSERV */ 

@@ -60,7 +60,7 @@ CEOP
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
-      IF (myIter.EQ.nIter0) THEN
+      IF (myIter.EQ.-1) THEN
 
        hFacInfMOM = hFacInf
 
