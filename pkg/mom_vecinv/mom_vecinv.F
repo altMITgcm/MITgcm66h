@@ -57,7 +57,7 @@ C     myThid - Instance number for this innvocation of CALC_MOM_RHS
       INTEGER myThid
       INTEGER bi,bj,iMin,iMax,jMin,jMax
 
-#ifndef DISABLE_MOM_VECINV
+#ifdef ALLOW_MOM_VECINV
 
 C     == Functions ==
       LOGICAL  DIFFERENT_MULTIPLE
@@ -489,7 +489,7 @@ c      CALL WRITE_LOCAL_RL('W3','I10',1,omega3,bi,bj,k,myIter,myThid)
        CALL WRITE_LOCAL_RL('D','I10',1,hdiv,bi,bj,k,myIter,myThid)
       ENDIF
 
-#endif /* DISABLE_MOM_VECINV */
+#endif /* ALLOW_MOM_VECINV */
 
       RETURN
       END
