@@ -1145,7 +1145,7 @@ clean:
 Clean:
 	@make clean
 	@make cleanlinks
-	-rm -f Makefile.bak gm_state gm_optfile make.log PACKAGES.h*
+	-rm -f Makefile.bak gm_state gm_optfile make.log
 CLEAN:
 	@make Clean
 	-find \$(EXEDIR) -name "*.meta" -exec rm {} \;
