@@ -54,6 +54,7 @@ CEOP
           Qsw             (i,j,bi,bj) = 0. _d 0
 #ifdef ATMOSPHERIC_LOADING
           pload           (i,j,bi,bj) = 0. _d 0
+          sIceLoad        (i,j,bi,bj) = 0. _d 0
 #endif
           surfaceTendencyU(i,j,bi,bj) = 0. _d 0
           surfaceTendencyV(i,j,bi,bj) = 0. _d 0

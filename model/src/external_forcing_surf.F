@@ -238,12 +238,22 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 C-- Atmospheric surface Pressure loading :
 
-      IF (buoyancyRelation .eq. 'OCEANIC' ) THEN
+      IF ( buoyancyRelation .EQ. 'OCEANIC' ) THEN
+       IF ( useRealFreshWaterFlux ) THEN
+        DO j = jMin, jMax
+         DO i = iMin, iMax
+          phi0surf(i,j,bi,bj) = ( pload(i,j,bi,bj)
+     &                        +sIceLoad(i,j,bi,bj)*gravity
+     &                          )*recip_rhoConst
+         ENDDO
+        ENDDO
+       ELSE
         DO j = jMin, jMax
          DO i = iMin, iMax
           phi0surf(i,j,bi,bj) = pload(i,j,bi,bj)*recip_rhoConst
          ENDDO
         ENDDO
+       ENDIF
       ELSEIF ( buoyancyRelation .eq. 'OCEANICP' ) THEN 
 C-- This is a hack used to read phi0surf from a file (ploadFile)
 C   instead of computing it from bathymetry & density ref. profile.
