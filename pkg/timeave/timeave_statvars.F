@@ -141,8 +141,10 @@ C-- end if DDTT ...
 
 C-    Time Averages of "intermediate" fields (no hFactor)
       IF ( myIter .NE. nIter0 ) THEN
-        CALL TIMEAVE_CUMULATE(phiHydLowtave, phiHydLow, 1, deltaTclock, 
-     &                          bi, bj, myThid)
+        CALL TIMEAVE_CUMULATE(phiHydtave, totPhihyd,  Nr, 
+     &                                   deltaTclock, bi, bj, myThid)
+        CALL TIMEAVE_CUMULATE(phiHydLowtave, phiHydLow, 1,
+     &                                   deltaTclock, bi, bj, myThid)
         CALL TIMEAVE_CUMUL_2V(phiHydLow2Tave, 
      &       phiHydLow,phiHydLow, 1,  0, deltaTclock, bi, bj, myThid)
         DO K=1,Nr
