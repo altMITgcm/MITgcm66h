@@ -128,24 +128,20 @@ c--   Initialize variance (weight) fields.
         enddo
       enddo
 
-      do bj = jtlo,jthi
-        do bi = itlo,ithi
-          do k = 1,Nr
-            do iobcs = 1,nobcs
+      do iobcs = 1,nobcs
+        do k = 1,Nr
 #ifdef ALLOW_OBCSN_COST_CONTRIBUTION
-              wobcsn(iobcs,k,bi,bj) = 0. _d 0
+          wobcsn(k,iobcs) = 0. _d 0
 #endif
 #ifdef ALLOW_OBCSS_COST_CONTRIBUTION
-              wobcss(iobcs,k,bi,bj) = 0. _d 0
+          wobcss(k,iobcs) = 0. _d 0
 #endif
 #ifdef ALLOW_OBCSW_COST_CONTRIBUTION
-              wobcsw(iobcs,k,bi,bj) = 0. _d 0
+          wobcsw(k,iobcs) = 0. _d 0
 #endif
 #ifdef ALLOW_OBCSE_COST_CONTRIBUTION
-              wobcse(iobcs,k,bi,bj) = 0. _d 0
+          wobcse(k,iobcs) = 0. _d 0
 #endif
-            enddo
-          enddo
         enddo
       enddo
 
@@ -218,28 +214,28 @@ c--       is no need to add the zonal and meridional directions.
 
           do k = 1,nr
 #ifdef ALLOW_OBCSN_COST_CONTRIBUTION
-            wobcsn(1,k,bi,bj) = wti(k)
-            wobcsn(2,k,bi,bj) = wsi(k)
-            wobcsn(3,k,bi,bj) = wui(k)
-            wobcsn(4,k,bi,bj) = wvi(k)
+            wobcsn(k,1) = wti(k)
+            wobcsn(k,2) = wsi(k)
+            wobcsn(k,3) = wui(k)
+            wobcsn(k,4) = wvi(k)
 #endif
 #ifdef ALLOW_OBCSS_COST_CONTRIBUTION
-            wobcss(1,k,bi,bj) = wti(k)
-            wobcss(2,k,bi,bj) = wsi(k)
-            wobcss(3,k,bi,bj) = wui(k)
-            wobcss(4,k,bi,bj) = wvi(k)
+            wobcss(k,1) = wti(k)
+            wobcss(k,2) = wsi(k)
+            wobcss(k,3) = wui(k)
+            wobcss(k,4) = wvi(k)
 #endif
 #ifdef ALLOW_OBCSW_COST_CONTRIBUTION
-            wobcsw(1,k,bi,bj) = wti(k)
-            wobcsw(2,k,bi,bj) = wsi(k)
-            wobcsw(3,k,bi,bj) = wui(k)
-            wobcsw(4,k,bi,bj) = wvi(k)
+            wobcsw(k,1) = wti(k)
+            wobcsw(k,2) = wsi(k)
+            wobcsw(k,3) = wui(k)
+            wobcsw(k,4) = wvi(k)
 #endif
 #ifdef ALLOW_OBCSE_COST_CONTRIBUTION
-            wobcse(1,k,bi,bj) = wti(k)
-            wobcse(2,k,bi,bj) = wsi(k)
-            wobcse(3,k,bi,bj) = wui(k)
-            wobcse(4,k,bi,bj) = wvi(k)
+            wobcse(k,1) = wti(k)
+            wobcse(k,2) = wsi(k)
+            wobcse(k,3) = wui(k)
+            wobcse(k,4) = wvi(k)
 #endif
           enddo
 
@@ -660,38 +656,38 @@ c--   Units have to be checked!
             endif
           enddo
 
-          do k = 1,nr
-            do iobcs = 1,nobcs
+          do iobcs = 1,nobcs
+            do k = 1,nr
 #ifdef ALLOW_OBCSN_COST_CONTRIBUTION
-              if (wobcsn(iobcs,k,bi,bj) .ne. 0.) then
-                 wobcsn(iobcs,k,bi,bj) = 
-     &                ratio/wobcsn(iobcs,k,bi,bj)/wobcsn(iobcs,k,bi,bj)
+              if (wobcsn(k,iobcs) .ne. 0.) then
+                 wobcsn(k,iobcs) = 
+     &                ratio/wobcsn(k,iobcs)/wobcsn(k,iobcs)
               else
-                 wobcsn(iobcs,k,bi,bj) = 1.0 _d 0
+                 wobcsn(k,iobcs) = 1.0 _d 0
               endif
 #endif
 #ifdef ALLOW_OBCSS_COST_CONTRIBUTION
-              if (wobcss(iobcs,k,bi,bj) .ne. 0.) then
-                 wobcss(iobcs,k,bi,bj) = 
-     &                ratio/wobcss(iobcs,k,bi,bj)/wobcss(iobcs,k,bi,bj)
+              if (wobcss(k,iobcs) .ne. 0.) then
+                 wobcss(k,iobcs) = 
+     &                ratio/wobcss(k,iobcs)/wobcss(k,iobcs)
               else
-                 wobcss(iobcs,k,bi,bj) = 1.0 _d 0
+                 wobcss(k,iobcs) = 1.0 _d 0
               endif
 #endif
 #ifdef ALLOW_OBCSW_COST_CONTRIBUTION
-              if (wobcsw(iobcs,k,bi,bj) .ne. 0.) then
-                 wobcsw(iobcs,k,bi,bj) = 
-     &                ratio/wobcsw(iobcs,k,bi,bj)/wobcsw(iobcs,k,bi,bj)
+              if (wobcsw(k,iobcs) .ne. 0.) then
+                 wobcsw(k,iobcs) = 
+     &                ratio/wobcsw(k,iobcs)/wobcsw(k,iobcs)
               else
-                 wobcsw(iobcs,k,bi,bj) = 1.0 _d 0
+                 wobcsw(k,iobcs) = 1.0 _d 0
               endif
 #endif
 #ifdef ALLOW_OBCSE_COST_CONTRIBUTION
-              if (wobcse(iobcs,k,bi,bj) .ne. 0.) then
-                 wobcse(iobcs,k,bi,bj) = 
-     &                ratio/wobcse(iobcs,k,bi,bj)/wobcse(iobcs,k,bi,bj)
+              if (wobcse(k,iobcs) .ne. 0.) then
+                 wobcse(k,iobcs) = 
+     &                ratio/wobcse(k,iobcs)/wobcse(k,iobcs)
               else
-                 wobcse(iobcs,k,bi,bj) = 1.0 _d 0
+                 wobcse(k,iobcs) = 1.0 _d 0
               endif
 #endif
             enddo
@@ -759,6 +755,9 @@ c
       call active_write_xy(  'wtauv', wtauv,   1, 0, mythid, dummy)
 #elif (defined (ALLOW_VWIND_COST_CONTRIBUTION))
       call active_write_xy(  'wvwind', wvwind, 1, 0, mythid, dummy)
+#endif
+
+#ifdef ALLOW_OBCSN_COST_CONTRIBUTION
 #endif
 
       end

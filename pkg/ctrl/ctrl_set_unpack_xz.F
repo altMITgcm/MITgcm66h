@@ -39,7 +39,7 @@ c     == routine arguments ==
       integer ivartype
       character*( 80)   fname
       character*  (9) masktype
-      _RL     weightfld( nobcs,nr,nsx,nsy )
+      _RL     weightfld( nr,nobcs )
       integer nwettile(nsx,nsy,nr,nobcs)
       integer mythid
 
@@ -170,7 +170,7 @@ c--   Only the master thread will do I/O.
 #ifdef ALLOW_NONDIMENSIONAL_CONTROL_IO
                      globfldxz(i,bi,ip,bj,jp,k) = 
      &                    globfldxz(i,bi,ip,bj,jp,k)/
-     &                    sqrt(weightfld(iobcs,k,bi,bj))
+     &                    sqrt(weightfld(k,iobcs))
 #endif
                   else
                      globfldxz(i,bi,ip,bj,jp,k) = 0. _d 0

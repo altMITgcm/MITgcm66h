@@ -127,7 +127,7 @@ c             the temperature field.
                   j = OB_Jn(I,bi,bj)
                   if (maskS(i,j+jp1,k,bi,bj) .ne. 0.) then
                      fctile = fctile +
-     &                    wobcsn(iobcs,k,bi,bj)*cosphi(i,j,bi,bj)*
+     &                    wobcsn(k,iobcs)*cosphi(i,j,bi,bj)*
      &                    (tbar(i,j,k,bi,bj) - OBNt(i,k,bi,bj))*
      &                    (tbar(i,j,k,bi,bj) - OBNt(i,k,bi,bj))
                   endif
@@ -164,7 +164,7 @@ c             the temperature field.
                   j = OB_Jn(I,bi,bj)
                   if (maskS(i,j+jp1,k,bi,bj) .ne. 0.) then
                      fctile = fctile +
-     &                    wobcsn(2,k,bi,bj)*cosphi(i,j,bi,bj)*
+     &                    wobcsn(k,iobcs)*cosphi(i,j,bi,bj)*
      &                    (sbar(i,j,k,bi,bj) - OBNs(i,k,bi,bj))*
      &                    (sbar(i,j,k,bi,bj) - OBNs(i,k,bi,bj))
                   endif
@@ -200,7 +200,7 @@ c             the temperature field.
                   j = OB_Jn(I,bi,bj)
                   if (maskW(i,j,k,bi,bj) .ne. 0.) then
                      fctile = fctile +
-     &                    wobcsn(iobcs,k,bi,bj)*cosphi(i,j,bi,bj)*
+     &                    wobcsn(k,iobcs)*cosphi(i,j,bi,bj)*
      &                    (ubar(i,j,k,bi,bj) - OBNu(i,k,bi,bj))*
      &                    (ubar(i,j,k,bi,bj) - OBNu(i,k,bi,bj))
                   endif
@@ -237,7 +237,7 @@ c             the temperature field.
                   j = OB_Jn(I,bi,bj)
                   if (maskS(i,j+jp1,k,bi,bj) .ne. 0.) then
                      fctile = fctile +
-     &                    wobcsn(iobcs,k,bi,bj)*cosphi(i,j,bi,bj)*
+     &                    wobcsn(k,iobcs)*cosphi(i,j,bi,bj)*
      &                    (vbar(i,j,k,bi,bj) - OBNv(i,k,bi,bj))*
      &                    (vbar(i,j,k,bi,bj) - OBNv(i,k,bi,bj))
                   endif

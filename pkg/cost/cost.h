@@ -384,22 +384,22 @@ c     wvdrift    - weight for mean meridional velocity from drifters.
 #ifdef ALLOW_OBCSN_COST_CONTRIBUTION
       common /cost_weights_obcsn/ 
      &                      wobcsn
-      _RL wobcsn  (                      nobcs,nr,nsx,nsy)
+      _RL wobcsn  (                      nr,nobcs)
 #endif
 #ifdef ALLOW_OBCSS_COST_CONTRIBUTION
       common /cost_weights_obcss/ 
      &                      wobcss
-      _RL wobcss  (                      nobcs,nr,nsx,nsy)
+      _RL wobcss  (                      nr,nobcs)
 #endif
 #ifdef ALLOW_OBCSW_COST_CONTRIBUTION
       common /cost_weights_obcsw/ 
      &                      wobcsw
-      _RL wobcsw  (                      nobcs,nr,nsx,nsy)
+      _RL wobcsw  (                      nr,nobcs)
 #endif
 #ifdef ALLOW_OBCSE_COST_CONTRIBUTION
       common /cost_weights_obcse/ 
      &                      wobcse
-      _RL wobcse  (                      nobcs,nr,nsx,nsy)
+      _RL wobcse  (                      nr,nobcs)
 #endif
 
 

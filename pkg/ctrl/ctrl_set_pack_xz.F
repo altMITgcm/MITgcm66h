@@ -39,7 +39,7 @@ c     == routine arguments ==
       integer ivartype
       character*( 80) fname
       character*(  9) masktype
-      _RL     weightfld( nobcs,nr,nsx,nsy )
+      _RL     weightfld( nr,nobcs )
       logical lxxadxx
       integer mythid
 
@@ -131,11 +131,11 @@ c--   Only the master thread will do I/O.
                      if (lxxadxx) then
                         cbuff(cbuffindex) = 
      &                       globfldxz(i,bi,ip,bj,jp,k) *
-     &                       sqrt(weightfld(iobcs,k,bi,bj))
+     &                       sqrt(weightfld(k,iobcs))
                      else
                         cbuff(cbuffindex) = 
      &                       globfldxz(i,bi,ip,bj,jp,k) /
-     &                       sqrt(weightfld(iobcs,k,bi,bj))
+     &                       sqrt(weightfld(k,iobcs))
                      endif
 #else
                      cbuff(cbuffindex) = globfldxz(i,bi,ip,bj,jp,k)
