@@ -143,7 +143,7 @@ C-    Split Ocean and Sea-Ice surf. temp. ; remove ice-fraction < 1 %
          DO J=1,NGP
           sti1(J,myThid) = sst1(J,myThid) 
           IF ( oice1(J) .GT. 1. _d -2 ) THEN
-            sst1(J,myThid) = MAX(sst1(J,myThid),tFreez);
+            sst1(J,myThid) = MAX(sst1(J,myThid),tFreez)
             sti1(J,myThid) = sst1(J,myThid) 
      &                     +(sti1(J,myThid)-sst1(J,myThid))/oice1(J)
           ELSE

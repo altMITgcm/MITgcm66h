@@ -133,7 +133,7 @@ c        oceTfreez = tFreeze - 1.9 _d 0
          DO J=1,NGP
           sti1(J,myThid) = sst1(J,myThid) 
           IF ( oice1(J) .GT. 1. _d -2 ) THEN
-            sst1(J,myThid) = MAX(sst1(J,myThid),oceTfreez);
+            sst1(J,myThid) = MAX(sst1(J,myThid),oceTfreez)
             sti1(J,myThid) = sst1(J,myThid) 
      &                     +(sti1(J,myThid)-sst1(J,myThid))/oice1(J)
           ELSE
