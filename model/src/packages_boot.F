@@ -61,7 +61,8 @@ C     data.pkg namelists
      &          useBulkForce,
      &          useThSIce,
      &          usefizhi,
-     &          usegridalt
+     &          usegridalt,
+     &          usediagnostics
 
 
 CEOP
@@ -96,6 +97,7 @@ C--   Default package configuration
       useThSIce=.FALSE.
       usefizhi=.FALSE.
       usegridalt=.FALSE.
+      usediagnostics=.FALSE.
 
 
 C--   Read parameters from open data file
