@@ -140,7 +140,7 @@ c     >>> Initialise control vector for optimcycle=0 <<<
           write(cfile(1:128),'(4a,i4.4)')
      &         ctrlname(1:9),'_',yctrlid(1:10), 
      &         yctrlpospack, optimcycle
-          print *, 'ph-pack: unpacking ', ctrlname(1:9)
+          print *, 'ph-pack: packing ', ctrlname(1:9)
       else
 c     >>> Write gradient vector <<<
           lxxadxx   = .FALSE.
@@ -149,7 +149,7 @@ c     >>> Write gradient vector <<<
           write(cfile(1:128),'(4a,i4.4)')
      &         costname(1:9),'_',yctrlid(1:10), 
      &         yctrlpospack, optimcycle
-          print *, 'ph-pack: unpacking ', costname(1:9)
+          print *, 'ph-pack: packing ', costname(1:9)
        endif
 
        call mdsfindunit( cunit, mythid )
