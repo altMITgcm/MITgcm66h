@@ -7,7 +7,7 @@ C o Include/exclude code for AIM package
 #undef  ALLOW_AIM
 
 C o Include/exclude code for GM/Redi parameterization
-#undef  ALLOW_GMREDI
+#define  ALLOW_GMREDI
 
 C o Include/exclude code for KPP mixing scheme
 #undef  ALLOW_KPP
