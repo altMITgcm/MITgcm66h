@@ -217,12 +217,6 @@ C--   Initialise "which vertical coordinate system used" flags.
       usingZCoords    = .FALSE.
       coordsSet       = 0
 
-C     Initialize local IO flags
-      pickup_write_ioinc = .FALSE.
-      timeave_ioinc      = .FALSE.
-      snapshot_ioinc     = .FALSE.
-      monitor_ioinc      = .FALSE.
-
 C--   Iniialise retired parameters to unlikely value
       nRetired = 0
       zonal_filt_lat  = UNSET_RL
