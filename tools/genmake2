@@ -371,6 +371,11 @@ Usage: "$0" [OPTIONS]
     -help | --help | -h | --h
           Print this help message and exit.
 
+    -adoptfile NAME | --adoptfile NAME | -adof NAME | --adof NAME
+      -adoptfile=NAME | --adoptfile=NAME | -adof=NAME | --adof=NAME
+          Use "NAME" as the adoptfile.  By default, the file at
+          "tools/adjoint_options/adjoint_default" will be used.
+
     -nooptfile | --nooptfile
       -optfile NAME | --optfile NAME | -of NAME | --of NAME
       -optfile=NAME | --optfile=NAME | -of=NAME | --of=NAME
