@@ -285,6 +285,8 @@ C--   Input files
       ploadFile       = ' '
       eddyTauxFile    = ' '
       eddyTauyFile    = ' '
+      lambdaThetaFile = ' '
+      lambdaSaltFile  = ' '
       mdsioLocalDir   = ' '
 
 C

@@ -200,13 +200,12 @@ c--   Map the control variables onto the model state.
       IF (debugMode) CALL DEBUG_CALL('EXF_INIT',myThid)
 #endif
       CALL EXF_INIT( mythid )
-cph#else
 #endif
+
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_CALL('INI_FORCING',myThid)
 #endif
       CALL INI_FORCING( mythid )
-cph#endif
 
 #ifdef ALLOW_EBM
 # ifdef ALLOW_AUTODIFF

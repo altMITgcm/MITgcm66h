@@ -90,6 +90,27 @@ CEOP
        ENDDO
       ENDDO
 C
+      DO bj = myByLo(myThid), myByHi(myThid)
+       DO bi = myBxLo(myThid), myBxHi(myThid)
+        DO J=1-Oly,sNy+Oly
+         DO I=1-Olx,sNx+Olx
+          IF ( doThetaClimRelax .AND. 
+     &         abs(yC(i,j,bi,bj)).LE.latBandClimRelax ) THEN
+           lambdaThetaClimRelax(I,J,bi,bj) = 1./tauThetaClimRelax
+          ELSE
+           lambdaThetaClimRelax(I,J,bi,bj) = 0.D0
+          ENDIF
+          IF ( doSaltClimRelax .AND.
+     &         abs(yC(i,j,bi,bj)).LE.latBandClimRelax ) THEN
+           lambdaSaltClimRelax(I,J,bi,bj) = 1./tauSaltClimRelax
+          ELSE
+           lambdaSaltClimRelax(I,J,bi,bj) = 0.D0
+          ENDIF
+         ENDDO
+        ENDDO
+       ENDDO
+      ENDDO
+C
       _BEGIN_MASTER(myThid)
       IF ( zonalWindFile .NE. ' '  ) THEN
        CALL READ_FLD_XY_RS( zonalWindFile, ' ', fu, 0, myThid )
@@ -113,6 +134,14 @@ C
       ENDIF
       IF ( saltClimFile .NE. ' '  ) THEN
        CALL READ_FLD_XY_RS( saltClimFile, ' ', SSS, 0, myThid )
+      ENDIF
+      IF ( lambdaThetaFile .NE. ' '  ) THEN
+       CALL READ_FLD_XY_RS( lambdaThetaFile, ' ', 
+     &  lambdaThetaClimRelax, 0, myThid )
+      ENDIF
+      IF ( lambdaSaltFile .NE. ' '  ) THEN
+       CALL READ_FLD_XY_RS( lambdaSaltFile, ' ', 
+     &  lambdaSaltClimRelax, 0, myThid )
       ENDIF
 #ifdef SHORTWAVE_HEATING
       IF ( surfQswFile .NE. ' '  ) THEN
@@ -145,6 +174,8 @@ C
       _EXCH_XY_R4( saltFlux, myThid )
       _EXCH_XY_R4(SST  , myThid )
       _EXCH_XY_R4(SSS  , myThid )
+      _EXCH_XY_R4(lambdaThetaClimRelax , myThid )
+      _EXCH_XY_R4(lambdaSaltClimRelax , myThid )
 #ifdef SHORTWAVE_HEATING
       _EXCH_XY_R4(Qsw  , myThid )
 #endif
