@@ -43,7 +43,7 @@ C--   COMMON /CG2D_I_WK_R/  Work array common block
 C     cg2d_q - Intermediate matrix-vector product term
 C     cg2d_r -   "
 C     cg2d_s -   "
-      COMMON /CG2D_WK_R/
+      COMMON /CG2D_I_WK_R/
      & cg2d_q, cg2d_r, cg2d_s
       _RL  cg2d_q(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL  cg2d_r(1-1:sNx+1,1-1:sNy+1,nSx,nSy)
