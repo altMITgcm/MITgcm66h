@@ -85,6 +85,16 @@ C                    and stagger/synchronous TimeStep
        ENDIF
 #endif /* ALLOW_THSICE */
 
+#ifdef ALLOW_LAND
+       IF ( seqFlag.EQ.0 .AND. useLand ) THEN
+        DO bj=myByLo(myThid),myByHi(myThid)
+         DO bi=myBxLo(myThid),myBxHi(myThid)
+          CALL LAND_DIAGNOSTICS_FILL( myTime,myIter, bi,bj, myThid )
+         ENDDO
+        ENDDO
+       ENDIF
+#endif /* ALLOW_LAND */
+
       ENDIf
 #endif /* ALLOW_DIAGNOSTICS */
 
