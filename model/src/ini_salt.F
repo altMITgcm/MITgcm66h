@@ -73,6 +73,7 @@ C     Set initial tendency terms
           DO I=1,sNx
            gs   (I,J,K,bi,bj) = 0. _d 0
            gsNM1(I,J,K,bi,bj) = 0. _d 0
+           IF (hFacC(I,J,K,bi,bj).EQ.0) salt(I,J,K,bi,bj) = 0.
           ENDDO
          ENDDO
         ENDDO

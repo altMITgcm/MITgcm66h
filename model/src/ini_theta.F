@@ -96,6 +96,7 @@ C     Set initial tendency terms
           DO I=1,sNx
            gt   (I,J,K,bi,bj) = 0. _d 0
            gtNM1(I,J,K,bi,bj) = 0. _d 0
+           IF (hFacC(I,J,K,bi,bj).EQ.0) theta(I,J,K,bi,bj) = 0.
           ENDDO
          ENDDO
         ENDDO
