@@ -194,7 +194,8 @@ C      Normalize by integrated time
        ENDDO
 
        WRITE(suff,'(I10.10)') myIter
-       
+       _BARRIER
+       _BEGIN_MASTER( myThid )
        CALL WRITE_FLD_XY_RL('FUtave.'   ,suff,FUtave   ,myIter,myThid)
        CALL WRITE_FLD_XY_RL('FVtave.'   ,suff,FVtave   ,myIter,myThid)
        CALL WRITE_FLD_XY_RL('EmPmRtave.',suff,EmPmRtave,myIter,myThid)
@@ -204,6 +205,8 @@ C      Normalize by integrated time
        CALL WRITE_FLD_XY_RL('VICEtave.' ,suff,VICEtave ,myIter,myThid)
        CALL WRITE_FLD_XY_RL('HEFFtave.' ,suff,HEFFtave ,myIter,myThid)
        CALL WRITE_FLD_XY_RL('AREAtave.' ,suff,AREAtave ,myIter,myThid)
+       _END_MASTER( myThid )
+       _BARRIER
        
 C      Reset averages to zero
        DO bj = myByLo(myThid), myByHi(myThid)
