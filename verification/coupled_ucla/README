@@ -153,10 +153,10 @@ Hi-res ocean, low-res atmosphere on alhena, 64-CPU:
   make
   cd bin
   cp ../../MITgcm/verification/coupled_ucla/input/* .
-  ln -sf data.coupled_360x224 data
-  ln -sf data.pkg.kpp data.pkg
-  ln -sf data.gmredi.ldd97 data.gmredi
-  ln -sf POLY3.COEFFS.46 POLY3.COEFFS
+  cp data.coupled_360x224 data
+  cp data.pkg.kpp data.pkg
+  cp data.gmredi.ldd97 data.gmredi
+  cp POLY3.COEFFS.46 POLY3.COEFFS
   cp esm_input.56 esm_input
   cp esminput.56 esminput
   rm -f STD*
