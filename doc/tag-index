@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: some test code for ice-modified ocean stress
 o exf_getffields interpolation defaults to bilinear for all scalar forcing
   fields (remains bicubic for wind velocity and stress).  This avoids, e.g.,
   spurious negative numbers for precipitation and humidity.  Will cause
