@@ -229,8 +229,9 @@ c     Update the tile edges.
 
       _EXCH_XY_R4(  qnet, mythid )
       _EXCH_XY_R4( empmr, mythid )
-      _EXCH_XY_R4(    fu, mythid )
-      _EXCH_XY_R4(    fv, mythid )
+c      _EXCH_XY_R4(    fu, mythid )
+c      _EXCH_XY_R4(    fv, mythid )
+       CALL EXCH_UV_XY_RS(fu, fv, .TRUE., myThid)
 #ifdef ALLOW_KPP
       _EXCH_XY_R4(   qsw, mythid )
 #endif

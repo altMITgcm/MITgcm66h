@@ -576,8 +576,9 @@ c             Salt flux from Precipitation and Evaporation.
 c     Update the tile edges.
       _EXCH_XY_R8(hflux,   mythid)
       _EXCH_XY_R8(sflux,   mythid)
-      _EXCH_XY_R8(ustress, mythid)
-      _EXCH_XY_R8(vstress, mythid)
+c      _EXCH_XY_R8(ustress, mythid)
+c      _EXCH_XY_R8(vstress, mythid)
+       CALL EXCH_UV_XY_RS(ustress, vstress, .TRUE., myThid)
 
 #ifdef ALLOW_KPP
       _EXCH_XY_R8(swflux, mythid)
