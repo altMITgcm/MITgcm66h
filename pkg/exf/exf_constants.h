@@ -48,9 +48,6 @@ c     needs to be marmonized through common constants.h file
 
 c     3. empirical parameters
 
-      _RL         climtempfreeze
-      parameter ( climtempfreeze = -1.9 _d 0 )
-
 #ifdef ALLOW_BULKFORMULAE
 
 c     atmrho       - mean atmospheric density [kg/(m*3)]

@@ -43,6 +43,7 @@ c     == end of interface ==
 
 c     Surface flux data.
       namelist /exf_clim_nml/
+     &     climtempfreeze,
      & climtempstartdate1, climtempstartdate2, climtempperiod,
      & climsaltstartdate1, climsaltstartdate2, climsaltperiod,
      &  climsststartdate1,  climsststartdate2,  climsstperiod,
@@ -95,6 +96,9 @@ c     Start dates.
 c     Initialise constant values for relax. to constant SST, SSS
       climsstconst = 0. _d 0
       climsssconst = 0. _d 0
+
+c     Initialise freezing temperature of sea water
+      climtempfreeze = -1.9 _d 0
 
 c     Initialise file type and field precision
       exf_clim_iprec  = 32

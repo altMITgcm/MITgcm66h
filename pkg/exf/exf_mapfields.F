@@ -125,8 +125,8 @@ CADJ STORE ustress(:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
           do j = jmin,jmax
             do i = imin,imax
 c             Zonal wind stress.
-              if (ustress(i,j,bi,bj).gt.2.0D0) then
-                ustress(i,j,bi,bj)=2.0D0
+              if (ustress(i,j,bi,bj).gt.windstressmax) then
+                ustress(i,j,bi,bj)=windstressmax
               endif
             enddo
           enddo
@@ -135,8 +135,8 @@ CADJ STORE ustress(:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
 #endif
           do j = jmin,jmax
             do i = imin,imax
-              if (ustress(i,j,bi,bj).lt.-2.0D0) then
-                ustress(i,j,bi,bj)=-2.0D0
+              if (ustress(i,j,bi,bj).lt.-windstressmax) then
+                ustress(i,j,bi,bj)=-windstressmax
               endif
             enddo
           enddo
@@ -159,8 +159,8 @@ CADJ STORE vstress(:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
           do j = jmin,jmax
             do i = imin,imax
 c             Meridional wind stress.
-              if (vstress(i,j,bi,bj).gt.2.0D0) then
-                vstress(i,j,bi,bj)=2.0D0
+              if (vstress(i,j,bi,bj).gt.windstressmax) then
+                vstress(i,j,bi,bj)=windstressmax
               endif
             enddo
           enddo
@@ -169,8 +169,8 @@ CADJ STORE vstress(:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
 #endif
           do j = jmin,jmax
             do i = imin,imax
-              if (vstress(i,j,bi,bj).lt.-2.0D0) then
-                vstress(i,j,bi,bj)=-2.0D0
+              if (vstress(i,j,bi,bj).lt.-windstressmax) then
+                vstress(i,j,bi,bj)=-windstressmax
               endif
             enddo
           enddo

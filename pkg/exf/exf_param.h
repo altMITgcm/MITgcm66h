@@ -36,6 +36,10 @@ c     Calendar data.
 c     Sea-water albedo
       _RL     exf_albedo
 
+c     Maximum absolute windstress, used to reset unreastically high
+c     data values
+      _RL     windstressmax
+
       integer hfluxstartdate1
       integer hfluxstartdate2
       _RL     hfluxstartdate
@@ -225,6 +229,7 @@ c     File names.
      &                          apressurestartdate1,apressurestartdate2
 
       common /exf_param_r/
+     &                          windstressmax,
      &                          repeatPeriod,      exf_albedo,
      &                          hfluxperiod,       hfluxstartdate,
      &                          atempperiod,       atempstartdate,
