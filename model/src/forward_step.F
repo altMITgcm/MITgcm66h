@@ -74,6 +74,11 @@ C       exf is disabled by default in genmake.
 #endif
 
 C--     Step forward fields and calculate time tendency terms.
+        CALL TIMER_START('THERMODYNAMICS      [THE_MAIN_LOOP]',mythid)
+        CALL THERMODYNAMICS( myTime, myIter, myThid )
+        CALL TIMER_STOP ('THERMODYNAMICS      [THE_MAIN_LOOP]',mythid)
+
+C--     Step forward fields and calculate time tendency terms.
         CALL TIMER_START('DYNAMICS            [THE_MAIN_LOOP]',mythid)
         CALL DYNAMICS( myTime, myIter, myThid )
         CALL TIMER_STOP ('DYNAMICS            [THE_MAIN_LOOP]',mythid)
