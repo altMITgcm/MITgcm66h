@@ -99,7 +99,7 @@ c     fldsecs cycle around
          fldsecs0=mod(fldsecs,repeatPeriod)
 c        print *,'repeat: ',fldsecs
 c     Determine the flux record just after mycurrentdate.
-         count0 = int(fldsecs0/fldperiod) + 1
+         count0 = int(fldsecs0+0.5/fldperiod) + 1
          fldsecs1  = int((fldsecs+fldperiod+0.5)/fldperiod)*fldperiod
          fldsecs1=mod(fldsecs1,repeatPeriod+0.5)
 c        print *,'repeat: ',fldsecs1
