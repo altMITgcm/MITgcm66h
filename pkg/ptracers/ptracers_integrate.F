@@ -136,7 +136,7 @@ cswdptr - end add ---
      &   CALL PTRACERS_FORCING(
      I                      bi,bj,iMin,iMax,jMin,jMax,k,
      U                      gPtr(1-Olx,1-Oly,1,1,1,iTracer),
-     I                      surfaceTendencyPtr(1-Olx,1-Oly,1,1,iTracer),
+     I                      surfaceForcingPtr(1-Olx,1-Oly,1,1,iTracer),
      I                      myIter,myTime,myThid)
 cswdptr --add---
 #endif
@@ -169,7 +169,7 @@ cswdptr - end add ---
      &   CALL PTRACERS_FORCING(
      I                      bi,bj,iMin,iMax,jMin,jMax,k,
      U                      gPtr(1-Olx,1-Oly,1,1,1,iTracer),
-     I                      surfaceTendencyPtr(1-Olx,1-Oly,1,1,iTracer),
+     I                      surfaceForcingPtr(1-Olx,1-Oly,1,1,iTracer),
      I                      myIter,myTime,myThid)
 cswdptr - add--
 #endif

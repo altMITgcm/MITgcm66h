@@ -50,10 +50,10 @@ C     gPtrNM1  :: work-space for time-stepping
      &              PTRACERS_num)
       _RL  gPtrNM1 (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy,
      &              PTRACERS_num)
-      _RL  surfaceTendencyPtr (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy,
+      _RL  surfaceForcingPtr (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy,
      &              PTRACERS_num)
       COMMON /PTRACERS_FIELDS/
-     &              pTracer, gPtr, gPtrNM1, surfaceTendencyPtr
+     &              pTracer, gPtr, gPtrNM1, surfaceForcingPtr
 
 CEOP
 #endif /* ALLOW_PTRACERS */

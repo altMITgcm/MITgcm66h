@@ -20,8 +20,8 @@ C !USES: ===============================================================
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "FFIELDS.h"
-#include "DYNVARS.h"
+c #include "FFIELDS.h"
+c #include "DYNVARS.h"
 #include "GRID.h"
 
 C !INPUT PARAMETERS: ===================================================
@@ -57,15 +57,15 @@ CEOP
        kSurface = 1
       endif
 
-C--   Surface forcing term is surfaceTendencyPtr, previously computed
+C--   Surface forcing term is surfaceForcingPtr, previously computed
 C     by PTRACERS_FORCING because it is needed by KPP_TRANSPORT_PTR.
 
        IF ( k .EQ. kSurface ) THEN
         DO j=jMin,jMax
          DO i=iMin,iMax
-          gPtracer(i,j,k,bi,bj) = gPtracer(i,j,k,bi,bj) +
-     &           maskC(i,j,k,bi,bj) *
-     &           surfPtracer(i,j,bi,bj)
+          gPtracer(i,j,k,bi,bj) = gPtracer(i,j,k,bi,bj)
+     &          + surfPtracer(i,j,bi,bj)
+     &           *recip_drF(k)*recip_hFacC(i,j,k,bi,bj)
          ENDDO
         ENDDO
        ENDIF

@@ -68,7 +68,7 @@ C Initialize arrays in common blocks :
          ENDDO
          DO j=1-Oly,sNy+OLy
           DO i=1-Olx,sNx+Olx
-           surfaceTendencyPtr(i,j,bi,bj,iTracer) = 0. _d 0
+           surfaceForcingPtr(i,j,bi,bj,iTracer) = 0. _d 0
           ENDDO
          ENDDO
 
