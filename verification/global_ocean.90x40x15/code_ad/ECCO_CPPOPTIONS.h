@@ -2,12 +2,8 @@ C
 C $Header$
 C $Name$
 
-cph#include "AD_CONFIG.h"
-
-C 
 C CPP flags controlling which code is included in the files that
 C will be compiled.
-C
 
 C ********************************************************************
 C ***                  Adjoint Support Package                     ***
@@ -16,7 +12,6 @@ C ********************************************************************
 C o Include/exclude code in order to be able to automatically
 C   differentiate the MITgcmUV by using the Tangent Linear and
 C   Adjoint Model Compiler (TAMC).
-cph#define INCLUDE_AUTODIFF_PACKAGE
 C
 #define ALLOW_AUTODIFF_TAMC
 C       >>> Checkpointing as handled by TAMC

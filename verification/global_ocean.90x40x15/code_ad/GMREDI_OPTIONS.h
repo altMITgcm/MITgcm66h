@@ -8,12 +8,10 @@ C
 #ifndef GMREDI_OPTIONS_H
 #define GMREDI_OPTIONS_H
 #include "PACKAGES_CONFIG.h"
-#include "AD_CONFIG.h"
 
 #ifdef ALLOW_GMREDI
 
 #include "CPP_OPTIONS.h"
- 
 
 C Designed to simplify the Ajoint code:
 C  exclude the clipping/tapering part of the code that is not used
