@@ -142,7 +142,8 @@ then
  done
 
  cd $ROOTDIR
- /usr/local/pkg/mpi/mpi-1.2.4..8a-gm-1.5/pgi/bin/mpirun.ch_gm -pg pr_group -wd $ROOTDIR --gm-kill 5 -v  ./build_cpl/mitgcmuv > std_outp 2>&1
+ #  -wd $ROOTDIR
+ /usr/local/pkg/mpi/mpi-1.2.4..8a-gm-1.5/pgi/bin/mpirun.ch_gm -pg pr_group --gm-kill 5 -v  ./build_cpl/mitgcmuv > std_outp 2>&1
  tail -20 std_outp
  ls -l rank_?/pickup*.ckptA.001.001.data
 
