@@ -302,7 +302,11 @@ C--   Set default "physical" parameters
       IF ( gBaro .EQ. UNSET_RL ) gBaro=gravity
       IF ( rhoConst .EQ. UNSET_RL ) rhoConst=rhoNil
       IF ( omega .EQ. UNSET_RL ) THEN
-        omega = 2.D0 * PI / rotationPeriod
+        omega = 0. _d 0
+        IF ( rotationPeriod .NE. 0. _d 0 ) 
+     &  omega = 2.D0 * PI / rotationPeriod
+      ELSEIF ( omega .EQ. 0. _d 0 ) THEN
+        rotationPeriod = 0. _d 0
       ELSE
         rotationPeriod = 2.D0 * PI / omega
       ENDIF
