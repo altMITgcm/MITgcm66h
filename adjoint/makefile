@@ -3,8 +3,8 @@ RM               = rm -f
 LOC              = $(PWD)
 TAMC             = tamc
 ###TAMC             = /data43/ralf/tamc/tamc
-###TAF              = taf
-TAF              = ~fastopt/bin/taf
+TAF              = taf
+###TAF              = ~fastopt/bin/taf
 DEST             = .
 SOURCE_CODE      = ../bin
 ADJOINT_SCRIPT   = ../adjoint
@@ -34,7 +34,9 @@ DIFF_FLAGS       = -toplevel the_main_loop		\
 				xx_sss_dummy		\
 				xx_sst_dummy		\
 				xx_diffkr_dummy		\
-				xx_kapgm_dummy'		\
+				xx_kapgm_dummy		\
+				xx_efluxy_dummy		\
+				xx_efluxp_dummy'	\
                    -output 'fc'
 #
 #                   -output 'objf_vector'
@@ -57,6 +59,7 @@ SRC_MODEL	= \
 		$(PKG)/autodiff/diags.flow		\
 		$(PKG)/autodiff/cg2d.flow		\
 		$(PKG)/autodiff/debug.flow		\
+		$(PKG)/autodiff/do_the_model_io.flow	\
 		$(PKG)/autodiff/dummy_in_stepping.flow	\
 		$(PKG)/autodiff/external_fields_load.flow	\
 		$(PKG)/autodiff/eesupp.flow		\
@@ -261,12 +264,13 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/shap_filt_uv_s2.f		\
 		$(SOURCE_CODE)/shap_filt_uv_s2g.f		\
 		$(SOURCE_CODE)/shap_filt_uv_s4.f		\
-		  						\
 
+#		$(SOURCE_CODE)/ini_ep.f				\
 #		$(SOURCE_CODE)/calc_ep_forcing.f		\
 #		$(SOURCE_CODE)/cost_entropy.f			\
-#		$(SOURCE_CODE)/ini_ep.f				\
-		  						\
+#		$(SOURCE_CODE)/cost_t_misfit.f			\
+#		$(SOURCE_CODE)/cost_eflux_regul.f		\
+#		  						\
 
 
 #--------------------------------------------------------
