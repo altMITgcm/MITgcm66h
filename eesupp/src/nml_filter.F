@@ -105,6 +105,7 @@ c--   open the filtered data file
             write(outunit, fmt='(a)') ' &'
 #endif
          else
+            CALL NML_SET_TERMINATOR( RECORD )
             write(outunit, fmt='(a)') record(:il)
          end if
       enddo

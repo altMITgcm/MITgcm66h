@@ -119,8 +119,10 @@ C     Make scratch copies of input data file with and without comments
  1000 CONTINUE
        READ(eeDataUnit,FMT='(A)',END=1001) RECORD
        IL = MAX(ILNBLNK(RECORD),1)
-       IF ( RECORD(1:1) .NE. commentCharacter )
-     &     WRITE(UNIT=scrUnit1,FMT='(A)') RECORD(:IL)
+        IF ( RECORD(1:1) .NE. commentCharacter ) THEN
+         CALL NML_SET_TERMINATOR( RECORD )
+         WRITE(UNIT=scrUnit1,FMT='(A)') RECORD(:IL)
+        ENDIF
         WRITE(UNIT=scrUnit2,FMT='(A)') RECORD(:IL)
        GOTO 1000
  1001 CONTINUE
