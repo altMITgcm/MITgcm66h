@@ -61,7 +61,7 @@ C--   the kDown is still required
      I           bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
      I           xA,yA,uTrans,vTrans,rTrans,maskUp,
      I           diffKhT, diffK4T, KappaRT, tr1,
-     I           GAD_TR1, tracerAdvScheme,
+     I           GAD_TR1,
      U           fVerT, gTr1,
      I           myThid )
 

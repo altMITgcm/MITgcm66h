@@ -80,7 +80,7 @@ C--   the kDown is still required
      I           bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
      I           xA,yA,uTrans,vTrans,rTrans,maskUp,
      I           diffKhT, diffK4T, KappaRT, theta,
-     I           GAD_TEMPERATURE, tempAdvScheme,
+     I           GAD_TEMPERATURE,
      U           fVerT, gT,
      I           myThid )
 

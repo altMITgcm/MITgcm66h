@@ -18,7 +18,6 @@ C     == Global variables ==
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#include "SURFACE.h"
 
 C     == Routine Arguments ==
 C     phiHyd    - Hydrostatic Potential (ocean: pressure/rho) 
@@ -36,8 +35,6 @@ C     == Local variables ==
       INTEGER i,j
       _RL ab15,ab05
       _RL phxFac,phyFac, psFac
-      _RL     gUtmp(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL     gVtmp(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
 C     Adams-Bashforth timestepping weights
       IF (myIter .EQ. 0) THEN
@@ -48,40 +45,16 @@ C     Adams-Bashforth timestepping weights
        ab05=-0.5-abeps
       ENDIF
 
-C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
-C-    Compute effective gU term (including Adams-Bashforth weights) :
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-        gUtmp(i,j) = ab15*gU(i,j,k,bi,bj)
-     &             + ab05*gUNm1(i,j,k,bi,bj)  
-#ifdef INCLUDE_CD_CODE
-     &             + guCD(i,j,k,bi,bj)
-#endif
-       ENDDO
-      ENDDO
-      
-#ifdef NONLIN_FRSURF
-      IF (.NOT. vectorInvariantMomentum 
-     &    .AND. nonlinFreeSurf.GT.1) THEN
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         IF ( k.EQ.ksurfW(i,j,bi,bj) ) THEN
-           gUtmp(i,j) = gUtmp(i,j)
-     &         *hFacW(i,j,k,bi,bj)/hFac_surfW(i,j,bi,bj)
-         ENDIF
-        ENDDO
-       ENDDO
-      ENDIF
-#endif 
-
 C     Step forward zonal velocity (store in Gu)
       psFac = pfFacMom*(1. _d 0 - implicSurfPress)
       DO j=jMin,jMax
         DO i=iMin,iMax
-          gUNm1(i,j,k,bi,bj) = uVel(i,j,k,bi,bj) 
-     &     +deltaTmom*( 
-     &         gUtmp(i,j)
-     &       - psFac*phiSurfX(i,j)
+          gUNm1(i,j,k,bi,bj)=uVel(i,j,k,bi,bj) + deltaTmom * (
+     &       ab15*gU(i,j,k,bi,bj)+ab05*gUNm1(i,j,k,bi,bj)
+     &     - psFac*phiSurfX(i,j)
+#ifdef INCLUDE_CD_CODE
+     &     + guCD(i,j,k,bi,bj)
+#endif
      &        )*_maskW(i,j,k,bi,bj)
         ENDDO
       ENDDO
@@ -99,40 +72,16 @@ C--   -grad Phi_Hyd has not been incorporated to gU and is added here:
         ENDDO
       ENDIF
 
-C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
-C-    Compute effective gV term (including Adams-Bashforth weights) :
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-        gVtmp(i,j) = ab15*gV(i,j,k,bi,bj)
-     &             + ab05*gVNm1(i,j,k,bi,bj)  
-#ifdef INCLUDE_CD_CODE
-     &             + gvCD(i,j,k,bi,bj)
-#endif
-       ENDDO
-      ENDDO
-      
-#ifdef NONLIN_FRSURF
-      IF (.NOT. vectorInvariantMomentum 
-     &    .AND. nonlinFreeSurf.GT.1) THEN
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         IF ( k.EQ.ksurfS(i,j,bi,bj) ) THEN
-           gVtmp(i,j) = gVtmp(i,j)
-     &         *hFacS(i,j,k,bi,bj)/hFac_surfS(i,j,bi,bj)
-         ENDIF
-        ENDDO
-       ENDDO
-      ENDIF
-#endif 
-
 C     Step forward meridional velocity (store in Gv)
       psFac = pfFacMom*(1. _d 0 - implicSurfPress)
       DO j=jMin,jMax
         DO i=iMin,iMax
-          gVNm1(i,j,k,bi,bj) = vVel(i,j,k,bi,bj)
-     &     +deltaTmom*(
-     &         gVtmp(i,j)
-     &       - psFac*phiSurfY(i,j)
+          gVNm1(i,j,k,bi,bj)=vVel(i,j,k,bi,bj) + deltaTmom * (
+     &       ab15*gV(i,j,k,bi,bj)+ab05*gVNm1(i,j,k,bi,bj)
+     &     - psFac*phiSurfY(i,j)
+#ifdef INCLUDE_CD_CODE
+     &     + gvCD(i,j,k,bi,bj)
+#endif
      &        )*_maskS(i,j,k,bi,bj)
         ENDDO
       ENDDO

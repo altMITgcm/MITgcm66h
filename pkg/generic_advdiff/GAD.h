@@ -1,10 +1,13 @@
 C $Header$
 C $Name$
 
+C Parameter common bloack
+      INTEGER gad_advection_scheme
+c     COMMON /GAD_PARS/
+c    &    gad_advection_scheme
+      PARAMETER(gad_advection_scheme=2)
+
 C Enumerated constants for selecting advection schemes
-C  - unfortunately, there is no easy way to make use of the
-C    tokens in namelist input so for now we have to enter the
-C    tokens value into "data" (ie. 2 for 2nd order etc.)
 
 C Centered 2nd order
       INTEGER ENUM_CENTERED_2ND
@@ -21,14 +24,6 @@ C Centered 4th order
 C Non-linear flux limiter
       INTEGER ENUM_FLUX_LIMIT
       PARAMETER(ENUM_FLUX_LIMIT=77)
-
-C 3-DST 
-      INTEGER ENUM_DST3
-      PARAMETER(ENUM_DST3=30)
-
-C 3-DST flux limited
-      INTEGER ENUM_DST3_FLUX_LIMIT
-      PARAMETER(ENUM_DST3_FLUX_LIMIT=33)
 
 C Third/fourth order interpolation factor
       _RL oneSixth

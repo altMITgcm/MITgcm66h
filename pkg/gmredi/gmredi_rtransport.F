@@ -5,7 +5,7 @@ C $Name$
 
       subroutine GMREDI_RTRANSPORT(
      I     iMin,iMax,jMin,jMax,bi,bj,K,
-     I     Tracer,
+     I     maskUp,Tracer,
      U     df,
      I     myThid)
 C     /==========================================================\
@@ -30,6 +30,7 @@ C     xA               - Area of X face
 C     Tracer           - 3D Tracer field
 C     df               - Diffusive flux component work array.
       INTEGER iMin,iMax,jMin,jMax,bi,bj,k
+      _RS maskUp(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL Tracer(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL df    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER myThid

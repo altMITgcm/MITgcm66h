@@ -76,11 +76,10 @@ C--- Bo = d/d_p(Phi_surf) = tRef_surf*d/d_p(PI) ; PI = Cp*(p/Po)^kappa
          DO bi=myBxLo(myThid),myBxHi(myThid)
           DO J=1-Oly,sNy+Oly
            DO I=1-Olx,sNx+Olx
-            IF ( Ro_surf(I,J,bi,bj).GT.0. _d 0 
-     &          .AND. ksurfC(I,J,bi,bj).LE.Nr ) THEN
+            IF (Ro_surf(I,J,bi,bj).GT.0. _d 0) THEN
               dPIdp = (atm_cp*atm_kappa/atm_po)*
      &         (Ro_surf(I,J,bi,bj)/atm_po)**(atm_kappa-1. _d 0)
-              Bo_surf(I,J,bi,bj) = dPIdp*tRef(ksurfC(I,J,bi,bj))
+              Bo_surf(I,J,bi,bj) = dPIdp*tRef(k_surf(I,J,bi,bj))
               recip_Bo(I,J,bi,bj) = 1. _d 0 / Bo_surf(I,J,bi,bj)
             ELSE
               Bo_surf(I,J,bi,bj) = 0.

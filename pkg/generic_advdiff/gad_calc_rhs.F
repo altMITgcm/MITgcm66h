@@ -7,7 +7,7 @@ C $Name$
      I           bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
      I           xA,yA,uTrans,vTrans,rTrans,maskUp,
      I           diffKh, diffK4, KappaRT, Tracer,
-     I           tracerIdentity, advectionScheme,
+     I           tracerIdentity,
      U           fVerT, gTracer,
      I           myThid )
 C     /==========================================================\
@@ -37,7 +37,6 @@ C     == Routine arguments ==
       _RL KappaRT(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
       _RL Tracer(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       INTEGER tracerIdentity
-      INTEGER advectionScheme
       _RL fVerT (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
       _RL gTracer(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       INTEGER myThid
@@ -94,26 +93,20 @@ C--   Initialize net flux in X direction
       ENDDO
 
 C-    Advective flux in X
-      IF (advectionScheme.EQ.ENUM_CENTERED_2ND) THEN
+      IF (gad_advection_scheme.EQ.ENUM_CENTERED_2ND) THEN
        CALL GAD_C2_ADV_X(bi,bj,k,uTrans,localT,af,myThid)
-      ELSEIF (advectionScheme.EQ.ENUM_FLUX_LIMIT) THEN
+      ELSEIF (gad_advection_scheme.EQ.ENUM_FLUX_LIMIT) THEN
        CALL GAD_FLUXLIMIT_ADV_X(
      &      bi,bj,k,deltaTtracer,uTrans,uVel,localT,af,myThid)
-      ELSEIF (advectionScheme.EQ.ENUM_UPWIND_3RD ) THEN
+      ELSEIF (gad_advection_scheme.EQ.ENUM_UPWIND_3RD ) THEN
        CALL GAD_U3_ADV_X(bi,bj,k,uTrans,localT,af,myThid)
-      ELSEIF (advectionScheme.EQ.ENUM_CENTERED_4TH) THEN
+      ELSEIF (gad_advection_scheme.EQ.ENUM_CENTERED_4TH) THEN
        CALL GAD_C4_ADV_X(bi,bj,k,uTrans,localT,af,myThid)
-      ELSEIF (advectionScheme.EQ.ENUM_DST3 ) THEN
-       CALL GAD_DST3_ADV_X(
-     &       bi,bj,k,deltaTtracer,uTrans,uVel,localT,af,myThid)
-      ELSEIF (advectionScheme.EQ.ENUM_DST3_FLUX_LIMIT ) THEN
-       CALL GAD_DST3FL_ADV_X(
-     &       bi,bj,k,deltaTtracer,uTrans,uVel,localT,af,myThid)
       ELSE
-       STOP 'GAD_CALC_RHS: Bad advectionScheme (X)'
+       STOP 'GAD_CALC_RHS: Bad gad_advection_scheme (X)'
       ENDIF
-      DO j=1-Oly,sNy+Oly
-       DO i=1-Olx,sNx+Olx
+      DO j=jMin,jMax
+       DO i=iMin,iMax
         fZon(i,j) = fZon(i,j) + af(i,j)
        ENDDO
       ENDDO
@@ -122,8 +115,8 @@ C-    Diffusive flux in X
       IF (diffKh.NE.0.) THEN
        CALL GAD_DIFF_X(bi,bj,k,xA,diffKh,localT,df,myThid)
       ELSE
-       DO j=1-Oly,sNy+Oly
-        DO i=1-Olx,sNx+Olx
+       DO j=jMin,jMax
+        DO i=iMin,iMax
          df(i,j) = 0.
         ENDDO
        ENDDO
@@ -140,8 +133,8 @@ C *note* should update GMREDI_XTRANSPORT to use localT and set df  *aja*
      I     myThid)
       ENDIF
 #endif
-      DO j=1-Oly,sNy+Oly
-       DO i=1-Olx,sNx+Olx
+      DO j=jMin,jMax
+       DO i=iMin,iMax
         fZon(i,j) = fZon(i,j) + df(i,j)
        ENDDO
       ENDDO
@@ -149,8 +142,8 @@ C *note* should update GMREDI_XTRANSPORT to use localT and set df  *aja*
 C-    Bi-harmonic duffusive flux in X
       IF (diffK4 .NE. 0.) THEN
        CALL GAD_BIHARM_X(bi,bj,k,xA,df4,diffK4,df,myThid)
-       DO j=1-Oly,sNy+Oly
-        DO i=1-Olx,sNx+Olx
+       DO j=jMin,jMax
+        DO i=iMin,iMax
          fZon(i,j) = fZon(i,j) + df(i,j)
         ENDDO
        ENDDO
@@ -164,23 +157,17 @@ C--   Initialize net flux in Y direction
       ENDDO
 
 C-    Advective flux in Y
-      IF (advectionScheme.EQ.ENUM_CENTERED_2ND) THEN
+      IF (gad_advection_scheme.EQ.ENUM_CENTERED_2ND) THEN
        CALL GAD_C2_ADV_Y(bi,bj,k,vTrans,localT,af,myThid)
-      ELSEIF (advectionScheme.EQ.ENUM_FLUX_LIMIT) THEN
+      ELSEIF (gad_advection_scheme.EQ.ENUM_FLUX_LIMIT) THEN
        CALL GAD_FLUXLIMIT_ADV_Y(
      &       bi,bj,k,deltaTtracer,vTrans,vVel,localT,af,myThid)
-      ELSEIF (advectionScheme.EQ.ENUM_UPWIND_3RD ) THEN
+      ELSEIF (gad_advection_scheme.EQ.ENUM_UPWIND_3RD ) THEN
        CALL GAD_U3_ADV_Y(bi,bj,k,vTrans,localT,af,myThid)
-      ELSEIF (advectionScheme.EQ.ENUM_CENTERED_4TH) THEN
+      ELSEIF (gad_advection_scheme.EQ.ENUM_CENTERED_4TH) THEN
        CALL GAD_C4_ADV_Y(bi,bj,k,vTrans,localT,af,myThid)
-      ELSEIF (advectionScheme.EQ.ENUM_DST3 ) THEN
-       CALL GAD_DST3_ADV_Y(
-     &       bi,bj,k,deltaTtracer,vTrans,vVel,localT,af,myThid)
-      ELSEIF (advectionScheme.EQ.ENUM_DST3_FLUX_LIMIT ) THEN
-       CALL GAD_DST3FL_ADV_Y(
-     &       bi,bj,k,deltaTtracer,vTrans,vVel,localT,af,myThid)
       ELSE
-       STOP 'GAD_CALC_RHS: Bad advectionScheme (Y)'
+       STOP 'GAD_CALC_RHS: Bad gad_advection_scheme (Y)'
       ENDIF
       DO j=1-Oly,sNy+Oly
        DO i=1-Olx,sNx+Olx
@@ -227,8 +214,8 @@ C-    Bi-harmonic flux in Y
       ENDIF
 
 C--   Initialize net flux in R
-      DO j=1-Oly,sNy+Oly
-       DO i=1-Olx,sNx+Olx
+      DO j=jMin,jMax
+       DO i=iMin,iMax
         fVerT(i,j,kUp) = 0.
        ENDDO
       ENDDO
@@ -237,25 +224,18 @@ C-    Advective flux in R
 C     Note: wVel needs to be masked 
       IF (K.GE.2) THEN
 C-    Compute vertical advective flux in the interior:
-       IF (advectionScheme.EQ.ENUM_CENTERED_2ND) THEN
+       IF (gad_advection_scheme.EQ.ENUM_CENTERED_2ND) THEN
         CALL GAD_C2_ADV_R(bi,bj,k,rTrans,tracer,af,myThid)
-       ELSEIF (advectionScheme.EQ.ENUM_FLUX_LIMIT) THEN
+       ELSEIF (gad_advection_scheme.EQ.ENUM_FLUX_LIMIT) THEN
         CALL GAD_FLUXLIMIT_ADV_R(
      &       bi,bj,k,deltaTtracer,rTrans,wVel,tracer,af,myThid)
-       ELSEIF (advectionScheme.EQ.ENUM_UPWIND_3RD ) THEN
+       ELSEIF (gad_advection_scheme.EQ.ENUM_UPWIND_3RD ) THEN
         CALL GAD_U3_ADV_R(bi,bj,k,rTrans,tracer,af,myThid)
-       ELSEIF (advectionScheme.EQ.ENUM_CENTERED_4TH) THEN
+       ELSEIF (gad_advection_scheme.EQ.ENUM_CENTERED_4TH) THEN
         CALL GAD_C4_ADV_R(bi,bj,k,rTrans,tracer,af,myThid)
-       ELSEIF (advectionScheme.EQ.ENUM_DST3 ) THEN
-c       CALL GAD_DST3_ADV_R(
-c    &       bi,bj,k,deltaTtracer,rTrans,wVel,tracer,af,myThid)
-        STOP 'GAD_CALC_RHS: GAD_DST3_ADV_R not coded yet'
-       ELSEIF (advectionScheme.EQ.ENUM_DST3_FLUX_LIMIT ) THEN
-c       CALL GAD_DST3FL_ADV_R(
-c    &       bi,bj,k,deltaTtracer,rTrans,wVel,tracer,af,myThid)
-        STOP 'GAD_CALC_RHS: GAD_DST3FL_ADV_R not coded yet'
+c       CALL GAD_C2_ADV_R(bi,bj,k,rTrans,tracer,af,myThid)
        ELSE
-        STOP 'GAD_CALC_RHS: Bad advectionScheme (R)'
+        STOP 'GAD_CALC_RHS: Bad gad_advection_scheme (R)'
        ENDIF
 C-    Surface "correction" term at k>1 :
        DO j=1-Oly,sNy+Oly
@@ -274,8 +254,8 @@ C-    Surface "correction" term at k=1 :
        ENDDO 
       ENDIF
 C-    add the advective flux to fVerT
-      DO j=1-Oly,sNy+Oly
-       DO i=1-Olx,sNx+Olx
+      DO j=jMin,jMax
+       DO i=iMin,iMax
         fVerT(i,j,kUp) = fVerT(i,j,kUp) + afFacT*af(i,j)
        ENDDO
       ENDDO
@@ -284,16 +264,16 @@ C-    Diffusive flux in R
 C     Note: For K=1 then KM1=1 and this gives a dT/dr = 0 upper
 C           boundary condition.
       IF (implicitDiffusion) THEN
-       DO j=1-Oly,sNy+Oly
-        DO i=1-Olx,sNx+Olx
+       DO j=jMin,jMax
+        DO i=iMin,iMax
          df(i,j) = 0.
         ENDDO
        ENDDO
       ELSE
        CALL GAD_DIFF_R(bi,bj,k,KappaRT,tracer,df,myThid)
       ENDIF
-c     DO j=1-Oly,sNy+Oly
-c      DO i=1-Olx,sNx+Olx
+c     DO j=jMin,jMax
+c      DO i=iMin,iMax
 c       fVerT(i,j,kUp) = fVerT(i,j,kUp) + dfFacT*df(i,j)*maskUp(i,j)
 c      ENDDO
 c     ENDDO
@@ -304,19 +284,19 @@ C-    GM/Redi flux in R
 C *note* should update GMREDI_RTRANSPORT to set df  *aja*
        CALL GMREDI_RTRANSPORT(
      I     iMin,iMax,jMin,jMax,bi,bj,K,
-     I     Tracer,
+     I     maskUp,Tracer,
      U     df,
      I     myThid)
-c      DO j=1-Oly,sNy+Oly
-c       DO i=1-Olx,sNx+Olx
+c      DO j=jMin,jMax
+c       DO i=iMin,iMax
 c        fVerT(i,j,kUp) = fVerT(i,j,kUp) + dfFacT*df(i,j)*maskUp(i,j)
 c       ENDDO
 c      ENDDO
       ENDIF
 #endif
 
-      DO j=1-Oly,sNy+Oly
-       DO i=1-Olx,sNx+Olx
+      DO j=jMin,jMax
+       DO i=iMin,iMax
         fVerT(i,j,kUp) = fVerT(i,j,kUp) + dfFacT*df(i,j)*maskUp(i,j)
        ENDDO
       ENDDO
@@ -324,8 +304,8 @@ c      ENDDO
 #ifdef ALLOW_KPP
 C-    Add non local KPP transport term (ghat) to diffusive T flux.
       IF (useKPP) THEN
-       DO j=1-Oly,sNy+Oly
-        DO i=1-Olx,sNx+Olx
+       DO j=jMin,jMax
+        DO i=iMin,iMax
          df(i,j) = 0.
         ENDDO
        ENDDO
@@ -343,8 +323,8 @@ C *note* should update KPP_TRANSPORT_T to set df  *aja*
        ELSE
         STOP 'GAD_CALC_RHS: Ooops'
        ENDIF
-       DO j=1-Oly,sNy+Oly
-        DO i=1-Olx,sNx+Olx
+       DO j=jMin,jMax
+        DO i=iMin,iMax
          fVerT(i,j,kUp) = fVerT(i,j,kUp) + dfFacT*df(i,j)*maskUp(i,j)
         ENDDO
        ENDDO
@@ -352,8 +332,8 @@ C *note* should update KPP_TRANSPORT_T to set df  *aja*
 #endif
 
 C--   Divergence of fluxes
-      DO j=1-Oly,sNy+Oly
-       DO i=1-Olx,sNx+Olx
+      DO j=jMin,jMax
+       DO i=iMin,iMax
         gTracer(i,j,k,bi,bj)=
      &   -_recip_hFacC(i,j,k,bi,bj)*recip_drF(k)
      &    *recip_rA(i,j,bi,bj)

@@ -1,134 +1,92 @@
-function [AA] = rdmds(fnamearg,varargin)
-% RDMDS  Read MITgcmUV meta/data files
+function [AA] = rdmds(fname,varargin)
 %
-% A = RDMDS(FNAME)
-% A = RDMDS(FNAME,ITER)
-% A = RDMDS(FNAME,[ITER1 ITER2 ...])
+% Read MITgcmUV Meta/Data files
 %
-%   A = RDMDS(FNAME) reads data described by meta/data file format.
-%   FNAME is a string containing the "head" of the file names.
-%  
-%   eg. To load the meta-data files
-%       T.0000002880.000.000.meta, T.0000002880.000.000.data
-%       T.0000002880.001.000.meta, T.0000002880.001.000.data
-%       T.0000002880.002.000.meta, T.0000002880.002.000.data
-%       T.0000002880.003.000.meta, T.0000002880.003.000.data
-%   use
-%      >> A=rdmds('T.0000002880');
-%      >> size(A)
-%   ans =
-%      64    32     5
-%   eg. To load a multiple record file
-%      >> A=rdmds('pickup.0000002880');
-%      >> size(A)
-%   ans =
-%      64    32     5    61
-%  
-%  
-%   A = RDMDS(FNAME,ITER) reads data described by meta/data file format.
-%   FNAME is a string containing the "head" of the file name excluding the
-%   10-digit iterartion number.
-%   ITER is a vector of positive integers that will expand to the 10-digit
-%   number in the file name.
-%  
-%   eg. To repeat above operation
-%      >> A=rdmds('T',2880);
-%   eg. To read multiple time steps
-%      >> A=rdmds('T',[0 1440 2880]);
-%   Note: this form can not read files with no iteration count in file name.
-%  
-%   A = RDMDS(FNAME,MACHINEFORMAT)
-%   A = RDMDS(FNAME,ITER,MACHINEFORMAT) allows the machine format to be
-%   specified which MACHINEFORMAT is on of the following strings:
-%     'n' 'l' 'b' 'd' 'g' 'c' 'a' 's'  - see FOPEN for more details
-%  
-%  
+% A = RDMDS(FNAME) reads data described by meta/data file format.
+% FNAME is a string containing the "head" of the file names.
+%
+% eg. To load the meta-data files
+%     T.0000002880.000.000.meta, T.0000002880.000.000.data
+%     T.0000002880.001.000.meta, T.0000002880.001.000.data
+%     T.0000002880.002.000.meta, T.0000002880.002.000.data
+%     T.0000002880.003.000.meta, T.0000002880.003.000.data
+% use
+%    >> A=rdmds('T.0000002880');
+%
+% A = RDMDS(FNAME,MACHINEFORMAT) allows the machine format to be specified
+% which MACHINEFORMAT is on of the following strings:
+%
+%   'native'      or 'n' - local machine format - the default
+%   'ieee-le'     or 'l' - IEEE floating point with little-endian
+%                          byte ordering
+%   'ieee-be'     or 'b' - IEEE floating point with big-endian
+%                          byte ordering
+%   'vaxd'        or 'd' - VAX D floating point and VAX ordering
+%   'vaxg'        or 'g' - VAX G floating point and VAX ordering
+%   'cray'        or 'c' - Cray floating point with big-endian
+%                          byte ordering
+%   'ieee-le.l64' or 'a' - IEEE floating point with little-endian
+%                          byte ordering and 64 bit long data type
+%   'ieee-be.l64' or 's' - IEEE floating point with big-endian byte
+%                          ordering and 64 bit long data type.
+%
 % $Header$
 
 % Default options
 ieee='b';
-fname=fnamearg;
-iters=-1;
 
 % Check optional arguments
-for ind=1:size(varargin,2);
- arg=varargin{ind};
- if ischar(arg)
-  if strcmp(arg,'n') | strcmp(arg,'native')
-   ieee='n';
-  elseif strcmp(arg,'l') | strcmp(arg,'ieee-le')
-   ieee='l';
-  elseif strcmp(arg,'b') | strcmp(arg,'ieee-be')
-   ieee='b';
-  elseif strcmp(arg,'c') | strcmp(arg,'cray')
-   ieee='c';
-  elseif strcmp(arg,'a') | strcmp(arg,'ieee-le.l64')
-   ieee='a';
-  elseif strcmp(arg,'s') | strcmp(arg,'ieee-be.l64')
-   ieee='s';
-  else
-   error(['Optional argument ' arg ' is unknown'])
-  end
+args=char(varargin);
+while (size(args,1) > 0)
+ if deblank(args(1,:)) == 'n' | deblank(args(1,:)) == 'native'
+  ieee='n';
+ elseif deblank(args(1,:)) == 'l' | deblank(args(1,:)) == 'ieee-le'
+  ieee='l';
+ elseif deblank(args(1,:)) == 'b' | deblank(args(1,:)) == 'ieee-be'
+  ieee='b';
+ elseif deblank(args(1,:)) == 'c' | deblank(args(1,:)) == 'cray'
+  ieee='c';
+ elseif deblank(args(1,:)) == 'a' | deblank(args(1,:)) == 'ieee-le.l64'
+  ieee='a';
+ elseif deblank(args(1,:)) == 's' | deblank(args(1,:)) == 'ieee-be.l64'
+  ieee='s';
  else
-  if arg>=9999999999
-   error(sprintf('Argument %i > 9999999999',arg))
-  end
-  if prod(arg>=0) & prod(round(arg)==arg)
-   iters=arg;
-  else
-   error(sprintf('Argument %i must be a positive integer',arg))
-  end
+  error(['Optional argument ' args(1,:) ' is unknown'])
  end
-end
-
-% Loop over each iteration
-for iter=1:size(iters,2);
-if iters(iter)>=0
- fname=sprintf('%s.%10.10i',fnamearg,iters(iter));
-end
-
-% Figure out if there is a path in the filename
-NS=findstr('/',fname);
-if size(NS)>0
- Dir=fname(1:NS(end));
-else
- Dir='./';
+ args=args(2:end,:);
 end
 
 % Match name of all meta-files
-allfiles=dir( sprintf('%s.*.meta',fname) );
+eval(['ls ' fname '*.meta;']);
+allfiles=ans;
 
-if size(allfiles,1)==0
- disp(sprintf('No files match the search: %s.*.meta',fname));
- error('No files found.')
-end
+% Beginning and end of strings
+Iend=findstr(allfiles,'.meta')+4;
+Ibeg=[1 Iend(1:end-1)+2];
 
 % Loop through allfiles
-for j=1:size(allfiles,1);
+for j=1:prod(size(Ibeg)),
 
 % Read meta- and data-file
-[A,N] = localrdmds([Dir allfiles(j).name],ieee);
+[A,N] = localrdmds(allfiles(Ibeg(j):Iend(j)),ieee);
 
 bdims=N(1,:);
 r0=N(2,:);
 rN=N(3,:);
 ndims=prod(size(bdims));
 if     (ndims == 1)
- AA(r0(1):rN(1),iter)=A;
+ AA(r0(1):rN(1))=A;
 elseif (ndims == 2)
- AA(r0(1):rN(1),r0(2):rN(2),iter)=A;
+ AA(r0(1):rN(1),r0(2):rN(2))=A;
 elseif (ndims == 3)
- AA(r0(1):rN(1),r0(2):rN(2),r0(3):rN(3),iter)=A;
+ AA(r0(1):rN(1),r0(2):rN(2),r0(3):rN(3))=A;
 elseif (ndims == 4)
- AA(r0(1):rN(1),r0(2):rN(2),r0(3):rN(3),r0(4):rN(4),iter)=A;
-elseif (ndims == 5)
- AA(r0(1):rN(1),r0(2):rN(2),r0(3):rN(3),r0(4):rN(4),r0(5):rN(5),iter)=A;
+ AA(r0(1):rN(1),r0(2):rN(2),r0(3):rN(3),r0(4):rN(4))=A;
 else
  error('Dimension of data set is larger than currently coded. Sorry!')
 end
 
-end % files
-end % iterations
+end
 
 %-------------------------------------------------------------------------------
 
@@ -191,9 +149,6 @@ allstr=strrep(allstr,'format','dataprec');
 eval(allstr);
 
 N=reshape( dimlist , 3 , prod(size(dimlist))/3 );
-if nrecords ~= -987 & nrecords > 1
- N=[N,[nrecords 1 nrecords]'];
-end
 
 if nrecords == -987
 % This is the old 'meta' method that used sequential access

@@ -17,7 +17,6 @@ function [U,V] = uvcube2latlon(LON,LAT,u,v,xc,yc)
 %
 % $Header$
 
-NN=size(u);
 [nnx ny nz]=size(u);
 
 U=reshape(u,[ny 6 ny nz]);
@@ -51,8 +50,8 @@ for k=1:6;
 end
 end
 
-U=reshape(U,[nnx NN(2:end)]);
-V=reshape(V,[nnx NN(2:end)]);
+U=reshape(U,[nnx ny nz]);
+V=reshape(V,[nnx ny nz]);
 
 % xc=-179:2:179;
 % yc=-89:2:89;

@@ -20,8 +20,6 @@ C     == Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GAD.h"
-#include "GRID.h"
-#include "SURFACE.h"
 
 C     == Routine Arguments ==
       INTEGER bi,bj,iMin,iMax,jMin,jMax,K
@@ -33,7 +31,6 @@ C     == Routine Arguments ==
 C     == Local variables ==
       INTEGER i,j
       _RL ab15,ab05
-      _RL gTrtmp(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
 C     Adams-Bashforth timestepping weights
       IF (myIter .EQ. 0) THEN
@@ -44,55 +41,28 @@ C     Adams-Bashforth timestepping weights
        ab05=-(0.5+abEps)
       ENDIF
 
-C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
-C     Compute effective G-term:
+C     Step forward temperature
       IF ( advection_scheme.EQ.ENUM_CENTERED_2ND
      & .OR.advection_scheme.EQ.ENUM_UPWIND_3RD
      & .OR.advection_scheme.EQ.ENUM_CENTERED_4TH ) THEN
-
-C-    with Adams-Bashforth weights:
        DO j=jMin,jMax
         DO i=iMin,iMax
-         gTrtmp(i,j) = ab15*gTracer(i,j,k,bi,bj) 
-     &               + ab05*gTrNm1(i,j,k,bi,bj)
+          gTrNm1(i,j,k,bi,bj)=tracer(i,j,k,bi,bj)
+     &             +deltaTtracer*(
+     &                              ab15*gTracer(i,j,k,bi,bj)
+     &                             +ab05*gTrNm1(i,j,k,bi,bj)  )
         ENDDO
        ENDDO
-
-      ELSEIF (advection_scheme.EQ.ENUM_FLUX_LIMIT
-     &    .OR.advection_scheme.EQ.ENUM_DST3
-     &    .OR.advection_scheme.EQ.ENUM_DST3_FLUX_LIMIT ) THEN
-
-C-    with no Adams-Bashforth weights:
+      ELSEIF (advection_scheme.EQ.ENUM_FLUX_LIMIT) THEN
        DO j=jMin,jMax
         DO i=iMin,iMax
-         gTrtmp(i,j) = gTracer(i,j,k,bi,bj) 
+          gTrNm1(i,j,k,bi,bj)=tracer(i,j,k,bi,bj)
+     &             +deltaTtracer*gTracer(i,j,k,bi,bj)
         ENDDO
        ENDDO
-
       ELSE
        STOP 'TIMESTEP_TRACER: Bad advection_scheme'
       ENDIF
-
-#ifdef NONLIN_FRSURF
-      IF (nonlinFreeSurf.GT.0) THEN
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         IF (k.EQ.ksurfC(i,j,bi,bj)) THEN
-          gTrtmp(i,j) = gTrtmp(i,j)
-     &          *hFacC(i,j,k,bi,bj)/hFac_surfC(i,j,bi,bj) 
-         ENDIF
-        ENDDO
-       ENDDO
-      ENDIF
-#endif /* NONLIN_FRSURF */
-
-C-    Step forward tracer
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-         gTrNm1(i,j,k,bi,bj)=tracer(i,j,k,bi,bj)
-     &            +deltaTtracer*gTrtmp(i,j)
-       ENDDO
-      ENDDO
 
       RETURN
       END

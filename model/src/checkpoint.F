@@ -104,7 +104,7 @@ C       Raw fields
 c        CALL READ_REC_XYZ_RL( 'gWnm1',gWnm1, 1,myIter,myThid)
         ENDIF
 #endif
-#else /* OLD_STYLE_WITH_MANY_FILES */
+#else
 
         prec = precFloat64
 
@@ -123,10 +123,6 @@ C--     Read model fields
         CALL MDSREADFIELD(fn,prec,'RL',Nr,gS,    11,myThid)
         CALL MDSREADFIELD(fn,prec,'RL',Nr,gSnm1, 12,myThid)
         CALL MDSREADFIELD(fn,prec,'RL', 1,etaN,12*Nr+1,myThid)
-#ifdef NONLIN_FRSURF
-        IF ( nonlinFreeSurf.GE.0)
-     &  CALL MDSREADFIELD(fn,prec,'RL',1,etaNm1,12*Nr+2,myThid)
-#endif
 #ifdef INCLUDE_CD_CODE
         WRITE(fn,'(A,I10.10)') 'pickup_cd.',myIter
         CALL MDSREADFIELD(fn,prec,'RL',Nr,uVelD,    1,myThid)
@@ -135,14 +131,8 @@ C--     Read model fields
         CALL MDSREADFIELD(fn,prec,'RL',Nr,vNM1,     4,myThid)
         CALL MDSREADFIELD(fn,prec,'RL',Nr,guCD,     5,myThid)
         CALL MDSREADFIELD(fn,prec,'RL',Nr,gvCD,     6,myThid)
-#ifdef NONLIN_FRSURF
-        IF ( nonlinFreeSurf.LT.0)
-     &  CALL MDSREADFIELD(fn,prec,'RL', 1,etaNm1,6*Nr+1,myThid)
-#else
         CALL MDSREADFIELD(fn,prec,'RL', 1,etaNm1,6*Nr+1,myThid)
 #endif
-#endif /* INCLUDE_CD_CODE */
-
 #ifdef ALLOW_NONHYDROSTATIC
         IF ( nonHydrostatic ) THEN
          WRITE(fn,'(A,I10.10)') 'pickup_nh.',myIter
@@ -159,7 +149,7 @@ C SPK 4/9/01: Open boundary checkpointing
         ENDIF
 #endif  /* ALLOW_OBCS */
 
-#endif /* OLD_STYLE_WITH_MANY_FILES */
+#endif
 
 C       Reset default IO precision
         readBinaryPrec = oldPrec
@@ -184,9 +174,8 @@ c     _EXCH_XYZ_R8(gvNM1 , myThid )
       _EXCH_XYZ_R8(gs    , myThid )
       _EXCH_XYZ_R8(gsNM1 , myThid )
       _EXCH_XY_R8 (etaN, myThid )
-      _EXCH_XY_R8( etaNm1, myThid )
-
 #ifdef INCLUDE_CD_CODE
+      _EXCH_XY_R8( etaNm1, myThid )
 c**** CALL EXCH_DUV_XYZ_RL(uVelD,vVelD,.TRUE.,myThid)
 c**** CALL EXCH_DUV_XYZ_RL(guCD,gvCD,.TRUE.,myThid)
       _EXCH_XYZ_R8( uVelD,    myThid )
@@ -335,7 +324,7 @@ c        CALL WRITE_REC_XYZ_RL( 'gWnm1',gWnm1, 1,myIter,myThid)
         ENDIF
 #endif
 
-#else /* OLD_STYLE_WITH_MANY_FILES */
+#else
 
         prec = precFloat64
         lgf = globalFile
@@ -360,10 +349,6 @@ C--     Write model fields
         CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,gSnm1,12,myIter,myThid)
         CALL MDSWRITEFIELD(fn,prec,lgf,'RL', 1,etaN,12*Nr+1,
      &                     myIter,myThid)
-#ifdef NONLIN_FRSURF
-        CALL MDSWRITEFIELD(fn,prec,lgf,'RL', 1,etaNm1,12*Nr+2,
-     &                     myIter,myThid)
-#endif
 #ifdef INCLUDE_CD_CODE
         IF ( permCheckPoint ) THEN
          WRITE(fn,'(A,I10.10)') 'pickup_cd.',myIter
@@ -376,11 +361,9 @@ C--     Write model fields
         CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,vNM1, 4,myIter,myThid)
         CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,guCD, 5,myIter,myThid)
         CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,gvCD, 6,myIter,myThid)
-#ifndef NONLIN_FRSURF
         CALL MDSWRITEFIELD(fn,prec,lgf,'RL', 1,etaNm1,6*Nr+1,
      &                     myIter,myThid)
 #endif
-#endif /* INCLUDE_CD_CODE */
 #ifdef ALLOW_NONHYDROSTATIC
         IF ( nonHydrostatic ) THEN
          IF ( permCheckPoint ) THEN
@@ -407,7 +390,7 @@ C SPK 4/9/01: Open boundary checkpointing
          nCheckLev = MOD(nCheckLev, maxNoChkptLev)+1
         ENDIF
 
-#endif /* OLD_STYLE_WITH_MANY_FILES */
+#endif
 
 C--     Reset binary precision
         writeBinaryPrec = oldPrec

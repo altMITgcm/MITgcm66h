@@ -70,14 +70,6 @@ C       (DO_GTERM_BLOCKING_EXCHANGES).
         CALL DUMMY_IN_STEPPING( myTime, myIter, myThid )
 #endif
 
-#ifdef NONLIN_FRSURF
-C--   compute the future surface level thickness
-C      according to the current Eta field 
-        IF ( nonlinFreeSurf.GT.0) THEN
-          CALL CALC_SURF_DR(etaN, myTime, myIter, myThid )
-        ENDIF
-#endif
-
 C--     Load forcing/external data fields.
 #ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
 C       NOTE, that although the exf package is part of the
@@ -96,35 +88,20 @@ C--     Step forward fields and calculate time tendency terms.
         CALL TIMER_STOP ('THERMODYNAMICS      [THE_MAIN_LOOP]',mythid)
 
 C--     Step forward fields and calculate time tendency terms.
-        IF ( momStepping ) THEN
         CALL TIMER_START('DYNAMICS            [THE_MAIN_LOOP]',mythid)
         CALL DYNAMICS( myTime, myIter, myThid )
         CALL TIMER_STOP ('DYNAMICS            [THE_MAIN_LOOP]',mythid)
-        ENDIF
 
 #ifndef ALLOW_AUTODIFF_TAMC
 #ifdef ALLOW_NONHYDROSTATIC
 C--   Step forward W field in N-H algorithm
-        IF ( momStepping .AND. nonHydrostatic ) THEN
+        IF ( nonHydrostatic ) THEN
           CALL TIMER_START('CALC_GW          [THE_MAIN_LOOP]',myThid)
           CALL CALC_GW(myThid)
           CALL TIMER_STOP ('CALC_GW          [THE_MAIN_LOOP]',myThid)
         ENDIF
 #endif
 #endif /* ALLOW_AUTODIFF_TAMC */
-
-#ifdef NONLIN_FRSURF
-C--   update hfacC,W,S and recip_hFac according to the current Eta field
-      IF ( momStepping ) THEN
-      IF ( nonlinFreeSurf.GT.0) THEN
-        CALL UPDATE_SURF_DR( myTime, myIter, myThid )
-      ENDIF
-C-    update also CG2D matrix (and preconditioner)
-      IF ( nonlinFreeSurf.GT.2) THEN
-        CALL UPDATE_CG2D( myTime, myIter, myThid )
-      ENDIF
-      ENDIF
-#endif
 
 C-- This block has been moved to the_correction_step(). We have
 C   left this code here to indicate where the filters used to be
@@ -158,11 +135,9 @@ C#endif
 C--   Solve elliptic equation(s).
 C     Two-dimensional only for conventional hydrostatic or 
 C     three-dimensional for non-hydrostatic and/or IGW scheme.
-      IF ( momStepping ) THEN
       CALL TIMER_START('SOLVE_FOR_PRESSURE  [THE_MAIN_LOOP]',myThid)
       CALL SOLVE_FOR_PRESSURE( myThid )
       CALL TIMER_STOP ('SOLVE_FOR_PRESSURE  [THE_MAIN_LOOP]',myThid)
-      ENDIF
 
 C--   Correct divergence in flow field and cycle time-stepping
 C     arrays (for all fields) ; update time-counter

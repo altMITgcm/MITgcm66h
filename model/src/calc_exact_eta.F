@@ -19,7 +19,6 @@ C     == Global variables
 #include "PARAMS.h"
 #include "DYNVARS.h"
 #include "GRID.h"
-#include "SURFACE.h"
 
 C     == Routine arguments ==
 C     bi,bj   - tile index
@@ -45,19 +44,11 @@ C     Local variables
       _RL vTrans(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
 
 #ifdef DBUG_EXACT_ETA
-C     sumArea - Work variable used to compute the total Domain Area
-C     eta_sum1,2 - Eta mean value before and after this routine
-C     eta_dif1,2,3 - Mean change of Eta: 1=before this call - iterNm1
-C                                        2=this call
-C                                        3=iterN-iterNm1
       _RL eta_tmp(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
-      _RL  sumArea, eta_sum1, eta_sum2, eta_dif1, eta_dif2, eta_dif3
-      SAVE sumArea, eta_sum1, eta_sum2, eta_dif1, eta_dif2, eta_dif3
-      _RL  recip_sumArea
-      DATA recip_sumArea / 0. _d 0 / 
+      _RL eta_sum1, eta_sum2, eta_dif1, eta_dif2
 #endif
 
-C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+c---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 C--   Change of Eta <== -Divergence of The Barotropic Flow : Explicit part
       IF ( myTime.NE.StartTime ) THEN
@@ -73,7 +64,7 @@ C--   Change of Eta <== -Divergence of The Barotropic Flow : Explicit part
         ENDDO
       ENDIF
         
-C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+c---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 C--   Compute the Divergence of The Barotropic Flow :
 
@@ -108,7 +99,7 @@ C-    Integrate vertically the Horizontal Divergence
 C-    End DO k=1,Nr
       ENDDO
 
-C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+c---+----1----+----2----+----3----+--yy--4----+----5----+----6----+----7-|--+----|
 
 C--   Change of Eta <== -Divergence of The Barotropic Flow : Implicit part
       IF ( myTime.NE.StartTime ) THEN
@@ -120,13 +111,10 @@ C--   Change of Eta <== -Divergence of The Barotropic Flow : Implicit part
          ENDDO
         ENDDO
 #ifdef DBUG_EXACT_ETA
-        IF (bi.EQ.1 .AND. bj.EQ.1) THEN
-          eta_sum1 = 0.
-          eta_sum2 = 0.
-          eta_dif1 = 0.
-          eta_dif2 = 0.
-          eta_dif3 = 0.
-        ENDIF
+        eta_sum1 = 0.
+        eta_sum2 = 0.
+        eta_dif1 = 0.
+        eta_dif2 = 0.
         DO j=1,sNy
          DO i=1,sNx
            eta_sum1 = eta_sum1
@@ -137,34 +125,10 @@ C--   Change of Eta <== -Divergence of The Barotropic Flow : Implicit part
      &              + rA(i,j,bi,bj)*abs(etaNm1(i,j,bi,bj)-eta_tmp(i,j))
            eta_dif2 = eta_dif2
      &              + rA(i,j,bi,bj)*abs( etaN(i,j,bi,bj) -eta_tmp(i,j))
-           eta_dif3 = eta_dif3
-     &           + rA(i,j,bi,bj)*abs(etaN(i,j,bi,bj)-etaNm1(i,j,bi,bj))
          ENDDO
         ENDDO
-        IF (bi.EQ.nSx .AND. bj.EQ.nSy) THEN
-          eta_sum1 = recip_sumArea*eta_sum1
-          eta_sum2 = recip_sumArea*eta_sum2
-          eta_dif1 = recip_sumArea*eta_dif1
-          eta_dif2 = recip_sumArea*eta_dif2
-          eta_dif3 = recip_sumArea*eta_dif3
-         write(6,'(A,I9,I2,1P5E14.6)') 'ETA_SUM,DIF:',
-     &    myIter,myThid, eta_sum1,eta_sum2, eta_dif1,eta_dif2,eta_dif3
-        ENDIF
-      ELSE
-        IF (bi.EQ.1 .AND. bj.EQ.1) sumArea = 0.
-        DO j=1,sNy
-         DO i=1,sNx
-           k = ksurfC(i,j,bi,bj)
-           if (k.le.Nr) sumArea = sumArea + rA(i,j,bi,bj)
-         ENDDO
-        ENDDO
-        IF (bi.EQ.nSx .AND. bj.EQ.nSy .AND. recip_sumArea.EQ.0.
-     &                .AND. sumArea.GT.0.) THEN
-          recip_sumArea=1./sumArea
-          write(6,'(2A,I9,I2,1P2E22.14)') 'ETA_SUM,DIF:',
-     &     ' sumArea,recip_=', myIter,myThid, sumArea, recip_sumArea
-        ENDIF
-C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+        write(0,'(A,I9,3I2,1P4E16.8)') 'ETA_SUM,DIF:',
+     &    myIter, myThid, bi,bj, eta_sum1,eta_sum2, eta_dif1,eta_dif2
 #endif /* DBUG_EXACT_ETA */
       ENDIF
 
