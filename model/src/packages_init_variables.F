@@ -1,5 +1,3 @@
-C $Header$
-C $Name$
 
 #include "CPP_OPTIONS.h"
 
@@ -80,9 +78,6 @@ C--   Open boundaries data
 c--   Map the control variables onto the model state. 
       call ctrl_map_ini( mythid )
       _BARRIER
-c--   Initialise the cost function.
-      call cost_init( mythid )
-      _BARRIER
 #endif
 
 #ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
@@ -95,6 +90,12 @@ c--   Initialise the cost function.
       IF (useECCO) THEN
        CALL ECCO_INIT( myThid )
       ENDIF
+#else
+# ifdef ALLOW_COST
+c--   Initialise the cost function.
+      call cost_init( mythid )
+      _BARRIER
+# endif
 #endif
 
       RETURN
