@@ -197,6 +197,19 @@ C-    state variables of the main code (and related quadratic var):
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
+      diagName  = 'WU_VEL  '
+      diagTitle = 'Vertical Transport of Zonal Momentum (m^2/s^2)'
+      diagUnits = DIAGS_MK_UNITS( 'm.'//rUnit2c//'/s^2', myThid )
+      diagCode  = 'WU      LR      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+      diagName  = 'WV_VEL  '
+      diagTitle ='Vertical Transport of Meridional Momentum (m^2/s^2)'
+      diagUnits = DIAGS_MK_UNITS( 'm.'//rUnit2c//'/s^2', myThid )
+      diagCode  = 'WV      LR      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
       diagName  = 'UVELMASS'
       diagTitle = 'Zonal Mass-Weighted Comp of Velocity (m/s)'
