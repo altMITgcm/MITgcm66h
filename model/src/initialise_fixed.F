@@ -59,7 +59,7 @@ C      |-- CONFIG_CHECK
 C      |
 C      |-- CONFIG_SUMMARY
 C      |
-C      |-- NETCDF_WRITEGRID
+C      |-- MNC_W_GRIDINFO
 
 C     !USES:
       IMPLICIT NONE
@@ -143,9 +143,10 @@ C     and get config. info for other component(s).
       IF ( useCoupler ) CALL CPL_EXCH_CONFIGS( myThid )
 #endif
 
-#ifdef ALLOW_NETCDF
-C     Test NETCDF_WRITEGRID
-      CALL NETCDF_WRITEGRID( 'test', myThid )
+#ifdef ALLOW_MNC
+C     Test MNC
+      CALL MNC_INIT(myThid)
+      CALL MNC_W_GRIDINFO(myThid, 'test')
 #endif
 
       RETURN

@@ -105,7 +105,7 @@ C     Check that the file is open
         write(msgbuf,'(3a)') 'MNC ERROR: file ''', fname, 
      &       ''' must be opened first'
         CALL print_error(msgbuf, mythid)
-        stop 'ABNORMAL END: S/R MNC_VAR_INIT_DBL'
+        stop 'ABNORMAL END: S/R MNC_VAR_INIT_ANY'
       ENDIF
       fid = mnc_f_info(indf,2)
 
@@ -115,7 +115,7 @@ C     Get the grid information
         write(msgbuf,'(3a)') 'MNC ERROR: file ''', fname(1:lenf), 
      &       ''' contains NO grids'
         CALL print_error(msgbuf, mythid)
-        stop 'ABNORMAL END: S/R MNC_VAR_INIT_DBL'
+        stop 'ABNORMAL END: S/R MNC_VAR_INIT_ANY'
       ENDIF
       DO i = 1,ngrid
         j = 4 + (i-1)*3
@@ -137,7 +137,7 @@ C     Get the grid information
       write(msgbuf,'(5a)') 'MNC ERROR: file ''', fname(1:lenf), 
      &     ''' does not contain grid ''', gname(1:leng), ''''
       CALL print_error(msgbuf, mythid)
-      stop 'ABNORMAL END: S/R MNC_VAR_INIT_DBL'
+      stop 'ABNORMAL END: S/R MNC_VAR_INIT_ANY'
  10   CONTINUE
 
 C     Add the variable definition
