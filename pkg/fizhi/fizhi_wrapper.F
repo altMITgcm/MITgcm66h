@@ -122,6 +122,7 @@ c Compute physics increments
      .  iras,nlwcld,cldtot_lw,cldras_lw,cldlsp_lw,nlwlz,lwlz,
      .  nswcld,cldtot_sw,cldras_sw,cldlsp_sw,nswlz,swlz,
      .  imstturbsw,imstturblw,qliqavesw,qliqavelw,fccavesw,fccavelw,
+     .  raincon,rainlsp,snowfall,
      .  duphy,dvphy,dthphy,dsphy)
        enddo
        enddo

@@ -42,6 +42,7 @@ c ----------------------------------------------------------------------
       common /physics_saver/ cldtot_lw,cldras_lw,cldlsp_lw,lwlz,
      .                       cldtot_sw,cldras_sw,cldlsp_sw,swlz,
      .                       qliqavesw,qliqavelw,fccavesw,fccavelw,
+     .                       raincon,rainlsp,snowfall,
      .                       iras,nlwcld,nlwlz,nswcld,nswlz,
      .                       imstturbsw,imstturblw
 
@@ -57,6 +58,9 @@ c ----------------------------------------------------------------------
       _RL qliqavelw(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nrphys,Nsx,Nsy)
       _RL fccavesw(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nrphys,Nsx,Nsy)
       _RL fccavelw(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nrphys,Nsx,Nsy)
+      _RL raincon(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nsx,Nsy)
+      _RL rainlsp(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nsx,Nsy)
+      _RL snowfall(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nsx,Nsy)
       integer iras,nlwcld,nlwlz,nswcld,nswlz
       integer imstturbsw,imstturblw
 
