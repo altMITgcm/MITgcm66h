@@ -45,6 +45,13 @@ C     == Local variables ==
       _RL gam(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
 
 C--   Initialise
+      DO k=1,Nr
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         gYNm1(i,j,k,bi,bj) = 0. _d 0
+        ENDDO
+       ENDDO
+      ENDDO
 
 C--   Old aLower
       DO j=jMin,jMax
