@@ -511,11 +511,14 @@ C--      Apply open boundary conditions
 C--      Freeze water
          IF (allowFreezing)
      &   CALL FREEZE( bi, bj, iMin, iMax, jMin, jMax, K, myThid )
+
+#ifdef DIVG_IN_DYNAMICS
 C--      Diagnose barotropic divergence of predicted fields
          CALL CALC_DIV_GHAT(
      I       bi,bj,iMin,iMax,jMin,jMax,K,
      I       xA,yA,
      I       myThid)
+#endif /* DIVG_IN_DYNAMICS */
 
 C--      Cumulative diagnostic calculations (ie. time-averaging)
 #ifdef INCLUDE_DIAGNOSTICS_INTERFACE_CODE

@@ -52,10 +52,10 @@ C     Horizontal gridding
 C     In cartesian coords distances are in metres
       usingCartesianGrid = .TRUE.
       DO i=1,Nx
-       delX(i) = 0.
+       delX(i) = UNSET_RL
       ENDDO
       DO j=1,Ny
-       delY(j) = 0.
+       delY(j) = UNSET_RL
       ENDDO
 C     In spherical polar distances are in degrees
       usingSphericalPolarGrid = .FALSE.

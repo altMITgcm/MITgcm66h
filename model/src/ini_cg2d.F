@@ -171,7 +171,7 @@ C           defaults to 0.51 but can be set at runtime.
      &     rA(I-1,J,bi,bj)/deltaTMom/deltaTMom
      &    )
           IF ( aC .EQ. 0. ) THEN
-            pC(I,J,bi,bj) = 0. _d 0
+            pC(I,J,bi,bj) = 1. _d 0
           ELSE
            pC(I,J,bi,bj) =  1. _d 0 / aC
           ENDIF
