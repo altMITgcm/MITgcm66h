@@ -21,7 +21,6 @@ c     == global variables ==
 #include "SIZE.h"
 
 #include "cost.h"
-#include "tamc.h"
 
 c     == routine arguments ==
 
@@ -44,7 +43,7 @@ c
               read(unit=76,fmt=*) idivbeg,idivend
               close(unit=76)
            else
-              idivbeg = nchklev_3
+              idivbeg = -2
            endif
 c
            if ( idivbeg .EQ. 0 ) then
