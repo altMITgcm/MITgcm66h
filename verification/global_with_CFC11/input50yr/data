@@ -105,7 +105,7 @@
 # pChkptFreq: 31626000 for leap years; 31539600 otherwise
  pChkptFreq= 31539600.,
  dumpFreq=   43200.,
- tr1dumpFreq=864000.,
+ tr1dumpFreq=2628000.,
  taveFreq=   864000.,
  monitorFreq=43200.,
  tauThetaClimRelax =  2592000.0,
