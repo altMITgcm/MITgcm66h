@@ -27,9 +27,14 @@ C     === Local variables ===
 C     msgBuf      - Informational/error meesage buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 
+#if ( defined (ALLOW_ADJOINT_RUN) || \
+      defined (ALLOW_GRADIENT_CHECK) || \
+      defined (ALLOW_ECCO_OPTIMIZATION) )
+
       CALL CTRL_CHECK( myThid )
 
       CALL COST_CHECK( myThid )
+#endif
 
       RETURN
       END
