@@ -59,6 +59,7 @@
  momStepping=.TRUE.,
  implicitDiffusion=.TRUE.,
  implicitViscosity=.TRUE.,
+ useCDscheme=.TRUE.,
  &
 
 # Elliptic solver parameters

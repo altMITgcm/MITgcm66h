@@ -35,9 +35,9 @@
  saltStepping=.TRUE.,
  tempStepping=.TRUE.,
  momStepping=.TRUE.,
-# the following is c27
  implicitDiffusion=.TRUE.,
  implicitViscosity=.TRUE.,
+ useCDscheme=.TRUE.,
  &
 
 # **************************
