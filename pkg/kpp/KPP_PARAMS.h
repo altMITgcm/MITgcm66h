@@ -26,10 +26,6 @@ C     Nrm1, Nrp1, Nrp2 = number of vertical levels
 
 #ifdef ALLOW_KPP
 
-C     Package on/off information
-      LOGICAL kppPackageIsOn
-      COMMON /KPP_PKG/ kppPackageIsOn
-
 C Time invariant parameters initialized by subroutine kmixinit
 C     nzmax (nx,ny)   - Maximum number of wet levels in each column
 C     pMask           - Mask relating to Pressure/Tracer point grid.
