@@ -69,11 +69,42 @@ C--   Read parameters from open data file
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT , 1)
 
-      write(*,*) 'Shap_funct, nShap_Tr,UV _Phys=',
-     &    Shap_funct, nShapT, nShapUV, nShapTrPhys, nShapUVPhys
-      write(*,*) 'Shap_Trtau,Shap_uvtau=',Shap_Trtau,Shap_uvtau
 C--   Close the open data file
       CLOSE(iUnit)
+
+C- print out some kee parameters :
+      CALL WRITE_0D_I( Shap_funct, INDEX_NONE,
+     & 'Shap_funct =',
+     & '   /* select Shapiro filter function */')  
+      CALL WRITE_0D_I( nShapT , INDEX_NONE,
+     & 'nShapTr =',
+     & '   /* power of Shapiro filter for Tracers */')  
+      CALL WRITE_0D_I( nShapUV, INDEX_NONE,
+     & 'nShapUV =',
+     & '   /* power of Shapiro filter for momentum */')  
+
+      IF (Shap_funct.EQ.2) THEN
+       CALL WRITE_0D_I( nShapTrPhys, INDEX_NONE,
+     & 'nShapTrPhys =',
+     & '   /* power of physical-space filter (Tracer) */')  
+       CALL WRITE_0D_I( nShapUVPhys, INDEX_NONE,
+     & 'nShapUVPhys =',
+     & '   /* power of physical-space filter (Momentum) */')  
+      ENDIF
+
+      CALL WRITE_0D_R8( Shap_Trtau, INDEX_NONE,
+     & 'Shap_Trtau =',
+     & '   /* time scale of Shapiro filter (Tracer) */')  
+      CALL WRITE_0D_R8( Shap_TrLength, INDEX_NONE,
+     & 'Shap_TrLength =',
+     & '   /* Length scale of Shapiro filter (Tracer) */')  
+      CALL WRITE_0D_R8( Shap_uvtau, INDEX_NONE,
+     & 'Shap_uvtau =',
+     & '   /* time scale of Shapiro filter (Momentum) */')  
+      CALL WRITE_0D_R8( Shap_uvLength, INDEX_NONE,
+     & 'Shap_uvLength =',
+     & '   /* Length scale of Shapiro filter (Momentum) */')  
+
       _END_MASTER(myThid)
 
 C--   Everyone else must wait for the parameters to be loaded
@@ -95,10 +126,10 @@ C    with some option of the code.
         ELSEIF ( .NOT.exactConserv ) THEN
          WRITE(msgBuf,'(2A)') 'S/R SHAP_FILT_READPARMS: WARNING <<< ',
      &    'applying Filter after SOLVE_FOR_P (shap_filt_uvStar=FALSE)'
-         CALL PRINT_ERROR( msgBuf , 1)
+         CALL PRINT_MESSAGE(msgBuf, errorMessageUnit, SQUEEZE_RIGHT,1)
          WRITE(msgBuf,'(2A)') 'S/R SHAP_FILT_READPARMS: WARNING <<< ',
      &    'requires to recompute Eta after ==> turn on exactConserv '
-         CALL PRINT_ERROR( msgBuf , 1)
+         CALL PRINT_MESSAGE(msgBuf, errorMessageUnit, SQUEEZE_RIGHT,1)
         ENDIF
  
        ENDIF                    
