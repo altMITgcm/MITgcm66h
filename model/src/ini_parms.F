@@ -84,7 +84,7 @@ C
 C--   Continuous equation parameters
       NAMELIST /PARM01/
      & gravity, gBaro, rhonil, tAlpha, sBeta, f0, beta,
-     &   viscAh,  viscAz,  viscA4,
+     &   viscAh,  viscAz,  viscA4, cosPower,
      &  diffKhT, diffKzT, diffK4T, 
      &  diffKhS, diffKzS, diffK4S,
      &  GMmaxslope,GMlength,GMalpha,GMdepth,GMkbackground,GMmaxval,

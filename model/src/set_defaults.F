@@ -82,6 +82,7 @@ C--   Set default "physical" parameters
       viscA4              = 0.D11
       diffK4T             = 0.D11
       diffK4S             = 0.D11
+      cosPower            = 0.
       GMmaxslope          = 1.D-2
       GMlength            = 200.D3
       GMalpha             = 0.D0
