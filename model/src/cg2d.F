@@ -110,8 +110,8 @@ C--   Normalise RHS
        ENDDO
       ENDDO
 #ifdef LETS_MAKE_JAM
-      _GLOBAL_MAX_R8( rhsMax, myThid )
-C     rhsMax=1.
+C     _GLOBAL_MAX_R8( rhsMax, myThid )
+      rhsMax=1.
 #else
       _GLOBAL_MAX_R8( rhsMax, myThid )
 #endif
