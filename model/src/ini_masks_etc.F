@@ -74,11 +74,7 @@ C           Base of domain is below bottom of this cell
            ELSE
 C           Base of domain is in this cell
 C           Set hFac to the fraction of the cell that is open.
-C           hFacC(I,J,K,bi,bj) = (rF(K)*rkFac-H(I,J,bi,bj)*rkFac)*recip_drF(K)
-CcnhDebugStarts
-C Impose full-step
-            hFacC(I,J,K,bi,bj) = 1.
-CCnhDebugEnds
+            hFacC(I,J,K,bi,bj) = (rF(K)*rkFac-H(I,J,bi,bj)*rkFac)*recip_drF(K)
            ENDIF
 C Impose minimum fraction
            IF (hFacC(I,J,K,bi,bj).LT.hFacMin) THEN
