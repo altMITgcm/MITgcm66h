@@ -653,9 +653,6 @@ c-----------------------------------------------------------------------
       _RL VT1(IM,JM)
       integer i
 
-      print *,' In msc2grd ',(igrd(i),i=1,nchp)
-      print *,' In msc2grd ',(chfr(i),i=1,nchp)
-
       IF(NCHP.GE.0) THEN
         DO I=1,IM*JM
          VT1(I,1) = ZERO
