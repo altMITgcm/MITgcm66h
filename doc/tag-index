@@ -3,7 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
-untagged:
+ecco_c50_e33
 o minor changes to pkg/seaice pkg/cost/cost_ice.F
   and verification/natl_box_adjoint/README
 o Modif's to enable tangent linear run in ECCO environment
@@ -25,6 +25,8 @@ o somewhat cleaned package initialisation sequence for
   ctrl/ cost/ ecco/
 o extended grdchk to enable obcs gradient checks
 o some generalizations for easier TLM <-> ADM switches
+o added configuration example for parallel divided adjoint
+  (see verification/natl_box_adjoint/code_diva_mpi/README )
 
 ecco_c50_e32
 o Patrick's adjoint-model storage directives for pkg/seaice
