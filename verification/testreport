@@ -193,7 +193,7 @@ genmakemodel()
 		# echo "  command=\"$command\""
 	    fi
 	    if test "x$IEEE" != x ; then
-		command="$command --ieee=$IEEE"
+		command="$command -ieee"
 	    fi
 	    $command > make.log 2>&1
 	    RETVAL=$?
