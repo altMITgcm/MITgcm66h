@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o Added Bryan and Lewis, 1979, vertical diffusivity profile
 o pkg/land: fix problem in land_impl_temp.F when Ts arround freezing. 
 o added Sadourny discretization of Coriolis
   - moved some PARAMETERS from mom_*_coriolis.F to PARAMS.h
