@@ -3,6 +3,15 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint15
+ Rewrote exchange routines to allow
+ o General tile <-> tile connectivity.
+ o TAMC reverse mode flag ( is this really needed? )
+ o Variable width overlap and exchange region widths.
+ o Hooks for sharing data via DMA, Arctic, Memory Channel, 
+   shmput/shmget, VIA, SYSV shmem and every other cool 
+   communication method.
+
 checkpoint14
  Consistent isomorphism chages made. These allow dynamical core
  to support both pressure and meters as a vertical coordinate.
