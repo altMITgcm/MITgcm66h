@@ -47,7 +47,7 @@ C     zeta        - Stability parameter d/l
 
 C--   KPP vertical mixing parameters
       NAMELIST /KPP_PARM01/
-     & kpp_freq,
+     & kpp_freq, kpp_dumpFreq, kpp_taveFreq,
      & KPPmixingMaps, KPPwriteState,
      & minKPPviscAz, maxKPPviscAz, minKPPghat, maxKPPghat,
      & minKPPdiffKzT, maxKPPdiffKzT, minKPPdiffKzS, maxKPPdiffKzS,
@@ -77,6 +77,8 @@ C--   KPP vertical mixing parameters
 
 C--   set default KPP vertical mixing parameters
       kpp_freq      = deltaTClock
+      kpp_dumpFreq  = 0.
+      kpp_taveFreq  = 0.
       KPPmixingMaps = .FALSE.
       KPPwriteState = .FALSE.
       minKPPghat    = 0.
