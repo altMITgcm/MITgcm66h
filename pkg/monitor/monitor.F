@@ -93,6 +93,12 @@ C       Print the time to make grepping the stdout easier
 C       - cause floating point error on some platform (cf Martin Losch)
 C       time_as_int = NINT( myTime )
 C       CALL MON_OUT_I( '_secondsi', time_as_int,mon_string_none,myThid)
+
+#ifdef ALLOW_EXF
+C       Print some statistics about input forcing fields
+        CALL EXF_MONITOR( myIter, myTime, myThid )
+#endif /* ALLOW_EXF */
+
 C       Print the basic statistics of model state variables
         CALL MON_SET_PREF('dynstat',myThid)
         CALL MON_PRINTSTATS_RL(1,EtaN,'_eta',

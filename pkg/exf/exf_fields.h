@@ -90,10 +90,6 @@ c     runoff    :: River and glacier runoff in m/s
 c                  > 0 for decrease in salt (ocean salinity)
 c                  Typical range: 0 < runoff < ????
 c                  Input or input/output field
-c                  !!! WATCH OUT: Default exf_inscal_runoff !!!
-c                  !!! in exf_readparms.F is not 1.0        !!!
-c                  !!! scaling 1/yr to 1/sec decoupled from !!!
-c                  !!! exf_inscal_runoff                    !!!
 c
 c     swdown    :: Downward shortwave radiation in W/m^2
 c                  > 0 for increase in theta (ocean warming)

@@ -329,8 +329,6 @@ c     Input scaling factors.
       exf_inscal_aqh       =  1. _d 0
       exf_inscal_evap      =  1. _d 0
       exf_inscal_apressure =  1. _d 0
-cds   convert runoff from m/yr to m/s and change sign.
-cph   do this later, in exf_init_runoff
       exf_inscal_runoff    =  1. _d 0
       exf_inscal_swdown    =  1. _d 0
       exf_inscal_lwdown    =  1. _d 0
