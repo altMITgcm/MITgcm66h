@@ -13,7 +13,7 @@ usage()
     echo "  (-help|-h)               print usage"
     echo "  (-mpi)                   use MPI input files"
     echo "  (-ieee|-noieee)          if possible, use IEEE compiler flags"
-    echo "                             (DEF=\"noieee\")"
+    echo "                             (DEF=\"-ieee\")"
     echo "  (-optfile=|-of=)STRING   list of optfiles to use"
     echo "  (-a|-addr) STRING        list of email recipients"
     echo "                             (DEF=\"edhill@mitgcm.org\")"
