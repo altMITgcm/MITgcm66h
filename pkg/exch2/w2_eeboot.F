@@ -33,8 +33,10 @@ C     == Local variables ==
       INTEGER myThid, I, J, II
       INTEGER iErr, tNx, tNy
       INTEGER pRank
-      INTEGER npe,itemp(nSx),istatus(MPI_STATUS_SIZE)
-      INTEGER mpiBufSize,mpiRequest
+      INTEGER npe,itemp(nSx),mpiBufSize,mpiRequest
+#ifdef ALLOW_USE_MPI
+      INTEGER istatus(MPI_STATUS_SIZE)
+#endif
 
 C     Set dummy myThid value (we aren't multi-threaded here)
       myThid = 1
