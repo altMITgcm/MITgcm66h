@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 #include "CPP_OPTIONS.h"
 
       SUBROUTINE GATHER_2D( global, local, myThid )
