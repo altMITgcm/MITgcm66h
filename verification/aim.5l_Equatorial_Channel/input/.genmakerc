@@ -3,7 +3,6 @@
 
 # Force use of PGI f77
 #if (`uname` == 'Linux') set platform=( Linux+pgi )
-set FC=(ifc)
 
 # Disable packages that are not needed
 set DISABLE=( $DISABLE kpp gmredi obcs aim_v23 )
