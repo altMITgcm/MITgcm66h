@@ -96,6 +96,7 @@ c--   Read the namelist input.
      &                   mult_ice,
      &                   costIceStart1, costIceStart2,
      &                   costIceEnd1, costIceEnd2,
+     &                   cost_ice_flag,
      &                   cost_iprec, cost_yftype
 
       _BEGIN_MASTER( myThid )
@@ -191,6 +192,7 @@ c--     Set default values.
         costIceStart2         =      0
         costIceEnd1           =      0
         costIceEnd2           =      0
+        cost_ice_flag         =      1
 
 c--     Check versions.
 

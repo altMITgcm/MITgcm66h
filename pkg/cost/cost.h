@@ -791,6 +791,11 @@ c     costIceEnd     - cost_ice end in seconds wrt model startTime
       _RL costIceStart
       _RL costIceEnd
 
+c     cost_ice_flag  - cost_ice flag (see cost_ice.F)
+
+      common /cost_ice_i/ cost_ice_flag
+      integer cost_ice_flag
+
 c     ==================================================================
 c     END OF HEADER COST
 c     ==================================================================

@@ -57,7 +57,7 @@
  ../tools/genmake -makefile
  make depend
 # Generate the adjoint code:
- cd ../adjoint
+ cd ../adjoint  
  make adtaf
  make adchange
 # Go back and compile the code:
@@ -154,133 +154,19 @@
 # explicitly setting area to 0 in growth.F also makes no difference
 # commenting out dynsolver and advect in sea_model also makes litle difference
 
-   adj grad         grdchk_eps  fd grad
-   0.162042259E-03  1.d-10      0.100000000E+01
-                    1.d-8       0.147792889E-03
-                    1.d-6       0.149270818E-03
-                    1.d-4       0.149204311E-03
-                    1.d-2       0.149203527E-03
-                    1.d0        0.153830983E-03
-                    1.d1        0.145168163E-03
+# Following table compares adjoint gradient to finite difference gradient
+# for various choices of grdchk_eps.  The finite difference gradient
+# is stable for 1.d-6 < grdchk_eps < 1.d-2, but it does not match the
+# adjoint gradient, suggesting a problem with adjoint gradient.
 
- grdchk_eps       = 1.d-10,
- ph-grd 3 -------------------------------
- ph-grd 3  proc    #    i    j    k            fc ref        fc + eps        fc - eps
- ph-grd 3  proc    #    i    j    k          adj grad         fd grad      1 - fd/adj
- ph-grd 3 -------------------------------
- ph-grd 3     0    1    8    3    1   0.869478978E+03 0.869478978E+03 0.869478978E+03
- ph-grd 3     0    1    1   20    0   0.282368284E-02 0.227373675E-02 0.194761989E+00
- ph-grd 3 -------------------------------
- ph-grd 3     0    2    2    5    1   0.869478978E+03 0.869478978E+03 0.869478978E+03
- ph-grd 3     0    2    2   40    0   0.162042259E-03 0.000000000E+00 0.100000000E+01
- ph-grd 3 -------------------------------
- ph-grd 3     0    3    9    6    1   0.869478978E+03 0.869478978E+03 0.869478978E+03
- ph-grd 3     0    3    3   60    0   0.350757987E-02 0.341060513E-02 0.276471932E-01
- ph-grd 3 -------------------------------
- ph-grd 3     0    4    3    8    1   0.869478978E+03 0.869478978E+03 0.869478978E+03
- ph-grd 3     0    4    4   80    0   0.278077239E-03 0.113686838E-02 -.308831870E+01
-
- grdchk_eps       = 1.d-8,
- ph-grd 3 -------------------------------
- ph-grd 3  proc    #    i    j    k            fc ref        fc + eps        fc - eps
- ph-grd 3  proc    #    i    j    k          adj grad         fd grad      1 - fd/adj
- ph-grd 3 -------------------------------
- ph-grd 3     0    1    8    3    1   0.869478978E+03 0.869478978E+03 0.869478978E+03
- ph-grd 3     0    1    1   20    0   0.282368284E-02 0.274553713E-02 0.276751012E-01
- ph-grd 3 -------------------------------
- ph-grd 3     0    2    2    5    1   0.869478978E+03 0.869478978E+03 0.869478978E+03
- ph-grd 3     0    2    2   40    0   0.162042259E-03 0.147792889E-03 0.879361332E-01
- ph-grd 3 -------------------------------
- ph-grd 3     0    3    9    6    1   0.869478978E+03 0.869478978E+03 0.869478978E+03
- ph-grd 3     0    3    3   60    0   0.350757987E-02 0.349587026E-02 0.333837304E-02
- ph-grd 3 -------------------------------
- ph-grd 3     0    4    3    8    1   0.869478978E+03 0.869478978E+03 0.869478978E+03
- ph-grd 3     0    4    4   80    0   0.278077239E-03 0.272848411E-03 0.188035117E-01
-
- grdchk_eps       = 1.d-6,
- ph-grd 3 -------------------------------
- ph-grd 3  proc    #    i    j    k            fc ref        fc + eps        fc - eps
- ph-grd 3  proc    #    i    j    k          adj grad         fd grad      1 - fd/adj
- ph-grd 3 -------------------------------
- ph-grd 3     0    1    8    3    1   0.869478978E+03 0.869478978E+03 0.869478978E+03
- ph-grd 3     0    1    1   20    0   0.282368284E-02 0.274133072E-02 0.291647916E-01
- ph-grd 3 -------------------------------
- ph-grd 3     0    2    2    5    1   0.869478978E+03 0.869478978E+03 0.869478978E+03
- ph-grd 3     0    2    2   40    0   0.162042259E-03 0.149270818E-03 0.788154945E-01
- ph-grd 3 -------------------------------
- ph-grd 3     0    3    9    6    1   0.869478978E+03 0.869478978E+03 0.869478978E+03
- ph-grd 3     0    3    3   60    0   0.350757987E-02 0.349803031E-02 0.272254960E-02
- ph-grd 3 -------------------------------
- ph-grd 3     0    4    3    8    1   0.869478978E+03 0.869478978E+03 0.869478978E+03
- ph-grd 3     0    4    4   80    0   0.278077239E-03 0.265913513E-03 0.437422558E-01
-
- grdchk_eps       = 1.d-4,
- ph-grd 3 -------------------------------
- ph-grd 3  proc    #    i    j    k            fc ref        fc + eps        fc - eps
- ph-grd 3  proc    #    i    j    k          adj grad         fd grad      1 - fd/adj
- ph-grd 3 -------------------------------
- ph-grd 3     0    1    8    3    1   0.869478978E+03 0.869478979E+03 0.869478978E+03
- ph-grd 3     0    1    1   20    0   0.282368284E-02 0.274122783E-02 0.292012286E-01
- ph-grd 3 -------------------------------
- ph-grd 3     0    2    2    5    1   0.869478978E+03 0.869478978E+03 0.869478978E+03
- ph-grd 3     0    2    2   40    0   0.162042259E-03 0.149204311E-03 0.792259233E-01
- ph-grd 3 -------------------------------
- ph-grd 3     0    3    9    6    1   0.869478978E+03 0.869478979E+03 0.869478978E+03
- ph-grd 3     0    3    3   60    0   0.350757987E-02 0.349807408E-02 0.271007107E-02
- ph-grd 3 -------------------------------
- ph-grd 3     0    4    3    8    1   0.869478978E+03 0.869478978E+03 0.869478978E+03
- ph-grd 3     0    4    4   80    0   0.278077239E-03 0.265789026E-03 0.441899267E-01
-
- grdchk_eps       = 1.d-2,
- ph-grd 3 -------------------------------
- ph-grd 3  proc    #    i    j    k            fc ref        fc + eps        fc - eps
- ph-grd 3  proc    #    i    j    k          adj grad         fd grad      1 - fd/adj
- ph-grd 3 -------------------------------
- ph-grd 3     0    1    8    3    1   0.869478978E+03 0.869479006E+03 0.869478951E+03
- ph-grd 3     0    1    1   20    0   0.282368284E-02 0.274123143E-02 0.291999543E-01
- ph-grd 3 -------------------------------
- ph-grd 3     0    2    2    5    1   0.869478978E+03 0.869478980E+03 0.869478977E+03
- ph-grd 3     0    2    2   40    0   0.162042259E-03 0.149203527E-03 0.792307642E-01
- ph-grd 3 -------------------------------
- ph-grd 3     0    3    9    6    1   0.869478978E+03 0.869479013E+03 0.869478943E+03
- ph-grd 3     0    3    3   60    0   0.350757987E-02 0.349806868E-02 0.271160901E-02
- ph-grd 3 -------------------------------
- ph-grd 3     0    4    3    8    1   0.869478978E+03 0.869478981E+03 0.869478976E+03
- ph-grd 3     0    4    4   80    0   0.278077239E-03 0.265792312E-03 0.441781115E-01
-
- grdchk_eps       = 1.d0,
- ph-grd 3 -------------------------------
- ph-grd 3  proc    #    i    j    k            fc ref        fc + eps        fc - eps
- ph-grd 3  proc    #    i    j    k          adj grad         fd grad      1 - fd/adj
- ph-grd 3 -------------------------------
- ph-grd 3     0    1    8    3    1   0.869478978E+03 0.869483158E+03 0.869477730E+03
- ph-grd 3     0    1    1   20    0   0.282368284E-02 0.271435042E-02 0.387197940E-01
- ph-grd 3 -------------------------------
- ph-grd 3     0    2    2    5    1   0.869478978E+03 0.869480701E+03 0.869480394E+03
- ph-grd 3     0    2    2   40    0   0.162042259E-03 0.153830983E-03 0.506736699E-01
- ph-grd 3 -------------------------------
- ph-grd 3     0    3    9    6    1   0.869478978E+03 0.869483813E+03 0.869476821E+03
- ph-grd 3     0    3    3   60    0   0.350757987E-02 0.349580377E-02 0.335732919E-02
- ph-grd 3 -------------------------------
- ph-grd 3     0    4    3    8    1   0.869478978E+03 0.869480324E+03 0.869479795E+03
- ph-grd 3     0    4    4   80    0   0.278077239E-03 0.264401119E-03 0.491810108E-01
-
- grdchk_eps       = 1.d1,
- ph-grd 3 -------------------------------
- ph-grd 3  proc    #    i    j    k            fc ref        fc + eps        fc - eps
- ph-grd 3  proc    #    i    j    k          adj grad         fd grad      1 - fd/adj
- ph-grd 3 -------------------------------
- ph-grd 3     0    1    8    3    1   0.869478978E+03 0.869655230E+03 0.869599892E+03
- ph-grd 3     0    1    1   20    0   0.282368284E-02 0.276691733E-02 0.201033597E-01
- ph-grd 3 -------------------------------
- ph-grd 3     0    2    2    5    1   0.869478978E+03 0.869636587E+03 0.869633684E+03
- ph-grd 3     0    2    2   40    0   0.162042259E-03 0.145168163E-03 0.104133920E+00
- ph-grd 3 -------------------------------
- ph-grd 3     0    3    9    6    1   0.869478978E+03 0.869649107E+03 0.869577908E+03
- ph-grd 3     0    3    3   60    0   0.350757987E-02 0.355998258E-02 -.149398484E-01
- ph-grd 3 -------------------------------
- ph-grd 3     0    4    3    8    1   0.869478978E+03 0.869589785E+03 0.869584664E+03
- ph-grd 3     0    4    4   80    0   0.278077239E-03 0.256034057E-03 0.792699979E-01
+ adj grad 0.282368284E-02 0.162042259E-03 0.350757987E-02 0.278077239E-03
+ 1.d-10   0.227373675E-02 0.000000000E+00 0.341060513E-02 0.113686838E-02
+ 1.d-8    0.274553713E-02 0.147792889E-03 0.349587026E-02 0.272848411E-03
+ 1.d-6    0.274133072E-02 0.149270818E-03 0.349803031E-02 0.265913513E-03
+ 1.d-4    0.274122783E-02 0.149204311E-03 0.349807408E-02 0.265789026E-03
+ 1.d-2    0.274123143E-02 0.149203527E-03 0.349806868E-02 0.265792312E-03
+ 1.d 0    0.271435042E-02 0.153830983E-03 0.349580377E-02 0.264401119E-03
+ 1.d 1    0.276691733E-02 0.145168163E-03 0.355998258E-02 0.256034057E-03
 
 ####################
 # Experiment no. 6 #
@@ -413,64 +299,64 @@
 # To verify the results of the gradient check, type:
  grep "ph-grd 3" output.txt
 
+# For 100 days, adjoint gradient blows up for cost_ice_flag=1,2,3,4,5.
+# Following table compares adjoint gradient to finite difference gradient
+# for various choices of grdchk_eps and for cost_ice_flag=1.  The finite
+# difference gradient is unstable, suggesting that tangent linear gradient
+# is ill defined. 100 day experiment looks equally bad with cost_ice_flag=2.
  adj grad -.441946498+276 -.143062040+277 -.116360092+277 0.400428239+277
- 1.d-16
+ 1.d-12   -.177327175E+20 0.140230277E+20 -.254542273E+20 0.138603531E+19
  1.d-8    0.174714613E+16 -.527867903E+15 0.403581037E+15 0.377322748E+12
  1.d-4    0.999954825E+11 0.156018218E+12 -.474931072E+11 -.357260091E+11
  1.d-2    0.634576350E+09 -.185440863E+10 -.599212833E+09 -.334417056E+10
 
- grdchk_eps       = 1.d-16,
+# 100 day experiment with cost_ice_flag = 3, but in North Atlantic
+# domain, i.e., with no sea-ice is OK
+ adj grad  0.234593317E+17 0.166950683E+17 0.238665515E+17 0.249850733E+17
+ 1.d-4     0.234313954E+17 0.166674930E+17 0.238322031E+17 0.249217155E+17
 
- grdchk_eps       = 1.d-8,
- ph-grd 3 -------------------------------
- ph-grd 3  proc    #    i    j    k            fc ref        fc + eps        fc - eps
- ph-grd 3  proc    #    i    j    k          adj grad         fd grad      1 - fd/adj
- ph-grd 3 -------------------------------
- ph-grd 3     0    1   17    2    1   0.450078085E+12 0.450110787E+12 0.450075844E+12
- ph-grd 3     0    1    1   20    0   -.441946498+276 0.174714613E+16 0.100000000E+01
- ph-grd 3 -------------------------------
- ph-grd 3     0    2   20    4    1   0.450078085E+12 0.450071774E+12 0.450082332E+12
- ph-grd 3     0    2    2   40    0   -.143062040+277 -.527867903E+15 0.100000000E+01
- ph-grd 3 -------------------------------
- ph-grd 3     0    3   19    6    1   0.450078085E+12 0.450102141E+12 0.450094070E+12
- ph-grd 3     0    3    3   60    0   -.116360092+277 0.403581037E+15 0.100000000E+01
- ph-grd 3 -------------------------------
- ph-grd 3     0    4   11    8    1   0.450078085E+12 0.450094556E+12 0.450094549E+12
- ph-grd 3     0    4    4   80    0   0.400428239+277 0.377322748E+12 0.100000000E+01
+# with same order of magnitude results as those from pkg/exf bulk formulae
+ adj grad  0.279968788E+17 0.226979382E+17 0.269224396E+17 0.323359773E+17
+ 1.d-4     0.279944626E+17 0.226935335E+17 0.269274317E+17 0.323399293E+17
 
- grdchk_eps       = 1.d-4,
- ph-grd 3 -------------------------------
- ph-grd 3  proc    #    i    j    k            fc ref        fc + eps        fc - eps
- ph-grd 3  proc    #    i    j    k          adj grad         fd grad      1 - fd/adj
- ph-grd 3 -------------------------------
- ph-grd 3     0    1   17    2    1   0.450078085E+12 0.450116952E+12 0.450096953E+12
- ph-grd 3     0    1    1   20    0   -.441946498+276 0.999954825E+11 0.100000000E+01
- ph-grd 3 -------------------------------
- ph-grd 3     0    2   20    4    1   0.450078085E+12 0.450102453E+12 0.450071250E+12
- ph-grd 3     0    2    2   40    0   -.143062040+277 0.156018218E+12 0.100000000E+01
- ph-grd 3 -------------------------------
- ph-grd 3     0    3   19    6    1   0.450078085E+12 0.450084354E+12 0.450093853E+12
- ph-grd 3     0    3    3   60    0   -.116360092+277 -.474931072E+11 0.100000000E+01
- ph-grd 3 -------------------------------
- ph-grd 3     0    4   11    8    1   0.450078085E+12 0.450093326E+12 0.450100471E+12
- ph-grd 3     0    4    4   80    0   0.400428239+277 -.357260091E+11 0.100000000E+01
+# 10 day experiment with cost_ice_flag = 3 is OK
+ adj grad  0.353941629E+17 0.955451129E+16 -.265793314E+17 0.232229067E+16
+ 1.d-4     0.353943893E+17 0.955563114E+16 -.265195776E+17 0.232137949E+16
+ 1-fd/adj  -.639540199E-05 -.117207086E-03 0.224813073E-02 0.392362727E-03
 
- grdchk_eps       = 1.d-2,
- ph-grd 3 -------------------------------
- ph-grd 3  proc    #    i    j    k            fc ref        fc + eps        fc - eps
- ph-grd 3  proc    #    i    j    k          adj grad         fd grad      1 - fd/adj
- ph-grd 3 -------------------------------
- ph-grd 3     0    1   17    2    1   0.450078085E+12 0.450080561E+12 0.450067869E+12
- ph-grd 3     0    1    1   20    0   -.441946498+276 0.634576350E+09 0.100000000E+01
- ph-grd 3 -------------------------------
- ph-grd 3     0    2   20    4    1   0.450078085E+12 0.450060914E+12 0.450098002E+12
- ph-grd 3     0    2    2   40    0   -.143062040+277 -.185440863E+10 0.100000000E+01
- ph-grd 3 -------------------------------
- ph-grd 3     0    3   19    6    1   0.450078085E+12 0.450057773E+12 0.450069757E+12
- ph-grd 3     0    3    3   60    0   -.116360092+277 -.599212833E+09 0.100000000E+01
- ph-grd 3 -------------------------------
- ph-grd 3     0    4   11    8    1   0.450078085E+12 0.450037391E+12 0.450104274E+12
- ph-grd 3     0    4    4   80    0   0.400428239+277 -.334417056E+10 0.100000000E+01
+# 100 day experiment with cost_ice_flag = 3 fails
+ adj grad  0.134326162+285 0.434825818+285 0.353667347+285 -.121707013+286
+ 1.d-4     -.248910431E+20 -.581887317E+20 0.530805948E+18 0.554441614E+20
+
+# 100 day experiment with cost_ice_flag = 4 fails
+ adj grad  0.942881479+279 0.305219181+280 0.248251262+280 -.854303341+280
+ 1.d-4     0.550158678E+19 -.107685572E+20 -.139042495E+20 0.445855968E+20
+
+# 100 day experiment with cost_ice_flag = 5 fails
+ adj grad  0.149606733+285 0.484290396+285 0.393899563+285 -.135552065+286
+ 1.d-4     -.300535490E+20 -.689378119E+20 0.300954675E+19 0.767231924E+20
+
+# It seems that linearization in the presence of a sea-ice model is very
+# difficult.  Consider that a small perturbation at time zero may cause
+# sea-ice to appear or not at a particular grid point.  The model response
+# with sea-ice is completely different from that with no sea-ice, so that
+# this small initial perturbation will have a large impact in ocean heat
+# content, or even ocean plus sea-ice heat content.  One way around this
+# may be a preliminary piece-wise optimization, say 10 days at a time, but
+# without changing initial conditions, just the surface fluxes.  Another
+# way may be to specify heat fluxes based on observed sea-ice extent, in
+# order to force the model to have sea-ice where sea-ice is observed.  A
+# third possiblity, similar to that provided by package MIX for KPP scheme
+# in the telescoping configuration would be to store AREA or HEFF during
+# forward model integrations and then to specify, rather than recompute,
+# AREA or HEFF or both during adjoint model calculations.  The problem
+# with this approach is that it would not be possible to compute
+# sensitivity to a variable that held constant, rather tan computed?
+# Perhaps sensitivity of cost function to AREA and to HEFF can be computed
+# separately, by running the adjoint twice, once keeping HEFF constant and
+# the second keeping AREA constant?
+
+# Now need a test to show that this is indeed the problem.
 
 
 #####################

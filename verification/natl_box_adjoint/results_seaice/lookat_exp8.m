@@ -19,7 +19,7 @@ for i=1:150
 end
 
 clf reset, orient tall, wysiwyg
-cx=[-1 1]; cl=[1 1 1]*.5; sc=1e7;
+cx=[-1 1]; cl=[1 1 1]*.5; sc=3e5;
 ax=([min(lon) max(lon) min(lat) max(lat)]);
 subplot(411), mypcolor(lon,lat,b'/sc); caxis(cx), colorbar
 % plotland('k'), axis(ax), grid
@@ -31,7 +31,7 @@ subplot(412), mypcolor(lon,lat,c'/sc); caxis(cx), colorbar
 % plotland(cl,4), axis(ax)
 xlabel('Longitude East'), ylabel('Latitude North')
 title('Finite-difference: gradient of sea-ice volume w.r.t. air temperature')
-subplot(413), mypcolor(lon,lat,(c-b)'/sc); caxis(cx/10), colorbar
+subplot(413), mypcolor(lon,lat,(c-b)'/sc); caxis(cx/10000), colorbar
 % plotland('k'), axis(ax), grid
 % plotland(cl,4), axis(ax)
 xlabel('Longitude East'), ylabel('Latitude North')

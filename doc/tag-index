@@ -5,7 +5,9 @@ $Header$
 
 Branch icebear
 
-
+29 mar 03 (cvs tag icebear5)
+ Some additional options for pkg/cost/cost_ice.F
+ Updates to verification/natl_box_adjoint
 
 7 mar 03
  Branched off ecco_c44_e27
