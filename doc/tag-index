@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o commented out call to cal_GetMonthsRec in swfrac.F and added some comments;
+  this does not change any of the results, because myIter=0 in swfrac always
+  lead to jwtype=2 (the default anyway), but the call makes little sense
+  as a default
 o no SHORTWAVE HEATING lost at the bottom; affects lab_sea output; updated
 o re-work pkg/thsice interface with ocean & bulk_force pkg to allow
   atmospheric model (AIM) to use it ; add a "slab ocean" component.
