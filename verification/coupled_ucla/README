@@ -221,3 +221,14 @@ Submitting a job on pollux:
   cp -r /tmp1/dmenem/oldpbl/camel_7.2p_042903/bin .
   cd bin
   qsub submit.long64p
+
+Chaining a job starting on OGCM day 180, AGCM day 2015 on castor:
+
+  cd /castor/tmp1/dmenem/oldpbl/camel_7.2p_042903/bin
+  rm -f data tmp tmp1 tmp2 esminput
+  sed -e "s/startTime   = 0.0/startTime=15552000./" data.coupled_360x224 > data
+  sed -e "s/tbegin=1835/tbegin=2015/" esminput.56 > tmp
+  sed -e "s/tfinal=10601/tfinal=2195/" tmp > tmp1
+  sed -e "s/year0=5, day0=10/year0=5, day0=190/" tmp1 > tmp2
+  sed -e "s/'agcm_infile'/'E231_new_PAC__hist003.nc'/" tmp2 > esminput
+  qsub submit.long64c
