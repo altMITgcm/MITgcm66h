@@ -844,6 +844,14 @@ C     Check for multiple coordinate systems
        STOP 'ABNORMAL END: S/R INI_PARMS'
       ENDIF
 
+C--   When using the dynamical pressure in EOS (with Z-coord.),
+C     needs to activate specific part of the code (restart & exchange)
+c     useDynP_inEos_Zc = .FALSE.
+      useDynP_inEos_Zc = ( buoyancyRelation .EQ. 'OCEANIC'
+     &              .AND. ( eosType .EQ. 'JMD95P' .OR.
+     &                      eosType .EQ. 'UNESCO' .OR.
+     &                      eosType .EQ. 'MDJWF'       )  )
+
 C--   Input files
       READ(UNIT=iUnit,NML=PARM05) !,IOSTAT=errIO)
       IF ( errIO .LT. 0 ) THEN    
