@@ -65,7 +65,7 @@ C     internal flag to indicate we are in business
       PTRACERSisON=.TRUE.
 
 C     Set defaults values for parameters in PTRACERS.h
-      PTRACERS_taveFreq    = dumpFreq
+      PTRACERS_dumpFreq    = dumpFreq
       PTRACERS_taveFreq    = taveFreq
       PTRACERS_monitorFreq = monitorFreq
       PTRACERS_numInUse=-1
