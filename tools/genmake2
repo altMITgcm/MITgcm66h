@@ -581,7 +581,7 @@ fi
 if test "x$CPP" = x ; then
     CPP="cpp"
 fi
-echo "#define A a" | cpp > test_cpp 2>&1
+echo "#define A a" | $CPP > test_cpp 2>&1
 RETVAL=$?
 if test "x$RETVAL" != x0 ; then
     cat <<EOF 1>&2
