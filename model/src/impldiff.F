@@ -50,7 +50,6 @@ C     == Local variables ==
       _RL a(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
       _RL b(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
       _RL c(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
-      _RL d(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
       _RL bet(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
       _RL gam(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
 CEOP
@@ -110,7 +109,6 @@ C--   Old and new gam, bet are the same
         DO i=iMin,iMax
           bet(i,j,k) = 0. _d 0
           gam(i,j,k) = 0. _d 0
-          d(i,j,k)   = 0. _d 0
         ENDDO
        ENDDO
       ENDDO
@@ -122,8 +120,7 @@ C--   Only need do anything if Nr>1
 C--    Beginning of forward sweep (top level)
        DO j=jMin,jMax
         DO i=iMin,iMax
-         IF (b(i,j,1).NE.0.) 
-     &       bet(i,j,1) = 1. _d 0 / b(i,j,1)
+         IF (b(i,j,1).NE.0.) bet(i,j,1) = 1. _d 0 / b(i,j,1)
         ENDDO
        ENDDO
 
@@ -138,14 +135,8 @@ CADJ loop = sequential
         DO j=jMin,jMax
          DO i=iMin,iMax
           gam(i,j,k) = c(i,j,k-1)*bet(i,j,k-1)
-          d(i,j,k)   = b(i,j,k) - a(i,j,k)*gam(i,j,k)
-         ENDDO
-        ENDDO
-
-        DO j=jMin,jMax
-         DO i=iMin,iMax
-          IF ( d(i,j,k) .NE. 0.) 
-     &        bet(i,j,k) = 1. _d 0 / d(i,j,k)
+          IF ( ( b(i,j,k) - a(i,j,k)*gam(i,j,k) ) .NE. 0.) 
+     &        bet(i,j,k) = 1. _d 0 / ( b(i,j,k) - a(i,j,k)*gam(i,j,k) )
          ENDDO
         ENDDO
 
