@@ -3,5 +3,6 @@ C $Name$
 
 c Land Grid Horizontal Dimension (Number of Tiles)
 c ------------------------------------------------
-      integer nchp
-      parameter (nchp = sNx*sNy*10)
+      integer nchp, maxtyp
+      parameter (maxtyp = 10)
+      parameter (nchp = sNx*sNy*maxtyp)
