@@ -1,9 +1,6 @@
 C $Header$
 C $Name$
 
-#ifdef ALLOW_PTRACERS
-#include "PTRACERS_OPTIONS.h"
-#endif /* ALLOW_PTRACERS */
 #include "KPP_OPTIONS.h"
 
       subroutine KPP_TRANSPORT_PTR (

@@ -18,7 +18,6 @@ C !USES: ===============================================================
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PTRACERS.h"
-#include "GAD.h"
 
 C !INPUT PARAMETERS: ===================================================
 C  myIter               :: time-step number

@@ -2,11 +2,6 @@ C $Header$
 C $Name$
 
 #include "CPP_OPTIONS.h"
-#ifdef ALLOW_AUTODIFF_TAMC
-# ifdef ALLOW_PTRACERS
-#  include "PTRACERS_OPTIONS.h"
-# endif
-#endif /* ALLOW_AUTODIFF_TAMC */
 cswdptr -- add --
 #ifdef ALLOW_GCHEM
 # include "GCHEM_OPTIONS.h"

@@ -43,10 +43,6 @@ C !USES: ===============================================================
 #include "DYNVARS.h"
 #include "SURFACE.h"
 #include "GAD.h"
-#ifdef ALLOW_PTRACERS
-#include "PTRACERS_OPTIONS.h"
-#include "PTRACERS.h"
-#endif
 
 #ifdef ALLOW_AUTODIFF_TAMC
 #include "tamc.h"
@@ -408,8 +404,7 @@ C *note* should update KPP_TRANSPORT_T to set df  *aja*
      I     KappaRT,
      U     df )
 #ifdef ALLOW_PTRACERS
-       ELSEIF (tracerIdentity .GE. GAD_TR1 .AND.
-     &         tracerIdentity .LE. (GAD_TR1+PTRACERS_numInUse-1)) THEN
+       ELSEIF (tracerIdentity .GE. GAD_TR1) THEN
         CALL KPP_TRANSPORT_PTR(
      I     iMin,iMax,jMin,jMax,bi,bj,k,km1,
      I     tracerIdentity-GAD_TR1+1,KappaRT,
