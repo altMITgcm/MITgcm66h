@@ -84,7 +84,7 @@ C--   Initialise the ECCO State Estimation package.
 #ifdef ALLOW_ECCO_OPTIMIZATION
 c--   Initialise the optimization-related parts of the ECCO State
 c--   Estimation package.
-      call optim_init( myThid )
+      call optim_readparms( myThid )
       _BARRIER
 #endif
 
