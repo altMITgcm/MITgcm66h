@@ -1,3 +1,5 @@
+*.o
+*.f
 mitgcmuv
 mfile*
 *.meta
