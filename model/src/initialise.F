@@ -54,7 +54,7 @@ C     stored files.
       _BARRIER
 
 C--   Initialise time-stepping (predictor variables are carried in G)
-      CALL INIT_PREDICTOR( myThid )
+      CALL INI_PREDICTOR( myThid )
       _BARRIER
 
 C--   Set coriolis operators

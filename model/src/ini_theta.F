@@ -97,7 +97,7 @@ C           the theta* scheme used.
          DO J=1,sNy
           DO I=1,sNx
            gt   (I,J,K,bi,bj) = 0. _d 0
-           gtNM1(I,J,K,bi,bj) = theta(I,J,K,bi,bj)
+           gtNM1(I,J,K,bi,bj) = 0. _d 0
           ENDDO
          ENDDO
         ENDDO

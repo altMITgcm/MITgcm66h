@@ -863,7 +863,7 @@ C     == Local variables ==
 
       WRITE(msgBuf,'(A,A)') head, comment
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, SQUEEZE_RIGHT , 1)
-      CALL PRINT_LIST_I( fld, lFld, index_type, standardMessageUnit )
+      CALL PRINT_LIST_I( fld, lFld, index_type, .FALSE., .TRUE., standardMessageUnit )
       WRITE(msgBuf,'(A)')   '    ;     '
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, SQUEEZE_RIGHT , 1)
 C
@@ -905,7 +905,7 @@ C     == Local variables ==
 
       WRITE(msgBuf,'(A,A)') head, comment
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, SQUEEZE_RIGHT , 1)
-      CALL PRINT_LIST_L( fld, lFld, index_type, standardMessageUnit )
+      CALL PRINT_LIST_L( fld, lFld, index_type, .FALSE., .TRUE., standardMessageUnit )
       WRITE(msgBuf,'(A)')   '    ;     '
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, SQUEEZE_RIGHT , 1)
 C
@@ -947,7 +947,7 @@ C     == Local variables ==
 
       WRITE(msgBuf,'(A,A)') head, comment
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, SQUEEZE_RIGHT , 1)
-      CALL PRINT_LIST_R8( fld, lFld, index_type, standardMessageUnit )
+      CALL PRINT_LIST_R8( fld, lFld, index_type, .FALSE., .TRUE., standardMessageUnit )
       WRITE(msgBuf,'(A)')   '    ;     '
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, SQUEEZE_RIGHT , 1)
 C
@@ -1027,14 +1027,12 @@ C          U.p0001.t0001.meta.0000000100
       s1Hi = ILNBLNK(pref)
       s2Lo = IFNBLNK(suff)
       s2Hi = ILNBLNK(suff)
-      WRITE( fNamData, '(A,A,I4.4,A,I4.4,A,A)' )
-     & pref(s1Lo:s1Hi),
-     & 'p',myProcId,'.t',myThid, '.data.', 
-     & suff(s2Lo:s2Hi)
-      WRITE( fNamMeta, '(A,A,I4.4,A,I4.4,A,A)' )
-     & pref(s1Lo:s1Hi),
-     & 'p',myProcId,'.t',myThid, '.meta.', 
-     & suff(s2Lo:s2Hi)
+      WRITE( fNamData, '(A,A,A,I4.4,A,I4.4,A)' )
+     & pref(s1Lo:s1Hi),suff(s2Lo:s2Hi),
+     & '.p',myProcId,'.t',myThid, '.data'
+      WRITE( fNamMeta, '(A,A,A,I4.4,A,I4.4,A)' )
+     & pref(s1Lo:s1Hi),suff(s2Lo:s2Hi),
+     & '.p',myProcId,'.t',myThid, '.meta'
 
 C--   Open file
       CALL DFILE_OPEN( fNamData, fNamMeta, myThid,
@@ -1185,14 +1183,12 @@ C          U.p0001.t0001.meta.0000000100
       s1Hi = ILNBLNK(pref)
       s2Lo = IFNBLNK(suff)
       s2Hi = ILNBLNK(suff)
-      WRITE( fNamData, '(A,A,I4.4,A,I4.4,A,A)' )
-     & pref(s1Lo:s1Hi),
-     & 'p',myProcId,'.t',myThid, '.data.', 
-     & suff(s2Lo:s2Hi)
-      WRITE( fNamMeta, '(A,A,I4.4,A,I4.4,A,A)' )
-     & pref(s1Lo:s1Hi),
-     & 'p',myProcId,'.t',myThid, '.meta.', 
-     & suff(s2Lo:s2Hi)
+      WRITE( fNamData, '(A,A,A,I4.4,A,I4.4,A,A)' )
+     & pref(s1Lo:s1Hi),suff(s2Lo:s2Hi),
+     & '.p',myProcId,'.t',myThid, '.data'
+      WRITE( fNamMeta, '(A,A,A,I4.4,A,I4.4,A,A)' )
+     & pref(s1Lo:s1Hi),suff(s2Lo:s2Hi),
+     & '.p',myProcId,'.t',myThid, '.meta'
 
 C--   Open file
       CALL DFILE_OPEN( fNamData, fNamMeta, myThid,

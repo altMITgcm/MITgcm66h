@@ -73,7 +73,7 @@ C     Note: gSNm1 == salt to be consistent with salt* implementation
          DO J=1,sNy
           DO I=1,sNx
            gs   (I,J,K,bi,bj) = 0. _d 0
-           gsNM1(I,J,K,bi,bj) = salt(I,J,K,bi,bj)
+           gsNM1(I,J,K,bi,bj) = 0. _d 0
           ENDDO
          ENDDO
         ENDDO
