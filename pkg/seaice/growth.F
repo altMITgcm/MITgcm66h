@@ -59,10 +59,12 @@ C     i,j,bi,bj - Loop counters
           AR(I,J,bi,bj)=MIN(AREA(I,J,2,bi,bj),
      &         HEFF(I,J,2,bi,bj)*1.0 _d +04)
 C NOW BALANCE THE HEAT IN OCEAN FIRT LEVEL
-C Here YNEG is m of sea-water converted to sea-ice.
-C To convert temperature change, delta(theta), to m of water:
-C delta(theta) * dRf(1) * (sea water heat capacity = 3.99e3 J/kg/K) /
-C                (latent heat of fusion of sea-ice = 2.93e5 J/kg)
+C Here the units of YNEG are m of sea-ice.
+C To convert temperature change, delta(theta), to m of sea-ice:
+C delta(theta) * dRf(1) * (sea water heat capacity = 3996 J/kg/K)
+C              * (density of sea-water = 1026 kg/m^3)
+C              / (latent heat of fusion of sea-ice = 334000 J/kg)
+C              / (density of sea-ice = 905 kg/m^3)
           YNEG(I,J,bi,bj)=(theta(I,J,1,bi,bj)-TBC)*dRf(1)/72.0764 _d 0
           IF(YNEG(I,J,bi,bj).LE.ZERO) THEN
 C SUPERCOOLING, CONVERT TO ICE
@@ -109,6 +111,7 @@ C NOW CALCULATE CORRECTED GROWTH
           IF(GHEFF(I,J).GT.ZERO.AND.GHEFF(I,J).LE.GAREA(I,J)) THEN
            HSNOW(I,J,bi,bj)=HSNOW(I,J,bi,bj)-GHEFF(I,J)/QS
 C SNOW CONVERTED INTO WATER AND THEN INTO ICE
+C The factor 1/0.920 is used to convert m of freshwater to m of sea-ice
            SEAICE_SALT(I,J,bi,bj)=SEAICE_SALT(I,J,bi,bj)
      &                  -(GHEFF(I,J)/QS)/SDF/0.920 _d 0*AR(I,J,bi,bj)
            WATR(I,J,bi,bj)=WATR(I,J,bi,bj)
