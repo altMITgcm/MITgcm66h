@@ -316,6 +316,25 @@
  adj grad  0.149606733+285 0.484290396+285 0.393899563+285 -.135552065+286
  1.d-4     -.300535490E+20 -.689378119E+20 0.300954675E+19 0.767231924E+20
 
+# 100 day experiments with all albedos set to a constant 0.4, with
+# IMAX_TICE=50, and with HSNOW=0 also fail.
+
+# With cost_ice_flag = 2
+# 1.d-04    -.327859949E+08 -.300222927E+10 0.252204364E+09 -.658448165E+10
+# 1.d-03    -.572185323E+08 0.614938314E+08 -.850914638E+09 0.248982808E+08
+# 1.d-02    -.624721639E+07 -.147537212E+08 -.114497432E+09 -.358163526E+08
+# 1.d-01    0.603974309E+07 -.684786020E+07 -.149337451E+09 -.601790080E+07
+# 1.d-00    -.497381448E+06 -.404972657E+05 -.142684281E+09 -.501277195E+08
+# adj grad  0.500216760+194 -.353450868+194 -.799381224+195 -.173412383+194
+
+# With cost_ice_flag = 6, i.e., a quadratic cost function
+# 1.d-04    -.525101466E+01 -.328685504E+03 0.267928050E+02 -.563072857E+03
+# 1.d-03    -.313705632E+01 0.463320361E+01 -.458088751E+02 0.571140277E+00
+# 1.d-02    -.232806373E+00 -.104311448E+01 0.173597838E+02 -.394705606E+01
+# 1.d-01    0.515424287E+00 -.578962143E+00 0.108556846E+02 -.563596055E+00
+# 1.d-00    -.480177391E-01 -.327366136E-02 0.107190195E+02 -.498391127E+01
+# adj grad  0.354316213+187 -.250358211+187 -.566221987+188 -.122832387+187
+
 # It seems that linearization in the presence of a sea-ice model is very
 # difficult.  Consider that a small perturbation at time zero may cause
 # sea-ice to appear or not at a particular grid point.  The model response
@@ -419,6 +438,71 @@
 #####################
 # Experiment no. 13 #
 #####################
+# Same as experiment 12, but finite difference gradient check for
+# air temperature is computed and compared for the complete domain.
+
+# To run:
+ cd ../exe
+ cp ../verification/natl_box_adjoint/input_seaice/* .
+ cp data.seaice.lsr data.seaice
+ ./mitgcmuv >&! output.txt
+# To verify the results of the gradient check, type:
+ grep "ph-grd 3" output.txt > ph-grd.txt
+ cd ../verification/natl_box_adjoint/results_seaice
+ matlab
+ lookat_exp8
+
+
+#####################
+# Experiment no. 14 #
+#####################
+# Same as in 12 but for a 100-day sensitivity experiment.
+
+# Compile code in bin/:
+ cd ../bin
+ rm -rf *.o *.f *.p rii_files
+ rm -rf *.F *.h *.c Makefile*
+ cp ../verification/natl_box_adjoint/code_seaice/*.h .
+ rm -f tamc.h
+ cp ../verification/natl_box_adjoint/code_seaice/.genmakerc .
+ cp ../verification/natl_box_adjoint/code_seaice/SEAICE_OPTIONS.h.MULTILEVEL SEAICE_OPTIONS.h
+# Configure and compile the code:
+ ../tools/genmake -makefile
+ make depend
+# Generate the adjoint code:
+ cd ../adjoint
+ cp ../verification/natl_box_adjoint/code_seaice/makefile .
+ make adtaf
+ make adchange
+ rm -f makefile
+# Go back and compile the code:
+ cd ../bin
+ make
+# To run:
+ cd ../exe
+ cp ../verification/natl_box_adjoint/input_seaice/* .
+ cp data.100day data
+ cp ../verification/natl_box_adjoint/input_bulk/data.grdchk .
+ ./mitgcmuv >&! output.txt
+# To verify the results of the gradient check, type:
+ grep "ph-grd 3" output.txt
+
+# For 100-day experiment, with cost_ice_flag = 1, the adjoint gradient
+# blows up, as in Exp. 10
+
+# With cost_ice_flag = 6, i.e., a quadratic cost function
+# 1.d-12    -.106128607E+12 0.106330784E+12 -.106446555E+12 -.106237252E+12
+# 1.d-08    0.106450924E+08 0.103670536E+05 0.349155947E+05 0.335081902E+05
+# 1.d-04    -.106143365E+04 0.206965778E+00 -.105672737E+04 -.106326894E+04
+# 1.d-02    -.120891636E-02 0.106325012E+02 0.841459268E+01 -.107119297E+02
+# 1.d-01    -.102221209E-02 -.124805738E-02 0.821489714E+01 -.331974254E-02
+# 1.d-00    0.113825328E-03 -.105881751E+00 0.104550010E+02 -.106209116E+00
+# adj grad  0.000000000E+00 0.000000000E+00 0.887775373E+01 0.000000000E+00
+
+
+#####################
+# Experiment no. 15 #
+#####################
 # Same as experiment 6, but with SEAICE_MULTILEVEL.
 
 # Compile code in bin/:
@@ -453,45 +537,6 @@
 # This test suggests that SEAICE_MULTILEVEL decreases the accuracy of
 # the adjoint model, perhaps because the adjoint model is not handling
 # multiple recomputations in budget properly.
-
-
-#####################
-# Experiment no. 14 #
-#####################
-# Same as in 14 but for a 100-day sensitivity experiment.
-
-# Compile code in bin/:
- cd ../bin
- rm -rf *.o *.f *.p rii_files
- rm -rf *.F *.h *.c Makefile*
- cp ../verification/natl_box_adjoint/code_seaice/*.h .
- rm -f tamc.h
- cp ../verification/natl_box_adjoint/code_seaice/.genmakerc .
- cp ../verification/natl_box_adjoint/code_seaice/SEAICE_OPTIONS.h.MULTILEVEL SEAICE_OPTIONS.h
-# Configure and compile the code:
- ../tools/genmake -makefile
- make depend
-# Generate the adjoint code:
- cd ../adjoint
- cp ../verification/natl_box_adjoint/code_seaice/makefile .
- make adtaf
- make adchange
- rm -f makefile
-# Go back and compile the code:
- cd ../bin
- make
-# To run:
- cd ../exe
- cp ../verification/natl_box_adjoint/input_seaice/* .
- cp data.100day data
- cp ../verification/natl_box_adjoint/input_bulk/data.grdchk .
- ./mitgcmuv >&! output.txt
-# To verify the results of the gradient check, type:
- grep "ph-grd 3" output.txt
-
-# For 100-day experiment, the adjoint gradient blows up, as in Exp. 10
- adj grad  -.160660304+210 -.378763253+210 -.239235971+211 -.386444881+209
- 1.d-4     0.251994583E+11 -.899637862E+10 0.372048919E+10 -.344972301E+10
 
 
 #####################

@@ -44,3 +44,22 @@ title('( adjoint minus finite-difference ) / adjoint')
 
 % print -djpeg -r0 FIG1
 % print -dpsc FIG1
+
+%% orient tall, wysiwyg, clf
+%% fn='adxx_atemp.0000000000.001.001.data';
+%% a=readbin(fn,[20 16 12],1,'real*8');
+%% for i=1:12,subplot(4,3,i)
+%%  mypcolor(lon,lat,a(:,:,i)');
+%%  caxis([-1 1]),colorbar
+%%  title(['dJ/d(air-temp), day ' int2str(i*10-15)])
+%% end
+%% print -djpeg -r0 FIG1
+%% 
+%% clf
+%% for i=1:11, subplot(4,3,i)
+%%  a=readbin(['AREA.' myint2str(i*240-240,10) '.001.001.data'],[20 16],1,'real*8');
+%%  a(find(a<1&a>.5))=.75; a(find(a<.5&a>0))=.25; 
+%%  mypcolor(lon,lat,a'); colorbar
+%%  title(['sea-ice area on day' int2str(i*10-10)])
+%% end
+%% print -djpeg -r0 FIG2
