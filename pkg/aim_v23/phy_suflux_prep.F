@@ -144,7 +144,8 @@ c       T1(J) = TA(J,Ktmp)*(SIGH(Ktmp)/SIG(Ktmp))**kappa
       ENDDO
 
       DO J=1,NGP
-        T0(J) = FTEMP0*T0(J)+GTEMP0*T1(J)
+c       T0(J) = FTEMP0*T0(J)+GTEMP0*T1(J)
+        T0(J) = FTEMP0*MIN(T0(J),T1(J))+GTEMP0*T1(J)
       ENDDO
 
 C     1.3 Spec. humidity
