@@ -41,7 +41,7 @@
 # Time stepping parameters
  &PARM03
  niter0=0,
- nTimeSteps=1440,
+ nTimeSteps=10,
  deltaT=600.0,
  abEps=0.1,
  pChkptFreq=3000.0,
