@@ -62,7 +62,7 @@ C     Set default values for MNC run-time parameters
       monitor_mnc           =  .FALSE.
       timeave_mnc           =  .FALSE.
       snapshot_mnc          =  .FALSE.
-      autofiff_mnc          =  .FALSE.
+      autodiff_mnc          =  .FALSE.
 
 C     Set the file name
       DO i=1,MAX_LEN_MBUF
