@@ -63,6 +63,7 @@ SRC_MODEL	= \
 		$(PKG)/autodiff/read_write_fld.flow	\
 		$(PKG)/autodiff/read_write_rec.flow	\
 		$(PKG)/autodiff/cg2d.flow		\
+		$(PKG)/autodiff/cost.flow		\
 		$(PKG)/autodiff/diags.flow		\
 		$(PKG)/autodiff/debug.flow		\
 		$(PKG)/autodiff/do_the_model_io.flow	\
@@ -113,7 +114,6 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/freeze.f				\
 								\
 		$(SOURCE_CODE)/calc_grad_phi_hyd.f              \
-		$(SOURCE_CODE)/comm_stats.f                     \
 		$(SOURCE_CODE)/convective_weights.f             \
 		$(SOURCE_CODE)/convectively_mixtracer.f         \
 		$(SOURCE_CODE)/diags_phi_hyd.f                  \
@@ -156,7 +156,6 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/ini_autodiff.f			\
 		$(SOURCE_CODE)/ini_cartesian_grid.f		\
 		$(SOURCE_CODE)/ini_cg2d.f			\
-		$(SOURCE_CODE)/ini_communication_patterns.f     \
 		$(SOURCE_CODE)/ini_cori.f			\
 		$(SOURCE_CODE)/ini_curvilinear_grid.f		\
 		$(SOURCE_CODE)/ini_depths.f			\
@@ -264,7 +263,6 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/gmredi_slope_psi.f		\
 		$(SOURCE_CODE)/gmredi_xtransport.f		\
 		$(SOURCE_CODE)/gmredi_ytransport.f		\
-								\
 		  						\
 		$(SOURCE_CODE)/cost_aqh.f			\
 		$(SOURCE_CODE)/cost_argo_salt.f			\
@@ -408,8 +406,7 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/obcs_apply_uv.f			\
 		$(SOURCE_CODE)/obcs_calc.f			\
 		$(SOURCE_CODE)/obcs_init_variables.f		\
-		$(SOURCE_CODE)/obcs_sponge.f			\
-								\
+		$(SOURCE_CODE)/obcs_sponge.f
 
 
 #		$(SOURCE_CODE)/advect.f				\

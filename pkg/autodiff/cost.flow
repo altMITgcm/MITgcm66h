@@ -1,0 +1,13 @@
+
+C----------------------------------------
+C subroutine cost_store_averagesflags
+C----------------------------------------
+CADJ SUBROUTINE cost_store_averagesflags INPUT  = 1,2,3,4,5,6,7,8,9,10
+CADJ SUBROUTINE cost_store_averagesflags OUTPUT =
+
+C----------------------------------------
+C subroutine cost_restore_averagesflags
+C----------------------------------------
+CADJ SUBROUTINE cost_restore_averagesflags INPUT  = 1,2,3            ,10
+CADJ SUBROUTINE cost_restore_averagesflags OUTPUT =       4,5,6,7,8,9
+
