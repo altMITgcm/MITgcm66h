@@ -306,9 +306,6 @@ C--   Set default values for initial guess and RHS
            DO I=1-OLx,sNx+OLx
             cg3d_x(I,J,K,bi,bj) = 0. _d 0
             cg3d_b(I,J,K,bi,bj) = 0. _d 0
-#ifdef INCLUDE_CD_CODE
-            cg3d_xNM1(I,J,K,bi,bj) = 0. _d 0
-#endif
            ENDDO
           ENDDO
          ENDDO
@@ -317,9 +314,6 @@ C--   Set default values for initial guess and RHS
 C--    Update overlap regions
        _EXCH_XYZ_R8(cg3d_x, myThid)
        _EXCH_XYZ_R8(cg3d_b, myThid)
-#ifdef INCLUDE_CD_CODE
-       _EXCH_XYZ_R8(cg3d_xNM1, myThid)
-#endif
       ENDIF
 
 #endif /* ALLOW_NONHYDROSTATIC */
