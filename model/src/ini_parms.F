@@ -180,8 +180,8 @@ C--   Time stepping parammeters
      & deltaT, deltaTmom, deltaTtracer, deltaTfreesurf,
      & forcing_In_AB, abEps, tauCD, rCD,
      & startTime, endTime, chkPtFreq,
-     & dumpFreq, taveFreq, tave_lastIter, deltaTClock, diagFreq,
-     & monitorFreq, pChkPtFreq, cAdjFreq, 
+     & dumpFreq, adjDumpFreq, taveFreq, tave_lastIter, deltaTClock,
+     & diagFreq, monitorFreq, pChkPtFreq, cAdjFreq, 
      & tauThetaClimRelax, tauSaltClimRelax, latBandClimRelax, 
      & tauTr1ClimRelax,
      & periodicExternalForcing, externForcingPeriod, externForcingCycle

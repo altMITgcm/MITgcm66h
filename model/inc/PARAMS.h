@@ -487,7 +487,7 @@ C      --"-"--  Quadratic  ( linear: 1/s, quadratic: 1/m )
      & gravity, recip_Gravity, gBaro, rhonil, recip_rhonil, 
      & recip_rhoConst, rhoConst, 
      & rhoConstFresh, convertEmP2rUnit, tRef, sRef,
-     & endTime, chkPtFreq, pchkPtFreq, dumpFreq,
+     & endTime, chkPtFreq, pchkPtFreq, dumpFreq, adjDumpFreq,
      & diagFreq, taveFreq, tave_lastIter, monitorFreq,
      & afFacMom, vfFacMom, pfFacMom, cfFacMom, foFacMom, mtFacMom,
      & cosPower, cAdjFreq, omega, rotationPeriod,
@@ -567,6 +567,7 @@ C      --"-"--  Quadratic  ( linear: 1/s, quadratic: 1/m )
       _RL chkPtFreq
       _RL pChkPtFreq
       _RL dumpFreq
+      _RL adjDumpFreq
       _RL diagFreq
       _RL taveFreq
       _RL tave_lastIter

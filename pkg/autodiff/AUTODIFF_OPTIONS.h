@@ -19,6 +19,7 @@ CEOP
 #define AUTODIFF_OPTIONS_H
 
 #include "PACKAGES_CONFIG.h"
+#include "AD_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 #endif /* AUTODIFF_CPPOPTIONS_H */
