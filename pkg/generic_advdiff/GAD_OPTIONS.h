@@ -32,10 +32,8 @@ C using the COSINE(lat) scaling.
 
 C As of checkpoint41, the inclusion of multi-dimensional advection
 C introduces excessive recomputation/storage for the adjoint.
-C We disable it here using CPP because run-time flags are insufficient.
-#ifdef ALLOW_AUTODIFF_TAMC
-#define DISABLE_MULTIDIM_ADVECTION
-#endif
+C We can disable it here using CPP because run-time flags are insufficient.
+#undef  DISABLE_MULTIDIM_ADVECTION
 
 #else
 
