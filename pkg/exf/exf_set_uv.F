@@ -138,17 +138,6 @@ c     scalar interpolation to (xC,yC) locations
      &              , vvec_lat0,vvec_lat_inc
      &              , vvec_nlon,vvec_nlat,interp_method,mythid
      &              )
-c     apply scaling factor
-               do bj = mybylo(mythid),mybyhi(mythid)
-                do bi = mybxlo(mythid),mybxhi(mythid)
-                 do j = 1,sny
-                  do i = 1,snx
-                   tmp_u(i,j,bi,bj)=exf_inscal_uvec*tmp_u(i,j,bi,bj)
-                   tmp_v(i,j,bi,bj)=exf_inscal_vvec*tmp_v(i,j,bi,bj)
-                  enddo
-                 enddo
-                enddo
-               enddo
 c     vector rotation
                do bj = mybylo(mythid),mybyhi(mythid)
                   do bi = mybxlo(mythid),mybxhi(mythid)
@@ -208,17 +197,6 @@ c     scalar interpolation to (xC,yC) locations
      &              , vvec_lat0,vvec_lat_inc
      &              , vvec_nlon,vvec_nlat,interp_method,mythid
      &              )
-c     apply scaling factor
-               do bj = mybylo(mythid),mybyhi(mythid)
-                do bi = mybxlo(mythid),mybxhi(mythid)
-                 do j = 1,sny
-                  do i = 1,snx
-                   tmp_u(i,j,bi,bj)=exf_inscal_uvec*tmp_u(i,j,bi,bj)
-                   tmp_v(i,j,bi,bj)=exf_inscal_vvec*tmp_v(i,j,bi,bj)
-                  enddo
-                 enddo
-                enddo
-               enddo
 c     vector rotation
                do bj = mybylo(mythid),mybyhi(mythid)
                   do bi = mybxlo(mythid),mybxhi(mythid)
