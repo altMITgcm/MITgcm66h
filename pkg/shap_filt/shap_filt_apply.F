@@ -66,14 +66,20 @@ C--        Update fields in top level according to tendency terms
         IF ( saltStepping ) _EXCH_XYZ_R8( sFld,myThid )
 #else
         IF ( momStepping .AND. nShapUV.GT.0) THEN
-          IF (Shap_funct.EQ.2) THEN
-            CALL SHAP_FILT_UV_S2(
+          IF (Shap_funct.EQ.1) THEN
+            CALL SHAP_FILT_UV_S1(
+     U           uFld, vFld,
+     I           myTime, myThid )
+          ELSEIF (Shap_funct.EQ.4) THEN
+            CALL SHAP_FILT_UV_S4(
+     U           uFld, vFld,
+     I           myTime, myThid )
+          ELSEIF (Shap_funct.EQ.20) THEN
+            CALL SHAP_FILT_UV_S2G(
      U           uFld, vFld,
      I           myTime, myThid )
           ELSE
-            CALL SHAP_FILT_UV(
-     U           uFld, vFld,
-     I           myTime, myThid )
+           STOP 'SHAP_FILT_APPLY: Ooops'
           ENDIF
         ENDIF
 
