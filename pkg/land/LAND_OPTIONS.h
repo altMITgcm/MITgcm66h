@@ -13,5 +13,8 @@ C  CPP options file for Land package
 C  allow time average diagnostic:
 #define ALLOW_LAND_TAVE
 
+C  to reproduce results from version.1 (not conserving heat)
+#undef LAND_OLD_VERSION
+
 #endif /* ALLOW_LAND */
 #endif /* LAND_OPTIONS_H */
