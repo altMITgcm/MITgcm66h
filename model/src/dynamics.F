@@ -491,7 +491,7 @@ C--      Calculate active tracer tendencies
 C--      Prediction step (step forward all model variables)
          CALL TIMESTEP(
      I       bi,bj,iMin,iMax,jMin,jMax,K,
-     I       myThid)
+     I       myIter, myThid)
 #ifdef ALLOW_OBCS
 C--      Apply open boundary conditions
          IF (openBoundaries) CALL APPLY_OBCS2( bi, bj, K, myThid )
