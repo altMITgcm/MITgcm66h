@@ -47,6 +47,7 @@ C-    Add one diagnostic to the list of available diagnostics:
       IF ( n .LE. ndiagMax ) THEN
         cdiag(n) = diagName
         gdiag(n) = diagCode
+        udiag(n) = diagUnits
         tdiag(n) = diagTitle
         ndiagt = n
       ELSE
