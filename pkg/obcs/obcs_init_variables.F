@@ -31,6 +31,10 @@ C     == Local variables ==
       CHARACTER*(10) suff
       INTEGER prec
 
+#ifdef ALLOW_DEBUG
+      IF (debugMode) CALL DEBUG_ENTER('OBCS_INIT_VARIABLES',myThid)
+#endif
+
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
 
@@ -134,6 +138,9 @@ C     == Local variables ==
 #ifdef ALLOW_ORLANSKI
         IF (useOrlanskiNorth.OR.useOrlanskiSouth.OR.
      &      useOrlanskiEast.OR.useOrlanskiWest) THEN
+#ifdef ALLOW_DEBUG
+      IF (debugMode) CALL DEBUG_CALL('ORLANSKI_INIT',myThid)
+#endif
           CALL ORLANSKI_INIT(bi, bj, myThid)
         ENDIF
 #endif /* ALLOW_ORLANSKI */
@@ -157,6 +164,9 @@ c       CALL OBCS_READ_CHECKPOINT(prec, nIter0, suff, myThid)
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 C--   Apply OBCS values to initial conditions for consistancy
+#ifdef ALLOW_DEBUG
+      IF (debugMode) CALL DEBUG_CALL('OBCS_CALC',myThid)
+#endif
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
         CALL OBCS_CALC( bi, bj, startTime, nIter0,
@@ -164,6 +174,9 @@ C--   Apply OBCS values to initial conditions for consistancy
        ENDDO
       ENDDO
 
+#ifdef ALLOW_DEBUG
+      IF (debugMode) CALL DEBUG_CALL('OBCS_APPLY_UV + OBCS_APPLY_TS',myThid)
+#endif
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
         DO K=1,Nr
@@ -177,6 +190,9 @@ C--   Apply OBCS values to initial conditions for consistancy
 C     After applying the boundary conditions exchange the 3D-fields.
 C     This is only necessary of the boudnary values have been read
 C     from a file.
+#ifdef ALLOW_DEBUG
+      IF (debugMode) CALL DEBUG_CALL('EXCHANGES in OBCS_INIT_VARIABLES',myThid)
+#endif
        CALL EXCH_UV_XYZ_RL(uVel,vVel,.TRUE.,myThid)
        _EXCH_XYZ_R8( theta, myThid )
        _EXCH_XYZ_R8( salt , myThid )
@@ -184,5 +200,8 @@ C     from a file.
 
 #endif /* ALLOW_OBCS */
 
+#ifdef ALLOW_DEBUG
+      IF (debugMode) CALL DEBUG_LEAVE('OBCS_INIT_VARIABLES',myThid)
+#endif
       RETURN
       END
