@@ -71,7 +71,18 @@ c--   Initialize the tiled cost function contributions.
             objf_vector(i,bi,bj) = 0. _d 0
           end do
 #endif
-        enddo
+#ifdef ALLOW_COST_STATE_FINAL
+c          do k=1,nr
+            do j=1,sNy
+              do i=1,sNx
+                objf_state_final(i,j,bi,bj) = 0. _d 0
+cph No init. of cost_state_final here,
+cph because we need it in ADM*TLM
+              end do
+            end do
+c          end do
+#endif
+       enddo
       enddo
 
 c--   Initialise the "global" parts of the cost function.

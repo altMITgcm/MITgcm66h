@@ -173,10 +173,12 @@ c--     Set default values.
         xx_efluxp_file      = ' '
         xx_bottomdrag_file  = ' '
 
-#ifndef ALLOW_TANGENTLINEAR_RUN
-        yadmark             = 'ad'
-#else
+#ifdef ALLOW_TANGENTLINEAR_RUN
+        yadprefix           = 'g_'
         yadmark             = 'g_'
+#else
+        yadprefix           = 'ad'
+        yadmark             = 'ad'
 #endif
         yctrlid             = 'MIT_CE_000'
         ctrlname            = ' '
