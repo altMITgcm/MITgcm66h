@@ -257,6 +257,26 @@ CADJ STORE ptracer  = comlev1, key = ikey_dynamics
 # endif
 #endif
 
+#ifdef COMPONENT_MODULE
+       IF ( useCoupler ) THEN
+C      Post coupling data that I export.
+C      Read in coupling data that I import.
+         CALL TIMER_START('CPL_EXPORT-IMPORT  [FORWARD_STEP]',myThid)
+         CALL CPL_EXPORT_MY_DATA(       myIter, myTime, myThid )
+         CALL CPL_IMPORT_EXTERNAL_DATA( myIter, myTime, myThid )
+         CALL TIMER_STOP ('CPL_EXPORT-IMPORT  [FORWARD_STEP]',myThid)
+       ENDIF
+#endif /* COMPONENT_MODULE */
+
+#ifdef COMPONENT_MODULE
+# ifndef ALLOW_AIM
+C jmc: don't know precisely where to put this call. leave it here for now.
+       IF ( useCoupler ) THEN
+         CALL OCN_APPLY_IMPORT( myTime, myIter, myThid )
+       ENDIF
+# endif
+#endif /* COMPONENT_MODULE */
+
 C--     Step forward fields and calculate time tendency terms.
 #ifdef ALLOW_DEBUG
       IF ( debugLevel .GE. debLevB ) 

@@ -115,6 +115,13 @@ C SPK 4/9/01: Open boundary checkpointing
         ENDIF
 #endif /* ALLOW_THSICE */
 
+#ifdef  COMPONENT_MODULE
+        IF (useCoupler) THEN
+          CALL CPL_WRITE_PICKUP(
+     &               prec, lgf, permCheckPoint, myIter, myThid)
+        ENDIF
+#endif  /* COMPONENT_MODULE */
+
 #ifdef ALLOW_FLT
 C--     Write restart file for floats
         IF (useFLT) THEN

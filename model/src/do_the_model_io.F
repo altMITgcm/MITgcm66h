@@ -144,5 +144,10 @@ C--   Do ptracer diagnostics.
 #endif
 cswdptr -- end add ---
 
+#ifdef COMPONENT_MODULE
+      IF ( useCoupler )
+     &  CALL CPL_WRITE_DIAGS( myTime, myIter, myThid )
+#endif
+
       RETURN
       END

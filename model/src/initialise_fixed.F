@@ -135,5 +135,11 @@ C--   Check parameters and model cofiguration
 C--   Finally summarise the model cofiguration
       CALL CONFIG_SUMMARY( myThid )
 
+#ifdef COMPONENT_MODULE
+C--   Post component-model configuration information to coupler
+C     and get config. info for other component(s).
+      IF ( useCoupler ) CALL CPL_EXCH_CONFIGS( myThid )
+#endif
+
       RETURN
       END

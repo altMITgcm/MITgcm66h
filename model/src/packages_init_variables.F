@@ -47,6 +47,8 @@ C       |
 C       |-- BULKF_INIT
 C       |
 C       |-- THSICE_INI_VARS
+C       |
+C       |-- CPL_INI_VARS
 
 C     !USES:
       IMPLICIT NONE
@@ -145,6 +147,9 @@ C--   Open boundaries data
       IF (useThSIce) CALL THSICE_INI_VARS( mythid)
 #endif
 
+#ifdef COMPONENT_MODULE
+      IF ( useCoupler ) CALL CPL_INI_VARS( mythid )
+#endif
 
       RETURN
       END
