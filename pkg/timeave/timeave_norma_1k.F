@@ -3,7 +3,7 @@ C $Name$
 #include "CPP_OPTIONS.h"
 
 CStartofinterface
-      SUBROUTINE TIMEAVER_NORMA_1K( fldtave, timeave, 
+      SUBROUTINE TIMEAVE_NORMA_1K( fldtave, timeave, 
      &                               bi, bj, K, myThid )
 C     /==========================================================\
 C     | SUBROUTINE TIMEAVE_NORMA_1K                              |
