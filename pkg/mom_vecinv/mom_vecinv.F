@@ -426,13 +426,15 @@ c      CALL MOM_VI_V_CORIOLIS_C4(bi,bj,K,uFld,vort3,r_hFacZ,vCf,myThid)
        ENDDO
 
 #ifdef ALLOW_TIMEAVE
+#ifndef HRCUBE
        IF (taveFreq.GT.0.) THEN
          CALL TIMEAVE_CUMUL_1K1T(uZetatave,vCf,deltaTClock,
      &                           Nr, k, bi, bj, myThid)
          CALL TIMEAVE_CUMUL_1K1T(vZetatave,uCf,deltaTClock,
      &                           Nr, k, bi, bj, myThid)
        ENDIF
-#endif
+#endif /* ALLOW_TIMEAVE */
+#endif /* ndef HRCUBE */
 
 C--   Vertical shear terms (-w*du/dr & -w*dv/dr)
        IF ( .NOT. momImplVertAdv ) THEN

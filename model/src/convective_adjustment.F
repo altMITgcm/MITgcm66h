@@ -188,11 +188,13 @@ C--       End DO K=1,Nr
           ENDDO
        
 #ifdef ALLOW_TIMEAVE 
+#ifndef HRCUBE
 ceh3 needs an IF ( useTIMEAVE ) THEN
           IF (myIter.ne.nIter0 .AND. taveFreq.GT.0.) THEN
             CALL TIMEAVE_CUMUL_1T(ConvectCountTave, ConvectCount,
      I                            Nr, deltaTclock, bi, bj, myThid)
           ENDIF
+#endif /* ndef HRCUBE */
 #endif /* ALLOW_TIMEAVE */
 
 C--   End IF (DIFFERENT_MULTIPLE)
