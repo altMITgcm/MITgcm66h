@@ -35,10 +35,10 @@ C     !LOCAL VARIABLES:
      &     fizhi_mnc_write_pickup, fizhi_mnc_read_pickup
 
 C     Set defaults
-      fizhi_mdsio_read_pickup = .FALSE.
-      fizhi_mdsio_write_pickup = .FALSE.
-      fizhi_mnc_write_pickup = .TRUE.
-      fizhi_mnc_read_pickup = .TRUE.
+      fizhi_mdsio_read_pickup = .TRUE.
+      fizhi_mdsio_write_pickup = .TRUE.
+      fizhi_mnc_write_pickup = .FALSE.
+      fizhi_mnc_read_pickup = .FALSE.
 
 C     Read Fizhi Namelist
       WRITE(msgBuf,'(A)') ' FIZHI_READPARMS: opening data.fizhi'
