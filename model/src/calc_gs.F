@@ -9,7 +9,7 @@ C $Name$
 CStartOfInterFace
       SUBROUTINE CALC_GS( 
      I           bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
-     I           xA,yA,uTrans,vTrans,rTrans,maskup,maskC,
+     I           xA,yA,uTrans,vTrans,rTrans,maskUp,
      I           KappaRS,
      U           fVerS,
      I           myCurrentTime, myThid )
@@ -52,7 +52,6 @@ C     == Routine arguments ==
 C     fVerS   - Flux of salt (S) in the vertical 
 C               direction at the upper(U) and lower(D) faces of a cell.
 C     maskUp  - Land mask used to denote base of the domain.
-C     maskC   - Land mask for salt cells (used in TOP_LAYER only)
 C     xA      - Tracer cell face area normal to X
 C     yA      - Tracer cell face area normal to X
 C     uTrans  - Zonal volume transport through cell face
@@ -68,7 +67,6 @@ C     myThid - Instance number for this innvocation of CALC_GT
       _RL vTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL rTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS maskUp(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RS maskC (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL KappaRS(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
       INTEGER k,kUp,kDown,kM1
       INTEGER bi,bj,iMin,iMax,jMin,jMax
@@ -106,7 +104,6 @@ C--   the kDown is still required
 
 C---  Calculate advective and diffusive fluxes between cells.
 
-#ifdef INCLUDE_T_DIFFUSION_CODE
 C     o Zonal tracer gradient
       DO j=1-Oly,sNy+Oly
        DO i=1-Olx+1,sNx+Olx
@@ -114,7 +111,6 @@ C     o Zonal tracer gradient
      &   *(salt(i,j,k,bi,bj)-salt(i-1,j,k,bi,bj))
 #ifdef COSINEMETH_III
      &   *sqCosFacU(j,bi,bj)
-#endif
        ENDDO
       ENDDO
 C     o Meridional tracer gradient
@@ -237,16 +233,34 @@ C     Net meridional flux
        ENDDO
       ENDDO
 
-C--   Vertical flux (fVerS) above
-C     Advective component of vertical flux
-C     Note: For K=1 then KM1=1 this gives a barZ(T) = T
+C--   Vertical flux ( fVerS(,,kUp) is at upper face of "Tracer" cell )
+C     o Advective component of vertical flux : assume W_bottom=0 (mask)
+C     Note: For K=1 then KM1=1 this gives a barZ(S) = S
 C     (this plays the role of the free-surface correction)
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-        af(i,j) =
-     &   rTrans(i,j)*(salt(i,j,k,bi,bj)+salt(i,j,kM1,bi,bj))*0.5 _d 0
+      IF ( rigidLid .AND. TOP_LAYER) THEN
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         af(i,j) = 0.
+        ENDDO
        ENDDO
-      ENDDO
+      ELSEIF ( rigidLid ) THEN
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         af(i,j) = rTrans(i,j)*
+     &       (salt(i,j,k,bi,bj)+salt(i,j,kM1,bi,bj))*0.5 _d 0
+        ENDDO
+       ENDDO
+      ELSE
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         af(i,j) = rTrans(i,j)*(
+     &      maskC(i,j,kM1,bi,bj)*
+     &       (salt(i,j,k,bi,bj)+salt(i,j,kM1,bi,bj))*0.5 _d 0
+     &    +(maskC(i,j,k,bi,bj)-maskC(i,j,kM1,bi,bj))*
+     &        salt(i,j,k,bi,bj) )
+        ENDDO
+       ENDDO
+      ENDIF
 C     o Diffusive component of vertical flux
 C     Note: For K=1 then KM1=1 and this gives a dS/dr = 0 upper
 C           boundary condition.
@@ -279,23 +293,16 @@ C           boundary condition.
 C--   Add non-local KPP transport term (ghat) to diffusive salt flux.
       IF (useKPP) CALL KPP_TRANSPORT_S(
      I     iMin,iMax,jMin,jMax,bi,bj,k,km1,
-     I     maskC,KappaRS,
+     I     KappaRS,
      U     df )
 #endif
 
 C     Net vertical flux
       DO j=jMin,jMax
        DO i=iMin,iMax
-        fVerS(i,j,kUp) = ( afFacS*af(i,j)+  dfFacS*df(i,j) )*maskUp(i,j)
+        fVerS(i,j,kUp) = afFacS*af(i,j) + dfFacS*df(i,j)*maskUp(i,j)
        ENDDO
       ENDDO
-      IF ( TOP_LAYER ) THEN
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         fVerS(i,j,kUp) = afFacS*af(i,j)*freeSurfFac
-        ENDDO
-       ENDDO
-      ENDIF
 
 C--   Tendency is minus divergence of the fluxes.
 C     Note. Tendency terms will only be correct for range
@@ -305,8 +312,8 @@ C           they are not algorithmically correct. These points
 C           are not used.
       DO j=jMin,jMax-1
        DO i=iMin,iMax-1
-C     DO j=1-2,OLy+2
-C      DO i=1-2,OLx+2
+c     DO j=jMin,jMax
+c      DO i=iMin,iMax
 #define _recip_VolS1(i,j,k,bi,bj) _recip_hFacC(i,j,k,bi,bj)*recip_drF(k)
 #define _recip_VolS2(i,j,k,bi,bj) /_rA(i,j,bi,bj)
         gS(i,j,k,bi,bj)=
@@ -323,7 +330,6 @@ C      DO i=1-2,OLx+2
 C--   External forcing term(s)
       CALL EXTERNAL_FORCING_S(
      I     iMin,iMax,jMin,jMax,bi,bj,k,
-     I     maskC,
      I     myCurrentTime,myThid)
 
       RETURN

@@ -27,10 +27,11 @@ C     == Routine arguments ==
       INTEGER myThid
 
 C     == Local variables ==
-      INTEGER I,J
+      INTEGER i,j
 
-      IF (K.GT.Nr) THEN
-C     Advective flux = 0  at K=Nr+1
+      IF ( k.GT.Nr .OR.
+     &    (k.EQ.1.AND.rigidLid) ) THEN
+C     Advective flux = 0  at k=Nr+1 ; = 0 at k=1 if rigid-lid
 
       DO j=1-Oly,sNy+Oly
        DO i=1-Olx,sNx+Olx
@@ -38,8 +39,8 @@ C     Advective flux = 0  at K=Nr+1
        ENDDO
       ENDDO
 
-      ELSEIF (K.EQ.1) THEN
-C     Free-surface correction at K=1
+      ELSEIF (k.EQ.1) THEN
+C     (linear) Free-surface correction at k=1
 
       DO j=1-Oly+1,sNy+Oly
        DO i=1-Olx,sNx+Olx
@@ -47,13 +48,13 @@ C     Free-surface correction at K=1
      &     0.5*(
      &        wFld(i, j ,k,bi,bj)*rA(i, j ,bi,bj)
      &       +wFld(i,j-1,k,bi,bj)*rA(i,j-1,bi,bj)
-     &         )*vFld(i,j,k,bi,bj)*freeSurfFac
+     &         )*vFld(i,j,k,bi,bj)
        ENDDO
       ENDDO
 
       ELSE
 
-C     - Laplacian  and bi-harmonic terms
+C     Vertical advection - interior ; assume vFld & wFld are masked 
       DO j=1-Oly+1,sNy+Oly
        DO i=1-Olx,sNx+Olx
         advectiveFluxWV(i,j) =
@@ -61,12 +62,24 @@ C     - Laplacian  and bi-harmonic terms
      &        wFld(i, j ,k,bi,bj)*rA(i, j ,bi,bj)
      &       +wFld(i,j-1,k,bi,bj)*rA(i,j-1,bi,bj)
      &         )*( vFld(i,j,k,bi,bj)+vFld(i,j,k-1,bi,bj) )
-#ifdef OLD_ADV_BCS
-     &  *_maskS(i,j,k,bi,bj) 
-     &  *_maskS(i,j,k-1,bi,bj)
-#endif /* OLD_ADV_BCS */
        ENDDO
       ENDDO
+
+      IF (.NOT. rigidLid) THEN
+C     (linear) Free-surface correction at k>1
+        DO j=1-Oly+1,sNy+Oly
+         DO i=1-Olx,sNx+Olx
+          advectiveFluxWV(i,j) = advectiveFluxWV(i,j)
+     &     +0.25*(
+     &          wFld(i, j ,k,bi,bj)*rA(i, j ,bi,bj)*
+     &          (maskC(i,j,k,bi,bj) - maskC(i,j,k-1,bi,bj))
+     &         +wFld(i,j-1,k,bi,bj)*rA(i,j-1,bi,bj)*
+     &          (maskC(i,j-1,k,bi,bj)-maskC(i,j-1,k-1,bi,bj))
+     &           )*vFld(i,j,k,bi,bj)
+         ENDDO
+        ENDDO
+C- endif NOT rigidLid
+      ENDIF
 
       ENDIF
 

@@ -9,7 +9,7 @@ C $Name$
 CStartOfInterFace
       SUBROUTINE CALC_GT( 
      I           bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
-     I           xA,yA,uTrans,vTrans,rTrans,maskup,maskC,
+     I           xA,yA,uTrans,vTrans,rTrans,maskUp,
      I           KappaRT,
      U           fVerT,
      I           myCurrentTime, myThid )
@@ -54,7 +54,6 @@ C     == Routine arguments ==
 C     fVerT   - Flux of temperature (T) in the vertical 
 C               direction at the upper(U) and lower(D) faces of a cell.
 C     maskUp  - Land mask used to denote base of the domain.
-C     maskC   - Land mask for theta cells (used in TOP_LAYER only)
 C     xA      - Tracer cell face area normal to X
 C     yA      - Tracer cell face area normal to X
 C     uTrans  - Zonal volume transport through cell face
@@ -70,7 +69,6 @@ C     myThid - Instance number for this innvocation of CALC_GT
       _RL vTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL rTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS maskUp(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RS maskC (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL KappaRT(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
       INTEGER k,kUp,kDown,kM1
       INTEGER bi,bj,iMin,iMax,jMin,jMax
@@ -250,17 +248,36 @@ C     o Net meridional flux
        ENDDO
       ENDDO
 
-C--   Vertical flux ( fVerT(,,kUp) is at upper face of "theta" cell )
+C--   Vertical flux ( fVerT(,,kUp) is at upper face of "Tracer" cell )
 #ifdef INCLUDE_T_ADVECTION_CODE
-C     o Advective component of vertical flux
+C     o Advective component of vertical flux : assume W_bottom=0 (mask)
 C     Note: For K=1 then KM1=1 this gives a barZ(T) = T
 C     (this plays the role of the free-surface correction)
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-        af(i,j) =
-     &   rTrans(i,j)*(theta(i,j,k,bi,bj)+theta(i,j,kM1,bi,bj))*0.5 _d 0
+      IF ( rigidLid .AND. TOP_LAYER) THEN
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         af(i,j) = 0.
+        ENDDO
        ENDDO
-      ENDDO
+      ELSEIF ( rigidLid ) THEN
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         af(i,j) = rTrans(i,j)*
+     &       (theta(i,j,k,bi,bj)+theta(i,j,kM1,bi,bj))*0.5 _d 0
+        ENDDO
+       ENDDO
+      ELSE
+C-  include "free-surface correction" :
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         af(i,j) = rTrans(i,j)*(
+     &      maskC(i,j,kM1,bi,bj)*
+     &       (theta(i,j,k,bi,bj)+theta(i,j,kM1,bi,bj))*0.5 _d 0
+     &    +(maskC(i,j,k,bi,bj)-maskC(i,j,kM1,bi,bj))*
+     &        theta(i,j,k,bi,bj) )
+        ENDDO
+       ENDDO
+      ENDIF
 #endif /* INCLUDE_T_ADVECTION_CODE */
 #ifdef INCLUDE_T_DIFFUSION_CODE
 C     o Diffusive component of vertical flux
@@ -296,27 +313,19 @@ C           boundary condition.
 C--   Add non local KPP transport term (ghat) to diffusive T flux.
       IF (useKPP) CALL KPP_TRANSPORT_T(
      I     iMin,iMax,jMin,jMax,bi,bj,k,km1,
-     I     maskC,KappaRT,
+     I     KappaRT,
      U     df )
 #endif
 
 C     o Net vertical flux
       DO j=jMin,jMax
        DO i=iMin,iMax
+c       fVerT(i,j,kUp) = afFacT*af(i,j) + dfFacT*df(i,j)*maskUp(i,j)
         fVerT(i,j,kUp) = 0. 
-     & _ADT( +afFacT*af(i,j)*maskUp(i,j) )
+     & _ADT( +afFacT*af(i,j) )
      & _LPT( +dfFacT*df(i,j)*maskUp(i,j) )
        ENDDO
       ENDDO
-#ifdef INCLUDE_T_ADVECTION_CODE
-      IF ( TOP_LAYER ) THEN
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         fVerT(i,j,kUp) = afFacT*af(i,j)*freeSurfFac
-        ENDDO
-       ENDDO
-      ENDIF
-#endif /* INCLUDE_T_ADVECTION_CODE */
 
 C--   Tendency is minus divergence of the fluxes.
 C     Note. Tendency terms will only be correct for range
@@ -343,7 +352,6 @@ C           are not used.
 C--   External thermal forcing term(s)
       CALL EXTERNAL_FORCING_T(
      I     iMin,iMax,jMin,jMax,bi,bj,k,
-     I     maskC,
      I     myCurrentTime,myThid)
 #endif /*  INCLUDE_T_FORCING_CODE */
 
