@@ -34,6 +34,9 @@ c-----------------------------------------------------------------------
 #include "gridalt_mapping.h"
 #include "GRID.h"
 #include "PARAMS.h"
+#ifdef ALLOW_MNC
+#include "MNC_PARAMS.h"
+#endif
 
        integer myThid
 
@@ -54,6 +57,12 @@ c-----------------------------------------------------------------------
        jm2 = sNy
        nymdb = nymd0
        nhmsb = nhms0
+
+#ifdef ALLOW_MNC
+       if (useMNC) then
+        call fizhi_mnc_init(myThid)
+       endif
+#endif
 
        call fizhi_alarms(nymdb,nhmsb,deltaTClock)
 
