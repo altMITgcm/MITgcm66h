@@ -161,26 +161,14 @@ C                -> calculate        -lambda*(T(model)-T(clim))
 C            >>> Qnet assumed to be total flux minus s/w rad. <<<
 C                -> usage in gT:     gT = gT + surfaceTendencyT[K/s]
 C
-C     surfaceTendencyTice
-C            - Temperature tendency in the top level due to the
-C              melting or freezing of sea-ice.
-C              Note that the surface level temperature is modified
-C              directly by the sea-ice model in order to maintain
-C              water temperature under sea-ice at the freezing
-C              point.  But we need to keep track of the
-C              equivalent amount of heat that this surface-level
-C              temperature change implies because it is used by
-C              the KPP package (kpp_calc.F and kpp_transport_t.F).
-C              Units are degrees-C/s (>0 for ocean warming).
-C
       COMMON /TENDENCY_FORCING/
      &                         surfaceTendencyU,
      &                         surfaceTendencyV,
      &                         surfaceTendencyT,
      &                         surfaceTendencyS, 
-     &                         surfaceTendencyTice
-      _RS  surfaceTendencyU   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RS  surfaceTendencyV   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RS  surfaceTendencyT   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RS  surfaceTendencyS   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RS  surfaceTendencyTice(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+     &                         tempQsw
+      _RS  surfaceTendencyU  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  surfaceTendencyV  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  surfaceTendencyT  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  surfaceTendencyS  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  tempQsw           (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)

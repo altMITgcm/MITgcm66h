@@ -3,7 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
-
+o undid all of cp51 pending some cleanups and discussion
 
 checkpoint51n_post
 o modifications to make FREEZE flux visible to pkg/kpp

@@ -28,6 +28,7 @@ C     === Global variables ===
 #include "FFIELDS.h"
 #include "SEAICE.h"
 #include "SEAICE_PARAMS.h"
+#include "SEAICE_EXTERNAL.h"
 
 #ifdef SEAICE_EXTERNAL_FORCING
 # include "SEAICE_FFIELDS.h"

@@ -21,6 +21,7 @@ C     === Global variables ===
 #include "SEAICE_GRID.h"
 #include "SEAICE_DIAGS.h"
 #include "SEAICE_PARAMS.h"
+#include "SEAICE_EXTERNAL.h"
 
 #ifdef ALLOW_COST
 # include "cost.h"
@@ -224,6 +225,7 @@ C---  Complete initialization
          DO i=1-OLx,sNx+OLx
           ZETA(I,J,bi,bj)=HEFF(I,J,1,bi,bj)*(1.0 _d 11)
           ETA(I,J,bi,bj)=ZETA(I,J,bi,bj)/4.0 _d 0
+          surfaceTendencyTice(i,j,bi,bj) = ZERO
          ENDDO
         ENDDO
        ENDDO
