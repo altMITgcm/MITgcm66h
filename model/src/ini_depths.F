@@ -71,16 +71,6 @@ C          Island
        _BEGIN_MASTER( myThid )
        CALL READ_FLD_XY_RS( bathyFile, ' ', H, 0, myThid )
        _END_MASTER(myThid)
-C--    Reverse sign if necessary (We assume H>0)
-       DO bj = myByLo(myThid), myByHi(myThid)
-        DO bi = myBxLo(myThid), myBxHi(myThid)
-         DO j=1,sNy
-          DO i=1,sNx
-           H(i,j,bi,bj)=-H(i,j,bi,bj)
-          ENDDO
-         ENDDO
-        ENDDO
-       ENDDO
       ENDIF
       _EXCH_XY_R4(    H, myThid )
 C
