@@ -189,6 +189,8 @@ grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.txt
 # labsea_pme.err     : 4e-8 with -9999 landmask
 # labsea_ustress.err : 3 with -9999 landmask
 # labsea_vstress.err : 3 with -9999 landmask
+# The gradient check does not work.  The finite difference
+# gradient has a strong dependence on grdchk_eps.
 
 # To run:
  cd ../exe
