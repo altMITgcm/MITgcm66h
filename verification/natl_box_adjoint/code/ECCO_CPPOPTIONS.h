@@ -189,7 +189,3 @@ C   Relaxation to monthly climatologies.
 #ifdef ALLOW_CLIMSSS_RELAXATION
 # define  ALLOW_MONTHLY_CLIMSSS_RELAXATION
 #endif
-
-C   Relaxation to constant surface fields.
-#undef  ALLOW_CONST_SST_RELAXATION
-#undef  ALLOW_CONST_SSS_RELAXATION
