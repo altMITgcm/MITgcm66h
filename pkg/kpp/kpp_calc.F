@@ -674,7 +674,7 @@ C     the bottom of the mixing layer.
 
       ENDIF
 
-#endif ALLOW_KPP
+#endif /* ALLOW_KPP */
 
       RETURN
       END
