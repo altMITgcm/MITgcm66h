@@ -58,7 +58,7 @@ C--   Default flags and values for Shapiro Filter
       nShapUV = 0
       nShapTrPhys = 0
       nShapUVPhys = 0
-      Shap_Trtau = deltaTtracer
+      Shap_Trtau = dTtracerLev(1)
       Shap_TrLength = 0.
       Shap_uvtau = deltaTMom
       Shap_TrLength = 0.

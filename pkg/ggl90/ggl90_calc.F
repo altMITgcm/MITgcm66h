@@ -110,7 +110,7 @@ CEOP
       jMax = sNy+OLy-1
 
 C     set separate time step (should be deltaTtracer)
-      deltaTggl90 = deltaTtracer
+      deltaTggl90 = dTtracerLev(1)
 C     
       kSurf = 1
 C     implicit timestepping weights for dissipation

@@ -131,7 +131,7 @@ C      F <-  [1 - (d_xx+d_yy)^n *deltaT/tau].F
           DO J=1,sNy
            DO I=1,sNx
             field(i,j,k,bi,bj)=field(i,j,k,bi,bj)
-     &     -deltaTtracer/Shap_Trtau*tmpFld(i,j,k,bi,bj)
+     &     -dTtracerLev(1)/Shap_Trtau*tmpFld(i,j,k,bi,bj)
            ENDDO
           ENDDO
          ENDDO

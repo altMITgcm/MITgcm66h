@@ -108,7 +108,7 @@ C      F <-  [1 - d_xx^n *deltaT/tau].F
           DO J=1,sNy
            DO I=1,sNx
             field(i,j,k,bi,bj)=field(i,j,k,bi,bj)
-     &              -tmpFld(i,j,k,bi,bj)*deltaTtracer/Shap_Trtau
+     &              -tmpFld(i,j,k,bi,bj)*dTtracerLev(1)/Shap_Trtau
             tmpFld(i,j,k,bi,bj)=field(i,j,k,bi,bj)
            ENDDO
           ENDDO
@@ -160,7 +160,7 @@ C      F <-  [1 - d_yy^n *deltaT/tau].F
           DO J=1,sNy
            DO I=1,sNx
             field(i,j,k,bi,bj)=field(i,j,k,bi,bj)
-     &              -tmpFld(i,j,k,bi,bj)*deltaTtracer/Shap_Trtau
+     &              -tmpFld(i,j,k,bi,bj)*dTtracerLev(1)/Shap_Trtau
            ENDDO
           ENDDO
          ENDDO

@@ -120,7 +120,7 @@ C      IF ( DIFFERENT_MULTIPLE(cAdjFreq,myTime,myTime-deltaTClock) ) THEN
 C     local initialization
 
 C     Copy some arrays
-      dtts = deltaTtracer
+      dtts = dTtracerLev(1)
 C     
 C     start k-loop
 C

@@ -90,7 +90,7 @@ c #else
 
           CALL IMPLDIFF(
      I         bi, bj, iMin, iMax, jMin, jMax,
-     I         deltaTtracer, kappaRk, recip_HFacC,
+     I         dTtracerLev(1), kappaRk, recip_HFacC,
      U         gPtr(1-Olx,1-Oly,1,1,1,iTracer),
      I         myThid )
 
