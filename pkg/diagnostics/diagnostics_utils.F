@@ -11,7 +11,7 @@ C     !INTERFACE:
       SUBROUTINE GETDIAG (myThid,lev,ipoint,undef,qtmp)
 
 C     !DESCRIPTION:
-      Retrieve averaged model diagnostic
+C     Retrieve averaged model diagnostic
       
 C     !USES:
       implicit none
