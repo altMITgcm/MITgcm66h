@@ -100,6 +100,7 @@ c     == local variables ==
       integer jtile
       integer itile
       integer layer
+      integer obcspos
       integer itilepos
       integer jtilepos
       integer itest
@@ -198,7 +199,7 @@ c--   gradient checks.
 c--         Determine the location of icomp on the grid.
             if ( myProcId .EQ. grdchkwhichproc ) then
                call grdchk_loc( icomp, ichknum, 
-     &              icvrec, itile, jtile, layer,
+     &              icvrec, itile, jtile, layer, obcspos,
      &              itilepos, jtilepos, itest, ierr,
      &              mythid )
             endif
@@ -381,6 +382,7 @@ c******************************************************
                ilocmem   ( ichknum ) = itilepos
                jlocmem   ( ichknum ) = jtilepos
                klocmem   ( ichknum ) = layer
+               iobcsmem  ( ichknum ) = obcspos
                icompmem  ( ichknum ) = icomp
                ichkmem   ( ichknum ) = ichknum
                itestmem  ( ichknum ) = itest
