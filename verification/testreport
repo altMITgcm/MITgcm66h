@@ -18,10 +18,11 @@ usage()
     echo "                             (DEF=\"\" which builds all)"
     echo "  (-b|-bash)STRING         location of \"bash\" executable"
     echo "                             (DEF=\"\" for \"/bin/bash\")"
-    echo "  (-c|-command)STRING      command to run"
+    echo "  (-command)STRING         command to run"
     echo "                             (DEF=\"make output.txt\")"
     echo "  (-m|-make)STRING         command to use for \"make\""
     echo "                             (DEF=\"make\")"
+    echo "  (-clean)                 *ONLY* run \"make CLEAN\""
     echo "  (-quick|-q)              same as \"-nogenmake -noclean -nodepend\""
     echo "  (-nogenmake|-ng)         skip the genmake stage"
     echo "  (-noclean|-nc)           skip the \"make clean\" stage"
@@ -192,7 +193,7 @@ genmakemodel()
 	    fi
 	    $command > make.log 2>&1
 	    RETVAL=$?
-	    for i in gm_state gm_optfile gm_local Makefile ; do
+	    for i in genmake_state genmake_optfile genmake_local Makefile ; do
 		if test -r $i ; then
 		    cp $i $CDIR
 		fi
@@ -500,7 +501,6 @@ for ac_option ; do
 	-mpi) MPI=t ;;
 	-verbose) verbose=2 ;;
 	-debug) debug=1 ;;
-	-clean) clean=1 ;;
 	-quiet) verbose=0 ;;
 
         -*)
@@ -595,9 +595,7 @@ for dir in $TESTDIRS ; do
     #  Verify that the testdir exists and contains previous 
     #  results in the correct location--or skip this directory!
     if test ! -r $dir"/results/output.txt" ; then
-	echo
 	echo "can't read \"$dir/results/output.txt\" -- skipping $dir"
-	echo
 	continue
     fi
 
