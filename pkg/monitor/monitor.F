@@ -86,6 +86,9 @@ C      Print stats for KE
        CALL MON_SET_PREF('ke',myThid)
        CALL MON_KE(myThid)
 
+C      Print stats for surface correction terms (Linear Free-Surf)
+       CALL MON_SURFCOR(myThid)
+
 C      Dynamics field monitor finish
        _BEGIN_MASTER(myThid)
         WRITE(msgBuf,'(A)')
