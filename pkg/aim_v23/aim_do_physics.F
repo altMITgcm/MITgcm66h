@@ -129,8 +129,8 @@ C-    Step forward land model
      I                     myTime, myIter, myThid )
 
 C-    Land diagnostics : write snap-shot & cumulate for TimeAve output
-      CALL LAND_DIAGNOSTICS( aim_landFr, bi, bj, 
-     I                       myTime, myIter, myThid )
+      CALL LAND_DO_DIAGS(  aim_landFr, bi, bj, 
+     I                     myTime, myIter, myThid )
 
       ENDIF
 #endif /* ALLOW_LAND */
