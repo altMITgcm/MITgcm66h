@@ -67,7 +67,7 @@ C--   Start with surface restoring term :
        DO j = jMin, jMax
         DO i = iMin, iMax
 #ifdef ALLOW_SEAICE
-C     Don't restore under sea-ice
+C     Do not restore under sea-ice
 C     Heat Flux (restoring term) : 
           surfaceForcingT(i,j,bi,bj) = 
      &      -lambdaThetaClimRelax * (1-AREA(i,j,1,bi,bj))

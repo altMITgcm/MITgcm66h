@@ -167,11 +167,10 @@ C      CALL MODELDATA_EXAMPLE( myThid )
 C--   Everyone else must wait for the parameters to be loaded
       _BARRIER
 
-C--   Check that requested time step size is supported.
-C     The combination below is the only one that is
-C     supported at this time.  Doesn't mean that something
-C     fancier will not work, just that it has not yet been
-C     tried nor thought through.
+C     Check that requested time step size is supported.  The combination
+C     below is the only one that is supported at this time.  Does not
+C     mean that something fancier will not work, just that it has not
+C     yet been tried nor thought through.
       IF ( SEAICE_deltaTtherm .NE. deltaTtracer       .OR.
      &     SEAICE_deltaTdyn   .LT. SEAICE_deltaTtherm .OR.
      &     (SEAICE_deltaTdyn/SEAICE_deltaTtherm) .NE.

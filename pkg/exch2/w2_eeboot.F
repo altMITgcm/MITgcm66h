@@ -38,7 +38,7 @@ C     == Local variables ==
       INTEGER istatus(MPI_STATUS_SIZE)
 #endif
 
-C     Set dummy myThid value (we aren't multi-threaded here)
+C     Set dummy myThid value (we are not multi-threaded here)
       myThid = 1
  
 C     Define toplogy for every tile
