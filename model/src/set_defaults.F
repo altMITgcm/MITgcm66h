@@ -221,6 +221,7 @@ C--   Time stepping parameters
       DO k=1,Nr
         dTtracerLev(k)  = 0. _d 0
       ENDDO
+      baseTime          = 0. _d 0
       nIter0            = 0
       startTime         = deltaT*float(nIter0)
       pickupSuff        = ' '

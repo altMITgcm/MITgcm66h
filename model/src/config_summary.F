@@ -357,7 +357,7 @@ C     zcoord ::
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, 
      &                    SQUEEZE_RIGHT , 1)
       CALL WRITE_0D_I( nIter0, INDEX_NONE,'nIter0 =',
-     &'   /* Base timestep number  */')
+     &'   /* Run starting timestep number  */')
       CALL WRITE_0D_I( nTimeSteps, INDEX_NONE,'nTimeSteps =',
      &'   /* Number of timesteps */')
       CALL WRITE_0D_R8( deltaTmom, INDEX_NONE,'deltatTmom =',
@@ -380,6 +380,8 @@ C     zcoord ::
       CALL WRITE_0D_R8( rCD, INDEX_NONE,'rCD =',
      &'   /* Normalised CD coupling parameter */')
       ENDIF
+      CALL WRITE_0D_R8( baseTime, INDEX_NONE,'baseTime =',
+     &'   /* Model base time ( s ). */')
       CALL WRITE_0D_R8( startTime, INDEX_NONE,'startTime =',
      &'   /* Run start time ( s ). */')
       CALL WRITE_0D_R8( endTime, INDEX_NONE,'endTime =',
