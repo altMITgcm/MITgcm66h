@@ -164,7 +164,7 @@ C---  Complete initialization
        ENDDO
       ENDDO
 
-#endif ALLOW_SEAICE
+#endif /* ALLOW_SEAICE */
 
       RETURN
       END

@@ -158,4 +158,4 @@ C--   Constants used by sea-ice model
       _RL         QUART            , HALF
       parameter ( QUART = 0.25 _d 0, HALF = 0.5 _d 0 ) 
 
-#endif ALLOW_SEAICE
+#endif /* ALLOW_SEAICE */

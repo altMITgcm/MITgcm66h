@@ -77,7 +77,7 @@ C NOW DO DIFFUSION WITH NUIT CONVERSION
        ENDDO
       ENDDO
 
-#endif ALLOW_SEAICE
+#endif /* ALLOW_SEAICE */
 
       RETURN
       END

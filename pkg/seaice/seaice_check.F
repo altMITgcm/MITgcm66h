@@ -128,7 +128,7 @@ C     At present this option is hardwired for pkg/exf.
 #endif /* INCLUDE_EXTERNAL_FORCING_PACKAGE */
 #endif /* SEAICE_EXTERNAL_FLUXES */
 
-#endif ALLOW_SEAICE
+#endif /* ALLOW_SEAICE */
 
       return
       end

@@ -181,12 +181,12 @@ C--   Everyone else must wait for the parameters to be loaded
      &     SSSForcingEnd    = FluxForcingEnd
       IF ( SSSForcingPeriod .EQ. -99999. )
      &     SSSForcingPeriod = FluxForcingPeriod
-#endif SEAICE_EXTERNAL_FORCING
+#endif /* SEAICE_EXTERNAL_FORCING */
 
 C--   No pseudo time steps are needed for LSR solver.
       IF ( SEAICEuseLSR ) NPSEUDO = 1
 
-#endif ALLOW_SEAICE
+#endif /* ALLOW_SEAICE */
 
       return
       end

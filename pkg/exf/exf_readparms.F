@@ -328,7 +328,7 @@ c     check for consistency
 #ifdef EXF_READ_EVAP
       call cal_FullDate(     evapstartdate1,     evapstartdate2,
      &                       evapstartdate ,             mythid )
-#endif EXF_READ_EVAP
+#endif
 
 #ifdef ALLOW_RUNOFF
       call cal_FullDate(   runoffstartdate1,   runoffstartdate2,

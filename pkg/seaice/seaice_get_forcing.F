@@ -542,8 +542,8 @@ C--   Time interpolation of SST forcing variables.
        ENDDO
       ENDIF
 
-#endif SEAICE_EXTERNAL_FORCING
-#endif ALLOW_SEAICE
+#endif /* SEAICE_EXTERNAL_FORCING */
+#endif /* ALLOW_SEAICE */
 
       RETURN
       END
@@ -578,8 +578,8 @@ C
        ENDDO
       ENDDO
 
-#endif SEAICE_EXTERNAL_FORCING
-#endif ALLOW_SEAICE
+#endif /* SEAICE_EXTERNAL_FORCING */
+#endif /* ALLOW_SEAICE */
 
       RETURN
       END

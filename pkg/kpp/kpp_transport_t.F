@@ -38,7 +38,7 @@ C     == GLobal variables ==
 
 #ifdef ALLOW_SEAICE
 #include "SEAICE_EXTERNAL.h"
-#endif ALLOW_SEAICE
+#endif
 
 C     == Routine arguments ==
 C     iMin,iMax,jMin,  - Range of points for which calculation
@@ -77,7 +77,7 @@ C     I, J - Loop counters
      &         *recip_Cp*recip_rhoNil*recip_dRf(1)
      &         * (1.-KPPfrac(i,j,bi,bj))
      &         )
-#endif ALLOW_SEAICE
+#endif
 
        ENDDO
       ENDDO

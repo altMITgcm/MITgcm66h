@@ -280,7 +280,7 @@ c     Net short wave radiative flux.
 #ifdef EXF_READ_EVAP
 c     Evaporation
       call exf_set_evap   ( mycurrenttime, mycurrentiter, mythid )
-#endif EXF_READ_EVAP
+#endif
 
 #ifdef ALLOW_DOWNWARD_RADIATION
 

@@ -123,7 +123,7 @@ c      CALL PLOT_FIELD_XYRS( swdown,'Current swdown ', myIter, myThid )
        CALL PLOT_FIELD_XYRL( fv    ,'Current fv '    , myIter, myThid )
        CALL PLOT_FIELD_XYRL( Qnet  ,'Current Qnet '  , myIter, myThid )
        CALL PLOT_FIELD_XYRL( evap  ,'Current evap '  , myIter, myThid )
-#endif SEAICE_DEBUG
+#endif
 
          ENDIF
       ENDIF
@@ -231,7 +231,7 @@ C      Reset averages to zero
       
 #endif /* ALLOW_TIMEAVE */
 
-#endif ALLOW_SEAICE
+#endif /* ALLOW_SEAICE */
       
       RETURN
       END

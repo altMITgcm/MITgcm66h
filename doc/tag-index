@@ -4,6 +4,8 @@ $Header$
     ==============================
 
 untagged
+o Added missing /* */ to CPP comments in pkg/seaice, pkg/exf,
+  kpp_transport_t.F,and ecco_the_main_loop.F
 o adjoint-friendly modifications to pkg/seaice
 
 ecco_c44_e26
