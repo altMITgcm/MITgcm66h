@@ -1326,13 +1326,13 @@ cat >>$MAKEFILE <<EOF
 EXE_AD_TAMC    = ${EXECUTABLE}_ad_tamc
 \$(EXE_AD_TAMC): \$(OBJFILES)
 
-EXE_AD_TAF     = ${EXECUTABLE}_ad_taf
-\$(EXE_AD_TAF): \$(OBJFILES)
+EXE_AD_TAF     = ${EXECUTABLE}
+ad_taf: \$(OBJFILES)
 	cat \$(AD_FILES) >! ad_input_code.f
 	\$(TAF) \$(AD_TAF_FLAGS) ad_input_code.f
 	./adjoint_sed >! ad_output_code.f
 	@make ad_output_code.o
-	\$(LINK) -o \$@ \$(FFLAGS) \$(FOPTIM) \$(OBJFILES) ad_output_code.o \$(LIBS) 
+	\$(LINK) -o ${EXECUTABLE} \$(FFLAGS) \$(FOPTIM) \$(OBJFILES) ad_output_code.o \$(LIBS) 
 
 EXE_FTL_TAMC   = ${EXECUTABLE}_ftl_tamc
 EXE_FTL_TAF    = ${EXECUTABLE}_ftl_taf
