@@ -27,10 +27,6 @@ C o Include/exclude call to S/R CALC_DIFFUSIVITY
 C o Allow nonHydrostatic code
 #undef  ALLOW_NONHYDROSTATIC
 
-C o Use "natural" boundary conditions for salinity
-C   instead of the "virtual salt flux"
-#undef  USE_NATURAL_BCS
-
 C o Use "Exact Convervation" of fluid in Free-Surface formulation
 C   so that d/dt(eta) is exactly equal to - Div.Transport
 #define EXACT_CONSERV

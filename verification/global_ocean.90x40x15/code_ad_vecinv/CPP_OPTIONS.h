@@ -27,10 +27,6 @@ C o Include/exclude call to S/R CALC_DIFFUSIVITY
 C o Allow nonHydrostatic code
 #undef  ALLOW_NONHYDROSTATIC
 
-C o Use "natural" boundary conditions for salinity
-C   instead of the "virtual salt flux"
-#undef  USE_NATURAL_BCS
-
 C o Read/write of checkpoint files for restarting.
 #undef OLD_STYLE_WITH_MANY_FILES
 
