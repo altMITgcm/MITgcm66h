@@ -111,6 +111,17 @@ C     Under MPI selects/deselects "blocking" sends and receives.
 #define ALLOW_SYNC_COMMUNICATION
 #undef  ALWAYS_USE_SYNC_COMMUNICATION
 
+C--   Control use of JAM routines for Artic network
+C     These invoke optimized versions of "exchange" and "sum" that
+C     utilize the programmable aspect of Artic cards.
+#undef  LETS_MAKE_JAM
+#undef  JAM_WITH_TWO_PROCS_PER_NODE
+#ifdef LETS_MAKE_JAM
+#define _JAMEXT _jam
+#else
+#define _JAMEXT
+#endif
+
 C--   Control storage of floating point operands
 C     On many systems it improves performance only to use
 C     8-byte precision for time stepped variables.
