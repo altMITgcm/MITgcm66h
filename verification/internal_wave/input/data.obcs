@@ -1,6 +1,0 @@
-# Open-boundaries
- &OBCS_PARM01
- OB_Ieast=3*-1,
- OB_Iwest=3*1,
- &
-
