@@ -25,6 +25,7 @@ C     !USES:
       IMPLICIT NONE
 
 C     == Global variables ==
+#include "EEPARAMS.h"
 #include "THSICE_SIZE.h"
 #include "THSICE_PARAMS.h"
 

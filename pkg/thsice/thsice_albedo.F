@@ -23,6 +23,7 @@ C     !USES:
       IMPLICIT NONE
 
 C     == Global data ==
+#include "EEPARAMS.h"
 #include "THSICE_PARAMS.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
