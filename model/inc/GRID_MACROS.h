@@ -147,6 +147,8 @@ C     \==========================================================/
 #undef    RA_FX
 #undef    RA_FY
 #include "RA_MACROS.h"
+#include "RAW_MACROS.h"
+#include "RAS_MACROS.h"
 
 #undef    MASKW_CONST   
 #undef    MASKW_FX

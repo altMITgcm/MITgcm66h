@@ -58,7 +58,7 @@ C o Include/exclude laplacian viscosity code
 #endif
 
 C o Include/exclude biharmonic viscosity code
-#undef   INCLUDE_BH_MOMENTUM_DIFFUSION_CODE
+#define  INCLUDE_BH_MOMENTUM_DIFFUSION_CODE
 #ifdef   INCLUDE_BH_MOMENTUM_DIFFUSION_CODE
 #define  _BHM(a) a
 #endif
@@ -111,6 +111,16 @@ C o Include/exclude call to S/R CALC_ISOSLOPES
 
 C o Include/exclude call to S/R CALC_DIFFUSIVITY
 #define INCLUDE_CALC_DIFFUSIVITY_CALL
+
+C o Use "OLD" UV discretisation near boundaries (*not* recommended)
+C   Note - only works with  #undef NO_SLIP_LATERAL  in calc_mom_rhs.F
+C          because the old code did not have no-slip BCs
+#undef  OLD_ADV_BCS
+
+C o Use "OLD" UV geometry on sphere (definately *NOT* recommended)
+C   Note - only works with  #undef NO_SLIP_LATERAL  in calc_mom_rhs.F
+C          because the old code did not have no-slip BCs
+#undef  OLD_UV_GEOMETRY
 
 C o Execution environment support options
 #include "CPP_EEOPTIONS.h"
