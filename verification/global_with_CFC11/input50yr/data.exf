@@ -122,6 +122,9 @@
  swfluxfile   = 'NCEP_1949_sw',
  runofffile   = 'run-off.bin_1x1',
 #
+ exf_inscal_ust = -1.
+ exf_inscal_vst = -1.
+#
  exf_iprec         = 32,
  exf_yftype        = 'RL',
  &

@@ -174,7 +174,7 @@ C
                ALPHA = sol_cfc(TMP1,TMP2,11)
                CSAT  = ALPHA * PCFC * patm(i,j,bi,bj)
                TMP1  = KW * ( CSAT - Tr1(i,j,1,bi,bj) )
-               gTr1(i,j,1,bi,bj) = gTr1(i,j,1,bi,bj) +
+               surfaceTendencyTr1(i,j,bi,bj) =
      &              TMP1 * recip_drF(1) * recip_hFacC(i,j,1,bi,bj)
             ENDDO
          ENDDO

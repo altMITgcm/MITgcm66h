@@ -34,7 +34,20 @@
  diffKzT            = 1.51e-5
  diffKzS            = 1.51e-5
  viscAh             = 0.,
- viscA4             = 1.0e13,
+#
+ viscA4             = 1.0e12,
+ diffK4T=1.E12,
+ diffK4S=1.E12,
+ cosPower = 3.,
+ bottomDragQuadratic = 0.002,
+ tempAdvScheme=4
+ saltAdvScheme=4
+ tracerAdvScheme=33
+ multiDimAdvection=.FALSE.,
+ staggerTimeStep=.TRUE.,
+ no_slip_sides=.TRUE.,
+ no_slip_bottom     = .TRUE.,
+#
  diffKhT            = 0.,
  diffKhS            = 0.,
  rhonil=1035.,
@@ -45,15 +58,12 @@
  implicitViscosity  = .TRUE.
  eosType            = 'POLY3',
  allowFreezing=.TRUE.,
- no_slip_bottom     = .TRUE.,
- no_slip_sides      = .FALSE.
  tr1Stepping=.TRUE.
 # turn on looped cells
  hFacMin=.3,
  hFacMinDz=50.,
 # set precision of data files
  readBinaryPrec=32,
- writeBinaryPrec=32,
  writeBinaryPrec=32,
  globalFiles=.TRUE.
  useSingleCpuIO=.TRUE.
@@ -92,10 +102,10 @@
  deltaTClock = 3600.,
  tauCD =     172800.,
  pChkptFreq= 86400.,
- dumpFreq=   43200.,
+ dumpFreq=   3600.,
  tr1dumpFreq=864000.,
  taveFreq=   864000.,
- monitorFreq=864000.,
+ monitorFreq=3600.,
  tauThetaClimRelax =  2592000.0,
  tauSaltClimRelax = 3842380.,
  abEps            = 0.1,
@@ -173,13 +183,9 @@
 #   bathyFile       - File containing bathymetry
 #   hydrogThetaFile - File containing initial potential temperature data
 #   hydrogSaltFile  - File containing initial salinity data
-#   zonalWindFile   - File containing zonal wind data
-#   meridWindFile   - File containing meridional wind data
-#   thetaClimFile   - File containing theta climatology used for relaxation
-#   saltClimFile    - File containing salt climatology used for relaxation
 #
  &PARM05
- bathyFile       = 'Depth.data',
+ bathyFile       = 'bathy_50yr.bin',
  hydrogThetaFile = 'lev_clim_temp.bin'
  hydrogSaltFile  = 'lev_clim_salt.bin',
  &
