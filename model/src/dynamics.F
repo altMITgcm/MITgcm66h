@@ -260,10 +260,7 @@ C     uninitialised but inert locations.
 #ifdef ALLOW_AUTODIFF_TAMC
 cph(
 c--   need some re-initialisation here to break dependencies
-c--   totphihyd is assumed zero from ini_pressure, i.e.
-c--   avoiding iterate pressure p = integral of (g*rho(p)*dz)
 cph)
-           totPhiHyd(i,j,k,bi,bj) = 0. _d 0
            gu(i,j,k,bi,bj) = 0. _d 0
            gv(i,j,k,bi,bj) = 0. _d 0
 #endif
