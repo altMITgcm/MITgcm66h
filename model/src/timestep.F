@@ -37,48 +37,28 @@ Caja  ELSE
 Caja  ENDIF
 
 C     Step forward zonal velocity (store in Gu)
-       DO j=jMin,jMax
+      DO j=jMin,jMax
         DO i=iMin,iMax
-         gUNm1(i,j,k,bi,bj)=uVel(i,j,k,bi,bj)
+          gUNm1(i,j,k,bi,bj)=uVel(i,j,k,bi,bj)
      &    +deltaTmom*(ab15*gU(i,j,k,bi,bj)+ab05*gUNm1(i,j,k,bi,bj)
 #ifdef INCLUDE_CD_CODE
      &    +guCD(i,j,k,bi,bj)
 #endif
      &        )*_maskW(i,j,k,bi,bj)
         ENDDO
-       ENDDO
+      ENDDO
 
 C     Step forward meridional velocity (store in Gv)
-       DO j=jMin,jMax
+      DO j=jMin,jMax
         DO i=iMin,iMax
-         gVNm1(i,j,k,bi,bj)=vVel(i,j,k,bi,bj)
+          gVNm1(i,j,k,bi,bj)=vVel(i,j,k,bi,bj)
      &    +deltaTmom*(ab15*gV(i,j,k,bi,bj)+ab05*gVNm1(i,j,k,bi,bj)
 #ifdef INCLUDE_CD_CODE
      &    +gvCD(i,j,k,bi,bj)
 #endif
      &        )*_maskS(i,j,k,bi,bj)
         ENDDO
-       ENDDO
-
-C     Step forward temperature
-      IF (tempStepping) THEN
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         gTNm1(i,j,k,bi,bj)=theta(i,j,k,bi,bj)
-     &    +deltaTtracer*(ab15*gT(i,j,k,bi,bj)+ab05*gTNm1(i,j,k,bi,bj))
-        ENDDO
-       ENDDO
-      ENDIF
-
-C     Step forward salt
-      IF (saltStepping) THEN
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         gSNm1(i,j,k,bi,bj)=salt(i,j,k,bi,bj)
-     &    +deltaTtracer*(ab15*gS(i,j,k,bi,bj)+ab05*gSNm1(i,j,k,bi,bj))
-        ENDDO
-       ENDDO
-      ENDIF
+      ENDDO
 
       RETURN
       END

@@ -44,7 +44,7 @@ C--   Check to see if should convect now
 
 #ifdef  ALLOW_KPP
         IF ( 
-     &      (.NOT.usingKPPmixing) ! CONVECT not needed with KPP mixing
+     &      (.NOT.useKPP) ! CONVECT not needed with KPP mixing
      &     ) THEN
 #endif  /* ALLOW_KPP */
 
@@ -87,7 +87,7 @@ C--       End DO K=1,Nr
           ENDDO
        
 #ifdef  ALLOW_KPP
-C--     End IF (.NOT.usingKPPmixing)
+C--     End IF (.NOT.useKPP)
         ENDIF
 #endif  /* ALLOW_KPP */
 

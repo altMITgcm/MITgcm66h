@@ -18,11 +18,10 @@ C     | open-area. Need to do something to solidfy this and to   |
 C     | deal "properly" with thin walls.                         |
 C     \==========================================================/
       SUBROUTINE CALC_MOM_RHS( 
-     I        bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
+     I        bi,bj,iMin,iMax,jMin,jMax,k,km1,kUp,kDown,
      I        xA,yA,uTrans,vTrans,rTrans,rVel,maskC,
      I        phi_hyd,KappaRU,KappaRV,
-     U        aFArg,vFArg,cFArg,mTArg,pFArg,
-     U        fZonArg, fMerArg, fVerU, fVerV,
+     U        fVerU, fVerV,
      I        myCurrentTime, myThid)
 
       IMPLICIT NONE
@@ -62,18 +61,11 @@ C     myThid - Instance number for this innvocation of CALC_MOM_RHS
       _RL  rTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL  rVel  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
       _RS   maskC(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL   fVerU(1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
-      _RL   fVerV(1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
       _RL      phi_hyd(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
       _RL      KappaRU(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
       _RL      KappaRV(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
-      _RL      aFArg(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL      vFArg(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL      cFArg(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL      mTArg(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL      pFArg(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL    fZonArg(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL    fMerArg(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL   fVerU(1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
+      _RL   fVerV(1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
       INTEGER kUp,kDown,kM1
       INTEGER myThid
       _RL     myCurrentTime
@@ -146,9 +138,15 @@ C     ab05, ab15 - Adams-Bashforth time-stepping weights.
       _RL  ab05, ab15
       _RL cosfacU(1-Oly:sNy+Oly)
       _RL cosfacV(1-Oly:sNy+Oly)
+      INTEGER kp1
+      _RL maskDown,wVelBottomOverride
 
+      kp1=MIN(Nr,k+1)
       rVelMaskOverride=1.
       IF ( k .EQ. 1 ) rVelMaskOverride=freeSurfFac
+      wVelBottomOverride=1.
+      IF (k.EQ.Nr) wVelBottomOverride=0.
+
 C     Initialise intermediate terms
       DO J=1-OLy,sNy+OLy
        DO I=1-OLx,sNx+OLx
@@ -378,12 +376,16 @@ C     Mean flow component of vertical flux
       DO j=jMin,jMax
        DO i=iMin,iMax
         af(i,j) =
-     &   rVelMaskOverride*(rTrans(i,j)+rTrans(i-1,j))
-     &  *( uVel(i,j,k,bi,bj)+uVel(i,j,kM1,bi,bj) )
+c    &   rVelMaskOverride*(rTrans(i,j)+rTrans(i-1,j))
+     &   wVelBottomOverride*(
+     &        wVel( i ,j,kp1,bi,bj)*rA( i ,j,bi,bj)
+     &       +wVel(i-1,j,kp1,bi,bj)*rA(i-1,j,bi,bj)
+     &                    )
+     &  *( uVel(i,j,kp1,bi,bj)+uVel(i,j,k,bi,bj) )
      &  *0.25 _d 0
 #ifdef OLD_ADV_BCS
+     &  *_maskW(i,j,kp1,bi,bj)
      &  *_maskW(i,j,k,bi,bj)
-     &  *_maskW(i,j,kM1,bi,bj)
 #endif /* OLD_ADV_BCS */
 C       Note!!!! The line "*(maskW(i,j,k,bi,bj)*maskW(i,j,kM1,bi,bj))" is
 C       Note!!!! boundary condition in the standard v010 CM5 code. The
@@ -391,6 +393,18 @@ C       Note!!!! FV paper used a different bc in which this line is
 C       Note!!!! omitted.
        ENDDO
       ENDDO
+C--   Free surface correction temr
+      IF (k.EQ.1) THEN
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         fVerU(i,j,kUp)=rVelMaskOverride*(
+     &        wVel( i ,j,k,bi,bj)*rA( i ,j,bi,bj)
+     &       +wVel(i-1,j,k,bi,bj)*rA(i-1,j,bi,bj)
+     &                    )*0.5
+     &        *uVel(i,j,k,bi,bj)
+        ENDDO
+       ENDDO
+      ENDIF
 #endif /* INCLUDE_MOMENTUM_ADVECTION_CODE */
 #ifdef INCLUDE_LP_MOMENTUM_DIFFUSION_CODE
 #ifdef OLD_UV_GEOMETRY
@@ -402,30 +416,33 @@ C     Eddy component of vertical flux
       IF (no_slip_bottom) THEN
        DO j=jMin,jMax
         DO i=iMin,iMax
+         maskDown=_maskW(i,j,kp1,bi,bj)
+         IF (k.EQ.Nr) maskDown=0.
          vf(i,j) =
-     &   -KappaRU(i,j,k)
+     &   -KappaRU(i,j,kp1)
      & *_RA_AT_W
-     &   *( ( 2.-_maskW(i,j,k,bi,bj) )*uVel(i,j,kM1,bi,bj)
-     &     -     _maskW(i,j,k,bi,bj)  *uVel(i,j,k,bi,bj)
-     &    )*rkFac*recip_drC(k)
+     &   *( ( 2.-maskDown )*uVel(i,j,k,bi,bj)
+     &     -     maskDown  *uVel(i,j,kp1,bi,bj)
+     &    )*rkFac*recip_drC(kp1)
+         IF (k.EQ.Nr) vf(i,j)=vf(i,j)*drC(k)*recip_drF(k)
         ENDDO
        ENDDO
       ELSE
        DO j=jMin,jMax
         DO i=iMin,iMax
          vf(i,j) =
-     &   -KappaRU(i,j,k)
+     &   -KappaRU(i,j,kp1)
      & *_RA_AT_W
-     &   *( uVel(i,j,km1,bi,bj)-uVel(i,j,k,bi,bj)
-     &    )*rkFac*recip_drC(k)
-     &    *_maskW(i,j,k,bi,bj)*rVelMaskOverride
+     &   *( uVel(i,j,k,bi,bj)-uVel(i,j,kp1,bi,bj)
+     &    )*rkFac*recip_drC(kp1)
+     &    *_maskW(i,j,kp1,bi,bj)*rVelMaskOverride
         ENDDO
        ENDDO
       ENDIF
 #endif /* INCLUDE_LP_MOMENTUM_DIFFUSION_CODE */
       DO j=jMin,jMax
        DO i=iMin,iMax
-        fVerU(i,j,kUp) = 0.
+        fVerU(i,j,kDown) = 0.
      &  _ADM(           + rVelDudrFac  * af(i,j)     )
      &  _LPM(           +    ArDudrFac * vf(i,j)     )
        ENDDO
@@ -437,22 +454,22 @@ C     Eddy component of vertical flux
 #define _RA_AT_W2 rAw(i,j,bi,bj)
 #endif /* OLD_UV_GEOMETRY */
 C     Bottom boundary condition
-      IF ( no_slip_bottom .AND. k .EQ. Nr ) THEN
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         vf(i,j) =
-     &    -KappaRU(i,j,k)
-     & *_RA_AT_W2
-     &    *_maskW(i,j,k,bi,bj)
-     &    *uVel(i,j,k,bi,bj)*rkFac*recip_DrF(k)*2. _d 0
-        ENDDO
-       ENDDO
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         fVerU(i,j,kDown) = ArDudrFac * vf(i,j)
-        ENDDO
-       ENDDO
-      ENDIF
+c     IF ( no_slip_bottom .AND. k .EQ. Nr ) THEN
+c      DO j=jMin,jMax
+c       DO i=iMin,iMax
+c        vf(i,j) =
+c    &    -KappaRU(i,j,k)
+c    & *_RA_AT_W2
+c    &    *_maskW(i,j,k,bi,bj)
+c    &    *uVel(i,j,k,bi,bj)*rkFac*recip_DrF(k)*2. _d 0
+c       ENDDO
+c      ENDDO
+c      DO j=jMin,jMax
+c       DO i=iMin,iMax
+c        fVerU(i,j,kDown) = ArDudrFac * vf(i,j)
+c       ENDDO
+c      ENDDO
+c     ENDIF
 #endif /* INCLUDE_LP_MOMENTUM_DIFFUSION_CODE */
 
 #ifdef INCLUDE_GRADPH_CODE
@@ -520,8 +537,11 @@ C      o Spherical polar grid metric terms
        DO j=jMin,jMax
         DO i=iMin,iMax
          mT(i,j) = -1.* uVel(i,j,k,bi,bj)*recip_RSphere
-     &    *0.25 _d 0*( rVel(i-1,j,kUp  )+rVel(i  ,j,kUp  )
-     &                +rVel(i-1,j,KDown)+rVel(i  ,j,KDown)
+c    &    *0.25 _d 0*( rVel(i-1,j,kUp  )+rVel(i  ,j,kUp  )
+c    &                +rVel(i-1,j,KDown)+rVel(i  ,j,KDown)
+     &    *0.25 _d 0*(wVelBottomOverride*
+     &                (wVel(i-1,j,kp1,bi,bj)+wVel(i,j,kp1,bi,bj))
+     &                +wVel(i-1,j, k ,bi,bj)+wVel(i,j, k ,bi,bj)
      &              )*rkFac*recip_horiVertRatio
         ENDDO
        ENDDO
@@ -696,11 +716,15 @@ C     o Mean flow component of vertical flux
       DO j=jMin,jMax
        DO i=iMin,iMax
         af(i,j) =
-     &   rVelMaskOverride*(rTrans(i,j)+rTrans(i,j-1))
-     &  *( vVel(i,j,k,bi,bj)+vVel(i,j,kM1,bi,bj) )
+c    &   rVelMaskOverride*(rTrans(i,j)+rTrans(i,j-1))
+     &   rVelMaskOverride*wVelBottomOverride*(
+     &        wVel(i, j ,kp1,bi,bj)*rA(i, j ,bi,bj)
+     &       +wVel(i,j-1,kp1,bi,bj)*rA(i,j-1,bi,bj)
+     &                    )
+     &  *( vVel(i,j,kp1,bi,bj)+vVel(i,j,k,bi,bj) )
      &  *0.25 _d 0
 #ifdef OLD_ADV_BCS
-     &  *_maskS(i,j,k,bi,bj)*_maskS(i,j,kM1,bi,bj)
+     &  *_maskS(i,j,kp1,bi,bj)*_maskS(i,j,k,bi,bj)
 #endif /* OLD_ADV_BCS */
 C       Note!!!! The line "*(maskS(i,j,k,bi,bj)*maskS(i,j,kM1,bi,bj))" is
 C       Note!!!! boundary condition in the standard v010 CM5 code. The
@@ -709,6 +733,18 @@ C       Note!!!! omitted.
 C       Note!!!! Is rVelMaskOverridde right for implicit free-surface?
        ENDDO
       ENDDO
+C--   Free surface correction temr
+      IF (k.EQ.1) THEN
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         fVerV(i,j,kUp)=rVelMaskOverride*(
+     &        wVel(i, j ,k,bi,bj)*rA(i, j ,bi,bj)
+     &       +wVel(i,j-1,k,bi,bj)*rA(i,j-1,bi,bj)
+     &                    )*0.5
+     &        *vVel(i,j,k,bi,bj)
+        ENDDO
+       ENDDO
+      ENDIF
 #endif /* INCLUDE_MOMENTUM_ADVECTION_CODE */
 #ifdef INCLUDE_LP_MOMENTUM_DIFFUSION_CODE
 #ifdef OLD_UV_GEOMETRY
@@ -720,30 +756,33 @@ C     Eddy component of vertical flux
       IF (no_slip_bottom) THEN
        DO j=jMin,jMax
         DO i=iMin,iMax
+         maskDown=_maskS(i,j,kp1,bi,bj)
+         IF (k.EQ.Nr) maskDown=0.
          vf(i,j) =
-     &   -KappaRV(i,j,k)
+     &   -KappaRV(i,j,kp1)
      & *_RA_AT_S
-     &   *( ( 2.-_maskS(i,j,k,bi,bj) )*vVel(i,j,kM1,bi,bj)
-     &     -     _maskS(i,j,k,bi,bj)  *vVel(i,j,k,bi,bj)
-     &    )*rkFac*recip_drC(k)
+     &   *( ( 2.-maskDown )*vVel(i,j,k,bi,bj)
+     &     -     maskDown  *vVel(i,j,kp1,bi,bj)
+     &    )*rkFac*recip_drC(kp1)
+         IF (k.EQ.Nr) vf(i,j)=vf(i,j)*drC(k)*recip_drF(k)
         ENDDO
        ENDDO
       ELSE
        DO j=jMin,jMax
         DO i=iMin,iMax
          vf(i,j) =
-     &   -KappaRV(i,j,k)
+     &   -KappaRV(i,j,kp1)
      & *_RA_AT_S
-     &   *(vVel(i,j,km1,bi,bj)-vVel(i,j,k,bi,bj))
-     &   *rkFac*recip_drC(k)
-     &   *_maskS(i,j,k,bi,bj)*rVelMaskOverride
+     &   *(vVel(i,j,k,bi,bj)-vVel(i,j,kp1,bi,bj))
+     &   *rkFac*recip_drC(kp1)
+     &   *_maskS(i,j,kp1,bi,bj)*rVelMaskOverride
         ENDDO
        ENDDO
       ENDIF
 #endif /* INCLUDE_LP_MOMENTUM_DIFFUSION_CODE */
       DO j=jMin,jMax
        DO i=iMin,iMax
-        fVerV(i,j,kUp) = rVelDvdrFac * af(i,j) 
+        fVerV(i,j,kDown) = rVelDvdrFac * af(i,j) 
      &                 + ArDvdrFac   * vf(i,j)
        ENDDO
       ENDDO
@@ -754,22 +793,22 @@ C     Bottom level boundary condition
 #else
 #define _RA_AT_S2 rAs(i,j,bi,bj)
 #endif /* OLD_UV_GEOMETRY */
-      IF ( no_slip_bottom .AND. k .EQ. Nr ) THEN
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-       vf(i,j) =
-     & -KappaRV(i,j,k)
-     & *_RA_AT_S2
-     & *_maskS(i,j,k,bi,bj)
-     & *vVel(i,j,k,bi,bj)*rkFac*recip_drF(k)*2. _d 0
-       ENDDO
-      ENDDO
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-        fVerV(i,j,kDown) = ArDvdrFac * vf(i,j)
-       ENDDO
-      ENDDO
-      ENDIF
+c     IF ( no_slip_bottom .AND. k .EQ. Nr ) THEN
+c     DO j=jMin,jMax
+c      DO i=iMin,iMax
+c      vf(i,j) =
+c    & -KappaRV(i,j,k)
+c    & *_RA_AT_S2
+c    & *_maskS(i,j,k,bi,bj)
+c    & *vVel(i,j,k,bi,bj)*rkFac*recip_drF(k)*2. _d 0
+c      ENDDO
+c     ENDDO
+c     DO j=jMin,jMax
+c      DO i=iMin,iMax
+c       fVerV(i,j,kDown) = ArDvdrFac * vf(i,j)
+c      ENDDO
+c     ENDDO
+c     ENDIF
 #endif /* INCLUDE_LP_MOMENTUM_DIFFUSION_CODE */
 
 #ifdef INCLUDE_GRADPH_CODE
@@ -835,8 +874,11 @@ C      o Spherical polar grid metric terms
        DO j=jMin,jMax
         DO i=iMin,iMax
          mT(i,j) = -vVel(i,j,k,bi,bj)*recip_RSphere
-     &    *0.25 _d 0*( rVel(i,j,kUp  )+rVel(i,j-1,kUp  )
-     &               + rVel(i,j,KDown)+rVel(i,j-1,KDown)
+c    &    *0.25 _d 0*( rVel(i,j,kUp  )+rVel(i,j-1,kUp  )
+c    &               + rVel(i,j,KDown)+rVel(i,j-1,KDown)
+     &    *0.25 _d 0*(wVelBottomOverride*
+     &                (wVel(i,j,kp1,bi,bj)+wVel(i,j-1,kp1,bi,bj))
+     &               + wVel(i,j, k ,bi,bj)+wVel(i,j-1, k ,bi,bj)
      &              )*rkFac*recip_horiVertRatio
         ENDDO
        ENDDO
