@@ -833,7 +833,7 @@ done
 # echo
 
 # Create a list of #define and #undef to enable/disable packages
-PACKAGES_DOT_H=PACKAGES.h
+PACKAGES_DOT_H=PACKAGES_CONF.h
 cat <<EOF >$PACKAGES_DOT_H".tmp"
 C=== GENMAKE v2 ===
 C  The following defines have been set by GENMAKE, so please do not
