@@ -46,8 +46,9 @@ C  i,j                  :: loop indices
       INTEGER i,j
 CEOP
 
-      DO j=1-Olx,sNy+Oly-1
-       DO i=1-Olx+1,sNx+Olx
+C jmc: using yG make more sense to me but I might be wrong ?
+      DO j=1-Oly+1,sNy+Oly
+       DO i=1-Olx,sNx+Olx-1
           if (yC(i,j,bi,bj).GT. 0) then 
              vMetricTerms(i,j) = 
      &            -1.*0.25*(uFld(i,j) + uFld(i+1,j) +

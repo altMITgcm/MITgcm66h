@@ -46,7 +46,7 @@ C  i,j                  :: loop indices
       INTEGER i,j
 CEOP
 
-      DO j=1-Olx,sNy+Oly-1
+      DO j=1-Oly,sNy+Oly-1
        DO i=1-Olx+1,sNx+Olx
           if (yC(i,j,bi,bj).GT. 0) then 
              uMetricTerms(i,j) = 
