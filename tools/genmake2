@@ -982,7 +982,7 @@ if test "x${TOOLSDIR}" = x ; then
     TOOLSDIR="$ROOTDIR/tools"
 fi
 if test ! -d ${TOOLSDIR} ; then
-    echo "Error: the specified $TOOLSDIR (\"$TOOLSDIR\") does not exist!"
+    echo "Error: the specified TOOLSDIR (\"$TOOLSDIR\") does not exist!"
     exit 1
 fi
 if test "x$S64" = x ; then
