@@ -564,7 +564,7 @@ C       the north-south transactions will send out the correct overlap
 C       region values into the corner sections of our neighbors.
         CALL MPI_Waitall( nReqs, reqIds, mpiStatArr, mpiRC )
 CcnhDebugStarts
-        RETURN
+C       RETURN
 CcnhDebugEnds
 
  

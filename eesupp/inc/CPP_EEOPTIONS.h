@@ -98,8 +98,8 @@ C     it alone execute the BEGIN_MASTER..., END_MASTER.. sections.
 #define _END_MASTER(a)    ENDIF
 
 C--   Control MPI based parallel processing
-#undef  ALLOW_USE_MPI
-#undef  ALWAYS_USE_MPI
+#define ALLOW_USE_MPI
+#define ALWAYS_USE_MPI
  
 C--   Control use of communication that might overlap computation.
 C     Under MPI selects/deselects "non-blocking" sends and receives.
@@ -119,7 +119,7 @@ C     can use 4-byte precision, reducing memory utilisation and
 C     boosting performance because of a smaller working
 C     set size. However, on vector CRAY systems this degrades
 C     performance.
-#define REAL4_IS_SLOW
+#undef  REAL4_IS_SLOW
  
 #ifdef REAL4_IS_SLOW
 #define real Real*8
