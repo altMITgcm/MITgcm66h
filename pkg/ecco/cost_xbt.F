@@ -61,6 +61,7 @@ c     == local variables ==
       _RL tmpobs (1-olx:snx+olx,1-oly:sny+oly)
       _RL cmask (1-olx:snx+olx,1-oly:sny+oly)  
       _RL spval
+      _RL spmax
       _RL ztop,rl_35,rl_0
       
       character*(80) fnametheta
@@ -97,6 +98,7 @@ c     == end of interface ==
       imax = snx
       
       spval = -1.8
+      spmax = 40.
       ztop  = -.981*1.027
       rl_35 = 35.0
       rl_0  = 0.0
@@ -141,8 +143,6 @@ cnew(
             imonth = irec
         endif
 
-        print *, 'ph-cost-t XBT ', irec, imonth, iyear
-      
         call mdsreadfield( fnametmp, cost_iprec, 'RL', nr, xbtobs,
      &                     imonth, mythid)
 cnew)
@@ -160,11 +160,9 @@ c--           Determine the weights to be used.
               do j = jmin,jmax
                 do i = imin,imax
                   cmask(i,j) = 1. _d 0
-                  if (xbtobs(i,j,k,bi,bj) .eq. 0.) then
-                    cmask(i,j) = 0. _d 0
-                  endif
-                 
-                  if (xbtobs(i,j,k,bi,bj) .lt. spval) then
+                  if ( xbtobs(i,j,k,bi,bj) .lt. spval .or.
+     &		       xbtobs(i,j,k,bi,bj) .gt. spmax .or.
+     &                 xbtobs(i,j,k,bi,bj) .eq. 0. ) then
                     cmask(i,j) = 0. _d 0
                   endif
 

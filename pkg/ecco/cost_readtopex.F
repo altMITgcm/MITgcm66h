@@ -120,8 +120,6 @@ cnew(
          sshrec = irec
       endif
  
-      print *, 'ph-ssh-topex ', irec, sshrec, ymod, yday
-      print *, 'ph-ssh-topex ', fnametmp
 cnew)
 
       call mdsreadfield( fnametmp, cost_iprec, cost_yftype, 1, tpobs, 

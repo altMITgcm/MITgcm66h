@@ -111,60 +111,9 @@ cnew(
          imonth = irec
       endif
 
-      print *, 'ph-cost-t SST ', irec, imonth, iyear, fnametmp
-      
       call mdsreadfield( fnametmp, cost_iprec, cost_yftype, 1, sstdat,
      &                   imonth, mythid )
 cnew)
-
-      nobs = 0
-      do bj = jtlo,jthi
-        do bi = itlo,ithi
-          k = 1
-          do j = jmin,jmax
-            do i = imin,imax
-
-              if (_hFacC(i,j,k,bi,bj) .eq. 0.) then
-                sstmask(i,j,bi,bj) = 0. _d 0
-              else if (_hFacC(i,j,13,bi,bj) .eq. 0.) then
-                sstmask(i,j,bi,bj) = 0. _d 0
-              else
-                sstmask(i,j,bi,bj) = 1. _d 0
-              endif
-              if (sstdat(i,j,bi,bj) .lt. spval) then
-                sstmask(i,j,bi,bj) = 0. _d 0
-              endif
-              if (sstdat(i,j,bi,bj) .eq. 0. _d 0 ) then
-                 sstmask(i,j,bi,bj) = 0. _d 0
-              endif
-
-              sstmask(i,j,bi,bj) = sstmask(i,j,bi,bj)*frame(i,j)
-              sstdat(i,j,bi,bj) = sstdat(i,j,bi,bj)*sstmask(i,j,bi,bj)
-              nobs = nobs + int(sstmask(i,j,bi,bj))
-
-            enddo
-          enddo
-        enddo
-      enddo
-
-c--   Calculate the field variance for present subdomain.
-c--   One could of course do a global sum here.
-      vartile = 0. _d 0
-      do bj = jtlo,jthi
-        do bi = itlo,ithi
-          do j = jmin,jmax
-            do i = imin,imax
-              vartile = vartile + sstdat(i,j,bi,bj)*sstdat(i,j,bi,bj)
-            enddo
-          enddo
-        enddo
-      enddo
-
-      if (nobs .gt. 0) then
-        vartile = vartile/float(nobs)
-      else
-        vartile = 0.0
-      endif
 
       return
       end

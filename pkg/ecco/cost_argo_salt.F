@@ -62,6 +62,7 @@ c     == local variables ==
       _RL tmpobs (1-olx:snx+olx,1-oly:sny+oly)
       _RL tmpbar (1-olx:snx+olx,1-oly:sny+oly)
       _RL spval
+      _RL spmax
       
       character*(80) fnamesalt
 
@@ -94,7 +95,8 @@ c     == end of interface ==
       imin = 1
       imax = snx
       
-      spval = -1.
+      spval = 25.
+      spmax = 40.
 
 c--   Read state record from global file.
       doglobalread = .false.
@@ -159,6 +161,7 @@ cph)
               do j = jmin,jmax
                 do i = imin,imax                 
                    if (argosobs(i,j,k,bi,bj) .ge. spval .and.
+     $                 argosobs(i,j,k,bi,bj) .lt. spmax .and.
      $                  _hFacC(i,j,13,bi,bj) .ne. 0. .and.
      $                  _hFacC(i,j,k,bi,bj) .ne. 0.) then
                       fctile_argos = fctile_argos + 

@@ -61,6 +61,7 @@ c     == local variables ==
       _RL tmpobs (1-olx:snx+olx,1-oly:sny+oly)
       _RL spval
       _RL ztop,rl_35,rl_0
+      _RL spmax
       
       character*(80) fnametheta
 
@@ -96,6 +97,7 @@ c     == end of interface ==
       imax = snx
       
       spval = -1.8
+      spmax = 40.
       ztop  = -.981*1.027
       rl_35= 35.0
       rl_0  = 0.0
@@ -164,6 +166,7 @@ cph               if ( rC(K) .GT. -1000. ) then
 cph)
                   if( (argotobs(i,j,k,bi,bj) .ne. 0.).and.
      &             (argotobs(i,j,k,bi,bj) .gt. spval).and. 
+     &             (argotobs(i,j,k,bi,bj) .lt. spmax).and.
      &             (_hFacC(i,j,13,bi,bj) .ne. 0.).and. 
      &             (_hFacC(i,j,k,bi,bj) .ne. 0.) )then
                   www(i,j)    = cosphi(i,j,bi,bj)

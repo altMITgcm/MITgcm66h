@@ -144,13 +144,10 @@ c--   set cmask=0 in areas shallower than 1000m
                    fctile_tmi = fctile_tmi +
      &                  wsst(i,j,bi,bj)*cosphi(i,j,bi,bj)*cmask(i,j)*
      &                  ( (tbar(i,j,k,bi,bj)-tmidat(i,j,bi,bj))*
-     &                    (tbar(i,j,k,bi,bj)-tmidat(i,j,bi,bj))*
-     &                           sstmask(i,j,bi,bj) )
+     &                    (tbar(i,j,k,bi,bj)-tmidat(i,j,bi,bj)) )
                 endif
               enddo
             enddo
-
-
 
             fcthread_tmi     = fcthread_tmi + fctile_tmi
             objf_tmi(bi,bj)  = objf_tmi(bi,bj)  + fctile_tmi

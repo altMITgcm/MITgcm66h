@@ -112,8 +112,6 @@ cnew(
          imonth = irec
       endif
 
-      print *, 'ph-cost-scatx ', irec, imonth, iyear, fnametmp
-      
       call mdsreadfield( fnametmp, cost_iprec, cost_yftype, 1,
      &                   scatxdat, imonth, mythid )
 cnew)

@@ -111,8 +111,6 @@ cnew(
          imonth = tmirec
       endif
 
-      print *, 'ph-cost-t TMI ', irec, imonth, iyear, tmirec
-      
 cnew)
       
       if (tmirec.gt.0) then

@@ -120,8 +120,6 @@ cnew(
          sshrec = irec
       endif
  
-      print *, 'ph-ssh-ers ', irec, sshrec, ymod, yday
-      print *, 'ph-ssh-ers ', fnametmp
 cnew)
 
 
