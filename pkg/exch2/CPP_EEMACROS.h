@@ -120,6 +120,9 @@ C     performance.
 #define _EXCH_XY_RL(a,b) CALL EXCH2_XY_RL ( a, b )
 #define _EXCH_XYZ_RL(a,b) CALL EXCH2_XYZ_RL ( a, b )
 
+#define _R4 Real*4
+#define _R8 Real*8
+
 C--   Control use of JAM routines for Artic network
 C     These invoke optimized versions of "exchange" and "sum" that
 C     utilize the programmable aspect of Artic cards.
