@@ -36,7 +36,7 @@ C     == Local variables ==
       LOGICAL gf
       gf = .TRUE.
 
-#ifdef INCLUDE_DIAGNOSTICS_INTERFACE_CODE
+#ifdef ALLOW_TIMEAVE
 
 C     Dump files and restart average computation if needed
       IF ( myIter.NE.nIter0 .AND.
@@ -47,17 +47,17 @@ C     Dump files and restart average computation if needed
 C      Normalize by integrated time
        DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
-         CALL TIMEAVER_FINAL_XY(USTRtave,AIM_timeave,bi,bj,myThid)
-         CALL TIMEAVER_FINAL_XY(VSTRtave,AIM_timeave,bi,bj,myThid)
-         CALL TIMEAVER_FINAL_XY(TSRtave,AIM_timeave,bi,bj,myThid)
-         CALL TIMEAVER_FINAL_XY(OLRtave,AIM_timeave,bi,bj,myThid)
-         CALL TIMEAVER_FINAL_XY(SSRtave,AIM_timeave,bi,bj,myThid)
-         CALL TIMEAVER_FINAL_XY(SLRtave,AIM_timeave,bi,bj,myThid)
-         CALL TIMEAVER_FINAL_XY(SHFtave,AIM_timeave,bi,bj,myThid)
-         CALL TIMEAVER_FINAL_XY(EVAPtave,AIM_timeave,bi,bj,myThid)
-         CALL TIMEAVER_FINAL_XY(PRECNVtave,AIM_timeave,bi,bj,myThid)
-         CALL TIMEAVER_FINAL_XY(PRECLStave,AIM_timeave,bi,bj,myThid)
-         CALL TIMEAVER_FINAL_XY(CLOUDCtave,AIM_timeave,bi,bj,myThid)
+         CALL TIMEAVE_NORMALIZ(USTRtave,AIM_timeave,1,bi,bj,myThid)
+         CALL TIMEAVE_NORMALIZ(VSTRtave,AIM_timeave,1,bi,bj,myThid)
+         CALL TIMEAVE_NORMALIZ(TSRtave,AIM_timeave,1,bi,bj,myThid)
+         CALL TIMEAVE_NORMALIZ(OLRtave,AIM_timeave,1,bi,bj,myThid)
+         CALL TIMEAVE_NORMALIZ(SSRtave,AIM_timeave,1,bi,bj,myThid)
+         CALL TIMEAVE_NORMALIZ(SLRtave,AIM_timeave,1,bi,bj,myThid)
+         CALL TIMEAVE_NORMALIZ(SHFtave,AIM_timeave,1,bi,bj,myThid)
+         CALL TIMEAVE_NORMALIZ(EVAPtave,AIM_timeave,1,bi,bj,myThid)
+         CALL TIMEAVE_NORMALIZ(PRECNVtave,AIM_timeave,1,bi,bj,myThid)
+         CALL TIMEAVE_NORMALIZ(PRECLStave,AIM_timeave,1,bi,bj,myThid)
+         CALL TIMEAVE_NORMALIZ(CLOUDCtave,AIM_timeave,1,bi,bj,myThid)
         ENDDO
        ENDDO
 
@@ -93,23 +93,23 @@ C      Normalize by integrated time
 C      Reset averages to zero
        DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
-         CALL TIMEAVER_INI_XY(USTRtave, bi,bj,myThid)
-         CALL TIMEAVER_INI_XY(VSTRtave, bi,bj,myThid)
-         CALL TIMEAVER_INI_XY(TSRtave, bi,bj,myThid)
-         CALL TIMEAVER_INI_XY(OLRtave, bi,bj,myThid)
-         CALL TIMEAVER_INI_XY(SSRtave, bi,bj,myThid)
-         CALL TIMEAVER_INI_XY(SLRtave, bi,bj,myThid)
-         CALL TIMEAVER_INI_XY(SHFtave, bi,bj,myThid)
-         CALL TIMEAVER_INI_XY(EVAPtave, bi,bj,myThid)
-         CALL TIMEAVER_INI_XY(PRECNVtave, bi,bj,myThid)
-         CALL TIMEAVER_INI_XY(PRECLStave, bi,bj,myThid)
-         CALL TIMEAVER_INI_XY(CLOUDCtave, bi,bj,myThid)
+         CALL TIMEAVE_RESET(USTRtave,  1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(VSTRtave,  1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(TSRtave,   1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(OLRtave,   1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(SSRtave,   1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(SLRtave,   1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(SHFtave,   1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(EVAPtave,  1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(PRECNVtave,1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(PRECLStave,1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(CLOUDCtave,1, bi, bj, myThid)
         ENDDO
        ENDDO
 
       ENDIF
 
-#endif /* INCLUDE_DIAGNOSTICS_INTERFACE_CODE */
+#endif /* ALLOW_TIMEAVE */
 
 #endif /* ALLOW_AIM */
 
