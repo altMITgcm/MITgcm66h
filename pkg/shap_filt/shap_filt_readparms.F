@@ -22,9 +22,11 @@ C     === Routine arguments ===
 
 #ifdef ALLOW_SHAP_FILT
 
-      NAMELIST /SHAP_PARM01/ nShapT, nShapUV, Shap_funct,
-     &          Shap_Trtau, Shap_TrDamp, Shap_TrLength,
-     &          Shap_uvtau, Shap_uvDamp, Shap_uvLength
+      NAMELIST /SHAP_PARM01/ Shap_funct, 
+     &          nShapT,  nShapTrPhys,
+     &          nShapUV, nShapUVPhys,
+     &          Shap_Trtau, Shap_TrLength,
+     &          Shap_uvtau, Shap_uvLength
 
 C     === Local variables ===
 C     msgBuf      - Informational/error meesage buffer
@@ -48,14 +50,14 @@ c     SHAPIsOn=.TRUE.
      I                          myThid )
 
 C--   Default flags and values for Shapiro Filter
+      Shap_funct = 2
       nShapT = 0
       nShapUV = 0
-      Shap_funct = 2
+      nShapTrPhys = 0
+      nShapUVPhys = 0
       Shap_Trtau = deltaTtracer
-      Shap_TrDamp = 0.
       Shap_TrLength = 0.
       Shap_uvtau = deltaTMom
-      Shap_uvDamp = 0.
       Shap_TrLength = 0.
 
 C--   Read parameters from open data file
@@ -66,6 +68,8 @@ C--   Read parameters from open data file
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT , 1)
 
+      write(0,*) 'Shap_funct, nShap_Tr,UV _Phys=',
+     &    Shap_funct, nShapT, nShapUV, nShapTrPhys, nShapUVPhys
       write(0,*) 'Shap_Trtau,Shap_uvtau=',Shap_Trtau,Shap_uvtau
 C--   Close the open data file
       CLOSE(iUnit)
