@@ -31,9 +31,11 @@ C   MISSING_TILE_IO is defined, the input and output
 C   files do not include the missing tiles.  Therefore
 C   the 2-D dimension of input and output files is:
 C   #if defined(ALLOW_EXCH2) && !defined(MISSING_TILE_IO)
-C    xy_size = exch2_domain_nxt*exch2_tnx * exch2_domain_nyt*exch2_tny
+C    x_size = exch2_domain_nxt * sNx = exch2_domain_nxt*exch2_tnx
+C    y_size = exch2_domain_nyt * sNy = exch2_domain_nyt*exch2_tny
 C   #else
-C    xy_size = Nx * Ny = sNx*nSx*nPx * sNy*nSy*nPy
+C    x_size = Nx = sNx * nSx * nPx
+C    y_size = Ny = sNy * nSy * nPy
 C   #endif
 #undef MISSING_TILE_IO
 
