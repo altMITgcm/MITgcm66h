@@ -71,8 +71,8 @@ C--   Elliptic solver parameters
 C--   Time stepping parammeters
       NAMELIST /PARM03/
      & nIter0, nTimeSteps, deltaT, deltaTmom, deltaTtracer, abEps, tauCD, rCD,
-     & startTime, endTime, chkPtFreq, dumpFreq, deltaTClock, pChkPtFreq,
-     & cAdjFreq, tauThetaClimRelax, tauSaltClimRelax,
+     & startTime, endTime, chkPtFreq, dumpFreq, taveFreq, deltaTClock,
+     & pChkPtFreq, cAdjFreq, tauThetaClimRelax, tauSaltClimRelax,
      & periodicExternalForcing, externForcingPeriod, externForcingCycle
 
 C--   Gridding parameters
@@ -282,6 +282,7 @@ C--   Time stepping parameters
       pchkPtFreq     = 0.
       chkPtFreq      = 3600.*25
       dumpFreq       = 3600.*100
+      taveFreq       = 0.
       writeStatePrec = precFloat32
       nCheckLev      = 1
       checkPtSuff(1) = 'ckptA'
