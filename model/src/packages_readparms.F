@@ -91,15 +91,16 @@ C     IF (useAIM) CALL AIM_READPARMS ( myThid )
 
 #if (defined (ALLOW_ADJOINT_RUN) || defined (ALLOW_TANGENTLINEAR_RUN))
 
-C--   Initialise the cost function.
-      call cost_readparms( mythid )
+C--   Initialise the optim. parameters.
+      call optim_readparms( myThid )
       _BARRIER
 
 C--   Initialise the control vector.
       CALL ctrl_init( myThid )
       _BARRIER
-C--   Initialise the optim. parameters.
-      call optim_readparms( myThid )
+
+C--   Initialise the cost function.
+      call cost_readparms( mythid )
       _BARRIER
 
 #ifdef ALLOW_GRADIENT_CHECK

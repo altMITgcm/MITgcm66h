@@ -68,8 +68,6 @@ c     == local variables ==
 
       integer ilps, ils,ilt
 
-      _RL     dummy
-
       character*(128) fnamepsbar
       character*(128) fnametbar
       character*(128) fnamesbar

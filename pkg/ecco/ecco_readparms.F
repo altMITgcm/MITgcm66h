@@ -118,16 +118,16 @@ C--   Custom routine to set forcing fields.
 #ifdef ALLOW_ECCO_OPTIMIZATION
 c--   Initialise the optimization-related parts of the ECCO State
 c--   Estimation package.
-      CALL optim_init( myThid )
+      CALL optim_readparms( myThid )
+      _BARRIER
+
+C--   Initialise the control vector.
+      CALL ctrl_init( myThid )
       _BARRIER
 
 C--   Initialise the cost function.
       call cost_readparms( mythid )
       call cost_init( myThid )
-      _BARRIER
-
-C--   Initialise the control vector.
-      CALL ctrl_init( myThid )
       _BARRIER
 
 #ifdef ALLOW_GRADIENT_CHECK

@@ -64,9 +64,19 @@ c--   Get the weights that are to be used for the individual cost
 c--   function contributions.
       call cost_weights( mythid )
 
+cph(
+      print *, 'vor cost_init_barfiles'
+cph)
+c--   Initialise adjoint of monthly mean files calculated
+c--   in cost_averagesfields (and their ad...).
+      call cost_init_barfiles( mythid )
+cph(
+      print *, 'nach cost_init_barfiles'
+cph)
+
 c--   Summarize the cost function's setup.
       _BEGIN_MASTER( mythid )
-        call cost_Summary( mythid )
+      call cost_summary( mythid )
       _END_MASTER( mythid )
 
       _BARRIER
