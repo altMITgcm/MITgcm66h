@@ -11,6 +11,7 @@ checkpoint34
  o Corrected array boundaries in impldiff.F
  o Corrected array dimensions in gmredi.
    Added temporary scalars to avoid storage by TAMC (gmredi, kpp).
+ o Added routine GLOBAL_SUM_INT to global_sum.F
  o Added mdsio_gl.F for ECCO purposes.
 
 checkpoint33
