@@ -3,6 +3,14 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+ecco_c44_e20
+o before major merges from the Scripps setup
+  here are two small updates:
+  - field swapping for surface flux controls enabled
+    (remains t.b.d. for atmos. state plus obcs)
+  - bug fix in active_file.F for xz-/yz- routines
+  - added missing xz-/yz- routines to active_file_ad.F
+
 ecco_c44_e19
 o merged necessary patches:
   - AD-related changes for GMRedi
