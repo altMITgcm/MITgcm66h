@@ -2,7 +2,7 @@ C
 C $Header$
 C $Name$
 
-#include "AD_CONFIG.h"
+#include "PACKAGES_CONFIG.h"
 #include "EXF_OPTIONS.h"
 
       subroutine exf_getffields( mycurrenttime, mycurrentiter, mythid )
@@ -34,9 +34,7 @@ c     == global variables ==
 #include "exf_fields.h"
 #include "exf_constants.h"
 
-#if (defined (ALLOW_ADJOINT_RUN) || \
-     defined (ALLOW_TANGENTLINEAR_RUN) || \
-     defined (ALLOW_ECCO_OPTIMIZATION))
+#ifdef ALLOW_AUTODIFF
 # include "ctrl.h"
 # include "ctrl_dummy.h"
 #endif
