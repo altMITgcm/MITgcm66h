@@ -3,9 +3,6 @@ C $Name$
 
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
-#ifdef ALLOW_GCHEM
-#include "GCHEM_OPTIONS.h"
-#endif
 
 
 CBOP
