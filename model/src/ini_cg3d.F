@@ -110,12 +110,14 @@ caja &     +drF(K-1)*_hFacC(i,j,k-1,bi,bj)*0.5
             aS3d(I,OB_Jn(I,bi,bj)+1,K,bi,bj)=0.
             aW3d(I,OB_Jn(I,bi,bj),K,bi,bj)=0.
             aW3d(I+1,OB_Jn(I,bi,bj),K,bi,bj)=0.
+            aV3d(I,OB_Jn(I,bi,bj),K,bi,bj)=0.
            ENDIF
            IF (OB_Js(I,bi,bj).NE.0) THEN
             aS3d(I,OB_Js(I,bi,bj)+1,K,bi,bj)=0.
             aS3d(I,OB_Js(I,bi,bj),K,bi,bj)=0.
             aW3d(I,OB_Js(I,bi,bj),K,bi,bj)=0.
             aW3d(I+1,OB_Js(I,bi,bj),K,bi,bj)=0.
+            aV3d(I,OB_Js(I,bi,bj),K,bi,bj)=0.
            ENDIF
           ENDDO
           DO J=1,sNy
@@ -124,12 +126,14 @@ caja &     +drF(K-1)*_hFacC(i,j,k-1,bi,bj)*0.5
             aW3d(OB_Ie(J,bi,bj)+1,J,K,bi,bj)=0.
             aS3d(OB_Ie(J,bi,bj),J,K,bi,bj)=0.
             aS3d(OB_Ie(J,bi,bj),J+1,K,bi,bj)=0.
+            aV3d(OB_Ie(I,bi,bj),J,K,bi,bj)=0.
            ENDIF
            IF (OB_Iw(J,bi,bj).NE.0) THEN
             aW3d(OB_Iw(J,bi,bj)+1,J,K,bi,bj)=0.
             aW3d(OB_Iw(J,bi,bj),J,K,bi,bj)=0.
             aS3d(OB_Iw(J,bi,bj),J,K,bi,bj)=0.
             aS3d(OB_Iw(J,bi,bj),J+1,K,bi,bj)=0.
+            aV3d(OB_Iw(I,bi,bj),J,K,bi,bj)=0.
            ENDIF
           ENDDO
          ENDIF
