@@ -64,7 +64,7 @@ c    &                             viscAh*( (Dij-Dmj)*cosFacU(j,bi,bj) )
 c    &   -recip_hFacW(i,j,k,bi,bj)*viscAh*( Zip-Zij ) )
         uD2 = viscAh*(
      &               cosFacU(j,bi,bj)*( Dij-Dmj )*recip_DXC(i,j,bi,bj)
-     &      -recip_hFacW(i,j,k,bi,bj)*( Zip-Zij )*recip_DYU(i,j,bi,bj) )
+     &      -recip_hFacW(i,j,k,bi,bj)*( Zip-Zij )*recip_DYG(i,j,bi,bj) )
 
 c       vD2 = recip_rAs(i,j,bi,bj)*(
 c    &    recip_hFacS(i,j,k,bi,bj)*viscAh*( (Zpj-Zij)*cosFacV(j,bi,bj) )
@@ -73,7 +73,7 @@ c       vD2 = recip_rAs(i,j,bi,bj)*(
 c    &    recip_hFacS(i,j,k,bi,bj)*viscAh*( (Zpj-Zij)*cosFacV(j,bi,bj) )
 c    &   +                         viscAh*( Dij-Dim ) )
         vD2 = viscAh*(
-     &       recip_hFacS(i,j,k,bi,bj)*( Zpj-Zij )*recip_DXV(i,j,bi,bj)
+     &       recip_hFacS(i,j,k,bi,bj)*( Zpj-Zij )*recip_DXG(i,j,bi,bj)
      &                                           *cosFacV(j,bi,bj)
      &                               +( Dij-Dim )*recip_DYC(i,j,bi,bj) )
 
