@@ -4,7 +4,12 @@ $Header$
     ==============================
 
 ecco_c44_e19
-o will contain merges from main trunk
+o merged necessary patches:
+  - AD-related changes for GMRedi
+  - fixes i KPP (delZ -> drF)
+  - hook to OBCS songe layer code in external_forcing
+  - errorMessageUnit non-zero in eeboot.F
+  - included GMREDI, EXACT_CONSERV to natl_box_adjoint verif.
 
 ecco_c44_e18
 o sponge layer code for obcs was missing
