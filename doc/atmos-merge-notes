@@ -19,3 +19,4 @@ branch-atmos-merge-phase7       Phase 7: new parameter for initializing
                                 vertical grid (needed by atmos), newer
                                 ini_masks_etc.F (new hFacC calc. for atmos),
                                 ini_spherical_grid.F (deals with pole better)
+branch-atmos-merge-shapiro      Shapiro code packaged.
