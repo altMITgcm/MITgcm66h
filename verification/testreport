@@ -11,6 +11,7 @@ usage()
     echo "where possible OPTIONS are:"
     echo "  (-help|-h)               print usage"
     echo "  (-mpi)                   use MPI input files"
+    echo "  (-ieee|-noieee)          if possible, use IEEE compiler flags"
     echo "  (-optfile=|-of=)STRING   list of optfiles to use"
     echo "  (-a|-addr)STRING         list of email recipients"
     echo "                             (DEF=\"edhill@mitgcm.org\")"
@@ -190,6 +191,9 @@ genmakemodel()
 	    if test "x$OPTFILE" != xNONE ; then
 		command="$command --optfile=$OPTFILE"
 		# echo "  command=\"$command\""
+	    fi
+	    if test "x$IEEE" != x ; then
+		command="$command --ieee=$IEEE"
 	    fi
 	    $command > make.log 2>&1
 	    RETVAL=$?
@@ -388,7 +392,6 @@ $0 [-help] [-quick] [-verbose] dir1 [dir2] [...]
  -debug     Produce even more output which will mean nothing to most
  -force     Do "make CLEAN" before compiling. This forces a complete rebuild.
  -clean     Do "make CLEAN" after compiling and testing.
- -noieee    By default, $0 uses the -ieee option for genmake. This turns it off.
  -cleanup   Aggresively removes all model output, executables and object files
             and then exits. Use with care.
 
@@ -420,6 +423,12 @@ verbose=1
 clean=0
 expts=''
 # ieee=1
+
+IEEE=
+if test "x$MITGCM_IEEE" != x ; then
+    IEEE=$MITGCM_IEEE
+fi
+
 
 CLEANUP=f
 QUICK=f
@@ -498,7 +507,11 @@ for ac_option ; do
 	-nodepend | --nodepend | -nd | --nd)
 	    NODEPEND=t ;;
 
-	-mpi) MPI=t ;;
+	-mpi) MPI=true ;;
+
+	-ieee) IEEE=true ;;
+	-noieee) IEEE= ;;
+
 	-verbose) verbose=2 ;;
 	-debug) debug=1 ;;
 	-quiet) verbose=0 ;;
