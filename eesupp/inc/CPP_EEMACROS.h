@@ -121,7 +121,7 @@ C     performance.
 #define _EXCH_XYZ_RL(a,b) CALL EXCH_XYZ_RL ( a, b )
 
 #define _MPI_TYPE_R4 MPI_REAL
-#ifdef TARGET_SGI
+#if (defined (TARGET_SGI) || defined (TARGET_AIX))
 #define _MPI_TYPE_R8 MPI_DOUBLE_PRECISION
 #else
 #define _MPI_TYPE_R8 MPI_REAL8
