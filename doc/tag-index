@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint57d_post
+o pkg/thsice used in the ocean: fix tile Pb related to sIceLoad forcing
 o modify verification/ideal_2D_oce so that it tests the creation of mnc 
   output from the diagnostics package
 o temporary fix in EXCH2_UV: add a 3rd call to fix the 24.tiles CS-grid set-up
