@@ -24,3 +24,5 @@ Change log for branch "pre38".
    - *should* produce identical results to original calc_mom_rhs.F
  o added pkg/mom_vecinv: vectgor invariant form of momentum equations
    - no-slip side conditions not implemented. Don't try to use them!
+ o added fCoriG to PARAMS.h, ini_cori.F, FCORI_MACROS.h
+   - needed for VI momentum equations which are broken without.
