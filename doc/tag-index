@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint29
+ o packaged KPP and GM/Redi
+
 checkpoint28
  o Corrected initialization of hFacMin for difference vertical coordinates
  o Modified calculation of partial cell thickness to more robust algorithm
