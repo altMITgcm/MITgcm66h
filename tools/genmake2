@@ -1295,7 +1295,7 @@ CLEAN:
 	-find \$(EXEDIR) -name "fort.*" -exec rm {} \;
 	-rm -f \$(EXECUTABLE) output.txt
 
-Makefile: makefile
+#eh3 Makefile: makefile
 makefile:
 	${0} $@
 cleanlinks:
