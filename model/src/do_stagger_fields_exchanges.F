@@ -42,7 +42,7 @@ c       _EXCH_XYZ_R8( salt , myThid )
 
 #ifdef ALLOW_AIM
       IF ( useAIM ) THEN
-       CALL AIM_AIM2DYN_EXCHANGES( myTime, myThid )
+       CALL AIM_AIM2DYN_EXCHANGES( myTime, myIter, myThid )
       ENDIF
 #endif /* ALLOW_AIM */
 
