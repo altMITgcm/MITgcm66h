@@ -6,6 +6,8 @@ $Header$
 Branch release1_coupled contains code for coupling
 to UCLA atmospheric model:
 
+Added lower bound diffusivity to kpp_routines.F (see !!!NOTE!!!).
+
 cvs tag ucla1
   Branched off tag release1_beta1
   Modified eesupp/src/eeboot_minimal.F, eedie.F, exch_jam.F,

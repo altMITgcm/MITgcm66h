@@ -61,8 +61,8 @@ C--   KPP vertical mixing parameters
 
 C--   set default KPP vertical mixing parameters
       kpp_freq      = deltaTClock
-      kpp_dumpFreq  = 0.
-      kpp_taveFreq  = 0.
+      kpp_dumpFreq  = dumpFreq
+      kpp_taveFreq  = taveFreq
       KPPmixingMaps = .FALSE.
       KPPwriteState = .FALSE.
       minKPPhbl     = delZ(1)*0.5
