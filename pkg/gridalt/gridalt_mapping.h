@@ -1,8 +1,6 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
-
 c Alternate grid Mapping Common
 c ------------------------------
 #ifdef ALLOW_FIZHI
