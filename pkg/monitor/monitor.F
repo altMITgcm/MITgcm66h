@@ -72,7 +72,7 @@ C      Print the numerical stablility parameters for current state
        CALL MON_ADVCFL('_uvel',uVel,recip_dxc,dT,myThid)
        CALL MON_ADVCFL('_vvel',vVel,recip_dyc,dT,myThid)
        CALL MON_ADVCFLW('_wvel',wVel,recip_drc,dT,myThid)
-       CALL MON_ADVCFLW2('_W+hf',wVel,recip_hFacC,
+       CALL MON_ADVCFLW2('_W_hf',wVel,recip_hFacC,
      &                               recip_drC,dT,myThid)
 
 C      Print stats for KE
