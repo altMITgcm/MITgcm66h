@@ -3,6 +3,17 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+ecco_c44_e23
+merged patches between release1_p1 and release1_p2:
+o fixed array boundary problem for adjoint
+  (related to partial recomputation within subroutine
+  related to dynamics -> calc_viscosity -> mom_...
+o fixed recomputation in thermodynamics
+o prepare (but not complete) recomputation problem in impldiff
+o fixed problem for adjoint of global_max
+o switched off sponge layer code in external_forcing
+Bug fix in ctrl_mask_set_yz (spotted by G. Gebbie)
+
 ecco_c44_e22
 o Finally, the merges with the Scripps cost function terms:
   Various additions, modifications, quality checks.
