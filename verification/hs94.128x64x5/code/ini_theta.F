@@ -32,42 +32,39 @@ C     myThid -  Number of this instance of INI_THETA
       INTEGER myThid
 CEndOfInterface
 
+C     == Functions ==
+      Real*8  PORT_RAND
+
 C     == Local variables ==
-C     iC, jC - Center of domain
-C     iD, jD - Disitance from domain center.
-C     rad    - Radius of initial patch
-C     rD     - Radial displacement of point I,J
-C     iG, jG - Global coordinate index
 C     bi,bj  - Loop counters
 C     I,J,K
-      INTEGER iC, jC, iD, jD
-      INTEGER iG, jG
       INTEGER bi, bj
       INTEGER I, J, K
       _RL     term1,term2,thetaLim,thetaEq
-      _RL     thKappa,p0,phi,rSurf
+      _RL     thKappa
 
       _BARRIER
 
       J = 99+myBxLo(myThid)+nPx*myByLo(myThid)
-      CALL SRAND( J )
+c     CALL SRAND( J )
 
       IF ( hydrogThetaFile .EQ. ' ' ) THEN
 C--    Initialise temperature field to Held & Saurez equilibrium theta
        DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
          DO K=1,Nr
-          rSurf=1.E5
+          Ro_SeaLevel=1.E5
           thKappa = 2./7.
-          thetaLim = 200. / ((rC(K)/rSurf)**thKappa)
+          thetaLim = 200. / ((rC(K)/Ro_SeaLevel)**thKappa)
           DO J=1,sNy
            term1=60.*(sin(yC(1,J,bi,bj)*deg2rad)**2)
-           term2=10.*log((rC(K)/rSurf))
+           term2=10.*log((rC(K)/Ro_SeaLevel))
      &              *(cos(yC(1,J,bi,bj)*deg2rad)**2)
            thetaEq=315.-term1-term2
            DO I=1,sNx
             theta(I,J,K,bi,bj) = MAX( thetaLim, thetaEq )
-     &                          + 0.01*(RAND()-0.5)
+c    &                          + 0.01*(RAND()-0.5)
+     &                          + 0.01*(PORT_RAND()-0.5)
 C           theta(I,J,K,bi,bj) = tRef(K)
            ENDDO
           ENDDO
