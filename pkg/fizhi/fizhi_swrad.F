@@ -226,7 +226,7 @@ c -------------------------
       qdiag(i,j,icldfrc,bi,bj) =  qdiag(i,j,icldfrc,bi,bj) + totcld(i,j)
       enddo
       enddo
-      ncldfrc = ncldfrc + 1
+      if ( (bi.eq.1) .and. (bj.eq.1) ) ncldfrc = ncldfrc + 1
       endif
 
       if( icldras.gt.0 ) then
