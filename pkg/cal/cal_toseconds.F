@@ -56,8 +56,8 @@ c     == routine arguments ==
 
 c     == local variables ==
 
-      _RL     fac, nsecs, ndays, hhmmss
-      integer ierr, check_sign
+      _RL     fac, nsecs, ndays
+      integer ierr, check_sign, hhmmss
 
 c     == end of interface ==
 c     print *,'cal_toseconds: date',date
