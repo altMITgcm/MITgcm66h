@@ -98,6 +98,7 @@ c Local Variables
 c ---------------
       logical     alarm
       external    alarm
+      real massinlayer(im,jm,lm)
 
       integer ndmoist,ndturb,ndlw,ndsw
       integer istrip,npcs
@@ -124,9 +125,7 @@ C **********************************************************************
       call get_alarm ( 'pnt',ndum,ndum,ndpnt,ndum )
       lpnt = ndpnt.ne.0
 
-C Compute pl,ple,pkht,pkl,dpres   and pcheck for use by mini-drivers
-
-C Make 'model theta' out of theta, ie, divide by p0**kappa
+C pchecks for use by mini-drivers
 
 C **********************************************************************        
 C ****                  Call Physics Mini-Drivers                   ****        
