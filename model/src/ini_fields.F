@@ -41,10 +41,6 @@ C--   Set model variables to initial/restart conditions
        CALL INI_SALT( myThid )
        CALL INI_PSURF( myThid )
        CALL INI_PRESSURE( myThid )
-#ifdef ALLOW_CD_CODE
-      IF (useCDscheme) 
-     &      CALL CD_CODE_INI_VARS( myThid )
-#endif
 #ifdef INCLUDE_EP_FORCING_CODE
        CALL INI_EP( myThid )
 #endif
@@ -54,10 +50,6 @@ C--   Set model variables to initial/restart conditions
         nIter0 = INT(startTime/deltaTClock )
        ENDIF
        CALL READ_CHECKPOINT( nIter0, myThid )
-#ifdef ALLOW_CD_CODE
-       IF (useCDscheme) 
-     &      CALL CD_CODE_READ_CHECKPOINT( nIter0, myThid )
-#endif
       ENDIF
 
       RETURN

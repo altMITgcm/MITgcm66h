@@ -19,6 +19,8 @@ C     \ev
 C     !CALLING SEQUENCE:
 C     PACKAGES_INIT_VARIABLES
 C       |
+C       |-- CD_CODE_INI_VARS
+C       |
 C       |-- GMREDI_INIT
 C       |
 C       |-- KPP_INIT
@@ -58,6 +60,13 @@ C     === Routine arguments ===
 C     myThid -  Number of this instances
       INTEGER myThid
 CEOP
+
+#ifdef ALLOW_CD_CODE
+C--   Initialize CD_CODE variables: 
+C- note(jmc): before packaging CD_CODE, was done within ini_fields (=called before),
+C             therefore call CD-ini-vars before others pkg.
+      IF (useCDscheme) CALL CD_CODE_INI_VARS( myThid )
+#endif
 
 #ifdef ALLOW_GMREDI
 C--   Initialize GM/Redi parameterization
