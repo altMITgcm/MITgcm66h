@@ -152,6 +152,8 @@ C     == Local variables ==
      &'   /* Momentum equation timestep ( s ) */')
       CALL WRITE_1D_R8( deltaTtracer,1, INDEX_NONE,'deltatTtracer =',
      &'   /* Tracer equation timestep ( s ) */')
+      CALL WRITE_1D_R8( deltaTClock ,1, INDEX_NONE,'deltatTClock  =',
+     &'   /* Model clock timestep ( s ) */')
       CALL WRITE_1D_R8( cAdjFreq,1, INDEX_NONE,'cAdjFreq =',
      &'   /* Convective adjustment interval ( s ) */')
       CALL WRITE_1D_R8( abEps,1, INDEX_NONE,'abEps =',
