@@ -180,7 +180,9 @@ C     o V momentum equation
       phyFac       = pfFacMom*1.
       vForcFac     = foFacMom*1.
 
-      IF (no_slip_bottom) THEN
+      IF (     no_slip_bottom
+     &    .OR. bottomDragQuadratic.NE.0.
+     &    .OR. bottomDragLinear.NE.0.) THEN
        bottomDragTerms=.TRUE.
       ELSE
        bottomDragTerms=.FALSE.
