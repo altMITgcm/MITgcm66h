@@ -5,32 +5,93 @@ Example: Subtropical North Atlantic Subduction area
 - forward/adjoint run
 - optimization cost function
 
-To apply the changes to the default configuration of MITgcmUV:
+################
+Experiment no. 1
+################
+
+Use air-sea fluxes as controls (standard case):
+
+#Compile code in bin/:
   cd bin
   ln -s ../verification/natl_box_adjoint/code/.genmakerc .
   ln -s ../verification/natl_box_adjoint/code/*.h .
-
-Configure and compile the code:
+#Configure and compile the code:
   ../tools/genmake -makefile
   make depend
-  make small_f
-
-Generate the adjoint code:
+#Generate the adjoint code:
   cd ../adjoint
   make adtaf
   make adchange
-
-Go back and compile the code:
+#Go back and compile the code:
   cd ../bin
   make
 
-To run:
+#To run:
   cd ../exe
-  cp ../verification/natl_box_adjoint/input/* .
+  ln -s ../verification/natl_box_adjoint/input/* .
   mitgcmuv >&! output.txt
 
-There is comparison output in:
-  diff output.txt ../verification/natl_box_adjoint/results/output.txt | more
+#I've changed the run setup:
+#We now perform gradient checks for the first for elements of 
+#the heat flux part of the control vector (grdchkvarindex = 3).
+#To verify the results of the gradient check, type
+
+grep ph-grd output.txt
+
+#A reference output is in:
+  ../verification/natl_box_adjoint/results/output.txt | more
 
 Comments:
-The input data is real*8.
+- The input data is real*8.
+- gmredi turned off (until merge to c48)
+- 4 timesteps
+
+
+
+################
+Experiment no. 2
+################
+
+Use bulk formulae and atmos. state controls:
+(only differnce to experiment 1 is in ECCO_CPPOPITONS.h,
+and runtime in data.grdchk).
+
+#Compile code in bin/:
+  cd bin
+  ln -s ../verification/natl_box_adjoint/code_bulk/.genmakerc .
+  ln -s ../verification/natl_box_adjoint/code_bulk/*.h .
+#Configure and compile the code:
+  ../tools/genmake -makefile
+  make depend
+#Generate the adjoint code:
+  cd ../adjoint
+  make adtaf
+  make adchange
+#Go back and compile the code:
+  cd ../bin
+  make
+
+#To run:
+  cd ../exe
+  cp ../verification/natl_box_adjoint/input_bulk/* .
+  cp ../verification/natl_box_adjoint/input/PH_*.data .
+  mitgcmuv >&! output.txt
+
+#I've changed the run setup:
+#We now perform gradient checks for the first for elements of 
+#the air temperture part of the control vector (grdchkvarindex = 7).
+#To verify the results of the gradient check, type
+
+grep ph-grd output.txt
+
+#A reference output is in:
+  ../verification/natl_box_adjoint/results_bulk/output.txt | more
+
+Comments:
+- The input data is real*8.
+- gmredi turned off (until merge to c48)
+- 4 timesteps
+
+
+
+
