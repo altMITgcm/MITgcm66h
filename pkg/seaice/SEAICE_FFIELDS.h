@@ -1,8 +1,6 @@
 C $Header$
 C $Name$
 
-#ifdef ALLOW_SEAICE
-
 C     /==========================================================\
 C     | SEAICE_FFIELDS.h                                         |
 C     | o Sea ice model forcing fields                           |
@@ -112,5 +110,3 @@ C--   Define forcing fields internally.
       _RS  SSTsi1   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
 #endif /* SEAICE_EXTERNAL_FORCING */
-
-#endif /* ALLOW_SEAICE */

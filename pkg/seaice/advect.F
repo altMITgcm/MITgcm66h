@@ -32,8 +32,6 @@ C     myThid - Thread no. that called this routine.
       INTEGER myThid
 CEndOfInterface
 
-#ifdef ALLOW_SEAICE
-
 C     === Local variables ===
 C     i,j,k,bi,bj - Loop counters
 
@@ -211,8 +209,6 @@ C NOW CALCULATE DIFFUSION COEF ROUGHLY
         ENDDO
        ENDDO
       ENDDO
-
-#endif /* ALLOW_SEAICE */
 
       RETURN
       END

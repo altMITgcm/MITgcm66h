@@ -36,8 +36,6 @@ C     myThid - Thread no. that called this routine.
       INTEGER myThid
 CEndOfInterface
 
-#ifdef ALLOW_SEAICE
-
 C     === Local variables ===
 C     i,j,bi,bj - Loop counters
 
@@ -432,8 +430,6 @@ CADJ STORE vice = comlev1, key=ikey_dynamics
 
       ENDIF
 #endif /* SEAICE_ALLOW_DYNAMICS */
-
-#endif /* ALLOW_SEAICE */
 
       RETURN
       END

@@ -39,8 +39,6 @@ C     === Routine arguments ===
       INTEGER bi, bj
 CEndOfInterface
 
-#ifdef ALLOW_SEAICE
-
 C     === Local variables ===
 C     i,j,k,bi,bj - Loop counters
 
@@ -233,8 +231,6 @@ C SW PENETRATION UNDER ICE
          ENDDO
 
       END IF
-
-#endif /* ALLOW_SEAICE */
 
       RETURN
       END

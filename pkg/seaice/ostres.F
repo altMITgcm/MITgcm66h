@@ -27,8 +27,6 @@ C     myThid - Thread no. that called this routine.
       INTEGER myThid
 CEndOfInterface
 
-#ifdef ALLOW_SEAICE
-
 C     === Local variables ===
 C     i,j,bi,bj - Loop counters
 
@@ -130,8 +128,6 @@ C--   Compute ice-affected wind stress
       ENDDO
       CALL EXCH_UV_XY_RS(fu, fv, .TRUE., myThid)
 #endif /* SEAICE_TEST_ICE_STRESS_1 */
-
-#endif /* ALLOW_SEAICE */
 
       RETURN
       END

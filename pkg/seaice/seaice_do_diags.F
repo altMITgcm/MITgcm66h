@@ -28,8 +28,6 @@ C     myThid        - Number of this instance of SEAICE_DO_DIAGS
       INTEGER myIter
       INTEGER myThid
 
-#ifdef ALLOW_SEAICE
-
 C     == Local variables ==
       CHARACTER*(MAX_LEN_MBUF) suff
       LOGICAL  DIFFERENT_MULTIPLE
@@ -256,7 +254,5 @@ C      Reset averages to zero
       
 #endif /* ALLOW_TIMEAVE */
 
-#endif /* ALLOW_SEAICE */
-      
       RETURN
       END

@@ -23,8 +23,6 @@ C     myThid - Thread number for this instance of the routine.
       INTEGER myThid
 CEndofinterface
 
-#ifdef ALLOW_SEAICE
-
 C     == Local variables ==
       INTEGER i,j,k,bi,bj
       _RL tempU(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
@@ -54,8 +52,6 @@ C--   Update overlap regions
             ENDDO
          ENDDO
       ENDDO
-
-#endif /* ALLOW_SEAICE */
 
       RETURN
       END

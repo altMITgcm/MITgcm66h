@@ -11,8 +11,6 @@ C     \==========================================================/
 #ifndef SEAICE_OPTIONS_H
 #define SEAICE_OPTIONS_H
 #include "PACKAGES_CONFIG.h"
-#ifdef ALLOW_SEAICE
-
 #include "CPP_OPTIONS.h"
 
 C--   Write "text-plots" of certain fields in STDOUT for debugging.
@@ -64,5 +62,4 @@ C     following options are available.
 #undef SEAICE_ORIGINAL_BAD_ICE_STRESS
 #undef SEAICE_TEST_ICE_STRESS_1
 
-#endif /* ALLOW_SEAICE */
 #endif /* SEAICE_OPTIONS_H */

@@ -1,8 +1,6 @@
 C $Header$
 C $Name$
 
-#ifdef ALLOW_SEAICE
-
 C     /==========================================================\
 C     | SEAICE_DIAGS.h                                           |
 C     | o Header for SEAICE diagnostic output                    |
@@ -29,5 +27,3 @@ C     Storage arrays for time-averages
      &        UICEtave, VICEtave, HEFFtave, AREAtave
 
 #endif /* ALLOW_TIMEAVE */
-
-#endif /* ALLOW_SEAICE */

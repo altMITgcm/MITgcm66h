@@ -32,7 +32,6 @@ CEndOfInterface
       INTEGER  ILNBLNK
       EXTERNAL ILNBLNK
  
-#ifdef ALLOW_SEAICE
 #ifndef SEAICE_EXTERNAL_FORCING
 
 C     === Local arrays ===
@@ -540,7 +539,6 @@ C--   Time interpolation of SST forcing variables.
       ENDIF
 
 #endif /* SEAICE_EXTERNAL_FORCING */
-#endif /* ALLOW_SEAICE */
 
       RETURN
       END
@@ -559,7 +557,6 @@ C     === Arguments ===
       _RS initValue
       INTEGER myThid
 
-#ifdef ALLOW_SEAICE
 #ifndef SEAICE_EXTERNAL_FORCING
 
 C     === Local variables ===
@@ -576,7 +573,6 @@ C
       ENDDO
 
 #endif /* SEAICE_EXTERNAL_FORCING */
-#endif /* ALLOW_SEAICE */
 
       RETURN
       END

@@ -54,8 +54,6 @@ C     myThid - Thread no. that called this routine.
       INTEGER myThid
 CEndOfInterface
 
-#ifdef ALLOW_SEAICE
-
 C !LOCAL VARIABLES: ====================================================
 C     === Local variables ===
 C     i,j,bi,bj - Loop counters
@@ -161,8 +159,6 @@ CRG CADJ store UICE,VICE,AREA,HEFF,fu,fv,EmPmR,Qnet,Qsw = comlev1_bibj
 
 C--   Call sea-ice cost function routine
 CRG      CALL SEAICE_COST( myTime, myIter, myThid )
-
-#endif /* ALLOW_SEAICE */
 
       RETURN
       END

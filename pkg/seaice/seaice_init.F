@@ -31,7 +31,6 @@ C     myThid - Thread no. that called this routine.
       INTEGER myThid
 CEndOfInterface
  
-#ifdef ALLOW_SEAICE
 C     === Local variables ===
 C     i,j,k,bi,bj - Loop counters
 
@@ -340,8 +339,6 @@ C---  Complete initialization
         ENDDO
        ENDDO
       ENDDO
-
-#endif /* ALLOW_SEAICE */
 
       RETURN
       END

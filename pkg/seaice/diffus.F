@@ -25,8 +25,6 @@ C     myThid - Thread no. that called this routine.
       _RL DELTT
       INTEGER myThid
 CEndOfInterface
- 
-#ifdef ALLOW_SEAICE
 
 C     === Local variables ===
 C     i,j,bi,bj - Loop counters
@@ -77,8 +75,6 @@ C NOW DO DIFFUSION WITH NUIT CONVERSION
         ENDDO
        ENDDO
       ENDDO
-
-#endif /* ALLOW_SEAICE */
 
       RETURN
       END

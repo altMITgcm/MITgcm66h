@@ -29,8 +29,6 @@ C     myThid - Thread number for this instance of the routine.
       INTEGER myThid
 CEndofinterface
 
-#ifdef ALLOW_SEAICE
-
 C     == Local variables ==
       CHARACTER*(MAX_LEN_FNAM) fn
 
@@ -70,8 +68,6 @@ C--    Update overlap regions
        _EXCH_XY_R8(YNEG , myThid )
        _EXCH_XY_R8(HSNOW, myThid )
 
-#endif /* ALLOW_SEAICE */
-
       RETURN
       END
 
@@ -104,8 +100,6 @@ C     myThid   - Thread number for this instance of the routine.
       INTEGER myIt
 CEndofinterface
 
-#ifdef ALLOW_SEAICE
-
 C     == Local variables ==
       CHARACTER*(MAX_LEN_FNAM) fn
       LOGICAL lgf
@@ -134,8 +128,6 @@ C--    Write model fields
        CALL MDSWRITEFIELD(fn,prec,lgf,'RL', 3,  HEFF, 4, myIt,myThid)
        CALL MDSWRITEFIELD(fn,prec,lgf,'RL', 3,  AREA, 5, myIt,myThid)
 #endif /* SEAICE_MULTILEVEL */
-
-#endif /* ALLOW_SEAICE */
 
       RETURN
       END

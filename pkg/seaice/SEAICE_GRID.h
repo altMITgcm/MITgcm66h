@@ -1,8 +1,6 @@
 C $Header$
 C $Name$
 
-#ifdef ALLOW_SEAICE
-
 C     /==========================================================\
 C     | SEAICE_GRID.h                                            |
 C     | o Sea ice model grid parameters.                         |
@@ -52,5 +50,3 @@ C
       COMMON/SEAICE_GRID/ TNGTICE, TNGICE, CSTICE, CSUICE, SINEICE,
      &                    RECIP_CSTICE, RECIP_CSUICE,
      &                    DXTICE, DXUICE, DYTICE, DYUICE
-
-#endif /* ALLOW_SEAICE */

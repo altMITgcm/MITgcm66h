@@ -36,8 +36,6 @@ C     myThid - Thread no. that called this routine.
       _RL A22
       INTEGER myThid
 CEndOfInterface
- 
-#ifdef ALLOW_SEAICE
 
 C     === Local variables ===
 C     i,j,bi,bj - Loop counters
@@ -180,8 +178,6 @@ CADJ &                           key = iicekey, byte = isbyte
 
        ENDDO
       ENDDO
-
-#endif /* ALLOW_SEAICE */
 
       RETURN
       END

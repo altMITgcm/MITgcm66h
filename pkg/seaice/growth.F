@@ -34,8 +34,6 @@ C     myThid - Thread no. that called this routine.
       INTEGER myIter, myThid
 CEndOfInterface
 
-#ifdef ALLOW_SEAICE
-
 C     === Local variables ===
 C     i,j,bi,bj - Loop counters
 
@@ -361,8 +359,6 @@ c          HEFF(I,J,1,bi,bj)=MIN(MAX_HEFF,HEFF(I,J,1,bi,bj))
 
        ENDDO
       ENDDO
-
-#endif /* ALLOW_SEAICE */
 
       RETURN
       END
