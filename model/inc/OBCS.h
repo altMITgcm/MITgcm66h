@@ -1,6 +1,7 @@
 C $Header$
 C
 
+#ifdef ALLOW_OBCS
 C--   COMMON /GRID_OB/ Open boudary related stuff
 C     OBNu is the U value imposed at the Northern OB
 C     OBNv is the V value imposed at the Northern OB
@@ -43,3 +44,5 @@ C
       _RS OBEw (1-Olx:sNx+Olx,Nr,nSx,nSy)
       _RS OBWw (1-Oly:sNy+Oly,Nr,nSx,nSy)
 #endif /* ALLOW_NONHYDROSTATIC */
+
+#endif

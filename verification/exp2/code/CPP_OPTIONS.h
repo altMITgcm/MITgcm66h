@@ -13,6 +13,9 @@ C o Include/exclude code for C-D grid method of integrating the
 C   coriolis terms
 #define  INCLUDE_CD_CODE
 
+C o Include/exclude code for open-boundary conditions
+#undef   ALLOW_OBCS
+
 C o Include/exclude diagnostics package interface code
 #define  INCLUDE_DIAGNOSTICS_INTERFACE_CODE
 

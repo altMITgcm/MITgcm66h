@@ -2,6 +2,7 @@ C $Header$
 
 #include "CPP_OPTIONS.h"
 
+#ifdef ALLOW_OBCS
 C     /==========================================================\
 C     | S/R APPLY_OBCS                                           |
 C     | o Calculate the gradient of the surface pressure         |
@@ -75,3 +76,4 @@ C Western boundary
 
       RETURN
       END
+#endif

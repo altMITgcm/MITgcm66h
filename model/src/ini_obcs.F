@@ -2,6 +2,7 @@ C $Header$
 
 #include "CPP_OPTIONS.h"
 
+#ifdef ALLOW_OBCS
 CStartOfInterface
       SUBROUTINE INI_OBCS( myThid )
 C     /==========================================================\
@@ -103,3 +104,4 @@ c
 
       RETURN
       END
+#endif

@@ -2,6 +2,7 @@ C $Header$
 
 #include "CPP_OPTIONS.h"
 
+#ifdef ALLOW_OBCS
 CStartOfInterface
       SUBROUTINE SET_OBCS( myCurrentTime, myThid )
 C     /==========================================================\
@@ -150,3 +151,4 @@ C         Outgoing
 C
       RETURN
       END
+#endif

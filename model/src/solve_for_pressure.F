@@ -20,7 +20,9 @@ C     == Global variables
 #ifdef ALLOW_NONHYDROSTATIC
 #include "CG3D.h"
 #include "GW.h"
+#ifdef ALLOW_OBCS
 #include "OBCS.h"
+#endif
 #include "GRID.h"
 #endif
 

@@ -37,8 +37,10 @@ C     an input file called data.
       CALL INI_PARMS(  myThid )
       _BARRIER
 
+#ifdef ALLOW_OBCS
 C--   Open boundaries positions
       CALL INI_OBCS( myThid )
+#endif
       _BARRIER
 
 C--   Set model grid.
