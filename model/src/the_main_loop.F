@@ -96,6 +96,11 @@ c--   Dump for start state.
       CALL TIMER_STOP ('I/O (WRITE)        [ADJOINT SPIN-UP]', mythid)
 #endif
 
+#ifndef EXCLUDE_MONITOR
+C--   Check status of solution (statistics, cfl, etc...)
+      CALL MONITOR( myIter, myTime, myThid )
+#endif /* EXCLUDE_MONITOR */
+
 #ifdef ALLOW_COST_TEST
 c--   Add control vector for forcing and parameter fields
       CALL CTRL_MAP_FORCING (mythid)
