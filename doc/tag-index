@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o fix obscure MNC bug involving conversion between reals and integers
+  - it caused no problems with certain (eg. gcc, ifc) compilers but the 
+    new version is now more standards-compliant
+
 checkpoint57e_post
 o Adding eddy stress controls a la Ferreira et al.
 checkpoint57e_pre
