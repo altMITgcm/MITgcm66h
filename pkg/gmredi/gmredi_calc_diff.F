@@ -42,12 +42,14 @@ C     I, J   - Loop counters
       DO j=jMin,jMax
        DO i=iMin,iMax
         KappaRT(i,j,k) = KappaRT(i,j,k)+maskUp(i,j)*Kwz(i,j,k,bi,bj)
+     &                    *GM_adjointRescale*GM_adjointRescale
        ENDDO
       ENDDO
 
       DO j=jMin,jMax
        DO i=iMin,iMax
         KappaRS(i,j,k) = KappaRS(i,j,k)+maskUp(i,j)*Kwz(i,j,k,bi,bj)
+     &                    *GM_adjointRescale*GM_adjointRescale
        ENDDO
       ENDDO
 

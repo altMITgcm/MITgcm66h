@@ -35,6 +35,10 @@ C     GM/Redi parameters
      &                   GM_Scrit,
      &                   GM_Sd
 
+      _RL        GM_Small_Number
+      PARAMETER( GM_Small_Number=   1. _d -8 )
+      _RL        GM_adjointRescale
+      PARAMETER( GM_adjointRescale= 1. _d 0 )
 
 C     More GM/Redi parameters diagnosed from previous block
 C     (not directly user configured)
