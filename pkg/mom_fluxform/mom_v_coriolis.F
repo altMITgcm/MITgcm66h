@@ -69,5 +69,18 @@ C Original discretization
        ENDDO
       ENDIF
 
+      IF (useJamartWetPoints) THEN
+C Scale term so that only "wet" points are used
+C Due to: Jamart and Ozer, 1986, JGR 91 (C9), 10,621-10,631
+C         "Numerical Boundary Layers and Spurious Residual Flows"
+       DO j=1-Oly+1,sNy+Oly
+        DO i=1-Olx,sNx+Olx-1
+         vCoriolisTerm(i,j) = vCoriolisTerm(i,j)
+     & *4.d0/max(one, maskW( i , j ,k,bi,bj)+maskW(i+1, j ,k,bi,bj)
+     &               +maskW( i ,j-1,k,bi,bj)+maskW(i+1,j-1,k,bi,bj) )
+        ENDDO
+       ENDDO
+      ENDIF
+
       RETURN
       END

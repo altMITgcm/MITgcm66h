@@ -148,6 +148,7 @@ C--   Set default "physical" parameters
       tracerAdvScheme     = 2
       multiDimAdvection   = .TRUE.
       useEnergyConservingCoriolis = .FALSE.
+      useJamartWetPoints  = .FALSE.
 
 C--   Atmospheric physical parameters (e.g.: EOS)
       atm_po =  1.D5
