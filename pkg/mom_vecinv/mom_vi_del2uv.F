@@ -59,7 +59,7 @@ c    &   +                         ( Dij-Dmj )
 c    &   -recip_hFacW(i,j,k,bi,bj)*( Zip-Zij ) )
         del2u(i,j) =
      &   +                         ( Dij-Dmj )*recip_DXC(i,j,bi,bj)
-     &   -recip_hFacW(i,j,k,bi,bj)*( Zip-Zij )*recip_DYU(i,j,bi,bj)
+     &   -recip_hFacW(i,j,k,bi,bj)*( Zip-Zij )*recip_DYG(i,j,bi,bj)
 
 c       del2v(i,j) = recip_rAs(i,j,bi,bj)*(
 c    &    recip_hFacS(i,j,k,bi,bj)*( Zpj-Zij )
@@ -68,7 +68,7 @@ c       del2v(i,j) = recip_rAs(i,j,bi,bj)*(
 c    &    recip_hFacS(i,j,k,bi,bj)*( Zpj-Zij )
 c    &   +                         ( Dij-Dim ) )
         del2v(i,j) =
-     &    recip_hFacS(i,j,k,bi,bj)*( Zpj-Zij )*recip_DXV(i,j,bi,bj)
+     &    recip_hFacS(i,j,k,bi,bj)*( Zpj-Zij )*recip_DXG(i,j,bi,bj)
      &   +                         ( Dij-Dim )*recip_DYC(i,j,bi,bj)
 
        ENDDO
