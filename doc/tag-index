@@ -10,6 +10,7 @@ o pkg/seaice:
   - bug fix in growth.F: QNET for no shortwave case
   - added HeffFile for specifying initial sea-ice thickness
   - changed SEAICE_EXTERNAL_FLUXES wind stress implementation
+  - adjoint-friendly modifications
 
 release1_p11
 o Modifications for using pkg/exf with pkg/seaice
