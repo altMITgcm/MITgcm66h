@@ -227,7 +227,7 @@ C--     Set up work arrays that need valid initial values
         BOTTOM_LAYER = K .EQ. Nz
 
 C--     Calculate gradient of surface pressure
-        CALL GRAD_PSURF(
+        CALL CALC_GRAD_ETA_SURF(
      I       bi,bj,iMin,iMax,jMin,jMax,
      O       pSurfX,pSurfY,
      I       myThid)
