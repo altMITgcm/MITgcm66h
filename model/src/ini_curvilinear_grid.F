@@ -359,11 +359,11 @@ c     CALL EXCH_Z_XY_RS(DYU,myThid)
 
 #endif /* OLD_GRID_IO */
 
-c     CALL WRITE_FULLARRAY_RL('DXV',DXV,1,0,myThid)
-c     CALL WRITE_FULLARRAY_RL('DYU',DYU,1,0,myThid)
-c     CALL WRITE_FULLARRAY_RL('RAZ',RAZ,1,0,myThid)
-c     CALL WRITE_FULLARRAY_RL('XG',XG,1,0,myThid)
-c     CALL WRITE_FULLARRAY_RL('YG',YG,1,0,myThid)
+c     CALL WRITE_FULLARRAY_RL('DXV',DXV,1,0,0,0,myThid)
+c     CALL WRITE_FULLARRAY_RL('DYU',DYU,1,0,0,0,myThid)
+c     CALL WRITE_FULLARRAY_RL('RAZ',RAZ,1,0,0,0,myThid)
+c     CALL WRITE_FULLARRAY_RL('XG',XG,1,0,0,0,myThid)
+c     CALL WRITE_FULLARRAY_RL('YG',YG,1,0,0,0,myThid)
 
 C--   Require that 0 <= longitude < 360 if using exf package
 #ifdef ALLOW_EXF
