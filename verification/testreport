@@ -539,15 +539,14 @@ int main( int argc, char** argv )  {
   return 0;
 }
 EOF
-    $CC -o tmp_cmpnum tmp_cmpnum.c -lm
+    cc -o tmp_cmpnum tmp_cmpnum.c -lm
 
     if [ -x ./tmp_cmpnum ]; then
 	echo "OK"
 	return 0
     else
 	echo
-	echo "ERROR: failed to compile comparison code -- please specify" 
-	echo "  a C compiler using the CC environment variable."
+	echo "ERROR: failed to compile comparison code" 
 	exit 1
     fi
 }
