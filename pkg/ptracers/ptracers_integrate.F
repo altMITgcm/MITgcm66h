@@ -21,6 +21,7 @@ C !USES: ===============================================================
       IMPLICIT NONE
 #include "SIZE.h"
 #include "EEPARAMS.h"
+#include "PARAMS.h"
 #include "PTRACERS.h"
 #include "GAD.h"
 
