@@ -71,7 +71,6 @@ C           theta(I,J,K,bi,bj) = tRef(K)
          ENDDO
         ENDDO
        ENDDO
-       CALL WRITE_FLD_XYZ_RL( 'T1.',' ',theta,0,myThid)
        DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
          DO K=1,Nr
@@ -86,7 +85,6 @@ C--   Zonal FFT filter initial conditions
          ENDDO
         ENDDO
        ENDDO
-       CALL WRITE_FLD_XYZ_RL( 'T2.',' ',theta,0,myThid)
       ELSE
        _BEGIN_MASTER( myThid )
        CALL READ_FLD_XYZ_RL( hydrogThetaFile, ' ', theta, 0, myThid )
