@@ -284,7 +284,8 @@ c      print *,' sphy at level ',l,' ',tempij
       enddo
       endif
 
-
+        call qcheck (im1,im2,jm1,jm2,Nrphys,idim1,idim2,jdim1,jdim2,
+     .         dpphys(1,1,1,bi,bj),pephy(1,1,1,bi,bj),sphy(1,1,1,bi,bj))
        enddo
        enddo
 
