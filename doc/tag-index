@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint48b_post
 o r* coordinate added in #ifdef NONLIN_FRSURF block.
  (modification to pressure gradient not yet implemented)
 o mom_fluxform: new S/R mom_calc_rtrans.F computes vertical transports
