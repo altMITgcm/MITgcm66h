@@ -22,6 +22,10 @@ usage()
     echo "                             (DEF=\"make output.txt\")"
     echo "  (-m|-make)STRING         command to use for \"make\""
     echo "                             (DEF=\"make\")"
+    echo "  (-quick|-q)              same as \"-nogenmake -noclean -nodepend\""
+    echo "  (-nogenmake|-ng)         skip the genmake stage"
+    echo "  (-noclean|-nc)           skip the \"make clean\" stage"
+    echo "  (-nodepend|-nd)          skip the \"make depend\" stage"
     echo
     echo "and where STRING follows a whitespace-delimited format"
     echo "such as:"
@@ -174,70 +178,82 @@ testoutput()
 genmakemodel()
 {
     # genmakemodel directory
-    GENMAKE2="$BASH ../../../tools/genmake2"
-    (
-	cd $1;
-	printf 'genmake ... ' 1>&2
-        # ../../../tools/genmake -ieee -mods=../code > make.log 2>&1
-	$GENMAKE2  -ds -m $MAKE --mods=../code "--optfile="$OPTFILE > make.log 2>&1
-	RETVAL=$?
-	for i in gm_state gm_optfile gm_local Makefile ; do
-	    if test -r $i ; then
-		cp $i $CDIR
+    if test "x$NOGENMAKE" = xt ; then
+	echo "genmake skipped!"
+    else
+	GENMAKE2="$BASH ../../../tools/genmake2"
+	(
+	    cd $1;
+	    printf 'genmake ... ' 1>&2
+            # ../../../tools/genmake -ieee -mods=../code > make.log 2>&1
+	    $GENMAKE2  -ds -m $MAKE --mods=../code "--optfile="$OPTFILE > make.log 2>&1
+	    RETVAL=$?
+	    for i in gm_state gm_optfile gm_local Makefile ; do
+		if test -r $i ; then
+		    cp $i $CDIR
+		fi
+	    done
+	    if test "x$RETVAL" != x0 ; then
+		tail make.log
+		echo "genmakemodel: genmake failed" 1>&2
+		cp make.log $CDIR
+		return 1
+	    else
+		echo "succesful" 1>&2
 	    fi
-	done
-	if test "x$RETVAL" != x0 ; then
-	    tail make.log
-	    echo "genmakemodel: genmake failed" 1>&2
-	    cp make.log $CDIR
-	    return 1
-	else
-	    echo "succesful" 1>&2
-	fi
-    )
+	)
+    fi
 }
 
 makeclean()
 {
     # makeclean directory
-    (
-	cd $1;
-	if test -e output.txt ; then
-	    rm -f output.txt
-	fi
-	printf 'make CLEAN ... ' 2>&1
-	if test -r Makefile ; then
-	    $MAKE CLEAN >> make.log 2>&1
-	    RETVAL=$?
-	    if test "x$RETVAL" != x0 ; then
-		tail make.log
-		echo "makeclean: \"make CLEAN\" failed" 1>&2
-		cp make.log $CDIR"/make.log"
-		return 1
+    if test "x$NOCLEAN" = xt ; then
+	echo "make CLEAN skipped!"
+    else
+	(
+	    cd $1;
+	    if test -e output.txt ; then
+		rm -f output.txt
 	    fi
-	fi
-	echo succesful 1>&2
-	exit 0
-    )
+	    printf 'make CLEAN ... ' 2>&1
+	    if test -r Makefile ; then
+		$MAKE CLEAN >> make.log 2>&1
+		RETVAL=$?
+		if test "x$RETVAL" != x0 ; then
+		    tail make.log
+		    echo "makeclean: \"make CLEAN\" failed" 1>&2
+		    cp make.log $CDIR"/make.log"
+		    return 1
+		fi
+	    fi
+	    echo succesful 1>&2
+	    exit 0
+	)
+    fi
 }
 
 makedependmodel()
 {
     # makedependmodel directory
-    (
-	cd $1;
-	printf 'make depend ... ' 1>&2
-	$MAKE depend >> make.log 2>&1
-	RETVAL=$?
-	if test "x$RETVAL" != x0 ; then
-	    tail make.log
-	    echo "makedependmodel: make depend failed" 1>&2
-	    cp make.log $CDIR"/make.log"
-	    return 1
-	else
-	    echo succesful 1>&2
-	fi
-    )
+    if test "x$NODEPEND" = xt ; then
+	echo "make depend skipped!"
+    else
+	(
+	    cd $1;
+	    printf 'make depend ... ' 1>&2
+	    $MAKE depend >> make.log 2>&1
+	    RETVAL=$?
+	    if test "x$RETVAL" != x0 ; then
+		tail make.log
+		echo "makedependmodel: make depend failed" 1>&2
+		cp make.log $CDIR"/make.log"
+		return 1
+	    else
+		echo succesful 1>&2
+	    fi
+	)
+    fi
 }
 
 makemodel()
@@ -360,8 +376,8 @@ show_help()
 {
     cat - << EOF
 $0 [-help] [-quick] [-verbose] dir1 [dir2] [...]
- -help      Show this help message
- -quick     Skip "genmake" and "make depend" if the Makefile exists
+
+ -help|-h      Show this help message
  -quiet     Reduce the amount of output
  -verbose   Produce copious amounts of output
  -debug     Produce even more output which will mean nothing to most
@@ -399,15 +415,20 @@ verbose=1
 clean=0
 expts=''
 # ieee=1
-# quick=0
+
+QUICK=f
+CLEANUP=f
+NOGENMAKE=f
+NOCLEAN=f
+NODEPEND=f
 
 BASH=
 OPTFILES=
-ADDRESSES=edhill@mitgcm.org
+ADDRESSES=
 TESTDIRS=
 MPACKDIR="../tools/mpack-1.6"
 MPACK="$MPACKDIR/mpack"
-COMMAND="make output.txt"
+COMMAND="rm -f output.txt; make output.txt"
 MAKE=make
 MPI=f
 
@@ -460,6 +481,15 @@ for ac_option ; do
 	-make=* | --make=*)
 	    MAKE=$ac_optarg ;;
 
+	-quick | --quick | -q | --q)
+	    QUICK=t ;;
+	-nogenmake | --nogenmake | -ng | --ng)
+	    NOGENMAKE=t ;;
+	-noclean | --noclean | -nc | --nc)
+	    NOCLEAN=t ;;
+	-nodepend | --nodepend | -nd | --nd)
+	    NODEPEND=t ;;
+
 	-mpi) MPI=t ;;
 	-verbose) verbose=2 ;;
 	-debug) debug=1 ;;
@@ -480,8 +510,24 @@ for ac_option ; do
      
 done
 
+if test "x$QUICK" = xt ; then
+    NOGENMAKE=t
+    NOCLEAN=t
+    NODEPEND=t
+fi
+
 if test "x$TESTDIRS" = x ; then
     TESTDIRS=`scandirs`
+fi
+
+if test "x$OPTFILES" = x ; then
+    OPTFILES=$MITGCM_OF
+fi
+if test "x$OPTFILES" = x ; then
+    echo "Error: please specify an optfile using either the command-line or"
+    echo "  the MITGCM_OF environment variable.  Also, examples are located "
+    echo "  in \$ROOTDIR/tools/build_options"
+    exit 1
 fi
 
 echo "OK"
@@ -578,7 +624,7 @@ for OPTFILE in $OPTFILES ; do
 	echo
 	unset genmake makedepend make run
 	results='-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --'
-	( cd $dir/input; rm -f *.{o,f,c,F} *.[f,F]90 work* output.txt Make* make.log; )
+
 	if [ -r $dir/build ]; then
 	    seperatebuilddir=1
 	    builddir=build
@@ -590,13 +636,18 @@ for OPTFILE in $OPTFILES ; do
 	    rundir=input
 	fi
 
-	genmakemodel $dir/$builddir && genmake=Y \
-	    && makeclean $dir/$builddir \
-	    && makedependmodel $dir/$builddir && makedepend=Y \
-	    && makemodel $dir/$builddir && make=Y \
-	    && linkdata $seperatebuilddir $dir/$rundir \
-	    && runmodel $dir/$builddir && run=Y \
-	    && results=`testoutput $dir $rundir`
+	if test "x$CLEANUP" = xt ; then
+	    makeclean $dir/$builddir
+	else
+	    genmakemodel $dir/$builddir && genmake=Y \
+		&& makeclean $dir/$builddir \
+		&& makedependmodel $dir/$builddir && makedepend=Y \
+		&& makemodel $dir/$builddir && make=Y \
+		&& linkdata $seperatebuilddir $dir/$rundir \
+		&& runmodel $dir/$builddir && run=Y \
+		&& results=`testoutput $dir $rundir`
+	fi
+
 	echo
 	formatresults $dir ${genmake:-N} ${makedepend:-N} ${make:-N} \
 	    ${run:-N} $results
@@ -618,12 +669,16 @@ for OPTFILE in $OPTFILES ; do
 	    gzip $NDIR".tar"
 	)
 
-	$MPACK -s MITgcm-test -m 1000000 $DRESULTS"/"$NDIR".tar.gz" $ADDRESSES
-	RETVAL=$?
-	if test "x$RETVAL" != x0 ; then
-	    echo "Warning: \"$MPACK\" failed -- please contact <edhill@mitgcm.org>"
+	if test "x$ADDRESSES" = xNONE -o "x$ADDRESSES" = x ; then
+	    echo "No mail sent"
 	else
-	    rm -f $DRESULTS"/"$NDIR".tar*"
+	    $MPACK -s MITgcm-test -m 1000000 $DRESULTS"/"$NDIR".tar.gz" $ADDRESSES
+	    RETVAL=$?
+	    if test "x$RETVAL" != x0 ; then
+		echo "Warning: \"$MPACK\" failed -- please contact <edhill@mitgcm.org>"
+	    else
+		rm -f $DRESULTS"/"$NDIR".tar*"
+	    fi
 	fi
 
 	NDIR=$(( $NDIR + 1 ))
