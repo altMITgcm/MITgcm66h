@@ -49,7 +49,10 @@ C     pulls div(U) + dh/dt back toward zero.
 C      Initialise source term on first pass
        DO j=jMin,jMax
         DO i=iMin,iMax
-         cg2d_b(i,j,bi,bj) = cg2d_b(i,j,bi,bj) 
+C        cg2d_b(i,j,bi,bj) = cg2d_b(i,j,bi,bj) 
+C    &    -freeSurfFac*_zA(i,j,bi,bj)*
+C    &     cg2d_x(I  ,J  ,bi,bj)/deltaTMom/deltaTMom
+         cg2d_b(i,j,bi,bj) =
      &    -freeSurfFac*_zA(i,j,bi,bj)*
      &     cg2d_x(I  ,J  ,bi,bj)/deltaTMom/deltaTMom
         ENDDO

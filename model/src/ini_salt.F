@@ -82,5 +82,8 @@ C
       _EXCH_XYZ_R8(salt  , myThid )
       _EXCH_XYZ_R8(gs , myThid )
       _EXCH_XYZ_R8(gsNM1 , myThid )
+
+      CALL PLOT_FIELD_XYZRL( salt, 'Initial Salinity' , Nz, 1, myThid )
+
       RETURN
       END

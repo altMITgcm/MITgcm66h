@@ -42,6 +42,7 @@ C     == GLobal variables ==
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#include "FFIELDS.h"
 
 C     == Routine arguments ==
 C     fZon    - Work array for flux of temperature in the east-west 
@@ -252,6 +253,16 @@ C #define _rVolS(i,j,k,bi,bj) _rhFacC(i,j,k,bi,bj)*rdzF(k)*_rdxF(i,j,bi,bj)*_rdy
       ENDDO
 
 C--   External P-E forcing term(s)
+C     o Surface relaxation term
+      IF ( TOP_LAYER ) THEN
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         gS(i,j,k,bi,bj)=gS(i,j,k,bi,bj)
+     &   -lambdaSaltClimRelax*(salt(i,j,k,bi,bj)-saltClim(i,j,k,bi,bj))
+        ENDDO
+       ENDDO
+      ENDIF
+
 
       RETURN
       END

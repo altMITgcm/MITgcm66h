@@ -190,7 +190,7 @@ C--   Calculate recipricols of hFacC, hFacW and hFacS
       _EXCH_XYZ_R4(rhFacS , myThid )
 
 C
-      CALL PLOT_FIELD_XYR8( H, 'Model depths' , 1, myThid )
+      CALL PLOT_FIELD_XYRS( H, 'Model depths' , 1, myThid )
 C
       RETURN
       END

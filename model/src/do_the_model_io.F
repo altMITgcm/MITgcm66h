@@ -53,14 +53,17 @@ C     suff - Hold suffix part of a filename
 
 C--   Generaly only thread 1 does IO here. It can't start until everyone's
 C--   fields are ready.
-      IF ( MOD(myIter,1000) .EQ. 0 ) THEN    
+      IF (
+     &  DIFFERENT_MULTIPLE(dumpFreq,myCurrentTime,myCurrentTime-deltaTClock)
+     & ) THEN
+
        _BARRIER
 
 C--    Write "text-plots" of certain fields
-       CALL PLOT_FIELD_XYZR8( uVel , 'uVel  ' , Nz, myIter, myThid )
-       CALL PLOT_FIELD_XYZR8( vVel , 'vVel  ' , Nz, myIter, myThid )
-       CALL PLOT_FIELD_XYZR8( theta, 'Theta ' , Nz, myIter, myThid )
-       CALL PLOT_FIELD_XYR8( cg2d_x, 'cg2d_x ' , myIter, myThid )
+       CALL PLOT_FIELD_XYZRL( uVel , 'Current uVel  ' , Nz, myIter, myThid )
+       CALL PLOT_FIELD_XYZRL( vVel , 'Current vVel  ' , Nz, myIter, myThid )
+       CALL PLOT_FIELD_XYZRL( theta, 'Current theta ' , Nz, myIter, myThid )
+       CALL PLOT_FIELD_XYRL( cg2d_x, 'Current cg2d_x ' , myIter, myThid )
 
       ENDIF
 

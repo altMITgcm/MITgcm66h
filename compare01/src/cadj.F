@@ -42,7 +42,7 @@ C     Flags
 C
 CcnhDebugStarts
 C     Richard turned off convective adjustment!
-      RETURN
+C     RETURN
 CcnhDebugEnds
 C
       BOTTOM_LAYER = K .EQ. Nz

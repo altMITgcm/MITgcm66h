@@ -101,14 +101,14 @@ CcnhDebugEnds
       
 C--   Update overlap regions
 CcnhDebugStarts
-C     CALL PLOT_FIELD_XYR8( aW2d, 'AW2D INI_CG2D.1' , 1, myThid )
-C     CALL PLOT_FIELD_XYR8( aS2d, 'AS2D INI_CG2D.1' , 1, myThid )
+C     CALL PLOT_FIELD_XYRS( aW2d, 'AW2D INI_CG2D.1' , 1, myThid )
+C     CALL PLOT_FIELD_XYRS( aS2d, 'AS2D INI_CG2D.1' , 1, myThid )
 CcnhDebugEnds
       _EXCH_XY_R4(aW2d, myThid)
       _EXCH_XY_R4(aS2d, myThid)
 CcnhDebugStarts
-C     CALL PLOT_FIELD_XYR8( aW2d, 'AW2D INI_CG2D.2' , 1, myThid )
-C     CALL PLOT_FIELD_XYR8( aS2d, 'AS2D INI_CG2D.2' , 1, myThid )
+C     CALL PLOT_FIELD_XYRS( aW2d, 'AW2D INI_CG2D.2' , 1, myThid )
+C     CALL PLOT_FIELD_XYRS( aS2d, 'AS2D INI_CG2D.2' , 1, myThid )
 CcnhDebugEnds
 
 C--   Initialise preconditioner

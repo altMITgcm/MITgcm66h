@@ -331,14 +331,14 @@ C     _D(( ' S/R UPDATE_S (GtDiff+GtAdv): MINVAL(Gt  )', MINVAL(Gt)))
 C     /---------------------------------------------------------------\
 C     | gT <- gT + GtForcing                                          |
 C     \---------------------------------------------------------------/
-      IF ( K.EQ.1 .OR. K.EQ.2 ) THEN
+C     IF ( K.EQ.1 ) THEN
 C      DO J =1,Ny                                               
 C       DO I=1, Nx                                             
 C        gT(_I3(K,I,J)) = gT(_I3(K,I,J)) -
 C    &                    1./(30.*oneDay)*( T(_I3(K,I,J)) - Ssurf(I,J,K) )
 C       ENDDO
 C      ENDDO
-      ENDIF
+C     ENDIF
 
 C     _D(( ' S/R UPDATE_S (Gt Section): MAXVAL(Gt  )', MAXVAL(Gt)  ))
 C     _D(( ' S/R UPDATE_S (Gt Section): MINVAL(Gt  )', MINVAL(Gt)  ))
