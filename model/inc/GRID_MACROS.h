@@ -143,10 +143,10 @@ C     \==========================================================/
 #undef    YC_FY
 #include "YC_MACROS.h"
 
-#undef    ZA_CONST   
-#undef    ZA_FX
-#undef    ZA_FY
-#include "ZA_MACROS.h"
+#undef    RA_CONST   
+#undef    RA_FX
+#undef    RA_FY
+#include "RA_MACROS.h"
 
 #undef    MASKW_CONST   
 #undef    MASKW_FX
