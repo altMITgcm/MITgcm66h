@@ -338,6 +338,9 @@ EOF
     fi
 
     FC_NAMEMANGLE="#define FC_NAMEMANGLE(X)  $nmangle"
+
+    #  cleanup the testing files
+    rm -f genmake_tcomp.* genmake_test.*
 }
 
 #  Set defaults here
