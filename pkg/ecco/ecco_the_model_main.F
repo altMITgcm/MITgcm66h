@@ -54,10 +54,13 @@ C     myCurrentTime - Time counter for this thread
 C     myCurrentIter - Iteration counter for this thread
       INTEGER myCurrentIter
       _RL     myCurrentTime
+      LOGICAL exst
+      LOGICAL lastdiva
+
+      lastdiva = .TRUE.
 
 C--   This timer encompasses the whole code
       CALL TIMER_START('ALL                [THE_MODEL_MAIN]',myThid)
-
 
 C--   Set model configuration (fixed arrays)
       CALL TIMER_START('INITIALISE_FIXED   [THE_MODEL_MAIN]',myThid)
@@ -68,32 +71,65 @@ C--   Set model configuration (fixed arrays)
       myCurrentIter = nIter0
 
 #if ( defined (ALLOW_ADJOINT_RUN) || \
+      defined (ALLOW_TANGENTLINEAR_RUN) || \
       defined (ALLOW_GRADIENT_CHECK) || \
       defined (ALLOW_ECCO_OPTIMIZATION) )
 
       _BEGIN_MASTER( mythid )
       IF (myProcId .eq. 0) THEN
-         CALL CTRL_UNPACK( mycurrentiter, mycurrenttime, mythid )
+         inquire( file='costfinal', exist=exst )
+         IF ( .NOT. exst) THEN
+            CALL TIMER_START('CTRL_UNPACK   [THE_MODEL_MAIN]',myThid)
+            CALL CTRL_UNPACK( mycurrentiter, mycurrenttime, mythid )
+            CALL TIMER_STOP ('CTRL_UNPACK   [THE_MODEL_MAIN]',myThid)
+         ENDIF
       ENDIF
       _END_MASTER( mythid )
       _BARRIER
 
-      fc   = 0.0
-      adfc = 1.0
+      CALL COST_DEPENDENT_INIT ( mythid )
+      _BARRIER
+
+#if ( defined (ALLOW_ADJOINT_RUN) || \
+      defined (ALLOW_ECCO_OPTIMIZATION) )
+c--
+# ifdef ALLOW_DIVIDED_ADJOINT
+c-- The following assumes the TAF option '-pure'
+      inquire( file='costfinal', exist=exst )
+      IF ( .NOT. exst) THEN
+         CALL TIMER_START('ADTHE_MAIN_LOOP            [MD RUN]', mythid)
+         CALL MDTHE_MAIN_LOOP ( myCurrentTime, myCurrentIter, mythid )
+         CALL TIMER_STOP ('ADTHE_MAIN_LOOP            [MD RUN]', mythid)
+         CALL COST_FINAL_STORE ( mythid )
+         lastdiva = .FALSE.
+      ENDIF
+# endif
       CALL TIMER_START('ADTHE_MAIN_LOOP          [ADJOINT RUN]', mythid)
       CALL ADTHE_MAIN_LOOP ( mythid )
       CALL TIMER_STOP ('ADTHE_MAIN_LOOP          [ADJOINT RUN]', mythid)
+# ifdef ALLOW_DIVIDED_ADJOINT
+      CALL COST_FINAL_RESTORE ( mythid, lastdiva )
+# endif
+c--
+#elif (defined (ALLOW_TANGENTLINEAR_RUN))
+      CALL TIMER_START('G_THE_MAIN_LOOP          [TANGENT RUN]', mythid)
+      CALL G_THE_MAIN_LOOP ( myCurrentTime, myCurrentIter, myThid )
+      CALL TIMER_STOP ('G_THE_MAIN_LOOP          [TANGENT RUN]', mythid)
+c--
+#endif
       _BARRIER
 
       _BEGIN_MASTER( mythid )
-      IF (myProcId .eq. 0) THEN
-         call CTRL_PACK( mycurrentiter, mycurrenttime, mythid )
+      IF ( myProcId .eq. 0 .AND. lastdiva ) THEN
+         CALL TIMER_START('CTLR_PACK           [THE_MODEL_MAIN]',mythid)
+         CALL CTRL_PACK( mycurrentiter, mycurrenttime, mythid )
+         CALL TIMER_STOP ('CTLR_PACK           [THE_MODEL_MAIN]',mythid)
       ENDIF
       _END_MASTER( mythid )
       _BARRIER
 
 #ifdef ALLOW_GRADIENT_CHECK
-      if (useGrdchk) then
+      if ( useGrdchk .AND. lastdiva ) then
          CALL TIMER_START('GRDCHK_MAIN          [ADJOINT RUN]', mythid)
          CALL GRDCHK_MAIN( mythid )
          CALL TIMER_STOP ('GRDCHK_MAIN          [ADJOINT RUN]', mythid)

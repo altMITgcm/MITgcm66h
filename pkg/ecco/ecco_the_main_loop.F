@@ -96,6 +96,9 @@ c They provide the fields to be stored.
 # ifdef ALLOW_SEAICE
 #  include "SEAICE.h"
 # endif
+# ifdef ALLOW_DIVIDED_ADJOINT_MPI
+#  include "mpif.h"
+# endif
 
 # include "tamc.h"
 # include "ctrl.h"
@@ -143,6 +146,7 @@ c--   Initialize storage for the outermost loop.
 CADJ  INIT tapelev3 = USER
 c--   Some more initialisations to please TAMC
 CADJ INIT tapelev_ini_bibj_k   = USER
+CADJ INIT onetape = common, 1
 #ifdef ALLOW_TAMC_CHECKPOINTING
        nIter0 = INT( startTime/deltaTClock )
        ikey_dynamics = 1
@@ -306,6 +310,7 @@ c--     Set the model iteration counter and the model time.
         mytime = startTime + float(iloop-1)*deltaTclock
 
 #ifdef ALLOW_COST
+
 c--     Accumulate time averages of temperature, salinity, and SSH.
         call timer_start('COST_AVERAGESFIELDS   [ECCO MAIN]', mythid)
         call cost_AveragesFields( mytime, myiter, mythid )
@@ -552,10 +557,19 @@ c             Calculate current date.
 
 #ifdef ALLOW_COST
 
+#ifdef ALLOW_TAMC_CHECKPOINTING
+CADJ STORE mytime, myiter = onetape
+#endif
 c--   Accumulate time averages of temperature, salinity, and SSH.
       call timer_start('cost_AveragesFields [ECCO SPIN-DOWN]', mythid)
       call cost_AveragesFields( mytime, myiter, mythid )
       call timer_stop ('cost_AveragesFields [ECCO SPIN-DOWN]', mythid)
+#ifdef ALLOW_TAMC_CHECKPOINTING
+CADJ STORE xx_psbar_mean_dummy = onetape
+CADJ STORE xx_tbar_mean_dummy = onetape
+CADJ STORE xx_sbar_mean_dummy = onetape
+#endif
+
 #ifdef ALLOW_COST_ATLANTIC
 c--   Compute meridional heat transport 
       call timer_start('cost_atlantic      [ECCO SPIN-DOWN]', mythid)
