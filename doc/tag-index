@@ -2,6 +2,7 @@ $Header$
 
     Notes on tags used in MITgcmUV
     ==============================
+o NONLIN_FRSURF: rescale gNm1 to get a better conservation with A-B
 o change phiMin in exp1 (to agree with documentation)
 o add new flags: 
  - T,S forcing inside/outside Adams-Bashforth
