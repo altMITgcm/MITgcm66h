@@ -352,19 +352,19 @@ C                 metric term in U equation.
 C     tanPhiAtV - tan of the latitude at V point. Used for spherical polar 
 C                 metric term in V equation.
       COMMON /GRID_R/
-     &  dxC,dxF,dxG,dxV,dyC,dyF,dyG,dyU,drC,drF,
+     &  dxC,dxF,dxG,dxV,dyC,dyF,dyG,dyU,
      &  H,HFacC,HFacW,HFacS,DepthInK,
      &  recip_dxC,recip_dxF,recip_dxG,recip_dxV,
      &  recip_dyC,recip_dyF,recip_dyG,recip_dyU,
-     &  recip_drC,recip_drF,
      &  recip_H, 
      &  recip_hFacC,recip_hFacW,recip_hFacS, 
-     &  rkFac, recip_rkFac,
      &  saFac,
-     &  xC,yC,rA,rAw,rAs,rAz,rC,rF,yC0,xC0,xG,yG,
+     &  xC,yC,rA,rAw,rAs,rAz,xG,yG,
      &  maskW,maskS,recip_rA,recip_rAw,recip_rAs,recip_rAz,
      &  tanPhiAtU, tanPhiAtV,
-     &  cosfacU,cosfacV,sqcosfacU,sqcosfacV
+     &  cosfacU,cosfacV,sqcosfacU,sqcosfacV,
+     &  drC,drF,recip_drC,recip_drF,rC,rF,
+     &  rkFac, recip_rkFac, xC0, yC0
       _RS dxC            (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS dxF            (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS dxG            (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
@@ -373,10 +373,6 @@ C                 metric term in V equation.
       _RS dyF            (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS dyG            (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS dyU            (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RS drC            (1:Nr)
-      _RS drF            (1:Nr)
-      _RS rkFac
-      _RS recip_rkFac
       _RS DepthInK       (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS H              (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS HFacC          (1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:Nr,nSx,nSy)
@@ -390,19 +386,14 @@ C                 metric term in V equation.
       _RS recip_dyF      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS recip_dyG      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS recip_dyU      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RS recip_drC      (1:Nr)
-      _RS recip_drF      (1:Nr)
       _RS recip_h        (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS recip_hFacC    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:Nr,nSx,nSy)
       _RS recip_hFacW    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:Nr,nSx,nSy)
       _RS recip_hFacS    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:Nr,nSx,nSy)
-      _RS saFac          (1:Nr)
       _RS xC             (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS xG             (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RS xC0
       _RS yC             (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS yG             (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RS yC0
       _RS rA             (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS rAw            (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS rAs            (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
@@ -411,8 +402,6 @@ C                 metric term in V equation.
       _RS recip_rAw      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS recip_rAs      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS recip_rAz      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RS rC             (1:Nr)
-      _RS rF             (1:Nr+1)
       _RS maskW          (1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:Nr,nSx,nSy)
       _RS maskS          (1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:Nr,nSx,nSy)
       _RS tanPhiAtU      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
@@ -421,6 +410,17 @@ C                 metric term in V equation.
       _RL cosfacV(1-Oly:sNy+Oly,nSx,nSy)
       _RL sqcosfacU(1-Oly:sNy+Oly,nSx,nSy)
       _RL sqcosfacV(1-Oly:sNy+Oly,nSx,nSy)
+      _RS drC            (1:Nr)
+      _RS drF            (1:Nr)
+      _RS recip_drC      (1:Nr)
+      _RS recip_drF      (1:Nr)
+      _RS saFac          (1:Nr)
+      _RS rC             (1:Nr)
+      _RS rF             (1:Nr+1)
+      _RS rkFac
+      _RS recip_rkFac
+      _RS xC0
+      _RS yC0
 
 #ifdef ALLOW_NONHYDROSTATIC
       COMMON /GRID_NH/
