@@ -439,7 +439,7 @@ cat csrclist.inc >> ${mfile}
 echo 'F77FILES =  $(SRCFILES:.F=.f)'                    >> ${mfile}
 echo 'OBJFILES =  $(SRCFILES:.F=.o) $(CSRCFILES:.c=.o)' >> ${mfile}
 
-rm -f srclist.inc
+rm -f srclist.inc csrclist.inc
 
 cat >> ${mfile} <<EOF
 
