@@ -27,5 +27,5 @@ fi
 
 NOOPTFILES='mdsio_byteswapr8.F mdsio_byteswapr4.F'
 NOOPTFILES=$NOOPTFILES' mitcplr_char2real.F mitcplr_real2char.F'
-NOOPTFILES=$NOOPTFILES' mitcplr_char2int.F mitcplr_int2char.F'
+NOOPTFILES=$NOOPTFILES' mitcplr_char2int.F mitcplr_int2char.F mds_byteswap.F'
 
