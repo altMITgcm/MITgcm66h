@@ -9,7 +9,6 @@ C     /==========================================================\
 C     | SUBROUTINE AIM_CALC_DIAGS                                |
 C     | o Calculate AIM diagnostics                              |
 C     \==========================================================/
-      IMPLICIT NONE
 
 C     === Global variables ===
 #include "SIZE.h"

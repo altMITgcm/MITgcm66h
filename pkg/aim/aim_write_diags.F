@@ -32,7 +32,9 @@ CEndOfInterface
 
 C     == Local variables ==
       INTEGER bi, bj, K
-      CHARACTER*(MAX_LEN_MBUF) suff
+      CHARACTER*(MAX_LEN_MBUF) fn
+      LOGICAL gf
+      gf = .TRUE.
 
 #ifdef INCLUDE_DIAGNOSTICS_INTERFACE_CODE
 
@@ -63,17 +65,17 @@ C      Normalize by integrated time
        _BARRIER
        _BEGIN_MASTER( myThid )
         WRITE(fn,'(A,I10.10)') 'aimphyvars.',myIter
-        CALL MDSWRITEFIELD(fn,precFloat32,globalFile,'RL',1,USTRtave,   1,myIter,myThid)
-        CALL MDSWRITEFIELD(fn,precFloat32,globalFile,'RL',1,VSTRtave,   2,myIter,myThid)
-        CALL MDSWRITEFIELD(fn,precFloat32,globalFile,'RL',1,TSRtave ,   3,myIter,myThid)
-        CALL MDSWRITEFIELD(fn,precFloat32,globalFile,'RL',1,OLRtave ,   4,myIter,myThid)
-        CALL MDSWRITEFIELD(fn,precFloat32,globalFile,'RL',1,SSRtave ,   5,myIter,myThid)
-        CALL MDSWRITEFIELD(fn,precFloat32,globalFile,'RL',1,SLRtave ,   6,myIter,myThid)
-        CALL MDSWRITEFIELD(fn,precFloat32,globalFile,'RL',1,SHFtave ,   7,myIter,myThid)
-        CALL MDSWRITEFIELD(fn,precFloat32,globalFile,'RL',1,EVAPtave,   8,myIter,myThid)
-        CALL MDSWRITEFIELD(fn,precFloat32,globalFile,'RL',1,PRECNVtave, 9,myIter,myThid)
-        CALL MDSWRITEFIELD(fn,precFloat32,globalFile,'RL',1,PRECLStave,10,myIter,myThid)
-        CALL MDSWRITEFIELD(fn,precFloat32,globalFile,'RL',1,CLOUDCtave,11,myIter,myThid)
+        CALL MDSWRITEFIELD(fn,precFloat32,gf,'RL',1,USTRtave,   1,myIter,myThid)
+        CALL MDSWRITEFIELD(fn,precFloat32,gf,'RL',1,VSTRtave,   2,myIter,myThid)
+        CALL MDSWRITEFIELD(fn,precFloat32,gf,'RL',1,TSRtave ,   3,myIter,myThid)
+        CALL MDSWRITEFIELD(fn,precFloat32,gf,'RL',1,OLRtave ,   4,myIter,myThid)
+        CALL MDSWRITEFIELD(fn,precFloat32,gf,'RL',1,SSRtave ,   5,myIter,myThid)
+        CALL MDSWRITEFIELD(fn,precFloat32,gf,'RL',1,SLRtave ,   6,myIter,myThid)
+        CALL MDSWRITEFIELD(fn,precFloat32,gf,'RL',1,SHFtave ,   7,myIter,myThid)
+        CALL MDSWRITEFIELD(fn,precFloat32,gf,'RL',1,EVAPtave,   8,myIter,myThid)
+        CALL MDSWRITEFIELD(fn,precFloat32,gf,'RL',1,PRECNVtave, 9,myIter,myThid)
+        CALL MDSWRITEFIELD(fn,precFloat32,gf,'RL',1,PRECLStave,10,myIter,myThid)
+        CALL MDSWRITEFIELD(fn,precFloat32,gf,'RL',1,CLOUDCtave,11,myIter,myThid)
        _END_MASTER( myThid )
        _BARRIER
 
