@@ -266,7 +266,6 @@ CADJ STORE localTij(:,:)  = comlev1_bibj_pass, key=passkey, byte=isbyte
        CALL GAD_DST3FL_ADV_X(
      &       bi,bj,k,deltaTtracer,uTrans,uVel,localTij,af,myThid)
       ELSE
-       write(0,*) advectionScheme
        STOP 'GAD_ADVECTION: adv. scheme incompatibale with multi-dim'
       ENDIF
 
@@ -389,6 +388,8 @@ c     kp1=min(Nr,k+1)
 
 #ifdef ALLOW_AUTODIFF_TAMC 
 CADJ STORE localTijk(:,:,k)  
+CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ STORE rTrans(:,:)  
 CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 

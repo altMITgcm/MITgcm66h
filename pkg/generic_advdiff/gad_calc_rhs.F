@@ -43,6 +43,11 @@ C !USES: ===============================================================
 #include "DYNVARS.h"
 #include "GAD.h"
 
+#ifdef ALLOW_AUTODIFF_TAMC
+#include "tamc.h"
+#include "tamc_keys.h"
+#endif /* ALLOW_AUTODIFF_TAMC */
+
 C !INPUT PARAMETERS: ===================================================
 C  bi,bj                :: tile indices
 C  iMin,iMax,jMin,jMax  :: loop range for called routines
@@ -102,11 +107,15 @@ C--   only the kUp part of fverT is set in this subroutine
 C--   the kDown is still required
       fVerT(1,1,kDown) = fVerT(1,1,kDown)
 #endif
+
       DO j=1-OLy,sNy+OLy
        DO i=1-OLx,sNx+OLx
         fZon(i,j)      = 0. _d 0
         fMer(i,j)      = 0. _d 0
         fVerT(i,j,kUp) = 0. _d 0
+        df(i,j)        = 0. _d 0
+        df4(i,j)       = 0. _d 0
+        localT(i,j)    = 0. _d 0
        ENDDO
       ENDDO
 
