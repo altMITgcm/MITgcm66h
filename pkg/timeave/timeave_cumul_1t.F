@@ -1,6 +1,6 @@
 C $Header$
 C $Name$
-#include "TIMEAVE_OPTIONS.h"
+#include "CPP_EEOPTIONS.h"
 
 CStartofinterface
       SUBROUTINE TIMEAVE_CUMUL_1T( 
