@@ -60,14 +60,14 @@ C     In spherical polar yc, delY and ly are degrees
          DO i=1,sNx
           distY = yC(i,j,bi,bj)/lY
           tauX  = -tauMax*cos(2. _d 0*PI*distY)
-c         tauX  = tauMax*sin(PI*distY)
+          tauX  = tauMax*sin(PI*distY)
           fu(i,j,bi,bj) = tauX/(delZ(1)*rhonil)
 C         fu(i,j,bi,bj) = -tauMax
          ENDDO
         ENDDO
        ENDDO
       ENDDO
-      fu(Nx/2,Ny/2,1,1) = fu(Nx/2,Ny/2,1,1)*0.917d0
+      fu(4,4,1,1) = fu(4,4,1,1)*0.917d0
 C
       _EXCH_XY_R4(fu  , myThid )
       _EXCH_XY_R4(fv  , myThid )
