@@ -368,7 +368,8 @@ C         "     Quadratic  ( linear: 1/s, quadratic: 1/m )
      & cg3dTargetResidual,
      & delP, delZ, delR, delX, delY, 
      & deltaT,deltaTmom, deltaTtracer, deltaTClock,abeps, startTime, 
-     & phiMin, thetaMin, rSphere, recip_RSphere, f0, fCori, beta, 
+     & phiMin, thetaMin, rSphere, recip_RSphere, f0, beta,
+     & fCori, fCoriG,
      & viscAh,  viscAz,  viscA4,  viscAr,
      & diffKhT, diffKzT, diffK4T, diffKrT,
      & diffKhS, diffKzS, diffK4S, diffKrS,
@@ -442,7 +443,8 @@ C         "     Quadratic  ( linear: 1/s, quadratic: 1/m )
       _RL tRef(Nr)
       _RL theta_S(Nr)
       _RL sRef(Nr)
-      _RS Fcori(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS fCori(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS fCoriG(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL startTime
       _RL endTime
       _RL chkPtFreq
