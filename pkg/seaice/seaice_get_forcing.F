@@ -47,17 +47,18 @@ C     === Local variables ===
       _RL aWghtWind,bWghtWind,aWghtFlux,bWghtFlux,
      &     aWghtSSS,bWghtSSS,aWghtSST,bWghtSST
       _RS initValue
-      _RL year, seconds, YearTime
+      _RL year, seconds, YearTime, four
       INTEGER CurrentYear, CurrentYear2
       logical done
       CHARACTER*(MAX_LEN_MBUF) fName
 
 C--   Compute CurrentYear and YearTime
+      four = 4.0
       YearTime = myTime
       done = .false.
       do year = StartingYear, EndingYear
          if( .not. done ) then
-            if( mod(year,4.) .eq. 0. ) then
+            if( mod(year,four) .eq. 0. ) then
                seconds = 366.*24.*60.*60.
             else
                seconds = 365.*24.*60.*60.
