@@ -134,7 +134,7 @@ C     c) easy to check here (variable in common).
           DO bi=1,nSx
 
 C-  Converts surface albedo : input data is in % 0-100
-C     and Franco's package needs a fraction between 0-1
+C     and Franco s package needs a fraction between 0-1
            DO j=1,sNy
             DO i=1,sNx
              aim_albedo(I,J,bi,bj) = aim_albedo(I,J,bi,bj)/100.
