@@ -87,7 +87,9 @@ Cml       sRef(K) = 35.D0
       ENDDO
       gravity             = 9.81D0
       rhoNil              = 999.8D0
-      rhoConstFresh       = 999.8D0
+C-- jmc : the default is to set rhoConstFresh to rhoConst (=rhoNil by default)
+C         (so that the default produces same results as before)
+c     rhoConstFresh       = 999.8D0
       f0                  = 1.D-4
       beta                = 1.D-11
 C-    Always use 1 day in the past but should be 86164 (=86400*365.25/366.25)
