@@ -95,13 +95,12 @@ C     In FORTRAN, the first variable cycles most quickly
       units(1:19) = 'days since 1970-1-1'
       CALL MNC_VAR_INIT_DBL(myThid, fname, gname2, vname1, units )
       vname2(1:4) = 'temp'
-      units(1:19) = 'm/s                '
+      units(1:19) = 'deg C              '
       CALL MNC_VAR_INIT_DBL(myThid, fname, gname1, vname2, units )
 
       print*, ' Calling MNC_VAR_ADD_ATTR_STR() ...'
-      atname(1:9) = 'long_name'
-      atval(1:11) = 'hours since '
-      CALL MNC_VAR_ADD_ATTR_STR(myThid,fname,vname1, atname, atval)
+      atname(1:9) = 'grid_type'
+      CALL MNC_VAR_ADD_ATTR_INT(myThid,fname,vname1, atname, 1, 1)
       atname(1:11) = 'valid_range'
       tvar(1) = -23.5
       tvar(2) = 176.75

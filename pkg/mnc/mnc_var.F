@@ -295,7 +295,6 @@ C     Strip trailing spaces
 
 C     Set the attribute
       CALL MNC_FILE_REDEF(myThid, fname)
-      print *, 'atype = ', atype
       IF (atype .EQ. 1) THEN
         err = NF_PUT_ATT_TEXT(fid, vid, atname, lens, cs)
       ELSEIF (atype .EQ. 2) THEN
