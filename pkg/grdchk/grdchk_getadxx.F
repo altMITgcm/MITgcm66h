@@ -73,8 +73,11 @@ c--   == end of interface ==
       dumiter      = 0
       dumtime      = 0. _d 0
 
-      if      ( grdchkvarindex .eq. 1 ) then
+      if ( grdchkvarindex .eq. 0 ) then
+         STOP 'GRDCHK INDEX 0 NOT ALLOWED'
+
 #ifdef ALLOW_THETA0_CONTROL
+      else if ( grdchkvarindex .eq. 1 ) then
          il=ilnblnk( xx_theta_file )
          write(fname(1:80),'(80a)') ' '
          write(fname(1:80),'(3a,i10.10)')
@@ -293,6 +296,36 @@ c--   == end of interface ==
 
 #endif /* ALLOW_HFACC3D_CONTROL */
 #endif /* ALLOW_HFACC_CONTROL */
+
+#ifdef ALLOW_EFLUXY0_CONTROL
+      else if ( grdchkvarindex .eq. 21 ) then
+         il=ilnblnk( xx_efluxy_file )
+         write(fname(1:80),'(80a)') ' '
+         write(fname(1:80),'(3a,i10.10)')
+     &        yadmark, xx_efluxy_file(1:il),'.',optimcycle
+
+         call active_read_xyz( fname, tmpfld3d, 1,
+     &                         doglobalread, ladinit, optimcycle,
+     &                         mythid, dummy)
+
+         xx_comp = tmpfld3d( itilepos,jtilepos,layer,itile,jtile )
+
+#endif /* ALLOW_EFLUXY0_CONTROL */
+
+#ifdef ALLOW_EFLUXP0_CONTROL
+      else if ( grdchkvarindex .eq. 22 ) then
+         il=ilnblnk( xx_efluxp_file )
+         write(fname(1:80),'(80a)') ' '
+         write(fname(1:80),'(3a,i10.10)')
+     &        yadmark, xx_efluxp_file(1:il),'.',optimcycle
+
+         call active_read_xyz( fname, tmpfld3d, 1,
+     &                         doglobalread, ladinit, optimcycle,
+     &                         mythid, dummy)
+
+         xx_comp = tmpfld3d( itilepos,jtilepos,layer,itile,jtile )
+
+#endif /* ALLOW_EFLUXP0_CONTROL */
 
       else
 ce      --> this index does not exist yet.

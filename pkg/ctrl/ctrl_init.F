@@ -3,9 +3,7 @@ C $Header$
 #include "CTRL_CPPOPTIONS.h"
 
 
-      subroutine ctrl_init(
-     I                      mythid
-     &                    )
+      subroutine ctrl_init( mythid )
 
 c     ==================================================================
 c     SUBROUTINE ctrl_init
@@ -636,6 +634,65 @@ c--   Eastern obc.
 
 #endif /* ALLOW_OBCSE_CONTROL */
 
+#ifdef ALLOW_DIFFKR_CONTROL
+      _BEGIN_MASTER( mythid )
+        ivarindex                = 15
+        ncvarindex(ivarindex)    = 115
+        ncvarrecs (ivarindex)    =   1
+        ncvarxmax (ivarindex)    = snx
+        ncvarymax (ivarindex)    = sny
+        ncvarnrmax(ivarindex)    =  nr
+        ncvargrd  (ivarindex)    = 'c'
+      _END_MASTER( mythid )
+#endif /* ALLOW_DIFFKR_CONTROL */
+
+#ifdef ALLOW_KAPGM_CONTROL
+      _BEGIN_MASTER( mythid )
+        ivarindex                = 16
+        ncvarindex(ivarindex)    = 116
+        ncvarrecs (ivarindex)    =   1
+        ncvarxmax (ivarindex)    = snx
+        ncvarymax (ivarindex)    = sny
+        ncvarnrmax(ivarindex)    =  nr
+        ncvargrd  (ivarindex)    = 'c'
+      _END_MASTER( mythid )
+#endif /* ALLOW_KAPGM_CONTROL */
+
+#ifdef ALLOW_TR10_CONTROL
+      _BEGIN_MASTER( mythid )
+        ivarindex                = 17
+        ncvarindex(ivarindex)    = 117
+        ncvarrecs (ivarindex)    =   1
+        ncvarxmax (ivarindex)    = snx
+        ncvarymax (ivarindex)    = sny
+        ncvarnrmax(ivarindex)    =  nr
+        ncvargrd  (ivarindex)    = 'c'
+      _END_MASTER( mythid )
+#endif /* ALLOW_TR10_CONTROL */
+
+#ifdef ALLOW_EFLUXY0_CONTROL
+      _BEGIN_MASTER( mythid )
+        ivarindex                = 21
+        ncvarindex(ivarindex)    = 121
+        ncvarrecs(ivarindex)     =   1
+        ncvarxmax(ivarindex)     = snx
+        ncvarnrmax(ivarindex)    =  nr
+        ncvargrd(ivarindex)      = 's'
+      _END_MASTER( mythid )
+#endif /* ALLOW_EFLUXY0_CONTROL */
+
+#ifdef ALLOW_EFLUXP0_CONTROL
+      _BEGIN_MASTER( mythid )
+        ivarindex                = 22
+        ncvarindex(ivarindex)    = 122
+        ncvarrecs(ivarindex)     =   1
+        ncvarxmax(ivarindex)     = snx
+        ncvarymax(ivarindex)     = sny
+        ncvarnrmax(ivarindex)    =  nr
+        ncvargrd(ivarindex)      = 'v'
+      _END_MASTER( mythid )
+#endif /* ALLOW_EFLUXP0_CONTROL */
+
 c--   Determine the number of wet points in each tile:
 c--   maskc, masks, and maskw.
 
@@ -652,6 +709,7 @@ c--   Initialise the counters.
             nwetctile(bi,bj,k) = 0
             nwetstile(bi,bj,k) = 0
             nwetwtile(bi,bj,k) = 0
+            nwetvtile(bi,bj,k) = 0
           enddo
         enddo
       enddo
@@ -698,6 +756,12 @@ c--             West mask.
                 if (maskW(i,j,k,bi,bj) .eq. 1.) then
                   nwetwtile(bi,bj,k) = nwetwtile(bi,bj,k) + 1
                 endif
+#if (defined (ALLOW_EFLUXP0_CONTROL))
+c--             Vertical mask.
+                if (hFacV(i,j,k,bi,bj) .eq. 1.) then
+                  nwetvtile(bi,bj,k) = nwetvtile(bi,bj,k) + 1
+                endif
+#endif
               enddo
             enddo
           enddo
@@ -760,6 +824,9 @@ c
                      else if ( ncvargrd(i) .eq. 'w' ) then
                         nvarlength = nvarlength + 
      &                       ncvarrecs(i)*nwetwtile(bi,bj,k)
+                     else if ( ncvargrd(i) .eq. 'v' ) then
+                        nvarlength = nvarlength + 
+     &                       ncvarrecs(i)*nwetvtile(bi,bj,k)
                      else if ( ncvargrd(i) .eq. 'm' ) then
 #ifdef ALLOW_OBCS_CONTROL
                         do iobcs = 1, nobcs
@@ -807,6 +874,7 @@ cph(
       print *, 'ph-wet 2: surface wet C = ', nwetctile(1,1,1)
       print *, 'ph-wet 3: surface wet W = ', nwetwtile(1,1,1)
       print *, 'ph-wet 4: surface wet S = ', nwetstile(1,1,1)
+      print *, 'ph-wet 4a:surface wet V = ', nwetvtile(1,1,1)
       nwetc3d = 0
       do k = 1, Nr
          nwetc3d = nwetc3d + nwetctile(1,1,k)

@@ -46,7 +46,9 @@ c     == local variables ==
       _RL xxmemo_pert
       _RL gfd
       _RL adxxmemo
-      _RL ratio
+      _RL ftlxxmemo
+      _RL ratio_ad
+      _RL ratio_ftl
 
       integer i
       integer itile
@@ -94,20 +96,26 @@ c--   Print header.
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
 
-      write(msgbuf,'(a,6(1x,a15))') 
-     & 'grdchk output:  ', 'I', 'ITILEPOS', 'JTILEPOS', 
+      write(msgbuf,'(a,7(1x,a15))') 
+     & 'grdchk output:  ', 'procId', 'I', 'ITILEPOS', 'JTILEPOS', 
      & 'LAYER', 'X(I)', 'X(I)+/-EPS'
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
-      write(msgbuf,'(a,6(1x,a15))') 
-     & 'grdchk output:  ', 'FC', 'FC1', 'FC2', 'FC1-FC2/(2*EPS)',
-     & 'GRAD(FC)', '1-FDGRD/ADGRD'
+#ifdef ALLOW_TANGENTLINEAR_RUN
+      write(msgbuf,'(a,7(1x,a15))') 
+     &     'grdchk output:  ', ' ', 'FC', 'FC1', 'FC2', 
+     &     'FC1-FC2/(2*EPS)', 'TLM GRAD(FC)', '1-FDGRD/TLMGRD'
+#else
+      write(msgbuf,'(a,7(1x,a15))') 
+     &     'grdchk output:  ', ' ', 'FC', 'FC1', 'FC2', 
+     &     'FC1-FC2/(2*EPS)', 'ADJ GRAD(FC)', '1-FDGRD/ADGRD'
+#endif
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
 
 c--   Individual checks.
       if ( ierr_grdchk .eq. 0 ) then
-         numchecks = ichknum - 1
+         numchecks = ichknum
       else
          numchecks = maxgrdchecks
       endif
@@ -116,28 +124,39 @@ c--   Individual checks.
         xxmemo_ref   = xxmemref  (i)
         xxmemo_pert  = xxmempert (i)
         adxxmemo     = adxxmem   (i)
+        ftlxxmemo    = ftlxxmem  (i)
         fcref        = fcrmem    (i)
         fcpertplus   = fcppmem   (i)
-        fcpertminus  = fcppmem   (i)
-        gfd      = gfdmem  (i)
-        ratio    = ratiomem(i)
-        itile    = bimem   (i)
-        jtile    = bjmem   (i)
-        itilepos = ilocmem (i)
-        jtilepos = jlocmem (i)
-        layer    = klocmem (i)
-        icomp    = icompmem(i)
-        ierr     = ierrmem (i)
+        fcpertminus  = fcpmmem   (i)
+        gfd          = gfdmem    (i)
+        ratio_ad     = ratioadmem  (i)
+        ratio_ftl    = ratioftlmem (i)
+        itile        = bimem   (i)
+        jtile        = bjmem   (i)
+        itilepos     = ilocmem (i)
+        jtilepos     = jlocmem (i)
+        layer        = klocmem (i)
+        icomp        = icompmem(i)
+        ierr         = ierrmem (i)
 
-        write(msgbuf,'(A,4(I16),2(1x,D15.9))')
-     &       'grdchk output:  ', i, itilepos, jtilepos, layer, 
+        write(msgbuf,'(A,5(I16),2(1x,D15.9))')
+     &       'grdchk output:  ',
+     &       myprocid, i, itilepos, jtilepos, layer, 
      &       xxmemo_ref, xxmemo_pert
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         if ( ierr .eq. 0 ) then
-          write(msgbuf,'(A,6(1x,D15.9))')
-     &      'grdchk output:  ',
-     &          fcref, fcpertplus, fcpertminus, gfd, adxxmemo, ratio
+#ifdef ALLOW_TANGENTLINEAR_RUN
+          write(msgbuf,'(A,1(1x,a15),6(1x,D15.9))')
+     &         'grdchk output:  ', ' ',
+     &         fcref, fcpertplus, fcpertminus, 
+     &         gfd, ftlxxmemo, ratio_ftl
+#else
+          write(msgbuf,'(A,1(1x,a15),6(1x,D15.9))')
+     &          'grdchk output:  ', ' ',
+     &          fcref, fcpertplus, fcpertminus, 
+     &          gfd, adxxmemo, ratio_ad
+#endif
           call print_message( msgbuf, standardmessageunit,
      &                        SQUEEZE_RIGHT , mythid)
         else

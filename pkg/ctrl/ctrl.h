@@ -21,13 +21,17 @@ c     nwet[c/s/w]tile - Number of wet points in a tile for center (c),
 c                       south (s), and western (w) mask, resp. .
 
       integer     maxcvars
-      parameter ( maxcvars = 20 )
+      parameter ( maxcvars = 30 )
 
       integer     ctrlprec
       parameter ( ctrlprec = 64 )
 
       character*2 yadprefix
+#ifdef ALLOW_TANGENTLINEAR_RUN
+      parameter ( yadprefix = 'g_')
+#else
       parameter ( yadprefix = 'ad')
+#endif
 
       common /controlvars_i/
      &                       nvartype,
@@ -42,9 +46,11 @@ c                       south (s), and western (w) mask, resp. .
      &                       nwetctile,
      &                       nwetstile,
      &                       nwetwtile,
+     &                       nwetvtile,
      &                       nwetcglobal,
      &                       nwetsglobal,
-     &                       nwetwglobal
+     &                       nwetwglobal,
+     &                       nwetvglobal
       integer nvartype
       integer nvarlength
       integer ncvarindex    ( maxcvars )
@@ -57,9 +63,11 @@ c                       south (s), and western (w) mask, resp. .
       integer nwetctile     ( nsx,nsy,nr )
       integer nwetstile     ( nsx,nsy,nr )
       integer nwetwtile     ( nsx,nsy,nr )
+      integer nwetvtile     ( nsx,nsy,nr )
       integer nwetcglobal     ( nr )
       integer nwetsglobal     ( nr )
       integer nwetwglobal     ( nr )
+      integer nwetvglobal     ( nr )
 
 #ifdef ALLOW_OBCSN_CONTROL
       common /controlvars_i_obcsn/
@@ -285,6 +293,16 @@ c     xx_obcse_file - control vector salin. at boundary
      &                    , xx_obcss_file
      &                    , xx_obcsw_file
      &                    , xx_obcse_file
+     &                    , xx_diffkr_file
+     &                    , xx_kapgm_file
+     &                    , xx_tr1_file
+     &                    , xx_sst_file
+     &                    , xx_sss_file
+     &                    , xx_hfacc_file
+     &                    , xx_efluxy_file
+     &                    , xx_efluxp_file
+     &                    , xx_bottomdrag_file
+
       character*(MAX_LEN_FNAM) xx_theta_file
       character*(MAX_LEN_FNAM) xx_salt_file
       character*(MAX_LEN_FNAM) xx_hflux_file
@@ -299,6 +317,15 @@ c     xx_obcse_file - control vector salin. at boundary
       character*(MAX_LEN_FNAM) xx_obcss_file
       character*(MAX_LEN_FNAM) xx_obcsw_file
       character*(MAX_LEN_FNAM) xx_obcse_file
+      character*(MAX_LEN_FNAM) xx_diffkr_file
+      character*(MAX_LEN_FNAM) xx_kapgm_file
+      character*(MAX_LEN_FNAM) xx_tr1_file
+      character*(MAX_LEN_FNAM) xx_sst_file
+      character*(MAX_LEN_FNAM) xx_sss_file
+      character*(MAX_LEN_FNAM) xx_hfacc_file
+      character*(MAX_LEN_FNAM) xx_efluxy_file
+      character*(MAX_LEN_FNAM) xx_efluxp_file
+      character*(MAX_LEN_FNAM) xx_bottomdrag_file
 
       common /packnames_c/
      &                      yadmark,
@@ -306,13 +333,15 @@ c     xx_obcse_file - control vector salin. at boundary
      &                      costname, 
      &                      scalname, 
      &                      maskname, 
-     &                      metaname
+     &                      metaname,
+     &                      yctrlid
       character*2 yadmark
       character*9 ctrlname
       character*9 costname
       character*9 scalname
       character*9 maskname
       character*9 metaname
+      character*10 yctrlid
 
 c     Calendar information for the control variables:
 c     ===============================================
