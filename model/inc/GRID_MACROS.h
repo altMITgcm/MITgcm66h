@@ -114,3 +114,21 @@ C     \==========================================================/
 #undef  RDYU_FX
 #undef  RDYU_FY
 #include "RDYU_MACROS.h"
+
+#undef  RHFACC_CONST   
+#undef  RHFACC_FX
+#undef  RHFACC_FY
+#undef  RHFACC_FXY
+#include "RHFACC_MACROS.h"
+
+#undef  RHFACS_CONST   
+#undef  RHFACS_FX
+#undef  RHFACS_FY
+#undef  RHFACS_FXY
+#include "RHFACS_MACROS.h"
+
+#undef  RHFACW_CONST   
+#undef  RHFACW_FX
+#undef  RHFACW_FY
+#undef  RHFACW_FXY
+#include "RHFACW_MACROS.h"
