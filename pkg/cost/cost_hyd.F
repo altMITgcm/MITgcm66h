@@ -59,6 +59,9 @@ c     == end of interface ==
       call cost_sss   ( myiter, mytime, mythid )
 #endif
 
+#ifdef ALLOW_SST_COST_CONTRIBUTION
+      call cost_sst   ( myiter, mytime, mythid )
+#endif
 
 #ifdef ALLOW_CTDS_COST_CONTRIBUTION
       call cost_ctds  ( myiter, mytime, mythid )

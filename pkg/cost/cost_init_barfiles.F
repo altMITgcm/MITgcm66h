@@ -132,9 +132,9 @@ c--   Save tbar on file.
      &     yadprefix, tbarfile(1:ilt), '.', optimcycle
 
       do irec = 1,nmonsrec
-        call active_write_xyz( fnametbar, tmpfld3d, nmonsrec,
+        call active_write_xyz( fnametbar, tmpfld3d, irec,
      &                         optimcycle, mythid, xx_tbar_mean_dummy )
-        call active_write_xyz( adfnametbar, tmpfld3d, nmonsrec, 
+        call active_write_xyz( adfnametbar, tmpfld3d, irec, 
      &                         optimcycle, mythid, xx_tbar_mean_dummy )
       enddo
 #else
@@ -146,9 +146,9 @@ c--   Save tbar on file.
       write(adfnametbar,'(3a,i10.10)') 
      &     yadprefix, tbarfile(1:ilt), '.', optimcycle
       do irec = 1,nmonsrec
-        call active_write_xy( fnametbar, tmpfld2d, nmonsrec,
+        call active_write_xy( fnametbar, tmpfld2d, irec,
      &                        optimcycle, mythid, xx_tbar_mean_dummy )
-        call active_write_xy( adfnametbar, tmpfld2d, nmonsrec, 
+        call active_write_xy( adfnametbar, tmpfld2d, irec, 
      &                        optimcycle, mythid, xx_tbar_mean_dummy )
       enddo
 #endif
@@ -166,9 +166,9 @@ c--   Save sbar.
      &     yadprefix, sbarfile(1:ils), '.', optimcycle
 
       do irec = 1,nmonsrec
-        call active_write_xyz( fnamesbar, tmpfld3d, nmonsrec,
+        call active_write_xyz( fnamesbar, tmpfld3d, irec,
      &                         optimcycle, mythid, xx_sbar_mean_dummy)
-        call active_write_xyz( adfnamesbar, tmpfld3d, nmonsrec,
+        call active_write_xyz( adfnamesbar, tmpfld3d, irec,
      &                         optimcycle, mythid, xx_sbar_mean_dummy)
       enddo
 #else
@@ -181,9 +181,9 @@ c--   Save sbar.
      &     yadprefix, sbarfile(1:ils), '.', optimcycle
 
       do irec = 1,nmonsrec
-        call active_write_xy( fnamesbar, tmpfld2d, nmonsrec,
+        call active_write_xy( fnamesbar, tmpfld2d, irec,
      &                        optimcycle, mythid, xx_sbar_mean_dummy)
-        call active_write_xy( adfnamesbar, tmpfld2d, nmonsrec,
+        call active_write_xy( adfnamesbar, tmpfld2d, irec,
      &                        optimcycle, mythid, xx_sbar_mean_dummy)
       enddo
 #endif
@@ -202,14 +202,16 @@ c--   Save ubar and vbar.
       write(adfnamevbar,'(3a,i10.10)') 
      &     yadprefix, vbarfile(1:ils), '.', optimcycle
 
-        call active_write_xyz( fnameubar, ubar, 1,
+      do irec = 1,nmonsrec
+        call active_write_xyz( fnameubar, tmpfld3d, irec,
      &                         optimcycle, mythid, xx_ubar_mean_dummy)
-        call active_write_xyz( fnamevbar, vbar, 1,
+        call active_write_xyz( fnamevbar, tmpfld3d, irec,
      &                         optimcycle, mythid, xx_vbar_mean_dummy)
-        call active_write_xyz( adfnameubar, ubar, 1,
+        call active_write_xyz( adfnameubar, tmpfld3d, irec,
      &                         optimcycle, mythid, xx_ubar_mean_dummy)
-        call active_write_xyz( adfnamevbar, vbar, 1,
+        call active_write_xyz( adfnamevbar, tmpfld3d, irec,
      &                         optimcycle, mythid, xx_vbar_mean_dummy)
+      enddo
 #endif
 
 #ifdef ALLOW_DRIFTW_COST_CONTRIBUTION
@@ -221,9 +223,9 @@ c--   Save wbar
      &     yadprefix, wbarfile(1:ils), '.', optimcycle
 
       do irec = 1, 12
-        call active_write_xyz( fnamewbar, wbar, irec,
+        call active_write_xyz( fnamewbar, tmpfld3d, irec,
      &                         optimcycle, mythid, xx_wbar_mean_dummy)
-        call active_write_xyz( adfnamewbar, wbar, irec,
+        call active_write_xyz( adfnamewbar, tmpfld3d, irec,
      &                         optimcycle, mythid, xx_wbar_mean_dummy)
       enddo
 #endif
