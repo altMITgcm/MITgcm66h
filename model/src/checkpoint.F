@@ -104,6 +104,7 @@ C       Raw fields
         CALL READ_REC_XYZ_RL(  'guCD',  guCD, 1,myIter, myThid)
         CALL READ_REC_XYZ_RL(  'gvCD',  gvCD, 1,myIter, myThid)
 #endif
+
 #ifdef ALLOW_NONHYDROSTATIC
         IF ( nonHydrostatic ) THEN
          CALL READ_REC_XYZ_RL('phi_nh',phi_nh,1,myIter,myThid)
@@ -134,6 +135,12 @@ C--     Read model fields
         IF ( nonlinFreeSurf.GE.0)
      &  CALL MDSREADFIELD(fn,prec,'RL',1,etaH,12*Nr+2,myThid)
 #endif
+
+        IF ( useDynP_inEos_Zc ) THEN
+         WRITE(fn,'(A,I10.10)') 'pickup_ph.',myIter
+         CALL MDSREADFIELD(fn,prec,'RL',Nr,totPhiHyd,1,myThid)
+        ENDIF
+
 #ifdef INCLUDE_CD_CODE
         WRITE(fn,'(A,I10.10)') 'pickup_cd.',myIter
         CALL MDSREADFIELD(fn,prec,'RL',Nr,uVelD,    1,myThid)
@@ -154,6 +161,11 @@ c        CALL MDSREADFIELD(fn,prec,'RL',Nr,gWnm1,3,myThid)
         ENDIF
 #endif
 
+
+
+C Create suffix to pass on to package pickup routines
+        WRITE(fn,'(I10.10)') myIter
+
 C SPK 4/9/01: Open boundary checkpointing
 #ifdef  ALLOW_OBCS
         IF (useOBCS) THEN
@@ -168,6 +180,13 @@ C       Reset default IO precision
 
        _END_MASTER( myThid )
        _BARRIER
+
+#ifdef ALLOW_PTRACERS
+C Write restart file for passive tracers
+       IF (usePTRACERS) THEN
+         CALL PTRACERS_READ_CHECKPOINT(myIter,myThid)
+       ENDIF
+#endif /* ALLOW_PTRACERS */
 
 C--    Fill in edge regions
       CALL EXCH_UV_XYZ_RL(uVel,vVel,.TRUE.,myThid)
@@ -187,6 +206,9 @@ c     _EXCH_XYZ_R8(gvNM1 , myThid )
       _EXCH_XYZ_R8(gsNM1 , myThid )
       _EXCH_XY_R8 (etaN, myThid )
       _EXCH_XY_R8( etaH, myThid )
+
+      IF ( useDynP_inEos_Zc )
+     & _EXCH_XYZ_RL( totPhiHyd, myThid )
 
 #ifdef INCLUDE_CD_CODE
 c**** CALL EXCH_DUV_XYZ_RL(uVelD,vVelD,.TRUE.,myThid)
@@ -214,7 +236,7 @@ c        _EXCH_XYZ_R8(gWNM1 , myThid )
 CBOP
 C     !ROUTINE: WRITE_CHECKPOINT
 C     !INTERFACE:
-      SUBROUTINE WRITE_CHECKPOINT ( modelEnd, myCurrentTime, 
+      SUBROUTINE WRITE_CHECKPOINT ( modelEnd, myTime, 
      &                              myIter, myThid )
 C     !DESCRIPTION: \bv
 C     *==========================================================*
@@ -257,11 +279,11 @@ C     == Routine arguments ==
 C     modelEnd    :: Checkpoint call at end of model run.
 C     myThid :: Thread number for this instance of the routine.
 C     myIter :: Iteration number
-C     myCurrentTime :: Current time of simulation ( s )
+C     myTime :: Current time of simulation ( s )
       LOGICAL modelEnd    
       INTEGER myThid
       INTEGER myIter
-      _RL     myCurrentTime
+      _RL     myTime
 
 C     == Common blocks ==
       COMMON /PCKP_GBLFLS/ globalFile
@@ -283,16 +305,16 @@ CEOP
 
       permCheckPoint = .FALSE.
       permCheckPoint=
-     & DIFFERENT_MULTIPLE(pChkptFreq,myCurrentTime,
-     &                    myCurrentTime-deltaTClock)
+     & DIFFERENT_MULTIPLE(pChkptFreq,myTime,
+     &                    myTime-deltaTClock)
 
       IF (
      &    (.NOT. modelEnd .AND. (
      &     permCheckPoint
      &     .OR.
      &     DIFFERENT_MULTIPLE(chkptFreq,
-     &    myCurrentTime,myCurrentTime-deltaTClock)
-     &     ) 
+     &    myTime,myTime-deltaTClock)
+     &     ) .AND. myIter.NE.nIter0
      &    ) 
      &     .OR.
      &    (
@@ -301,7 +323,7 @@ CEOP
      &     permCheckPoint 
      &     .AND. .NOT.
      &     DIFFERENT_MULTIPLE(chkptFreq,
-     &    myCurrentTime,myCurrentTime-deltaTClock)
+     &    myTime,myTime-deltaTClock)
      &    )
      & ) THEN
 
@@ -339,6 +361,9 @@ C       Raw fields
         CALL WRITE_REC_XYZ_RL(  'guCD',  guCD,  1,myIter, myThid)
         CALL WRITE_REC_XYZ_RL(  'gvCD',  gvCD,  1,myIter, myThid)
 #endif
+
+
+
 #ifdef ALLOW_NONHYDROSTATIC
         IF ( nonHydrostatic ) THEN
          CALL WRITE_REC_XYZ_RL('phi_nh',phi_nh,1,myIter,myThid)
@@ -376,6 +401,16 @@ C--     Write model fields
         CALL MDSWRITEFIELD(fn,prec,lgf,'RL', 1,etaH,12*Nr+2,
      &                     myIter,myThid)
 #endif
+
+        IF ( useDynP_inEos_Zc ) THEN
+         IF ( permCheckPoint ) THEN
+          WRITE(fn,'(A,I10.10)') 'pickup_ph.',myIter
+         ELSE
+          WRITE(fn,'(A,A)') 'pickup_ph.',checkPtSuff(nCheckLev)
+         ENDIF
+         CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,totPhiHyd,
+     &                      1,myIter,myThid)
+        ENDIF
 #ifdef INCLUDE_CD_CODE
         IF ( permCheckPoint ) THEN
          WRITE(fn,'(A,I10.10)') 'pickup_cd.',myIter
@@ -405,6 +440,13 @@ c        CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,gWnm1,3,myIter,myThid)
         ENDIF
 #endif
 
+C Create suffix to pass on to package pickup routines
+         IF ( permCheckPoint ) THEN
+          WRITE(fn,'(I10.10)') myIter
+         ELSE
+          WRITE(fn,'(A)') checkPtSuff(nCheckLev)
+         ENDIF
+
 #ifdef  ALLOW_OBCS
 C SPK 4/9/01: Open boundary checkpointing
         IF (useOBCS) THEN
@@ -416,7 +458,7 @@ C SPK 4/9/01: Open boundary checkpointing
 #ifdef ALLOW_FLT
 C--     Write restart file for floats
         IF (useFLT) THEN
-          CALL FLT_RESTART(myCurrentTime, myIter, myThid)
+          CALL FLT_RESTART(myTime, myIter, myThid)
         ENDIF
 #endif
 
@@ -431,6 +473,13 @@ C--     Reset binary precision
 
        _END_MASTER( myThid )
        _BARRIER
+
+#ifdef ALLOW_PTRACERS
+C Write restart file for passive tracers
+       IF (usePTRACERS) THEN
+         CALL PTRACERS_WRITE_CHECKPOINT(fn,myIter,myTime,myThid)
+       ENDIF
+#endif /* ALLOW_PTRACERS */
 
       ENDIF
 

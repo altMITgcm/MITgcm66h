@@ -28,6 +28,7 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#include "EOS.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     === Routine arguments ===
@@ -40,6 +41,8 @@ C     dxSpacing, dySpacing - Default spacing in X and Y.
 C                            Units are that of coordinate system
 C                            i.e. cartesian => metres
 C                                  s. polar => degrees
+C     tmp4delX,tmp8delX - temporary arrays to read in delX
+C     tmp4delY,tmp8delY - temporary arrays to read in delY
 C     goptCount - Used to count the nuber of grid options
 C                 (only one is allowed! )
 C     msgBuf    - Informational/error meesage buffer
@@ -50,12 +53,14 @@ C     K, I, J - Loop counters
 C     xxxDefault - Default value for variable xxx
       _RL  dxSpacing
       _RL  dySpacing
+      REAL*4 tmp4delX(Nx), tmp4delY(Ny)
+      REAL*8 tmp8delX(Nx), tmp8delY(Ny)
       CHARACTER*(MAX_LEN_FNAM) delXfile
       CHARACTER*(MAX_LEN_FNAM) delYfile
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       CHARACTER*(MAX_LEN_PREC) record
       INTEGER goptCount
-      INTEGER K, I, J, IL, iUnit
+      INTEGER K, i, j, IL, iUnit
       INTEGER errIO
       INTEGER  IFNBLNK
       EXTERNAL IFNBLNK
@@ -99,11 +104,13 @@ CEOP
 
 C--   Continuous equation parameters
       NAMELIST /PARM01/
+     & gravitySign,
      & gravity, gBaro, rhonil, tAlpha, sBeta, f0, beta, omega,
      & viscAh,  viscAz,  viscA4, cosPower, viscAstrain, viscAtension,
      & diffKhT, diffKzT, diffK4T, 
      & diffKhS, diffKzS, diffK4S,
-     & tRef, sRef, eosType, Integr_GeoPot,
+     & tRef, sRef, eosType, integr_GeoPot, selectFindRoSurf,
+     & atm_Cp, atm_Rd,
      & no_slip_sides,no_slip_bottom,
      & momViscosity,  momAdvection, momForcing, useCoriolis,
      & momPressureForcing, metricTerms, vectorInvariantMomentum,
@@ -112,21 +119,24 @@ C--   Continuous equation parameters
      & implicSurfPress, implicDiv2DFlow,
      & implicitFreeSurface, rigidLid, freeSurfFac, hFacMin, hFacMinDz,
      & exactConserv,uniformLin_PhiSurf,nonlinFreeSurf,hFacInf,hFacSup,
+     & select_rStar,
      & staggerTimeStep,
      & tempStepping, saltStepping, momStepping, tr1Stepping,
      & implicitDiffusion, implicitViscosity,
      & viscAr, diffKrT, diffKrS, hFacMinDr,
      & viscAp, diffKpT, diffKpS, hFacMinDp,
-     & rhoConst, buoyancyRelation, HeatCapacity_Cp,
+     & rhoConst, rhoConstFresh, buoyancyRelation, HeatCapacity_Cp,
      & writeBinaryPrec, readBinaryPrec, writeStatePrec,
-     & nonHydrostatic, globalFiles,
+     & nonHydrostatic, quasiHydrostatic, globalFiles, useSingleCpuIO,
      & allowFreezing, ivdc_kappa,
      & bottomDragLinear,bottomDragQuadratic,
      & usePickupBeforeC35, debugMode, 
      & readPickupWithTracer, writePickupWithTracer,
      & tempAdvScheme, saltAdvScheme, tracerAdvScheme,
      & multiDimAdvection, useEnergyConservingCoriolis,
-     & useJamartWetPoints, 
+     & useJamartWetPoints, useNHMTerms,
+     & useRealFreshWaterFlux, convertFW2Salt,
+     & temp_EvPrRn, salt_EvPrRn, trac_EvPrRn,
      & zonal_filt_lat
 
 C--   Elliptic solver parameters
@@ -137,10 +147,11 @@ C--   Elliptic solver parameters
 
 C--   Time stepping parammeters
       NAMELIST /PARM03/
-     & nIter0, nTimeSteps, nEndIter, deltaT, deltaTmom, deltaTtracer,
-     & abEps, tauCD, rCD,
+     & nIter0, nTimeSteps, nEndIter,
+     & deltaT, deltaTmom, deltaTtracer, deltaTfreesurf,
+     & forcing_In_AB, abEps, tauCD, rCD,
      & startTime, endTime, chkPtFreq,
-     & dumpFreq, taveFreq, deltaTClock, diagFreq,
+     & dumpFreq, taveFreq, tave_lastIter, deltaTClock, diagFreq,
      & monitorFreq, pChkPtFreq, cAdjFreq, 
      & tauThetaClimRelax, tauSaltClimRelax, tauTr1ClimRelax,
      & periodicExternalForcing, externForcingPeriod, externForcingCycle
@@ -150,7 +161,7 @@ C--   Gridding parameters
      & usingCartesianGrid, dxSpacing, dySpacing, delX, delY, delZ,
      & usingSphericalPolarGrid, phiMin, thetaMin, rSphere,
      & usingCurvilinearGrid,
-     & delP, delR, rkFac, Ro_SeaLevel, groundAtK1,
+     & delP, delR, rkFac, Ro_SeaLevel, groundAtK1, delRc,
      & delXfile, delYfile
 
 C--   Input files
@@ -160,7 +171,7 @@ C--   Input files
      & thetaClimFile, saltClimFile,
      & surfQfile, EmPmRfile, surfQswfile, 
      & uVelInitFile, vVelInitFile, pSurfInitFile,
-     & dQdTFile
+     & dQdTFile, ploadFile
 
 C
       _BEGIN_MASTER(myThid)
@@ -259,6 +270,9 @@ C--   Set default "physical" parameters
       hFacMinDr           = UNSET_RL
       hFacMinDz           = UNSET_RL
       hFacMinDp           = UNSET_RL
+      convertFW2Salt = UNSET_RL
+      tAlpha              = UNSET_RL
+      sBeta               = UNSET_RL
       READ(UNIT=iUnit,NML=PARM01) !,IOSTAT=errIO)
       IF ( errIO .LT. 0 ) THEN
        WRITE(msgBuf,'(A)')
@@ -280,10 +294,16 @@ C--   Set default "physical" parameters
        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT , 1) 
       ENDIF
+
       IF ( implicitFreeSurface ) freeSurfFac = 1.D0
       IF ( rigidLid            ) freeSurfFac = 0.D0
       IF ( gBaro .EQ. UNSET_RL ) gBaro=gravity
       IF ( rhoConst .EQ. UNSET_RL ) rhoConst=rhoNil
+      IF (atm_Rd .EQ. UNSET_RL) THEN
+        atm_Rd = atm_Cp * atm_kappa
+      ELSE
+        atm_kappa = atm_Rd / atm_Cp
+      ENDIF
 C--   Momentum viscosity on/off flag.
       IF ( momViscosity        ) THEN
        vfFacMom = 1.D0
@@ -320,6 +340,18 @@ C--   Metric terms on/off flag.
       ELSE
        mTFacMom = 0.D0
       ENDIF
+C--   Non-hydrostatic/quasi-hydrostatic
+      IF (nonHydrostatic.AND.quasiHydrostatic) THEN
+       WRITE(msgBuf,'(A)')
+     &   'Illegal: both nonHydrostatic = quasiHydrostatic = TRUE'
+       CALL PRINT_ERROR( msgBuf , myThid)
+       STOP 'ABNORMAL END: S/R INI_PARMS'
+      ENDIF
+C--   Advection and Forcing for Temp and salt  on/off flags
+      tempAdvection = tempStepping .AND. tempAdvection
+      tempForcing   = tempStepping .AND. tempForcing
+      saltAdvection = saltStepping .AND. saltAdvection
+      saltForcing   = saltStepping .AND. saltForcing
 C--   z,p,r coord input switching.
       IF ( viscAz .NE. UNSET_RL ) zCoordInputData = .TRUE.
       IF ( viscAp .NE. UNSET_RL ) pCoordInputData = .TRUE.
@@ -349,28 +381,15 @@ C--   z,p,r coord input switching.
       IF ( hFacMinDr .EQ. UNSET_RL ) hFacMinDr       = hFacMinDp
       IF ( hFacMinDr .EQ. UNSET_RL ) hFacMinDr       = hFacMinDrDefault
 
-      IF ( ivdc_kappa .NE. 0. .AND. .NOT. implicitDiffusion ) THEN
-       WRITE(msgBuf,'(A,A)')
-     &  'S/R INI_PARMS: To use ivdc_kappa you must enable implicit',
-     &  ' vertical diffusion.'
-       CALL PRINT_ERROR( msgBuf , myThid)
-       STOP 'ABNORMAL END: S/R INI_PARMS'
+      IF (convertFW2Salt.EQ.UNSET_RL) THEN
+        convertFW2Salt = 35.
+        IF (useRealFreshWaterFlux) convertFW2Salt=-1
       ENDIF
 
-      IF ( implicitFreeSurface .AND.  rigidLid ) THEN
-       WRITE(msgBuf,'(A,A)')
-     & 'S/R INI_PARMS: Cannot select both implicitFreeSurface',
-     & ' and rigidLid.'
-       CALL PRINT_ERROR( msgBuf , myThid)
-       STOP 'ABNORMAL END: S/R INI_PARMS'
-      ENDIF
-      IF ( (implicSurfPress.NE.1. .OR. implicDiv2DFlow.NE.1.)
-     &    .AND. nonHydrostatic ) THEN 
-       WRITE(msgBuf,'(A,A)') 'S/R INI_PARMS: nonHydrostatic', 
-     & ' NOT SAFE with non-fully implicit Barotropic solver' 
-       CALL PRINT_ERROR( msgBuf , myThid)
-       WRITE(msgBuf,'(A,A)') 'S/R INI_PARMS: To by-pass this',
-     &    'STOP, comment this test and re-compile ini_params'
+      IF ( ivdc_kappa .NE. 0. .AND. .NOT. implicitDiffusion ) THEN
+        WRITE(msgBuf,'(A,A)')
+     &  'S/R INI_PARMS: To use ivdc_kappa you must enable implicit',
+     &  ' vertical diffusion.'
        CALL PRINT_ERROR( msgBuf , myThid)
        STOP 'ABNORMAL END: S/R INI_PARMS'
       ENDIF
@@ -491,6 +510,12 @@ C     o Time step size
       IF ( deltaTmom    .EQ. 0. ) deltaTmom    = deltaT
       IF ( deltaTtracer .EQ. 0. ) deltaTtracer = deltaT
       IF ( deltaTClock  .EQ. 0. ) deltaTClock  = deltaT
+C Note that this line should set deltaFreesurf=deltaTmom
+C but this would change a lot of existing set-ups so we are
+C obliged to set the default inappropriately.
+C Be advised that when using asynchronous time stepping
+C it is better to set deltaTreesurf=deltaTtracer
+      IF ( deltaTfreesurf .EQ. 0. ) deltaTfreesurf  = deltaTmom
       IF ( periodicExternalForcing ) THEN
        IF ( externForcingCycle*externForcingPeriod .EQ. 0. ) THEN
         WRITE(msgBuf,'(A)')
@@ -623,24 +648,6 @@ C     o Monitor (should also add CPP flag for monitor?)
        IF (monitorFreq.EQ.0.) monitorFreq=deltaTclock
       ENDIF
 
-C     o If taveFreq is finite, then we must make sure the diagnostics
-C       code is being compiled
-#ifndef ALLOW_TIMEAVE
-      IF (taveFreq.NE.0.) THEN
-        WRITE(msgBuf,'(A)')
-     &  'S/R INI_PARMS: taveFreq <> 0  but you have'
-        CALL PRINT_ERROR( msgBuf , 1)
-        WRITE(msgBuf,'(A)')
-     &  'not compiled the model with the diagnostics routines.'
-        CALL PRINT_ERROR( msgBuf , 1)
-        WRITE(msgBuf,'(A,A)')
-     &  'Re-compile with:  #define ALLOW_TIMEAVE',
-     &  '              or  -DALLOW_TIMEAVE'
-        CALL PRINT_ERROR( msgBuf , 1)
-        STOP 'ABNORMAL END: S/R INI_PARMS'
-      ENDIF
-#endif
- 
 C--   Grid parameters
 C     In cartesian coords distances are in metres
       rkFac = UNSET_RS
@@ -655,7 +662,7 @@ C     In spherical polar distances are in degrees
       dySpacing = UNSET_RL
       delXfile = ' '
       delYfile = ' '
-      READ(UNIT=iUnit,NML=PARM04) !,IOSTAT=errIO)
+      READ(UNIT=iUnit,NML=PARM04,IOSTAT=errIO)
       IF ( errIO .LT. 0 ) THEN
        WRITE(msgBuf,'(A)')
      &  'S/R INI_PARMS'
@@ -689,19 +696,25 @@ C     X coordinate
         IF (readBinaryPrec.EQ.precFloat32) THEN
          OPEN(37,FILE=delXfile,STATUS='OLD',FORM='UNFORMATTED',
      &        ACCESS='DIRECT',RECL=WORDLENGTH*Nx)
-         READ(37,rec=1) delX
+         READ(37,rec=1) tmp4delX
 #ifdef _BYTESWAPIO
-            call MDS_BYTESWAPR4( Nx, delX )
+            call MDS_BYTESWAPR4( Nx, tmp4delX )
 #endif
          CLOSE(37)
+         DO i=1,Nx
+           delX(i) = tmp4delX(i)
+         ENDDO
         ELSEIF (readBinaryPrec.EQ.precFloat64) THEN
          OPEN(37,FILE=delXfile,STATUS='OLD',FORM='UNFORMATTED',
      &        ACCESS='DIRECT',RECL=WORDLENGTH*2*Nx)
-         READ(37,rec=1) delX
+         READ(37,rec=1) tmp8delX
 #ifdef _BYTESWAPIO
-            call MDS_BYTESWAPR8( Nx, delX )
+            call MDS_BYTESWAPR8( Nx, tmp8delX )
 #endif
          CLOSE(37)
+         DO i=1,Nx
+           delX(i) = tmp8delX(i)
+         ENDDO
         ENDIF
         _END_MASTER(myThid)
        ENDIF
@@ -723,19 +736,25 @@ C     Y coordinate
         IF (readBinaryPrec.EQ.precFloat32) THEN
          OPEN(37,FILE=delYfile,STATUS='OLD',FORM='UNFORMATTED',
      &        ACCESS='DIRECT',RECL=WORDLENGTH*Ny)
-         READ(37,rec=1) delY
+         READ(37,rec=1) tmp4delY
 #ifdef _BYTESWAPIO
-            call MDS_BYTESWAPR4( Ny, delY )
+            call MDS_BYTESWAPR4( Ny, tmp4delY )
 #endif
          CLOSE(37)
+         DO j=1,Ny
+           delY(j) = tmp4delY(j)
+         ENDDO
         ELSEIF (readBinaryPrec.EQ.precFloat64) THEN
          OPEN(37,FILE=delYfile,STATUS='OLD',FORM='UNFORMATTED',
      &        ACCESS='DIRECT',RECL=WORDLENGTH*2*Ny)
-         READ(37,rec=1) delY
+         READ(37,rec=1) tmp8delY
 #ifdef _BYTESWAPIO
-            call MDS_BYTESWAPR8( Ny, delY )
+            call MDS_BYTESWAPR8( Ny, tmp8delY )
 #endif
          CLOSE(37)
+         DO j=1,Ny
+           delY(j) = tmp8delY(j)
+         ENDDO
         ENDIF
         _END_MASTER(myThid)
        ENDIF
@@ -750,25 +769,6 @@ C
        recip_rSphere = 1.D0/rSphere
       ELSE
        recip_rSphere = 0.
-      ENDIF
-C--   Initialize EOS coefficients (3rd order polynomial)
-      IF (eostype.eq.'POLY3') THEN
-       OPEN(37,FILE='POLY3.COEFFS',STATUS='OLD',FORM='FORMATTED')
-       READ(37,*) I
-       IF (I.NE.Nr) THEN
-        WRITE(msgBuf,'(A)')
-     &  'ini_parms: attempt to read POLY3.COEFFS failed'
-        CALL PRINT_ERROR( msgBuf , 1)
-        WRITE(msgBuf,'(A)')
-     &  '           because bad # of levels in data'
-        CALL PRINT_ERROR( msgBuf , 1)
-        STOP 'Bad data in POLY3.COEFFS'
-       ENDIF
-       READ(37,*) (eosRefT(K),eosRefS(K),eosSig0(K),K=1,Nr)
-       DO K=1,Nr
-        READ(37,*) (eosC(I,K),I=1,9)
-       ENDDO
-       CLOSE(37)
       ENDIF
 C--   Check for conflicting grid definitions.
       goptCount = 0
@@ -791,6 +791,7 @@ C--   Make metric term settings consistent with underlying grid.
       IF ( usingCartesianGrid ) THEN
        usingSphericalPolarMterms = .FALSE.
        metricTerms = .FALSE.
+       useNHMTerms = .FALSE.
        mTFacMom = 0.
        useBetaPlaneF = .TRUE.
       ENDIF
@@ -802,7 +803,15 @@ C--   Make metric term settings consistent with underlying grid.
       ENDIF
       IF ( usingCurvilinearGrid ) THEN
        useSphereF    = .TRUE.
+       metricTerms = .FALSE.
+       useNHMTerms = .FALSE.
       ENDIF
+C--   set cell Center depth and put Interface at the middle between 2 C
+      setCenterDr = .FALSE.
+      IF (delRc(1).NE.UNSET_RL) setCenterDr=.TRUE.
+      DO K=1,Nr+1
+        IF (delRc(K).EQ.UNSET_RL) setCenterDr = .FALSE.
+      ENDDO
 C--   p, z, r coord parameters
       DO K = 1, Nr
        IF ( delZ(K) .NE. UNSET_RL ) zCoordInputData = .TRUE.
@@ -811,9 +820,14 @@ C--   p, z, r coord parameters
        IF ( delR(K) .EQ. UNSET_RL ) delR(K) = delZ(K)
        IF ( delR(K) .EQ. UNSET_RL ) delR(K) = delP(K)
        IF ( delR(K) .EQ. UNSET_RL ) delR(K) = delRDefault(K)
-       IF ( delR(K) .EQ. 0. ) THEN
+       IF (.NOT.setCenterDr .AND. delR(K).EQ.delRDefault(K) ) THEN
          WRITE(msgBuf,'(A,I4)')
      &  'S/R INI_PARMS: No value for delZ/delP/delR at K = ',K
+         CALL PRINT_ERROR( msgBuf , 1)
+         STOP 'ABNORMAL END: S/R INI_PARMS'
+       ELSEIF ( setCenterDr .AND. delR(K).NE.delRDefault(K) ) THEN
+         WRITE(msgBuf,'(2A,I4)') 'S/R INI_PARMS:',
+     &    ' Cannot specify both delRc and delZ/delP/delR at K=', K
          CALL PRINT_ERROR( msgBuf , 1)
          STOP 'ABNORMAL END: S/R INI_PARMS'
        ENDIF
@@ -829,6 +843,14 @@ C     Check for multiple coordinate systems
        CALL PRINT_ERROR( msgBuf , myThid)
        STOP 'ABNORMAL END: S/R INI_PARMS'
       ENDIF
+
+C--   When using the dynamical pressure in EOS (with Z-coord.),
+C     needs to activate specific part of the code (restart & exchange)
+c     useDynP_inEos_Zc = .FALSE.
+      useDynP_inEos_Zc = ( buoyancyRelation .EQ. 'OCEANIC'
+     &              .AND. ( eosType .EQ. 'JMD95P' .OR.
+     &                      eosType .EQ. 'UNESCO' .OR.
+     &                      eosType .EQ. 'MDJWF'       )  )
 
 C--   Input files
       READ(UNIT=iUnit,NML=PARM05) !,IOSTAT=errIO)
@@ -850,7 +872,6 @@ C--   Input files
      &                    SQUEEZE_RIGHT , 1) 
       ENDIF       
 
-C
 C--   Set factors required for mixing pressure and meters as vertical coordinate.
 C     rkFac is a "sign" parameter which is used where the orientation of the vertical
 C     coordinate (pressure or meters) relative to the vertical index (K) is important.
@@ -864,15 +885,21 @@ C     being combined and a single frame of reference is needed.
        horiVertRatio = 1.D0
       ENDIF
       IF ( pCoordInputData .AND. rkFac .EQ. UNSET_RS ) THEN
-       rkFac = -1.D0
+C- jmc: any time P-coordinate is used (ocean,atmos), it requires rkFac=1
+c      rkFac = -1.D0
        horiVertRatio = Gravity * rhoConst
       ENDIF
       IF ( rCoordInputData .AND. rkFac .EQ. UNSET_RS ) THEN
        rkFac =  1.D0
        horiVertRatio = 1.D0
       ENDIF
+      convertEmP2rUnit = 1. _d 0
       IF (buoyancyRelation.EQ.'ATMOSPHERIC')
-     &   horiVertRatio = Gravity * rhoConst                                     
+     &   horiVertRatio = Gravity * rhoConst
+      IF (buoyancyRelation.EQ.'OCEANICP') THEN
+         horiVertRatio = Gravity * rhoConst
+         convertEmP2rUnit = Gravity * rhoConstFresh
+      ENDIF
       IF ( rkFac .EQ. UNSET_RS ) rkFac=rkFacDefault
       recip_rkFac = 1.D0 / rkFac
       recip_horiVertRatio = 1./horiVertRatio
@@ -902,7 +929,6 @@ C--   Stop if they were
 C--   Everyone else must wait for the parameters to be loaded
       _BARRIER
 C
-
       RETURN
       END
 

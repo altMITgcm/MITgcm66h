@@ -48,6 +48,7 @@ C      o Constant F case
            DO I=1-Olx,sNx+Olx
             fCori(i,j,bi,bj)=f0
             fCoriG(i,j,bi,bj)=f0
+            fCoriCos(i,j,bi,bj)=0.
            ENDDO
           ENDDO
          ENDDO
@@ -64,6 +65,7 @@ C      o Beta plane case
            DO I=1-Olx,sNx+Olx
             fCori(i,j,bi,bj)=f0+beta*_yC(i,j,bi,bj)*facGrid
             fCoriG(i,j,bi,bj)=f0+beta*yG(i,j,bi,bj)*facGrid
+            fCoriCos(i,j,bi,bj)=0.
            ENDDO
           ENDDO
          ENDDO
@@ -81,6 +83,8 @@ C        Note in this case we assume yC is in degrees.
      &       2. _d 0*omega*sin(_yC(i,j,bi,bj)*deg2rad)
             fCoriG(i,j,bi,bj)=
      &       2. _d 0*omega*sin(yG(i,j,bi,bj)*deg2rad)
+            fCoriCos(i,j,bi,bj)=
+     &       2. _d 0*omega*cos(_yC(i,j,bi,bj)*deg2rad)
            ENDDO
           ENDDO
          ENDDO
@@ -95,6 +99,7 @@ C      o Special custom form
            DO I=1-Olx,sNx+Olx
             fCori(i,j,bi,bj)=0.
             fCoriG(i,j,bi,bj)=0.
+            fCoriCos(i,j,bi,bj)=0.
            ENDDO
           ENDDO
          ENDDO
@@ -104,9 +109,13 @@ C      o Special custom form
 C
 c     _EXCH_XY_R4(fCori,myThid)
 c     CALL EXCH_Z_XY_RS(fCoriG,myThid)
+c     _EXCH_XY_R4(fCoriCos,myThid)
 
+#ifndef EXCLUDE_MONITOR
       CALL MON_PRINTSTATS_RS(1,fCori,'fCori',myThid)
       CALL MON_PRINTSTATS_RS(1,fCoriG,'fCoriG',myThid)
+      CALL MON_PRINTSTATS_RS(1,fCoriCos,'fCoriCos',myThid)
+#endif
 
       RETURN
       END

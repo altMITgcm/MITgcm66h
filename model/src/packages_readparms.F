@@ -1,5 +1,3 @@
-C $Header$
-C $Name$
 
 #include "CPP_OPTIONS.h"
 
@@ -31,6 +29,8 @@ C       |-- GMREDI_READPARMS
 C       |
 C       |-- KPP_READPARMS
 C       |
+C       |-- SBO_READPARMS
+C       |
 C       |-- SEAICE_READPARMS
 C       |
 C       |-- SHAP_FILT_READPARMS
@@ -39,7 +39,7 @@ C       |-- ZONAL_FILT_READPARMS
 C       |
 C       |-- OBCS_READPARMS
 C       |
-C       |-- AIM_READPARMS
+C       |-- AIM_INITIALISE
 C       |
 C       |-- COST_READPARMS
 C       |
@@ -73,6 +73,11 @@ C--   Initialize KPP parameters
       IF (useKPP) CALL KPP_READPARMS( myThid )
 #endif
 
+#ifdef ALLOW_SBO
+C--   Initialize SBO parameters
+      IF (useSBO) CALL SBO_READPARMS( myThid )
+#endif
+
 #ifdef ALLOW_SEAICE
 C--   Initialize SEAICE parameters
       IF (useSEAICE) CALL SEAICE_READPARMS( myThid )
@@ -86,25 +91,32 @@ C--   Initialize SEAICE parameters
       IF (useZONAL_FILT) CALL ZONAL_FILT_READPARMS( myThid )
 #endif
 
-#ifdef ALLOW_FLT
-C--   Initialise Float positions
-      IF (useFLT) then
-       CALL FLT_INIT(nIter0,startTime,myThid )
-      _BARRIER
-      ENDIF
+#ifdef ALLOW_OBCS
+      IF (useOBCS) CALL OBCS_READPARMS( myThid )
 #endif
 
-#ifdef ALLOW_OBCS
-      IF (useOBCS) THEN
-       CALL OBCS_READPARMS( myThid )
-       CALL OBCS_INIT_FIXED( myThid )
-      ENDIF
+cswdblk -- add ---
+#ifdef ALLOW_BULK_FORCE
+C -- initialize Bulkf parameters
+      IF (useBulkForce) call BULKF_READPARMS( myThid )
+#endif
+cswdblk --- end add ---
+
+cswdice -- add ---
+#ifdef ALLOW_THERM_SEAICE
+C -- initialize Sea Ice parameters
+      IF (useThermSeaIce) call ICE_READPARMS( myThid )
+#endif
+cswdice --- end add ---
+
+
+#ifdef ALLOW_PTRACERS
+      IF (usePTRACERS) CALL PTRACERS_READPARMS( myThid )
 #endif
 
 #ifdef ALLOW_AIM
-c--   Read in AIM package parameters
-C     Currently AIM does not have any runtime parameters
-C     IF (useAIM) CALL AIM_READPARMS ( myThid )
+C--   Initialise & Read AIM physical parameters
+      IF (useAIM) CALL AIM_INITIALISE( myThid )
 #endif
 
 #if (defined (ALLOW_ADJOINT_RUN) || defined (ALLOW_TANGENTLINEAR_RUN))

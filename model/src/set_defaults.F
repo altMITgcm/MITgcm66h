@@ -31,6 +31,7 @@ C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+Cml#include "EOS.h"
 #include "GRID.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
@@ -58,6 +59,9 @@ C     Vertical gridding
       DO k=1,Nr
        delRdefault(k) = 0.
       ENDDO
+      DO k=1,Nr+1
+       delRc(k) = UNSET_RL
+      ENDDO
 
 C     Horizontal gridding
 C     In cartesian coords distances are in metres
@@ -79,9 +83,12 @@ C     General curvilinear coordinate system
 C--   Set default "physical" parameters
       DO K =1,Nr
        tRef(K) = 30.D0 - FLOAT( K )
+Cml       sRef(K) = 35.D0
       ENDDO
+      gravitySign         = 1.D0
       gravity             = 9.81D0
       rhoNil              = 999.8D0
+      rhoConstFresh       = 999.8D0
       f0                  = 1.D-4
       beta                = 1.D-11
       omega               = 2.D0 * PI / ( 3600.D0 * 24.D0 )
@@ -100,21 +107,12 @@ C--   Set default "physical" parameters
       diffK4S             = 0.D11
       cosPower            = 0.
       HeatCapacity_Cp     = 3994.D0
-      tAlpha              = 2.D-4
-      sBeta               = 7.4D-4
+Cml      tAlpha              = 2.D-4
+Cml      sBeta               = 7.4D-4
       eosType             = 'LINEAR'
       buoyancyRelation    = 'OCEANIC'
-      implicitFreeSurface = .TRUE.
-      rigidLid            = .FALSE.
-      implicSurfPress     = 1.D0
-      implicDiv2DFlow     = 1.D0
       hFacMin             = 1.D0
       hFacMinDrDefault    = 0.D0
-      exactConserv        = .FALSE.
-      uniformLin_PhiSurf  = .TRUE.
-      nonlinFreeSurf      = 0
-      hFacInf             = 1.D0
-      hFacSup             = 1.D0
       staggerTimeStep     = .FALSE.
       momViscosity        = .TRUE.
       momAdvection        = .TRUE.
@@ -124,13 +122,20 @@ C--   Set default "physical" parameters
       momStepping         = .TRUE.
       vectorInvariantMomentum = .FALSE.
       tempStepping        = .TRUE.
+      tempAdvection       = .TRUE.
+      tempForcing         = .TRUE.
       saltStepping        = .TRUE.
+      saltAdvection       = .TRUE.
+      saltForcing         = .TRUE.
       tr1Stepping         = .FALSE.
       metricTerms         = .TRUE.
+      useNHMTerms         = .TRUE.
       implicitDiffusion   = .FALSE.
       implicitViscosity   = .FALSE.
       nonHydrostatic      = .FALSE.
+      quasiHydrostatic    = .FALSE.
       globalFiles         = .FALSE.
+      useSingleCpuIO      = .FALSE.
       allowFreezing       = .FALSE.
       ivdc_kappa          = 0.D0
       groundAtK1          = .FALSE.
@@ -147,11 +152,29 @@ C--   Set default "physical" parameters
       useEnergyConservingCoriolis = .FALSE.
       useJamartWetPoints  = .FALSE.
 
+C--   Set (free)surface-related parameters
+      implicitFreeSurface = .TRUE.
+      rigidLid            = .FALSE.
+      implicSurfPress     = 1.D0
+      implicDiv2DFlow     = 1.D0
+      exactConserv        = .FALSE.
+      uniformLin_PhiSurf  = .TRUE.
+      nonlinFreeSurf      = 0
+      hFacInf             = 1.D0
+      hFacSup             = 1.D0
+      select_rStar        = 0
+      useRealFreshWaterFlux = .FALSE.
+      temp_EvPrRn = UNSET_RL
+      salt_EvPrRn = 0.
+      trac_EvPrRn = UNSET_RL
+
 C--   Atmospheric physical parameters (e.g.: EOS)
-      atm_po =  1.D5
-      atm_cp =  1004.D0
+      atm_Po =  1.D5
+      atm_Cp =  1004.D0
+      atm_Rd =  UNSET_RL
       atm_kappa = 2.D0 / 7.D0
-      Integr_GeoPot = 2
+      integr_GeoPot = 2
+      selectFindRoSurf = 0
 
 C--   Elliptic solver parameters
       cg2dMaxIters       = 150
@@ -170,6 +193,7 @@ C--   Time stepping parameters
       nTimeSteps        = 0
       nEndIter          = nIter0+nTimeSteps
       endTime           = deltaT*float(nEndIter)
+      forcing_In_AB     = .TRUE.
       abEps             = 0.01
       pchkPtFreq        = deltaT*0
       chkPtFreq         = deltaT*0
@@ -177,6 +201,7 @@ C--   Time stepping parameters
       diagFreq          = deltaT*0
       monitorFreq       = -1.
       taveFreq          = deltaT*0
+      tave_lastIter     = 0.5 _d 0
       writeStatePrec    = precFloat64
       writeBinaryPrec   = precFloat32
       readBinaryPrec    = precFloat32
@@ -208,8 +233,8 @@ C--   Input files
       vVelInitFile    = ' '
       pSurfInitFile   = ' '
       dQdTFile        = ' '
+      ploadFile       = ' '
 
 C
       RETURN
       END
-

@@ -18,9 +18,13 @@ C     \ev
 C     !CALLING SEQUENCE:
 C     PACKAGES_INIT_FIXED
 C       |
+C       |-- GAD_INIT
+C       |
 C       |-- OBCS_INIT_FIXED
 C       |
 C       |-- FLT_INIT
+C       |
+C       |-- ZONAL_FILT_INIT
 
 C     !USES:
       IMPLICIT NONE
@@ -34,6 +38,30 @@ C     === Routine arguments ===
 C     myThid -  Number of this instances
       INTEGER myThid
 CEOP
+
+C--   Initialize fixed params for GAD
+      CALL GAD_INIT( myThid )
+
+C--   Initialize fixed arrays for OBCS
+#ifdef ALLOW_OBCS
+      IF (useOBCS) THEN
+       CALL OBCS_INIT_FIXED( myThid )
+      ENDIF
+#endif
+#ifdef ALLOW_FLT
+C--   Initialise Float positions
+      IF (useFLT) THEN
+       CALL FLT_INIT(nIter0,startTime,myThid )
+      _BARRIER
+      ENDIF
+#endif
+#ifdef ALLOW_ZONAL_FILT
+C--   Latitude circle filter initialisation
+      IF (useZONAL_FILT) THEN
+       CALL ZONAL_FILT_INIT(myThid)
+      _BARRIER
+      ENDIF
+#endif
 
       RETURN
       END

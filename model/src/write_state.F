@@ -7,7 +7,7 @@ C $Name$
 CBOP
 C     !ROUTINE: WRITE_STATE 
 C     !INTERFACE:
-      SUBROUTINE WRITE_STATE ( myCurrentTime, myIter, myThid )
+      SUBROUTINE WRITE_STATE ( myTime, myIter, myThid )
 C     !DESCRIPTION: \bv
 C     *==========================================================*
 C     | SUBROUTINE WRITE_STATE                                    
@@ -55,6 +55,8 @@ C     == Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "DYNVARS.h"
+#include "GRID.h" 
+#include "EOS.h"
 #ifdef ALLOW_PASSIVE_TRACER
 #include "TR1.h"
 #endif
@@ -67,8 +69,8 @@ C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     myThid - Thread number for this instance of the routine.
 C     myIter - Iteration number
-C     myCurrentTime - Current time of simulation ( s )
-      _RL     myCurrentTime
+C     myTime - Current time of simulation ( s )
+      _RL     myTime
       INTEGER myThid
       INTEGER myIter
 
@@ -79,15 +81,15 @@ C     == Local variables ==
 CEOP
 
       IF ( 
-     &     DIFFERENT_MULTIPLE(dumpFreq,myCurrentTime,
-     &     myCurrentTime-deltaTClock) .OR. 
-     &     myCurrentTime.EQ.endTime .OR.
-     &     myCurrentTime.EQ.startTime
+     &     DIFFERENT_MULTIPLE(dumpFreq,myTime,
+     &     myTime-deltaTClock) .OR. 
+     &     myTime.EQ.endTime .OR.
+     &     myTime.EQ.startTime
      &     ) THEN
          IF ( dumpFreq .EQ. 0.0 ) THEN
             iRec = 1
          ELSE
-            iRec = int ( (myCurrentTime-startTime) / dumpFreq +1.5 )
+            iRec = int ( (myTime-startTime) / dumpFreq +1.5 )
          ENDIF
          
 C--   Going to really do some IO. Make everyone except master thread wait.
@@ -95,7 +97,9 @@ C--   Going to really do some IO. Make everyone except master thread wait.
          _BEGIN_MASTER( myThid )
 
 C--     Write model fields
+
 #ifdef MULTIPLE_RECORD_STATE_FILES
+
 C       Write each snap-shot as a new record in one file per variable
 C       - creates relatively few files but these files can become huge
         CALL WRITE_REC_XYZ_RL( 'U',  uVel,iRec,myIter,myThid)
@@ -112,7 +116,14 @@ C       - creates relatively few files but these files can become huge
          CALL WRITE_REC_XYZ_RL( 'PNH',phi_nh,iRec,myIter,myThid)
         ENDIF
 #endif /* ALLOW_NONHYDROSTATIC */
-#else
+#ifdef NONLIN_FRSURF
+        CALL WRITE_REC_XYZ_RS('hFacC.',hFacC,iRec,myIter,myThid)
+        CALL WRITE_FLD_XYZ_RS('hFacW.',hFacW,iRec,myIter,myThid)
+        CALL WRITE_FLD_XYZ_RS('hFacS.',hFacS,iRec,myIter,myThid)
+#endif /* NONLIN_FRSURF */
+
+#else /* MULTIPLE_RECORD_STATE_FILES */
+
 C       Write each snap-shot as a new file (original and default method)
 C       - creates many files but for large configurations is easier to
 C         transfer analyse a particular snap-shots
@@ -123,6 +134,9 @@ C         transfer analyse a particular snap-shots
         CALL WRITE_FLD_XYZ_RL( 'S.',suff,salt,myIter,myThid)
         CALL WRITE_FLD_XY_RL('Eta.',suff,etaN,myIter,myThid)
         CALL WRITE_FLD_XYZ_RL( 'W.',suff,wVel,myIter,myThid)
+        CALL WRITE_FLD_XYZ_RL( 'PH.',suff,totPhiHyd,myIter,myThid)
+        IF ( buoyancyRelation .NE. 'ATMOSPHERIC' )
+     &   CALL WRITE_FLD_XY_RL('PHL.',suff,phiHydLow,myIter,myThid)
 #ifdef ALLOW_PASSIVE_TRACER
         CALL WRITE_FLD_XYZ_RL( 'TR1.',suff,tr1,myIter,myThid)
 #endif
@@ -131,8 +145,17 @@ C         transfer analyse a particular snap-shots
          CALL WRITE_FLD_XYZ_RL( 'PNH.',suff,phi_nh,myIter,myThid)
         ENDIF
 #endif /* ALLOW_NONHYDROSTATIC */
+#ifdef NONLIN_FRSURF
+        CALL WRITE_FLD_XYZ_RS('hFacC.',suff,hFacC,myIter,myThid)
+        CALL WRITE_FLD_XYZ_RS('hFacW.',suff,hFacW,myIter,myThid)
+        CALL WRITE_FLD_XYZ_RS('hFacS.',suff,hFacS,myIter,myThid)
+#endif /* NONLIN_FRSURF */
+
 #endif /* MULTIPLE_RECORD_STATE_FILES */
 
+#ifdef ALLOW_PTRACERS
+       IF (usePTRACERS) CALL PTRACERS_WRITE_STATE(myIter,myTime,myThid)
+#endif /* ALLOW_PTRACERS */
          _END_MASTER( myThid )
          _BARRIER
 

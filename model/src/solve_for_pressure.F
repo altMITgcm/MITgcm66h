@@ -6,7 +6,7 @@ C $Name$
 CBOP
 C     !ROUTINE: SOLVE_FOR_PRESSURE
 C     !INTERFACE:
-      SUBROUTINE SOLVE_FOR_PRESSURE( myThid )
+      SUBROUTINE SOLVE_FOR_PRESSURE(myTime, myIter, myThid)
 
 C     !DESCRIPTION: \bv
 C     *==========================================================*
@@ -25,6 +25,7 @@ C     == Global variables
 #include "DYNVARS.h"
 #include "GRID.h"
 #include "SURFACE.h"
+#include "FFIELDS.h"
 #ifdef ALLOW_NONHYDROSTATIC
 #include "SOLVE_FOR_PRESSURE3D.h"
 #include "GW.h"
@@ -34,9 +35,17 @@ C     == Global variables
 #endif
 #include "SOLVE_FOR_PRESSURE.h"
 
+C     === Functions ====
+      LOGICAL  DIFFERENT_MULTIPLE
+      EXTERNAL DIFFERENT_MULTIPLE
+
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
-C     myThid - Number of this instance of SOLVE_FOR_PRESSURE
+C     myTime - Current time in simulation
+C     myIter - Current iteration number in simulation
+C     myThid - Thread number for this instance of SOLVE_FOR_PRESSURE
+      _RL myTime
+      INTEGER myIter
       INTEGER myThid
 
 C     !LOCAL VARIABLES:
@@ -45,6 +54,7 @@ C     == Local variables ==
       _RS uf(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RS vf(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RL firstResidual,lastResidual
+      _RL tmpFac
       INTEGER numIters
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 CEOP
@@ -59,12 +69,19 @@ C--   Save previous solution & Initialise Vector solution and source term :
 #endif
           cg2d_x(i,j,bi,bj) = Bo_surf(i,j,bi,bj)*etaN(i,j,bi,bj)
           cg2d_b(i,j,bi,bj) = 0.
-#ifdef USE_NATURAL_BCS
-     &     + freeSurfFac*_rA(i,j,bi,bj)*
-     &       EmPmR(I,J,bi,bj)/deltaTMom
-#endif
          ENDDO
         ENDDO
+        IF (useRealFreshWaterFlux) THEN
+         tmpFac = freeSurfFac*convertEmP2rUnit
+         IF (exactConserv) 
+     &        tmpFac = freeSurfFac*convertEmP2rUnit*implicDiv2DFlow
+         DO j=1,sNy
+          DO i=1,sNx
+           cg2d_b(i,j,bi,bj) = 
+     &       tmpFac*_rA(i,j,bi,bj)*EmPmR(i,j,bi,bj)/deltaTMom
+          ENDDO
+         ENDDO
+        ENDIF
        ENDDO
       ENDDO
 
@@ -92,25 +109,27 @@ C--   Add source term arising from w=d/dt (p_s + p_nh)
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
 #ifdef ALLOW_NONHYDROSTATIC
-        DO j=1,sNy
-         DO i=1,sNx
-          cg2d_b(i,j,bi,bj) = cg2d_b(i,j,bi,bj)
-     &      -freeSurfFac*_rA(i,j,bi,bj)/deltaTMom/deltaTMom
-     &        *( etaN(i,j,bi,bj)
-     &          +phi_nh(i,j,1,bi,bj)*horiVertRatio/gravity )
-          cg3d_b(i,j,1,bi,bj) = cg3d_b(i,j,1,bi,bj)
-     &      -freeSurfFac*_rA(i,j,bi,bj)/deltaTMom/deltaTMom
-     &        *( etaN(i,j,bi,bj)
-     &          +phi_nh(i,j,1,bi,bj)*horiVertRatio/gravity )
-         ENDDO
-        ENDDO
-#else
-        IF ( exactConserv ) THEN
-c       IF (nonlinFreeSurf.GT.0) THEN
+        IF ( nonHydrostatic ) THEN
          DO j=1,sNy
           DO i=1,sNx
            cg2d_b(i,j,bi,bj) = cg2d_b(i,j,bi,bj)
-     &       -freeSurfFac*_rA(i,j,bi,bj)/deltaTMom/deltaTMom
+     &       -freeSurfFac*_rA(i,j,bi,bj)/deltaTMom/deltaTfreesurf
+     &         *( etaN(i,j,bi,bj)
+     &           +phi_nh(i,j,1,bi,bj)*horiVertRatio/gravity )
+           cg3d_b(i,j,1,bi,bj) = cg3d_b(i,j,1,bi,bj)
+     &       -freeSurfFac*_rA(i,j,bi,bj)/deltaTMom/deltaTfreesurf
+     &         *( etaN(i,j,bi,bj)
+     &           +phi_nh(i,j,1,bi,bj)*horiVertRatio/gravity )
+          ENDDO
+         ENDDO
+        ELSEIF ( exactConserv ) THEN
+#else
+        IF ( exactConserv ) THEN
+#endif
+         DO j=1,sNy
+          DO i=1,sNx
+           cg2d_b(i,j,bi,bj) = cg2d_b(i,j,bi,bj)
+     &       -freeSurfFac*_rA(i,j,bi,bj)/deltaTMom/deltaTfreesurf
      &         * etaH(i,j,bi,bj)
           ENDDO
          ENDDO
@@ -118,12 +137,11 @@ c       IF (nonlinFreeSurf.GT.0) THEN
          DO j=1,sNy
           DO i=1,sNx
            cg2d_b(i,j,bi,bj) = cg2d_b(i,j,bi,bj)
-     &       -freeSurfFac*_rA(i,j,bi,bj)/deltaTMom/deltaTMom
+     &       -freeSurfFac*_rA(i,j,bi,bj)/deltaTMom/deltaTfreesurf
      &         * etaN(i,j,bi,bj)
           ENDDO
          ENDDO
         ENDIF
-#endif
 
 #ifdef ALLOW_OBCS
         IF (useOBCS) THEN
@@ -131,20 +149,24 @@ c       IF (nonlinFreeSurf.GT.0) THEN
 C Northern boundary
           IF (OB_Jn(I,bi,bj).NE.0) THEN
            cg2d_b(I,OB_Jn(I,bi,bj),bi,bj)=0.
+           cg2d_x(I,OB_Jn(I,bi,bj),bi,bj)=0.
           ENDIF
 C Southern boundary
           IF (OB_Js(I,bi,bj).NE.0) THEN
            cg2d_b(I,OB_Js(I,bi,bj),bi,bj)=0.
+           cg2d_x(I,OB_Js(I,bi,bj),bi,bj)=0.
           ENDIF
          ENDDO
          DO j=1,sNy
 C Eastern boundary
           IF (OB_Ie(J,bi,bj).NE.0) THEN
            cg2d_b(OB_Ie(J,bi,bj),J,bi,bj)=0.
+           cg2d_x(OB_Ie(J,bi,bj),J,bi,bj)=0.
           ENDIF
 C Western boundary
           IF (OB_Iw(J,bi,bj).NE.0) THEN
            cg2d_b(OB_Iw(J,bi,bj),J,bi,bj)=0.
+           cg2d_x(OB_Iw(J,bi,bj),J,bi,bj)=0.
           ENDIF
          ENDDO
         ENDIF
@@ -152,7 +174,7 @@ C Western boundary
        ENDDO
       ENDDO
 
-#ifndef EXCLUDE_DEBUGMODE
+#ifndef DISABLE_DEBUGMODE
       IF (debugMode) THEN
        CALL DEBUG_STATS_RL(1,cg2d_b,'cg2d_b (SOLVE_FOR_PRESSURE)',
      &                        myThid)
@@ -174,21 +196,25 @@ C     see CG2D.h for the interface to this routine.
      I           myThid )
       _EXCH_XY_R8(cg2d_x, myThid )
 
-#ifndef EXCLUDE_DEBUGMODE
+#ifndef DISABLE_DEBUGMODE
       IF (debugMode) THEN
        CALL DEBUG_STATS_RL(1,cg2d_x,'cg2d_x (SOLVE_FOR_PRESSURE)',
      &                        myThid)
       ENDIF
 #endif
 
-      _BEGIN_MASTER( myThid )
-      WRITE(msgBuf,'(A34,1PE24.14)') 'cg2d_init_res =',firstResidual
-      CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A34,I6)') 'cg2d_iters =',numIters
-      CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A34,1PE24.14)') 'cg2d_res =',lastResidual
-      CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      _END_MASTER( )
+C- dump CG2D output at monitorFreq (to reduce size of STD-OUTPUT files) :
+      IF ( DIFFERENT_MULTIPLE(monitorFreq,myTime,
+     &                                    myTime-deltaTClock) ) THEN
+       _BEGIN_MASTER( myThid )
+       WRITE(msgBuf,'(A34,1PE24.14)') 'cg2d_init_res =',firstResidual
+       CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+       WRITE(msgBuf,'(A34,I6)') 'cg2d_iters =',numIters
+       CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+       WRITE(msgBuf,'(A34,1PE24.14)') 'cg2d_res =',lastResidual
+       CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+       _END_MASTER( )
+      ENDIF
 
 C--   Transfert the 2D-solution to "etaN" :
       DO bj=myByLo(myThid),myByHi(myThid)

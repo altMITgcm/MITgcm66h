@@ -32,13 +32,11 @@ C      |-- MON_INIT
 C      |
 C      |-- INI_GRID
 C      |
+C      |-- INI_EOS
+C      |
 C      |-- INI_DEPTHS
 C      |
 C      |-- INI_MASKS_ETC
-C      |
-C      |-- INI_LINEAR_PHSURF
-C      |
-C      |-- INI_CORI
 C      |
 C      |-- PACKAGES_BOOT
 C      |
@@ -48,11 +46,15 @@ C      |-- PACKAGES_CHECK
 C      |
 C      |-- PACKAGES_INIT_FIXED
 C      |
-C      |-- ZONAL_FILT_INIT
+C      |-- INI_LINEAR_PHSURF
+C      |
+C      |-- INI_CORI
 C      |
 C      |-- INI_CG2D
 C      |
 C      |-- INI_CG3D
+C      |
+C      |-- CONFIG_CHECK
 C      |
 C      |-- CONFIG_SUMMARY
 
@@ -86,6 +88,10 @@ C     Variables defining model grid spacing are defined.
       CALL INI_GRID( myThid )
       _BARRIER
 
+C--   Set equation of state parameters.
+      CALL INI_EOS( myThid )
+      _BARRIER
+
 C--   Initialise map of depths
       CALL INI_DEPTHS( myThid )
       _BARRIER
@@ -94,12 +100,6 @@ C--   Derive masks, lopping factors and recipricols of quantities.
 C     Volumes and areas are set according to grid and depth map.
       CALL INI_MASKS_ETC( myThid )
       _BARRIER
-
-C--   Set Bo_surf => define the Linear Relation: Phi_surf(eta)
-      CALL INI_LINEAR_PHISURF( myThid )
-
-C--   Set coriolis operators
-      CALL INI_CORI( myThid )
 
 C--   Configure packages
       CALL PACKAGES_BOOT( myThid )
@@ -113,11 +113,11 @@ C--   Check dependances between packages
 C--   Call fixed data initialization phase of packages
       CALL PACKAGES_INIT_FIXED( myThid )
 
-#ifdef ALLOW_ZONAL_FILT
-C--   Latitude circle filter initialisation
-      CALL ZONAL_FILT_INIT(myThid)
-      _BARRIER
-#endif
+C--   Set Bo_surf => define the Linear Relation: Phi_surf(eta)
+      CALL INI_LINEAR_PHISURF( myThid )
+
+C--   Set coriolis operators
+      CALL INI_CORI( myThid )
 
 C--   Set laplace operators for use in 2D conjugate gradient solver.
       CALL INI_CG2D( myThid )
@@ -127,7 +127,11 @@ C--   Set laplace operators for use in 3D conjugate gradient solver.
       CALL INI_CG3D( myThid )
 #endif
 
+C--   Check parameters and model cofiguration
+      CALL CONFIG_CHECK( myThid )
+
 C--   Finally summarise the model cofiguration
       CALL CONFIG_SUMMARY( myThid )
 
+      RETURN
       END

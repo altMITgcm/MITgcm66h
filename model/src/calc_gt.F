@@ -77,41 +77,53 @@ C     myThid :: Instance number for this innvocation of CALC_GT
       INTEGER myThid
 CEOP
 
+C     === Local variables ===
+      LOGICAL calcAdvection
+
 #ifdef ALLOW_AUTODIFF_TAMC
 C--   only the kUp part of fverT is set in this subroutine
 C--   the kDown is still required
       fVerT(1,1,kDown) = fVerT(1,1,kDown)
 #endif
 
+      calcAdvection = tempAdvection .AND. .NOT.tempMultiDimAdvec
       CALL GAD_CALC_RHS(
      I           bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
      I           xA,yA,uTrans,vTrans,rTrans,maskUp,
      I           diffKhT, diffK4T, KappaRT, theta,
-     I           GAD_TEMPERATURE, tempAdvScheme,
+     I           GAD_TEMPERATURE, tempAdvScheme, calcAdvection,
      U           fVerT, gT,
      I           myThid )
 
-#ifdef INCLUDE_T_FORCING_CODE
-C--   External thermal forcing term(s)
-      CALL EXTERNAL_FORCING_T(
+C--   External thermal forcing term(s) inside Adams-Bashforth:
+      IF ( tempForcing .AND. forcing_In_AB )
+     & CALL EXTERNAL_FORCING_T(
      I     iMin,iMax,jMin,jMax,bi,bj,k,
      I     myTime,myThid)
-#endif /*  INCLUDE_T_FORCING_CODE */
 
-      IF ( tempAdvScheme.EQ.ENUM_CENTERED_2ND
-     & .OR.tempAdvScheme.EQ.ENUM_UPWIND_3RD
-     & .OR.tempAdvScheme.EQ.ENUM_CENTERED_4TH ) THEN
+      IF ( tempAdamsBashforth ) THEN
         CALL ADAMS_BASHFORTH2(
      I                        bi, bj, K,
      U                        gT, gTnm1,
      I                        myIter, myThid )
       ENDIF
 
+C--   External thermal forcing term(s) outside Adams-Bashforth:
+      IF ( tempForcing .AND. .NOT.forcing_In_AB )
+     & CALL EXTERNAL_FORCING_T(
+     I     iMin,iMax,jMin,jMax,bi,bj,k,
+     I     myTime,myThid)
+
 #ifdef NONLIN_FRSURF
       IF (nonlinFreeSurf.GT.0) THEN
         CALL FREESURF_RESCALE_G(
      I                          bi, bj, K,
      U                          gT,
+     I                          myThid )
+        IF ( tempAdamsBashforth )
+     &  CALL FREESURF_RESCALE_G(
+     I                          bi, bj, K,
+     U                          gTnm1,
      I                          myThid )
       ENDIF
 #endif /* NONLIN_FRSURF */

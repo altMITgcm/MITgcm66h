@@ -40,6 +40,12 @@ C     Tfreezing :: Freezing threshold temperature.
 CEOP
 
       Tfreezing=-1.9
+c
+cswdice --- add ----
+#ifdef ALLOW_THERM_SEAICE
+      if (k.gt.1) then
+#endif
+cswdice --- end add ----
 
 C     Check for water that should have frozen
        DO j=jMin,jMax
@@ -49,6 +55,12 @@ C     Check for water that should have frozen
          ENDIF
         ENDDO
        ENDDO
+
+cswdice --- add ---
+#ifdef ALLOW_THERM_SEAICE
+       endif
+#endif
+cswdice --- end add ---
 
       RETURN
       END

@@ -1,5 +1,3 @@
-C $Header$
-C $Name$
 
 #include "CPP_OPTIONS.h"
 
@@ -27,7 +25,7 @@ C       |-- SEAICE_INIT
 C       | 
 C       |-- OBCS_INIT_VARIABLES
 C       |
-C       |-- AIM_INIT
+C       |-- PTRACERS_INIT
 C       |
 C       |-- CTRL_MAP_INI
 C       |
@@ -38,6 +36,10 @@ C       |
 C       |-- ECCO_INIT
 C       |
 C       |-- COST_INIT
+C       |
+C       |-- BULKF_INIT
+C       |
+C       |-- ICE_INIT
 
 C     !USES:
       IMPLICIT NONE
@@ -77,8 +79,8 @@ C--   Open boundaries data
       ENDIF
 #endif
 
-#ifdef ALLOW_AIM
-      IF ( useAIM ) CALL AIM_INIT( mythid )
+#ifdef ALLOW_PTRACERS
+      IF ( usePTRACERS ) CALL PTRACERS_INIT( mythid )
 #endif
 
 #if (defined (ALLOW_ADJOINT_RUN) || defined (ALLOW_TANGENTLINEAR_RUN))
@@ -104,6 +106,19 @@ c--   Initialise the cost function.
       _BARRIER
 # endif
 #endif
+
+cswdblk -- begin add ---
+#ifdef ALLOW_BULK_FORCE
+      IF (useBulkForce) call BULKF_INIT( mythid)
+#endif
+cswdblk ---end add ---
+
+cswdice ---begin add ---
+#ifdef ALLOW_THERM_SEAICE
+      IF (useThermSeaIce) call ICE_INIT( mythid)
+#endif
+cswdice ---end add ---
+
 
       RETURN
       END

@@ -38,7 +38,6 @@ C     == Global data ==
 #include "tamc.h"
 #include "tamc_keys.h"
 #endif /* ALLOW_AUTODIFF_TAMC */
-
       EXTERNAL DIFFERENT_MULTIPLE
       LOGICAL  DIFFERENT_MULTIPLE
 
@@ -60,14 +59,22 @@ C     == Local variables ==
 C     i,j,k        :: Loop counters
 C     rhoKm1, rhoK :: Density at adjacent levels (ref. to same level)
 C     ConvectCount :: Convection freq. counter
-      INTEGER i, j, K
+      INTEGER i, j, K, kTop, kBottom, kDir, deltaK
       _RL rhoKm1(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL rhoK  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL ConvectCount(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
+      _RL weightA(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL weightB(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 CEOP
 
 C--   Check to see if should convect now
       IF ( DIFFERENT_MULTIPLE(cAdjFreq,myTime,myTime-deltaTClock) ) THEN
+
+C--   Initialise counters
+        kTop    = 0
+        kBottom = 0
+        kDir    = 0
+        deltaK  = 0
 
 C-      Initialisation of Convection Counter
         DO K=1,Nr
@@ -92,14 +99,33 @@ C-      Initialisation of Convection Counter
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 #ifdef  ALLOW_KPP
-C-        CONVECT not needed with KPP mixing
+C--       CONVECT not needed with KPP mixing
         IF ( 
      &      (.NOT.useKPP)
      &     ) THEN
 #endif  /* ALLOW_KPP */
 
+         IF ( buoyancyRelation .eq. 'OCEANIC' ) THEN
+          kTop    =  2
+          kBottom = Nr
+          kDir    =  1
+          deltaK  = -1
+         ELSEIF ( buoyancyRelation .eq. 'OCEANICP' ) THEN
+          kTop    = Nr
+          kBottom =  2
+          kDir    = -1
+          deltaK  =  0
+         ELSEIF ( buoyancyRelation .eq. 'ATMOSPHERIC' ) THEN
+          kTop    = Nr
+          kBottom =  2
+          kDir    = -1
+          deltaK  =  0
+         ELSE
+          STOP 'CONVECTIVE_ADJUSTMENT: We should never reach this point'
+         ENDIF	
+
 C--       Loop over all *interior* layers
-          DO K=2,Nr
+          DO K=kTop,kBottom,kDir
 
 #ifdef ALLOW_AUTODIFF_TAMC
             kkey = (ikey-1)*Nr + k
@@ -110,7 +136,7 @@ CADJ &     key=kkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 C-          Density of K-1 layer (above W(K)) reference to K-1 T-level
             CALL FIND_RHO(
-     I           bi,bj,iMin,iMax,jMin,jMax,K-1,K-1,eosType,
+     I           bi,bj,iMin,iMax,jMin,jMax,K-1,K+deltaK,
      I           theta,salt,
      O           rhoKm1,
      I           myThid )
@@ -123,7 +149,7 @@ CADJ STORE salt (:,:,k,bi,bj) = tapelev_ini_bibj_k,
 CADJ &     key = kkey, byte = isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
             CALL FIND_RHO(
-     I           bi,bj,iMin,iMax,jMin,jMax,K,K-1,eosType,
+     I           bi,bj,iMin,iMax,jMin,jMax,K,K+deltaK,
      I           theta,salt,
      O           rhoK,
      I           myThid )
@@ -133,10 +159,44 @@ CADJ STORE rhoKm1(:,:)  = tapelev_ini_bibj_k, key=kkey, byte=isbyte
 CADJ STORE rhoK  (:,:)  = tapelev_ini_bibj_k, key=kkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 C-          Check static stability with layer below and mix as needed.
-            CALL CONVECT(
-     I           bi,bj,iMin,iMax,jMin,jMax,K,rhoKm1,rhoK,
-     U           ConvectCount,
-     I           myTime,myIter,myThid)
+c           CALL CONVECT(
+c    I           bi,bj,iMin,iMax,jMin,jMax,K,rhoKm1,rhoK,
+c    U           ConvectCount,
+c    I           myTime,myIter,myThid)
+
+C-          Pre-calculate mixing weights for interface K
+            CALL CONVECTIVE_WEIGHTS(
+     I           bi,bj,K,rhoKm1,rhoK,
+     O           weightA,weightB,ConvectCount,
+     I           myThid)
+
+C-          Convectively mix heat across interface K
+            CALL CONVECTIVELY_MIXTRACER(
+     I                              bi,bj,k,weightA,weightB,
+     U                              theta,
+     I                              myThid)
+
+C-          Convectively mix salt across interface K
+            CALL CONVECTIVELY_MIXTRACER(
+     I                              bi,bj,k,weightA,weightB,
+     U                              salt,
+     I                              myThid)
+
+#ifdef ALLOW_PASSIVE_TRACER
+C-          Convectively mix passive tracer across interface K
+            CALL CONVECTIVELY_MIXTRACER(
+     I                              bi,bj,k,weightA,weightB,
+     U                              Tr1,
+     I                              myThid)
+#endif /* ALLOW_PASSIVE_TRACER */
+
+#ifdef ALLOW_PTRACERS
+C-          Convectively mix passive tracers across interface K
+            IF ( usePTRACERS ) THEN
+              CALL PTRACERS_CONVECT(
+     I                              bi,bj,k,weightA,weightB,myThid)
+            ENDIF
+#endif /* ALLOW_PTRACERS */
 
 C--       End DO K=1,Nr
           ENDDO

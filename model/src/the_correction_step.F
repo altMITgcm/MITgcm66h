@@ -25,13 +25,14 @@ C     |part1: update U,V,T,S
 C     |  U*,V* (contained in gUnm1,gVnm1) have the surface        
 C     |     pressure gradient term added and the result stored    
 C     |     in U,V (contained in uVel, vVel)                      
-C     |  T* (contained in gTnm1) is copied to T (theta)           
-C     |  S* (contained in gSnm1) is copied to S (salt)            
+C     |  T* (contained in gT) is copied to T (theta)           
+C     |  S* (contained in gS) is copied to S (salt)            
 C     |                                                           
-C     |part2: Adjustments.                                        
+C     |part2: Adjustments & Diagnostics                                        
 C     |   o Filter  U,V,T,S (Shapiro Filter, Zonal_Filter)        
 C     |   o Convective Adjustment                                 
-C     |   o Compute again Eta (exact volume conservation)         
+C     |   o Compute again Eta (exact volume conservation)     
+C     |   o Compute vertical velocity
 C     |   o Diagmnostic of state variables (Time average)         
 C     *==========================================================*
 C     \ev
@@ -126,6 +127,12 @@ C-        Update tracer fields:  T(n) = T**, Gt(n-1) = Gt(n)
      U           Tr1,gTr1,gTr1Nm1,
      I           myTime,myThid )
 #endif
+#ifdef ALLOW_PTRACERS
+C-        Update passive tracer fields:  T(n) = T**, Gt(n-1) = Gt(n)
+          IF (usePTRACERS)
+     &        CALL PTRACERS_CYCLE(bi,bj,k,myIter,myTime,myThid)
+#endif /* ALLOW_PTRACERS */
+
 
 #ifdef    ALLOW_OBCS
           IF (useOBCS) THEN
@@ -170,21 +177,18 @@ C--   Filter (and exchange)
        DO bi=myBxLo(myThid),myBxHi(myThid)
 
 C--     Convectively adjust new fields to be statically stable
-        iMin = 1-OLx+1
-        iMax = sNx+OLx
-        jMin = 1-OLy+1
-        jMax = sNy+OLy
+        iMin = 1
+        iMax = sNx
+        jMin = 1
+        jMax = sNy
         CALL CONVECTIVE_ADJUSTMENT(
      I       bi, bj, iMin, iMax, jMin, jMax,
      I       myTime, myIter, myThid )
 
-#ifdef EXACT_CONSERV
-        IF (exactConserv) THEN
-C--     Compute again "eta" to satisfy exactly the total Volume Conservation :
-          CALL CALC_EXACT_ETA( .TRUE., bi,bj, uVel,vVel,
-     I                         myTime, myIter, myThid )
-        ENDIF
-#endif /* EXACT_CONSERV */ 
+C--     Integrate continuity vertically
+C--     for vertical velocity and "etaN" (exact volume conservation) :
+        CALL INTEGR_CONTINUITY( bi, bj, uVel, vVel,
+     I                          myTime, myIter, myThid )
 
 #ifdef ALLOW_TIMEAVE
         IF (taveFreq.GT.0.) THEN 
@@ -195,11 +199,6 @@ C--     Compute again "eta" to satisfy exactly the total Volume Conservation :
 C--    End of 2nd bi,bj loop
        ENDDO
       ENDDO
-
-#ifdef EXACT_CONSERV
-       IF (exactConserv .AND. implicDiv2Dflow .NE. 0. _d 0) 
-     &    _EXCH_XY_R8(etaN, myThid ) 
-#endif /* EXACT_CONSERV */ 
 
       RETURN
       END

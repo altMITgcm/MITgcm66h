@@ -28,6 +28,7 @@ C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "EOS.h"
 #include "GRID.h"
 #include "DYNVARS.h"
 
@@ -50,7 +51,7 @@ C     zcoord ::
       INTEGER                  bi, bj
       _RL                     xcoord(Nx)
       _RL                     ycoord(Ny)
-      _RL                     rcoord(Nr)
+      _RL                     rcoord(Nr+1)
       INTEGER coordLine
       INTEGER tileLine
 CEOP
@@ -79,6 +80,9 @@ CEOP
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, 
      &                    SQUEEZE_RIGHT , 1)
       WRITE(msgBuf,'(A)') '//  '
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, 
+     &                    SQUEEZE_RIGHT , 1)
+      WRITE(msgBuf,'(A,A40)') 'buoyancyRelation = ', buoyancyRelation
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, 
      &                    SQUEEZE_RIGHT , 1)
       CALL WRITE_1D_R8( tRef, Nr, INDEX_K,'tRef =',
@@ -117,6 +121,9 @@ CEOP
      &'   /* Laplacian diffusion of salt vertically ( m^2/s ) */')
       CALL WRITE_0D_R8( diffKrS, INDEX_NONE,'diffKrS =',
      &'   /* Laplacian diffusion of salt vertically ( m^2/s ) */')
+      WRITE(msgBuf,'(2A)') ' Equation of State : eosType = ', eosType
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, 
+     &                    SQUEEZE_RIGHT , 1)
       CALL WRITE_0D_R8( tAlpha,  INDEX_NONE,'tAlpha =',
      &'   /* Linear EOS thermal expansion coefficient ( 1/degree ) */')
       CALL WRITE_0D_R8( sBeta,   INDEX_NONE,'sBeta =',
@@ -131,9 +138,26 @@ CEOP
      &                    SQUEEZE_RIGHT , 1)
         ENDDO
       ENDIF
+      IF ( buoyancyRelation .eq. 'ATMOSPHERIC' ) THEN
+       CALL WRITE_0D_R8( atm_Rd, INDEX_NONE, 'atm_Rd =',
+     & '  /* gas constant for dry air ( J/kg/K ) */')
+      CALL WRITE_0D_R8( atm_Cp, INDEX_NONE, 'atm_Cp =',
+     & '  /* specific heat (Cp) of dry air ( J/kg/K ) */')
+      CALL WRITE_0D_R8( atm_kappa, INDEX_NONE, 'atm_kappa =',
+     & '  /* kappa (=Rd/Cp ) of dry air */')
+      CALL WRITE_0D_R8( atm_Po, INDEX_NONE, 'atm_Po =',
+     & '  /* standard reference pressure ( Pa ) */')
+      CALL WRITE_0D_I( integr_GeoPot, INDEX_NONE, 'integr_GeoPot =',
+     & '  /* select how the geopotential is integrated */')
+      CALL WRITE_0D_I( selectFindRoSurf, INDEX_NONE, 
+     & 'selectFindRoSurf=',
+     & '  /* select how Surf.Ref. pressure is defined */')
+      ENDIF
       CALL WRITE_0D_R8( rhonil,  INDEX_NONE,'rhonil =',
      &'   /* Reference density ( kg/m^3 ) */')
       CALL WRITE_0D_R8( rhoConst, INDEX_NONE,'rhoConst =',
+     &'   /* Reference density ( kg/m^3 ) */')
+      CALL WRITE_0D_R8( rhoConstFresh, INDEX_NONE,'rhoConstFresh =',
      &'   /* Reference density ( kg/m^3 ) */')
       CALL WRITE_0D_R8( gravity, INDEX_NONE,'gravity =',
      &'   /* Gravitational acceleration ( m/s^2 ) */')
@@ -143,6 +167,7 @@ CEOP
      &'   /* Reference coriolis parameter ( 1/s ) */')
       CALL WRITE_0D_R8( beta,    INDEX_NONE,'beta =',
      &'   /* Beta ( 1/(m.s) ) */')
+
       CALL WRITE_0D_R8( freeSurfFac, INDEX_NONE,'freeSurfFac =',
      &'   /* Implicit free surface factor */')
       CALL WRITE_0D_L( implicitFreeSurface, INDEX_NONE,
@@ -157,6 +182,50 @@ CEOP
       CALL WRITE_0D_R8( implicDiv2Dflow, INDEX_NONE,
      &'implicDiv2Dflow =',
      &'   /* Barot. Flow Div. implicit factor (0-1)*/')
+      CALL WRITE_0D_L( exactConserv, INDEX_NONE,
+     &'exactConserv =',
+     &'   /* Exact Volume Conservation on/off flag*/')
+      CALL WRITE_0D_L( uniformLin_PhiSurf, INDEX_NONE,
+     &'uniformLin_PhiSurf =',
+     &'   /* use uniform Bo_surf on/off flag*/')
+      CALL WRITE_0D_I( nonlinFreeSurf, INDEX_NONE,
+     &'nonlinFreeSurf =',
+     &'   /* Non-linear Free Surf. options (-1,0,1,2,3)*/')
+      WRITE(msgBuf,'(2A)') '     -1,0= Off ; 1,2,3= On,',
+     &  ' 2=+rescale gU,gV, 3=+update cg2d solv.'
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, 
+     &                    SQUEEZE_RIGHT , 1)
+      CALL WRITE_0D_R8( hFacInf, INDEX_NONE,
+     &'hFacInf =',
+     &'   /* lower threshold for hFac (nonlinFreeSurf only)*/')
+      CALL WRITE_0D_R8( hFacSup, INDEX_NONE,
+     &'hFacSup =',
+     &'   /* upper threshold for hFac (nonlinFreeSurf only)*/')
+      CALL WRITE_0D_I( select_rStar, INDEX_NONE,
+     &'select_rStar =',
+     &'   /* r* Coordinate options (not yet implemented)*/')
+      CALL WRITE_0D_L( useRealFreshWaterFlux, INDEX_NONE,
+     &'useRealFreshWaterFlux =',
+     &'   /* Real Fresh Water Flux on/off flag*/')
+      IF (useRealFreshWaterFlux .AND. nonlinFreeSurf.GT.0) THEN
+      CALL WRITE_0D_R8( temp_EvPrRn, INDEX_NONE,
+     &'temp_EvPrRn =',
+     &' /* Temp. of Evap/Prec/R (UNSET=use local T)(oC)*/')
+      CALL WRITE_0D_R8( salt_EvPrRn, INDEX_NONE,
+     &'salt_EvPrRn =',
+     &' /* Salin. of Evap/Prec/R (UNSET=use local S)(ppt)*/')
+      CALL WRITE_0D_R8( trac_EvPrRn, INDEX_NONE,
+     &'trac_EvPrRn =',
+     &' /* Tracer in Evap/Prec/R (UNSET=use local Tr)*/')
+      ELSE
+      CALL WRITE_0D_R8( convertFW2Salt, INDEX_NONE,
+     &'convertFW2Salt =',
+     &' /* convert F.W. Flux to Salt Flux (-1=use local S)(ppt)*/')
+      ENDIF
+
+      CALL WRITE_0D_L( multiDimAdvection, INDEX_NONE, 
+     & 'multiDimAdvection =',
+     &'   /* enable/disable Multi-Dim Advection */')
       CALL WRITE_0D_L( staggerTimeStep, INDEX_NONE,
      &                 'staggerTimeStep =',
      &'   /* Stagger time stepping on/off flag */')
@@ -175,6 +244,16 @@ CEOP
      & '  /* Momentum pressure term on/off flag */')
       CALL WRITE_0D_L( tempStepping,  INDEX_NONE,
      & 'tempStepping =', '  /* Temperature equation on/off flag */')
+      CALL WRITE_0D_L( tempAdvection,  INDEX_NONE,
+     & 'tempAdvection=', '  /* Temperature advection on/off flag */')
+      CALL WRITE_0D_L( tempForcing,  INDEX_NONE,
+     & 'tempForcing  =', '  /* Temperature forcing on/off flag */')
+      CALL WRITE_0D_L( saltStepping,  INDEX_NONE,
+     & 'saltStepping =', '  /* Salinity equation on/off flag */')
+      CALL WRITE_0D_L( saltAdvection,  INDEX_NONE,
+     & 'saltAdvection=', '  /* Salinity advection on/off flag */')
+      CALL WRITE_0D_L( saltForcing,  INDEX_NONE,
+     & 'saltForcing  =', '  /* Salinity forcing on/off flag */')
       CALL WRITE_0D_L( nonHydrostatic, INDEX_NONE,
      & 'nonHydrostatic =', '  /* Non-Hydrostatic on/off flag */')
       WRITE(msgBuf,'(A)') '//  '
@@ -212,12 +291,16 @@ CEOP
      &'   /* Number of timesteps */')
       CALL WRITE_0D_R8( deltaTmom, INDEX_NONE,'deltatTmom =',
      &'   /* Momentum equation timestep ( s ) */')
+      CALL WRITE_0D_R8( deltaTfreesurf,INDEX_NONE,'deltaTfreesurf =',
+     &'   /* FreeSurface equation timestep ( s ) */')
       CALL WRITE_0D_R8( deltaTtracer, INDEX_NONE,'deltatTtracer =',
      &'   /* Tracer equation timestep ( s ) */')
       CALL WRITE_0D_R8( deltaTClock, INDEX_NONE,'deltatTClock  =',
      &'   /* Model clock timestep ( s ) */')
       CALL WRITE_0D_R8( cAdjFreq, INDEX_NONE,'cAdjFreq =',
      &'   /* Convective adjustment interval ( s ) */')
+      CALL WRITE_0D_L( forcing_In_AB,INDEX_NONE,'forcing_In_AB =',
+     &'   /* put T,S Forcing in Adams-Bash. stepping */')
       CALL WRITE_0D_R8( abeps, INDEX_NONE,'abeps =',
      &'   /* Adams-Bashforth stabilizing weight */')
       CALL WRITE_0D_R8( tauCD, INDEX_NONE,'tauCD =',
@@ -253,17 +336,21 @@ CEOP
      &'   /* Spherical coordinates flag ( True / False ) */')
       CALL WRITE_0D_L( groundAtK1, INDEX_NONE, 'groundAtK1 =',
      &'   /* Lower Boundary (ground) at the surface(k=1) ( T / F ) */')
-      CALL WRITE_1D_R8( Ro_SeaLevel,1, INDEX_NONE,'Ro_SeaLevel =',
+      CALL WRITE_0D_R8( Ro_SeaLevel, INDEX_NONE,'Ro_SeaLevel =',
      &'   /* r(1) ( units of r ) */')
-      CALL WRITE_1D_R8( rkFac,1, INDEX_NONE,'rkFac =',
+      CALL WRITE_0D_R8( rkFac, INDEX_NONE,'rkFac =',
      &'   /* minus Vertical index orientation  */')
-      CALL WRITE_1D_R8( horiVertRatio,1, INDEX_NONE,'horiVertRatio =',
+      CALL WRITE_0D_R8( horiVertRatio, INDEX_NONE,'horiVertRatio =',
      &'   /* Ratio on units : Horiz - Vertical */')
-      CALL WRITE_1D_R8( delZ,Nr, INDEX_K,'delZ = ',
-     &'   /* W spacing ( m ) */')
-      CALL WRITE_1D_R8( delP,Nr, INDEX_K,'delP = ',
-     &'   /* W spacing ( Pa ) */')
-      CALL WRITE_1D_R8( delR,Nr, INDEX_K,'delR = ',
+c     CALL WRITE_1D_R8( delZ,Nr, INDEX_K,'delZ = ',
+c    &'   /* W spacing ( m ) */')
+c     CALL WRITE_1D_R8( delP,Nr, INDEX_K,'delP = ',
+c    &'   /* W spacing ( Pa ) */')
+c     CALL WRITE_1D_R8( delR,Nr, INDEX_K,'delR = ',
+c    &'   /* W spacing ( units of r ) */')
+      CALL WRITE_1D_R8( drC,Nr, INDEX_K,'drC = ',
+     &'   /* C spacing ( units of r ) */')
+      CALL WRITE_1D_R8( drF,Nr, INDEX_K,'drF = ',
      &'   /* W spacing ( units of r ) */')
       CALL WRITE_1D_R8( delX, Nx, INDEX_I,'delX = ',
      &'   /* U spacing ( m - cartesian, degrees - spherical ) */')
@@ -294,6 +381,11 @@ CEOP
       ENDDO
       CALL WRITE_1D_R8( rcoord, Nr, INDEX_K,'rcoord = ',
      &'   /* P-point R coordinate (  units of r ) */')
+      DO K=1,Nr+1
+       rcoord(K) = rF(K)
+      ENDDO
+      CALL WRITE_1D_R8( rcoord, Nr+1, INDEX_K,'rF = ',
+     &'   /* W-Interf. R coordinate (  units of r ) */')
 
 C     Grid along selected grid lines
       coordLine = 1

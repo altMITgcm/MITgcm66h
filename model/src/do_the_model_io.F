@@ -35,6 +35,21 @@ C     == Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "DYNVARS.h"
+cswdblk --- add ---
+#ifdef ALLOW_BULK_FORCE
+#include "BULKF.h"
+#include "FFIELDS.h"
+#endif
+cswdblk -- end add ---
+cswdice -- add ---
+#ifdef ALLOW_THERM_SEAICE
+#include "ICE.h"
+#include "ICE_DIAGS.h"
+#endif
+cswdice -- end add ---
+
+
+
       LOGICAL  DIFFERENT_MULTIPLE
       EXTERNAL DIFFERENT_MULTIPLE
 
@@ -77,12 +92,13 @@ C--   Write model state to binary file
 C--   Do time averages
       IF (taveFreq.GT.0.) THEN
        CALL TIMEAVE_STATV_WRITE( myCurrentTime, myIter, myThid )
-#ifdef ALLOW_AIM
-       IF (useAIM)
-     &  CALL AIM_WRITE_DIAGS( myCurrentTime, myIter, myThid )
-#endif                                                             
       ENDIF
 #endif
+#ifdef ALLOW_AIM
+C--   Do AIM time averages
+      IF (useAIM)
+     &  CALL AIM_WRITE_TAVE( myCurrentTime, myIter, myThid )
+#endif                                                             
 
 #ifdef ALLOW_GMREDI
 C--   Do KPP diagnostics.
@@ -96,11 +112,29 @@ C--   Do KPP diagnostics.
      & CALL KPP_DO_DIAGS( myCurrentTime, myIter, myThid )
 #endif
 
-#ifdef ALLOW_OBCS
-C--   Do OBCS diagnostics.
-      IF (useOBCS)
-     & CALL OBCS_DIAGS( myCurrentTime, myIter, myThid )
+#ifdef ALLOW_SBO
+C--   Do SBO diagnostics.
+      IF (useSBO) THEN
+         CALL SBO_CALC ( myCurrentTime, myIter, myThid )
+         CALL SBO_DIAGS( myCurrentTime, myIter, myThid )
+      ENDIF
 #endif
+
+cswdblk ---  add ---
+#ifdef ALLOW_BULK_FORCE
+C--   Do bulkf diagnostics.
+      IF (useBulkforce)
+     & CALL BULKF_DIAGS( myCurrentTime, myIter, myThid )
+#endif
+cswdblk -- end add ---
+
+cswdice ---  add ---
+#ifdef ALLOW_THERM_SEAICE
+C--   Do seaice diagnostics.
+      IF (useThermSeaice)
+     & CALL ICE_DIAGS( myCurrentTime, myIter, myThid )
+#endif
+cswdice -- end add ---
 
       RETURN
       END

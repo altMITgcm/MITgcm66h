@@ -43,8 +43,10 @@ C     == Local variables ==
 CEOP
 
 C     Rotate tracer/gTracer/gTrNm1
-      DO j=jMin,jMax
-       DO i=iMin,iMax
+c     DO j=jMin,jMax
+c      DO i=iMin,iMax
+      DO j=1-OLy,sNy+OLy
+       DO i=1-OLx,sNx+OLx
         tracer(i,j,k,bi,bj)=gTracer(i,j,k,bi,bj)
        ENDDO
       ENDDO

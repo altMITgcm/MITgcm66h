@@ -139,6 +139,12 @@ C       Note: if no fluid (continent) ==> ksurf = Nr+1
             tmpfld(i,j,bi,bj) = tmpfld(i,j,bi,bj) + 1.
            ENDIF
           ENDDO
+          kLowC(I,J,bi,bj) = 0
+          DO K= 1, Nr
+           IF (hFacC(I,J,K,bi,bj).NE.0) THEN
+              kLowC(I,J,bi,bj) = K
+           ENDIF
+          ENDDO
          ENDDO
         ENDDO
 C - end bi,bj loops.

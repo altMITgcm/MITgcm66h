@@ -1,3 +1,5 @@
+C $Header$
+C $Name$
 
 #include "CPP_OPTIONS.h"
 
@@ -78,13 +80,11 @@ C     == Global variables ===
 # include "tamc.h"
 # include "tamc_keys.h"
 # include "FFIELDS.h"
+# include "EOS.h"
 # ifdef ALLOW_KPP
 #  include "KPP.h"
 # endif
 #endif /* ALLOW_AUTODIFF_TAMC */
-#ifdef ALLOW_TIMEAVE
-#include "TIMEAVE_STATV.h"
-#endif
 
 C     !CALLING SEQUENCE:
 C     DYNAMICS()
@@ -125,14 +125,14 @@ C     fVer[STUV]               o fVer: Vertical flux term - note fVer
 C                                      is "pipelined" in the vertical
 C                                      so we need an fVer for each
 C                                      variable.
-C     rhoK, rhoKM1   - Density at current level, and level above 
-C     phiHyd         - Hydrostatic part of the potential phiHydi.
-C                      In z coords phiHydiHyd is the hydrostatic 
-C                      Potential (=pressure/rho0) anomaly
-C                      In p coords phiHydiHyd is the geopotential 
-C                      surface height anomaly.
-C     phiSurfX, - gradient of Surface potentiel (Pressure/rho, ocean)
-C     phiSurfY             or geopotentiel (atmos) in X and Y direction
+C     phiHydC    :: hydrostatic potential anomaly at cell center
+C                   In z coords phiHyd is the hydrostatic potential
+C                      (=pressure/rho0) anomaly
+C                   In p coords phiHyd is the geopotential height anomaly.
+C     phiHydF    :: hydrostatic potential anomaly at middle between 2 centers
+C     dPhiHydX,Y :: Gradient (X & Y directions) of hydrostatic potential anom.
+C     phiSurfX,  ::  gradient of Surface potential (Pressure/rho, ocean)
+C     phiSurfY             or geopotential (atmos) in X and Y direction
 C     iMin, iMax     - Ranges and sub-block indices on which calculations
 C     jMin, jMax       are applied.
 C     bi, bj
@@ -141,16 +141,14 @@ C     kDown, km1       are switched with layer to be the appropriate
 C                      index into fVerTerm.
       _RL fVerU   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
       _RL fVerV   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
-      _RL phiHyd  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
-      _RL rhokm1  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL rhok    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL phiHydF (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL phiHydC (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL dPhiHydX(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
+      _RL dPhiHydY(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RL phiSurfX(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL phiSurfY(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL KappaRU (1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
       _RL KappaRV (1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
-      _RL sigmaX  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
-      _RL sigmaY  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
-      _RL sigmaR  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
 
       INTEGER iMin, iMax
       INTEGER jMin, jMax
@@ -158,11 +156,8 @@ C                      index into fVerTerm.
       INTEGER i, j
       INTEGER k, km1, kp1, kup, kDown
 
-Cjmc : add for phiHyd output <- but not working if multi tile per CPU
-c     CHARACTER*(MAX_LEN_MBUF) suff 
-c     LOGICAL  DIFFERENT_MULTIPLE
-c     EXTERNAL DIFFERENT_MULTIPLE
-Cjmc(end)
+      LOGICAL  DIFFERENT_MULTIPLE
+      EXTERNAL DIFFERENT_MULTIPLE
  
 C---    The algorithm...
 C
@@ -216,12 +211,17 @@ C     point numbers. This prevents spurious hardware signals due to
 C     uninitialised but inert locations.
       DO j=1-OLy,sNy+OLy
        DO i=1-OLx,sNx+OLx
-        rhoKM1 (i,j) = 0. _d 0
-        rhok   (i,j) = 0. _d 0
         phiSurfX(i,j) = 0. _d 0
         phiSurfY(i,j) = 0. _d 0
        ENDDO
       ENDDO
+
+C-- Call to routine for calculation of
+C   Eliassen-Palm-flux-forced U-tendency,
+C   if desired:
+#ifdef INCLUDE_EP_FORCING_CODE
+      CALL CALC_EP_FORCING(myThid)
+#endif
 
 #ifdef ALLOW_AUTODIFF_TAMC
 C--   HPF directive to help TAMC
@@ -233,7 +233,7 @@ CHPF$ INDEPENDENT
 #ifdef ALLOW_AUTODIFF_TAMC
 C--    HPF directive to help TAMC
 CHPF$  INDEPENDENT, NEW (fVerU,fVerV
-CHPF$&                  ,phiHyd
+CHPF$&                  ,phiHydF
 CHPF$&                  ,KappaRU,KappaRV
 CHPF$&                  )
 #endif /* ALLOW_AUTODIFF_TAMC */
@@ -248,34 +248,42 @@ CHPF$&                  )
           act3 = myThid - 1
           max3 = nTx*nTy
           act4 = ikey_dynamics - 1
-          ikey = (act1 + 1) + act2*max1
+          idynkey = (act1 + 1) + act2*max1
      &                      + act3*max1*max2
      &                      + act4*max1*max2*max3
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C--     Set up work arrays that need valid initial values
-        DO j=1-OLy,sNy+OLy
-         DO i=1-OLx,sNx+OLx
-          DO k=1,Nr
-           phiHyd(i,j,k)  = 0. _d 0 
+        DO k=1,Nr
+         DO j=1-OLy,sNy+OLy
+          DO i=1-OLx,sNx+OLx
            KappaRU(i,j,k) = 0. _d 0
            KappaRV(i,j,k) = 0. _d 0
           ENDDO
+         ENDDO
+        ENDDO
+        DO j=1-OLy,sNy+OLy
+         DO i=1-OLx,sNx+OLx
           fVerU  (i,j,1) = 0. _d 0
           fVerU  (i,j,2) = 0. _d 0
           fVerV  (i,j,1) = 0. _d 0
           fVerV  (i,j,2) = 0. _d 0
+          phiHydF (i,j)  = 0. _d 0 
+          phiHydC (i,j)  = 0. _d 0 
+          dPhiHydX(i,j)  = 0. _d 0
+          dPhiHydY(i,j)  = 0. _d 0 
          ENDDO
         ENDDO
 
 C--     Start computation of dynamics
-        iMin = 1-OLx+2
-        iMax = sNx+OLx-1
-        jMin = 1-OLy+2
-        jMax = sNy+OLy-1
+        iMin = 0
+        iMax = sNx+1
+        jMin = 0
+        jMax = sNy+1
 
 #ifdef ALLOW_AUTODIFF_TAMC
-CADJ STORE wvel (:,:,:,bi,bj) = comlev1_bibj, key = ikey, byte = isbyte
+CADJ STORE wvel (:,:,:,bi,bj) = 
+CADJ &     comlev1_bibj, key = idynkey, byte = isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C--     Explicit part of the Surface Potentiel Gradient (add in TIMESTEP)
@@ -289,11 +297,11 @@ C       (note: this loop will be replaced by CALL CALC_GRAD_ETA)
         ENDIF
 
 #ifdef ALLOW_AUTODIFF_TAMC
-CADJ STORE uvel (:,:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
-CADJ STORE vvel (:,:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
+CADJ STORE uvel (:,:,:,bi,bj) = comlev1_bibj, key=idynkey, byte=isbyte
+CADJ STORE vvel (:,:,:,bi,bj) = comlev1_bibj, key=idynkey, byte=isbyte
 #ifdef ALLOW_KPP
 CADJ STORE KPPviscAz (:,:,:,bi,bj) 
-CADJ &                 = comlev1_bibj, key=ikey, byte=isbyte
+CADJ &                 = comlev1_bibj, key=idynkey, byte=isbyte
 #endif /* ALLOW_KPP */
 #endif /* ALLOW_AUTODIFF_TAMC */
 
@@ -320,7 +328,9 @@ C--       kDown  Cycles through 2,1 to point to current layer
           kDown= 1+MOD(k,2)
 
 #ifdef ALLOW_AUTODIFF_TAMC 
-         kkey = (ikey-1)*Nr + k
+         kkey = (idynkey-1)*Nr + k
+CADJ STORE totphihyd (:,:,k,bi,bj) 
+CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C--      Integrate hydrostatic balance for phiHyd with BC of 
@@ -330,14 +340,16 @@ C        distinguishe between Stagger and Non Stagger time stepping
            CALL CALC_PHI_HYD(
      I        bi,bj,iMin,iMax,jMin,jMax,k,
      I        gT, gS,
-     U        phiHyd,
-     I        myThid )
+     U        phiHydF,
+     O        phiHydC, dPhiHydX, dPhiHydY,
+     I        myTime, myIter, myThid )
          ELSE
            CALL CALC_PHI_HYD(
      I        bi,bj,iMin,iMax,jMin,jMax,k,
      I        theta, salt,
-     U        phiHyd,
-     I        myThid )
+     U        phiHydF,
+     O        phiHydC, dPhiHydX, dPhiHydY,
+     I        myTime, myIter, myThid )
          ENDIF
 
 C--      Calculate accelerations in the momentum equations (gU, gV, ...)
@@ -346,20 +358,20 @@ C        and step forward storing the result in gUnm1, gVnm1, etc...
 #ifndef DISABLE_MOM_FLUXFORM
            IF (.NOT. vectorInvariantMomentum) CALL MOM_FLUXFORM(
      I         bi,bj,iMin,iMax,jMin,jMax,k,kup,kDown,
-     I         phiHyd,KappaRU,KappaRV,
+     I         dPhiHydX,dPhiHydY,KappaRU,KappaRV,
      U         fVerU, fVerV,
      I         myTime, myIter, myThid)
 #endif
 #ifndef DISABLE_MOM_VECINV
            IF (vectorInvariantMomentum) CALL MOM_VECINV(
      I         bi,bj,iMin,iMax,jMin,jMax,k,kup,kDown,
-     I         phiHyd,KappaRU,KappaRV,
+     I         dPhiHydX,dPhiHydY,KappaRU,KappaRV,
      U         fVerU, fVerV,
      I         myTime, myIter, myThid)
 #endif
            CALL TIMESTEP(
      I         bi,bj,iMin,iMax,jMin,jMax,k,
-     I         phiHyd, phiSurfX, phiSurfY,
+     I         dPhiHydX,dPhiHydY, phiSurfX, phiSurfY,
      I         myIter, myThid)
 
 #ifdef   ALLOW_OBCS
@@ -386,12 +398,10 @@ C--      Apply open boundary conditions
 C--     end of dynamics k loop (1:Nr)
         ENDDO
 
-
-
 C--     Implicit viscosity
         IF (implicitViscosity.AND.momStepping) THEN
 #ifdef    ALLOW_AUTODIFF_TAMC
-CADJ STORE gUNm1(:,:,:,bi,bj) = comlev1_bibj , key=ikey, byte=isbyte
+CADJ STORE gUNm1(:,:,:,bi,bj) = comlev1_bibj , key=idynkey, byte=isbyte
 #endif    /* ALLOW_AUTODIFF_TAMC */
           CALL IMPLDIFF(
      I         bi, bj, iMin, iMax, jMin, jMax,
@@ -399,7 +409,7 @@ CADJ STORE gUNm1(:,:,:,bi,bj) = comlev1_bibj , key=ikey, byte=isbyte
      U         gUNm1,
      I         myThid )
 #ifdef    ALLOW_AUTODIFF_TAMC
-CADJ STORE gVNm1(:,:,:,bi,bj) = comlev1_bibj , key=ikey, byte=isbyte
+CADJ STORE gVNm1(:,:,:,bi,bj) = comlev1_bibj , key=idynkey, byte=isbyte
 #endif    /* ALLOW_AUTODIFF_TAMC */
           CALL IMPLDIFF(
      I         bi, bj, iMin, iMax, jMin, jMax,
@@ -418,7 +428,7 @@ C--      Apply open boundary conditions
 
 #ifdef    INCLUDE_CD_CODE
 #ifdef    ALLOW_AUTODIFF_TAMC
-CADJ STORE vVelD(:,:,:,bi,bj) = comlev1_bibj , key=ikey, byte=isbyte
+CADJ STORE vVelD(:,:,:,bi,bj) = comlev1_bibj , key=idynkey, byte=isbyte
 #endif    /* ALLOW_AUTODIFF_TAMC */
           CALL IMPLDIFF(
      I         bi, bj, iMin, iMax, jMin, jMax,
@@ -426,7 +436,7 @@ CADJ STORE vVelD(:,:,:,bi,bj) = comlev1_bibj , key=ikey, byte=isbyte
      U         vVelD,
      I         myThid )
 #ifdef    ALLOW_AUTODIFF_TAMC
-CADJ STORE uVelD(:,:,:,bi,bj) = comlev1_bibj , key=ikey, byte=isbyte
+CADJ STORE uVelD(:,:,:,bi,bj) = comlev1_bibj , key=idynkey, byte=isbyte
 #endif    /* ALLOW_AUTODIFF_TAMC */
           CALL IMPLDIFF(
      I         bi, bj, iMin, iMax, jMin, jMax,
@@ -437,23 +447,16 @@ CADJ STORE uVelD(:,:,:,bi,bj) = comlev1_bibj , key=ikey, byte=isbyte
 C--     End If implicitViscosity.AND.momStepping
         ENDIF
  
-Cjmc : add for phiHyd output <- but not working if multi tile per CPU
-c       IF ( DIFFERENT_MULTIPLE(dumpFreq,myTime+deltaTClock,myTime) 
-c    &  .AND. buoyancyRelation .eq. 'ATMOSPHERIC' ) THEN
-c         WRITE(suff,'(I10.10)') myIter+1
-c         CALL WRITE_FLD_XYZ_RL('PH.',suff,phiHyd,myIter+1,myThid) 
-c       ENDIF
-Cjmc(end)
-
-#ifdef ALLOW_TIMEAVE
-        IF (taveFreq.GT.0.) THEN 
-          CALL TIMEAVE_CUMUL_1T(phiHydtave, phiHyd, Nr,
-     I                              deltaTclock, bi, bj, myThid)
-        ENDIF
-#endif /* ALLOW_TIMEAVE */
-
        ENDDO
       ENDDO
+
+Cml(
+C     In order to compare the variance of phiHydLow of a p/z-coordinate
+C     run with etaH of a z/p-coordinate run the drift of phiHydLow
+C     has to be removed by something like the following subroutine:
+C      CALL REMOVE_MEAN_RL( 1, phiHydLow, maskH, maskH, rA, drF,
+C     &                'phiHydLow', myThid )
+Cml)
 
 #ifndef DISABLE_DEBUGMODE
       If (debugMode) THEN

@@ -40,11 +40,13 @@ C       |-- INI_FIELDS
 C       |
 C       |-- INI_TR1
 C       |
+C       |-- INI_AUTODIFF
+C       |
+C       |-- PACKAGES_INIT_VARIABLES
+C       |
 C       |-- THE_CORRECTION_STEP
 C       |
 C       |-- CALL CONVECTIVE_ADJUSTMENT_INI
-C       |
-C       |-- PACKAGES_INIT_VARIABLES
 C       |
 C       |-- CALC_SURF_DR
 C       |
@@ -52,9 +54,11 @@ C       |-- UPDATE_SURF_DR
 C       |
 C       |-- UPDATE_CG2D
 C       |
-C       |-- STATE_SUMMARY
+C       |-- INTEGR_CONTINUITY
 C       |
 C       |-- TIMEAVE_STATVARS
+C       |
+C       |-- STATE_SUMMARY
 
 C     !USES:
       IMPLICIT NONE
@@ -154,29 +158,45 @@ CADJ loop = parallel
 #ifdef NONLIN_FRSURF
 C--   Compute the surface level thickness <-- function of etaH(n)
 C     and modify hFac(C,W,S) accordingly :
+      IF ( select_rStar.NE.0 )
+     &  CALL CALC_R_STAR(etaH, startTime, -1 , myThid )
       IF (nonlinFreeSurf.GT.0) THEN
-        CALL CALC_SURF_DR(etaH, startTime, nIter0, myThid )
+       IF ( select_rStar.GT.0 ) THEN
+        CALL UPDATE_R_STAR( startTime, nIter0, myThid )
+       ELSE
+        CALL CALC_SURF_DR(etaH, startTime, -1 , myThid )
         CALL UPDATE_SURF_DR( startTime, nIter0, myThid )
+       ENDIF
       ENDIF
 C-    update also CG2D matrix (and preconditioner)
       IF ( nonlinFreeSurf.GT.2) THEN
         CALL UPDATE_CG2D( startTime, nIter0, myThid )
       ENDIF
-#endif
+#endif /* NONLIN_FRSURF */
+
+      DO bj=myByLo(myThid),myByHi(myThid)
+       DO bi=myBxLo(myThid),myBxHi(myThid)
+
+C--   Integrate continuity vertically for vertical velocity
+        CALL INTEGR_CONTINUITY( bi, bj, uVel, vVel,
+     I                          startTime, nIter0, myThid )
+ 
+#ifdef ALLOW_TIMEAVE
+C--   initialise time-average arrays with initial state values
+        IF (taveFreq.GT.0.) THEN
+           CALL TIMEAVE_STATVARS(startTime, nIter0, bi, bj, myThid)
+        ENDIF
+#endif /* ALLOW_TIMEAVE */
+
+C--   end bi,bj loop.
+       ENDDO
+      ENDDO
+
+C--   Fill in overlap regions for wVel :
+      _EXCH_XYZ_R8(wVel,myThid) 
 
 C--   Finally summarise the model state
       CALL STATE_SUMMARY( myThid )
-
-#ifdef ALLOW_TIMEAVE
-C--   initialise time-average arrays with initial state values
-      IF (taveFreq.GT.0.) THEN
-        DO bj=myByLo(myThid),myByHi(myThid)
-         DO bi=myBxLo(myThid),myBxHi(myThid)
-           CALL TIMEAVE_STATVARS(startTime, nIter0, bi, bj, myThid)
-         ENDDO
-        ENDDO
-      ENDIF
-#endif /* ALLOW_TIMEAVE */
 
       RETURN
       END

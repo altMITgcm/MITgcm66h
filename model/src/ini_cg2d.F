@@ -56,6 +56,29 @@ C     sumArea - Work variable used to compute the total Domain Area
       _RL     aC, aCw, aCs
 CEOP
 
+C--   Initialize arrays in common blocs (CG2D.h) ; not really necessary 
+C     but safer when EXCH do not fill all the overlap regions.
+      DO bj=myByLo(myThid),myByHi(myThid)
+       DO bi=myBxLo(myThid),myBxHi(myThid)
+        DO J=1-OLy,sNy+OLy
+         DO I=1-OLx,sNx+OLx
+          aW2d(I,J,bi,bj) = 0. _d 0
+          aS2d(I,J,bi,bj) = 0. _d 0
+          pW(I,J,bi,bj) = 0. _d 0
+          pS(I,J,bi,bj) = 0. _d 0
+          pC(I,J,bi,bj) = 0. _d 0
+          cg2d_q(I,J,bi,bj) = 0. _d 0
+         ENDDO
+        ENDDO
+        DO J=1-1,sNy+1
+         DO I=1-1,sNx+1
+          cg2d_r(I,J,bi,bj) = 0. _d 0
+          cg2d_s(I,J,bi,bj) = 0. _d 0
+         ENDDO
+        ENDDO
+       ENDDO
+      ENDDO
+
 C--   Initialise laplace operator
 C     aW2d: integral in Z Ax/dX
 C     aS2d: integral in Z Ay/dY
@@ -171,9 +194,11 @@ c       WRITE(*,*) ' mythid, sumArea = ', mythid, sumArea
         _GLOBAL_SUM_R8( sumArea, myThid )
 C-  convert Target-Residual (in W unit) to cg2d-solver residual unit [m^2/s^2]
         cg2dTolerance = cg2dNorm * cg2dTargetResWunit
-     &                           * sumArea / deltaTMom
-        WRITE(*,'(2A,1P2E22.14)') ' ini_cg2d: ',
+     &                           * sumArea / deltaTmom
+        _BEGIN_MASTER( myThid )
+        WRITE(standardMessageUnit,'(2A,1P2E22.14)') ' ini_cg2d: ',
      &          'sumArea,cg2dTolerance =', sumArea,cg2dTolerance
+        _END_MASTER( myThid )
       ENDIF
      
 C--   Initialise preconditioner
@@ -199,19 +224,19 @@ C           defaults to 0.51 but can be set at runtime.
      &     aW2d(I,J,bi,bj) + aW2d(I+1,J  ,bi,bj)
      &    +aS2d(I,J,bi,bj) + aS2d(I  ,J+1,bi,bj)
      &    +freeSurfFac*myNorm*recip_Bo(I,J,bi,bj)* 
-     &     rA(I,J,bi,bj)/deltaTMom/deltaTMom
+     &     rA(I,J,bi,bj)/deltaTMom/deltaTfreesurf
      &    )
           aCs = -(
      &     aW2d(I,J-1,bi,bj) + aW2d(I+1,J-1,bi,bj)
      &    +aS2d(I,J-1,bi,bj) + aS2d(I  ,J  ,bi,bj)
      &    +freeSurfFac*myNorm*recip_Bo(I,J-1,bi,bj)* 
-     &     rA(I,J-1,bi,bj)/deltaTMom/deltaTMom
+     &     rA(I,J-1,bi,bj)/deltaTMom/deltaTfreesurf
      &    )
           aCw = -(
      &     aW2d(I-1,J,bi,bj) + aW2d(I  ,J  ,bi,bj)
      &    +aS2d(I-1,J,bi,bj) + aS2d(I-1,J+1,bi,bj)
      &    +freeSurfFac*myNorm*recip_Bo(I-1,J,bi,bj)* 
-     &     rA(I-1,J,bi,bj)/deltaTMom/deltaTMom
+     &     rA(I-1,J,bi,bj)/deltaTMom/deltaTfreesurf
      &    )
           IF ( aC .EQ. 0. ) THEN
             pC(I,J,bi,bj) = 1. _d 0
