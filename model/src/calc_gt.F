@@ -213,7 +213,7 @@ C           boundary condition.
         DO i=iMin,iMax
          df(i,j) = df(i,j) + _rA(i,j,bi,bj)*(
      &    -KappaZT(i,j,k)*recip_drC(k)
-     &    *(theta(i,j,kM1,bi,bj)-theta(i,j,k,bi,bj))
+     &    *(theta(i,j,kM1,bi,bj)-theta(i,j,k,bi,bj))*rkFac
      &    )
         ENDDO
        ENDDO

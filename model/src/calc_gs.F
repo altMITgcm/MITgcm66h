@@ -202,7 +202,7 @@ C     Note: For K=1 then KM1=1 this gives a dS/dz = 0 upper
 C           boundary condition.
       DO j=jMin,jMax
        DO i=iMin,iMax
-        df(i,j) = _zA(i,j,bi,bj)*(
+        df(i,j) = _rA(i,j,bi,bj)*(
      &   -KapGM(i,j)*K13(i,j,k)*dSdx(i,j)
      &   -KapGM(i,j)*K23(i,j,k)*dSdy(i,j)
      &   )
@@ -213,7 +213,7 @@ C           boundary condition.
         DO i=iMin,iMax
          df(i,j) = df(i,j) + _rA(i,j,bi,bj)*(
      &    -KappaRS(i,j,k)*recip_drC(k)
-     &    *(salt(i,j,kM1,bi,bj)-salt(i,j,k,bi,bj))
+     &    *(salt(i,j,kM1,bi,bj)-salt(i,j,k,bi,bj))*rkFac
      &    )
         ENDDO
        ENDDO

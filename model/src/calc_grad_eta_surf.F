@@ -30,7 +30,7 @@ C     == Local variables ==
 C     Zonal term
       DO j=jMin,jMax
        DO i=iMin,iMax
-        etaSurfX(i,j)=_rdxC(i,j,bi,bj)*
+        etaSurfX(i,j)=_recip_dxC(i,j,bi,bj)*
      &   (cg2d_x(i,j,bi,bj)-cg2d_x(i-1,j,bi,bj))
        ENDDO
       ENDDO
