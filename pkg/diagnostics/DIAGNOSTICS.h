@@ -1451,7 +1451,7 @@ C                   for output stream # n
       _RL levs (numLevels,numlists)
       integer jdiag(numperlist,numlists)
       character*8 flds (numperlist,numlists)
-      character*8 fnames(numlists)
+      character*80 fnames(numlists)
       logical
      &     diag_mdsio, diag_mnc,
      &     diag_pickup_read,        diag_pickup_write,
