@@ -689,7 +689,7 @@ links: \$(SRCFILES) \$(CSRCFILES) \$(HEADERFILES)
 small_f: \$(F77FILES)
 
 output.txt: \$(EXECUTABLE)
-	@echo -n "running ... "
+	@printf 'running ... '
 	@\$(EXECUTABLE) > \$@
 
 clean:
