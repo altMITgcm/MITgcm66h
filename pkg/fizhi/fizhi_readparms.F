@@ -32,7 +32,6 @@ c -----------------------
 C **********************************************************************
 C ****           Initialize and Read Fizhi Namelist                 ****
 C **********************************************************************
-      _BEGIN_MASTER(myThid)
 
       WRITE(msgBuf,'(A)') ' FIZHI_READPARMS: opening data.fizhi'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,SQUEEZE_RIGHT,1)
@@ -63,9 +62,9 @@ C **********************************************************************
 C ****               Echo Date and Time Info                        ****
 C **********************************************************************
 
+      _BEGIN_MASTER(myThid)
       print *, '  Begin Date ',nymd0,'   Begin Time ',nhms0
       print *, 'Current Date ',nymd,' Current Time ',nhms
-
       _END_MASTER(myThid)
 
       return

@@ -4,4 +4,4 @@ C $Name$
 c Land Grid Horizontal Dimension (Number of Tiles)
 c ------------------------------------------------
       integer nchp
-      parameter (nchp = 5)
+      parameter (nchp = sNx*sNy*10)
