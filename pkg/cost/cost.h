@@ -776,17 +776,26 @@ c     sshperiod      - sampling interval for the sea surface height data.
       integer topexstartdate(4)
       integer ersstartdate(4)
 
+c     costIceStart   - cost_ice start in seconds wrt model startTime
+c     costIceEnd     - cost_ice end in seconds wrt model startTime
 
       common /cost_data_times_r/
      &                           topexperiod,
      &                           ersperiod,
-     &                           scatperiod
+     &                           scatperiod,
+     &                           costIceStart,
+     &                           costIceEnd
       _RL topexperiod
       _RL ersperiod
       _RL scatperiod
+      _RL costIceStart
+      _RL costIceEnd
+
+c     cost_ice_flag  - cost_ice flag (see cost_ice.F)
+
+      common /cost_ice_i/ cost_ice_flag
+      integer cost_ice_flag
 
 c     ==================================================================
 c     END OF HEADER COST
 c     ==================================================================
-
-

@@ -91,12 +91,10 @@
  make depend
 # Generate the adjoint code:
  cd ../adjoint
- mv makefile makefile.old
  cp ../verification/natl_box_adjoint/code_seaice/makefile .
  make adtaf
  make adchange
  rm -f makefile
- mv makefile.old makefile
 # Go back and compile the code:
  cd ../bin
  make
@@ -133,12 +131,10 @@
  make depend
 # Generate the adjoint code:
  cd ../adjoint
- mv makefile makefile.old
  cp ../verification/natl_box_adjoint/code_seaice/makefile .
  make adtaf
  make adchange
  rm -f makefile
- mv makefile.old makefile
 # Go back and compile the code:
  cd ../bin
  make
@@ -154,6 +150,23 @@
 # A reference output is in:
  grep "ph-grd 3" ../verification/natl_box_adjoint/results_bulk/output.exp5
 
+# undef DO_WE_NEED_THIS in growth.F makes no difference to exp. 5
+# explicitly setting area to 0 in growth.F also makes no difference
+# commenting out dynsolver and advect in sea_model also makes litle difference
+
+# Following table compares adjoint gradient to finite difference gradient
+# for various choices of grdchk_eps.  The finite difference gradient
+# is stable for 1.d-6 < grdchk_eps < 1.d-2, but it does not match the
+# adjoint gradient, suggesting a problem with adjoint gradient.
+
+ adj grad 0.282368284E-02 0.162042259E-03 0.350757987E-02 0.278077239E-03
+ 1.d-10   0.227373675E-02 0.000000000E+00 0.341060513E-02 0.113686838E-02
+ 1.d-8    0.274553713E-02 0.147792889E-03 0.349587026E-02 0.272848411E-03
+ 1.d-6    0.274133072E-02 0.149270818E-03 0.349803031E-02 0.265913513E-03
+ 1.d-4    0.274122783E-02 0.149204311E-03 0.349807408E-02 0.265789026E-03
+ 1.d-2    0.274123143E-02 0.149203527E-03 0.349806868E-02 0.265792312E-03
+ 1.d 0    0.271435042E-02 0.153830983E-03 0.349580377E-02 0.264401119E-03
+ 1.d 1    0.276691733E-02 0.145168163E-03 0.355998258E-02 0.256034057E-03
 
 ####################
 # Experiment no. 6 #
@@ -205,10 +218,10 @@
  cp ../verification/natl_box_adjoint/input_seaice/* .
  ./mitgcmuv >&! output.txt
 # To verify the results of the gradient check, type:
- grep ph-grd output.txt > ph-grd.txt
+ grep "ph-grd 3" output.txt > ph-grd.txt
  cd ../verification/natl_box_adjoint/results_seaice
  matlab
- lookat_grd
+ lookat_exp8
 
 
 ####################
@@ -231,7 +244,31 @@
 ####################
 # Experiment no. 9 #
 ####################
-# Set up a 1-year sensitivity experiment.
+# Same as experiment 8, but starting from time step 180.
+# This includes a location (12,8) which experiences a phase
+# transition from no-ice to sea-ice, and which therefore has
+# a very large and inaccurate gradient.
+
+# To run:
+ cd ../exe
+ cp ../verification/natl_box_adjoint/input_seaice/* .
+ cp data.180 data
+ ./mitgcmuv >&! output.txt
+# To verify the results of the gradient check, type:
+ grep "ph-grd 3" output.txt > ph-grd.txt
+ cd ../verification/natl_box_adjoint/results_seaice
+ matlab
+ lookat_exp8
+
+
+#####################
+# Experiment no. 10 #
+#####################
+# Set up a 100-day sensitivity experiment.
+# Things start falling apart, see below.
+# Longer integrations periods cause NANs in adjoint gradient.
+# Note: cost_ssh is hardwired for 1-day ssh records
+#       "topexperiod" in data.cost is never used.
 
 # Compile code in bin/:
  cd ../bin
@@ -245,24 +282,168 @@
  make depend
 # Generate the adjoint code:
  cd ../adjoint
- mv makefile makefile.old
  cp ../verification/natl_box_adjoint/code_seaice/makefile .
  make adtaf
  make adchange
  rm -f makefile
- mv makefile.old makefile
 # Go back and compile the code:
  cd ../bin
  make
 # To run:
  cd ../exe
  cp ../verification/natl_box_adjoint/input_seaice/* .
- cp data.year data
+ cp data.100day data
  cp ../verification/natl_box_adjoint/input_bulk/data.grdchk .
  ./mitgcmuv >&! output.txt
 
 # To verify the results of the gradient check, type:
- grep ph-grd output.txt > ph-grd.txt
+ grep "ph-grd 3" output.txt
+
+# For 100 days, adjoint gradient blows up for cost_ice_flag=1,2,3,4,5.
+# Following table compares adjoint gradient to finite difference gradient
+# for various choices of grdchk_eps and for cost_ice_flag=1.  The finite
+# difference gradient is unstable, suggesting that tangent linear gradient
+# is ill defined. 100 day experiment looks equally bad with cost_ice_flag=2.
+ adj grad -.441946498+276 -.143062040+277 -.116360092+277 0.400428239+277
+ 1.d-12   -.177327175E+20 0.140230277E+20 -.254542273E+20 0.138603531E+19
+ 1.d-8    0.174714613E+16 -.527867903E+15 0.403581037E+15 0.377322748E+12
+ 1.d-4    0.999954825E+11 0.156018218E+12 -.474931072E+11 -.357260091E+11
+ 1.d-2    0.634576350E+09 -.185440863E+10 -.599212833E+09 -.334417056E+10
+
+# 100 day experiment with cost_ice_flag = 3, but in North Atlantic
+# domain, i.e., with no sea-ice is OK
+ adj grad  0.234593317E+17 0.166950683E+17 0.238665515E+17 0.249850733E+17
+ 1.d-4     0.234313954E+17 0.166674930E+17 0.238322031E+17 0.249217155E+17
+
+# with same order of magnitude results as those from pkg/exf bulk formulae
+ adj grad  0.279968788E+17 0.226979382E+17 0.269224396E+17 0.323359773E+17
+ 1.d-4     0.279944626E+17 0.226935335E+17 0.269274317E+17 0.323399293E+17
+
+# 10 day experiment with cost_ice_flag = 3 is OK
+ adj grad  0.353941629E+17 0.955451129E+16 -.265793314E+17 0.232229067E+16
+ 1.d-4     0.353943893E+17 0.955563114E+16 -.265195776E+17 0.232137949E+16
+ 1-fd/adj  -.639540199E-05 -.117207086E-03 0.224813073E-02 0.392362727E-03
+
+# 100 day experiment with cost_ice_flag = 3 fails
+ adj grad  0.134326162+285 0.434825818+285 0.353667347+285 -.121707013+286
+ 1.d-4     -.248910431E+20 -.581887317E+20 0.530805948E+18 0.554441614E+20
+
+# 100 day experiment with cost_ice_flag = 4 fails
+ adj grad  0.942881479+279 0.305219181+280 0.248251262+280 -.854303341+280
+ 1.d-4     0.550158678E+19 -.107685572E+20 -.139042495E+20 0.445855968E+20
+
+# 100 day experiment with cost_ice_flag = 5 fails
+ adj grad  0.149606733+285 0.484290396+285 0.393899563+285 -.135552065+286
+ 1.d-4     -.300535490E+20 -.689378119E+20 0.300954675E+19 0.767231924E+20
+
+# It seems that linearization in the presence of a sea-ice model is very
+# difficult.  Consider that a small perturbation at time zero may cause
+# sea-ice to appear or not at a particular grid point.  The model response
+# with sea-ice is completely different from that with no sea-ice, so that
+# this small initial perturbation will have a large impact in ocean heat
+# content, or even ocean plus sea-ice heat content.  One way around this
+# may be a preliminary piece-wise optimization, say 10 days at a time, but
+# without changing initial conditions, just the surface fluxes.  Another
+# way may be to specify heat fluxes based on observed sea-ice extent, in
+# order to force the model to have sea-ice where sea-ice is observed.  A
+# third possiblity, similar to that provided by package MIX for KPP scheme
+# in the telescoping configuration would be to store AREA or HEFF during
+# forward model integrations and then to specify, rather than recompute,
+# AREA or HEFF or both during adjoint model calculations.  The problem
+# with this approach is that it would not be possible to compute
+# sensitivity to a variable that held constant, rather tan computed?
+# Perhaps sensitivity of cost function to AREA and to HEFF can be computed
+# separately, by running the adjoint twice, once keeping HEFF constant and
+# the second keeping AREA constant?
+
+# Now need a test to show that this is indeed the problem.
+
+
+#####################
+# Experiment no. 11 #
+#####################
+# Same as experiment 8, but using 2-CPU MPI configuration.
+
+# Compile code in bin/:
+ cd ../bin
+ rm -rf *.o *.f *.p rii_files
+ rm -rf *.F *.h *.c Makefile*
+ cp ../verification/natl_box_adjoint/code_seaice/*.h .
+ cp ../verification/natl_box_adjoint/code_seaice/.genmakerc .
+ cp ../verification/natl_box_adjoint/code_seaice/SIZE.h.MPI SIZE.h
+ cp ../verification/natl_box_adjoint/code_seaice/CPP_EEOPTIONS.h.MPI CPP_EEOPTIONS.h
+# Configure and compile the code:
+ ../tools/genmake -mpi -makefile
+# ==> on alhena use:
+# ../tools/genmake -platform=o2k -mpi -makefile
+ make depend
+# Generate the adjoint code:
+ cd ../adjoint
+ cp ../verification/natl_box_adjoint/code_seaice/makefile .
+ make adtaf
+ make adchange
+ rm -f makefile
+# Go back and compile the code:
+ cd ../bin
+ make
+
+# To run:
+ cd ../exe
+ cp ../verification/natl_box_adjoint/input_seaice/* .
+ cp data.001 data
+ cp ../verification/natl_box_adjoint/input_bulk/data.grdchk .
+ mpirun -np 2 mitgcmuv
+# To verify the results of the gradient check, type:
+ grep "ph-grd 3" STDOUT.0000
+# To plot adjoint sensitivy fields
  cd ../verification/natl_box_adjoint/results_seaice
  matlab
- lookat_exp8
+ lookat_exp10
+
+
+#####################
+# Experiment no. 12 #
+#####################
+# Same as experiment 10, but including ADI dynamic solver.
+
+# Compile code in bin/:
+ cd ../bin
+ rm -rf *.o *.f *.p rii_files
+ rm -rf *.F *.h *.c Makefile*
+ cp ../verification/natl_box_adjoint/code_seaice/*.h .
+ cp ../verification/natl_box_adjoint/code_seaice/.genmakerc .
+ cp ../verification/natl_box_adjoint/code_seaice/SIZE.h.MPI SIZE.h
+ cp ../verification/natl_box_adjoint/code_seaice/CPP_EEOPTIONS.h.MPI CPP_EEOPTIONS.h
+ cp ../verification/natl_box_adjoint/code_seaice/SEAICE_OPTIONS.h.DYN SEAICE_OPTIONS.h
+# Configure and compile the code:
+ ../tools/genmake -mpi -makefile
+# ==> on alhena use:
+# ../tools/genmake -platform=o2k -mpi -makefile
+ make depend
+# Generate the adjoint code:
+ cd ../adjoint
+ cp ../verification/natl_box_adjoint/code_seaice/makefile.dyn makefile
+ make adtaf
+ make adchange
+ rm -f makefile
+# Go back and compile the code:
+ cd ../bin
+ make
+# To run:
+ cd ../exe
+ cp ../verification/natl_box_adjoint/input_seaice/* .
+ cp data.001 data
+ cp ../verification/natl_box_adjoint/input_bulk/data.grdchk .
+ mpirun -np 2 mitgcmuv
+# To verify the results of the gradient check, type:
+ grep "ph-grd 3" STDOUT.0000
+# To plot adjoint sensitivy fields
+ cd ../verification/natl_box_adjoint/results_seaice
+ matlab
+ lookat_exp10
+
+
+#####################
+# Experiment no. 13 #
+#####################
+# Same as experiment 10, but using divided adjoint.

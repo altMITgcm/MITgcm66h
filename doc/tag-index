@@ -5,6 +5,15 @@ $Header$
 
 o corrected CPP option mismatch in exf_Bulk... functions for case 
   #define ALLOW_ATM_WIND && #undef ALLOW_ATM_TEMP
+o Merging from release1_p13 and from icebear5
+  - bug fix for pkg/seaice dynamic solver
+  - Added SEAICE_initialHEFF to pkg/seaice
+  - Additional options for pkg/cost/cost_ice.F
+  - Updates to verification/natl_box_adjoint
+  - pkg/ctrl/ctrl_init.F
+    Fix for determination of startrec and endrec.
+  - pkg/cal/cal_toseconds.F
+    Fix for negative intervals shorter than 1 day.
 
 ecco_c50_e29
 Bug fix for merging between c50 and KPP.
