@@ -1,7 +1,8 @@
 C $Header$
 
 #include "CPP_OPTIONS.h"
-
+#undef ALLOW_ZONAL_FILT
+#undef ALLOW_SHAP_FILT
 
       subroutine the_main_loop( mytime, myiter, mythid )
 

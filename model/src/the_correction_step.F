@@ -2,8 +2,8 @@ C $Header$
 C Tag $Name$
 
 #include "CPP_OPTIONS.h"
-#undef ALLOW_ZONAL_FILT
-#undef ALLOW_SHAP_FILT
+c #undef ALLOW_ZONAL_FILT
+c #undef ALLOW_SHAP_FILT
 
       SUBROUTINE THE_CORRECTION_STEP(myTime, myIter, myThid)
 C     /==========================================================\

@@ -2,6 +2,8 @@ C $Header$
 C $Name$
 
 #include "CPP_OPTIONS.h"
+#undef ALLOW_ZONAL_FILT
+#undef ALLOW_SHAP_FILT
 
 C     /==========================================================\
 C     | S/R CALC_DIV_GHAT                                        |
