@@ -57,8 +57,6 @@ c     ==================================================================
 c     o Read an active 2D (XY) variable from file.
 c     started: Christian Eckert eckert@mit.edu 30-Jun-1999
 c     ==================================================================
-c     SUBROUTINE g_active_read_xy
-c     ==================================================================
 C     \ev
 
 C     !USES:
@@ -141,8 +139,6 @@ c     SUBROUTINE g_active_read_xyz
 c     ==================================================================
 c     o Read an active 3D variable from file.
 c     started: Christian Eckert eckert@mit.edu 30-Jun-1999
-c     ==================================================================
-c     SUBROUTINE g_active_read_xyz
 c     ==================================================================
 C     \ev
 
@@ -228,8 +224,6 @@ c     ==================================================================
 c     o Read an active 2D xz-slice from file.
 c     started: heimbach@mit.edu 05-Mar-2001
 c     ==================================================================
-c     SUBROUTINE g_active_read_xz
-c     ==================================================================
 C     \ev
 
 C     !USES:
@@ -314,8 +308,6 @@ c     ==================================================================
 c     o Read an active 2D yz-slice from file.
 c     started: heimbach@mit.edu 05-Mar-2001
 c     ==================================================================
-c     SUBROUTINE g_active_read_yz
-c     ==================================================================
 C     \ev
 
 C     !USES:
@@ -398,8 +390,6 @@ c     ==================================================================
 c     o Write an active 2D variable to a file.
 c     started: Christian Eckert eckert@mit.edu 30-Jun-1999
 c     ==================================================================
-c     SUBROUTINE g_active_write_xy
-c     ==================================================================
 C     \ev
 
 C     !USES:
@@ -477,8 +467,6 @@ c     SUBROUTINE g_active_write_xyz
 c     ==================================================================
 c     o Write an active 3D variable to a file.
 c     started: Christian Eckert eckert@mit.edu 30-Jun-1999
-c     ==================================================================
-c     SUBROUTINE g_active_write_xyz
 c     ==================================================================
 C     \ev
 
@@ -558,8 +546,6 @@ c     ==================================================================
 c     o Write an active 2D xz-slice to a file.
 c     started: heimbach@mit.edu 05-Mar-2001
 c     ==================================================================
-c     SUBROUTINE g_active_write_xz
-c     ==================================================================
 C     \ev
 
 C     !USES:
@@ -637,8 +623,6 @@ c     SUBROUTINE g_active_write_yz
 c     ==================================================================
 c     o Write an active 2D variable to a file.
 c     started: heimbach@mit.edu 05-Mar-2001
-c     ==================================================================
-c     SUBROUTINE g_active_write_yz
 c     ==================================================================
 C     \ev
 
@@ -728,8 +712,6 @@ c              - Added routines that do active writes on tiles
 c                instead of a whole thread.
 c
 c     ==================================================================
-c     SUBROUTINE g_active_read_tile_xy
-c     ==================================================================
 
       implicit none
 
@@ -806,8 +788,6 @@ c              - Added routines that do active writes on tiles
 c                instead of a whole thread.
 c
 c     ==================================================================
-c     SUBROUTINE g_active_read_tile_xyz
-c     ==================================================================
 
       implicit none
 
@@ -883,8 +863,6 @@ c              - Added routines that do active writes on tiles
 c                instead of a whole thread.
 c
 c     ==================================================================
-c     SUBROUTINE g_active_write_tile_xy
-c     ==================================================================
 
       implicit none
 
@@ -958,8 +936,6 @@ c
 c              - Added routines that do active writes on tiles
 c                instead of a whole thread.
 c
-c     ==================================================================
-c     SUBROUTINE g_active_write_tile_xyz
 c     ==================================================================
 
       implicit none

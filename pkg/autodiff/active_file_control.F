@@ -44,15 +44,11 @@ C     !INTERFACE:
 
 C     !DESCRIPTION: \bv
 c     ==================================================================
-c     SUBROUTINE active_read_rl
-c     ==================================================================
 c     o Read an active _RL variable from file.
 c     The variable *globalfile* can be used as a switch, which allows
 c     to read from a global file. The adjoint files are, however, always
 c     treated as tiled files.
 c     started: Christian Eckert eckert@mit.edu    Jan-1999
-c     ==================================================================
-c     SUBROUTINE active_read_rl
 c     ==================================================================
 C     \ev
 
@@ -279,12 +275,8 @@ C     !INTERFACE:
 
 C     !DESCRIPTION: \bv
 c     ==================================================================
-c     SUBROUTINE active_write_rl
-c     ==================================================================
 c     o Write an active _RL variable to a file.
 c     started: Christian Eckert eckert@mit.edu    Jan-1999
-c     ==================================================================
-c     SUBROUTINE active_write_rl
 c     ==================================================================
 C     \ev
 
@@ -452,8 +444,6 @@ c     Reset default io precision.
      &                              )
 
 c     ==================================================================
-c     SUBROUTINE active_read_tile_rl
-c     ==================================================================
 c
 c     o Read an active variable from file.
 c
@@ -483,8 +473,6 @@ c
 c              - Added routines that do active writes on tiles
 c                instead of a whole thread.
 c
-c     ==================================================================
-c     SUBROUTINE active_read_tile_rl
 c     ==================================================================
 
       implicit none
@@ -752,8 +740,6 @@ c     Reset default io precision.
      &                               )
 
 c     ==================================================================
-c     SUBROUTINE active_write_tile_rl
-c     ==================================================================
 c
 c     o Write an active variable to a file.
 c
@@ -778,8 +764,6 @@ c
 c              - Added routines that do active writes on tiles
 c                instead of a whole thread.
 c
-c     ==================================================================
-c     SUBROUTINE active_write_tile_rl
 c     ==================================================================
 
       implicit none
@@ -947,3 +931,4 @@ c     Reset default io precision.
 
       return
       end
+

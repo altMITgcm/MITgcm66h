@@ -211,10 +211,12 @@ C     _EXCH_XY_R8( cg2d_s, myThid )
        actualIts      = 0
        actualResidual = err
       
-      _BEGIN_MASTER( myThid )
-      write(*,'(A,1P2E22.14)')' cg2d: Sum(rhs),rhsMax = ',
+       IF ( debugLevel .GE. debLevA ) THEN
+        _BEGIN_MASTER( myThid )
+        write(*,'(A,1P2E22.14)')' cg2d: Sum(rhs),rhsMax = ',
      &                                  sumRHS,rhsMax 
-      _END_MASTER( )
+        _END_MASTER( )
+       ENDIF
 C     _BARRIER
 c     _BEGIN_MASTER( myThid )
 c      WRITE(*,'(A,I6,1PE30.14)') ' CG2D iters, err = ', 

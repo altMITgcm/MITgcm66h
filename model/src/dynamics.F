@@ -453,7 +453,7 @@ C     &                'phiHydLow', myThid )
 Cml)
 
 #ifndef DISABLE_DEBUGMODE
-      If (debugMode) THEN
+      If ( debugLevel .GE. debLevB ) THEN
        CALL DEBUG_STATS_RL(1,EtaN,'EtaN (DYNAMICS)',myThid)
        CALL DEBUG_STATS_RL(Nr,uVel,'Uvel (DYNAMICS)',myThid)
        CALL DEBUG_STATS_RL(Nr,vVel,'Vvel (DYNAMICS)',myThid)

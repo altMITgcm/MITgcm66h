@@ -56,8 +56,6 @@ c     ==================================================================
 c     o Adjoint of active_read_xy.
 c     started: Christian Eckert eckert@mit.edu 24-May-1999
 c     ==================================================================
-c     SUBROUTINE adactive_read_xy
-c     ==================================================================
 C     \ev
 
 C     !USES:
@@ -134,8 +132,6 @@ c     ==================================================================
 c     o Adjoint of active_read_xyz.
 c     started: Christian Eckert eckert@mit.edu 24-May-1999
 c     ==================================================================
-c     SUBROUTINE adactive_read_xyz
-c     ==================================================================
 C     \ev
 
 C     !USES:
@@ -210,8 +206,6 @@ c     SUBROUTINE adactive_read_xz
 c     ==================================================================
 c     o Adjoint of active_read_xz.
 c     started: heimbach@mit.edu 05-Mar-2001
-c     ==================================================================
-c     SUBROUTINE adactive_read_xz
 c     ==================================================================
 C     \ev
 
@@ -288,8 +282,6 @@ c     ==================================================================
 c     o Adjoint of active_read_yz.
 c     started: heimbach@mit.edu 05-Mar-2001
 c     ==================================================================
-c     SUBROUTINE adactive_read_yz
-c     ==================================================================
 C     \ev
 
 C     !USES:
@@ -365,8 +357,6 @@ c     ==================================================================
 c     o Adjoint of active_write_xy.
 c     started: Christian Eckert eckert@mit.edu 24-May-1999
 c     ==================================================================
-c     SUBROUTINE adactive_write_xy
-c     ==================================================================
 C     \ev
 
 C     !USES:
@@ -439,8 +429,6 @@ c     SUBROUTINE adactive_write_xyz
 c     ==================================================================
 c     o Adjoint of active_write_xyz.
 c     started: Christian Eckert eckert@mit.edu 24-May-1999
-c     ==================================================================
-c     SUBROUTINE adactive_write_xyz
 c     ==================================================================
 C     \ev
 
@@ -515,8 +503,6 @@ c     ==================================================================
 c     o Adjoint of active_write_xz.
 c     started: heimbach@mit.edu 05-Mar-2001
 c     ==================================================================
-c     SUBROUTINE adactive_write_xz
-c     ==================================================================
 C     \ev
 
 C     !USES:
@@ -589,8 +575,6 @@ c     SUBROUTINE adactive_write_yz
 c     ==================================================================
 c     o Adjoint of active_write_yz.
 c     started: heimbach@mit.edu 05-Mar-2001
-c     ==================================================================
-c     SUBROUTINE adactive_write_yz
 c     ==================================================================
 C     \ev
 
@@ -682,8 +666,6 @@ c
 c              - changed suboutine argument list: 
 c                dropped mycurrentiter, mycurrenttime
 c
-c     ==================================================================
-c     SUBROUTINE active_read_tile_xy
 c     ==================================================================
 
       implicit none
@@ -781,8 +763,6 @@ c              - changed suboutine argument list:
 c                dropped mycurrentiter, mycurrenttime
 c
 c     ==================================================================
-c     SUBROUTINE adactive_read_tile_xyz
-c     ==================================================================
 
       implicit none
 
@@ -878,8 +858,6 @@ c              - changed suboutine argument list:
 c                dropped mycurrentiter, mycurrenttime
 c
 c     ==================================================================
-c     SUBROUTINE adactive_write_tile_xy
-c     ==================================================================
 
       implicit none
 
@@ -974,8 +952,6 @@ c
 c              - changed suboutine argument list: 
 c                dropped mycurrentiter, mycurrenttime
 c
-c     ==================================================================
-c     SUBROUTINE adactive_write_tile_xyz
 c     ==================================================================
 
       implicit none

@@ -3,6 +3,15 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+ecco_c51_e34c
+o introducing integer flag debugLevel
+  - debLevZero: suppress all output
+  - debLevA: standard
+  - debLevB: equivalent to current debugMode=.TRUE.
+o introducing pathname variable mdsioLocalDir for mdsio
+  that can be specified at runtime
+  (relevant for cluster I/O to local disk)
+
 ecco_c51_e34b
 o Modifications of obcs
   - bug fixes in cost package

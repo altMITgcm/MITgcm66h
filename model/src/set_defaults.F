@@ -153,6 +153,7 @@ Cml      sBeta               = 7.4D-4
       useCDscheme         = .FALSE.
       useEnergyConservingCoriolis = .FALSE.
       useJamartWetPoints  = .FALSE.
+      debugLevel          = debLevA
 
 C--   Set (free)surface-related parameters
       implicitFreeSurface = .TRUE.
@@ -238,6 +239,7 @@ C--   Input files
       pSurfInitFile   = ' '
       dQdTFile        = ' '
       ploadFile       = ' '
+      mdsioLocalDir   = ' '
 
 C
       RETURN
