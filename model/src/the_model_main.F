@@ -51,6 +51,9 @@ C--   Set model initial conditions
       myCurrentTime = startTime
       myCurrentIter = nIter0
 
+C--   Initialise time-stepping (predictor variables are carried in G)
+      CALL INIT_PREDICTOR( myThid )
+
 C--   Begin time stepping loop
       DO I=1, nTimeSteps
 
