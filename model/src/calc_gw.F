@@ -27,7 +27,6 @@ C     !USES:
 C     == Global variables ==
 #include "SIZE.h"
 #include "DYNVARS.h"
-#include "FFIELDS.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
