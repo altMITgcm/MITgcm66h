@@ -35,8 +35,11 @@ C     == Local variables ==
 C--   Set model parameters.
 C     Parameters are set to defaults and then updates are read from
 C     an input file called data.
-      CALL INI_PARMS(  myThid )
+      CALL INI_PARMS( myThid )
       _BARRIER
+
+C--   Configure packages
+      CALL PACKAGE_INIT( myThid )
 
 #ifdef ALLOW_OBCS
 C--   Open boundaries positions
@@ -77,5 +80,8 @@ C--   Set laplace operators for use in 3D conjugate gradient solver.
 
 C--   Finally summarise the model cofiguration
       CALL CONFIG_SUMMARY( myThid )
+
+C--   Check dependances between packages
+      CALL PACKAGE_CHECK( myThid )
 
       END
