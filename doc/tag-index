@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o add "d0" in getcon.F to reduce differences between compilers/platforms
+  update output.txt of exp. fizhi-gridalt-hs
 o change port_rand funtion to allow to set the seed.
 o fix obscure MNC bug involving conversion between reals and integers
   - it caused no problems with certain (eg. gcc, ifc) compilers but the 
