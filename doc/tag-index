@@ -3,6 +3,13 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+release1_p14
+o Added interpolation routine pkg/exf/new_interp.F for on-the-fly
+  interpolation.  Enable with USE_EXF_INTERPOLATION and specify
+  input grids in data.exf
+o Added direct pressure solver pkg/solver.
+  See pkg/solver/README.directSolver for instructions.
+
 release1_p13
 o bug fix for pkg/seaice dynamic solver
 

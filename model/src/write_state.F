@@ -127,15 +127,17 @@ C       Write each snap-shot as a new file (original and default method)
 C       - creates many files but for large configurations is easier to
 C         transfer analyse a particular snap-shots
         WRITE(suff,'(I10.10)') myIter
+#ifdef DUMP_UVTSW_SNAPSHOTS
         CALL WRITE_FLD_XYZ_RL( 'U.',suff,uVel,myIter,myThid)
         CALL WRITE_FLD_XYZ_RL( 'V.',suff,vVel,myIter,myThid)
         CALL WRITE_FLD_XYZ_RL( 'T.',suff,theta,myIter,myThid)
         CALL WRITE_FLD_XYZ_RL( 'S.',suff,salt,myIter,myThid)
-        CALL WRITE_FLD_XY_RL('Eta.',suff,etaN,myIter,myThid)
         CALL WRITE_FLD_XYZ_RL( 'W.',suff,wVel,myIter,myThid)
 #ifdef ALLOW_PASSIVE_TRACER
         CALL WRITE_FLD_XYZ_RL( 'TR1.',suff,tr1,myIter,myThid)
 #endif
+#endif /* DUMP_STUVW_SNAPSHOTS */
+        CALL WRITE_FLD_XY_RL('Eta.',suff,etaN,myIter,myThid)
 #ifdef ALLOW_NONHYDROSTATIC
         IF (nonHydroStatic) THEN
          CALL WRITE_FLD_XYZ_RL( 'PNH.',suff,phi_nh,myIter,myThid)

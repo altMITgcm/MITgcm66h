@@ -54,7 +54,8 @@ C     data.pkg namelists
      &          useZONAL_FILT,
      &          useFLT,
      &          useSBO,
-     &          useSEAICE
+     &          useSEAICE,
+     &          useDirectSolver
 CEOP
 
       _BEGIN_MASTER(myThid)

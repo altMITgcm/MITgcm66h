@@ -57,9 +57,18 @@ c     get record numbers and interpolation factor for swflux
      &        )
 
          if ( first ) then
+#ifdef USE_EXF_INTERPOLATION
+          call new_interp(
+     &    swfluxfile, exf_iprec
+     &  , swflux1, count0, xC, yC
+     &  ,swflux_lon0,swflux_lon_inc
+     &  ,swflux_lat0,swflux_lat_inc
+     &  ,swflux_nlon,swflux_nlat,mythid )
+#else
             call mdsreadfield( swfluxfile, exf_iprec, exf_yftype, 1
      &           , swflux1, count0, mythid
      &           )
+#endif
             if (exf_yftype .eq. 'RL') then
                call exf_filter_rl( swflux1, swfluxmask, mythid )
             else
@@ -69,10 +78,18 @@ c     get record numbers and interpolation factor for swflux
 
          if (( first ) .or. ( changed )) then
             call exf_SwapFFields( swflux0, swflux1, mythid )
-
+#ifdef USE_EXF_INTERPOLATION
+          call new_interp(
+     &    swfluxfile, exf_iprec
+     &  , swflux1, count1, xC, yC
+     &  ,swflux_lon0,swflux_lon_inc
+     &  ,swflux_lat0,swflux_lat_inc
+     &  ,swflux_nlon,swflux_nlat,mythid )
+#else
             call mdsreadfield( swfluxfile, exf_iprec, exf_yftype, 1
      &           , swflux1, count1, mythid
      &           )
+#endif
             if (exf_yftype .eq. 'RL') then
                call exf_filter_rl( swflux1, swfluxmask, mythid )
             else

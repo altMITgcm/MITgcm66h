@@ -98,23 +98,24 @@ C--    Read IO error counter
 c      prevPrec = writeBinaryPrec
 c      writeBinaryPrec = precFloat32
        CALL WRITE_FLD_XY_RL('ETAtave.',suff,etatave,myIter,myThid)
-       CALL WRITE_FLD_XY_RL('Eta2tave.',suff,Eta2tave,myIter,myThid)
-
        CALL WRITE_FLD_XYZ_RL('Ttave.',suff,thetatave,myIter,myThid)
        CALL WRITE_FLD_XYZ_RL('Stave.',suff,salttave,myIter,myThid)
        CALL WRITE_FLD_XYZ_RL('uVeltave.',suff,uVeltave,myIter,myThid)
        CALL WRITE_FLD_XYZ_RL('vVeltave.',suff,vVeltave,myIter,myThid)
+#ifdef DUMP_ALL_TAVE
+       CALL WRITE_FLD_XY_RL('Eta2tave.',suff,Eta2tave,myIter,myThid)
        CALL WRITE_FLD_XYZ_RL('wVeltave.',suff,wVeltave,myIter,myThid)
        CALL WRITE_FLD_XYZ_RL('TTtave.',suff,TTtave,myIter,myThid)
        CALL WRITE_FLD_XYZ_RL('UUtave.',suff,UUtave,myIter,myThid)
        CALL WRITE_FLD_XYZ_RL('VVtave.',suff,VVtave,myIter,myThid)
-c      CALL WRITE_FLD_XYZ_RL('KEtave.',suff,KEtave,myIter,myThid)
+       CALL WRITE_FLD_XYZ_RL('KEtave.',suff,KEtave,myIter,myThid)
        CALL WRITE_FLD_XYZ_RL('UTtave.',suff,UTtave,myIter,myThid)
        CALL WRITE_FLD_XYZ_RL('VTtave.',suff,VTtave,myIter,myThid)
        CALL WRITE_FLD_XYZ_RL('WTtave.',suff,WTtave,myIter,myThid)
        CALL WRITE_FLD_XYZ_RL('PhHytave.',suff,phiHydtave,myIter,myThid)
        CALL WRITE_FLD_XYZ_RL('Convtave.',suff,ConvectCountTave,
      &                       myIter,myThid)
+#endif
 #ifdef NONLIN_FRSURF
        CALL WRITE_FLD_XYZ_RL('hUtave.',suff,hUtave,myIter,myThid)
        CALL WRITE_FLD_XYZ_RL('hVtave.',suff,hVtave,myIter,myThid)

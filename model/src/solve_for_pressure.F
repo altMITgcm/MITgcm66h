@@ -179,6 +179,17 @@ C Western boundary
 C--   Find the surface pressure using a two-dimensional conjugate
 C--   gradient solver.
 C     see CG2D.h for the interface to this routine.
+     
+Cbnc
+      if (useDirectSolver) then
+          CALL solve_direct(
+     I                      cg2d_b
+     U			  , cg2d_x
+     I			  , myThid
+     &			  )
+	 call solve_check( cg2d_b, cg2d_x, myThid )
+	else
+
       firstResidual=0.
       lastResidual=0.
       numIters=cg2dMaxIters
@@ -189,6 +200,8 @@ C     see CG2D.h for the interface to this routine.
      O           lastResidual,
      U           numIters,
      I           myThid )
+        endif
+Cbnc
       _EXCH_XY_R8(cg2d_x, myThid )
 
 #ifndef DISABLE_DEBUGMODE

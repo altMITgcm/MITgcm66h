@@ -584,7 +584,8 @@ C Logical flags for selecting packages
       LOGICAL useFLT
       LOGICAL useSBO
       LOGICAL useSEAICE
+      LOGICAL useDirectSolver
       COMMON /PARM_PACKAGES/
      &        useKPP, useGMRedi, useOBCS, useAIM, useECCO, 
      &        useSHAP_FILT, useZONAL_FILT, useGrdchk, useFLT, 
-     &        useSBO, useSEAICE
+     &        useSBO, useSEAICE, useDirectSolver

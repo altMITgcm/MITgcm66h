@@ -406,6 +406,15 @@ switch ($platform$USEMPI)
     set FC         = ( 'f90' )
     set LINK       = ( 'f90' )
     breaksw
+  case o3k+mpi:
+    echo "Configuring for SGI Origin3000 running IRIX 6.5"
+    set DEFINES    = ( ${DEFINES} '-DTARGET_SGI -DWORDLENGTH=4' )
+    set INCLUDES   = ( '-I/usr/include' )
+    set FFLAGS     = ( '-64 -extend_source -bytereclen -mips4' )
+    set CFLAGS     = ( '-64' )
+    set FOPTIM     = ( '-O3 -OPT:Olimit=0:roundoff=3:div_split=ON' )
+    set LIBS       = ( '-lmpi -lscs' )
+    breaksw
   case onyx:
   case onyx+mpi:
     echo "Configuring for SGI ONYX running IRIX64"

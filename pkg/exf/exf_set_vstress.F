@@ -57,9 +57,18 @@ c     get record numbers and interpolation factor for vstress
      &        )
 
          if ( first ) then
+#ifdef USE_EXF_INTERPOLATION
+          call new_interp(
+     &    vstressfile, exf_iprec
+     &  , vstress1, count0, xC, yG
+     &  ,vstress_lon0,vstress_lon_inc
+     &  ,vstress_lat0,vstress_lat_inc
+     &  ,vstress_nlon,vstress_nlat,mythid )
+#else
             call mdsreadfield( vstressfile, exf_iprec, exf_yftype, 1
      &           , vstress1, count0, mythid
      &           )
+#endif
             if (exf_yftype .eq. 'RL') then
                call exf_filter_rl( vstress1, vstressmask, mythid )
             else
@@ -70,9 +79,18 @@ c     get record numbers and interpolation factor for vstress
          if (( first ) .or. ( changed )) then
             call exf_SwapFFields( vstress0, vstress1, mythid )
 
+#ifdef USE_EXF_INTERPOLATION
+          call new_interp(
+     &    vstressfile, exf_iprec
+     &  , vstress1, count1, xC, yG
+     &  ,vstress_lon0,vstress_lon_inc
+     &  ,vstress_lat0,vstress_lat_inc
+     &  ,vstress_nlon,vstress_nlat,mythid )
+#else
             call mdsreadfield( vstressfile, exf_iprec, exf_yftype, 1
      &           , vstress1, count1, mythid
      &           )
+#endif
             if (exf_yftype .eq. 'RL') then
                call exf_filter_rl( vstress1, vstressmask, mythid )
             else

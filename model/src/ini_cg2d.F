@@ -271,5 +271,10 @@ C     CALL PLOT_FIELD_XYRS( pW, 'pW   INI_CG2D.2' , 1, myThid )
 C     CALL PLOT_FIELD_XYRS( pS, 'pS   INI_CG2D.2' , 1, myThid )
 CcnhDebugEnds
 
+Cbnc
+      if (useDirectSolver)
+     &	  call solve_ini (mythid)
+Cbnc
+
       RETURN
       END

@@ -1,0 +1,62 @@
+Ralf's direct solver.
+=====================
+
+Direct solver files:
+====================
+
+pkg/solver/solve_check.F
+pkg/solver/solve_direct.F
+pkg/solver/solve_direct.h
+pkg/solver/solve_ini.F
+pkg/solver/solve_interface.F
+pkg/solver/solve_interface_allgather.F
+pkg/solver/solve_local.F
+pkg/solver/solve_local_cg.F
+
+Needed to compute input arrays ss_matrix*:
+
+utils/matlab/calcmat.m
+utils/matlab/readmat.m
+utils/matlab/build.m
+utils/matlab/distri.m
+utils/matlab/store.m
+
+Also needed:
+
+eesupp/src/mdsio.F
+
+Instructions:
+=============
+
+1) Run the code once to generate the aw2d*, as2d*, and cent* files.
+
+2) Use matlab script utils/matlab/calcmat.m to generate ss_matrix*
+   files, for example:
+
+     matlab
+     snx = 45;
+     sny = 28;
+     npx = 8;
+     npy = 8;
+     calcmat
+
+3) Put ss_matrix*.data files in the executable directory.
+   By default the direct solver will be used when ss_matrix*
+   files are detected.
+
+Test:
+=====
+
+A two processor mpi test configuration of the direct solver
+is available under verification/exp5:
+
+     cd verification/exp5
+     testing.sh 2
+
+
+Notes:
+======
+
+In order to use the direct solver it is necessary to provide blas and
+lapack libraries.  Right now genmake only provides these for the JPL
+Origin 2000 Alhena by linking the "-lscs" library.
