@@ -91,13 +91,13 @@ EOF
 	printf '\t%s\n' "-cat $d_tex >> $target" >> Makefile
     fi
     if test ! "x$h_files" = x ; then
-	printf '\t%s\n' "-./protex -b7 $d_h >> $target" >> Makefile
+	printf '\t%s\n' "-./protex -b7f $d_h >> $target" >> Makefile
     fi
     if test ! "x$F_files" = x ; then
-	printf '\t%s\n' "-./protex -b7 $d_F >> $target" >> Makefile
+	printf '\t%s\n' "-./protex -b7f $d_F >> $target" >> Makefile
     fi
     if test ! "x$c_files" = x ; then
-	printf '\t%s\n' "-./protex -bC $d_c >> $target" >> Makefile
+	printf '\t%s\n' "-./protex -bCf $d_c >> $target" >> Makefile
     fi
 
     if test ! "x$target" = x ; then
