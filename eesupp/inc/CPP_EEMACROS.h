@@ -7,7 +7,7 @@ C     !INTERFACE:
 C     include "CPP_EEMACROS.h "
 C     !DESCRIPTION:
 C     *==========================================================*
-C     | CPP_EEMACROS.h                                            
+C     | CPP\_EEMACROS.h
 C     *==========================================================*
 C     | C preprocessor "execution environment" supporting         
 C     | macros. Use this file to define macros for  simplifying   

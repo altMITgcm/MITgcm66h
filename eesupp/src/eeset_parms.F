@@ -12,7 +12,7 @@ C     !INTERFACE:
 
 C     !DESCRIPTION:
 C     *==========================================================*
-C     | SUBROUTINE EESET_PARMS                                    
+C     | SUBROUTINE EESET\_PARMS                                    
 C     | o Routine to set model "parameters"                       
 C     *==========================================================*
 C     | This routine is called from the high-level wrapper        

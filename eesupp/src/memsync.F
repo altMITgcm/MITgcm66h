@@ -19,7 +19,7 @@ C     | This routine is called wherever the code requires
 C     | that writes performed by one thread or process must       
 C     | be guaranteed visible to other processes and or threads.  
 C     |  On SPARC this routine would implement a                  
-C     |  asm("membar #LoadStore|#StoreStore");                    
+C     |  asm("membar \#LoadStore|\#StoreStore");                    
 C     |  On ALPHA                                                 
 C     |  asm("mb");                                               
 C     |  Note: I have yet to show this is necessary although      

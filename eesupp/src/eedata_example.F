@@ -5,7 +5,7 @@ C $Name$
 
       SUBROUTINE EEDATA_EXAMPLE
 C     /==========================================================\
-C     | S/R EEDATA_EXAMPLE                                       |
+C     | S/R EEDATA\_EXAMPLE                                       |
 C     | o Write example eedata file                              |
 C     |==========================================================|
 C     | Notes                                                    |

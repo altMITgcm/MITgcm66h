@@ -11,7 +11,7 @@ C     !INTERFACE:
 
 C     !DESCRIPTION:
 C     *==========================================================
-C     | SUBROUTINE EEINTRO_MSG                                   
+C     | SUBROUTINE EEINTRO\_MSG                                   
 C     | o Write basic WRAPPER introductory message.                      
 C     *==========================================================
 C     | This routine could be customised for different platforms.

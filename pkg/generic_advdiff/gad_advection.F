@@ -6,7 +6,7 @@ C !TITLE: pkg/generic\_advdiff
 C !AUTHORS: adcroft@mit.edu
 C !INTRODUCTION: Generic Advection Diffusion Package
 C
-C Package "generic\_advdiff" provides a common set of routines for calculating
+C Package ``generic\_advdiff'' provides a common set of routines for calculating
 C advective/diffusive fluxes for tracers (cell centered quantities on a C-grid).
 C
 C Many different advection schemes are available: the standard centered
@@ -30,6 +30,7 @@ CEOI
 
 #include "GAD_OPTIONS.h"
 
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 CBOP
 C !ROUTINE: GAD_ADVECTION
 
@@ -39,7 +40,6 @@ C !INTERFACE: ==========================================================
      I           uVel, vVel, wVel, tracer,
      O           gTracer,
      I           bi,bj, myTime,myIter,myThid)
-C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 C !DESCRIPTION:
 C Calculates the tendancy of a tracer due to advection.

@@ -15,7 +15,7 @@ C     !INTERFACE:
 
 C     !DESCRIPTION:
 C     *=================================================================================*
-C     | SUBROUTINE INI_JAM
+C     | SUBROUTINE INI\_JAM
 C     | o Initialise JAM based communication
 C     *=================================================================================*
 C     | Connect to synchronising daemon process that allocates jam network ids to

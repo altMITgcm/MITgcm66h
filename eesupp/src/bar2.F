@@ -11,7 +11,7 @@ C     !INTERFACE:
 
 C     !DESCRIPTION:
 C     *=====================================================================*
-C     | SUBROUTINE BAR2_INIT
+C     | SUBROUTINE BAR2\_INIT
 C     | o Setup global barrier data structures.
 C     *=====================================================================*
 C     | Initialise global barrier data structures that can be used in

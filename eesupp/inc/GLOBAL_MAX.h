@@ -6,7 +6,7 @@ C     !INTERFACE:
 C     include "GLOBAL_MAX.h"
 C     !DESCRIPTION:
 C     *==========================================================*
-C     | GLOBAL_MAX.h                                              
+C     | GLOBAL\_MAX.h                                              
 C     | o Globals used by Fortran global max routine.             
 C     *==========================================================*
 C     | The global max shared memory scheme uses global heap data 

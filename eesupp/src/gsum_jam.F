@@ -14,7 +14,7 @@ C     !INTERFACE:
 
 C     !DESCRIPTION:
 C     *=========================================================================*
-C     | SUBROUTINE GLOBAL_SUM_R8_JAM
+C     | SUBROUTINE GLOBAL\_SUM\_R8\_JAM
 C     | o JAM binding of global sum routine
 C     *=========================================================================*
 C     | Does a super fast global sum over the JAM library. With JAM

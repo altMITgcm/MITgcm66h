@@ -12,7 +12,7 @@ C     !INTERFACE:
 
 C     !DESCRIPTION:
 C     *==========================================================*
-C     | SUBROUTINE EXCH_CYCLE_EBL                                 
+C     | SUBROUTINE EXCH\_CYCLE\_EBL                                 
 C     | o Cycle exchange buffer level.                            
 C     *==========================================================*
 C     | Step the "exchange buffer level" to next value.           

@@ -12,7 +12,7 @@ C     !INTERFACE:
 
 C     !DESCRIPTION:
 C     *==========================================================
-C     | SUBROUTINE CHECK_THREADS                                 
+C     | SUBROUTINE CHECK\_THREADS                                 
 C     | o Check that all the threads we need did indeed start.    
 C     *========================================================== 
 C     | This routine is called during the initialisation phase    

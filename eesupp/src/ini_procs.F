@@ -11,7 +11,7 @@ C     !INTERFACE:
 
 C     !DESCRIPTION:
 C     *==========================================================*
-C     | SUBROUTINE INI_PROCS                                      
+C     | SUBROUTINE INI\_PROCS                                      
 C     | o Initialise multiple concurrent processes environment.   
 C     *==========================================================*
 C     | Under MPI this routine calls various MPI service routines 

@@ -160,7 +160,7 @@ C     !INTERFACE:
 
 C     !DESCRIPTION:
 C     *==========================================================*
-C     | FUNCTION IO_ERRCOUNT                                     |
+C     | FUNCTION IO\_ERRCOUNT                                     |
 C     | o Reads IO error counter.                                |
 C     *==========================================================*
 

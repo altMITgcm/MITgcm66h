@@ -11,7 +11,7 @@ C     !INTERFACE:
 
 C     !DESCRIPTION:
 C     *==========================================================
-C     | SUBROUTINE COMM_STATS                                    
+C     | SUBROUTINE COMM\_STATS                                    
 C     | o Print out statistics from communication routines.      
 C     *==========================================================
 

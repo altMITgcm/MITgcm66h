@@ -11,7 +11,7 @@ C     !INTERFACE:
 
 C     !DESCRIPTION:
 C     *==========================================================*
-C     | LOGICAL FUNCTION DIFFERENT_MULTIPLE                       
+C     | LOGICAL FUNCTION DIFFERENT\_MULTIPLE                       
 C     | o Checks two numbers multiple of a third number.          
 C     *==========================================================*
 C     | This routine is used for diagnostic and other periodic    

@@ -12,7 +12,7 @@ C      !INTERFACE:
        IMPLICIT NONE
 C      !DESCRIPTION:
 C      *=================================================================*
-C      | SUBROUTINE FOOL_THE_COMPILER                                    |
+C      | SUBROUTINE FOOL\_THE\_COMPILER                                  |
 C      | o Dummy routine used to supress compiler behavior.              |
 C      *=================================================================*
 C      | Routine is used to stop compiler optimizations in which global  |

@@ -8,7 +8,7 @@ C     include "CPP_EEOPTIONS.h"
 C
 C     !DESCRIPTION:
 C     *==========================================================*
-C     | CPP_EEOPTIONS.h                                          |
+C     | CPP\_EEOPTIONS.h                                         |
 C     *==========================================================*
 C     | C preprocessor "execution environment" supporting        |
 C     | flags. Use this file to set flags controlling the        |

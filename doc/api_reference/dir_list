@@ -18,7 +18,8 @@
 #  consistent directory structure for source and header files.
 
 
-#  eesupp/src eesupp/inc
+eesupp/src eesupp/inc
+
 #  model/src model/inc
 #  diags/src diags/inc
 #  lsopt
@@ -43,8 +44,8 @@
 #  pkg/fizhi
 #  pkg/flt
 #  pkg/gchem
-#  pkg/generic_advdiff
 
+pkg/generic_advdiff
 pkg/gmredi
 
 #  pkg/grdchk

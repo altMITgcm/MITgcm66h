@@ -49,7 +49,7 @@ C   subsequent calls to DFILE_SET routines.
       SUBROUTINE DFILE_CLOSE(
      I                       fileHandle, myThid)
 C     /==========================================================\
-C     | SUBROUTINE DFILE_CLOSE                                   |
+C     | SUBROUTINE DFILE\_CLOSE                                   |
 C     | o Close model "dump" file.                               |
 C     |==========================================================|
 C     | Controlling routine for doing actual I/O operations.     |

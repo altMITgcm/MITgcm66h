@@ -12,7 +12,7 @@ C     !INTERFACE:
       IMPLICIT NONE
 C     !DESCRIPTION:
 C     *==========================================================*
-C     | SUBROUTINE INI_COMMUNICATION_PATTERNS                     
+C     | SUBROUTINE INI\_COMMUNICATION\_PATTERNS                     
 C     | o Initialise between tile communication data structures.  
 C     *==========================================================*
 C     | This routine assigns identifiers to each tile and then    

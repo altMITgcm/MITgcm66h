@@ -18,7 +18,7 @@ C     !INTERFACE:
       IMPLICIT NONE
 C     !DESCRIPTION:
 C     *==========================================================*
-C     | SUBROUTINE GLOBAL_SUM_R4                                  
+C     | SUBROUTINE GLOBAL\_SUM\_R4                                  
 C     | o Handle sum for real*4 data.                             
 C     *==========================================================*
 C     | Perform sum an array of one value per thread and then     
@@ -106,7 +106,7 @@ C     !INTERFACE:
       IMPLICIT NONE 
 C     !DESCRIPTION:
 C     *==========================================================*
-C     | SUBROUTINE GLOBAL_SUM_R8                                  
+C     | SUBROUTINE GLOBAL\_SUM\_R8                                
 C     | o Handle sum for real*8 data.                             
 C     *==========================================================*
 C     | Perform sum an array of one value per thread and then     
@@ -202,7 +202,7 @@ C     !INTERFACE:
       IMPLICIT NONE
 C     !DESCRIPTION:
 C     *==========================================================*
-C     | SUBROUTINE GLOBAL_SUM_INT                                 
+C     | SUBROUTINE GLOBAL\_SUM\_INT                                 
 C     | o Handle sum for integer data.                            
 C     *==========================================================*
 C     | Perform sum an array of one value per thread and then     

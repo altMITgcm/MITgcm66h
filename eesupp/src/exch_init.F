@@ -12,7 +12,7 @@ C     !INTERFACE:
 
 C     !DESCRIPTION:
 C     *==========================================================*
-C     | SUBROUTINE EXCH_INIT                                     |
+C     | SUBROUTINE EXCH\_INIT                                     |
 C     | o Initialise WRAPPER exchange data structures.           |
 C     *==========================================================*
 

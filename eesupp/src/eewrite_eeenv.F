@@ -12,7 +12,7 @@ C     !INTERFACE:
 
 C     !DESCRIPTION:
 C     *==========================================================*
-C     | SUBROUTINE EERWITE_EEENV                                  
+C     | SUBROUTINE EERWITE\_EEENV                                  
 C     | o Write execution environment summary                     
 C     *==========================================================*
 C     | Write a summary of the execution environment as           

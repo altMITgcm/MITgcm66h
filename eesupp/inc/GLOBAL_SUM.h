@@ -6,7 +6,7 @@ C     !INTERFACE:
 C     include "GLOBAL_SUM.h"
 C     !DESCRIPTION:
 C     *==========================================================*
-C     | GLOBAL_SUM.h                                             |
+C     | GLOBAL\_SUM.h                                             |
 C     | o Globals used by Fortran global sum routine.            |
 C     *==========================================================*
 C     | The global sum shared memory scheme uses global heap data|

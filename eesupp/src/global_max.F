@@ -19,7 +19,7 @@ C     !INTERFACE:
       IMPLICIT NONE
 C     !DESCRIPTION:
 C     *==========================================================*
-C     | SUBROUTINE GLOBAL_MAX_R4                                  
+C     | SUBROUTINE GLOBAL\_MAX\_R4                                  
 C     | o Handle max for real*4 data.                             
 C     *==========================================================*
 C     | Perform max on array of one value per thread and then     
@@ -105,7 +105,7 @@ C     !INTERFACE:
       IMPLICIT NONE
 C     !DESCRIPTION:
 C     *==========================================================*
-C     | SUBROUTINE GLOBAL_MAX_R8                                  
+C     | SUBROUTINE GLOBAL\_MAX\_R8                                  
 C     | o Handle max for real*8 data.                             
 C     *==========================================================*
 C     | Perform max on array of one value per thread and then     

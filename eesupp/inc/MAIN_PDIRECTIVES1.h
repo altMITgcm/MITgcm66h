@@ -6,12 +6,12 @@ C     !INTERFACE:
 C     include "MAIN_PDIRECTIVES1.h"
 C     !DESCRIPTION:
 C     *==========================================================*
-C     | MAIN_PDIRECTIVES1.h                                       
+C     | MAIN\_PDIRECTIVES1.h                                       
 C     *==========================================================*
 C     | Parallel directives to generate multithreaded code for    
 C     | various different compilers. The master preprocessor      
-C     | file CPP_OPTIONS is used to select which of these options 
-C     | is included in the code.                                  
+C     | file CPP\_OPTIONS is used to select which of these 
+C     | options is included in the code.
 C     *==========================================================*
 CEOP
 

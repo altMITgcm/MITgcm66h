@@ -19,7 +19,7 @@ C     !INTERFACE:
 
 C     !DESCRIPTION:
 C     *=================================================================*
-C     | SUBROUTINE NML_FILTER
+C     | SUBROUTINE NML\_FILTER
 C     | o Remove comments from namelist.
 C     *=================================================================*
 C     |
@@ -28,8 +28,8 @@ C     |
 C     |        - remove comments from namelist file
 c     |        - usage
 C     |
-C     |    CALL NML_FILTER( 'datafile', iUnit, myThid )
-C     |    READ  ( UNIT = iunit, NML = the_namelist )
+C     |    CALL NML\_FILTER( 'datafile', iUnit, myThid )
+C     |    READ  ( UNIT = iunit, NML = the\_namelist )
 C     |    CLOSE ( iUnit )
 C     |
 C     *=================================================================*

@@ -22,10 +22,10 @@ C     !INTERFACE:
 
 C     !DESCRIPTION:
 C     *=================================================================*
-C     | SUBROUTINE NML_SET_TERMINATOR
+C     | SUBROUTINE NML\_SET\_TERMINATOR
 C     | o Set namelist terminator character
 C     *=================================================================*
-C     | Change trailing & to trailing / when needed
+C     | Change trailing \& to trailing / when needed
 C     *=================================================================*
 
 C     !USES:

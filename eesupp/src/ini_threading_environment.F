@@ -13,7 +13,7 @@ C     !INTERFACE:
 
 C     !DESCRIPTION:
 C     *==========================================================*
-C     | SUBROUTINE INI_THREADING_ENVIRONMENT                      
+C     | SUBROUTINE INI\_THREADING\_ENVIRONMENT                      
 C     | o Initialise multi-threaded environment.                  
 C     *==========================================================*
 C     | Generally we do not start separate threads here.          
