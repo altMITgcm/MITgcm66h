@@ -194,7 +194,7 @@ C TURBULENCE
 C ==========
       IF ( alarm('turb') ) THEN
 
-      call turbio (im,jm,lm,istrip,nymd,nhms,bi,bj,ndturb,
+      call turbio (im,jm,lm,istrip,nymd,nhms,bi,bj,ndturb,nltop,
      .  ptop,p,u,v,t,q,ntracer,ptracer,pl,ple,dpres,pkht,pkl,
      .  ctmt,xxmt,yymt,zetamt,xlmt,khmt,tke,
      .  tgz,fracland,landtype,
