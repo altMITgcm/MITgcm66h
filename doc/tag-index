@@ -3,8 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
-
-eckpoint57e_pre
+checkpoint57e_post
+o Adding eddy stress controls a la Ferreira et al.
+checkpoint57e_pre
 
 o fizhi pkg: fix AtoC and CtoA when called with same input & output array
   update output.txt of exp. fizhi-gridalt-hs
