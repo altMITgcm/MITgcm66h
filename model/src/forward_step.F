@@ -151,10 +151,10 @@ c**************************************
 
 
 C--   Call external forcing package
+cswdblk -- add ---
 #ifdef ALLOW_BULK_FORCE
 #ifndef DISABLE_DEBUGMODE
-      IF ( useBulkforce ) THEN
-       IF ( debugLevel .GE. debLevB ) 
+      IF ( debugLevel .GE. debLevB ) 
      &    CALL DEBUG_CALL('BULKF_FIELDS_LOAD',myThid)
 #endif
        CALL TIMER_START('BULKF_FIELDS_LOAD[THE_MAIN_LOOP]',mythid)
@@ -172,10 +172,8 @@ c     Update the tile edges.
        CALL EXCH_UV_XY_RS(fu, fv, .TRUE., myThid)
 C       _EXCH_XY_R8(fu     , mythid)
 C       _EXCH_XY_R8(fv     , mythid)
-      ELSE
+cswdblk -- end add ---
 #else /* ALLOW_BULK_FORCE undef */
-      IF ( .TRUE. ) THEN
-#endif /* ALLOW_BULK_FORCE */
 # ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
 C     NOTE, that although the exf package is part of the
 C     distribution, it is not currently maintained, i.e.
@@ -206,8 +204,6 @@ cph assuming that ALLOW_SEAICE has not yet been differentiated.
       ENDIF
 #  endif
 # endif /* INCLUDE_EXTERNAL_FORCING_PACKAGE */
-C--   end of if/else block useBulfforce --
-      ENDIF
 
 #if (defined (ALLOW_ADJOINT_RUN) || defined (ALLOW_TANGENTLINEAR_RUN))
 c--   Add control vector for forcing and parameter fields
@@ -236,6 +232,7 @@ C     theta is dumped or time-averaged.
          CALL TIMER_STOP ('SEAICE_MODEL       [FORWARD_STEP]',myThid)
       ENDIF
 # endif /* ALLOW_SEAICE */
+#endif /* ALLOW_BULK_FORCE */
 
 #ifdef ALLOW_AUTODIFF_TAMC
 # ifdef ALLOW_PTRACERS
