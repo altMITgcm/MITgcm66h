@@ -113,7 +113,7 @@ C     zcoord ::
      & CALL WRITE_0D_R8( viscA4D, INDEX_NONE,'viscA4D =',
      & '  /* Lateral biharmonic viscosity (Divergence)( m^4/s ) */')
       IF ( viscA4Z.NE.viscA4 ) 
-     & CALL WRITE_0D_R8( viscA4D, INDEX_NONE,'viscA4Z =',
+     & CALL WRITE_0D_R8( viscA4Z, INDEX_NONE,'viscA4Z =',
      & '  /* Lateral biharmonic viscosity (Vorticity) ( m^4/s ) */')
       CALL WRITE_0D_R8( viscA4Max, INDEX_NONE,'viscA4Max =',
      &'   /* Maximum biharmonic viscosity ( m^2/s ) */')
