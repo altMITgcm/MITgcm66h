@@ -1,0 +1,204 @@
+C $Header$
+C $Name$
+
+#include "CPP_OPTIONS.h"
+
+      SUBROUTINE INI_CURVILINEAR_GRID( myThid )
+C     /==========================================================\
+C     | SUBROUTINE INI_CURVILINEAR_GRID                          |
+C     | o Initialise curvilinear coordinate system               |
+C     |==========================================================|
+C     \==========================================================/
+      IMPLICIT NONE
+
+C     === Global variables ===
+#include "SIZE.h"
+#include "EEPARAMS.h"
+#include "PARAMS.h"
+#include "GRID.h"
+
+C     == Routine arguments ==
+C     myThid -  Number of this instance of INI_CARTESIAN_GRID
+      INTEGER myThid
+
+C     == Local variables ==
+      INTEGER bi,bj
+      INTEGER I,J
+
+C--   Set everything to zero everywhere
+      DO bj = myByLo(myThid), myByHi(myThid)
+       DO bi = myBxLo(myThid), myBxHi(myThid)
+
+        DO J=1-Oly,sNy+Oly
+         DO I=1-Olx,sNx+Olx
+          XC(i,j,bi,bj)=0.
+          YC(i,j,bi,bj)=0.
+          XG(i,j,bi,bj)=0.
+          YG(i,j,bi,bj)=0.
+          DXC(i,j,bi,bj)=0.
+          DYC(i,j,bi,bj)=0.
+          DXG(i,j,bi,bj)=0.
+          DYG(i,j,bi,bj)=0.
+          DXF(i,j,bi,bj)=0.
+          DYF(i,j,bi,bj)=0.
+          DXV(i,j,bi,bj)=0.
+          DYU(i,j,bi,bj)=0.
+          RA(i,j,bi,bj)=0.
+          RAZ(i,j,bi,bj)=0.
+          RAW(i,j,bi,bj)=0.
+          RAS(i,j,bi,bj)=0.
+          tanPhiAtU(i,j,bi,bj)=0.
+          tanPhiAtV(i,j,bi,bj)=0.
+          cosFacU(J,bi,bj)=1.
+          cosFacV(J,bi,bj)=1.
+          sqcosFacU(J,bi,bj)=1.
+          sqcosFacV(J,bi,bj)=1.
+         ENDDO
+        ENDDO
+
+       ENDDO ! bi
+      ENDDO ! bj
+
+C     Here we make no assumptions about grid symmetry and simply
+C     read the raw grid data from files
+
+C-    Cell centered quantities
+      CALL MDSREADFIELD('LONC',readBinaryPrec,'RL',1,XC,  1,myThid)
+      CALL MDSREADFIELD('LATC',readBinaryPrec,'RL',1,YC,  1,myThid)
+      _EXCH_XY_R4(XC,myThid)
+      _EXCH_XY_R4(YC,myThid)
+
+      CALL MDSREADFIELD('DXF',readBinaryPrec,'RL',1,DXF,  1,myThid)
+      CALL MDSREADFIELD('DYF',readBinaryPrec,'RL',1,DYF,  1,myThid)
+C !!! _EXCH_OUV_XY_R4(DXF, DYF, unSigned, myThid )
+cs!   this is not correct! <= need paired exchange for DXF,DYF
+      _EXCH_XY_R4(DXF,myThid)
+      _EXCH_XY_R4(DYF,myThid)
+
+      CALL MDSREADFIELD('RA',readBinaryPrec,'RL',1,RA,  1,myThid)
+      _EXCH_XY_R4(RA,myThid )
+
+C-    Corner quantities
+C       *********** this are not degbugged ************
+      CALL MDSREADFIELD('LONG',readBinaryPrec,'RL',1,XG,  1,myThid)
+      CALL MDSREADFIELD('LATG',readBinaryPrec,'RL',1,YG,  1,myThid)
+cs-   this block needed by cubed sphere until we write more useful I/O routines
+      CALL EXCH_Z_XY_RS(XG,myThid)
+      CALL EXCH_Z_XY_RS(YG,myThid)
+      DO bj = myByLo(myThid), myByHi(myThid)
+       DO bi = myBxLo(myThid), myBxHi(myThid)
+        XG(sNx+1,1,bi,bj)=XG(sNx+1,2,bi,bj)-0.5*XG(sNx+1,3,bi,bj)
+     &                   +XG(sNx,1,bi,bj)-0.5*XG(sNx-1,1,bi,bj)
+        YG(sNx+1,1,bi,bj)=YG(sNx+1,2,bi,bj)-0.5*YG(sNx+1,3,bi,bj)
+     &                   +YG(sNx,1,bi,bj)-0.5*YG(sNx-1,1,bi,bj)
+        XG(1,sNy+1,bi,bj)=XG(2,sNy+1,bi,bj)-0.5*XG(3,sNy+1,bi,bj)
+     &                   +XG(1,sNy,bi,bj)-0.5*XG(1,sNy-1,bi,bj)
+        YG(1,sNy+1,bi,bj)=YG(2,sNy+1,bi,bj)-0.5*YG(3,sNy+1,bi,bj)
+     &                   +YG(1,sNy,bi,bj)-0.5*YG(1,sNy-1,bi,bj)
+       ENDDO
+      ENDDO
+cs-   end block
+      CALL EXCH_Z_XY_RS(XG,myThid)
+      CALL EXCH_Z_XY_RS(YG,myThid)
+
+      CALL MDSREADFIELD('DXV',readBinaryPrec,'RL',1,DXV,  1,myThid)
+      CALL MDSREADFIELD('DYU',readBinaryPrec,'RL',1,DYU,  1,myThid)
+cs-   this block needed by cubed sphere until we write more useful I/O routines
+C !!! _EXCH_ZUV_XY_R4(DXV, DYU, unSigned, myThid)
+cs!   this is not correct <= need paired exchange for dxv,dyu
+      CALL EXCH_Z_XY_RS(DXV,myThid)
+      CALL EXCH_Z_XY_RS(DYU,myThid)
+      DO bj = myByLo(myThid), myByHi(myThid)
+       DO bi = myBxLo(myThid), myBxHi(myThid)
+        DXV(sNx+1,1,bi,bj)=DXV(sNx+1,2,bi,bj)-0.5*DXV(sNx+1,3,bi,bj)
+     &                    +DXV(sNx,1,bi,bj)-0.5*DXV(sNx-1,1,bi,bj)
+        DYU(sNx+1,1,bi,bj)=DYU(sNx+1,2,bi,bj)-0.5*DYU(sNx+1,3,bi,bj)
+     &                    +DYU(sNx,1,bi,bj)-0.5*DYU(sNx-1,1,bi,bj)
+        DXV(1,sNy+1,bi,bj)=DXV(2,sNy+1,bi,bj)-0.5*DXV(3,sNy+1,bi,bj)
+     &                    +DXV(1,sNy,bi,bj)-0.5*DXV(1,sNy-1,bi,bj)
+        DYU(1,sNy+1,bi,bj)=DYU(2,sNy+1,bi,bj)-0.5*DYU(3,sNy+1,bi,bj)
+     &                    +DYU(1,sNy,bi,bj)-0.5*DYU(1,sNy-1,bi,bj)
+       ENDDO
+      ENDDO
+cs-   end block
+C !!! _EXCH_ZUV_XY_R4(DXV, DYU, unSigned, myThid)
+cs!   this is not correct <= need paired exchange for dxv,dyu
+      CALL EXCH_Z_XY_RS(DXV,myThid)
+      CALL EXCH_Z_XY_RS(DYU,myThid)
+
+      CALL MDSREADFIELD('RAZ',readBinaryPrec,'RL',1,RAZ,  1,myThid)
+cs-   this block needed by cubed sphere until we write more useful I/O routines
+      CALL EXCH_Z_XY_RS(RAZ , myThid )
+      DO bj = myByLo(myThid), myByHi(myThid)
+       DO bi = myBxLo(myThid), myBxHi(myThid)
+        RAZ(sNx+1,1,bi,bj)=RAZ(sNx+1,2,bi,bj)-0.5*RAZ(sNx+1,3,bi,bj)
+     &                    +RAZ(sNx,1,bi,bj)-0.5*RAZ(sNx-1,1,bi,bj)
+        RAZ(1,sNy+1,bi,bj)=RAZ(2,sNy+1,bi,bj)-0.5*RAZ(3,sNy+1,bi,bj)
+     &                    +RAZ(1,sNy,bi,bj)-0.5*RAZ(1,sNy-1,bi,bj)
+       ENDDO
+      ENDDO
+cs-   end block
+      CALL EXCH_Z_XY_RS(RAZ,myThid)
+
+C-    Staggered (u,v pairs) quantities
+      CALL MDSREADFIELD('DXC',readBinaryPrec,'RL',1,DXC,  1,myThid)
+      CALL MDSREADFIELD('DYC',readBinaryPrec,'RL',1,DYC,  1,myThid)
+cs-   this block needed by cubed sphere until we write more useful I/O routines
+      DO bj = myByLo(myThid), myByHi(myThid)
+       DO bi = myBxLo(myThid), myBxHi(myThid)
+        DO J = 1,sNy
+         DXC(sNx+1,J,bi,bj)=DXC(1,J,bi,bj)
+         DYC(J,sNy+1,bi,bj)=DYC(J,1,bi,bj)
+        ENDDO
+       ENDDO
+      ENDDO
+cs-   end block
+      CALL EXCH_UV_XY_RS(DXC,DYC,.FALSE.,myThid)
+
+      CALL MDSREADFIELD('RAW',readBinaryPrec,'RL',1,RAW,  1,myThid)
+      CALL MDSREADFIELD('RAS',readBinaryPrec,'RL',1,RAS,  1,myThid)
+cs-   this block needed by cubed sphere until we write more useful I/O routines
+      DO bj = myByLo(myThid), myByHi(myThid)
+       DO bi = myBxLo(myThid), myBxHi(myThid)
+        DO J = 1,sNy
+         RAW(sNx+1,J,bi,bj)=RAW(1,J,bi,bj)
+         RAS(J,sNy+1,bi,bj)=RAS(J,1,bi,bj)
+        ENDDO
+       ENDDO
+      ENDDO
+cs-   end block
+      CALL EXCH_UV_XY_RS(RAW,RAS,.FALSE.,myThid)
+
+      CALL MDSREADFIELD('DXG',readBinaryPrec,'RL',1,DXG,  1,myThid)
+      CALL MDSREADFIELD('DYG',readBinaryPrec,'RL',1,DYG,  1,myThid)
+cs-   this block needed by cubed sphere until we write more useful I/O routines
+      DO bj = myByLo(myThid), myByHi(myThid)
+       DO bi = myBxLo(myThid), myBxHi(myThid)
+        DO J = 1,sNy
+         DYG(sNx+1,J,bi,bj)=DYG(1,J,bi,bj)
+         DXG(J,sNy+1,bi,bj)=DXG(J,1,bi,bj)
+        ENDDO
+       ENDDO
+      ENDDO
+cs-   end block
+      CALL EXCH_UV_XY_RS(DYG,DXG,.FALSE.,myThid)
+
+      write(10) XC
+      write(10) YC
+      write(10) DXF
+      write(10) DYF
+      write(10) RA
+      write(10) XG
+      write(10) YG
+      write(10) DXV
+      write(10) DYU
+      write(10) RAZ
+      write(10) DXC
+      write(10) DYC
+      write(10) RAW
+      write(10) RAS
+      write(10) DXG
+      write(10) DYG
+
+      RETURN
+      END

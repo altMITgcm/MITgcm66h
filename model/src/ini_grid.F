@@ -56,6 +56,8 @@ C--   Set up horizontal grid and coordinate system
        CALL INI_CARTESIAN_GRID( myThid )
       ELSEIF ( usingSphericalPolarGrid ) THEN
        CALL INI_SPHERICAL_POLAR_GRID( myThid )
+      ELSEIF ( usingCurvilinearGrid ) THEN
+       CALL INI_CURVILINEAR_GRID( myThid )
       ELSE
        _BEGIN_MASTER(myThid)
         WRITE(msgBuf,'(A)') 
@@ -64,6 +66,13 @@ C--   Set up horizontal grid and coordinate system
          STOP 'ABNORMAL END: S/R INI_GRID'
        _END_MASTER(myThid)
       ENDIF
-C
+
+C--   Write certain grid data to files (useful for creating netCDF
+C     and general post-analysis)
+      CALL WRITE_FLD_XY_RS( 'XC',' ',XC,0,myThid)
+      CALL WRITE_FLD_XY_RS( 'YC',' ',YC,0,myThid)
+      CALL WRITE_FLD_XY_RS( 'XG',' ',XG,0,myThid)
+      CALL WRITE_FLD_XY_RS( 'YG',' ',YG,0,myThid)
+
       RETURN
       END
