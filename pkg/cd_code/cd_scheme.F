@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "MOM_FLUXFORM_OPTIONS.h"
+#include "CD_CODE_OPTIONS.h"
 
 CBOP
 C !ROUTINE: CD_SCHEME

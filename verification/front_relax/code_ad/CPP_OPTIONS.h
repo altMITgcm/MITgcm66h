@@ -15,10 +15,6 @@ C o Shortwave heating as extra term in external_forcing.F
 #define  SHORTWAVE_HEATING
 #endif
 
-C o Include/exclude code for C-D grid method of integrating the 
-C   coriolis terms
-#undef  INCLUDE_CD_CODE
-
 C o Include/exclude momentum eqn metric terms code
 #define INCLUDE_MOMENTUM_METRIC_TERM_CODE
 

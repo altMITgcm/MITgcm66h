@@ -67,7 +67,7 @@ C-      3D arrays
            gTnm1(I,J,K,bi,bj)=0. _d 0
            gSnm1(I,J,K,bi,bj)=0. _d 0
 
-#ifdef INCLUDE_CD_CODE
+#ifdef ALLOW_CD_CODE
            uNM1(I,J,K,bi,bj)=0. _d 0
            vNM1(I,J,K,bi,bj)=0. _d 0
            uVeld(I,J,K,bi,bj)=0. _d 0
@@ -90,7 +90,7 @@ C-      2D arrays
          DO I=1-Olx,sNx+Olx
           etaN(I,J,bi,bj)=0. _d 0
           etaH(I,J,bi,bj)=0. _d 0
-#ifdef INCLUDE_CD_CODE
+#ifdef ALLOW_CD_CODE
           etaNm1(I,J,bi,bj)=0. _d 0
 #endif
           phiHydLow(I,J,bi,bj)=0. _d 0

@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o create initial cd_code package
+o cleanup verification/*/code/GMREDI_OPTIONS.h
+o cleanup testreport
+
 checkpoint51o_post
 o bringing AD-related verif's up to date with genmake2
   - carbon/

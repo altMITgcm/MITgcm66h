@@ -14,9 +14,6 @@ C will be compiled.
 #define  SHORTWAVE_HEATING
 #endif
 
-C   coriolis terms
-#define  INCLUDE_CD_CODE
-
 C o Include/exclude momentum eqn metric terms code
 #define INCLUDE_MOMENTUM_METRIC_TERM_CODE
 

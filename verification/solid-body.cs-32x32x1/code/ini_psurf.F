@@ -56,7 +56,7 @@ C     Read an initial state
 C
       _EXCH_XY_R8(etaN, myThid)
 
-#ifdef INCLUDE_CD_CODE
+#ifdef ALLOW_CD_CODE
 C--   By default, initialize etaNm1 with etaN : 
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)

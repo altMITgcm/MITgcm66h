@@ -40,10 +40,10 @@ CEOP
 
 C-  check that CPP option is "defined" when running-flag parameter is on:
 
-#ifndef INCLUDE_CD_CODE
+#ifndef ALLOW_CD_CODE
       IF (useCDscheme) THEN
         WRITE(msgBuf,'(A)') 
-     &   'CONFIG_CHECK: #undef INCLUDE_CD_CODE and'
+     &   'CONFIG_CHECK: #undef ALLOW_CD_CODE and'
         CALL PRINT_ERROR( msgBuf , myThid)
         WRITE(msgBuf,'(A)')
      &   'CONFIG_CHECK: useCDscheme is TRUE'

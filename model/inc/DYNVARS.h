@@ -54,7 +54,7 @@ C           implicDiv2DFlow=0 => etaH=etaN ; =1 => etaH=etaNm1 ;
       _RL  gtNm1(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  gsNm1(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
 
-#ifdef INCLUDE_CD_CODE
+#ifdef ALLOW_CD_CODE
       COMMON /DYNVARS_CD/ 
      &                   uVelD, vVelD,
      &                   etaNm1,

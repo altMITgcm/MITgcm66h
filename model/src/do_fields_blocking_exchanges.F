@@ -58,7 +58,7 @@ ceh3 needs an IF ( usePASSIVE_TRACER ) THEN
       _EXCH_XYZ_R8( Tr1  , myThid )
 #endif
 
-#ifdef INCLUDE_CD_CODE
+#ifdef ALLOW_CD_CODE
 c     _EXCH_XYZ_R8( guCD , myThid )
 c     _EXCH_XYZ_R8( gvCD , myThid )
       _EXCH_XYZ_R8( uVelD , myThid )

@@ -65,7 +65,7 @@ C--   Save previous solution & Initialise Vector solution and source term :
        DO bi=myBxLo(myThid),myBxHi(myThid)
         DO j=1-OLy,sNy+OLy
          DO i=1-OLx,sNx+OLx
-#ifdef INCLUDE_CD_CODE
+#ifdef ALLOW_CD_CODE
           etaNm1(i,j,bi,bj) = etaN(i,j,bi,bj)
 #endif
           cg2d_x(i,j,bi,bj) = Bo_surf(i,j,bi,bj)*etaN(i,j,bi,bj)

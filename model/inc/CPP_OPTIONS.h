@@ -4,13 +4,7 @@ C $Name$
 #ifndef CPP_OPTIONS_H
 #define CPP_OPTIONS_H
 
-ceh3 #include "PACKAGES_CONFIG.h"
-
 C CPP flags controlling particular source code features
-
-C o Include/exclude code for C-D grid method of integrating the 
-C   coriolis terms
-#undef  INCLUDE_CD_CODE
 
 C o Include/exclude temperature forcing code
 C#define  INCLUDE_T_FORCING_CODE
