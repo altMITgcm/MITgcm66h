@@ -95,17 +95,19 @@
 #   tauSaltClimRelax  - Relaxation to climatology time scale     (s)
 #
  &PARM03
+# startTime: 0 for year 1931; 3600 otherwise
  startTime  =0.,
  endTime    =31968000.,
  deltaTmom = 3600.,
  deltaTtracer= 3600.,
  deltaTClock = 3600.,
  tauCD =     172800.,
- pChkptFreq= 86400.,
- dumpFreq=   3600.,
+# pChkptFreq: 31626000 for leap years; 31539600 otherwise
+ pChkptFreq= 31539600.,
+ dumpFreq=   43200.,
  tr1dumpFreq=864000.,
  taveFreq=   864000.,
- monitorFreq=3600.,
+ monitorFreq=43200.,
  tauThetaClimRelax =  2592000.0,
  tauSaltClimRelax = 3842380.,
  abEps            = 0.1,
