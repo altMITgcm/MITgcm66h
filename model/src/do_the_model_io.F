@@ -79,13 +79,13 @@ C--   Do time averages
 
 #ifdef ALLOW_GMREDI
 C--   Do KPP diagnostics.
-      IF (use_GMRedi)
+      IF (useGMRedi)
      & CALL GMREDI_DIAGS( myCurrentTime, myIter, myThid )
 #endif
 
 #ifdef ALLOW_KPP
 C--   Do KPP diagnostics.
-      IF (use_KPPmixing)
+      IF (useKPP)
      & CALL KPP_DO_DIAGS( myCurrentTime, myIter, myThid )
 #endif
 

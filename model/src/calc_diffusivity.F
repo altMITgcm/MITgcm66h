@@ -75,7 +75,7 @@ C     I, J, K - Loop counters
       ENDDO
 
 #ifdef ALLOW_GMREDI
-      IF (use_GMRedi) CALL GMREDI_CALC_DIFF(
+      IF (useGMRedi) CALL GMREDI_CALC_DIFF(
      I        bi,bj,iMin,iMax,jMin,jMax,K,
      I        maskUp,
      O        KappaRT,KappaRS,
@@ -83,7 +83,7 @@ C     I, J, K - Loop counters
 #endif
 
 #ifdef ALLOW_KPP
-      IF (use_KPPmixing) CALL KPP_CALC_DIFF(
+      IF (useKPP) CALL KPP_CALC_DIFF(
      I        bi,bj,iMin,iMax,jMin,jMax,K,
      I        maskUp,
      O        KappaRT,KappaRS,KappaRU,KappaRV,
