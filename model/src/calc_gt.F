@@ -73,9 +73,9 @@ C     myThid - Instance number for this innvocation of CALC_GT
       _RL rTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS maskUp(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS maskC (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL K13   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nz)
-      _RL K23   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nz)
-      _RL KappaRT(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nz)
+      _RL K13   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
+      _RL K23   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
+      _RL KappaRT(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
       _RL KapGM (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL af    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL df    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
@@ -212,7 +212,7 @@ C           boundary condition.
        DO j=jMin,jMax
         DO i=iMin,iMax
          df(i,j) = df(i,j) + _rA(i,j,bi,bj)*(
-     &    -KappaZT(i,j,k)*recip_drC(k)
+     &    -KappaRT(i,j,k)*recip_drC(k)
      &    *(theta(i,j,kM1,bi,bj)-theta(i,j,k,bi,bj))*rkFac
      &    )
         ENDDO

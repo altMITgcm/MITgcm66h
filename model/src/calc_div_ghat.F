@@ -44,7 +44,7 @@ C     Term is the vertical integral of the divergence of the
 C     time tendency terms along with a relaxation term that
 C     pulls div(U) + dh/dt back toward zero.
 
-      IF ( k .EQ. nZ ) THEN
+      IF ( k .EQ. Nr ) THEN
 C      Initialise source term on first pass
        DO j=jMin,jMax
         DO i=iMin,iMax

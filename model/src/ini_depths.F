@@ -47,7 +47,7 @@ C      Set up a flat bottom box with doubly periodic topology.
 C      H is the basic variable from which other terms are derived. It
 C      is the term that would be set from an external file for a 
 C      realistic problem.
-       phi = zFace(nZ+1)
+       phi = rF(Nr+1)
        DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
          DO j=1,sNy

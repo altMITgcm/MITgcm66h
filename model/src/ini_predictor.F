@@ -21,7 +21,7 @@ C     == Local variables ==
 
       DO bj=1,nSy
        DO bi=1,nSx
-        DO k=1,Nz
+        DO k=1,Nr
          DO j=1-Oly,sNy+Oly
           DO i=1-Olx,sNx+Olx
            gUNm1(i,j,k,bi,bj)=uVel(i,j,k,bi,bj)

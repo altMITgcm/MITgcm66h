@@ -87,8 +87,8 @@ C--   Calculate vertical "volume transport" through
 C--   tracer cell face *above* this level.
       DO j=jMin,jMax
        DO i=iMin,iMax
-        rTrans(i,j) = uTrans(i,j)*recip_rkFac-uTrans(i+1,j)*_recip_rkFac
-     &               +vTrans(i,j)*_recip_rkFac-vTrans(i,j+1)*_recip_rkFac
+        rTrans(i,j) = uTrans(i,j)*recip_rkFac-uTrans(i+1,j)*recip_rkFac
+     &               +vTrans(i,j)*recip_rkFac-vTrans(i,j+1)*recip_rkFac
      &               +rTrans(i,j)
        ENDDO
       ENDDO

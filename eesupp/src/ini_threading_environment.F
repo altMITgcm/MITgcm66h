@@ -376,7 +376,7 @@ C       x-face exchanges for xy real*8 data
 C       x-face exchanges for xyz real*4 data
         elCount   = myByHi(I)-myByLo(I)+1
         elLen     = 1
-        arrElSep  = (sNx+OLx*2)*(sNy+OLy*2)*Nz*nSx
+        arrElSep  = (sNx+OLx*2)*(sNy+OLy*2)*Nr*nSx
         arrElSize = 4
         elStride  = arrElSep*arrElSize
         CALL MPI_TYPE_HVECTOR(elCount,elLen,elStride,mpiTypeXFaceBlock_xyz_r4,
@@ -466,7 +466,7 @@ C       y-face exchages for xy real*8 data
 C       y-face exchages for xyz real*4 data
         elCount   = myBxHi(I)-myBxLo(I)+1
         elLen     = 1
-        arrElSep  = (sNx+OLx*2)*(sNy+OLy*2)*Nz
+        arrElSep  = (sNx+OLx*2)*(sNy+OLy*2)*Nr
         arrElSize = 4
         elStride  = arrElSep*arrElSize
         CALL MPI_TYPE_HVECTOR(elCount,elLen,elStride,mpiTypeYFaceBlock_xyz_r4,

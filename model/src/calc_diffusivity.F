@@ -31,9 +31,9 @@ C
       _RS maskC(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RS maskUp(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RL KapGM(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
-      _RL K33(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nz)
-      _RL KappaRT(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nz)
-      _RL KappaRS(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nz)
+      _RL K33(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
+      _RL KappaRT(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
+      _RL KappaRS(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
       INTEGER myThid
 CEndOfInterface
 

@@ -3,7 +3,7 @@ C $Header$
 #include "CPP_EEOPTIONS.h"
 
       SUBROUTINE CALC_PHI_HYD( bi, bj, iMin, iMax, jMin, jMax, K,
-     I    buoyKM1, buoyKP1k, phiHyd, myThid)
+     I    buoyKM1, buoyKP1, phiHyd, myThid)
 C     /==========================================================\
 C     | SUBROUTINE CALC_PHI_HYD                                  |
 C     | o Integrate the hydrostatic relation to find phiHyd.     |
@@ -20,7 +20,7 @@ C     == Routine arguments ==
       INTEGER bi,bj,iMin,iMax,jMin,jMax,K
       _RL buoyKM1(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL buoyKP1(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL phiHyd(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nz)
+      _RL phiHyd(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
       integer myThid
 C     == Local variables ==
       INTEGER i,j,Km1

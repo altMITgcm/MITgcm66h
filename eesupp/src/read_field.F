@@ -68,7 +68,7 @@ C     filNam - Name of file to read.
 C     filFmt - Format to use to read the file.
 C     myNz   - No. vertical layers for array fld.
 C     myThid - Thread number for this instance of the routine.
-      REAL fld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:Nz,nSx, nSy )
+      REAL fld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:Nr,nSx, nSy )
       CHARACTER*(*) filNam
       CHARACTER*(*) filFmt
       INTEGER       myThid
@@ -113,7 +113,7 @@ C           Under MPI the other processes may die or they may just hang!
        ENDIF
       _END_MASTER(myThid)
 
-      DO K = 1, Nz
+      DO K = 1, Nr
 C--    Read data from file one XY layer at a time
        _BEGIN_MASTER(myThid)
 C      READ ...

@@ -83,7 +83,7 @@ C     === Local variables ===
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
 
-      WRITE(msgBuf,'(A,I5,A)') '      nZ =', nZ,' ; /* No. levels in the vertical   */ '
+      WRITE(msgBuf,'(A,I5,A)') '      Nr =', Nr,' ; /* No. levels in the vertical   */ '
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
 
