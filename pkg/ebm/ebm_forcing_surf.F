@@ -65,10 +65,13 @@ C--   Surface Fluxes :
 
 c     Zonal wind stress fu:
           surfaceTendencyU(i,j,bi,bj) = 
-     &      surfaceTendencyU(i,j,bi,bj) + winPert(i,j,bi,bj)
+     &      fu(i,j,bi,bj)*horiVertRatio*recip_rhoConst
+     &           *recip_drF(kSurface)*recip_hFacW(i,j,kSurface,bi,bj)
+     &           + winPert(i,j,bi,bj)
 c     Meridional wind stress fv:
           surfaceTendencyV(i,j,bi,bj) = 
-     &      surfaceTendencyV(i,j,bi,bj)
+     &      fv(i,j,bi,bj)*horiVertRatio*recip_rhoConst
+     &           *recip_drF(kSurface)*recip_hFacS(i,j,kSurface,bi,bj)
 c     Net heat flux Qnet:
           surfaceTendencyT(i,j,bi,bj) = 
      &      -Qnet(i,j,bi,bj)*recip_Cp*horiVertRatio*recip_rhoConst

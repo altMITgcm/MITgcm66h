@@ -102,8 +102,8 @@ C     == Global variables ===
 # ifdef ALLOW_GMREDI
 #  include "GMREDI.h"
 # endif
-# ifdef ALLOW_GMREDI
-#  include "GMREDI.h"
+# ifdef ALLOW_EBM
+#  include "EBM.h"
 # endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
@@ -447,7 +447,7 @@ C       relaxation terms, etc.
         IF ( debugLevel .GE. debLevB ) 
      &    CALL DEBUG_CALL('EXTERNAL_FORCING_SURF',myThid)
 #endif
-        CALL EXTERNAL_FORCING_SURF(
+         CALL EXTERNAL_FORCING_SURF(
      I             bi, bj, iMin, iMax, jMin, jMax,
      I             myTime, myIter, myThid )
 #ifndef ALLOW_AUTODIFF_TAMC

@@ -79,6 +79,9 @@ c They provide the fields to be stored.
 # ifdef ALLOW_SEAICE
 #  include "SEAICE.h"
 # endif
+# ifdef ALLOW_EBM
+#  include "EBM.h"
+# endif
 # ifdef ALLOW_DIVIDED_ADJOINT_MPI
 #  include "mpif.h"
 # endif
@@ -224,6 +227,7 @@ CADJ INIT comlev1_bibj_k = COMMON,nchklev_1*nsx*nsy*nr*nthreads_chkpt
 c--
 #ifdef ALLOW_KPP
 CADJ INIT comlev1_kpp    = COMMON,nchklev_1*nsx*nsy
+CADJ INIT comlev1_kpp_k  = COMMON,nchklev_1*nsx*nsy*nr
 #endif /* ALLOW_KPP */
 c--
 #ifdef ALLOW_GMREDI
