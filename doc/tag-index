@@ -3,6 +3,15 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint40pre9
+o added DST advection schemes
+o fix MPI bug on SGI's
+o modifications for non-linear free-surface
+o fixed conditionals for fixed flow/passive tracer only mode
+o added tension/strain form of stress tensor
+o changes to commenting of arguments for TAF/TAMC
+o added/updated many matlab scripts
+  
 checkpoint40pre8
 o new package rw/
   Added method for dumping intermediate local arrays:
