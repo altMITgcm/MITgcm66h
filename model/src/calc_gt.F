@@ -8,7 +8,7 @@ CStartOfInterFace
      I           xA,yA,uTrans,vTrans,rTrans,maskup,maskC,
      I           K13,K23,KappaRT,KapGM,
      U           af,df,fZon,fMer,fVerT,
-     I           myThid )
+     I           myCurrentTime, myThid )
 C     /==========================================================\
 C     | SUBROUTINE CALC_GT                                       |
 C     | o Calculate the temperature tendency terms.              |
@@ -82,6 +82,7 @@ C     myThid - Instance number for this innvocation of CALC_GT
       INTEGER k,kUp,kDown,kM1
       INTEGER bi,bj,iMin,iMax,jMin,jMax
       INTEGER myThid
+      _RL     myCurrentTime
 CEndOfInterface
 
 C     == Local variables ==

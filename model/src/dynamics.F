@@ -380,7 +380,7 @@ C--      Calculate active tracer tendencies
      I         xA,yA,uTrans,vTrans,rTrans,maskUp,maskC,
      I         K13,K23,KappaRT,KapGM,
      U         aTerm,xTerm,fZon,fMer,fVerT,
-     I         myThid)
+     I         myTime, myThid)
          ENDIF
          IF ( saltStepping ) THEN
           CALL CALC_GS(
@@ -388,7 +388,7 @@ C--      Calculate active tracer tendencies
      I         xA,yA,uTrans,vTrans,rTrans,maskUp,maskC,
      I         K13,K23,KappaRS,KapGM,
      U         aTerm,xTerm,fZon,fMer,fVerS,
-     I         myThid)
+     I         myTime, myThid)
          ENDIF
 C--      Prediction step (step forward all model variables)
          CALL TIMESTEP(

@@ -41,7 +41,7 @@ C--   == Local variables ==
 
        DO j=jMin,jMax
         DO i=iMin,iMax
-         buoy(i,j)=-specVol_S(K)/theta_S(K)*(theta(i,j,k,bi,bj)-tRef(K))
+         buoy(i,j)=(theta(i,j,k,bi,bj)-tRef(K))/tRef(K)
         ENDDO
        ENDDO
        
