@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint18
+ o Further changes for optional code generation with 
+   CPP - ugh!
+
 checkpoint17
  o Beginning to incorporating modularity
    for supporting atmos. and ocean configs.
