@@ -3,9 +3,7 @@ C $Header$
 #include "CPP_OPTIONS.h"
 
 
-      subroutine ecco_init(
-     I                      mythid
-     &                    )
+      subroutine ecco_init( mythid )
 
 c     ==================================================================
 c     SUBROUTINE ecco_init
@@ -47,7 +45,9 @@ c     == end of interface ==
 c--   Map the control variables onto the model state. 
       call ctrl_Map( mythid )
       _BARRIER
+#endif
 
+#ifdef ALLOW_COST
 c--   Initialise the cost function.
       call cost_InitVaria( mythid )
 
