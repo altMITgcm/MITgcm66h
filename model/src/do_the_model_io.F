@@ -153,5 +153,9 @@ cswdptr -- end add ---
      &  CALL CPL_WRITE_DIAGS( myTime, myIter, myThid )
 #endif
 
+#ifdef ALLOW_DIAGNOSTICS
+      IF ( usediagnostics ) call diagnostics_write (myThid, myIter)
+#endif
+
       RETURN
       END
