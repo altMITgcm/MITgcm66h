@@ -60,13 +60,17 @@ c     == local variables ==
       integer nsecs
       integer hhmmss
       integer ierr
-      _RL check_sign
+      integer check_sign
 
 c     == end of interface ==
 c     print *,'cal_toseconds: date',date
 c     print *,'cal_toseconds: timeint',timeint
 
-      check_sign = sign(1,dble(date(1))*dble(date(2)))
+      check_sign = 1
+      if ( ( (date(1).lt.0) .and. date(2).gt.0 ) .or.
+     &     ( (date(1).gt.0) .and. date(2).lt.0 ) )
+     &     check_sign = -1
+
       if (((date(4) .eq. -1) .and.
      &    (date(3) .eq.  0) .and.
      &    (check_sign .ge. 0)) .or.
