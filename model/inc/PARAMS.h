@@ -570,7 +570,7 @@ C      --"-"--  Quadratic  ( linear: 1/s, quadratic: 1/m )
      & horiVertRatio, recip_horiVertRatio,
      & ivdc_kappa, Ro_SeaLevel,
      & bottomDragLinear,bottomDragQuadratic,
-     & tCyl
+     & tCylIn, tCylOut
 
       _RL cg2dTargetResidual
       _RL cg2dTargetResWunit
@@ -683,7 +683,8 @@ C      --"-"--  Quadratic  ( linear: 1/s, quadratic: 1/m )
       _RL Ro_SeaLevel
       _RL bottomDragLinear
       _RL bottomDragQuadratic
-      _RL tCyl
+      _RL tCylIn
+      _RL tCylOut
 
 C--   COMMON /PARM_A/ Thermodynamics constants ?
       COMMON /PARM_A/ HeatCapacity_Cp,recip_Cp

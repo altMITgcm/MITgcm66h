@@ -246,7 +246,8 @@ C--   Time stepping parameters
       periodicExternalForcing = .FALSE.
       externForcingPeriod     = 0.
       externForcingCycle      = 0.
-      tCyl              = 0.
+      tCylIn             = 0.
+      tCylOut            = 20.
 
 C--   Input files
       bathyFile       = ' '

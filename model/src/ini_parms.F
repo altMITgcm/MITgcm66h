@@ -208,7 +208,7 @@ C--   Input files
      & thetaClimFile, saltClimFile,
      & surfQfile, surfQnetFile, surfQswFile, EmPmRfile, saltFluxFile,
      & uVelInitFile, vVelInitFile, pSurfInitFile,
-     & dQdTFile, ploadFile,tCyl,
+     & dQdTFile, ploadFile,tCylIn,tCylOut,
      & mdsioLocalDir,
      & the_run_name
 CEOP
