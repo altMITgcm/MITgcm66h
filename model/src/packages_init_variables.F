@@ -248,7 +248,6 @@ C--   Open boundaries data
       IF (useCoupler) CALL CPL_INI_VARS( mythid )
 #endif
 
-C AMM
 #ifdef ALLOW_FIZHI
 C Initialize FIZHI state variables
 #ifdef ALLOW_DEBUG
@@ -256,7 +255,12 @@ C Initialize FIZHI state variables
 #endif
       IF (useFIZHI) CALL FIZHI_INIT_VARS( mythid)
 #endif
-C AMM
+
+#ifdef ALLOW_DIAGNOSTICS
+      IF ( useDiagnostics ) THEN
+        CALL DIAGNOSTICS_INIT_VARIA( myThid )
+      ENDIF
+#endif
 
 #ifdef ALLOW_DEBUG
       IF (debugMode) 

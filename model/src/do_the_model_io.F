@@ -177,7 +177,7 @@ C--   Do GCHEM diagnostics.
 #endif
 
 #ifdef ALLOW_DIAGNOSTICS
-      IF ( usediagnostics ) call diagnostics_write (myThid, myIter)
+      IF ( usediagnostics ) CALL DIAGNOSTICS_WRITE (myIter, myThid)
 #endif
 
       RETURN

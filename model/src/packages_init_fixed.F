@@ -58,6 +58,13 @@ C     myThid -  Number of this instances
       INTEGER myThid
 CEOP
 
+#ifdef ALLOW_DIAGNOSTICS
+      IF ( useDiagnostics ) THEN
+        CALL DIAGNOSTICS_INIT_EARLY( myThid )
+        CALL DIAGNOSTICS_MAIN_INIT( myThid )
+      ENDIF
+#endif
+
 #ifdef ALLOW_GENERIC_ADVDIFF
 C--   Initialize fixed params for GAD
       CALL GAD_INIT( myThid )
@@ -152,16 +159,14 @@ C--   Initialise the control variables
       IF (useOPPS) CALL OPPS_INIT( myThid )
 #endif /* ALLOW_OPPS */
 
-CAMM
-#ifdef ALLOW_DIAGNOSTICS
-      IF (usediagnostics) then
-       call diagnostics_initialise(mythid)
-      ENDIF
-#endif
-CAMM
-
 #ifdef COMPONENT_MODULE
       IF ( useCoupler ) CALL CPL_INIT_FIXED( mythid )
+#endif
+
+#ifdef ALLOW_DIAGNOSTICS
+      IF ( useDiagnostics ) THEN
+        CALL DIAGNOSTICS_INIT_FIXED( myThid )
+      ENDIF
 #endif
 
       RETURN

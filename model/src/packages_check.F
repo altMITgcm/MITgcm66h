@@ -147,5 +147,12 @@ CEOP
       CALL COST_CHECK( myThid )
 #endif
 
+#ifdef ALLOW_DIAGNOSTICS
+      IF (useDiagnostics) CALL DIAGNOSTICS_CHECK( myThid )
+#else
+      IF (useDiagnostics) 
+     &   CALL PACKAGES_CHECK_ERROR('DIAGNOSTICS', myThid )
+#endif
+
       RETURN
       END
