@@ -156,8 +156,6 @@ c
        _END_MASTER( myThid )
        _BARRIER
 
-      ENDIF
-
 #ifdef ALLOW_MNC
         IF (useMNC .AND. autodiff_mnc) THEN
 c
@@ -175,6 +173,8 @@ c
 c
         ENDIF
 #endif /* ALLOW_MNC */
+
+      ENDIF
 
       call TIMER_STOP( 'I/O (WRITE)        [ADJOINT LOOP]', myThid )
 
