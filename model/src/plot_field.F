@@ -1,6 +1,6 @@
 C $Header$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
 C--   File plot_field.F: Routines for "formatted" I/O in the MITgcm UV 
 C--                      implementation.

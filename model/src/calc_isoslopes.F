@@ -1,4 +1,5 @@
-#include "CPP_EEOPTIONS.h"
+C $Header$
+#include "CPP_OPTIONS.h"
 
 CStartOfInterface
       SUBROUTINE CALC_ISOSLOPES(

@@ -1,6 +1,6 @@
 C $Header$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
  
 CStartOfInterface
       SUBROUTINE LOAD_EXTERNAL_FIELDS( myTime, myIter, myThid )

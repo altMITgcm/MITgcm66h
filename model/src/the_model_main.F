@@ -132,13 +132,21 @@ C--    Load forcing/external data fields
        CALL LOAD_EXTERNAL_FIELDS( myCurrentTime, myCurrentIter, myThid )
        CALL TIMER_STOP ('I/O (READ)         [MAIN LOOP]',myThid)
 
+#ifdef INCLUDE_SHAPIRO_FILTER_CODE
+C--    Step forward all tiles, filter and exchange.
+       CALL TIMER_START('SHAP_FILT          [MAIN LOOP]',myThid)
+       CALL SHAP_FILT( myCurrentTime, myCurrentIter, myThid )
+       CALL TIMER_STOP ('SHAP_FILT          [MAIN LOOP]',myThid)
+#endif
+
+
 C--    Step forward fields and calculate time tendency terms
        CALL TIMER_START('DYNAMICS           [MAIN LOOP]',myThid)
        CALL DYNAMICS( myCurrentTime, myCurrentIter, myThid )
        CALL TIMER_STOP ('DYNAMICS           [MAIN LOOP]',myThid)
 
 C--    Do time averages
-#ifdef ALLOW_DIAGNOSTICS
+#ifdef INCLUDE_DIAGNOSTICS_INTERFACE_CODE
        CALL TIMER_START('I/O (WRITE)        [MAIN LOOP]',myThid)
        IF (taveFreq.GT.0.) THEN
         CALL WRITE_TIME_AVERAGES( myCurrentTime, myCurrentIter, myThid )

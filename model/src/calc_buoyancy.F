@@ -1,6 +1,6 @@
 C $Header$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
       SUBROUTINE CALC_BUOYANCY(
      I      bi, bj, iMin, iMax, jMin, jMax,  k, rhoLoc,

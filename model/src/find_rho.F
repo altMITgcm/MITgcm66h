@@ -1,9 +1,9 @@
 C $Header$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 #define USE_FACTORIZED_POLY
 
-! ==============================================================================
+! ================================================================
       subroutine FIND_RHO(
      I      bi, bj, iMin, iMax, jMin, jMax,  k, kRef, eqn,
      O      rholoc,
@@ -35,7 +35,7 @@ C     \==========================================================/
 ! Local
       integer i,j
       _RL refTemp,refSalt,sigRef,tP,sP,deltaSig
-! ------------------------------------------------------------------------------
+! -----------------------------------------------------------------
 
       if (eqn.eq.'LINEAR') then
 

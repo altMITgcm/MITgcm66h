@@ -25,7 +25,7 @@ CEndOfInterface
 C     Local variables
       INTEGER i,j,k,bi,bj
 
-#ifdef ALLOW_CD
+#ifdef INCLUDE_CD_CODE
 C--   Save previous solution.
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)

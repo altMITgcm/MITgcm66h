@@ -87,7 +87,7 @@ C       Raw fields
         CALL READ_FLD_XYZ_RL(     'gS.',suff,        gS, myIter, myThid)
         CALL READ_FLD_XYZ_RL(  'gSNm1.',suff,     gSNm1, myIter, myThid)
         CALL READ_FLD_XY_RL ( 'cg2d_x.',suff,    cg2d_x, myIter, myThid)
-#ifdef ALLOW_CD
+#ifdef INCLUDE_CD_CODE
         CALL READ_FLD_XY_RL 
      &   ( 'cg2d_xNM1.',suff, cg2d_xNM1, myIter, myThid)
         CALL READ_FLD_XYZ_RL(  'uVelD.',suff,    uVelD, myIter, myThid)
@@ -140,7 +140,7 @@ C--    Fill in edge regions
       _EXCH_XYZ_R8(gs    , myThid )
       _EXCH_XYZ_R8(gsNM1 , myThid )
       _EXCH_XY_R8 (cg2d_x, myThid )
-#ifdef ALLOW_CD
+#ifdef INCLUDE_CD_CODE
       _EXCH_XY_R8( cg2d_xNM1, myThid )
       _EXCH_XYZ_R8( uVelD,    myThid )
       _EXCH_XYZ_R8( vVelD,    myThid )
@@ -1447,7 +1447,7 @@ C       Raw fields
      &    (  'gSNm1.',suff,     gSNm1, myIter, myThid)
         CALL WRITE_FLD_XY_RL 
      &    ( 'cg2d_x.',suff,    cg2d_x, myIter, myThid)
-#ifdef ALLOW_CD
+#ifdef INCLUDE_CD_CODE
         CALL WRITE_FLD_XY_RL 
      &    ( 'cg2d_xNM1.',suff, cg2d_xNM1, myIter, myThid)
         CALL WRITE_FLD_XYZ_RL(  'uVelD.',suff,    uVelD, myIter, myThid)

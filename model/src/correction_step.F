@@ -1,6 +1,6 @@
 C $Header$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
 C     /==========================================================\
 C     | S/R CORRECTION_STEP                                      |
@@ -60,20 +60,24 @@ C     Step forward meridional velocity
       ENDDO
 
 C     Rotate theta/gT/gTnm1
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-        theta(i,j,k,bi,bj)=gTNm1(i,j,k,bi,bj)
-        gTNm1(i,j,k,bi,bj)=gT(i,j,k,bi,bj)
+      IF ( tempStepping ) THEN
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         theta(i,j,k,bi,bj)=gTNm1(i,j,k,bi,bj)
+         gTNm1(i,j,k,bi,bj)=gT(i,j,k,bi,bj)
+        ENDDO
        ENDDO
-      ENDDO
+      ENDIF
 
 C     Rotate salt/gS/gSnm1
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-        salt(i,j,k,bi,bj)=gSNm1(i,j,k,bi,bj)
-        gSNm1(i,j,k,bi,bj)=gS(i,j,k,bi,bj)
+      IF ( saltStepping ) THEN
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         salt(i,j,k,bi,bj)=gSNm1(i,j,k,bi,bj)
+         gSNm1(i,j,k,bi,bj)=gS(i,j,k,bi,bj)
+        ENDDO
        ENDDO
-      ENDDO
+      ENDIF
 
       RETURN
       END

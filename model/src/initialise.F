@@ -1,6 +1,6 @@
 C $Header$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
 CStartOfInterface
       SUBROUTINE INITIALISE(myThid)
@@ -48,8 +48,14 @@ C--   Initialise map of depths
 C--   Derive masks, lopping factors and recipricols of quantities.
 C     Volumes and areas are set according to grid and depth map.
       CALL INI_MASKS_ETC( myThid )
-
       _BARRIER
+
+C--   Latitude circle filter initialisation
+#ifdef INCLUDE_LAT_CIRC_FFT_FILTER_CODE
+      CALL FILTER_LATCIRC_FFT_INIT(myThid)
+#endif
+      _BARRIER
+
 C--   Initialise model fields.
 C     Starting values of U, V, W, temp., salt. and tendency terms
 C     are set here. Fields are either set to default or read from

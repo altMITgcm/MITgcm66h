@@ -1,6 +1,6 @@
 C $Header$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
       SUBROUTINE DO_THE_MODEL_IO(myCurrentTime, myIter, myThid)
 C     /==========================================================\

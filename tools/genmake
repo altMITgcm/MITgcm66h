@@ -179,7 +179,7 @@ switch ($platform$USEMPI)
     breaksw
   case Linux:
     set LN         = ( '/bin/ln -fs' )
-    set CPP        = ( '/usr/lib/gcc-lib/i386-redhat-linux/2.7.2.3/cpp -P' )
+    set CPP        = ( '/usr/lib/gcc-lib/i386-redhat-linux/2.7.2.3/cpp  -traditional -P' )
     set INCLUDES   = ( '-I/usr/local/include' )
     set FC         = ( 'g77' )
     set FFLAGS     = ( ' ' )

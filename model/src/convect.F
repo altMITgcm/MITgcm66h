@@ -1,6 +1,6 @@
 C $Header$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
       SUBROUTINE CONVECT( bi, bj, iMin, iMax, jMin, jMax, K,
      &       rhoKm1, rhoKp1,myTime,myIter, myThid )

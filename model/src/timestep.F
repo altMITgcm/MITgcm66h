@@ -33,7 +33,7 @@ C     Step forward zonal velocity (store in Gu)
         DO i=iMin,iMax
          gUNm1(i,j,k,bi,bj)=uVel(i,j,k,bi,bj)
      &    +deltaTmom*(ab15*gU(i,j,k,bi,bj)+ab05*gUNm1(i,j,k,bi,bj)
-#ifdef ALLOW_CD
+#ifdef INCLUDE_CD_CODE
      &    +guCD(i,j,k,bi,bj)
 #endif
      &        )*_maskW(i,j,k,bi,bj)
@@ -45,7 +45,7 @@ C     Step forward meridional velocity (store in Gv)
         DO i=iMin,iMax
          gVNm1(i,j,k,bi,bj)=vVel(i,j,k,bi,bj)
      &    +deltaTmom*(ab15*gV(i,j,k,bi,bj)+ab05*gVNm1(i,j,k,bi,bj)
-#ifdef ALLOW_CD
+#ifdef INCLUDE_CD_CODE
      &    +gvCD(i,j,k,bi,bj)
 #endif
      &        )*_maskS(i,j,k,bi,bj)
