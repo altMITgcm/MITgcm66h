@@ -120,7 +120,7 @@ echo Operating system: $mach
 if (! $?ROOTDIR) then
   set ROOTDIR = ( .. )
 else
-  if (! $?EXEDIR) set EXEDIR = ( ./ )
+  if (! $?EXEDIR) set EXEDIR = ( . )
 endif
 if (! -d $ROOTDIR) then
   echo Root directory $ROOTDIR not found.;exit 1
@@ -508,7 +508,7 @@ BUILDDIR    = ${BUILDDIR}
 SOURCEDIRS  = ${SOURCEDIRS}
 INCLUDEDIRS = ${INCLUDEDIRS}
 EXEDIR      = ${EXEDIR}
-EXECUTABLE  = \$(EXEDIR)${EXECUTABLE}
+EXECUTABLE  = \$(EXEDIR)/${EXECUTABLE}
 TOOLSDIR    = ${TOOLSDIR}
 
 EOF
