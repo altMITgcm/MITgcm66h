@@ -126,14 +126,14 @@ caja &     +drF(K-1)*_hFacC(i,j,k-1,bi,bj)*0.5
             aW3d(OB_Ie(J,bi,bj)+1,J,K,bi,bj)=0.
             aS3d(OB_Ie(J,bi,bj),J,K,bi,bj)=0.
             aS3d(OB_Ie(J,bi,bj),J+1,K,bi,bj)=0.
-            aV3d(OB_Ie(I,bi,bj),J,K,bi,bj)=0.
+            aV3d(OB_Ie(J,bi,bj),J,K,bi,bj)=0.
            ENDIF
            IF (OB_Iw(J,bi,bj).NE.0) THEN
             aW3d(OB_Iw(J,bi,bj)+1,J,K,bi,bj)=0.
             aW3d(OB_Iw(J,bi,bj),J,K,bi,bj)=0.
             aS3d(OB_Iw(J,bi,bj),J,K,bi,bj)=0.
             aS3d(OB_Iw(J,bi,bj),J+1,K,bi,bj)=0.
-            aV3d(OB_Iw(I,bi,bj),J,K,bi,bj)=0.
+            aV3d(OB_Iw(J,bi,bj),J,K,bi,bj)=0.
            ENDIF
           ENDDO
          ENDIF

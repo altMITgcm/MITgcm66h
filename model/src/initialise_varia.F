@@ -21,6 +21,9 @@ C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#ifdef ALLOW_OBCS
+#include "DYNVARS.h"
+#endif
 
 C     == Routine arguments ==
       INTEGER myThid
@@ -29,12 +32,20 @@ CEndOfInterface
 C     == Local variables ==
       INTEGER bi,bj,K,iMin,iMax,jMin,jMax
 
+      _BARRIER
 C--   Initialise model fields.
 C     Starting values of U, V, W, temp., salt. and tendency terms
 C     are set here. Fields are either set to default or read from
 C     stored files.
       CALL INI_FIELDS( myThid )
       _BARRIER
+
+#ifdef ALLOW_OBCS
+C--   Open boundaries data
+      IF (openBoundaries) THEN
+        CALL OBCS_INIT( myThid )
+      ENDIF
+#endif
 
 C--   Initial conditions are convectively adjusted (for historical reasons)
       IF ( startTime .EQ. 0. ) THEN
@@ -61,8 +72,9 @@ C--   Calculate values on open boundaries at iter=nIter0
         DO bj = myByLo(myThid), myByHi(myThid)
          DO bi = myBxLo(myThid), myBxHi(myThid)
           DO K=1,Nr
-           CALL SET_OBCS( K, bi, bj, startTime, myThid )
-Caja       CALL CYCLE_OBCS( K, bi, bj, myThid )
+           CALL OBCS_CALC( bi, bj, K, startTime, myThid )
+           CALL OBCS_APPLY_UV( bi, bj, k, uVel, vVel, myThid )
+           CALL OBCS_APPLY_TS( bi, bj, k, theta, salt, myThid )
           ENDDO
          ENDDO
         ENDDO

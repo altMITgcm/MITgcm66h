@@ -289,25 +289,23 @@ C? Do we still need this?
          kkey = (ikey-1)*(Nr-2+1) + (k-2) + 1
 #endif /* ALLOW_AUTODIFF_TAMC */
 
-#ifdef ALLOW_OBCS
-C--       Calculate future values on open boundaries
-          IF (openBoundaries) THEN
-Caja        CALL CYCLE_OBCS( k, bi, bj, myThid )
-c new args! CALL SET_OBCS( k, bi, bj, myTime, myThid )
-c +deltaT?
-          ENDIF
-#endif
-
 C--       Integrate continuity vertically for vertical velocity
           CALL INTEGRATE_FOR_W(
      I                         bi, bj, k, uVel, vVel,
      O                         wVel,
      I                         myThid )
-#ifdef ALLOW_OBCS
+
+#ifdef    ALLOW_OBCS
+C--       Calculate future values on open boundaries
           IF (openBoundaries) THEN
-c new subr  CALL OBCS_APPLY_W( bi, bj, k, wVel, myThid )
+#ifdef      ALLOW_NONHYDROSTATIC
+            IF (nonHydrostatic) THEN
+              CALL OBCS_APPLY_W( bi, bj, k, wVel, myThid )
+            ENDIF
+#endif      /* ALLOW_NONHYDROSTATIC */
+            CALL OBCS_CALC( bi, bj, k, myTime+deltaT, myThid )
           ENDIF
-#endif
+#endif    /* ALLOW_OBCS */
 
 C--       Calculate gradients of potential density for isoneutral
 C         slope terms (e.g. GM/Redi tensor or IVDC diffusivity)
@@ -445,16 +443,14 @@ C        and step forward storing result in gTnm1, gSnm1, etc.
      U         gSnm1,
      I         myIter, myThid)
          ENDIF
-#ifdef ALLOW_OBCS
+
+#ifdef   ALLOW_OBCS
 C--      Apply open boundary conditions
          IF (openBoundaries) THEN
-#ifdef ALLOW_AUTODIFF_TAMC
-CADJ STORE gwnm1(:,:,k,bi,bj) = comlev1_bibj_k
-CADJ &   , key = kkey, byte = isbyte
-#endif /* ALLOW_AUTODIFF_TAMC */
-c new subr  CALL OBCS_APPLY_TS( bi, bj, k, myThid )
+           CALL OBCS_APPLY_TS( bi, bj, k, gTnm1, gSnm1, myThid )
          END IF
-#endif
+#endif   /* ALLOW_OBCS */
+
 C--      Freeze water
          IF (allowFreezing) THEN
 #ifdef ALLOW_AUTODIFF_TAMC
@@ -498,6 +494,15 @@ C--     Implicit diffusion
      U         gSNm1,
      I         myThid )
          ENDIF
+
+#ifdef   ALLOW_OBCS
+C--      Apply open boundary conditions
+         IF (openBoundaries) THEN
+           DO K=1,Nr
+             CALL OBCS_APPLY_TS( bi, bj, k, gTnm1, gSnm1, myThid )
+           ENDDO
+         END IF
+#endif   /* ALLOW_OBCS */
 
 C--     End If implicitDiffusion
         ENDIF
@@ -556,6 +561,14 @@ C        and step forward storing the result in gUnm1, gVnm1, etc...
            CALL TIMESTEP(
      I         bi,bj,iMin,iMax,jMin,jMax,k,
      I         myIter, myThid)
+
+#ifdef   ALLOW_OBCS
+C--      Apply open boundary conditions
+         IF (openBoundaries) THEN
+           CALL OBCS_APPLY_UV( bi, bj, k, gUnm1, gVnm1, myThid )
+         END IF
+#endif   /* ALLOW_OBCS */
+
 #ifdef   ALLOW_AUTODIFF_TAMC
 #ifdef   INCLUDE_CD_CODE
          ELSE
@@ -593,6 +606,15 @@ C--     Implicit viscosity
      I         deltaTmom, KappaRV,recip_HFacS,
      U         gVNm1,
      I         myThid )
+
+#ifdef   ALLOW_OBCS
+C--      Apply open boundary conditions
+         IF (openBoundaries) THEN
+           DO K=1,Nr
+             CALL OBCS_APPLY_UV( bi, bj, k, gUnm1, gVnm1, myThid )
+           ENDDO
+         END IF
+#endif   /* ALLOW_OBCS */
 
 #ifdef    INCLUDE_CD_CODE
 #ifdef    ALLOW_AUTODIFF_TAMC

@@ -10,8 +10,7 @@ C     wVel  - zonal velocity (m/s, i=1 held at western face)
 C     gX, gXNM1 - Time tendencies at current and prvious time levels.
 
       COMMON /GW_R/ 
-     &                   wVel, gw,gwNm1
-      _RL  wVel (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+     &                   gw,gwNm1
       _RL  gW(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  gWnm1(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
 
