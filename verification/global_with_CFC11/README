@@ -12,13 +12,15 @@ in input/lookat.m
 Configuring 8 4x4-deg 4-cpu x 15-level experiment on chapman:
 
 Experiment 0: Baseline integration
-Experiment 1: viscAr               1e-3 -> .5e3
+Experiment 1: viscAr               1e-3 -> .5E-3
 Experiment 2: viscAh                5e5 -> 4e5
 Experiment 3: diffKrT              3e-5 -> 2e-5
 Experiment 4: diffKrS              3e-5 -> 2e-5
 Experiment 5: tauThetaClimRelax 5184000 -> 4665600
 Experiment 6: tauSaltClimRelax 15552000 -> 7776000
 Experiment 7: GM_background_K      1000 -> 900
+
+(note that viscAr=0.9e3 crashes during first time step)
 
 ---
 
@@ -57,6 +59,11 @@ cp -r exe exe7
 \cp verification/global_with_CFC11/input4x4/data.0 exe7/data
 \cp verification/global_with_CFC11/input4x4/data.gmredi exe7
 qsub verification/global_with_CFC11/input4x4/jobfile
+
+
+
+
+
 
 ==============================================================
 
