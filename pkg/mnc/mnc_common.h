@@ -38,7 +38,7 @@ C     - contains: [ name, 0+ attr, 0+ grid-ref, 0+ var-ref ]
 C
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
-CBOP
+CBOP 1
 C     !ROUTINE: mnc_common.h
 
 C     !INTERFACE:

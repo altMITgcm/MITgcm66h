@@ -4,7 +4,7 @@ C $Name$
 #include "MNC_OPTIONS.h"
       
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
-CBOP
+CBOP 1
 C !ROUTINE: MNC_CW_WRITE_GRID_INFO
 
 C !INTERFACE:
@@ -29,10 +29,11 @@ C     !USES:
 C     !INPUT PARAMETERS:
       integer myThid
       character*(*) bfname
+CEOP
 
 C     !LOCAL VARIABLES:
       integer nf,nl
-CEOP
+
 C     Functions
       integer IFNBLNK, ILNBLNK
 

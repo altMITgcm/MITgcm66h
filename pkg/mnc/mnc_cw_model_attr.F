@@ -4,7 +4,7 @@ C $Name$
 #include "MNC_OPTIONS.h"
       
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
-CBOP
+CBOP 0
 C !ROUTINE: MNC_CW_SET_GATTR
 
 C !INTERFACE:
