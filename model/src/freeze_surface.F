@@ -54,11 +54,12 @@ C     Check for water that should have frozen
        DO bi=myBxLo(myThid),myBxHi(myThid)
         DO j=1-OLy,sNy+OLy
          DO i=1-OLx,sNx+OLx
-          surfacetendencyTice(I,J,bi,bj) = 0. _d 0
           IF (theta(I,J,k,bi,bj) .LT. Tfreezing) THEN
              surfaceTendencyTice(I,J,bi,bj) =
      &            ( Tfreezing - theta(I,J,k,bi,bj) ) / deltaTtracer
              theta(I,J,k,bi,bj) = Tfreezing
+          ELSE
+             surfacetendencyTice(I,J,bi,bj) = 0. _d 0
           ENDIF
          ENDDO
         ENDDO

@@ -231,9 +231,13 @@ C     theta is dumped or time-averaged.
 # endif /* ALLOW_SEAICE */
 
 C--   Freeze water at the surface
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE theta = comlev1, key = ikey_dynamics
+#endif
       IF ( allowFreezing .AND. .NOT. useSEAICE
-     &                   .AND. .NOT. useThermSeaIce )
-     &   CALL FREEZE_SURFACE(  myTime, myIter, myThid )
+     &     .AND. .NOT. useThermSeaIce ) THEN
+        CALL FREEZE_SURFACE(  myTime, myIter, myThid )
+      ENDIF
 
 #ifdef ALLOW_AUTODIFF_TAMC
 # ifdef ALLOW_PTRACERS
