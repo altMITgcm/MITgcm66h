@@ -201,14 +201,11 @@ C-- Usefull warning when r*Fac becomes very large:
         ENDDO
 
 C-    end 1rst bi,bj loop.
-        ENDDO
        ENDDO
+      ENDDO
 
        _EXCH_XY_RL( rStarFacC, myThid ) 
       CALL EXCH_UV_XY_RL(rStarFacW,rStarFacS,.FALSE.,myThid)
-
-      IF (useRealFreshWaterFlux .AND. myTime.EQ.startTime)
-     & _EXCH_XY_R4( PmEpR, myThid )
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
