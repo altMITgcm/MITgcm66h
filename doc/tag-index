@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+tag before changing staggerTimeStep
+checkpoint54a_pre
+
 o require forcing_In_AB=.FALSE. and remove surfaceTendencyTice from pkg/seaice
   - modified verification/lab_sea and natl_box_adjoint accordingly
 
