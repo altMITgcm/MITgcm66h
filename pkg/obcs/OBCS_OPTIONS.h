@@ -14,6 +14,9 @@ C OBCS is enabled with ALLOW_OBCS in CPP_OPTIONS.h
 C This include hooks to the Orlanski Open Boundary Radiation code
 #undef ALLOW_ORLANSKI
 
+C Enable OB values to be prescribed via EXF package
+#define ALLOW_OBCS_PRESCRIBE
+
 C This includes hooks to sponge layer treatment of uvel, vvel
 #undef ALLOW_OBCS_SPONGE
 

@@ -3,7 +3,7 @@ C $Name$
 
 #include "OBCS_OPTIONS.h"
 
-      SUBROUTINE OBCS_CALC( bi, bj, futureTime, 
+      SUBROUTINE OBCS_CALC( bi, bj, futureTime, futureIter,
      &                      uVel, vVel, wVel, theta, salt, 
      &                      myThid )
 C     /==========================================================\
@@ -23,6 +23,7 @@ C     === Global variables ===
 
 C     == Routine arguments ==
       INTEGER bi, bj
+      INTEGER futureIter
       _RL futureTime
       _RL uVel (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL vVel (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
@@ -35,6 +36,15 @@ C     == Routine arguments ==
 
 C     == Local variables ==
       INTEGER I, J , K, I_obc, J_obc
+
+#ifdef ALLOW_OBCS_PRESCRIBE
+
+C--     Calculate future values on open boundaries
+        CALL EXF_GETOBCS(futureTime, futureIter, mythid)
+
+#else /* ALLOW_OBCS_PRESCRIBE undef */
+
+C--     OB values are calculated
 
 #ifdef ALLOW_OBCS_EAST
 C     Eastern OB
@@ -143,6 +153,8 @@ C         Southern OB
         ENDDO
       ENDIF
 #endif
+
+#endif /* ALLOW_OBCS_PRESCRIBE */
 
 #endif /* ALLOW_OBCS */
       RETURN
