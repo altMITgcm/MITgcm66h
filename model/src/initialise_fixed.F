@@ -32,6 +32,8 @@ C      |-- MON_INIT
 C      |
 C      |-- INI_GRID
 C      |
+C      |-- INI_EOS
+C      |
 C      |-- INI_DEPTHS
 C      |
 C      |-- INI_MASKS_ETC
@@ -86,6 +88,10 @@ C--   Initialise MONITOR I/O streams so we can report config. info
 C--   Set model grid.
 C     Variables defining model grid spacing are defined.
       CALL INI_GRID( myThid )
+      _BARRIER
+
+C--   Set equation of state parameters.
+      CALL INI_EOS( myThid )
       _BARRIER
 
 C--   Initialise map of depths

@@ -56,6 +56,7 @@ C     == Global variables ===
 #include "PARAMS.h"
 #include "DYNVARS.h"
 #include "GRID.h" 
+#include "EOS.h"
 #ifdef ALLOW_PASSIVE_TRACER
 #include "TR1.h"
 #endif
@@ -129,6 +130,7 @@ C         transfer analyse a particular snap-shots
         CALL WRITE_FLD_XYZ_RL( 'S.',suff,salt,myIter,myThid)
         CALL WRITE_FLD_XY_RL('Eta.',suff,etaN,myIter,myThid)
         CALL WRITE_FLD_XYZ_RL( 'W.',suff,wVel,myIter,myThid)
+        CALL WRITE_FLD_XYZ_RL( 'P.',suff,pressure,myIter,myThid)
 #ifdef ALLOW_PASSIVE_TRACER
         CALL WRITE_FLD_XYZ_RL( 'TR1.',suff,tr1,myIter,myThid)
 #endif

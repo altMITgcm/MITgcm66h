@@ -31,6 +31,7 @@ C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+Cml#include "EOS.h"
 #include "GRID.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
@@ -103,8 +104,8 @@ C--   Set default "physical" parameters
       diffK4S             = 0.D11
       cosPower            = 0.
       HeatCapacity_Cp     = 3994.D0
-      tAlpha              = 2.D-4
-      sBeta               = 7.4D-4
+Cml      tAlpha              = 2.D-4
+Cml      sBeta               = 7.4D-4
       eosType             = 'LINEAR'
       buoyancyRelation    = 'OCEANIC'
       hFacMin             = 1.D0

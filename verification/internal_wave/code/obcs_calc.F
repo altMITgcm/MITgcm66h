@@ -19,6 +19,7 @@ C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "EOS.h"
 #include "OBCS.h"
 
 C     == Routine arguments ==
