@@ -535,7 +535,7 @@ int main( int argc, char** argv )  {
       }
     }
     else {
-      if (best == -16 && abave != 0)  best = -22;
+      if (best == -16)  best = -22;
     }
   }
   if (lncnt == 999) best=-29;
