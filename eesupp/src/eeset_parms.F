@@ -147,6 +147,9 @@ C--   Report contents of parameter file
        STOP 'ABNORMAL END: S/R EESET_PARMS'
    4  CONTINUE
 
+C--   Execution Environment parameter file read
+      CLOSE(iUnit)
+
 Cdbg  eeDataUnit = 42
 Cdbg  OPEN(UNIT=eeDataUnit,FILE='eedata',STATUS='OLD',IOSTAT=errIO)
 Cdbg  IF ( errIO .LT. 0 ) GOTO 11
