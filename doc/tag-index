@@ -3,6 +3,22 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+ecco_c44_e17
+o bug fixes in cost package
+  * wrong identifier for active I/O of monthly mean psbar
+    (cost_averagesfields, cost_ssh) xx_psbar_dummy
+  * cleaned all identifier for active I/O of monthly fields
+  * wrong ladinit in various cost routines
+o merge with interval (chkpt44c_post - chkpt44d_post)
+  * added missing EXCLUDE_MONITOR flags
+  * changed "e" to "_d" in gmredi_slope_limit, gmredi_slope_psi
+    (incompatible typ in MIN/MAX expressions caused problems
+    on IBM SP3)
+  * in genmake added variable MAKEDEPEND
+    plus resetting for case SunOS
+    added timer_stats.c routine for IBM SP3
+  * removed variables in dynamics
+
 ecco_c44_e16
 o new ECCO checkpoint, the first since ecco_c43_e15
   which is branched from MITgcm.
