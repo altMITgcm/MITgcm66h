@@ -93,6 +93,7 @@ C--   Continuous equation parameters
      & tempDiffusion, tempAdvection, tempForcing,
      & saltDiffusion, saltAdvection, saltForcing,
      & implicitFreeSurface, rigidLid, freeSurfFac, hFacMin, hFacMinDz,
+     & staggerTimeStep,
      & tempStepping, saltStepping, momStepping,
      & implicitDiffusion, implicitViscosity,
      & viscAr, diffKrT, diffKrS, hFacMinDr,
