@@ -3,6 +3,12 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint51
+o merged improved packages from ecco-branch (ecco_c51_e34) to MAIN
+  - autodiff, ctrl, exf, grdchk, seaice
+  kept separate packages
+  - cost, ecco, obcs
+
 checkpoint50i_post
 o Preparing next differentiable checkpoint and sync
   of MAIN vs. ecco-branch
