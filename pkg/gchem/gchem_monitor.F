@@ -22,6 +22,7 @@ C !USES: ===============================================================
 #include "DYNVARS.h"
 #include "GRID.h"
 #include "MONITOR.h"
+#include "PTRACERS_SIZE.h"
 #include "PTRACERS.h"
 
 C !INPUT PARAMETERS: ===================================================

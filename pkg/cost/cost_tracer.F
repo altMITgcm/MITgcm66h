@@ -1,9 +1,7 @@
 C $Header$
+C $Name$
 
 #include "COST_CPPOPTIONS.h"
-#ifdef ALLOW_PTRACERS
-# include "PTRACERS_OPTIONS.h"
-#endif
 
       subroutine cost_tracer( bi, bj, myThid )
 C     /==========================================================\
@@ -27,6 +25,7 @@ C     == Global variables ===
 # if (defined (ALLOW_PASSIVE_TRACER))
 #  include "TR1.h"
 # elif (defined (ALLOW_PTRACERS))
+#  include "PTRACERS_SIZE.h"
 #  include "PTRACERS.h"
 # endif
 #endif
