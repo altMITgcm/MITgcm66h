@@ -83,6 +83,10 @@ C--   Initialize KPP parameters
       IF (useOBCS) CALL OBCS_READPARMS( myThid )
 #endif
 
+#ifdef ALLOW_PTRACERS
+      IF (usePTRACERS) CALL PTRACERS_READPARMS( myThid )
+#endif
+
 #ifdef ALLOW_AIM
 c--   Read in AIM package parameters
 C     Currently AIM does not have any runtime parameters

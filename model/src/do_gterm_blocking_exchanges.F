@@ -49,6 +49,9 @@ c     _EXCH_XYZ_R8( salt , myThid )
       _EXCH_XYZ_R8( gvCD , myThid )
 #endif
 
+#ifdef ALLOW_PTRACERS
+      CALL PTRACERS_GTERM_BLOCKING_EXCHANGES(myThid)
+#endif /* ALLOW PTRACERS */
+
       RETURN
       END
- 

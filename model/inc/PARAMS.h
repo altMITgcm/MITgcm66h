@@ -577,7 +577,9 @@ C Logical flags for selecting packages
       LOGICAL useSHAP_FILT
       LOGICAL useZONAL_FILT
       LOGICAL useFLT
+      LOGICAL usePTRACERS
       COMMON /PARM_PACKAGES/
      &        useKPP, useGMRedi, useOBCS, useAIM, useECCO, 
-     &        useSHAP_FILT, useZONAL_FILT, useGrdchk, useFLT
+     &        useSHAP_FILT, useZONAL_FILT, useGrdchk, useFLT,
+     &        usePTRACERS
 

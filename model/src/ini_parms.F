@@ -892,7 +892,6 @@ C--   Stop if they were
 C--   Everyone else must wait for the parameters to be loaded
       _BARRIER
 C
-
       RETURN
       END
 

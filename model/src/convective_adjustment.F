@@ -152,6 +152,14 @@ C-          Convectively mix passive tracer across interface K
      I                              myThid)
 #endif /* ALLOW_PASSIVE_TRACER */
 
+#ifdef ALLOW_PTRACERS
+C-          Convectively mix passive tracers across interface K
+            IF ( usePTRACERS ) THEN
+              CALL PTRACERS_CONVECT(
+     I                              bi,bj,k,weightA,weightB,myThid)
+            ENDIF
+#endif /* ALLOW_PTRACERS */
+
 C--       End DO K=1,Nr
           ENDDO
        

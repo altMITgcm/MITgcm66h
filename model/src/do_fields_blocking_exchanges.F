@@ -57,6 +57,9 @@ c     _EXCH_XYZ_R8( gvCD , myThid )
       _EXCH_XYZ_R8( vVelD , myThid )
 #endif
 
+#ifdef ALLOW_PTRACERS
+      CALL PTRACERS_FIELDS_BLOCKING_EXCHANGES(myThid)
+#endif /* ALLOW PTRACERS */
+
       RETURN
       END
- 
