@@ -474,7 +474,7 @@ C      CALL REMOVE_MEAN_RL( 1, phiHydLow, maskH, maskH, rA, drF,
 C     &                'phiHydLow', myThid )
 Cml)
 
-#ifndef DISABLE_DEBUGMODE
+#ifdef ALLOW_DEBUG
       If ( debugLevel .GE. debLevB ) THEN
        CALL DEBUG_STATS_RL(1,EtaN,'EtaN (DYNAMICS)',myThid)
        CALL DEBUG_STATS_RL(Nr,uVel,'Uvel (DYNAMICS)',myThid)
