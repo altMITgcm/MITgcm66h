@@ -88,7 +88,30 @@ while ($#allargs)
    echo "Including paths to JAM libraries"
    breaksw
  case -help:
-   echo "usage: $0 [-help] [-makefile[=...]] [-platform=...] [-mpi]"
+   echo "usage: $0 [-help] [-makefile[=...]] [-platform=...] [-mpi] [-jam] [-disable=pkg1[,pkg2,...]] [-enable=pkg1[,pkg2,...]] [-mods=dir1[,dir2,...]] [-rootdir=dir]"
+cat << EOF
+
+$0 is used to generate the Makefile in the current directory.
+
+Typical invocations are:
+ o from "bin":   ../tools/genmake
+ o from "verification/expt/code": ../../../tools/genmake
+ o from "verification/expt/input": ../../../tools/genmake -mods=../code
+ o from a scratch directory: ~/mitgcm/tools/genmake -rootdir=~/mitgcm
+   or  ~/mitgcm/tools/genmake -rootdir=~/mitgcm -mods=~/mymods
+
+Packages (collected modules of code)  can be disabled to avoid unnecessary
+compilation of unused code. For instance if you know you will not
+use GM/Redi, KPP and OBCS and they are appropriate turned-off in the
+configuration:
+   .../tools/genmake -disable=gmredi,kpp,obcs
+
+If you add some source files you can re-call the previous instance of
+genmake with "make makefile".
+
+genmake also reads the file .genmakerc which can be used to configure
+options (primarily the command-line options above) for particular experiments.
+EOF
    exit
    breaksw
  default:
