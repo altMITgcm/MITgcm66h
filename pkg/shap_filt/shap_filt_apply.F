@@ -79,7 +79,7 @@ C--        Update fields in top level according to tendency terms
      U           uFld, vFld,
      I           myTime, myThid )
           ELSE
-           STOP 'SHAP_FILT_APPLY: Ooops'
+           STOP 'SHAP_FILT_APPLY: Ooops! Bad Shap_funct in UV block'
           ENDIF
         ENDIF
 
@@ -101,7 +101,7 @@ C--        Update fields in top level according to tendency terms
      U           tFld,
      I           myTime, myThid )
           ELSE
-           STOP 'SHAP_FILT_APPLY: Ooops'
+           STOP 'SHAP_FILT_APPLY: Ooops! Bad Shap_funct in T block'
           ENDIF
         ENDIF
         IF ( saltStepping .AND. nShapT.GT.0) THEN 
@@ -122,7 +122,7 @@ C--        Update fields in top level according to tendency terms
      U           sFld,
      I           myTime, myThid )
           ELSE
-           STOP 'SHAP_FILT_APPLY: Ooops'
+           STOP 'SHAP_FILT_APPLY: Ooops! Bad Shap_funct in S block'
           ENDIF
         ENDIF
 #endif /* USE_OLD_SHAPIRO_FILTERS */
