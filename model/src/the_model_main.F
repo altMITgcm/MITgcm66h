@@ -545,7 +545,15 @@ C--   Final checkpoint (incase the in-loop checkpoint was missed)
      &        .TRUE., myCurrentTime, myCurrentIter, myThid )
       CALL TIMER_STOP ('WRITE_CHECKPOINT   [THE_MODEL_MAIN]',myThid)
 
+C--   Sea-ice checkpoint (special request by a fussy user)
+#ifdef ALLOW_SEAICE
+      IF ( useSEAICE )
+     &     CALL SEAICE_WRITE_PICKUP(
+     &     .TRUE., myCurrentTime, myCurrentIter, myThid )
+#endif
+
       CALL TIMER_STOP ('ALL                [THE_MODEL_MAIN]',myThid)
+      
 
 C--   Write timer statistics
       IF ( myThid .EQ. 1 ) THEN
