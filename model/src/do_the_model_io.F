@@ -89,12 +89,12 @@ C--   Do time averages
 
 #ifdef ALLOW_AIM
 C--   Do AIM time averages
-      IF (useAIM .AND. myIter.NE.nIter0 )
+      IF ( useAIM )
      &  CALL AIM_WRITE_TAVE( myTime, myIter, myThid )
 #endif                                                             
 #ifdef ALLOW_LAND
 C--   Do LAND time averages
-      IF (useLAND .AND. myIter.NE.nIter0 )
+      IF ( useLAND )
      &  CALL LAND_WRITE_TAVE( myTime, myIter, myThid )
 #endif                                                             
 
