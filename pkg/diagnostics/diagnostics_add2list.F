@@ -9,6 +9,7 @@ C     !ROUTINE: DIAGNOSTICS_ADD2LIST
 
 C     !INTERFACE:
       SUBROUTINE DIAGNOSTICS_ADD2LIST (
+     O     diagNum,
      I     diagName, diagCode, diagUnits, diagTitle,
      I     myThid )
 
@@ -32,6 +33,10 @@ C     !INPUT PARAMETERS:
       CHARACTER*16  diagUnits
       CHARACTER*(*) diagTitle
       INTEGER myThid
+
+C     !OUTPUT PARAMETERS:
+C     numDiag :: diagnostic number in the list of available diagnostics
+      INTEGER diagNum
 CEOP
 
 C     !LOCAL VARIABLES:
@@ -39,17 +44,17 @@ C     msgBuf :: Informational/error meesage buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       INTEGER n
 
-C-    Add one diagnostic to the list of available diagnostics:
-      n = ndiagt + 1
+C--   Add one diagnostic to the list of available diagnostics:
+      diagNum = ndiagt + 1
 
       _BEGIN_MASTER( myThid)
 
-      IF ( n .LE. ndiagMax ) THEN
-        cdiag(n) = diagName
-        gdiag(n) = diagCode
-        udiag(n) = diagUnits
-        tdiag(n) = diagTitle
-        ndiagt = n
+      IF ( diagNum .LE. ndiagMax ) THEN
+        cdiag(diagNum) = diagName
+        gdiag(diagNum) = diagCode
+        udiag(diagNum) = diagUnits
+        tdiag(diagNum) = diagTitle
+        ndiagt = diagNum
       ELSE
         WRITE(msgBuf,'(2A,I4)') 'DIAGNOSTICS_ADD2LIST:',
      &   ' Exceed Max.Number of diagnostics ndiagMax=', ndiagMax 
