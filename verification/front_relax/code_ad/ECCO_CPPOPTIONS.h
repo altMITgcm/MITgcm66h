@@ -7,17 +7,6 @@ C $Name$
 C 
 C CPP flags controlling which code is included in the files that
 C will be compiled.
-C
-C ********************************************************************
-C ***                         ECCO Package                         ***
-C ********************************************************************
-C
-#undef  ALLOW_ECCO_FORWARD_RUN
-#undef  ALLOW_ECCO_DIAGNOSTICS_RUN
-#undef  ALLOW_ECCO_OPTIMIZATION
-
-C       >>> Do a long protocol.
-#undef ECCO_VERBOSE
 
 C ********************************************************************
 C ***                  Adjoint Support Package                     ***
@@ -26,7 +15,6 @@ C ********************************************************************
 C o Include/exclude code in order to be able to automatically
 C   differentiate the MITgcmUV by using the Tangent Linear and
 C   Adjoint Model Compiler (TAMC).
-cph#define INCLUDE_AUTODIFF_PACKAGE
 C
 #define ALLOW_AUTODIFF_TAMC
 C       >>> Checkpointing as handled by TAMC
