@@ -968,8 +968,6 @@ for dir in $TESTDIRS ; do
 	echo "DATE='$DATE'" >> $CDIR"/summary.txt"
 	echo "tdir='$dir'" >> $CDIR"/summary.txt"
 
-	OLD_COMMAND=$COMMAND
-	# COMMAND="./mitgcmuv > output.txt"
 	for ex in $extra_runs ; do
 	    test -e "$dir/tr_run.$ex" && rm -rf "$dir/tr_run.$ex"
 	    mkdir "$dir/tr_run.$ex"
@@ -1002,7 +1000,6 @@ for dir in $TESTDIRS ; do
 	    echo "DATE='$DATE'" >> $CDIR"/summary.txt"
 	    echo "tdir='$dir'" >> $CDIR"/summary.txt"
 	done
-	COMMAND=$OLD_COMMAND
     else
 	fres=`printf '%s %s %s %s' ${genmake:-N} ${makedepend:-N} ${make:-N} ${run:-N}`
 	fres=$fres"$results   $dir"
