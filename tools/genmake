@@ -292,6 +292,8 @@ foreach dr ($PACKAGES)
         set DEFINES = ($DEFINES '-DDISABLE_MOM_VECINV'); breaksw
       case generic_advdiff:
         set DEFINES = ($DEFINES '-DDISABLE_GENERIC_ADVDIFF'); breaksw
+      case debug:
+        set DEFINES = ($DEFINES '-DDISABLE_DEBUGMODE'); breaksw
       default:
         breaksw
     endsw
