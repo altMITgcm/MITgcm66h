@@ -3,11 +3,12 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
-untagged
+release1_p12
 o Added missing /* */ to CPP comments in pkg/seaice, pkg/exf,
   kpp_transport_t.F, forward_step.F, and the_main_loop.F
 o pkg/seaice:
   - adjoint-friendly modifications
+  - added a SEAICE_WRITE_PICKUP at end of the_model_main.F
 
 release1_p12_pre
 o Updated useSingleCpuIO option in mdsio_writefield.F to
