@@ -6,7 +6,7 @@ $Header$
 untagged
 o Added net flux to downward flux conversion to pkg/exf/exf_getffields.F
 o Added SEAICE_initialHEFF to pkg/seaice
-o SEAICE_WRITE_PICKUP needs to be called before WRITE_CHECKPOINT
+o the_model_main.F: SEAICE_WRITE_PICKUP must precede WRITE_CHECKPOINT
 
 release1_p12
 o Added missing /* */ to CPP comments in pkg/seaice, pkg/exf,
