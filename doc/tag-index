@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o add PTRACERS (PTR0[1-5]) to testreport output
 o exf_check_range:
   * default changed to .TRUE.
   * will check values for niter0 if debLevA, every timestep if debLevB
