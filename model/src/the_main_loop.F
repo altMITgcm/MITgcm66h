@@ -251,8 +251,11 @@ c--   NOT enabled.
 c--     >>> Loop body start <<<
 
 #ifdef ALLOW_TAMC_CHECKPOINTING
+        nIter0 = INT( startTime/deltaTClock )
         ikey_dynamics = ilev_1
 #endif
+
+
         CALL TIMER_START('FORWARD_STEP        [THE_MAIN_LOOP]',mythid)
         CALL FORWARD_STEP( iloop, mytime, myiter, mythid )
         CALL TIMER_STOP ('FORWARD_STEP        [THE_MAIN_LOOP]',mythid)
