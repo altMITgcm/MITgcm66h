@@ -3,6 +3,15 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint30
+ o Updates for OBCs
+ o New experiment for test OBCs (internal_wave)
+ o New output.txt in verification/exp4/results/
+ o Updates for KPP: calculation of viscosity corrected, new variables
+   kpp_dumpFreq and kpp_taveFreq
+ o CPP'd calls to system routines for TARGET_CRAY_VECTOR (P.H.)
+   and entry for T90 in genmake
+
 checkpoint29
  o packaged KPP and GM/Redi
 
