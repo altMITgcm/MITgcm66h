@@ -110,13 +110,13 @@ C--   Call time stepping loop of full model
 
 #endif /* ALLOW_ADJOINT_RUN */
 
-C--   Final checkpoint (incase the in-loop checkpoint was missed)
+C--   Final checkpoint (in case the in-loop checkpoint was missed)
       CALL TIMER_START('WRITE_CHECKPOINT   [THE_MODEL_MAIN]',myThid)
       CALL WRITE_CHECKPOINT(
      &        .TRUE., myCurrentTime, myCurrentIter, myThid )
       CALL TIMER_STOP ('WRITE_CHECKPOINT   [THE_MODEL_MAIN]',myThid)
 
-C--   Sea-ice checkpoint (special request by a fussy user)
+C--   Sea-ice checkpoint (in case the in-loop checkpoint was missed)
 #ifdef ALLOW_SEAICE
       IF ( useSEAICE )
      &     CALL SEAICE_WRITE_PICKUP(
