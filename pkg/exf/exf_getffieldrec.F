@@ -59,8 +59,8 @@ c     == routine arguments ==
 
       _RL     fldstartdate
       _RL     fldperiod
-      _RL     fldstartdate1
-      _RL     fldstartdate2
+      integer fldstartdate1
+      integer fldstartdate2
       logical usefldyearlyfields
       _RL     fac
       logical first

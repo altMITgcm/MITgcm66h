@@ -59,7 +59,7 @@ c     *vec_lat_inc         :: vector y-grid increments for *vec
 
       character*(128) uvecfile, uvecfile0, uvecfile1
       _RL     uvecstartdate, uvecperiod
-      _RL     uvecstartdate1, uvecstartdate2
+      integer uvecstartdate1, uvecstartdate2
       _RL     exf_inscal_uvec
       _RL     uvec  (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL     uvec0 (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
@@ -70,7 +70,7 @@ c     *vec_lat_inc         :: vector y-grid increments for *vec
       INTEGER uvec_nlon, uvec_nlat
       character*(128) vvecfile, vvecfile0, vvecfile1
       _RL     vvecstartdate, vvecperiod
-      _RL     vvecstartdate1, vvecstartdate2
+      integer vvecstartdate1, vvecstartdate2
       _RL     exf_inscal_vvec
       _RL     vvec  (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL     vvec0 (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
