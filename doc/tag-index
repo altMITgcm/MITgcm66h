@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o extending useSingleCpuIO option to work with new exch2 I/O format
+  - old-style, missing-tile I/O is still accessible by defining CPP
+    option MISSING_TILE_IO in pkg/mdsio/MDSIO_OPTIONS.h
 o monitor package can write to NetCDF files and/or STDOUT
 o fix re-definition bug in MNC_GRID_INIT_ALL()
 o doc/api_reference added
