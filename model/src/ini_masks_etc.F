@@ -177,7 +177,7 @@ C     hFacW and hFacS (at U and V points)
         ENDDO
        ENDDO
       ENDDO
-      CALL EXCH_UV_XYZ_RL(hFacW,hFacS,.FALSE.,myThid)
+      CALL EXCH_UV_XYZ_RS(hFacW,hFacS,.FALSE.,myThid)
 C     The following block allows thin walls representation of non-periodic
 C     boundaries such as happen on the lat-lon grid at the N/S poles.
 C     We should really supply a flag for doing this.
