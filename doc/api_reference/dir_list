@@ -18,7 +18,7 @@
 #  consistent directory structure for source and header files.
 
 
-eesupp/src eesupp/inc
+#eesupp/src eesupp/inc
 
 #  model/src model/inc
 #  diags/src diags/inc
@@ -53,7 +53,9 @@ pkg/gmredi
 #  pkg/kpp
 #  pkg/land
 #  pkg/mdsio
-#  pkg/mnc
+
+pkg/mnc
+
 #  pkg/mom_fluxform
 #  pkg/mom_vecinv
 #  pkg/monitor
