@@ -1030,7 +1030,7 @@ c-----pre-computed table
 c-----include the pre-computed table for cai
 
 #include "cai-dat.h"
-c     save caib,caif
+      save caib,caif
 
 
 c-----clouds within each of the high, middle, and low clouds are
