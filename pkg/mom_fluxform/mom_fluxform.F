@@ -179,6 +179,10 @@ C     Initialise intermediate terms
         fMer(i,j) = 0.
         rTransU(i,j) = 0.
         rTransV(i,j) = 0.
+        fVerU(i,j,1) = 0. _d 0
+        fVerU(i,j,2) = 0. _d 0
+        fVerV(i,j,1) = 0. _d 0
+        fVerV(i,j,2) = 0. _d 0
        ENDDO
       ENDDO
 

@@ -31,6 +31,14 @@ C     myThid - Instance number for this innvocation of CALC_MOM_RHS
 C     == Local variables ==
       INTEGER i,j
 
+#ifdef ALLOW_AUTODIFF_TAMC
+      DO J=1-Oly,sNy+Oly
+       DO I=1-Olx,sNx+Olx
+        vort3(I,J) = 0. _d 0
+       ENDDO
+      ENDDO
+#endif
+
       DO J=2-Oly,sNy+Oly
        DO I=2-Olx,sNx+Olx
 
