@@ -30,35 +30,37 @@
  rigidLid=.FALSE.,
  implicitFreeSurface=.true.,
  eosType='POLY3',
-# GMkBackground=0000.d0,
- readBinaryPrec=64,
+# readBinaryPrec=64,
+ readBinaryPrec=32,
  writeBinaryPrec=32,
  saltStepping=.TRUE.,
  tempStepping=.TRUE.,
  momStepping=.TRUE.,
-# the following is c27
  implicitDiffusion=.true.,
  implicitViscosity=.true.,
  allowFreezing=.false.,
  globalFiles=.false.,
- /
+ useCDscheme=.true.,
+ debugLevel=1, 
+ &
 
 # **************************
 # Elliptic solver parameters
 # **************************
  &PARM02
  cg2dMaxIters=1000,
- cg2dTargetResidual=1.E-7,
- /
+ cg2dTargetResidual=1.E-13,
+ &
 
 # ************************
 # Time stepping parameters
 # ************************
  &PARM03
  tauCD=172800.,
- startTime=3600.0,
-### nTimeSteps=87599,
- nTimeSteps=240,
+### startTime=3600.0,
+ nTimeSteps=87599,
+ startTime=0.0,
+### nTimeSteps=4,
  deltaTmom=3600.0,
  deltaTtracer=3600.0,
  deltaTClock =3600.0,
@@ -69,7 +71,7 @@
  dumpFreq =31536000.0,
  tauThetaClimRelax=0.,
  tauSaltClimRelax=0.,
- /
+ &
 
 # *******************
 # Gridding parameters
@@ -82,13 +84,14 @@
  delZ=10.,10.,15.,20.,20.,25.,35.,50.,75.,100.,150.,200.,275.,350.,415.,450.,500.,500.,500.,500.,500.,500.,500.,
  phimin=-80.,
  thetamin=0.,
- /
+ &
+
 # **********
 # Data Files
 # **********
  &PARM05
- bathyFile='bathy64.bin',
- hydrogThetaFile='Lev.ptmp',
- hydrogSaltFile='Lev.salt',
- /
+ bathyFile='bathy_fl.bin',
+ hydrogThetaFile='lev_monthly_temp_fl.bin',
+ hydrogSaltFile='lev_monthly_salt_fl.bin',
+ &
 

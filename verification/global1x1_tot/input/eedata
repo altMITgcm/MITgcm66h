@@ -4,8 +4,8 @@
 # nTy - No. threads per process in Y
  &EEPARMS
  nTx=1,nTy=1,
- usingMPI  = .TRUE.
- /
+ usingMPI =.TRUE.,
+ &
 # Note: Some systems use & as the
 # namelist terminator. Other systems
 # use a / character (as shown here).

@@ -40,15 +40,17 @@
  implicitDiffusion=.true.,
  implicitViscosity=.true.,
  allowFreezing=.false.,
- /
+ useCDscheme=.true.,
+ debugLevel=1,
+ &
 
 # **************************
 # Elliptic solver parameters
 # **************************
  &PARM02
  cg2dMaxIters=1000,
- cg2dTargetResidual=1.E-7,
- /
+ cg2dTargetResidual=1.E-13,
+ &
 
 # ************************
 # Time stepping parameters
@@ -67,7 +69,7 @@
  dumpFreq =31536000.0,
  tauThetaClimRelax=0.,
  tauSaltClimRelax=0.,
- /
+ &
 
 # *******************
 # Gridding parameters
@@ -80,7 +82,7 @@
  delZ=10.,10.,15.,20.,20.,25.,35.,50.,75.,100.,150.,200.,275.,350.,415.,450.,500.,500.,500.,500.,500.,500.,500.,
  phimin=-80.,
  thetamin=0.,
- /
+ &
 # **********
 # Data Files
 # **********
@@ -88,9 +90,4 @@
  bathyFile='bathy64.bin',
  hydrogThetaFile='Lev.ptmp',
  hydrogSaltFile='Lev.salt',
- /
-
-# Open boundaries
- &PARM06
- /
-
+ &

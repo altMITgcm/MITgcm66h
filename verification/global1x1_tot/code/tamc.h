@@ -56,20 +56,16 @@ c     nthreads_chkpt - Number of threads to be used; nth_chkpt .eq. nTx*nTy
 
 #ifdef ALLOW_TAMC_CHECKPOINTING
 
-cph   change to these values for very short test runs:
-cph      integer    nchklev_1
-cph      parameter( nchklev_1      =  6 )
-cph      integer    nchklev_2
-cph      parameter( nchklev_2      =  4 )
-cph      integer    nchklev_3
-cph      parameter( nchklev_3      =  2 )
-
       integer    nchklev_1
-      parameter( nchklev_1      =  50 )
       integer    nchklev_2
-      parameter( nchklev_2      =  50 )
       integer    nchklev_3
-      parameter( nchklev_3      =  50 )
+      parameter( nchklev_1      =  48 )
+      parameter( nchklev_2      =  366 )
+      parameter( nchklev_3      =  5 )
+c  change to these values for very short test runs:
+cph      parameter( nchklev_1      =  24 )
+cph      parameter( nchklev_2      =  4 )
+cph      parameter( nchklev_3      =  3 )
 
 c--   Note always check for the correct sizes of the common blocks!
 
@@ -106,18 +102,24 @@ c     and writing data.
       integer iloop_daily
 
       INTEGER    isbyte
-      PARAMETER( isbyte = 4 )
+      PARAMETER( isbyte      = 4 )
       INTEGER    maximpl
-      PARAMETER( maximpl = 6 )
+      PARAMETER( maximpl     = 6 )
       INTEGER    maxpass
-      PARAMETER( maxpass = 3 )
+#ifdef ALLOW_PASSIVE_TRACER
+      PARAMETER( maxpass     = 3 )
+#else
+      PARAMETER( maxpass     = 2 )
+#endif
+      INTEGER    maxcube
+      PARAMETER( maxcube     = 1 )
 
-      INTEGER act1, act2, act3, act4
-      INTEGER max1, max2, max3
-      INTEGER iikey, kkey, passkey
+      INTEGER act0, act1, act2, act3, act4
+      INTEGER max0, max1, max2, max3
+      INTEGER iikey, kkey, passkey, igadkey,
+     &        itdkey, idynkey, igmkey, ikppkey
 
 c     ==================================================================
 c     END OF HEADER TAMC
 c     ==================================================================
-
 

@@ -145,7 +145,7 @@ C          because the old code did not have no-slip BCs
 #undef  OLD_UV_GEOMETRY
 
 C o Include/exclude exact volume conservation
-#define EXACT_CONSERV
+#undef EXACT_CONSERV
 
 C o Execution environment support options
 #include "CPP_EEOPTIONS.h"

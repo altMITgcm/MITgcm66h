@@ -8,7 +8,7 @@ C ***                         ECCO Package                         ***
 C ********************************************************************
 C
 C o include dump of snap shots for checks
-#define ALLOW_SNAPSHOTS
+#undef ALLOW_SNAPSHOTS
 
 #undef  ALLOW_ECCO_FORWARD_RUN
 #undef  ALLOW_ECCO_DIAGNOSTICS_RUN
@@ -44,7 +44,8 @@ C       >>> Extract adjoint state
 #undef ALLOW_AUTODIFF_MONITOR
 C
 C o use divided adjoint to split adjoint computations
-#undef ALLOW_DIVIDED_ADJOINT
+#define ALLOW_DIVIDED_ADJOINT
+#define ALLOW_DIVIDED_ADJOINT_MPI
 
 C ********************************************************************
 C ***                     Calender Package                         ***
@@ -60,13 +61,15 @@ C o Include the calendar tool.
 
 C ********************************************************************
 C ***                Cost function Package                         ***
-C ********************************************************************
+c ********************************************************************
 C 
 #define ALLOW_COST
 
 #ifdef ALLOW_COST
 C       >>> Use the EGM-96 geoid error covariance.
-# define  ALLOW_EGM96_ERROR_DIAG
+cph# define  ALLOW_EGM96_ERROR_DIAG
+cph needs more testing
+# undef  ALLOW_EGM96_ERROR_DIAG
 # undef  ALLOW_EGM96_ERROR_COV
 # undef  ALLOW_SPH_PROJECTION
 
@@ -109,11 +112,12 @@ C       >>> Cost function contributions
 # define ALLOW_CTDT_COST_CONTRIBUTION
 # define ALLOW_CTDS_COST_CONTRIBUTION
 # define ALLOW_DRIFTER_COST_CONTRIBUTION
-# define ALLOW_DRIFT_COST_CONTRIBUTION
-# define ALLOW_DRIFTW_COST_CONTRIBUTION
+# undef ALLOW_DRIFT_COST_CONTRIBUTION
+# undef ALLOW_DRIFTW_COST_CONTRIBUTION
 C
-# define ALLOW_ARGO_THETA_COST_CONTRIBUTION
-# define ALLOW_ARGO_SALT_COST_CONTRIBUTION
+cph problem with ARGO files
+# undef ALLOW_ARGO_THETA_COST_CONTRIBUTION
+# undef ALLOW_ARGO_SALT_COST_CONTRIBUTION
 C
 c       >>> Open boundaries
 c       >>> Make sure that ALLOW_OBCS is defined!
