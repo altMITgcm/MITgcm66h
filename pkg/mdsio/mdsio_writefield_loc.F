@@ -321,9 +321,9 @@ C Loop over all tiles
 
            if (filePrec .eq. precFloat32) then
             if (arrType .eq. 'RS') then
-             call MDS_SEG4toRS( j,bi,bj,k,nNzdim, r4seg, .FALSE., arr )
+             call MDS_SEG4toRS( j,bi,bj,k,nNz, r4seg, .FALSE., arr )
             elseif (arrType .eq. 'RL') then
-             call MDS_SEG4toRL( j,bi,bj,k,nNzdim, r4seg, .FALSE., arr )
+             call MDS_SEG4toRL( j,bi,bj,k,nNz, r4seg, .FALSE., arr )
             else
              write(msgbuf,'(a)')
      &        ' MDSWRITEFIELD: illegal value for arrType'
@@ -336,9 +336,9 @@ C Loop over all tiles
                         write(dUnit,rec=irec) r4seg
            elseif (filePrec .eq. precFloat64) then
             if (arrType .eq. 'RS') then
-             call MDS_SEG8toRS( j,bi,bj,k,nNzdim, r8seg, .FALSE., arr )
+             call MDS_SEG8toRS( j,bi,bj,k,nNz, r8seg, .FALSE., arr )
             elseif (arrType .eq. 'RL') then
-             call MDS_SEG8toRL( j,bi,bj,k,nNzdim, r8seg, .FALSE., arr )
+             call MDS_SEG8toRL( j,bi,bj,k,nNz, r8seg, .FALSE., arr )
             else
              write(msgbuf,'(a)')
      &         ' MDSWRITEFIELD: illegal value for arrType'
