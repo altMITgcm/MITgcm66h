@@ -108,6 +108,13 @@ C SPK 4/9/01: Open boundary checkpointing
         ENDIF
 #endif  /* ALLOW_OBCS */
 
+#ifdef  ALLOW_SEAICE
+        IF ( useSEAICE ) THEN
+          CALL SEAICE_WRITE_PICKUP(
+     &               prec, lgf, permCheckPoint, myIter, myThid)
+        ENDIF
+#endif  /* ALLOW_SEAICE */
+
 #ifdef ALLOW_THSICE
         IF (useThSIce) THEN
           CALL THSICE_WRITE_CHECKPOINT(

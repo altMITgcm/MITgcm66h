@@ -135,8 +135,7 @@ C--   Sea ice diagnostics.
       CALL SEAICE_DO_DIAGS( myTime, myIter, myThid )
 
 C--   Write sea ice restart files
-      CALL SEAICE_WRITE_PICKUP ( .FALSE.,
-     &     myTime+deltaTClock, myIter+1, myThid )
+C     <= moved to S/R packages_write_pickup with other pkgs
 
 C---------------------------------------------------
 C OOH NOOOO we need to move the whole stuff
