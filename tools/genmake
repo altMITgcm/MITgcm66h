@@ -139,6 +139,33 @@ switch ($platform$USEMPI)
                        '-lsocket -lnsl -fast' )
     set NOOPTFILES = ( 'barrier.F different_multiple.F load_external_fields.F')
     breaksw
+  case onyx:
+  case onyx+mpi:
+    echo "Configuring for SGI ONYX running IRIX64"
+    set DEFINES    = ( ${DEFINES} '-DTARGET_SGI' )
+    set INCLUDES   = ( '-I/usr/include' )
+    set FFLAGS     = ( '-extend_source -bytereclen -r10000 -64' )
+    set FOPTIM     = ( '-O2' )
+    set NOOPTFLAGS = ( '-O0' )
+    set NOOPTFILES = ( 'barrier.F different_multiple.F ' \
+                       'load_external_fields.F' )
+    set LIBS       = ( '-lmpi' )
+    breaksw
+  case exemplar:
+  case exemplar+mpi:
+    echo "Configuring for HP Exemplar"
+    set CPP        = ( '/usr/ccs/lbin/cpp -P' )
+    set DEFINES    = ( ${DEFINES}  '-DTARGET_HP' )
+    set INCLUDES   = ( '-I/opt/mpi/include' )
+    set FC         = ( 'mpif77' )
+    set LINK       = ( 'mpif77' )
+    set FFLAGS     = ( '+es +U77 +Onoautopar +Oexemplar_model' \
+                       '+Okernel_threads' )
+    set FOPTIM     = ( '+O2' )
+    set NOOPTFLAGS = ( '-O0' )
+    set NOOPTFILES = ( 'barrier.F different_multiple.F' \
+                       'load_external_fields.F' )
+    breaksw
   default:
     echo "Error: platform not recognized: uname -p = " $platform$USEMPI
     exit
