@@ -173,7 +173,7 @@ C           conserve KE+PE exactly even though it is more natural
 C
            IF (k.LT.Nr) phiHyd(i,j,k+1)=phiHyd(i,j,k)
      &            + drF(K)*gravity*alphaRho(i,j)*recip_rhoConst
-           phiHyd(i,j,k)=phiHyd(i,j,k)+
+           phiHyd(i,j,k)=phiHyd(i,j,k)
      &       + half*drF(K)*gravity*alphaRho(i,j)*recip_rhoConst
 
           ENDDO
