@@ -364,10 +364,12 @@ C     theta is dumped or time-averaged.
       IF ( useSEAICE ) THEN
          CALL TIMER_START('SEAICE_MODEL       [FORWARD_STEP]',myThid)
          CALL SEAICE_MODEL( myTime, myIter, myThid )
-         CALL COST_ICE    ( myTime, myIter, myThid )
          CALL TIMER_STOP ('SEAICE_MODEL       [FORWARD_STEP]',myThid)
-      ENDIF
+#ifdef ALLOW_COST_ICE
+         CALL COST_ICE    ( myTime, myIter, myThid )
 #endif
+      ENDIF
+#endif /* ALLOW_SEAICE */
 
 #ifdef ALLOW_AUTODIFF_TAMC
 C       Include call to a dummy routine. Its adjoint will be 
