@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "PCAKAGES.h"
+#include "PACKAGES.h"
 #include "CPP_OPTIONS.h"
 
 CBOP
