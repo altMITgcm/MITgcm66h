@@ -962,6 +962,19 @@ if test -r $ROOTDIR"/eesupp/src/Makefile" ; then
     fi
 fi
 
+#same for exch2
+if test -r $ROOTDIR"/pkg/exch2/Makefile" ; then
+    echo "  Making source files in exch2 from  templates"
+    ( cd $ROOTDIR"/pkg/exch2/" && $MAKE ) > make_exch2.errors 2>&1
+    RETVAL=$?
+    if test "x${RETVAL}" = x0 ; then
+        rm -f make_exch2.errors
+    else
+        echo "Error: problem encountered while building source files in exch2:"        cat make_exch2.errors
+        exit 1
+    fi
+fi
+
 printf "\n===  Determining package settings  ===\n"
 if  test "x${PDEPEND}" = x ; then
     tmp=$ROOTDIR"/pkg/pkg_depend"
