@@ -62,7 +62,7 @@ C--   Continuous equation parameters
      & tempDiffusion, tempAdvection, tempForcing,
      & saltDiffusion, saltAdvection, saltForcing,
      & implicitFreeSurface, rigidLid, freeSurfFac,
-     & tempStepping, momStepping, implicitDiffusion
+     & tempStepping, saltStepping, momStepping, implicitDiffusion
 
 C--   Elliptic solver parameters
       NAMELIST /PARM02/
@@ -156,12 +156,12 @@ C--   Set default "physical" parameters
       f0=1.D-4 
       beta = 1. _d -11
       viscAh=1.d3
-      viscA4=0.
-      viscAz=1.d-3
       diffKhT=1.0d3
-      diffKzT=1.d-5
       diffKhS=1.0d3
-      diffKzS=1.d-1
+      viscAz=1.d-3
+      diffKzT=1.d-5
+      diffKzS=1.d-5
+      viscA4=0.
       diffK4T=0.
       diffK4S=0.
       GMmaxslope=1.d-2
@@ -182,6 +182,7 @@ C--   Set default "physical" parameters
       momPressureForcing  = .TRUE.
       momStepping         = .TRUE.
       tempStepping        = .TRUE.
+      saltStepping        = .TRUE.
       metricTerms         = .TRUE.
       implicitDiffusion   = .FALSE.
       READ(UNIT=iUnit,NML=PARM01,IOSTAT=errIO,err=3)
