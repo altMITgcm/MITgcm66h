@@ -9,18 +9,18 @@
  sbarfile   = 'sbar',
  psbarfile  = 'psbar',
 #
- topexstartdate1 = 19920102,
+ topexstartdate1 = 19790101,
  topexstartdate2 = 00000,
  topexperiod     = 86400.0,
  topexfile       = 'PH_TP_fields__020_016_23',
  topexmeanfile   = 'PH_TP_mean__020_016_23',
 #
  ersfile       = 'PH_ERS_fields__020_016_23',
- ersstartdate1 = 19920102,
+ ersstartdate1 = 19790101,
  ersstartdate2 = 00000,
  ersperiod     = 86400.0,
 #
- sststartdate1        = 19920102,
+ sststartdate1        = 19790101,
  sststartdate2        = 00000,
  sstdatfile           = 'PH_SST_fields__020_016_23',
  tdatfile             = 'PH_Lev.ptmp__020_016_23',

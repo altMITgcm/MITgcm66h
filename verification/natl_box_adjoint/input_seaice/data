@@ -57,7 +57,6 @@
  saltStepping=.TRUE.,
  tempStepping=.TRUE.,
  momStepping=.TRUE.,
-# the following is c27
  implicitDiffusion=.TRUE.,
  implicitViscosity=.TRUE.,
  &
@@ -130,10 +129,6 @@
 #   bathyFile       - File containing bathymetry
 #   hydrogThetaFile - File containing initial potential temperature data
 #   hydrogSaltFile  - File containing initial salinity data
-#   zonalWindFile   - File containing zonal wind data
-#   meridWindFile   - File containing meridional wind data
-#   thetaClimFile   - File containing theta climatology used for relaxation
-#   saltClimFile    - File containing salt climatology used for relaxation
 #
  &PARM05
  bathyFile       = 'bathy.labsea',

@@ -1,7 +1,7 @@
 
 #
 # ***************
-# Open boundaries
+# KPP parameters
 # ***************
  &KPP_PARM01
  &

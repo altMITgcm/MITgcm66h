@@ -36,19 +36,19 @@
  lwdownstartdate1  = 19781216,
  lwdownstartdate2  = 180000,
  lwdownperiod      = 2635200.0,
-#
+
  atempfile         = 'tair.labsea1979',
  aqhfile           = 'qa.labsea1979',
- uwindfile         = 'u10m.labsea79',
- vwindfile         = 'v10m.labsea79',
  evapfile          = 'evap.labsea1979',
  precipfile        = 'prate.labsea1979',
- lwdownfile        = 'flo.labsea1979',
+ uwindfile         = 'u10m.labsea79',
+ vwindfile         = 'v10m.labsea79',
  swdownfile        = 'fsh.labsea1979',
+ lwdownfile        = 'flo.labsea1979',
  runoffFile        = ' '
 #
- exf_iprec         = 32,
- exf_yftype        = 'RL',
+ exf_iprec   = 64,
+ exf_yftype  = 'RL',
 #
  EXFwindOnBgrid    = .TRUE.
  &

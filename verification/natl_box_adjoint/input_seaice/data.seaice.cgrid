@@ -2,4 +2,5 @@
  &SEAICE_PARM01
       SEAICEwriteState  = .TRUE.
       SEAICEwindOnCgrid = .TRUE.
+      SEAICE_initialHEFF= 0.0
  &

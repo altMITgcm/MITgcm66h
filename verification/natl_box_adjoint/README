@@ -1,259 +1,187 @@
-Example: Subtropical North Atlantic Subduction area
-===================================================
-- with KPP & shortwave heating
-- no GMRedi
-- forward/adjoint run
-- optimization cost function
+# Example: Subtropical North Atlantic and Labrador Sea Areas
+# ==========================================================
+# - forward/adjoint run
+# - optimization cost function
+# - with KPP & shortwave heating
+# - gmredi turned off (until merge to c48)
+# - The input data is real*8
+# - 4 timesteps
 
 ####################
 # Experiment no. 1 #
 ####################
-
 # Use air-sea fluxes as controls (standard case):
+# perform gradient checks for first four elements of the
+# heat flux part of the control vector (grdchkvarindex = 3).
 
-#Compile code in bin/:
-  cd bin
-  cp ../verification/natl_box_adjoint/code/.genmakerc .
-  cp ../verification/natl_box_adjoint/code/*.h .
-#Configure and compile the code:
-  ../tools/genmake -makefile
-  make depend
-#Generate the adjoint code:
-  cd ../adjoint
-  make adtaf
-  make adchange
-#Go back and compile the code:
-  cd ../bin
-  make
-
-#To run:
-  cd ../exe
-  cp ../verification/natl_box_adjoint/input/* .
-  mitgcmuv >&! output.txt
-
-#I've changed the run setup:
-#We now perform gradient checks for the first for elements of 
-#the heat flux part of the control vector (grdchkvarindex = 3).
-#To verify the results of the gradient check, type
-
-grep ph-grd output.txt
-
-#A reference output is in:
-grep ph-grd ../verification/natl_box_adjoint/results/output.txt
-
-Comments:
-- The input data is real*8.
-- gmredi turned off (until merge to c48)
-- 4 timesteps
+# Compile code in bin/:
+ cd bin
+ cp ../verification/natl_box_adjoint/code/.genmakerc .
+ cp ../verification/natl_box_adjoint/code/*.h .
+# Configure and compile the code:
+ ../tools/genmake -makefile
+ make depend
+# Generate the adjoint code:
+ cd ../adjoint
+ make adtaf
+ make adchange
+# Go back and compile the code:
+ cd ../bin
+ make
+# To run:
+ cd ../exe
+ cp ../verification/natl_box_adjoint/input/* .
+ mitgcmuv >&! output.txt
+# To verify the results of the gradient check, type:
+ grep ph-grd output.txt
+# A reference output is in:
+ grep ph-grd ../verification/natl_box_adjoint/results/output.txt
 
 
 ####################
 # Experiment no. 2 #
 ####################
+# Use bulk formulae and atmospheric state controls
+# (only differences to experiment 1 are in
+# ECCO_CPPOPTIONS.h and in data.grdchk):
+# perform gradient checks for first four elements of the
+# air temperture part of the control vector (grdchkvarindex = 7).
 
-#Use bulk formulae and atmos. state controls
-#(only differnce to experiment 1 is in ECCO_CPPOPTIONS.h,
-#and runtime in data.grdchk):
-
-#Compile code in bin/:
-  cd ../bin
-  rm -rf *.o *.f *.p rii_files
-  rm -rf *.F *.h *.c Makefile*
-  cp ../verification/natl_box_adjoint/code_bulk/.genmakerc .
-  cp ../verification/natl_box_adjoint/code_bulk/*.h .
-#Configure and compile the code:
-  ../tools/genmake -makefile
-  make depend
-#Generate the adjoint code:
-  cd ../adjoint
-  make adtaf
-  make adchange
-#Go back and compile the code:
-  cd ../bin
-  make
-
-#To run:
-  cd ../exe
-  cp ../verification/natl_box_adjoint/input_bulk/* .
-  cp ../verification/natl_box_adjoint/input/PH_*.data .
-  ./mitgcmuv >&! output.txt
-
-#I've changed the run setup:
-#We now perform gradient checks for the first four elements of 
-#the air temperture part of the control vector (grdchkvarindex = 7).
-#To verify the results of the gradient check, type
-
-grep ph-grd output.txt
-
-#A reference output is in:
-grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.txt
+# Compile code in bin/:
+ cd ../bin
+ rm -rf *.o *.f *.p rii_files
+ rm -rf *.F *.h *.c Makefile*
+ cp ../verification/natl_box_adjoint/code_bulk/.genmakerc .
+ cp ../verification/natl_box_adjoint/code_bulk/*.h .
+# Configure and compile the code:
+ ../tools/genmake -makefile
+ make depend
+# Generate the adjoint code:
+ cd ../adjoint
+ make adtaf
+ make adchange
+# Go back and compile the code:
+ cd ../bin
+ make
+# To run:
+ cd ../exe
+ cp ../verification/natl_box_adjoint/input_bulk/* .
+ cp ../verification/natl_box_adjoint/input/PH_*.data .
+ ./mitgcmuv >&! output.txt
+# To verify the results of the gradient check, type:
+ grep ph-grd output.txt
+# A reference output is in:
+ grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.txt
 
 
 ####################
 # Experiment no. 3 #
 ####################
+# Same as exp. 2, but with ALLOW_SEAICE defined.
 
-#Same as exp. 2, but with ALLOW_SEAICE defined:
-
-#Compile code in bin/:
-  cd ../bin
-  rm -rf *.o *.f *.p rii_files
-  rm -rf *.F *.h *.c Makefile*
-  cp ../verification/natl_box_adjoint/code_seaice/*.h .
-  cp ../verification/natl_box_adjoint/code_seaice/.genmakerc .
-  cp ../verification/natl_box_adjoint/code_seaice/SEAICE_OPTIONS.h.FLUXES SEAICE_OPTIONS.h
-#Configure and compile the code:
-  ../tools/genmake -makefile
-  make depend
-#Generate the adjoint code:
-  cd ../adjoint
-  mv makefile makefile.old
-  cp ../verification/natl_box_adjoint/code_seaice/makefile .
-  make adtaf
-  make adchange
-  rm -f makefile
-  mv makefile.old makefile
-#Go back and compile the code:
-  cd ../bin
-  make
-#To run:
-  cd ../exe
-  cp ../verification/natl_box_adjoint/input_bulk/* .
-  cp ../verification/natl_box_adjoint/input/PH_*.data .
-  ./mitgcmuv >&! output.txt
-
-grep ph-grd output.txt
-
-#A reference output is in:
+# Compile code in bin/:
+ cd ../bin
+ rm -rf *.o *.f *.p rii_files
+ rm -rf *.F *.h *.c Makefile*
+ cp ../verification/natl_box_adjoint/code_seaice/*.h .
+ cp ../verification/natl_box_adjoint/code_seaice/.genmakerc .
+ cp ../verification/natl_box_adjoint/code_seaice/SEAICE_OPTIONS.h.FLUXES SEAICE_OPTIONS.h
+# Configure and compile the code:
+ ../tools/genmake -makefile
+ make depend
+# Generate the adjoint code:
+ cd ../adjoint
+ mv makefile makefile.old
+ cp ../verification/natl_box_adjoint/code_seaice/makefile .
+ make adtaf
+ make adchange
+ rm -f makefile
+ mv makefile.old makefile
+# Go back and compile the code:
+ cd ../bin
+ make
+# To run:
+ cd ../exe
+ cp ../verification/natl_box_adjoint/input_bulk/* .
+ cp ../verification/natl_box_adjoint/input/PH_*.data .
+ ./mitgcmuv >&! output.txt
+# To verify the results of the gradient check, type:
+ grep ph-grd output.txt
+# A reference output is in:
 grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.txt
 
 
 ####################
 # Experiment no. 4 #
 ####################
+# Uses same executable as exp. 3, but with useseaice = .true.
 
-#Uses same executable as exp. 3, but with useseaice = .true.
-
-#To run:
-  cd ../exe
-  cp ../verification/natl_box_adjoint/input_bulk/* .
-  cp ../verification/natl_box_adjoint/input_seaice/data.seaice.cgrid data.seaice
-  cp ../verification/natl_box_adjoint/input_seaice/data.pkg .
-  cp ../verification/natl_box_adjoint/input/PH_*.data .
-  ./mitgcmuv >&! output.txt
-
-grep ph-grd output.txt
-
-#A reference output is in:
-grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.exp4
-
-Comments:
-- The gradient check results are different from those of exp. 3, seemingly
-  because of the big initial pulse of freshwater, see below?   There is a
-  17 to 25% discrepancy between adjoint and finite difference gradients.
+# To run:
+ cd ../exe
+ cp ../verification/natl_box_adjoint/input_bulk/* .
+ cp ../verification/natl_box_adjoint/input_seaice/data.seaice.cgrid data.seaice
+ cp ../verification/natl_box_adjoint/input_seaice/data.pkg .
+ cp ../verification/natl_box_adjoint/input/PH_*.data .
+ ./mitgcmuv >&! output.txt
+# To verify the results of the gradient check, type:
+ grep ph-grd output.txt
+# A reference output is in:
+ grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.txt
 
 
 ####################
 # Experiment no. 5 #
 ####################
+# Same as exp. 4, but using sea-ice bulk formulae.
+# This experiment tests pkg/seaice bulk formulae over open water.
+# No sea-ice is formed anywhere in the domain.
+# There is a worrisome 3-4% discrepancy between ajoint
+# model and finite difference gradients.
 
-#Same as exp. 4, but with HEFF=0 initial condition
-
-#To run:
-  cd ../exe
-  cp ../verification/natl_box_adjoint/input_bulk/* .
-  cp ../verification/natl_box_adjoint/input_seaice/data.seaice.heff data.seaice
-  cp ../verification/natl_box_adjoint/input_seaice/data.pkg .
-  cp ../verification/natl_box_adjoint/input/PH_*.data .
-  ./mitgcmuv >&! output.txt
-
-grep ph-grd output.txt
-
-#A reference output is in:
-grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.txt
+# Compile code in bin/:
+ cd ../bin
+ rm -rf *.o *.f *.p rii_files
+ rm -rf *.F *.h *.c Makefile*
+ cp ../verification/natl_box_adjoint/code_seaice/*.h .
+ cp ../verification/natl_box_adjoint/code_seaice/.genmakerc .
+# Configure and compile the code:
+ ../tools/genmake -makefile
+ make depend
+# Generate the adjoint code:
+ cd ../adjoint
+ mv makefile makefile.old
+ cp ../verification/natl_box_adjoint/code_seaice/makefile .
+ make adtaf
+ make adchange
+ rm -f makefile
+ mv makefile.old makefile
+# Go back and compile the code:
+ cd ../bin
+ make
+# To run:
+ cd ../exe
+ cp ../verification/natl_box_adjoint/input_bulk/* .
+ cp ../verification/natl_box_adjoint/input_seaice/data.seaice.cgrid data.seaice
+ cp ../verification/natl_box_adjoint/input_seaice/data.pkg .
+ cp ../verification/natl_box_adjoint/input/PH_*.data .
+ ./mitgcmuv >&! output.txt
+# To verify the results of the gradient check, type:
+ grep ph-grd output.txt
+# A reference output is in:
+ grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.exp5
 
 
 ####################
 # Experiment no. 6 #
 ####################
+# Same as experiment 5, but in the Labrador Sea rather
+# than in the North Atlantic subduction region.  This 
+# experiment does include sea-ice.
 
-#Same as exp. 5, but using sea-ice bulk formulae
-
-#Compile code in bin/:
-  cd ../bin
-  rm -rf *.o *.f *.p rii_files
-  rm -rf *.F *.h *.c Makefile*
-  cp ../verification/natl_box_adjoint/code_seaice/*.h .
-  cp ../verification/natl_box_adjoint/code_seaice/.genmakerc .
-#Configure and compile the code:
-  ../tools/genmake -makefile
-  make depend
-#Generate the adjoint code:
-  cd ../adjoint
-  mv makefile makefile.old
-  cp ../verification/natl_box_adjoint/code_seaice/makefile .
-  make adtaf
-  make adchange
-  rm -f makefile
-  mv makefile.old makefile
-#Go back and compile the code:
-  cd ../bin
-  make
-#To run:
-  cd ../exe
-  cp ../verification/natl_box_adjoint/input_bulk/* .
-  cp ../verification/natl_box_adjoint/input_seaice/data.seaice.heff data.seaice
-  cp ../verification/natl_box_adjoint/input_seaice/data.pkg .
-  cp ../verification/natl_box_adjoint/input/PH_*.data .
-  ./mitgcmuv >&! output.txt
-
-grep ph-grd output.txt
-
-#A reference output is in:
-grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.exp6
-
-- There is a 3-4% discrepancy between ajoint
-  model and finite difference gradients.
-
-
-####################
-# Experiment no. 7 #
-####################
-
-#Use pkg/seaice bulk formulae and atmos. state controls
-#(this experiment is in the Labrador Sea rather than the
-#North Atlantic subduction region):
-
-#Compile code in bin/:
-  cd ../bin
-  rm -rf *.o *.f *.p rii_files
-  rm -rf *.F *.h *.c Makefile*
-  cp ../verification/natl_box_adjoint/code_seaice/*.h .
-  cp ../verification/natl_box_adjoint/code_seaice/.genmakerc .
-#Configure and compile the code:
-  ../tools/genmake -makefile
-  make depend
-#Generate the adjoint code:
-  cd ../adjoint
-  mv makefile makefile.old
-  cp ../verification/natl_box_adjoint/code_seaice/makefile .
-  make adtaf
-  make adchange
-  rm -f makefile
-  mv makefile.old makefile
-#Go back and compile the code:
-  cd ../bin
-  make
-#To run:
-  cd ../exe
-  cp ../verification/natl_box_adjoint/input_seaice/* .
-  cp ../verification/natl_box_adjoint/input/PH_*.data .
-  ./mitgcmuv >&! output.txt
-
-Comments:
-- Executable crashes:
-(PID.TID 0000.0001)  MDSREADFIELD: opening global file: v10m.labsea79
-(PID.TID 0000.0001)  MDSREADFIELD: opening global file: v10m.labsea79
-(PID.TID 0000.0001)  MDSREADFIELD: argument irecord = -00000473
-(PID.TID 0000.0001) *** ERROR *** MDSREADFIELD: Invalid value for irecord
-STOP ABNORMAL END: S/R MDSREADFIELD statement executed
+# To run:
+ cd ../exe
+ cp ../verification/natl_box_adjoint/input_seaice/* .
+ cp ../verification/natl_box_adjoint/input/PH_*.data .
+ ./mitgcmuv >&! output.txt
+# To verify the results of the gradient check, type:
+ grep ph-grd output.txt
