@@ -182,6 +182,15 @@ C--   Do "blocking" sends and receives for field "overlap" terms
       CALL DO_FIELDS_BLOCKING_EXCHANGES( myThid )
       CALL TIMER_STOP ('BLOCKING_EXCHANGES  [THE_MAIN_LOOP]',myThid)
 
+#ifdef ALLOW_FLT
+C--   Calculate float trajectories
+      IF (useFLT) THEN
+        CALL TIMER_START('FLOATS            [THE_MAIN_LOOP]',myThid)
+        CALL FLT_MAIN(myIter,myTime, myThid)
+        CALL TIMER_STOP ('FLOATS            [THE_MAIN_LOOP]',myThid)
+      ENDIF
+#endif
+
 #ifndef EXCLUDE_MONITOR
 C--   Check status of solution (statistics, cfl, etc...)
       CALL MONITOR( myIter, myTime, myThid )

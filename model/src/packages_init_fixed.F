@@ -26,6 +26,13 @@ C--   Initialize fixed arrays for OBCS
        CALL OBCS_INIT_FIXED( myThid )
       ENDIF
 #endif
+#ifdef ALLOW_FLT
+C--   Initialise Float positions
+      IF (useFLT) then
+       CALL FLT_INIT(nIter0,startTime,myThid )
+      _BARRIER
+      ENDIF
+#endif
 
       RETURN
       END

@@ -35,7 +35,8 @@ C--   data.pkg namelists
      &          useAIM,
      &          useGrdchk,
      &          useECCO,
-     &          useSHAP_FILT
+     &          useSHAP_FILT,
+     &          useFLT
 
 C     === Local variables ===
 C     msgBuf      - Informational/error meesage buffer

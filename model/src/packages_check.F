@@ -51,5 +51,9 @@ C     msgBuf      - Informational/error meesage buffer
       IF (useAIM) CALL PACKAGES_CHECK_ERROR('AIM', myThid)
 #endif
 
+#ifndef ALLOW_FLT
+      IF (useFLT) CALL PACKAGES_CHECK_ERROR('FLT', myThid)
+#endif
+
       RETURN
       END

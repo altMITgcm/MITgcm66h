@@ -555,7 +555,8 @@ C Logical flags for selecting packages
       LOGICAL useGrdchk
       LOGICAL useECCO
       LOGICAL useSHAP_FILT
+      LOGICAL useFLT
       COMMON /PARM_PACKAGES/
      &        useKPP, useGMRedi, useOBCS, useAIM, useECCO, 
-     &        useSHAP_FILT, useGrdchk
+     &        useSHAP_FILT, useGrdchk, useFLT
 
