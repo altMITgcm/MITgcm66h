@@ -174,20 +174,10 @@ C-  check parameter consistency :
         STOP 'ABNORMAL END: S/R CONFIG_CHECK'
       ENDIF
 
-      IF (select_rStar.NE.0 .AND. .NOT.exactConserv) THEN
-        WRITE(msgBuf,'(A)') 
-     &   'CONFIG_CHECK: r* Coordinate cannot be used'
-        CALL PRINT_ERROR( msgBuf , myThid)
-        WRITE(msgBuf,'(A)')
-     &   'CONFIG_CHECK: without exactConserv'
-        CALL PRINT_ERROR( msgBuf , myThid)
-        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
-      ENDIF
-
-C- note : not implemented in checkpoint48b but it's done now (since 01-28-03)
-c     IF (select_rStar.GT.0 .AND. useOBCS ) THEN
+C- note : not implemented in Release1_beta1 but it's done now (since 01-30-02)
+c     IF (nonlinFreeSurf.NE.0 .AND. useOBCS ) THEN
 c       WRITE(msgBuf,'(A)') 
-c    &   'CONFIG_CHECK: r* Coordinate not yet implemented'
+c    &   'CONFIG_CHECK: nonlinFreeSurf not yet implemented'
 c       CALL PRINT_ERROR( msgBuf , 1)
 c       WRITE(msgBuf,'(A)')
 c    &   'CONFIG_CHECK: in OBC package'
@@ -258,17 +248,6 @@ c     ENDIF
      &                    SQUEEZE_RIGHT , myThid)                      
         WRITE(msgBuf,'(A)')
      &   'CONFIG_CHECK: ==> use #define NONLIN_FRSURF to fix it'
-        CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
-     &                    SQUEEZE_RIGHT , myThid)                      
-      ENDIF
-
-      IF (select_rStar .NE. 0) THEN
-        WRITE(msgBuf,'(A)') 
-     &   'CONFIG_CHECK: rStar is part of NonLin-FS '
-        CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
-     &                    SQUEEZE_RIGHT , myThid)                      
-        WRITE(msgBuf,'(A)')
-     &   'CONFIG_CHECK: ==> use #define NONLIN_FRSURF to use it'
         CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
      &                    SQUEEZE_RIGHT , myThid)                      
       ENDIF

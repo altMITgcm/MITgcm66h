@@ -161,7 +161,6 @@ C--   Set (free)surface-related parameters
       nonlinFreeSurf      = 0
       hFacInf             = 1.D0
       hFacSup             = 1.D0
-      select_rStar        = 0
       useRealFreshWaterFlux = .FALSE.
       temp_EvPrRn = UNSET_RL
       salt_EvPrRn = 0.
