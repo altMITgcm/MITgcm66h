@@ -3,6 +3,13 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint6
+ Created by cnh
+ merged checkpoint5 with CD and 
+ spherical polar code. 
+ Still some problems with GM Redi
+ abd full topography.
+
 checkpoint5
  Created by AJA
  contains updates to GM Redi
