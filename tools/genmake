@@ -280,7 +280,7 @@ end
 # Platform specific options are chosen below
 set LN         = ( 'ln -s' )
 set CPP        = ( '/lib/cpp -P' )
-set S64        = ( '\$(TOOLSDIR)/set64bitConst.sh' )
+set S64        = ( '$(TOOLSDIR)/set64bitConst.sh' )
 set KPP        = (  )
 set FC         = ( 'f77' )
 set LINK       = ( 'f77' )
