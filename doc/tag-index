@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o S/R ptracers_calc_diff: argument list bug for CALL KPP_CALC_DIFF_S
 o added modified Leith scheme with viscosity proportional to grad(Hdiv) 
   as well as grad(vort3).  Made it compatible with both approximate form
   for the cubed sphere and full form of these gradients.  Added flag
