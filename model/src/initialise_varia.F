@@ -138,7 +138,7 @@ C     a pickup file written by MITgcmUV_checkpoint34 or earlier.
 #endif
 
 C--   Initial conditions are convectively adjusted (for historical reasons)
-      IF ( startTime .EQ. 0. ) THEN
+      IF ( startTime .EQ. 0. .AND. cAdjFreq .NE. 0. ) THEN
 CADJ loop = parallel 
         DO bj = myByLo(myThid), myByHi(myThid)
 CADJ loop = parallel

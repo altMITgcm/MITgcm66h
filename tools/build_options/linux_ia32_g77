@@ -15,7 +15,7 @@ if test "x$IEEE" = x ; then
     FFLAGS='-Wimplicit -Wunused -Wuninitialized'
     FOPTIM='-O3 -malign-double -funroll-loops'
 else
-    FFLAGS='-Wimplicit -Wunused -Wuninitialized -ffloat-store'
+    FFLAGS='-Wimplicit -Wunused -ffloat-store'
     FOPTIM='-O0 -malign-double'
 fi
 

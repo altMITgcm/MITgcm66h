@@ -7,36 +7,6 @@ C CPP flags controlling which code in included in the files that
 C will be compiled.
 C
 
-C o Include/exclude code for AIM package
-#define ALLOW_AIM
-
-C o Include/exclude code for GM/Redi parameterization
-#undef  ALLOW_GMREDI
-
-C o Include/exclude code for KPP mixing scheme
-#undef  ALLOW_KPP
-
-C o Shortwave heating as extra term in external_forcing.F
-#ifdef ALLOW_KPP
-#define  SHORTWAVE_HEATING
-#endif
-
-C o Include/exclude code for Shapiro filters
-#define ALLOW_SHAP_FILT
-
-C o Include/exclude code for C-D grid method of integrating the 
-C   coriolis terms
-#undef  INCLUDE_CD_CODE
-
-C o Include/exclude code for open-boundary conditions
-#undef  ALLOW_OBCS
-
-C o Include/exclude diagnostics package interface code
-#define ALLOW_TIMEAVE
-
-C o Include/exclude zonal FFT filter code
-#undef  ALLOW_ZONAL_FILT
-
 C o Include/exclude temperature advection code
 #define  INCLUDE_T_ADVECTION_CODE
 #ifdef   INCLUDE_T_ADVECTION_CODE
