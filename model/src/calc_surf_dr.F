@@ -50,7 +50,7 @@ C     i,j,k,bi,bj  :: loop counter
 C     rSurftmp     :: free surface r-position that is used to compute hFac_surf
 C     adjust_nb_pt :: Nb of grid points where rSurf is adjusted (hFactInf)
 C     adjust_volum :: adjustment effect on the volume (domain size)
-      INTEGER i,j,k,bi,bj
+      INTEGER i,j,bi,bj
       INTEGER ks
       _RL hFacInfMOM, Rmin_tmp, hFactmp, adjust_nb_pt, adjust_volum
       _RL rSurftmp(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
@@ -73,6 +73,7 @@ C-- Initialise arrays :
            hFac_surfC(i,j,bi,bj) = 0.
            hFac_surfW(i,j,bi,bj) = 0.
            hFac_surfS(i,j,bi,bj) = 0.
+           PmEpR(i,j,bi,bj) = 0.
            Rmin_surf(i,j,bi,bj) = Ro_surf(i,j,bi,bj)
           ENDDO
          ENDDO
