@@ -10,6 +10,9 @@ C
 C o Include/exclude code for AIM package
 #define ALLOW_AIM
 
+C o Include/exclude code for Land package (use only with AIM)
+#define ALLOW_LAND
+
 C o Include/exclude code for GM/Redi parameterization
 #undef  ALLOW_GMREDI
 
