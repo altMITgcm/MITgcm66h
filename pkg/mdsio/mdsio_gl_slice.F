@@ -83,7 +83,7 @@ C Functions
       integer MDS_RECLEN
 C Local variables
       character*(80) dataFName
-      integer ip,jp,iG,jG,irec,bi,bj,ii,j,k,dUnit,IL
+      integer ip,jp,iG,jG,irec,bi,bj,ii,k,dUnit,IL
       logical exst
       _RL arr(1-oLx:sNx+oLx,Nr,nSx,nSy)
       Real*4 r4seg(sNx)
@@ -308,7 +308,7 @@ C Functions
       integer MDS_RECLEN
 C Local variables
       character*(80) dataFName
-      integer ip,jp,iG,jG,irec,bi,bj,jj,j,k,dUnit,IL
+      integer ip,jp,iG,jG,irec,bi,bj,jj,k,dUnit,IL
       logical exst
       _RL arr(1-oLy:sNy+oLy,Nr,nSx,nSy)
       Real*4 r4seg(sNy)
@@ -546,7 +546,7 @@ C Functions
       integer MDS_RECLEN
 C Local variables
       character*(80) dataFName,metaFName
-      integer ip,jp,iG,jG,irec,bi,bj,ii,j,k,dUnit,IL
+      integer ip,jp,iG,jG,irec,bi,bj,ii,k,dUnit,IL
       Real*4 r4seg(sNx)
       Real*8 r8seg(sNx)
       _RL arr(1-oLx:sNx+oLx,Nr,nSx,nSy)
@@ -761,7 +761,7 @@ C Functions
       integer MDS_RECLEN
 C Local variables
       character*(80) dataFName,metaFName
-      integer ip,jp,iG,jG,irec,bi,bj,jj,j,k,dUnit,IL
+      integer ip,jp,iG,jG,irec,bi,bj,jj,k,dUnit,IL
       Real*4 r4seg(sNy)
       Real*8 r8seg(sNy)
       _RL arr(1-oLy:sNy+oLy,Nr,nSx,nSy)
