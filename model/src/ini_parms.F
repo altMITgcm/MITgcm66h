@@ -551,13 +551,13 @@ C     o Consistent?
 C     o Monitor (should also add CPP flag for monitor?)
       IF (monitorFreq.LT.0.) THEN
        monitorFreq=0.
-c      IF (dumpFreq.NE.0.) monitorFreq=dumpFreq
-c      IF (taveFreq.NE.0..AND.taveFreq.LT.monitorFreq)
-c    &         monitorFreq=taveFreq
-c      IF (chkPtFreq.NE.0..AND.chkPtFreq.LT.monitorFreq)
-c    &         monitorFreq=chkPtFreq
-c      IF (pChkPtFreq.NE.0..AND.pChkPtFreq.LT.monitorFreq)
-c    &         monitorFreq=pChkPtFreq
+       IF (dumpFreq.NE.0.) monitorFreq=dumpFreq
+       IF (taveFreq.NE.0..AND.taveFreq.LT.monitorFreq)
+     &         monitorFreq=taveFreq
+       IF (chkPtFreq.NE.0..AND.chkPtFreq.LT.monitorFreq)
+     &         monitorFreq=chkPtFreq
+       IF (pChkPtFreq.NE.0..AND.pChkPtFreq.LT.monitorFreq)
+     &         monitorFreq=pChkPtFreq
        IF (monitorFreq.EQ.0.) monitorFreq=deltaTclock
       ENDIF
 
