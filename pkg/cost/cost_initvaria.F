@@ -61,6 +61,19 @@ c--   Initialize the tiled cost function contributions.
             objf_vector(i,bi,bj) = 0. _d 0
           end do
 #endif
+c
+#ifdef ALLOW_COST_ATLANTIC_HEAT
+          do k=1,nr
+            do j=1,sNy
+              do i=1,sNx
+                cMeanTheta(i,j,k,bi,bj) = 0. _d 0
+                cMeanUVel(i,j,k,bi,bj)  = 0. _d 0
+                cMeanVVel(i,j,k,bi,bj)  = 0. _d 0
+              end do
+            end do
+          end do
+#endif
+c
 #ifdef ALLOW_COST_STATE_FINAL
 c          do k=1,nr
             do j=1,sNy

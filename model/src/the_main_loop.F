@@ -324,15 +324,6 @@ c--     >>> Loop body start <<<
         CALL FORWARD_STEP( iloop, mytime, myiter, mythid )
         CALL TIMER_STOP ('FORWARD_STEP        [THE_MAIN_LOOP]',mythid)
 
-#ifdef ALLOW_COST
-C--     compare model with data and compute cost function
-C--     this is done after exchanges to allow interpolation
-ceh3 perhaps needs an IF ( useCOST ) THEN
-        CALL TIMER_START('COST_TILE           [THE_MAIN_LOOP]',myThid)
-        CALL COST_TILE  ( myThid )
-        CALL TIMER_STOP ('COST_TILE           [THE_MAIN_LOOP]',myThid)
-#endif
-
 c--     >>> Loop body end <<<
 
 #ifdef ALLOW_AUTODIFF_TAMC
