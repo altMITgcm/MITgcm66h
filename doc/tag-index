@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o modded aim.5l_cs and global_ocean.cs32x15 to use exch2, removed
+  old grid files, moved CPP_EEMACROS.h to pkg/exch2
+
 o added useSingleCPUIO flag to monitor.F and mon_out.F
 
 checkpoint52f_post
