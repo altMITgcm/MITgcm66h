@@ -33,3 +33,8 @@ Change log for branch "pre38".
  o added fCoriG to PARAMS.h, ini_cori.F, FCORI_MACROS.h
    - needed for VI momentum equations which are broken without.
  o CG2D: allow to switch-off RHS normalisation setting Residual_Target in W_unit
+
+ O Many changes appear to be missing here...
+
+ o tagging end of branch with "pre38-close"
+   Merging this branch into "HEAD" on May 21, '01.
