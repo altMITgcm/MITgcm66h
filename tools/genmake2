@@ -458,7 +458,19 @@ EOF
     if test "x$RET_COMPILE" = x0 -a "x$RETVAL" = x0 ; then
 	HAVE_NETCDF=t
     else
-	cat genmake_tnc.log >> genmake_warnings
+	# try again with "-lnetcdf" added to the libs
+	$CPP genmake_tnc.F > genmake_tnc.f  \
+	    &&  $FC $FFLAGS $FOPTIM -o genmake_tnc genmake_tnc.f \
+	    $LIBS -lnetcdf >> genmake_tnc_2.log 2>&1
+	RET_COMPILE=$?
+	test -x ./genmake_tnc  &&  ./genmake_tnc >> genmake_tnc.log 2>&1
+	RETVAL=$?
+	if test "x$RET_COMPILE" = x0 -a "x$RETVAL" = x0 ; then
+	    LIBS="$LIBS -lnetcdf"
+	    HAVE_NETCDF=t
+	else
+	    cat genmake_tnc.log >> genmake_warnings
+	fi
     fi
     rm -f genmake_tnc*
 }
