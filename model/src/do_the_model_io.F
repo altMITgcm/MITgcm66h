@@ -68,7 +68,7 @@ C--    Write "text-plots" of certain fields
       ENDIF
 
 C--   Write model state to binary file
-      CALL WRITE_STATE( myCurrentTime, myIter, myThid )
+      CALL WRITE_STATE( .FALSE., myCurrentTime, myIter, myThid )
 
       _BARRIER
 C

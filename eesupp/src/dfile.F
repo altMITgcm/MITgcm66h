@@ -325,7 +325,7 @@ C--   Check that file is active
        iLo = IFNBLNK(fNam)
        iHi = ILNBLNK(fNam)
        ioUnit = dUnitNumber(fileHandle,myThid)
-       READ(ioUnit,ERR=899) (ioBuf_R4(I),I=1,lBuffer)
+       READ(ioUnit) (ioBuf_R4(I),I=1,lBuffer)
 
 
  1000 CONTINUE

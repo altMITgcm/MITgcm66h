@@ -109,6 +109,9 @@ C--   Set model initial conditions
       myCurrentTime = startTime
       myCurrentIter = nIter0
 
+C--   Dump for start state
+      CALL WRITE_STATE( .TRUE., myCurrentTime, myCurrentIter, myThid )
+
 C--   Begin time stepping loop
       DO I=1, nTimeSteps
 
@@ -171,7 +174,7 @@ C--   Do time averages
       ENDIF
 
 C--   Dump for end state
-      CALL WRITE_STATE( myCurrentTime, myCurrentIter, myThid )
+      CALL WRITE_STATE( .FALSE., myCurrentTime, myCurrentIter, myThid )
 
 
       RETURN

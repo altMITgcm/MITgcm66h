@@ -5,7 +5,7 @@ C $Header$
 CStartOfInterFace
       SUBROUTINE CALC_GT( 
      I           bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
-     I           xA,yA,uTrans,vTrans,wTrans,maskup,
+     I           xA,yA,uTrans,vTrans,wTrans,maskup,maskC,
      I           K13,K23,KappaZT,KapGM,
      U           af,df,fZon,fMer,fVerT,
      I           myThid )
@@ -52,6 +52,7 @@ C               direction at the south face of a cell.
 C     fVerT   - Flux of temperature (T) in the vertical 
 C               direction at the upper(U) and lower(D) faces of a cell.
 C     maskUp  - Land mask used to denote base of the domain.
+C     maskC   - Land mask for theta cells (used in TOP_LAYER only)
 C     xA      - Tracer cell face area normal to X
 C     yA      - Tracer cell face area normal to X
 C     uTrans  - Zonal volume transport through cell face
@@ -71,6 +72,7 @@ C     myThid - Instance number for this innvocation of CALC_GT
       _RL vTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL wTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS maskUp(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RS maskC (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL K13   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nz)
       _RL K23   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nz)
       _RL KappaZT(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nz)
@@ -258,7 +260,7 @@ C     o Surface relaxation term
        DO j=jMin,jMax
         DO i=iMin,iMax
          gT(i,j,k,bi,bj)=gT(i,j,k,bi,bj)
-     &  +maskUp(i,j)*(
+     &  +maskC(i,j)*(
      &   -lambdaThetaClimRelax*(theta(i,j,k,bi,bj)-SST(i,j,bi,bj))
      &   -Qnet(i,j,bi,bj) )
         ENDDO

@@ -70,7 +70,7 @@ C          tauX  = -tauMax*cos(2. _d 0*PI*distY)
          ENDDO
         ENDDO
        ENDDO
-       fu(4,4,1,1) = fu(4,4,1,1)*0.917d0
+C      fu(4,4,1,1) = fu(4,4,1,1)*0.917d0
       ENDIF
 C
       _BARRIER

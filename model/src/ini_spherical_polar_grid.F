@@ -185,7 +185,7 @@ C     Calculate recipricols
       _EXCH_XY_R4(rDyF, myThid )
       _EXCH_XY_R4(rDxV, myThid )
       _EXCH_XY_R4(rDyU, myThid )
-C     Calculate vertical face area 
+C     Calculate vertical face area and trigonometric terms
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
         DO J=1,sNy
@@ -195,6 +195,8 @@ C     Calculate vertical face area
           latN = yc(i,j,bi,bj)+delY(jG)*0.5 _d 0
           zA(I,J,bi,bj) = dyF(I,J,bi,bj)
      &    *rSphere*(SIN(latN*deg2rad)-SIN(latS*deg2rad))
+          tanPhiAtU(i,j,bi,bj)=tan(_yC(i,j,bi,bj)*deg2rad)
+          tanPhiAtV(i,j,bi,bj)=tan(latS*deg2rad)
          ENDDO
         ENDDO
        ENDDO
@@ -237,14 +239,8 @@ C     other threads.
       _EXCH_XYZ_R4(maskW    , myThid )
       _EXCH_XYZ_R4(maskS    , myThid )
       _EXCH_XY_R4 (zA       , myThid )
-
-CcnhDebugStarts
-      tanPhiAtU = 0. _d 0
-      tanPhiAtV = 0. _d 0
       _EXCH_XY_R4 (tanPhiAtU , myThid )
       _EXCH_XY_R4 (tanPhiAtV , myThid )
-CcnhDebugEnds
-
 
 C
       RETURN
