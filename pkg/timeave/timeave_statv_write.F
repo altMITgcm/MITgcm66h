@@ -217,7 +217,7 @@ C         Check for IO errors
         ENDIF
 
 #ifdef ALLOW_MNC        
-        IF (useMNC .AND. timeave_mdsio) THEN
+        IF (useMNC .AND. timeave_mnc) THEN
           
           CALL MNC_CW_SET_UDIM('tave', -1, myThid)
           CALL MNC_CW_I_W('I','tave',0,0,'iter', myIter, myThid)
@@ -226,7 +226,8 @@ C         Check for IO errors
 
           CALL MNC_CW_RL_W('D','tave',0,0,'ETAtave',etatave,myThid)
 #ifndef HRCUBE
-          CALL MNC_CW_RL_W('D','tave',0,0,'Eta2tave',Eta2tave,myThid)
+C         EH3: something is wriong here...
+C         CALL MNC_CW_RL_W('D','tave',0,0,'Eta2tave',Eta2tave,myThid)
 #endif /* ndef HRCUBE */
           CALL MNC_CW_RL_W('D','tave',0,0,'Ttave',thetatave,myThid)
           CALL MNC_CW_RL_W('D','tave',0,0,'Stave',salttave,myThid)
