@@ -162,8 +162,10 @@ C     saltAdvection - Flag which turns advection of salinit on
 C                     and off.
 C     saltForcing   - Flag which turns external forcing of salinit on
 C                     and off.
-C     implicitFreeSurface - Set to true to use implcit free surface
 C     rigidLid            - Set to true to use rigid lid
+C     implicitFreeSurface - Set to true to use implcit free surface
+C     exactConserv   -   Set to true to conserve exactly the total Volume
+C     nonlinFreeSurf -   Set to true to use non-linear free surface
 C     momStepping   - Turns momentum equation time-stepping off
 C     tempStepping  - Turns temperature equation time-stepping off
 C     saltStepping  - Turns salinity equation time-stepping off
@@ -192,7 +194,7 @@ C     groundAtK1  - put the surface(k=1) at the Lower Boundary (=ground)
      & momViscosity, momAdvection, momForcing, useCoriolis, 
      & momPressureForcing,tempDiffusion, tempAdvection, tempForcing,
      & saltDiffusion, saltAdvection, saltForcing,
-     & implicitFreeSurface, rigidLid,
+     & rigidLid, implicitFreeSurface, exactConserv, nonlinFreeSurf,
      & momStepping, tempStepping, saltStepping,
      & metricTerms, usingSphericalPolarMTerms,
      & useConstantF, useBetaPlaneF, useSphereF,
@@ -219,8 +221,10 @@ C     groundAtK1  - put the surface(k=1) at the Lower Boundary (=ground)
       LOGICAL saltDiffusion
       LOGICAL saltAdvection
       LOGICAL saltForcing
-      LOGICAL implicitFreeSurface
       LOGICAL rigidLid
+      LOGICAL implicitFreeSurface
+      LOGICAL exactConserv
+      LOGICAL nonlinFreeSurf
       LOGICAL momStepping
       LOGICAL tempStepping
       LOGICAL saltStepping
@@ -241,8 +245,10 @@ C     groundAtK1  - put the surface(k=1) at the Lower Boundary (=ground)
       LOGICAL groundAtK1
 
 C--   COMMON /PARM_R/ "Real" valued parameters used by the model.
-C     cg2dTargetResidual
-C               - Target residual for cg2d solver.
+C     gg2dTargetResidual
+C          - Target residual for cg2d solver; no unit (RHS normalisation)
+C     cg2dTargetResWunit
+C          - Target residual for cg2d solver; W unit (No RHS normalisation)
 C     cg3dTargetResidual
 C               - Target residual for cg3d solver.
 C     cg2dpcOffDFac - Averaging weight for preconditioner off-diagonal.
@@ -330,6 +336,8 @@ C     hFacMin      - Minimum fraction size of a cell (affects hFacC etc...)
 C     hFacMinDz    - Minimum dimesional size of a cell (affects hFacC etc..., m)
 C     hFacMinDp    - Minimum dimesional size of a cell (affects hFacC etc..., Pa)
 C     hFacMinDr    - Minimum dimesional size of a cell (affects hFacC etc..., units of r)
+C     hFacInf      - Threshold (inf and sup) for fraction size of surface cell
+C     hFacSup        that control vanishing and creating levels
 C     tauCD        - CD scheme coupling timescale ( 1/s )
 C     rCD          - CD scheme normalised coupling parameter ( 0-1 )
 C     startTime     - Starting time for this integration ( s ).
@@ -366,8 +374,8 @@ C     Ro_SeaLevel        - standard position of Sea-Level in "R" coordinate, use
 C                          starting value (k=1) for vertical coordinate (rf(1)=Ro_SeaLevel)
 C     bottomDragLinear   - Drag coefficient built in to core dynamics
 C         "     Quadratic  ( linear: 1/s, quadratic: 1/m )
-      COMMON /PARM_R/ cg2dTargetResidual, cg2dpcOffDFac, 
-     & cg3dTargetResidual,
+      COMMON /PARM_R/ cg2dTargetResidual, cg2dTargetResWunit, 
+     & cg2dpcOffDFac, cg3dTargetResidual,
      & delP, delZ, delR, delX, delY, 
      & deltaT,deltaTmom, deltaTtracer, deltaTClock,abeps, startTime, 
      & phiMin, thetaMin, rSphere, recip_RSphere, f0, beta,
@@ -376,7 +384,7 @@ C         "     Quadratic  ( linear: 1/s, quadratic: 1/m )
      & diffKhT, diffKzT, diffK4T, diffKrT,
      & diffKhS, diffKzS, diffK4S, diffKrS,
      & delT, tauCD, rCD, freeSurfFac, implicSurfPress, implicDiv2Dflow,
-     & hFacMin, hFacMinDz,
+     & hFacMin, hFacMinDz, hFacInf, hFacSup,
      & gravity, recip_Gravity, gBaro, rhonil, recip_rhonil, 
      & recip_rhoConst, rhoConst, tRef, sRef,
      & endTime, chkPtFreq, pchkPtFreq, dumpFreq, taveFreq,
@@ -391,6 +399,7 @@ C         "     Quadratic  ( linear: 1/s, quadratic: 1/m )
      & bottomDragLinear,bottomDragQuadratic
 
       _RL cg2dTargetResidual
+      _RL cg2dTargetResWunit
       _RL cg3dTargetResidual
       _RL cg2dpcOffDFac
       _RL delZ(Nr)
@@ -415,6 +424,8 @@ C         "     Quadratic  ( linear: 1/s, quadratic: 1/m )
       _RL hFacMinDz
       _RL hFacMinDp
       _RL hFacMinDr
+      _RL hFacInf
+      _RL hFacSup
       _RL beta
       _RL viscAh
       _RL viscAz
