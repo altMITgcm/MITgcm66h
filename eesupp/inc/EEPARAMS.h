@@ -10,8 +10,8 @@ C     *==========================================================*
 C     | EEPARAMS.h                                               |
 C     *==========================================================*
 C     | Parameters for "execution environemnt". These are used   |
-C     | by both the particular numerical model and the "execution|
-C     | environment" support routines.                           |
+C     | by both the particular numerical model and the execution |
+C     | environment support routines.                            |
 C     *==========================================================*
 CEOP
 
