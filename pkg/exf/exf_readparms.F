@@ -48,6 +48,8 @@ c     == global variables ==
 
 #include "EEPARAMS.h"
 #include "SIZE.h"
+#include "PARAMS.h"
+
 #include "cal.h"
 #include "exf.h"
 #include "exf_param.h"
@@ -175,7 +177,7 @@ c     Calendar data.
       atempstartdate1    = 0
       atempstartdate2    = 0
       atempperiod        = 0.0 _d 0
-      atempconst         = 0.0 _d 0
+      atempconst         = celsius2K
 
       aqhstartdate1      = 0
       aqhstartdate2      = 0
