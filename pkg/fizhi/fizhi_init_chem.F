@@ -171,7 +171,8 @@ C Note: 2 quantities in Ozone Dataset
       nrec = lev+(time-1)*nlev*2   
       read(ku,rec=nrec) o3
            do lat=1,nlat
-           oz(lat,nlev-lev+1,time) = o3(lat)
+C          oz(lat,nlev-lev+1,time) = o3(lat)
+           oz(lat,nlev-lev+1,time) = 1.e-9
            enddo
       enddo
       enddo

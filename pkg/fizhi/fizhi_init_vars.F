@@ -154,6 +154,7 @@ c         Physics works top-down. so -> need to flip arrays
         enddo
         enddo
         enddo
+
         call dyn2phys(salt,pedyn,im1,im2,jm1,jm2,Nr,Nsx,Nsy,
      . 1,sNx,1,sNy,bi,bj,windphy,pephy,ksurfC,Nrphys,nlperdyn,0,tempphy)
         do L = 1,Nrphys

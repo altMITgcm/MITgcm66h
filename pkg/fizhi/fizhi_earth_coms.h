@@ -16,6 +16,7 @@ c ---------------------
      .   landtype, tgz, nchptot, nchpland, ityp
       integer nchptot,nchpland
       integer ityp(nchp,Nsx,Nsy)
+      integer landtype(sNx,sNy,Nsx,Nsy)
       _RL chfr(nchp,Nsx,Nsy)
       _RL alai(nchp,Nsx,Nsy)
       _RL agrn(nchp,Nsx,Nsy)
@@ -24,5 +25,4 @@ c ---------------------
       _RL albnirdr(sNx,sNy,Nsx,Nsy)
       _RL albnirdf(sNx,sNy,Nsx,Nsy)
       _RL emiss(sNx,sNy,10,Nsx,Nsy)
-      _RL landtype(sNx,sNy,Nsx,Nsy)
       _RL tgz(sNx,sNy,Nsx,Nsy)

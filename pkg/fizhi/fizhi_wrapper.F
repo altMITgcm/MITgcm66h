@@ -108,14 +108,16 @@ c Do not use a zero field as the top edge pressure for interpolation
      .        surftype,tilefrac,fracland)
 c
 c Compute physics increments
-        call do_fizhi(myThid,uphy,vphy,thphy,sphy,pephy4fiz,xC,yC,
+
+        call do_fizhi(myThid,
+     .  idim1,idim2,jdim1,jdim2,Nrphys,Nsx,Nsy,im1,im2,jm1,jm2,bi,bj,
+     .  nchp,nchptot,nchpland,
+     .  uphy,vphy,thphy,sphy,pephy4fiz,xC,yC,
      .  ctmt,xxmt,yymt,zetamt,xlmt,khmt,tke,
      .  tgz,sst,sice,phis_var,landtype,fracland,emiss,albnirdr,albnirdf,
      .  albvisdr,albvisdf,ityp,chfr,alai,agrn,igrd,chlt,chlon,
      .  tcanopy,tdeep,ecanopy,swetshal,swetroot,swetdeep,snodep,capac,
      .  o3,qstr,co2,cfc11,cfc12,cfc22,n2o,methane,
-     .  idim1,idim2,jdim1,jdim2,Nrphys,Nsx,Nsy,im1,im2,jm1,jm2,bi,bj,
-     .  nchp,nchptot,nchpland,
      .  duphy,dvphy,dthphy,dsphy)
        enddo
        enddo

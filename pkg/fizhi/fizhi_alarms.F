@@ -116,6 +116,7 @@ c ----------------
       call set_alarm ( 'radlw',nymdb,nhmsb,ndlw    )
       call set_alarm ( 'turb' ,nymdb,nhmsb,ndturb  )
       call set_alarm ( 'moist',nymdb,nhmsb,ndmoist )
+      call set_alarm ( 'pnt',nymdb,nhmsb,0 )
 
       return
       end

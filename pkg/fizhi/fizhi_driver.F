@@ -60,7 +60,8 @@ c ----------------
       _RL pl(im,jm,lm),ple(im,jm,lm+1),dpres(im,jm,lm)
       _RL pkht(im,jm,lm)
       _RL pkl(im,jm,lm)
-      _RL radswt(im,jm), fracland(im,jm), landtype(im,jm)
+      _RL radswt(im,jm), fracland(im,jm)
+      integer landtype(im,jm)
       _RL phis_var(im,jm), sea_ice(im,jm)
       _RL chlat(nchp),chlon(nchp),chfr(nchp)
       _RL tcanopy(nchp),tdeep(nchp),ecanopy(nchp),swetshal(nchp)
@@ -159,6 +160,10 @@ C ====================
      .   .false.,imstturbsw,qliqavesw,
      .   fccavesw,landtype,xlats,xlons )
 
+
+       print *,' In fizhi driver - Done with sw radiation '
+       stop
+
       ENDIF
                                                                                 
 
@@ -185,9 +190,6 @@ c --------------------------------
 
       ENDIF
 
-      print *,' Done with radiation '
-      stop
-                                                                                
 C TURBULENCE
 C ==========
       IF ( alarm('turb') ) THEN
