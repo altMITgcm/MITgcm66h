@@ -17,13 +17,16 @@ C***********************************************************************
 
 #include "chronos.h"
 
-      integer myThid, deltat
+      integer myThid
+      _RL deltat
+
+      integer ndt
 
 C **********************************************************************
 C ****           Call Routine to Tick the Clock                     ****
 C **********************************************************************
-
-      call tick(nymd,nhms,deltat)
+      ndt = deltat
+      call tick(nymd,nhms,ndt)
 
       if(mythid.eq.1) then
       print *, 'Current Date ',nymd,' Current Time ',nhms
