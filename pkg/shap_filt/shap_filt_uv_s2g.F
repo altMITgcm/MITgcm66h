@@ -63,14 +63,10 @@ CEOP
         DO bj=myByLo(myThid),myByHi(myThid)
          DO bi=myBxLo(myThid),myBxHi(myThid)
           DO K=1,kSize
-           DO J=1,sNy
-            DO I=1,sNx+1
+           DO J=1-OLy,sNy+OLy
+            DO I=1-OLx,sNx+OLx
              tmpFldU(i,j,k,bi,bj)=uFld(i,j,k,bi,bj)
      &                *_maskW(i,j,k,bi,bj)
-            ENDDO
-           ENDDO
-           DO J=1,sNy+1
-            DO I=1,sNx
              tmpFldV(i,j,k,bi,bj)=vFld(i,j,k,bi,bj)
      &                *_maskS(i,j,k,bi,bj)
             ENDDO

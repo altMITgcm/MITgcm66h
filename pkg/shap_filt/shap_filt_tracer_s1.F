@@ -55,8 +55,8 @@ CEOP
         DO bj=myByLo(myThid),myByHi(myThid)
          DO bi=myBxLo(myThid),myBxHi(myThid)
           DO K=1,kSize
-           DO J=1,sNy
-            DO I=1,sNx
+           DO J=1-OLy,sNy+OLy
+            DO I=1-OLx,sNx+OLx
              tmpFld(i,j,k,bi,bj)=field(i,j,k,bi,bj)
             ENDDO
            ENDDO
