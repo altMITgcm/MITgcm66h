@@ -195,7 +195,8 @@ c                                              READ CLIM FOR REAL
                                                                                    
 C--   Read fizhi package state variables from pickup file
        call fizhi_read_pickup( nIter0, myThid )
-                                                                                   
+       CALL FIZHI_READ_VEGTILES( nIter0, 'D', myThid )
+
       ENDIF
 
        return
