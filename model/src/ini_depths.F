@@ -35,12 +35,12 @@ CEndOfInterface
 C     == Local variables ==
 C     iG, jG - Global coordinate index
 C     bi,bj  - Loop counters
-C     I,J,K
+C     I,J
 C     phi    - total depth of model
 C     oldPrec - Temporary used in controlling binary input dataset precision
       INTEGER iG, jG
       INTEGER bi, bj
-      INTEGER  I,  J, K
+      INTEGER  I,  J
       _RL phi
 
       _BARRIER

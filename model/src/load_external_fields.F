@@ -65,13 +65,10 @@ C     === Local arrays ===
       _RS  Qsw1     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
 C     === Local variables ===
-C     msgBuf - Error message buffer
-      CHARACTER*(MAX_LEN_FNAM) msgBuf
       INTEGER bi,bj,i,j,intime0,intime1
-      CHARACTER*(40) filename
 
       _RL aWght,bWght,rdt
-      INTEGER nForcingPeriods,Imytm,Ifprd,Ifcyc,Iftm,Imth,Iyr
+      INTEGER nForcingPeriods,Imytm,Ifprd,Ifcyc,Iftm
 
       IF ( periodicExternalForcing ) THEN
 

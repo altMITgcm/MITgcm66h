@@ -45,9 +45,6 @@ C     myCurrentTime - Current time of simulation ( s )
       _RL    myCurrentTime
 
 C     == Local variables ==
-C     suff - Hold suffix part of a filename
-      CHARACTER*(MAX_LEN_FNAM) suff
-      
 
 C--   Generaly only thread 1 does IO here. It can not start until 
 C--   all threads fields are ready.

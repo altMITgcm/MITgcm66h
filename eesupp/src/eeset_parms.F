@@ -23,10 +23,9 @@ C     === Global variables ===
 CEndOfInterface
 
 C     === Local variables ===
-C     K - Loop counter
 C     iUnit - Work variable for IO unit number
 C     errIO - IO unit error flag
-      INTEGER K, IL
+      INTEGER IL
       INTEGER errIO
       INTEGER iUnit
       CHARACTER*(MAX_LEN_MBUF) msgBuf

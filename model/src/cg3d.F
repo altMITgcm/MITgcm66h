@@ -41,6 +41,8 @@ C     === Routine arguments ===
 C     myThid - Thread on which I am working.
       INTEGER myThid
 
+#ifdef ALLOW_NONHYDROSTATIC
+
 C     === Local variables ====
 C     actualIts      - Number of iterations taken
 C     actualResidual - residual
@@ -78,13 +80,6 @@ C     I, J, N     - Loop counters ( N counts CG iterations )
       INTEGER exchWidthY
       INTEGER myNz
       _RL     topLevFac
-
-
-CcnhDebugStarts
-      CHARACTER*(MAX_LEN_FNAM) suff
-CcnhDebugEnds
-
-#ifdef ALLOW_NONHYDROSTATIC
 
 C--   Initialise inverter
       etaNM1              = 1. D0

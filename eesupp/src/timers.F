@@ -101,7 +101,6 @@ C
       SAVE    timerNameLen
       CHARACTER*(maxString) timerNames( maxTimers , MAX_NO_THREADS)
       SAVE                  timerNames
-      CHARACTER*(maxString) timerAction
       INTEGER nTimers(MAX_NO_THREADS)
       CHARACTER*(maxString) tmpName
       CHARACTER*(maxString) tmpAction

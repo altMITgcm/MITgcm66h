@@ -33,8 +33,6 @@ CEndOfInterface
 C     == Local variables ==
 C     bi,bj  - Loop counters
 C     I,J,K
-      INTEGER iC, jC, iD, jD
-      INTEGER iG, jG
       INTEGER bi, bj
       INTEGER  I,  J, K
 

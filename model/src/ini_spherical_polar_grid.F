@@ -48,12 +48,8 @@ CEndOfInterface
 
 C     == Local variables ==
 C     xG, yG - Global coordinate location.
-C     zG
 C     xBase  - South-west corner location for process.
 C     yBase
-C     zUpper - Work arrays for upper and lower 
-C     zLower   cell-face heights.
-C     phi    - Temporary scalar
 C     iG, jG - Global coordinate index. Usually used to hold
 C              the south-west global coordinate of a tile.
 C     bi,bj  - Loop counters
@@ -64,13 +60,11 @@ C     yBase
 C     lat, latN, - Temporary variables used to hold latitude
 C     latS         values.
 C     I,J,K
-      _RL    xG, yG, zG
-      _RL    phi
-      _RL    zUpper(Nr), zLower(Nr)
+      _RL    xG, yG
       _RL    xBase, yBase
       INTEGER iG, jG
       INTEGER bi, bj
-      INTEGER  I,  J, K
+      INTEGER  I,  J
       _RL lat, latS, latN
 
 C--   Example of inialisation for spherical polar grid

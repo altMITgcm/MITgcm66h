@@ -45,14 +45,7 @@ CEndofinterface
 
 C     == Local variables ==
 C     suff - Hold suffix part of a filename
-C     beginIOErrCount - Begin and end IO error counts
-C     endIOErrCount
-C     msgBuf - Error message buffer
-      INTEGER beginIOErrCount
-      INTEGER endIOErrCount
-      CHARACTER*(MAX_LEN_MBUF) msgBuf
       CHARACTER*(MAX_LEN_MBUF) suff
-      CHARACTER*(80) fName
 
       IF ( 
      &  ( DIFFERENT_MULTIPLE(dumpFreq,myCurrentTime,

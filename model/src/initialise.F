@@ -32,7 +32,9 @@ C     == Routine arguments ==
 CEndOfInterface
 
 C     == Local variables ==
+#ifdef ALLOW_OBCS
       INTEGER bi,bj,K
+#endif
 
 C--   Set model parameters.
 C     Parameters are set to defaults and then updates are read from

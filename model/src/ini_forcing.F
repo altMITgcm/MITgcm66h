@@ -23,12 +23,10 @@ C     myThid -  Number of this instance of INI_FORCING
 CEndOfInterface
 
 C     == Local variables ==
-C     iG, jG - Global coordinate index
 C     bi,bj  - Loop counters
-C     I,J,K
-      INTEGER iG, jG
+C     I,J
       INTEGER bi, bj
-      INTEGER  I,  J, K
+      INTEGER  I,  J
 
       _BARRIER
 

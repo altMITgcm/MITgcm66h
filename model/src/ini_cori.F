@@ -23,11 +23,9 @@ C     myThid -  Number of this instance of INI_CORI
 CEndOfInterface
 
 C     == Local variables ==
-C     iG, jG - Global coordinate index
 C     bi,bj  - Loop counters
 C     I,J,K
 C     facGrid - Factor for grid to meter conversion
-      INTEGER iG, jG
       INTEGER bi, bj
       INTEGER  I,  J, K
       _RL facGrid
