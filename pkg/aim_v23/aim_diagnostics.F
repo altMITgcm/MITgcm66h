@@ -18,6 +18,7 @@ C-- size for MITgcm & Physics package :
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 
+#include "AIM_PARAMS.h"
 #include "AIM_DIAGS.h"
 #include "com_physvar.h"
 
@@ -38,17 +39,9 @@ CEndOfInterface
 C     == Local variables ==
       INTEGER I,J,I2,K
       _RL DDTT
-      _RL aim_tendFreq, aim_diagFreq
       CHARACTER*(MAX_LEN_MBUF) suff
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
-
-      aim_diagFreq = dumpFreq
-      aim_tendFreq = 0.
-
-c     aim_diagFreq = 0.
-c     aim_diagFreq = deltaTClock
-c     aim_tendFreq = deltaTClock
 
       IF (
      &    DIFFERENT_MULTIPLE(aim_tendFreq,myTime+deltaTClock,myTime)

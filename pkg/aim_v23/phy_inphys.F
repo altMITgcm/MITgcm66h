@@ -61,10 +61,10 @@ c     P0 = 1. _d +5
 c     GG = 9.81 _d 0
 c     RD = 287. _d 0
 c     CP = 1004. _d 0
-      P0 = atm_po
+      P0 = atm_Po
       GG = gravity
-      RD = atm_cp*atm_kappa
-      CP = atm_cp
+      RD = atm_Rd
+      CP = atm_Cp
 C     Latent heat is in J/g for consistency with spec.hum. in g/Kg
       ALHC = 2501. _d 0
       SBC = 5.67 _d -8
