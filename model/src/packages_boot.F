@@ -33,6 +33,7 @@ C--   data.pkg namelists
      &          useGMRedi,
      &          useOBCS,
      &          useAIM,
+     &          useGrdchk,
      &          useECCO,
      &          useSHAP_FILT
 

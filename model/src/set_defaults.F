@@ -112,6 +112,7 @@ C--   Set default "physical" parameters
       momStepping         = .TRUE.
       tempStepping        = .TRUE.
       saltStepping        = .TRUE.
+      tr1Stepping         = .FALSE.
       metricTerms         = .TRUE.
       implicitDiffusion   = .FALSE.
       implicitViscosity   = .FALSE.
@@ -125,8 +126,10 @@ C--   Set default "physical" parameters
       zonal_filt_cospow   = 2
       bottomDragLinear    = 0.
       bottomDragQuadratic = 0.
-      usePickupBeforeC35  = .FALSE.
-      debugMode           = .FALSE.
+      usePickupBeforeC35    = .FALSE.
+      debugMode             = .FALSE.
+      readPickupWithTracer  = .FALSE.
+      writePickupWithTracer = .FALSE.
 
 C--   Atmospheric physical parameters (e.g.: EOS)
       atm_po =  1.D5
@@ -167,6 +170,7 @@ C--   Time stepping parameters
       tauCD             =  0.D0
       tauThetaClimRelax =  0.D0
       tauSaltClimRelax  =  0.D0
+      tauTr1ClimRelax   =  0.D0
       periodicExternalForcing = .FALSE.
       externForcingPeriod     = 0.
       externForcingCycle      = 0.

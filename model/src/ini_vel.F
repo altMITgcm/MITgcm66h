@@ -35,9 +35,9 @@ C
         DO k=1,Nr
          DO j=1-Oly,sNy+Oly
           DO i=1-Olx,sNx+Olx
-           uVel(i,j,k,bi,bj)=0.
-           vVel(i,j,k,bi,bj)=0.
-           wVel(i,j,k,bi,bj)=0.
+           uVel(i,j,k,bi,bj)=0. _d 0
+           vVel(i,j,k,bi,bj)=0. _d 0
+           wVel(i,j,k,bi,bj)=0. _d 0
           ENDDO
          ENDDO
         ENDDO

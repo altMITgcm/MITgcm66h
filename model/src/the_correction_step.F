@@ -2,8 +2,6 @@ C $Header$
 C Tag $Name$
 
 #include "CPP_OPTIONS.h"
-c #undef ALLOW_ZONAL_FILT
-c #undef ALLOW_SHAP_FILT
 
       SUBROUTINE THE_CORRECTION_STEP(myTime, myIter, myThid)
 C     /==========================================================\
@@ -29,6 +27,7 @@ C     == Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "DYNVARS.h"
+#include "TR1.h"
 
 #ifdef ALLOW_AUTODIFF_TAMC
 #include "tamc.h"
@@ -127,6 +126,11 @@ C-        Update tracer fields:  T(n) = T**, Gt(n-1) = Gt(n)
      &      CALL CYCLE_TRACER(
      I           bi,bj,iMin,iMax,jMin,jMax,K,
      U           salt,gS,gSNm1,
+     I           myTime,myThid )
+          IF (tr1Stepping)
+     &      CALL CYCLE_TRACER(
+     I           bi,bj,iMin,iMax,jMin,jMax,K,
+     U           Tr1,gTr1,gTr1Nm1,
      I           myTime,myThid )
 
 #ifdef    ALLOW_OBCS
