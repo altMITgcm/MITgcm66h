@@ -26,8 +26,8 @@ C     !USES:
 #include "DYNVARS.h"
 #include "GRID.h"
 #include "MONITOR.h"
-      LOGICAL  DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
+      LOGICAL  DIFF_BASE_MULTIPLE
+      EXTERNAL DIFF_BASE_MULTIPLE
 
 C     !INPUT PARAMETERS:
       INTEGER myIter
@@ -43,7 +43,7 @@ C     !LOCAL VARIABLES:
 
       dT=deltaTclock
 
-      IF (DIFFERENT_MULTIPLE(monitorFreq,myTime,myTime-dT)) THEN
+      IF (DIFF_BASE_MULTIPLE(baseTime,monitorFreq,myTime,dT)) THEN
         
 C       Dynamics field monitor start 
         _BEGIN_MASTER(myThid)

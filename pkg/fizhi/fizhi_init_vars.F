@@ -70,7 +70,7 @@ c    All Fizhi alarms must be on for the first time step of a segment
 
 C Deal Here with Variables that are on a Fizhi Pickup or need Initialization
 
-      IF ( startTime.EQ.0. .AND. nIter0.EQ.0 ) THEN
+      IF ( startTime.EQ.baseTime .AND. nIter0.EQ.0 ) THEN
       print *,' In fizhi_init_vars: Beginning of New Experiment '
 
        do bj = myByLo(myThid), myByHi(myThid)

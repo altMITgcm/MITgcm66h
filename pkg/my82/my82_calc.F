@@ -42,9 +42,6 @@ C !USES: ============================================================
       integer ikppkey
 #endif /* ALLOW_AUTODIFF_TAMC */
 
-      EXTERNAL DIFFERENT_MULTIPLE
-      LOGICAL  DIFFERENT_MULTIPLE
-
 C !INPUT PARAMETERS: ===================================================
 c Routine arguments
 c     bi, bj - array indices on which to apply calculations

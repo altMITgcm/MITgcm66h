@@ -26,8 +26,6 @@ C     !USES:
 #endif
 #include "exf_fields.h"
 #include "exf_clim_fields.h"
-      LOGICAL  DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
 
 C     !INPUT PARAMETERS:
       INTEGER myIter

@@ -89,7 +89,7 @@ C-     end bi,bj loops
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
-      IF ( startTime.EQ.0. .AND. nIter0.EQ.0 ) THEN
+      IF ( startTime.EQ.baseTime .AND. nIter0.EQ.0 ) THEN
 
 C--   Define the initial state : read from file
        _BEGIN_MASTER( myThid )
@@ -122,7 +122,7 @@ C        load grT & grW from AIM surf. BC in S/R aim_land2aim
 
 C-     to have a consistent initial state: set surface Temp & enthalpy
 C       assuming all the water in 1 phase only (solid or liquid):
-        IF ( ( startTime.EQ.0. .AND. nIter0.EQ.0 ) .OR.
+        IF ( ( startTime.EQ.baseTime .AND. nIter0.EQ.0 ) .OR.
      &   .NOT.( land_calc_grT .OR. land_calc_grW ) .OR.
      &       land_oldPickup ) THEN
          DO j=1,sNy

@@ -46,8 +46,6 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-      LOGICAL DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
  
 C     !INPUT/OUTPUT PARAMETERS:
 C     === Routine arguments ===

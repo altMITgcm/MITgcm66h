@@ -66,8 +66,8 @@ C     myThid - Instance number for this innvocation of CALC_MOM_RHS
 #ifdef ALLOW_MOM_VECINV
 
 C     == Functions ==
-      LOGICAL  DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
+      LOGICAL  DIFF_BASE_MULTIPLE
+      EXTERNAL DIFF_BASE_MULTIPLE
 
 C     == Local variables ==
       _RL      vF (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
@@ -114,8 +114,8 @@ C--   (at least in part)
       fVerV(1,1,kUp) = fVerV(1,1,kUp)
 #endif
 
-      writeDiag = DIFFERENT_MULTIPLE(diagFreq, myTime,
-     &                                         myTime-deltaTClock)
+      writeDiag = DIFF_BASE_MULTIPLE(baseTime, diagFreq,
+     &                               myTime, deltaTClock)
 
 #ifdef ALLOW_MNC
       IF (useMNC .AND. snapshot_mnc .AND. writeDiag) THEN
