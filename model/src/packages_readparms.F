@@ -143,9 +143,7 @@ ceh3 should have an IF ( useCAL ) THEN
 #endif
 
 C--   Custom routine to set forcing fields.
-#if (defined (INCLUDE_EXTERNAL_FORCING_PACKAGE) || defined(ALLOW_EXF))
-ceh3 #ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
-ceh3 #ifdef ALLOW_EXF
+#ifdef ALLOW_EXF
 ceh3 needs an IF ( useEXF ) THEN
       call exf_readparms  ( mythid )
 #endif

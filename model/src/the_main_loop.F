@@ -60,13 +60,13 @@ c They provide the fields to be stored.
 # ifdef EXACT_CONSERV
 #  include "SURFACE.h"
 # endif
-# ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
+# ifdef ALLOW_EXF
 #  include "exf_fields.h"
 #  include "exf_clim_fields.h"
 #  ifdef ALLOW_BULKFORMULAE
 #   include "exf_constants.h"
 #  endif
-# endif /* INCLUDE_EXTERNAL_FORCING_PACKAGE */
+# endif /* ALLOW_EXF */
 # ifdef ALLOW_SEAICE
 #  include "SEAICE.h"
 # endif

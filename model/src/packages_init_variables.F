@@ -110,7 +110,7 @@ c--   Map the control variables onto the model state.
       _BARRIER
 #endif
 
-#ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
+#ifdef ALLOW_EXF
       CALL EXF_INIT( mythid )
 #else
       CALL INI_FORCING( mythid )

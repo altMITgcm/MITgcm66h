@@ -57,7 +57,7 @@ C     == Global variables ==
 # include "ctrl_dummy.h"
 # include "cost.h"
 # include "EOS.h"
-# ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
+# ifdef ALLOW_EXF
 #  include "exf_fields.h"
 #  ifdef ALLOW_BULKFORMULAE
 #   include "exf_constants.h"

@@ -55,7 +55,7 @@ C     myIter - Simulation timestep number
       INTEGER myIter
  
 
-#ifndef INCLUDE_EXTERNAL_FORCING_PACKAGE
+#ifndef ALLOW_EXF
 
 C     !LOCAL VARIABLES:
 C     === Local arrays ===
@@ -229,7 +229,7 @@ cph      ENDIF
 C endif for periodicForcing
       ENDIF
 
-#endif /* INCLUDE_EXTERNAL_FORCING_PACKAGE undef */
+#endif /* ALLOW_EXF */
 
       RETURN
       END

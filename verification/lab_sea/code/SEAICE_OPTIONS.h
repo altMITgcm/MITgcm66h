@@ -42,7 +42,7 @@ C     modified for sea-ice effects by pkg/seaice.
 #undef SEAICE_EXTERNAL_FLUXES
 
 C-- This include is necessary because of awkward dependancies with pkg/exf
-#define INCLUDE_EXTERNAL_FORCING_PACKAGE
+#define ALLOW_EXF
 #include "EXF_OPTIONS.h"
 
 #endif /* ALLOW_SEAICE */

@@ -134,7 +134,7 @@ C
 C o Include/exclude the external forcing package. To use this package,
 C   you have to include the calendar tool as well. KPP can be switched
 C   on or off. The implementation automatically takes care of this.
-#define INCLUDE_EXTERNAL_FORCING_PACKAGE
+#define ALLOW_EXF
 
 C   Do more printout for the protocol file than usual.
 #define EXF_VERBOSE
