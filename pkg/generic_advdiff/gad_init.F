@@ -7,17 +7,12 @@ CBOP
 C     !ROUTINE: GAD_INIT
 C     !INTERFACE:
       SUBROUTINE GAD_INIT( myThid )
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | SUBROUTINE GAD_INIT
-C     | o Routine to initialize Generic Advection / Diffusion
-C     |   variables and constants.
-C     *==========================================================*
-C     \ev
+C     !DESCRIPTION:
+C     Routine to initialize Generic Advection/Diffusion variables and
+C     constants.
 
 C     !USES:
       IMPLICIT NONE
-
 C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -28,7 +23,6 @@ C     !INPUT/OUTPUT PARAMETERS:
 C     === Routine arguments ===
 C     myThid -  Number of this instance of GAD_INIT
       INTEGER myThid
-
 CEOP
 
 C     === Local variables ===

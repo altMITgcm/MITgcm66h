@@ -9,12 +9,8 @@ C     !INTERFACE:
       SUBROUTINE GMREDI_CALC_WFLOW(
      U     rTrans,
      I     bi, bj, k, myThid)
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | o SUBROUTINE GMREDI_CALC_WFLOW
-C     |   Add GM-bolus flow to Eulerian vertical transport
-C     *==========================================================*
-C     \ev
+C     !DESCRIPTION:
+C     Add GM-bolus flow to Eulerian vertical transport.
 
 C     !USES:
       IMPLICIT NONE

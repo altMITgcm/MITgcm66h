@@ -9,12 +9,8 @@ C     !INTERFACE:
       SUBROUTINE GMREDI_CALC_UVFLOW(
      U     uTrans, vTrans,
      I     bi, bj, k, myThid)
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | o SUBROUTINE GMREDI_CALC_UVFLOW
-C     |   Add GM-bolus flow to Eulerian horizontal transport
-C     *==========================================================*
-C     \ev
+C     !DESCRIPTION:
+C     Add GM-bolus flow to Eulerian horizontal transport.
 
 C     !USES:
       IMPLICIT NONE

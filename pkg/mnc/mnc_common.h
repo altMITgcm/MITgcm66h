@@ -56,19 +56,20 @@ C     .
 C     mnc_blank_name    :: (convenience) just MNC_MAX_CHAR spaces
 C     .
 C     mnc_f_names (fi)  :: file names
-C     mnc_g_names (gi)  :: grid names    <----+-----------+
-C     .                                       |           |
-C     mnc_f_info (fi,-) :: isDEF, fID, Ngrid, g1,ds1,de1, g2,ds2,de2...
-C     .                                          |   |       |   |
-C     mnc_fd_ind (fi,-) :: dim indicies  <-------+---+-------+---+
+C     mnc_g_names (gi)  :: grid names    <----+
+C     .                                       |
+C     mnc_f_info (fi,-) :: isDEF, fID, Ngrid, g1,ds1,de1, 
+C     .                                       g2,ds2,de2, ...
+C     .                                          |   |
+C     mnc_fd_ind (fi,-) :: dim indicies  <-------+---+
 C     .                              |
-C     mnc_d_names (di)  :: names  <--+  <--+  |           |
-C     mnc_d_ids   (di)  :: IDs    <--+  <--+  +-----+-----+
-C     mnc_d_size  (di)  :: sizes  <--+  <--+        | starting
-C     .                                    |        | indicies of
-C     mnc_f_alld (fi,di):: ndim, id1,id2,id3, ...   | grids in
-C     .                                             | mnc_f_info
-C     .                                 +-----------+
+C     mnc_d_names (di)  :: names  <--+  <--+  |
+C     mnc_d_ids   (di)  :: IDs    <--+  <--+  +----+
+C     mnc_d_size  (di)  :: sizes  <--+  <--+       | starting
+C     .                                    |       | indicies of
+C     mnc_f_alld (fi,di):: ndim, id1,id2,id3, ...  | grids in
+C     .                                            | mnc_f_info
+C     .                                 +----------++
 C     .                                 |           |
 C     mnc_fv_ids (fi,-) :: nVar, n1,ID1,ig1, n2,ID2,ig2, ...
 C     .                          |           |

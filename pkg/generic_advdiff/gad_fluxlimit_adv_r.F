@@ -35,12 +35,12 @@ C !USES: ===============================================================
 #include "PARAMS.h"
 
 C !INPUT PARAMETERS: ===================================================
-C  bi_arg,bj_arg        :: tile indices
-C  k                    :: vertical level
-C  rTrans               :: vertical volume transport
-C  wVel                 :: vertical flow
-C  tracer               :: tracer field
-C  myThid               :: thread number
+C  bi_arg,bj_arg      :: tile indices
+C  k                  :: vertical level
+C  rTrans             :: vertical volume transport
+C  wVel               :: vertical flow
+C  tracer             :: tracer field
+C  myThid             :: thread number
       INTEGER bi_arg,bj_arg,k
       _RL dTarg
       _RL rTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
@@ -49,18 +49,18 @@ C  myThid               :: thread number
       INTEGER myThid
 
 C !OUTPUT PARAMETERS: ==================================================
-C  wT                   :: vertical advective flux
+C  wT                 :: vertical advective flux
       _RL wT    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
 C !LOCAL VARIABLES: ====================================================
-C  i,j                  :: loop indices
-C  kp1                  :: =min( k+1 , Nr )
-C  km1                  :: =max( k-1 , 1 )
-C  km2                  :: =max( k-2 , 1 )
-C  bi,bj                :: tile indices or (1,1) depending on use
-C  Cr                   :: slope ratio
-C  Rjm,Rj,Rjp           :: differences at i-1,i,i+1
-C  wFld                 :: velocity, vertical component
+C  i,j                :: loop indices
+C  kp1                :: =min( k+1 , Nr )
+C  km1                :: =max( k-1 , 1 )
+C  km2                :: =max( k-2 , 1 )
+C  bi,bj              :: tile indices or (1,1) depending on use
+C  Cr                 :: slope ratio
+C  Rjm,Rj,Rjp         :: differences at i-1,i,i+1
+C  wFld               :: velocity, vertical component
       INTEGER i,j,kp1,km1,km2,bi,bj
       _RL Cr,Rjm,Rj,Rjp
       _RL wFld

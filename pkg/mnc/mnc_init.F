@@ -4,17 +4,25 @@ C $Name$
 #include "MNC_OPTIONS.h"
       
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+CBOP
+C     !ROUTINE: MNC_INIT
 
+C     !INTERFACE:
       SUBROUTINE MNC_INIT( myThid )
 
+C     !DESCRIPTION:
+C     Initialize (zero) the look-up tables.
+      
+C     !USES:
 #include "mnc_common.h"
 
-C     Arguments
+C     !INPUT PARAMETERS:
       integer myThid
 
-C     Local Variables
+C     !LOCAL VARIABLES:
       integer i,j, g, v
       character blank*(MNC_MAX_CHAR)
+CEOP
 
 C     Write blanks or zeros to all the internal names and ID tables
       DO i = 1,MNC_MAX_CHAR
@@ -68,26 +76,41 @@ C     The outer tables
       END
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+CBOP
+C     !ROUTINE: MNC_DUMP
 
+C     !INTERFACE:
       SUBROUTINE MNC_DUMP( myThid )
+
+C     !DESCRIPTION:
+C     Create a short summary of the look-up tables.
+      
+C     !INPUT PARAMETERS:
       INTEGER myThid
+CEOP
       CALL MNC_DUMP_ALL(5, 20, myThid)
       RETURN
       END
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+CBOP
+C     !ROUTINE: MNC_DUMP_ALL
 
+C     !INTERFACE:
       SUBROUTINE MNC_DUMP_ALL( n_id, n_items, myThid )
 
+C     !DESCRIPTION:
+C     Create a short summary of the look-up tables.
+      
+C     !USES:
 #include "mnc_common.h"
 
-C     Arguments
+C     !INPUT PARAMETERS:
       integer n_id, n_items, myThid
 
-C     Local Variables
+C     !LOCAL VARIABLES:
       integer i,j
-
-C     n_id = mnc_max_id
+CEOP
 
       write(*,*) 'mnc_f_names :'
       DO i = 1,n_id

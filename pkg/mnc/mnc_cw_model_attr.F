@@ -4,12 +4,21 @@ C $Name$
 #include "MNC_OPTIONS.h"
       
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+CBOP
+C !ROUTINE: MNC_CW_SET_GATTR
 
+C !INTERFACE:
       SUBROUTINE MNC_CW_SET_GATTR( 
      I     fname,
      I     bi, bj, tnum,
      I     myThid ) 
 
+C     !DESCRIPTION:
+C     This subroutine uses the MNC convenience wrapper layer to write
+C     per-tile grid (grid.xxxxx.nc) files containing all of the grid
+C     information including locations, spacing, areas, \textit{etc}.
+
+C     !USES:
       implicit none
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -22,9 +31,10 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 #include "W2_EXCH2_PARAMS.h"
 #endif
 
-C     Arguments
+C !INPUT PARAMETERS:
       integer myThid, bi,bj, tnum
       character*(*) fname
+CEOP
 
       CALL MNC_FILE_REDEF(fname, myThid)
 
