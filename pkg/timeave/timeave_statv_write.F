@@ -79,6 +79,10 @@ c         CALL TIMEAVE_NORMALIZ(hFacStave,TimeAve_half,Nr,bi,bj,myThid)
           CALL TIMEAVE_NORMALIZ(WTtave,   TimeAve_full,Nr,bi,bj,myThid)
           CALL TIMEAVE_NORMALIZ(phiHydtave,TimeAve_full,Nr,
      &                            bi,bj,myThid)
+          CALL TIMEAVE_NORMALIZ(phiHydLowtave,TimeAve_full,1,
+     &                            bi,bj,myThid)
+          CALL TIMEAVE_NORMALIZ(phiHydLow2Tave,TimeAve_full,1,
+     &                            bi,bj,myThid)
           CALL TIMEAVE_NORMALIZ(ConvectCountTave,TimeAve_full,Nr,
      &                            bi,bj,myThid)
         ENDDO
@@ -99,6 +103,10 @@ c      prevPrec = writeBinaryPrec
 c      writeBinaryPrec = precFloat32
        CALL WRITE_FLD_XY_RL('ETAtave.',suff,etatave,myIter,myThid)
        CALL WRITE_FLD_XY_RL('Eta2tave.',suff,Eta2tave,myIter,myThid)
+       CALL WRITE_FLD_XY_RL('PHLtave.',suff,phiHydLowtave,
+     &      myIter,myThid)
+       CALL WRITE_FLD_XY_RL('PHL2tave.',suff,phiHydLow2tave,
+     &      myIter,myThid)
 
        CALL WRITE_FLD_XYZ_RL('Ttave.',suff,thetatave,myIter,myThid)
        CALL WRITE_FLD_XYZ_RL('Stave.',suff,salttave,myIter,myThid)

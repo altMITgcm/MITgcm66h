@@ -92,6 +92,7 @@ C-      2D arrays
 #ifdef INCLUDE_CD_CODE
           etaNm1(I,J,bi,bj)=0. _d 0
 #endif
+          phiHydLow(I,J,bi,bj)=0. _d 0
          ENDDO
         ENDDO
 

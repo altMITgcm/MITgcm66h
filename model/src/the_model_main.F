@@ -142,6 +142,7 @@ C    | | | |-INI_VEL    :: Initialize 3D flow field.
 C    | | | |-INI_THETA  :: Set model initial temperature field.
 C    | | | |-INI_SALT   :: Set model initial salinity field.
 C    | | | |-INI_PSURF  :: Set model initial free-surface height/pressure.
+C    | | | |-INI_PRESSURE :: Compute model initial hydrostatic pressure
 C    | | |
 C    | | |-INI_TR1      :: Set initial tracer 1 distribution.
 C    | | |

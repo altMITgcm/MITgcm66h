@@ -40,6 +40,7 @@ C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     I,J
       INTEGER  I,  J
+CEOP
 
 C
 C     compute the pressure for use in the equation of state

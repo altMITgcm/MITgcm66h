@@ -54,6 +54,8 @@ c       CALL TIMEAVE_RESET(KEtave,    Nr, bi, bj, myThid)
         CALL TIMEAVE_RESET(VTtave,    Nr, bi, bj, myThid)
         CALL TIMEAVE_RESET(WTtave,    Nr, bi, bj, myThid)
         CALL TIMEAVE_RESET(phiHydtave,Nr, bi, bj, myThid)
+        CALL TIMEAVE_RESET(phiHydLowtave,1, bi, bj, myThid)
+        CALL TIMEAVE_RESET(phiHydLow2Tave,1, bi, bj, myThid)
         CALL TIMEAVE_RESET(ConvectCountTave,Nr,bi,bj,myThid)
 #ifdef NONLIN_FRSURF
         CALL TIMEAVE_RESET(hUtave,    Nr, bi, bj, myThid)
@@ -137,6 +139,10 @@ C-    Time Averages of "intermediate" fields (no hFactor)
      &                          bi, bj, myThid)
         CALL TIMEAVE_CUMUL_2V(WTtave, theta, wVel, Nr, 3,
      &                        deltaTclock, bi, bj, myThid)
+        CALL TIMEAVE_CUMULATE(phiHydLowtave, phiHydLow, 1, deltaTclock, 
+     &                          bi, bj, myThid)
+        CALL TIMEAVE_CUMUL_2V(phiHydLow2Tave, 
+     &       phiHydLow,phiHydLow, 1,  0, deltaTclock, bi, bj, myThid)
         DO K=1,Nr
          TimeAve_full(k,bi,bj)=TimeAve_full(k,bi,bj)+deltaTclock
         ENDDO

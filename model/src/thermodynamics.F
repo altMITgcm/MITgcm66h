@@ -315,7 +315,7 @@ CADJ STORE theta(:,:,k,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
 CADJ STORE salt (:,:,k,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
             CALL FIND_RHO(
-     I        bi, bj, iMin, iMax, jMin, jMax, k, k, eosType,
+     I        bi, bj, iMin, iMax, jMin, jMax, k, k,
      I        theta, salt,
      O        rhoK,
      I        myThid )
@@ -325,7 +325,7 @@ CADJ STORE theta(:,:,k-1,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
 CADJ STORE salt (:,:,k-1,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
              CALL FIND_RHO(
-     I        bi, bj, iMin, iMax, jMin, jMax, k-1, k, eosType,
+     I        bi, bj, iMin, iMax, jMin, jMax, k-1, k,
      I        theta, salt,
      O        rhoKm1,
      I        myThid )
