@@ -119,13 +119,13 @@ C     abbreviations
                t2 = t*t
                t3 = t2*t
                
-               if ( salt(i,j,k,bi,bj) .lt. 0. _d 0 ) then
+               s  = salt(i,j,k,bi,bj)
+               if ( s .lt. 0. _d 0 ) then
 C     issue a warning
                   write(*,'(a,i3,a,i3,a,i3,a,e13.5)') 
-     &             ' FIND_BETA: WARNING, s(',i,',',j,',',k,') = ', s
+     &             ' FIND_ALPHA: WARNING, salinity(',
+     &                 i,',',j,',',k,') = ', s
                   s = 0. _d 0
-               else
-                  s  = salt(i,j,k,bi,bj)
                end if
                s3o2 = sqrt(s*s*s)
                
@@ -310,13 +310,13 @@ C     abbreviations
                t2 = t*t
                t3 = t2*t
                
-               if ( salt(i,j,k,bi,bj) .lt. 0. _d 0 ) then
+               s  = salt(i,j,k,bi,bj)
+               if ( s .lt. 0. _d 0 ) then
 C     issue a warning
                   write(*,'(a,i3,a,i3,a,i3,a,e13.5)') 
-     &             ' FIND_BETA: WARNING, s(',i,',',j,',',k,') = ', s
+     &             ' FIND_BETA: WARNING, salinity(',
+     &                 i,',',j,',',k,') = ', s
                   s = 0. _d 0
-               else
-                  s  = salt(i,j,k,bi,bj)
                end if
                s3o2 = 1.5*sqrt(s)
 

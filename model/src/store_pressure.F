@@ -44,7 +44,9 @@ C     I,J
 C
 C     compute the pressure for use in the equation of state
 C
-      if ( buoyancyRelation .eq. 'OCEANIC' ) then
+      if ( buoyancyRelation .eq. 'OCEANIC' .and.
+     &     ( equationOfState .eq. 'JMD95P'
+     &       .or. equationOfState .eq. 'UNESCO' )  ) then
          do J=1-Oly,sNy+Oly
             do I=1-Olx,sNx+Olx
                pressure(i,j,k,bi,bj) = rhonil * (

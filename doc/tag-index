@@ -3,6 +3,18 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint46d_post
+o fixed store_pressure to work with both buoyancy relation = 'OCEANIC' and
+  'OCEANICP', also initialised field pressure correctly in ini_eos in the 
+  case of pressure coordinates. eosType='JMD95Z' in 
+  combination with buoyancyRelation='OCEANICP' now causes an error.
+o Changed p = pressure(i,j,k,bi,bj)  to  p = pressure(i,j,kRef,bi,bj)
+  in find_alpha/beta.
+checkpoint46d_pre
+
+o Changed p = pressure(i,j,k,bi,bj)  to  p = pressure(i,j,kRef,bi,bj)
+  so that JMD95Z and JMD95P give approptiate static stability in find_rho. 
+
 checkpoint46c_post
 o Changes necessary for ocean in p-coordinates
  -  Added new buoyancy relation = 'OCEANICP'
