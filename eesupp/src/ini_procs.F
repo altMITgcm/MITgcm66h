@@ -60,16 +60,15 @@ C                         units.
       INTEGER elCount
       INTEGER elLen
       INTEGER elStride
+      INTEGER npe,itemp,ierr,istatus(MPI_STATUS_SIZE)
+      INTEGER mpiBufSize,mpiRequest
+#endif /* ALLOW_USE_MPI */
+      INTEGER myThid
 
 C--   Variables needed for mpi gather scatter routines.
       COMMON /GlobalLo/ mpi_myXGlobalLo, mpi_myYGlobalLo
       INTEGER mpi_myXGlobalLo(nPx*nPy)
       INTEGER mpi_myYGlobalLo(nPx*nPy)
-      INTEGER npe,itemp,ierr,istatus(MPI_STATUS_SIZE)
-      INTEGER mpiBufSize,mpiRequest
-
-#endif /* ALLOW_USE_MPI */
-      INTEGER myThid
 CEOP
 
 C--   Default values set to single processor case
@@ -86,6 +85,8 @@ C     processes. A process can be its own neighbor!
       pidE        = 1
       pidN        = 1
       pidS        = 1
+      mpi_myXGlobalLo(1)=1
+      mpi_myYGlobalLo(1)=1
 c     errorMessageUnit    = 0
 c     standardMessageUnit = 6
 
