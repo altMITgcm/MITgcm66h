@@ -154,8 +154,8 @@ C--    Get my process number
        mpiPidIo = myProcId
        pidIO    = mpiPidIo
        IF ( mpiPidIo .EQ. myProcId ) THEN
-        WRITE(fNam,'(A,A)') 'STDERR.', myProcessStr(1:4)
-        OPEN(errorMessageUnit,FILE=fNam,STATUS='unknown')
+cdm     WRITE(fNam,'(A,A)') 'STDERR.', myProcessStr(1:4)
+cdm     OPEN(errorMessageUnit,FILE=fNam,STATUS='unknown')
         WRITE(fNam,'(A,A)') 'STDOUT.', myProcessStr(1:4)
         OPEN(standardMessageUnit,FILE=fNam,STATUS='unknown')
        ENDIF

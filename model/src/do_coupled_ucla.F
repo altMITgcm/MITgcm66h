@@ -1,4 +1,7 @@
-#define COUPLED_DEBUG
+C Atmospheric land mask appears to be shifted westward by 1 degree.
+C As a quick fix, rather than fix the atmospheric landmask, shift
+C the oceanic grid definition one degree westward.
+#define SHIFT_MASK
 
 C************************************************************************
 C************************************************************************
@@ -511,16 +514,19 @@ C--   Make everyone wait except for master thread in master process.
          enddo
          do i=1,Nx
             tmp(i) = global(i,1)
+#ifdef SHIFT_MASK
+     &           - 1.0
+#endif
          enddo
 
 #ifndef COUPLED_DEBUG
          call set_t_longitude (tmp)
-#endif COUPLED_DEBUG
+#endif
 
       ENDIF
       _END_MASTER( myThid )
       _BARRIER
-#endif COUPLED_UCLA
+#endif /* COUPLED_UCLA */
       RETURN
       END
 
@@ -602,6 +608,9 @@ C--   Make everyone wait except for master thread in master process.
          enddo
          do i=1,Nx
             tmp(i) = global(i,1)
+#ifdef SHIFT_MASK
+     &           - 1.0
+#endif
          enddo
 
 #ifndef COUPLED_DEBUG
