@@ -95,9 +95,10 @@ c--   Do global summation.
 
 c--   set averaging freq. to zero to avoid re-write of
 c--   averaged fields in reverse checkpointing loops
-      taveFreq   = 0.
-      dumpFreq   = 0.
-      pChkptFreq = 0.
+      taveFreq    = 0.
+      dumpFreq    = 0.
+      pChkptFreq  = 0.
+      monitorFreq = 0.
 
 #endif /* ALLOW_COST */
 

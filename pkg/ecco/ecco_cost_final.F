@@ -386,7 +386,8 @@ c--   Each process has calculated the global part for itself.
       taveFreq   = 0.
       dumpFreq   = 0.
       pChkptFreq = 0.
-      
+      monitorFreq = 0.
+
 #ifdef ECCO_VERBOSE
       write(msgbuf,'(a,D22.15)')
      &  ' cost_Final: final cost function = ',fc
