@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint55g_post
+o change arrays for total vertical diffusivity (2.D if explicit,
+  3.D if implicit) ; each ptracer uses its own background value.
 o added mnc/NetCDF output capability to ocn_compon_interf
   - added bits to verification/cpl_aim+ocn so that it can run on 
     ITRDA and other clusters without the mpirun "-wd" option
