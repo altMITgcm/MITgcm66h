@@ -113,8 +113,7 @@ C--   Initialise the calendar package.
 C--   Custom routine to set forcing fields.
 #ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
       call exf_readparms  ( mythid )
-      call exf_init( mythid )
-#endif /* INCLUDE_EXTERNAL_FORCING_PACKAGE */
+#endif
 
 #ifdef ALLOW_ECCO_OPTIMIZATION
 c--   Initialise the optimization-related parts of the ECCO State

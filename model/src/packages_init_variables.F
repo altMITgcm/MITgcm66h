@@ -81,12 +81,16 @@ c--   Initialise the cost function.
       _BARRIER
 #endif
 
+#ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
+      CALL EXF_INIT( mythid )
+#else
+      CALL INI_FORCING( mythid )
+#endif
+
 #ifdef INCLUDE_ECCO_PACKAGE
       IF (useECCO) THEN
        CALL ECCO_INIT( myThid )
       ENDIF
-#else
-      CALL INI_FORCING( myThid )
 #endif
 
       RETURN
