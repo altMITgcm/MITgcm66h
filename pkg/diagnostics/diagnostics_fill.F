@@ -270,12 +270,12 @@ C     !LOCAL VARIABLES:
 C     i,j    :: loop indices
       INTEGER i, j
 
-c     DO j = 1,jRun
-c      DO i = 1,iRun
+      DO j = 1,jRun
+       DO i = 1,iRun
 C- jmc: try with fixed ranges, that are known at compiling stage 
 C        (might produce a better cash optimisation ?)
-      DO j = 1,sNy
-       DO i = 1,sNx
+c     DO j = 1,sNy
+c      DO i = 1,sNx
         cumFld(i,j) = cumFld(i,j) + inpFld(i,j,k,bi,bj)
        ENDDO
       ENDDO
