@@ -89,6 +89,10 @@ done
 
 cat <<EOF >> api_main.tex
 
+
+\bibliography{mitgcm}
+
+
 \end{document}
 
 EOF

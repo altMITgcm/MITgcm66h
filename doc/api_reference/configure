@@ -120,7 +120,7 @@ api_main.tex: introduction.tex \$(ALLTEX)
 
 api_main.dvi:  api_main.tex
 	latex api_main
-	latex api_main
+	bibtex api_main
 	latex api_main
 	latex api_main
 

@@ -3,6 +3,10 @@ C $Name$
 
 #ifdef ALLOW_SEAICE
 
+CBOP
+C !ROUTINE: SEAICE.h
+
+C !DESCRIPTION: \bv
 C     /==========================================================\
 C     | SEAICE.h                                                 |
 C     | o Basic header for sea ice model.                        |
@@ -24,7 +28,8 @@ C     HEFF  - effective ice thickness in m
 C             at South-West B-grid tracer point
 C             note: for non-zero AREA, actual ice
 C                thickness is HEFF / AREA
-C
+C \ev
+CEOP
       COMMON/SEAICE_DYNVARS/UICE,VICE,AREA
       COMMON/SEAICE_DYNVARS1/
      &       ETA,ZETA,DRAGS,DRAGA,AMASS,FORCEX,FORCEY,UICEC,VICEC
