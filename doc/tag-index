@@ -3,7 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
-checkpoint53c_post
+checkpoint52c_post
 o Fixing OPTIONS files for use of exf:
   - ALLOW_ECCO not needed
   - ECCO_CPPOPTIONS.h should not be included from
