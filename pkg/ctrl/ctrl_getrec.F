@@ -44,9 +44,10 @@ c     == global variables ==
 #include "EEPARAMS.h"
 #include "SIZE.h"
 
-#include "cal.h"
-#include "ecco.h"
 #include "ctrl.h"
+#ifdef ALLOW_CALENDAR
+# include "cal.h"
+#endif
 
 c     == routine arguments ==
 
@@ -61,6 +62,8 @@ c     == routine arguments ==
       integer mythid
 
 c     == local variables ==
+
+#ifdef ALLOW_CALENDAR
 
       integer mydate(4)
       integer previousdate(4)
@@ -266,6 +269,8 @@ c     Do some printing for the protocol.
      &                      SQUEEZE_RIGHT , mythid)
       _END_MASTER( mythid )
 #endif
+
+#endif /* ALLOW_CALENDAR */
 
       return
       end

@@ -27,8 +27,10 @@ c     == global variables ==
 
 #include "EEPARAMS.h"
 #include "SIZE.h"
-#include "cal.h"
-#include "ecco.h"
+
+#ifdef ALLOW_CALENDAR
+# include "cal.h"
+#endif
 #include "ctrl.h"
 
 c     == routine arguments ==
