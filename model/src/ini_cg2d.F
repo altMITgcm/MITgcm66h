@@ -164,8 +164,9 @@ CcnhDebugStarts
 C     CALL PLOT_FIELD_XYRS( aW2d, 'AW2D INI_CG2D.1' , 1, myThid )
 C     CALL PLOT_FIELD_XYRS( aS2d, 'AS2D INI_CG2D.1' , 1, myThid )
 CcnhDebugEnds
-      _EXCH_XY_R4(aW2d, myThid)
-      _EXCH_XY_R4(aS2d, myThid)
+c     _EXCH_XY_R4(aW2d, myThid)
+c     _EXCH_XY_R4(aS2d, myThid)
+      CALL EXCH_UV_XY_RS(aW2d,aS2d,.FALSE.,myThid)
 CcnhDebugStarts
 C     CALL PLOT_FIELD_XYRS( aW2d, 'AW2D INI_CG2D.2' , 1, myThid )
 C     CALL PLOT_FIELD_XYRS( aS2d, 'AS2D INI_CG2D.2' , 1, myThid )
@@ -234,8 +235,9 @@ C         pS(I,J,bi,bj) = 0.
       ENDDO
 C--   Update overlap regions
       _EXCH_XY_R4(pC, myThid)
-      _EXCH_XY_R4(pW, myThid)
-      _EXCH_XY_R4(pS, myThid)
+c     _EXCH_XY_R4(pW, myThid)
+c     _EXCH_XY_R4(pS, myThid)
+      CALL EXCH_UV_XY_RS(pW,pS,.FALSE.,myThid)
 CcnhDebugStarts
 C     CALL PLOT_FIELD_XYRS( pC, 'pC   INI_CG2D.2' , 1, myThid )
 C     CALL PLOT_FIELD_XYRS( pW, 'pW   INI_CG2D.2' , 1, myThid )
