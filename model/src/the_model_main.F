@@ -87,7 +87,6 @@ C     == Global variables ===
 #include "PARAMS.h"
 #include "CG2D.h"
 #include "DYNVARS.h"
-#include "AVER.h"
 
 C     == Routine arguments ==
 C     myThid - Thread number for this instance of the routine.

@@ -17,8 +17,9 @@ C     uVelD  - D grid zonal velocity
 C     vVelD  - D grid meridional velocity
       COMMON /DYNVARS_R/ 
      &                   uVel,vVel,theta,salt,
-     &                   gu,gv,gt,gs,guNm1,gvNm1,gtNm1,gsNm1,
-     &                   gw, gwnm1
+     &                   gu,gv,gt,gs,guNm1,gvNm1,gtNm1,gsNm1
+Caja &                   gu,gv,gt,gs,guNm1,gvNm1,gtNm1,gsNm1,
+Caja &                   gw, gwnm1
       _RL  uVel (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  vVel (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  theta(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
@@ -31,8 +32,8 @@ C     vVelD  - D grid meridional velocity
       _RL  gvNm1(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  gtNm1(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  gsNm1(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-      _RL  gw(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-      _RL  gwNm1(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+Caja  _RL  gw(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+Caja  _RL  gwNm1(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
 #ifdef INCLUDE_CD_CODE
       COMMON /DYNVARS_CD/ 
      &                   uVelD, vVelD,
@@ -42,7 +43,7 @@ C     vVelD  - D grid meridional velocity
       _RL  uVeld (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  vVeld (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  cg2d_xNM1 (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RL  cg3d_xNm1 (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+Caja  _RL  cg3d_xNm1 (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  uNm1  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  vNm1  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  guCD  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
