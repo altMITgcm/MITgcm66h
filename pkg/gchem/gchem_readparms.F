@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-#include "PTRACERS_OPTIONS.h"
 #include "GCHEM_OPTIONS.h"
 
 CBOP
@@ -11,7 +10,7 @@ C !INTERFACE: ==========================================================
       SUBROUTINE GCHEM_READPARMS( myThid )
 
 C !DESCRIPTION:
-C     Initialize PTRACERS parameters, read in data.gchem
+C     Initialize GCHEM parameters, read in data.gchem
 
 C !USES: ===============================================================
       IMPLICIT NONE

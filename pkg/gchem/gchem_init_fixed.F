@@ -1,5 +1,6 @@
-#include "CPP_OPTIONS.h"
-#include "PTRACERS_OPTIONS.h"
+C$Header$
+C$Name$
+
 #include "GCHEM_OPTIONS.h"
 
 C !INTERFACE: ==========================================================

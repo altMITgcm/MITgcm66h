@@ -1,4 +1,6 @@
-#include "CPP_OPTIONS.h"
+C$Header$
+C$Name$
+
 #include "GCHEM_OPTIONS.h"
 
 CBOP
