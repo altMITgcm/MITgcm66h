@@ -10,7 +10,7 @@ C !INTERFACE: ==========================================================
       SUBROUTINE GAD_GRAD_X( 
      I           bi,bj,k,
      I           xA,
-     I           tracer,
+     U           tracer,
      O           dTdx,
      I           myThid )
 
@@ -22,26 +22,35 @@ C and multiplies by the area.
 C !USES: ===============================================================
       IMPLICIT NONE
 #include "SIZE.h"
+#include "EEPARAMS.h"
 #include "GRID.h"
 
 C !INPUT PARAMETERS: ===================================================
-C  bi,bj                :: tile indices
-C  k                    :: vertical level
-C  tracer               :: tracer field
-C  myThid               :: thread number
+C  bi,bj            :: tile indices
+C  k                :: vertical level
+C  myThid           :: thread number
       INTEGER bi,bj,k
       _RS xA    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL tracer(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER myThid
 
+C !UPDATED PARAMETERS: =================================================
+C  tracer           :: tracer field
+C    (NOTE: only udate the corner-halo region when using CS-grid)
+      _RL tracer(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+
 C !OUTPUT PARAMETERS: ==================================================
-C  dTdx                 :: zonal gradient
+C  dTdx             :: zonal gradient (units = [Tr_units]*[r_units])
       _RL dTdx  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
 C !LOCAL VARIABLES: ====================================================
-C  i,j                  :: loop indices
+C  i,j              :: loop indices
       INTEGER i,j
 CEOP
+
+C--   Internal exchange for calculations in X
+      IF (useCubedSphereExchange) THEN
+        CALL FILL_CS_CORNER_TR_RL( .TRUE., tracer, bi,bj, myThid )
+      ENDIF
 
 C     o Zonal tracer gradient
       DO j=1-Oly,sNy+Oly
