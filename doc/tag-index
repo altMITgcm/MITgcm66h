@@ -2,6 +2,7 @@ $Header$
 
     Notes on tags used in MITgcmUV
     ==============================
+o aim.5l_cs: modify sea-ice fraction input file ; update output
 
 checkpoint52k_post
 o removed top-level directory "diags"
