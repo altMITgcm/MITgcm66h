@@ -45,7 +45,7 @@ C     == Local variables ==
       INTEGER I,J,I2
       _RL DDTT
 
-#ifdef INCLUDE_DIAGNOSTICS_INTERFACE_CODE
+#ifdef ALLOW_TIMEAVE
 
       DDTT = deltaTclock
 
@@ -67,7 +67,7 @@ C     == Local variables ==
       ENDDO
 
 
-#endif /* INCLUDE_DIAGNOSTICS_INTERFACE_CODE */
+#endif /* ALLOW_TIMEAVE */
 
 #endif /* ALLOW_AIM */
 

@@ -30,7 +30,7 @@ C     == Local variables ==
 
 C     Initialize record numbers in KPP_DIAGS
       kpp_drctrec=1
-#ifdef INCLUDE_DIAGNOSTICS_INTERFACE_CODE
+#ifdef ALLOW_TIMEAVE
       kpp_drctrecTave=1
 #endif
 
