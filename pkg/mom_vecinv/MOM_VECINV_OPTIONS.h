@@ -12,6 +12,10 @@ C Use this file for selecting CPP options within the mom_vecinv package
 
 #include "CPP_OPTIONS.h"
 
+C use the original discretization (not recommended) for biharmonic viscosity
+C   that was in mom_vi_hdissip.F, version 1.1.2.1
+#undef MOM_VI_ORIGINAL_VISCA4
+
 C CPP macros go here
 
 #endif /* ALLOW_MOM_VECINV */
