@@ -233,15 +233,14 @@ C     Calculate recipricols grid lengths
      &    recip_dxV(I,J,bi,bj)=1.d0/dxV(I,J,bi,bj)
           IF ( dyU(I,J,bi,bj) .NE. 0. )
      &    recip_dyU(I,J,bi,bj)=1.d0/dyU(I,J,bi,bj)
-Cjmc recip_rA,recip_rAs,recip_rAw,recip_rAz will be added later 
-c         IF ( rA(I,J,bi,bj) .NE. 0. )
-c    &    recip_rA(I,J,bi,bj)=1.d0/rA(I,J,bi,bj)
-c         IF ( rAs(I,J,bi,bj) .NE. 0. )
-c    &    recip_rAs(I,J,bi,bj)=1.d0/rAs(I,J,bi,bj)
-c         IF ( rAw(I,J,bi,bj) .NE. 0. )
-c    &    recip_rAw(I,J,bi,bj)=1.d0/rAw(I,J,bi,bj)
-c         IF ( rAz(I,J,bi,bj) .NE. 0. )
-c    &    recip_rAz(I,J,bi,bj)=1.d0/rAz(I,J,bi,bj)
+          IF ( rA(I,J,bi,bj) .NE. 0. )
+     &    recip_rA(I,J,bi,bj)=1.d0/rA(I,J,bi,bj)
+          IF ( rAs(I,J,bi,bj) .NE. 0. )
+     &    recip_rAs(I,J,bi,bj)=1.d0/rAs(I,J,bi,bj)
+          IF ( rAw(I,J,bi,bj) .NE. 0. )
+     &    recip_rAw(I,J,bi,bj)=1.d0/rAw(I,J,bi,bj)
+          IF ( rAz(I,J,bi,bj) .NE. 0. )
+     &    recip_rAz(I,J,bi,bj)=1.d0/rAz(I,J,bi,bj)
          ENDDO
         ENDDO
        ENDDO

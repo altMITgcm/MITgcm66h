@@ -274,7 +274,7 @@ C     del^2 U
       DO j=0,sNy+1
        DO i=0,sNx+2
         v4F(i,j) = recip_drF(k)*_recip_hFacW(i,j,k,bi,bj)
-     &  /rAw(i,j,bi,bj)
+     &  *recip_rAw(i,j,bi,bj)
      &  *( fZon(i,j  )    - fZon(i-1,j)
      &    +fMer(i,j+1)    - fMer(i  ,j)
      &   )*_maskW(i,j,k,bi,bj)
@@ -288,7 +288,7 @@ C-- No-slip BCs impose a drag at walls...
         hFacZClosedN = _hFacW(i,j,k,bi,bj) - hFacZ(i,j+1)
         v4F(i,j) = v4F(i,j)
      &  - _recip_hFacW(i,j,k,bi,bj)*recip_drF(k)
-     &   /rAw(i,j,bi,bj)
+     &   *recip_rAw(i,j,bi,bj)
      &   *( hFacZClosedS*dxV(i, j ,bi,bj)
      &     *_recip_dyU(i, j ,bi,bj)
      &     +hFacZClosedN*dxV(i,j+1,bi,bj)
@@ -490,7 +490,7 @@ C--   term
      &    ( 0.5 _d 0*(rA(i,j,bi,bj)+rA(i-1,j,bi,bj)) )
 #else
      &   -_recip_hFacW(i,j,k,bi,bj)*recip_drF(k)
-     &    /rAw(i,j,bi,bj)
+     &   *recip_rAw(i,j,bi,bj)
 #endif
      &  *(fZon(i,j  )          - fZon(i-1,j)
      &   +fMer(i,j+1)          - fMer(i  ,j)
@@ -509,7 +509,7 @@ C-- No-slip BCs impose a drag at walls...
         hFacZClosedN = _hFacW(i,j,k,bi,bj) - hFacZ(i,j+1)
         gU(i,j,k,bi,bj) = gU(i,j,k,bi,bj)
      &   -_recip_hFacW(i,j,k,bi,bj)
-     &   *recip_drF(k)/rAw(i,j,bi,bj)
+     &   *recip_drF(k)*recip_rAw(i,j,bi,bj)
      &   *( hFacZClosedS*_dxV(i, j ,bi,bj)
      &      *_recip_dyU(i, j ,bi,bj)
      &     +hFacZClosedN*_dxV(i,j+1,bi,bj)
@@ -591,7 +591,7 @@ C     del^2 U
       DO j=0,sNy+2
        DO i=0,sNx+1
         v4F(i,j) = recip_drF(k)*_recip_hFacS(i,j,k,bi,bj)
-     &  /rAs(i,j,bi,bj)
+     &  *recip_rAs(i,j,bi,bj)
      &  *( fZon(i+1,j)    - fZon(i, j )
      &    +fMer( i ,j)    - fMer(i,j-1)
      &   )*_maskS(i,j,k,bi,bj)
@@ -605,7 +605,7 @@ C-- No-slip BCs impose a drag at walls...
         hFacZClosedE = _hFacS(i,j,k,bi,bj) - hFacZ(i+1,j)
         v4F(i,j) = v4F(i,j)
      &  -_recip_hFacS(i,j,k,bi,bj)*recip_drF(k)
-     &  /rAs(i,j,bi,bj)
+     &  *recip_rAs(i,j,bi,bj)
      &   *( hFacZClosedW*dyU( i ,j,bi,bj)
      &      *_recip_dxV( i ,j,bi,bj)
      &     +hFacZClosedE*dyU(i+1,j,bi,bj)
@@ -802,7 +802,7 @@ C--   term
      &    ( 0.5 _d 0*(_rA(i,j,bi,bj)+_rA(i,j-1,bi,bj)) )
 #else
      &   -_recip_hFacS(i,j,k,bi,bj)*recip_drF(k)
-     &    /rAs(i,j,bi,bj)
+     &    *recip_rAs(i,j,bi,bj)
 #endif
      &  *(fZon(i+1,j)          - fZon(i,j  )
      &   +fMer(i,j  )          - fMer(i,j-1)

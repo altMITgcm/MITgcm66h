@@ -359,8 +359,8 @@ C                 metric term in V equation.
      &  recip_hFacC,recip_hFacW,recip_hFacS, 
      &  rkFac, recip_rkFac,
      &  saFac,
-     &  xC,yC,rA,rAw,rAs,rC,rF,yC0,xC0,
-     &  maskW,maskS,
+     &  xC,yC,rA,rAw,rAs,rAz,rC,rF,yC0,xC0,xG,yG,
+     &  maskW,maskS,recip_rA,recip_rAw,recip_rAs,recip_rAz,
      &  tanPhiAtU, tanPhiAtV
       _RS dxC            (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS dxF            (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
@@ -395,12 +395,19 @@ C                 metric term in V equation.
       _RS recip_hFacS    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:Nr,nSx,nSy)
       _RS saFac          (1:Nr)
       _RS xC             (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS xG             (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS xC0
       _RS yC             (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS yG             (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS yC0
       _RS rA             (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS rAw            (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS rAs            (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS rAz            (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS recip_rA       (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS recip_rAw      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS recip_rAs      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS recip_rAz      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS rC             (1:Nr)
       _RS rF             (1:Nr+1)
       _RS maskW          (1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:Nr,nSx,nSy)
