@@ -109,10 +109,7 @@ C-     Compute albedo over sea-ice
           ELSE
            aimAlb(i,j) = ALBICE
           ENDIF
-#ifdef ALLOW_TIMEAVE
-          ice_albedo_Ave(i,j,bi,bj) = ice_albedo_Ave(i,j,bi,bj)
-     &            + iceMask(i,j,bi,bj)*aimAlb(i,j)*thSIce_deltaT
-#endif /*ALLOW_TIMEAVE*/
+          siceAlb(i,j,bi,bj) = iceMask(i,j,bi,bj)*aimAlb(i,j)
          ENDDO
         ENDDO
       ELSE
