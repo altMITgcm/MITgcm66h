@@ -568,6 +568,13 @@ c     print *
 c     stop
 c     endif
 
+c Zero out velocities at the bottom edge of the model
+c ---------------------------------------------------
+      do i =1,istrip
+       u(i,nlay+1) = 0.
+       v(i,nlay+1) = 0.
+      enddo
+
 c convert temperature of level nlay+1 to theta & value of sh at ground
 c --------------------------------------------------------------------
       do i =1,istrip
