@@ -16,6 +16,12 @@ CPP='/usr/bin/cpp -P'
 #EH3  works much better on machines such as "halem"
 #EH3  MAKEDEPEND='mkdep -f depend.out'
 
+# netcdf
+# Tested and works:  Wed Jul 21 11:55:34 EDT 2004
+FC_NAMEMANGLE="#define FC_NAMEMANGLE(X) X ## _"
+INCLUDES="$INCLUDES -I/usr/ulocal/stow/netcdf-3.5.1/include"
+LIBS="-L/usr/ulocal/stow/netcdf-3.5.1/lib -lnetcdf"
+
 FC='f77'
 LINK='f77'
 FFLAGS='-convert big_endian -r8 -extend_source -automatic -call_shared -notransform_loops -align dcommons'
