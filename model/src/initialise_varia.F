@@ -114,6 +114,12 @@ C--   Initialise passive tracer(s)
       _BARRIER
 #endif
 
+#ifdef ALLOW_AUTODIFF_TAMC
+C--   Initialise active fields to help TAMC
+      CALL INI_AUTODIFF( myThid )
+      _BARRIER
+#endif
+
 #ifndef ALLOW_AUTODIFF_TAMC
       IF ( usePickupBeforeC35 ) THEN
 C-- IMPORTANT : Need to activate the following call to restart from 

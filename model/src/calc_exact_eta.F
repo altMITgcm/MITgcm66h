@@ -49,9 +49,6 @@ C     myThid  :: Thread number for this instance of the routine.
 C     !LOCAL VARIABLES:
 #ifdef EXACT_CONSERV
 C     Local variables in common block
-C     hDivFlow :: Div. Barotropic Flow at current time [transport unit m3/s]
-      COMMON /EXACT_ETA_LOCAL/ hDivFlow
-      _RL hDivFlow(1-Olx:sNx+Olx,1-Oly:sNy+Oly,nSx,nSy)
 
 C     Local variables
 C     i,j,k  :: Loop counters
@@ -71,7 +68,9 @@ C--   Compute the Divergence of The Barotropic Flow :
 C-    Initialise 
       DO j=1-Oly,sNy+Oly
        DO i=1-Olx,sNx+Olx
-         hDivFlow(i,j,bi,bj) = 0.
+         hDivFlow(i,j,bi,bj) = 0. _d 0
+         utrans(i,j)         = 0. _d 0
+         vtrans(i,j)         = 0. _d 0
        ENDDO
       ENDDO
 
