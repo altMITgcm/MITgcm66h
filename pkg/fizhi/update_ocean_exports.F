@@ -375,7 +375,7 @@ C Maximum number of dates in one year for the data
 
       character*8  cname
       character*80 cdscrip
-      character*40 sstdata
+      character*20 sstdata
       _RL fac1, fac2, lat0, lon0, timebc1, timebc2, timemod, undef
       logical first, found, error
       integer i,j,n,nn,iyear,iyearbc,nd,ndby3,imbc,jmbc,npxbc,npybc
