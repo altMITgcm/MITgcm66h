@@ -64,9 +64,8 @@ C      d_xx^n tmpFld
 
        DO N=1,nShap
 
-Ccube   _EXCHUV_XYZ_R8( tmpFldU, tmpFldV, .TRUE., myThid )
-        _EXCH_XYZ_R8( tmpFldU, myThid )
-        _EXCH_XYZ_R8( tmpFldV, myThid )
+        CALL EXCH_UV_XYZ_RL(tmpFldU,tmpFldV,.TRUE.,myThid)
+
 
         DO bj=myByLo(myThid),myByHi(myThid)
          DO bi=myBxLo(myThid),myBxHi(myThid)
@@ -149,9 +148,7 @@ C      d_yy^n tmpFld
 
        DO N=1,nShap
 
-Ccube   _EXCHUV_XYZ_R8( tmpFldU, tmpFldV, .TRUE., myThid )
-        _EXCH_XYZ_R8( tmpFldU, myThid )
-        _EXCH_XYZ_R8( tmpFldV, myThid )
+        CALL EXCH_UV_XYZ_RL(tmpFldU,tmpFldV,.TRUE.,myThid)
 
         DO bj=myByLo(myThid),myByHi(myThid)
          DO bi=myBxLo(myThid),myBxHi(myThid)
@@ -173,6 +170,33 @@ C          Uyy
      &             )*_maskW(i,j,k,bi,bj)
             ENDDO
            ENDDO
+
+           IF (useCubedSphereExchange) THEN
+            J=1
+            DO I=1,sNx+1,sNx
+             maskZj=maskS(i-1, j ,k,bi,bj)*maskS( i , j ,k,bi,bj)
+             maskZp=maskS(i-1,j+1,k,bi,bj)*maskS( i ,j+1,k,bi,bj)
+             tmpGrdU(i,j) = -0.25*(
+     &        (tmpFldU(i,j+1,k,bi,bj)-tmpFldU(i, j ,k,bi,bj))*maskZp
+     &       -(tmpFldU(i, j ,k,bi,bj)-0*tmpFldU(i,j-1,k,bi,bj))*maskZj
+#ifdef NO_SLIP_SHAP
+     &       -2.*(2.-maskZj-maskZp)*tmpFldU(i,j,k,bi,bj)
+#endif
+     &             )*_maskW(i,j,k,bi,bj)
+            ENDDO
+            J=sNy
+            DO I=1,sNx+1,sNx
+             maskZj=maskS(i-1, j ,k,bi,bj)*maskS( i , j ,k,bi,bj)
+             maskZp=maskS(i-1,j+1,k,bi,bj)*maskS( i ,j+1,k,bi,bj)
+             tmpGrdU(i,j) = -0.25*(
+     &        (0*tmpFldU(i,j+1,k,bi,bj)-tmpFldU(i, j ,k,bi,bj))*maskZp
+     &       -(tmpFldU(i, j ,k,bi,bj)-tmpFldU(i,j-1,k,bi,bj))*maskZj
+#ifdef NO_SLIP_SHAP
+     &       -2.*(2.-maskZj-maskZp)*tmpFldU(i,j,k,bi,bj)
+#endif
+     &             )*_maskW(i,j,k,bi,bj)
+            ENDDO
+           ENDIF
 
            DO J=1,sNy
             DO I=1,sNx+1
@@ -196,6 +220,33 @@ C          Vxx
      &             )*_maskS(i,j,k,bi,bj)
             ENDDO
            ENDDO
+
+           IF (useCubedSphereExchange) THEN
+            DO J=1,sNy+1,sNy
+            I=1
+             maskZj=maskW( i ,j-1,k,bi,bj)*maskW( i , j ,k,bi,bj)
+             maskZp=maskW(i+1,j-1,k,bi,bj)*maskW(i+1, j ,k,bi,bj)
+             tmpGrdV(i,j) = -0.25*(
+     &        (tmpFldV(i+1,j,k,bi,bj)-tmpFldV( i ,j,k,bi,bj))*maskZp
+     &       -(tmpFldV( i ,j,k,bi,bj)-0*tmpFldV(i-1,j,k,bi,bj))*maskZj
+#ifdef NO_SLIP_SHAP
+     &       -2.*(2.-maskZj-maskZp)*tmpFldV(i,j,k,bi,bj)
+#endif
+     &             )*_maskS(i,j,k,bi,bj)
+            ENDDO
+            DO J=1,sNy+1,sNy
+            I=sNx
+             maskZj=maskW( i ,j-1,k,bi,bj)*maskW( i , j ,k,bi,bj)
+             maskZp=maskW(i+1,j-1,k,bi,bj)*maskW(i+1, j ,k,bi,bj)
+             tmpGrdV(i,j) = -0.25*(
+     &        (0*tmpFldV(i+1,j,k,bi,bj)-tmpFldV( i ,j,k,bi,bj))*maskZp
+     &       -(tmpFldV( i ,j,k,bi,bj)-tmpFldV(i-1,j,k,bi,bj))*maskZj
+#ifdef NO_SLIP_SHAP
+     &       -2.*(2.-maskZj-maskZp)*tmpFldV(i,j,k,bi,bj)
+#endif
+     &             )*_maskS(i,j,k,bi,bj)
+            ENDDO
+           ENDIF
 
            DO J=1,sNy+1
             DO I=1,sNx
@@ -237,9 +288,7 @@ C      F <-  [1-d_yy^n]F
         ENDDO
        ENDDO
 
-Ccube _EXCHUV_XYZ_R8( uFld, vFld, .TRUE., myThid )
-      _EXCH_XYZ_R8( tmpFldU, myThid )
-      _EXCH_XYZ_R8( tmpFldV, myThid )
+      CALL EXCH_UV_XYZ_RL(tmpFldU,tmpFldV,.TRUE.,myThid)
 
       ENDIF
 #endif /* ALLOW_SHAP_FILT */
