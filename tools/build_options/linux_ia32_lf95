@@ -3,7 +3,7 @@
 #  $Header$
 #
 
-DEFINES='-DWORDLENGTH=4'
+DEFINES='-D_BYTESWAPIO -DWORDLENGTH=4'
 CPP='/lib/cpp -traditional -P'
 FC='lf95'
 # FFLAGS='-byteswapio -r8 -Mnodclchk -Mextend'
