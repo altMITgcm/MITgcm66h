@@ -6,8 +6,11 @@ C $Name$
 C     Package flag
       logical GMREDIisON
       logical GM_AdvForm
+      logical GM_AdvSeparate 
       logical GM_ExtraDiag 
-      COMMON /GM_PACKAGE/ GMREDIisON, GM_AdvForm, GM_ExtraDiag
+      COMMON /GM_PACKAGE/ GMREDIisON, 
+     &                    GM_AdvForm, GM_AdvSeparate, 
+     &                    GM_ExtraDiag
 
 C     GM/Redi parameters
       _RL GM_isopycK
@@ -32,6 +35,10 @@ C     GM/Redi parameters
      &                   GM_Scrit,
      &                   GM_Sd
 
+      _RL        GM_Small_Number
+      PARAMETER( GM_Small_Number=   1. _d -8 )
+      _RL        GM_adjointRescale
+      PARAMETER( GM_adjointRescale= 1. _d 0 )
 
 C     More GM/Redi parameters diagnosed from previous block
 C     (not directly user configured)
