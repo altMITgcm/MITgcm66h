@@ -190,7 +190,7 @@ C ==========
      .   turbu,turbv,turbt,turbq,radlwg,st4,dst4,radswg,radswt,
      .   fdifpar,fdirpar,rainlsp,rainconv,snowfall,tg0,
      .   imstturblw,imstturbsw,qliqavelw,qliqavesw,fccavelw,fccavesw,qq,
-     .   myid,comm )
+     .   myid)
 
 c Add Gravity-Wave Drag Tendency
 c ------------------------------
