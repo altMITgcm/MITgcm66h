@@ -54,7 +54,7 @@ c      DO bi=myBxLo(myThid),myBxHi(myThid)
          DO I=1,sNx
           II = (sNx)*(J-1)+I
           Qshortwave(I,J,bi,bj) = 
-     &    Qshortwave(I,J,bi,bj) - SSR(II,myThid)*cplTimeFraction
+     &    Qshortwave(I,J,bi,bj) - SSR(II,2,myThid)*cplTimeFraction
          ENDDO
         ENDDO
 c      ENDDO

@@ -69,8 +69,8 @@ c      DO bi=myBxLo(myThid),myBxHi(myThid)
      &    HeatFlux(I,J,bi,bj) + 
      &             ( EVAP(II,2,myThid)*ALHC
      &           +    SHF(II,2,myThid)
-     &           +    SLR(II,myThid)
-     &           -    SSR(II,myThid) )*cplTimeFraction
+     &           +    SLR(II,2,myThid)
+     &           -    SSR(II,2,myThid) )*cplTimeFraction
          ENDDO
         ENDDO
 c      ENDDO
