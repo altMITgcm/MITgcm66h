@@ -374,14 +374,16 @@ C--   Forcing term
      I     myCurrentTime,myThid)
 
 C--   Metric terms for curvilinear grid systems
-      IF (usingSphericalPolarMTerms) THEN
-C      o Spherical polar grid metric terms
+      IF (useNHMTerms) THEN
+C      o Non-hydrosatic metric terms
        CALL MOM_U_METRIC_NH(bi,bj,k,uFld,wVel,mT,myThid)
        DO j=jMin,jMax
         DO i=iMin,iMax
          gU(i,j,k,bi,bj) = gU(i,j,k,bi,bj)+mTFacU*mT(i,j)
         ENDDO
        ENDDO
+      ENDIF
+      IF (usingSphericalPolarMTerms) THEN
        CALL MOM_U_METRIC_SPHERE(bi,bj,k,uFld,vFld,mT,myThid)
        DO j=jMin,jMax
         DO i=iMin,iMax
@@ -522,7 +524,7 @@ C--   Forcing term
      I     myCurrentTime,myThid)
 
 C--   Metric terms for curvilinear grid systems
-      IF (usingSphericalPolarMTerms) THEN
+      IF (useNHMTerms) THEN
 C      o Spherical polar grid metric terms
        CALL MOM_V_METRIC_NH(bi,bj,k,vFld,wVel,mT,myThid)
        DO j=jMin,jMax
@@ -530,6 +532,8 @@ C      o Spherical polar grid metric terms
          gV(i,j,k,bi,bj) = gV(i,j,k,bi,bj)+mTFacV*mT(i,j)
         ENDDO
        ENDDO
+      ENDIF
+      IF (usingSphericalPolarMTerms) THEN
        CALL MOM_V_METRIC_SPHERE(bi,bj,k,uFld,mT,myThid)
        DO j=jMin,jMax
         DO i=iMin,iMax

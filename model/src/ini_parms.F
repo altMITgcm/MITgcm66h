@@ -128,7 +128,7 @@ C--   Continuous equation parameters
      & readPickupWithTracer, writePickupWithTracer,
      & tempAdvScheme, saltAdvScheme, tracerAdvScheme,
      & multiDimAdvection, useEnergyConservingCoriolis,
-     & useJamartWetPoints, 
+     & useJamartWetPoints, useNHMTerms,
      & useRealFreshWaterFlux, convertFW2Salt,
      & temp_EvPrRn, salt_EvPrRn, trac_EvPrRn,
      & zonal_filt_lat
@@ -778,6 +778,7 @@ C--   Make metric term settings consistent with underlying grid.
       IF ( usingCartesianGrid ) THEN
        usingSphericalPolarMterms = .FALSE.
        metricTerms = .FALSE.
+       useNHMTerms = .FALSE.
        mTFacMom = 0.
        useBetaPlaneF = .TRUE.
       ENDIF
@@ -789,6 +790,8 @@ C--   Make metric term settings consistent with underlying grid.
       ENDIF
       IF ( usingCurvilinearGrid ) THEN
        useSphereF    = .TRUE.
+       metricTerms = .FALSE.
+       useNHMTerms = .FALSE.
       ENDIF
 C--   set cell Center depth and put Interface at the middle between 2 C
       setCenterDr = .FALSE.

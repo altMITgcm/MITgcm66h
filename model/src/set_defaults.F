@@ -129,6 +129,7 @@ Cml      sBeta               = 7.4D-4
       saltForcing         = .TRUE.
       tr1Stepping         = .FALSE.
       metricTerms         = .TRUE.
+      useNHMTerms         = .TRUE.
       implicitDiffusion   = .FALSE.
       implicitViscosity   = .FALSE.
       nonHydrostatic      = .FALSE.
