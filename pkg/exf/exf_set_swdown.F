@@ -45,55 +45,57 @@ c     == local variables ==
 
 c     == end of interface ==
 
+      if ( swdownfile .NE. ' ' ) then
+
 c     get record numbers and interpolation factor for swdown
-      call exf_GetFFieldRec(
-     I                       swdownstartdate, swdownperiod
-     O                     , fac, first, changed
-     O                     , count0, count1
-     I                     , mycurrenttime, mycurrentiter, mythid
-     &                     )
+         call exf_GetFFieldRec(
+     I        swdownstartdate, swdownperiod
+     O        , fac, first, changed
+     O        , count0, count1
+     I        , mycurrenttime, mycurrentiter, mythid
+     &        )
 
-      if ( first ) then
-        if ( swdownfile .NE. ' ' )
-     &        call mdsreadfield( swdownfile, exf_iprec, exf_yftype, 1
-     &                   , swdown1, count0, mythid
-     &                   )
-        if (exf_yftype .eq. 'RL') then
-           call exf_filter_rl( swdown1, swdownmask, mythid )
-        else
-           call exf_filter_rs( swdown1, swdownmask, mythid )
-        end if
-      endif
+         if ( first ) then
+            call mdsreadfield( swdownfile, exf_iprec, exf_yftype, 1
+     &           , swdown1, count0, mythid
+     &           )
+            if (exf_yftype .eq. 'RL') then
+               call exf_filter_rl( swdown1, swdownmask, mythid )
+            else
+               call exf_filter_rs( swdown1, swdownmask, mythid )
+            end if
+         endif
 
-      if (( first ) .or. ( changed )) then
-        call exf_SwapFFields( swdown0, swdown1, mythid )
+         if (( first ) .or. ( changed )) then
+            call exf_SwapFFields( swdown0, swdown1, mythid )
 
-        if ( swdownfile .NE. ' ' )
-     &       call mdsreadfield( swdownfile, exf_iprec, exf_yftype, 1
-     &                   , swdown1, count1, mythid
-     &                   )
-        if (exf_yftype .eq. 'RL') then
-           call exf_filter_rl( swdown1, swdownmask, mythid )
-        else
-           call exf_filter_rs( swdown1, swdownmask, mythid )
-        end if
-      endif
+            call mdsreadfield( swdownfile, exf_iprec, exf_yftype, 1
+     &           , swdown1, count1, mythid
+     &           )
+            if (exf_yftype .eq. 'RL') then
+               call exf_filter_rl( swdown1, swdownmask, mythid )
+            else
+               call exf_filter_rs( swdown1, swdownmask, mythid )
+            end if
+         endif
 
 c     Loop over tiles.
-      do bj = mybylo(mythid),mybyhi(mythid)
-        do bi = mybxlo(mythid),mybxhi(mythid)
-          do j = 1,sny
-            do i = 1,snx
+         do bj = mybylo(mythid),mybyhi(mythid)
+            do bi = mybxlo(mythid),mybxhi(mythid)
+               do j = 1,sny
+                  do i = 1,snx
 
-c             Interpolate linearly onto the current time.
+c     Interpolate linearly onto the current time.
 
-              swdown(i,j,bi,bj) = fac          *swdown0(i,j,bi,bj)+
-     &                          (exf_one - fac) *swdown1(i,j,bi,bj)
+                     swdown(i,j,bi,bj) = fac * swdown0(i,j,bi,bj) +
+     &                    (exf_one - fac) *swdown1(i,j,bi,bj)
 
+                  enddo
+               enddo
             enddo
-          enddo
-        enddo
-      enddo
+         enddo
+
+      endif
 
 #endif
 

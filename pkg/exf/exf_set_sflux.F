@@ -47,55 +47,57 @@ c     == local variables ==
 
 c     == end of interface ==
 
+      if ( sfluxfile .NE. ' ' ) then
+
 c     get record numbers and interpolation factor for sflux
-      call exf_GetFFieldRec(
-     I                       sfluxstartdate, sfluxperiod
-     O                     , fac, first, changed
-     O                     , count0, count1
-     I                     , mycurrenttime, mycurrentiter, mythid
-     &                     )
+         call exf_GetFFieldRec(
+     I        sfluxstartdate, sfluxperiod
+     O        , fac, first, changed
+     O        , count0, count1
+     I        , mycurrenttime, mycurrentiter, mythid
+     &        )
 
-      if ( first ) then
-        if ( sfluxfile .NE. ' ' )
-     &        call mdsreadfield( sfluxfile, exf_iprec, exf_yftype, 1
-     &                   , sflux1, count0, mythid
-     &                   )
-        if (exf_yftype .eq. 'RL') then
-           call exf_filter_rl( sflux1, sfluxmask, mythid )
-        else
-           call exf_filter_rs( sflux1, sfluxmask, mythid )
-        end if
-      endif
+         if ( first ) then
+            call mdsreadfield( sfluxfile, exf_iprec, exf_yftype, 1
+     &           , sflux1, count0, mythid
+     &           )
+            if (exf_yftype .eq. 'RL') then
+               call exf_filter_rl( sflux1, sfluxmask, mythid )
+            else
+               call exf_filter_rs( sflux1, sfluxmask, mythid )
+            end if
+         endif
 
-      if (( first ) .or. ( changed )) then
-        call exf_SwapFFields( sflux0, sflux1, mythid )
+         if (( first ) .or. ( changed )) then
+            call exf_SwapFFields( sflux0, sflux1, mythid )
 
-        if ( sfluxfile .NE. ' ' )
-     &       call mdsreadfield( sfluxfile, exf_iprec, exf_yftype, 1
-     &                   , sflux1, count1, mythid
-     &                   )
-        if (exf_yftype .eq. 'RL') then
-           call exf_filter_rl( sflux1, sfluxmask, mythid )
-        else
-           call exf_filter_rs( sflux1, sfluxmask, mythid )
-        end if
-      endif
+            call mdsreadfield( sfluxfile, exf_iprec, exf_yftype, 1
+     &           , sflux1, count1, mythid
+     &           )
+            if (exf_yftype .eq. 'RL') then
+               call exf_filter_rl( sflux1, sfluxmask, mythid )
+            else
+               call exf_filter_rs( sflux1, sfluxmask, mythid )
+            end if
+         endif
 
 c     Loop over tiles.
-      do bj = mybylo(mythid),mybyhi(mythid)
-        do bi = mybxlo(mythid),mybxhi(mythid)
-          do j = 1,sny
-            do i = 1,snx
+         do bj = mybylo(mythid),mybyhi(mythid)
+            do bi = mybxlo(mythid),mybxhi(mythid)
+               do j = 1,sny
+                  do i = 1,snx
 
-c             Interpolate linearly onto the current time.
+c     Interpolate linearly onto the current time.
 
-              sflux(i,j,bi,bj) = fac          *sflux0(i,j,bi,bj)+
-     &                          (exf_one - fac) *sflux1(i,j,bi,bj)
+                     sflux(i,j,bi,bj) = fac * sflux0(i,j,bi,bj) +
+     &                    (exf_one - fac) *sflux1(i,j,bi,bj)
 
+                  enddo
+               enddo
             enddo
-          enddo
-        enddo
-      enddo
+         enddo
+
+      endif
 
 #endif
 
