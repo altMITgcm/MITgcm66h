@@ -46,7 +46,7 @@ CEOP
       _RL UICEC      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
       _RL VICEC      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
 
-      COMMON/TRANS/HEFF,HSNOW
+      COMMON/SEAICE_TRANS/HEFF,HSNOW
       COMMON/ARRAY/HEFFM,UVM
       COMMON/OFL/YNEG
       COMMON/RIV/RIVER
