@@ -25,9 +25,7 @@ C     == Global variables ==
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#ifdef ALLOW_NONHYDROSTATIC
-#include "CG3D.h"
-#endif
+#include "SOLVE_FOR_PRESSURE3D.h"
 
 C     == Routine arguments ==
 C     bi, bj, iMin, iMax, jMin, jMax - Range of points for which calculation

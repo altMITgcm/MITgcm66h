@@ -49,3 +49,7 @@ C     vVelD  - D grid meridional velocity
       _RL  guCD  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  gvCD  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
 #endif
+#ifdef ALLOW_NONHYDROSTATIC
+      COMMON /DYNVARS_NH/ phi_nh
+      _RL  phi_nh(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+#endif /* ALLOW_NONHYDROSTATIC */

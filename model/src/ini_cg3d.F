@@ -21,6 +21,7 @@ C     === Global variables ===
 #include "GRID.h"
 c_jmc #include "DYNVARS.h"
 #include "CG3D.h"
+#include "SOLVE_FOR_PRESSURE3D.h"
 #ifdef ALLOW_OBCS
 #include "OBCS.h"
 #endif
@@ -304,7 +305,6 @@ C--   Set default values for initial guess and RHS
          DO K=1,Nr
           DO J=1-OLy,sNy+OLy
            DO I=1-OLx,sNx+OLx
-            cg3d_x(I,J,K,bi,bj) = 0. _d 0
             cg3d_b(I,J,K,bi,bj) = 0. _d 0
            ENDDO
           ENDDO
@@ -312,7 +312,6 @@ C--   Set default values for initial guess and RHS
         ENDDO
        ENDDO
 C--    Update overlap regions
-       _EXCH_XYZ_R8(cg3d_x, myThid)
        _EXCH_XYZ_R8(cg3d_b, myThid)
       ENDIF
 
