@@ -73,6 +73,7 @@ c-----------------------------------------------------------------------
        enddo
        enddo
        enddo
+       vegdata = 'veg19232.data'
        call fizhi_init_veg ( mythid, vegdata,im2,jm2,Nsx,Nsy,
      .         nSx*nPx,nSy*nPy,maxtyp,nchp,nchptot,nchpland,lons,lats,
      .         surftype,tilefrac,igrd,ityp,chfr,chlt,chlon)
