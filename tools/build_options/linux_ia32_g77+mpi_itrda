@@ -20,7 +20,8 @@ if test "x$IEEE" = x ; then
     FOPTIM='-O3 -malign-double -funroll-loops'
 else
     #  Try to follow IEEE-754
-    FFLAGS='-Wimplicit -Wunused -ffloat-store'
+   #FFLAGS='-Wimplicit -Wunused -ffloat-store'
+    FFLAGS='-Wimplicit -Wunused -mfpmath=sse -msse -msse2'
     FOPTIM='-O0 -malign-double'
 fi
 NOOPTFLAGS='-O0'
