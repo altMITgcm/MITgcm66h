@@ -315,16 +315,16 @@ C       relaxation terms, etc.
 
 #ifdef ALLOW_AUTODIFF_TAMC
 cph needed for KPP
-CADJ STORE surfacetendencyU(:,:,bi,bj)
+CADJ STORE surfaceForcingU(:,:,bi,bj)
 CADJ &     = comlev1_bibj, key=itdkey, byte=isbyte
-CADJ STORE surfacetendencyV(:,:,bi,bj)
+CADJ STORE surfaceForcingV(:,:,bi,bj)
 CADJ &     = comlev1_bibj, key=itdkey, byte=isbyte
-CADJ STORE surfacetendencyS(:,:,bi,bj)
+CADJ STORE surfaceForcingS(:,:,bi,bj)
 CADJ &     = comlev1_bibj, key=itdkey, byte=isbyte
-CADJ STORE surfacetendencyT(:,:,bi,bj)
+CADJ STORE surfaceForcingT(:,:,bi,bj)
 CADJ &     = comlev1_bibj, key=itdkey, byte=isbyte
 # ifdef ALLOW_SEAICE
-CADJ STORE surfacetendencyTice(:,:,bi,bj)
+CADJ STORE surfaceForcingTice(:,:,bi,bj)
 CADJ &     = comlev1_bibj, key=itdkey, byte=isbyte
 # endif
 #endif /* ALLOW_AUTODIFF_TAMC */
