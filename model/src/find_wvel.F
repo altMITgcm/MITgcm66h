@@ -35,7 +35,7 @@ C $Header$
 ! Volume transport thru' Western faces
        do j=jMin,jMax
         do i=iMin,iMax
-         Utrans(i,j)=dyF(i,j,bi,bj)*dzF(k)*Uvel(i,j,k,bi,bj)
+         Utrans(i,j)=_dyF(i,j,bi,bj)*dzF(k)*Uvel(i,j,k,bi,bj)
         enddo
        enddo
 

@@ -36,3 +36,23 @@ C     \==========================================================/
 #undef  DXV_FX
 #undef  DXV_FY
 #include "DXV_MACROS.h"
+
+#undef  DYC_CONST   
+#undef  DYC_FX
+#undef  DYC_FY
+#include "DYC_MACROS.h"
+
+#undef  DYF_CONST   
+#undef  DYF_FX
+#undef  DYF_FY
+#include "DYF_MACROS.h"
+
+#undef  DYG_CONST   
+#undef  DYG_FX
+#undef  DYG_FY
+#include "DYG_MACROS.h"
+
+#undef  DYU_CONST   
+#undef  DYU_FX
+#undef  DYU_FY
+#include "DYU_MACROS.h"

@@ -54,7 +54,7 @@ C     aS2d: integral in Z Ay/dY
         DO K=1,Nz
          DO J=1,sNy
           DO I=1,sNx
-           faceArea = dyG(I,J,bi,bj)*dzF(K)*HFacW(I,J,K,bi,bj)
+           faceArea = _dyG(I,J,bi,bj)*dzF(K)*HFacW(I,J,K,bi,bj)
            aW2d(I,J,bi,bj) = aW2d(I,J,bi,bj) + 
      &      gBaro*faceArea*rDxC(I,J,bi,bj)
            faceArea = _dxG(I,J,bi,bj)*dzF(K)*HFacS(I,J,K,bi,bj)
