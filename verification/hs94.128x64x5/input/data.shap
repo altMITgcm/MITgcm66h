@@ -1,0 +1,10 @@
+# Shapiro Filter parameters
+ &SHAP_PARM01
+ nShap=4,
+ Shap_funct=1,
+#Shap_Trtau=3600., 
+#Shap_TrDamp=0.,
+#Shap_uvtau=3600.,
+#Shap_uvDamp=0.,
+ &                                
+

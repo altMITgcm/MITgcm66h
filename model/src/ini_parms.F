@@ -104,7 +104,7 @@ C--   Continuous equation parameters
      & writeBinaryPrec, readBinaryPrec, writeStatePrec,
      & nonHydrostatic, globalFiles,
      & allowFreezing, ivdc_kappa,
-     & nShap, zonal_filt_lat, zonal_filt_sinpow, zonal_filt_cospow,
+     & zonal_filt_lat, zonal_filt_sinpow, zonal_filt_cospow,
      & bottomDragLinear,bottomDragQuadratic
 
 C--   Elliptic solver parameters

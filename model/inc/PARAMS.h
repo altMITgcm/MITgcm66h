@@ -100,12 +100,6 @@ C     writeStatePrec      - Precision used for writing model state.
 C     writeBinaryPrec     - Precision used for writing binary files
 C     readBinaryPrec      - Precision used for reading binary files
 C     nCheckLev           - Holds current checkpoint level
-C     nShap               - "Order" of shapiro filter to apply to
-C                           model prognositic fields.
-C                           nShap == 1 => del2
-C                           nShap == 2 => del4
-C                           nShap == 3 => del6
-C                           etc...
 
       COMMON /PARM_I/
      &        cg2dMaxIters,
@@ -116,7 +110,7 @@ C                           etc...
      &        numStepsPerPickup,
      &        writeStatePrec, nCheckLev,
      &        writeBinaryPrec, readBinaryPrec,
-     &        nShap, zonal_filt_sinpow, zonal_filt_cospow
+     &        zonal_filt_sinpow, zonal_filt_cospow
       INTEGER cg2dMaxIters
       INTEGER cg2dChkResFreq
       INTEGER cg3dMaxIters
@@ -129,7 +123,6 @@ C                           etc...
       INTEGER writeBinaryPrec
       INTEGER readBinaryPrec
       INTEGER nCheckLev
-      INTEGER nShap
       INTEGER zonal_filt_sinpow
       INTEGER zonal_filt_cospow
 
@@ -511,6 +504,7 @@ C Logical flags for selecting packages
       LOGICAL useOBCS
       LOGICAL useAIM
       LOGICAL useECCO
+      LOGICAL useSHAP_FILT
       COMMON /PARM_PACKAGES/
-     &        useKPP, useGMRedi, useOBCS, useAIM, useECCO
+     &        useKPP, useGMRedi, useOBCS, useAIM, useECCO, useSHAP_FILT
 
