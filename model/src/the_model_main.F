@@ -85,5 +85,3 @@ C*P*   CALL CHECKPOINT( myThid )
 
       RETURN
       END
-
-C $Id$

@@ -28,4 +28,3 @@ C*P* I           myThid )
 
       RETURN
       END
-C $Id$

@@ -1,4 +1,4 @@
-C $Id$
+C $Header$
 C
 C     /==========================================================\
 C     | SIZE.h Declare size of underlying computational grid.    |

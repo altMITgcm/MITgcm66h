@@ -200,5 +200,3 @@ C     Calculate vertical face area
 C
       RETURN
       END
-
-C     $Id$

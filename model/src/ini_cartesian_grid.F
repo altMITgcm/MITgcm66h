@@ -225,5 +225,3 @@ C     other threads.
 C
       RETURN
       END
-
-C     $Id$

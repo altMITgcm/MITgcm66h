@@ -67,5 +67,3 @@ C--   Finally summarise the model cofiguration and state
       CALL STATE_SUMMARY( myThid )
 
       END
-
-C $Id$

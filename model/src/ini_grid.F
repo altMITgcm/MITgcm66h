@@ -62,5 +62,3 @@ C--   Set up grid coordinate system
 C
       RETURN
       END
-
-C     $Id$
