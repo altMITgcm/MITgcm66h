@@ -600,6 +600,10 @@ cph since storing occurs on different tape for each
 cph impldiff call anyways.
 cph Thus, common block comlev1_impl isnt needed either.
 cph Storing below needed in the case useGMREDI.
+crg iikey is set in thermodynamics but also used in dynamics
+crg it should either be defined in ecco_the_model_main
+crg or thermodynamics and dynamics should use different key variables.
+cdm Conflict does not extis in in checkpoint48e
         iikey = (ikey-1)*maximpl
 #endif /* ALLOW_AUTODIFF_TAMC */
 

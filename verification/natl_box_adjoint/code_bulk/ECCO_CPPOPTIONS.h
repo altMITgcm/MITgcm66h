@@ -47,7 +47,7 @@ C o use divided adjoint to split adjoint computations
 #undef ALLOW_DIVIDED_ADJOINT
 
 C ********************************************************************
-C ***                     Calender Package                         ***
+C ***                     Calendar Package                         ***
 C ********************************************************************
 C 
 C CPP flags controlling which code is included in the files that
@@ -170,10 +170,7 @@ C   Do more printout for the protocol file than usual.
 C   Bulk formulae related flags.
 #define  ALLOW_ATM_TEMP
 #define  ALLOW_ATM_WIND
-#if (defined (ALLOW_ATM_TEMP) || \
-     defined (ALLOW_ATM_WIND))
-# define ALLOW_BULKFORMULAE
-#endif
+#define ALLOW_BULKFORMULAE
 
 C   Relaxation to monthly climatologies.
 #define ALLOW_CLIM_CYCLIC
@@ -181,15 +178,3 @@ C   Relaxation to monthly climatologies.
 #undef  ALLOW_CLIMSALT_RELAXATION
 #undef  ALLOW_CLIMSST_RELAXATION
 #undef  ALLOW_CLIMSSS_RELAXATION
-
-C   Relaxation to monthly climatologies.
-#ifdef ALLOW_CLIMSST_RELAXATION
-# define  ALLOW_MONTHLY_CLIMSST_RELAXATION
-#endif
-#ifdef ALLOW_CLIMSSS_RELAXATION
-# define  ALLOW_MONTHLY_CLIMSSS_RELAXATION
-#endif
-
-C   Relaxation to constant surface fields.
-#undef  ALLOW_CONST_SST_RELAXATION
-#undef  ALLOW_CONST_SSS_RELAXATION

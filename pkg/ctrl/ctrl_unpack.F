@@ -1,4 +1,4 @@
-C $Header$
+ $Header$
 
 #include "CTRL_CPPOPTIONS.h"
 
@@ -160,6 +160,8 @@ c     == end of interface ==
 #ifndef ALLOW_ECCO_OPTIMIZATION
       optimcycle = 0
 #endif
+
+      tmpvar = 0. _d 0
 
 c--   Check if this is the first model time step.
       if ( mytime .lt. modelstart + 0.5*modelstep ) then
