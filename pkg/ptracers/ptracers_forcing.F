@@ -63,12 +63,12 @@ C     by PTRACERS_FORCING because it is needed by KPP_TRANSPORT_PTR.
 
 #ifdef ALLOW_GCHEM 
       IF ( useGCHEM ) 
-     &     CALL GCHEM_FORCING_INT(
+     &     CALL GCHEM_ADD_TENDENCY(
      I                        bi,bj,iMin,iMax,jMin,jMax,k,
      I                        iTracer,
      I                        myTime,myIter, myThid)
 #else /* ALLOW_GCHEM */
-       IF ( k .EQ. kSurface ) THEN
+       IF ( .NOT. useGCHEM .AND. k .EQ. kSurface ) THEN
         DO j=jMin,jMax
          DO i=iMin,iMax
           gPtracer(i,j,k,bi,bj) = gPtracer(i,j,k,bi,bj)
