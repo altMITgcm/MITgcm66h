@@ -55,8 +55,7 @@ c  Construct the physics grid pressures - count pephy levels top down
 c                                         (even though dpphy counted bottom up)
         do j = 1,sNy
         do i = 1,sNx
-         pephy(i,j,Nrphys+1,bi,bj)=(Ro_surf(i,j,bi,bj)+etaH(i,j,bi,bj))/
-     .                       rstarExpC(i,j,bi,bj)
+         pephy(i,j,Nrphys+1,bi,bj)=(Ro_surf(i,j,bi,bj)+etaH(i,j,bi,bj))
          do L = 2,Nrphys+1
          LL = Nrphys+2-L
          pephy(i,j,LL,bi,bj)=pephy(i,j,LL+1,bi,bj)-dpphys(i,j,L-1,bi,bj)
