@@ -407,6 +407,7 @@
 # To run:
  cd ../exe
  cp ../verification/natl_box_adjoint/input_seaice/* .
+ cp data.seaice.lsr data.seaice
  cp ../verification/natl_box_adjoint/input_bulk/data.grdchk .
  ./mitgcmuv >&! output.txt
 # To verify the results of the gradient check, type:
