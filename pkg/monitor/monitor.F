@@ -99,6 +99,11 @@ C       Print some statistics about input forcing fields
         CALL EXF_MONITOR( myIter, myTime, myThid )
 #endif /* ALLOW_EXF */
 
+#ifdef ALLOW_SEAICE
+C       Print some statistics about pkg/seaice fields
+        IF (useSEAICE) CALL EXF_SEAICE( myIter, myTime, myThid )
+#endif /* ALLOW_SEAICE */
+
 C       Print the basic statistics of model state variables
         CALL MON_SET_PREF('dynstat',myThid)
         CALL MON_PRINTSTATS_RL(1,EtaN,'_eta',

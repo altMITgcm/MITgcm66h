@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o added pkg/seaice/seaice_monitor.F
 o mdsio_readfield.F can now read files visible only to master MPI process.
 o pkg/seaice: some test code for ice-modified ocean stress
 o exf_getffields interpolation defaults to bilinear for all scalar forcing
