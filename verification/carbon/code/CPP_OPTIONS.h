@@ -142,6 +142,12 @@ C o Add passive tracer advection routines
 C o Include/exclude monitor package
 #define EXCLUDE_MONITOR
 
+C o Include/exclude code for sea-ice model
+#undef  ALLOW_SEAICE
+
+c o Allow atmospheric loading
+#define ATMOSPHERIC_LOADING 
+
 C o Execution environment support options
 #include "CPP_EEOPTIONS.h"
 
