@@ -37,7 +37,6 @@ C     Local variables
       _RS uf(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RS vf(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
 
-#ifndef DIVG_IN_DYNAMICS
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
         DO K=Nr,1,-1
@@ -56,7 +55,6 @@ C     Local variables
         ENDDO
        ENDDO
       ENDDO
-#endif
 
 #ifdef INCLUDE_CD_CODE
 C--   Save previous solution.
