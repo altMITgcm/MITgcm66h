@@ -55,7 +55,8 @@ C--   thread 1 will do all the writes.
       IF ( myThid .EQ. 1 ) THEN
 C--    Form name for identifying "plot"
        IF ( myIter .GE. 0 ) THEN
-        WRITE(fldTitle,'(A,A,A,I10)') '// Field ', fldNam, ' at iteration ',
+        WRITE(fldTitle,'(A,A,A,I10)') 
+     &  '// Field ', fldNam, ' at iteration ',
      &  myIter
        ELSE
         WRITE(fldTitle,'(A,A)') '// Field ', fldNam
@@ -136,7 +137,8 @@ C--   thread 1 will do all the writes.
       IF ( myThid .EQ. 1 ) THEN
 C--    Form name for identifying "plot"
        IF ( myIter .GE. 0 ) THEN
-        WRITE(fldTitle,'(A,A,A,I10)') '// Field ', fldNam, ' at iteration ',
+        WRITE(fldTitle,'(A,A,A,I10)') 
+     &  '// Field ', fldNam, ' at iteration ',
      &  myIter
        ELSE
         WRITE(fldTitle,'(A,A)') '// Field ', fldNam
@@ -222,7 +224,8 @@ C--   thread 1 will do all the writes.
       IF ( myThid .EQ. 1 ) THEN
 C--    Form name for identifying "plot"
        IF ( myIter .GE. 0 ) THEN
-        WRITE(fldTitle,'(A,A,A,I10)') '// Field ', fldNam, ' at iteration ',
+        WRITE(fldTitle,'(A,A,A,I10)') 
+     &  '// Field ', fldNam, ' at iteration ',
      &  myIter
        ELSE
         WRITE(fldTitle,'(A,A)') '// Field ', fldNam
@@ -313,7 +316,8 @@ C--   thread 1 will do all the writes.
       IF ( myThid .EQ. 1 ) THEN
 C--    Form name for identifying "plot"
        IF ( myIter .GE. 0 ) THEN
-        WRITE(fldTitle,'(A,A,A,I10)') '// Field ', fldNam, ' at iteration ',
+        WRITE(fldTitle,'(A,A,A,I10)') 
+     &  '// Field ', fldNam, ' at iteration ',
      &  myIter
        ELSE
         WRITE(fldTitle,'(A,A)') '// Field ', fldNam

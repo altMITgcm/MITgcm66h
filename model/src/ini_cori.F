@@ -68,7 +68,8 @@ C        Note in this case we assume yC is in degrees.
          DO K=1,Nr
           DO J=1,sNy
            DO I=1,sNx
-            fCori(i,j,bi,bj)=2. _d 0*omega*sin(_yC(i,j,bi,bj)*deg2rad)
+            fCori(i,j,bi,bj)=
+     &       2. _d 0*omega*sin(_yC(i,j,bi,bj)*deg2rad)
            ENDDO
           ENDDO
          ENDDO

@@ -32,7 +32,7 @@ C     === Global data ===
 #include "EESUPPORT.h"
 
 C     === Routine arguments ===
-C     phi    - Array who's overlap regions are to be exchanged
+C     phi    - Array with overlap regions are to be exchanged
 C     myThid - My thread id.
       Real*4 phi(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       INTEGER myThid
@@ -89,7 +89,7 @@ C     === Global data ===
 #include "EESUPPORT.h"
 
 C     === Routine arguments ===
-C     phi    - Array who's overlap regions are to be exchanged
+C     phi    - Array with overlap regions are to be exchanged
 C     myThid - My thread id.
       Real*4 phi(1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:Nr,nSx,nSy)
       INTEGER myThid
@@ -153,7 +153,7 @@ C     === Global data ===
 #include "EESUPPORT.h"
 
 C     === Routine arguments ===
-C     phi    - Array who's overlap regions are to be exchanged
+C     phi    - Array with overlap regions are to be exchanged
 C              Note - The interface to EXCH_RL assumes that
 C              the standard Fortran 77 sequence association rules
 C              apply.
@@ -227,7 +227,7 @@ C     === Global data ===
 #include "EESUPPORT.h"
 
 C     === Routine arguments ===
-C     phi    - Array who's overlap regions are to be exchanged
+C     phi    - Array with overlap regions are to be exchanged
 C     myThid - My thread id.
       Real*8 phi(1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:Nr,nSx,nSy)
       INTEGER myThid

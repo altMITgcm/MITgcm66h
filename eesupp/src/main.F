@@ -53,7 +53,7 @@ C           found nThreads threads are running it flags an
 C           error. This traps the case in which the input 
 C           parameter nThreads is different from the actual 
 C           number of concurrent threads the OS gives us. This
-C           case causes a deadlock if we don't trap it here.
+C           case causes a deadlock if we do not trap it here.
 #include "MAIN_PDIRECTIVES1.h"
       DO I=1,nThreads
         myThid = I

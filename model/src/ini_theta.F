@@ -106,7 +106,8 @@ C
       _EXCH_XYZ_R8(gt , myThid )
       _EXCH_XYZ_R8(gtNM1 , myThid )
 
-      CALL PLOT_FIELD_XYZRL( theta, 'Initial Temperature' , Nr, 1, myThid )
+      CALL PLOT_FIELD_XYZRL( theta, 'Initial Temperature' , 
+     &                       Nr, 1, myThid )
 
       RETURN
       END

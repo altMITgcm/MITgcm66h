@@ -65,8 +65,10 @@ C                    associated with a file that is opened.
 C     nameOfMFile - Name of metadata file used in I/O
 C     nameOfDFile - Name of data file used in I/O
       COMMON /DFILE_C/ nameOfMfile, nameOfDfile
-      CHARACTER*(MAX_LEN_FNAM) nameOfMfile(ioUnitsPerThread,MAX_NO_THREADS)
-      CHARACTER*(MAX_LEN_FNAM) nameOfDfile(ioUnitsPerThread,MAX_NO_THREADS)
+      CHARACTER*(MAX_LEN_FNAM) 
+     &         nameOfMfile(ioUnitsPerThread,MAX_NO_THREADS)
+      CHARACTER*(MAX_LEN_FNAM) 
+     &         nameOfDfile(ioUnitsPerThread,MAX_NO_THREADS)
 
 C     ioBuf_R4 - IO buffer for 32-bit floating point IO.
 C                Sized to fit anything up to a global domain 3d field.

@@ -45,7 +45,8 @@ C     Note - Only the master thread writes to it filnam
 C            This presumes that only the master thread is going to do the
 C            actual disk I/O.
       _BEGIN_MASTER(myThid)
-      WRITE(filNam(2:),'(''_9yr_atlant_'',1024A)') (fSuff(I:I),I=Ilo,Ihi)
+      WRITE(filNam(2:),'(''_9yr_atlant_'',1024A)') 
+     &  (fSuff(I:I),I=Ilo,Ihi)
       _END_MASTER(myThid)
 
 C--   Call routine to load data

@@ -64,7 +64,7 @@ C
      &  ' thread(s), ',nThreads,' are needed for this configuration!'
         CALL PRINT_ERROR( msgBuffer , myThid)
 C--     Not enough threads are running so halt the program.
-C       I didn't want this here but it is the only place I have found that
+C       I did not want this here but it is the only place I have found that
 C       KAP deadlocks if it there are fewer threads than iterations in a BLOCKED(1)
 C       loop. The deadlock appears to be in the routine mppjoin which never 
 C       returns. I tried putting the STOP in main or breaking out of the loop in main

@@ -102,7 +102,8 @@ C           longitude - phiMin and thetaMin.
           xc(I,J,bi,bj)  = xG + delX(iG+i-1)*0.5 _d 0
           yc(I,J,bi,bj)  = yG + delY(jG+j-1)*0.5 _d 0
           xG = xG + delX(iG+I-1)
-          dxF(I,J,bi,bj) = delX(iG+i-1)*deg2rad*rSphere*COS(yc(I,J,bi,bj)*deg2rad)
+          dxF(I,J,bi,bj) = delX(iG+i-1)*deg2rad*
+     &     rSphere*COS(yc(I,J,bi,bj)*deg2rad)
           dyF(I,J,bi,bj) = delY(jG+j-1)*deg2rad*rSphere
          ENDDO
          yG = yG + delY(jG+J-1)

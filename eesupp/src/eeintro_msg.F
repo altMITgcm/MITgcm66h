@@ -25,7 +25,8 @@ C     === Local variables ===
       WRITE(msgBuf,'(A)') '                '
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
-      WRITE(msgBuf,'(A)') '// ======================================================'
+      WRITE(msgBuf,'(A)') 
+     &'// ======================================================'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
       WRITE(msgBuf,'(A)') '//                      MITgcm UV'
@@ -34,7 +35,8 @@ C     === Local variables ===
       WRITE(msgBuf,'(A)') '//                      ========='
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
-      WRITE(msgBuf,'(A)') '// ======================================================'
+      WRITE(msgBuf,'(A)') 
+     &'// ======================================================'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
       WRITE(msgBuf,'(A)') '// execution environment starting up...'

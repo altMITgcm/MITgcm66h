@@ -55,10 +55,12 @@ C     aS2d: integral in Z Ay/dY
         DO K=1,Nr
          DO J=1,sNy
           DO I=1,sNx
-           faceArea = _dyG(I,J,bi,bj)*drF(K)*_hFacW(I,J,K,bi,bj)
+           faceArea = _dyG(I,J,bi,bj)*drF(K)
+     &               *_hFacW(I,J,K,bi,bj)
            aW2d(I,J,bi,bj) = aW2d(I,J,bi,bj) + 
      &      gBaro*faceArea*recip_dxC(I,J,bi,bj)
-           faceArea = _dxG(I,J,bi,bj)*drF(K)*_hFacS(I,J,K,bi,bj)
+           faceArea = _dxG(I,J,bi,bj)*drF(K)
+     &               *_hFacS(I,J,K,bi,bj)
            aS2d(I,J,bi,bj) = aS2d(I,J,bi,bj) + 
      &      gBaro*faceArea*recip_dyC(I,J,bi,bj)
           ENDDO
@@ -82,7 +84,8 @@ C     aS2d: integral in Z Ay/dY
        cg2dNorm = myNorm
       _BEGIN_MASTER( myThid )
 CcnhDebugStarts
-       WRITE(msgBuf,'(A,E40.25)') '// CG2D normalisation factor = ', cg2dNorm
+       WRITE(msgBuf,'(A,E40.25)') '// CG2D normalisation factor = ', 
+     &               cg2dNorm
        CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
        WRITE(msgBuf,*) '                               '
        CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)

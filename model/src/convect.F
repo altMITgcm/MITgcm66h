@@ -46,10 +46,14 @@ C--   Check to see if should convect now
 C--    Calculate heat content of two level column
        DO j=jMin,jmax
         DO i=iMin,imax
-         tMix(i,j) = theta(i,j,k-1,bi,bj)*_hFacC(i,j,k-1,bi,bj)*drF(k-1)
-     &              +theta(i,j,k,bi,bj)*_hFacC(i,j,k,bi,bj)*drF(k)
-         sMix(i,j) = salt (i,j,k-1,bi,bj)*_hFacC(i,j,k-1,bi,bj)*drF(k-1)
-     &              +salt (i,j,k,bi,bj)*_hFacC(i,j,k,bi,bj)*drF(k)
+         tMix(i,j) = theta(i,j,k-1,bi,bj)
+     &               *_hFacC(i,j,k-1,bi,bj)*drF(k-1)
+     &              +theta(i,j,k,bi,bj)
+     &               *_hFacC(i,j,k,bi,bj)*drF(k)
+         sMix(i,j) = salt (i,j,k-1,bi,bj)
+     &               *_hFacC(i,j,k-1,bi,bj)*drF(k-1)
+     &              +salt (i,j,k,bi,bj)
+     &               *_hFacC(i,j,k,bi,bj)*drF(k)
          dSum(i,j) = _hFacC(i,j,k-1,bi,bj)*drF(k-1)
      &              +_hFacC(i,j,k,bi,bj)*drF(k)
         ENDDO
