@@ -3,7 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
-checkpoint47d_post
+checkpoint46e_post
 o Added new equation of state -> MDJWF
   - EOS of McDougall et al., 2002, JAOT, submitted
   - caveat: the equation of state is only valid for a smaller (more
@@ -12,7 +12,7 @@ o Added new equation of state -> MDJWF
   - added more check values for density in check_eos (ini_eos.F), some of 
     the old check values are out of the range of the MDJWF-eos, so don't
     expect perfect matches for those 
-checkpoint47d_pre
+checkpoint46e_pre
 
 checkpoint46d_post
 o fixed store_pressure to work with both buoyancy relation = 'OCEANIC' and
