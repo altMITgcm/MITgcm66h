@@ -389,7 +389,7 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/seaice_model.f			\
 		$(SOURCE_CODE)/seaice_pickup.f			\
 		$(SOURCE_CODE)/seaice_readparms.f		\
-		$(SOURCE_CODE)/seaice_exch.F
+		$(SOURCE_CODE)/seaice_exch.f
 
 #--------------------------------------------------------
 # rules

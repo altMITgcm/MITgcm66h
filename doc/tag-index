@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+untagged
+o adjoint-friendly modifications to pkg/seaice
+
 ecco_c44_e26
 o Merging pkg/exf and pkg/seaice from cvs tag ecco_ice2
 o exf: Modifications to correctly handle evap field for adjoint
