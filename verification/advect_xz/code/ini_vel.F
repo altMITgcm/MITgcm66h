@@ -50,7 +50,6 @@ C
      &         *recip_hFacW(i,j,k,bi,bj)
 
            vVel(i,j,k,bi,bj)=0.
-           wVel(i,j,k,bi,bj)=0.
           ENDDO
          ENDDO
         ENDDO
@@ -81,17 +80,12 @@ c      _EXCH_XYZ_R8(vVel  , myThid )
            vVel(i,j,k,bi,bj)=vVel(i,j,k,bi,bj)*_maskS(i,j,k,bi,bj)
           ENDDO
          ENDDO
-         CALL INTEGRATE_FOR_W(
-     I                        bi, bj, k, uVel, vVel,
-     O                        wVel,
-     I                        myThid )
         ENDDO
        ENDDO
       ENDDO
 
 c     IF (uVelInitFile .NE. ' ' .OR. vVelInitFile .NE. ' ') THEN
        CALL EXCH_UV_XYZ_RL(uVel,vVel,.TRUE.,myThid)
-       _EXCH_XYZ_R8(wVel,myThid)
 c     ENDIF
 
       RETURN
