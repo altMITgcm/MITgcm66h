@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o modified W2_EXCH2_TOPOLOGY.h to reflect current topology generator
 o genmake2: add build & execute test for NetCDF code
 o modded aim.5l_cs and global_ocean.cs32x15 to use exch2, removed
   old grid files, moved CPP_EEMACROS.h to pkg/exch2
