@@ -51,7 +51,7 @@ CEndOfInterface
 C     === Local variables ===
 C     i,j,bi,bj - Loop counters
 
-      INTEGER i, j, bi, bj, kgeo
+      INTEGER i, j, bi, bj
 
 #ifdef SEAICE_EXTERNAL_FORCING
 C--   Atmospheric state and runoff are from
