@@ -86,10 +86,10 @@ CcnhDebugEnds
 
 
 C--   Initialise inverter
-      etaNBuf(1,myThid)   = 0. D0
-      errBuf(1,myThid)    = 0. D0
-      sumRHSBuf(1,myThid) = 0. D0
-      etaNM1              = 1. D0
+      etaNBuf(1,myThid)   = 0. _d 0
+      errBuf(1,myThid)    = 0. _d 0
+      sumRHSBuf(1,myThid) = 0. _d 0
+      etaNM1              = 1. _d 0
 
 CcnhDebugStarts
 C     _EXCH_XY_R8( cg2d_b, myThid )

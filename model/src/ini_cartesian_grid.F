@@ -143,8 +143,8 @@ C     dxC, dyC is separation between cell centers
        DO bi = myBxLo(myThid), myBxHi(myThid)
         DO J=1,sNy
          DO I=1,sNx
-          dxC(I,J,bi,bj)    = (dxF(I,J,bi,bj)+dxF(I-1,J,bi,bj))*0.5 D0
-          dyC(I,J,bi,bj)    = (dyF(I,J,bi,bj)+dyF(I,J-1,bi,bj))*0.5 D0
+          dxC(I,J,bi,bj)    = (dxF(I,J,bi,bj)+dxF(I-1,J,bi,bj))*0.5 _d 0
+          dyC(I,J,bi,bj)    = (dyF(I,J,bi,bj)+dyF(I,J-1,bi,bj))*0.5 _d 0
          ENDDO
         ENDDO
        ENDDO
