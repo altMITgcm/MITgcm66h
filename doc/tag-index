@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint51p_post
 o create initial cd_code package
   - WARNING: the initialization of fields within packages
     is broken because INI_FIELDS (where READ_CHECKPOINT is
