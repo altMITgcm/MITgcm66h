@@ -21,6 +21,8 @@ C     Local Variables
       CALL MNC_CW_INIT( 0,
      &     20,16, 4,4, 1,1, 1,1, 13 )
 
+      CALL MNC_CW_DUMP()
+
       print*, '=== Ending Program:    mnc_test_002 ==='
 
       END

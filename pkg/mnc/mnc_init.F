@@ -36,7 +36,7 @@ C     Write blanks or zeros to all the name and ID tables
       ENDDO
 
       DO g = 1,MNC_MAX_ID
-        mnc_cw_names(g)(1:MNC_MAX_CHAR) = blank(1:MNC_MAX_CHAR)
+        mnc_cw_gname(g)(1:MNC_MAX_CHAR) = blank(1:MNC_MAX_CHAR)
         mnc_cw_ndim(g) = 0
         DO i = 1,MNC_CW_MAX_I
           mnc_cw_dn(i,g)(1:MNC_MAX_CHAR) = blank(1:MNC_MAX_CHAR)
