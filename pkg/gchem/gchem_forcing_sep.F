@@ -25,7 +25,7 @@ C !USES: ===============================================================
 #include "PTRACERS_SIZE.h"
 #include "PTRACERS.h"
 #endif
-#ifdef DIC_BIOTIC
+#ifdef ALLOW_DIC
 #include "DIC_BIOTIC.h"
 #include "DIC_ABIOTIC.h"
 #endif
@@ -35,7 +35,7 @@ C  myThid               :: thread number
       INTEGER myThid, myIter
       _RL myTime
 
- !LOCAL VARIABLES: ====================================================
+c!LOCAL VARIABLES: ====================================================
 C  i,j                  :: loop indices
 C  bi,bj                :: tile indices
 C  k                    :: vertical level
