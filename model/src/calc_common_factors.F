@@ -110,7 +110,7 @@ C--   Calculate vertical "volume transport" through
 C--   tracer cell face *above* this level.
       DO j=jMin,jMax
         DO i=iMin,iMax
-          rTrans(i,j) = wVel(i,j,k,bi,bj)*rA(i,j,bi,bj)
+          rTrans(i,j) = wVel(i,j,k,bi,bj)*rA(i,j,bi,bj)*maskUp(i,j)
         ENDDO
       ENDDO
 
