@@ -2,22 +2,12 @@ C
 C $Header$
 C $Name$
 
-#include "AD_CONFIG.h"
+cph#include "AD_CONFIG.h"
 
 C 
 C CPP flags controlling which code is included in the files that
 C will be compiled.
 C
-C ********************************************************************
-C ***                         ECCO Package                         ***
-C ********************************************************************
-C
-#undef  ALLOW_ECCO_FORWARD_RUN
-#undef  ALLOW_ECCO_DIAGNOSTICS_RUN
-#undef  ALLOW_ECCO_OPTIMIZATION
-
-C       >>> Do a long protocol.
-#undef ECCO_VERBOSE
 
 C ********************************************************************
 C ***                  Adjoint Support Package                     ***

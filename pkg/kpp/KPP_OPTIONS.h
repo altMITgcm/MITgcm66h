@@ -11,6 +11,8 @@ C     \==========================================================/
 #ifndef KPP_OPTIONS_H
 #define KPP_OPTIONS_H
 #include "PACKAGES_CONFIG.h"
+#include "AD_CONFIG.h"
+
 #ifdef ALLOW_KPP
 
 #include "CPP_OPTIONS.h"

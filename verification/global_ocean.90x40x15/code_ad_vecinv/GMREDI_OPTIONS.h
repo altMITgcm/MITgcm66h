@@ -7,6 +7,10 @@ C Use this file for selecting options within the GM/Redi package
 C
 C GM/Redi is enabled with ALLOW_GMREDI in CPP_OPTIONS.h
 
+#ifndef GMREDI_OPTIONS_H
+#define GMREDI_OPTIONS_H
+#include "PACKAGES_CONFIG.h"
+
 #include "CPP_OPTIONS.h"
 
 #ifdef ALLOW_GMREDI
@@ -34,3 +38,5 @@ C  instead of the Skew-Flux form (=default)
 
 
 #endif /* ALLOW_GMREDI */
+#endif /* GMREDI_OPTIONS_H */
+
