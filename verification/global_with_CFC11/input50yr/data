@@ -1,0 +1,185 @@
+# ====================
+# | Model parameters |
+# ====================
+
+# Continuous equation parameters
+#
+#   tRef            - Reference vertical potential temperature          (deg C)
+#   sRef            - Reference vertical salinity                         (PSU)
+#   viscAh          - Horizontal eddy viscosity coefficient             (m^2/s)
+#   viscAz          - Vertical eddy viscosity coefficient               (m^2/s)
+#   diffKhT         - Horizontal temperature diffusivity                (m^2/s)
+#   diffKzT         - Vertical temperature diffusivity                  (m^2/s)
+#   diffKhS         - Horizontal salt diffusivity                       (m^2/s)
+#   diffKzS         - Vertical salt diffusivity                         (m^2/s)
+#   f0              - Reference coriolis parameter,
+#                    south edge of f on beta plane                     (1/s)
+#   beta            - df/dy                                         (s^-1.m^-1)
+#   tAlpha          - Linear EOS thermal expansion coefficient           (1/oC)
+#   sBeta           - Linear EOS haline contraction coefficient         (1/ppt)
+#   gravity         - Acceleration due to gravity                       (m/s^2)
+#   gBaro           - Accel. due to gravity used in barotropic equation (m/s^2)
+#   rigidLid        - Set to true to use rigid lid
+#   implicitFreeSurface - Set to true to use implicit free surface
+#   eosType         - Flag for linear or polynomial equation of state
+#   GMkbackground   - background value of GM/Redi coefficient
+#   momAdvection    - On/Off flag for momentum self transport
+#   momViscosity    - On/Off flag for momentum mixing
+#
+ &PARM01
+ tRef               = 3*23.,3*22.,21.,2*20.,19.,2*18.,17.,2*16.,15.,14.,13.,
+                      12.,11.,2*9.,8.,7.,2*6.,2*5.,3*4.,3*3.,4*2.,8*1.,
+ sRef               = 46*34.5,
+ viscAr             = 1.77e-5
+ diffKrT            = 1.51e-5
+ diffKrS            = 1.51e-5
+ viscAh             = 0.,
+ viscA4             = 1.0e13,
+ diffKhT            = 0.,
+ diffKhS            = 0.,
+ rhonil=1035.,
+ gravity=9.81,
+ rigidLid           = .FALSE.,
+ implicitFreeSurface= .TRUE.
+ implicitDiffusion  = .TRUE.
+ implicitViscosity  = .TRUE.
+ eosType            = 'POLY3',
+ allowFreezing=.TRUE.,
+ no_slip_bottom     = .TRUE.,
+ no_slip_sides      = .FALSE.
+ tr1Stepping=.TRUE.
+# turn on looped cells
+ hFacMin=.3,
+ hFacMinDz=50.,
+# set precision of data files
+ readBinaryPrec=32,
+ writeBinaryPrec=32,
+ writeBinaryPrec=32,
+ globalFiles=.TRUE.
+ useSingleCpuIO=.TRUE.
+ &
+
+# Elliptic solver parameters
+#
+#   cg2dMaxIters       - Maximum number of 2d solver iterations
+#   cg2dTargetResidual - Solver target residual
+#
+ &PARM02
+ cg2dMaxIters=500,
+ cg2dTargetResidual=1.E-13,
+ &
+
+# Time stepping parameters
+#
+#   startTime         - Integration starting time                (s)
+#   endTime           - Integration ending time                  (s)
+#   tauCD             - CD scheme coupling timescale             (s)
+#   deltaTMom         - Timestep for momemtum equations          (s)
+#   deltaTtracer      - Tracer timestep                          (s)
+#   deltaTClock       - Timestep used as model "clock"           (s)
+#   abEps             - Adams-Bashforth stabilising factor
+#   pChkPtFreq        - Frequency of permanent check pointing    (s)
+#   chkPtFreq         - Frequency of rolling check pointing      (s)
+#   dumpFreq          - Frequency at which model state is stored (s)
+#   tauThetaClimRelax - Relaxation to climatology time scale     (s)
+#   tauSaltClimRelax  - Relaxation to climatology time scale     (s)
+#
+ &PARM03
+ startTime  =0.,
+ endTime    =31968000.,
+ deltaTmom = 3600.,
+ deltaTtracer= 3600.,
+ deltaTClock = 3600.,
+ tauCD =     172800.,
+ pChkptFreq= 86400.,
+ dumpFreq=   43200.,
+ tr1dumpFreq=864000.,
+ taveFreq=   864000.,
+ monitorFreq=864000.,
+ tauThetaClimRelax =  2592000.0,
+ tauSaltClimRelax = 3842380.,
+ abEps            = 0.1,
+ &
+
+# Gridding parameters
+#
+#   usingSphericalPolarGrid - On/Off flag for spherical polar coordinates
+#   usingCartesianGrid      - On/Off flag for selecting cartesian coordinates
+#   delX                    - Zonal grid spacing         (degrees)
+#   delY                    - Meridional grid spacing    (degrees)
+#   delZ                    - Vertical grid spacing      (m)
+#   phiMin                  - Southern boundary latitude (degrees)
+#
+ &PARM04
+ usingCartesianGrid      = .FALSE.,
+ usingSphericalPolarGrid = .TRUE.,
+ delX   = 360*1.,
+ delY   = 1.0000000, 1.0000000, 1.0000000, 1.0000000,
+  1.0000000, 1.0000000, 1.0000000, 1.0000000, 1.0000000,
+  1.0000000, 1.0000000, 1.0000000, 1.0000000, 1.0000000,
+  1.0000000, 1.0000000, 1.0000000, 1.0000000, 1.0000000,
+  1.0000000, 1.0000000, 1.0000000, 1.0000000, 1.0000000,
+  1.0000000, 1.0000000, 1.0000000, 1.0000000, 1.0000000,
+  1.0000000, 1.0000000, 1.0000000, 1.0000000, 1.0000000,
+  1.0000000, 1.0000000, 1.0000000, 1.0000000, 1.0000000,
+  1.0000000, 1.0000000, 1.0000000, 1.0000000, 1.0000000,
+  1.0000000, 1.0000000, 1.0000000, 1.0000000, 1.0000000,
+  1.0000000, 1.0000000, 1.0000000, 1.0000000, 0.9998741,
+  0.9956741, 0.9835052, 0.9675407, 0.9441032, 0.9175377,
+  0.8843880, 0.8491249, 0.8084641, 0.7670174, 0.7215805,
+  0.6768684, 0.6297283, 0.5849037, 0.5392418, 0.4974575,
+  0.4563580, 0.4205704, 0.3867931, 0.3595371, 0.3353481,
+  0.3185692, 0.3055687, 0.3004913, 0.2995090, 0.3004913,
+  0.2995071, 0.3004932, 0.2995071, 0.3004932, 0.2995071,
+  0.3004913, 0.2995090, 0.3004913, 0.2995090, 0.3004904,
+  0.2995100, 0.3004894, 0.2995110, 0.3004894, 0.2995100,
+  0.3004904, 0.2995090, 0.3004913, 0.2995090, 0.3004904,
+  0.2995100, 0.3004899, 0.2995100, 0.3004899, 0.2995100,
+  0.3004904, 0.2995095, 0.3004904, 0.2995095, 0.3004906,
+  0.2995093, 0.3004907, 0.2995093, 0.3004907, 0.2995093,
+  0.3004906, 0.2995095, 0.3004904, 0.2995095, 0.3004904,
+  0.2995100, 0.3004899, 0.2995100, 0.3004899, 0.2995100,
+  0.3004904, 0.2995090, 0.3004913, 0.2995090, 0.3004904,
+  0.2995100, 0.3004894, 0.2995110, 0.3004894, 0.2995100,
+  0.3004904, 0.2995090, 0.3004913, 0.2995090, 0.3004913,
+  0.2995071, 0.3004932, 0.2995071, 0.3004932, 0.2995071,
+  0.3004913, 0.2995090, 0.3004913, 0.3055687, 0.3185692,
+  0.3353481, 0.3595371, 0.3867931, 0.4205704, 0.4563580,
+  0.4974575, 0.5392418, 0.5849037, 0.6297283, 0.6768684,
+  0.7215805, 0.7670174, 0.8084641, 0.8491249, 0.8843880,
+  0.9175377, 0.9441032, 0.9675407, 0.9835052, 0.9956741,
+  0.9998741, 1.0000000, 1.0000000, 1.0000000, 1.0000000,
+  1.0000000, 1.0000000, 1.0000000, 1.0000000, 1.0000000,
+  1.0000000, 1.0000000, 1.0000000, 1.0000000, 1.0000000,
+  1.0000000, 1.0000000, 1.0000000, 1.0000000, 1.0000000,
+  1.0000000, 1.0000000, 1.0000000, 1.0000000, 1.0000000,
+  1.0000000, 1.0000000, 1.0000000, 1.0000000, 1.0000000,
+  1.0000000, 1.0000000, 1.0000000, 1.0000000, 1.0000000,
+  1.0000000, 1.0000000, 1.0000000, 1.0000000, 1.0000000,
+  1.0000000, 1.0000000, 1.0000000, 1.0000000, 1.0000000,
+  1.0000000, 1.0000000, 1.0000000, 1.0000000, 1.0000000,
+  1.0000000, 1.0000000, 1.0000000, 1.0000000, 1.0000000
+ delZ   = 15*10.,
+  11.13,14.46,19.82,26.94,35.48,44.99,55.00,
+  65.01,74.52,83.06,90.18,95.54,98.87,
+  4*100.00,
+  111.42,143.93,192.60,250.00,307.40,356.07,388.58,
+  7*400.00,
+ phiMin = -79.,
+ &
+
+# Input datasets
+#
+#   bathyFile       - File containing bathymetry
+#   hydrogThetaFile - File containing initial potential temperature data
+#   hydrogSaltFile  - File containing initial salinity data
+#   zonalWindFile   - File containing zonal wind data
+#   meridWindFile   - File containing meridional wind data
+#   thetaClimFile   - File containing theta climatology used for relaxation
+#   saltClimFile    - File containing salt climatology used for relaxation
+#
+ &PARM05
+ bathyFile       = 'Depth.data',
+ hydrogThetaFile = 'lev_clim_temp.bin'
+ hydrogSaltFile  = 'lev_clim_salt.bin',
+ &

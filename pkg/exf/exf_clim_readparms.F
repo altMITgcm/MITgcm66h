@@ -49,6 +49,14 @@ c     Surface flux data.
      &       climtempfile,       climsaltfile,   climsstfile,
      &        climsssfile,
      &     exf_clim_iprec, exf_clim_yftype
+#ifdef USE_EXF_INTERPOLATION
+     & ,climsst_lon0, climsst_lon_inc,
+     & climsst_lat0, climsst_lat_inc,
+     & climsst_nlon, climsst_nlat,
+     & climsss_lon0, climsss_lon_inc,
+     & climsss_lat0, climsss_lat_inc,
+     & climsss_nlon, climsss_nlat,
+#endif
 
       _BEGIN_MASTER(mythid)
 

@@ -3,6 +3,17 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+Branch release1_50yr
+Code used for 50-year JPL telescoping integration.
+
+Branched off release1_p15
+Modified pkg/exf/exf_clim_param.h, exf_clim_readparms.F,
+   exf_set_climsss.F, and exf_set_climsst.F to add new_interp
+   capability to SST and SSS
+Added verification/global_with_CFC11/code50yr and input50yr
+
+======================================================================
+
 release1_p15
 o Added CFC-11 diagnostics, see
   verification/global_with_CFC11/README

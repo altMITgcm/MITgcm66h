@@ -6,3 +6,43 @@ protocol (http://www.ipsl.jussieu.fr/OCMIP/).
 CFC-11 output in mol/m^3 is output in files TR1.*.data
 Example of how to read this output file using matlab is
 in input/lookat.m
+
+Configuring and running the 50-year JPL telescoping integration:
+
+1) get code:
+
+setenv CVSROOT :pserver:cvsanon@mitgcm.org:/u/u0/gcmpack
+cvs login ( CVS password: cvsanon )
+cvs co -r release1_P15 MITgcm
+
+2) compile code:
+
+cd MITgcm/bin
+cp ../verification/global_with_CFC11/code50yr/*.h .
+cp ../verification/global_with_CFC11/code50yr/*.F .
+cp ../verification/global_with_CFC11/code50yr/.genmakerc .
+../tools/genmake -mpi -platform=o2k -makefile
+make depend
+make
+
+3) run code for first spin-up year (1931)
+
+cd ../exe
+
+get forcing files:
+Depth.data         NCEP_1948_sw       NCEP_1948_vstr     lev_clim_temp.bin
+NCEP_1948_emp      NCEP_1948_trb      run-off.bin_1x1    lev_clim_salt.bin
+NCEP_1948_sst      NCEP_1948_ustr     salt_14months.bin
+
+cp ../verification/global_with_CFC11/input50yr/* .
+
+
+
+
+wind stress and heat fluxes (incl radiation) are labeled by
+NCEP as 0h,6h,12h, and 18h. However, they represent
+averages over 0-6h,6-12h,12-18h, and 18-24h. 
+
+air temperature, specific humidity, wind speed and
+precipitation are labeled identically by NCEP but represent
+instantaneous forecast values at 6h,12h,18h, and 24h. 
