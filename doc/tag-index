@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+ecco_c51_e34
+o merging c51 into ecco-branch
+
 ecco_c50_e33a
 o first step in c51 merge
   - redundant update in model/src/
