@@ -40,8 +40,9 @@ c
        j2 = sNy
 
 #ifdef ALLOW_FIZHI
-                                                                                         
-       if(usefizhi)then
+#ifdef NONLIN_FRSURF
+
+       if(usefizhi .and. (select_rStar.GT.0) )then
         do bj = myByLo(myThid), myByHi(myThid)
         do bi = myBxLo(myThid), myBxHi(myThid)
 c
@@ -58,6 +59,7 @@ c
         enddo
        endif
 
+#endif
 #endif
 
        return
