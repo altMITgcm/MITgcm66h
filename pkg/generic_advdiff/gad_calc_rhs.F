@@ -304,7 +304,7 @@ C-    GM/Redi flux in R
 C *note* should update GMREDI_RTRANSPORT to set df  *aja*
        CALL GMREDI_RTRANSPORT(
      I     iMin,iMax,jMin,jMax,bi,bj,K,
-     I     maskUp,Tracer,
+     I     Tracer,
      U     df,
      I     myThid)
 c      DO j=1-Oly,sNy+Oly
