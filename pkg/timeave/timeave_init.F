@@ -26,9 +26,9 @@ C     !INPUT PARAMETERS:
       INTEGER myThid
 CEOP
 
-#ifdef ALLOW_TIMEAVE        
+#ifdef ALLOW_TIMEAVE
 
-#ifdef ALLOW_MNC        
+#ifdef ALLOW_MNC
       IF (useMNC) THEN
 
       CALL MNC_CW_ADD_VNAME('ETAtave', 'Cen_xy_Hn__-__t',3,4,myThid)

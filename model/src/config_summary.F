@@ -24,6 +24,9 @@ C     !USES:
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#ifdef ALLOW_MNC
+#include "MNC_PARAMS.h"
+#endif
 #include "EOS.h"
 #include "GRID.h"
 #include "DYNVARS.h"
