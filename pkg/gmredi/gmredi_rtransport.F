@@ -84,7 +84,7 @@ C-      Off-diagonal components of vertical flux
         df(i,j) = df(i,j)
      &      - _rA(i,j,bi,bj)
      &        *( Kwx(i,j,k,bi,bj)*dTdx +Kwy(i,j,k,bi,bj)*dTdy )
-     &        *GM_adjointRescale
+cph     &        *GM_adjointRescale
 
        ENDDO
       ENDDO
