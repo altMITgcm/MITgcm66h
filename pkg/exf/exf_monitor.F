@@ -40,9 +40,9 @@ CEOP
 C       Print some statistics about input forcing fields
         CALL MON_SET_PREF('exf',myThid)
         CALL MON_PRINTSTATS_RL(1,ustress,'_ustress',
-     &       maskW,maskW,rAw,drF,myThid)
+     &       maskH,maskH,rAw,drF,myThid)
         CALL MON_PRINTSTATS_RL(1,vstress,'_vstress',
-     &       maskS,maskS,rAs,drF,myThid)
+     &       maskH,maskH,rAs,drF,myThid)
         CALL MON_PRINTSTATS_RL(1,hflux,'_hflux',
      &       maskH,maskH,rA ,drF,myThid)
         CALL MON_PRINTSTATS_RL(1,sflux,'_sflux',
