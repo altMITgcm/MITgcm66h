@@ -83,7 +83,7 @@ C--   -grad Phi_Hyd has not been incorporated to gV and is added here:
           DO i=iMin,iMax
             gVNm1(i,j,k,bi,bj)=gVNm1(i,j,k,bi,bj)
      &       - _recip_dyC(i,j,bi,bj)
-     &         *(phiHyd(i,j,k)-phiHyd(i-1,j,k))*phyFac                      
+     &         *(phiHyd(i,j,k)-phiHyd(i,j-1,k))*phyFac                      
      &         *_maskS(i,j,k,bi,bj)
           ENDDO
         ENDDO
