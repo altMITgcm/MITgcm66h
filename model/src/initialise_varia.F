@@ -114,9 +114,6 @@ C--   Initialise passive tracer(s)
       _BARRIER
 #endif
 
-C--   Initialize variable data for packages
-      CALL PACKAGES_INIT_VARIABLES( myThid )
-
 #ifdef ALLOW_AUTODIFF_TAMC
 C--   Initialise active fields to help TAMC
       CALL INI_AUTODIFF( myThid )
@@ -150,6 +147,9 @@ CADJ loop = parallel
         ENDDO
         _BARRIER
       END IF
+
+C--   Initialize variable data for packages
+      CALL PACKAGES_INIT_VARIABLES( myThid )
 
 #ifdef NONLIN_FRSURF
 C--   Compute the surface level thickness <-- function of etaH(n)
