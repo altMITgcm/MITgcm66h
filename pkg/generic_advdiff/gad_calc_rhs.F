@@ -402,7 +402,15 @@ C *note* should update KPP_TRANSPORT_T to set df  *aja*
      I     iMin,iMax,jMin,jMax,bi,bj,k,km1,
      I     KappaRT,
      U     df )
+#ifdef ALLOW_PTRACERS
+       ELSEIF (tracerIdentity.EQ.GAD_TR1) THEN
+        CALL KPP_TRANSPORT_PTR(
+     I     iMin,iMax,jMin,jMax,bi,bj,k,km1,
+     I     KappaRT,
+     U     df )
+#endif
        ELSE
+        PRINT*,'invalid tracer indentity: ', tracerIdentity
         STOP 'GAD_CALC_RHS: Ooops'
        ENDIF
        DO j=1-Oly,sNy+Oly
