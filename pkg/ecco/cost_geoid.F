@@ -134,8 +134,7 @@ c--   close geoid error covariance file
 
       _END_MASTER( mythid )
 
-      call global_sum_r8( cost, mythid )
-      sphcost = cost
+      call global_sum_r8( sphcost, mythid )
 
 #else  /* ALLOW_EGM96_ERROR_COV */
       sphcost = 0.
