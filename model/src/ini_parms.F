@@ -55,7 +55,7 @@ C     xxxDefault - Default value for variable xxx
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       CHARACTER*(MAX_LEN_PREC) record
       INTEGER goptCount
-      INTEGER K, I, J, IL, iUnit
+      INTEGER K, I, IL, iUnit
       INTEGER errIO
       INTEGER  IFNBLNK
       EXTERNAL IFNBLNK
@@ -163,7 +163,7 @@ C--   Input files
      & thetaClimFile, saltClimFile,
      & surfQfile, EmPmRfile, surfQswfile, 
      & uVelInitFile, vVelInitFile, pSurfInitFile,
-     & dQdTFile
+     & dQdTFile, ploadFile
 
 C
       _BEGIN_MASTER(myThid)
@@ -862,6 +862,23 @@ C--   Input files
        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT , 1) 
       ENDIF       
+C     o If pLoadFile is set, then we should make sure the corresponing
+C       code is being compiled
+#ifndef ATMOSPHERIC_LOADING
+      IF (pLoadFile.NE.' ') THEN
+        WRITE(msgBuf,'(A)')
+     &  'S/R INI_PARMS: pLoadFile is set but you have not'
+        CALL PRINT_ERROR( msgBuf , 1)
+        WRITE(msgBuf,'(A)')
+     &  'compiled the model with the pressure loading code.'
+        CALL PRINT_ERROR( msgBuf , 1)
+        WRITE(msgBuf,'(A,A)')
+     &  'Re-compile with:  #define ATMOSPHERIC_LOADING',
+     &  '              or  -DATMOSPHERIC_LOADING'
+        CALL PRINT_ERROR( msgBuf , 1)
+        STOP 'ABNORMAL END: S/R INI_PARMS'
+      ENDIF
+#endif
 
 C
 C--   Set factors required for mixing pressure and meters as vertical coordinate.

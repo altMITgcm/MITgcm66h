@@ -3,6 +3,14 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint46a_post
+o Added (atmospheric) pressure loading
+  - new field in FFIELDS.h, etc...
+  - new cpp flag ATMOSPHERIC_LOADING
+o Changed hFacC to _hFacC in calc_phi_hyd.F
+o Added SHORTWAVE_HEATING to some files for consistency
+checkpoint46a_pre
+
 checkpoint46
 further merges from release1_p5
 o new ctrl package
