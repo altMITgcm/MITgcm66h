@@ -106,9 +106,11 @@ C--   Step forward all tiles, filter and exchange.
 #endif
 
 #ifdef ALLOW_ZONAL_FILT
+      IF (zonal_filt_lat.LT.90.) THEN 
       CALL ZONAL_FILT_APPLY(
      U           gUnm1, gVnm1, gTnm1, gSnm1,
      I           myThid )
+      ENDIF
 #endif
 
 C--   Solve elliptic equation(s).
