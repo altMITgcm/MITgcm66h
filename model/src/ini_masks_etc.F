@@ -178,20 +178,16 @@ C     hFacW and hFacS (at U and V points)
        ENDDO
       ENDDO
       CALL EXCH_UV_XYZ_RL(hFacW,hFacS,.FALSE.,myThid)
-C     Re-do hFacW and hFacS (at U and V points)
+C     The following block allows thin walls representation of non-periodic
+C     boundaries such as happen on the lat-lon grid at the N/S poles.
+C     We should really supply a flag for doing this.
       DO bj=myByLo(myThid), myByHi(myThid)
        DO bi=myBxLo(myThid), myBxHi(myThid)
         DO K=1, Nr
          DO J=1-Oly,sNy+Oly
-          DO I=1-Olx+1,sNx+Olx ! Note range
-           hFacW(I,J,K,bi,bj)=
-     &       MIN(hFacC(I,J,K,bi,bj),hFacC(I-1,J,K,bi,bj))
-          ENDDO
-         ENDDO
-         DO I=1-Olx,sNx+Olx
-          DO J=1-Oly+1,sNy+Oly ! Note range
-           hFacS(I,J,K,bi,bj)=
-     &       MIN(hFacC(I,J,K,bi,bj),hFacC(I,J-1,K,bi,bj))
+          DO I=1-Olx,sNx+Olx
+           IF (DYG(I,J,bi,bj).EQ.0.) hFacW(I,J,K,bi,bj)=0.
+           IF (DXG(I,J,bi,bj).EQ.0.) hFacS(I,J,K,bi,bj)=0.
           ENDDO
          ENDDO
         ENDDO
