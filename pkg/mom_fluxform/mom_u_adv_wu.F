@@ -3,31 +3,48 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
+CBOP
+C !ROUTINE: MOM_U_ADV_WU
+
+C !INTERFACE: ==========================================================
       SUBROUTINE MOM_U_ADV_WU(
      I        bi,bj,k,
      I        uFld,wFld,
      O        advectiveFluxWU,
      I        myThid)
-      IMPLICIT NONE
-C
-C     Calculate advective flux in R direction for U eqn
-C
 
-C     == Global variables ==
+C !DESCRIPTION:
+C Calculates the vertical advective flux of zonal momentum:
+C \begin{equation*}
+C F^r = \overline{W}^i \overline{u}^{k}
+C \end{equation*}
+
+C !USES: ===============================================================
+      IMPLICIT NONE
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
 
-C     == Routine arguments ==
+C !INPUT PARAMETERS: ===================================================
+C  bi,bj                :: tile indices
+C  k                    :: vertical level
+C  rTrans               :: vertical transport
+C  uFld                 :: zonal flow
+C  myThid               :: thread number
       INTEGER bi,bj,k
       _RL uFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL wFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-      _RL advectiveFluxWU(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER myThid
 
-C     == Local variables ==
-      INTEGER i,j
+C !OUTPUT PARAMETERS: ==================================================
+C  advectiveFluxWU      :: advective flux
+      _RL advectiveFluxWU(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+
+C !LOCAL VARIABLES: ====================================================
+C  i,j                  :: loop indices
+      INTEGER I,J
+CEOP
 
       IF ( k.GT.Nr .OR.
      &    (k.EQ.1.AND.rigidLid) ) THEN
