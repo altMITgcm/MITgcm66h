@@ -186,7 +186,8 @@ C Now calculate whether it is time to update the forcing arrays
 
       intime0=int(Iftm/Ifprd)
       intime1=mod(intime0+1,nForcingPeriods)
-      aWght=float( Iftm-Ifprd*intime0 )/float( Ifprd )
+c     aWght=float( Iftm-Ifprd*intime0 )/float( Ifprd )
+      aWght=dfloat( Iftm-Ifprd*intime0 )/dfloat( Ifprd )
       bWght=1.-aWght
 
       intime0=intime0+1
