@@ -137,7 +137,8 @@ c--   Get the counters, flags, and the interpolation factor.
 
 c--   Add control to model variable.
 cph(
-cph this flag ported from the SIO code (dont know why its here)
+cph this flag ported from the SIO code
+cph Initial wind stress adjustments are too vigorous.
       if ( gencount0 .LE. 2 .AND. 
      &     ( xx_gen_file .EQ. xx_tauu_file .OR.
      &       xx_gen_file .EQ. xx_tauv_file ) ) then
