@@ -13,10 +13,14 @@ C     Package flag
      &                    GM_ExtraDiag
 
 C     GM/Redi parameters
+C     GM_Small_Number :: epsilon used in computing the slope
+C     GM_slopeSqCutoff :: slope^2 cut-off value
       _RL GM_isopycK
       _RL GM_background_K
       _RL GM_maxSlope
       _RL GM_Kmin_horiz
+      _RL GM_Small_Number
+      _RL GM_slopeSqCutoff
       _RL GM_Visbeck_alpha
       _RL GM_Visbeck_length
       _RL GM_Visbeck_depth
@@ -27,6 +31,7 @@ C     GM/Redi parameters
       COMMON /GM_PARAMS/ GM_isopycK, GM_background_K,
      &                   GM_maxSlope,
      &                   GM_Kmin_horiz,
+     &                   GM_Small_Number, GM_slopeSqCutoff,
      &                   GM_Visbeck_alpha,
      &                   GM_Visbeck_length,
      &                   GM_Visbeck_depth,
@@ -35,10 +40,10 @@ C     GM/Redi parameters
      &                   GM_Scrit,
      &                   GM_Sd
 
-      _RL        GM_Small_Number
-      PARAMETER( GM_Small_Number=   1. _d -8 )
-      _RL        GM_adjointRescale
-      PARAMETER( GM_adjointRescale= 1. _d 0 )
+      _RL op5
+      _RL op25
+      PARAMETER( op5 = 0.5 _d 0 )
+      PARAMETER( op25 = 0.25 _d 0 )
 
 C     More GM/Redi parameters diagnosed from previous block
 C     (not directly user configured)
