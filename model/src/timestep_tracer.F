@@ -3,21 +3,25 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
+      SUBROUTINE TIMESTEP_TRACER(
+     I                     bi, bj, iMin, iMax, jMin, jMax, K, tauAB,
+     U                     tracer, gTracer, gTrNm1,
+     I                     myIter, myThid )
 C     /==========================================================\
 C     | S/R TIMESTEP_TRACER                                      |
 C     | o Step model tracer field forward in time                |
 C     \==========================================================/
-      SUBROUTINE TIMESTEP_TRACER(
-     I                     bi, bj, iMin, iMax, jMin, jMax, K,
-     U                     tracer, gTracer, gTrNm1,
-     I                     myIter, myThid )
-      implicit none
-! Common
+      IMPLICIT NONE
+
+C     == Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+
 C     == Routine Arguments ==
+C     tauAB - Adams-Bashforth timestepping weight: 0=forward ; 1/2=Adams-Bashf.
       INTEGER bi,bj,iMin,iMax,jMin,jMax,K
+      _RL  tauAB
       _RL  tracer (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  gTracer(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  gTrNm1 (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
@@ -27,13 +31,8 @@ C     == Local variables ==
       _RL ab15,ab05
 
 C     Adams-Bashforth timestepping weights
-Caja  IF (myIter .EQ. 0) THEN
-Caja   ab15=1.0
-Caja   ab05=0.0
-Caja  ELSE
-       ab15=1.5+abeps
-       ab05=-0.5-abeps
-Caja  ENDIF
+      ab15 = 1.+ tauAB
+      ab05 = -tauAB
 
 C     Step forward temperature
       DO j=jMin,jMax
