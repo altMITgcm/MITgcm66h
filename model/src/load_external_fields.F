@@ -73,7 +73,7 @@ C     msgBuf - Error message buffer
       _RL aWght,bWght,rdt
       INTEGER nForcingPeriods,Imytm,Ifprd,Ifcyc,Iftm,Imth,Iyr
 
-      IF ( .NOT. periodicExternalForcing ) RETURN
+      IF ( periodicExternalForcing ) THEN
 
 C First call requires that we initialize everything to zero for safety
       IF ( myIter .EQ. nIter0 ) THEN
@@ -219,6 +219,9 @@ C-- Diagnostics
      &   myTime,
      &   taux0(1,sNy,1,1),taux1(1,sNy,1,1),fu(1,sNy,1,1),
      &   aWght,bWght
+      ENDIF
+
+C endif for periodicForcing
       ENDIF
 
       RETURN
