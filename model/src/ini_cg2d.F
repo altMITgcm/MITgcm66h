@@ -73,7 +73,7 @@ C     aS2d: integral in Z Ay/dY
        ENDDO
       ENDDO
       cg2dNbuf(1,myThid) = myNorm
-      _GLOBAL_MAX_R8( cg2dNbuf, myNorm, myThid )
+      _GLOBAL_MAX_R4( cg2dNbuf, myNorm, myThid )
       IF ( cg2dNbuf(1,1) .NE. 0. _d 0 ) THEN
        myNorm = 1. _d 0/cg2dNbuf(1,1)
       ELSE
