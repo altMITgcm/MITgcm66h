@@ -163,6 +163,66 @@ c--   == end of interface ==
 
 #endif /* ALLOW_VSTRESS_CONTROL */
 
+#ifdef ALLOW_ATEMP_CONTROL
+      else if ( grdchkvarindex .eq. 7 ) then
+         il=ilnblnk( xx_atemp_file )
+         write(fname(1:80),'(80a)') ' '
+         write(fname(1:80),'(3a,i10.10)')
+     &        yadmark, xx_atemp_file(1:il),'.',optimcycle
+
+         call active_read_xy( fname, tmpfld2d, icvrec,
+     &                        doglobalread, ladinit, optimcycle,
+     &                        mythid, dummy)
+
+         xx_comp = tmpfld2d( itilepos,jtilepos,itile,jtile )
+
+#endif /* ALLOW_ATEMP_CONTROL */
+
+#ifdef ALLOW_AQH_CONTROL
+      else if ( grdchkvarindex .eq. 8 ) then
+         il=ilnblnk( xx_aqh_file )
+         write(fname(1:80),'(80a)') ' '
+         write(fname(1:80),'(3a,i10.10)')
+     &        yadmark, xx_aqh_file(1:il),'.',optimcycle
+
+         call active_read_xy( fname, tmpfld2d, icvrec,
+     &                        doglobalread, ladinit, optimcycle,
+     &                        mythid, dummy)
+
+         xx_comp = tmpfld2d( itilepos,jtilepos,itile,jtile )
+
+#endif /* ALLOW_AQH_CONTROL */
+
+#ifdef ALLOW_UWIND_CONTROL
+      else if ( grdchkvarindex .eq. 9 ) then
+         il=ilnblnk( xx_uwind_file )
+         write(fname(1:80),'(80a)') ' '
+         write(fname(1:80),'(3a,i10.10)')
+     &        yadmark, xx_uwind_file(1:il),'.',optimcycle
+
+         call active_read_xy( fname, tmpfld2d, icvrec,
+     &                        doglobalread, ladinit, optimcycle,
+     &                        mythid, dummy)
+
+         xx_comp = tmpfld2d( itilepos,jtilepos,itile,jtile )
+
+#endif /* ALLOW_UWIND_CONTROL */
+
+#ifdef ALLOW_VWIND_CONTROL
+      else if ( grdchkvarindex .eq. 10 ) then
+         il=ilnblnk( xx_vwind_file )
+         write(fname(1:80),'(80a)') ' '
+         write(fname(1:80),'(3a,i10.10)')
+     &        yadmark, xx_vwind_file(1:il),'.',optimcycle
+
+         call active_read_xy( fname, tmpfld2d, icvrec,
+     &                        doglobalread, ladinit, optimcycle,
+     &                        mythid, dummy)
+
+         xx_comp = tmpfld2d( itilepos,jtilepos,itile,jtile )
+
+#endif /* ALLOW_VWIND_CONTROL */
+
 #ifdef ALLOW_TR10_CONTROL
       else if ( grdchkvarindex .eq. 17 ) then
          il=ilnblnk( xx_tr1_file )
