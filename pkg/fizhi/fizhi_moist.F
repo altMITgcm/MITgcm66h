@@ -1130,9 +1130,6 @@ C **********************************************************************
        ndtls  = ndtls  + 1
        ndqls  = ndqls  + 1
 
-       nudiag1  = nudiag1  + 1
-       nudiag2  = nudiag2  + 1
-
        endif
 #endif
  
