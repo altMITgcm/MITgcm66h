@@ -95,7 +95,7 @@ C--   Continuous equation parameters
      & viscAr, diffKrT, diffKrS, hFacMinDr,
      & viscAp, diffKpT, diffKpS, hFacMinDp,
      & rhoConst, buoyancyRelation,
-     & writeStatePrec, readBinaryPrec, writeStatePrec,
+     & writeBinaryPrec, readBinaryPrec, writeStatePrec,
      & openBoundaries
 
 C--   Elliptic solver parameters
