@@ -269,7 +269,7 @@ switch ($platform$USEMPI)
     set CPP        = ( '/lib/cpp -traditional -P' )
     set DEFINES    = ( ${DEFINES} '-DWORDLENGTH=4' )
     set FC         = ( 'pgf77' )
-    set FFLAGS     = ( '-byteswapio' )
+    set FFLAGS     = ( '-byteswapio -r8 -Mnodclchk -Mextend' )
     set FOPTIM     = ( '-tp p6 -v -O2 -Munroll -Mvect=cachesize:512000,transform -Kieee' )
     set LINK       = ( 'pgf77' )
     breaksw
