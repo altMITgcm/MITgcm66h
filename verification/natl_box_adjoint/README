@@ -490,6 +490,12 @@
 
 # For 100-day experiment, with cost_ice_flag = 1, the adjoint gradient
 # blows up, as in Exp. 10
+# 1.d-04    0.251994583E+11 -.899637862E+10 0.372048919E+10 -.344972301E+10
+# adj grad  -.160660304+210 -.378763253+210 -.239235971+211 -.386444881+209
+
+# With cost_ice_flag = 2, i.e., mean sea-ice area
+# 1.d-04    -.152618243E+11 0.605974121E+06 -.155375485E+11 -.153368205E+11
+# adj grad  0.000000000E+00 0.000000000E+00 -.124076923E+09 0.000000000E+00
 
 # With cost_ice_flag = 6, i.e., a quadratic cost function
 # 1.d-12    -.106128607E+12 0.106330784E+12 -.106446555E+12 -.106237252E+12
@@ -544,4 +550,3 @@
 # Experiment no. 20 #
 #####################
 # Same as experiment 10, but using divided adjoint.
-
