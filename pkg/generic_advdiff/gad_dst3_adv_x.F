@@ -6,7 +6,7 @@ C $Name$
       SUBROUTINE GAD_DST3_ADV_X( 
      I           bi,bj,k,deltaT,
      I           uTrans, uVel,
-     I           tracer,
+     I           maskLocW, tracer,
      O           uT,
      I           myThid )
 C     /==========================================================\
@@ -26,6 +26,7 @@ C     == Routine arguments ==
       _RL deltaT
       _RL uTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL uVel(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      _RS maskLocW(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL tracer(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL uT    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER myThid
@@ -42,9 +43,9 @@ C     uFld   :: velocity [m/s], zonal component
        uT(2-Olx,j)=0.
        uT(sNx+Olx,j)=0.
        DO i=1-Olx+2,sNx+Olx-1
-        Rjp=(tracer(i+1,j)-tracer(i,j))*maskW(i+1,j,k,bi,bj)
-        Rj =(tracer(i,j)-tracer(i-1,j))*maskW(i,j,k,bi,bj)
-        Rjm=(tracer(i-1,j)-tracer(i-2,j))*maskW(i-1,j,k,bi,bj)
+        Rjp=(tracer(i+1,j)-tracer( i ,j))*maskLocW(i+1,j)
+        Rj =(tracer( i ,j)-tracer(i-1,j))*maskLocW( i ,j)
+        Rjm=(tracer(i-1,j)-tracer(i-2,j))*maskLocW(i-1,j)
 
 c       uFld = uVel(i,j,k,bi,bj)
         uFld = uTrans(i,j)*recip_dyG(i,j,bi,bj)
