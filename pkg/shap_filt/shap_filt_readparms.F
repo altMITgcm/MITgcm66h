@@ -53,10 +53,10 @@ C--   Default flags and values for Shapiro Filter
       Shap_funct = 2
       Shap_Trtau = deltaTtracer
       Shap_TrDamp = 0.
-      Shap_TrLength = 1.
+      Shap_TrLength = 0.
       Shap_uvtau = deltaTMom
       Shap_uvDamp = 0.
-      Shap_TrLength = 1.
+      Shap_TrLength = 0.
 
 C--   Read parameters from open data file
       READ(UNIT=iUnit,NML=SHAP_PARM01)

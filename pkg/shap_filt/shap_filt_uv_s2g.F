@@ -71,27 +71,41 @@ C    [d_xx+d_yy]^n tmpFld
           DO K=1,Nr
 
 C    [d_xx+d_yy] tmpFld
-c---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
-       CALL MOM_CALC_HFACZ(bi,bj,k,hFacZ,r_hFacZ,myThid)
-       CALL MOM_VI_CALC_HDIV(bi,bj,k,
-     I    tmpFldU(1-OLx,1-OLy,k,bi,bj),tmpFldV(1-OLx,1-OLy,k,bi,bj),
-     &                       hDiv,myThid)
-       CALL MOM_VI_CALC_RELVORT3(bi,bj,k,
-     I    tmpFldU(1-OLx,1-OLy,k,bi,bj),tmpFldV(1-OLx,1-OLy,k,bi,bj),
-     &                       hFacZ,vort3,myThid)
-       CALL MOM_VI_DEL2UV(
+           CALL MOM_CALC_HFACZ(bi,bj,k,hFacZ,r_hFacZ,myThid)
+           CALL MOM_VI_CALC_HDIV(bi,bj,k,
+     I                    tmpFldU(1-OLx,1-OLy,k,bi,bj),
+     I                    tmpFldV(1-OLx,1-OLy,k,bi,bj),
+     &                    hDiv,myThid)
+           CALL MOM_VI_CALC_RELVORT3(bi,bj,k,
+     I                    tmpFldU(1-OLx,1-OLy,k,bi,bj),
+     I                    tmpFldV(1-OLx,1-OLy,k,bi,bj),
+     &                    hFacZ,vort3,myThid)
+           CALL MOM_VI_DEL2UV(
      I                    bi,bj,k,hDiv,vort3,hFacZ,
      O                    tmpGrdU,tmpGrdV,
      &                    myThid) 
-c---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
-           DO J=1,sNy+1
-            DO I=1,sNx+1
-             tmpFldU(i,j,k,bi,bj) = -0.125*Shap_uvLength
-     &          *rAw(i,j,bi,bj)*tmpGrdU(i,j)*_maskW(i,j,k,bi,bj)
-             tmpFldV(i,j,k,bi,bj) = -0.125*Shap_uvLength
-     &          *rAs(i,j,bi,bj)*tmpGrdV(i,j)*_maskS(i,j,k,bi,bj)
+
+           IF (Shap_uvLength.EQ.0.) THEN
+            DO J=1,sNy+1
+             DO I=1,sNx+1
+              tmpFldU(i,j,k,bi,bj) = -0.125
+     &           *rAw(i,j,bi,bj)*tmpGrdU(i,j)*_maskW(i,j,k,bi,bj)
+              tmpFldV(i,j,k,bi,bj) = -0.125
+     &           *rAs(i,j,bi,bj)*tmpGrdV(i,j)*_maskS(i,j,k,bi,bj)
+             ENDDO
             ENDDO
-           ENDDO
+           ELSE
+            DO J=1,sNy+1
+             DO I=1,sNx+1
+              tmpFldU(i,j,k,bi,bj) = -0.125
+     &           *Shap_uvLength*Shap_uvLength
+     &           *tmpGrdU(i,j)*_maskW(i,j,k,bi,bj)
+              tmpFldV(i,j,k,bi,bj) = -0.125
+     &           *Shap_uvLength*Shap_uvLength
+     &           *tmpGrdV(i,j)*_maskS(i,j,k,bi,bj)
+             ENDDO
+            ENDDO
+           ENDIF
 
 
           ENDDO
