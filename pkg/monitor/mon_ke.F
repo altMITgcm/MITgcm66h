@@ -52,7 +52,7 @@ C     === Local variables ====
       _GLOBAL_SUM_R8(theMean,myThid)
       tmpVal=float(numPnts)
       _GLOBAL_SUM_R8(tmpVal,myThid)
-      theMean=theMean/tmpVal
+      IF (tmpVal.NE.0.) theMean=theMean*tmpVal
 
       _BEGIN_MASTER( myThid )
       WRITE(*,'(A,24x,A,1PE22.14)')
