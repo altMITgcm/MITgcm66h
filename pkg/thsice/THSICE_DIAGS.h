@@ -27,13 +27,14 @@ C     Storage arrays for time-averages
       _RL ICE_salFx_AVE  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL ICE_Qnet_AVE   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL ICE_FWfx_AVE   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL ICE_albedo_AVE (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
       COMMON /THSICE_TAVE_ARRAYS/ ICE_TimeAve,
      &                 ICE_iceMask_AVE, ICE_iceH_AVE,
      &                 ICE_snowH_AVE, ICE_Tsrf_AVE,
      &                 ICE_Tice1_AVE, ICE_Tice2_AVE, ICE_snow_AVE,
      &                 ICE_qleft_AVE, ICE_fresh_AVE, ICE_salFx_AVE,
-     &                 ICE_Qnet_AVE, ICE_FWfx_AVE
+     &                 ICE_Qnet_AVE, ICE_FWfx_AVE, ICE_albedo_AVE
 
 #endif /* ALLOW_TIMEAVE */
 
