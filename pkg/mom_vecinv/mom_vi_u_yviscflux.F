@@ -25,7 +25,6 @@ C     == Routine arguments ==
       _RL vort3(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL del2u(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS hFacZ(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL uFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL yViscFluxU(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER myThid
 
