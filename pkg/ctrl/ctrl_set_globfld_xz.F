@@ -32,10 +32,7 @@ c     == global variables ==
 #include "GRID.h"
 
 #include "ctrl.h"
-
-#ifdef ALLOW_ECCO_OPTIMIZATION
 #include "optim.h"
-#endif
 
 c     == routine arguments ==
 
@@ -44,10 +41,6 @@ c     == routine arguments ==
       integer mythid
 
 c     == local variables ==
-
-#ifndef ALLOW_ECCO_OPTIMIZATION
-      integer optimcycle
-#endif
 
       integer bi,bj
       integer ip,jp
@@ -104,10 +97,6 @@ c     Initialise temporary file
             enddo
          enddo
       enddo
-
-#ifndef ALLOW_ECCO_OPTIMIZATION
-      optimcycle = 0
-#endif
 
 c--   Only the master thread will do I/O.
       _BEGIN_MASTER( mythid )

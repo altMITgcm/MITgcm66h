@@ -387,6 +387,7 @@ c
 c     write masks and weights to files to be read by a master process
 c
       call active_write_xyz( 'hFacC', hFacC,   1, 0, mythid, dummy)
+      call active_write_xyz( 'maskC', maskC,   1, 0, mythid, dummy)
       call active_write_xyz( 'maskW', maskW,   1, 0, mythid, dummy)
       call active_write_xyz( 'maskS', maskS,   1, 0, mythid, dummy)
 #if (defined (ALLOW_EFLUXP0_CONTROL))

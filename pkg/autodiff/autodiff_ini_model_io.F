@@ -90,6 +90,21 @@ c      CALL MNC_CW_ADD_VATTR_TEXT('model_time','units','s', myThid)
       CALL MNC_CW_ADD_VATTR_TEXT('adW',
      &     'coordinates','XC YC RC iter', myThid)
 
+      CALL MNC_CW_ADD_VNAME('adSST', 'Cen_xy_Hn__-__t', 3,4, myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adSST',
+     &     'units','[cost]/[degC]', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adSST','long_name',
+     &     'adj. sea_surface_temperature', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adSST',
+     &     'coordinates','XC YC RC iter', myThid)
+
+      CALL MNC_CW_ADD_VNAME('adSSS', 'Cen_xy_Hn__-__t', 3,4, myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adSSS',
+     &     'units','[cost]/[degC]', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adSSS','long_name',
+     &     'adj. sea_surface_temperature', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adSSS',
+     &     'coordinates','XC YC RC iter', myThid)
 
 C     Write coordinates to "adstate" file
       CALL MNC_CW_SET_UDIM('adstate', 0, myThid)

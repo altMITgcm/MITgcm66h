@@ -67,15 +67,13 @@ c     == global variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 #include "ctrl.h"
+#include "optim.h"
 
 #ifdef ALLOW_CAL
 # include "cal.h"
 #endif
 #ifdef ALLOW_OBCS_CONTROL
 # include "OBCS.h"
-#endif
-#ifdef ALLOW_ECCO_OPTIMIZATION
-# include "optim.h"
 #endif
 
 c     == routine arguments ==
@@ -84,9 +82,6 @@ c     == routine arguments ==
 
 c     == local variables ==
 
-#ifndef ALLOW_ECCO_OPTIMIZATION
-      integer optimcycle
-#endif
       integer ntmp
       integer ivar
 
@@ -109,10 +104,6 @@ c     == external ==
       external ilnblnk
 
 c     == end of interface ==
-
-#ifndef ALLOW_ECCO_OPTIMIZATION
-      optimcycle = 0
-#endif
 
 c--     Set default values.
       do ivar = 1,maxcvars
