@@ -336,6 +336,7 @@ C              averaging but are just a convient quantity for I/O,
 C              diagnostics etc.. As such xc is in m for cartesian 
 C              coordinates but degrees for spherical polar.
 C     yC     - Y-coordinate of center of cell f[X,Y].
+C     yG     - Y-coordinate of corner of cell ( c-grid vorticity point) f[X,Y]. 
 C     xC0, yC0 - West edge x coord  ( metres or degrees )
 C                South edge y coord ( metres or degrees )
 C     rA     - R-face are f[X,Y] ( m^2 ).
