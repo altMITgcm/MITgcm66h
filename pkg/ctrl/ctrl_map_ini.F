@@ -348,7 +348,7 @@ c--   bottom drag
       enddo
 #endif
 
-fdef ALLOW_EDTAUX_CONTROL
+#ifdef ALLOW_EDTAUX_CONTROL
 c-- zonal eddy stress : edtaux
       il=ilnblnk( xx_edtaux_file )
       write(fnameedtaux(1:80),'(2a,i10.10)')
