@@ -46,6 +46,7 @@ C     Resolution parameters
 #include "atparam1.h"
 #include "Lev_def.h"
 C
+      INTEGER NLON,NLAT,NLEV,NGP
       PARAMETER ( NLON=IX, NLAT=IL, NLEV=KX, NGP=NLON*NLAT )
 
 C     Physical constants + functions of sigma and latitude
@@ -92,6 +93,7 @@ Cchdbg
       REAL Q0moy(NGP)
       SAVE Q0moy
       REAL factwind2
+      INTEGER J
 C
 C--   1. Extrapolation of wind, temp, hum. and density to the surface
 C

@@ -34,6 +34,7 @@ C     Resolution parameters
 #include "EEPARAMS.h"
 #include "Lev_def.h"
 C
+      INTEGER NLON,NLAT,NLEV,NGP
       PARAMETER ( NLON=IX, NLAT=IL, NLEV=KX, NGP=NLON*NLAT )
 C
 C     Physical constants + functions of sigma and latitude
@@ -73,6 +74,7 @@ Cchdbg
       LOGICAL ifirst
       DATA ifirst /.TRUE./       
       SAVE ifirst
+      INTEGER J,K
 C
 C--   1. Initalization
 C

@@ -22,6 +22,7 @@ C--
 
 
       IMPLICIT rEAL*8 (A-H,O-Z)
+      INTEGER IMODE,NGP,J
       INTEGER  myThid
 
 
@@ -88,6 +89,7 @@ C
 
 
       IMPLICIT rEAL*8 (A-H,O-Z)
+      INTEGER NLON,NLAT,I,J
 
 
 C
