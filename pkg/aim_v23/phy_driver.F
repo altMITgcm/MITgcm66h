@@ -274,6 +274,13 @@ c    O             TS(1,myThid), TSKIN(1,myThid),
      O             Evp0, dEvp, Slr0, dSlr, sFlx,
      O             TS(1,myThid), TSKIN(1,myThid),
      I             bi,bj,myThid)
+#ifdef ALLOW_THSICE      
+        CALL AIM_SICE_IMPL(
+     I             FMASK1(1,3,myThid), SSR(1,3,myThid), sFlx,
+     I             Evp0, dEvp, Slr0, dSlr,
+     U             STI1(1,myThid), EVAP(1,3,myThid), SLR(1,3,myThid),
+     I             bi, bj, myTime, myIter, myThid)
+#endif /* ALLOW_THSICE */
       ELSE
         DO J=1,NGP
           EVAP(J,3,myThid) = 0. _d 0

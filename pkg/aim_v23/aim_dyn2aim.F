@@ -60,7 +60,7 @@ CEndOfInterface
 #ifdef ALLOW_AIM
 C     == Local variables ==
 C     Loop counters
-C     msgBuf :: Informational/error meesage buffer
+C     msgBuf :: Informational/error message buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       INTEGER I, J, I2, K, Katm
       _RL conv_theta2T, temp1, temp2
