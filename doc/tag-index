@@ -2,6 +2,11 @@ $Header$
 
     Notes on tags used in MITgcmUV
     ==============================
+o use a more standard discretization for biharmonic viscosity ; 
+ (original version still available with #define MOM_VI_ORIGINAL_VISCA4 )
+  affects results of dome set-up: update output.txt 
+o fix gad_advection.F (CubedSphere part), back to version 1.23
+o fix bug in mom_vi_del2uv.F (CubedSphere part).
 
 checkpoint55a_post
 o merged code to 
