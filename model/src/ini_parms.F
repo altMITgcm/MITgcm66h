@@ -1138,14 +1138,8 @@ c      rkFac = -1.D0
       recip_horiVertRatio = 1./horiVertRatio
 
 c-- gradually replacing debugMode by debugLevel
-      IF ( debugLevel .EQ. 999 ) THEN
-         IF ( debugMode ) THEN
-            debugLevel = debLevB
-         ELSE
-            debugLevel = debLevA
-         ENDIF
-      ENDIF
-C
+      IF ( debugMode ) debugLevel = debLevB
+
       CLOSE(iUnit)
 
 C--   Check whether any retired parameters were found.
