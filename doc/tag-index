@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint53b_pre
+
 o created pkg/mom_common in preparation for variable viscosity code
 o renamed and split ini_mnc_io
 o pkg/land: only liquid water can diffuse or run-off
