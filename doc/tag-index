@@ -2,6 +2,12 @@ $Header$
 
     Notes on tags used in MITgcmUV
     ==============================
+checkpoint40pre2
+o Updated to latest branch of AJA, JMC
+o Added gradient check package
+o Added routines for passive tracer handling
+o Added carbon sequestration sensitivity experiment
+
 checkpoint39
  o Modifications and fixes to support TAMC
    (mainly missing or wrong directives)
