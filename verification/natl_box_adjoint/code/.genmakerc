@@ -2,7 +2,7 @@
 # $Name$
 
 # Disable packages that are not needed
-set DISABLE=( aim zonal_filt hide )
+set DISABLE=( aim zonal_filt )
 
 # Enable packages that are needed but are disabled by default
 set ENABLE=( autodiff cal cost ctrl grdchk ecco exf kpp gmredi shap_filt obcs )
