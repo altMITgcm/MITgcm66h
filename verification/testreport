@@ -995,7 +995,7 @@ for dir in $TESTDIRS ; do
 	    ldir=build
 	    (
 		cd "$dir/$ldir" > /dev/null 2>&1
-		ls -1 Makefile *.[fFhco]* mitgcmuv  2>/dev/null \
+		ls -1 Makefile *.[fFhco] mitgcmuv  2>/dev/null \
 		    | sed -e 's|^CVS$||g' | sed -e 's|^output.txt$||g'
 	    ) > tr_exrun_links
 	    (
