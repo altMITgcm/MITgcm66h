@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o allow to set a vertical profile of vertical diffusivity for T & S
+
 checkpoint55g_post
 o Renaming carbon AD experiments to comply with testreport conventions
 o Updating adjoint of Held-Suarez hs94.1x64x5
