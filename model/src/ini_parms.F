@@ -162,7 +162,8 @@ C--   Continuous equation parameters
      & bottomDragLinear,bottomDragQuadratic,
      & usePickupBeforeC35, debugMode, debugLevel,
      & readPickupWithTracer, writePickupWithTracer,
-     & tempAdvScheme, saltAdvScheme, tracerAdvScheme,
+     & tempAdvScheme, tempVertAdvScheme, 
+     & saltAdvScheme, saltVertAdvScheme, tracerAdvScheme,
      & multiDimAdvection, useEnergyConservingCoriolis,
      & useCDscheme, useJamartWetPoints, useJamartMomAdv, useNHMTerms,
      & SadournyCoriolis, upwindVorticity, highOrderVorticity,
@@ -312,6 +313,9 @@ C--   Set default "physical" parameters
       convertFW2Salt = UNSET_RL
       tAlpha              = UNSET_RL
       sBeta               = UNSET_RL
+      tempVertAdvScheme = 0
+      saltVertAdvScheme = 0
+C--   z,p,r coord input switching.
       READ(UNIT=iUnit,NML=PARM01) !,IOSTAT=errIO)
       IF ( errIO .LT. 0 ) THEN
        WRITE(msgBuf,'(A)')
@@ -414,6 +418,8 @@ C--   Advection and Forcing for Temp and salt  on/off flags
       saltForcing   = saltStepping .AND. saltForcing
       tempImplVertAdv = tempAdvection .AND. tempImplVertAdv
       saltImplVertAdv = saltAdvection .AND. saltImplVertAdv
+      IF (tempVertAdvScheme.EQ.0) tempVertAdvScheme = tempAdvScheme
+      IF (saltVertAdvScheme.EQ.0) saltVertAdvScheme = saltAdvScheme
 C--   z,p,r coord input switching.
       IF ( viscAz .NE. UNSET_RL ) zCoordInputData = .TRUE.
       IF ( viscAp .NE. UNSET_RL ) pCoordInputData = .TRUE.

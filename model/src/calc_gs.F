@@ -95,7 +95,7 @@ C--   the kDown is still required
      I           xA,yA,uTrans,vTrans,rTrans,rTransKp1,maskUp,
      I           uVel, vVel, wVel,
      I           diffKhS, diffK4S, KappaRS, Salt,
-     I           GAD_SALINITY, saltAdvScheme, 
+     I           GAD_SALINITY, saltAdvScheme, saltVertAdvScheme,
      I           calcAdvection, saltImplVertAdv,
      U           fVerS, gS,
      I           myThid )

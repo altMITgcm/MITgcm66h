@@ -94,7 +94,7 @@ C--   the kDown is still required
      I           xA,yA,uTrans,vTrans,rTrans,rTransKp1,maskUp,
      I           uVel, vVel, wVel,
      I           diffKhT, diffK4T, KappaRT, theta,
-     I           GAD_TEMPERATURE, tempAdvScheme, 
+     I           GAD_TEMPERATURE, tempAdvScheme, tempVertAdvScheme,
      I           calcAdvection, tempImplVertAdv,
      U           fVerT, gT,
      I           myThid )

@@ -57,6 +57,7 @@ c    &     multiDimAdvection .AND.
             CALL GAD_ADVECTION(
      I                        .FALSE.,
      I                        PTRACERS_advScheme(iTracer),
+     I                        PTRACERS_advScheme(iTracer),
      I                        GAD_TR1,
      I                        uVel, vVel, wVel,
      I                        pTracer(1-Olx,1-Oly,1,1,1,iTracer),

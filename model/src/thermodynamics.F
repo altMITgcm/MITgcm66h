@@ -583,7 +583,8 @@ C disable this section of code.
      &     CALL DEBUG_CALL('GAD_ADVECTION',myThid)
 #endif
           CALL GAD_ADVECTION(
-     I             tempImplVertAdv,tempAdvScheme,GAD_TEMPERATURE,
+     I             tempImplVertAdv, tempAdvScheme, tempVertAdvScheme,
+     I             GAD_TEMPERATURE,
      I             uVel, vVel, wVel, theta,
      O             gT,
      I             bi,bj,myTime,myIter,myThid)
@@ -594,7 +595,8 @@ C disable this section of code.
      &     CALL DEBUG_CALL('GAD_ADVECTION',myThid)
 #endif
           CALL GAD_ADVECTION(
-     I             saltImplVertAdv,saltAdvScheme,GAD_SALINITY,
+     I             saltImplVertAdv, saltAdvScheme, saltVertAdvScheme,
+     I             GAD_SALINITY,
      I             uVel, vVel, wVel, salt,
      O             gS,
      I             bi,bj,myTime,myIter,myThid)
