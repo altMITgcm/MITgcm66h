@@ -20,6 +20,8 @@ o more obcs stuff
     for reading boundary values. This routine is called from 
     obcs_prescribe_read
   - updated obcs_check
+  - changed sponge layer relaxation parameter units for days to seconds
+  - turned off sponge layer by default
 
 checkpoint55c_post
 o obcs stuff
