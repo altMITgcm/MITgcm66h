@@ -6,6 +6,8 @@ C--   accordingly.
 C--
 C--   heimbach@mit.edu 11-Jan-2001
 
+#ifdef ALLOW_AUTODIFF_MONITOR
+
       common /addynvars_r/ 
      &                     adetan,
      &                     aduvel, advvel, adwvel, 
@@ -56,3 +58,5 @@ cph     &                 , adsst, adsss
       _RL adempmr(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 cph      _RL adsst(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 cph      _RL adsss(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+
+#endif /* ALLOW_AUTODIFF_MONITOR */

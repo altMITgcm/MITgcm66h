@@ -36,8 +36,12 @@ C   Adjoint Model Compiler (TAMC).
 #define INCLUDE_AUTODIFF_PACKAGE
 C
 #define ALLOW_AUTODIFF_TAMC
+C
 C       >>> Checkpointing as handled by TAMC
 #define ALLOW_TAMC_CHECKPOINTING
+C
+C       >>> Extract adjoint state
+#define ALLOW_AUTODIFF_MONITOR
 C
 C o use divided adjoint to split adjoint computations
 #undef ALLOW_DIVIDED_ADJOINT

@@ -6,6 +6,8 @@ C--   accordingly.
 C--
 C--   heimbach@mit.edu 11-Jan-2001
 
+#ifdef ALLOW_AUTODIFF_MONITOR
+
       common /g_dynvars_r/ 
      &                     g_etan,
      &                     g_uvel, g_vvel, g_wvel, 
@@ -56,3 +58,5 @@ cph     &                 , g_sst, g_sss
       _RL g_empmr(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 cph      _RL g_sst(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 cph      _RL g_sss(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+
+#endif ALLOW_AUTODIFF_MONITOR
