@@ -7,6 +7,7 @@ untagged
 o Added missing /* */ to CPP comments in pkg/seaice, pkg/exf,
   kpp_transport_t.F,and ecco_the_main_loop.F
 o adjoint-friendly modifications to pkg/seaice
+o added verification/lab_sea as per release1_p12_pre
 
 ecco_c44_e26
 o Merging pkg/exf and pkg/seaice from cvs tag ecco_ice2
