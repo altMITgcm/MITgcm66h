@@ -135,7 +135,6 @@ if (! $?mfile) set mfile = ( Makefile )
 set mach  = ( `uname -a` )
 echo Operating system: $mach
 
-
 # Directories for source, includes, binaries and executables
 #
 # If -rootdir wasn't specified then assume script is being run from bin
@@ -193,6 +192,20 @@ if (! -d $TOOLSDIR) then
   echo Tools directory $TOOLSDIR not found.;exit 1
 endif
 if (! $?EXECUTABLE) set EXECUTABLE  = ( mitgcmuv )
+
+# We have a special set of source files in eesupp/src which
+# are generated from some template source files. We'll make them
+# first so the appear as regular source code
+if (-r $ROOTDIR/eesupp/src/Makefile) then
+ echo Making source files in eesupp from templates...
+ (cd $ROOTDIR/eesupp/src/; make) >& make_eesupp.errs
+ if ($status == 0) then
+   rm -f make_eesupp.errs
+ else
+   cat make_eesupp.errs
+   exit 2
+ endif
+endif
 
 # Now scan the standard source code tree
 foreach dr ($SOURCEDIRS)
