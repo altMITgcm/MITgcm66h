@@ -2,6 +2,8 @@ $Header$
 
     Notes on tags used in MITgcmUV
     ==============================
+o thermodynamics sea-ice (thsice) is now tested with testreport.
+o test exp. advect_cs: use the standard cs32 grid ; update output.
 
 checkpoint52l_post
 o new land formulation:
