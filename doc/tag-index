@@ -7,7 +7,7 @@ untagged
 o improve "ini_p_ground" when using finite difference form for calc_phi_hyd
 o Added net flux to downward flux conversion to pkg/exf/exf_getffields.F
 o Added SEAICE_initialHEFF to pkg/seaice
-o SEAICE_WRITE_PICKUP needs to be called before WRITE_CHECKPOINT
+o ecco_the_model_main.F: SEAICE_WRITE_PICKUP must precede WRITE_CHECKPOINT
 
 checkpoint48g_post
 --- EOS:
