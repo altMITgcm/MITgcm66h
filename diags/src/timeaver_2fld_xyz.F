@@ -1,6 +1,6 @@
 C $Header$
 C $Name$
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
 CStartofinterface
       SUBROUTINE TIMEAVER_2FLD_XYZ( fld1, fld2, fldtave, dir, deltaT,

@@ -1,6 +1,6 @@
 C $Header$
 C $Name$
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
       SUBROUTINE WRITE_TIME_AVERAGES(myTime, myIter, myThid)
 C     /==========================================================\
