@@ -80,7 +80,7 @@ C--   the kDown is still required
      I           bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
      I           xA,yA,uTrans,vTrans,rTrans,maskUp,
      I           diffKhS, diffK4S, KappaRS, Salt,
-     I           GAD_SALINITY,
+     I           GAD_SALINITY, saltAdvScheme,
      U           fVerS, gS,
      I           myThid )
 
