@@ -195,8 +195,8 @@ To run Experiment 3:
   mkdir exp3b
   mv *tave.0000000001.data exp3b
 
-Use matlab script lookat_exp3.m to compare
-the output of exp2 to that of exp1:
+Use matlab script lookat_exp3.m to look at
+results from exp3a and exp3b:
   cd ../../../verification/lab_sea/matlab
   matlab
   lookat_exp3
