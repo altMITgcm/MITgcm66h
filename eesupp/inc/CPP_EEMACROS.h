@@ -106,6 +106,11 @@ C     performance.
 #define _GLOBAL_SUM_R8(a,b) CALL GLOBAL_SUM_R8 ( a, b )
 #define _GLOBAL_MAX_R8(a,b) CALL GLOBAL_MAX_R8 ( a, b )
 
+#define _EXCH_XY_RS(a,b) CALL EXCH_XY_RS ( a, b )
+#define _EXCH_XYZ_RS(a,b) CALL EXCH_XYZ_RS ( a, b )
+#define _EXCH_XY_RL(a,b) CALL EXCH_XY_RL ( a, b )
+#define _EXCH_XYZ_RL(a,b) CALL EXCH_XYZ_RL ( a, b )
+
 C--   Control use of JAM routines for Artic network
 C     These invoke optimized versions of "exchange" and "sum" that
 C     utilize the programmable aspect of Artic cards.
@@ -116,6 +121,11 @@ C     utilize the programmable aspect of Artic cards.
 #define _EXCH_XY_R8(a,b) CALL EXCH_XY_R8_JAM ( a, b )
 #define _EXCH_XYZ_R8(a,b) CALL EXCH_XYZ_R8_JAM ( a, b )
 #define _GLOBAL_SUM_R8(a,b) CALL GLOBAL_SUM_R8_JAM ( a, b )
+
+#define _EXCH_XY_RS(a,b) CALL EXCH_XY_R8_JAM ( a, b )
+#define _EXCH_XYZ_RS(a,b) CALL EXCH_XYZ_R8_JAM ( a, b )
+#define _EXCH_XY_RL(a,b) CALL EXCH_XY_R8_JAM ( a, b )
+#define _EXCH_XYZ_RL(a,b) CALL EXCH_XYZ_R8_JAM ( a, b )
 #endif
  
 C--   Control use of "double" precision constants.
