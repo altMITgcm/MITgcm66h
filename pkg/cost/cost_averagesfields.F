@@ -145,7 +145,7 @@ c--     Save psbar on file.
         endif
 
         call active_write_xy( fnamepsbar, psbar, dayrec, optimcycle,
-     &                        mythid, xx_psbar_dummy )
+     &                        mythid, xx_psbar_mean_dummy )
 
 ce      , myiter, mytime )
 
@@ -220,7 +220,7 @@ c--     Save tbar on file.
         endif
 
         call active_write_xyz( fnametbar, tbar, monrec, optimcycle,
-     &                         mythid, xx_theta_dummy )
+     &                         mythid, xx_tbar_mean_dummy )
 
 ce      , myiter, mytime )
 
@@ -294,7 +294,7 @@ c--     Save sbar.
         endif
 
         call active_write_xyz( fnamesbar, sbar, monrec, optimcycle,
-     &                         mythid, xx_salt_dummy)
+     &                         mythid, xx_sbar_mean_dummy)
 
 ce      , myiter, mytime )
 
@@ -372,10 +372,10 @@ c--     Save ubar and vbar.
         endif
 
         call active_write_xyz( fnameubar, ubar, 1, optimcycle,
-     &                         mythid, dummy)
+     &                         mythid, xx_ubar_mean_dummy)
 
         call active_write_xyz( fnamevbar, vbar, 1, optimcycle,
-     &                         mythid, dummy)
+     &                         mythid, xx_vbar_mean_dummy)
 
 ce      , myiter, mytime )
 

@@ -83,7 +83,7 @@ c     == end of interface ==
 
 c--   Read tiled data.
       doglobalread = .false.
-      ladinit      = .true.
+      ladinit      = .false.
 
 #ifdef ALLOW_SSS_COST_CONTRIBUTION
 
@@ -123,7 +123,7 @@ c--     Read time averages and the monthly mean data.
         call active_read_xyz( fnamesalt, sbar, irec,
      &                        doglobalread, ladinit,
      &                        optimcycle, mythid,
-     &                        xx_salt_dummy )
+     &                        xx_sbar_mean_dummy )
 
         do bj = jtlo,jthi
           do bi = itlo,ithi

@@ -92,7 +92,7 @@ c     == end of interface ==
 
 c--   Read tiled data.
       doglobalread = .false.
-      ladinit      = .true.
+      ladinit      = .false.
 
 #ifdef ALLOW_OBCSW_COST_CONTRIBUTION
 
@@ -111,7 +111,7 @@ c--     Read time averages and the monthly mean data.
         call active_read_xyz( fnametheta, tbar, irec,
      &                        doglobalread, ladinit,
      &                        optimcycle, mythid,
-     &                        xx_theta_dummy )
+     &                        xx_tbar_mean_dummy )
 
         call mdsreadfieldyz( OBWtFile, readBinaryPrec, 'RS', 
      &                       nr, OBWt, irec, mythid)
@@ -148,7 +148,7 @@ c--     Read time averages and the monthly mean data.
         call active_read_xyz( fnamesalt, sbar, irec,
      &                        doglobalread, ladinit,
      &                        optimcycle, mythid,
-     &                        xx_salt_dummy )
+     &                        xx_sbar_mean_dummy )
 
         call mdsreadfieldyz( OBWsFile, readBinaryPrec, 'RS', 
      &                       nr, OBWs, irec, mythid)

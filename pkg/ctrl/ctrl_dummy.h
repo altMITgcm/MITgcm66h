@@ -24,6 +24,11 @@ c     ==================================================================
      &                  , xx_obcsw_dummy
      &                  , xx_obcse_dummy
      &                  , xx_psbar_dummy
+     &                  , xx_tbar_mean_dummy
+     &                  , xx_sbar_mean_dummy
+     &                  , xx_ubar_mean_dummy
+     &                  , xx_vbar_mean_dummy
+     &                  , xx_psbar_mean_dummy
       _RL xx_theta_dummy
       _RL xx_salt_dummy
       _RL xx_hflux_dummy
@@ -39,6 +44,11 @@ c     ==================================================================
       _RL xx_obcsw_dummy
       _RL xx_obcse_dummy
       _RL xx_psbar_dummy
+      _RL xx_tbar_mean_dummy
+      _RL xx_sbar_mean_dummy
+      _RL xx_ubar_mean_dummy
+      _RL xx_vbar_mean_dummy
+      _RL xx_psbar_mean_dummy
 
 c     ==================================================================
 c     END OF HEADER CONTROL DUMMIES

@@ -40,6 +40,8 @@ c     == global variables ==
 #include "PARAMS.h"
 
 #include "cost.h"
+#include "ctrl.h"
+#include "ctrl_dummy.h"
 #include "optim.h"
 
 c     == routine arguments ==
@@ -68,7 +70,6 @@ c     == local variables ==
       _RL tpcost
       _RL costmean
       _RL offset_sum
-      _RL dummy
       _RL psmean ( 1-olx:snx+olx, 1-oly:sny+oly, nsx, nsy )
       _RL wwwtp  ( 1-olx:snx+olx, 1-oly:sny+oly           )
       _RL wwwers ( 1-olx:snx+olx, 1-oly:sny+oly           )
@@ -107,7 +108,7 @@ c--   Initialise local variables.
 
 c--   First, read tiled data.
       doglobalread = .false.
-      ladinit      = .true.
+      ladinit      = .false.
 
       write(fname(1:80),'(80a)') ' '
       ilps=ilnblnk( psbarfile )
@@ -133,7 +134,8 @@ c--   Loop over records for the first time.
 
 c--     Compute the mean over all psbar records.
         call active_read_xy( fname, psbar, irec, doglobalread,
-     &                       ladinit, optimcycle, mythid, dummy)
+     &                       ladinit, optimcycle, mythid, 
+     &                       xx_psbar_mean_dummy )
 
         do bj = jtlo,jthi
           do bi = itlo,ithi
@@ -219,7 +221,8 @@ c--   Loop over records for the second time.
       do irec = 1, ndaysrec
 
         call active_read_xy( fname, psbar, irec, doglobalread,
-     &                       ladinit, optimcycle, mythid, dummy)
+     &                       ladinit, optimcycle, mythid, 
+     &                       xx_psbar_mean_dummy )
 
 #ifdef ALLOW_SSH_TPANOM_COST_CONTRIBUTION
         call cost_ReadTopex( irec, mythid )

@@ -89,7 +89,7 @@ c--   Initialize the tiled cost function contributions.
         do bi = itlo,ithi
           do j = jmin,jmax
             do i = imin,imax
-#ifdef ALLOW_SSH_MEAN_COST_CONTRIBUTION
+#ifdef ALLOW_SSH_COST_CONTRIBUTION
                if (_hFacC(i,j,k,bi,bj) .eq. 0.) then
                   tpmeanmask(i,j,bi,bj) = 0. _d 0
                else

@@ -132,7 +132,7 @@ c--     Read time averages and the monthly mean data.
         call active_read_xy( fnamesalt, sbar, irec,
      &          doglobalread, ladinit,
      &          optimcycle, mythid
-     &   , xx_salt_dummy )
+     &   , xx_sbar_mean_dummy )
   
 ce     &                       myiter, mytime )
 

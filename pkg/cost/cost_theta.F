@@ -95,7 +95,7 @@ c     == end of interface ==
 
 c--   Read tiled data.
       doglobalread = .false.
-      ladinit      = .true.
+      ladinit      = .false.
 
 #ifdef ALLOW_THETA_COST_CONTRIBUTION
 
@@ -135,7 +135,7 @@ c--     Read time averages and the monthly mean data.
         call active_read_xyz( fnametheta, tbar, irec,
      &                        doglobalread, ladinit,
      &                        optimcycle, mythid,
-     &                        xx_theta_dummy )
+     &                        xx_tbar_mean_dummy )
 
 c--     Determine the month to be read.
         levoff = mod(modelstartdate(1)/100,100)

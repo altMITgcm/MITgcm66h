@@ -95,7 +95,7 @@ c     == end of interface ==
 
 c--   Read tiled data.
       doglobalread = .false.
-      ladinit      = .true.
+      ladinit      = .false.
 
 #ifdef ALLOW_SALT_COST_CONTRIBUTION
 
@@ -135,7 +135,7 @@ c--     Read time averages and the monthly mean data.
         call active_read_xyz( fnamesalt, sbar, irec,
      &                        doglobalread, ladinit,
      &                        optimcycle, mythid,
-     &                        xx_salt_dummy )
+     &                        xx_sbar_mean_dummy )
 
 c--     Determine the month to be read.
         levoff = mod(modelstartdate(1)/100,100)
