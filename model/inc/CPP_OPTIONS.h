@@ -28,6 +28,21 @@ C o Include/exclude code for GM/Redi parameterization
 C o Include/exclude code for KPP mixing scheme
 #define  ALLOW_KPP
 
+cswdblk --- add ---
+C o Include/exclude code for bulk formula
+#define  ALLOW_BULK_FORCE
+#ifdef ALLOW_BULK_FORCE
+cswdice -- add ---
+C o allow seaice
+#define ALLOW_THERM_SEAICE
+cswdice -- end add ---
+
+C o try to conserve qnet and emp
+#define CONSERV_BULKF
+#endif
+cswdblk -- end add ---
+
+
 C o Shortwave heating as extra term in external_forcing.F
 #ifdef ALLOW_KPP
 #define  SHORTWAVE_HEATING
@@ -148,6 +163,9 @@ C   Note - only works with  #undef NO_SLIP_LATERAL  in calc_mom_rhs.F
 C          because the old code did not have no-slip BCs
 #undef  OLD_UV_GEOMETRY
 
+C o Include/exclude IERS Special Bureau for the Oceans diagnostics
+#undef  ALLOW_SBO
+
 C o Include/exclude code for sea-ice model
 #undef  ALLOW_SEAICE
 
@@ -159,3 +177,4 @@ C o Include/exclude code specific to the ECCO/SEALION version.
 #ifdef INCLUDE_ECCO_PACKAGE
 #include "ECCO_CPPOPTIONS.h"
 #endif
+

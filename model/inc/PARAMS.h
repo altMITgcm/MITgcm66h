@@ -69,8 +69,11 @@ C     surfQfile       :: File containing surface heat flux
 C     surfQswfile     :: File containing surface shortwave radiation
 C     dQdTfile        :: File containing thermal relaxation coefficient
 C     EmPmRfile       :: File containing surface fresh water flux
+C     pLoadFile       :: File containing pressure loading
 C     buoyancyRelation :: Flag used to indicate which relation to use to
 C                        get buoyancy.
+C     eosType         :: choose the equation of state:
+C                        LINEAR, POLY3, UNESCO, JMD95Z, JMD95P, MDJWF, IDEALGAS
       COMMON /PARM_C/ checkPtSuff,
      &                bathyFile, topoFile,
      &                hydrogThetaFile, hydrogSaltFile,
@@ -78,7 +81,8 @@ C                        get buoyancy.
      &                saltClimFile, buoyancyRelation,
      &                EmPmRfile, surfQfile, surfQswfile,
      &                uVelInitFile, vVelInitFile, pSurfInitFile,
-     &                dQdTfile
+     &                dQdTfile, ploadFile,
+     &                eosType
       CHARACTER*(5) checkPtSuff(maxNoChkptLev)
       CHARACTER*(MAX_LEN_FNAM) bathyFile, topoFile
       CHARACTER*(MAX_LEN_FNAM) hydrogThetaFile
@@ -95,6 +99,8 @@ C                        get buoyancy.
       CHARACTER*(MAX_LEN_FNAM) vVelInitFile
       CHARACTER*(MAX_LEN_FNAM) pSurfInitFile
       CHARACTER*(MAX_LEN_FNAM) dQdTfile
+      CHARACTER*(MAX_LEN_FNAM) ploadFile
+      CHARACTER*(6) eosType
 
 C--   COMMON /PARM_I/ Integer valued parameters used by the model.
 C     cg2dMaxIters        :: Maximum number of iterations in the
@@ -115,6 +121,8 @@ C     readBinaryPrec      :: Precision used for reading binary files
 C     nCheckLev           :: Holds current checkpoint level
 C     nonlinFreeSurf      :: option related to non-linear free surface
 C                           =0 Linear free surface ; >0 Non-linear
+C     select_rStar        :: option related to r* vertical coordinate
+C                           =0 (default) use r coord. ; > 0 use r*
 
       COMMON /PARM_I/
      &        cg2dMaxIters,
@@ -125,7 +133,7 @@ C                           =0 Linear free surface ; >0 Non-linear
      &        numStepsPerPickup,
      &        writeStatePrec, nCheckLev,
      &        writeBinaryPrec, readBinaryPrec,
-     &        nonlinFreeSurf,
+     &        nonlinFreeSurf, select_rStar,
      &        tempAdvScheme, saltAdvScheme, tracerAdvScheme
       INTEGER cg2dMaxIters
       INTEGER cg2dChkResFreq
@@ -140,6 +148,7 @@ C                           =0 Linear free surface ; >0 Non-linear
       INTEGER readBinaryPrec
       INTEGER nCheckLev
       INTEGER nonlinFreeSurf
+      INTEGER select_rStar
       INTEGER tempAdvScheme
       INTEGER saltAdvScheme
       INTEGER tracerAdvScheme
@@ -160,6 +169,7 @@ C     momPressureForcing :: Flag which turns pressure term in momentum equation
 C                          on and off.
 C     metricTerms   :: Flag which turns metric terms on or off.
 C     usingSphericalPolarMTerms :: If TRUE use spherical polar metric terms.
+C     useNHMTerms :: If TRUE use non-hydrostatic metric terms.
 C     useCoriolis   :: Flag which turns the coriolis terms on and off.
 C     tempDiffusion :: Flag which turns diffusion of temperature on
 C                     and off.
@@ -167,12 +177,15 @@ C     tempAdvection :: Flag which turns advection of temperature on
 C                     and off.
 C     tempForcing   :: Flag which turns external forcing of temperature on
 C                     and off.
-C     saltDiffusion :: Flag which turns diffusion of salinit on
+C     saltDiffusion :: Flag which turns diffusion of salinity on
 C                     and off.
-C     saltAdvection :: Flag which turns advection of salinit on
+C     saltAdvection :: Flag which turns advection of salinity on 
 C                     and off.
-C     saltForcing   :: Flag which turns external forcing of salinit on
+C     saltForcing   :: Flag which turns external forcing of salinity on
 C                     and off.
+C     useRealFreshWaterFlux :: if True (=Natural BCS), treats P+R-E flux 
+C                         as a real Fresh Water (=> changes the Sea Level)
+C                         if F, converts P+R-E to salt flux (no SL effect)
 C     rigidLid            :: Set to true to use rigid lid
 C     implicitFreeSurface :: Set to true to use implcit free surface
 C     exactConserv        :: Set to true to conserve exactly the total Volume
@@ -185,22 +198,33 @@ C     tr1Stepping   :: Turns passive tracer 1 time-stepping on/off
 C     useConstantF  :: Coriolis parameter set to f0
 C     useBetaPlaneF :: Coriolis parameter set to f0 + beta.y
 C     useSphereF    :: Coriolis parameter set to 2.omega.sin(phi)
+C     useJamartWetPoints :: Use wet-point method for Coriolis (Jamart and Ozer, 1986)
 C     implicitDiffusion :: Turns implicit vertical diffusion on
 C     implicitViscosity :: Turns implicit vertical viscosity on
+C     multiDimAdvection :: Flag that enable multi-dimension advection
+C     forcing_In_AB :: if False, put forcing (Temp,Salt,Tracers) contribution
+C                      out off Adams-Bashforth time stepping.
 C     doThetaClimRelax :: Set true if relaxation to temperature
 C                        climatology is required.
 C     doSaltClimRelax  :: Set true if relaxation to salinity
 C                        climatology is required.
 C     periodicExternalForcing :: Set true if forcing is time-dependant
 C     usingPCoords     :: Set to indicate that we are working in pressure
-C                        coords.
+C                        coords. (jmc: is it still used ?)
 C     usingZCoords     :: Set to indicate that we are working in height
-C                        coords.
+C                        coords. (jmc: is it still used ?)
+C     useDynP_inEos_Zc :: use the dynamical pressure in EOS (with Z-coord.)
+C                         this requires specific code for restart & exchange
+C     setCenterDr    :: set cell Center depth and put Interface at the middle
 C     nonHydrostatic :: Using non-hydrostatic terms
+C     quasiHydrostatic :: Using non-hydrostatic terms in hydrostatic algorithm
 C     globalFiles    :: Selects between "global" and "tiled" files
+C     useSingleCpuIO :: On SGI platforms, option globalFiles is either
+C                       slow (f77) or does not work (f90).  When
+C                       useSingleCpuIO is set, mdsio_writefield.F
+C                       outputs from master mpi process only.
 C     allowFreezing  :: Allows water to freeze and form ice
 C     groundAtK1  :: put the surface(k=1) at the Lower Boundary (=ground)
-C     useJamartWetPoints :: Use wet-point method for Coriolis (Jamart and Ozer, 1986)
       COMMON /PARM_L/ usingCartesianGrid, usingSphericalPolarGrid,
      & usingCurvilinearGrid,
      & no_slip_sides,no_slip_bottom,
@@ -209,23 +233,26 @@ C     useJamartWetPoints :: Use wet-point method for Coriolis (Jamart and Ozer, 
      & momPressureForcing, vectorInvariantMomentum,
      & tempDiffusion, tempAdvection, tempForcing,
      & saltDiffusion, saltAdvection, saltForcing,
+     & useRealFreshWaterFlux,
      & rigidLid, implicitFreeSurface, exactConserv, uniformLin_PhiSurf,
      & momStepping, tempStepping, saltStepping, tr1Stepping,
-     & metricTerms, usingSphericalPolarMTerms,
+     & metricTerms, usingSphericalPolarMTerms, useNHMTerms,
      & useConstantF, useBetaPlaneF, useSphereF,
+     & useEnergyConservingCoriolis, useJamartWetPoints,
      & implicitDiffusion, implicitViscosity,
+     & multiDimAdvection, forcing_In_AB,
      & doThetaClimRelax, doSaltClimRelax, doTr1ClimRelax, 
-     & periodicExternalForcing, usingPCoords, usingZCoords,
-     & nonHydrostatic, globalFiles,
+     & periodicExternalForcing, 
+     & usingPCoords, usingZCoords, useDynP_inEos_Zc, setCenterDr,
+     & nonHydrostatic, quasiHydrostatic, globalFiles, useSingleCpuIO,
      & allowFreezing, groundAtK1,
      & usePickupBeforeC35, debugMode,
-     & readPickupWithTracer, writePickupWithTracer,
-     & multiDimAdvection, useEnergyConservingCoriolis,
-     & useJamartWetPoints
+     & readPickupWithTracer, writePickupWithTracer
       LOGICAL usingCartesianGrid
       LOGICAL usingSphericalPolarGrid
       LOGICAL usingCurvilinearGrid
       LOGICAL usingSphericalPolarMTerms
+      LOGICAL useNHMTerms
       LOGICAL no_slip_sides
       LOGICAL no_slip_bottom
       LOGICAL staggerTimeStep
@@ -241,6 +268,7 @@ C     useJamartWetPoints :: Use wet-point method for Coriolis (Jamart and Ozer, 
       LOGICAL saltDiffusion
       LOGICAL saltAdvection
       LOGICAL saltForcing
+      LOGICAL useRealFreshWaterFlux
       LOGICAL rigidLid
       LOGICAL implicitFreeSurface
       LOGICAL exactConserv
@@ -253,25 +281,30 @@ C     useJamartWetPoints :: Use wet-point method for Coriolis (Jamart and Ozer, 
       LOGICAL useConstantF
       LOGICAL useBetaPlaneF
       LOGICAL useSphereF
+      LOGICAL useEnergyConservingCoriolis
+      LOGICAL useJamartWetPoints
       LOGICAL implicitDiffusion
       LOGICAL implicitViscosity
+      LOGICAL multiDimAdvection
+      LOGICAL forcing_In_AB
       LOGICAL doThetaClimRelax
       LOGICAL doSaltClimRelax
       LOGICAL doTr1ClimRelax
       LOGICAL periodicExternalForcing
       LOGICAL usingPCoords
       LOGICAL usingZCoords
+      LOGICAL useDynP_inEos_Zc
+      LOGICAL setCenterDr
       LOGICAL nonHydrostatic
+      LOGICAL quasiHydrostatic
       LOGICAL globalFiles
+      LOGICAL useSingleCpuIO
       LOGICAL allowFreezing
       LOGICAL groundAtK1
       LOGICAL usePickupBeforeC35
       LOGICAL debugMode
       LOGICAL readPickupWithTracer
       LOGICAL writePickupWithTracer
-      LOGICAL multiDimAdvection
-      LOGICAL useEnergyConservingCoriolis
-      LOGICAL useJamartWetPoints
 
 C--   COMMON /PARM_R/ "Real" valued parameters used by the model.
 C     gg2dTargetResidual
@@ -297,13 +330,15 @@ C           defaults to 0.51 but can be set at runtime.
 C     delP      :: Vertical grid spacing ( Pa ).
 C     delZ      :: Vertical grid spacing ( m  ).
 C     delR      :: Vertical grid spacing ( units of r ).
+C     delRc     :: Vertical grid spacing between cell centers (r unit).
 C     delX      :: Separation between cell faces (m) or (deg), depending
 C     delY        on input flags.
 C     gravity   :: Accel. due to gravity ( m/s^2 )
 C     recip_gravity and its inverse
 C     gBaro     :: Accel. due to gravity used in barotropic equation ( m/s^2 )
-C     ronil     :: Reference density
+C     rhoNil    :: Reference density for the linear equation of state
 C     rhoConst  :: Vertically constant reference density 
+C     rhoConstFresh :: Constant reference density for fresh water (rain)
 C     startTime :: Start time for model ( s )
 C     phiMin    :: Latitude of southern most cell face.
 C     thetaMin  :: Longitude of western most cell face (this
@@ -354,6 +389,7 @@ C                    Frequency of checkpointing and dumping of the model state
 C                    are referenced to this clock. ( s )
 C     deltaTMom    :: Timestep for momemtum equations ( s )
 C     deltaTtracer :: Timestep for tracer equations ( s )
+C     deltaTfreesurf :: Timestep for free-surface equation ( s )
 C     freesurfFac  :: Parameter to turn implicit free surface term on or off
 C                    freesurfac = 1. uses implicit free surface
 C                    freesurfac = 0. uses rigid lid
@@ -386,8 +422,11 @@ C     mtFacMom      :: Metric terms tracer parameter
 C     cosPower      :: Power of cosine of latitude to multiply viscosity
 C     cAdjFreq      :: Frequency of convective adjustment
 C
-C     taveFreq      :: Frequency with which time-averaged model state is written to
-C                     post-processing files ( s ).
+C     taveFreq      :: Frequency with which time-averaged model state 
+C                      is written to post-processing files ( s ).
+C     tave_lastIter :: (for state variable only) fraction of the last time 
+C                      step (of each taveFreq period) put in the time average. 
+C                      (fraction for 1rst iter = 1 - tave_lastIter)
 C     tauThetaClimRelax :: Relaxation to climatology time scale ( s ).
 C     lambdaThetaClimRelax :: Inverse time scale for relaxation ( 1/s ).
 C     tauSaltClimRelax :: Relaxation to climatology time scale ( s ).
@@ -396,6 +435,14 @@ C     externForcingPeriod :: Is the period of which forcing varies (eg. 1 month)
 C     externForcingCycle :: Is the repeat time of the forcing (eg. 1 year)
 C                          (note: externForcingCycle must be an integer
 C                           number times externForcingPeriod)
+C     convertFW2Salt :: salinity, used to convert Fresh-Water Flux to Salt Flux
+C                       (use model surface (local) value if set to -1)
+C     temp_EvPrRn :: temperature of Rain & Evap. 
+C     salt_EvPrRn :: salinity of Rain & Evap.
+C     trac_EvPrRn :: tracer concentration in Rain & Evap.
+C        (notes: a) tracer content of Rain/Evap only used if both 
+C                     NonLin_FrSurf & useRealFreshWater are set.
+C                b) use model surface (local) value if set to UNSET_RL)
 C     horiVertRatio      :: Ratio on units in vertical to units in horizontal.
 C     recip_horiVertRatio  ( 1 if horiz in m and vertical in m ).
 C                          ( g*rho if horiz in m and vertical in Pa ).
@@ -405,27 +452,30 @@ C     bottomDragLinear   :: Drag coefficient built in to core dynamics
 C      --"-"--  Quadratic  ( linear: 1/s, quadratic: 1/m )
       COMMON /PARM_R/ cg2dTargetResidual, cg2dTargetResWunit, 
      & cg2dpcOffDFac, cg3dTargetResidual,
-     & delP, delZ, delR, delX, delY, 
-     & deltaT,deltaTmom, deltaTtracer, deltaTClock,abeps, startTime, 
+     & delP, delZ, delR, delRc, delX, delY,
+     & deltaT, deltaTmom, deltaTtracer, deltaTfreesurf, deltaTClock,
+     & abeps, startTime, 
      & phiMin, thetaMin, rSphere, recip_RSphere, f0, beta,
-     & fCori, fCoriG,
+     & fCori, fCoriG, fCoriCos,
      & viscAh,  viscAz,  viscA4,  viscAr, viscAstrain, viscAtension,
      & diffKhT, diffKzT, diffK4T, diffKrT,
      & diffKhS, diffKzS, diffK4S, diffKrS,
      & delT, tauCD, rCD, freeSurfFac, implicSurfPress, implicDiv2Dflow,
      & hFacMin, hFacMinDz, hFacInf, hFacSup,
      & gravity, recip_Gravity, gBaro, rhonil, recip_rhonil, 
-     & recip_rhoConst, rhoConst, tRef, sRef,
+     & recip_rhoConst, rhoConst, 
+     & rhoConstFresh, convertEmP2rUnit, tRef, sRef,
      & endTime, chkPtFreq, pchkPtFreq, dumpFreq,
-     & diagFreq, taveFreq, monitorFreq,
+     & diagFreq, taveFreq, tave_lastIter, monitorFreq,
      & afFacMom, vfFacMom, pfFacMom, cfFacMom, foFacMom, mtFacMom,
      & cosPower, cAdjFreq, omega, 
      & tauThetaClimRelax, lambdaThetaClimRelax,
      & tauSaltClimRelax, lambdaSaltClimRelax,
      & tauTr1ClimRelax, lambdaTr1ClimRelax,
      & externForcingCycle, externForcingPeriod,
+     & convertFW2Salt, temp_EvPrRn, salt_EvPrRn, trac_EvPrRn,
      & viscAp, diffKpT, diffKpS, hFacMinDr, hFacMinDp,
-     & theta_S, specVol_S, horiVertRatio, recip_horiVertRatio,
+     & horiVertRatio, recip_horiVertRatio,
      & ivdc_kappa, Ro_SeaLevel,
      & bottomDragLinear,bottomDragQuadratic
 
@@ -436,12 +486,14 @@ C      --"-"--  Quadratic  ( linear: 1/s, quadratic: 1/m )
       _RL delZ(Nr)
       _RL delP(Nr)
       _RL delR(Nr)
+      _RL delRc(Nr+1)
       _RL delX(Nx)
       _RL delY(Ny)
       _RL deltaT
       _RL deltaTClock
       _RL deltaTmom
       _RL deltaTtracer
+      _RL deltaTfreesurf
       _RL abeps
       _RL phiMin
       _RL thetaMin
@@ -485,12 +537,13 @@ C      --"-"--  Quadratic  ( linear: 1/s, quadratic: 1/m )
       _RL recip_rhonil
       _RL rhoConst
       _RL recip_rhoConst
-      _RL specVol_S(Nr)
+      _RL rhoConstFresh
+      _RL convertEmP2rUnit
       _RL tRef(Nr)
-      _RL theta_S(Nr)
       _RL sRef(Nr)
       _RS fCori(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS fCoriG(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS fCoriCos(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL startTime
       _RL endTime
       _RL chkPtFreq
@@ -498,6 +551,7 @@ C      --"-"--  Quadratic  ( linear: 1/s, quadratic: 1/m )
       _RL dumpFreq
       _RL diagFreq
       _RL taveFreq
+      _RL tave_lastIter
       _RL monitorFreq
       _RL afFacMom
       _RL vfFacMom
@@ -516,6 +570,10 @@ C      --"-"--  Quadratic  ( linear: 1/s, quadratic: 1/m )
       _RL lambdaTr1ClimRelax
       _RL externForcingCycle
       _RL externForcingPeriod
+      _RL convertFW2Salt
+      _RL temp_EvPrRn
+      _RL salt_EvPrRn
+      _RL trac_EvPrRn 
       _RL horiVertRatio
       _RL recip_horiVertRatio
       _RL ivdc_kappa
@@ -529,27 +587,19 @@ C      --"-"--  Quadratic  ( linear: 1/s, quadratic: 1/m )
       _RL Lamba_theta
       _RL recip_Cp
 
-C Equation of State (polynomial coeffients)
-      COMMON /PARM_EOS_NL/ eosC,eosSig0,eosRefT,eosRefS
-      _RL eosC(9,Nr+1),eosSig0(Nr+1),eosRefT(Nr+1),eosRefS(Nr+1)
-C Linear equation of state
-C     tAlpha    :: Linear EOS thermal expansion coefficient ( 1/degree ).
-C     sBeta     :: Linear EOS haline contraction coefficient.
-      COMMON /PARM_EOS_LIN/ tAlpha,sBeta,eosType
-      _RL tAlpha
-      _RL sBeta
-      character*(6) eosType
-
 C Atmospheric physical parameters (Ideal Gas EOS, ...)
-C     atm_po    :: standard reference pressure
-C     atm_cp    :: specific heat (Cp) of the (dry) air at constant pressure
+C     atm_Po    :: standard reference pressure
+C     atm_Cp    :: specific heat (Cp) of the (dry) air at constant pressure
+C     atm_Rd    :: gas constant for dry air
 C     atm_kappa :: kappa = R/Cp (R: constant of Ideal Gas EOS)
-C     Integr_GeoPot :: option to select the way we integrate the geopotential
+C     integr_GeoPot :: option to select the way we integrate the geopotential
 C                     (still a subject of discussions ...) 
-      COMMON /PARM_ATM/ atm_cp, atm_kappa, atm_po,
-     &                  Integr_GeoPot
-      _RL atm_cp, atm_kappa, atm_po
-      INTEGER Integr_GeoPot
+C     selectFindRoSurf :: select the way surf. ref. pressure (=Ro_surf) is
+C             derived from the orography. Implemented: 0,1 (see INI_P_GROUND)
+      COMMON /PARM_ATM/ atm_Cp, atm_Rd, atm_kappa, atm_Po,
+     &                  integr_GeoPot, selectFindRoSurf
+      _RL atm_Po, atm_Cp, atm_Rd, atm_kappa 
+      INTEGER integr_GeoPot, selectFindRoSurf
 
 C Logical flags for selecting packages
       LOGICAL useKPP
@@ -561,8 +611,17 @@ C Logical flags for selecting packages
       LOGICAL useSHAP_FILT
       LOGICAL useZONAL_FILT
       LOGICAL useFLT
+      LOGICAL usePTRACERS
+      LOGICAL useSBO
       LOGICAL useSEAICE
+cswdblk -- add ---
+      LOGICAL useBulkforce
+      LOGICAL useThermSEAICE
+cswdblk --- end add ---
       COMMON /PARM_PACKAGES/
      &        useKPP, useGMRedi, useOBCS, useAIM, useECCO, 
      &        useSHAP_FILT, useZONAL_FILT, useGrdchk, useFLT,
-     &        useSEAICE
+     &        usePTRACERS,  useSBO, useSEAICE, 
+cswdblk -- add ---
+     &        useThermSEAICE, useBulkforce
+cswdblk --- end add ---

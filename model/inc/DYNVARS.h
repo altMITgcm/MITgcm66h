@@ -71,6 +71,10 @@ C           implicDiv2DFlow=0 => etaH=etaN ; =1 => etaH=etaNm1 ;
       _RL  phi_nh(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
 #endif /* ALLOW_NONHYDROSTATIC */
 
+cph(
+cph the following block will eventually move to a separate
+cph header file containing requires anomaly fields of control vars.
+cph
 #if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_DIFFKR_CONTROL))
       COMMON /DYNVARS_DIFFKR/
      &                       diffKr
@@ -81,3 +85,20 @@ C           implicDiv2DFlow=0 => etaH=etaN ; =1 => etaH=etaNm1 ;
      &                       kapgm
       _RL  kapgm  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
 #endif
+#if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_BOTTOMDRAG_CONTROL))
+      COMMON /DYNVARS_BOTTOMDRAG/
+     &                       bottomdragfld
+      _RL  bottomdragfld (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+#endif
+cph
+cph)
+
+C     diagnostic variables: 
+C     phiHydLow  :: Phi-Hydrostatic at r-lower boundary
+C                  (bottom in z-coordinates, top in p-coordinates)
+C     totPhiHyd :: total hydrostatic Potential (anomaly, for now), 
+C                  at cell center level ; includes surface contribution.
+C                 (for diagnostic + used in Z-coord with EOS_funct_P)
+      COMMON /DYNVARS_DIAG/ phiHydLow, totPhiHyd
+      _RL  phiHydLow(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL  totPhiHyd(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)

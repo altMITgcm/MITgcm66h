@@ -314,11 +314,16 @@ C     drF    - Cell face separation along Z axis ( units of r ).
 C     Rcolumn  -Total thickness (in r_unit) of the fluid column
 C     R_low  - base of fluid in r_unit (Depth(m) / Pressure(Pa) at top Atmos.)
 C     Ro_surf- surface reference (at rest) position, r_unit.
+C     klowC  - index of the lowest ``wet cell'' (2D)
 C     hFac   - Fraction of cell in vertical which is open i.e how 
 C              "lopped" a cell is (dimensionless scale factor).
 C              Note: The code needs terms like MIN(hFac,hFac(I+1))
 C                    On some platforms it may be better to precompute
 C                    hFacW, hFacE, ... here than do MIN on the fly.
+C     gravitySign - indicates whether gravity points in the opposite
+C                   direction of R or not.
+C                 ( = +1 for R=Z (gravity points downward in Z)
+C                 ( = -1 for R=P (gravity points upward in P)
 C     rkFac     - Vertical coordinate to vertical index orientation.
 C                 ( -1 same orientation, 1 opposite orientation )
 C                 ( vertical coord == m  -> rkFac =  1 )
@@ -362,6 +367,9 @@ C     tanPhiAtU - tan of the latitude at U point. Used for spherical polar
 C                 metric term in U equation.
 C     tanPhiAtV - tan of the latitude at V point. Used for spherical polar 
 C                 metric term in V equation.
+      COMMON /GRID_I/ klowC
+      INTEGER klowC (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+
       COMMON /GRID_R/
      &  dxC,dxF,dxG,dxV,dyC,dyF,dyG,dyU,
      &  R_low,Ro_surf,HFacC,HFacW,HFacS,
@@ -376,6 +384,7 @@ C                 metric term in V equation.
      &  tanPhiAtU, tanPhiAtV,
      &  cosfacU,cosfacV,sqcosfacU,sqcosfacV,
      &  drC,drF,recip_drC,recip_drF,rC,rF,
+     &  gravitySign,
      &  rkFac, recip_rkFac, xC0, yC0
       _RS dxC            (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS dxF            (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
@@ -431,6 +440,7 @@ C                 metric term in V equation.
       _RS saFac          (1:Nr)
       _RS rC             (1:Nr)
       _RS rF             (1:Nr+1)
+      _RL gravitySign
       _RS rkFac
       _RS recip_rkFac
       _RS xC0

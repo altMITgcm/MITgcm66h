@@ -57,24 +57,83 @@ C              Southwest C-grid tracer point
 C
 C     SSS   :: Sea surface salinity in psu for relaxation
 C              Southwest C-grid tracer point
+C
+C     pload :: for the ocean:      atmospheric pressure at z=eta
+C                Units are           Pa=N/m^2
+C              for the atmosphere: geopotential of the orography 
+C                Units are           meters (converted)
 
       COMMON /FFIELDS/
-     &                 fu,
-     &                 fv,
-     &                 Qnet,
-     &                 Qsw,
-     &                 dQdT,
-     &                 EmPmR,
-     &                 SST,
-     &                 SSS
+     &                 fu
+     &               , fv
+     &               , Qnet
+     &               , Qsw
+     &               , dQdT
+     &               , EmPmR
+     &               , SST
+     &               , SSS
+#ifdef ATMOSPHERIC_LOADING
+     &               , pload
+#endif
+
       _RS  fu       (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  fv       (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  Qnet     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+#ifdef SHORTWAVE_HEATING
       _RS  Qsw      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+#else
+      _RS  Qsw      (1,1,1,1)
+#endif
       _RS  dQdT     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  EmPmR    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  SST      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  SSS      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+#ifdef ATMOSPHERIC_LOADING
+      _RS  pload    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+#endif
+
+#ifndef INCLUDE_EXTERNAL_FORCING_PACKAGE
+C     taux[01]  :: Temp. for zonal wind stress
+C     tauy[01]  :: Temp. for merid. wind stress
+C     qnet[01]  :: Temp. for heat flux
+C     empmr[01] :: Temp. for fresh water flux
+C     sst[01]   :: Temp. for theta climatalogy
+C     sss[01]   :: Temp. for theta climatalogy
+C     qsw[01]   :: Temp. for short wave component of heat flux
+C     [01]      :: End points for interpolation
+C     Above use static heap storage to allow exchange.
+
+      COMMON /TDFIELDS/
+     &                 taux0, tauy0, Qnet0, EmPmR0, SST0, SSS0,
+     &                 taux1, tauy1, Qnet1, EmPmR1, SST1, SSS1
+#ifdef SHORTWAVE_HEATING
+     &               , Qsw0, Qsw1
+#endif 
+#ifdef ATMOSPHERIC_LOADING
+     &               , pload0, pload1
+#endif
+
+      _RS  taux0    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  tauy0    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  Qnet0    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  EmPmR0   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  SST0     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  SSS0     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  taux1    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  tauy1    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  Qnet1    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  EmPmR1   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  SST1     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  SSS1     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+#ifdef ATMOSPHERIC_LOADING
+      _RS  pload0   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  pload1   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+#endif
+#ifdef SHORTWAVE_HEATING
+      _RS  Qsw1     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  Qsw0     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+#endif
+#endif /* INCLUDE_EXTERNAL_FORCING_PACKAGE undef */
 
 C     surfaceTendencyU       (units are  m/s^2)
 C                -> usage in gU:     gU = gU + surfaceTendencyU[m/s^2]
