@@ -81,7 +81,8 @@ C--     Loop over all layers, top to bottom
         DO K=1,Nr
 
 C-        Update velocity fields:  V(n) = V** - dt * grad Eta
-          CALL CORRECTION_STEP(
+          IF (momStepping)
+     &      CALL CORRECTION_STEP(
      I         bi,bj,iMin,iMax,jMin,jMax,K,
      I         etaSurfX,etaSurfY,myTime,myThid )
 
