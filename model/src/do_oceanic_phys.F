@@ -408,28 +408,9 @@ cphCADJ &                              key=itdkey, byte=isbyte
 #endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
-#ifdef ALLOW_AIM
-C       AIM - atmospheric intermediate model, physics package code.
-        IF ( useAIM ) THEN
-#ifdef ALLOW_DEBUG
-          IF ( debugLevel .GE. debLevB ) 
-     &     CALL DEBUG_CALL('AIM_DO_PHYSICS',myThid)
-#endif
-         CALL TIMER_START('AIM_DO_PHYSICS   [THERMODYNAMICS]', myThid)
-         CALL AIM_DO_PHYSICS( bi, bj, myTime, myIter, myThid )
-         CALL TIMER_STOP( 'AIM_DO_PHYSICS   [THERMODYNAMICS]', myThid)
-        ENDIF
-#endif /* ALLOW_AIM */
-
 C--   end bi,bj loops.
        ENDDO
       ENDDO
-
-#ifdef ALLOW_AIM
-      IF ( useAIM ) THEN
-       CALL AIM_AIM2DYN_EXCHANGES( myTime, myIter, myThid )
-      ENDIF
-#endif /* ALLOW_AIM */
 
 #ifdef ALLOW_DEBUG
          IF ( debugLevel .GE. debLevB ) 
