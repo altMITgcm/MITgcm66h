@@ -3,6 +3,14 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint52b_post
+o new version: "thsice" of thermodynamic sea-ice pkg:
+ - only 1 call from "forward_step"; conserve energy, fresh-water & salt. 
+ - modify fluxes but do not change theta directly;
+ - light cleaning of bulk_force pkg (still needed with thsice).
+ - add forcing fields + data files in global_ocean.cs32x15/inp_thsice 
+   + output_thsice.txt to test thsice & bulk_force pkgs.
+o put back grid & coriolis monitor output.
 checkpoint52b_pre
 
 o call "do_the_model_io" at the beginning (=> dump initial state) 
