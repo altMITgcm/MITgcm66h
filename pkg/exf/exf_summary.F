@@ -126,7 +126,7 @@ c--   Print settings of some CPP flags.
      &                    SQUEEZE_RIGHT , mythid)
 #else
       write(msgbuf,'(a)')
-     &'// DOWNWARD_RADIATION:             NOT defined'
+     &'// ALLOW_DOWNWARD_RADIATION:       NOT defined'
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
 #endif

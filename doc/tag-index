@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+untagged
+o Added net flux to downward flux conversion to pkg/exf/exf_getffields.F
+o Added SEAICE_initialHEFF to pkg/seaice
+
 checkpoint48g_post
 --- EOS:
 o compute locally the pressure for use in EOS: UNESCO, JMD95P, MDJWF
