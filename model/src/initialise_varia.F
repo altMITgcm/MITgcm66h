@@ -50,8 +50,12 @@ C--   Set laplace operators for use in 3D conjugate gradient solver.
 #endif
 
 #endif /* ALLOW_TAMC_CHECKPOINTING */
-
       _BARRIER
+
+C--   Initialise 3-dim. diffusivities
+      CALL INI_MIXING( myThid )
+      _BARRIER
+
 C--   Initialize DYNVARS arrays (state fields + G terms: Gu,Gv,...) to zero [always]
       CALL INI_DYNVARS( myThid )
 
