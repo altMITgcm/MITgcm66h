@@ -1,29 +1,25 @@
 C $Header$
 C
 C     /==========================================================\
-C     | RHFACC_MACROS.h                                          |
+C     | RECIP_DYU_MACROS.h                                       |
 C     |==========================================================|
 C     | These macros are used to reduce memory requirement and/or|
 C     | memory references when variables are fixed along a given |
 C     | axis or axes.                                            |
 C     \==========================================================/
 
-#ifdef RHFACC_CONST
-#define  _rhFacC(i,j,k,bi,bj) rhFacC(1,1,1,1,1)
+#ifdef RECIP_DYU_CONST
+#define  _recip_dyU(i,j,bi,bj) recip_dyU(1,1,1,1)
 #endif
 
-#ifdef RHFACC_FX
-#define  _rhFacC(i,j,k,bi,bj) rhFacC(i,1,1,bi,1)
+#ifdef RECIP_DYU_FX
+#define  _recip_dyU(i,j,bi,bj) recip_dyU(i,1,bi,1)
 #endif
 
-#ifdef RHFACC_FY
-#define  _rhFacC(i,j,k,bi,bj) rhFacC(1,j,1,1,bj)
+#ifdef RECIP_DYU_FY
+#define  _recip_dyU(i,j,bi,bj) recip_dyU(1,j,1,bj)
 #endif
 
-#ifdef RHFACC_FXY
-#define  _rhFacC(i,j,k,bi,bj) rhFacC(i,j,1,bi,bj)
-#endif
-
-#ifndef _rhFacC
-#define  _rhFacC(i,j,k,bi,bj) rhFacC(i,j,k,bi,bj)
+#ifndef _recip_dyU
+#define  _recip_dyU(i,j,bi,bj) recip_dyU(i,j,bi,bj)
 #endif

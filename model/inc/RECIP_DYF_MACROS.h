@@ -1,25 +1,25 @@
 C $Header$
 C
 C     /==========================================================\
-C     | RDYG_MACROS.h                                             |
+C     | RECIP_DYF_MACROS.h                                       |
 C     |==========================================================|
 C     | These macros are used to reduce memory requirement and/or|
 C     | memory references when variables are fixed along a given |
 C     | axis or axes.                                            |
 C     \==========================================================/
 
-#ifdef RDYG_CONST
-#define  _rdyG(i,j,bi,bj) rdyG(1,1,1,1)
+#ifdef RECIP_DYF_CONST
+#define  _recip_dyF(i,j,bi,bj) recip_dyF(1,1,1,1)
 #endif
 
-#ifdef RDYG_FX
-#define  _rdyG(i,j,bi,bj) rdyG(i,1,bi,1)
+#ifdef RECIP_DYF_FX
+#define  _recip_dyF(i,j,bi,bj) recip_dyF(i,1,bi,1)
 #endif
 
-#ifdef RDYG_FY
-#define  _rdyG(i,j,bi,bj) rdyG(1,j,1,bj)
+#ifdef RECIP_DYF_FY
+#define  _recip_dyF(i,j,bi,bj) recip_dyF(1,j,1,bj)
 #endif
 
-#ifndef _rdyG
-#define  _rdyG(i,j,bi,bj) rdyG(i,j,bi,bj)
+#ifndef _recip_dyF
+#define  _recip_dyF(i,j,bi,bj) recip_dyF(i,j,bi,bj)
 #endif

@@ -1,25 +1,25 @@
 C $Header$
 C
 C     /==========================================================\
-C     | ZA_MACROS.h                                              |
+C     | RECIP_DXV_MACROS.h                                       |
 C     |==========================================================|
 C     | These macros are used to reduce memory requirement and/or|
 C     | memory references when variables are fixed along a given |
 C     | axis or axes.                                            |
 C     \==========================================================/
 
-#ifdef ZA_CONST
-#define  _zA(i,j,bi,bj) zA(1,1,1,1)
+#ifdef RECIP_DXV_CONST
+#define  _recip_dxV(i,j,bi,bj) recip_dxV(1,1,1,1)
 #endif
 
-#ifdef ZA_FX
-#define  _zA(i,j,bi,bj) zA(i,1,bi,1)
+#ifdef RECIP_DXV_FX
+#define  _recip_dxV(i,j,bi,bj) recip_dxV(i,1,bi,1)
 #endif
 
-#ifdef ZA_FY
-#define  _zA(i,j,bi,bj) zA(1,j,1,bj)
+#ifdef RECIP_DXV_FY
+#define  _recip_dxV(i,j,bi,bj) recip_dxV(1,j,1,bj)
 #endif
 
-#ifndef _zA
-#define  _zA(i,j,bi,bj) zA(i,j,bi,bj)
+#ifndef _recip_dxV
+#define  _recip_dxV(i,j,bi,bj) recip_dxV(i,j,bi,bj)
 #endif

@@ -1,25 +1,25 @@
 C $Header$
 C
 C     /==========================================================\
-C     | RDXF_MACROS.h                                             |
+C     | RECIP_DYG_MACROS.h                                       |
 C     |==========================================================|
 C     | These macros are used to reduce memory requirement and/or|
 C     | memory references when variables are fixed along a given |
 C     | axis or axes.                                            |
 C     \==========================================================/
 
-#ifdef RDXF_CONST
-#define  _rdxF(i,j,bi,bj) rdxF(1,1,1,1)
+#ifdef RECIP_DYG_CONST
+#define  _recip_dyG(i,j,bi,bj) recip_dyG(1,1,1,1)
 #endif
 
-#ifdef RDXF_FX
-#define  _rdxF(i,j,bi,bj) rdxF(i,1,bi,1)
+#ifdef RECIP_DYG_FX
+#define  _recip_dyG(i,j,bi,bj) recip_dyG(i,1,bi,1)
 #endif
 
-#ifdef RDXF_FY
-#define  _rdxF(i,j,bi,bj) rdxF(1,j,1,bj)
+#ifdef RECIP_DYG_FY
+#define  _recip_dyG(i,j,bi,bj) recip_dyG(1,j,1,bj)
 #endif
 
-#ifndef _rdxF
-#define  _rdxF(i,j,bi,bj) rdxF(i,j,bi,bj)
+#ifndef _recip_dyG
+#define  _recip_dyG(i,j,bi,bj) recip_dyG(i,j,bi,bj)
 #endif
