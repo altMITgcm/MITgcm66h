@@ -42,8 +42,8 @@ C     == Local variables
       itlo = mybxlo(mythid)
       ithi = mybxhi(mythid)
 
-      iLocOut =  6
-      jLocOut =  35
+      iLocOut =  80
+      jLocOut =  30
       kLocOut =  1
 
 ce    some reference temperature
@@ -64,6 +64,10 @@ C--   Calculate cost function on tile of this instance
                write(*,'(a,3(x,i4),a,4(x,i4))')
      &              'COST    ',ig,jg,kLocOut,' TILE ',i,j,bi,bj
                objf_test(bi,bj) = theta(i,j,kLocOut,bi,bj)
+cph(
+               print *, 'ph-cost ', ig, jg, kLocOut,
+     &              theta(i,j,kLocOut,bi,bj)
+cph)
             endif
 
             end do
