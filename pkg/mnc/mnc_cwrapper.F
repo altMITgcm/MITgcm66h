@@ -377,6 +377,8 @@ C     Check that gname exists
       mnc_cw_vbij(1,indv) = bi_dim
       mnc_cw_vbij(2,indv) = bj_dim
 
+      CALL MNC_CW_ADD_VATTR_TEXT(myThid,vname,1,'mitgcm_grid',gname)
+
       RETURN
       END
 

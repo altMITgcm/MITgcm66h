@@ -41,6 +41,20 @@ C     Grid info included as attributes
       CALL MNC_FILE_ADD_ATTR_DBL(myThid,fname, 'gravitySign', 
      &     1, gravitySign )
       CALL MNC_FILE_ADD_ATTR_DBL(myThid,fname, 'rkFac', 1, rkFac)
+
+#ifdef ALLOW_EXCH2
+C     W2/exch2 information
+      CALL MNC_FILE_ADD_ATTR_INT(myThid,fname, 
+     &     'exch2_txglobalo', 1, exch2_txglobalo(tnum))
+      CALL MNC_FILE_ADD_ATTR_INT(myThid,fname, 
+     &     'exch2_tyglobalo', 1, exch2_tyglobalo(tnum))
+      CALL MNC_FILE_ADD_ATTR_INT(myThid,fname, 
+     &     'exch2_myFace', 1, exch2_myFace(tnum))
+      CALL MNC_FILE_ADD_ATTR_INT(myThid,fname, 
+     &     'exch2_tbasex', 1, exch2_tbasex(tnum))
+      CALL MNC_FILE_ADD_ATTR_INT(myThid,fname, 
+     &     'exch2_tbasey', 1, exch2_tbasey(tnum))
+#endif
       
 C     Model parameters (SIZE.h) included as attributes
       CALL MNC_FILE_ADD_ATTR_INT(myThid,fname, 'sNx', 1, sNx)
@@ -55,7 +69,6 @@ C     Model parameters (SIZE.h) included as attributes
       CALL MNC_FILE_ADD_ATTR_INT(myThid,fname, 'Ny', 1, Ny)
       CALL MNC_FILE_ADD_ATTR_INT(myThid,fname, 'Nr', 1, Nr)
       
-
       RETURN
       END
 
