@@ -321,6 +321,13 @@ C--      Calculate the total vertical diffusivity
        ENDDO
 #endif
 
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE KappaRU(:,:,:) 
+CADJ &                 = comlev1_bibj, key=idynkey, byte=isbyte
+CADJ STORE KappaRV(:,:,:) 
+CADJ &                 = comlev1_bibj, key=idynkey, byte=isbyte
+#endif /* ALLOW_AUTODIFF_TAMC */
+
 C--     Start of dynamics loop
         DO k=1,Nr
 
@@ -405,6 +412,7 @@ C--     end of dynamics k loop (1:Nr)
 C--     Implicit viscosity
         IF (implicitViscosity.AND.momStepping) THEN
 #ifdef    ALLOW_AUTODIFF_TAMC
+CADJ STORE KappaRU(:,:,:) = comlev1_bibj , key=idynkey, byte=isbyte
 CADJ STORE gU(:,:,:,bi,bj) = comlev1_bibj , key=idynkey, byte=isbyte
 #endif    /* ALLOW_AUTODIFF_TAMC */
           CALL IMPLDIFF(
@@ -413,6 +421,7 @@ CADJ STORE gU(:,:,:,bi,bj) = comlev1_bibj , key=idynkey, byte=isbyte
      U         gU,
      I         myThid )
 #ifdef    ALLOW_AUTODIFF_TAMC
+CADJ STORE KappaRV(:,:,:) = comlev1_bibj , key=idynkey, byte=isbyte
 CADJ STORE gV(:,:,:,bi,bj) = comlev1_bibj , key=idynkey, byte=isbyte
 #endif    /* ALLOW_AUTODIFF_TAMC */
           CALL IMPLDIFF(
