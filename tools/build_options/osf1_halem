@@ -10,7 +10,7 @@ MAKEDEPEND='mkdep -f depend.out'
 DEFINES='-DTARGET_DEC -DWORDLENGTH=1'
 
 
-CPP='/usr/bin/cpp -P'
+CPP='/usr/local/bin/cpp -P -traditional'
 #ph: makedepend not available on some/many DEC Alpha's; use mkdep instead
 FC='f77'
 LINK='f77'

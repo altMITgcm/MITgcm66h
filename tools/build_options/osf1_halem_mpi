@@ -14,7 +14,7 @@ FC_NAMEMANGLE="#define FC_NAMEMANGLE(X) X ## _"
 INCLUDES="$INCLUDES -I/usr/ulocal/stow/netcdf-3.5.1/include"
 LIBS="-L/usr/ulocal/stow/netcdf-3.5.1/lib -lnetcdf"
 
-CPP='/usr/bin/cpp -P'
+CPP='/usr/local/bin/cpp -P -traditional'
 #ph: makedepend not available on some/many DEC Alpha's; use mkdep instead
 FC='f77'
 LINK='f77'
