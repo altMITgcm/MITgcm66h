@@ -49,7 +49,6 @@ C   Options that are required to use pkg/exf with pkg/seaice.
 #define  ALLOW_RUNOFF
 
 C   Options that control relaxation terms.
-#undef   ALLOW_CLIM_CYCLIC
 #undef   ALLOW_CLIMTEMP_RELAXATION
 #undef   ALLOW_CLIMSALT_RELAXATION
 #undef   ALLOW_CLIMSST_RELAXATION
