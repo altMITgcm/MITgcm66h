@@ -6,6 +6,7 @@ $Header$
 o mask vorticity at the corner ; affects global_ocean.cs output
 o fix ini_curvilinear_grid ; test CS experiments with mpi
 o aim.5l_cs: modify sea-ice fraction input file ; update output
+o exf: Adding simple range check routine for exf fields after read
 
 checkpoint52k_post
 o removed top-level directory "diags"
