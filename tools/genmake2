@@ -1218,7 +1218,7 @@ if test "x$RETVAL" = x0 ; then
 	cat make_mnc.errors 1>&2
 	exit 1
     fi
-    if test -a "x$HAVE_NETCDF" != xt ; then
+    if test "x$HAVE_NETCDF" != xt ; then
 	cat <<EOF
 
 WARNING: the "mnc" package has been enabled but tests failed to 

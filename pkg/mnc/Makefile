@@ -64,7 +64,7 @@ tag = ../../doc/tag-index
 mnc_id_header.h:
 	-./parse_local_info > $@
 
-test: mnc_test_001
+test: all mnc_test_001
 	echo "running mnc_test_001 ..."
 	./mnc_test_001 && ncdump test_001.nc | head -50
 
