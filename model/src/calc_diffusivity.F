@@ -83,7 +83,7 @@ C     I, J, K - Loop counters
 
 #ifdef ALLOW_KPP
       IF (useKPP) CALL KPP_CALC_DIFF(
-     I        bi,bj,iMin,iMax,jMin,jMax,K,
+     I        bi,bj,iMin+1,iMax,jMin+1,jMax,K,
      I        maskUp,
      O        KappaRT,KappaRS,KappaRU,KappaRV,
      I        myThid)
