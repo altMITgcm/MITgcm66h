@@ -3,6 +3,12 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+next tag:
+o ctrl_set_... routines
+  - changed cbuff to real*4 to accelerate I/O
+  - bug fixes for sliced routines: affects indices jj,kk
+o updating default GMREDI_OPTIONS.h
+
 ecco_c51_e34g
 o Adjusting 1x1 deg. 10yr config to
   - ecco_c51_... code
