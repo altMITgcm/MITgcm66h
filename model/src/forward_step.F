@@ -25,7 +25,6 @@ C     == global variables ==
 #include "PARAMS.h"
 #include "DYNVARS.h"
 #include "FFIELDS.h"
-#include "TR1.h"
 
 #ifdef ALLOW_NONHYDROSTATIC
 #include "CG3D.h"
