@@ -3,6 +3,13 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint46j_post
+o split calc_exact_eta in 2 S/R : integr_continuity & update_etaH
+o move wVel computation at the end of the time step, in S/R integr_continuity
+o create specific S/R to exchange T,S before DYNAMICS (for stagger time step)
+o update timeave pkg for wVel diagnostic.
+checkpoint46j_pre
+
 checkpoint46i_post
 o Clean up AIM package (and keep the results unchanged):
   include CPP_OPTION and use IMPLICT NONE in all routines ; 
