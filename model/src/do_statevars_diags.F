@@ -56,13 +56,12 @@ C--   Fill-in TimeAve pkg diagnostics (for state-variables)
 
         IF ( taveFreq.GT.0. ) THEN
           CALL TIMEAVE_STATVARS(myTime, myIter, bi, bj, myThid)
+# ifdef ALLOW_PTRACERS
+          IF ( usePTRACERS ) THEN	
+           CALL PTRACERS_STATVARS(myTime, myIter, bi, bj, myThid)
+          ENDIF	
+# endif /* ALLOW_PTRACERS */
         ENDIF
-
-#ifdef ALLOW_PTRACERS
-#ifndef PTRACERS_SEPARATE_FORCING
-          CALL PTRACERS_STATVARS(myTime, myIter, bi, bj, myThid)
-#endif
-#endif
 
 C--    End of bi,bj loop
        ENDDO

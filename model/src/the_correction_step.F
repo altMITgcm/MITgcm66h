@@ -195,16 +195,12 @@ C--     for vertical velocity and "etaN" (exact volume conservation) :
 #ifdef ALLOW_TIMEAVE
         IF (taveFreq.GT.0.) THEN 
           CALL TIMEAVE_STATVARS(myTime, myIter, bi, bj, myThid)
-        ENDIF
-cswdptr -- add ---
 #ifdef ALLOW_PTRACERS
-ceh3 this define should not be visible!
-#ifndef PTRACERS_SEPARATE_FORCING
-ceh3 this should have an IF ( usePTRACERS ) THEN 
-          CALL PTRACERS_STATVARS(myTime, myIter, bi, bj, myThid)
-#endif
-#endif
-cswdptr -- end add ---
+          IF ( usePTRACERS ) THEN 
+           CALL PTRACERS_STATVARS(myTime, myIter, bi, bj, myThid)
+          ENDIF
+#endif /* ALLOW_PTRACERS */
+         ENDIF
 #endif /* ALLOW_TIMEAVE */
 
 C--    End of 2nd bi,bj loop
