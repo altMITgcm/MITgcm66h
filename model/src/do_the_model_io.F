@@ -94,7 +94,7 @@ C--   Do time averages
        CALL TIMEAVE_STATV_WRITE( myCurrentTime, myIter, myThid )
 #ifdef ALLOW_AIM
        IF (useAIM)
-     &  CALL AIM_WRITE_DIAGS( myCurrentTime, myIter, myThid )
+     &  CALL AIM_WRITE_TAVE( myCurrentTime, myIter, myThid )
 #endif                                                             
       ENDIF
 #endif
