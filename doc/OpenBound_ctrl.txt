@@ -1,0 +1,111 @@
+%%%%% OPEN BOUNDARY CONTROL: NOTES %%%%%%%%%%
+%%%%%
+%%%%% G. GEBBIE, GEBBIE@MIT.EDU, 27-MAY-2003
+
+SECTION 1: COMPILE-TIME PARAMETERS AND FLAGS.
+
+1. Open boundary control is set by ALLOW_OBCSN_CONTROL for the northern
+   boundary (and  OBCSS, OBCSW, OBCSE for South, West, and East 
+   boundaries) in ECCO_CPPOPTIONS.h .
+
+2. In parallel setups, there has been a problem controlling the barotropic
+   component of both the tangential and normal velocities. Switch  
+   NO_CONTROL_BAROTROPIC_VELOCITY in ECCO_CPPOPTIONS.h to throw this 
+   information out. The adjoint model still computes the gradient of 
+   the cost function w.r.t. barotropic velocity but CTRL_PACK will only
+   pack zero values for this gradient. Below, I describe how gradients w.r.t.
+   barotropic velocity are computed in the first place.
+
+3. parameter "nobcs" in SIZE.h refers to number of control variable 
+   types on the boundary .
+   1 = TEMPERATURE
+   2 = TEMP., SALINITY
+   3 = TEMP., SAL., NORMAL VELOCITY
+   4 = TEMP., SAL., NORMAL VELOCITY, TANGENTIAL VELOCITY.
+   
+4. There are extra cost function routines.
+
+   O.B. regularization:
+   ALLOW_OBCSN_COST_CONTRIBUTION (OBCSS,OBCSW,OBCSE) computes a penalty
+   for deviations from the first guess open boundary field. The weights 
+   for Temperature and Salinity are equivalent to those that are used
+   for the Levitus climatology. (For the ECCO 2 degree O.B.C.'s, I see
+   no reason that they should be more strongly weighted than Levitus.)
+   For the weighting of O.B. velocities, append a third column to "data.err" 
+   which is a background velocity magnitude as a function of depth. Also, 
+   append a fifth item to the first row of "data.err" which is an expected
+   magnitude for barotropic velocity adjustments.
+
+   O.B. Performance:
+   OBCS_AGEOS_COST_CONTRIBUTION penalizes deviations from thermal wind 
+   balance on the boundaries. This is computed from the model monthly 
+   average fields, and only puts a weak constraint on the Temperature,
+   Salinity, and Normal Velocity fields. Also, this balance is not required
+   in the upper layers of the ocean, but this is hard-coded into 
+   cost_obcs_ageos at this time.
+
+   OBCS_VOLFLUX_COST_CONTRIBUTION penalizes an open boundary volume flux
+   which does not equal zero. This subroutine is presently obsolete and
+   needs to be rewritten.
+ 
+SECTION 2: FORM OF THE O.B. CONTROL FILES, xx_obcsX and adxx_obcsX.
+
+   The north and south files have the size (sNx,Nr,Nt*nobcs).
+   West and east, (sNy,Nr,Nt*nobcs).
+   Nt, the number of O.B. control time periods is set in "data.exf"
+   with entries of this form:
+     obcsXstartdate1=19920116,   
+     obcsXstartdate2=220000,  
+     obcsXperiod=2592000.0, 
+   where X=N,S,W,E.
+
+   For nobcs=4, note that the 3rd record index will alternate with 
+   Temperature, Salinity, Meridional Velocity and Zonal Velocity for
+   the North and South boundaries. But the E,W boundaries will have 
+   T,S,Zonal Velocity, Meridional Velocity, because of the definition 
+   of Tangential and Normal Velocity.
+
+   Finally, both components of the velocity field are not filled with 
+   the actual velocity adjustments. Instead,
+     level 1 contains the depth-integrated average velocity, or barotropic
+     velocity, and levels 2->Nr contain the baroclinic part of the velocity.
+   The baroclinic velocity and level 1 must be computed in such a way to
+   balance the depth-integrated volume flux of the baroclinic velocity.
+
+OUTSTANDING ISSUES:
+   1. The code automatically balances the volume flux by the open 
+      boundary control velocity adjustments. Theoretically, this 
+      can be relaxed and the O.B. volume flux does not need to be
+      perfectly balanced.  Add a switch for automatically balancing volume
+      flux (or not).  Also automatic balance will only work if Northern 
+      boundary exists.
+
+   2. In parallel mode, the gradients with respect to open boundary 
+      barotropic velocity have been shown to be incorrect. Also, the 
+      gradients w.r.t. tangential barotropic velocity reflect the tile
+      boundaries.
+
+   3. "ctrl_volflux" is the routine that calculates the volume flux
+      due to the O.B. control velocity adjustments. It must assume
+      that all the open boundaries have the same calendar.
+
+   4. Make a switch for changing the form of adxx_obcs ? (i.e. 
+      split barotropic flag? ) 
+
+ Also, there are forward o.b.c.s issues:
+
+   1. Global slice files can not be read.
+      Slices can not be exchanged. 
+
+   2. Must not be any slope in topography at boundary.
+ 
+   3. Must not be any chance of double periodicity at boundary.
+
+   4. Tile boundaries evident at open boundaries in spinup.
+
+   5. O.B. meta files don't work.
+
+
+
+
+
