@@ -52,7 +52,7 @@ C        cg2d_b(i,j,bi,bj) = cg2d_b(i,j,bi,bj)
 C    &    -freeSurfFac*_rA(i,j,bi,bj)*
 C    &     cg2d_x(I  ,J  ,bi,bj)/deltaTMom/deltaTMom
          cg2d_b(i,j,bi,bj) =
-     &    -freeSurfFac*_rA(i,j,bi,bj)*
+     &    -freeSurfFac*_rA(i,j,bi,bj)*horiVertRatio*
      &     cg2d_x(I  ,J  ,bi,bj)/deltaTMom/deltaTMom
         ENDDO
        ENDDO
