@@ -16,14 +16,16 @@ C     aim_surfPotTemp :: surf.Temp input file is in Pot.Temp (aim_useMMsurfFc)
 C     aim_energPrecip :: account for energy of precipitation (snow & rain temp)
 C     aim_splitSIOsFx :: compute separately Sea-Ice & Ocean surf. Flux
 C                 (also land SW & LW) ; default=F as in original version
+C     aim_clrSkyDiag  :: compute clear-sky radiation for diagnostics
       COMMON /AIM_PARM_L/ 
      &  aim_useFMsurfBC, aim_useMMsurfFc, aim_surfPotTemp,
-     &  aim_energPrecip, aim_splitSIOsFx
+     &  aim_energPrecip, aim_splitSIOsFx, aim_clrSkyDiag
       LOGICAL aim_useFMsurfBC
       LOGICAL aim_useMMsurfFc
       LOGICAL aim_surfPotTemp
       LOGICAL aim_energPrecip
       LOGICAL aim_splitSIOsFx
+      LOGICAL aim_clrSkyDiag
 
 C--   COMMON /AIM_PARM_C/ Character valued parameters for AIM
 C     aim_MMsufx   :: sufix for all Monthly Mean surface forcing files

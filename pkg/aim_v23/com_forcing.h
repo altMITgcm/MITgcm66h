@@ -38,8 +38,9 @@ C     stl1   - land-surface temperature    [K]
 C     snow1  - snow depth (mm water)
 C     soilw1 - soil wetness (mm water)
 C     alb1   - surface albedo (1:land, 2:ocean, 3:sea-ice, 0:average)
+C     dTsurf - surface temperature changes form 1 it to the next one	
 c     COMMON /FORDAY/ sst1, oice1, stl1, snow1, soilw1, alb1
-      COMMON /FORDAY/ sst1, sti1, stl1, soilw1, alb1
+      COMMON /FORDAY/ sst1, sti1, stl1, soilw1, alb1, dTsurf
       _RL sst1   (NGP,MAX_NO_THREADS)
 c     _RL oice1  (NGP,MAX_NO_THREADS)
       _RL sti1   (NGP,MAX_NO_THREADS)
@@ -47,6 +48,7 @@ c     _RL oice1  (NGP,MAX_NO_THREADS)
 c     _RL snow1  (NGP,MAX_NO_THREADS)
       _RL soilw1 (NGP,MAX_NO_THREADS)
       _RL alb1   (NGP,0:3,MAX_NO_THREADS)
+      _RL dTsurf (NGP,3,MAX_NO_THREADS)
       _RL oice1(NGP), snow1(NGP)
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|

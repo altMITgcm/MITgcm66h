@@ -122,6 +122,10 @@ C--   2. Constants for physical parametrization routines:
 c_FM  include "cls_inphys.h"
 #include "phy_const.h"
  
+C-     pot. temp. increment for computing stability function derivative
+C      note: use the discrete form: F(Ts+dTstab)-F(Ts-dTstab)/2.dTstab 
+       dTstab = 1. _d 0
+
       _END_MASTER(myThid)
 
 #endif /* ALLOW_AIM */ 

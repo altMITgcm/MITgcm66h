@@ -18,6 +18,9 @@ C  - do not include minor changes (added to avoid negative Q).
 C  allow time average diagnostic:
 #define ALLOW_AIM_TAVE
 
+C  allow time average diagnostic:
+#define ALLOW_CLR_SKY_DIAG
+
 C   Macro mapping dynamics vertical indexing (KD) to AIM vertical indexing (KA).
 C   ( dynamics puts K=1 at bottom of atmos., AIM puts K=1 at top of atmos. )
 #define _KD2KA( KD ) Nr-KD+1

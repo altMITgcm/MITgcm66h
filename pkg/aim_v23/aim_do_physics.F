@@ -116,9 +116,6 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 C-    Compute atmospheric-physics tendencies (call the main AIM S/R)
       CALL PHY_DRIVER( tYear, myTime, myIter, bi, bj, myThid )
 
-C-    AIM diagnostics : write snap-shot & cumulate for TimeAve output
-      CALL AIM_DIAGNOSTICS( bi, bj, myTime, myIter, myThid )
-
       CALL AIM_AIM2DYN( bi, bj, myTime, myIter, myThid )
 
 #ifdef ALLOW_LAND
@@ -154,7 +151,9 @@ C-    Step forward sea-ice model
      I                        myTime, myIter, myThid )
 
 C-    Slab Ocean : step forward ocean mixed-layer temp. & salinity 
-        CALL THSICE_SLAB_OCEAN( bi,bj, myThid )
+        CALL THSICE_SLAB_OCEAN( 
+     O                         dTsurf(1,2,myThid), 
+     I                         bi,bj, myThid )
 
         CALL THSICE_AVE( evpAtm, flxSW,
      I                   bi, bj, myTime, myIter, myThid )
@@ -167,6 +166,9 @@ C-    Slab Ocean : step forward ocean mixed-layer temp. & salinity
         CALL ATM_STORE_MY_DATA( bi, bj, myIter, myTime, myThid )
       ENDIF
 #endif /* COMPONENT_MODULE */
+
+C-    AIM diagnostics : write snap-shot & cumulate for TimeAve output
+      CALL AIM_DIAGNOSTICS( bi, bj, myTime, myIter, myThid )
 
 #endif /* ALLOW_AIM */
 
