@@ -71,13 +71,6 @@ C***********************************************************************
 
       integer i,j,k,bi,bj,ierr1,kveg
 
-#ifdef ALLOW_MNC
-      character*(MAX_LEN_FNAM) fizhi_veg_bn
-#endif
-
-C     Allow for MDSIO format if someday needed
-#ifdef ALLOW_MDSIO
-      IF ( .FALSE. ) THEN
 
       call mdsfindunit( kveg, myThid )
       close(kveg)
@@ -129,32 +122,6 @@ C     Allow for MDSIO format if someday needed
 
       ENDDO
       ENDDO
-
-      ENDIF
-#endif
-
-#ifdef ALLOW_MNC
-      IF (useMNC) THEN
-        _BEGIN_MASTER( myThid )
-      
-        do i = 1,MAX_LEN_FNAM
-          fizhi_veg_bn(i:i) = ' '
-        enddo
-      
-C       The following base name should be handled by some sort of input
-C       name parameter in FIZHI_READPARMS() plus a possible size.
-      
-C       Set the base name     1234567890
-        fizhi_veg_bn(1:10) = 'fizhi_veg '
-      
-        CALL MNC_CW_I_R('I', fizhi_veg_bn, 0,0, 
-     &       'surftype',surftype,myThid)
-        CALL MNC_CW_RL_R('R', fizhi_veg_bn, 0,0,
-     &       'tilefrac', tilefrac, myThid)
-      
-        _END_MASTER( myThid )
-      ENDIF
-#endif
 
 c     create chip arrays for :
 c      igrd :  grid index
