@@ -3,14 +3,16 @@ C $Name$
 
 #include "PTRACERS_OPTIONS.h"
 cswdptr -- add ---
-#include "GCHEM_OPTIONS.h"
+#ifdef ALLOW_GCHEM
+# include "GCHEM_OPTIONS.h"
+#endif
 cswdptr -- end add ---
 
 CBOP
-C !ROUTINE: PTRACERS_INTEGERATE
+C !ROUTINE: PTRACERS_INTEGRATE
 
 C !INTERFACE: ==========================================================
-      SUBROUTINE PTRACERS_INTEGERATE(
+      SUBROUTINE PTRACERS_INTEGRATE(
      I                               bi,bj,k,
      I                               xA,yA,uTrans,vTrans,rTrans,maskUp,
      X                               KappaRtr,

@@ -20,6 +20,10 @@ C !USES: ===============================================================
 #include "PTRACERS.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#ifdef ALLOW_AUTODIFF_TAMC
+# include "tamc.h"
+# include "tamc_keys.h"
+#endif
 
 C !INPUT PARAMETERS: ===================================================
 C  bi,bj   :: tile indices
@@ -47,6 +51,28 @@ CEOP
 
 C Loop over tracers
       DO iTracer=1,PTRACERS_numInUse
+
+#ifdef ALLOW_AUTODIFF_TAMC
+          act0 = iTracer - 1
+          max0 = NUMBER_OF_PTRACERS
+          act1 = bi - myBxLo(myThid)
+          max1 = myBxHi(myThid) - myBxLo(myThid) + 1
+          act2 = bj - myByLo(myThid)
+          max2 = myByHi(myThid) - myByLo(myThid) + 1
+          act3 = myThid - 1
+          max3 = nTx*nTy
+          act4 = ikey_dynamics - 1
+          iptrkey = (act0 + 1) 
+     &                      + act1*max0
+     &                      + act2*max0*max1
+     &                      + act3*max0*max1*max2
+     &                      + act4*max0*max1*max2*max3
+#endif /* ALLOW_AUTODIFF_TAMC */
+
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE gPtr(:,:,:,bi,bj,iTracer) = comlev1_bibj_ptracers, 
+CADJ &     key=iptrkey, byte=isbyte
+#endif /* ALLOW_AUTODIFF_TAMC */
 
             CALL IMPLDIFF(
      I         bi, bj, iMin, iMax, jMin, jMax,
