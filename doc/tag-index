@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o add version info (via BUILD_INFO.h) to MNC and stdout
+
 checkpoint54e_post
 o add two new packages
   - pp81 (Packanowski and Philander, 1981), Richardson number and 
