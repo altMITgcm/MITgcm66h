@@ -75,5 +75,23 @@ C     and general post-analysis)
       CALL WRITE_FLD_XY_RS( 'YG',' ',YG,0,myThid)
       CALL WRITE_FLD_XY_RS( 'AC',' ',rA,0,myThid)
 
+C--   Print out statistics of each horizontal grid array (helps when debugging)
+      CALL MON_PRINTSTATS_RS(1,XC,'XC',myThid)
+      CALL MON_PRINTSTATS_RS(1,XG,'XG',myThid)
+      CALL MON_PRINTSTATS_RS(1,DXC,'DXC',myThid)
+      CALL MON_PRINTSTATS_RS(1,DXF,'DXF',myThid)
+      CALL MON_PRINTSTATS_RS(1,DXG,'DXG',myThid)
+      CALL MON_PRINTSTATS_RS(1,DXV,'DXV',myThid)
+      CALL MON_PRINTSTATS_RS(1,YC,'YC',myThid)
+      CALL MON_PRINTSTATS_RS(1,YG,'YG',myThid)
+      CALL MON_PRINTSTATS_RS(1,DYC,'DYC',myThid)
+      CALL MON_PRINTSTATS_RS(1,DYF,'DYF',myThid)
+      CALL MON_PRINTSTATS_RS(1,DYG,'DYG',myThid)
+      CALL MON_PRINTSTATS_RS(1,DYU,'DYU',myThid)
+      CALL MON_PRINTSTATS_RS(1,RA,'RA',myThid)
+      CALL MON_PRINTSTATS_RS(1,RAW,'RAW',myThid)
+      CALL MON_PRINTSTATS_RS(1,RAS,'RAS',myThid)
+      CALL MON_PRINTSTATS_RS(1,RAZ,'RAZ',myThid)
+
       RETURN
       END
