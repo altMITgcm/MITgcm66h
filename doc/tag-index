@@ -3,6 +3,13 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint17
+ o Beginning to incorporating modularity
+   for supporting atmos. and ocean configs.
+ o Small changes for TAMC complinace
+ o New ultra simple test case. Barotropic box
+   configuration "exp0".
+
 checkpoint16
  o Minor changes to exchange routines to support 
    accumulation in reverse mode. Adjoint of an
