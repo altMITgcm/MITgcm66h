@@ -548,6 +548,18 @@ switch ($platform$USEMPI)
     set LIBS       = ( ' -L/usr/local/apps/mass -lmass' )
     set RMFILES    = ( 'rii_files' )
     breaksw
+  case aer-linux-cluster+mpi
+    echo "Configuring for " $platform
+    set LN         = ( '/bin/ln -s' )
+    set CPP        = ( '/lib/cpp  -traditional -P' )
+    set DEFINES    = ( ${DEFINES} '-DWORDLENGTH=4' )
+    set FC         = ( '/opt/mpich/bin/mpif77' )
+    set LINK       = ( '/opt/mpich/bin/mpif77' )
+    set FFLAGS     = ( '-byteswapio -r8 -Mnodclchk -Mextend' )
+    set FOPTIM     = ( '-tp p6 -v -O2 -Munroll -Mvect=cachesize:512000,transform -Kieee' )
+    set LIBS       = ( '-L/opt/mpich/lib/ -lfmpich -lmpich' )
+    set INCLUDES   = ( '-I/opt/mpich/include' )
+    breaksw
   default:
     echo "Error: platform not recognized: uname -p = " $platform$USEMPI
     exit
