@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o make lambda[Theta,Salt]ClimRelax spatially varying
+  (default remains spatially uniform constant based on tau)
+
 checkpoint57f_post
 o add parameter "baseTime" = model base time = time at iteration zero
   new function DIFF_BASE_MULTIPLE (replace DIFFERENT_MULTIPLE) to 
