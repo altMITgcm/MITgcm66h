@@ -78,6 +78,12 @@ c       Determine whether we are in a leap year or not.
 c       Determine the day of the week.
         call cal_TimePassed( refdate, date, numberofdays, mythid )
         date(4) = mod(numberofdays(1),7)+1
+      else
+        call cal_PrintError( calerr, mythid )
+cml   if you want the CheckDate error to stop the model uncomment
+cml   the following line, otherwise there is just going to be a
+cml   warning.
+cml        stop ' stopped in cal_FullDate'
       endif
 
       return

@@ -258,7 +258,7 @@ c       Week days.
 c       Assume a model calendar having 12 months with thirty days each.
 c       Reference date is the first day of year 0 at 0am, and model
 c       day 1.
-        refdate(1) = 1
+        refdate(1) = 00000101
         refdate(2) = 0
         refdate(3) = 1
         refdate(4) = 1

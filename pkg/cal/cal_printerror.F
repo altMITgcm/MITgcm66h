@@ -320,8 +320,8 @@ c     Error in cal_CheckDate
      &    '   cal_CheckDate: Leap year identifier not correct!'
         else if (nerrcode .eq. 7) then
           print*,
-     &    '   cal_CheckDate: Calendar date before predefined reference',
-     &    '               date!'
+     &    '   cal_CheckDate: Calendar date before predefined reference'
+     &    //' date!'
         else if (nerrcode .eq. 8) then
           print*,
      &    '   cal_CheckDate: First component not in yymmdd format!'
