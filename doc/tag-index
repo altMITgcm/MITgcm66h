@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint52m_post
 o commented out call to cal_GetMonthsRec in swfrac.F and added some comments;
   this does not change any of the results, because myIter=0 in swfrac always
   lead to jwtype=2 (the default anyway), but the call makes little sense
