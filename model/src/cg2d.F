@@ -192,7 +192,7 @@ C     _EXCH_XY_R8( cg2d_r, myThid )
        exchWidthY = 1
        myNz       = 1
        CALL EXCH_RL( cg2d_r,
-     I            OLw, OLe, OLs, OLn, myNz,
+     I            OLw, OLe, OLs, OLn, sNx, sNy, myNz,
      I            exchWidthX, exchWidthY,
      I            FORWARD_SIMULATION, EXCH_IGNORE_CORNERS, myThid )
 #endif
@@ -208,7 +208,7 @@ C     _EXCH_XY_R8( cg2d_s, myThid )
        exchWidthY = 1
        myNz       = 1
        CALL EXCH_RL( cg2d_s,
-     I            OLw, OLe, OLs, OLn, myNz,
+     I            OLw, OLe, OLs, OLn, sNx, sNy, myNz,
      I            exchWidthX, exchWidthY,
      I            FORWARD_SIMULATION, EXCH_IGNORE_CORNERS, myThid )
 #endif
@@ -295,7 +295,7 @@ C      _EXCH_XY_R8( cg2d_s, myThid )
        exchWidthY = 1
        myNz       = 1
        CALL EXCH_RL( cg2d_s,
-     I            OLw, OLe, OLs, OLn, myNz,
+     I            OLw, OLe, OLs, OLn, sNx, sNy, myNz,
      I            exchWidthX, exchWidthY,
      I            FORWARD_SIMULATION, EXCH_IGNORE_CORNERS, myThid )
 #endif
@@ -364,7 +364,7 @@ C      _EXCH_XY_R8(cg2d_r, myThid )
        exchWidthY = 1
        myNz       = 1
        CALL EXCH_RL( cg2d_r,
-     I             OLw, OLe, OLs, OLn, myNz,
+     I             OLw, OLe, OLs, OLn, sNx, sNy, myNz,
      I             exchWidthX, exchWidthY,
      I             FORWARD_SIMULATION, EXCH_IGNORE_CORNERS, myThid )
 #endif
