@@ -47,6 +47,16 @@ CEOP
 C--   Initialize fixed params for GAD
       CALL GAD_INIT( myThid )
 
+C--   Initialize MNC look-up tables
+#ifdef ALLOW_MNC
+CEH3 NEED RUN-TIME SWITCH:  IF (useOBCS) THEN
+      CALL MNC_INIT(myThid)
+      CALL MNC_CW_INIT(myThid, sNx,sNy, OLx,OLy, nSx,nSy, nPx,nPy, Nr)
+
+      CALL INI_MNC_IO(myThid)
+CEH3 NEED RUN-TIME SWITCH:  ENDIF
+#endif
+
 C--   Initialize fixed arrays for OBCS
 #ifdef ALLOW_OBCS
       IF (useOBCS) THEN

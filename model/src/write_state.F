@@ -171,7 +171,7 @@ c       CALL WRITE_FLD_XYZ_RS('hFacS.',suff,hFacS,myIter,myThid)
 
 C     Write dynvars using the MNC package
       mnc_iter = myIter
-      CALL MNC_CW_RL_W_R(myThid,'state',0,0,'iter',-1,mnc_iter)
+      CALL MNC_CW_RL_W_D(myThid,'state',0,0,'iter',-1,mnc_iter)
       CALL MNC_CW_RL_W_D(myThid,'state',0,0,'U', 0, uVel)
       CALL MNC_CW_RL_W_D(myThid,'state',0,0,'V', 0, vVel)
       CALL MNC_CW_RL_W_D(myThid,'state',0,0,'T', 0, theta)
@@ -185,7 +185,7 @@ C     Write dynvars using the MNC package
       ENDIF
       IF ((buoyancyRelation .NE. 'ATMOSPHERIC')
      &     .AND. (myIter .NE. nIter0)) THEN
-        CALL MNC_CW_RL_W_R(myThid,'phiHydLow',0,0,'iter',-1,mnc_iter)
+        CALL MNC_CW_RL_W_D(myThid,'phiHydLow',0,0,'iter',-1,mnc_iter)
         CALL MNC_CW_RL_W_D(myThid,'phiHydLow',0,0,'phiHydLow',
      &       0,phiHydLow)
       ENDIF
