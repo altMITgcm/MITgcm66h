@@ -29,14 +29,20 @@ C     K
 C     Calculate depths of centers and interfaces
       rF(1) = 0. _d 0
       DO K=1,Nr
-       drF(K)     = delZ(K)
-       rF(K+1) = rF(K)-delZ(K)
+       drF(K)     = delR(K)
+       rF(K+1) = rF(K)-rkFac*delR(K)
+C      drF(K)     = delZ(K)
+C      rF(K+1)    = rF(K)-delZ(K)
       ENDDO
-      drC(1)      = delZ(1) * 0.5 _d 0
-      rC(1)       = -delZ(1) * 0.5 _d 0
+      drC(1)      = delR(1) * 0.5 _d 0
+      rC(1)       = rf(1)-rkFac*delR(1) * 0.5 _d 0
+C     drC(1)      = delZ(1) * 0.5 _d 0
+C     rC(1)       = -delZ(1) * 0.5 _d 0
       DO K=2,Nr
-       drC(K)     = 0.5 _d 0 *(delZ(K-1)+delZ(K))
-       rC(K)      = rC(K-1) - drC(K)
+       drC(K)     = 0.5 _d 0 *(delR(K-1)+delR(K))
+       rC(K)      = rC(K-1) - rkFac*drC(K)
+C      drC(K)     = 0.5 _d 0 *(delZ(K-1)+delZ(K))
+C      rC(K)      = rC(K-1) - drC(K)
       ENDDO
       DO K=1,Nr
        saFac(K)  = 1. D0

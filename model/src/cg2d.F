@@ -124,7 +124,7 @@ C--   Initial residual calculation
      &    -aW2d(I+1,J  ,bi,bj)*cg2d_x(I  ,J  ,bi,bj)
      &    -aS2d(I  ,J  ,bi,bj)*cg2d_x(I  ,J  ,bi,bj)
      &    -aS2d(I  ,J+1,bi,bj)*cg2d_x(I  ,J  ,bi,bj)
-     &    -freeSurfFac*_rA(i,j,bi,bj)*
+     &    -freeSurfFac*_rA(i,j,bi,bj)* Gravity*rhoConst*
      &     cg2d_x(I  ,J  ,bi,bj)/deltaTMom/deltaTMom*cg2dNorm
      &    )
           err            = err            + 
@@ -144,7 +144,7 @@ C--   Initial residual calculation
 C     WRITE(6,*) ' mythid, err = ', mythid, SQRT(err)
       _GLOBAL_SUM_R8( errBuf    , err   , myThid )
       err    = errBuf(1,1)
-C     write(0,*) 'cg2d: Sum(rhs) = ',sumRHS
+      write(0,*) 'cg2d: Sum(rhs) = ',sumRHS
 
       actualIts      = 0
       actualResidual = SQRT(err)
@@ -157,7 +157,7 @@ C     >>>>>>>>>>>>>>> BEGIN SOLVER <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
       DO 10 it2d=1, cg2dMaxIters
 
 CcnhDebugStarts
-C      WRITE(0,*) ' CG2D: Iteration ',it2d-1,' residual = ',actualResidual
+       WRITE(0,*) ' CG2D: Iteration ',it2d-1,' residual = ',actualResidual
 CcnhDebugEnds
        IF ( err .LT. cg2dTargetResidual ) GOTO 11
 C--    Solve preconditioning equation and update
@@ -225,7 +225,7 @@ C==    q = A.s
      &    -aW2d(I+1,J  ,bi,bj)*cg2d_s(I  ,J  ,bi,bj)
      &    -aS2d(I  ,J  ,bi,bj)*cg2d_s(I  ,J  ,bi,bj)
      &    -aS2d(I  ,J+1,bi,bj)*cg2d_s(I  ,J  ,bi,bj)
-     &    -freeSurfFac*_rA(i,j,bi,bj)*
+     &    -freeSurfFac*_rA(i,j,bi,bj)* Gravity*rhoConst*
      &     cg2d_s(I  ,J  ,bi,bj)/deltaTMom/deltaTMom*cg2dNorm
           alpha = alpha+cg2d_s(I,J,bi,bj)*cg2d_q(I,J,bi,bj)
           ENDDO

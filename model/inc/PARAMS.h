@@ -141,6 +141,10 @@ C                        climatology is required.
 C     doSaltClimRelax  - Set true if relaxation to salinity
 C                        climatology is required.
 C     periodicExternalForcing - Set true if forcing is time-dependant
+C     usingPCoords     - Set to indicate that we are working in pressure
+C                        coords.
+C     usingZCoords     - Set to indicate that we are working in height
+C                        coords.
       COMMON /PARM_L/ usingCartesianGrid, usingSphericalPolarGrid,
      & momViscosity, momAdvection, momForcing, useCoriolis, momPressureForcing,
      & tempDiffusion, tempAdvection, tempForcing,
@@ -150,7 +154,7 @@ C     periodicExternalForcing - Set true if forcing is time-dependant
      & metricTerms, usingSphericalPolarMTerms,
      & useConstantF, useBetaPlaneF, useSphereF,
      & implicitDiffusion, doThetaClimRelax, doSaltClimRelax,
-     & periodicExternalForcing
+     & periodicExternalForcing, usingPCoords, usingZCoords
       LOGICAL usingCartesianGrid
       LOGICAL usingSphericalPolarGrid
       LOGICAL usingSphericalPolarMTerms
@@ -178,6 +182,8 @@ C     periodicExternalForcing - Set true if forcing is time-dependant
       LOGICAL doThetaClimRelax
       LOGICAL doSaltClimRelax
       LOGICAL periodicExternalForcing
+      LOGICAL usingPCoords
+      LOGICAL usingZCoords
 
 C--   COMMON /PARM_R/ "Real" valued parameters used by the model.
 C     cg2dTargetResidual
