@@ -58,7 +58,7 @@ c ----------------
       _RL u(im,jm,lm),v(im,jm,lm),t(im,jm,lm)
       _RL q(im,jm,lm,ntracer)
       _RL pl(im,jm,lm),ple(im,jm,lm+1),dpres(im,jm,lm)
-      _RL pkht(im,jm,lm)
+      _RL pkht(im,jm,lm+1)
       _RL pkl(im,jm,lm)
       _RL surfz(im,jm)
       _RL radswt(im,jm), fracland(im,jm)
