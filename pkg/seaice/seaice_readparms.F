@@ -74,7 +74,7 @@ C--   set default sea ice parameters
       SEAICEuseADI       = .FALSE.
       SEAICE_dumpFreq    = dumpFreq
       SEAICE_taveFreq    = taveFreq
-      SEAICE_initialHEFF = ONE
+      SEAICE_initialHEFF = ZERO
       SEAICE_drag        = 0.002  _d 0
       OCEAN_drag         = 0.001  _d 0
       SEAICE_waterDrag   = 5.5    _d 0
