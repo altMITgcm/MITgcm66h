@@ -264,6 +264,9 @@ C      or in terms of tension and strain
        ENDIF
       ENDIF
 
+C-    Return to standard hfacZ (min-4) and mask vort3 accordingly:
+      CALL MOM_VI_MASK_VORT3(bi,bj,k,hFacZ,r_hFacZ,vort3,myThid)
+
 C---- Zonal momentum equation starts here
 
 C--   Vertical flux (fVer is at upper face of "u" cell)
@@ -408,7 +411,8 @@ C--   Horizontal Coriolis terms
       ENDIF
 
       IF (momAdvection) THEN
-       CALL MOM_VI_MASK_VORT3(bi,bj,k,hFacZ,r_hFacZ,vort3,myThid)
+C-     moved before calling U,V _SIDEDRAG:
+c      CALL MOM_VI_MASK_VORT3(bi,bj,k,hFacZ,r_hFacZ,vort3,myThid)
 C--   Horizontal advection of relative vorticity
 c      CALL MOM_VI_U_CORIOLIS(bi,bj,K,vFld,omega3,r_hFacZ,uCf,myThid)
        CALL MOM_VI_U_CORIOLIS(bi,bj,K,vFld,vort3,hFacZ,r_hFacZ,
