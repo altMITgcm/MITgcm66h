@@ -1,4 +1,8 @@
+C
+C $Header$
+C $Name$
 
+#include "AD_CONFIG.h"
 #include "CTRL_CPPOPTIONS.h"
 
       SUBROUTINE CTRL_CHECK( myThid )

@@ -1,4 +1,9 @@
+C
 C $Header$
+C $Name$
+
+#include "AD_CONFIG.h"
+
 C
 C CPP flags controlling which code in included in the files that
 C will be compiled.

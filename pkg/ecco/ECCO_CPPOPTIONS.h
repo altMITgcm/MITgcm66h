@@ -3,6 +3,7 @@ C $Name$
 
 #ifndef ECCO_CPPOPTIONS_H
 #define ECCO_CPPOPTIONS_H
+#include "AD_CONFIG.h"
 #include "PACKAGES_CONFIG.h"
 #ifdef ALLOW_ECCO
 

@@ -1,5 +1,8 @@
+C
 C $Header$
+C $Name$
 
+#include "AD_CONFIG.h"
 #include "COST_CPPOPTIONS.h"
 
 

@@ -402,6 +402,7 @@ C
 CEOI
 
 
+#include "AD_CONFIG.h"
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
