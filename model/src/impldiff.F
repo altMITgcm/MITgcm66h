@@ -54,6 +54,8 @@ C     == Local variables ==
       _RL gam(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
 CEOP
 
+      IF (Nr.LE.1) RETURN
+
 C--   Initialise
       DO k=1,Nr
        DO j=jMin,jMax
