@@ -1,5 +1,5 @@
  &esm
- NP_agcm=15,
+ NP_agcm=10,
  nexpn=231,
  problem_name='new_PAC_ocean_model',
  tbegin=1835.0,
@@ -9,11 +9,11 @@
  timer_esm=0,
  GM_run=1, FE_run=0, CD_run=0, OD_run=1, OD_dtom=6.0,
  FE_tauhst=12.0,1440.0,1440.0,44040.0,999999.0, FE_intwqp=1,8,12,
- FE_datdir='/nobackup2/menemenl/coupled2/data',
- FE_mssdir='/nobackup2/menemenl/coupled2/data',
+ FE_datdir='/tmp1/dmenem/oldpbl/data',
+ FE_mssdir='/tmp1/dmenem/oldpbl/data',
  /
  &agcm
- NPI_agcm=3,
+ NPI_agcm=2,
  NPJ_agcm=5,
  agcm_infile='agcm_infile',
  agcm_bcfile='agcm_bcfile',

@@ -1,0 +1,15 @@
+#
+####################################################
+# Set up the environment for the Earth System Model
+####################################################
+#
+setenv ARCHITECTURE MEM_SGI_O2
+setenv CAMILLEHOME /tmp1/dmenem/oldpbl/camel_7.2p_042903
+setenv MAKE_INC ${CAMILLEHOME}/include
+alias mkmf 'make -f ${CAMILLEHOME}/Makefile.init Makefile'
+#
+# The following line is needed on the BBN
+#alias make pmake
+#
+# The following line may be needed on the Crays
+# set path = ($path /usr/bin/X11)
