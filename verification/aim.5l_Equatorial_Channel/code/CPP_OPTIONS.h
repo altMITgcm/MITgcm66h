@@ -30,7 +30,7 @@ C o Include/exclude diagnostics package interface code
 #define INCLUDE_DIAGNOSTICS_INTERFACE_CODE
 
 C o Include/exclude zonal FFT filter code
-#define ALLOW_ZONAL_FILT
+#undef  ALLOW_ZONAL_FILT
 
 C o Include/exclude temperature advection code
 #define  INCLUDE_T_ADVECTION_CODE
