@@ -142,6 +142,12 @@ c--   to nTimeSteps: (nchklev_1*nchklev_2*nchklev_3 .ge. nTimeSteps)
       max_lev3=nTimeSteps/(nchklev_1*nchklev_2)+1
       max_lev2=nTimeSteps/nchklev_1+1
 
+c**************************************
+#ifdef ALLOW_DIVIDED_ADJOINT
+CADJ loop = divided
+#endif
+c**************************************
+
       do ilev_3 = 1,nchklev_3
          if(ilev_3.le.max_lev3) then
 c**************************************

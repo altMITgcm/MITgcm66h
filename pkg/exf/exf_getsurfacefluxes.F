@@ -42,9 +42,6 @@ c     == global variables ==
 
 c     == end of interface ==
 
-c     Get the surface forcing fields.
-      call exf_GetFFields(  mytime, myiter, mythid )
-
 #ifdef ALLOW_HFLUX_CONTROL
       call ctrl_getheatflux ( mytime, myiter, mythid )
 #endif

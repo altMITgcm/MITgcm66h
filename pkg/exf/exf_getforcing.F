@@ -107,25 +107,16 @@ c     == end of interface ==
 CEOP
 
 c     Get values of climatological fields.
-      call exf_getclim(
-     I                     mytime, myiter, mythid
-     &                   )
+      call exf_getclim( mytime, myiter, mythid )
 
-c     Get values of the surface fluxes.
-      call exf_getsurfacefluxes(
-     I                           mytime, myiter, mythid
-     &                         )
+c     Get the surface forcing fields.
+      call exf_getffields( mytime, myiter, mythid )
 
-#ifdef ALLOW_OBCS
-      call exf_getobcs(
-     I                           mytime, myiter, mythid
-     &                         )
-#endif
+c     Get values of the surface flux anomalies.
+      call exf_getsurfacefluxes( mytime, myiter, mythid )
 
 c     Map the forcing fields onto the corresponding model fields.
-      call exf_mapfields(
-     I                    mythid
-     &                  )
+      call exf_mapfields( mythid )
 
       end
 
