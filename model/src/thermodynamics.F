@@ -592,27 +592,11 @@ CADJ &   , key = kkey, byte = isbyte
 C--     end of thermodynamic k loop (Nr:1)
         ENDDO
 
-
-#ifdef ALLOW_AUTODIFF_TAMC
-C? Patrick? What about this one?
-cph Keys iikey and idkey dont seem to be needed
-cph since storing occurs on different tape for each
-cph impldiff call anyways.
-cph Thus, common block comlev1_impl isnt needed either.
-cph Storing below needed in the case useGMREDI.
-crg iikey is set in thermodynamics but also used in dynamics
-crg it should either be defined in ecco_the_model_main
-crg or thermodynamics and dynamics should use different key variables.
-cdm Conflict does not extis in in checkpoint48e
-        iikey = (ikey-1)*maximpl
-#endif /* ALLOW_AUTODIFF_TAMC */
-
 C--     Implicit diffusion
         IF (implicitDiffusion) THEN
 
          IF (tempStepping) THEN
 #ifdef ALLOW_AUTODIFF_TAMC
-            idkey = iikey + 1
 CADJ STORE gT(:,:,:,bi,bj) = comlev1_bibj , key=ikey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
             CALL IMPLDIFF(
@@ -624,7 +608,6 @@ CADJ STORE gT(:,:,:,bi,bj) = comlev1_bibj , key=ikey, byte=isbyte
 
          IF (saltStepping) THEN
 #ifdef ALLOW_AUTODIFF_TAMC
-         idkey = iikey + 2
 CADJ STORE gS(:,:,:,bi,bj) = comlev1_bibj , key=ikey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
             CALL IMPLDIFF(
