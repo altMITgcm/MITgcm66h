@@ -38,16 +38,16 @@ C     == Global data ==
 C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     myThid           :: Temp. dummy thread number.
+C     fNam             :: Used to build name of file for standard
+C                         output and error output.
       INTEGER myThid     
+      CHARACTER*13 fNam
 #ifdef ALLOW_USE_MPI
 C     mpiRC            :: Error code reporting variable used 
 C                         with MPI.
-C     fNam             :: Used to build name of file for standard
-C                         output and error output.
 C     msgBuffer        :: Used to build messages for printing.
       CHARACTER*(MAX_LEN_MBUF) msgBuffer
       INTEGER mpiRC
-      CHARACTER*13 fNam
       INTEGER nptmp
 #endif /* ALLOW_USE_MPI */
 CEOP
@@ -167,6 +167,15 @@ C      is an exact match makes things easier.
 #ifndef ALWAYS_USE_MPI
       ENDIF
 #endif
+
+#else /* ALLOW_USE_MPI */
+
+        WRITE(myProcessStr,'(I4.4)') myProcId 
+        WRITE(fNam,'(A,A)') 'STDERR.', myProcessStr(1:4)
+        OPEN(errorMessageUnit,FILE=fNam,STATUS='unknown')
+c       WRITE(fNam,'(A,A)') 'STDOUT.', myProcessStr(1:4)
+c       OPEN(standardMessageUnit,FILE=fNam,STATUS='unknown')
+
 #endif /* ALLOW_USE_MPI */
 
  999  CONTINUE

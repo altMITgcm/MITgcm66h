@@ -117,7 +117,14 @@ C       The write statement may need to be marked as a critical section.
 #endif
        ENDIF
       ENDIF
-C
+
+#ifndef DISABLE_WRITE_TO_UNIT_ZERO
+C--   also write directly to unit 0 :
+      IF ( numberOfProcs .EQ. 1 .AND. nThreads .EQ. 1 ) THEN
+        IF (iEnd.NE.0) WRITE(0,'(A)') message(1:iEnd)
+      ENDIF
+#endif
+
  1000 CONTINUE
       RETURN
 
@@ -1424,6 +1431,15 @@ C       The write statement may need to ne marked as a critical section.
 #endif
        ENDIF
       ENDIF
+
+#ifndef DISABLE_WRITE_TO_UNIT_ZERO
+C--   if error message, also write directly to unit 0 :
+      IF ( numberOfProcs .EQ. 1 .AND. nThreads .EQ. 1
+     &     .AND. unit.EQ.errorMessageUnit ) THEN
+        iEnd   = ILNBLNK( message )
+        IF (iEnd.NE.0) WRITE(0,'(A)') message(1:iEnd)
+      ENDIF
+#endif
 C
  1000 CONTINUE
       RETURN
