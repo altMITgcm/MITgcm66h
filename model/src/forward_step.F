@@ -129,6 +129,13 @@ c**************************************
 c**************************************
 #endif
 
+C--   Switch on/off diagnostics for snap-shot output:
+#ifdef ALLOW_DIAGNOSTICS
+      IF ( useDiagnostics ) THEN
+        CALL DIAGNOSTICS_SWITCH_ONOFF( myIter, myThid )
+      ENDIF
+#endif
+
 C--   Call external forcing package
 #ifdef ALLOW_BULK_FORCE
       IF ( useBulkForce ) THEN
