@@ -235,7 +235,7 @@ c--   to nTimeSteps: (nchklev_0 .ge. nTimeSteps)
       if (nchklev_0 .lt. nTimeSteps) then
         print*
         print*, ' the_main_loop: TAMC checkpointing parameter ',
-     &       nchklev_0 = ',       nchklev_0
+     &       'nchklev_0 = ',       nchklev_0
         print*, '                 not consistent with nTimeSteps = ', 
      &       nTimeSteps
         stop    ' ... stopped in the_main_loop.'

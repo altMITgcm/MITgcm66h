@@ -180,8 +180,8 @@ C       Integrate d Phi / d pi
 C  --  Energy Conserving Form, No hFac  --
 C------------ The integration for the first level phi(k=1) is the same
 C             for both the "finite volume" and energy conserving methods.
-C    *NOTE* o Working with geopotential Anomaly, the geopotential boundary 
-C             condition is simply Phi'(Ro_surf)=0.
+Ci    *NOTE* o Working with geopotential Anomaly, the geopotential boundary 
+C             condition is simply Phi-prime(Ro_surf)=0.
 C           o convention ddPI > 0 (same as drF & drC)
 C-----------------------------------------------------------------------
         IF (K.EQ.1) THEN

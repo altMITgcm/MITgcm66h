@@ -21,7 +21,7 @@ C     myThid - Instance number of this call to monitor
       INTEGER unit
       INTEGER myThid
 
-C     Don't change before everyone is ready
+C     Dont change before everyone is ready
       CALL BAR2( myThid )
 
 C     Set monitor I/O unit
@@ -60,7 +60,7 @@ C     IL     - String length
       INTEGER I0, I1
       INTEGER IL
 
-C     Don't change before everyone is ready
+C     Dont change before everyone is ready
       CALL BAR2( myThid )
 
 C     Set monitor I/O unit

@@ -16,7 +16,7 @@ C     | o Write basic WRAPPER introductory message.
 C     *==========================================================
 C     | This routine could be customised for different platforms.
 C     | Output includes which checkpoint of the code is running.
-C     | The routine doesn't currently report the user id or      
+C     | The routine doesnt currently report the user id or      
 C     | machine name correctly.                                  
 C     *==========================================================
 

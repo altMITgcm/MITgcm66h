@@ -70,7 +70,7 @@ C      NOTICE the extended range of indices!!
 C     The functions iGl, jGl return the "global" index with valid values beyond
 C     halo regions
 C     cnh wrote:
-C     >    I don't understand why we would ever have to multiply the
+C     >    I dont understand why we would ever have to multiply the
 C     >    overlap by the total domain size e.g
 C     >    OLx*Nx, OLy*Ny.
 C     >    Can anybody explain? Lines are in ini_spherical_polar_grid.F.
