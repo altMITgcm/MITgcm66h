@@ -31,10 +31,17 @@ C     == Local variables ==
       INTEGER bi,bj,K
 #endif
 
+#ifdef ALLOW_GMREDI
+C--   Initialize GM/Redi parameterization
+      IF (use_GMRedi) CALL GMREDI_INIT( myThid )
+#endif
+
 #ifdef ALLOW_KPP
-C--   Initialize kppmix vertical mixing scheme.
-      CALL KMIXINIT( myThid )
-      _BARRIER
+C--   Initialize KPP vertical mixing scheme.
+      IF (use_KPPmixing) THEN
+       CALL KPP_INIT( myThid )
+       CALL KPP_OPEN_DIAGS( myThid )
+      ENDIF
 #endif
 
 C--   Initialise model fields.
