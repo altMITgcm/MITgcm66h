@@ -24,25 +24,33 @@ C  ==>  | ** Time stepping loop starts here **
 C  |    |
 C /|\   |-FORWARD_STEP
 C  |    |  |
-C  |    |  |--LOAD_EXTERNAL_DATA
-C /|\   |  |   o Load and/or set time dependent forcing fields
+C /|\   |  |--LOAD_EXTERNAL_DATA
+C  |    |  |   o Load and/or set time dependent forcing fields
+C /|\   |  |
+C  |    |  |--DYNAMICS
+C /|\   |  |   o Evaluate "forward" terms
 C  |    |  |
-C /|\   |  |--DYNAMICS
-C  |    |  |   o Evaluate "forward" terms
 C /|\   |  |
 C  |    |  |--DO_THE_MODEL_IO
 C /|\   |  |   o Write model state
 C  |    |  |
-C /|\   |  |--SOLVE_FOR_PRESSURE
-C  |    |  |   o Find pressure field to keep flow non-divergent
+C /|\   |  |
+C  |    |  |--SOLVE_FOR_PRESSURE
+C /|\   |  |   o Find pressure field to keep flow non-divergent
+C  |    |  |
+C /|\   |  |
+C  |    |  |--THE_CORRECTION_STEP
+C /|\   |  |   o Correct flow field with pressure gradient
+C  |    |  |     and cycle time-stepping arrays (for all fields)
 C /|\   |  |
 C  |    |  |--DO_GTERM_BLOCKING_EXCHANGES
 C /|\   |  |   o Update overlap regions
 C  |    |  |
-C /|\   |  |--WRITE_CHECKPOINT
-C  |    |  |   o Write restart file(s)
-C /|\   |
+C /|\   |  |
+C  |    |  |--WRITE_CHECKPOINT
+C /|\   |  |   o Write restart file(s)
 C  |    |
+C /|\   |
 C  |<== | ** Time stepping loop finishes here **
 C
 
@@ -117,9 +125,18 @@ C     three-dimensional for non-hydrostatic and/or IGW scheme.
       CALL SOLVE_FOR_PRESSURE( myThid )
       CALL TIMER_STOP ('SOLVE_FOR_PRESSURE [FORWARD_STEP]',myThid)
 
+C--   Correct divergence in flow field and cycle time-stepping
+C     arrays (for all fields)
+      CALL THE_CORRECTION_STEP(myCurrentTime, myCurrentIter, myThid)
+
 C--   Do "blocking" sends and receives for tendency "overlap" terms
+C     CALL TIMER_START('BLOCKING_EXCHANGES [FORWARD_STEP]',myThid)
+C     CALL DO_GTERM_BLOCKING_EXCHANGES( myThid )
+C     CALL TIMER_STOP ('BLOCKING_EXCHANGES [FORWARD_STEP]',myThid)
+
+C--   Do "blocking" sends and receives for field "overlap" terms
       CALL TIMER_START('BLOCKING_EXCHANGES [FORWARD_STEP]',myThid)
-      CALL DO_GTERM_BLOCKING_EXCHANGES( myThid )
+      CALL DO_FIELDS_BLOCKING_EXCHANGES( myThid )
       CALL TIMER_STOP ('BLOCKING_EXCHANGES [FORWARD_STEP]',myThid)
 
 c     myCurrentIter = myCurrentIter + 1

@@ -309,48 +309,6 @@ C--     Set up work arrays that need valid initial values
         k = 1
         BOTTOM_LAYER = k .EQ. Nr
 
-#ifdef DO_PIPELINED_CORRECTION_STEP
-C--     Calculate gradient of surface pressure
-        CALL CALC_GRAD_ETA_SURF(
-     I       bi,bj,iMin,iMax,jMin,jMax,
-     O       etaSurfX,etaSurfY,
-     I       myThid)
-C--     Update fields in top level according to tendency terms
-        CALL CORRECTION_STEP(
-     I       bi,bj,iMin,iMax,jMin,jMax,k,
-     I       etaSurfX,etaSurfY,myTime,myThid)
-
-#ifdef ALLOW_OBCS
-        IF (openBoundaries) THEN
-#ifdef ALLOW_AUTODIFF_TAMC
-CADJ STORE uvel (:,:,k,bi,bj) = comlev1_bibj, key = ikey, byte = isbyte
-CADJ STORE vvel (:,:,k,bi,bj) = comlev1_bibj, key = ikey, byte = isbyte
-CADJ STORE theta(:,:,k,bi,bj) = comlev1_bibj, key = ikey, byte = isbyte
-CADJ STORE salt (:,:,k,bi,bj) = comlev1_bibj, key = ikey, byte = isbyte
-#endif /* ALLOW_AUTODIFF_TAMC */
-           CALL APPLY_OBCS1( bi, bj, k, myThid )
-        END IF
-#endif
-
-        IF ( .NOT. BOTTOM_LAYER ) THEN
-C--      Update fields in layer below according to tendency terms
-         CALL CORRECTION_STEP(
-     I        bi,bj,iMin,iMax,jMin,jMax,k+1,
-     I        etaSurfX,etaSurfY,myTime,myThid)
-#ifdef ALLOW_OBCS
-         IF (openBoundaries) THEN
-#ifdef ALLOW_AUTODIFF_TAMC
-CADJ STORE uvel (:,:,k,bi,bj) = comlev1_bibj, key = ikey, byte = isbyte
-CADJ STORE vvel (:,:,k,bi,bj) = comlev1_bibj, key = ikey, byte = isbyte
-CADJ STORE theta(:,:,k,bi,bj) = comlev1_bibj, key = ikey, byte = isbyte
-CADJ STORE salt (:,:,k,bi,bj) = comlev1_bibj, key = ikey, byte = isbyte
-#endif /* ALLOW_AUTODIFF_TAMC */
-            CALL APPLY_OBCS1( bi, bj, k+1, myThid )
-         END IF
-#endif
-        ENDIF
-#endif
-
 C--     Density of 1st level (below W(1)) reference to level 1
 #ifdef  INCLUDE_FIND_RHO_CALL
 #ifdef ALLOW_AUTODIFF_TAMC
@@ -385,22 +343,6 @@ CADJ STORE rhoKm1(:,:)  = comlev1_bibj, key = ikey, byte = isbyte
 CADJ STORE rhoKp1(:,:)  = comlev1_bibj, key = ikey, byte = isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 
-#ifdef  INCLUDE_CONVECT_CALL
-
-         CALL CONVECT(
-     I       bi,bj,iMin,iMax,jMin,jMax,k+1,rhoKm1,rhoKp1,
-     U       ConvectCount,
-     I       myTime,myIter,myThid)
-
-#ifdef ALLOW_AUTODIFF_TAMC
-CADJ STORE theta(:,:,k+1,bi,bj),theta(:,:,k,bi,bj)
-CADJ &     = comlev1_bibj, key = ikey, byte = isbyte
-CADJ STORE salt (:,:,k+1,bi,bj),salt (:,:,k,bi,bj)
-CADJ &     = comlev1_bibj, key = ikey, byte = isbyte
-#endif /* ALLOW_AUTODIFF_TAMC */
-
-#endif
-
 C--      Implicit Vertical Diffusion for Convection
          IF (ivdc_kappa.NE.0.) THEN
             CALL CALC_IVDC(
@@ -409,13 +351,6 @@ C--      Implicit Vertical Diffusion for Convection
      I       myTime,myIter,myThid)
          ENDIF
 
-C--      Recompute density after mixing
-#ifdef  INCLUDE_FIND_RHO_CALL
-         CALL FIND_RHO(
-     I      bi, bj, iMin, iMax, jMin, jMax, k, k, eosType,
-     O      rhoKm1,
-     I      myThid )
-#endif
         ENDIF
 
 C--     Calculate buoyancy
@@ -453,9 +388,6 @@ C--     Start of downward loop
 #ifdef DO_PIPELINED_CORRECTION_STEP
          IF ( .NOT. BOTTOM_LAYER ) THEN
 C--       Update fields in layer below according to tendency terms
-          CALL CORRECTION_STEP(
-     I         bi,bj,iMin,iMax,jMin,jMax,k+1,
-     I         etaSurfX,etaSurfY,myTime,myThid)
 #ifdef ALLOW_OBCS
           IF (openBoundaries) THEN
 #ifdef ALLOW_AUTODIFF_TAMC
@@ -468,7 +400,6 @@ CADJ &   , key = kkey, byte = isbyte
 CADJ STORE salt (:,:,k,bi,bj) = comlev1_bibj_k
 CADJ &   , key = kkey, byte = isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
-             CALL APPLY_OBCS1( bi, bj, k+1, myThid )
           END IF
 #endif
          ENDIF
@@ -514,14 +445,6 @@ CADJ STORE rhoKp1(:,:) = comlev1_bibj_k, key = kkey, byte = isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 #endif
 
-#ifdef  INCLUDE_CONVECT_CALL
-          CALL CONVECT(
-     I        bi,bj,iMin,iMax,jMin,jMax,k+1,rhoK,rhoKp1,
-     U        ConvectCount,
-     I        myTime,myIter,myThid)
-
-#endif
-
 C--      Implicit Vertical Diffusion for Convection
          IF (ivdc_kappa.NE.0.) THEN
 #ifdef ALLOW_AUTODIFF_TAMC
@@ -532,20 +455,6 @@ CADJ STORE rhoKm1(:,:) = comlev1_bibj_k, key = kkey, byte = isbyte
      U       ConvectCount, KappaRT, KappaRS,
      I       myTime,myIter,myThid)
          END IF
-
-C--       Recompute density after mixing
-#ifdef  INCLUDE_FIND_RHO_CALL
-#ifdef ALLOW_AUTODIFF_TAMC
-CADJ STORE theta(:,:,k,bi,bj) = comlev1_bibj_k
-CADJ &   , key = kkey, byte = isbyte
-CADJ STORE salt (:,:,k,bi,bj) = comlev1_bibj_k
-CADJ &   , key = kkey, byte = isbyte
-#endif /* ALLOW_AUTODIFF_TAMC */
-          CALL FIND_RHO(
-     I       bi, bj, iMin, iMax, jMin, jMax, k, k, eosType,
-     O       rhoK,
-     I       myThid )
-#endif
 
 C--            IF (.NOT. BOTTOM_LAYER) ends here
          ENDIF
