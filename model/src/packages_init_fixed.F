@@ -25,6 +25,10 @@ C       |
 C       |-- FLT_INIT
 C       |
 C       |-- ZONAL_FILT_INIT
+C       |
+C       |-- AIM_INITIALISE
+C       |
+C       |-- LAND_INITIALISE
 
 C     !USES:
       IMPLICIT NONE
@@ -63,17 +67,29 @@ C--   Latitude circle filter initialisation
       ENDIF
 #endif
 
+#ifdef ALLOW_AIM
+C--   Initialise & Read AIM physical parameters
+      IF (useAIM) CALL AIM_INITIALISE( myThid )
+#endif
+
+#ifdef ALLOW_LAND
+C--   Initialise & Read Land package parameters
+      IF (useLand) CALL LAND_INITIALISE( myThid )
+#endif
+
 #if (defined (ALLOW_ADJOINT_RUN) || \
      defined (ALLOW_TANGENTLINEAR_RUN) || \
-     defined (ALLOW_ECCO_OPTIMIZATION)) 
+     defined (ALLOW_ECCO_OPTIMIZATION))
 C--   Initialise the control variables
       CALL CTRL_INIT( myThid )
       _BARRIER
 #endif
 
 #ifdef INCLUDE_ECCO_PACKAGE
+# ifdef ALLOW_COST
 C--   Initialise ecco-specific cost function.
-       IF (useECCO) CALL COST_INIT( myThid )
+       IF (useECCO) CALL COST_INIT_FIXED( myThid )
+# endif
 #endif
 
       RETURN

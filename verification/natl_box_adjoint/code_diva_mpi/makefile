@@ -271,7 +271,6 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/cost_atemp.f			\
 		$(SOURCE_CODE)/cost_atlantic.f			\
 		$(SOURCE_CODE)/cost_averagesfields.f		\
-		$(SOURCE_CODE)/cost_averagesfinal.f		\
 		$(SOURCE_CODE)/cost_averagesflags.f		\
 		$(SOURCE_CODE)/cost_averagesinit.f		\
 		$(SOURCE_CODE)/cost_ctds.f			\
@@ -326,7 +325,6 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/ctrl_init_variables.f		\
 		$(SOURCE_CODE)/ctrl_map_ini.f			\
 		  						\
-		$(SOURCE_CODE)/ecco_init.f			\
 		$(SOURCE_CODE)/ecco_the_main_loop.f		\
 		  						\
 		$(SOURCE_CODE)/exf_init.f			\

@@ -3,10 +3,10 @@ C $Header$
 #include "COST_CPPOPTIONS.h"
 
 
-      subroutine cost_init( mythid )
+      subroutine cost_init_fixed( mythid )
 
 c     ==================================================================
-c     SUBROUTINE cost_Init
+c     SUBROUTINE cost_init_fixed
 c     ==================================================================
 c
 c     o Set contributions to the cost function and the cost function
@@ -25,7 +25,7 @@ c
 c              - move namelist reading to cost_readparms.F
 c
 c     ==================================================================
-c     SUBROUTINE cost_Init
+c     SUBROUTINE cost_init_fixed
 c     ==================================================================
 
       implicit none

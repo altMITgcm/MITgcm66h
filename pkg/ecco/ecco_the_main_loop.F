@@ -736,14 +736,8 @@ c--   Compute initial vs. final T/S deviation
 
 c--   Sum all cost function contributions.
       call timer_start('COST_FINAL         [ECCO SPIN-DOWN]', mythid)
-      call cost_Final( mythid )
+      call cost_final( mythid )
       call timer_stop ('COST_FINAL         [ECCO SPIN-DOWN]', mythid)
-
-c--   Finalize the average fields used for the cost function
-c--   evaluation.
-      call timer_start('COST_AVERAGESFINAL [ECCO SPIN-DOWN]', mythid)
-      call cost_AveragesFinal( mythid )
-      call timer_stop ('COST_AVERAGESFINAL [ECCO SPIN-DOWN]', mythid)
 
 #endif /* ALLOW_COST */
 

@@ -27,6 +27,8 @@ C       |-- OBCS_INIT_VARIABLES
 C       |
 C       |-- PTRACERS_INIT
 C       |
+C       |-- LAND_INI_VARS
+C       |
 C       |-- CTRL_MAP_INI
 C       |
 C       |-- EXF_INIT
@@ -76,12 +78,16 @@ C--   Initialize SEAICE model.
       IF ( usePTRACERS ) CALL PTRACERS_INIT( mythid )
 #endif
 
+#ifdef ALLOW_LAND
+      IF ( useLAND ) CALL LAND_INI_VARS( mythid )
+#endif
+
 #if (defined (ALLOW_ADJOINT_RUN) || \
      defined (ALLOW_TANGENTLINEAR_RUN) || \
      defined (ALLOW_ECCO_OPTIMIZATION))
 c--   Initialise auxiliary xx_ fields
       CALL CTRL_INIT_VARIABLES ( mythid )
-c--   Map the control variables onto the model state. 
+c--   Map the control variables onto the model state.
       CALL CTRL_MAP_INI( mythid )
       _BARRIER
 #endif
@@ -96,10 +102,6 @@ c--   Map the control variables onto the model state.
 c--   Initialise the cost function.
       CALL COST_INITVARIA( mythid )
       _BARRIER
-#endif
-
-#ifdef INCLUDE_ECCO_PACKAGE
-      IF (useECCO) CALL ECCO_INIT( myThid )
 #endif
 
 #ifdef ALLOW_OBCS
