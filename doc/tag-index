@@ -3,6 +3,14 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint50
+- 2nd step of merge with ecco-branch:
+  merge changes in ecco-branch back into main trunk
+- bug fix in find_alpha
+- more storing in gmredi_calc_tensor.F, kpp_routines.F
+- avoid iterative loop in ini_pressure for ALLOW_AUTODIFF_TAMC
+- merged some sliced AD support routines
+
 checkpoint49
 merged from ecco-branch:
 o exf:
@@ -24,8 +32,8 @@ o autodiff: checkpoint_lev...
   - synchronized with main branch
 o DIVA:
   Modif.s in
-  - ecco_the_main_loop.F
-  - ecco_the_model_main.F
+  - the_main_loop.F
+  - the_model_main.F
   and added cost_final_restore.F cost_final_store.F
   o With these changes, it is possible to fully separate
     the first forward run to compute the cost function (mdthe_main_loop)
