@@ -8,6 +8,7 @@ C     \==========================================================/
 
 #include "CPP_OPTIONS.h"
 
+C o Set precision for KPP variables (Real*4 or Real*8)
 #define _KPP_RL Real*8
 
 #ifdef ALLOW_KPP
@@ -42,6 +43,9 @@ C o When set, smooth vertical viscosity horizontally
 C o When set, smooth vertical diffusivity horizontally
 #undef KPP_SMOOTH_DIFF
 
+C o Switch on vertical smoothing, the number of sweeps is set in the namelist
+#undef ALLOW_KPP_VERTICALLY_SMOOTH
+
 C o Get rid of vertical resolution dependence of dVsq term by
 C   estimating a surface velocity that is independent of first
 C   level thickness in the model.
@@ -49,14 +53,12 @@ C   level thickness in the model.
 
 C o Include/exclude various time-averaged diagnostic output
 C   for saving storage space
-#ifdef  INCLUDE_DIAGNOSTICS_INTERFACE_CODE
+#ifdef  ALLOW_TIMEAVE
 #define INCLUDE_DIAGNOSTICS_KPP
 #undef  INCLUDE_DIAGNOSTICS_KPPDIFFKZSTAVE
 #endif
 
 C o Include/exclude KPP non/local transport terms
 #define KPP_GHAT
-
-C o Set precision for KPP variables (Real*4 or Real*8)
 
 #endif /* ALLOW_KPP */
