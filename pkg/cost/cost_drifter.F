@@ -44,6 +44,10 @@ c     == global variables ==
 #include "ctrl.h"
 #include "ctrl_dummy.h"
 #include "optim.h"
+#ifdef ALLOW_AUTODIFF_TAMC
+# include "tamc.h"
+# include "tamc_keys.h"
+#endif /* ALLOW_AUTODIFF_TAMC */
 
 c     == routine arguments ==
 
@@ -66,17 +70,18 @@ c     == local variables ==
 
       _RL fctile_drift
       _RL fcthread_drift
-      _RL www    (1-olx:snx+olx,1-oly:sny+oly)
-      _RL wud    (1-olx:snx+olx,1-oly:sny+oly)
-      _RL wvd    (1-olx:snx+olx,1-oly:sny+oly)
-      _RL uddat  (1-olx:snx+olx,1-oly:sny+oly)
-      _RL u6bar  (1-olx:snx+olx,1-oly:sny+oly)
-      _RL vddat  (1-olx:snx+olx,1-oly:sny+oly)
-      _RL v6bar  (1-olx:snx+olx,1-oly:sny+oly)
-      _RL udmod  (1-olx:snx+olx,1-oly:sny+oly)
-      _RL vdmod  (1-olx:snx+olx,1-oly:sny+oly)
-      _RL mask13c(1-olx:snx+olx,1-oly:sny+oly)
-      _RL mask6c (1-olx:snx+olx,1-oly:sny+oly)
+      _RL www    (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL wud    (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL wvd    (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL uddat  (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL u6bar  (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL vddat  (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL v6bar  (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL udmod  (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL vdmod  (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL mask13c(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL mask6c (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL masktmp(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 
       character*(80) fnameud
       character*(80) fnamevd
@@ -108,21 +113,6 @@ c--   Read tiled data.
 
 #ifdef ALLOW_DRIFTER_COST_CONTRIBUTION
 
-#ifdef ECCO_VERBOSE
-      _BEGIN_MASTER( mythid )
-        write(msgbuf,'(a)') ' '
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-        write(msgbuf,'(a,i8.8)')
-     &    ' cost_drift: number of records to process = ',1
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-        write(msgbuf,'(a)') ' '
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-      _END_MASTER( mythid )
-#endif
-
       if (optimcycle .ge. 0) then
         ilu = ilnblnk( ubarfile )
         write(fnameud(1:80),'(2a,i10.10)')
@@ -136,6 +126,20 @@ c--   Read tiled data.
 
       do bj = jtlo,jthi
        do bi = itlo,ithi
+
+#ifdef ALLOW_AUTODIFF_TAMC
+          act1 = bi - myBxLo(myThid)
+          max1 = myBxHi(myThid) - myBxLo(myThid) + 1
+          act2 = bj - myByLo(myThid)
+          max2 = myByHi(myThid) - myByLo(myThid) + 1
+          act3 = myThid - 1
+          max3 = nTx*nTy
+          act4 = 0
+          ikey = (act1 + 1) + act2*max1
+     &                      + act3*max1*max2
+     &                      + act4*max1*max2*max3
+#endif /* ALLOW_AUTODIFF_TAMC */
+
          k = 2
          do irec = 1,nmonsrec
 
@@ -153,14 +157,14 @@ c--     Read time averages and the monthly mean data.
           do j = jmin,jmax
            do i = imin,imax
             if(irec.eq.1)then
-               udmod(i,j)=ubar(i,j,k,bi,bj)
-               vdmod(i,j)=vbar(i,j,k,bi,bj)
+               udmod(i,j,bi,bj)=ubar(i,j,k,bi,bj)
+               vdmod(i,j,bi,bj)=vbar(i,j,k,bi,bj)
             elseif(irec.eq.nmonsrec)then
-               udmod(i,j)=udmod(i,j)/float(nmonsrec)
-               vdmod(i,j)=vdmod(i,j)/float(nmonsrec)
+               udmod(i,j,bi,bj)=udmod(i,j,bi,bj)/float(nmonsrec)
+               vdmod(i,j,bi,bj)=vdmod(i,j,bi,bj)/float(nmonsrec)
             else
-               udmod(i,j)=udmod(i,j)+ubar(i,j,k,bi,bj)
-               vdmod(i,j)=vdmod(i,j)+vbar(i,j,k,bi,bj)
+               udmod(i,j,bi,bj)=udmod(i,j,bi,bj)+ubar(i,j,k,bi,bj)
+               vdmod(i,j,bi,bj)=vdmod(i,j,bi,bj)+vbar(i,j,k,bi,bj)
             endif
            enddo
           enddo
@@ -182,9 +186,9 @@ c--     Read error data
 c--           Calculate mask for tracer cells  (0 => land, 1 => water)
          do j = jmin,jmax
             do i = imin,imax
-               mask13c(i,j) = 1. _d 0
+               mask13c(i,j,bi,bj) = 1. _d 0
                if (_hFacC(i,j,k,bi,bj) .eq. 0.)
-     &              mask13c(i,j) = 0. _d 0
+     &              mask13c(i,j,bi,bj) = 0. _d 0
 
 cph(
 cph               print *, 'WARNING: SPECIFIC SETUP FOR ECCO'
@@ -195,10 +199,10 @@ cph               if ( rC(K) .GT. -1000. ) then
 cph)
 c                 set mask13c=0 in areas shallower than 1000m
                if (_hFacC(i,j,13,bi,bj) .eq. 0.) then
-                  mask13c(i,j) = 0. _d 0
+                  mask13c(i,j,bi,bj) = 0. _d 0
                endif
 
-               www(i,j)     = cosphi(i,j,bi,bj)
+               www(i,j,bi,bj)     = cosphi(i,j,bi,bj)
             enddo
          enddo
 
@@ -206,62 +210,60 @@ c                 set mask13c=0 in areas shallower than 1000m
 
          do j = jmin,jmax-1,2
            do i = i6min,imax-5,6
-             if ((mask13c(i,j)+mask13c(i+1,j)+mask13c(i+2,j)
-     &           +mask13c(i+3,j)+mask13c(i+4,j)+mask13c(i+5,j)
-     &           +mask13c(i,j+1)+mask13c(i+1,j+1)+mask13c(i+2,j+1)
-     &           +mask13c(i+3,j+1)+mask13c(i+4,j+1)+mask13c(i+5,j+1))
-     &         .eq.0.0) then
-                u6bar(i,j) = 0.0
+             masktmp(i,j,bi,bj) = 
+     &           (mask13c(i,j,bi,bj)+mask13c(i+1,j,bi,bj)
+     &           +mask13c(i+2,j,bi,bj)+mask13c(i+3,j,bi,bj)
+     &           +mask13c(i+4,j,bi,bj)+mask13c(i+5,j,bi,bj)
+     &           +mask13c(i,j+1,bi,bj)+mask13c(i+1,j+1,bi,bj)
+     &           +mask13c(i+2,j+1,bi,bj)+mask13c(i+3,j+1,bi,bj)
+     &           +mask13c(i+4,j+1,bi,bj)+mask13c(i+5,j+1,bi,bj))
+             if ( masktmp(i,j,bi,bj) .eq. 0.0 ) then
+                u6bar(i,j,bi,bj) = 0.0
              else
-                u6bar(i,j) = (
-     &                  udmod(i,j)*mask13c(i,j)
-     &                + udmod(i+1,j)*mask13c(i+1,j)
-     &                + udmod(i+2,j)*mask13c(i+2,j)
-     &                + udmod(i+3,j)*mask13c(i+3,j)
-     &                + udmod(i+4,j)*mask13c(i+4,j)
-     &                + udmod(i+5,j)*mask13c(i+5,j)
-     &                + udmod(i,j+1)*mask13c(i,j+1)
-     &                + udmod(i+1,j+1)*mask13c(i+1,j+1)
-     &                + udmod(i+2,j+1)*mask13c(i+2,j+1)
-     &                + udmod(i+3,j+1)*mask13c(i+3,j+1)
-     &                + udmod(i+4,j+1)*mask13c(i+4,j+1)
-     &                + udmod(i+5,j+1)*mask13c(i+5,j+1) )
-     &             / (mask13c(i,j)+mask13c(i+1,j)+mask13c(i+2,j)
-     &               +mask13c(i+3,j)+mask13c(i+4,j)+mask13c(i+5,j)
-     &               +mask13c(i,j+1)+mask13c(i+1,j+1)+mask13c(i+2,j+1)
-     &               +mask13c(i+3,j+1)+mask13c(i+4,j+1)
-     &               +mask13c(i+5,j+1) )
+                u6bar(i,j,bi,bj) = (
+     &                  udmod(i,j,bi,bj)*mask13c(i,j,bi,bj)
+     &                + udmod(i+1,j,bi,bj)*mask13c(i+1,j,bi,bj)
+     &                + udmod(i+2,j,bi,bj)*mask13c(i+2,j,bi,bj)
+     &                + udmod(i+3,j,bi,bj)*mask13c(i+3,j,bi,bj)
+     &                + udmod(i+4,j,bi,bj)*mask13c(i+4,j,bi,bj)
+     &                + udmod(i+5,j,bi,bj)*mask13c(i+5,j,bi,bj)
+     &                + udmod(i,j+1,bi,bj)*mask13c(i,j+1,bi,bj)
+     &                + udmod(i+1,j+1,bi,bj)*mask13c(i+1,j+1,bi,bj)
+     &                + udmod(i+2,j+1,bi,bj)*mask13c(i+2,j+1,bi,bj)
+     &                + udmod(i+3,j+1,bi,bj)*mask13c(i+3,j+1,bi,bj)
+     &                + udmod(i+4,j+1,bi,bj)*mask13c(i+4,j+1,bi,bj)
+     &                + udmod(i+5,j+1,bi,bj)*mask13c(i+5,j+1,bi,bj) )
+     &             / ( masktmp(i,j,bi,bj) )
              endif
            enddo
          enddo
               
          do j = jmin,jmax-1,2
            do i = i6min,imax-5,6
-             if ((mask13c(i,j)+mask13c(i+1,j)+mask13c(i+2,j)
-     &           +mask13c(i+3,j)+mask13c(i+4,j)+mask13c(i+5,j)
-     &           +mask13c(i,j+1)+mask13c(i+1,j+1)+mask13c(i+2,j+1)
-     &           +mask13c(i+3,j+1)+mask13c(i+4,j+1)+mask13c(i+5,j+1))
-     &         .eq.0.0) then
-                v6bar(i,j) = 0.0
+             masktmp(i,j,bi,bj) = 
+     &             (mask13c(i,j,bi,bj)+mask13c(i+1,j,bi,bj)
+     &             +mask13c(i+2,j,bi,bj)+mask13c(i+3,j,bi,bj)
+     &             +mask13c(i+4,j,bi,bj)+mask13c(i+5,j,bi,bj)
+     &             +mask13c(i,j+1,bi,bj)+mask13c(i+1,j+1,bi,bj)
+     &             +mask13c(i+2,j+1,bi,bj)+mask13c(i+3,j+1,bi,bj)
+     &             +mask13c(i+4,j+1,bi,bj)+mask13c(i+5,j+1,bi,bj))  
+             if ( masktmp(i,j,bi,bj) .eq.0.0 ) then
+                v6bar(i,j,bi,bj) = 0.0
              else
-                v6bar(i,j) = (
-     &                  vdmod(i,j)*mask13c(i,j)
-     &                + vdmod(i+1,j)*mask13c(i+1,j)
-     &                + vdmod(i+2,j)*mask13c(i+2,j)
-     &                + vdmod(i+3,j)*mask13c(i+3,j)
-     &                + vdmod(i+4,j)*mask13c(i+4,j)
-     &                + vdmod(i+5,j)*mask13c(i+5,j)
-     &                + vdmod(i,j+1)*mask13c(i,j+1)
-     &                + vdmod(i+1,j+1)*mask13c(i+1,j+1)
-     &                + vdmod(i+2,j+1)*mask13c(i+2,j+1)
-     &                + vdmod(i+3,j+1)*mask13c(i+3,j+1)
-     &                + vdmod(i+4,j+1)*mask13c(i+4,j+1)
-     &                + vdmod(i+5,j+1)*mask13c(i+5,j+1) )
-     &             / (mask13c(i,j)+mask13c(i+1,j)+mask13c(i+2,j)
-     &               +mask13c(i+3,j)+mask13c(i+4,j)+mask13c(i+5,j)
-     &               +mask13c(i,j+1)+mask13c(i+1,j+1)+mask13c(i+2,j+1)
-     &               +mask13c(i+3,j+1)+mask13c(i+4,j+1)
-     &               +mask13c(i+5,j+1) )
+                v6bar(i,j,bi,bj) = (
+     &                  vdmod(i,j,bi,bj)*mask13c(i,j,bi,bj)
+     &                + vdmod(i+1,j,bi,bj)*mask13c(i+1,j,bi,bj)
+     &                + vdmod(i+2,j,bi,bj)*mask13c(i+2,j,bi,bj)
+     &                + vdmod(i+3,j,bi,bj)*mask13c(i+3,j,bi,bj)
+     &                + vdmod(i+4,j,bi,bj)*mask13c(i+4,j,bi,bj)
+     &                + vdmod(i+5,j,bi,bj)*mask13c(i+5,j,bi,bj)
+     &                + vdmod(i,j+1,bi,bj)*mask13c(i,j+1,bi,bj)
+     &                + vdmod(i+1,j+1,bi,bj)*mask13c(i+1,j+1,bi,bj)
+     &                + vdmod(i+2,j+1,bi,bj)*mask13c(i+2,j+1,bi,bj)
+     &                + vdmod(i+3,j+1,bi,bj)*mask13c(i+3,j+1,bi,bj)
+     &                + vdmod(i+4,j+1,bi,bj)*mask13c(i+4,j+1,bi,bj)
+     &                + vdmod(i+5,j+1,bi,bj)*mask13c(i+5,j+1,bi,bj) )
+     &             / ( masktmp(i,j,bi,bj) )
              endif
            enddo
          enddo
@@ -269,32 +271,41 @@ c                 set mask13c=0 in areas shallower than 1000m
          do j = jmin,jmax-1,2
            do i = i6min,imax-5, 6
 c--   change unit from cm/s to m/s
-              uddat(i,j) = 0.01*udriftdat(i,j,bi,bj)
-              vddat(i,j) = 0.01*vdriftdat(i,j,bi,bj)
+              uddat(i,j,bi,bj) = 0.01*udriftdat(i,j,bi,bj)
+              vddat(i,j,bi,bj) = 0.01*vdriftdat(i,j,bi,bj)
 c-- 5 cm/s lower limit
-              wud(i,j) = 1e4*max(wudrift(i,j,bi,bj),5.D0)**(-2)
-              wvd(i,j) = 1e4*max(wvdrift(i,j,bi,bj),5.D0)**(-2)
-c                  wud(i,j) = 1.0
-c                  wvd(i,j) = 1.0
-              mask6c(i,j) = 1.0
-              if ( uddat(i,j).eq.0.0) mask6c(i,j)=0.0
-              if ( abs(uddat(i,j)).gt.900) mask6c(i,j)=0.0
-              if ( vddat(i,j).eq.0.0) mask6c(i,j)=0.0
-              if ( abs(vddat(i,j)).gt.900) mask6c(i,j)=0.0
+              wud(i,j,bi,bj) = 1e4*max(wudrift(i,j,bi,bj),5.D0)**(-2)
+              wvd(i,j,bi,bj) = 1e4*max(wvdrift(i,j,bi,bj),5.D0)**(-2)
+c                  wud(i,j,bi,bj) = 1.0
+c                  wvd(i,j,bi,bj) = 1.0
+              mask6c(i,j,bi,bj) = 1.0
+              if ( uddat(i,j,bi,bj).eq.0.0) mask6c(i,j,bi,bj)=0.0
+              if ( abs(uddat(i,j,bi,bj)).gt.900) mask6c(i,j,bi,bj)=0.0
+              if ( vddat(i,j,bi,bj).eq.0.0) mask6c(i,j,bi,bj)=0.0
+              if ( abs(vddat(i,j,bi,bj)).gt.900) mask6c(i,j,bi,bj)=0.0
            enddo
          enddo
+
+CADJ STORE wud(:,:,bi,bj)   
+CADJ &     = tapelev_ini_bibj_k, key=ikey, byte=isbyte
+CADJ STORE wvd(:,:,bi,bj)   
+CADJ &     = tapelev_ini_bibj_k, key=ikey, byte=isbyte
+CADJ STORE u6bar(:,:,bi,bj) 
+CADJ &     = tapelev_ini_bibj_k, key=ikey, byte=isbyte
+CADJ STORE v6bar(:,:,bi,bj) 
+CADJ &     = tapelev_ini_bibj_k, key=ikey, byte=isbyte
 
 c--           Compute model data misfit and cost function term for
 c             drifters.
          do j = jmin,jmax-1,2
             do i = i6min,imax-5, 6
                fctile_drift = fctile_drift 
-     &                          + (wud(i,j)*www(i,j)*mask6c(i,j)*
-     &                            (u6bar(i,j) - uddat(i,j))*
-     &                            (u6bar(i,j) - uddat(i,j))   ) 
-     &                          + (wud(i,j)*www(i,j)*mask6c(i,j)*
-     &                            (v6bar(i,j) - vddat(i,j))*
-     &                            (v6bar(i,j) - vddat(i,j))   )
+     &              + (wud(i,j,bi,bj)*www(i,j,bi,bj)*mask6c(i,j,bi,bj)*
+     &                (u6bar(i,j,bi,bj) - uddat(i,j,bi,bj))*
+     &                (u6bar(i,j,bi,bj) - uddat(i,j,bi,bj))   ) 
+     &              + (wvd(i,j,bi,bj)*www(i,j,bi,bj)*mask6c(i,j,bi,bj)*
+     &                (v6bar(i,j,bi,bj) - vddat(i,j,bi,bj))*
+     &                (v6bar(i,j,bi,bj) - vddat(i,j,bi,bj))   )
             enddo
          enddo
 
