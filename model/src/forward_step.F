@@ -85,11 +85,6 @@ C     mythid - thread number for this instance of the routine.
       integer mythid 
       integer myiter
       _RL     mytime
-#ifdef ALLOW_BULK_FORCE
-      INTEGER bi,bj
-#endif
-
-      INTEGER bi,bj
       integer i,L
 CEOP
 
