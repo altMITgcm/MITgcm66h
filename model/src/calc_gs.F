@@ -262,7 +262,7 @@ C     o Surface relaxation term
          gS(i,j,k,bi,bj)=gS(i,j,k,bi,bj)
      &   +maskC(i,j)*(
      &   -lambdaSaltClimRelax*(salt(i,j,k,bi,bj)-SSS(i,j,bi,bj))
-     &   -EmPpR(i,j,bi,bj) )
+     &   +EmPmR(i,j,bi,bj) )
         ENDDO
        ENDDO
       ENDIF
