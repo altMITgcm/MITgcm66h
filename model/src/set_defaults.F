@@ -133,6 +133,7 @@ Cml      sBeta               = 7.4D-4
       implicitDiffusion   = .FALSE.
       implicitViscosity   = .FALSE.
       nonHydrostatic      = .FALSE.
+      quasiHydrostatic    = .FALSE.
       globalFiles         = .FALSE.
       allowFreezing       = .FALSE.
       ivdc_kappa          = 0.D0

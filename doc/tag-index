@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o added new flag "quasiHydrostatic" for QH mode
+  and new routine quasihydrostaticterms()
 o added 2*Omega*Cos(phi)*W to u equations (non-hydrostatic Coriolis term)
   New routine: mom_u_coriolis_nh()
 o fixed sign of non-hydrostatic metric terms in u and v equations.

@@ -121,7 +121,7 @@ C--   Continuous equation parameters
      & viscAp, diffKpT, diffKpS, hFacMinDp,
      & rhoConst, rhoConstFresh, buoyancyRelation, HeatCapacity_Cp,
      & writeBinaryPrec, readBinaryPrec, writeStatePrec,
-     & nonHydrostatic, globalFiles,
+     & nonHydrostatic, quasiHydrostatic, globalFiles,
      & allowFreezing, ivdc_kappa,
      & bottomDragLinear,bottomDragQuadratic,
      & usePickupBeforeC35, debugMode, 
@@ -327,6 +327,13 @@ C--   Metric terms on/off flag.
        mTFacMom = 1.D0
       ELSE
        mTFacMom = 0.D0
+      ENDIF
+C--   Non-hydrostatic/quasi-hydrostatic
+      IF (nonHydrostatic.AND.quasiHydrostatic) THEN
+       WRITE(msgBuf,'(A)')
+     &   'Illegal: both nonHydrostatic = quasiHydrostatic = TRUE'
+       CALL PRINT_ERROR( msgBuf , myThid)
+       STOP 'ABNORMAL END: S/R INI_PARMS'
       ENDIF
 C--   Advection and Forcing for Temp and salt  on/off flags
       tempAdvection = tempStepping .AND. tempAdvection

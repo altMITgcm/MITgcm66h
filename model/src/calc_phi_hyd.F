@@ -140,6 +140,11 @@ CADJ STORE sFld (:,:,k,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
      &                 tFld, sFld,
      &                 alphaRho, myThid)
 
+C Quasi-hydrostatic terms are added in as if they modify the buoyancy
+        IF (quasiHydrostatic) THEN
+         CALL QUASIHYDROSTATICTERMS(bi,bj,k,alphaRho,myThid)
+        ENDIF
+
 C       Hydrostatic pressure at cell centers
         DO j=jMin,jMax
           DO i=iMin,iMax

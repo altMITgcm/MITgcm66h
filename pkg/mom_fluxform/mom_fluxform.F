@@ -567,7 +567,7 @@ C     Note. As coded here, coriolis will not work with "thin walls"
        ENDDO
       ENDDO
 #endif /* INCLUDE_CD_CODE */
-      IF (nonHydrostatic) THEN
+      IF (nonHydrostatic.OR.quasiHydrostatic) THEN
        CALL MOM_U_CORIOLIS_NH(bi,bj,k,wVel,cf,myThid)
        DO j=jMin,jMax
         DO i=iMin,iMax
