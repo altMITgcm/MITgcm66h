@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+release1_p15
+o Added CFC-11 diagnostics, see
+  verification/global_with_CFC11/README
+
 release1_p14
 o Added interpolation routine pkg/exf/new_interp.F for on-the-fly
   interpolation.  Enable with USE_EXF_INTERPOLATION and specify
