@@ -543,6 +543,19 @@ CADJ &   , key = kkey, byte = isbyte
 C--     end of thermodynamic k loop (Nr:1)
         ENDDO
 
+       ENDDO
+      ENDDO
+#ifdef ALLOW_AIM
+      IF ( useAIM ) THEN
+       CALL AIM_AIM2DYN_EXCHANGES( myTime, myThid )
+      ENDIF
+#endif /* ALLOW_AIM */
+c     IF (staggerTimeStep.AND.useCubedSphereExchange) THEN
+       _EXCH_XYZ_R8(gTnm1,myThid)
+       _EXCH_XYZ_R8(gSnm1,myThid)
+c     ENDIF
+      DO bj=myByLo(myThid),myByHi(myThid)
+       DO bi=myBxLo(myThid),myBxHi(myThid)
 
 #ifdef ALLOW_AUTODIFF_TAMC
 C? Patrick? What about this one?
