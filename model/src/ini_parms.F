@@ -262,6 +262,10 @@ C--   Set default "physical" parameters
        CALL PRINT_ERROR( msgBuf , 1)
        CALL MODELDATA_EXAMPLE( myThid )
        STOP 'ABNORMAL END: S/R INI_PARMS'
+      ELSE
+       WRITE(msgBuf,'(A)') 'S/R INI_PARMS ; read PARM01 : OK'
+       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT , 1) 
       ENDIF
       IF ( implicitFreeSurface ) freeSurfFac = 1.D0
       IF ( rigidLid            ) freeSurfFac = 0.D0
@@ -424,6 +428,10 @@ C--   Elliptic solver parameters
        CALL PRINT_ERROR( msgBuf , 1)
        CALL MODELDATA_EXAMPLE( myThid )
        STOP 'ABNORMAL END: S/R INI_PARMS'
+      ELSE
+       WRITE(msgBuf,'(A)') 'S/R INI_PARMS ; read PARM02 : OK'
+       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT , 1) 
       ENDIF    
 
 C--   Time stepping parameters
@@ -444,6 +452,10 @@ C--   Time stepping parameters
        CALL PRINT_ERROR( msgBuf , 1)
        CALL MODELDATA_EXAMPLE( myThid )
        STOP 'ABNORMAL END: S/R INI_PARMS'
+      ELSE
+       WRITE(msgBuf,'(A)') 'S/R INI_PARMS ; read PARM03 : OK'
+       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT , 1) 
       ENDIF   
 C     Process "timestepping" params
 C     o Time step size
@@ -632,6 +644,10 @@ C     In spherical polar distances are in degrees
        CALL PRINT_ERROR( msgBuf , 1)
        CALL MODELDATA_EXAMPLE( myThid )
        STOP 'ABNORMAL END: S/R INI_PARMS'
+      ELSE
+       WRITE(msgBuf,'(A)') 'S/R INI_PARMS ; read PARM04 : OK'
+       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT , 1) 
       ENDIF    
 
 C     X coordinate
@@ -801,6 +817,10 @@ C--   Input files
        CALL PRINT_ERROR( msgBuf , 1)
        CALL MODELDATA_EXAMPLE( myThid )
        STOP 'ABNORMAL END: S/R INI_PARMS'
+      ELSE
+       WRITE(msgBuf,'(A)') 'S/R INI_PARMS ; read PARM05 : OK'
+       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT , 1) 
       ENDIF       
 
 C
