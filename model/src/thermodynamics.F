@@ -444,22 +444,22 @@ C note(jmc) : phiHyd=0 at this point but is not really used in Molteni Physics
 
 C--     Some advection schemes are better calculated using a multi-dimensional
 C       method in the absence of any other terms and, if used, is done here.
-cph        IF (multiDimAdvection) THEN
-cph         IF (tempStepping .AND.
-cph     &       tempAdvScheme.NE.ENUM_CENTERED_2ND .AND.
-cph     &       tempAdvScheme.NE.ENUM_UPWIND_3RD .AND.
-cph     &       tempAdvScheme.NE.ENUM_CENTERED_4TH )
-cph     &   CALL GAD_ADVECTION(bi,bj,tempAdvScheme,GAD_TEMPERATURE,theta,
-cph     U                      gT,
-cph     I                      myTime,myIter,myThid)
-cph         IF (saltStepping .AND.
-cph     &       saltAdvScheme.NE.ENUM_CENTERED_2ND .AND.
-cph     &       saltAdvScheme.NE.ENUM_UPWIND_3RD .AND.
-cph     &       saltAdvScheme.NE.ENUM_CENTERED_4TH )
-cph     &   CALL GAD_ADVECTION(bi,bj,saltAdvScheme,GAD_SALINITY,salt,
-cph     U                      gS,
-cph     I                      myTime,myIter,myThid)
-cph        ENDIF
+        IF (multiDimAdvection) THEN
+         IF (tempStepping .AND.
+     &       tempAdvScheme.NE.ENUM_CENTERED_2ND .AND.
+     &       tempAdvScheme.NE.ENUM_UPWIND_3RD .AND.
+     &       tempAdvScheme.NE.ENUM_CENTERED_4TH )
+     &   CALL GAD_ADVECTION(bi,bj,tempAdvScheme,GAD_TEMPERATURE,theta,
+     U                      gT,
+     I                      myTime,myIter,myThid)
+         IF (saltStepping .AND.
+     &       saltAdvScheme.NE.ENUM_CENTERED_2ND .AND.
+     &       saltAdvScheme.NE.ENUM_UPWIND_3RD .AND.
+     &       saltAdvScheme.NE.ENUM_CENTERED_4TH )
+     &   CALL GAD_ADVECTION(bi,bj,saltAdvScheme,GAD_SALINITY,salt,
+     U                      gS,
+     I                      myTime,myIter,myThid)
+        ENDIF
 
 
 C--     Start of thermodynamics loop
