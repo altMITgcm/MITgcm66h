@@ -192,6 +192,7 @@ C--   Time stepping parameters
       deltaT            = 0.
       nIter0            = 0
       startTime         = deltaT*float(nIter0)
+      pickupSuff        = ' '
       nTimeSteps        = 0
       nEndIter          = nIter0+nTimeSteps
       endTime           = deltaT*float(nEndIter)
