@@ -9,6 +9,8 @@
 # JMC says that aim, aim_v23, land should be off by default
 # bulk_forcing
 
-oceanic : debug generic_advdiff gmredi kpp mdsio mom_fluxform mom_vecinv monitor obcs rw sbo shap_filt timeave zonal_filt
+gfd : mom_fluxform mom_vecinv generic_advdiff debug mdsio rw mnc monitor
 
-atmospheric : debug generic_advdiff mdsio mom_fluxform mom_vecinv monitor rw shap_filt timeave
+oceanic : gfd gmredi kpp
+
+atmospheric : gfd timeave shap_filt
