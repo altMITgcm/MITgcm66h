@@ -58,15 +58,18 @@ C     mon_pref   - Prefix used for monitor output
 C--   COMMON /MON_L/ Monitor logical variables
 C     mon_overrideStop - Allow code to continue even if model state is
 C                        heading out of bounds
-      COMMON /MON_L/ mon_overrideStop
+C     mon_write_stdout - hold True when writing monitor to standard output
+C     mon_write_mnc    - hold True when writing monitor to MNC file
+      COMMON /MON_L/ mon_overrideStop, 
+     &               mon_write_stdout, mon_write_mnc
       LOGICAL mon_overrideStop
+      LOGICAL mon_write_stdout, mon_write_mnc
 
 C     File names and time steps
 C     mon_fname    ::  monitor file group name
       COMMON /MON_F/ 
-     &     mon_fname, mon_write_stdout, mon_write_mnc
+     &     mon_fname
       CHARACTER*(MAX_LEN_MBUF) mon_fname
-      LOGICAL mon_write_stdout, mon_write_mnc
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 

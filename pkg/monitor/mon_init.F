@@ -28,7 +28,9 @@ C     !LOCAL VARIABLES:
       INTEGER i
       character*(MAX_LEN_MBUF) msgbuf
 
-      mon_write_stdout = .FALSE.
+C     set those 2 flags to write monitor of the grid (S/R ini_grid) 
+C     and coriolis (S/R ini_cori) to standard output
+      mon_write_stdout = .TRUE.
       mon_write_mnc    = .FALSE.
 
       IF ((monitorFreq .GT. 0.0) .AND. (mon_iotype .LT. 1)) THEN
