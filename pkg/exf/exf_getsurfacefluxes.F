@@ -38,9 +38,13 @@ c     == global variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 
-#include "ctrl.h"
-#include "ctrl_dummy.h"
 #include "exf_fields.h"
+#if (defined (ALLOW_ADJOINT_RUN) || \
+     defined (ALLOW_TANGENTLINEAR_RUN) || \
+     defined (ALLOW_ECCO_OPTIMIZATION))
+# include "ctrl.h"
+# include "ctrl_dummy.h"
+#endif
 
 c     == routine arguments ==
 
