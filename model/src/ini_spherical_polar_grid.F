@@ -65,6 +65,7 @@ C     I,J,K
       INTEGER iG, jG
       INTEGER bi, bj
       INTEGER  I,  J
+      INTEGER  iloc, jloc
       _RL lat, latS, latN
 
 C--   Example of inialisation for spherical polar grid
@@ -91,25 +92,47 @@ C           longitude - phiMin and thetaMin.
          yBase = yBase + delY(j)
         ENDDO
         yG = yBase
-        DO J=1,sNy
+c-jmc:start
+c       DO J=1,sNy
+        DO j=0,1-Oly,-1
+         jloc = max(1,min(Ny,jG+j-1))
+         yG = yG - delY(jloc)
+        ENDDO
+        DO j=1-Oly,sNy+Oly
+         jloc = max(1,min(Ny,jG+j-1))
          xG = xBase
-         DO I=1,sNx
-          xc(I,J,bi,bj)  = xG + delX(iG+i-1)*0.5 _d 0
-          yc(I,J,bi,bj)  = yG + delY(jG+j-1)*0.5 _d 0
-          xG = xG + delX(iG+I-1)
-          dxF(I,J,bi,bj) = delX(iG+i-1)*deg2rad
-     &    *rSphere*COS(yc(I,J,bi,bj)*deg2rad)
-          dyF(I,J,bi,bj) = delY(jG+j-1)*deg2rad*rSphere
+         DO i=0,1-Olx,-1
+           iloc = max(1,min(Nx,iG+i-1))
+           xG = xG - delX(iloc)
          ENDDO
-         yG = yG + delY(jG+J-1)
+         DO I=1-Olx,sNx+Olx
+          iloc = max(1,min(Nx,iG+i-1))
+          xc(I,J,bi,bj)  = xG + delX(iloc)*0.5 _d 0
+          yc(I,J,bi,bj)  = yG + delY(jloc)*0.5 _d 0
+          xG = xG + delX(iloc)
+          dxF(I,J,bi,bj) = delX(iloc)*deg2rad
+     &    *rSphere*COS(yc(I,J,bi,bj)*deg2rad)
+          dyF(I,J,bi,bj) = delY(jloc)*deg2rad*rSphere
+         ENDDO
+         yG = yG + delY(jloc)
+c-jmc    DO I=1,sNx
+c         xc(I,J,bi,bj)  = xG + delX(iG+i-1)*0.5 _d 0
+c         yc(I,J,bi,bj)  = yG + delY(jG+j-1)*0.5 _d 0
+c         xG = xG + delX(iG+I-1)
+c         dxF(I,J,bi,bj) = delX(iG+i-1)*deg2rad
+c    &    *rSphere*COS(yc(I,J,bi,bj)*deg2rad)
+c         dyF(I,J,bi,bj) = delY(jG+j-1)*deg2rad*rSphere
+c        ENDDO
+c        yG = yG + delY(jG+J-1)
         ENDDO
        ENDDO
       ENDDO
-C     Now sync. and get edge regions from other threads and/or processes.
-C     Note: We could just set the overlap regions ourselves here but
-C           exchanging edges is safer and is good practice!
-      _EXCH_XY_R4( xc, myThid )
-      _EXCH_XY_R4( yc, myThid )
+cC     Now sync. and get edge regions from other threads and/or processes.
+cC     Note: We could just set the overlap regions ourselves here but
+cC           exchanging edges is safer and is good practice!
+c-jmc _EXCH_XY_R4( xc, myThid )
+c-jmc _EXCH_XY_R4( yc, myThid )
+c-jmc:end
       _EXCH_XY_R4(dxF, myThid )
       _EXCH_XY_R4(dyF, myThid )
 
