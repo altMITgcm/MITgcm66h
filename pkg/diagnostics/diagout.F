@@ -69,7 +69,7 @@ CEOP
 #endif /*  ALLOW_MNC  */
 
       undef = getcon('UNDEF')
-      glf = .FALSE.
+      glf = globalFiles
       WRITE(suff,'(I10.10)') myIter
       pref = fnames(listnum)
       ilen=ilnblnk( pref )
