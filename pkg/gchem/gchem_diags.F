@@ -28,7 +28,8 @@ cccccccccccccccccccccc
 
 #ifdef DIC_BIOTIC
 #ifdef ALLOW_TIMEAVE
-       call dic_biotic_diags( myTime, myIter, myThid )
+       IF (myIter.NE.nIter0)
+     & call dic_biotic_diags( myTime, myIter, myThid )
 #endif
 #endif
 
