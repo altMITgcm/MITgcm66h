@@ -317,22 +317,22 @@ exch2_z_xy_r8.F: exch2_z_xy_rx.template
 
 # exch2_uv_agrid_xyz.rx
 exch2_uv_agrid_xyz_rl.F: exch2_uv_agrid_xyz_rx.template
-	sed 's/RX/RL/g' exch2_uv_agrid_xyz_rx.template > $@
-exch2_uv_agrid_xyz_rs.F: exch2_xyz_rx.template
-	sed 's/RX/RS/g' exch2_uv_agrid_xyz_rx.template > $@
-exch2_uv_agrid_xyz_r4.F: exch2_xyz_rx.template
-	sed 's/RX/R4/g' exch2_uv_agrid_xyz_rx.template > $@
-exch2_uv_agrid_xyz_r8.F: exch2_xyz_rx.template
-	sed 's/RX/R8/g' exch2_uv_agrid_xyz_rx.template > $@
+	sed 's/RX/RL/g'  exch2_uv_agrid_xyz_rx.template > $@
+exch2_uv_agrid_xyz_rs.F: exch2_uv_agrid_xyz_rx.template
+	sed 's/RX/RS/g'  exch2_uv_agrid_xyz_rx.template > $@
+exch2_uv_agrid_xyz_r4.F: exch2_uv_agrid_xyz_rx.template
+	sed 's/RX/R4/g'  exch2_uv_agrid_xyz_rx.template > $@
+exch2_uv_agrid_xyz_r8.F: exch2_uv_agrid_xyz_rx.template
+	sed 's/RX/R8/g'  exch2_uv_agrid_xyz_rx.template > $@
 
 # exch2_uv_agrid_xy.rx
 exch2_uv_agrid_xy_rl.F: exch2_uv_agrid_xy_rx.template
 	sed 's/RX/RL/g' exch2_uv_agrid_xy_rx.template > $@
-exch2_uv_agrid_xy_rs.F: exch2_xy_rx.template
+exch2_uv_agrid_xy_rs.F: exch2_uv_agrid_xy_rx.template
 	sed 's/RX/RS/g' exch2_uv_agrid_xy_rx.template > $@
-exch2_uv_agrid_xy_r4.F: exch2_xy_rx.template
+exch2_uv_agrid_xy_r4.F: exch2_uv_agrid_xy_rx.template
 	sed 's/RX/R4/g' exch2_uv_agrid_xy_rx.template > $@
-exch2_uv_agrid_xy_r8.F: exch2_xy_rx.template
+exch2_uv_agrid_xy_r8.F: exch2_uv_agrid_xy_rx.template
 	sed 's/RX/R8/g' exch2_uv_agrid_xy_rx.template > $@
 
 # exch_uv_agrid_xy.rx
