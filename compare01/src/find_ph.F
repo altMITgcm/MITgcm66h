@@ -65,7 +65,7 @@ C     \--------------------------------------------------------------/
       INTEGER I, J, K
 
 C     _D(( ' S/R PFIND: MAXVAL(RHS2d) = ',MAXVAL(RHS2d)))
-      WRITE(0,*) ' S/R PFIND: MAXVAL(RHS2d) = ',MAXVAL(RHS2d)
+c     WRITE(0,*) ' S/R PFIND: MAXVAL(RHS2d) = ',MAXVAL(RHS2d)
 
 C     /--------------------------------------------------------------\
 C     | Hydrostatic pressure                                         |
@@ -93,9 +93,9 @@ C        \-----------------------------------------------------------/
        ENDDO
       ENDDO
 CcnhDebugStarts
-       WRITE(0,*) 'PH K=Nz'
-       CALL PLOT_FIELD(PH(_I3(Nz,:,:))/RONIL,Nx,Ny)
-       WRITE(0,*) ' END '
+c      WRITE(0,*) 'PH K=Nz'
+c      CALL PLOT_FIELD(PH(_I3(Nz,:,:))/RONIL,Nx,Ny)
+c      WRITE(0,*) ' END '
 CcnhDebugEnds
       DO K = 1, Nz
        DO J = 1, Ny
