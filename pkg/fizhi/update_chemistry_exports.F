@@ -94,7 +94,8 @@ c                                         (even though dpphy counted bottom up)
         enddo
 
         call interp_chemistry(strq1,nlevsq,nlatsq,levsq,latsq,
-     .   oz1,nlevsoz,nlatsoz,levsoz,latsoz,waterin,pphy,xlat,
+     .   oz1,nlevsoz,nlatsoz,levsoz,latsoz,
+     .   waterin,pphy(1,1,1,bi,bj),xlat,
      .   im2,jm2,Nrphys,nSx,nSy,bi,bj,o3,qstr)
 
        enddo
