@@ -18,6 +18,7 @@ C !USES: ===============================================================
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "EESUPPORT.h"
 #include "DYNVARS.h"
 #include "GRID.h"
 #include "PTRACERS_SIZE.h"
