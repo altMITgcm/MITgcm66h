@@ -334,7 +334,7 @@ cph        GO TO 8001
 cph)
        END IF
       END IF
-      CALL SEAICE_EXCH ( UICE, myThid )
+      CALL SEAICE_EXCH_UV ( UICE, VICE, myThid )
 
 cph(
       END IF
@@ -555,7 +555,7 @@ cph)
        END IF
       END IF
 
-      CALL SEAICE_EXCH ( VICE, myThid )
+      CALL SEAICE_EXCH_UV ( UICE, VICE, myThid )
 
 cph(
       END IF
@@ -580,8 +580,7 @@ C NOW MAKE COROLIS TERM IMPLICIT
         END DO
        ENDDO
       ENDDO
-      CALL SEAICE_EXCH ( UICE, myThid )
-      CALL SEAICE_EXCH ( VICE, myThid )
+      CALL SEAICE_EXCH_UV ( UICE, VICE, myThid )
 
 #endif /* SEAICE_ALLOW_DYNAMICS */
 #endif /* ALLOW_SEAICE */

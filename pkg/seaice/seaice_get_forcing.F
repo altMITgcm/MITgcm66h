@@ -209,10 +209,8 @@ C--   First call requires that we initialize everything for safety
 
        _END_MASTER(myThid)
 
-       _EXCH_XY_R4( uwind0,  myThid )
-       _EXCH_XY_R4( uwind1,  myThid )
-       _EXCH_XY_R4( vwind0,  myThid )
-       _EXCH_XY_R4( vwind1,  myThid )
+       CALL EXCH_UV_XY_RS(uwind0, vwind0, .TRUE., myThid)
+       CALL EXCH_UV_XY_RS(uwind1, vwind1, .TRUE., myThid)
        _EXCH_XY_R4( atemp0,  myThid )
        _EXCH_XY_R4( atemp1,  myThid )
        _EXCH_XY_R4( aqh0,    myThid )
@@ -263,12 +261,10 @@ C--   Now calculate whether if it is time to update wind speed arrays
        ENDIF
        _END_MASTER(myThid)
        IF (wind0_is_first) THEN
-        _EXCH_XY_R4( uwind0, myThid )
-        _EXCH_XY_R4( vwind0, myThid )
+        CALL EXCH_UV_XY_RS(uwind0, vwind0, .TRUE., myThid)
         wind0_is_first=.FALSE.
        ELSE
-        _EXCH_XY_R4( uwind1, myThid )
-        _EXCH_XY_R4( vwind1, myThid )
+        CALL EXCH_UV_XY_RS(uwind1, vwind1, .TRUE., myThid)
         wind0_is_first=.TRUE.
        ENDIF
       ENDIF
