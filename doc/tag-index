@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint22
+ o Made many small changes: implicit none, format(i5), etc...
+ o Introduced KPP mixing scheme (compiles and runs but *not* tested)
+
 checkpoint21
  o Introduced new I/O package that supports direct-access records (mdsio.F)
  o Split-up mid-level I/O routines
