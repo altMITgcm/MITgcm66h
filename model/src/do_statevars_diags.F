@@ -71,8 +71,8 @@ C--   Fill-in Diagnostics pkg storage array (for state-variables)
       IF ( usediagnostics ) THEN
         CALL DIAGNOSTICS_FILL_STATE(myThid)
 # ifdef ALLOW_PTRACERS
-       IF (useptracers) THEN
-        CALL PTRACERS_FILL_DIAGNOSTICS(myThid)
+       IF (usePTRACERS) THEN
+        CALL PTRACERS_DIAGNOSTICS_FILL(myThid)
        ENDIF
 # endif
       ENDIf
