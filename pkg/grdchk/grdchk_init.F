@@ -3,9 +3,7 @@ C $Header$
 #include "CTRL_CPPOPTIONS.h"
 
 
-      subroutine grdchk_init(
-     I                       mythid
-     &                      )
+      subroutine grdchk_init( mythid )
 
 c     ==================================================================
 c     SUBROUTINE grdchk_init
