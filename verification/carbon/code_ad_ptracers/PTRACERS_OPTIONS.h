@@ -8,6 +8,9 @@ C
 C PTRACERS is enabled with ALLOW_PTRACERS in CPP_OPTIONS.h or in
 C the Makefile with DEFINES=-DALLOW_PTRACERS
 
+#ifndef PTRACERS_OPTIONS_H
+#define PTRACERS_OPTIONS_H
+
 #include "CPP_OPTIONS.h"
 
 #ifdef ALLOW_PTRACERS
@@ -26,3 +29,4 @@ C is set then NUMBER_OF_PTRACERS is set here (default 1)
 #endif
 
 #endif /* ALLOW_PTRACERS */
+#endif /* PTRACERS_OPTIONS_H */
