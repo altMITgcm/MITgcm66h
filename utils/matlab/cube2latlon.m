@@ -16,6 +16,7 @@ function [z] = cube2latlon(x,y,c,xi,yi)
 %
 % $Header$
 
+NN=size(c);
 [nx ny nz]=size(c);
 
 for k=1:nz;
@@ -46,3 +47,7 @@ C(end,ny/2+1:ny)=C(i,j)';
 
 z(:,:,k)=griddata(Y,X,C,yi,xi');
 end % k
+
+if size(NN,2)>2
+z=reshape(z,[size(z,1) size(z,2) NN(3:end)]);
+end
