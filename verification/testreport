@@ -529,7 +529,7 @@ int main( int argc, char** argv )  {
     abave = 0.5*(fabs(a)+fabs(b));
     if (abave > 0.0) {
       relerr=fabs(a-b)/abave;
-      if (relerr > 0.0) { linnum = (int)lrint(log10(relerr)); }
+      if (relerr > 0.0) { linnum = (int)rint(log10(relerr)); }
       else { linnum = -16 ; }
       best = (best > linnum) ? best : linnum;
     }
