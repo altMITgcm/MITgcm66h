@@ -21,6 +21,9 @@ C o Include/exclude call to S/R CONVECT
 C o Include/exclude call to S/R CALC_DIFFUSIVITY
 #define INCLUDE_CALC_DIFFUSIVITY_CALL
 
+C o Include/exclude Implicit vertical advection code
+#define INCLUDE_IMPLVERTADV_CODE
+
 C o Include/exclude nonHydrostatic code
 #undef ALLOW_NONHYDROSTATIC
 
