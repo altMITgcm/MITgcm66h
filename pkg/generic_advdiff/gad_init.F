@@ -31,7 +31,7 @@ C     msgBuf      - Informational/error meesage buffer
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
-C-- Set Temp & Salt muti-Dim Advec. flag according to advection scheme used
+C-- Set Temp & Salt multi-Dim Advec. flag according to advection scheme used
       tempMultiDimAdvec = multiDimAdvection .AND. tempAdvection
       saltMultiDimAdvec = multiDimAdvection .AND. saltAdvection
       IF ( tempAdvScheme.EQ.ENUM_CENTERED_2ND
@@ -44,6 +44,11 @@ C-- Set Temp & Salt muti-Dim Advec. flag according to advection scheme used
      & .OR.saltAdvScheme.EQ.ENUM_CENTERED_4TH ) THEN
            saltMultiDimAdvec = .FALSE. 
       ENDIF
+
+C-- Set general multi-Dim Advec. flag when at least 1 tracer use multi-Dim Advec.
+      useMultiDimAdvec = .FALSE.
+      useMultiDimAdvec = useMultiDimAdvec.OR.tempMultiDimAdvec
+      useMultiDimAdvec = useMultiDimAdvec.OR.saltMultiDimAdvec
 
 C-- Set Temp & Salt Adams-Bashforth flag according to advection scheme used
       tempAdamsBashforth = .FALSE.
@@ -68,6 +73,7 @@ C-- Set Temp & Salt Adams-Bashforth flag according to advection scheme used
            tr1_MultiDimAdvec = .FALSE.
            tr1_AdamsBashforth = .TRUE.
       ENDIF
+      useMultiDimAdvec = useMultiDimAdvec.OR.tr1_MultiDimAdvec
 #endif
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
