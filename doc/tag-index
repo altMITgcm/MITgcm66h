@@ -20,8 +20,9 @@ o New package: pkg/seaice
   thermodynamics, temperature under sea-ice may not be "exactly" at 
   the freezing point by the time theta is dumped or time-averaged.
   N.B.: fairly large differences in accuracy occur across
-        different platforms; comparison between
-        g77 (Linux) and ??? generated output gives:
+        different platforms/compilers; comparison between
+        g77 (Linux) and F77 (SGI Origin 2000/MIPSpro) 
+        generated output gives:
    T           S           U           V
   C D M    c        m  s        m  s        m  s        m  s
   n p a R  g  m  m  e  .  m  m  e  .  m  m  e  .  m  m  e  .
