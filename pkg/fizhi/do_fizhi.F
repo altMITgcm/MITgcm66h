@@ -165,9 +165,7 @@ C Some initialization is for start of experiment, some for segment start
 C***********************************************************************
 
       if((nhms.eq.nhms0) .and. (nymd.eq.nymd0) .and. (myIter.eq.0)) then
-       _BEGIN_MASTER(myid)
-       if(myid.eq.1) print *,' Initializing fizhi arrays '
-       _END_MASTER(myid)
+       print *,' Initializing fizhi arrays on pickup '
        imstturblw(bi,bj) = 0
        imstturbsw(bi,bj) = 0
        iras(bi,bj) = 0
