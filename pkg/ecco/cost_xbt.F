@@ -191,6 +191,7 @@ c--               The array ctdtobs contains CTD temperature.
      &                   (tbar(i,j,k,bi,bj)-tmpobs(i,j))
                     if ( wtheta2(i,j,k,bi,bj)*cmask(i,j) .ne. 0. )
      &                   num_xbt(bi,bj) = num_xbt(bi,bj) + 1. _d 0
+                  endif
                 enddo
               enddo
 c--         End of loop over layers.
