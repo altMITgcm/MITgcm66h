@@ -82,9 +82,11 @@ C      Print the numerical stablility parameters for current state
        CALL MON_ADVCFLW2('_W_hf',wVel,recip_hFacC,
      &                               recip_drC,dT,myThid)
 
-C      Print stats for KE
-       CALL MON_SET_PREF('ke',myThid)
-       CALL MON_KE(myThid)
+C-     Print stats for KE
+       CALL MON_KE(myIter, myThid)
+
+C-     Print stats for (relative,absolute) Vorticity AND Pot.Vort. 
+       CALL MON_VORT3(myIter, myThid)
 
 C      Print stats for surface correction terms (Linear Free-Surf)
        CALL MON_SURFCOR(myThid)
