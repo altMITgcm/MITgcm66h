@@ -5,11 +5,11 @@ Example: Subtropical North Atlantic Subduction area
 - forward/adjoint run
 - optimization cost function
 
-################
-Experiment no. 1
-################
+####################
+# Experiment no. 1 #
+####################
 
-Use air-sea fluxes as controls (standard case):
+# Use air-sea fluxes as controls (standard case):
 
 #Compile code in bin/:
   cd bin
@@ -48,13 +48,13 @@ Comments:
 
 
 
-################
-Experiment no. 2
-################
+####################
+# Experiment no. 2 #
+####################
 
-Use bulk formulae and atmos. state controls
-(only differnce to experiment 1 is in ECCO_CPPOPTIONS.h,
-and runtime in data.grdchk):
+#Use bulk formulae and atmos. state controls
+#(only differnce to experiment 1 is in ECCO_CPPOPTIONS.h,
+#and runtime in data.grdchk):
 
 #Compile code in bin/:
   cd ../bin
@@ -96,11 +96,11 @@ Comments:
 
 
 
-################
-Experiment no. 3
-################
+####################
+# Experiment no. 3 #
+####################
 
-Same as exp. 2, but with ALLOW_SEAICE defined:
+#Same as exp. 2, but with ALLOW_SEAICE defined:
 
 #Compile code in bin/:
   cd ../bin
@@ -148,13 +148,13 @@ Comments:
 
 
 
-################
-Experiment no. 4
-################
+####################
+# Experiment no. 4 #
+####################
 
-Use pkg/seaice bulk formulae and atmos. state controls
-(this experiment is in the Labrador Sea rather than the
-North Atlantic subduction region):
+#Use pkg/seaice bulk formulae and atmos. state controls
+#(this experiment is in the Labrador Sea rather than the
+#North Atlantic subduction region):
 
 #Compile code in bin/:
   cd bin
@@ -181,8 +181,8 @@ North Atlantic subduction region):
   cp ../verification/natl_box_adjoint/input_seaice/* .
   cp ../verification/natl_box_adjoint/input/PH_*.data .
   mitgcmuv >&! output.txt
-
-grep ph-grd output.txt
+#Gradient check:
+  grep ph-grd output.txt
 
 #A reference output is in:
-grep ph-grd ../verification/natl_box_adjoint/results_seaice/output.txt
+ grep ph-grd ../verification/natl_box_adjoint/results_seaice/output.txt
