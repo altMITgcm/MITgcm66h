@@ -162,8 +162,8 @@ C***********************************************************************
       call pkappa (ple(1,1,1,bi,bj),pkle(1,1,1,bi,bj),im2,jm2,Nrphys,
      .                                                 pkl(1,1,1,bi,bj))
 
-      call fizhi_driver(myid,im2,jm2,Nrphys,ptracer,ntracer,xlats,xlons,
-     . p(1,1,bi,bj),u,v,t,q,pl(1,1,1,bi,bj),ple(1,1,1,bi,bj),
+      call fizhi_driver(myid,im2,jm2,Nrphys,bi,bj,ptracer,ntracer,xlats,
+     . xlons,p(1,1,bi,bj),u,v,t,q,pl(1,1,1,bi,bj),ple(1,1,1,bi,bj),
      . dpres(1,1,1,bi,bj),pkle(1,1,1,bi,bj),pkl(1,1,1,bi,bj),
      . fracland(1,1,bi,bj),landtype(1,1,bi,bj),radswt,
      . phis_var(1,1,bi,bj),tgz(1,1,bi,bj),sea_ice,
