@@ -106,7 +106,8 @@ c ---------------
       parameter (numpcheck = 5)
       integer pchecklevs(numpcheck)
       _RL pcheckpress(numpcheck)
-      data pcheckpress/950.,750.,700.,400.,10./
+C     data pcheckpress/950.,750.,700.,400.,10./
+      data pcheckpress/950.,900.,700.,400.,150./
 
       integer low_level,mid_level,nltop,nsubmin,nsubmax,Lup
       integer ndmoist,ndturb,ndlw,ndsw
