@@ -105,7 +105,7 @@ C--   Set model configuration (fixed arrays)
 
 C--   Call time stepping loop of full model
       CALL TIMER_START('THE_MAIN_LOOP      [THE_MODEL_MAIN]',myThid)
-      CALL THE_MAIN_LOOP( myThid )
+      CALL THE_MAIN_LOOP( myCurrentTime, myCurrentIter, myThid )
       CALL TIMER_STOP ('THE_MAIN_LOOP      [THE_MODEL_MAIN]',myThid)
 
 #endif /* ALLOW_ADJOINT_RUN */
