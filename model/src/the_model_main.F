@@ -617,7 +617,7 @@ C--   Call time stepping loop of full model
       CALL THE_MAIN_LOOP( myCurrentTime, myCurrentIter, myThid )
       CALL TIMER_STOP ('THE_MAIN_LOOP          [THE_MODEL_MAIN]',myThid)
 
-#endif /* ALLOW_TANGENTLINEAR_RUN ALLOW_ADJOINT_RUN ALLOW_ADMTLM_RUN */
+#endif /* ALLOW_TANGENTLINEAR_RUN ALLOW_ADJOINT_RUN ALLOW_ADMTLM */
 
 C--   Final checkpoint (in case the in-loop checkpoint was missed)
       CALL TIMER_START('WRITE_CHECKPOINT       [THE_MODEL_MAIN]',myThid)
