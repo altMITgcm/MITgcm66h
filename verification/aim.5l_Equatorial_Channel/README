@@ -26,3 +26,9 @@ Notes:
 * many sources in "code" are identical or very similar to the "aim_5l_LatLon"
   test and will became part of the pkg/aim code.
 --------------------------- 
+Northern boundary : 
+o initially, the domain (SIZE.h) 128x24x5 with a land line as the Northern 
+  boundary, reduciong the effective domain to 128x23x5. 
+o To have a more efficient code (and a good starting point for MIT Atmos.
+  Physics), the new domain (SIZE.h) is now 128x23x5 . 
+  Northern and Southern boundaries are "closed" like the in Lat-Lon set-up. 
