@@ -154,16 +154,6 @@ C     == Local variables ==
      & 'openBoundaries =', '  /* OpenBoundaries on/off flag */')
       CALL WRITE_0D_L( nonHydrostatic, INDEX_NONE,
      & 'nonHydrostatic =', '  /* Non-Hydrostatic on/off flag */')
-      CALL WRITE_0D_R8( GMmaxslope,   INDEX_NONE,'GMMaxslope =',
-     &'   /* Max. slope allowed in GM/Redi tensor */')
-      CALL WRITE_0D_R8( GMlength,     INDEX_NONE,'GMlength =',
-     &'   /* Length to use in Visbeck et al. formula for K (m) */')
-      CALL WRITE_0D_R8( GMalpha,      INDEX_NONE,'GMalpha =',
-     &'   /* alpha to use in Visbeck et al. formula for K */')
-      CALL WRITE_0D_R8( GMdepth,      INDEX_NONE,'GMdepth =',
-     &'   /* Depth to integrate for Visbeck et. al Richardson # (m) */')
-      CALL WRITE_0D_R8( GMkbackground,INDEX_NONE,'GMkbackground =',
-     &'   /* background value of GM/Redi coefficient m^2/s */')
       WRITE(msgBuf,'(A)') '//  '
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, 
      &                    SQUEEZE_RIGHT , 1)
