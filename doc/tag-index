@@ -3,6 +3,11 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o merged with checkpoint50g_post (pkg/seaice and verification/lab_sea)
+  - added SEAICE_MULTILEVEL for 8-category sea-ice thermodynamics
+  - LSR sea-ice dynamic solver moved to SouthWest B-grid location and
+    made the default because of faster convergence than ADI
+
 ecco_c50_e31
 o exf totally restructured
   - replaced all exf_set_ routines by one generic exf_set_gen.F
