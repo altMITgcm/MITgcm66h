@@ -36,7 +36,7 @@ c#cndef  ALLOW_SHAP_FILT
 
 C o Include/exclude code for C-D grid method of integrating the 
 C   coriolis terms
-c#cefine  INCLUDE_CD_CODE
+#define  INCLUDE_CD_CODE
 
 C o Include/exclude code for open-boundary conditions
 c#cndef  ALLOW_OBCS
