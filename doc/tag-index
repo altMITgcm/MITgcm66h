@@ -3,6 +3,14 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint19
+ o Tidied up directory structure for verification experiments.
+ o Added new code for open boundaries.
+ o Corrected advective terms near boundaries.
+ o Added CPP flag for "old UV" geometry and corrected spherical geometry.
+ o Implemented free-slip/no-slip BCs and del^4 dissipation.
+ o Split default parameters out f ini_parms.F into set_defaults.F.
+
 checkpoint18
  o Further changes for optional code generation with 
    CPP - ugh!
