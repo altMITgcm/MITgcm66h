@@ -69,24 +69,32 @@ C     dependency.
       _RL hFacMinDrDefault
       _RL delRDefault(Nr)
       _RS rkFacDefault
-C     zCoordInputData - These are used to select between different coordinate systems.
-C     pCoordInputData   The vertical coordinate system in the rest of the model is 
-C     rCoordInputData   written in terms of r. In the model "data" file input data can
-C     coordsSet         be interms of z, p or r.
-C                       e.g. delZ or delP or delR for the vertical grid spacing.
-C                       The following rules apply:
-C                       All parameters must use the same vertical coordinate system.
-C                       e.g. delZ and viscAz is legal but
-C                            delZ and viscAr is an error.
-C                       Similarly specifyinh delZ and delP is an error.
-C                       zCoord..., pCoord..., rCoord... are used to flag when z, p or r are
-C                       used. coordsSet counts how many vertical coordinate systems have been
-C                       used to specify variables. coordsSet > 1 is an error.
+C     zCoordInputData :: Variables used to select between different coordinate systems.
+C     pCoordInputData :: The vertical coordinate system in the rest of the model is 
+C     rCoordInputData :: written in terms of r. In the model "data" file input data can
+C     coordsSet       :: be interms of z, p or r.
+C                     :: e.g. delZ or delP or delR for the vertical grid spacing.
+C                     :: The following rules apply:
+C                     :: All parameters must use the same vertical coordinate system.
+C                     ::  e.g. delZ and viscAz is legal but
+C                     ::       delZ and viscAr is an error.
+C                     :: Similarly specifyinh delZ and delP is an error.
+C                     :: zCoord..., pCoord..., rCoord... are used to flag when z, p or r are
+C                     :: used. coordsSet counts how many vertical coordinate systems have been
+C                        used to specify variables. coordsSet > 1 is an error.
 C
       LOGICAL zCoordInputData
       LOGICAL pCoordInputData
       LOGICAL rCoordInputData
       INTEGER coordsSet
+
+C     Retired main data file parameters. Kept here to trap use of old data files.
+C     zonal_filt_lat  - Moved to package "zonal_filt"
+C     nRetired :: Counter used to trap gracefully namelists containing "retired" 
+C              :: parameters. These are parameters that are either no-longer used
+C                 or that have moved to a different input file and/or namelist.
+      _RL zonal_filt_lat
+      INTEGER nRetired
 CEOP
 
 C--   Continuous equation parameters
@@ -113,12 +121,13 @@ C--   Continuous equation parameters
      & writeBinaryPrec, readBinaryPrec, writeStatePrec,
      & nonHydrostatic, globalFiles,
      & allowFreezing, ivdc_kappa,
-     & zonal_filt_lat, zonal_filt_sinpow, zonal_filt_cospow,
      & bottomDragLinear,bottomDragQuadratic,
      & usePickupBeforeC35, debugMode, 
      & readPickupWithTracer, writePickupWithTracer,
      & tempAdvScheme, saltAdvScheme, tracerAdvScheme,
-     & multiDimAdvection, useEnergyConservingCoriolis
+     & multiDimAdvection, useEnergyConservingCoriolis,
+     & useJamartWetPoints, 
+     & zonal_filt_lat
 
 C--   Elliptic solver parameters
       NAMELIST /PARM02/
@@ -169,6 +178,10 @@ C--   Initialise "which vertical coordinate system used" flags.
       usingPCoords    = .FALSE.
       usingZCoords    = .FALSE.
       coordsSet       = 0
+
+C--   Iniialise retired parameters to unlikely value
+      nRetired = 0
+      zonal_filt_lat  = UNSET_RL
 
 C--   Open the parameter file
       OPEN(UNIT=scrUnit1,STATUS='SCRATCH')
@@ -262,6 +275,10 @@ C--   Set default "physical" parameters
        CALL PRINT_ERROR( msgBuf , 1)
        CALL MODELDATA_EXAMPLE( myThid )
        STOP 'ABNORMAL END: S/R INI_PARMS'
+      ELSE
+       WRITE(msgBuf,'(A)') 'S/R INI_PARMS ; read PARM01 : OK'
+       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT , 1) 
       ENDIF
       IF ( implicitFreeSurface ) freeSurfFac = 1.D0
       IF ( rigidLid            ) freeSurfFac = 0.D0
@@ -407,6 +424,20 @@ C     Set globalFiles flag for READ_WRITE_REC package
 C     Set globalFiles flag for READ_WRITE_REC package
       CALL SET_WRITE_GLOBAL_PICKUP( globalFiles )
 
+C     Check for retired parameters still being used
+      nRetired = 0
+      IF ( zonal_filt_lat .NE. UNSET_RL ) THEN
+       nRetired = nRetired+1
+       WRITE(msgBuf,'(A,A)')
+     &  'S/R INI_PARMS: Paramater "zonal_filt_lat" is',
+     &  ' no longer allowed in file "data".'
+       CALL PRINT_ERROR( msgBuf , myThid)
+       WRITE(msgBuf,'(A,A)')
+     &  'S/R INI_PARMS: Paramater "zonal_filt_lat" is',
+     &  ' now read from file "data.zonfilt".'
+       CALL PRINT_ERROR( msgBuf , myThid)
+      ENDIF
+
 C--   Elliptic solver parameters
       READ(UNIT=iUnit,NML=PARM02) !,IOSTAT=errIO)
       IF ( errIO .LT. 0 ) THEN
@@ -424,6 +455,10 @@ C--   Elliptic solver parameters
        CALL PRINT_ERROR( msgBuf , 1)
        CALL MODELDATA_EXAMPLE( myThid )
        STOP 'ABNORMAL END: S/R INI_PARMS'
+      ELSE
+       WRITE(msgBuf,'(A)') 'S/R INI_PARMS ; read PARM02 : OK'
+       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT , 1) 
       ENDIF    
 
 C--   Time stepping parameters
@@ -444,6 +479,10 @@ C--   Time stepping parameters
        CALL PRINT_ERROR( msgBuf , 1)
        CALL MODELDATA_EXAMPLE( myThid )
        STOP 'ABNORMAL END: S/R INI_PARMS'
+      ELSE
+       WRITE(msgBuf,'(A)') 'S/R INI_PARMS ; read PARM03 : OK'
+       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT , 1) 
       ENDIF   
 C     Process "timestepping" params
 C     o Time step size
@@ -632,6 +671,10 @@ C     In spherical polar distances are in degrees
        CALL PRINT_ERROR( msgBuf , 1)
        CALL MODELDATA_EXAMPLE( myThid )
        STOP 'ABNORMAL END: S/R INI_PARMS'
+      ELSE
+       WRITE(msgBuf,'(A)') 'S/R INI_PARMS ; read PARM04 : OK'
+       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT , 1) 
       ENDIF    
 
 C     X coordinate
@@ -801,6 +844,10 @@ C--   Input files
        CALL PRINT_ERROR( msgBuf , 1)
        CALL MODELDATA_EXAMPLE( myThid )
        STOP 'ABNORMAL END: S/R INI_PARMS'
+      ELSE
+       WRITE(msgBuf,'(A)') 'S/R INI_PARMS ; read PARM05 : OK'
+       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT , 1) 
       ENDIF       
 
 C
@@ -834,6 +881,21 @@ C     being combined and a single frame of reference is needed.
 
 C
       CLOSE(iUnit)
+
+C--   Check whether any retired parameters were found.
+C--   Stop if they were
+      IF ( nRetired .GT. 0 ) THEN    
+       WRITE(msgBuf,'(A)')
+     &  'Error reading '
+       CALL PRINT_ERROR( msgBuf , 1)
+       WRITE(msgBuf,'(A)')
+     &  'parameter file "data"'
+       CALL PRINT_ERROR( msgBuf , 1)
+       WRITE(msgBuf,'(A)')
+     &  'some out of date parameters were found in the namelist'
+       CALL PRINT_ERROR( msgBuf , 1)
+       STOP 'ABNORMAL END: S/R INI_PARMS'
+      ENDIF
 
       _END_MASTER(myThid)
 

@@ -3,6 +3,23 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+ecco-branch-mod2
+o update ecco-branch-mod1 to checkpoint44
+o exclude from updates:
+  - verification/
+  - adjoint/
+  - pkg/cost
+  - pkg/ctrl
+  - pkg/ecco
+  - pkg/obcs
+  - model/src/the_model_main.F
+  - model/src/the_main_loop.F
+
+checkpoint44
+o apply Shapiro filter on T&S before calc_PhiHyd (stagger time stepping)
+o fix bug in mom_vi_del2uv
+o added some stuff for AD
+
 ecco-branch-mod1
 o based on c43
 o replaced packages cost, ctrl, ecco, obcs

@@ -37,6 +37,13 @@ C     == Global variables ==
 #include "CG3D.h"
 #endif
 
+#ifdef ALLOW_SHAP_FILT
+#include "SHAP_FILT.h"
+#endif
+#ifdef ALLOW_ZONAL_FILT
+#include "ZONAL_FILT.h"
+#endif
+
 #ifdef ALLOW_AUTODIFF_TAMC
 #include "tamc.h"
 #include "ctrl.h"
@@ -77,6 +84,7 @@ C       if requested. The location of the call is important,
 C       it has to be after the adjoint of the exchanges 
 C       (DO_GTERM_BLOCKING_EXCHANGES).
         CALL DUMMY_IN_STEPPING( myTime, myIter, myThid )
+        CALL DO_FIELDS_BLOCKING_EXCHANGES( myThid )
 #endif
 
 #ifdef EXACT_CONSERV
@@ -106,8 +114,10 @@ C--     Load forcing/external data fields.
 C       NOTE, that although the exf package is part of the
 C       distribution, it is not currently maintained, i.e.
 C       exf is disabled by default in genmake.
-#ifdef ALLOW_BULKFORMULAE
-CADJ STORE theta     = comlev1, key = ikey_dynamics
+#ifdef ALLOW_AUTODIFF_TAMC
+c**************************************
+#include "checkpoint_lev1_directives.h"
+c**************************************
 #endif
         CALL EXF_GETFORCING( mytime, myiter, mythid )
 #else
@@ -121,6 +131,23 @@ C--     Step forward fields and calculate time tendency terms.
         CALL THERMODYNAMICS( myTime, myIter, myThid )
         CALL TIMER_STOP ('THERMODYNAMICS      [THE_MAIN_LOOP]',mythid)
 
+#ifdef ALLOW_SHAP_FILT
+       IF (useSHAP_FILT .AND. 
+     &     staggerTimeStep .AND. shap_filt_TrStagg ) THEN
+        CALL TIMER_START('SHAP_FILT           [THE_MAIN_LOOP]',myThid)
+        CALL SHAP_FILT_APPLY_TS( gT, gS, myTime, myIter, myThid )
+        CALL TIMER_STOP ('SHAP_FILT           [THE_MAIN_LOOP]',myThid)
+       ENDIF
+#endif
+#ifdef ALLOW_ZONAL_FILT
+       IF (useZONAL_FILT .AND. 
+     &     staggerTimeStep .AND. zonal_filt_TrStagg ) THEN
+        CALL TIMER_START('ZONAL_FILT_APPLY    [THE_MAIN_LOOP]',myThid)
+        CALL ZONAL_FILT_APPLY_TS( gT, gS, myThid )
+        CALL TIMER_STOP ('ZONAL_FILT_APPLY    [THE_MAIN_LOOP]',myThid)
+      ENDIF
+#endif   
+
 C--     Step forward fields and calculate time tendency terms.
         IF ( momStepping ) THEN
         CALL TIMER_START('DYNAMICS            [THE_MAIN_LOOP]',mythid)
@@ -128,7 +155,6 @@ C--     Step forward fields and calculate time tendency terms.
         CALL TIMER_STOP ('DYNAMICS            [THE_MAIN_LOOP]',mythid)
         ENDIF
 
-#ifndef ALLOW_AUTODIFF_TAMC
 #ifdef ALLOW_NONHYDROSTATIC
 C--   Step forward W field in N-H algorithm
         IF ( momStepping .AND. nonHydrostatic ) THEN
@@ -137,7 +163,6 @@ C--   Step forward W field in N-H algorithm
           CALL TIMER_STOP ('CALC_GW          [THE_MAIN_LOOP]',myThid)
         ENDIF
 #endif
-#endif /* ALLOW_AUTODIFF_TAMC */
 
 #ifdef NONLIN_FRSURF
 C--   update hfacC,W,S and recip_hFac according to etaH(n+1) :
@@ -152,34 +177,31 @@ C-    update also CG2D matrix (and preconditioner)
       ENDIF
 #endif
 
-C-- This block has been moved to the_correction_step(). We have
-C   left this code here to indicate where the filters used to be
-C   in the algorithm before JMC moved them to after the pressure
-C   solver.
-C
-C#ifdef ALLOW_SHAP_FILT
-CC--   Step forward all tiles, filter and exchange.
-C      CALL TIMER_START('SHAP_FILT           [THE_MAIN_LOOP]',myThid)
-C      CALL SHAP_FILT_APPLY( 
-C     I                     gUnm1, gVnm1, gTnm1, gSnm1,
-C     I                     myTime, myIter, myThid )
-C      IF (implicDiv2Dflow.LT.1.) THEN
-CC--   Explicit+Implicit part of the Barotropic Flow Divergence
-CC      => Filtering of uVel,vVel is necessary
-C         CALL SHAP_FILT_UV( uVel, vVel, myTime, myThid )
-C      ENDIF
-C      CALL TIMER_STOP ('SHAP_FILT           [THE_MAIN_LOOP]',myThid)
-C#endif
-C
-C#ifdef ALLOW_ZONAL_FILT
-C      IF (zonal_filt_lat.LT.90.) THEN 
-C        CALL TIMER_START('ZONAL_FILT_APPLY    [THE_MAIN_LOOP]',myThid)
-C        CALL ZONAL_FILT_APPLY(
-C     U           gUnm1, gVnm1, gTnm1, gSnm1,
-C     I           myThid )
-C        CALL TIMER_STOP ('ZONAL_FILT_APPLY    [THE_MAIN_LOOP]',myThid)
-C      ENDIF
-C#endif
+C--   Apply Filters to u*,v* before SOLVE_FOR_PRESSURE
+#ifdef ALLOW_SHAP_FILT
+      IF (useSHAP_FILT .AND. shap_filt_uvStar) THEN
+        CALL TIMER_START('SHAP_FILT           [THE_MAIN_LOOP]',myThid)
+        CALL SHAP_FILT_APPLY_UV( gUnm1,gVnm1, myTime,myIter,myThid )
+        IF (implicDiv2Dflow.LT.1.) THEN
+C--   Explicit+Implicit part of the Barotropic Flow Divergence
+C      => Filtering of uVel,vVel is necessary
+          CALL SHAP_FILT_APPLY_UV( uVel,vVel, myTime,myIter,myThid )
+        ENDIF
+        CALL TIMER_STOP ('SHAP_FILT           [THE_MAIN_LOOP]',myThid)
+      ENDIF
+#endif
+#ifdef ALLOW_ZONAL_FILT
+      IF (useZONAL_FILT .AND. zonal_filt_uvStar) THEN
+        CALL TIMER_START('ZONAL_FILT_APPLY    [THE_MAIN_LOOP]',myThid)
+        CALL ZONAL_FILT_APPLY_UV( gUnm1, gVnm1, myThid )
+        IF (implicDiv2Dflow.LT.1.) THEN
+C--   Explicit+Implicit part of the Barotropic Flow Divergence
+C      => Filtering of uVel,vVel is necessary
+          CALL ZONAL_FILT_APPLY_UV( uVel, vVel, myThid )
+        ENDIF
+        CALL TIMER_STOP ('ZONAL_FILT_APPLY    [THE_MAIN_LOOP]',myThid)
+      ENDIF
+#endif  
 
 C--   Solve elliptic equation(s).
 C     Two-dimensional only for conventional hydrostatic or 

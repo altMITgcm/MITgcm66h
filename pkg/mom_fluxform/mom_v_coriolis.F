@@ -43,6 +43,8 @@ C  vCoriolisTerm        :: Coriolis term
 C !LOCAL VARIABLES: ====================================================
 C  i,j                  :: loop indices
       INTEGER I,J
+      _RL one
+      PARAMETER(one=1.d0)
 CEOP
 
       IF (useEnergyConservingCoriolis) THEN
@@ -50,7 +52,7 @@ C Energy conserving discretization
        DO j=1-Oly+1,sNy+Oly
         DO i=1-Olx,sNx+Olx-1
          vCoriolisTerm(i,j) =
-     &     0.5*( _fCori(i, j ,bi,bj)
+     &    -0.5*( _fCori(i, j ,bi,bj)
      &          *0.5*( uFld( i , j )+uFld(i+1, j ) )
      &         + _fCori(i,j-1,bi,bj)
      &          *0.5*( uFld( i ,j-1)+uFld(i+1,j-1) ) )
@@ -65,6 +67,19 @@ C Original discretization
      &   *0.25*( uFld(i, j )+uFld(i+1, j )
      &          +uFld(i,j-1)+uFld(i+1,j-1)
      &         )
+        ENDDO
+       ENDDO
+      ENDIF
+
+      IF (useJamartWetPoints) THEN
+C Scale term so that only "wet" points are used
+C Due to: Jamart and Ozer, 1986, JGR 91 (C9), 10,621-10,631
+C         "Numerical Boundary Layers and Spurious Residual Flows"
+       DO j=1-Oly+1,sNy+Oly
+        DO i=1-Olx,sNx+Olx-1
+         vCoriolisTerm(i,j) = vCoriolisTerm(i,j)
+     & *4.d0/max(one, maskW( i , j ,k,bi,bj)+maskW(i+1, j ,k,bi,bj)
+     &               +maskW( i ,j-1,k,bi,bj)+maskW(i+1,j-1,k,bi,bj) )
         ENDDO
        ENDDO
       ENDIF

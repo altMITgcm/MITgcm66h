@@ -76,25 +76,47 @@ C     Here we make no assumptions about grid symmetry and simply
 C     read the raw grid data from files
 
 C-    Cell centered quantities
-      CALL MDSREADFIELD('LONC.bin',readBinaryPrec,'RL',1,XC,  1,myThid)
-      CALL MDSREADFIELD('LATC.bin',readBinaryPrec,'RL',1,YC,  1,myThid)
+      CALL MDSREADFIELD('LONC.bin',readBinaryPrec,'RS',1,XC,  1,myThid)
+      CALL MDSREADFIELD('LATC.bin',readBinaryPrec,'RS',1,YC,  1,myThid)
       _EXCH_XY_R4(XC,myThid)
       _EXCH_XY_R4(YC,myThid)
 
-      CALL MDSREADFIELD('DXF.bin',readBinaryPrec,'RL',1,DXF,  1,myThid)
-      CALL MDSREADFIELD('DYF.bin',readBinaryPrec,'RL',1,DYF,  1,myThid)
+      CALL MDSREADFIELD('DXF.bin',readBinaryPrec,'RS',1,DXF,  1,myThid)
+      CALL MDSREADFIELD('DYF.bin',readBinaryPrec,'RS',1,DYF,  1,myThid)
 C !!! _EXCH_OUV_XY_R4(DXF, DYF, unSigned, myThid )
 cs!   this is not correct! <= need paired exchange for DXF,DYF
       _EXCH_XY_R4(DXF,myThid)
       _EXCH_XY_R4(DYF,myThid)
+cs! fix overlaps:
+      DO bj = myByLo(myThid), myByHi(myThid)
+       DO bi = myBxLo(myThid), myBxHi(myThid)
+        DO j=1,sNy
+         DO i=1,Olx
+          DXF(1-i,j,bi,bj)=DXF(i,j,bi,bj)
+          DXF(sNx+i,j,bi,bj)=DXF(sNx+1-i,j,bi,bj)
+          DYF(1-i,j,bi,bj)=DYF(i,j,bi,bj)
+          DYF(sNx+i,j,bi,bj)=DYF(sNx+1-i,j,bi,bj)
+         ENDDO
+        ENDDO
+        DO j=1,Oly
+         DO i=1,sNx
+          DXF(i,1-j,bi,bj)=DXF(i,j,bi,bj)
+          DXF(i,sNy+j,bi,bj)=DXF(i,sNy+1-j,bi,bj)
+          DYF(i,1-j,bi,bj)=DYF(i,j,bi,bj)
+          DYF(i,sNy+j,bi,bj)=DYF(i,sNy+1-j,bi,bj)
+         ENDDO
+        ENDDO
+       ENDDO
+      ENDDO
+cs
 
-      CALL MDSREADFIELD('RA.bin',readBinaryPrec,'RL',1,RA,  1,myThid)
+      CALL MDSREADFIELD('RA.bin',readBinaryPrec,'RS',1,RA,  1,myThid)
       _EXCH_XY_R4(RA,myThid )
 
 C-    Corner quantities
 C       *********** this are not degbugged ************
-      CALL MDSREADFIELD('LONG.bin',readBinaryPrec,'RL',1,XG,  1,myThid)
-      CALL MDSREADFIELD('LATG.bin',readBinaryPrec,'RL',1,YG,  1,myThid)
+      CALL MDSREADFIELD('LONG.bin',readBinaryPrec,'RS',1,XG,  1,myThid)
+      CALL MDSREADFIELD('LATG.bin',readBinaryPrec,'RS',1,YG,  1,myThid)
 cs-   this block needed by cubed sphere until we write more useful I/O routines
       bi=3
       bj=1
@@ -114,8 +136,8 @@ cs-   end block
       CALL EXCH_Z_XY_RS(XG,myThid)
       CALL EXCH_Z_XY_RS(YG,myThid)
 
-      CALL MDSREADFIELD('DXV.bin',readBinaryPrec,'RL',1,DXV,  1,myThid)
-      CALL MDSREADFIELD('DYU.bin',readBinaryPrec,'RL',1,DYU,  1,myThid)
+      CALL MDSREADFIELD('DXV.bin',readBinaryPrec,'RS',1,DXV,  1,myThid)
+      CALL MDSREADFIELD('DYU.bin',readBinaryPrec,'RS',1,DYU,  1,myThid)
 cs-   this block needed by cubed sphere until we write more useful I/O routines
 C !!! _EXCH_ZUV_XY_R4(DXV, DYU, unSigned, myThid)
 cs!   this is not correct <= need paired exchange for dxv,dyu
@@ -127,15 +149,32 @@ cs!   this is not correct <= need paired exchange for dxv,dyu
         DXV(1,sNy+1,bi,bj)=DXV(1,1,bi,bj)
         DYU(sNx+1,1,bi,bj)=DYU(1,1,bi,bj)
         DYU(1,sNy+1,bi,bj)=DYU(1,1,bi,bj)
+cs! fix overlaps:
+        DO j=1,sNy
+         DO i=1,Olx
+          DXV(1-i,j,bi,bj)=DXV(1+i,j,bi,bj)
+          DXV(sNx+i,j,bi,bj)=DXV(sNx-i,j,bi,bj)
+          DYU(1-i,j,bi,bj)=DYU(1+i,j,bi,bj)
+          DYU(sNx+i,j,bi,bj)=DYU(sNx-i,j,bi,bj)
+         ENDDO
+        ENDDO
+        DO j=1,Oly
+         DO i=1,sNx
+          DXV(i,1-j,bi,bj)=DXV(i,1+j,bi,bj)
+          DXV(i,sNy+j,bi,bj)=DXV(i,sNy-j,bi,bj)
+          DYU(i,1-j,bi,bj)=DYU(i,1+j,bi,bj)
+          DYU(i,sNy+j,bi,bj)=DYU(i,sNy-j,bi,bj)
+         ENDDO
+        ENDDO
        ENDDO
       ENDDO
 cs-   end block
 C !!! _EXCH_ZUV_XY_R4(DXV, DYU, unSigned, myThid)
 cs!   this is not correct <= need paired exchange for dxv,dyu
-      CALL EXCH_Z_XY_RS(DXV,myThid)
-      CALL EXCH_Z_XY_RS(DYU,myThid)
+cs    CALL EXCH_Z_XY_RS(DXV,myThid)
+cs    CALL EXCH_Z_XY_RS(DYU,myThid)
 
-      CALL MDSREADFIELD('RAZ.bin',readBinaryPrec,'RL',1,RAZ,  1,myThid)
+      CALL MDSREADFIELD('RAZ.bin',readBinaryPrec,'RS',1,RAZ,  1,myThid)
 cs-   this block needed by cubed sphere until we write more useful I/O routines
       CALL EXCH_Z_XY_RS(RAZ , myThid )
       DO bj = myByLo(myThid), myByHi(myThid)
@@ -148,12 +187,12 @@ cs-   end block
       CALL EXCH_Z_XY_RS(RAZ,myThid)
 
 C-    Staggered (u,v pairs) quantities
-      CALL MDSREADFIELD('DXC.bin',readBinaryPrec,'RL',1,DXC,  1,myThid)
-      CALL MDSREADFIELD('DYC.bin',readBinaryPrec,'RL',1,DYC,  1,myThid)
+      CALL MDSREADFIELD('DXC.bin',readBinaryPrec,'RS',1,DXC,  1,myThid)
+      CALL MDSREADFIELD('DYC.bin',readBinaryPrec,'RS',1,DYC,  1,myThid)
       CALL EXCH_UV_XY_RS(DXC,DYC,.FALSE.,myThid)
 
-      CALL MDSREADFIELD('RAW.bin',readBinaryPrec,'RL',1,RAW,  1,myThid)
-      CALL MDSREADFIELD('RAS.bin',readBinaryPrec,'RL',1,RAS,  1,myThid)
+      CALL MDSREADFIELD('RAW.bin',readBinaryPrec,'RS',1,RAW,  1,myThid)
+      CALL MDSREADFIELD('RAS.bin',readBinaryPrec,'RS',1,RAS,  1,myThid)
 cs-   this block needed by cubed sphere until we write more useful I/O routines
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
@@ -166,8 +205,8 @@ c        RAS(J,sNy+1,bi,bj)=RAS(J,1,bi,bj)
 cs-   end block
       CALL EXCH_UV_XY_RS(RAW,RAS,.FALSE.,myThid)
 
-      CALL MDSREADFIELD('DXG.bin',readBinaryPrec,'RL',1,DXG,  1,myThid)
-      CALL MDSREADFIELD('DYG.bin',readBinaryPrec,'RL',1,DYG,  1,myThid)
+      CALL MDSREADFIELD('DXG.bin',readBinaryPrec,'RS',1,DXG,  1,myThid)
+      CALL MDSREADFIELD('DYG.bin',readBinaryPrec,'RS',1,DYG,  1,myThid)
 cs-   this block needed by cubed sphere until we write more useful I/O routines
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)

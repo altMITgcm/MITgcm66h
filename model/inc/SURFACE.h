@@ -34,6 +34,12 @@ C IMPORTANT:  ksurfC,W,S = Nr+1  where the fluid column is empty (continent)
       INTEGER ksurfW(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       INTEGER ksurfS(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
+#ifdef EXACT_CONSERV
+C     hDivFlow :: Div. Barotropic Flow at current time [transport unit m3/s]
+      COMMON /EXACT_ETA_LOCAL/ hDivFlow
+      _RL hDivFlow(1-Olx:sNx+Olx,1-Oly:sNy+Oly,nSx,nSy)
+#endif
+
 #ifdef NONLIN_FRSURF
 C--   COMMON /SURF_CHANGE/ transient varariable used for Non-Lin Free-Surf
 C     hFac_surfC ::  New thickness factor of the surface level

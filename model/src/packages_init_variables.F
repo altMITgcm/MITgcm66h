@@ -72,7 +72,7 @@ C--   Open boundaries data
       IF ( useAIM ) CALL AIM_INIT( mythid )
 #endif
 
-#ifdef ALLOW_ADJOINT_RUN
+#if (defined (ALLOW_ADJOINT_RUN) || defined (ALLOW_TANGENTLINEAR_RUN))
 c--   Map the control variables onto the model state. 
       call ctrl_map_ini( mythid )
       _BARRIER
@@ -81,12 +81,16 @@ c--   Initialise the cost function.
       _BARRIER
 #endif
 
+#ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
+      CALL EXF_INIT( mythid )
+#else
+      CALL INI_FORCING( mythid )
+#endif
+
 #ifdef INCLUDE_ECCO_PACKAGE
       IF (useECCO) THEN
        CALL ECCO_INIT( myThid )
       ENDIF
-#else
-      CALL INI_FORCING( myThid )
 #endif
 
       RETURN

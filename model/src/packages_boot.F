@@ -51,6 +51,7 @@ C     data.pkg namelists
      &          useGrdchk,
      &          useECCO,
      &          useSHAP_FILT,
+     &          useZONAL_FILT,
      &          useFLT
 CEOP
 
@@ -67,12 +68,15 @@ CEOP
      I                          myThid )
 
 C--   Default package configuration
-      useGMRedi=.FALSE.
       useKPP=.FALSE.
+      useGMRedi=.FALSE.
       useOBCS=.FALSE.
       useAIM=.FALSE.
+      useGrdchk=.FALSE.
       useECCO=.FALSE.
       useSHAP_FILT=.FALSE.
+      useZONAL_FILT=.FALSE.
+      useFLT=.FALSE.
 
 C--   Read parameters from open data file
       READ(UNIT=iUnit,NML=PACKAGES)

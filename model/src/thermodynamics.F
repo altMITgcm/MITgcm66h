@@ -151,11 +151,6 @@ C     This is currently used by IVDC and Diagnostics
       INTEGER i, j
       INTEGER k, km1, kup, kDown
 
-Cjmc : add for phiHyd output <- but not working if multi tile per CPU
-c     CHARACTER*(MAX_LEN_MBUF) suff 
-c     LOGICAL  DIFFERENT_MULTIPLE
-c     EXTERNAL DIFFERENT_MULTIPLE
-Cjmc(end)
 CEOP
  
 #ifdef ALLOW_AUTODIFF_TAMC
@@ -376,20 +371,16 @@ CADJ STORE sigmaR(:,:,:) = comlev1, key=ikey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 C--     Calculate iso-neutral slopes for the GM/Redi parameterisation
         IF (useGMRedi) THEN
-          DO k=1,Nr
-            CALL GMREDI_CALC_TENSOR(
-     I             bi, bj, iMin, iMax, jMin, jMax, k,
+          CALL GMREDI_CALC_TENSOR(
+     I             bi, bj, iMin, iMax, jMin, jMax,
      I             sigmaX, sigmaY, sigmaR,
      I             myThid )
-          ENDDO
 #ifdef ALLOW_AUTODIFF_TAMC
         ELSE
-          DO k=1, Nr
-            CALL GMREDI_CALC_TENSOR_DUMMY(
-     I             bi, bj, iMin, iMax, jMin, jMax, k,
+          CALL GMREDI_CALC_TENSOR_DUMMY(
+     I             bi, bj, iMin, iMax, jMin, jMax,
      I             sigmaX, sigmaY, sigmaR,
      I             myThid )
-          ENDDO
 #endif /* ALLOW_AUTODIFF_TAMC */
         ENDIF
 
@@ -444,6 +435,13 @@ C note(jmc) : phiHyd=0 at this point but is not really used in Molteni Physics
          CALL TIMER_STOP ('AIM_DO_ATMOS_PHYS      [DYNAMICS]', myThid)
         ENDIF
 #endif /* ALLOW_AIM */
+
+#ifdef ALLOW_TIMEAVE
+        IF (taveFreq.GT.0. .AND. ivdc_kappa.NE.0.) THEN
+          CALL TIMEAVE_CUMULATE(ConvectCountTave, ConvectCount, Nr,
+     I                               deltaTclock, bi, bj, myThid)
+        ENDIF
+#endif /* ALLOW_TIMEAVE */ 
 
 #ifndef DISABLE_MULTIDIM_ADVECTION
 C--     Some advection schemes are better calculated using a multi-dimensional

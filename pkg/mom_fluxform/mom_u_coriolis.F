@@ -43,6 +43,8 @@ C  uCoriolisTerm        :: Coriolis term
 C !LOCAL VARIABLES: ====================================================
 C  i,j                  :: loop indices
       INTEGER I,J
+      _RL one
+      PARAMETER(one=1.d0)
 CEOP
 
       IF (useEnergyConservingCoriolis) THEN
@@ -67,6 +69,19 @@ C Original discretization
      &     vFld( i ,j)+vFld( i ,j+1)
      &    +vFld(i-1,j)+vFld(i-1,j+1)
      &         )
+        ENDDO
+       ENDDO
+      ENDIF
+
+      IF (useJamartWetPoints) THEN
+C Scale term so that only "wet" points are used
+C Due to: Jamart and Ozer, 1986, JGR 91 (C9), 10,621-10,631
+C         "Numerical Boundary Layers and Spurious Residual Flows"
+       DO j=1-Oly,sNy+Oly-1
+        DO i=1-Olx+1,sNx+Olx
+         uCoriolisTerm(i,j) = uCoriolisTerm(i,j)
+     & *4.d0/max(one, maskS( i , j ,k,bi,bj)+maskS( i ,j+1,k,bi,bj)
+     &               +maskS(i-1, j ,k,bi,bj)+maskS(i-1,j+1,k,bi,bj) )
         ENDDO
        ENDDO
       ENDIF
