@@ -194,8 +194,8 @@ C--       End DO K=1,Nr
        
 #ifdef ALLOW_TIMEAVE 
           IF (myIter.ne.nIter0 .AND. taveFreq.GT.0.) THEN
-            CALL TIMEAVE_CUMULATE(ConvectCountTave, ConvectCount, Nr,
-     I                               deltaTclock, bi, bj, myThid)
+            CALL TIMEAVE_CUMUL_1T(ConvectCountTave, ConvectCount,
+     I                            Nr, deltaTclock, bi, bj, myThid)
           ENDIF
 #endif /* ALLOW_TIMEAVE */
 
