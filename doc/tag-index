@@ -3,6 +3,12 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+release1_p16
+o fixed gather/scatter inital MPI dialogue in ini_procs.F
+o pkg/seaice/lsr.F has been moved to SouthWest B-grid location
+  and has been made the default dynamic solver because of its
+  fast convergence properties relative to adi.F solver.
+
 release1_p15
 o Added CFC-11 diagnostics, see
   verification/global_with_CFC11/README
@@ -15,7 +21,7 @@ o Added direct pressure solver pkg/solver.
   See pkg/solver/README.directSolver for instructions.
 
 release1_p13
-o bug fix for pkg/seaice dynamic solver
+o bug fix for pkg/seaice/adi.F dynamic solver
 
 release1_p13_pre
 o Added net flux to downward flux conversion to pkg/exf/exf_getffields.F

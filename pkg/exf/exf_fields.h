@@ -139,7 +139,7 @@ c     #ifndef SHORTWAVE_HEATING, hflux includes shortwave,
 c     that is, hflux = latent + sensible + lwflux +swflux
 c
 c     If (EXFwindOnBgrid .EQ. .TRUE.), uwind and vwind are
-c     defined on northeast B-grid U and V points, respectively.
+c     defined on southwest B-grid U and V points, respectively.
 c
 c     Arrays *0 and *1 below are used for temporal interpolation.
 c
