@@ -33,6 +33,7 @@ C     iUnit       - Work variable for IO unit number
 C--   GGL90 vertical mixing parameters
       NAMELIST /GGL90_PARM01/
      &     GGL90dumpFreq, GGL90taveFreq,
+     &     GGL90diffTKEh,
      &     GGL90mixingMaps, GGL90writeState,
      &     GGL90ck, GGL90ceps, GGL90alpha, GGL90m2,
      &     GGL90TKEmin, GGL90TKEbottom,
@@ -63,6 +64,7 @@ C--   set default TKE vertical mixing parameters
       GGL90TKEbottom       = UNSET_RL
       GGL90viscMax         = 1.0 _d 0
       GGL90diffMax         = 1.0 _d 1
+      GGL90diffTKEh        = 0.0 _d 0
       GGL90mixingLengthMin = 1.0 _d -08
       GGL90TKEFile         = ' '
 

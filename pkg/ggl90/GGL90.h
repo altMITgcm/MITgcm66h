@@ -57,6 +57,7 @@ CEOP
 
       _RL    GGL90ck, GGL90ceps
       _RL    GGL90alpha, GGL90m2
+      _RL    GGL90diffTKEh
       _RL    GGL90mixingLengthMin
       _RL    GGL90TKEmin, GGL90TKEbottom
       _RL    GGL90viscMax, GGL90diffMax
@@ -64,6 +65,7 @@ CEOP
       COMMON /GGL90_PARMS_R/  
      &     GGL90ck, GGL90ceps,
      &     GGL90alpha, GGL90m2,
+     &     GGL90diffTKEh,
      &     GGL90mixingLengthMin,
      &     GGL90TKEmin, GGL90TKEbottom,
      &     GGL90viscMax, GGL90diffMax,

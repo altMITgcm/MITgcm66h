@@ -16,6 +16,11 @@ C     \=============================================================/
 
 #include "CPP_OPTIONS.h"
 
+C     Enable horizontal diffusion of TKE. The orignal OPA code does not use
+C     horizontal diffusion but uses some sort of horizontal averaging
+C     for viscosity and diffusivity.
+#define ALLOW_GGL90_HORIZDIFF
+
 #endif /* ALLOW_GGL90 */
 #endif /* GGL90_OPTIONS_H */
 

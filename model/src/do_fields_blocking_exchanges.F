@@ -72,5 +72,10 @@ c     _EXCH_XYZ_R8( gvCD , myThid )
      &  CALL PTRACERS_FIELDS_BLOCKING_EXCHANGES(myThid)
 #endif /* ALLOW PTRACERS */
 
+#ifdef ALLOW_GGL90
+      IF (useGGL90)
+     &  CALL GGL90_EXCHANGES(myThid)
+#endif /* ALLOW_GGL90 */
+
       RETURN
       END
