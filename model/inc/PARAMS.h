@@ -494,6 +494,8 @@ C Logical flags for selecting packages
       LOGICAL useKPP
       LOGICAL useGMRedi
       LOGICAL useOBCS
+      LOGICAL useAIM
       LOGICAL useECCO
       COMMON /PARM_PACKAGES/
-     &        useKPP, useGMRedi, useOBCS, useECCO
+     &        useKPP, useGMRedi, useOBCS, useAIM, useECCO
+

@@ -47,5 +47,9 @@ C     msgBuf      - Informational/error meesage buffer
       IF (useOBCS) CALL PACKAGES_CHECK_ERROR('OBCS', myThid)
 #endif
 
+#ifndef ALLOW_AIM
+      IF (useAIM) CALL PACKAGES_CHECK_ERROR('AIM', myThid)
+#endif
+
       RETURN
       END

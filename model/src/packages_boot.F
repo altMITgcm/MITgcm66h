@@ -32,6 +32,7 @@ C--   data.pkg namelists
      &          useKPP,
      &          useGMRedi,
      &          useOBCS,
+     &          useAIM,
      &          useECCO
 
 C     === Local variables ===
@@ -56,6 +57,7 @@ C--   Default package configuration
       useGMRedi=.FALSE.
       useKPP=.FALSE.
       useOBCS=.FALSE.
+      useAIM=.FALSE.
       useECCO=.FALSE.
 
 C--   Read parameters from open data file

@@ -40,6 +40,10 @@ C--   Open boundaries data
       ENDIF
 #endif
 
+#ifdef ALLOW_AIM
+      IF ( useAIM ) CALL AIM_INIT( mythid )
+#endif
+
 #ifdef INCLUDE_ECCO_PACKAGE
       IF (useECCO) THEN
        CALL ECCO_INIT( myThid )

@@ -44,6 +44,12 @@ C--   Initialize KPP parameters
       IF (useOBCS) CALL OBCS_READPARMS( myThid )
 #endif
 
+#ifdef ALLOW_AIM
+c--   Read in AIM package parameters
+C     Currently AIM does not have any runtime parameters
+C     IF (useAIM) CALL AIM_READPARMS ( myThid )
+#endif
+
 #ifdef INCLUDE_ECCO_PACKAGE
 c--   Initialize ECCO package parameters
       IF (useECCO) CALL ECCO_READPARMS ( myThid )
