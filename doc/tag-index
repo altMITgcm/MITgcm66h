@@ -8,6 +8,9 @@ o removed CPP_EEOPTIONS.h from verification/*/code
 o updated the tiling for global_ocean_pressure
 checkpoint52i_pre
 
+o update aim.5l_LatLon using the standard aim_v23 pkg (instead of 
+  the old pkg/aim).
+
 checkpoint52h_pre
 o shortened offending lines in exch2_send_rx?.template
 o modified W2_EXCH2_TOPOLOGY.h to reflect current topology generator
