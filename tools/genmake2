@@ -1850,9 +1850,11 @@ MAKEDEPEND = ${MAKEDEPEND}
 # Special preprocessor (KAP on DECs, FPP on Crays)
 KPP = ${KPP}
 # Fortran compiler
-FC = ${FC}
+FC = ${FC} in
 # Fortran compiler
 F90C = ${F90C}
+# C compiler
+CC = ${CC}
 # Link editor
 LINK = ${LINK} ${LDADD}
 
