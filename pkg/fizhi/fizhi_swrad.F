@@ -33,7 +33,8 @@ c ---------------
       _RL albvisdr(im,jm),albvisdf(im,jm),albnirdr(im,jm)
       _RL albnirdf(im,jm)
       _RL radswg(im,jm),swgclr(im,jm),fdifpar(im,jm),fdirpar(im,jm)
-      _RL osr(im,jm),osrclr(im,jm),dtradsw(im,jm,lm),dtswclr(im,jm,lm)
+      _RL osr(im,jm),osrclr(im,jm),dtradsw(im,jm,lm)
+      _RL dtswclr(im,jm,lm)
       integer nswcld,nswlz    
       _RL cldsw(im,jm,lm),cswmo(im,jm,lm),swlz(im,jm,lm)   
       logical lpnt            

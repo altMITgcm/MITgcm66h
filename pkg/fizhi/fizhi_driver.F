@@ -37,7 +37,9 @@ C***********************************************************************
 c Diagnostic Common
 c -----------------
 #ifdef ALLOW_DIAGNOSTICS
-#include 'diagnostics.h'
+#include "SIZE.h"
+#include "diagnostics_SIZE.h"
+#include "diagnostics.h"
 #endif
 
 c Timers Common
