@@ -69,7 +69,9 @@ C      Normalize by integrated time
      &                 bi,bj,myThid)
          CALL TIMEAVE_NORMALIZ(BULK_evap_AVE,BULKF_timeave, 1 ,
      &                 bi,bj,myThid)
-         CALL TIMEAVE_NORMALIZ(BULK_flw_AVE,BULKF_timeave, 1 ,
+         CALL TIMEAVE_NORMALIZ(BULK_flwup_AVE,BULKF_timeave, 1 ,
+     &                 bi,bj,myThid)
+         CALL TIMEAVE_NORMALIZ(BULK_flwupnet_AVE,BULKF_timeave, 1 ,
      &                 bi,bj,myThid)
          CALL TIMEAVE_NORMALIZ(BULK_solar_AVE,BULKF_timeave, 1 ,
      &                 bi,bj,myThid)
@@ -97,8 +99,10 @@ C      Normalize by integrated time
      &     BULK_sensible_AVE,myIter,myThid)
        CALL WRITE_FLD_XY_RL('BULK_evap.',suff,
      &     BULK_evap_AVE,myIter,myThid)
-       CALL WRITE_FLD_XY_RL('BULK_flw.',suff,
-     &     BULK_flw_AVE,myIter,myThid)
+       CALL WRITE_FLD_XY_RL('BULK_flwup.',suff,
+     &     BULK_flwup_AVE,myIter,myThid)
+       CALL WRITE_FLD_XY_RL('BULK_flwupnet.',suff,
+     &     BULK_flwupnet_AVE,myIter,myThid)
        CALL WRITE_FLD_XY_RL('BULK_solar.',suff,
      &     BULK_solar_AVE,myIter,myThid)
        CALL WRITE_FLD_XY_RL('BULK_ssq.',suff,
@@ -116,7 +120,8 @@ C      Reset averages to zero
          CALL TIMEAVE_RESET(BULK_latent_AVE,1,bi,bj,myThid)
          CALL TIMEAVE_RESET(BULK_sensible_AVE,1,bi,bj,myThid)
          CALL TIMEAVE_RESET(BULK_evap_AVE,1,bi,bj,myThid)
-         CALL TIMEAVE_RESET(BULK_flw_AVE,1,bi,bj,myThid)
+         CALL TIMEAVE_RESET(BULK_flwup_AVE,1,bi,bj,myThid)
+         CALL TIMEAVE_RESET(BULK_flwupnet_AVE,1,bi,bj,myThid)
          CALL TIMEAVE_RESET(BULK_solar_AVE,1,bi,bj,myThid)
          CALL TIMEAVE_RESET(BULK_ssq_AVE,1,bi,bj,myThid)
          BULKF_TimeAve(1,bi,bj)=0.
