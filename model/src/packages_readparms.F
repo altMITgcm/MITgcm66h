@@ -103,7 +103,7 @@ C--   Initialise gradient check parameters
       if (useGrdchk) call grdchk_readparms( myThid )
 #endif
 
-#ifdef
+#ifdef ALLOW_CALENDAR
 C--   Initialise the calendar package.
       call cal_readparms( myThid )
 #endif
