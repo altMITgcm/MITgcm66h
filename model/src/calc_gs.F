@@ -299,12 +299,5 @@ C--   External forcing term(s)
      I     maskC,
      I     myCurrentTime,myThid)
 
-#ifdef INCLUDE_LAT_CIRC_FFT_FILTER_CODE
-C--
-      CALL FILTER_LATCIRCS_FFT_APPLY( 
-     U     gS, 
-     I     1, sNy, k, k, bi, bj, 1, myThid)
-#endif
-
       RETURN
       END

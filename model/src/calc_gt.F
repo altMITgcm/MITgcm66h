@@ -361,12 +361,5 @@ C--   External thermal forcing term(s)
      I     myCurrentTime,myThid)
 #endif /*  INCLUDE_T_FORCING_CODE */
 
-#ifdef INCLUDE_LAT_CIRC_FFT_FILTER_CODE
-C--   Zonal FFT filter of tendency
-      CALL FILTER_LATCIRCS_FFT_APPLY( 
-     U     gT, 
-     I     1, sNy, k, k, bi, bj, 1, myThid)
-#endif /* INCLUDE_LAT_CIRC_FFT_FILTER_CODE */
-
       RETURN
       END

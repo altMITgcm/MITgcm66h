@@ -1069,14 +1069,6 @@ C--   Set dv/dt on boundaries to zero
        ENDDO
       ENDDO
 
-#ifdef INCLUDE_LAT_CIRC_FFT_FILTER_CODE
-      CALL FILTER_LATCIRCS_FFT_APPLY(
-     &    gU, 1-1, sNy+1, k, k, bi, bj, 1, myThid)
-      CALL FILTER_LATCIRCS_FFT_APPLY(
-     &    gV, 1-1, sNy+1, k, k, bi, bj, 2, myThid)
-#endif
-
-
 #ifdef INCLUDE_CD_CODE
 C--   Save "previous time level" variables
       DO j=1-OLy,sNy+OLy
