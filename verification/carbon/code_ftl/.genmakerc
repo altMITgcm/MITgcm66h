@@ -2,10 +2,9 @@
 # $Name$
 
 # Disable packages that are not needed
-set DISABLE=( $DISABLE aim obcs zonal_filt )
+set DISABLE=( $DISABLE aim obcs zonal_filt shap_filt kpp monitor )
 
 # Enable packages that are needed but are disabled by default
-set ENABLE=( $ENABLE autodiff cost ctrl grdchk ecco kpp gmredi shap_filt )
+set ENABLE=( $ENABLE autodiff cost ctrl grdchk ecco gmredi )
 
 # We can also specify other defaults
-set ROOTDIR=..
