@@ -1,5 +1,3 @@
-C $Header$
-C $Name$
 
 #include "CPP_OPTIONS.h"
 
@@ -82,9 +80,6 @@ C     == Global variables ===
 # include "FFIELDS.h"
 # ifdef ALLOW_KPP
 #  include "KPP.h"
-# endif
-# ifdef ALLOW_GMREDI
-#  include "GMREDI.h"
 # endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 #ifdef ALLOW_TIMEAVE
