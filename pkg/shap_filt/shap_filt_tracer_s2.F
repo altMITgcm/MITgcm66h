@@ -64,7 +64,7 @@ C      ( d_xx +d_yy )^n tmpFld
      &        ( tmpFld(i+1,j,k,bi,bj)-tmpFld( i ,j,k,bi,bj) )
      &            *_maskW(i+1,j,k,bi,bj)
      &       -( tmpFld( i ,j,k,bi,bj)-tmpFld(i-1,j,k,bi,bj) )
-     &            *_maskW( j ,j,k,bi,bj) 
+     &            *_maskW( i ,j,k,bi,bj) 
      &       +( tmpFld(i,j+1,k,bi,bj)-tmpFld(i, j ,k,bi,bj) )
      &            *_maskS(i,j+1,k,bi,bj)
      &       -( tmpFld(i, j ,k,bi,bj)-tmpFld(i,j-1,k,bi,bj) )
