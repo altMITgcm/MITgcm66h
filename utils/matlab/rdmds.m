@@ -84,7 +84,7 @@ end
 % Loop over each iteration
 for iter=1:size(iters,2);
 if iters(iter)>=0
- fname=sprintf('%s.%10.10i',fnamearg,iters(iter))
+ fname=sprintf('%s.%10.10i',fnamearg,iters(iter));
 end
 
 % Match name of all meta-files
