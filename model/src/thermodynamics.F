@@ -270,6 +270,9 @@ cph although some of these are re-initialised later.
            GM_PsiX(i,j,k,bi,bj)  = 0. _d 0
            GM_PsiY(i,j,k,bi,bj)  = 0. _d 0
 #  endif
+#  ifdef GM_VISBECK_VARIABLE_K
+           VisbeckK(i,j,bi,bj)   = 0. _d 0
+#  endif
 # endif /* ALLOW_GMREDI */
 #endif /* ALLOW_AUTODIFF_TAMC */
           ENDDO
