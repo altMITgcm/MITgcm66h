@@ -30,7 +30,7 @@ C
       _RL sbo_taveFreq
       COMMON /sbo_r/ sbo_taveFreq
 
-#ifdef INCLUDE_DIAGNOSTICS_INTERFACE_CODE
+#ifdef ALLOW_TIMEAVE
 
 C----------------------------------------------------------------
 C     sbo_drctrecTave - next record to dump for SBO averaging files
@@ -43,7 +43,7 @@ C----------------------------------------------------------------
 C     sbo_TimeAve - time of temporal integration (s) for each thread
 C----------------------------------------------------------------
 
-      _RL sbo_TimeAve(nSx,nSy)
+      _RL sbo_TimeAve(Nr,nSx,nSy)
       COMMON /SBO_TAVE/ sbo_TimeAve
 
 C----------------------------------------------------------------
@@ -53,6 +53,6 @@ C----------------------------------------------------------------
       _RL OBPtave (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       COMMON /SBO_TAVE_DIAGS/ OBPtave
 
-#endif INCLUDE_DIAGNOSTICS_INTERFACE_CODE
+#endif ALLOW_TIMEAVE
 
 #endif ALLOW_SBO

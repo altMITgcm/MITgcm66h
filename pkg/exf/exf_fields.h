@@ -171,12 +171,16 @@ c
       _RL hflux     (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL sflux     (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 
+#if defined(ALLOW_ATM_TEMP) || defined(EXF_READ_EVAP)
+      common /exf_evap/ evap
+      _RL evap      (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+#endif
+
 #ifdef ALLOW_ATM_TEMP
-      common /exf_atm_temp_r/ atemp, aqh, lwflux, evap, precip
+      common /exf_atm_temp_r/ atemp, aqh, lwflux, precip
       _RL atemp     (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL aqh       (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL lwflux    (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
-      _RL evap      (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL precip    (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       common /exfl_atemp_r/ atemp0, atemp1
       _RL atemp0    (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)

@@ -38,7 +38,7 @@ c                 xoamp, yoamp, zoamp, mass, xcom, ycom, zcom
       CHARACTER*(MAX_LEN_MBUF) suff
       character*(8) fName
       integer narr
-      integer irecord
+      integer irecord, k
 
 C-----------------------------------------------------------------
 C     Save angular momentum and mass variables at every time step
@@ -68,7 +68,7 @@ C-----------------------------------------------------------------
      I   myIter,
      I   myThid )
 
-#ifdef INCLUDE_DIAGNOSTICS_INTERFACE_CODE
+#ifdef ALLOW_TIMEAVE
 
 C-----------------------------------------------------------------
 C     Save time-averaged bottom pressure at sbo_taveFreq intervals
@@ -78,8 +78,10 @@ C     Initialize averages to zero
       IF ( myIter.EQ.nIter0 ) THEN
          DO bj = myByLo(myThid), myByHi(myThid)
             DO bi = myBxLo(myThid), myBxHi(myThid)
-               CALL TIMEAVER_INI_XY(OBPtave, bi,bj,myThid)
-               sbo_TimeAve(bi,bj)=0.
+               CALL TIMEAVE_RESET(OBPtave,1,bi,bj,myThid)
+               DO k=1,Nr
+                  sbo_TimeAve(k,bi,bj)=0.
+               ENDDO
             ENDDO
          ENDDO
       ENDIF
@@ -95,11 +97,13 @@ C     Time Average SBO fields
       ENDIF
       DO bj = myByLo(myThid), myByHi(myThid)
          DO bi = myBxLo(myThid), myBxHi(myThid)
-            CALL TIMEAVER_1FLD_XY (
-     &           obp,OBPtave,DDTT,bi,bj,myThid)
+            CALL TIMEAVE_CUMULATE(
+     &           obp,OBPtave,1,DDTT,bi,bj,myThid)
 
 C     Keep record of how much time has been integrated over
-            sbo_TimeAve(bi,bj)=sbo_TimeAve(bi,bj)+DDTT
+            DO k=1,Nr
+               sbo_TimeAve(k,bi,bj)=sbo_TimeAve(k,bi,bj)+DDTT
+            ENDDO
          ENDDO
       ENDDO
 
@@ -112,8 +116,7 @@ C     Dump files and restart average computation if needed
 C     Normalize by integrated time
          DO bj = myByLo(myThid), myByHi(myThid)
             DO bi = myBxLo(myThid), myBxHi(myThid)
-               CALL TIMEAVER_FINAL_XY(OBPtave,sbo_timeave,
-     &              bi,bj,myThid)
+               CALL TIMEAVE_NORMALIZ(OBPtave,sbo_timeave,1,bi,bj,myThid)
             ENDDO
          ENDDO
 
@@ -125,8 +128,10 @@ C     Normalize by integrated time
 C     Reset averages to zero
          DO bj = myByLo(myThid), myByHi(myThid)
             DO bi = myBxLo(myThid), myBxHi(myThid)
-               CALL TIMEAVER_INI_XY(OBPtave, bi,bj,myThid)
-               sbo_TimeAve(bi,bj)=0.
+               CALL TIMEAVE_RESET(OBPtave,1,bi,bj,myThid)
+               DO k=1,Nr
+                  sbo_TimeAve(k,bi,bj)=0.
+               ENDDO
             ENDDO
          ENDDO
 
@@ -134,16 +139,18 @@ C     Time Average SBO fields
          DDTT=0.5*deltaTclock
          DO bj = myByLo(myThid), myByHi(myThid)
             DO bi = myBxLo(myThid), myBxHi(myThid)
-               CALL TIMEAVER_1FLD_XY(
-     &              obp,OBPtave,DDTT,bi,bj,myThid)
-
+               CALL TIMEAVE_CUMULATE(
+     &              obp,OBPtave,1,DDTT,bi,bj,myThid)
+               
 C     Keep record of how much time has been integrated over
-               sbo_TimeAve(bi,bj)=sbo_TimeAve(bi,bj)+DDTT
+               DO k=1,Nr
+                  sbo_TimeAve(k,bi,bj)=sbo_TimeAve(k,bi,bj)+DDTT
+               ENDDO
             ENDDO
          ENDDO
       ENDIF
 
-#endif INCLUDE_DIAGNOSTICS_INTERFACE_CODE
+#endif ALLOW_TIMEAVE
 
 #endif ALLOW_SBO
 
