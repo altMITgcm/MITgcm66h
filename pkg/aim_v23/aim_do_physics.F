@@ -107,7 +107,7 @@ C-    AIM diagnostics : write snap-shot & cumulate for TimeAve output
       CALL AIM_AIM2DYN( bi, bj, myTime, myIter, myThid )
 
 #ifdef ALLOW_LAND
-        IF (useLand) THEN
+      IF (useLand) THEN
 C-    prepare Surface flux over land for land package
         CALL AIM_AIM2LAND( aim_landFr, bi, bj, 
      I                     myTime, myIter, myThid )
@@ -122,6 +122,12 @@ C-    Land diagnostics : write snap-shot & cumulate for TimeAve output
 
       ENDIF
 #endif /* ALLOW_LAND */
+
+#ifdef COMPONENT_MODULE
+      IF ( useCoupler ) THEN
+        CALL ATM_STORE_MY_DATA( bi, bj, myIter, myTime, myThid )
+      ENDIF
+#endif /* COMPONENT_MODULE */
 
 #endif /* ALLOW_AIM */
 
