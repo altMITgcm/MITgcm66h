@@ -1495,6 +1495,10 @@ ad_taf_output.f: ad_input_code.f
 	\$(TAF) \$(AD_TAF_FLAGS) \$(TAF_EXTRA) ad_input_code.f
 	cat ad_input_code_ad.f | sed -f adjoint_sed > ad_taf_output.f
 
+adtafonly:
+	\$(TAF) \$(AD_TAF_FLAGS) \$(TAF_EXTRA) ad_input_code.f
+	cat ad_input_code_ad.f | sed -f adjoint_sed > ad_taf_output.f
+
 ad_taf: ad_taf_output.o \$(OBJFILES)
 	\$(LINK) -o ${EXE_AD} \$(FFLAGS) \$(FOPTIM) \$(OBJFILES) ad_taf_output.o \$(LIBS) 
 
