@@ -58,7 +58,9 @@ c     == end of interface ==
 #elif (defined (ALLOW_COST_STATE_FINAL))
       CALL COST_STATE_FINAL (myThid)
 
-#else /* above stuff undef */
+#endif /* above stuff undef */
+
+#ifndef ALLOW_ECCO
 
 # ifdef ALLOW_COST_TEST
       CALL COST_TEST (myThid)
