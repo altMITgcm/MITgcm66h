@@ -6,7 +6,7 @@ $Header$
 Revision history for branch c24_e25_ice
    (branch for adding sea-ice code to ecco-branch)
 
-02/12/03
+02/12/03 cvs tag ecco_ice2
   Added pkg/seaice and modified pkg/exf as per release1_p12_pre
 
 02/11/03 cvs tag ecco_ice1
