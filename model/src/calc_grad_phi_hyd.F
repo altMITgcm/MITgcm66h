@@ -110,8 +110,9 @@ C-     Consistent with Phi'= Integr[ theta'.dPi ] :
         DO j=jMin-1,jMax
          DO i=iMin-1,iMax
           IF (Ro_surf(i,j,bi,bj).EQ.rC(k)) THEN
-           WRITE(msgBuf,'(2A)') 'CALC_GRAD_PHI_HYD: ',
-     &      'Problem when Ro_surf=rC with select_rStar,integr_GeoPot=1,4'
+           WRITE(msgBuf,'(3A)') 'CALC_GRAD_PHI_HYD: ',
+     &      'Problem when Ro_surf=rC',
+     &      ' with select_rStar,integr_GeoPot=1,4'
            CALL PRINT_ERROR( msgBuf , myThid)
            STOP 'CALC_GRAD_PHI_HYD: Pb in r* options implementation'
           ELSE
