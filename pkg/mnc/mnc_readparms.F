@@ -36,7 +36,7 @@ C     !LOCAL VARIABLES:
      &     useMNC,
      &     mnc_use_outdir, mnc_outdir_date, 
      &     mnc_outdir_str, mnc_indir_str, 
-     &     mnc_echo_gvtypes, mnc_pickup_create, mnc_pickup_read,
+     &     mnc_echo_gvtypes, mnc_pickup_write, mnc_pickup_read,
      &     mnc_use_for_mon
       LOGICAL  exst
 
@@ -53,7 +53,7 @@ C     Set default values for MNC run-time parameters
       mnc_use_outdir        =  .FALSE.
         mnc_outdir_str(1:4) =  'mnc_'
         mnc_outdir_date     =  .FALSE.
-      mnc_pickup_create     =  .FALSE.
+      mnc_pickup_write      =  .FALSE.
       mnc_pickup_read       =  .FALSE.
       mnc_use_indir         =  .FALSE.
         mnc_indir_str(1:4)  =  '    '
