@@ -175,14 +175,12 @@ C--   Step forward W field in N-H algorithm
 
 #ifdef NONLIN_FRSURF
 C--   update hfacC,W,S and recip_hFac according to etaH(n+1) :
-      IF ( momStepping ) THEN
       IF ( nonlinFreeSurf.GT.0) THEN
         CALL UPDATE_SURF_DR( myTime, myIter, myThid )
       ENDIF
 C-    update also CG2D matrix (and preconditioner)
-      IF ( nonlinFreeSurf.GT.2) THEN
+      IF ( momStepping .AND. nonlinFreeSurf.GT.2 ) THEN
         CALL UPDATE_CG2D( myTime, myIter, myThid )
-      ENDIF
       ENDIF
 #endif
 
