@@ -164,7 +164,9 @@ c         _BEGIN_MASTER( myThid )
 c         CALL WRITE_FLD_XY_RS( 'topo_Z',' ',topoZ,0,myThid) 
 c         _END_MASTER(myThid)
 
-          CALL INI_P_GROUND( topoZ, Ro_surf, myThid )
+          CALL INI_P_GROUND( selectFindRoSurf, topoZ,
+     O                       Ro_surf,
+     I                       myThid )
 
           _BARRIER
           _BEGIN_MASTER( myThid )
