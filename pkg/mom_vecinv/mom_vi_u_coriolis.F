@@ -30,7 +30,7 @@ C     == Routine arguments ==
 
 C     == Local variables ==
       INTEGER I,J
-      _RL vBarXY,uBarXY,vort3u
+      _RL vBarXY,vort3u
       LOGICAL upwindVort3
 
       upwindVort3=.FALSE.
@@ -51,8 +51,8 @@ c    &               +vFld(i-1,j)+vFld(i-1,j+1))
            vort3u=omega3(I,J+1)*r_hFacZ(i,j+1)
           ENDIF
          ELSE
-          vort3u=0.5*(omega3(I,J)*r_hFacZ(i,j)
-     &               +omega3(I,J+1)*r_hFacZ(i,j+1))
+          vort3u=0.5*(omega3(i,j)*r_hFacZ(i,j)
+     &               +omega3(i,j+1)*r_hFacZ(i,j+1))
          ENDIF
          uCoriolisTerm(i,j)=
 C high order vorticity advection term
