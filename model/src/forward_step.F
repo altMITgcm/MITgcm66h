@@ -485,11 +485,19 @@ C--   Check status of solution (statistics, cfl, etc...)
       CALL TIMER_STOP ('MONITOR             [FORWARD_STEP]',myThid)
 #endif /* ALLOW_MONITOR */
 
-C AMM  -- Testing diagnostics package
+C AMM  -- Diagnostics package
 #ifdef ALLOW_DIAGNOSTICS
+
        if(usediagnostics)then
         call diagnostics_fill_state(myThid)
        endif
+
+# ifdef ALLOW_PTRACERS
+      if(useptracers)then
+       call diagnostics_fill_ptracers(myThid)
+      endif
+# endif
+
 #endif
 C AMM
 
