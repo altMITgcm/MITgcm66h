@@ -19,18 +19,14 @@ C     !USES:
 #include "SIZE.h"
 #include "fizhi_SIZE.h"
 #include "fizhi_land_SIZE.h"
+#include "EEPARAMS.h"
 #ifdef ALLOW_MNC
 #include "MNC_PARAMS.h"
+#include "mnc_common.h"
 #endif
 
 C     !INPUT PARAMETERS:
       integer myThid
-
-C     !USES:
-#ifdef ALLOW_MNC
-#include "mnc_common.h"
-#endif  /*  ALLOW_MNC  */
-#include "EEPARAMS.h"
 CEOP
 
 #ifdef ALLOW_MNC
