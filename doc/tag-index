@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o make the MNC_CW_ADD_VATTR_* subroutines all take scalar arguments
+  which simplifies the calls and passes the ifc check-bounds test
+
 checkpoint55b_post
 o add a 2D scalar, Z location, exchange_2 routine.
 o EXCH_UV for CS-grid: add one u,v in the corner-halo region, allows
