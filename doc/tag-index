@@ -3,6 +3,23 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+ecco_c44_e25
+o Merging some GM changes from main trunk (c47) to ecco-branch.
+o Updating verif. natl_box_adjoint with GMRedi.
+o Adding setup with explicit differentiaton of pressure solver.
+o Bug fix: missing OBCS_OPTIONS.h for sponge layer code.
+o (Re-?) Commiting old bug fixes in kpp to ecco-branch
+  (kpp_calc.F, kpp_routines.F)
+o exf:
+  updated external forcing package
+  - cleaned old exfa stuff
+  - bug fixes
+    (missing OBCS_OPTIONS.h in two routines)
+  - enable easy to use "no forcing".
+  - added exf I/O for atmospheric loading
+  - added exf I/O for runoff data
+  - transfered scaling between exf <-> MITgcm to exf namelist
+
 ecco_c44_e24
 o modifications to gradient check package (Martin Losch)
   - enable centered differences
