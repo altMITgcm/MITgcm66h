@@ -73,6 +73,7 @@ ceh3 needs an IF ( useNONHYDROSTATIC ) THEN
 #endif
 
            totPhiHyd(I,J,K,bi,bj)=0. _d 0
+           IVDConvCount(i,j,k,bi,bj) = 0. _d 0
           ENDDO
          ENDDO
         ENDDO

@@ -63,7 +63,7 @@ CEOP
        DO i = 1-Olx, sNx+Olx
         KappaRT(i,j,k) = maskUp(i,j)*
      &      (
-     &         KappaRT(i,j,k)
+     &         IVDConvCount(i,j,k,bi,bj)*ivdc_kappa
 #if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_DIFFKR_CONTROL))
      &       + diffKr(i,j,k,bi,bj)
 #else
@@ -78,7 +78,7 @@ CEOP
        DO i = 1-Olx, sNx+Olx
         KappaRS(i,j,k) = maskUp(i,j)*
      &      (
-     &         KappaRS(i,j,k)
+     &         IVDConvCount(i,j,k,bi,bj)*ivdc_kappa
 #if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_DIFFKR_CONTROL))
      &       + diffKr(i,j,k,bi,bj)
 #else
