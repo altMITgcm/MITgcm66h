@@ -150,11 +150,6 @@ c     Do some printing for the protocol.
         write(msgbuf,'(a)') ' '
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
-        write(msgbuf,'(a,a)')
-     &    ' ctrl_getrec:                 thefield:  ',
-     &                                     thefield
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,2x,l2,2x,l2,2x,D15.8)')
      &    '                     first, changed, fac:',
      &                          first, changed, fac
