@@ -12,7 +12,7 @@ C o include dump of snap shots for checks
 
 #undef  ALLOW_ECCO_FORWARD_RUN
 #undef  ALLOW_ECCO_DIAGNOSTICS_RUN
-#undef  ALLOW_ECCO_ADJOINT_RUN
+#undef  ALLOW_ADJOINT_RUN
 #define  ALLOW_GRADIENT_CHECK
 #define  ALLOW_ECCO_OPTIMIZATION
 
@@ -44,6 +44,7 @@ C       >>> Extract adjoint state
 C
 C o use divided adjoint to split adjoint computations
 #undef ALLOW_DIVIDED_ADJOINT
+#undef ALLOW_DIVIDED_ADJOINT_MPI
 
 C ********************************************************************
 C ***                     Calender Package                         ***
@@ -144,8 +145,6 @@ C       >>> Surface fluxes.
 #define ALLOW_SFLUX_CONTROL
 #define ALLOW_USTRESS_CONTROL
 #define ALLOW_VSTRESS_CONTROL
-#undef  ALLOW_SWFLUX_CONTROL
-#undef  ALLOW_LWFLUX_CONTROL
 
 C       >>> Atmospheric state.
 #undef  ALLOW_ATEMP_CONTROL
@@ -153,6 +152,23 @@ C       >>> Atmospheric state.
 #undef  ALLOW_UWIND_CONTROL
 #undef  ALLOW_VWIND_CONTROL
 #undef  ALLOW_PRECIP_CONTROL
+
+C       >>> Radiation
+#undef  ALLOW_SWFLUX_CONTROL
+#undef  ALLOW_LWFLUX_CONTROL
+
+C       >>> Open boundaries
+c       >>> Make sure that ALLOW_OBCS is defined
+#undef  ALLOW_OBCSN_CONTROL
+#undef  ALLOW_OBCSS_CONTROL
+#undef  ALLOW_OBCSW_CONTROL
+#undef  ALLOW_OBCSE_CONTROL
+#if (defined (ALLOW_OBCSN_CONTROL) || \
+     defined (ALLOW_OBCSS_CONTROL) || \
+     defined (ALLOW_OBCSW_CONTROL) || \
+     defined (ALLOW_OBCSE_CONTROL))
+# define ALLOW_OBCS_CONTROL
+#endif
 
 C ********************************************************************
 C ***             External forcing Package                         ***
@@ -164,19 +180,33 @@ C   on or off. The implementation automatically takes care of this.
 #define INCLUDE_EXTERNAL_FORCING_PACKAGE
 
 C   Do more printout for the protocol file than usual.
-#undef EXF_VERBOSE
+#define EXF_VERBOSE
 
 C   Bulk formulae related flags.
-#undef  ALLOW_BULKFORMULAE
 #undef  ALLOW_ATM_TEMP
 #undef  ALLOW_ATM_WIND
+#if (defined (ALLOW_ATM_TEMP) || \
+     defined (ALLOW_ATM_WIND))
+# define ALLOW_BULKFORMULAE
+#endif
+
+C   Read in runoff data
 #define ALLOW_RUNOFF
 
 C   Relaxation to monthly climatologies.
+#define ALLOW_CLIM_CYCLIC
 #undef  ALLOW_CLIMTEMP_RELAXATION
 #undef  ALLOW_CLIMSALT_RELAXATION
 #undef  ALLOW_CLIMSST_RELAXATION
 #undef  ALLOW_CLIMSSS_RELAXATION
+
+C   Relaxation to monthly climatologies.
+#ifdef ALLOW_CLIMSST_RELAXATION
+# define  ALLOW_MONTHLY_CLIMSST_RELAXATION
+#endif
+#ifdef ALLOW_CLIMSSS_RELAXATION
+# define  ALLOW_MONTHLY_CLIMSSS_RELAXATION
+#endif
 
 C   Relaxation to constant surface fields.
 #undef  ALLOW_CONST_SST_RELAXATION
