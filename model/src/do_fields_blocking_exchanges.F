@@ -62,6 +62,8 @@ c     _EXCH_XYZ_R8( gvCD , myThid )
       _EXCH_XYZ_R8( uVelD , myThid )
       _EXCH_XYZ_R8( vVelD , myThid )
 #endif
+      IF ( useDynP_inEos_Zc )
+     & _EXCH_XYZ_RL( totPhiHyd , myThid )
 
 #ifdef ALLOW_PTRACERS
       CALL PTRACERS_FIELDS_BLOCKING_EXCHANGES(myThid)
