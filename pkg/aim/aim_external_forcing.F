@@ -18,6 +18,7 @@ C     == Global data ==
 #include "PARAMS.h"
 #include "GRID.h"
 #include "DYNVARS.h"
+
 #ifdef ALLOW_AIM
 #include "atparam0.h"
 #include "atparam1.h"
@@ -28,6 +29,7 @@ C     == Global data ==
       PARAMETER ( NLON=IX, NLAT=IL, NLEV=KX, NGP=NLON*NLAT )
 #include "com_physvar.h"
 #endif /* ALLOW_AIM */
+
 C     == Routine arguments ==
 C     iMin - Working range of tile for applying forcing.
 C     iMax
@@ -69,6 +71,7 @@ C     /==========================================================\
 C     | S/R EXTERNAL_FORCING_V                                   |
 C     | o Add AIM tendency to meridional velocity.               |
 C     \==========================================================/
+      IMPLICIT rEAL*8 (A-H,O-Z)
 
 C     == Global data ==
 #include "SIZE.h"
@@ -78,6 +81,16 @@ C     == Global data ==
 #include "DYNVARS.h"
 #include "FFIELDS.h"
 
+#ifdef ALLOW_AIM
+#include "atparam0.h"
+#include "atparam1.h"
+      INTEGER NGP
+      INTEGER NLON
+      INTEGER NLAT
+      INTEGER NLEV
+      PARAMETER ( NLON=IX, NLAT=IL, NLEV=KX, NGP=NLON*NLAT )
+#include "com_physvar.h"
+#endif /* ALLOW_AIM */
 
 C     == Routine arguments ==
 C     iMin - Working range of tile for applying forcing.
@@ -89,10 +102,28 @@ C     kLev
       _RL myCurrentTime
       INTEGER myThid
 CEndOfInterface
+
+#ifdef ALLOW_AIM
 C     == Local variables ==
 C     Loop counters
       INTEGER I, J
+      INTEGER I2, I3, JN, kAtm
 
+      DO J=1,sNy
+       DO I=1,sNx
+        I2 = sNx*(J-1)+I
+        JN = J
+        IF ( JN .EQ. sNy ) JN = sNy-1
+        I3 = sNx*(JN )+I
+         Katm = _KD2KA( Klev )
+         gV(i,j,kLev,bi,bj) =
+     &   gV(i,j,kLev,bi,bj) + 0.5*(VT_PBL(I2,katm)+VT_PBL(I3,katm))
+       ENDDO
+      ENDDO
+
+      _EXCH_XYZ_R8( gV , myThid) 
+
+#endif /* ALLOW_AIM */
 
       RETURN
       END
@@ -144,10 +175,10 @@ C--   Forcing term
       _RL pGround
 
 C--   Forcing term
-      pGround = 1.E5
-      RD      = 287.
-      CPAIR   = 1004
-      DO J=1,sNy-1
+      pGround = 1. _d 5
+      RD      = 287. _d 0
+      CPAIR   = 1004. _d 0
+      DO J=1,sNy
        DO I=1,sNx
         I2 = sNx*(J-1)+I
         katm = _KD2KA( Klev )
@@ -211,7 +242,7 @@ C     == Local variables ==
 C     Loop counters
       INTEGER I, J
 
-      DO J=1,sNy-1
+      DO J=1,sNy
        DO I=1,sNx
         katm = _KD2KA( kLev )
         I2 = sNx*(J-1)+I
