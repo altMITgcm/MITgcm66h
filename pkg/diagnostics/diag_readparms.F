@@ -39,6 +39,7 @@ C     !LOCAL VARIABLES:
       character*8 blank
       LOGICAL diag_mdsio, diag_mnc
       INTEGER mnc_lev_used(ndim)
+      integer levrest, ll
 
       namelist / diagnostics_list /
      &     frequency, levels, fields, filename,
@@ -135,8 +136,9 @@ C     Echo History List Data Structure
         WRITE(msgBuf,*) 'Frequency: ',freq(n)
         CALL PRINT_MESSAGE(
      &       msgBuf, standardMessageUnit, SQUEEZE_RIGHT, mythid)
-	do l=1,nlevels(n)
-        WRITE(msgBuf,*) 'Levels:    ',(levs(l,n))
+	do L=1,nlevels(n),20
+        levrest = min(nlevels(n),20)
+        WRITE(msgBuf,*) 'Levels:    ',(levs(LL,n),LL=L,L+levrest-1)
         CALL PRINT_MESSAGE(
      &       msgBuf, standardMessageUnit, SQUEEZE_RIGHT, mythid)
 	enddo
