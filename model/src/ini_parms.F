@@ -683,6 +683,7 @@ C     being combined and a single frame of reference is needed.
        horiVertRatio = 1.D0
       ENDIF
       recip_rkFac = 1.D0 / rkFac
+      recip_horiVertRatio = 1./horiVertRatio
       IF ( zCoordInputData ) usingZCoords = .TRUE.
       IF ( pCoordInputData ) usingPCoords = .TRUE.
 C
