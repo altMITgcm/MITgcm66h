@@ -5,6 +5,7 @@ C $Name$
 
 #define COSINEMETH_III
 #undef  ISOTROPIC_COS_SCALING
+#define  USE_3RD_O_ADVEC
 
 CStartOfInterFace
       SUBROUTINE CALC_GS( 
@@ -87,6 +88,15 @@ C     tauUpwV - Vertical   upwind weight : 1=Upwind ; 0=Centered
       _RL fMer  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL af    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL df    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+c_jmc:
+      _RL ddx(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL d2dx2(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL ddy(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL d2dy2(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL phiLo(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL phiHi(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL dist
+c_jmc.
 
 #ifdef ALLOW_AUTODIFF_TAMC
 C--   only the kUp part of fverS is set in this subroutine
@@ -147,7 +157,48 @@ C--   del^2 of S, needed for bi-harmonic (del^4) term
       ENDIF
 
 C--   Zonal flux (fZon is at west face of "salt" cell)
-C     o Advective component of zonal flux
+c---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+#ifdef USE_3RD_O_ADVEC
+C     o Advective component of zonal flux, 3rd order Advec Scheme
+      DO j=jMin,jMax
+       DO i=1-OLx+1,sNx+OLx
+        ddx(i,j)   = (salt(i,j,k,bi,bj)-salt(i-1,j,k,bi,bj))
+     &               *_recip_dxC(i,j,bi,bj)*_maskW(i,j,k,bi,bj)
+       ENDDO
+      ENDDO
+      DO j=jMin,jMax
+       DO i=1-OLx,sNx+OLx-1
+        d2dx2(i,j) = ( ddx(i+1,j)-ddx(i,j) )
+     &               *_recip_dxF(i,j,bi,bj)*maskC(i,j,k,bi,bj)
+       ENDDO
+      ENDDO
+      DO j=jMin,jMax
+       DO i=1-OLx+1,sNx+OLx
+        dist = _dxF(i-1,j,bi,bj)*0.5 _d 0
+        phiLo(i,j) = salt(i-1,j,k,bi,bj)
+     &               +dist
+     &                *( ddx(i  ,j)+ddx(i-1,j) )*0.5 _d 0
+     &               +0.5 _d 0*dist*dist
+     &                *d2dx2(i-1,j)
+        dist = -_dxF(i,j,bi,bj)*0.5 _d 0
+        phiHi(i,j) = salt(i,j,k,bi,bj)
+     &               +dist
+     &                *( ddx(i+1,j)+ddx(i  ,j) )*0.5 _d 0
+     &               +0.5 _d 0*dist*dist
+     &                *d2dx2(i,j)
+       ENDDO
+      ENDDO
+      DO j=jMin,jMax
+       DO i=1-OLx,sNx+OLx
+        IF ( uTrans(i,j) .GT. 0. ) THEN
+         af(i,j) = uTrans(i,j)*phiLo(i,j)
+        ELSE
+         af(i,j) = uTrans(i,j)*phiHi(i,j)
+        ENDIF
+       ENDDO
+      ENDDO 
+#else
+C     o Advective component of zonal flux, 1rst & 2nd order Advec Scheme
       IF (tauUpwH.EQ.0. _d 0) THEN
 C       Centered scheme :
         DO j=jMin,jMax
@@ -167,6 +218,8 @@ C       Upwind weighted scheme :
          ENDDO
         ENDDO
       ENDIF
+#endif
+c---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 C     o Diffusive component of zonal flux
       DO j=jMin,jMax
        DO i=iMin,iMax
@@ -204,7 +257,48 @@ C     Net zonal flux
       ENDDO
 
 C--   Meridional flux (fMer is at south face of "salt" cell)
-C     o Advective component of meridional flux
+c---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+#ifdef USE_3RD_O_ADVEC
+C     o Advective component of meridional flux, 3rd order Advec Scheme
+      DO j=jMin,jMax
+       DO i=iMin,iMax
+        ddy(i,j) = (salt(i,j,k,bi,bj)-salt(i,j-1,k,bi,bj))
+     &             *_recip_dyC(i,j,bi,bj)*_maskS(i,j,k,bi,bj)
+       ENDDO
+      ENDDO
+      DO j=jMin,jMax
+       DO i=iMin,iMax
+        d2dy2(i,j) = ( ddy(i,j+1)-ddy(i,j) )
+     &               *_recip_dyF(i,j,bi,bj)*maskC(i,j,k,bi,bj)
+       ENDDO
+      ENDDO
+      DO j=jMin,jMax
+       DO i=iMin,iMax
+        dist = _dyF(i,j-1,bi,bj)*0.5 _d 0
+        phiLo(i,j) = salt(i,j-1,k,bi,bj)
+     &               +dist
+     &                *( ddy(i  ,j)+ddy(i,j-1) )*0.5 _d 0
+     &               +0.5 _d 0*dist*dist
+     &                *d2dy2(i,j-1)
+        dist = -_dyF(i,j,bi,bj)*0.5 _d 0
+        phiHi(i,j) = salt(i,j,k,bi,bj)
+     &               +dist
+     &                *( ddy(i,j+1)+ddy(i  ,j) )*0.5 _d 0
+     &               +0.5 _d 0*dist*dist
+     &                *d2dy2(i,j)
+       ENDDO
+      ENDDO
+      DO j=jMin,jMax
+       DO i=iMin,iMax
+        IF ( vTrans(i,j) .GT. 0. ) THEN
+         af(i,j) = vTrans(i,j)*phiLo(i,j)
+        ELSE
+         af(i,j) = vTrans(i,j)*phiHi(i,j)
+        ENDIF
+       ENDDO
+      ENDDO
+#else
+C     o Advective component of meridional flux, 1rst & 2nd order Advec Scheme
       IF (tauUpwH.EQ.0. _d 0) THEN
 C       Centered scheme :
         DO j=jMin,jMax
@@ -224,6 +318,8 @@ C       Upwind weighted scheme :
          ENDDO
         ENDDO
       ENDIF
+#endif
+c---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 C     o Diffusive component of meridional flux
       DO j=jMin,jMax
        DO i=iMin,iMax
