@@ -3,7 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
-next patch:
+release1_p7
 o GAD: 
   - generated new common blocks to account for call of
     same gad routines with differing traceridentities
@@ -24,6 +24,11 @@ o exf:
   - added exf I/O for atmospheric loading
   - added exf I/O for runoff data
   - transfered scaling between exf <-> MITgcm to exf namelist
+o Adding new verification experiment global_with_exf.
+  This verification experiment is almost identical to the
+  global_ocean.90x40x15 experiment, except that it uses
+  the exf (and cal) package instead of the
+  external_fields_load routine (cf README file).
 
 release1_p6
 o fixed the verification/global_ocean.90x40x15 experiment:
