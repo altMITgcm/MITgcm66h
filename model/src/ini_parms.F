@@ -132,7 +132,7 @@ C--   Input files
      & zonalWindFile, meridWindFile,
      & thetaClimFile, saltClimFile,
      & surfQfile, EmPmRfile,
-     & uVelInitFile, vVelInitFile
+     & uVelInitFile, vVelInitFile, pSurfInitFile
 
 C--   Open Boundaries
       NAMELIST /PARM06/

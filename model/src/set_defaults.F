@@ -162,6 +162,7 @@ C--   Input files
       surfQfile       = ' '
       uVelInitFile    = ' '
       vVelInitFile    = ' '
+      pSurfInitFile   = ' '
 
 C--   OBCS
       DO I=1,Nx
