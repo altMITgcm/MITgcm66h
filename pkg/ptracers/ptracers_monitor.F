@@ -49,16 +49,12 @@ C  ip                   :: ptracer number
       _RL dT
       INTEGER time_as_int
       integer ip
-CML      integer i,j,k,bi,bj
-CML      _RL tmp(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
 CEOP
 
       dT=deltaTclock
 
       IF (myIter.LE.nIter0+1.OR.DIFFERENT_MULTIPLE(
      &     PTRACERS_monitorFreq,myTime,myTime-dT)) THEN
-
-CML       mon_write_stdout = .TRUE.
 
 C     Ptracers field monitor start 
        _BEGIN_MASTER(myThid)
