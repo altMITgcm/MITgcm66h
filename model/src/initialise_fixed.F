@@ -83,7 +83,7 @@ C     Initialize MNC look-up tables
         CALL MNC_INIT(myThid)
         CALL MNC_CW_INIT(sNx,sNy,OLx,OLy,nSx,nSy,nPx,nPy,Nr, myThid)
         CALL INI_MNC_IO(myThid)
-        IF ( mnc_echo_gtypes ) THEN
+        IF ( mnc_echo_gvtypes ) THEN
           CALL MNC_CW_DUMP( myThid )
         ENDIF
       ENDIF

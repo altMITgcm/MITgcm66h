@@ -655,11 +655,15 @@ C Logical flags for selecting packages
 C     Run-time flags for early-initialization of MNC
       LOGICAL
      &     useMNC,
-     &     mnc_echo_gtypes, mnc_pickup_create, mnc_pickup_read
+     &     mnc_use_indir, mnc_use_outdir, mnc_outdir_date,
+     &     mnc_echo_gvtypes, mnc_pickup_create, mnc_pickup_read
+      CHARACTER*(MAX_LEN_FNAM) mnc_outdir_str
+      CHARACTER*(MAX_LEN_FNAM) mnc_indir_str
       COMMON /PARM_MNC/
      &     useMNC,
-     &     mnc_echo_gtypes, mnc_pickup_create, mnc_pickup_read
-
+     &     mnc_use_indir, mnc_use_outdir, mnc_outdir_date, 
+     &     mnc_echo_gvtypes, mnc_pickup_create, mnc_pickup_read, 
+     &     mnc_outdir_str, mnc_indir_str 
 
 
 CEH3 ;;; Local Variables: ***
