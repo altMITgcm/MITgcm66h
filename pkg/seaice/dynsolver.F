@@ -103,8 +103,13 @@ C--   Wind stress computed here from wind on South-West C-grid
         DO bi=myBxLo(myThid),myBxHi(myThid)
          DO j=1,sNy
           DO i=1,sNx
-           AAA=SQRT((HALF*(UWIND(I+1,J,bi,bj)+UWIND(I+1,J+1,bi,bj)))**2
-     &          +(HALF*(VWIND(I,J+1,bi,bj)+VWIND(I+1,J+1,bi,bj)))**2)
+           AAA=(HALF*(UWIND(I+1,J,bi,bj)+UWIND(I+1,J+1,bi,bj)))**2+
+     &         (HALF*(VWIND(I,J+1,bi,bj)+VWIND(I+1,J+1,bi,bj)))**2
+           IF ( AAA .LT. SEAICE_EPS_SQ ) THEN
+              AAA=SEAICE_EPS
+           ELSE
+              AAA=SQRT(AAA)
+           ENDIF
            DAIRN(I,J,bi,bj)=RHOAIR*SEAICE_drag*
      &          (2.70 _d 0+0.142 _d 0*AAA+0.0764 _d 0*AAA*AAA)
            FORCEX(I,J,bi,bj)=DAIRN(I,J,bi,bj)*
@@ -124,7 +129,12 @@ C--   Wind stress computed here from wind on South-West B-grid
         DO bi=myBxLo(myThid),myBxHi(myThid)
          DO j=1,sNy
           DO i=1,sNx
-           AAA=SQRT(UWIND(I,J,bi,bj)**2+VWIND(I,J,bi,bj)**2)
+           AAA=UWIND(I,J,bi,bj)**2+VWIND(I,J,bi,bj)**2
+           IF ( AAA .LT. SEAICE_EPS_SQ ) THEN
+              AAA=SEAICE_EPS
+           ELSE
+              AAA=SQRT(AAA)
+           ENDIF
            DAIRN(I,J,bi,bj)=RHOAIR*SEAICE_drag*
      &          (2.70 _d 0+0.142 _d 0*AAA+0.0764 _d 0*AAA*AAA)
            FORCEX(I,J,bi,bj)=DAIRN(I,J,bi,bj)*(COSWIN*UWIND(I,J,bi,bj)

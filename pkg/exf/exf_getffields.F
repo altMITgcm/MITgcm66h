@@ -324,8 +324,8 @@ cdm? can olx, oly be eliminated?
                max3 = nTx*nTy
                act4 = ikey_dynamics - 1
 
-               ikey_1 = i
-     &              + sNx*(j-1)
+               ikey_1 = i+olx
+     &              + sNx*(j+oly-1)
      &              + sNx*sNy*act1
      &              + sNx*sNy*max1*act2
      &              + sNx*sNy*max1*max2*act3
@@ -451,8 +451,8 @@ CADJ STORE sh     = comlev1_exf_1, key = ikey_1
 
 #ifdef ALLOW_AUTODIFF_TAMC
                    ikey_2 = iter
-     &                  + niter_bulk*(i-1)
-     &                  + sNx*niter_bulk*(j-1)
+     &                  + niter_bulk*(i+olx-1)
+     &                  + sNx*niter_bulk*(j+oly-1)
      &                  + sNx*niter_bulk*sNy*act1
      &                  + sNx*niter_bulk*sNy*max1*act2
      &                  + sNx*niter_bulk*sNy*max1*max2*act3

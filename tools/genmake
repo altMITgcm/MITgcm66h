@@ -348,6 +348,7 @@ switch ($platform$USEMPI)
     set INCLUDES   = ( '-I/usr/local/mpi/include' )
     set FFLAGS     = ( '-extend_source -mp -mpio -bytereclen -r10000 -mips4 -r8 -static' )
     set FOPTIM     = ( '-O3' )
+#   set FOPTIM     = ( '-g -DEBUG:subscript_check=ON:trap_uninitialized=ON:verbose_runtime=ON -MP:check_reshape=ON' )
 #   set NOOPTFLAGS = ( '-O0' )
 #   set NOOPTFILES = ( 'barrier.F different_multiple.F ' \
 #                      'external_fields_load.F' )

@@ -33,7 +33,7 @@ C     i,j,bi,bj - Loop counters
 
       INTEGER i, j, bi, bj
       INTEGER KOPEN
-      _RL U1, V1
+      _RL U1, V1, SPEED_SQ
 
       _RL HICE (1-OLx:sNx+OLx, 1-OLy:sNy+OLy)
       _RL UG   (1-OLx:sNx+OLx, 1-OLy:sNy+OLy)
@@ -72,7 +72,12 @@ C NOW DETERMINE MIXED LAYER TEMPERATURE
      1      +UWIND(I,J-1,bi,bj)+UWIND(I,J,bi,bj))
           V1=0.25 _d 0*(VWIND(I-1,J-1,bi,bj)+VWIND(I-1,J,bi,bj)
      1      +VWIND(I,J-1,bi,bj)+VWIND(I,J,bi,bj))
-          UG(I,J)=SQRT(U1**2+V1**2)
+          SPEED_SQ = U1**2 + V1**2
+          IF ( SPEED_SQ .LT. SEAICE_EPS_SQ ) THEN
+             UG(I,J)=SEAICE_EPS
+          ELSE
+             UG(I,J)=SQRT(SPEED_SQ)
+          ENDIF
          ENDDO
         ENDDO
 
