@@ -153,8 +153,13 @@ C         Read ndiag()
           WRITE(fn,'(A,I10.10)') 'pickup_ndiag.', nIter0
           CALL MDSFINDUNIT( dUnit, mythid )
           OPEN( dUnit, file=fn )
-          DO i = 1,numdiags
-            READ(dUnit,'(I10)') ndiag(i)
+c         DO i = 1,numdiags
+c           READ(dUnit,'(I10)') ndiag(i)
+c         ENDDO
+          DO n = 1,nlists
+           DO m = 1,nfields(n)
+            READ(dUnit,'(I10)') ndiag(jdiag(m,n))
+           ENDDO
           ENDDO
           CLOSE( dUnit )
           _END_MASTER(myThid)
