@@ -49,13 +49,14 @@ C     .                                         |   |       |   |
 C     mnc_fg_ids (fi,-) : dim IDs       <-------+---+-------+---+
 C     mnc_fd_ind (fi,-) : dim indicies  <-------+---+-------+---+
 C     .                             |
-C     mnc_d_names (di)  : name   <--+
-C     mnc_d_units (di)  : units  <--+
-C     mnc_d_size  (di)  : size   <--+
-C     .
-C     mnc_fv_ids (fi,-) : nVar, n1,ID1, n2,ID2, ...
-C     .                         |       |
-C     mnc_v_names (vi)  :   <---+-------+
+C     mnc_d_names (di)  : name   <--+        |           |
+C     mnc_d_units (di)  : units  <--+        +-----------+----------+
+C     mnc_d_size  (di)  : size   <--+                  indicies of  |
+C     .                                +-----------+---  grids in --+
+C     .                                |           |    mnc_f_info
+C     mnc_fv_ids (fi,-) : nVar, n1,ID1,ig1, n2,ID2,ig2, ...
+C     .                         |          |
+C     mnc_v_names (vi)  :   <---+----------+
 C
 C     fi  :  file index
 C     vi  :  variable index
