@@ -17,6 +17,8 @@ o add call monitor to TAF set of required calls (flow directives)
   and include in natl_box_adjoint
 o untangle a few ifdefs related to cost, ctrl, autodiff
   untangel a few ALLOW_ECCO_OPTIMIZATION
+o Apply Cooper & Haines representative estimates also at sub-surface (k=Nr)
+  (theta2, salt2 in ecco_cost_weights)
 
 checkpoint56c_post
 o OBCS as control variables
