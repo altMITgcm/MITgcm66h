@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint44g_post
+o fix surface correction term in multiDimAdvection (affects plume_on_slope 
+  results) ; ifdef missing in thermodynamics.F
+
 checkpoint44f_pre,checkpoint44f_post
 o added PTRACERS package
   This allows an arbitrary number of passive tracers to be integrated
