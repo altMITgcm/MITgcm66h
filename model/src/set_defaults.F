@@ -164,7 +164,9 @@ Cml      sBeta               = 7.4D-4
       upwindVorticity     = .FALSE.
       highOrderVorticity  = .FALSE.
       useAbsVorticity     = .FALSE.
-      debugLevel          = debLevA
+C hack to allow deblevelzero, until debugmode flag is removed
+      debugLevel          = 999
+C      debugLevel          = debLevA
 
 C--   Set (free)surface-related parameters
       implicitFreeSurface = .TRUE.
