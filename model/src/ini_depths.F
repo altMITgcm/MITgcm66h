@@ -27,6 +27,7 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#include "INI_DEPTHS.h"
 
 C     == Routine arguments ==
 C     myThid -  Number of this instance of INI_DEPTHS
@@ -50,7 +51,6 @@ C     oldPrec - Temporary used in controlling binary input dataset precision
       INTEGER bi, bj
       INTEGER  I, J
       _RL Hdefault
-      _RS H(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
       _BARRIER
       IF ( bathyFile .EQ. ' '  ) THEN
@@ -93,7 +93,7 @@ C    &                    'RS', 1, H, 1, myThid )
        _END_MASTER(myThid)
       ENDIF
 
-C     _EXCH_XY_R4(    H, myThid )
+      _EXCH_XY_R4(    H, myThid )
 
 C
 C     CALL PLOT_FIELD_XYRS(H,'Model depths (ini_depths)',1,myThid)
@@ -129,9 +129,6 @@ C
         ENDDO
        ENDDO
       ENDIF
-
-      _EXCH_XY_R4(    R_low, myThid )
-      _EXCH_XY_R4(    Ro_surf, myThid )
 
       RETURN
       END
