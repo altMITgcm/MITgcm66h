@@ -2,6 +2,15 @@ $Header$
 
     Notes on tags used in MITgcmUV
     ==============================
+
+checkpoint40pre4
+o added re-initialisations of utrans,vtrans,rtrans in
+  calc_common_factors which are crucial for TAF.
+o extended iMin,jMin range for calc_common_factors,
+  calc_diffusivity
+o added option ALLOW_PASSIVE_TRACER
+o a few minor updates and fixes
+
 checkpoint40pre3
 o created calc_gtr1.F for gad package
 o split the_main_loop and re-introduced forward_step
