@@ -18,7 +18,7 @@ C       >>> Checkpointing as handled by TAMC
 #define ALLOW_TAMC_CHECKPOINTING
 C
 C       >>> Extract adjoint state
-#undef ALLOW_AUTODIFF_MONITOR
+#define ALLOW_AUTODIFF_MONITOR
 C
 C o use divided adjoint to split adjoint computations
 #undef ALLOW_DIVIDED_ADJOINT
