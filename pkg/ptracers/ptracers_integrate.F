@@ -128,7 +128,7 @@ cswdptr - add--
 cswdptr - end add ---
        IF ( forcing_In_AB )
      &   CALL PTRACERS_FORCING(
-     I                        bi,bj,k,iTracer,
+     I                        bi,bj,iMin,iMax,jMin,jMax,k,iTracer,
      U                        gPtr(1-Olx,1-Oly,1,1,1,iTracer),
      I                        myIter,myTime,myThid)
 cswdptr --add---
@@ -152,7 +152,7 @@ cswdptr - add--
 cswdptr - end add ---
        IF ( .NOT.forcing_In_AB )
      &   CALL PTRACERS_FORCING(
-     I                        bi,bj,k,iTracer,
+     I                        bi,bj,iMin,iMax,jMin,jMax,k,iTracer,
      U                        gPtr(1-Olx,1-Oly,1,1,1,iTracer),
      I                        myIter,myTime,myThid)
 cswdptr - add--

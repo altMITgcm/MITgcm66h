@@ -439,7 +439,7 @@ C       relaxation terms, etc.
 #endif
         CALL EXTERNAL_FORCING_SURF(
      I             bi, bj, iMin, iMax, jMin, jMax,
-     I             myThid )
+     I             myTime, myIter, myThid )
 
 C--    end of if/else block useThermSeaIce --
        ENDIF

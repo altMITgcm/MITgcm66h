@@ -412,7 +412,7 @@ C *note* should update KPP_TRANSPORT_T to set df  *aja*
      &         tracerIdentity .LE. (GAD_TR1+PTRACERS_numInUse-1)) THEN
         CALL KPP_TRANSPORT_PTR(
      I     iMin,iMax,jMin,jMax,bi,bj,k,km1,
-     I     tracerIdentity,KappaRT,
+     I     tracerIdentity-GAD_TR1+1,KappaRT,
      U     df )
 #endif
        ELSE
