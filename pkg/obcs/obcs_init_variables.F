@@ -173,6 +173,15 @@ C--   Apply OBCS values to initial conditions for consistancy
        ENDDO
       ENDDO
 
+      IF (useOBCSprescribe) THEN
+C     After applying the boundary conditions exchange the 3D-fields.
+C     This is only necessary of the boudnary values have been read
+C     from a file.
+       CALL EXCH_UV_XYZ_RL(uVel,vVel,.TRUE.,myThid)
+       _EXCH_XYZ_R8( theta, myThid )
+       _EXCH_XYZ_R8( salt , myThid )
+      ENDIF
+
 #endif /* ALLOW_OBCS */
 
       RETURN
