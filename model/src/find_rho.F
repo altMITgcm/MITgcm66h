@@ -13,7 +13,7 @@ C $Id$
 #include "DYNVARS.h"
 #include "PARAMS.h"
 ! Local
-      integer i,j,k
+      INTEGER i,j,k
 ! ------------------------------------------------------------------------------
 
       do k=1,Nz
