@@ -89,8 +89,9 @@ c     Loop over tiles.
 
 c     Interpolate linearly onto the current time.
 
-                     sflux(i,j,bi,bj) = fac * sflux0(i,j,bi,bj) +
-     &                    (exf_one - fac) *sflux1(i,j,bi,bj)
+                     sflux(i,j,bi,bj) = exf_inscal_sfl * (
+     &                                fac * sflux0(i,j,bi,bj) +
+     &                    (exf_one - fac) * sflux1(i,j,bi,bj) )
 
                   enddo
                enddo

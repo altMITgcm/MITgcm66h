@@ -90,8 +90,9 @@ c     Loop over tiles.
 
 c     Interpolate linearly onto the current time.
 
-                     hflux(i,j,bi,bj) = fac * hflux0(i,j,bi,bj) +
-     &                    (exf_one - fac) * hflux1(i,j,bi,bj)
+                     hflux(i,j,bi,bj) = exf_inscal_hfl * (
+     &                                fac * hflux0(i,j,bi,bj) +
+     &                    (exf_one - fac) * hflux1(i,j,bi,bj) )
 
                   enddo
                enddo

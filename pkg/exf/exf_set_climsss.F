@@ -110,8 +110,9 @@ c     Loop over tiles.
                   do i = 1,snx
 
 c     Interpolate linearly onto the current time.
-                     climsss(i,j,bi,bj) = fac * climsss0(i,j,bi,bj)+
-     &                    (exf_one - fac) *climsss1(i,j,bi,bj)
+                     climsss(i,j,bi,bj) = exf_inscal_sss * (
+     &                                fac * climsss0(i,j,bi,bj) +
+     &                    (exf_one - fac) * climsss1(i,j,bi,bj) )
 
                   enddo
                enddo

@@ -291,7 +291,6 @@ c     input and output scaling factors
       _RL     exf_outscal_sss
       _RL     exf_outscal_apressure
       _RL     exf_outscal_sfl
-      _RL     exf_outscal_runoff
 
       common /exf_param_scal/
      &                      exf_inscal_hfl
@@ -311,7 +310,6 @@ c     input and output scaling factors
      &                    , exf_outscal_sss
      &                    , exf_outscal_apressure
      &                    , exf_outscal_sfl
-     &                    , exf_outscal_runoff
 
 c     EXFwindOnBgrid - By default wind files, uwind and vwind,
 c     are defined on Southwest C-grid U and V points.

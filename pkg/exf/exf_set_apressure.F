@@ -88,8 +88,9 @@ c     Loop over tiles.
 
 c     Interpolate linearly onto the current time.
 
-                     apressure(i,j,bi,bj) = fac*apressure0(i,j,bi,bj)+
-     &                    (exf_one - fac) *apressure1(i,j,bi,bj)
+                     apressure(i,j,bi,bj) = exf_inscal_apressure * (
+     &                                fac * apressure0(i,j,bi,bj) +
+     &                    (exf_one - fac) * apressure1(i,j,bi,bj) )
 
                   enddo
                enddo
