@@ -60,9 +60,10 @@ C Compute pressure profile to get methane and n2o values (bottom-up)
        enddo
        enddo
 
-       call fizhi_init_chem(mythid,nozlats,nozlevs,ozlats,ozlevs,
-     . ozone,nwatlats,nwatlevs,watlats,watlevs,water,
-     . Nrphys,pressure,n20,methane,co2,cfc11,cfc12,cfc22)
+       call fizhi_init_chem(mythid,
+     .      nlatsoz,nlevsoz,ntimesoz,latsoz,levsoz,ozone,
+     .      nlatsq,nlevsq,ntimesq,latsq,levsq,stratq,
+     .      Nrphys,pressure,n20,methane,co2,cfc11,cfc12,cfc22)
 
        return
        end
