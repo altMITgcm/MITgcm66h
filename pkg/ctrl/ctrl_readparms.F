@@ -105,6 +105,8 @@ c--   Read the namelist input.
      &  xx_efluxy_file,
      &  xx_efluxp_file,
      &  xx_bottomdrag_file,
+     &  xx_edtaux_file,
+     &  xx_edtauy_file,
      &  doInitXX,
      &  doPackDiag,
      &  doZscaleUnpack,
@@ -187,6 +189,8 @@ c--     Set default values.
         xx_efluxy_file      = ' '
         xx_efluxp_file      = ' '
         xx_bottomdrag_file  = ' '
+        xx_edtaux_file      = ' '
+        xx_edtauy_file      = ' '
 
 #ifdef ALLOW_TANGENTLINEAR_RUN
         yadprefix           = 'g_'

@@ -906,6 +906,13 @@ c--   Compute initial vs. final T/S deviation
 #endif
       _BARRIER
 
+c--   Eddy stress penalty term
+#ifdef ALLOW_COST_TAU_EDDY
+      call timer_start('cost_tau_eddy      [ECCO SPIN-DOWN]', mythid)
+      call cost_tau_eddy( mythid )
+      call timer_stop ('cost_tau_eddy      [ECCO SPIN-DOWN]', mythid)
+#endif
+
 c--   Sum all cost function contributions.
 #ifndef DISABLE_DEBUGMODE
       IF ( debugLevel .GE. debLevB ) 
