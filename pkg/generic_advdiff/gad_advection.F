@@ -44,6 +44,9 @@ C !USES: ===============================================================
 #ifdef ALLOW_AUTODIFF_TAMC
 # include "tamc.h"
 # include "tamc_keys.h"
+# ifdef ALLOW_PTRACERS
+#  include "PTRACERS_SIZE.h"
+# endif
 #endif
 #ifdef ALLOW_EXCH2
 #include "W2_EXCH2_TOPOLOGY.h"

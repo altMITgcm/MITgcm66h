@@ -54,6 +54,7 @@ C-      2D arrays
          DO I=1-Olx,sNx+Olx
 #ifdef EXACT_CONSERV
          dEtaHdt(i,j,bi,bj) = 0. _d 0
+         PmEpR(i,j,bi,bj) = 0. _d 0
 cph          hDivFlow(I,J,bi,bj)=0. _d 0
 #endif
 #ifdef ALLOW_EXF

@@ -5,7 +5,14 @@ c     store directives for checkpoint level 1
 c
 c     created: heimbach@mit.edu 10-Jan-2002
 c
-CADJ STORE surfacetendencyTice = comlev1, key = ikey_dynamics
+
+CADJ STORE salt       = comlev1, key = ikey_dynamics
+CADJ STORE theta      = comlev1, key = ikey_dynamics
+CADJ STORE uvel       = comlev1, key = ikey_dynamics
+CADJ STORE vvel       = comlev1, key = ikey_dynamics
+CADJ STORE totphihyd  = comlev1, key = ikey_dynamics
+CADJ STORE surfaceforcingtice = comlev1, 
+CADJ &     key = ikey_dynamics
 
 #ifdef ALLOW_EXF
 # include "exf_ad_check_lev1_dir.h"
@@ -42,6 +49,16 @@ CADJ STORE pload1  = comlev1, key = ikey_dynamics
 #endif
 
 #ifdef ALLOW_EBM
+CADJ STORE fu      = comlev1, key = ikey_dynamics
+CADJ STORE fv      = comlev1, key = ikey_dynamics
+CADJ STORE sss     = comlev1, key = ikey_dynamics
+CADJ STORE qnet    = comlev1, key = ikey_dynamics
+CADJ STORE empmr   = comlev1, key = ikey_dynamics
 CADJ STORE qsw     = comlev1, key = ikey_dynamics
+# include "ebm_ad_check_lev1_dir.h"
+#endif
+
+#ifdef EXACT_CONSERV
+CADJ STORE PmEpR   = comlev1, key = ikey_dynamics
 #endif
 

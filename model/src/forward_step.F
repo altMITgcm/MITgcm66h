@@ -83,6 +83,9 @@ C     == Global variables ==
 # ifdef ALLOW_EBM
 #  include "EBM.h"
 # endif
+# ifdef EXACT_CONSERV
+#  include "SURFACE.h"
+# endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C     !LOCAL VARIABLES:

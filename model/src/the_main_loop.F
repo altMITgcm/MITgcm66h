@@ -51,9 +51,6 @@ c They provide the fields to be stored.
 # ifdef ALLOW_CD_CODE
 #  include "CD_CODE_VARS.h"
 # endif
-# ifdef ALLOW_PASSIVE_TRACER
-#  include "TR1.h"
-# endif
 # ifdef ALLOW_PTRACERS
 #  include "PTRACERS_SIZE.h"
 #  include "PTRACERS.h"

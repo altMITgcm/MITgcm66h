@@ -77,9 +77,6 @@ C     == Global variables ===
 #include "CD_CODE_VARS.h"
 #endif
 #include "GRID.h"
-#ifdef ALLOW_PASSIVE_TRACER
-#include "TR1.h"
-#endif
 #ifdef ALLOW_AUTODIFF_TAMC
 # include "tamc.h"
 # include "tamc_keys.h"
@@ -347,10 +344,6 @@ C--       kDown  Cycles through 2,1 to point to current layer
          kkey = (idynkey-1)*Nr + k
 c
 CADJ STORE totphihyd (:,:,k,bi,bj) 
-CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
-CADJ STORE gt (:,:,k,bi,bj) 
-CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
-CADJ STORE gs (:,:,k,bi,bj) 
 CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
 CADJ STORE theta (:,:,k,bi,bj) 
 CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
