@@ -23,18 +23,11 @@ C        are defined on North-East B-grid U and V points.
 C        When this flag is set, wind files are defined on
 C        South-West C-grid U and V points.
 C
-C     SEAICEreadInitialConditions
-C                       - By default, initial sea-ice conditions are
-C        HEFF=1 and AREA=1.  This means that there can be large
-C        artificial fluxes of heat and freshwater in the surface layer
-C        during the first model time step.   When this flag is set, the
-C        initial conditions are read-in using SEAICE_READ_PICKUP.
-C
       LOGICAL SEAICEwriteState, SEAICEuseDYNAMICS, SEAICEuseLSR,
-     &        SEAICEwindOnCgrid, SEAICEreadInitialConditions
+     &        SEAICEwindOnCgrid
       COMMON /SEAICE_PARM_L/
      &        SEAICEwriteState, SEAICEuseDYNAMICS, SEAICEuseLSR,
-     &        SEAICEwindOnCgrid, SEAICEreadInitialConditions
+     &        SEAICEwindOnCgrid
 
 C--   COMMON /SEAICE_PARM_I/ Integer valued parameters of sea ice model.
 C     LAD        - time stepping used for sea-ice advection:
@@ -49,15 +42,21 @@ C
       COMMON /SEAICE_PARM_I/ LAD, IMAX_TICE, NPSEUDO
 
 C--   COMMON /SEAICE_PARM_C/ Character valued sea ice model parameters.
-C     uwindFile       - File containing 
-C     vwindFile       - File containing 
-C     atempFile       - File containing 
-C     aqhFile         - File containing 
-C     lwdownFile      - File containing 
-C     swdownFile      - File containing 
-C     precipFile      - File containing 
-C     evapFile        - File containing 
-C     runoffFile      - File containing 
+C     uwindFile       - File containing uwind
+C     vwindFile       - File containing vwind
+C     atempFile       - File containing atemp
+C     aqhFile         - File containing aqh
+C     lwdownFile      - File containing lwdown
+C     swdownFile      - File containing swdown
+C     precipFile      - File containing precip
+C     evapFile        - File containing evap
+C     runoffFile      - File containing runoffF
+C     HeffFile        - File containing initial sea-ice thickness
+C        !!! NOTE !!! By default, initial sea-ice conditions are
+C        HEFF=1 and AREA=1.  This means that there can be large
+C        artificial fluxes of heat and freshwater in the surface layer
+C        during the first model time step.  To avoid this it is a good
+C        idea to specify initial HEFF.
 C
       CHARACTER*(MAX_LEN_FNAM) uwindFile
       CHARACTER*(MAX_LEN_FNAM) vwindFile
@@ -68,8 +67,10 @@ C
       CHARACTER*(MAX_LEN_FNAM) precipFile
       CHARACTER*(MAX_LEN_FNAM) evapFile
       CHARACTER*(MAX_LEN_FNAM) runoffFile
+      CHARACTER*(MAX_LEN_FNAM) HeffFile
       COMMON /SEAICE_PARM_C/ uwindFile, vwindFile, atempFile, aqhFile,
-     &     lwdownFile, swdownFile, precipFile, evapFile, runoffFile
+     &     lwdownFile, swdownFile, precipFile, evapFile, runoffFile,
+     &	   HeffFile
 
 C--   COMMON /SEAICE_PARM_RL/ Real valued parameters of sea ice model.
 C     SEAICE_dumpFreq    - SEAICE dump frequency.                     (s)

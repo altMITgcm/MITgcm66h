@@ -108,7 +108,7 @@ C--   Update overlap regions
       _EXCH_XY_R8(DYUICE, myThid)
 
 C--   Set model variables to initial/restart conditions
-      IF ( nIter0 .NE. 0 .OR. SEAICEreadInitialConditions ) THEN
+      IF ( nIter0 .NE. 0 ) THEN
          CALL SEAICE_READ_PICKUP ( myThid )
       ELSE
          DO bj=myByLo(myThid),myByHi(myThid)
@@ -119,10 +119,31 @@ C--   Set model variables to initial/restart conditions
                      YNEG(I,J,bi,bj)=ZERO
                      TMIX(I,J,bi,bj)=TICE(I,J,bi,bj)
                      DO k=1,3
-                        HEFF(I,J,k,bi,bj)=ZERO
+                        HEFF(I,J,k,bi,bj)=ONE
                         AREA(I,J,k,bi,bj)=HEFFM(i,j,bi,bj)
                         UICE(I,J,k,bi,bj)=ZERO
                         VICE(I,J,k,bi,bj)=ZERO
+                     ENDDO
+                  ENDDO
+               ENDDO
+            ENDDO
+         ENDDO
+      ENDIF
+
+C--   Read initial sea-ice thickness from file if available.
+      IF ( HeffFile .NE. ' ' ) THEN
+         _BEGIN_MASTER( myThid )
+         CALL READ_FLD_XY_RL( HeffFile, ' ', ZETA, 0, myThid )
+         _END_MASTER(myThid)
+         _EXCH_XY_R8(ZETA,myThid)
+         DO bj=myByLo(myThid),myByHi(myThid)
+            DO bi=myBxLo(myThid),myBxHi(myThid)
+               DO j=1-OLy,sNy+OLy
+                  DO i=1-OLx,sNx+OLx
+                     DO k=1,3
+                        HEFF(I,J,k,bi,bj) = MAX(ZETA(i,j,bi,bj),ZERO)
+                        IF ( ZETA(i,j,bi,bj).EQ.ZERO )
+     &                       AREA(I,J,k,bi,bj) = ZERO
                      ENDDO
                   ENDDO
                ENDDO

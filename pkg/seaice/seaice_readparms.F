@@ -33,7 +33,7 @@ C     iUnit       - Work variable for IO unit number
 C--   SEAICE parameters
       NAMELIST /SEAICE_PARM01/
      & SEAICEwriteState, SEAICEuseDYNAMICS, SEAICEuseLSR,
-     & SEAICEwindOnCgrid, SEAICEreadInitialConditions,
+     & SEAICEwindOnCgrid,
      & LAD, IMAX_TICE, NPSEUDO,
      & SEAICE_dumpFreq, SEAICE_taveFreq,
      & SEAICE_drag, SEAICE_waterDrag, SEAICE_albedo,
@@ -43,7 +43,7 @@ C--   SEAICE parameters
      & SEAICE_iceConduct, SEAICE_snowConduct, SEAICE_emissivity,
      & SEAICE_snowThick, SEAICE_shortwave,
      & uwindFile, vwindFile, atempFile, aqhFile, lwdownFile,
-     & swdownFile, precipFile, evapFile, runoffFile,
+     & swdownFile, precipFile, evapFile, runoffFile, HeffFile,
      & LSR_ERROR, DIFF1, A22, HO,
      & WindForcingStart, WindForcingEnd, WindForcingPeriod,
      & FluxForcingStart, FluxForcingEnd, FluxForcingPeriod,
@@ -68,7 +68,6 @@ C--   set default sea ice parameters
       SEAICEuseDYNAMICS  = .TRUE.
       SEAICEuseLSR       = .FALSE.
       SEAICEwindOnCgrid  = .FALSE.
-      SEAICEreadInitialConditions = .FALSE.
       SEAICE_dumpFreq    = dumpFreq
       SEAICE_taveFreq    = taveFreq
       SEAICE_drag        = 0.001  _d 0
@@ -95,6 +94,7 @@ C--   set default sea ice parameters
       precipFile = ' '
       evapFile   = ' '
       runoffFile = ' '
+      HeffFile   = ' '
       LAD        = 2
       IMAX_TICE  = 10
       NPSEUDO    = 10

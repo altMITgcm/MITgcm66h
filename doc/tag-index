@@ -8,7 +8,7 @@ o Updated useSingleCpuIO option in mdsio_writefield.F to
   work with multi-field files, e.g., for single-file pickup.
 o pkg/seaice:
   - bug fix in growth.F: QNET for no shortwave case
-  - default initial ice thickness changed from 1 m to 0 m
+  - added HeffFile for specifying initial sea-ice thickness
 
 release1_p11
 o Modifications for using pkg/exf with pkg/seaice
