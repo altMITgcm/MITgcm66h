@@ -1,22 +1,22 @@
 C $Header$
 C $Name$
 
-#include "MOM_COMMON_OPTIONS.h"
+#include "MOM_FLUXFORM_OPTIONS.h"
 
 CBOP
-C !ROUTINE: MOM_U_RVISCFLUX
+C !ROUTINE: MOM_V_RVISCFLUX
 
 C !INTERFACE: ==========================================================
-      SUBROUTINE MOM_U_RVISCFLUX(
+      SUBROUTINE MOM_V_RVISCFLUX(
      I        bi,bj,k,
-     I        uFld, KappaRU,
-     O        rViscFluxU,
+     I        vFld, KappaRV,
+     O        rViscFluxV,
      I        myThid)
 
 C !DESCRIPTION:
-C Calculates the area integrated vertical viscous fluxes of U:
+C Calculates the area integrated vertical viscous fluxes of V:
 C \begin{equation*}
-C F^r = - \frac{ {\cal A}_w }{\Delta r_c} A_r \delta_k u 
+C F^r = - \frac{ {\cal A}_s }{\Delta r_c} A_r \delta_k v
 C \end{equation*}
 
 C !USES: ===============================================================
@@ -29,17 +29,17 @@ C !USES: ===============================================================
 C !INPUT PARAMETERS: ===================================================
 C  bi,bj                :: tile indices
 C  k                    :: vertical level
-C  uFld                 :: zonal flow
-C  KappaRU              :: vertical viscosity
+C  vFld                 :: meridional flow
+C  KappaRV              :: vertical viscosity
 C  myThid               :: thread number
       INTEGER bi,bj,k
-      _RL uFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-      _RL KappaRU(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
+      _RL vFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      _RL KappaRV(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
       INTEGER myThid
 
 C !OUTPUT PARAMETERS: ==================================================
-C  rViscFluxU           :: viscous fluxes
-      _RL rViscFluxU(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+C  rViscFluxV           :: viscous fluxes
+      _RL rViscFluxV(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
 C !LOCAL VARIABLES: ====================================================
 C  i,j                  :: loop indices
@@ -52,13 +52,13 @@ CEOP
 C     - Laplacian  and bi-harmonic terms
       DO j=1-Oly,sNy+Oly-1
        DO i=1-Olx,sNx+Olx-1
-        rViscFluxU(i,j) =
-     &   -KappaRU(i,j,kp1)
-     &   *rAw(i,j,bi,bj)
-     &   *( uFld(i,j,k,bi,bj)-uFld(i,j,kp1,bi,bj)
+        rViscFluxV(i,j) =
+     &   -KappaRV(i,j,kp1)
+     &   *rAs(i,j,bi,bj)
+     &   *( vFld(i,j,k,bi,bj)-vFld(i,j,kp1,bi,bj)
      &    )*rkFac*recip_drC(kp1)
-     &    *_maskW(i,j,k,bi,bj)
-     &    *_maskW(i,j,kp1,bi,bj)
+     &    *_maskS(i,j,k,bi,bj)
+     &    *_maskS(i,j,kp1,bi,bj)
        ENDDO
       ENDDO
 

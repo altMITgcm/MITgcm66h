@@ -1,43 +1,31 @@
 C $Header$
 C $Name$
 
-#include "MOM_COMMON_OPTIONS.h"
+#include "CPP_OPTIONS.h"
 
-CBOP
-C !ROUTINE: MOM_CALC_HFACZ
-
-C !INTERFACE: ==========================================================
       SUBROUTINE MOM_CALC_HFACZ(
      I        bi,bj,k,
      O        hFacZ,r_hFacZ,
      I        myThid)
-
-C !DESCRIPTION:
-C Calculates the fractional thickness at vorticity points
-
-C !USES: ===============================================================
       IMPLICIT NONE
+C
+C     Calculate Kinetic Energy, KE, with units (m/s)^2
+C       - assumes hydrostatic formulation only
+C
+
+C     == Global variables ==
 #include "SIZE.h"
 #include "GRID.h"
 
-C !INPUT PARAMETERS: ===================================================
-C  bi,bj                :: tile indices
-C  k                    :: vertical level
-C  myThid               :: thread number
+C     == Routine arguments ==
       INTEGER bi,bj,k
-      INTEGER myThid
-
-C !OUTPUT PARAMETERS: ==================================================
-C  hFacZ                :: fractional thickness at vorticity points
-C  r_hFacZ              :: reciprocal
       _RS hFacZ(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS r_hFacZ(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-
-C !LOCAL VARIABLES: ====================================================
-C  i,j                  :: loop indices
-      INTEGER I,J
       _RL hFacZOpen
-CEOP
+      INTEGER myThid
+
+C     == Local variables ==
+      INTEGER I,J
 
 C--   Calculate open water fraction at vorticity points
 
