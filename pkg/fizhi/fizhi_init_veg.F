@@ -53,7 +53,6 @@ C                100:  OCEAN
 C***********************************************************************
       implicit none
 #include "EEPARAMS.h"
-#include "PARAMS.h"
 
       integer mythid,im,jm,maxtyp,nchp,Nsx,Nsy,Nxg,Nyg
       integer nchptot(Nsx,Nsy), nchpland(Nsx,Nsy)
