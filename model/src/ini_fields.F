@@ -30,6 +30,7 @@ C--   Set model variables to initial/restart conditions
       IF ( startTime .EQ. 0. .AND.  nIter0 .EQ. 0 ) THEN
        CALL INI_UVEL( myThid )
        CALL INI_VVEL( myThid )
+       CALL INI_WVEL( myThid )
        CALL INI_THETA( myThid )
        CALL INI_SALT( myThid )
        CALL INI_PSURF( myThid )

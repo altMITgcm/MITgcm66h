@@ -50,6 +50,16 @@ C     Currently AIM does not have any runtime parameters
 C     IF (useAIM) CALL AIM_READPARMS ( myThid )
 #endif
 
+#ifdef ALLOW_MIT_ADJOINT_RUN
+C--   Initialise the cost function.
+      call cost_readparms( mythid )
+      _BARRIER
+
+C--   Initialise the control vector.
+      CALL ctrl_Init( myThid )
+      _BARRIER
+#endif
+
 #ifdef INCLUDE_ECCO_PACKAGE
 c--   Initialize ECCO package parameters
       IF (useECCO) CALL ECCO_READPARMS ( myThid )

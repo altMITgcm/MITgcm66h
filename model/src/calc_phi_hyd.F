@@ -85,7 +85,7 @@ C       Hydrostatic pressure at cell centers
         DO j=jMin,jMax
           DO i=iMin,iMax
 #ifdef      ALLOW_AUTODIFF_TAMC
-            Is this directive correct or even necessary in this new code?
+c           Is this directive correct or even necessary in this new code?
 CADJ GENERAL
 #endif      /* ALLOW_AUTODIFF_TAMC */
 

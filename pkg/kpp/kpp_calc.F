@@ -103,8 +103,6 @@ c     to OLx=1, OLy=1.
 #ifdef ALLOW_AUTODIFF_TAMC
 #include "tamc.h"
 #include "tamc_keys.h"
-      INTEGER    isbyte
-      PARAMETER( isbyte = 4 )
 #else /* ALLOW_AUTODIFF_TAMC */
       integer ikey
 #endif /* ALLOW_AUTODIFF_TAMC */

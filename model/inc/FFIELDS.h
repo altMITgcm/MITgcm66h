@@ -26,6 +26,9 @@ C
 C     Qsw    - Upward short-wave surface heat flux
 C                Units are           W/m^2=kg/s^3 (>0 for ocean cooling)
 C
+C     dQdT   - Thermal relaxation coefficient
+C                                 (W/m^2/degrees -> degrees/second)
+
 C     SST    - Sea surface temperature (degrees) for relaxation
 C     SSS    - Sea surface salinity (psu) for relaxation
 
@@ -33,17 +36,19 @@ C     SSS    - Sea surface salinity (psu) for relaxation
      &                 fu,
      &                 fv,
      &                 Qnet,
+     &                 Qsw,
+     &                 dQdT,
      &                 EmPmR,
      &                 SST,
-     &                 SSS,
-     &                 Qsw
+     &                 SSS
       _RS  fu       (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  fv       (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  Qnet     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  Qsw      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  dQdT     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  EmPmR    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  SST      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  SSS      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RS  Qsw      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
 C     surfaceTendencyU       (units are  m/s^2)
 C                -> usage in gU:     gU = gU + surfaceTendencyU[m/s^2]

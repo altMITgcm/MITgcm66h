@@ -168,6 +168,7 @@ C--   Input files
       uVelInitFile    = ' '
       vVelInitFile    = ' '
       pSurfInitFile   = ' '
+      dQdTFile        = ' '
 
 C
       RETURN

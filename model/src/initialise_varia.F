@@ -48,6 +48,7 @@ C       CALL THE_CORRECTION_STEP(startTime, nIter0, myThid)
 C     ENDIF
 
 C--   Initial conditions are convectively adjusted (for historical reasons)
+#ifndef ALLOW_AUTODIFF_TAMC
       IF ( startTime .EQ. 0. ) THEN
         DO bj = myByLo(myThid), myByHi(myThid)
          DO bi = myBxLo(myThid), myBxHi(myThid)
@@ -62,6 +63,7 @@ C--   Initial conditions are convectively adjusted (for historical reasons)
         ENDDO
         _BARRIER
       END IF
+#endif
 
 C--   Initialize variable data for packages
       CALL PACKAGES_INIT_VARIABLES( myThid )

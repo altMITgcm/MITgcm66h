@@ -132,7 +132,8 @@ C--   Input files
      & zonalWindFile, meridWindFile,
      & thetaClimFile, saltClimFile,
      & surfQfile, EmPmRfile, surfQswfile, 
-     & uVelInitFile, vVelInitFile, pSurfInitFile
+     & uVelInitFile, vVelInitFile, pSurfInitFile,
+     & dQdTFile
 
 C
       _BEGIN_MASTER(myThid)
