@@ -5,7 +5,7 @@ C
 #include "GRID.h"
 #include "DYNVARS.h"
 #include "FFIELDS.h"
-#include "CG2D.h"
-#ifdef INCLUDE_DIAGNOSTICS_INTERFACE_CODE
-#include "AVER.h"
+#include "SURFACE.h"
+#ifdef ALLOW_TIMEAVE
+#include "TIMEAVE_STATV.h"
 #endif
