@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o more CF compliance: convert all MNC 'iter' variables to 'T' so that it 
+  becomes the coordinate variable for the 'T' dimension
 o add CF-style coordinate variables to MNC
   - just a first cut:  numbers are meaningless on the cubesphere and 
     missing along the T axis but otherwise it works!

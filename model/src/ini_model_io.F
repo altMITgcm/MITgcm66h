@@ -116,8 +116,8 @@ C     End define coordinates for all MNC files ----------------------------
 
 
 C     Create MNC definitions for DYNVARS.h variables
-      CALL MNC_CW_ADD_VNAME('iter', '-_-_--__-__t', 0,0, myThid)
-      CALL MNC_CW_ADD_VATTR_TEXT('iter',
+      CALL MNC_CW_ADD_VNAME('T', '-_-_--__-__t', 0,0, myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('T',
      &     'long_name','iteration_count', myThid)
 
       CALL MNC_CW_ADD_VNAME('model_time', '-_-_--__-__t', 0,0, myThid)

@@ -121,7 +121,7 @@ C--   (at least in part)
       IF (useMNC .AND. snapshot_mnc .AND. writeDiag) THEN
         IF ((bi .EQ. 1).AND.(bj .EQ. 1).AND.(k .EQ. 1)) THEN
           CALL MNC_CW_SET_UDIM('mom_vi', -1, myThid)
-          CALL MNC_CW_I_W_S('I','mom_vi',0,0,'iter',myIter,myThid)
+          CALL MNC_CW_I_W_S('I','mom_vi',0,0,'T',myIter,myThid)
           CALL MNC_CW_SET_UDIM('mom_vi', 0, myThid)
         ENDIF
         DO i = 1,9
