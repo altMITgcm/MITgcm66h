@@ -53,6 +53,9 @@ C     == Local variables ==
       _RL atm_cp, atm_kappa, atm_po
 
       IF ( buoyancyRelation .eq. 'OCEANIC' ) THEN
+C       This is the hydrostatic pressure calculation for the Ocean
+C       which uses the FIND_RHO() routine to calculate density
+C       before integrating g*rho over the current layer/interface
 
         dRloc=drC(k)
         IF (k.EQ.1) dRloc=drF(1)
@@ -82,71 +85,101 @@ C       Calculate density
 C       Hydrostatic pressure at cell centers
         DO j=jMin,jMax
           DO i=iMin,iMax
-#ifdef ALLOW_AUTODIFF_TAMC
-          Is this directive correct or even necessary in this new code?
+#ifdef      ALLOW_AUTODIFF_TAMC
+            Is this directive correct or even necessary in this new code?
 CADJ GENERAL
-#endif
-C           This discretization is the "finite volume" form
+#endif      /* ALLOW_AUTODIFF_TAMC */
+
+C---------- This discretization is the "finite volume" form
 C           which has not been used to date since it does not
 C           conserve KE+PE exactly even though it is more natural
 C
-C           phiHyd(i,j,k)=phiHydInterface(i,j)+
-C    &          0.5*drF(K)*gravity*alphaRho(i,j)
-C
-C           This discretization is the "energy conserving" form
+c           phiHyd(i,j,k)=phiHydInterface(i,j)+
+c    &          0.5*drF(K)*gravity*alphaRho(i,j)
+c           phiHydInterface(i,j)=phiHydInterface(i,j)+
+c    &              drF(K)*gravity*alphaRho(i,j)
+C-----------------------------------------------------------------------
+
+C---------- This discretization is the "energy conserving" form
 C           which has been used since at least Adcroft et al., MWR 1997
 C
             phiHyd(i,j,k)=phiHyd(i,j,k)+
      &          0.5*dRloc*gravity*alphaRho(i,j)
             phiHyd(i,j,k+1)=phiHyd(i,j,k)+
      &          0.5*dRlocKp1*gravity*alphaRho(i,j)
+C-----------------------------------------------------------------------
           ENDDO
         ENDDO
         
-C       Hydrostatic pressure at interface below
-        DO j=jMin,jMax
-          DO i=iMin,iMax
-            phiHydInterface(i,j)=phiHydInterface(i,j)+
-     &              drF(K)*gravity*alphaRho(i,j)
-          ENDDO
-        ENDDO
+
+
 
       ELSEIF ( buoyancyRelation .eq. 'ATMOSPHERIC' ) THEN
+C       This is the hydrostatic geopotential calculation for the Atmosphere
+C       The ideal gas law is used implicitly here rather than calculating
+C       the specific volume, analogous to the oceanic case.
 
+C       Integrate d Phi / d pi
+
+C *NOTE* These constants should be in the data file and PARAMS.h
         atm_cp=1004. _d 0
         atm_kappa=2. _d 0/7. _d 0
         atm_po=1. _d 5
         IF (K.EQ.1) THEN
-C       Integrate d Phi / d R
           ddRp1=atm_cp*( ((rC(K)/atm_po)**atm_kappa)
      &                  -((rF(K)/atm_po)**atm_kappa) )
           DO j=jMin,jMax
-           DO i=iMin,iMax
-             ddRp=ddRp1
-             IF (hFacC(I,J, K ,bi,bj).EQ.0.) ddRp=0.
-             phiHyd(i,j,K)=0.
+            DO i=iMin,iMax
+              ddRp=ddRp1
+              IF (hFacC(I,J, K ,bi,bj).EQ.0.) ddRp=0.
+C------------ The integration for the first level phi(k=1) is the
+C             same for both the "finite volume" and energy conserving
+C             methods.
+C             *NOTE* The geopotential boundary condition should go
+C                    here but has not been implemented yet
+              phiHyd(i,j,K)=0.
      &          -ddRp*(theta(I,J,K,bi,bj)-tRef(K))
+C-----------------------------------------------------------------------
            ENDDO
           ENDDO
         ELSE
-C       Integrate d Phi / d R
+
+C-------- This discretization is the "finite volume" form which
+C         integrates the hydrostatic equation of each half/sub-layer.
+C         This seems most natural and could easily allow for lopped cells
+C         by replacing rF(K) with the height of the surface (not implemented).
+C         in the lower layers (e.g. at k=1).
+C
+c         ddRm1=atm_cp*( ((rF( K )/atm_po)**atm_kappa)
+c    &                  -((rC(K-1)/atm_po)**atm_kappa) )
+c         ddRp1=atm_cp*( ((rC( K )/atm_po)**atm_kappa)
+c    &                  -((rF( K )/atm_po)**atm_kappa) )
+C-----------------------------------------------------------------------
+
+
+C-------- This discretization is the energy conserving form
           ddRp1=atm_cp*( ((rC( K )/atm_po)**atm_kappa)
-     &                  -((rF( K )/atm_po)**atm_kappa) )
-          ddRm1=atm_cp*( ((rF( K )/atm_po)**atm_kappa)
-     &                  -((rC(K-1)/atm_po)**atm_kappa) )
+     &                  -((rC(K-1)/atm_po)**atm_kappa) )*0.5
+          ddRm1=ddRp1
+C-----------------------------------------------------------------------
+
           DO j=jMin,jMax
-           DO i=iMin,iMax
-             ddRp=ddRp1
-             ddRm=ddRm1
-             IF (hFacC(I,J, K ,bi,bj).EQ.0.) ddRp=0.
-             IF (hFacC(I,J,K-1,bi,bj).EQ.0.) ddRm=0.
-             phiHyd(i,j,K)=phiHyd(i,j,K-1)
-     &          -( ddRm*(theta(I,J,K-1,bi,bj)-tRef(K-1))
-     &            +ddRp*(theta(I,J, K ,bi,bj)-tRef( K )) )
-           ENDDO
+            DO i=iMin,iMax
+              ddRp=ddRp1
+              ddRm=ddRm1
+              IF (hFacC(I,J, K ,bi,bj).EQ.0.) ddRp=0.
+              IF (hFacC(I,J,K-1,bi,bj).EQ.0.) ddRm=0.
+              phiHyd(i,j,K)=phiHyd(i,j,K-1)
+     &           -( ddRm*(theta(I,J,K-1,bi,bj)-tRef(K-1))
+     &             +ddRp*(theta(I,J, K ,bi,bj)-tRef( K )) )
+C             Old code bug looked like this
+Cold          phiHyd(i,j,K)=phiHyd(i,j,K-1)-(ddRm1*
+Cold &      (theta(I,J,K-1,bi,bj)+theta(I,J,K,bi,bj))-tRef(K))
+            ENDDO
           ENDDO
         ENDIF
-                                                                                        
+
+
       ELSE
         STOP 'CALC_PHI_HYD: We should never reach this point!'
       ENDIF
