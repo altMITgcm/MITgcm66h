@@ -23,6 +23,9 @@ C     |       identified, rebuild the code with the appropriate  |
 C     |       options set at compile time.                       |
 C     \==========================================================/
 
+#ifndef _CPP_EEOPTIONS_H_
+#define _CPP_EEOPTIONS_H_
+
 C     In general the following convention applies:
 C     ALLOW  - indicates an feature will be included but it may
 C     CAN      have a run-time flag to allow it to be switched
@@ -173,4 +176,4 @@ C     precision when they see .Dnn which runs very slowly!
 #define _d D
 #endif
 
-#define ALLOW_CD
+#endif /* _CPP_EEOPTIONS_H_ */

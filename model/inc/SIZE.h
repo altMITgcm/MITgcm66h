@@ -35,7 +35,7 @@ C     Nz  - No. points in Z for full process domain.
       INTEGER Ny
       INTEGER Nz
       PARAMETER (
-     &           sNx =  60, 
+     &           sNx =  60,
      &           sNy =  60,
      &           OLx =   3,
      &           OLy =   3,

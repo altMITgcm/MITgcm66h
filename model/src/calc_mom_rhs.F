@@ -1,6 +1,6 @@
 C $Header$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
 #define NO_LATERAL_SLIP
 #define NO_BOTTOM_SLIP

@@ -1,5 +1,6 @@
 C $Header$
-#include "CPP_EEOPTIONS.h"
+
+#include "CPP_OPTIONS.h"
 
 C--  File read_write.F: Routines to handle mid-level I/O interface.
 C--   Contents
