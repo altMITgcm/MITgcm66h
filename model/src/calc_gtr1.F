@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CBOP
@@ -58,6 +59,8 @@ C     myThid - Instance number for this innvocation of CALC_GT
       INTEGER myThid
 
 CEOP
+
+ceh3 needs an IF ( usePASSIVE_TRACER ) THEN
 
 #ifdef ALLOW_PASSIVE_TRACER
 C     === Local variables ===

@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CBOP
@@ -92,6 +93,7 @@ C--   Set laplace operators for use in 2D conjugate gradient solver.
 
 #ifdef ALLOW_NONHYDROSTATIC
 C--   Set laplace operators for use in 3D conjugate gradient solver.
+ceh3 should add an IF ( useNONHYDROSTATIC ) THEN
       CALL INI_CG3D( myThid )
 #endif
 
@@ -188,6 +190,7 @@ C--   initialise time-average arrays with initial state values
         ENDIF
 cswdptr -- add ---
 #ifdef ALLOW_PTRACERS
+che3 needs an IF ( usePTRACERS ) THEN
            CALL PTRACERS_STATVARS(startTime, nIter0, bi, bj, myThid)
 #endif
 cswdptr -- end add ---

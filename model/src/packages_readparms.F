@@ -1,4 +1,7 @@
+C $Header$
+C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CStartOfInterface
@@ -136,11 +139,13 @@ C--   Initialise gradient check parameters
 
 #ifdef ALLOW_CALENDAR
 C--   Initialise the calendar package.
+ceh3 should have an IF ( useCAL ) THEN
       call cal_readparms( myThid )
 #endif
 
 C--   Custom routine to set forcing fields.
 #ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
+ceh3 needs an IF ( useEXF ) THEN
       call exf_readparms  ( mythid )
 #endif
 

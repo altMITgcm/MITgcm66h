@@ -1,7 +1,9 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
+
 CBOP
 C     !ROUTINE: UPDATE_CG2D
 C     !INTERFACE:

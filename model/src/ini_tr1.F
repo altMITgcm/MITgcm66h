@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CBOP
@@ -54,6 +55,8 @@ C     I,J,K
 CEOP
 
       _BARRIER
+
+ceh3 this perhaps needs an IF ( usePASSIVE_TRACER ) THEN
 
 C--   Initialise tracer to inline.
       DO bj = myByLo(myThid), myByHi(myThid)

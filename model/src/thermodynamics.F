@@ -1,7 +1,9 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
+
 #ifdef ALLOW_AUTODIFF_TAMC
 # ifdef ALLOW_GMREDI
 #  include "GMREDI_OPTIONS.h"
@@ -247,9 +249,11 @@ C- tracer tendency needs to be set to zero (moved here from gad_calc_rhs):
            gT(i,j,k,bi,bj)   = 0. _d 0
            gS(i,j,k,bi,bj)   = 0. _d 0
 # ifdef ALLOW_PASSIVE_TRACER
+ceh3 needs an IF ( use PASSIVE_TRACER) THEN
            gTr1(i,j,k,bi,bj) = 0. _d 0
 # endif
 # ifdef ALLOW_PTRACERS
+ceh3 this should have an   IF ( usePTRACERS ) THEN
            DO iTracer=1,PTRACERS_numInUse
             gPTr(i,j,k,bi,bj,itracer) = 0. _d 0
            ENDDO
@@ -704,6 +708,7 @@ C        and step forward storing result in gTnm1, gSnm1, etc.
      I         myIter, myThid)
          ENDIF
 #ifdef ALLOW_PASSIVE_TRACER
+ceh3 needs an IF ( usePASSIVE_TRACER ) THEN
          IF ( tr1Stepping ) THEN
            CALL CALC_GTR1(
      I         bi,bj,iMin,iMax,jMin,jMax, k,km1,kup,kDown,
@@ -750,6 +755,7 @@ C--     end of thermodynamic k loop (Nr:1)
 cswdice -- add ---
 #ifdef ALLOW_THERM_SEAICE
 c timeaveraging for ice model values
+ceh3 This should be wrapped in an IF ( useThermSeaIce ) THEN
            CALL ICE_AVE(bi,bj,iMin,iMax,jMin,jMax,myThid )
 #endif
 cswdice --- end add ---
@@ -815,6 +821,7 @@ C--     End If implicitDiffusion
         ENDIF
 
 #ifdef ALLOW_TIMEAVE
+ceh3 needs an IF ( useTIMEAVE ) THEN
         IF (taveFreq.GT.0. .AND. ivdc_kappa.NE.0.) THEN
           CALL TIMEAVE_CUMUL_1T(ConvectCountTave, ConvectCount,
      I                           Nr, deltaTclock, bi, bj, myThid)

@@ -1,6 +1,8 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
+
 C CPP flags controlling particular source code features
 
 C o Include/exclude code for C-D grid method of integrating the 
