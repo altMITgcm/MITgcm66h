@@ -60,10 +60,32 @@ cp -r exe exe7
 \cp verification/global_with_CFC11/input4x4/data.gmredi exe7
 qsub verification/global_with_CFC11/input4x4/jobfile
 
+# requires about 1:40 to complete on chapman, 32-CPU queue
 
-
-
-
+cd exe0
+RM *.meta
+RM GM* pickup* STD*
+cd ../exe1
+RM *.meta
+RM GM* pickup* STD*
+cd ../exe2
+RM *.meta
+RM GM* pickup* STD*
+cd ../exe3
+RM *.meta
+RM GM* pickup* STD*
+cd ../exe4
+RM *.meta
+RM GM* pickup* STD*
+cd ../exe5
+RM *.meta
+RM GM* pickup* STD*
+cd ../exe6
+RM *.meta
+RM GM* pickup* STD*
+cd ../exe7
+RM *.meta
+RM GM* pickup* STD*
 
 ==============================================================
 
