@@ -148,6 +148,9 @@ C   Note - only works with  #undef NO_SLIP_LATERAL  in calc_mom_rhs.F
 C          because the old code did not have no-slip BCs
 #undef  OLD_UV_GEOMETRY
 
+C o Include/exclude code for sea-ice model
+#undef  ALLOW_SEAICE
+
 C o Execution environment support options
 #include "CPP_EEOPTIONS.h"
 
