@@ -36,19 +36,6 @@ C     == Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "DYNVARS.h"
-cswdblk --- add ---
-#ifdef ALLOW_BULK_FORCE
-#include "BULKF.h"
-#include "FFIELDS.h"
-#endif
-cswdblk -- end add ---
-cswdice -- add ---
-#ifdef ALLOW_THERM_SEAICE
-#include "ICE.h"
-#include "ICE_DIAGS.h"
-#endif
-cswdice -- end add ---
-
 
 
       LOGICAL  DIFFERENT_MULTIPLE
@@ -140,21 +127,17 @@ C--   Do SBO diagnostics.
       ENDIF
 #endif
 
-cswdblk ---  add ---
 #ifdef ALLOW_BULK_FORCE
 C--   Do bulkf diagnostics.
       IF (useBulkforce)
      & CALL BULKF_DIAGS( myCurrentTime, myIter, myThid )
 #endif
-cswdblk -- end add ---
 
-cswdice ---  add ---
 #ifdef ALLOW_THERM_SEAICE
 C--   Do seaice diagnostics.
       IF (useThermSeaice)
      & CALL ICE_DIAGS( myCurrentTime, myIter, myThid )
 #endif
-cswdice -- end add ---
 
 cswdptr ---  add ---
 #ifdef ALLOW_GCHEM
@@ -164,7 +147,6 @@ C--   Do ptracer diagnostics.
      & CALL GCHEM_DIAGS( myCurrentTime, myIter, myThid )
 #endif
 cswdptr -- end add ---
-
 
       RETURN
       END
