@@ -38,13 +38,13 @@ C     === Local variables ====
      I                myThid )
 
       _BEGIN_MASTER( myThid )
-      WRITE(*,'(A,A30,A,1PE22.14)')
+      WRITE(standardmessageunit,'(A,A30,A,1PE22.14)')
      &      'DEBUG_STATS_RS: ',arrName,'  min=',theMin
-      WRITE(*,'(A,A30,A,1PE22.14)')
+      WRITE(standardmessageunit,'(A,A30,A,1PE22.14)')
      &      'DEBUG_STATS_RS: ',arrName,'  max=',theMax
-      WRITE(*,'(A,A30,A,1PE22.14)')
+      WRITE(standardmessageunit,'(A,A30,A,1PE22.14)')
      &      'DEBUG_STATS_RS: ',arrName,' mean=',theMean
-      WRITE(*,'(A,A30,A,1PE22.14)')
+      WRITE(standardmessageunit,'(A,A30,A,1PE22.14)')
      &      'DEBUG_STATS_RS: ',arrName,' S.D.=',theSD
       _END_MASTER( myThid )
 

@@ -217,13 +217,15 @@ C     _EXCH_XY_R8( cg2d_s, myThid )
 
        IF ( debugLevel .GE. debLevZero ) THEN
         _BEGIN_MASTER( myThid )
-        write(*,'(A,1P2E22.14)')' cg2d: Sum(rhs),rhsMax = ',
+        write(standardmessageunit,'(A,1P2E22.14)')
+     &  ' cg2d: Sum(rhs),rhsMax = ',
      &                                  sumRHS,rhsMax 
         _END_MASTER( myThid )
        ENDIF
 C     _BARRIER
 c     _BEGIN_MASTER( myThid )
-c      WRITE(*,'(A,I6,1PE30.14)') ' CG2D iters, err = ', 
+c      WRITE(standardmessageunit,'(A,I6,1PE30.14)') 
+c    & ' CG2D iters, err = ', 
 c    & actualIts, actualResidual
 c     _END_MASTER( myThid )
       firstResidual=actualResidual
