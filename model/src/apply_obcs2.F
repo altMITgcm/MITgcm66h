@@ -73,7 +73,5 @@ C Western boundary
        ENDIF
       ENDDO
 
-
-
       RETURN
       END

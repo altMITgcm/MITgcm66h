@@ -57,6 +57,10 @@ c    &       *sin(2.*PI*myCurrentTime/OBtimeScale)
 c    &       *max(myCurrentTime/OBtimeScale,1.)
           OBWv(J,K,bi,bj)=0.
           OBWt(J,K,bi,bj)=tRef(K)
+#ifdef ALLOW_NONHYDROSTATIC
+          OBEw(J,K,bi,bj)=0.
+          OBWw(J,K,bi,bj)=0.
+#endif
          ENDDO
          DO I=1-Olx,sNx+Olx
           OBNu(I,K,bi,bj)=0.
@@ -65,6 +69,10 @@ c    &       *max(myCurrentTime/OBtimeScale,1.)
           OBSu(I,K,bi,bj)=0.
           OBSv(I,K,bi,bj)=0.
           OBSt(I,K,bi,bj)=tRef(K)
+#ifdef ALLOW_NONHYDROSTATIC
+          OBSw(I,K,bi,bj)=0.
+          OBSw(I,K,bi,bj)=0.
+#endif
          ENDDO
         ENDDO
        ENDDO
