@@ -1034,7 +1034,7 @@ c-----pre-computed table
 c-----include the pre-computed table for cai
 
 #include "cai-dat.h"
-#     save caib,caif
+c     save caib,caif
 
 
 c-----clouds within each of the high, middle, and low clouds are
@@ -2509,7 +2509,7 @@ c********************************************************************
 c-----include co2 look-up table
 
 #include "cah-dat.h"
-#     save cah
+c     save cah
  
 c********************************************************************
 c-----table look-up for the reduction of clear-sky solar
