@@ -137,6 +137,12 @@ distclean:
 	@make clean
 	-rm -f Makefile
 
+install: all
+	-rm -rf ./api_ref
+	mkdir ./api_ref
+	-cp api_main.pdf ./api_ref/api_ref.pdf
+	scp -r ./api_ref mitgcm.org:/u/u0/httpd/html/
+
 clean:
 	-rm -f *.aux *.dvi *.log *.toc *.out
 	-rm -f api_main.*
