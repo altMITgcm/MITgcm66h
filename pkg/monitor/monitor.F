@@ -49,7 +49,7 @@ C      Print the numerical stablility parameters for current state
        dT=max(deltaTtracer,deltaTmom)
        CALL MON_ADVCFL('U',uVel,recip_dxc,dT,myThid)
        CALL MON_ADVCFL('V',vVel,recip_dyc,dT,myThid)
-       CALL MON_ADVCFL('W',wVel,recip_drc,dT,myThid)
+       CALL MON_ADVCFLW('W',wVel,recip_drc,dT,myThid)
 
 C      Print stats for KE
        CALL MON_KE(myThid)
