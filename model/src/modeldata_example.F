@@ -89,6 +89,10 @@ C     -- Local variables --
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#             ( m^4/s ).'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') '>#   momStepping - On/Off flag for momentum'
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') '>#                  equation.          '
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#   momViscosity - On/Off flag for momentum'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#                  mixing.                 '
@@ -104,6 +108,11 @@ C     -- Local variables --
       WRITE(msgBuf,'(A)') '>#   useCoriolis  - On/Off flag for momentum'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#                  equation coriolis term. '
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') '>#   tempStepping - On/Off flag for temperature'
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') '>#                  eqaution.         '
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#   tempDiffusion- On/Off flag for temperature'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '>#                  mixing.                 '
@@ -162,6 +171,8 @@ C     -- Local variables --
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '> diffK4S=0.'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') '> momStepping=.TRUE.'
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '> momViscosity=.TRUE.'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '> momAdvection=.TRUE.'
@@ -171,6 +182,8 @@ C     -- Local variables --
       WRITE(msgBuf,'(A)') '> momForcing=.TRUE.'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '> useCoriolis=.TRUE.'
+      CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      WRITE(msgBuf,'(A)') '> tempStepping=.TRUE.'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
       WRITE(msgBuf,'(A)') '> tempDiffusion=.TRUE.'
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
