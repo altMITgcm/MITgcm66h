@@ -347,7 +347,9 @@ C--   Un-normalise the answer
        ENDDO
       ENDDO
 
-Cadj  _EXCH_XY_R8(cg2d_x, myThid )
+C     The following exchange was moved up to solve_for_pressure
+C     for compatibility with TAMC.
+C     _EXCH_XY_R8(cg2d_x, myThid )
       _BEGIN_MASTER( myThid )
        WRITE(0,'(A,I6,1PE30.14)') ' CG2D iters, err = ', 
      & actualIts, actualResidual
