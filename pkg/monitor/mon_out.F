@@ -124,6 +124,11 @@ C     I0     - Temps used in calculating string length
       INTEGER  i, I0,I1, IL
       CHARACTER*(100) mon_vname
       INTEGER  nvname
+      INTEGER  ivarr(1)
+      REAL*8   dvarr(1)
+
+      ivarr(1) = ival
+      dvarr(1) = dval
 
       msgBuf = ' '
       lBuf   = 0
@@ -205,10 +210,10 @@ C     write(*,*) 'mon_write_stdout = ''', mon_write_stdout, ''''
      &           mon_vname, '-_-_--__-__t', 0,0, myThid)
             IF (itype .EQ. 1)
      &           CALL MNC_CW_I_W(
-     &           'I',mon_fname,1,1,mon_vname, ival, myThid)
+     &           'I',mon_fname,1,1,mon_vname, ivarr, myThid)
             IF (itype .EQ. 2)
      &           CALL MNC_CW_RL_W(
-     &           'D',mon_fname,1,1,mon_vname, dval, myThid)
+     &           'D',mon_fname,1,1,mon_vname, dvarr, myThid)
           ENDIF
 #endif /*  ALLOW_MNC  */
 
