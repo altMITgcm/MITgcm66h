@@ -125,16 +125,6 @@ c Local Variables
       logical alarm
       external alarm
 
-c     save lwdt,lwdtclr,swdt,swdtclr,turbu,turbv,turbt,turbq
-c     save moistu,moistv,moistt,moistq
-c     save radswg,swgclr,fdirpar,fdifpar,osr,osrclr,tg0,radlwg
-c     save st4,dst4,dlwdtg,rainlsp,raincon,snowfall,iras
-c     save nlwcld,cldtot_lw,cldras_lw,cldlsp_lw,nlwlz,lwlz
-c     save nswcld,cldtot_sw,cldras_sw,cldlsp_sw,nswlz,swlz
-c     save imstturbsw,imstturblw,qliqavesw,qliqavelw,fccavesw,fccavelw
-c     save qq
-c     save pl,ple,dpres,pkle,pkl
-
       common /saver/ lwdt,lwdtclr,swdt,swdtclr,turbu,turbv,turbt,turbq
       common /saver/ moistu,moistv,moistt,moistq
       common /saver/ radswg,swgclr,fdirpar,fdifpar,osr,osrclr,tg0,radlwg
