@@ -11,9 +11,9 @@ c ---------------------------
 c Solid_Earth Couplings
 c ---------------------
       common /earth_exports/ 
-     .   nchpland, ityp, chfr, alai, agrn, 
+     .   chfr, alai, agrn, 
      .   albvisdr, albvisdf, albnirdr, albnirdf, emiss,
-     .   landtype, tgz
+     .   landtype, tgz, nchpland, ityp
       integer nchpland
       integer ityp(nchp)
       _RL chfr(nchp)
