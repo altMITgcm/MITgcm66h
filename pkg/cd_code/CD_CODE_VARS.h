@@ -1,6 +1,9 @@
 C $Header$
 C $Name$
 
+C     uVelD  - D grid zonal velocity
+C     vVelD  - D grid meridional velocity
+
 #ifdef ALLOW_CD_CODE
       COMMON /DYNVARS_CD/ 
      &                   uVelD, vVelD,

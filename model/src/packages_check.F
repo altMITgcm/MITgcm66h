@@ -102,6 +102,10 @@ CEOP
       IF (useSEAICE) CALL PACKAGES_CHECK_ERROR('SEAICE', myThid)
 #endif
 
+#ifndef ALLOW_CD_CODE
+      IF (useCDscheme) CALL PACKAGES_CHECK_ERROR('CD_CODE', myThid)
+#endif
+
 #ifdef ALLOW_AUTODIFF
       CALL CTRL_CHECK( myThid )
       CALL COST_CHECK( myThid )

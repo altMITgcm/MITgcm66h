@@ -73,6 +73,9 @@ C     == Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "DYNVARS.h"
+#ifdef ALLOW_CD_CODE
+#include "CD_CODE_VARS.h"
+#endif
 #include "GRID.h"
 #ifdef ALLOW_PASSIVE_TRACER
 #include "TR1.h"

@@ -20,6 +20,9 @@ C     == Global variables ==
       IMPLICIT NONE
 #include "SIZE.h"
 #include "DYNVARS.h"
+#ifdef ALLOW_CD_CODE
+#include "CD_CODE_VARS.h"
+#endif
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"

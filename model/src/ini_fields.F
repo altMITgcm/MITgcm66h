@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CBOP
@@ -50,6 +51,10 @@ C--   Set model variables to initial/restart conditions
        ENDIF
        CALL READ_CHECKPOINT( nIter0, myThid )
       ENDIF
+
+#ifdef ALLOW_CD_CODE
+      IF (useCDscheme) CALL CD_CODE_INIT_VARS( nIter0, myThid )
+#endif
 
       RETURN
       END

@@ -28,6 +28,9 @@ C     == Global variables ===
 #ifdef ALLOW_PASSIVE_TRACER
 #include "TR1.h"
 #endif
+#ifdef ALLOW_CD_CODE
+#include "CD_CODE_VARS.h"
+#endif
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==

@@ -29,6 +29,9 @@ C     === Global variables ===
 #ifdef ALLOW_NONHYDROSTATIC
 #include "GW.h"
 #endif
+#ifdef ALLOW_CD_CODE
+#include "CD_CODE_VARS.h"
+#endif
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
