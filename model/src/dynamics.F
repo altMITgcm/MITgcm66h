@@ -58,16 +58,7 @@ C                              o rVel:   Vertical velocity at upper and
 C                                        lower cell faces.
 C     maskC,maskUp             o maskC: land/water mask for tracer cells
 C                              o maskUp: land/water mask for W points
-C     aTerm, xTerm, cTerm    - Work arrays for holding separate terms in
-C     mTerm, pTerm,            tendency equations.
-C     fZon, fMer, fVer[STUV]   o aTerm: Advection term
-C                              o xTerm: Mixing term
-C                              o cTerm: Coriolis term
-C                              o mTerm: Metric term
-C                              o pTerm: Pressure term
-C                              o fZon: Zonal flux term
-C                              o fMer: Meridional flux term
-C                              o fVer: Vertical flux term - note fVer
+C     fVer[STUV]               o fVer: Vertical flux term - note fVer
 C                                      is "pipelined" in the vertical
 C                                      so we need an fVer for each
 C                                      variable.
@@ -99,13 +90,6 @@ C                      index into fVerTerm.
       _RL rVel    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
       _RS maskC   (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS maskUp  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL aTerm   (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL xTerm   (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL cTerm   (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL mTerm   (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL pTerm   (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL fZon    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL fMer    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL fVerT   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
       _RL fVerS   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
       _RL fVerU   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
@@ -207,13 +191,6 @@ C     uninitialised but inert locations.
         yA(i,j)      = 0. _d 0
         uTrans(i,j)  = 0. _d 0
         vTrans(i,j)  = 0. _d 0
-        aTerm(i,j)   = 0. _d 0
-        xTerm(i,j)   = 0. _d 0
-        cTerm(i,j)   = 0. _d 0
-        mTerm(i,j)   = 0. _d 0
-        pTerm(i,j)   = 0. _d 0
-        fZon(i,j)    = 0. _d 0
-        fMer(i,j)    = 0. _d 0
         DO k=1,Nr
          phiHyd (i,j,k)  = 0. _d 0
          KappaRU(i,j,k) = 0. _d 0
@@ -447,7 +424,7 @@ C        and step forward storing result in gTnm1, gSnm1, etc.
      I         bi,bj,iMin,iMax,jMin,jMax, k,km1,kup,kDown,
      I         xA,yA,uTrans,vTrans,rTrans,maskUp,maskC,
      I         KappaRT,
-     U         aTerm,xTerm,fZon,fMer,fVerT,
+     U         fVerT,
      I         myTime, myThid)
            CALL TIMESTEP_TRACER(
      I         bi,bj,iMin,iMax,jMin,jMax,k,
@@ -460,7 +437,7 @@ C        and step forward storing result in gTnm1, gSnm1, etc.
      I         bi,bj,iMin,iMax,jMin,jMax, k,km1,kup,kDown,
      I         xA,yA,uTrans,vTrans,rTrans,maskUp,maskC,
      I         KappaRS,
-     U         aTerm,xTerm,fZon,fMer,fVerS,
+     U         fVerS,
      I         myTime, myThid)
            CALL TIMESTEP_TRACER(
      I         bi,bj,iMin,iMax,jMin,jMax,k,

@@ -7,7 +7,7 @@ CStartOfInterFace
      I           bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
      I           xA,yA,uTrans,vTrans,rTrans,maskup,maskC,
      I           KappaRT,
-     U           af,df,fZon,fMer,fVerT,
+     U           fVerT,
      I           myCurrentTime, myThid )
 C     /==========================================================\
 C     | SUBROUTINE CALC_GT                                       |
@@ -47,10 +47,6 @@ c #include "GM_ARRAYS.h"
 
 
 C     == Routine arguments ==
-C     fZon    - Work array for flux of temperature in the east-west 
-C               direction at the west face of a cell.
-C     fMer    - Work array for flux of temperature in the north-south 
-C               direction at the south face of a cell.
 C     fVerT   - Flux of temperature (T) in the vertical 
 C               direction at the upper(U) and lower(D) faces of a cell.
 C     maskUp  - Land mask used to denote base of the domain.
@@ -60,13 +56,9 @@ C     yA      - Tracer cell face area normal to X
 C     uTrans  - Zonal volume transport through cell face
 C     vTrans  - Meridional volume transport through cell face
 C     rTrans  - Vertical volume transport through cell face
-C     af      - Advective flux component work array
-C     df      - Diffusive flux component work array
 C     bi, bj, iMin, iMax, jMin, jMax - Range of points for which calculation
 C                                      results will be set.
 C     myThid - Instance number for this innvocation of CALC_GT
-      _RL fZon  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL fMer  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL fVerT (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
       _RS xA    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS yA    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
@@ -76,8 +68,6 @@ C     myThid - Instance number for this innvocation of CALC_GT
       _RS maskUp(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS maskC (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL KappaRT(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
-      _RL af    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL df    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER k,kUp,kDown,kM1
       INTEGER bi,bj,iMin,iMax,jMin,jMax
       INTEGER myThid
@@ -92,6 +82,10 @@ C     I, J, K - Loop counters
       _RL dTdx(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL dTdy(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL df4   (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL fZon  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL fMer  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL af    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL df    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
 #ifdef ALLOW_AUTODIFF_TAMC
 C--   only the kUp part of fverT is set in this subroutine
