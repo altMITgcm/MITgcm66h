@@ -92,12 +92,13 @@ C--   Write model state to binary file
 C--   Do time averages
       IF (taveFreq.GT.0.) THEN
        CALL TIMEAVE_STATV_WRITE( myCurrentTime, myIter, myThid )
-#ifdef ALLOW_AIM
-       IF (useAIM)
-     &  CALL AIM_WRITE_TAVE( myCurrentTime, myIter, myThid )
-#endif                                                             
       ENDIF
 #endif
+#ifdef ALLOW_AIM
+C--   Do AIM time averages
+      IF (useAIM)
+     &  CALL AIM_WRITE_TAVE( myCurrentTime, myIter, myThid )
+#endif                                                             
 
 #ifdef ALLOW_GMREDI
 C--   Do KPP diagnostics.
