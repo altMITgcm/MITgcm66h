@@ -118,16 +118,16 @@ C     Add coordinates
      &     'units', 'm', myThid)
 
       CALL MNC_CW_SET_UDIM('state', 0, myThid)
-      CALL MNC_CW_RS_W_R('state',0,0,'XC',xC, myThid)
-      CALL MNC_CW_RS_W_R('state',0,0,'XU',xG, myThid)
-      CALL MNC_CW_RS_W_R('state',0,0,'XV',xG, myThid)
+      CALL MNC_CW_RS_W('R','state',0,0,'XC',xC, myThid)
+      CALL MNC_CW_RS_W('R','state',0,0,'XU',xG, myThid)
+      CALL MNC_CW_RS_W('R','state',0,0,'XV',xG, myThid)
 
-      CALL MNC_CW_RS_W_R('state',0,0,'YC',yC, myThid)
-      CALL MNC_CW_RS_W_R('state',0,0,'YU',yG, myThid)
-      CALL MNC_CW_RS_W_R('state',0,0,'YV',yG, myThid)
+      CALL MNC_CW_RS_W('R','state',0,0,'YC',yC, myThid)
+      CALL MNC_CW_RS_W('R','state',0,0,'YU',yG, myThid)
+      CALL MNC_CW_RS_W('R','state',0,0,'YV',yG, myThid)
 
-      CALL MNC_CW_RS_W_R('state',0,0,'RC',rC, myThid)
-      CALL MNC_CW_RS_W_R('state',0,0,'RF',rF, myThid)
+      CALL MNC_CW_RS_W('R','state',0,0,'RC',rC, myThid)
+      CALL MNC_CW_RS_W('R','state',0,0,'RF',rF, myThid)
 
       ENDIF
 #endif
