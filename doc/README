@@ -18,8 +18,9 @@ o Install
 
 o Running
   
-  eedata
-  data
+  - Inout files
+    eedata
+    data
 
   - Serial execution
 
@@ -35,4 +36,9 @@ o Running
   - Parallel execution. Hybrid
 
 o References
-
+  Web sites - HP
+  for doc     Digital
+              SGI
+              Sun
+              Linux threads
+              CRAY multitasking
