@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o change global_ocean.cs32x15 because of Pb with GM on CS-grid.
+
 checkpoint52d_pre
 o surface flux time-av diagnostic modified for NLFS & RealFreshWater 
 o add call to AIM pendant S/R in external_forcing & external_fields_load.F
