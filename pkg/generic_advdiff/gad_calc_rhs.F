@@ -386,30 +386,27 @@ C *note* should update GMREDI_RTRANSPORT to set df  *aja*
       ENDDO
 
 #ifdef ALLOW_KPP
-C-    Add non local KPP transport term (ghat) to diffusive T flux.
-      IF (useKPP) THEN
+C-    Set non local KPP transport term (ghat):
+      IF ( useKPP .AND. k.GE.2 ) THEN
        DO j=1-Oly,sNy+Oly
         DO i=1-Olx,sNx+Olx
          df(i,j) = 0. _d 0
         ENDDO
        ENDDO
        IF (tracerIdentity.EQ.GAD_TEMPERATURE) THEN
-C *note* should update KPP_TRANSPORT_T to set df  *aja*
         CALL KPP_TRANSPORT_T(
      I     iMin,iMax,jMin,jMax,bi,bj,k,km1,
-     I     KappaRT,
-     U     df )
+     O     df )
        ELSEIF (tracerIdentity.EQ.GAD_SALINITY) THEN
         CALL KPP_TRANSPORT_S(
      I     iMin,iMax,jMin,jMax,bi,bj,k,km1,
-     I     KappaRT,
-     U     df )
+     O     df )
 #ifdef ALLOW_PTRACERS
        ELSEIF (tracerIdentity .GE. GAD_TR1) THEN
         CALL KPP_TRANSPORT_PTR(
      I     iMin,iMax,jMin,jMax,bi,bj,k,km1,
-     I     tracerIdentity-GAD_TR1+1,KappaRT,
-     U     df )
+     I     tracerIdentity-GAD_TR1+1,
+     O     df )
 #endif
        ELSE
         PRINT*,'invalid tracer indentity: ', tracerIdentity
