@@ -64,6 +64,36 @@ C-  check that CPP option is "defined" when running-flag parameter is on:
       ENDIF
 #endif
 
+#ifndef INCLUDE_IMPLVERTADV_CODE
+      IF ( momImplVertAdv ) THEN 
+        WRITE(msgBuf,'(A)') 
+     &   'CONFIG_CHECK: #undef INCLUDE_IMPLVERTADV_CODE'
+        CALL PRINT_ERROR( msgBuf , myThid)
+        WRITE(msgBuf,'(A)')
+     &   'CONFIG_CHECK: but momImplVertAdv is TRUE'
+        CALL PRINT_ERROR( msgBuf , myThid)
+        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
+      ENDIF
+      IF ( tempImplVertAdv ) THEN 
+        WRITE(msgBuf,'(A)') 
+     &   'CONFIG_CHECK: #undef INCLUDE_IMPLVERTADV_CODE'
+        CALL PRINT_ERROR( msgBuf , myThid)
+        WRITE(msgBuf,'(A)')
+     &   'CONFIG_CHECK: but tempImplVertAdv is TRUE'
+        CALL PRINT_ERROR( msgBuf , myThid)
+        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
+      ENDIF
+      IF ( saltImplVertAdv ) THEN 
+        WRITE(msgBuf,'(A)') 
+     &   'CONFIG_CHECK: #undef INCLUDE_IMPLVERTADV_CODE'
+        CALL PRINT_ERROR( msgBuf , myThid)
+        WRITE(msgBuf,'(A)')
+     &   'CONFIG_CHECK: but saltImplVertAdv is TRUE'
+        CALL PRINT_ERROR( msgBuf , myThid)
+        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
+      ENDIF
+#endif
+
 #ifndef EXACT_CONSERV
       IF (exactConserv) THEN 
         WRITE(msgBuf,'(A)') 
@@ -131,7 +161,6 @@ C       code is being compiled
 C     o If taveFreq is finite, then we must make sure the diagnostics
 C       code is being compiled
 #ifndef ALLOW_TIMEAVE
-ceh3 needs an IF ( useTIMEAVE ) THEN
       IF (taveFreq.NE.0.) THEN
         WRITE(msgBuf,'(A)')
      &  'CONFIG_CHECK: taveFreq <> 0  but you have'
