@@ -101,7 +101,6 @@ C     == Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "DYNVARS.h"
-#include "CG2D.h"
 #ifdef ALLOW_NONHYDROSTATIC
 #include "CG3D.h"
 #endif

@@ -32,7 +32,6 @@ C     \==========================================================/
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "CG2D.h"
 
 C     == Routine arguments ==
 C     fld - Field to plot
@@ -116,7 +115,6 @@ C     \==========================================================/
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "CG2D.h"
 
 C     == Routine arguments ==
 C     fld - Field to plot
@@ -200,7 +198,6 @@ C     \==========================================================/
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "CG2D.h"
 
 C     == Routine arguments ==
 C     fld - Field to plot
@@ -294,7 +291,6 @@ C     \==========================================================/
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "CG2D.h"
 
 C     == Routine arguments ==
 C     fld - Field to plot

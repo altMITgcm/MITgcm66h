@@ -18,7 +18,6 @@ C     == Global variables ==
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#include "CG2D.h"
 
 C     == Routine Arguments ==
 C     phiHyd    - Hydrostatic pressure (ocean) or geopotentiel (atmos)

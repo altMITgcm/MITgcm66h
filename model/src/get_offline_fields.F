@@ -17,7 +17,6 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#include "CG2D.h"
 #include "DYNVARS.h"
  
 C     === Routine arguments ===
