@@ -237,8 +237,8 @@ C-      Large, Danabasoglu and Doney, JPO 1997
           Cspd=2.
           Lrho=100.e3
           if (FCori(i,j,bi,bj).NE.0.) Lrho=Cspd/abs(Fcori(i,j,bi,bj))
-          Lrho=min(Lrho,100.e3)
-          Lrho=max(Lrho,15.e3)
+          Lrho=min(Lrho , 100. _d 3)
+          Lrho=max(Lrho , 15. _d 3)
           if (Smod.NE.0.) then
             Rnondim=depthZ/(Lrho*Smod)
           else
