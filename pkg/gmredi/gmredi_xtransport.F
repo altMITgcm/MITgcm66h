@@ -49,11 +49,11 @@ C--   Area integrated zonal flux
      &    -xA(i,j)
      &    *(GM_background_K
 #ifdef GM_VISBECK_VARIABLE_K
-     &    +0.5*(VisbeckK(i,j,myThid)+VisbeckK(i-1,j,myThid))
+     &    +0.5*(VisbeckK(i,j,bi,bj)+VisbeckK(i-1,j,bi,bj))
 #endif
      &    )
 #ifdef GM_NON_UNITY_DIAGONAL
-     &    *Kux(i,j,k,myThid)
+     &    *Kux(i,j,k,bi,bj)
 #endif
      &    *_recip_dxC(i,j,bi,bj)
      &    *(Tracer(i,j,k,bi,bj)-Tracer(i-1,j,k,bi,bj))
