@@ -12,7 +12,7 @@ C     \==========================================================/
 #ifdef ALLOW_TIMEAVE
 
 C     Keep track of time
-      _RL BULKF_TimeAve(nSx,nSy)
+      _RL BULKF_TimeAve(Nr, nSx,nSy)
       COMMON /BULKF_TAVE/ BULKF_TimeAve
 
 C     Storage arrays for time-averages

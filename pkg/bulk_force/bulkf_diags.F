@@ -30,6 +30,7 @@ C     myThid -  Number of this instance
       _RL     myTime
       INTEGER myIter
       INTEGER myThid
+
 CEndOfInterface
 
 
@@ -54,7 +55,6 @@ C     Dump files and restart average computation if needed
 C      Normalize by integrated time
        DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
-cBB      print*,'QQ bulk time',BULKF_timeave(bi,bj)
          CALL TIMEAVE_NORMALIZ(BULK_Qnet_AVE,BULKF_timeave, 1 ,
      &                 bi,bj,myThid)
          CALL TIMEAVE_NORMALIZ(BULK_EmPmR_AVE,BULKF_timeave, 1 ,
@@ -76,10 +76,11 @@ cBB      print*,'QQ bulk time',BULKF_timeave(bi,bj)
          CALL TIMEAVE_NORMALIZ(BULK_ssq_AVE,BULKF_timeave, 1 ,
      &                 bi,bj,myThid)
 
-
         ENDDO
        ENDDO
          
+
+       _BEGIN_MASTER(myThid)
        WRITE(suff,'(I10.10)') myIter
 
        CALL WRITE_FLD_XY_RL('BULK_Qnet.',suff,BULK_Qnet_AVE,
@@ -102,6 +103,7 @@ cBB      print*,'QQ bulk time',BULKF_timeave(bi,bj)
      &     BULK_solar_AVE,myIter,myThid)
        CALL WRITE_FLD_XY_RL('BULK_ssq.',suff,
      &     BULK_ssq_AVE,myIter,myThid)
+       _END_MASTER(myThid)
 
 
 C      Reset averages to zero
@@ -117,7 +119,7 @@ C      Reset averages to zero
          CALL TIMEAVE_RESET(BULK_flw_AVE,1,bi,bj,myThid)
          CALL TIMEAVE_RESET(BULK_solar_AVE,1,bi,bj,myThid)
          CALL TIMEAVE_RESET(BULK_ssq_AVE,1,bi,bj,myThid)
-         BULKF_TimeAve(bi,bj)=0.
+         BULKF_TimeAve(1,bi,bj)=0.
         ENDDO
        ENDDO
 

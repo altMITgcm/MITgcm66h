@@ -12,7 +12,7 @@ C     \==========================================================/
 #ifdef ALLOW_TIMEAVE
 
 C     Keep track of time
-      _RL ICE_TimeAve(nSx,nSy)
+      _RL ICE_TimeAve(Nr, nSx,nSy)
       COMMON /ICE_TAVE/ ICE_TimeAve
 
 
