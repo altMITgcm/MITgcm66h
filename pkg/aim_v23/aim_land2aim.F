@@ -64,8 +64,8 @@ C     i,j,k,I2      - Loop counters
 
 c     IF (useLand) THEN
 
+       IF ( land_calc_grT ) THEN
 C-    Use land-pkg output instead of prescribed ground Temp
-       IF (land_calc_grT .AND. myIter.NE.0) THEN
         DO j=1,sNy
          DO i=1,sNx
            I2 = i+(j-1)*sNx
@@ -84,7 +84,7 @@ C-    Fill in land-pkg ground Temp. using AIM surf. fields
         ENDDO
        ENDIF
 
-       IF (land_calc_grW .AND. myIter.NE.0) THEN
+       IF (land_calc_grW) THEN
 C-    Use land-pkg output instead of prescribed soil moisture
         DO j=1,sNy
          DO i=1,sNx
