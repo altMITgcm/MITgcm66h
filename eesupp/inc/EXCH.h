@@ -24,6 +24,14 @@ CEOP
 #define _RS Real*4
 #endif
 
+#ifndef _R8
+#define _R8 Real*8
+#endif
+
+#ifndef _R4
+#define _R4 Real*4
+#endif
+
 #ifndef _tileCommModeW
 #define _tileCommModeW(a,b) tileCommModeW(a,b)
 #endif
