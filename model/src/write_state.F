@@ -59,6 +59,10 @@ C     == Global variables ===
 #ifdef ALLOW_PASSIVE_TRACER
 #include "TR1.h"
 #endif
+#ifdef COUPLED_UCLA
+      COMMON /ICEMASK/ icemask
+      _RL     icemask(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+#endif
       LOGICAL  DIFFERENT_MULTIPLE
       EXTERNAL DIFFERENT_MULTIPLE
       INTEGER  IO_ERRCOUNT
@@ -141,6 +145,7 @@ C         transfer analyse a particular snap-shots
         CALL WRITE_FLD_XY_RL( 'EmPmR',suff,EmPmR,myIter,myThid)
         CALL WRITE_FLD_XY_RL( 'Qnet' ,suff, Qnet,myIter,myThid)
         CALL WRITE_FLD_XY_RL( 'Qsw'  ,suff,  Qsw,myIter,myThid)
+        CALL WRITE_FLD_XY_RL('Icemask',suff,icemask,myIter,myThid)
 #endif /* COUPLED_UCLA */
 #endif /* MULTIPLE_RECORD_STATE_FILES */
 

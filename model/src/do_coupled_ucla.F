@@ -63,6 +63,10 @@ C     coupling_dt - coupling interval (seconds)
       COMMON /COUPLING_DT/ coupling_dt
       Real*8  coupling_dt
 
+C     Sea-ice and land mask (0 = land; 1 = sea ice; 2 = ocean)
+      COMMON /ICEMASK/ icemask
+      _RL     icemask(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+
 C     i,j,bi,bj     - loop counters
 C     terminate     - when .TRUE. indicates that last SST request
 C                     from coupler is coming up
@@ -182,22 +186,40 @@ C-----------------------------------------------------------------------
          CALL GET_QSW( global, mythid )
          CALL SCATTER_2D( global, Qsw, myThid )
 #endif COUPLED_DEBUG
-         _EXCH_XY_R4(fu   , myThid )
-         _EXCH_XY_R4(fv   , myThid )
-         _EXCH_XY_R4(EmPmR, myThid )
-         _EXCH_XY_R4(Qnet , myThid )
-         _EXCH_XY_R4(Qsw  , myThid )
+C     Set all fluxes that correspond to atmosphere
+C     model land or sea-ice mask to zero.
+cdm      DO bj = myByLo(myThid), myByHi(myThid)
+cdm         DO bi = myBxLo(myThid), myBxHi(myThid)
+cdm            DO j=1,sNy
+cdm               DO i=1,sNx
+cdm                  IF( icemask(i,j,bi,bj) .LT. 1.5 ) THEN
+cdm                     fu   (i,j,bi,bj) = 0.0
+cdm                     fv   (i,j,bi,bj) = 0.0
+cdm                     EmPmR(i,j,bi,bj) = 0.0
+cdm                     Qnet (i,j,bi,bj) = 0.0
+cdm                     Qsw  (i,j,bi,bj) = 0.0
+cdm                  ENDIF
+cdm               ENDDO
+cdm            ENDDO
+cdm         ENDDO
+cdm      ENDDO
 #ifndef SHORTWAVE_HEATING
          DO bj = myByLo(myThid), myByHi(myThid)
             DO bi = myBxLo(myThid), myBxHi(myThid)
-               DO J=1-Oly,sNy+Oly
-                  DO I=1-Olx,sNx+Olx
+               DO J=1,sNy
+                  DO I=1,sNx
                      Qnet(I,J,bi,bj) = Qnet(I,J,bi,bj) + Qsw(I,J,bi,bj)
                   ENDDO
                ENDDO
             ENDDO
          ENDDO
 #endif SHORTWAVE_HEATING
+         _EXCH_XY_R4( ICEMASK, myThid )
+         _EXCH_XY_R4( fu     , myThid )
+         _EXCH_XY_R4( fv     , myThid )
+         _EXCH_XY_R4( EmPmR  , myThid )
+         _EXCH_XY_R4( Qnet   , myThid )
+         _EXCH_XY_R4( Qsw    , myThid )
       ENDIF
 
 #endif COUPLED_UCLA
@@ -751,14 +773,15 @@ C************************************************************************
 C************************************************************************
 
       SUBROUTINE GET_ICEMASK( global, myThid )
-C     Get atmospheric sea-ice mask (1 for sea-ice, 0 otherwise)
+C     Get atmospheric sea-ice mask (0 = land; 1 = sea ice; 2 = ocean).
       IMPLICIT NONE
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 C     global - working array used to transfer 2-D fields
 C     mythid - thread number for this instance of the routine.
-      Real*8  global(Nx,Ny)
+      Integer iglobal(Nx,Ny)
+      Real*8  global (Nx,Ny)
       INTEGER mythid 
 #ifdef COUPLED_UCLA
       INTEGER i, j
@@ -769,8 +792,15 @@ C--   Make everyone wait except for master thread in master process.
       IF( mpiMyId .EQ. 0 ) THEN
 
 #ifndef COUPLED_DEBUG
-         CALL imkext (global)
+         CALL imkext (iglobal)
 #endif COUPLED_DEBUG
+
+C--   Convert to Real*8
+      DO j=1,Ny
+         DO i=1,Nx
+            global(i,j)=iglobal(i,j)
+         ENDDO
+      ENDDO
 
       ENDIF
       _END_MASTER( myThid )
