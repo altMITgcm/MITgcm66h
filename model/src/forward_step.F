@@ -253,7 +253,6 @@ C--   Check status of solution (statistics, cfl, etc...)
       CALL MONITOR( myIter, myTime, myThid )
 #endif /* EXCLUDE_MONITOR */
 
-#ifndef ALLOW_AUTODIFF_TAMC
 C--   Do IO if needed.
       CALL TIMER_START('DO_THE_MODEL_IO     [THE_MAIN_LOOP]',myThid)
       CALL DO_THE_MODEL_IO( myTime, myIter, myThid )
@@ -276,7 +275,5 @@ C     at time level 1
       CALL WRITE_CHECKPOINT(
      &        .FALSE., myTime, myIter, myThid )
       CALL TIMER_STOP ('WRITE_CHECKPOINT    [THE_MAIN_LOOP]',myThid)
-
-#endif /* ALLOW_AUTODIFF_TAMC */
 
       END
