@@ -28,7 +28,6 @@
 # names for ctrl_pack/unpack
 # *********************
  &ctrl_packnames
- yadmark='ad',
  ctrlname='ecco_ctrl',
  costname='ecco_cost',
  scalname='ecco_scal',
