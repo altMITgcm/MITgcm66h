@@ -143,11 +143,11 @@ C     Create MNC definitions for DYNVARS.h variables
       CALL MNC_CW_ADD_VATTR_TEXT('V',
      &     'coordinates','XV YV RC iter', myThid)
 
-      CALL MNC_CW_ADD_VNAME('T', 'Cen_xy_Hn__C__t', 4,5, myThid)
-      CALL MNC_CW_ADD_VATTR_TEXT('T','units','degC', myThid)
-      CALL MNC_CW_ADD_VATTR_TEXT('T','long_name',
+      CALL MNC_CW_ADD_VNAME('Temp', 'Cen_xy_Hn__C__t', 4,5, myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('Temp','units','degC', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('Temp','long_name',
      &     'potential_temperature', myThid)
-      CALL MNC_CW_ADD_VATTR_TEXT('T',
+      CALL MNC_CW_ADD_VATTR_TEXT('Temp',
      &     'coordinates','XC YC RC iter', myThid)
 
       CALL MNC_CW_ADD_VNAME('S', 'Cen_xy_Hn__C__t', 4,5, myThid)
@@ -185,9 +185,6 @@ C     Create MNC definitions for DYNVARS.h variables
       CALL MNC_CW_ADD_VNAME('phiHydLow', 'Cen_xy_Hn__-__t', 3,4, myThid)
       CALL MNC_CW_ADD_VNAME('phi_nh', 'Cen_xy_Hn__C__t', 4,5, myThid)
       CALL MNC_CW_ADD_VNAME('gW', 'Cen_xy_Hn__C__t', 4,5, myThid)
-
-      CALL MNC_CW_ADD_VATTR_TEXT('T',
-     &     'coordinates','XC YC RC iter', myThid)
 
 C     Write coordinates to "state" file
       CALL MNC_CW_SET_UDIM('state', 0, myThid)
