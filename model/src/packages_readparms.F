@@ -33,6 +33,8 @@ C       |-- KPP_READPARMS
 C       |
 C       |-- SHAP_FILT_READPARMS
 C       |
+C       |-- ZONAL_FILT_READPARMS
+C       |
 C       |-- OBCS_READPARMS
 C       |
 C       |-- AIM_READPARMS
@@ -71,6 +73,10 @@ C--   Initialize KPP parameters
 
 #ifdef ALLOW_SHAP_FILT 
       IF (useSHAP_FILT) CALL SHAP_FILT_READPARMS( myThid )
+#endif
+
+#ifdef ALLOW_ZONAL_FILT 
+      IF (useZONAL_FILT) CALL ZONAL_FILT_READPARMS( myThid )
 #endif
 
 #ifdef ALLOW_OBCS

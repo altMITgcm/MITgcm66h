@@ -134,9 +134,6 @@ C--   Set default "physical" parameters
       allowFreezing       = .FALSE.
       ivdc_kappa          = 0.D0
       groundAtK1          = .FALSE.
-      zonal_filt_lat      = 90.
-      zonal_filt_sinpow   = 2
-      zonal_filt_cospow   = 2
       bottomDragLinear    = 0.
       bottomDragQuadratic = 0.
       usePickupBeforeC35    = .FALSE.

@@ -113,7 +113,6 @@ C--   Continuous equation parameters
      & writeBinaryPrec, readBinaryPrec, writeStatePrec,
      & nonHydrostatic, globalFiles,
      & allowFreezing, ivdc_kappa,
-     & zonal_filt_lat, zonal_filt_sinpow, zonal_filt_cospow,
      & bottomDragLinear,bottomDragQuadratic,
      & usePickupBeforeC35, debugMode, 
      & readPickupWithTracer, writePickupWithTracer,
