@@ -30,6 +30,7 @@ function [AA] = rdmds(fname,varargin)
 %   'ieee-be.l64' or 's' - IEEE floating point with big-endian byte
 %                          ordering and 64 bit long data type.
 %
+% $Header$
 
 % Default options
 ieee='b';
