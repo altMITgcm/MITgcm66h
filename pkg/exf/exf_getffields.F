@@ -294,6 +294,11 @@ c     Downward longwave radiation.
 
 #endif
 
+#ifdef ATMOSPHERIC_LOADING
+c     Atmos. pressure forcing
+      call exf_set_apressure ( mycurrenttime, mycurrentiter, mythid )
+#endif
+
 c--   Use atmospheric state to compute surface fluxes.
 
 c     Loop over tiles.
@@ -599,6 +604,10 @@ c      _EXCH_XY_R8(vstress, mythid)
 
 #ifdef SHORTWAVE_HEATING
       _EXCH_XY_R8(swflux, mythid)
+#endif
+
+#ifdef ATMOSPHERIC_LOADING
+      _EXCH_XY_R8(apressure, mythid)
 #endif
 
       end
