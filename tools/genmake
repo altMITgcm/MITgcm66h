@@ -686,7 +686,9 @@ depend:
 
 links: \$(SRCFILES) \$(CSRCFILES) \$(HEADERFILES)
 
-small_f: \$(F77FILES)
+output.txt: \$(EXECUTABLE)
+	@echo -n "running ... "
+	@\$(EXECUTABLE) > \$@
 
 clean:
 	-rm -rf *.o *.f *.p ${RMFILES}
