@@ -126,6 +126,8 @@ C  ipass                :: number of the current pass being made
 CEOP
 
 #ifdef ALLOW_AUTODIFF_TAMC
+          act0 = tracerIdentity - 1
+          max0 = maxpass
           act1 = bi - myBxLo(myThid)
           max1 = myBxHi(myThid) - myBxLo(myThid) + 1
           act2 = bj - myByLo(myThid)
@@ -133,9 +135,13 @@ CEOP
           act3 = myThid - 1
           max3 = nTx*nTy
           act4 = ikey_dynamics - 1
-          ikey = (act1 + 1) + act2*max1
-     &                      + act3*max1*max2
-     &                      + act4*max1*max2*max3
+          igadkey = (act0 + 1) 
+     &                      + act1*max0
+     &                      + act2*max0*max1
+     &                      + act3*max0*max1*max2
+     &                      + act4*max0*max1*max2*max3
+          if (tracerIdentity.GT.maxpass)
+     &         STOP 'maxpass seems smaller than tracerIdentity'
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C--   Set up work arrays with valid (i.e. not NaN) values
@@ -163,8 +169,9 @@ C     uninitialised but inert locations.
 C--   Start of k loop for horizontal fluxes
       DO k=1,Nr
 #ifdef ALLOW_AUTODIFF_TAMC 
-         kkey = (ikey-1)*Nr + k
-CADJ STORE tracer(:,:,k,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
+         kkey = (igadkey-1)*Nr + k
+CADJ STORE tracer(:,:,k,bi,bj) = 
+CADJ &     comlev1_bibj_k_gad, key=kkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C--   Get temporary terms used by tendency routines
@@ -182,18 +189,21 @@ C--   Make local copy of tracer array
 
       IF (useCubedSphereExchange) THEN
        nipass=3
+#ifdef ALLOW_AUTODIFF_TAMC
+       if ( nipass.GT.maxcube )
+     &      STOP 'maxcube needs to be = 3'
+#endif
       ELSE
        nipass=1
       ENDIF
-cph       nipass=1
 
 C--   Multiple passes for different directions on different tiles
       DO ipass=1,nipass
 #ifdef ALLOW_AUTODIFF_TAMC
-         passkey = ipass + (k-1)   *maxpass
-     &                   + (ikey-1)*maxpass*Nr
+         passkey = ipass + (k-1)      *maxcube
+     &                   + (igadkey-1)*maxcube*Nr
          IF (nipass .GT. maxpass) THEN
-          STOP 'GAD_ADVECTION: nipass > maxpass. check tamc.h'
+          STOP 'GAD_ADVECTION: nipass > maxcube. check tamc.h'
          ENDIF
 #endif /* ALLOW_AUTODIFF_TAMC */
 
@@ -242,7 +252,8 @@ C-    Advective flux in X
 
 #ifdef ALLOW_AUTODIFF_TAMC
 #ifndef DISABLE_MULTIDIM_ADVECTION
-CADJ STORE localTij(:,:)  = comlev1_bibj_pass, key=passkey, byte=isbyte
+CADJ STORE localTij(:,:)  = 
+CADJ &     comlev1_bibj_k_gad_pass, key=passkey, byte=isbyte
 #endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
@@ -308,7 +319,8 @@ C-    Advective flux in Y
 
 #ifdef ALLOW_AUTODIFF_TAMC 
 #ifndef DISABLE_MULTIDIM_ADVECTION
-CADJ STORE localTij(:,:)  = comlev1_bibj_pass, key=passkey, byte=isbyte
+CADJ STORE localTij(:,:)  = 
+CADJ &     comlev1_bibj_k_gad_pass, key=passkey, byte=isbyte
 #endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
@@ -388,7 +400,9 @@ C-    Advective flux in R
 
 #ifdef ALLOW_AUTODIFF_TAMC 
 CADJ STORE localTijk(:,:,k)  
-CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ &     = comlev1_bibj_k_gad, key=kkey, byte=isbyte
+CADJ STORE rTrans(:,:)  
+CADJ &     = comlev1_bibj_k_gad, key=kkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C     Note: wVel needs to be masked 

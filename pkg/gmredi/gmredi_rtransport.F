@@ -5,7 +5,7 @@ C $Name$
 
       subroutine GMREDI_RTRANSPORT(
      I     iMin,iMax,jMin,jMax,bi,bj,K,
-     I     Tracer,
+     I     Tracer,tracerIdentity,
      U     df,
      I     myThid)
 C     /==========================================================\
@@ -32,6 +32,7 @@ C     df               - Diffusive flux component work array.
       INTEGER iMin,iMax,jMin,jMax,bi,bj,k
       _RL Tracer(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL df    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      INTEGER tracerIdentity
       INTEGER myThid
 
 #ifdef ALLOW_GMREDI
