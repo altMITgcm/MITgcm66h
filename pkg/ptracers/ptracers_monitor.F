@@ -97,24 +97,6 @@ C       Print the basic statistics of ptracer variables
        CALL MON_SET_PREF('trcstat_',myThid)
        DO ip = 1, PTRACERS_numInUse
          WRITE(suff,'(A7,I2.2)') 'ptracer',ip
-CML   Do we need a copy of the 6D-array to the 5D-array?
-CML         DO bj = myByLo(myThid), myByHi(myThid)
-CML          DO bi = myBxLo(myThid), myBxHi(myThid)
-CML           DO k=1,Nr
-CML            DO j=1-Oly,sNy+OLy
-CML             DO i=1-Olx,sNx+Olx
-CML              tmp(i,j,k,bi,bj)=ptracer(i,j,k,bi,bj,ip)
-CML             ENDDO
-CML            ENDDO
-CML           ENDDO
-CML          ENDDO
-CML         ENDDO
-CML         CALL MON_PRINTSTATS_RL(Nr,tmp,suff,
-CML     &                 maskC,hFacC,rA ,drF,myThid)
-CML   It would be nice to avoid the copies. The code below works on 
-CML   muliple tiles on one processor, that is, it gives the same results 
-CML   as the above code which I leave for now in case something unexpected 
-CML   happens on multiple processors.
          CALL MON_PRINTSTATS_RL(
      &        Nr, ptracer(1-Olx,1-Oly,1,1,1,ip),
      &        suff, maskC,hFacC,rA ,drF,myThid)
