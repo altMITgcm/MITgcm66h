@@ -29,13 +29,18 @@ CEOP
 #ifdef ALLOW_MNC
 
 C     !LOCAL VARIABLES:
-      INTEGER ii, ilnb
+      INTEGER ii, jj, ilnb
+      character*(80) name
       character*(MAX_LEN_MBUF) msgbuf
 
 C     Functions
       integer ILNBLNK
 
-      DO ii=1,PTRACERS_numInUse
+      DO ii = 1,PTRACERS_numInUse
+
+        DO jj = 1,80
+          name(jj:jj) = ' '
+        ENDDO
 
 C       Create the tracer
         ilnb = ILNBLNK(PTRACERS_names(ii))
@@ -48,6 +53,8 @@ C       Create the tracer
         ENDIF
         CALL MNC_CW_ADD_VNAME(
      &       PTRACERS_names(ii),'Cen_xy_Hn__C__t',4,5,myThid)
+        WRITE(name,'(a,a)') 'surf_',PTRACERS_names(ii)(1:ilnb)
+        CALL MNC_CW_ADD_VNAME(name,'Cen_xy_Hn__-__t',3,4,myThid)
 
 C       Add the long_name attribute if its defined
         ilnb = ILNBLNK(PTRACERS_long_names(ii))

@@ -56,12 +56,20 @@ C     TimeAve ::  total time over average
       INTEGER beginIOErrCount
       INTEGER endIOErrCount
       CHARACTER*(MAX_LEN_MBUF) msgBuf
-      
+#ifdef ALLOW_MNC
+      INTEGER ii,jj, ilnb
+      CHARACTER*(MAX_LEN_FNAM) name
+C     Functions
+      INTEGER ILNBLNK
+#endif /*  ALLOW_MNC  */
+
 C     Final Time Averages and Dump Files if needed
 c     IF ( myIter.NE.nIter0 .AND. DIFFERENT_MULTIPLE
 c    &  (PTRACERS_taveFreq,myTime,myTime-deltaTClock) ) THEN
       IF ( DIFFERENT_MULTIPLE
      &     (PTRACERS_taveFreq, myTime, myTime-deltaTClock) ) THEN
+
+        WRITE(*,*) 'EH3:  myIter = ', myIter
         
         DO bj = myByLo(myThid), myByHi(myThid)
           DO bi = myBxLo(myThid), myBxHi(myThid)
@@ -91,20 +99,47 @@ C       Read IO error counter
         beginIOErrCount = IO_ERRCOUNT(myThid)
 c       prevPrec = writeBinaryPrec
 c       writeBinaryPrec = precFloat32
-      
-        do iTracer=1,PTRACERS_numInUse
-          WRITE(suff,'(A7,I2.2,A1,I10.10)') 'PtrFluxtave',
-     &         iTracer,'.',myIter
-          CALL WRITE_FLD_XY_RL (suff,' ',
-     &         ptracerFluxtave(1-Olx,1-Oly,  1,1,iTracer),
-     &         myIter,myThid)
-          WRITE(suff,'(A7,I2.2,A1,I10.10)') 'PTRtave',
-     &         iTracer,'.',myIter
-          CALL WRITE_FLD_XYZ_RL(suff,' ',
-     &         ptracertave    (1-Olx,1-Oly,1,1,1,iTracer),
-     &         myIter,myThid)
-        enddo
+        
+#ifdef ALLOW_MNC
+        IF (useMNC
+     &       .AND. (mod(PTRACERS_iotypes,4) .GT. 1)
+     &       .AND. PTRACERS_mnc_write ) THEN
+          CALL MNC_CW_SET_UDIM('ptr_tave', -1, myThid)
+          CALL MNC_CW_I_W('I','ptr_tave',0,0,'iter',myIter,myThid)
+          CALL MNC_CW_SET_UDIM('ptr_tave', 0, myThid)
+          CALL MNC_CW_SET_UDIM('ptr_flux_tave', -1, myThid)
+          CALL MNC_CW_I_W('I','ptr_flux_tave',0,0,'iter',myIter,myThid)
+          CALL MNC_CW_SET_UDIM('ptr_flux_tave', 0, myThid)
+          DO ii = 1,PTRACERS_numInUse
+            CALL MNC_CW_RL_W('D','ptr_tave',0,0,PTRACERS_names(ii),
+     &           ptracertave(1-OLx,1-OLy,1,1,1,ii),myThid)
+            DO jj = 1,MAX_LEN_FNAM
+              name(jj:jj) = ' '
+            ENDDO
+            ilnb = ILNBLNK(PTRACERS_names(ii))
+            WRITE(name,'(a,a)') 'surf_',PTRACERS_names(ii)(1:ilnb)
+            CALL MNC_CW_RL_W('D','ptr_flux_tave',0,0,name,
+     &           ptracerFluxtave(1-OLx,1-OLy,1,1,ii),myThid)
+          ENDDO
+        ENDIF
+#endif /*  ALLOW_MNC  */
 
+C        IF (mod(PTRACERS_iotypes,2) .GT. 0) THEN
+
+          do iTracer=1,PTRACERS_numInUse
+            WRITE(suff,'(A7,I2.2,A1,I10.10)') 'PtrFluxtave',
+     &           iTracer,'.',myIter
+            CALL WRITE_FLD_XY_RL (suff,' ',
+     &           ptracerFluxtave(1-Olx,1-Oly,  1,1,iTracer),
+     &         myIter,myThid)
+            WRITE(suff,'(A7,I2.2,A1,I10.10)') 'PTRtave',
+     &           iTracer,'.',myIter
+            CALL WRITE_FLD_XYZ_RL(suff,' ',
+     &           ptracertave    (1-Olx,1-Oly,1,1,1,iTracer),
+     &           myIter,myThid)
+          enddo
+
+C        ENDIF
 
 c       writeBinaryPrec = prevPrec
 C       Reread IO error counter
