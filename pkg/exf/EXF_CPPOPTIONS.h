@@ -61,6 +61,12 @@ c   >>> ALLOW_CLIMSSS_RELAXATION <<<
 c       Allow the relaxation to a monthly climatology of sea surface
 c       salinity, e.g. the Levitus climatology.
 c
+c   >>> USE_EXF_INTERPOLATION <<<
+c       Allows specification of arbitrary Cartesian input grids.
+c
+c   >>> BICUBIC <<<
+c       Use bicubic instead of bilinear spatial interpolation.
+c
 c   ====================================================================
 c
 c       The following CPP options:

@@ -123,8 +123,7 @@ c     Surface flux data.
      &         lwfluxconst,
      &         swdownconst,
      &         lwdownconst,
-     &         apressureconst,
-     &         EXFwindOnBgrid
+     &         apressureconst
 #ifdef USE_EXF_INTERPOLATION
      & ,ustress_lon0, ustress_lon_inc,
      & ustress_lat0, ustress_lat_inc,
@@ -355,8 +354,6 @@ c     Output scaling factors.
       exf_outscal_sst      =  1. _d 0
       exf_outscal_sss      =  1. _d 0
       exf_outscal_apressure=  1. _d 0
-c
-      EXFwindOnBgrid = .FALSE.
 
 c     Check for the availability of the right calendar version.
       if ( calendarversion .ne. usescalendarversion ) then

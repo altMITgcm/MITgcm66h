@@ -91,7 +91,7 @@ c for lat interpolation, arraysize currently set to 200 max data values
       _RL climsss_lon0, climsss_lon_inc
       _RL climsss_lat0, climsss_lat_inc(MAX_LAT_INC)
       INTEGER climsss_nlon, climsss_nlat
-      common /exf_interp/
+      common /exf_clim_interpolation/
      & climsst_lon0, climsst_lon_inc,
      & climsst_lat0, climsst_lat_inc,
      & climsst_nlon, climsst_nlat,
