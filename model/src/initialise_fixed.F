@@ -99,13 +99,6 @@ C     Variables defining model grid spacing are defined.
       CALL INI_GRID( myThid )
       _BARRIER
 
-#ifdef ALLOW_MNC
-C     Initialize the MNC state files and write the grid info
-      IF (useMNC) THEN
-        CALL INI_MNC_IO(myThid)
-      ENDIF
-#endif
-
 C--   Set equation of state parameters.
       CALL INI_EOS( myThid )
       _BARRIER
@@ -151,6 +144,13 @@ C--   Check parameters and model cofiguration
 
 C--   Finally summarise the model cofiguration
       CALL CONFIG_SUMMARY( myThid )
+
+C--   Write units/set precision/etc for I/O of variables/arrays belonging
+C     to the core dynamical model
+      CALL INI_MODEL_IO( myThid )
+
+C--   Write grid data and geometry arrays
+      CALL WRITE_GRID( myThid )
 
 #ifdef COMPONENT_MODULE
 C--   Post component-model configuration information to coupler

@@ -169,9 +169,10 @@ c         _END_MASTER(myThid)
      I                       myThid )
 
           _BARRIER
-          _BEGIN_MASTER( myThid )
-          CALL WRITE_FLD_XY_RS( 'topo_P',' ',Ro_surf,0,myThid) 
-          _END_MASTER(myThid)
+C         This I/O is now done in write_grid.F
+c         _BEGIN_MASTER( myThid )
+c         CALL WRITE_FLD_XY_RS( 'topo_P',' ',Ro_surf,0,myThid) 
+c         _END_MASTER(myThid)
 
         ELSE
 C----

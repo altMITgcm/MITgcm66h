@@ -495,12 +495,13 @@ C--   z,p,r coord input switching.
       ELSE
        recip_gravity = 1.D0 / gravity
       ENDIF
+C     This flags are now passed to RW and MDSIO packages in ini_model_io.F
 C     Set globalFiles flag for READ_WRITE_FLD package
-      CALL SET_WRITE_GLOBAL_FLD( globalFiles )
+c     CALL SET_WRITE_GLOBAL_FLD( globalFiles )
 C     Set globalFiles flag for READ_WRITE_REC package
-      CALL SET_WRITE_GLOBAL_REC( globalFiles )
+c     CALL SET_WRITE_GLOBAL_REC( globalFiles )
 C     Set globalFiles flag for READ_WRITE_REC package
-      CALL SET_WRITE_GLOBAL_PICKUP( globalFiles )
+c     CALL SET_WRITE_GLOBAL_PICKUP( globalFiles )
 
 C     Check for retired parameters still being used
       nRetired = 0

@@ -98,17 +98,18 @@ C     and the interpolation weights are pre-computed.
 
 C--   Write certain grid data to files (useful for creating netCDF
 C     and general post-analysis)
-      CALL WRITE_FLD_XY_RS( 'XC',' ',XC,0,myThid)
-      CALL WRITE_FLD_XY_RS( 'YC',' ',YC,0,myThid)
-      CALL WRITE_FLD_XY_RS( 'XG',' ',XG,0,myThid)
-      CALL WRITE_FLD_XY_RS( 'YG',' ',YG,0,myThid)
-      CALL WRITE_FLD_XY_RS( 'RAC',' ',rA,0,myThid)
-      CALL WRITE_FLD_XY_RS( 'RAW',' ',rAw,0,myThid)
-      CALL WRITE_FLD_XY_RS( 'RAS',' ',rAs,0,myThid)
-      CALL WRITE_FLD_XY_RS( 'DXG',' ',DXG,0,myThid)
-      CALL WRITE_FLD_XY_RS( 'DYG',' ',DYG,0,myThid)
-      CALL WRITE_FLD_XY_RS( 'DXC',' ',DXC,0,myThid)
-      CALL WRITE_FLD_XY_RS( 'DYC',' ',DYC,0,myThid)
+C     This I/O is now done in write_grid.F
+c     CALL WRITE_FLD_XY_RS( 'XC',' ',XC,0,myThid)
+c     CALL WRITE_FLD_XY_RS( 'YC',' ',YC,0,myThid)
+c     CALL WRITE_FLD_XY_RS( 'XG',' ',XG,0,myThid)
+c     CALL WRITE_FLD_XY_RS( 'YG',' ',YG,0,myThid)
+c     CALL WRITE_FLD_XY_RS( 'RAC',' ',rA,0,myThid)
+c     CALL WRITE_FLD_XY_RS( 'RAW',' ',rAw,0,myThid)
+c     CALL WRITE_FLD_XY_RS( 'RAS',' ',rAs,0,myThid)
+c     CALL WRITE_FLD_XY_RS( 'DXG',' ',DXG,0,myThid)
+c     CALL WRITE_FLD_XY_RS( 'DYG',' ',DYG,0,myThid)
+c     CALL WRITE_FLD_XY_RS( 'DXC',' ',DXC,0,myThid)
+c     CALL WRITE_FLD_XY_RS( 'DYC',' ',DYC,0,myThid)
 
 C--   Print out statistics of each horizontal grid array (helps when debugging)
 
