@@ -340,7 +340,8 @@ clean:
 	-rm -rf *.o *.f *.p ${RMFILES}
 Clean:
 	@make clean
-	-rm -rf *.[Fc]
+	-find . -type l -exec rm {} \;
+	-rm Makefile.bak
 
 # The normal chain of rules is (  .F - .f - .o  )
 .F.f:
