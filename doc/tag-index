@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o Patrick's adjoint-model storage directives for pkg/seaice
 o merged with checkpoint50g_post (pkg/seaice and verification/lab_sea)
   - added SEAICE_MULTILEVEL for 8-category sea-ice thermodynamics
   - LSR sea-ice dynamic solver moved to SouthWest B-grid location and

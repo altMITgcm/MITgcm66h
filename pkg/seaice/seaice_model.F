@@ -29,12 +29,12 @@ C     === Global variables ===
 #include "SEAICE_PARAMS.h"
 #include "SEAICE_EXTERNAL.h"
 
-#ifdef ALLOW_AUTODIFF_TAMC
-# include "tamc.h"
+#ifdef SEAICE_EXTERNAL_FORCING
+# include "SEAICE_FFIELDS.h"
 #endif
 
-#ifdef SEAICE_EXTERNAL_FORCING
-#include "SEAICE_FFIELDS.h"
+#ifdef ALLOW_AUTODIFF_TAMC
+# include "tamc.h"
 #endif
 
 C     === Routine arguments ===
@@ -90,6 +90,13 @@ c     &     ,vVel(i,j+1,3,bi,bj),vVel(i+1,j+1,3,bi,bj)
         ENDDO
        ENDDO
       ENDDO
+
+cph(
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE uwind = comlev1, key = ikey_dynamics
+CADJ STORE vwind = comlev1, key = ikey_dynamics
+#endif /* ALLOW_AUTODIFF_TAMC */
+cph)
 
 C solve ice momentum equations and calculate ocean surface stress
       CALL DYNSOLVER ( myTime, myIter, myThid )

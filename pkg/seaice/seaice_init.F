@@ -55,6 +55,34 @@ C     Initialize averages to zero
       ENDDO
 #endif /* ALLOW_TIMEAVE */
 
+cph(
+cph   make sure TAF sees proper initialisation
+cph   to avoid partial recomputation issues
+      DO bj=myByLo(myThid),myByHi(myThid)
+       DO bi=myBxLo(myThid),myBxHi(myThid)
+c
+        DO K=1,Nr
+         DO J=1,sNy
+          DO I=1,sNx
+           HEFF(I,J,k,bi,bj)=SEAICE_initialHEFF
+           AREA(I,J,k,bi,bj)=ZERO
+           UICE(I,J,k,bi,bj)=ZERO
+           VICE(I,J,k,bi,bj)=ZERO
+          ENDDO
+         ENDDO
+        ENDDO
+c
+        DO J=1,sNy
+         DO I=1,sNx
+          HSNOW(I,J,bi,bj)=0.2 _d 0
+          ZETA(I,J,bi,bj)=ZERO
+         ENDDO
+        ENDDO
+c
+       ENDDO
+      ENDDO
+cph)
+
 C---  initialize grid info
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
