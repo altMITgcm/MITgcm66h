@@ -3,7 +3,11 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint54d_post
 o data.diagnostics: if levels() is unspecified then ALL levels are diagnosed
+o bug fix in pkg/cal/cal_addtime.F for TheCalendar='model' day count is wrong, 
+  leading to additional shift by 5 days each year of integration
+   (i.e. leading to considerable offset over the years)
 o update global_ocean.cs32x15/thsice: use z* + RealFW + staggerTimeStep
 o start with no AB and no initial filtering (staggerTimeStep):
   change the results of test-exp: hs94.128x64x5, hs94.1x64x5 & hs94.cs-32x32x5
