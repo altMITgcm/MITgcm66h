@@ -205,7 +205,7 @@ C       Define grid types for KPP variables
         CALL MNC_CW_ADD_VATTR_TEXT('KPPhbl','units','m', 
      &       myThid)
         CALL MNC_CW_ADD_VATTR_TEXT('KPPhbl','long_name',
-     &       'KPP_mixing_layer_depth', myThid)
+     &       'KPP_boundary_layer_depth', myThid)
         CALL MNC_CW_ADD_VATTR_TEXT('KPPhbl',
      &       'coordinates','XC YC iter', myThid)
         
