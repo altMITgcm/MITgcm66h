@@ -3,6 +3,12 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+ecco-branch-mod1
+o based on c43
+o replaced packages cost, ctrl, ecco, obcs
+o removed MITgcm verif.'s, added ECCO verif.'s
+o added lsopt, optim for line search optimization.
+
 checkpoint43
 o added two new advection tests
 o added global 4x4 degree ocean test
