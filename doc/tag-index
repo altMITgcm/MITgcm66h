@@ -3,10 +3,11 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
-untagged
+release1_p13_pre
 o Added net flux to downward flux conversion to pkg/exf/exf_getffields.F
 o Added SEAICE_initialHEFF to pkg/seaice
 o the_model_main.F: SEAICE_WRITE_PICKUP must precede WRITE_CHECKPOINT
+o Updated pkg/seaice and pkg/exf with adjoint modifications from icebear4
 
 release1_p12
 o Added missing /* */ to CPP comments in pkg/seaice, pkg/exf,
