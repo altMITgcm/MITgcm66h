@@ -684,8 +684,10 @@ C             derived from the orography. Implemented: 0,1 (see INI_P_GROUND)
       INTEGER integr_GeoPot, selectFindRoSurf
 
 C Logical flags for selecting packages
+      LOGICAL useOPPS
       LOGICAL usePP81
       LOGICAL useMY82
+      LOGICAL useGGL90
       LOGICAL useKPP
       LOGICAL useGMRedi
       LOGICAL useOBCS
@@ -710,7 +712,7 @@ C Logical flags for selecting packages
      &        useSHAP_FILT, useZONAL_FILT, useGrdchk, useFLT,
      &        usePTRACERS,  useSBO, useSEAICE, useThSIce, useBulkForce, 
      &        usefizhi,  usegridalt, usediagnostics, useEBM,
-     &        usePP81, useMY82
+     &        usePP81, useMY82, useOPPS, useGGL90
 
 CEH3 ;;; Local Variables: ***
 CEH3 ;;; mode:fortran ***

@@ -36,6 +36,10 @@ C       |-- PP81_READPARMS
 C       |
 C       |-- MY82_READPARMS
 C       |
+C       |-- GGL90_READPARMS
+C       |
+C       |-- OPPS_READPARMS
+C       |
 C       |-- SBO_READPARMS
 C       |
 C       |-- SEAICE_READPARMS
@@ -90,6 +94,16 @@ C--   Initialize PP81 parameters
 #ifdef ALLOW_MY82
 C--   Initialize MY82 parameters
       IF (useMY82) CALL MY82_READPARMS( myThid )
+#endif
+
+#ifdef ALLOW_GGL90
+C--   Initialize GGL90 parameters
+      IF (useGGL90) CALL GGL90_READPARMS( myThid )
+#endif
+
+#ifdef ALLOW_OPPS
+C--   Initialize OPPS parameters
+      IF (useOPPS) CALL OPPS_READPARMS( myThid )
 #endif
 
 #ifdef ALLOW_SBO

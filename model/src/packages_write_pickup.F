@@ -196,6 +196,13 @@ C     Write pickup file for fizhi package
       ENDIF
 #endif
 
+#ifdef  ALLOW_GGL90
+      IF ( useGGL90 ) THEN
+        CALL GGL90_WRITE_CHECKPOINT(
+     &       prec, lgf, permCheckPoint, myIter, myThid)
+      ENDIF
+#endif  /* ALLOW_GGL90 */
+
        _END_MASTER( myThid )
        _BARRIER
 

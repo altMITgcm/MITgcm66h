@@ -78,6 +78,13 @@ CEOP
      I        myThid)
 #endif
 
+#ifdef ALLOW_GGL90
+      IF (useGGL90) CALL GGL90_CALC_VISC(
+     I        bi,bj,iMin+1,iMax,jMin+1,jMax,K,
+     O        KappaRU,KappaRV,
+     I        myThid)
+#endif
+
 
       RETURN
       END

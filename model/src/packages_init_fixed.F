@@ -41,6 +41,8 @@ C       |-- CTRL_INIT
 C       |
 C       |-- GCHEM_INIT_FIXED
 C       |
+C       |-- OPPS_INIT
+C       |
 C       |-- DIAGNOSTICS_INITIALISE
 
 C     !USES:
@@ -139,6 +141,10 @@ C--   Initialise the control variables
       ENDIF
 #endif
 #endif
+
+#ifdef ALLOW_OPPS
+      IF (useOPPS) CALL OPPS_INIT( myThid )
+#endif /* ALLOW_OPPS */
 
 CAMM
 #ifdef ALLOW_DIAGNOSTICS

@@ -57,6 +57,18 @@ CEOP
       IF (useMY82) CALL PACKAGES_CHECK_ERROR('MY82', myThid)
 #endif
 
+#ifdef ALLOW_GGL90
+      IF (useGGL90) CALL GGL90_CHECK( myThid )
+#else
+      IF (useGGL90) CALL PACKAGES_CHECK_ERROR('GGL90', myThid)
+#endif
+
+#ifdef ALLOW_OPPS
+      IF (useOPPS) CALL OPPS_CHECK( myThid )
+#else
+      IF (useOPPS) CALL PACKAGES_CHECK_ERROR('OPPS', myThid)
+#endif
+
 #ifdef ALLOW_GMREDI
       IF (useGMRedi) CALL GMREDI_CHECK( myThid )
 #else

@@ -45,8 +45,10 @@ C     iUnit       - Work variable for IO unit number
 C     data.pkg namelists
 
       NAMELIST /PACKAGES/
+     &          useOPPS,
      &          usePP81,
      &          useMY82,
+     &          useGGL90,
      &          useKPP,
      &          useGMRedi,
      &          useOBCS,
@@ -85,6 +87,7 @@ CEOP
 C--   Default package configuration
       usePP81=.FALSE.
       useMY82=.FALSE.
+      useGGL90=.FALSE.
       useKPP=.FALSE.
       useGMRedi=.FALSE.
       useOBCS=.FALSE.

@@ -125,6 +125,18 @@ C     Do MY82 diagnostics.
      &     CALL MY82_DO_DIAGS( myTime, myIter, myThid )
 #endif
 
+#ifdef ALLOW_OPPS
+C--   Do OPPS diagnostics.
+      IF (useOPPS .AND. myIter.NE.nIter0 )
+     & CALL OPPS_DO_DIAGS( myTime, myIter, myThid )
+#endif
+
+#ifdef ALLOW_GGL90
+C--   Do GGL90 diagnostics.
+      IF (useGGL90 .AND. myIter.NE.nIter0 )
+     & CALL GGL90_DO_DIAGS( myTime, myIter, myThid )
+#endif
+
 #ifdef ALLOW_SBO
 C     Do SBO diagnostics.
       IF (useSBO .AND. myIter.NE.nIter0 ) THEN

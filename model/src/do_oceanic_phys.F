@@ -456,6 +456,18 @@ C--     Compute MY82 mixing coefficients
         ENDIF
 #endif /* ALLOW_MY82 */
 
+#ifdef  ALLOW_GGL90
+C--     Compute GGL90 mixing coefficients
+        IF (useGGL90) THEN
+#ifdef ALLOW_DEBUG
+          IF ( debugLevel .GE. debLevB ) 
+     &     CALL DEBUG_CALL('GGL90_CALC',myThid)
+#endif
+          CALL GGL90_CALC(
+     I                  bi, bj, myTime, myThid )
+        ENDIF
+#endif /* ALLOW_GGL90 */
+
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE theta(:,:,:,bi,bj) = comlev1_bibj, key=itdkey, byte=isbyte
 CADJ STORE salt (:,:,:,bi,bj) = comlev1_bibj, key=itdkey, byte=isbyte
