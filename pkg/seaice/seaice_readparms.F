@@ -65,7 +65,11 @@ C--   SEAICE parameters
 
 C--   set default sea ice parameters
       SEAICEwriteState   = .FALSE.
+#ifdef SEAICE_ALLOW_DYNAMICS
       SEAICEuseDYNAMICS  = .TRUE.
+#else
+      SEAICEuseDYNAMICS  = .FALSE.
+#endif
       SEAICEuseLSR       = .FALSE.
       SEAICEwindOnCgrid  = .FALSE.
       SEAICE_dumpFreq    = dumpFreq
