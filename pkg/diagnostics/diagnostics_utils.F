@@ -273,7 +273,8 @@ C     !LOCAL VARIABLES:
        DO m=1,nActive(n)
         IF ( diagName.EQ.flds(m,n) ) THEN
           j = jdiag(m,n)     
-          IF (idiag(j).NE.0 ) DIAGNOSTICS_IS_ON = .TRUE.
+          IF ( idiag(j).NE.0 .AND. ndiag(j).GE.0 ) 
+     &         DIAGNOSTICS_IS_ON = .TRUE.
         ENDIF
        ENDDO
       ENDDO
