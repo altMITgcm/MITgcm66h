@@ -3,7 +3,18 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
-ecco-C51_e34e
+ecco_c51_e34f
+o added case gfdl-sgi-o3k to genmake
+o added genmake option -arpack and provided default lib dir
+o exf_mapfields:
+  Interpolate ustress,vstress computed via exf bulk formulae
+  to W/S points. Assume
+  on input: uwind,vwind on C-points
+  on output: ustress[C],vstress[C] -> fu[W],fv[S]
+o Very prelim. preparations for forward dump&restart
+  during adjoint calculation.
+
+ecco_C51_e34e
 o bug fix in cost_drifter
 o updating timeave package in ecco-branch to c51
 
