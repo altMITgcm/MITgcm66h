@@ -131,7 +131,7 @@ C        Send the data
          theType = MPI_DOUBLE_PRECISION
          exchNReqsX(1,bi,bj) = exchNReqsX(1,bi,bj)+1
          CALL MPI_Isend(westSendBuf_RL(1,eBl,bi,bj), theSize, theType,
-     &                  theProc, theTag, MPI_COMM_WORLD,
+     &                  theProc, theTag, MPI_COMM_MODEL,
      &                  exchReqIdX(exchNReqsX(1,bi,bj),1,bi,bj), mpiRc )
 #ifndef ALWAYS_USE_MPI
          ENDIF
@@ -182,7 +182,7 @@ C        Send the data
          theType = MPI_DOUBLE_PRECISION
          exchNReqsX(1,bi,bj) = exchNReqsX(1,bi,bj)+1
          CALL MPI_Isend(eastSendBuf_RL(1,eBl,bi,bj), theSize, theType,
-     &                  theProc, theTag, MPI_COMM_WORLD,
+     &                  theProc, theTag, MPI_COMM_MODEL,
      &                  exchReqIdX(exchNReqsX(1,bi,bj),1,bi,bj), mpiRc )
 #ifndef ALWAYS_USE_MPI
          ENDIF
@@ -380,7 +380,7 @@ C        Send the data
 #endif
          exchNReqsX(1,bi,bj) = exchNReqsX(1,bi,bj)+1
          CALL MPI_Isend(westSendBuf_RS(1,eBl,bi,bj), theSize, theType,
-     &                  theProc, theTag, MPI_COMM_WORLD,
+     &                  theProc, theTag, MPI_COMM_MODEL,
      &                  exchReqIdX(exchNReqsX(1,bi,bj),1,bi,bj), mpiRc )
 #ifndef ALWAYS_USE_MPI
          ENDIF
@@ -434,7 +434,7 @@ C        Send the data
 #endif
          exchNReqsX(1,bi,bj) = exchNReqsX(1,bi,bj)+1
          CALL MPI_Isend(eastSendBuf_RS(1,eBl,bi,bj), theSize, theType,
-     &                  theProc, theTag, MPI_COMM_WORLD,
+     &                  theProc, theTag, MPI_COMM_MODEL,
      &                  exchReqIdX(exchNReqsX(1,bi,bj),1,bi,bj), mpiRc )
 #ifndef ALWAYS_USE_MPI
          ENDIF

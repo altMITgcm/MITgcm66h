@@ -102,7 +102,7 @@ C--   iii. Set data read flag + memory sync.
          theType = MPI_DOUBLE_PRECISION
          theSize = sNy*exchWidthX*myNz
          CALL MPI_Recv( westRecvBuf_RL(1,eBl,bi,bj), theSize, theType,
-     &                  theProc, theTag, MPI_COMM_WORLD,
+     &                  theProc, theTag, MPI_COMM_MODEL,
      &                  mpiStatus, mpiRc )
 #ifndef ALWAYS_USE_MPI
         ENDIF                 
@@ -119,7 +119,7 @@ C--   iii. Set data read flag + memory sync.
          theType = MPI_DOUBLE_PRECISION
          theSize = sNy*exchWidthX*myNz
          CALL MPI_Recv( eastRecvBuf_RL(1,eBl,bi,bj), theSize, theType,
-     &                  theProc, theTag, MPI_COMM_WORLD,
+     &                  theProc, theTag, MPI_COMM_MODEL,
      &                  mpiStatus, mpiRc )
 #ifndef ALWAYS_USE_MPI
         ENDIF                 
@@ -416,7 +416,7 @@ C--   iii. Set data read flag + memory sync.
 #endif
          theSize = sNy*exchWidthX*myNz
          CALL MPI_Recv( westRecvBuf_RS(1,eBl,bi,bj), theSize, theType,
-     &                  theProc, theTag, MPI_COMM_WORLD,
+     &                  theProc, theTag, MPI_COMM_MODEL,
      &                  mpiStatus, mpiRc )
 #ifndef ALWAYS_USE_MPI
         ENDIF                 
@@ -436,7 +436,7 @@ C--   iii. Set data read flag + memory sync.
 #endif
          theSize = sNy*exchWidthX*myNz
          CALL MPI_Recv( eastRecvBuf_RS(1,eBl,bi,bj), theSize, theType,
-     &                  theProc, theTag, MPI_COMM_WORLD,
+     &                  theProc, theTag, MPI_COMM_MODEL,
      &                  mpiStatus, mpiRc )
 #ifndef ALWAYS_USE_MPI
         ENDIF                 

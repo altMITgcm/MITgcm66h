@@ -136,7 +136,7 @@ C      Could be periodic in X and/or Y - set at run time or compile time!
 #endif /* CAN_PREVENT_Y_PERIODICITY */
 
        CALL MPI_CART_CREATE(
-     I  MPI_COMM_WORLD,2,mpiGridSpec,mpiPeriodicity,_mpiTRUE_,
+     I  MPI_COMM_MODEL,2,mpiGridSpec,mpiPeriodicity,_mpiTRUE_,
      O  mpiComm, mpiRC )
        IF ( mpiRC .NE. MPI_SUCCESS ) THEN
         eeBootError = .TRUE.
@@ -458,7 +458,7 @@ C--    Assign MPI values used in generating unique tags for messages.
        mpiTagN    = 4
 
 C
-       CALL MPI_Barrier(MPI_COMM_WORLD,mpiRC)
+       CALL MPI_Barrier(MPI_COMM_MODEL,mpiRC)
 
 
 C

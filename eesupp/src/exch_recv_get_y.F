@@ -105,7 +105,7 @@ C--   iii. Set data read flag + memory sync.
          IF ( theCornerMode .EQ. EXCH_UPDATE_CORNERS )
      &    theSize = (sNx+2*exchWidthX)*exchWidthY*myNz
          CALL MPI_Recv( southRecvBuf_RL(1,eBl,bi,bj), theSize, theType,
-     &                  theProc, theTag, MPI_COMM_WORLD,
+     &                  theProc, theTag, MPI_COMM_MODEL,
      &                  mpiStatus, mpiRc )
 #ifndef ALWAYS_USE_MPI
         ENDIF                 
@@ -124,7 +124,7 @@ C--   iii. Set data read flag + memory sync.
          IF ( theCornerMode .EQ. EXCH_UPDATE_CORNERS )
      &    theSize = (sNx+2*exchWidthX)*exchWidthY*myNz
          CALL MPI_Recv( northRecvBuf_RL(1,eBl,bi,bj), theSize, theType,
-     &                  theProc, theTag, MPI_COMM_WORLD,
+     &                  theProc, theTag, MPI_COMM_MODEL,
      &                  mpiStatus, mpiRc )
 #ifndef ALWAYS_USE_MPI
         ENDIF                 
@@ -431,7 +431,7 @@ C--   iii. Set data read flag + memory sync.
          IF ( theCornerMode .EQ. EXCH_UPDATE_CORNERS )
      &    theSize = (sNx+2*exchWidthX)*exchWidthY*myNz
          CALL MPI_Recv( southRecvBuf_RS(1,eBl,bi,bj), theSize, theType,
-     &                  theProc, theTag, MPI_COMM_WORLD,
+     &                  theProc, theTag, MPI_COMM_MODEL,
      &                  mpiStatus, mpiRc )
 #ifndef ALWAYS_USE_MPI
         ENDIF                 
@@ -453,7 +453,7 @@ C--   iii. Set data read flag + memory sync.
          IF ( theCornerMode .EQ. EXCH_UPDATE_CORNERS )
      &    theSize = (sNx+2*exchWidthX)*exchWidthY*myNz
          CALL MPI_Recv( northRecvBuf_RS(1,eBl,bi,bj), theSize, theType,
-     &                  theProc, theTag, MPI_COMM_WORLD,
+     &                  theProc, theTag, MPI_COMM_MODEL,
      &                  mpiStatus, mpiRc )
 #ifndef ALWAYS_USE_MPI
         ENDIF                 

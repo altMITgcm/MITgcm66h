@@ -277,5 +277,9 @@ C                     threads.
       INTEGER mpiTagE
       INTEGER mpiTagN
       INTEGER mpiTagS
-#endif /* ALLOW_USE_MPI */
 
+C MPI communicator describing this model realization
+      COMMON /MPI_COMMS/
+     &        MPI_COMM_MODEL
+      INTEGER MPI_COMM_MODEL
+#endif /* ALLOW_USE_MPI */
