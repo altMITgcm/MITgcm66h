@@ -97,7 +97,7 @@ c     Interpolate linearly onto the current time.
 
       endif
 
-#endif
+#endif /* EXF_READ_EVAP */
 
       end
 
@@ -112,6 +112,7 @@ c
 c     o 
 c
 c     started: Ralf.Giering@FastOpt.de 25-Mai-2000
+c     changed: heimbach@mit.edu 10-Jan-2002
 c     mods for pkg/seaice: menemenlis@jpl.nasa.gov 20-Dec-2002
 c
 c     ==================================================================
@@ -132,7 +133,7 @@ c     == routine arguments ==
 
       integer mythid
 
-#ifdef EXF_READ_EVAP
+#if defined(ALLOW_ATM_TEMP) || defined(EXF_READ_EVAP)
 c     == local variables ==
 
       integer bi, bj
@@ -145,13 +146,15 @@ c     == end of interface ==
           do j = 1, sny
             do i = 1, snx
               evap(i,j,bi,bj)  = 0. _d 0
+#ifdef EXF_READ_EVAP
               evap0(i,j,bi,bj) = 0. _d 0
               evap1(i,j,bi,bj) = 0. _d 0
+#endif
             enddo
           enddo
         enddo
       enddo
 
-#endif
+#endif /* ALLOW_ATM_TEMP or EXF_READ_EVAP */
 
       end
