@@ -26,6 +26,8 @@ C     === Routine arguments ===
 #ifdef ALLOW_GMREDI
 
 C--   GM/Redi parameter
+C     GM_Small_Number :: epsilon used in computing the slope
+C     GM_slopeSqCutoff :: slope^2 cut-off value 
       NAMELIST /GM_PARM01/
      &          GM_AdvForm, GM_AdvSeparate,
      &          GM_isopycK,
@@ -33,6 +35,7 @@ C--   GM/Redi parameter
      &          GM_taper_scheme,
      &          GM_maxSlope,
      &          GM_Kmin_horiz,
+     &          GM_Small_Number, GM_slopeSqCutoff,
      &          GM_Visbeck_alpha,
      &          GM_Visbeck_length,
      &          GM_Visbeck_depth,
@@ -72,6 +75,8 @@ C--   Default values GM/Redi
       GM_background_K     = 0.
       GM_maxslope         = 1.0D-2
       GM_Kmin_horiz       = 0.
+      GM_Small_Number     = 1. _d -12
+      GM_slopeSqCutoff   = 1. _d +48
       GM_taper_scheme     = ' '
       GM_Scrit            = 0.004
       GM_Sd               = 0.001
