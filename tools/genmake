@@ -164,7 +164,8 @@ foreach dr ($STANDARDDIRS)
   endif
   echo Adding source directory $adr
   set SOURCEDIRS = ($SOURCEDIRS $adr)
-  set INCLUDEDIRS = ($INCLUDEDIRS $adr:s/src/inc/)
+  set idr = `echo $adr | sed 's/src/inc/'`
+  set INCLUDEDIRS = ($INCLUDEDIRS $idr)
 end
 if (! $?PACKAGES) then
   set PACKAGES=(`cd $ROOTDIR/pkg; ls -1 | grep -v CVS`)
@@ -460,7 +461,7 @@ foreach dr ($SOURCEDIRS)
  if ($#deplist != 0) then
   echo "# These files are linked from $dr" >> srclinks.tmp
   echo $deplist':' >> srclinks.tmp
-  echo '\t$(LN) '$dr'/$@ $@' >> srclinks.tmp
+  echo '	$(LN) '$dr'/$@ $@' >> srclinks.tmp
  endif
 end
 rm -rf .links.tmp
