@@ -14,7 +14,7 @@ S64='$(TOOLSDIR)/set64bitConst.sh'
 DEFINES='-DWORDLENGTH=4'
 AWK='gawk'
 MAKEDEPEND='$(TOOLSDIR)/xmakedepend'
-MAKE='make'
+#MAKE='make'
 CPP='/usr/ccs/lib/cpp -P'
 # this one works, too
 #CPP='/opt/sfw/bin/cpp -traditional -P'
