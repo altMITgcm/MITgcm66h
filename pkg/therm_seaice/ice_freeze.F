@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 #include "CPP_OPTIONS.h"
 
 C     !ROUTINE: ICE_FREEZE
@@ -22,13 +25,17 @@ C     == Global variables ==
 #include "GRID.h"
 #include "FFIELDS.h"
 #include "ICE.h"
+#ifdef ALLOW_BULK_FORCE
 #include "BULKF_ICE_CONSTANTS.h"
 #include "BULKF.h"
+#endif
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine Arguments ==
       INTEGER bi,bj,iMin,iMax,jMin,jMax
       INTEGER myThid
+
+#ifdef ALLOW_THERM_SEAICE
 
 C     !LOCAL VARIABLES:
 C     == Local variables ==
@@ -69,6 +76,7 @@ c Freshwater flux:
         ENDDO
        ENDDO
 
+#endif /* ALLOW_THERM_SEAICE */
+
       RETURN
       END
-
