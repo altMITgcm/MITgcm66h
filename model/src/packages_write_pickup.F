@@ -117,7 +117,7 @@ C SPK 4/9/01: Open boundary checkpointing
 
 #ifdef ALLOW_THSICE
         IF (useThSIce) THEN
-          CALL THSICE_WRITE_CHECKPOINT(
+          CALL THSICE_WRITE_PICKUP(
      &               prec, lgf, permCheckPoint, myIter, myThid)
         ENDIF
 #endif /* ALLOW_THSICE */
