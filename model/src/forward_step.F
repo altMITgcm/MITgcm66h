@@ -536,7 +536,7 @@ C AMM  -- Diagnostics package
 
 # ifdef ALLOW_PTRACERS
       if(useptracers)then
-       call diagnostics_fill_ptracers(myThid)
+       CALL PTRACERS_FILL_DIAGNOSTICS(myThid)
       endif
 # endif
 
