@@ -98,6 +98,10 @@ C--   Set default "physical" parameters
       implicDiv2DFlow     = 1.D0
       hFacMin             = 1.D0
       hFacMinDrDefault    = 0.D0
+      exactConserv        = .FALSE.
+      nonlinFreeSurf      = .FALSE.
+      hFacInf             = 1.D0
+      hFacSup             = 1.D0
       staggerTimeStep     = .FALSE.
       momViscosity        = .TRUE.
       momAdvection        = .TRUE.
@@ -125,6 +129,7 @@ C--   Set default "physical" parameters
 C--   Elliptic solver parameters
       cg2dMaxIters       = 150
       cg2dTargetResidual = 1.D-7
+      cg2dTargetResWunit = -1.
       cg2dChkResFreq     = 1
       cg2dpcOffDFac      = 0.51D0
       cg3dMaxIters       = 150

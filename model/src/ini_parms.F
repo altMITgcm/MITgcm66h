@@ -94,6 +94,7 @@ C--   Continuous equation parameters
      & saltDiffusion, saltAdvection, saltForcing,
      & implicSurfPress, implicDiv2DFlow,
      & implicitFreeSurface, rigidLid, freeSurfFac, hFacMin, hFacMinDz,
+     & exactConserv, nonlinFreeSurf, hFacInf, hFacSup,
      & staggerTimeStep,
      & tempStepping, saltStepping, momStepping,
      & implicitDiffusion, implicitViscosity,
@@ -108,7 +109,8 @@ C--   Continuous equation parameters
 
 C--   Elliptic solver parameters
       NAMELIST /PARM02/
-     & cg2dMaxIters, cg2dChkResFreq, cg2dTargetResidual, cg2dpcOffDFac,
+     & cg2dMaxIters, cg2dChkResFreq, cg2dTargetResidual, 
+     & cg2dTargetResWunit, cg2dpcOffDFac,
      & cg3dMaxIters, cg3dChkResFreq, cg3dTargetResidual
 
 C--   Time stepping parammeters
