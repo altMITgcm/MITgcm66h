@@ -80,7 +80,7 @@ C----------------------------------------------------------------------
       diagName  = 'PHIBOT  '
       diagTitle = 'ocean bottom pressure / top. atmos geo-Potential'
       diagUnits = 'm2/s2           '
-      diagCode  = 'SM      MR      '
+      diagCode  = 'SM      M1      '
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
