@@ -195,7 +195,7 @@ c_FM  CALL SUFLUX (PSG,UG1,VG1,TG1,QG1,RH,PHIG1,
 c_FM &             PHIS0,FMASK1,STL1,SST1,SOILW1,SSR,SLR,
 c_FM &             USTR,VSTR,SHF,EVAP,ST4S,
 c_FM &             TS,TSKIN,U0,V0,T0,Q0) 
-      CALL SUFLUX (PSG, TG1, QG1, RH(1,1,myThid), VsurfSq,
+      CALL SUFLUX (PSG, TG1, QG1, RH(1,1,myThid), SE, VsurfSq,
      I             WVSurf(1,myThid),csLat(1,myThid),fOrogr(1,myThid),
      I             FMASK1(1,myThid),STL1(1,myThid),SST1(1,myThid),
      I             SOILW1(1,myThid), SSR(1,myThid),SLR(1,myThid),
