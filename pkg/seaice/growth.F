@@ -81,11 +81,6 @@ CADJ &                         key = iicekey, byte = isbyte
 cph)
         DO J=1,sNy
          DO I=1,sNx
-C Adjust surface air temperature according to ice conditions
-          IF(AREA(I,J,1,bi,bj).GE.0.75 _d 0
-     &      .AND.ATEMP(I,J,bi,bj).GT.273.052 _d 0) THEN
-           ATEMP(I,J,bi,bj)=273.052 _d 0
-          ENDIF
           SEAICE_SALT(I,J,bi,bj)=ZERO
           WATR(I,J,bi,bj)=ZERO
          ENDDO
@@ -116,7 +111,9 @@ C dRf(1) * (sea water heat capacity = 3996 J/kg/K)
 C        * (density of sea-water = 1026 kg/m^3)
 C        / (latent heat of fusion of sea-ice = 334000 J/kg)
 C        / (density of sea-ice = 910 kg/m^3)
-          YNEG(I,J,bi,bj)=(theta(I,J,1,bi,bj)-TBC)*dRf(1)/72.0764 _d 0
+ctest     YNEG(I,J,bi,bj)=(theta(I,J,1,bi,bj)-TBC)*dRf(1)/72.0764D0
+          YNEG(I,J,bi,bj)=0.0
+ctest end
           IF(YNEG(I,J,bi,bj).LE.ZERO) THEN
 C SUPERCOOLING, CONVERT TO ICE
            HEFF(I,J,1,bi,bj)=HEFF(I,J,1,bi,bj)-YNEG(I,J,bi,bj)

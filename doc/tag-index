@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+untagged
+o Modifications to pkg/seaice, verification/lab_sea, and
+  verification/natl_box_adjoint for testing sea-ice adjoint code.
+
 ecco_c51_e34
 o merging c51 into ecco-branch
 

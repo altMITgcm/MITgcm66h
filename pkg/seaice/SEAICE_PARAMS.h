@@ -95,7 +95,8 @@ C     SEAICE_shortwave   - penetration shortwave radiation factor
 C     LSR_ERROR          - sets accuracy of LSR solver
 C     DIFF1              - parameter used in advect.F
 C     A22                - parameter used in growth.F
-C     HO                 - parameter used in growth.F
+C     HO                 - demarcation thickness between thin and
+C                          thick ice: HO is a key ice-growth parameter
 C     WindForcingStart   - Time of first  wind forcing record  (s)
 C     WindForcingEnd     - Time of last   wind forcing record  (s)
 C     WindForcingPeriod  - Period between wind forcing records (s)

@@ -2,10 +2,7 @@
 # ==========================================================
 # - forward/adjoint run
 # - optimization cost function
-# - with KPP & shortwave heating
-# - gmredi turned off (until merge to c48)
 # - The input data is real*8
-# - 4 timesteps
 
 
 ####################
@@ -14,6 +11,8 @@
 # Use air-sea fluxes as controls (standard case):
 # perform gradient checks for first four elements of the
 # heat flux part of the control vector (grdchkvarindex = 3).
+# - with GMREDI, KPP, and shortwave heating
+# - 4 timesteps
 
 # Compile code in bin/:
  cd bin
@@ -118,8 +117,6 @@
 # Same as exp. 4, but using sea-ice bulk formulae.
 # This experiment tests pkg/seaice bulk formulae over open water.
 # No sea-ice is formed anywhere in the domain.
-# There is a discrepancy of up to 8% between ajoint
-# model and finite difference gradients.
 
 # Compile code in bin/:
  cd ../bin
@@ -276,19 +273,50 @@
  cp data.100day data
  cp ../verification/natl_box_adjoint/input_bulk/data.grdchk .
  ./mitgcmuv >&! output.txt
-# To verify the results of the gradient check, type:
- grep "ph-grd 3" output.txt
 
-# For 100 days, adjoint gradient blows up for cost_ice_flag=1,2,3,4,5.
-# Following table compares adjoint gradient to finite difference gradient
-# for various choices of grdchk_eps and for cost_ice_flag=1.  The finite
-# difference gradient is unstable, suggesting that tangent linear gradient
-# is ill defined. 100 day experiment looks equally bad with cost_ice_flag=2.
- adj grad -.441946498+276 -.143062040+277 -.116360092+277 0.400428239+277
+# For 100 days, adjoint gradient is NAN
+
+# Following table compares finite difference gradient for various choices
+# of grdchk_eps.
  1.d-12   -.177327175E+20 0.140230277E+20 -.254542273E+20 0.138603531E+19
  1.d-8    0.174714613E+16 -.527867903E+15 0.403581037E+15 0.377322748E+12
  1.d-4    0.999954825E+11 0.156018218E+12 -.474931072E+11 -.357260091E+11
  1.d-2    0.634576350E+09 -.185440863E+10 -.599212833E+09 -.334417056E+10
+
+# Following table compares adjoint and finite difference gradient for
+# various choices of nTimeSteps
+# with nTimeSteps=4
+ adj grad  0.103151639E+00 0.308058453E+00 -.732758366E+04 -.161844794E+06
+ 1.d-4     0.305175781E+00 0.305175781E+00 -.732757568E+04 -.161844788E+06
+# with nTimeSteps=24
+ adj grad  0.137444822E+04 0.365984818E+04 0.256198267E+05 -.204077640E+06
+ 1.d-4     0.137313843E+04 0.365982056E+04 0.256221008E+05 -.204077454E+06
+# with nTimeSteps=240
+ adj grad  0.443328852E+39 -.133652133E+38 -.905448973E+38 -.598093614E+40
+ 1.d-4     -.209616183E+10 0.257127391E+10 -.917457365E+10 0.104622205E+10
+# with nTimeSteps=480
+ adj grad  -.217869560E+39 0.656820132E+37 0.444973903E+38 0.293927165E+40
+ 1.d-4     -.848343350E+09 0.186724144E+10 -.768266406E+10 0.188919420E+10
+# with nTimeSteps=960
+ adj grad  -.125255788E+49 0.377613667E+47 0.255820763E+48 0.168982206E+50
+ 1.d-4     0.683065531E+10 -.241320782E+11 -.359080729E+11 0.222805821E+11
+# with nTimeSteps=1920
+ adj grad  0.993422132E+94 -.299490969E+93 -.202895220E+94 -.134022280E+96
+ 1.d-4     0.677603652E+12 0.115923780E+12 -.383606246E+12 -.393716060E+12
+# with nTimeSteps=2400
+ adj grad  0.204800998+114 -.617421814+112 -.418282846+113 -.276296408+115
+ 1.d-4     0.796041873E+12 0.280172355E+12 -.429971310E+12 -.655627972E+12
+# with nTimeSteps=3600
+ adj grad  0.123800977+143 -.373227788+141 -.252849475+142 -.167019524+144
+ 1.d-4     0.154270431E+12 0.246315840E+12 0.392679620E+12 0.816557457E+11
+
+# With cost_ice_flag = 2
+# adj grad  0.500216760+194 -.353450868+194 -.799381224+195 -.173412383+194
+# 1.d-04    -.327859949E+08 -.300222927E+10 0.252204364E+09 -.658448165E+10
+# 1.d-03    -.572185323E+08 0.614938314E+08 -.850914638E+09 0.248982808E+08
+# 1.d-02    -.624721639E+07 -.147537212E+08 -.114497432E+09 -.358163526E+08
+# 1.d-01    0.603974309E+07 -.684786020E+07 -.149337451E+09 -.601790080E+07
+# 1.d-00    -.497381448E+06 -.404972657E+05 -.142684281E+09 -.501277195E+08
 
 # 100 day experiment with cost_ice_flag = 3, but in North Atlantic
 # domain, i.e., with no sea-ice is OK
@@ -316,16 +344,6 @@
  adj grad  0.149606733+285 0.484290396+285 0.393899563+285 -.135552065+286
  1.d-4     -.300535490E+20 -.689378119E+20 0.300954675E+19 0.767231924E+20
 
-# 100 day experiments with all albedos set to a constant 0.4, with
-# IMAX_TICE=50, and with HSNOW=0 also fail.
-
-# With cost_ice_flag = 2
-# 1.d-04    -.327859949E+08 -.300222927E+10 0.252204364E+09 -.658448165E+10
-# 1.d-03    -.572185323E+08 0.614938314E+08 -.850914638E+09 0.248982808E+08
-# 1.d-02    -.624721639E+07 -.147537212E+08 -.114497432E+09 -.358163526E+08
-# 1.d-01    0.603974309E+07 -.684786020E+07 -.149337451E+09 -.601790080E+07
-# 1.d-00    -.497381448E+06 -.404972657E+05 -.142684281E+09 -.501277195E+08
-# adj grad  0.500216760+194 -.353450868+194 -.799381224+195 -.173412383+194
 
 # With cost_ice_flag = 6, i.e., a quadratic cost function
 # 1.d-04    -.525101466E+01 -.328685504E+03 0.267928050E+02 -.563072857E+03
@@ -333,29 +351,30 @@
 # 1.d-02    -.232806373E+00 -.104311448E+01 0.173597838E+02 -.394705606E+01
 # 1.d-01    0.515424287E+00 -.578962143E+00 0.108556846E+02 -.563596055E+00
 # 1.d-00    -.480177391E-01 -.327366136E-02 0.107190195E+02 -.498391127E+01
-# adj grad  0.354316213+187 -.250358211+187 -.566221987+188 -.122832387+187
+# adj grad  NAN             NAN             NAN             NAN
 
-# It seems that linearization in the presence of a sea-ice model is very
-# difficult.  Consider that a small perturbation at time zero may cause
-# sea-ice to appear or not at a particular grid point.  The model response
-# with sea-ice is completely different from that with no sea-ice, so that
-# this small initial perturbation will have a large impact in ocean heat
-# content, or even ocean plus sea-ice heat content.  One way around this
-# may be a preliminary piece-wise optimization, say 10 days at a time, but
-# without changing initial conditions, just the surface fluxes.  Another
-# way may be to specify heat fluxes based on observed sea-ice extent, in
-# order to force the model to have sea-ice where sea-ice is observed.  A
-# third possiblity, similar to that provided by package MIX for KPP scheme
-# in the telescoping configuration would be to store AREA or HEFF during
-# forward model integrations and then to specify, rather than recompute,
-# AREA or HEFF or both during adjoint model calculations.  The problem
-# with this approach is that it would not be possible to compute
-# sensitivity to a variable that held constant, rather tan computed?
-# Perhaps sensitivity of cost function to AREA and to HEFF can be computed
-# separately, by running the adjoint twice, once keeping HEFF constant and
-# the second keeping AREA constant?
+# 100 day experiments with all albedos set to a constant 0.4, with
+# IMAX_TICE=50, and with HSNOW=0 also fail with NANs
 
-# Now need a test to show that this is indeed the problem.
+# 100-day with undef  ALLOW_GMREDI
+ adj grad  0.846385475+258 0.198955589+259 0.729012228+259 0.320320183+256
+ 1.d-4     -.577220699E+12 -.987464011E+12 -.342421713E+12 -.553564700E+12
+
+# Adjoint gradient is OK for 100 days is KPP and GM
+# are undefined in CPP_OPTIONS file:
+ adj grad  0.717330426E+06 0.106802371E+07 0.443223909E+06 -.581863641E+08
+ 1.d-4     0.717581787E+06 0.106213684E+07 0.441527100E+06 -.581863293E+08
+# Above experiment fails with NANs when extended to 375 days
+# but it works OK is SEAICE_initialHEFF = 0.0 instead of 1.0
+ adj grad  -.256772533E+05 -.782710992E+05 -.273621212E+05 -.133527839E+09
+ 1.d-4     -.256640625E+05 -.779858398E+05 -.272338867E+05 -.133528066E+09
+# 10-yr experiment with above parameters fails with NANs
+
+# 100-day with yneg=0 in growth.F
+ adj grad  -.246704815E+07 -.171229406E+09 -.113862028E+08 -.156706660E+08
+ 1.d-4     -.246699463E+07 -.171229277E+09 -.113861792E+08 -.156706763E+08
+# 375-day with yneg=0 in growth.F
+ (in progress)
 
 
 #####################
