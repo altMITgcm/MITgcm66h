@@ -548,6 +548,30 @@ switch ($platform$USEMPI)
     set LIBS       = ( ' -L/usr/local/apps/mass -lmass' )
     set RMFILES    = ( 'rii_files' )
     breaksw
+# originally on bluesky.ucar.edu
+  case SP4:
+    echo "Configuring for IBM SP POWER4"
+    set SOURCEDIRS  = ( ./ $SOURCEDIRS )
+    set LN         = ( 'ln -s' )
+    set DEFINES    = ( ${DEFINES} '-DTARGET_PWR3 -DTARGET_SGI -DWORDLENGTH=4' )
+    set INCLUDES   = ( '-I/usr/lpp/ppe.poe/include' )
+#    set CPP        = ( '/lib/cpp' )
+    set FC         = ( 'mpxlf95' )
+    set LINK       = ( 'mpxlf95' )
+    set FLAGS      = ( '-O3 -qarch=pwr4 -qtune=pwr4 -qcache=auto -qmaxmem=-1' \
+                           '-bmaxdata:0x80000000 -bloadmap:mitgcmuv.map' )
+    set FFLAGS     = ( '-qfixed=132 -O3 -qarch=pwr4 -qtune=pwr4 -qcache=auto -qmaxmem=-1' \
+                           '-bmaxdata:0x80000000 ' )
+    set LDFLAGS    = ( '-O3 -qarch=pwr4 -qtune=pwr4 -qcache=auto -qmaxmem=-1' \
+                           '-bmaxdata:0x80000000' )
+    set LIBS       = ( ' -L/usr/local/apps/mass -lmass' )
+#   set FFLAGS     = ( '-extend_source -mp -mpio -bytereclen -r10000 -mips4' )
+#    set FOPTIM     = ( '-O3' )
+#   set NOOPTFLAGS = ( '-O0' )
+#   set NOOPTFILES = ( 'barrier.F different_multiple.F ' \
+#                      'external_fields_load.F' )
+    set RMFILES    = ( 'rii_files' )
+    breaksw
   case aer-linux-cluster+mpi
     echo "Configuring for " $platform
     set LN         = ( '/bin/ln -s' )
