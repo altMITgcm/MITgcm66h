@@ -428,31 +428,33 @@ cph)
 c
 c     Summation of wet point counters 
 c
-      CALL GLOBAL_SUM_INT( nvarlength,  myThid )
-      ntmp=0
-      do bj=1,nSy
-         do bi=1,nSx
-            ntmp=ntmp+nWetcTile(bi,bj,k)
+      do k = 1, Nr
+         CALL GLOBAL_SUM_INT( nvarlength,  myThid )
+         ntmp=0
+         do bj=1,nSy
+            do bi=1,nSx
+               ntmp=ntmp+nWetcTile(bi,bj,k)
+            enddo
          enddo
-      enddo
-      CALL GLOBAL_SUM_INT( ntmp,  myThid )
-      nWetcTile(1,1,k)=ntmp
-      ntmp=0
-      do bj=1,nSy
-         do bi=1,nSx
-            ntmp=ntmp+nWetsTile(bi,bj,k)
+         CALL GLOBAL_SUM_INT( ntmp,  myThid )
+         nWetcTile(1,1,k)=ntmp
+         ntmp=0
+         do bj=1,nSy
+            do bi=1,nSx
+               ntmp=ntmp+nWetsTile(bi,bj,k)
+            enddo
          enddo
-      enddo
-      CALL GLOBAL_SUM_INT( ntmp,  myThid )
-      nWetsTile(1,1,k)=ntmp
-      ntmp=0
-      do bj=1,nSy
-         do bi=1,nSx
-            ntmp=ntmp+nWetwTile(bi,bj,k)
+         CALL GLOBAL_SUM_INT( ntmp,  myThid )
+         nWetsTile(1,1,k)=ntmp
+         ntmp=0
+         do bj=1,nSy
+            do bi=1,nSx
+               ntmp=ntmp+nWetwTile(bi,bj,k)
+            enddo
          enddo
+         CALL GLOBAL_SUM_INT( ntmp,  myThid )
+         nWetwTile(1,1,k)=ntmp
       enddo
-      CALL GLOBAL_SUM_INT( ntmp,  myThid )
-      nWetwTile(1,1,k)=ntmp
 
       print*, 'ctrl_init: no. of control variables: ', nvartype
       print*, 'ctrl_init: control vector length:    ', nvarlength

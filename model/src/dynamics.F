@@ -83,9 +83,6 @@ C     == Global variables ===
 # ifdef ALLOW_KPP
 #  include "KPP.h"
 # endif
-# ifdef ALLOW_GMREDI
-#  include "GMREDI.h"
-# endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 #ifdef ALLOW_TIMEAVE
 #include "TIMEAVE_STATV.h"

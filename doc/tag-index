@@ -3,7 +3,16 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
-release1_chkpt44d_post = chkpt44d_post
+release1_p1
+
+o merged necessary patches:
+  - AD-related changes for GMRedi
+  - fixes i KPP (delZ -> drF)
+  - hook to OBCS songe layer code in external_forcing
+  - errorMessageUnit non-zero in eeboot.F
+  - modified test cost function and carbon verif.
+
+release1_chkpt44d_post = chkpt44d_post 
 
 chkpt44d_pre,post
 o added missing EXCLUDE_MONITOR flags
@@ -14,10 +23,8 @@ o in genmake added variable MAKEDEPEND
   plus resetting for case SunOS
 o added timer_stats.c routine for IBM SP3
 o removed variables in dynamics
-!!! I forgot to create tag chkpt44d_pre !!!
-!!! But chkpt44d_pre = chkpt44c_post    !!!
 
-o real fresh water flux implemented with non-linear free-surface. 
+o real fresh water flux implemented with non-linear free-surface.
 
 chkpt44c_pre,post
 o few fix (mask in shap_s2, EmPmR in external_field_load, 
