@@ -27,6 +27,7 @@ C     myThid - Thread no. that called this routine.
 CEndOfInterface
 
 #ifdef ALLOW_SEAICE
+#ifdef SEAICE_ALLOW_DYNAMICS
 
 C     === Local variables ===
 C     i,j,bi,bj - Loop counters
@@ -481,6 +482,7 @@ C NOW MAKE COROLIS TERM IMPLICIT
       CALL EXCH_RL( VICE, OLx, OLx, OLy, OLy, 3, OLx, OLy,
      I      FORWARD_SIMULATION, EXCH_UPDATE_CORNERS, myThid )
 
+#endif SEAICE_ALLOW_DYNAMICS
 #endif ALLOW_SEAICE
 
       RETURN

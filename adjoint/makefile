@@ -315,9 +315,11 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/exf_set_evap.f			\
 		$(SOURCE_CODE)/exf_set_hflux.f			\
 		$(SOURCE_CODE)/exf_set_lwflux.f			\
+		$(SOURCE_CODE)/exf_set_lwdown.f			\
 		$(SOURCE_CODE)/exf_set_precip.f			\
 		$(SOURCE_CODE)/exf_set_sflux.f			\
 		$(SOURCE_CODE)/exf_set_swflux.f			\
+		$(SOURCE_CODE)/exf_set_swdown.f			\
 		$(SOURCE_CODE)/exf_set_ustress.f		\
 		$(SOURCE_CODE)/exf_set_uwind.f			\
 		$(SOURCE_CODE)/exf_set_vstress.f		\
@@ -369,8 +371,26 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/obcs_apply_uv.f			\
 		$(SOURCE_CODE)/obcs_calc.f			\
 		$(SOURCE_CODE)/obcs_init_variables.f		\
-		$(SOURCE_CODE)/obcs_sponge.f
-
+		$(SOURCE_CODE)/obcs_sponge.f			\
+								\
+#		$(SOURCE_CODE)/adi.f				\
+		$(SOURCE_CODE)/advect.f				\
+		$(SOURCE_CODE)/budget.f				\
+		$(SOURCE_CODE)/diffus.f				\
+		$(SOURCE_CODE)/dynsolver.f			\
+		$(SOURCE_CODE)/groatb.f				\
+		$(SOURCE_CODE)/growth.f				\
+#		$(SOURCE_CODE)/lsr.f				\
+		$(SOURCE_CODE)/ostres.f				\
+		$(SOURCE_CODE)/seaice_check.f			\
+		$(SOURCE_CODE)/seaice_do_diags.f		\
+		$(SOURCE_CODE)/seaice_get_forcing.f		\
+		$(SOURCE_CODE)/seaice_init.f			\
+		$(SOURCE_CODE)/seaice_model.f			\
+		$(SOURCE_CODE)/seaice_pickup.f			\
+		$(SOURCE_CODE)/seaice_readparms.f		\
+								\
+#		$(SOURCE_CODE)/exch_rl.f
 
 #--------------------------------------------------------
 # rules

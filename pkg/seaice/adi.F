@@ -27,6 +27,7 @@ C     myThid - Thread no. that called this routine.
 CEndOfInterface
  
 #ifdef ALLOW_SEAICE
+#ifdef SEAICE_ALLOW_DYNAMICS
 
 C     === Local variables ===
 C     i,j,bi,bj - Loop counters
@@ -683,6 +684,7 @@ C--   Update overlap regions
        ENDDO
       ENDDO
 
+#endif SEAICE_ALLOW_DYNAMICS
 #endif ALLOW_SEAICE
 
       RETURN

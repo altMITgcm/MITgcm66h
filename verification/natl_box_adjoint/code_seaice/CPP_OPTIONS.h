@@ -6,6 +6,9 @@ C CPP flags controlling which code in included in the files that
 C will be compiled.
 C
 
+C o Include/exclude code for sea-ice model
+#define  ALLOW_SEAICE
+
 C o Include/exclude code for GM/Redi parameterization
 #define  ALLOW_GMREDI
 
