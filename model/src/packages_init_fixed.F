@@ -92,5 +92,14 @@ C--   Initialise ecco-specific cost function.
 # endif
 #endif
 
+#ifdef ALLOW_PTRACERS
+#ifdef ALLOW_GCHEM
+      IF (usePTRACERS) then
+       call GCHEM_INIT_FIXED(mythid)
+      ENDIF
+#endif
+#endif
+
+
       RETURN
       END
