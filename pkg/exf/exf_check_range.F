@@ -87,7 +87,7 @@ c             Zonal wind stress.
               endif
 c
 c             Meridional wind stress.
-              if ( ABS(vstress(i,j,bi,bj)) .GT. 2. .AND.
+              if ( ABS(vstress(i,j,bi,bj)) .GT. 2.2 .AND.
      &             hFacS(i,j,1,bi,bj) .NE. 0. ) then
                  print *, 'EXF WARNING: vstress out of range for i,j= ',
      &                i, j, vstress(i,j,bi,bj)
