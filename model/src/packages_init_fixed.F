@@ -85,6 +85,13 @@ C--   Initialise & Read FIZHI physical parameters
 #endif
 C AMM
 
+C AMM
+#ifdef ALLOW_DIAGNOSTICS
+C--   Read DIAGNOSTICS namelists and initialise parameters
+      IF (useDIAGNOSTICS) CALL DIAGNOSTICS_INITIALISE( myThid )
+#endif
+C AMM
+
 #ifdef ALLOW_LAND
 C--   Initialise & Read Land package parameters
       IF (useLand) CALL LAND_INITIALISE( myThid )
