@@ -258,6 +258,7 @@ C--   Input files
       thetaClimFile   = ' '
       saltClimFile    = ' '
       EmPmRfile       = ' '
+      saltFluxFile    = ' '
       surfQfile       = ' '
       surfQnetFile    = ' '
       surfQswFile     = ' '

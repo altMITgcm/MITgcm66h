@@ -206,7 +206,7 @@ C--   Input files
      & bathyFile, topoFile, hydrogThetaFile, hydrogSaltFile, 
      & zonalWindFile, meridWindFile,
      & thetaClimFile, saltClimFile,
-     & surfQfile, surfQnetFile, surfQswFile, EmPmRfile,
+     & surfQfile, surfQnetFile, surfQswFile, EmPmRfile, saltFluxFile,
      & uVelInitFile, vVelInitFile, pSurfInitFile,
      & dQdTFile, ploadFile,tCyl,
      & mdsioLocalDir,
