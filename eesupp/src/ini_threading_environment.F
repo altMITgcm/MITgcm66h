@@ -557,5 +557,3 @@ C      Find thread to NW, NE, SW, SE - again with wrap around.
 
       RETURN
       END
-
-C $Id$

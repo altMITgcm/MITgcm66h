@@ -180,5 +180,3 @@ C
 C
       RETURN
       END
-
-C $Id$

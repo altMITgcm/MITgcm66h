@@ -970,5 +970,3 @@ C       The write statement may need to ne marked as a critical section.
 C
       RETURN
       END
-
-C $Id$

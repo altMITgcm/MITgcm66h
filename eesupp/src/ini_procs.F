@@ -549,5 +549,3 @@ C
 
       RETURN
       END
-
-C $Id$

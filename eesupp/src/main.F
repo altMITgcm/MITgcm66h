@@ -88,5 +88,3 @@ C--   Write closedown status
       ENDIF
 C
       END
-
-C $Id$

@@ -151,5 +151,3 @@ C--   Don't leave until we are sure that the max is done
 C
       RETURN
       END
-
-C $Id$

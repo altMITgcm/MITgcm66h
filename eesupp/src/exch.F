@@ -1380,5 +1380,3 @@ C--   y-axis exchanges
 
       RETURN
       END
-
-C $Id$
