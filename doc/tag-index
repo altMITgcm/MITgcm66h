@@ -5,6 +5,8 @@ $Header$
 
 next patch:
 o added tangent linear setup to verification/carbon/
+o added adjoint sensitivity setup to verification/global_ocean...
+o moved packages_init_variables before convective_adjustment
 
 release1_p2
 o fixed array boundary problem for adjoint
