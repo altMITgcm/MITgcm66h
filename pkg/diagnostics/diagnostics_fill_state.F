@@ -15,6 +15,7 @@ C $Name$
 
 #ifdef ALLOW_DIAGNOSTICS
       _RL dummy(1-OLx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL dummys(1-OLx:sNx+Olx,1-Oly:sNy+Oly,nSx,nSy)
       integer i,j,K,bi,bj
       integer km1
 
@@ -24,12 +25,12 @@ C $Name$
         do bi = myBxLo(myThid), myBxHi(myThid)
           do j = 1,sNy
           do i = 1,sNx
-           dummy(i,j,1,bi,bj) = etaN(i,j,bi,bj)*etaN(i,j,bi,bj)
+           dummys(i,j,bi,bj) = etaN(i,j,bi,bj)*etaN(i,j,bi,bj)
           enddo
           enddo
         enddo
         enddo
-        call fill_diagnostics(myThid,'ETANSQ  ',0,1,0,1,1,dummy)
+        call fill_diagnostics(myThid,'ETANSQ  ',0,1,0,1,1,dummys)
 
         call fill_diagnostics(myThid,'UVEL    ',0,Nr,0,1,1,uVel)
         call fill_diagnostics(myThid,'VVEL    ',0,Nr,0,1,1,vVel)
