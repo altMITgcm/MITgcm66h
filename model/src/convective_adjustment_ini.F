@@ -28,9 +28,6 @@ C     == Global data ==
 #include "PARAMS.h"
 #include "DYNVARS.h"
 #include "GRID.h"
-#ifdef ALLOW_PASSIVE_TRACER
-#include "TR1.h"
-#endif
 #ifdef ALLOW_TIMEAVE
 #include "TIMEAVE_STATV.h"
 #endif 
@@ -38,7 +35,6 @@ C     == Global data ==
 #include "tamc.h"
 #include "tamc_keys.h"
 #endif /* ALLOW_AUTODIFF_TAMC */
-
       EXTERNAL DIFFERENT_MULTIPLE
       LOGICAL  DIFFERENT_MULTIPLE
 
@@ -79,19 +75,13 @@ C-      Initialisation of Convection Counter
         ENDDO
 
 #ifdef ALLOW_AUTODIFF_TAMC
-CADJ INIT tapelev_ini_bibj_k   = USER
-
           act1 = bi - myBxLo(myThid)
           max1 = myBxHi(myThid) - myBxLo(myThid) + 1
-
           act2 = bj - myByLo(myThid)
           max2 = myByHi(myThid) - myByLo(myThid) + 1
-
           act3 = myThid - 1
           max3 = nTx*nTy
-
           act4 = 0
-
           ikey = (act1 + 1) + act2*max1
      &                      + act3*max1*max2
      &                      + act4*max1*max2*max3
