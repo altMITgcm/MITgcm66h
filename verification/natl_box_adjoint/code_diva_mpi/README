@@ -1,0 +1,9 @@
+Configuration for parallel divided adjoint run.
+-----------------------------------------------
+o nPx*nPy = 2*2
+o nTimeSteps = 240
+o makefile is for adjoint code generation 
+  (uses additional TAF options -pure -mpi)
+o tested on IBM SP4, bluesky.ucar.edu,
+  compared to single-proc. DIVA and non-DIVA on sea.mit.edu,
+  w.r.t. taf-1.5.0
