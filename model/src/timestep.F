@@ -1,99 +1,103 @@
-C $Id$
+C $Header$
+C $Name$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
 C     /==========================================================\
 C     | S/R TIMESTEP                                             |
 C     | o Step model fields forward in time                      |
 C     \==========================================================/
-      SUBROUTINE TIMESTEP( bi, bj, iMin, iMax, jMin, jMax, myThid )
-      implicit none
-! Common
+      SUBROUTINE TIMESTEP( bi, bj, iMin, iMax, jMin, jMax, K,
+     I                     phiHyd, phiSurfX, phiSurfY,
+     I                     myIter, myThid )
+      IMPLICIT NONE
+
+C     == Global variables ==
 #include "SIZE.h"
 #include "DYNVARS.h"
+#include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#include "EEPARAMS.h"
-#include "CG2D.h"
+
 C     == Routine Arguments ==
+C     phiHyd    - Hydrostatic Potential (ocean: pressure/rho) 
+C                                       (atmos: geopotentiel)
+C     phiSurfX, - gradient of Surface potentiel (Pressure/rho, ocean)
+C     phiSurfY             or geopotentiel (atmos) in X and Y direction
       INTEGER bi,bj,iMin,iMax,jMin,jMax
-      INTEGER myThid
+      INTEGER K
+      _RL     phiHyd(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr) 
+      _RL     phiSurfX(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL     phiSurfY(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      INTEGER myIter, myThid
+
 C     == Local variables ==
-C     pg       - Pressure gradient terms. Note cg2d_x
-C                holds term in units so that lateral
-C                gradient is all that is needed.
-      INTEGER i,j,k
-      REAL ab15,ab05
-      _RL  pg(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      INTEGER i,j
+      _RL ab15,ab05
+      _RL phxFac,phyFac, psFac
 
 C     Adams-Bashforth timestepping weights
-      ab15=1.5+abeps
-      ab05=-0.5-abeps
+Caja  IF (myIter .EQ. 0) THEN
+Caja   ab15=1.0
+Caja   ab05=0.0
+Caja  ELSE
+       ab15=1.5+abeps
+       ab05=-0.5-abeps
+Caja  ENDIF
 
-C     Zonal pressure term
+C     Step forward zonal velocity (store in Gu)
+      psFac = pfFacMom*(1. _d 0 - implicSurfPress)
       DO j=jMin,jMax
-       DO i=iMin,iMax
-        pg(i,j)=rDxC(i,j,bi,bj)*
-     &   (cg2d_x(i,j,bi,bj)-cg2d_x(i-1,j,bi,bj))
-     &   *gravity*rhonil
-       ENDDO
-      ENDDO
-C     Step forward zonal velocity
-      DO k=1,Nz
-       DO j=jMin,jMax
         DO i=iMin,iMax
-         uVel(i,j,k,bi,bj)=uVel(i,j,k,bi,bj)
-     &    +deltaTmom*(ab15*gU(i,j,k,bi,bj)+ab05*gUNm1(i,j,k,bi,bj)
-     &                -pg(i,j)/rhonil 
-CcnhDebugStarts
-Cdbg &                -rdxC(i,j,bi,bj)*
-Cdbg &                 (pHSave(i,j,k,bi,bj)-pHSave(i-1,j,k,bi,bj))/rhonil
-CcnhDebugEnds
-     &    )*maskW(i,j,k,bi,bj)
-         gUNm1(i,j,k,bi,bj)=gU(i,j,k,bi,bj)
+          gUNm1(i,j,k,bi,bj)=uVel(i,j,k,bi,bj) + deltaTmom * (
+     &       ab15*gU(i,j,k,bi,bj)+ab05*gUNm1(i,j,k,bi,bj)
+     &     - psFac*phiSurfX(i,j)
+#ifdef INCLUDE_CD_CODE
+     &     + guCD(i,j,k,bi,bj)
+#endif
+     &        )*_maskW(i,j,k,bi,bj)
         ENDDO
-       ENDDO
       ENDDO
-C     Meridional pressure term
+
+      IF (staggerTimeStep) THEN
+C--   -grad Phi_Hyd has not been incorporated to gU and is added here:
+        phxFac = pfFacMom*deltaTmom
+        DO j=jMin,jMax
+          DO i=iMin,iMax
+            gUNm1(i,j,k,bi,bj)=gUNm1(i,j,k,bi,bj)
+     &       - _recip_dxC(i,j,bi,bj)
+     &         *(phiHyd(i,j,k)-phiHyd(i-1,j,k))*phxFac
+     &         *_maskW(i,j,k,bi,bj)
+          ENDDO
+        ENDDO
+      ENDIF
+
+C     Step forward meridional velocity (store in Gv)
+      psFac = pfFacMom*(1. _d 0 - implicSurfPress)
       DO j=jMin,jMax
-       DO i=iMin,iMax
-        pg(i,j)=rDyC(i,j,bi,bj)*
-     &   (cg2d_x(i,j,bi,bj)-cg2d_x(i,j-1,bi,bj))
-     &   *gravity*rhonil
-       ENDDO
-      ENDDO
-C     Step forward meridional velocity
-      DO k=1,Nz
-       DO j=jMin,jMax
         DO i=iMin,iMax
-         vVel(i,j,k,bi,bj)=vVel(i,j,k,bi,bj)
-     &    +deltaTmom*(ab15*gV(i,j,k,bi,bj)+ab05*gVNm1(i,j,k,bi,bj)
-     &                -pg(i,j)/rhonil 
-CcnhDebugStarts
-Cdbg &                -rdyC(i,j,bi,bj)*
-Cdbg &                 (pHSave(i,j,k,bi,bj)-pHSave(i,j-1,k,bi,bj))/rhonil
-CcnhDebugEnds
-     &               )*maskS(i,j,k,bi,bj)
-         gVNm1(i,j,k,bi,bj)=gV(i,j,k,bi,bj)
+          gVNm1(i,j,k,bi,bj)=vVel(i,j,k,bi,bj) + deltaTmom * (
+     &       ab15*gV(i,j,k,bi,bj)+ab05*gVNm1(i,j,k,bi,bj)
+     &     - psFac*phiSurfY(i,j)
+#ifdef INCLUDE_CD_CODE
+     &     + gvCD(i,j,k,bi,bj)
+#endif
+     &        )*_maskS(i,j,k,bi,bj)
         ENDDO
-       ENDDO
-      ENDDO
-C     Step forward temperature
-      DO k=1,Nz
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         theta(i,j,k,bi,bj)=theta(i,j,k,bi,bj)
-     &    +deltaTtracer*(ab15*gT(i,j,k,bi,bj)+ab05*gTNm1(i,j,k,bi,bj))
-         gTNm1(i,j,k,bi,bj)=gT(i,j,k,bi,bj)
-        ENDDO
-       ENDDO
       ENDDO
 
-      _BARRIER
-C     CALL PLOT_FIELD_XYZR8( uVel, 'TIEMSTEP.1 uVel',Nz,1,myThid)
-C     CALL PLOT_FIELD_XYZR8( vVel, 'TIEMSTEP.1 vVel',Nz,1,myThid)
-C     CALL PLOT_FIELD_XYZR8( theta, 'TIEMSTEP.1 theta',Nz,1,myThid)
-
+      IF (staggerTimeStep) THEN
+C--   -grad Phi_Hyd has not been incorporated to gV and is added here:
+        phyFac = pfFacMom*deltaTmom
+        DO j=jMin,jMax
+          DO i=iMin,iMax
+            gVNm1(i,j,k,bi,bj)=gVNm1(i,j,k,bi,bj)
+     &       - _recip_dyC(i,j,bi,bj)
+     &         *(phiHyd(i,j,k)-phiHyd(i,j-1,k))*phyFac                      
+     &         *_maskS(i,j,k,bi,bj)
+          ENDDO
+        ENDDO
+      ENDIF
 
       RETURN
       END

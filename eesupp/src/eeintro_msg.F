@@ -1,4 +1,4 @@
-C $Id$
+C $Header$
 
 #include "CPP_EEOPTIONS.h"
 
@@ -10,6 +10,7 @@ C     | o Write basic introductory message.                      |
 C     |==========================================================|
 C     | This routine could be customised for different platforms.|
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global data ===
 #include "SIZE.h"
@@ -25,7 +26,8 @@ C     === Local variables ===
       WRITE(msgBuf,'(A)') '                '
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
-      WRITE(msgBuf,'(A)') '// ======================================================'
+      WRITE(msgBuf,'(A)') 
+     &'// ======================================================'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
       WRITE(msgBuf,'(A)') '//                      MITgcm UV'
@@ -34,7 +36,8 @@ C     === Local variables ===
       WRITE(msgBuf,'(A)') '//                      ========='
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
-      WRITE(msgBuf,'(A)') '// ======================================================'
+      WRITE(msgBuf,'(A)') 
+     &'// ======================================================'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
       WRITE(msgBuf,'(A)') '// execution environment starting up...'
@@ -49,7 +52,8 @@ C     === Local variables ===
       WRITE(msgBuf,'(A)') '// account cnh'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
-      WRITE(msgBuf,'(A)') '// MITgcm UV Release: 0.0.0'
+      WRITE(msgBuf,'(A)') 
+     &'// MITgcm UV Release: $Name$'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
       WRITE(msgBuf,'(A)') '   '

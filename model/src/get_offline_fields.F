@@ -1,6 +1,7 @@
-C $Id$
+C $Header$
+C $Name$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
  
 CStartOfInterface
       SUBROUTINE GET_OFFLINE_FIELDS( myThid, fSuff )
@@ -9,13 +10,13 @@ C     | SUBROUTINE GET_OFFLINE_FIELDS                            |
 C     | o Make ee support calls for loading data for offline     |
 C     |   experiments.                                           |
 C     \==========================================================/
+      IMPLICIT NONE
  
 C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#include "CG2D.h"
 #include "DYNVARS.h"
  
 C     === Routine arguments ===
@@ -45,7 +46,8 @@ C     Note - Only the master thread writes to it filnam
 C            This presumes that only the master thread is going to do the
 C            actual disk I/O.
       _BEGIN_MASTER(myThid)
-      WRITE(filNam(2:),'(''_9yr_atlant_'',1024A)') (fSuff(I:I),I=Ilo,Ihi)
+      WRITE(filNam(2:),'(''_9yr_atlant_'',1024A)') 
+     &  (fSuff(I:I),I=Ilo,Ihi)
       _END_MASTER(myThid)
 
 C--   Call routine to load data

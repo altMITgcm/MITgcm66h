@@ -1,4 +1,5 @@
-C $Id$
+C $Header$
+C $Name$
 
 #include "CPP_EEOPTIONS.h"
 
@@ -14,6 +15,7 @@ C     | before multi-threaded parallelism. THe routine reads an  |
 C     | an "execution environment" input parameter file holding  |
 C     | information about the number of threads at run-time.     |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global variables ===
 #include "SIZE.h"
@@ -22,10 +24,9 @@ C     === Global variables ===
 CEndOfInterface
 
 C     === Local variables ===
-C     K - Loop counter
 C     iUnit - Work variable for IO unit number
 C     errIO - IO unit error flag
-      INTEGER K, IL
+      INTEGER IL
       INTEGER errIO
       INTEGER iUnit
       CHARACTER*(MAX_LEN_MBUF) msgBuf
@@ -35,13 +36,16 @@ C     errIO - IO unit error flag
       INTEGER  ILNBLNK
       EXTERNAL ILNBLNK
       NAMELIST /EEPARMS/
-     & nTx, nTy
+     & nTx, nTy,usingMPI
 
 
 C--   For now these options are fixed as the code does
 C     not fully support features for overlapping communication
 C     and computation.
       usingSyncMessages          = .TRUE.
+
+C--   Text map plots of fields ignore exact zero values
+      printMapIncludesZeros = .FALSE.
 
 C--   The remaining parameters here are set to default values.
 C--   and then any different values are read from an input
@@ -71,17 +75,18 @@ C
       notUsingXPeriodicity       = .FALSE.
       notUsingYPeriodicity       = .FALSE.
       usingMPI                   = .FALSE.
-      nTx                        = 2
-      nTy                        = 2
+      nTx                        = 1
+      nTy                        = 1
 
 C--   Read in data from eedata file
 C     We really ought to be using our environment file reading
-C     package - but we haven't written it yet.
+C     package - but we have not written it yet.
 
 C     Make scratch copies of input data file with and without comments
       OPEN(UNIT=scrUnit1,STATUS='SCRATCH')
       OPEN(UNIT=scrUnit2,STATUS='SCRATCH')
-      OPEN(UNIT=eeDataUnit,FILE='eedata',STATUS='OLD',err=1,IOSTAT=errIO)
+      OPEN(UNIT=eeDataUnit,FILE='eedata',STATUS='OLD',
+     &     err=1,IOSTAT=errIO)
       IF ( errIO .GE. 0 ) GOTO 2
     1 CONTINUE
        WRITE(msgBuf,'(A)') 
@@ -106,11 +111,14 @@ C     Make scratch copies of input data file with and without comments
  1001 CONTINUE
       CLOSE(eeDataUnit)
 C--   Report contents of parameter file
-      WRITE(msgBuf,'(A)') '// ======================================================='
-      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, SQUEEZE_RIGHT , 1)
-      WRITE(msgBuf,'(A)') '// Execution Environment parameter file "eedata"'
-      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, SQUEEZE_RIGHT , 1)
-      WRITE(msgBuf,'(A)') '// ======================================================='
+      WRITE(msgBuf,'(A)') 
+     & '// ======================================================='
+      CALL PRINT_MESSAGE(msgBuf, standardMessageUnit, SQUEEZE_RIGHT , 1)
+      WRITE(msgBuf,'(A)') 
+     & '// Execution Environment parameter file "eedata"'
+      CALL PRINT_MESSAGE(msgBuf, standardMessageUnit, SQUEEZE_RIGHT , 1)
+      WRITE(msgBuf,'(A)') 
+     & '// ======================================================='
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
 
@@ -120,7 +128,7 @@ C--   Report contents of parameter file
        READ(UNIT=iUnit,FMT='(A)',END=2001) RECORD
        IL = MAX(ILNBLNK(RECORD),1)
        WRITE(msgBuf,'(A,A)') '>',RECORD(:IL)
-       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, SQUEEZE_RIGHT , 1)
+       CALL PRINT_MESSAGE(msgBuf,standardMessageUnit, SQUEEZE_RIGHT , 1)
       GOTO 2000
  2001 CONTINUE
       CLOSE(iUnit)
@@ -146,6 +154,9 @@ C--   Report contents of parameter file
        CALL EEDATA_EXAMPLE
        STOP 'ABNORMAL END: S/R EESET_PARMS'
    4  CONTINUE
+
+C--   Execution Environment parameter file read
+      CLOSE(iUnit)
 
 Cdbg  eeDataUnit = 42
 Cdbg  OPEN(UNIT=eeDataUnit,FILE='eedata',STATUS='OLD',IOSTAT=errIO)
@@ -180,5 +191,3 @@ C
 C
       RETURN
       END
-
-C $Id$

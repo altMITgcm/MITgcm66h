@@ -1,6 +1,7 @@
-C $Id$
+C $Header$
+C $Name$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
       SUBROUTINE THE_MODEL_MAIN(myThid)
 C     /==========================================================\
@@ -22,68 +23,129 @@ C     | =====                                                    |
 C     | C*P* comments indicating place holders for which code is |
 C     |      presently being developed.                          |
 C     \==========================================================/
+      IMPLICIT NONE
+C
+C     Call Tree
+C     =========
+C     
+C      main ( eesupp )
+C       |
+C       .
+C       .
+C       . Generic environment initialisation ( see eesupp/src and
+C       .                                      eesupp/inc )      
+C       . multiple threads and/or processes are created in here
+C       .
+C       .
+C       .
+C       |
+C       |-THE_MODEL_MAIN - Begin specific model. One instance
+C       |  |               of this codes exists for each thread
+C       |  |               and/or instance. Each instance manages
+C       |  |               a specifc set of tiles.               
+C       |  |
+C       |  |--INITIALISE_FIXED
+C       |  |   o Set model configuration (fixed arrays)
+C       |  |     Topography, hydrography, timestep, grid, etc..
+C       |  | 
+C       |  |--THE_MAIN_LOOP
+C       |  |  |
+C       |  |  |--INITIALISE_VARIA
+C       |  |  |   o Set initial conditions (variable arrays)
+C       |  |  |
+C  ==>  |  |  | ** Time stepping loop starts here **
+C  |    |  |  |
+C /|\   |  |  |
+C  |    |  |  |--FORWARD_STEP
+C /|\   |  |  |  |  o Does a single forward step of the model
+C  |    |  |  |  | 
+C /|\   |  |  |  |
+C  |    |  |  |  |--LOAD_EXTERNAL_DATA
+C /|\   |  |  |  |   o Load and/or set time dependent forcing fields
+C  |    |  |  |  |
+C /|\   |  |  |  |--DYNAMICS
+C  |    |  |  |  |   o Evaluate "forward" terms
+C /|\   |  |  |  |
+C  |    |  |  |  |--SOLVE_FOR_PRESSURE
+C /|\   |  |  |  |   o Find pressure field to keep flow non-divergent
+C  |    |  |  |  |
+C /|\   |  |  |  |--THE_CORRECTION_STEP
+C  |    |  |  |  |   o Correct flow field with and cycle time-stepping arrays
+C /|\   |  |  |  |
+C  |    |  |  |  |--DO_GTERM_BLOCKING_EXCHANGES
+C /|\   |  |  |  |   o Update overlap regions
+C  |    |  |  |  |
+C /|\   |  |  |  |--DO_THE_MODEL_IO
+C  |    |  |  |  |   o Write model state
+C /|\   |  |  |  |
+C  |    |  |  |  |--WRITE_CHECKPOINT
+C /|\   |  |  |  |   o Write restart file(s)
+C  |    |  |  |
+C /|\   |  |  |
+C  |<== |  |  | ** Time stepping loop finishes here **
+C       |  |  |
+C       |  |  |--
+C       |  |
+C       |  |--WRITE_STATE
+C       |  |--WRITE_CHECKPOINT
+C       |
+C       .
+C       .
+C       . Generic environment termination ( see eesupp/src and
+C       .                                      eesupp/inc )      
+C       .
+C       .
 
 C     == Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "CG2D.h"
 #include "DYNVARS.h"
+#ifdef ALLOW_NONHYDROSTATIC
+#include "CG3D.h"
+#endif
 
 C     == Routine arguments ==
 C     myThid - Thread number for this instance of the routine.
-      INTEGER myThid
+      INTEGER myThid  
 
 C     == Local variables ==
-C     Note: Under the multi-threaded model myCurrentIter and myCurrentTime
-C           are local variables passed around as routine arguments. Although
-C           this is fiddly it saves the need to impose additional synchronisation
-C           points when they are updated.
-C     myCurrentIter - Iteration counter for this thread
+C     Note: Under the multi-threaded model myCurrentIter and 
+C           myCurrentTime are local variables passed around as routine 
+C           arguments. Although this is fiddly it saves the need to 
+C           impose additional synchronisation points when they are 
+C           updated.
 C     myCurrentTime - Time counter for this thread
-C     I             - Loop counter
-      INTEGER I, myCurrentIter
-      REAL    myCurrentTime
+C     myCurrentIter - Iteration counter for this thread
+      INTEGER myCurrentIter
+      _RL     myCurrentTime
 
-C--   Set model initial conditions 
-      CALL INITIALISE( myThid )
+C--   This timer encompasses the whole code
+      CALL TIMER_START('ALL                [THE_MODEL_MAIN]',myThid)
+
+
+C--   Set model configuration (fixed arrays)
+      CALL TIMER_START('INITIALISE_FIXED   [THE_MODEL_MAIN]',myThid)
+      CALL INITIALISE_FIXED( myThid )
+      CALL TIMER_STOP ('INITIALISE_FIXED   [THE_MODEL_MAIN]',myThid)
+
+
       myCurrentTime = startTime
       myCurrentIter = nIter0
 
-C--   Begin time stepping loop
-      DO I=1, nTimeSteps
-C--    Do IO if needed.
-       CALL DO_THE_MODEL_IO( myCurrentIter, myThid )
+C--   Call time stepping loop of full model
+      CALL TIMER_START('THE_MAIN_LOOP      [THE_MODEL_MAIN]',myThid)
+      CALL THE_MAIN_LOOP(myCurrentTime, myCurrentIter, myThid )
+      CALL TIMER_STOP ('THE_MAIN_LOOP      [THE_MODEL_MAIN]',myThid)
 
-C--    Load offline tracer fields
-       IF ( MOD(myCurrentIter,numStepsPerPickup) .EQ. 1 ) THEN
-C       I/O 
-C       o Writes to arrays are performed by their own thread (to ensure
-C         physical memory allocation will pair with thread).
-C       o Thread 1 reads into a buffer.
-C       CALL LOAD_OFFLINE_FIELDS( myCurrentTime, myCurrentIter, myThid )
-       ENDIF
 
-C--    Step forward fields and calculate time tendency terms
-       CALL DYNAMICS( myThid )
+      CALL TIMER_STOP ('ALL                [THE_MODEL_MAIN]',myThid)
 
-C--    Solve elliptic equation(s).
-C      Two-dimensional only for conventional hydrostatic or three-dimensional
-C      for non-hydrostatic and/or IGW scheme.
-       CALL SOLVE_FOR_PRESSURE( myThid )
-
-C--    Do "blocking" sends and receives for tendency "overlap" terms
-       CALL DO_GTERM_BLOCKING_EXCHANGES( myThid )
-
-       myCurrentIter = myCurrentIter + 1
-       myCurrentTime = myCurrentTime  + deltaTtracer
-
-C--    Save state for restarts
-C*P*   CALL CHECKPOINT( myThid )
-
-      ENDDO
+C--   Write timer statistics
+      IF ( myThid .EQ. 1 ) THEN
+       CALL TIMER_PRINTALL( myThid )
+       CALL COMM_STATS
+      ENDIF
 
       RETURN
       END
-
-C $Id$

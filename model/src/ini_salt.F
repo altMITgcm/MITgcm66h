@@ -1,6 +1,7 @@
-C $Id$
+C $Header$
+C $Name$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
 CStartOfInterface
       SUBROUTINE INI_SALT ( myThid )
@@ -18,6 +19,7 @@ C     |     integration.                                         |
 C     | In addition to setting the salinity field we also        |
 C     | set the initial salinity tendency term here.             |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global variables ===
 #include "SIZE.h"
@@ -32,39 +34,40 @@ C     myThid -  Number of this instance of INI_SALT
 CEndOfInterface
 
 C     == Local variables ==
-C     iC, jC - Center of domain
-C     iD, jD - Disitance from domain center.
-C     rad    - Radius of initial patch
-C     rD     - Radial displacement of point I,J
-C     iG, jG - Global coordinate index
 C     bi,bj  - Loop counters
 C     I,J,K
-      INTEGER iC, jC, iD, jD
-      INTEGER iG, jG
       INTEGER bi, bj
       INTEGER  I,  J, K
-      REAL rad, rD
 
-C--   Initialise salinity field to the vertical reference profile
-      DO bj = myByLo(myThid), myByHi(myThid)
-       DO bi = myBxLo(myThid), myBxHi(myThid)
-        DO K=1,Nz
-         DO J=1,sNy
-          DO I=1,sNx
-           salt(I,J,K,bi,bj) = sRef(K)
+      _BARRIER
+
+      IF ( hydrogSaltFile .EQ. ' ' ) THEN
+C--    Initialise salinity field to the vertical reference profile
+       DO bj = myByLo(myThid), myByHi(myThid)
+        DO bi = myBxLo(myThid), myBxHi(myThid)
+         DO K=1,Nr
+          DO J=1,sNy
+           DO I=1,sNx
+            salt(I,J,K,bi,bj) = sRef(K)
+           ENDDO
           ENDDO
          ENDDO
         ENDDO
        ENDDO
-      ENDDO
+      ELSE
+       _BEGIN_MASTER( myThid )
+       CALL READ_FLD_XYZ_RL( hydrogSaltFile, ' ', salt, 0, myThid )
+       _END_MASTER(myThid)
+      ENDIF
 C     Set initial tendency terms
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
-        DO K=1,Nz
+        DO K=1,Nr
          DO J=1,sNy
           DO I=1,sNx
            gs   (I,J,K,bi,bj) = 0. _d 0
            gsNM1(I,J,K,bi,bj) = 0. _d 0
+           IF (hFacC(I,J,K,bi,bj).EQ.0) salt(I,J,K,bi,bj) = 0.
           ENDDO
          ENDDO
         ENDDO
@@ -74,5 +77,8 @@ C
       _EXCH_XYZ_R8(salt  , myThid )
       _EXCH_XYZ_R8(gs , myThid )
       _EXCH_XYZ_R8(gsNM1 , myThid )
+
+      CALL PLOT_FIELD_XYZRL( salt, 'Initial Salinity' , Nr, 1, myThid )
+
       RETURN
       END

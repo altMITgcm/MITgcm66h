@@ -1,20 +1,21 @@
-C $Id$
+C $Header$
+C $Name$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
 C--   File plot_field.F: Routines for "formatted" I/O in the MITgcm UV 
 C--                      implementation.
 C--    Contents
-C--    o plot_field_xyr4  - Writes a XY  Real*4 field
-C--    o plot_field_xyr8  - Writes a XY  Real*8 field
-C--    o plot_field_xyzr4 - Writes a XYZ Real*4 field
-C--    o plot_field_xyzr8 - Writes a XYZ Real*8 field
-      SUBROUTINE PLOT_FIELD_XYR4( 
+C--    o plot_field_xyrs  - Writes a XY  _RS field
+C--    o plot_field_xyrl  - Writes a XY  _RL field
+C--    o plot_field_xyzrs - Writes a XYZ _RS field
+C--    o plot_field_xyzrl - Writes a XYZ _RL field
+      SUBROUTINE PLOT_FIELD_XYRS( 
      I                            fld, fldNam , myIter, myThid )
 
 C     /==========================================================\
-C     | SUBROUTINE PLOT_FIELD_XYR4                               |
-C     | Print out an XY Real 4 field using text map.             |
+C     | SUBROUTINE PLOT_FIELD_XYRS                               |
+C     | Print out an XY _RS field using text map.                |
 C     |==========================================================|
 C     | This routine references "numerical model" parameters like|
 C     | like the integration time. It uses these to create a     |
@@ -24,18 +25,20 @@ C     | This routine can also be edited to cause only some region|
 C     | of a field to be printed by default, or every other      |
 C     | point etc..                                              |
 C     | Other plot formats can also be substituted here.         |
+C     | _RS is usually REAL*4                                    |
 C     \==========================================================/
+      IMPLICIT NONE
+
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "CG2D.h"
 
 C     == Routine arguments ==
 C     fld - Field to plot
 C     fldNam - Name of field
 C     myIter - Iteration number for plot
 C     myThid - Thread id of thread instance calling plot_field
-      Real*4 fld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS fld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       CHARACTER*(*) fldNam
       INTEGER myThid
       INTEGER myIter
@@ -50,10 +53,12 @@ C     == Local variables ==
 
 C--   To get around synchronisation and multi-threaded I/O issues
 C--   thread 1 will do all the writes.
+      _BARRIER
       IF ( myThid .EQ. 1 ) THEN
 C--    Form name for identifying "plot"
        IF ( myIter .GE. 0 ) THEN
-        WRITE(fldTitle,'(A,A,A,I4)') '// Field ', fldNam, ' at iteration ',
+        WRITE(fldTitle,'(A,A,A,I10)') 
+     &  '// Field ', fldNam, ' at iteration ',
      &  myIter
        ELSE
         WRITE(fldTitle,'(A,A)') '// Field ', fldNam
@@ -75,7 +80,7 @@ C      Substitute other plotting utilities here!
        bjStart  =  nSy
        bjEnd    =  1    
        bjStride = -1
-       CALL PRINT_MAPR4(
+       CALL PRINT_MAPRS(
      I        fld, fldTitle, PRINT_MAP_XY,
      I         1-OLx,sNx+OLx,1-OLy,sNy+OLy,1,1,  nSx,  nSy,
      I         iStart,   iEnd,  iStride,
@@ -84,15 +89,16 @@ C      Substitute other plotting utilities here!
      I        biStart,  biEnd, biStride,
      I        bjStart,  bjEnd, bjStride )
       ENDIF
+      _BARRIER
 
       RETURN
       END
-      SUBROUTINE PLOT_FIELD_XYR8( 
+      SUBROUTINE PLOT_FIELD_XYRL( 
      I                            fld, fldNam , myIter, myThid )
 
 C     /==========================================================\
-C     | SUBROUTINE PLOT_FIELD_XYR8                               |
-C     | Print out an XY Real 8 field using text map.             |
+C     | SUBROUTINE PLOT_FIELD_XYRL                               |
+C     | Print out an XY _RL field using text map.                |
 C     |==========================================================|
 C     | This routine references "numerical model" parameters like|
 C     | like the integration time. It uses these to create a     |
@@ -102,18 +108,20 @@ C     | This routine can also be edited to cause only some region|
 C     | of a field to be printed by default, or every other      |
 C     | point etc..                                              |
 C     | Other plot formats can also be substituted here.         |
+C     | _RL is usually REAL*8                                    |
 C     \==========================================================/
+      IMPLICIT NONE
+
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "CG2D.h"
 
 C     == Routine arguments ==
 C     fld - Field to plot
 C     fldNam - Name of field
 C     myIter - Iteration number for plot
 C     myThid - Thread id of thread instance calling plot_field
-      REAL fld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL fld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       CHARACTER*(*) fldNam
       INTEGER myThid
       INTEGER myIter
@@ -128,10 +136,12 @@ C     == Local variables ==
 
 C--   To get around synchronisation and multi-threaded I/O issues
 C--   thread 1 will do all the writes.
+      _BARRIER
       IF ( myThid .EQ. 1 ) THEN
 C--    Form name for identifying "plot"
        IF ( myIter .GE. 0 ) THEN
-        WRITE(fldTitle,'(A,A,A,I4)') '// Field ', fldNam, ' at iteration ',
+        WRITE(fldTitle,'(A,A,A,I10)') 
+     &  '// Field ', fldNam, ' at iteration ',
      &  myIter
        ELSE
         WRITE(fldTitle,'(A,A)') '// Field ', fldNam
@@ -153,7 +163,7 @@ C      Substitute other plotting utilities here!
        bjStart  =  nSy
        bjEnd    =  1    
        bjStride = -1
-       CALL PRINT_MAPR8(
+       CALL PRINT_MAPRL(
      I        fld, fldTitle, PRINT_MAP_XY,
      I         1-OLx,sNx+OLx,1-OLy,sNy+OLy,1,1,  nSx,  nSy,
      I         iStart,   iEnd,  iStride,
@@ -162,15 +172,16 @@ C      Substitute other plotting utilities here!
      I        biStart,  biEnd, biStride,
      I        bjStart,  bjEnd, bjStride )
       ENDIF
+      _BARRIER
 
       RETURN
       END
-      SUBROUTINE PLOT_FIELD_XYZR4( 
+      SUBROUTINE PLOT_FIELD_XYZRS( 
      I                            fld, fldNam , fldNz, myIter, myThid )
 
 C     /==========================================================\
 C     | SUBROUTINE PLOT_FIELD_XYZR4                              |
-C     | Print out an XYZ Real 4 field using text map.            |
+C     | Print out an XYZ _RS field using text map.               |
 C     |==========================================================|
 C     | This routine references "numerical model" parameters like|
 C     | like the integration time. It uses these to create a     |
@@ -180,11 +191,13 @@ C     | This routine can also be edited to cause only some region|
 C     | of a field to be printed by default, or every other      |
 C     | point etc..                                              |
 C     | Other plot formats can also be substituted here.         |
+C     | _RS is usually a REAL*4 field                            |
 C     \==========================================================/
+      IMPLICIT NONE
+
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "CG2D.h"
 
 C     == Routine arguments ==
 C     fld - Field to plot
@@ -196,7 +209,7 @@ C              (same lateral extents.                               )
 C     myIter - Iteration number for plot
 C     myThid - Thread id of thread instance calling plot_field
       INTEGER fldNz
-      Real*4 fld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:fldNz,nSx,nSy)
+      _RS fld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:fldNz,nSx,nSy)
       CHARACTER*(*) fldNam
       INTEGER myThid
       INTEGER myIter
@@ -211,10 +224,12 @@ C     == Local variables ==
 
 C--   To get around synchronisation and multi-threaded I/O issues
 C--   thread 1 will do all the writes.
+      _BARRIER
       IF ( myThid .EQ. 1 ) THEN
 C--    Form name for identifying "plot"
        IF ( myIter .GE. 0 ) THEN
-        WRITE(fldTitle,'(A,A,A,I4)') '// Field ', fldNam, ' at iteration ',
+        WRITE(fldTitle,'(A,A,A,I10)') 
+     &  '// Field ', fldNam, ' at iteration ',
      &  myIter
        ELSE
         WRITE(fldTitle,'(A,A)') '// Field ', fldNam
@@ -232,8 +247,8 @@ C      jStart   =  sNy
 C      jEnd     =  1
        jStride  = -1
        kStart   =  1
-       kEnd     =  fldNz
-C      kEnd     =  1
+C      kEnd     =  fldNz
+       kEnd     =  1
        kStride  =  1
        biStart  =  1
        biEnd    =  nSx
@@ -241,15 +256,7 @@ C      kEnd     =  1
        bjStart  =  nSy
        bjEnd    =  1    
        bjStride = -1
-C      CALL PRINT_MAPR8(
-C    I        fld, fldTitle, PRINT_MAP_YZ,
-C    I         1-OLx,sNx+OLx,1-OLy,sNy+OLy,1,fldNz,  nSx,  nSy,
-C    I         iStart,   iEnd,  iStride,
-C    I         jStart,   jEnd,  jStride,
-C    I         kStart,   kEnd,  kStride,
-C    I        biStart,  biEnd, biStride,
-C    I        bjStart,  bjEnd, bjStride )
-       CALL PRINT_MAPR4(
+       CALL PRINT_MAPRS(
      I        fld, fldTitle, PRINT_MAP_XY,
      I         1-OLx,sNx+OLx,1-OLy,sNy+OLy,1,fldNz,  nSx,  nSy,
      I         iStart,   iEnd,  iStride,
@@ -258,15 +265,16 @@ C    I        bjStart,  bjEnd, bjStride )
      I        biStart,  biEnd, biStride,
      I        bjStart,  bjEnd, bjStride )
       ENDIF
+      _BARRIER
 
       RETURN
       END
-      SUBROUTINE PLOT_FIELD_XYZR8( 
+      SUBROUTINE PLOT_FIELD_XYZRL( 
      I                            fld, fldNam , fldNz, myIter, myThid )
 
 C     /==========================================================\
-C     | SUBROUTINE PLOT_FIELD_XYZR8                              |
-C     | Print out an XYZ Real 8 field using text map.            |
+C     | SUBROUTINE PLOT_FIELD_XYZRL                              |
+C     | Print out an XYZ _RL field using text map.               |
 C     |==========================================================|
 C     | This routine references "numerical model" parameters like|
 C     | like the integration time. It uses these to create a     |
@@ -276,11 +284,13 @@ C     | This routine can also be edited to cause only some region|
 C     | of a field to be printed by default, or every other      |
 C     | point etc..                                              |
 C     | Other plot formats can also be substituted here.         |
+C     | _RL is usually a REAL*8 field                            |
 C     \==========================================================/
+      IMPLICIT NONE
+
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "CG2D.h"
 
 C     == Routine arguments ==
 C     fld - Field to plot
@@ -292,7 +302,7 @@ C              (same lateral extents.                               )
 C     myIter - Iteration number for plot
 C     myThid - Thread id of thread instance calling plot_field
       INTEGER fldNz
-      REAL fld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:fldNz,nSx,nSy)
+      _RL fld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:fldNz,nSx,nSy)
       CHARACTER*(*) fldNam
       INTEGER myThid
       INTEGER myIter
@@ -307,10 +317,12 @@ C     == Local variables ==
 
 C--   To get around synchronisation and multi-threaded I/O issues
 C--   thread 1 will do all the writes.
+      _BARRIER
       IF ( myThid .EQ. 1 ) THEN
 C--    Form name for identifying "plot"
        IF ( myIter .GE. 0 ) THEN
-        WRITE(fldTitle,'(A,A,A,I4)') '// Field ', fldNam, ' at iteration ',
+        WRITE(fldTitle,'(A,A,A,I10)') 
+     &  '// Field ', fldNam, ' at iteration ',
      &  myIter
        ELSE
         WRITE(fldTitle,'(A,A)') '// Field ', fldNam
@@ -319,13 +331,13 @@ C--    Do "plot" using textual contour map "execution environment" routine
 C      Substitute other plotting utilities here!
        iStart   =  1-OLx
        iEnd     =  sNx+OLx
-C      iStart   =  1
-C      iEnd     =  sNx
+       iStart   =  1
+       iEnd     =  sNx
        iStride  =  1
        jStart   =  sNy+OLy
        jEnd     =  1-OLy
-C      jStart   =  sNy
-C      jEnd     =  1
+       jStart   =  sNy
+       jEnd     =  1
        jStride  = -1
        kStart   =  1
        kEnd     =  fldNz
@@ -337,15 +349,7 @@ C      jEnd     =  1
        bjStart  =  nSy
        bjEnd    =  1    
        bjStride = -1
-C      CALL PRINT_MAPR8(
-C    I        fld, fldTitle, PRINT_MAP_YZ,
-C    I         1-OLx,sNx+OLx,1-OLy,sNy+OLy,1,fldNz,  nSx,  nSy,
-C    I         iStart,   iEnd,  iStride,
-C    I         jStart,   jEnd,  jStride,
-C    I         kStart,   kEnd,  kStride,
-C    I        biStart,  biEnd, biStride,
-C    I        bjStart,  bjEnd, bjStride )
-       CALL PRINT_MAPR8(
+       CALL PRINT_MAPRL(
      I        fld, fldTitle, PRINT_MAP_XY,
      I         1-OLx,sNx+OLx,1-OLy,sNy+OLy,1,fldNz,  nSx,  nSy,
      I         iStart,   iEnd,  iStride,
@@ -354,6 +358,7 @@ C    I        bjStart,  bjEnd, bjStride )
      I        biStart,  biEnd, biStride,
      I        bjStart,  bjEnd, bjStride )
       ENDIF
+      _BARRIER
 
       RETURN
       END

@@ -1,6 +1,7 @@
-C $Id$
+C $Header$
+C $Name$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
 CStartOfInterface
       SUBROUTINE INI_THETA( myThid )
@@ -18,6 +19,7 @@ C     |     integration.                                         |
 C     | In addition to setting the temperature field we also     |
 C     | set the initial temperature tendency term here.          |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global variables ===
 #include "SIZE.h"
@@ -42,58 +44,86 @@ C     I,J,K
       INTEGER iC, jC, iD, jD
       INTEGER iG, jG
       INTEGER bi, bj
-      INTEGER  I,  J, K
-      REAL rad, rD
+      INTEGER I, J, K, localWarnings
+      _RL     rad, rD
+      CHARACTER*(MAX_LEN_MBUF) msgBuf
 
-C--   Initialise temperature field to a circular patch.
-      iC  = Nx/2
-      jC  = Ny/2
-      rad = MIN(Ny/8,Nx/8)
-      DO bj = myByLo(myThid), myByHi(myThid)
-       DO bi = myBxLo(myThid), myBxHi(myThid)
-        DO K=1,Nz
-         DO J=1,sNy
-          DO I=1,sNx
-           theta(I,J,K,bi,bj) = 0. _d 0
-           iG = myXGlobalLo-1+(bi-1)*sNx+I
-           jG = myYGlobalLo-1+(bj-1)*sNy+J
-           iD = iG-iC
-           jD = jG-jC
-           rD = SQRT(FLOAT(iD*iD+jD*jD))
-           IF ( rD .LT. rad ) theta(I,J,K,bi,bj) = 1. _d 0
+      _BARRIER
+
+      IF ( hydrogThetaFile .EQ. ' ' ) THEN
+C--    Example 1
+C--    Initialise temperature field to a circular patch.
+       iC  = Nx/2
+       jC  = Ny/2
+       rad = MIN(Ny/8,Nx/8)
+       DO bj = myByLo(myThid), myByHi(myThid)
+        DO bi = myBxLo(myThid), myBxHi(myThid)
+         DO K=1,Nr
+          DO J=1,sNy
+           DO I=1,sNx
+            theta(I,J,K,bi,bj) = 0. _d 0
+            iG = myXGlobalLo-1+(bi-1)*sNx+I
+            jG = myYGlobalLo-1+(bj-1)*sNy+J
+            iD = iG-iC
+            jD = jG-jC
+            rD = SQRT(FLOAT(iD*iD+jD*jD))
+            IF ( rD .LT. rad ) theta(I,J,K,bi,bj) = 1. _d 0
+           ENDDO
           ENDDO
          ENDDO
         ENDDO
        ENDDO
-      ENDDO
-C--   Initialise temperature field to the vertical reference profile
-      DO bj = myByLo(myThid), myByHi(myThid)
-       DO bi = myBxLo(myThid), myBxHi(myThid)
-        DO K=1,Nz
-         DO J=1,sNy
-          DO I=1,sNx
-           theta(I,J,K,bi,bj) = tRef(K)
+C--    Example 2
+C--    Initialise temperature field to the vertical reference profile
+       DO bj = myByLo(myThid), myByHi(myThid)
+        DO bi = myBxLo(myThid), myBxHi(myThid)
+         DO K=1,Nr
+          DO J=1,sNy
+           DO I=1,sNx
+            theta(I,J,K,bi,bj) = tRef(K)
+           ENDDO
           ENDDO
          ENDDO
         ENDDO
        ENDDO
-      ENDDO
+      ELSE
+       _BEGIN_MASTER( myThid )
+       CALL READ_FLD_XYZ_RL( hydrogThetaFile, ' ', theta, 0, myThid )
+       _END_MASTER(myThid)
+      ENDIF
 C     Set initial tendency terms
+      localWarnings=0
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
-        DO K=1,Nz
+        DO K=1,Nr
          DO J=1,sNy
           DO I=1,sNx
            gt   (I,J,K,bi,bj) = 0. _d 0
            gtNM1(I,J,K,bi,bj) = 0. _d 0
+           IF (hFacC(I,J,K,bi,bj).EQ.0) theta(I,J,K,bi,bj) = 0.
+           IF (hFacC(I,J,K,bi,bj).NE.0.AND.theta(I,J,K,bi,bj).EQ.0.)
+     &      THEN
+             localWarnings=localWarnings+1
+            ENDIF
           ENDDO
          ENDDO
         ENDDO
        ENDDO
       ENDDO
+      IF (localWarnings.NE.0) THEN
+       WRITE(msgBuf,'(A,A)')
+     &  'S/R INI_THETA: theta = 0 identically. If this is intentional',
+     &  'you will need to edit ini_theta.F to avoid this safety check'
+       CALL PRINT_ERROR( msgBuf , myThid)
+       STOP 'ABNORMAL END: S/R INI_THETA'
+      ENDIF
 C
       _EXCH_XYZ_R8(theta , myThid )
       _EXCH_XYZ_R8(gt , myThid )
       _EXCH_XYZ_R8(gtNM1 , myThid )
+
+      CALL PLOT_FIELD_XYZRL( theta, 'Initial Temperature' , 
+     &                       Nr, 1, myThid )
+
       RETURN
       END

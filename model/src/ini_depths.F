@@ -1,6 +1,7 @@
-C $Id$
+C $Header$
+C $Name$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
 CStartOfInterface
       SUBROUTINE INI_DEPTHS( myThid )
@@ -11,7 +12,7 @@ C     |==========================================================|
 C     | The depths of the bottom of the model is specified in    |
 C     | terms of an XY map with one depth for each column of     |
 C     | grid cells. Depths do not have to coincide with the      |
-C     | model levels. The model's lopping algorithm makes it     |
+C     | model levels. The model lopping algorithm makes it       |
 C     | possible to represent arbitrary depths.                  |
 C     | The mode depths map also influences the models topology  |
 C     | By default the model domain wraps around in X and Y.     |
@@ -19,6 +20,7 @@ C     | This default doubly periodic topology is "supressed"     |
 C     | if a depth map is defined which closes off all wrap      |
 C     | around flow.                                             |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global variables ===
 #include "SIZE.h"
@@ -32,153 +34,75 @@ C     myThid -  Number of this instance of INI_DEPTHS
 CEndOfInterface
 
 C     == Local variables ==
-C     xG, yG - Global coordinate location.
-C     zG
-C     zUpper - Work arrays for upper and lower 
-C     zLower   cell-face heights.
-C     phi    - Temporary scalar
 C     iG, jG - Global coordinate index
 C     bi,bj  - Loop counters
-C     zUpper - Temporary arrays holding z coordinates of
-C     zLower   upper and lower faces.
 C     I,J,K
-      _RL    xG, yG, zG
-      _RL    phi
-      _RL    zUpper(Nz), zLower(Nz)
+C     Hdefault - default r-coordinate of the lower boundary (=ground)
+C                (=minus(Total_depth) in the ocean model)
+C                (=Total Pressure at Sea Level in the atmos model)
+C     oldPrec - Temporary used in controlling binary input dataset precision
       INTEGER iG, jG
       INTEGER bi, bj
-      INTEGER  I,  J, K
+      INTEGER  I, J, K
+      _RL Hdefault
 
-C     For now set up a flat bottom box with doubly periodic topology.
-C     H is the basic variable from which other terms are derived. It
-C     is the term that would be set from an external file for a 
-C     realistic problem.
       _BARRIER
-      phi = 0. D0
-      DO K=1,Nz
-       phi = phi+delZ(K)
-      ENDDO
-      DO bj = myByLo(myThid), myByHi(myThid)
-       DO bi = myBxLo(myThid), myBxHi(myThid)
-        DO j=1,sNy
-         DO i=1,sNx
-          iG = myXGlobalLo-1+(bi-1)*sNx+I
-          jG = myYGlobalLo-1+(bj-1)*sNy+J
-C         Default depth of full domain
-          H(i,j,bi,bj) = phi
-C         Test for eastern edge
-          IF ( iG .EQ. nX ) H(i,j,bi,bj) = 0.
-C         Test for northern edge
-          IF ( jG .EQ. nY ) H(i,j,bi,bj) = 0.
-C         Island
-C         IF ( iG .EQ. 1 .AND. 
-C    &         jG .EQ. 24 ) H(i,j,bi,bj) = 0.
-           
+      IF ( bathyFile .EQ. ' '  ) THEN
+C      Set up a flat bottom box with doubly periodic topology.
+C      H is the basic variable from which other terms are derived. It
+C      is the term that would be set from an external file for a 
+C      realistic problem.
+       Hdefault = rF(1)
+       IF (.NOT. groundAtK1) THEN
+        DO K = 1, Nr
+         Hdefault = Hdefault - rkfac*drF(K)
+        ENDDO
+       ENDIF
+       DO bj = myByLo(myThid), myByHi(myThid)
+        DO bi = myBxLo(myThid), myBxHi(myThid)
+         DO j=1,sNy
+          DO i=1,sNx
+           iG = myXGlobalLo-1+(bi-1)*sNx+I
+           jG = myYGlobalLo-1+(bj-1)*sNy+J
+C          Default depth of full domain
+           H(i,j,bi,bj) = Hdefault
+C          Test for eastern edge
+C          IF ( iG .EQ. nX ) H(i,j,bi,bj) = 0.
+C          Test for northern edge
+C          IF ( jG .EQ. nY ) H(i,j,bi,bj) = 0.
+          ENDDO
          ENDDO
         ENDDO
        ENDDO
-      ENDDO
-      DO bj = myByLo(myThid), myByHi(myThid)
-       DO bi = myBxLo(myThid), myBxHi(myThid)
-        DO J=1,sNy
-         DO I=1,sNx
-C         Inverse of depth
-          IF ( h(i,j,bi,bj) .EQ. 0. _d 0 ) THEN
-           rH(i,j,bi,bj) = 0. _d 0
-          ELSE
-           rH(i,j,bi,bj) = 1. _d 0 /  h(i,j,bi,bj)
-          ENDIF
-         ENDDO
-        ENDDO
-       ENDDO
-      ENDDO
+      ELSE
+       _BEGIN_MASTER( myThid )
+C Read the bathymetry using the mid-level I/O pacakage read_write_rec
+C The 0 is the "iteration" argument. The 1 is the record number.
+       CALL READ_REC_XY_RS( bathyFile, H, 1, 0, myThid )
+C Read the bathymetry using the mid-level I/O pacakage read_write_fld
+C The 0 is the "iteration" argument. The ' ' is an empty suffix
+C      CALL READ_FLD_XY_RS( bathyFile, ' ', H, 0, myThid )
+C Read the bathymetry using the low-level I/O package
+C      CALL MDSREADFIELD( bathyFile, readBinaryPrec,
+C    &                    'RS', 1, H, 1, myThid )
+       _END_MASTER(myThid)
+      ENDIF
+
       _EXCH_XY_R4(    H, myThid )
-      _EXCH_XY_R4(   rH, myThid )
 
-C--   Now calculate "lopping" factors hFac.
-      zG = delZ(1)*0.5 D0
-      zFace(1) = 0
-      rDzC(1)  = 2. _d 0/delZ(1)
-      DO K=1,Nz-1
-       saFac(K) = 1. D0
-       zC(K)      = zG
-       zG         = zG + (delZ(K)+delZ(K+1))*0.5 D0
-       zFace(K+1) = zFace(K)+delZ(K)
-       rDzC(K+1)  = 2. _d 0/(delZ(K)+delZ(K+1))
-      ENDDO
-      zC(Nz)      = zG
-      zFace(Nz+1) = zFace(Nz)+delZ(Nz)
-      DO K=1,Nz
-       zUpper(K) = zFace(K)
-       zLower(K) = zFace(K+1)
-       dzF(K)    = delz(K)
-       rdzF(K)   = 1.d0/dzF(K)
-      ENDDO
-      DO bj=myByLo(myThid), myByHi(myThid)
-       DO bi=myBxLo(myThid), myBxHi(myThid)
-        DO K=1, Nz
-         DO J=1,sNy
-          DO I=1,sNx
-           hFacC(I,J,K,bi,bj) = 1.
-           IF     ( H(I,J,bi,bj) .LE. zUpper(K) ) THEN
-C           Below base of domain
-            hFacC(I,J,K,bi,bj) = 0.
-           ELSEIF ( H(I,J,bi,bj) .GT. zLower(K) ) THEN
-C           Base of domain is below this cell
-            hFacC(I,J,K,bi,bj) = 1.
-           ELSE
-C           Base of domain is in this cell
-C           Set hFac tp the fraction of the cell that is open.
-            phi = zUpper(K)-H(I,J,bi,bj)
-            hFacC(I,J,K,bi,bj) = phi/(zUpper(K)-zLower(K))
-           ENDIF
+      IF (usingSphericalPolarGrid) THEN
+       DO bj = myByLo(myThid), myByHi(myThid)
+        DO bi = myBxLo(myThid), myBxHi(myThid)
+         DO j=1-Oly,sNy+Oly
+          DO i=1-Olx,sNx+Olx
+           IF (abs(yC(I,J,bi,bj)).GE.90.) H(I,J,bi,bj)=0.
           ENDDO
          ENDDO
         ENDDO
        ENDDO
-      ENDDO
-      _EXCH_XYZ_R4(hFacC , myThid )
-
-      DO bj=myByLo(myThid), myByHi(myThid)
-       DO bi=myBxLo(myThid), myBxHi(myThid)
-        DO K=1, Nz
-         DO J=1,sNy
-          DO I=1,sNx
-           hFacW(I,J,K,bi,bj)=
-     &       MIN(hFacC(I,J,K,bi,bj),hFacC(I-1,J,K,bi,bj))
-           hFacS(I,J,K,bi,bj)=
-     &       MIN(hFacC(I,J,K,bi,bj),hFacC(I,J-1,K,bi,bj))
-          ENDDO
-         ENDDO
-        ENDDO
-       ENDDO
-      ENDDO
-      _EXCH_XYZ_R4(hFacW , myThid )
-      _EXCH_XYZ_R4(hFacS , myThid )
-
-C--   Calculate recipricols of hFacC, hFacW and hFacS
-      DO bj=myByLo(myThid), myByHi(myThid)
-       DO bi=myBxLo(myThid), myBxHi(myThid)
-        DO K=1, Nz
-         DO J=1,sNy
-          DO I=1,sNx
-           rhFacC(I,J,K,bi,bj)=0. D0
-           if (hFacC(I,J,K,bi,bj).ne.0.)
-     &            rhFacC(I,J,K,bi,bj)=1. D0 /hFacC(I,J,K,bi,bj)
-           rhFacW(I,J,K,bi,bj)=0. D0
-           if (hFacW(I,J,K,bi,bj).ne.0.)
-     &            rhFacW(I,J,K,bi,bj)=1. D0 /hFacW(I,J,K,bi,bj)
-           rhFacS(I,J,K,bi,bj)=0. D0
-           if (hFacS(I,J,K,bi,bj).ne.0.)
-     &            rhFacS(I,J,K,bi,bj)=1. D0 /hFacS(I,J,K,bi,bj)
-          ENDDO
-         ENDDO
-        ENDDO
-       ENDDO
-      ENDDO
-      _EXCH_XYZ_R4(rhFacC , myThid )
-      _EXCH_XYZ_R4(rhFacW , myThid )
-      _EXCH_XYZ_R4(rhFacS , myThid )
+      ENDIF
+C
+      CALL PLOT_FIELD_XYRS(H,'Model depths (ini_depths)',1,myThid)
 C
       RETURN
       END

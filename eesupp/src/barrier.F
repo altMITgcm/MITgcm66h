@@ -1,8 +1,12 @@
-C $Id$
+C $Header$
+C $Name$
 
 #include "CPP_EEOPTIONS.h"
 
       SUBROUTINE BARRIER_INIT
+      IMPLICIT NONE
+
+#include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 #include "BARRIER.h"
@@ -44,10 +48,10 @@ C     | coherency over process caches and not registers.         |
 C     | Also we have to be a bit careful regarding sequential    |
 C     | consistency - or lack of it. At the moment the code      |
 C     | assumes a total store order memory model, which some     |
-C     | machines don't have! However, I have yet to find a       |
+C     | machines do not have! However, I have yet to find a      |
 C     | problem with this I think because the tolerances in      |
 C     | terms of memory ordering i.e. a little bit of reordering |
-C     | probably won't break the barrier mechanism!              |
+C     | probably will not break the barrier mechanism!           |
 C     | On non-cache coherent systems e.g. T3E we need to use    |
 C     | a library function to do barriers.                       |
 C     | Note - The PANIC tests can be removed for working code   |
@@ -60,6 +64,8 @@ C     |        lines to make your code "work" If the code is     |
 C     |        stopping in these PANIC blocks then something is  |
 C     |        wrong with your program and it needs to be fixed. |
 C     \==========================================================/
+
+#include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 #include "BARRIER.h"
@@ -75,22 +81,22 @@ C     I     - Loop counter
       INTEGER I
 
 CcnhDebugStarts
-C     IF ( myThid .EQ. 1 ) THEN
-C      WRITE(0,*) ' Barrier entered '
-C     ENDIF
+C      WRITE(myThid,*) ' Barrier entered '
 CcnhDebugEnds
 
 C--   Check that thread number is expected range
       IF ( myThid .LT. 1 .OR. myThid .GT. nThreads ) THEN
        WRITE(0,*) '!!!!!!! PANIC !!!!!!! CATASTROPHIC ERROR'
-       WRITE(0,*) '!!!!!!! PANIC !!!!!!! in S/R BARRIER  myThid = ', myThid, ' nThreads = ', nThreads
+       WRITE(0,*) '!!!!!!! PANIC !!!!!!! in S/R BARRIER  myThid = ', 
+     &  myThid, ' nThreads = ', nThreads
        STOP 'ABNROMAL END: S/R BARRIER'
       ENDIF
 
 C--   When every threads key1 is valid thread 1 will open door1.
       IF ( key1(1,myThid) .EQ. VALID ) THEN
        WRITE(0,*) '!!!!!!! PANIC !!!!!!! CATASTROPHIC ERROR'
-       WRITE(0,*) '!!!!!!! PANIC !!!!!!! in S/R BARRIER  myThid = ', myThid, ' key1 already validated'
+       WRITE(0,*) '!!!!!!! PANIC !!!!!!! in S/R BARRIER  myThid = ', 
+     &  myThid, ' key1 already validated'
        STOP 'ABNROMAL END: S/R BARRIER'
       ENDIF
       key1(1,myThid) = VALID
@@ -129,14 +135,14 @@ C--   door3 because they have to go through door2 first.
 C--   When every threads key2 is valid thread 1 will open door2.
 C     Notes
 C     =====
-C      I don't understand memory ordering and sequential consistency. 
 C     I think that to work with any memory model ( i.e. relaxed, 
 C     partial store, total store) the variables key1, key2 and key3
 C     might need to be set to invalid by thread 1.
 C     
       IF ( key2(1,myThid) .EQ. VALID ) THEN
        WRITE(0,*) '!!!!!!! PANIC !!!!!!! CATASTROPHIC ERROR'
-       WRITE(0,*) '!!!!!!! PANIC !!!!!!! in S/R BARRIER  myThid = ', myThid, ' key2 already validated'
+       WRITE(0,*) '!!!!!!! PANIC !!!!!!! in S/R BARRIER  myThid = ', 
+     &  myThid, ' key2 already validated'
        STOP 'ABNROMAL END: S/R BARRIER'
       ENDIF
       key2(1,myThid) = VALID
@@ -171,7 +177,8 @@ C--   door1 because they have to go through door3 first.
 C--   When every threads key3 is valid thread 1 will open door3.
       IF ( key3(1,myThid) .EQ. VALID ) THEN
        WRITE(0,*) '!!!!!!! PANIC !!!!!!! CATASTROPHIC ERROR'
-       WRITE(0,*) '!!!!!!! PANIC !!!!!!! in S/R BARRIER  myThid = ', myThid, ' key3 already validated'
+       WRITE(0,*) '!!!!!!! PANIC !!!!!!! in S/R BARRIER  myThid = ', 
+     &  myThid, ' key3 already validated'
        STOP 'ABNROMAL END: S/R BARRIER'
       ENDIF
       key3(1,myThid) = VALID
@@ -203,12 +210,8 @@ C--   door2 because they have to go through door1 first.
       ENDIF
 
 CcnhDebugStarts
-C     IF ( myThid .EQ. 1 ) THEN
-C      WRITE(0,*) ' Barrier exited '
-C     ENDIF
+C      WRITE(myThid,*) ' Barrier exited '
 CcnhDebugEnds
      
       RETURN
       END
-
-C $Id$
