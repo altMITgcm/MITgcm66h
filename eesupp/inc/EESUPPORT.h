@@ -9,8 +9,8 @@ C     !DESCRIPTION:
 C     *==========================================================*
 C     | EESUPPORT.h                                              |
 C     *==========================================================*
-C     | Support data structures for the MITgcm UV "execution     |
-C     | environment" code. This data should be private to the    |
+C     | Support data structures for the MITgcm UV ``execution    |
+C     | environment'' code. This data should be private to the   |
 C     | execution environment routines. Data which needs to be   |
 C     | accessed directly by a numerical model goes in           |
 C     | EEPARAMS.h.                                              |
