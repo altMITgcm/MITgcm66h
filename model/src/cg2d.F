@@ -124,7 +124,7 @@ C--   Initial residual calculation
      &    -aW2d(I+1,J  ,bi,bj)*cg2d_x(I  ,J  ,bi,bj)
      &    -aS2d(I  ,J  ,bi,bj)*cg2d_x(I  ,J  ,bi,bj)
      &    -aS2d(I  ,J+1,bi,bj)*cg2d_x(I  ,J  ,bi,bj)
-     &    -freeSurfFac*zA(i,j,bi,bj)*
+     &    -freeSurfFac*_zA(i,j,bi,bj)*
      &     cg2d_x(I  ,J  ,bi,bj)/deltaTMom/deltaTMom*cg2dNorm
      &    )
           err            = err            + 
@@ -225,7 +225,7 @@ C==    q = A.s
      &    -aW2d(I+1,J  ,bi,bj)*cg2d_s(I  ,J  ,bi,bj)
      &    -aS2d(I  ,J  ,bi,bj)*cg2d_s(I  ,J  ,bi,bj)
      &    -aS2d(I  ,J+1,bi,bj)*cg2d_s(I  ,J  ,bi,bj)
-     &    -freeSurfFac*zA(i,j,bi,bj)*
+     &    -freeSurfFac*_zA(i,j,bi,bj)*
      &     cg2d_s(I  ,J  ,bi,bj)/deltaTMom/deltaTMom*cg2dNorm
           alpha = alpha+cg2d_s(I,J,bi,bj)*cg2d_q(I,J,bi,bj)
           ENDDO

@@ -9,6 +9,9 @@ C     | stored into the variables held here. Notes describing    |
 C     | the parameters can also be found here.                   |
 C     \==========================================================/
 
+C     Macros for special grid options
+#include "PARAMS_MACROS.h"
+
 C--   Contants
 C     Useful physical values
       Real*8 PI

@@ -1,25 +1,29 @@
 C $Header$
 C
 C     /==========================================================\
-C     | DYG_MACROS.h                                             |
+C     | MASKS_MACROS.h                                           |
 C     |==========================================================|
 C     | These macros are used to reduce memory requirement and/or|
 C     | memory references when variables are fixed along a given |
 C     | axis or axes.                                            |
 C     \==========================================================/
 
-#ifdef DYG_CONST
-#define  _dyG(i,j,bi,bj) dyG(1,1,1,1)
+#ifdef MASKS_CONST
+#define  _maskS(i,j,k,bi,bj) maskS(1,1,1,1,1)
 #endif
 
-#ifdef DYG_FX
-#define  _dyG(i,j,bi,bj) dyG(i,1,bi,1)
+#ifdef MASKS_FX
+#define  _maskS(i,j,k,bi,bj) maskS(i,1,1,bi,1)
 #endif
 
-#ifdef DYG_FY
-#define  _dyG(i,j,bi,bj) dyG(1,j,1,bj)
+#ifdef MASKS_FY
+#define  _maskS(i,j,k,bi,bj) maskS(1,j,1,1,bj)
 #endif
 
-#ifndef _dyG
-#define  _dyG(i,j,bi,bj) dyG(i,j,bi,bj)
+#ifdef MASKS_FXY
+#define  _maskS(i,j,k,bi,bj) maskS(i,j,1,bi,bj)
+#endif
+
+#ifndef _maskS
+#define  _maskS(i,j,k,bi,bj) maskS(i,j,k,bi,bj)
 #endif
