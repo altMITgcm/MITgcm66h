@@ -166,8 +166,10 @@ C     Incorporate the Implicit part of -Divergence(Barotropic_Flow)
         ENDDO
        ENDIF
 
+#ifdef ALLOW_OBCS
        IF ( useOBCS )
      &    CALL OBCS_APPLY_ETA( bi, bj, etaN, myThid )
+#endif /* ALLOW_OBCS */            
 
       ENDIF
 
