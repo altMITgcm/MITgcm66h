@@ -3,6 +3,11 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint 51h_pre
+o modify gchem pkg to be more versatile
+o modifications to clean up dic pkg
+o add pkg/cfc
+
 checkpoint51f_post
 o update advect_xz/output.txt (left from chekpoint50f_pre, ini_vel modif)
 o Mods and bug fixes to pkg/cal, pkg/exf, etc., needed for computation
