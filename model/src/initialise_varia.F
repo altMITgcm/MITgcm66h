@@ -69,16 +69,16 @@ C--   Initialize variable data for packages
 C--   Finally summarise the model state
       CALL STATE_SUMMARY( myThid )
 
-#ifdef INCLUDE_DIAGNOSTICS_INTERFACE_CODE
+#ifdef ALLOW_TIMEAVE
 C--   initialise time-average arrays with initial state values
       IF (taveFreq.GT.0.) THEN
         DO bj=myByLo(myThid),myByHi(myThid)
          DO bi=myBxLo(myThid),myBxHi(myThid)
-           CALL DO_TIME_AVERAGES(startTime, nIter0, bi, bj, myThid)
+           CALL TIMEAVE_STATVARS(startTime, nIter0, bi, bj, myThid)
          ENDDO
         ENDDO
       ENDIF
-#endif /* INCLUDE_DIAGNOSTICS_INTERFACE_CODE */
+#endif /* ALLOW_TIMEAVE */
 
       RETURN
       END

@@ -19,8 +19,8 @@ C     == Global data ==
 #include "DYNVARS.h"
 #include "GRID.h"
 
-#ifdef INCLUDE_DIAGNOSTICS_INTERFACE_CODE
-#include "AVER.h"
+#ifdef ALLOW_TIMEAVE
+#include "TIMEAVE_STATV.h"
 #endif 
 
       EXTERNAL DIFFERENT_MULTIPLE
@@ -97,16 +97,16 @@ C-          Check static stability with layer below and mix as needed.
      U           ConvectCount,
      I           myTime,myIter,myThid)
 
-#ifdef INCLUDE_DIAGNOSTICS_INTERFACE_CODE 
-            IF (myIter.ne.nIter0 .AND. taveFreq.GT.0.) THEN
-              CALL TIMEAVER_1FLD_XYZ(ConvectCount, ConvectCountTave,
-     I                               deltaTclock, bi, bj, K, myThid)
-            ENDIF
-#endif /* INCLUDE_DIAGNOSTICS_INTERFACE_CODE */
-
 C--       End DO K=1,Nr
           ENDDO
        
+#ifdef ALLOW_TIMEAVE 
+          IF (myIter.ne.nIter0 .AND. taveFreq.GT.0.) THEN
+            CALL TIMEAVE_CUMULATE(ConvectCountTave, ConvectCount, Nr,
+     I                               deltaTclock, bi, bj, myThid)
+          ENDIF
+#endif /* ALLOW_TIMEAVE */
+
 #ifdef  ALLOW_KPP
 C--     End IF (.NOT.useKPP)
         ENDIF
