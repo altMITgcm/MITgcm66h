@@ -1,5 +1,5 @@
 C $Header$
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
 C--  File read_write.F: Routines to handle mid-level I/O interface.
 C--   Contents
@@ -52,6 +52,7 @@ C     msgBuf - Error message buffer
       INTEGER endIOErrCount
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       LOGICAL permCheckPoint  
+      INTEGER oldPrec
 
 C--    Going to really do some IO. Make everyone except master thread wait.
        _BARRIER
@@ -64,6 +65,7 @@ C--     Set IO "context" for reading state
         CALL DFILE_SET_RO
         CALL DFILE_SET_CONT_ON_ERROR
 C       Force 64-bit IO
+        oldPrec        = readBinaryPrec
         readBinaryPrec = precFloat64
 
 
@@ -114,6 +116,9 @@ C--     Check for IO errors
          CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, SQUEEZE_RIGHT, 1 )
         ENDIF
 
+C       Resotre default IO precision
+        readBinaryPrec = oldPrec
+
        _END_MASTER( myThid )
        _BARRIER
 
@@ -131,6 +136,15 @@ C--    Fill in edge regions
       _EXCH_XYZ_R8(gs    , myThid )
       _EXCH_XYZ_R8(gsNM1 , myThid )
       _EXCH_XY_R8 (cg2d_x, myThid )
+#ifdef ALLOW_CD
+      _EXCH_XY_R8( cg2d_xNM1, myThid )
+      _EXCH_XYZ_R8( uVelD,    myThid )
+      _EXCH_XYZ_R8( vVelD,    myThid )
+      _EXCH_XYZ_R8( uNM1,     myThid )
+      _EXCH_XYZ_R8( vNM1,     myThid )
+      _EXCH_XYZ_R8( guCD,     myThid )
+      _EXCH_XYZ_R8( gvCD,     myThid )
+#endif
 
       RETURN
       END

@@ -3,12 +3,12 @@ C $Header$
 #include "CPP_EEOPTIONS.h"
 
 C     /==========================================================\
-C     | S/R INIT_PREDICTOR                                       |
+C     | S/R INI_PREDICTOR                                        |
 C     | o Copies Gu,Gv,Gt and Gs in U,V,theta and salt           |
 C     |   This is to initialise the predictor-corrector time-    |
 C     |   stepping scheme                                        |
 C     \==========================================================/
-      SUBROUTINE INIT_PREDICTOR( 
+      SUBROUTINE INI_PREDICTOR( 
      I                       myThid )
       implicit none
 ! Common

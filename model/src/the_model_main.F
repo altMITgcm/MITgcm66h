@@ -70,8 +70,8 @@ C /|\   |  |
 C  |    |  |
 C  |<== |  | ** Time stepping loop finishes here **
 C       |  |
+C       |  |--WRITE_CHECKPOINT 
 C       |  |--WRITE_STATE
-C       |  |--WRITE_CHECKPOINT
 C       |
 C       .
 C       .
