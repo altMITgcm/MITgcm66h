@@ -25,7 +25,7 @@ C     === Local variables ====
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 
       _BEGIN_MASTER( myThid )
-      WRITE(msgBuf,'(A,A)') 'DEBUG_MSG: ',text
+      WRITE(msgBuf,'(A11,A40)') 'DEBUG_MSG: ',text
       CALL PRINT_MESSAGE( msgBuf,
      &   standardMessageUnit, SQUEEZE_RIGHT, myThid )
       _END_MASTER( )
