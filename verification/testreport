@@ -757,5 +757,9 @@ rm tmp_cmpnum.f a.out dfile
 
 if test "x$CLEANUP" != xt ; then
     cat $SUMMARY
+    if test -e tr.out ; then
+        mv tr.out tr.out.old
+    fi
+    cat $SUMMARY > tr.out
 fi
 
