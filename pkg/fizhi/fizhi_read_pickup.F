@@ -36,11 +36,9 @@ C     myThid  :: Number of this instance
 C     !LOCAL VARIABLES:
 C     fn      :: character buffer for creating filename
 C     prec    :: precision of pickup files
-C     lgf     :: flag to write "global" files
 C     k       :: loop index
-      INTEGER prec, iChar, lChar, k
+      INTEGER prec
       CHARACTER*(MAX_LEN_FNAM) fn
-      LOGICAL lgf
 
       WRITE(fn,'(A,I10.10)') 'pickup_fizhi.',myIter
       prec = precFloat64

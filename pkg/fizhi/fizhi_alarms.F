@@ -26,9 +26,10 @@ c ----------------
 c MPI Utilities
 c -------------
 #ifdef ALLOW_USE_MPI
-      include 'mpif.h'
+#include "mpif.h"
+      integer  ierror
 #endif
-      integer  myid,ierror
+      integer  myid
 
 c Physics Frequencies
 c -------------------

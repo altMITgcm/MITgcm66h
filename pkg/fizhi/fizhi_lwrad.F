@@ -72,7 +72,7 @@ c ---------------
       real SGMT4(ISTRIP),TSURF(ISTRIP),dsgmt4(ISTRIP)
       integer lwi(istrip)
 
-      real getcon,secday,convrt,pcheck
+      real getcon,secday,convrt
 
       logical high,  trace, cldwater
       data high /.true./

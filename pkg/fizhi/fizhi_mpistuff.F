@@ -3,8 +3,8 @@ C $Name$
 
       subroutine my_finalize
       implicit none
-      integer  ierror
 #ifdef ALLOW_USE_MPI
+      integer  ierror
       call mpi_finalize (ierror )
 #endif
       return

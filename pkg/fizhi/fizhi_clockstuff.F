@@ -36,7 +36,7 @@ c -------------
 #endif
 
       integer myid
-      logical alarm,first,set
+      logical first,set
       data          first /.true./
 
       integer n
