@@ -177,10 +177,10 @@ C--   Filter (and exchange)
        DO bi=myBxLo(myThid),myBxHi(myThid)
 
 C--     Convectively adjust new fields to be statically stable
-        iMin = 1-OLx+1
-        iMax = sNx+OLx
-        jMin = 1-OLy+1
-        jMax = sNy+OLy
+        iMin = 1
+        iMax = sNx
+        jMin = 1
+        jMax = sNy
         CALL CONVECTIVE_ADJUSTMENT(
      I       bi, bj, iMin, iMax, jMin, jMax,
      I       myTime, myIter, myThid )

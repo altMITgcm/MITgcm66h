@@ -60,6 +60,11 @@ CEOP
 
 Cml      stop 'myThid is not properly defined in this subroutine'
 
+#ifdef CHECK_SALINITY_FOR_NEGATIVE_VALUES
+      CALL LOOK_FOR_NEG_SALINITY( bi, bj, iMin, iMax, jMin, jMax,  k,
+     &     sFld, myThid )
+#endif
+
       if (equationOfState.eq.'LINEAR') then
 
          do j=jMin,jMax
@@ -122,13 +127,6 @@ C     abbreviations
                t3 = t2*t1
                
                s1  = salt(i,j,k,bi,bj)
-               if ( s1 .lt. 0. _d 0 ) then
-C     issue a warning
-                  write(*,'(a,i3,a,i3,a,i3,a,i3,a,i3,a,e13.5)') 
-     &                 ' FIND_ALPHA: WARNING, salinity(',
-     &                 i,',',j,',',k,',',bi,',',bj,') = ', s1
-                  s1 = 0. _d 0
-               end if
                s3o2 = sqrt(s1*s1*s1)
                
                p1  = pressure(i,j,kRef,bi,bj)*SItoBar
@@ -212,13 +210,6 @@ C     of sea water at p
                t1  = theta(i,j,k,bi,bj)
                t2  = t1*t1
                s1  = salt(i,j,k,bi,bj)
-               if ( s1 .lt. 0. _d 0 ) then
-C     issue a warning
-                  write(*,'(a,i3,a,i3,a,i3,a,i3,a,i3,a,e13.5)') 
-     &                 ' FIND_ALPHA: WARNING, salinity(',
-     &                 i,',',j,',',k,',',bi,',',bj,') = ', s1
-                  s1 = 0. _d 0
-               end if
                sp5 = sqrt(s1) 
 
                p1   = pressure(i,j,kRef,bi,bj)*SItodBar
@@ -299,6 +290,11 @@ CEOP
 
 Cml      stop 'myThid is not properly defined in this subroutine'
 
+#ifdef CHECK_SALINITY_FOR_NEGATIVE_VALUES
+      CALL LOOK_FOR_NEG_SALINITY( bi, bj, iMin, iMax, jMin, jMax,  k,
+     &     sFld, myThid )
+#endif
+
       if (equationOfState.eq.'LINEAR') then
 
          do j=jMin,jMax
@@ -359,13 +355,6 @@ C     abbreviations
                t3 = t2*t1
                
                s1  = salt(i,j,k,bi,bj)
-               if ( s1 .lt. 0. _d 0 ) then
-C     issue a warning
-                  write(*,'(a,i3,a,i3,a,i3,a,i3,a,i3,a,e13.5)') 
-     &                 ' FIND_BETA: WARNING, salinity(',
-     &                 i,',',j,',',k,',',bi,',',bj,') = ', s1
-                  s1 = 0. _d 0
-               end if
                s3o2 = 1.5*sqrt(s1)
 
                p1  = pressure(i,j,kRef,bi,bj)*SItoBar
@@ -435,13 +424,6 @@ C     of sea water at p
                t1  = theta(i,j,k,bi,bj)
                t2  = t1*t1
                s1  = salt(i,j,k,bi,bj)
-               if ( s1 .lt. 0. _d 0 ) then
-C     issue a warning
-                  write(*,'(a,i3,a,i3,a,i3,a,i3,a,i3,a,e13.5)') 
-     &                 ' FIND_BETA: WARNING, salinity(',
-     &                 i,',',j,',',k,',',bi,',',bj,') = ', s1
-                  s1 = 0. _d 0
-               end if
                sp5 = sqrt(s1) 
          
                p1   = pressure(i,j,k,bi,bj)*SItodBar
