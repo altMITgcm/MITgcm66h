@@ -140,7 +140,7 @@ C-    Land diagnostics : write snap-shot & cumulate for TimeAve output
 
 C-    surface fluxes over ocean (ice-free & ice covered) 
 C       used for diagnostics, thsice package and coupler
-        CALL AIM_AIM2SIOCE( aim_landFr,
+        CALL AIM_AIM2SIOCE( aim_landFr, fmask1(1,3,myThid),
      O                      prcAtm, evpAtm, flxSW, 
      I                      bi, bj, myTime, myIter, myThid )
 
