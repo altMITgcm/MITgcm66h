@@ -122,8 +122,8 @@ C	         Fixed phase speed (ignoring all of that painstakingly
 C		  saved data...)
                  CVEL_UE(J,K,bi,bj) = CFIX
                ELSE
-                 CVEL_UE(J,K,bi,bj) = f1*(CL*dxF(I_obc-2,J,bi,bj)/deltaT)+
-     &                f2*CVEL_UE(J,K,bi,bj)
+                 CVEL_UE(J,K,bi,bj) = f1*(CL*dxF(I_obc-2,J,bi,bj)/deltaT
+     &              )+f2*CVEL_UE(J,K,bi,bj)
                ENDIF
 C              update OBC to next timestep
                OBEu(J,K,bi,bj)=uVel(I_obc,J,K,bi,bj)-
