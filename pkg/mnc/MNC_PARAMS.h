@@ -27,13 +27,13 @@ C     mon_write_mnc    :: use mnc to write monitor output
      &     mnc_use_indir, mnc_use_outdir, mnc_outdir_date,
      &     mnc_echo_gvtypes,
      &     pickup_write_mnc, pickup_read_mnc,
-     &     timeave_mnc, snapshot_mnc, monitor_mnc
+     &     timeave_mnc, snapshot_mnc, monitor_mnc, autodiff_mnc
       LOGICAL
      &     useMNC,
      &     mnc_use_indir, mnc_use_outdir, mnc_outdir_date,
      &     mnc_echo_gvtypes,
      &     pickup_write_mnc, pickup_read_mnc,
-     &     timeave_mnc, snapshot_mnc, monitor_mnc
+     &     timeave_mnc, snapshot_mnc, monitor_mnc, autodiff_mnc
 
 C     ===  PARM_MNC_C Common Block  ===
 C     mnc_outdir_str   :: name of the output directory

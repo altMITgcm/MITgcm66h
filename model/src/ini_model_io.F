@@ -199,6 +199,10 @@ C     Write coordinates to "state" file
       CALL MNC_CW_RS_W('R','state',0,0,'RC',rC, myThid)
       CALL MNC_CW_RS_W('R','state',0,0,'RF',rF, myThid)
 
+#ifdef ALLOW_AUTODIFF_MONITOR
+      CALL AUTODIFF_INI_MODEL_IO( myThid )
+#endif
+
       ENDIF
 #endif
 

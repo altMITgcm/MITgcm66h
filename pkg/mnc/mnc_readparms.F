@@ -38,7 +38,7 @@ C     !LOCAL VARIABLES:
      &     mnc_use_indir, mnc_use_outdir, mnc_outdir_date,
      &     mnc_echo_gvtypes,
      &     pickup_write_mnc, pickup_read_mnc,
-     &     timeave_mnc, snapshot_mnc, monitor_mnc,
+     &     timeave_mnc, snapshot_mnc, monitor_mnc, autodiff_mnc,
      &     mnc_outdir_str, mnc_indir_str
       LOGICAL  exst
 
@@ -62,6 +62,7 @@ C     Set default values for MNC run-time parameters
       monitor_mnc           =  .FALSE.
       timeave_mnc           =  .FALSE.
       snapshot_mnc          =  .FALSE.
+      autofiff_mnc          =  .FALSE.
 
 C     Set the file name
       DO i=1,MAX_LEN_MBUF
