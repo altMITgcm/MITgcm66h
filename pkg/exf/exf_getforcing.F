@@ -129,9 +129,9 @@ c     Get the surface forcing fields.
       call exf_getffields( mytime, myiter, mythid )
 
       if ( debugLevel .GE. debLevB ) then
-CEH3     This is causing link-time errors because the debug_call subroutine 
-CEH3     does not exist anywhere in the code -- so I am commenting it out.
-CEH3       call debug_call( 'exf_check_range', myThid )
+#ifdef ALLOW_DEBUG
+         call debug_call( 'exf_check_range', myThid )
+#endif
          call exf_check_range( mytime, myiter, mythid )
       endif
 
