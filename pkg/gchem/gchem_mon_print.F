@@ -4,6 +4,8 @@ C $Name$
 #include "CPP_OPTIONS.h"
 #include "GCHEM_OPTIONS.h"
 
+CBOP
+C !ROUTINE:  GCHEM_PRINT
       SUBROUTINE GCHEM_PRINT(
      I                myNr, arr, arrName, 
      I                arrMask,arrhFac,arrArea,arrDr,

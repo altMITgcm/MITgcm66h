@@ -8,6 +8,12 @@ C $Name$
 C !INTERFACE: ==========================================================
       SUBROUTINE GCHEM_DIAGS(myTime,myIter, myThid )
 
+C !DESCRIPTION:
+C calls subroutine that calculate diagnostic specific to
+C any tracer epxperiment
+C also calls gchem monitor 
+
+C !USES: ===============================================================
       IMPLICIT NONE
 #include "SIZE.h"
 #include "GRID.h"
@@ -19,6 +25,7 @@ C !INPUT PARAMETERS: ===================================================
 C  myThid               :: thread number
       INTEGER myThid, myIter
       _RL myTime
+CEOP
 
 #ifdef ALLOW_PTRACERS
 #ifdef ALLOW_GCHEM

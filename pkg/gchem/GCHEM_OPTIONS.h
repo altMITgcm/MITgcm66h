@@ -13,7 +13,8 @@ C    !ROUTINE: GCHEM_OPTIONS.h
 C    !INTERFACE:
 
 C    !DESCRIPTION:
-c coptions for biogeochemistry package
+c options for biogeochemistry package
+CEOP
 
 #ifdef ALLOW_PTRACERS
 #define PTRACERS_SEPARATE_FORCING
