@@ -575,14 +575,14 @@ c-- The following assumes the TAF option '-pure'
          CALL COST_FINAL_STORE ( mythid, lastdiva )
       ELSE
          CALL TIMER_START('ADTHE_MAIN_LOOP       [ADJOINT RUN]', mythid)
-         CALL ADTHE_MAIN_LOOP ( mythid )
+         CALL ADTHE_MAIN_LOOP ( myCurrentTime, myCurrentIter, mythid )
          CALL TIMER_STOP ('ADTHE_MAIN_LOOP       [ADJOINT RUN]', mythid)
          CALL COST_FINAL_RESTORE ( mythid, lastdiva )
       ENDIF
 c--
 #  else /* ALLOW_DIVIDED_ADJOINT undef */
       CALL TIMER_START('ADTHE_MAIN_LOOP          [ADJOINT RUN]', mythid)
-      CALL ADTHE_MAIN_LOOP ( mythid )
+      CALL ADTHE_MAIN_LOOP ( myCurrentTime, myCurrentIter, mythid )
       CALL TIMER_STOP ('ADTHE_MAIN_LOOP          [ADJOINT RUN]', mythid)
 #  endif /* ALLOW_DIVIDED_ADJOINT */
 c
