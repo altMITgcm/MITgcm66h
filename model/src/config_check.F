@@ -324,6 +324,20 @@ C- jmc: but ultimately, this block can/will be removed.
      &                    SQUEEZE_RIGHT , myThid)                      
       ENDIF
 
+      IF ( useCDscheme .AND. useCubedSphereExchange ) THEN
+        WRITE(msgBuf,'(2A)')
+     &   'CONFIG_CHECK: CD-scheme not implemented on CubedSphere grid'
+        CALL PRINT_ERROR( msgBuf , myThid)
+        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
+      ENDIF
+
+      IF ( useOldFreezing .AND. allowFreezing ) THEN
+        WRITE(msgBuf,'(2A)')
+     &   'CONFIG_CHECK: cannot set both: allowFreezing & useOldFreezing'
+        CALL PRINT_ERROR( msgBuf , myThid)
+        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
+      ENDIF
+
       WRITE(msgBuf,'(A)') 'CONFIG_CHECK: OK'
       CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,
      &                   SQUEEZE_RIGHT,myThid)

@@ -233,7 +233,7 @@ C     theta is dumped or time-averaged.
 C--   Freeze water at the surface
       IF ( allowFreezing .AND. .NOT. useSEAICE
      &                   .AND. .NOT. useThermSeaIce )
-     &   CALL FREEZE( myThid )
+     &   CALL FREEZE_SURFACE(  myTime, myIter, myThid )
 
 #ifdef ALLOW_AUTODIFF_TAMC
 # ifdef ALLOW_PTRACERS
