@@ -28,6 +28,9 @@ C     == Global data ==
 #include "PARAMS.h"
 #include "DYNVARS.h"
 #include "GRID.h"
+#ifdef ALLOW_PASSIVE_TRACER
+#include "TR1.h"
+#endif
 #ifdef ALLOW_TIMEAVE
 #include "TIMEAVE_STATV.h"
 #endif 
