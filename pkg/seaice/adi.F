@@ -139,7 +139,8 @@ c$taf loop = parallel
      6            *(VICEC(I+1,J,bi,bj)-VICEC(I-1,J,bi,bj))
      6            *DELXR(I,J)/CSUICE(I,J,bi,bj)
      6
-     7            -ETAMEAN(I,J)*TWO*TNGICE(I,J,bi,bj)*(VICEC(I+1,J,bi,bj)
+     7            -ETAMEAN(I,J)*TWO*TNGICE(I,J,bi,bj)
+     7            *(VICEC(I+1,J,bi,bj)
      7            -VICEC(I-1,J,bi,bj))*DELXR(I,J)/CSUICE(I,J,bi,bj)
          END DO
         END DO
@@ -151,7 +152,8 @@ c$taf loop = parallel
           AA1=((ETA(I,J-1,bi,bj)+ZETA(I,J-1,bi,bj))/CSUICE(I,J,bi,bj)
      &       +(ETA(I,J,bi,bj)+ZETA(I,J,bi,bj))
      &       /CSUICE(I,J,bi,bj))/CSUICE(I,J,bi,bj)
-          AA2=((ETA(I-1,J-1,bi,bj)+ZETA(I-1,J-1,bi,bj))/CSUICE(I,J,bi,bj)
+          AA2=((ETA(I-1,J-1,bi,bj)
+     &       +ZETA(I-1,J-1,bi,bj))/CSUICE(I,J,bi,bj)
      &       +(ETA(I-1,J,bi,bj)+ZETA(I-1,J,bi,bj))
      &       /CSUICE(I,J,bi,bj))/CSUICE(I,J,bi,bj)
           AA3=ETA(I-1,J,bi,bj)+ETA(I,J,bi,bj)
@@ -169,7 +171,7 @@ c$taf loop = parallel
         END DO
 
 cdm ==> this is equivalent to zeroing AU and CU at arbitrary locations
-cdm ==> in the middle of the ocean.  Is this really what you want to do?
+cdm ==> in the middle of the ocean. Is this really what you want to do?
         DO J=1-OLy+1,sNy+OLy-1
          AU(1-OLx+1,J)=ZERO
          CU(sNx+OLx-1,J)=ZERO
@@ -183,7 +185,8 @@ c$taf loop = parallel
           AA1=((ETA(I,J-1,bi,bj)+ZETA(I,J-1,bi,bj))/CSUICE(I,J,bi,bj)
      &       +(ETA(I,J,bi,bj)+ZETA(I,J,bi,bj))
      &       /CSUICE(I,J,bi,bj))/CSUICE(I,J,bi,bj)
-          AA2=((ETA(I-1,J-1,bi,bj)+ZETA(I-1,J-1,bi,bj))/CSUICE(I,J,bi,bj)
+          AA2=((ETA(I-1,J-1,bi,bj)
+     &       +ZETA(I-1,J-1,bi,bj))/CSUICE(I,J,bi,bj)
      &       +(ETA(I-1,J,bi,bj)+ZETA(I-1,J,bi,bj))
      &       /CSUICE(I,J,bi,bj))/CSUICE(I,J,bi,bj)
           AA3=ETA(I-1,J,bi,bj)+ETA(I,J,bi,bj)
@@ -293,7 +296,8 @@ c$taf loop = parallel
           AA1=((ETA(I,J-1,bi,bj)+ZETA(I,J-1,bi,bj))/CSUICE(I,J,bi,bj)
      &       +(ETA(I,J,bi,bj)+ZETA(I,J,bi,bj))
      &       /CSUICE(I,J,bi,bj))/CSUICE(I,J,bi,bj)
-          AA2=((ETA(I-1,J-1,bi,bj)+ZETA(I-1,J-1,bi,bj))/CSUICE(I,J,bi,bj)
+          AA2=((ETA(I-1,J-1,bi,bj)
+     &       +ZETA(I-1,J-1,bi,bj))/CSUICE(I,J,bi,bj)
      &       +(ETA(I-1,J,bi,bj)+ZETA(I-1,J,bi,bj))
      &       /CSUICE(I,J,bi,bj))/CSUICE(I,J,bi,bj)
 
@@ -314,12 +318,14 @@ c$taf loop = parallel
            AA9=ZERO
           END IF
 
-          FXY1(I,J)=AA9+AMASS(I,J,bi,bj)/SEAICE_DT*UICE(I,J,1,bi,bj)*TWO
+          FXY1(I,J)=AA9+AMASS(I,J,bi,bj)/SEAICE_DT
+     5             *UICE(I,J,1,bi,bj)*TWO
      5             -(AA1+AA2)*DELX2(I,J)*UICE(I,J,1,bi,bj)
      6             +((ETA(I,J-1,bi,bj)+ZETA(I,J-1,bi,bj)
      6             +ETA(I,J,bi,bj)+ZETA(I,J,bi,bj))
      6             *UICE(I+1,J,1,bi,bj)
-     6             +(ETA(I-1,J-1,bi,bj)+ZETA(I-1,J-1,bi,bj)+ETA(I-1,J,bi,bj)
+     6             +(ETA(I-1,J-1,bi,bj)+ZETA(I-1,J-1,bi,bj)
+     6             +ETA(I-1,J,bi,bj)
      6             +ZETA(I-1,J,bi,bj))*UICE(I-1,J,1,bi,bj))
      6             *DELX2(I,J)/CSUICE(I,J,bi,bj)/CSUICE(I,J,bi,bj)
       
@@ -367,11 +373,13 @@ c$taf loop = parallel
          DO I=1-OLx+1,sNx+OLx-1
           DO J=1-OLy+1,sNy+OLy-1
   
-           FXY(I,J)=-DRAGA(I,J,bi,bj)*UICEC(I,J,bi,bj)+FORCEY(I,J,bi,bj)
+           FXY(I,J)=-DRAGA(I,J,bi,bj)*UICEC(I,J,bi,bj)
+     3        +FORCEY(I,J,bi,bj)
      3        +(HALF*(UICEC(I+1,J,bi,bj)-UICEC(I-1,J,bi,bj))
      3        *(ZETA(I-1,J,bi,bj)+ZETA(I,J,bi,bj)
      3        -ZETA(I-1,J-1,bi,bj)-ZETA(I,J-1,bi,bj))*DELXY(I,J)
-     3        /CSUICE(I,J,bi,bj)+HALF*ZETAMEAN(I,J)*((UICEC(I+1,J+1,bi,bj)
+     3        /CSUICE(I,J,bi,bj)
+     3        +HALF*ZETAMEAN(I,J)*((UICEC(I+1,J+1,bi,bj)
      3        -UICEC(I-1,J+1,bi,bj))/CSUICE(I,J+1,bi,bj)
      3        -(UICEC(I+1,J-1,bi,bj)-UICEC(I-1,J-1,bi,bj))
      3        /CSUICE(I,J-1,bi,bj))*DELXY(I,J))
@@ -379,7 +387,8 @@ c$taf loop = parallel
      4        -(HALF*(UICEC(I+1,J,bi,bj)-UICEC(I-1,J,bi,bj))
      4        *(ETA(I-1,J,bi,bj)+ETA(I,J,bi,bj)
      4        -ETA(I-1,J-1,bi,bj)-ETA(I,J-1,bi,bj))*DELXY(I,J)
-     4        /CSUICE(I,J,bi,bj)+HALF*ETAMEAN(I,J)*((UICEC(I+1,J+1,bi,bj)
+     4        /CSUICE(I,J,bi,bj)
+     4        +HALF*ETAMEAN(I,J)*((UICEC(I+1,J+1,bi,bj)
      4        -UICEC(I-1,J+1,bi,bj))/CSUICE(I,J+1,bi,bj)
      4        -(UICEC(I+1,J-1,bi,bj)-UICEC(I-1,J-1,bi,bj))
      4        /CSUICE(I,J-1,bi,bj))*DELXY(I,J))
@@ -388,11 +397,12 @@ c$taf loop = parallel
      5        +UICEC(I,J+1,bi,bj)
      5        -UICEC(I+1,J,bi,bj)-UICEC(I,J,bi,bj))+ETA(I,J-1,bi,bj)
      5        *(UICEC(I+1,J,bi,bj)
-     5        +UICEC(I,J,bi,bj)-UICEC(I+1,J-1,bi,bj)-UICEC(I,J-1,bi,bj))
-     5        +ETA(I-1,J,bi,bj)
+     5        +UICEC(I,J,bi,bj)-UICEC(I+1,J-1,bi,bj)
+     5        -UICEC(I,J-1,bi,bj))+ETA(I-1,J,bi,bj)
      5        *(UICEC(I,J,bi,bj)+UICEC(I-1,J,bi,bj)-UICEC(I,J+1,bi,bj)
      5        -UICEC(I-1,J+1,bi,bj))
-     5        +ETA(I-1,J-1,bi,bj)*(UICEC(I,J-1,bi,bj)+UICEC(I-1,J-1,bi,bj)
+     5        +ETA(I-1,J-1,bi,bj)*(UICEC(I,J-1,bi,bj)
+     5        +UICEC(I-1,J-1,bi,bj)
      5        -UICEC(I,J,bi,bj)
      5        -UICEC(I-1,J,bi,bj)))*DELXY(I,J)/CSUICE(I,J,bi,bj)
      5
@@ -421,7 +431,8 @@ c$taf loop = parallel
      &        /CSUICE(I,J,bi,bj))/CSUICE(I,J,bi,bj)
            AA5=((ZETA(I-1,J,bi,bj)-ETA(I-1,J,bi,bj))
      &        +(ZETA(I,J,bi,bj)-ETA(I,J,bi,bj))
-     &        -(ZETA(I-1,J-1,bi,bj)-ETA(I-1,J-1,bi,bj))-(ZETA(I,J-1,bi,bj)
+     &        -(ZETA(I-1,J-1,bi,bj)-ETA(I-1,J-1,bi,bj))
+     &        -(ZETA(I,J-1,bi,bj)
      &        -ETA(I,J-1,bi,bj)))*TNGICE(I,J,bi,bj)
            AA6=TWO*ETAMEAN(I,J)*TNGICE(I,J,bi,bj)*TNGICE(I,J,bi,bj)
 
@@ -569,7 +580,8 @@ c$taf loop = parallel
      &        /CSUICE(I,J,bi,bj))/CSUICE(I,J,bi,bj)
            AA5=((ZETA(I-1,J,bi,bj)-ETA(I-1,J,bi,bj))
      &        +(ZETA(I,J,bi,bj)-ETA(I,J,bi,bj))
-     &        -(ZETA(I-1,J-1,bi,bj)-ETA(I-1,J-1,bi,bj))-(ZETA(I,J-1,bi,bj)
+     &        -(ZETA(I-1,J-1,bi,bj)-ETA(I-1,J-1,bi,bj))
+     &        -(ZETA(I,J-1,bi,bj)
      &        -ETA(I,J-1,bi,bj)))*TNGICE(I,J,bi,bj)
            AA6=TWO*ETAMEAN(I,J)*TNGICE(I,J,bi,bj)*TNGICE(I,J,bi,bj)
 
@@ -585,11 +597,13 @@ c$taf loop = parallel
      1        *VICE(I,J,1,bi,bj)*TWO
      1        -AA5*DELYR(I,J)*VICE(I,J,1,bi,bj)
      1        -(AA1+AA2)*DELY2(I,J)*VICE(I,J,1,bi,bj)
-     1        +AA1*DELY2(I,J)*VICE(I,J+1,1,bi,bj)-((ZETAMEAN(I,J)-ETAMEAN(I,J))
+     1        +AA1*DELY2(I,J)*VICE(I,J+1,1,bi,bj)
+     1        -((ZETAMEAN(I,J)-ETAMEAN(I,J))
      1        *TNGICE(I,J+1,bi,bj)*DELYR(I,J)
      1        +ETAMEAN(I,J)*TWO*TNGICE(I,J,bi,bj)*DELYR(I,J))
      1        *VICE(I,J+1,1,bi,bj)
-     2        +AA2*DELY2(I,J)*VICE(I,J-1,1,bi,bj)+((ZETAMEAN(I,J)-ETAMEAN(I,J))
+     2        +AA2*DELY2(I,J)*VICE(I,J-1,1,bi,bj)
+     2        +((ZETAMEAN(I,J)-ETAMEAN(I,J))
      2        *TNGICE(I,J-1,bi,bj)*DELYR(I,J)
      2        +ETAMEAN(I,J)*TWO*TNGICE(I,J,bi,bj)*DELYR(I,J))
      2        *VICE(I,J-1,1,bi,bj)

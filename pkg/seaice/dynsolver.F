@@ -262,7 +262,8 @@ C NOW EVALUATE STRAIN RATES
           E11(I,J,bi,bj)=HALF/(DXTICE(I,J,bi,bj)*CSTICE(I,J,bi,bj))
      &                  *(UICE(I+1,J+1,1,bi,bj)+UICE(I+1,J,1,bi,bj)
      &                  -UICE(I,J+1,1,bi,bj)-UICE(I,J,1,bi,bj))
-     &                  -QUART*(VICE(I+1,J+1,1,bi,bj)+VICE(I,J+1,1,bi,bj)
+     &                  -QUART*(VICE(I+1,J+1,1,bi,bj)
+     &                  +VICE(I,J+1,1,bi,bj)
      &                  +VICE(I,J,1,bi,bj)+VICE(I+1,J,1,bi,bj))
      &                  *TNGTICE(I,J,bi,bj)/RADIUS
           E22(I,J,bi,bj)=HALF/DYTICE(I,J,bi,bj)
@@ -274,7 +275,8 @@ C NOW EVALUATE STRAIN RATES
      &                  +HALF/(DXTICE(I,J,bi,bj)*CSTICE(I,J,bi,bj))
      &                  *(VICE(I+1,J+1,1,bi,bj)+VICE(I+1,J,1,bi,bj)
      &                  -VICE(I,J+1,1,bi,bj)-VICE(I,J,1,bi,bj))
-     &                  +QUART*(UICE(I+1,J+1,1,bi,bj)+UICE(I,J+1,1,bi,bj)
+     &                  +QUART*(UICE(I+1,J+1,1,bi,bj)
+     &                  +UICE(I,J+1,1,bi,bj)
      &                  +UICE(I,J,1,bi,bj)+UICE(I+1,J,1,bi,bj))
      &                  *TNGTICE(I,J,bi,bj)/RADIUS)
 C  NOW EVALUATE VISCOSITIES
@@ -353,7 +355,8 @@ C NOW EVALUATE STRAIN RATES
           E11(I,J,bi,bj)=HALF/(DXTICE(I,J,bi,bj)*CSTICE(I,J,bi,bj))
      &                  *(UICE(I+1,J+1,1,bi,bj)+UICE(I+1,J,1,bi,bj)
      &                  -UICE(I,J+1,1,bi,bj)-UICE(I,J,1,bi,bj))
-     &                  -QUART*(VICE(I+1,J+1,1,bi,bj)+VICE(I,J+1,1,bi,bj)
+     &                  -QUART*(VICE(I+1,J+1,1,bi,bj)
+     &                  +VICE(I,J+1,1,bi,bj)
      &                  +VICE(I,J,1,bi,bj)+VICE(I+1,J,1,bi,bj))
      &                  *TNGTICE(I,J,bi,bj)/RADIUS
           E22(I,J,bi,bj)=HALF/DYTICE(I,J,bi,bj)
@@ -365,7 +368,8 @@ C NOW EVALUATE STRAIN RATES
      &                  +HALF/(DXTICE(I,J,bi,bj)*CSTICE(I,J,bi,bj))
      &                  *(VICE(I+1,J+1,1,bi,bj)+VICE(I+1,J,1,bi,bj)
      &                  -VICE(I,J+1,1,bi,bj)-VICE(I,J,1,bi,bj))
-     &                  +QUART*(UICE(I+1,J+1,1,bi,bj)+UICE(I,J+1,1,bi,bj)
+     &                  +QUART*(UICE(I+1,J+1,1,bi,bj)
+     &                  +UICE(I,J+1,1,bi,bj)
      &                  +UICE(I,J,1,bi,bj)+UICE(I+1,J,1,bi,bj))
      &                  *TNGTICE(I,J,bi,bj)/RADIUS)
 C  NOW EVALUATE VISCOSITIES
