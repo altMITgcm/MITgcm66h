@@ -181,7 +181,7 @@ foreach dr ($SOURCEDIRS)
 end
 if (! $?PACKAGES) then
   set PACKAGES=()
-  foreach pkg (`cd $ROOTDIR/pkg; ls -1 | grep -v CVS`)
+  foreach pkg (`cd $ROOTDIR/pkg; find . -type d | grep -v CVS | sed 's:\./::' | grep -v "\."`)
    if (-d $ROOTDIR/pkg/$pkg) set PACKAGES=($PACKAGES $pkg)
   end
 endif
