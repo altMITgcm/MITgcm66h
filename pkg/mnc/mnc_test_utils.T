@@ -3,7 +3,7 @@ C $Name$
 
 C     MNC utilities duplicating things in MITgcm
       
-C====================================================================
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 C     Copied from: eesupp/src/utils.F
 
       INTEGER FUNCTION IFNBLNK( string )
@@ -36,7 +36,7 @@ C
       RETURN
       END
 
-C====================================================================
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 C     Copied from: eesupp/src/utils.F
 
       INTEGER FUNCTION ILNBLNK( string )
@@ -70,7 +70,7 @@ C
       RETURN
       END
 
-C====================================================================
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 C     Adapted from: eesupp/src/print.F
 
       SUBROUTINE PRINT_ERROR( message , myThid )

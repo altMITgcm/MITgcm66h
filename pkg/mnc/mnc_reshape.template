@@ -3,6 +3,8 @@ C $Name$
 
 #include "MNC_OPTIONS.h"
 
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+
       SUBROUTINE MNC_RESHAPE_RX_YY( ni,nj,nk, istart,iend, din,dout ) 
 
       implicit none
@@ -60,6 +62,8 @@ C     &       '   iend   = ', iend(1)
 
       RETURN
       END
+
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 CEH3 ;;; Local Variables: ***
 CEH3 ;;; mode:fortran ***
