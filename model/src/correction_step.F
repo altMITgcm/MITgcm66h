@@ -9,7 +9,7 @@ C     |   pressure gradient.                                     |
 C     \==========================================================/
       SUBROUTINE CORRECTION_STEP( bi, bj, iMin, iMax, jMin, jMax,
      I                       K, pSurfX, pSurfY,
-     I                       myThid )
+     I                       myCurrentTime, myThid )
       implicit none
 ! Common
 #include "SIZE.h"
@@ -24,6 +24,7 @@ C     == Routine Arguments ==
       _RL  pSurfX(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL  pSurfY(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER myThid
+      _RL myCurrentTime
 C     == Local variables ==
       INTEGER i,j
       _RL ab15,ab05,hxFac,hyFac,rRhoNil
@@ -58,7 +59,7 @@ C     Step forward meridional velocity
        ENDDO
       ENDDO
 
-     Rotate theta/gT/gTnm1
+C     Swap gTNm1, theta, gT
       DO j=jMin,jMax
        DO i=iMin,iMax
         theta(i,j,k,bi,bj)=gTNm1(i,j,k,bi,bj)
@@ -66,7 +67,7 @@ C     Step forward meridional velocity
        ENDDO
       ENDDO
 
-C     Rotate salt/gS/gSnm1
+C     Swap gSNm1, salt, gS
       DO j=jMin,jMax
        DO i=iMin,iMax
         salt(i,j,k,bi,bj)=gSNm1(i,j,k,bi,bj)

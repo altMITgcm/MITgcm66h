@@ -66,13 +66,14 @@ C--    Initialise salinity field to the vertical reference profile
        _END_MASTER(myThid)
       ENDIF
 C     Set initial tendency terms
+C     Note: gSNm1 == salt to be consistent with salt* implementation
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
         DO K=1,Nz
          DO J=1,sNy
           DO I=1,sNx
            gs   (I,J,K,bi,bj) = 0. _d 0
-           gsNM1(I,J,K,bi,bj) = 0. _d 0
+           gsNM1(I,J,K,bi,bj) = salt(I,J,K,bi,bj)
           ENDDO
          ENDDO
         ENDDO

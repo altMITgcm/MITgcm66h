@@ -78,8 +78,8 @@ C          fu(i,j,bi,bj) = -tauMax
         DO bi = myBxLo(myThid), myBxHi(myThid)
          DO j=1,sNy
           DO i=1,sNx
-           fu(i,j,bi,bj) = fu(i,j,bi,bj)/(delZ(1)*rhonil)*0.1
-           fu(i,j,bi,bj) = 0.1/(delZ(1)*rhonil)
+           fu(i,j,bi,bj) = fu(i,j,bi,bj)/(delZ(1)*rhonil)
+C          fu(i,j,bi,bj) = 0.1/(delZ(1)*rhonil)
           ENDDO
          ENDDO
         ENDDO
@@ -106,7 +106,7 @@ C
         DO bi = myBxLo(myThid), myBxHi(myThid)
          DO j=1,sNy
           DO i=1,sNx
-           fv(i,j,bi,bj) = fv(i,j,bi,bj)/(delZ(1)*rhonil)*0.
+           fv(i,j,bi,bj) = fv(i,j,bi,bj)/(delZ(1)*rhonil)
           ENDDO
          ENDDO
         ENDDO

@@ -56,8 +56,10 @@ C     Step forward temperature
       IF (tempStepping) THEN
        DO j=jMin,jMax
         DO i=iMin,iMax
+C        theta(i,j,k,bi,bj)=theta(i,j,k,bi,bj)
          gTNm1(i,j,k,bi,bj)=theta(i,j,k,bi,bj)
      &    +deltaTtracer*(ab15*gT(i,j,k,bi,bj)+ab05*gTNm1(i,j,k,bi,bj))
+C        gTNm1(i,j,k,bi,bj)=gT(i,j,k,bi,bj)
         ENDDO
        ENDDO
       ENDIF
@@ -66,8 +68,10 @@ C     Step forward salt
       IF (saltStepping) THEN
        DO j=jMin,jMax
         DO i=iMin,iMax
+C        salt(i,j,k,bi,bj)=salt(i,j,k,bi,bj)
          gSNm1(i,j,k,bi,bj)=salt(i,j,k,bi,bj)
      &    +deltaTtracer*(ab15*gS(i,j,k,bi,bj)+ab05*gSNm1(i,j,k,bi,bj))
+C        gSNm1(i,j,k,bi,bj)=gS(i,j,k,bi,bj)
         ENDDO
        ENDDO
       ENDIF

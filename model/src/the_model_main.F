@@ -153,9 +153,14 @@ C      at time level 1
 
       ENDDO
 
-C--   Dump for end state and final checkpoint
-      CALL WRITE_STATE( myCurrentTime, myCurrentIter, myThid )
+C--   Final checkpoint (incase the in-loop checkpoint was missed)
       CALL WRITE_CHECKPOINT( .TRUE., myCurrentTime, myCurrentIter, myThid )
+
+C--   Step-forward U/V/Theta/Salt for purposes of final I/O dump
+      CALL DYNAMICS( myCurrentTime, myCurrentIter, myThid )
+
+C--   Dump for end state
+      CALL WRITE_STATE( myCurrentTime, myCurrentIter, myThid )
 
 
       RETURN

@@ -89,13 +89,15 @@ C--    Initialise temperature field to the vertical reference profile
        _END_MASTER(myThid)
       ENDIF
 C     Set initial tendency terms
+C     Note: gTNm1 is set to initial theta to make it consistent with
+C           the theta* scheme used.
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
         DO K=1,Nz
          DO J=1,sNy
           DO I=1,sNx
            gt   (I,J,K,bi,bj) = 0. _d 0
-           gtNM1(I,J,K,bi,bj) = 0. _d 0
+           gtNM1(I,J,K,bi,bj) = theta(I,J,K,bi,bj)
           ENDDO
          ENDDO
         ENDDO
