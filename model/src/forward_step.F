@@ -142,8 +142,9 @@ c calculate qnet and empmr (and wind stress)
 c     Update the tile edges.
        _EXCH_XY_R8(Qnet,   mythid)
        _EXCH_XY_R8(EmPmR,   mythid)
-       _EXCH_XY_R8(fu     , mythid)
-       _EXCH_XY_R8(fv     , mythid)
+       CALL EXCH_UV_XY_RS(fu, fv, .TRUE., myThid)
+C       _EXCH_XY_R8(fu     , mythid)
+C       _EXCH_XY_R8(fv     , mythid)
 cswdblk -- end add ---
 #else
 #ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
