@@ -8,8 +8,8 @@ C     Shap_funct : define which Shapiro Filter function is used
 C        = 1  (S1) : [1 - d_xx^n - d_yy^n]
 C        = 4  (S4) : [1 - d_xx^n][1- d_yy^n]
 C        = 2  (S2) : [1 - (d_xx+d_yy)^n]
-      INTEGER nShap, Shap_funct
-      COMMON /SHAP_FILT_INT/ nShap, Shap_funct
+      INTEGER nShapT, nShapUV, Shap_funct
+      COMMON /SHAP_FILT_INT/ nShapT, nShapUV, Shap_funct
 
 C     Shapiro Filter parameters
       _RL Shap_Trtau, Shap_TrDamp

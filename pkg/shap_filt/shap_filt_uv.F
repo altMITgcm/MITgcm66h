@@ -40,7 +40,7 @@ C     == Local variables ==
       _RL tmpScal
 #endif
 
-      IF (nShap.gt.0) THEN
+      IF (nShapUV.gt.0) THEN
 
         DO bj=myByLo(myThid),myByHi(myThid)
          DO bi=myBxLo(myThid),myBxHi(myThid)
@@ -64,7 +64,7 @@ C     == Local variables ==
 
 C      d_xx^n tmpFld 
 
-       DO N=1,nShap
+       DO N=1,nShapUV
 
         CALL EXCH_UV_XYZ_RL(tmpFldU,tmpFldV,.TRUE.,myThid)
 
@@ -148,7 +148,7 @@ C      F <-  [1-d_xx^n]F
 
 C      d_yy^n tmpFld 
 
-       DO N=1,nShap
+       DO N=1,nShapUV
 
         CALL EXCH_UV_XYZ_RL(tmpFldU,tmpFldV,.TRUE.,myThid)
 

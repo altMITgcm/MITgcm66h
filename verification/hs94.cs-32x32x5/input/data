@@ -31,7 +31,6 @@
  readBinaryPrec=64,
  writeBinaryPrec=64,
  hFacMin=1.0,
- nShap=4,
 #momAdvection=.FALSE.,
 #tempStepping=.FALSE.,
  &

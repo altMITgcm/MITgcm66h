@@ -22,7 +22,7 @@ C     === Routine arguments ===
 
 #ifdef ALLOW_SHAP_FILT
 
-      NAMELIST /SHAP_PARM01/ nShap, Shap_funct,
+      NAMELIST /SHAP_PARM01/ nShapT, nShapUV, Shap_funct,
      &          Shap_Trtau, Shap_TrDamp,
      &          Shap_uvtau, Shap_uvDamp 
 
@@ -48,7 +48,8 @@ c     SHAPIsOn=.TRUE.
      I                          myThid )
 
 C--   Default flags and values for Shapiro Filter
-      nShap = 0
+      nShapT = 0
+      nShapUV = 0
       Shap_funct = 1
       Shap_Trtau = deltaTtracer
       Shap_uvtau = deltaTMom

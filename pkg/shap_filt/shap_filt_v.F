@@ -48,7 +48,7 @@ C     Create temporary Zeta mask (accounting for thin walls)
       ENDDO
 
 C     Extract small-scale noise from tmpFldX (delta_ii^n)
-      DO N=1,nShap
+      DO N=1,nShapUV
        N1=1+mod(N+1,2)
        N2=1+mod( N ,2)
        DO J=1-OLy+1,sNy+OLy
@@ -81,7 +81,7 @@ C     Extract small-scale noise from tmpFldX (delta_ii^n)
 #endif /* SEQUENTIAL_2D_SHAP */
 
 C     Extract small-scale noise from tmpFldY (delta_jj^n)
-      DO N=1,nShap
+      DO N=1,nShapUV
        N1=1+mod(N+1,2)
        N2=1+mod( N ,2)
        DO J=1-OLy+1,sNy+OLy-1

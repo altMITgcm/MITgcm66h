@@ -40,7 +40,7 @@ C     == Local variables ==
       _RL tmpGrdU(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL tmpGrdV(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
-      IF (nShap.gt.0 .AND. Shap_uvtau.GT.0.) THEN
+      IF (nShapUV.gt.0 .AND. Shap_uvtau.GT.0.) THEN
 
         DO bj=myByLo(myThid),myByHi(myThid)
          DO bi=myBxLo(myThid),myBxHi(myThid)
@@ -64,7 +64,7 @@ C     == Local variables ==
 
 C    [d_xx+d_yy]^n tmpFld
 
-       DO N=1,nShap
+       DO N=1,nShapUV
 
         CALL EXCH_UV_XYZ_RL(tmpFldU,tmpFldV,.TRUE.,myThid)
 

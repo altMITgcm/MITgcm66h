@@ -28,7 +28,6 @@
  nonHydrostatic=.FALSE.,
  readBinaryPrec=64,
  writeBinaryPrec=64,
- nShap=0,
  momAdvection=.FALSE.,
  useCoriolis=.FALSE.,
  tempStepping=.FALSE.,

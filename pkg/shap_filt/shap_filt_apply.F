@@ -36,7 +36,7 @@ C     == Local variables ==
 C     bi, bj, k
       INTEGER bi, bj, k
 
-      IF (nShap.gt.0) THEN
+      IF (nShapT.GT.0.OR.nShapUV.GT.0) THEN
 
 #ifdef  USE_OLD_SHAPIRO_FILTERS
         _EXCH_XYZ_R8( uFld,myThid )
@@ -63,7 +63,7 @@ C--        Update fields in top level according to tendency terms
         IF ( tempStepping ) _EXCH_XYZ_R8( tFld,myThid )
         IF ( saltStepping ) _EXCH_XYZ_R8( sFld,myThid )
 #else
-        IF (Shap_uvtau.GT.0.) THEN
+        IF ( momStepping .AND. nShapUV.GT.0) THEN
           IF (Shap_funct.EQ.2) THEN
             CALL SHAP_FILT_UV_S2(
      U           uFld, vFld,
@@ -75,7 +75,7 @@ C--        Update fields in top level according to tendency terms
           ENDIF
         ENDIF
 
-        IF ( tempStepping .AND. Shap_Trtau.GT.0.) THEN
+        IF ( tempStepping .AND. nShapT.GT.0) THEN
           IF (Shap_funct.EQ.2) THEN
             CALL SHAP_FILT_TRACER_S2(
      U           tFld,
@@ -86,7 +86,7 @@ C--        Update fields in top level according to tendency terms
      I           myTime, myThid )
           ENDIF
         ENDIF
-        IF ( saltStepping .AND. Shap_Trtau.GT.0.) THEN 
+        IF ( saltStepping .AND. nShapT.GT.0) THEN 
           IF (Shap_funct.EQ.2) THEN
             CALL SHAP_FILT_TRACER_S2(
      U           sFld,
