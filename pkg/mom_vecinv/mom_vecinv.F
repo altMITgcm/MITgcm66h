@@ -512,8 +512,8 @@ C--   Set du/dt & dv/dt on boundaries to zero
      &   .AND. k.EQ.4 .AND. myIter.EQ.nIter0
      &   .AND. nPx.EQ.1 .AND. nPy.EQ.1
      &   .AND. useCubedSphereExchange ) THEN
-        CALL DEBUG_CS_CORNER_UV(uDiss,vDiss,k,
-     &                          standardMessageUnit,bi,bj,myThid)
+        CALL DEBUG_CS_CORNER_UV( ' uDiss,vDiss from MOM_VECINV',
+     &             uDiss,vDiss, k, standardMessageUnit,bi,bj,myThid )
       ENDIF
 #endif /* ALLOW_DEBUG */
 
