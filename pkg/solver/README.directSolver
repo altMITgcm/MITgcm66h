@@ -28,6 +28,9 @@ eesupp/src/mdsio.F
 Instructions:
 =============
 
+The direct solver is turned on be defining CPP option ALLOW_DIRECT_SOLVER
+in CPP_OPTIONS.h and by setting "useDirectSolver=.TRUE" in the data file.
+
 1) Run the code once to generate the aw2d*, as2d*, and cent* files.
 
 2) Use matlab script utils/matlab/calcmat.m to generate ss_matrix*

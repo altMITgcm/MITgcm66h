@@ -29,7 +29,8 @@ C     myThid - Thread on which I am working.
       _RL     cg2d_r(1-Olx:sNx+Olx,1-Oly:sNy+Oly,nSx,nSy)
       integer myThid
 
-#if defined(ALLOW_USE_MPI)
+#ifdef ALLOW_DIRECT_SOLVER
+#ifdef ALLOW_USE_MPI
 
 C     === Local variables ====
 C     bi, bj      - Block index in X and Y.
@@ -118,6 +119,7 @@ C--   scatter local interface values
       CALL TIMER_STOP('ZZZZ MAT*VEC', myThid)
 #endif
 
-#endif
+#endif /* ALLOW_USE_MPI */
+#endif /* ALLOW_DIRECT_SOLVER */
 
       end

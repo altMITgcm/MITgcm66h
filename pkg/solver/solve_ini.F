@@ -32,7 +32,8 @@ C     === Routine arguments ===
 C     myThid - Thread on which I am working.
       integer myThid
 
-#if defined(ALLOW_USE_MPI)
+#ifdef ALLOW_DIRECT_SOLVER
+#ifdef ALLOW_USE_MPI
 
 C     === Local variables ====
 C     bi, bj      - Block index in X and Y.
@@ -419,6 +420,7 @@ C--   Check info for error conditions
 #endif
       endif
 
-#endif
+#endif /* ALLOW_USE_MPI */
+#endif /* ALLOW_DIRECT_SOLVER */
 
       end

@@ -84,5 +84,10 @@ CEOP
       IF (useSEAICE) CALL PACKAGES_CHECK_ERROR('SEAICE', myThid)
 #endif
 
+#ifndef ALLOW_DIRECT_SOLVER
+      IF (useDirectSolver)
+     &     CALL PACKAGES_CHECK_ERROR('DirectSolver', myThid)
+#endif
+
       RETURN
       END

@@ -19,6 +19,9 @@ C CPP flags controlling which code in included in the files that
 C will be compiled.
 CEOP
 
+C o Include/exclude code for direct surface pressure solver
+#undef  ALLOW_DIRECT_SOLVER
+
 C o Include/exclude code for AIM package
 #undef  ALLOW_AIM
 

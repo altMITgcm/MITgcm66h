@@ -9,6 +9,9 @@ C added Bicubic (bnc 1/2003)               C
 C                                          C
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 
+cdm Does not work with BICUBIC undefined because
+cdm lat_inc is used as a scalar while it is an array.
+#define BICUBIC
 #ifdef BICUBIC
         real*8 function lagran(i,x,a)
 

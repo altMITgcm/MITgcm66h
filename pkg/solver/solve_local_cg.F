@@ -37,7 +37,8 @@ C     myThid - Thread on which I am working.
       _RL     cg2d_x(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       integer mythid
 
-#if defined(ALLOW_USE_MPI)
+#ifdef ALLOW_DIRECT_SOLVER
+#ifdef ALLOW_USE_MPI
 
 C     === Local variables ====
 C     actualIts      - Number of iterations taken
@@ -255,6 +256,7 @@ C--    compute residual only for specific iterations
       WRITE(0,'(A,x,1PE30.14)') ' SOLVE LOCAL err = ', sqrt(err)
       _END_MASTER( )
 
-#endif
+#endif /* ALLOW_USE_MPI */
+#endif /* ALLOW_DIRECT_SOLVER */
 
       END

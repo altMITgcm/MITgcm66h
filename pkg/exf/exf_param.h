@@ -388,7 +388,7 @@ c for lat interpolation, arraysize currently set to 200 max data values
      & swflux_nlon, swflux_nlat,
      & runoff_lon0, runoff_lon_inc,
      & runoff_lat0, runoff_lat_inc,
-     & runoff_nlon, runoff_nlat
+     & runoff_nlon, runoff_nlat,
      & atemp_lat0, atemp_lat_inc,
      & atemp_nlon, atemp_nlat,
      & aqh_lon0, aqh_lon_inc,

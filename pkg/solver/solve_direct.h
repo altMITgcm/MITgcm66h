@@ -1,3 +1,5 @@
+#ifdef ALLOW_DIRECT_SOLVER
+
 C     nsolve      - number of interior points of one tile
 C     ninterf     - number of local owned interface values
 C     nrhs        - number of interface values per tile (owned and neighbour owned)
@@ -26,3 +28,5 @@ C     kdsolve     - number of off diagonals in band matrix
 
       common /csolve_r/  solve_band, ss
       common /csolve_i/  ipiv, use_cg2d
+
+#endif /* ALLOW_DIRECT_SOLVER */
