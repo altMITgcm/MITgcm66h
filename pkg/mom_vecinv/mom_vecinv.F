@@ -459,8 +459,8 @@ c      CALL MOM_VI_V_CORIOLIS_C4(bi,bj,K,uFld,vort3,r_hFacZ,vCf,myThid)
          CALL TIMEAVE_CUMUL_1K1T(vZetatave,uCf,deltaTClock,
      &                           Nr, k, bi, bj, myThid)
        ENDIF
-#endif /* ALLOW_TIMEAVE */
 #endif /* ndef HRCUBE */
+#endif /* ALLOW_TIMEAVE */
 
 C--   Vertical shear terms (-w*du/dr & -w*dv/dr)
        IF ( .NOT. momImplVertAdv ) THEN
@@ -507,6 +507,15 @@ C--   Set du/dt & dv/dt on boundaries to zero
        ENDDO
       ENDDO
 
+#ifdef ALLOW_DEBUG
+      IF ( debugLevel .GE. debLevB
+     &   .AND. k.EQ.4 .AND. myIter.EQ.nIter0
+     &   .AND. nPx.EQ.1 .AND. nPy.EQ.1
+     &   .AND. useCubedSphereExchange ) THEN
+        CALL DEBUG_CS_CORNER_UV(uDiss,vDiss,k,
+     &                          standardMessageUnit,bi,bj,myThid)
+      ENDIF
+#endif /* ALLOW_DEBUG */
 
       IF ( writeDiag ) THEN
        CALL WRITE_LOCAL_RL('Ds','I10',1,strain,bi,bj,k,myIter,myThid)
