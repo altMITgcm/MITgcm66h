@@ -94,9 +94,7 @@ CADJ &     key=iptrkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 #ifdef INCLUDE_IMPLVERTADV_CODE
-c       IF ( PTRACERS_ImplVertAdv(iTracer) ) THEN
-        IF ( (dTtracerLev(1).NE.dTtracerLev(Nr).AND.implicitDiffusion)
-     &    .OR.PTRACERS_ImplVertAdv(iTracer) ) THEN
+        IF ( PTRACERS_ImplVertAdv(iTracer) ) THEN
 
           CALL GAD_IMPLICIT_R(
      I         PTRACERS_ImplVertAdv(iTracer), 
@@ -112,7 +110,7 @@ c       IF ( PTRACERS_ImplVertAdv(iTracer) ) THEN
 
           CALL IMPLDIFF(
      I         bi, bj, iMin, iMax, jMin, jMax,
-     I         dTtracerLev(1), kappaRk, recip_HFacC,
+     I         GAD_TR, kappaRk, recip_HFacC,
      U         gPtr(1-Olx,1-Oly,1,1,1,iTracer),
      I         myThid )
 
