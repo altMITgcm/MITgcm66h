@@ -85,7 +85,7 @@ C     Add windstress momentum impulse into the top-layer
        ENDDO
       ENDIF
 
-#if (defined (ALLOW_TAU_EDDY) || defined (ALLOW_GMREDI))
+#if (defined (ALLOW_TAU_EDDY))
        CALL TAUEDDY_EXTERNAL_FORCING_U(
      I           iMin, iMax, jMin, jMax,bi,bj,kLev,
      I           myCurrentTime,myThid)
@@ -179,7 +179,7 @@ C     Add windstress momentum impulse into the top-layer
        ENDDO
       ENDIF
 
-#if (defined (ALLOW_TAU_EDDY) || defined (ALLOW_GMREDI))
+#if (defined (ALLOW_TAU_EDDY))
        CALL TAUEDDY_EXTERNAL_FORCING_V(
      I           iMin, iMax, jMin, jMax,bi,bj,kLev,
      I           myCurrentTime,myThid)
