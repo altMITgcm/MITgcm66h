@@ -465,8 +465,8 @@ Clean:
 	-rm Makefile.bak
 CLEAN:
 	@make Clean
-	-find ../verification/ -name "*.meta" -exec rm {} \;
-	-find ../verification/ -name "*.data" -exec rm {} \;
+	-find ../verification/*/input/ -name "*.meta" -exec rm {} \;
+	-find ../verification/*/input/ -name "*.data" -exec rm {} \;
 	-rm \$(EXECUTABLE)
 
 # The normal chain of rules is (  .F - .f - .o  )
