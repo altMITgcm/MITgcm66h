@@ -3,9 +3,7 @@ C $Header$
 #include "CPP_OPTIONS.h"
 
 
-      subroutine ecco_readparms(
-     I                      mythid
-     &                    )
+      subroutine ecco_readparms( mythid )
 
 c     ==================================================================
 c     SUBROUTINE ecco_readparms
@@ -80,40 +78,8 @@ c--     Next, read the ECCO data file.
         read  ( unit = scrunit1, nml = ecco_parms)
         close ( scrunit1 )
 
-c-------------------------------- ECCO --------------------------------
-
 #ifdef INCLUDE_ECCO_PACKAGE
 C--   Initialise the ECCO State Estimation package.
-
-#ifdef ALLOW_CALENDAR
-C--   Initialise the calendar package.
-#ifdef ALLOW_CAL_NENDITER
-      CALL cal_init(
-     I               startTime,
-     I               endTime,
-     I               deltaTclock,
-     I               nIter0,
-     I               nEndIter,
-     I               nTimeSteps,
-     I               myThid
-     &             )
-#else
-      CALL cal_init(
-     I               startTime,
-     I               endTime,
-     I               deltaTclock,
-     I               nIter0,
-     I               nTimeSteps,
-     I               myThid
-     &             )
-#endif
-      _BARRIER
-#endif
-
-C--   Custom routine to set forcing fields.
-#ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
-      call exf_readparms  ( mythid )
-#endif /* INCLUDE_EXTERNAL_FORCING_PACKAGE */
 
 #ifdef ALLOW_ECCO_OPTIMIZATION
 c--   Initialise the optimization-related parts of the ECCO State

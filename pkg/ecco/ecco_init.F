@@ -3,12 +3,10 @@ C $Header$
 #include "CPP_OPTIONS.h"
 
 
-      subroutine ecco_Init(
-     I                      mythid
-     &                    )
+      subroutine ecco_init( mythid )
 
 c     ==================================================================
-c     SUBROUTINE ecco_Init
+c     SUBROUTINE ecco_init
 c     ==================================================================
 c
 c     o Initialize the ECCO release of the MITgcmUV.
@@ -20,7 +18,7 @@ c
 c     changed: Christian Eckert eckert@mit.edu
 c
 c     ==================================================================
-c     SUBROUTINE ecco_Init
+c     SUBROUTINE ecco_init
 c     ==================================================================
 
       implicit none

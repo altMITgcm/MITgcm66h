@@ -136,6 +136,7 @@ c--   == end of interface ==
 c--   Initialize storage for the outermost loop.
 CADJ  INIT tapelev3 = USER
 c--   Some more initialisations to please TAMC
+CADJ INIT tapelev_ini_bibj_k   = USER
 #ifdef ALLOW_TAMC_CHECKPOINTING
        nIter0 = INT( startTime/deltaTClock )
        ikey_dynamics = 1

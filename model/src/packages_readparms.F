@@ -101,29 +101,38 @@ C     IF (useAIM) CALL AIM_READPARMS ( myThid )
 #endif
 
 #if (defined (ALLOW_ADJOINT_RUN) || defined (ALLOW_TANGENTLINEAR_RUN))
-
 C--   Initialise the optim. parameters.
       call optim_readparms( myThid )
       _BARRIER
-
 C--   Initialise the control vector.
       CALL ctrl_init( myThid )
       _BARRIER
-
-C--   Initialise the cost function.
-      call cost_readparms( mythid )
-      _BARRIER
+#endif
 
 #ifdef ALLOW_GRADIENT_CHECK
 C--   Initialise gradient check parameters
       if (useGrdchk) call grdchk_readparms( myThid )
 #endif
 
-#endif /* ALLOW_ADJOINT_RUN */
+#ifdef ALLOW_CALENDAR
+C--   Initialise the calendar package.
+      call cal_readparms( myThid )
+#endif
+
+C--   Custom routine to set forcing fields.
+#ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
+      call exf_readparms  ( mythid )
+#endif
 
 #ifdef INCLUDE_ECCO_PACKAGE
 c--   Initialize ECCO package parameters
       IF (useECCO) CALL ECCO_READPARMS ( myThid )
+#else
+# ifdef ALLOW_COST
+C--   Initialise the cost function.
+      call cost_readparms( mythid )
+      _BARRIER
+# endif
 #endif
 
       END
