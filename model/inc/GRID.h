@@ -438,8 +438,8 @@ C                 metric term in V equation.
       _RS rC             (1:Nr)
       _RS rF             (1:Nr+1)
       _RL gravitySign
-      _RS rkFac
-      _RS recip_rkFac
+      _RL rkFac
+      _RL recip_rkFac
       _RS xC0
       _RS yC0
 

@@ -48,7 +48,7 @@ C
       _RL dSigmaDrReal(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RL SlopeSqr(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RL taperFct(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
-      _RL depthZ
+      _RS depthZ
       INTEGER bi,bj,K,myThid
 CEndOfInterface
 

@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+
+untagged
+o some bug fixes for #undef REAL4_IS_SLOW
+
 checkpoint52 = ecco_c52_e35
 o after testing adjoints of checkpoint51u_post
 

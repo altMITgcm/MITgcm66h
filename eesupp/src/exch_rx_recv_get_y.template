@@ -110,7 +110,7 @@ C--   iii. Set data read flag + memory sync.
 #endif
          theProc = tilePidS(bi,bj)
          theTag  = _tileTagRecvS(bi,bj)
-         theType = MPI_DOUBLE_PRECISION
+         theType = _MPI_TYPE_RX
          theSize = sNx*exchWidthY*myNz
          IF ( theCornerMode .EQ. EXCH_UPDATE_CORNERS )
      &    theSize = (sNx+2*exchWidthX)*exchWidthY*myNz
@@ -129,7 +129,7 @@ C--   iii. Set data read flag + memory sync.
 #endif
          theProc = tilePidN(bi,bj)
          theTag  = _tileTagRecvN(bi,bj)
-         theType = MPI_DOUBLE_PRECISION
+         theType = _MPI_TYPE_RX
          theSize = sNx*exchWidthY*myNz
          IF ( theCornerMode .EQ. EXCH_UPDATE_CORNERS )
      &    theSize = (sNx+2*exchWidthX)*exchWidthY*myNz
