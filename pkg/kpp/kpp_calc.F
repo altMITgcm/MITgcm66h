@@ -490,7 +490,7 @@ c     Estimate reference velocity uRef and vRef.
      &                       surfaceForcingU(ip1,j,bi,bj) ) * p5
      &                   *recip_drF(1)
                   ustarY = ( surfaceForcingV(i,j,  bi,bj) +
-     &                       surfaceForcingU(i,jp1,bi,bj) ) * p5
+     &                       surfaceForcingV(i,jp1,bi,bj) ) * p5
      &                   *recip_drF(1)
                   tempVar1 = ustarX * ustarX + ustarY * ustarY
                   if ( tempVar1 .lt. (epsln*epsln) ) then
