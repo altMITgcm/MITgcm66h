@@ -79,8 +79,8 @@ C Impose minimum size (dimensional)
              hFacC(I,J,K,bi,bj)=hFacMinDr*recip_drF(k)
             ENDIF
            ENDIF
-           depthInK(i,j,bi,bj) = depthInK(i,j,bi,bj) 
-     &                          +hFacC(i,j,k,bi,bj)
+           depthInK(i,j,bi,bj) = depthInK(i,j,bi,bj) + 1.
+Crg  &                          +hFacC(i,j,k,bi,bj)
           ENDDO
          ENDDO
         ENDDO
