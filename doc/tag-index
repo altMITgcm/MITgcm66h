@@ -3,6 +3,12 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o sort out interplay between tamc.h and PTRACERS_OPTIONS.h
+  (need info on NUMBER_OF_PTRACERS)
+o missing PTRACERS headers in some routines
+o default tamc.h in pkg/autodiff supposed to crash
+  to ensure proper customization
+
 checkpoint52a_post
 o modifications to make FREEZE (_SURFACE) flux visible to pkg/kpp
   - moved surfaceTendencyTice from pkg/seaice to main code
