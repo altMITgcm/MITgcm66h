@@ -27,21 +27,23 @@ C     \ev
 C     !CALLING SEQUENCE:
 C     INITIALISE_FIXED
 C      |
+C      |-- INI_PARMS
+C      |
 C      |-- PACKAGES_BOOT
 C      |
 C      |-- PACKAGES_READPARMS
-C      |
-C      |-- INI_PARMS
-C      |
-C      |-- MNC_INIT + MNC_CW_INIT
+C      | |
+C      | | - MNC_INIT + MNC_CW_INIT
+C      | |
+C      | | - ${PKG}_READPARMS
 C      |
 C      |-- MON_INIT
 C      |
 C      |-- INI_GRID
 C      |
-C      |-- INI_EOS
-C      |
 C      |-- INI_DEPTHS
+C      |
+C      |-- INI_EOS
 C      |
 C      |-- INI_MASKS_ETC
 C      |
@@ -64,6 +66,8 @@ C      |
 C      |-- INI_MODEL_IO
 C      |
 C      |-- WRITE_GRID
+C      |
+C      |-- CPL_EXCH_CONFIGS
 
 C     !USES:
       IMPLICIT NONE
