@@ -193,5 +193,11 @@ C and should be less than 1/8, for example viscAh=0.01
        ENDDO
       ENDDO
 
+#ifdef ALLOW_DIAGNOSTICS
+      if (useDiagnostics) then
+       call fill_diagnostics(myThid,'VISCA4  ',k,1,3,bi,bj,viscA4_D)
+      endif
+#endif
+
       RETURN
       END
