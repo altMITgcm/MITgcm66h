@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint46k_post
 o fixed the verification/global_ocean.90x40x15 experiment:
  - new bathymetry (the world according to A., JMC, and M.)
  - new initial fields and forcing fields (*.bin files)
