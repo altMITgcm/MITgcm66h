@@ -716,7 +716,7 @@ C it is better to set deltaTreesurf=deltaTtracer
         CALL PRINT_ERROR( msgBuf , 1)
         STOP 'ABNORMAL END: S/R INI_PARMS'
        ENDIF
-       IF ( externForcingCycle.le.externForcingPeriod ) THEN
+       IF ( externForcingCycle.lt.externForcingPeriod ) THEN
         WRITE(msgBuf,'(A)')
      &   'S/R INI_PARMS: externForcingCycle < externForcingPeriod'
         CALL PRINT_ERROR( msgBuf , 1)
