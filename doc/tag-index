@@ -2,7 +2,8 @@ $Header$
 
     Notes on tags used in MITgcmUV
     ==============================
-
+o fix problem (when 1 tile is empty) in min/max monitor.
+o fix bug in timeAve (u,vZetatave in common block) 
 o no restoring terms under ice for pkg/seaice
 o moved SEAICE_DO_DIAGS to S/R do_the_model_io
 o bug fix for pkg/seaice pickups
