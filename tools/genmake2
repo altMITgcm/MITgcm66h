@@ -796,9 +796,9 @@ PLATFORM=
 LN=
 S64=
 KPP=
-FC=
+#FC=
 #CC=gcc
-CPP=
+#CPP=
 LINK=
 DEFINES=
 PACKAGES=
@@ -842,8 +842,8 @@ STANDARDDIRS="USE_THE_DEFAULT"
 G2ARGS=
 BASH=
 PWD=`pwd`
-MAKE=make
-AWK=awk
+test "x$MAKE" = x  &&  MAKE=make
+test "x$AWK" = x   &&  AWK=awk
 THISHOST=`hostname`
 THISCWD=`pwd`
 THISDATE=`date`
@@ -1856,7 +1856,7 @@ for d in $alldirs ; do
 		  	deplist="$deplist $sf"
 			;;
                 esac
-		extn=`echo $sf | $AWK -F '.' '{print $NF}'`
+		extn=`echo $sf | $AWK 'BEGIN {FS="."}; {print $NF}'`
 		case $extn in
 		    F)
 			echo    " \\"  >> srclist.inc
