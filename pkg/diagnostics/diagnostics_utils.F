@@ -1,6 +1,8 @@
 C $Header$
 C $Name$
 
+#include "DIAG_OPTIONS.h"
+
       subroutine getdiag (myThid,lev,ipoint,undef,qtmp)
 C***********************************************************************        
 C  PURPOSE                                                                      
@@ -17,8 +19,6 @@ C    qtmp ..... AVERAGED DIAGNOSTIC QUANTITY
 C                                                                               
 C***********************************************************************        
       implicit none
-
-#include "PACKAGES_CONFIG.h"
 #include "EEPARAMS.h"
 #include "CPP_OPTIONS.h"
 #include "SIZE.h"

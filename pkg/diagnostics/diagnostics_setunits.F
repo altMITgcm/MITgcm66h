@@ -1,6 +1,8 @@
 C $Header$
 C $Name$
 
+#include "DIAG_OPTIONS.h"
+
       subroutine diagnostics_setunits (myThid, chardiag, diagunits)
 C***********************************************************************
 C  Purpose
@@ -14,7 +16,6 @@ C     chardiag ... Character *8 expression for diag to fill
 C     diagunits .. Character *16 expression for diag units
 C***********************************************************************
        implicit none
-#include "CPP_OPTIONS.h"
 #include "SIZE.h"
 #include "diagnostics_SIZE.h"
 #include "diagnostics.h"

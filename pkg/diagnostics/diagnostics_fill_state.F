@@ -1,10 +1,10 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
-#include "CPP_OPTIONS.h"
+#include "DIAG_OPTIONS.h"
 
        subroutine diagnostics_fill_state(myThid)
+
        implicit none
 #include "SIZE.h"
 #include "EEPARAMS.h"

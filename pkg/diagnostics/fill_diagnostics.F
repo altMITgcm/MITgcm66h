@@ -1,6 +1,8 @@
 C $Header$
 C $Name$
 
+#include "DIAG_OPTIONS.h"
+
       subroutine fill_diagnostics (myThid, chardiag, levflg, nlevs, 
      .          bibjflg, bi, bj, arrayin) 
 C***********************************************************************
@@ -33,7 +35,6 @@ C                        or there will be out of bounds problems!
 C***********************************************************************
        implicit none
 #include "EEPARAMS.h"
-#include "CPP_OPTIONS.h"
 #include "SIZE.h"
 #include "diagnostics_SIZE.h"
 #include "diagnostics.h"
