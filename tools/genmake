@@ -416,8 +416,8 @@ switch ($platform$USEMPI)
     breaksw
   case Linux+pgi+mpi:
     if ($?include_jam_libs) then
-     set INCLUDES   = ( '-I/usr/local//mpich-cnh-install/include' )
-     set LIBS       = ( '-L/usr/local/mpich-cnh-install/lib/LINUX/ch_p4/ -lfmpich -lmpich' )
+     set INCLUDES   = ( '-I/usr/local/mpich-1.2.1/pgi_fortran_binding/include' )
+     set LIBS       = ( '-L/usr/local/mpich-1.2.1/pgi_fortran_binding/lib/ -lfmpich -lmpich' )
     else
      set INCLUDES   = ( '-I/usr/local/include' )
      set LIBS       = ( '-L/usr/local/lib/LINUX/ch_p4/ -lfmpich -lmpich' )
@@ -579,6 +579,7 @@ cat >> ${mfile} <<EOF
 # extra stuff for Hyades ............................................
 HYADES_DIR = /u/u0/cnh/jam-lib/software
 HYADES_DIR = /u/u0/cnh/jam-lib-twoproc
+HYADES_DIR = /usr/local/jamlib/current/dual_proc
 WORK_DIR   = \$(HYADES_DIR)
 DEPOSIT_DIR = linux_bin
 
