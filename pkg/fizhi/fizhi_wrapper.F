@@ -113,7 +113,7 @@ c Compute physics increments
         call do_fizhi(myThid,
      .  idim1,idim2,jdim1,jdim2,Nrphys,Nsx,Nsy,im1,im2,jm1,jm2,bi,bj,
      .  nchp,nchptot,nchpland,
-     .  uphy,vphy,thphy,sphy,pephy4fiz,xC,yC,phi0surf,
+     .  uphy,vphy,thphy,sphy,pephy4fiz,xC,yC,topoZ,
      .  ctmt,xxmt,yymt,zetamt,xlmt,khmt,tke,
      .  tgz,sst,sice,phis_var,landtype,fracland,emiss,albnirdr,albnirdf,
      .  albvisdr,albvisdf,ityp,chfr,alai,agrn,igrd,chlt,chlon,
