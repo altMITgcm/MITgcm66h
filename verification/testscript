@@ -10,8 +10,8 @@
 
 set on_error_die
 set passaccuracy=7
-printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\n' " " Make " " " " Exact "# of" " " > summary.txt
-printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\n' Config Depend Compile Execute Match Digits Experiment >> summary.txt
+printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' " " Make " " " " Exact "# of" " " " " > summary.txt
+printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' Config Depend Compile Execute Match Digits Status Experiment >> summary.txt
 
 # Pass any arguments
 foreach arg ($argv)
@@ -49,6 +49,7 @@ foreach dr ([a-zA-Z01-9]*)
  set execute=-
  set exactmatch=-
  set accuracy=-
+ set pass=FAIL
  echo ==============================================================================
  echo Entering $dr
  cd $dr
@@ -122,16 +123,19 @@ foreach dr ([a-zA-Z01-9]*)
       if ($?fail ) then
         if (! $?fails) set fails
         set fails=($fails $dr)
+        set pass=FAIL
         echo "                        ***** FAIL *****"
       else
         if (! $?passes) set passes
         set passes=($passes $dr)
+        set pass=Pass
         echo ""
         echo "                   ***** PASS (grade $lvl) *****"
       endif
       set accuracy=$lvl
     else
       set exactmatch=Yes
+      set pass=Pass
       echo ""
       echo Model passed at highest accuracy.
       echo ""
@@ -145,6 +149,7 @@ foreach dr ([a-zA-Z01-9]*)
     tail output.txt
     echo The runtime error occured in \"$dr\"
     if ($?on_error_die) exit 1
+    set pass=-
   endif
   endif
   cd ..
@@ -153,7 +158,7 @@ foreach dr ([a-zA-Z01-9]*)
  cd ..
 # Pretty summary
  printresults:
- printf '  %s\t  %s\t  %s\t  %s\t  %s\t  %s\t%s\n' $config $makedepend $compile $execute $exactmatch $accuracy $dr >> summary.txt
+ printf '  %s\t  %s\t  %s\t  %s\t  %s\t %s\t %s\t%s\n' $config $makedepend $compile $execute $exactmatch $accuracy $pass $dr >> summary.txt
 end
 echo ==============================================================================
 echo ""
