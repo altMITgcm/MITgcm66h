@@ -216,3 +216,47 @@ C     Calculate slopes for use in tensor, taper and/or clip
 
       RETURN
       END
+
+
+      SUBROUTINE GMREDI_CALC_TENSOR_DUMMY(
+     I             bi, bj, iMin, iMax, jMin, jMax, K,
+     I             sigmaX, sigmaY, sigmaR,
+     I             myThid )
+C     /==========================================================\
+C     | SUBROUTINE GMREDI_CALC_TENSOR                            |
+C     | o Calculate tensor elements for GM/Redi tensor.          |
+C     |==========================================================|
+C     \==========================================================/
+      IMPLICIT NONE
+
+C     == Global variables ==
+#include "SIZE.h"
+#include "GRID.h"
+#include "DYNVARS.h"
+#include "EEPARAMS.h"
+#include "PARAMS.h"
+#include "GMREDI.h"
+
+C     == Routine arguments ==
+C
+      _RL sigmaX(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
+      _RL sigmaY(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
+      _RL sigmaR(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
+      INTEGER bi,bj,iMin,iMax,jMin,jMax,K
+      INTEGER myThid
+CEndOfInterface
+
+      INTEGER i, j
+
+#ifdef ALLOW_GMREDI
+
+      DO j=1-Oly+1,sNy+Oly-1
+       DO i=1-Olx+1,sNx+Olx-1
+        Kwx(i,j,k,myThid) = 0.0
+        Kwy(i,j,k,myThid) = 0.0
+        Kwz(i,j,k,myThid) = 0.0
+       ENDDO
+      ENDDO
+#endif /* ALLOW_GMREDI */
+
+      end

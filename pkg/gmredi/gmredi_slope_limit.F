@@ -49,7 +49,7 @@ C     == Local variables ==
       _RL fpi
       PARAMETER(fpi=3.141592653589793047592)
       INTEGER i,j
-
+      _RL     sx, sy
 
       if (GM_taper_scheme.EQ.'orig') then
 
@@ -138,13 +138,13 @@ C-      Danabasoglu and McWilliams, J. Clim. 1995
           else
            dRdSigmaLtd(i,j)=0.
           endif
-          SlopeX(i,j)=-SlopeX(i,j)*dRdSigmaLtd(i,j)
-          SlopeY(i,j)=-SlopeY(i,j)*dRdSigmaLtd(i,j)
-          Smod=SlopeX(i,j)*SlopeX(i,j)+SlopeY(i,j)*SlopeY(i,j)
+          sx   = -SlopeX(i,j)*dRdSigmaLtd(i,j)
+          sy   = -SlopeY(i,j)*dRdSigmaLtd(i,j)
+          Smod = sx*sx + sy*sy
           if (Smod.NE.0.) Smod=sqrt(Smod)
           f1=0.5*(1.+tanh( (GM_Scrit-Smod)/GM_Sd ))
-          SlopeX(i,j)=SlopeX(i,j)*f1
-          SlopeY(i,j)=SlopeY(i,j)*f1
+          SlopeX(i,j) = sx*f1
+          SlopeY(i,j) = sy*f1
 
          ENDDO
         ENDDO
@@ -161,9 +161,9 @@ C-      Large, Danabasoglu and Doney, JPO 1997
           else
            dRdSigmaLtd(i,j)=0.
           endif
-          SlopeX(i,j)=-SlopeX(i,j)*dRdSigmaLtd(i,j)
-          SlopeY(i,j)=-SlopeY(i,j)*dRdSigmaLtd(i,j)
-          Smod=SlopeX(i,j)*SlopeX(i,j)+SlopeY(i,j)*SlopeY(i,j)
+          sx   = -SlopeX(i,j)*dRdSigmaLtd(i,j)
+          sx   = -SlopeY(i,j)*dRdSigmaLtd(i,j)
+          Smod = sx*sx + sy*sy
           if (Smod.NE.0.) Smod=sqrt(Smod)
           f1=0.5*(1.+tanh( (GM_Scrit-Smod)/GM_Sd ))
           Cspd=2.
@@ -177,8 +177,8 @@ C-      Large, Danabasoglu and Doney, JPO 1997
             Rnondim=0.
           endif
           f2=0.5*(1.+sin( fpi*(Rnondim-0.5)))
-          SlopeX(i,j)=SlopeX(i,j)*f1
-          SlopeY(i,j)=SlopeY(i,j)*f1
+          SlopeX(i,j) = sx*f1
+          SlopeY(i,j) = sy*f1
 
          ENDDO
         ENDDO
