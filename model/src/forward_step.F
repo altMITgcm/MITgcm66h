@@ -97,15 +97,6 @@ C--   Step forward W field in N-H algorithm
       ENDIF
 #endif
 
-C--    Do time averages
-#ifdef INCLUDE_DIAGNOSTICS_INTERFACE_CODE
-      CALL TIMER_START('I/O (WRITE)        [FORWARD_STEP]',myThid)
-      IF (taveFreq.GT.0.) THEN
-       CALL WRITE_TIME_AVERAGES( myCurrentTime, myCurrentIter, myThid )
-      ENDIF
-      CALL TIMER_STOP ('I/O (WRITE)        [FORWARD_STEP]',myThid)
-#endif
-
 C--   Do IO if needed.
 C     Note:
 C     =====
