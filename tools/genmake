@@ -940,6 +940,7 @@ CLEAN:
 	@make Clean
 	-find \$(EXEDIR) -name "*.meta" -exec rm {} \;
 	-find \$(EXEDIR) -name "*.data" -exec rm {} \;
+	-find \$(EXEDIR) -name "fort.*" -exec rm {} \;
 	-rm -f \$(EXECUTABLE)
 
 makefile:
