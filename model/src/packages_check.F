@@ -130,6 +130,7 @@ CEOP
 #endif
 
 #ifdef ALLOW_AUTODIFF
+      CALL AUTODIFF_CHECK( myThid )
       CALL CTRL_CHECK( myThid )
       CALL COST_CHECK( myThid )
 #endif

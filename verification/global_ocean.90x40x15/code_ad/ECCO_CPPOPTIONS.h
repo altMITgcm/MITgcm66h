@@ -14,11 +14,15 @@ C   differentiate the MITgcmUV by using the Tangent Linear and
 C   Adjoint Model Compiler (TAMC).
 C
 #define ALLOW_AUTODIFF_TAMC
+C
 C       >>> Checkpointing as handled by TAMC
 #define ALLOW_TAMC_CHECKPOINTING
 C
 C       >>> Extract adjoint state
 #define ALLOW_AUTODIFF_MONITOR
+C
+C       >>> DO 2-level checkpointing instead of 3-level
+#define AUTODIFF_2_LEVEL_CHECKPOINT
 C
 C o use divided adjoint to split adjoint computations
 #undef ALLOW_DIVIDED_ADJOINT

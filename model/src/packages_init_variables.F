@@ -147,7 +147,7 @@ cph#endif
 #endif
 
 #ifdef ALLOW_AUTODIFF
-CADJ STORE theta = tapelev3, key = 1
+CADJ STORE theta = tapelev_ini_bibj_k, key = 1
 c--   Initialise auxiliary xx_ fields
       CALL CTRL_INIT_VARIABLES ( mythid )
 c--   Map the control variables onto the model state.

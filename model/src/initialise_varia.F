@@ -85,7 +85,7 @@ C     == Local variables ==
       INTEGER bi,bj,K,iMin,iMax,jMin,jMax
 CEOP
 
-#ifdef ALLOW_TAMC_CHECKPOINTING
+#ifdef ALLOW_AUTODIFF_TAMC
 
       nIter0 = INT( startTime/deltaTClock )
 
@@ -104,7 +104,7 @@ ceh3 should add an IF ( useNONHYDROSTATIC ) THEN
       CALL INI_CG3D( myThid )
 #endif
 
-#endif /* ALLOW_TAMC_CHECKPOINTING */
+#endif /* ALLOW_AUTODIFF_TAMC */
       _BARRIER
 
 C--   Initialise 3-dim. diffusivities
