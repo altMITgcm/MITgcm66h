@@ -145,6 +145,16 @@ c     Number of records to be used.
 c--   Loop over records.
       do irec = 1,nrec
 
+        area    = 0. _d 0
+        volflux = 0. _d 0
+        do bj = jtlo,jthi
+          do bi = itlo,ithi
+            do i = imin,imax
+              barofield(i,bi,bj) = 0. _d 0
+            enddo
+          enddo
+        enddo
+
         call active_read_xz( fnamefld, tmpfield, irec, doglobalread,
      &                       ladinit, optimcycle, mythid
      &        , xx_obcsn_dummy )
@@ -228,7 +238,8 @@ c--         Determine the weights to be used.
      &               + wbaro*cosphi(i,j,bi,bj)
      &                 *tmpx*tmpx
      &                 *maskxz(i,1,bi,bj)
-                print*,'S bt fctile',fctile
+                print*,'S bt fctile',i,j,wbaro,
+     &                 barofield(i,bi,bj),fctile
               enddo
             endif
 

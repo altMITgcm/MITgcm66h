@@ -166,10 +166,8 @@ CADJ STORE pload1  = tapelev2, key = ilev_2
 
 #ifdef ALLOW_OBCS
 
-#if  (defined (BAROTROPIC_OBVEL_CONTROL) || \
-      defined (BALANCE_CONTROL_VOLFLUX_GLOBAL))      
 CADJ STORE shiftvel = tapelev2, key = ilev_2
-#endif
+
 #ifdef ALLOW_OBCS_NORTH
 CADJ STORE OBNt     = tapelev2, key = ilev_2
 CADJ STORE OBNs     = tapelev2, key = ilev_2

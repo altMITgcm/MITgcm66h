@@ -142,6 +142,14 @@ c     Number of records to be used.
 c--   Loop over records.
       do irec = 1,nrec
 
+        do bj = jtlo,jthi
+          do bi = itlo,ithi
+            do j = jmin,jmax
+              barofield(j,bi,bj) = 0. _d 0
+            enddo
+          enddo
+        enddo
+              
         call active_read_yz( fnamefld, tmpfield, irec, doglobalread,
      &                       ladinit, optimcycle, mythid
      &        , xx_obcse_dummy )

@@ -609,22 +609,6 @@ c     wbaro      - weight for barotropic velocity adjustments.
      &                      whfluxmm,wsfluxmm,
      &                      wcurrent,wcurrent2,
      &                      wcurrentLev,wbaro
-#if (defined (ALLOW_OBCSN_COST_CONTRIBUTION) || \
-     defined (ALLOW_OBCSN_CONTROL))
-     &                     ,wobcsnLev
-#endif
-#if (defined (ALLOW_OBCSS_COST_CONTRIBUTION) || \
-     defined (ALLOW_OBCSS_CONTROL))
-     &                     ,wobcssLev
-#endif
-#if (defined (ALLOW_OBCSW_COST_CONTRIBUTION) || \
-     defined (ALLOW_OBCSW_CONTROL))
-     &                     ,wobcswLev
-#endif
-#if (defined (ALLOW_OBCSE_COST_CONTRIBUTION) || \
-     defined (ALLOW_OBCSE_CONTROL))
-     &                     ,wobcseLev
-#endif
 
       _RL frame   (1-olx:snx+olx,1-oly:sny+oly           )
       _RL cosphi  (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
@@ -662,7 +646,6 @@ c     wbaro      - weight for barotropic velocity adjustments.
       _RL wcurrent(                              nr,nsx,nsy)
       _RL wcurrent2   (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
       _RL wcurrentLev (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
-      _RL wobcsLev    (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy,nobcs)
       _RL wbaro
 
 #if (defined (ALLOW_OBCSN_COST_CONTRIBUTION) || \

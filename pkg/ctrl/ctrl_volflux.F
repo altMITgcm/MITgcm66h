@@ -114,9 +114,9 @@ cgg   all boundaries. Needs to be improved someday.
 #if   (defined (ALLOW_OBCS_CONTROL) || \
        defined (ALLOW_OBCS_COST_CONTRIBUTION))
 
-      tmpflux= 0. d 0
-      tmparea= 0. d 0
-      sumarea= 0. d 0
+      tmpflux = 0. d 0
+      tmparea = 0. d 0
+      sumarea = 0. d 0
       sumflux = 0. d 0
 
 #ifdef ECCO_VERBOSE

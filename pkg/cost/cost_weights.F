@@ -38,6 +38,10 @@ c     == global variables ==
 #include "SIZE.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#if (defined (ALLOW_OBCS_COST_CONTRIBUTION) || \
+     defined (ALLOW_OBCS_CONTROL))
+# include "OBCS.h"
+#endif
 
 #include "ctrl.h"
 #include "cost.h"
@@ -71,9 +75,6 @@ c     == local variables ==
       _RL wtau0m
       _RL ratio
       _RL dummy
-
-      _RL tmpfldxz (1-olx:snx+olx,nr,nsx,nsy)
-      _RL tmpfldyz (1-oly:sny+oly,nr,nsx,nsy)
 
 c     == external ==
 
@@ -212,10 +213,10 @@ c--   Read error information and set up weight matrices.
         open(gwunit, file=data_errfile(ilo:ihi),
      &               status='old', form='formatted')
 
-        read(gwunit,*) whflux0, wsflux0, wtau0
+        read(gwunit,*) whflux0, wsflux0, wtau0, ratio
 #if (defined (ALLOW_OBCS_COST_CONTRIBUTION) || \
      defined (ALLOW_OBCS_CONTROL))
-     &               , ratio
+     &       , wbaro
 #endif
         do k = 1,nr
           read(gwunit,*) wti(k), wsi(k)
@@ -516,7 +517,6 @@ cgg    Choose the proper energy of wcurrent2 depending on the situation.
              do i = imin,imax
                if (wcurrent2(i,j,k,bi,bj) .lt. 0.)
      &               wcurrent2(i,j,k,bi,bj) = 0.
-               endif
 #ifdef COST_WEIGHTS_EDDY_NOISE
 cgg         95 percent of energy is at less than 400km, which I call the
 cgg         eddy signal. sqrt(.95)= .97 .
