@@ -111,6 +111,7 @@ C     o Zonal tracer gradient
      &   *(salt(i,j,k,bi,bj)-salt(i-1,j,k,bi,bj))
 #ifdef COSINEMETH_III
      &   *sqCosFacU(j,bi,bj)
+#endif
        ENDDO
       ENDDO
 C     o Meridional tracer gradient
@@ -139,7 +140,6 @@ C--   del^2 of S, needed for bi-harmonic (del^4) term
         ENDDO
        ENDDO
       ENDIF
-#endif
 
 C--   Zonal flux (fZon is at west face of "salt" cell)
 C     Advective component of zonal flux
@@ -310,10 +310,8 @@ C           i=iMin+1:iMax-1, j=jMin+1:jMax-1. Edge points
 C           will contain valid floating point numbers but 
 C           they are not algorithmically correct. These points
 C           are not used.
-      DO j=jMin,jMax-1
-       DO i=iMin,iMax-1
-c     DO j=jMin,jMax
-c      DO i=iMin,iMax
+      DO j=jMin,jMax
+       DO i=iMin,iMax
 #define _recip_VolS1(i,j,k,bi,bj) _recip_hFacC(i,j,k,bi,bj)*recip_drF(k)
 #define _recip_VolS2(i,j,k,bi,bj) /_rA(i,j,bi,bj)
         gS(i,j,k,bi,bj)=
