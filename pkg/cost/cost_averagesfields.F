@@ -1,15 +1,15 @@
 C $Header$
 
 #include "COST_CPPOPTIONS.h"
+#ifdef ALLOW_OBCS
+# include "OBCS_OPTIONS.h"
+#endif
 
 
-      subroutine cost_AveragesFields(
-     I                                mytime,
-     I                                mythid
-     &                              )
+      subroutine cost_averagesfields( mytime, mythid )
 
 c     ==================================================================
-c     SUBROUTINE cost_AveragesFields
+c     SUBROUTINE cost_averagesfields
 c     ==================================================================
 c
 c     o Compute time averages of etaN, theta, and salt. The counters
@@ -24,8 +24,10 @@ c
 c              - Restructured the code in order to create a package
 c                for the MITgcmUV.
 c
+c     heimbach@mit.edu Many changes.
+c
 c     ==================================================================
-c     SUBROUTINE cost_AveragesFields
+c     SUBROUTINE cost_averagesfields
 c     ==================================================================
 
       implicit none
@@ -104,7 +106,7 @@ c     == end of interface ==
 
 c--   Get the time flags and record numbers for the time averaging.
 
-      call cost_AveragesFlags(
+      call cost_averagesflags(
      I                         myiter,  mytime,     mythid,
      O                         first,   startofday, startofmonth,
      O                         inday,   inmonth,
@@ -144,14 +146,8 @@ c--     records.
 c--     Save psbar on file.
         if (optimcycle .ge. 0) then
           ilps=ilnblnk( psbarfile )
-          write(fnamepsbar,'(2a,i10.10)') psbarfile(1:ilps),
-     &          '.', optimcycle
-        else
-          print*
-          print*,' cost_AveragesFields: optimcycle has a wrong value.'
-          print*,'                      optimcycle = ',optimcycle
-          print*
-          stop   ' ... stopped in cost_AveragesFields; psbar part.'
+          write(fnamepsbar,'(2a,i10.10)') 
+     &         psbarfile(1:ilps), '.', optimcycle
         endif
 
         call active_write_xy( fnamepsbar, psbar, dayrec, optimcycle,
@@ -171,16 +167,14 @@ c--     Accumulate the array holding the average.
           enddo
         enddo
       else
-        print*
-        print*,' cost_AveragesFields: Daily flags are set',
-     &                              ' inappropriately.'
-        print*
-        stop   ' ... stopped in cost_AveragesFields; psbar part.'
+        print*,' cost_averagesfields: Daily flags wrong'
+        stop   ' ... stopped in cost_averagesfields; psbar part.'
       endif
 #endif
 
 #if (defined (ALLOW_THETA_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDT_COST_CONTRIBUTION) || \
+     defined (ALLOW_CTDTCLIM_COST_CONTRIBUTION) || \
      defined (ALLOW_XBT_COST_CONTRIBUTION) || \
      defined (ALLOW_ARGO_THETA_COST_CONTRIBUTION) || \
      defined (ALLOW_DRIFT_COST_CONTRIBUTION) || \
@@ -219,13 +213,8 @@ c--     records.
 c--     Save tbar on file.
         if (optimcycle .ge. 0) then
           ilt=ilnblnk( tbarfile )
-          write(fnametbar,'(2a,i10.10)') tbarfile(1:ilt),'.',optimcycle
-        else
-          print*
-          print*,' cost_AveragesFields: optimcycle has a wrong value.'
-          print*,'                      optimcycle = ',optimcycle
-          print*
-          stop   ' ... stopped in cost_AveragesFields; tbar part (3d).'
+          write(fnametbar,'(2a,i10.10)') 
+     &         tbarfile(1:ilt), '.', optimcycle
         endif
 
         call active_write_xyz( fnametbar, tbar, monrec, optimcycle,
@@ -248,11 +237,8 @@ c--     Accumulate the array holding the average.
           enddo
         enddo
       else
-        print*
-        print*,' cost_AveragesFields: Monthly flags a set',
-     &                              ' inappropriately.'
-        print*
-        stop   ' ... stopped in cost_AveragesFields; tbar part (3d).'
+        print*,' cost_averagesfields: Daily flags wrong'
+        stop   ' ... stopped in cost_averagesfields; tbar part (3d).'
       endif
 #else
 #ifdef ALLOW_SST_COST_CONTRIBUTION
@@ -288,13 +274,8 @@ c--     records.
 c--     Save tbar (2d) on file.
         if (optimcycle .ge. 0) then
           ilt=ilnblnk( tbarfile )
-          write(fnametbar,'(2a,i10.10)') tbarfile(1:ilt),'.',optimcycle
-        else
-          print*
-          print*,' cost_AveragesFields: optimcycle has a wrong value.'
-          print*,'                      optimcycle = ',optimcycle
-          print*
-          stop   ' ... stopped in cost_AveragesFields; tbar part (2d).'
+          write(fnametbar,'(2a,i10.10)') 
+     &         tbarfile(1:ilt), '.', optimcycle
         endif
 
         call active_write_xy( fnametbar, tbar, monrec, optimcycle,
@@ -316,17 +297,15 @@ c--     Accumulate the array holding the average.
           enddo
         enddo
       else
-        print*
-        print*,' cost_AveragesFields: Monthly flags a set',
-     &                              ' inappropriately.'
-        print*
-        stop   ' ... stopped in cost_AveragesFields; tbar part (2d).'
+        print*,' cost_averagesfields: Daily flags wrong'
+        stop   ' ... stopped in cost_averagesfields; tbar part (2d).'
       endif
 #endif
 #endif
 
 #if (defined (ALLOW_SALT_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDS_COST_CONTRIBUTION) || \
+     defined (ALLOW_CTDSCLIM_COST_CONTRIBUTION) || \
      defined (ALLOW_ARGO_SALT_COST_CONTRIBUTION) || \
      defined (ALLOW_DRIFT_COST_CONTRIBUTION) || \
      defined (ALLOW_OBCS_COST_CONTRIBUTION))
@@ -361,13 +340,8 @@ c--   Next, do the monthly averages for salinity.
 c--     Save sbar.
         if (optimcycle .ge. 0) then
           ils=ilnblnk( sbarfile )
-          write(fnamesbar,'(2a,i10.10)') sbarfile(1:ils),'.',
-     &                                             optimcycle
-        else
-          print*
-          print*,' cost_AveragesFields: optimcycle has a wrong value.'
-          print*
-          stop   ' ... stopped in cost_AveragesFields; sbar part.'
+          write(fnamesbar,'(2a,i10.10)') 
+     &         sbarfile(1:ils), '.', optimcycle
         endif
 
         call active_write_xyz( fnamesbar, sbar, monrec, optimcycle,
@@ -390,11 +364,8 @@ c--     Accumulate sbar.
           enddo
         enddo
       else
-        print*
-        print*,' cost_AveragesFields: Monthly flags a set',
-     &                              ' inappropriately.'
-        print*
-        stop   ' ... stopped in cost_AveragesFields; sbar part.'
+        print*,' cost_averagesfields: Daily flags wrong'
+        stop   ' ... stopped in cost_averagesfields; sbar part.'
       endif
 #else
 #ifdef ALLOW_SSS_COST_CONTRIBUTION
@@ -430,13 +401,8 @@ c--     records.
 c--     Save sbar (2d) on file.
         if (optimcycle .ge. 0) then
           ilt=ilnblnk( sbarfile )
-          write(fnamesbar,'(2a,i10.10)') sbarfile(1:ilt),'.',optimcycle
-        else
-          print*
-          print*,' cost_AveragesFields: optimcycle has a wrong value.'
-          print*,'                      optimcycle = ',optimcycle
-          print*
-          stop   ' ... stopped in cost_AveragesFields; sbar part (2d).'
+          write(fnamesbar,'(2a,i10.10)') 
+     &         sbarfile(1:ilt), '.', optimcycle
         endif
 
         call active_write_xy( fnamesbar, sbar, monrec, optimcycle,
@@ -459,11 +425,8 @@ c--     Accumulate the array holding the average.
           enddo
         enddo
       else
-        print*
-        print*,' cost_AveragesFields: Monthly flags a set',
-     &                              ' inappropriately.'
-        print*
-        stop   ' ... stopped in cost_AveragesFields; sbar part (2d).'
+        print*,' cost_averagesfields: Daily flags wrong'
+        stop   ' ... stopped in cost_averagesfields; sbar part (2d).'
       endif
 #endif  
 #endif
@@ -503,13 +466,8 @@ c--     records.
 c--     Save wbar on file.
         if (optimcycle .ge. 0) then
           ilt=ilnblnk( wbarfile )
-          write(fnamewbar,'(2a,i10.10)') wbarfile(1:ilt),'.',optimcycle
-        else
-          print*
-          print*,' cost_AveragesFields: optimcycle has a wrong value.'
-          print*,'                      optimcycle = ',optimcycle
-          print*
-          stop   ' ... stopped in cost_AveragesFields; wbar part (3d).'
+          write(fnamewbar,'(2a,i10.10)') 
+     &         wbarfile(1:ilt), '.', optimcycle
         endif
 
         call active_write_xyz( fnamewbar, wbar, monrec, optimcycle,
@@ -532,16 +490,16 @@ c--     Accumulate the array holding the average.
           enddo
         enddo
       else
-        print*
-        print*,' cost_AveragesFields: Monthly flags a set',
-     &                              ' inappropriately.'
-        print*
-        stop   ' ... stopped in cost_AveragesFields; tbar part (3d).'
+        print*,' cost_averagesfields: Daily flags wrong'
+        stop   ' ... stopped in cost_averagesfields; tbar part (3d).'
       endif
 #endif
 
-#if (defined (ALLOW_OBCS_COST_CONTRIBUTION))
-cph   defined (ALLOW_DRIFTER_COST_CONTRIBUTION) || \
+#if (defined (ALLOW_DRIFTER_COST_CONTRIBUTION) || \
+     defined (ALLOW_CURMTR_COST_CONTRIBUTION) || \
+     defined (OBCS_AGEOS_COST_CONTRIBUTION))
+cph#if (defined (ALLOW_OBCS_COST_CONTRIBUTION))
+cph     defined (ALLOW_DRIFTER_COST_CONTRIBUTION) || \
 cph   There's a mismatch between the cost_drifer and the 
 cph   cost_obcs usage of ubar, vbar.
 cph   cost_obcs refers to monthly means, cost_drifer to total mean.
@@ -582,15 +540,10 @@ c--   Next, do the averages for velocitty.
 c--     Save ubar and vbar.
         if (optimcycle .ge. 0) then
           ils=ilnblnk( ubarfile )
-          write(fnameubar,'(2a,i10.10)') ubarfile(1:ils),'.',
-     &                                             optimcycle
-          write(fnamevbar,'(2a,i10.10)') vbarfile(1:ils),'.',
-     &                                             optimcycle
-        else
-          print*
-          print*,' cost_AveragesFields: optimcycle has a wrong value.'
-          print*
-          stop   ' ... stopped in cost_AveragesFields; sbar part.'
+          write(fnameubar,'(2a,i10.10)') 
+     &         ubarfile(1:ils), '.', optimcycle
+          write(fnamevbar,'(2a,i10.10)') 
+     &         vbarfile(1:ils), '.', optimcycle
         endif
 
         call active_write_xyz( fnameubar, ubar, monrec, optimcycle,
@@ -599,9 +552,11 @@ c--     Save ubar and vbar.
         call active_write_xyz( fnamevbar, vbar, monrec, optimcycle,
      &                         mythid, xx_vbar_mean_dummy)
 
-      else if (       (       inmonth         ) .and.
-     &          .not. (first .or. startofmonth) .and.
-     &          .not. (last  .or. endofmonth)       ) then
+cph      else if (       (       inmonth         ) .and.
+cph     &          .not. (first .or. startofmonth) .and.
+cph     &          .not. (last  .or. endofmonth)       ) then
+      else if ( .not. (first .or. startofmonth) .and.
+     &          .not. (last  .or. endofmonth ) ) then
 c--     Accumulate ubar and vbar.
         do bj = jtlo,jthi
           do bi = itlo,ithi
@@ -618,11 +573,8 @@ c--     Accumulate ubar and vbar.
           enddo
         enddo
       else
-        print*
-        print*,' cost_AveragesFields: Monthly flags a set',
-     &                              ' inappropriately.'
-        print*
-        stop   ' ... stopped in cost_AveragesFields; ubar part.'
+        print*,' cost_averagesfields: Daily flags wrong'
+        stop   ' ... stopped in cost_averagesfields; ubar part.'
       endif
       
 #endif
@@ -659,22 +611,17 @@ c--   Next, do the averages for velocitty.
 c--     Save ubar and vbar.
         if (optimcycle .ge. 0) then
           ils=ilnblnk( tauxbarfile )
-          write(fnametauxbar,'(2a,i10.10)') tauxbarfile(1:ils),'.',
-     &                                             optimcycle
+          write(fnametauxbar,'(2a,i10.10)') 
+     &         tauxbarfile(1:ils), '.', optimcycle
           ils=ilnblnk( tauybarfile )
-          write(fnametauybar,'(2a,i10.10)') tauybarfile(1:ils),'.',
-     &                                             optimcycle
-        else
-          print*
-          print*,' cost_AveragesFields: optimcycle has a wrong value.'
-          print*
-          stop   ' ... stopped in cost_AveragesFields; tauxbar part.'
+          write(fnametauybar,'(2a,i10.10)') 
+     &         tauybarfile(1:ils), '.', optimcycle
         endif
      
-        call active_write_xy( fnametauxbar, tauxbar, 1, optimcycle,
+        call active_write_xy( fnametauxbar, tauxbar, monrec, optimcycle,
      &                         mythid, xx_taux_mean_dummy)
      
-        call active_write_xy( fnametauybar, tauybar, 1, optimcycle,
+        call active_write_xy( fnametauybar, tauybar, monrec, optimcycle,
      &                         mythid, xx_tauy_mean_dummy)
      
 
@@ -694,24 +641,23 @@ c--     Accumulate ubar and vbar.
           enddo
         enddo
       else
-        print*
-        print*,' cost_AveragesFields: Monthly flags a set',
-     &                              ' inappropriately.'
-        print*
-        stop   ' ... stopped in cost_AveragesFields; tauxbar part.'
+        print*,' cost_averagesfields: Daily flags wrong'
+        stop   ' ... stopped in cost_averagesfields; tauxbar part.'
       endif
 
      
 #endif
 
 #ifdef ALLOW_MEAN_HFLUX_COST_CONTRIBUTION
+cph   Armin added swflux here!
 c--   Next, do the averages for velocitty.
       if (first) then
         do bj = jtlo,jthi
           do bi = itlo,ithi
               do j = jmin,jmax
                 do i =  imin,imax
-                  hfluxbar(i,j,bi,bj) = hflux(i,j,bi,bj)
+                  hfluxbar(i,j,bi,bj) = hflux(i,j,bi,bj) +
+     &                                  swflux(i,j,bi,bj)
                 enddo
               enddo
           enddo
@@ -722,8 +668,8 @@ c--   Next, do the averages for velocitty.
               do j = jmin,jmax
                 do i = imin,imax
                   hfluxbar(i,j,bi,bj)  = (hfluxbar (i,j,bi,bj) +
-     &                                  hflux(i,j,bi,bj)   )/
-     &                                 float(sum1mon)
+     &                  hflux(i,j,bi,bj)+swflux(i,j,bi,bj))/
+     &                  float(nTimeSteps)
                 enddo
               enddo
           enddo
@@ -732,13 +678,8 @@ c--   Next, do the averages for velocitty.
 c--     Save hfluxbar 
         if (optimcycle .ge. 0) then
           ils=ilnblnk( hfluxbarfile )
-          write(fnamehfluxbar,'(2a,i10.10)') hfluxbarfile(1:ils),'.',
-     &                                             optimcycle
-        else
-          print*
-          print*,' cost_AveragesFields: optimcycle has a wrong value.'
-          print*
-          stop   ' ... stopped in cost_AveragesFields; hfluxbar part.'
+          write(fnamehfluxbar,'(2a,i10.10)') 
+     &         hfluxbarfile(1:ils), '.', optimcycle
         endif
     
         call active_write_xy( fnamehfluxbar, hfluxbar, 1, optimcycle,
@@ -752,17 +693,14 @@ c--     Accumulate ubar and vbar.
               do j = jmin,jmax
                 do i =  imin,imax
                   hfluxbar(i,j,bi,bj) = hfluxbar (i,j,bi,bj) +
-     &                                hflux (i,j,bi,bj)
+     &                  hflux (i,j,bi,bj) + swflux(i,j,bi,bj)
                 enddo
             enddo
           enddo 
        enddo
       else
-        print*
-        print*,' cost_AveragesFields: Monthly flags a set',
-     &                              ' inappropriately.'
-        print*
-        stop   ' ... stopped in cost_AveragesFields; hfluxbar part.'
+        print*,' cost_averagesfields: Daily flags wrong'
+        stop   ' ... stopped in cost_averagesfields; hfluxbar part.'
       endif
 
 #endif
@@ -786,7 +724,7 @@ c--   Next, do the averages for velocitty.
                 do i = imin,imax
                   sfluxbar(i,j,bi,bj)  = (sfluxbar (i,j,bi,bj) +
      &                                  sflux(i,j,bi,bj)   )/
-     &                                 float(sum1mon)
+     &                                 float(nTimeSteps)
                 enddo
               enddo
           enddo
@@ -796,13 +734,8 @@ c--   Next, do the averages for velocitty.
 c--     Save sfluxbar
         if (optimcycle .ge. 0) then
           ils=ilnblnk( sfluxbarfile )
-          write(fnamesfluxbar,'(2a,i10.10)') sfluxbarfile(1:ils),'.',
-     &                                             optimcycle
-        else
-          print*
-          print*,' cost_AveragesFields: optimcycle has a wrong value.'
-          print*
-          stop   ' ... stopped in cost_AveragesFields; sfluxbar part.'
+          write(fnamesfluxbar,'(2a,i10.10)') 
+     &         sfluxbarfile(1:ils), '.', optimcycle
         endif
 
         call active_write_xy( fnamesfluxbar, sfluxbar, 1, optimcycle,
@@ -822,11 +755,8 @@ c--     Accumulate ubar and vbar.
           enddo
         enddo
       else
-        print*
-        print*,' cost_AveragesFields: Monthly flags a set',
-     &                              ' inappropriately.'
-        print*
-        stop   ' ... stopped in cost_AveragesFields; sfluxbar part.'
+        print*,' cost_averagesfields: Daily flags wrong'
+        stop   ' ... stopped in cost_averagesfields; sfluxbar part.'
       endif
 
 #endif

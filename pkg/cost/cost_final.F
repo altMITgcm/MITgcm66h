@@ -15,6 +15,7 @@ c     started: Christian Eckert eckert@mit.edu 30-Jun-1999
 c     changed: Christian Eckert eckert@mit.edu 25-Feb-2000
 c              - Restructured the code in order to create a package
 c                for the MITgcmUV.
+c     added some obcs code gebbie@mit.edu
 c     added sea-ice term: menemenlis@jpl.nasa.gov 26-Feb-2003
 c
 c     ==================================================================
@@ -47,12 +48,16 @@ c     == local variables ==
       _RL f_tauu, f_tauv, f_hflux, f_sflux 
       _RL f_tauum, f_tauvm, f_hfluxm, f_sfluxm 
       _RL f_hfluxmm, f_sfluxmm 
-      _RL f_sst, f_sss, f_atl, f_ctdt, f_ctds
+      _RL f_tmi, f_sst, f_sss, f_atl
+      _RL f_ctdt, f_ctds, f_ctdtclim, f_ctdsclim
       _RL f_drifter, f_xbt, f_tdrift, f_sdrift, f_wdrift
       _RL f_argot, f_argos, f_ssh 
       _RL f_scatx, f_scaty, f_scatxm, f_scatym
+      _RL f_obcsn, f_obcss, f_obcsw, f_obcse
+      _RL f_ageos, f_curmtr
       _RL f_ice
       _RL f_ini_fin
+      _RL f_kapgm, f_diffkr
 
       character*20 cfname
 #ifdef ECCO_VERBOSE
@@ -83,24 +88,35 @@ c     == end of interface ==
       f_sfluxm  = 0. _d 0
       f_sfluxmm  = 0. _d 0
       f_ssh = 0. _d 0
+      f_tmi = 0. _d 0
       f_sst = 0. _d 0
       f_sss = 0. _d 0
       f_atl = 0. _d 0
-      f_ctdt = 0. _d 0 
-      f_ctds = 0. _d 0
-      f_xbt = 0. _d 0
-      f_argot = 0. _d 0
-      f_argos = 0. _d 0
+      f_ctdt    = 0. _d 0 
+      f_ctds    = 0. _d 0
+      f_ctdtclim= 0. _d 0
+      f_ctdsclim= 0. _d 0
+      f_xbt     = 0. _d 0
+      f_argot   = 0. _d 0
+      f_argos   = 0. _d 0
       f_drifter = 0. _d 0 
-      f_sdrift = 0. _d 0
-      f_tdrift = 0. _d 0
-      f_wdrift = 0. _d 0
-      f_scatx = 0. _d 0
-      f_scaty = 0. _d 0
-      f_scatxm = 0. _d 0
-      f_scatym = 0. _d 0
-      f_ice = 0. _d 0
+      f_sdrift  = 0. _d 0
+      f_tdrift  = 0. _d 0
+      f_wdrift  = 0. _d 0
+      f_scatx   = 0. _d 0
+      f_scaty   = 0. _d 0
+      f_scatxm  = 0. _d 0
+      f_scatym  = 0. _d 0
+      f_obcsn   = 0. _d 0
+      f_obcss   = 0. _d 0
+      f_obcsw   = 0. _d 0
+      f_obcse   = 0. _d 0
+      f_curmtr  = 0. _d 0
+      f_ageos   = 0. _d 0
+      f_ice     = 0. _d 0
       f_ini_fin = 0. _d 0
+      f_kapgm   = 0. _d 0
+      f_diffkr  = 0. _d 0
 
 #ifdef ECCO_VERBOSE
       write(msgbuf,'(a)') ' '
@@ -126,6 +142,7 @@ c--   Sum up all contributions.
           print*,' --> objf_salt(bi,bj)    =',objf_salt(bi,bj)
           print*,' --> objf_temp0(bi,bj)   =',objf_temp0(bi,bj)
           print*,' --> objf_salt0(bi,bj)   =',objf_salt0(bi,bj)
+          print*,' --> objf_tmi(bi,bj)     =',objf_tmi(bi,bj)
           print*,' --> objf_sst(bi,bj)     =',objf_sst(bi,bj)
           print*,' --> objf_sss(bi,bj)     =',objf_sss(bi,bj)
           print*,' --> objf_h(bi,bj)       =',objf_h(bi,bj)
@@ -143,6 +160,8 @@ c--   Sum up all contributions.
           print*,' --> objf_atl(bi,bj)     =',objf_atl(bi,bj)
           print*,' --> objf_ctdt(bi,bj)    =',objf_ctdt(bi,bj)
           print*,' --> objf_ctds(bi,bj)    =',objf_ctds(bi,bj)
+          print*,' --> objf_ctdtclim(bi,bj)=',objf_ctdtclim(bi,bj)
+          print*,' --> objf_ctdsclim(bi,bj)=',objf_ctdsclim(bi,bj)
           print*,' --> objf_xbt(bi,bj)     =',objf_xbt(bi,bj)
           print*,' --> objf_argot(bi,bj)   =',objf_argot(bi,bj)
           print*,' --> objf_argos(bi,bj)   =',objf_argos(bi,bj)
@@ -162,7 +181,12 @@ c--   Sum up all contributions.
           print*,' --> objf_obcss(bi,bj)   =',objf_obcss(bi,bj)
           print*,' --> objf_obcsw(bi,bj)   =',objf_obcsw(bi,bj)
           print*,' --> objf_obcse(bi,bj)   =',objf_obcse(bi,bj)
+          print*,' --> objf_ageos(bi,bj)   =',objf_ageos(bi,bj)
+          print*,' --> objf_curmtr(bi,bj)  =',objf_curmtr(bi,bj)
+          print*,' --> objf_obcsvol        =',objf_obcsvol
           print*,' --> objf_ice(bi,bj)     =',objf_ice(bi,bj)
+          print*,' --> objf_kapgm(bi,bj)   =',objf_kapgm(bi,bj)
+          print*,' --> objf_diffkr(bi,bj)  =',objf_diffkr(bi,bj)
           print*,' --> objf_ini_fin(bi,bj) =',
      &         objf_theta_ini_fin(bi,bj) + objf_salt_ini_fin(bi,bj)
 
@@ -171,6 +195,7 @@ c--   Sum up all contributions.
      &            + mult_salt    * objf_salt(bi,bj)
      &            + mult_temp0   * objf_temp0(bi,bj)
      &            + mult_salt0   * objf_salt0(bi,bj)
+     &            + mult_tmi     * objf_tmi(bi,bj)
      &            + mult_sst     * objf_sst(bi,bj) 
      &            + mult_sss     * objf_sss(bi,bj) 
      &            + mult_tauu    * objf_tauu(bi,bj)
@@ -187,6 +212,8 @@ c--   Sum up all contributions.
      &            + mult_atl     * objf_atl(bi,bj)
      &            + mult_ctdt    * objf_ctdt(bi,bj)
      &            + mult_ctds    * objf_ctds(bi,bj)
+     &            + mult_ctdtclim* objf_ctdtclim(bi,bj)
+     &            + mult_ctdsclim* objf_ctdsclim(bi,bj)
      &            + mult_xbt     * objf_xbt(bi,bj)
      &            + mult_argot   * objf_argot(bi,bj)
      &            + mult_argos   * objf_argos(bi,bj)
@@ -206,7 +233,11 @@ c--   Sum up all contributions.
      &            + mult_obcss   * objf_obcss(bi,bj)  
      &            + mult_obcsw   * objf_obcsw(bi,bj)  
      &            + mult_obcse   * objf_obcse(bi,bj)  
+     &            + mult_curmtr  * objf_curmtr(bi,bj)
+     &            + mult_ageos   * objf_ageos(bi,bj)
      &            + mult_ice     * objf_ice(bi,bj)
+     &            + mult_kapgm   * objf_kapgm(bi,bj)
+     &            + mult_diffkr  * objf_diffkr(bi,bj)
      &            + mult_ini_fin *(objf_theta_ini_fin(bi,bj) +
      &                             objf_salt_ini_fin(bi,bj))
 
@@ -220,16 +251,17 @@ c--   Sum up all contributions.
           f_tauvm  = f_tauvm + objf_tauvm(bi,bj)
           f_hflux= f_hflux + objf_hflux(bi,bj)   
           f_hfluxm = f_hfluxm + objf_hfluxm(bi,bj)   
-          f_hfluxmm = f_hfluxmm + objf_hfluxmm(bi,bj)   
           f_sflux= f_sflux + objf_sflux(bi,bj)  
           f_sfluxm = f_sfluxm + objf_sfluxm(bi,bj)  
-          f_sfluxmm = f_sfluxmm + objf_sfluxmm(bi,bj)  
           f_ssh  = f_ssh + objf_h(bi,bj) 
+          f_tmi  = f_tmi + objf_tmi(bi,bj)
           f_sst  = f_sst + objf_sst(bi,bj) 
           f_sss  = f_sss + objf_sss(bi,bj)
           f_atl  = f_atl + objf_atl(bi,bj)
           f_ctdt = f_ctdt + objf_ctdt(bi,bj)
           f_ctds = f_ctds + objf_ctds(bi,bj) 
+          f_ctdtclim = f_ctdtclim + objf_ctdtclim(bi,bj)
+          f_ctdsclim = f_ctdsclim + objf_ctdsclim(bi,bj)
           f_xbt  = f_xbt + objf_xbt(bi,bj)
           f_argot  = f_argot + objf_argot(bi,bj)
           f_argos  = f_argos + objf_argos(bi,bj)
@@ -241,7 +273,15 @@ c--   Sum up all contributions.
           f_scaty = f_scaty + objf_scaty(bi,bj)
           f_scatxm = f_scatxm + objf_scatxm(bi,bj)
           f_scatym = f_scatym + objf_scatym(bi,bj)
+          f_obcsn = f_obcsn + objf_obcsn(bi,bj)
+          f_obcss = f_obcss + objf_obcss(bi,bj)
+          f_obcsw = f_obcsw + objf_obcsw(bi,bj)
+          f_obcse = f_obcse + objf_obcse(bi,bj)
+          f_curmtr = f_curmtr + objf_curmtr(bi,bj)
+          f_ageos = f_ageos + objf_ageos(bi,bj)
           f_ice = f_ice + objf_ice(bi,bj)
+          f_kapgm = f_kapgm + objf_kapgm(bi,bj)
+          f_diffkr = f_diffkr + objf_diffkr(bi,bj)
           f_ini_fin = f_ini_fin + 
      &         objf_theta_ini_fin(bi,bj) + objf_salt_ini_fin(bi,bj)
 
@@ -269,11 +309,14 @@ c--   Do global summation for each part of the cost function
       _GLOBAL_SUM_R8( f_sfluxm , myThid )
       _GLOBAL_SUM_R8( f_sfluxmm , myThid )
       _GLOBAL_SUM_R8( f_ssh , myThid )
+      _GLOBAL_SUM_R8( f_tmi , myThid )
       _GLOBAL_SUM_R8( f_sst , myThid )
       _GLOBAL_SUM_R8( f_sss , myThid )
       _GLOBAL_SUM_R8( f_atl , myThid )
       _GLOBAL_SUM_R8( f_ctdt , myThid )
       _GLOBAL_SUM_R8( f_ctds , myThid ) 
+      _GLOBAL_SUM_R8( f_ctdtclim , myThid )
+      _GLOBAL_SUM_R8( f_ctdsclim , myThid )
       _GLOBAL_SUM_R8( f_xbt , myThid )
       _GLOBAL_SUM_R8( f_argot , myThid )
       _GLOBAL_SUM_R8( f_argos , myThid )
@@ -285,17 +328,33 @@ c--   Do global summation for each part of the cost function
       _GLOBAL_SUM_R8( f_scaty , myThid )    
       _GLOBAL_SUM_R8( f_scatxm , myThid )    
       _GLOBAL_SUM_R8( f_scatym , myThid )    
+      _GLOBAL_SUM_R8( f_obcsn , myThid )
+      _GLOBAL_SUM_R8( f_obcss , myThid )
+      _GLOBAL_SUM_R8( f_obcsw , myThid )
+      _GLOBAL_SUM_R8( f_obcse , myThid )
+      _GLOBAL_SUM_R8( f_curmtr , myThid )
+      _GLOBAL_SUM_R8( f_ageos , myThid )
+      _GLOBAL_SUM_R8( f_kapgm , myThid )
+      _GLOBAL_SUM_R8( f_diffkr , myThid )
       _GLOBAL_SUM_R8( f_ice , myThid )    
-      _GLOBAL_SUM_R8( f_ini_fin , myThid )    
+      _GLOBAL_SUM_R8( f_ini_fin , myThid )
+
+       f_hfluxmm = f_hfluxmm*f_hfluxmm/float(npx*npy)
+       f_sfluxmm = f_sfluxmm*f_sfluxmm/float(npx*npy)
 
 c--   Each process has calculated the global part for itself.
       _BEGIN_MASTER( mythid )
 
-        fc = fc + mult_hmean*objf_hmean
+        fc = fc + mult_hmean   * objf_hmean
+     &          + mult_obcsvol * objf_obcsvol
+
+        fc = fc + 0. * mult_hflux*f_hfluxmm
+        fc = fc + 0. * mult_sflux*f_sfluxmm
       
-        print*, ' --> objf_hmean           =',objf_hmean
-        print*, ' --> fc               =', fc
-    
+        print*, ' --> objf_hmean  (GLOBAL) =',objf_hmean
+        print*, ' --> objf_obcsvol(GLOBAL) =',objf_obcsvol
+        print*, ' --> fc                   =', fc
+
         write(cfname,'(A,i4.4)') 'costfunction',optimcycle
         open(unit=ifc,file=cfname)
       
@@ -315,11 +374,14 @@ c--   Each process has calculated the global part for itself.
         write(ifc,*) 'f_sfluxm =', f_sfluxm 
         write(ifc,*) 'f_sfluxmm =', f_sfluxmm 
         write(ifc,*) 'f_ssh =', f_ssh
+        write(ifc,*) 'f_tmi =', f_tmi
         write(ifc,*) 'f_sst =', f_sst
         write(ifc,*) 'f_sss =', f_sss
         write(ifc,*) 'f_atl =', f_atl
         write(ifc,*) 'f_ctdt =', f_ctdt 
         write(ifc,*) 'f_ctds =', f_ctds
+        write(ifc,*) 'f_ctdtclim =', f_ctdtclim
+        write(ifc,*) 'f_ctdsclim =', f_ctdsclim
         write(ifc,*) 'f_xbt =', f_xbt
         write(ifc,*) 'f_argot =', f_argot
         write(ifc,*) 'f_argos =', f_argos
@@ -332,6 +394,15 @@ c--   Each process has calculated the global part for itself.
         write(ifc,*) 'f_scaty =', f_scaty
         write(ifc,*) 'f_scatxm =', f_scatxm
         write(ifc,*) 'f_scatym =', f_scatym
+        write(ifc,*) 'f_obcsn =', f_obcsn
+        write(ifc,*) 'f_obcss =', f_obcss
+        write(ifc,*) 'f_obcsw =', f_obcsw
+        write(ifc,*) 'f_obcse =', f_obcse
+        write(ifc,*) 'f_obcsvol=', objf_obcsvol
+        write(ifc,*) 'f_ageos =', f_ageos
+        write(ifc,*) 'f_ice   =', f_ice
+        write(ifc,*) 'f_kapgm =', f_kapgm
+        write(ifc,*) 'f_diffkr=', f_diffkr
         write(ifc,*) 'f_ini_fin =', f_ini_fin
         
         close(ifc)

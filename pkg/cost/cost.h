@@ -80,33 +80,45 @@ c             intantaneous field.
      &                    wlmean,
      &                    Sfmean,
      &                    Tfmean,                   
-     &                    wfmean
+     &                    wfmean,
+     &                    sbar_gen,
+     &                    tbar_gen
 
 #if (defined (ALLOW_THETA_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDT_COST_CONTRIBUTION) || \
+     defined (ALLOW_CTDTCLIM_COST_CONTRIBUTION) || \
      defined (ALLOW_XBT_COST_CONTRIBUTION) || \
      defined (ALLOW_DRIFT_COST_CONTRIBUTION) || \
      defined (ALLOW_OBCS_COST_CONTRIBUTION))
       _RL tbar  (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
 #else
-#ifdef ALLOW_SST_COST_CONTRIBUTION
+# ifdef ALLOW_SST_COST_CONTRIBUTION
       _RL tbar  (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
-#else
+# else
       _RL tbar
-#endif
+# endif
 #endif
 
 #if (defined (ALLOW_SALT_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDS_COST_CONTRIBUTION) || \
+     defined (ALLOW_CTDSCLIM_COST_CONTRIBUTION) || \
      defined (ALLOW_DRIFT_COST_CONTRIBUTION) || \
      defined (ALLOW_OBCS_COST_CONTRIBUTION))
       _RL sbar  (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
 #else
-#ifdef ALLOW_SSS_COST_CONTRIBUTION
+# ifdef ALLOW_SSS_COST_CONTRIBUTION
       _RL sbar  (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
-#else
+# else
       _RL sbar
+# endif
 #endif
+
+#ifdef GENERIC_BAR_MONTH
+      _RL tbar_gen  (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+      _RL sbar_gen  (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+#else
+      _RL tbar_gen
+      _RL sbar_gen
 #endif
 
 #ifdef ALLOW_SSH_COST_CONTRIBUTION
@@ -116,7 +128,7 @@ c             intantaneous field.
 #endif
 
 #if (defined (ALLOW_DRIFTER_COST_CONTRIBUTION) || \
-     defined (ALLOW_OBCS_COST_CONTRIBUTION))
+     defined (ALLOW_CURMTR_COST_CONTRIBUTION))
       _RL ubar  (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
       _RL vbar  (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
 #else
@@ -253,11 +265,14 @@ c     objf_temp  - Temperature contribution.
 c     objf_salt  - Salinity contribution.
 c     objf_temp0 - Initial conditions Temperature contribution.
 c     objf_salt0 - Initial conditions Salinity contribution.
+c     objf_tmi   - Sea surface temperature contribution.
 c     objf_sst   - Sea surface temperature contribution.
 c     objf_sss   - Sea surface salinity contribution.
 c     objf_atl   - Meridional heat transport in the N-Atlantic
 c     objf_ctdt  - Temperature measurements from Woce CTD 
 c     objf_ctds  - Salinity measurements from Woce CTD 
+c     objf_ctdtclim - Temperature from Woce CTD without timetag
+c     objf_ctdsclim - Salinity from Woce CTD without timetag
 c     objf_xbt   - XBT temperature data
 c     objf_argot - ARGO temperature profiles
 c     objf_argos - ARGO salt profiles
@@ -266,6 +281,8 @@ c     objf_scatym - time-mean meridional SCAT  contribution
 c     objf_scatx  - zonal SCAT  contribution
 c     objf_scaty  - meridional SCAT  contribution
 c     objf_ice    - sea-ice volume
+c     objf_kapgm  - kappa GM contribution
+c     objf_diffkr - diffusion contribution
 c     objf_theta_ini_fin - final vs. initial theta misfit
 c     objf_salt_ini_fin  - final vs. initial salt misfit
 c
@@ -290,11 +307,14 @@ c                  function contributions.
      &                objf_salt,
      &                objf_temp0,
      &                objf_salt0,
+     &                objf_tmi,
      &                objf_sst,
      &                objf_sss,
      &                objf_atl,
      &                objf_ctdt,
      &                objf_ctds,
+     &                objf_ctdtclim,
+     &                objf_ctdsclim,
      &                objf_xbt,
      &                objf_argot,
      &                objf_argos,
@@ -314,10 +334,16 @@ c                  function contributions.
      &                objf_obcss,
      &                objf_obcsw,
      &                objf_obcse,
+     &                objf_obcsvol,
+     &                objf_curmtr,
+     &                objf_ageos,
      &                objf_ice,
+     &                objf_diffkr,
      &                objf_theta_ini_fin,
      &                objf_salt_ini_fin
       _RL  fc
+      _RL  objf_hmean
+      _RL  objf_obcsvol
       _RL  objf_hflux  (nsx,nsy)
       _RL  objf_hfluxm (nsx,nsy)
       _RL  objf_hfluxmm(nsx,nsy)
@@ -328,17 +354,19 @@ c                  function contributions.
       _RL  objf_tauum  (nsx,nsy)
       _RL  objf_tauv   (nsx,nsy)
       _RL  objf_tauvm  (nsx,nsy)
-      _RL  objf_hmean
       _RL  objf_h    (nsx,nsy)
       _RL  objf_temp (nsx,nsy)
       _RL  objf_salt (nsx,nsy)
       _RL  objf_temp0(nsx,nsy)
       _RL  objf_salt0(nsx,nsy)
+      _RL  objf_tmi  (nsx,nsy)
       _RL  objf_sst  (nsx,nsy)
       _RL  objf_sss  (nsx,nsy) 
       _RL  objf_atl  (nsx,nsy)
       _RL  objf_ctdt (nsx,nsy)
       _RL  objf_ctds (nsx,nsy)
+      _RL  objf_ctdtclim (nsx,nsy)
+      _RL  objf_ctdsclim (nsx,nsy)
       _RL  objf_xbt  (nsx,nsy)
       _RL  objf_argot(nsx,nsy)
       _RL  objf_argos(nsx,nsy)
@@ -358,7 +386,11 @@ c                  function contributions.
       _RL  objf_obcss(nsx,nsy)
       _RL  objf_obcsw(nsx,nsy)
       _RL  objf_obcse(nsx,nsy)
+      _RL  objf_curmtr(nsx,nsy)
+      _RL  objf_ageos(nsx,nsy)
       _RL  objf_ice  (nsx,nsy)
+      _RL  objf_kapgm(nsx,nsy)
+      _RL  objf_diffkr(nsx,nsy)
       _RL  objf_theta_ini_fin(nsx,nsy)
       _RL  objf_salt_ini_fin(nsx,nsy)
 
@@ -373,11 +405,14 @@ c                  function contributions.
      &                    mult_salt,
      &                    mult_temp0,
      &                    mult_salt0,
+     &                    mult_tmi,
      &                    mult_sst,
      &                    mult_sss,
      &                    mult_atl,
      &                    mult_ctdt,
      &                    mult_ctds,
+     &                    mult_ctdtclim,
+     &                    mult_ctdsclim,
      &                    mult_xbt,
      &                    mult_argot,
      &                    mult_argos,
@@ -395,7 +430,12 @@ c                  function contributions.
      &                    mult_obcss,
      &                    mult_obcsw,
      &                    mult_obcse,
+     &                    mult_obcsvol,
+     &                    mult_curmtr,
+     &                    mult_ageos,
      &                    mult_ice,
+     &                    mult_kapgm,
+     &                    mult_diffkr,
      &                    mult_ini_fin
       _RL  mult_hflux
       _RL  mult_sflux
@@ -407,11 +447,14 @@ c                  function contributions.
       _RL  mult_salt
       _RL  mult_temp0
       _RL  mult_salt0
+      _RL  mult_tmi
       _RL  mult_sst
       _RL  mult_sss
       _RL  mult_atl
       _RL  mult_ctdt
       _RL  mult_ctds
+      _RL  mult_ctdtclim
+      _RL  mult_ctdsclim
       _RL  mult_xbt
       _RL  mult_argot
       _RL  mult_argos
@@ -429,7 +472,12 @@ c                  function contributions.
       _RL  mult_obcss
       _RL  mult_obcsw
       _RL  mult_obcse
+      _RL  mult_obcsvol
+      _RL  mult_curmtr
+      _RL  mult_ageos
       _RL  mult_ice
+      _RL  mult_kapgm
+      _RL  mult_diffkr
       _RL  mult_ini_fin
 
 
@@ -468,6 +516,7 @@ c     ctds_errfile          - CTD salinity error.
 c     drift_errfile         - drifter error.
 c     salterrfile           - representation error due unresolved eddies
 c     temperrfile           - representation error due unresolved eddies
+c     velerrfile            - representation error
 
       common /cost_c/ 
      &                hflux_errfile,
@@ -491,6 +540,7 @@ c     temperrfile           - representation error due unresolved eddies
      &                vdrifterrfile, 
      &                salterrfile,
      &                temperrfile,
+     &                velerrfile,
      &                atemp_errfile,
      &                aqh_errfile,
      &                uwind_errfile,
@@ -516,6 +566,7 @@ c     temperrfile           - representation error due unresolved eddies
       character*(MAX_LEN_FNAM) vdrifterrfile      
       character*(MAX_LEN_FNAM) salterrfile
       character*(MAX_LEN_FNAM) temperrfile
+      character*(MAX_LEN_FNAM) velerrfile
       character*(MAX_LEN_FNAM) atemp_errfile
       character*(MAX_LEN_FNAM) aqh_errfile
       character*(MAX_LEN_FNAM) uwind_errfile
@@ -545,19 +596,42 @@ c     wctdt      - weight for CTD temperature.
 c     wctds      - weight for CTD salinity.
 c     wudrift    - weight for mean zonal velocity from drifters.
 c     wvdrift    - weight for mean meridional velocity from drifters.
+c     wcurrent   - weight for
+c     wbaro      - weight for barotropic velocity adjustments.
+
       common /cost_weights_r/ 
      &                      frame,
      &                      cosphi,
      &                      whflux,wsflux,wtauu,wtauv,
      &                      watemp,waqh,wuwind,wvwind,
      &                      wscatx,wscaty,
-     &                      wtheta,wtheta2,wsst,wsss,
-     &                      wsalt,wsalt2,
+     &                      wtheta,wtheta2,wthetaLev,
+     &                      wsalt,wsalt2,wsaltLev,
+     &                      wsst,wsss,
      &                      wtp,wers,
      &                      wp,
      &                      wctdt,wctds,
      &                      wudrift,wvdrift,
-     &                      whfluxmm,wsfluxmm
+     &                      whfluxmm,wsfluxmm,
+     &                      wcurrent,wcurrent2,
+     &                      wcurrentLev,wbaro
+#if (defined (ALLOW_OBCSN_COST_CONTRIBUTION) || \
+     defined (ALLOW_OBCSN_CONTROL))
+     &                     ,wobcsnLev
+#endif
+#if (defined (ALLOW_OBCSS_COST_CONTRIBUTION) || \
+     defined (ALLOW_OBCSS_CONTROL))
+     &                     ,wobcssLev
+#endif
+#if (defined (ALLOW_OBCSW_COST_CONTRIBUTION) || \
+     defined (ALLOW_OBCSW_CONTROL))
+     &                     ,wobcswLev
+#endif
+#if (defined (ALLOW_OBCSE_COST_CONTRIBUTION) || \
+     defined (ALLOW_OBCSE_CONTROL))
+     &                     ,wobcseLev
+#endif
+
       _RL frame   (1-olx:snx+olx,1-oly:sny+oly           )
       _RL cosphi  (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
       _RL whflux  (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
@@ -580,6 +654,8 @@ c     wvdrift    - weight for mean meridional velocity from drifters.
       _RL wsalt   (                            nr,nsx,nsy)
       _RL wtheta2 (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
       _RL wsalt2  (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+      _RL wthetaLev (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+      _RL wsaltLev  (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
       _RL wsst    (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
       _RL wsss    (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
       _RL wtp     (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
@@ -589,28 +665,40 @@ c     wvdrift    - weight for mean meridional velocity from drifters.
       _RL wctds   (                            nr,nsx,nsy)
       _RL wudrift (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
       _RL wvdrift (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
+      _RL wcurrent(                              nr,nsx,nsy)
+      _RL wcurrent2   (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+      _RL wcurrentLev (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+      _RL wobcsLev    (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy,nobcs)
+      _RL wbaro
 
-#ifdef ALLOW_OBCSN_COST_CONTRIBUTION
-      common /cost_weights_obcsn/ 
-     &                      wobcsn
-      _RL wobcsn  (                      nr,nobcs)
+#if (defined (ALLOW_OBCSN_COST_CONTRIBUTION) || \
+     defined (ALLOW_OBCSN_CONTROL))
+      common /cost_weights_obcsn/
+     &                      wobcsn, wobcsnLev
+      _RL wobcsn     (                      nr,nobcs)
+      _RL wobcsnLev  (1-olx:snx+olx,nr,nsx,nsy,nobcs)
 #endif
-#ifdef ALLOW_OBCSS_COST_CONTRIBUTION
-      common /cost_weights_obcss/ 
-     &                      wobcss
-      _RL wobcss  (                      nr,nobcs)
+#if (defined (ALLOW_OBCSS_COST_CONTRIBUTION) || \
+     defined (ALLOW_OBCSS_CONTROL))
+      common /cost_weights_obcss/
+     &                      wobcss, wobcssLev
+      _RL wobcss     (                      nr,nobcs)
+      _RL wobcssLev  (1-olx:snx+olx,nr,nsx,nsy,nobcs)
 #endif
-#ifdef ALLOW_OBCSW_COST_CONTRIBUTION
-      common /cost_weights_obcsw/ 
-     &                      wobcsw
-      _RL wobcsw  (                      nr,nobcs)
+#if (defined (ALLOW_OBCSW_COST_CONTRIBUTION) || \
+     defined (ALLOW_OBCSW_CONTROL))
+      common /cost_weights_obcsw/
+     &                      wobcsw, wobcswLev
+      _RL wobcsw     (                      nr,nobcs)
+      _RL wobcswLev  (1-oly:sny+oly,nr,nsx,nsy,nobcs)
 #endif
-#ifdef ALLOW_OBCSE_COST_CONTRIBUTION
-      common /cost_weights_obcse/ 
-     &                      wobcse
-      _RL wobcse  (                      nr,nobcs)
+#if (defined (ALLOW_OBCSE_COST_CONTRIBUTION) || \
+     defined (ALLOW_OBCSE_CONTROL))
+      common /cost_weights_obcse/
+     &                      wobcse, wobcseLev
+      _RL wobcse     (                      nr,nobcs)
+      _RL wobcseLev  (1-oly:sny+oly,nr,nsx,nsy,nobcs)
 #endif
-
 
 c     Arrays that contain observations for the model-data comparison:
 c     ===============================================================
@@ -618,12 +706,14 @@ c
 c     tdat       - reference temperature data.
 c     scatxdat   - reference zonal wind stress.
 c     scatydat   - reference meridional wind stress.
+c     tmidat     - reference TMI sea surface temperature data.
 c     sstdat     - reference sea surface temperature data.
 c     sssdat     - reference sea surface temperature data.
 c     tauxmask   - mask for reference wind stress data.
 c     tauymask   - mask for reference wind stress data. 
 c     scatxmask  - mask for scat wind stress data.
 c     scatymask  - mask for scat wind stress data. 
+c     tmimask    - mask for reference sea surface temperature data.
 c     sstmask    - mask for reference sea surface temperature data.
 c     sssmask    - mask for reference sea surface temperature data.
 c     sdat       - reference salinity data.
@@ -645,8 +735,10 @@ c     vdriftdat  - drifters meridional velocities
      &                     tdat,
      &                     scatxdat,
      &                     scatydat,
+     &                     tmidat,
      &                     sstdat,
      &                     sssdat,
+     &                     tmimask,
      &                     sstmask,
      &                     sssmask,
      &                     tauxmask,
@@ -666,17 +758,21 @@ c     vdriftdat  - drifters meridional velocities
      &                     argotobs,
      &                     argosobs,
      &                     udriftdat,
-     &                     vdriftdat
+     &                     vdriftdat,
+     &                     curmtruobs,
+     &                     curmtrvobs
      
       _RL tdat      (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
       _RL scatxdat  (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
       _RL scatydat  (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
+      _RL tmidat    (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
       _RL sstdat    (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
       _RL sssdat    (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
       _RL tauxmask  (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
       _RL tauymask  (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
       _RL scatxmask (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
       _RL scatymask (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
+      _RL tmimask   (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
       _RL sstmask   (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
       _RL sssmask   (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
       _RL sdat      (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
@@ -693,7 +789,8 @@ c     vdriftdat  - drifters meridional velocities
       _RL argosobs  (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
       _RL udriftdat (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
       _RL vdriftdat (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
-
+      _RL curmtruobs(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+      _RL curmtrvobs(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
 
 c     Files that contain obervations:
 c     ===============================
@@ -702,6 +799,7 @@ c     tdatfile      - reference data file for temperature.
 c     sdatfile      - reference data file for salinity.
 c     scatxdatfile  - reference data file for zonal wind stress.
 c     scatydatfile  - reference data file for meridional wind stress.
+c     tmidatfile    - reference data file for TMI sea surface temp.
 c     sstdatfile    - reference data file for sea surface temperature.
 c     topexmeanfile - reference data file for mean sea surface height.
 c     topexfile     - reference data file for sea surface height data
@@ -710,6 +808,8 @@ c     ersfile       - reference data file for sea surface height data
 c                     (ERS).
 c ctdtfile, ctdsfile- reference data file for temperature and salinity 
 c                     from CTD
+c ctdtclimfile, ctdsclimfile- reference data file for temperature
+c                     and salinity from CTD with out timetag
 c     xbtfile       - reference data file for xbt
 c     ARGOtfile     - reference data file for ARGO
 c     ARGOsfile     - reference data file for ARGO
@@ -720,6 +820,7 @@ c     driftfile     - reference data file for drifter's mean velocities
      &                     sdatfile,
      &                     scatxdatfile,
      &                     scatydatfile,
+     &                     tmidatfile,
      &                     sstdatfile,
      &                     sssdatfile,
      &                     topexmeanfile,
@@ -727,15 +828,21 @@ c     driftfile     - reference data file for drifter's mean velocities
      &                     ersfile,
      &                     ctdtfile,
      &                     ctdsfile,
+     &                     ctdtclimfile,
+     &                     ctdsclimfile,
      &                     xbtfile,
      &                     argotfile,
      &                     argosfile,
      &                     udriftfile, 
-     &                     vdriftfile 
+     &                     vdriftfile,
+     &                     curmtrufile,
+     &                     curmtrvfile
+
       character*(MAX_LEN_FNAM) tdatfile
       character*(MAX_LEN_FNAM) sdatfile
       character*(MAX_LEN_FNAM) scatxdatfile
       character*(MAX_LEN_FNAM) scatydatfile
+      character*(MAX_LEN_FNAM) tmidatfile
       character*(MAX_LEN_FNAM) sstdatfile
       character*(MAX_LEN_FNAM) sssdatfile
       character*(MAX_LEN_FNAM) topexmeanfile
@@ -743,13 +850,16 @@ c     driftfile     - reference data file for drifter's mean velocities
       character*(MAX_LEN_FNAM) ersfile
       character*(MAX_LEN_FNAM) ctdtfile
       character*(MAX_LEN_FNAM) ctdsfile
+      character*(MAX_LEN_FNAM) ctdtclimfile
+      character*(MAX_LEN_FNAM) ctdsclimfile
       character*(MAX_LEN_FNAM) xbtfile
       character*(MAX_LEN_FNAM) argotfile
       character*(MAX_LEN_FNAM) argosfile
       character*(MAX_LEN_FNAM) argofile
       character*(MAX_LEN_FNAM) udriftfile
       character*(MAX_LEN_FNAM) vdriftfile      
-
+      character*(MAX_LEN_FNAM) curmtrufile
+      character*(MAX_LEN_FNAM) curmtrvfile
 
 c     Flags used in the model-data comparison:
 c     ========================================
@@ -765,24 +875,74 @@ c     using_ers - flag that indicates the use of ERS data
 c     Calendar information for the observations:
 c     ==========================================
 c
+c     tmistartdate   - start date of the sea surface temperature data.
 c     sststartdate   - start date of the sea surface temperature data.
 c     topexstartdate - start date of the sea surface height data.
 c     ersstartdate   - start date of the sea surface height data.
-c     sshperiod      - sampling interval for the sea surface height data.
+c     sshperiod      - sampling interval for  sea surface height data.
 
       common /cost_data_times_i/
      &                           scatxstartdate,
      &                           scatystartdate,
+     &                           tmistartdate,
      &                           sststartdate,
      &                           sssstartdate,
+     &                           argotstartdate,
+     &                           argosstartdate,
      &                           topexstartdate,
      &                           ersstartdate
       integer scatxstartdate(4)
       integer scatystartdate(4)
+      integer tmistartdate(4)
       integer sststartdate(4)
       integer sssstartdate(4)
+      integer argotstartdate(4)
+      integer argosstartdate(4)
       integer topexstartdate(4)
       integer ersstartdate(4)
+
+      common /cost_data_aux_i/
+     &                           tmistartdate1,
+     &                           tmistartdate2,
+     &                           sststartdate1,
+     &                           sststartdate2,
+     &                           sssstartdate1,
+     &                           sssstartdate2,
+     &                           argotstartdate1,
+     &                           argotstartdate2,
+     &                           argosstartdate1,
+     &                           argosstartdate2,
+     &                           topexstartdate1,
+     &                           topexstartdate2,
+     &                           ersstartdate1,
+     &                           ersstartdate2,
+     &                           scatstartdate1,
+     &                           scatstartdate2,
+     &                           costIceStart1,
+     &                           costIceStart2,
+     &                           costIceEnd1,
+     &                           costIceEnd2
+
+      integer tmistartdate1
+      integer tmistartdate2
+      integer sststartdate1
+      integer sststartdate2
+      integer sssstartdate1
+      integer sssstartdate2
+      integer argotstartdate1
+      integer argotstartdate2
+      integer argosstartdate1
+      integer argosstartdate2
+      integer topexstartdate1
+      integer topexstartdate2
+      integer ersstartdate1
+      integer ersstartdate2
+      integer scatstartdate1
+      integer scatstartdate2
+      integer costIceStart1
+      integer costIceStart2
+      integer costIceEnd1
+      integer costIceEnd2
 
 c     costIceStart   - cost_ice start in seconds wrt model startTime
 c     costIceEnd     - cost_ice end in seconds wrt model startTime

@@ -59,7 +59,6 @@ c     == local variables ==
       _RL fcthread_argot
       _RL www (1-olx:snx+olx,1-oly:sny+oly)
       _RL tmpobs (1-olx:snx+olx,1-oly:sny+oly)
-      _RL cmask (1-olx:snx+olx,1-oly:sny+oly)  
       _RL spval
       _RL ztop,rl_35,rl_0
       
@@ -113,14 +112,8 @@ c--   Read state record from global file.
 
       if (optimcycle .ge. 0) then
         ilu=ilnblnk( tbarfile )
-        write(fnametheta(1:80),'(2a,i10.10)') tbarfile(1:ilu),'.',
-     &                                   optimcycle
-      else
-        print*
-        print*,' cost_ARGO_THETA: optimcycle has a wrong value.'
-        print*,'                 optimcycle = ',optimcycle
-        print*
-        stop   '  ... stopped in cost_ARGO_THETA.'
+        write(fnametheta(1:80),'(2a,i10.10)') 
+     &       tbarfile(1:ilu), '.', optimcycle
       endif
       
       fcthread_argot = 0. _d 0
@@ -134,8 +127,7 @@ c--     Read time averages and the monthly mean data.
      &          optimcycle, mythid
      &   , xx_tbar_mean_dummy )
   
-        call mdsreadfield( argotfile, cost_iprec, 'RL', nr, argotobs, 
-     &                    irec, mythid)
+        call cost_readargot( irec, mythid )
 
 c--     Loop over this thread's tiles.
         do bj = jtlo,jthi
@@ -149,15 +141,6 @@ c--         Loop over the model layers
 c--           Determine the weights to be used.
               do j = jmin,jmax
                 do i = imin,imax
-                  cmask(i,j) = 1. _d 0
-                  if (argotobs(i,j,k,bi,bj) .eq. 0.) then
-                    cmask(i,j) = 0. _d 0
-                  endif
-                 
-                  if (argotobs(i,j,k,bi,bj) .lt. spval) then
-                    cmask(i,j) = 0. _d 0
-                  endif
-
 cph(
 cph               print *, 'WARNING: SPECIFIC SETUP FOR ECCO'
 cph               below statement could be replaced by following
@@ -166,27 +149,19 @@ cph
 cph               if ( rC(K) .GT. -1000. ) then
 cph)
 c--               set cmask=0 in areas shallower than 1000m 
-                  if (_hFacC(i,j,13,bi,bj) .eq. 0.) then
-                    cmask(i,j) = 0. _d 0
-                  endif           
-       
-                  if (_hFacC(i,j,k,bi,bj) .eq. 0.) then
-                    cmask(i,j) = 0. _d 0
-                  endif                  
-                  
-                enddo
-              enddo
-              
-              do j = jmin,jmax
-                do i = imin,imax
-                  www(i,j)    = cosphi(i,j,bi,bj)*cmask(i,j)
-                  tmpobs(i,j) = SW_PTMP(rl_35,
-     $                 argotobs(i,j,k,bi,bj),ztop*rc(k),rl_0) 
+                  if( (argotobs(i,j,k,bi,bj) .ne. 0.).and.
+     &             (argotobs(i,j,k,bi,bj) .ge. spval).and.
+     &             (_hFacC(i,j,13,bi,bj) .ne. 0.).and.
+     &             (_hFacC(i,j,k,bi,bj) .ne. 0.) )then
+                     www(i,j)    = cosphi(i,j,bi,bj)
+                     tmpobs(i,j) = SW_PTMP(rl_35,
+     $                    argotobs(i,j,k,bi,bj),ztop*rc(k),rl_0) 
 
-                  fctile_argot = fctile_argot + 
-     &                 wtheta2(i,j,k,bi,bj)*www(i,j)*
-     &                 (tbar(i,j,k,bi,bj)-tmpobs(i,j))*
-     &                 (tbar(i,j,k,bi,bj)-tmpobs(i,j))
+                     fctile_argot = fctile_argot + 
+     &                    wtheta2(i,j,k,bi,bj)*www(i,j)*
+     &                    (tbar(i,j,k,bi,bj)-tmpobs(i,j))*
+     &                    (tbar(i,j,k,bi,bj)-tmpobs(i,j))
+                  endif
                 enddo
               enddo
 c--         End of loop over layers.

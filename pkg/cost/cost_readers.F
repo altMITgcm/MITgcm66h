@@ -21,6 +21,8 @@ c
 c              - Restructured the code in order to create a package
 c                for the MITgcmUV.
 c
+c     changed: Armin Koehl akoehl@ucsd.edu 17-Mar-2003
+c
 c     ==================================================================
 c     SUBROUTINE cost_ReadERS
 c     ==================================================================
@@ -87,8 +89,21 @@ c     == end of interface ==
       sshrec  = noffset + irec
       nobs    = 0
 
-      call mdsreadfield( ersfile, cost_iprec, cost_yftype, 1, ersobs, 
-     &                   sshrec, mythid )
+      if ( sshrec .gt. 0 .and. ersfile .ne. ' ' ) then
+         call mdsreadfield( ersfile, cost_iprec, cost_yftype, 1, ersobs, 
+     &                    sshrec, mythid )
+      else
+         do bj = jtlo,jthi
+            do bi = itlo,ithi
+               do j = jmin,jmax
+                  do i = imin,imax
+                     ersobs(i,j,bi,bj)=spval
+                  enddo
+               enddo
+            enddo
+         enddo
+      endif
+
       do bj = jtlo,jthi
         do bi = itlo,ithi
           k = 1
@@ -99,7 +114,7 @@ c     == end of interface ==
               else
                  ersmask(i,j,bi,bj) = 1. _d 0
               endif
-              if (ersobs(i,j,bi,bj) .lt. spval) then
+              if (ersobs(i,j,bi,bj) .le. spval) then
                 ersmask(i,j,bi,bj) = 0. _d 0
               endif
               if (abs(ersobs(i,j,bi,bj)) .lt. 1.d-8 ) then

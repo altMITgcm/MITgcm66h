@@ -3,9 +3,7 @@ C $Header$
 #include "COST_CPPOPTIONS.h"
 
 
-      subroutine cost_readparms(
-     I                           mythid
-     &                         )
+      subroutine cost_readparms( mythid )
 
 c     ==================================================================
 c     SUBROUTINE cost_readparms
@@ -27,7 +25,6 @@ c     == global variables ==
 #include "SIZE.h"
 #include "GRID.h"
 #include "PARAMS.h"
-#include "cal.h"
 #include "cost.h"
 
 c     == routine arguments ==
@@ -35,23 +32,6 @@ c     == routine arguments ==
       integer mythid
 
 c     == local variables ==
-
-      integer sststartdate1
-      integer sststartdate2
-      integer sssstartdate1
-      integer sssstartdate2
-      integer topexstartdate1
-      integer topexstartdate2
-      integer ersstartdate1
-      integer ersstartdate2
-      integer scatstartdate1
-      integer scatstartdate2
-      integer costIceStart1
-      integer costIceStart2
-      integer costIceEnd1
-      integer costIceEnd2
-      integer tempDate1(4)
-      integer tempDate2(4)
 
 c     == end of interface ==
 
@@ -70,15 +50,21 @@ c--   Read the namelist input.
      &                   ersperiod, ersfile,
      &                   scatstartdate1, scatstartdate2, 
      &                   scatperiod, scatxdatfile, scatydatfile,
+     &                   scatx_errfile, scaty_errfile,
      &                   ssh_errfile,
+     &                   tmistartdate1, tmistartdate2, tmidatfile,
      &                   sststartdate1, sststartdate2, sstdatfile, 
      &                   sssstartdate1, sssstartdate2, sssdatfile, 
      &                   tdatfile, sdatfile,
      &                   ctdtfile, ctdsfile,
-     &                   xbtfile, argotfile, argosfile,
+     &                   ctdtclimfile, ctdsclimfile,
+     &                   xbtfile,
+     &                   argotstartdate1, argotstartdate2, argotfile,
+     &                   argosstartdate1, argosstartdate2, argosfile,
      &                   udriftfile, vdriftfile,
      &                   udrifterrfile, vdrifterrfile,
-     &                   salterrfile, temperrfile,
+     &                   curmtrufile,curmtrvfile,
+     &                   salterrfile, temperrfile, velerrfile,
      &                   hflux_errfile, sflux_errfile,
      &                   tauu_errfile, tauv_errfile,
      &                   atemp_errfile, aqh_errfile,
@@ -87,13 +73,19 @@ c--   Read the namelist input.
      &                   mult_hflux, mult_sflux, mult_tauu, mult_tauv,
      &                   mult_atemp, mult_aqh, mult_uwind, mult_vwind,
      &                   mult_hmean, mult_h, mult_temp, mult_salt,
-     &                   mult_sst, mult_sss, mult_atl,
-     &                   mult_ctdt, mult_ctds, mult_xbt, mult_drift,
+     &                   mult_tmi, mult_sst, mult_sss, mult_atl,
+     &                   mult_ctdt, mult_ctds, 
+     &                   mult_ctdtclim, mult_ctdsclim, 
+     &                   mult_xbt, mult_drift,
      &                   mult_argot, mult_argos,
      &                   mult_scatx, mult_scaty,
      &                   mult_sdrift, mult_tdrift, mult_wdrift,
      &                   mult_temp0, mult_salt0,
+     &                   mult_obcsn, mult_obcss,
+     &                   mult_obcsw, mult_obcse, mult_obcsvol,
+     &                   mult_curmtr, mult_ageos,
      &                   mult_ice,
+     &                   mult_kapgm, mult_diffkr,
      &                   costIceStart1, costIceStart2,
      &                   costIceEnd1, costIceEnd2,
      &                   cost_ice_flag,
@@ -130,6 +122,11 @@ c--     Set default values.
         scatxdatfile          =    ' '
         scatydatfile          =    ' '
         ssh_errfile           =    ' '
+        scatx_errfile         =    ' '
+        scaty_errfile         =    ' '
+        tmistartdate1         =      0
+        tmistartdate2         =      0
+        tmidatfile            =    ' '
         sststartdate1         =      0
         sststartdate2         =      0
         sstdatfile            =    ' '
@@ -140,8 +137,16 @@ c--     Set default values.
         sdatfile              =    ' '
         ctdtfile              =    ' '
         ctdsfile              =    ' '
+        ctdtclimfile          =    ' '
+        ctdsclimfile          =    ' '
+        curmtrufile           =    ' '
+        curmtrvfile           =    ' '
         xbtfile               =    ' '
+        argotstartdate1       =      0
+        argotstartdate2       =      0
         argotfile             =    ' '
+        argosstartdate1       =      0
+        argosstartdate2       =      0
         argosfile             =    ' '
         udriftfile            =    ' '
         vdriftfile            =    ' '
@@ -149,6 +154,7 @@ c--     Set default values.
         vdrifterrfile         =    ' '
         salterrfile           =    ' '
         temperrfile           =    ' '
+        velerrfile            =    ' '
         hflux_errfile         =    ' '
         sflux_errfile         =    ' '
         tauu_errfile          =    ' '
@@ -173,11 +179,14 @@ c--     Set default values.
         mult_salt             =      0. _d 0
         mult_temp0            =      0. _d 0
         mult_salt0            =      0. _d 0
+        mult_tmi              =      0. _d 0
         mult_sst              =      0. _d 0
         mult_sss              =      0. _d 0
         mult_atl              =      0. _d 0
         mult_ctdt             =      0. _d 0
         mult_ctds             =      0. _d 0
+        mult_ctdtclim         =      0. _d 0
+        mult_ctdsclim         =      0. _d 0
         mult_xbt              =      0. _d 0
         mult_argot            =      0. _d 0
         mult_argos            =      0. _d 0
@@ -187,7 +196,16 @@ c--     Set default values.
         mult_wdrift           =      0. _d 0
         mult_scatx            =      0. _d 0
         mult_scaty            =      0. _d 0
+        mult_obcsn            =      0. _d 0
+        mult_obcss            =      0. _d 0
+        mult_obcsw            =      0. _d 0
+        mult_obcse            =      0. _d 0
+        mult_obcsvol          =      0. _d 0
+        mult_ageos            =      0. _d 0
+        mult_curmtr           =      0. _d 0
         mult_ice              =      0. _d 0
+        mult_kapgm            =      0. _d 0
+        mult_diffkr           =      0. _d 0
         costIceStart1         =      0
         costIceStart2         =      0
         costIceEnd1           =      0
@@ -203,41 +221,6 @@ c--     Next, read the cost data file.
         end if
         read(  scrunit1, nml = cost_nml )
         close( scrunit1 )
-
-c--     Get the complete dates of the ...
-c--     ... SST data.
-        call cal_FullDate( sststartdate1,   sststartdate2,
-     &                     sststartdate,    mythid )
-c--     ... SSS data.
-        call cal_FullDate( sssstartdate1,   sssstartdate2,
-     &                     sssstartdate,    mythid )     
-c--     ... T/P data.
-        call cal_FullDate( topexstartdate1, topexstartdate2,
-     &                     topexstartdate,  mythid )
-c--     ... ERS data.
-        call cal_FullDate( ersstartdate1,   ersstartdate2,
-     &                     ersstartdate,    mythid )
-c--     ... SCAT data.
-        call cal_FullDate( scatstartdate1,  scatstartdate2,
-     &                     scatxstartdate,  mythid )
-        call cal_FullDate( scatstartdate1,  scatstartdate2,   
-     &                     scatystartdate,  mythid )
-
-c--   Sea-ice cost function start and stop times in model seconds.
-
-        call cal_FullDate  ( costIceStart1 , costIceStart2,
-     &                       tempDate1     , mythid )
-        call cal_TimePassed( modelstartdate, tempDate1    ,
-     &                       tempDate2     , mythid )
-        call cal_ToSeconds ( tempDate2 , costIceStart , mythid )
-        costIceStart = costIceStart + startTime
-
-        call cal_FullDate  ( costIceEnd1   , costIceEnd2  ,
-     &                       tempDate1     , mythid )
-        call cal_TimePassed( modelstartdate, tempDate1    ,
-     &                       tempDate2     , mythid )
-        call cal_ToSeconds ( tempDate2 , costIceEnd , mythid )
-        costIceEnd = costIceEnd + startTime
 
       _END_MASTER( mythid )
 

@@ -103,6 +103,31 @@ c     == end of interface ==
         enddo
       enddo
 
+cgg(  Also initialize the tmp fields used in ctrl_getobcs and cost_obcs.
+#ifdef OBCS_CONTROL
+      do bj = jtlo,jthi
+        do bi = itlo,ithi
+          do k = 1,nr
+            do j = jmin,jmax
+              tmpfldyz (j,k,bi,bj) = 0. _d 0
+              tmpfldyz2(j,k,bi,bj) = 0. _d 0
+            enddo
+          enddo
+        enddo
+      enddo
+      do bj = jtlo,jthi
+        do bi = itlo,ithi
+          do k = 1,nr
+            do i =  imin,imax
+              tmpfldxz (i,k,bi,bj) = 0. _d 0
+              tmpfldxz2(i,k,bi,bj) = 0. _d 0
+            enddo
+          enddo
+        enddo
+      enddo
+#endif
+cgg)
+
 #ifdef ALLOW_SSH_COST_CONTRIBUTION
 c--   Save psbar on file.
       ilps=ilnblnk( psbarfile )
@@ -121,6 +146,7 @@ c--   Save psbar on file.
 
 #if (defined (ALLOW_THETA_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDT_COST_CONTRIBUTION) || \
+     defined (ALLOW_CTDTCLIM_COST_CONTRIBUTION) || \
      defined (ALLOW_XBT_COST_CONTRIBUTION) || \
      defined (ALLOW_DRIFT_COST_CONTRIBUTION) || \
      defined (ALLOW_OBCS_COST_CONTRIBUTION))
@@ -156,6 +182,7 @@ c--   Save tbar on file.
 
 #if (defined (ALLOW_SALT_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDS_COST_CONTRIBUTION) || \
+     defined (ALLOW_CTDSCLIM_COST_CONTRIBUTION) || \
      defined (ALLOW_DRIFT_COST_CONTRIBUTION) || \
      defined (ALLOW_OBCS_COST_CONTRIBUTION))
 c--   Save sbar.
@@ -189,8 +216,11 @@ c--   Save sbar.
 #endif
 #endif
 
-#if (defined (ALLOW_OBCS_COST_CONTRIBUTION))
-cph  defined (ALLOW_DRIFTER_COST_CONTRIBUTION) || \
+#if (defined (ALLOW_DRIFTER_COST_CONTRIBUTION) || \
+     defined (ALLOW_CURMTR_COST_CONTRIBUTION) || \
+     defined (OBCS_AGEOS_COST_CONTRIBUTION))
+cph#if (defined (ALLOW_OBCS_COST_CONTRIBUTION))
+cph     defined (ALLOW_DRIFTER_COST_CONTRIBUTION) || \
 cph   There's a mismatch between the cost_drifer and the 
 cph   cost_obcs usage of ubar, vbar.
 cph   cost_obcs refers to monthly means, cost_drifer to total mean.
@@ -227,7 +257,7 @@ c--   Save wbar
       write(adfnamewbar,'(3a,i10.10)') 
      &     yadprefix, wbarfile(1:ils), '.', optimcycle
 
-      do irec = 1, 12
+      do irec = 1,nmonsrec
         call active_write_xyz( fnamewbar, tmpfld3d, irec,
      &                         optimcycle, mythid, xx_wbar_mean_dummy)
         call active_write_xyz( adfnamewbar, tmpfld3d, irec,

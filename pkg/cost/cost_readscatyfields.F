@@ -82,8 +82,21 @@ ce    --> there is certainly a better place for this.
      &           (nmonthyear - mod(scatystartdate(1)/100,100) +
      &            1) + mod(modelstartdate(1)/100,100) - 1 + irec
       endif
-      call mdsreadfield( scatydatfile, cost_iprec, cost_yftype, 1, 
+
+      if ( scatyrec .gt. 0 .and. scatydatfile .ne. ' ' ) then
+        call mdsreadfield( scatydatfile, cost_iprec, cost_yftype, 1, 
      &                   scatydat, scatyrec, mythid )
+      else
+         do bj = jtlo,jthi
+            do bi = itlo,ithi
+               do j = jmin,jmax
+                  do i = imin,imax
+                     scatydat(i,j,bi,bj)=0. _d 0
+                  enddo
+               enddo
+            enddo
+         enddo
+      endif
 
       nobs = 0
       do bj = jtlo,jthi

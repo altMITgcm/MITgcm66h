@@ -80,6 +80,10 @@ c     == local variables ==
 
       character*(MAX_LEN_MBUF) msgbuf
 
+#ifdef GENERIC_BAR_MONTH
+      integer mrec, nyears, iyear
+#endif
+
 c     == external functions ==
 
       integer  ilnblnk
@@ -123,15 +127,45 @@ c--   Read tiled data.
         iltheta = ilnblnk( tbarfile )
         write(fnametheta(1:80),'(2a,i10.10)')
      &    tbarfile(1:iltheta),'.',optimcycle
-      else
-        print*
-        print*,' cost_Theta: optimcycle has a wrong value.'
-        print*,'             optimcycle = ',optimcycle
-        print*
-        stop   '  ... stopped in cost_Theta.'
       endif
 
       fcthread = 0. _d 0
+
+#ifdef GENERIC_BAR_MONTH
+
+c--   Loop over month
+      do irec = 1,12
+         nyears=int((nmonsrec-irec)/12)+1
+         if(nyears.gt.0) then
+            do iyear=1,nyears
+            mrec=irec+(iyear-1)*12
+c--     Read time averages and the monthly mean data.
+            call active_read_xyz( fnametheta, tbar, mrec,
+     &           doglobalread, ladinit,
+     &           optimcycle, mythid,
+     &           xx_tbar_mean_dummy )
+            do bj = jtlo,jthi
+               do bi = itlo,ithi
+                  do k = 1,nr
+                     do j = jmin,jmax
+                        do i = imin,imax
+                           if(iyear.eq.1) then
+                              tbar_gen(i,j,k,bi,bj) =tbar(i,j,k,bi,bj)
+                           elseif(iyear.eq.nyears) then
+                              tbar(i,j,k,bi,bj) =(tbar_gen(i,j,k,bi,bj)
+     $                             +tbar(i,j,k,bi,bj))/float(nyears)
+                           else
+                          tbar_gen(i,j,k,bi,bj) =tbar_gen(i,j,k,bi,bj)
+     $                             +tbar(i,j,k,bi,bj)
+                           endif
+                        enddo
+                     enddo
+                  enddo
+               enddo
+            enddo
+         enddo
+
+#else
 
 c--   Loop over records.
       do irec = 1,nmonsrec
@@ -141,6 +175,8 @@ c--     Read time averages and the monthly mean data.
      &                        doglobalread, ladinit,
      &                        optimcycle, mythid,
      &                        xx_tbar_mean_dummy )
+
+#endif
 
 c--     Determine the month to be read.
         levoff = mod(modelstartdate(1)/100,100)
@@ -244,33 +280,12 @@ c--     Print cost function for all tiles.
      &                      SQUEEZE_RIGHT , mythid)
 #endif
 
+#ifdef GENERIC_BAR_MONTH
+        endif
+#endif
+
       enddo
 c--   End of loop over records.
-
-#else
-c--   Do not enter the calculation of the temperature contribution to
-c--   the final cost function.
-
-#ifdef ECCO_VERBOSE
-      _BEGIN_MASTER( mythid )
-        write(msgbuf,'(a)') ' '
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-        write(msgbuf,'(a,a)')
-     &    ' cost_Theta: no contribution of temperature field ',
-     &                 'to cost function.'
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-        write(msgbuf,'(a,a,i9.8)')
-     &    ' cost_Theta: number of records that would have',
-     &                ' been processed: ',nmonsrec
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-        write(msgbuf,'(a)') ' '
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-      _END_MASTER( mythid )
-#endif
 
 #endif
 

@@ -23,6 +23,9 @@ c
 c              - corrected typo in mdsreadfield( sflux_errfile );
 c                wp --> wsflux. Spotted by Patrick Heimbach.
 c
+c              - merged gebbie@mit.edu obcs development 
+c                heimbach@mit.edu 16-Jun-2003
+c
 c     ==================================================================
 c     SUBROUTINE cost_weights
 c     ==================================================================
@@ -59,7 +62,6 @@ c     == local variables ==
       _RL factor
       _RL wti(nr)
       _RL wsi(nr)
-      _RL wui(nr)
       _RL wvi(nr)
       _RL whflux0
       _RL whflux0m
@@ -69,6 +71,9 @@ c     == local variables ==
       _RL wtau0m
       _RL ratio
       _RL dummy
+
+      _RL tmpfldxz (1-olx:snx+olx,nr,nsx,nsy)
+      _RL tmpfldyz (1-oly:sny+oly,nr,nsx,nsy)
 
 c     == external ==
 
@@ -92,7 +97,6 @@ c--   Initialize variance (weight) fields.
       do k = 1,nr
          wti(k) = 0. _d 0
          wsi(k) = 0. _d 0
-         wui(k) = 0. _d 0
          wvi(k) = 0. _d 0
       enddo
       do bj = jtlo,jthi
@@ -131,27 +135,34 @@ c--   Initialize variance (weight) fields.
             wctds  (k,bi,bj) = 0. _d 0
             do j = jmin,jmax
               do i = imin,imax
-                wtheta2 (i,j,k,bi,bj) = 0. _d 0
-                wsalt2  (i,j,k,bi,bj) = 0. _d 0
+                wtheta2 (i,j,k,bi,bj)   = 0. _d 0
+                wsalt2  (i,j,k,bi,bj)   = 0. _d 0
+                wthetaLev (i,j,k,bi,bj) = 0. _d 0
+                wsaltLev  (i,j,k,bi,bj) = 0. _d 0
               enddo
             enddo
           enddo
         enddo
       enddo
 
-#ifdef ALLOW_OBCS_COST_CONTRIBUTION
+#if (defined (ALLOW_OBCS_COST_CONTRIBUTION) || \
+     defined (ALLOW_OBCS_CONTROL))
       do iobcs = 1,nobcs
         do k = 1,Nr
-#ifdef ALLOW_OBCSN_COST_CONTRIBUTION
+#if (defined (ALLOW_OBCSN_CONTROL) || \
+     defined (ALLOW_OBCSN_COST_CONTRIBUTION))
           wobcsn(k,iobcs) = 0. _d 0
 #endif
-#ifdef ALLOW_OBCSS_COST_CONTRIBUTION
+#if (defined (ALLOW_OBCSS_CONTROL) || \
+     defined (ALLOW_OBCSS_COST_CONTRIBUTION))
           wobcss(k,iobcs) = 0. _d 0
 #endif
-#ifdef ALLOW_OBCSW_COST_CONTRIBUTION
+#if (defined (ALLOW_OBCSW_CONTROL) || \
+     defined (ALLOW_OBCSW_COST_CONTRIBUTION))
           wobcsw(k,iobcs) = 0. _d 0
 #endif
-#ifdef ALLOW_OBCSE_COST_CONTRIBUTION
+#if (defined (ALLOW_OBCSE_CONTROL) || \
+     defined (ALLOW_OBCSE_COST_CONTRIBUTION))
           wobcse(k,iobcs) = 0. _d 0
 #endif
         enddo
@@ -185,9 +196,9 @@ c--   First account for the grid used.
         do bi = itlo,ithi
           do j = jmin,jmax
             do i = imin,imax
-cds              cosphi(i,j,bi,bj) = cos(yc(i,j,bi,bj)*deg2rad*factor)*
-cds     &                            frame(i,j)
-              cosphi(i,j,bi,bj) = frame(i,j)
+              cosphi(i,j,bi,bj) = cos(yc(i,j,bi,bj)*deg2rad*factor)*
+     &                            frame(i,j)
+cdscphcgg              cosphi(i,j,bi,bj) = frame(i,j)
             enddo
           enddo
         enddo
@@ -201,11 +212,20 @@ c--   Read error information and set up weight matrices.
         open(gwunit, file=data_errfile(ilo:ihi),
      &               status='old', form='formatted')
 
-        read(gwunit,*) whflux0, wsflux0, wtau0, ratio
+        read(gwunit,*) whflux0, wsflux0, wtau0
+#if (defined (ALLOW_OBCS_COST_CONTRIBUTION) || \
+     defined (ALLOW_OBCS_CONTROL))
+     &               , ratio
+#endif
         do k = 1,nr
           read(gwunit,*) wti(k), wsi(k)
+#if (defined (ALLOW_OBCS_COST_CONTRIBUTION) || \
+     defined (ALLOW_OBCS_CONTROL))
+     &               , wvi(k)
+#endif
         end do
         close(gwunit)
+
         whflux0m = whflux0
         wsflux0m = wsflux0
         wtau0m   = wtau0
@@ -228,33 +248,34 @@ c--       The "classic" state estimation tool wastes memory here;
 c--       as long as there is not more information available there
 c--       is no need to add the zonal and meridional directions.
           do k = 1,nr
-            wtheta(k,bi,bj) = wti(k)
-            wsalt (k,bi,bj) = wsi(k)
+            wtheta  (k,bi,bj) = wti(k)
+            wsalt   (k,bi,bj) = wsi(k)
+            wcurrent(k,bi,bj) = wvi(k)
           enddo
 
           do k = 1,nr
 #ifdef ALLOW_OBCSN_COST_CONTRIBUTION
             wobcsn(k,1) = wti(k)
             wobcsn(k,2) = wsi(k)
-            wobcsn(k,3) = wui(k)
+            wobcsn(k,3) = wvi(k)
             wobcsn(k,4) = wvi(k)
 #endif
 #ifdef ALLOW_OBCSS_COST_CONTRIBUTION
             wobcss(k,1) = wti(k)
             wobcss(k,2) = wsi(k)
-            wobcss(k,3) = wui(k)
+            wobcss(k,3) = wvi(k)
             wobcss(k,4) = wvi(k)
 #endif
 #ifdef ALLOW_OBCSW_COST_CONTRIBUTION
             wobcsw(k,1) = wti(k)
             wobcsw(k,2) = wsi(k)
-            wobcsw(k,3) = wui(k)
+            wobcsw(k,3) = wvi(k)
             wobcsw(k,4) = wvi(k)
 #endif
 #ifdef ALLOW_OBCSE_COST_CONTRIBUTION
             wobcse(k,1) = wti(k)
             wobcse(k,2) = wsi(k)
-            wobcse(k,3) = wui(k)
+            wobcse(k,3) = wvi(k)
             wobcse(k,4) = wvi(k)
 #endif
           enddo
@@ -266,11 +287,13 @@ c--       is no need to add the zonal and meridional directions.
                 wsst(i,j,bi,bj) = 0. _d 0
                 wsss(i,j,bi,bj) = 0. _d 0
               else
-cph                wsst(i,j,bi,bj) = wtheta(k,bi,bj)*10.
-cph                wsss(i,j,bi,bj) = wsalt(k,bi,bj)*10.
+                wsst(i,j,bi,bj) = wtheta(k,bi,bj)*10.
+                wsss(i,j,bi,bj) = wsalt(k,bi,bj)*10.
+cph                wsst(i,j,bi,bj) = wthetaLev(i,j,k,bi,bj)*frame(i,j)
+cph                wsss(i,j,bi,bj) = wsaltLev(i,j,k,bi,bj)*frame(i,j)
 cph       factor 5. by D Stammer
-                wsst(i,j,bi,bj) = wtheta(k,bi,bj)*frame(i,j)*5.
-                wsss(i,j,bi,bj) = wsalt(k,bi,bj)*frame(i,j)*5.
+cph                wsst(i,j,bi,bj) = wtheta(k,bi,bj)*frame(i,j)*5.
+cph                wsss(i,j,bi,bj) = wsalt(k,bi,bj)*frame(i,j)*5.
               endif
             enddo
           enddo
@@ -278,11 +301,54 @@ cph       factor 5. by D Stammer
       enddo
 
 #if (defined (ALLOW_ARGO_SALT_COST_CONTRIBUTION) || \
-     defined (ALLOW_CTDS_COST_CONTRIBUTION))
+     defined (ALLOW_CTDS_COST_CONTRIBUTION) || \
+     defined (ALLOW_CTDSCLIM_COST_CONTRIBUTION) || \
+     defined (ALLOW_OBCS_COST_CONTRIBUTION) || \
+     defined (ALLOW_SALT_COST_CONTRIBUTION))
 
       if ( salterrfile .NE. ' ' ) then
-         call mdsreadfield( salterrfile, 32, 'RL', 1, wsalt2, 1,
-     &                      mythid)
+         call mdsreadfield( salterrfile, cost_iprec, 'RL', 1, wsalt2,
+     &                    1, mythid)
+
+cgg    Choose the proper energy of wtheta2 depending on the situation.
+         do bj = jtlo,jthi
+          do bi = itlo,ithi
+           do k = 1,nr
+            do j = jmin,jmax
+             do i = imin,imax
+#ifdef COST_WEIGHTS_EDDY_NOISE
+cgg         58 percent of energy is at less than 400km, which I call the
+cgg         eddy signal. sqrt(.58)= .75 .
+cgg                wsalt2(i,j,k,bi,bj) = wsalt2(i,j,k,bi,bj)
+cgg                                      *0.75*_hFacC(i,j,k,bi,bj)
+
+cgg         48 percent of energy is at less than 300km.
+cgg         sqrt(.48) = .69 .
+                wsalt2(i,j,k,bi,bj) = wsalt2(i,j,k,bi,bj)*0.69
+     &                                *_hFacC(i,j,k,bi,bj)*frame(i,j)
+cgg         The instrumental error is much less than the eddy signal.
+#endif
+#ifdef COST_WEIGHTS_2X_EDDY_NOISE
+cgg    P.Huybers has reminded me that 2x eddy energy is 1.41x eddy std's.
+cgg    However, the model doesn't have enough variability. Figure that in.
+cgg    Suppose model has 40% of eddy energy. sqrt(1 + .4) = 1.18
+cgg                wsalt2(i,j,k,bi,bj)=1.41*(wsalt2(i,j,k,bi,bj)*0.75)
+                wsalt2(i,j,k,bi,bj) = wsalt2(i,j,k,bi,bj)*1.18*0.69
+     &                                *_hFacC(i,j,k,bi,bj)*frame(i,j)
+#endif
+#ifdef COST_WEIGHTS_EDDY_RESOLVE
+cgg         6 percent of energy is at less than 100km, which we never hope
+cgg         to really resolve. sqrt(.06)= .25 .
+                wsalt2(i,j,k,bi,bj) = wsalt2(i,j,k,bi,bj)*0.25
+     &                                *_hFacC(i,j,k,bi,bj)*frame(i,j)
+#endif
+             enddo
+            enddo
+           enddo
+          enddo
+         enddo
+
+cgg     For Levitus comparisons, make the proper weight, and call it wthetaLev.
 
          do bj = jtlo,jthi
           do bi = itlo,ithi
@@ -292,12 +358,21 @@ cph       factor 5. by D Stammer
 c--           Test for missing values.
               if (wsalt(k,bi,bj).eq.0 .and. 
      $            wsalt2(i,j,k,bi,bj).eq.0) then
-                 wsalt2(i,j,k,bi,bj) = 0. _d 0
+                 wsaltLev(i,j,k,bi,bj) = 0. _d 0
               else
-                 wsalt2(i,j,k,bi,bj)=
-     $                ( SQRT(wsalt(k,bi,bj)*wsalt(k,bi,bj) 
-     $                  +wsalt2(i,j,k,bi,bj)*wsalt2(i,j,k,bi,bj)) )
-     $                *frame(i,j)
+cgg    Flags are confusing here...
+#ifdef COST_WEIGHTS_EDDY_NOISE
+                 wsaltLev(i,j,k,bi,bj) = wsalt2(i,j,k,bi,bj)
+     &                                   *_hFacC(i,j,k,bi,bj)*frame(i,j)
+#endif
+#if (defined (COST_WEIGHTS_2X_EDDY_NOISE) || \
+     defined (COST_WEIGHTS_EDDY_RESOLVE))
+                 wsaltLev(i,j,k,bi,bj) = 
+     $                ( wsalt(k,bi,bj)*wsalt(k,bi,bj) +
+     $                  wsalt2(i,j,k,bi,bj)*wsalt2(i,j,k,bi,bj) )
+                 wsaltLev(i,j,k,bi,bj) = sqrt(wsaltLev(i,j,k,bi,bj))
+     &                                   *_hFacC(i,j,k,bi,bj)*frame(i,j)
+#endif
               endif
              enddo
             enddo
@@ -310,7 +385,8 @@ c--           Test for missing values.
            do k = 1,nr
             do j = jmin,jmax
              do i = imin,imax
-                wsalt2(i,j,k,bi,bj) = wsalt(k,bi,bj)*frame(i,j)
+                wsaltLev(i,j,k,bi,bj) = wsalt(k,bi,bj)
+     &                                  *_hFacC(i,j,k,bi,bj)*frame(i,j)
              enddo
             enddo
            enddo
@@ -321,11 +397,50 @@ c--           Test for missing values.
 
 #if (defined (ALLOW_ARGO_THETA_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDT_COST_CONTRIBUTION) || \
-     defined (ALLOW_XBT_COST_CONTRIBUTION))
+     defined (ALLOW_CTDTCLIM_COST_CONTRIBUTION) || \
+     defined (ALLOW_XBT_COST_CONTRIBUTION) || \
+     defined (ALLOW_THETA_COST_CONTRIBUTION) || \
+     defined (ALLOW_OBCS_COST_CONTRIBUTION))
 
       if ( temperrfile .NE. ' ' ) then
-         call mdsreadfield( temperrfile, 32, 'RL', 1, wtheta2, 1,
-     &                      mythid)
+         call mdsreadfield( temperrfile, cost_iprec, 'RL', 1, wtheta2,
+     &                    1, mythid)
+
+cgg    Choose the proper energy of wtheta2 depending on the situation.
+         do bj = jtlo,jthi
+          do bi = itlo,ithi
+           do k = 1,nr
+            do j = jmin,jmax
+             do i = imin,imax
+#ifdef COST_WEIGHTS_EDDY_NOISE
+cgg         58 percent of energy is at less than 400km, which I call the
+cgg         eddy signal. sqrt(.58)= .75 .
+cgg                wtheta2(i,j,k,bi,bj) = (wtheta2(i,j,k,bi,bj)*0.75) 
+
+cgg         To be consistent with SSH, change to .69 . 
+                wtheta2(i,j,k,bi,bj) = wtheta2(i,j,k,bi,bj)*0.69
+     &                                 *_hFacC(i,j,k,bi,bj)*frame(i,j)
+cgg         The instrumental error is much less than the eddy signal.
+#endif
+#ifdef COST_WEIGHTS_2X_EDDY_NOISE
+cgg                wtheta2(i,j,k,bi,bj)=1.41*(wtheta2(i,j,k,bi,bj)*0.75)
+                wtheta2(i,j,k,bi,bj)=1.18*wtheta2(i,j,k,bi,bj)*0.69
+     &                                *_hFacC(i,j,k,bi,bj)*frame(i,j)
+#endif
+#ifdef COST_WEIGHTS_EDDY_RESOLVE
+cgg         6 percent of energy is at less than 100km, which we never hope
+cgg         to really resolve. sqrt(.06)= .25 .
+                wtheta2(i,j,k,bi,bj)= wtheta2(i,j,k,bi,bj)*0.25
+     &                                *_hFacC(i,j,k,bi,bj)*frame(i,j)
+#endif
+             enddo
+            enddo
+           enddo
+          enddo
+         enddo
+
+cgg     For Levitus comparisons, make the proper weight, and call it wthetaLev.
+
          do bj = jtlo,jthi
           do bi = itlo,ithi
            do k = 1,nr
@@ -334,12 +449,35 @@ c--           Test for missing values.
 c--           Test for missing values.
               if (wtheta(k,bi,bj).eq.0 .and. 
      $            wtheta2(i,j,k,bi,bj).eq.0) then
-                 wtheta2(i,j,k,bi,bj) = 0. _d 0
+                 wthetaLev(i,j,k,bi,bj) = 0. _d 0
               else
-                 wtheta2(i,j,k,bi,bj)=
-     $                ( SQRT(wtheta(k,bi,bj)*wtheta(k,bi,bj) 
-     $                  +wtheta2(i,j,k,bi,bj)*wtheta2(i,j,k,bi,bj)) )
-     $                *frame(i,j)
+cgg    Flags are confusing here...
+#ifdef COST_WEIGHTS_EDDY_NOISE
+cgg    EDDY_NOISE refers to a coarse resolution run.
+                 wthetaLev(i,j,k,bi,bj) = wtheta(k,bi,bj)*frame(i,j)
+     &                                    *_hFacC(i,j,k,bi,bj)
+#endif
+#ifdef COST_WEIGHTS_EDDY_RESOLVE
+cgg    EDDY_RESOLVE refers to a model run with eddies, and we 
+cgg    want a fit to eddies in data. Because Levitus does not 
+cgg    include eddies, we must consider this error.
+                 wthetaLev(i,j,k,bi,bj) = 
+     $                ( wtheta(k,bi,bj)*wtheta(k,bi,bj) +
+     $                3*wtheta2(i,j,k,bi,bj)*3*wtheta2(i,j,k,bi,bj) )
+                 wthetaLev(i,j,k,bi,bj)= sqrt(wthetaLev(i,j,k,bi,bj)) 
+     &                                   *_hFacC(i,j,k,bi,bj)*frame(i,j)
+#endif
+#ifdef COST_WEIGHTS_2X_EDDY_NOISE
+cgg    2X_EDDY_NOISE refers to a model run with eddies, and we 
+cgg    DON'T want a fit to eddies in data. Because Levitus does not 
+cgg    include eddies, we must consider this error.
+cgg     1/1.18 = .847 .
+                 wthetaLev(i,j,k,bi,bj) = 
+     $               ( wtheta(k,bi,bj)*wtheta(k,bi,bj) +
+     $           0.847*wtheta2(i,j,k,bi,bj)*0.847*wtheta2(i,j,k,bi,bj) )
+                 wthetaLev(i,j,k,bi,bj) = sqrt(wthetaLev(i,j,k,bi,bj)) 
+     &                                   *_hFacC(i,j,k,bi,bj)*frame(i,j)
+#endif
               endif
              enddo
             enddo
@@ -352,7 +490,8 @@ c--           Test for missing values.
            do k = 1,nr
             do j = jmin,jmax
              do i = imin,imax
-                wtheta2(i,j,k,bi,bj) = wtheta(k,bi,bj)*frame(i,j)
+                wthetaLev(i,j,k,bi,bj) = wtheta(k,bi,bj)
+     &                                   *_hFacC(i,j,k,bi,bj)*frame(i,j)
              enddo
             enddo
            enddo
@@ -361,40 +500,124 @@ c--           Test for missing values.
       endif
 #endif
 
-#ifdef ALLOW_EGM96_ERROR_DIAG
-c--   Read egm-96 geoid covariance. Data in units of meters.
-      nnz   =  1
-      irec  =  1
-      call mdsreadfield( geoid_errfile, cost_iprec, cost_yftype, nnz, 
-     &                   wp, irec, mythid )
-c--   Set all tile edges to zero.
-      do bj = jtlo,jthi
-        do bi = itlo,ithi
-          do j = jmin,jmax
-            do i = imin,imax
-              wp    (i,j,bi,bj) = wp(i,j,bi,bj)*frame(i,j)
+cgg    Read in the current meter velocity error field.
+#if (defined (ALLOW_CURMTR_COST_CONTRIBUTION) || \
+     defined (ALLOW_OBCS_COST_CONTRIBUTION))
+
+      if ( velerrfile .NE. ' ' ) then
+         call mdsreadfield( velerrfile, cost_iprec, 'RL', nr, wcurrent2,
+     &                     1, mythid)
+
+cgg    Choose the proper energy of wcurrent2 depending on the situation.
+         do bj = jtlo,jthi
+          do bi = itlo,ithi
+           do k = 1,nr
+            do j = jmin,jmax
+             do i = imin,imax
+               if (wcurrent2(i,j,k,bi,bj) .lt. 0.)
+     &               wcurrent2(i,j,k,bi,bj) = 0.
+               endif
+#ifdef COST_WEIGHTS_EDDY_NOISE
+cgg         95 percent of energy is at less than 400km, which I call the
+cgg         eddy signal. sqrt(.95)= .97 .
+cgg         CHANGED .97 -> .90, 1.41 -> 1.18 .
+cgg                wcurrent2(i,j,k,bi,bj) = (wcurrent2(i,j,k,bi,bj)*0.97) 
+                wcurrent2(i,j,k,bi,bj) = wcurrent2(i,j,k,bi,bj)*0.90
+     &                                   *_hFacC(i,j,k,bi,bj)*frame(i,j)
+cgg         The instrumental error is much less than the eddy signal.
+#endif
+#ifdef COST_WEIGHTS_2X_EDDY_NOISE
+cgg     P.huybers Fix.
+cgg                wcurrent2(i,j,k,bi,bj)=1.41*(wcurrent2(i,j,k,bi,bj)
+                wcurrent2(i,j,k,bi,bj) = wcurrent2(i,j,k,bi,bj)*1.18*0.9
+     &                                   *_hFacC(i,j,k,bi,bj)*frame(i,j)
+#endif
+#ifdef COST_WEIGHTS_EDDY_RESOLVE
+cgg         47 percent of energy is at less than 100km, which we never hope
+cgg         to really resolve. sqrt(.47)= .69 .
+                wcurrent2(i,j,k,bi,bj) = wcurrent2(i,j,k,bi,bj)*0.69
+     &                                   *_hFacC(i,j,k,bi,bj)*frame(i,j)
+#endif
+             enddo
             enddo
+           enddo
           enddo
-        enddo
-      enddo
-#else
-      do bj = jtlo,jthi
-        do bi = itlo,ithi
-          do j = jmin,jmax
-            do i = imin,imax
-              wp(i,j,bi,bj) = frame(i,j)
+         enddo
+
+cgg     For the O.B. velocity comparisons, make the proper weight, 
+cgg     and call it wcurrentLev.
+         do bj = jtlo,jthi
+          do bi = itlo,ithi
+           do k = 1,nr
+            do j = jmin,jmax
+             do i = imin,imax
+c--           Test for missing values.
+              if (wcurrent(k,bi,bj).eq.0 .and. 
+     $            wcurrent2(i,j,k,bi,bj).eq.0) then
+                 wcurrentLev(i,j,k,bi,bj) = 0. _d 0
+              else
+cgg    Flags are confusing here...
+#ifdef COST_WEIGHTS_EDDY_NOISE
+cgg    EDDY_NOISE refers to a coarse resolution run.
+                 wcurrentLev(i,j,k,bi,bj) = wcurrent(k,bi,bj)
+     &                *_hFacC(i,j,k,bi,bj)*frame(i,j)
+#endif
+#ifdef COST_WEIGHTS_EDDY_RESOLVE
+cgg    EDDY_RESOLVE refers to a model run with eddies, and we 
+cgg    want a fit to eddies in data. Because Levitus does not 
+cgg    include eddies, we must consider this error.
+cgg    .98/.69 = 1.4 .
+                 wcurrentLev(i,j,k,bi,bj) = 
+     $                ( wcurrent(k,bi,bj)*wcurrent(k,bi,bj) +
+     $         1.4*wcurrent2(i,j,k,bi,bj)*1.4*wcurrent2(i,j,k,bi,bj) )
+                 wcurrentLev(i,j,k,bi,bj) = 
+     &                sqrt(wcurrentLev(i,j,k,bi,bj))
+     &                *_hFacC(i,j,k,bi,bj)*frame(i,j)
+#endif
+#ifdef COST_WEIGHTS_2X_EDDY_NOISE
+cgg    2X_EDDY_NOISE refers to a model run with eddies, and we 
+cgg    DON'T want a fit to eddies in data. Because Levitus does not 
+cgg    include eddies, we must consider this error.
+cgg    .707 = sqrt(1/2). P Huybers Fix.
+                 wcurrentLev(i,j,k,bi,bj) = 
+     $                ( wcurrent(k,bi,bj)*wcurrent(k,bi,bj) 
+     $      +0.847*wcurrent2(i,j,k,bi,bj)*0.847*wcurrent2(i,j,k,bi,bj) )
+                 wcurrentLev(i,j,k,bi,bj) = 
+     &                sqrt(wcurrentLev(i,j,k,bi,bj))
+     &                *_hFacC(i,j,k,bi,bj)*frame(i,j)
+#endif
+              endif
+             enddo
             enddo
+           enddo
           enddo
-        enddo
-      enddo
+         enddo
+      else
+         do bj = jtlo,jthi
+          do bi = itlo,ithi
+           do k = 1,nr
+            do j = jmin,jmax
+             do i = imin,imax
+                wcurrentLev(i,j,k,bi,bj) = wcurrent(k,bi,bj)
+     &               *_hFacC(i,j,k,bi,bj)*frame(i,j)
+             enddo
+            enddo
+           enddo
+          enddo
+         enddo            
+      endif
 #endif
 
 #ifdef ALLOW_SSH_COST_CONTRIBUTION
 c--   Read T/P SSH anomaly rms field. Data in units of centimeters.
       nnz   =   1
       irec  =   1
-      call mdsreadfield( ssh_errfile, cost_iprec, cost_yftype, nnz, 
+      if ( ssh_errfile .NE. ' ' ) then
+        call mdsreadfield( ssh_errfile, cost_iprec, cost_yftype, nnz, 
      &                   wtp, irec, mythid )
+      else
+        STOP 'ssh_errfile not available for ALLOW_SSH_COST_CONTRIBUTION'
+      endif
 
       do bj = jtlo,jthi
         do bi = itlo,ithi
@@ -407,16 +630,81 @@ c--           T/P error + 5cm
                 wtp (i,j,bi,bj) = 0. _d 0
                 wers(i,j,bi,bj) = 0. _d 0
               else
-                wtp (i,j,bi,bj) = ( wtp(i,j,bi,bj) * 0.01 * 0.5 )
-     &                            *frame(i,j)
-                wers(i,j,bi,bj) = ( wtp(i,j,bi,bj) + 0.05 )
-     &                            *frame(i,j)
+cgg                wtp (i,j,bi,bj) = wtp(i,j,bi,bj) * 0.01 * 0.5 * frame(i,j)
+cgg                wers(i,j,bi,bj) = (wtp(i,j,bi,bj)+0.05)*frame(i,j)
+cgg  I estimate that .70 of the dynamical signal should be noise.
+cgg  This flag should only be for 2 degree runs. See cost.README.
+cgg  4.1 cm is the instrumental error, Fu textbook. Assume 
+cgg  geographical independence.
+cgg  Its more explicit to me this way.
+#ifdef COST_WEIGHTS_EDDY_NOISE
+cgg         58 percent of energy is at less than 400km, which I call the
+cgg         eddy signal. sqrt(.58)= .75 .
+cgg                wtp (i,j,bi,bj) = (wtp(i,j,bi,bj)*0.01*0.75)*frame(i,j)
+cgg                wtp (i,j,bi,bj) = (wtp(i,j,bi,bj)*0.01*0.69)*frame(i,j)
+cgg    OK go with D. Stammer's weight without any reason.
+                wtp (i,j,bi,bj) = wtp(i,j,bi,bj)*0.01*0.50*frame(i,j)
+                wtp (i,j,bi,bj) = wtp(i,j,bi,bj)*wtp(i,j,bi,bj) +
+     &                            .041*.041
+                wtp (i,j,bi,bj) = sqrt(wtp(i,j,bi,bj)) * frame(i,j)
+#endif
+#ifdef COST_WEIGHTS_2X_EDDY_NOISE
+cgg    P Huybers Fix. formerly 2 instead of 1.41 .
+cgg                wtp (i,j,bi,bj) = (wtp(i,j,bi,bj)*0.01*0.75)*frame(i,j)
+                wtp (i,j,bi,bj) = wtp(i,j,bi,bj)*0.01*0.50*frame(i,j)
+cgg                wtp (i,j,bi,bj) =1.41*wtp(i,j,bi,bj)*1.41*wtp(i,j,bi,bj) 
+                wtp (i,j,bi,bj) =1.18*wtp(i,j,bi,bj)*1.18*wtp(i,j,bi,bj)
+     &                           + .041*.041
+                wtp (i,j,bi,bj) = sqrt(wtp(i,j,bi,bj)) * frame(i,j)
+#endif
+#ifdef COST_WEIGHTS_EDDY_RESOLVE
+Cgg         6 percent of energy is at less than 100km, which we never hope
+cgg         to really resolve. sqrt(.06)= .25 .
+                wtp (i,j,bi,bj) = wtp(i,j,bi,bj)*0.01*0.25*frame(i,j)
+                wtp (i,j,bi,bj) = wtp(i,j,bi,bj)*wtp(i,j,bi,bj) +
+     &                            .041*.041
+                wtp (i,j,bi,bj) = sqrt(wtp(i,j,bi,bj)) * frame(i,j)
+#endif
               endif
             enddo
           enddo
         enddo
       enddo
 #endif /* ALLOW_SSH_COST_CONTRIBUTION */
+
+#if (defined (ALLOW_READ_EGM_DATA) || \
+     defined (ALLOW_EGM96_ERROR_DIAG))
+c--   Read egm-96 geoid covariance. Data in units of meters.
+
+      nnz   =  1
+      irec  =  1
+      if ( geoid_errfile .NE. ' ' ) then
+        call mdsreadfield( geoid_errfile, cost_iprec, cost_yftype, nnz, 
+     &                    wp, irec, mythid )
+c--   Set all tile edges to zero.
+        do bj = jtlo,jthi
+          do bi = itlo,ithi
+            do j = jmin,jmax
+              do i = imin,imax
+                wp (i,j,bi,bj) = wp(i,j,bi,bj)*frame(i,j)
+              enddo
+            enddo
+          enddo
+        enddo
+      else
+        STOP 'geoid_errfile not available for ALLOW_READ_EGM_DATA'
+      endif
+#else
+      do bj = jtlo,jthi
+        do bi = itlo,ithi
+          do j = jmin,jmax
+            do i = imin,imax
+              wp(i,j,bi,bj) = 0. _d 0
+            enddo
+          enddo
+        enddo
+      enddo
+#endif
 
 c--   Read zonal wind stress variance.
 #if (defined (ALLOW_SCAT_COST_CONTRIBUTION))
@@ -687,7 +975,8 @@ c--           Test for missing values.
                 wsflux(i,j,bi,bj) = 0. _d 0
               endif
 c--           Data are in units of m/s.
-              wsflux(i,j,bi,bj) = wsflux(i,j,bi,bj) / 3.
+cgg           ADHOC change by G.gebbie, factor 3->6.
+              wsflux(i,j,bi,bj) = wsflux(i,j,bi,bj) / 6.
               wsflux(i,j,bi,bj) = max(wsflux(i,j,bi,bj),wsflux0)
      &                            *frame(i,j)
               wsfluxm(i,j,bi,bj) = max(wsfluxm(i,j,bi,bj),wsflux0m)
@@ -842,28 +1131,47 @@ c--   Units have to be checked!
 
           do k = 1,nr
             if (wtheta(k,bi,bj) .ne. 0.) then
-              wtheta(k,bi,bj) = ratio/wtheta(k,bi,bj)/wtheta(k,bi,bj)
+              wtheta(k,bi,bj) = 1./wtheta(k,bi,bj)/wtheta(k,bi,bj)
             else
-              wtheta(k,bi,bj) = 1.0 _d 0
+              wtheta(k,bi,bj) = 1. _d 0
             endif
             if (wsalt(k,bi,bj) .ne. 0.) then
-              wsalt(k,bi,bj) = ratio/wsalt(k,bi,bj)/wsalt(k,bi,bj)
+              wsalt(k,bi,bj) = 1./wsalt(k,bi,bj)/wsalt(k,bi,bj)
             else
-              wsalt(k,bi,bj) = 1.0 _d 0
+              wsalt(k,bi,bj) = 1. _d 0
             endif
+            if (wcurrent(k,bi,bj) .ne. 0.) then
+              wcurrent(k,bi,bj) = 1./
+     &                            wcurrent(k,bi,bj)/wcurrent(k,bi,bj)
+            else
+              wcurrent(k,bi,bj) = 1. _d 0
+            endif
+
             do j = jmin,jmax
               do i = imin,imax
                  if (wtheta2(i,j,k,bi,bj) .ne. 0.) then
-                    wtheta2(i,j,k,bi,bj) = ratio
+                    wtheta2(i,j,k,bi,bj) = 1.
      &                   /wtheta2(i,j,k,bi,bj)/wtheta2(i,j,k,bi,bj)
-                 else
-                    wtheta2(i,j,k,bi,bj) = 1.0 _d 0
+                 endif
+                 if (wthetaLev(i,j,k,bi,bj) .ne. 0.) then
+                    wthetaLev(i,j,k,bi,bj) = 1.
+     &                   /wthetaLev(i,j,k,bi,bj)/wthetaLev(i,j,k,bi,bj)
                  endif
                  if (wsalt2(i,j,k,bi,bj) .ne. 0.) then
                     wsalt2(i,j,k,bi,bj) = ratio
      &                   /wsalt2(i,j,k,bi,bj)/wsalt2(i,j,k,bi,bj)
-                 else
-                    wsalt2(i,j,k,bi,bj) = 1.0 _d 0
+                 endif
+                 if (wsaltLev(i,j,k,bi,bj) .ne. 0.) then
+                    wsaltLev(i,j,k,bi,bj) = 1.
+     &                   /wsaltLev(i,j,k,bi,bj)/wsaltLev(i,j,k,bi,bj)
+                 endif
+                 if (wcurrent2(i,j,k,bi,bj) .ne. 0.) then
+                    wcurrent2(i,j,k,bi,bj) = 1.
+     &                   /wcurrent2(i,j,k,bi,bj)/wcurrent2(i,j,k,bi,bj)
+                 endif
+                 if (wcurrentLev(i,j,k,bi,bj) .ne. 0.) then
+                    wcurrentLev(i,j,k,bi,bj) = 1.
+     &                /wcurrentLev(i,j,k,bi,bj)/wcurrentLev(i,j,k,bi,bj)
                  endif
               enddo
             enddo
@@ -875,7 +1183,7 @@ c--   Units have to be checked!
 #ifdef ALLOW_OBCSN_COST_CONTRIBUTION
               if (wobcsn(k,iobcs) .ne. 0.) then
                  wobcsn(k,iobcs) = 
-     &                ratio/wobcsn(k,iobcs)/wobcsn(k,iobcs)
+     &                1./wobcsn(k,iobcs)/wobcsn(k,iobcs)
               else
                  wobcsn(k,iobcs) = 1.0 _d 0
               endif
@@ -883,7 +1191,7 @@ c--   Units have to be checked!
 #ifdef ALLOW_OBCSS_COST_CONTRIBUTION
               if (wobcss(k,iobcs) .ne. 0.) then
                  wobcss(k,iobcs) = 
-     &                ratio/wobcss(k,iobcs)/wobcss(k,iobcs)
+     &                1./wobcss(k,iobcs)/wobcss(k,iobcs)
               else
                  wobcss(k,iobcs) = 1.0 _d 0
               endif
@@ -891,7 +1199,7 @@ c--   Units have to be checked!
 #ifdef ALLOW_OBCSW_COST_CONTRIBUTION
               if (wobcsw(k,iobcs) .ne. 0.) then
                  wobcsw(k,iobcs) = 
-     &                ratio/wobcsw(k,iobcs)/wobcsw(k,iobcs)
+     &                1./wobcsw(k,iobcs)/wobcsw(k,iobcs)
               else
                  wobcsw(k,iobcs) = 1.0 _d 0
               endif
@@ -899,7 +1207,7 @@ c--   Units have to be checked!
 #ifdef ALLOW_OBCSE_COST_CONTRIBUTION
               if (wobcse(k,iobcs) .ne. 0.) then
                  wobcse(k,iobcs) = 
-     &                ratio/wobcse(k,iobcs)/wobcse(k,iobcs)
+     &                1./wobcse(k,iobcs)/wobcse(k,iobcs)
               else
                  wobcse(k,iobcs) = 1.0 _d 0
               endif
@@ -911,7 +1219,109 @@ c--   Units have to be checked!
         enddo
       enddo
 
-c
+      wbaro = 1./wbaro/wbaro
+
+#ifdef ALLOW_OBCS_COST_CONTRIBUTION
+cgg   Compile the geographically varying o.b. cost weights.
+cgg   Pick out the proper slices.
+      do iobcs = 1,nobcs
+        if (iobcs.eq. 1) then
+          do bj = jtlo,jthi
+            do bi = itlo,ithi
+              do k = 1,nr
+                do i = imin,imax
+#ifdef ALLOW_OBCSN_COST_CONTRIBUTION
+                    j = OB_Jn(I,bi,bj) 
+                    wobcsnLev(i,k,bi,bj,iobcs) = 
+     &                  wthetaLev(i,j,k,bi,bj)
+#endif
+#ifdef ALLOW_OBCSS_COST_CONTRIBUTION                    
+                    j = OB_Js(I,bi,bj)
+                    wobcssLev(i,k,bi,bj,iobcs) =
+     &                  wthetaLev(i,j,k,bi,bj)
+#endif
+                enddo
+                do j = jmin,jmax
+#ifdef ALLOW_OBCSW_COST_CONTRIBUTION
+                    i = OB_Iw(J,bi,bj)
+                    wobcswLev(j,k,bi,bj,iobcs) =
+     &                  wthetaLev(i,j,k,bi,bj)
+#endif
+#ifdef ALLOW_OBCSE_COST_CONTRIBUTION
+                    i = OB_Ie(J,bi,bj)
+                    wobcseLev(j,k,bi,bj,iobcs) =
+     &                  wthetaLev(i,j,k,bi,bj)
+#endif          
+                enddo        
+              enddo
+            enddo
+          enddo
+        elseif (iobcs.eq.2) then
+          do bj = jtlo,jthi
+            do bi = itlo,ithi
+              do k = 1,nr
+                do i = imin,imax
+#ifdef ALLOW_OBCSN_COST_CONTRIBUTION
+                    j = OB_Jn(I,bi,bj) 
+                    wobcsnLev(i,k,bi,bj,iobcs) = 
+     &                  wsaltLev(i,j,k,bi,bj)
+#endif
+#ifdef ALLOW_OBCSS_COST_CONTRIBUTION                    
+                    j = OB_Js(I,bi,bj)
+                    wobcssLev(i,k,bi,bj,iobcs) =
+     &                  wsaltLev(i,j,k,bi,bj)
+#endif
+                enddo
+                do j = jmin,jmax
+#ifdef ALLOW_OBCSW_COST_CONTRIBUTION
+                    i = OB_Iw(J,bi,bj)
+                    wobcswLev(j,k,bi,bj,iobcs) =
+     &                  wsaltLev(i,j,k,bi,bj)
+#endif
+#ifdef ALLOW_OBCSE_COST_CONTRIBUTION
+                    i = OB_Ie(J,bi,bj)
+                    wobcseLev(j,k,bi,bj,iobcs) =
+     &                  wsaltLev(i,j,k,bi,bj)
+#endif                  
+                enddo
+              enddo
+            enddo
+          enddo
+        elseif (iobcs .eq. 3 .or. iobcs .eq. 4) then
+          do bj = jtlo,jthi
+            do bi = itlo,ithi
+              do k = 1,nr
+                do i = imin,imax
+#ifdef ALLOW_OBCSN_COST_CONTRIBUTION
+                    j = OB_Jn(I,bi,bj) 
+                    wobcsnLev(i,k,bi,bj,iobcs) = 
+     &                  wcurrentLev(i,j,k,bi,bj)
+#endif
+#ifdef ALLOW_OBCSS_COST_CONTRIBUTION                    
+                    j = OB_Js(I,bi,bj)
+                    wobcssLev(i,k,bi,bj,iobcs) =
+     &                  wcurrentLev(i,j,k,bi,bj)
+#endif
+                enddo
+                do j = jmin,jmax
+#ifdef ALLOW_OBCSW_COST_CONTRIBUTION
+                    i = OB_Iw(J,bi,bj)
+                    wobcswLev(j,k,bi,bj,iobcs) =
+     &                  wcurrentLev(i,j,k,bi,bj)
+#endif
+#ifdef ALLOW_OBCSE_COST_CONTRIBUTION
+                    i = OB_Ie(J,bi,bj)
+                    wobcseLev(j,k,bi,bj,iobcs) =
+     &                  wcurrentLev(i,j,k,bi,bj)
+#endif                  
+                enddo
+              enddo
+            enddo
+          enddo
+        endif
+      enddo
+#endif
+
 c     write masks and weights to files to be read by a master process
 c
       call active_write_xyz( 'hFacC',hFacC ,   1, 0, mythid, dummy)
@@ -942,7 +1352,71 @@ c
       call active_write_xy(  'wvwind', wvwind, 1, 0, mythid, dummy)
 #endif
 
+#ifdef ALLOW_THETA0_COST_CONTRIBUTION
+      CALL active_write_xyz( 'wtheta',wthetaLev, 1,0,mythid,dummy)
+#endif 
+#ifdef ALLOW_SALT0_COST_CONTRIBUTION
+      CALL active_write_xyz( 'wsalt',wsaltLev, 1,0,mythid,dummy)
+#endif 
+
+#ifdef ALLOW_OBCS_COST_CONTRIBUTION
+      DO iobcs = 1,nobcs
+
 #ifdef ALLOW_OBCSN_COST_CONTRIBUTION
+        do bj = jtlo,jthi
+          do bi = itlo,ithi
+            do k = 1,nr
+              do i = imin,imax
+                 tmpfldxz(i,k,bi,bj) = wobcsnLev(i,k,bi,bj,iobcs)
+
+              enddo
+            enddo
+          enddo
+        enddo
+        call active_write_xz( 'wobcsn', 
+     &        tmpfldxz,   iobcs, 0, mythid, dummy)
+#endif
+#ifdef ALLOW_OBCSS_COST_CONTRIBUTION
+        do bj = jtlo,jthi
+          do bi = itlo,ithi
+            do k = 1,nr
+              do i = imin,imax
+                 tmpfldxz(i,k,bi,bj) = wobcssLev(i,k,bi,bj,iobcs)
+
+              enddo
+            enddo
+          enddo
+        enddo
+        call active_write_xz( 'wobcss', 
+     &        tmpfldxz,   iobcs, 0, mythid, dummy)
+#endif
+#ifdef ALLOW_OBCSW_COST_CONTRIBUTION
+        do bj = jtlo,jthi
+          do bi = itlo,ithi
+            do k = 1,nr
+              do j = jmin,jmax
+                 tmpfldyz(j,k,bi,bj) = wobcswLev(j,k,bi,bj,iobcs)
+              enddo
+            enddo
+          enddo
+        enddo
+        call active_write_yz( 'wobcsw', 
+     &        tmpfldyz,   iobcs, 0, mythid, dummy)
+#endif
+#ifdef ALLOW_OBCSE_COST_CONTRIBUTION
+        do bj = jtlo,jthi
+          do bi = itlo,ithi
+            do k = 1,nr
+              do j = jmin,jmax
+                 tmpfldyz(j,k,bi,bj) = wobcseLev(j,k,bi,bj,iobcs)
+              enddo
+            enddo
+          enddo
+        enddo
+        call active_write_yz( 'wobcse', 
+     &        tmpfldyz,   iobcs, 0, mythid, dummy)
+#endif
+      enddo
 #endif
 
       end

@@ -28,6 +28,7 @@ c     == global variables ==
 #include "SIZE.h"
 #include "GRID.h"
 #include "DYNVARS.h"
+#include "PARAMS.h"
 
 #include "cal.h"
 #include "cost.h"
@@ -95,7 +96,7 @@ c--   Read tiled data.
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,i8.8)')
-     &    ' cost_mean_saltflux: number of records to process = ',nmonsrec
+     &    ' cost_mean_saltflux: no. of records to process = ',nmonsrec
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a)') ' '
@@ -108,12 +109,6 @@ c--   Read tiled data.
         ilsalt = ilnblnk( sfluxbarfile )
         write(fnamesflux(1:80),'(2a,i10.10)')
      &    sfluxbarfile(1:ilsalt),'.',optimcycle
-      else
-        print*
-        print*,' cost_mean_saltflux: optimcycle has a wrong value.'
-        print*,'           optimcycle = ',optimcycle
-        print*
-        stop   '  ... stopped in cost_mean_saltflux'
       endif
 
       fcthreadmm       = 0. _d 0
@@ -135,14 +130,15 @@ c--     Read time averages and the monthly mean data.
               do i = imin,imax
                 tmpx=tmpfld2d(i,j,bi,bj)
                 if (maskw(i,j,kk,bi,bj) .ne. 0.) then
-                  fctilemm = fctilemm + tmpx*cosphi(i,j,bi,bj)
-                  sumcos = sumcos + cosphi(i,j,bi,bj)
+                  fctilemm = fctilemm + tmpx*cos(yc(i,j,bi,bj)*deg2rad)
+                  sumcos = sumcos + cos(yc(i,j,bi,bj)*deg2rad)
                 endif
               enddo
             enddo
 
+            if(sumcos .eq. 0.) sumcos = 1.
             fctilemm = (fctilemm / sumcos)
-            fctilemm = wsfluxmm(bi,bj) * (fctilemm * fctilemm )
+            fctilemm = wsfluxmm(bi,bj)*fctilemm
 
             objf_sfluxmm(bi,bj) = fctilemm
             fcthreadmm          = fcthreadmm + fctilemm

@@ -84,8 +84,20 @@ ce    --> there is certainly a better place for this.
      &            1) + mod(modelstartdate(1)/100,100) - 1 + irec
       endif
 
-      call mdsreadfield( sstdatfile, cost_iprec, cost_yftype, 1, sstdat,
-     &                   sstrec, mythid )
+      if ( sstrec.gt.0 .and. sstdatfile .ne. ' ' ) then
+        call mdsreadfield( sstdatfile, cost_iprec, cost_yftype, 1,
+     &                   sstdat, sstrec, mythid )
+      else
+         do bj = jtlo,jthi
+            do bi = itlo,ithi
+               do j = jmin,jmax
+                  do i = imin,imax
+                     sstdat(i,j,bi,bj)=spval
+                  enddo
+               enddo
+            enddo
+         enddo
+      endif
 
       nobs = 0
       do bj = jtlo,jthi
@@ -99,7 +111,7 @@ ce    --> there is certainly a better place for this.
               else
                 sstmask(i,j,bi,bj) = 1. _d 0
               endif
-              if (sstdat(i,j,bi,bj) .lt. spval) then
+              if (sstdat(i,j,bi,bj) .le. spval) then
                 sstmask(i,j,bi,bj) = 0. _d 0
               endif
               if (sstdat(i,j,bi,bj) .eq. 0. _d 0 ) then

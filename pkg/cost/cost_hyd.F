@@ -3,14 +3,14 @@ C $Header$
 #include "COST_CPPOPTIONS.h"
 
 
-      subroutine cost_Hyd(
+      subroutine cost_hyd(
      I                     myiter,
      I                     mytime,
      I                     mythid
      &                   )
 
 c     ==================================================================
-c     SUBROUTINE cost_Hyd
+c     SUBROUTINE cost_hyd
 c     ==================================================================
 c
 c     o Evaluate cost function contributions of temperature, salt, and
@@ -24,7 +24,7 @@ c              - Restructured the code in order to create a package
 c                for the MITgcmUV.
 c
 c     ==================================================================
-c     SUBROUTINE cost_Hyd
+c     SUBROUTINE cost_hyd
 c     ==================================================================
 
       implicit none
@@ -71,6 +71,15 @@ c     == end of interface ==
       call cost_argo_salt ( myiter, mytime, mythid )
 #endif
 
+#ifdef ALLOW_CTDTCLIM_COST_CONTRIBUTION
+      call cost_ctdtclim  ( myiter, mytime, mythid )
+#endif
+
+#ifdef ALLOW_CTDSCLIM_COST_CONTRIBUTION
+      call cost_ctdsclim  ( myiter, mytime, mythid )
+#endif
+
+cgg   Would prefer to calculate this before the actual run.
 #ifdef ALLOW_THETA0_COST_CONTRIBUTION
       call cost_theta0 ( myiter, mytime, mythid )
 #endif

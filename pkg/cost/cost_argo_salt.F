@@ -110,13 +110,7 @@ c--   Read state record from global file.
       if (optimcycle .ge. 0) then
         ilu=ilnblnk( sbarfile )
         write(fnamesalt(1:80),'(2a,i10.10)') 
-     &    sbarfile(1:ilu),'.', optimcycle
-      else
-        print*
-        print*,' cost_ARGO_SALT: optimcycle has a wrong value.'
-        print*,'                 optimcycle = ',optimcycle
-        print*
-        stop   '  ... stopped in cost_ARGO_SALT.'
+     &    sbarfile(1:ilu), '.', optimcycle
       endif
       
       fcthread_argos = 0. _d 0
@@ -130,8 +124,7 @@ c--     Read time averages and the monthly mean data.
      &          optimcycle, mythid
      &   , xx_sbar_mean_dummy )
   
-        call mdsreadfield( argosfile, cost_iprec, 'RL', nr, argosobs,
-     &                     irec, mythid)
+        call cost_readargos( irec, mythid )
 
 c--     Loop over this thread's tiles.
         do bj = jtlo,jthi
@@ -151,7 +144,7 @@ cph               if ( rC(K) .GT. -1000. ) then
 cph)
               do j = jmin,jmax
                 do i = imin,imax                 
-                   if (argosobs(i,j,k,bi,bj) .gt. spval .and.
+                   if (argosobs(i,j,k,bi,bj) .ge. spval .and.
      $                  _hFacC(i,j,13,bi,bj) .ne. 0. .and.
      $                  _hFacC(i,j,k,bi,bj) .ne. 0.) then
                       fctile_argos = fctile_argos + 

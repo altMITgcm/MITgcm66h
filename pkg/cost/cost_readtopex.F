@@ -87,8 +87,21 @@ c     == end of interface ==
       sshrec  = noffset + irec
       nobs    = 0
 
-      call mdsreadfield( topexfile, cost_iprec, cost_yftype, 1, tpobs, 
+      if ( sshrec.gt.0 .and. topexfile .ne. ' ' ) then
+        call mdsreadfield( topexfile, cost_iprec, cost_yftype, 1, tpobs, 
      &                   sshrec, mythid )
+      else
+         do bj = jtlo,jthi
+            do bi = itlo,ithi
+               do j = jmin,jmax
+                  do i = imin,imax
+                     tpobs(i,j,bi,bj)=spval
+                  enddo
+               enddo
+            enddo
+         enddo
+      endif
+
       do bj = jtlo,jthi
         do bi = itlo,ithi
           k = 1
@@ -99,7 +112,7 @@ c     == end of interface ==
               else
                 tpmask(i,j,bi,bj) = 1. _d 0
               endif
-              if (tpobs(i,j,bi,bj) .lt. spval) then
+              if (tpobs(i,j,bi,bj) .le. spval) then
                 tpmask(i,j,bi,bj) = 0. _d 0
               endif
               if (abs(tpobs(i,j,bi,bj)) .lt. 1.d-8 ) then

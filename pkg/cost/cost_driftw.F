@@ -20,6 +20,10 @@ c     started: from cost_drift
 c
 c     Armin Koehl  akoehl@ucsd.edu  26-Feb-2002
 c
+c     heimbach@mit.edu 17-Jun-2003 SIO merge:
+c             changed 1e12*cosphi(i,j,bi,bj) factor to
+c                     2.5e11*cosphi(i,j,bi,bj)
+c
 c     ==================================================================
 c     SUBROUTINE cost_Driftw
 c     ==================================================================
@@ -111,13 +115,6 @@ c--   Read tiled data.
         ilw = ilnblnk( wbarfile )
         write(fnamew(1:80),'(2a,i10.10)')
      &    wbarfile(1:ilw),'.',optimcycle
-     
-      else
-        print*
-        print*,' cost_Driftw: optimcycle has a wrong value.'
-        print*,'             optimcycle = ',optimcycle
-        print*
-        stop   '  ... stopped in cost_Driftw.'
       endif
       
       if (nmonsrec.lt.12) then 
@@ -211,7 +208,7 @@ c           the vertical velovity field. The error is 1e-4 m/s.
               do i = imin,imax
                   if (_hFacC(i,j,k,bi,bj) .ne. 0.) then
                      fctilew = fctilew +
-     &                  (1e12*cosphi(i,j,bi,bj)*
+     &                  (2.5e11*cosphi(i,j,bi,bj)*
      &          (wlmean(i,j,k,bi,bj)/nl - wfmean(i,j,k,bi,bj)/nf)*
      &          (wlmean(i,j,k,bi,bj)/nl - wfmean(i,j,k,bi,bj)/nf))
                   endif

@@ -61,7 +61,6 @@ c     == local variables ==
       _RL wtmp (1-olx:snx+olx,1-oly:sny+oly)
       _RL tmpobs (1-olx:snx+olx,1-oly:sny+oly)
       _RL tmpbar (1-olx:snx+olx,1-oly:sny+oly)
-      _RL cmask (1-olx:snx+olx,1-oly:sny+oly)  
       _RL spval
       
       character*(80) fnamesalt
@@ -86,8 +85,10 @@ c     == end of interface ==
       jmax = sny
       imin = 1
       imax = snx
-      
-      spval = -9990.
+
+cph   merged from SIO
+cph      spval = -9990.
+      spval = -9.
 
 c--   Read state record from global file.
       doglobalread = .false.
@@ -110,14 +111,8 @@ c--   Read state record from global file.
 
       if (optimcycle .ge. 0) then
         ilu=ilnblnk( sbarfile )
-        write(fnamesalt(1:80),'(2a,i10.10)') sbarfile(1:ilu),'.',
-     &                                   optimcycle
-      else
-        print*
-        print*,' cost_CTDS: optimcycle has a wrong value.'
-        print*,'                 optimcycle = ',optimcycle
-        print*
-        stop   '  ... stopped in cost_CTDS.'
+        write(fnamesalt(1:80),'(2a,i10.10)') 
+     &       sbarfile(1:ilu), '.', optimcycle
       endif
       
       fcthread_ctds = 0. _d 0
@@ -145,15 +140,6 @@ c--         Loop over the model layers
 c--           Determine the weights to be used.
               do j = jmin,jmax
                 do i = imin,imax
-                  cmask(i,j) = 1. _d 0
-                  if (ctdsobs(i,j,k,bi,bj) .eq. 0.) then
-                    cmask(i,j) = 0. _d 0
-                  endif
-                 
-                  if (ctdsobs(i,j,k,bi,bj) .lt. spval) then
-                    cmask(i,j) = 0. _d 0
-                  endif
-
 cph(
 cph               print *, 'WARNING: SPECIFIC SETUP FOR ECCO'
 cph               below statement could be replaced by following
@@ -162,35 +148,21 @@ cph
 cph               if ( rC(K) .GT. -1000. ) then
 cph)
 c                 set cmask=0 in areas shallower than 1000m 
-                  if (_hFacC(i,j,13,bi,bj) .eq. 0.) then
-                    cmask(i,j) = 0. _d 0
-                  endif
-                  
-                  if (_hFacC(i,j,k,bi,bj) .eq. 0.) then
-                    cmask(i,j) = 0. _d 0
-                  endif
-                  
-                enddo
-              enddo
-              
-              do j = jmin,jmax
-                do i = imin,imax
-                  www(i,j)    = cosphi(i,j,bi,bj)*cmask(i,j)                
-                  tmpobs(i,j) = ctdsobs(i,j,k,bi,bj)
-                  tmpbar(i,j) = sbar(i,j,k,bi,bj)
+                  if ((ctdsobs(i,j,k,bi,bj) .ne. 0.).and.
+     &                  (ctdsobs(i,j,k,bi,bj) .gt. spval).and.
+     &                  (_hFacC(i,j,13,bi,bj) .ne. 0.).and.
+     &                  (_hFacC(i,j,k,bi,bj) .ne. 0.)) then
+                     www(i,j)    = cosphi(i,j,bi,bj)
+                     tmpobs(i,j) = ctdsobs(i,j,k,bi,bj)
+                     tmpbar(i,j) = sbar(i,j,k,bi,bj)
 c                  wtmp(i,j) = wsalt(k,bi,bj)
-                  wtmp(i,j) = wsalt2(i,j,k,bi,bj)
-                enddo
-              enddo
+                     wtmp(i,j) = wsalt2(i,j,k,bi,bj)
 
-              do j = jmin,jmax
-                do i = imin,imax
-c--               The array ctdsobs contains CTD salinity.
-                  fctile_ctds = fctile_ctds + 
+                     fctile_ctds = fctile_ctds +
      &                             (wtmp(i,j)*www(i,j))*
      &                             (tmpbar(i,j)-tmpobs(i,j))*
      &                             (tmpbar(i,j)-tmpobs(i,j))
-
+                  endif
                 enddo
               enddo
             enddo

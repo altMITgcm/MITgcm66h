@@ -3,12 +3,10 @@ C $Header$
 #include "COST_CPPOPTIONS.h"
 
 
-      subroutine cost_InitVaria(
-     I                           mythid
-     &                         )
+      subroutine cost_initvaria( mythid )
 
 c     ==================================================================
-c     SUBROUTINE cost_InitVaria
+c     SUBROUTINE cost_initvaria
 c     ==================================================================
 c
 c     o Initialise the variable cost function part.
@@ -20,7 +18,7 @@ c                for the MITgcmUV.
 c     added sea-ice term: menemenlis@jpl.nasa.gov 26-Feb-2003
 c
 c     ==================================================================
-c     SUBROUTINE cost_InitVaria
+c     SUBROUTINE cost_initvaria
 c     ==================================================================
 
       implicit none
@@ -75,12 +73,15 @@ c--   Initialize the tiled cost function contributions.
           objf_salt(bi,bj)     = 0. _d 0
           objf_temp0(bi,bj)    = 0. _d 0
           objf_salt0(bi,bj)    = 0. _d 0
+          objf_tmi(bi,bj)      = 0. _d 0
           objf_sst(bi,bj)      = 0. _d 0
           objf_sss(bi,bj)      = 0. _d 0
           objf_h(bi,bj)        = 0. _d 0
           objf_atl(bi,bj)      = 0. _d 0
           objf_ctdt(bi,bj)     = 0. _d 0
           objf_ctds(bi,bj)     = 0. _d 0
+          objf_ctdtclim(bi,bj) = 0. _d 0
+          objf_ctdsclim(bi,bj) = 0. _d 0
           objf_xbt(bi,bj)      = 0. _d 0
           objf_argot(bi,bj)    = 0. _d 0
           objf_argos(bi,bj)    = 0. _d 0
@@ -100,6 +101,8 @@ c--   Initialize the tiled cost function contributions.
           objf_obcss(bi,bj)    = 0. _d 0
           objf_obcsw(bi,bj)    = 0. _d 0
           objf_obcse(bi,bj)    = 0. _d 0
+          objf_curmtr(bi,bj)   = 0. _d 0
+          objf_ageos(bi,bj)    = 0. _d 0
           objf_ice(bi,bj)      = 0. _d 0
           objf_theta_ini_fin(bi,bj) = 0. _d 0
           objf_salt_ini_fin(bi,bj)  = 0. _d 0
@@ -135,6 +138,14 @@ c--   Initialize the tiled cost function contributions.
                endif
                ersobs(i,j,bi,bj)     = 0. _d 0
 #endif
+#ifdef ALLOW_TMI_SST_COST_CONTRIBUTION
+               if (_hFacC(i,j,k,bi,bj) .eq. 0.) then
+                  tmimask(i,j,bi,bj) = 0. _d 0
+               else
+                  tmimask(i,j,bi,bj) = 1. _d 0
+               endif
+               tmidat(i,j,bi,bj)     = 0. _d 0
+#endif
 #ifdef ALLOW_SST_COST_CONTRIBUTION
                if (_hFacC(i,j,k,bi,bj) .eq. 0.) then
                   sstmask(i,j,bi,bj) = 0. _d 0
@@ -158,8 +169,9 @@ c--   Initialize the tiled cost function contributions.
 
 c--   Initialise the "global" parts of the cost function.
       _BEGIN_MASTER( mythid )
-        objf_hmean = 0. _d 0
-        fc         = 0. _d 0
+        objf_obcsvol = 0. _d 0
+        objf_hmean   = 0. _d 0
+        fc           = 0. _d 0
       _END_MASTER( mythid )
 
       _BARRIER
