@@ -33,6 +33,9 @@ c     == global variables ==
 
 #include "EEPARAMS.h"
 #include "SIZE.h"
+cgg   Include ECCO_CPPOPTIONS because the ecco_ctrl,cost files 
+cgg   have headers with options for OBCS masks.
+#include "ECCO_CPPOPTIONS.h"
 
 #include "ecco.h"
 #include "ctrl.h"
@@ -85,6 +88,12 @@ c     == local variables ==
       integer         filensx
       integer         filensy
       _RL             fileff
+
+cgg(
+      _RL     gg
+      integer igg
+      integer iobcs
+cgg)
 
 c     == end of interface ==
 
@@ -148,6 +157,25 @@ cph)
      &     k=1,nr)
       read( funit ) (((nWetwTile(i,j,k), i=1,nsx), j=1,nsy),
      &     k=1,nr)
+
+cgg(    Add OBCS Mask information into the header section for optimization.
+#ifdef ALLOW_OBCSN_CONTROL
+          read(funit) ((((nWetobcsn(i,j,k,iobcs), k=1,nr),
+     &          iobcs= 1,nobcs), i=1,nsx) , j=1,nsy)
+#endif
+#ifdef ALLOW_OBCSS_CONTROL
+          read(funit) ((((nWetobcss(i,j,k,iobcs), k=1,nr),
+     &          iobcs= 1,nobcs), i=1,nsx) , j=1,nsy)
+#endif
+#ifdef ALLOW_OBCSW_CONTROL
+          read(funit) ((((nWetobcsw(i,j,k,iobcs), k=1,nr),
+     &          iobcs= 1,nobcs), i=1,nsx) , j=1,nsy)
+#endif
+#ifdef ALLOW_OBCSE_CONTROL
+          read(funit) ((((nWetobcse(i,j,k,iobcs), k=1,nr),
+     &          iobcs= 1,nobcs), i=1,nsx) , j=1,nsy)
+#endif
+cgg)
       read( funit ) (ncvarindex(i), i=1,maxcvars)
       read( funit ) (ncvarrecs(i),  i=1,maxcvars)
       read( funit ) (ncvarxmax(i),  i=1,maxcvars)
@@ -244,6 +272,33 @@ c--   Read the data.
                               cbuffindex = nwetstile(bi,bj,k)
                            else if (ncvargrd(icvar) .eq. 'w') then
                               cbuffindex = nwetwtile(bi,bj,k)
+cgg(   O.B. points have the grid mask "m".
+                           else if (ncvargrd(icvar) .eq. 'm') then
+cgg    From "icvrec", calculate what iobcs must be.
+                             gg   = (icvrec-1)/nobcs
+                             igg  = int(gg)
+                             iobcs= icvrec - igg*nobcs
+#ifdef ALLOW_OBCSN_CONTROL
+                             if (icvar .eq. 11) then                    
+                               cbuffindex = nwetobcsn(bi,bj,k,iobcs)
+                             endif
+#endif
+#ifdef ALLOW_OBCSS_CONTROL
+                             if (icvar .eq. 12) then
+                               cbuffindex = nwetobcss(bi,bj,k,iobcs)
+                             endif
+#endif 
+#ifdef ALLOW_OBCSW_CONTROL
+                             if (icvar .eq. 13) then
+                               cbuffindex = nwetobcsw(bi,bj,k,iobcs)
+                             endif
+#endif
+#ifdef ALLOW_OBCSE_CONTROL
+                             if (icvar .eq. 14) then
+                               cbuffindex = nwetobcse(bi,bj,k,iobcs)
+                             endif
+#endif
+cgg)
                            endif
                            if (cbuffindex .gt. 0) then
                               read( funit ) cbuffindex
@@ -251,6 +306,12 @@ c--   Read the data.
                               read( funit ) (cbuff(ii), ii=1,cbuffindex)
                               do icvcomp = 1,cbuffindex
                                  vv(icvoffset+icvcomp) = cbuff(icvcomp)
+cgg( Right now, the changes to the open boundary velocities are not balanced.
+cgg( The model will crash due to physical reasons. 
+cgg( However, we can optimize with respect to just O.B. T and S if the
+cgg( next two lines are uncommented.
+cgg                         if (iobcs .eq. 3) vv(icvoffset+icvcomp)=0.
+cgg                         if (iobcs .eq. 4) vv(icvoffset+icvcomp)=0.
                               enddo
                               icvoffset = icvoffset + cbuffindex
                            endif
