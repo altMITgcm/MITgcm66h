@@ -14,27 +14,20 @@ C     | Currently this routine transfers grid information to     |
 C     | AIM. Other information needs to be included from         |
 C     | aim_do_atmos_physics().                                  |
 C     \==========================================================/
-      IMPLICIT rEAL*8 (A-H,O-Z) 
+      IMPLICIT NONE
 
 C     == Global data ==
-#include "SIZE.h"
+C-- size for MITgcm & Physics package :
+#include "AIM_SIZE.h" 
+
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
 #include "DYNVARS.h"
 
-#ifdef ALLOW_AIM
-#include "atparam0.h"
-#include "atparam1.h"
-      INTEGER NGP
-      INTEGER NLON
-      INTEGER NLAT
-      INTEGER NLEV
-      PARAMETER ( NLON=IX, NLAT=IL, NLEV=KX, NGP=NLON*NLAT )
-#include "Lev_def.h"
+#include "AIM_GRID.h"
 #include "com_physvar.h"
 #include "com_physcon.h"
-#endif /* ALLOW_AIM */
 
 C     == Routine arguments ==
       INTEGER bi, bj
