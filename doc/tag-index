@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint57a_pre
+o some modifs in tools/build_options for sunos
+o call ctrl_pack for ctrl at end for optimcycle=0
+
 checkpoint57
 o add horizontal bi-harmonic viscosity for vertical velocity
   - new parameter viscA4W (defaults to viscA4)
