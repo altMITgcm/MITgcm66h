@@ -441,6 +441,7 @@ C--   Divergence of fluxes
 
 #ifdef ALLOW_DEBUG
       IF ( debugLevel .GE. debLevB
+     &   .AND. tracerIdentity.EQ.GAD_TEMPERATURE
      &   .AND. k.EQ.2 .AND. myIter.EQ.1+nIter0
      &   .AND. nPx.EQ.1 .AND. nPy.EQ.1
      &   .AND. useCubedSphereExchange ) THEN
