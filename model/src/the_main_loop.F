@@ -124,6 +124,7 @@ c--   Initialize storage for the cost function evaluation.
 CADJ  INIT dummytape = common, 1
 c--   Initialize storage for the outermost loop.
 CADJ  INIT tapelev_ini_bibj_k   = USER
+CADJ  INIT tapelev_init   = USER
 #ifdef AUTODIFF_2_LEVEL_CHECKPOINT
 CADJ  INIT tapelev2 = USER
 #else

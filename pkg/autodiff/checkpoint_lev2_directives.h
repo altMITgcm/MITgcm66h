@@ -91,3 +91,7 @@ CADJ STORE cMeanTheta = tapelev2, key = ilev_2
 CADJ STORE cMeanUVel  = tapelev2, key = ilev_2
 CADJ STORE cMeanVVel  = tapelev2, key = ilev_2
 #endif
+
+#ifdef ALLOW_COST_TRACER
+CADJ STORE objf_tracer = tapelev2, key = ilev_2
+#endif

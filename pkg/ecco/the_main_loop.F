@@ -482,12 +482,20 @@ CADJ STORE surfaceForcingS    = comlev1, key = ikey_dynamics
 CADJ STORE surfaceForcingT    = comlev1, key = ikey_dynamics
 CADJ STORE surfaceForcingTice = comlev1, key = ikey_dynamics
 c
+# ifdef ALLOW_GMREDI
 CADJ STORE Kwx                = comlev1, key = ikey_dynamics
 CADJ STORE Kwy                = comlev1, key = ikey_dynamics
 CADJ STORE Kwz                = comlev1, key = ikey_dynamics
+#  ifdef GM_BOLUS_ADVEC
+CADJ STORE GM_PsiX            = comlev1, key = ikey_dynamics
+CADJ STORE GM_PsiY            = comlev1, key = ikey_dynamics
+#  endif
+# endif
 c
+# ifdef ALLOW_KPP
 CADJ STORE KPPghat            = comlev1, key = ikey_dynamics
 CADJ STORE KPPfrac            = comlev1, key = ikey_dynamics
+# endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 

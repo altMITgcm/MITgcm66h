@@ -366,6 +366,7 @@ CADJ STORE surfaceForcingT(:,:,bi,bj)
 CADJ &     = comlev1_bibj, key=itdkey, byte=isbyte
 CADJ STORE surfaceForcingTice(:,:,bi,bj)
 CADJ &     = comlev1_bibj, key=itdkey, byte=isbyte
+
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 #ifdef  ALLOW_GMREDI
