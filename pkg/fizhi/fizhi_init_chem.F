@@ -132,7 +132,7 @@ C***********************************************************************
       integer  ku,nlat,nlev,ntime
 
       _RL   oz(nlat,nlev,ntime)
-      _RL o3(nlat)
+      real*4 o3(nlat)
       _RL lats(nlat)
       _RL levs(nlev)
 
