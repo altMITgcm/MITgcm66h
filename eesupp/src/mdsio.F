@@ -331,7 +331,10 @@ C Routine arguments
       logical globalFile
       character*(2) arrType
       integer nNz
-      Real arr(*)
+cph(
+cph      Real arr(*)
+      _RL arr(1-oLx:sNx+oLx,1-oLy:sNy+oLy,nNz,nSx,nSy)
+cph)
       integer irecord
       integer myIter
       integer myThid
