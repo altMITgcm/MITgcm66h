@@ -169,7 +169,7 @@ C   into bottom-up arrays for interpolation to dynamics grid
      . Nsx,Nsy,im1,im2,jm1,jm2,bi,bj,pedyn,ksurfC,Nr,nlperdyn,gsphy)
 
 
-        if( (1.eq.1) ) then
+        if( (2.eq.1) ) then
         print *,' In fizhi wrapper after phys2dyn before exchange ',bi
         do L = 1,Nr
          do j = 1,sNy
