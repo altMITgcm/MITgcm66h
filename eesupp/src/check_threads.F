@@ -2,7 +2,6 @@ C $Header$
 C $Name$
 
 #include "CPP_EEOPTIONS.h"
-#define HAVE_SYSTEM
 
 CBOP
 C     !ROUTINE: CHECK_THREADS
