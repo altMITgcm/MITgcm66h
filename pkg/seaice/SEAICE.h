@@ -92,6 +92,6 @@ CEOP
 
 C--   KGEO    Level used as a proxy for geostrophic velocity.
       COMMON/SEAICE_KGEO/KGEO
-      _RL KGEO       (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
+      integer KGEO   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
 
 #endif /* ALLOW_SEAICE */
