@@ -208,5 +208,10 @@ C***********************************************************************
       enddo
       enddo
 
+      call fizhi_step_diag(myThid,p,uphy,vphy,thphy,sphy,qq,
+     .  radswt,radswg,swgclr,osr,osrclr,st4,dst4,tgz,tg0,radlwg,lwgclr,
+     .  turbu,turbv,turbt,turbq,moistu,moistv,moistt,moistq,
+     .  lwdt,swdt,lwdtclr,swdtclr,im1,im2,jm1,jm2,Nrphys,Nsx,Nsy,bi,bj)
+
       return
       end
