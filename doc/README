@@ -5,5 +5,16 @@ MITgcmUV Getting Started
 
 o Introduction
 
+o Install
+  tar -xvf ...
+  cd tools
+  genmake.dec
+  cd ../bin
+  ln -s ../tools/Makefile.dec makefile
+  make depend
+  make
+  setenv PARALLEL 1
+  ../exe/barrier
+
 o References
 
