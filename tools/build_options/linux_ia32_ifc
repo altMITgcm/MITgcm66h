@@ -8,6 +8,7 @@ FC=ifc
 CC=gcc
 DEFINES='-D_BYTESWAPIO -DWORDLENGTH=4'
 CPP='cpp  -traditional -P'
+INCLUDES='-I/usr/include/netcdf'
 LIBS='-lPEPCF90'
 NOOPTFLAGS='-O0'
 
