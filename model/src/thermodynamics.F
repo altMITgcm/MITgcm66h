@@ -2,15 +2,15 @@ C $Header$
 C $Name$
 
 #include "CPP_OPTIONS.h"
+#ifdef ALLOW_PTRACERS
+# include "PTRACERS_OPTIONS.h"
+#endif
 #ifdef ALLOW_AUTODIFF_TAMC
 # ifdef ALLOW_GMREDI
 #  include "GMREDI_OPTIONS.h"
 # endif
 # ifdef ALLOW_KPP
 #  include "KPP_OPTIONS.h"
-# endif
-# ifdef ALLOW_PTRACERS
-#  include "PTRACERS_OPTIONS.h"
 # endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
