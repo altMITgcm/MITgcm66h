@@ -2,6 +2,7 @@ C $Header$
 C $Name$
 
 #include "MOM_COMMON_OPTIONS.h"
+#define CALC_CS_CORNER_EXTENDED
 
       SUBROUTINE MOM_CALC_RELVORT3( 
      I        bi,bj,k,
@@ -130,6 +131,7 @@ C                                      U(1,-1)
      &     )
 cph    &     -vFld(I-1,J)*dyc(I-1,J,bi,bj)
         IF (hFacZ(i,j).EQ.0. _d 0) vort3(i,j) = 0. _d 0
+#ifdef CALC_CS_CORNER_EXTENDED
         vort3(I-1,J)=
      &      recip_rAz(I-1,J,bi,bj)*(
      &      vFld(I-1,J)*dyc(I-1,J,bi,bj)
@@ -141,6 +143,7 @@ cph    &     -vFld(I-1,J)*dyc(I-1,J,bi,bj)
      &     *maskW(i-1,j,k,bi,bj)*maskS(i,j-1,k,bi,bj)
 c    &     +uFld(I-1,J-1)*dxc(I-1,J-1,bi,bj)
         vort3(I,J-1)=vort3(I-1,J)
+#endif
        ENDIF
 C
        IF ( southEastCorner ) THEN
@@ -163,6 +166,7 @@ C              U(N+1,-1)
      &     )
 cph    &      vFld(I,J)*dyc(I,J,bi,bj)
         IF (hFacZ(i,j).EQ.0. _d 0) vort3(i,j) = 0. _d 0
+#ifdef CALC_CS_CORNER_EXTENDED
         vort3(I+1,J)=
      &      recip_rAz(I+1,J,bi,bj)*(
      &      vFld(I+1,J)*dyc(I+1,J,bi,bj)
@@ -174,6 +178,7 @@ cph    &      vFld(I,J)*dyc(I,J,bi,bj)
      &     *maskW(i+1,j,k,bi,bj)*maskS(i-1,j-1,k,bi,bj)
 c    &     +uFld(I+1,J-1)*dxc(I+1,J-1,bi,bj)
         vort3(I,J-1)=vort3(I+1,J)
+#endif
        ENDIF
 C
        IF ( northWestCorner ) THEN
@@ -196,6 +201,7 @@ C                 U(0,N)       D(0,N)        U(1,N)       TILE
      &     )
 cph    &     -vFld(I-1,J)*dyc(I-1,J,bi,bj)
         IF (hFacZ(i,j).EQ.0. _d 0) vort3(i,j) = 0. _d 0
+#ifdef CALC_CS_CORNER_EXTENDED
         vort3(I-1,J)=
      &      recip_rAz(I-1,J,bi,bj)*(
      &      vFld(I-1,J)*dyc(I-1,J,bi,bj)
@@ -207,6 +213,7 @@ cph    &     -vFld(I-1,J)*dyc(I-1,J,bi,bj)
      &     *maskS(i,j+1,k,bi,bj)*maskW(i-1,j-1,k,bi,bj)
 c    &     -uFld(I-1,J)*dxc(I-1,J,bi,bj)
         vort3(I,J+1)=vort3(I-1,J)
+#endif
        ENDIF
 C
        IF ( northEastCorner ) THEN
@@ -229,6 +236,7 @@ C   TILE         U(N+1,N)       D(N+1,N)        U(N+2,N)
      &     )
 cph    &      vFld(I,J)*dyc(I,J,bi,bj)
         IF (hFacZ(i,j).EQ.0. _d 0) vort3(i,j) = 0. _d 0
+#ifdef CALC_CS_CORNER_EXTENDED
         vort3(I+1,J)=
      &      recip_rAz(I+1,J,bi,bj)*(
      &      vFld(I+1,J)*dyc(I+1,J,bi,bj)
@@ -240,6 +248,7 @@ cph    &      vFld(I,J)*dyc(I,J,bi,bj)
      &     *maskS(i-1,j+1,k,bi,bj)*maskW(i+1,j-1,k,bi,bj)
 c    &     -uFld(I+1,J)*dxc(I+1,J,bi,bj)
         vort3(I,J+1)=vort3(I+1,J)
+#endif
        ENDIF
       ENDIF
 
