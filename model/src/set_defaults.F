@@ -154,6 +154,7 @@ C--   Input files
       saltClimFile    = ' '
       EmPmRfile       = ' '
       surfQfile       = ' '
+      surfQswfile     = ' '
       uVelInitFile    = ' '
       vVelInitFile    = ' '
       pSurfInitFile   = ' '
