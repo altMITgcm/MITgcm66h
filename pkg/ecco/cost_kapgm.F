@@ -31,9 +31,15 @@ c     == global variables ==
 #include "SIZE.h"
 #include "GRID.h"
 #include "DYNVARS.h"
-#include "GMREDI.h"
+#ifdef ALLOW_GMREDI
+# include "GMREDI.h"
+#endif
 
-#include "ecco_cost.h"
+#ifdef ALLOW_ECCO
+# include "ecco_cost.h"
+#else
+# include "ecco_cost.h"
+#endif
 #include "ctrl.h"
 #include "ctrl_dummy.h"
 #include "optim.h"

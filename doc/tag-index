@@ -3,6 +3,14 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint55e_post
+o some delicate re-shuffle of store directives to avoid one
+  extra call of do_oceanic_physics
+  affects ecco_the_main_loop.F, do_oceanic_physics.F
+  checkpoint_lev1_directives.h
+o NB: this may break global_ocean adjoint temporarily,
+  but it is clear how to fix it. Will do later, need this now.
+
 checkpoint55d_post
 o ECCO specific cost function terms (up-to-date with 1x1 runs)
 o ecco_cost_weights is modified to 1x1 runs

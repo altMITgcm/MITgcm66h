@@ -28,7 +28,7 @@ C (a feature required when tapering adiabatically).
 
 C Allows to use different values of K_GM and K_Redi ; also to
 C be used with the advective form (Bolus velocity) of GM
-#undef  GM_EXTRA_DIAGONAL
+#define  GM_EXTRA_DIAGONAL
 
 C Allows to use the advective form (Bolus velocity) of GM
 C  instead of the Skew-Flux form (=default)
