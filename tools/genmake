@@ -631,8 +631,8 @@ Clean:
 	-rm -f Makefile.bak
 CLEAN:
 	@make Clean
-	-find \$(ROOTDIR) -name "*.meta" -exec rm {} \;
-	-find \$(ROOTDIR) -name "*.data" -exec rm {} \;
+	-find \$(EXEDIR) -name "*.meta" -exec rm {} \;
+	-find \$(EXEDIR) -name "*.data" -exec rm {} \;
 	-rm -f \$(EXECUTABLE)
 
 # The normal chain of rules is (  .F - .f - .o  )
