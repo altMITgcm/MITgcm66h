@@ -53,16 +53,16 @@ C--   Initialise surface bc arrays
       IF ( zonalWindFile .EQ. ' ' ) THEN
 C      In cartesian yc, delY and ly are meters.
 C      In spherical polar yc, delY and ly are degrees
-       tauMax = 0.1 _d 0
+       tauMax = 0. _d 0
        lY = 0. _d 0
-       DO j=1,nY-1
+       DO j=2,nY-1
         lY = lY + delY(j)
        ENDDO
        DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
          DO j=1,sNy
           DO i=1,sNx
-           distY = (yC(i,j,bi,bj)-yC0)/lY
+           distY = (yC(i,j,bi,bj)-(yC0+delY(1)))/lY
 C          tauX  = -tauMax*cos(2. _d 0*PI*distY)
            tauX  = tauMax*sin(PI*distY)
            fu(i,j,bi,bj) = tauX/(delZ(1)*rhonil)
