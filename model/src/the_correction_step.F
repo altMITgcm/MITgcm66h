@@ -120,7 +120,7 @@ C--     End DO K=1,Nr
         ENDDO
 
 #ifdef EXACT_CONSERV
-        IF (exactConvserv) THEN
+        IF (exactConserv) THEN
 C--     Compute again "eta" to satisfy exactly the total Volume Conservation :
           CALL CALC_EXACT_ETA( bi,bj, etaStar, phiSurfX,phiSurfY,
      I                         myTime, myIter, myThid )
@@ -142,7 +142,7 @@ C--     Convectively adjust new fields to be statically stable
       ENDDO
 
 #ifdef EXACT_CONSERV
-       IF (exactConvserv) _EXCH_XY_R8(etaN, myThid ) 
+       IF (exactConserv) _EXCH_XY_R8(etaN, myThid ) 
 #endif /* EXACT_CONSERV */ 
 
       RETURN
