@@ -88,7 +88,7 @@ C     Internal index mapping is linear in X and Y with a second
 C     dimension for the vertical.
 
 C     Adjustment for heave due to mean heating/cooling
-C     ( I don't think the old formula was strictly "correct" for orography
+C     ( I do not think the old formula was strictly "correct" for orography
 C       but I have implemented it as was for now. As implemented
 C       the mean heave of the bottom (K=Nr) level is calculated rather than
 C       the mean heave of the base of the atmosphere. )

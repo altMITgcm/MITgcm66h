@@ -196,7 +196,7 @@ c
 cph             T11(i,j)=(dSigmaDrReal(i,j)**2)*dRdSigmaLtd(i,j)
           ENDIF
 #ifndef ALLOWW_AUTODIFF_TAMC
-cph-- this part doesn't adjoint well
+cph-- this part does not adjoint well
           IF ( SlopeSqr(i,j) .GT. maxSlopeSqr .AND.
      &         SlopeSqr(i,j) .LT. GM_slopeSqCutoff ) THEN
            taperFct(i,j) = maxSlopeSqr/SlopeSqr(i,j)
