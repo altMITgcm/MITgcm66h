@@ -65,6 +65,8 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       IF ( DIFFERENT_MULTIPLE(thSIce_monFreq,myTime,myTime-deltaTclock)
      &     .OR. myIter.EQ.nIter0 ) THEN
 
+        mon_write_stdout = .TRUE.
+
        _BEGIN_MASTER(myThid)
         WRITE(msgBuf,'(A)')
      &'// ======================================================='
@@ -209,6 +211,8 @@ C-- 2nd  level (volume-mean) Temp. :
      &'// ======================================================='
         CALL PRINT_MESSAGE( msgBuf, mon_ioUnit, SQUEEZE_RIGHT , 1)
        _END_MASTER(myThid)
+
+        mon_write_stdout = .FALSE.
 
       ENDIF
 
