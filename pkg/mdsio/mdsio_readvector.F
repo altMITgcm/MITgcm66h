@@ -140,6 +140,10 @@ C (This is a place-holder for the active/passive mechanism)
           fileIsOpen=.TRUE.
          else
           fileIsOpen=.FALSE.
+          write(msgbuf,'(a,a)')
+     &      ' MDSREADVECTOR: opening file: ',dataFName
+          call print_message( msgbuf, standardmessageunit,
+     &                        SQUEEZE_RIGHT , mythid)
           write(msgbuf,'(a)')
      &      ' MDSREADVECTOR: un-active tiles not implemented yet'
           call print_error( msgbuf, mythid )
