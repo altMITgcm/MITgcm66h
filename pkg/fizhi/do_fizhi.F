@@ -221,7 +221,7 @@ C***********************************************************************
       enddo
       enddo
 
-      call astro ( 20040315,nhms, xlats,xlons, im2*jm2, cosz,ra )
+      call astro ( nymd,nhms, xlats,xlons, im2*jm2, cosz,ra )
       do j=jm1,jm2
       do i=im1,im2
        radswt(i,j,bi,bj) = S0*(1.0/ra**2)*cosz(i,j)
