@@ -194,8 +194,7 @@ C--    Integrate continuity vertically for vertical velocity
  
 #ifdef EXACT_CONSERV
        IF ( k.EQ.Nr .AND. myTime.NE. 0. _d 0 .AND.
-     &      useRealFreshWaterFlux .AND. 
-     &      buoyancyRelation .EQ. 'OCEANICP' ) THEN
+     &      useRealFreshWaterFlux .AND. usingPCoords ) THEN
 
           DO j=1,sNy
            DO i=1,sNx

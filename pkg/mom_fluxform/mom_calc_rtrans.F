@@ -67,8 +67,7 @@ CEOP
 
 #ifdef NONLIN_FRSURF
       IF ( k.EQ.Nr+1 .AND.
-     &     useRealFreshWaterFlux .AND.
-     &     buoyancyRelation .EQ. 'OCEANICP' ) THEN
+     &     useRealFreshWaterFlux .AND. usingPCoords ) THEN
         DO j=1-OLy+1,sNy+OLy
          DO i=1-OLx+1,sNx+OLx
           rTransU(i,j) = convertEmP2rUnit*

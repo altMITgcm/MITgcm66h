@@ -51,8 +51,7 @@ CEOP
       _RL tmpFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
       IF ( k.EQ.Nr+1 .AND.
-     &     useRealFreshWaterFlux .AND.
-     &     buoyancyRelation .EQ. 'OCEANICP' ) THEN
+     &     useRealFreshWaterFlux .AND. usingPCoords ) THEN
        DO j=1-Oly+1,sNy+Oly
         DO i=1-Olx+1,sNx+Olx
          advectiveFluxWV(i,j) = rTrans(i,j)*vFld(i,j,k-1,bi,bj)

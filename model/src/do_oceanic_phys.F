@@ -109,7 +109,7 @@ C--   dummy statement to end declaration part
 #endif
  
 #ifdef ALLOW_THSICE
-      IF ( useThSIce .AND. buoyancyRelation(1:7) .EQ. 'OCEANIC' ) THEN
+      IF ( useThSIce .AND. fluidIsWater ) THEN
 #ifdef ALLOW_DEBUG
         IF ( debugLevel .GE. debLevB )
      &    CALL DEBUG_CALL('THSICE_MAIN',myThid)
@@ -339,7 +339,7 @@ C--     Calculate future values on open boundaries
 #endif  /* ALLOW_OBCS */
 
 #ifndef ALLOW_AUTODIFF_TAMC
-        IF ( buoyancyRelation(1:7) .EQ. 'OCEANIC' ) THEN
+        IF ( fluidIsWater ) THEN
 #endif
 C--     Determines forcing terms based on external fields
 C       relaxation terms, etc.

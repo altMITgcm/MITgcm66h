@@ -115,7 +115,7 @@ c    &                 bi,bj,myThid)
      &                 bi,bj,myThid)
          CALL TIMEAVE_NORMALIZ(ice_salFx_Ave,  ice_timeAve, 1 ,
      &                 bi,bj,myThid)
-         IF ( buoyancyRelation(1:7) .EQ. 'OCEANIC' ) THEN
+         IF ( fluidIsWater ) THEN
           CALL TIMEAVE_NORMALIZ(ice_flxAtm_Ave,ice_timeAve, 1 ,
      &                 bi,bj,myThid)
           CALL TIMEAVE_NORMALIZ(ice_frwAtm_Ave,ice_timeAve, 1 ,
@@ -152,7 +152,7 @@ c    &                 bi,bj,myThid)
      &                       ice_frw2oc_Ave, myIter,myThid)
        CALL WRITE_FLD_XY_RL('ICE_salFx-T.',  suff,
      &                       ice_salFx_Ave,  myIter,myThid)
-       IF ( buoyancyRelation(1:7) .EQ. 'OCEANIC' ) THEN
+       IF ( fluidIsWater ) THEN
         CALL WRITE_FLD_XY_RL('ICE_flxAtm-T.', suff,
      &                       ice_flxAtm_Ave, myIter,myThid)
         CALL WRITE_FLD_XY_RL('ICE_frwAtm-T.', suff,

@@ -100,7 +100,7 @@ C-    Initialise flxAtm
         ENDDO
        ENDDO
 
-      IF ( buoyancyRelation(1:7) .EQ. 'OCEANIC' ) THEN
+      IF ( fluidIsWater ) THEN
        DO j = jMin, jMax
         DO i = iMin, iMax
 c        dBug = ( bi.EQ.3 .AND. i.EQ.15 .AND. j.EQ.11 )

@@ -42,10 +42,10 @@ C     Tfreezing :: Freezing threshold temperature.
       _RL Tfreezing
 CEOP
 
-      IF ( buoyancyRelation .EQ. 'OCEANICP' ) THEN
+      IF ( usingPCoords ) THEN
         k = Nr
       ELSE
-        k= 1
+        k = 1
       ENDIF
 
       Tfreezing = -1.9 _d 0

@@ -569,8 +569,7 @@ C--      Apply open boundary conditions
 #endif   /* ALLOW_OBCS */
 
 #ifdef ALLOW_TIMEAVE
-        IF ( taveFreq.GT. 0. _d 0 .AND.
-     &       buoyancyRelation(1:7) .EQ. 'OCEANIC' ) THEN
+        IF ( taveFreq.GT. 0. _d 0 .AND. fluidIsWater ) THEN
           CALL TIMEAVE_SURF_FLUX( bi, bj, myTime, myIter, myThid)
         ENDIF
 #ifndef HRCUBE
