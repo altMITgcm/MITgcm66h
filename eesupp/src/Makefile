@@ -44,7 +44,7 @@ R8_FILES = exch_xy_r8.F  exch_uv_xy_r8.F  exch_z_xy_r8.F  \
 all: $(RL_FILES) $(RS_FILES) $(R4_FILES) $(R8_FILES)
 
 clean:
-	-rm -f $(RL_FILES) $(RS_FILES)
+	-rm -f $(RL_FILES) $(RS_FILES) $(R4_FILES) $(R8_FILES)
 
 # exch_xy_rx
 exch_xy_rl.F: exch_xy_rx.template

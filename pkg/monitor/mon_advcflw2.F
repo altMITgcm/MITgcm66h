@@ -3,31 +3,35 @@ C $Name$
 
 #include "MONITOR_OPTIONS.h"
 
-      SUBROUTINE MON_ADVCFLW2(
-     I                label, W, rHFac, rDrF, dT,
-     I                myThid )
-C     /==========================================================\
-C     | SUBROUTINE MON_ADVCFLW2                                  |
-C     | o Calculates maximum CFL number in vertical              |
-C     |   relevant for tracer Adv. Pb. with Partial Cell         |
-C     |==========================================================|
-C     \==========================================================/
-      IMPLICIT NONE
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+CBOP 0
+C     !ROUTINE: MON_ADVCFLW2
 
-C     === Global data ===
+C     !INTERFACE:
+      SUBROUTINE MON_ADVCFLW2(
+     I     label, W, rHFac, rDrF, dT,
+     I     myThid )
+
+C     !DESCRIPTION:
+C     Calculates maximum CFL number in the vertical relevant for tracer
+C     Adv. Pb. with Partial Cell.
+
+C     !USES:
+      IMPLICIT NONE
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "MONITOR.h"
 
-C     === Routine arguments ===
+C     !INPUT PARAMETERS:
       CHARACTER*(*) label
       _RL     W(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RS rHFac(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy) 
       _RS rDrF(Nr)
       _RL dT
       INTEGER myThid
+CEOP
 
-C     === Local variables ====
+C     !LOCAL VARIABLES:
       INTEGER bi,bj,I,J,K
       _RL tmpVal,theMax
 
@@ -53,3 +57,5 @@ C     === Local variables ====
 
       RETURN
       END
+
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
