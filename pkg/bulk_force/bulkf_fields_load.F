@@ -2,6 +2,7 @@ C $Header$
 C $Name$
 
 #include "BULK_FORCE_OPTIONS.h"
+#undef ALLOW_THSICE
  
 C     !ROUTINE: BULKF_FIELDS_LOAD
 C     !INTERFACE:
@@ -40,7 +41,7 @@ c #include "GRID.h"
 c #include "DYNVARS.h"
 #include "BULKF.h"
 #ifdef ALLOW_THSICE
-#include "THSICE.h"
+#include "THSICE_VARS.h"
 #endif
       LOGICAL DIFFERENT_MULTIPLE
       EXTERNAL DIFFERENT_MULTIPLE
