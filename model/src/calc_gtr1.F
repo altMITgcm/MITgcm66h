@@ -26,7 +26,9 @@ C     == GLobal variables ==
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GAD.h"
+#ifdef ALLOW_PASSIVE_TRACER
 #include "TR1.h"
+#endif
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
