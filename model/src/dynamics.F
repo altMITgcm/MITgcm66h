@@ -1,6 +1,6 @@
 C $Header$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
       SUBROUTINE DYNAMICS(myTime, myIter, myThid)
 C     /==========================================================\

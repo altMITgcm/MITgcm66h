@@ -1,6 +1,6 @@
 C $Header$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
       SUBROUTINE THE_MODEL_MAIN(myThid)
 C     /==========================================================\

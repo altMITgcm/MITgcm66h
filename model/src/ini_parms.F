@@ -1,6 +1,6 @@
 C $Header$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
       SUBROUTINE INI_PARMS( myThid )
 C     /==========================================================\
