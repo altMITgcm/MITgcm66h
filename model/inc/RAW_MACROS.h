@@ -1,13 +1,20 @@
 C $Header$
 C $Name$
 C
-C     /==========================================================\
-C     | RAW_MACROS.h                                             |
-C     |==========================================================|
-C     | These macros are used to reduce memory requirement and/or|
-C     | memory references when variables are fixed along a given |
-C     | axis or axes.                                            |
-C     \==========================================================/
+CBOP
+C    !ROUTINE: RAW_MACROS.h
+C    !INTERFACE:
+C    include RAW_MACROS.h
+C    !DESCRIPTION: \bv
+C     *==========================================================*
+C     | RAW_MACROS.h                                              
+C     *==========================================================*
+C     | These macros are used to reduce memory requirement and/or 
+C     | memory references when variables are fixed along a given  
+C     | axis or axes.                                             
+C     *==========================================================*
+C     \ev
+CEOP
 
 #ifdef RA_CONST
 #define  _rAw(i,j,bi,bj) rAw(1,1,1,1)

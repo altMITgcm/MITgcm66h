@@ -2,10 +2,17 @@ C $Header$
 C $Name$
 
 #ifdef ALLOW_NONHYDROSTATIC
-C     /==========================================================\
-C     | GW.h                                                     |
-C     | o Additional state variables for non-hydrostatic mode    |
-C     \==========================================================/
+CBOP
+C    !ROUTINE: GW.h
+C    !INTERFACE:
+C    include GW.h
+C    !DESCRIPTION: \bv
+C     *==========================================================*
+C     | GW.h                                                      
+C     | o Additional state variables for non-hydrostatic mode     
+C     *==========================================================*
+C     \ev
+CEOP
 C
 C     wVel  - zonal velocity (m/s, i=1 held at western face)
 C     gX, gXNM1 - Time tendencies at current and prvious time levels.
