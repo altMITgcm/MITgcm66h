@@ -39,6 +39,33 @@ test_for_package_in_cpp_options() {
    fi
 }
 
+# Read the $ROOTDIR/pkg/pkg_groups file and expand any references to
+# the package list.
+expand_pkg_groups() {
+    new_packages=
+    PKG_GROUPS=$ROOTDIR"/pkg/pkg_groups"
+    if test -r $PKG_GROUPS ; then
+	cat $PKG_GROUPS | sed -e 's/#.*$//g' | sed -e 's/:/ : /g' > ./p1.tmp
+	cat ./p1.tmp | awk '(NF>2 && $2==":"){ print $0 }' > ./p2.tmp
+	matched=0
+	for i in $PACKAGES ; do
+	    line=`grep $i ./p2.tmp`
+	    RETVAL=$?
+	    if test "x$RETVAL" = x0 ; then
+		matched=1
+		replace=`echo $line | awk '{ $1=""; $2=""; print $0 }'`
+		echo "    replacing \"$i\" with: $replace"
+		new_packages="$new_packages $replace"
+	    else
+		new_packages="$new_packages $i"
+	    fi
+	done
+	PACKAGES=$new_packages
+	rm -f ./p[1,2].tmp
+    else
+	echo "Warning: can't read package groups definition file: $PKG_GROUPS"
+    fi
+}
 
 # Guess possible config options for this host
 find_possible_configs()  {
@@ -668,7 +695,9 @@ else
 	for i in $def ; do
 	    PACKAGES="$PACKAGES $i"
 	done
-	echo "    packages are:  $PACKAGES"
+	echo "    before group expansion packages are: $PACKAGES"
+	expand_pkg_groups
+	echo "    after group expansion packages are:  $PACKAGES"
     fi
 fi
 
@@ -805,12 +834,7 @@ done
 
 # Create a list of #define and #undef to enable/disable packages
 PACKAGES_DOT_H=PACKAGES.h
-if test -e $PACKAGES_DOT_H ; then
-    cat $PACKAGES_DOT_H \
-	| awk 'BEGIN{p=1;} ($1=="C===" && $2=="GENMAKE"){p=0;} {if (p==1) print $0}' \
-	> $PACKAGES_DOT_H".tmp"
-fi
-cat <<EOF >>$PACKAGES_DOT_H".tmp"
+cat <<EOF >$PACKAGES_DOT_H".tmp"
 C=== GENMAKE v2 ===
 C  The following defines have been set by GENMAKE, so please do not
 C  edit anything below these comments.  In general, you should
@@ -876,11 +900,17 @@ for i in $PACKAGES ; do
 #EH3  WARNING :  This is an UGLY HACK that needs to be removed!!!
 
 done
-cmp $PACKAGES_DOT_H".tmp" $PACKAGES_DOT_H
-RETVAL=$?
-if test "x$RETVAL" = x0 ; then
-    mv -f $PACKAGES_DOT_H".tmp" $PACKAGES_DOT_H".bak"
+if test ! -f $PACKAGES_DOT_H ; then
     mv -f $PACKAGES_DOT_H".tmp" $PACKAGES_DOT_H
+else
+    cmp $PACKAGES_DOT_H".tmp" $PACKAGES_DOT_H
+    RETVAL=$?
+    if test "x$RETVAL" = x0 ; then
+	rm -f $PACKAGES_DOT_H".tmp"
+    else
+	mv -f $PACKAGES_DOT_H $PACKAGES_DOT_H".bak"
+	mv -f $PACKAGES_DOT_H".tmp" $PACKAGES_DOT_H
+    fi
 fi
 
 echo "  Adding STANDARDDIRS"
