@@ -317,6 +317,7 @@ if ($?include_jam_libs) then
 cat >> ${mfile} <<EOF
 # extra stuff for Hyades ............................................
 HYADES_DIR = /u/u0/cnh/jam-lib/software
+HYADES_DIR = /u/u0/cnh/jam-lib-twoproc
 WORK_DIR   = \$(HYADES_DIR)
 DEPOSIT_DIR = linux_bin
 
