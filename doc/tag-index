@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o update exp. aim.5l_cs (use default LAND_OPTIONS.h file) and add
+  new test for AIM with thSIce + slab-ocean
 o cpl_aim+ocn test: update output (optfile & default GMREDI_OPTIONS.h)
 o move state variable diagnostics to the beginning of the time step ;
   (note: still needs some work specially for snap-shot diagnostics)
