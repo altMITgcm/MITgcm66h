@@ -520,8 +520,8 @@ Usage: "$0" [OPTIONS]
           Include MPI header files and link to MPI libraries
     -mpi=PATH | --mpi=PATH
           Include MPI header files and link to MPI libraries using MPI_ROOT
-          set to PATH. i.e. Include files from $PATH/include, link to libraries
-          from $PATH/lib and use binaries from $PATH/bin.
+          set to PATH. i.e. Include files from \$PATH/include, link to libraries
+          from \$PATH/lib and use binaries from \$PATH/bin.
 
     -bash NAME
           Explicitly specify the Bourne or BASH shell to use
