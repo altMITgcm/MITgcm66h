@@ -142,7 +142,7 @@ CADJ STORE ustress(:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
           enddo
           do j = jmin,jmax
             do i = imin+1,imax
-#if (defined (ALLOW_ATM_TEMP) || defined (ALLOW_ATM_WIND))
+#if (defined (ALLOW_BULKFORMULAE) || defined (USE_EXF_INTERPOLATION))
 c     Shift wind stresses calculated at C-points to W/S points
               fu(i,j,bi,bj) = exf_outscal_ustress*
      &              (ustress(i,j,bi,bj)+ustress(i-1,j,bi,bj))/2.*
@@ -176,7 +176,7 @@ CADJ STORE vstress(:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
           enddo
           do j = jmin+1,jmax
             do i = imin,imax
-#if (defined (ALLOW_ATM_TEMP) || defined (ALLOW_ATM_WIND))
+#if (defined (ALLOW_BULKFORMULAE) || defined (USE_EXF_INTERPOLATION))
 c     Shift wind stresses calculated at C-points to W/S points
               fv(i,j,bi,bj) = exf_outscal_vstress*
      &              (vstress(i,j,bi,bj)+vstress(i,j-1,bi,bj))/2.*

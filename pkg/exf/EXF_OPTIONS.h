@@ -55,11 +55,6 @@ c
 c   >>> ATMOSPHERIC_LOADING <<<
 c       If defined, atmospheric pressure can be read-in from files.
 c
-c   >>> ALLOW_CLIM_CYCLIC <<<
-c       If defined, relaxation file record numbers are assumed 1 to
-c       12 corresponding to Jan. through Dec.  Otherwise relaxation
-c       file record numbers are specified in data.exf_clim
-c
 c   >>> ALLOW_CLIMTEMP_RELAXATION <<<
 c       Allow the relaxation to a monthly climatology of potential
 c       temperature, e.g. the Levitus climatology.
