@@ -6,6 +6,7 @@ o gmredi: fix few bugs and restore parameter values (e.g., Small_Number=1.D-12)
   and scheme (e.g., Large_SlopeSqr=1.D+48) of checkpoint47f_post
 
 checkpoint48
+checkpoint47h_post (duplicate tag for PH's c48 tag, in order to move c48)
 This will be a good checkpoint to plug into the ecco-branch.
 o few modif.'s to get latest version adjointed
   (mainly kick out code in ini_linear_phisurf)
