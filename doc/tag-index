@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o monitor package can write to NetCDF files and/or STDOUT
+o fix re-definition bug in MNC_GRID_INIT_ALL()
 o doc/api_reference added
   - a framework for building an API Reference Manual using all
     the "protex" comments embedded in the code
