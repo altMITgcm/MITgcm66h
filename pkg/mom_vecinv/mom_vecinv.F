@@ -232,7 +232,8 @@ C      in terms of vorticity and divergence
      &                       myThid)
        ENDIF
 C      or in terms of tension and strain
-       IF (viscAstrain.NE.0. .OR. viscAtension.NE.0.) THEN
+       IF (viscAstrain.NE.0. .OR. viscAtension.NE.0.
+     O      .OR. viscC2smag.ne.0) THEN
          CALL MOM_CALC_TENSION(bi,bj,k,uFld,vFld,
      O                         tension,
      I                         myThid)

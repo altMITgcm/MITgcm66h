@@ -136,6 +136,7 @@ C--   Continuous equation parameters
      & viscAhGrid, viscAhGridMax, viscAhGridMin,
      & viscC2leith, viscC4leith,
      & useFullLeith, viscC2leithD, viscC4leithD, 
+     & viscC2Smag,
      & viscAhD, viscAhZ, viscA4D, viscA4Z,
      & viscA4, viscA4W,
      & viscA4Max, viscA4Grid, viscA4GridMax, viscA4GridMin,
