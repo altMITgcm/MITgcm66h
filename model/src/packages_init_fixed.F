@@ -114,7 +114,7 @@ C--   Initialise the control variables
 CAMM
 #ifdef ALLOW_DIAGNOSTICS
       IF (usediagnostics) then
-       call diagnostics_init(mythid)
+       call diagnostics_initialise(mythid)
       ENDIF
 #endif
 CAMM
