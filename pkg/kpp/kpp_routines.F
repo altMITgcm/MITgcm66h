@@ -1343,22 +1343,22 @@ c     work1, work2 - work arrays for holding horizontal slabs
 c calculate density, alpha, beta in surface layer, and set dbsfc to zero
 
       call FIND_RHO(
-     I     bi, bj, ibot, itop, jbot, jtop, 1, 1, eosType,
+     I     bi, bj, ibot, itop, jbot, jtop, 1, 1,
      I     theta, salt,
      O     WORK1,
      I     myThid )
 
       call FIND_ALPHA(
-     I     bi, bj, ibot, itop, jbot, jtop, 1, 1, eosType,
+     I     bi, bj, ibot, itop, jbot, jtop, 1, 1,
      O     WORK2 )
 
       call FIND_BETA(
-     I     bi, bj, ibot, itop, jbot, jtop, 1, 1, eosType,
+     I     bi, bj, ibot, itop, jbot, jtop, 1, 1,
      O     WORK3 )
 
       DO J = jbot, jtop
          DO I = ibot, itop
-            RHO1(I,J)      = WORK1(I,J) + rhonil
+            RHO1(I,J)      = WORK1(I,J) + rhoConst
             TTALPHA(I,J,1) = WORK2(I,J)
             SSBETA(I,J,1)  = WORK3(I,J)
             DBSFC(I,J,1)   = 0.
@@ -1371,29 +1371,29 @@ CHPF$  INDEPENDENT, NEW (RHOK,RHOKM1,RHO1K,WORK1,WORK2)
       DO K = 2, Nr
 
          call FIND_RHO(
-     I        bi, bj, ibot, itop, jbot, jtop, K, K, eosType,
+     I        bi, bj, ibot, itop, jbot, jtop, K, K,
      I        theta, salt,
      O        RHOK,
      I        myThid )
 
          call FIND_RHO(
-     I        bi, bj, ibot, itop, jbot, jtop, K-1, K, eosType,
+     I        bi, bj, ibot, itop, jbot, jtop, K-1, K,
      I        theta, salt,
      O        RHOKM1,
      I        myThid )
 
          call FIND_RHO(
-     I        bi, bj, ibot, itop, jbot, jtop, 1, K, eosType,
+     I        bi, bj, ibot, itop, jbot, jtop, 1, K,
      I        theta, salt,
      O        RHO1K,
      I        myThid )
 
          call FIND_ALPHA(
-     I        bi, bj, ibot, itop, jbot, jtop, K, K, eosType,
+     I        bi, bj, ibot, itop, jbot, jtop, K, K,
      O        WORK1 )
 
          call FIND_BETA(
-     I        bi, bj, ibot, itop, jbot, jtop, K, K, eosType,
+     I        bi, bj, ibot, itop, jbot, jtop, K, K,
      O        WORK2 )
 
          DO J = jbot, jtop
@@ -1401,9 +1401,9 @@ CHPF$  INDEPENDENT, NEW (RHOK,RHOKM1,RHO1K,WORK1,WORK2)
                TTALPHA(I,J,K) = WORK1 (I,J)
                SSBETA(I,J,K)  = WORK2 (I,J)
                DBLOC(I,J,K-1) = gravity * (RHOK(I,J) - RHOKM1(I,J)) /
-     &                                    (RHOK(I,J) + rhonil)
+     &                                    (RHOK(I,J) + rhoConst)
                DBSFC(I,J,K)   = gravity * (RHOK(I,J) - RHO1K (I,J)) /
-     &                                    (RHOK(I,J) + rhonil)
+     &                                    (RHOK(I,J) + rhoConst)
             END DO
          END DO
 

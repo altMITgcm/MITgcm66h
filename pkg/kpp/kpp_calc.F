@@ -132,9 +132,9 @@ c     imin, imax, jmin, jmax  - array computation indices
       parameter( minusone=-1.0)
       _KPP_RL    p0    , p5    , p25     , p125      , p0625
       parameter( p0=0.0, p5=0.5, p25=0.25, p125=0.125, p0625=0.0625 )
-      integer   imin      ,imax          ,jmin      ,jmax
+      integer    imin      , imax        , jmin      , jmax
 #ifdef FRUGAL_KPP
-      parameter(imin=1    ,imax=sNx      ,jmin=1    ,jmax=sNy      )
+      parameter( imin=1    , imax=sNx    , jmin=1    , jmax=sNy     )
 #else
       parameter(imin=2-OLx,imax=sNx+OLx-1,jmin=2-OLy,jmax=sNy+OLy-1)
 #endif
@@ -377,7 +377,7 @@ cph)
 #endif ALLOW_SEAICE
 
         bosol(I,J) = gravity * vddiff(I,J,1,1) * Qsw(i,j,bi,bj) *
-     &       recip_Cp*recip_rhoNil*recip_dRf(1) *
+     &       recip_Cp*recip_rhoConst*recip_dRf(1) *
      &       drF(1) / work2(I,J)
 
        END DO
