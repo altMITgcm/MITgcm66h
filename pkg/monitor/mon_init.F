@@ -17,11 +17,22 @@ C     !USES:
       IMPLICIT NONE
 #include "SIZE.h"
 #include "EEPARAMS.h"
+#include "PARAMS.h"
 #include "MONITOR.h"
 
 C     !INPUT PARAMETERS:
       INTEGER myThid
 CEOP
+
+C     !LOCAL VARIABLES:
+      INTEGER i
+
+      IF (useMNC .AND. mnc_use_for_mon) THEN
+        DO i = 1,MAX_LEN_MBUF
+          mon_fname(i:i) = ' '
+        ENDDO
+        mon_do_fwrite = .FALSE.
+      ENDIF
 
 C     Set monitor I/O to standard output by default
 C     and prefix monitor "variables" with mon by default.

@@ -36,7 +36,8 @@ C     !LOCAL VARIABLES:
      &     useMNC,
      &     mnc_use_outdir, mnc_outdir_date, 
      &     mnc_outdir_str, mnc_indir_str, 
-     &     mnc_echo_gvtypes, mnc_pickup_create, mnc_pickup_read
+     &     mnc_echo_gvtypes, mnc_pickup_create, mnc_pickup_read,
+     &     mnc_use_for_mon
       LOGICAL  exst
 
 C     Functions
@@ -56,6 +57,7 @@ C     Set default values for MNC run-time parameters
       mnc_pickup_read       =  .FALSE.
       mnc_use_indir         =  .FALSE.
         mnc_indir_str(1:4)  =  '    '
+      mnc_use_for_mon       =  .FALSE.
 
 C     Set the file name
       DO i=1,MAX_LEN_MBUF

@@ -60,6 +60,18 @@ C      Dynamics field monitor start
 #endif /* ALLOW_USE_MPI */
        _END_MASTER(myThid)
 
+#ifdef ALLOW_MNC
+         IF (useMNC .AND. mnc_use_for_mon) THEN
+           CALL MNC_CW_APPEND_VNAME(
+     &          'iter', '-_-_--__-__t', 0,0, myThid)
+           CALL MNC_CW_SET_UDIM('monitor', -1, myThid)
+           CALL MNC_CW_I_W(
+     &          'I','monitor',1,1,'iter', myIter, myThid)
+           CALL MNC_CW_SET_UDIM('monitor', 0, myThid)
+           mon_do_fwrite = .TRUE.
+         ENDIF
+#endif /*  ALLOW_MNC  */
+
 C      Print the time to make grepping the stdout easier
        CALL MON_SET_PREF('time',myThid)
        CALL MON_OUT_I( '_tsnumber', myIter,mon_string_none,myThid)
@@ -102,6 +114,12 @@ C      Print stats for surface correction terms (Linear Free-Surf)
 
 C      Check that solution is within reasonable bounds
        CALL MON_SOLUTION(myIter,myTime,myThid)
+
+#ifdef ALLOW_MNC
+         IF (useMNC .AND. mnc_use_for_mon) THEN
+           mon_do_fwrite = .FALSE.
+         ENDIF
+#endif /*  ALLOW_MNC  */
 
 C      Dynamics field monitor finish
        _BEGIN_MASTER(myThid)

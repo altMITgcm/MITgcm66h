@@ -46,7 +46,7 @@ C     Write blanks or zeros to all the internal names and ID tables
         ENDDO
       ENDDO
 
-C     The outer tables
+C     Blank the CW tables
       DO g = 1,MNC_MAX_ID
         mnc_cw_gname(g)(1:MNC_MAX_CHAR) = blank(1:MNC_MAX_CHAR)
         mnc_cw_vname(g)(1:MNC_MAX_CHAR) = blank(1:MNC_MAX_CHAR)
