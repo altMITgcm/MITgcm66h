@@ -455,8 +455,9 @@ C NOW SET U(3)=U(1)
              AA3=ZERO
             END IF
        
-           VRT(J)=FXY(I,J,bi,bj)+AA3+UVRT1(I,J,bi,bj)*VICE(I-1,J,1,bi,bj)
-     &                        +UVRT2(I,J,bi,bj)*VICE(I+1,J,1,bi,bj)
+           VRT(J)=FXY(I,J,bi,bj)+AA3+
+     &            UVRT1(I,J,bi,bj)*VICE(I-1,J,1,bi,bj)+
+     &            UVRT2(I,J,bi,bj)*VICE(I+1,J,1,bi,bj)
            VRT(J)=VRT(J)*UVM(I,J,bi,bj)
           ENDDO
        
