@@ -377,8 +377,8 @@ C *note* should update KPP_TRANSPORT_T to set df  *aja*
 #endif
 
 C--   Divergence of fluxes
-      DO j=1-Oly,sNy+Oly
-       DO i=1-Olx,sNx+Olx
+      DO j=1-Oly,sNy+Oly-1
+       DO i=1-Olx,sNx+Olx-1
         gTracer(i,j,k,bi,bj)=gTracer(i,j,k,bi,bj)
      &   -_recip_hFacC(i,j,k,bi,bj)*recip_drF(k)
      &    *recip_rA(i,j,bi,bj)
