@@ -2,6 +2,11 @@ $Header$
 
     Notes on tags used in MITgcmUV
     ==============================
+
+o doc/api_reference added
+  - a framework for building an API Reference Manual using all
+    the "protex" comments embedded in the code
+  - see pkg/generic_advdiff, pkg/mnc for examples
 o MNC:
   - make myThid the last argument for all subroutines
   - new default for the grid files: NO halos
