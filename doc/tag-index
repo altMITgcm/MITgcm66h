@@ -4,7 +4,7 @@ $Header$
     ==============================
 
 untagged
-o Mods and bug fixes to pkg/cal and pkg/exf needed for computation
+o Mods and bug fixes to pkg/cal, pkg/exf, etc., needed for computation
   of tracer Green's fucntions for ocean inversion project.
 
 checkpoint51f_pre
