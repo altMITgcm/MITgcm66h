@@ -3,6 +3,14 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+release1_p4
+o Removed f90 comments ("!")
+o Modified initialisations to enable exf package for MITgcm
+  (without invoking ECCO_PACKAGE).
+o modifications to gradient check package (Martin Losch)
+  - enable centered differences
+  - modified format of standard output
+
 release1_p3
 o added tangent linear setup to verification/carbon/
 o added adjoint sensitivity setup to verification/global_ocean...
