@@ -7,7 +7,7 @@ C     | S/R TIMESTEP                                             |
 C     | o Step model fields forward in time                      |
 C     \==========================================================/
       SUBROUTINE TIMESTEP( bi, bj, iMin, iMax, jMin, jMax,
-     I                     K, phiHyd,
+     I                     K,
      I                     myIter, myThid )
       implicit none
 
@@ -19,16 +19,13 @@ C     == Global variables ==
 #include "GRID.h"
 
 C     == Routine Arguments ==
-C     phiHyd - Hydrostatic pressure (ocean) or geopotentiel (atmos)
       INTEGER bi,bj,iMin,iMax,jMin,jMax
       INTEGER K
-      _RL     phiHyd(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr) 
       INTEGER myIter, myThid
 
 C     == Local variables ==
       INTEGER i,j
       _RL ab15,ab05
-      _RL phxFac,phyFac
 
 C     Adams-Bashforth timestepping weights
 Caja  IF (myIter .EQ. 0) THEN
@@ -51,19 +48,6 @@ C     Step forward zonal velocity (store in Gu)
         ENDDO
       ENDDO
 
-      IF (staggerTimeStep) THEN
-C--   -grad Phi_Hyd has not been incorporated to gU and is added here:
-        phxFac = pfFacMom*deltaTmom*recip_rhoConst
-        DO j=jMin,jMax
-          DO i=iMin,iMax
-            gUNm1(i,j,k,bi,bj)=gUNm1(i,j,k,bi,bj)
-     &       - _recip_dxC(i,j,bi,bj)
-     &         *(phiHyd(i,j,k)-phiHyd(i-1,j,k))*phxFac
-     &         *_maskW(i,j,k,bi,bj)
-          ENDDO
-        ENDDO
-      ENDIF
-
 C     Step forward meridional velocity (store in Gv)
       DO j=jMin,jMax
         DO i=iMin,iMax
@@ -75,19 +59,6 @@ C     Step forward meridional velocity (store in Gv)
      &        )*_maskS(i,j,k,bi,bj)
         ENDDO
       ENDDO
-
-      IF (staggerTimeStep) THEN
-C--   -grad Phi_Hyd has not been incorporated to gV and is added here:
-        phyFac = pfFacMom*deltaTmom*recip_rhoConst
-        DO j=jMin,jMax
-          DO i=iMin,iMax
-            gVNm1(i,j,k,bi,bj)=gVNm1(i,j,k,bi,bj)
-     &       - _recip_dyC(i,j,bi,bj)
-     &         *(phiHyd(i,j,k)-phiHyd(i-1,j,k))*phyFac                      
-     &         *_maskS(i,j,k,bi,bj)
-          ENDDO
-        ENDDO
-      ENDIF
 
       RETURN
       END

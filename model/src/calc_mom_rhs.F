@@ -198,12 +198,6 @@ C     o V momentum equation
        ArDvdrFac = 0.
       ENDIF
 
-C-- with stagger time stepping, grad Phi_Hyp is directly incoporated in TIMESTEP
-      IF (staggerTimeStep) THEN
-        phxFac = 0.
-        phyFac = 0.
-      ENDIF
-
 C--   Adams-Bashforth weighting factors
       ab15   =  1.5 _d 0 + abEps
       ab05   = -0.5 _d 0 - abEps

@@ -301,9 +301,7 @@ C--   External forcing term(s)
 
 #ifdef INCLUDE_LAT_CIRC_FFT_FILTER_CODE
 C--
-      CALL FILTER_LATCIRCS_FFT_APPLY( 
-     U     gS, 
-     I     1, sNy, k, k, bi, bj, 1, myThid)
+      CALL FILTER_LATCIRCS_FFT_APPLY( gS, 1, sNy, k, k, bi, bj, 1, myThid)
 #endif
 
       RETURN

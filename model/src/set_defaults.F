@@ -92,7 +92,6 @@ C--   Set default "physical" parameters
       rigidLid            = .FALSE.
       hFacMin             = 1.D0
       hFacMinDrDefault    = 0.D0
-      staggerTimeStep     = .FALSE.
       momViscosity        = .TRUE.
       momAdvection        = .TRUE.
       momForcing          = .TRUE.

@@ -49,8 +49,6 @@ C     == Local variables ==
       INTEGER i,j
       _RL alphaRho(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL dRloc,dRlocKp1
-      _RL ddRm1, ddRp1, ddRm, ddRp
-      _RL atm_cp, atm_kappa, atm_po
 
       IF ( buoyancyRelation .eq. 'OCEANIC' ) THEN
 
@@ -113,40 +111,6 @@ C       Hydrostatic pressure at interface below
 
       ELSEIF ( buoyancyRelation .eq. 'ATMOSPHERIC' ) THEN
 
-        atm_cp=1004. _d 0
-        atm_kappa=2. _d 0/7. _d 0
-        atm_po=1. _d 5
-        IF (K.EQ.1) THEN
-C       Integrate d Phi / d R
-          ddRp1=atm_cp*( ((rC(K)/atm_po)**atm_kappa)
-     &                  -((rF(K)/atm_po)**atm_kappa) )
-          DO j=jMin,jMax
-           DO i=iMin,iMax
-             ddRp=ddRp1
-             IF (hFacC(I,J, K ,bi,bj).EQ.0.) ddRp=0.
-             phiHyd(i,j,K)=0.
-     &          -ddRp*(theta(I,J,K,bi,bj)-tRef(K))
-           ENDDO
-          ENDDO
-        ELSE
-C       Integrate d Phi / d R
-          ddRp1=atm_cp*( ((rC( K )/atm_po)**atm_kappa)
-     &                  -((rF( K )/atm_po)**atm_kappa) )
-          ddRm1=atm_cp*( ((rF( K )/atm_po)**atm_kappa)
-     &                  -((rC(K-1)/atm_po)**atm_kappa) )
-          DO j=jMin,jMax
-           DO i=iMin,iMax
-             ddRp=ddRp1
-             ddRm=ddRm1
-             IF (hFacC(I,J, K ,bi,bj).EQ.0.) ddRp=0.
-             IF (hFacC(I,J,K-1,bi,bj).EQ.0.) ddRm=0.
-             phiHyd(i,j,K)=phiHyd(i,j,K-1)
-     &          -( ddRm*(theta(I,J,K-1,bi,bj)-tRef(K-1))
-     &            +ddRp*(theta(I,J, K ,bi,bj)-tRef( K )) )
-           ENDDO
-          ENDDO
-        ENDIF
-                                                                                        
       ELSE
         STOP 'CALC_PHI_HYD: We should never reach this point!'
       ENDIF

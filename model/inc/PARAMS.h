@@ -137,7 +137,6 @@ C     usingSphericalPolarGrid - If TRUE grid generation will be in a
 C                               spherical polar frame.
 C     no_slip_sides - Impose "no-slip" at lateral boundaries.
 C     no_slip_bottom- Impose "no-slip" at bottom boundary.
-C     staggerTimeStep - enable a Stagger time stepping T,S Rho then U,V
 C     momViscosity  - Flag which turns momentum friction terms on and off.
 C     momAdvection  - Flag which turns advection of momentum on and off.
 C     momForcing    - Flag which turns external forcing of momentum on
@@ -184,7 +183,6 @@ C     globalFiles    - Selects between "global" and "tiled" files
 C     allowFreezing  - Allows water to freeze and form ice
       COMMON /PARM_L/ usingCartesianGrid, usingSphericalPolarGrid,
      & no_slip_sides,no_slip_bottom,
-     & staggerTimeStep,
      & momViscosity, momAdvection, momForcing, useCoriolis, 
      & momPressureForcing,tempDiffusion, tempAdvection, tempForcing,
      & saltDiffusion, saltAdvection, saltForcing,
@@ -202,7 +200,6 @@ C     allowFreezing  - Allows water to freeze and form ice
       LOGICAL usingSphericalPolarMTerms
       LOGICAL no_slip_sides
       LOGICAL no_slip_bottom
-      LOGICAL staggerTimeStep
       LOGICAL momViscosity
       LOGICAL momAdvection
       LOGICAL momForcing
