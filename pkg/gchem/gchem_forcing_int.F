@@ -44,6 +44,7 @@ C  i,j                  :: loop indices
 CEOP
 
 #ifdef ALLOW_GCHEM
+# ifndef GCHEM_SEPARATE_FORCING
 c
 
 ccccccccccccccccccccccccc
@@ -65,6 +66,7 @@ c
 #endif /* ALLOW_CFC */
 cccccccccccccccccccccccccc END CFC cccccccccccccccccccccccccccccccccc
 c
+# endif /* GCHEM_SEPARATE_FORCING */
 #endif /* ALLOW_GCHEM */
 
       RETURN
