@@ -7,7 +7,7 @@ CBOP
 C !ROUTINE: PTRACERS_FIELDS_BLOCKING_EXCHANGES
 
 C !INTERFACE: ==========================================================
-      SUBROUTINE PTRACERS_FIELDS_BLOCKING_EXCHANGES( myThid )
+      SUBROUTINE PTRACERS_FIELDS_BLOCKING_EXCH( myThid )
 
 C !DESCRIPTION:
 C     Exchange data to update overlaps for passive tracers

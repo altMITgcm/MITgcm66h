@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o make all subroutines 30 or less characters in length for certain older 
+  compilers to work (a thorough search only turns up two routines in 
+  pkg/ptracers)
 o allow (vecinv only) a different horiz. viscosity for Divergence and Vorticity; 
   affects (truncation level) output.txt of global_ocean.cs32x15(&.thsice)
 

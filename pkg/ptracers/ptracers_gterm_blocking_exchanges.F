@@ -7,7 +7,7 @@ CBOP
 C !ROUTINE: PTRACERS_GTERM_BLOCKING_EXCHANGES
 
 C !INTERFACE: ==========================================================
-      SUBROUTINE PTRACERS_GTERM_BLOCKING_EXCHANGES( myThid )
+      SUBROUTINE PTRACERS_GTERM_BLOCKING_EXCH( myThid )
 
 C !DESCRIPTION:
 C     Exchange data to update overlaps for passive tracer tendancies
