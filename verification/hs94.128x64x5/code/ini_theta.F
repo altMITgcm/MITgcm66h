@@ -65,7 +65,7 @@ C--    Initialise temperature field to Held & Saurez equilibrium theta
            DO I=1,sNx
             theta(I,J,K,bi,bj) = MAX( thetaLim, thetaEq )
 c    &                          + 0.01 _d 0*(RAND()-0.5)
-     &                          + 0.01 _d 0*(PORT_RAND()-0.5)
+     &                          + 0.01 _d 0*(PORT_RAND()-0.5 _d 0)
 C           theta(I,J,K,bi,bj) = tRef(K)
            ENDDO
           ENDDO
