@@ -123,7 +123,6 @@ C Check first for global file with simple name (ie. fName)
      &   ' MDSREADFIELD: opening global file: ',dataFName
        call print_message( msgbuf, standardmessageunit,
      &                     SQUEEZE_RIGHT , mythid)
-       stop " xx, adxx, weights and masks are not supposed to be global"
       endif
 
 C If negative check for global file with MDS name (ie. fName.data)
@@ -136,7 +135,6 @@ C If negative check for global file with MDS name (ie. fName.data)
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         globalFile = .TRUE.
-       stop " xx, adxx, weights and masks are not supposed to be global"
        endif
       endif
 C Loop over all processors    
@@ -569,7 +567,6 @@ C Check first for global file with simple name (ie. fName)
      &   ' MDSREADFIELD: opening global file: ',dataFName
        call print_message( msgbuf, standardmessageunit,
      &                     SQUEEZE_RIGHT , mythid)
-       stop " xx, adxx, weights and masks are not supposed to be global"
       endif
 
 C If negative check for global file with MDS name (ie. fName.data)
@@ -582,7 +579,6 @@ C If negative check for global file with MDS name (ie. fName.data)
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         globalFile = .TRUE.
-       stop " xx, adxx, weights and masks are not supposed to be global"
        endif
       endif
 C Loop over all processors    
