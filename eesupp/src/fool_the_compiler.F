@@ -1,4 +1,4 @@
-C $Id$
+C $Header$
 
        SUBROUTINE FOOL_THE_COMPILER
        RETURN

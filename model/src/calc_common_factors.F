@@ -1,11 +1,11 @@
-C $Id$
+C $Header$
 
 #include "CPP_EEOPTIONS.h"
 
 CStartOfInterFace
       SUBROUTINE CALC_COMMON_FACTORS( 
      I        bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
-     O        xA,yA,uTrans,vTrans,wTrans,maskC,maskUp,
+     O        xA,yA,uTrans,vTrans,wTrans,wVel,maskC,maskUp,
      I        myThid)
 
 C     /==========================================================\
@@ -38,6 +38,7 @@ C     yA      - Tracer cell face area normal to X
 C     uTrans  - Zonal volume transport through cell face
 C     vTrans  - Meridional volume transport through cell face
 C     wTrans  - Vertical volume transport through cell face
+C     wVel    - Vertical velocity at cell upper and lower faces
 C     maskC   - land/water mask for tracer points
 C     maskUp  - land/water mask for Wvel points (above tracer level)
 C     myThid - Instance number for this innvocation of CALC_COMMON_FACTORS
@@ -48,6 +49,7 @@ C
       _RL uTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL vTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL wTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL wVel  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
       _RS maskC (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS maskUp(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 C
@@ -60,17 +62,20 @@ C     kUp, kDown, kM1 - Index for layer above and below. K_UP and K_DOWN
 C                         are switched with layer to be the appropriate index 
 C                         into fluxUD.
       INTEGER i,j
+      LOGICAL TOP_LAYER
 
-C--    Calculate tracer cell face open areas
+      TOP_LAYER = K .EQ. 1
+
+C--   Calculate tracer cell face open areas
       DO j=jMin,jMax
        DO i=iMin,iMax
-        xA(i,j) = dyG(i,j,bi,bj)*dzF(k)*hFacW(i,j,k,bi,bj)
-        yA(i,j) = dxG(i,j,bi,bj)*dzF(k)*hFacS(i,j,k,bi,bj)
+        xA(i,j) = _dyG(i,j,bi,bj)*dzF(k)*_hFacW(i,j,k,bi,bj)
+        yA(i,j) = _dxG(i,j,bi,bj)*dzF(k)*_hFacS(i,j,k,bi,bj)
        ENDDO
       ENDDO
 
-C--    Calculate velocity field "volume transports" through
-C--    tracer cell faces.
+C--   Calculate velocity field "volume transports" through
+C--   tracer cell faces.
       DO j=jMin,jMax
        DO i=iMin,iMax
         uTrans(i,j) = uVel(i,j,k,bi,bj)*xA(i,j)
@@ -78,8 +83,8 @@ C--    tracer cell faces.
        ENDDO
       ENDDO
 
-C--    Calculate vertical "volume transport" through
-C--    tracer cell face *above* this level.
+C--   Calculate vertical "volume transport" through
+C--   tracer cell face *above* this level.
       DO j=jMin,jMax
        DO i=iMin,iMax
         wTrans(i,j) = uTrans(i,j)-uTrans(i+1,j)
@@ -88,13 +93,20 @@ C--    tracer cell face *above* this level.
        ENDDO
       ENDDO
 
+C--   Vertical velocity at upper face
+      DO j=jMin,jMax
+       DO i=iMin,iMax
+        wVel(i,j,kUp) = wTrans(i,j)/_zA(i,j,bi,bj)
+       ENDDO
+      ENDDO
+
 C--    Calculate mask for tracer cells  (0 => land, 1 => water)
       DO j=jMin,jMax
        DO i=iMin,iMax
         maskC(i,j) = 1.
-        if (hFacC(i,j,k,bi,bj).eq.0.) maskC(i,j)=0.
+        if (_hFacC(i,j,k,bi,bj).eq.0.) maskC(i,j)=0.
         maskUp(i,j) = 1.
-        if (hFacC(i,j,kM1,bi,bj).eq.0.) maskUp(i,j)=0.
+        if (_hFacC(i,j,k,bi,bj).eq.0. .or. TOP_LAYER ) maskUp(i,j)=0.
        ENDDO
       ENDDO
 

@@ -1,6 +1,6 @@
-C $Id$
+C $Header$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
 CStartOfInterface
       SUBROUTINE INI_CG2D( myThid )
@@ -17,6 +17,7 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#include "DYNVARS.h"
 #include "CG2D.h"
 
 C     === Routine arguments ===
@@ -35,8 +36,9 @@ C     myNorm - Work variable used in clculating normalisation factor
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       INTEGER bi, bj
       INTEGER I,  J, K
-      real    faceArea
+      _RL     faceArea
       _RL     myNorm
+      _RL     aC, aCw, aCs
 
 C--   Initialise laplace operator
 C     aW2d: integral in Z Ax/dX
@@ -53,12 +55,12 @@ C     aS2d: integral in Z Ay/dY
         DO K=1,Nz
          DO J=1,sNy
           DO I=1,sNx
-           faceArea = dyG(I,J,bi,bj)*dzF(K)*HFacW(I,J,K,bi,bj)
+           faceArea = _dyG(I,J,bi,bj)*dzF(K)*_hFacW(I,J,K,bi,bj)
            aW2d(I,J,bi,bj) = aW2d(I,J,bi,bj) + 
-     &      gravity*faceArea*rDxC(I,J,bi,bj)
-           faceArea = dxG(I,J,bi,bj)*dzF(K)*HFacS(I,J,K,bi,bj)
+     &      gBaro*faceArea*_rdxC(I,J,bi,bj)
+           faceArea = _dxG(I,J,bi,bj)*dzF(K)*_hFacS(I,J,K,bi,bj)
            aS2d(I,J,bi,bj) = aS2d(I,J,bi,bj) + 
-     &      gravity*faceArea*rDyC(I,J,bi,bj)
+     &      gBaro*faceArea*_rdyC(I,J,bi,bj)
           ENDDO
          ENDDO
         ENDDO
@@ -77,10 +79,12 @@ C     aS2d: integral in Z Ay/dY
       ELSE
        myNorm = 1. _d 0
       ENDIF
-      _BEGIN_MASTER( myThid )
        cg2dNorm = myNorm
+      _BEGIN_MASTER( myThid )
 CcnhDebugStarts
-       WRITE(msgBuf,*) ' CG2D normalisation factor = ', cg2dNorm
+       WRITE(msgBuf,'(A,F)') '// CG2D normalisation factor = ', cg2dNorm
+       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+       WRITE(msgBuf,*) '                               '
        CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
 CcnhDebugEnds
       _END_MASTER( myThid )
@@ -97,29 +101,73 @@ CcnhDebugEnds
       
 C--   Update overlap regions
 CcnhDebugStarts
-C     CALL PLOT_FIELD_XYR8( aW2d, 'AW2D INI_CG2D.1' , 1, myThid )
-C     CALL PLOT_FIELD_XYR8( aS2d, 'AS2D INI_CG2D.1' , 1, myThid )
+C     CALL PLOT_FIELD_XYRS( aW2d, 'AW2D INI_CG2D.1' , 1, myThid )
+C     CALL PLOT_FIELD_XYRS( aS2d, 'AS2D INI_CG2D.1' , 1, myThid )
 CcnhDebugEnds
       _EXCH_XY_R4(aW2d, myThid)
       _EXCH_XY_R4(aS2d, myThid)
 CcnhDebugStarts
-C     CALL PLOT_FIELD_XYR8( aW2d, 'AW2D INI_CG2D.2' , 1, myThid )
-C     CALL PLOT_FIELD_XYR8( aS2d, 'AS2D INI_CG2D.2' , 1, myThid )
+C     CALL PLOT_FIELD_XYRS( aW2d, 'AW2D INI_CG2D.2' , 1, myThid )
+C     CALL PLOT_FIELD_XYRS( aS2d, 'AS2D INI_CG2D.2' , 1, myThid )
 CcnhDebugEnds
 
 C--   Initialise preconditioner
+C     Note. 20th May 1998
+C           I made a weird discovery! In the model paper we argue
+C           for the form of the preconditioner used here ( see
+C           A Finite-volume, Incompressible Navier-Stokes Model
+C           ...., Marshall et. al ). The algebra gives a simple
+C           0.5 factor for the averaging of ac and aCw to get a
+C           symmettric pre-conditioner. By using a factor of 0.51
+C           i.e. scaling the off-diagonal terms in the
+C           preconditioner down slightly I managed to get the
+C           number of iterations for convergence in a test case to
+C           drop form 192 -> 134! Need to investigate this further!
+C           For now I have introduced a parameter cg2dpcOffDFac which
+C           defaults to 0.51 but can be set at runtime.
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
         DO J=1,sNy
          DO I=1,sNx
           pC(I,J,bi,bj) = 1. _d 0
-          IF (
-     &     aW2d(I,J,bi,bj) + aW2d(I+1,J,bi,bj) 
-     &    +aS2d(I,J,bi,bj) + aS2D(I,J+1,bi,bj)
-     &     .EQ. 0. 
-     &       )  pC(I,J,bi,bj) = 0. _d 0
-          pW(I,J,bi,bj) = 0.
-          pS(I,J,bi,bj) = 0.
+          aC = -(
+     &     aW2d(I,J,bi,bj) + aW2d(I+1,J  ,bi,bj)
+     &    +aS2d(I,J,bi,bj) + aS2D(I  ,J+1,bi,bj)
+     &    +freeSurfFac*myNorm*
+     &     zA(I,J,bi,bj)/deltaTMom/deltaTMom
+     &    )
+          aCs = -(
+     &     aW2d(I,J-1,bi,bj) + aW2d(I+1,J-1,bi,bj)
+     &    +aS2d(I,J-1,bi,bj) + aS2d(I  ,J  ,bi,bj)
+     &    +freeSurfFac*myNorm*
+     &     zA(I,J-1,bi,bj)/deltaTMom/deltaTMom
+     &    )
+          aCw = -(
+     &     aW2d(I-1,J,bi,bj) + aW2d(I  ,J  ,bi,bj)
+     &    +aS2d(I-1,J,bi,bj) + aS2d(I-1,J+1,bi,bj)
+     &    +freeSurfFac*myNorm*
+     &     zA(I-1,J,bi,bj)/deltaTMom/deltaTMom
+     &    )
+          IF ( aC .EQ. 0. ) THEN
+            pC(I,J,bi,bj) = 0. _d 0
+          ELSE
+           pC(I,J,bi,bj) =  1. _d 0 / aC
+          ENDIF
+          IF ( aC + aCw .EQ. 0. ) THEN
+           pW(I,J,bi,bj) = 0.
+          ELSE
+           pW(I,J,bi,bj) = 
+     &     -aW2d(I  ,J  ,bi,bj)/((cg2dpcOffDFac *(aCw+aC))**2 )
+          ENDIF
+          IF ( aC + aCs .EQ. 0. ) THEN
+           pS(I,J,bi,bj) = 0.
+          ELSE
+           pS(I,J,bi,bj) =
+     &     -aS2d(I  ,J  ,bi,bj)/((cg2dpcOffDFac *(aCs+aC))**2 )
+          ENDIF
+C         pC(I,J,bi,bj) = 1.
+C         pW(I,J,bi,bj) = 0.
+C         pS(I,J,bi,bj) = 0.
          ENDDO
         ENDDO
        ENDDO
@@ -129,18 +177,28 @@ C--   Update overlap regions
       _EXCH_XY_R4(pW, myThid)
       _EXCH_XY_R4(pS, myThid)
 
-C--   Set default values for initial guess
-      DO bj=myByLo(myThid),myByHi(myThid)
-       DO bi=myBxLo(myThid),myBxHi(myThid)
-        DO J=1,sNy
-         DO I=1,sNx
-          cg2d_x(I,J,bi,bj) = 0. _d 0
+C--   Set default values for initial guess and RHS
+      IF ( startTime .EQ. 0 ) THEN
+       DO bj=myByLo(myThid),myByHi(myThid)
+        DO bi=myBxLo(myThid),myBxHi(myThid)
+         DO J=1,sNy
+          DO I=1,sNx
+           cg2d_x(I,J,bi,bj) = 0. _d 0
+           cg2d_b(I,J,bi,bj) = 0. _d 0
+#ifdef ALLOW_CD
+           cg2d_xNM1(I,J,bi,bj) = 0. _d 0
+#endif
+          ENDDO
          ENDDO
         ENDDO
        ENDDO
-      ENDDO
-C--   Update overlap regions
-      _EXCH_XY_R8(cg2d_x, myThid)
+C--    Update overlap regions
+       _EXCH_XY_R8(cg2d_x, myThid)
+       _EXCH_XY_R8(cg2d_b, myThid)
+#ifdef ALLOW_CD
+       _EXCH_XY_R8(cg2d_xNM1, myThid)
+#endif
+      ENDIF
 
       RETURN
       END

@@ -1,0 +1,44 @@
+$Header$
+
+MITgcmUV Getting Started
+========================
+
+o Introduction
+
+o Install
+  tar -xvf ...
+  cd tools
+  genmake.dec
+  cd ../bin
+  ln -s ../tools/Makefile.dec makefile
+  make depend
+  make
+  setenv PARALLEL 1
+  ../exe/barrier
+
+o Running
+  
+  - Inout files
+    eedata
+    data
+
+  - Serial execution
+
+  - Parallel execution. Threads
+    nSx, nSy
+    setenv PARALLEL n
+    nTx=2, nTy=2
+
+  - Parallel execution. MPI
+    mPx, nPy
+    dmpirun
+
+  - Parallel execution. Hybrid
+
+o References
+  Web sites - HP
+  for doc     Digital
+              SGI
+              Sun
+              Linux threads
+              CRAY multitasking

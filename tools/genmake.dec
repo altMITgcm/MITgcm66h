@@ -1,6 +1,6 @@
 #!/bin/csh -f
 #
-# $Id$
+# $Header$
 #
 #  Makefile generator for MITgcm UV codes
 #
@@ -238,7 +238,7 @@ if ( "${flist}" != "" ) then
    echo '	@echo KAP '${pf} >> ${mfile}.$$
    echo '	@ $(FCOMP1s)'$kf ${pf} >> ${mfile}.$$
   endif
-  if ( "$fname" == "barrier.F" ) then
+  if ( "$fname" == "barrier.F" || "$fname" == "different_multiple.F" ) then
    echo ${of}: ${kf}  >> ${mfile}.$$
    echo '	@echo Compiling '${kf} >> ${mfile}.$$
    echo '	@ $(FCOMP20)'    ${kf} >> ${mfile}.$$

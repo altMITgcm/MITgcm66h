@@ -1,4 +1,4 @@
-C $Id$
+C $Header$
 
 #include "CPP_EEOPTIONS.h"
 
@@ -31,6 +31,7 @@ C     === Global data ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "GRID.h"
 #include "CG2D.h"
 
 C     === Routine arguments ===
@@ -103,7 +104,7 @@ C--   Update overlaps
       _EXCH_XY_R8( cg2d_b, myThid )
       _EXCH_XY_R8( cg2d_x, myThid )
 CcnhDebugStarts
-C     CALL PLOT_FIELD_XYR8( cg2d_b, 'CG2D.1 CG2D_B' , 1, myThid )
+C     CALL PLOT_FIELD_XYRL( cg2d_b, 'CG2D.1 CG2D_B' , 1, myThid )
 CcnhDebugEnds
 
 C--   Initial residual calculation
@@ -122,7 +123,10 @@ C--   Initial residual calculation
      &    -aW2d(I  ,J  ,bi,bj)*cg2d_x(I  ,J  ,bi,bj)
      &    -aW2d(I+1,J  ,bi,bj)*cg2d_x(I  ,J  ,bi,bj)
      &    -aS2d(I  ,J  ,bi,bj)*cg2d_x(I  ,J  ,bi,bj)
-     &    -aS2d(I  ,J+1,bi,bj)*cg2d_x(I  ,J  ,bi,bj))
+     &    -aS2d(I  ,J+1,bi,bj)*cg2d_x(I  ,J  ,bi,bj)
+     &    -freeSurfFac*_zA(i,j,bi,bj)*
+     &     cg2d_x(I  ,J  ,bi,bj)/deltaTMom/deltaTMom*cg2dNorm
+     &    )
           err            = err            + 
      &     cg2d_r(I,J,bi,bj)*cg2d_r(I,J,bi,bj)
           sumRHS            = sumRHS            +
@@ -146,7 +150,7 @@ C     write(0,*) 'cg2d: Sum(rhs) = ',sumRHS
       actualResidual = SQRT(err)
 C     _BARRIER
       _BEGIN_MASTER( myThid )
-        WRITE(0,*) ' CG2D iters, err = ', actualIts, actualResidual
+       WRITE(0,*) ' CG2D iters, err = ', actualIts, actualResidual
       _END_MASTER( )
 
 C     >>>>>>>>>>>>>>> BEGIN SOLVER <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -164,12 +168,14 @@ C--    conjugate direction vector "s".
          DO J=1,sNy
           DO I=1,sNx
            cg2d_q(I,J,bi,bj) = 
-C    &      pW(I  ,J  ,bi,bj)*cg2d_r(I-1,J  ,bi,bj)
-C    &     +pW(I+1,J  ,bi,bj)*cg2d_r(I+1,J  ,bi,bj)
-C    &     +pS(I  ,J  ,bi,bj)*cg2d_r(I  ,J-1,bi,bj)
-C    &     +pS(I  ,J+1,bi,bj)*cg2d_r(I  ,J+1,bi,bj)
-C    &     +pC(I  ,J  ,bi,bj)*cg2d_r(I  ,J  ,bi,bj)
-     &                        cg2d_r(I  ,J  ,bi,bj)
+     &      pC(I  ,J  ,bi,bj)*cg2d_r(I  ,J  ,bi,bj)
+     &     +pW(I  ,J  ,bi,bj)*cg2d_r(I-1,J  ,bi,bj)
+     &     +pW(I+1,J  ,bi,bj)*cg2d_r(I+1,J  ,bi,bj)
+     &     +pS(I  ,J  ,bi,bj)*cg2d_r(I  ,J-1,bi,bj)
+     &     +pS(I  ,J+1,bi,bj)*cg2d_r(I  ,J+1,bi,bj)
+CcnhDebugStarts
+C          cg2d_q(I,J,bi,bj) = cg2d_r(I  ,J  ,bi,bj)
+CcnhDebugEnds
            etaN = etaN
      &     +cg2d_q(I,J,bi,bj)*cg2d_r(I,J,bi,bj)
           ENDDO
@@ -219,6 +225,8 @@ C==    q = A.s
      &    -aW2d(I+1,J  ,bi,bj)*cg2d_s(I  ,J  ,bi,bj)
      &    -aS2d(I  ,J  ,bi,bj)*cg2d_s(I  ,J  ,bi,bj)
      &    -aS2d(I  ,J+1,bi,bj)*cg2d_s(I  ,J  ,bi,bj)
+     &    -freeSurfFac*_zA(i,j,bi,bj)*
+     &     cg2d_s(I  ,J  ,bi,bj)/deltaTMom/deltaTMom*cg2dNorm
           alpha = alpha+cg2d_s(I,J,bi,bj)*cg2d_q(I,J,bi,bj)
           ENDDO
          ENDDO
@@ -273,12 +281,12 @@ C--   Un-normalise the answer
       ENDDO
 
       _EXCH_XY_R8(cg2d_x, myThid )
-       _BEGIN_MASTER( myThid )
-        WRITE(6,*) ' CG2D iters, err = ', actualIts, actualResidual
-       _END_MASTER( )
+      _BEGIN_MASTER( myThid )
+       WRITE(0,*) ' CG2D iters, err = ', actualIts, actualResidual
+      _END_MASTER( )
 
 CcnhDebugStarts
-C     CALL PLOT_FIELD_XYR8( cg2d_x, 'CALC_MOM_RHS CG2D_X' , 1, myThid )
+C     CALL PLOT_FIELD_XYRL( cg2d_x, 'CALC_MOM_RHS CG2D_X' , 1, myThid )
 C     err    = 0. _d 0
 C     DO bj=myByLo(myThid),myByHi(myThid)
 C      DO bi=myBxLo(myThid),myBxHi(myThid)

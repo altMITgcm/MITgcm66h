@@ -1,0 +1,54 @@
+$Header$
+
+    Notes on tags used in MITgcmUV
+    ==============================
+
+checkpoint7
+ Created by cnh
+ Simple 4 degree global simulation 
+ configuration.
+ Includes climatological wind, 
+ hydrography, bathymetry etc
+ Does not include Heat Flux and E-P
+
+checkpoint6
+ Created by cnh
+ merged checkpoint5 with CD and 
+ spherical polar code. 
+ Still some problems with GM Redi
+ abd full topography.
+
+checkpoint5
+ Created by AJA
+ contains updates to GM Redi
+ and reordered timestepping loop
+ for Implicit Diffusion.
+
+checkpoint4
+ Created by cnh
+ Contains memory saving macros ( _rdxc etc..) for when
+ grid variations are limited.
+ Contains polynomial coeffs for EOS and knudsen program
+ for generation.
+
+checkpoint3
+ Created by cnh
+ Added extra flags for runtime options
+ Added this file
+ Added implicit free-surface
+ Added pre-conditioner
+ Put compare01 into repository ( compare01/... )
+ Put data and eedata into repository ( verification/exp1 )
+
+checkpoint2
+ Created by AJA
+ Added GM/Redi
+
+checkpoint1
+ Created by AJA
+ Restructured kloop in dynamics.F
+ Added non-linear EOS
+
+baseline
+ Original checked in code
+

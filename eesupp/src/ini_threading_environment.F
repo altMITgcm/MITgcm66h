@@ -1,4 +1,4 @@
-C $Id$
+C $Header$
 
 #include "CPP_EEOPTIONS.h"
 
@@ -557,5 +557,3 @@ C      Find thread to NW, NE, SW, SE - again with wrap around.
 
       RETURN
       END
-
-C $Id$

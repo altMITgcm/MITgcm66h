@@ -1,4 +1,4 @@
-C $Id$
+C $Header$
 
 #include "CPP_EEOPTIONS.h"
 
@@ -53,6 +53,10 @@ C     stored files.
       CALL INI_FIELDS( myThid )
       _BARRIER
 
+C--   Initialise time-stepping (predictor variables are carried in G)
+      CALL INIT_PREDICTOR( myThid )
+      _BARRIER
+
 C--   Set coriolis operators
       CALL INI_CORI( myThid )
 
@@ -67,5 +71,3 @@ C--   Finally summarise the model cofiguration and state
       CALL STATE_SUMMARY( myThid )
 
       END
-
-C $Id$

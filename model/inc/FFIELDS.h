@@ -1,4 +1,4 @@
-C $Id$
+C $Header$
 C
 C     /==========================================================\
 C     | FFIELDS.h                                                |
@@ -11,6 +11,11 @@ C
 C--   For a classical "gyre" type experiment just one term is needed.
 C     fu     - Zonal velocity tendency term ( m/s^2 )
 C     fv     - Meridional velocity tendency term ( m/s^2 )
-      COMMON /FFIELDS/ fu, fv
-      _RS  fu     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RS  fv     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+C     thetaClim - Temperature climatology. Used in relaxation
+C                 surface bc.
+C     saltClim  - Salinty climatology
+      COMMON /FFIELDS/ fu, fv, thetaClim, saltClim
+      _RS  fu       (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  fv       (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  thetaClim(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nz,nSx,nSy)
+      _RS  saltClim (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nz,nSx,nSy)

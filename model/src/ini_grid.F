@@ -1,4 +1,4 @@
-C $Id$
+C $Header$
 
 #include "CPP_EEOPTIONS.h"
 
@@ -62,5 +62,3 @@ C--   Set up grid coordinate system
 C
       RETURN
       END
-
-C     $Id$

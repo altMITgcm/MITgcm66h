@@ -1,4 +1,4 @@
-C $Id$
+C $Header$
 
 C--   File global_sum.F: Routines that perform global sum on an array
 C                        of thread values.
@@ -151,5 +151,3 @@ C--   Don't leave until we are sure that the sum is done
 C
       RETURN
       END
-
-C $Id$

@@ -1,4 +1,4 @@
-C $Id$
+C $Header$
 
 #include "CPP_EEOPTIONS.h"
 
@@ -83,5 +83,3 @@ C
 C
       RETURN
       END
-
-C $Id$
