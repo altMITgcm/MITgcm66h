@@ -27,7 +27,7 @@ C     === Routine arguments ===
 
 C--   GM/Redi parameter
       NAMELIST /GM_PARM01/
-     &          GM_AdvForm,
+     &          GM_AdvForm, GM_AdvSeparate,
      &          GM_isopycK,
      &          GM_background_K, 
      &          GM_taper_scheme,
@@ -67,6 +67,7 @@ C     the package is active.
 
 C--   Default values GM/Redi
       GM_AdvForm          = .FALSE.
+      GM_AdvSeparate      = .FALSE.
       GM_isopycK          = -999.
       GM_background_K     = 0.
       GM_maxslope         = 1.0D-2

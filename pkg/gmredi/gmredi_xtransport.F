@@ -96,7 +96,7 @@ C-      Off-diagonal components of horizontal flux
 #endif /* GM_EXTRA_DIAGONAL */
 
 #ifdef GM_BOLUS_ADVEC
-      IF (GM_AdvForm) THEN
+      IF (GM_AdvForm .AND. GM_AdvSeparate) THEN
        kp1 = MIN(k+1,Nr)
        maskp1 = 1.
        IF (k.GE.Nr) maskp1 = 0.

@@ -88,7 +88,7 @@ C-      Off-diagonal components of vertical flux
       ENDDO
 
 #ifdef GM_BOLUS_ADVEC
-      IF (GM_AdvForm) THEN
+      IF (GM_AdvForm .AND. GM_AdvSeparate) THEN
        DO j=jMin,jMax
         DO i=iMin,iMax
          rTrans = 
