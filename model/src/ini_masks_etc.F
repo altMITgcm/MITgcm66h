@@ -177,8 +177,7 @@ C     hFacW and hFacS (at U and V points)
         ENDDO
        ENDDO
       ENDDO
-      _EXCH_XYZ_R4(hFacW , myThid )
-      _EXCH_XYZ_R4(hFacS , myThid )
+      CALL EXCH_UV_XYZ_RL(hFacW,hFacS,.FALSE.,myThid)
 C     Re-do hFacW and hFacS (at U and V points)
       DO bj=myByLo(myThid), myByHi(myThid)
        DO bi=myBxLo(myThid), myBxHi(myThid)
