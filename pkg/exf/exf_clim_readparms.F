@@ -160,6 +160,14 @@ c     check for consistency
       stop 'stopped in exf_clim_readparms: value of yftype not allowed'
       end if           
 
+#ifdef USE_EXF_INTERPOLATION
+      if ( climsst_nlat .GT. MAX_LAT_INC )
+     & stop 'stopped in exf_clim_readparms: climsst_nlat > MAX_LAT_INC'
+      if ( climsss_nlat .GT. MAX_LAT_INC )
+     & stop 'stopped in exf_clim_readparms: climsss_nlat > MAX_LAT_INC'
+#endif
+
+
 #ifdef ALLOW_CLIMTEMP_RELAXATION
       if ( climtempfile .NE. ' ' ) then
          call cal_FullDate( climtempstartdate1, climtempstartdate2,
