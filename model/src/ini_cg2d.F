@@ -37,7 +37,7 @@ C     myNorm - Work variable used in clculating normalisation factor
       INTEGER bi, bj
       INTEGER I,  J, K
       _RL     faceArea
-      _RL     myNorm
+      _RS     myNorm
       _RL     aC, aCw, aCs
 
 C--   Initialise laplace operator

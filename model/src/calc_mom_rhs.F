@@ -105,7 +105,7 @@ C     uDudxFac, AhDudxFac, etc ... individual term tracer parameters
       INTEGER i,j,k
 
       REAL wMaskOverride
-      REAL hFacZOpen
+      _RS  hFacZOpen
       REAL hFacZClosed
 
       REAL uDudxFac
