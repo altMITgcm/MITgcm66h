@@ -403,7 +403,7 @@ C                          circles ( see filter*.F )
 C     Ro_SeaLevel        :: standard position of Sea-Level in "R" coordinate, used as
 C                          starting value (k=1) for vertical coordinate (rf(1)=Ro_SeaLevel)
 C     bottomDragLinear   :: Drag coefficient built in to core dynamics
-C         "     Quadratic  ( linear: 1/s, quadratic: 1/m )
+C      --"-"--  Quadratic  ( linear: 1/s, quadratic: 1/m )
       COMMON /PARM_R/ cg2dTargetResidual, cg2dTargetResWunit, 
      & cg2dpcOffDFac, cg3dTargetResidual,
      & delP, delZ, delR, delX, delY, 
