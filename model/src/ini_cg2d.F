@@ -164,9 +164,9 @@ C           defaults to 0.51 but can be set at runtime.
            pS(I,J,bi,bj) =
      &     -aS2d(I  ,J  ,bi,bj)/((cg2dpcOffDFac *(aCs+aC))**2 )
           ENDIF
-          pC(I,J,bi,bj) = 1.
-          pW(I,J,bi,bj) = 0.
-          pS(I,J,bi,bj) = 0.
+C         pC(I,J,bi,bj) = 1.
+C         pW(I,J,bi,bj) = 0.
+C         pS(I,J,bi,bj) = 0.
          ENDDO
         ENDDO
        ENDDO
