@@ -21,7 +21,7 @@ C     Local Variables
       CALL MNC_CW_INIT( 0,
      &     20,16, 4,4, 1,1, 1,1, 13 )
 
-      CALL MNC_CW_ADD_VNAME(0, 'v_vel', 'V_xy_Hn__C__t')
+      CALL MNC_CW_ADD_VNAME(0, 'v_vel', 'V_xy_Hn__C__t', 4,5 )
       CALL MNC_CW_ADD_VATTR_TEXT(0, 'v_vel', 1, 
      &     'long_name', 'meridional_velocity')
       CALL MNC_CW_ADD_VATTR_TEXT(0, 'v_vel', 1, 
