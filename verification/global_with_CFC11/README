@@ -9,7 +9,7 @@ in input/lookat.m
 
 ==============================================================
 
-Configuring 8 4x4-deg 4-cpu x 15-level experiment on alhena:
+Configuring 8 4x4-deg 4-cpu x 15-level experiment on chapman:
 
 Experiment 0: Baseline integration
 Experiment 1: viscAr               1e-3 -> .5e3
@@ -26,18 +26,18 @@ cd bin
 cp ../verification/global_ocean.90x40x15/code/GMREDI_OPTIONS.h .
 cp ../verification/global_with_CFC11/code4x4/*.h .
 cp ../verification/global_with_CFC11/code4x4/*.F .
-../tools/genmake -mpi -platform=o2k -makefile
+../tools/genmake -mpi -platform=ames_opt -makefile
 make depend
 make
 
 ---
 
 cd ../exe
-cp ../verification/global_ocean.90x40x15/input/* .
-cp ../verification/global_with_CFC11/input/cfc1112.atm .
-cp ../verification/global_with_CFC11/input4x4/FICE4x4 FICE
-cp ../verification/global_with_CFC11/input4x4/PATM4x4 PATM
-cp ../verification/global_with_CFC11/input4x4/XKW4x4 XKW
+\cp ../verification/global_ocean.90x40x15/input/* .
+\cp ../verification/global_with_CFC11/input/cfc1112.atm .
+\cp ../verification/global_with_CFC11/input4x4/FICE4x4 FICE
+\cp ../verification/global_with_CFC11/input4x4/PATM4x4 PATM
+\cp ../verification/global_with_CFC11/input4x4/XKW4x4 XKW
 cd ..
 cp -r exe exe0
 cp -r exe exe1
@@ -47,17 +47,16 @@ cp -r exe exe4
 cp -r exe exe5
 cp -r exe exe6
 cp -r exe exe7
-cp verification/global_with_CFC11/input4x4/data.0 exe0/data
-cp verification/global_with_CFC11/input4x4/data.1 exe1/data
-cp verification/global_with_CFC11/input4x4/data.2 exe2/data
-cp verification/global_with_CFC11/input4x4/data.3 exe3/data
-cp verification/global_with_CFC11/input4x4/data.4 exe4/data
-cp verification/global_with_CFC11/input4x4/data.5 exe5/data
-cp verification/global_with_CFC11/input4x4/data.6 exe6/data
-cp verification/global_with_CFC11/input4x4/data.0 exe7/data
-cp verification/global_with_CFC11/input4x4/data.gmredi exe7
+\cp verification/global_with_CFC11/input4x4/data.0 exe0/data
+\cp verification/global_with_CFC11/input4x4/data.1 exe1/data
+\cp verification/global_with_CFC11/input4x4/data.2 exe2/data
+\cp verification/global_with_CFC11/input4x4/data.3 exe3/data
+\cp verification/global_with_CFC11/input4x4/data.4 exe4/data
+\cp verification/global_with_CFC11/input4x4/data.5 exe5/data
+\cp verification/global_with_CFC11/input4x4/data.6 exe6/data
+\cp verification/global_with_CFC11/input4x4/data.0 exe7/data
+\cp verification/global_with_CFC11/input4x4/data.gmredi exe7
 qsub verification/global_with_CFC11/input4x4/jobfile
-
 
 ==============================================================
 
