@@ -42,7 +42,7 @@ C     I, J - Loop counters
       _RL dTdx,dTdy
 
 C     Surface flux is zero
-      IF (use_GMRedi .AND. K.GT.1) THEN
+      IF (useGMRedi .AND. K.GT.1) THEN
 
       DO j=jMin,jMax
        DO i=iMin,iMax

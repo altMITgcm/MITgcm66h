@@ -40,7 +40,7 @@ C     == Local variables ==
 C     I, J - Loop counters
       INTEGER I, J
 
-      IF (use_GMRedi) THEN
+      IF (useGMRedi) THEN
 
 C--   Area integrated zonal flux
       DO j=jMin,jMax

@@ -2,6 +2,9 @@ C $Header$
 
 #ifdef ALLOW_GMREDI
 
+C     Package flag
+      logical gmrediIsOn
+
 C     GM/Redi parameters
       _RL GM_background_K
       _RL GM_maxSlope
