@@ -288,8 +288,8 @@ C Penetrating SW radiation
         gT(i,j,klev,bi,bj) = gT(i,j,klev,bi,bj) 
      &   -Qsw(i,j,bi,bj)*(swfracb(1)*maskC(i,j,klev,bi,bj)
      &                   -swfracb(2)*maskC(i,j,kp1, bi,bj))
-     &    *recip_Cp*recip_rhoConst*recip_drF(klev)
-c    &                            *recip_hFacC(i,j,kLev,bi,bj)
+     &    *recip_Cp*recip_rhoConst
+     &    *recip_drF(klev)*recip_hFacC(i,j,kLev,bi,bj)
        ENDDO
       ENDDO
 #endif
