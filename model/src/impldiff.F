@@ -6,6 +6,9 @@ C     /==========================================================\
 C     | S/R IMPLDIFF                                             |
 C     | o Solve implicit diffusion equation for vertical         |
 C     |   diffusivity.                                           |
+C     | o Recoded from 2d intermediate fields to 3d to reduce    |
+C     |   TAMC storage                                           |
+C     | o Fixed missing masks for fields a(), c()                |
 C     \==========================================================/
       SUBROUTINE IMPLDIFF( bi, bj, iMin, iMax, jMin, jMax,
      I                     deltaTX,KappaRX,recip_hFac,
@@ -67,6 +70,7 @@ C--   Old aUpper
         DO i=1-Olx,sNx+Olx
           c(i,j,k) = -deltaTX*recip_hFac(i,j,k,bi,bj)*recip_drF(k)
      &               *KappaRX(i,j,k+1)*recip_drC(k+1)
+          IF (recip_hFac(i,j,k+1,bi,bj).EQ.0.) c(i,j,k)=0.
         ENDDO
        ENDDO
       ENDDO
