@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CG2D_OPTIONS.h"
+#include "CPP_OPTIONS.h"
 
       SUBROUTINE INI_CG2D( myThid )
 C     /==========================================================\
