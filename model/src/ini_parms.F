@@ -166,7 +166,7 @@ C--   Set default "physical" parameters
       GMkbackground=0.
       tAlpha=2.d-4
       sBeta=1.d-5
-      eosType='POLY3'
+      eosType='LINEAR'
       implicitFreeSurface = .TRUE.
       rigidLid            = .FALSE.
       freeSurfFac         = 1. _d 0

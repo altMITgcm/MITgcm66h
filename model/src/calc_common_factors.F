@@ -94,7 +94,7 @@ C--    Calculate mask for tracer cells  (0 => land, 1 => water)
         maskC(i,j) = 1.
         if (_hFacC(i,j,k,bi,bj).eq.0.) maskC(i,j)=0.
         maskUp(i,j) = 1.
-        if (_hFacC(i,j,kM1,bi,bj).eq.0.) maskUp(i,j)=0.
+        if (_hFacC(i,j,k,bi,bj).eq.0.) maskUp(i,j)=0.
        ENDDO
       ENDDO
 

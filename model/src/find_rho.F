@@ -42,8 +42,8 @@ C ***NOTE***
 C In the linear EOS, to make the static stability calculation meaningful
 C we alway calculate the perturbation with respect to the surface level.
 C **********
-       refTemp=tRef(1)
-       refSalt=sRef(1)
+       refTemp=tRef(kRef)
+       refSalt=sRef(kRef)
 
        do j=jMin,jMax
         do i=iMin,iMax

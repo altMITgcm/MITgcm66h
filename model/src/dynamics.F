@@ -261,7 +261,7 @@ C--     Calculate iso-neutral slopes for the GM/Redi parameterisation
      I            myThid )
 C--     Calculate static stability and mix where convectively unstable
         CALL CONVECT(
-     I      bi,bj,iMin,iMax,jMin,jMax,K,rhoKm1,rhoKp1,
+     I      bi,bj,iMin,iMax,jMin,jMax,K,rhotmp,rhoKp1,
      I      myTime,myIter,myThid)
 C--     Density of K-1 level (above W(K)) reference to K-1 level
         CALL FIND_RHO(
