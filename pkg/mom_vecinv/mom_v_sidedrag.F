@@ -45,8 +45,10 @@ C     - Laplacian  and bi-harmonic terms
      &     +hFacZClosedE*_dyU(i+1,j,bi,bj)
      &      *_recip_dxV(i+1,j,bi,bj) )
      &   *drF(k)*2.*(
-     &                viscAh*vFld(i,j)*cosFacV(J,bi,bj)
-     &               -viscA4*del2v(i,j)*cosFacV(J,bi,bj)
+     &     min(viscAh+viscAhGrid* rA(i,j,bi,bj)    /deltaTmom,viscAhMax)
+     &                *vFld(i,j)*cosFacV(J,bi,bj)
+     &    -min(viscA4+viscA4Grid*(rA(i,j,bi,bj)**2)/deltaTmom,viscA4Max)
+     &                *del2v(i,j)*cosFacV(J,bi,bj)
 #ifdef COSINEMETH_III
      &               -viscA4*del2v(i,j)*sqcosFacV(J,bi,bj)
 #else

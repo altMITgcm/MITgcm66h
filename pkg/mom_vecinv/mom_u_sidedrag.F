@@ -53,8 +53,10 @@ C     - Laplacian  and bi-harmonic terms
      &               -viscA4*del2u(i,j)*cosFacU(J,bi,bj)
 #endif
 #else
-     &                viscAh*uFld(i,j)
-     &               -viscA4*del2u(i,j)
+     &     min(viscAh+viscAhGrid* rA(i,j,bi,bj)    /deltaTmom,viscAhMax)
+     &                *uFld(i,j)
+     &    -min(viscA4+viscA4Grid*(rA(i,j,bi,bj)**2)/deltaTmom,viscA4Max)
+     &                *del2u(i,j)
 #endif
      &              )
        ENDDO
