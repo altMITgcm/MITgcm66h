@@ -53,7 +53,7 @@ ce    some reference temperature
 #ifdef ALLOW_PTRACERS
             locfc = locfc + maskC(i,j,k,bi,bj)*
      &           lambdaTr1ClimRelax*ptracer(i,j,k,bi,bj,1)*
-     &           rA(i,j,bi,bj)*drF(k)*deltaTtracer
+     &           rA(i,j,bi,bj)*drF(k)*dTtracerLev(k)
 #endif
          ENDDO
       ENDDO

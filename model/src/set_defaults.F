@@ -203,7 +203,12 @@ C--   Elliptic solver parameters
       cg3dChkResFreq     = 1
 
 C--   Time stepping parameters
-      deltaT            = 0.
+      deltaT            = 0. _d 0
+      deltaTmom         = 0. _d 0
+      deltaTfreesurf    = 0. _d 0
+      DO k=1,Nr
+        dTtracerLev(k)  = 0. _d 0
+      ENDDO
       nIter0            = 0
       startTime         = deltaT*float(nIter0)
       pickupSuff        = ' '

@@ -44,7 +44,7 @@ C-    Extrapolate tendancies to mid-time level (n+1/2)
       DO j=jMin,jMax
        DO i=iMin,iMax
          gTracer(i,j,k,bi,bj)=tracer(i,j,k,bi,bj)
-     &            +deltaTtracer*gTracer(i,j,k,bi,bj)
+     &            +dTtracerLev(k)*gTracer(i,j,k,bi,bj)
        ENDDO
       ENDDO
 

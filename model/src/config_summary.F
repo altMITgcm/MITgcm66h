@@ -354,7 +354,7 @@ C     zcoord ::
      &'   /* Momentum equation timestep ( s ) */')
       CALL WRITE_0D_R8( deltaTfreesurf,INDEX_NONE,'deltaTfreesurf =',
      &'   /* FreeSurface equation timestep ( s ) */')
-      CALL WRITE_0D_R8( deltaTtracer, INDEX_NONE,'deltatTtracer =',
+      CALL WRITE_1D_R8( dTtracerLev, Nr, INDEX_K, 'dTtracerLev =',
      &'   /* Tracer equation timestep ( s ) */')
       CALL WRITE_0D_R8( deltaTClock, INDEX_NONE,'deltatTClock  =',
      &'   /* Model clock timestep ( s ) */')

@@ -468,7 +468,7 @@ C                    it will be the deep-water timestep for accelerated runs.
 C                    Frequency of checkpointing and dumping of the model state
 C                    are referenced to this clock. ( s )
 C     deltaTMom    :: Timestep for momemtum equations ( s )
-C     deltaTtracer :: Timestep for tracer equations ( s )
+C     dTtracerLev  :: Timestep for tracer equations ( s ), function of level k
 C     deltaTfreesurf :: Timestep for free-surface equation ( s )
 C     freesurfFac  :: Parameter to turn implicit free surface term on or off
 C                    freesurfac = 1. uses implicit free surface
@@ -534,7 +534,7 @@ C      --"-"--  Quadratic  ( linear: 1/s, quadratic: 1/m )
       COMMON /PARM_R/ cg2dTargetResidual, cg2dTargetResWunit, 
      & cg2dpcOffDFac, cg3dTargetResidual,
      & delR, delRc, delX, delY,
-     & deltaT, deltaTmom, deltaTtracer, deltaTfreesurf, deltaTClock,
+     & deltaT, deltaTmom, dTtracerLev, deltaTfreesurf, deltaTClock,
      & abeps, startTime, 
      & phiMin, thetaMin, rSphere, recip_RSphere, f0, beta,
      & fCori, fCoriG, fCoriCos,
@@ -576,7 +576,7 @@ C      --"-"--  Quadratic  ( linear: 1/s, quadratic: 1/m )
       _RL deltaT
       _RL deltaTClock
       _RL deltaTmom
-      _RL deltaTtracer
+      _RL dTtracerLev(Nr)
       _RL deltaTfreesurf
       _RL abeps
       _RL phiMin

@@ -54,7 +54,7 @@ C AMM
          CALL UPDATE_EARTH_EXPORTS ( myTime, myIter, myThid )
          CALL UPDATE_CHEMISTRY_EXPORTS ( myTime, myIter, myThid )
          CALL FIZHI_WRAPPER ( myTime, myIter, myThid )
-         CALL STEP_FIZHI_FG ( myTime, myIter, myThid, deltaTtracer )
+         CALL STEP_FIZHI_FG ( myTime, myIter, myThid, dTtracerLev(1) )
          CALL FIZHI_UPDATE_TIME ( myIter, myThid, deltaTclock )
          CALL TIMER_STOP ('FIZHI          [DO_ATMOSPHERIC_PHYS]',myThid)
       endif
