@@ -152,12 +152,16 @@ c             Short wave radiative flux.
 #endif
 
 #ifdef ALLOW_RUNOFF
-c             Short wave radiative flux.
+c             Runoff.
               if ( (runoff(i,j,bi,bj) .LT. 0. .OR.
      &             runoff(i,j,bi,bj) .GT. 1.E-6 ) .AND.
      &             hFacC(i,j,1,bi,bj) .NE. 0. ) then
                  print *, 'EXF WARNING: runoff out of range for i,j= ',
      &                i, j, runoff(i,j,bi,bj)
+                 print *, 'Please note that input units for runoff are'
+                 print *, 'm/s not m/yr.  If input file is in m/yr, set'
+                 print *, 'exf_inscalrunoff=1.0/(86400.*365.0)'
+                 print *, 'in the data.exf input file.'
                  exferr = 1
               endif
 #endif
