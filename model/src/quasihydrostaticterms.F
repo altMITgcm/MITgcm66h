@@ -22,6 +22,7 @@ C--   == Global data ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "GRID.h"
 #include "DYNVARS.h"
 
 C--   == Routine arguments ==
