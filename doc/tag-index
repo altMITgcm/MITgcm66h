@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint50f_pre
  o AIM: near surface temp evaluated from Pot.Temp: fixed for Part Cell ;
       + change Evap over land. (update aim.5l_cs output)
  o added missing .cvsignores and made uniform across expts
