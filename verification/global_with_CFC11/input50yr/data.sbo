@@ -1,0 +1,4 @@
+# SBO parameters
+ &SBO_PARM01
+ obp_taveFreq = 43200.
+ &

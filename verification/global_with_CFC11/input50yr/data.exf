@@ -115,11 +115,11 @@
  runoff_nlon        = 360,
  runoff_nlat        = 160,
 #
- hfluxfile    = 'NCEP_1948_trb',
- sfluxfile    = 'NCEP_1948_emp',
- ustressfile  = 'NCEP_1948_ustr',
- vstressfile  = 'NCEP_1948_vstr',
- swfluxfile   = 'NCEP_1948_sw',
+ hfluxfile    = 'NCEP_1949_trb',
+ sfluxfile    = 'NCEP_1949_emp',
+ ustressfile  = 'NCEP_1949_ustr',
+ vstressfile  = 'NCEP_1949_vstr',
+ swfluxfile   = 'NCEP_1949_sw',
  runofffile   = 'run-off.bin_1x1',
 #
  exf_iprec         = 32,
