@@ -10,7 +10,6 @@ C                                          C
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 
 cdm WARNING: non-constant lat_inc needs BICUBIC option defined.
-#define BICUBIC
 #ifdef BICUBIC
         real*8 function lagran(i,x,a)
 
