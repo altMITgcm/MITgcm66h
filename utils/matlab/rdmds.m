@@ -96,7 +96,7 @@ else
 end
 
 % Match name of all meta-files
-allfiles=dir( sprintf('%s.*.meta',fname) );
+allfiles=dir( sprintf('%s*.meta',fname) );
 
 if size(allfiles,1)==0
  disp(sprintf('No files match the search: %s.*.meta',fname));
