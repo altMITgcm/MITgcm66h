@@ -24,7 +24,6 @@ C     == Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "GAD.h"
 #include "GRID.h"
 #include "SURFACE.h"
 

@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CBOP
@@ -47,7 +48,9 @@ C     == GLobal variables ==
 #include "DYNVARS.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#ifdef ALLOW_GENERIC_ADVDIFF
 #include "GAD.h"
+#endif
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
@@ -79,6 +82,7 @@ C     myThid :: Instance number for this innvocation of CALC_GT
       INTEGER myThid
 CEOP
 
+#ifdef ALLOW_GENERIC_ADVDIFF
 C     === Local variables ===
       LOGICAL calcAdvection
 
@@ -131,6 +135,8 @@ C--   External thermal forcing term(s) outside Adams-Bashforth:
      I                          myThid )
       ENDIF
 #endif /* NONLIN_FRSURF */
+
+#endif /* ALLOW_GENERIC_ADVDIFF */
 
       RETURN
       END

@@ -58,8 +58,10 @@ C     myThid -  Number of this instances
       INTEGER myThid
 CEOP
 
+#ifdef ALLOW_GENERIC_ADVDIFF
 C--   Initialize fixed params for GAD
       CALL GAD_INIT( myThid )
+#endif
 
 C--   Initialize fixed arrays for OBCS
 #ifdef ALLOW_OBCS

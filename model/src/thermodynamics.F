@@ -77,7 +77,9 @@ C     == Global variables ===
 #include "PARAMS.h"
 #include "DYNVARS.h"
 #include "GRID.h"
+#ifdef ALLOW_GENERIC_ADVDIFF
 #include "GAD.h"
+#endif
 #ifdef ALLOW_OFFLINE
 #include "OFFLINE.h"
 #endif
@@ -115,6 +117,7 @@ C     myThid - Thread number for this instance of the routine.
       INTEGER myIter
       INTEGER myThid
 
+#ifdef ALLOW_GENERIC_ADVDIFF
 C     !LOCAL VARIABLES:
 C     == Local variables
 C     xA, yA                 - Per block temporaries holding face areas
@@ -653,6 +656,8 @@ C--   end bi,bj loops.
          IF ( debugLevel .GE. debLevB ) 
      &    CALL DEBUG_LEAVE('THERMODYNAMICS',myThid)
 #endif
+
+#endif /* ALLOW_GENERIC_ADVDIFF */
 
       RETURN
       END
