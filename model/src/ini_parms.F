@@ -86,7 +86,7 @@ C--   Continuous equation parameters
      & viscAh,  viscAz,  viscA4, cosPower,
      & diffKhT, diffKzT, diffK4T, 
      & diffKhS, diffKzS, diffK4S,
-     & tRef, sRef, eosType,
+     & tRef, sRef, eosType, Integr_GeoPot,
      & no_slip_sides,no_slip_bottom,
      & momViscosity,  momAdvection, momForcing, useCoriolis,
      & momPressureForcing, metricTerms,
@@ -94,7 +94,7 @@ C--   Continuous equation parameters
      & saltDiffusion, saltAdvection, saltForcing,
      & implicSurfPress, implicDiv2DFlow,
      & implicitFreeSurface, rigidLid, freeSurfFac, hFacMin, hFacMinDz,
-     & exactConserv, nonlinFreeSurf, hFacInf, hFacSup,
+     & exactConserv,uniformLin_PhiSurf,nonlinFreeSurf,hFacInf,hFacSup,
      & staggerTimeStep,
      & tempStepping, saltStepping, momStepping,
      & implicitDiffusion, implicitViscosity,
@@ -133,7 +133,7 @@ C--   Gridding parameters
 
 C--   Input files
       NAMELIST /PARM05/
-     & bathyFile, hydrogThetaFile, hydrogSaltFile, 
+     & bathyFile, topoFile, hydrogThetaFile, hydrogSaltFile, 
      & zonalWindFile, meridWindFile,
      & thetaClimFile, saltClimFile,
      & surfQfile, EmPmRfile, surfQswfile, 
