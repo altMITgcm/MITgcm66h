@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o remove all the *_ioinc flags and replace with the single global
+  outputTypesInclusive flag
 o allow to set a vertical profile of vertical diffusivity for T & S
 
 checkpoint55g_post
