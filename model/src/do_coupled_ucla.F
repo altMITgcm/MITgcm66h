@@ -169,6 +169,8 @@ C-----------------------------------------------------------------------
 #ifdef COUPLED_DEBUG
          print*,'COUPLED_UCLA xfer FLUXES myTime:', myTime
 #else COUPLED_DEBUG
+         CALL GET_ICEMASK( global, mythid )
+         CALL SCATTER_2D( global, ICEMASK, myThid )
          CALL GET_FU( global, mythid )
          CALL SCATTER_2D( global, fu, myThid )
          CALL GET_FV( global, mythid )
@@ -742,6 +744,39 @@ C--   Make everyone wait except for master thread in master process.
       _END_MASTER( myThid )
       _BARRIER
 #endif COUPLED_UCLA
+      END
+
+
+C************************************************************************
+C************************************************************************
+
+      SUBROUTINE GET_ICEMASK( global, myThid )
+C     Get atmospheric sea-ice mask (1 for sea-ice, 0 otherwise)
+      IMPLICIT NONE
+#include "SIZE.h"
+#include "EEPARAMS.h"
+#include "EESUPPORT.h"
+C     global - working array used to transfer 2-D fields
+C     mythid - thread number for this instance of the routine.
+      Real*8  global(Nx,Ny)
+      INTEGER mythid 
+#ifdef COUPLED_UCLA
+      INTEGER i, j
+
+C--   Make everyone wait except for master thread in master process.
+      _BARRIER
+      _BEGIN_MASTER( myThid )
+      IF( mpiMyId .EQ. 0 ) THEN
+
+#ifndef COUPLED_DEBUG
+         CALL imkext (global)
+#endif COUPLED_DEBUG
+
+      ENDIF
+      _END_MASTER( myThid )
+      _BARRIER
+#endif COUPLED_UCLA
+      RETURN
       END
 
 
