@@ -55,7 +55,7 @@ C   level thickness in the model.
 
 C o Include/exclude various time-averaged diagnostic output
 C   for saving storage space
-#ifdef  INCLUDE_DIAGNOSTICS_INTERFACE_CODE
+#ifdef  ALLOW_TIMEAVE
 #define INCLUDE_DIAGNOSTICS_KPP
 #undef  INCLUDE_DIAGNOSTICS_KPPDIFFKZSTAVE
 #endif

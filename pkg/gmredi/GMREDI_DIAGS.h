@@ -8,7 +8,7 @@ C     | GM_DIAGS.h                                               |
 C     | o Header for GM?Redi diagnostic output                   |
 C     \==========================================================/
 
-#ifdef INCLUDE_DIAGNOSTICS_INTERFACE_CODE
+#ifdef ALLOW_TIMEAVE
 
 C     Keep track of time
       _RL GM_TimeAve(Nr,nSx,nSy)
@@ -30,6 +30,6 @@ C     Storage arrays for time-averages
      &                       Visbeck_K_T
 #endif
 
-#endif /* INCLUDE_DIAGNOSTICS_INTERFACE_CODE */
+#endif /* ALLOW_TIMEAVE */
 
 #endif /* ALLOW_GMREDI */

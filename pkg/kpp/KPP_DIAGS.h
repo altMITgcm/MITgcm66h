@@ -14,7 +14,7 @@ C----------------------------------------------------------------
       INTEGER kpp_drctrec
       COMMON /KPP_RECORDNUM1/ kpp_drctrec
 
-#ifdef INCLUDE_DIAGNOSTICS_INTERFACE_CODE
+#ifdef ALLOW_TIMEAVE
 C----------------------------------------------------------------
 C     kpp_drctrecTave - next record to dump for KPP averaging files
 C----------------------------------------------------------------

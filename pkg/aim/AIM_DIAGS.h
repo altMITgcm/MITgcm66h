@@ -11,7 +11,7 @@ C     | Declares global arrays used for holding/accumulating     |
 C     | diagnostic output from AIM.                              |
 C     \==========================================================/
 
-#ifdef INCLUDE_DIAGNOSTICS_INTERFACE_CODE
+#ifdef ALLOW_TIMEAVE
 
 C     Timer for AIM diags
       _RL AIM_TimeAve(Nr,nSx,nSy)
@@ -45,7 +45,7 @@ C
       _RL  PRECLStave(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL  CLOUDCtave(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
-#endif /* INCLUDE_DIAGNOSTICS_INTERFACE_CODE */
+#endif /* ALLOW_TIMEAVE */
 
 
 #endif /* ALLOW_AIM */
