@@ -275,8 +275,7 @@ C/\  | | | |
 C/\  | | | |-CALC_GTR1            :: Calculate other tracer(s) tendency terms
 C/\  | | | | |
 C/\  | | | | |-GAD_CALC_RHS       :: Generalised advection package 
-C/\  | | | | | |                  :: ( see pkg/gad )
-C/\  | | | | | |-KPP_TRANSPORT_PTR:: KPP non-local transport ( see pkg/kpp ).
+C/\  | | | | |                    :: ( see pkg/gad )
 C/\  | | | | |
 C/\  | | | | |-EXTERNAL_FORCING_TR:: Problem specific forcing for tracer.
 C/\  | | | | |-ADAMS_BASHFORTH2   :: Extrapolate tendencies forward in time.
@@ -287,7 +286,9 @@ C/\  | | | |
 C/\  | | | |-PTRACERS_INTEGRATE   :: Integrate other tracer(s) ( see pkg/ptracers ).
 C/\  | | | | |
 C/\  | | | | |-GAD_CALC_RHS       :: Generalised advection package 
-C/\  | | | | |                    :: ( see pkg/gad )
+C/\  | | | | | |                  :: ( see pkg/gad )
+C/\  | | | | | |-KPP_TRANSPORT_PTR:: KPP non-local transport ( see pkg/kpp ).
+C/\  | | | | |
 C/\  | | | | |-PTRACERS_FORCING   :: Problem specific forcing for tracer.
 C/\  | | | | |-ADAMS_BASHFORTH2   :: Extrapolate tendencies forward in time.
 C/\  | | | | |-FREESURF_RESCALE_G :: Re-scale Gs for free-surface height.
