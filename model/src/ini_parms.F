@@ -531,6 +531,9 @@ C--   Input files
        STOP 'ABNORMAL END: S/R INI_PARMS'
   12  CONTINUE
 
+C
+      CLOSE(iUnit)
+
       _END_MASTER(myThid)
 
 C--   Everyone else must wait for the parameters to be loaded
