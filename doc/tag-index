@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o fix mask Pb in multidimAdvection on CS-grid (still a small Pb with ipass)
+o fix biharmonic diffusion on CS-grid.
 o more obcs stuff
   - added obcs_external_fields_load as an alternative to the EXF-pkg option
     for reading boundary values. This routine is called from 
