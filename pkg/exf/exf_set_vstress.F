@@ -88,8 +88,9 @@ c     Loop over tiles.
 
 c     Interpolate linearly onto the current time.
 
-                     vstress(i,j,bi,bj) = fac * vstress0(i,j,bi,bj) +
-     &                    (exf_one - fac) * vstress1(i,j,bi,bj)
+                     vstress(i,j,bi,bj) = exf_inscal_vst * (
+     &                                fac * vstress0(i,j,bi,bj) +
+     &                    (exf_one - fac) * vstress1(i,j,bi,bj) )
 
                   enddo
                enddo
