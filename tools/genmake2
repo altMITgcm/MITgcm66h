@@ -2097,10 +2097,10 @@ ad_tamc: ad_tamc_output.o \$(OBJFILES)
 	\$(LINK) -o ${EXE_AD} \$(FFLAGS) \$(FOPTIM) \$(OBJFILES) ad_tamc_output.o \$(LIBS) 
 
 adonlyfwd:
-        patch < \$(TOOLSDIR)/ad_taf_output.f.onlyfwd.diff
+	patch < \$(TOOLSDIR)/ad_taf_output.f.onlyfwd.diff
  
 adtrick:
-        patch < \$(TOOLSDIR)/ad_taf_output.f.adtrick.diff
+	patch < \$(TOOLSDIR)/ad_taf_output.f.adtrick.diff
 
 # ... FTL ...
 ftlall: ftl_taf
