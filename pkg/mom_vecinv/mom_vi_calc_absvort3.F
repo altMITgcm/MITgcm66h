@@ -35,8 +35,6 @@ C     == Local variables ==
       useCoriolisFac=0.
       IF (useCoriolis) useCoriolisFac=1.
 
-      nonLinFac=1.
-
       DO J=1-Oly,sNy+Oly
        DO I=1-Olx,sNx+Olx
         omega3(I,J)=
