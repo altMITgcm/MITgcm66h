@@ -67,7 +67,11 @@ C--   set default KPP vertical mixing parameters
       kpp_taveFreq  = taveFreq
       KPPmixingMaps = .FALSE.
       KPPwriteState = .FALSE.
-      minKPPhbl     = drF(1)*0.5
+      IF ( setCenterDr ) THEN
+        minKPPhbl   = delRc(1)
+      ELSE
+        minKPPhbl   = delR(1)*0.5
+      ENDIF
 
 C-----------------------------------------------------------------------
 C define some non-dimensional constants and
