@@ -30,7 +30,6 @@ C     == Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "DYNVARS.h"
-#include "CG2D.h"
 
       LOGICAL  DIFFERENT_MULTIPLE
       EXTERNAL DIFFERENT_MULTIPLE
@@ -63,7 +62,7 @@ C--    Write "text-plots" of certain fields
      &                        Nr, myIter, myThid )
        CALL PLOT_FIELD_XYZRL( theta, 'Current theta ' , 
      &                        Nr, myIter, myThid )
-       CALL PLOT_FIELD_XYRL( cg2d_x, 'Current cg2d_x ' , 
+       CALL PLOT_FIELD_XYRL( etaN  , 'Current etaN  ' , 
      &                        myIter, myThid )
 
       ENDIF
@@ -71,10 +70,10 @@ C--    Write "text-plots" of certain fields
 C--   Write model state to binary file
       CALL WRITE_STATE( forceOutput, myCurrentTime, myIter, myThid )
 
-#ifdef INCLUDE_DIAGNOSTICS_INTERFACE_CODE
+#ifdef ALLOW_TIMEAVE
 C--   Do time averages
       IF (taveFreq.GT.0.) THEN
-       CALL WRITE_TIME_AVERAGES( myCurrentTime, myIter, myThid )
+       CALL TIMEAVE_STATV_WRITE( myCurrentTime, myIter, myThid )
       ENDIF
 #endif
 
