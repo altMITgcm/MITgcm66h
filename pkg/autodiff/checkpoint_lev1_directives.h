@@ -32,7 +32,7 @@ CADJ STORE hflux0    = comlev1, key = ikey_dynamics
 CADJ STORE hflux1    = comlev1, key = ikey_dynamics
 CADJ STORE sflux0    = comlev1, key = ikey_dynamics
 CADJ STORE sflux1    = comlev1, key = ikey_dynamics
-#  ifdef ALLOW_KPP
+#  ifdef SHORTWAVE_HEATING
 CADJ STORE swflux0   = comlev1, key = ikey_dynamics
 CADJ STORE swflux1   = comlev1, key = ikey_dynamics
 #  endif
@@ -90,7 +90,53 @@ CADJ STORE xx_tauu1      = comlev1, key = ikey_dynamics
 CADJ STORE xx_tauv0      = comlev1, key = ikey_dynamics
 CADJ STORE xx_tauv1      = comlev1, key = ikey_dynamics
 # endif
+
+#else /* INCLUDE_EXTERNAL_FORCING_PACKAGE undef */
+
+CADJ STORE taux0   = comlev1, key = ikey_dynamics
+CADJ STORE taux1   = comlev1, key = ikey_dynamics
+CADJ STORE tauy0   = comlev1, key = ikey_dynamics
+CADJ STORE tauy1   = comlev1, key = ikey_dynamics
+CADJ STORE Qnet0   = comlev1, key = ikey_dynamics
+CADJ STORE Qnet1   = comlev1, key = ikey_dynamics
+CADJ STORE EmPmR0  = comlev1, key = ikey_dynamics
+CADJ STORE EmPmR1  = comlev1, key = ikey_dynamics
+CADJ STORE SST0    = comlev1, key = ikey_dynamics
+CADJ STORE SST1    = comlev1, key = ikey_dynamics
+CADJ STORE SSS0    = comlev1, key = ikey_dynamics
+CADJ STORE SSS1    = comlev1, key = ikey_dynamics
+#ifdef SHORTWAVE_HEATING
+CADJ STORE Qsw0    = comlev1, key = ikey_dynamics
+CADJ STORE Qsw1    = comlev1, key = ikey_dynamics
+#endif
+#ifdef ATMOSPHERIC_LOADING
+CADJ STORE pload0  = comlev1, key = ikey_dynamics
+CADJ STORE pload1  = comlev1, key = ikey_dynamics
+#endif
+
 #endif /* INCLUDE_EXTERNAL_FORCING_PACKAGE */
+
+cph The following storing may not be needed anymore
+cph but cannot tell for sure, so leave them.
+cph 
+#ifdef ALLOW_OBCS
+#ifdef ALLOW_OBCS_NORTH
+CADJ STORE OBNt    = comlev1, key = ikey_dynamics
+CADJ STORE OBNs    = comlev1, key = ikey_dynamics
+#endif /* ALLOW_OBCS_NORTH */
+#ifdef ALLOW_OBCS_SOUTH
+CADJ STORE OBSt    = comlev1, key = ikey_dynamics
+CADJ STORE OBSs    = comlev1, key = ikey_dynamics
+#endif /* ALLOW_OBCS_SOUTH */
+#ifdef ALLOW_OBCS_EAST
+CADJ STORE OBEt    = comlev1, key = ikey_dynamics
+CADJ STORE OBEs    = comlev1, key = ikey_dynamics
+#endif /* ALLOW_OBCS_EAST */
+#ifdef ALLOW_OBCS_WEST
+CADJ STORE OBWt    = comlev1, key = ikey_dynamics
+CADJ STORE OBWs    = comlev1, key = ikey_dynamics
+#endif /* ALLOW_OBCS_WEST */
+#endif  /* ALLOW_OBCS */
 
 #ifdef ALLOW_SEAICE
 CADJ STORE area          = comlev1, key = ikey_dynamics
@@ -99,3 +145,4 @@ CADJ STORE hsnow         = comlev1, key = ikey_dynamics
 CADJ STORE tice          = comlev1, key = ikey_dynamics
 CADJ STORE runoff        = comlev1, key = ikey_dynamics
 #endif
+

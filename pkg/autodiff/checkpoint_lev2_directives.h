@@ -15,6 +15,7 @@ CADJ STORE wvel      = tapelev2, key = ilev_2
 CADJ STORE etan      = tapelev2, key = ilev_2
 CADJ STORE gu        = tapelev2, key = ilev_2
 CADJ STORE gv        = tapelev2, key = ilev_2
+CADJ STORE totphihyd = tapelev2, key = ilev_2
 
 #ifdef INCLUDE_CD_CODE
 CADJ STORE uveld     = tapelev2, key = ilev_2
@@ -120,12 +121,43 @@ CADJ STORE xx_tauu1      = tapelev2, key = ilev_2
 CADJ STORE xx_tauv0      = tapelev2, key = ilev_2
 CADJ STORE xx_tauv1      = tapelev2, key = ilev_2
 #endif
+
+#else /* INCLUDE_EXTERNAL_FORCING_PACKAGE undef */
+
+CADJ STORE empmr   = tapelev2, key = ilev_2
+c
+CADJ STORE taux0   = tapelev2, key = ilev_2
+CADJ STORE taux1   = tapelev2, key = ilev_2
+CADJ STORE tauy0   = tapelev2, key = ilev_2
+CADJ STORE tauy1   = tapelev2, key = ilev_2
+CADJ STORE Qnet0   = tapelev2, key = ilev_2
+CADJ STORE Qnet1   = tapelev2, key = ilev_2
+CADJ STORE EmPmR0  = tapelev2, key = ilev_2
+CADJ STORE EmPmR1  = tapelev2, key = ilev_2
+CADJ STORE SST0    = tapelev2, key = ilev_2
+CADJ STORE SST1    = tapelev2, key = ilev_2
+CADJ STORE SSS0    = tapelev2, key = ilev_2
+CADJ STORE SSS1    = tapelev2, key = ilev_2
+#ifdef SHORTWAVE_HEATING
+CADJ STORE Qsw0    = tapelev2, key = ilev_2
+CADJ STORE Qsw1    = tapelev2, key = ilev_2
+#endif
+#ifdef ATMOSPHERIC_LOADING
+CADJ STORE pload0  = tapelev2, key = ilev_2
+CADJ STORE pload1  = tapelev2, key = ilev_2
+#endif
+
 #endif /* INCLUDE_EXTERNAL_FORCING_PACKAGE */
 
 #ifdef ALLOW_OBCS
+
+#if  (defined (BAROTROPIC_OBVEL_CONTROL) || \
+      defined (BALANCE_CONTROL_VOLFLUX_GLOBAL))      
+CADJ STORE shiftvel = tapelev2, key = ilev_2
+#endif
 #ifdef ALLOW_OBCS_NORTH
-CADJ STORE OBNt    = tapelev2, key = ilev_2
-CADJ STORE OBNs    = tapelev2, key = ilev_2
+CADJ STORE OBNt     = tapelev2, key = ilev_2
+CADJ STORE OBNs     = tapelev2, key = ilev_2
 CADJ STORE OBNu0    = tapelev2, key = ilev_2
 CADJ STORE OBNv0    = tapelev2, key = ilev_2
 CADJ STORE OBNt0    = tapelev2, key = ilev_2
@@ -134,10 +166,14 @@ CADJ STORE OBNu1    = tapelev2, key = ilev_2
 CADJ STORE OBNv1    = tapelev2, key = ilev_2
 CADJ STORE OBNt1    = tapelev2, key = ilev_2
 CADJ STORE OBNs1    = tapelev2, key = ilev_2
+#ifdef ALLOW_OBCSN_CONTROL
+CADJ STORE xx_obcsn0      = tapelev2, key = ilev_2
+CADJ STORE xx_obcsn1      = tapelev2, key = ilev_2
+#endif
 #endif /* ALLOW_OBCS_NORTH */
 #ifdef ALLOW_OBCS_SOUTH
-CADJ STORE OBSt    = tapelev2, key = ilev_2
-CADJ STORE OBSs    = tapelev2, key = ilev_2
+CADJ STORE OBSt     = tapelev2, key = ilev_2
+CADJ STORE OBSs     = tapelev2, key = ilev_2
 CADJ STORE OBSu0    = tapelev2, key = ilev_2
 CADJ STORE OBSv0    = tapelev2, key = ilev_2
 CADJ STORE OBSt0    = tapelev2, key = ilev_2
@@ -146,10 +182,14 @@ CADJ STORE OBSu1    = tapelev2, key = ilev_2
 CADJ STORE OBSv1    = tapelev2, key = ilev_2
 CADJ STORE OBSt1    = tapelev2, key = ilev_2
 CADJ STORE OBSs1    = tapelev2, key = ilev_2
+#ifdef ALLOW_OBCSS_CONTROL
+CADJ STORE xx_obcss0      = tapelev2, key = ilev_2
+CADJ STORE xx_obcss1      = tapelev2, key = ilev_2
+#endif
 #endif /* ALLOW_OBCS_SOUTH */
 #ifdef ALLOW_OBCS_EAST
-CADJ STORE OBEt    = tapelev2, key = ilev_2
-CADJ STORE OBEs    = tapelev2, key = ilev_2
+CADJ STORE OBEt     = tapelev2, key = ilev_2
+CADJ STORE OBEs     = tapelev2, key = ilev_2
 CADJ STORE OBEu0    = tapelev2, key = ilev_2
 CADJ STORE OBEv0    = tapelev2, key = ilev_2
 CADJ STORE OBEt0    = tapelev2, key = ilev_2
@@ -158,10 +198,14 @@ CADJ STORE OBEu1    = tapelev2, key = ilev_2
 CADJ STORE OBEv1    = tapelev2, key = ilev_2
 CADJ STORE OBEt1    = tapelev2, key = ilev_2
 CADJ STORE OBEs1    = tapelev2, key = ilev_2
+#ifdef ALLOW_OBCSE_CONTROL
+CADJ STORE xx_obcse0      = tapelev2, key = ilev_2
+CADJ STORE xx_obcse1      = tapelev2, key = ilev_2
+#endif
 #endif /* ALLOW_OBCS_EAST */
 #ifdef ALLOW_OBCS_WEST
-CADJ STORE OBWt    = tapelev2, key = ilev_2
-CADJ STORE OBWs    = tapelev2, key = ilev_2
+CADJ STORE OBWt     = tapelev2, key = ilev_2
+CADJ STORE OBWs     = tapelev2, key = ilev_2
 CADJ STORE OBWu0    = tapelev2, key = ilev_2
 CADJ STORE OBWv0    = tapelev2, key = ilev_2
 CADJ STORE OBWt0    = tapelev2, key = ilev_2
@@ -170,7 +214,12 @@ CADJ STORE OBWu1    = tapelev2, key = ilev_2
 CADJ STORE OBWv1    = tapelev2, key = ilev_2
 CADJ STORE OBWt1    = tapelev2, key = ilev_2
 CADJ STORE OBWs1    = tapelev2, key = ilev_2
+#ifdef ALLOW_OBCSW_CONTROL
+CADJ STORE xx_obcsw0      = tapelev2, key = ilev_2
+CADJ STORE xx_obcsw1      = tapelev2, key = ilev_2
+#endif
 #endif /* ALLOW_OBCS_WEST */
+
 #endif  /* ALLOW_OBCS */
 
 #ifdef ALLOW_SEAICE
@@ -180,3 +229,4 @@ CADJ STORE hsnow    = tapelev2, key = ilev_2
 CADJ STORE tice     = tapelev2, key = ilev_2
 CADJ STORE runoff   = tapelev2, key = ilev_2
 #endif /* ALLOW_SEAICE */
+
