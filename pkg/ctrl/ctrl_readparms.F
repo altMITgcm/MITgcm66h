@@ -107,7 +107,8 @@ c--   Read the namelist input.
      &  xx_hfacc_file,
      &  xx_efluxy_file,
      &  xx_efluxp_file,
-     &  xx_bottomdrag_file
+     &  xx_bottomdrag_file,
+     &  doInitXX
 
       namelist /ctrl_packnames/
      &  yadmark, yctrlid, yctrlposunpack, yctrlpospack,
@@ -175,6 +176,8 @@ c--     Set default values.
         xx_efluxy_file      = ' '
         xx_efluxp_file      = ' '
         xx_bottomdrag_file  = ' '
+
+        doInitXX            = .TRUE.
 
 #ifdef ALLOW_TANGENTLINEAR_RUN
         yadprefix           = 'g_'

@@ -86,19 +86,19 @@ c     == local variables ==
 
          if ( whichxyz .EQ. '3d') then
             call ctrl_set_globfld_xyz( fname(2), ivarindex, mythid)
-            if (optimcycle .eq. 0)
+            if ( doInitXX .AND. optimcycle.eq.0 )
      &           call ctrl_set_globfld_xyz( fname(1), ivarindex, mythid)
          else if ( whichxyz .EQ. 'xy') then
             call ctrl_set_globfld_xy( fname(2), ivarindex, mythid)
-            if (optimcycle .eq. 0)
+            if ( doInitXX .AND. optimcycle.eq.0 )
      &           call ctrl_set_globfld_xy( fname(1), ivarindex, mythid )
          else if ( whichxyz .EQ. 'xz') then
             call ctrl_set_globfld_xz( fname(2), ivarindex, mythid)
-            if (optimcycle .eq. 0)
+            if ( doInitXX .AND. optimcycle.eq.0 )
      &           call ctrl_set_globfld_xz( fname(1), ivarindex, mythid )
          else if ( whichxyz .EQ. 'yz') then
             call ctrl_set_globfld_yz( fname(2), ivarindex, mythid)
-            if (optimcycle .eq. 0)
+            if ( doInitXX .AND. optimcycle.eq.0 )
      &           call ctrl_set_globfld_yz( fname(1), ivarindex, mythid )
          else
             STOP 'whichxyz option not implemented'
