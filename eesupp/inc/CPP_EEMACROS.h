@@ -148,7 +148,7 @@ C     Sun compilers do not use 8-byte precision for literals
 C     unless .Dnn is specified. CRAY vector machines use 16-byte
 C     precision when they see .Dnn which runs very slowly!
 #ifdef REAL_D0_IS_16BYTES
-#define _d
+#define _d E
 #define _F64( a ) a
 #endif
 #ifndef REAL_D0_IS_16BYTES
