@@ -75,6 +75,20 @@ C
       INTEGER OB_Ie(1-Oly:sNy+Oly,nSx,nSy)
       INTEGER OB_Iw(1-Oly:sNy+Oly,nSx,nSy)
 
+      COMMON /OB_FILES/
+     &      OBNuFile,OBNvFile,OBNtFile,OBNsFile,
+     &      OBSuFile,OBSvFile,OBStFile,OBSsFile,
+     &      OBEuFile,OBEvFile,OBEtFile,OBEsFile,
+     &      OBWuFile,OBWvFile,OBWtFile,OBWsFile
+      CHARACTER*(MAX_LEN_FNAM) 
+     &      OBNuFile,OBNvFile,OBNtFile,OBNsFile
+      CHARACTER*(MAX_LEN_FNAM) 
+     &      OBSuFile,OBSvFile,OBStFile,OBSsFile
+      CHARACTER*(MAX_LEN_FNAM) 
+     &      OBEuFile,OBEvFile,OBEtFile,OBEsFile
+      CHARACTER*(MAX_LEN_FNAM) 
+     &      OBWuFile,OBWvFile,OBWtFile,OBWsFile
+
 #ifdef ALLOW_NONHYDROSTATIC
       COMMON /GRID_OBNH/ 
      &  OBNw,OBSw,OBEw,OBWw

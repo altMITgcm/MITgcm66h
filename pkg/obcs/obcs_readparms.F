@@ -28,7 +28,11 @@ C     === Routine arguments ===
       NAMELIST /OBCS_PARM01/
      &          OB_Jnorth,OB_Jsouth,OB_Ieast,OB_Iwest,
      &          useOrlanskiNorth,useOrlanskiSouth,
-     &          useOrlanskiEast,useOrlanskiWest
+     &          useOrlanskiEast,useOrlanskiWest,
+     &          OBNuFile,OBNvFile,OBNtFile,OBNsFile,
+     &          OBSuFile,OBSvFile,OBStFile,OBSsFile,
+     &          OBEuFile,OBEvFile,OBEtFile,OBEsFile,
+     &          OBWuFile,OBWvFile,OBWtFile,OBWsFile
 
 #ifdef ALLOW_ORLANSKI
       NAMELIST /OBCS_PARM02/
@@ -70,6 +74,23 @@ C--   Default flags and values for OBCS
       useOrlanskiSouth=.FALSE.
       useOrlanskiEast =.FALSE.
       useOrlanskiWest =.FALSE.
+
+      OBNuFile = ' '
+      OBNvFile = ' '
+      OBNtFile = ' '
+      OBNsFile = ' '
+      OBSuFile = ' '
+      OBSvFile = ' '
+      OBStFile = ' '
+      OBSsFile = ' '
+      OBEuFile = ' '
+      OBEvFile = ' '
+      OBEtFile = ' '
+      OBEsFile = ' '
+      OBWuFile = ' '
+      OBWvFile = ' '
+      OBWtFile = ' '
+      OBWsFile = ' '
 
 C--   Read parameters from open data file
       READ(UNIT=iUnit,NML=OBCS_PARM01)

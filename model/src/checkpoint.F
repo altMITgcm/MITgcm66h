@@ -141,6 +141,13 @@ c        CALL MDSREADFIELD(fn,prec,'RL',Nr,gWnm1,3,myThid)
         ENDIF
 #endif
 
+C SPK 4/9/01: Open boundary checkpointing
+#ifdef  ALLOW_OBCS
+        IF (useOBCS) THEN
+          CALL OBCS_READ_CHECKPOINT(prec, myIter, myThid)
+        ENDIF
+#endif  /* ALLOW_OBCS */
+
 #endif
 
 C       Reset default IO precision
@@ -363,6 +370,15 @@ C--     Write model fields
 c        CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,gWnm1,3,myIter,myThid)
         ENDIF
 #endif
+
+C SPK 4/9/01: Open boundary checkpointing
+#ifdef  ALLOW_OBCS
+        IF (useOBCS) THEN
+          CALL OBCS_WRITE_CHECKPOINT(
+     &               prec, lgf, permCheckPoint, myIter, myThid)
+        ENDIF
+#endif  /* ALLOW_OBCS */
+
         IF ( .NOT. permCheckPoint ) THEN
          nCheckLev = MOD(nCheckLev, maxNoChkptLev)+1
         ENDIF
