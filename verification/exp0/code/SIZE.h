@@ -38,8 +38,8 @@ C     Nr  - No. points in R for full process domain.
       PARAMETER (
      &           sNx =  60,
      &           sNy =  60,
-     &           OLx =   3,
-     &           OLy =   3,
+     &           OLx =   2,
+     &           OLy =   2,
      &           nSx =   1,
      &           nSy =   1,
      &           nPx =   1,
