@@ -64,7 +64,7 @@ C--   Physics tendency term
          I2 = i+(j-1)*sNx
          Katm = _KD2KA( k )
 C        Planetary boundary layer drag coeff.
-         aim_drag(i,j,bi,bj) = DRAG(I2,3,myThid)
+         aim_drag(i,j,bi,bj) = DRAG(I2,0,myThid)
 
 C        Net temperature tendency
          aim_dTdt(i,j,k,bi,bj) =   TT_LSC(I2,Katm,myThid)
