@@ -3,7 +3,7 @@ C $Name$
 
 #include "OBCS_OPTIONS.h"
 
-      SUBROUTINE OBCS_CALC( bi, bj, futureTime, 
+      SUBROUTINE OBCS_CALC( bi, bj, futureTime, futureIter,
      &                      uVel, vVel, wVel, theta, salt, 
      &                      myThid )
 C     /==========================================================\
@@ -23,6 +23,7 @@ C     === Global variables ===
 
 C     == Routine arguments ==
       INTEGER bi, bj
+      INTEGER futureIter
       _RL futureTime
       _RL uVel (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL vVel (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
@@ -36,9 +37,11 @@ C     == Routine arguments ==
 C     == Local variables ==
       INTEGER I, J ,K
       _RL recip_TimeScale,Uinflow
+      _RL EtaBC
 c
       recip_TimeScale=0./2000.
       Uinflow = 0.25
+      EtaBC = 0.
 
 C     Eastern OB
       IF (useOrlanskiEast) THEN
@@ -60,6 +63,9 @@ C     Eastern OB
 #ifdef ALLOW_NONHYDROSTATIC
             OBEw(J,K,bi,bj)=0.
 #endif
+#ifdef NONLIN_FRSURF
+            OBEeta(J,bi,bj)=EtaBC
+#endif  
           ENDDO
         ENDDO
       ENDIF
@@ -83,6 +89,9 @@ C     Western OB
             OBWs(J,K,bi,bj)=sRef(K)
 #ifdef ALLOW_NONHYDROSTATIC
             OBWw(J,K,bi,bj)=0.
+#endif
+#ifdef NONLIN_FRSURF
+            OBWeta(J,bi,bj)=EtaBC
 #endif
           ENDDO
         ENDDO
@@ -108,6 +117,9 @@ C         Northern OB, template for forcing
 #ifdef ALLOW_NONHYDROSTATIC
             OBNw(I,K,bi,bj)=0.
 #endif
+#ifdef NONLIN_FRSURF
+            OBNeta(I,bi,bj)=0.
+#endif
           ENDDO
         ENDDO
       ENDIF
@@ -131,6 +143,9 @@ C         Southern OB, template for forcing
             OBSs(I,K,bi,bj)=sRef(K)
 #ifdef ALLOW_NONHYDROSTATIC
             OBSw(I,K,bi,bj)=0.
+#endif
+#ifdef NONLIN_FRSURF
+            OBSeta(I,bi,bj)=0.
 #endif
           ENDDO
         ENDDO
