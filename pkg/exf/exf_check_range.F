@@ -160,7 +160,7 @@ c             Runoff.
      &                i, j, runoff(i,j,bi,bj)
                  print *, 'Please note that input units for runoff are'
                  print *, 'm/s not m/yr.  If input file is in m/yr, set'
-                 print *, 'exf_inscalrunoff=1.0/(86400.*365.0)'
+                 print *, 'exf_inscal_runoff=1.0/(86400.0*365.0)'
                  print *, 'in the data.exf input file.'
                  exferr = 1
               endif
