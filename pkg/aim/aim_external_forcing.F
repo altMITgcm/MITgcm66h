@@ -87,11 +87,9 @@ c---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
         DO i=iMin,iMax
          IF ( hFacW(i,j,kLev,bi,bj) .NE. 0. ) THEN
           gU(i,j,kLev,bi,bj) = gU(i,j,kLev,bi,bj)
-     &     -( (1.-maskC(i-1,j,kLev-1,bi,bj)) 
-     &         *aim_drag(i-1,j,bi,bj)*0.0
-     &       +(1.-maskC( i ,j,kLev-1,bi,bj)) 
-     &         *aim_drag( i ,j,bi,bj)*0.0
-     &      )* 0.5 _d 0 * uVel(i,j,kLev,bi,bj)
+     &      -( (1.-maskC(i-1,j,kLev-1,bi,bj))*aim_drag(i-1,j,bi,bj)
+     &        +(1.-maskC( i ,j,kLev-1,bi,bj))*aim_drag( i ,j,bi,bj)
+     &       )* 0.5 _d 0 * uVel(i,j,kLev,bi,bj)
          ENDIF
         ENDDO
        ENDDO
