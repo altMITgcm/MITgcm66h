@@ -859,8 +859,7 @@ C****
      &           DEA,     DTC,  SNLEFT,     Q0X,  Q0SNOW,
      &         EANEW,  ESATNW,  EHARMN, DETERM, DENOM
 
-      LOGICAL DEBUG, CHOKE
-      DATA DEBUG /.FALSE./
+      LOGICAL CHOKE
       real deepfac(ntyps)
       DATA deepfac /1.,1.,1.,1.,1.,1.,1.,1.,1.,1./
 C****
@@ -1139,11 +1138,11 @@ C****
       INTEGER NCH
       INTEGER ITYP(NCH), ChNo
       REAL    ESATTC(NCH), EA(NCH),  VPDSTR(NCH)
-      REAL  VGDFAC(NTYPS)
+c     REAL  VGDFAC(NTYPS)
 C****
-      DATA VGDFAC /   .0273,    .0357,    .0310,    .0238,
-     5                .0275,    .0275,       0.,       0.,
-     9                   0.,      0. /
+c     DATA VGDFAC /   .0273,    .0357,    .0310,    .0238,
+c    5                .0275,    .0275,       0.,       0.,
+c    9                   0.,      0. /
 C****
 C**** -----------------------------------------------------------------
 
