@@ -38,7 +38,7 @@ c pe on dynamics and physics grid refers to bottom edge
        _RL udyntemp(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy)
        _RL vdyntemp(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy)
        _RL thdyntemp(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy)
-       _RL sdyntemp(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nrphys,nSx,nSy)
+       _RL sdyntemp(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy)
        _RL uphytemp(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nrphys,nSx,nSy)
        _RL vphytemp(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nrphys,nSx,nSy)
        _RL thphytemp(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nrphys,nSx,nSy)
