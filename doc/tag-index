@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+untagged
+o Added net flux to downward flux conversion to pkg/exf/exf_getffields.F
+o Added SEAICE_initialHEFF to pkg/seaice
+
 release1_p12
 o Added missing /* */ to CPP comments in pkg/seaice, pkg/exf,
   kpp_transport_t.F, forward_step.F, and the_main_loop.F
