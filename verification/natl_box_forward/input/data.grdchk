@@ -1,0 +1,10 @@
+
+# *******************
+# ECCO gradient check
+# *******************
+ &ECCO_GRDCHK
+ eps_grdchk=0.001,
+ nbeg=1,
+ nstep=100,
+ nend=1001,
+ /

@@ -1,0 +1,59 @@
+# $Header$
+#
+# *********************
+# External Forcing Data
+# *********************
+ &EXF_NML
+ hfluxstartdate1=19920102,
+ hfluxstartdate2=220000,
+ hfluxperiod=43200.0,
+#
+ sfluxstartdate1=19920102,
+ sfluxstartdate2=220000,
+ sfluxperiod=43200.0,
+#
+ ustressstartdate1=19920102,
+ ustressstartdate2=220000,
+ ustressperiod=43200.0,
+#
+ vstressstartdate1=19920102,
+ vstressstartdate2=220000,
+ vstressperiod=43200.0,
+#
+ atempstartdate1=19920102,
+ atempstartdate2=220000,
+ atempperiod=43200.0,
+#
+ aqhstartdate1=19920102,
+ aqhstartdate2=220000,
+ aqhperiod=43200.0,
+#
+ precipstartdate1=19920102,
+ precipstartdate2=220000,
+ precipperiod=43200.0,
+#
+ uwindstartdate1=19920102,
+ uwindstartdate2=220000,
+ uwindperiod=43200.0,
+#
+ vwindstartdate1=19920102,
+ vwindstartdate2=220000,
+ vwindperiod=43200.0,
+#
+ swfluxstartdate1=19920102,
+ swfluxstartdate2=220000,
+ swfluxperiod=43200.0,
+#
+ lwfluxstartdate1=19920102,
+ lwfluxstartdate2=220000,
+ lwfluxperiod=43200.0,
+#
+ hfluxfile    = 'kf_qnet',
+ sfluxfile    = 'kf_empmr',
+ ustressfile  = 'kf_fu',
+ vstressfile  = 'kf_fv',
+ swfluxfile   = 'kf_sw',
+#
+ exf_iprec         = 32,
+ exf_yftype        = 'RL',
+ /

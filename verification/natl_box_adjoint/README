@@ -1,0 +1,24 @@
+Example: Subtropical North Atlantic Subduction area
+===================================================
+- with KPP & shortwave heating
+- no GMRedi
+- forward/adjoint run
+- optimization cost function
+
+To apply the changes to the default configuration of MITgcmUV:
+  cd bin
+  ln -s ../verification/natl_box_adjoint/code/.genmakerc .
+  ln -s ../verification/natl_box_adjoint/code/*.h .
+
+Configure and compile the code:
+  ../tools/genmake -makefile
+  make depend
+  make small_f
+
+To run:
+  cd ../exe
+  cp ../verification/natl_box_adjoint/input/* .
+  mitgcmuv >&! run.out
+
+Comments:
+The input data is real*8.

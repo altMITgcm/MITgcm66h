@@ -1,38 +1,38 @@
 SHELL		 = /bin/tcsh
 RM               = rm -f
 LOC              = $(PWD)
-TAMC             = tamc
+TAMC             = /data43/ralf/tamc/tamc
 TAF              = ~fastopt/bin/taf
+###TAF              = ~fastopt/taf-1.3.5/bin/taf
 DEST             = .
 SOURCE_CODE      = ../bin
 ADJOINT_SCRIPT   = ../adjoint
 BASE             = ..
+TAMCFLAGS        = -reverse -i4 -r4
+TAFFLAGS         = -reverse -i4 -r4 -nonew_arg
 PKG		= $(BASE)/pkg
-ADTAMCFLAGS      = -reverse -i4 -r4 -admark  ad
-ADTAFFLAGS       = -reverse -i4 -r4 -admark  ad
-TLTAMCFLAGS      = -forward -i4 -r4 -ftlmark g_
-TLTAFFLAGS       = -forward -i4 -r4 -ftlmark g_
-# -warn_step -flow taf_flow.log
 
 DIFF_FLAGS       = -toplevel the_main_loop		\
 		   -input  '    xx_theta_dummy		\
 				xx_salt_dummy		\
-                                xx_tr1_dummy		\
 				xx_hflux_dummy		\
 				xx_sflux_dummy		\
 				xx_tauu_dummy		\
 				xx_tauv_dummy		\
-				xx_sss_dummy		\
-				xx_sst_dummy		\
-				xx_diffkr_dummy		\
-				xx_kapgm_dummy'		\
+				xx_atemp_dummy		\
+				xx_aqh_dummy		\
+				xx_uwind_dummy		\
+				xx_vwind_dummy		\
+				xx_obcsn_dummy		\
+				xx_obcss_dummy		\
+				xx_obcsw_dummy		\
+				xx_obcse_dummy'		\
                    -output 'fc'
 
-ADTAMCFLAG         = $(ADTAMCFLAGS) $(DIFF_FLAGS)
-ADTAFFLAG          = $(ADTAFFLAGS)  $(DIFF_FLAGS)
+TAMCFLAG         = $(TAMCFLAGS) $(DIFF_FLAGS) -admark ad
 
-TLTAMCFLAG         = $(TLTAMCFLAGS) $(DIFF_FLAGS)
-TLTAFFLAG          = $(TLTAFFLAGS)  $(DIFF_FLAGS)
+TAFFLAG          = $(TAFFLAGS) $(DIFF_FLAGS) -admark ad
+
 
 # Source files for the MITgcmUV
 SRC_MODEL	= \
@@ -56,8 +56,8 @@ SRC_MODEL	= \
 		$(PKG)/autodiff/initialisation.flow	\
 		$(PKG)/autodiff/mdsio.flow		\
 		$(PKG)/autodiff/monitor.flow		\
+		$(PKG)/autodiff/obcs.flow		\
 		$(PKG)/autodiff/checkpoint.flow		\
-		$(PKG)/autodiff/print_message.flow	\
 		$(PKG)/autodiff/open_copy_data_file.flow\
 		$(PKG)/autodiff/timeave.flow		\
 		  		  				\
@@ -66,6 +66,7 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/calc_common_factors.f		\
 		$(SOURCE_CODE)/calc_diffusivity.f		\
 		$(SOURCE_CODE)/calc_div_ghat.f			\
+		$(SOURCE_CODE)/calc_exact_eta.f			\
 		$(SOURCE_CODE)/calc_grad_phi_surf.f		\
 		$(SOURCE_CODE)/calc_gs.f			\
 		$(SOURCE_CODE)/calc_gt.f			\
@@ -121,6 +122,7 @@ SRC_MODEL	= \
 								\
 		$(SOURCE_CODE)/grad_sigma.f			\
 		$(SOURCE_CODE)/impldiff.f			\
+		$(SOURCE_CODE)/ini_autodiff.f			\
 		$(SOURCE_CODE)/ini_cartesian_grid.f		\
 		$(SOURCE_CODE)/ini_cg2d.f			\
 		$(SOURCE_CODE)/ini_communication_patterns.f	\
@@ -135,7 +137,6 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/ini_mixing.f			\
 		$(SOURCE_CODE)/ini_p_ground.f			\
 		$(SOURCE_CODE)/ini_pnh.f			\
-		$(SOURCE_CODE)/ini_procs.f			\
 		$(SOURCE_CODE)/ini_psurf.f			\
 		$(SOURCE_CODE)/ini_salt.f			\
 		$(SOURCE_CODE)/ini_spherical_polar_grid.f	\
@@ -160,6 +161,7 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/mom_u_adv_vu.f			\
 		$(SOURCE_CODE)/mom_u_adv_wu.f			\
 		$(SOURCE_CODE)/mom_u_bottomdrag.f		\
+		$(SOURCE_CODE)/mom_u_coriolis.f			\
 		$(SOURCE_CODE)/mom_u_del2u.f			\
 		$(SOURCE_CODE)/mom_u_metric_nh.f		\
 		$(SOURCE_CODE)/mom_u_metric_sphere.f		\
@@ -171,6 +173,7 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/mom_v_adv_vv.f			\
 		$(SOURCE_CODE)/mom_v_adv_wv.f			\
 		$(SOURCE_CODE)/mom_v_bottomdrag.f		\
+		$(SOURCE_CODE)/mom_v_coriolis.f			\
 		$(SOURCE_CODE)/mom_v_del2v.f			\
 		$(SOURCE_CODE)/mom_v_metric_nh.f		\
 		$(SOURCE_CODE)/mom_v_metric_sphere.f		\
@@ -198,7 +201,6 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/state_summary.f			\
 		$(SOURCE_CODE)/timestep.f			\
 		$(SOURCE_CODE)/the_correction_step.f		\
-		$(SOURCE_CODE)/the_main_loop.f			\
 		$(SOURCE_CODE)/thermodynamics.f			\
 		$(SOURCE_CODE)/timestep_tracer.f		\
 		$(SOURCE_CODE)/swfrac.f				\
@@ -222,14 +224,159 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/gmredi_xtransport.f		\
 		$(SOURCE_CODE)/gmredi_ytransport.f		\
 								\
-		$(SOURCE_CODE)/ctrl_map_ini.f			\
-		$(SOURCE_CODE)/ctrl_map_forcing.f		\
 		  						\
+		$(SOURCE_CODE)/cost_aqh.f			\
+		$(SOURCE_CODE)/cost_atemp.f			\
+		$(SOURCE_CODE)/cost_atlantic.f			\
+		$(SOURCE_CODE)/cost_averagesfields.f		\
+		$(SOURCE_CODE)/cost_averagesfinal.f		\
+		$(SOURCE_CODE)/cost_averagesflags.f		\
+		$(SOURCE_CODE)/cost_averagesinit.f		\
+		$(SOURCE_CODE)/cost_ctds.f			\
+		$(SOURCE_CODE)/cost_ctdt.f			\
 		$(SOURCE_CODE)/cost_final.f			\
-		$(SOURCE_CODE)/cost_init.f			\
-		$(SOURCE_CODE)/cost_tile.f			\
-		$(SOURCE_CODE)/cost_test.f			\
-		$(SOURCE_CODE)/cost_tracer.f			\
+		$(SOURCE_CODE)/cost_forcing.f			\
+		$(SOURCE_CODE)/cost_geoid.f			\
+		$(SOURCE_CODE)/cost_heatflux.f			\
+		$(SOURCE_CODE)/cost_hyd.f			\
+		$(SOURCE_CODE)/cost_initvaria.f			\
+		$(SOURCE_CODE)/cost_merstress.f			\
+		$(SOURCE_CODE)/cost_readers.f			\
+		$(SOURCE_CODE)/cost_readsssfields.f		\
+		$(SOURCE_CODE)/cost_readsstfields.f		\
+		$(SOURCE_CODE)/cost_readtopex.f			\
+		$(SOURCE_CODE)/cost_readtopexmean.f		\
+		$(SOURCE_CODE)/cost_salt.f			\
+		$(SOURCE_CODE)/cost_saltflux.f			\
+		$(SOURCE_CODE)/cost_ssh.f			\
+		$(SOURCE_CODE)/cost_ssh_mean.f			\
+		$(SOURCE_CODE)/cost_sss.f			\
+		$(SOURCE_CODE)/cost_sst.f			\
+		$(SOURCE_CODE)/cost_theta.f			\
+		$(SOURCE_CODE)/cost_uwind.f			\
+		$(SOURCE_CODE)/cost_vwind.f			\
+		$(SOURCE_CODE)/cost_xbt.f			\
+		$(SOURCE_CODE)/cost_zonstress.f			\
+		$(SOURCE_CODE)/cost_obcs.f			\
+		$(SOURCE_CODE)/cost_obcsn.f			\
+		$(SOURCE_CODE)/cost_obcss.f			\
+		$(SOURCE_CODE)/cost_obcsw.f			\
+		$(SOURCE_CODE)/cost_obcse.f			\
+		  						\
+		$(SOURCE_CODE)/ctrl_getheatflux.f		\
+		$(SOURCE_CODE)/ctrl_getsaltflux.f		\
+		$(SOURCE_CODE)/ctrl_getzonstress.f		\
+		$(SOURCE_CODE)/ctrl_getmerstress.f		\
+		$(SOURCE_CODE)/ctrl_getatemp.f			\
+		$(SOURCE_CODE)/ctrl_getaqh.f			\
+		$(SOURCE_CODE)/ctrl_getuwind.f			\
+		$(SOURCE_CODE)/ctrl_getvwind.f			\
+		$(SOURCE_CODE)/ctrl_getobcsn.f			\
+		$(SOURCE_CODE)/ctrl_getobcss.f			\
+		$(SOURCE_CODE)/ctrl_getobcsw.f			\
+		$(SOURCE_CODE)/ctrl_getobcse.f			\
+		$(SOURCE_CODE)/ctrl_getrec.f			\
+		$(SOURCE_CODE)/ctrl_map.f			\
+		  						\
+		$(SOURCE_CODE)/ecco_init.f			\
+		$(SOURCE_CODE)/ecco_the_main_loop.f		\
+		  						\
+		$(SOURCE_CODE)/exf_init.f			\
+		$(SOURCE_CODE)/exf_readparms.f			\
+		$(SOURCE_CODE)/exf_summary.f			\
+		$(SOURCE_CODE)/exf_bulkcdn.f			\
+		$(SOURCE_CODE)/exf_bulkqsat.f			\
+		$(SOURCE_CODE)/exf_bulkrhn.f			\
+		$(SOURCE_CODE)/exf_getffields.f			\
+		$(SOURCE_CODE)/exf_getffieldrec.f		\
+		$(SOURCE_CODE)/exf_getforcing.f			\
+		$(SOURCE_CODE)/exf_mapfields.f			\
+		$(SOURCE_CODE)/exf_getobcs.f			\
+		$(SOURCE_CODE)/exf_getsurfacefluxes.f		\
+		$(SOURCE_CODE)/exf_swapffields.f		\
+		$(SOURCE_CODE)/exf_filter_rl.f			\
+		$(SOURCE_CODE)/exf_filter_rs.f			\
+		$(SOURCE_CODE)/exf_set_aqh.f			\
+		$(SOURCE_CODE)/exf_set_atemp.f			\
+		$(SOURCE_CODE)/exf_set_hflux.f			\
+		$(SOURCE_CODE)/exf_set_hfluxa.f			\
+		$(SOURCE_CODE)/exf_set_lwflux.f			\
+		$(SOURCE_CODE)/exf_set_precip.f			\
+		$(SOURCE_CODE)/exf_set_sflux.f			\
+		$(SOURCE_CODE)/exf_set_sfluxa.f			\
+		$(SOURCE_CODE)/exf_set_swflux.f			\
+		$(SOURCE_CODE)/exf_set_ustress.f		\
+		$(SOURCE_CODE)/exf_set_ustressa.f		\
+		$(SOURCE_CODE)/exf_set_uwind.f			\
+		$(SOURCE_CODE)/exf_set_vstress.f		\
+		$(SOURCE_CODE)/exf_set_vstressa.f		\
+		$(SOURCE_CODE)/exf_set_vwind.f			\
+		$(SOURCE_CODE)/exf_set_obcs.f			\
+								\
+		$(SOURCE_CODE)/exf_clim_init.f			\
+		$(SOURCE_CODE)/exf_clim_readparms.f		\
+		$(SOURCE_CODE)/exf_clim_summary.f		\
+		$(SOURCE_CODE)/exf_getclim.f			\
+		$(SOURCE_CODE)/exf_set_climsalt.f		\
+		$(SOURCE_CODE)/exf_set_climtemp.f		\
+		$(SOURCE_CODE)/exf_set_climsss.f		\
+		$(SOURCE_CODE)/exf_set_climsst.f		\
+								\
+		$(SOURCE_CODE)/exfa_getffields.f		\
+		$(SOURCE_CODE)/exfa_getforcing.f		\
+		$(SOURCE_CODE)/exfa_init.f			\
+		$(SOURCE_CODE)/exfa_mapfields.f			\
+		$(SOURCE_CODE)/exfa_summary.f			\
+								\
+		$(SOURCE_CODE)/cal_addtime.f			\
+		$(SOURCE_CODE)/cal_checkdate.f			\
+		$(SOURCE_CODE)/cal_compdates.f			\
+		$(SOURCE_CODE)/cal_convdate.f			\
+		$(SOURCE_CODE)/cal_copydate.f			\
+		$(SOURCE_CODE)/cal_daysformonth.f		\
+		$(SOURCE_CODE)/cal_dayspermonth.f		\
+		$(SOURCE_CODE)/cal_fulldate.f			\
+		$(SOURCE_CODE)/cal_getdate.f			\
+		$(SOURCE_CODE)/cal_getmonthsrec.f		\
+		$(SOURCE_CODE)/cal_intdays.f			\
+		$(SOURCE_CODE)/cal_intmonths.f			\
+		$(SOURCE_CODE)/cal_intsteps.f			\
+		$(SOURCE_CODE)/cal_intyears.f			\
+		$(SOURCE_CODE)/cal_isleap.f			\
+		$(SOURCE_CODE)/cal_monthsforyear.f		\
+		$(SOURCE_CODE)/cal_monthsperyear.f		\
+		$(SOURCE_CODE)/cal_nstepday.f			\
+		$(SOURCE_CODE)/cal_numints.f			\
+		$(SOURCE_CODE)/cal_printdate.f			\
+		$(SOURCE_CODE)/cal_printerror.f			\
+		$(SOURCE_CODE)/cal_stepsforday.f		\
+		$(SOURCE_CODE)/cal_stepsperday.f		\
+		$(SOURCE_CODE)/cal_subdates.f			\
+		$(SOURCE_CODE)/cal_timeinterval.f		\
+		$(SOURCE_CODE)/cal_timepassed.f			\
+		$(SOURCE_CODE)/cal_timestamp.f			\
+		$(SOURCE_CODE)/cal_toseconds.f			\
+		$(SOURCE_CODE)/cal_weekday.f			\
+								\
+		$(SOURCE_CODE)/obcs_apply_sloc.f		\
+		$(SOURCE_CODE)/obcs_apply_tloc.f		\
+		$(SOURCE_CODE)/obcs_apply_ts.f			\
+		$(SOURCE_CODE)/obcs_apply_uv.f			\
+		$(SOURCE_CODE)/obcs_calc.f			\
+		$(SOURCE_CODE)/obcs_init_variables.f		\
+		$(SOURCE_CODE)/obcs_sponge.f			\
+
+		  						\
+#		$(SOURCE_CODE)/shap_filt_apply.f		\
+#		$(SOURCE_CODE)/shap_filt_apply_ts.f		\
+#		$(SOURCE_CODE)/shap_filt_tracer_s1.f		\
+#		$(SOURCE_CODE)/shap_filt_tracer_s2.f		\
+#		$(SOURCE_CODE)/shap_filt_tracer_s2g.f		\
+#		$(SOURCE_CODE)/shap_filt_tracer_s4.f		\
+#		$(SOURCE_CODE)/shap_filt_uv_s1.f		\
+#		$(SOURCE_CODE)/shap_filt_uv_s2.f		\
+#		$(SOURCE_CODE)/shap_filt_uv_s2g.f		\
+#		$(SOURCE_CODE)/shap_filt_uv_s4.f		\
 		  						\
 
 
@@ -237,37 +384,28 @@ SRC_MODEL	= \
 # rules
 #--------------------------------------------------------
 
-allcode:
+adcode:
 	cd $(DEST) ; cat $(SRC_MODEL) >! tamc_code_ecco.f
-
 admodeltamc:
-	cd $(DEST) ; $(TAMC) $(ADTAMCFLAG) tamc_code_ecco.f	\
+	cd $(DEST) ; $(TAMC) $(TAMCFLAG) tamc_code_ecco.f	\
            >! tamc_code_ecco_ad.prot
 
 admodeltaf:
-	cd $(DEST) ; $(TAF) $(ADTAFFLAG) tamc_code_ecco.f
+	cd $(DEST) ; $(TAF) $(TAFFLAG) tamc_code_ecco.f
 
-tlmodeltamc:
-	cd $(DEST) ; $(TAMC) $(TLTAMCFLAG) tamc_code_ecco.f	\
-           >! tamc_code_ecco_tl.prot
-
-tlmodeltaf:
-	cd $(DEST) ; $(TAF) $(TLTAFFLAG) tamc_code_ecco.f
-
-adchange:
-	${ADJOINT_SCRIPT}/adjoint_ecco_sed.com \
-           >! tamc_code_ecco_sed_ad.f ;  \
-        cp $(PKG)/autodiff/adjoint_model.F		\
-           $(PKG)/autodiff/adjoint_model.F_old ;	\
-        cat tamc_code_ecco_sed_ad.f >> $(PKG)/autodiff/adjoint_model.F
 adrestore:
 	cp $(PKG)/autodiff/adjoint_model.F_template	\
            $(PKG)/autodiff/adjoint_model.F
 
-tltamc:  allcode tlmodeltamc
+adchange:
+	${ADJOINT_SCRIPT}/adjoint_ecco_sed.com 		\
+           >! tamc_code_ecco_sed_ad.f ;  		\
+        cp $(PKG)/autodiff/adjoint_model.F		\
+           $(PKG)/autodiff/adjoint_model.F_old ;	\
+	cp $(PKG)/autodiff/adjoint_model.F_template	\
+           $(PKG)/autodiff/adjoint_model.F;		\
+        cat tamc_code_ecco_sed_ad.f >> $(PKG)/autodiff/adjoint_model.F
 
-tltaf:  allcode tlmodeltaf
+adtamc:  adrestore adcode admodeltamc
 
-adtamc:  adrestore allcode admodeltamc
-
-adtaf:  adrestore allcode admodeltaf
+adtaf:  adrestore adcode admodeltaf

@@ -1,0 +1,12 @@
+# $Header$
+# $Name$
+
+# Disable packages that are not needed
+set DISABLE=( aim zonal_filt hide )
+
+# Enable packages that are needed but are disabled by default
+set ENABLE=( autodiff cal cost ctrl grdchk ecco exf kpp gmredi shap_filt obcs )
+
+# We can also specify other defaults
+set ROOTDIR=..
+set MODS=../verification/natl_box_adjoint/code

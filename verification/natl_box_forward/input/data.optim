@@ -1,0 +1,16 @@
+#
+# ********************************
+# Off-line optimization parameters
+# ********************************
+ &OPTIM
+ optimcycle=0,
+ numiter=1,
+ nfunc=1,
+ fmin=0.0,
+ iprint=10,
+ epsf=1.e-6,
+ epsx=1.e-6,
+ epsg=1.e-6,
+ nupdate=0,
+ eps=-1.e-6,
+ /

@@ -1,0 +1,22 @@
+Example: Subtropical North Atlantic Subduction area
+===================================================
+- with KPP & shortwave heating
+- no GMRedi
+
+To apply the changes to the default configuration of MITgcmUV:
+  cd bin
+  ln -s ../verification/natl_box_forward/code/.genmakerc .
+  ln -s ../verification/natl_box_forward/code/*.h .
+
+Configure and compile the code:
+  ../tools/genmake -makefile
+  make depend
+  make
+
+To run:
+  cd ../exe
+  cp ../verification/natl_box_forward/input/* .
+  mitgcmuv >&! run.out
+
+Comments:
+The input data is real*8.
