@@ -317,13 +317,20 @@ c--     >>> Loop body start <<<
         ikey_dynamics = ilev_1
 #endif
 
+#ifdef ALLOW_AUTODIFF_TAMC
+        CALL AUTODIFF_INADMODE_UNSET( myThid )
+#endif
+
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_CALL('FORWARD_STEP',myThid)
 #endif
-
         CALL TIMER_START('FORWARD_STEP        [THE_MAIN_LOOP]',mythid)
         CALL FORWARD_STEP( iloop, mytime, myiter, mythid )
         CALL TIMER_STOP ('FORWARD_STEP        [THE_MAIN_LOOP]',mythid)
+
+#ifdef ALLOW_AUTODIFF_TAMC
+        CALL AUTODIFF_INADMODE_SET( myThid )
+#endif
 
 c--     >>> Loop body end <<<
 
