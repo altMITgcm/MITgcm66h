@@ -5,10 +5,10 @@ C $Name$
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 CBOP 1
-C     !ROUTINE: PTRACERS_FILL_DIAGNOSTICS
+C     !ROUTINE: PTRACERS_DIAGNOSTICS_FILL
 
 C     !INTERFACE:
-      SUBROUTINE PTRACERS_FILL_DIAGNOSTICS(myThid)
+      SUBROUTINE PTRACERS_DIAGNOSTICS_FILL(myThid)
 
 C     !DESCRIPTION:
 C     Fill the diagnostics array locations
@@ -39,8 +39,8 @@ C     !LOCAL VARIABLES:
       diagname = '        '
       
 c     DO N = 1,PTRACERS_numInUse
-C-    due to format (I1) and diagnostics name limitation, 
-C      => do not go beyong 9 tracers
+C-    due to format (I2) and diagnostics name limitation, 
+C      => do not go beyong 99 tracers
       DO N = 1,MIN(99,PTRACERS_numInUse)
         
         diagname = '        '
