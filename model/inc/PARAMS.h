@@ -646,9 +646,22 @@ C Logical flags for selecting packages
       LOGICAL usefizhi
       LOGICAL usegridalt
       LOGICAL usediagnostics
-      LOGICAL useMNC
       COMMON /PARM_PACKAGES/
      &        useKPP, useGMRedi, useOBCS, useAIM, useLand, useECCO, 
      &        useSHAP_FILT, useZONAL_FILT, useGrdchk, useFLT,
      &        usePTRACERS,  useSBO, useSEAICE, useThSIce, useBulkForce, 
-     &        usefizhi,  usegridalt, usediagnostics, useMNC
+     &        usefizhi,  usegridalt, usediagnostics
+
+C     Run-time flags for early-initialization of MNC
+      LOGICAL
+     &     useMNC,
+     &     mnc_echo_gtypes, mnc_pickup_create, mnc_pickup_read
+      COMMON /PARM_MNC/
+     &     useMNC,
+     &     mnc_echo_gtypes, mnc_pickup_create, mnc_pickup_read
+
+
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***

@@ -156,6 +156,11 @@ C--   Initiialise the multi-process IO package
       CALL DFILE_INIT
 #endif
 
+C     Read the run-time flags for MNC
+#ifdef ALLOW_MNC
+      CALL MNC_READPARMS( 1 )
+#endif
+
 #ifdef ALLOW_EXCH2
 C--   Initialise WRAPPER2 execution environment
       CALL W2_EEBOOT

@@ -190,3 +190,7 @@ C                    by one every time an IO error occurs.
       INTEGER scrUnit1
       INTEGER scrUnit2
       INTEGER standardMessageUnit
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***
