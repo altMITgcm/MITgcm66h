@@ -969,7 +969,7 @@ for dir in $TESTDIRS ; do
 	echo "tdir='$dir'" >> $CDIR"/summary.txt"
 
 	OLD_COMMAND=$COMMAND
-	COMMAND="./mitgcmuv > output.txt"
+	# COMMAND="./mitgcmuv > output.txt"
 	for ex in $extra_runs ; do
 	    test -e "$dir/tr_run.$ex" && rm -rf "$dir/tr_run.$ex"
 	    mkdir "$dir/tr_run.$ex"
