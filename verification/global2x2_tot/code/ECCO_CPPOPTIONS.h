@@ -8,7 +8,7 @@ C ***                         ECCO Package                         ***
 C ********************************************************************
 C
 C o include dump of snap shots for checks
-#define ALLOW_SNAPSHOTS
+#undef  ALLOW_SNAPSHOTS
 
 #undef  ALLOW_ECCO_FORWARD_RUN
 #undef  ALLOW_ECCO_DIAGNOSTICS_RUN
@@ -66,7 +66,7 @@ C
 
 #ifdef ALLOW_COST
 C       >>> Use the EGM-96 geoid error covariance.
-# define  ALLOW_EGM96_ERROR_DIAG
+# undef  ALLOW_EGM96_ERROR_DIAG
 # undef  ALLOW_EGM96_ERROR_COV
 # undef  ALLOW_SPH_PROJECTION
 
@@ -180,7 +180,7 @@ C   on or off. The implementation automatically takes care of this.
 #define INCLUDE_EXTERNAL_FORCING_PACKAGE
 
 C   Do more printout for the protocol file than usual.
-#define EXF_VERBOSE
+#undef EXF_VERBOSE
 
 C   Bulk formulae related flags.
 #undef  ALLOW_ATM_TEMP
