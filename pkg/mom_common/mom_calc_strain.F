@@ -76,7 +76,7 @@ C       Set strain to zero on boundaries (free-slip)
         
 C     Special stuff for Cubed Sphere
       IF (useCubedSphereExchange) THEN
-       STOP 'S/R MOM_CALC_STRAIN: We should not use strain on the cube!'
+c      STOP 'S/R MOM_CALC_STRAIN: We should not use strain on the cube!'
       ENDIF
 
       RETURN

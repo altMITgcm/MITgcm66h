@@ -1,9 +1,9 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "MOM_COMMON_OPTIONS.h"
 
-      SUBROUTINE MOM_VI_CALC_ABSVORT3( 
+      SUBROUTINE MOM_CALC_ABSVORT3( 
      I        bi,bj,k,
      I        vort3,
      O        omega3,
