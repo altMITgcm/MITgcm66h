@@ -132,7 +132,6 @@ C     Incorporate the Implicit part of -Divergence(Barotropic_Flow)
        ENDIF
 
       ENDIF
-#endif /* EXACT_CONSERV */
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
@@ -165,6 +164,7 @@ C     and was not in pickup-file ; try to use etaN & etaH instead.
 
       ENDIF
 #endif /* NONLIN_FRSURF */
+#endif /* EXACT_CONSERV */
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
@@ -176,7 +176,7 @@ C--    Integrate continuity vertically for vertical velocity
      O                       wVel,
      I                       myThid )
  
-#ifdef NONLIN_FRSURF
+#if ( defined EXACT_CONSERV && defined NONLIN_FRSURF ) 
        IF ( k.EQ.Nr .AND. myTime.NE. 0. _d 0 .AND.
      &      useRealFreshWaterFlux .AND. 
      &      buoyancyRelation .EQ. 'OCEANICP' ) THEN
@@ -203,7 +203,7 @@ C     and was not in pickup-file ; try to use etaN & etaH instead.
         ENDIF
 
        ENDIF
-#endif /* NONLIN_FRSURF */
+#endif /* EXACT_CONSERV & NONLIN_FRSURF */
 
 #ifdef ALLOW_OBCS
 #ifdef ALLOW_NONHYDROSTATIC
