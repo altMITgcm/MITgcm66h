@@ -25,14 +25,15 @@ c
 c     started: Christian Eckert eckert@mit.edu  30-Jun-1999
 c
 c     changed: Christian Eckert eckert@mit.edu  29-Dec-1999
-c
 c              - restructured the original version in order to have a
 c                better interface to the MITgcmUV.
 c
 c              Christian Eckert eckert@mit.edu  03-Feb-2000
-c
 c              - Introduced new routine and function names, cal_<NAME>,
 c                for verion 0.1.3.
+c
+c              Dimitris Menemenlis menemenlis@jpl.nasa.gov 08-Mar-2003
+c              - Accomodate negative intervals shorter than 1 day
 c
 c     ==================================================================
 c     SUBROUTINE cal_ToSeconds
@@ -64,8 +65,10 @@ c     == end of interface ==
 c     print *,'cal_toseconds: date',date
 c     print *,'cal_toseconds: timeint',timeint
 
-      check_sign_1 = sign(1,date(1))
-      check_sign_2 = sign(1,date(2))
+cdm      check_sign_1 = sign(1,date(1))
+cdm      check_sign_2 = sign(1,date(2))
+      check_sign_1 = date(1)
+      check_sign_2 = date(2)
       if (((date(4) .eq. -1) .and.
      &    (date(3) .eq.  0) .and.
      &    (check_sign_1*check_sign_2 .ge. 0)) .or.

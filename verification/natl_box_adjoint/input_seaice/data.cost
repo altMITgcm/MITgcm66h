@@ -52,6 +52,11 @@
  mult_vwind = 0.,
  mult_ice   = 1.,
 #
+ costIceStart1        = 19790101,
+ costIceStart2        = 00000,
+ costIceEnd1        = 19800101,
+ costIceEnd2        = 00000,
+#
  cost_iprec  = 64,
  cost_yftype = 'RL',
  &

@@ -5,11 +5,11 @@
 path('../../lab_sea/matlab',path);
 load SSMI
 fn='../../../exe/adxx_atemp.0000000000.001.001.data';
-a=readbin(fn,[20 16],1,'real*8',1);
+a=readbin(fn,[20 16],1,'real*8');
 fn='../../../exe/ph-grd.txt';
 fin=fopen(fn,'r'); b=0*a; c=0*a; d=0*a;
 tmp=fgetl(fin); tmp=fgetl(fin); tmp=fgetl(fin);
-for i=1:300
+for i=1:150
   tmp=fgetl(fin);
   tmp=fgetl(fin); arr1=sscanf(tmp(8:85),'%f');
   tmp=fgetl(fin); arr2=sscanf(tmp(8:85),'%f');
@@ -19,7 +19,7 @@ for i=1:300
 end
 
 clf reset, orient tall, wysiwyg
-cx=[-1 1]; cl=[1 1 1]*.5; sc=1e4;
+cx=[-1 1]; cl=[1 1 1]*.5; sc=1e7;
 ax=([min(lon) max(lon) min(lat) max(lat)]);
 subplot(411), mypcolor(lon,lat,b'/sc); caxis(cx), colorbar
 % plotland('k'), axis(ax), grid

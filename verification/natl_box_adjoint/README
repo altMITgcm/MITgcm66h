@@ -91,12 +91,10 @@
  make depend
 # Generate the adjoint code:
  cd ../adjoint
- mv makefile makefile.old
  cp ../verification/natl_box_adjoint/code_seaice/makefile .
  make adtaf
  make adchange
  rm -f makefile
- mv makefile.old makefile
 # Go back and compile the code:
  cd ../bin
  make
@@ -133,12 +131,10 @@
  make depend
 # Generate the adjoint code:
  cd ../adjoint
- mv makefile makefile.old
  cp ../verification/natl_box_adjoint/code_seaice/makefile .
  make adtaf
  make adchange
  rm -f makefile
- mv makefile.old makefile
 # Go back and compile the code:
  cd ../bin
  make
@@ -231,7 +227,29 @@
 ####################
 # Experiment no. 9 #
 ####################
-# Set up a 1-year sensitivity experiment.
+# Same as experiment 8, but starting from time step 180.
+# This includes a location (12,8) which experiences a phase
+# transition from no-ice to sea-ice, and which therefore has
+# a very large and inaccurate gradient.
+
+# To run:
+ cd ../exe
+ cp ../verification/natl_box_adjoint/input_seaice/* .
+ cp data.180 data
+ ./mitgcmuv >&! output.txt
+# To verify the results of the gradient check, type:
+ grep "ph-grd 3" output.txt > ph-grd.txt
+ cd ../verification/natl_box_adjoint/results_seaice
+ matlab
+ lookat_exp8
+
+
+#####################
+# Experiment no. 10 #
+#####################
+# Set up a 100-day sensitivity experiment.
+# Things start falling apart, see below.
+# Longer integrations periods cause NANs in adjoint gradient.
 
 # Compile code in bin/:
  cd ../bin
@@ -245,19 +263,17 @@
  make depend
 # Generate the adjoint code:
  cd ../adjoint
- mv makefile makefile.old
  cp ../verification/natl_box_adjoint/code_seaice/makefile .
  make adtaf
  make adchange
  rm -f makefile
- mv makefile.old makefile
 # Go back and compile the code:
  cd ../bin
  make
 # To run:
  cd ../exe
  cp ../verification/natl_box_adjoint/input_seaice/* .
- cp data.year data
+ cp data.100day data
  cp ../verification/natl_box_adjoint/input_bulk/data.grdchk .
  ./mitgcmuv >&! output.txt
 
@@ -268,24 +284,24 @@
  ph-grd 3  proc    #    i    j    k            fc ref        fc + eps        fc - eps
  ph-grd 3  proc    #    i    j    k          adj grad         fd grad      1 - fd/adj
  ph-grd 3 -------------------------------
- ph-grd 3     0    1   17    2    1   0.719777234E+15 0.719807440E+15 0.719792611E+15
- ph-grd 3     0    1    1   20    0   -.107247345+217 0.741481623E+14 0.100000000E+01
+ ph-grd 3     0    1   17    2    1   0.108063748E+16 0.108073080E+16 0.108068278E+16
+ ph-grd 3     0    1    1   20    0   -.106111354+280 0.240089153E+15 0.100000000E+01
  ph-grd 3 -------------------------------
- ph-grd 3     0    2   20    4    1   0.719777234E+15 0.719747720E+15 0.719741080E+15
- ph-grd 3     0    2    2   40    0   -.143667394+217 0.331984245E+14 0.100000000E+01
+ ph-grd 3     0    2   20    4    1   0.108063748E+16 0.108069599E+16 0.108062107E+16
+ ph-grd 3     0    2    2   40    0   -.343491959+280 0.374599741E+15 0.100000000E+01
  ph-grd 3 -------------------------------
- ph-grd 3     0    3   19    6    1   0.719777234E+15 0.719734508E+15 0.719753255E+15
- ph-grd 3     0    3    3   60    0   -.380323214+216 -.937345799E+14 0.100000000E+01
+ ph-grd 3     0    3   19    6    1   0.108063748E+16 0.108065253E+16 0.108067534E+16
+ ph-grd 3     0    3    3   60    0   -.279380582+280 -.114030950E+15 0.100000000E+01
  ph-grd 3 -------------------------------
- ph-grd 3     0    4   11    8    1   0.719777234E+15 0.719787871E+15 0.719766481E+15
- ph-grd 3     0    4    4   80    0   -.200857266+215 0.106949710E+15 0.100000000E+01
+ ph-grd 3     0    4   11    8    1   0.108063748E+16 0.108067408E+16 0.108069123E+16
+ ph-grd 3     0    4    4   80    0   0.961428202+280 -.857781479E+14 0.100000000E+01
 
 # Note: cost_ssh is hardwired for 1-day ssh records
 #       "topexperiod" in data.cost is never used.
 
 
 #####################
-# Experiment no. 10 #
+# Experiment no. 11 #
 #####################
 # Same as experiment 8, but using 2-CPU MPI configuration.
 
@@ -302,12 +318,10 @@
  make depend
 # Generate the adjoint code:
  cd ../adjoint
- mv makefile makefile.old
  cp ../verification/natl_box_adjoint/code_seaice/makefile .
  make adtaf
  make adchange
  rm -f makefile
- mv makefile.old makefile
 # Go back and compile the code:
  cd ../bin
  make
@@ -325,20 +339,12 @@
 
 
 #####################
-# Experiment no. 11 #
+# Experiment no. 12 #
 #####################
 # Same as experiment 10, but including ADI dynamic solver.
 
 
 #####################
-# Experiment no. 12 #
-#####################
-# Same as experiment 10, but including LSR dynamic solver.
-
-
-#####################
-# Experiment no. 12 #
+# Experiment no. 13 #
 #####################
 # Same as experiment 10, but using divided adjoint.
-
-

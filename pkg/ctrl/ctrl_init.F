@@ -37,6 +37,20 @@ c              - Added call to ctrl_pack
 c              - Alternatively: transfer writing of scale files to
 c                ctrl_unpack
 c
+c              Dimitris Menemenlis menemenlis@mit.edu 7-Mar-2003
+c              - To be consistent with usage in ctrl_getrec.F,
+c                startrec and endrec need to be referenced to
+c                model time = 0, not to startTime.
+c                Also "- modelstep" -> "+ modelstep/2":
+c old:      startrec = int((modelstart - diffsecs)/
+c old:   &                 xx_???period) + 1
+c old:      endrec = int((modelend   - diffsecs - modelstep)/
+c old:   &                 xx_???period) + 2
+c new:      startrec = int((modelstart + startTime - diffsecs)/
+c new:   &                 xx_???period) + 1
+c new:      endrec = int((modelend + startTime - diffsecs + modelstep/2)/
+c new:   &                 xx_???period) + 2
+c
 c     ==================================================================
 c     SUBROUTINE ctrl_init
 c     ==================================================================
@@ -361,9 +375,9 @@ c--   Heat flux.
         call cal_TimePassed( xx_hfluxstartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
-        startrec = int((modelstart - diffsecs)/
+        startrec = int((modelstart + startTime - diffsecs)/
      &                 xx_hfluxperiod) + 1
-        endrec   = int((modelend   - diffsecs + modelstep/2)/
+        endrec   = int((modelend + startTime - diffsecs + modelstep/2)/
      &                 xx_hfluxperiod) + 2
         ivarindex                = 3
         ncvarindex(ivarindex)    = 103
@@ -383,9 +397,9 @@ c--   Atmos. temperature
         call cal_TimePassed( xx_atempstartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
-        startrec = int((modelstart - diffsecs)/
+        startrec = int((modelstart + startTime - diffsecs)/
      &                 xx_atempperiod) + 1
-        endrec   = int((modelend   - diffsecs + modelstep/2)/
+        endrec   = int((modelend + startTime - diffsecs + modelstep/2)/
      &                 xx_atempperiod) + 2
         ivarindex                = 7
         ncvarindex(ivarindex)    = 107
@@ -407,9 +421,9 @@ c--   Salt flux.
         call cal_TimePassed( xx_sfluxstartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
-        startrec = int((modelstart - diffsecs)/
+        startrec = int((modelstart + startTime - diffsecs)/
      &                 xx_sfluxperiod) + 1
-        endrec   = int((modelend   - diffsecs + modelstep/2)/
+        endrec   = int((modelend + startTime - diffsecs + modelstep/2)/
      &                 xx_sfluxperiod) + 2
         ivarindex                = 4
         ncvarindex(ivarindex)    = 104
@@ -429,9 +443,9 @@ c--   Atmos. humidity
         call cal_TimePassed( xx_aqhstartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
-        startrec = int((modelstart - diffsecs)/
+        startrec = int((modelstart + startTime - diffsecs)/
      &                 xx_aqhperiod) + 1
-        endrec   = int((modelend   - diffsecs + modelstep/2)/
+        endrec   = int((modelend + startTime - diffsecs + modelstep/2)/
      &                 xx_aqhperiod) + 2
         ivarindex                = 8
         ncvarindex(ivarindex)    = 108
@@ -453,9 +467,9 @@ c--   Zonal wind stress.
         call cal_TimePassed( xx_tauustartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
-        startrec = int((modelstart - diffsecs)/
+        startrec = int((modelstart + startTime - diffsecs)/
      &                 xx_tauuperiod) + 1
-        endrec   = int((modelend   - diffsecs + modelstep/2)/
+        endrec   = int((modelend + startTime - diffsecs + modelstep/2)/
      &                 xx_tauuperiod) + 2
         ivarindex                = 5
         ncvarindex(ivarindex)    = 105
@@ -475,9 +489,9 @@ c--   Zonal wind speed.
         call cal_TimePassed( xx_uwindstartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
-        startrec = int((modelstart - diffsecs)/
+        startrec = int((modelstart + startTime - diffsecs)/
      &                 xx_uwindperiod) + 1
-        endrec   = int((modelend   - diffsecs + modelstep/2)/
+        endrec   = int((modelend + startTime - diffsecs + modelstep/2)/
      &                 xx_uwindperiod) + 2
         ivarindex                = 9
         ncvarindex(ivarindex)    = 109
@@ -499,9 +513,9 @@ c--   Meridional wind stress.
         call cal_TimePassed( xx_tauvstartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
-        startrec = int((modelstart - diffsecs)/
+        startrec = int((modelstart + startTime - diffsecs)/
      &                 xx_tauvperiod) + 1
-        endrec   = int((modelend   - diffsecs + modelstep/2)/
+        endrec   = int((modelend + startTime - diffsecs + modelstep/2)/
      &                 xx_tauvperiod) + 2
         ivarindex                = 6
         ncvarindex(ivarindex)    = 106
@@ -521,9 +535,9 @@ c--   Meridional wind speed.
         call cal_TimePassed( xx_vwindstartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
-        startrec = int((modelstart - diffsecs)/
+        startrec = int((modelstart + startTime - diffsecs)/
      &                 xx_vwindperiod) + 1
-        endrec   = int((modelend   - diffsecs + modelstep/2)/
+        endrec   = int((modelend + startTime - diffsecs + modelstep/2)/
      &                 xx_vwindperiod) + 2
         ivarindex                = 10
         ncvarindex(ivarindex)    = 110
@@ -545,9 +559,9 @@ c--   Northern obc.
         call cal_TimePassed( xx_obcsnstartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
-        startrec = int((modelstart - diffsecs)/
+        startrec = int((modelstart + startTime - diffsecs)/
      &                 xx_obcsnperiod) + 1
-        endrec   = int((modelend   - diffsecs)/
+        endrec   = int((modelend + startTime - diffsecs + modelstep/2)/
      &                 xx_obcsnperiod) + 2
         ivarindex                = 11
         ncvarindex(ivarindex)    = 111
@@ -569,9 +583,9 @@ c--   Southern obc.
         call cal_TimePassed( xx_obcssstartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
-        startrec = int((modelstart - diffsecs)/
+        startrec = int((modelstart + startTime - diffsecs)/
      &                 xx_obcssperiod) + 1
-        endrec   = int((modelend   - diffsecs)/
+        endrec   = int((modelend + startTime - diffsecs + modelstep/2)/
      &                 xx_obcssperiod) + 2
         ivarindex                = 12
         ncvarindex(ivarindex)    = 112
@@ -593,9 +607,9 @@ c--   Western obc.
         call cal_TimePassed( xx_obcswstartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
-        startrec = int((modelstart - diffsecs)/
+        startrec = int((modelstart + startTime - diffsecs)/
      &                 xx_obcswperiod) + 1
-        endrec   = int((modelend   - diffsecs)/
+        endrec   = int((modelend + startTime - diffsecs + modelstep/2)/
      &                 xx_obcswperiod) + 2
         ivarindex                = 13
         ncvarindex(ivarindex)    = 113
@@ -617,9 +631,9 @@ c--   Eastern obc.
         call cal_TimePassed( xx_obcsestartdate, modelstartdate,
      &                       difftime, mythid )
         call cal_ToSeconds ( difftime, diffsecs, mythid )
-        startrec = int((modelstart - diffsecs)/
+        startrec = int((modelstart + startTime - diffsecs)/
      &                 xx_obcseperiod) + 1
-        endrec   = int((modelend   - diffsecs)/
+        endrec   = int((modelend + startTime - diffsecs + modelstep/2)/
      &                 xx_obcseperiod) + 2
         ivarindex                = 14
         ncvarindex(ivarindex)    = 114

@@ -9,8 +9,14 @@ Branch icebear
 
 7 mar 03
  Branched off ecco_c44_e27
- Bug fix in pkg/ctrl/ctrl_init.F
-
+ pkg/ctrl/ctrl_init.F
+   Fix for determination of startrec and endrec.
+ pkg/cal/cal_toseconds.F
+   Fix for negative intervals shorter than 1 day.
+ pkg/cost/cost_ice.F, cost.h, cost_readparms.F
+   Added costIceStart and costIceEnd.
+ verification/natl_box_adjoint.
+   Updated test experiments
 
 ====================================================================
 

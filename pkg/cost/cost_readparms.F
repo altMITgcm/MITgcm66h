@@ -26,7 +26,8 @@ c     == global variables ==
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "GRID.h"
-
+#include "PARAMS.h"
+#include "cal.h"
 #include "cost.h"
 
 c     == routine arguments ==
@@ -45,6 +46,12 @@ c     == local variables ==
       integer ersstartdate2
       integer scatstartdate1
       integer scatstartdate2
+      integer costIceStart1
+      integer costIceStart2
+      integer costIceEnd1
+      integer costIceEnd2
+      integer tempDate1(4)
+      integer tempDate2(4)
 
 c     == end of interface ==
 
@@ -87,6 +94,8 @@ c--   Read the namelist input.
      &                   mult_sdrift, mult_tdrift, mult_wdrift,
      &                   mult_temp0, mult_salt0,
      &                   mult_ice,
+     &                   costIceStart1, costIceStart2,
+     &                   costIceEnd1, costIceEnd2,
      &                   cost_iprec, cost_yftype
 
       _BEGIN_MASTER( myThid )
@@ -178,6 +187,10 @@ c--     Set default values.
         mult_scatx            =      0. _d 0
         mult_scaty            =      0. _d 0
         mult_ice              =      0. _d 0
+        costIceStart1         =      0
+        costIceStart2         =      0
+        costIceEnd1           =      0
+        costIceEnd2           =      0
 
 c--     Check versions.
 
@@ -203,10 +216,26 @@ c--     ... ERS data.
         call cal_FullDate( ersstartdate1,   ersstartdate2,
      &                     ersstartdate,    mythid )
 c--     ... SCAT data.
-        call cal_FullDate( scatstartdate1,   scatstartdate2,
-     &                     scatxstartdate,    mythid )
-        call cal_FullDate( scatstartdate1,   scatstartdate2,   
-     &                     scatystartdate,    mythid )
+        call cal_FullDate( scatstartdate1,  scatstartdate2,
+     &                     scatxstartdate,  mythid )
+        call cal_FullDate( scatstartdate1,  scatstartdate2,   
+     &                     scatystartdate,  mythid )
+
+c--   Sea-ice cost function start and stop times in model seconds.
+
+        call cal_FullDate  ( costIceStart1 , costIceStart2,
+     &                       tempDate1     , mythid )
+        call cal_TimePassed( modelstartdate, tempDate1    ,
+     &                       tempDate2     , mythid )
+        call cal_ToSeconds ( tempDate2 , costIceStart , mythid )
+        costIceStart = costIceStart + startTime
+
+        call cal_FullDate  ( costIceEnd1   , costIceEnd2  ,
+     &                       tempDate1     , mythid )
+        call cal_TimePassed( modelstartdate, tempDate1    ,
+     &                       tempDate2     , mythid )
+        call cal_ToSeconds ( tempDate2 , costIceEnd , mythid )
+        costIceEnd = costIceEnd + startTime
 
       _END_MASTER( mythid )
 
