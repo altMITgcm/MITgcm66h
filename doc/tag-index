@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o replace surfaceTendency U,V,S,T,Tice,Ptr by surfaceForcing U,V,S,T,Tice,Ptr
+  this affects (truncation error) output.txt of test-exp:
+   global_ocean_ebm,_pressure,.cs32x15(&.thsice), lab_sea & natl_box
+o pkg/kpp: replace pMask by maskC to reduce memory size (one 3.D array)
 o change Qnet to always be the net heat flux, (+upward).
   affects (truncation error) output of natl_box exp.: updated
 o define the max number of passive tracers in PTRACERS_SIZE.h
