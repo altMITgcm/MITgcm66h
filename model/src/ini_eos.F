@@ -348,7 +348,7 @@ C     check nonlinear EOS
             bulkMod(i,j)         = -1. _d 0
          
             call find_rhop0( 
-     I           bi, bj, imin, imax, jmin, jmax, k, k,
+     I           bi, bj, imin, imax, jmin, jmax, k,
      I           tFld, sFld,
      O           rhoP0,
      I           myThid )
