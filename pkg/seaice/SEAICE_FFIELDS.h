@@ -119,6 +119,6 @@ C--   Define forcing fields internally.
       _RS  SSTsi0   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  SSTsi1   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
-#endif SEAICE_EXTERNAL_FORCING
+#endif /* SEAICE_EXTERNAL_FORCING */
 
-#endif ALLOW_SEAICE
+#endif /* ALLOW_SEAICE */

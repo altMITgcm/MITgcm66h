@@ -104,7 +104,7 @@ C WATER ALBEDO IS ASSUMED TO BE THE CONSTANT SEAICE_waterAlbedo
 #ifdef SEAICE_EXTERNAL_FLUXES
            FICE1(I,J,bi,bj)=QNET(I,J,bi,bj)+Qsw(I,J,bi,bj)
            QSWO(I,J,bi,bj)=Qsw(I,J,bi,bj)
-#else /* ifndef SEAICE_EXTERNAL_FLUXES */
+#else /* SEAICE_EXTERNAL_FLUXES undefined */
            ALB(I,J)=SEAICE_waterAlbedo                                
            A1(I,J)=(ONE-ALB(I,J))*SWDOWN(I,J,bi,bj)+LWDOWN(I,J,bi,bj)
      &          +D1*UG(I,J)*ATEMP(I,J,bi,bj)+D1W*UG(I,J)*AQH(I,J,bi,bj)
@@ -115,7 +115,7 @@ C WATER ALBEDO IS ASSUMED TO BE THE CONSTANT SEAICE_waterAlbedo
      &          -D3*(TICE(I,J,bi,bj)**4)
            FICE1(I,J,bi,bj)=-A1(I,J)-A2(I,J)    
            QSWO(I,J,bi,bj)=-(ONE-ALB(I,J))*SWDOWN(I,J,bi,bj)
-#endif SEAICE_EXTERNAL_FLUXES
+#endif /* SEAICE_EXTERNAL_FLUXES */
            QNETO(I,J,bi,bj)=FICE1(I,J,bi,bj)-QSWO(I,J,bi,bj)
           ENDDO
          ENDDO
@@ -221,7 +221,7 @@ C SW PENETRATION UNDER ICE
 
       END IF
 
-#endif ALLOW_SEAICE
+#endif /* ALLOW_SEAICE */
 
       RETURN
       END

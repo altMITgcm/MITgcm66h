@@ -682,8 +682,8 @@ C--   Update overlap regions
        ENDDO
       ENDDO
 
-#endif SEAICE_ALLOW_DYNAMICS
-#endif ALLOW_SEAICE
+#endif /* SEAICE_ALLOW_DYNAMICS */
+#endif /* ALLOW_SEAICE */
 
       RETURN
       END

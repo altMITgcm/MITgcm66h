@@ -23,7 +23,7 @@ C     === Global variables ===
 
 #ifdef ALLOW_AUTODIFF_TAMC
 # include "tamc.h"
-#endif /* ALLOW_AUTODIFF_TAMC */
+#endif
 
 C     === Routine arguments ===
 C     myTime - Simulation time
@@ -401,7 +401,7 @@ C NOW ADI SCHEME (ZHANG-J/ROTHROCK 1999)
 c$taf store uice,vice = comlev1, key=ikey_dynamics
 
       ENDIF
-#endif SEAICE_ALLOW_DYNAMICS
+#endif /* SEAICE_ALLOW_DYNAMICS */
 
 C Calculate ocean surface stress
       CALL OSTRES ( DWATN, COR_ICE, myThid )
@@ -423,7 +423,7 @@ c     &     ,gwatx(I,J,bi,bj),gwaty(i,j,bi,bj)
 c     &     ,forcex(I,J,bi,bj),forcey(i,j,bi,bj)
 c     &     ,uice(i,j,1,bi,bj)
 c     &     ,vice(i,j,1,bi,bj)
-#endif SEAICE_DEBUG
+#endif /* SEAICE_DEBUG */
           UICE(i,j,1,bi,bj)=min(UICE(i,j,1,bi,bj),0.40 _d +00)
           VICE(i,j,1,bi,bj)=min(VICE(i,j,1,bi,bj),0.40 _d +00)
           UICE(i,j,1,bi,bj)=max(UICE(i,j,1,bi,bj),-0.40 _d +00)
@@ -434,9 +434,9 @@ c     &     ,vice(i,j,1,bi,bj)
       ENDDO
 
       ENDIF
-#endif SEAICE_ALLOW_DYNAMICS
+#endif /* SEAICE_ALLOW_DYNAMICS */
 
-#endif ALLOW_SEAICE
+#endif /* ALLOW_SEAICE */
 
       RETURN
       END

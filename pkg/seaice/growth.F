@@ -180,7 +180,7 @@ C NOW GET TOTAL QNET AND QSW
      &                    +(ONE-AR(I,J,bi,bj))*QSWO(I,J,bi,bj)
 #ifndef SHORTWAVE_HEATING
           QNET(I,J,bi,bj)=QNET(I,J,bi,bj)+QSW(I,J,bi,bj)
-#endif SHORTWAVE_HEATING
+#endif
          ENDDO
         ENDDO
 
@@ -241,7 +241,7 @@ c      CALL PLOT_FIELD_XYRS( VWIND,'Current VWIND ', myIter, myThid )
           endif
          ENDDO
         ENDDO
-#endif SEAICE_DEBUG
+#endif /* SEAICE_DEBUG */
 
 crg Added by Ralf Giering: do we need DO_WE_NEED_THIS ?
 #define DO_WE_NEED_THIS
@@ -256,12 +256,12 @@ C NOW TRUNCATE AREA
           AREA(I,J,1,bi,bj)=MIN(ONE,AREA(I,J,1,bi,bj))
           AREA(I,J,1,bi,bj)=MAX(ZERO,AREA(I,J,1,bi,bj))
           HSNOW(I,J,bi,bj)=MAX(ZERO,HSNOW(I,J,bi,bj))
-#endif DO_WE_NEED_THIS
+#endif
           AREA(I,J,1,bi,bj)=AREA(I,J,1,bi,bj)*HEFFM(I,J,bi,bj)
           HEFF(I,J,1,bi,bj)=HEFF(I,J,1,bi,bj)*HEFFM(I,J,bi,bj)
 #ifdef DO_WE_NEED_THIS
           HEFF(I,J,1,bi,bj)=MIN(MAX_HEFF,HEFF(I,J,1,bi,bj))
-#endif DO_WE_NEED_THIS
+#endif
           HSNOW(I,J,bi,bj)=HSNOW(I,J,bi,bj)*HEFFM(I,J,bi,bj)
          ENDDO
         ENDDO
@@ -269,7 +269,7 @@ C NOW TRUNCATE AREA
        ENDDO
       ENDDO
 
-#endif ALLOW_SEAICE
+#endif /* ALLOW_SEAICE */
 
       RETURN
       END

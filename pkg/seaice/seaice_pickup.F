@@ -59,7 +59,7 @@ C--    Update overlap regions
        _EXCH_XY_R8(YNEG , myThid )
        _EXCH_XY_R8(HSNOW, myThid )
 
-#endif ALLOW_SEAICE
+#endif /* ALLOW_SEAICE */
 
       RETURN
       END
@@ -160,7 +160,7 @@ C--    Write model fields
 
       ENDIF
 
-#endif ALLOW_SEAICE
+#endif /* ALLOW_SEAICE */
 
       RETURN
       END

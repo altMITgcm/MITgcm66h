@@ -156,7 +156,7 @@ C     theta is dumped or time-averaged.
          CALL SEAICE_MODEL( myTime, myIter, myThid )
          CALL TIMER_STOP ('SEAICE_MODEL       [FORWARD_STEP]',myThid)
       ENDIF
-#endif ALLOW_SEAICE
+#endif
 
 C--   Step forward fields and calculate time tendency terms.
       CALL TIMER_START('THERMODYNAMICS      [FORWARD_STEP]',mythid)

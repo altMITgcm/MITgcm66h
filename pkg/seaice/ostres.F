@@ -81,7 +81,7 @@ C--   Compute ice-affected wind stress
         ENDDO
        ENDDO
       ENDIF
-#endif SEAICE_ALLOW_DYNAMICS
+#endif /*  SEAICE_ALLOW_DYNAMICS */
 
 C--   Update overlap regions
       _EXCH_XY_R8(WINDX, myThid)
@@ -111,7 +111,7 @@ C     to South-West C-grid for forcing ocean model.
       _EXCH_XY_R4( fu, myThid )
       _EXCH_XY_R4( fv, myThid )
 
-#endif ALLOW_SEAICE
+#endif /* ALLOW_SEAICE */
 
       RETURN
       END

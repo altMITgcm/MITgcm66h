@@ -522,12 +522,12 @@ c--   Runoff.
      &'   >>  ',runofffile(1:il),'  <<'
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
-#else ALLOW_RUNOFF
+#else /* ALLOW_RUNOFF */
       write(msgbuf,'(a)')
      &'// ALLOW_RUNOFF:                   NOT defined'
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
-#endif ALLOW_RUNOFF
+#endif /* ALLOW_RUNOFF */
 
 #ifdef DOWNWARD_RADIATION
 c--   Downward shortwave.

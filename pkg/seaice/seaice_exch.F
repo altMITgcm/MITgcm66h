@@ -50,7 +50,7 @@ C--   Update overlap regions
          ENDDO
       ENDDO
 
-#endif ALLOW_SEAICE
+#endif /* ALLOW_SEAICE */
 
       RETURN
       END

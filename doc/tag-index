@@ -4,6 +4,8 @@ $Header$
     ==============================
 
 release1_p12_pre
+o Added missing /* */ to CPP comments in pkg/seaice, pkg/exf,
+  kpp_transport_t.F, forward_step.F, and the_main_loop.F
 o Updated useSingleCpuIO option in mdsio_writefield.F to
   work with multi-field files, e.g., for single-file pickup.
 o pkg/seaice:
