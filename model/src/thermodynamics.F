@@ -445,10 +445,15 @@ C note(jmc) : phiHyd=0 at this point but is not really used in Molteni Physics
         ENDIF
 #endif /* ALLOW_AIM */
 
+#ifndef DISABLE_MULTIDIM_ADVECTION
+C The CPP flag DISABLE_MULTIDIM_ADVECTION is currently set in GAD_OPTIONS.h
+C and is currently set only for auto-differentiating. Ideally this would
+C not be necessary. If you need mutli-dimensional advection in a
+C differentiated code, it does work but costs more), you can edit
+C GAD_OPTIONS.h to re-enable it.
+
 C--     Some advection schemes are better calculated using a multi-dimensional
 C       method in the absence of any other terms and, if used, is done here.
-
-#ifdef ALLOW_MULTIDIM_ADVECTION
         IF (multiDimAdvection) THEN
          IF (tempStepping .AND.
      &       tempAdvScheme.NE.ENUM_CENTERED_2ND .AND.
@@ -467,7 +472,7 @@ C       method in the absence of any other terms and, if used, is done here.
      I                      myTime,myIter,myThid)
          ENDIF
         ENDIF
-#endif /* ALLOW_MULTIDIM_ADVECTION */
+#endif /* DISABLE_MULTIDIM_ADVECTION */
 
 C--     Start of thermodynamics loop
         DO k=Nr,1,-1

@@ -242,7 +242,7 @@ C-    Advective flux in X
       ENDDO
 
 #ifdef ALLOW_AUTODIFF_TAMC
-#ifdef ALLOW_MULTIDIM_ADVECTION
+#ifndef DISABLE_MULTIDIM_ADVECTION
 CADJ STORE localTij(:,:)  = comlev1_bibj_pass, key=passkey, byte=isbyte
 #endif
 #endif /* ALLOW_AUTODIFF_TAMC */
@@ -308,7 +308,7 @@ C-    Advective flux in Y
       ENDDO
 
 #ifdef ALLOW_AUTODIFF_TAMC 
-#ifdef ALLOW_MULTIDIM_ADVECTION
+#ifndef DISABLE_MULTIDIM_ADVECTION
 CADJ STORE localTij(:,:)  = comlev1_bibj_pass, key=passkey, byte=isbyte
 #endif
 #endif /* ALLOW_AUTODIFF_TAMC */

@@ -39,21 +39,11 @@ C     == Routine Arguments ==
 C     !LOCAL VARIABLES:
 C     == Local variables ==
       INTEGER i,j
-      _RL ab15,ab05
 CEOP
-
-C     Adams-Bashforth timestepping weights
-      IF (myIter .EQ. 0) THEN
-       ab15=1.0
-       ab05=0.0
-      ELSE
-       ab15=1.5+abEps
-       ab05=-(0.5+abEps)
-      ENDIF
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
-C-    Step forward tracer
+C-    Extrapolate tendancies to mid-time level (n+1/2)
       DO j=jMin,jMax
        DO i=iMin,iMax
          gTracer(i,j,k,bi,bj)=tracer(i,j,k,bi,bj)
