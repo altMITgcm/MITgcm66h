@@ -352,6 +352,14 @@ C--   z,p,r coord input switching.
       ELSE
        recip_rhoConst = 1.D0 / rhoConst
       ENDIF
+      IF ( gravity .LE. 0. ) THEN
+       WRITE(msgBuf,'(A)')
+     &  'S/R INI_PARMS: gravity must be greater than 0.'
+       CALL PRINT_ERROR( msgBuf , myThid)
+       STOP 'ABNORMAL END: S/R INI_PARMS'
+      ELSE
+       recip_gravity = 1.D0 / gravity
+      ENDIF
 
 C--   Elliptic solver parameters
       cg2dMaxIters       = 150
