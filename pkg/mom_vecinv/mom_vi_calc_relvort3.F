@@ -60,50 +60,45 @@ c    &                            /hFacZ(i,j)
        ENDDO
       ENDDO
         
-Ccs Special stuff for Cubed Sphere
-Ccs        IF (useCubedSphereExchange) THEN
-Ccs         I=1
-Ccs         J=1
-Ccs         vort3(I,J,K,bi,bj)=
-Ccs     &     +recip_rAz(I,J,bi,bj)*(
-Ccs     &      vFld(I,J,K,bi,bj)*dyc(I,J,bi,bj)
-Ccsc    &     -vFld(I-1,J,K,bi,bj)*dyc(I-1,J,bi,bj)
-Ccs     &     -uFld(I,J,K,bi,bj)*dxc(I,J,bi,bj)
-Ccs     &     +uFld(I,J-1,K,bi,bj)*dxc(I,J-1,bi,bj)
-Ccs     &     )*nonLinFac
-Ccs         I=sNx+1
-Ccs         J=1
-Ccs         vort3(I,J,K,bi,bj)=
-Ccs     &     +recip_rAz(I,J,bi,bj)*(
-Ccsc    &      vFld(I,J,K,bi,bj)*dyc(I,J,bi,bj)
-Ccs     &     -vFld(I-1,J,K,bi,bj)*dyc(I-1,J,bi,bj)
-Ccs     &     -uFld(I,J,K,bi,bj)*dxc(I,J,bi,bj)
-Ccs     &     +uFld(I,J-1,K,bi,bj)*dxc(I,J-1,bi,bj)
-Ccs     &     )*nonLinFac
-Ccs         I=1
-Ccs         J=sNy+1
-Ccs         vort3(I,J,K,bi,bj)=
-Ccs     &     +recip_rAz(I,J,bi,bj)*(
-Ccs     &      vFld(I,J,K,bi,bj)*dyc(I,J,bi,bj)
-Ccsc    &     -vFld(I-1,J,K,bi,bj)*dyc(I-1,J,bi,bj)
-Ccs     &     -uFld(I,J,K,bi,bj)*dxc(I,J,bi,bj)
-Ccs     &     +uFld(I,J-1,K,bi,bj)*dxc(I,J-1,bi,bj)
-Ccs     &     )*nonLinFac
-Ccs         I=sNx+1
-Ccs         J=sNy+1
-Ccs         vort3(I,J,K,bi,bj)=
-Ccs     &     +recip_rAz(I,J,bi,bj)*(
-Ccsc    &      vFld(I,J,K,bi,bj)*dyc(I,J,bi,bj)
-Ccs     &     -vFld(I-1,J,K,bi,bj)*dyc(I-1,J,bi,bj)
-Ccs     &     -uFld(I,J,K,bi,bj)*dxc(I,J,bi,bj)
-Ccs     &     +uFld(I,J-1,K,bi,bj)*dxc(I,J-1,bi,bj)
-Ccs     &     )*nonLinFac
-Ccs         ENDIF
-Ccs
-Ccs        ENDDO
-Ccs       ENDDO ! bi
-Ccs      ENDDO ! bj
-Ccs   CALL EXCH_Z_XYZ_R8( vort3, myThid )
+C     Special stuff for Cubed Sphere
+      IF (useCubedSphereExchange) THEN
+         I=1
+         J=1
+         vort3(I,J)=
+     &     +recip_rAz(I,J,bi,bj)*(
+     &      vFld(I,J)*dyc(I,J,bi,bj)
+c    &     -vFld(I-1,J)*dyc(I-1,J,bi,bj)
+     &     -uFld(I,J)*dxc(I,J,bi,bj)
+     &     +uFld(I,J-1)*dxc(I,J-1,bi,bj)
+     &     )
+         I=sNx+1
+         J=1
+         vort3(I,J)=
+     &     +recip_rAz(I,J,bi,bj)*(
+c    &      vFld(I,J)*dyc(I,J,bi,bj)
+     &     -vFld(I-1,J)*dyc(I-1,J,bi,bj)
+     &     -uFld(I,J)*dxc(I,J,bi,bj)
+     &     +uFld(I,J-1)*dxc(I,J-1,bi,bj)
+     &     )
+         I=1
+         J=sNy+1
+         vort3(I,J)=
+     &     +recip_rAz(I,J,bi,bj)*(
+     &      vFld(I,J)*dyc(I,J,bi,bj)
+c    &     -vFld(I-1,J)*dyc(I-1,J,bi,bj)
+     &     -uFld(I,J)*dxc(I,J,bi,bj)
+     &     +uFld(I,J-1)*dxc(I,J-1,bi,bj)
+     &     )
+         I=sNx+1
+         J=sNy+1
+         vort3(I,J)=
+     &     +recip_rAz(I,J,bi,bj)*(
+c    &      vFld(I,J)*dyc(I,J,bi,bj)
+     &     -vFld(I-1,J)*dyc(I-1,J,bi,bj)
+     &     -uFld(I,J)*dxc(I,J,bi,bj)
+     &     +uFld(I,J-1)*dxc(I,J-1,bi,bj)
+     &     )
+       ENDIF
 
       RETURN
       END
