@@ -224,3 +224,8 @@ c-----------------------------------------------------------------------
       common /kmixcbm/ cstar, cg
 
 #endif /* ALLOW_KPP */
+
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***

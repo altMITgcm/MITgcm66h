@@ -45,3 +45,8 @@ C----------------------------------------------------------------
 #endif
 
 #endif
+
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***
