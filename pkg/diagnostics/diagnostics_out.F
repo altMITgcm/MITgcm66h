@@ -132,12 +132,12 @@ C       Now define:  Zmdxxxxxx, Zudxxxxxx, Zldxxxxxx
      &             'Dimensional coordinate value at the mid point',
      &             myThid)
             ELSEIF (i .EQ. 2) THEN
-              ztmp(j) = rF(levs(j,listnum))
+              ztmp(j) = rF(levs(j,listnum) + 1)
               CALL MNC_CW_ADD_VATTR_TEXT(dn(1),'description',
      &             'Dimensional coordinate value at the upper point',
      &             myThid)
             ELSEIF (i .EQ. 3) THEN
-              ztmp(j) = rF(levs(j,listnum) + 1)
+              ztmp(j) = rF(levs(j,listnum))
               CALL MNC_CW_ADD_VATTR_TEXT(dn(1),'description',
      &             'Dimensional coordinate value at the lower point',
      &             myThid)
