@@ -570,7 +570,9 @@ C     Check that gname exists
       mnc_cw_vbij(1,indv) = bi_dim
       mnc_cw_vbij(2,indv) = bj_dim
 
+#ifdef MNC_DEBUG_GTYPE
       CALL MNC_CW_ADD_VATTR_TEXT(vname,1,'mitgcm_grid',gname, myThid)
+#endif
 
       RETURN
       END

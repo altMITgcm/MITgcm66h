@@ -11,6 +11,7 @@ C $Name$
 CEH3 package-specific options go here
 
 C #define MNC_DEBUG
+C #define MNC_DEBUG_GTYPE  /*  Adds MNC gtype as an attribute  */
 
 #include "mnc_id_header.h"
 
