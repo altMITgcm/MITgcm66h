@@ -74,7 +74,7 @@ C          Default depth of full domain
 C          Test for eastern edge
 C          IF ( iG .EQ. nX ) H(i,j,bi,bj) = 0.
 C          Test for northern edge
-           IF ( jG .EQ. nY ) H(i,j,bi,bj) = 0.
+C          IF ( jG .EQ. nY ) H(i,j,bi,bj) = 0.
           ENDDO
          ENDDO
         ENDDO
@@ -105,6 +105,9 @@ C
           DO i=1-Olx,sNx+Olx
            R_low(I,J,bi,bj) = rF(Nr+1)
            Ro_surf(I,J,bi,bj) = H(I,J,bi,bj)
+c- Domain : Symetric % Eq. & closed at N & S boundaries:
+           IF (usingSphericalPolarGrid .AND.
+     &         abs(yC(I,J,bi,bj)).GE.-phiMin) Ro_surf(I,J,bi,bj) = 0.
            IF (usingSphericalPolarGrid .AND. abs(yC(I,J,bi,bj)).GE.90. ) 
      &     THEN
             Ro_surf(I,J,bi,bj) = 0.
@@ -120,6 +123,9 @@ C
           DO i=1-Olx,sNx+Olx
            R_low(I,J,bi,bj) = H(I,J,bi,bj)
            Ro_surf(I,J,bi,bj) = Ro_SeaLevel
+c- Domain : Symetric % Eq. & closed at N & S boundaries:
+           IF (usingSphericalPolarGrid .AND.
+     &         abs(yC(I,J,bi,bj)).GE.-phiMin) R_low(I,J,bi,bj) = 0.
            IF (usingSphericalPolarGrid .AND. abs(yC(I,J,bi,bj)).GE.90. ) 
      &     THEN
             R_low(I,J,bi,bj) = 0.
