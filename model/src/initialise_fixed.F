@@ -54,6 +54,8 @@ C      |-- INI_CG2D
 C      |
 C      |-- INI_CG3D
 C      |
+C      |-- CONFIG_CHECK
+C      |
 C      |-- CONFIG_SUMMARY
 
 C     !USES:
@@ -126,6 +128,9 @@ C--   Set laplace operators for use in 2D conjugate gradient solver.
 C--   Set laplace operators for use in 3D conjugate gradient solver.
       CALL INI_CG3D( myThid )
 #endif
+
+C--   Check parameters and model cofiguration
+      CALL CONFIG_CHECK( myThid )
 
 C--   Finally summarise the model cofiguration
       CALL CONFIG_SUMMARY( myThid )
