@@ -1,0 +1,7 @@
+Notes for the merging of AJA's and JMC's atmospheric codes into
+main-stream code:
+
+branch-atmos-merge		Created branch
+branch-atmos-merge-start	Initial state (equiv. to checkpoint33)
+branch-atmos-merge-phase1	Phase 1: moved correction step from
+                                top of dynamics() to end of the_main_loop()
