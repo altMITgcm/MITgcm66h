@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o add horizontal bi-harmonic viscosity for vertical velocity
+  - new parameter viscA4W (defaults to viscA4)
+  - affects only non-hydrostatic code
+  - to be done: no-slip lateral boundary conditions
 o switch back to "sflux = sflux - runoff" in exf_getforcing.F
 o implement Implicit Vertical advection for pTracers
 o depth convergence accelerator: replace deltaTtracer by dTtracerLev(k)
