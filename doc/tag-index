@@ -3,6 +3,24 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint56c_post
+o OBCS as control variables
+  - update ctrl_ad_diff.list, obcs_ad_diff.list
+  - remove balance of obcs controls from default
+  - fix index bug nobcs in ctrl_init
+  - fix dummy fields filen in ctrl_pack
+  - add dummy weights for obcs
+o lsopt: comment out fort.94 output
+o optim: 
+  - remove unnecessary header files
+  - adjusted namelists
+  - add xerbla.F to Makefile
+o exf: 
+  - multiple modifications of exf_check_range
+  - unit change in exf_init_runoff from [m/year] to [m/s]
+o mdsio:
+  - i/o-vector change debugLevel from debLevA to debLevB
+
 checkpoint56b_post
 o collect all ptracers output in an new routine (PTRACERS_OUTPUT) that
   is called from DO_THE_MODEL_IO
