@@ -311,16 +311,16 @@ C **********************************************************************
       enddo
       endif
 
-      if (iudiag4.ne.0) then
-      do L = 1,lm
-      do j = 1,jm
-      do i = 1,im
-      qdiag(i,j,iudiag4+L-1,bi,bj) = qdiag(i,j,iudiag4+L-1,bi,bj) + 
-     .  tmpimjm(i,j,L)
-      enddo
-      enddo
-      enddo
-      endif
+c     if (iudiag4.ne.0) then
+c     do L = 1,lm
+c     do j = 1,jm
+c     do i = 1,im
+c     qdiag(i,j,iudiag4+L-1,bi,bj) = qdiag(i,j,iudiag4+L-1,bi,bj) + 
+c    .  tmpimjm(i,j,L)
+c     enddo
+c     enddo
+c     enddo
+c     endif
 
       if (iolr.ne.0) then
       do j = 1,jm
@@ -343,7 +343,7 @@ C **********************************************************************
       nolr     = nolr     + 1
       nolrclr  = nolrclr  + 1
 
-      nudiag4  = nudiag4  + 1
+c     nudiag4  = nudiag4  + 1
       endif
 #endif
 
