@@ -127,10 +127,6 @@ grep ph-grd output.txt
 #A reference output is in:
 grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.txt
 
-Comments:
-- Produces following error message during "make adtaf" compilation:
-    INTERNAL ERROR: cannot find var clone to ada2
-
 
 ####################
 # Experiment no. 4 #
@@ -152,10 +148,9 @@ grep ph-grd output.txt
 grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.exp4
 
 Comments:
-- Produces following error message during "make adtaf" compilation:
-    INTERNAL ERROR: cannot find var clone to ada2
-- The gradient check results are different from those of exp. 3,
-  because of big initial pulse of freshwater, corrected below?
+- The gradient check results are different from those of exp. 3, seemingly
+  because of the big initial pulse of freshwater, see below?   There is a
+  17 to 25% discrepancy between adjoint and finite difference gradients.
 
 
 ####################
@@ -177,10 +172,6 @@ grep ph-grd output.txt
 #A reference output is in:
 grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.txt
 
-Comments:
-- Produces following error message during "make adtaf" compilation:
-    INTERNAL ERROR: cannot find var clone to ada2
-
 
 ####################
 # Experiment no. 6 #
@@ -194,7 +185,6 @@ Comments:
   rm -rf *.F *.h *.c Makefile*
   cp ../verification/natl_box_adjoint/code_seaice/*.h .
   cp ../verification/natl_box_adjoint/code_seaice/.genmakerc .
-  cp ../verification/natl_box_adjoint/code_seaice/seaice_init.F .
 #Configure and compile the code:
   ../tools/genmake -makefile
   make depend
@@ -222,12 +212,8 @@ grep ph-grd output.txt
 #A reference output is in:
 grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.exp6
 
-Comments:
-- Produces following error message during "make adtaf" compilation:
-    INTERNAL ERROR: cannot find var clone to ada2
-- The gradient check results should be comparable to that of Exps. 2, 3, and
-  5, but it is not.  Also there is a 3-4% discrepancy between ajoint model
-  and finite difference gradients.
+- There is a 3-4% discrepancy between ajoint
+  model and finite difference gradients.
 
 
 ####################
@@ -265,8 +251,6 @@ Comments:
   ./mitgcmuv >&! output.txt
 
 Comments:
-- Produces following error message during "make adtaf" compilation:
-    INTERNAL ERROR: cannot find var clone to ada2
 - Executable crashes:
 (PID.TID 0000.0001)  MDSREADFIELD: opening global file: v10m.labsea79
 (PID.TID 0000.0001)  MDSREADFIELD: opening global file: v10m.labsea79
