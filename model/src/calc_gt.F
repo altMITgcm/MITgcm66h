@@ -224,46 +224,6 @@ C     o Net meridional flux
        ENDDO
       ENDDO
 
-#ifdef INCLUDE_T_DIFFUSION_CODE
-C--   Terms that diffusion tensor projects onto z
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-        dTdx(i,j) = 0.5*( 
-     &   +0.5*(_maskW(i+1,j,k,bi,bj)
-     &         *_recip_dxC(i+1,j,bi,bj)*
-     &           (theta(i+1,j,k,bi,bj)-theta(i,j,k,bi,bj))
-     &        +_maskW(i,j,k,bi,bj)
-     &         *_recip_dxC(i,j,bi,bj)*
-     &           (theta(i,j,k,bi,bj)-theta(i-1,j,k,bi,bj)))
-     &   +0.5*(_maskW(i+1,j,km1,bi,bj)
-     &         *_recip_dxC(i+1,j,bi,bj)*
-     &           (theta(i+1,j,km1,bi,bj)-theta(i,j,km1,bi,bj))
-     &        +_maskW(i,j,km1,bi,bj)
-     &         *_recip_dxC(i,j,bi,bj)*
-     &           (theta(i,j,km1,bi,bj)-theta(i-1,j,km1,bi,bj)))
-     &       )
-       ENDDO
-      ENDDO
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-        dTdy(i,j) = 0.5*(
-     &   +0.5*(_maskS(i,j,k,bi,bj)
-     &         *_recip_dyC(i,j,bi,bj)*
-     &           (theta(i,j,k,bi,bj)-theta(i,j-1,k,bi,bj))
-     &        +_maskS(i,j+1,k,bi,bj)
-     &         *_recip_dyC(i,j+1,bi,bj)*
-     &           (theta(i,j+1,k,bi,bj)-theta(i,j,k,bi,bj)))
-     &   +0.5*(_maskS(i,j,km1,bi,bj)
-     &         *_recip_dyC(i,j,bi,bj)*
-     &           (theta(i,j,km1,bi,bj)-theta(i,j-1,km1,bi,bj))
-     &        +_maskS(i,j+1,km1,bi,bj)
-     &         *_recip_dyC(i,j+1,bi,bj)*
-     &           (theta(i,j+1,km1,bi,bj)-theta(i,j,km1,bi,bj)))
-     &       )
-       ENDDO
-      ENDDO
-#endif /* INCLUDE_T_DIFFUSION_CODE */
-
 C--   Vertical flux ( fVerT(,,kUp) is at upper face of "theta" cell )
 #ifdef INCLUDE_T_ADVECTION_CODE
 C     o Advective component of vertical flux
