@@ -29,7 +29,7 @@ set MODEL_IDIR = ( ../model/inc/ )
 set TDIR       = ( ../tools/ )
 set BDIR       = ( ../bin/       )
 set EDIR       = ( ../exe/       )
-set EXE        = ( barrier       )
+set EXE        = ( mitgcmuv      )
 
 set CPP   = ( '/lib/cpp -P $(INCLUDES) -DUSE_IRIX' )
 set FCOMP = ( 'f77 -extend_source -mp -mpio -bytereclen -O3 -r10000 -c' )
