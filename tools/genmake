@@ -58,7 +58,7 @@ while ($#allargs)
    exit
    breaksw
  case -mods=*:
-   set MODS = ( $MODS `echo $arg | sed 's/-mods=//' | sed 's/,/ /' `)
+   set MODS = ( $MODS `echo $arg | sed 's/-mods=//' | sed 's/,/ /g' `)
    breaksw
  case -disable:
  case -disable=:
@@ -67,7 +67,7 @@ while ($#allargs)
    exit
    breaksw
  case -disable=*:
-   set DISABLE = ( $DISABLE `echo $arg | sed 's/-disable=//' | sed 's/,/ /' `)
+   set DISABLE = ( $DISABLE `echo $arg | sed 's/-disable=//' | sed 's/,/ /g' `)
    breaksw
  case -enable:
  case -enable=:
@@ -77,7 +77,7 @@ while ($#allargs)
    exit
    breaksw
  case -enable=*:
-   set ENABLE = ( $ENABLE `echo $arg | sed 's/-enable=//' | sed 's/,/ /' `)
+   set ENABLE = ( $ENABLE `echo $arg | sed 's/-enable=//' | sed 's/,/ /g' `)
    breaksw
  case -mpi:
    echo "Enabling MPI options"
