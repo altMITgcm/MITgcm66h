@@ -3,6 +3,12 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o more obcs stuff
+  - added obcs_external_fields_load as an alternative to the EXF-pkg option
+    for reading boundary values. This routine is called from 
+    obcs_prescribe_read
+  - updated obcs_check
+
 checkpoint55c_post
 o obcs stuff
   - new runtime flags useOBCSprescribe, useOBCSbalance
