@@ -3,9 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
-untagged
+ecco_c50_e33a
 o first step in c51 merge
-  (redundant update in model/src/)
+  - redundant update in model/src/
+  - merge back's in autodiff, ctrl, kpp, seaice
 
 ecco_c50_e33
 o minor changes to pkg/seaice pkg/cost/cost_ice.F
