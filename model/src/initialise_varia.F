@@ -186,6 +186,11 @@ C--   initialise time-average arrays with initial state values
         IF (taveFreq.GT.0.) THEN
            CALL TIMEAVE_STATVARS(startTime, nIter0, bi, bj, myThid)
         ENDIF
+cswdptr -- add ---
+#ifdef ALLOW_PTRACERS
+           CALL PTRACERS_STATVARS(startTime, nIter0, bi, bj, myThid)
+#endif
+cswdptr -- end add ---
 #endif /* ALLOW_TIMEAVE */
 
 C--   end bi,bj loop.

@@ -184,12 +184,14 @@ C       Reset default IO precision
        _END_MASTER( myThid )
        _BARRIER
 
-#ifdef ALLOW_PTRACERS
-C Write restart file for passive tracers
-       IF (usePTRACERS) THEN
-         CALL PTRACERS_READ_CHECKPOINT(myIter,suff,myThid)
-       ENDIF
-#endif /* ALLOW_PTRACERS */
+cswdptr -- remove (moved to ptracers_init)
+cswdptr#ifdef ALLOW_PTRACERS
+cswdptrC Write restart file for passive tracers
+cswdptr       IF (usePTRACERS) THEN
+cswdptr         CALL PTRACERS_READ_CHECKPOINT(myIter,myThid)
+cswdptr       ENDIF
+cswdptr#endif /* ALLOW_PTRACERS */
+cswdptr -- end remove ----
 
 C--    Fill in edge regions
       CALL EXCH_UV_XYZ_RL(uVel,vVel,.TRUE.,myThid)

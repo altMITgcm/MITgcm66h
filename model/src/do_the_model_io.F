@@ -94,6 +94,11 @@ C--   Write model state to binary file
 C--   Do time averages
       IF (taveFreq.GT.0.) THEN
        CALL TIMEAVE_STATV_WRITE( myCurrentTime, myIter, myThid )
+cswdptr -- add ---
+#ifdef ALLOW_PTRACERS
+       CALL PTRACERS_STATV_WRITE( myCurrentTime, myIter, myThid )
+#endif
+cswdptr -- end add ---
       ENDIF
 #endif
 #ifdef ALLOW_AIM
@@ -147,6 +152,15 @@ C--   Do seaice diagnostics.
      & CALL ICE_DIAGS( myCurrentTime, myIter, myThid )
 #endif
 cswdice -- end add ---
+
+cswdptr ---  add ---
+#ifdef ALLOW_PTRACERS
+C--   Do ptracer diagnostics.
+      IF (usePTRACERS)
+     & CALL GCHEM_DIAGS( myCurrentTime, myIter, myThid )
+#endif
+cswdptr -- end add ---
+
 
       RETURN
       END

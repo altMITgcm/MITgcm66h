@@ -356,6 +356,16 @@ C--   Do "blocking" sends and receives for field "overlap" terms
       CALL DO_FIELDS_BLOCKING_EXCHANGES( myThid )
       CALL TIMER_STOP ('BLOCKING_EXCHANGES  [FORWARD_STEP]',myThid)
 
+cswdptr -- add for seperate timestepping of chemical/biological/forcing
+cswdptr    of ptracers ---
+#ifdef ALLOW_PTRACERS
+#ifdef PTRACERS_SEPERATE_FORCING
+        call GCHEM_FORCING( myTime,myIter,myThid )
+#endif
+#endif
+cswdptr -- end add ---
+
+
 #ifdef ALLOW_FLT
 C--   Calculate float trajectories
       IF (useFLT) THEN
