@@ -90,12 +90,8 @@ C--   Default package configuration
       usePTRACERS=.FALSE.
       useSBO=.FALSE.
       useSeaIce=.FALSE.
-cswdblk -- add
       useBulkForce=.FALSE.
-cswdblk -- end add ---
-cswdice --- add ---
       useThSIce=.FALSE.
-cswdice --- end add ---
 
 
 C--   Read parameters from open data file
