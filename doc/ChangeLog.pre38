@@ -24,5 +24,12 @@ Change log for branch "pre38".
    - *should* produce identical results to original calc_mom_rhs.F
  o added pkg/mom_vecinv: vectgor invariant form of momentum equations
    - no-slip side conditions not implemented. Don't try to use them!
+ o define separatetly surface and bottom position - set maskC as 3D global array
+ o modify Surface correction term to deal with topography in Atmosphere
+ o prepare implementation of non-Linear Free Surface:
+   - add parameters and CPP_options for non-Linear Free Surface 
+   - move etaNm1 to main common block
+ o allow to re-compute eta to conserve exactly the total volume.
  o added fCoriG to PARAMS.h, ini_cori.F, FCORI_MACROS.h
    - needed for VI momentum equations which are broken without.
+ o CG2D: allow to switch-off RHS normalisation setting Residual_Target in W_unit
