@@ -1,8 +1,22 @@
-C $Id$
+C $Header$
+C $Name$
+
+  These lines are here to deliberately cause a compile-time error.
+  If you see these lines in your .F files or the compiler shows them
+  as an error then it means you have not placed your configuration
+  files in the appropriate place. 
+  You need to place you own copy of CPP_EEOPTIONS.h in the include
+  path for the model.
+
+CBOP
+C     !ROUTINE: CPP_EEOPTIONS.h
+C     !INTERFACE:
+C     include "CPP_EEOPTIONS.h"
 C
-C     /==========================================================\
+C     !DESCRIPTION:
+C     *==========================================================*
 C     | CPP_EEOPTIONS.h                                          |
-C     |==========================================================|
+C     *==========================================================*
 C     | C preprocessor "execution environment" supporting        |
 C     | flags. Use this file to set flags controlling the        |
 C     | execution environment in which a model runs - as opposed |
@@ -21,7 +35,11 @@ C     |       set all options as selectable at runtime but then  |
 C     |       once an experimental configuration has been        |
 C     |       identified, rebuild the code with the appropriate  |
 C     |       options set at compile time.                       |
-C     \==========================================================/
+C     *==========================================================*
+CEOP
+
+#ifndef _CPP_EEOPTIONS_H_
+#define _CPP_EEOPTIONS_H_
 
 C     In general the following convention applies:
 C     ALLOW  - indicates an feature will be included but it may
@@ -41,59 +59,6 @@ C     safe, on Sun it is not possible - if you are unsure then
 C     undef this option.
 #undef  FMTFTN_IO_THREADSAFE
 
-C     Flag used to indicate which flavour of multi-threading
-C     compiler directives to use. Only set one of these.
-C     USE_SOLARIS_THREADING  - Takes directives for SUN Workshop
-C                              compiler.
-C     USE_KAP_THREADING      - Takes directives for Kuck and 
-C                              Associates multi-threading compiler
-C                              ( used on Digital platforms ).
-C     USE_IRIX_THREADING     - Takes directives for SGI MIPS
-C                              Pro Fortran compiler.
-C     USE_EXEMPLAR_THREADING - Takes directives for HP SPP series
-C                              compiler.
-C     USE_C90_THREADING      - Takes directives for CRAY/SGI C90
-C                              system F90 compiler.
-#ifdef TARGET_SUN
-#define USE_SOLARIS_THREADING
-#endif
-
-#ifdef TARGET_DEC
-#define USE_KAP_THREADING
-#endif
-
-#ifdef TARGET_SGI
-#define USE_IRIX_THREADING
-#endif
-
-#ifdef TARGET_HP
-#define USE_EXEMPLAR_THREADING
-#endif
-
-#ifdef TARGET_CRAY_VECTOR
-#define USE_C90_THREADING
-#endif
-
-C--   Define the mapping for the _BARRIER macro
-C     On some systems low-level hardware support can be accessed through
-C     compiler directives here.
-#define _BARRIER CALL BARRIER(myThid)
-
-C--   Define the mapping for the BEGIN_CRIT() and  END_CRIT() macros. 
-C     On some systems we simply execute this section only using the
-C     master thread i.e. its not really a critical section. We can
-C     do this because we don't use critical sections in any critical
-C     sections of our code!
-#define _BEGIN_CRIT(a) _BEGIN_MASTER(a)
-#define _END_CRIT(a)   _END_MASTER(a)
-
-C--   Define the mapping for the BEGIN_MASTER_SECTION() and
-C     END_MASTER_SECTION() macros. These are generally implemented by
-C     simply choosing a particular thread to be "the master" and have
-C     it alone execute the BEGIN_MASTER..., END_MASTER.. sections.
-#define _BEGIN_MASTER(a)  IF ( a .EQ. 1 ) THEN
-#define _END_MASTER(a)    ENDIF
-
 C--   Control MPI based parallel processing
 #undef  ALLOW_USE_MPI
 #undef  ALWAYS_USE_MPI
@@ -108,6 +73,12 @@ C     Under MPI selects/deselects "blocking" sends and receives.
 #define ALLOW_SYNC_COMMUNICATION
 #undef  ALWAYS_USE_SYNC_COMMUNICATION
 
+C--   Control use of JAM routines for Artic network
+C     These invoke optimized versions of "exchange" and "sum" that
+C     utilize the programmable aspect of Artic cards.
+#undef  LETS_MAKE_JAM
+#undef  JAM_WITH_TWO_PROCS_PER_NODE
+
 C--   Control storage of floating point operands
 C     On many systems it improves performance only to use
 C     8-byte precision for time stepped variables.
@@ -118,57 +89,20 @@ C     set size. However, on vector CRAY systems this degrades
 C     performance.
 #define REAL4_IS_SLOW
  
-#ifdef REAL4_IS_SLOW
-#define real Real*8
-#define REAL Real*8
-#define _RS  Real*8
-#define _RL  Real*8
-#define _EXCH_XY_R4(a,b)       CALL EXCH_XY_R8 ( a, b )
-#define _EXCH_XYZ_R4(a,b)      CALL EXCH_XYZ_R8 ( a, b )
-#define _GLOBAL_SUM_R4(a,b,c)  CALL GLOBAL_SUM_R8( a, b , c)
-#define _GLOBAL_MAX_R4(a,b,c)  CALL GLOBAL_MAX_R8( a, b , c)
-#endif
-
-#ifndef REAL4_IS_SLOW
-#define real Real*4
-#define REAL Real*8
-#define _RS  Real*4
-#define _RL  Real*8
-#define _EXCH_XY_R4(a,b)       CALL EXCH_XY_R4 ( a, b )
-#define _EXCH_XYZ_R4(a,b)      CALL EXCH_XYZ_R4 ( a, b )
-#define _GLOBAL_SUM_R4(a,b,c)  CALL GLOBAL_SUM_R4( a, b , c)
-#define _GLOBAL_MAX_R4(a,b,c)  CALL GLOBAL_MAX_R4( a, b , c)
-#endif
- 
-#define _EXCH_XY_R8(a,b)       CALL EXCH_XY_R8 ( a, b )
-#define _EXCH_XYZ_R8(a,b)      CALL EXCH_XYZ_R8 ( a, b )
-#define _GLOBAL_SUM_R8(a,b,c)  CALL GLOBAL_SUM_R8( a, b , c)
-#define _GLOBAL_MAX_R8(a,b,c)  CALL GLOBAL_MAX_R8( a, b , c)
- 
 C--   Control use of "double" precision constants.
 C     Use D0 where it means REAL*8 but not where it means REAL*16
 #define D0 d0
-#ifdef REAL_D0_IS_16BYTES
-#define D0
-#endif
 
 C--   Control XY periodicity in processor to grid mappings
 C     Note: Model code does not need to know whether a domain is 
 C           periodic because it has overlap regions for every box.
-C           Model's simply assume that these values have been
+C           Model assume that these values have been
 C           filled in some way.
 #undef  ALWAYS_PREVENT_X_PERIODICITY
 #undef  ALWAYS_PREVENT_Y_PERIODICITY
 #define CAN_PREVENT_X_PERIODICITY
 #define CAN_PREVENT_Y_PERIODICITY
 
-C--   Substitue for 1.D variables
-C     Sun compilers don't use 8-byte precision for literals
-C     unless .Dnn is specified. CRAY vector machines use 16-byte
-C     precision when they see .Dnn which runs very slowly!
-#ifdef REAL_D0_IS_16BYTES
-#define _d
-#endif
-#ifndef REAL_D0_IS_16BYTES
-#define _d D
-#endif
+#endif /* _CPP_EEOPTIONS_H_ */
+
+#include "CPP_EEMACROS.h"
