@@ -118,7 +118,7 @@ C     Enter DEFINE mode
 
 C     Check for grid re-definition
       DO igr = 1,mnc_f_info(indf,3)
-        ii = 4 + 3*igr
+        ii = 4 + 3*(igr - 1)
         ngt = ILNBLNK(mnc_g_names(mnc_f_info(indf,ii)))
         IF ( (ngt .EQ. ngn) 
      &       .AND. (mnc_g_names(mnc_f_info(indf,ii))(1:ngt) 
