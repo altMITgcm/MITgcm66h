@@ -133,12 +133,19 @@ C     Default Orlanski radiation parameters
 #endif
       
 #ifdef ALLOW_OBCS_SPONGE
-C     Default sponge layer parameters
-      spongeThickness = 2
-      Urelaxobcsinner = 5. _d 0
-      Urelaxobcsbound = 1. _d 0
-      Vrelaxobcsinner = 5. _d 0
-      Vrelaxobcsbound = 1. _d 0
+C     Default sponge layer parameters:
+C     sponge layer is turned off by default
+      spongeThickness = 0
+      Urelaxobcsinner = 0. _d 0
+      Urelaxobcsbound = 0. _d 0
+      Vrelaxobcsinner = 0. _d 0
+      Vrelaxobcsbound = 0. _d 0
+CML this was the previous default in units of days
+CML      spongeThickness = 2
+CML      Urelaxobcsinner = 5. _d 0
+CML      Urelaxobcsbound = 1. _d 0
+CML      Vrelaxobcsinner = 5. _d 0
+CML      Vrelaxobcsbound = 1. _d 0
       IF (useOBCSsponge)
      & READ(UNIT=iUnit,NML=OBCS_PARM03)
 #endif
