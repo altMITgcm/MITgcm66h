@@ -81,6 +81,14 @@ C     zcoord ::
       WRITE(msgBuf,'(A,A40)') 'buoyancyRelation = ', buoyancyRelation
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, 
      &                    SQUEEZE_RIGHT , 1)
+      CALL WRITE_0D_L( fluidIsAir,   INDEX_NONE,
+     & 'fluidIsAir  =', '  /* fluid major constituent is Air */')
+      CALL WRITE_0D_L( fluidIsWater, INDEX_NONE,
+     & 'fluidIsWater=', '  /* fuild major constituent is Water */')
+      CALL WRITE_0D_L( usingPCoords, INDEX_NONE,
+     & 'usingPCoords =', '  /* use p (or p*) vertical coordinate */')
+      CALL WRITE_0D_L( usingZCoords, INDEX_NONE,
+     & 'usingZCoords =', '  /* use z (or z*) vertical coordinate */')
       CALL WRITE_1D_R8( tRef, Nr, INDEX_K,'tRef =',
      &'   /* Reference temperature profile ( oC or oK ) */')
       CALL WRITE_1D_R8( sRef, Nr, INDEX_K,'sRef =',
@@ -144,7 +152,7 @@ C     zcoord ::
      &                    SQUEEZE_RIGHT , 1)
         ENDDO
       ENDIF
-      IF ( buoyancyRelation .eq. 'ATMOSPHERIC' ) THEN
+      IF ( fluidIsAir ) THEN
        CALL WRITE_0D_R8( atm_Rd, INDEX_NONE, 'atm_Rd =',
      & '  /* gas constant for dry air ( J/kg/K ) */')
       CALL WRITE_0D_R8( atm_Cp, INDEX_NONE, 'atm_Cp =',
