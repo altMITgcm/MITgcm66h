@@ -174,9 +174,9 @@ C Loop over all tiles
        do bi=1,nSx
 C If we are reading from a tiled MDS file then we open each one here
 cafe        if (.NOT. globalFile) then
-cafe             write(msgbuf,'(a)')
-cafe     &         ' MDSREADFIELD: non-global input files not 
-cafe     &           implemented with exch2'
+cafe             write(msgbuf,'(a,a)')
+cafe     &         ' MDSREADFIELD: non-global input files not '
+cafe     &           'implemented with exch2'
 cafe             call print_error( msgbuf, mythid )
 cafe             stop 'ABNORMAL END: S/R MDSREADFIELD'
 cafe        endif
