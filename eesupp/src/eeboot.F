@@ -156,8 +156,8 @@ C--   Initiialise the multi-process IO package
       CALL DFILE_INIT
 #endif
 
-C     Read the run-time flags for MNC
 #ifdef ALLOW_MNC
+C     Read the run-time flags for MNC
       CALL MNC_READPARMS( 1 )
 #endif
 

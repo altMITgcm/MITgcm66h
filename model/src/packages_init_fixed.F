@@ -46,15 +46,6 @@ C     myThid -  Number of this instances
       INTEGER myThid
 CEOP
 
-C--   Initialize MNC look-up tables
-#ifdef ALLOW_MNC
-      IF (useMNC) THEN
-        CALL MNC_INIT(myThid)
-        CALL MNC_CW_INIT(sNx,sNy,OLx,OLy,nSx,nSy,nPx,nPy,Nr, myThid)
-        CALL INI_MNC_IO(myThid)
-      ENDIF
-#endif
-
 C--   Initialize fixed params for GAD
       CALL GAD_INIT( myThid )
 
