@@ -1,13 +1,13 @@
 C $Header$
 C $Name$
 
-CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
-CC     Modified from calc_gs.F, 27/8/98, Mick       CC
-CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 #include "DIC_OPTIONS.h"
 #include "GCHEM_OPTIONS.h"
 
-CStartOfInterFace
+CBOP
+C !ROUTINE: CALC_PCO2
+
+C !INTERFACE: ==========================================================
        SUBROUTINE CALC_PCO2(
      I                       donewt,inewtonmax,ibrackmax,
      I                       t,s,diclocal,pt,sit,ta,
@@ -17,16 +17,15 @@ CStartOfInterFace
      I                       ksilocal,kflocal,
      I                       fflocal,btlocal,stlocal,ftlocal,
      U                       pHlocal,pCO2surfloc)
-C     /==========================================================\
-C     | SUBROUTINE CALC_PCO2                                    |
-C     |==========================================================|
-C     | surface ocean inorganic carbon chemistry to OCMIP2       |
-C     | regulations modified from OCMIP2 code;                   |
-C     | Mick Follows, MIT, Oct 1999.                             |
-C     \==========================================================/
-      IMPLICIT NONE
 
-C     == GLobal variables ==
+C !DESCRIPTION:
+C  surface ocean inorganic carbon chemistry to OCMIP2       
+C  regulations modified from OCMIP2 code;                  
+C  Mick Follows, MIT, Oct 1999.                           
+
+
+C !USES: ===============================================================
+      IMPLICIT NONE
 #include "SIZE.h"
 #include "DYNVARS.h"
 #include "EEPARAMS.h"

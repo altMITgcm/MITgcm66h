@@ -4,16 +4,17 @@ C $Name$
 #include "DIC_OPTIONS.h"
 #include "GCHEM_OPTIONS.h"
 
-CStartOfInterface
-      SUBROUTINE DIC_BIOTIC_INIT( myThid )
-C     /==========================================================\
-C     | SUBROUTINE DIC_BIOTIC_INIT                              |
-C     | o Do DIC diagnostic initialization                   |
-C     |==========================================================|
-C     \==========================================================/
-      IMPLICIT NONE
+CBOP
+C !ROUTINE: DIC_BIOTIC_INIT
 
-C     === Global variables ===
+C !INTERFACE: ==========================================================
+      SUBROUTINE DIC_BIOTIC_INIT( myThid )
+
+C !DESCRIPTION:
+C  DIC diagnostic initialization                   
+
+C !USES: ===============================================================
+      IMPLICIT NONE
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
@@ -21,21 +22,19 @@ C     === Global variables ===
 #include "DIC_BIOTIC.h"
 #endif
 
-C     == Routine arguments ==
-C     myThid -  Number of this instance of INI_FORCING
+c!INPUT PARAMETERS: ===================================================
+C  myThid               :: thread number
       INTEGER myThid
-CEndOfInterface
 
 
-C     == Local variables ==
+C !LOCAL VARIABLES: ====================================================
       LOGICAL  DIFFERENT_MULTIPLE
       EXTERNAL DIFFERENT_MULTIPLE
       INTEGER bi, bj, k
       CHARACTER*(MAX_LEN_MBUF) suff
+CEOP
 
 #ifdef DIC_BIOTIC
-
-
 #ifdef ALLOW_TIMEAVE
 
 c set arrays to zero if first timestep
