@@ -73,6 +73,7 @@ C     and general post-analysis)
       CALL WRITE_FLD_XY_RS( 'YC',' ',YC,0,myThid)
       CALL WRITE_FLD_XY_RS( 'XG',' ',XG,0,myThid)
       CALL WRITE_FLD_XY_RS( 'YG',' ',YG,0,myThid)
+      CALL WRITE_FLD_XY_RS( 'AC',' ',rA,0,myThid)
 
       RETURN
       END
