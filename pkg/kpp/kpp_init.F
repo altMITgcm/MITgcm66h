@@ -85,13 +85,14 @@ C-----------------------------------------------------------------------
                do i = 1-OLx, sNx+OLx
                   nzmax(i,j,bi,bj) = 0
                   do k = 1, Nr
-                     if (_hFacC(i,j,k,bi,bj).eq.0.) then
-                        pMask (i,j,k,bi,bj) = 0.
-                     else
-                        pMask (i,j,k,bi,bj) = 1.
-                     endif
+c                    if (_hFacC(i,j,k,bi,bj).eq.0.) then
+c                       pMask (i,j,k,bi,bj) = 0.
+c                    else
+c                       pMask (i,j,k,bi,bj) = 1.
+c                    endif
                      nzmax(i,j,bi,bj) = nzmax(i,j,bi,bj)
-     &                                + INT(pMask(i,j,k,bi,bj))
+     &                                + INT(maskC(i,j,k,bi,bj))
+c    &                                + INT(pMask(i,j,k,bi,bj))
                   end do
                end do
             end do
