@@ -6,6 +6,12 @@ C $Name$
 #ifdef ALLOW_OBCS
 # include "OBCS_OPTIONS.h"
 #endif
+#ifdef ALLOW_SEAICE
+# include "SEAICE_OPTIONS.h"
+#endif
+#ifdef ALLOW_GMREDI
+# include "GMREDI_OPTIONS.h"
+#endif
 
 CBOP
 C     !ROUTINE: THE_MAIN_LOOP
