@@ -202,8 +202,8 @@ C-    Diffusive flux in Y
 #ifdef ALLOW_GMREDI
 C-    GM/Redi flux in Y
       IF (useGMRedi) THEN
-       CALL GMREDI_YTRANSPORT(
 C *note* should update GMREDI_YTRANSPORT to use localT and set df  *aja*
+       CALL GMREDI_YTRANSPORT(
      I     iMin,iMax,jMin,jMax,bi,bj,K,
      I     yA,Tracer,
      U     df,

@@ -47,12 +47,16 @@ c        vort3u=0.5*(omega3(i,j)+omega3(I,J+1))
          vort3u=0.5*(omega3(i,j)*r_hFacZ(i,j)
      &              +omega3(i,j+1)*r_hFacZ(i,j+1))
          uCoriolisTerm(i,j)=
-C high order vorticity advection term
-c    &   +vort3u*vBarXY*recip_dxc(i,j,bi,bj)
-C linear Coriolis term (enstrophy conserving)
      &   +0.5*(fCoriG(i,j,bi,bj)*r_hFacZ(i,j)
      &        +fCoriG(i,j+1,bi,bj)*r_hFacZ(i,j+1))*vBarXY
      *        *recip_dxc(i,j,bi,bj)
+     &   *_maskW(I,J,K,bi,bj)
+cph *note* put these comments after end of continued line
+cph        to ensure TAMC compatibility
+C high order vorticity advection term
+c    &   +vort3u*vBarXY*recip_dxc(i,j,bi,bj)
+C linear Coriolis term (enstrophy conserving)
+c    &   ...
 C full nonlinear Coriolis term
 c    &   +0.5*(omega3(i,j)+omega3(i,j+1))*vBarXY
 C correct energy conserving form of Coriolis term
@@ -60,7 +64,6 @@ c    &   +0.25*( fCori( i ,j,bi,bj)*(vFld( i ,j)+vFld( i ,j+1)) +
 c    &           fCori(i-1,j,bi,bj)*(vFld(i-1,j)+vFld(i-1,j+1)) )
 C original form of Coriolis term (copied from calc_mom_rhs)
 c    &   +0.5*(fCori(i,j,bi,bj)+fCori(i-1,j,bi,bj))*vBarXY
-     &   *_maskW(I,J,K,bi,bj)
         ENDDO
        ENDDO
 
@@ -77,12 +80,16 @@ c        vort3v=0.5*(omega3(i,j)+omega3(I+1,J))
          vort3v=0.5*(omega3(i,j)*r_hFacZ(i,j)
      &              +omega3(i+1,j)*r_hFacZ(i+1,j))
          vCoriolisTerm(i,j)=
-C high order vorticity advection term
-c    &   -vort3v*uBarXY*recip_dyc(i,j,bi,bj)
-C linear Coriolis term (enstrophy conserving)
      &   -0.5 *(fCoriG(i,j,bi,bj)*r_hFacZ(i,j)
      &         +fCoriG(i+1,j,bi,bj)*r_hFacZ(i+1,j))*uBarXY
      &         *recip_dyc(i,j,bi,bj)
+     &   *_maskS(I,J,K,bi,bj)
+cph *note* put these comments after end of continued line
+cph        to ensure TAMC compatibility
+C high order vorticity advection term
+c    &   -vort3v*uBarXY*recip_dyc(i,j,bi,bj)
+C linear Coriolis term (enstrophy conserving)
+c    &   ...
 C full nonlinear Coriolis term
 c    &   -0.5*(omega3(i,j)+omega3(i+1,j))*uBarXY
 C correct energy conserving form of Coriolis term
@@ -90,7 +97,6 @@ c    &   -0.25*( fCori(i,j  ,bi,bj)*(uFld(i, j )+uFld(i+1,j)) +
 c    &           fCori(i,j-1,bi,bj)*(uFld(i,j-1)+uFld(i+1,j)) )
 C original form of Coriolis term (copied from calc_mom_rhs)
 c    &   -0.5*(fCori(i,j,bi,bj)+fCori(i,j-1,bi,bj))*uBarXY
-     &   *_maskS(I,J,K,bi,bj)
         ENDDO
        ENDDO
 
