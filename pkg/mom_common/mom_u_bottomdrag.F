@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "MOM_FLUXFORM_OPTIONS.h"
+#include "MOM_COMMON_OPTIONS.h"
 
 CBOP
 C !ROUTINE: MOM_U_BOTTOMDRAG
