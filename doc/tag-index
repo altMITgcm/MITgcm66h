@@ -2,6 +2,9 @@ $Header$
 
     Notes on tags used in MITgcmUV
     ==============================
+
+next checkpoint:
+o check parameters & config (chkpt44a_pre,post)
 o OBC and NonLin_FrSurf.
 
 checkpoint44
