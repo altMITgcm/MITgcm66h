@@ -3,6 +3,11 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint12
+ Tidy up and added generic genmake script (formerly
+ configure script). 
+ Released to testers.
+
 checkpoint11
  Re-arranged initialise() and introduced ini_vertical_grid()
  and ini_masks_etc().
