@@ -1,2 +1,0 @@
-#define W2_USE_E2_SAFEMODE
-#undef  W2_E2_DEBUG_ON
