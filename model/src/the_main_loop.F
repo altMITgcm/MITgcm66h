@@ -203,9 +203,16 @@ CADJ INIT comlev1        = COMMON,nchklev_1
 CADJ INIT comlev1_bibj   = COMMON,nchklev_1*nsx*nsy*nthreads_chkpt
 CADJ INIT comlev1_bibj_k = COMMON,nchklev_1*nsx*nsy*nr*nthreads_chkpt
 CADJ INIT comlev1_kpp    = COMMON,nchklev_1*nsx*nsy
-
-C--   RG replace 2 by max of num_v_smooth_Ri
-CADJ INIT comlev1_kpp_sm = COMMON,nchklev_1*nsx*nsy*2
+#ifdef ALLOW_MULTIDIM_ADVECTION
+CADJ INIT comlev1_bibj_pass
+CADJ &    = COMMON,nchklev_1*nsx*nsy*nr*nthreads_chkpt*maxpass
+#endif
+#ifdef ALLOW_BULKFORMULAE
+CADJ INIT comlev1_exf_1
+CADJ &     = COMMON,nchklev_1*snx*nsx*sny*nsy*nthreads_chkpt
+CADJ INIT comlev1_exf_2
+CADJ &     = COMMON,niter_bulk*nchklev_1*snx*nsx*sny*nsy*nthreads_chkpt
+#endif
 
           do ilev_1 = 1,nchklev_1
 

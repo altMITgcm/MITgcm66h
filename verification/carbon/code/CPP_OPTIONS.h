@@ -33,6 +33,9 @@ C o Include/exclude diagnostics package interface code
 C o Include/exclude latitude circle FFT filter
 #undef  ALLOW_ZONAL_FILT
 
+C o Include/exclude multi-dimensional advection code
+#define ALLOW_MULTIDIM_ADVECTION
+
 C o Include/exclude temperature advection code
 cph
 #define  INCLUDE_TR1_ADVECTION_CODE

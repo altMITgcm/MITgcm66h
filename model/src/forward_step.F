@@ -106,6 +106,9 @@ C--     Load forcing/external data fields.
 C       NOTE, that although the exf package is part of the
 C       distribution, it is not currently maintained, i.e.
 C       exf is disabled by default in genmake.
+#ifdef ALLOW_BULKFORMULAE
+CADJ STORE theta     = comlev1, key = ikey_dynamics
+#endif
         CALL EXF_GETFORCING( mytime, myiter, mythid )
 #else
         CALL TIMER_START('EXTERNAL_FIELDS_LOAD[THE_MAIN_LOOP]',mythid)
