@@ -661,10 +661,11 @@ c     fRi, fcon             function of Rig
       _KPP_RL Rig
       _KPP_RL fRi, fcon
       _KPP_RL ratio
-      integer i, ki, mr
+      integer i, ki
       _KPP_RL c1, c0
 
 #ifdef ALLOW_KPP_VERTICALLY_SMOOTH
+      integer mr
 CADJ INIT kpp_ri_tape_mr = common, 1
 #endif
 

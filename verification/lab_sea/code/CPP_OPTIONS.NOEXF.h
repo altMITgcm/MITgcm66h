@@ -146,10 +146,9 @@ C          because the old code did not have no-slip BCs
 C o Execution environment support options
 #include "CPP_EEOPTIONS.h"
 
-C o Include/exclude the external forcing package. To use this package,
-C   you have to include the calendar tool as well. KPP can be switched
-C   on or off. The implementation automatically takes care of this.
-#define INCLUDE_EXTERNAL_FORCING_PACKAGE
-#ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
-# include "ECCO_CPPOPTIONS.h"
+C o Include/exclude code specific to the ECCO/SEALION version.
+#undef INCLUDE_ECCO_PACKAGE
+#ifdef INCLUDE_ECCO_PACKAGE
+#include "ECCO_CPPOPTIONS.h"
 #endif
+

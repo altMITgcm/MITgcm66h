@@ -26,10 +26,9 @@ C     === Local variables ===
 C     msgBuf      - Informational/error meesage buffer
 C     errIO       - IO error flag
 C     iUnit       - Work variable for IO unit number
-C     k           - Loop counter
 
       CHARACTER*(MAX_LEN_MBUF) msgBuf
-      INTEGER errIO, iUnit, k
+      INTEGER errIO, iUnit
 
 C--   KPP vertical mixing parameters
       NAMELIST /KPP_PARM01/

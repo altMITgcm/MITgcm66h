@@ -25,13 +25,18 @@ c
 c              - Included appropriate CPP options
 c                ALLOW_BULKFORMULAE, ALLOW_ATM_TEMP
 c
+c              Dimitris Menemenlis menemenlis@jpl.nasa.gov 20-Dec-2002
+c
+c              - Added EXF_NO_BULK_COMPUTATIONS option.
+c
 c     ==================================================================
 c     FUNCTION exf_BulkRhn
 c     ==================================================================
 
       implicit none
 
-#if (defined (ALLOW_BULKFORMULAE) && defined (ALLOW_ATM_TEMP))
+#if (defined (ALLOW_BULKFORMULAE) && defined (ALLOW_ATM_TEMP) \
+    && ~defined (EXF_NO_BULK_COMPUTATIONS) )
 
 c     == global variables ==
 

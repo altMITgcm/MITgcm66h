@@ -12,6 +12,7 @@ c                      - empirical parameters
 c                      - control parameters (e.g. max. no of iteration)
 c
 c     started: Patrick Heimbach heimbach@mit.edu  06-May-2000
+c     changed: Dimitris Menemenlis menemenlis@jpl.nasa.gov 20-Dec-2002
 c
 c     ==================================================================
 c     HEADER exf_constants
@@ -47,13 +48,9 @@ c     needs to be marmonized through common constants.h file
 #endif
 
 c     3. empirical parameters
-c        climsaltfreeze dummy not relevant
 
       _RL         climtempfreeze
       parameter ( climtempfreeze = -1.9 )
-
-      _RL         climsaltfreeze
-      parameter ( climsaltfreeze = -999.9 )
 
 #ifdef ALLOW_BULKFORMULAE
 

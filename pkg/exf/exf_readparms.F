@@ -34,6 +34,7 @@ c     changed: Virginie Thierry, vthierry@ucsd.edu 04-June-2001
 c              - added new obcs parameters (for each boundaries) 
 c     included runoff D. Stammer, Nov. 25, 2001
 c     included pressure forcing. heimbach@mit.edu 05-Nov-2002
+c     added option EXF_READ_EVAP. menemenlis@jpl.nasa.gov 20-Dec-2002
 c
 c     ==================================================================
 c     SUBROUTINE exf_readparms
@@ -71,6 +72,7 @@ c     Surface flux data.
      &    atempstartdate1,    atempstartdate2,   atempperiod,
      &      aqhstartdate1,      aqhstartdate2,     aqhperiod,
      &    sfluxstartdate1,    sfluxstartdate2,   sfluxperiod,
+     &     evapstartdate1,     evapstartdate2,    evapperiod,
      &   precipstartdate1,   precipstartdate2,  precipperiod,
      &   runoffstartdate1,   runoffstartdate2,  runoffperiod,
      &  ustressstartdate1,  ustressstartdate2, ustressperiod,
@@ -86,13 +88,13 @@ c     Surface flux data.
      &apressurestartdate1,apressurestartdate2,apressureperiod,
      &          hfluxfile,          atempfile,       aqhfile,
      &          sfluxfile,         precipfile,    runofffile,
-     &        ustressfile,        vstressfile,
+     &        ustressfile,        vstressfile,      evapfile,
      &          uwindfile,          vwindfile,
      &         swfluxfile,         lwfluxfile, apressurefile,
      &          exf_iprec,         exf_yftype,
      &           scal_hfl,           scal_ust,       scal_vst,
      &           scal_swf,           scal_sst,       scal_sss,
-     &     scal_apressure,           scal_prc,       scal_sfl
+     &     scal_apressure,           scal_sfl
 
       _BEGIN_MASTER(mythid)
 
@@ -114,6 +116,10 @@ c     Calendar data.
       sfluxstartdate1    = 0
       sfluxstartdate2    = 0
       sfluxperiod        = 0.0 _d 0
+
+      evapstartdate1   = 0
+      evapstartdate2   = 0
+      evapperiod       = 0.0 _d 0
 
       precipstartdate1   = 0
       precipstartdate2   = 0
@@ -171,6 +177,7 @@ c     Data files.
       hfluxfile          = ' '
       atempfile          = ' '
       aqhfile            = ' '
+      evapfile           = ' '
       precipfile         = ' '
       sfluxfile          = ' '
       runofffile         = ' '
@@ -187,6 +194,7 @@ c     Initialise the date arrays.
          hfluxstartdate(i)    = 0
          atempstartdate(i)    = 0
          aqhstartdate(i)      = 0
+         evapstartdate(i)     = 0
          precipstartdate(i)   = 0
          sfluxstartdate(i)    = 0
          runoffstartdate(i)   = 0
@@ -215,11 +223,7 @@ c     scaling between exf units and MITgcm units
       scal_sst       =  1. _d 0
       scal_sss       =  1. _d 0
       scal_apressure =  1. _d 0
-#if (defined (ALLOW_BULKFORMULAE) && defined (ALLOW_ATM_TEMP))
-      scal_prc       =  1. _d 0
-#else
       scal_sfl       =  1. _d 0     
-#endif
 
 c     Check for the availability of the right calendar version.
       if ( calendarversion .ne. usescalendarversion ) then
@@ -254,6 +258,11 @@ c     check for consistency
      &        ) then
          stop 'stop in exf_readparms: value of exf_yftype not allowed'
       end if
+
+#ifdef EXF_READ_EVAP
+      call cal_FullDate(  evapstartdate1,    evapstartdate2,
+     &                    evapstartdate,              mythid )
+#endif EXF_READ_EVAP
 
 #ifdef ALLOW_RUNOFF
       call cal_FullDate(  runoffstartdate1,  runoffstartdate2,

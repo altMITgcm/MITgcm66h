@@ -31,11 +31,13 @@ C       |-- AIM_INIT
 C       |
 C       |-- CTRL_MAP_INI
 C       |
-C       |-- COST_INIT
+C       |-- EXF_INIT
+C       |
+C       |-- INI_FORCING
 C       |
 C       |-- ECCO_INIT
 C       |
-C       |-- INI_FORCING
+C       |-- COST_INIT
 
 C     !USES:
       IMPLICIT NONE

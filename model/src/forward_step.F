@@ -74,25 +74,27 @@ C     mythid - thread number for this instance of the routine.
       integer mythid 
       integer myiter
       _RL     mytime
+#ifdef EXACT_CONSERV
       INTEGER bi,bj
+#endif /* EXACT_CONSERV */ 
 
 CEOP
 
 #ifdef ALLOW_AUTODIFF_TAMC
-C--     Reset the model iteration counter and the model time.
-        myiter = nIter0 + (iloop-1)
-        mytime = startTime + float(iloop-1)*deltaTclock
+C--   Reset the model iteration counter and the model time.
+      myiter = nIter0 + (iloop-1)
+      mytime = startTime + float(iloop-1)*deltaTclock
 #endif
 
 #if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_AUTODIFF_MONITOR))
-C       Include call to a dummy routine. Its adjoint will be 
-C       called at the proper place in the adjoint code.
-C       The adjoint routine will print out adjoint values 
-C       if requested. The location of the call is important, 
-C       it has to be after the adjoint of the exchanges 
-C       (DO_GTERM_BLOCKING_EXCHANGES).
-        CALL DUMMY_IN_STEPPING( myTime, myIter, myThid )
-        CALL DO_FIELDS_BLOCKING_EXCHANGES( myThid )
+C     Include call to a dummy routine. Its adjoint will be 
+C     called at the proper place in the adjoint code.
+C     The adjoint routine will print out adjoint values 
+C     if requested. The location of the call is important, 
+C     it has to be after the adjoint of the exchanges 
+C     (DO_GTERM_BLOCKING_EXCHANGES).
+      CALL DUMMY_IN_STEPPING( myTime, myIter, myThid )
+      CALL DO_FIELDS_BLOCKING_EXCHANGES( myThid )
 #endif
 
 #ifdef EXACT_CONSERV
@@ -111,33 +113,31 @@ C--   Update etaH(n+1) :
 
 #ifdef NONLIN_FRSURF
 C--   compute the future surface level thickness
-C      according to etaH(n+1) 
-        IF ( nonlinFreeSurf.GT.0) THEN
-          CALL CALC_SURF_DR(etaH, myTime, myIter, myThid )
-        ENDIF
+C     according to etaH(n+1) 
+      IF ( nonlinFreeSurf.GT.0) THEN
+         CALL CALC_SURF_DR(etaH, myTime, myIter, myThid )
+      ENDIF
 #endif /* NONLIN_FRSURF */
 
-C--     Load forcing/external data fields.
+C--   Load forcing/external data fields.
 #ifdef ALLOW_AUTODIFF_TAMC
 c**************************************
 #include "checkpoint_lev1_directives.h"
 c**************************************
 #endif
 #ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
-C       NOTE, that although the exf package is part of the
-C       distribution, it is not currently maintained, i.e.
-C       exf is disabled by default in genmake.
-        IF ( .not. useSEAICE ) THEN 
-         CALL TIMER_START('EXF_GETFORCING     [FORWARD_STEP]',mythid)
-         CALL EXF_GETFORCING( mytime, myiter, mythid )
-         CALL TIMER_STOP ('EXF_GETFORCING     [FORWARD_STEP]',mythid)
-        ENDIF
+C     NOTE, that although the exf package is part of the
+C     distribution, it is not currently maintained, i.e.
+C     exf is disabled by default in genmake.
+      CALL TIMER_START('EXF_GETFORCING     [FORWARD_STEP]',mythid)
+      CALL EXF_GETFORCING( mytime, myiter, mythid )
+      CALL TIMER_STOP ('EXF_GETFORCING     [FORWARD_STEP]',mythid)
 #else
-        IF ( .not. useSEAICE ) THEN 
-         CALL TIMER_START('EXTERNAL_FIELDS_LOAD[FORWARD_STEP]',mythid)
-         CALL EXTERNAL_FIELDS_LOAD( mytime, myiter, mythid )
-         CALL TIMER_STOP ('EXTERNAL_FIELDS_LOAD[FORWARD_STEP]',mythid)
-        ENDIF
+      IF ( .NOT. useSEAICE ) THEN
+       CALL TIMER_START('EXTERNAL_FIELDS_LOAD[FORWARD_STEP]',mythid)
+       CALL EXTERNAL_FIELDS_LOAD( mytime, myiter, mythid )
+       CALL TIMER_STOP ('EXTERNAL_FIELDS_LOAD[FORWARD_STEP]',mythid)
+      ENDIF
 #endif /* INCLUDE_EXTERNAL_FORCING_PACKAGE */
 
 #ifdef ALLOW_SEAICE
@@ -151,28 +151,28 @@ C     to diagnose surface buoyancy fluxes and for the non-local transport
 C     term.  Because this call precedes model thermodynamics, temperature
 C     under sea-ice may not be "exactly" at the freezing point by the time
 C     theta is dumped or time-averaged.
-        IF ( useSEAICE ) THEN
+      IF ( useSEAICE ) THEN
          CALL TIMER_START('SEAICE_MODEL       [FORWARD_STEP]',myThid)
          CALL SEAICE_MODEL( myTime, myIter, myThid )
          CALL TIMER_STOP ('SEAICE_MODEL       [FORWARD_STEP]',myThid)
-        ENDIF
+      ENDIF
 #endif ALLOW_SEAICE
 
-C--     Step forward fields and calculate time tendency terms.
-        CALL TIMER_START('THERMODYNAMICS      [FORWARD_STEP]',mythid)
-        CALL THERMODYNAMICS( myTime, myIter, myThid )
-        CALL TIMER_STOP ('THERMODYNAMICS      [FORWARD_STEP]',mythid)
+C--   Step forward fields and calculate time tendency terms.
+      CALL TIMER_START('THERMODYNAMICS      [FORWARD_STEP]',mythid)
+      CALL THERMODYNAMICS( myTime, myIter, myThid )
+      CALL TIMER_STOP ('THERMODYNAMICS      [FORWARD_STEP]',mythid)
 
 #ifdef ALLOW_SHAP_FILT
-       IF (useSHAP_FILT .AND. 
+      IF (useSHAP_FILT .AND. 
      &     staggerTimeStep .AND. shap_filt_TrStagg ) THEN
         CALL TIMER_START('SHAP_FILT           [FORWARD_STEP]',myThid)
         CALL SHAP_FILT_APPLY_TS( gT, gS, myTime, myIter, myThid )
         CALL TIMER_STOP ('SHAP_FILT           [FORWARD_STEP]',myThid)
-       ENDIF
+      ENDIF
 #endif
 #ifdef ALLOW_ZONAL_FILT
-       IF (useZONAL_FILT .AND. 
+      IF (useZONAL_FILT .AND. 
      &     staggerTimeStep .AND. zonal_filt_TrStagg ) THEN
         CALL TIMER_START('ZONAL_FILT_APPLY    [FORWARD_STEP]',myThid)
         CALL ZONAL_FILT_APPLY_TS( gT, gS, myThid )
@@ -180,20 +180,20 @@ C--     Step forward fields and calculate time tendency terms.
       ENDIF
 #endif   
 
-C--     Step forward fields and calculate time tendency terms.
-        IF ( momStepping ) THEN
+C--   Step forward fields and calculate time tendency terms.
+      IF ( momStepping ) THEN
         CALL TIMER_START('DYNAMICS            [FORWARD_STEP]',mythid)
         CALL DYNAMICS( myTime, myIter, myThid )
         CALL TIMER_STOP ('DYNAMICS            [FORWARD_STEP]',mythid)
-        ENDIF
+      ENDIF
 
 #ifdef ALLOW_NONHYDROSTATIC
 C--   Step forward W field in N-H algorithm
-        IF ( momStepping .AND. nonHydrostatic ) THEN
-          CALL TIMER_START('CALC_GW          [FORWARD_STEP]',myThid)
-          CALL CALC_GW(myThid)
-          CALL TIMER_STOP ('CALC_GW          [FORWARD_STEP]',myThid)
-        ENDIF
+      IF ( momStepping .AND. nonHydrostatic ) THEN
+         CALL TIMER_START('CALC_GW          [FORWARD_STEP]',myThid)
+         CALL CALC_GW(myThid)
+         CALL TIMER_STOP ('CALC_GW          [FORWARD_STEP]',myThid)
+      ENDIF
 #endif
 
 #ifdef NONLIN_FRSURF

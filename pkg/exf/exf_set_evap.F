@@ -1,19 +1,18 @@
 #include "EXF_CPPOPTIONS.h"
 
-      subroutine exf_set_sflux( mycurrenttime, mycurrentiter, mythid )
+      subroutine exf_set_evap( mycurrenttime, mycurrentiter, mythid )
 
 c     ==================================================================
-c     SUBROUTINE exf_set_sflux
+c     SUBROUTINE exf_set_evap
 c     ==================================================================
 c
-c     o set external forcing sflux
+c     o set external forcing evap
 c
 c     started: Ralf.Giering@FastOpt.de 25-Mai-2000
 c     changed: heimbach@mit.edu 10-Jan-2002
-c              menemenlis@jpl.nasa.gov 20-Dec-2002
 
 c     ==================================================================
-c     SUBROUTINE exf_set_sflux
+c     SUBROUTINE exf_set_evap
 c     ==================================================================
 
       implicit none
@@ -34,8 +33,7 @@ c     == routine arguments ==
       integer mycurrentiter
       integer mythid
 
-#ifndef ALLOW_ATM_TEMP
-
+#ifdef EXF_READ_EVAP
 c     == local variables ==
 
       logical first, changed
@@ -47,37 +45,37 @@ c     == local variables ==
 
 c     == end of interface ==
 
-c     get record numbers and interpolation factor for sflux
+c     get record numbers and interpolation factor for evap
       call exf_GetFFieldRec(
-     I                       sfluxstartdate, sfluxperiod
+     I                       evapstartdate, evapperiod
      O                     , fac, first, changed
      O                     , count0, count1
      I                     , mycurrenttime, mycurrentiter, mythid
      &                     )
 
       if ( first ) then
-        if ( sfluxfile .NE. ' ' )
-     &        call mdsreadfield( sfluxfile, exf_iprec, exf_yftype, 1
-     &                   , sflux1, count0, mythid
+        if ( evapfile .NE. ' ' )
+     &        call mdsreadfield( evapfile, exf_iprec, exf_yftype, 1
+     &                   , evap1, count0, mythid
      &                   )
         if (exf_yftype .eq. 'RL') then
-           call exf_filter_rl( sflux1, sfluxmask, mythid )
+           call exf_filter_rl( evap1, evapmask, mythid )
         else
-           call exf_filter_rs( sflux1, sfluxmask, mythid )
+           call exf_filter_rs( evap1, evapmask, mythid )
         end if
       endif
 
       if (( first ) .or. ( changed )) then
-        call exf_SwapFFields( sflux0, sflux1, mythid )
+        call exf_SwapFFields( evap0, evap1, mythid )
 
-        if ( sfluxfile .NE. ' ' )
-     &       call mdsreadfield( sfluxfile, exf_iprec, exf_yftype, 1
-     &                   , sflux1, count1, mythid
+        if ( evapfile .NE. ' ' )
+     &       call mdsreadfield( evapfile, exf_iprec, exf_yftype, 1
+     &                   , evap1, count1, mythid
      &                   )
         if (exf_yftype .eq. 'RL') then
-           call exf_filter_rl( sflux1, sfluxmask, mythid )
+           call exf_filter_rl( evap1, evapmask, mythid )
         else
-           call exf_filter_rs( sflux1, sfluxmask, mythid )
+           call exf_filter_rs( evap1, evapmask, mythid )
         end if
       endif
 
@@ -89,24 +87,24 @@ c     Loop over tiles.
 
 c             Interpolate linearly onto the current time.
 
-              sflux(i,j,bi,bj) = fac          *sflux0(i,j,bi,bj)+
-     &                          (exf_one - fac) *sflux1(i,j,bi,bj)
+              evap(i,j,bi,bj) = fac          *evap0(i,j,bi,bj)+
+     &                          (exf_one - fac) *evap1(i,j,bi,bj)
 
             enddo
           enddo
         enddo
       enddo
 
-#endif ALLOW_ATM_TEMP
+#endif EXF_READ_EVAP
 
       end
 
 
 
-      subroutine exf_init_sflux( mythid )
+      subroutine exf_init_evap( mythid )
 
 c     ==================================================================
-c     SUBROUTINE exf_init_sflux
+c     SUBROUTINE exf_init_evap
 c     ==================================================================
 c
 c     o 
@@ -115,7 +113,7 @@ c     started: Ralf.Giering@FastOpt.de 25-Mai-2000
 c     changed: heimbach@mit.edu 10-Jan-2002
 c
 c     ==================================================================
-c     SUBROUTINE exf_init_sflux
+c     SUBROUTINE exf_init_evap
 c     ==================================================================
 
       implicit none
@@ -132,7 +130,7 @@ c     == routine arguments ==
 
       integer mythid
 
-#ifndef ALLOW_ATM_TEMP
+#ifdef EXF_READ_EVAP
 c     == local variables ==
 
       integer bi, bj
@@ -144,14 +142,14 @@ c     == end of interface ==
         do bi = mybxlo(mythid), mybxhi(mythid)
           do j = 1, sny
             do i = 1, snx
-              sflux(i,j,bi,bj)  = 0. _d 0
-              sflux0(i,j,bi,bj) = 0. _d 0
-              sflux1(i,j,bi,bj) = 0. _d 0
+              evap(i,j,bi,bj)  = 0. _d 0
+              evap0(i,j,bi,bj) = 0. _d 0
+              evap1(i,j,bi,bj) = 0. _d 0
             enddo
           enddo
         enddo
       enddo
 
-#endif
+#endif EXF_READ_EVAP
 
       end

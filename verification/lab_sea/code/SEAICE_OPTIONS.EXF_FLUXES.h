@@ -29,13 +29,13 @@ C     SEAICE_EXTERNAL_FORCING is defined, the above forcing variables
 C     are defined and provided by an external package.  At present this
 C     option is hardwired for pkg/exf and the variables are passed using
 C     include file exf_fields.h.
-#undef SEAICE_EXTERNAL_FORCING
+#define SEAICE_EXTERNAL_FORCING
 
 C--   By default, the sea-ice package uses its own integrated bulk
 C     formulae to compute fluxes (fu, fv, EmPmR, Qnet, and Qsw) over
 C     open-ocean.  When this flag is set, these variables are computed
 C     in a separate external package, for example, pkg/exf, and then
 C     modified for sea-ice effects by pkg/seaice.
-#undef SEAICE_EXTERNAL_FLUXES
+#define SEAICE_EXTERNAL_FLUXES
 
 #endif ALLOW_SEAICE

@@ -219,6 +219,7 @@ C/\  | | | |                    :: Simple interpolcation between end-points
 C/\  | | | |                    :: for forcing datasets.
 C/\  | | | |                  
 C/\  | | | |-EXCH :: Sync forcing. in overlap regions.
+C/\  | | |-SEAICE_MODEL   :: Compute sea-ice terms. ( pkg/seaice )
 C/\  | | |
 C/\  | | |-THERMODYNAMICS :: theta, salt + tracer equations driver.
 C/\  | | | |
@@ -453,8 +454,6 @@ C           impose additional synchronisation points when they are
 C           updated.
 C     myCurrentTime - Time counter for this thread
 C     myCurrentIter - Iteration counter for this thread
-      INTEGER I
-      INTEGER bi,bj
       INTEGER myCurrentIter
       _RL     myCurrentTime
 CEOP
