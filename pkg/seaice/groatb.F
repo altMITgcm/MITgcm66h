@@ -18,9 +18,13 @@ C     === Global variables ===
 #include "DYNVARS.h"
 #include "FFIELDS.h"
 #include "SEAICE.h"
-#include "SEAICE_PARAMS.h"
 #include "SEAICE_FFIELDS.h"
- 
+       COMMON /SEAICE_BOUND_RL/
+     &    MAX_HEFF, MIN_ATEMP, MIN_LWDOWN, MAX_TICE, MIN_TICE,
+     &    SEAICE_EPS, SEAICE_EPS_SQ
+      _RL SEAICE_EPS, SEAICE_EPS_SQ
+      _RL MAX_HEFF, MIN_ATEMP, MIN_LWDOWN, MAX_TICE, MIN_TICE
+
 C     === Routine arguments ===
 C     myThid - Thread no. that called this routine.
       _RL A22
