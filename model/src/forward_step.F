@@ -45,10 +45,19 @@ C     == Global variables ==
 #endif
 
 #ifdef ALLOW_AUTODIFF_TAMC
-#include "tamc.h"
-#include "ctrl.h"
-#include "ctrl_dummy.h"
-#include "cost.h"
+# include "tamc.h"
+# include "ctrl.h"
+# include "ctrl_dummy.h"
+# include "cost.h"
+# ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
+#  include "exf_fields.h"
+#  ifdef ALLOW_BULKFORMULAE
+#   include "exf_constants.h"
+#  endif
+# endif
+# ifdef ALLOW_OBCS
+#  include "OBCS.h"
+# endif
 #endif
 
 C     !LOCAL VARIABLES:
@@ -93,10 +102,10 @@ C--   Update etaH(n+1) :
         DO bj=myByLo(myThid),myByHi(myThid)
          DO bi=myBxLo(myThid),myBxHi(myThid)
            CALL CALC_EXACT_ETA( .FALSE., bi,bj, uVel,vVel,
-     I                          startTime, nIter0, myThid )
+     I                          myTime, myIter, myThid )
          ENDDO
         ENDDO
-        IF (implicDiv2Dflow .NE. 1. _d 0 )
+        IF (implicDiv2Dflow .NE. 1. _d 0 .OR. useOBCS )
      &     _EXCH_XY_R8(etaH, myThid )
       ENDIF
 #endif /* EXACT_CONSERV */ 
@@ -114,8 +123,10 @@ C--     Load forcing/external data fields.
 C       NOTE, that although the exf package is part of the
 C       distribution, it is not currently maintained, i.e.
 C       exf is disabled by default in genmake.
-#ifdef ALLOW_BULKFORMULAE
-CADJ STORE theta     = comlev1, key = ikey_dynamics
+#ifdef ALLOW_AUTODIFF_TAMC
+c**************************************
+#include "checkpoint_lev1_directives.h"
+c**************************************
 #endif
         CALL EXF_GETFORCING( mytime, myiter, mythid )
 #else
@@ -206,7 +217,7 @@ C     Two-dimensional only for conventional hydrostatic or
 C     three-dimensional for non-hydrostatic and/or IGW scheme.
       IF ( momStepping ) THEN
       CALL TIMER_START('SOLVE_FOR_PRESSURE  [THE_MAIN_LOOP]',myThid)
-      CALL SOLVE_FOR_PRESSURE( myThid )
+      CALL SOLVE_FOR_PRESSURE(myTime, myIter, myThid)
       CALL TIMER_STOP ('SOLVE_FOR_PRESSURE  [THE_MAIN_LOOP]',myThid)
       ENDIF
 

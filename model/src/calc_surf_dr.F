@@ -50,7 +50,7 @@ C     i,j,k,bi,bj  :: loop counter
 C     rSurftmp     :: free surface r-position that is used to compute hFac_surf
 C     adjust_nb_pt :: Nb of grid points where rSurf is adjusted (hFactInf)
 C     adjust_volum :: adjustment effect on the volume (domain size)
-      INTEGER i,j,k,bi,bj
+      INTEGER i,j,bi,bj
       INTEGER ks
       _RL hFacInfMOM, Rmin_tmp, hFactmp, adjust_nb_pt, adjust_volum
       _RL rSurftmp(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
@@ -60,7 +60,7 @@ CEOP
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
-      IF (myIter.EQ.nIter0) THEN
+      IF (myIter.EQ.-1) THEN
 
        hFacInfMOM = hFacInf
 
@@ -73,6 +73,7 @@ C-- Initialise arrays :
            hFac_surfC(i,j,bi,bj) = 0.
            hFac_surfW(i,j,bi,bj) = 0.
            hFac_surfS(i,j,bi,bj) = 0.
+           PmEpR(i,j,bi,bj) = 0.
            Rmin_surf(i,j,bi,bj) = Ro_surf(i,j,bi,bj)
           ENDDO
          ENDDO
@@ -231,6 +232,9 @@ C-- Global diagnostic :
 
       _EXCH_XY_R4(hFac_surfC, myThid ) 
       CALL EXCH_UV_XY_RS(hFac_surfW,hFac_surfS,.FALSE.,myThid)
+
+      IF (useRealFreshWaterFlux .AND. myTime.EQ.startTime)
+     & _EXCH_XY_R4( PmEpR, myThid )
 
 C-----
 C Note: testing ksurfW,S is equivalent to a full height mask 

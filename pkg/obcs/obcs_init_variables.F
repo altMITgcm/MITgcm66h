@@ -63,6 +63,17 @@ C     == Local variables ==
          ENDDO
         ENDDO
 
+#ifdef NONLIN_FRSURF
+        DO I=1-Olx,sNx+Olx
+          OBNeta(I,bi,bj)=0.
+          OBSeta(I,bi,bj)=0.
+        ENDDO
+        DO J=1-Oly,sNy+Oly
+          OBEeta(J,bi,bj)=0.
+          OBWeta(J,bi,bj)=0.
+        ENDDO
+#endif /* NONLIN_FRSURF */
+
 #ifdef ALLOW_ORLANSKI
         IF (useOrlanskiNorth.OR.useOrlanskiSouth.OR.
      &      useOrlanskiEast.OR.useOrlanskiWest) THEN
@@ -76,7 +87,7 @@ C     == Local variables ==
 C--   Apply OBCS values to initial conditions for consistancy
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
-        CALL OBCS_CALC( bi, bj, startTime,
+        CALL OBCS_CALC( bi, bj, startTime, nIter0,
      &        uVel, vVel, wVel, theta, salt, myThid )
         DO K=1,Nr
          CALL OBCS_APPLY_UV( bi, bj, k, uVel, vVel, myThid )

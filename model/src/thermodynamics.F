@@ -339,7 +339,7 @@ CADJ STORE wvel (:,:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
 #ifdef  ALLOW_OBCS
 C--     Calculate future values on open boundaries
         IF (useOBCS) THEN
-          CALL OBCS_CALC( bi, bj, myTime+deltaT,
+          CALL OBCS_CALC( bi, bj, myTime+deltaT, myIter+1,
      I            uVel, vVel, wVel, theta, salt,
      I            myThid )
         ENDIF

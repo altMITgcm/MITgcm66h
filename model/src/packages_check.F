@@ -60,6 +60,14 @@ CEOP
       IF (useAIM) CALL PACKAGES_CHECK_ERROR('AIM', myThid)
 #endif
 
+#ifndef ALLOW_SHAP_FILT
+      IF (useSHAP_FILT) CALL PACKAGES_CHECK_ERROR('SHAP_FILT', myThid)
+#endif
+
+#ifndef ALLOW_ZONAL_FILT
+      IF (useZONAL_FILT) CALL PACKAGES_CHECK_ERROR('ZONAL_FILT',myThid)
+#endif
+
 #ifndef ALLOW_FLT
       IF (useFLT) CALL PACKAGES_CHECK_ERROR('FLT', myThid)
 #endif

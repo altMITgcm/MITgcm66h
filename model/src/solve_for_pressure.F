@@ -6,7 +6,7 @@ C $Name$
 CBOP
 C     !ROUTINE: SOLVE_FOR_PRESSURE
 C     !INTERFACE:
-      SUBROUTINE SOLVE_FOR_PRESSURE( myThid )
+      SUBROUTINE SOLVE_FOR_PRESSURE(myTime, myIter, myThid)
 
 C     !DESCRIPTION: \bv
 C     *==========================================================*
@@ -25,6 +25,7 @@ C     == Global variables
 #include "DYNVARS.h"
 #include "GRID.h"
 #include "SURFACE.h"
+#include "FFIELDS.h"
 #ifdef ALLOW_NONHYDROSTATIC
 #include "SOLVE_FOR_PRESSURE3D.h"
 #include "GW.h"
@@ -36,7 +37,11 @@ C     == Global variables
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
-C     myThid - Number of this instance of SOLVE_FOR_PRESSURE
+C     myTime - Current time in simulation
+C     myIter - Current iteration number in simulation
+C     myThid - Thread number for this instance of SOLVE_FOR_PRESSURE
+      _RL myTime
+      INTEGER myIter
       INTEGER myThid
 
 C     !LOCAL VARIABLES:
@@ -45,6 +50,7 @@ C     == Local variables ==
       _RS uf(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RS vf(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RL firstResidual,lastResidual
+      _RL tmpFac
       INTEGER numIters
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 CEOP
@@ -59,12 +65,18 @@ C--   Save previous solution & Initialise Vector solution and source term :
 #endif
           cg2d_x(i,j,bi,bj) = Bo_surf(i,j,bi,bj)*etaN(i,j,bi,bj)
           cg2d_b(i,j,bi,bj) = 0.
-#ifdef USE_NATURAL_BCS
-     &     + freeSurfFac*_rA(i,j,bi,bj)*
-     &       EmPmR(I,J,bi,bj)/deltaTMom
-#endif
          ENDDO
         ENDDO
+        IF (useRealFreshWaterFlux) THEN
+         tmpFac = freeSurfFac
+         IF (exactConserv) tmpFac = freeSurfFac*implicDiv2DFlow
+         DO j=1,sNy
+          DO i=1,sNx
+           cg2d_b(i,j,bi,bj) = 
+     &       tmpFac*_rA(i,j,bi,bj)*EmPmR(i,j,bi,bj)/deltaTMom
+          ENDDO
+         ENDDO
+        ENDIF
        ENDDO
       ENDDO
 
@@ -92,21 +104,23 @@ C--   Add source term arising from w=d/dt (p_s + p_nh)
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
 #ifdef ALLOW_NONHYDROSTATIC
-        DO j=1,sNy
-         DO i=1,sNx
-          cg2d_b(i,j,bi,bj) = cg2d_b(i,j,bi,bj)
-     &      -freeSurfFac*_rA(i,j,bi,bj)/deltaTMom/deltaTMom
-     &        *( etaN(i,j,bi,bj)
-     &          +phi_nh(i,j,1,bi,bj)*horiVertRatio/gravity )
-          cg3d_b(i,j,1,bi,bj) = cg3d_b(i,j,1,bi,bj)
-     &      -freeSurfFac*_rA(i,j,bi,bj)/deltaTMom/deltaTMom
-     &        *( etaN(i,j,bi,bj)
-     &          +phi_nh(i,j,1,bi,bj)*horiVertRatio/gravity )
+        IF ( nonHydrostatic ) THEN
+         DO j=1,sNy
+          DO i=1,sNx
+           cg2d_b(i,j,bi,bj) = cg2d_b(i,j,bi,bj)
+     &       -freeSurfFac*_rA(i,j,bi,bj)/deltaTMom/deltaTMom
+     &         *( etaN(i,j,bi,bj)
+     &           +phi_nh(i,j,1,bi,bj)*horiVertRatio/gravity )
+           cg3d_b(i,j,1,bi,bj) = cg3d_b(i,j,1,bi,bj)
+     &       -freeSurfFac*_rA(i,j,bi,bj)/deltaTMom/deltaTMom
+     &         *( etaN(i,j,bi,bj)
+     &           +phi_nh(i,j,1,bi,bj)*horiVertRatio/gravity )
+          ENDDO
          ENDDO
-        ENDDO
+        ELSEIF ( exactConserv ) THEN
 #else
         IF ( exactConserv ) THEN
-c       IF (nonlinFreeSurf.GT.0) THEN
+#endif
          DO j=1,sNy
           DO i=1,sNx
            cg2d_b(i,j,bi,bj) = cg2d_b(i,j,bi,bj)
@@ -123,7 +137,6 @@ c       IF (nonlinFreeSurf.GT.0) THEN
           ENDDO
          ENDDO
         ENDIF
-#endif
 
 #ifdef ALLOW_OBCS
         IF (useOBCS) THEN

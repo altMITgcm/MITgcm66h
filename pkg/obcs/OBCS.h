@@ -15,14 +15,14 @@ C For a northern/southern OB, the OB V point is to the south/north.
 C For an eastern/western OB, the OB U point is to the west/east.
 C eg.
 C     OB_Jnorth(3)=34  means that:
-C          T( 3 ,34) is a an OB point
-C          U(3:4,34) is a an OB point
-C          V( 4 ,34) is a an OB point
+C          T(3,34) is a an OB point
+C          U(3,34) is a an OB point
+C          V(3,34) is a an OB point
 C while
 C     OB_Jsouth(3)=1  means that:
-C          T( 3 ,1) is a an OB point
-C          U(3:4,1) is a an OB point
-C          V( 4 ,2) is a an OB point
+C          T(3,1) is a an OB point
+C          U(3,1) is a an OB point
+C          V(3,2) is a an OB point
 C
 C For convenience, negative values for Jnorth/Ieast refer to
 C points relative to the Northern/Eastern edges of the model
@@ -97,5 +97,19 @@ C
       _RS OBEw (1-Oly:sNy+Oly,Nr,nSx,nSy)
       _RS OBWw (1-Oly:sNy+Oly,Nr,nSx,nSy)
 #endif /* ALLOW_NONHYDROSTATIC */
+
+#ifdef NONLIN_FRSURF
+      COMMON /GRID_OB_NLFS/ 
+     &  OBNhfac0,OBShfac0,OBEhfac0,OBWhfac0,
+     &  OBNeta,  OBSeta,  OBEeta,  OBWeta
+      _RS OBNhfac0(1-Olx:sNx+Olx,nSx,nSy)
+      _RS OBShfac0(1-Olx:sNx+Olx,nSx,nSy)
+      _RS OBEhfac0(1-Oly:sNy+Oly,nSx,nSy)
+      _RS OBWhfac0(1-Oly:sNy+Oly,nSx,nSy)
+      _RS OBNeta (1-Olx:sNx+Olx,nSx,nSy)
+      _RS OBSeta (1-Olx:sNx+Olx,nSx,nSy)
+      _RS OBEeta (1-Oly:sNy+Oly,nSx,nSy)
+      _RS OBWeta (1-Oly:sNy+Oly,nSx,nSy)
+#endif /* NONLIN_FRSURF */
 
 #endif /* ALLOW_OBCS */

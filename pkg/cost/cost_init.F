@@ -3,9 +3,7 @@ C $Header$
 #include "COST_CPPOPTIONS.h"
 
 
-      subroutine cost_init(
-     I                           mythid
-     &                         )
+      subroutine cost_init( mythid )
 
 c     ==================================================================
 c     SUBROUTINE cost_init
@@ -39,6 +37,7 @@ c     == routine arguments ==
 
 c     == local variables ==
 
+      integer i,j,k
       integer bi,bj
       integer itlo,ithi
       integer jtlo,jthi
@@ -67,6 +66,11 @@ c--   Initialize the tiled cost function contributions.
           objf_ctds(bi,bj) = 0. _d 0
           objf_test(bi,bj) = 0. _d 0
           objf_tracer(bi,bj) = 0. _d 0
+#ifdef ALLOW_COST_VECTOR
+          do i=1,sNx
+            objf_vector(i,bi,bj) = 0. _d 0
+          end do
+#endif
         enddo
       enddo
 

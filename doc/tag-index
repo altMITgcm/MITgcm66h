@@ -2,9 +2,50 @@ $Header$
 
     Notes on tags used in MITgcmUV
     ==============================
-next checkpoint
-o apply Shapiro filter on T&S before calc_PhiHyd (stagger time stepping)
+
+release1_chkpt44d_post = chkpt44d_post
+
+chkpt44d_pre,post
+o added missing EXCLUDE_MONITOR flags
+o changed "e" to "_d" in gmredi_slope_limit, gmredi_slope_psi
+  (incompatible typ in MIN/MAX expressions caused problems
+  on IBM SP3)
+o in genmake added variable MAKEDEPEND
+  plus resetting for case SunOS
+o added timer_stats.c routine for IBM SP3
+o removed variables in dynamics
+!!! I forgot to create tag chkpt44d_pre !!!
+!!! But chkpt44d_pre = chkpt44c_post    !!!
+
+o real fresh water flux implemented with non-linear free-surface. 
+
+chkpt44c_pre,post
+o few fix (mask in shap_s2, EmPmR in external_field_load, 
+  USE_NATURAL_BCS in solve_for_P); 
+o add arguments myIter & myTime to S/R obcs_calc & solve_for_P
+
+checkpoint44b_pre/_post
+o merge of relevant stuff from the ecco-branch:
+  - genmake: removed $S64 overwrite for case SunOS
+  - pkg/exf: update and corrections for field swapping and obcs
+  - pkg/ecco: parameter lists for the_model_main, the_main_loop
+              harmonized between ECCO and MITgcm
+  - pkg/autodiff: added flow directives for obcs, mdsio_gl_slice
+                  updated checkpointing_lev... lists for obcs
+  - model/src: minor changes in forward_step, plot_field
+               added directive for divided adjoint in the_main_loop
+  - pkg/mdsio: added mdsio_gl_slice
+
+o check parameters & config (chkpt44a_pre,post)
+o OBC and NonLin_FrSurf.
+
+checkpoint44
 o fix bug in mom_vi_del2uv
+o select when filters are applied ; add options to zonal_filter (data.zonfilt)
+o gmredi: fix Pb in the adiabatic form ; add options (.e.g. Bolus advection)
+o update AIM experiments (NCEP input files)
+o improve and extend diagnostics (Monitor, TimeAve with NonLin-FrSurf)
+o added some stuff for AD
 
 checkpoint43
 o added two new advection tests
