@@ -24,6 +24,6 @@ C     \==========================================================/
 #define  _rhFacW(i,j,k,bi,bj) rhFacW(i,j,1,bi,bj)
 #endif
 
-#ifndef _hFacW
-#define  _hFacW(i,j,k,bi,bj) hFacW(i,j,k,bi,bj)
+#ifndef _rhFacW
+#define  _rhFacW(i,j,k,bi,bj) rhFacW(i,j,k,bi,bj)
 #endif
