@@ -82,7 +82,7 @@ C                        LINEAR, POLY3, UNESCO, JMD95Z, JMD95P, MDJWF, IDEALGAS
      &                EmPmRfile, surfQfile, surfQswfile,
      &                uVelInitFile, vVelInitFile, pSurfInitFile,
      &                dQdTfile, ploadFile,
-     &                eosType
+     &                eosType, pickupSuff
       CHARACTER*(5) checkPtSuff(maxNoChkptLev)
       CHARACTER*(MAX_LEN_FNAM) bathyFile, topoFile
       CHARACTER*(MAX_LEN_FNAM) hydrogThetaFile
@@ -101,6 +101,7 @@ C                        LINEAR, POLY3, UNESCO, JMD95Z, JMD95P, MDJWF, IDEALGAS
       CHARACTER*(MAX_LEN_FNAM) dQdTfile
       CHARACTER*(MAX_LEN_FNAM) ploadFile
       CHARACTER*(6) eosType
+      CHARACTER*(10) pickupSuff
 
 C--   COMMON /PARM_I/ Integer valued parameters used by the model.
 C     cg2dMaxIters        :: Maximum number of iterations in the
@@ -198,6 +199,7 @@ C     tr1Stepping   :: Turns passive tracer 1 time-stepping on/off
 C     useConstantF  :: Coriolis parameter set to f0
 C     useBetaPlaneF :: Coriolis parameter set to f0 + beta.y
 C     useSphereF    :: Coriolis parameter set to 2.omega.sin(phi)
+C     useCDscheme   :: use CD-scheme to calculate Coriolis terms.
 C     useJamartWetPoints :: Use wet-point method for Coriolis (Jamart and Ozer, 1986)
 C     implicitDiffusion :: Turns implicit vertical diffusion on
 C     implicitViscosity :: Turns implicit vertical viscosity on
@@ -238,6 +240,7 @@ C     groundAtK1  :: put the surface(k=1) at the Lower Boundary (=ground)
      & momStepping, tempStepping, saltStepping, tr1Stepping,
      & metricTerms, usingSphericalPolarMTerms, useNHMTerms,
      & useConstantF, useBetaPlaneF, useSphereF,
+     & useCDscheme,
      & useEnergyConservingCoriolis, useJamartWetPoints,
      & implicitDiffusion, implicitViscosity,
      & multiDimAdvection, forcing_In_AB,
@@ -281,6 +284,7 @@ C     groundAtK1  :: put the surface(k=1) at the Lower Boundary (=ground)
       LOGICAL useConstantF
       LOGICAL useBetaPlaneF
       LOGICAL useSphereF
+      LOGICAL useCDscheme
       LOGICAL useEnergyConservingCoriolis
       LOGICAL useJamartWetPoints
       LOGICAL implicitDiffusion
@@ -350,6 +354,7 @@ C     f0        :: Reference coriolis parameter ( 1/s )
 C                 ( Southern edge f for beta plane )
 C     beta      :: df/dy ( s^-1.m^-1 )
 C     omega     :: Angular velocity ( rad/s )
+C     rotationPeriod :: Rotation period (s) (= 2.pi/omega)
 C     viscAh    :: Eddy viscosity coeff. for mixing of
 C                 momentum laterally ( m^2/s )
 C     viscAz    :: Eddy viscosity coeff. for mixing of
@@ -468,7 +473,7 @@ C      --"-"--  Quadratic  ( linear: 1/s, quadratic: 1/m )
      & endTime, chkPtFreq, pchkPtFreq, dumpFreq,
      & diagFreq, taveFreq, tave_lastIter, monitorFreq,
      & afFacMom, vfFacMom, pfFacMom, cfFacMom, foFacMom, mtFacMom,
-     & cosPower, cAdjFreq, omega, 
+     & cosPower, cAdjFreq, omega, rotationPeriod,
      & tauThetaClimRelax, lambdaThetaClimRelax,
      & tauSaltClimRelax, lambdaSaltClimRelax,
      & tauTr1ClimRelax, lambdaTr1ClimRelax,
@@ -562,6 +567,7 @@ C      --"-"--  Quadratic  ( linear: 1/s, quadratic: 1/m )
       _RL cosPower
       _RL cAdjFreq
       _RL omega
+      _RL rotationPeriod
       _RL tauThetaClimRelax
       _RL lambdaThetaClimRelax
       _RL tauSaltClimRelax
@@ -581,13 +587,13 @@ C      --"-"--  Quadratic  ( linear: 1/s, quadratic: 1/m )
       _RL bottomDragLinear
       _RL bottomDragQuadratic
 
-      COMMON /PARM_A/ HeatCapacity_Cp,recip_Cp,
-     &                Lamba_theta
+C--   COMMON /PARM_A/ Thermodynamics constants ?
+      COMMON /PARM_A/ HeatCapacity_Cp,recip_Cp
       _RL HeatCapacity_Cp
-      _RL Lamba_theta
       _RL recip_Cp
 
-C Atmospheric physical parameters (Ideal Gas EOS, ...)
+C--   COMMON /PARM_ATM/ Atmospheric physical parameters (Ideal Gas EOS, ...)
+C     celsius2K :: convert centigrade (Celsius) degree to Kelvin
 C     atm_Po    :: standard reference pressure
 C     atm_Cp    :: specific heat (Cp) of the (dry) air at constant pressure
 C     atm_Rd    :: gas constant for dry air
@@ -596,8 +602,11 @@ C     integr_GeoPot :: option to select the way we integrate the geopotential
 C                     (still a subject of discussions ...) 
 C     selectFindRoSurf :: select the way surf. ref. pressure (=Ro_surf) is
 C             derived from the orography. Implemented: 0,1 (see INI_P_GROUND)
-      COMMON /PARM_ATM/ atm_Cp, atm_Rd, atm_kappa, atm_Po,
-     &                  integr_GeoPot, selectFindRoSurf
+      COMMON /PARM_ATM/ 
+     &            celsius2K,
+     &            atm_Cp, atm_Rd, atm_kappa, atm_Po,
+     &            integr_GeoPot, selectFindRoSurf
+      _RL celsius2K
       _RL atm_Po, atm_Cp, atm_Rd, atm_kappa 
       INTEGER integr_GeoPot, selectFindRoSurf
 
@@ -606,6 +615,7 @@ C Logical flags for selecting packages
       LOGICAL useGMRedi
       LOGICAL useOBCS
       LOGICAL useAIM
+      LOGICAL useLand
       LOGICAL useGrdchk
       LOGICAL useECCO
       LOGICAL useSHAP_FILT
@@ -619,7 +629,7 @@ cswdblk -- add ---
       LOGICAL useThermSEAICE
 cswdblk --- end add ---
       COMMON /PARM_PACKAGES/
-     &        useKPP, useGMRedi, useOBCS, useAIM, useECCO, 
+     &        useKPP, useGMRedi, useOBCS, useAIM, useLand, useECCO, 
      &        useSHAP_FILT, useZONAL_FILT, useGrdchk, useFLT,
      &        usePTRACERS,  useSBO, useSEAICE, 
 cswdblk -- add ---

@@ -352,14 +352,17 @@ C Western boundary
      I           myThid )
       _EXCH_XYZ_R8(phi_nh, myThid )
 
-      _BEGIN_MASTER( myThid )
-      WRITE(msgBuf,'(A34,1PE24.14)') 'cg3d_init_res =',firstResidual
-      CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A34,I6)') 'cg3d_iters =',numIters
-      CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      WRITE(msgBuf,'(A34,1PE24.14)') 'cg3d_res =',lastResidual
-      CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      _END_MASTER( )
+      IF ( DIFFERENT_MULTIPLE(monitorFreq,myTime,
+     &                                    myTime-deltaTClock) ) THEN
+       _BEGIN_MASTER( myThid )
+       WRITE(msgBuf,'(A34,1PE24.14)') 'cg3d_init_res =',firstResidual
+       CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+       WRITE(msgBuf,'(A34,I6)') 'cg3d_iters =',numIters
+       CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+       WRITE(msgBuf,'(A34,1PE24.14)') 'cg3d_res =',lastResidual
+       CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+       _END_MASTER( )
+      ENDIF
 
       ENDIF
 #endif

@@ -44,7 +44,7 @@ C       |-- INI_AUTODIFF
 C       |
 C       |-- PACKAGES_INIT_VARIABLES
 C       |
-C       |-- THE_CORRECTION_STEP
+C       |-- THE_CORRECTION_STEP (if restart from old pickup files)
 C       |
 C       |-- CALL CONVECTIVE_ADJUSTMENT_INI
 C       |

@@ -39,8 +39,6 @@ C       |-- ZONAL_FILT_READPARMS
 C       |
 C       |-- OBCS_READPARMS
 C       |
-C       |-- AIM_INITIALISE
-C       |
 C       |-- COST_READPARMS
 C       |
 C       |-- CTRL_INIT
@@ -114,14 +112,9 @@ cswdice --- end add ---
       IF (usePTRACERS) CALL PTRACERS_READPARMS( myThid )
 #endif
 
-#ifdef ALLOW_AIM
-C--   Initialise & Read AIM physical parameters
-      IF (useAIM) CALL AIM_INITIALISE( myThid )
-#endif
-
 #if (defined (ALLOW_ADJOINT_RUN) || \
      defined (ALLOW_TANGENTLINEAR_RUN) || \
-     defined (ALLOW_ECCO_OPTIMIZATION)) 
+     defined (ALLOW_ECCO_OPTIMIZATION))
 C--   Initialise the optim. parameters.
       call optim_readparms( myThid )
 C--   Initialise the control parameters

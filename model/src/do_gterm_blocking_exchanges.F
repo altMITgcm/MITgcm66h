@@ -44,11 +44,6 @@ c     _EXCH_XYZ_R8( vVel , myThid )
 c     _EXCH_XYZ_R8( theta , myThid )
 c     _EXCH_XYZ_R8( salt , myThid )
 
-#ifdef INCLUDE_CD_CODE
-      _EXCH_XYZ_R8( guCD , myThid )
-      _EXCH_XYZ_R8( gvCD , myThid )
-#endif
-
 #ifdef ALLOW_PTRACERS
       CALL PTRACERS_GTERM_BLOCKING_EXCHANGES(myThid)
 #endif /* ALLOW PTRACERS */

@@ -127,6 +127,7 @@ C     phiSurfX, - gradient of Surface potentiel (Pressure/rho, ocean)
 C     phiSurfY             or geopotentiel (atmos) in X and Y direction
 C     KappaRT,       - Total diffusion in vertical for T and S.
 C     KappaRS          (background + spatially varying, isopycnal term).
+C     useVariableK   = T when vertical diffusion is not constant
 C     iMin, iMax     - Ranges and sub-block indices on which calculations
 C     jMin, jMax       are applied.
 C     bi, bj
@@ -153,6 +154,7 @@ C                      index into fVerTerm.
       _RL sigmaR  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
 C     This is currently used by IVDC and Diagnostics
       _RL ConvectCount (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
+      LOGICAL useVariableK
       INTEGER iMin, iMax
       INTEGER jMin, jMax
       INTEGER bi, bj
@@ -160,30 +162,16 @@ C     This is currently used by IVDC and Diagnostics
       INTEGER k, km1, kup, kDown
 
 CEOP
+
+#ifndef DISABLE_DEBUGMODE
+         IF (debugMode) CALL DEBUG_ENTER('FORWARD_STEP',myThid)
+#endif
  
 #ifdef ALLOW_AUTODIFF_TAMC
 C--   dummy statement to end declaration part
       ikey = 1
       itdkey = 1
 #endif /* ALLOW_AUTODIFF_TAMC */
-
-C--   Set up work arrays with valid (i.e. not NaN) values
-C     These inital values do not alter the numerical results. They
-C     just ensure that all memory references are to valid floating
-C     point numbers. This prevents spurious hardware signals due to
-C     uninitialised but inert locations.
-      DO j=1-OLy,sNy+OLy
-       DO i=1-OLx,sNx+OLx
-        xA(i,j)      = 0. _d 0
-        yA(i,j)      = 0. _d 0
-        uTrans(i,j)  = 0. _d 0
-        vTrans(i,j)  = 0. _d 0
-        rhok   (i,j) = 0. _d 0
-        phiSurfX(i,j) = 0. _d 0
-        phiSurfY(i,j) = 0. _d 0
-       ENDDO
-      ENDDO
-
 
 #ifdef ALLOW_AUTODIFF_TAMC
 C--   HPF directive to help TAMC
@@ -215,9 +203,22 @@ CHPF$&                  )
      &                      + act4*max1*max2*max3
 #endif /* ALLOW_AUTODIFF_TAMC */
 
-C--     Set up work arrays that need valid initial values
+C--   Set up work arrays with valid (i.e. not NaN) values
+C     These inital values do not alter the numerical results. They
+C     just ensure that all memory references are to valid floating
+C     point numbers. This prevents spurious hardware signals due to
+C     uninitialised but inert locations.
+
         DO j=1-OLy,sNy+OLy
          DO i=1-OLx,sNx+OLx
+          xA(i,j)        = 0. _d 0
+          yA(i,j)        = 0. _d 0
+          uTrans(i,j)    = 0. _d 0
+          vTrans(i,j)    = 0. _d 0
+          rhok   (i,j)   = 0. _d 0
+          rhoKM1 (i,j)   = 0. _d 0
+          phiSurfX(i,j)  = 0. _d 0
+          phiSurfY(i,j)  = 0. _d 0
           rTrans (i,j)   = 0. _d 0
           fVerT  (i,j,1) = 0. _d 0
           fVerT  (i,j,2) = 0. _d 0
@@ -225,7 +226,6 @@ C--     Set up work arrays that need valid initial values
           fVerS  (i,j,2) = 0. _d 0
           fVerTr1(i,j,1) = 0. _d 0
           fVerTr1(i,j,2) = 0. _d 0
-          rhoKM1 (i,j)   = 0. _d 0
          ENDDO
         ENDDO
 
@@ -289,6 +289,10 @@ CADJ STORE vvel (:,:,:,bi,bj) = comlev1_bibj, key=itdkey, byte=isbyte
 #endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
+#ifndef DISABLE_DEBUGMODE
+        IF (debugMode) CALL DEBUG_MSG('ENTERING UPWARD K LOOP',myThid)
+#endif
+
 C--     Start of diagnostic loop
         DO k=Nr,1,-1
 
@@ -323,6 +327,9 @@ C--       Calculate gradients of potential density for isoneutral
 C         slope terms (e.g. GM/Redi tensor or IVDC diffusivity)
 c         IF ( k.GT.1 .AND. (useGMRedi.OR.ivdc_kappa.NE.0.) ) THEN
           IF ( useGMRedi .OR. (k.GT.1 .AND. ivdc_kappa.NE.0.) ) THEN
+#ifndef DISABLE_DEBUGMODE
+            IF (debugMode) CALL DEBUG_CALL('FIND_RHO',myThid)
+#endif
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE theta(:,:,k,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
 CADJ STORE salt (:,:,k,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
@@ -344,6 +351,9 @@ CADJ STORE salt (:,:,k-1,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
      O        rhoKm1,
      I        myThid )
             ENDIF
+#ifndef DISABLE_DEBUGMODE
+            IF (debugMode) CALL DEBUG_CALL('GRAD_SIGMA',myThid)
+#endif
             CALL GRAD_SIGMA(
      I             bi, bj, iMin, iMax, jMin, jMax, k,
      I             rhoK, rhoKm1, rhoK,
@@ -358,6 +368,9 @@ CADJ STORE rhokm1 (:,:) = comlev1_bibj_k ,       key=kkey, byte=isbyte
 C--       Implicit Vertical Diffusion for Convection
 c ==> should use sigmaR !!!
           IF (k.GT.1 .AND. ivdc_kappa.NE.0.) THEN
+#ifndef DISABLE_DEBUGMODE
+            IF (debugMode) CALL DEBUG_CALL('CALC_IVDC',myThid)
+#endif
             CALL CALC_IVDC(
      I        bi, bj, iMin, iMax, jMin, jMax, k,
      I        rhoKm1, rhoK,
@@ -378,6 +391,9 @@ CADJ STORE wvel (:,:,:,bi,bj) = comlev1_bibj, key=itdkey, byte=isbyte
 #ifdef  ALLOW_OBCS
 C--     Calculate future values on open boundaries
         IF (useOBCS) THEN
+#ifndef DISABLE_DEBUGMODE
+          IF (debugMode) CALL DEBUG_CALL('OBCS_CALC',myThid)
+#endif
           CALL OBCS_CALC( bi, bj, myTime+deltaT, myIter+1,
      I            uVel, vVel, wVel, theta, salt,
      I            myThid )
@@ -388,6 +404,9 @@ C--     Calculate future values on open boundaries
 c********************************************
 cswdice --- add ---
 #ifdef ALLOW_THERM_SEAICE
+#ifndef DISABLE_DEBUGMODE
+        IF (debugMode) CALL DEBUG_CALL('ICE_FORCING',myThid)
+#endif
 C--     Determines forcing terms based on external fields
 c--     including effects from ice
         CALL ICE_FORCING(
@@ -399,6 +418,9 @@ cswdice --- end add ---
 
 C--     Determines forcing terms based on external fields
 C       relaxation terms, etc.
+#ifndef DISABLE_DEBUGMODE
+        IF (debugMode) CALL DEBUG_CALL('EXTERNAL_FORCING_SURF',myThid)
+#endif
         CALL EXTERNAL_FORCING_SURF(
      I             bi, bj, iMin, iMax, jMin, jMax,
      I             myThid )
@@ -439,6 +461,9 @@ CADJ STORE sigmaR(:,:,:)        = comlev1_bibj, key=itdkey, byte=isbyte
 
 C--     Calculate iso-neutral slopes for the GM/Redi parameterisation
         IF (useGMRedi) THEN
+#ifndef DISABLE_DEBUGMODE
+          IF (debugMode) CALL DEBUG_CALL('GMREDI_CALC_TENSOR',myThid)
+#endif
           CALL GMREDI_CALC_TENSOR(
      I             bi, bj, iMin, iMax, jMin, jMax,
      I             sigmaX, sigmaY, sigmaR,
@@ -463,6 +488,9 @@ CADJ STORE Kwz(:,:,:,bi,bj)   = comlev1_bibj, key=itdkey, byte=isbyte
 #ifdef  ALLOW_KPP
 C--     Compute KPP mixing coefficients
         IF (useKPP) THEN
+#ifndef DISABLE_DEBUGMODE
+          IF (debugMode) CALL DEBUG_CALL('KPP_CALC',myThid)
+#endif
           CALL KPP_CALC(
      I                  bi, bj, myTime, myThid )
 #ifdef ALLOW_AUTODIFF_TAMC
@@ -497,18 +525,14 @@ CADJ STORE tr1  (:,:,:,bi,bj) = comlev1_bibj, key=itdkey, byte=isbyte
 #ifdef ALLOW_AIM
 C       AIM - atmospheric intermediate model, physics package code.
         IF ( useAIM ) THEN
+#ifndef DISABLE_DEBUGMODE
+          IF (debugMode) CALL DEBUG_CALL('AIM_DO_PHYSICS',myThid)
+#endif
          CALL TIMER_START('AIM_DO_PHYSICS   [THERMODYNAMICS]', myThid)
          CALL AIM_DO_PHYSICS( bi, bj, myTime, myIter, myThid )
          CALL TIMER_STOP( 'AIM_DO_PHYSICS   [THERMODYNAMICS]', myThid)
         ENDIF
 #endif /* ALLOW_AIM */
-
-#ifdef ALLOW_TIMEAVE
-        IF (taveFreq.GT.0. .AND. ivdc_kappa.NE.0.) THEN
-          CALL TIMEAVE_CUMULATE(ConvectCountTave, ConvectCount, Nr,
-     I                               deltaTclock, bi, bj, myThid)
-        ENDIF
-#endif /* ALLOW_TIMEAVE */ 
 
 #ifndef DISABLE_MULTIDIM_ADVECTION
 C--     Some advection schemes are better calculated using a multi-dimensional
@@ -522,11 +546,17 @@ C recomputation. It *is* differentiable, if you need it.
 C Edit GAD_OPTIONS.h and #define DISABLE_MULTIDIM_ADVECTION to
 C disable this section of code.
         IF (tempMultiDimAdvec) THEN
+#ifndef DISABLE_DEBUGMODE
+          IF (debugMode) CALL DEBUG_CALL('GAD_ADVECTION',myThid)
+#endif
           CALL GAD_ADVECTION(bi,bj,tempAdvScheme,GAD_TEMPERATURE,
      U                      theta,gT,
      I                      myTime,myIter,myThid)
         ENDIF
         IF (saltMultiDimAdvec) THEN
+#ifndef DISABLE_DEBUGMODE
+          IF (debugMode) CALL DEBUG_CALL('GAD_ADVECTION',myThid)
+#endif
           CALL GAD_ADVECTION(bi,bj,saltAdvScheme,GAD_SALINITY,
      U                      salt,gS,
      I                      myTime,myIter,myThid)
@@ -536,10 +566,17 @@ C call the multi-dimensional method for PTRACERS regardless
 C of whether multiDimAdvection is set or not.
 #ifdef ALLOW_PTRACERS
         IF ( usePTRACERS ) THEN
+#ifndef DISABLE_DEBUGMODE
+          IF (debugMode) CALL DEBUG_CALL('PTRACERS_ADVECTION',myThid)
+#endif
          CALL PTRACERS_ADVECTION( bi,bj,myIter,myTime,myThid )
         ENDIF
 #endif /* ALLOW_PTRACERS */
 #endif /* DISABLE_MULTIDIM_ADVECTION */
+
+#ifndef DISABLE_DEBUGMODE
+       IF (debugMode) CALL DEBUG_MSG('ENTERING DOWNWARD K LOOP',myThid)
+#endif
 
 C--     Start of thermodynamics loop
         DO k=Nr,1,-1
@@ -751,27 +788,28 @@ C--      Apply open boundary conditions
 C--     End If implicitDiffusion
         ENDIF
 
+#ifdef ALLOW_TIMEAVE
+        IF (taveFreq.GT.0. .AND. ivdc_kappa.NE.0.) THEN
+          CALL TIMEAVE_CUMUL_1T(ConvectCountTave, ConvectCount,
+     I                           Nr, deltaTclock, bi, bj, myThid)
+        ENDIF
+        useVariableK = useKPP .OR. useGMredi .OR. ivdc_kappa.NE.0.
+        IF (taveFreq.GT.0. .AND. useVariableK ) THEN
+         IF (implicitDiffusion) THEN
+          CALL TIMEAVE_CUMUL_DIF_1T(TdiffRtave, gT, kappaRT,
+     I                        Nr, 3, deltaTclock, bi, bj, myThid)
+         ELSE
+          CALL TIMEAVE_CUMUL_DIF_1T(TdiffRtave, theta, kappaRT,
+     I                        Nr, 3, deltaTclock, bi, bj, myThid)
+         ENDIF
+        ENDIF
+#endif /* ALLOW_TIMEAVE */ 
+
 #endif /* SINGLE_LAYER_MODE */
 
-Ccs-
+C--   end bi,bj loops.
        ENDDO
       ENDDO
-
-#ifdef ALLOW_AIM
-c     IF ( useAIM ) THEN
-c      CALL AIM_AIM2DYN_EXCHANGES( myTime, myThid )
-c     ENDIF
-#endif /* ALLOW_AIM */
-c     IF ( staggerTimeStep ) THEN
-c      IF ( useAIM .OR. useCubedSphereExchange ) THEN 
-c        IF (tempStepping) _EXCH_XYZ_R8(gT,myThid)
-c        IF (saltStepping) _EXCH_XYZ_R8(gS,myThid)
-c      ELSEIF ( useGMRedi .AND. Oly.LT.4 ) THEN
-cc       .AND. GM_AdvForm .AND. .NOT.GM_AdvSeparate ) THEN
-c        IF (tempMultiDimAdvec) _EXCH_XYZ_R8(gT,myThid)
-c        IF (saltMultiDimAdvec) _EXCH_XYZ_R8(gS,myThid)
-c      ENDIF  
-c     ENDIF  
 
 #ifndef DISABLE_DEBUGMODE
       If (debugMode) THEN
@@ -790,6 +828,10 @@ c     ENDIF
        ENDIF
 #endif /* ALLOW_PTRACERS */
       ENDIF
+#endif
+
+#ifndef DISABLE_DEBUGMODE
+         IF (debugMode) CALL DEBUG_LEAVE('FORWARD_STEP',myThid)
 #endif
 
       RETURN

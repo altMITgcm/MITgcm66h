@@ -51,6 +51,7 @@ cswdice -- addd useThermSeaIce to NAMELIST
      &          useGMRedi,
      &          useOBCS,
      &          useAIM,
+     &          useLand,
      &          useGrdchk,
      &          useECCO,
      &          useSHAP_FILT,
@@ -82,6 +83,7 @@ C--   Default package configuration
       useGMRedi=.FALSE.
       useOBCS=.FALSE.
       useAIM=.FALSE.
+      useLand=.FALSE.
       useGrdchk=.FALSE.
       useECCO=.FALSE.
       useSHAP_FILT=.FALSE.
@@ -113,5 +115,5 @@ C--   Close the open data file
 C--   Everyone else must wait for the parameters to be loaded
       _BARRIER
 
-      return
-      end
+      RETURN
+      END

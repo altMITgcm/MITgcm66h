@@ -73,6 +73,7 @@ C--   all threads fields are ready.
 
        _BARRIER
 
+       IF (debugMode) THEN 
 C--    Write "text-plots" of certain fields
        CALL PLOT_FIELD_XYZRL( uVel , 'Current uVel  ' , 
      &                        Nr, myIter, myThid )
@@ -82,6 +83,7 @@ C--    Write "text-plots" of certain fields
      &                        Nr, myIter, myThid )
        CALL PLOT_FIELD_XYRL( etaN  , 'Current etaN  ' , 
      &                        myIter, myThid )
+       ENDIF
 
       ENDIF
 
@@ -94,11 +96,15 @@ C--   Do time averages
        CALL TIMEAVE_STATV_WRITE( myCurrentTime, myIter, myThid )
       ENDIF
 #endif
-
 #ifdef ALLOW_AIM
 C--   Do AIM time averages
       IF (useAIM)
      &  CALL AIM_WRITE_TAVE( myCurrentTime, myIter, myThid )
+#endif                                                             
+#ifdef ALLOW_LAND
+C--   Do LAND time averages
+      IF (useLAND)
+     &  CALL LAND_WRITE_TAVE( myCurrentTime, myIter, myThid )
 #endif                                                             
 
 #ifdef ALLOW_OBCS

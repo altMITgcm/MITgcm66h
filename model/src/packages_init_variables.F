@@ -74,6 +74,14 @@ C--   Initialize SEAICE model.
       IF (useSEAICE) CALL SEAICE_INIT( myThid )
 #endif
 
+cph-- moved further down
+cph#ifdef ALLOW_OBCS
+cphC--   Open boundaries data
+cph      IF (useOBCS) THEN
+cph        CALL OBCS_INIT_VARIABLES( myThid )
+cph      ENDIF
+cph#endif
+
 #ifdef ALLOW_PTRACERS
       IF ( usePTRACERS ) CALL PTRACERS_INIT( mythid )
 #endif

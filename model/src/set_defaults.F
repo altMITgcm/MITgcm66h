@@ -91,7 +91,8 @@ Cml       sRef(K) = 35.D0
       rhoConstFresh       = 999.8D0
       f0                  = 1.D-4
       beta                = 1.D-11
-      omega               = 2.D0 * PI / ( 3600.D0 * 24.D0 )
+C-    Always use 1 day in the past but should be 86164 (=86400*365.25/366.25)
+      rotationPeriod      = 86400. _d 0
       viscAh              = 0.D3
       viscAstrain         = 0.D3
       viscAtension        = 0.D3
@@ -149,6 +150,7 @@ Cml      sBeta               = 7.4D-4
       saltAdvScheme       = 2
       tracerAdvScheme     = 2
       multiDimAdvection   = .TRUE.
+      useCDscheme         = .FALSE.
       useEnergyConservingCoriolis = .FALSE.
       useJamartWetPoints  = .FALSE.
 
@@ -160,8 +162,8 @@ C--   Set (free)surface-related parameters
       exactConserv        = .FALSE.
       uniformLin_PhiSurf  = .TRUE.
       nonlinFreeSurf      = 0
-      hFacInf             = 1.D0
-      hFacSup             = 1.D0
+      hFacInf             = 0.2 _d 0
+      hFacSup             = 2.0 _d 0
       select_rStar        = 0
       useRealFreshWaterFlux = .FALSE.
       temp_EvPrRn = UNSET_RL
@@ -169,10 +171,11 @@ C--   Set (free)surface-related parameters
       trac_EvPrRn = UNSET_RL
 
 C--   Atmospheric physical parameters (e.g.: EOS)
-      atm_Po =  1.D5
-      atm_Cp =  1004.D0
-      atm_Rd =  UNSET_RL
-      atm_kappa = 2.D0 / 7.D0
+      celsius2K = 273.16 _d 0
+      atm_Po =  1. _d 5
+      atm_Cp = 1004. _d 0
+      atm_Rd = UNSET_RL
+      atm_kappa = 2. _d 0 / 7. _d 0
       integr_GeoPot = 2
       selectFindRoSurf = 0
 
@@ -190,6 +193,7 @@ C--   Time stepping parameters
       deltaT            = 0.
       nIter0            = 0
       startTime         = deltaT*float(nIter0)
+      pickupSuff        = ' '
       nTimeSteps        = 0
       nEndIter          = nIter0+nTimeSteps
       endTime           = deltaT*float(nEndIter)

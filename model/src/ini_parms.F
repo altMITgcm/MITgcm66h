@@ -105,7 +105,8 @@ CEOP
 C--   Continuous equation parameters
       NAMELIST /PARM01/
      & gravitySign,
-     & gravity, gBaro, rhonil, tAlpha, sBeta, f0, beta, omega,
+     & gravity, gBaro, rhonil, tAlpha, sBeta, 
+     & f0, beta, omega, rotationPeriod,
      & viscAh,  viscAz,  viscA4, cosPower, viscAstrain, viscAtension,
      & diffKhT, diffKzT, diffK4T, 
      & diffKhS, diffKzS, diffK4S,
@@ -134,7 +135,7 @@ C--   Continuous equation parameters
      & readPickupWithTracer, writePickupWithTracer,
      & tempAdvScheme, saltAdvScheme, tracerAdvScheme,
      & multiDimAdvection, useEnergyConservingCoriolis,
-     & useJamartWetPoints, useNHMTerms,
+     & useCDscheme, useJamartWetPoints, useNHMTerms,
      & useRealFreshWaterFlux, convertFW2Salt,
      & temp_EvPrRn, salt_EvPrRn, trac_EvPrRn,
      & zonal_filt_lat
@@ -147,7 +148,7 @@ C--   Elliptic solver parameters
 
 C--   Time stepping parammeters
       NAMELIST /PARM03/
-     & nIter0, nTimeSteps, nEndIter,
+     & nIter0, nTimeSteps, nEndIter, pickupSuff,
      & deltaT, deltaTmom, deltaTtracer, deltaTfreesurf,
      & forcing_In_AB, abEps, tauCD, rCD,
      & startTime, endTime, chkPtFreq,
@@ -267,6 +268,7 @@ C--   Set default "physical" parameters
       diffKrS  = UNSET_RL
       gBaro    = UNSET_RL
       rhoConst = UNSET_RL
+      omega    = UNSET_RL
       hFacMinDr           = UNSET_RL
       hFacMinDz           = UNSET_RL
       hFacMinDp           = UNSET_RL
@@ -299,6 +301,15 @@ C--   Set default "physical" parameters
       IF ( rigidLid            ) freeSurfFac = 0.D0
       IF ( gBaro .EQ. UNSET_RL ) gBaro=gravity
       IF ( rhoConst .EQ. UNSET_RL ) rhoConst=rhoNil
+      IF ( omega .EQ. UNSET_RL ) THEN
+        omega = 0. _d 0
+        IF ( rotationPeriod .NE. 0. _d 0 ) 
+     &  omega = 2.D0 * PI / rotationPeriod
+      ELSEIF ( omega .EQ. 0. _d 0 ) THEN
+        rotationPeriod = 0. _d 0
+      ELSE
+        rotationPeriod = 2.D0 * PI / omega
+      ENDIF
       IF (atm_Rd .EQ. UNSET_RL) THEN
         atm_Rd = atm_Cp * atm_kappa
       ELSE
@@ -554,12 +565,10 @@ C     o Convection frequency
        CALL PRINT_ERROR( msgBuf , myThid)
        STOP 'ABNORMAL END: S/R INI_PARMS'
       ENDIF
-C     o CD coupling
-      IF ( tauCD .EQ. 0.D0 ) THEN
-        tauCD = deltaTmom
-      ENDIF
-      IF ( rCD .LT. 0. ) THEN
-       rCD = 1. - deltaTMom/tauCD
+      IF (useCDscheme) THEN
+C     o CD coupling (CD scheme):
+        IF ( tauCD .EQ. 0.D0 ) tauCD = deltaTmom
+        IF ( rCD .LT. 0. ) rCD = 1. _d 0 - deltaTMom/tauCD
       ENDIF
 C     o Temperature climatology relaxation time scale
       IF ( tauThetaClimRelax .EQ. 0.D0 ) THEN

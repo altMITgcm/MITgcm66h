@@ -68,6 +68,7 @@ C     prec
 C     fn      :: Temp. for building file name.
       INTEGER oldPrec
       CHARACTER*(MAX_LEN_FNAM) fn
+      CHARACTER*(10) suff
       INTEGER prec
 CEOP
 
@@ -101,8 +102,8 @@ C       Raw fields
         CALL READ_REC_XYZ_RL(  'vVelD', vVelD, 1,myIter, myThid)
         CALL READ_REC_XYZ_RL(  'uNm1',  uNM1, 1,myIter, myThid)
         CALL READ_REC_XYZ_RL(  'vNm1',  vNM1, 1,myIter, myThid)
-        CALL READ_REC_XYZ_RL(  'guCD',  guCD, 1,myIter, myThid)
-        CALL READ_REC_XYZ_RL(  'gvCD',  gvCD, 1,myIter, myThid)
+c       CALL READ_REC_XYZ_RL(  'guCD',  guCD, 1,myIter, myThid)
+c       CALL READ_REC_XYZ_RL(  'gvCD',  gvCD, 1,myIter, myThid)
 #endif
 
 #ifdef ALLOW_NONHYDROSTATIC
@@ -116,8 +117,15 @@ c        CALL READ_REC_XYZ_RL( 'gWnm1',gWnm1, 1,myIter,myThid)
 
         prec = precFloat64
 
+C--     Suffix for pickup files
+        IF (pickupSuff.EQ.' ') THEN
+         WRITE(suff,'(I10.10)') myIter
+        ELSE
+         WRITE(suff,'(A10)') pickupSuff
+        ENDIF
+
 C--     Read model fields
-        WRITE(fn,'(A,I10.10)') 'pickup.',myIter
+        WRITE(fn,'(A,A10)') 'pickup.',suff
         CALL MDSREADFIELD(fn,prec,'RL',Nr,uVel,   1,myThid)
         CALL MDSREADFIELD(fn,prec,'RL',Nr,gU,     2,myThid)
         CALL MDSREADFIELD(fn,prec,'RL',Nr,gUnm1,  3,myThid)
@@ -137,39 +145,34 @@ C--     Read model fields
 #endif
 
         IF ( useDynP_inEos_Zc ) THEN
-         WRITE(fn,'(A,I10.10)') 'pickup_ph.',myIter
+         WRITE(fn,'(A,A10)') 'pickup_ph.',suff
          CALL MDSREADFIELD(fn,prec,'RL',Nr,totPhiHyd,1,myThid)
         ENDIF
 
 #ifdef INCLUDE_CD_CODE
-        WRITE(fn,'(A,I10.10)') 'pickup_cd.',myIter
+        WRITE(fn,'(A,A10)') 'pickup_cd.',suff
         CALL MDSREADFIELD(fn,prec,'RL',Nr,uVelD,    1,myThid)
         CALL MDSREADFIELD(fn,prec,'RL',Nr,vVelD,    2,myThid)
         CALL MDSREADFIELD(fn,prec,'RL',Nr,uNM1,     3,myThid)
         CALL MDSREADFIELD(fn,prec,'RL',Nr,vNM1,     4,myThid)
-        CALL MDSREADFIELD(fn,prec,'RL',Nr,guCD,     5,myThid)
-        CALL MDSREADFIELD(fn,prec,'RL',Nr,gvCD,     6,myThid)
+c       CALL MDSREADFIELD(fn,prec,'RL',Nr,guCD,     5,myThid)
+c       CALL MDSREADFIELD(fn,prec,'RL',Nr,gvCD,     6,myThid)
         CALL MDSREADFIELD(fn,prec,'RL', 1,etaNm1,6*Nr+1,myThid)
 #endif /* INCLUDE_CD_CODE */
 
 #ifdef ALLOW_NONHYDROSTATIC
         IF ( nonHydrostatic ) THEN
-         WRITE(fn,'(A,I10.10)') 'pickup_nh.',myIter
+         WRITE(fn,'(A,A10)') 'pickup_nh.',suff
          CALL MDSREADFIELD(fn,prec,'RL',Nr,phi_nh,1,myThid)
          CALL MDSREADFIELD(fn,prec,'RL',Nr,gW,   2,myThid)
 c        CALL MDSREADFIELD(fn,prec,'RL',Nr,gWnm1,3,myThid)
         ENDIF
 #endif
 
-
-
-C Create suffix to pass on to package pickup routines
-        WRITE(fn,'(I10.10)') myIter
-
 C SPK 4/9/01: Open boundary checkpointing
 #ifdef  ALLOW_OBCS
         IF (useOBCS) THEN
-          CALL OBCS_READ_CHECKPOINT(prec, myIter, myThid)
+          CALL OBCS_READ_CHECKPOINT(prec, suff, myThid)
         ENDIF
 #endif  /* ALLOW_OBCS */
 
@@ -184,7 +187,7 @@ C       Reset default IO precision
 #ifdef ALLOW_PTRACERS
 C Write restart file for passive tracers
        IF (usePTRACERS) THEN
-         CALL PTRACERS_READ_CHECKPOINT(myIter,myThid)
+         CALL PTRACERS_READ_CHECKPOINT(myIter,suff,myThid)
        ENDIF
 #endif /* ALLOW_PTRACERS */
 
@@ -218,8 +221,8 @@ c**** CALL EXCH_DUV_XYZ_RL(guCD,gvCD,.TRUE.,myThid)
       CALL EXCH_UV_XYZ_RL(uNM1,vNM1,.TRUE.,myThid)
 c     _EXCH_XYZ_R8( uNM1,     myThid )
 c     _EXCH_XYZ_R8( vNM1,     myThid )
-      _EXCH_XYZ_R8( guCD,     myThid )
-      _EXCH_XYZ_R8( gvCD,     myThid )
+c     _EXCH_XYZ_R8( guCD,     myThid )
+c     _EXCH_XYZ_R8( gvCD,     myThid )
       _EXCH_XY_R8( etaNm1, myThid )
 #endif
 #ifdef ALLOW_NONHYDROSTATIC
@@ -299,6 +302,7 @@ C     lgf    :: Flag to indicate whether to use global file mode.
       LOGICAL permCheckPoint  
       INTEGER oldPrec
       CHARACTER*(MAX_LEN_FNAM) fn
+      CHARACTER*(MAX_LEN_MBUF) msgBuf
       INTEGER prec
       LOGICAL lgf
 CEOP
@@ -358,8 +362,8 @@ C       Raw fields
         CALL WRITE_REC_XYZ_RL(  'vVelD', vVelD,  1,myIter, myThid)
         CALL WRITE_REC_XYZ_RL(  'uNM1',  uNM1,  1,myIter, myThid)
         CALL WRITE_REC_XYZ_RL(  'vNM1',  vNM1,  1,myIter, myThid)
-        CALL WRITE_REC_XYZ_RL(  'guCD',  guCD,  1,myIter, myThid)
-        CALL WRITE_REC_XYZ_RL(  'gvCD',  gvCD,  1,myIter, myThid)
+c       CALL WRITE_REC_XYZ_RL(  'guCD',  guCD,  1,myIter, myThid)
+c       CALL WRITE_REC_XYZ_RL(  'gvCD',  gvCD,  1,myIter, myThid)
 #endif
 
 
@@ -421,8 +425,12 @@ C--     Write model fields
         CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,vVelD,2,myIter,myThid)
         CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,uNM1, 3,myIter,myThid)
         CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,vNM1, 4,myIter,myThid)
-        CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,guCD, 5,myIter,myThid)
-        CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,gvCD, 6,myIter,myThid)
+C- jmc: guCD & gvCD no longer exist. 
+C   write some stuff to maintain the same pickup size
+c       CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,guCD, 5,myIter,myThid)
+c       CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,gvCD, 6,myIter,myThid)
+        CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,uNM1, 5,myIter,myThid)
+        CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,vNM1, 6,myIter,myThid)
         CALL MDSWRITEFIELD(fn,prec,lgf,'RL', 1,etaNm1,6*Nr+1,
      &                     myIter,myThid)
 #endif /* INCLUDE_CD_CODE */
@@ -462,6 +470,13 @@ C--     Write restart file for floats
         ENDIF
 #endif
 
+#ifdef ALLOW_LAND
+C--     Write pickup file for Lnad package:
+        IF (useLand) THEN
+          CALL LAND_WRITE_PICKUP(fn,myTime,myIter,myThid)
+        ENDIF
+#endif
+
         IF ( .NOT. permCheckPoint ) THEN
          nCheckLev = MOD(nCheckLev, maxNoChkptLev)+1
         ENDIF
@@ -480,6 +495,14 @@ C Write restart file for passive tracers
          CALL PTRACERS_WRITE_CHECKPOINT(fn,myIter,myTime,myThid)
        ENDIF
 #endif /* ALLOW_PTRACERS */
+
+C Write information to stdout so there is a record that the
+C checkpoint was completed
+      _BEGIN_MASTER(myThid)
+        WRITE(msgBuf,'(A11,I10,1X,A10)')
+     &   "%CHECKPOINT ",myIter,fn
+        CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
+      _END_MASTER(myThid)
 
       ENDIF
 

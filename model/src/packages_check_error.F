@@ -38,11 +38,11 @@ C     msgBuf      - Informational/error meesage buffer
 CEOP
 
       WRITE(msgBuf,'(A,A,A)')
-     &  'Run-time control flag use_',msg,' was used'
+     &  'Run-time control flag use',msg,' was used'
       CALL PRINT_ERROR( msgBuf , 1)
       WRITE(msgBuf,'(A,A,A)') 'when CPP flag ALLOW_',msg,' was unset'
       CALL PRINT_ERROR( msgBuf , 1)
       STOP 'ABNORMAL END: S/R PACKAGE_CHECK_ERROR'
 
-      return
-      end
+      RETURN
+      END
