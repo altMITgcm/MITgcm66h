@@ -69,7 +69,6 @@ C     == Local variables ==
       _RS yA(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL uTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL vTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RS maskC(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL uFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL vFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL dStar(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
@@ -185,14 +184,6 @@ C--   Calculate open water fraction at vorticity points
       CALL MOM_CALC_HFACZ(bi,bj,k,hFacZ,r_hFacZ,myThid)
 
 C---- Calculate common quantities used in both U and V equations
-C     Calculate tracer cell mask
-      DO j=1-OLy,sNy+OLy
-       DO i=1-OLx,sNx+OLx
-        maskC(i,j) = 1.
-        IF (_hFacC(i,j,k,bi,bj).eq.0.) maskC(i,j)=0.
-       ENDDO
-      ENDDO
-
 C     Calculate tracer cell face open areas
       DO j=1-OLy,sNy+OLy
        DO i=1-OLx,sNx+OLx
