@@ -4,13 +4,13 @@ C subroutine  read_checkpoint
 C----------------------------------------
 CADJ SUBROUTINE read_checkpoint  INPUT  = 1,2
 CADJ SUBROUTINE read_checkpoint  OUTPUT =
-cphCADJ SUBROUTINE read_checkpoint  DEPEND = 1,2
-cphCADJ SUBROUTINE read_checkpoint  REQUIRED
+CADJ SUBROUTINE read_checkpoint  DEPEND = 1,2
+CADJ SUBROUTINE read_checkpoint  REQUIRED
 
 C----------------------------------------
 C subroutine  write_checkpoint
 C----------------------------------------
 CADJ SUBROUTINE write_checkpoint  INPUT  = 1,2,3,4
 CADJ SUBROUTINE write_checkpoint  OUTPUT =
-cphCADJ SUBROUTINE write_checkpoint  DEPEND = 1,2,3,4
-cphCADJ SUBROUTINE write_checkpoint  REQUIRED
+CADJ SUBROUTINE write_checkpoint  DEPEND = 1,2,3,4
+CADJ SUBROUTINE write_checkpoint  REQUIRED

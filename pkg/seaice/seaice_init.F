@@ -22,7 +22,9 @@ C     === Global variables ===
 #include "SEAICE_PARAMS.h"
 #include "SEAICE_EXTERNAL.h"
 
-#include "cost.h"
+#ifdef ALLOW_COST
+# include "cost.h"
+#endif
 
 C     === Routine arguments ===
 C     myThid - Thread no. that called this routine.
