@@ -245,7 +245,7 @@ c        END DO
        ENDDO
       ENDDO
 
-       CALL SEAICE_EXCH_UV( UICE, VICE, myThid )
+       CALL SEAICE_EXCH( UICE, myThid )
 
 C NOW SECOND HALF
 
@@ -515,7 +515,7 @@ c         END DO
        ENDDO
       ENDDO
 
-       CALL SEAICE_EXCH_UV( UICE, VICE, myThid )
+       CALL SEAICE_EXCH( VICE, myThid )
 
 C NOW SECOND HALF
 

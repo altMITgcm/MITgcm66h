@@ -334,7 +334,7 @@ cph        GO TO 8001
 cph)
        END IF
       END IF
-      CALL SEAICE_EXCH_UV ( UICE, VICE, myThid )
+      CALL SEAICE_EXCH ( UICE, myThid )
 
 cph(
       END IF
@@ -555,7 +555,7 @@ cph)
        END IF
       END IF
 
-      CALL SEAICE_EXCH_UV ( UICE, VICE, myThid )
+      CALL SEAICE_EXCH ( VICE, myThid )
 
 cph(
       END IF
