@@ -9,7 +9,7 @@
 #  please make a separate (local) copy of this file.
 
 TAMC=tamc
-TAF=taf
+TAF=~fastopt/bin/taf
 # STAF=staf
 
 AD_TAMC_FLAGS='-reverse -admark ad -i4 -r4'
