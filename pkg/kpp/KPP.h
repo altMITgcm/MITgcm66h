@@ -25,7 +25,7 @@ C-----------------------------------------------------------------------
       _RL KPPdiffKzT (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL KPPghat    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL KPPhbl     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,   nSx,nSy)
-      _RS KPPfrac    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,   nSx,nSy)
+      _RL KPPfrac    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,   nSx,nSy)
       COMMON /kpp/ KPPviscAz, KPPdiffKzT, KPPdiffKzS
      &              , KPPghat, KPPhbl
       COMMON /kpp_short/ KPPfrac

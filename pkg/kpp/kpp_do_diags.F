@@ -35,7 +35,7 @@ C     == Local variables ==
       LOGICAL  DIFFERENT_MULTIPLE
       EXTERNAL DIFFERENT_MULTIPLE
       INTEGER bi, bj, K
-      REAL DDTT
+      _RL DDTT
 
 C----------------------------------------------------------------
 C     Dump snapshot of KPP variables.
@@ -58,15 +58,15 @@ C----------------------------------------------------------------
          ENDIF
 
          if (KPPwriteState) then
-            CALL WRITE_REC_XYZ_RS('KPPviscAz',KPPviscAz,kpp_drctrec,
+            CALL WRITE_REC_XYZ_RL('KPPviscAz',KPPviscAz,kpp_drctrec,
      &                          myIter,myThid)
-            CALL WRITE_REC_XYZ_RS('KPPdiffKzT',KPPdiffKzT,kpp_drctrec,
+            CALL WRITE_REC_XYZ_RL('KPPdiffKzT',KPPdiffKzT,kpp_drctrec,
      &                          myIter,myThid)
-            CALL WRITE_REC_XYZ_RS('KPPdiffKzS',KPPdiffKzS,kpp_drctrec,
+            CALL WRITE_REC_XYZ_RL('KPPdiffKzS',KPPdiffKzS,kpp_drctrec,
      &                          myIter,myThid)
-            CALL WRITE_REC_XYZ_RS('KPPghat',KPPghat,kpp_drctrec,
+            CALL WRITE_REC_XYZ_RL('KPPghat',KPPghat,kpp_drctrec,
      &                          myIter,myThid)
-            CALL WRITE_REC_XY_RS('KPPhbl',KPPhbl,kpp_drctrec,
+            CALL WRITE_REC_XY_RL('KPPhbl',KPPhbl,kpp_drctrec,
      &                          myIter,myThid)
          endif
 
