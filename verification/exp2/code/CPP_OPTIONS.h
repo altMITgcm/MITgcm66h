@@ -6,6 +6,9 @@ C CPP flags controlling which code in included in the files that
 C will be compiled.
 C
 
+C o Include/exclude code for GM/Redi parameterization
+#undef  ALLOW_GMREDI
+
 C o Include/exclude code for KPP mixing scheme
 #undef  ALLOW_KPP
 
@@ -14,7 +17,7 @@ C   coriolis terms
 #define  INCLUDE_CD_CODE
 
 C o Include/exclude code for open-boundary conditions
-#undef   ALLOW_OBCS
+#undef  ALLOW_OBCS
 
 C o Include/exclude diagnostics package interface code
 #define  INCLUDE_DIAGNOSTICS_INTERFACE_CODE
