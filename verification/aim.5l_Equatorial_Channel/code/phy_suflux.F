@@ -3,8 +3,7 @@ C $Name$
 
       SUBROUTINE SUFLUX (PSA,UA,VA,TA,QA,RH,QSAT,Vsurfsq,PHI,
      *                   PHI0,FMASK,TLAND,TSEA,SWAV,SSR,SLR,
-     *                   DRAG,USTR,VSTR,SHF,EVAP,T0,Q0,QSAT0,SPEED0,
-     &                   myThid)
+     *                   DRAG,USTR,VSTR,SHF,EVAP,T0,Q0,QSAT0,SPEED0)
 C--
 C--   SUBROUTINE SUFLUX (PSA,UA,VA,TA,QA,RH,PHI,
 C--  *                   PHI0,FMASK,TLAND,TSEA,SWAV,
@@ -32,8 +31,6 @@ C--           Vsurfsq = square of surface wind speed (2-dim,input)
 C--                       ==> UA,VA are no longer used
 C--            DRAG   = surface Drag term (= Cd*|V|) (2-dim,output)
 C--                       ==> USTR,VSTR are no longer used
-C--         myThid    = Instance number of this instance of the
-C--                     the routine.
 C--
 
 
@@ -41,12 +38,10 @@ C--
 
 
 C     Resolution parameters
-#include "EEPARAMS.h"
 #include "atparam.h"
 #include "atparam1.h"
 #include "Lev_def.h"
 C
-      INTEGER NLON,NLAT,NLEV,NGP
       PARAMETER ( NLON=IX, NLAT=IL, NLEV=KX, NGP=NLON*NLAT )
 
 C     Physical constants + functions of sigma and latitude
@@ -63,7 +58,6 @@ C
      *     PHI0(NGP), FMASK(NGP), TLAND(NGP), TSEA(NGP), SWAV(NGP),
      *     SSR(NGP), SLR(NGP)
       REAL Vsurfsq(NGP), DRAG(NGP)
-      INTEGER myThid
 C
       REAL USTR(NGP,3), VSTR(NGP,3), SHF(NGP,3), EVAP(NGP,3)
 C									
@@ -93,7 +87,6 @@ Cchdbg
       REAL Q0moy(NGP)
       SAVE Q0moy
       REAL factwind2
-      INTEGER J
 C
 C--   1. Extrapolation of wind, temp, hum. and density to the surface
 C
@@ -111,9 +104,9 @@ C-- Note(jmc): If we interpolate U,V from C_grid to A_grid (center of the mesh)
 C     the above distinction between NLEVxy_Upt,Vpt is no longer valid !
 C     same thing (again) few lines below.
 c---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
-        IF ( NLEVxy(J,myThid) .GT. 0 ) THEN
-         U0(J) = FWIND0*UA(J,NLEVxy(J,myThid))
-         V0(J) = FWIND0*VA(J,NLEVxy(J,myThid))
+        IF ( NLEVxy(J) .GT. 0 ) THEN
+         U0(J) = FWIND0*UA(J,NLEVxy(J))
+         V0(J) = FWIND0*VA(J,NLEVxy(J))
         ELSE
          U0(J) = 0.0
          V0(J) = 0.0
@@ -127,17 +120,16 @@ C
       GTEMP0 = 1.D0-FTEMP0
       RCP = 1.D0/CP
       DO J=1,NGP
-        NL1(J)=NLEVxy(J,myThid)-1
+        NL1(J)=NLEVxy(J)-1
       ENDDO
 C
       DO J=1,NGP
-       IF ( NLEVxy(J,myThid) .GT. 0 ) THEN
-        T0(J,1) = TA(J,NLEVxy(J,myThid))+WVI(NLEVxy(J,myThid),2)*
-     &                          (TA(J,NLEVxy(J,myThid))-TA(J,NL1(J)))
+       IF ( NLEVxy(J) .GT. 0 ) THEN
+        T0(J,1) = TA(J,NLEVxy(J))+WVI(NLEVxy(J),2)*
+     &                          (TA(J,NLEVxy(J))-TA(J,NL1(J)))
 ccccc        T0(J,2) = TA(J,NLEVxy(J))+RCP*(PHI(J,NLEVxy(J))-PHI0(J))
-        T0(J,2) = TA(J,NLEVxy(J,myThid))*
-     &         ((Psurfw(NLEVxy(J,myThid))/
-     &           Psurfs(Nlevxy(J,myThid)))**(RD/CP))
+        T0(J,2) = TA(J,NLEVxy(J))*
+     &         ((Psurfw(NLEVxy(J))/Psurfs(Nlevxy(J)))**(RD/CP))
        ELSE
         T0(J,1) = 273.16 _d 0
         T0(J,2) = 273.16 _d 0
@@ -153,8 +145,8 @@ C
       GHUM0 = 1. _d 0-FHUM0
 C
       DO J=1,NGP
-       IF ( NLEVxy(J,myThid) .GT. 0 ) THEN
-        WORK(J)=RH(J,Nlevxy(J,myThid))
+       IF ( NLEVxy(J) .GT. 0 ) THEN
+        WORK(J)=RH(J,Nlevxy(J))
 cchdbg
 c        WORK(J) = RH(J,NLEVxy(J))+WVI(NLEVxy(J),2)*
 c     &                          (RH(J,NLEVxy(J))-RH(J,NL1(J)))
@@ -162,11 +154,11 @@ cchdbg
        ENDIF
       ENDDO
 C
-      CALL SHTORH (-1,NGP,T0,PSA,1. _d 0,Q0,WORK,QSAT0,myThid)
+      CALL SHTORH (-1,NGP,T0,PSA,1. _d 0,Q0,WORK,QSAT0)
 C
       DO J=1,NGP
-       IF ( NLEVxy(J,myThid) .GT. 0 ) THEN
-        Q0(J)=FHUM0*Q0(J)+GHUM0*QA(J,NLEVxy(J,myThid))
+       IF ( NLEVxy(J) .GT. 0 ) THEN
+        Q0(J)=FHUM0*Q0(J)+GHUM0*QA(J,NLEVxy(J))
        ENDIF
       ENDDO
 
@@ -216,11 +208,11 @@ c_jmc   VSTR(J,1) = -CDL*DENVV(J,3)*VA(J,NLEVxyv(J))
 c_jmc   VSTR(J,2) = -CDS*DENVV(J,3)*VA(J,NLEVxyv(j))
 c_jmc  ENDIF
 C-- cf Note(jmc) above. 
-       IF ( NLEVxy(J,myThid) .GT. 0  ) THEN
-        USTR(J,1) = -CDL*DENVV(J,3)*UA(J,NLEVxy(J,myThid))
-        USTR(J,2) = -CDS*DENVV(J,3)*UA(J,NLEVxy(J,myThid))
-        VSTR(J,1) = -CDL*DENVV(J,3)*VA(J,NLEVxy(J,myThid))
-        VSTR(J,2) = -CDS*DENVV(J,3)*VA(J,NLEVxy(J,myThid))
+       IF ( NLEVxy(J) .GT. 0  ) THEN
+        USTR(J,1) = -CDL*DENVV(J,3)*UA(J,NLEVxy(J))
+        USTR(J,2) = -CDS*DENVV(J,3)*UA(J,NLEVxy(J))
+        VSTR(J,1) = -CDL*DENVV(J,3)*VA(J,NLEVxy(J))
+        VSTR(J,2) = -CDS*DENVV(J,3)*VA(J,NLEVxy(j))
        ELSE
         USTR(J,1) = 0.
         USTR(J,2) = 0.
@@ -233,9 +225,9 @@ c   Compute surface drag term (= C_drag*|V| ) to allow direct computation
 c     of surface stress on C-grid.
 c     add Land + Sea contributions ; Convert to surface pressure level 
       DO J=1,NGP
-       IF ( NLEVxy(J,myThid) .GT. 0  ) THEN
+       IF ( NLEVxy(J) .GT. 0  ) THEN
         DRAG(J) = ( CDS+FMASK(J)*(CDL-CDS) )
-     &                         * DENVV(J,3) * GRDSIG(NLEVxy(J,myThid))
+     &                         * DENVV(J,3) * GRDSIG(NLEVxy(J))
        ELSE
         DRAG(J) = 0.
        ENDIF
@@ -312,8 +304,8 @@ c        CALL DUMP_WRITE2D ( NGP,1,'AUX.', nIter,aux , iErr)
 C
 C     2.3 Evaporation
 C
-      CALL SHTORH (0,NGP,TLAND,PSA,1. _d 0,QDUMMY,RDUMMY,QSAT0(1,1),myThid)
-      CALL SHTORH (0,NGP,TSEA ,PSA,1. _d 0,QDUMMY,RDUMMY,QSAT0(1,2),myThid)
+      CALL SHTORH (0,NGP,TLAND,PSA,1. _d 0,QDUMMY,RDUMMY,QSAT0(1,1))
+      CALL SHTORH (0,NGP,TSEA ,PSA,1. _d 0,QDUMMY,RDUMMY,QSAT0(1,2))
 
       DO J=1,NGP
 Cdj        EVAP(J,1) = CHL*DENVV(J,1)*MAX(0. _d 0,SWAV(J)*QSAT0(J,1)-Q0(J))

@@ -3,8 +3,7 @@ C $Name$
 
 cmolt      SUBROUTINE CONVMF (PSA,SE,QA,QSAT,
       SUBROUTINE CONVMF (PSA,TA,QA,QSAT,
-     *                   IDEPTH,CBMF,PRECNV,DFSE,DFQA,
-     I                   myThid)
+     *                   IDEPTH,CBMF,PRECNV,DFSE,DFQA)
 C--
 C--   SUBROUTINE CONVMF (PSA,SE,QA,QSAT,
 C--  *                   IDEPTH,CBMF,PRECNV,DFSE,DFQA)
@@ -23,17 +22,13 @@ C--            DFQA   = net flux of sp.hum. into each atm. layer (3-dim)
 C--
 
       IMPLICIT rEAL*8 ( A-H,O-Z)
-      INTEGER  myThid
 
 C     Resolution parameters
 C
-#include "EEPARAMS.h"
-
 #include "atparam.h"
 #include "atparam1.h"
 #include "Lev_def.h"
 C
-      INTEGER NLON, NLAT, NLEV, NGP
       PARAMETER ( NLON=IX, NLAT=IL, NLEV=KX, NGP=NLON*NLAT )
 C
 C     Physical constants + functions of sigma and latitude
@@ -62,15 +57,13 @@ C
       REAL Pground
       DATA pground /1000./
       REAL FDMUS
-
-      INTEGER J, K, K1
 C
 C     1. Initialization of output and workspace arrays
 C
       DO J=1,NGP
        FM0(J)=0.
-       IF ( NLEVxy(J,myThid) .NE. 0 ) THEN
-        FM0(J)=P0*DSIG(NLEVxy(J,myThid))/(GG*TRCNV*3600)
+       IF ( NLEVxy(J) .NE. 0 ) THEN
+        FM0(J)=P0*DSIG(NLEVxy(J))/(GG*TRCNV*3600)
        ENDIF
        DENTR(J)=ENTMAX/(SIG(NLEV-1)-0.5)
       ENDDO
@@ -84,21 +77,21 @@ C
 C
 C
       DO J=1,NGP
-        ITOP(J)  =NLEVxy(J,myThid)
+        ITOP(J)  =NLEVxy(J)
         CBMF(J)  =0.0
         PRECNV(J)=0.0
       ENDDO
 C
 C     Saturation moist static energy
 cmolt      DO J=1,NGP
-cmolt        DO K=1,NLEVxy(J,myThid)
+cmolt        DO K=1,NLEVxy(J)
 cmolt          SM(J,K)=SE(J,K)+ALHC*QSAT(J,K)
 cmolt        ENDDO
 cmolt      ENDDO
 C
 C     Entrainment profile (up to sigma = 0.5)
       DO J=1,NGP
-        DO K=2,NLEVxy(J,myThid)-1
+        DO K=2,NLEVxy(J)-1
           ENTR(J,K)=MAX(0.,SIG(K)-0.5)*DENTR(J)
         ENDDO
       ENDDO
@@ -108,52 +101,52 @@ C
 C     2.1 Conditional instability
 C
 cmolt      DO J=1,NGP
-cmolt        DO K=NLEVxy(J,myThid)-2,2,-1
+cmolt        DO K=NLEVxy(J)-2,2,-1
 cmolt          SMB=SM(J,K)+WVI(K,2)*(SM(J,K+1)-SM(J,K))
-cmolt          IF (SM(J,NLEVxy(J,myThid)).GT.SMB) ITOP(J)=K
+cmolt          IF (SM(J,NLEVxy(J)).GT.SMB) ITOP(J)=K
 cmolt        ENDDO
 cmolt      ENDDO
 C
 C New writing of the Conditional stability
 C ----------------------------------------
       DO J=1,NGP
-        DO k=1,NLEVxy(J,myThid)
+        DO k=1,NLEVxy(J)
           Th(J,K)=Ta(J,K)*(Pground/Prefs(k))**(RD/CP)
         ENDDO
       ENDDO
 C
       DO J=1,NGP
         dThdp(J,1)=0.
-        IF ( NLEVxy(J,myThid) .NE. 0 ) THEN
-         dThdp(J,NLEVxy(J,myThid))=0.
+        IF ( NLEVxy(J) .NE. 0 ) THEN
+         dThdp(J,NLEVxy(J))=0.
         ENDIF
-        DO k=2,NLEVxy(J,myThid)
+        DO k=2,NLEVxy(J)
           dThdp(J,K-1)=(Th(J,K-1)-Th(J,K))
      &              *((Prefw(k)/Pground)**(RD/CP))*CP
         ENDDO
       ENDDO
 C
       DO J=1,NGP
-       IF ( NLEVxy(J,myThid) .NE. 0 ) THEN
-        dThdpHat(J,NLEVxy(J,myThid))=dThdp(J,NLEVxy(J,myThid))
+       IF ( NLEVxy(J) .NE. 0 ) THEN
+        dThdpHat(J,NLEVxy(J))=dThdp(J,NLEVxy(J))
        ENDIF
       ENDDO
 C
       DO J=1,NGP
-        DO k=NLEVxy(J,myThid)-1,2,-1
+        DO k=NLEVxy(J)-1,2,-1
           dThdpHat(J,K)=dThdpHat(J,K+1)+dThdp(J,k)
         ENDDO
       ENDDO
 C
       DO J=1,NGP
-        DO k=2,NLEVxy(J,myThid)-1
-          stab(J,K)=dThdpHat(J,K)+ALHC*(QSAT(J,K)-QSAT(J,NLEVxy(J,myThid)))
+        DO k=2,NLEVxy(J)-1
+          stab(J,K)=dThdpHat(J,K)+ALHC*(QSAT(J,K)-QSAT(J,NLEVxy(J)))
      &        -WVI(K,2)*(dThdp(J,K) +ALHC*(QSAT(J,K) -QSAT(J,K+1)) )
         ENDDO
       ENDDO
 C
       DO J=1,NGP
-        DO K=NLEVxy(J,myThid)-2,2,-1
+        DO K=NLEVxy(J)-2,2,-1
           if(stab(J,K).lt.0.) ITOP(J)=K
         ENDDO
       ENDDO
@@ -161,21 +154,21 @@ C
 C     2.2 Humidity exceeding prescribed threshold
 C
       DO J=1,NGP
-        IF ( NLEVxy(J,myThid) .NE. 0 ) THEN
-         IF (QA(J,NLEVxy(J,myThid)).LT.RHBL*QSAT(J,NLEVxy(J,myThid)))
-     &          ITOP(J)=NLEVxy(J,myThid)
+        IF ( NLEVxy(J) .NE. 0 ) THEN
+         IF (QA(J,NLEVxy(J)).LT.RHBL*QSAT(J,NLEVxy(J)))
+     &          ITOP(J)=NLEVxy(J)
         ENDIF
-        IDEPTH(J)=NLEVxy(J,myThid)-ITOP(J)
+        IDEPTH(J)=NLEVxy(J)-ITOP(J)
       ENDDO
 C
 C--   3. Convection over selected grid-points
 C
       DO 300 J=1,NGP
-      IF (ITOP(J).EQ.NLEVxy(J,myThid)) GO TO 300
+      IF (ITOP(J).EQ.NLEVxy(J)) GO TO 300
 C
 C       3.1 Boundary layer (cloud base)
 C
-        K =NLEVxy(J,myThid)
+        K =NLEVxy(J)
         K1=K-1
 C
 C       Dry static energy and moisture at upper boundary
@@ -190,7 +183,7 @@ C       Cloud-base mass flux
 C
 C       Upward fluxes at upper boundary
 cch        FUS=FMASS*SE(J,K)
-C_jmc      FUQ=FMASS*QSAT(J,K)
+c_jmc   FUQ=FMASS*QSAT(J,K)
         FUQ=FMASS*MAX( QSAT(J,K), MIN(QB,QA(J,K)) )
 C
 C       Downward fluxes at upper boundary
@@ -205,7 +198,7 @@ cch        DFSE(J,K)=FDS-FUS
 C
 C       3.2 Intermediate layers (entrainment)
 C
-        DO K=NLEVxy(J,myThid)-1,ITOP(J)+1,-1
+        DO K=NLEVxy(J)-1,ITOP(J)+1,-1
         K1=K-1
 C
 C         Fluxes at lower boundary
