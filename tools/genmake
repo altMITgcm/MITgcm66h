@@ -50,6 +50,7 @@ while ($#allargs)
     echo "***" Command line \"$arg\" will override this.
    endif
    set ROOTDIR = ( `echo $arg | sed 's/-rootdir=//' `)
+   if (! $?EXEDIR) set EXEDIR = ( . )
    breaksw
  case -mods:
  case -mods=:
