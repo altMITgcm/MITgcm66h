@@ -527,9 +527,9 @@ int main( int argc, char** argv )  {
     if (linnum == -1)  break;
     scanf("%lf", &a);  scanf("%lf", &b);
     diff = 0.5*(fabs(a)+fabs(b));
-    if (diff > 1.e-12) {
+    if (diff > 0.0) {
       diff=fabs(a-b)/diff;
-      if (diff > 0.0) {
+      if (diff > 1.e-12) {
         linnum = (int)log10(diff);
         best = (best > linnum) ? best : linnum;
       }
