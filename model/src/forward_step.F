@@ -2,6 +2,11 @@ C $Header$
 C $Name$
 
 #include "CPP_OPTIONS.h"
+cswdptr -- add --
+#ifdef ALLOW_PTRACERS
+#include "GCHEM_OPTIONS.h"
+#endif
+cswdptr -- end add ---
 
 CBOP
 C     !ROUTINE: FORWARD_STEP
