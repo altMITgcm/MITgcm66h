@@ -24,7 +24,7 @@ else
     else
 	FFLAGS='-Wimplicit -Wunused -ffloat-store -mfpmath=sse -msse'
     fi
-    echo 'FFLAGS="'$FFLAGS'"'
+    #  echo 'FFLAGS="'$FFLAGS'"'
     FOPTIM='-O0 -malign-double'
 fi
 
