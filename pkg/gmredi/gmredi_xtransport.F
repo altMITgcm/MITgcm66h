@@ -1,5 +1,3 @@
-C $Header$
-C $Name$
 
 #include "GMREDI_OPTIONS.h"
 
@@ -92,7 +90,7 @@ C--   Area integrated zonal flux
 #else
      &    *(GM_isopycK 
 #ifdef GM_VISBECK_VARIABLE_K
-     &    +op5*(VisbeckK(i,j,bi,bj)+VisbeckK(i-1,j,bi,bj))
+cph     &    +op5*(VisbeckK(i,j,bi,bj)+VisbeckK(i-1,j,bi,bj))
 #endif
      &    )
 #endif /* GM_NON_UNITY_DIAGONAL */
