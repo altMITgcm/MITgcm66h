@@ -609,6 +609,10 @@ C--      Apply open boundary conditions
 #endif   /* ALLOW_OBCS */
 
 #ifdef ALLOW_TIMEAVE
+        IF ( taveFreq.GT. 0. _d 0 .AND.
+     &       buoyancyRelation(1:7) .EQ. 'OCEANIC' ) THEN
+          CALL TIMEAVE_SURF_FLUX( bi, bj, myTime, myIter, myThid)
+        ENDIF
 #ifndef HRCUBE
         IF (taveFreq.GT.0. .AND. ivdc_kappa.NE.0.) THEN
           CALL TIMEAVE_CUMULATE(ConvectCountTave, IVDConvCount,
