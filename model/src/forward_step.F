@@ -121,6 +121,14 @@ C--     Step forward fields and calculate time tendency terms.
         CALL THERMODYNAMICS( myTime, myIter, myThid )
         CALL TIMER_STOP ('THERMODYNAMICS      [THE_MAIN_LOOP]',mythid)
 
+#ifdef ALLOW_SHAP_FILT
+       IF (staggerTimeStep .AND. useSHAP_FILT) THEN
+c       CALL TIMER_START('SHAP_FILT           [THE_MAIN_LOOP]',myThid)
+        CALL SHAP_FILT_APPLY_TS( gT, gS, myTime, myIter, myThid )
+c       CALL TIMER_STOP ('SHAP_FILT           [THE_MAIN_LOOP]',myThid)
+       ENDIF
+#endif
+
 C--     Step forward fields and calculate time tendency terms.
         IF ( momStepping ) THEN
         CALL TIMER_START('DYNAMICS            [THE_MAIN_LOOP]',mythid)
