@@ -19,7 +19,7 @@ Instructions for running verification/coupled_ucla:
   ln -sf data.gmredi.gkw91 data.gmredi
   ln -sf POLY3.COEFFS.15 POLY3.COEFFS
   mpirun -np 4 mitgcmuv
-dbx -pid 
+
 Comparison output:
   cmp Eta.*10.data ../verification/coupled_ucla/results/Eta.*
 
