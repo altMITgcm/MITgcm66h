@@ -94,11 +94,17 @@ C--   Do time averages
        CALL TIMEAVE_STATV_WRITE( myCurrentTime, myIter, myThid )
       ENDIF
 #endif
+
 #ifdef ALLOW_AIM
 C--   Do AIM time averages
       IF (useAIM)
      &  CALL AIM_WRITE_TAVE( myCurrentTime, myIter, myThid )
 #endif                                                             
+
+#ifdef ALLOW_OBCS
+      IF (useOBCS)
+     & CALL OBCS_DIAGS( myCurrentTime, myIter, myThid )
+#endif
 
 #ifdef ALLOW_GMREDI
 C--   Do KPP diagnostics.

@@ -72,20 +72,17 @@ C--   Initialize SEAICE model.
       IF (useSEAICE) CALL SEAICE_INIT( myThid )
 #endif
 
-#ifdef ALLOW_OBCS
-C--   Open boundaries data
-      IF (useOBCS) THEN
-        CALL OBCS_INIT_VARIABLES( myThid )
-      ENDIF
-#endif
-
 #ifdef ALLOW_PTRACERS
       IF ( usePTRACERS ) CALL PTRACERS_INIT( mythid )
 #endif
 
-#if (defined (ALLOW_ADJOINT_RUN) || defined (ALLOW_TANGENTLINEAR_RUN))
+#if (defined (ALLOW_ADJOINT_RUN) || \
+     defined (ALLOW_TANGENTLINEAR_RUN) || \
+     defined (ALLOW_ECCO_OPTIMIZATION))
+c--   Initialise auxiliary xx_ fields
+      CALL CTRL_INIT_VARIABLES ( mythid )
 c--   Map the control variables onto the model state. 
-      call ctrl_map_ini( mythid )
+      CALL CTRL_MAP_INI( mythid )
       _BARRIER
 #endif
 
@@ -95,16 +92,19 @@ c--   Map the control variables onto the model state.
       CALL INI_FORCING( mythid )
 #endif
 
-#ifdef INCLUDE_ECCO_PACKAGE
-      IF (useECCO) THEN
-       CALL ECCO_INIT( myThid )
-      ENDIF
-#else
-# ifdef ALLOW_COST
+#ifdef ALLOW_COST
 c--   Initialise the cost function.
-      call cost_init( mythid )
+      CALL COST_INITVARIA( mythid )
       _BARRIER
-# endif
+#endif
+
+#ifdef INCLUDE_ECCO_PACKAGE
+      IF (useECCO) CALL ECCO_INIT( myThid )
+#endif
+
+#ifdef ALLOW_OBCS
+C--   Open boundaries data
+      IF (useOBCS) CALL OBCS_INIT_VARIABLES( myThid )
 #endif
 
 cswdblk -- begin add ---

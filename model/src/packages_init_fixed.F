@@ -63,5 +63,18 @@ C--   Latitude circle filter initialisation
       ENDIF
 #endif
 
+#if (defined (ALLOW_ADJOINT_RUN) || \
+     defined (ALLOW_TANGENTLINEAR_RUN) || \
+     defined (ALLOW_ECCO_OPTIMIZATION)) 
+C--   Initialise the control variables
+      CALL CTRL_INIT( myThid )
+      _BARRIER
+#endif
+
+#ifdef INCLUDE_ECCO_PACKAGE
+C--   Initialise ecco-specific cost function.
+       IF (useECCO) CALL COST_INIT( myThid )
+#endif
+
       RETURN
       END
