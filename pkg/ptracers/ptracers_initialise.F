@@ -47,6 +47,12 @@ c         PTRACERS_multiDimAdv(iTracer) = .TRUE.
 C       end of Tracer loop
       ENDDO
 
+#ifdef ALLOW_DIAGNOSTICS
+      IF ( useDiagnostics ) THEN
+        CALL PTRACERS_DIAGNOSTICS_INIT( myThid )
+      ENDIF
+#endif
+
 #endif /* ALLOW_PTRACERS */
 
       RETURN
