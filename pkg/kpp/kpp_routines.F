@@ -756,10 +756,16 @@ c  evaluate f of smooth Ri for shear instability, store in fRi
 c ----------------------------------------------------------------------
 c            evaluate diffusivities and viscosity
 c    mixing due to internal waves, and shear and static instability
- 
+
+#ifndef EXCLUDE_KPP_SHEAR_MIX 
             diffus(i,ki,1) = viscAr + fcon * difmcon + fRi * difm0
             diffus(i,ki,2) = diffKrS + fcon * difscon + fRi * difs0
             diffus(i,ki,3) = diffKrT + fcon * difscon + fRi * difs0
+#else
+            diffus(i,ki,1) = viscAr
+            diffus(i,ki,2) = diffKrS
+            diffus(i,ki,3) = diffKrT
+#endif
 
          end do
       end do
