@@ -3,6 +3,11 @@ $Header$
 Miscellaneous notes relating to MITgcm UV
 =========================================
 
+This files form is close to that of an FAQ. If you are having
+a problem getting the model to behave as you might expect they
+may be some helpful clues in this file.
+
+
 o Something really weird is happening - variables keep
   changing value!
 
