@@ -25,13 +25,17 @@ c
 c     started: Christian Eckert eckert@mit.edu  30-Jun-1999
 c
 c     changed: Christian Eckert eckert@mit.edu  14-Jan-2000
-c
 c              - Restructured the code in order to create a package
 c                for the MITgcmUV.
 c
 c              Christian Eckert eckert@mit.edu  12-Feb-2000
-c
 c              - Changed Routine names (package prefix: exf_)
+c
+c              Curtis Heisey cheisey@mit.edu    19-Dec-2002
+c              - added "repeatPeriod" for cycling of forcing datasets
+c
+c              Dimitris Menemenlis menemenlis@jpl.nasa.gov 27-Dec-2002
+c              - bug fix for verification/global_with_exf
 c
 c     ==================================================================
 c     SUBROUTINE exf_GetFFieldRec
@@ -44,6 +48,7 @@ c     == global variables ==
 c cal: modelstart, modelstep
 #include "EEPARAMS.h"
 #include "cal.h"
+#include "exf_param.h"
 
 c     == routine arguments ==
 
@@ -66,6 +71,8 @@ c     == local variables ==
 
       integer fldcount
       _RL     fldsecs
+      _RL     fldsecs0
+      _RL     fldsecs1
       integer prevfldcount
       _RL     prevfldsecs
       integer flddate(4)
@@ -86,6 +93,19 @@ c     Determine the flux record just before mycurrentdate.
       fldsecs  = int((fldsecs+0.5)/fldperiod)*fldperiod
       fldcount = int((fldsecs+0.5)/fldperiod) + 1
 
+c     If using repeating data (e.g. monthly means) then make
+c     fldsecs cycle around
+      if (repeatPeriod.ne.0.) then
+         fldsecs0=mod(fldsecs,repeatPeriod)
+c        print *,'repeat: ',fldsecs
+c     Determine the flux record just after mycurrentdate.
+         count0 = int(fldsecs0/fldperiod) + 1
+         fldsecs1  = int((fldsecs+fldperiod+0.5)/fldperiod)*fldperiod
+         fldsecs1=mod(fldsecs1,repeatPeriod+0.5)
+c        print *,'repeat: ',fldsecs1
+         count1 = int((fldsecs1+0.5)/fldperiod) + 1
+      endif
+
 c     Set switches for reading new records.
       first = ((mytime - modelstart) .lt. 0.5*modelstep)
 
@@ -98,8 +118,8 @@ c     Set switches for reading new records.
         call cal_TimePassed( fldstartdate, previousdate, difftime,
      &                       mythid )
         call cal_ToSeconds( difftime, prevfldsecs, mythid )
-        prevfldsecs  = int(prevfldsecs/fldperiod)*fldperiod
-        prevfldcount = int(prevfldsecs/fldperiod) + 1
+        prevfldsecs  = int((prevfldsecs+0.5)/fldperiod)*fldperiod
+        prevfldcount = int((prevfldsecs+0.5)/fldperiod) + 1
 
         if (fldcount .ne. prevfldcount) then
           changed = .true.
@@ -108,8 +128,10 @@ c     Set switches for reading new records.
         endif
       endif
 
-      count0 = fldcount
-      count1 = fldcount + 1
+      if (.NOT.repeatPeriod.ne.0.) then
+         count0 = fldcount
+         count1 = fldcount + 1
+      endif
 
       call cal_TimeInterval( fldsecs, 'secs', difftime, mythid )
       call cal_AddTime( fldstartdate, difftime, flddate, mythid )

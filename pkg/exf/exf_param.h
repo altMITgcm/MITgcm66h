@@ -31,6 +31,8 @@ c     HEADER exf_param
 c     ==================================================================
 
 c     Calendar data.
+      _RL     repeatPeriod
+
       integer hfluxstartdate1
       integer hfluxstartdate2
       integer hfluxstartdate(4)
@@ -198,6 +200,7 @@ c     File names.
       character*(128) apressurefile
 
       common /exf_param_i/
+     &                          repeatPeriod,
      &                          hfluxstartdate1,   hfluxstartdate2,
      &                          atempstartdate1,   atempstartdate2,
      &                          aqhstartdate1,     aqhstartdate2,

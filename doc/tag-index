@@ -17,6 +17,7 @@ o exf:
       fldsecs  = int(fldsecs/fldperiod)*fldperiod
       fldcount = int(fldsecs/fldperiod) + 1
     and were modified.
+  - added repeatPeriod (from MAIN branch)
 o grdchk: updated and merged
   - has both ADM and TLM checks
   - works for single- and multi-proc.
@@ -48,6 +49,7 @@ o DIVA:
   TAF has one remaining bug, requiring one manual change
   (see MITgcm manual).
 o bug fix plus modif for ubar, vbar in cost_averagesfields
+o cal: synchronized between MAIN and ecco-branch
 
 icebear4
 o Added cost_ice for sea-ice volume sensitivity experiment.
