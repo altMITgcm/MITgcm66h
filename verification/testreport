@@ -676,6 +676,8 @@ createcodelet
 
 #  build the mpack utility
 if test "x$ADDRESSES" = xNONE -o "x$ADDRESSES" = x ; then
+    echo "skipping mpack build"
+else
     build_mpack
 fi
 
