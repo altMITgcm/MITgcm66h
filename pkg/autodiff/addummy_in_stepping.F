@@ -119,6 +119,10 @@ C--     Read IO error counter
      &       'ADJuvel.',suff, aduvel, myIter, myThid)
         CALL WRITE_FLD_XYZ_RL( 
      &       'ADJvvel.',suff, advvel, myIter, myThid)
+        CALL WRITE_FLD_XYZ_RL(
+     &       'ADJwvel.',suff, advvel, myIter, myThid)
+        CALL WRITE_FLD_XY_RL(
+     &       'ADJetan.',suff, advvel, myIter, myThid)
         CALL WRITE_FLD_XY_RL ( 'ADJtaux.',suff, adfu, myIter, myThid)
         CALL WRITE_FLD_XY_RL ( 'ADJtauy.',suff, adfv, myIter, myThid)
         CALL WRITE_FLD_XY_RL ( 'ADJqnet.',suff, adqnet, myIter, myThid)
