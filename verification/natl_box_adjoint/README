@@ -383,7 +383,7 @@
 #####################
 # Experiment no. 12 #
 #####################
-# Same as experiment 10, but including ADI dynamic solver.
+# Same as experiment 10, but including LSR dynamic solver.
 
 # Compile code in bin/:
  cd ../bin
@@ -396,30 +396,13 @@
  cp ../verification/natl_box_adjoint/code_seaice/SEAICE_OPTIONS.h.DYN SEAICE_OPTIONS.h
 # Configure and compile the code:
  ../tools/genmake -mpi -makefile
-# ==> on alhena use:
-# ../tools/genmake -platform=o2k -mpi -makefile
  make depend
 # Generate the adjoint code:
  cd ../adjoint
  cp ../verification/natl_box_adjoint/code_seaice/makefile.dyn makefile
  make adtaf
- make adchange
- rm -f makefile
-# Go back and compile the code:
- cd ../bin
- make
-# To run:
- cd ../exe
- cp ../verification/natl_box_adjoint/input_seaice/* .
- cp data.001 data
- cp ../verification/natl_box_adjoint/input_bulk/data.grdchk .
- mpirun -np 2 mitgcmuv
-# To verify the results of the gradient check, type:
- grep "ph-grd 3" STDOUT.0000
-# To plot adjoint sensitivy fields
- cd ../verification/natl_box_adjoint/results_seaice
- matlab
- lookat_exp10
+
+# *ERROR* : control flow graph of subroutine lsr is irreducible
 
 
 #####################
