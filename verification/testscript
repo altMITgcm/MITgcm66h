@@ -151,6 +151,7 @@ foreach dr ([a-zA-Z01-9]*)
     if ($?on_error_die) exit 1
     set pass=-
   endif
+  rm -f high.txt oldhigh.txt low.txt oldlow.txt output.txt make.log
   endif
   cd ..
  endif
