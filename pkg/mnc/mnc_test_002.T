@@ -21,6 +21,16 @@ C     Local Variables
       CALL MNC_CW_INIT( 0,
      &     20,16, 4,4, 1,1, 1,1, 13 )
 
+      CALL MNC_CW_ADD_VNAME(0, 'v_vel', 'V_xy_Hn__C__t')
+      CALL MNC_CW_ADD_VATTR_TEXT(0, 'v_vel', 1, 
+     &     'long_name', 'meridional_velocity')
+      CALL MNC_CW_ADD_VATTR_TEXT(0, 'v_vel', 1, 
+     &     'units', 'cm/s')
+      CALL MNC_CW_ADD_VATTR_INT(0, 'v_vel', 1, 
+     &     'grid_type', -1 )
+      CALL MNC_CW_ADD_VATTR_DBL(0, 'v_vel', 1, 
+     &     'MITgcm_grid_ver', 0.1D0 )
+
       CALL MNC_CW_DUMP()
 
       print*, '=== Ending Program:    mnc_test_002 ==='
