@@ -56,7 +56,7 @@ C     Step forward zonal velocity
       DO j=jMin,jMax
        DO i=iMin,iMax
         uVel(i,j,k,bi,bj)=( gUNm1(i,j,k,bi,bj)
-     &       -deltaTmom*hxFac*gBaro*etaSurfX(i,j)
+     &       -deltaTmom*hxFac*gBaro*implicSurfPress*etaSurfX(i,j)
 #ifdef ALLOW_NONHYDROSTATIC
      &       -deltaTmom*hx3dFac*gravity*_recip_dxC(i,j,bi,bj)*
      &          (cg3d_x(i,j,k,bi,bj)-cg3d_x(i-1,j,k,bi,bj))
@@ -70,7 +70,7 @@ C     Step forward meridional velocity
       DO j=jMin,jMax
        DO i=iMin,iMax
         vVel(i,j,k,bi,bj)=( gVNm1(i,j,k,bi,bj)
-     &       -deltaTmom*hyFac*gBaro*etaSurfY(i,j)
+     &       -deltaTmom*hyFac*gBaro*implicSurfPress*etaSurfY(i,j)
 #ifdef ALLOW_NONHYDROSTATIC
      &       -deltaTmom*hy3dFac*gravity*_recip_dyC(i,j,bi,bj)*
      &          (cg3d_x(i,j,k,bi,bj)-cg3d_x(i,j-1,k,bi,bj))
