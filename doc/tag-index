@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint11
+ Re-arranged initialise() and introduced ini_vertical_grid()
+ and ini_masks_etc().
+
 checkpoint10
  Introduced the configure script.
  Separated out the diags package.
