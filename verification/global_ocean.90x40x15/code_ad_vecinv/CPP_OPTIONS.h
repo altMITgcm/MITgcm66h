@@ -134,7 +134,7 @@ C o Read/write of checkpoint files for restarting.
 #undef OLD_STYLE_WITH_MANY_FILES
 
 C o Exact volume conservation
-#undef EXACT_CONSERV
+#define EXACT_CONSERV
 
 C o Add passive tracer advection routines
 #undef ALLOW_PASSIVE_TRACER
