@@ -107,11 +107,6 @@ c     (version 0.1.3 >> END << )
 
       _BEGIN_MASTER(myThid)
 
-#ifndef ALLOW_CAL_NENDITER
-      print *, 'WARNING: ALLOW_CAL_NENDITER must be defined in CPP file'
-      STOP 'undef ALLOW_CAL_NENDITER no longer supported by cal package'
-#endif
-
 c       Initialise the calendar's parameters
         TheCalendar = ' '
         startdate_1 = 0

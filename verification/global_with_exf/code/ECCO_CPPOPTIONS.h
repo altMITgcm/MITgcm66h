@@ -17,9 +17,7 @@ C
 C CPP flags controlling which code is included in the files that
 C will be compiled.
 
-C o Include the calendar tool.
-#define ALLOW_CALENDAR
-#define ALLOW_CAL_NENDITER
+CPH >>>>>> THERE ARE NO MORE CAL OPTIONS TO BE SET <<<<<<
 
 C ********************************************************************
 C ***             External forcing Package                         ***
