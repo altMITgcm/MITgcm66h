@@ -41,6 +41,12 @@ C     stored files.
       CALL INI_FIELDS( myThid )
       _BARRIER
 
+C-- IMPORTANT : Need to activate the following call to restart from 
+C     a pickup file written by MITgcmUV_checkpoint34 or earlier.
+C     IF ( startTime .NE. 0. ) THEN
+C       CALL THE_CORRECTION_STEP(startTime, nIter0, myThid)
+C     ENDIF
+
 C--   Initial conditions are convectively adjusted (for historical reasons)
       IF ( startTime .EQ. 0. ) THEN
         DO bj = myByLo(myThid), myByHi(myThid)
