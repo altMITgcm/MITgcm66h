@@ -4,7 +4,7 @@
 # ***************
  &PACKAGES
  useKPP	      = .TRUE.,
- useGMRedi    = .TRUE.,
+ useGMRedi    = .FALSE.,
  useECCO      = .TRUE.,
  useSeaice    = .FALSE.,
  useGrdchk    = .TRUE.,

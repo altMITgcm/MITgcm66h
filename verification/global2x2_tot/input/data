@@ -39,6 +39,7 @@
  implicitViscosity=.TRUE.,
  allowFreezing=.FALSE.,
  useCDscheme=.TRUE.,
+ debugLevel=0,
  &
 
 # **************************
@@ -56,15 +57,16 @@
  tauCD=172800.,
  startTime=0.0,
  nTimeSteps=4,
+# nTimeSteps=17520,
 # nTimeSteps=52560,
  deltaTmom=3600.0,
  deltaTtracer=3600.0,
  deltaTClock =3600.0,
  cAdjFreq=0.,
  abEps=0.1,
- pChkptFreq=15552000.0,
- chkptFreq=15552000.0,
- dumpFreq =15552000.0,
+ pChkptFreq = 315360000.0,
+ chkptFreq  = 315360000.0,
+ dumpFreq   = 31536000.0,
  tauThetaClimRelax=0.,
  tauSaltClimRelax=0.,
  &
@@ -85,6 +87,7 @@
 # Data Files
 # **********
  &PARM05
+ mdsioLocalDir=' ',
  bathyFile='bathys.bin',
  hydrogThetaFile='Lev.ptmp',
  hydrogSaltFile='Lev.salt',

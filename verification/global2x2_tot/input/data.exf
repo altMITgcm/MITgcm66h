@@ -52,12 +52,6 @@
  sfluxfile         = 'NCEP_R_eminusp_92-97_2x2',
  ustressfile       = 'NCEP_R_ustr_92-97_2x2',
  vstressfile       = 'NCEP_R_vstr_92-97_2x2',
- atempfile         = 'PH_atm_atemp_020_016_23',
- aqhfile           = 'PH_atm_humid_020_016_23',
- uwindfile         = 'PH_atm_uwind_020_016_23',
- vwindfile         = 'PH_atm_vwind_020_016_23',
- precipfile        = 'PH_pratesfc_020_016_23',
- lwfluxfile        = 'PH_lwflsfc_020_016_23',
  swfluxfile        = 'NCEP_R_sw_92-97_2x2',
 #
  exf_iprec         = 32,

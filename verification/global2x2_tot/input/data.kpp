@@ -4,6 +4,6 @@
 # ***************
  &KPP_PARM01
  KPPmixingMaps   = .FALSE.,
- KPPwriteState   = .FALSE.,
- kpp_dumpFreq    = 15768000.0
+ KPPwriteState   = .TRUE.,
+ kpp_dumpFreq    = 31536000.0
  &

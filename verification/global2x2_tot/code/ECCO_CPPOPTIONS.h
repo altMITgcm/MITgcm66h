@@ -66,6 +66,8 @@ C
 
 #ifdef ALLOW_COST
 C       >>> Use the EGM-96 geoid error covariance.
+cph# define  ALLOW_EGM96_ERROR_DIAG
+cph needs more testing
 # undef  ALLOW_EGM96_ERROR_DIAG
 # undef  ALLOW_EGM96_ERROR_COV
 # undef  ALLOW_SPH_PROJECTION
