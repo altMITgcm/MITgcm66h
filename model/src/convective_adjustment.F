@@ -99,12 +99,12 @@ C--       CONVECT not needed with KPP mixing
           kBottom = Nr
           kDir    = 1
          ELSEIF ( buoyancyRelation .eq. 'OCEANICP' ) THEN
-          kTop    = Nr-1
-          kBottom =  1
+          kTop    = Nr
+          kBottom =  2
           kDir    = -1
          ELSEIF ( buoyancyRelation .eq. 'ATMOSPHERIC' ) THEN
-          kTop    = Nr-1
-          kBottom =  1
+          kTop    = Nr
+          kBottom =  2
           kDir    = -1
          ELSE
           STOP 'CONVECTIVE_ADJUSTMENT: We should never reach this point'
