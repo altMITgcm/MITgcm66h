@@ -4,6 +4,7 @@ $Header$
     ==============================
 
 untagged
+o improve "ini_p_ground" when using finite difference form for calc_phi_hyd
 o Added net flux to downward flux conversion to pkg/exf/exf_getffields.F
 o Added SEAICE_initialHEFF to pkg/seaice
 
