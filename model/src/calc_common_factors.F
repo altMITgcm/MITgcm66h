@@ -65,7 +65,7 @@ C--    Calculate tracer cell face open areas
       DO j=jMin,jMax
        DO i=iMin,iMax
         xA(i,j) = dyG(i,j,bi,bj)*dzF(k)*hFacW(i,j,k,bi,bj)
-        yA(i,j) = dxG(i,j,bi,bj)*dzF(k)*hFacS(i,j,k,bi,bj)
+        yA(i,j) = _dxG(i,j,bi,bj)*dzF(k)*hFacS(i,j,k,bi,bj)
        ENDDO
       ENDDO
 

@@ -12,11 +12,11 @@ C     \==========================================================/
 #define  _dxG(i,j,bi,bj) dxG(1,1,1,1)
 #endif
 
-#ifdef DXG_FX_ONLY
+#ifdef DXG_FX
 #define  _dxG(i,j,bi,bj) dxG(i,1,bi,1)
 #endif
 
-#ifdef DXG_FY_ONLY
+#ifdef DXG_FY
 #define  _dxG(i,j,bi,bj) dxG(1,j,1,bj)
 #endif
 

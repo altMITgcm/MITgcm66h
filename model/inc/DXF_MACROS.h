@@ -12,11 +12,11 @@ C     \==========================================================/
 #define  _dxF(i,j,bi,bj) dxF(1,1,1,1)
 #endif
 
-#ifdef DXF_FX_ONLY
+#ifdef DXF_FX
 #define  _dxF(i,j,bi,bj) dxF(i,1,bi,1)
 #endif
 
-#ifdef DXF_FY_ONLY
+#ifdef DXF_FY
 #define  _dxF(i,j,bi,bj) dxF(1,j,1,bj)
 #endif
 

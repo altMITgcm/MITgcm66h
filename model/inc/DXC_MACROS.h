@@ -12,11 +12,11 @@ C     \==========================================================/
 #define  _dxC(i,j,bi,bj) dxC(1,1,1,1)
 #endif
 
-#ifdef DXC_FX_ONLY
+#ifdef DXC_FX
 #define  _dxC(i,j,bi,bj) dxC(i,1,bi,1)
 #endif
 
-#ifdef DXC_FY_ONLY
+#ifdef DXC_FY
 #define  _dxC(i,j,bi,bj) dxC(1,j,1,bj)
 #endif
 

@@ -12,11 +12,11 @@ C     \==========================================================/
 #define  _dxV(i,j,bi,bj) dxV(1,1,1,1)
 #endif
 
-#ifdef DXV_FX_ONLY
+#ifdef DXV_FX
 #define  _dxV(i,j,bi,bj) dxV(i,1,bi,1)
 #endif
 
-#ifdef DXV_FY_ONLY
+#ifdef DXV_FY
 #define  _dxV(i,j,bi,bj) dxV(1,j,1,bj)
 #endif
 
