@@ -33,7 +33,7 @@ C     === Routine arguments ===
      &          OBSuFile,OBSvFile,OBStFile,OBSsFile,
      &          OBEuFile,OBEvFile,OBEtFile,OBEsFile,
      &          OBWuFile,OBWvFile,OBWtFile,OBWsFile,
-     &          useOBCSsponge, useOBCSbalance
+     &          useOBCSsponge, useOBCSbalance, useOBCSprescribe
 
 #ifdef ALLOW_ORLANSKI
       NAMELIST /OBCS_PARM02/
@@ -84,6 +84,7 @@ C--   Default flags and values for OBCS
       useOrlanskiWest =.FALSE.
       useOBCSsponge   =.FALSE.
       useOBCSbalance  =.FALSE.
+      useOBCSprescribe = .FALSE.
 
       OBNuFile = ' '
       OBNvFile = ' '

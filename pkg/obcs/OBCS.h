@@ -33,7 +33,7 @@ C
      & spongeThickness,
      & useOrlanskiNorth,useOrlanskiSouth,
      & useOrlanskiEast,useOrlanskiWest,
-     & useOBCSsponge, useOBCSbalance
+     & useOBCSsponge, useOBCSbalance, useOBCSprescribe
       INTEGER OB_Jnorth(Nx)
       INTEGER OB_Jsouth(Nx)
       INTEGER OB_Ieast(Ny)
@@ -45,6 +45,7 @@ C
       LOGICAL useOrlanskiWest
       LOGICAL useOBCSsponge
       LOGICAL useOBCSbalance
+      LOGICAL useOBCSprescribe
 
       COMMON /PARM_R_OB/
      & Urelaxobcsinner,Urelaxobcsbound,
