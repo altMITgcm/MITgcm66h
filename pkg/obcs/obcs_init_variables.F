@@ -59,15 +59,15 @@ C     == Local variables ==
          ENDDO
         ENDDO
 
-       ENDDO
-      ENDDO
-
 #ifdef ALLOW_ORLANSKI
         IF (useOrlanskiNorth.OR.useOrlanskiSouth.OR.
      &      useOrlanskiEast.OR.useOrlanskiWest) THEN
           CALL ORLANSKI_INIT(bi, bj, myThid)
         ENDIF
 #endif /* ALLOW_ORLANSKI */
+
+       ENDDO
+      ENDDO     
 
 C--   Apply OBCS values to initial conditions for consistancy
       DO bj = myByLo(myThid), myByHi(myThid)
