@@ -53,6 +53,7 @@ c     CALL SRAND( J )
 C--    Initialise temperature field to Held & Suarez equilibrium theta
        DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
+c        call seed_port_rand()
          DO K=1,Nr
           thetaLim = 200. _d 0/((rC(K)/atm_po)**atm_kappa)
           DO J=1,sNy
