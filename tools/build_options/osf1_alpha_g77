@@ -9,7 +9,9 @@ FC=g77
 DEFINES='-D_BYTESWAPIO -DWORDLENGTH=4'
 CPP='/usr/bin/cpp -P'
 NOOPTFLAGS='-O0'
-MAKEDEPEND='mkdep -f depend.out'
+#EH3  Remove the buggy mkdep since the newly included cyrus version
+#EH3  works much better on machines such as "halem"
+#EH3  MAKEDEPEND='mkdep -f depend.out'
 
 # netcdf
 # LIBS="-lnetcdf"
