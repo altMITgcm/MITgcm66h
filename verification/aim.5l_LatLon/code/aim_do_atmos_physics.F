@@ -2,6 +2,7 @@ C $Header$
 C     $Name$
 
 #include "AIM_OPTIONS.h"
+#undef OLD_AIM_GRIG_MAPPING
 
       SUBROUTINE AIM_DO_ATMOS_PHYSICS( phi_hyd, currentTime, myThid )
 C     /==================================================================\
@@ -35,6 +36,7 @@ C     MITgcm
 #include "PARAMS.h"
 #include "DYNVARS.h"
 #include "GRID.h"
+#include "SURFACE.h"
 
 C     -------------- Routine arguments -----------------------------------
       _RL phi_hyd(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
@@ -160,6 +162,17 @@ C     _GLOBAL_SUM_R8( phiTSum, myThid )
 C     ptotalniv5=phiTSum/phiTCount
       ptotalniv5=0.
 
+c_jmc: Because AIM physics LSC is not applied in the stratosphere (top level),
+c      ==> move water wapor from the stratos to the surface level.
+      DO J = 1-Oly, sNy+Oly
+       DO I = 1-Olx, sNx+Olx
+c       k = k_surf(i,j,bi,bj)
+c       salt(I,J,k,bi,bj) = salt(I,J,k,bi,bj)
+c    &   + maskC(i,j,Nr,bi,bj)*salt(I,J,Nr,bi,bj)*drF(Nr)*recip_drF(k)
+        salt(I,J,Nr,bi,bj) = 0.
+       ENDDO
+      ENDDO
+
 C     Note the mapping here is only valid for one tile per proc.
       DO K = 1, Nr
        DO J = 1, sNy
@@ -169,9 +182,12 @@ C     Note the mapping here is only valid for one tile per proc.
          UG1(I2,Katm)   = 0.5*(uVel(I,J,K,bi,bj)+uVel(I+1,J,K,bi,bj))
          VG1(I2,Katm)   = 0.5*(vVel(I,J,K,bi,bj)+vVel(I,J+1,K,bi,bj))
 C        Physics works with temperature - not potential temp.
-         TG1(I2,Katm)   = theta(I,J,K,bi,bj)/((pGround/pSurfs(K))**(RD/CPAIR))
-         QG1(I2,Katm)   = salt(I,J,K,bi,bj)
-         PHIG1(I2,Katm) = (phiTotal(I,J,K)- ptotalniv5 ) + gravity*Hinitial(k)
+         TG1(I2,Katm)   = theta(I,J,K,bi,bj)
+     &                  / ((pGround/pSurfs(K))**(RD/CPAIR))
+c_jmc    QG1(I2,Katm)   = salt(I,J,K,bi,bj)
+         QG1(I2,Katm)   = MAX(salt(I,J,K,bi,bj), 0. _d 0)
+         PHIG1(I2,Katm) = (phiTotal(I,J,K)- ptotalniv5 ) 
+     &                  + gravity*Hinitial(k)
 C *NOTE* Fix me for lopped cells
          if(hFacC(i,j,k,bi,bj).eq.1.) then
            RHOG1(I2,Katm) = pSurfs(K)/RD/TG1(I2,Katm)
@@ -182,6 +198,27 @@ C *NOTE* Fix me for lopped cells
         ENDDO
        ENDDO
       ENDDO
+c---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+c_jmc: add square of surface wind speed (center of C grid) = 2 * KE_surf
+      DO J = 1, sNy
+       DO I = 1, sNx
+         I2 = I+(J-1)*sNx
+         K = k_surf(i,j,bi,bj)
+         Vsurfsq(I2) = 0.5 * (
+     &                 uVel(I,J,K,bi,bj)*uVel(I,J,K,bi,bj)
+     &               + uVel(I+1,J,K,bi,bj)*uVel(I+1,J,K,bi,bj)
+     &               + vVel(I,J,K,bi,bj)*vVel(I,J,K,bi,bj)
+     &               + vVel(I,J+1,K,bi,bj)*vVel(I,J+1,K,bi,bj)
+     &                        )
+#ifdef OLD_AIM_GRIG_MAPPING
+c - to reproduce old results :
+         Katm = _KD2KA( K )
+         Vsurfsq(I2) = UG1(I2,Katm)*UG1(I2,Katm)
+     &               + VG1(I2,Katm)*VG1(I2,Katm)
+#endif /* OLD_AIM_GRIG_MAPPING */
+       ENDDO
+      ENDDO
+c---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 C      
 C     Set geopotential surfaces
@@ -347,6 +384,14 @@ C               this as its global data assumes only one "tile".
       CALL AIM_UTVT2DYN( bi, bj, myThid )
       _EXCH_XYZ_R8( AIM_UT, myThid )
       _EXCH_XYZ_R8( AIM_VT, myThid )
+
+      DO J = 1, sNy
+       DO I = 1, sNx
+         I2 = I+(J-1)*sNx
+         aim_drag(I,J,bi,bj) = DRAG(I2)
+       ENDDO
+      ENDDO
+      _EXCH_XY_R8( aim_drag, myThid )
 C
 #endif /* ALLOW_AIM */
 
