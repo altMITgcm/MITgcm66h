@@ -114,7 +114,7 @@ C--   Set default "physical" parameters
       nShap               = 0
       zonal_filt_lat      = 90.
       zonal_filt_sinpow   = 2
-      zonal_filt_cospow   = 4
+      zonal_filt_cospow   = 2
       bottomDragLinear    = 0.
       bottomDragQuadratic = 0.
 
