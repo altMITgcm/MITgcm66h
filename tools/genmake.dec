@@ -31,7 +31,7 @@ set MODEL_IDIR  = ( ../model/inc/  )
 set TDIR        = ( ../tools/      )
 set BDIR        = ( ../bin/        )
 set EDIR        = ( ../exe/        )
-set EXE         = ( MITgcmUV       )
+set EXE         = ( mitgcmuv       )
 
 # ***************************************************************************************************
 # Pathnames and arguments for the commands used on this platform

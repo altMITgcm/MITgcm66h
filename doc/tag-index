@@ -3,6 +3,11 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint9
+ MPI fix. Filename changes (meta/data). salbin*y stuff.
+ General tidy-up.
+ SST.bin SSS.bin added to verification/exp2
+
 checkpoint8
  Inludes time-dependant forcing and time-averaging.
  Works at 4x4 and 2.8125x2.8125 global
