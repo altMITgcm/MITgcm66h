@@ -6,15 +6,26 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
+CBOP
+C     !ROUTINE: INI_MNC_IO
+
+C     !INTERFACE:
       SUBROUTINE INI_MNC_IO( myThid )
 
+C     !DESCRIPTION:
+C     Initialize the MNC state (\texttt{state.xxxxx.nc}) files and
+C     variable types
+      
+C     !USES:
       IMPLICIT NONE
 #include "SIZE.h"
 #include "GRID.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 
+C     !INPUT PARAMETERS:
       INTEGER myThid
+CEOP
 
 #ifdef ALLOW_MNC
       IF (useMNC) THEN
