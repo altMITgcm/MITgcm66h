@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+untagged
+o added "#undef ALLOW_USE_MPI" support to eesupp/src/gather_2d.F
+
 checkpoint51m_post
 o incorporating changes to get TAMC/TAF working in genmake2
   - added new TAMC/TAF targets to the Makefile
