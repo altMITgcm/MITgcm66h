@@ -87,7 +87,7 @@ C       Write 3D geometry arrays
 
 #ifdef ALLOW_MNC
       IF (useMNC .AND. snapshot_mnc) THEN
-        bfname='grid';
+        bfname='grid'
 
 C       Grid spacing, areas and hFacs
         CALL MNC_CW_ADD_VNAME('drC', '-_-_--__C__-', 0,0, myThid)

@@ -28,7 +28,7 @@ C     !LOCAL VARIABLES:
 
 C     Write blanks or zeros to all the internal names and ID tables
       DO i = 1,MNC_MAX_CHAR
-        blank(i:i) = ' ';
+        blank(i:i) = ' '
       ENDDO
       mnc_blank_name(1:MNC_MAX_CHAR) = blank(1:MNC_MAX_CHAR)
       DO i = 1,MNC_MAX_ID
