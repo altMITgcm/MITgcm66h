@@ -523,7 +523,7 @@ end
 echo "" >> ${mfile}
 
 foreach dr ($SOURCEDIRS)
-set srcfiles=(`cd $dr; ls *.[cF]`:)
+set srcfiles=(`cd $dr; ls *.[hcF]`:)
 echo "# These are the rules for creating the links from $dr" >> ${mfile}
 echo $srcfiles >> ${mfile}
 echo '\t$(LN) '$dr'$@ $@' >> ${mfile}
