@@ -414,7 +414,7 @@ C master thread of process 0, only, opens a global file
 #else /* defined(ALLOW_EXCH2) && !defined(MISSING_TILE_IO) */
            DO J=1,Ny
             DO I=1,Nx
-             global(I,J) = xy_buffer_r4(I+(J-1)*Ny)
+             global(I,J) = xy_buffer_r4(I,J)
             ENDDO
            ENDDO
 #endif /* defined(ALLOW_EXCH2) && !defined(MISSING_TILE_IO) */
@@ -441,7 +441,7 @@ C master thread of process 0, only, opens a global file
 #else /* defined(ALLOW_EXCH2) && !defined(MISSING_TILE_IO) */
            DO J=1,Ny
             DO I=1,Nx
-             global(I,J) = xy_buffer_r8(I+(J-1)*Ny)
+             global(I,J) = xy_buffer_r8(I,J)
             ENDDO
            ENDDO
 #endif /* defined(ALLOW_EXCH2) && !defined(MISSING_TILE_IO) */
