@@ -372,9 +372,9 @@ c-- set dummy dimension 1
        integer MAX_LAT_INC
        parameter(MAX_LAT_INC = 1)
 #else
-c for lat interpolation, arraysize currently set to 250 max data values
+c for lat interpolation, arraysize currently set to 2176 max data values
        integer MAX_LAT_INC
-       parameter(MAX_LAT_INC = 1088)
+       parameter(MAX_LAT_INC = 2176)
       _RL ustress_lon0, ustress_lon_inc
       _RL ustress_lat0, ustress_lat_inc(MAX_LAT_INC)
       INTEGER ustress_nlon, ustress_nlat
