@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o depth convergence accelerator: replace deltaTtracer by dTtracerLev(k)
+  (not yet implemented for implicit vertical diffusion & advection)
 o OBCS: extend application of tracer open boundary conditions
   to a strip beyond the boundary of width Olx/Oly
 
