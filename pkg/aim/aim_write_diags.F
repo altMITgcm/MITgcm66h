@@ -4,9 +4,9 @@ C $Name$
 #include "AIM_OPTIONS.h"
 
 CStartOfInterFace
-      SUBROUTINE AIM_WRITE_DIAGS( myTime, myIter, myThid )
+      SUBROUTINE AIM_WRITE_TAVE( myTime, myIter, myThid )
 C     /==========================================================\
-C     | SUBROUTINE AIM_WRITE_DIAGS                               |
+C     | SUBROUTINE AIM_WRITE_TAVE                                |
 C     | o Write out AIM diagnostic output                        |
 C     \==========================================================/
       IMPLICIT NONE
