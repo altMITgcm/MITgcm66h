@@ -164,6 +164,8 @@ C--   Continuous equation parameters
      & tempAdvScheme, saltAdvScheme, tracerAdvScheme,
      & multiDimAdvection, useEnergyConservingCoriolis,
      & useCDscheme, useJamartWetPoints, useNHMTerms,
+     & SadournyCoriolis, upwindVorticity, highOrderVorticity,
+     & useAbsVorticity,
      & useRealFreshWaterFlux, convertFW2Salt,
      & temp_EvPrRn, salt_EvPrRn, trac_EvPrRn,
      & zonal_filt_lat

@@ -164,6 +164,10 @@ Cml      sBeta               = 7.4D-4
       useCDscheme         = .FALSE.
       useEnergyConservingCoriolis = .FALSE.
       useJamartWetPoints  = .FALSE.
+      SadournyCoriolis    = .FALSE.
+      upwindVorticity     = .FALSE.
+      highOrderVorticity  = .FALSE.
+      useAbsVorticity     = .FALSE.
       debugLevel          = debLevA
 
 C--   Set (free)surface-related parameters

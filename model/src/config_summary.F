@@ -259,6 +259,14 @@ c    &'   /* Laplacian diffusion of salt vertically ( m^2/s ) */')
      & 'useCDscheme =', '  /* CD scheme on/off flag */')
       CALL WRITE_0D_L( useJamartWetPoints,  INDEX_NONE,
      & 'useJamartWetPoints=',' /* Coriolis WetPoints method flag */')
+      CALL WRITE_0D_L( SadournyCoriolis,  INDEX_NONE,
+     & 'SadournyCoriolis=',' /* Sadourny Coriolis discr. flag */')
+      CALL WRITE_0D_L( upwindVorticity,  INDEX_NONE,
+     & 'upwindVorticity=',' /* Upwind bias vorticity flag */')
+      CALL WRITE_0D_L( useAbsVorticity,  INDEX_NONE,
+     & 'useAbsVorticity=',' /* Work with f+zeta in Coriolis */')
+      CALL WRITE_0D_L( highOrderVorticity,  INDEX_NONE,
+     & 'highOrderVorticity=',' /* High order interp. of vort. flag */')
       CALL WRITE_0D_L( momForcing,   INDEX_NONE,
      & 'momForcing =', '  /* Momentum forcing on/off flag */')
       CALL WRITE_0D_L( momPressureForcing, INDEX_NONE,
