@@ -1,4 +1,4 @@
-C $eader: /u/u3/gcmpack/MITgcm/model/src/forward_step.F,v 1.79 2003/12/15 23:00:44 molod Exp $
+C $Header$
 C $Name$
 
 #include "PACKAGES_CONFIG.h"
