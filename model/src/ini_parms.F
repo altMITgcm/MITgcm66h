@@ -118,7 +118,7 @@ C--   Continuous equation parameters
      & usePickupBeforeC35, debugMode, 
      & readPickupWithTracer, writePickupWithTracer,
      & tempAdvScheme, saltAdvScheme, tracerAdvScheme,
-     & multiDimAdvection
+     & multiDimAdvection, useEnergyConservingCoriolis
 
 C--   Elliptic solver parameters
       NAMELIST /PARM02/

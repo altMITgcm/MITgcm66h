@@ -45,15 +45,29 @@ C  i,j                  :: loop indices
       INTEGER I,J
 CEOP
 
-      DO j=1-Oly+1,sNy+Oly
-       DO i=1-Olx,sNx+Olx-1
+      IF (useEnergyConservingCoriolis) THEN
+C Energy conserving discretization
+       DO j=1-Oly+1,sNy+Oly
+        DO i=1-Olx,sNx+Olx-1
+         vCoriolisTerm(i,j) =
+     &     0.5*( _fCori(i, j ,bi,bj)
+     &          *0.5*( uFld( i , j )+uFld(i+1, j ) )
+     &         + _fCori(i,j-1,bi,bj)
+     &          *0.5*( uFld( i ,j-1)+uFld(i+1,j-1) ) )
+        ENDDO
+       ENDDO
+      ELSE
+C Original discretization
+       DO j=1-Oly+1,sNy+Oly
+        DO i=1-Olx,sNx+Olx-1
         vCoriolisTerm(i,j) =
      &    -0.5*(_fCori(i, j ,bi,bj)+_fCori(i,j-1,bi,bj))
      &   *0.25*( uFld(i, j )+uFld(i+1, j )
      &          +uFld(i,j-1)+uFld(i+1,j-1)
      &         )
+        ENDDO
        ENDDO
-      ENDDO
+      ENDIF
 
       RETURN
       END

@@ -147,6 +147,7 @@ C--   Set default "physical" parameters
       saltAdvScheme       = 2
       tracerAdvScheme     = 2
       multiDimAdvection   = .TRUE.
+      useEnergyConservingCoriolis = .FALSE.
 
 C--   Atmospheric physical parameters (e.g.: EOS)
       atm_po =  1.D5
