@@ -100,6 +100,8 @@ C     performance.
 #define RS_IS_REAL8
 #define _EXCH_XY_R4(a,b) CALL EXCH_XY_R8 _JAMEXT ( a, b )
 #define _EXCH_XYZ_R4(a,b) CALL EXCH_XYZ_R8 _JAMEXT ( a, b )
+#define _EXCH_XZ_R4(a,b) CALL EXCH_XZ_R8 _JAMEXT ( a, b )
+#define _EXCH_YZ_R4(a,b) CALL EXCH_YZ_R8 _JAMEXT ( a, b )
 #define _GLOBAL_SUM_R4(a,b) CALL GLOBAL_SUM_R8 _JAMEXT ( a, b)
 #define _GLOBAL_MAX_R4(a,b) CALL GLOBAL_MAX_R8 ( a, b )
 #else
@@ -107,6 +109,8 @@ C     performance.
 #define RS_IS_REAL4
 #define _EXCH_XY_R4(a,b) CALL EXCH_XY_R4 ( a, b )
 #define _EXCH_XYZ_R4(a,b) CALL EXCH_XYZ_R4 ( a, b )
+#define _EXCH_XZ_R4(a,b) CALL EXCH_XZ_R4 ( a, b )
+#define _EXCH_YZ_R4(a,b) CALL EXCH_YZ_R4 ( a, b )
 #define _GLOBAL_SUM_R4(a,b) CALL GLOBAL_SUM_R4 ( a, b )
 #define _GLOBAL_MAX_R4(a,b) CALL GLOBAL_MAX_R4 ( a, b )
 #endif
@@ -114,6 +118,8 @@ C     performance.
 #define _RL Real*8
 #define _EXCH_XY_R8(a,b) CALL EXCH_XY_R8 _JAMEXT ( a, b )
 #define _EXCH_XYZ_R8(a,b) CALL EXCH_XYZ_R8 _JAMEXT ( a, b )
+#define _EXCH_XZ_R8(a,b) CALL EXCH_XZ_R8 _JAMEXT ( a, b )
+#define _EXCH_YZ_R8(a,b) CALL EXCH_YZ_R8 _JAMEXT ( a, b )
 #define _GLOBAL_SUM_R8(a,b) CALL GLOBAL_SUM_R8 _JAMEXT ( a, b )
 #define _GLOBAL_MAX_R8(a,b) CALL GLOBAL_MAX_R8 ( a, b )
  
