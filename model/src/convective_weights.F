@@ -22,16 +22,14 @@ C In the stable case, A = B = 0
 C In the unstable case, A and B are non-zero and are chosen so as to
 C conserve total volume of T.
 
-C     !USES:
+C !USES:
       IMPLICIT NONE
-C     == Global data ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
-C     == Routine arguments ==
+C !INPUT/OUTPUT PARAMETERS:
 C     bi,bj,k - indices
 C     rhoKm1  - rho in layer above
 C     rhoK    - rho in layer below
@@ -49,8 +47,7 @@ C     myThid  - thread number
 
 #ifdef INCLUDE_CONVECT_CALL
 
-C     !LOCAL VARIABLES:
-C     == Local variables ==
+C !LOCAL VARIABLES:
 C     i,j      :: Loop counter
 C     dS,d1,d2 :: Layer thicknesses
       INTEGER i,j

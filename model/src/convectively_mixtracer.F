@@ -18,14 +18,12 @@ C Mixing is represented by:
 C                       T(k-1) = T(k-1) + B * ( T(k) - T(k-1) )
 C                       T(k)   = T(k)   + A * ( T(k-1) - T(k) )
 
-C     !USES:
+C !USES:
       IMPLICIT NONE
-C     == Global data ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
-C     == Routine arguments ==
+C !INPUT/OUTPUT PARAMETERS:
 C     bi,bj,k - indices
 C     weightA - weight for level K
 C     weightB - weight for level K+1
@@ -38,8 +36,7 @@ C     myThid  - thread number
 
 #ifdef INCLUDE_CONVECT_CALL
 
-C     !LOCAL VARIABLES:
-C     == Local variables ==
+C !LOCAL VARIABLES:
 C     i,j      :: Loop counter
 C     delTrac  :: Difference between tracer in each layer
       INTEGER i,j
