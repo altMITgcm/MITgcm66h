@@ -164,12 +164,12 @@ C--    conjugate direction vector "s".
          DO J=1,sNy
           DO I=1,sNx
            cg2d_q(I,J,bi,bj) = 
-C    &      pW(I  ,J  ,bi,bj)*cg2d_r(I-1,J  ,bi,bj)
-C    &     +pW(I+1,J  ,bi,bj)*cg2d_r(I+1,J  ,bi,bj)
-C    &     +pS(I  ,J  ,bi,bj)*cg2d_r(I  ,J-1,bi,bj)
-C    &     +pS(I  ,J+1,bi,bj)*cg2d_r(I  ,J+1,bi,bj)
-C    &     +pC(I  ,J  ,bi,bj)*cg2d_r(I  ,J  ,bi,bj)
-     &                        cg2d_r(I  ,J  ,bi,bj)
+     &      pC(I  ,J  ,bi,bj)*cg2d_r(I  ,J  ,bi,bj)
+     &     +pW(I  ,J  ,bi,bj)*cg2d_r(I-1,J  ,bi,bj)
+     &     +pW(I+1,J  ,bi,bj)*cg2d_r(I+1,J  ,bi,bj)
+     &     +pS(I  ,J  ,bi,bj)*cg2d_r(I  ,J-1,bi,bj)
+     &     +pS(I  ,J+1,bi,bj)*cg2d_r(I  ,J+1,bi,bj)
+C    &                        cg2d_r(I  ,J  ,bi,bj)
            etaN = etaN
      &     +cg2d_q(I,J,bi,bj)*cg2d_r(I,J,bi,bj)
           ENDDO
