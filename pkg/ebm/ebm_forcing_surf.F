@@ -74,7 +74,7 @@ c     Net heat flux Qnet:
      &      -Qnet(i,j,bi,bj)*recip_Cp*horiVertRatio*recip_rhoConst
      &         *recip_drF(kSurface)*recip_hFacC(i,j,kSurface,bi,bj)
      &      -lambdaThetaZonRelax*maskC(i,j,kSurface,bi,bj)*
-     &         (theta(i,j,kSurface,bi,bj)-ZonalMeanSST(j))
+     &         (theta(i,j,kSurface,bi,bj)-ZonalMeanSST(j,bj))
 
 C     Net Salt Flux : 
           surfaceTendencyS(i,j,bi,bj) = 

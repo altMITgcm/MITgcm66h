@@ -58,10 +58,10 @@ C--   initially all forcing fields are zero
 
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
-        iMin =   1   - 2
-        iMax = sNx+1 + 2
-        jMin =   1   - 2
-        jMax = sNy+1 + 2
+        iMin =   1-olx
+        iMax = sNx+olx
+        jMin =   1-oly
+        jMax = sNy+oly
 
        CALL EBM_FORCING_SURF(
      I       bi, bj, iMin, iMax, jMin, jMax,
