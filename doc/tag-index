@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o can use r* Coordinate with OBC (but Orlanski Rad. BC not yet implemented) 
+
 checkpoint48b_post
 o r* coordinate added in #ifdef NONLIN_FRSURF block.
  (modification to pressure gradient not yet implemented)
