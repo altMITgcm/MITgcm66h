@@ -890,6 +890,13 @@ C     Pressure extrapolated forward in time
      &  +ab05*(cg2d_xNM1(i,j,bi,bj)*gBaro )
        ENDDO
       ENDDO
+      IF (staggerTimeStep) THEN
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         pf(i,j) = pf(i,j)+phi_hyd(i,j,k)*recip_rhoConst
+        ENDDO
+       ENDDO
+      ENDIF
 #endif /* INCLUDE_CD_CODE */
 C--   Zonal velocity coriolis term
 C     Note. As coded here, coriolis will not work with "thin walls"
