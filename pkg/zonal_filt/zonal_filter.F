@@ -14,6 +14,9 @@ C     \==========================================================/
 
 C     == Global data ==
 #include "SIZE.h"
+#include "EEPARAMS.h"
+#include "PARAMS.h"
+#include "GRID.h"
 #include "ZONAL_FILT.h"
 #include "FFTPACK.h"
 
@@ -43,6 +46,9 @@ C     == Local data ==
 
       DO k=kMin, kMax
        DO j=jMin, jMax
+        IF ( (gridLoc.EQ.1 .AND.ABS(yC(1,j,bi,bj)).GE.zonal_filt_lat)
+     &   .OR.(gridLoc.EQ.2 .AND.ABS(yG(2,j,bi,bj)).GE.zonal_filt_lat)
+     &   .OR. zonal_filt_mode2dx.EQ.2 ) THEN
 
 C     o Copy zonal line of field into local workspace
         DO i=1,sNx
@@ -91,6 +97,7 @@ C       o Do periodic wrap around by hand
          field(i,j,k,bi,bj) = phi(i-sNx)
         ENDDO
 
+        ENDIF
        ENDDO
       ENDDO
 
