@@ -646,8 +646,9 @@ C Logical flags for selecting packages
       LOGICAL usefizhi
       LOGICAL usegridalt
       LOGICAL usediagnostics
+      LOGICAL useMNC
       COMMON /PARM_PACKAGES/
      &        useKPP, useGMRedi, useOBCS, useAIM, useLand, useECCO, 
      &        useSHAP_FILT, useZONAL_FILT, useGrdchk, useFLT,
      &        usePTRACERS,  useSBO, useSEAICE, useThSIce, useBulkForce, 
-     &        usefizhi,  usegridalt, usediagnostics
+     &        usefizhi,  usegridalt, usediagnostics, useMNC

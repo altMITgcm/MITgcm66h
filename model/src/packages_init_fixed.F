@@ -48,11 +48,11 @@ CEOP
 
 C--   Initialize MNC look-up tables
 #ifdef ALLOW_MNC
-CEH3 NEED RUN-TIME SWITCH:  IF (useMNC) THEN
-      CALL MNC_INIT(myThid)
-      CALL MNC_CW_INIT(sNx,sNy, OLx,OLy, nSx,nSy, nPx,nPy, Nr, myThid)
-      CALL INI_MNC_IO(myThid)
-CEH3 NEED RUN-TIME SWITCH:  ENDIF
+      IF (useMNC) THEN
+        CALL MNC_INIT(myThid)
+        CALL MNC_CW_INIT(sNx,sNy,OLx,OLy,nSx,nSy,nPx,nPy,Nr, myThid)
+        CALL INI_MNC_IO(myThid)
+      ENDIF
 #endif
 
 C--   Initialize fixed params for GAD

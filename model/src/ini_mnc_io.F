@@ -11,10 +11,13 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       IMPLICIT NONE
 #include "SIZE.h"
 #include "GRID.h"
+#include "EEPARAMS.h"
+#include "PARAMS.h"
 
       INTEGER myThid
 
 #ifdef ALLOW_MNC
+      IF (useMNC) THEN
 
 C     Write the grid information
       CALL MNC_CW_WRITE_GRID_INFO('grid', myThid)
@@ -125,6 +128,7 @@ C     Add coordinates
       CALL MNC_CW_RS_W_R('state',0,0,'RC',0,rC, myThid)
       CALL MNC_CW_RS_W_R('state',0,0,'RF',0,rF, myThid)
 
+      ENDIF
 #endif
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
