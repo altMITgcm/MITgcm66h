@@ -426,7 +426,7 @@ C       including effects from ice
         CALL ICE_FORCING(
      I             bi, bj, iMin, iMax, jMin, jMax,
      I             myThid )
-       END IF
+       ELSE
 #endif /* ALLOW_THERM_SEAICE */
 
 C--     Determines forcing terms based on external fields
@@ -438,6 +438,11 @@ C       relaxation terms, etc.
         CALL EXTERNAL_FORCING_SURF(
      I             bi, bj, iMin, iMax, jMin, jMax,
      I             myTime, myIter, myThid )
+
+#ifdef ALLOW_THERM_SEAICE
+C--    end of if/else block useThermSeaIce --
+       ENDIF
+#endif /* ALLOW_THERM_SEAICE */
 
 #ifdef ALLOW_AUTODIFF_TAMC
 cph needed for KPP
