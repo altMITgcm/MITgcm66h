@@ -207,6 +207,14 @@ c     == external functions ==
       external  exf_BulkRhn
 #endif /* ALLOW_BULKFORMULAE */
 
+#ifndef ALLOW_ATM_WIND
+      _RL       TMP1
+      _RL       TMP2
+      _RL       TMP3
+      _RL       TMP4
+      _RL       TMP5
+#endif
+
 c     == end of interface ==
 
 c     determine forcing field records
