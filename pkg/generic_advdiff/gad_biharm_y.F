@@ -48,12 +48,13 @@ C  i,j                  :: loop indices
 CEOP
 
 C     Difference of meridional fluxes ...
-      DO i=1-Olx,sNx+Olx
-       dfy(i,1-Oly) = 0.
-      ENDDO
+c     DO i=1-Olx,sNx+Olx
+c      dfy(i,1-Oly) = 0.
+c     ENDDO
       DO j=1-Oly+1,sNy+Oly
        DO i=1-Olx,sNx+Olx
-         dfy(i,j) = diffK4
+c        dfy(i,j) = diffK4
+         dfy(i,j) = dfy(i,j) + diffK4
      &    *yA(i,j)
      &    *(del2T(i,j)-del2T(i,j-1))*_recip_dyC(i,j,bi,bj)
 #ifdef ISOTROPIC_COS_SCALING

@@ -66,6 +66,15 @@ C-- Set Temp & Salt Adams-Bashforth flag according to advection scheme used
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
+#ifdef ALLOW_DIAGNOSTICS
+      IF ( useDiagnostics ) THEN
+C--   Add diagnostics of Temp & Salt fluxes to the (long) list of diagnostics:
+        CALL GAD_DIAGNOSTICS_INIT( myThid )
+      ENDIF
+#endif /* ALLOW_DIAGNOSTICS */
+
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+
 C-- Print out GAD parameters :
       _BARRIER
       _BEGIN_MASTER(myThid)
