@@ -18,6 +18,9 @@ C     == Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#ifdef ALLOW_SHAP_FILT
+#include "SHAP_FILT_UV.h"
+#endif
 
 C     == Routine arguments
       _RL uFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
@@ -29,8 +32,6 @@ C     == Routine arguments
 
 C     == Local variables ==
       INTEGER bi,bj,K,I,J,N
-      _RL tmpFldU(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-      _RL tmpFldV(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL tmpGrdU(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL tmpGrdV(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL maskZj,maskZp

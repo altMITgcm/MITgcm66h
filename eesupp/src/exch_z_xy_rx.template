@@ -61,7 +61,6 @@ C                However, the slow, simple exchange interface
 C                that is calling it here is meant to ensure
 C                that threads are synchronised before exchanges
 C                begine.
-      _BARRIER
       IF (useCubedSphereExchange) THEN
        CALL EXCH_Z_RX_CUBE( phi,
      I            OLw, OLe, OLs, OLn, myNz,
@@ -73,7 +72,6 @@ C                begine.
      I            exchWidthX, exchWidthY,
      I            FORWARD_SIMULATION, EXCH_UPDATE_CORNERS, myThid )
       ENDIF
-      _BARRIER
 
       RETURN
       END

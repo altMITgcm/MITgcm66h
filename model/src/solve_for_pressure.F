@@ -26,6 +26,7 @@ C     == Global variables
 #ifdef ALLOW_OBCS
 #include "OBCS.h"
 #endif
+#include "SOLVE_FOR_PRESSURE.h"
 
 #ifdef EXACT_CONSERV
       COMMON /TEMP_SURF_POS/ etaStar
@@ -37,14 +38,10 @@ C     myThid - Number of this instance of SOLVE_FOR_PRESSURE
       INTEGER myThid
 CEndOfInterface
 
-C     Local variables
-C     cg2d_x - Conjugate Gradient 2-D solver : Solution vector
-C     cg2d_b - Conjugate Gradient 2-D solver : Right-hand side vector
+C     == Local variables ==
       INTEGER i,j,k,bi,bj
       _RS uf(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RS vf(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
-      _RL cg2d_x(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RL cg2d_b(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL firstResidual,lastResidual
       INTEGER numIters
 

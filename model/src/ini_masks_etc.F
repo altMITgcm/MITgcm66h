@@ -131,8 +131,8 @@ C - end bi,bj loops.
        ENDDO
       ENDDO
 
-      CALL PLOT_FIELD_XYRS( tmpfld, 
-     &         'Model Depths K Index' , 1, myThid )
+C     CALL PLOT_FIELD_XYRS( tmpfld, 
+C    &         'Model Depths K Index' , 1, myThid )
       CALL PLOT_FIELD_XYRS(R_low, 
      &         'Model R_low (ini_masks_etc)', 1, myThid)
       CALL PLOT_FIELD_XYRS(Ro_surf, 

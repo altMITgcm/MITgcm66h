@@ -85,61 +85,72 @@ C     theCornerMode     - Holds working copy of corner mode
       INTEGER bl,bt,bn,bs,be,bw
 
 C     == Statement function ==
+C     tilemod - Permutes indices to return neighboring tile index on
+C               six face cube.
       INTEGER tilemod
       tilemod(I)=1+mod(I-1+6,6)
 
       theSimulationMode = simulationMode
       theCornerMode     = cornerMode
 
-      DO bl = 1, 5, 2
+C     For now tile<->tile exchanges are sequentialised through
+C     thread 1. This is a temporary feature for preliminary testing until
+C     general tile decomposistion is in place (CNH April 11, 2001)
+      CALL BAR2( myThid )
+      IF ( myThid .EQ. 1 ) THEN
 
-       bt = bl
-       bn=tilemod(bt+2)
-       bs=tilemod(bt-1)
-       be=tilemod(bt+1)
-       bw=tilemod(bt-2)
+       DO bl = 1, 5, 2
 
-       DO K = 1, myNz
-        DO J = 1, sNy
-         DO I = 1, exchWidthX
+        bt = bl
+        bn=tilemod(bt+2)
+        bs=tilemod(bt-1)
+        be=tilemod(bt+1)
+        bw=tilemod(bt-2)
 
-C Tile Odd:Odd+2 [get] [North<-West]
-          array(J,sNy+I,K,bt,1) = array(I,sNy+1-J,K,bn,1)
-C Tile Odd:Odd-1 [get] [South<-North]
-          array(J,1-I,K,bt,1) = array(J,sNy+1-I,K,bs,1)
-C Tile Odd:Odd+1 [get] [East<-West]
-          array(sNx+I,J,K,bt,1) = array(I,J,K,be,1)
-C Tile Odd:Odd-2 [get] [West<-North]
-          array(1-I,J,K,bt,1) = array(sNx+1-J,sNy+1-I,K,bw,1)
+        DO K = 1, myNz
+         DO J = 1, sNy
+          DO I = 1, exchWidthX
 
+C          Tile Odd:Odd+2 [get] [North<-West]
+           array(J,sNy+I,K,bt,1) = array(I,sNy+1-J,K,bn,1)
+C          Tile Odd:Odd-1 [get] [South<-North]
+           array(J,1-I,K,bt,1) = array(J,sNy+1-I,K,bs,1)
+C          Tile Odd:Odd+1 [get] [East<-West]
+           array(sNx+I,J,K,bt,1) = array(I,J,K,be,1)
+C          Tile Odd:Odd-2 [get] [West<-North]
+           array(1-I,J,K,bt,1) = array(sNx+1-J,sNy+1-I,K,bw,1)
+
+          ENDDO
          ENDDO
         ENDDO
-       ENDDO
 
-       bt = bl+1
-       bn=tilemod(bt+1)
-       bs=tilemod(bt-2)
-       be=tilemod(bt+2)
-       bw=tilemod(bt-1)
+        bt = bl+1
+        bn=tilemod(bt+1)
+        bs=tilemod(bt-2)
+        be=tilemod(bt+2)
+        bw=tilemod(bt-1)
 
-       DO K = 1, myNz
-        DO J = 1, sNy
-         DO I = 1, exchWidthX
+        DO K = 1, myNz
+         DO J = 1, sNy
+          DO I = 1, exchWidthX
 
-C Tile Even:Even+1 [get] [North<-South]
-          array(J,sNy+I,K,bt,1) = array(J,I,K,bn,1)
-C Tile Even:Even-2 [get] [South<-East]
-          array(J,1-I,K,bt,1) = array(sNx+1-I,sNy+1-J,K,bs,1)
-C Tile Even:Even+2 [get] [East<-South]
-          array(sNx+I,J,K,bt,1) = array(sNx+1-J,I,K,be,1)
-C Tile Even:Even-1 [get] [West<-East]
-          array(1-I,J,K,bt,1) = array(sNx+1-I,J,K,bw,1)
+C          Tile Even:Even+1 [get] [North<-South]
+           array(J,sNy+I,K,bt,1) = array(J,I,K,bn,1)
+C          Tile Even:Even-2 [get] [South<-East]
+           array(J,1-I,K,bt,1) = array(sNx+1-I,sNy+1-J,K,bs,1)
+C          Tile Even:Even+2 [get] [East<-South]
+           array(sNx+I,J,K,bt,1) = array(sNx+1-J,I,K,be,1)
+C          Tile Even:Even-1 [get] [West<-East]
+           array(1-I,J,K,bt,1) = array(sNx+1-I,J,K,bw,1)
 
+          ENDDO
          ENDDO
         ENDDO
+
        ENDDO
 
-      ENDDO
-
+      ENDIF
+      CALL BAR2(myThid)
+  
       RETURN
       END

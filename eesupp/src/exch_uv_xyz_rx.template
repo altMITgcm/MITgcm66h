@@ -63,7 +63,6 @@ C                However, the slow, simple exchange interface
 C                that is calling it here is meant to ensure
 C                that threads are synchronised before exchanges
 C                begine.
-      _BARRIER
       IF (useCubedSphereExchange) THEN
        CALL EXCH_UV_RX_CUBE( Uphi, Vphi, withSigns,
      I            OLw, OLe, OLs, OLn, myNz,
@@ -82,7 +81,6 @@ c_jmc: for JAM compatibility, replace the 2 CALLs above by the 2 CPP_MACROs:
        _EXCH_XYZ_RX( Uphi, myThid )
        _EXCH_XYZ_RX( Vphi, myThid )
       ENDIF
-      _BARRIER
 
       RETURN
       END

@@ -2,6 +2,7 @@ C $Header$
 C $Name$
 
 #include "CPP_EEOPTIONS.h"
+#define HAVE_SYSTEM
 
 CStartOfInterface
       SUBROUTINE CHECK_THREADS( myThid )
@@ -87,7 +88,6 @@ C       but this causes KAP to insert a call to mppjoin - which then deadlocks!
        GOTO 10
       ENDIF
    11 CONTINUE
-C   
-C
+
       RETURN
       END

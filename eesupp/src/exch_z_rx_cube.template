@@ -91,71 +91,80 @@ C     == Statement function ==
       theSimulationMode = simulationMode
       theCornerMode     = cornerMode
 
-      DO repeat=1,2
+C     For now tile<->tile exchanges are sequentialised through
+C     thread 1. This is a temporary feature for preliminary testing until
+C     general tile decomposistion is in place (CNH April 11, 2001)
+      CALL BAR2( myThid )
+      IF ( myThid .EQ. 1 ) THEN
 
-      DO bl = 1, 5, 2
+       DO repeat=1,2
 
-       bt = bl
-       bn=tilemod(bt+2)
-       bs=tilemod(bt-1)
-       be=tilemod(bt+1)
-       bw=tilemod(bt-2)
+       DO bl = 1, 5, 2
 
-       DO K = 1, myNz
-        DO J = 1, sNy+1
-         DO I = 0, exchWidthX-1
+        bt = bl
+        bn=tilemod(bt+2)
+        bs=tilemod(bt-1)
+        be=tilemod(bt+1)
+        bw=tilemod(bt-2)
 
-C Tile Odd:Odd+2 [get] [North<-West]
-          array(J,sNy+I+1,K,bt,1) = array(I+1,sNy+2-J,K,bn,1)
-C Tile Odd:Odd+1 [get] [East<-West]
-          array(sNx+I+1,J,K,bt,1) = array(I+1,J,K,be,1)
+        DO K = 1, myNz
+         DO J = 1, sNy+1
+          DO I = 0, exchWidthX-1
 
-cs- these above loop should really have the same range the lower one
-         ENDDO
-         DO I = 1, exchWidthX-0
-cs- but this replaces the missing I/O routines for now
-
-C Tile Odd:Odd-1 [get] [South<-North]
-          array(J,1-I,K,bt,1) = array(J,sNy+1-I,K,bs,1)
-C Tile Odd:Odd-2 [get] [West<-North]
-          array(1-I,J,K,bt,1) = array(sNx+2-J,sNy+1-I,K,bw,1)
-
-         ENDDO
-        ENDDO
-       ENDDO
-
-       bt = bl+1
-       bn=tilemod(bt+1)
-       bs=tilemod(bt-2)
-       be=tilemod(bt+2)
-       bw=tilemod(bt-1)
-
-       DO K = 1, myNz
-        DO J = 1, sNy+1
-         DO I = 0, exchWidthX-1
-
-C Tile Even:Even+1 [get] [North<-South]
-          array(J,sNy+I+1,K,bt,1) = array(J,I+1,K,bn,1)
-C Tile Even:Even+2 [get] [East<-South]
-          array(sNx+I+1,J,K,bt,1) = array(sNx+2-J,I+1,K,be,1)
+C          Tile Odd:Odd+2 [get] [North<-West]
+           array(J,sNy+I+1,K,bt,1) = array(I+1,sNy+2-J,K,bn,1)
+C          Tile Odd:Odd+1 [get] [East<-West]
+           array(sNx+I+1,J,K,bt,1) = array(I+1,J,K,be,1)
 
 cs- these above loop should really have the same range the lower one
-         ENDDO
-         DO I = 1, exchWidthX-0
+          ENDDO
+          DO I = 1, exchWidthX-0
 cs- but this replaces the missing I/O routines for now
 
-C Tile Even:Even-2 [get] [South<-East]
-          array(J,1-I,K,bt,1) = array(sNx+1-I,sNy+2-J,K,bs,1)
-C Tile Even:Even-1 [get] [West<-East]
-          array(1-I,J,K,bt,1) = array(sNx+1-I,J,K,bw,1)
+C          Tile Odd:Odd-1 [get] [South<-North]
+           array(J,1-I,K,bt,1) = array(J,sNy+1-I,K,bs,1)
+C          Tile Odd:Odd-2 [get] [West<-North]
+           array(1-I,J,K,bt,1) = array(sNx+2-J,sNy+1-I,K,bw,1)
 
+          ENDDO
          ENDDO
         ENDDO
+
+        bt = bl+1
+        bn=tilemod(bt+1)
+        bs=tilemod(bt-2)
+        be=tilemod(bt+2)
+        bw=tilemod(bt-1)
+
+        DO K = 1, myNz
+         DO J = 1, sNy+1
+          DO I = 0, exchWidthX-1
+
+C          Tile Even:Even+1 [get] [North<-South]
+           array(J,sNy+I+1,K,bt,1) = array(J,I+1,K,bn,1)
+C          Tile Even:Even+2 [get] [East<-South]
+           array(sNx+I+1,J,K,bt,1) = array(sNx+2-J,I+1,K,be,1)
+
+cs- these above loop should really have the same range the lower one
+          ENDDO
+          DO I = 1, exchWidthX-0
+cs- but this replaces the missing I/O routines for now
+
+C          Tile Even:Even-2 [get] [South<-East]
+           array(J,1-I,K,bt,1) = array(sNx+1-I,sNy+2-J,K,bs,1)
+C          Tile Even:Even-1 [get] [West<-East]
+           array(1-I,J,K,bt,1) = array(sNx+1-I,J,K,bw,1)
+
+          ENDDO
+         ENDDO
+        ENDDO
+
        ENDDO
 
-      ENDDO
+       ENDDO
 
-      ENDDO
+      ENDIF
+      CALL BAR2(myThid)
 
       RETURN
       END

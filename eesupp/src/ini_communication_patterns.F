@@ -53,7 +53,8 @@ C     pi, pj - Process loop counter
       INTEGER thePx, thePy, theBj, theBi
 
 C--   Turn off memsync by default
-      exchNeedsMemsync = .FALSE.
+      exchNeedsMemsync = .TRUE.
+      exchUsesBarrier  = .TRUE.
 
 C--   Define a globally unique tile numbers for each tile.
 C--   We aslo define the tile numbers for our east, west, south
