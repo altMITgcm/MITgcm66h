@@ -516,7 +516,7 @@ for ac_option ; do
 	-nodepend | --nodepend | -nd | --nd)
 	    NODEPEND=t ;;
 
-	-mpi) MPI=true ;;
+	-mpi) MPI=t ;;
 
 	-ieee) IEEE=true ;;
 	-noieee) IEEE= ;;
