@@ -115,7 +115,7 @@ c Compute physics increments
      .  tcanopy,tdeep,ecanopy,swetshal,swetroot,swetdeep,snodep,capac,
      .  o3,qstr,co2,cfc11,cfc12,cfc22,n2o,methane,
      .  idim1,idim2,jdim1,jdim2,Nrphys,Nsx,Nsy,im1,im2,jm1,jm2,bi,bj,
-     .  nchp,nchpland,
+     .  nchp,nchptot,nchpland,
      .  duphy,dvphy,dthphy,dsphy)
        enddo
        enddo

@@ -13,8 +13,8 @@ c ---------------------
       common /earth_exports/ 
      .   chfr, alai, agrn, 
      .   albvisdr, albvisdf, albnirdr, albnirdf, emiss,
-     .   landtype, tgz, nchpland, ityp
-      integer nchpland
+     .   landtype, tgz, nchptot, nchpland, ityp
+      integer nchptot,nchpland
       integer ityp(nchp,Nsx,Nsy)
       _RL chfr(nchp,Nsx,Nsy)
       _RL alai(nchp,Nsx,Nsy)

@@ -66,9 +66,9 @@ c-----------------------------------------------------------------------
        enddo
        enddo
        enddo
-       call fizhi_init_veg ( mythid, vegdata,idim2,jdim2,Nsx,Nsy,
-     .            nSx*nPx,nSy*nPy,maxtyp,nchp,nchpland,lons,lats,
-     .            surftype,tilefrac,igrd,ityp,chfr,chlt,chlon)
+       call fizhi_init_veg ( mythid, vegdata,im2,jm2,Nsx,Nsy,
+     .         nSx*nPx,nSy*nPy,maxtyp,nchp,nchptot,nchpland,lons,lats,
+     .         surftype,tilefrac,igrd,ityp,chfr,chlt,chlon)
 
 C And now fill the earth export landtype
        do bj = myByLo(myThid), myByHi(myThid)
@@ -97,8 +97,6 @@ C Compute pressure profile to get methane and n2o values (bottom-up)
      .      nlatsoz,nlevsoz,ntimesoz,latsoz,levsoz,ozone,
      .      nlatsq,nlevsq,ntimesq,latsq,levsq,stratq,
      .      Nrphys,pressure,n2o,methane,co2,cfc11,cfc12,cfc22)
-
-       print *,' Back from init chem '
 
        return
        end

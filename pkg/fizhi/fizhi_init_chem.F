@@ -15,9 +15,6 @@ C mythid   - thread number (processor number)
 C
 C OUTPUT:
 C
-C chfr     - real array in tile space of land surface type fraction for 
-C            each tile [nchp,Nsx,Nsy]
-C
 C***********************************************************************
       implicit none
 #include "CPP_EEOPTIONS.h"
