@@ -25,6 +25,7 @@ C     Locals
         CALL print_error( msgbuf, mythid )
         stop 'ABNORMAL END: package MNC'
       ENDIF
+      RETURN
       END
 
 C==================================================================

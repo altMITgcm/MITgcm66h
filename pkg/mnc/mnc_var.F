@@ -40,5 +40,6 @@ C     Is the file open?
       ENDIF
       fid = mnc_f_info(ind,2)
 
+      RETURN
       END
 

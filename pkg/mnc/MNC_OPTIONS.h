@@ -13,3 +13,7 @@ CEH3 package-specific options go here
 #endif /* ALLOW_MNC */
 #endif /* MNC_OPTIONS_H */
 
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***

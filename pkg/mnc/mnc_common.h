@@ -57,6 +57,10 @@ C     mnc_fv_ids (fi,-) : nVar, n1,ID1, n2,ID2, ...
 C     .                         |       |
 C     mnc_v_names (vi)  :   <---+-------+
 C     mnc_v_units (vi)  :   <---+-------+
+C
+C     fi  :  file index
+C     vi  :  variable index
+C     di  :  dimension index
 
       integer MNC_MAX_ID, MNC_MAX_CHAR, MNC_MAX_INFO
       parameter ( MNC_MAX_ID   =  500 )
