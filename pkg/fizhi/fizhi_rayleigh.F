@@ -71,15 +71,6 @@ C **********************************************************************
        enddo
       enddo
 
-      do L=1,lm
-       do j=1,jm
-       do i=1,im
-        dz(i,j,L) = cpog * (pekap(i,j,L+1)-pekap(i,j,L)) * t(i,j,L) *
-     .                (1.+virtcon*s(i,j,L))
-       enddo
-       enddo
-      enddo
-
       do j=1,jm
       do i=1,im
        z(i,j,lm) = zsurf(i,j) +  0.5 * dz(i,j,lm)
