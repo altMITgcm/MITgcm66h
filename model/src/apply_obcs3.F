@@ -31,7 +31,6 @@ C     == Routine Arguments ==
 C     == Local variables ==
       INTEGER I,J,Kp1,I_obc,J_obc
       _RL wMaskFac,obc_mask
-      _RL vTn,vTs,uTe,uTw,wTa,wTb
 
 #ifdef ALLOW_NONHYDROSTATIC
 

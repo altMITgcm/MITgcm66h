@@ -26,7 +26,6 @@ C     == Routine Arguments ==
 C     == Local variables ==
       INTEGER I,J,I_obc,J_obc
       _RL obc_mask
-      _RL vTn,vTs,uTe,uTw,wTa,wTb
 
 C     Set model variables to OB values on North/South Boundaries
       DO I=1-Olx,sNx+Olx
