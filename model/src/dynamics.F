@@ -399,6 +399,7 @@ CADJ STORE vvel (:,:,:,bi,bj) = comlev1_bibj, key = ikey, byte = isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 
+
 C--     Start of thermodynamics loop
         DO k=Nr,1,-1
 
@@ -524,6 +525,8 @@ C--     Implicit diffusion
 C--     End If implicitDiffusion
         ENDIF
 
+
+
 C--     Start of dynamics loop
         DO k=1,Nr
 
@@ -565,18 +568,11 @@ C--      phiHyd(z=0)=0
      U        phiHyd,
      I        myThid )
 
-C--      Get temporary terms used by tendency routines
-         CALL CALC_COMMON_FACTORS (
-     I        bi,bj,iMin,iMax,jMin,jMax,k,km1,kup,kDown,
-     O        xA,yA,uTrans,vTrans,rTrans,rVel,maskC,maskUp,
-     I        myThid)
-
 C--      Calculate accelerations in the momentum equations (gU, gV, ...)
 C        and step forward storing the result in gUnm1, gVnm1, etc...
          IF ( momStepping ) THEN
            CALL CALC_MOM_RHS(
-     I         bi,bj,iMin,iMax,jMin,jMax,k,km1,kup,kDown,
-     I         xA,yA,uTrans,vTrans,maskC,
+     I         bi,bj,iMin,iMax,jMin,jMax,k,kup,kDown,
      I         phiHyd,KappaRU,KappaRV,
      U         fVerU, fVerV,
      I         myTime, myThid)

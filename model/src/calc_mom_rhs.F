@@ -18,8 +18,7 @@ C     | open-area. Need to do something to solidfy this and to   |
 C     | deal "properly" with thin walls.                         |
 C     \==========================================================/
       SUBROUTINE CALC_MOM_RHS( 
-     I        bi,bj,iMin,iMax,jMin,jMax,k,km1,kUp,kDown,
-     I        xA,yA,uTrans,vTrans,maskC,
+     I        bi,bj,iMin,iMax,jMin,jMax,k,kUp,kDown,
      I        phi_hyd,KappaRU,KappaRV,
      U        fVerU, fVerV,
      I        myCurrentTime, myThid)
@@ -43,26 +42,17 @@ C               direction at the south face of a cell.
 C     fVerU   - Flux of momentum in the vertical
 C     fVerV     direction out of the upper face of a cell K
 C               ( flux into the cell above ).
-C     xA      - Tracer cell face area normal to X
-C     yA      - Tracer cell face area normal to X
-C     uTrans  - Zonal volume transport through cell face
-C     vTrans  - Meridional volume transport through cell face
 C     phi_hyd - Hydrostatic pressure
 C     bi, bj, iMin, iMax, jMin, jMax - Range of points for which calculation
 C                                      results will be set.
-C     kUp, kDown, kM1                - Index for upper and lower layers.
+C     kUp, kDown                     - Index for upper and lower layers.
 C     myThid - Instance number for this innvocation of CALC_MOM_RHS
-      _RS      xA(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RS      yA(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL  uTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL  vTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RS   maskC(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL      phi_hyd(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
-      _RL      KappaRU(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
-      _RL      KappaRV(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
-      _RL   fVerU(1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
-      _RL   fVerV(1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
-      INTEGER kUp,kDown,kM1
+      _RL phi_hyd(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
+      _RL KappaRU(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
+      _RL KappaRV(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
+      _RL fVerU(1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
+      _RL fVerV(1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
+      INTEGER kUp,kDown
       INTEGER myThid
       _RL     myCurrentTime
       INTEGER bi,bj,iMin,iMax,jMin,jMax,jG
@@ -94,6 +84,11 @@ C     uDudxFac, AhDudxFac, etc ... individual term tracer parameters
       _RL    fZon (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL    fMer (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS    hFacZ(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RS      xA(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RS      yA(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL  uTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL  vTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RS   maskC(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 C     I,J,K - Loop counters
       INTEGER i,j,k
 C     rVelMaskOverride - Factor for imposing special surface boundary conditions
@@ -134,9 +129,10 @@ C     ab05, ab15 - Adams-Bashforth time-stepping weights.
       _RL  ab05, ab15
       _RL cosfacU(1-Oly:sNy+Oly)
       _RL cosfacV(1-Oly:sNy+Oly)
-      INTEGER kp1
+      INTEGER km1,kp1
       _RL maskDown,wVelBottomOverride
 
+      km1=MAX(1,k-1)
       kp1=MIN(Nr,k+1)
       rVelMaskOverride=1.
       IF ( k .EQ. 1 ) rVelMaskOverride=freeSurfFac
@@ -218,6 +214,31 @@ C--   Calculate open water fraction at vorticity points
         hFacZOpen=min(_hFacS(i,j,k,bi,bj),hFacZOpen)
         hFacZOpen=min(_hFacS(i-1,j,k,bi,bj),hFacZOpen)
         hFacZ(i,j)=hFacZOpen
+       ENDDO
+      ENDDO
+
+C---- Calculate common quantities used in both U and V equations
+C     Calculate tracer cell mask
+      DO j=jMin,jMax
+       DO i=iMin,iMax
+        maskC(i,j) = 1.
+        IF (_hFacC(i,j,k,bi,bj).eq.0.) maskC(i,j)=0.
+       ENDDO
+      ENDDO
+C     Calculate tracer cell face open areas
+      DO j=jMin,jMax
+       DO i=iMin,iMax
+        xA(i,j) = _dyG(i,j,bi,bj)
+     &   *drF(k)*_hFacW(i,j,k,bi,bj)
+        yA(i,j) = _dxG(i,j,bi,bj)
+     &   *drF(k)*_hFacS(i,j,k,bi,bj)
+       ENDDO
+      ENDDO
+C     Calculate velocity field "volume transports" through tracer cell faces.
+      DO j=jMin,jMax
+       DO i=iMin,iMax
+        uTrans(i,j) = uVel(i,j,k,bi,bj)*xA(i,j)
+        vTrans(i,j) = vVel(i,j,k,bi,bj)*yA(i,j)
        ENDDO
       ENDDO
 
