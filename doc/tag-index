@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o OBCS: extend application of tracer open boundary conditions
+  to a strip beyond the boundary of width Olx/Oly
+
 checkpoint56c_post
 o OBCS as control variables
   - update ctrl_ad_diff.list, obcs_ad_diff.list
