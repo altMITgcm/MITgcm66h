@@ -212,7 +212,8 @@ C     of sea water at p
      I        myThid ) 
 
          CALL FIND_RHO( bi, bj, iMin, iMax, jMin, jMax,  k,
-     &        locPres, theta, salt, rhoLoc, myThid )
+     &        kRef, theta, salt, rhoLoc, myThid )
+
          CALL FIND_RHODEN( bi, bj, iMin, iMax, jMin, jMax, k,
      &        locPres, theta, salt, rhoDen, myThid )
 
@@ -437,7 +438,8 @@ C     of sea water at p
      I        myThid ) 
 
          CALL FIND_RHO( bi, bj, iMin, iMax, jMin, jMax,  k,
-     &        locPres, theta, salt, rhoLoc, myThid )
+     &        kRef, theta, salt, rhoLoc, myThid )
+
          CALL FIND_RHODEN( bi, bj, iMin, iMax, jMin, jMax, k,
      &        locPres, theta, salt, rhoDen, myThid )
          
