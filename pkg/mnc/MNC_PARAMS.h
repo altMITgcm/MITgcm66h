@@ -43,6 +43,13 @@ C     mon_write_mnc    :: use mnc to write monitor output
      &     pickup_write_mnc, pickup_read_mnc,
      &     timeave_mnc, snapshot_mnc, monitor_mnc, autodiff_mnc
 
+C     ===  PARM_MNC_R Common Block  ===
+C     mnc_max_fsize    :: maximum file size
+
+      COMMON /PARM_MNC_R/
+     &     mnc_max_fsize
+      REAL*8  mnc_max_fsize
+
 CEH3 ;;; Local Variables: ***
 CEH3 ;;; mode:fortran ***
 CEH3 ;;; End: ***

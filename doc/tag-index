@@ -2,6 +2,11 @@ $Header$
 
     Notes on tags used in MITgcmUV
     ==============================
+
+o give MNC the ability to create additional files rather than 
+  exceeding a specified file size limit "MNC_MAX_FILESIZE" 
+  - the default is just less than 2GB which is a practical limit 
+    on many systems
 o Compute the non-local term using either KPP vertical diffusivity (=default) 
    or the total vertical diffusivity (when KPP_ghatUseTotalDiffus=T)
 
