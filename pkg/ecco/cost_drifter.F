@@ -323,7 +323,7 @@ c--         Print cost function for each tile in each thread.
      &                          SQUEEZE_RIGHT , mythid)
             write(msgbuf,'(a,d22.15)')
      &        '     cost function (temperature) = ',
-     &        fctile_theta
+     &        fctile_drift
             call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
 #endif

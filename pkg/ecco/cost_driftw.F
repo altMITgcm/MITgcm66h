@@ -20,10 +20,6 @@ c     started: from cost_drift
 c
 c     Armin Koehl  akoehl@ucsd.edu  26-Feb-2002
 c
-c     heimbach@mit.edu 17-Jun-2003 SIO merge:
-c             changed 1e12*cosphi(i,j,bi,bj) factor to
-c                     2.5e11*cosphi(i,j,bi,bj)
-c
 c     ==================================================================
 c     SUBROUTINE cost_Driftw
 c     ==================================================================
@@ -95,21 +91,6 @@ c--   Read tiled data.
       ladinit      = .false.
 
 #ifdef ALLOW_DRIFTW_COST_CONTRIBUTION
-
-#ifdef ECCO_VERBOSE
-      _BEGIN_MASTER( mythid )
-        write(msgbuf,'(a)') ' '
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-        write(msgbuf,'(a,i8.8)')
-     &    ' cost_driftw: number of records to process = ',nmonsrec
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-        write(msgbuf,'(a)') ' '
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-      _END_MASTER( mythid )
-#endif
 
       if (optimcycle .ge. 0) then
         ilw = ilnblnk( wbarfile )

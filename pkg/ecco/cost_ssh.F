@@ -115,19 +115,6 @@ c--   First, read tiled data.
       write(fname(1:80),'(2a,i10.10)') 
      &     psbarfile(1:ilps),'.',optimcycle
 
-#ifdef ECCO_VERBOSE
-      write(msgbuf,'(a)') ' '
-      call print_message( msgbuf, standardmessageunit,
-     &                    SQUEEZE_RIGHT , mythid)
-      write(msgbuf,'(a,i8.8)')
-     &  ' cost_SSH: number of records to process = ',ndaysrec
-      call print_message( msgbuf, standardmessageunit,
-     &                    SQUEEZE_RIGHT , mythid)
-      write(msgbuf,'(a)') ' '
-      call print_message( msgbuf, standardmessageunit,
-     &                    SQUEEZE_RIGHT , mythid)
-#endif
-
 c--   ============
 c--   Mean values.
 c--   ============

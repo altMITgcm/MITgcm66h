@@ -116,6 +116,8 @@ c--         Determine the weights to be used.
               do i = imin,imax
                 if (_hFacC(i,j,k,bi,bj) .ne. 0.) then
                   tmpx = tmpfld3d(i,j,k,bi,bj)
+		  if ( ABS(R_low(i,j,bi,bj)) .LT. 1000. )
+     &              tmpx = tmpx*ABS(R_low(i,j,bi,bj))/1000.
                   fctile = fctile
      &                 + wtheta(k,bi,bj)*cosphi(i,j,bi,bj)
      &                 *tmpx*tmpx

@@ -63,15 +63,16 @@ c--   Initialise adjoint of monthly mean files calculated
 c--   in cost_averagesfields (and their ad...).
       call cost_averagesinit( mythid )
       _BARRIER
-#ifdef ALLOW_TANGENTLINEAR_RUN
+
+#ifndef ALLOW_TANGENTLINEAR_RUN
 cph(
 cph   The following init. shoud not be applied if in the middle
 cph   of a divided adjoint run
 cph)
-      inquire( file='costfinal', exist=exst )
-      if ( .NOT. exst) then
-         call ecco_cost_init_barfiles( mythid )
-      endif
+c      inquire( file='costfinal', exist=exst )
+c      if ( .NOT. exst) then
+c         call ecco_cost_init_barfiles( mythid )
+c      endif
 #endif
 
 c--   Initialize the tiled cost function contributions.
