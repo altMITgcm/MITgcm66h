@@ -100,10 +100,8 @@ grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.txt
   cd ../bin
   rm -rf *.o *.f *.p rii_files
   rm -rf *.F *.h *.c Makefile*
-  cp ../verification/natl_box_adjoint/code_bulk/*.h .
+  cp ../verification/natl_box_adjoint/code_seaice/*.h .
   cp ../verification/natl_box_adjoint/code_seaice/.genmakerc .
-  cp ../verification/natl_box_adjoint/code_seaice/CPP_OPTIONS.h .
-  cp ../verification/natl_box_adjoint/code_seaice/ECCO_CPPOPTIONS.h .
   cp ../verification/natl_box_adjoint/code_seaice/SEAICE_OPTIONS.h.FLUXES SEAICE_OPTIONS.h
 #Configure and compile the code:
   ../tools/genmake -makefile
@@ -152,10 +150,8 @@ Comments:
   cd ../bin
   rm -rf *.o *.f *.p rii_files
   rm -rf *.F *.h *.c Makefile*
-  cp ../verification/natl_box_adjoint/code_bulk/*.h .
+  cp ../verification/natl_box_adjoint/code_seaice/*.h .
   cp ../verification/natl_box_adjoint/code_seaice/.genmakerc .
-  cp ../verification/natl_box_adjoint/code_seaice/CPP_OPTIONS.h .
-  cp ../verification/natl_box_adjoint/code_seaice/ECCO_CPPOPTIONS.h .
   cp ../verification/natl_box_adjoint/code_seaice/SEAICE_OPTIONS.h.FLUXES SEAICE_OPTIONS.h
 #Configure and compile the code:
   ../tools/genmake -makefile
@@ -206,12 +202,9 @@ Comments:
   cd ../bin
   rm -rf *.o *.f *.p rii_files
   rm -rf *.F *.h *.c Makefile*
-  cp ../verification/natl_box_adjoint/code_bulk/*.h .
+  cp ../verification/natl_box_adjoint/code_seaice/*.h .
   cp ../verification/natl_box_adjoint/code_seaice/.genmakerc .
-  cp ../verification/natl_box_adjoint/code_seaice/CPP_OPTIONS.h .
-  cp ../verification/natl_box_adjoint/code_seaice/ECCO_CPPOPTIONS.h .
   cp ../verification/natl_box_adjoint/code_seaice/SEAICE_OPTIONS.h.FLUXES SEAICE_OPTIONS.h
-  cp ../verification/natl_box_adjoint/code_seaice/seaice_init.F .
 #Configure and compile the code:
   ../tools/genmake -makefile
   make depend
@@ -255,11 +248,8 @@ Comments:
   cd ../bin
   rm -rf *.o *.f *.p rii_files
   rm -rf *.F *.h *.c Makefile*
-  cp ../verification/natl_box_adjoint/code_bulk/*.h .
+  cp ../verification/natl_box_adjoint/code_seaice/*.h .
   cp ../verification/natl_box_adjoint/code_seaice/.genmakerc .
-  cp ../verification/natl_box_adjoint/code_seaice/CPP_OPTIONS.h .
-  cp ../verification/natl_box_adjoint/code_seaice/ECCO_CPPOPTIONS.h .
-  cp ../verification/natl_box_adjoint/code_seaice/SEAICE_OPTIONS.h .
   cp ../verification/natl_box_adjoint/code_seaice/seaice_init.F .
 #Configure and compile the code:
   ../tools/genmake -makefile
@@ -296,7 +286,7 @@ Comments:
 
 
 ####################
-# Experiment no. ? #
+# Experiment no. 7 #
 ####################
 
 #Use pkg/seaice bulk formulae and atmos. state controls
@@ -329,7 +319,10 @@ Comments:
   cp ../verification/natl_box_adjoint/input/PH_*.data .
   ./mitgcmuv >&! output.txt
 
-Comments: executable crashes:
+Comments:
+- Produces following error message during "make adtaf" compilation:
+    INTERNAL ERROR: cannot find var clone to ada2
+- Executable crashes:
 (PID.TID 0000.0001)  MDSREADFIELD: opening global file: v10m.labsea79
 (PID.TID 0000.0001)  MDSREADFIELD: opening global file: v10m.labsea79
 (PID.TID 0000.0001)  MDSREADFIELD: argument irecord = -00000473
