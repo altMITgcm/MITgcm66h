@@ -285,6 +285,8 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/cost_heatflux.f			\
 		$(SOURCE_CODE)/cost_hyd.f			\
 		$(SOURCE_CODE)/cost_initvaria.f			\
+		$(SOURCE_CODE)/cost_mean_heatflux.f		\
+		$(SOURCE_CODE)/cost_mean_saltflux.f		\
 		$(SOURCE_CODE)/cost_merstress.f			\
 		$(SOURCE_CODE)/cost_readers.f			\
 		$(SOURCE_CODE)/cost_readsssfields.f		\
@@ -405,14 +407,15 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/cal_timestamp.f			\
 		$(SOURCE_CODE)/cal_toseconds.f			\
 		$(SOURCE_CODE)/cal_weekday.f			\
-								\
-		$(SOURCE_CODE)/obcs_apply_sloc.f		\
-		$(SOURCE_CODE)/obcs_apply_tloc.f		\
-		$(SOURCE_CODE)/obcs_apply_ts.f			\
-		$(SOURCE_CODE)/obcs_apply_uv.f			\
-		$(SOURCE_CODE)/obcs_calc.f			\
-		$(SOURCE_CODE)/obcs_init_variables.f		\
-		$(SOURCE_CODE)/obcs_sponge.f
+
+
+#		$(SOURCE_CODE)/obcs_apply_sloc.f		\
+#		$(SOURCE_CODE)/obcs_apply_tloc.f		\
+#		$(SOURCE_CODE)/obcs_apply_ts.f			\
+#		$(SOURCE_CODE)/obcs_apply_uv.f			\
+#		$(SOURCE_CODE)/obcs_calc.f			\
+#		$(SOURCE_CODE)/obcs_init_variables.f		\
+#		$(SOURCE_CODE)/obcs_sponge.f			\
 
 #		$(SOURCE_CODE)/adi.f				\
 #		$(SOURCE_CODE)/lsr.f				\
