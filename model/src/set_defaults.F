@@ -223,7 +223,7 @@ C--   Time stepping parameters
       diagFreq          = deltaT*0
       snapshot_mdsio    = .TRUE.
       monitorFreq       = -1.
-      monitor_mdsio     = .TRUE.
+      monitor_stdio     = .TRUE.
       taveFreq          = deltaT*0
       timeave_mdsio     = .TRUE.
       tave_lastIter     = 0.5 _d 0

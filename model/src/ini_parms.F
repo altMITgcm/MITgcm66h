@@ -745,7 +745,7 @@ C     default to .FALSE., the logic here is simple:
       IF ( (.NOT. snapshot_ioinc) 
      &     .AND. snapshot_mnc ) snapshot_mdsio = .FALSE.
       IF ( (.NOT. monitor_ioinc) 
-     &     .AND. monitor_mnc ) monitor_mdsio = .FALSE.
+     &     .AND. monitor_mnc ) monitor_stdio = .FALSE.
 #endif
 
 C--   Grid parameters

@@ -383,8 +383,8 @@ C     zcoord ::
 #endif
       CALL WRITE_0D_R8( monitorFreq, INDEX_NONE,'monitorFreq =',
      &'   /* Monitor output interval ( s ). */')
-      CALL WRITE_0D_L(monitor_mdsio,INDEX_NONE,
-     &     'monitor_mdsio =', '   /* Model IO flag. */')
+      CALL WRITE_0D_L(monitor_stdio,INDEX_NONE,
+     &     'monitor_stdio =', '   /* Model IO flag. */')
 #ifdef ALLOW_MNC
       CALL WRITE_0D_L(monitor_mnc,INDEX_NONE,
      &     'monitor_mnc =', '   /* Model IO flag. */')
