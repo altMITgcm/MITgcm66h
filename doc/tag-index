@@ -14,6 +14,8 @@ o Added pkg/sbo for computing IERS Special Bureau for the Oceans
   angular, and bottom pressure (see pkg/sbo/README.sbo).
 o Lower bound for viscosity/diffusivity in pkg/kpp/kpp_routines.F
   to avoid negative values in shallow regions.
+  - updated verification/natl_box/results/output.txt
+  - updated verification/lab_sea/results/output.txt
 o MPI gather, scatter: eesupp/src/gather_2d.F and scatter_2d.F
 o Added useSingleCpuIO option (see PARAMS.h).
 
