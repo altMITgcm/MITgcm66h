@@ -188,9 +188,9 @@ C-------
           WRITE(6,'(A,2I4,2I2)') 'ThSI_FWD: i,j=',i,j,bi,bj
           WRITE(6,1010) 'ThSI_FWD:-1- iceMask, hIc, hSn, Tsf  =',
      &                  compact, iceHeight(i,j,bi,bj), 
-     &                  snowHeight(i,j,bi,bj), Qnet(i,j,bi,bj)
-          WRITE(6,1010) 'ThSI_FWD:   ocTs, TFrzOce, frzmltMxL =',
-     &                              oceTs, TFrzOce, frzmltMxL
+     &                  snowHeight(i,j,bi,bj), Tsrf(i,j,bi,bj)
+          WRITE(6,1010) 'ThSI_FWD: ocTs,TFrzOce,frzmltMxL,Qnet=',
+     &                     oceTs, TFrzOce, frzmltMxL,Qnet(i,j,bi,bj)
         ENDIF
 C-------
         IF (iceMask(i,j,bi,bj).GT.0. _d 0) THEN 
