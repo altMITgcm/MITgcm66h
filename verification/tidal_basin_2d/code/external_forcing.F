@@ -92,7 +92,7 @@ C Make the tide relatively strong (about 1 m)
      &     -SIN( tidal_freq*myCurrentTime + 2.*longitud1 )
      &    )*recip_DXC(i,j,bi,bj)
      &   *_maskW(i,j,kLev,bi,bj)
-     &   *min( myCurrentTime/86400. , 1.)
+c    &   *min( myCurrentTime/86400. , 1.)
        ENDDO
       ENDDO
 
