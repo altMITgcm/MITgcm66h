@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o argument futureIter of S/R obcs_calc missing in exp4 & internal_wave /code
+o solve_for_pressure : set cg2d_x to zero where OBCS are applied
+
 checkpoint44h_post = checkpoint45
 o Fix to restore differentiability:
   place at which packages_init_variables is called in
