@@ -48,3 +48,9 @@ C--   COMMON /MON_C/ Monitor character variables
 C     mon_pref   - Prefix used for monitor output
       COMMON /MON_C/ mon_pref
       CHARACTER*(MAX_LEN_MBUF) mon_pref
+
+C--   COMMON /MON_L/ Monitor logical variables
+C     mon_overrideStop - Allow code to continue even if model state is
+C                        heading out of bounds
+      COMMON /MON_L/ mon_overrideStop
+      LOGICAL mon_overrideStop

@@ -36,6 +36,8 @@ C     myTime - Current time of simulation ( s )
 C     == Local variables ==
 C     suff - Hold suffix part of a filename
 C     TimeAve - total time over average
+C     useVariableK   = T when vertical diffusion is not constant
+      LOGICAL useVariableK
       INTEGER prevPrec
       CHARACTER*(MAX_LEN_FNAM) suff
       INTEGER bi,bj,k
@@ -46,6 +48,7 @@ C     TimeAve - total time over average
 C-    Final Time Averages and Dump Files if needed
       IF(DIFFERENT_MULTIPLE(taveFreq,myTime,myTime-deltaTClock) )THEN
 
+       useVariableK = useKPP .OR. useGMredi .OR. ivdc_kappa.NE.0.
        WRITE(suff,'(I10.10)') myIter
 
        DO bj = myByLo(myThid), myByHi(myThid)
@@ -61,6 +64,7 @@ C-     Normalize by integrated time
           CALL TIMEAVE_NORMALIZ(TTtave,   TimeAve_half,Nr,bi,bj,myThid)
           CALL TIMEAVE_NORMALIZ(UUtave,   TimeAve_half,Nr,bi,bj,myThid)
           CALL TIMEAVE_NORMALIZ(VVtave,   TimeAve_half,Nr,bi,bj,myThid)
+          CALL TIMEAVE_NORMALIZ(UVtave,   TimeAve_half,Nr,bi,bj,myThid)
 c         CALL TIMEAVE_NORMALIZ(KEtave,   TimeAve_half,Nr,bi,bj,myThid)
 #ifdef NONLIN_FRSURF
 C-     Normalize by integrated time
@@ -74,6 +78,8 @@ c         CALL TIMEAVE_NORMALIZ(hFacStave,TimeAve_half,Nr,bi,bj,myThid)
           CALL TIMEAVE_NORMALIZ(VTtave,   TimeAve_half,Nr,bi,bj,myThid)
           CALL TIMEAVE_NORMALIZ(WTtave,   TimeAve_half,Nr,bi,bj,myThid)
 
+          CALL TIMEAVE_NORMALIZ(TdiffRtave,TimeAve_full,Nr,
+     &                            bi,bj,myThid)
           CALL TIMEAVE_NORMALIZ(phiHydtave,TimeAve_full,Nr,
      &                            bi,bj,myThid)
           CALL TIMEAVE_NORMALIZ(phiHydLowtave,TimeAve_full,1,
@@ -109,11 +115,14 @@ c      writeBinaryPrec = precFloat32
        CALL WRITE_FLD_XYZ_RL('TTtave.',suff,TTtave,myIter,myThid)
        CALL WRITE_FLD_XYZ_RL('UUtave.',suff,UUtave,myIter,myThid)
        CALL WRITE_FLD_XYZ_RL('VVtave.',suff,VVtave,myIter,myThid)
+       CALL WRITE_FLD_XYZ_RL('UVtave.',suff,UVtave,myIter,myThid)
 c      CALL WRITE_FLD_XYZ_RL('KEtave.',suff,KEtave,myIter,myThid)
        CALL WRITE_FLD_XYZ_RL('UTtave.',suff,UTtave,myIter,myThid)
        CALL WRITE_FLD_XYZ_RL('VTtave.',suff,VTtave,myIter,myThid)
        CALL WRITE_FLD_XYZ_RL('WTtave.',suff,WTtave,myIter,myThid)
 
+       IF (useVariableK)
+     & CALL WRITE_FLD_XYZ_RL('Tdiftave.',suff,TdiffRtave,myIter,myThid)
        CALL WRITE_FLD_XYZ_RL('PhHytave.',suff,phiHydtave,myIter,myThid)
        IF ( buoyancyRelation .NE. 'ATMOSPHERIC' ) THEN
        CALL WRITE_FLD_XY_RL('PHLtave.',suff,phiHydLowtave,

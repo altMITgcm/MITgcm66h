@@ -143,6 +143,10 @@ c     == local variables ==
 
 c--   == end of interface ==
 
+#ifndef DISABLE_DEBUGMODE
+      IF (debugMode) CALL DEBUG_ENTER('THE_MAIN_LOOP',myThid)
+#endif
+
 #ifdef ALLOW_AUTODIFF_TAMC
 c--   Initialize storage for the initialisations.
 CADJ  INIT tapelev3 = USER
@@ -173,17 +177,26 @@ c--   Get the current date.
       call cal_timestamp( myiter, mytime, mydate, mythid )
 
 C--   Set initial conditions (variable arrays)
+#ifndef DISABLE_DEBUGMODE
+      IF (debugMode) CALL DEBUG_CALL('INITIALISE_VARIA',myThid)
+#endif
       CALL TIMER_START('INITIALISE_VARIA    [THE_MAIN_LOOP]', mythid)
       CALL INITIALISE_VARIA( mythid )
       CALL TIMER_STOP ('INITIALISE_VARIA    [THE_MAIN_LOOP]', mythid)
 
 c--   Dump for start state.
+#ifndef DISABLE_DEBUGMODE
+      IF (debugMode) CALL DEBUG_CALL('WRITE_STATE',myThid)
+#endif
       CALL TIMER_START('WRITE_STATE         [THE_MAIN_LOOP]', mythid)
       CALL WRITE_STATE( mytime, myiter, mythid )
       CALL TIMER_STOP ('WRITE_STATE         [THE_MAIN_LOOP]', mythid)
 
 #ifndef EXCLUDE_MONITOR
 C--   Check status of solution (statistics, cfl, etc...)
+#ifndef DISABLE_DEBUGMODE
+      IF (debugMode) CALL DEBUG_CALL('MONITOR',myThid)
+#endif
       CALL TIMER_START('MONITOR             [THE_MAIN_LOOP]', mythid)
       CALL MONITOR( myIter, myTime, myThid )
       CALL TIMER_STOP ('MONITOR             [THE_MAIN_LOOP]', mythid)
@@ -393,6 +406,10 @@ c**************************************
 #include "checkpoint_lev1_directives.h"
 c**************************************
 #endif
+
+#ifndef DISABLE_DEBUGMODE
+      IF (debugMode) CALL DEBUG_CALL('EXF_GETFORCING',myThid)
+#endif
       CALL TIMER_START('EXF_GETFORCING     [FORWARD_STEP]',mythid)
       CALL EXF_GETFORCING( mytime, myiter, mythid )
       CALL TIMER_STOP ('EXF_GETFORCING     [FORWARD_STEP]',mythid)
@@ -410,6 +427,9 @@ C     under sea-ice may not be "exactly" at the freezing point by the time
 C     theta is dumped or time-averaged.
 cph this simple runtime flag causes a lot of recomp.
 cph      IF ( useSEAICE ) THEN
+#ifndef DISABLE_DEBUGMODE
+         IF (debugMode) CALL DEBUG_CALL('SEAICE_MODEL',myThid)
+#endif
          CALL TIMER_START('SEAICE_MODEL       [FORWARD_STEP]',myThid)
          CALL SEAICE_MODEL( myTime, myIter, myThid )
          CALL TIMER_STOP ('SEAICE_MODEL       [FORWARD_STEP]',myThid)
@@ -443,11 +463,17 @@ cph(
 cph)
 
 C--     Step forward fields and calculate time tendency terms.
+#ifndef DISABLE_DEBUGMODE
+      IF (debugMode) CALL DEBUG_CALL('THERMODYNAMICS',myThid)
+#endif
         CALL TIMER_START('THERMODYNAMICS      [FORWARD_STEP]',mythid)
         CALL THERMODYNAMICS( myTime, myIter, myThid )
         CALL TIMER_STOP ('THERMODYNAMICS      [FORWARD_STEP]',mythid)
 
 C--   do exchanges (needed for DYNAMICS) when using stagger time-step :
+#ifndef DISABLE_DEBUGMODE
+      IF (debugMode) CALL DEBUG_CALL('DO_STAGGER_FIELDS_EXCH.',myThid)
+#endif
         CALL TIMER_START('BLOCKING_EXCHANGES  [FORWARD_STEP]',myThid)
         CALL DO_STAGGER_FIELDS_EXCHANGES( myTime, myIter, myThid )
         CALL TIMER_STOP ('BLOCKING_EXCHANGES  [FORWARD_STEP]',myThid)
@@ -455,14 +481,21 @@ C--   do exchanges (needed for DYNAMICS) when using stagger time-step :
 #ifdef ALLOW_SHAP_FILT
       IF (useSHAP_FILT .AND. 
      &     staggerTimeStep .AND. shap_filt_TrStagg ) THEN
+#ifndef DISABLE_DEBUGMODE
+        IF (debugMode) CALL DEBUG_CALL('SHAP_FILT_APPLY_TS',myThid)
+#endif
         CALL TIMER_START('SHAP_FILT           [FORWARD_STEP]',myThid)
         CALL SHAP_FILT_APPLY_TS( gT, gS, myTime, myIter, myThid )
         CALL TIMER_STOP ('SHAP_FILT           [FORWARD_STEP]',myThid)
       ENDIF
 #endif
+
 #ifdef ALLOW_ZONAL_FILT
       IF (useZONAL_FILT .AND. 
      &     staggerTimeStep .AND. zonal_filt_TrStagg ) THEN
+#ifndef DISABLE_DEBUGMODE
+        IF (debugMode) CALL DEBUG_CALL('ZONAL_FILT_APPLY_TS',myThid)
+#endif
         CALL TIMER_START('ZONAL_FILT_APPLY    [FORWARD_STEP]',myThid)
         CALL ZONAL_FILT_APPLY_TS( gT, gS, myThid )
         CALL TIMER_STOP ('ZONAL_FILT_APPLY    [FORWARD_STEP]',myThid)
@@ -471,6 +504,9 @@ C--   do exchanges (needed for DYNAMICS) when using stagger time-step :
 
 C--   Step forward fields and calculate time tendency terms.
       IF ( momStepping ) THEN
+#ifndef DISABLE_DEBUGMODE
+        IF (debugMode) CALL DEBUG_CALL('DYNAMICS',myThid)
+#endif
         CALL TIMER_START('DYNAMICS            [FORWARD_STEP]',mythid)
         CALL DYNAMICS( myTime, myIter, myThid )
         CALL TIMER_STOP ('DYNAMICS            [FORWARD_STEP]',mythid)
@@ -479,6 +515,9 @@ C--   Step forward fields and calculate time tendency terms.
 #ifdef ALLOW_NONHYDROSTATIC
 C--   Step forward W field in N-H algorithm
       IF ( momStepping .AND. nonHydrostatic ) THEN
+#ifndef DISABLE_DEBUGMODE
+         IF (debugMode) CALL DEBUG_CALL('CALC_GW',myThid)
+#endif
          CALL TIMER_START('CALC_GW          [FORWARD_STEP]',myThid)
          CALL CALC_GW(myThid)
          CALL TIMER_STOP ('CALC_GW          [FORWARD_STEP]',myThid)
@@ -519,6 +558,7 @@ C      => Filtering of uVel,vVel is necessary
         CALL TIMER_STOP ('SHAP_FILT           [FORWARD_STEP]',myThid)
       ENDIF
 #endif
+
 #ifdef ALLOW_ZONAL_FILT
       IF (useZONAL_FILT .AND. zonal_filt_uvStar) THEN
         CALL TIMER_START('ZONAL_FILT_APPLY    [FORWARD_STEP]',myThid)
@@ -635,9 +675,12 @@ ctest      call cal_TimeStamp( myiter, mytime, mydate, mythid )
 CADJ STORE mytime = onetape
 #endif
 c--   Accumulate time averages of temperature, salinity, and SSH.
-      call timer_start('cost_AveragesFields [ECCO SPIN-DOWN]', mythid)
-      call cost_AveragesFields( mytime, mythid )
-      call timer_stop ('cost_AveragesFields [ECCO SPIN-DOWN]', mythid)
+#ifndef DISABLE_DEBUGMODE
+      IF (debugMode) CALL DEBUG_CALL('cost_averagesfields',myThid)
+#endif
+      call timer_start('cost_averagesfields [ECCO SPIN-DOWN]', mythid)
+      call cost_averagesfields( mytime, mythid )
+      call timer_stop ('cost_averagesfields [ECCO SPIN-DOWN]', mythid)
 #ifdef ALLOW_DIVIDED_ADJOINT
 c**************************************
 #include "checkpoint_bar_directives.h"
@@ -646,17 +689,26 @@ c**************************************
 
 #ifdef ALLOW_COST_ATLANTIC
 c--   Compute meridional heat transport 
+#ifndef DISABLE_DEBUGMODE
+      IF (debugMode) CALL DEBUG_CALL('cost_atlantic',myThid)
+#endif
       call timer_start('cost_atlantic      [ECCO SPIN-DOWN]', mythid)
       call cost_atlantic(  mytime, myiter,mythid )
       call timer_stop ('cost_atlantic      [ECCO SPIN-DOWN]', mythid)
 #endif
 
 c--   Compute cost function contribution of Temperature and Salinity.
-      call timer_start('COST_HYD           [ECCO SPIN-DOWN]', mythid)
-      call cost_Hyd( myiter, mytime, mythid )
-      call timer_stop ('COST_HYD           [ECCO SPIN-DOWN]', mythid)
+#ifndef DISABLE_DEBUGMODE
+      IF (debugMode) CALL DEBUG_CALL('cost_hyd',myThid)
+#endif
+      call timer_start('cost_hyd           [ECCO SPIN-DOWN]', mythid)
+      call cost_hyd( myiter, mytime, mythid )
+      call timer_stop ('cost_hyd           [ECCO SPIN-DOWN]', mythid)
 
 #ifdef ALLOW_CURMTR_COST_CONTRIBUTION
+#ifndef DISABLE_DEBUGMODE
+      IF (debugMode) CALL DEBUG_CALL('cost_curmtr',myThid)
+#endif
       call timer_start('cost_curmtr        [ECCO SPIN-DOWN]', mythid)
       call cost_curmtr( myiter, mytime, mythid )
       call timer_stop ('cost_curmtr        [ECCO SPIN-DOWN]', mythid)
@@ -664,34 +716,49 @@ c--   Compute cost function contribution of Temperature and Salinity.
 
 c--   Compute cost function contribution of SSH.
 #ifdef ALLOW_SSH_COST_CONTRIBUTION
-      call timer_start('cost_SSH           [ECCO SPIN-DOWN]', mythid)
-      call cost_SSH( myiter, mytime, mythid )
-      call timer_stop ('cost_SSH           [ECCO SPIN-DOWN]', mythid)
+#ifndef DISABLE_DEBUGMODE
+      IF (debugMode) CALL DEBUG_CALL('cost_ssh',myThid)
+#endif
+      call timer_start('cost_ssh           [ECCO SPIN-DOWN]', mythid)
+      call cost_ssh( myiter, mytime, mythid )
+      call timer_stop ('cost_ssh           [ECCO SPIN-DOWN]', mythid)
 #endif
 
 c--   Compute cost function contribution of SSS. 
 #ifdef ALLOW_SST_COST_CONTRIBUTION 
-      call timer_start('cost_SST           [ECCO SPIN-DOWN]', mythid)
-      call cost_SST( myiter, mytime, mythid )
-      call timer_stop ('cost_SST           [ECCO SPIN-DOWN]', mythid)
+#ifndef DISABLE_DEBUGMODE
+      IF (debugMode) CALL DEBUG_CALL('cost_sst',myThid)
+#endif
+      call timer_start('cost_sst           [ECCO SPIN-DOWN]', mythid)
+      call cost_sst( myiter, mytime, mythid )
+      call timer_stop ('cost_sst           [ECCO SPIN-DOWN]', mythid)
 #endif
 
 c--   Compute cost function contribution of SSS.
 #ifdef ALLOW_SSS_COST_CONTRIBUTION
-      call timer_start('cost_SSS           [ECCO SPIN-DOWN]', mythid)
-      call cost_SSS( myiter, mytime, mythid )
-      call timer_stop ('cost_SSS           [ECCO SPIN-DOWN]', mythid)
+#ifndef DISABLE_DEBUGMODE
+      IF (debugMode) CALL DEBUG_CALL('cost_sss',myThid)
+#endif
+      call timer_start('cost_sss           [ECCO SPIN-DOWN]', mythid)
+      call cost_sss( myiter, mytime, mythid )
+      call timer_stop ('cost_sss           [ECCO SPIN-DOWN]', mythid)
 #endif
 
 c--   Compute cost function contribution of drifter's velocities.
 #ifdef ALLOW_DRIFTER_COST_CONTRIBUTION
-      call timer_start('cost_Drifter         [ECCO SPIN-DOWN]', mythid)
+#ifndef DISABLE_DEBUGMODE
+      IF (debugMode) CALL DEBUG_CALL('cost_drifter',myThid)
+#endif
+      call timer_start('cost_drifter         [ECCO SPIN-DOWN]', mythid)
       call cost_drifter( myiter, mytime, mythid )
-      call timer_stop ('cost_Drifter         [ECCO SPIN-DOWN]', mythid)
+      call timer_stop ('cost_drifter         [ECCO SPIN-DOWN]', mythid)
 #endif
 
 c--   Compute cost function contribution of wind stress observations.
 #ifdef ALLOW_SCAT_COST_CONTRIBUTION
+#ifndef DISABLE_DEBUGMODE
+      IF (debugMode) CALL DEBUG_CALL('cost_scat',myThid)
+#endif
       call timer_start('cost_scat            [ECCO SPIN-DOWN]', mythid) 
       call cost_scat( myiter, mytime, mythid )
       call timer_stop ('cost_scat            [ECCO SPIN-DOWN]', mythid)
@@ -714,14 +781,20 @@ c--   Compute cost function contribution of wind stress observations.
 c--   Compute cost function contribution of drift between the first 
 c     and the last year.
 #ifdef ALLOW_DRIFT_COST_CONTRIBUTION
-      call timer_start('cost_Drift         [ECCO SPIN-DOWN]', mythid)
+#ifndef DISABLE_DEBUGMODE
+      IF (debugMode) CALL DEBUG_CALL('cost_drift',myThid)
+#endif
+      call timer_start('cost_drift         [ECCO SPIN-DOWN]', mythid)
       call cost_drift( myiter, mytime, mythid )
-      call timer_stop ('cost_Drift         [ECCO SPIN-DOWN]', mythid)
+      call timer_stop ('cost_drift         [ECCO SPIN-DOWN]', mythid)
 #endif
 #ifdef ALLOW_DRIFTW_COST_CONTRIBUTION
-      call timer_start('cost_Driftw        [ECCO SPIN-DOWN]', mythid)
+#ifndef DISABLE_DEBUGMODE
+      IF (debugMode) CALL DEBUG_CALL('cost_driftw',myThid)
+#endif
+      call timer_start('cost_driftw        [ECCO SPIN-DOWN]', mythid)
       call cost_driftw( myiter, mytime, mythid )
-      call timer_stop ('cost_Driftw        [ECCO SPIN-DOWN]', mythid)
+      call timer_stop ('cost_driftw        [ECCO SPIN-DOWN]', mythid)
 #endif
       _BARRIER
 
@@ -735,6 +808,9 @@ c--   Compute initial vs. final T/S deviation
       _BARRIER
 
 c--   Sum all cost function contributions.
+#ifndef DISABLE_DEBUGMODE
+      IF (debugMode) CALL DEBUG_CALL('cost_final',myThid)
+#endif
       call timer_start('COST_FINAL         [ECCO SPIN-DOWN]', mythid)
       call cost_final( mythid )
       call timer_stop ('COST_FINAL         [ECCO SPIN-DOWN]', mythid)
@@ -742,6 +818,10 @@ c--   Sum all cost function contributions.
 #endif /* ALLOW_COST */
 
       call timer_stop ('ECCO SPIN-DOWN', mythid)
+
+#ifndef DISABLE_DEBUGMODE
+      IF (debugMode) CALL DEBUG_LEAVE('THE_MAIN_LOOP',myThid)
+#endif
 
       return
       end
