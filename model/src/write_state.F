@@ -180,10 +180,10 @@ C       Write dynvars using the MNC package
         CALL MNC_CW_RL_W('D','state',0,0,'Eta', etaN, myThid)
         CALL MNC_CW_RL_W('D','state',0,0,'W', wVel, myThid)
         IF ( useDynP_inEos_Zc .OR. myIter.NE.nIter0 ) THEN
-          CALL MNC_CW_SET_UDIM('totPhiHyd', -1, myThid)
-          CALL MNC_CW_RL_W('R','totPhiHyd',0,0,'iter',mnc_iter,myThid)
-          CALL MNC_CW_SET_UDIM('totPhiHyd', 0, myThid)
-          CALL MNC_CW_RL_W('D','totPhiHyd',0,0,'totPhiHyd',
+          CALL MNC_CW_SET_UDIM('phiHyd', -1, myThid)
+          CALL MNC_CW_RL_W('R','phiHyd',0,0,'iter',mnc_iter,myThid)
+          CALL MNC_CW_SET_UDIM('phiHyd', 0, myThid)
+          CALL MNC_CW_RL_W('D','phiHyd',0,0,'phiHyd',
      &         totPhiHyd, myThid)
         ENDIF
         IF ((buoyancyRelation .NE. 'ATMOSPHERIC')
