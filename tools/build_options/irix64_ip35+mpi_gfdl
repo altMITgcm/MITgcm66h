@@ -5,7 +5,7 @@
 
 S64='$(TOOLSDIR)/set64bitConst.sh'
 MAKEDEPEND=makedepend
-CPP='/lib/cpp -P -traditional'
+CPP='/lib/cpp -P'
 DEFINES='-DTARGET_SGI -DWORDLENGTH=4'
 FC='f77'
 FFLAGS='-extend_source -mp -mpio -bytereclen -mips4 -r8 -static'
