@@ -102,6 +102,16 @@ C--   the kDown is still required
       ENDDO
 #endif
 
+CcnhDebugStarts
+      DO j=1-OLy,sNy+OLy
+       DO i=1-OLx,sNx+OLx
+        fZon(i,j)      = 0.0
+        fMer(i,j)      = 0.0
+        fVerT(i,j,kUp) = 0.0
+       ENDDO
+      ENDDO
+CcnhDebugEnds
+
       afFacT = 1. _d 0
       dfFacT = 1. _d 0
       TOP_LAYER = K .EQ. 1
