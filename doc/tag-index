@@ -3,6 +3,17 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+Branch icebear
+
+
+
+7 mar 03
+ Branched off ecco_c44_e27
+ Bug fix in pkg/ctrl/ctrl_init.F
+
+
+====================================================================
+
 ecco_c44_e27
 o exf:
   - Enable initialisation of forcing fields to constant 

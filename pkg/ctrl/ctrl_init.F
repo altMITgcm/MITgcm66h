@@ -363,7 +363,7 @@ c--   Heat flux.
         call cal_ToSeconds ( difftime, diffsecs, mythid )
         startrec = int((modelstart - diffsecs)/
      &                 xx_hfluxperiod) + 1
-        endrec   = int((modelend   - diffsecs - modelstep)/
+        endrec   = int((modelend   - diffsecs + modelstep/2)/
      &                 xx_hfluxperiod) + 2
         ivarindex                = 3
         ncvarindex(ivarindex)    = 103
@@ -385,7 +385,7 @@ c--   Atmos. temperature
         call cal_ToSeconds ( difftime, diffsecs, mythid )
         startrec = int((modelstart - diffsecs)/
      &                 xx_atempperiod) + 1
-        endrec   = int((modelend   - diffsecs - modelstep)/
+        endrec   = int((modelend   - diffsecs + modelstep/2)/
      &                 xx_atempperiod) + 2
         ivarindex                = 7
         ncvarindex(ivarindex)    = 107
@@ -409,7 +409,7 @@ c--   Salt flux.
         call cal_ToSeconds ( difftime, diffsecs, mythid )
         startrec = int((modelstart - diffsecs)/
      &                 xx_sfluxperiod) + 1
-        endrec   = int((modelend   - diffsecs - modelstep)/
+        endrec   = int((modelend   - diffsecs + modelstep/2)/
      &                 xx_sfluxperiod) + 2
         ivarindex                = 4
         ncvarindex(ivarindex)    = 104
@@ -431,7 +431,7 @@ c--   Atmos. humidity
         call cal_ToSeconds ( difftime, diffsecs, mythid )
         startrec = int((modelstart - diffsecs)/
      &                 xx_aqhperiod) + 1
-        endrec   = int((modelend   - diffsecs - modelstep)/
+        endrec   = int((modelend   - diffsecs + modelstep/2)/
      &                 xx_aqhperiod) + 2
         ivarindex                = 8
         ncvarindex(ivarindex)    = 108
@@ -455,7 +455,7 @@ c--   Zonal wind stress.
         call cal_ToSeconds ( difftime, diffsecs, mythid )
         startrec = int((modelstart - diffsecs)/
      &                 xx_tauuperiod) + 1
-        endrec   = int((modelend   - diffsecs - modelstep)/
+        endrec   = int((modelend   - diffsecs + modelstep/2)/
      &                 xx_tauuperiod) + 2
         ivarindex                = 5
         ncvarindex(ivarindex)    = 105
@@ -477,7 +477,7 @@ c--   Zonal wind speed.
         call cal_ToSeconds ( difftime, diffsecs, mythid )
         startrec = int((modelstart - diffsecs)/
      &                 xx_uwindperiod) + 1
-        endrec   = int((modelend   - diffsecs - modelstep)/
+        endrec   = int((modelend   - diffsecs + modelstep/2)/
      &                 xx_uwindperiod) + 2
         ivarindex                = 9
         ncvarindex(ivarindex)    = 109
@@ -501,7 +501,7 @@ c--   Meridional wind stress.
         call cal_ToSeconds ( difftime, diffsecs, mythid )
         startrec = int((modelstart - diffsecs)/
      &                 xx_tauvperiod) + 1
-        endrec   = int((modelend   - diffsecs - modelstep)/
+        endrec   = int((modelend   - diffsecs + modelstep/2)/
      &                 xx_tauvperiod) + 2
         ivarindex                = 6
         ncvarindex(ivarindex)    = 106
@@ -523,7 +523,7 @@ c--   Meridional wind speed.
         call cal_ToSeconds ( difftime, diffsecs, mythid )
         startrec = int((modelstart - diffsecs)/
      &                 xx_vwindperiod) + 1
-        endrec   = int((modelend   - diffsecs - modelstep)/
+        endrec   = int((modelend   - diffsecs + modelstep/2)/
      &                 xx_vwindperiod) + 2
         ivarindex                = 10
         ncvarindex(ivarindex)    = 110
