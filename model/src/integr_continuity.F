@@ -192,7 +192,7 @@ C--    Integrate continuity vertically for vertical velocity
      O                       wVel,
      I                       myThid )
  
-#if ( defined EXACT_CONSERV && defined NONLIN_FRSURF ) 
+#ifdef EXACT_CONSERV
        IF ( k.EQ.Nr .AND. myTime.NE. 0. _d 0 .AND.
      &      useRealFreshWaterFlux .AND. 
      &      buoyancyRelation .EQ. 'OCEANICP' ) THEN
@@ -205,7 +205,7 @@ C--    Integrate continuity vertically for vertical velocity
           ENDDO
 
        ENDIF
-#endif /* EXACT_CONSERV & NONLIN_FRSURF */
+#endif /* EXACT_CONSERV */
 
 #ifdef ALLOW_OBCS
 #ifdef ALLOW_NONHYDROSTATIC
