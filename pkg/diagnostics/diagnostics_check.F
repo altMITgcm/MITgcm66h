@@ -70,6 +70,7 @@ C-    Check for field that appears 2 times (or more) with differents frequency:
             WRITE(msgBuf,'(2A,I3,A,I6,2A)') 'DIAGNOSTICS_CHECK: ',
      &       ' 2nd (n=', n, ' ), freq=', freq(n),' file:',fnames(n)
             CALL PRINT_ERROR( msgBuf , myThid )
+            STOP 'ABNORMAL END: S/R DIAGNOSTICS_CHECK'
            ENDIF
           ENDDO
          ENDDO
