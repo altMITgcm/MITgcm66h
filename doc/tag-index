@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+
+checkpoint53e_pre
+
 checkpoint53d_post
 o faulks upgraded: re-generate output.txt that have changed:
    global_ocean.cs32x15(.thsice), global_ocean_ebm, lab_sea, natl_box
