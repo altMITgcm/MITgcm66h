@@ -31,5 +31,11 @@ C   it is replaced by parameter "Shap_noSlip=1." in new S/R.
 #undef  NO_SLIP_SHAP
 #endif
 
+C Masking of vorticity in dissipation terms (and Shap-Filt)
+C  can be different from the masking applied for momentum advection;
+C This option allows to use the local S/R: SHAP_FILT_RELVORT3 to
+C compute vorticity, instead of pkg/mom_common S/R: MOM_CALC_RELVORT3
+#undef  USE_SHAP_CALC_VORTICITY
+
 #endif /* ALLOW_SHAP_FILT */
 #endif /* SHAP_FILT_OPTIONS_H */
