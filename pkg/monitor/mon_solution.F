@@ -46,7 +46,9 @@ C     Statistics for T
          CALL PRINT_MESSAGE( msgBuf, mon_ioUnit, SQUEEZE_RIGHT , 1)
         _END_MASTER(myThid)
 
-        CALL EEDIE
+C jmc: add this "if not ..." to avoid beeing stuck when using coupler; 
+       IF ( .NOT. useCoupler )
+     &  CALL EEDIE
         STOP 'MON_SOLUTION: STOPPED DUE TO EXTREME VALUES OF SOLUTION'
       ENDIF
 
