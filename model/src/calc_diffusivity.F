@@ -51,10 +51,11 @@ C     I, J, K - Loop counters
        DO i=iMin,iMax
         KappaRT(i,j,k) = maskC(i,j)*maskUp(i,j)*
      &      (
+     &         KappaRT(i,j,k)
 #ifdef ALLOW_KPP
-     &         KPPdiffKzT(i,j,k,bi,bj)
+     &       + KPPdiffKzT(i,j,k,bi,bj)
 #else
-     &         diffKrT
+     &       + diffKrT
 #endif
      &       + KapGM(i,j)*K33(i,j,k)
      &      )
@@ -65,10 +66,11 @@ C     I, J, K - Loop counters
        DO i=iMin,iMax
         KappaRS(i,j,k) = maskC(i,j)*maskUp(i,j)*
      &      (
+     &         KappaRS(i,j,k)
 #ifdef ALLOW_KPP
-     &         KPPdiffKzS(i,j,k,bi,bj)
+     &       + KPPdiffKzS(i,j,k,bi,bj)
 #else
-     &         diffKrS
+     &       + diffKrS
 #endif
      &       + KapGM(i,j)*K33(i,j,k)
      &      )

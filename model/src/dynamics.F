@@ -125,6 +125,10 @@ C                      index into fVerTerm.
       _RL KappaRU (1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
       _RL KappaRV (1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
 
+#ifdef INCLUDE_CONVECT_CALL
+      _RL ConvectCount (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
+#endif
+
       INTEGER iMin, iMax
       INTEGER jMin, jMax
       INTEGER bi, bj
@@ -200,8 +204,8 @@ C     uninitialised but inert locations.
          K13(i,j,k)  = 0. _d 0
          K23(i,j,k)  = 0. _d 0
          K33(i,j,k)  = 0. _d 0
-         KappaRT(i,j,k) = 0. _d 0
-         KappaRS(i,j,k) = 0. _d 0
+         KappaRU(i,j,k) = 0. _d 0
+         KappaRV(i,j,k) = 0. _d 0
         ENDDO
         rhoKM1 (i,j) = 0. _d 0
         rhok   (i,j) = 0. _d 0
@@ -236,6 +240,18 @@ C--     Set up work arrays that need valid initial values
           K23   (i,j,1) = 0. _d 0
           K33   (i,j,1) = 0. _d 0
           KapGM (i,j)   = GMkbackground
+         ENDDO
+        ENDDO
+
+        DO k=1,Nr
+         DO j=1-OLy,sNy+OLy
+          DO i=1-OLx,sNx+OLx
+#ifdef INCLUDE_CONVECT_CALL
+           ConvectCount(i,j,k) = 0.
+#endif
+           KappaRT(i,j,k) = 0. _d 0
+           KappaRS(i,j,k) = 0. _d 0
+          ENDDO
          ENDDO
         ENDDO
 
@@ -295,8 +311,14 @@ C--      and mix as needed.
 #ifdef  INCLUDE_CONVECT_CALL
          CALL CONVECT(
      I       bi,bj,iMin,iMax,jMin,jMax,K+1,rhoKm1,rhoKp1,
+     U       ConvectCount,
      I       myTime,myIter,myThid)
 #endif
+C--      Implicit Vertical Diffusion for Convection
+         IF (ivdc_kappa.NE.0.) CALL CALC_IVDC(
+     I       bi,bj,iMin,iMax,jMin,jMax,K+1,rhoKm1,rhoKp1,
+     U       ConvectCount, KappaRT, KappaRS,
+     I       myTime,myIter,myThid)
 C--      Recompute density after mixing
 #ifdef  INCLUDE_FIND_RHO_CALL
          CALL FIND_RHO(
@@ -353,8 +375,14 @@ C--       Density of K+1 level (below W(K+1)) reference to K level.
 #ifdef  INCLUDE_CONVECT_CALL
           CALL CONVECT(
      I        bi,bj,iMin,iMax,jMin,jMax,K+1,rhoK,rhoKp1,
+     U        ConvectCount,
      I        myTime,myIter,myThid)
 #endif
+C--      Implicit Vertical Diffusion for Convection
+         IF (ivdc_kappa.NE.0.) CALL CALC_IVDC(
+     I       bi,bj,iMin,iMax,jMin,jMax,K+1,rhoKm1,rhoKp1,
+     U       ConvectCount, KappaRT, KappaRS,
+     I       myTime,myIter,myThid)
 C--       Recompute density after mixing
 #ifdef  INCLUDE_FIND_RHO_CALL
           CALL FIND_RHO(
@@ -482,10 +510,11 @@ C--      Cumulative diagnostic calculations (ie. time-averaging)
          IF (taveFreq.GT.0.) THEN
           CALL DO_TIME_AVERAGES(
      I                           myTime, myIter, bi, bj, K, kUp, kDown,
-     I                           K13, K23, rVel, KapGM,
+     I                           K13, K23, rVel, KapGM, ConvectCount,
      I                           myThid )
          ENDIF
 #endif
+
 
         ENDDO ! K
 

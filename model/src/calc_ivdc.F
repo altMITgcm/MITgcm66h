@@ -2,12 +2,13 @@ C $Header$
 
 #include "CPP_OPTIONS.h"
 
-      SUBROUTINE CONVECT( bi, bj, iMin, iMax, jMin, jMax, K,
-     &       rhoKm1, rhoKp1, ConvectCount,
+      SUBROUTINE CALC_IVDC( bi, bj, iMin, iMax, jMin, jMax, K,
+     &       rhoKm1, rhoKp1,
+     &       ConvectCount, KappaRT, KappaRS,
      &       myTime,myIter, myThid )
 C     /==========================================================\
-C     | SUBROUTINE CONVECT                                       |
-C     | o Does vertical mixing of unstable water columns         |
+C     | SUBROUTINE CALC_IVDC                                     |
+C     | o Calculates Implicit Vertical Diffusivity for Convection|
 C     \==========================================================/
       IMPLICIT NONE
 
@@ -32,50 +33,26 @@ C     myThid - Thread number of this instance of S/R CONVECT
       _RL rhoKm1(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL rhoKp1(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL ConvectCount(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
+      _RL KappaRT(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
+      _RL KappaRS(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
       _RL myTime
       INTEGER myIter
       INTEGER myThid
 
 C     == Local variables ==
       INTEGER i,j
-      _RL tMix(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL sMix(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL dSum(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-
-C--   Check to see if should convect now
-      IF ( DIFFERENT_MULTIPLE(cAdjFreq,myTime,myTime-deltaTClock) ) THEN
-
-C--    Calculate heat content of two level column
-       DO j=jMin,jmax
-        DO i=iMin,imax
-         tMix(i,j) = theta(i,j,k-1,bi,bj)
-     &               *_hFacC(i,j,k-1,bi,bj)*drF(k-1)
-     &              +theta(i,j,k,bi,bj)
-     &               *_hFacC(i,j,k,bi,bj)*drF(k)
-         sMix(i,j) = salt (i,j,k-1,bi,bj)
-     &               *_hFacC(i,j,k-1,bi,bj)*drF(k-1)
-     &              +salt (i,j,k,bi,bj)
-     &               *_hFacC(i,j,k,bi,bj)*drF(k)
-         dSum(i,j) = _hFacC(i,j,k-1,bi,bj)*drF(k-1)
-     &              +_hFacC(i,j,k,bi,bj)*drF(k)
-        ENDDO
-       ENDDO
 
 C--    Where statically unstable, mix the heat and salt
        DO j=jMin,jmax
         DO i=iMin,imax
          IF ( _hFacC(i,j,k,bi,bj) .GT. 0. .AND.
      &        rhokm1(i,j) .GT. rhokp1(i,j) ) THEN
-          theta(i,j,k-1,bi,bj) = tMix(i,j)/dSum(i,j)
-          theta(i,j,k  ,bi,bj) = tMix(i,j)/dSum(i,j)
-          salt(i,j,k-1,bi,bj)  = sMix(i,j)/dSum(i,j)
-          salt(i,j,k  ,bi,bj)  = sMix(i,j)/dSum(i,j)
+          KappaRT(i,j,k) = ivdc_kappa
+          KappaRS(i,j,k) = ivdc_kappa
           ConvectCount(i,j,k) = ConvectCount(i,j,k) + 1.
          ENDIF
         ENDDO
        ENDDO
        
-      ENDIF
-
       RETURN
       END
