@@ -332,7 +332,7 @@ C--     Calculate future values on open boundaries
           IF ( debugLevel .GE. debLevB ) 
      &     CALL DEBUG_CALL('OBCS_CALC',myThid)
 #endif
-          CALL OBCS_CALC( bi, bj, myTime+deltaT, myIter+1,
+          CALL OBCS_CALC( bi, bj, myTime+deltaTclock, myIter+1,
      I            uVel, vVel, wVel, theta, salt,
      I            myThid )
         ENDIF
