@@ -91,8 +91,16 @@ CEOP
      &'   /* Reference salinity profile ( ppt ) */')
       CALL WRITE_0D_R8( viscAh, INDEX_NONE,'viscAh =',
      &'   /* Lateral eddy viscosity ( m^2/s ) */')
+      CALL WRITE_0D_R8( viscAhMax, INDEX_NONE,'viscAhMax =',
+     &'   /* Maximum lateral eddy viscosity ( m^2/s ) */')
+      CALL WRITE_0D_R8( viscAhGrid, INDEX_NONE,'viscAhGrid =',
+     &'   /* Grid dependent lateral eddy viscosity ( non-dim. ) */')
       CALL WRITE_0D_R8( viscA4, INDEX_NONE,'viscA4 =',
      &'   /* Lateral biharmonic viscosity ( m^4/s ) */')
+      CALL WRITE_0D_R8( viscA4Max, INDEX_NONE,'viscA4Max =',
+     &'   /* Maximum biharmonic viscosity ( m^2/s ) */')
+      CALL WRITE_0D_R8( viscA4Grid, INDEX_NONE,'viscA4Grid =',
+     &'   /* Grid dependent biharmonic viscosity ( non-dim. ) */')
       CALL WRITE_0D_L( no_slip_sides, INDEX_NONE,
      & 'no_slip_sides =', '  /* Viscous BCs: No-slip sides */')
 c     IF ( viscAz .NE. UNSET_RL ) THEN
