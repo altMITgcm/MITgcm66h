@@ -4,7 +4,7 @@ C $Name$
 #ifndef CPP_OPTIONS_H
 #define CPP_OPTIONS_H
 
-#include "PACKAGES_CONFIG.h"
+ceh3 #include "PACKAGES_CONFIG.h"
 
 C CPP flags controlling particular source code features
 

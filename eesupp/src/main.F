@@ -43,6 +43,7 @@ CEOI
 
 
 C--   Get C preprocessor options
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 #include "CPP_EEOPTIONS.h"
 
