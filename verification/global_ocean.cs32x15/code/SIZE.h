@@ -1,4 +1,6 @@
 C $Header$
+C $Name$
+
 C
 C     /==========================================================\
 C     | SIZE.h Declare size of underlying computational grid.    |
@@ -35,11 +37,11 @@ C     Nr  - No. points in Z for full process domain.
       INTEGER Ny
       INTEGER Nr
       PARAMETER (
-     &           sNx =   8,
-     &           sNy =   4,
+     &           sNx =  32,
+     &           sNy =  32,
      &           OLx =   2,
      &           OLy =   2,
-     &           nSx = 176,
+     &           nSx =   6,
      &           nSy =   1,
      &           nPx =   1,
      &           nPy =   1,
