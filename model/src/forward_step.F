@@ -59,6 +59,7 @@ C     == Global variables ==
 # include "EOS.h"
 # ifdef ALLOW_EXF
 #  include "exf_fields.h"
+#  include "exf_clim_fields.h"
 #  ifdef ALLOW_BULKFORMULAE
 #   include "exf_constants.h"
 #  endif
