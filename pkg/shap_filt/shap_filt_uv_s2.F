@@ -106,30 +106,30 @@ C     Special stuff for Cubed Sphere
              J=1
              vort3(I,J)=
      &          tmpFldV(I,J,k,bi,bj)
-c    &         -tmpFldV(I-1,J,k,bi,bj)
      &         -tmpFldU(I,J,k,bi,bj)
      &         +tmpFldU(I,J-1,k,bi,bj)
+c    &         -tmpFldV(I-1,J,k,bi,bj)
              I=sNx+1
              J=1
              vort3(I,J)=
-c    &          tmpFldV(I,J,k,bi,bj)
      &         -tmpFldV(I-1,J,k,bi,bj)
      &         -tmpFldU(I,J,k,bi,bj)
      &         +tmpFldU(I,J-1,k,bi,bj)
+c    &          tmpFldV(I,J,k,bi,bj)
              I=1
              J=sNy+1
              vort3(I,J)=
      &          tmpFldV(I,J,k,bi,bj)
-c    &         -tmpFldV(I-1,J,k,bi,bj)
      &         -tmpFldU(I,J,k,bi,bj)
      &         +tmpFldU(I,J-1,k,bi,bj)
+c    &         -tmpFldV(I-1,J,k,bi,bj)
              I=sNx+1
              J=sNy+1
              vort3(I,J)=
-c    &          tmpFldV(I,J,k,bi,bj)
      &         -tmpFldV(I-1,J,k,bi,bj)
      &         -tmpFldU(I,J,k,bi,bj)
      &         +tmpFldU(I,J-1,k,bi,bj)
+c    &          tmpFldV(I,J,k,bi,bj)
            ENDIF
          ENDIF
 
