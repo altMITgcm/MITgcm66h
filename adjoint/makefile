@@ -40,8 +40,8 @@ SRC_MODEL	= \
 		$(PKG)/autodiff/read_write.flow	\
 		$(PKG)/autodiff/read_write_fld.flow	\
 		$(PKG)/autodiff/read_write_rec.flow	\
-		$(PKG)/autodiff/diags.flow		\
 		$(PKG)/autodiff/cg2d.flow		\
+		$(PKG)/autodiff/diags.flow		\
 		$(PKG)/autodiff/debug.flow		\
 		$(PKG)/autodiff/dummy_in_stepping.flow	\
 		$(PKG)/autodiff/external_fields_load.flow	\
@@ -311,17 +311,13 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/exf_set_aqh.f			\
 		$(SOURCE_CODE)/exf_set_atemp.f			\
 		$(SOURCE_CODE)/exf_set_hflux.f			\
-		$(SOURCE_CODE)/exf_set_hfluxa.f			\
 		$(SOURCE_CODE)/exf_set_lwflux.f			\
 		$(SOURCE_CODE)/exf_set_precip.f			\
 		$(SOURCE_CODE)/exf_set_sflux.f			\
-		$(SOURCE_CODE)/exf_set_sfluxa.f			\
 		$(SOURCE_CODE)/exf_set_swflux.f			\
 		$(SOURCE_CODE)/exf_set_ustress.f		\
-		$(SOURCE_CODE)/exf_set_ustressa.f		\
 		$(SOURCE_CODE)/exf_set_uwind.f			\
 		$(SOURCE_CODE)/exf_set_vstress.f		\
-		$(SOURCE_CODE)/exf_set_vstressa.f		\
 		$(SOURCE_CODE)/exf_set_vwind.f			\
 		$(SOURCE_CODE)/exf_set_obcs.f			\
 								\
@@ -333,12 +329,6 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/exf_set_climtemp.f		\
 		$(SOURCE_CODE)/exf_set_climsss.f		\
 		$(SOURCE_CODE)/exf_set_climsst.f		\
-								\
-		$(SOURCE_CODE)/exfa_getffields.f		\
-		$(SOURCE_CODE)/exfa_getforcing.f		\
-		$(SOURCE_CODE)/exfa_init.f			\
-		$(SOURCE_CODE)/exfa_mapfields.f			\
-		$(SOURCE_CODE)/exfa_summary.f			\
 								\
 		$(SOURCE_CODE)/cal_addtime.f			\
 		$(SOURCE_CODE)/cal_checkdate.f			\
