@@ -119,6 +119,7 @@ c Compute physics increments
      .  duphy,dvphy,dthphy,dsphy)
        enddo
        enddo
+
        CALL TIMER_STOP ('DO_FIZHI          [FIZHI_WRAPPER]',mythid)
 
        CALL TIMER_START ('PHYS2DYN          [FIZHI_WRAPPER]',mythid)

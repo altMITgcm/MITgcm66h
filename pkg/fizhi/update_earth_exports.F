@@ -99,7 +99,6 @@ C **********************************************************************
      .    albvisdr,albvisdf,albnirdr,albnirdf )
        endif
 
-
 C **********************************************************************
 C                      Compute Surface Emissivity
 C **********************************************************************
@@ -109,7 +108,6 @@ C **********************************************************************
         call getemiss(fracl,im2,jm2,nchp,nchptot,nSx,nSy,bi,bj,
      .   igrd,ityp,chfr,snodep,ficetile,emiss)
        endif
-
 
 C*********************************************************************
 C            Ground Temperature Over Ocean is from SST array,
@@ -121,7 +119,7 @@ C*********************************************************************
         tmpij(i,j) = 0.
        enddo
        enddo
-       do i = 1,nchp
+       do i = 1,nchptot
         tmpchp(i) = tcanopy(i,bi,bj)
        enddo
        call msc2grd(igrd(1,bi,bj),chfr(1,bi,bj),tmpchp,
