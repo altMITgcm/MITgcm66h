@@ -344,8 +344,11 @@ cph)
 cph 8001  CONTINUE
 C ITERATION END -----------------------------------------------------
 
-
-       write(*,'(A,I6,1P2E22.14)')' U lsr iters, error = ',ICOUNT1,S1
+      IF ( debugLevel .GE. debLevA ) THEN
+       _BEGIN_MASTER( myThid )
+        write(*,'(A,I6,1P2E22.14)')' U lsr iters, error = ',ICOUNT1,S1
+       _END_MASTER( )
+      ENDIF
 
 C NOW FOR VICE
       DO bj=myByLo(myThid),myByHi(myThid)
@@ -565,8 +568,11 @@ cph)
 cph 9001  CONTINUE
 C ITERATION END -----------------------------------------------------
 
-
-      write(*,'(A,I6,1P2E22.14)')' V lsr iters, error = ',ICOUNT2,S2
+      IF ( debugLevel .GE. debLevA ) THEN
+       _BEGIN_MASTER( myThid )
+        write(*,'(A,I6,1P2E22.14)')' V lsr iters, error = ',ICOUNT2,S2
+       _END_MASTER( )
+      ENDIF
 
 C NOW END
 C NOW MAKE COROLIS TERM IMPLICIT
