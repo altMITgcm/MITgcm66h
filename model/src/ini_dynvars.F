@@ -67,8 +67,6 @@ C-      3D arrays
            gSnm1(I,J,K,bi,bj)=0. _d 0
 
 #ifdef INCLUDE_CD_CODE
-           guCD(I,J,K,bi,bj)=0. _d 0
-           gvCD(I,J,K,bi,bj)=0. _d 0
            uNM1(I,J,K,bi,bj)=0. _d 0
            vNM1(I,J,K,bi,bj)=0. _d 0
            uVeld(I,J,K,bi,bj)=0. _d 0
