@@ -39,24 +39,22 @@ CADJ STORE vstress1  = comlev1, key = ikey_dynamics
 # ifdef ALLOW_BULKFORMULAE
 CADJ STORE theta     = comlev1, key = ikey_dynamics
 # endif
+# ifdef ALLOW_CLIMSSS_RELAXATION
+CADJ STORE climsss0   = comlev1, key = ikey_dynamics
+CADJ STORE climsss1   = comlev1, key = ikey_dynamics
+# endif
+#ifdef ALLOW_CLIMSST_RELAXATION
+CADJ STORE climsst0   = comlev1, key = ikey_dynamics
+CADJ STORE climsst1   = comlev1, key = ikey_dynamics
+# endif
+#ifdef ALLOW_CLIMSALT_RELAXATION
+cph not used so far
+cphCADJ STORE climsalt0  = comlev1, key = ikey_dynamics
+cphCADJ STORE climsalt1  = comlev1, key = ikey_dynamics
+# endif
+#ifdef ALLOW_CLIMTEMP_RELAXATION
+cph not used so far
+cphCADJ STORE climtemp0  = comlev1, key = ikey_dynamics
+cphCADJ STORE climtemp1  = comlev1, key = ikey_dynamics
+# endif
 #endif
-
-#ifdef ALLOW_OBCS
-#ifdef ALLOW_OBCS_NORTH
-CADJ STORE OBNt    = comlev1, key = ikey_dynamics
-CADJ STORE OBNs    = comlev1, key = ikey_dynamics
-#endif /* ALLOW_OBCS_NORTH */
-#ifdef ALLOW_OBCS_SOUTH
-CADJ STORE OBSt    = comlev1, key = ikey_dynamics
-CADJ STORE OBSs    = comlev1, key = ikey_dynamics
-#endif /* ALLOW_OBCS_SOUTH */
-#ifdef ALLOW_OBCS_EAST
-CADJ STORE OBEt    = comlev1, key = ikey_dynamics
-CADJ STORE OBEs    = comlev1, key = ikey_dynamics
-#endif /* ALLOW_OBCS_EAST */
-#ifdef ALLOW_OBCS_WEST
-CADJ STORE OBWt    = comlev1, key = ikey_dynamics
-CADJ STORE OBWs    = comlev1, key = ikey_dynamics
-#endif /* ALLOW_OBCS_WEST */
-#endif  /* ALLOW_OBCS */
-
