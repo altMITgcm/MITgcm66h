@@ -21,6 +21,12 @@ CADJ STORE evap1     = comlev1, key = ikey_dynamics
 #  else
 CADJ STORE evap      = comlev1, key = ikey_dynamics
 #  endif
+#  ifdef ALLOW_DOWNWARD_RADIATION
+CADJ STORE swdown0   = comlev1, key = ikey_dynamics
+CADJ STORE swdown1   = comlev1, key = ikey_dynamics
+CADJ STORE lwdown0   = comlev1, key = ikey_dynamics
+CADJ STORE lwdown1   = comlev1, key = ikey_dynamics
+#  endif
 # else
 CADJ STORE hflux0    = comlev1, key = ikey_dynamics
 CADJ STORE hflux1    = comlev1, key = ikey_dynamics
@@ -63,20 +69,33 @@ cph not used so far
 cphCADJ STORE climtemp0  = comlev1, key = ikey_dynamics
 cphCADJ STORE climtemp1  = comlev1, key = ikey_dynamics
 # endif
-#ifdef ALLOW_HFLUX_CONTROL
+# ifdef ATMOSPHERIC_LOADING
+CADJ STORE apressure0    = comlev1, key = ikey_dynamics
+CADJ STORE apressure1    = comlev1, key = ikey_dynamics
+# endif
+
+# ifdef ALLOW_HFLUX_CONTROL
 CADJ STORE xx_hflux0     = comlev1, key = ikey_dynamics
 CADJ STORE xx_hflux1     = comlev1, key = ikey_dynamics
-#endif
-#ifdef ALLOW_SFLUX_CONTROL
+# endif
+# ifdef ALLOW_SFLUX_CONTROL
 CADJ STORE xx_sflux0     = comlev1, key = ikey_dynamics
 CADJ STORE xx_sflux1     = comlev1, key = ikey_dynamics
-#endif
-#ifdef ALLOW_USTRESS_CONTROL
+# endif
+# ifdef ALLOW_USTRESS_CONTROL
 CADJ STORE xx_tauu0      = comlev1, key = ikey_dynamics
 CADJ STORE xx_tauu1      = comlev1, key = ikey_dynamics
-#endif
-#ifdef ALLOW_VSTRESS_CONTROL
+# endif
+# ifdef ALLOW_VSTRESS_CONTROL
 CADJ STORE xx_tauv0      = comlev1, key = ikey_dynamics
 CADJ STORE xx_tauv1      = comlev1, key = ikey_dynamics
-#endif
+# endif
 #endif /* INCLUDE_EXTERNAL_FORCING_PACKAGE */
+
+#ifdef ALLOW_SEAICE
+CADJ STORE area          = comlev1, key = ikey_dynamics
+CADJ STORE heff          = comlev1, key = ikey_dynamics
+CADJ STORE hsnow         = comlev1, key = ikey_dynamics
+CADJ STORE tice          = comlev1, key = ikey_dynamics
+CADJ STORE runoff        = comlev1, key = ikey_dynamics
+#endif

@@ -54,6 +54,12 @@ CADJ STORE evap1     = tapelev3, key = ilev_3
 #  else
 CADJ STORE evap      = tapelev3, key = ilev_3
 #  endif
+#  ifdef ALLOW_DOWNWARD_RADIATION
+CADJ STORE swdown0   = tapelev3, key = ilev_3
+CADJ STORE swdown1   = tapelev3, key = ilev_3
+CADJ STORE lwdown0   = tapelev3, key = ilev_3
+CADJ STORE lwdown1   = tapelev3, key = ilev_3
+#  endif
 # else
 CADJ STORE hflux0    = tapelev3, key = ilev_3
 CADJ STORE hflux1    = tapelev3, key = ilev_3
@@ -93,22 +99,27 @@ cph not used so far
 cphCADJ STORE climtemp0  = tapelev3, key = ilev_3
 cphCADJ STORE climtemp1  = tapelev3, key = ilev_3
 # endif
-#ifdef ALLOW_HFLUX_CONTROL
+# ifdef ATMOSPHERIC_LOADING
+CADJ STORE apressure0    = tapelev3, key = ilev_3
+CADJ STORE apressure1    = tapelev3, key = ilev_3
+# endif
+
+# ifdef ALLOW_HFLUX_CONTROL
 CADJ STORE xx_hflux0     = tapelev3, key = ilev_3
 CADJ STORE xx_hflux1     = tapelev3, key = ilev_3
-#endif
-#ifdef ALLOW_SFLUX_CONTROL
+# endif
+# ifdef ALLOW_SFLUX_CONTROL
 CADJ STORE xx_sflux0     = tapelev3, key = ilev_3
 CADJ STORE xx_sflux1     = tapelev3, key = ilev_3
-#endif
-#ifdef ALLOW_USTRESS_CONTROL
+# endif
+# ifdef ALLOW_USTRESS_CONTROL
 CADJ STORE xx_tauu0      = tapelev3, key = ilev_3
 CADJ STORE xx_tauu1      = tapelev3, key = ilev_3
-#endif
-#ifdef ALLOW_VSTRESS_CONTROL
+# endif
+# ifdef ALLOW_VSTRESS_CONTROL
 CADJ STORE xx_tauv0      = tapelev3, key = ilev_3
 CADJ STORE xx_tauv1      = tapelev3, key = ilev_3
-#endif
+# endif
 #endif /* INCLUDE_EXTERNAL_FORCING_PACKAGE */
 
 #ifdef ALLOW_OBCS
@@ -162,3 +173,10 @@ CADJ STORE OBWs1    = tapelev3, key = ilev_3
 #endif /* ALLOW_OBCS_WEST */
 #endif  /* ALLOW_OBCS */
 
+#ifdef ALLOW_SEAICE
+CADJ STORE area     = tapelev3, key = ilev_3
+CADJ STORE heff     = tapelev3, key = ilev_3
+CADJ STORE hsnow    = tapelev3, key = ilev_3
+CADJ STORE tice     = tapelev3, key = ilev_3
+CADJ STORE runoff   = tapelev3, key = ilev_3
+#endif /* ALLOW_SEAICE */
