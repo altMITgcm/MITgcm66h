@@ -58,5 +58,21 @@ C     Step forward meridional velocity
        ENDDO
       ENDDO
 
+     Rotate theta/gT/gTnm1
+      DO j=jMin,jMax
+       DO i=iMin,iMax
+        theta(i,j,k,bi,bj)=gTNm1(i,j,k,bi,bj)
+        gTNm1(i,j,k,bi,bj)=gT(i,j,k,bi,bj)
+       ENDDO
+      ENDDO
+
+C     Rotate salt/gS/gSnm1
+      DO j=jMin,jMax
+       DO i=iMin,iMax
+        salt(i,j,k,bi,bj)=gSNm1(i,j,k,bi,bj)
+        gSNm1(i,j,k,bi,bj)=gS(i,j,k,bi,bj)
+       ENDDO
+      ENDDO
+
       RETURN
       END
