@@ -96,6 +96,14 @@ C--   Do KPP diagnostics.
      & CALL KPP_DO_DIAGS( myCurrentTime, myIter, myThid )
 #endif
 
+#ifdef ALLOW_SBO
+C--   Do SBO diagnostics.
+      IF (useSBO) THEN
+         CALL SBO_CALC ( myCurrentTime, myIter, myThid )
+         CALL SBO_DIAGS( myCurrentTime, myIter, myThid )
+      ENDIF
+#endif
+
       RETURN
       END
  

@@ -72,6 +72,12 @@ CEOP
       IF (useFLT) CALL PACKAGES_CHECK_ERROR('FLT', myThid)
 #endif
 
+#ifdef ALLOW_SBO
+      IF (useSBO) CALL SBO_CHECK( myThid )
+#else
+      IF (useSBO) CALL PACKAGES_CHECK_ERROR('SBO', myThid)
+#endif
+
 #ifdef ALLOW_SEAICE
       IF (useSEAICE) CALL SEAICE_CHECK( myThid )
 #else

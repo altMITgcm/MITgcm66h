@@ -345,6 +345,8 @@ C/\  | | | |-TIMEAVE_STATV_WRITE :: Time averages. see pkg/timeave
 C/\  | | | |-AIM_WRITE_DIAGS     :: Intermed. atmos diags. see pkg/aim
 C/\  | | | |-GMREDI_DIAGS        :: GM diags. see pkg/gmredi
 C/\  | | | |-KPP_DO_DIAGS        :: KPP diags. see pkg/kpp
+C/\  | | | |-SBO_CALC            :: SBO diags. see pkg/sbo
+C/\  | | | |-SBO_DIAGS           :: SBO diags. see pkg/sbo
 C/\  | | |
 C/\  | | |-WRITE_CHECKPOINT :: Do I/O for restart files.
 C/\  | |

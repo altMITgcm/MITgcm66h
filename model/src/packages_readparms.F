@@ -31,6 +31,8 @@ C       |-- GMREDI_READPARMS
 C       |
 C       |-- KPP_READPARMS
 C       |
+C       |-- SBO_READPARMS
+C       |
 C       |-- SEAICE_READPARMS
 C       |
 C       |-- SHAP_FILT_READPARMS
@@ -71,6 +73,11 @@ C--   Initialize GM/Redi parameters
 #ifdef ALLOW_KPP
 C--   Initialize KPP parameters
       IF (useKPP) CALL KPP_READPARMS( myThid )
+#endif
+
+#ifdef ALLOW_SBO
+C--   Initialize SBO parameters
+      IF (useSBO) CALL SBO_READPARMS( myThid )
 #endif
 
 #ifdef ALLOW_SEAICE

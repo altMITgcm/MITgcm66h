@@ -53,6 +53,7 @@ C     data.pkg namelists
      &          useSHAP_FILT,
      &          useZONAL_FILT,
      &          useFLT,
+     &          useSBO,
      &          useSEAICE
 CEOP
 
@@ -78,6 +79,7 @@ C--   Default package configuration
       useSHAP_FILT=.FALSE.
       useZONAL_FILT=.FALSE.
       useFLT=.FALSE.
+      useSBO=.FALSE.
       useSEAICE=.FALSE.
 
 C--   Read parameters from open data file
