@@ -33,7 +33,7 @@ C     === Local variables ====
       _RL theMean
       _RL theSD
 
-      CALL MON_STATS_RL(
+      CALL MON_STATS_RS(
      I                myNr, arr,
      O                theMin,theMax,theMean,theSD,
      I                myThid )
