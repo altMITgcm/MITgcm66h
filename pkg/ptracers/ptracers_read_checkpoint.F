@@ -50,7 +50,7 @@ C Write fields as consecutive records
        iRec = iTracer
        CALL MDSREADFIELD(fn,prec,'RL',Nr,
      &      pTracer(1-Olx,1-Oly,1,1,1,iTracer),iRec,myThid)
-      _EXCH_XYZ_R8(pTracer,myThid)
+       _EXCH_XYZ_R8(pTracer(1-Olx,1-Oly,1,1,1,iTracer),myThid)
       ENDDO
 
 C Write historical tendancies as consecutive records
@@ -58,13 +58,13 @@ C Write historical tendancies as consecutive records
        iRec = iTracer + PTRACERS_num
        CALL MDSREADFIELD(fn,prec,'RL',Nr,
      &      gPtr(1-Olx,1-Oly,1,1,1,iTracer),iRec,myThid)
-      _EXCH_XYZ_R8(gPtr,myThid)
+       _EXCH_XYZ_R8(gPtr(1-Olx,1-Oly,1,1,1,iTracer),myThid)
       ENDDO
       DO iTracer=1,PTRACERS_num
        iRec = iTracer + PTRACERS_num*2
        CALL MDSREADFIELD(fn,prec,'RL',Nr,
      &      gPtrNm1(1-Olx,1-Oly,1,1,1,iTracer),iRec,myThid)
-      _EXCH_XYZ_R8(gPtrNm1,myThid)
+       _EXCH_XYZ_R8(gPtrNm1(1-Olx,1-Oly,1,1,1,iTracer),myThid)
       ENDDO
 
 #endif /* ALLOW_PTRACERS */
