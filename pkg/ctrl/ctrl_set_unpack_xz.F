@@ -4,7 +4,7 @@
 
       subroutine ctrl_set_unpack_xz(
      &     cunit, ivartype, fname, masktype,
-     &     weightfld, nwettile, mythid)
+     &     weightfld, nwetglobal, mythid)
 
 c     ==================================================================
 c     SUBROUTINE ctrl_set_unpack_xz
@@ -40,7 +40,7 @@ c     == routine arguments ==
       character*( 80)   fname
       character*  (9) masktype
       _RL     weightfld( nr,nobcs )
-      integer nwettile(nsx,nsy,nr,nobcs)
+      integer nwetglobal(nr,nobcs)
       integer mythid
 
 c     == local variables ==
@@ -152,7 +152,7 @@ cgg      And now back-calculate what iobcs should be.
          read(cunit) filej
          read(cunit) filei
          do k = 1, Nr
-            cbuffindex = nwettile(1,1,k,iobcs)
+            cbuffindex = nwetglobal(k,iobcs)
             if ( cbuffindex .gt. 0 ) then
                read(cunit) filencbuffindex
                if (filencbuffindex .NE. cbuffindex) then

@@ -92,9 +92,9 @@ c     == local variables ==
       integer        filensx
       integer        filensy
       integer        filek
-      integer        filenWetcTile(nr)
-      integer        filenWetsTile(nr)
-      integer        filenWetwTile(nr)
+      integer        filenWetcGlobal(nr)
+      integer        filenWetsGlobal(nr)
+      integer        filenWetwGlobal(nr)
       integer        filencvarindex(maxcvars)
       integer        filencvarrecs(maxcvars)
       integer        filencvarxmax(maxcvars)
@@ -102,16 +102,16 @@ c     == local variables ==
       integer        filencvarnrmax(maxcvars)
 cgg(  Add OBCS mask names.
 #ifdef ALLOW_OBCSN_CONTROL
-      integer        filenWetobcsn(nr,nobcs)
+      integer        filenWetobcsnGlo(nr,nobcs)
 #endif
 #ifdef ALLOW_OBCSS_CONTROL
-      integer        filenWetobcss(nr,nobcs)
+      integer        filenWetobcssGlo(nr,nobcs)
 #endif
 #ifdef ALLOW_OBCSW_CONTROL
-      integer        filenWetobcsw(nr,nobcs)
+      integer        filenWetobcswGlo(nr,nobcs)
 #endif
 #ifdef ALLOW_OBCSE_CONTROL
-      integer        filenWetobcse(nr,nobcs)
+      integer        filenWetobcseGlo(nr,nobcs)
 #endif
       integer iobcs
 cgg)
@@ -290,7 +290,7 @@ c--     Only the master thread will do I/O.
 
 c *********************************************************************
 c if NOT very first iteration of optimization
-        if ( optimcycle .ne. 0 ) then
+        if ( optimcycle .GT. 0 ) then
 c *********************************************************************
 
           call mdsfindunit( cunit, mythid )
@@ -314,22 +314,26 @@ c--       Header information.
           read(cunit) fileJg
           read(cunit) filensx
           read(cunit) filensy
-          read(cunit) (filenWetcTile(k),   k=1,nr)
-          read(cunit) (filenWetsTile(k),   k=1,nr)
-          read(cunit) (filenWetwTile(k),   k=1,nr)
+          read(cunit) (filenWetcGlobal(k),   k=1,nr)
+          read(cunit) (filenWetsGlobal(k),   k=1,nr)
+          read(cunit) (filenWetwGlobal(k),   k=1,nr)
 
 cgg(     Add OBCS mask information to the header.
 #ifdef ALLOW_OBCSN_CONTROL
-          read(cunit) ((filenWetobcsn(k,iobcs), k=1,nr), iobcs= 1,nobcs)
+          read(cunit) ((filenWetobcsnGlo(k,iobcs), 
+     &         k=1,nr), iobcs= 1,nobcs)
 #endif
 #ifdef ALLOW_OBCSS_CONTROL
-          read(cunit) ((filenWetobcss(k,iobcs), k=1,nr), iobcs= 1,nobcs)
+          read(cunit) ((filenWetobcssGlo(k,iobcs), 
+     &         k=1,nr), iobcs= 1,nobcs)
 #endif
 #ifdef ALLOW_OBCSW_CONTROL
-          read(cunit) ((filenWetobcsw(k,iobcs), k=1,nr), iobcs= 1,nobcs)
+          read(cunit) ((filenWetobcswGlo(k,iobcs), 
+     &         k=1,nr), iobcs= 1,nobcs)
 #endif
 #ifdef ALLOW_OBCSE_CONTROL
-          read(cunit) ((filenWetobcse(k,iobcs), k=1,nr), iobcs= 1,nobcs)
+          read(cunit) ((filenWetobcseGlo(k,iobcs), 
+     &         k=1,nr), iobcs= 1,nobcs)
 #endif
 cgg)
           read(cunit) (filencvarindex(i), i=1,maxcvars)
@@ -352,9 +356,9 @@ c
              STOP 'in S/R ctrl_unpack'
           endif
           do k = 1, nr
-             if ( filenWetcTile(k) .NE. nWetcTile(1,1,k) .OR.
-     &            filenWetsTile(k) .NE. nWetsTile(1,1,k) .OR.
-     &            filenWetwTile(k) .NE. nWetwTile(1,1,k) ) then
+             if ( filenWetcGlobal(k) .NE. nWetcGlobal(k) .OR.
+     &            filenWetsGlobal(k) .NE. nWetsGlobal(k) .OR.
+     &            filenWetwGlobal(k) .NE. nWetwGlobal(k) ) then
                 print *, 'WARNING: wrong nWet?Tile for k = ', k
                 STOP
              endif
@@ -365,7 +369,8 @@ cgg(   Lets also check the OBCS mask info in the header.
 #ifdef ALLOW_OBCSN_CONTROL
        do iobcs = 1, nobcs
          do k = 1, nr
-           if ( filenWetobcsn(k,iobcs) .NE. nWetobcsn(1,1,k,iobcs)) then
+           if ( filenWetobcsnGlo(k,iobcs) .NE. 
+     &           nWetobcsnGlo(k,iobcs)) then
              print *, 'WARNING: OBCSN wrong nWet?Tile for k = ', k
              STOP
            endif
@@ -376,7 +381,8 @@ cgg(   Lets also check the OBCS mask info in the header.
 #ifdef ALLOW_OBCSS_CONTROL
        do iobcs = 1, nobcs
          do k = 1, nr
-           if ( filenWetobcss(k,iobcs) .NE. nWetobcss(1,1,k,iobcs)) then
+           if ( filenWetobcssGlo(k,iobcs) .NE. 
+     &           nWetobcssGlo(k,iobcs)) then
              print *, 'WARNING: OBCSS wrong nWet?Tile for k = ', k
              STOP
            endif
@@ -387,7 +393,8 @@ cgg(   Lets also check the OBCS mask info in the header.
 #ifdef ALLOW_OBCSW_CONTROL
        do iobcs = 1, nobcs
          do k = 1, nr
-           if ( filenWetobcsw(k,iobcs) .NE. nWetobcsw(1,1,k,iobcs)) then
+           if ( filenWetobcswGlo(k,iobcs) .NE. 
+     &           nWetobcswGlo(k,iobcs)) then
              print *, 'WARNING: OBCSW wrong nWet?Tile for k = ', k
              STOP
            endif
@@ -398,7 +405,8 @@ cgg(   Lets also check the OBCS mask info in the header.
 #ifdef ALLOW_OBCSE_CONTROL
        do iobcs = 1, nobcs
          do k = 1, nr
-           if ( filenWetobcse(k,iobcs) .NE. nWetobcse(1,1,k,iobcs)) then
+           if ( filenWetobcseGlo(k,iobcs) .NE. 
+     &           nWetobcseGlo(k,iobcs)) then
              print *, 'WARNING: OBCSE wrong nWet?Tile for k = ', k
              STOP
            endif
@@ -413,14 +421,14 @@ c----------------------------------------------------------------------
           ivartype = 1
           call ctrl_set_unpack_xyz(
      &         cunit, ivartype, fname_theta, "hFacC",
-     &         wtheta, nwetctile, mythid)
+     &         wtheta, nwetcglobal, mythid)
 #endif
 
 #ifdef ALLOW_SALT0_CONTROL
           ivartype = 2
           call ctrl_set_unpack_xyz(
      &         cunit, ivartype, fname_salt, "hFacC",
-     &         wsalt, nwetctile, mythid)
+     &         wsalt, nwetcglobal, mythid)
 #endif
 
 #ifdef ALLOW_HFLUX_CONTROL
@@ -429,7 +437,7 @@ c----------------------------------------------------------------------
           write(weighttype(1:80),'(a)') "whflux"
           call ctrl_set_unpack_xy(
      &         cunit, ivartype, fname_hflux, "hFacC", weighttype,
-     &         nwetctile, mythid)
+     &         nwetcglobal, mythid)
 #endif
 
 #ifdef ALLOW_SFLUX_CONTROL
@@ -438,7 +446,7 @@ c----------------------------------------------------------------------
           write(weighttype(1:80),'(a)') "wsflux"
           call ctrl_set_unpack_xy(
      &         cunit, ivartype, fname_sflux, "hFacC", weighttype,
-     &         nwetctile, mythid)
+     &         nwetcglobal, mythid)
 #endif
 
 #ifdef ALLOW_USTRESS_CONTROL
@@ -447,7 +455,7 @@ c----------------------------------------------------------------------
           write(weighttype(1:80),'(a)') "wtauu"
           call ctrl_set_unpack_xy(
      &         cunit, ivartype, fname_tauu, "maskW", weighttype,
-     &         nwetwtile, mythid)
+     &         nwetwglobal, mythid)
 #endif
 
 #ifdef ALLOW_VSTRESS_CONTROL
@@ -456,7 +464,7 @@ c----------------------------------------------------------------------
           write(weighttype(1:80),'(a)') "wtauv"
           call ctrl_set_unpack_xy(
      &         cunit, ivartype, fname_tauv, "maskS", weighttype,
-     &         nwetstile, mythid)
+     &         nwetsglobal, mythid)
 #endif
 
 #ifdef ALLOW_ATEMP_CONTROL
@@ -465,7 +473,7 @@ c----------------------------------------------------------------------
           write(weighttype(1:80),'(a)') "watemp"
           call ctrl_set_unpack_xy(
      &         cunit, ivartype, fname_atemp, "hFacC", weighttype,
-     &         nwetctile, mythid)
+     &         nwetcglobal, mythid)
 #endif
 
 #ifdef ALLOW_AQH_CONTROL
@@ -474,7 +482,7 @@ c----------------------------------------------------------------------
           write(weighttype(1:80),'(a)') "waqh"
           call ctrl_set_unpack_xy(
      &         cunit, ivartype, fname_aqh, "hFacC", weighttype,
-     &         nwetctile, mythid)
+     &         nwetcglobal, mythid)
 #endif
 
 #ifdef ALLOW_UWIND_CONTROL
@@ -483,7 +491,7 @@ c----------------------------------------------------------------------
           write(weighttype(1:80),'(a)') "wuwind"
           call ctrl_set_unpack_xy(
      &         cunit, ivartype, fname_uwind, "maskW", weighttype,
-     &         nwetctile, mythid)
+     &         nwetcglobal, mythid)
 #endif
 
 #ifdef ALLOW_VWIND_CONTROL
@@ -492,7 +500,7 @@ c----------------------------------------------------------------------
           write(weighttype(1:80),'(a)') "wvwind"
           call ctrl_set_unpack_xy(
      &         cunit, ivartype, fname_vwind, "maskS", weighttype,
-     &         nwetctile, mythid)
+     &         nwetcglobal, mythid)
 #endif
 
 #ifdef ALLOW_OBCSN_CONTROL
@@ -501,7 +509,7 @@ c----------------------------------------------------------------------
           write(weighttype(1:80),'(a)') "wobcsn"
           call ctrl_set_unpack_xz(
      &         cunit, ivartype, fname_obcsn, "maskobcsn",
-     &         wobcsn, nwetobcsn, mythid)
+     &         wobcsn, nwetobcsnglo, mythid)
 #endif
 
 #ifdef ALLOW_OBCSS_CONTROL
@@ -510,7 +518,7 @@ c----------------------------------------------------------------------
           write(weighttype(1:80),'(a)') "wobcss"
           call ctrl_set_unpack_xz(
      &         cunit, ivartype, fname_obcss, "maskobcss",
-     &         wobcss, nwetobcss, mythid)
+     &         wobcss, nwetobcssglo, mythid)
 #endif
 
 #ifdef ALLOW_OBCSW_CONTROL
@@ -519,7 +527,7 @@ c----------------------------------------------------------------------
           write(weighttype(1:80),'(a)') "wobcsw"
           call ctrl_set_unpack_yz(
      &         cunit, ivartype, fname_obcsw, "maskobcsw",
-     &         wobcsw, nwetobcsw, mythid)
+     &         wobcsw, nwetobcswglo, mythid)
 #endif
 
 #ifdef ALLOW_OBCSE_CONTROL
@@ -528,7 +536,7 @@ c----------------------------------------------------------------------
           write(weighttype(1:80),'(a)') "wobcse"
           call ctrl_set_unpack_yz(
      &         cunit, ivartype, fname_obcse, "maskobcse",
-     &         wobcse, nwetobcse, mythid)
+     &         wobcse, nwetobcseglo, mythid)
 #endif
 
          close ( cunit )
@@ -650,22 +658,22 @@ c--       Header information.
           write(cunit) 1
           write(cunit) 1
           write(cunit) 1
-          write(cunit) (nWetcTile(1,1,k), k=1,nr)
-          write(cunit) (nWetsTile(1,1,k), k=1,nr)
-          write(cunit) (nWetwTile(1,1,k), k=1,nr)
+          write(cunit) (nWetcGlobal(k), k=1,nr)
+          write(cunit) (nWetsGlobal(k), k=1,nr)
+          write(cunit) (nWetwGlobal(k), k=1,nr)
 
 cgg(    Add OBCS Mask information into the header section for optimization.
 #ifdef ALLOW_OBCSN_CONTROL
-          write(cunit) ((nWetobcsn(1,1,k,iobcs), k=1,nr),iobcs= 1,nobcs)
+          write(cunit) ((nWetobcsnGlo(k,iobcs), k=1,nr),iobcs= 1,nobcs)
 #endif
 #ifdef ALLOW_OBCSS_CONTROL
-          write(cunit) ((nWetobcss(1,1,k,iobcs), k=1,nr),iobcs= 1,nobcs)
+          write(cunit) ((nWetobcssGlo(k,iobcs), k=1,nr),iobcs= 1,nobcs)
 #endif
 #ifdef ALLOW_OBCSW_CONTROL
-          write(cunit) ((nWetobcsw(1,1,k,iobcs), k=1,nr),iobcs= 1,nobcs)
+          write(cunit) ((nWetobcswGlo(k,iobcs), k=1,nr),iobcs= 1,nobcs)
 #endif
 #ifdef ALLOW_OBCSE_CONTROL
-          write(cunit) ((nWetobcse(1,1,k,iobcs), k=1,nr),iobcs= 1,nobcs)
+          write(cunit) ((nWetobcseGlo(k,iobcs), k=1,nr),iobcs= 1,nobcs)
 #endif
 cgg)
           write(cunit) (ncvarindex(i), i=1,maxcvars)

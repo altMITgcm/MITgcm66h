@@ -235,9 +235,21 @@ c--       Header information.
           write(cunit) 1
           write(cunit) 1
           write(cunit) 1
-          write(cunit) (nWetcTile(1,1,k), k=1,nr)
-          write(cunit) (nWetsTile(1,1,k), k=1,nr)
-          write(cunit) (nWetwTile(1,1,k), k=1,nr)
+          write(cunit) (nWetcGlobal(k), k=1,nr)
+          write(cunit) (nWetsGlobal(k), k=1,nr)
+          write(cunit) (nWetwGlobal(k), k=1,nr)
+#ifdef ALLOW_OBCSN_CONTROL
+          write(cunit) ((nWetobcsnGlo(k,iobcs), k=1,nr),iobcs= 1,nobcs)
+#endif
+#ifdef ALLOW_OBCSS_CONTROL
+          write(cunit) ((nWetobcssGlo(k,iobcs), k=1,nr),iobcs= 1,nobcs)
+#endif
+#ifdef ALLOW_OBCSW_CONTROL
+          write(cunit) ((nWetobcswGlo(k,iobcs), k=1,nr),iobcs= 1,nobcs)
+#endif
+#ifdef ALLOW_OBCSE_CONTROL
+          write(cunit) ((nWetobcseGlo(k,iobcs), k=1,nr),iobcs= 1,nobcs)
+#endif
           write(cunit) (ncvarindex(i), i=1,maxcvars)
           write(cunit) (ncvarrecs(i),  i=1,maxcvars)
           write(cunit) (nx,  i=1,maxcvars)
@@ -245,18 +257,6 @@ c--       Header information.
           write(cunit) (ncvarnrmax(i), i=1,maxcvars)
           write(cunit) (ncvargrd(i),   i=1,maxcvars)
           write(cunit)
-#ifdef ALLOW_OBCSN_CONTROL
-          write(cunit) ((nWetobcsn(1,1,k,iobcs), k=1,nr),iobcs= 1,nobcs)
-#endif
-#ifdef ALLOW_OBCSS_CONTROL
-          write(cunit) ((nWetobcss(1,1,k,iobcs), k=1,nr),iobcs= 1,nobcs)
-#endif
-#ifdef ALLOW_OBCSW_CONTROL
-          write(cunit) ((nWetobcsw(1,1,k,iobcs), k=1,nr),iobcs= 1,nobcs)
-#endif
-#ifdef ALLOW_OBCSE_CONTROL
-          write(cunit) ((nWetobcse(1,1,k,iobcs), k=1,nr),iobcs= 1,nobcs)
-#endif
 
 #ifdef ALLOW_THETA0_CONTROL
           ivartype = 1

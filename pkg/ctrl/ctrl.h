@@ -41,7 +41,10 @@ c                       south (s), and western (w) mask, resp. .
      &                       ncvarnrmax,
      &                       nwetctile,
      &                       nwetstile,
-     &                       nwetwtile
+     &                       nwetwtile,
+     &                       nwetcglobal,
+     &                       nwetsglobal,
+     &                       nwetwglobal
       integer nvartype
       integer nvarlength
       integer ncvarindex    ( maxcvars )
@@ -54,26 +57,37 @@ c                       south (s), and western (w) mask, resp. .
       integer nwetctile     ( nsx,nsy,nr )
       integer nwetstile     ( nsx,nsy,nr )
       integer nwetwtile     ( nsx,nsy,nr )
+      integer nwetcglobal     ( nr )
+      integer nwetsglobal     ( nr )
+      integer nwetwglobal     ( nr )
 
 #ifdef ALLOW_OBCSN_CONTROL
       common /controlvars_i_obcsn/
-     &                       nwetobcsn
+     &                       nwetobcsn,
+     &                       nwetobcsnglo
       integer nwetobcsn     ( nsx,nsy,nr,nobcs )
+      integer nwetobcsnglo  ( nr,nobcs )
 #endif
 #ifdef ALLOW_OBCSS_CONTROL
       common /controlvars_i_obcss/
-     &                       nwetobcss
+     &                       nwetobcss,
+     &                       nwetobcssglo
       integer nwetobcss     ( nsx,nsy,nr,nobcs )
+      integer nwetobcssglo  ( nr,nobcs )
 #endif
 #ifdef ALLOW_OBCSW_CONTROL
       common /controlvars_i_obcsw/
-     &                       nwetobcsw
+     &                       nwetobcsw,
+     &                       nwetobcswglo
       integer nwetobcsw     ( nsx,nsy,nr,nobcs )
+      integer nwetobcswglo  ( nr,nobcs )
 #endif
 #ifdef ALLOW_OBCSE_CONTROL
       common /controlvars_i_obcse/
-     &                       nwetobcse
+     &                       nwetobcse,
+     &                       nwetobcseglo
       integer nwetobcse     ( nsx,nsy,nr,nobcs )
+      integer nwetobcseglo  ( nr,nobcs )
 #endif
 
       common /controlvars_c/
@@ -102,12 +116,18 @@ c     TAMC sees xx_..._dummy
       _RL tmpfld3d 
      &    (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
 
+cgg  This caused a lot of confusion.
 #ifdef ALLOW_OBCS_CONTROL
       common /controlvars_r_obcs/
      &                        tmpfldxz
+     &                      , tmpfldxz2
      &                      , tmpfldyz
-      _RL tmpfldxz (1-olx:snx+olx,nr,nsx,nsy)
-      _RL tmpfldyz (1-oly:sny+oly,nr,nsx,nsy)
+     &                      , tmpfldyz2
+
+      _RL tmpfldxz  (1-olx:snx+olx,nr,nsx,nsy)
+      _RL tmpfldxz2 (1-olx:snx+olx,nr,nsx,nsy)
+      _RL tmpfldyz  (1-oly:sny+oly,nr,nsx,nsy)
+      _RL tmpfldyz2 (1-oly:sny+oly,nr,nsx,nsy)
 #endif
 
 c     Auxiliary storage arrays for the control variables:
@@ -163,11 +183,27 @@ c     xx_tauv1 - meridional wind stress record after  current date.
 #endif
 
 #ifdef ALLOW_OBCS_CONTROL
-      common /controlaux_5_r/
-     &                      xz_obcs0,
-     &                      xz_obcs1,
-     &                      yz_obcs0,
-     &                      yz_obcs1
+#if     (defined (ALLOW_OBCSN_CONTROL))
+      common /controlaux_5obcsn_r/
+     &                      xx_obcsn0,
+     &                      xx_obcsn1
+#endif
+
+#if     (defined (ALLOW_OBCSS_CONTROL))
+      common /controlaux_5obcss_r/
+     &                      xx_obcss0,
+     &                      xx_obcss1
+#endif
+#if     (defined (ALLOW_OBCSW_CONTROL))
+      common /controlaux_5obcsw_r/
+     &                      xx_obcsw0,
+     &                      xx_obcsw1
+#endif
+#if     (defined (ALLOW_OBCSE_CONTROL))
+      common /controlaux_5obcse_r/
+     &                      xx_obcse0,
+     &                      xx_obcse1
+#endif
 #endif
 
 #if     (defined  (ALLOW_HFLUX_CONTROL))
@@ -198,13 +234,28 @@ c     xx_tauv1 - meridional wind stress record after  current date.
       _RL xx_vwind0 (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL xx_vwind1 (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 #endif
-
-#ifdef ALLOW_OBCS_CONTROL
-      _RL xz_obcs0 (1-Olx:sNx+Olx,Nr,nSx,nSy)
-      _RL xz_obcs1 (1-Olx:sNx+Olx,Nr,nSx,nSy)
-      _RL yz_obcs0 (1-Oly:sNy+Oly,Nr,nSx,nSy)
-      _RL yz_obcs1 (1-Oly:sNy+Oly,Nr,nSx,nSy)
+cgg(
+#ifdef ALLOW_OBCSN_CONTROL
+      _RL xx_obcsn0 (1-Olx:sNx+Olx,Nr,nSx,nSy,nobcs)
+      _RL xx_obcsn1 (1-Olx:sNx+Olx,Nr,nSx,nSy,nobcs)
 #endif
+
+#ifdef ALLOW_OBCSS_CONTROL
+      _RL xx_obcss0 (1-Olx:sNx+Olx,Nr,nSx,nSy,nobcs)
+      _RL xx_obcss1 (1-Olx:sNx+Olx,Nr,nSx,nSy,nobcs)
+#endif
+
+#ifdef ALLOW_OBCSW_CONTROL
+      _RL xx_obcsw0 (1-Oly:sNy+Oly,Nr,nSx,nSy,nobcs)
+      _RL xx_obcsw1 (1-Oly:sNy+Oly,Nr,nSx,nSy,nobcs)
+#endif
+
+#ifdef ALLOW_OBCSE_CONTROL
+      _RL xx_obcse0 (1-Oly:sNy+Oly,Nr,nSx,nSy,nobcs)
+      _RL xx_obcse1 (1-Oly:sNy+Oly,Nr,nSx,nSy,nobcs)
+#endif
+cgg)
+
 
 c     Files where the control variables are stored:
 c     =============================================

@@ -4,7 +4,7 @@
 
       subroutine ctrl_set_unpack_xyz(
      &     cunit, ivartype, fname, masktype,
-     &     weightfld, nwettile, mythid)
+     &     weightfld, nwetglobal, mythid)
 
 c     ==================================================================
 c     SUBROUTINE ctrl_set_unpack_xyz
@@ -40,7 +40,7 @@ c     == routine arguments ==
       character*( 80)   fname
       character*  (5) masktype
       _RL     weightfld( nr,nsx,nsy )
-      integer nwettile(nsx,nsy,nr)
+      integer nwetglobal(nr)
       integer mythid
 
 c     == local variables ==
@@ -144,7 +144,7 @@ c--   Only the master thread will do I/O.
          read(cunit) filej
          read(cunit) filei
          do k = 1, Nr
-            cbuffindex = nwettile(1,1,k)
+            cbuffindex = nwetglobal(k)
             if ( cbuffindex .gt. 0 ) then
                read(cunit) filencbuffindex
                if (filencbuffindex .NE. cbuffindex) then

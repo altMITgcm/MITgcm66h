@@ -15,7 +15,7 @@ c     ==================================================================
 c     SUBROUTINE ctrl_getobcss
 c     ==================================================================
 c
-c     o Get norhtern obc of the control vector and add it
+c     o Get southern obc of the control vector and add it
 c       to dyn. fields
 c
 c     started: heimbach@mit.edu, 29-Aug-2001
@@ -63,15 +63,19 @@ c     == local variables ==
       logical obcsschanged
       integer obcsscount0
       integer obcsscount1
+      integer jp1
 
-      _RL maskxz   (1-olx:snx+olx,nr,nsx,nsy)
+cgg      _RL maskxz   (1-olx:snx+olx,nr,nsx,nsy)
 
       logical doglobalread
       logical ladinit
 
       character*(80) fnameobcss
 
-      
+cgg(  Variables for balancing volume flux.
+      _RL vbaro
+      _RL vbarocount
+cgg)
 
 c     == external functions ==
 
@@ -89,6 +93,11 @@ c     == end of interface ==
       jmax = sny+oly
       imin = 1-olx
       imax = snx+olx
+      jp1  = 1
+cgg(  Initialize variables for balancing volume flux.
+      vbaro = 0.d0
+      vbarocount = 0.d0
+cgg)
 
 c--   Now, read the control vector.
       doglobalread = .false.
@@ -111,41 +120,170 @@ c--   Get the counters, flags, and the interpolation factor.
      I                   mytime, myiter, mythid )
 
       do iobcs = 1,nobcs
+       
+cgg        call active_read_xz( 'maskobcss', maskxz, 
+cgg     &                         iobcs,
+cgg     &                         doglobalread, ladinit, 0,
+cgg     &                         mythid, dummy )
 
-        call active_read_xz( 'maskobcss', maskxz, 
-     &                       iobcs,
-     &                       doglobalread, ladinit, 0,
-     &                       mythid, dummy )
+        if ( obcssfirst ) then
+          call active_read_xz( fnameobcss, tmpfldxz, 
+     &                         (obcsscount0-1)*nobcs+iobcs,
+     &                         doglobalread, ladinit, optimcycle,
+     &                         mythid, xx_obcss_dummy )
 
-        call active_read_xz( fnameobcss, tmpfldxz, 
-     &                       (obcsscount0-1)*nobcs+iobcs,
-     &                       doglobalread, ladinit, optimcycle,
-     &                       mythid, xx_obcss_dummy )
+#ifdef BALANCE_CONTROL_VOLFLUX
+          if ( optimcycle .gt. 0) then           
+            if (iobcs .eq. 4) then
+cgg(        Make sure that the xx velocity field has a balanced net volume flux.
+cgg         Find the barotropic flow normal to the boundary.
+cgg         For the north, this is the v velocity, iobcs = 4.
+              do bj = jtlo,jthi
+                do bi = itlo, ithi
+                  do i = imin,imax
+                    vbaro = 0.d0
+                    vbarocount = 0.d0
+                    do k = 1,nr
+cgg(   If cells are not full, this should be modified with hFac.
+                      vbaro = tmpfldxz(i,k,bi,bj)*maskS(i,j+jp1,k,bi,bj)
+     &                      * delZ(k) + vbaro 
+                      vbarocount = maskS(i,j+jp1,k,bi,bj)
+     &                           * delZ(k) +vbarocount
+                    enddo
+                    if (vbarocount .eq. 0.) then
+                      vbaro = 0.
+                    else
+                      vbaro = vbaro / vbarocount
+                    endif
+                    do k = 1,nr
+                      tmpfldxz(i,k,bi,bj) = tmpfldxz(i,k,bi,bj) - vbaro
+                    enddo
+                  enddo
+                enddo
+              enddo
+            endif
+          endif
+cgg)
+#endif
 
-        do bj = jtlo,jthi
-          do bi = itlo,ithi
-            do k = 1,nr
-              do i = imin,imax
-                xz_obcs0(i,k,bi,bj)  = tmpfldxz (i,k,bi,bj)
+#ifdef BALANCE_CONTROL_VOLFLUX_GLOBAL 
+          if (optimcycle .gt. 0) then
+            if ( iobcs .eq. 4) then
+              do bj = jtlo,jthi
+                do bi = itlo, ithi
+                  do k = 1,Nr
+                    do i = imin,imax
+                      j = OB_Js(I,bi,bj)
+                      tmpfldxz(i,k,bi,bj) = tmpfldxz(i,k,bi,bj) 
+     &                   - shiftvel(1) *maskS(i,j+jp1,k,bi,bj)
+                    enddo
+                  enddo
+                enddo
+              enddo
+            endif
+          endif
+#endif
+
+          do bj = jtlo,jthi
+            do bi = itlo,ithi
+              do k = 1,nr
+                do i = imin,imax
+                  xx_obcss1(i,k,bi,bj,iobcs)  = tmpfldxz (i,k,bi,bj)
+                enddo
               enddo
             enddo
           enddo
-        enddo
+        endif
 
-        call active_read_xz( fnameobcss, tmpfldxz, 
-     &                       (obcsscount1-1)*nobcs+iobcs,
-     &                       doglobalread, ladinit, optimcycle,
-     &                       mythid, xx_obcss_dummy )
-
-        do bj = jtlo,jthi
-          do bi = itlo,ithi
-            do k = 1,nr
-              do i = imin,imax
-                xz_obcs1 (i,k,bi,bj) = tmpfldxz (i,k,bi,bj)
+        if ( (obcssfirst) .or. (obcsschanged)) then
+          
+          do bj = jtlo,jthi
+            do bi = itlo,ithi
+              do k = 1,nr
+                do i = imin,imax
+                  tmpfldxz(i,k,bi,bj) = xx_obcss1(i,k,bi,bj,iobcs)
+                enddo
               enddo
             enddo
           enddo
-        enddo
+
+          call exf_swapffields_xz( tmpfldxz2, tmpfldxz, mythid)
+
+          do bj = jtlo,jthi
+            do bi = itlo,ithi
+              do k = 1,nr
+                do i = imin,imax
+                  xx_obcss0(i,k,bi,bj,iobcs) = tmpfldxz2(i,k,bi,bj)        
+                enddo
+              enddo
+            enddo
+          enddo
+
+          call active_read_xz( fnameobcss, tmpfldxz, 
+     &                         (obcsscount1-1)*nobcs+iobcs,
+     &                         doglobalread, ladinit, optimcycle,
+     &                         mythid, xx_obcss_dummy )
+
+#ifdef BALANCE_CONTROL_VOLFLUX
+          if (optimcycle .gt. 0) then
+            if (iobcs .eq. 4) then
+cgg(        Make sure that the xx velocity field has a balanced net volume flux.
+cgg         Find the barotropic flow normal to the boundary.
+cgg         For the north, this is the v velocity, iobcs = 4.
+              do bj = jtlo,jthi
+                do bi = itlo, ithi
+                  do i = imin,imax
+                    vbaro = 0.d0
+                    vbarocount = 0.d0
+                    do k = 1,nr
+cgg(   If cells are not full, this should be modified with hFac.
+                      vbaro = tmpfldxz(i,k,bi,bj)*maskS(i,j+jp1,k,bi,bj)
+     &                      * delZ(k) + vbaro 
+                      vbarocount = maskS(i,j+jp1,k,bi,bj)
+     &                           * delZ(k)+ vbarocount
+                    enddo
+                    if (vbarocount .eq. 0.) then
+                      vbaro = 0.
+                    else
+                      vbaro = vbaro / vbarocount
+                    endif
+                    do k = 1,nr
+                      tmpfldxz(i,k,bi,bj) = tmpfldxz(i,k,bi,bj) - vbaro
+                    enddo
+                  enddo
+                enddo
+              enddo
+            endif
+          endif
+cgg)
+#endif
+#ifdef BALANCE_CONTROL_VOLFLUX_GLOBAL 
+          if (optimcycle .gt. 0) then
+            if ( iobcs .eq. 4) then
+              do bj = jtlo,jthi
+                do bi = itlo, ithi
+                  do k = 1,Nr
+                    do i = imin,imax
+                      j = OB_Js(I,bi,bj)
+                      tmpfldxz(i,k,bi,bj) = tmpfldxz(i,k,bi,bj) 
+     &                   - shiftvel(2) *maskS(i,j+jp1,k,bi,bj)
+                    enddo
+                  enddo
+                enddo
+              enddo
+            endif
+          endif
+#endif
+          do bj = jtlo,jthi
+            do bi = itlo,ithi
+              do k = 1,nr
+                do i = imin,imax
+                  xx_obcss1 (i,k,bi,bj,iobcs) = tmpfldxz (i,k,bi,bj)
+                 enddo
+              enddo
+            enddo
+          enddo
+        endif
 
 c--     Add control to model variable.
         do bj = jtlo,jthi
@@ -153,30 +291,31 @@ c--     Add control to model variable.
 c--        Calculate mask for tracer cells (0 => land, 1 => water).
               do k = 1,nr
                  do i = 1,snx
+                    j = OB_Js(I,bi,bj)
                     if (iobcs .EQ. 1) then
                        OBSt(i,k,bi,bj) = OBSt (i,k,bi,bj)
-     &                      + obcssfac            *xz_obcs0(i,k,bi,bj)
-     &                      + (1. _d 0 - obcssfac)*xz_obcs1(i,k,bi,bj)
+     &                 + obcssfac            *xx_obcss0(i,k,bi,bj,iobcs)
+     &                 + (1. _d 0 - obcssfac)*xx_obcss1(i,k,bi,bj,iobcs)
                        OBSt(i,k,bi,bj) = OBSt(i,k,bi,bj)
-     &                      *maskxz(i,k,bi,bj)
+     &                      *maskS(i,j+jp1,k,bi,bj)
                     else if (iobcs .EQ. 2) then
                        OBSs(i,k,bi,bj) = OBSs (i,k,bi,bj)
-     &                      + obcssfac            *xz_obcs0(i,k,bi,bj)
-     &                      + (1. _d 0 - obcssfac)*xz_obcs1(i,k,bi,bj)
+     &                 + obcssfac            *xx_obcss0(i,k,bi,bj,iobcs)
+     &                 + (1. _d 0 - obcssfac)*xx_obcss1(i,k,bi,bj,iobcs)
                        OBSs(i,k,bi,bj) = OBSs(i,k,bi,bj)
-     &                      *maskxz(i,k,bi,bj)
+     &                      *maskS(i,j+jp1,k,bi,bj)
                     else if (iobcs .EQ. 3) then
                        OBSu(i,k,bi,bj) = OBSu (i,k,bi,bj)
-     &                      + obcssfac            *xz_obcs0(i,k,bi,bj)
-     &                      + (1. _d 0 - obcssfac)*xz_obcs1(i,k,bi,bj)
+     &                 + obcssfac            *xx_obcss0(i,k,bi,bj,iobcs)
+     &                 + (1. _d 0 - obcssfac)*xx_obcss1(i,k,bi,bj,iobcs)
                        OBSu(i,k,bi,bj) = OBSu(i,k,bi,bj)
-     &                      *maskxz(i,k,bi,bj)
+     &                      *maskW(i,j,k,bi,bj)
                     else if (iobcs .EQ. 4) then
                        OBSv(i,k,bi,bj) = OBSv (i,k,bi,bj)
-     &                      + obcssfac            *xz_obcs0(i,k,bi,bj)
-     &                      + (1. _d 0 - obcssfac)*xz_obcs1(i,k,bi,bj)
+     &                 + obcssfac            *xx_obcss0(i,k,bi,bj,iobcs)
+     &                 + (1. _d 0 - obcssfac)*xx_obcss1(i,k,bi,bj,iobcs)
                        OBSv(i,k,bi,bj) = OBSv(i,k,bi,bj)
-     &                      *maskxz(i,k,bi,bj)
+     &                      *maskS(i,j+jp1,k,bi,bj)
                     endif
                  enddo
               enddo

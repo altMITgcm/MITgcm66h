@@ -549,7 +549,7 @@ c--   Northern obc.
         call cal_ToSeconds ( difftime, diffsecs, mythid )
         startrec = int((modelstart - diffsecs)/
      &                 xx_obcsnperiod) + 1
-        endrec   = int((modelend   - diffsecs - modelstep)/
+        endrec   = int((modelend   - diffsecs)/
      &                 xx_obcsnperiod) + 2
         ivarindex                = 11
         ncvarindex(ivarindex)    = 111
@@ -573,7 +573,7 @@ c--   Southern obc.
         call cal_ToSeconds ( difftime, diffsecs, mythid )
         startrec = int((modelstart - diffsecs)/
      &                 xx_obcssperiod) + 1
-        endrec   = int((modelend   - diffsecs - modelstep)/
+        endrec   = int((modelend   - diffsecs)/
      &                 xx_obcssperiod) + 2
         ivarindex                = 12
         ncvarindex(ivarindex)    = 112
@@ -597,7 +597,7 @@ c--   Western obc.
         call cal_ToSeconds ( difftime, diffsecs, mythid )
         startrec = int((modelstart - diffsecs)/
      &                 xx_obcswperiod) + 1
-        endrec   = int((modelend   - diffsecs - modelstep)/
+        endrec   = int((modelend   - diffsecs)/
      &                 xx_obcswperiod) + 2
         ivarindex                = 13
         ncvarindex(ivarindex)    = 113
@@ -621,7 +621,7 @@ c--   Eastern obc.
         call cal_ToSeconds ( difftime, diffsecs, mythid )
         startrec = int((modelstart - diffsecs)/
      &                 xx_obcseperiod) + 1
-        endrec   = int((modelend   - diffsecs - modelstep)/
+        endrec   = int((modelend   - diffsecs)/
      &                 xx_obcseperiod) + 2
         ivarindex                = 14
         ncvarindex(ivarindex)    = 114
@@ -849,6 +849,8 @@ cph(
 #endif
 cph)
       
+c     Summation of wet point counters 
+c
       CALL GLOBAL_SUM_INT( nvarlength,  myThid )
 
       print *, 'ph-wet 13: global nvarlength vor k=', k, nvarlength
@@ -865,9 +867,7 @@ c
             enddo
          enddo
          CALL GLOBAL_SUM_INT( ntmp,  myThid )
-         nWetcTile(1,1,k)=ntmp
-
-         print *, 'ph-wet 14a: global nWet... vor k=', k, ntmp
+         nWetcGlobal(k)=ntmp
 
          ntmp=0
          do bj=1,nSy
@@ -876,9 +876,7 @@ c
             enddo
          enddo
          CALL GLOBAL_SUM_INT( ntmp,  myThid )
-         nWetsTile(1,1,k)=ntmp
-
-         print *, 'ph-wet 14b: global nWet... vor k=', k, ntmp
+         nWetsGlobal(k)=ntmp
 
          ntmp=0
          do bj=1,nSy
@@ -887,9 +885,7 @@ c
             enddo
          enddo
          CALL GLOBAL_SUM_INT( ntmp,  myThid )
-         nWetwTile(1,1,k)=ntmp
-
-         print *, 'ph-wet 14c: global nWet... vor k=', k, ntmp
+         nWetwGlobal(k)=ntmp
 
 #ifdef ALLOW_OBCSN_CONTROL
          do iobcs = 1, nobcs
@@ -900,7 +896,7 @@ c
                enddo
             enddo
             CALL GLOBAL_SUM_INT( ntmp,  myThid )
-            nwetobcsn(1,1,k,iobcs)=ntmp
+            nwetobcsnglo(k,iobcs)=ntmp
          enddo
 #endif
 #ifdef ALLOW_OBCSS_CONTROL
@@ -912,7 +908,7 @@ c
                enddo
             enddo
             CALL GLOBAL_SUM_INT( ntmp,  myThid )
-            nwetobcss(1,1,k,iobcs)=ntmp
+            nwetobcssglo(k,iobcs)=ntmp
          enddo
 #endif
 #ifdef ALLOW_OBCSW_CONTROL
@@ -924,7 +920,7 @@ c
                enddo
             enddo
             CALL GLOBAL_SUM_INT( ntmp,  myThid )
-            nwetobcsw(1,1,k,iobcs)=ntmp
+            nwetobcswglo(k,iobcs)=ntmp
          enddo
 #endif
 #ifdef ALLOW_OBCSE_CONTROL
@@ -936,7 +932,7 @@ c
                enddo
             enddo
             CALL GLOBAL_SUM_INT( ntmp,  myThid )
-            nwetobcse(1,1,k,iobcs)=ntmp
+            nwetobcseglo(k,iobcs)=ntmp
          enddo
 #endif
 
@@ -945,6 +941,9 @@ c
       print*, 'ctrl_init: no. of control variables: ', nvartype
       print*, 'ctrl_init: control vector length:    ', nvarlength
       _END_MASTER( mythid )
+
+c--   Unpack the control vector.
+cph   No longer needed here
 
 c--   Summarize the control vector's setup.
       _BEGIN_MASTER( mythid )

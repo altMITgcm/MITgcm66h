@@ -15,7 +15,7 @@ c     ==================================================================
 c     SUBROUTINE ctrl_getobcse
 c     ==================================================================
 c
-c     o Get norhtern obc of the control vector and add it
+c     o Get eastern obc of the control vector and add it
 c       to dyn. fields
 c
 c     started: heimbach@mit.edu, 29-Aug-2001
@@ -63,15 +63,20 @@ c     == local variables ==
       logical obcsechanged
       integer obcsecount0
       integer obcsecount1
+      integer ip1
 
-      _RL maskyz   (1-oly:sny+oly,nr,nsx,nsy)
+cgg      _RL maskyz   (1-oly:sny+oly,nr,nsx,nsy)
 
       logical doglobalread
       logical ladinit
 
       character*(80) fnameobcse
 
-      
+#ifdef BALANCE_CONTROL_VOLFLUX
+cgg(  Variables for balancing volume flux.
+      _RL ubaro
+      _RL ubarocount
+#endif
 
 c     == external functions ==
 
@@ -89,6 +94,14 @@ c     == end of interface ==
       jmax = sny+oly
       imin = 1-olx
       imax = snx+olx
+      ip1  = 0
+
+#ifdef BALANCE_CONTROL_VOLFLUX
+cgg(  Initialize variables for balancing volume flux.
+      ubaro = 0.d0
+      ubarocount = 0.d0
+cgg)
+#endif
 
 c--   Now, read the control vector.
       doglobalread = .false.
@@ -112,40 +125,171 @@ c--   Get the counters, flags, and the interpolation factor.
 
       do iobcs = 1,nobcs
 
-        call active_read_yz( 'maskobcse', maskyz, 
-     &                       iobcs,
-     &                       doglobalread, ladinit, 0,
-     &                       mythid, dummy )
+cgg        call active_read_yz( 'maskobcse', maskyz, 
+cgg     &                         iobcs,
+cgg     &                         doglobalread, ladinit, 0,
+cgg     &                         mythid, dummy )
 
-        call active_read_yz( fnameobcse, tmpfldyz, 
-     &                       (obcsecount0-1)*nobcs+iobcs,
-     &                       doglobalread, ladinit, optimcycle,
-     &                       mythid, xx_obcse_dummy )
+        if ( obcsefirst ) then
+          call active_read_yz( fnameobcse, tmpfldyz, 
+     &                         (obcsecount0-1)*nobcs+iobcs,
+     &                         doglobalread, ladinit, optimcycle,
+     &                         mythid, xx_obcse_dummy )
 
-        do bj = jtlo,jthi
-          do bi = itlo,ithi
-            do k = 1,nr
-              do j = jmin,jmax
-                yz_obcs0(j,k,bi,bj)  = tmpfldyz (j,k,bi,bj)
+#ifdef BALANCE_CONTROL_VOLFLUX
+          if ( optimcycle .gt. 0) then           
+            if (iobcs .eq. 3) then
+cgg(        Make sure that the xx velocity field has a balanced net volume flux.
+cgg         Find the barotropic flow normal to the boundary.
+cgg         For the north, this is the v velocity, iobcs = 4.
+              do bj = jtlo,jthi
+                do bi = itlo, ithi
+                  do j = jmin,jmax
+                    i = OB_Ie(j,bi,bj)
+                    ubaro = 0.d0
+                    ubarocount = 0.d0
+                    do k = 1,nr
+cgg(   If cells are not full, this should be modified with hFac.
+                      ubaro = tmpfldyz(j,k,bi,bj)*maskW(i+ip1,j,k,bi,bj)
+     &                      * delZ(k) + ubaro 
+                      ubarocount = maskW(i+ip1,j,k,bi,bj)
+     &                           * delZ(k) +ubarocount
+                    enddo
+                    if (ubarocount .eq. 0.) then
+                      ubaro = 0.
+                    else
+                      ubaro = ubaro / ubarocount
+                    endif
+                    do k = 1,nr
+                      tmpfldyz(j,k,bi,bj) = tmpfldyz(j,k,bi,bj) - ubaro
+                    enddo
+                  enddo
+                enddo
+              enddo
+            endif
+          endif
+cgg)
+#endif
+#ifdef BALANCE_CONTROL_VOLFLUX_GLOBAL 
+          if (optimcycle .gt. 0) then
+            if ( iobcs .eq. 3) then
+              do bj = jtlo,jthi
+                do bi = itlo, ithi
+                  do k = 1,Nr
+                    do j = jmin,jmax
+                      i = OB_Ie(j,bi,bj)
+                      tmpfldyz(j,k,bi,bj) = tmpfldyz(j,k,bi,bj) 
+     &                   + shiftvel(1) *maskW(i+ip1,j,k,bi,bj)
+                    enddo
+                  enddo
+                enddo
+              enddo
+            endif
+          endif
+#endif
+
+          do bj = jtlo,jthi
+            do bi = itlo,ithi
+              do k = 1,nr
+                do j = jmin,jmax
+                  xx_obcse1(j,k,bi,bj,iobcs)  = tmpfldyz (j,k,bi,bj)
+                 enddo
               enddo
             enddo
           enddo
-        enddo
+        endif
 
-        call active_read_yz( fnameobcse, tmpfldyz, 
-     &                       (obcsecount1-1)*nobcs+iobcs,
-     &                       doglobalread, ladinit, optimcycle,
-     &                       mythid, xx_obcse_dummy )
-
-        do bj = jtlo,jthi
-          do bi = itlo,ithi
-            do k = 1,nr
+        if ( (obcsefirst) .or. (obcsechanged)) then
+          
+          do bj = jtlo,jthi
+            do bi = itlo,ithi
               do j = jmin,jmax
-                yz_obcs1 (j,k,bi,bj) = tmpfldyz (j,k,bi,bj)
+                do k = 1,nr
+                  tmpfldyz(j,k,bi,bj) = xx_obcse1(j,k,bi,bj,iobcs)
+                enddo
               enddo
             enddo
           enddo
-        enddo
+
+          call exf_swapffields_yz( tmpfldyz2, tmpfldyz, mythid)
+
+          do bj = jtlo,jthi
+            do bi = itlo,ithi
+              do j = jmin,jmax
+                do k = 1,nr
+                  xx_obcse0(j,k,bi,bj,iobcs) = tmpfldyz2(j,k,bi,bj)        
+                enddo
+              enddo
+            enddo
+          enddo
+
+          call active_read_yz( fnameobcse, tmpfldyz, 
+     &                         (obcsecount1-1)*nobcs+iobcs,
+     &                         doglobalread, ladinit, optimcycle,
+     &                         mythid, xx_obcse_dummy )
+
+#ifdef BALANCE_CONTROL_VOLFLUX
+          if (optimcycle .gt. 0) then
+            if (iobcs .eq. 3) then
+cgg(        Make sure that the xx velocity field has a balanced net volume flux.
+cgg         Find the barotropic flow normal to the boundary.
+cgg         For the north, this is the v velocity, iobcs = 4.
+              do bj = jtlo,jthi
+                do bi = itlo, ithi
+                  do j = jmin,jmax
+                    i = OB_Ie(j,bi,bj)
+                    ubaro = 0.d0
+                    ubarocount = 0.d0
+                    do k = 1,nr
+cgg(   If cells are not full, this should be modified with hFac.
+                      ubaro = tmpfldyz(j,k,bi,bj)*maskW(i+ip1,j,k,bi,bj)
+     &                      * delZ(k) + ubaro 
+                      ubarocount = maskW(i+ip1,j,k,bi,bj)
+                                 * delZ(k)+ ubarocount
+                    enddo
+                    if (ubarocount .eq. 0.) then
+                      ubaro = 0.
+                    else
+                      ubaro = ubaro / ubarocount
+                    endif
+                    do k = 1,nr
+                      tmpfldyz(j,k,bi,bj) = tmpfldyz(j,k,bi,bj) - ubaro
+                    enddo
+                  enddo
+                enddo
+              enddo
+            endif
+          endif
+cgg)
+#endif
+#ifdef BALANCE_CONTROL_VOLFLUX_GLOBAL 
+          if (optimcycle .gt. 0) then
+            if ( iobcs .eq. 3) then
+              do bj = jtlo,jthi
+                do bi = itlo, ithi
+                  do k = 1,Nr
+                    do j = jmin,jmax
+                      i = OB_Ie(j,bi,bj)
+                      tmpfldyz(j,k,bi,bj) = tmpfldyz(j,k,bi,bj) 
+     &                   + shiftvel(2) *maskW(i+ip1,j,k,bi,bj)
+                    enddo
+                  enddo
+                enddo
+              enddo
+            endif
+          endif
+#endif
+
+          do bj = jtlo,jthi
+            do bi = itlo,ithi
+              do k = 1,nr
+                do j = jmin,jmax
+                  xx_obcse1 (j,k,bi,bj,iobcs) = tmpfldyz (j,k,bi,bj)
+                 enddo
+              enddo
+            enddo
+          enddo
+        endif
 
 c--     Add control to model variable.
         do bj = jtlo,jthi
@@ -153,30 +297,31 @@ c--     Add control to model variable.
 c--        Calculate mask for tracer cells (0 => land, 1 => water).
               do k = 1,nr
                  do j = 1,sny
+                    i = OB_Ie(j,bi,bj)
                     if (iobcs .EQ. 1) then
-                       OBEt(j,k,bi,bj) = OBEt (j,k,bi,bj)
-     &                      + obcsefac            *yz_obcs0(j,k,bi,bj)
-     &                      + (1. _d 0 - obcsefac)*yz_obcs1(j,k,bi,bj)
-                       OBEt(j,k,bi,bj) = OBEt(j,k,bi,bj)
-     &                      *maskyz(j,k,bi,bj)
+                       OBWt(j,k,bi,bj) = OBWt (j,k,bi,bj)
+     &                 + obcsefac            *xx_obcse0(j,k,bi,bj,iobcs)
+     &                 + (1. _d 0 - obcsefac)*xx_obcse1(j,k,bi,bj,iobcs)
+                       OBWt(j,k,bi,bj) = OBWt(j,k,bi,bj)
+     &                      *maskW(i+ip1,j,k,bi,bj)
                     else if (iobcs .EQ. 2) then
-                       OBEs(j,k,bi,bj) = OBEs (j,k,bi,bj)
-     &                      + obcsefac            *yz_obcs0(j,k,bi,bj)
-     &                      + (1. _d 0 - obcsefac)*yz_obcs1(j,k,bi,bj)
-                       OBEs(j,k,bi,bj) = OBEs(j,k,bi,bj)
-     &                      *maskyz(j,k,bi,bj)
+                       OBWs(j,k,bi,bj) = OBWs (j,k,bi,bj)
+     &                 + obcsefac            *xx_obcse0(j,k,bi,bj,iobcs)
+     &                 + (1. _d 0 - obcsefac)*xx_obcse1(j,k,bi,bj,iobcs)
+                       OBWs(j,k,bi,bj) = OBWs(j,k,bi,bj)
+     &                      *maskW(i+ip1,j,k,bi,bj)
                     else if (iobcs .EQ. 3) then
-                       OBEu(j,k,bi,bj) = OBEu (j,k,bi,bj)
-     &                      + obcsefac            *yz_obcs0(j,k,bi,bj)
-     &                      + (1. _d 0 - obcsefac)*yz_obcs1(j,k,bi,bj)
-                       OBEu(j,k,bi,bj) = OBEu(j,k,bi,bj)
-     &                      *maskyz(j,k,bi,bj)
+                       OBWu(j,k,bi,bj) = OBWu (j,k,bi,bj)
+     &                 + obcsefac            *xx_obcse0(j,k,bi,bj,iobcs)
+     &                 + (1. _d 0 - obcsefac)*xx_obcse1(j,k,bi,bj,iobcs)
+                       OBWu(j,k,bi,bj) = OBWu(j,k,bi,bj)
+     &                      *maskW(i+ip1,j,k,bi,bj)
                     else if (iobcs .EQ. 4) then
-                       OBEv(j,k,bi,bj) = OBEv (j,k,bi,bj)
-     &                      + obcsefac            *yz_obcs0(j,k,bi,bj)
-     &                      + (1. _d 0 - obcsefac)*yz_obcs1(j,k,bi,bj)
-                       OBEv(j,k,bi,bj) = OBEv(j,k,bi,bj)
-     &                      *maskyz(j,k,bi,bj)
+                       OBWv(j,k,bi,bj) = OBWv (j,k,bi,bj)
+     &                 + obcsefac            *xx_obcse0(j,k,bi,bj,iobcs)
+     &                 + (1. _d 0 - obcsefac)*xx_obcse1(j,k,bi,bj,iobcs)
+                       OBWv(j,k,bi,bj) = OBWv(j,k,bi,bj)
+     &                      *maskS(i,j,k,bi,bj)
                     endif
                  enddo
               enddo
