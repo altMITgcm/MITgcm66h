@@ -10,6 +10,7 @@
 
 set on_error_die
 set passaccuracy=7
+set SKIP=( )
 printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' " " Make " " " " Exact "# of" " " " " > summary.txt
 printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' Config Depend Compile Execute Match Digits Status Experiment >> summary.txt
 
@@ -35,6 +36,9 @@ foreach arg ($argv)
   case -nodie:
    unset on_error_die
    breaksw
+  case -skip=*:
+   set SKIP = ( $SKIP `echo $arg | sed 's/-skip=//' | sed 's/,/ /g' `)
+   breaksw
   default:
    echo Unknown argument given to $0
    exit 1
@@ -43,6 +47,9 @@ end
 
 foreach dr ([a-zA-Z01-9]*)
  if (! -d $dr/input ) continue
+ foreach skip ($SKIP)
+  if ($skip == $dr) continue;continue
+ end
  set config=-
  set makedepend=-
  set compile=-
@@ -85,13 +92,14 @@ foreach dr ([a-zA-Z01-9]*)
   echo " done."
   echo -n "  running model ..."
   if ($compile == 'Yes') then
-  ./mitgcmuv | & grep "D iters" > output.txt
+# ./mitgcmuv | & grep "D iters" > output.txt
+  ./mitgcmuv > & output.txt
   if ($status == 0) then
     set execute=Yes
     set exactmatch=NO
     set accuracy=-
     echo " done."
-    sed 's/.*D iters, err =//' output.txt \
+    grep "D iters" output.txt | sed 's/.*D iters, err =//' \
     | grep "   0    " \
     > high.txt
     grep "D iters" ../results/output.txt \
