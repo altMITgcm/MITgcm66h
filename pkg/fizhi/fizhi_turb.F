@@ -249,8 +249,8 @@ C Set fmu and ed to zero for no background diffusion
 C logical begin flag - set to true to indicate a cold start
       logical qbeg    
 
-#if CRAY
-#if f77
+#ifdef CRAY
+#ifdef f77
 cfpp$ expand (qsat)
 #endif
 #endif
@@ -3303,7 +3303,7 @@ C
  9014 CONTINUE
       IF(IBIT.LE.0)  GO TO 300
       INDEX = 0
-#if CRAY
+#ifdef CRAY
 CDIR$ NOVECTOR
 #endif
       DO 9016 I = 1,IRUN
@@ -3314,7 +3314,7 @@ CDIR$ NOVECTOR
         ARG1(INDEX) = VZH(I)
        ENDIF
  9016 CONTINUE
-#if CRAY
+#ifdef CRAY
 CDIR$ VECTOR
 #endif
 

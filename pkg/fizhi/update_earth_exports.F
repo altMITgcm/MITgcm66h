@@ -634,8 +634,8 @@ C**** -----------------------------------------------------------
      &             .65, .38, .65, .38
      `            /
 
-#if CRAY
-#if f77
+#ifdef CRAY
+#ifdef f77
 cfpp$ expand (coeff)
 #endif
 #endif
