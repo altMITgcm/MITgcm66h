@@ -1,14 +1,22 @@
-C $Id$
+C $Header$
+C $Name$
 
-#include "CPP_EEOPTIONS.h"
+#include "CPP_OPTIONS.h"
 
-CStartOfInterface
+CBOP
+C     !ROUTINE: INI_FORCING
+C     !INTERFACE:
       SUBROUTINE INI_FORCING( myThid )
-C     /==========================================================\
-C     | SUBROUTINE INI_FORCING                                   |
-C     | o Set model initial forcing fields.                      |
-C     \==========================================================/
 
+C     !DESCRIPTION: \bv
+C     *==========================================================*
+C     | SUBROUTINE INI_FORCING                                    
+C     | o Set model initial forcing fields.                       
+C     *==========================================================*
+C     \ev
+
+C     !USES:
+      IMPLICIT NONE
 C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -16,68 +24,77 @@ C     === Global variables ===
 #include "GRID.h"
 #include "FFIELDS.h"
 
+C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     myThid -  Number of this instance of INI_FORCING
       INTEGER myThid
-CEndOfInterface
 
+C     !LOCAL VARIABLES:
 C     == Local variables ==
-C     iG, jG - Global coordinate index
 C     bi,bj  - Loop counters
-C     I,J,K
-C     distY  - Distance accross domain of point j
-C     lY     - Width of the basin ( last point is land )
-C     tauMax - Peak zonal wind stress ( N/m^2 )
-C     tauX   - Local zonal wind stress
-      INTEGER iG, jG
+C     I,J
       INTEGER bi, bj
-      INTEGER  I,  J, K
-      _RL distY
-      _RL lY
-      _RL tauX, tauMax
+      INTEGER  I,  J
+CEOP
 
-C--   Initialise surface bc arrays
-C     In cartesian yc, delY and ly are meters.
-C     In spherical polar yc, delY and ly are degrees
-      tauMax = 0.1 _d 0
-      lY = 0. _d 0
-      DO j=1,nY-1
-       lY = lY + delY(j)
-      ENDDO
+      _BARRIER
+
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
         DO j=1-OLy,sNy+OLy
          DO i=1-OLx,sNx+OLx
-          fu(i,j,bi,bj) = 0. _d 0
-          fv(i,j,bi,bj) = 0. _d 0
-         ENDDO
-        ENDDO
-       ENDDO
-      ENDDO
-      DO bj = myByLo(myThid), myByHi(myThid)
-       DO bi = myBxLo(myThid), myBxHi(myThid)
-        DO j=1,sNy
-         DO i=1,sNx
-          distY = yC(i,j,bi,bj)/lY
-C         tauX  = -tauMax*cos(2. _d 0*PI*distY)
-          tauX  = tauMax*sin(PI*distY)
-          fu(i,j,bi,bj) = tauX/(delZ(1)*rhonil)
-C         fu(i,j,bi,bj) = -tauMax
+          fu              (i,j,bi,bj) = 0. _d 0
+          fv              (i,j,bi,bj) = 0. _d 0
+          Qnet            (i,j,bi,bj) = 0. _d 0
+          EmPmR           (i,j,bi,bj) = 0. _d 0
+          SST             (i,j,bi,bj) = 0. _d 0
+          SSS             (i,j,bi,bj) = 0. _d 0
+          Qsw             (i,j,bi,bj) = 0. _d 0
+          surfaceTendencyU(i,j,bi,bj) = 0. _d 0
+          surfaceTendencyV(i,j,bi,bj) = 0. _d 0
+          surfaceTendencyT(i,j,bi,bj) = 0. _d 0
+          surfaceTendencyS(i,j,bi,bj) = 0. _d 0
          ENDDO
         ENDDO
        ENDDO
       ENDDO
 C
-      _EXCH_XY_R4(fu  , myThid )
-      _EXCH_XY_R4(fv  , myThid )
+      _BEGIN_MASTER(myThid)
+      IF ( zonalWindFile .NE. ' '  ) THEN
+       CALL READ_FLD_XY_RS( zonalWindFile, ' ', fu, 0, myThid )
+      ENDIF
+      IF ( meridWindFile .NE. ' '  ) THEN
+       CALL READ_FLD_XY_RS( meridWindFile, ' ', fv, 0, myThid )
+      ENDIF
+      IF ( surfQFile .NE. ' '  ) THEN
+       CALL READ_FLD_XY_RS( surfQFile, ' ', Qnet, 0, myThid )
+      ENDIF
+      IF ( EmPmRfile .NE. ' '  ) THEN
+       CALL READ_FLD_XY_RS( EmPmRfile, ' ', EmPmR, 0, myThid )
+      ENDIF
+      IF ( thetaClimFile .NE. ' '  ) THEN
+       CALL READ_FLD_XY_RS( thetaClimFile, ' ', SST, 0, myThid )
+      ENDIF
+      IF ( saltClimFile .NE. ' '  ) THEN
+       CALL READ_FLD_XY_RS( saltClimFile, ' ', SSS, 0, myThid )
+      ENDIF
+#ifdef SHORTWAVE_HEATING
+      IF ( surfQswFile .NE. ' '  ) THEN
+       CALL READ_FLD_XY_RS( surfQswFile, ' ', Qsw, 0, myThid )
+      ENDIF
+#endif
+      _END_MASTER(myThid)
+C
+      _EXCH_XY_R4(fu   , myThid )
+      _EXCH_XY_R4(fv   , myThid )
+      _EXCH_XY_R4(Qnet , myThid )
+      _EXCH_XY_R4(EmPmR, myThid )
+      _EXCH_XY_R4(SST  , myThid )
+      _EXCH_XY_R4(SSS  , myThid )
+      _EXCH_XY_R4(Qsw  , myThid )
 
-CcnhDebugStarts
-Cdbg  WRITE(0,*) ' distY = ', distY
-Cdbg  WRITE(0,*) '    ly = ', lY
-Cdbg  WRITE(0,*) ' tauMax= ', tauMax
-Cdbg  CALL PLOT_FIELD_XYR8( fu, 'INI_FORCING FU',1,myThid)
-Cdbg  STOP 'INI_FORCING'
-CcnhDebugEnds
+C     CALL PLOT_FIELD_XYRS( fu, 'S/R INI_FORCING FU',1,myThid)
+C     CALL PLOT_FIELD_XYRS( fv, 'S/R INI_FORCING FV',1,myThid)
 
       RETURN
       END
