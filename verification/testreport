@@ -294,6 +294,9 @@ genmakemodel()
 	    if test "x$IEEE" != x ; then
 		command="$command -ieee"
 	    fi
+	    if test "x$MPI" = xt ; then
+		command="$command -mpi"
+	    fi
 	    printf 'genmake ... ' 1>&2
 	    $command > make.log 2>&1
 	    RETVAL=$?
