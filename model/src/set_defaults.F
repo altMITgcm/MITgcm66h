@@ -155,7 +155,6 @@ Cml      sBeta               = 7.4D-4
       writePickupWithTracer = .FALSE.
       tempAdvScheme       = 2
       saltAdvScheme       = 2
-      tracerAdvScheme     = 2
       multiDimAdvection   = .TRUE.
       useCDscheme         = .FALSE.
       useEnergyConservingCoriolis = .FALSE.
@@ -181,7 +180,6 @@ C--   Set (free)surface-related parameters
       useRealFreshWaterFlux = .FALSE.
       temp_EvPrRn = UNSET_RL
       salt_EvPrRn = 0.
-      trac_EvPrRn = UNSET_RL
 
 C--   Atmospheric physical parameters (e.g.: EOS)
       celsius2K = 273.16 _d 0
