@@ -41,10 +41,6 @@ c     == external ==
 
 c     == end of interface ==
 
-#ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
-      call exf_init( mythid )
-#endif /* INCLUDE_EXTERNAL_FORCING_PACKAGE */
-
 #ifdef INCLUDE_ECCO_PACKAGE
 
 #ifdef ALLOW_COST
@@ -58,10 +54,6 @@ c--   Map the control variables onto the model state.
       call ctrl_init_variables ( mythid )
       call ctrl_map( mythid )
       _BARRIER
-#endif
-
-#ifndef INCLUDE_EXTERNAL_FORCING_PACKAGE
-      call ini_forcing( mythid )
 #endif
 
 #endif
