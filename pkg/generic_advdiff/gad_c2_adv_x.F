@@ -15,10 +15,10 @@ C !INTERFACE: ==========================================================
      I           myThid )
 
 C !DESCRIPTION:
-C Calculates the zonal flux due to advection of a tracer using
+C Calculates the area integrated zonal flux due to advection of a tracer using
 C centered second-order interpolation:
 C \begin{equation*}
-C F^x_{adv} = u \theta
+C F^x_{adv} = U \overline{\theta}^i
 C \end{equation*}
 
 C !USES: ===============================================================

@@ -15,10 +15,10 @@ C !INTERFACE: ==========================================================
      I           myThid )
 
 C !DESCRIPTION:
-C Calculates the meridional flux due to advection of a tracer using
-C centered second-order interpolation:
+C Calculates the area integrated meridional flux due to advection of a tracer
+C using centered second-order interpolation:
 C \begin{equation*}
-C F^y_{adv} = v \theta
+C F^y_{adv} = V \overline{\theta}^j
 C \end{equation*}
 
 C !USES: ===============================================================

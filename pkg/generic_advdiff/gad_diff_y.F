@@ -15,9 +15,10 @@ C !INTERFACE: ==========================================================
      I           myThid )
 
 C !DESCRIPTION:
-C Calculates the meridional flux due to down-gradient diffusion of a tracer:
+C Calculates the area integrated meridional flux due to down-gradient
+C diffusion of a tracer:
 C \begin{equation*}
-C F^y_{diff} = - \kappa_h \partial_y \theta
+C F^y_{diff} = - A^y \kappa_h \frac{1}{\Delta y_c} \delta_j \theta
 C \end{equation*}
 
 C !USES: ===============================================================

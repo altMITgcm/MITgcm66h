@@ -15,10 +15,10 @@ C !INTERFACE: ==========================================================
      I           myThid )
 
 C !DESCRIPTION:
-C Calculates the vertical flux due to advection of a tracer using
-C centered second-order interpolation:
+C Calculates the area integrated vertical flux due to advection of a tracer
+C using centered second-order interpolation:
 C \begin{equation*}
-C F^r_{adv} = w \theta
+C F^r_{adv} = W \overline{\theta}^k
 C \end{equation*}
 
 C !USES: ===============================================================

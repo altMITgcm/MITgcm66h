@@ -15,9 +15,10 @@ C !INTERFACE: ==========================================================
      I           myThid )
 
 C !DESCRIPTION:
-C Calculates the zonal flux due to down-gradient diffusion of a tracer:
+C Calculates the area integrated zonal flux due to down-gradient diffusion
+C of a tracer:
 C \begin{equation*}
-C F^x_{diff} = - \kappa_h \partial_x \theta
+C F^x_{diff} = - A^x \kappa_h \frac{1}{\Delta x_c} \delta_i \theta
 C \end{equation*}
 
 C !USES: ===============================================================

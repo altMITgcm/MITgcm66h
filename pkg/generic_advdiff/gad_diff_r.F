@@ -15,9 +15,10 @@ C !INTERFACE: ==========================================================
      I           myThid )
 
 C !DESCRIPTION:
-C Calculates the vertical flux due to down-gradient diffusion of a tracer:
+C Calculates the area integrated vertical flux due to down-gradient
+C diffusion of a tracer:
 C \begin{equation*}
-C F^r_{diff} = - \kappa_r \partial_r \theta
+C F^r_{diff} = - A^r \kappa_r \frac{1}{\Delta r_c} \delta_k \theta
 C \end{equation*}
 
 C !USES: ===============================================================
@@ -46,6 +47,7 @@ C !LOCAL VARIABLES: ====================================================
 C  i,j                  :: loop indices
 C  km1                  :: =k+1 for k<Nr, =Nr for k>-Nr
       INTEGER i,j,km1
+CEOP
 
       km1=max(1,k-1)
 

@@ -15,7 +15,9 @@ C !INTERFACE: ==========================================================
      I           myThid )
 
 C !DESCRIPTION:
-C Calculates the zonal gradient of a tracer: $\partial_x \theta$
+C Calculates the zonal gradient of a tracer: $\partial_x \theta
+C = \frac{1}{\Delta x_c} \delta_i \theta$
+C and multiplies by the area.
 
 C !USES: ===============================================================
       IMPLICIT NONE

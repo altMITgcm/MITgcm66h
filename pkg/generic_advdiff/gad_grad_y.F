@@ -15,7 +15,9 @@ C !INTERFACE: ==========================================================
      I           myThid )
 
 C !DESCRIPTION:
-C Calculates the meridional gradient of a tracer: $\partial_y \theta$
+C Calculates the meridional gradient of a tracer: $\partial_y \theta
+C = \frac{1}{\Delta y_c} \delta_j \theta$
+C and multiplies by the area.
 
 C !USES: ===============================================================
       IMPLICIT NONE
