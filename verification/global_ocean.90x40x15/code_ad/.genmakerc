@@ -1,0 +1,9 @@
+# $Header$
+# $Name$
+
+set DISABLE=( $DISABLE obcs zonal_filt shap_filt )
+
+# Enable packages that are needed but are disabled by default
+set ENABLE=( $ENABLE autodiff cost ctrl grdchk ecco gmredi )
+
+# We can also specify other defaults

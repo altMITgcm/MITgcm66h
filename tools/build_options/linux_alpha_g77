@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+#  $Header$
+#
+
+FC='g77'
+FFLAGS=' '
+FOPTIM='-ffast-math -fexpensive-optimizations -fomit-frame-pointer -O3'
+DEFINES='-DWORDLENGTH=4'
+LN='/bin/ln -s'
+CPP='cpp  -traditional -P'
+

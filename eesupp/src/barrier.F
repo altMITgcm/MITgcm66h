@@ -1,14 +1,36 @@
-C $Id$
+C $Header$
+C $Name$
 
 #include "CPP_EEOPTIONS.h"
 
+CBOP
+C     !ROUTINE: BARRIER_INIT
+
+C     !INTERFACE:
       SUBROUTINE BARRIER_INIT
+      IMPLICIT NONE
+
+C     !DESCRIPTION:
+C     *=====================================================================*
+C     | SUBROUTINE BARRIER_INIT
+C     | o Setup global barrier data structures.
+C     *=====================================================================*
+C     | Initialise global barrier data structures that can be used in
+C     | conjunction with MPI or that can also be used to create
+C     *=====================================================================*
+
+C     !USES:
+C     == Global variables ==
+#include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 #include "BARRIER.h"
 
-C     === Local Variables ===
+C     !LOCAL VARIABLES:
+C     == Local Variables ==
+C     I :: Loop counter
       INTEGER I
+CEOP
 
       DO I=1,nThreads
        key1(1,I) = INVALID
@@ -21,76 +43,89 @@ C     === Local Variables ===
 
       RETURN
       END
+
+CBOP
+C     !ROUTINE: BARRIER
+
+C     !INTERFACE:
       SUBROUTINE BARRIER( myThid )
       IMPLICIT NONE
-C
-C     /==========================================================\
-C     | SUBROUTINE BARRIER                                       |
-C     | o Barrier routine that uses "busy waiting".              |
-C     |==========================================================|
-C     | This routine provides a pure fortran mechanism to        |
-C     | synchronise multiple threads in a multi-threaded code.   |
-C     | No thread can leave this routine before all the threads  |
-C     | have entered it.                                         |
-C     | Notes                                                    |
-C     | =====                                                    |
-C     | The door and key variables are assumed to have been      |
-C     | initialized once an initial state of key = INVALID       |
-C     | and door = SHUT.                                         |
-C     | We use the routine FOOL_THE_COMPILER to stop compilers   |
-C     | generating code which might simply set and test a        |
-C     | register value. Shared-memory systems only maintain      |
-C     | coherency over process caches and not registers.         |
-C     | Also we have to be a bit careful regarding sequential    |
-C     | consistency - or lack of it. At the moment the code      |
-C     | assumes a total store order memory model, which some     |
-C     | machines don't have! However, I have yet to find a       |
-C     | problem with this I think because the tolerances in      |
-C     | terms of memory ordering i.e. a little bit of reordering |
-C     | probably won't break the barrier mechanism!              |
-C     | On non-cache coherent systems e.g. T3E we need to use    |
-C     | a library function to do barriers.                       |
-C     | Note - The PANIC tests can be removed for working code   |
-C     |        I have left them in without an ifdef option       |
-C     |        because without them programming errors can       |
-C     |        lead to infinitely spinning code. If you are      |
-C     |        confident that your code is OK then removing      |
-C     |        them may increase performance. Do not remove these|
-C     |        lines to make your code "work" If the code is     |
-C     |        stopping in these PANIC blocks then something is  |
-C     |        wrong with your program and it needs to be fixed. |
-C     \==========================================================/
+
+C     !DESCRIPTION:
+C     *==========================================================*
+C     | SUBROUTINE BARRIER                                       
+C     | o Barrier routine that uses "busy waiting".              
+C     *==========================================================*
+C     | This routine provides a pure fortran mechanism to         
+C     | synchronise multiple threads in a multi-threaded code.    
+C     | No thread can leave this routine before all the threads   
+C     | have entered it.                                          
+C     | Notes                                                     
+C     | =====                                                     
+C     | The door and key variables are assumed to have been       
+C     | initialized once an initial state of key = INVALID        
+C     | and door = SHUT.                                          
+C     | We use the routine FOOL_THE_COMPILER to stop compilers    
+C     | generating code which might simply set and test a         
+C     | register value. Shared-memory systems only maintain       
+C     | coherency over process caches and not registers.          
+C     | Also we have to be a bit careful regarding sequential     
+C     | consistency - or lack of it. At the moment the code       
+C     | assumes a total store order memory model, which some      
+C     | machines do not have! However, I have yet to find a       
+C     | problem with this I think because the tolerances in       
+C     | terms of memory ordering i.e. a little bit of reordering  
+C     | probably will not break the barrier mechanism!            
+C     | On non-cache coherent systems e.g. T3E we need to use     
+C     | a library function to do barriers.                        
+C     | Note - The PANIC tests can be removed for working code    
+C     |        I have left them in without an ifdef option        
+C     |        because without them programming errors can        
+C     |        lead to infinitely spinning code. If you are       
+C     |        confident that your code is OK then removing       
+C     |        them may increase performance. Do not remove these 
+C     |        lines to make your code "work" If the code is      
+C     |        stopping in these PANIC blocks then something is   
+C     |        wrong with your program and it needs to be fixed.  
+C     *==========================================================*
+
+C     !USES:
+C     == Global variables ==
+#include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 #include "BARRIER.h"
 
-C     === Routine arguments ===
+C     !INPUT PARAMETERS:
+C     == Routine arguments ==
       INTEGER myThid
 
+C     !LOCAL VARIABLES:
 C     === Local variables ===
-C     nDone - Counter for number of threads that have 
-C             completed a section.
-C     I     - Loop counter
+C     nDone :: Counter for number of threads that have 
+C              completed a section.
+C     I     :: Loop counter
       INTEGER nDone
       INTEGER I
+CEOP
 
 CcnhDebugStarts
-C     IF ( myThid .EQ. 1 ) THEN
-C      WRITE(0,*) ' Barrier entered '
-C     ENDIF
+C      WRITE(myThid,*) ' Barrier entered '
 CcnhDebugEnds
 
 C--   Check that thread number is expected range
       IF ( myThid .LT. 1 .OR. myThid .GT. nThreads ) THEN
-       WRITE(0,*) '!!!!!!! PANIC !!!!!!! CATASTROPHIC ERROR'
-       WRITE(0,*) '!!!!!!! PANIC !!!!!!! in S/R BARRIER  myThid = ', myThid, ' nThreads = ', nThreads
+       WRITE(*,*) '!!!!!!! PANIC !!!!!!! CATASTROPHIC ERROR'
+       WRITE(*,*) '!!!!!!! PANIC !!!!!!! in S/R BARRIER  myThid = ', 
+     &  myThid, ' nThreads = ', nThreads
        STOP 'ABNROMAL END: S/R BARRIER'
       ENDIF
 
 C--   When every threads key1 is valid thread 1 will open door1.
       IF ( key1(1,myThid) .EQ. VALID ) THEN
-       WRITE(0,*) '!!!!!!! PANIC !!!!!!! CATASTROPHIC ERROR'
-       WRITE(0,*) '!!!!!!! PANIC !!!!!!! in S/R BARRIER  myThid = ', myThid, ' key1 already validated'
+       WRITE(*,*) '!!!!!!! PANIC !!!!!!! CATASTROPHIC ERROR'
+       WRITE(*,*) '!!!!!!! PANIC !!!!!!! in S/R BARRIER  myThid = ', 
+     &  myThid, ' key1 already validated'
        STOP 'ABNROMAL END: S/R BARRIER'
       ENDIF
       key1(1,myThid) = VALID
@@ -114,12 +149,12 @@ C--   Invalidate keys for door1 here as it is now open
 
 CcnhDebugStarts
 C     IF ( myThid .EQ. 1 ) THEN
-C      WRITE(0,*) ' DOOR1 Opened '
+C      WRITE(*,*) ' DOOR1 Opened '
 C     ENDIF
 CcnhDebugEnds
 
 C--   I can now shut door3 because I know everyone has reached
-C--   door1. I can't shut door1 because I don't know if everyone
+C--   door1. I can not shut door1 because I do not know if everyone
 C--   has "gone" through the door yet. Nobody has yet reached
 C--   door3 because they have to go through door2 first.
       IF ( myThid .EQ. 1 ) THEN
@@ -129,14 +164,14 @@ C--   door3 because they have to go through door2 first.
 C--   When every threads key2 is valid thread 1 will open door2.
 C     Notes
 C     =====
-C      I don't understand memory ordering and sequential consistency. 
 C     I think that to work with any memory model ( i.e. relaxed, 
 C     partial store, total store) the variables key1, key2 and key3
 C     might need to be set to invalid by thread 1.
 C     
       IF ( key2(1,myThid) .EQ. VALID ) THEN
-       WRITE(0,*) '!!!!!!! PANIC !!!!!!! CATASTROPHIC ERROR'
-       WRITE(0,*) '!!!!!!! PANIC !!!!!!! in S/R BARRIER  myThid = ', myThid, ' key2 already validated'
+       WRITE(*,*) '!!!!!!! PANIC !!!!!!! CATASTROPHIC ERROR'
+       WRITE(*,*) '!!!!!!! PANIC !!!!!!! in S/R BARRIER  myThid = ', 
+     &  myThid, ' key2 already validated'
        STOP 'ABNROMAL END: S/R BARRIER'
       ENDIF
       key2(1,myThid) = VALID
@@ -160,7 +195,7 @@ C--   Invalidate keys for door2 here as it is now open
       key2(1,myThid) = INVALID
 
 C--   I can now shut door1 because I know everyone has reached
-C--   door2. I can't shut door2 because I don't know if everyone
+C--   door2. I can not shut door2 because I do not know if everyone
 C--   has "gone" through the door yet. Nobody has yet reached
 C--   door1 because they have to go through door3 first.
       IF ( myThid .EQ. 1 ) THEN
@@ -170,8 +205,9 @@ C--   door1 because they have to go through door3 first.
      
 C--   When every threads key3 is valid thread 1 will open door3.
       IF ( key3(1,myThid) .EQ. VALID ) THEN
-       WRITE(0,*) '!!!!!!! PANIC !!!!!!! CATASTROPHIC ERROR'
-       WRITE(0,*) '!!!!!!! PANIC !!!!!!! in S/R BARRIER  myThid = ', myThid, ' key3 already validated'
+       WRITE(*,*) '!!!!!!! PANIC !!!!!!! CATASTROPHIC ERROR'
+       WRITE(*,*) '!!!!!!! PANIC !!!!!!! in S/R BARRIER  myThid = ', 
+     &  myThid, ' key3 already validated'
        STOP 'ABNROMAL END: S/R BARRIER'
       ENDIF
       key3(1,myThid) = VALID
@@ -195,7 +231,7 @@ C--   Invalidate keys for door3 here as it is now open
       key3(1,myThid) = INVALID
 
 C--   I can now shut door2 because I know everyone has reached
-C--   door3. I can't shut door3 because I don't know if everyone
+C--   door3. I can not shut door3 because I do not know if everyone
 C--   has "gone" through the door yet. Nobody has yet reached
 C--   door2 because they have to go through door1 first.
       IF ( myThid .EQ. 1 ) THEN
@@ -203,12 +239,8 @@ C--   door2 because they have to go through door1 first.
       ENDIF
 
 CcnhDebugStarts
-C     IF ( myThid .EQ. 1 ) THEN
-C      WRITE(0,*) ' Barrier exited '
-C     ENDIF
+C      WRITE(myThid,*) ' Barrier exited '
 CcnhDebugEnds
      
       RETURN
       END
-
-C $Id$

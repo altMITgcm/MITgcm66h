@@ -1,0 +1,156 @@
+C $Header:
+
+#include "SEAICE_OPTIONS.h"
+ 
+CStartOfInterface
+      SUBROUTINE seaice_model( myTime, myIter, myThid )
+C     /===========================================================\
+C     | SUBROUTINE SEAICE_MODEL                                   |
+C     | o Time stepping of a dynamic/thermodynamic sea ice model. |
+C     |  Dynamics solver: Zhang/Hibler, JGR, 102, 8691-8702, 1997 |
+C     |    and          Zhang/Rothrock, JGR, 105, 3325-3338, 2000 |
+C     |  Thermodynamics:        Hibler, MWR, 108, 1943-1973, 1980 |
+C     |  Rheology:              Hibler, JPO,   9,  815- 846, 1979 |
+C     |  Snow:          Zhang et al.  , JPO,  28,  191- 217, 1998 |
+C     |  Parallel forward ice model written by Jinlun Zhang PSC/UW|
+C     |  & coupled into MITgcm by Dimitris Menemenlis (JPL) 2/2001|
+C     |  zhang@apl.washington.edu / menemenlis@jpl.nasa.gov       |
+C     |===========================================================|
+C     \===========================================================/
+      IMPLICIT NONE
+ 
+C     === Global variables ===
+#include "SIZE.h"
+#include "EEPARAMS.h"
+#include "DYNVARS.h"
+#include "PARAMS.h"
+#include "FFIELDS.h"
+#include "SEAICE.h"
+#include "SEAICE_PARAMS.h"
+#include "SEAICE_EXTERNAL.h"
+
+#ifdef SEAICE_EXTERNAL_FORCING
+# include "SEAICE_FFIELDS.h"
+#endif
+
+#ifdef ALLOW_AUTODIFF_TAMC
+# include "tamc.h"
+#endif
+
+C     === Routine arguments ===
+C     myTime - Simulation time
+C     myIter - Simulation timestep number
+C     myThid - Thread no. that called this routine.
+      _RL     myTime
+      INTEGER myIter
+      INTEGER myThid
+CEndOfInterface
+
+#ifdef ALLOW_SEAICE
+
+C     === Local variables ===
+C     i,j,bi,bj - Loop counters
+
+      INTEGER i, j, bi, bj
+
+#ifdef SEAICE_EXTERNAL_FORCING
+C--   Atmospheric state and runoff are from
+C     pkg/exf, which does not update edges.
+         _EXCH_XY_R8( uwind,  myThid )
+         _EXCH_XY_R8( vwind,  myThid )
+         _EXCH_XY_R8( atemp,  myThid )
+         _EXCH_XY_R8( aqh,    myThid )
+         _EXCH_XY_R8( lwdown, myThid )
+         _EXCH_XY_R8( swdown, mythid )
+         _EXCH_XY_R8( precip, myThid )
+         _EXCH_XY_R8( evap,   myThid )
+         _EXCH_XY_R8( runoff, myThid )
+#else /* SEAICE_EXTERNAL_FORCING */
+C--   Load atmospheric state and runoff.
+      CALL SEAICE_GET_FORCING ( myTime, myIter, myThid )
+#endif /* SEAICE_EXTERNAL_FORCING */
+
+C--   Third level model velocity is used as proxy for geostrophic velocity
+      DO bj=myByLo(myThid),myByHi(myThid)
+       DO bi=myBxLo(myThid),myBxHi(myThid)
+        DO j=0,sNy+1
+         DO i=0,sNx+1
+          GWATX(I,J,bi,bj)=HALF*(uVel(i,j,3,bi,bj)
+     &                         +uVel(i,j-1,3,bi,bj))
+          GWATY(I,J,bi,bj)=HALF*(vVel(i,j,3,bi,bj)
+     &                         +vVel(i-1,j,3,bi,bj))
+#ifdef SEAICE_DEBUG
+c          write(*,'(2i4,2i2,f7.1,7f12.3)')
+c     &     ,i,j,bi,bj,UVM(I,J,bi,bj)
+c     &     ,GWATX(I,J,bi,bj),GWATY(I,J,bi,bj)
+c     &     ,uVel(i+1,j,3,bi,bj),uVel(i+1,j+1,3,bi,bj)
+c     &     ,vVel(i,j+1,3,bi,bj),vVel(i+1,j+1,3,bi,bj)
+#endif
+         ENDDO
+        ENDDO
+       ENDDO
+      ENDDO
+
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE uwind = comlev1, key = ikey_dynamics
+CADJ STORE vwind = comlev1, key = ikey_dynamics
+# ifdef SEAICE_ALLOW_DYNAMICS
+CADJ STORE heff  = comlev1, key = ikey_dynamics
+CADJ STORE area  = comlev1, key = ikey_dynamics
+# endif
+#endif /* ALLOW_AUTODIFF_TAMC */
+
+C solve ice momentum equations and calculate ocean surface stress
+      CALL DYNSOLVER ( myTime, myIter, myThid )
+
+#ifdef ALLOW_AUTODIFF_TAMC
+# ifdef SEAICE_ALLOW_DYNAMICS
+CADJ STORE heff  = comlev1, key = ikey_dynamics
+CADJ STORE area  = comlev1, key = ikey_dynamics
+CADJ STORE uice  = comlev1, key = ikey_dynamics
+CADJ STORE vice  = comlev1, key = ikey_dynamics
+# endif
+#endif /* ALLOW_AUTODIFF_TAMC */
+C NOW DO ADVECTION
+      CALL ADVECT( UICE, VICE, HEFF, HEFFM, myThid )
+      CALL ADVECT( UICE, VICE, AREA, HEFFM, myThid )
+
+C NOW DO GROWTH
+C     MUST CALL GROWTH ONLY AFTER CALLING ADVECTION
+      CALL GROWTH( myTime, myIter, myThid)
+
+C--   Update overlap regions for a bunch of stuff
+       _BARRIER
+       CALL SEAICE_EXCH( HEFF, myThid )
+       CALL SEAICE_EXCH( AREA, myThid )
+       _EXCH_XY_R4(fu   , myThid )
+       _EXCH_XY_R4(fv   , myThid )
+       _EXCH_XY_R4(EmPmR, myThid )
+       _EXCH_XY_R4(Qnet , myThid )
+       _EXCH_XY_R4(surfaceTendencyTice, myThid )
+#ifdef SHORTWAVE_HEATING
+       _EXCH_XY_R4(Qsw  , myThid )
+#endif
+       _EXCH_XYZ_R8(theta , myThid )
+
+C--   Sea ice diagnostics.
+      CALL SEAICE_DO_DIAGS( myTime, myIter, myThid )
+
+C--   Write sea ice restart files
+      CALL SEAICE_WRITE_PICKUP ( .FALSE.,
+     &     myTime+deltaTClock, myIter+1, myThid )
+
+C---------------------------------------------------
+C OOH NOOOO we need to move the whole stuff
+C---------------------------------------------------
+#ifdef ALLOW_AUTODIFF_TAMC
+CRG CADJ store UICE,VICE,AREA,HEFF,fu,fv,EmPmR,Qnet,Qsw = comlev1_bibj
+#endif
+
+C--   Call sea-ice cost function routine
+CRG      CALL SEAICE_COST( myTime, myIter, myThid )
+
+#endif /* ALLOW_SEAICE */
+
+      RETURN
+      END

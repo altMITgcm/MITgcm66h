@@ -1,4 +1,5 @@
-C $Id$
+C $Header$
+C $Name$
 
 #include "CPP_EEOPTIONS.h"
 
@@ -13,6 +14,7 @@ C     | Note: This routine can also be compiled with CPP         |
 C     | directives set so that no multi-processing is initialised|
 C     | This is OK and should work fine.                         |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     == Global variables ==
 #include "SIZE.h"
@@ -37,19 +39,21 @@ C--   Check that all the threads have ended
 C     No thread should reach this loop before all threads have set
 C     threadIsComplete to TRUE. If they do then either there is a bug
 C     in the code or the behaviour of the parallel compiler directives 
-C     are not right for this code. In the latter case different directives
-C     may be available or the compiler itself may have a bug or you may
-C     need a different parallel compiler for main.F
+C     are not right for this code. In the latter case different 
+C     directives may be available or the compiler itself may have a 
+C     bug or you may need a different parallel compiler for main.F
       nThreadsDone = 0
       DO I = 1, nThreads
        IF ( threadIsComplete(I) ) nThreadsDone = nThreadsDone+1
       ENDDO
       IF ( nThreadsDone .LT. nThreads ) THEN
-       WRITE(msgBuf,'(A,I,A,I,A)')
+       WRITE(msgBuf,'(A,I5,A,I5,A)')
      & 'S/R EEDIE: Only ',nThreadsDone,
-     & ' threads have completed, ',nThreads,' are expected for this configuration!'
-       WRITE(0,*) msgBuf
-       WRITE(0,*) 'Possibly you have different values of setenv PARALLEL and nThreads?'
+     & ' threads have completed, ',nThreads,
+     & ' are expected for this configuration!'
+       WRITE(*,*) msgBuf
+       WRITE(*,*) 
+     & 'Possibly you have different setenv PARALLEL and nThreads?'
        eeEndError = .TRUE.
        fatalError = .TRUE.
       ENDIF
@@ -65,7 +69,7 @@ C--   ======================================
        IF ( mpiRC .NE. MPI_SUCCESS ) THEN
         eeEndError = .TRUE.
         fatalError = .TRUE.
-        WRITE(msgBuf,'(A,I)')
+        WRITE(msgBuf,'(A,I5)')
      &       'S/R FIN_PROCS: MPI_FINALIZE return code',
      &       mpiRC
         CALL PRINT_ERROR( msgBuf, 1 )

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# $Header$
+
+#  This is the local options file for the "new" version of genmake 
+#
+#  EH3 initial version 2003-08
+
+
+DISABLE="aim gmredi obcs zonal_filt"
+
+ENABLE="kpp shap_filt timeave"
