@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o testscript: added -cleanup option
 o Shap_filt: a) new shap_filt S/R to use no-slip BC with S2 filter
              b) enable to filter 2D fields.
 
