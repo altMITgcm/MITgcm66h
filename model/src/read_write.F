@@ -85,6 +85,15 @@ C       Raw fields
         CALL READ_FLD_XYZ_RL(     'gS.',suff,        gS, myIter, myThid)
         CALL READ_FLD_XYZ_RL(  'gSNm1.',suff,     gSNm1, myIter, myThid)
         CALL READ_FLD_XY_RL ( 'cg2d_x.',suff,    cg2d_x, myIter, myThid)
+#ifdef ALLOW_CD
+        CALL READ_FLD_XY_RL ( 'cg2d_xNM1.',suff, cg2d_xNM1, myIter, myThid)
+        CALL READ_FLD_XYZ_RL(  'uVelD.',suff,    uVelD, myIter, myThid)
+        CALL READ_FLD_XYZ_RL(  'vVelD.',suff,    vVelD, myIter, myThid)
+        CALL READ_FLD_XYZ_RL(  'uNM1.', suff,     uNM1, myIter, myThid)
+        CALL READ_FLD_XYZ_RL(  'vNM1.', suff,     vNM1, myIter, myThid)
+        CALL READ_FLD_XYZ_RL(  'guCD.', suff,     guCD, myIter, myThid)
+        CALL READ_FLD_XYZ_RL(  'gvCD.', suff,     gvCD, myIter, myThid)
+#endif
 
 C--     Reread IO error counter
         endIOErrCount = IO_ERRCOUNT(myThid)
@@ -1006,6 +1015,16 @@ C       Raw fields
         CALL WRITE_FLD_XYZ_RL(     'gS.',suff,        gS, myIter, myThid)
         CALL WRITE_FLD_XYZ_RL(  'gSNm1.',suff,     gSNm1, myIter, myThid)
         CALL WRITE_FLD_XY_RL ( 'cg2d_x.',suff,    cg2d_x, myIter, myThid)
+#ifdef ALLOW_CD
+        CALL WRITE_FLD_XY_RL ( 'cg2d_xNM1.',suff, cg2d_xNM1, myIter, myThid)
+        CALL WRITE_FLD_XYZ_RL(  'uVelD.',suff,    uVelD, myIter, myThid)
+        CALL WRITE_FLD_XYZ_RL(  'vVelD.',suff,    vVelD, myIter, myThid)
+        CALL WRITE_FLD_XYZ_RL(  'uNM1.', suff,     uNM1, myIter, myThid)
+        CALL WRITE_FLD_XYZ_RL(  'vNM1.', suff,     vNM1, myIter, myThid)
+        CALL WRITE_FLD_XYZ_RL(  'guCD.', suff,     guCD, myIter, myThid)
+        CALL WRITE_FLD_XYZ_RL(  'gvCD.', suff,     gvCD, myIter, myThid)
+#endif
+
 
 C--     Reread IO error counter
         endIOErrCount = IO_ERRCOUNT(myThid)

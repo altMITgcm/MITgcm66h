@@ -545,8 +545,8 @@ C     ioUnit - Unit number for I/O
 C     msgBuf - Textual printing message buffer
 C     eMode  - Error mode for this file handle
       INTEGER ioUnit
-      CHARACTER(MAX_LEN_MBUF) msgBuf
-      CHARACTER(MAX_LEN_FNAM) fNam
+      CHARACTER*(MAX_LEN_MBUF) msgBuf
+      CHARACTER*(MAX_LEN_FNAM) fNam
       INTEGER eMode
       INTEGER I
 
@@ -667,8 +667,8 @@ C     ioUnit - Unit number for I/O
 C     msgBuf - Textual printing message buffer
 C     eMode  - Error mode for this file handle
       INTEGER ioUnit
-      CHARACTER(MAX_LEN_MBUF) msgBuf
-      CHARACTER(MAX_LEN_FNAM) fNam
+      CHARACTER*(MAX_LEN_MBUF) msgBuf
+      CHARACTER*(MAX_LEN_FNAM) fNam
       INTEGER eMode
       INTEGER I
 

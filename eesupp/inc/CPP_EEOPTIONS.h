@@ -172,3 +172,5 @@ C     precision when they see .Dnn which runs very slowly!
 #ifndef REAL_D0_IS_16BYTES
 #define _d D
 #endif
+
+#define ALLOW_CD

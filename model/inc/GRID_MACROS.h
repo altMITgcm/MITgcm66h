@@ -159,3 +159,13 @@ C     \==========================================================/
 #undef    MASKS_FY
 #undef    MASKS_FXY
 #include "MASKS_MACROS.h"
+
+#undef    TANPHIATU_CONST
+#undef    TANPHIATU_FX
+#undef    TANPHIATU_FY
+#include "TANPHIATU_MACROS.h"
+
+#undef    TANPHIATV_CONST
+#undef    TANPHIATV_FX
+#undef    TANPHIATV_FY
+#include "TANPHIATV_MACROS.h"

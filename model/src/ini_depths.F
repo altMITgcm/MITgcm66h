@@ -71,6 +71,8 @@ C         Test for eastern edge
 C         Test for northern edge
           IF ( jG .EQ. nY ) H(i,j,bi,bj) = 0.
 C         Island
+          IF ( iG .EQ. 1 .AND. 
+     &         jG .EQ. 24 ) H(i,j,bi,bj) = 0.75*phi
 C         IF ( iG .EQ. 1 .AND. 
 C    &         jG .EQ. 24 ) H(i,j,bi,bj) = 0.
            

@@ -58,7 +58,7 @@ C     In spherical polar yc, delY and ly are degrees
        DO bi = myBxLo(myThid), myBxHi(myThid)
         DO j=1,sNy
          DO i=1,sNx
-          distY = yC(i,j,bi,bj)/lY
+          distY = (yC(i,j,bi,bj)-yC0)/lY
           tauX  = -tauMax*cos(2. _d 0*PI*distY)
           tauX  = tauMax*sin(PI*distY)
           fu(i,j,bi,bj) = tauX/(delZ(1)*rhonil)

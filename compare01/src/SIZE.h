@@ -8,7 +8,7 @@ C     KM - Model Z domain extent i.e. no. of boxes in Z direction.
       PARAMETER (
      &           IM=   60,
      &           JM=   60,
-     &           KM=    2
+     &           KM=    4
      &          )
 C     Variables used in model to declare array sizes. 
 C     Note: One day these will be in common block and the program will not 

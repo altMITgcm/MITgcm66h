@@ -40,6 +40,10 @@ C     myThid - Thread number for this instance of the routine.
       _EXCH_XYZ_R8( Gu , myThid )
       _EXCH_XYZ_R8( Gv , myThid )
       _EXCH_XYZ_R8( Gt , myThid )
+#ifdef ALLOW_CD
+      _EXCH_XYZ_R8( guCD , myThid )
+      _EXCH_XYZ_R8( gvCD , myThid )
+#endif
 CcnhDebugStarts
 Cdbg  _EXCH_XYZ_R8( phSave , myThid )
 CcnhDebugEnds

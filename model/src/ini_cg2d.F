@@ -17,6 +17,7 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#include "DYNVARS.h"
 #include "CG2D.h"
 
 C     === Routine arguments ===
@@ -184,6 +185,9 @@ C--   Set default values for initial guess and RHS
           DO I=1,sNx
            cg2d_x(I,J,bi,bj) = 0. _d 0
            cg2d_b(I,J,bi,bj) = 0. _d 0
+#ifdef ALLOW_CD
+           cg2d_xNM1(I,J,bi,bj) = 0. _d 0
+#endif
           ENDDO
          ENDDO
         ENDDO
@@ -191,6 +195,9 @@ C--   Set default values for initial guess and RHS
 C--    Update overlap regions
        _EXCH_XY_R8(cg2d_x, myThid)
        _EXCH_XY_R8(cg2d_b, myThid)
+#ifdef ALLOW_CD
+       _EXCH_XY_R8(cg2d_xNM1, myThid)
+#endif
       ENDIF
 
       RETURN

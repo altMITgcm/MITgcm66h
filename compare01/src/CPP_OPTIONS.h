@@ -35,7 +35,7 @@ C These options control which terms are active in the momentum equations.
 #define _LAPLACIAN_DIFFUSION_OF_MOMENTUM
 #undef  _BIHARMONIC_DIFFUSION_OF_MOMENTUM
 #define _ADVECTION_OF_MOMENTUM
-#undef  _SPHERICAL_POLAR_METRIC_TERMS
+#define _SPHERICAL_POLAR_METRIC_TERMS
 #undef  _XZ_CORIOLIS
 #define _XY_CORIOLIS
 #define _MOMENTUM_FORCING

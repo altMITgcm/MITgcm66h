@@ -75,6 +75,8 @@ C     This operation is only performed at start up so for more
 C     complex configurations it is usually OK to pass iG, jG to a custom 
 C     function and have it return xG and yG.
 C     Set up my local grid first
+      xC0 = 0. _d 0
+      yC0 = 0. _d 0
       DO bj = myByLo(myThid), myByHi(myThid)
        jG = myYGlobalLo + (bj-1)*sNy
        DO bi = myBxLo(myThid), myBxHi(myThid)
@@ -222,6 +224,13 @@ C     other threads.
       _EXCH_XYZ_R4(maskW    , myThid )
       _EXCH_XYZ_R4(maskS    , myThid )
       _EXCH_XY_R4 (zA       , myThid )
+
+CcnhDebugStarts
+      tanPhiAtU = 0. _d 0
+      tanPhiAtV = 0. _d 0
+      _EXCH_XY_R4 (tanPhiAtU , myThid )
+      _EXCH_XY_R4 (tanPhiAtV , myThid )
+CcnhDebugEnds
 
 C
       RETURN

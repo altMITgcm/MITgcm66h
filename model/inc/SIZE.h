@@ -45,7 +45,7 @@ C     Nz  - No. points in Z for full process domain.
      &           nPy =   1,
      &           Nx  = sNx*nSx*nPx,
      &           Ny  = sNy*nSy*nPy,
-     &           Nz  =   2)
+     &           Nz  =   4)
 
 C     l - Runtime global problem size in X
 C     m - Runtime global problem size in Y
