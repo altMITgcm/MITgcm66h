@@ -206,6 +206,12 @@ c     File names.
       character*(128) lwdownfile
       character*(128) apressurefile
 
+      logical useExfYearlyFields
+      logical useExfCheckRange
+
+      common /exf_param_l/
+     &                          useExfYearlyFields,
+     &                          useExfCheckRange
       common /exf_param_i/
      &                          hfluxstartdate1,   hfluxstartdate2,
      &                          atempstartdate1,   atempstartdate2,
