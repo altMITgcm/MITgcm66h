@@ -86,8 +86,10 @@ C--   Initialise the control variables
 #endif
 
 #ifdef INCLUDE_ECCO_PACKAGE
+# ifdef ALLOW_COST
 C--   Initialise ecco-specific cost function.
-       IF (useECCO) CALL COST_INIT( myThid )
+       IF (useECCO) CALL COST_INIT_FIXED( myThid )
+# endif
 #endif
 
       RETURN
