@@ -91,7 +91,7 @@ C--   write clear-sky tendencies to files :
 #endif /* ALLOW_CLR_SKY_DIAG */
       ENDIF
 
-      IF ( DIFF_BASE_MULTIPLE(baseTime,im_diagFreq,
+      IF ( DIFF_BASE_MULTIPLE(baseTime,aim_diagFreq,
      &                        myTime+deltaTClock,deltaTClock)
      &   ) THEN 
        WRITE(suff,'(I10.10)') myIter+1
