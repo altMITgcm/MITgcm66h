@@ -142,6 +142,20 @@ C     Incorporate the Explicit part of -Divergence(Barotropic_Flow)
         ENDDO
        ENDIF
 
+#ifdef ALLOW_OBCS
+#ifdef NONLIN_FRSURF
+C- note: 1) needs to apply OBC to etaH since viscous terms depend on hFacZ.
+C           that is not only function of boundaries hFac values.
+C        2) has to be done before calc_surf_dr; but since obcs_calc is 
+C           called later, hFacZ will lag 1 time step behind OBC update. 
+C        3) avoid also unrealistic value of etaH in OB regions that
+C           might produce many "WARNING" message from calc_surf_dr.  
+C-------
+        IF (useOBCS .AND. nonlinFreeSurf.GT.0 ) 
+     &    CALL OBCS_APPLY_ETA( bi, bj, etaH, myThid )   
+#endif /* NONLIN_FRSURF */
+#endif /* ALLOW_OBCS */
+
       ENDIF
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
