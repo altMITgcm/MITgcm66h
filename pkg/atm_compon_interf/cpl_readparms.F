@@ -68,7 +68,7 @@ C     cpl_atmSendFrq :: Frequency^-1 for sending data to coupler (s)
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 C-    Set default value:
-      cpl_earlyExpImpCall = .FALSE. 
+      cpl_earlyExpImpCall = .TRUE. 
       cpl_oldPickup = .FALSE. 
       useImportMxlD = .TRUE. 
       useImportSST  = .TRUE. 
