@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint45a_post
+o compute Rho over the whole domain (extend iMin,jMin indices)
+o specific exchange for X-slice domain (case Ny=1)
 o argument futureIter of S/R obcs_calc missing in exp4 & internal_wave /code
 o solve_for_pressure : set cg2d_x to zero where OBCS are applied
 
