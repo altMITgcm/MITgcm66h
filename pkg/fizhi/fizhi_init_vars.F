@@ -57,6 +57,15 @@ c pe on dynamics and physics grid refers to bottom edge
        jdim1 = 1
        jdim2 = sNy
 
+C First Check to see if we can start a fizhi experiment at current time
+C  All Fizhi alarms must be on for the first time step of a segment
+
+     if( .not.alarm('moist') .or. .not.alarm('turb')   .or.
+     .    .not.alarm('radsw') .or. .not.alarm('radlw') ) then
+      print *,' Cant Start Fizhi experiment at ',nymd,' ',nhms
+      stop
+     endif
+
 C Deal Here with Variables that are on a Fizhi Pickup or need Initialization
 
       IF ( startTime.EQ.0. .AND. nIter0.EQ.0 ) THEN
