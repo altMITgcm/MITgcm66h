@@ -167,7 +167,7 @@ C     per proc.
          I2 = (sNx)*(J-1)+I
          Katm = _KD2KA( K )
          UG1(I2,Katm)   = 0.5*(uVel(I,J,K,bi,bj)+uVel(I+1,J,K,bi,bj))
-         VG1(I2,Katm)   = 0.5*(vVel(I,J,K,bi,bj)+uVel(I,J+1,K,bi,bj))
+         VG1(I2,Katm)   = 0.5*(vVel(I,J,K,bi,bj)+vVel(I,J+1,K,bi,bj))
 C        Phyiscs works with temperature - not potential temp.
          TG1(I2,Katm)   = theta(I,J,K,bi,bj)/((pGround/pSurfs(K))**(RD/CPAIR))
          QG1(I2,Katm)   = salt(I,J,K,bi,bj)
@@ -272,6 +272,7 @@ caja     IF ( I .GE. 64-10 .AND. I .LE. 65+10 ) THEN
 caja      sst1(I2) = 300.+10.*exp( -((float(I)-64.5)/5.)**2 )
 caja      stl1(I2) = sst1(I2)
 caja     ENDIF
+c_jmc: should not be part of the AIM package :
          sst1(I2) = 300.+10.*exp( -((float(I)-64.5)/25.)**2 )
          stl1(I2) = sst1(I2)
         ENDDO
