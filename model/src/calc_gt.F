@@ -173,8 +173,8 @@ C     o Net zonal flux
       DO j=jMin,jMax
        DO i=iMin,iMax
         fZon(i,j) = 0.
-     _ADT(&            + afFacT*af(i,j) ) 
-     _LPT(&            + dfFacT*df(i,j) )
+     & _ADT( + afFacT*af(i,j) ) 
+     & _LPT( + dfFacT*df(i,j) )
        ENDDO
       ENDDO
 
@@ -210,8 +210,8 @@ C     o Net meridional flux
       DO j=jMin,jMax
        DO i=iMin,iMax
         fMer(i,j) = 0.
-     _ADT(&  + afFacT*af(i,j) )
-     _LPT(&  + dfFacT*df(i,j) )
+     & _ADT( + afFacT*af(i,j) )
+     & _LPT( + dfFacT*df(i,j) )
        ENDDO
       ENDDO
 
@@ -342,8 +342,8 @@ C     o Net vertical flux
       DO j=jMin,jMax
        DO i=iMin,iMax
         fVerT(i,j,kUp) = 0. 
-     _ADT(&  +afFacT*af(i,j)*maskUp(i,j) )
-     _LPT(&  +dfFacT*df(i,j)*maskUp(i,j) )
+     & _ADT( +afFacT*af(i,j)*maskUp(i,j) )
+     & _LPT( +dfFacT*df(i,j)*maskUp(i,j) )
        ENDDO
       ENDDO
 #ifdef INCLUDE_T_ADVECTION_CODE
