@@ -58,8 +58,6 @@ C      |
 C      |-- CONFIG_CHECK
 C      |
 C      |-- CONFIG_SUMMARY
-C      |
-C      |-- MNC_INIT
 
 C     !USES:
       IMPLICIT NONE

@@ -637,7 +637,7 @@ C--   Final checkpoint (in case the in-loop checkpoint was missed)
 #ifdef ALLOW_MNC
 C     Close all open NetCDF files
       _BEGIN_MASTER( mythid )
-      CALL MNC_FILE_CLOSE_ALL()
+      CALL MNC_FILE_CLOSE_ALL( myThid )
       _END_MASTER( mythid )
 #endif
 
