@@ -11,7 +11,7 @@ C !INTERFACE: ==========================================================
      I           bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
      I           xA,yA,uTrans,vTrans,rTrans,maskUp,
      I           diffKh, diffK4, KappaRT, Tracer,
-     I           tracerIdentity, advectionScheme,
+     I           tracerIdentity, advectionScheme, calcAdvection,
      U           fVerT, gTracer,
      I           myThid )
 
@@ -41,6 +41,7 @@ C !USES: ===============================================================
 #include "PARAMS.h"
 #include "GRID.h"
 #include "DYNVARS.h"
+#include "SURFACE.h"
 #include "GAD.h"
 
 #ifdef ALLOW_AUTODIFF_TAMC
@@ -63,6 +64,7 @@ C  KappaRT              :: 3-D array for vertical diffusion coefficient
 C  Tracer               :: tracer field
 C  tracerIdentity       :: identifier for the tracer (required only for KPP)
 C  advectionScheme      :: advection scheme to use
+C  calcAdvection        :: =False if Advec terms computed with multiDim scheme
 C  myThid               :: thread number
       INTEGER bi,bj,iMin,iMax,jMin,jMax
       INTEGER k,kUp,kDown,kM1
@@ -77,6 +79,7 @@ C  myThid               :: thread number
       _RL Tracer(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       INTEGER tracerIdentity
       INTEGER advectionScheme
+      LOGICAL calcAdvection
       INTEGER myThid
 
 C !OUTPUT PARAMETERS: ==================================================
@@ -128,10 +131,7 @@ C--   Make local copy of tracer array
 
 C--   Unless we have already calculated the advection terms we initialize
 C     the tendency to zero.
-      IF (.NOT. multiDimAdvection .OR.
-     &    advectionScheme.EQ.ENUM_CENTERED_2ND .OR.
-     &    advectionScheme.EQ.ENUM_UPWIND_3RD .OR.
-     &    advectionScheme.EQ.ENUM_CENTERED_4TH ) THEN
+      IF (calcAdvection) THEN
        DO j=1-Oly,sNy+Oly
         DO i=1-Olx,sNx+Olx
          gTracer(i,j,k,bi,bj)=0. _d 0
@@ -154,10 +154,7 @@ C--   Initialize net flux in X direction
       ENDDO
 
 C-    Advective flux in X
-      IF (.NOT. multiDimAdvection .OR.
-     &    advectionScheme.EQ.ENUM_CENTERED_2ND .OR.
-     &    advectionScheme.EQ.ENUM_UPWIND_3RD .OR.
-     &    advectionScheme.EQ.ENUM_CENTERED_4TH ) THEN
+      IF (calcAdvection) THEN
       IF (advectionScheme.EQ.ENUM_CENTERED_2ND) THEN
        CALL GAD_C2_ADV_X(bi,bj,k,uTrans,localT,af,myThid)
       ELSEIF (advectionScheme.EQ.ENUM_FLUX_LIMIT) THEN
@@ -200,7 +197,7 @@ C-    GM/Redi flux in X
 C *note* should update GMREDI_XTRANSPORT to use localT and set df  *aja*
         CALL GMREDI_XTRANSPORT(
      I     iMin,iMax,jMin,jMax,bi,bj,K,
-     I     xA,Tracer,
+     I     xA,Tracer,tracerIdentity,
      U     df,
      I     myThid)
       ENDIF
@@ -229,10 +226,7 @@ C--   Initialize net flux in Y direction
       ENDDO
 
 C-    Advective flux in Y
-      IF (.NOT. multiDimAdvection .OR.
-     &    advectionScheme.EQ.ENUM_CENTERED_2ND .OR.
-     &    advectionScheme.EQ.ENUM_UPWIND_3RD .OR.
-     &    advectionScheme.EQ.ENUM_CENTERED_4TH ) THEN
+      IF (calcAdvection) THEN
       IF (advectionScheme.EQ.ENUM_CENTERED_2ND) THEN
        CALL GAD_C2_ADV_Y(bi,bj,k,vTrans,localT,af,myThid)
       ELSEIF (advectionScheme.EQ.ENUM_FLUX_LIMIT) THEN
@@ -275,7 +269,7 @@ C-    GM/Redi flux in Y
 C *note* should update GMREDI_YTRANSPORT to use localT and set df  *aja*
        CALL GMREDI_YTRANSPORT(
      I     iMin,iMax,jMin,jMax,bi,bj,K,
-     I     yA,Tracer,
+     I     yA,Tracer,tracerIdentity,
      U     df,
      I     myThid)
       ENDIF
@@ -296,11 +290,23 @@ C-    Bi-harmonic flux in Y
        ENDDO
       ENDIF
 
+#ifdef NONLIN_FRSURF
+C--   Compute vertical flux fVerT(kDown) at interface k+1 (between k & k+1):
+      IF ( calcAdvection .AND. K.EQ.Nr .AND.
+     &     useRealFreshWaterFlux .AND.
+     &     buoyancyRelation .EQ. 'OCEANICP' ) THEN   
+       DO j=1-Oly,sNy+Oly
+        DO i=1-Olx,sNx+Olx
+         fVerT(i,j,kDown) = convertEmP2rUnit*PmEpR(i,j,bi,bj)
+     &     *rA(i,j,bi,bj)*maskC(i,j,k,bi,bj)*Tracer(i,j,k,bi,bj)
+        ENDDO
+       ENDDO 
+      ENDIF
+#endif /* NONLIN_FRSURF */
+
+C--   Compute vertical flux fVerT(kUp) at interface k (between k-1 & k):
 C-    Advective flux in R
-      IF (.NOT. multiDimAdvection .OR.
-     &    advectionScheme.EQ.ENUM_CENTERED_2ND .OR.
-     &    advectionScheme.EQ.ENUM_UPWIND_3RD .OR.
-     &    advectionScheme.EQ.ENUM_CENTERED_4TH ) THEN
+      IF (calcAdvection) THEN
 C     Note: wVel needs to be masked 
       IF (K.GE.2) THEN
 C-    Compute vertical advective flux in the interior:
@@ -358,11 +364,6 @@ C           boundary condition.
       ELSE
        CALL GAD_DIFF_R(bi,bj,k,KappaRT,tracer,df,myThid)
       ENDIF
-c     DO j=1-Oly,sNy+Oly
-c      DO i=1-Olx,sNx+Olx
-c       fVerT(i,j,kUp) = fVerT(i,j,kUp) + df(i,j)*maskUp(i,j)
-c      ENDDO
-c     ENDDO
 
 #ifdef ALLOW_GMREDI
 C-    GM/Redi flux in R
@@ -370,14 +371,9 @@ C-    GM/Redi flux in R
 C *note* should update GMREDI_RTRANSPORT to set df  *aja*
        CALL GMREDI_RTRANSPORT(
      I     iMin,iMax,jMin,jMax,bi,bj,K,
-     I     Tracer,
+     I     Tracer,tracerIdentity,
      U     df,
      I     myThid)
-c      DO j=1-Oly,sNy+Oly
-c       DO i=1-Olx,sNx+Olx
-c        fVerT(i,j,kUp) = fVerT(i,j,kUp) + df(i,j)*maskUp(i,j)
-c       ENDDO
-c      ENDDO
       ENDIF
 #endif
 
@@ -430,6 +426,29 @@ C--   Divergence of fluxes
      &    )
        ENDDO
       ENDDO
+
+#ifdef NONLIN_FRSURF
+C-- account for 3.D divergence of the flow in rStar coordinate:
+      IF (calcAdvection .AND. select_rStar.GT.0) THEN
+       DO j=1-Oly,sNy+Oly-1
+        DO i=1-Olx,sNx+Olx-1
+         gTracer(i,j,k,bi,bj) = gTracer(i,j,k,bi,bj)
+     &     - (rStarExpC(i,j,bi,bj) - 1. _d 0)/deltaTfreesurf
+     &       *tracer(i,j,k,bi,bj)*maskC(i,j,k,bi,bj)
+        ENDDO
+       ENDDO
+      ENDIF
+      IF (calcAdvection .AND. select_rStar.LT.0) THEN
+       DO j=1-Oly,sNy+Oly-1
+        DO i=1-Olx,sNx+Olx-1
+         gTracer(i,j,k,bi,bj) = gTracer(i,j,k,bi,bj)
+     &     - rStarDhCDt(i,j,bi,bj)
+     &       *tracer(i,j,k,bi,bj)*maskC(i,j,k,bi,bj)
+        ENDDO
+       ENDDO
+      ENDIF
+#endif /* NONLIN_FRSURF */
+      
 
       RETURN
       END

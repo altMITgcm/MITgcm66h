@@ -81,14 +81,14 @@ C  myThid               :: thread number
       INTEGER bi,bj
       INTEGER advectionScheme
       INTEGER tracerIdentity
-      _RL Gtracer(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL Tracer(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy)
       _RL myTime
       INTEGER myIter
       INTEGER myThid
 
 C !OUTPUT PARAMETERS: ==================================================
 C  gTracer              :: tendancy array
-      _RL Tracer(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL gTracer(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy)
 
 C !LOCAL VARIABLES: ====================================================
 C  maskUp               :: 2-D array for mask at W points
@@ -99,6 +99,7 @@ C  kdown                :: index into 2 1/2D array, toggles between 2 and 1
 C  kp1                  :: =k+1 for k<Nr, =Nr for k=Nr
 C  xA,yA                :: areas of X and Y face of tracer cells
 C  uTrans,vTrans,rTrans :: 2-D arrays of volume transports at U,V and W points
+C  rTransKp1            :: vertical volume transport at interface k+1
 C  af                   :: 2-D array for horizontal advective flux
 C  fVerT                :: 2 1/2D arrays for vertical advective flux
 C  localTij             :: 2-D array used as temporary local copy of tracer fld
@@ -110,12 +111,13 @@ C  nipass               :: number of passes to make in multi-dimensional method
 C  ipass                :: number of the current pass being made
       _RS maskUp  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER iMin,iMax,jMin,jMax
-      INTEGER i,j,k,kup,kDown,kp1
+      INTEGER i,j,k,kup,kDown
       _RS xA      (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS yA      (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL uTrans  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL vTrans  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL rTrans  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL rTransKp1(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL af      (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL fVerT   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
       _RL localTij(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
@@ -126,6 +128,8 @@ C  ipass                :: number of the current pass being made
 CEOP
 
 #ifdef ALLOW_AUTODIFF_TAMC
+          act0 = tracerIdentity - 1
+          max0 = maxpass
           act1 = bi - myBxLo(myThid)
           max1 = myBxHi(myThid) - myBxLo(myThid) + 1
           act2 = bj - myByLo(myThid)
@@ -133,9 +137,13 @@ CEOP
           act3 = myThid - 1
           max3 = nTx*nTy
           act4 = ikey_dynamics - 1
-          ikey = (act1 + 1) + act2*max1
-     &                      + act3*max1*max2
-     &                      + act4*max1*max2*max3
+          igadkey = (act0 + 1) 
+     &                      + act1*max0
+     &                      + act2*max0*max1
+     &                      + act3*max0*max1*max2
+     &                      + act4*max0*max1*max2*max3
+          if (tracerIdentity.GT.maxpass)
+     &         STOP 'maxpass seems smaller than tracerIdentity'
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C--   Set up work arrays with valid (i.e. not NaN) values
@@ -152,6 +160,7 @@ C     uninitialised but inert locations.
         rTrans(i,j)  = 0. _d 0
         fVerT(i,j,1) = 0. _d 0
         fVerT(i,j,2) = 0. _d 0
+        rTransKp1(i,j)= 0. _d 0
        ENDDO
       ENDDO
 
@@ -163,8 +172,9 @@ C     uninitialised but inert locations.
 C--   Start of k loop for horizontal fluxes
       DO k=1,Nr
 #ifdef ALLOW_AUTODIFF_TAMC 
-         kkey = (ikey-1)*Nr + k
-CADJ STORE tracer(:,:,k,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
+         kkey = (igadkey-1)*Nr + k
+CADJ STORE tracer(:,:,k,bi,bj) = 
+CADJ &     comlev1_bibj_k_gad, key=kkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C--   Get temporary terms used by tendency routines
@@ -172,6 +182,13 @@ C--   Get temporary terms used by tendency routines
      I         bi,bj,iMin,iMax,jMin,jMax,k,
      O         xA,yA,uTrans,vTrans,rTrans,maskUp,
      I         myThid)
+
+#ifdef ALLOW_GMREDI
+C--   Residual transp = Bolus transp + Eulerian transp
+       IF (useGMRedi)
+     &   CALL GMREDI_CALC_UVFLOW(
+     &            uTrans, vTrans, bi, bj, k, myThid)
+#endif /* ALLOW_GMREDI */
 
 C--   Make local copy of tracer array
       DO j=1-OLy,sNy+OLy
@@ -182,6 +199,10 @@ C--   Make local copy of tracer array
 
       IF (useCubedSphereExchange) THEN
        nipass=3
+#ifdef ALLOW_AUTODIFF_TAMC
+       if ( nipass.GT.maxcube )
+     &      STOP 'maxcube needs to be = 3'
+#endif
       ELSE
        nipass=1
       ENDIF
@@ -190,10 +211,10 @@ cph       nipass=1
 C--   Multiple passes for different directions on different tiles
       DO ipass=1,nipass
 #ifdef ALLOW_AUTODIFF_TAMC
-         passkey = ipass + (k-1)   *maxpass
-     &                   + (ikey-1)*maxpass*Nr
+         passkey = ipass + (k-1)      *maxcube
+     &                   + (igadkey-1)*maxcube*Nr
          IF (nipass .GT. maxpass) THEN
-          STOP 'GAD_ADVECTION: nipass > maxpass. check tamc.h'
+          STOP 'GAD_ADVECTION: nipass > maxcube. check tamc.h'
          ENDIF
 #endif /* ALLOW_AUTODIFF_TAMC */
 
@@ -242,7 +263,8 @@ C-    Advective flux in X
 
 #ifdef ALLOW_AUTODIFF_TAMC
 #ifndef DISABLE_MULTIDIM_ADVECTION
-CADJ STORE localTij(:,:)  = comlev1_bibj_pass, key=passkey, byte=isbyte
+CADJ STORE localTij(:,:)  = 
+CADJ &     comlev1_bibj_k_gad_pass, key=passkey, byte=isbyte
 #endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
@@ -308,7 +330,8 @@ C-    Advective flux in Y
 
 #ifdef ALLOW_AUTODIFF_TAMC 
 #ifndef DISABLE_MULTIDIM_ADVECTION
-CADJ STORE localTij(:,:)  = comlev1_bibj_pass, key=passkey, byte=isbyte
+CADJ STORE localTij(:,:)  = 
+CADJ &     comlev1_bibj_k_gad_pass, key=passkey, byte=isbyte
 #endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
@@ -372,27 +395,49 @@ C--   kup    Cycles through 1,2 to point to w-layer above
 C--   kDown  Cycles through 2,1 to point to w-layer below
       kup  = 1+MOD(k+1,2)
       kDown= 1+MOD(k,2)
-
-C--   Get temporary terms used by tendency routines
-      CALL CALC_COMMON_FACTORS (
-     I         bi,bj,iMin,iMax,jMin,jMax,k,
-     O         xA,yA,uTrans,vTrans,rTrans,maskUp,
-     I         myThid)
-
-C-    Advective flux in R
-      DO j=1-Oly,sNy+Oly
-       DO i=1-Olx,sNx+Olx
-        af(i,j) = 0.
-       ENDDO
-      ENDDO
+c     kp1=min(Nr,k+1)
+      kp1Msk=1.
+      if (k.EQ.Nr) kp1Msk=0.
 
 #ifdef ALLOW_AUTODIFF_TAMC 
 CADJ STORE localTijk(:,:,k)  
-CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ &     = comlev1_bibj_k_gad, key=kkey, byte=isbyte
+CADJ STORE rTrans(:,:)  
+CADJ &     = comlev1_bibj_k_gad, key=kkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 
+C-- Compute Vertical transport
 C     Note: wVel needs to be masked 
-      IF (K.GE.2) THEN
+
+      IF (k.EQ.1) THEN
+C- Surface interface :
+
+       DO j=1-Oly,sNy+Oly
+        DO i=1-Olx,sNx+Olx
+         rTransKp1(i,j) = rTrans(i,j)
+         rTrans(i,j) = 0.
+         fVerT(i,j,kUp) = 0.
+        ENDDO
+       ENDDO
+
+      ELSE
+C- Interior interface :
+       DO j=1-Oly,sNy+Oly
+        DO i=1-Olx,sNx+Olx
+         rTransKp1(i,j) = kp1Msk*rTrans(i,j)
+         rTrans(i,j) = wVel(i,j,k,bi,bj)*rA(i,j,bi,bj)
+     &               *maskC(i,j,k-1,bi,bj)
+         af(i,j) = 0.
+        ENDDO
+       ENDDO
+
+#ifdef ALLOW_GMREDI
+C--   Residual transp = Bolus transp + Eulerian transp
+       IF (useGMRedi) 
+     &   CALL GMREDI_CALC_WFLOW(
+     &                    rTrans, bi, bj, k, myThid)
+#endif /* ALLOW_GMREDI */
+
 C-    Compute vertical advective flux in the interior:
        IF (advectionScheme.EQ.ENUM_FLUX_LIMIT) THEN
         CALL GAD_FLUXLIMIT_ADV_R(
@@ -406,41 +451,24 @@ C-    Compute vertical advective flux in the interior:
        ELSE
         STOP 'GAD_ADVECTION: adv. scheme incompatibale with mutli-dim'
        ENDIF
-C-    Surface "correction" term at k>1 :
-       DO j=1-Oly,sNy+Oly
-        DO i=1-Olx,sNx+Olx
-         af(i,j) = af(i,j)
-     &           + (maskC(i,j,k,bi,bj)-maskC(i,j,k-1,bi,bj))*
-     &             rTrans(i,j)*localTijk(i,j,k)
-        ENDDO
-       ENDDO 
-      ELSE
-C-    Surface "correction" term at k=1 :
-       DO j=1-Oly,sNy+Oly
-        DO i=1-Olx,sNx+Olx
-         af(i,j) = rTrans(i,j)*localTijk(i,j,k)
-        ENDDO
-       ENDDO 
-      ENDIF
 C-    add the advective flux to fVerT
-      DO j=1-Oly,sNy+Oly
-       DO i=1-Olx,sNx+Olx
-        fVerT(i,j,kUp) = af(i,j)
+       DO j=1-Oly,sNy+Oly
+        DO i=1-Olx,sNx+Olx
+         fVerT(i,j,kUp) = af(i,j)
+        ENDDO
        ENDDO
-      ENDDO
+
+C- end Surface/Interior if bloc
+      ENDIF
 
 C--   Divergence of fluxes
-      kp1=min(Nr,k+1)
-      kp1Msk=1.
-      if (k.EQ.Nr) kp1Msk=0.
       DO j=1-Oly,sNy+Oly
        DO i=1-Olx,sNx+Olx
         localTij(i,j)=localTijk(i,j,k)-deltaTtracer*
      &    _recip_hFacC(i,j,k,bi,bj)*recip_drF(k)
      &    *recip_rA(i,j,bi,bj)
      &    *( fVerT(i,j,kUp)-fVerT(i,j,kDown)
-     &      -tracer(i,j,k,bi,bj)*rA(i,j,bi,bj)*
-     &        (wVel(i,j,k,bi,bj)-kp1Msk*wVel(i,j,kp1,bi,bj))
+     &      -tracer(i,j,k,bi,bj)*(rTrans(i,j)-rTransKp1(i,j))
      &     )*rkFac
         gTracer(i,j,k,bi,bj)=
      &   (localTij(i,j)-tracer(i,j,k,bi,bj))/deltaTtracer
