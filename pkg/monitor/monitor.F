@@ -16,6 +16,7 @@ C     === Global data ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "EESUPPORT.h"
 #include "DYNVARS.h"
 #include "GRID.h"
 #include "MONITOR.h"
@@ -40,6 +41,9 @@ C     === Local variables ====
 
 C      Dynamics field monitor start 
        _BEGIN_MASTER(myThid)
+#ifdef ALLOW_USE_MPI
+       IF ( .NOT. useSingleCPUIO .OR. mpiMyId .EQ. 0 ) THEN
+#endif /* ALLOW_USE_MPI */
         WRITE(msgBuf,'(A)')
      &'// ======================================================='
         CALL PRINT_MESSAGE( msgBuf, mon_ioUnit, SQUEEZE_RIGHT , 1)
@@ -49,6 +53,9 @@ C      Dynamics field monitor start
         WRITE(msgBuf,'(A)')
      &'// ======================================================='
         CALL PRINT_MESSAGE( msgBuf, mon_ioUnit, SQUEEZE_RIGHT , 1)
+#ifdef ALLOW_USE_MPI
+       ENDIF
+#endif /* ALLOW_USE_MPI */
        _END_MASTER(myThid)
 
 C      Print the time to make grepping the stdout easier
@@ -96,6 +103,9 @@ C      Check that solution is within reasonable bounds
 
 C      Dynamics field monitor finish
        _BEGIN_MASTER(myThid)
+#ifdef ALLOW_USE_MPI
+       IF ( .NOT. useSingleCPUIO .OR. mpiMyId .EQ. 0 ) THEN
+#endif /* ALLOW_USE_MPI */
         WRITE(msgBuf,'(A)')
      &'// ======================================================='
         CALL PRINT_MESSAGE( msgBuf, mon_ioUnit, SQUEEZE_RIGHT , 1)
@@ -105,6 +115,9 @@ C      Dynamics field monitor finish
         WRITE(msgBuf,'(A)')
      &'// ======================================================='
         CALL PRINT_MESSAGE( msgBuf, mon_ioUnit, SQUEEZE_RIGHT , 1)
+#ifdef ALLOW_USE_MPI
+       ENDIF
+#endif /* ALLOW_USE_MPI */
        _END_MASTER(myThid)
 
       ENDIF
