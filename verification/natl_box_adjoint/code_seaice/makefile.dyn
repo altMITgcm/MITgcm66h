@@ -285,6 +285,7 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/cost_heatflux.f			\
 		$(SOURCE_CODE)/cost_hyd.f			\
 		$(SOURCE_CODE)/cost_initvaria.f			\
+		$(SOURCE_CODE)/cost_init_barfiles.f		\
 		$(SOURCE_CODE)/cost_merstress.f			\
 		$(SOURCE_CODE)/cost_readers.f			\
 		$(SOURCE_CODE)/cost_readsssfields.f		\
@@ -315,22 +316,23 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/cost_ice.f			\
                 $(SOURCE_CODE)/sw_ptmp.f                        \
                 $(SOURCE_CODE)/sw_adtg.f                        \
+		$(SOURCE_CODE)/cost_kapgm.f			\
+		$(SOURCE_CODE)/cost_readargot.f			\
+		$(SOURCE_CODE)/cost_readargos.f			\
+		$(SOURCE_CODE)/cost_ctdtclim.f			\
+		$(SOURCE_CODE)/cost_ctdsclim.f			\
+		$(SOURCE_CODE)/cost_readtmifields.f		\
+		$(SOURCE_CODE)/cost_tmi.f			\
 		  						\
-		$(SOURCE_CODE)/ctrl_getheatflux.f		\
-		$(SOURCE_CODE)/ctrl_getsaltflux.f		\
-		$(SOURCE_CODE)/ctrl_getzonstress.f		\
-		$(SOURCE_CODE)/ctrl_getmerstress.f		\
-		$(SOURCE_CODE)/ctrl_getatemp.f			\
-		$(SOURCE_CODE)/ctrl_getaqh.f			\
-		$(SOURCE_CODE)/ctrl_getuwind.f			\
-		$(SOURCE_CODE)/ctrl_getvwind.f			\
+		$(SOURCE_CODE)/ctrl_get_gen.f			\
+		$(SOURCE_CODE)/ctrl_get_gen_rec.f		\
 		$(SOURCE_CODE)/ctrl_getobcsn.f			\
 		$(SOURCE_CODE)/ctrl_getobcss.f			\
 		$(SOURCE_CODE)/ctrl_getobcsw.f			\
 		$(SOURCE_CODE)/ctrl_getobcse.f			\
 		$(SOURCE_CODE)/ctrl_getrec.f			\
 		$(SOURCE_CODE)/ctrl_init_variables.f		\
-		$(SOURCE_CODE)/ctrl_map.f			\
+		$(SOURCE_CODE)/ctrl_map_ini.f			\
 		  						\
 		$(SOURCE_CODE)/ecco_init.f			\
 		$(SOURCE_CODE)/ecco_the_main_loop.f		\

@@ -6,8 +6,8 @@ TAMC             = tamc
 TAF              = taf
 ###TAF              = ~fastopt/bin/taf
 DEST             = .
-SOURCE_CODE      = ../flux_bin
-ADJOINT_SCRIPT   = ../flux_adjoint
+SOURCE_CODE      = ../bin
+ADJOINT_SCRIPT   = ../adjoint
 BASE             = ..
 PKG		= $(BASE)/pkg
 #
