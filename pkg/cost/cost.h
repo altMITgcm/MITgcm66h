@@ -85,6 +85,7 @@ c             intantaneous field.
      &                    tbar_gen
 
 #if (defined (ALLOW_THETA_COST_CONTRIBUTION) || \
+     defined (ALLOW_SST_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDT_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDTCLIM_COST_CONTRIBUTION) || \
      defined (ALLOW_XBT_COST_CONTRIBUTION) || \
@@ -92,25 +93,18 @@ c             intantaneous field.
      defined (ALLOW_OBCS_COST_CONTRIBUTION))
       _RL tbar  (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
 #else
-# ifdef ALLOW_SST_COST_CONTRIBUTION
-      _RL tbar  (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
-# else
       _RL tbar
-# endif
 #endif
 
 #if (defined (ALLOW_SALT_COST_CONTRIBUTION) || \
+     defined (ALLOW_SSS_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDS_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDSCLIM_COST_CONTRIBUTION) || \
      defined (ALLOW_DRIFT_COST_CONTRIBUTION) || \
      defined (ALLOW_OBCS_COST_CONTRIBUTION))
       _RL sbar  (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
 #else
-# ifdef ALLOW_SSS_COST_CONTRIBUTION
-      _RL sbar  (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
-# else
       _RL sbar
-# endif
 #endif
 
 #ifdef GENERIC_BAR_MONTH
