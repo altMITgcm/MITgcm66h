@@ -3,7 +3,7 @@ C $Name$
 
 #ifndef EXF_OPTIONS_H
 #define EXF_OPTIONS_H
-#include "PACKAGE.h"
+#include "PACKAGES_CONFIG.h"
 #ifdef ALLOW_EXF
 
 #include "CPP_OPTIONS.h"
