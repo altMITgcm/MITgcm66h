@@ -62,7 +62,7 @@ c     == end of interface ==
             do i = imin,imax
 c
 c             Heat flux.
-              if ( ( hflux(i,j,bi,bj) .GT. 1300. .OR.
+              if ( ( hflux(i,j,bi,bj) .GT. 1500. .OR.
      &               hflux(i,j,bi,bj) .LT. -500. ) .AND.
      &              hFacC(i,j,1,bi,bj) .NE. 0. ) then
                  print *, 'EXF WARNING: hflux out of range for i,j= ',
