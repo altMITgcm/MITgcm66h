@@ -74,6 +74,10 @@ C                begine.
      I            OLw, OLe, OLs, OLn, myNz,
      I            exchWidthX, exchWidthY,
      I            FORWARD_SIMULATION, EXCH_UPDATE_CORNERS, myThid )
+       CALL EXCH2_RX2_CUBE( Uphi, Vphi, withSigns, 'UV',
+     I            OLw, OLe, OLs, OLn, myNz,
+     I            exchWidthX, exchWidthY,
+     I            FORWARD_SIMULATION, EXCH_UPDATE_CORNERS, myThid )
        DO bj=myByLo(myThid),myByHi(myThid)
         DO bi=myBxLo(myThid),myBxHi(myThid)
          myTile = W2_myTileList(bi)
