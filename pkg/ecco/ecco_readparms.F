@@ -81,43 +81,19 @@ c--     Next, read the ECCO data file.
         read  ( unit = scrunit1, nml = ecco_parms)
         close ( scrunit1 )
 
-#ifdef INCLUDE_ECCO_PACKAGE
-C--   Initialise the ECCO State Estimation package.
-
-#ifdef ALLOW_ECCO_OPTIMIZATION
-c--   Initialise the optimization-related parts of the ECCO State
-c--   Estimation package.
-      CALL optim_readparms( myThid )
-      _BARRIER
-
-C--   Initialise the cost function.
-      call cost_readparms( mythid )
-      call cost_init( myThid )
-      _BARRIER
-
-C--   Initialise the control vector.
-      CALL ctrl_init( myThid )
-      _BARRIER
-
-#ifdef ALLOW_GRADIENT_CHECK
-C--   Initialise gradient check parameters
-      if (useGrdchk) call grdchk_readparms( myThid )
-#endif
-
-#endif /* ALLOW_ECCO_OPTIMIZATION */
-
 #ifdef ALLOW_ECCO_DIAGNOSTICS_RUN
 c--   Initialise the ECCO diagnostics package.
       CALL diagnos_init( myThid )
       _BARRIER
 #endif
 
-#endif /* INCLUDE_ECCO_PACKAGE */
-
 c-------------------------------- ECCO --------------------------------
 
 c--     Summarize the setup of the ECCO release.
-        call ecco_summary( mythid )
+cph     That call doesn't make sense here any longer;
+c
+cph     will move it somewhere else later
+cph        call ecco_summary( mythid )
       _END_MASTER( mythid )
       _BARRIER
 

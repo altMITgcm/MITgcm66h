@@ -42,15 +42,8 @@ c     == end of interface ==
 #ifdef INCLUDE_ECCO_PACKAGE
 
 #ifdef ALLOW_COST
-c--   Initialise the cost function.
-      call cost_InitVaria( mythid )
-
 c--   Initialise the time averages.
       call cost_AveragesInit( mythid )
-
-c--   Map the control variables onto the model state. 
-      call ctrl_init_variables ( mythid )
-      call ctrl_map( mythid )
       _BARRIER
 #endif
 
