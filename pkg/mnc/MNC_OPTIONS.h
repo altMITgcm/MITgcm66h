@@ -10,6 +10,8 @@ C $Name$
 
 CEH3 package-specific options go here
 
+#include "mnc_id_header.h"
+
 #endif /* ALLOW_MNC */
 #endif /* MNC_OPTIONS_H */
 
