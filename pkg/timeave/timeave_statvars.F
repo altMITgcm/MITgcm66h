@@ -52,6 +52,8 @@ C-    Initialize fields for the first call ever
         CALL TIMEAVE_RESET(UTtave,    Nr, bi, bj, myThid)
         CALL TIMEAVE_RESET(VTtave,    Nr, bi, bj, myThid)
         CALL TIMEAVE_RESET(WTtave,    Nr, bi, bj, myThid)
+        CALL TIMEAVE_RESET(UStave,    Nr, bi, bj, myThid)
+        CALL TIMEAVE_RESET(VStave,    Nr, bi, bj, myThid)
 #ifndef HRCUBE
         CALL TIMEAVE_RESET(Eta2tave,  1,  bi, bj, myThid)
         CALL TIMEAVE_RESET(TTtave,    Nr, bi, bj, myThid)
@@ -141,11 +143,19 @@ C-    Time Averages of "double" fields (* hFactor)
      &     DDTT, bi, bj, myThid)
       CALL TIMEAVE_CUMUL_2VFC(VTtave, theta, vVel,  hFacS, Nr, 2,
      &     DDTT, bi, bj, myThid)
+      CALL TIMEAVE_CUMUL_2VFC(UStave, salt, uVel,  hFacW, Nr, 1,
+     &     DDTT, bi, bj, myThid)
+      CALL TIMEAVE_CUMUL_2VFC(VStave, salt, vVel,  hFacS, Nr, 2,
+     &     DDTT, bi, bj, myThid)
 
 C-    Time Averages of "double" fields (no hFactor)
 c     CALL TIMEAVE_CUMUL_2V(UTtave, theta, uVel, Nr, 1,
 c    &     DDTT, bi, bj, myThid)
 c     CALL TIMEAVE_CUMUL_2V(VTtave, theta, vVel, Nr, 2,
+c    &     DDTT, bi, bj, myThid)
+c     CALL TIMEAVE_CUMUL_2V(UStave, salt, uVel, Nr, 1,
+c    &     DDTT, bi, bj, myThid)
+c     CALL TIMEAVE_CUMUL_2V(VStave, salt, vVel, Nr, 2,
 c    &     DDTT, bi, bj, myThid)
 
 
