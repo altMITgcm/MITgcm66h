@@ -35,7 +35,7 @@ C   coriolis terms
 #undef   INCLUDE_CD_CODE
 
 C o Include/exclude code for open-boundary conditions
-#define  ALLOW_OBCS
+#undef   ALLOW_OBCS
 
 C o Include/exclude diagnostics package interface code
 #define  ALLOW_TIMEAVE
