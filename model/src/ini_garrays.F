@@ -68,9 +68,7 @@ C-      3D arrays
 C-      2D arrays
         DO J=1-Oly,sNy+Oly
          DO I=1-Olx,sNx+Olx
-#ifdef INCLUDE_CD_CODE
           etaNm1(I,J,bi,bj)=0.
-#endif
          ENDDO
         ENDDO
 
