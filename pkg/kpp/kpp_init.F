@@ -138,8 +138,8 @@ C-----------------------------------------------------------------------
                   do i = 1-OLx, sNx+OLx
                      KPPghat       (i,j,k,bi,bj) = 0.
                      KPPviscAz  (i,j,k,bi,bj) = viscAr
-                     KPPdiffKzT (i,j,k,bi,bj) = diffKrT
-                     KPPdiffKzS (i,j,k,bi,bj) = diffKrS
+                     KPPdiffKzT (i,j,k,bi,bj) = diffKrNrT(k)
+                     KPPdiffKzS (i,j,k,bi,bj) = diffKrNrS(k)
                   end do
                end do
             end do

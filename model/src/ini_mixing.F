@@ -38,11 +38,11 @@ CEOP
 
        DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
-         DO j=1,sNy
-          DO i=1,sNx
-           DO k=1,Nr
+         DO k=1,Nr
+          DO j=1,sNy
+           DO i=1,sNx
 #if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_DIFFKR_CONTROL))
-            diffKr(i,j,k,bi,bj) = diffKrS
+            diffKr(i,j,k,bi,bj) = diffKrNrS(k)
 #endif
 #if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_KAPGM_CONTROL))
             KapGM(i,j,k,bi,bj) = GMkbackground

@@ -67,7 +67,7 @@ C     Set defaults values for parameters in PTRACERS.h
         PTRACERS_advScheme(iTracer)=saltAdvScheme
         PTRACERS_diffKh(iTracer)=diffKhS
         PTRACERS_diffK4(iTracer)=diffK4S
-        PTRACERS_diffKr(iTracer)=diffKrS
+        PTRACERS_diffKr(iTracer)=diffKrNrS(1)
         PTRACERS_useGMRedi(iTracer)=useGMRedi
         PTRACERS_useKPP(iTracer)=useKPP
         PTRACERS_initialFile(iTracer)=' '
