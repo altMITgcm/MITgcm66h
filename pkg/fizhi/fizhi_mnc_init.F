@@ -36,13 +36,13 @@ C         Cor  &   &      &     &     \\\hline
 C       \end{tabular}
 C     \end{center}
 
+      implicit none
 C     !INPUT PARAMETERS:
       integer myThid
       integer sNx,sNy, OLx,OLy, nSx,nSy, nPx,nPy
       integer NrPhys
 
 C     !USES:
-      implicit none
 #ifdef ALLOW_MNC
 #include "mnc_common.h"
 #endif  /*  ALLOW_MNC  */

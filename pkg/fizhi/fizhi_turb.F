@@ -97,6 +97,8 @@ c-----------------------------------------------------------------------
 #endif
 
 #ifdef ALLOW_DIAGNOSTICS
+#include "SIZE.h"
+#include "diagnostics_SIZE.h"
 #include "diagnostics.h"
 #endif
 

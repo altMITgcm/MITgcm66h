@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
-                                                                                       
+
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
       subroutine fizhi_step_diag(myThid,p,uphy,vphy,thphy,sphy,qq,pk,dp,
      .  radswt,radswg,swgclr,osr,osrclr,st4,dst4,tgz,tg0,radlwg,lwgclr,
@@ -10,6 +11,8 @@ C***********************************************************************
       implicit none
 
 #ifdef ALLOW_DIAGNOSTICS
+#include "SIZE.h"
+#include "diagnostics_SIZE.h"
 #include "diagnostics.h"
 #endif
 
