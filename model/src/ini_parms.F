@@ -66,7 +66,7 @@ C--   Elliptic solver parameters
 
 C--   Time stepping parammeters
       NAMELIST /PARM03/
-     & nIter0, nTimeSteps, deltaTmom, deltaTtracer, abEps, tauCD, rCD,
+     & nIter0, nTimeSteps, deltaT, deltaTmom, deltaTtracer, abEps, tauCD, rCD,
      & startTime, endTime, chkPtFreq, dumpFreq
 
 C--   Gridding parameters
