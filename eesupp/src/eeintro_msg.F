@@ -51,7 +51,8 @@ C     === Local variables ===
       WRITE(msgBuf,'(A)') '// account cnh'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
-      WRITE(msgBuf,'(A)') '// MITgcm UV Release: 0.0.0'
+      WRITE(msgBuf,'(A)') 
+     &'// MITgcm UV Release: $Name$'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
       WRITE(msgBuf,'(A)') '   '
