@@ -464,19 +464,14 @@ CADJ STORE OBNt(:,klev,bi,bj)  = comlev1_bibj_k, key=kkey, byte=isbyte
          j=OB_Jn(i,bi,bj)-jsl
 
          IF ((j.ge.jmin).and.(j.le.jmax)) THEN
-cgg(
            IF  (OBNt(i,klev,bi,bj).ne. 0.d0) then
-          print*,'i,jsl,j,klev',i,jsl,j,klev
           trelax=( 
      &      float(spongeThickness-jsl)*OBNt(i,kLev,bi,bj)
      &    + float(jsl)*theta(i,j,kLev,bi,bj) )
      &    / float(spongeThickness)
-          print*,'trelax',trelax
-          print*,'obnt',obnt(i,klev,bi,bj)
           lambda_obcs_t = ( 
      &      float(spongeThickness-jsl)*Vrelaxobcsbound
      &    + float(jsl-1)*Vrelaxobcsinner)/ float(spongeThickness-1)
-          print*,'lambda_obcs_t',lambda_obcs_t
 
           IF (lambda_obcs_t.ne.0.) THEN 
            lambda_obcs_t = 1. _d 0 /(lambda_obcs_t * secondsperday)
@@ -487,10 +482,7 @@ cgg(
           gT(i,j,kLev,bi,bj) =  gT(i,j,kLev,bi,bj)
      &    -  maskC(i,j,kLev,bi,bj) * lambda_obcs_t
      &    * ( theta(i,j,kLev,bi,bj) - trelax )
-         print*,'theta',theta(i,j,klev,bi,bj)
-         print*,'gt',gt(i,j,klev,bi,bj)
            endif
-cgg)
          ENDIF
  
         ENDDO
