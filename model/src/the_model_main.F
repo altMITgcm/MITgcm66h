@@ -32,7 +32,7 @@ C     == Global variables ===
 
 C     == Routine arguments ==
 C     myThid - Thread number for this instance of the routine.
-      INTEGER myThid
+      INTEGER myThid 
 
 C     == Local variables ==
 C     Note: Under the multi-threaded model myCurrentIter and myCurrentTime
