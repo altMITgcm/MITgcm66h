@@ -708,7 +708,15 @@ c     and the last year.
       call cost_driftw( myiter, mytime, mythid )
       call timer_stop ('cost_Driftw        [ECCO SPIN-DOWN]', mythid)
 #endif
+      _BARRIER
 
+c--   Compute initial vs. final T/S deviation
+#ifdef ALLOW_COST_INI_FIN
+      call timer_start('cost_ini_fin       [ECCO SPIN-DOWN]', mythid)
+      call cost_theta_ini_fin( myiter, mytime, mythid )
+      call cost_salt_ini_fin( myiter, mytime, mythid )
+      call timer_stop ('cost_ini_fin       [ECCO SPIN-DOWN]', mythid)
+#endif
       _BARRIER
 
 c--   Sum all cost function contributions.

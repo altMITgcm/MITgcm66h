@@ -3,12 +3,10 @@ C $Header$
 #include "COST_CPPOPTIONS.h"
 
 
-      subroutine cost_Final(
-     I                       mythid
-     &                     )
+      subroutine cost_final( mythid )
 
 c     ==================================================================
-c     SUBROUTINE cost_Final
+c     SUBROUTINE cost_final
 c     ==================================================================
 c
 c     o Sum of all cost function contributions.
@@ -20,7 +18,7 @@ c                for the MITgcmUV.
 c     added sea-ice term: menemenlis@jpl.nasa.gov 26-Feb-2003
 c
 c     ==================================================================
-c     SUBROUTINE cost_Final
+c     SUBROUTINE cost_final
 c     ==================================================================
 
       implicit none
@@ -53,6 +51,8 @@ c     == local variables ==
       _RL f_drifter, f_xbt, f_tdrift, f_sdrift, f_wdrift
       _RL f_argot, f_argos, f_ssh 
       _RL f_scatx, f_scaty, f_scatxm, f_scatym
+      _RL f_ice
+      _RL f_ini_fin
 
       character*20 cfname
 #ifdef ECCO_VERBOSE
@@ -99,6 +99,8 @@ c     == end of interface ==
       f_scaty = 0. _d 0
       f_scatxm = 0. _d 0
       f_scatym = 0. _d 0
+      f_ice = 0. _d 0
+      f_ini_fin = 0. _d 0
 
 #ifdef ECCO_VERBOSE
       write(msgbuf,'(a)') ' '
@@ -161,6 +163,8 @@ c--   Sum up all contributions.
           print*,' --> objf_obcsw(bi,bj)   =',objf_obcsw(bi,bj)
           print*,' --> objf_obcse(bi,bj)   =',objf_obcse(bi,bj)
           print*,' --> objf_ice(bi,bj)     =',objf_ice(bi,bj)
+          print*,' --> objf_ini_fin(bi,bj) =',
+     &         objf_theta_ini_fin(bi,bj) + objf_salt_ini_fin(bi,bj)
 
           fc = fc
      &            + mult_temp    * objf_temp(bi,bj)
@@ -202,7 +206,9 @@ c--   Sum up all contributions.
      &            + mult_obcss   * objf_obcss(bi,bj)  
      &            + mult_obcsw   * objf_obcsw(bi,bj)  
      &            + mult_obcse   * objf_obcse(bi,bj)  
-     &            + mult_ice     * objf_ice(bi,bj)  
+     &            + mult_ice     * objf_ice(bi,bj)
+     &            + mult_ini_fin *(objf_theta_ini_fin(bi,bj) +
+     &                             objf_salt_ini_fin(bi,bj))
 
           f_temp = f_temp + objf_temp(bi,bj)
           f_salt = f_salt + objf_salt(bi,bj)
@@ -235,6 +241,9 @@ c--   Sum up all contributions.
           f_scaty = f_scaty + objf_scaty(bi,bj)
           f_scatxm = f_scatxm + objf_scatxm(bi,bj)
           f_scatym = f_scatym + objf_scatym(bi,bj)
+          f_ice = f_ice + objf_ice(bi,bj)
+          f_ini_fin = f_ini_fin + 
+     &         objf_theta_ini_fin(bi,bj) + objf_salt_ini_fin(bi,bj)
 
         enddo
       enddo
@@ -276,6 +285,8 @@ c--   Do global summation for each part of the cost function
       _GLOBAL_SUM_R8( f_scaty , myThid )    
       _GLOBAL_SUM_R8( f_scatxm , myThid )    
       _GLOBAL_SUM_R8( f_scatym , myThid )    
+      _GLOBAL_SUM_R8( f_ice , myThid )    
+      _GLOBAL_SUM_R8( f_ini_fin , myThid )    
 
 c--   Each process has calculated the global part for itself.
       _BEGIN_MASTER( mythid )
@@ -321,6 +332,7 @@ c--   Each process has calculated the global part for itself.
         write(ifc,*) 'f_scaty =', f_scaty
         write(ifc,*) 'f_scatxm =', f_scatxm
         write(ifc,*) 'f_scatym =', f_scatym
+        write(ifc,*) 'f_ini_fin =', f_ini_fin
         
         close(ifc)
         

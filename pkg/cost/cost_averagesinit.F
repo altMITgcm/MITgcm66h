@@ -185,10 +185,15 @@ c--       Initialise salinity average (2d).
             enddo
           enddo  
           xx_sflux_mean_dummy = 0. _d 0
-#endif    
+#endif
 
         enddo
       enddo
+
+#ifdef ALLOW_COST_INI_FIN
+      xx_theta_ini_fin_dummy = 0. _d 0
+      xx_salt_ini_fin_dummy = 0. _d 0
+#endif
 
       return
       end

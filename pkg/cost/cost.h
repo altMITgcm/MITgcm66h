@@ -266,6 +266,8 @@ c     objf_scatym - time-mean meridional SCAT  contribution
 c     objf_scatx  - zonal SCAT  contribution
 c     objf_scaty  - meridional SCAT  contribution
 c     objf_ice    - sea-ice volume
+c     objf_theta_ini_fin - final vs. initial theta misfit
+c     objf_salt_ini_fin  - final vs. initial salt misfit
 c
 c     mult_"var" - multipliers for the individual cost
 c                  function contributions.
@@ -312,7 +314,9 @@ c                  function contributions.
      &                objf_obcss,
      &                objf_obcsw,
      &                objf_obcse,
-     &                objf_ice
+     &                objf_ice,
+     &                objf_theta_ini_fin,
+     &                objf_salt_ini_fin
       _RL  fc
       _RL  objf_hflux  (nsx,nsy)
       _RL  objf_hfluxm (nsx,nsy)
@@ -355,6 +359,8 @@ c                  function contributions.
       _RL  objf_obcsw(nsx,nsy)
       _RL  objf_obcse(nsx,nsy)
       _RL  objf_ice  (nsx,nsy)
+      _RL  objf_theta_ini_fin(nsx,nsy)
+      _RL  objf_salt_ini_fin(nsx,nsy)
 
       common /cost_aux_r/
      &                    mult_hflux,
@@ -389,7 +395,8 @@ c                  function contributions.
      &                    mult_obcss,
      &                    mult_obcsw,
      &                    mult_obcse,
-     &                    mult_ice
+     &                    mult_ice,
+     &                    mult_ini_fin
       _RL  mult_hflux
       _RL  mult_sflux
       _RL  mult_tauu
@@ -423,6 +430,7 @@ c                  function contributions.
       _RL  mult_obcsw
       _RL  mult_obcse
       _RL  mult_ice
+      _RL  mult_ini_fin
 
 
 c     Record counters relevant for the cost function evaluation.

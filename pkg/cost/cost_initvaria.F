@@ -101,6 +101,8 @@ c--   Initialize the tiled cost function contributions.
           objf_obcsw(bi,bj)    = 0. _d 0
           objf_obcse(bi,bj)    = 0. _d 0
           objf_ice(bi,bj)      = 0. _d 0
+          objf_theta_ini_fin(bi,bj) = 0. _d 0
+          objf_salt_ini_fin(bi,bj)  = 0. _d 0
         enddo
       enddo
 
