@@ -1856,7 +1856,7 @@ for d in $alldirs ; do
 		  	deplist="$deplist $sf"
 			;;
                 esac
-		extn=`echo $sf | $AWK 'BEGIN {FS="."}; {print $NF}'`
+		extn=`echo $sf | $AWK -F. '{print $NF}'`
 		case $extn in
 		    F)
 			echo    " \\"  >> srclist.inc
