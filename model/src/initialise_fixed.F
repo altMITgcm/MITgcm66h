@@ -121,12 +121,6 @@ C--   Check dependances between packages
 C--   Call fixed data initialization phase of packages
       CALL PACKAGES_INIT_FIXED( myThid )
 
-#ifdef ALLOW_ZONAL_FILT
-C--   Latitude circle filter initialisation
-      CALL ZONAL_FILT_INIT(myThid)
-      _BARRIER
-#endif
-
 C--   Set laplace operators for use in 2D conjugate gradient solver.
       CALL INI_CG2D( myThid )
 
