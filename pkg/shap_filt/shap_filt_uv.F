@@ -289,8 +289,6 @@ C      F <-  [1-d_yy^n]F
         ENDDO
        ENDDO
 
-      CALL EXCH_UV_XYZ_RL(tmpFldU,tmpFldV,.TRUE.,myThid)
-
       ENDIF
 #endif /* ALLOW_SHAP_FILT */
 
