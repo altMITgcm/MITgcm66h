@@ -4,19 +4,17 @@
 #
 
 FC='pgf77'
-CC='gcc'
+CC='pgcc'
 DEFINES='-DWORDLENGTH=4'
 CPP='cpp -traditional -P'
 
 if test "x$IEEE" = x ; then
     #  No need for IEEE-754
     FFLAGS='-byteswapio -r8 -Mnodclchk -Mextend'
-    FOPTIM='-tp p6 -v -O2 -Munroll'
-# -Mvect=cachesize:512000,transform
+    FOPTIM='-fastsse -Mvect=cachesize:524288,transform'
 else
     #  Try to follow IEEE-754
     FFLAGS='-byteswapio -r8 -Mnodclchk -Mextend'
-    FOPTIM='-tp p6 -v -O2 -Munroll -Kieee'
-# -Mvect=cachesize:512000,transform
+    FOPTIM='-O0 -Mvect=sse -Mscalarsse -Mcache_align -Mnoflushz -Kieee'
 fi
 
