@@ -43,6 +43,9 @@ C     not fully support features for overlapping communication
 C     and computation.
       usingSyncMessages          = .TRUE.
 
+C--   Text map plots of fields ignore exact zero values
+      printMapIncludesZeros = .FALSE.
+
 C--   The remaining parameters here are set to default values.
 C--   and then any different values are read from an input
 C--   file called "eedata".

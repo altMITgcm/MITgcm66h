@@ -38,9 +38,10 @@ C--   Contribution to phiHyd(:,:,K) from buoy(:,:,K-1) + buoy(:,:,K)
 C     (This is now the actual hydrostatic pressure|height at the T/S points)
       DO j=jMin,jMax
        DO i=iMin,iMax
-        phiHyd(i,j,K)=phiHyd(i,j,Km1)+rhoConst*halfLayer
+        phiHyd(i,j,K)=phiHyd(i,j,Km1)-rhoConst*halfLayer
      &  *0.5 _d 0*(drF(Km1)+drF(K))
      &  *0.5 _d 0*( buoyKM1(i,j)+buoyKP1(i,j) )
+     &  *rkFac
        ENDDO
       ENDDO
 
