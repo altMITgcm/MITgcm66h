@@ -154,6 +154,9 @@ C master thread of process 0, only, opens a global file
           irec = k+nNz*(irecord-1)
           if (filePrec .eq. precFloat32) then
            read(dUnit,rec=irec) global_r4
+#ifdef _BYTESWAPIO
+           call MDS_BYTESWAPR4( Nx*Ny, global_r4 )
+#endif
            DO J=1,Ny
             DO I=1,Nx
              global(I,J) = global_r4(I,J)

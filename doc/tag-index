@@ -4,6 +4,7 @@ $Header$
     ==============================
 
 o change global_ocean.cs32x15 because of Pb with GM on CS-grid.
+o added useSingleCpuIO capability to mdsio_readfield.F and exf_interp.F
 
 checkpoint52d_pre
 o surface flux time-av diagnostic modified for NLFS & RealFreshWater 
