@@ -3,10 +3,10 @@ C $Header$
 #include "COST_CPPOPTIONS.h"
 
 
-      subroutine cost_init( mythid )
+      subroutine cost_initvaria( mythid )
 
 c     ==================================================================
-c     SUBROUTINE cost_init
+c     SUBROUTINE cost_initvaria
 c     ==================================================================
 c
 c     o Initialise the variable cost function part.
@@ -19,7 +19,7 @@ c              - Restructured the code in order to create a package
 c                for the MITgcmUV.
 c
 c     ==================================================================
-c     SUBROUTINE cost_init
+c     SUBROUTINE cost_initvaria
 c     ==================================================================
 
       implicit none
