@@ -3,11 +3,10 @@ C $Header$
 #include "CPP_EEOPTIONS.h"
 
 C     /==========================================================\
-C     | S/R DIV_G                                                |
+C     | S/R CALC_DIV_G                                           |
 C     | o Form the right hand-side of the surface pressure eqn.  |
-C     |==========================================================|
 C     \==========================================================/
-      SUBROUTINE DIV_G( 
+      SUBROUTINE CALC_DIV_G( 
      I        bi,bj,iMin,iMax,jMin,jMax,
      I        K,
      I        xA,yA,
