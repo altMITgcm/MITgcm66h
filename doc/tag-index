@@ -3,6 +3,13 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+branch-point-rdot
+ A few tidy-ups have been made bt the real point of this
+ check-point (excuse the pun) is to allow a branch to be
+ made for the purposes of adding the rDot alterations.
+ I don't want to commit the rDot to the main-trunk until
+ we've actually tested it...
+
 checkpoint12
  Tidy up and added generic genmake script (formerly
  configure script). 
