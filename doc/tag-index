@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint14
+ Consistent isomorphism chages made. These allow dynamical core
+ to support both pressure and meters as a vertical coordinate.
+
 checkpoint13
  Release which corrects global_max problem and a couple
  of KGM time-averaging diagnostic errors. Also contains
