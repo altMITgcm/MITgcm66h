@@ -51,13 +51,6 @@ C--   Update overlap regions
 
 C--   Interpolate wind stress (N/m^2) from South-West B-grid
 C     to South-West C-grid for forcing ocean model.
-      DO bj=myByLo(myThid),myByHi(myThid)
-       DO bi=myBxLo(myThid),myBxHi(myThid)
-        DO j=1,sNy
-         DO i=1,sNx
-#ifdef SEAICE_EXTERNAL_FLUXES
-          IF (HEFF(I,J,1,bi,bj).GT.0.0) THEN
-#endif
 cdm !!! NOTE that wind stress under sea-ice is set to the      !!!
 cdm !!! same value as it would be if there was no sea-ice.     !!!
 cdm !!! This is a placeholder until a more physically-sensible !!!
@@ -65,20 +58,20 @@ cdm !!! stable solution is developed.  Apparently ocean stress !!!
 cdm !!! that is based on sea-ice velocity can cause trouble in !!!
 cdm !!! Arctic Ocean configurations.  This temporary solution  !!!
 cdm !!! also corresponds to that adopted by CCSM-2.            !!!
-            fu(I,J,bi,bj)=HALF
-     &           *(WINDX(I,J+1,bi,bj)+WINDX(I,J,bi,bj))
-            fv(I,J,bi,bj)=HALF
-     &           *(WINDY(I+1,J,bi,bj)+WINDY(I,J,bi,bj))
-#ifdef SEAICE_EXTERNAL_FLUXES
-          ENDIF
-#endif
+#ifndef SEAICE_EXTERNAL_FLUXES
+      DO bj=myByLo(myThid),myByHi(myThid)
+       DO bi=myBxLo(myThid),myBxHi(myThid)
+        DO j=1,sNy
+         DO i=1,sNx
+          fu(I,J,bi,bj)=HALF*(WINDX(I,J+1,bi,bj)+WINDX(I,J,bi,bj))
+          fv(I,J,bi,bj)=HALF*(WINDY(I+1,J,bi,bj)+WINDY(I,J,bi,bj))
          ENDDO
         ENDDO
        ENDDO
       ENDDO
-
       _EXCH_XY_R4( fu, myThid )
       _EXCH_XY_R4( fv, myThid )
+#endif /* SEAICE_EXTERNAL_FLUXES */
 
 #endif /* ALLOW_SEAICE */
 

@@ -56,9 +56,18 @@ c     get record numbers and interpolation factor for lwdown
      &        )
 
          if ( first ) then
+#ifdef USE_EXF_INTERPOLATION
+          call new_interp(
+     &    lwdownfile, exf_iprec
+     &  , lwdown1, count0, xC, yC
+     &  ,lwdown_lon0,lwdown_lon_inc
+     &  ,lwdown_lat0,lwdown_lat_inc
+     &  ,lwdown_nlon,lwdown_nlat,mythid )
+#else
             call mdsreadfield( lwdownfile, exf_iprec, exf_yftype, 1
      &           , lwdown1, count0, mythid
      &           )
+#endif
             if (exf_yftype .eq. 'RL') then
                call exf_filter_rl( lwdown1, lwdownmask, mythid )
             else
@@ -68,10 +77,18 @@ c     get record numbers and interpolation factor for lwdown
 
          if (( first ) .or. ( changed )) then
             call exf_SwapFFields( lwdown0, lwdown1, mythid )
-
+#ifdef USE_EXF_INTERPOLATION
+          call new_interp(
+     &    lwdownfile, exf_iprec
+     &  , lwdown1, count1, xC, yC
+     &  ,lwdown_lon0,lwdown_lon_inc
+     &  ,lwdown_lat0,lwdown_lat_inc
+     &  ,lwdown_nlon,lwdown_nlat,mythid )
+#else
             call mdsreadfield( lwdownfile, exf_iprec, exf_yftype, 1
      &           , lwdown1, count1, mythid
      &           )
+#endif
             if (exf_yftype .eq. 'RL') then
                call exf_filter_rl( lwdown1, lwdownmask, mythid )
             else

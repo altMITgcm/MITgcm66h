@@ -57,9 +57,18 @@ c     get record numbers and interpolation factor for uwind
      &        )
 
          if ( first ) then
+#ifdef USE_EXF_INTERPOLATION
+          call new_interp(
+     &    uwindfile, exf_iprec
+     &  , uwind1, count0, xG, yC
+     &  ,uwind_lon0,uwind_lon_inc
+     &  ,uwind_lat0,uwind_lat_inc
+     &  ,uwind_nlon,uwind_nlat,mythid )
+#else
             call mdsreadfield( uwindfile, exf_iprec, exf_yftype, 1
      &           , uwind1, count0, mythid
      &           )
+#endif
             if (exf_yftype .eq. 'RL') then
                call exf_filter_rl( uwind1, uwindmask, mythid )
             else
@@ -70,9 +79,18 @@ c     get record numbers and interpolation factor for uwind
          if (( first ) .or. ( changed )) then
             call exf_SwapFFields( uwind0, uwind1, mythid )
 
+#ifdef USE_EXF_INTERPOLATION
+          call new_interp(
+     &    uwindfile, exf_iprec
+     &  , uwind1, count1, xG, yC
+     &  ,uwind_lon0,uwind_lon_inc
+     &  ,uwind_lat0,uwind_lat_inc
+     &  ,uwind_nlon,uwind_nlat,mythid )
+#else
             call mdsreadfield( uwindfile, exf_iprec, exf_yftype, 1
      &           , uwind1, count1, mythid
      &           )
+#endif
             if (exf_yftype .eq. 'RL') then
                call exf_filter_rl( uwind1, uwindmask, mythid )
             else

@@ -57,9 +57,18 @@ c     get record numbers and interpolation factor for precip
      &        )
 
          if ( first ) then
+#ifdef USE_EXF_INTERPOLATION
+          call new_interp(
+     &    precipfile, exf_iprec
+     &  , precip1, count0, xC, yC
+     &  ,precip_lon0,precip_lon_inc
+     &  ,precip_lat0,precip_lat_inc
+     &  ,precip_nlon,precip_nlat,mythid )
+#else
             call mdsreadfield( precipfile, exf_iprec, exf_yftype, 1
      &           , precip1, count0, mythid
      &           )
+#endif
             if (exf_yftype .eq. 'RL') then
                call exf_filter_rl( precip1, precipmask, mythid )
             else
@@ -70,9 +79,18 @@ c     get record numbers and interpolation factor for precip
          if (( first ) .or. ( changed )) then
             call exf_SwapFFields( precip0, precip1, mythid )
 
+#ifdef USE_EXF_INTERPOLATION
+          call new_interp(
+     &    precipfile, exf_iprec
+     &  , precip1, count1, xC, yC
+     &  ,precip_lon0,precip_lon_inc
+     &  ,precip_lat0,precip_lat_inc
+     &  ,precip_nlon,precip_nlat,mythid )
+#else
             call mdsreadfield( precipfile, exf_iprec, exf_yftype, 1
      &           , precip1, count1, mythid
      &           )
+#endif
             if (exf_yftype .eq. 'RL') then
                call exf_filter_rl( precip1, precipmask, mythid )
             else

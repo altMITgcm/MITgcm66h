@@ -57,9 +57,18 @@ c     get record numbers and interpolation factor for aqh
      &        )
 
          if ( first ) then
+#ifdef USE_EXF_INTERPOLATION
+          call new_interp(
+     &    aqhfile, exf_iprec
+     &  , aqh1, count0, xC, yC
+     &  ,aqh_lon0,aqh_lon_inc
+     &  ,aqh_lat0,aqh_lat_inc
+     &  ,aqh_nlon,aqh_nlat,mythid )
+#else
             call mdsreadfield( aqhfile, exf_iprec, exf_yftype, 1
      &           , aqh1, count0, mythid
      &           )
+#endif
             if (exf_yftype .eq. 'RL') then
                call exf_filter_rl( aqh1, aqhmask, mythid )
             else
@@ -69,10 +78,18 @@ c     get record numbers and interpolation factor for aqh
 
          if (( first ) .or. ( changed )) then
             call exf_SwapFFields( aqh0, aqh1, mythid )
-
-            call mdsreadfield( aqhfile, exf_iprec, exf_yftype, 1
+#ifdef USE_EXF_INTERPOLATION
+          call new_interp(
+     &    aqhfile, exf_iprec
+     &  , aqh1, count1, xC, yC
+     &  ,aqh_lon0,aqh_lon_inc
+     &  ,aqh_lat0,aqh_lat_inc
+     &  ,aqh_nlon,aqh_nlat,mythid )
+#else
+           call mdsreadfield( aqhfile, exf_iprec, exf_yftype, 1
      &           , aqh1, count1, mythid
      &           )
+#endif
             if (exf_yftype .eq. 'RL') then
                call exf_filter_rl( aqh1, aqhmask, mythid )
             else

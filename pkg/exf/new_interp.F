@@ -9,11 +9,9 @@ C added Bicubic (bnc 1/2003)               C
 C                                          C
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 
-cdm WARNING: non-constant lat_inc needs BICUBIC option defined.
-#ifdef BICUBIC
         real*8 function lagran(i,x,a)
 
-        INTEGER i,k
+        INTEGER i,k,sp
         _RS x
         real*8 a(4)
         real*8 numer,denom
@@ -21,7 +19,13 @@ cdm WARNING: non-constant lat_inc needs BICUBIC option defined.
         numer = 1.D0
         denom = 1.D0
 
-        do k=1,4
+
+#ifdef BICUBIC
+        sp = 4
+#else
+        sp = 2
+#endif
+        do k=1,sp
         if ( k .ne. i) then
           denom = denom*(a(i) - a(k))
           numer = numer*(x    - a(k))
@@ -32,7 +36,6 @@ cdm WARNING: non-constant lat_inc needs BICUBIC option defined.
 
         return
         end
-#endif
 
 
        SUBROUTINE new_interp(
@@ -69,12 +72,12 @@ Clocal variables
       real*8 ne_fac,nw_fac,se_fac,sw_fac
       integer e_ind(snx),w_ind(snx)
       integer n_ind(sny),s_ind(sny)
-#ifdef BICUBIC
+
       real*8 px_ind(4), py_ind(4)
       real*8 ew_val(4)
       external lagran
       real*8 lagran
-#endif
+
       real*8 lon_0,lon_inc
       real*8 lat_0,lat_inc(ny_in-1)
       real*4 arrayin(-1:nx_in+2,-1:ny_in+2)
@@ -196,19 +199,21 @@ Cinterpolate
         do j=1,sny
          do i=1,snx
 
-           ne_fac=(xG(i,1) - x_in(w_ind(i)))*(yG(1,j)-y_in(s_ind(j)))/
-     $                   (lon_inc*lat_inc(1))
-           se_fac=(xG(i,1) - x_in(w_ind(i)))*(y_in(n_ind(j))-yG(1,j))/
-     $                   (lon_inc*lat_inc(1))
-           nw_fac=(x_in(e_ind(i)) - xG(i,1))*(yG(1,j)-y_in(s_ind(j)))/
-     $                   (lon_inc*lat_inc(1))
-           sw_fac=(x_in(e_ind(i)) - xG(i,1))*(y_in(n_ind(j))-yG(1,j))/
-     $                   (lon_inc*lat_inc(1))
- 
-           arrayout(i,j,bi,bj) = ne_fac*arrayin(e_ind(i),n_ind(j)) +
-     $                         se_fac*arrayin(e_ind(i),s_ind(j)) +
-     $                         nw_fac*arrayin(w_ind(i),n_ind(j)) +
-     $                         sw_fac*arrayin(w_ind(i),s_ind(j)) 
+           arrayout(i,j,bi,bj) = 0.
+
+           do l=0,1
+             px_ind(l+1) = x_in(w_ind(i)+l)
+             py_ind(l+1) = y_in(s_ind(j)+l)
+           enddo
+
+           do k=1,2
+             ew_val(k) =
+     &   arrayin(w_ind(i),s_ind(j)+k-1)*lagran(1,xG(i,1),px_ind)
+     & + arrayin(e_ind(i),s_ind(j)+k-1)*lagran(2,xG(i,1),px_ind)
+
+             arrayout(i,j,bi,bj)=arrayout(i,j,bi,bj)
+     & + ew_val(k)*lagran(k,yG(1,j),py_ind)
+           enddo
 
          enddo
         enddo

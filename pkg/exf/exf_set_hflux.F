@@ -34,7 +34,6 @@ c     == routine arguments ==
       integer mycurrentiter
       integer mythid
 
-#ifndef ALLOW_ATM_TEMP
 c     == local variables ==
 
       logical first, changed
@@ -78,7 +77,6 @@ c     get record numbers and interpolation factor for hflux
 
          if (( first ) .or. ( changed )) then
             call exf_SwapFFields( hflux0, hflux1, mythid )
-            
 #ifdef USE_EXF_INTERPOLATION
           call new_interp(
      &    hfluxfile, exf_iprec
@@ -91,7 +89,6 @@ c     get record numbers and interpolation factor for hflux
      &           , hflux1, count1, mythid
      &           )
 #endif
-
             if (exf_yftype .eq. 'RL') then
                call exf_filter_rl( hflux1, hfluxmask, mythid )
             else
@@ -117,8 +114,6 @@ c     Interpolate linearly onto the current time.
          enddo
 
       endif
-
-#endif
 
       end
 
@@ -153,7 +148,6 @@ c     == routine arguments ==
 
       integer mythid
 
-#ifndef ALLOW_ATM_TEMP
 c     == local variables ==
 
       integer bi, bj
@@ -172,7 +166,5 @@ c     == end of interface ==
           enddo
         enddo
       enddo
-
-#endif
 
       end

@@ -56,9 +56,18 @@ c     get record numbers and interpolation factor for evap
      &        )
 
          if ( first ) then
+#ifdef USE_EXF_INTERPOLATION
+          call new_interp(
+     &    evapfile, exf_iprec
+     &  , evap1, count0, xC, yC
+     &  ,evap_lon0,evap_lon_inc
+     &  ,evap_lat0,evap_lat_inc
+     &  ,evap_nlon,evap_nlat,mythid )
+#else
             call mdsreadfield( evapfile, exf_iprec, exf_yftype, 1
      &           , evap1, count0, mythid
      &           )
+#endif
             if (exf_yftype .eq. 'RL') then
                call exf_filter_rl( evap1, evapmask, mythid )
             else
@@ -69,9 +78,18 @@ c     get record numbers and interpolation factor for evap
          if (( first ) .or. ( changed )) then
             call exf_SwapFFields( evap0, evap1, mythid )
 
+#ifdef USE_EXF_INTERPOLATION
+          call new_interp(
+     &    evapfile, exf_iprec
+     &  , evap1, count1, xC, yC
+     &  ,evap_lon0,evap_lon_inc
+     &  ,evap_lat0,evap_lat_inc
+     &  ,evap_nlon,evap_nlat,mythid )
+#else
             call mdsreadfield( evapfile, exf_iprec, exf_yftype, 1
      &           , evap1, count1, mythid
      &           )
+#endif
             if (exf_yftype .eq. 'RL') then
                call exf_filter_rl( evap1, evapmask, mythid )
             else

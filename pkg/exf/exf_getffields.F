@@ -216,6 +216,12 @@ cph   but must come here; it's not fortran77 standard
 
 c--   read forcing fields from files and temporal interpolation
 
+c     Zonal wind stress.
+      call exf_set_ustress( mycurrenttime, mycurrentiter, mythid )
+
+c     Meridional wind stress.
+      call exf_set_vstress( mycurrenttime, mycurrentiter, mythid )
+
 #ifdef ALLOW_ATM_WIND
 
 c     Zonal wind.
@@ -232,15 +238,13 @@ c     Meridional wind.
       call ctrl_getvwind  ( mycurrenttime, mycurrentiter, mythid )
 #endif
 
-#else  /* ifndef ALLOW_ATM_WIND */
+#endif /* ALLOW_ATM_WIND */
 
-c     Zonal wind stress.
-      call exf_set_ustress( mycurrenttime, mycurrentiter, mythid )
+c     Atmospheric heat flux.
+      call exf_set_hflux  ( mycurrenttime, mycurrentiter, mythid )
 
-c     Meridional wind stress.
-      call exf_set_vstress( mycurrenttime, mycurrentiter, mythid )
-
-#endif /* ifndef ALLOW_ATM_WIND */
+c     Salt flux.
+      call exf_set_sflux  ( mycurrenttime, mycurrentiter, mythid )
 
 #ifdef ALLOW_ATM_TEMP
 
@@ -264,15 +268,7 @@ c     Precipitation.
       call ctrl_getaqh    ( mycurrenttime, mycurrentiter, mythid )
 #endif
 
-#else  /* ifndef ALLOW_ATM_TEMP */
-
-c     Atmospheric heat flux.
-      call exf_set_hflux  ( mycurrenttime, mycurrentiter, mythid )
-
-c     Salt flux.
-      call exf_set_sflux  ( mycurrenttime, mycurrentiter, mythid )
-
-#endif /* ifndef ALLOW_ATM_TEMP */
+#endif /* ALLOW_ATM_TEMP */
 
 #if defined(ALLOW_ATM_TEMP) || defined(SHORTWAVE_HEATING)
 c     Net short wave radiative flux.

@@ -6,6 +6,10 @@ $Header$
 Branch release1_50yr
 Code used for 50-year JPL telescoping integration.
 
+17 jun 03
+ modifications to allow 50-year integration with sea-ice
+ see verification/global_with_CFC11/code50yr/README
+
 o merged with release1_p17 updates:
   modifications to pkg/seaice and verification/lab_sea
   added SEAICE_MULTILEVEL for 8-category sea-ice thermodynamics

@@ -146,7 +146,6 @@ c--   Print settings of some CPP flags.
 c--   For each data set used the summary prints the calendar data
 c     and the corresponding file from which the data will be read.
 
-#ifndef ALLOW_ATM_WIND
 c--   Zonal wind stress.
       il = ilnblnk(ustressfile)
       call cal_TimeInterval( ustressperiod, 'secs', timeint, mythid )
@@ -200,9 +199,7 @@ c--   Meridional wind stress.
      &'   >>  ',vstressfile(1:il),'  <<'
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
-#endif
 
-#ifndef ALLOW_ATM_TEMP
 c--   Heat flux.
       il = ilnblnk(hfluxfile)
       call cal_TimeInterval( hfluxperiod, 'secs', timeint, mythid )
@@ -254,7 +251,6 @@ c--   Salt flux.
      &'   >>  ',sfluxfile(1:il),'  <<'
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
-#endif
 
 #if defined(ALLOW_ATM_TEMP) || defined(SHORTWAVE_HEATING)
 c--   Net shortwave.

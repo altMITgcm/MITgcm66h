@@ -106,7 +106,7 @@ C WATER ALBEDO IS ASSUMED TO BE THE CONSTANT SEAICE_waterAlbedo
            FICE1(I,J,bi,bj)=QNET(I,J,bi,bj)+Qsw(I,J,bi,bj)
            QSWO(I,J,bi,bj)=Qsw(I,J,bi,bj)
 #else /* SEAICE_EXTERNAL_FLUXES undefined */
-           ALB(I,J)=SEAICE_waterAlbedo                                
+           ALB(I,J)=SEAICE_waterAlbedo
            A1(I,J)=(ONE-ALB(I,J))*SWDOWN(I,J,bi,bj)
      &          +LWDOWN(I,J,bi,bj)*0.97 _d 0
      &          +D1*UG(I,J)*ATEMP(I,J,bi,bj)+D1W*UG(I,J)*AQH(I,J,bi,bj)

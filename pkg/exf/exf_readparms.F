@@ -342,17 +342,22 @@ c     check for consistency
          stop 'stop in exf_readparms: value of exf_yftype not allowed'
       end if
 
+      call cal_FullDate(  ustressstartdate1,  ustressstartdate2,
+     &                    ustressstartdate ,             mythid )
+      call cal_FullDate(  vstressstartdate1,  vstressstartdate2,
+     &                    vstressstartdate ,             mythid )
+
 #ifdef ALLOW_ATM_WIND
       call cal_FullDate(    uwindstartdate1,    uwindstartdate2,
      &                      uwindstartdate ,             mythid )
       call cal_FullDate(    vwindstartdate1,    vwindstartdate2,
      &                      vwindstartdate ,             mythid )
-#else
-      call cal_FullDate(  ustressstartdate1,  ustressstartdate2,
-     &                    ustressstartdate ,             mythid )
-      call cal_FullDate(  vstressstartdate1,  vstressstartdate2,
-     &                    vstressstartdate ,             mythid )
 #endif
+
+      call cal_FullDate(    hfluxstartdate1,    hfluxstartdate2,
+     &                      hfluxstartdate ,             mythid )
+      call cal_FullDate(    sfluxstartdate1,    sfluxstartdate2,
+     &                      sfluxstartdate ,             mythid )
 
 #ifdef ALLOW_ATM_TEMP
       call cal_FullDate(    atempstartdate1,    atempstartdate2,
@@ -363,11 +368,6 @@ c     check for consistency
      &                     lwfluxstartdate ,             mythid )
       call cal_FullDate(   precipstartdate1,   precipstartdate2,
      &                     precipstartdate ,             mythid )
-#else
-      call cal_FullDate(    hfluxstartdate1,    hfluxstartdate2,
-     &                      hfluxstartdate ,             mythid )
-      call cal_FullDate(    sfluxstartdate1,    sfluxstartdate2,
-     &                      sfluxstartdate ,             mythid )
 #endif
 
 #if defined(ALLOW_ATM_TEMP) || defined(SHORTWAVE_HEATING)

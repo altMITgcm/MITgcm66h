@@ -34,7 +34,6 @@ c     == routine arguments ==
       integer mycurrentiter
       integer mythid
 
-#ifndef ALLOW_ATM_WIND
 c     == local variables ==
 
       logical first, changed
@@ -117,8 +116,6 @@ c     Interpolate linearly onto the current time.
 
       endif
 
-#endif
-
       end
 
 
@@ -152,7 +149,6 @@ c     == routine arguments ==
 
       integer mythid
 
-#ifndef ALLOW_ATM_WIND
 c     == local variables ==
 
       integer bi, bj
@@ -171,7 +167,5 @@ c     == end of interface ==
           enddo
         enddo
       enddo
-
-#endif
 
       end
