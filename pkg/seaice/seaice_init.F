@@ -21,8 +21,10 @@ C     === Global variables ===
 #include "SEAICE_GRID.h"
 #include "SEAICE_DIAGS.h"
 #include "SEAICE_PARAMS.h"
+#ifdef USE_W2
 #include "W2_EXCH2_TOPOLOGY.h"
 #include "W2_EXCH2_PARAMS.h"
+#endif /* USE_W2 */
 
 C     === Routine arguments ===
 C     myThid - Thread no. that called this routine.
@@ -117,6 +119,7 @@ C--   Initialize grid info
          ENDDO
         ENDDO
 
+#ifdef USE_W2
 C--   Special stuff for cubed sphere: assume grid is rectangular and
 C     set UV mask to zero except for Arctic and Antarctic cube faces.
         IF (useCubedSphereExchange) THEN
@@ -153,6 +156,7 @@ C     set UV mask to zero except for Arctic and Antarctic cube faces.
           ENDDO
          ENDIF
         ENDIF
+#endif /* USE_W2 */
 
         DO j=1-OLy,sNy+OLy
          DO i=1-OLx,sNx+OLx
