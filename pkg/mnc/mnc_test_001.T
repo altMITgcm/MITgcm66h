@@ -94,10 +94,10 @@ C     In FORTRAN, the first variable cycles most quickly
       print*, ' Calling MNC_VAR_INIT_DBL() ...'
       vname1(1:4) = 'time'
       units(1:19) = 'days since 1970-1-1'
-      CALL MNC_VAR_INIT_DBL(myThid,fname, gname2, vname1, units )
+      CALL MNC_VAR_INIT_DBL(myThid,fname, gname2, vname1 )
       vname2(1:4) = 'temp'
       units(1:19) = 'deg C              '
-      CALL MNC_VAR_INIT_DBL(myThid,fname, gname1, vname2, units )
+      CALL MNC_VAR_INIT_DBL(myThid,fname, gname1, vname2 )
 
       print*, ' Calling MNC_VAR_ADD_ATTR_STR() ...'
       atname(1:9) = 'grid_type'

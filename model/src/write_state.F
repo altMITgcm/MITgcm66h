@@ -165,7 +165,11 @@ c       CALL WRITE_FLD_XYZ_RS('hFacS.',suff,hFacS,myIter,myThid)
          _BARRIER
 
 #ifdef ALLOW_MNC
-      CALL MNC_W_STATE(myThid, myIter, 'test')
+C      CALL MNC_W_STATE(myThid, myIter, 'test')
+
+      CALL MNC_CW_RL_WRITES_D(myThid, 't_theta',0,0, 
+     &'theta', 1, theta)
+
 #endif
 
       ENDIF

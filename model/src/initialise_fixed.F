@@ -147,7 +147,12 @@ C     and get config. info for other component(s).
 #ifdef ALLOW_MNC
 C     Test MNC
       CALL MNC_INIT(myThid)
-      CALL MNC_W_GRIDINFO(myThid, 'test')
+C      CALL MNC_W_GRIDINFO(myThid, 'test')
+
+      CALL MNC_CW_INIT(myThid, sNx,sNy, OLx,OLy, nSx,nSy, nPx,nPy, Nr)
+
+      CALL MNC_CW_ADD_VNAME(myThid, 'theta', 'Cen_xy_Hn__C__-')
+
 #endif
 
       RETURN
