@@ -52,9 +52,9 @@ Comments:
 Experiment no. 2
 ################
 
-Use bulk formulae and atmos. state controls:
+Use bulk formulae and atmos. state controls
 (only differnce to experiment 1 is in ECCO_CPPOPTIONS.h,
-and runtime in data.grdchk).
+and runtime in data.grdchk):
 
 #Compile code in bin/:
   cd bin
@@ -85,7 +85,7 @@ and runtime in data.grdchk).
 grep ph-grd output.txt
 
 #A reference output is in:
-  ../verification/natl_box_adjoint/results_bulk/output.txt | more
+grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.txt
 
 Comments:
 - The input data is real*8.
@@ -94,4 +94,36 @@ Comments:
 
 
 
+################
+Experiment no. 3
+################
 
+Use pkg/seaice bulk formulae and atmos. state controls
+(this experiment is in the Labrador Sea rather than the
+North Atlantic subduction region):
+
+#Compile code in bin/:
+  cd bin
+  ln -s ../verification/natl_box_adjoint/code_seaice/.genmakerc .
+  ln -s ../verification/natl_box_adjoint/code_seaice/*.h .
+#Configure and compile the code:
+  ../tools/genmake -makefile
+  make depend
+#Generate the adjoint code:
+  cd ../adjoint
+  make adtaf
+  make adchange
+#Go back and compile the code:
+  cd ../bin
+  make
+
+#To run:
+  cd ../exe
+  cp ../verification/natl_box_adjoint/input_seaice/* .
+  cp ../verification/natl_box_adjoint/input/PH_*.data .
+  mitgcmuv >&! output.txt
+
+grep ph-grd output.txt
+
+#A reference output is in:
+grep ph-grd ../verification/natl_box_adjoint/results_seaice/output.txt
