@@ -1,9 +1,8 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "CG2D_OPTIONS.h"
 
-CStartOfInterface
       SUBROUTINE INI_CG2D( myThid )
 C     /==========================================================\
 C     | SUBROUTINE INI_CG2D                                      |
@@ -19,9 +18,9 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#include "DYNVARS.h"
+c#include "DYNVARS.h"
 #include "SURFACE.h"
-#include "CG2D_INTERNAL.h"
+#include "CG2D.h"
 #ifdef ALLOW_OBCS
 #include "OBCS.h"
 #endif
@@ -29,7 +28,6 @@ C     === Global variables ===
 C     === Routine arguments ===
 C     myThid - Thread no. that called this routine.
       INTEGER myThid
-CEndOfInterface
 
 C     === Local variables ===
 C     xG, yG - Global coordinate location.

@@ -3,6 +3,8 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
+#define USE_OPTIMIZED_OVERLAPS
+
       SUBROUTINE CG2D(  
      I                cg2d_b,
      U                cg2d_x,
@@ -39,7 +41,7 @@ C     === Global data ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#include "CG2D_INTERNAL.h"
+#include "CG2D.h"
 #include "SURFACE.h"
 
 C     === Routine arguments ===
@@ -184,10 +186,17 @@ C     _EXCH_XY_R8( cg2d_r, myThid )
 #ifdef LETS_MAKE_JAM
       CALL EXCH_XY_O1_R8_JAM( cg2d_r )
 #else
+#ifdef USE_OPTIMIZED_OVERLAPS
        OLw        = 1
        OLe        = 1
        OLn        = 1
        OLs        = 1
+#else
+       OLw        = Olx
+       OLe        = Olx
+       OLn        = Oly
+       OLs        = Oly
+#endif
        exchWidthX = 1
        exchWidthY = 1
        myNz       = 1
@@ -200,10 +209,17 @@ C     _EXCH_XY_R8( cg2d_s, myThid )
 #ifdef LETS_MAKE_JAM
       CALL EXCH_XY_O1_R8_JAM( cg2d_s )
 #else
+#ifdef USE_OPTIMIZED_OVERLAPS
        OLw        = 1
        OLe        = 1
        OLn        = 1
        OLs        = 1
+#else
+       OLw        = Olx
+       OLe        = Olx
+       OLn        = Oly
+       OLs        = Oly
+#endif
        exchWidthX = 1
        exchWidthY = 1
        myNz       = 1
@@ -287,10 +303,17 @@ C      _EXCH_XY_R8( cg2d_s, myThid )
 #ifdef LETS_MAKE_JAM
       CALL EXCH_XY_O1_R8_JAM( cg2d_s )
 #else
+#ifdef USE_OPTIMIZED_OVERLAPS
        OLw        = 1
        OLe        = 1
        OLn        = 1
        OLs        = 1
+#else
+       OLw        = Olx
+       OLe        = Olx
+       OLn        = Oly
+       OLs        = Oly
+#endif
        exchWidthX = 1
        exchWidthY = 1
        myNz       = 1
@@ -356,10 +379,17 @@ C      _EXCH_XY_R8(cg2d_r, myThid )
 #ifdef LETS_MAKE_JAM
       CALL EXCH_XY_O1_R8_JAM( cg2d_r )
 #else
+#ifdef USE_OPTIMIZED_OVERLAPS
        OLw        = 1
        OLe        = 1
        OLn        = 1
        OLs        = 1
+#else
+       OLw        = Olx
+       OLe        = Olx
+       OLn        = Oly
+       OLs        = Oly
+#endif
        exchWidthX = 1
        exchWidthY = 1
        myNz       = 1
