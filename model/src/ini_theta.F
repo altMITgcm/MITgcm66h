@@ -105,5 +105,10 @@ C
       _EXCH_XYZ_R8(theta , myThid )
       _EXCH_XYZ_R8(gt , myThid )
       _EXCH_XYZ_R8(gtNM1 , myThid )
+
+C
+      CALL PLOT_FIELD_XYZR8( theta, 'Potential temp.' , Nz, 1, myThid )
+C
+
       RETURN
       END

@@ -198,14 +198,14 @@ C     == Local variables ==
         xcoord((bi-1)*sNx+I) = xc(I,1,bi,1)
        ENDDO
       ENDDO
-      CALL WRITE_1D_R8( xcoord, Nx, INDEX_I,'xcoord = ',
+      CALL WRITE_1D_R8( xcoord, sNx*nSx, INDEX_I,'xcoord = ',
      &'   /* P-point X coordinate (  m - cartesian, degrees - spherical ) */')
       DO bj=1,nSy
        DO J=1,sNy
         ycoord((bj-1)*sNy+J) = yc(1,J,1,bj)
        ENDDO
       ENDDO
-      CALL WRITE_1D_R8( ycoord, Ny, INDEX_J,'ycoord = ',
+      CALL WRITE_1D_R8( ycoord, sNy*nSy, INDEX_J,'ycoord = ',
      &'   /* P-point Y coordinate (  m - cartesian, degrees - spherical ) */')
       DO K=1,Nz
        zcoord(K) = zc(K)

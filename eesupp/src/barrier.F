@@ -75,9 +75,7 @@ C     I     - Loop counter
       INTEGER I
 
 CcnhDebugStarts
-C     IF ( myThid .EQ. 1 ) THEN
-C      WRITE(0,*) ' Barrier entered '
-C     ENDIF
+C      WRITE(myThid,*) ' Barrier entered '
 CcnhDebugEnds
 
 C--   Check that thread number is expected range
@@ -203,9 +201,7 @@ C--   door2 because they have to go through door1 first.
       ENDIF
 
 CcnhDebugStarts
-C     IF ( myThid .EQ. 1 ) THEN
-C      WRITE(0,*) ' Barrier exited '
-C     ENDIF
+C      WRITE(myThid,*) ' Barrier exited '
 CcnhDebugEnds
      
       RETURN
