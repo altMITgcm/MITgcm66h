@@ -662,7 +662,7 @@ cat hlist.inc >> ${mfile}
 echo 'F77FILES =  $(SRCFILES:.F=.f)'                    >> ${mfile}
 echo 'OBJFILES =  $(SRCFILES:.F=.o) $(CSRCFILES:.c=.o)' >> ${mfile}
 
-rm -f srclist.inc csrclist.inc flist.tmp clist.tmp
+rm -f srclist.inc csrclist.inc hlist.inc flist.tmp clist.tmp
 
 cat >> ${mfile} <<EOF
 
