@@ -291,6 +291,7 @@ C AMM
 #ifdef ALLOW_FIZHI
         if( useFIZHI) then
          CALL TIMER_START('FIZHI               [FORWARD_STEP]',mythid)
+         CALL FIZHI_UPDATE_TIME ( myIter, deltaTclock )
          CALL UPDATE_OCEAN_EXPORTS ( myTime, myIter, myThid )
          CALL UPDATE_EARTH_EXPORTS ( myTime, myIter, myThid )
          CALL UPDATE_CHEMISTRY_EXPORTS ( myTime, myIter, myThid )
