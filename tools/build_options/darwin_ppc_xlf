@@ -15,7 +15,6 @@
 #     ETIME (timers.F) and FDATE (utils.F) are not available with Darwin+XLF so need to be switched out.
 #
 
-LN='/bin/ln -s'
 CPP='/usr/bin/cpp -traditional -P'
 FC=/opt/ibmcmp/xlf/8.1/bin/f77
 LINK=/opt/ibmcmp/xlf/8.1/bin/f77

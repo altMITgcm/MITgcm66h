@@ -6,7 +6,6 @@
 
 FC=g77
 DEFINES='-D_BYTESWAPIO -DWORDLENGTH=4'
-LN='/bin/ln -s'
 CPP='cpp  -traditional -P'
 NOOPTFLAGS='-O0'
 

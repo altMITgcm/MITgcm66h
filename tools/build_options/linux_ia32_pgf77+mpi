@@ -4,7 +4,6 @@
 #
 
 DEFINES='-DWORDLENGTH=4'
-LN='/bin/ln -s'
 FC='pgf77'
 INCLUDES='-I/usr/local/mpich-1.2.1/pgi_fortran_binding/include'
 LIBS='-L/usr/local/mpich-1.2.1/pgi_fortran_binding/lib/ -lfmpich -lmpich'

@@ -13,7 +13,6 @@ MAKEDEPEND=makedepend
 DEFINES='-DTARGET_PWR3 -DTARGET_SGI -DWORDLENGTH=4'
 
 #ph: e.g. bluesky.ucar.edu, marcellus.navo.hpc.mil
-LN='ln -s'
 INCLUDES='-I/usr/lpp/ppe.poe/include'
 #    set CPP        = ( '/lib/cpp' )
 CPP='/lib/cpp -P'

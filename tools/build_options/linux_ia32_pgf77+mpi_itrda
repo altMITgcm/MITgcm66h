@@ -7,7 +7,6 @@ S64='$(TOOLSDIR)/set64bitConst.sh'
 MAKEDEPEND=makedepend
 DEFINES='-DWORDLENGTH=4'
 
-LN='/bin/ln -s'
 CPP='/lib/cpp  -traditional -P'
 FC='/usr/local/mpich/mpich-1.2.1..7b_pgi/bin/mpif77'
 LINK='/usr/local/mpich/mpich-1.2.1..7b_pgi/bin/mpif77'

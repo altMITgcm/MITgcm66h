@@ -8,7 +8,6 @@ MAKEDEPEND=makedepend
 DEFINES='-DWORDLENGTH=4'
 
 
-LN='/bin/ln -s'
 CPP='/lib/cpp  -traditional -P'
 FC='/opt/mpich/bin/mpif77'
 LINK='/opt/mpich/bin/mpif77'

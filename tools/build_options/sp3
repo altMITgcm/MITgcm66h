@@ -9,7 +9,6 @@ DEFINES='-DWORDLENGTH=4'
 
 # originally from A. Biastoch, SIO.
 # e.g. horizon.npaci.edu
-LN='ln -s'
 INCLUDES='-I/usr/lpp/ppe.poe/include'
 #    set CPP        = ( '/lib/cpp' )
 FC='mpxlf95'

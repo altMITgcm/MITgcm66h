@@ -8,7 +8,6 @@
 # g77 can be optained from FINK: http://fink.sourceforge.net
 #
 
-LN='/bin/ln -s'
 CPP='/usr/bin/cpp -traditional -P'
 FC=g77
 LINK=g77

@@ -10,7 +10,6 @@
 # so make sure that those are installed 
 #
 
-LN='/bin/ln -s'
 CPP='/usr/bin/cpp -traditional -P'
 FC='/Applications/Absoft/bin/f77'
 LINK='/Applications/Absoft/bin/f77'

@@ -7,7 +7,6 @@ S64='$(TOOLSDIR)/set64bitConst.sh'
 MAKEDEPEND=makedepend
 DEFINES='-DWORDLENGTH=4'
 
-LN='/usr/bin/ln -s'
 CPP='/usr/ccs/lib/cpp -P'
 FFLAGS='-stackvar -explicitpar -vpara -e -u -noautopar -xtypemap=real:64,double:64,integer:32 -fsimple=0'
 FOPTIM='-dalign -O3 -xarch=v9'

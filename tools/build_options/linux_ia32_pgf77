@@ -4,7 +4,6 @@
 #
 
 DEFINES='-DWORDLENGTH=4'
-LN='/bin/ln -s'
 CPP='/lib/cpp -traditional -P'
 FC='pgf77'
 FFLAGS='-byteswapio -r8 -Mnodclchk -Mextend'
