@@ -69,6 +69,27 @@ C     specify Name (cdiag, 8c), Descriptions (tdiag, *c), Units (udiag, 16c)
 C         and Type/Parms (location on C grid, 2D/3D, ...) (gdiag, 16c)
 C----------------------------------------------------------------------
 
+      diagName  = 'PHIHYD  '
+      diagTitle = 'Hydrostatic (ocean) pressure / (atmos) geo-Potential'
+      diagUnits = 'm2/s2           '
+      diagCode  = 'SM      MR      '
+      CALL DIAGNOSTICS_ADD2LIST(
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+      diagName  = 'PHIBOT  '
+      diagTitle = 'ocean bottom pressure / top. atmos geo-Potential'
+      diagUnits = 'm2/s2           '
+      diagCode  = 'SM      MR      '
+      CALL DIAGNOSTICS_ADD2LIST(
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+      diagName  = 'PHIBOTSQ'
+      diagTitle = 'Square of ocean bottom pressure / top. geo-Potential'
+      diagUnits = 'm4/s4           '
+      diagCode  = 'SM      M1      '
+      CALL DIAGNOSTICS_ADD2LIST(
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
       diagName  = 'DRHODR  '
       diagTitle = 'Stratification: d.Sigma/dr (kg/m3/r_unit)       '
       diagUnits = 'kg/m4           '
