@@ -6,9 +6,7 @@ C $Header$
      &       rhoKm1, rhoKp1,myTime,myIter, myThid )
 C     /==========================================================\
 C     | SUBROUTINE CONVECT                                       |
-C     | o Does vertical mixing of unstable water column          |
-C     |==========================================================|
-C     |                                                          |
+C     | o Does vertical mixing of unstable water columns         |
 C     \==========================================================/
       IMPLICIT NONE
 
@@ -48,12 +46,12 @@ C--   Check to see if should convect now
 C--    Calculate heat content of two level column
        DO j=jMin,jmax
         DO i=iMin,imax
-         tMix(i,j) = theta(i,j,k-1,bi,bj)*_hFacC(i,j,k-1,bi,bj)*dzF(k-1)
-     &              +theta(i,j,k,bi,bj)*_hFacC(i,j,k,bi,bj)*dzF(k)
-         sMix(i,j) = salt (i,j,k-1,bi,bj)*_hFacC(i,j,k-1,bi,bj)*dzF(k-1)
-     &              +salt (i,j,k,bi,bj)*_hFacC(i,j,k,bi,bj)*dzF(k)
-         dSum(i,j) = _hFacC(i,j,k-1,bi,bj)*dzF(k-1)
-     &              +_hFacC(i,j,k,bi,bj)*dzF(k)
+         tMix(i,j) = theta(i,j,k-1,bi,bj)*_hFacC(i,j,k-1,bi,bj)*drF(k-1)
+     &              +theta(i,j,k,bi,bj)*_hFacC(i,j,k,bi,bj)*drF(k)
+         sMix(i,j) = salt (i,j,k-1,bi,bj)*_hFacC(i,j,k-1,bi,bj)*drF(k-1)
+     &              +salt (i,j,k,bi,bj)*_hFacC(i,j,k,bi,bj)*drF(k)
+         dSum(i,j) = _hFacC(i,j,k-1,bi,bj)*drF(k-1)
+     &              +_hFacC(i,j,k,bi,bj)*drF(k)
         ENDDO
        ENDDO
 
