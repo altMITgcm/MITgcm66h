@@ -84,7 +84,7 @@ if ($?MYMODS == 0) then
  set SOURCEDIRS  = ( $ROOTDIR/{eesupp,model,diags}/src/ $ROOTDIR/pkg/[a-z]*/ )
  set INCLUDEDIRS = ( ./ $ROOTDIR/{eesupp,model,diags}/inc/ $ROOTDIR/pkg/[a-z]*/ )
 else
- set SOURCEDIRS  = ( $ROOTDIR/{eesupp,model,diags}/src/ $ROOTDIR/pkg/[a-z]*/ $MYMODS/ )
+ set SOURCEDIRS  = ( $MYMODS/ $ROOTDIR/{eesupp,model,diags}/src/ $ROOTDIR/pkg/[a-z]*/ )
  set INCLUDEDIRS = ( ./ $MYMODS/ $ROOTDIR/{eesupp,model,diags}/inc/ $ROOTDIR/pkg/[a-z]*/ )
 endif
 if ($?BUILDDIR == 0) set BUILDDIR = ( ./ )
@@ -318,41 +318,56 @@ endsw
 ##                                                                           ##
 ###############################################################################
 
-# Create list of files
-set flist = `ls -1 ${SOURCEDIRS} | grep '.*\.[F]$'`
-if ( $#flist ) then
- echo -n 'SRCFILES = ' > srclist.inc
- foreach ff ( ${flist} )
-  set fname = ( ${ff:t}       )
-  echo    ' \'                       >> srclist.inc
-  echo -n "           " ${fname:r}.F >> srclist.inc
- end
-else
- echo No source files found...\!
- exit
-endif
-echo " " >> srclist.inc
-
-set flist = `ls -1 ${SOURCEDIRS} | grep '.*\.[c]$'`
-if ( $#flist ) then
- echo -n 'CSRCFILES = ' > csrclist.inc
- foreach ff ( ${flist} )
-  set fname = ( ${ff:t}       )
-  echo    ' \'                   >> csrclist.inc
-  echo -n "           " ${fname} >> csrclist.inc
-else
- echo -n 'CSRCFILES =' > csrclist.inc
-endif
-echo " " >> csrclist.inc
-
 # Convert lists of directories into command-line options
 foreach inc ($INCLUDEDIRS)
  set INCLUDES = ($INCLUDES -I$inc)
 end
-set SRCSTARS = ( )
+
+# Search for source code
+rm -rf .links.tmp;mkdir .links.tmp
+echo "# This section creates symbolic links" > srclinks.tmp
+echo "" >> srclinks.tmp
+echo -n 'SRCFILES = ' > srclist.inc
+echo -n 'CSRCFILES = ' > csrclist.inc
+#echo -n 'HEADERFILES = ' > hlist.inc
 foreach dr ($SOURCEDIRS)
- set SRCSTARS = ("${SRCSTARS}" $dr\*.\[Fc\] )
+ set deplist=( )
+ foreach srcfile (`cd $dr; ls *.[hcF]`)
+  if (! -r .links.tmp/$srcfile) then
+   if (-f $dr/$srcfile) then
+    switch ($srcfile:e)
+    case F:
+     touch .links.tmp/$srcfile
+     set deplist=($deplist $srcfile)
+     echo    ' \'                   >> srclist.inc
+     echo -n "           " $srcfile >> srclist.inc
+     breaksw
+    case c:
+     touch .links.tmp/$srcfile
+     set deplist=($deplist $srcfile)
+     echo    ' \'                   >> csrclist.inc
+     echo -n "           " $srcfile >> csrclist.inc
+     breaksw
+    case h:
+#     touch .links.tmp/$srcfile
+#     set deplist=($deplist $srcfile)
+#     echo    ' \'                   >> hlist.inc
+#     echo -n "           " $srcfile >> hlist.inc
+     breaksw
+    endsw
+   endif
+  endif
+ end
+ if ($#deplist != 0) then
+  echo "# These files are linked from $dr" >> srclinks.tmp
+  echo $deplist':' >> srclinks.tmp
+  echo '\t$(LN) '$dr'$@ $@' >> srclinks.tmp
+ endif
 end
+rm -rf .links.tmp
+echo "" >> srclist.inc
+echo "" >> csrclist.inc
+#echo "" >> hlist.inc
 
 set THISHOSTNAME = ( `hostname` )
 set THISCWD = ( `pwd` )
@@ -467,7 +482,7 @@ cat csrclist.inc >> ${mfile}
 echo 'F77FILES =  $(SRCFILES:.F=.f)'                    >> ${mfile}
 echo 'OBJFILES =  $(SRCFILES:.F=.o) $(CSRCFILES:.c=.o)' >> ${mfile}
 
-rm -f srclist.inc csrclist.inc
+rm -f srclist.inc csrclist.inc flist.tmp clist.tmp
 
 cat >> ${mfile} <<EOF
 
@@ -477,11 +492,10 @@ cat >> ${mfile} <<EOF
 all: \$(EXECUTABLE)
 \$(EXECUTABLE): \$(OBJFILES)
 	\$(LINK) -o \$@ \$(FFLAGS) \$(FOPTIM) \$(OBJFILES) \$(LIBS)
-links: \$(SRCFILES)
-#	@-\$(LN) $SRCSTARS .
 depend:
 	@make links
 	makedepend -o .f \$(INCLUDES) \$(SRCFILES)
+links: \$(SRCFILES)
 
 small_f: \$(F77FILES)
 
@@ -522,12 +536,9 @@ foreach sf ($NOOPTFILES)
 end
 echo "" >> ${mfile}
 
-foreach dr ($SOURCEDIRS)
-set srcfiles=(`cd $dr; ls *.[hcF]`:)
-echo "# These are the rules for creating the links from $dr" >> ${mfile}
-echo $srcfiles >> ${mfile}
-echo '\t$(LN) '$dr'$@ $@' >> ${mfile}
-end
+# Add rules for links
+cat srclinks.tmp >> ${mfile}
+rm -f srclinks.tmp
 
 echo "" >> ${mfile}
 echo "# DO NOT DELETE" >> ${mfile}
