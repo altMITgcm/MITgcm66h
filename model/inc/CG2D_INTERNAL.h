@@ -1,19 +1,12 @@
 C $Header$
 C $Name$
-CBOP
-C     !ROUTINE: CG2D_INTERNAL.h
-C     !INTERFACE:
-C     include "CG2D_INTERNAL.h"
-C     !DESCRIPTION: 
-C     \bv
-C     *==========================================================*
-C     | CG2D.h                                                    
-C     | o Two-dimensional conjugate gradient solver header.       
-C     *==========================================================*
-C     | Internal (private) data structures.                       
-C     *==========================================================*
-C     \ev
-CEOP
+C
+C     /==========================================================\
+C     | CG2D.h                                                   |
+C     | o Two-dimensional conjugate gradient solver header.      |
+C     |==========================================================|
+C     | Internal (private) data structures.                      |
+C     \==========================================================/
 
 C--   COMMON /CG2D_R/ DEL**2 Laplacian operators
 C     aW2d - East-west operator.

@@ -3,25 +3,19 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C     !ROUTINE: INI_PSURF
-C     !INTERFACE:
+CStartOfInterface
       SUBROUTINE INI_PSURF( myThid )
-
-C     !DESCRIPTION: \bv
-C     *==========================================================*
+C     /==========================================================\
 C     | SUBROUTINE INI_PSURF                                     |
 C     | o Set model initial free-surface height/pressure.        |
-C     *==========================================================*
+C     |==========================================================|
 C     | There are several options for setting the initial        |
 C     | surface displacement (r unit) field.                     |
 C     |  1. Inline code                                          |
 C     |  2. Two-dimensional data from a file.                    |
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     \==========================================================/
       IMPLICIT NONE
+
 C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -29,18 +23,16 @@ C     === Global variables ===
 #include "GRID.h"
 #include "DYNVARS.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     myThid -  Number of this instance of INI_PSURF 
       INTEGER myThid
+CEndOfInterface
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     bi,bj  - Loop counters
 C     I,J
       INTEGER bi, bj
       INTEGER  I,  J
-CEOP
 
 C--   Initialise surface position anomaly to zero
       DO bj = myByLo(myThid), myByHi(myThid)

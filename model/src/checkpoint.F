@@ -28,20 +28,16 @@ C
       RETURN
       END
 
-CBOP
-C     !ROUTINE: READ_CHECKPOINT
-C     !INTERFACE:
+CStartofinterface
       SUBROUTINE READ_CHECKPOINT ( myIter, myThid )
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | SUBROUTINE READ_PICKUP                                    
-C     | o Controlling routine for IO to write restart file.       
-C     *==========================================================*
-C     | Read model checkpoint files for use in restart.           
-C     *==========================================================*
-C     \ev
-C     !USES:
+C     /==========================================================\
+C     | SUBROUTINE READ_PICKUP                                   |
+C     | o Controlling routine for IO to write restart file.      |
+C     |==========================================================|
+C     | Read model checkpoint files for use in restart.          |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -51,25 +47,21 @@ C     == Global variables ===
 #include "GW.h"
 #include "SOLVE_FOR_PRESSURE3D.h"
 #endif
+
       INTEGER  IO_ERRCOUNT
       EXTERNAL IO_ERRCOUNT
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     myThid - Thread number for this instance of the routine.
 C     myIter - Iteration number
       INTEGER myThid
       INTEGER myIter
+CEndofinterface
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
-C     oldPrec :: Temp. for hold I/O precision information
-C     prec    
-C     fn      :: Temp. for building file name.
       INTEGER oldPrec
       CHARACTER*(MAX_LEN_FNAM) fn
       INTEGER prec
-CEOP
 
 C--    Going to really do some IO. Make everyone except master thread wait.
        _BARRIER
@@ -211,33 +203,28 @@ c        _EXCH_XYZ_R8(gWNM1 , myThid )
       RETURN
       END
 
-CBOP
-C     !ROUTINE: WRITE_CHECKPOINT
-C     !INTERFACE:
+CStartofinterface
       SUBROUTINE WRITE_CHECKPOINT ( modelEnd, myCurrentTime, 
      &                              myIter, myThid )
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | SUBROUTINE WRITE_CHECKPOINT                               
-C     | o Controlling routine for IO to write restart file.       
-C     *==========================================================*
-C     | Write model checkpoint files for use in restart.          
-C     | This routine writes both "rolling-checkpoint" files       
-C     | and permanent checkpoint files. A rolling checkpoint      
-C     | works through a circular list of suffices. Generally the  
-C     | circular list has two entries so that a rolling           
-C     | checkpoint will overwrite the last rolling checkpoint     
-C     | but one. This is useful for running long jobs without     
-C     | filling too much disk space.                              
-C     |  In a permanent checkpoint data is written suffixed by    
-C     | the current timestep number. This sort of checkpoint can  
-C     | be used to provided a snap-shot from which the model      
-C     | can be rerun.                                             
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================\
+C     | SUBROUTINE WRITE_PICKUP                                  |
+C     | o Controlling routine for IO to write restart file.      |
+C     |==========================================================|
+C     | Write model checkpoint files for use in restart.         |
+C     | This routine writes both "rolling-checkpoint" files      |
+C     | and permanent checkpoint files. A rolling checkpoint     |
+C     | works through a circular list of suffices. Generally the |
+C     | circular list has two entries so that a rolling          |
+C     | checkpoint will overwrite the last rolling checkpoint    |
+C     | but one. This is useful for running long jobs without    |
+C     | filling too much disk space.                             |
+C     |  In a permanent checkpoint data is written suffixed by   |
+C     | the current timestep number. This sort of checkpoint can |
+C     | be used to provided a snap-shot from which the model     |
+C     | can be rerun.                                            |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -247,39 +234,35 @@ C     == Global variables ===
 #include "GW.h"
 #include "SOLVE_FOR_PRESSURE3D.h"
 #endif
+
       LOGICAL  DIFFERENT_MULTIPLE
       EXTERNAL DIFFERENT_MULTIPLE
       INTEGER  IO_ERRCOUNT
       EXTERNAL IO_ERRCOUNT
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
-C     modelEnd    :: Checkpoint call at end of model run.
-C     myThid :: Thread number for this instance of the routine.
-C     myIter :: Iteration number
-C     myCurrentTime :: Current time of simulation ( s )
+C     modelEnd    - Checkpoint call at end of model run.
+C     myThid - Thread number for this instance of the routine.
+C     myIter - Iteration number
+C     myCurrentTime - Current time of simulation ( s )
       LOGICAL modelEnd    
       INTEGER myThid
       INTEGER myIter
       _RL     myCurrentTime
+CEndofinterface
 
 C     == Common blocks ==
       COMMON /PCKP_GBLFLS/ globalFile
       LOGICAL globalFile
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
-C     permCheckPoint :: Flag indicating whether a permanent checkpoint will
-C                       be written.
-C     oldPrc :: Temp. for holding I/O precision
-C     fn     :: Temp. for building file name string.
-C     lgf    :: Flag to indicate whether to use global file mode.
+C     permCheckPoint - Flag indicating whether a permanent checkpoint will
+C                      be written.
       LOGICAL permCheckPoint  
       INTEGER oldPrec
       CHARACTER*(MAX_LEN_FNAM) fn
       INTEGER prec
       LOGICAL lgf
-CEOP
 
       permCheckPoint = .FALSE.
       permCheckPoint=

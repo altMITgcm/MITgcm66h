@@ -3,24 +3,18 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C     !ROUTINE: TIMESTEP_TRACER
-C     !INTERFACE:
       SUBROUTINE TIMESTEP_TRACER(
      I                     bi, bj, iMin, iMax, jMin, jMax, K,
      I                     advection_scheme,
      I                     tracer, gTracer,
      O                     gTrNm1,
      I                     myIter, myThid )
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | S/R TIMESTEP_TRACER                                       
-C     | o Step model tracer field forward in time                 
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================\
+C     | S/R TIMESTEP_TRACER                                      |
+C     | o Step model tracer field forward in time                |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -29,7 +23,6 @@ C     == Global variables ===
 #include "GRID.h"
 #include "SURFACE.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine Arguments ==
       INTEGER bi,bj,iMin,iMax,jMin,jMax,K
       INTEGER advection_scheme
@@ -37,13 +30,10 @@ C     == Routine Arguments ==
       _RL  gTracer(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  gTrNm1 (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       INTEGER myIter, myThid
-
-C     !LOCAL VARIABLES:
 C     == Local variables ==
       INTEGER i,j
       _RL ab15,ab05
       _RL gTrtmp(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-CEOP
 
 C     Adams-Bashforth timestepping weights
       IF (myIter .EQ. 0) THEN

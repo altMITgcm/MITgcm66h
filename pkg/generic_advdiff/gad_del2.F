@@ -3,46 +3,26 @@ C $Name$
 
 #include "GAD_OPTIONS.h"
 
-CBOP
-C !ROUTINE: GAD_DEL2
-
-C !INTERFACE: ==========================================================
       SUBROUTINE GAD_DEL2( 
      I           bi,bj,k,
      I           dTdx,dTdy,
      O           del2,
      I           myThid )
-
-C !DESCRIPTION:
-C Calculates the horizontal Laplacian of a tracer:
-C \begin{equation*}
-C \nabla^2 \theta = \partial_{xx} \theta + \partial_{yy} \theta
-C \end{equation*}
-
-C !USES: ===============================================================
       IMPLICIT NONE
+
+C     == GLobal variables ==
 #include "SIZE.h"
 #include "GRID.h"
 
-C !INPUT PARAMETERS: ===================================================
-C  bi,bj                :: tile indices
-C  k                    :: vertical level
-C  dTx                  :: zonal tracer gradient
-C  dTy                  :: meridional tracer gradient
-C  myThid               :: thread number
+C     == Routine arguments ==
       INTEGER bi,bj,k
       _RL dTdx(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL dTdy(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL del2(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER myThid
 
-C !OUTPUT PARAMETERS: ==================================================
-C  del2                 :: Laplacian of tracer
-      _RL del2(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-
-C !LOCAL VARIABLES: ====================================================
-C  i,j                  :: loop indices
+C     == Local variables ==
       INTEGER i,j
-CEOP
 
 C     Difference of zonal fluxes ...
       DO j=1-Oly,sNy+Oly

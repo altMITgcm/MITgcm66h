@@ -3,34 +3,28 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C     !ROUTINE: INI_FIELDS
-C     !INTERFACE:
+CStartOfInterface
       SUBROUTINE INI_FIELDS( myThid )
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | SUBROUTINE INI_FIELDS                                     
-C     | o Initialise model fields                                 
-C     *==========================================================*
-C     | Initial conditions of the model state variables are       
-C     | set here. For continuation runs a restart file will be    
-C     | used. For original runs custom rules can be included      
-C     | here.                                                     
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================\
+C     | SUBROUTINE INI_FIELDS                                    |
+C     | o Initialise model fields                                |
+C     |==========================================================|
+C     | Initial conditions of the model state variables are      |
+C     | set here. For continuation runs a restart file will be   |
+C     | used. For original runs custom rules can be included     |
+C     | here.                                                    |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     myThid -  Number of this instance of INI_FIELDS
       INTEGER myThid
-CEOP
+CEndOfInterface
 
 C--   Set model variables to initial/restart conditions
       IF ( startTime .EQ. 0. .AND.  nIter0 .EQ. 0 ) THEN

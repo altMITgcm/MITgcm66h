@@ -3,38 +3,30 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C     !ROUTINE: INI_PARMS
-C     !INTERFACE:
       SUBROUTINE INI_PARMS( myThid )
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | SUBROUTINE INI_PARMS                                      
-C     | o Routine to set model "parameters"                       
-C     *==========================================================*
-C     | Notes:                                                    
-C     | ======                                                    
-C     | The present version of this routine is a place-holder.    
-C     | A production version needs to handle parameters from an   
-C     | external file and possibly reading in some initial field  
-C     | values.                                                   
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================\
+C     | SUBROUTINE INI_PARMS                                     |
+C     | o Routine to set model "parameters"                      |
+C     |==========================================================|
+C     | Notes:                                                   |
+C     | ======                                                   |
+C     | The present version of this routine is a place-holder.   |
+C     | A production version needs to handle parameters from an  |
+C     | external file and possibly reading in some initial field |
+C     | values.                                                  |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     === Routine arguments ===
 C     myThid - Number of this instance of INI_PARMS
       INTEGER myThid
 
-C     !LOCAL VARIABLES:
 C     === Local variables ===
 C     dxSpacing, dySpacing - Default spacing in X and Y.
 C                            Units are that of coordinate system
@@ -87,7 +79,6 @@ C
       LOGICAL pCoordInputData
       LOGICAL rCoordInputData
       INTEGER coordsSet
-CEOP
 
 C--   Continuous equation parameters
       NAMELIST /PARM01/

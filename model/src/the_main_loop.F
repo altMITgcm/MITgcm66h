@@ -2,34 +2,35 @@ C $Header$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C     !ROUTINE: THE_MAIN_LOOP
-C     !INTERFACE:
-      SUBROUTINE THE_MAIN_LOOP( mytime, myiter, mythid )
+      subroutine the_main_loop( mytime, myiter, mythid )
 
-C     !DESCRIPTION: \bv
-C     *================================================================*
-C     | SUBROUTINE the_main_loop
-C     | o Run the ocean model and evaluate the specified cost function.
-C     *================================================================*
-C     |
-C     | THE_MAIN_LOOP is the toplevel routine for the Tangent Linear and
-C     | Adjoint Model Compiler (TAMC). For this purpose the initialization
-C     | of the model was split into two parts. Those parameters that do
-C     | not depend on a specific model run are set in INITIALISE_FIXED,
-C     | whereas those that do depend on the specific realization are
-C     | initialized in INITIALISE_VARIA. 
-C     | This routine is to be used in conjuction with the MITgcmuv 
-C     | checkpoint 37.
-C     *================================================================*
-C     \ev
+c     ==================================================================
+c     SUBROUTINE the_main_loop
+c     ==================================================================
+c
+c     o Run the ocean model and evaluate the specified cost function.
+c
+c     *the_main_loop* is the toplevel routine for the Tangent Linear and
+c     Adjoint Model Compiler (TAMC). For this purpose the initialization
+c     of the model was split into two parts. Those parameters that do
+c     not depend on a specific model run are set in *initialise_fixed*,
+c     whereas those that do depend on the specific realization are
+c     initialized in *initialise_varia*. 
+c     This routine is to be used in conjuction with the MITgcmuv 
+c     checkpoint 37.
+c
+c     ==================================================================
+c     SUBROUTINE the_main_loop
+c     ==================================================================
 
-C     !USES:
-      IMPLICIT NONE
-C     == Global variables ==
+      implicit none
+
+c     == global variables ==
+
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+
 #ifdef ALLOW_AUTODIFF_TAMC
 # include "tamc.h"
 # include "ctrl.h"
@@ -45,23 +46,23 @@ C     == Global variables ==
 # endif
 #endif
 
-C     !INPUT/OUTPUT PARAMETERS:
-C     == Routine arguments ==
-C     note: under the multi-threaded model myiter and 
-C           mytime are local variables passed around as routine 
-C           arguments. Although this is fiddly it saves the need to 
-C           impose additional synchronisation points when they are 
-C           updated.
-C     myIter - iteration counter for this thread
-C     myTime - time counter for this thread
-C     myThid - thread number for this instance of the routine.
-      INTEGER myThid 
-      INTEGER myIter
-      _RL     myTime
+c     == routine arguments ==
+c     note: under the multi-threaded model myiter and 
+c           mytime are local variables passed around as routine 
+c           arguments. Although this is fiddly it saves the need to 
+c           impose additional synchronisation points when they are 
+c           updated.
+c     myiter - iteration counter for this thread
+c     mytime - time counter for this thread
+c     mythid - thread number for this instance of the routine.
+      integer mythid 
+      integer myiter
+      _RL     mytime
 
-C     !LOCAL VARIABLES:
-C     == Local variables ==
+c     == local variables ==
+
       integer iloop
+
 #ifdef ALLOW_TAMC_CHECKPOINTING
       integer ilev_1
       integer ilev_2
@@ -69,7 +70,8 @@ C     == Local variables ==
       integer max_lev2
       integer max_lev3
 #endif
-CEOP
+
+c--   == end of interface ==
 
 #ifdef ALLOW_AUTODIFF_TAMC
 c--   Initialize storage for the cost function evaluation.

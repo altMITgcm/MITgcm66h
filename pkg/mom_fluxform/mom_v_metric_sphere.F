@@ -3,46 +3,31 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C !ROUTINE: MOM_V_METRIC_SPHERE
-
-C !INTERFACE: ==========================================================
       SUBROUTINE MOM_V_METRIC_SPHERE(
      I        bi,bj,k,
      I        uFld,
      O        vMetricTerms,
      I        myThid)
-
-C !DESCRIPTION:
-C Calculates the meridional metric term due to sphericity:
-C \begin{equation}
-C \frac{1}{a} \overline{u}^{ij} \overline{u}^{ij} \tan{\phi}
-C \end{equation}
-
-C !USES: ===============================================================`
       IMPLICIT NONE
+C
+C     Calculate spherical metric terms in V equation
+C       - is obviously not vector invariant ...
+C
+
+C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
 
-C !INPUT PARAMETERS: ===================================================
-C  bi,bj                :: tile indices
-C  k                    :: vertical level
-C  uFld                 :: zonal flow 
-C  myThid               :: thread number
+C     == Routine arguments ==
       INTEGER bi,bj,k
       _RL uFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL vMetricTerms(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER myThid
 
-C !OUTPUT PARAMETERS: ==================================================
-C  vMetricTerms         :: metric term
-      _RL vMetricTerms(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-
-C !LOCAL VARIABLES: ====================================================
-C  i,j                  :: loop indices
-      INTEGER i,j
-CEOP
+C     == Local variables ==
+      INTEGER I,J
 
       DO j=1-Olx+1,sNy+Oly
        DO i=1-Olx,sNx+Olx-1

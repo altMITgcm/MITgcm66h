@@ -4,52 +4,21 @@ C $Name$
 #include "CPP_OPTIONS.h"
 
 CStartOfInterface
-CBOP
-C     !ROUTINE: PACKAGES_READPARMS
-C     !INTERFACE:
       SUBROUTINE PACKAGES_READPARMS(myThid)
-
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | SUBROUTINE PACKAGES_READPARMS                             
-C     | o Read runtime package configuration parameters           
-C     *==========================================================*
-C     |   Packages can have internal runtime configuration        
-C     |   parameters. A package provides a routine                
-C     |   ${PKGNAME}_READ_PARMS to read these parameters. In      
-C     |   general this routine should read parameters from a file 
-C     |   called data.${pkgname}.                                 
-C     |   This routine (S/R PACKAGES_READPARMS) calls per-package 
-C     |   parameter reading routines.                             
-C     *==========================================================*
-C     \ev
-
-C     !CALLING SEQUENCE:
-C     PACKAGES_READPARMS
-C       |
-C       |-- GMREDI_READPARMS
-C       |
-C       |-- KPP_READPARMS
-C       |
-C       |-- SHAP_FILT_READPARMS
-C       |
-C       |-- OBCS_READPARMS
-C       |
-C       |-- AIM_READPARMS
-C       |
-C       |-- COST_READPARMS
-C       |
-C       |-- CTRL_INIT
-C       |
-C       |-- OPTIM_READPARMS
-C       |
-C       |-- GRDCHK_READPARMS
-C       |
-C       |-- ECCO_READPARMS
-
-
-C     !USES:
+C     /==========================================================\
+C     | SUBROUTINE PACKAGES_READPARMS                            |
+C     | o Read runtime package configuration parameters          |
+C     |==========================================================|
+C     |   Packages can have internal runtime configuration       |
+C     |   parameters. A package provides a routine               |
+C     |   ${PKGNAME}_READ_PARMS to read these parameters. In     |
+C     |   general this routine should read parameters from a file|
+C     |   called data.${pkgname}.                                |
+C     |   This routine (S/R PACKAGES_READPARMS) calls per-package|
+C     |   parameter reading routines.                            |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -57,7 +26,9 @@ C     == Global variables ==
 
 C     == Routine arguments ==
       INTEGER myThid
-CEOP
+CEndOfInterface
+
+C     == Local variables ==
 
 #ifdef ALLOW_GMREDI
 C--   Initialize GM/Redi parameters

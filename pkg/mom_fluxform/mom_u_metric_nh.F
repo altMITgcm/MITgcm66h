@@ -3,49 +3,33 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C !ROUTINE: MOM_U_METRIC_NH
-
-C !INTERFACE: ==========================================================
       SUBROUTINE MOM_U_METRIC_NH(
      I        bi,bj,k,
      I        uFld, wFld,
      O        uMetricTerms,
      I        myThid)
-
-C !DESCRIPTION:
-C Calculates the zonal metric term due to non-hydrostaticity on the sphere:
-C \begin{equation}
-C \frac{u}{a} \overline{w}^{ik}
-C \end{equation}
-
-C !USES: ===============================================================
       IMPLICIT NONE
+C
+C     Calculate viscous flux in X direction for U eqn
+C       - is not vector invariant ...
+C
+
+C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
 
-C !INPUT PARAMETERS: ===================================================
-C  bi,bj                :: tile indices
-C  k                    :: vertical level
-C  uFld                 :: zonal flow 
-C  wFld                 :: vertical flow
-C  myThid               :: thread number
+C     == Routine arguments ==
       INTEGER bi,bj,k
       _RL uFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL wFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      _RL uMetricTerms(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER myThid
 
-C !OUTPUT PARAMETERS: ==================================================
-C  uMetricTerms         :: metric term
-      _RL uMetricTerms(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-
-C !LOCAL VARIABLES: ====================================================
-C  i,j                  :: loop indices
-      INTEGER i,j,Kp1
+C     == Local variables ==
+      INTEGER I,J,Kp1
       _RL wVelBottomOverride
-CEOP
 
       Kp1=min(k+1,Nr)
       wVelBottomOverride=1.

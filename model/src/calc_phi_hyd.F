@@ -3,19 +3,14 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C     !ROUTINE: CALC_PHI_HYD
-C     !INTERFACE:
       SUBROUTINE CALC_PHI_HYD(
      I                         bi, bj, iMin, iMax, jMin, jMax, K,
      I                         theta, salt,
      U                         phiHyd,
      I                         myThid)
-C     !DESCRIPTION: \bv
-C     *==========================================================*
+C     /==========================================================\
 C     | SUBROUTINE CALC_PHI_HYD                                  |
 C     | o Integrate the hydrostatic relation to find the Hydros. | 
-C     *==========================================================*
 C     |    Potential (ocean: Pressure/rho ; atmos = geopotential)|
 C     | On entry:                                                |
 C     |   theta,salt    are the current thermodynamics quantities|
@@ -36,9 +31,7 @@ C     |  (ocean only-^) at cell the interface k+1 (w point below)|
 C     | Atmosphere:                                              |
 C     |   Integr_GeoPot allows to select one integration method  |
 C     |    (see the list below)                                  |
-C     *==========================================================*
-C     \ev
-C     !USES:
+C     \==========================================================/
       IMPLICIT NONE
 C     == Global variables ==
 #include "SIZE.h"
@@ -50,7 +43,6 @@ C     == Global variables ==
 #include "tamc_keys.h"
 #endif /* ALLOW_AUTODIFF_TAMC */
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
       INTEGER bi,bj,iMin,iMax,jMin,jMax,K
       _RL theta(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
@@ -60,14 +52,12 @@ C     == Routine arguments ==
       
 #ifdef INCLUDE_PHIHYD_CALCULATION_CODE
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
       INTEGER i,j, Kp1
       _RL zero, one, half
       _RL alphaRho(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL dRloc,dRlocKp1
       _RL ddPI, ddPIm, ddPIp, ratioRp, ratioRm
-CEOP
 
       zero = 0. _d 0
       one  = 1. _d 0

@@ -3,27 +3,23 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C     !ROUTINE: CONFIG_SUMMARY
-C     !INTERFACE:
+CStartOfInterface
       SUBROUTINE CONFIG_SUMMARY( myThid )
-C     !DESCRIPTION: \bv
-C     *=========================================================*
-C     | SUBROUTINE CONFIG_SUMMARY                                 
-C     | o Summarize model parameter settings.                     
-C     *=========================================================* 
-C     | This routine writes a tabulated summary of the kernel     
-C     | model configuration. Information describes all the 
-C     | parameter setting in force and the meaning and units of
-C     | those parameters. Individal packages report a similar
-C     | table for each package using the same format as employed
-C     | here. If parameters are missing or incorrectly described
-C     | or dimensioned please contact support@mitgcm.org
-C     *=========================================================* 
-C     \ev
-
-C     !USES:
+C     /==========================================================
+C     | SUBROUTINE CONFIG_SUMMARY                                |
+C     | o Summarize model prognostic variables.                  |
+C     |==========================================================|
+C     | This routine writes a tabulated summary of the model     |
+C     | configuration.                                           |
+C     | Note                                                     |
+C     |  1. Under multi-process parallelism the summary          |
+C     |     is only given for the per-process data.              |
+C     |  2. Under multi-threading the summary is produced by     |
+C     |     the master thread. This threads reads data managed by|
+C     |     other threads.                                       |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -31,20 +27,12 @@ C     === Global variables ===
 #include "GRID.h"
 #include "DYNVARS.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     myThid -  Number of this instance of CONFIG_SUMMARY
       INTEGER myThid
 CEndOfInterface
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
-C     msgBuf :: Temp. for building output string.
-C     I,J,K  :: Loop counters.
-C     bi,bj  :: Tile loop counters.
-C     xcoord :: Temps. for building lists of values for uni-dimensionally
-C     ycoord :: varying parameters.
-C     zcoord ::
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       INTEGER                  I,J,K
       INTEGER                  bi, bj
@@ -53,7 +41,6 @@ C     zcoord ::
       _RL                     rcoord(Nr)
       INTEGER coordLine
       INTEGER tileLine
-CEOP
 
 
       _BARRIER

@@ -14,39 +14,23 @@ C--   TIMER_STOP      - Stop CPU tier for code section.
 C--   Routines marked "M" contain specific machine dependent code.
 C--   Routines marked "U" contain UNIX OS calls.
 
-CBOP
-C     !ROUTINE: TIMER_INDEX
-
-C     !INTERFACE:
+CStartOfInterface
       INTEGER FUNCTION TIMER_INDEX ( 
      I        name,timerNames,maxTimers,nTimers )
+C     /==========================================================\
+C     | FUNCTION TIMER_INDEX                                     |
+C     | o Timing support routine.                                |
+C     |==========================================================|
+C     | Return index in timer data structure of timer named      |
+C     | by the function argument "name".                         |
+C     \==========================================================/
       IMPLICIT NONE
-
-C     !DESCRIPTION:
-C     *==========================================================*
-C     | FUNCTION TIMER_INDEX                                      
-C     | o Timing support routine.                                 
-C     *==========================================================*
-C     | Return index in timer data structure of timer named       
-C     | by the function argument "name".                          
-C     *==========================================================*
-
-C     !INPUT/OUTPUT PARAMETERS:
-C     == Routine arguements ==
-C     maxTimers  :: Total number of timers allowed
-C     nTimers    :: Current number of timers
-C     name       :: Name of timer to find
-C     timerNames :: List of valid timer names
       INTEGER maxTimers
       INTEGER nTimers
       CHARACTER*(*) name
       CHARACTER*(*) timerNames(maxTimers)
-
-C     !LOCAL VARIABLES:
-C     == Local variables ==
-C     I :: Index variable
+CEndOfInterface
       INTEGER I
-CEOP
 C
       TIMER_INDEX = 0
       IF ( name .EQ. ' ' ) THEN
@@ -62,63 +46,38 @@ C
       RETURN
       END
 
-CBOP
-C     !ROUTINE: TIMER_CONTROL
-
-C     !INTERFACE:
+CStartOfInterface
       SUBROUTINE TIMER_CONTROL ( name , action , callProc , myThreadId )
-      IMPLICIT NONE
-
-C     !DESCRIPTION:
-C     *==========================================================*
+C     /==========================================================\
 C     | SUBROUTINE TIMER_CONTROL                                 |
 C     | o Timing routine.                                        |
-C     *==========================================================*
+C     |==========================================================|
 C     | User callable interface to timing routines. Timers are   |
 C     | created, stopped, started and queried only through this  |
 C     | rtouine.                                                 |
-C     *==========================================================*
-
-C     !USES:
+C     \==========================================================/
+      IMPLICIT NONE
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
+      CHARACTER*(*) name
+      CHARACTER*(*) action
+      CHARACTER*(*) callProc
+      INTEGER myThreadId
+CEndOfInterface
+C
       INTEGER  TIMER_INDEX
       INTEGER  IFNBLNK
       INTEGER  ILNBLNK
       EXTERNAL TIMER_INDEX
       EXTERNAL IFNBLNK
       EXTERNAL ILNBLNK
-
-C     !INPUT/OUTPUT PARAMETERS:
-C     name       :: name of the timer
-C     action     :: operation to perform with this timer
-C     callProc   :: procedure calling this routine
-C     myThreadId :: instance number of this thread
-      CHARACTER*(*) name
-      CHARACTER*(*) action
-      CHARACTER*(*) callProc
-      INTEGER myThreadId
 C
-C     !LOCAL VARIABLES:
-C     maxTimers :: Total numer of timer allowed
-C     maxString :: Max length of a timer name
       INTEGER maxTimers
       INTEGER maxString
       PARAMETER ( maxTimers = 40 )
       PARAMETER ( maxString = 80 )
-C     timerStarts :: Timer counters for each timer and each thread
-C     timerStops 
-C     timerUser
-C     timerWall
-C     timerSys
-C     timerT0User
-C     timerT0Wall
-C     timerT0Sys 
-C     timerStatus  :: START/STOP/RUNNING Status of the timer
-C     timerNameLen :: Length of timer name
-C     timerNames   :: Table of timer names
-C     nTimers      :: Number of active timers
+C
       INTEGER timerStarts( maxTimers , MAX_NO_THREADS)
       SAVE    timerStarts
       INTEGER timerStops ( maxTimers , MAX_NO_THREADS)
@@ -135,6 +94,8 @@ C     nTimers      :: Number of active timers
       SAVE timerT0Wall 
       Real*8 timerT0Sys ( maxTimers , MAX_NO_THREADS)
       SAVE timerT0Sys 
+C     ===============================================================
+C
       INTEGER timerStatus( maxTimers , MAX_NO_THREADS)
       SAVE    timerStatus
       INTEGER timerNameLen( maxTimers , MAX_NO_THREADS)
@@ -164,9 +125,9 @@ C     nTimers      :: Number of active timers
       Real*8 systemTime
       Real*8 wallClockTime
       CHARACTER*(MAX_LEN_MBUF) msgBuffer
+C
       DATA nTimers  /MAX_NO_THREADS*0/
       SAVE nTimers
-CEOP
 C
       ISTART = IFNBLNK(name)
       IEND   = ILNBLNK(name)
@@ -434,50 +395,32 @@ C
       GOTO 1000
       END
 
-CBOP
-C     !ROUTINE: TIMER_GET_TIME
-
-C     !INTERFACE:
+CStartOfInterface
       SUBROUTINE TIMER_GET_TIME( 
      O                           userTime, 
      O                           systemTime, 
      O                           wallClockTime )
+C     /==========================================================\
+C     | SUBROUTINE TIMER_GET_TIME                                |
+C     | o Query system timer routines.                           |
+C     |==========================================================|
+C     | Routine returns total elapsed time for program so far.   |
+C     | Three times are returned that conventionally are used as |
+C     | user time, system time and wall-clock time. Not all these|
+C     | numbers are available on all machines.                   |
+C     \==========================================================/
       IMPLICIT NONE
-
-C     !DESCRIPTION:
-C     *==========================================================*
-C     | SUBROUTINE TIMER_GET_TIME                                 
-C     | o Query system timer routines.                            
-C     *==========================================================*
-C     | Routine returns total elapsed time for program so far.    
-C     | Three times are returned that conventionally are used as  
-C     | user time, system time and wall-clock time. Not all these 
-C     | numbers are available on all machines.                    
-C     *==========================================================*
-
-C     !INPUT/OUTPUT PARAMETERS:
-C     userTime      :: User time returned
-C     systemTime    :: System time returned
-C     wallClockTime :: Wall clock time returned
       Real*8 userTime
       Real*8 systemTime
       Real*8 wallClockTime
-
-C     !USES:
+CEndOfInterface
+      Real*4 ETIME, ACTUAL, TARRAY(2)
 #ifndef TARGET_T3E
 #ifndef TARGET_CRAY_VECTOR
-      Real*4 ETIME
       EXTERNAL ETIME
 #endif
 #endif
-
-C     !LOCAL VARIABLES:
-C     ACTUAL, TARRAY, :: Temps. to hold times
-C     wTime
-      Real*4 ACTUAL, TARRAY(2)
       Real*8 wtime
-CEOP
-
 C     Real*8 MPI_Wtime
 C     EXTERNAL MPI_Wtime
 
@@ -508,70 +451,41 @@ C     wallClockTime = 0.
       RETURN
       END
 
-CBOP
-
-C     !ROUTINE: TIMER_PRINTALL
-
-C     !INTERFACE:
+CStartOfInterface
       SUBROUTINE TIMER_PRINTALL( myThreadId )
+C     /==========================================================\
+C     | SUBROUTINE TIMER_PRINTALL                                |
+C     | o Print timer information                                |
+C     |==========================================================|
+C     | Request print out of table of timing from all timers.    |
+C     \==========================================================/
       IMPLICIT NONE
-
-C     !DESCRIPTION:
-C     *==========================================================*
-C     | SUBROUTINE TIMER_PRINTALL                                 
-C     | o Print timer information                                 
-C     *==========================================================*
-C     | Request print out of table of timing from all timers.     
-C     *==========================================================*
-
-C     !INPUT PARAMETERS:
-C     myThreadId :: This threads number
       INTEGER myThreadId
-CEOP
-
+CEndOfInterface
+C     Print out value for every timer.
+C
       CALL TIMER_CONTROL( ' ', 'PRINTALL', 'TIMER_PRINTALL' , 
      &                   myThreadId )
 C
       RETURN
       END
-
-CBOP
-C     !ROUTINE: TIMER_START
-
-C     !INTERFACE:
+C***********************************************************************
       SUBROUTINE TIMER_START ( string , myThreadId )
+C     Return start timer named "string".
       IMPLICIT NONE
-
-C     !DESCRIPTION:
-C     Start timer named "string".
-
-C     !INPUT PARAMETERS:
-C     string     :: Name of timer
-C     myThreadId :: My thread number
       CHARACTER*(*) string
       INTEGER myThreadId
-CEOP
 C
       CALL TIMER_CONTROL( string, 'START', 'TIMER_START' , myThreadId)
 C
       RETURN
       END
-CBOP
-C     !ROUTINE: TIMER_STOP
-
-C     !INTERFACE:
+C***********************************************************************
       SUBROUTINE TIMER_STOP  ( string , myThreadId)
+C     Return start timer named "string".
       IMPLICIT NONE
-
-C     !DESCRIPTION:
-C     Stop timer named "string".
-
-C     !INPUT PARAMETERS:
-C     string     :: Name of timer
-C     myThreadId :: My thread number
       CHARACTER*(*) string
       INTEGER myThreadId
-CEOP
 C
       CALL TIMER_CONTROL( string, 'STOP', 'TIMER_STOP' , myThreadId )
 C

@@ -3,49 +3,27 @@ C $Name$
 
 #include "GAD_OPTIONS.h"
 
-CBOP
-C !ROUTINE: GAD_BIHARM_X
-
-C !INTERFACE: ==========================================================
       SUBROUTINE GAD_BIHARM_X( 
      I           bi,bj,k,
      I           xA,del2T,diffK4,
      O           dfx,
      I           myThid )
-
-C !DESCRIPTION:
-C Calculates the zonal flux due to bi-harmonic diffusion of a tracer.
-C Routine takes the laplacian of the tracer as argument and calculates
-C the zonal gradient:
-C \begin{equation*}
-C F^x_{diff} = \kappa_4 \partial_x \nabla^2 \theta
-C \end{equation*}
-
-C !USES: ===============================================================
       IMPLICIT NONE
+
+C     == GLobal variables ==
 #include "SIZE.h"
 #include "GRID.h"
 
-C !INPUT PARAMETERS: ===================================================
-C  bi,bj                :: tile indices
-C  k                    :: vertical level
-C  xA                   :: area of face at U points
-C  del2T                :: Laplacian of tracer
-C  myThid               :: thread number
+C     == Routine arguments ==
       INTEGER bi,bj,k
       _RS xA   (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL del2T(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL diffK4
+      _RL dfx  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER myThid
 
-C !OUTPUT PARAMETERS: ==================================================
-C  dfx                  :: zonal diffusive flux
-      _RL dfx  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-
-C !LOCAL VARIABLES: ====================================================
-C  i,j                  :: loop indices
+C     == Local variables ==
       INTEGER i,j
-CEOP
 
 C     Difference of zonal fluxes ...
       DO j=1-Oly,sNy+Oly

@@ -3,19 +3,15 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C     !ROUTINE: INI_GW
-C     !INTERFACE:
+CStartOfInterface
       SUBROUTINE INI_GW ( myThid )
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | SUBROUTINE INI_GW                                         
-C     | o Set model initial gW tendency terms                     
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================\
+C     | SUBROUTINE INI_GW                                        |
+C     | o Set model initial gW tendency terms                    |
+C     |==========================================================|
+C     \==========================================================/
       IMPLICIT NONE
+
 C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -23,7 +19,6 @@ C     === Global variables ===
 #include "GRID.h"
 #include "GW.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     myThid -  Number of this instance of INI_GW 
       INTEGER myThid
@@ -31,13 +26,11 @@ CEndOfInterface
 
 #ifdef ALLOW_NONHYDROSTATIC
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     bi,bj  - Loop counters
 C     I,J,K
       INTEGER bi, bj
       INTEGER  I,  J, K
-CEOP
 
 C     Set initial tendency terms
       DO bj = myByLo(myThid), myByHi(myThid)

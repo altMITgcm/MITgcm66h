@@ -3,31 +3,23 @@ C $Name$
 #include "CPP_OPTIONS.h"
 
 CStartofinterface
-CBOP
-C     !ROUTINE: WRITE_1D_I
-C     !INTERFACE:
       SUBROUTINE WRITE_1D_I( fld, lFld, index_type, head, comment )
-
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | o SUBROUTINE WRITE_1D_I                                   
-C     | Controls formatted, tabular I/O for a one-dimensional     
-C     | INTEGER field.                                            
-C     *==========================================================*
-C     | This routine produces a standard format for list          
-C     | one-dimensional INTEGER data in textual form. The format  
-C     | is designed to be readily parsed by a post-processing     
-C     | utility.                                                  
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================
+C     | o SUBROUTINE WRITE_1D_I                                  |
+C     | Controls formatted, tabular I/O for a one-dimensional    |
+C     | INTEGER field.                                           |
+C     |==========================================================|
+C     | This routine produces a standard format for list         |
+C     | one-dimensional INTEGER data in textual form. The format |
+C     | is designed to be readily parsed by a post-processing    |
+C     | utility.                                                 |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == Global data ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     fld  - Field to be printed
 C     lFld - Number of elements in field fld.
@@ -39,11 +31,10 @@ C     comment - Descriptive comment for field
       INTEGER index_type
       CHARACTER*(*) head
       CHARACTER*(*) comment
+CEndofinterface
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
       CHARACTER*(MAX_LEN_MBUF) msgBuf
-CEOP
 
       WRITE(msgBuf,'(A,A)') head, comment
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, 
@@ -57,31 +48,24 @@ CEOP
       END
 
 
-CBOP
-C     !ROUTINE: WRITE_1D_L
-C     !INTERFACE:
+CStartofinterface
       SUBROUTINE WRITE_1D_L( fld, lFld, index_type, head, comment )
-
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | o SUBROUTINE WRITE_1D_L                                   
-C     | Controls formatted, tabular I/O for a one-dimensional     
-C     | LOGICAL field.                                            
-C     *==========================================================*
-C     | This routine produces a standard format for list          
-C     | one-dimensional LOGICAL data in textual form. The format  
-C     | is designed to be readily parsed by a post-processing     
-C     | utility.                                                  
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================
+C     | o SUBROUTINE WRITE_1D_L                                  |
+C     | Controls formatted, tabular I/O for a one-dimensional    |
+C     | LOGICAL field.                                           |
+C     |==========================================================|
+C     | This routine produces a standard format for list         |
+C     | one-dimensional LOGICAL data in textual form. The format |
+C     | is designed to be readily parsed by a post-processing    |
+C     | utility.                                                 |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == Global data ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     fld  - Field to be printed
 C     lFld - Number of elements in field fld.
@@ -93,11 +77,10 @@ C     comment - Descriptive comment for field
       INTEGER index_type
       CHARACTER*(*) head
       CHARACTER*(*) comment
+CEndofinterface
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
       CHARACTER*(MAX_LEN_MBUF) msgBuf
-CEOP
 
       WRITE(msgBuf,'(A,A)') head, comment
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, 
@@ -111,33 +94,26 @@ CEOP
       END
 
 
-CBOP
-C     !ROUTINE: WRITE_1D_R8
-C     !INTERFACE:
+CStartofinterface
       SUBROUTINE WRITE_1D_R8( fld, lFld, index_type, head, comment )
-
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | o SUBROUTINE WRITE_1D_R8                                  
-C     | Controls formatted, tabular I/O for a one-dimensional     
-C     | real*8 field.                                             
-C     *==========================================================*
-C     | This routine produces a standard format for list          
-C     | one-dimensional real*8 data in textual form. The format   
-C     | is designed to be readilya parsed by a post-processing    
-C     | utility.                                                  
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================
+C     | o SUBROUTINE WRITE_1D_R8                                 |
+C     | Controls formatted, tabular I/O for a one-dimensional    |
+C     | real*8 field.                                            |
+C     |==========================================================|
+C     | This routine produces a standard format for list         |
+C     | one-dimensional real*8 data in textual form. The format  |
+C     | is designed to be readilya parsed by a post-processing   |
+C     | utility.                                                 |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == Global data ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
       EXTERNAL ILNBLNK
       INTEGER  ILNBLNK
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     fld  - Field to be printed
 C     lFld - Number of elements in field fld.
@@ -149,13 +125,12 @@ C     comment - Descriptive comment for field
       INTEGER index_type
       CHARACTER*(*) head
       CHARACTER*(*) comment
+CEndofinterface
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     ILH, ILC - Index of last balnk in head and comment
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       INTEGER ILH, ILC
-CEOP
 
       ILH=ILNBLNK(head)
       ILC=ILNBLNK(comment)
@@ -171,31 +146,24 @@ CEOP
       END
 
 
-CBOP
-C     !ROUTINE: WRITE_0D_I
-C     !INTERFACE:
+CStartofinterface
       SUBROUTINE WRITE_0D_I( fld, index_type, head, comment )
-
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | o SUBROUTINE WRITE_1D_I                                   
-C     | Controls formatted, tabular I/O for a one-dimensional     
-C     | INTEGER field.                                            
-C     *==========================================================*
-C     | This routine produces a standard format for list          
-C     | one-dimensional INTEGER data in textual form. The format  
-C     | is designed to be readily parsed by a post-processing     
-C     | utility.                                                  
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================
+C     | o SUBROUTINE WRITE_1D_I                                  |
+C     | Controls formatted, tabular I/O for a one-dimensional    |
+C     | INTEGER field.                                           |
+C     |==========================================================|
+C     | This routine produces a standard format for list         |
+C     | one-dimensional INTEGER data in textual form. The format |
+C     | is designed to be readily parsed by a post-processing    |
+C     | utility.                                                 |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == Global data ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     fld  - Field to be printed
 C     lFld - Number of elements in field fld.
@@ -206,12 +174,11 @@ C     comment - Descriptive comment for field
       INTEGER index_type
       CHARACTER*(*) head
       CHARACTER*(*) comment
+CEndofinterface
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       INTEGER idummy(1)
-CEOP
 
       idummy(1) = fld
 
@@ -227,31 +194,24 @@ CEOP
       END
 
 
-CBOP
-C     !ROUTINE: WRITE_0D_L
-C     !INTERFACE:
+CStartofinterface
       SUBROUTINE WRITE_0D_L( fld, index_type, head, comment )
-
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | o SUBROUTINE WRITE_1D_L                                   
-C     | Controls formatted, tabular I/O for a one-dimensional     
-C     | LOGICAL field.                                            
-C     *==========================================================*
-C     | This routine produces a standard format for list          
-C     | one-dimensional LOGICAL data in textual form. The format  
-C     | is designed to be readily parsed by a post-processing     
-C     | utility.                                                  
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================
+C     | o SUBROUTINE WRITE_1D_L                                  |
+C     | Controls formatted, tabular I/O for a one-dimensional    |
+C     | LOGICAL field.                                           |
+C     |==========================================================|
+C     | This routine produces a standard format for list         |
+C     | one-dimensional LOGICAL data in textual form. The format |
+C     | is designed to be readily parsed by a post-processing    |
+C     | utility.                                                 |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == Global data ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     fld  - Field to be printed
 C     lFld - Number of elements in field fld.
@@ -262,12 +222,11 @@ C     comment - Descriptive comment for field
       INTEGER index_type
       CHARACTER*(*) head
       CHARACTER*(*) comment
+CEndofinterface
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       LOGICAL ldummy(1)
-CEOP
 
       ldummy(1) = fld
       WRITE(msgBuf,'(A,A)') head, comment
@@ -282,31 +241,24 @@ CEOP
       END
 
 
-CBOP
-C     !ROUTINE: WRITE_0D_R8
-C     !INTERFACE:
+CStartofinterface
       SUBROUTINE WRITE_0D_R8( fld, index_type, head, comment )
-
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | o SUBROUTINE WRITE_1D_R8                                  
-C     | Controls formatted, tabular I/O for a one-dimensional     
-C     | real*8 field.                                             
-C     *==========================================================*
-C     | This routine produces a standard format for list          
-C     | one-dimensional real*8 data in textual form. The format   
-C     | is designed to be readilya parsed by a post-processing    
-C     | utility.                                                  
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================
+C     | o SUBROUTINE WRITE_1D_R8                                 |
+C     | Controls formatted, tabular I/O for a one-dimensional    |
+C     | real*8 field.                                            |
+C     |==========================================================|
+C     | This routine produces a standard format for list         |
+C     | one-dimensional real*8 data in textual form. The format  |
+C     | is designed to be readilya parsed by a post-processing   |
+C     | utility.                                                 |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == Global data ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     fld  - Field to be printed
 C     lFld - Number of elements in field fld.
@@ -317,12 +269,11 @@ C     comment - Descriptive comment for field
       INTEGER index_type
       CHARACTER*(*) head
       CHARACTER*(*) comment
+CEndofinterface
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       Real*8 r8dummy(1)
-CEOP
 
       r8dummy(1) = fld
 
@@ -338,26 +289,21 @@ CEOP
       END
 
 
-C     !ROUTINE: WRITE_XY_XLINE_RS
-C     !INTERFACE:
+CStartofinterface
       SUBROUTINE WRITE_XY_XLINE_RS( 
      I                              fld, sCoord, tCoord, 
      I                              head, comment )
-
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | o SUBROUTINE WRITE_XY_XLINE_RS                            
-C     | Prints out X row of an XY RS field e.g. phi(:,n,:,m)      
-C     *==========================================================*
-C     | This routine produces a standard format for list          
-C     | one-dimensional RS data in textual form. The format       
-C     | is designed to be readily parsed by a post-processing     
-C     | utility.                                                  
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================
+C     | o SUBROUTINE WRITE_XY_XLINE_RS                           |
+C     | Prints out X row of an XY RS field e.g. phi(:,n,:,m)     |
+C     |==========================================================|
+C     | This routine produces a standard format for list         |
+C     | one-dimensional RS data in textual form. The format      |
+C     | is designed to be readily parsed by a post-processing    |
+C     | utility.                                                 |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == Global data ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -366,7 +312,6 @@ C     == Global data ==
       EXTERNAL ILNBLNK
       INTEGER  ILNBLNK
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     fld    - Field to be printed
 C     sCoord - subgrid coordinate
@@ -378,8 +323,8 @@ C     comment - Descriptive comment for field
       INTEGER tCoord
       CHARACTER*(*) head
       CHARACTER*(*) comment
+CEndofinterface
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
       CHARACTER*(MAX_LEN_MBUF) msgBuf1
       CHARACTER*(MAX_LEN_MBUF) msgBuf2
@@ -387,7 +332,6 @@ C     == Local variables ==
       REAL*8 xcoord(sNx*nSx)
       INTEGER bi, bj, i, j
       INTEGER IFN1, ILN1, IFN2, ILN2
-CEOP
       
       WRITE(msgBuf1,'(A,A)') head,' = '
       bj = tCoord
@@ -414,27 +358,21 @@ C     fld(:,J,:,bj)
       RETURN
       END
 
-CBOP
-C     !ROUTINE: WRITE_XY_YLINE_RS
-C     !INTERFACE:
+CStartofinterface
       SUBROUTINE WRITE_XY_YLINE_RS( 
      I                              fld, sCoord, tCoord, 
      I                              head, comment )
-
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | o SUBROUTINE WRITE_XY_YLINE_RS                            
-C     | Prints out Y row of an XY RS field e.g. phi(n,:,m,:)      
-C     *==========================================================*
-C     | This routine produces a standard format for list          
-C     | one-dimensional RS data in textual form. The format       
-C     | is designed to be readily parsed by a post-processing     
-C     | utility.                                                  
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================
+C     | o SUBROUTINE WRITE_XY_YLINE_RS                           |
+C     | Prints out Y row of an XY RS field e.g. phi(n,:,m,:)     |
+C     |==========================================================|
+C     | This routine produces a standard format for list         |
+C     | one-dimensional RS data in textual form. The format      |
+C     | is designed to be readily parsed by a post-processing    |
+C     | utility.                                                 |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == Global data ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -443,7 +381,6 @@ C     == Global data ==
       EXTERNAL ILNBLNK
       INTEGER  ILNBLNK
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     fld    - Field to be printed
 C     sCoord - subgrid coordinate
@@ -455,8 +392,8 @@ C     comment - Descriptive comment for field
       INTEGER tCoord
       CHARACTER*(*) head
       CHARACTER*(*) comment
+CEndofinterface
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
       CHARACTER*(MAX_LEN_MBUF) msgBuf1
       CHARACTER*(MAX_LEN_MBUF) msgBuf2
@@ -464,7 +401,6 @@ C     == Local variables ==
       INTEGER bi, bj, i, j
       CHARACTER*10 num1, num2
       INTEGER IFN1, ILN1, IFN2, ILN2
-CEOP
       
       WRITE(msgBuf1,'(A,A)') head,' = '
       bi = tCoord

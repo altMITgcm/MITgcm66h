@@ -3,21 +3,15 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C     !ROUTINE: TIMESTEP
-C     !INTERFACE:
+C     /==========================================================\
+C     | S/R TIMESTEP                                             |
+C     | o Step model fields forward in time                      |
+C     \==========================================================/
       SUBROUTINE TIMESTEP( bi, bj, iMin, iMax, jMin, jMax, K,
      I                     phiHyd, phiSurfX, phiSurfY,
      I                     myIter, myThid )
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | S/R TIMESTEP                                              
-C     | o Step model fields forward in time                       
-C     *==========================================================*
-C     \ev
-
-C     !USES:
       IMPLICIT NONE
+
 C     == Global variables ==
 #include "SIZE.h"
 #include "DYNVARS.h"
@@ -26,7 +20,6 @@ C     == Global variables ==
 #include "GRID.h"
 #include "SURFACE.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine Arguments ==
 C     phiHyd    - Hydrostatic Potential (ocean: pressure/rho) 
 C                                       (atmos: geopotentiel)
@@ -39,14 +32,12 @@ C     phiSurfY             or geopotentiel (atmos) in X and Y direction
       _RL     phiSurfY(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER myIter, myThid
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
       INTEGER i,j
       _RL ab15,ab05
       _RL phxFac,phyFac, psFac
       _RL     gUtmp(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL     gVtmp(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-CEOP
 
 C     Adams-Bashforth timestepping weights
       IF (myIter .EQ. 0) THEN

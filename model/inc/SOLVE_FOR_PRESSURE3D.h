@@ -1,17 +1,10 @@
 C $Header$
 C $Name$
 C
-CBOP
-C    !ROUTINE: SOLVE_FOR_PRESSURE3D.h
-C    !INTERFACE:
-C    include SOLVE_FOR_PRESSURE3D.h
-C    !DESCRIPTION: \bv
-C     *==========================================================*
-C     | SOLVE_FOR_PRESSURE3D.h                                    
-C     | o Globals used by Fortran 3d pressure solver routine      
-C     *==========================================================*
-C     \ev
-CEOP
+C     /==========================================================\
+C     | SOLVE_FOR_PRESSURE3D.h                                   |
+C     | o Globals used by Fortran 3d pressure solver routine     |
+C     \==========================================================/
 
 #ifdef ALLOW_NONHYDROSTATIC
       COMMON / SFP3D_COMMON_R8 / cg3d_x, cg3d_b

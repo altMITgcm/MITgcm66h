@@ -1,20 +1,13 @@
 C $Header$
 C $Name$
 C
-CBOP
-C    !ROUTINE: DXV_MACROS.h
-C    !INTERFACE:
-C    include DXV_MACROS.h
-C    !DESCRIPTION: \bv
-C     *==========================================================*
-C     | DXV_MACROS.h                                              
-C     *==========================================================*
-C     | These macros are used to reduce memory requirement and/or 
-C     | memory references when variables are fixed along a given  
-C     | axis or axes.                                             
-C     *==========================================================*
-C     \ev
-CEOP
+C     /==========================================================\
+C     | DXV_MACROS.h                                             |
+C     |==========================================================|
+C     | These macros are used to reduce memory requirement and/or|
+C     | memory references when variables are fixed along a given |
+C     | axis or axes.                                            |
+C     \==========================================================/
 
 #ifdef DXV_CONST
 #define  _dxV(i,j,bi,bj) dxV(1,1,1,1)

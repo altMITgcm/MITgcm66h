@@ -1,20 +1,13 @@
 C $Header$
 C $Name$
 C
-CBOP
-C    !ROUTINE: FCORI_MACROS.h
-C    !INTERFACE:
-C    include FCORI_MACROS.h
-C    !DESCRIPTION: \bv
-C     *==========================================================*
-C     | FCORI_MACROS.h                                            
-C     *==========================================================*
-C     | These macros are used to reduce memory requirement and/or 
-C     | memory references when variables are fixed along a given  
-C     | axis or axes.                                             
-C     *==========================================================*
-C     \ev
-CEOP
+C     /==========================================================\
+C     | FCORI_MACROS.h                                           |
+C     |==========================================================|
+C     | These macros are used to reduce memory requirement and/or|
+C     | memory references when variables are fixed along a given |
+C     | axis or axes.                                            |
+C     \==========================================================/
 
 #ifdef FCORI_CONST
 #define  _fCori(i,j,bi,bj) fCori(1,1,1,1)

@@ -3,21 +3,15 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C     !ROUTINE: SOLVE_FOR_PRESSURE
-C     !INTERFACE:
+CStartOfInterface
       SUBROUTINE SOLVE_FOR_PRESSURE( myThid )
-
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | SUBROUTINE SOLVE_FOR_PRESSURE                             
-C     | o Controls inversion of two and/or three-dimensional      
-C     |   elliptic problems for the pressure field.               
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================\
+C     | SUBROUTINE SOLVE_FOR_PRESSURE                            |
+C     | o Controls inversion of two and/or three-dimensional     |
+C     |   elliptic problems for the pressure field.              |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == Global variables
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -34,12 +28,11 @@ C     == Global variables
 #endif
 #include "SOLVE_FOR_PRESSURE.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     myThid - Number of this instance of SOLVE_FOR_PRESSURE
       INTEGER myThid
+CEndOfInterface
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
       INTEGER i,j,k,bi,bj
       _RS uf(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
@@ -47,7 +40,6 @@ C     == Local variables ==
       _RL firstResidual,lastResidual
       INTEGER numIters
       CHARACTER*(MAX_LEN_MBUF) msgBuf
-CEOP
 
 C--   Save previous solution & Initialise Vector solution and source term :
       DO bj=myByLo(myThid),myByHi(myThid)

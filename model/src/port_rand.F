@@ -6,16 +6,7 @@ C Portable random number generator
 #undef _USE_INTEGERS
 
 ! ==============================================================================
-CBOP
-C     !ROUTINE: port_rand
-C     !INTERFACE:
       real*8 function port_rand()
-
-C     !DESCRIPTION: \bv
-C     Portable random number generator
-C     \ev
-
-C     !LOCAL VARIABLES:
       implicit none
       integer nff
       parameter(nff=55)
@@ -40,7 +31,6 @@ C     !LOCAL VARIABLES:
       logical firstCall
       save firstCall,inext,inextp,ma
       data firstCall /.true./
-CEOP
 ! ------------------------------------------------------------------------------
       if(firstCall)then
         firstCall=.false.

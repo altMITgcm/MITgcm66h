@@ -53,8 +53,8 @@ C     == Local variables ==
       DO J=1,sNy
        DO I=1,sNx
         I2 = sNx*(J-1)+I
-c       USTRtave(i,j,bi,bj)   = USTRtave(i,j,bi,bj)   + USTR(I2,3,myThid)*DDTT
-c       VSTRtave(i,j,bi,bj)   = VSTRtave(i,j,bi,bj)   + VSTR(I2,3,myThid)*DDTT
+        USTRtave(i,j,bi,bj)   = USTRtave(i,j,bi,bj)   + USTR(I2,3,myThid)*DDTT
+        VSTRtave(i,j,bi,bj)   = VSTRtave(i,j,bi,bj)   + VSTR(I2,3,myThid)*DDTT
         TSRtave(i,j,bi,bj)    = TSRtave(i,j,bi,bj)    + TSR(I2,myThid)*DDTT
         OLRtave(i,j,bi,bj)    = OLRtave(i,j,bi,bj)    + OLR(I2,myThid)*DDTT
         SSRtave(i,j,bi,bj)    = SSRtave(i,j,bi,bj)    + SSR(I2,myThid)*DDTT

@@ -3,53 +3,35 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C !ROUTINE: MOM_U_BOTTOMDRAG
-
-C !INTERFACE: ==========================================================
       SUBROUTINE MOM_U_BOTTOMDRAG(
      I        bi,bj,k,
      I        uFld, KE, KappaRU,
      O        uDragTerms,
      I        myThid)
-
-C !DESCRIPTION:
-C Calculates the drag due to friction and the no-slip condition at bottom:
-C \begin{equation*}
-C G^u_{drag} = - ( r_b + C_D |v| + \frac{2}{\Delta r_c} ) u
-C \end{equation*}
-
-C !USES: ===============================================================
       IMPLICIT NONE
+C
+C     Calculate bottom drag terms for U eqn
+C       - is not vector invariant ...
+C
+
+C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
 
-C !INPUT PARAMETERS: ===================================================
-C  bi,bj                :: tile indices
-C  k                    :: vertical level
-C  uFld                 :: zonal flow
-C  KE                   :: Kinetic energy
-C  KappaRU              :: vertical viscosity
-C  myThid               :: thread number
+C     == Routine arguments ==
       INTEGER bi,bj,k
       _RL uFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL KE(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL KappaRU(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
+      _RL uDragTerms(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL viscFac
       INTEGER myThid
 
-C !OUTPUT PARAMETERS: ==================================================
-C  uDragTerms           :: drag term
-      _RL uDragTerms(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-
-C !LOCAL VARIABLES: ====================================================
-C  i,j                  :: loop indices
-C  Kp1                  :: =k+1 for k<Nr, =Nr for k>=Nr
+C     == Local variables ==
       INTEGER I,J,Kp1
-      _RL viscFac
       _RL rdrckp1,maskDown
-CEOP
 
 C-  No-slip BCs impose a drag at bottom
       Kp1=min(k+1,Nr)

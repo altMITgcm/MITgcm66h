@@ -3,28 +3,22 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C     !ROUTINE: OPEN_COPY_DATA_FILE
-C     !INTERFACE:
       SUBROUTINE OPEN_COPY_DATA_FILE(
      I                                data_file, caller_sub,
      O                                iUnit,
      I                                myThid )
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | SUBROUTINE OPEN_COPY_DATA_FILE                            
-C     | o Routine to open and copy a data.* file to STDOUT        
-C     |   and return the open unit in iUnit                       
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================\
+C     | SUBROUTINE OPEN_COPY_DATA_FILE                           |
+C     | o Routine to open and copy a data.* file to STDOUT       |
+C     |   and return the open unit in iUnit                      |
+C     |==========================================================|
+C     \==========================================================/
       IMPLICIT NONE
+
 C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     === Routine arguments ===
 C     myThid - Number of this instance of INI_PARMS
       CHARACTER*(*) data_file
@@ -32,7 +26,6 @@ C     myThid - Number of this instance of INI_PARMS
       INTEGER iUnit
       INTEGER myThid
 
-C     !LOCAL VARIABLES:
 C     === Local variables ===
 C     msgBuf    - Informational/error meesage buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
@@ -41,7 +34,6 @@ C     msgBuf    - Informational/error meesage buffer
       EXTERNAL ILNBLNK
       INTEGER  errIO,IL
       LOGICAL  exst
-CEOP
 
 C
       _BEGIN_MASTER(myThid)

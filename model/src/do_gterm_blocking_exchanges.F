@@ -3,32 +3,25 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C     !ROUTINE: DO_GTERM_BLOCKING_EXCHANGES
-C     !INTERFACE:
       SUBROUTINE DO_GTERM_BLOCKING_EXCHANGES(myThid)
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | SUBROUTINE DO_GTERM_BLOCKING_EXCHANGES                    
-C     | o Controlling routine for exchanging edge info.           
-C     *==========================================================*
-C     | One key trick used in UV us that we over-compute and      
-C     | arrange our time-stepping loop so that we only need one   
-C     | edge exchange for the explicit code per timestep.         
-C     *==========================================================*
-C     \ev
-C     !USES:
+C     /==========================================================\
+C     | SUBROUTINE DO_GTERM_BLOCKING_EXCHANGES                   |
+C     | o Controlling routine for exchanging edge info.          |
+C     |==========================================================|
+C     | One key trick used in UV us that we over-compute and     |
+C     | arrange our time-stepping loop so that we only need one  |
+C     | edge exchange for the explicit code per timestep.        |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "DYNVARS.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     myThid - Thread number for this instance of the routine.
       INTEGER myThid
-CEOP
 
 c     _EXCH_XYZ_R8( Gu , myThid )
 c     _EXCH_XYZ_R8( Gv , myThid )

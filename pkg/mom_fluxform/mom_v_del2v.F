@@ -3,47 +3,35 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C !ROUTINE: MOM_V_DEL2V
-
-C !INTERFACE: ==========================================================
       SUBROUTINE MOM_V_DEL2V(
      I        bi,bj,k,
      I        vFld, hFacZ,
      O        del2v,
      I        myThid)
-
-C !DESCRIPTION:
-C Calculates the Laplacian of meridional flow
-
-C !USES: ===============================================================
       IMPLICIT NONE
+C
+C     Calculate horizontal del^2 of vFld
+C       - is not vector invariant ...
+C
+
+C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
 
-C !INPUT PARAMETERS: ===================================================
-C  bi,bj                :: tile indices
-C  k                    :: vertical level
-C  vFld                 :: meridional flow
-C  hFacZ                :: fractional thickness at vorticity points
-C  myThid               :: thread number`
+C     == Routine arguments ==
       INTEGER bi,bj,k
       _RL vFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS hFacZ(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      INTEGER myThid
-C !OUTPUT PARAMETERS: ==================================================
-C  del2v                :: Laplacian
       _RL del2v(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      INTEGER myThid
 
-C !LOCAL VARIABLES: ====================================================
-C  i,j                  :: loop indices
+C     == Local variables ==
       INTEGER I,J
       _RL fZon(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL fMer(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS hFacZClosedE,hFacZClosedW
-CEOP
 
 C     Zonal flux d/dx V
       DO j=1-Oly,sNy+Oly

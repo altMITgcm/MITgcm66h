@@ -3,26 +3,18 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C     !ROUTINE: IMPLDIFF
-C     !INTERFACE:
+C     |==========================================================|
+C     | S/R IMPLDIFF                                             |
+C     | o Solve implicit diffusion equation for vertical         |
+C     |   diffusivity.                                           |
+C     | o Recoded from 2d intermediate fields to 3d to reduce    |
+C     |   TAMC storage                                           |
+C     | o Fixed missing masks for fields a(), c()                |
+C     |==========================================================|
       SUBROUTINE IMPLDIFF( bi, bj, iMin, iMax, jMin, jMax,
      I                     deltaTX,KappaRX,recip_hFac,
      U                     gXNm1,
      I                     myThid )
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | S/R IMPLDIFF                                              
-C     | o Solve implicit diffusion equation for vertical          
-C     |   diffusivity.                                            
-C     *==========================================================*
-C     | o Recoded from 2d intermediate fields to 3d to reduce     
-C     |   TAMC storage                                            
-C     | o Fixed missing masks for fields a(), c()                 
-C     *==========================================================*
-C     \ev
-
-C     !USES:
       IMPLICIT NONE
 C     == Global data ==
 #include "SIZE.h"
@@ -30,29 +22,27 @@ C     == Global data ==
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
+
 #ifdef ALLOW_AUTODIFF_TAMC
 #include "tamc_keys.h"
 #endif
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine Arguments ==
       INTEGER bi,bj,iMin,iMax,jMin,jMax
       _RL deltaTX
       _RL KappaRX(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
       _RS recip_hFac(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy)
       _RL gXnm1(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy)
+      _RL gYnm1(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy)
       INTEGER myThid
 
-C     !LOCAL VARIABLES:
 C     == Local variables ==
       INTEGER i,j,k
-      _RL gYnm1(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy)
       _RL a(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
       _RL b(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
       _RL c(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
       _RL bet(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
       _RL gam(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
-CEOP
 
 C--   Initialise
       DO k=1,Nr

@@ -3,48 +3,27 @@ C $Name$
 
 #include "GAD_OPTIONS.h"
 
-CBOP
-C !ROUTINE: GAD_C2_ADV_Y
-
-C !INTERFACE: ==========================================================
       SUBROUTINE GAD_C2_ADV_Y( 
      I           bi,bj,k,
      I           vTrans,
      I           tracer,
      O           vT,
      I           myThid )
-
-C !DESCRIPTION:
-C Calculates the area integrated meridional flux due to advection of a tracer
-C using centered second-order interpolation:
-C \begin{equation*}
-C F^y_{adv} = V \overline{\theta}^j
-C \end{equation*}
-
-C !USES: ===============================================================
       IMPLICIT NONE
+
+C     == GLobal variables ==
 #include "SIZE.h"
 #include "GRID.h"
 
-C !INPUT PARAMETERS: ===================================================
-C  bi,bj                :: tile indices
-C  k                    :: vertical level
-C  vTrans               :: meridional volume transport
-C  tracer               :: tracer field
-C  myThid               :: thread number
+C     == Routine arguments ==
       INTEGER bi,bj,k
       _RL vTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL tracer(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL vT    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER myThid
 
-C !OUTPUT PARAMETERS: ==================================================
-C  vT                   :: meridional advective flux
-      _RL vT    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-
-C !LOCAL VARIABLES: ====================================================
-C  i,j                  :: loop indices
+C     == Local variables ==
       INTEGER i,j
-CEOP
 
       DO i=1-Olx,sNx+Olx
        vT(i,1-Oly)=0.

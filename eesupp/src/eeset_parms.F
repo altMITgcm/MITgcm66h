@@ -3,50 +3,40 @@ C $Name$
 
 #include "CPP_EEOPTIONS.h"
 
-CBOP
-C     !ROUTINE: EESET_PARMS 
-
-C     !INTERFACE:
+CStartOfInterface
       SUBROUTINE EESET_PARMS
+C     /==========================================================\
+C     | SUBROUTINE EESET_PARMS                                   |
+C     | o Routine to set model "parameters"                      |
+C     |==========================================================|
+C     | This routine is called from the high-level wrapper       |
+C     | after multi-process paralle processing has started but   |
+C     | before multi-threaded parallelism. THe routine reads an  |
+C     | an "execution environment" input parameter file holding  |
+C     | information about the number of threads at run-time.     |
+C     \==========================================================/
       IMPLICIT NONE
 
-C     !DESCRIPTION:
-C     *==========================================================*
-C     | SUBROUTINE EESET_PARMS                                    
-C     | o Routine to set model "parameters"                       
-C     *==========================================================*
-C     | This routine is called from the high-level wrapper        
-C     | after multi-process paralle processing has started but    
-C     | before multi-threaded parallelism. THe routine reads an   
-C     | an "execution environment" input parameter file holding   
-C     | information about the number of threads at run-time.      
-C     *==========================================================*
-
-C     !USES:
-C     == Global variables ==
+C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
-      INTEGER  IFNBLNK
-      EXTERNAL IFNBLNK
-      INTEGER  ILNBLNK
-      EXTERNAL ILNBLNK
+CEndOfInterface
 
-C     !LOCAL VARIABLES:
-C     == Local variables ==
-C     iUnit  :: Work variable for IO unit number
-C     errIO  :: IO unit error flag
-C     IL     :: Temp. for index strings
-C     msgBuf :: Temp. for textual I/O
-C     record :: Temp. for textual I/O
+C     === Local variables ===
+C     iUnit - Work variable for IO unit number
+C     errIO - IO unit error flag
       INTEGER IL
       INTEGER errIO
       INTEGER iUnit
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       CHARACTER*(MAX_LEN_PREC) record
+      INTEGER  IFNBLNK
+      EXTERNAL IFNBLNK
+      INTEGER  ILNBLNK
+      EXTERNAL ILNBLNK
       NAMELIST /EEPARMS/
      & nTx, nTy,usingMPI,useCubedSphereExchange
-CEOP
 
 
 C--   For now these options are fixed as the code does

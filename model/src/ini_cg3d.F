@@ -3,22 +3,17 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C     !ROUTINE: INI_CG2D
-C     !INTERFACE:
+CStartOfInterface
       SUBROUTINE INI_CG3D( myThid )
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | SUBROUTINE INI_CG3D                                       
-C     | o Initialise 3d conjugate gradient solver operators.      
-C     *==========================================================*
-C     | These arrays are purely a function of the basin geom.     
-C     | We set then here once and them use then repeatedly.       
-C     *==========================================================*
-C     \ev
-
-C     !USES:
+C     /==========================================================\
+C     | SUBROUTINE INI_CG3D                                      |
+C     | o Initialise 3d conjugate gradient solver operators.     |
+C     |==========================================================|
+C     | These arrays are purely a function of the basin geom.    |
+C     | We set then here once and them use then repeatedly.      |
+C     \==========================================================/
       IMPLICIT NONE
+
 C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -31,14 +26,13 @@ c_jmc #include "DYNVARS.h"
 #include "OBCS.h"
 #endif
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     === Routine arguments ===
 C     myThid - Thread no. that called this routine.
       INTEGER myThid
+CEndOfInterface
 
 #ifdef ALLOW_NONHYDROSTATIC
 
-C     !LOCAL VARIABLES:
 C     === Local variables ===
 C     xG, yG - Global coordinate location.
 C     zG
@@ -55,7 +49,6 @@ C     myNorm - Work variable used in clculating normalisation factor
       _RL     aCw, aCs
       _RL     theRecip_Dr
       _RL     aU, aL, aW, aE, aN, aS, aC
-CEOP
 
 CcnhDebugStarts
       _RL    phi(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)

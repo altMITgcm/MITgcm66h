@@ -3,23 +3,19 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CBOP
-C     !ROUTINE: CALC_GTR1
-C     !INTERFACE:
       SUBROUTINE CALC_GTR1( 
      I           bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
      I           xA,yA,uTrans,vTrans,rTrans,maskUp,
      I           KappaRT,
      U           fVerT,
      I           myTime,myIter,myThid )
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | SUBROUTINE CALC_GTR1                                      
-C     | o Calculate the passive tracer tendency terms.            
-C     *==========================================================*
-
-C     !USES:
+C     /==========================================================\
+C     | SUBROUTINE CALC_GTR1                                     |
+C     | o Calculate the passive tracer tendency terms.           |
+C     |==========================================================|
+C     \==========================================================/
       IMPLICIT NONE
+
 C     == GLobal variables ==
 #include "SIZE.h"
 #include "DYNVARS.h"
@@ -28,17 +24,16 @@ C     == GLobal variables ==
 #include "GAD.h"
 #include "TR1.h"
 
-C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
-C     fVerT   :: Flux of temperature (T) in the vertical 
+C     fVerT   - Flux of temperature (T) in the vertical 
 C               direction at the upper(U) and lower(D) faces of a cell.
-C     maskUp  :: Land mask used to denote base of the domain.
-C     xA      :: Tracer cell face area normal to X
-C     yA      :: Tracer cell face area normal to X
-C     uTrans  :: Zonal volume transport through cell face
-C     vTrans  :: Meridional volume transport through cell face
-C     rTrans  :: Vertical volume transport through cell face
-C     bi, bj, iMin, iMax, jMin, jMax :: Range of points for which calculation
+C     maskUp  - Land mask used to denote base of the domain.
+C     xA      - Tracer cell face area normal to X
+C     yA      - Tracer cell face area normal to X
+C     uTrans  - Zonal volume transport through cell face
+C     vTrans  - Meridional volume transport through cell face
+C     rTrans  - Vertical volume transport through cell face
+C     bi, bj, iMin, iMax, jMin, jMax - Range of points for which calculation
 C                                      results will be set.
 C     myThid - Instance number for this innvocation of CALC_GT
       _RL fVerT (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
@@ -55,7 +50,7 @@ C     myThid - Instance number for this innvocation of CALC_GT
       INTEGER myIter
       INTEGER myThid
 
-CEOP
+C     == Local variables ==
 
 #ifdef ALLOW_AUTODIFF_TAMC
 C--   only the kUp part of fverT is set in this subroutine

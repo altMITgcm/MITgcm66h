@@ -3,60 +3,36 @@ C $Name$
 
 #include "GAD_OPTIONS.h"
 
-CBOP
-C !ROUTINE: GAD_U3_ADV_R
-
-C !INTERFACE: ==========================================================
       SUBROUTINE GAD_U3_ADV_R( 
      I           bi,bj,k,
      I           rTrans,
      I           tracer,
      O           wT,
      I           myThid )
-
-C !DESCRIPTION:
-C Calculates the area integrated vertical flux due to advection of a tracer
-C using upwind biased third-order interpolation (or the $\kappa=1/3$ scheme):
-C \begin{equation*}
-C F^r_{adv} = W \overline{ \theta  - \frac{1}{6} \delta_{kk} \theta }^k
-C                 + \frac{1}{12} |W| \delta_{kkk} \theta
-C \end{equation*}
-C Near boundaries, reduces to second order when flow is away from boundary
-C and third order when flow is towards boundary.
-
-C !USES: ===============================================================
+C     /==========================================================\
+C     | SUBROUTINE GAD_U3_ADV_R                                  |
+C     | o Compute vertical advective Flux of Tracer using        |
+C     |   3rd Order Upwind Scheme                                |
+C     | o reduced to 2nd or 3rd Order near a boundary            |
+C     |==========================================================|
       IMPLICIT NONE
+
+C     == GLobal variables ==
 #include "SIZE.h"
 #include "GRID.h"
 #include "GAD.h"
 
-C !INPUT PARAMETERS: ===================================================
-C  bi,bj                :: tile indices
-C  k                    :: vertical level
-C  rTrans               :: vertical volume transport
-C  tracer               :: tracer field
-C  myThid               :: thread number
+C     == Routine arguments ==
       INTEGER bi,bj,k
       _RL rTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL tracer(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      _RL wT    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER myThid
 
-C !OUTPUT PARAMETERS: ==================================================
-C  wT                   :: vertical advective flux
-      _RL wT    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-
-C !LOCAL VARIABLES: ====================================================
-C  i,j                  :: loop indices
-C  kp1                  :: =min( k+1 , Nr )
-C  km1                  :: =max( k-1 , 1 )
-C  km2                  :: =max( k-2 , 1 )
-C  Rjm,Rj,Rjp           :: differences at i-1,i,i+1
-C  Rjjm,Rjjp            :: second differences at i-1,i
-C  maskP1               :: =1 for k<Nr, =0 for k>=Nr
+C     == Local variables ==
       INTEGER i,j,kp1,km1,km2
       _RL Rjm,Rj,Rjp,Rjjm,Rjjp
       _RL maskM2, maskP1
-CEOP
 
       km2=MAX(1,k-2)
       km1=MAX(1,k-1)
