@@ -85,6 +85,8 @@ C     lat   - Temporary holding latitude
 C     nWv   - No. of waves that fit on grid.
       _RL alpha, wvNum, lat
       INTEGER I, J, bi, bj, nPoints, nWv
+      _RL one
+      PARAMETER( one = 1.0d0 )
 
 C     o Initialise specific library FFT package
 #ifdef ALLOW_DXML_FFT
@@ -119,7 +121,7 @@ C         Damp more strongly with increasing latitude and frequency.
           IF ( wvNum .GT. 0. ) THEN
            alpha = alpha/SIN( PI * wvNum / FLOAT(nPoints) )
            alpha = alpha**2
-           epsFFTFiltG1(I  ,J,bi,bj) = MIN(1.,alpha)
+           epsFFTFiltG1(I  ,J,bi,bj) = MIN(one,alpha)
           ELSE
            epsFFTFiltG1(I  ,J,bi,bj) = 1.
           ENDIF
@@ -142,7 +144,7 @@ C         Damp more strongly with increasing latitude and frequency.
           IF ( wvNum .GT. 0. ) THEN
            alpha = alpha/SIN( PI * wvNum / FLOAT(nPoints) )
            alpha = alpha**2
-           epsFFTFiltG2(I  ,J,bi,bj) = MIN(1.,alpha)
+           epsFFTFiltG2(I  ,J,bi,bj) = MIN(one,alpha)
           ELSE
            epsFFTFiltG2(I  ,J,bi,bj) = 1.
           ENDIF
