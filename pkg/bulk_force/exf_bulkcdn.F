@@ -1,6 +1,7 @@
 c $Header$
 C $Name$
 
+
 #include "BULK_FORCE_OPTIONS.h"
 
       _RL function exf_BulkCdn(
@@ -33,26 +34,18 @@ c     ==================================================================
 
       implicit none
 
-#ifdef ALLOW_BULK_FORCE
-
 c     == global variables ==
 
-#include "SIZE.h"
-#include "BULKF_ICE_CONSTANTS.h"
+#include "BULKF_PARAMS.h"
 
 c     == function arguments ==
       _RL umps
 
 c     == end of interface ==
+#ifdef ALLOW_BULK_FORCE
 
       exf_BulkCdn = cdrag_1/umps + cdrag_2 + cdrag_3*umps
 
-#else
-
-c     == function arguments ==
-      _RL umps
-
-      exf_BulkCdn = 0.0
 #endif
 
       end

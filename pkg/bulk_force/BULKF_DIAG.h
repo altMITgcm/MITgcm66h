@@ -1,11 +1,11 @@
 C $Header$
 C $Name$
-cswdblk -- change to keep bulk formula fields --
 
 C     /==========================================================\
 C     | BULKF_DIAG.h                                             |
 C     | o Header for Bulk formula diagnostic output              |
 C     \==========================================================/
+cswdblk -- change to keep bulk formula fields --
 
 #ifdef ALLOW_BULK_FORCE
 
