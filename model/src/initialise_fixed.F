@@ -79,7 +79,6 @@ C     an input file called data.
 
 #ifdef ALLOW_MNC
 C     Initialize MNC look-up tables
-      write(*,*) 'INITIALISE_FIXED: useMNC = ',useMNC
       IF (useMNC) THEN
         CALL MNC_INIT(myThid)
         CALL MNC_CW_INIT(sNx,sNy,OLx,OLy,nSx,nSy,nPx,nPy,Nr, myThid)

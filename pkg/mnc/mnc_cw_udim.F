@@ -29,15 +29,10 @@ C     Check that this name is not already defined
       fgf = IFNBLNK(fgname)
       fgl = ILNBLNK(fgname)
       CALL MNC_GET_IND(MNC_MAX_ID, fgname, mnc_cw_fgnm, indfg, myThid)
-      IF (indfg .GT. 0) THEN
-        write(msgbuf,'(3a)') 
-     &       'MNC_CW_SET_UDIM ERROR: file group name ''',
-     &       fgname(fgf:fgl), ''' is already defined'
-        CALL print_error(msgbuf, mythid)
-        stop 'ABNORMAL END: S/R MNC_CW_SET_UDIM'
+      IF (indfg .LT. 1) THEN
+        CALL MNC_GET_NEXT_EMPTY_IND(
+     &       MNC_MAX_ID, mnc_cw_fgnm, indfg, myThid)
       ENDIF
-      CALL MNC_GET_NEXT_EMPTY_IND(
-     &     MNC_MAX_ID, mnc_cw_fgnm, indfg, myThid)
       mnc_cw_fgnm(indfg)(1:(fgl-fgf+1)) = fgname(fgf:fgl)
       mnc_cw_fgud(indfg) = nudim
 
