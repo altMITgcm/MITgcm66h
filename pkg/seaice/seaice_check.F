@@ -14,6 +14,11 @@ C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "SEAICE_PARAMS.h"
+#ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
+      LOGICAL             EXFwindOnBgrid
+      COMMON /EXF_PARM_L/ EXFwindOnBgrid
+#endif
 
 C     === Routine arguments ===
 C     myThid -  Number of this instance of SEAICE_CHECK
@@ -65,13 +70,14 @@ C     At present this option is hardwired for pkg/exf.
      &        SQUEEZE_RIGHT , myThid )
          STOP 'ABNORMAL END: S/R SEAICE_CHECK'
 #endif
-#if !defined(READ_EVAP) && !defined(ALLOW_BULKFORMULAE)
+#if !defined(EXF_READ_EVAP) && !defined(ALLOW_BULKFORMULAE)
          WRITE(msgBuf,'(A)')
-     &        'need to set READ_EVAP or ALLOW_BULKFORMULAE in pkg/exf '
+     &     'need to set EXF_READ_EVAP or ALLOW_BULKFORMULAE in pkg/exf '
          CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &        SQUEEZE_RIGHT , myThid )
          STOP 'ABNORMAL END: S/R SEAICE_CHECK'
 #endif
+#ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
          IF(.NOT.SEAICEwindOnCgrid .AND. .NOT.EXFwindOnBgrid) THEN
          WRITE(msgBuf,'(A)')
      &        'please set either SEAICEwindOnCgrid or EXFwindOnBgrid '
@@ -86,6 +92,7 @@ C     At present this option is hardwired for pkg/exf.
      &        SQUEEZE_RIGHT , myThid )
          STOP 'ABNORMAL END: S/R SEAICE_CHECK'
          ENDIF
+#endif
 #endif /* SEAICE_EXTERNAL_FORCING */
 
 C--   SEAICE_EXTERNAL_FLUXES
@@ -98,6 +105,7 @@ C     At present this option is hardwired for pkg/exf.
      &        SQUEEZE_RIGHT , myThid )
          STOP 'ABNORMAL END: S/R SEAICE_CHECK'
 #endif
+#ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
          IF(.NOT.SEAICEwindOnCgrid .AND. .NOT.EXFwindOnBgrid) THEN
          WRITE(msgBuf,'(A)')
      &        'please set either SEAICEwindOnCgrid or EXFwindOnBgrid '
@@ -112,6 +120,7 @@ C     At present this option is hardwired for pkg/exf.
      &        SQUEEZE_RIGHT , myThid )
          STOP 'ABNORMAL END: S/R SEAICE_CHECK'
          ENDIF
+#endif
 #endif /* SEAICE_EXTERNAL_FLUXES */
 
 #endif ALLOW_SEAICE

@@ -97,7 +97,8 @@ c     Surface flux data.
      &          exf_iprec,         exf_yftype,
      &           scal_hfl,           scal_ust,       scal_vst,
      &           scal_swf,           scal_sst,       scal_sss,
-     &     scal_apressure,           scal_sfl,       scal_runoff
+     &     scal_apressure,           scal_sfl,       scal_runoff,
+     &     EXFwindOnBgrid
 
       _BEGIN_MASTER(mythid)
 
@@ -243,6 +244,8 @@ c     scaling between exf units and MITgcm units
 
 cds   convert runoff from m/yr to m/s and change sign.
       scal_runoff    = -1.0/(86400.*365.0)
+c
+      EXFwindOnBgrid = .FALSE.
 
 c     Check for the availability of the right calendar version.
       if ( calendarversion .ne. usescalendarversion ) then

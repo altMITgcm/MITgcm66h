@@ -78,4 +78,6 @@
 #
  exf_iprec         = 32,
  exf_yftype        = 'RL',
+#
+ EXFwindOnBgrid    = .TRUE.
  &
