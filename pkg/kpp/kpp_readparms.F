@@ -36,7 +36,7 @@ C     iUnit       - Work variable for IO unit number
 C--   KPP vertical mixing parameters
       NAMELIST /KPP_PARM01/
      & kpp_freq, kpp_dumpFreq, kpp_taveFreq,
-     & KPPmixingMaps, KPPwriteState,
+     & KPPmixingMaps, KPPwriteState, KPP_ghatUseTotalDiffus,
      & minKPPhbl,
      & epsln, phepsi, epsilon, vonk, dB_dz,
      & conc1, conam, concm, conc2, zetam,
@@ -67,6 +67,7 @@ C--   set default KPP vertical mixing parameters
       kpp_taveFreq  = taveFreq
       KPPmixingMaps = .FALSE.
       KPPwriteState = .FALSE.
+      KPP_ghatUseTotalDiffus = .FALSE.
       IF ( setCenterDr ) THEN
         minKPPhbl   = delRc(1)
       ELSE
