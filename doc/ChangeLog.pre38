@@ -17,5 +17,6 @@ Change log for branch "pre38".
  o re-arranged order of arrays in /GRID_R/ in GRID.h
    g77 suddenly started complaining about padding. Odd but SGI concurred!
  o fixed CPP_EEOPTIONS.h in hs94.128x64x5
- o moved cg2d solver into pkg/cg2d
-   - added CPP flag for using "regular" overlaps instead of Olx=Oly=1
+ o cg2d: added CPP flag for using "regular" overlaps instead of Olx=Oly=1
+ o added inheritence of -disable option to package sub-directories
+ o testscript has -skip option and puts full output into output.txt
