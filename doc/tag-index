@@ -4,6 +4,9 @@ $Header$
     ==============================
 
 o pkg/seaice modifications
+  - added SEAICE_deltaTtherm and SEAICE_deltaTdyn in order to reduce cost
+    of pkg/seaice.  For time being, SEAICE_deltaTtherm = deltaTtracer
+    and SEAICE_deltaTdyn must be integer multiple of SEAICE_deltaTtherm
   - changed proxy for geostrophic velocity and updated 
     verification/lab_sea/results/* accordingly
   - removed ADI dynamic solver from pkg/seaice

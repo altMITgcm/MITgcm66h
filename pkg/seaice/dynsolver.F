@@ -165,9 +165,6 @@ CADJ STORE uice = comlev1, key=ikey_dynamics
 CADJ STORE vice = comlev1, key=ikey_dynamics
 #endif /* ALLOW_AUTODIFF_TAMC */
 
-C TIMESTEP FOR PSEUDO-TIMESTEPPING
-      SEAICE_DT = DELTAT
-
 crg what about DWAIN,DRAGS,DRAGA,ETA,ZETA
 
 crg later c$taf loop = iteration uice,vice
