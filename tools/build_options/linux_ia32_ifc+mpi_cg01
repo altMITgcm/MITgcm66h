@@ -20,9 +20,9 @@ if test "x$IEEE" = x ; then
 #P4 FOPTIM=$FOPTIM' -tpp7 -xWKM'
     FFLAGS='-132 -r8 -i4 -w95 -W0 -WB'
 else
-#   FOPTIM='-O0 -noalign'
     FOPTIM='-O0 -noalign -CA -CB -CU -CV -CS'
-    FFLAGS='-mp -132 -r8 -i4 -w95 -W0 -WB'
+#   FFLAGS='-mp -132 -r8 -i4 -w95 -W0 -WB'
+    FFLAGS='-132 -r8 -i4 -w95 -W0 -WB -pc64 -xW'
 fi
 
 NOOPTFILES='mdsio_byteswapr8.F mdsio_byteswapr4.F'
