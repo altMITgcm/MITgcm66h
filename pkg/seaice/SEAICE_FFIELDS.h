@@ -77,7 +77,7 @@ C
 C--   Define forcing fields outside pkg/seaice.
 #include "exf_fields.h"
 
-#else SEAICE_EXTERNAL_FORCING
+#else /* SEAICE_EXTERNAL_FORCING undefined */
 
 C--   Define forcing fields internally.
       COMMON /SEAICE_FFIELDS/ uwind, vwind, atemp,

@@ -96,10 +96,8 @@ C     MUST CALL GROWTH ONLY AFTER CALLING ADVECTION
 
 C--   Update overlap regions for a bunch of stuff
        _BARRIER
-       CALL EXCH_RL( HEFF, OLx, OLx, OLy, OLy, 3, OLx, OLy,
-     I      FORWARD_SIMULATION, EXCH_UPDATE_CORNERS, myThid )
-       CALL EXCH_RL( AREA, OLx, OLx, OLy, OLy, 3, OLx, OLy,
-     I      FORWARD_SIMULATION, EXCH_UPDATE_CORNERS, myThid )
+       CALL SEAICE_EXCH( HEFF, myThid )
+       CALL SEAICE_EXCH( AREA, myThid )
        _EXCH_XY_R4(fu   , myThid )
        _EXCH_XY_R4(fv   , myThid )
        _EXCH_XY_R4(EmPmR, myThid )

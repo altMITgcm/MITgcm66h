@@ -374,13 +374,13 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/obcs_sponge.f			\
 								\
 #		$(SOURCE_CODE)/adi.f				\
+#		$(SOURCE_CODE)/lsr.f				\
 		$(SOURCE_CODE)/advect.f				\
 		$(SOURCE_CODE)/budget.f				\
 		$(SOURCE_CODE)/diffus.f				\
 		$(SOURCE_CODE)/dynsolver.f			\
 		$(SOURCE_CODE)/groatb.f				\
 		$(SOURCE_CODE)/growth.f				\
-#		$(SOURCE_CODE)/lsr.f				\
 		$(SOURCE_CODE)/ostres.f				\
 		$(SOURCE_CODE)/seaice_check.f			\
 		$(SOURCE_CODE)/seaice_do_diags.f		\
@@ -389,8 +389,7 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/seaice_model.f			\
 		$(SOURCE_CODE)/seaice_pickup.f			\
 		$(SOURCE_CODE)/seaice_readparms.f		\
-								\
-#		$(SOURCE_CODE)/exch_rl.f
+		$(SOURCE_CODE)/seaice_exch.F
 
 #--------------------------------------------------------
 # rules
