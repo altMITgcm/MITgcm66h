@@ -9,7 +9,7 @@
 #   modified by aja 01/00
 
 # Default lists
-if (! $?DISABLE) set DISABLE = ( aim autodiff cal cost ctrl ecco exf grdchk flt ptracers seaice therm_seaice bulk_force)
+if (! $?DISABLE) set DISABLE = ( aim autodiff cal cost ctrl ecco exf grdchk flt ptracers seaice therm_seaice bulk_force dic gchem )
 if (! $?ENABLE) set ENABLE  = ( )
 if (! $?DEFINES) set DEFINES = ( )
 if (! $?MODS) set MODS  = ( )
