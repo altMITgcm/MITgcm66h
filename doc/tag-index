@@ -3,6 +3,13 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+ecco-branch-mod5
+o mod's to reproduce open boundary run
+o enable field swapping for OB's and climatology
+o update store directives for OB control
+o added option ALLOW_OBCS_PRESCRIBE
+o call of getobcs now out of obcs_calc (param. list modified)
+
 ecco-branch-mod4
 o this is the second part of changes necessary to reconcile
   the natl_box_adjoint verification (with and without grdchk).
