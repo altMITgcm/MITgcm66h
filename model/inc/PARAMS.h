@@ -623,8 +623,10 @@ C Logical flags for selecting packages
       LOGICAL useSEAICE
       LOGICAL useBulkForce
       LOGICAL useThSIce
+      LOGICAL usefizhi
+      LOGICAL usegridalt
       COMMON /PARM_PACKAGES/
      &        useKPP, useGMRedi, useOBCS, useAIM, useLand, useECCO, 
      &        useSHAP_FILT, useZONAL_FILT, useGrdchk, useFLT,
      &        usePTRACERS,  useSBO, useSEAICE, 
-     &        useThSIce, useBulkForce
+     &        useThSIce, useBulkForce, usefizhi,  usegridalt

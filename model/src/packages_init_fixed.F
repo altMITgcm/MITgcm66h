@@ -73,6 +73,18 @@ C--   Initialise & Read AIM physical parameters
       IF (useAIM) CALL AIM_INITIALISE( myThid )
 #endif
 
+C AMM
+#ifdef ALLOW_GRIDALT
+C--   Initialise GRIDALT parameters - the alternative grid
+      IF (useGRIDALT) CALL GRIDALT_INITIALISE( myThid )
+#endif
+
+#ifdef ALLOW_FIZHI
+C--   Initialise & Read FIZHI physical parameters
+      IF (useFIZHI) CALL FIZHI_INIT_FIXED( myThid )
+#endif
+C AMM
+
 #ifdef ALLOW_LAND
 C--   Initialise & Read Land package parameters
       IF (useLand) CALL LAND_INITIALISE( myThid )

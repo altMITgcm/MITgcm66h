@@ -278,6 +278,19 @@ C jmc: don't know precisely where to put this call. leave it here for now.
 #endif /* COMPONENT_MODULE */
 
 C--     Step forward fields and calculate time tendency terms.
+C AMM
+#ifdef ALLOW_FIZHI
+        CALL UPDATE_OCEAN_EXPORTS ( myTime, myIter, myThid )
+        CALL UPDATE_EARTH_EXPORTS ( myTime, myIter, myThid )
+        CALL UPDATE_CHEMISTRY_EXPORTS ( myTime, myIter, myThid )
+        CALL TIMER_START('FIZHI_WRAPPER       [FORWARD_STEP]',mythid)
+        CALL FIZHI_WRAPPER ( myTime, myIter, myThid )
+        CALL TIMER_STOP ('FIZHI_WRAPPER       [FORWARD_STEP]',mythid)
+                                                                                           
+        CALL STEP_FIZHI_FG ( myTime, myIter, myThid )
+#endif
+C AMM
+
 #ifdef ALLOW_DEBUG
       IF ( debugLevel .GE. debLevB ) 
      &    CALL DEBUG_CALL('THERMODYNAMICS',myThid)
@@ -439,6 +452,11 @@ ceh3 needs an IF ( use GCHEM ) THEN
 #endif /* ALLOW_GCHEM */
 cswdptr -- end add ---
 
+C AMM
+#ifdef ALLOW_FIZHI
+        CALL STEP_FIZHI_CORR ( myTime, myIter, myThid )
+#endif
+C AMM
 
 #ifdef ALLOW_FLT
 C--   Calculate float trajectories
