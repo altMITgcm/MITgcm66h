@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o added work.pc* to .cvsignore in aim directories using ifc
 o introduced flag for controllin non-hydrostatic metric terms
 o removed gravitySign from PARM04
 o switched to g77/ifc from pgf77 in aim experiments
