@@ -74,6 +74,9 @@ C--   Save previous solution & Initialise Vector solution and source term :
         IF (useRealFreshWaterFlux) THEN
          tmpFac = freeSurfFac
          IF (exactConserv) tmpFac = freeSurfFac*implicDiv2DFlow
+         IF ( buoyancyRelation .eq. 'OCEANICP' )  THEN
+           tmpFac = tmpFac*horiVertRatio
+         ENDIF
          DO j=1,sNy
           DO i=1,sNx
            cg2d_b(i,j,bi,bj) = 
