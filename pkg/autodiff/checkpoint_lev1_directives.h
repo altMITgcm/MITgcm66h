@@ -90,6 +90,22 @@ CADJ STORE xx_tauu1      = comlev1, key = ikey_dynamics
 CADJ STORE xx_tauv0      = comlev1, key = ikey_dynamics
 CADJ STORE xx_tauv1      = comlev1, key = ikey_dynamics
 # endif
+# ifdef ALLOW_UWIND_CONTROL
+CADJ STORE xx_uwind0     = comlev1, key = ikey_dynamics
+CADJ STORE xx_uwind1     = comlev1, key = ikey_dynamics
+# endif
+# ifdef ALLOW_VWIND_CONTROL
+CADJ STORE xx_vwind0     = comlev1, key = ikey_dynamics
+CADJ STORE xx_vwind1     = comlev1, key = ikey_dynamics
+# endif
+# ifdef ALLOW_ATEMP_CONTROL
+CADJ STORE xx_atemp0     = comlev1, key = ikey_dynamics
+CADJ STORE xx_atemp1     = comlev1, key = ikey_dynamics
+# endif
+# ifdef ALLOW_AQH_CONTROL
+CADJ STORE xx_aqh0       = comlev1, key = ikey_dynamics
+CADJ STORE xx_aqh1       = comlev1, key = ikey_dynamics
+# endif
 
 #else /* INCLUDE_EXTERNAL_FORCING_PACKAGE undef */
 

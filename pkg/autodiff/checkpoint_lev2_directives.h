@@ -122,6 +122,22 @@ CADJ STORE xx_tauu1      = tapelev2, key = ilev_2
 CADJ STORE xx_tauv0      = tapelev2, key = ilev_2
 CADJ STORE xx_tauv1      = tapelev2, key = ilev_2
 #endif
+# ifdef ALLOW_UWIND_CONTROL
+CADJ STORE xx_uwind0     = tapelev2, key = ilev_2
+CADJ STORE xx_uwind1     = tapelev2, key = ilev_2
+# endif
+# ifdef ALLOW_VWIND_CONTROL
+CADJ STORE xx_vwind0     = tapelev2, key = ilev_2
+CADJ STORE xx_vwind1     = tapelev2, key = ilev_2
+# endif
+# ifdef ALLOW_ATEMP_CONTROL
+CADJ STORE xx_atemp0     = tapelev2, key = ilev_2
+CADJ STORE xx_atemp1     = tapelev2, key = ilev_2
+# endif
+# ifdef ALLOW_AQH_CONTROL
+CADJ STORE xx_aqh0       = tapelev2, key = ilev_2
+CADJ STORE xx_aqh1       = tapelev2, key = ilev_2
+# endif
 
 #else /* INCLUDE_EXTERNAL_FORCING_PACKAGE undef */
 
