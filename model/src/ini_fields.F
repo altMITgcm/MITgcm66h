@@ -33,6 +33,11 @@ C--   Set model variables to initial/restart conditions
        CALL INI_THETA( myThid )
        CALL INI_SALT( myThid )
        CALL INI_PSURF( myThid )
+#ifdef ALLOW_NONHYDROSTATIC
+       IF ( nonHydrostatic ) THEN
+         CALL INI_GW( myThid )
+       ENDIF
+#endif
       ELSE
        IF ( nIter0 .EQ. 0 ) THEN
         nIter0 = INT(startTime/deltaTClock )
