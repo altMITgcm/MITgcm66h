@@ -159,8 +159,8 @@ C     uninitialised but inert locations.
        DO i=1-OLx,sNx+OLx
         DO k=1,Nr
          phiHyd(i,j,k)  = 0. _d 0 
-cph         KappaRU(i,j,k) = 0. _d 0
-cph         KappaRV(i,j,k) = 0. _d 0
+         KappaRU(i,j,k) = 0. _d 0
+         KappaRV(i,j,k) = 0. _d 0
          sigmaX(i,j,k) = 0. _d 0
          sigmaY(i,j,k) = 0. _d 0
          sigmaR(i,j,k) = 0. _d 0
