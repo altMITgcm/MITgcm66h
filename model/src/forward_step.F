@@ -95,7 +95,10 @@ C     if requested. The location of the call is important,
 C     it has to be after the adjoint of the exchanges 
 C     (DO_GTERM_BLOCKING_EXCHANGES).
       CALL DUMMY_IN_STEPPING( myTime, myIter, myThid )
-      CALL DO_FIELDS_BLOCKING_EXCHANGES( myThid )
+cph   I've commented this line since it may conflict with MITgcm's adjoint
+cph   However, need to check whether that's still consistent
+cph   with the ecco-branch (it should).
+cph      CALL DO_FIELDS_BLOCKING_EXCHANGES( myThid )
 #endif
 
 #ifdef EXACT_CONSERV
