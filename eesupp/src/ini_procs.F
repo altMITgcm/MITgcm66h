@@ -86,8 +86,8 @@ C     processes. A process can be its own neighbor!
       pidE        = 1
       pidN        = 1
       pidS        = 1
-      errorMessageUnit    = 0
-      standardMessageUnit = 6
+c     errorMessageUnit    = 0
+c     standardMessageUnit = 6
 
 #ifdef ALLOW_USE_MPI
 C--
