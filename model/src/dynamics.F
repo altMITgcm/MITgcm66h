@@ -203,7 +203,7 @@ C--     Set up work arrays that need valid initial values
           K13(i,j,1) = 0. _d 0
           K23(i,j,1) = 0. _d 0
           K33(i,j,1) = 0. _d 0
-          KapGM(i,j) = 0. _d 0
+          KapGM(i,j) = GMkbackground
          ENDDO
         ENDDO
 
