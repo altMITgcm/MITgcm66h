@@ -1353,6 +1353,8 @@ EXE_FTL=$EXECUTABLE"_ftl"
 EXE_SVD=$EXECUTABLE"_svd"
 
 cat >>$MAKEFILE <<EOF
+#
+# OPTFILE="$OPTFILE"
 # 
 # BUILDDIR     : Directory where object files are written
 # SOURCEDIRS   : Directories containing the source (.F) files
