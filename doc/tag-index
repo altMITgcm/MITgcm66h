@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+release1_p13
+o bug fix for pkg/seaice dynamic solver
+
 release1_p13_pre
 o Added net flux to downward flux conversion to pkg/exf/exf_getffields.F
 o Added SEAICE_initialHEFF to pkg/seaice

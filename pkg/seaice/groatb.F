@@ -73,10 +73,10 @@ C NOW DETERMINE MIXED LAYER TEMPERATURE
 
         DO J=1,sNy
          DO I=1,sNx
-          U1=0.25 _d 0*(UWIND(I-1,J-1,bi,bj)+UWIND(I-1,J,bi,bj)
-     1      +UWIND(I,J-1,bi,bj)+UWIND(I,J,bi,bj))
-          V1=0.25 _d 0*(VWIND(I-1,J-1,bi,bj)+VWIND(I-1,J,bi,bj)
-     1      +VWIND(I,J-1,bi,bj)+VWIND(I,J,bi,bj))
+          U1=0.25 _d 0*(UWIND(I+1,J+1,bi,bj)+UWIND(I+1,J,bi,bj)
+     1      +UWIND(I,J+1,bi,bj)+UWIND(I,J,bi,bj))
+          V1=0.25 _d 0*(VWIND(I+1,J+1,bi,bj)+VWIND(I+1,J,bi,bj)
+     1      +VWIND(I,J+1,bi,bj)+VWIND(I,J,bi,bj))
           SPEED_SQ = U1**2 + V1**2
           IF ( SPEED_SQ .LT. SEAICE_EPS_SQ ) THEN
              UG(I,J)=SEAICE_EPS
