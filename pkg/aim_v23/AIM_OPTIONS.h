@@ -3,7 +3,9 @@ C $Name$
 
 C  CPP options file for AIM package 
 C
+#ifndef _CPP_EEOPTIONS_H_
 #include "CPP_OPTIONS.h"
+#endif
 
 C  restore the old AIM interface (ref: coupled run, summer 2000):
 C  - use a simple shift of 1/2 mesh for mapping A.grid <-> C.grid.

@@ -10,6 +10,7 @@ C     Latitudinal extent is one less than MITgcm ( i.e. NY-1)
 C     because MITgcm has dummy layer of land at northern most
 C     edge.  <-- no longer the case now
 #include "SIZE.h"
+#define SIZE_IS_SET
 
 C- dimension for AIM Physics package   
       INTEGER NLON, NLAT, NLEV, NGP
