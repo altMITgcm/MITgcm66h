@@ -154,6 +154,12 @@ C--   Pass attributes to the coupler
 C--   Initiialise the multi-process IO package
       CALL DFILE_INIT
 #endif
+
+#ifdef USE_W2
+C--   Initialise WRAPPER2 execution environment
+      CALL W2_EEBOOT
+#endif
+
  
   999 CONTINUE
       RETURN
