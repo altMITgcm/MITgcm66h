@@ -662,9 +662,26 @@ C--   Input files
   12  CONTINUE
 
 C
-      IF ( zCoordInputData .AND. rkFac .EQ. UNSET_I ) rkFac =  1.D0
-      IF ( pCoordInputData .AND. rkFac .EQ. UNSET_I ) rkFac = -1.D0
-      IF ( rCoordInputData .AND. rkFac .EQ. UNSET_I ) rkFac =  1.D0
+C--   Set factors required for mixing pressure and meters as vertical coordinate.
+C     rkFac is a "sign" parameter which is used where the orientation of the vertical
+C     coordinate (pressure or meters) relative to the vertical index (K) is important.
+C     rkFac =  1 applies when K and the coordinate are in the opposite sense.
+C     rkFac = -1 applies when K and the coordinate are in the same sense.
+C     horiVertRatio is a parameter that maps horizontal units to vertical units.
+C     It is used in certain special cases where lateral and vertical terms are
+C     being combined and a single frame of reference is needed.
+      IF ( zCoordInputData .AND. rkFac .EQ. UNSET_I ) THEN 
+       rkFac       = 1.D0
+       horiVertRatio = 1.D0
+      ENDIF
+      IF ( pCoordInputData .AND. rkFac .EQ. UNSET_I ) THEN
+       rkFac = -1.D0
+       horiVertRatio = Gravity * rhoConst
+      ENDIF
+      IF ( rCoordInputData .AND. rkFac .EQ. UNSET_I ) THEN
+       rkFac =  1.D0
+       horiVertRatio = 1.D0
+      ENDIF
       recip_rkFac = 1.D0 / rkFac
       IF ( zCoordInputData ) usingZCoords = .TRUE.
       IF ( pCoordInputData ) usingPCoords = .TRUE.
