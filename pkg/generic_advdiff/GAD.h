@@ -31,6 +31,8 @@ C Third/fourth order interpolation factor
 
 C Differentiate between tracers (only needed for KPP -  arrgh!!!)
       INTEGER GAD_TEMPERATURE
-      PARAMETER(GAD_TEMPERATURE=123)
+      PARAMETER(GAD_TEMPERATURE=101)
       INTEGER GAD_SALINITY
-      PARAMETER(GAD_SALINITY=321)
+      PARAMETER(GAD_SALINITY=102)
+      INTEGER GAD_TR1
+      PARAMETER(GAD_TR1=103)
