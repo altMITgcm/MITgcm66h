@@ -4,7 +4,7 @@ C $Name$
 #include "FIZHI_OPTIONS.h"
       subroutine fizhi_driver (myid,im,jm,lm,bi,bj,ptracer,ntracer,
      . xlats,xlons,
-     . p,u,v,t,q,pl,ple,dpres,pkht,pkl,fracland,landtype,radswt,
+     . p,u,v,t,q,pl,ple,dpres,pkht,pkl,surfz,fracland,landtype,radswt,
      . phis_var,tgz,sea_ice,
      . nchp,chlat,chlon,igrd,nchptot,nchpland,chfr,ityp,
      . tcanopy,tdeep,ecanopy,swetshal,swetroot,swetdeep,capac,snodep,
@@ -60,6 +60,7 @@ c ----------------
       _RL pl(im,jm,lm),ple(im,jm,lm+1),dpres(im,jm,lm)
       _RL pkht(im,jm,lm)
       _RL pkl(im,jm,lm)
+      _RL surfz(im,jm)
       _RL radswt(im,jm), fracland(im,jm)
       integer landtype(im,jm)
       _RL phis_var(im,jm), sea_ice(im,jm)
