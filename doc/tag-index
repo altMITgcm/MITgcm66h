@@ -4,6 +4,7 @@ $Header$
     ==============================
 
 checkpoint52d_post
+o add infrastructure in model routines for fizhi and gridalt packages
 o change global_ocean.cs32x15 because of Pb with GM on CS-grid.
 o changes to permit hi-res, cubed-sphere, configuration
   - added useSingleCpuIO capability to mdsio_readfield.F and exf_interp.F
