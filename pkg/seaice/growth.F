@@ -155,6 +155,9 @@ CADJ STORE lwdown = comlev1, key = ikey_dynamics
 CADJ STORE tice   = comlev1, key = ikey_dynamics
 CADJ STORE uwind  = comlev1, key = ikey_dynamics
 CADJ STORE vwind  = comlev1, key = ikey_dynamics
+# ifdef SEAICE_MULTILEVEL
+CADJ STORE tices  = comlev1, key = ikey_dynamics
+# endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 cph)
 C GROWTH SUBROUTINE CALCULATES TOTAL GROWTH TENDENCIES,

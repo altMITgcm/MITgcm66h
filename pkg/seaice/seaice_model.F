@@ -95,8 +95,8 @@ c     &     ,vVel(i,j+1,3,bi,bj),vVel(i+1,j+1,3,bi,bj)
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE uwind = comlev1, key = ikey_dynamics
 CADJ STORE vwind = comlev1, key = ikey_dynamics
-# ifdef SEAICE_ALLOW_DYNAMICS
 CADJ STORE heff  = comlev1, key = ikey_dynamics
+# ifdef SEAICE_ALLOW_DYNAMICS
 CADJ STORE area  = comlev1, key = ikey_dynamics
 # endif
 #endif /* ALLOW_AUTODIFF_TAMC */

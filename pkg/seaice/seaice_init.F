@@ -23,10 +23,6 @@ C     === Global variables ===
 #include "SEAICE_PARAMS.h"
 #include "SEAICE_EXTERNAL.h"
 
-#ifdef ALLOW_COST
-# include "cost.h"
-#endif
-
 C     === Routine arguments ===
 C     myThid - Thread no. that called this routine.
       INTEGER myThid
@@ -126,7 +122,7 @@ C---  initialize grid info
          DO i=1-OLx,sNx+OLx
           TICE(I,J,bi,bj)=273.0 _d 0
 #ifdef SEAICE_MULTILEVEL
-          DO k=1,7
+          DO k=1,MULTDIM
            TICES(I,J,k,bi,bj)=273.0 _d 0
           ENDDO
 #endif
