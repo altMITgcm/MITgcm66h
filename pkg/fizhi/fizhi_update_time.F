@@ -2,7 +2,7 @@ C $Header$
 C $Name$
 
 #include "FIZHI_OPTIONS.h"
-      subroutine fizhi_update_time (myThid,deltat)
+      subroutine fizhi_update_time (myIter,myThid,deltat)
 C***********************************************************************
 C  Purpose
 C  -------
@@ -17,7 +17,7 @@ C***********************************************************************
 
 #include "chronos.h"
 
-      integer myThid
+      integer myIter, myThid
       _RL deltat
 
       integer ndt
