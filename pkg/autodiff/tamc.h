@@ -98,19 +98,21 @@ c     and writing data.
       integer iloop_daily
 
       INTEGER    isbyte
-      PARAMETER( isbyte = 4 )
+      PARAMETER( isbyte    = 4 )
       INTEGER    maximpl
-      PARAMETER( maximpl = 6 )
+      PARAMETER( maximpl   = 6 )
       INTEGER    maxpass
 #ifdef ALLOW_PASSIVE_TRACER
-      PARAMETER( maxpass = 3 )
+      PARAMETER( maxpass   = 3 )
 #else
-      PARAMETER( maxpass = 2 )
+      PARAMETER( maxpass   = 2 )
 #endif
+      INTEGER    maxcube
+      PARAMETER( maxcube   = 1 )
 
-      INTEGER act1, act2, act3, act4
-      INTEGER max1, max2, max3
-      INTEGER kkey, passkey, igmkey
+      INTEGER act0, act1, act2, act3, act4
+      INTEGER max0, max1, max2, max3
+      INTEGER kkey, passkey, igadkey
 
 c     ================================================================
 c     END OF HEADER TAMC

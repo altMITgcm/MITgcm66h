@@ -28,7 +28,7 @@ C     == Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #ifdef ALLOW_AUTODIFF_MONITOR
-#include "g_common.h"
+# include "g_common.h"
 #endif
 
       LOGICAL  DIFFERENT_MULTIPLE
@@ -43,7 +43,7 @@ C     myTime - time counter for this thread
 C     myThid - Thread number for this instance of the routine.
       integer myThid
       integer myiter
-      _RL     mytime 
+      _RL     mytime
 
 #ifdef ALLOW_AUTODIFF_MONITOR
 
