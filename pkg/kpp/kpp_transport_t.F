@@ -13,7 +13,7 @@ C     |   temperature flux.                                      |
 C     |==========================================================|
 C     | The nonlocal transport term is nonzero only for scalars  |
 C     | in unstable (convective) forcing conditions.             |
-C     | Note: [Qnet + Qsw * (1-KPPfrac)]                         |
+C     | Note: [SurfaceTendencyT + Qsw * (1-KPPfrac)]             |
 C     |       is the total heat flux penetrating the mixed layer |
 C     |       from the surface in deg C / s referenced to the    |
 C     |       top layer.                                         |
@@ -46,26 +46,23 @@ C     df               - Diffusive flux component work array.
       _RL KappaRT(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
       _RL df     (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
-#ifdef ALLOW_KPP
+#if defined(ALLOW_KPP) && defined(KPP_GHAT)
 
 C     == Local variables ==
 C     I, J - Loop counters
       INTEGER I, J
 
-      IF (use_KPPmixing) THEN
-
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         df(i,j) = df(i,j) - _rA(i,j,bi,bj) * maskC(i,j) *
-     &          KappaRT(i,j,k) * KPPghat(i,j,km1,bi,bj) * delZ(1) *
-     &          ( Qnet(i,j,bi,bj) +
-     &            Qsw(i,j,bi,bj) * (1.-KPPfrac(i,j,bi,bj))
-     &          )
-        ENDDO
+      DO j=jMin,jMax
+       DO i=iMin,iMax
+        df(i,j) = df(i,j) - _rA(i,j,bi,bj) * maskC(i,j) *
+     &         KappaRT(i,j,k) * KPPghat(i,j,km1,bi,bj) * delZ(1) *
+     &         ( SurfaceTendencyT(i,j,bi,bj) +
+     &           Qsw(i,j,bi,bj) * (1.-KPPfrac(i,j,bi,bj))
+     &         )
        ENDDO
-      ENDIF
+      ENDDO
 
-#endif /* ALLOW_KPP */
+#endif /* ALLOW_KPP and KPP_GHAT */
 
       RETURN
       END

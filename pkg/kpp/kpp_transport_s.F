@@ -42,24 +42,21 @@ C     df               - Diffusive flux component work array.
       _RL KappaRS(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
       _RL df     (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
-#ifdef ALLOW_KPP
+#if defined(ALLOW_KPP) && defined(KPP_GHAT)
 
 C     == Local variables ==
 C     I, J - Loop counters
       INTEGER I, J
 
-      IF (use_KPPmixing) THEN
-
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         df(i,j) = df(i,j) - _rA(i,j,bi,bj) * maskC(i,j) *
-     &          KappaRS(i,j,k) * KPPghat(i,j,km1,bi,bj) * delZ(1) *
-     &          EmPmR(i,j,bi,bj)
-        ENDDO
+      DO j=jMin,jMax
+       DO i=iMin,iMax
+        df(i,j) = df(i,j) - _rA(i,j,bi,bj) * maskC(i,j) *
+     &         KappaRS(i,j,k) * KPPghat(i,j,km1,bi,bj) * delZ(1) *
+     &         SurfaceTendencyS(i,j,bi,bj)
        ENDDO
-      ENDIF
+      ENDDO
 
-#endif /* ALLOW_KPP */
+#endif /* ALLOW_KPP and KPP_GHAT */
 
       RETURN
       END

@@ -70,7 +70,6 @@ C     I, J, K - Loop counters
        ENDDO
       ENDDO
 
-
 #endif /* ALLOW_KPP */
 
       RETURN
