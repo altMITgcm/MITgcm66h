@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o fixed sign of non-hydrostatic metric terms in u and v equations.
+  Depend on correct sign of gravitySign.
 o added work.pc* to .cvsignore in aim directories using ifc
 o introduced flag for controllin non-hydrostatic metric terms
 o removed gravitySign from PARM04
