@@ -3,16 +3,19 @@ C $Name$
 
 #include "MONITOR_OPTIONS.h"
 
-      SUBROUTINE MON_SOLUTION(
-     I                myIter, myTime, myThid )
-C     /==========================================================\
-C     | SUBROUTINE MON_SOLUTION                                  |
-C     | o Checks that the solutions is within bounds             |
-C     |==========================================================|
-C     \==========================================================/
-      IMPLICIT NONE
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+CBOP
+C     !ROUTINE: MON_SOLUTION
 
-C     === Global data ===
+C     !INTERFACE:
+      SUBROUTINE MON_SOLUTION(
+     I     myIter, myTime, myThid )
+
+C     !DESCRIPTION:
+C     Checks that the solutions is within bounds             
+
+C     !USES:
+      IMPLICIT NONE
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
@@ -20,14 +23,13 @@ C     === Global data ===
 #include "GRID.h"
 #include "MONITOR.h"
 
-C     === Routine arguments ===
+C     !INPUT PARAMETERS:
       INTEGER myIter
       _RL myTime
       INTEGER myThid
+CEOP
 
-C     === Functions ====
-
-C     === Local variables ====
+C     !LOCAL VARIABLES:
       CHARACTER*(MAX_LEN_MBUF) msgBuf   
       _RL tMin,tMax,tMean,tSD,tDel2,tVol
 

@@ -3,16 +3,19 @@ C $Name$
 
 #include "MONITOR_OPTIONS.h"
 
-      SUBROUTINE MONITOR(
-     I                myIter, myTime, myThid )
-C     /==========================================================\
-C     | SUBROUTINE MONITOR                                       |
-C     | o Calculate bare statistics of global array "arr"        |
-C     |==========================================================|
-C     \==========================================================/
-      IMPLICIT NONE
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+CBOP
+C     !ROUTINE: MONITOR
 
-C     === Global data ===
+C     !INTERFACE:
+      SUBROUTINE MONITOR(
+     I     myIter, myTime, myThid )
+
+C     !DESCRIPTION:
+C     Calculate bare statistics of global array ``arr''.
+
+C     !USES:
+      IMPLICIT NONE
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
@@ -20,17 +23,16 @@ C     === Global data ===
 #include "DYNVARS.h"
 #include "GRID.h"
 #include "MONITOR.h"
-
-C     === Routine arguments ===
-      INTEGER myIter
-      _RL myTime
-      INTEGER myThid
-
-C     === Functions ====
       LOGICAL  DIFFERENT_MULTIPLE
       EXTERNAL DIFFERENT_MULTIPLE
 
-C     === Local variables ====
+C     !INPUT PARAMETERS:
+      INTEGER myIter
+      _RL myTime
+      INTEGER myThid
+CEOP
+
+C     !LOCAL VARIABLES:
       CHARACTER*(MAX_LEN_MBUF) msgBuf   
       _RL dT
       INTEGER time_as_int

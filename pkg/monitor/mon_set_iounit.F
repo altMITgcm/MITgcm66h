@@ -3,23 +3,28 @@ C $Name$
 
 #include "MONITOR_OPTIONS.h"
 
-      SUBROUTINE MON_SET_IOUNIT(unit, myThid )
-C     /==========================================================\
-C     | SUBROUTINE MON_SET_IOUNIT                                |
-C     | o Set default monitor unit for I/O.                      |
-C     \==========================================================/
-      IMPLICIT NONE
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+CBOP
+C     !ROUTINE: MON_SET_IOUNIT
 
-C     === Global data ===
+C     !INTERFACE:
+      SUBROUTINE MON_SET_IOUNIT(unit, myThid )
+
+C     !DESCRIPTION:
+C     Set default monitor unit for I/O.
+
+C     !USES:
+      IMPLICIT NONE
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "MONITOR.h"
 
-C     === Routine arguments ===
+C     !INPUT PARAMETERS:
 C     unit   - Unit number to use for monitor output
 C     myThid - Instance number of this call to monitor
       INTEGER unit
       INTEGER myThid
+CEOP
 
 C     Dont change before everyone is ready
       CALL BAR2( myThid )
