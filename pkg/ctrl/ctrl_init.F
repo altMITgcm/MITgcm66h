@@ -697,9 +697,9 @@ c--   Northern obc.
 #ifdef ALLOW_OBCSS_CONTROL
 c--   Southern obc.
 
-      _BEGIN_MASTER( mythid )
 c-------------------------------------------------------------------------------------------
 c--
+      _BEGIN_MASTER( mythid )
 #ifdef ALLOW_CALENDAR
         call cal_TimePassed( xx_obcssstartdate, modelstartdate,
      &                       difftime, mythid )
