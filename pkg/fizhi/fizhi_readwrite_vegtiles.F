@@ -277,7 +277,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 CBOP
 C     !ROUTINE: FIZHI_READ_VEGTILES
 C     !INTERFACE:
-      SUBROUTINE FIZHI_READ_VEGTILES(fn,prec,myTime,myIter,myThid)
+      SUBROUTINE FIZHI_READ_VEGTILES(Iter,prec,myThid)
 
 C     !DESCRIPTION:
 
@@ -297,14 +297,13 @@ C     !USES:
       INTEGER ILNBLNK
 
 C     !INPUT/OUTPUT PARAMETERS:
-      CHARACTER*(MAX_LEN_FNAM) fn
       CHARACTER*1 prec
-      _RL myTime
-      INTEGER myIter
+      INTEGER Iter
       INTEGER myThid
 
 CEOP
 C     !LOCAL VARIABLES:
+      CHARACTER*(MAX_LEN_FNAM) fn
       CHARACTER*80 bnam
       integer ilst
       character*(80) dataFName
@@ -317,6 +316,7 @@ C     !LOCAL VARIABLES:
       DO i = 1,80
         bnam(i:i) = ' '
       ENDDO
+      WRITE(fn,'(I10.10)') Iter
       ilst = ILNBLNK(fn)
       WRITE(bnam,'(a,a)') 'pickup_vegtiles.', fn(1:ilst)
       fileprec = 64
