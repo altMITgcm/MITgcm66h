@@ -155,8 +155,11 @@ C (This is a place-holder for the active/passive mechanism
      &      ' MDSREADFIELD: filename: ',dataFName
           call print_message( msgbuf, standardmessageunit,
      &                        SQUEEZE_RIGHT , mythid)
+          call print_error( msgbuf, mythid )
           write(msgbuf,'(a)')
      &      ' MDSREADFIELD: File does not exist'
+          call print_message( msgbuf, standardmessageunit,
+     &                        SQUEEZE_RIGHT , mythid)
           call print_error( msgbuf, mythid )
           stop 'ABNORMAL END: S/R MDSREADFIELD'
          endif
