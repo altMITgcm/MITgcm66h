@@ -192,7 +192,7 @@ C     Is the file open?
         CALL print_error( msgbuf, mythid )
         stop 'ABNORMAL END: S/R MNC_FILE_ADD_ATTR_INT'
       ENDIF
-      fid = mnc_fids(ind,2)
+      fid = mnc_f_info(ind,2)
 
 C     Enter define mode
       err = NF_REDEF(fid)
