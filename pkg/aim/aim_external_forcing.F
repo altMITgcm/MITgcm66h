@@ -55,9 +55,7 @@ C     Loop counters
        ENDDO
       ENDDO
 
-C     Not a good thing to do an exchange here. Needs to be modified 
-C     if we implement a multi-tile AIM. CNH - Jan 26 2001
-      _EXCH_XYZ_R8( gU , myThid)
+      _EXCH_XYZ_R8( gU , myThid) 
 
 #endif /* ALLOW_AIM */
 
@@ -101,7 +99,6 @@ C     Loop counters
 CStartOfInterface
       SUBROUTINE AIM_EXTERNAL_FORCING_T(
      I           iMin, iMax, jMin, jMax,bi,bj,kLev,
-     I           maskC,
      I           myCurrentTime,myThid)
 C     /==========================================================\
 C     | S/R AIM_EXTERNAL_FORCING_T                               |
@@ -132,7 +129,6 @@ C     iMax
 C     jMin
 C     jMax
 C     kLev
-      _RS maskC (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER iMin, iMax, jMin, jMax, kLev, bi, bj
       _RL myCurrentTime
       INTEGER myThid
@@ -165,9 +161,7 @@ C--   Forcing term
        ENDDO
       ENDDO
 
-C     Not a good thing to do an exchange here. Needs to be modified 
-C     if we implement a multi-tile AIM. CNH - Jan 26 2001
-      _EXCH_XYZ_R8( gT , myThid)
+      _EXCH_XYZ_R8( gT , myThid) 
 
 #endif /* ALLOW_AIM */
 
@@ -176,7 +170,6 @@ C     if we implement a multi-tile AIM. CNH - Jan 26 2001
 CStartOfInterface
       SUBROUTINE AIM_EXTERNAL_FORCING_S(
      I           iMin, iMax, jMin, jMax,bi,bj,kLev,
-     I           maskC,
      I           myCurrentTime,myThid)
 C     /==========================================================\
 C     | S/R AIM_EXTERNAL_FORCING_S                               |
@@ -208,7 +201,6 @@ C     iMax
 C     jMin
 C     jMax
 C     kLev
-      _RS maskC (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER iMin, iMax, jMin, jMax, kLev, bi, bj
       _RL myCurrentTime
       INTEGER myThid
@@ -229,7 +221,8 @@ C     Loop counters
      &                       +QT_LSC(I2,katm)
        ENDDO
       ENDDO
-      _EXCH_XYZ_R8( gS , myThid)
+
+      _EXCH_XYZ_R8( gS , myThid) 
 
 #endif /* ALLOW_AIM */
 
