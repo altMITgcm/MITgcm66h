@@ -48,8 +48,13 @@ C-  No-slip BCs impose a drag at bottom
      &   *( 
      &      2.*KappaRU(i,j,kp1)*rkFac*rdrckp1*viscFac
      &     + bottomDragLinear
-     &     + bottomDragQuadratic*sqrt(KE(i,j)+KE(i-1,j))
      &    )*(1.-maskDown)*uFld(i,j)
+        IF ( (KE(i,j)+KE(i-1,j)) .NE. 0. ) THEN
+         uDragTerms(i,j)=uDragTerms(i,j)
+     &    -_recip_hFacW(i,j,k,bi,bj)*recip_drF(k)
+     &    *bottomDragQuadratic*sqrt(KE(i,j)+KE(i-1,j))
+     &    *(1.-maskDown)*uFld(i,j)
+        ENDIF
        ENDDO
       ENDDO
 
