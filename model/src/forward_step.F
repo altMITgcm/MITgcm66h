@@ -77,7 +77,7 @@ C     mythid - thread number for this instance of the routine.
       _RL     mytime
 #ifdef ALLOW_BULK_FORCE
       INTEGER bi,bj
-#endif ALLOW_BULK_FORCE
+#endif
 
 CEOP
 
@@ -197,8 +197,8 @@ C     theta is dumped or time-averaged.
          CALL SEAICE_MODEL( myTime, myIter, myThid )
          CALL TIMER_STOP ('SEAICE_MODEL       [FORWARD_STEP]',myThid)
       ENDIF
-# endif ALLOW_SEAICE
-#endif ALLOW_BULK_FORCE
+# endif /* ALLOW_SEAICE */
+#endif /* ALLOW_BULK_FORCE */
 
 C--     Step forward fields and calculate time tendency terms.
         CALL TIMER_START('THERMODYNAMICS      [FORWARD_STEP]',mythid)

@@ -60,6 +60,13 @@ C                         units.
       INTEGER elCount
       INTEGER elLen
       INTEGER elStride
+
+C--   Variables needed for mpi gather scatter routines.
+      COMMON /GlobalLo/ mpi_myXGlobalLo, mpi_myYGlobalLo
+      INTEGER mpi_myXGlobalLo(nPx*nPy)
+      INTEGER mpi_myYGlobalLo(nPx*nPy)
+      INTEGER npe,itemp,ierr,istatus(MPI_STATUS_SIZE)
+
 #endif /* ALLOW_USE_MPI */
       INTEGER myThid
 CEOP
@@ -175,6 +182,30 @@ C--    Get my location on the grid
        mpiYGlobalLo = 1 + sNy*nSy*(mpiPy)
        myXGlobalLo  = mpiXGlobalLo
        myYGlobalLo  = mpiYGlobalLo
+
+C--   To speed-up mpi gather and scatter routines, myXGlobalLo
+C     and myYGlobalLo from each process are transferred to
+C     a common block array.  This allows process 0 to know
+C     the location of the domains controlled by each process.
+       DO npe = 0, numberOfProcs-1
+          CALL MPI_SEND (myXGlobalLo, 1, MPI_INTEGER,
+     &         npe, mpiMyId, MPI_COMM_MODEL, ierr)
+       ENDDO
+       DO npe = 0, numberOfProcs-1
+          CALL MPI_RECV (itemp, 1, MPI_INTEGER,
+     &         npe, npe, MPI_COMM_MODEL, istatus, ierr)
+          mpi_myXGlobalLo(npe+1) = itemp
+       ENDDO
+       DO npe = 0, numberOfProcs-1
+          CALL MPI_SEND (myYGlobalLo, 1, MPI_INTEGER,
+     &         npe, mpiMyId, MPI_COMM_MODEL, ierr)
+       ENDDO
+       DO npe = 0, numberOfProcs-1
+          CALL MPI_RECV (itemp, 1, MPI_INTEGER,
+     &         npe, npe, MPI_COMM_MODEL, istatus, ierr)
+          mpi_myYGlobalLo(npe+1) = itemp
+       ENDDO
+
        myPx = mpiPx+1
        myPy = mpiPy+1
 C--    Get MPI id for neighboring procs.

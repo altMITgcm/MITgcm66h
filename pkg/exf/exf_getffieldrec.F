@@ -83,13 +83,6 @@ c     == local variables ==
 #endif
 
 c     == end of interface ==
-c      print *,'exf_GetFFieldRec: fldstartdate',fldstartdate
-c      print *,'exf_GetFFieldRec: fldperiod',fldperiod
-c      print *,'exf_GetFFieldRec: fac',fac
-c      print *,'exf_GetFFieldRec: first',first
-c      print *,'exf_GetFFieldRec: changed',changed
-c      print *,'exf_GetFFieldRec: count0',count0
-c      print *,'exf_GetFFieldRec: count1',count1
 
 c     Determine the current date.
       call cal_GetDate( myiter, mytime, mydate, mythid )

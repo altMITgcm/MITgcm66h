@@ -57,6 +57,7 @@ cswdice -- addd useThermSeaIce to NAMELIST
      &          useZONAL_FILT,
      &          useFLT,
      &          usePTRACERS,
+     &          useSBO,
      &          useSEAICE,
      &          useBulkforce,
      &          useThermSEAICE
@@ -87,6 +88,7 @@ C--   Default package configuration
       useZONAL_FILT=.FALSE.
       useFLT=.FALSE.
       usePTRACERS=.FALSE.
+      useSBO=.FALSE.
       useSeaIce=.FALSE.
 cswdblk -- add
       useBulkforce=.FALSE.

@@ -43,7 +43,7 @@ C     Dump snapshot of KPP variables.
 C----------------------------------------------------------------
 
       IF (
-     &     DIFFERENT_MULTIPLE(dumpFreq,myCurrentTime,
+     &     DIFFERENT_MULTIPLE(kpp_dumpFreq,myCurrentTime,
      &     myCurrentTime-deltaTClock)
      &     ) THEN
          
@@ -101,7 +101,7 @@ C     Initialize averages to zero
 C     Time Average KPP fields
       IF ( myIter .EQ. nIter0 .OR.
      &     DIFFERENT_MULTIPLE
-     &     (taveFreq,myCurrentTime,myCurrentTime-deltaTClock) )
+     &     (kpp_taveFreq,myCurrentTime,myCurrentTime-deltaTClock) )
      &     THEN
          DDTT=0.5*deltaTclock
       ELSE
@@ -128,7 +128,7 @@ C     Keep record of how much time has been integrated over
 
 C     Dump files and restart average computation if needed
       IF ( myIter.NE.nIter0 .AND. 
-     &     DIFFERENT_MULTIPLE(taveFreq,myCurrentTime,
+     &     DIFFERENT_MULTIPLE(kpp_taveFreq,myCurrentTime,
      &     myCurrentTime-deltaTClock)
      &     ) THEN
          

@@ -346,6 +346,8 @@ C/\  | | | |-TIMEAVE_STATV_WRITE :: Time averages. see pkg/timeave
 C/\  | | | |-AIM_WRITE_DIAGS     :: Intermed. atmos diags. see pkg/aim
 C/\  | | | |-GMREDI_DIAGS        :: GM diags. see pkg/gmredi
 C/\  | | | |-KPP_DO_DIAGS        :: KPP diags. see pkg/kpp
+C/\  | | | |-SBO_CALC            :: SBO diags. see pkg/sbo
+C/\  | | | |-SBO_DIAGS           :: SBO diags. see pkg/sbo
 C/\  | | |
 C/\  | | |-WRITE_CHECKPOINT :: Do I/O for restart files.
 C/\  | |
@@ -527,11 +529,18 @@ C--   Call time stepping loop of full model
       end if
 #endif
 
-C--   Final checkpoint (incase the in-loop checkpoint was missed)
+C--   Final checkpoint (in case the in-loop checkpoint was missed)
       CALL TIMER_START('WRITE_CHECKPOINT       [THE_MODEL_MAIN]',myThid)
       CALL WRITE_CHECKPOINT(
      &        .TRUE., myCurrentTime, myCurrentIter, myThid )
       CALL TIMER_STOP ('WRITE_CHECKPOINT       [THE_MODEL_MAIN]',myThid)
+
+C--   Sea-ice checkpoint (in case the in-loop checkpoint was missed)
+#ifdef ALLOW_SEAICE
+      IF ( useSEAICE )
+     &     CALL SEAICE_WRITE_PICKUP(
+     &     .TRUE., myCurrentTime, myCurrentIter, myThid )
+#endif
 
       CALL TIMER_STOP ('ALL                    [THE_MODEL_MAIN]',myThid)
 

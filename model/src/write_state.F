@@ -86,7 +86,11 @@ CEOP
      &     myTime.EQ.endTime .OR.
      &     myTime.EQ.startTime
      &     ) THEN
-         iRec = int ( (myTime-startTime) / dumpFreq +1.5 )
+         IF ( dumpFreq .EQ. 0.0 ) THEN
+            iRec = 1
+         ELSE
+            iRec = int ( (myTime-startTime) / dumpFreq +1.5 )
+         ENDIF
          
 C--   Going to really do some IO. Make everyone except master thread wait.
          _BARRIER

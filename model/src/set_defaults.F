@@ -135,6 +135,7 @@ Cml      sBeta               = 7.4D-4
       nonHydrostatic      = .FALSE.
       quasiHydrostatic    = .FALSE.
       globalFiles         = .FALSE.
+      useSingleCpuIO      = .FALSE.
       allowFreezing       = .FALSE.
       ivdc_kappa          = 0.D0
       groundAtK1          = .FALSE.
