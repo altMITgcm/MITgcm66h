@@ -22,6 +22,9 @@ C     == Global variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 #include "CG2D.h"
+#ifdef ALLOW_NONHYDROSTATIC
+#include "CG3D.h"
+#endif
 
 C     == Routine arguments ==
 C     pH - Hydrostatic pressure
@@ -69,10 +72,20 @@ C    &     cg2d_x(I  ,J  ,bi,bj)/deltaTMom/deltaTMom
       ENDDO
       DO j=1,sNy
        DO i=1,sNx
-        cg2d_b(i,j,bi,bj) =  cg2d_b(i,j,bi,bj) +
+        cg2d_b(i,j,bi,bj) = cg2d_b(i,j,bi,bj) +
      &   pf(i+1,j)-pf(i,j)
        ENDDO
       ENDDO
+
+#ifdef ALLOW_NONHYDROSTATIC
+      IF (nonHydrostatic) THEN
+       DO j=1,sNy
+        DO i=1,sNx
+         cg3d_b(i,j,k,bi,bj) = pf(i+1,j)-pf(i,j)
+        ENDDO
+       ENDDO
+      ENDIF
+#endif
 
       DO j=jMin,jMax
        DO i=iMin,iMax
@@ -82,11 +95,21 @@ C    &     cg2d_x(I  ,J  ,bi,bj)/deltaTMom/deltaTMom
 
       DO j=1,sNy
        DO i=1,sNx
-        cg2d_b(i,j,bi,bj)   =  cg2d_b(i,j,bi,bj) +
+        cg2d_b(i,j,bi,bj) = cg2d_b(i,j,bi,bj) +
      &   pf(i,j+1)-pf(i,j)
        ENDDO
       ENDDO
 
+#ifdef ALLOW_NONHYDROSTATIC
+      IF (nonHydrostatic) THEN
+       DO j=1,sNy
+        DO i=1,sNx
+         cg3d_b(i,j,k,bi,bj) = cg3d_b(i,j,k,bi,bj) +
+     &    pf(i,j+1)-pf(i,j)
+        ENDDO
+       ENDDO
+      ENDIF
+#endif
 
       RETURN
       END

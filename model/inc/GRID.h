@@ -407,3 +407,9 @@ C                 metric term in V equation.
       _RS maskS          (1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:Nr,nSx,nSy)
       _RS tanPhiAtU      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS tanPhiAtV      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+
+#ifdef ALLOW_NONHYDROSTATIC
+      COMMON /GRID_NH/
+     &  recip_hFacU
+      _RS recip_hFacU    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,1:Nr,nSx,nSy)
+#endif
