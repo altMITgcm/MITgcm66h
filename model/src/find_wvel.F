@@ -42,7 +42,7 @@ C $Header$
 ! Volume transport thru' Southern faces
        do j=jMin,jMax
         do i=iMin,iMax
-         Vtrans(i,j)=dxF(i,j,bi,bj)*dzF(k)*Vvel(i,j,k,bi,bj)
+         Vtrans(i,j)=_dxF(i,j,bi,bj)*dzF(k)*Vvel(i,j,k,bi,bj)
         enddo
        enddo
 

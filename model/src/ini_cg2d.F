@@ -35,7 +35,7 @@ C     myNorm - Work variable used in clculating normalisation factor
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       INTEGER bi, bj
       INTEGER I,  J, K
-      real    faceArea
+      _RL     faceArea
       _RL     myNorm
       _RL     aC, aCw, aCs
 

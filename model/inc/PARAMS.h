@@ -244,7 +244,7 @@ C     cAdjFreq  - Frequency of convective adjustment
       _RL rhonil
       _RL tRef(Nz)
       _RL sRef(Nz)
-      _RL Fcori(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS Fcori(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL startTime
       _RL endTime
       _RL chkPtFreq
