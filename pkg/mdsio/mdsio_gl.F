@@ -83,7 +83,7 @@ C Functions
       integer MDS_RECLEN
 C Local variables
       character*(80) dataFName
-      integer ip,jp,iG,jG,irec,bi,bj,ii,i,j,k,dUnit,IL
+      integer ip,jp,iG,jG,irec,bi,bj,i,j,k,dUnit,IL
       logical exst
       _RL arr(1-oLx:sNx+oLx,1-oLy:sNy+oLy,Nr,nSx,nSy)
       Real*4 r4seg(sNx)
@@ -792,7 +792,7 @@ C Functions
       integer MDS_RECLEN
 C Local variables
       character*(80) dataFName
-      integer ip,jp,iG,jG,irec,bi,bj,ii,i,j,k,dUnit,IL
+      integer ip,jp,iG,jG,irec,bi,bj,i,j,k,dUnit,IL
       logical exst
       _RL arr(1-oLx:sNx+oLx,1-oLy:sNy+oLy,nLocz,nSx,nSy)
       Real*4 r4seg(sNx)
