@@ -49,7 +49,7 @@ C                 10:  DARK DESERT
 C                100:  OCEAN
 C***********************************************************************
       implicit none
-#include "CPP_OPTIONS.h"
+#include "CPP_EEOPTIONS.h"
 #include "EEPARAMS.h"
 
       integer mythid,im,jm,maxtyp,nchp,Nsx,Nsy,Nxg,Nyg

@@ -26,7 +26,7 @@ c
 c Call: exchange on c-grid
 c-----------------------------------------------------------------------
        implicit none
-#include "CPP_OPTIONS.h"
+#include "CPP_EEOPTIONS.h"
 #include "EEPARAMS.h"
 
        integer myThid, numlevs

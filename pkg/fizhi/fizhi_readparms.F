@@ -13,7 +13,6 @@ C     myThid ... Process(or) number
 C***********************************************************************
       implicit none
 
-#include "CPP_EEOPTIONS.h"
 #include "CPP_OPTIONS.h"
 #include "chronos.h"
 #include "EEPARAMS.h"

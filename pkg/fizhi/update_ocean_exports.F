@@ -112,7 +112,7 @@ C
 C--------------------------------------------------------------------------
 
       implicit none
-#include "CPP_OPTIONS.h"
+#include "CPP_EEOPTIONS.h"
 
       integer iunit,idim1,idim2,jdim1,jdim2,im1,im2,jm1,jm2,nSx,nSy
       integer bi,bj,biglobal.bjglobal,nymd,nhms
@@ -357,7 +357,7 @@ C
 C--------------------------------------------------------------------------
 
       implicit none
-#include "CPP_OPTIONS.h"
+#include "CPP_EEOPTIONS.h"
 
       integer iunit,idim1,idim2,jdim1,jdim2,im1,im2,jm1,jm2,nSx,nSy
       integer bi,bj,biglobal.bjglobal,nymd,nhms
@@ -566,7 +566,7 @@ C!      field2(im,jm,nPx,nPy)  data field after the model time
 C
 C--------------------------------------------------------------------------
       implicit none
-#include "CPP_OPTIONS.h"
+#include "CPP_EEOPTIONS.h"
 
       integer iunit,im,jm,nPx,nPy,nrec1,nrec2
 
@@ -623,7 +623,7 @@ C!      error         logical TRUE if dataset problem
 C
 C--------------------------------------------------------------------------
       implicit none
-#include "CPP_OPTIONS.h"
+#include "CPP_EEOPTIONS.h"
 
       integer iunit, ndmax, nrec
 

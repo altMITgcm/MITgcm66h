@@ -25,7 +25,7 @@ c
 c Call:   exch_uv_agrid_xyz_RL - exchange on a-grid
 c-----------------------------------------------------------------------
        implicit none
-#include "CPP_OPTIONS.h"
+#include "CPP_EEOPTIONS.h"
 #include "EEPARAMS.h"
                                                                                      
        integer myThid, numlevs

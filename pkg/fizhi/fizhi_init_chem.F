@@ -19,7 +19,7 @@ C            each tile [nchp,Nsx,Nsy]
 C
 C***********************************************************************
       implicit none
-#include "CPP_OPTIONS.h"
+#include "CPP_EEOPTIONS.h"
       integer mythid,nozlevs,nozlats,nwatlevs,nwatlats,Nrphys
       _RL oz(nozlats,nozlevs), water(nwatlats,nwatlevs)
       _RL ozlats(nozlats), ozlevs(nozlevs)
@@ -59,7 +59,7 @@ C
 C***********************************************************************
 
       implicit none
-#include "CPP_OPTIONS.h"
+#include "CPP_EEOPTIONS.h"
       integer  ku,nlat,nlev,ntime
 
       _RL   qz(nlat,nlev,ntime)
@@ -128,7 +128,7 @@ C
 C***********************************************************************
 
       implicit none
-#include "CPP_OPTIONS.h"
+#include "CPP_EEOPTIONS.h"
       integer  ku,nlat,nlev,ntime
 
       _RL   oz(nlat,nlev,ntime)
@@ -193,7 +193,7 @@ C*         Climatological Annual and Global Mean Height Data           *
 C***********************************************************************
 
       implicit none
-#include "CPP_OPTIONS.h"
+#include "CPP_EEOPTIONS.h"
 
       _RL n2o(Nrphys),methane(Nrphys)
       integer Nrphys
