@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o clean up build options files for SunOS, in particular change -xarch=v9
+  to -xarch=native
 o changes per discussion of AM, JMC, & EH3 today:
   - move redundant "grid" variables out of "state" -- in preparation of 
     creating proper CF-style coordinate variables and in recognition 
