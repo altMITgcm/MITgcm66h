@@ -226,7 +226,7 @@ C--   Remove previous meta information if there was any
 
 C--   Open data file
       nameOfDFile(fileHandle,myThid) = fNam(i1Lo:i1Hi)
-      OPEN(UNIT=dUnit,NAME=fNam(i1Lo:i1Hi),STATUS='UNKNOWN', !ERR=799,
+      OPEN(UNIT=dUnit,NAME=fNam(i1Lo:i1Hi),STATUS='UNKNOWN', ERR=799,
      &     FORM='UNFORMATTED',ACCESS='SEQUENTIAL')
 
 
