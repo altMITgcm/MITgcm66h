@@ -52,6 +52,7 @@ C Set defaults values for parameters in PTRACERS.h
        PTRACERS_useKPP(iTracer)=useKPP
        PTRACERS_initialFile(iTracer)=' '
       ENDDO
+      PTRACERS_useRecords=.FALSE.
 
 C Open and read the data.ptracers file
       _BEGIN_MASTER(myThid)
