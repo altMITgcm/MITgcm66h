@@ -9,7 +9,7 @@ S64='$(TOOLSDIR)/set64bitConst.sh'
 DEFINES='-DTARGET_DEC -DWORDLENGTH=1'
 
 
-CPP='/usr/bin/cpp -P'
+CPP='/usr/local/bin/cpp  -traditional -P'
 
 #ph: makedepend not available on some/many DEC Alpha's; use mkdep instead
 #EH3  Remove the buggy mkdep since the newly included cyrus version

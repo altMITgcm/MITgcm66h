@@ -7,7 +7,7 @@
 
 FC=g77
 DEFINES='-D_BYTESWAPIO -DWORDLENGTH=4'
-CPP='/usr/bin/cpp -P'
+CPP='/usr/local/bin/cpp  -traditional -P'
 NOOPTFLAGS='-O0'
 #EH3  Remove the buggy mkdep since the newly included cyrus version
 #EH3  works much better on machines such as "halem"
