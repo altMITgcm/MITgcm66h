@@ -58,13 +58,5 @@ C     Step forward meridional velocity
        ENDDO
       ENDDO
 
-C     Step forward temperature velocity
-      DO j=jMin,jMax
-       DO i=iMin,iMax
-        theta(i,j,k,bi,bj)=gTNm1(i,j,k,bi,bj)
-        gTNm1(i,j,k,bi,bj)=gT(i,j,k,bi,bj)
-       ENDDO
-      ENDDO
-
       RETURN
       END

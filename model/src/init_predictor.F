@@ -26,8 +26,6 @@ C     == Local variables ==
           DO i=1-Olx,sNx+Olx
            gUNm1(i,j,k,bi,bj)=uVel(i,j,k,bi,bj)
            gVNm1(i,j,k,bi,bj)=vVel(i,j,k,bi,bj)
-           gTNm1(i,j,k,bi,bj)=theta(i,j,k,bi,bj)
-           gSNm1(i,j,k,bi,bj)=salt(i,j,k,bi,bj)
           ENDDO
          ENDDO
         ENDDO

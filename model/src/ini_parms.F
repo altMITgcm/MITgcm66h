@@ -62,7 +62,7 @@ C--   Continuous equation parameters
      & tempDiffusion, tempAdvection, tempForcing,
      & saltDiffusion, saltAdvection, saltForcing,
      & implicitFreeSurface, rigidLid, freeSurfFac,
-     & tempStepping, momStepping
+     & tempStepping, momStepping, implicitDiffusion
 
 C--   Elliptic solver parameters
       NAMELIST /PARM02/
@@ -177,6 +177,7 @@ C--   Set default "physical" parameters
       momPressureForcing  = .TRUE.
       momStepping         = .TRUE.
       tempStepping        = .TRUE.
+      implicitDiffusion   = .FALSE.
       READ(UNIT=iUnit,NML=PARM01,IOSTAT=errIO,err=3)
       IF ( errIO .GE. 0 ) GOTO 4
     3 CONTINUE

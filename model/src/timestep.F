@@ -46,8 +46,9 @@ C     Step forward meridional velocity (store in Gv)
 C     Step forward temperature
        DO j=jMin,jMax
         DO i=iMin,iMax
-         gTNm1(i,j,k,bi,bj)=theta(i,j,k,bi,bj)
+         theta(i,j,k,bi,bj)=theta(i,j,k,bi,bj)
      &    +deltaTtracer*(ab15*gT(i,j,k,bi,bj)+ab05*gTNm1(i,j,k,bi,bj))
+         gTNm1(i,j,k,bi,bj)=gT(i,j,k,bi,bj)
         ENDDO
        ENDDO
 
