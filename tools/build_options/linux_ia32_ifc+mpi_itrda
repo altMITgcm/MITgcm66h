@@ -8,14 +8,15 @@
 # setenv LD_LIBRARY_PATH /usr/local/pkg/ifc/ifc-8.0.034/lib
 # is required
 
-FC='mpif77'
-CC='mpicc'
-LINK='mpif77'
-INCLUDES='-I/usr/local/pkg/ifc/ifc-8.1.018/include -I/usr/local/pkg/mpich/mpich-intel/include/'
-LIBS='-L/usr/local/pkg/ifc/ifc-8.1.018/lib'
+FC='/usr/local/pkg/mpich-gm/mpich-1.2.6..13-gm/ifc/bin/mpif77'
+LINK='/usr/local/pkg/mpich-gm/mpich-1.2.6..13-gm/ifc/bin/mpif77'
+INCLUDEDIRS='/usr/local/pkg/mpich-gm/mpich-1.2.6..13-gm/ifc/include'
+LIBS='-L/usr/local/pkg/mpich-gm/mpich-1.2.6..13-gm/ifc/lib -lfmpich -lmpich'
+#LIBS='-L/usr/local/pkg/ifc/ifc-8.0.034/lib'
+#LIBS='-lPEPCF90 -lnetcdf'
 
 DEFINES='-DALLOW_USE_MPI -DALWAYS_USE_MPI -D_BYTESWAPIO -DWORDLENGTH=1'
-CPP='cpp  -traditional -P'
+CPP='/lib/cpp  -traditional -P'
 
 NOOPTFLAGS='-O0'
 NOOPTFILES='mdsio_byteswapr8.F mdsio_byteswapr4.F'
