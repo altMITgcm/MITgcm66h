@@ -61,7 +61,7 @@ C--   Continuous equation parameters
      & momPressureForcing, metricTerms,
      & tempDiffusion, tempAdvection, tempForcing,
      & saltDiffusion, saltAdvection, saltForcing,
-     & implicitFreeSurface, rigidLid, freeSurfFac,
+     & implicitFreeSurface, rigidLid, freeSurfFac, hFacMin, hFacMinDz,
      & tempStepping, saltStepping, momStepping, implicitDiffusion
 
 C--   Elliptic solver parameters
@@ -178,6 +178,8 @@ C--   Set default "physical" parameters
       implicitFreeSurface = .TRUE.
       rigidLid            = .FALSE.
       freeSurfFac         = 1. _d 0
+      hFacMin             = 0. _d 0
+      hFacMinDz           = 0. _d 0
       momViscosity        = .TRUE.
       momAdvection        = .TRUE.
       momForcing          = .TRUE.

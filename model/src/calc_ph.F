@@ -40,7 +40,8 @@ C     (This is now the actual hydrostatic pressure at the T/S points)
       DO j=jMin,jMax
        DO i=iMin,iMax
         pH(i,j,K)=pH(i,j,Km1)+Gravity*halfLayer
-     &  *0.5 _d 0*(dzF(Km1)*_hFacC(i,j,Km1,bi,bj)+dzF(K)*_hFacC(i,j,K,bi,bj))
+Clop &  *0.5 _d 0*(dzF(Km1)*_hFacC(i,j,Km1,bi,bj)+dzF(K)*_hFacC(i,j,K,bi,bj))
+     &  *0.5 _d 0*(dzF(Km1)+dzF(K))
      &  *0.5 _d 0*( rhokm1(i,j)+rhokp1(i,j) )
        ENDDO
       ENDDO
