@@ -50,7 +50,7 @@ C Loop over tracers
       DO iTracer=1,PTRACERS_numInUse
 
        IF (
-c    &     multiDimAdvection .AND.
+     &     multiDimAdvection .AND.
      &     PTRACERS_advScheme(iTracer).NE.ENUM_CENTERED_2ND .AND.
      &     PTRACERS_advScheme(iTracer).NE.ENUM_UPWIND_3RD .AND.
      &     PTRACERS_advScheme(iTracer).NE.ENUM_CENTERED_4TH ) THEN
