@@ -3,7 +3,7 @@ C $Name$
 
 #include "OBCS_OPTIONS.h"
 
-      SUBROUTINE OBCS_CALC( bi, bj, futureTime, 
+      SUBROUTINE OBCS_CALC( bi, bj, futureTime, futureIter,
      &                      uVel, vVel, wVel, theta, salt, 
      &                      myThid )
 C     /==========================================================\
@@ -23,6 +23,7 @@ C     === Global variables ===
 
 C     == Routine arguments ==
       INTEGER bi, bj
+      INTEGER futureIter
       _RL futureTime
       _RL uVel (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL vVel (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
