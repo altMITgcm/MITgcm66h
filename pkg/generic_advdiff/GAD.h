@@ -1,13 +1,10 @@
 C $Header$
 C $Name$
 
-C Parameter common bloack
-      INTEGER gad_advection_scheme
-c     COMMON /GAD_PARS/
-c    &    gad_advection_scheme
-      PARAMETER(gad_advection_scheme=2)
-
 C Enumerated constants for selecting advection schemes
+C  - unfortunately, there is no easy way to make use of the
+C    tokens in namelist input so for now we have to enter the
+C    tokens value into "data" (ie. 2 for 2nd order etc.)
 
 C Centered 2nd order
       INTEGER ENUM_CENTERED_2ND
