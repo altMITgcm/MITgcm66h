@@ -57,6 +57,8 @@ c pe on dynamics and physics grid refers to bottom edge
        jdim1 = 1
        jdim2 = sNy
 
+C Deal Here with Variables that are on a Fizhi Pickup or need Initialization
+
       IF ( startTime.EQ.0. .AND. nIter0.EQ.0 ) THEN
       print *,' In fizhi_init_vars: Beginning of New Experiment '
 
@@ -190,7 +192,7 @@ c Zero out fizhi tendency arrays on the dynamics grid
         enddo
         enddo
 
-c Now initialize tke, xlmt, khmt, xxmt, yymt, ctmt, zetamt,
+c Initialize tke, xlmt, khmt, xxmt, yymt, ctmt, zetamt,
         if( (nhms.eq.nhms0) .and. (nymd.eq.nymd0) ) then
          print *,' Cold Start: Zero out Turb second moments '
          do i = 1,nchp
@@ -206,6 +208,9 @@ c Now initialize tke, xlmt, khmt, xxmt, yymt, ctmt, zetamt,
           khmt(i,L,bi,bj) = 0.
          enddo
          enddo
+        else
+         print *,' Need initial Values for TKE - don't have them! '
+         stop
         endif
 
 c Now initialize land state too - tcanopy, etc... SET FOR NOW, 
