@@ -3,4 +3,4 @@
 # ECCO diagnostics run
 # ********************
  &ECCO_DIAGS
- /
+ &

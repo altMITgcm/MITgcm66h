@@ -18,5 +18,10 @@ To run:
   cp ../verification/natl_box_forward/input/* .
   mitgcmuv >&! run.out
 
-Comments:
-The input data is real*8.
+There is comparison output in:
+  diff run.out ../verification/natl_box_forward/output/run.out | more
+
+Matlab comparison script:
+  cd ../verification/natl_box_forward/matlab
+  matlab
+  comp_output

@@ -46,7 +46,7 @@
  xx_vwindstartdate2 = 220000,
  xx_vwindperiod     = 864000.0,
  xx_vwind_file      = 'xx_vwind',
- /
+ &
 #
 # *********************
 # names for ctrl_pack/unpack
@@ -58,4 +58,4 @@
  scalname = 'ecco_scal',
  maskname = 'ecco_mask',
  metaname = 'ecco_meta',
- /
+ &

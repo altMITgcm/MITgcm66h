@@ -368,19 +368,7 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/obcs_apply_uv.f			\
 		$(SOURCE_CODE)/obcs_calc.f			\
 		$(SOURCE_CODE)/obcs_init_variables.f		\
-		$(SOURCE_CODE)/obcs_sponge.f			\
-
-
-#		$(SOURCE_CODE)/shap_filt_apply.f		\
-#		$(SOURCE_CODE)/shap_filt_apply_ts.f		\
-#		$(SOURCE_CODE)/shap_filt_tracer_s1.f		\
-#		$(SOURCE_CODE)/shap_filt_tracer_s2.f		\
-#		$(SOURCE_CODE)/shap_filt_tracer_s2g.f		\
-#		$(SOURCE_CODE)/shap_filt_tracer_s4.f		\
-#		$(SOURCE_CODE)/shap_filt_uv_s1.f		\
-#		$(SOURCE_CODE)/shap_filt_uv_s2.f		\
-#		$(SOURCE_CODE)/shap_filt_uv_s2g.f		\
-#		$(SOURCE_CODE)/shap_filt_uv_s4.f		\
+		$(SOURCE_CODE)/obcs_sponge.f
 
 
 #--------------------------------------------------------

@@ -3,6 +3,18 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+Revision history for branch c24_e25_ice
+   (branch for adding sea-ice code to ecco-branch)
+
+02/11/03 cvs tag ecco_ice1
+  Updated verification/natl_box_forward and natl_box_adjoint
+  for SGI platform
+
+12/06/02
+  Branched off tag ecco_c44_e25
+
+=================================================================
+
 ecco_c44_e25
 o Merging some GM changes from main trunk (c47) to ecco-branch.
 o Updating verif. natl_box_adjoint with GMRedi.

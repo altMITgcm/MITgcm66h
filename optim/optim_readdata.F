@@ -151,23 +151,29 @@ cph(
       print *,'ph-opt 1 ', nvartype, nvarlength, filensx, filensy
 cph)
 
-      read( funit ) (nWetcGlobal(k), k=1,nr)
-      read( funit ) (nWetsGlobal(k), k=1,nr)
-      read( funit ) (nWetwGlobal(k), k=1,nr)
-      read( funit ) (nWetvGlobal(k), k=1,nr)
+      read( funit ) (((nWetcTile(i,j,k), i=1,nsx), j=1,nsy),
+     &     k=1,nr)
+      read( funit ) (((nWetsTile(i,j,k), i=1,nsx), j=1,nsy),
+     &     k=1,nr)
+      read( funit ) (((nWetwTile(i,j,k), i=1,nsx), j=1,nsy),
+     &     k=1,nr)
 
 cgg(    Add OBCS Mask information into the header section for optimization.
 #ifdef ALLOW_OBCSN_CONTROL
-      read( funit ) ((nWetobcsnGlo(k,iobcs), k=1,nr),iobcs= 1,nobcs)
+          read(funit) ((((nWetobcsn(i,j,k,iobcs), k=1,nr),
+     &          iobcs= 1,nobcs), i=1,nsx) , j=1,nsy)
 #endif
 #ifdef ALLOW_OBCSS_CONTROL
-      read( funit ) ((nWetobcssGlo(k,iobcs), k=1,nr),iobcs= 1,nobcs)
+          read(funit) ((((nWetobcss(i,j,k,iobcs), k=1,nr),
+     &          iobcs= 1,nobcs), i=1,nsx) , j=1,nsy)
 #endif
 #ifdef ALLOW_OBCSW_CONTROL
-      read( funit ) ((nWetobcswGlo(k,iobcs), k=1,nr),iobcs= 1,nobcs)
+          read(funit) ((((nWetobcsw(i,j,k,iobcs), k=1,nr),
+     &          iobcs= 1,nobcs), i=1,nsx) , j=1,nsy)
 #endif
 #ifdef ALLOW_OBCSE_CONTROL
-      read( funit ) ((nWetobcseGlo(k,iobcs), k=1,nr),iobcs= 1,nobcs)
+          read(funit) ((((nWetobcse(i,j,k,iobcs), k=1,nr),
+     &          iobcs= 1,nobcs), i=1,nsx) , j=1,nsy)
 #endif
 cgg)
       read( funit ) (ncvarindex(i), i=1,maxcvars)
@@ -190,14 +196,12 @@ cph      if (lheaderonly) then
          print *, 'pathei: filensx ', filensx
          print *, 'pathei: filensy ', filensy
          
-         print *, 'pathei: nWetcGlobal ', 
-     &        (nWetcGlobal(k),  k=1,nr)
-         print *, 'pathei: nWetsGlobal ', 
-     &        (nWetsGlobal(k),  k=1,nr)
-         print *, 'pathei: nWetwGlobal ', 
-     &        (nWetwGlobal(k),  k=1,nr)
-         print *, 'pathei: nWetvGlobal ',
-     &        (nWetvGlobal(k),  k=1,nr)
+         print *, 'pathei: nWetcTile ', 
+     &        (((nWetcTile(i,j,k), i=1,nsx), j=1,nsy), k=1,nr)
+         print *, 'pathei: nWetsTile ', 
+     &        (((nWetsTile(i,j,k), i=1,nsx), j=1,nsy), k=1,nr)
+         print *, 'pathei: nWetwTile ', 
+     &        (((nWetwTile(i,j,k), i=1,nsx), j=1,nsy), k=1,nr)
          print *, 'pathei: ncvarindex ', 
      &        (ncvarindex(i), i=1,maxcvars)
          print *, 'pathei: ncvarrecs ', 
@@ -263,13 +267,11 @@ c--   Read the data.
                         do k = 1,ncvarnrmax(icvar)
                            cbuffindex = 0
                            if (ncvargrd(icvar) .eq. 'c') then
-                              cbuffindex = nWetcGlobal(k)
+                              cbuffindex = nwetctile(bi,bj,k)
                            else if (ncvargrd(icvar) .eq. 's') then
-                              cbuffindex = nWetsGlobal(k)
+                              cbuffindex = nwetstile(bi,bj,k)
                            else if (ncvargrd(icvar) .eq. 'w') then
-                              cbuffindex = nWetwGlobal(k)
-                           else if (ncvargrd(icvar) .eq. 'v') then
-                              cbuffindex = nWetvGlobal(k)
+                              cbuffindex = nwetwtile(bi,bj,k)
 cgg(   O.B. points have the grid mask "m".
                            else if (ncvargrd(icvar) .eq. 'm') then
 cgg    From "icvrec", calculate what iobcs must be.
@@ -278,22 +280,22 @@ cgg    From "icvrec", calculate what iobcs must be.
                              iobcs= icvrec - igg*nobcs
 #ifdef ALLOW_OBCSN_CONTROL
                              if (icvar .eq. 11) then                    
-                               cbuffindex = nWetobcsnGlo(k,iobcs)
+                               cbuffindex = nwetobcsn(bi,bj,k,iobcs)
                              endif
 #endif
 #ifdef ALLOW_OBCSS_CONTROL
                              if (icvar .eq. 12) then
-                               cbuffindex = nWetobcssGlo(k,iobcs)
+                               cbuffindex = nwetobcss(bi,bj,k,iobcs)
                              endif
 #endif 
 #ifdef ALLOW_OBCSW_CONTROL
                              if (icvar .eq. 13) then
-                               cbuffindex = nWetobcswGlo(k,iobcs)
+                               cbuffindex = nwetobcsw(bi,bj,k,iobcs)
                              endif
 #endif
 #ifdef ALLOW_OBCSE_CONTROL
                              if (icvar .eq. 14) then
-                               cbuffindex = nWetobcseGlo(k,iobcs)
+                               cbuffindex = nwetobcse(bi,bj,k,iobcs)
                              endif
 #endif
 cgg)

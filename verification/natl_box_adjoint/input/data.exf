@@ -66,4 +66,4 @@
 #
  scal_ust    = -1.,
  scal_vst    = -1.,
- /
+ &
