@@ -195,8 +195,10 @@ c       WRITE(*,*) ' mythid, sumArea = ', mythid, sumArea
 C-  convert Target-Residual (in W unit) to cg2d-solver residual unit [m^2/s^2]
         cg2dTolerance = cg2dNorm * cg2dTargetResWunit
      &                           * sumArea / deltaTfreesurf
-        WRITE(*,'(2A,1P2E22.14)') ' ini_cg2d: ',
+        _BEGIN_MASTER( myThid )
+        WRITE(standardMessageUnit,'(2A,1P2E22.14)') ' ini_cg2d: ',
      &          'sumArea,cg2dTolerance =', sumArea,cg2dTolerance
+        _END_MASTER( myThid )
       ENDIF
      
 C--   Initialise preconditioner

@@ -305,7 +305,9 @@ C
          
       end if
 
+      _BEGIN_MASTER( myThid )
       call check_eos( myThid )
+      _END_MASTER( myThid )
 
       return
       end
