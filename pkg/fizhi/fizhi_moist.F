@@ -1310,6 +1310,7 @@ c --------------------------------------------------------------------
       function random_numbx()
       implicit none
       real random_numbx
+      random_numbx = 0
 #ifdef CRAY
       real ranf
       random_numbx = ranf()
