@@ -48,8 +48,7 @@ C     == Local variables ==
       LOGICAL gf
 
 #ifdef ALLOW_AIM
-c     IF ( land_monFreq.NE.0. ) THEN
-      IF ( land_monFreq.NE.0. .AND. myIter.NE.nIter0 ) THEN
+      IF ( land_monFreq.NE.0. ) THEN
         CALL LAND_MONITOR( aim_landFr, myTime, myIter, myThid )
       ENDIF
 #endif
