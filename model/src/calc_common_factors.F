@@ -102,42 +102,20 @@ C--   tracer cell faces.
        ENDDO
       ENDDO
 
-C--   Calculate vertical "volume transport" through
-C--   tracer cell face *above* this level.
-      IF (TOP_LAYER .AND. rigidLid) THEN
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         rTrans(i,j) = 0.
-        ENDDO
-       ENDDO
-      ELSE
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         rTrans(i,j) = 
-     &    uTrans(i,j)*recip_rkFac-uTrans(i+1,j)*recip_rkFac
-     &   +vTrans(i,j)*recip_rkFac-vTrans(i,j+1)*recip_rkFac
-     &   +rTrans(i,j)
-        ENDDO
-       ENDDO
-      ENDIF
-
 C--   Vertical velocity at upper face
       DO j=jMin,jMax
-       DO i=iMin,iMax
-        rVel(i,j,kUp) = rTrans(i,j)/_rA(i,j,bi,bj)
-       ENDDO
+        DO i=iMin,iMax
+          rVel(i,j,kUp) = wVel(i,j,k,bi,bj)
+        ENDDO
       ENDDO
 
-#ifdef ALLOW_NONHYDROSTATIC
-C--   Vertical velocity at upper face
-C     IF ( nonHydrostatic ) THEN
-        DO j=jMin,jMax
-         DO i=iMin,iMax
-          wVel(i,j,k,bi,bj)=rVel(i,j,kUp)
-         ENDDO
+C--   Calculate vertical "volume transport" through
+C--   tracer cell face *above* this level.
+      DO j=jMin,jMax
+        DO i=iMin,iMax
+          rTrans(i,j) = rVel(i,j,kUp)*rA(i,j,bi,bj)
         ENDDO
-C     ENDIF
-#endif
+      ENDDO
 
       RETURN
       END

@@ -114,6 +114,7 @@ C     _GLOBAL_MAX_R8( rhsMax, myThid )
       rhsMax=1.
 #else
       _GLOBAL_MAX_R8( rhsMax, myThid )
+Catm  rhsMax=1.
 #endif
       rhsNorm = 1. _d 0
       IF ( rhsMax .NE. 0. ) rhsNorm = 1. _d 0 / rhsMax

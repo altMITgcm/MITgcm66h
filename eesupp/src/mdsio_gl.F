@@ -98,7 +98,7 @@ C Local variables
       character*(80) dataFName
       integer ip,jp,iG,jG,irec,bi,bj,ii,j,k,dUnit,IL
       logical exst
-      _RL arr(1-oLx:sNx+oLx,1-oLy:sNy+oLy,nNz,nSx,nSy)
+      _RL arr(1-oLx:sNx+oLx,1-oLy:sNy+oLy,Nr,nSx,nSy)
       Real*4 r4seg(sNx)
       Real*8 r8seg(sNx)
       logical globalFile,fileIsOpen
@@ -338,7 +338,7 @@ C Local variables
       integer ip,jp,iG,jG,irec,bi,bj,ii,j,k,dUnit,IL
       Real*4 r4seg(sNx)
       Real*8 r8seg(sNx)
-      _RL arr(1-oLx:sNx+oLx,1-oLy:sNy+oLy,nNz,nSx,nSy)
+      _RL arr(1-oLx:sNx+oLx,1-oLy:sNy+oLy,Nr,nSx,nSy)
       integer dimList(3,3),ndims
       integer length_of_rec
       logical fileIsOpen

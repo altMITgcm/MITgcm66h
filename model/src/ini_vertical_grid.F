@@ -28,7 +28,7 @@ C     K
       INTEGER K
 
 C     Calculate depths of centers and interfaces
-      rF(1) = 0. _d 0
+      rF(1) = Ro_SeaLevel
       DO K=1,Nr
        drF(K)     = delR(K)
        rF(K+1) = rF(K)-rkFac*delR(K)

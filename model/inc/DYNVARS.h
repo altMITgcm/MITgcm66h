@@ -17,10 +17,11 @@ C     uVelD  - D grid zonal velocity
 C     vVelD  - D grid meridional velocity
 
       COMMON /DYNVARS_R/ 
-     &                   uVel,vVel,theta,salt,
+     &                   uVel,vVel,wVel,theta,salt,
      &                   gu,gv,gt,gs,guNm1,gvNm1,gtNm1,gsNm1
       _RL  uVel (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  vVel (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      _RL  wVel (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  theta(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  salt (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  gu(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
