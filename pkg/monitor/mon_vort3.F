@@ -1,8 +1,4 @@
-#ifndef USE_W2
 C $Header$
-#else /* USE_W2 */
-C $Header$
-#endif /* USE_W2 */
 C $Name$
 
 #include "MONITOR_OPTIONS.h"
@@ -188,9 +184,7 @@ c         AZcorner = 0.75 _d 0
             hFacZ(iMax,j)=0.
             vort3(iMax,j)=0.
            ENDDO
-#ifndef USE_W2
-C--        S.W. corner:
-#else /* USE_W2 */
+#ifdef USE_W2
           ENDIF
 C--       S.W. corner:
           IF ( southWestCorner ) THEN

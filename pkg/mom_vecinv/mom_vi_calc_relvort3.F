@@ -1,8 +1,4 @@
-#ifndef USE_W2
 C $Header$
-#else /* USE_W2 */
-C $Header$
-#endif /* USE_W2 */
 C $Name$
 
 #include "CPP_OPTIONS.h"
@@ -80,11 +76,7 @@ c    &                            /hFacZ(i,j)
 
        ENDDO
       ENDDO
-#ifndef USE_W2
-        
-#else /* USE_W2 */
 
-#endif /* USE_W2 */
 C     Special stuff for Cubed Sphere
       IF (useCubedSphereExchange) THEN
 #ifdef USE_W2
