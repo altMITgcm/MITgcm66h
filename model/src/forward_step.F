@@ -69,6 +69,9 @@ C     == Global variables ==
 # ifdef ALLOW_PTRACERS
 #  include "PTRACERS.h"
 # endif
+# ifdef ALLOW_CD_CODE
+#  include "CD_CODE_VARS.h"
+# endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C     !LOCAL VARIABLES:

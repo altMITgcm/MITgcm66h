@@ -54,7 +54,10 @@ C     == Local variables ==
       _RL gam(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
 CEOP
 
-      IF (Nr.LE.1) RETURN
+cph(
+cph Not good for TAF: may create irreducible control flow graph
+cph      IF (Nr.LE.1) RETURN
+cph)
 
 C--   Initialise
       DO k=1,Nr
