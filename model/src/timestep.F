@@ -20,7 +20,8 @@ C     == Global variables ==
 #include "GRID.h"
 
 C     == Routine Arguments ==
-C     phiHyd    - Hydrostatic pressure (ocean) or geopotentiel (atmos)
+C     phiHyd    - Hydrostatic Potential (ocean: pressure/rho) 
+C                                       (atmos: geopotentiel)
 C     phiSurfX, - gradient of Surface potentiel (Pressure/rho, ocean)
 C     phiSurfY             or geopotentiel (atmos) in X and Y direction
       INTEGER bi,bj,iMin,iMax,jMin,jMax
@@ -60,7 +61,7 @@ C     Step forward zonal velocity (store in Gu)
 
       IF (staggerTimeStep) THEN
 C--   -grad Phi_Hyd has not been incorporated to gU and is added here:
-        phxFac = pfFacMom*deltaTmom*recip_rhoConst
+        phxFac = pfFacMom*deltaTmom
         DO j=jMin,jMax
           DO i=iMin,iMax
             gUNm1(i,j,k,bi,bj)=gUNm1(i,j,k,bi,bj)
@@ -87,7 +88,7 @@ C     Step forward meridional velocity (store in Gv)
 
       IF (staggerTimeStep) THEN
 C--   -grad Phi_Hyd has not been incorporated to gV and is added here:
-        phyFac = pfFacMom*deltaTmom*recip_rhoConst
+        phyFac = pfFacMom*deltaTmom
         DO j=jMin,jMax
           DO i=iMin,iMax
             gVNm1(i,j,k,bi,bj)=gVNm1(i,j,k,bi,bj)
