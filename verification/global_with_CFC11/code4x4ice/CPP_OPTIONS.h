@@ -13,7 +13,7 @@ C o Include/exclude code for GM/Redi parameterization
 #define ALLOW_GMREDI
 
 C o Include/exclude code for KPP mixing scheme
-#define  ALLOW_KPP
+#undef   ALLOW_KPP
 
 C o Shortwave heating as extra term in external_forcing.F
 #ifdef ALLOW_KPP
@@ -139,16 +139,11 @@ C o Add passive tracer advection routines
 #define ALLOW_PASSIVE_TRACER
 #define INCLUDE_TR_FORCING_CODE
 
+C o Include/exclude code for sea-ice model
+#define ALLOW_SEAICE
+
 C o Execution environment support options
 #include "CPP_EEOPTIONS.h"
-
-C o Include/exclude the external forcing package. To use this package,
-C   you have to include the calendar tool as well. KPP can be switched
-C   on or off. The implementation automatically takes care of this.
-#define INCLUDE_EXTERNAL_FORCING_PACKAGE
-#ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
-# include "ECCO_CPPOPTIONS.h"
-#endif
 
 C o Include/exclude code specific to the ECCO/SEALION version.
 #undef INCLUDE_ECCO_PACKAGE
@@ -156,6 +151,3 @@ C o Include/exclude code specific to the ECCO/SEALION version.
 #include "ECCO_CPPOPTIONS.h"
 #endif
 
-C o Include/exclude code for sea-ice model
-#undef  ALLOW_SEAICE
- 

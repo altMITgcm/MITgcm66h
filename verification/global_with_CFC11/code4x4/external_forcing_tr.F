@@ -155,27 +155,8 @@ C
 
 C====================================================================
 
-c_ ---------------------------------------------------------------------
-c_ RCS lines preceded by "c_ "
-c_ ---------------------------------------------------------------------
-c_
-c_ $Source$
-c_ $Revision$
-c_ $Date$   ;  $State$
-c_ $Author$ ;  $Locker$
-c_
-c_ ---------------------------------------------------------------------
-c_ $Log$
-c_ Revision 1.1.2.1  2003/05/03 17:48:35  dimitri
-c_ Added 4x4-deg, 15-level CFC green's functions experiments
-c_ (see verification/global_with_CFC11/README)
-c_
-c_ Revision 1.1  1998/07/07 15:22:00  orr
-c_ Initial revision
-c_
-c_ ---------------------------------------------------------------------
-c_
       _RL FUNCTION sc_cfc(t,kn)
+
 c---------------------------------------------------
 c     CFC 11 and 12 schmidt number 
 c     as a fonction of temperature. 
@@ -187,6 +168,7 @@ c     kn: = 11 for CFC-11,  12 for CFC-12
 c
 c     J-C Dutay - LSCE
 c---------------------------------------------------
+
       IMPLICIT NONE 
       INTEGER kn
       _RL a1 ( 11: 12), a2 ( 11: 12), a3 ( 11: 12), a4 ( 11: 12)
@@ -213,31 +195,8 @@ c
 
 C====================================================================
 
-c_ ---------------------------------------------------------------------
-c_ RCS lines preceded by "c_ "
-c_ ---------------------------------------------------------------------
-c_
-c_ $Source$
-c_ $Revision$
-c_ $Date$   ;  $State$
-c_ $Author$ ;  $Locker$
-c_
-c_ ---------------------------------------------------------------------
-c_ $Log$
-c_ Revision 1.1.2.1  2003/05/03 17:48:35  dimitri
-c_ Added 4x4-deg, 15-level CFC green's functions experiments
-c_ (see verification/global_with_CFC11/README)
-c_
-c_ Revision 1.2  1998/07/17 07:37:02  jomce
-c_ Fixed slight bug in units conversion: converted 1.0*e-12 to 1.0e-12
-c_ following warning from Matthew Hecht at NCAR.
-c_
-c_ Revision 1.1  1998/07/07 15:22:00  orr
-c_ Initial revision
-c_
-c_ ---------------------------------------------------------------------
-c_
       _RL FUNCTION sol_cfc(pt,ps,kn)
+
 c-------------------------------------------------------------------
 c
 c     CFC 11 and 12 Solubilities in seawater
@@ -248,7 +207,6 @@ c     ps:       salinity    (o/oo)
 c     kn:       11 = CFC-11, 12 = CFC-12
 c     sol_cfc:  in mol/m3/pptv
 c               1 pptv = 1 part per trillion = 10^-12 atm = 1 picoatm
-
 c
 c     J-C Dutay - LSCE
 c-------------------------------------------------------------------

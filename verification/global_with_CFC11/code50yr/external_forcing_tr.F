@@ -186,40 +186,8 @@ C
 
 C====================================================================
 
-c_ ---------------------------------------------------------------------
-c_ RCS lines preceded by "c_ "
-c_ ---------------------------------------------------------------------
-c_
-c_ $Source$
-c_ $Revision$
-c_ $Date$   ;  $State$
-c_ $Author$ ;  $Locker$
-c_
-c_ ---------------------------------------------------------------------
-c_ $Log$
-c_ Revision 1.1.2.1  2003/05/03 04:27:34  dimitri
-c_ Branched off release1_p15
-c_ Modified pkg/exf/exf_clim_param.h, exf_clim_readparms.F,
-c_    exf_set_climsss.F, and exf_set_climsst.F to add new_interp
-c_    capability to SST and SSS
-c_ Added verification/global_with_CFC11/code50yr and input50yr
-c_
-c_ Revision 1.1.2.2  2003/05/02 22:55:33  dimitri
-c_ release1_p15
-c_ o Added CFC-11 diagnostics, see
-c_   verification/global_with_CFC11/README
-c_
-c_ Revision 1.1.2.1  2003/05/01 18:18:29  dimitri
-c_ release1_p15
-c_ o Added CFC-11 diagnostics, see
-c_   verification/global_with_CFC11/README
-c_
-c_ Revision 1.1  1998/07/07 15:22:00  orr
-c_ Initial revision
-c_
-c_ ---------------------------------------------------------------------
-c_
       _RL FUNCTION sc_cfc(t,kn)
+
 c---------------------------------------------------
 c     CFC 11 and 12 schmidt number 
 c     as a fonction of temperature. 
@@ -231,6 +199,7 @@ c     kn: = 11 for CFC-11,  12 for CFC-12
 c
 c     J-C Dutay - LSCE
 c---------------------------------------------------
+
       IMPLICIT NONE 
       INTEGER kn
       _RL a1 ( 11: 12), a2 ( 11: 12), a3 ( 11: 12), a4 ( 11: 12)
@@ -257,44 +226,8 @@ c
 
 C====================================================================
 
-c_ ---------------------------------------------------------------------
-c_ RCS lines preceded by "c_ "
-c_ ---------------------------------------------------------------------
-c_
-c_ $Source$
-c_ $Revision$
-c_ $Date$   ;  $State$
-c_ $Author$ ;  $Locker$
-c_
-c_ ---------------------------------------------------------------------
-c_ $Log$
-c_ Revision 1.1.2.1  2003/05/03 04:27:34  dimitri
-c_ Branched off release1_p15
-c_ Modified pkg/exf/exf_clim_param.h, exf_clim_readparms.F,
-c_    exf_set_climsss.F, and exf_set_climsst.F to add new_interp
-c_    capability to SST and SSS
-c_ Added verification/global_with_CFC11/code50yr and input50yr
-c_
-c_ Revision 1.1.2.2  2003/05/02 22:55:33  dimitri
-c_ release1_p15
-c_ o Added CFC-11 diagnostics, see
-c_   verification/global_with_CFC11/README
-c_
-c_ Revision 1.1.2.1  2003/05/01 18:18:29  dimitri
-c_ release1_p15
-c_ o Added CFC-11 diagnostics, see
-c_   verification/global_with_CFC11/README
-c_
-c_ Revision 1.2  1998/07/17 07:37:02  jomce
-c_ Fixed slight bug in units conversion: converted 1.0*e-12 to 1.0e-12
-c_ following warning from Matthew Hecht at NCAR.
-c_
-c_ Revision 1.1  1998/07/07 15:22:00  orr
-c_ Initial revision
-c_
-c_ ---------------------------------------------------------------------
-c_
       _RL FUNCTION sol_cfc(pt,ps,kn)
+
 c-------------------------------------------------------------------
 c
 c     CFC 11 and 12 Solubilities in seawater
@@ -305,7 +238,6 @@ c     ps:       salinity    (o/oo)
 c     kn:       11 = CFC-11, 12 = CFC-12
 c     sol_cfc:  in mol/m3/pptv
 c               1 pptv = 1 part per trillion = 10^-12 atm = 1 picoatm
-
 c
 c     J-C Dutay - LSCE
 c-------------------------------------------------------------------
