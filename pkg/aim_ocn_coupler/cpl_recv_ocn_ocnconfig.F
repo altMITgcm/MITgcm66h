@@ -26,8 +26,9 @@ C     == Local variables ==
 CEndOfInterface
 
 C     Get config from ocean component
-      CALL COUPRECV_R8TILES( ocnCompName, ocnBathyName, Nx_ocn, Ny_ocn, 
-     &                       OcnDepths_ocn )
+      CALL COUPRECV_R8TILES( ocnCompName, 
+     I                       ocnMxlDName, Nx_ocn, Ny_ocn, 
+     O                       OcMxlD_ocn )
 
       RETURN
       END

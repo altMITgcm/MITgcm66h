@@ -15,12 +15,11 @@ C     \==========================================================/
       IMPLICIT NONE
 
 C     == Global variables ==
-#include "OCNSIZE.h"
-#include "OCNVARS.h"
-#include "OCNIDS.h"
 #include "ATMSIZE.h"
 #include "ATMVARS.h"
 #include "ATMIDS.h"
+#include "OCNSIZE.h"
+#include "OCNVARS.h"
 
 C     == Routine arguments ==
 CEndOfInterface
@@ -28,13 +27,13 @@ CEndOfInterface
 C     Map ocean depth map onto atmos. grid
       CALL OCN_TO_ATM_MAPXYR8(
      I     Nx_ocn, Ny_ocn, 
-     I     OcnDepths_ocn, 
+     I     OcMxlD_ocn, 
      I     Nx_atm, Ny_atm,
-     O     OcnDepths_atm)
+     O     OcMxlD_atm)
 
 C     Send ocean config to atmos. component
-      CALL COUPSEND_R8TILES( atmCompName, ocnBathyName, Nx_atm, Ny_atm, 
-     &                       OcnDepths_atm )
+      CALL COUPSEND_R8TILES( atmCompName, atmMxlDName, Nx_atm, Ny_atm, 
+     &                       OcMxlD_atm )
 
       RETURN
       END
