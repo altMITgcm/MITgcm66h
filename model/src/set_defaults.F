@@ -83,12 +83,6 @@ C--   Set default "physical" parameters
       diffK4T             = 0.D11
       diffK4S             = 0.D11
       cosPower            = 0.
-      GMmaxslope          = 1.D-2
-      GMlength            = 200.D3
-      GMalpha             = 0.D0
-      GMdepth             = 1000.D0
-      GMkbackground       = 0.D0
-      GMmaxval            = 2500.D0
       HeatCapacity_Cp     = 3994.D0
       tAlpha              = 2.D-4
       sBeta               = 7.4D-4
