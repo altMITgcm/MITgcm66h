@@ -107,6 +107,11 @@ C--   Do LAND time averages
      &  CALL LAND_WRITE_TAVE( myCurrentTime, myIter, myThid )
 #endif                                                             
 
+#ifdef ALLOW_OBCS
+      IF (useOBCS)
+     & CALL OBCS_DIAGS( myCurrentTime, myIter, myThid )
+#endif
+
 #ifdef ALLOW_GMREDI
 C--   Do KPP diagnostics.
       IF (useGMRedi)
