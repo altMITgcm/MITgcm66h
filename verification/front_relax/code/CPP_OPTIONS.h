@@ -32,7 +32,7 @@ C o Include/exclude code for open-boundary conditions
 #undef   ALLOW_OBCS
 
 C o Include/exclude diagnostics package interface code
-#undef  INCLUDE_DIAGNOSTICS_INTERFACE_CODE
+#undef  ALLOW_TIMEAVE
 
 C o Include/exclude zonal FFT filter code
 #undef  ALLOW_ZONAL_FILT
