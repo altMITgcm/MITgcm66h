@@ -46,15 +46,15 @@ CEOP
       WRITE(fn,'(A,I10.10)') 'pickup_ptracers.',myIter
       prec = precFloat64
 
-C Read fields as consecutive records
-      DO iTracer=1,PTRACERS_num
-       iRec = iTracer
-       CALL MDSREADFIELD(fn,prec,'RL',Nr,
-     &      pTracer(1-Olx,1-Oly,1,1,1,iTracer),iRec,myThid)
-       _EXCH_XYZ_R8(pTracer(1-Olx,1-Oly,1,1,1,iTracer),myThid)
-      ENDDO
-
       IF ( usePickupBeforeC54 ) THEN
+C Read fields as consecutive records
+       DO iTracer=1,PTRACERS_num
+        iRec = iTracer
+        CALL MDSREADFIELD(fn,prec,'RL',Nr,
+     &       pTracer(1-Olx,1-Oly,1,1,1,iTracer),iRec,myThid)
+        _EXCH_XYZ_R8(pTracer(1-Olx,1-Oly,1,1,1,iTracer),myThid)
+       ENDDO
+
 C Read historical tendancies as consecutive records
        DO iTracer=1,PTRACERS_num
         iRec = iTracer + PTRACERS_num
@@ -68,14 +68,23 @@ C Read historical tendancies as consecutive records
      &       gPtrNm1(1-Olx,1-Oly,1,1,1,iTracer),iRec,myThid)
         _EXCH_XYZ_R8(gPtrNm1(1-Olx,1-Oly,1,1,1,iTracer),myThid)
        ENDDO
+
       ELSE
-C Read tendancies as consecutive records (needed for AB)
-       DO iTracer=1,PTRACERS_num
-        iRec = iTracer + PTRACERS_num
+C Read fields & tendancies (needed for AB) as consecutive records,
+C  one tracer after the other, only for tracers "InUse".
+C  note: this allow to restart from a pickup with a different number of
+C      tracers, with write_pickup dumping all of them (PTRACERS_num).
+       DO iTracer=1,PTRACERS_numInUse
+        iRec = 2*iTracer -1 
+        CALL MDSREADFIELD(fn,prec,'RL',Nr,
+     &       pTracer(1-Olx,1-Oly,1,1,1,iTracer),iRec,myThid)
+        iRec = 2*iTracer
         CALL MDSREADFIELD(fn,prec,'RL',Nr,
      &       gPtrNm1(1-Olx,1-Oly,1,1,1,iTracer),iRec,myThid)
+        _EXCH_XYZ_R8(pTracer(1-Olx,1-Oly,1,1,1,iTracer),myThid)
         _EXCH_XYZ_R8(gPtrNm1(1-Olx,1-Oly,1,1,1,iTracer),myThid)
        ENDDO
+
       ENDIF
 
 #endif /* ALLOW_PTRACERS */
