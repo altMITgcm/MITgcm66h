@@ -1,17 +1,16 @@
-C $Header$
-C $Name$
 
-#include "KPP_OPTIONS.h"
+#include "CPP_OPTIONS.h"
 
-      SUBROUTINE KPP_CALC_DIFF( 
+CStartOfInterFace
+      SUBROUTINE CALC_VISCOSITY( 
      I        bi,bj,iMin,iMax,jMin,jMax,K,
      I        maskUp,
-     U        KappaRT,KappaRS,
+     O        KappaRU,KappaRV,
      I        myThid)
 
 C     /==========================================================\
-C     | SUBROUTINE KPP_CALC_DIFF                                 |
-C     | o Add contrubution to net diffusivity from KPP mixing    |
+C     | SUBROUTINE CALC_VISCOSITY                                |
+C     | o Calculate net viscosity                                |
 C     \==========================================================/
       IMPLICIT NONE
 
@@ -29,12 +28,10 @@ C     myThid - Instance number for this innvocation of CALC_COMMON_FACTORS
 C
       INTEGER bi,bj,iMin,iMax,jMin,jMax,K
       _RS maskUp(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
-      _RL KappaRT(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
-      _RL KappaRS(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
+      _RL KappaRU(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
+      _RL KappaRV(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
       INTEGER myThid
-
-#ifdef ALLOW_KPP
-#include "KPP.h"
+CEndOfInterface
 
 C     == Local variables ==
 C     I, J, K - Loop counters
@@ -42,29 +39,24 @@ C     I, J, K - Loop counters
 
       DO j=jMin,jMax
        DO i=iMin,iMax
-        KappaRT(i,j,k) = KappaRT(i,j,k)+maskUp(i,j)*
-     &                   ( KPPdiffKzT(i,j,k,bi,bj)
-#if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_DIFFKR_CONTROL))
-     &                     - diffKr(i,j,k,bi,bj) )
-#else
-     &                     - diffKrT )
-#endif
+        KappaRU(i,j,k) = viscAr
        ENDDO
       ENDDO
 
       DO j=jMin,jMax
        DO i=iMin,iMax
-        KappaRS(i,j,k) = KappaRS(i,j,k)+maskUp(i,j)*
-     &                   ( KPPdiffKzS(i,j,k,bi,bj)
-#if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_DIFFKR_CONTROL))
-     &                     - diffKr(i,j,k,bi,bj) )
-#else
-     &                     - diffKrS )
-#endif
+        KappaRV(i,j,k) = viscAr
        ENDDO
       ENDDO
 
-#endif /* ALLOW_KPP */
+#ifdef ALLOW_KPP
+      IF (useKPP) CALL KPP_CALC_VISC(
+     I        bi,bj,iMin+1,iMax,jMin+1,jMax,K,
+     I        maskUp,
+     O        KappaRU,KappaRV,
+     I        myThid)
+#endif
+
 
       RETURN
       END
