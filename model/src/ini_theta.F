@@ -85,7 +85,7 @@ C--    Initialise temperature field to the vertical reference profile
        ENDDO
       ELSE
        _BEGIN_MASTER( myThid )
-       CALL READ_FLD_XYZ_RS( hydrogThetaFile, ' ', theta, 0, myThid )
+       CALL READ_FLD_XYZ_RL( hydrogThetaFile, ' ', theta, 0, myThid )
        _END_MASTER(myThid)
       ENDIF
 C     Set initial tendency terms

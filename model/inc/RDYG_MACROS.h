@@ -20,6 +20,6 @@ C     \==========================================================/
 #define  _rdyG(i,j,bi,bj) rdyG(1,j,1,bj)
 #endif
 
-#ifndef rdyG
+#ifndef _rdyG
 #define  _rdyG(i,j,bi,bj) rdyG(i,j,bi,bj)
 #endif

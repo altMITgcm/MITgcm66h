@@ -62,7 +62,7 @@ C--    Initialise salinity field to the vertical reference profile
        ENDDO
       ELSE
        _BEGIN_MASTER( myThid )
-       CALL READ_FLD_XYZ_RS( hydrogSaltFile, ' ', salt, 0, myThid )
+       CALL READ_FLD_XYZ_RL( hydrogSaltFile, ' ', salt, 0, myThid )
        _END_MASTER(myThid)
       ENDIF
 C     Set initial tendency terms

@@ -366,22 +366,22 @@ C--     Implicit diffusion
        ENDDO
       ENDDO
 
-      write(0,*) 'dynamics: pS ',minval(cg2d_x(1:sNx,1:sNy,:,:)),
-     &                           maxval(cg2d_x(1:sNx,1:sNy,:,:))
-      write(0,*) 'dynamics: U  ',minval(uVel(1:sNx,1:sNy,:,:,:)),
-     &                           maxval(uVel(1:sNx,1:sNy,:,:,:))
-      write(0,*) 'dynamics: V  ',minval(vVel(1:sNx,1:sNy,:,:,:)),
-     &                           maxval(vVel(1:sNx,1:sNy,:,:,:))
+C     write(0,*) 'dynamics: pS ',minval(cg2d_x(1:sNx,1:sNy,:,:)),
+C    &                           maxval(cg2d_x(1:sNx,1:sNy,:,:))
+C     write(0,*) 'dynamics: U  ',minval(uVel(1:sNx,1:sNy,:,:,:)),
+C    &                           maxval(uVel(1:sNx,1:sNy,:,:,:))
+C     write(0,*) 'dynamics: V  ',minval(vVel(1:sNx,1:sNy,:,:,:)),
+C    &                           maxval(vVel(1:sNx,1:sNy,:,:,:))
 cblk  write(0,*) 'dynamics: K13',minval(K13(1:sNx,1:sNy,:)),
 cblk &                           maxval(K13(1:sNx,1:sNy,:))
 cblk  write(0,*) 'dynamics: K23',minval(K23(1:sNx,1:sNy,:)),
 cblk &                           maxval(K23(1:sNx,1:sNy,:))
 cblk  write(0,*) 'dynamics: K33',minval(K33(1:sNx,1:sNy,:)),
 cblk &                           maxval(K33(1:sNx,1:sNy,:))
-      write(0,*) 'dynamics: gT ',minval(gT(1:sNx,1:sNy,:,:,:)),
-     &                           maxval(gT(1:sNx,1:sNy,:,:,:))
-      write(0,*) 'dynamics: T  ',minval(Theta(1:sNx,1:sNy,:,:,:)),
-     &                           maxval(Theta(1:sNx,1:sNy,:,:,:))
+C     write(0,*) 'dynamics: gT ',minval(gT(1:sNx,1:sNy,:,:,:)),
+C    &                           maxval(gT(1:sNx,1:sNy,:,:,:))
+C     write(0,*) 'dynamics: T  ',minval(Theta(1:sNx,1:sNy,:,:,:)),
+C    &                           maxval(Theta(1:sNx,1:sNy,:,:,:))
 cblk  write(0,*) 'dynamics: pH ',minval(pH/(Gravity*Rhonil)),
 cblk &                           maxval(pH/(Gravity*Rhonil))
 
