@@ -54,6 +54,7 @@ C--  Set default value for AIM interface code (AIM_PARAMS.h):
       aim_oiceFile = ' '
       aim_snowFile = ' '
       aim_swcFile  = ' '
+      aim_dragStrato = 0.
       aim_taveFreq = taveFreq
       aim_diagFreq = dumpFreq
       aim_tendFreq = 0.

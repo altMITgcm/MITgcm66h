@@ -67,6 +67,7 @@ C     aim_lstFile  :: file name for Land.Surf.Temp      (F.M. surfBC)
 C     aim_oiceFile :: file name for Sea Ice fraction    (F.M. surfBC)
 C     aim_snowFile :: file name for Snow depth          (F.M. surfBC)
 C     aim_swcFile  :: file name for Soil Water content  (F.M. surfBC)
+C     aim_dragStrato :: stratospheric-drag damping time scale (s)
 C     aim_taveFreq :: Frequency^-1 for time-average output (s)
 C     aim_diagFreq :: Frequency^-1 for diagnostic output (s)
 C     aim_tendFreq :: Frequency^-1 for tendencies output (s)
@@ -76,6 +77,7 @@ C     aim_tendFreq :: Frequency^-1 for tendencies output (s)
      &    aim_LandFile, aim_albFile, aim_vegFile,
      &    aim_sstFile, aim_lstFile, aim_oiceFile, aim_snowFile,
      &    aim_swcFile,
+     &    aim_dragStrato,
      &    aim_taveFreq, aim_diagFreq, aim_tendFreq
 
 C--   Physical constants (common PHYCON) :
@@ -262,6 +264,8 @@ C- namelist AIM_PARAMS:
        CALL WRITE_0D_L( aim_surfPotTemp, INDEX_NONE,
      &                 'aim_surfPotTemp =',
      &'   /* Surf Temp file in Pot.Temp on/off flag */')       
+       CALL WRITE_0D_R8(aim_dragStrato,INDEX_NONE,'aim_dragStrato=',
+     &    ' /* stratospheric-drag damping time scale (s) */')
        CALL WRITE_0D_R8( aim_taveFreq, INDEX_NONE,'aim_taveFreq =',
      &  '   /* Frequency^-1 for time-Aver. output (s) */')
        CALL WRITE_0D_R8( aim_diagFreq, INDEX_NONE,'aim_diagFreq =',

@@ -51,11 +51,14 @@ C     aim_MMsufxLength :: Length of sufix (Monthly Mean surf. forcing files)
       INTEGER aim_MMsufxLength
 
 C--   COMMON /AIM_PARM_R/ "Real" valued parameters for AIM
+C     aim_dragStrato :: stratospheric-drag damping time scale (s)
 C     aim_taveFreq :: Frequency^-1 for time-average output (s)
 C     aim_diagFreq :: Frequency^-1 for diagnostic output (s)
 C     aim_tendFreq :: Frequency^-1 for tendencies output (s)
       COMMON /AIM_PARM_R/ 
+     &  aim_dragStrato,
      &  aim_taveFreq, aim_diagFreq, aim_tendFreq
+      _RL aim_dragStrato
       _RL aim_taveFreq
       _RL aim_diagFreq
       _RL aim_tendFreq
