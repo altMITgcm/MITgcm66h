@@ -4,8 +4,6 @@ C $Name$
 #include "PACKAGES_CONFIG.h"
 #include "EXF_OPTIONS.h"
 
-#ifdef USE_EXF_INTERPOLATION
-
       subroutine exf_set_uv(
      &     uvecfile, uvecstartdate, uvecperiod,
      &     exf_inscal_uvec, uvec, uvec0, uvec1, uvecmask,
@@ -81,6 +79,7 @@ c     *vec_lat_inc         :: vector y-grid increments for *vec
       integer mycurrentiter
       integer mythid
 
+#ifdef USE_EXF_INTERPOLATION
 c     == local variables ==
 
       logical first, changed
@@ -269,7 +268,7 @@ c     IF ( .NOT. useCubedSphereExchange )
 
       ENDIF
 
+#endif /* USE_EXF_INTERPOLATION */
+
       return
       end
-
-#endif /* USE_EXF_INTERPOLATION */
