@@ -154,6 +154,16 @@ CEOP
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
 
+      WRITE(msgBuf,'(A,L4,A)') 'useCoupler=', useCoupler,
+     & ' ; /* Flag used to control communications with */'
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &  SQUEEZE_RIGHT , 1)
+      WRITE(msgBuf,'(A,A,A)') '          ', '     ' ,
+     & '   /*  other model components, through a coupler */'
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &  SQUEEZE_RIGHT , 1)
+
+
       WRITE(msgBuf,'(A)') '                '
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)

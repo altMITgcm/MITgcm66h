@@ -65,6 +65,9 @@ C--   ======================================
 #ifndef ALWAYS_USE_MPI
       IF ( usingMPI ) THEN
 #endif
+#ifdef COMPONENT_MODULE
+       IF ( useCoupler) CALL MPI_BARRIER( MPI_COMM_WORLD, mpiRC )
+#endif
        CALL MPI_FINALIZE  ( mpiRC )
        IF ( mpiRC .NE. MPI_SUCCESS ) THEN
         eeEndError = .TRUE.

@@ -76,7 +76,7 @@ C--   Sum within the process first
        IF ( usingMPI ) THEN
 #endif
         CALL MPI_Allreduce(tmp,sumPhi,1,MPI_REAL,MPI_SUM,
-     &                   MPI_COMM_WORLD,mpiRC)
+     &                   MPI_COMM_MODEL,mpiRC)
 #ifndef ALWAYS_USE_MPI
        ENDIF
 #endif
@@ -169,7 +169,7 @@ C--   Sum within the process first
        IF ( usingMPI ) THEN
 #endif
         CALL MPI_Allreduce(tmp,sumPhi,1,MPI_DOUBLE_PRECISION,MPI_SUM,
-     &                   MPI_COMM_WORLD,mpiRC)
+     &                   MPI_COMM_MODEL,mpiRC)
 #ifndef ALWAYS_USE_MPI
        ENDIF
 #endif
@@ -260,7 +260,7 @@ C--   Sum within the process first
        IF ( usingMPI ) THEN
 #endif
         CALL MPI_Allreduce(tmp,sumPhi,1,MPI_INTEGER,MPI_SUM,
-     &                   MPI_COMM_WORLD,mpiRC)
+     &                   MPI_COMM_MODEL,mpiRC)
 #ifndef ALWAYS_USE_MPI
        ENDIF
 #endif
