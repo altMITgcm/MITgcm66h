@@ -25,6 +25,8 @@ CEOP
 
 #ifdef ALLOW_GCHEM
 
+C     !LOCAL VARIABLES:
+
          _BEGIN_MASTER( mythid )
 ccccccccccccccccccccccccccc
 c initialize parameters   c
@@ -42,6 +44,12 @@ ccccccccccccccccccccccccccc
 #endif /* ALLOW_CFC */
           _END_MASTER( mythid )
 
+#ifdef ALLOW_DIAGNOSTICS
+C     Define diagnostics Names :
+      IF ( useDiagnostics ) THEN
+        CALL GCHEM_DIAGNOSTICS_INIT( myThid )
+      ENDIF
+#endif /* ALLOW_DIAGNOSTICS */
 
 #endif /* ALLOW_GCHEM */
 
