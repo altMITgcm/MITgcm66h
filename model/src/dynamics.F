@@ -286,7 +286,7 @@ C--       Integrate continuity vertically for vertical velocity
 
 #ifdef    ALLOW_OBCS
 #ifdef    ALLOW_NONHYDROSTATIC
-C--       Calculate future values on open boundaries
+C--       Apply OBC to W if in N-H mode
           IF (useOBCS.AND.nonHydrostatic) THEN
             CALL OBCS_APPLY_W( bi, bj, k, wVel, myThid )
           ENDIF
