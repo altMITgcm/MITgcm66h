@@ -291,6 +291,7 @@ set S64        = ( '$(TOOLSDIR)/set64bitConst.sh' )
 set KPP        = (  )
 set FC         = ( 'f77' )
 set LINK       = ( 'f77' )
+set MAKEDEPEND = ( 'makedepend' )
 set INCLUDES   = ( -I. )
 set FFLAGS     = (  )
 set FOPTIM     = (  )
@@ -393,10 +394,11 @@ switch ($platform$USEMPI)
   case SunOS:
     set LN         = ( '/usr/bin/ln -s' )
     set CPP        = ( '/usr/ccs/lib/cpp -P' )
+    set MAKEDEPEND = ( ${TOOLSDIR}/xmakedepend )
     set DEFINES    = ( ${DEFINES} '-DTARGET_SUN -DWORDLENGTH=4 -D_d=E' )
     set FFLAGS     = ( '-stackvar -explicitpar -vpara -e -u -noautopar -xtypemap=real:64,double:64,integer:32 -fsimple=0' )
-    set FOPTIM     = ( '-dalign -O3 -xarch=v9' )
-    set CFLAGS     = ( '-dalign -O3 -xarch=v9' )
+    set FOPTIM     = ( '-dalign -O1 -xarch=v9' )
+    set CFLAGS     = ( '-dalign -O1 -xarch=v9' )
     set NOOPTFLAGS = ( '-dalign -O0 -xarch=v9' )
     set NOOPTFILES = ( 'barrier.F different_multiple.F external_fields_load.F ini_vertical_grid.F ini_spherical_polar_grid.F ini_cori.F mon_printstats_rl.F mon_printstats_rs.F aim_aim2dyn.F aim_dyn2aim.F aim_aim2dyn_exchanges.F aim_external_fields_load.F aim_calc_diags.F aim_external_forcing.F aim_do_atmos_physics.F aim_write_diags.F aim_do_inphys.F ')
     breaksw
@@ -460,6 +462,13 @@ switch ($platform$USEMPI)
     else
      set INCLUDES   = ( '-I/usr/local/include' )
      set LIBS       = ( '-L/usr/local/lib/LINUX/ch_p4/ -lfmpich -lmpich' )
+    endif
+  case atlas:
+    if ($?include_jam_libs) then
+     set INCLUDES   = ( '-I/usr/local/mpich-cnh-install/include' )
+     set LIBS       = ( '-L/usr/local/mpich-cnh-install/lib/LINUX/ch_p4/ -lfmpich -lmpich' )
+    else
+     set INCLUDES   = ( '-I/usr/mpich/pghpf/include' )
     endif
   case Linux*+pgi:
     echo "Configuring for " $platform
@@ -535,12 +544,7 @@ switch ($platform$USEMPI)
                            '-bmaxdata:0x80000000 ' )
     set LDFLAGS    = ( '-O3 -qarch=pwr3 -qtune=pwr3 -qcache=auto -qmaxmem=-1' \
                            '-bmaxdata:0x80000000' )
-    set LIBS       = ( ' timer_stats.o -L/usr/local/apps/mass -lmass' )
-#   set FFLAGS     = ( '-extend_source -mp -mpio -bytereclen -r10000 -mips4' )
-#    set FOPTIM     = ( '-O3' )
-#   set NOOPTFLAGS = ( '-O0' )
-#   set NOOPTFILES = ( 'barrier.F different_multiple.F ' \
-#                      'external_fields_load.F' )
+    set LIBS       = ( ' -L/usr/local/apps/mass -lmass' )
     set RMFILES    = ( 'rii_files' )
     breaksw
   default:
@@ -634,6 +638,7 @@ cat >> ${mfile} <<EOF
 # CPP          : C-preprocessor command
 # INCLUDES     : Directories searched for header files
 # DEFINES      : Macro definitions for CPP
+# MAKEDEPEND   : Dependency generator
 # KPP          : Special preprocessor command (specific to platform)
 # KFLAGS       : Flags for KPP
 # FC           : Fortran compiler command
@@ -692,6 +697,8 @@ cat >> ${mfile} <<EOF
 LN = ${LN}
 # C preprocessor
 CPP = cat \$< | ${S64} | ${CPP}
+# Dependency generator
+MAKEDEPEND = ${MAKEDEPEND}
 # Special preprocessor (KAP on DECs, FPP on Crays)
 KPP = ${KPP}
 # Fortran compiler
@@ -737,7 +744,7 @@ all: \$(EXECUTABLE)
 	\$(LINK) -o \$@ \$(FFLAGS) \$(FOPTIM) \$(OBJFILES) \$(LIBS)
 depend:
 	@make links
-	../tools/xmakedepend -o .f \$(DEFINES) \$(INCLUDES) \$(SRCFILES)
+	\$(MAKEDEPEND) -o .f \$(DEFINES) \$(INCLUDES) \$(SRCFILES)
 
 links: \$(SRCFILES) \$(CSRCFILES) \$(HEADERFILES)
 
