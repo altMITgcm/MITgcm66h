@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o switched to g77/ifc from pgf77 in aim experiments
+
 checkpoint46l_post
 o made convective adjustment work with pressure coordinates:
  - changed the direction of k-loop in convective_adjustment.F for the
