@@ -8,7 +8,7 @@
 #  tangent-linear compilers.  If you need to change these settings,
 #  please make a separate (local) copy of this file.
 
-TAMC=tamc
+TAMC=/data43/ralf/tamc/tamc
 TAF=~fastopt/bin/taf
 # STAF=staf
 
