@@ -106,7 +106,7 @@ C--   Check status of solution (statistics, cfl, etc...)
       CALL TIMER_STOP ('MONITOR             [THE_MAIN_LOOP]', mythid)
 #endif /* EXCLUDE_MONITOR */
 
-#ifdef ALLOW_ADJOINT_RUN
+#if (defined (ALLOW_ADJOINT_RUN) || defined (ALLOW_TANGENTLINEAR_RUN))
 c--   Add control vector for forcing and parameter fields
       CALL CTRL_MAP_FORCING (mythid)
 #endif

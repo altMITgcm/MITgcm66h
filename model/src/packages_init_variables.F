@@ -72,7 +72,7 @@ C--   Open boundaries data
       IF ( useAIM ) CALL AIM_INIT( mythid )
 #endif
 
-#ifdef ALLOW_ADJOINT_RUN
+#if (defined (ALLOW_ADJOINT_RUN) || defined (ALLOW_TANGENTLINEAR_RUN))
 c--   Map the control variables onto the model state. 
       call ctrl_map_ini( mythid )
       _BARRIER
