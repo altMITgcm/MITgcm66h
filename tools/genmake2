@@ -841,6 +841,9 @@ C  edit anything below these comments.  In general, you should
 C  add or remove packages by re-running genmake with different 
 C  "-enable" and/or "-disable" options.
 
+#ifndef PACKAGES_H
+#define PACKAGES_H
+
 C  Packages disabled by genmake:
 EOF
 #  The following UGLY HACK sets multiple "#undef"s and it needs to go 
@@ -900,6 +903,11 @@ for i in $PACKAGES ; do
 #EH3  WARNING :  This is an UGLY HACK that needs to be removed!!!
 
 done
+cat <<EOF >>$PACKAGES_DOT_H".tmp"
+
+#endif /* PACKAGES_H */
+EOF
+
 if test ! -f $PACKAGES_DOT_H ; then
     mv -f $PACKAGES_DOT_H".tmp" $PACKAGES_DOT_H
 else
