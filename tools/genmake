@@ -194,6 +194,11 @@ foreach dr ($PACKAGES)
    endif
    if ($dr == $p) unset enable
    if ($p == 'all') unset enable
+#  The following allows entire trees to be disabled
+   if ($dr:h == $p) unset enable
+   if ($dr:h:h == $p) unset enable
+   if ($dr:h:h:h == $p) unset enable
+   if ($dr:h:h:h:h == $p) unset enable
   end
   foreach p ($ENABLE)
    if ($dr == $p) set enable
