@@ -3,6 +3,8 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o change the albedo in pkg/thsice (as GISS model); update output_thsice.txt
+o little changes (fftpack, aim/phy_suflux ...) to pass the "checkbounds" test.
 o fix deltaTfreesurf in update_cg2d.F (left from c45d_post): affects 2
   ocean exp. that use NLFS: global_ocean.cs32x15 & global_ocean_pressure
 o added exf_offset_atemp for Celsius to Kelvin conversion of atemp
