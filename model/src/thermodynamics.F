@@ -544,12 +544,12 @@ C        and step forward storing result in gTnm1, gSnm1, etc.
      I         xA,yA,uTrans,vTrans,rTrans,maskUp,
      I         KappaRT,
      U         fVerTr1,
-     I         myTime, myThid)
+     I         myTime,myIter,myThid)
            CALL TIMESTEP_TRACER(
      I         bi,bj,iMin,iMax,jMin,jMax,k,tracerAdvScheme,
      I         Tr1, gTr1,
      U         gTr1NM1,
-     I         myIter,myIter,myThid)
+     I         myIter,myThid)
          ENDIF
 #endif
 
