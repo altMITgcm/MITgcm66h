@@ -80,6 +80,7 @@ c--   Initialize storage for the cost function evaluation.
 CADJ  INIT dummytape = common, 1
 c--   Initialize storage for the outermost loop.
 CADJ  INIT tapelev3 = USER
+CADJ  INIT tapelev_ini_bibj_k   = USER
 #ifdef ALLOW_TAMC_CHECKPOINTING
        nIter0 = INT( startTime/deltaTClock )
        ikey_dynamics = 1
