@@ -1,31 +1,42 @@
-C $Id$
+C $Header$
 
 #include "CPP_EEOPTIONS.h"
 
-CStartOfInterface
-      SUBROUTINE EEINTRO_MSG
-C     /==========================================================\
-C     | SUBROUTINE EEINTRO_MSG                                   |
-C     | o Write basic introductory message.                      |
-C     |==========================================================|
-C     | This routine could be customised for different platforms.|
-C     \==========================================================/
+CBOP
+C     !ROUTINE: EEINTRO_MSG
 
+C     !INTERFACE:  
+      SUBROUTINE EEINTRO_MSG
+      IMPLICIT NONE
+
+C     !DESCRIPTION:
+C     *==========================================================
+C     | SUBROUTINE EEINTRO_MSG                                   
+C     | o Write basic WRAPPER introductory message.                      
+C     *==========================================================
+C     | This routine could be customised for different platforms.
+C     | Output includes which checkpoint of the code is running.
+C     | The routine doesnt currently report the user id or      
+C     | machine name correctly.                                  
+C     *==========================================================
+
+C     !USES:
 C     === Global data ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 
-CEndOfInterface
-
+C     !LOCAL VARIABLES:
 C     === Local variables ===
       CHARACTER*(MAX_LEN_MBUF) msgBuf
+CEOP
       
 
       WRITE(msgBuf,'(A)') '                '
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
-      WRITE(msgBuf,'(A)') '// ======================================================'
+      WRITE(msgBuf,'(A)') 
+     &'// ======================================================'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
       WRITE(msgBuf,'(A)') '//                      MITgcm UV'
@@ -34,7 +45,8 @@ C     === Local variables ===
       WRITE(msgBuf,'(A)') '//                      ========='
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
-      WRITE(msgBuf,'(A)') '// ======================================================'
+      WRITE(msgBuf,'(A)') 
+     &'// ======================================================'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
       WRITE(msgBuf,'(A)') '// execution environment starting up...'
@@ -49,7 +61,8 @@ C     === Local variables ===
       WRITE(msgBuf,'(A)') '// account cnh'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
-      WRITE(msgBuf,'(A)') '// MITgcm UV Release: 0.0.0'
+      WRITE(msgBuf,'(A)') 
+     &'// MITgcm UV Release: $Name$'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
       WRITE(msgBuf,'(A)') '   '

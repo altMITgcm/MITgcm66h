@@ -1,0 +1,98 @@
+C $Header$
+C $Name$
+
+#include "GAD_OPTIONS.h"
+
+CBOP
+C !ROUTINE: GAD_U3_ADV_R
+
+C !INTERFACE: ==========================================================
+      SUBROUTINE GAD_U3_ADV_R( 
+     I           bi,bj,k,
+     I           rTrans,
+     I           tracer,
+     O           wT,
+     I           myThid )
+
+C !DESCRIPTION:
+C Calculates the area integrated vertical flux due to advection of a tracer
+C using upwind biased third-order interpolation (or the $\kappa=1/3$ scheme):
+C \begin{equation*}
+C F^r_{adv} = W \overline{ \theta  - \frac{1}{6} \delta_{kk} \theta }^k
+C                 + \frac{1}{12} |W| \delta_{kkk} \theta
+C \end{equation*}
+C Near boundaries, reduces to second order when flow is away from boundary
+C and third order when flow is towards boundary.
+
+C !USES: ===============================================================
+      IMPLICIT NONE
+#include "SIZE.h"
+#include "GRID.h"
+#include "GAD.h"
+
+C !INPUT PARAMETERS: ===================================================
+C  bi,bj                :: tile indices
+C  k                    :: vertical level
+C  rTrans               :: vertical volume transport
+C  tracer               :: tracer field
+C  myThid               :: thread number
+      INTEGER bi,bj,k
+      _RL rTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL tracer(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      INTEGER myThid
+
+C !OUTPUT PARAMETERS: ==================================================
+C  wT                   :: vertical advective flux
+      _RL wT    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+
+C !LOCAL VARIABLES: ====================================================
+C  i,j                  :: loop indices
+C  kp1                  :: =min( k+1 , Nr )
+C  km1                  :: =max( k-1 , 1 )
+C  km2                  :: =max( k-2 , 1 )
+C  Rjm,Rj,Rjp           :: differences at i-1,i,i+1
+C  Rjjm,Rjjp            :: second differences at i-1,i
+C  maskP1               :: =1 for k<Nr, =0 for k>=Nr
+      INTEGER i,j,kp1,km1,km2
+      _RL Rjm,Rj,Rjp,Rjjm,Rjjp
+      _RL maskM2, maskP1
+CEOP
+
+      km2=MAX(1,k-2)
+      km1=MAX(1,k-1)
+      kp1=MIN(Nr,k+1)
+      maskM2 = 1.
+      maskP1 = 1.
+      IF (k.LE.2)  maskM2 = 0.
+      IF (k.GE.Nr) maskP1 = 0.
+
+      IF ( k.EQ.1 .OR. k.GT.Nr ) THEN
+       DO j=1-Oly,sNy+Oly
+        DO i=1-Olx,sNx+Olx
+         wT(i,j) = 0.
+        ENDDO
+       ENDDO
+      ELSE
+       DO j=1-Oly,sNy+Oly
+        DO i=1-Olx,sNx+Olx
+         Rjp=(tracer(i,j,kp1,bi,bj)-tracer(i,j,k,bi,bj))
+c    &        *maskC(i,j,kp1,bi,bj)
+         Rj=(tracer(i,j,k,bi,bj)-tracer(i,j,km1,bi,bj))
+         Rjm=(tracer(i,j,km1,bi,bj)-tracer(i,j,km2,bi,bj))
+c    &        *maskC(i,j,km2,bi,bj)
+C- jmc: mask not needed here above if Rjjp & Rjjm & rTrans are masked  
+         Rjjp=(Rjp-Rj)*maskC(i,j,kp1,bi,bj)*maskP1
+         Rjjm=(Rj-Rjm)*maskC(i,j,km2,bi,bj)*maskM2
+         wT(i,j) = maskC(i,j,km1,bi,bj)*(
+     &     rTrans(i,j)*(
+     &        (Tracer(i,j,k,bi,bj)+Tracer(i,j,km1,bi,bj))*0.5 _d 0
+     &        -oneSixth*(Rjjm+Rjjp)*0.5 _d 0  )
+     &    +ABS(rTrans(i,j))*
+     &         oneSixth*(Rjjm-Rjjp)*0.5 _d 0
+     &                                  )
+        ENDDO
+       ENDDO
+      ENDIF
+
+      RETURN
+      END
