@@ -5,7 +5,7 @@ C $Name$
 
 CStartOfInterface
       SUBROUTINE AIM_AIM2DYN_EXCHANGES(
-     I           myTime,myThid)
+     I           myTime, myIter, myThid)
 C     /==========================================================\
 C     | S/R AIM_AIM2DYN_EXCHANGES                                |
 C     | o Do overlap exchanges for AIM related quantities.       |
@@ -22,8 +22,13 @@ c #include "DYNVARS.h"
 
 #include "AIM2DYN.h"
 
+#ifdef ALLOW_THSICE
+# include "THSICE_VARS.h"
+#endif
+
 C     == Routine arguments ==
       _RL myTime
+      INTEGER myIter
       INTEGER myThid
 CEndOfInterface
 
@@ -36,6 +41,10 @@ c     _EXCH_XYZ_R8( gT, myThid )
 c     _EXCH_XYZ_R8( gS, myThid )
 c     _EXCH_XYZ_R8( gTNM1, myThid )
 c     _EXCH_XYZ_R8( gSNM1, myThid )
+
+#ifdef ALLOW_THSICE
+      IF (useThSIce)  _EXCH_XY_R8( iceMask, myThid )
+#endif
 
 #endif /* ALLOW_AIM */
 
