@@ -101,6 +101,7 @@ c     get record numbers and interpolation factor for climsss
          if (( first ) .or. ( changed )) then
             call exf_SwapFFields( climsss0, climsss1, mythid )
 #ifdef USE_EXF_INTERPOLATION
+          interp_method = 2
           call exf_interp(
      &    climsssfile, exf_iprec
      &  , climsss1, count1, xC, yC

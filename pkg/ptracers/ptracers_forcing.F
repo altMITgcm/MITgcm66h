@@ -49,9 +49,6 @@ C  i,j                  :: loop indices
       INTEGER i,j
 CEOP
 
-C Example of how to add forcing for iTracer=1
-      IF (iTracer.EQ.1) THEN
-
 C Example of how to add forcing at the surface
        IF (k.EQ.1) THEN
         DO j=1-Oly,sNy+Oly
@@ -62,16 +59,9 @@ C to test everything is working.
           gPtracer(i,j,k,bi,bj)=gPtracer(i,j,k,bi,bj)
      &   +maskC(i,j,k,bi,bj)*surfaceTendencyS(i,j,bi,bj)
 
-cph     &      + EmPmR(i,j,bi,bj)*convertFW2Salt
-cph     &           *recip_drF(1)*recip_hFacC(i,j,1,bi,bj)
-cph     &      - lambdaSaltClimRelax*
-cph     &           (pTracer(i,j,k,bi,bj,iTracer)-SSS(i,j,bi,bj))
-
          ENDDO
         ENDDO
        ENDIF
-
-      ENDIF
 
 #endif /* ALLOW_PTRACERS */
 

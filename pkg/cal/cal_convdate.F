@@ -27,6 +27,9 @@ c
 c              - Introduced new routine and function names, cal_<NAME>,
 c                for verion 0.1.3.
 c
+c              21-Sep-2003: fixed check_sign logic to work with
+c              negative intervals (menemenlis@jpl.nasa.gov)
+c
 c     ==================================================================
 c     SUBROUTINE cal_ConvDate
 c     ==================================================================
@@ -53,9 +56,8 @@ c     == local variables ==
       integer fac
       integer date_1
       integer date_2
-      integer check_sign_1
-      integer check_sign_2
       integer ierr
+      _RL check_sign
 
 c     == end of interface ==
 
@@ -63,10 +65,9 @@ c     == end of interface ==
 
 c     Check the sign of the date.
 
-      check_sign_1 = sign(1,date(1))
-      check_sign_2 = sign(1,date(2))
+      check_sign = sign(1,dble(date(1))*dble(date(2)))
 
-      if ( check_sign_1*check_sign_2 .ge. 0 ) then
+      if ( check_sign .ge. 0 ) then
         if (date(1) .eq. 0) then
           date_1 = date(1)
           if (date(2) .lt. 0) then

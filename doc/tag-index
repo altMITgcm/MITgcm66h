@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+untagged
+o Mods and bug fixes to pkg/cal and pkg/exf needed for computation
+  of tracer Green's fucntions for ocean inversion project.
+
 checkpoint51f_pre
 o Added on-the-fly spatial interpolation capability
     "USE_EXF_INTERPOLATION" to pkg/exf.
