@@ -135,9 +135,11 @@ C     Echo History List Data Structure
         WRITE(msgBuf,*) 'Frequency: ',freq(n)
         CALL PRINT_MESSAGE(
      &       msgBuf, standardMessageUnit, SQUEEZE_RIGHT, mythid)
-        WRITE(msgBuf,*) 'Levels:    ',(levs(l,n),l=1,nlevels(n))
+	do l=1,nlevels(n)
+        WRITE(msgBuf,*) 'Levels:    ',(levs(l,n))
         CALL PRINT_MESSAGE(
      &       msgBuf, standardMessageUnit, SQUEEZE_RIGHT, mythid)
+	enddo
         WRITE(msgBuf,*) 'Fields:   ',(' ',flds(l,n),l=1,nfields(n))
         CALL PRINT_MESSAGE(
      &       msgBuf, standardMessageUnit, SQUEEZE_RIGHT, mythid)
