@@ -118,9 +118,9 @@ C Moist Processes     Frequency
 c Set Alarm Clocks
 c ----------------
 
-      ndlw = 000730
-      ndsw = 000730
-      ndmoist = 000730
+      ndlw = 003000
+      ndsw = 003000
+      ndmoist = 003000
       ndturb = 000730
 
       call set_alarm ( 'radsw',nymdb,nhmsb,ndsw    )
