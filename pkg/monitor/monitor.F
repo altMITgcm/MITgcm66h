@@ -78,7 +78,7 @@ C       Dynamics field monitor start
           CALL MNC_CW_APPEND_VNAME(
      &         'iter', '-_-_--__-__t', 0,0, myThid)
           CALL MNC_CW_SET_UDIM(mon_fname, -1, myThid)
-          CALL MNC_CW_I_W(
+          CALL MNC_CW_I_W_S(
      &        'I',mon_fname,1,1,'iter', myIter, myThid)
           CALL MNC_CW_SET_UDIM(mon_fname, 0, myThid)
           mon_write_mnc = .TRUE.

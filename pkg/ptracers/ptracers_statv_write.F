@@ -95,10 +95,11 @@ C       Write to files
 #ifdef ALLOW_MNC
         IF (useMNC .AND. PTRACERS_write_mnc) THEN
           CALL MNC_CW_SET_UDIM('ptr_tave', -1, myThid)
-          CALL MNC_CW_I_W('I','ptr_tave',0,0,'iter',myIter,myThid)
+          CALL MNC_CW_I_W_S('I','ptr_tave',0,0,'iter',myIter,myThid)
           CALL MNC_CW_SET_UDIM('ptr_tave', 0, myThid)
           CALL MNC_CW_SET_UDIM('ptr_flux_tave', -1, myThid)
-          CALL MNC_CW_I_W('I','ptr_flux_tave',0,0,'iter',myIter,myThid)
+          CALL MNC_CW_I_W_S('I','ptr_flux_tave',0,0,'iter',myIter,
+     &         myThid)
           CALL MNC_CW_SET_UDIM('ptr_flux_tave', 0, myThid)
           DO ii = 1,PTRACERS_numInUse
             CALL MNC_CW_RL_W('D','ptr_tave',0,0,PTRACERS_names(ii),

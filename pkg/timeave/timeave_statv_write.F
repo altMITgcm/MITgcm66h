@@ -221,10 +221,9 @@ C         Check for IO errors
         IF (useMNC .AND. timeave_mnc) THEN
           
           CALL MNC_CW_SET_UDIM('tave', -1, myThid)
-          CALL MNC_CW_I_W('I','tave',0,0,'iter', myIter, myThid)
+          CALL MNC_CW_I_W_S('I','tave',0,0,'iter', myIter, myThid)
           CALL MNC_CW_SET_UDIM('tave', 0, myThid)
-          CALL MNC_CW_RL_W('D','tave',0,0,'model_time',myTime,myThid)
-
+          CALL MNC_CW_RL_W_S('D','tave',0,0,'model_time',myTime,myThid)
           CALL MNC_CW_RL_W('D','tave',0,0,'ETAtave',etatave,myThid)
 #ifndef HRCUBE
 C         EH3: something is wriong here...
