@@ -59,6 +59,7 @@ C      |-- CONFIG_CHECK
 C      |
 C      |-- CONFIG_SUMMARY
 C      |
+C      |-- MNC_INIT
 C      |-- MNC_W_GRIDINFO
 
 C     !USES:

@@ -165,7 +165,7 @@ c       CALL WRITE_FLD_XYZ_RS('hFacS.',suff,hFacS,myIter,myThid)
          _BARRIER
 
 #ifdef ALLOW_MNC
-C      CALL MNC_W_...
+C     CALL MNC_W_DYNVARS( myThid )
 #endif
 
       ENDIF
