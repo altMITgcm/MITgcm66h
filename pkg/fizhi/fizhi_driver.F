@@ -191,7 +191,7 @@ C TURBULENCE
 C ==========
       IF ( alarm('turb') ) THEN
 
-      if(bi.eq.1 .and. 2.eq.1)then
+      if(2.eq.1)then
       print *,' In fizhi driver, before turb - bi = ',bi
       do j = 1,jm
       do i = 1,im
