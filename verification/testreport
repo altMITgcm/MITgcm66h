@@ -450,7 +450,7 @@ linkdata()
 	    if test "x$ADM" = x ; then
 		files=`( cd ../input ; ls -1 | grep -v CVS )`
 		for i in $files ; do
-		    if test ! -d "../input/"$i ; then
+		    if test ! -d "../input/"$i -a ! -f $i ; then
 			ln -sf "../input/"$i $i
 		    fi
 		done
