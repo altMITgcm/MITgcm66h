@@ -1,19 +1,26 @@
-C$Header$
-C$Name$
+C $Header$
+C $Name$
+
+#ifndef GCHEM_OPTIONS_H
+#define GCHEM_OPTIONS_H
+#include "PACKAGES_CONFIG.h"
+#ifdef ALLOW_GCHEM
 
 #include "CPP_OPTIONS.h"
-#ifdef ALLOW_PTRACERS
 
+CBOP
 C    !ROUTINE: GCHEM_OPTIONS.h
 C    !INTERFACE:
 
 C    !DESCRIPTION:
 c options for biogeochemistry package
-#undef GCHEM_SEPARATE_FORCING
+CEOP
+
+#undef  GCHEM_SEPARATE_FORCING
+#undef  DIC_BIOTIC
 #define ALLOW_CFC
-#undef DIC_BIOTIC
 #undef  ALLOW_FE
 
-#undef ALLOW_DIC_COST
 
-#endif
+#endif /* ALLOW_GCHEM */
+#endif /* GCHEM_OPTIONS_H */
