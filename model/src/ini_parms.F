@@ -145,7 +145,7 @@ C--   Time stepping parammeters
      & deltaT, deltaTmom, deltaTtracer, deltaTfreesurf,
      & forcing_In_AB, abEps, tauCD, rCD,
      & startTime, endTime, chkPtFreq,
-     & dumpFreq, taveFreq, deltaTClock, diagFreq,
+     & dumpFreq, taveFreq, tave_lastIter, deltaTClock, diagFreq,
      & monitorFreq, pChkPtFreq, cAdjFreq, 
      & tauThetaClimRelax, tauSaltClimRelax, tauTr1ClimRelax,
      & periodicExternalForcing, externForcingPeriod, externForcingCycle
@@ -886,10 +886,13 @@ C     being combined and a single frame of reference is needed.
        rkFac =  1.D0
        horiVertRatio = 1.D0
       ENDIF
+      convertEmP2rUnit = 1. _d 0
       IF (buoyancyRelation.EQ.'ATMOSPHERIC')
-     &   horiVertRatio = Gravity * rhoConst                                     
-      IF (buoyancyRelation.EQ.'OCEANICP')
-     &   horiVertRatio = Gravity * rhoConst                                     
+     &   horiVertRatio = Gravity * rhoConst
+      IF (buoyancyRelation.EQ.'OCEANICP') THEN
+         horiVertRatio = Gravity * rhoConst
+         convertEmP2rUnit = Gravity * rhoConstFresh
+      ENDIF
       IF ( rkFac .EQ. UNSET_RS ) rkFac=rkFacDefault
       recip_rkFac = 1.D0 / rkFac
       recip_horiVertRatio = 1./horiVertRatio

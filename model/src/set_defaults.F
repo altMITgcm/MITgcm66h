@@ -195,6 +195,7 @@ C--   Time stepping parameters
       diagFreq          = deltaT*0
       monitorFreq       = -1.
       taveFreq          = deltaT*0
+      tave_lastIter     = 0.5 _d 0
       writeStatePrec    = precFloat64
       writeBinaryPrec   = precFloat32
       readBinaryPrec    = precFloat32
@@ -231,4 +232,3 @@ C--   Input files
 C
       RETURN
       END
-
