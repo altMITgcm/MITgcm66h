@@ -5,7 +5,7 @@ C     $Name$
 
 CStartOfInterface
       SUBROUTINE AIM_AIM2DYN_EXCHANGES(
-     I           myCurrentTime,myThid)
+     I           myCurrentTime, myIter, myThid)
 C     /==========================================================\
 C     | S/R AIM_AIM2DYN_EXCHANGES                                |
 C     | o Do overlap exchanges for AIM related quantities.       |
@@ -25,6 +25,7 @@ C     == Global data ==
 
 C     == Routine arguments ==
       _RL myCurrentTime
+      INTEGER myIter
       INTEGER myThid
 CEndOfInterface
 
