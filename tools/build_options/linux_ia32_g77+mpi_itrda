@@ -25,4 +25,4 @@ fi
 NOOPTFLAGS='-O0'
 
 # netcdf
-# LIBS="-lnetcdf"
+LIBS="-lnetcdf"
