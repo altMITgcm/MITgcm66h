@@ -34,9 +34,6 @@ c     == global variables ==
 #ifdef ALLOW_OBCS_CONTROL
 # include "OBCS.h"
 #endif
-#ifdef ALLOW_ECCO_OPTIMIZATION
-# include "optim.h"
-#endif
 
 c     == routine arguments ==
 
