@@ -76,7 +76,8 @@ C     myThid -  Number of this instances
 CEOP
 
 #ifdef ALLOW_DEBUG
-      IF (debugMode) CALL DEBUG_ENTER('PACKAGES_INIT_VARIABLES',myThid)
+      IF (debugMode) 
+     &     CALL DEBUG_ENTER('PACKAGES_INIT_VARIABLES',myThid)
 #endif
 
 #ifdef ALLOW_CD_CODE
@@ -101,7 +102,8 @@ C--   Initialize GM/Redi parameterization
 C--   Initialize KPP vertical mixing scheme.
       IF (useKPP) THEN
 #ifdef ALLOW_DEBUG
-       IF (debugMode) CALL DEBUG_CALL('KPP_INIT + KPP_OPEN_DIAGS',myThid)
+       IF (debugMode) 
+     &       CALL DEBUG_CALL('KPP_INIT + KPP_OPEN_DIAGS',myThid)
 #endif
        CALL KPP_INIT( myThid )
        CALL KPP_OPEN_DIAGS( myThid )
@@ -251,7 +253,8 @@ C Initialize FIZHI state variables
 C AMM
 
 #ifdef ALLOW_DEBUG
-      IF (debugMode) CALL DEBUG_LEAVE('PACKAGES_INIT_VARIABLES',myThid)
+      IF (debugMode) 
+     &     CALL DEBUG_LEAVE('PACKAGES_INIT_VARIABLES',myThid)
 #endif
       RETURN
       END
