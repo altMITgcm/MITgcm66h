@@ -102,7 +102,7 @@ C Compute pressure profile to get methane and n2o values (bottom-up)
        do L = 2,Nrphys+1
         pressure0(L)=pressure0(L-1)-dpphys0(1,1,L-1,1,1)/100.
        enddo
-C Now flip pressure to a top-down array to send to fizhi
+C Now flip pressure to a top-down array to send to fizhi init chem
        do L = 1,Nrphys+1
         pressure(L)=pressure0(Nrphys+2-L)
        enddo
