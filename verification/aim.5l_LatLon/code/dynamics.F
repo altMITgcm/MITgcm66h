@@ -669,8 +669,10 @@ Cjmc(end)
 
 #ifdef ALLOW_TIMEAVE
         IF (taveFreq.GT.0.) THEN 
-          CALL TIMEAVE_CUMULATE(phiHydtave, phiHyd, Nr,
-     I                              deltaTclock, bi, bj, myThid)
+          IF ( bi.EQ.1 .AND. bj.EQ.1 ) THEN
+           CALL TIMEAVE_CUMULATE(phiHydtave, phiHyd, Nr,
+     I                               deltaTclock, bi, bj, myThid)
+          ENDIF
           IF (ivdc_kappa.NE.0.) THEN
             CALL TIMEAVE_CUMULATE(ConvectCountTave, ConvectCount, Nr,
      I                              deltaTclock, bi, bj, myThid)
