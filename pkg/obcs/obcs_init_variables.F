@@ -63,6 +63,17 @@ C     == Local variables ==
          ENDDO
         ENDDO
 
+#ifdef NONLIN_FRSURF
+        DO I=1-Olx,sNx+Olx
+          OBNeta(I,bi,bj)=0.
+          OBSeta(I,bi,bj)=0.
+        ENDDO
+        DO J=1-Oly,sNy+Oly
+          OBEeta(J,bi,bj)=0.
+          OBWeta(J,bi,bj)=0.
+        ENDDO
+#endif /* NONLIN_FRSURF */
+
 #ifdef ALLOW_ORLANSKI
         IF (useOrlanskiNorth.OR.useOrlanskiSouth.OR.
      &      useOrlanskiEast.OR.useOrlanskiWest) THEN
