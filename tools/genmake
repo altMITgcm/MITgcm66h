@@ -60,8 +60,8 @@ echo Operating system: $mach
 #   copy everything in ../eesupp/src, ../model/src,
 #   ../eesupp/inc and ../model/inc into a directory and then
 #   edit the paths below to ./
-set SOURCEDIRS  = ( ../eesupp/src/ ../model/src/ ../diags/src/)
-set INCLUDEDIRS = ( ../eesupp/inc/ ../model/inc/ ../diags/inc/)
+set SOURCEDIRS  = ( ../eesupp/src/ ../model/src/ ../diags/src/ ../pkg/*/)
+set INCLUDEDIRS = ( ./ ../eesupp/inc/ ../model/inc/ ../diags/inc/ ../pkg/*/)
 set BUILDDIR    = ( ../bin/ )
 set EXEDIR      = ( ../exe/ )
 set EXECUTABLE  = ( mitgcmuv )
