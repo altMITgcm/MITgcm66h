@@ -36,8 +36,9 @@ C     Adams-Bashforth timestepping weights
       ab05 = -tauAB
 
 C     Step forward temperature
-      IF (gad_advection_scheme.EQ.ENUM_CENTERED_2ND
-     &.OR.gad_advection_scheme.EQ.ENUM_CENTERED_4TH) THEN
+      IF ( gad_advection_scheme.EQ.ENUM_CENTERED_2ND
+     & .OR.gad_advection_scheme.EQ.ENUM_UPWIND_3RD
+     & .OR.gad_advection_scheme.EQ.ENUM_CENTERED_4TH ) THEN
        DO j=jMin,jMax
         DO i=iMin,iMax
           gTrNm1(i,j,k,bi,bj)=tracer(i,j,k,bi,bj)
