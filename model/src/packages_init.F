@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 
 #include "CPP_OPTIONS.h"
 
@@ -6,7 +7,6 @@ C $Header$
 C     /==========================================================\
 C     | SUBROUTINE PACKAGES_INIT                                 |
 C     | o Does initialisation of package-related fields          |
-C     |==========================================================|
 C     \==========================================================/
       IMPLICIT NONE
 

@@ -1,12 +1,18 @@
 C $Header$
+C $Name$
 
 #include "CPP_OPTIONS.h"
 
       SUBROUTINE PACKAGES_CHECK( myThid )
 C     /==========================================================\
 C     | SUBROUTINE PACKAGES_CHECK                                |
-C     | o Check dependances between selected packages            |
+C     | o Check runtime activated packages have been built in.   |
 C     |==========================================================|
+C     | All packages can be selected/deselected at build time    |
+C     | ( when code is compiled ) and activated/deactivated at   |
+C     | runtime. This routine does a quick check to trap packages|
+C     | that were activated at runtime but that were not compiled|
+C     | in at build time.                                        |
 C     \==========================================================/
       IMPLICIT NONE
 
