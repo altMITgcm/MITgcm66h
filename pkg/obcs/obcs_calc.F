@@ -106,14 +106,12 @@ C         Northern OB
       ENDIF
 
 C         Southern OB
-#ifdef ALLOW_ORLANSKI
       IF (useOrlanskiSouth) THEN   
         CALL ORLANSKI_SOUTH(
      &          bi, bj, futureTime, 
      &          uVel, vVel, wVel, theta, salt, 
      &          myThid )
       ELSE
-#endif
         DO K=1,Nr
           DO I=1-Olx,sNx+Olx
             J_obc=OB_Js(I,bi,bj)
