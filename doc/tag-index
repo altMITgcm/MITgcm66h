@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint23
+ o Added del^4 diffusion for salt and temperature
+ o Multiple minor fixes (implicit none's, arguments to global_sum, etc.)
+
 checkpoint22
  o Made many small changes: implicit none, format(i5), etc...
  o Introduced KPP mixing scheme (compiles and runs but *not* tested)
