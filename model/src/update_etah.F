@@ -101,8 +101,8 @@ C- end bi,bj loop.
       IF (implicDiv2Dflow .NE. 1. _d 0 .OR. useOBCS )
      &    _EXCH_XY_RL( etaH, myThid ) 
 
-      IF (useRealFreshWaterFlux .AND. myTime.EQ.startTime)
-     &    _EXCH_XY_R4( PmEpR, myThid )
+c     IF (useRealFreshWaterFlux .AND. myTime.EQ.startTime)
+c    &    _EXCH_XY_R4( PmEpR, myThid )
 
 #endif /* EXACT_CONSERV */
 
