@@ -33,9 +33,9 @@
  cp ../verification/natl_box_adjoint/input/* .
  ./mitgcmuv >&! output.txt
 # To verify the results of the gradient check, type:
- grep ph-grd output.txt
+ grep "ph-grd 3" output.txt
 # A reference output is in:
- grep ph-grd ../verification/natl_box_adjoint/results/output.txt
+ grep "ph-grd 3" ../verification/natl_box_adjoint/results/output.txt
 
 
 ####################
@@ -69,35 +69,15 @@
  cp ../verification/natl_box_adjoint/input/PH_*.data .
  ./mitgcmuv >&! output.txt
 # To verify the results of the gradient check, type:
- grep ph-grd output.txt
+ grep "ph-grd 3" output.txt
 # A reference output is in:
- grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.txt
-
-# Although the default gradient check is succesful, the test crashes
-# if it is run longer: "nTimeSteps=40".  The problem seems to be a
-# bogus value in ikey_dynamics, which propagates to act4 and then to
-# ikey_1 (see below).
-# 
-# gdb mitgcmuv core
-# (gdb) where
-# #0  0x0807d225 in mdexf_getffields__ (mycurrenttime=0xbfffa4a8, mycurrentiter=0xbfffa4b0, mythid=0xbffffb94)
-#     at adjoint_model.f:16532
-# #1  0x0807e47f in mdexf_getforcing__ (mytime=0xbfffa4a8, myiter=0xbfffa4b0, mythid=0xbffffb94) at adjoint_model.f:16673
-# #2  0x0810092f in adthe_main_loop__ (mythid=0xbffffb94) at adjoint_model.f:47754
-# #3  0x0814ab13 in the_model_main__ (mythid=0xbffffb94) at ecco_the_model_main.f:2419
-# (gdb) f 0
-# 16532                   comlev1_exf_1_sh_1h(ikey_1) = sh
-# (gdb) p act4
-# $1 = 1052992065
-#               act4 = ikey_dynamics-1
-#               ikey_1 = i+olx+snx*(j+oly-1)+snx*sny*act1+snx*sny*max1*
-#      $act2+snx*sny*max1*max2*act3+snx*sny*max1*max2*max3*act4
+ grep "ph-grd 3" ../verification/natl_box_adjoint/results_bulk/output.txt
 
 
 ####################
-# Experiment no. 3 #
+# Experiment no. 4 #
 ####################
-# Same as exp. 2, but with ALLOW_SEAICE defined.
+# Same as exp. 2, but with ALLOW_SEAICE defined and useseaice = .true.
 
 # Compile code in bin/:
  cd ../bin
@@ -123,30 +103,14 @@
 # To run:
  cd ../exe
  cp ../verification/natl_box_adjoint/input_bulk/* .
- cp ../verification/natl_box_adjoint/input/PH_*.data .
- ./mitgcmuv >&! output.txt
-# To verify the results of the gradient check, type:
- grep ph-grd output.txt
-# A reference output is in:
-grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.txt
-
-
-####################
-# Experiment no. 4 #
-####################
-# Uses same executable as exp. 3, but with useseaice = .true.
-
-# To run:
- cd ../exe
- cp ../verification/natl_box_adjoint/input_bulk/* .
  cp ../verification/natl_box_adjoint/input_seaice/data.seaice.cgrid data.seaice
  cp ../verification/natl_box_adjoint/input_seaice/data.pkg .
  cp ../verification/natl_box_adjoint/input/PH_*.data .
  ./mitgcmuv >&! output.txt
 # To verify the results of the gradient check, type:
- grep ph-grd output.txt
+ grep "ph-grd 3" output.txt
 # A reference output is in:
- grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.txt
+ grep "ph-grd 3" ../verification/natl_box_adjoint/results_bulk/output.txt
 
 
 ####################
@@ -186,9 +150,9 @@ grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.txt
  cp ../verification/natl_box_adjoint/input/PH_*.data .
  ./mitgcmuv >&! output.txt
 # To verify the results of the gradient check, type:
- grep ph-grd output.txt
+ grep "ph-grd 3" output.txt
 # A reference output is in:
- grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.exp5
+ grep "ph-grd 3" ../verification/natl_box_adjoint/results_bulk/output.exp5
 
 
 ####################
@@ -221,9 +185,9 @@ grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.txt
  cp ../verification/natl_box_adjoint/input_bulk/data.grdchk .
  ./mitgcmuv >&! output.txt
 # To verify the results of the gradient check, type:
- grep ph-grd output.txt
+ grep "ph-grd 3" output.txt
 # A reference output is in:
- grep ph-grd ../verification/natl_box_adjoint/results_seaice/output.txt
+ grep "ph-grd 3" ../verification/natl_box_adjoint/results_seaice/output.txt
 
 
 ####################
@@ -258,7 +222,47 @@ grep ph-grd ../verification/natl_box_adjoint/results_bulk/output.txt
  cp data.001 data
  ./mitgcmuv >&! output.txt
 # To verify the results of the gradient check, type:
+ grep "ph-grd 3" output.txt > ph-grd.txt
+ cd ../verification/natl_box_adjoint/results_seaice
+ matlab
+ lookat_exp8
+
+
+####################
+# Experiment no. 9 #
+####################
+# Set up a 1-year sensitivity experiment.
+
+# Compile code in bin/:
+ cd ../bin
+ rm -rf *.o *.f *.p rii_files
+ rm -rf *.F *.h *.c Makefile*
+ cp ../verification/natl_box_adjoint/code_seaice/*.h .
+ rm -f tamc.h
+ cp ../verification/natl_box_adjoint/code_seaice/.genmakerc .
+# Configure and compile the code:
+ ../tools/genmake -makefile
+ make depend
+# Generate the adjoint code:
+ cd ../adjoint
+ mv makefile makefile.old
+ cp ../verification/natl_box_adjoint/code_seaice/makefile .
+ make adtaf
+ make adchange
+ rm -f makefile
+ mv makefile.old makefile
+# Go back and compile the code:
+ cd ../bin
+ make
+# To run:
+ cd ../exe
+ cp ../verification/natl_box_adjoint/input_seaice/* .
+ cp data.year data
+ cp ../verification/natl_box_adjoint/input_bulk/data.grdchk .
+ ./mitgcmuv >&! output.txt
+
+# To verify the results of the gradient check, type:
  grep ph-grd output.txt > ph-grd.txt
  cd ../verification/natl_box_adjoint/results_seaice
  matlab
- lookat_grd
+ lookat_exp8

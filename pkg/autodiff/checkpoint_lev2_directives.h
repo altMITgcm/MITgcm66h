@@ -24,17 +24,17 @@ CADJ STORE unm1      = tapelev2, key = ilev_2
 CADJ STORE vnm1      = tapelev2, key = ilev_2
 CADJ STORE gucd      = tapelev2, key = ilev_2
 CADJ STORE gvcd      = tapelev2, key = ilev_2
-#endif
+#endif /* INCLUDE_CD_CODE */
 
 #ifdef ALLOW_PASSIVE_TRACER
 CADJ STORE tr1       = tapelev2, key = ilev_2
 CADJ STORE gtr1nm1   = tapelev2, key = ilev_2
-#endif
+#endif /* ALLOW_PASSIVE_TRACER */
 
 #ifdef EXACT_CONSERV
 CADJ STORE etaH      = tapelev2, key = ilev_2
 CADJ STORE hDivFlow  = tapelev2, key = ilev_2
-#endif
+#endif /* EXACT_CONSERV */
 
 #ifdef INCLUDE_EXTERNAL_FORCING_PACKAGE
 # ifdef ALLOW_ATM_TEMP
@@ -51,36 +51,36 @@ CADJ STORE swflux1   = tapelev2, key = ilev_2
 #  ifdef EXF_READ_EVAP
 CADJ STORE evap0     = tapelev2, key = ilev_2
 CADJ STORE evap1     = tapelev2, key = ilev_2
-#  else
+#  else /* EXF_READ_EVAP undefined */
 CADJ STORE evap      = tapelev2, key = ilev_2
-#  endif
+#  endif /* EXF_READ_EVAP */
 #  ifdef ALLOW_DOWNWARD_RADIATION
 CADJ STORE swdown0   = tapelev2, key = ilev_2
 CADJ STORE swdown1   = tapelev2, key = ilev_2
 CADJ STORE lwdown0   = tapelev2, key = ilev_2
 CADJ STORE lwdown1   = tapelev2, key = ilev_2
-#  endif
-# else
+#  endif /* ALLOW_DOWNWARD_RADIATION */
+# else /* ALLOW_ATM_TEMP */
 CADJ STORE hflux0    = tapelev2, key = ilev_2
 CADJ STORE hflux1    = tapelev2, key = ilev_2
 CADJ STORE sflux0    = tapelev2, key = ilev_2
 CADJ STORE sflux1    = tapelev2, key = ilev_2
-#  ifdef ALLOW_KPP
+#  ifdef SHORTWAVE_HEATING
 CADJ STORE swflux0   = tapelev2, key = ilev_2
 CADJ STORE swflux1   = tapelev2, key = ilev_2
-#  endif
+#  endif /* SHORTWAVE_HEATING */
 # endif /* ALLOW_ATM_TEMP */
 # ifdef ALLOW_ATM_WIND
 CADJ STORE uwind0    = tapelev2, key = ilev_2
 CADJ STORE uwind1    = tapelev2, key = ilev_2
 CADJ STORE vwind0    = tapelev2, key = ilev_2
 CADJ STORE vwind1    = tapelev2, key = ilev_2
-# else
+# else /* ALLOW_ATM_WIND undefined */
 CADJ STORE ustress0  = tapelev2, key = ilev_2
 CADJ STORE ustress1  = tapelev2, key = ilev_2
 CADJ STORE vstress0  = tapelev2, key = ilev_2
 CADJ STORE vstress1  = tapelev2, key = ilev_2
-# endif  /* ALLOW_ATM_WIND */
+# endif /* ALLOW_ATM_WIND */
 # ifdef ALLOW_CLIMSSS_RELAXATION
 CADJ STORE climsss0   = tapelev2, key = ilev_2
 CADJ STORE climsss1   = tapelev2, key = ilev_2
@@ -119,7 +119,7 @@ CADJ STORE xx_tauu1      = tapelev2, key = ilev_2
 # ifdef ALLOW_VSTRESS_CONTROL
 CADJ STORE xx_tauv0      = tapelev2, key = ilev_2
 CADJ STORE xx_tauv1      = tapelev2, key = ilev_2
- #endif
+#endif
 #endif /* INCLUDE_EXTERNAL_FORCING_PACKAGE */
 
 #ifdef ALLOW_OBCS
@@ -180,4 +180,3 @@ CADJ STORE hsnow    = tapelev2, key = ilev_2
 CADJ STORE tice     = tapelev2, key = ilev_2
 CADJ STORE runoff   = tapelev2, key = ilev_2
 #endif /* ALLOW_SEAICE */
-

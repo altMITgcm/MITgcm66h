@@ -102,7 +102,11 @@ c     and writing data.
       INTEGER    maximpl
       PARAMETER( maximpl = 6 )
       INTEGER    maxpass
+#ifdef ALLOW_PASSIVE_TRACER
       PARAMETER( maxpass = 3 )
+#else
+      PARAMETER( maxpass = 2 )
+#endif
 
       INTEGER act1, act2, act3, act4
       INTEGER max1, max2, max3

@@ -48,7 +48,7 @@ c                undef ALLOW_TAMC_CHECKPOINTING
 c
 c              Patrick Heimbach heimbach@mit.edu 6-Jun-2000
 c              - corrected initialisation of comlev1 common blocks
-
+c
 c              Dimitris Menemenlis  menemenlis@jpl.nasa.gov 26-Feb-2003
 c              - modifications for pkg/seaice
 c
@@ -80,7 +80,7 @@ c They provide the fields to be stored.
 #  ifdef ALLOW_BULKFORMULAE
 #   include "exf_constants.h"
 #  endif
-# endif
+# endif /* INCLUDE_EXTERNAL_FORCING_PACKAGE */
 # ifdef ALLOW_PASSIVE_TRACER
 #  include "TR1.h"
 # endif
@@ -147,7 +147,7 @@ CADJ INIT tapelev_ini_bibj_k   = USER
        nIter0 = INT( startTime/deltaTClock )
        ikey_dynamics = 1
 #endif
-#endif
+#endif /* ALLOW_AUTODIFF_TAMC */
 
       myTime = startTime
       myIter = nIter0
@@ -316,7 +316,7 @@ c--     Compute meridional heat transport
         call cost_atlantic(  mytime, myiter,mythid )
         call timer_stop ('cost_atlantic         [ECCO MAIN]', mythid)
 #endif
-#endif
+#endif /* ALLOW_COST */
 
 #ifdef EXACT_CONSERV
       IF (exactConserv) THEN
@@ -543,7 +543,7 @@ c             Calculate current date.
 
 #else
       enddo
-#endif
+#endif /* ALLOW_AUTODIFF_TAMC */
 
       _BARRIER
       call timer_stop ('ECCO MAIN LOOP', mythid)
