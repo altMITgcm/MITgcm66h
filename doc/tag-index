@@ -3,6 +3,7 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o add coordinate variables to the MNC output from the diagnostics package
 o change MNC-flags default value: true when useMNC=TRUE
 o add a "readgrid_mnc" flag to MNC and give model/src/ini_curvilinear_grid.F
   the ability (off by default) to read the grid information using MNC 
