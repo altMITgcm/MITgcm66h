@@ -225,7 +225,7 @@ C             Z is special since it varies
 
  100  format(i3)
  2000 format(1x,'Computing Diagnostic # ',i3,2x,a8,5x,'Counter: ',
-     &     i3,6x,'Parms: ',a16)
+     &     i4,6x,'Parms: ',a16)
  2001 format(1x,'          Vector  Mate for  ',a8,5x,
      &     'Diagnostic # ',i3,2x,a8,' exists ')
  2002 format(1x,'        Vector  Mate for  ',a8,5x,
