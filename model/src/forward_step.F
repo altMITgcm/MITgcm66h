@@ -97,13 +97,19 @@ C--   Step forward W field in N-H algorithm
       ENDIF
 #endif
 
-#ifdef INCLUDE_SHAPIRO_FILTER_CODE
+#ifdef ALLOW_SHAP_FILT
 C--   Step forward all tiles, filter and exchange.
       CALL TIMER_START('SHAP_FILT          [FORWARD_STEP]',myThid)
       CALL SHAP_FILT_APPLY( 
      I                     gUnm1, gVnm1, gTnm1, gSnm1,
      I                     myCurrentTime, myCurrentIter, myThid )
       CALL TIMER_STOP ('SHAP_FILT          [FORWARD_STEP]',myThid)
+#endif
+
+#ifdef ALLOW_ZONAL_FILT
+      CALL ZONAL_FILT_APPLY(
+     U           gUnm1, gVnm1, gTnm1, gSnm1,
+     I           myThid )
 #endif
 
 C--   Do IO if needed.

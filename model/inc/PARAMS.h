@@ -115,7 +115,7 @@ C                           etc...
      &        numStepsPerPickup,
      &        writeStatePrec, nCheckLev,
      &        writeBinaryPrec, readBinaryPrec,
-     &        nShap
+     &        nShap, zonal_filt_sinpow, zonal_filt_cospow
       INTEGER cg2dMaxIters
       INTEGER cg2dChkResFreq
       INTEGER cg3dMaxIters
@@ -129,6 +129,8 @@ C                           etc...
       INTEGER readBinaryPrec
       INTEGER nCheckLev
       INTEGER nShap
+      INTEGER zonal_filt_sinpow
+      INTEGER zonal_filt_cospow
 
 C--   COMMON /PARM_L/ Logical valued parameters used by the model.
 C     usingCartesianGrid - If TRUE grid generation will be in a cartesian
@@ -376,7 +378,7 @@ C                          starting value (k=1) for vertical coordinate (rf(1)=R
      & externForcingCycle, externForcingPeriod,
      & viscAp, diffKpT, diffKpS, hFacMinDr, hFacMinDp,
      & theta_S, specVol_S, horiVertRatio, recip_horiVertRatio,
-     & latFFTFiltLo, ivdc_kappa, Ro_SeaLevel
+     & latFFTFiltLo, ivdc_kappa, Ro_SeaLevel, zonal_filt_lat
 
       _RL cg2dTargetResidual
       _RL cg3dTargetResidual
@@ -458,6 +460,7 @@ C                          starting value (k=1) for vertical coordinate (rf(1)=R
       _RL latFFTFiltLo
       _RL ivdc_kappa
       _RL Ro_SeaLevel
+      _RL zonal_filt_lat
 
       COMMON /PARM_A/ HeatCapacity_Cp,recip_Cp,
      &                Lamba_theta

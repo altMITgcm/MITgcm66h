@@ -60,9 +60,9 @@ C     Volumes and areas are set according to grid and depth map.
 C--   Set coriolis operators
       CALL INI_CORI( myThid )
 
-#ifdef INCLUDE_LAT_CIRC_FFT_FILTER_CODE
+#ifdef ALLOW_ZONAL_FILT
 C--   Latitude circle filter initialisation
-      CALL FILTER_LATCIRC_FFT_INIT(myThid)
+      CALL ZONAL_FILT_INIT(myThid)
       _BARRIER
 #endif
 

@@ -112,6 +112,9 @@ C--   Set default "physical" parameters
       ivdc_kappa          = 0.D0
       groundAtK1          = .FALSE.
       nShap               = 0
+      zonal_filt_lat      = 90.
+      zonal_filt_sinpow   = 2
+      zonal_filt_cospow   = 4
 
 C--   Elliptic solver parameters
       cg2dMaxIters       = 150
