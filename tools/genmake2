@@ -660,6 +660,7 @@ Error: C pre-processor "$CPP" failed the test case: please specify using:
 
   1) within the options file ("CPP=...") as specified by "-of=OPTFILE"
   2) the "./genmake_local" file
+  3) with the CPP environment variable
 
 EOF
     exit 1
