@@ -98,7 +98,7 @@ c     and writing data.
       integer iloop_daily
 
       INTEGER    isbyte
-      PARAMETER( isbyte      = 8 )
+      PARAMETER( isbyte      = 4 )
       INTEGER    maximpl
       PARAMETER( maximpl     = 6 )
       INTEGER    maxpass

@@ -1,9 +1,10 @@
 # $Header$
 # $Name$
 
-set DISABLE=( $DISABLE obcs zonal_filt shap_filt )
+# Disable packages that are not needed
+set DISABLE=( $DISABLE obcs zonal_filt )
 
 # Enable packages that are needed but are disabled by default
-set ENABLE=( $ENABLE autodiff cost ctrl grdchk ecco gmredi )
+set ENABLE=( $ENABLE autodiff cost ctrl grdchk ecco kpp gmredi shap_filt )
 
 # We can also specify other defaults
