@@ -215,7 +215,7 @@ C     _EXCH_XY_R8( cg2d_s, myThid )
        actualIts      = 0
        actualResidual = err
       
-       IF ( debugLevel .GE. debLevA ) THEN
+       IF ( debugLevel .GE. debLevZero ) THEN
         _BEGIN_MASTER( myThid )
         write(*,'(A,1P2E22.14)')' cg2d: Sum(rhs),rhsMax = ',
      &                                  sumRHS,rhsMax 
