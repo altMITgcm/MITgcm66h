@@ -258,7 +258,9 @@ C     o Surface relaxation term
        DO j=jMin,jMax
         DO i=iMin,iMax
          gS(i,j,k,bi,bj)=gS(i,j,k,bi,bj)
-     &   -lambdaSaltClimRelax*(salt(i,j,k,bi,bj)-saltClim(i,j,k,bi,bj))
+     &   +maskUp(i,j)*(
+     &   -lambdaSaltClimRelax*(salt(i,j,k,bi,bj)-SSS(i,j,bi,bj))
+     &   -EmPpR(i,j,bi,bj) )
         ENDDO
        ENDDO
       ENDIF

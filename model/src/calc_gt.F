@@ -258,7 +258,9 @@ C     o Surface relaxation term
        DO j=jMin,jMax
         DO i=iMin,iMax
          gT(i,j,k,bi,bj)=gT(i,j,k,bi,bj)
-     &   -lambdaThetaClimRelax*(theta(i,j,k,bi,bj)-thetaClim(i,j,k,bi,bj))
+     &  +maskUp(i,j)*(
+     &   -lambdaThetaClimRelax*(theta(i,j,k,bi,bj)-SST(i,j,bi,bj))
+     &   -Qnet(i,j,bi,bj) )
         ENDDO
        ENDDO
       ENDIF

@@ -151,7 +151,13 @@ C      "state" files. This example is referred to as a checkpoint
 C      at time level 1 
        CALL WRITE_CHECKPOINT( .FALSE., myCurrentTime, myCurrentIter, myThid )
 
+       write(0,*) maxval(abs(uVel)),maxval(abs(vVel))
+       if (maxval(abs(uVel)).gt.10.) goto 911
+       if (maxval(abs(vVel)).gt.10.) goto 911
+       if (maxval(abs(theta)).gt.40.) goto 911
       ENDDO
+
+ 911  continue
 
 C--   Final checkpoint (incase the in-loop checkpoint was missed)
       CALL WRITE_CHECKPOINT( .TRUE., myCurrentTime, myCurrentIter, myThid )
