@@ -3,8 +3,8 @@ RM               = rm -f
 LOC              = $(PWD)
 TAMC             = tamc
 ###TAMC             = /data43/ralf/tamc/tamc
-###TAF              = taf
-TAF              = ~fastopt/bin/taf
+TAF              = taf
+###TAF              = ~fastopt/bin/taf
 DEST             = .
 SOURCE_CODE      = ../bin
 ADJOINT_SCRIPT   = ../adjoint
@@ -75,7 +75,6 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/calc_ivdc.f			\
 		$(SOURCE_CODE)/calc_phi_hyd.f			\
 		$(SOURCE_CODE)/calc_viscosity.f			\
-		$(SOURCE_CODE)/comm_stats.f			\
 		$(SOURCE_CODE)/convect.f			\
 		$(SOURCE_CODE)/convective_adjustment.f		\
 		$(SOURCE_CODE)/convective_adjustment_ini.f	\
@@ -125,7 +124,6 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/ini_autodiff.f			\
 		$(SOURCE_CODE)/ini_cartesian_grid.f		\
 		$(SOURCE_CODE)/ini_cg2d.f			\
-		$(SOURCE_CODE)/ini_communication_patterns.f	\
 		$(SOURCE_CODE)/ini_cori.f			\
 		$(SOURCE_CODE)/ini_curvilinear_grid.f		\
 		$(SOURCE_CODE)/ini_depths.f			\
@@ -226,6 +224,8 @@ SRC_MODEL	= \
 								\
 		  						\
 		$(SOURCE_CODE)/cost_aqh.f			\
+		$(SOURCE_CODE)/cost_argo_salt.f			\
+		$(SOURCE_CODE)/cost_argo_theta.f		\
 		$(SOURCE_CODE)/cost_atemp.f			\
 		$(SOURCE_CODE)/cost_atlantic.f			\
 		$(SOURCE_CODE)/cost_averagesfields.f		\
@@ -234,6 +234,9 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/cost_averagesinit.f		\
 		$(SOURCE_CODE)/cost_ctds.f			\
 		$(SOURCE_CODE)/cost_ctdt.f			\
+                $(SOURCE_CODE)/cost_drift.f			\
+                $(SOURCE_CODE)/cost_drifter.f			\
+                $(SOURCE_CODE)/cost_driftw.f			\
 		$(SOURCE_CODE)/cost_final.f			\
 		$(SOURCE_CODE)/cost_forcing.f			\
 		$(SOURCE_CODE)/cost_geoid.f			\
@@ -244,15 +247,20 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/cost_readers.f			\
 		$(SOURCE_CODE)/cost_readsssfields.f		\
 		$(SOURCE_CODE)/cost_readsstfields.f		\
+		$(SOURCE_CODE)/cost_readscatxfields.f          	\
+		$(SOURCE_CODE)/cost_readscatyfields.f		\
 		$(SOURCE_CODE)/cost_readtopex.f			\
 		$(SOURCE_CODE)/cost_readtopexmean.f		\
 		$(SOURCE_CODE)/cost_salt.f			\
+		$(SOURCE_CODE)/cost_salt0.f			\
 		$(SOURCE_CODE)/cost_saltflux.f			\
+		$(SOURCE_CODE)/cost_scat.f			\
 		$(SOURCE_CODE)/cost_ssh.f			\
 		$(SOURCE_CODE)/cost_ssh_mean.f			\
 		$(SOURCE_CODE)/cost_sss.f			\
 		$(SOURCE_CODE)/cost_sst.f			\
 		$(SOURCE_CODE)/cost_theta.f			\
+		$(SOURCE_CODE)/cost_theta0.f			\
 		$(SOURCE_CODE)/cost_uwind.f			\
 		$(SOURCE_CODE)/cost_vwind.f			\
 		$(SOURCE_CODE)/cost_xbt.f			\
@@ -262,6 +270,8 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/cost_obcss.f			\
 		$(SOURCE_CODE)/cost_obcsw.f			\
 		$(SOURCE_CODE)/cost_obcse.f			\
+                $(SOURCE_CODE)/sw_ptmp.f                        \
+                $(SOURCE_CODE)/sw_adtg.f                        \
 		  						\
 		$(SOURCE_CODE)/ctrl_getheatflux.f		\
 		$(SOURCE_CODE)/ctrl_getsaltflux.f		\
@@ -283,6 +293,7 @@ SRC_MODEL	= \
 		$(SOURCE_CODE)/ecco_the_main_loop.f		\
 		  						\
 		$(SOURCE_CODE)/exf_init.f			\
+		$(SOURCE_CODE)/exf_init_runoff.f		\
 		$(SOURCE_CODE)/exf_readparms.f			\
 		$(SOURCE_CODE)/exf_summary.f			\
 		$(SOURCE_CODE)/exf_bulkcdn.f			\
