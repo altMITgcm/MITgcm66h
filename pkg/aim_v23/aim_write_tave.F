@@ -40,6 +40,38 @@ C     == Local variables ==
 
       IF (aim_taveFreq.LE.0.) RETURN
 
+      IF ( myIter.EQ.nIter0 ) THEN
+C     Initialize average arrays to zero
+       DO bj = myByLo(myThid), myByHi(myThid)
+        DO bi = myBxLo(myThid), myBxHi(myThid)
+         CALL TIMEAVE_RESET(USTRtave,  1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(VSTRtave,  1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(TSRtave,   1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(OLRtave,   1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(SSRtave,   1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(SLRtave,   1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(SHFtave,   1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(EVAPtave,  1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(PRECNVtave,1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(PRECLStave,1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(CLOUDCtave,1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(CLTOPtave, 1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(CBMFtave,  1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(DRAGtave,  1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(aimV0tave, 1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(aimT0tave, 1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(aimQ0tave, 1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(EnFxPrtave,1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(albedotave,1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(dTsurftave,1, bi, bj, myThid)
+         CALL TIMEAVE_RESET(aimRHtave,Nr, bi, bj, myThid)
+         DO k=1,Nr
+           aim_timeAve(k,bi,bj)=0.
+         ENDDO                     
+        ENDDO
+       ENDDO
+      ENDIF
+
 C     Dump files and restart average computation if needed
       IF ( myIter.NE.nIter0 .AND.
      &     DIFFERENT_MULTIPLE(aim_taveFreq,myTime,
