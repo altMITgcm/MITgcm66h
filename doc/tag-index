@@ -20,6 +20,8 @@ o exf_getffields interpolation defaults to bilinear for all scalar forcing
   fields (remains bicubic for wind velocity and stress).  This avoids, e.g.,
   spurious negative numbers for precipitation and humidity.  Will cause
   some small numerical differences for integrations using pkg/exf/exf_interp.F.
+o Add ctrlvec diagnostics in pack/unpack for nondimensional I/O
+  May be enabled via doPackDiag
 
 checkpoint57b_post
 o simplify options in diagnostics_fill arguments (remove weird combinations)
