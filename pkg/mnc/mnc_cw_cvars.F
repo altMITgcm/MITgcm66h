@@ -112,7 +112,7 @@ C     !LOCAL VARIABLES:
       integer nids, cv_did(1)
       character*(MAX_LEN_MBUF) msgbuf
       integer cv_start(1), cv_count(1)
-      _RS rtmp(sNx * sNy)
+      _RS rtmp(sNx + sNy + Nr)
 
 C     Functions
       integer IFNBLNK, ILNBLNK
