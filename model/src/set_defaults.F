@@ -110,6 +110,7 @@ C--   Set default "physical" parameters
       useCoriolis         = .TRUE.
       momPressureForcing  = .TRUE.
       momStepping         = .TRUE.
+      vectorInvariantMomentum = .FALSE.
       tempStepping        = .TRUE.
       saltStepping        = .TRUE.
       tr1Stepping         = .FALSE.

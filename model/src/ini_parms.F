@@ -89,7 +89,7 @@ C--   Continuous equation parameters
      & tRef, sRef, eosType, Integr_GeoPot,
      & no_slip_sides,no_slip_bottom,
      & momViscosity,  momAdvection, momForcing, useCoriolis,
-     & momPressureForcing, metricTerms,
+     & momPressureForcing, metricTerms, vectorInvariantMomentum,
      & tempDiffusion, tempAdvection, tempForcing,
      & saltDiffusion, saltAdvection, saltForcing,
      & implicSurfPress, implicDiv2DFlow,

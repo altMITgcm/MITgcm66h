@@ -201,7 +201,8 @@ C     groundAtK1  - put the surface(k=1) at the Lower Boundary (=ground)
      & no_slip_sides,no_slip_bottom,
      & staggerTimeStep,
      & momViscosity, momAdvection, momForcing, useCoriolis, 
-     & momPressureForcing,tempDiffusion, tempAdvection, tempForcing,
+     & momPressureForcing, vectorInvariantMomentum,
+     & tempDiffusion, tempAdvection, tempForcing,
      & saltDiffusion, saltAdvection, saltForcing,
      & rigidLid, implicitFreeSurface, exactConserv, uniformLin_PhiSurf,
      & momStepping, tempStepping, saltStepping, tr1Stepping,
@@ -226,6 +227,7 @@ C     groundAtK1  - put the surface(k=1) at the Lower Boundary (=ground)
       LOGICAL momForcing
       LOGICAL momPressureForcing
       LOGICAL useCoriolis
+      LOGICAL vectorInvariantMomentum
       LOGICAL tempDiffusion
       LOGICAL tempAdvection
       LOGICAL tempForcing
