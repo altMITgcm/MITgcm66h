@@ -133,6 +133,9 @@ C          because the old code did not have no-slip BCs
 C o Read/write of checkpoint files for restarting.
 #undef OLD_STYLE_WITH_MANY_FILES
 
+C o Add passive tracer advection routines
+#define ALLOW_PASSIVE_TRACER
+
 C o Execution environment support options
 #include "CPP_EEOPTIONS.h"
 
