@@ -3,6 +3,9 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o genmake2: add ability to search for C compilers and cleanup test output
+  - fixes recent SX-6 problems and should help with others (eg. HP-UX)
+
 checkpoint54d_post
 o data.diagnostics: if levels() is unspecified then ALL levels are diagnosed
 o bug fix in pkg/cal/cal_addtime.F for TheCalendar='model' day count is wrong, 
