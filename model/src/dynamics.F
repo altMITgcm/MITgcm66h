@@ -63,7 +63,6 @@ C                                      is "pipelined" in the vertical
 C                                      so we need an fVer for each
 C                                      variable.
 C     rhoK, rhoKM1   - Density at current level, and level above 
-C     buoyK, buoyKM1 - Buoyancy at current level and level above.
 C     phiHyd         - Hydrostatic part of the potential phiHydi.
 C                      In z coords phiHydiHyd is the hydrostatic 
 C                      pressure anomaly
@@ -93,10 +92,9 @@ C                      index into fVerTerm.
       _RL fVerU   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
       _RL fVerV   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
       _RL phiHyd  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
+      _RL phiHydInterface(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL rhokm1  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL rhok    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL buoyKM1 (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL buoyK   (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL KappaRT (1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
       _RL KappaRS (1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
       _RL KappaRU (1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
@@ -188,7 +186,6 @@ C     uninitialised but inert locations.
         uTrans(i,j)  = 0. _d 0
         vTrans(i,j)  = 0. _d 0
         DO k=1,Nr
-         phiHyd (i,j,k)  = 0. _d 0
          KappaRU(i,j,k) = 0. _d 0
          KappaRV(i,j,k) = 0. _d 0
          sigmaX(i,j,k) = 0. _d 0
@@ -197,8 +194,6 @@ C     uninitialised but inert locations.
         ENDDO
         rhoKM1 (i,j) = 0. _d 0
         rhok   (i,j) = 0. _d 0
-        buoyKM1(i,j) = 0. _d 0
-        buoyK  (i,j) = 0. _d 0
         maskC  (i,j) = 0. _d 0
        ENDDO
       ENDDO
@@ -252,7 +247,6 @@ C--     Set up work arrays that need valid initial values
           fVerU (i,j,2) = 0. _d 0
           fVerV (i,j,1) = 0. _d 0
           fVerV (i,j,2) = 0. _d 0
-          phiHyd(i,j,1) = 0. _d 0
          ENDDO
         ENDDO
 
@@ -307,10 +301,12 @@ c         IF ( k.GT.1 .AND. (useGMRedi.OR.ivdc_kappa.NE.0.) ) THEN
           IF ( useGMRedi .OR. (k.GT.1 .AND. ivdc_kappa.NE.0.) ) THEN
             CALL FIND_RHO(
      I        bi, bj, iMin, iMax, jMin, jMax, k, k, eosType,
+     I        theta, salt,
      O        rhoK,
      I        myThid )
             IF (k.GT.1) CALL FIND_RHO(
      I        bi, bj, iMin, iMax, jMin, jMax, k-1, k, eosType,
+     I        theta, salt,
      O        rhoKm1,
      I        myThid )
             CALL GRAD_SIGMA(
@@ -520,29 +516,12 @@ C--       kDown  Cycles through 2,1 to point to current layer
           jMin = 1-OLy+2
           jMax = sNy+OLy-1
 
-C--      Calculate buoyancy
-         CALL FIND_RHO(
-     I        bi, bj, iMin, iMax, jMin, jMax, km1, km1, eosType,
-     O        rhoKm1,
-     I        myThid )
-         CALL CALC_BUOYANCY(
-     I        bi,bj,iMin,iMax,jMin,jMax,k,rhoKm1,
-     O        buoyKm1,
-     I        myThid )
-         CALL FIND_RHO(
-     I        bi, bj, iMin, iMax, jMin, jMax, k, k, eosType,
-     O        rhoK,
-     I        myThid )
-         CALL CALC_BUOYANCY(
-     I        bi,bj,iMin,iMax,jMin,jMax,k,rhoK,
-     O        buoyK,
-     I        myThid )
-
 C--      Integrate hydrostatic balance for phiHyd with BC of 
 C--      phiHyd(z=0)=0
          CALL CALC_PHI_HYD(
-     I        bi,bj,iMin,iMax,jMin,jMax,k,buoyKm1,buoyK,
-     U        phiHyd,
+     I        bi,bj,iMin,iMax,jMin,jMax,k,
+     I        theta, salt,
+     U        phiHyd, phiHydInterface,
      I        myThid )
 
 C--      Calculate accelerations in the momentum equations (gU, gV, ...)
