@@ -159,8 +159,14 @@ C Gather array and write it to file, one vertical level at a time
              global_r4(I,J) = global(I,J)
             ENDDO
            ENDDO
+#ifdef _BYTESWAPIO
+           call MDS_BYTESWAPR4( Nx*Ny, global_r4 )
+#endif
            write(dUnit,rec=irec) global_r4
           elseif (filePrec .eq. precFloat64) then
+#ifdef _BYTESWAPIO
+           call MDS_BYTESWAPR8( Nx*Ny, global )
+#endif
            write(dUnit,rec=irec) global
           else
            write(msgbuf,'(a)')
