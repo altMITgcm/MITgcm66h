@@ -1048,22 +1048,22 @@ if test -f ./ad_files ; then
     rm -f ./ad_files
 fi
 echo "  Creating the list of files for the adjoint compiler."
-for i in $SOURCEDIRS . ; do
+for i in $SOURCEDIRS ; do
     list_files=`( cd $i && ls -1 *.list 2>/dev/null )`
     for j in $list_files ; do
 	cat $i/$j >> ad_files
     done
 done
-cat <<EOF > adjoint_sed
 
- sed 's/call adopen(/call adopen ( mythid,\
+cat <<EOF > adjoint_sed
+s/call adopen(/call adopen ( mythid,\\
      \&           /g
-     s/call adclose(/call adclose( mythid,\
+s/call adclose(/call adclose( mythid,\\
      \&           /g
-     s/call adread(/call adread ( mythid,\
+s/call adread(/call adread ( mythid,\\
      \&           /g
-     s/call adwrite(/call adwrite( mythid,\
-     \&           /g' < ad_code_ad.f
+s/call adwrite(/call adwrite( mythid,\\
+     \&           /g
 
 EOF
 chmod +x adjoint_sed
@@ -1089,10 +1089,11 @@ echo -n 'SRCFILES = '    > srclist.inc
 echo -n 'CSRCFILES = '   > csrclist.inc
 echo -n 'F90SRCFILES = ' > f90srclist.inc
 echo -n 'HEADERFILES = ' > hlist.inc
+echo -n 'AD_FLOW_FILES = ' > ad_flow_files.inc
 alldirs="$SOURCEDIRS $INCLUDEDIRS ."
 for d in $alldirs ; do
     deplist=
-    sfiles=`( cd $d; echo *.[h,c,F] )`
+    sfiles=`( cd $d; echo *.[h,c,F] *.flow )`
     sfiles=`( echo $sfiles; cd $d; echo *.F90 )`
     for sf in $sfiles ; do
 	if test ! -r ".links.tmp/$sf" ; then
@@ -1117,6 +1118,10 @@ for d in $alldirs ; do
 			echo    " \\"  >> hlist.inc
 			echo -n " $sf" >> hlist.inc
 			;;
+		    flow)
+			echo    " \\"  >> ad_flow_files.inc
+			echo -n " $sf" >> ad_flow_files.inc
+			;;
 		esac
 	    fi
 	fi
@@ -1133,6 +1138,7 @@ echo "" >> srclist.inc
 echo "" >> csrclist.inc
 echo "" >> f90srclist.inc
 echo "" >> hlist.inc
+echo "" >> ad_flow_files.inc
 
 if test -e $MAKEFILE ; then
     mv -f $MAKEFILE "$MAKEFILE.bak"
@@ -1222,10 +1228,11 @@ MAKEFILE=${MAKEFILE}
 
 EOF
 
-cat srclist.inc    >> $MAKEFILE
-cat csrclist.inc   >> $MAKEFILE
-cat f90srclist.inc >> $MAKEFILE
-cat hlist.inc      >> $MAKEFILE
+cat srclist.inc       >> $MAKEFILE
+cat csrclist.inc      >> $MAKEFILE
+cat f90srclist.inc    >> $MAKEFILE
+cat hlist.inc         >> $MAKEFILE
+cat ad_flow_files.inc >> $MAKEFILE
 echo               >> $MAKEFILE
 echo 'F77FILES =  $(SRCFILES:.F=.f)'                                           >> $MAKEFILE
 echo 'F90FILES =  $(F90SRCFILES:.F90=.f90)'                                    >> $MAKEFILE
@@ -1326,13 +1333,16 @@ cat >>$MAKEFILE <<EOF
 EXE_AD_TAMC    = ${EXECUTABLE}_ad_tamc
 \$(EXE_AD_TAMC): \$(OBJFILES)
 
-EXE_AD_TAF     = ${EXECUTABLE}
-ad_taf: \$(OBJFILES)
-	cat \$(AD_FILES) >! ad_input_code.f
+ad_input_code.f: \$(F77FILES)
+	@make \$(AD_FLOW_FILES)
+	cat \$(AD_FLOW_FILES) \$(AD_FILES) > ad_input_code.f
+
+ad_taf_output.f: ad_input_code.f
 	\$(TAF) \$(AD_TAF_FLAGS) ad_input_code.f
-	./adjoint_sed >! ad_output_code.f
-	@make ad_output_code.o
-	\$(LINK) -o ${EXECUTABLE} \$(FFLAGS) \$(FOPTIM) \$(OBJFILES) ad_output_code.o \$(LIBS) 
+	cat ad_input_code_ad.f | sed -f adjoint_sed > ad_taf_output.f
+
+ad_taf: ad_taf_output.o \$(OBJFILES)
+	\$(LINK) -o ${EXECUTABLE} \$(FFLAGS) \$(FOPTIM) \$(OBJFILES) ad_taf_output.o \$(LIBS) 
 
 EXE_FTL_TAMC   = ${EXECUTABLE}_ftl_tamc
 EXE_FTL_TAF    = ${EXECUTABLE}_ftl_taf
