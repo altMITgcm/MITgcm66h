@@ -5,8 +5,6 @@
 set DISABLE=( $DISABLE obcs zonal_filt shap_filt )
 
 # Enable packages that are needed but are disabled by default
-set ENABLE=( $ENABLE cal exf ecco flt ptracers seaice )
+set ENABLE=( $ENABLE cal exf )
 
 # We can also specify other defaults
-#set ROOTDIR=..
-#set MODS=../verification/natl_box/code
