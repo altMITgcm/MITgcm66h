@@ -30,7 +30,7 @@ cat <<EOF > Makefile
 all: all_protex
 
 clean:
-	-rm -f *.tex *.aux *.dvi *.log *.toc *.out
+	-rm -f *_*.tex *.aux *.dvi *.log *.toc *.out
 
 EOF
 
@@ -117,7 +117,7 @@ cat <<EOF >> Makefile
 makefile:
 	$0
 
-api_main.tex: \$(ALLTEX)
+api_main.tex: introduction.tex \$(ALLTEX)
 	-./build_main \$(ALLTEX)
 
 api_main.dvi:  api_main.tex

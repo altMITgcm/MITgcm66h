@@ -74,9 +74,9 @@ cat <<EOF > api_main.tex
 
 \tableofcontents
 
-\chapter{API References}
-
 EOF
+
+cat introduction.tex >> api_main.tex
 
 echo "Building: api_main.tex"
 for file ; do
