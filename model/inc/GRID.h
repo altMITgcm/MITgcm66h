@@ -296,8 +296,6 @@ C     *==========================================================*
 C     \ev
 CEOP
 
-#include "PACKAGES_CONFIG.h"
-
 C     Macros that override/modify standard definitions
 #include "GRID_MACROS.h"
 

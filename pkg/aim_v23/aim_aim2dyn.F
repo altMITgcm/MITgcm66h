@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "AIM_OPTIONS.h"
 
 CStartOfInterface
