@@ -903,9 +903,6 @@ C finally some transformations back to grid space for albedos
       call msc2grd(igrd(1,bi,bj),chfr(1,bi,bj),avisdr,nchp,nchpland,
      .                                     fracg,tmpij,im,jm)
 
-      print *,' back from first msc2grd call '
-      stop
-
       DO I=1,IM
       DO J=1,JM
        albvr(i,j,bi,bj) = tmpij(i,j)
