@@ -112,10 +112,6 @@ C--    Read IO error counter
        beginIOErrCount = IO_ERRCOUNT(myThid)
 c      prevPrec = writeBinaryPrec
 c      writeBinaryPrec = precFloat32
-       CALL WRITE_FLD_XY_RL('uFluxtave.',suff,uFluxtave,myIter,myThid)
-       CALL WRITE_FLD_XY_RL('vFluxtave.',suff,vFluxtave,myIter,myThid)
-       CALL WRITE_FLD_XY_RL('tFluxtave.',suff,tFluxtave,myIter,myThid)
-       CALL WRITE_FLD_XY_RL('sFluxtave.',suff,sFluxtave,myIter,myThid)
        CALL WRITE_FLD_XY_RL('ETAtave.'  ,suff,etatave  ,myIter,myThid)
        CALL WRITE_FLD_XY_RL('Eta2tave.' ,suff,Eta2tave ,myIter,myThid)
 
@@ -142,13 +138,17 @@ c      CALL WRITE_FLD_XYZ_RL('KEtave.',suff,KEtave,myIter,myThid)
        ENDIF
 #endif
        CALL WRITE_FLD_XYZ_RL('PhHytave.',suff,phiHydtave,myIter,myThid)
-       IF ( buoyancyRelation .NE. 'ATMOSPHERIC' ) THEN
-       CALL WRITE_FLD_XY_RL('PHLtave.',suff,phiHydLowtave,
-     &      myIter,myThid)
-       CALL WRITE_FLD_XY_RL('PHL2tave.',suff,phiHydLow2tave,
-     &      myIter,myThid)
-       CALL WRITE_FLD_XYZ_RL('Convtave.',suff,ConvectCountTave,
-     &                       myIter,myThid)
+       IF ( buoyancyRelation(1:7) .EQ. 'OCEANIC' ) THEN
+        CALL WRITE_FLD_XY_RL('PHLtave.',suff,phiHydLowtave,
+     &       myIter,myThid)
+        CALL WRITE_FLD_XY_RL('PHL2tave.',suff,phiHydLow2tave,
+     &       myIter,myThid)
+        CALL WRITE_FLD_XYZ_RL('Convtave.',suff,ConvectCountTave,
+     &                        myIter,myThid)
+        CALL WRITE_FLD_XY_RL('uFluxtave.',suff,uFluxtave,myIter,myThid)
+        CALL WRITE_FLD_XY_RL('vFluxtave.',suff,vFluxtave,myIter,myThid)
+        CALL WRITE_FLD_XY_RL('tFluxtave.',suff,tFluxtave,myIter,myThid)
+        CALL WRITE_FLD_XY_RL('sFluxtave.',suff,sFluxtave,myIter,myThid)
        ENDIF
 
 #ifdef NONLIN_FRSURF
