@@ -82,7 +82,7 @@ C
 
 C--   Continuous equation parameters
       NAMELIST /PARM01/
-     & gravity, gBaro, rhonil, tAlpha, sBeta, f0, beta,
+     & gravity, gBaro, rhonil, tAlpha, sBeta, f0, beta, omega,
      & viscAh,  viscAz,  viscA4, cosPower,
      & diffKhT, diffKzT, diffK4T, 
      & diffKhS, diffKzS, diffK4S,
@@ -714,8 +714,10 @@ C--   Make metric term settings consistent with underlying grid.
        useConstantF  = .FALSE.
        useBetaPlaneF = .FALSE.
        useSphereF    = .TRUE.
-       omega         = 2.D0 * PI / ( 3600.D0 * 24.D0 )
        usingSphericalPolarMterms = metricTerms
+      ENDIF
+      IF ( usingCurvilinearGrid ) THEN
+       useSphereF    = .TRUE.
       ENDIF
 C--   p, z, r coord parameters
       DO K = 1, Nr

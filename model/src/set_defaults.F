@@ -74,6 +74,7 @@ C--   Set default "physical" parameters
       rhoNil              = 999.8D0
       f0                  = 1.D-4
       beta                = 1.D-11
+      omega               = 2.D0 * PI / ( 3600.D0 * 24.D0 )
       viscAh              = 0.D3
       diffKhT             = 0.D3
       diffKhS             = 0.D3

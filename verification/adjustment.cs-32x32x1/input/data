@@ -68,5 +68,6 @@
 # Input datasets
  &PARM05
 #pSurfInitFile='square.bin',
+#pSurfInitFile='cos_equator.bin',
  pSurfInitFile='cos.bin',
  &

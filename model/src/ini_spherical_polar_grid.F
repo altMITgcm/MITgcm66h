@@ -176,6 +176,7 @@ C         by formula
           dlon = delX( iGl(I,bi) )
           dlat = delY( jGl(J,bj) )
           dXG(I,J,bi,bj) = rSphere*COS(deg2rad*lat)*dlon*deg2rad
+          if (dXG(I,J,bi,bj).LT.1.) dXG(I,J,bi,bj)=0.
           dYG(I,J,bi,bj) = rSphere*dlat*deg2rad
          ENDDO
         ENDDO

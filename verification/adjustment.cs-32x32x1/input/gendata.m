@@ -86,6 +86,8 @@ lat=reshape(Q,[nx ntx nx]);
 rad=30;
 h=100*0.5*(1-cos( max(lat-90+rad,0)/rad*pi ));
 fid=fopen('cos.bin','w','b');fwrite(fid,h,'real*8');fclose(fid);
+h(:,2,:)=h(:,3,:);h(:,3,:)=0;
+fid=fopen('cos_equator.bin','w','b');fwrite(fid,h,'real*8');fclose(fid);
 
 % LONG
 fid=fopen('LONG.tile','r','b');q=fread(fid,[nx+1 (nx+1)*6],'real*8');fclose(fid);
