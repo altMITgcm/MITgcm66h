@@ -157,9 +157,6 @@ C                      index into fVerTerm.
       _RL kappaRTr(1-Olx:sNx+Olx,1-Oly:sNy+Oly,PTRACERS_num)
 #endif
       _RL kappaRk (1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
-      _RL sigmaX  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
-      _RL sigmaY  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
-      _RL sigmaR  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr)
       _RL kp1Msk
       LOGICAL useVariableK
       INTEGER iMin, iMax
