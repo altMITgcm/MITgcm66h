@@ -3,6 +3,14 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint27
+ o fixed calc_isoslopes() to so that cancellation of terms in tensor
+   formulation works properly with variable resolution.
+ o restructured the calling tree between the_model_main() and dynamics()
+ o split initialise() into initialise_fixed() and initialise_varia()
+ o introduced initialization file pSurfInitFile for free surface (cg2d_x)
+   in new routine ini_psurf()
+
 checkpoint26
  o moved some #ifdef in optional routines to encompass everything
    except the argument declarations. This was using up some memory.
