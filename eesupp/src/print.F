@@ -714,6 +714,14 @@ C--   Write field title and statistics
       CALL PRINT_MESSAGE(msgBuf, standardMessageUnit,
      &                   SQUEEZE_RIGHT, 1)
 
+      if (Nx.gt.MAX_LEN_PLOTBUF-20) THEN
+       msgBuf = 
+     &  'Model domain too big to print to terminal - skipping I/O'
+       CALL PRINT_MESSAGE(msgBuf, standardMessageUnit,
+     &                   SQUEEZE_RIGHT, 1)
+       RETURN
+      endif
+
 C--   Write field
 C     Figure out slice type and set plotting parameters appropriately
 C     acc = accross the page
@@ -1130,6 +1138,14 @@ C--   Write field title and statistics
      & '// ======================================================='
       CALL PRINT_MESSAGE(msgBuf, standardMessageUnit,
      &                   SQUEEZE_RIGHT, 1)
+
+      if (Nx.gt.MAX_LEN_PLOTBUF-20) THEN
+       msgBuf = 
+     &  'Model domain too big to print to terminal - skipping I/O'
+       CALL PRINT_MESSAGE(msgBuf, standardMessageUnit,
+     &                   SQUEEZE_RIGHT, 1)
+       RETURN
+      endif
 
 C--   Write field
 C     Figure out slice type and set plotting parameters appropriately
