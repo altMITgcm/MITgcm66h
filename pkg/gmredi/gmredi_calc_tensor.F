@@ -166,7 +166,7 @@ C       Now we convert deltaH to a non-dimensional fraction
 
         IF (K.eq.2) VisbeckK(i,j,bi,bj)=0.
         IF (Ssq(i,j).NE.0.) THEN
-         N2= -Gravity*recip_Rhonil*dSigmaDrReal(i,j)
+         N2= -Gravity*recip_RhoConst*dSigmaDrReal(i,j)
          SN=sqrt(Ssq(i,j)*N2)
          VisbeckK(i,j,bi,bj)=VisbeckK(i,j,bi,bj)+deltaH
      &      *GM_Visbeck_alpha*GM_Visbeck_length*GM_Visbeck_length*SN

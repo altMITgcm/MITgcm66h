@@ -83,10 +83,12 @@ C     General curvilinear coordinate system
 C--   Set default "physical" parameters
       DO K =1,Nr
        tRef(K) = 30.D0 - FLOAT( K )
+Cml       sRef(K) = 35.D0
       ENDDO
       gravitySign         = 1.D0
       gravity             = 9.81D0
       rhoNil              = 999.8D0
+      rhoConstFresh       = 999.8D0
       f0                  = 1.D-4
       beta                = 1.D-11
       omega               = 2.D0 * PI / ( 3600.D0 * 24.D0 )

@@ -50,6 +50,17 @@ C--   == Local variables ==
         ENDDO
        ENDDO
 
+      ELSEIF ( buoyancyRelation .eq. 'OCEANICP' ) THEN
+
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         if ( rholoc(i,j) .ne. 0. ) then
+          rholoc(i,j) = 1./rholoc(i,j)
+          buoy(i,j)=rholoc(i,j)
+         endif
+        ENDDO
+       ENDDO
+
       ELSE
 
        STOP 

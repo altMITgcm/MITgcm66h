@@ -136,6 +136,8 @@ CEOP
      &'   /* Reference density ( kg/m^3 ) */')
       CALL WRITE_0D_R8( rhoConst, INDEX_NONE,'rhoConst =',
      &'   /* Reference density ( kg/m^3 ) */')
+      CALL WRITE_0D_R8( rhoConstFresh, INDEX_NONE,'rhoConstFresh =',
+     &'   /* Reference density ( kg/m^3 ) */')
       CALL WRITE_0D_R8( gravity, INDEX_NONE,'gravity =',
      &'   /* Gravitational acceleration ( m/s^2 ) */')
       CALL WRITE_0D_R8( gBaro,   INDEX_NONE,'gBaro =',

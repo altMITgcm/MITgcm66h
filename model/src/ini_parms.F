@@ -119,7 +119,7 @@ C--   Continuous equation parameters
      & implicitDiffusion, implicitViscosity,
      & viscAr, diffKrT, diffKrS, hFacMinDr,
      & viscAp, diffKpT, diffKpS, hFacMinDp,
-     & rhoConst, buoyancyRelation, HeatCapacity_Cp,
+     & rhoConst, rhoConstFresh, buoyancyRelation, HeatCapacity_Cp,
      & writeBinaryPrec, readBinaryPrec, writeStatePrec,
      & nonHydrostatic, globalFiles,
      & allowFreezing, ivdc_kappa,

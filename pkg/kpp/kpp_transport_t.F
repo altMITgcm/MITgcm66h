@@ -57,7 +57,7 @@ C     I, J - Loop counters
      &         KappaRT(i,j,k) * KPPghat(i,j,km1,bi,bj) * drF(1) *
      &         ( SurfaceTendencyT(i,j,bi,bj) -
      &           Qsw(i,j,bi,bj)
-     &          *recip_Cp*recip_rhoNil*recip_dRf(1)
+     &          *recip_Cp*recip_rhoConst*recip_dRf(1)
      &          * (1.-KPPfrac(i,j,bi,bj))
      &         )
        ENDDO

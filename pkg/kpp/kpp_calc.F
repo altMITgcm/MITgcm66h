@@ -359,7 +359,7 @@ cph)
      &       ) *
      &       drF(1) / work2(I,J)
         bosol(I,J) = gravity * vddiff(I,J,1,1) * Qsw(i,j,bi,bj) *
-     &       recip_Cp*recip_rhoNil*recip_dRf(1) *
+     &       recip_Cp*recip_rhoConst*recip_dRf(1) *
      &       drF(1) / work2(I,J)
        END DO
       END DO

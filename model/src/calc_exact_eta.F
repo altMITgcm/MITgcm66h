@@ -64,7 +64,8 @@ CEOP
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
       IF ( buoyancyRelation .eq. 'OCEANICP' )  THEN
-        convertVol2Mass = horiVertRatio
+C        convertVol2Mass = horiVertRatio
+        convertVol2Mass = gravity*rhoConstFresh
       ELSE
         convertVol2Mass = 1.
       ENDIF

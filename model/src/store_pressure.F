@@ -51,7 +51,7 @@ C
      &       .or. equationOfState .eq. 'MDJWF' ) ) then
          do J=1-Oly,sNy+Oly
             do I=1-Olx,sNx+Olx
-               pressure(i,j,k,bi,bj) = rhonil * (
+               pressure(i,j,k,bi,bj) = rhoConst * (
      &              - gravity*rC(k)
      &              + gravity*etaN(i,j,bi,bj)
      &              + phiHyd(i,j,k)
