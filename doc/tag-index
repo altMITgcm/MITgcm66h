@@ -3,6 +3,10 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+o incorporating changes to get TAMC/TAF working in genmake2
+  - added new TAMC/TAF targets to the Makefile
+  - various cleanups related to package handling
+
 checkpoint51l_post
 o changes to pkg/cal and pkg/exf that allow and speed-up long integrations
  - faster algorithm for cal_addtime.F
