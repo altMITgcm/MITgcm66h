@@ -3,6 +3,27 @@ $Header$
     Notes on tags used in MITgcmUV
     ==============================
 
+ecco_c44_e22
+o Finally, the merges with the Scripps cost function terms:
+  Various additions, modifications, quality checks.
+o Plus: Included switch ALLOW_AUTODIFF_MONITOR to handle
+  monitoring of adjoint state.
+o Plus: removed comm_stats, ini_communication_patterns from diff. list
+  (no more need to "keep" MPI headers for adjoint generation)
+o Plus: exf changes:
+  o added run-off routine
+  o additional storing needed for ustress,vstess
+    because of state-dependent quality check
+  o added missing initialisations
+o Plus: genmake with MAKEDEPEND variable was still missing in ecco-branch
+NB: - verification/natl_box_adjoint/ 240 steps run
+      * looks ok under Linux (twain.lcs.mit.edu)
+      * looks ok on MIT SUN's (fjord.mit.edu)
+      * NaN in reverse mode on Scripps SUN's at iter=214
+      * NaN in reverse mode on IBM SP3 (BlueHorizon) at iter=204
+    - 1 year forward int. global 2x2 deg. produces similar cost functions
+      * all cost terms of new code are slightly smaller (0.5 to 3%).
+
 ecco_c44_e21
 o reversed order of ctrl/cost initialisation
 o gmredi_slope_psi.F: Inconsistent types in MIN/MAX expressions
