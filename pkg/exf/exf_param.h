@@ -118,7 +118,7 @@ c     data values
       _RL     uwindperiod
       _RL     uwindconst
       character*1 uwindmask
-      parameter(  uwindmask = 'u' )
+      parameter(  uwindmask = 's' )
 
       integer vwindstartdate1
       integer vwindstartdate2
@@ -126,7 +126,7 @@ c     data values
       _RL     vwindperiod
       _RL     vwindconst
       character*1 vwindmask
-      parameter(  vwindmask = 'v' )
+      parameter(  vwindmask = 's' )
 
       integer swfluxstartdate1
       integer swfluxstartdate2
