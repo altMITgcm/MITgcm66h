@@ -55,6 +55,7 @@ C     |  better support for this. Output is handled differently. |
 C     |  By default output files are written split and have to be|
 C     |  merged in a post-processing stage - YUK!                |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     == GLobal variables ==
 #include "SIZE.h"

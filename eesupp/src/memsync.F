@@ -19,5 +19,6 @@ C     |  Note: I have yet to show this is necessary although     |
 C     |        the Memory Channel writes must need something like|
 C     |        this.                                             |
 C     \==========================================================/
+      IMPLICIT NONE
 
       END

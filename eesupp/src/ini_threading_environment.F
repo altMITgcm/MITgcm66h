@@ -16,6 +16,7 @@ C     | responsible for.                                         |
 C     | The multiple threads are spawned in the top level MAIN   |
 C     | routine.                                                 |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     == Global data ==
 #include "SIZE.h"
@@ -87,7 +88,7 @@ C--   Initialise exchange mechanism
       CALL EXCH_INIT
 
       IF   ( nThreads .NE. nTx*nTy ) THEN
-       WRITE(msgBuf,'(A,A,A,I,A,I)') 
+       WRITE(msgBuf,'(A,A,A,I5,A,I5)') 
      &  'S/R INI_THREADING_ENVIRONMENT:',
      &  ' Total number of threads is not the same as nTx*nTy.',
      &  ' nTx * nTy = ',nTx*nTy,' nThreads = ',nThreads

@@ -10,6 +10,7 @@ C     | o Write basic introductory message.                      |
 C     |==========================================================|
 C     | This routine could be customised for different platforms.|
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global data ===
 #include "SIZE.h"

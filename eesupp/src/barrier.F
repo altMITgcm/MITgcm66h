@@ -3,6 +3,7 @@ C $Header$
 #include "CPP_EEOPTIONS.h"
 
       SUBROUTINE BARRIER_INIT
+      IMPLICIT NONE
 
 #include "SIZE.h"
 #include "EEPARAMS.h"

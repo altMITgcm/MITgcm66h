@@ -14,6 +14,7 @@ C     | before multi-threaded parallelism. THe routine reads an  |
 C     | an "execution environment" input parameter file holding  |
 C     | information about the number of threads at run-time.     |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global variables ===
 #include "SIZE.h"

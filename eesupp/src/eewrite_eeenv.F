@@ -14,6 +14,7 @@ C     | the computational mode in which the model operatoes. It  |
 C     | includes the computational grid but does not include any |
 C     | model specific nuerical parameters.                      |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     === Global data ===
 #include "SIZE.h"

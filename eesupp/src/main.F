@@ -19,6 +19,7 @@ C     |    routine.                                              |
 C     | 3. call procedure EEDIE to perform execution environment |
 C     |    shutdown.                                             |
 C     \==========================================================/
+      IMPLICIT NONE
 
 C     == Global variables ==
 C     Include all the "shared" data here. That means all common
