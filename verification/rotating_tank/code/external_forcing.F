@@ -207,6 +207,17 @@ C              :: points, so that points checked are ophi(iGlobal,jGlobal) such 
 C              :: iGlobal=iGsource +/- rSource, jGlobal = jGsource +/- rSource.
 C              :: rSource, iGSource and jGSource only need to define a quadrilateral that
 C              :: includes the cylinder and no other land, they do not need to be exact.
+c afe:
+c  the below appears to be an attempt to make the heat flux somewhat general in regards
+c  to bathymetry, but jmc pointed out some ways it could be better.  this is not
+c  an issue at this point (July '04) since all experiments are being done with straight-
+c  sided tank and cyclinder walls.
+c  some todo items:
+c  * add terms to top and bottom -- probably critical!!!
+c  * make tCyl more flexible -- maybe have as separate inner and outer variables
+c       or, eventually, a forcing field
+c  * think about possible problems with differing heat diffusion rates in wall materials
+c    (plexiglass, air, water in the compound tank case)
       _RL kDiffCyl
       INTEGER rSource
       INTEGER iGSource
