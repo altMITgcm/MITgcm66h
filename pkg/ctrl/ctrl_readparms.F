@@ -107,6 +107,9 @@ c--   Read the namelist input.
      &  xx_bottomdrag_file,
      &  xx_edtaux_file,
      &  xx_edtauy_file,
+     &  xx_uvel_file,
+     &  xx_vvel_file,
+     &  xx_etan_file,
      &  doInitXX,
      &  doPackDiag,
      &  doZscaleUnpack,
@@ -191,6 +194,9 @@ c--     Set default values.
         xx_bottomdrag_file  = 'xx_bottomdrag'
         xx_edtaux_file      = 'xx_edtaux'
         xx_edtauy_file      = 'xx_edtauy'
+        xx_uvel_file        = 'xx_uvel'
+        xx_vvel_file        = 'xx_vvel'
+        xx_etan_file        = 'xx_etan'
 
 #ifdef ALLOW_TANGENTLINEAR_RUN
         yadprefix           = 'g_'

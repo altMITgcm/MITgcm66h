@@ -968,9 +968,12 @@ c--   Units have to be checked!
 c
 c     write masks and weights to files to be read by a master process
 c
-      call active_write_xyz_loc( 'hFacC',hFacC ,   1, 0, mythid, dummy)
-      call active_write_xyz_loc( 'maskW', maskW,   1, 0, mythid, dummy)
-      call active_write_xyz_loc( 'maskS', maskS,   1, 0, mythid, dummy)
+      call active_write_xyz_loc( 'maskCtrlC', maskC, 
+     &     1, 0, mythid, dummy)
+      call active_write_xyz_loc( 'maskCtrlW', maskW, 
+     &     1, 0, mythid, dummy)
+      call active_write_xyz_loc( 'maskCtrlS', maskS, 
+     &     1, 0, mythid, dummy)
 
 #if   (defined (ALLOW_HFLUX_COST_CONTRIBUTION))
       call active_write_xy_loc(  'whflux', whflux, 1, 0, mythid, dummy)
