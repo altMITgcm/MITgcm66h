@@ -5,6 +5,11 @@ $Header$
 
 o make lambda[Theta,Salt]ClimRelax spatially varying
   (default remains spatially uniform constant based on tau)
+o added new control variables
+  * init. uVel, vVel, etanN
+  * lambda[Theta,Salt]ClimRelax
+o separate masks used for ctrl_pack/unpack 'from write_grid' output
+  (suggested by G. Forget)
 
 checkpoint57f_post
 o add parameter "baseTime" = model base time = time at iteration zero
