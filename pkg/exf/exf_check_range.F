@@ -81,7 +81,7 @@ c             Salt flux.
               endif
 c
 c             Zonal wind stress.
-              if ( ABS(ustress(i,j,bi,bj)) .GT. 2.6 .AND.
+              if ( ABS(ustress(i,j,bi,bj)) .GT. 2.7 .AND.
      &             hFacW(i,j,1,bi,bj) .NE. 0. ) then
                  write(standardmessageunit,'(A,2(2X,I5),2X,D22.15)')
      &                'EXF WARNING: ustress out of range for i,j= ',
