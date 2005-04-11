@@ -61,9 +61,7 @@ C     - Laplacian  and bi-harmonic terms
      &            viscAhMax)
         A4tmp=min(viscA4+viscA4Grid*(rAw(i,j,bi,bj)**2)/deltaTmom,
      &            viscA4Max)
-        IF (viscA4GridMax.GT.0.) THEN
-           A4tmp=min(A4tmp,viscA4GridMax*(rAw(i,j,bi,bj)**2)/deltaTmom)
-        ENDIF
+        A4tmp=min(A4tmp,viscA4GridMax*(rAw(i,j,bi,bj)**2)/deltaTmom)
         A4tmp=max(A4tmp,viscA4GridMin*(rAw(i,j,bi,bj)**2)/deltaTmom)
         uDragTerms(i,j) =
      &   -_recip_hFacW(i,j,k,bi,bj)
