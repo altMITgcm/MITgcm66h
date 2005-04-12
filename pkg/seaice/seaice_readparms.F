@@ -97,6 +97,7 @@ C--   set default sea ice parameters
       SEAICE_snowThick   = 0.15   _d 0
       SEAICE_shortwave   = 0.30   _d 0
       SEAICE_freeze      = -1.96  _d 0
+      seaice_mdsio = .TRUE.
       uwindFile  = ' '
       vwindFile  = ' '
       atempFile  = ' '
