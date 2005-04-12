@@ -376,7 +376,7 @@ c----------------------------------------------------------------------
           write(weighttype(1:80),'(80a)') ' '
           write(weighttype(1:80),'(a)') "wuwind"
           call ctrl_set_unpack_xy( lxxadxx, cunit, ivartype,
-     &         fname_uwind(ictrlgrad), "maskCtrlW",
+     &         fname_uwind(ictrlgrad), "maskCtrlC",
      &         weighttype, nwetcglobal, mythid)
 #endif
 
@@ -385,7 +385,7 @@ c----------------------------------------------------------------------
           write(weighttype(1:80),'(80a)') ' '
           write(weighttype(1:80),'(a)') "wvwind"
           call ctrl_set_unpack_xy( lxxadxx, cunit, ivartype,
-     &         fname_vwind(ictrlgrad), "maskCtrlS",
+     &         fname_vwind(ictrlgrad), "maskCtrlC",
      &         weighttype, nwetcglobal, mythid)
 #endif
 
