@@ -94,17 +94,17 @@ C-        Update velocity fields:  V(n) = V** - dt * grad Eta
      I         bi,bj,iMin,iMax,jMin,jMax,K,
      I         phiSurfX,phiSurfY,myTime,myThid )
 
-C-        Update tracer fields:  T(n) = T**, Gt(n-1) = Gt(n)
+C-        Update tracer fields:  T(n) = T**
           IF (tempStepping)
      &      CALL CYCLE_TRACER(
-     I           bi,bj,iMin,iMax,jMin,jMax,K,
-     U           theta,gT,gTNm1,
-     I           myTime,myThid )
+     I           bi,bj,K,
+     U           theta,gT,
+     I           myTime,myIter,myThid )
           IF (saltStepping)
      &      CALL CYCLE_TRACER(
-     I           bi,bj,iMin,iMax,jMin,jMax,K,
-     U           salt,gS,gSNm1,
-     I           myTime,myThid )
+     I           bi,bj,K,
+     U           salt,gS,
+     I           myTime,myIter,myThid )
 
 #ifdef    ALLOW_OBCS
           IF (useOBCS) THEN

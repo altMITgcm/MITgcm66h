@@ -514,14 +514,16 @@ Cml)
        CALL DEBUG_STATS_RL(Nr,wVel,'Wvel (DYNAMICS)',myThid)
        CALL DEBUG_STATS_RL(Nr,theta,'Theta (DYNAMICS)',myThid)
        CALL DEBUG_STATS_RL(Nr,salt,'Salt (DYNAMICS)',myThid)
-       CALL DEBUG_STATS_RL(Nr,Gu,'Gu (DYNAMICS)',myThid)
-       CALL DEBUG_STATS_RL(Nr,Gv,'Gv (DYNAMICS)',myThid)
-       CALL DEBUG_STATS_RL(Nr,Gt,'Gt (DYNAMICS)',myThid)
-       CALL DEBUG_STATS_RL(Nr,Gs,'Gs (DYNAMICS)',myThid)
-       CALL DEBUG_STATS_RL(Nr,GuNm1,'GuNm1 (DYNAMICS)',myThid)
-       CALL DEBUG_STATS_RL(Nr,GvNm1,'GvNm1 (DYNAMICS)',myThid)
-       CALL DEBUG_STATS_RL(Nr,GtNm1,'GtNm1 (DYNAMICS)',myThid)
-       CALL DEBUG_STATS_RL(Nr,GsNm1,'GsNm1 (DYNAMICS)',myThid)
+       CALL DEBUG_STATS_RL(Nr,gU,'Gu (DYNAMICS)',myThid)
+       CALL DEBUG_STATS_RL(Nr,gV,'Gv (DYNAMICS)',myThid)
+       CALL DEBUG_STATS_RL(Nr,gT,'Gt (DYNAMICS)',myThid)
+       CALL DEBUG_STATS_RL(Nr,gS,'Gs (DYNAMICS)',myThid)
+#ifndef ALLOW_ADAMSBASHFORTH_3
+       CALL DEBUG_STATS_RL(Nr,guNm1,'GuNm1 (DYNAMICS)',myThid)
+       CALL DEBUG_STATS_RL(Nr,gvNm1,'GvNm1 (DYNAMICS)',myThid)
+       CALL DEBUG_STATS_RL(Nr,gtNm1,'GtNm1 (DYNAMICS)',myThid)
+       CALL DEBUG_STATS_RL(Nr,gsNm1,'GsNm1 (DYNAMICS)',myThid)
+#endif
       ENDIF
 #endif
 
