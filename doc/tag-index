@@ -1,7 +1,10 @@
 $Header$
+$Name$
 
     Notes on tags used in MITgcmUV
     ==============================
+
+checkpoint57g_pre
 
 o make lambda[Theta,Salt]ClimRelax spatially varying
   (default remains spatially uniform constant based on tau)
