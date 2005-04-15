@@ -22,6 +22,9 @@ C o Include/exclude call to S/R CALC_DIFFUSIVITY
 C o Include/exclude Implicit vertical advection code
 #define INCLUDE_IMPLVERTADV_CODE
 
+C o Include/exclude AdamsBashforth-3rd-Order code
+#undef ALLOW_ADAMSBASHFORTH_3
+
 C o Include/exclude nonHydrostatic code
 #undef ALLOW_NONHYDROSTATIC
 
