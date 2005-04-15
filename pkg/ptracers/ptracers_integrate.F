@@ -73,6 +73,7 @@ C  GAD_TR               :: passive tracer id (GAD_TR1+iTracer-1)
       INTEGER kUp,kDown,km1
       INTEGER GAD_TR
       LOGICAL calcAdvection
+      INTEGER iterNb
 CEOP
 
 C Loop over tracers
@@ -123,11 +124,13 @@ C If using Adams-Bashforth II, then extrapolate tendancies
       IF ( PTRACERS_advScheme(iTracer).EQ.ENUM_CENTERED_2ND
      & .OR.PTRACERS_advScheme(iTracer).EQ.ENUM_UPWIND_3RD
      & .OR.PTRACERS_advScheme(iTracer).EQ.ENUM_CENTERED_4TH ) THEN
+        iterNb = myIter
+        IF (staggerTimeStep) iterNb = myIter - 1
         CALL ADAMS_BASHFORTH2(
      I                        bi,bj,K,
      U                        gPtr(1-Olx,1-Oly,1,1,1,iTracer),
      U                        gPtrNm1(1-Olx,1-Oly,1,1,1,iTracer),
-     I                        myIter,myThid )
+     I                        iterNb, myThid )
       ENDIF
 
 C External forcing term(s)
