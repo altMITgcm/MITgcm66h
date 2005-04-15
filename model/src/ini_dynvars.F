@@ -61,10 +61,21 @@ C-      3D arrays
            gV(I,J,K,bi,bj)=0. _d 0
            gT(I,J,K,bi,bj)=0. _d 0
            gS(I,J,K,bi,bj)=0. _d 0
-           gUnm1(I,J,K,bi,bj)=0. _d 0
-           gVnm1(I,J,K,bi,bj)=0. _d 0
-           gTnm1(I,J,K,bi,bj)=0. _d 0
-           gSnm1(I,J,K,bi,bj)=0. _d 0
+#ifdef ALLOW_ADAMSBASHFORTH_3
+           guNm(I,J,K,bi,bj,1)=0. _d 0
+           gvNm(I,J,K,bi,bj,1)=0. _d 0
+           gtNm(I,J,K,bi,bj,1)=0. _d 0
+           gsNm(I,J,K,bi,bj,1)=0. _d 0
+           guNm(I,J,K,bi,bj,2)=0. _d 0
+           gvNm(I,J,K,bi,bj,2)=0. _d 0
+           gtNm(I,J,K,bi,bj,2)=0. _d 0
+           gsNm(I,J,K,bi,bj,2)=0. _d 0
+#else
+           guNm1(I,J,K,bi,bj) =0. _d 0
+           gvNm1(I,J,K,bi,bj) =0. _d 0
+           gtNm1(I,J,K,bi,bj) =0. _d 0
+           gsNm1(I,J,K,bi,bj) =0. _d 0
+#endif
 
 #ifdef ALLOW_NONHYDROSTATIC
 ceh3 needs an IF ( useNONHYDROSTATIC ) THEN
