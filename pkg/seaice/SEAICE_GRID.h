@@ -50,3 +50,7 @@ C
       COMMON/SEAICE_GRID/ TNGTICE, TNGICE, CSTICE, CSUICE, SINEICE,
      &                    RECIP_CSTICE, RECIP_CSUICE,
      &                    DXTICE, DXUICE, DYTICE, DYUICE
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***

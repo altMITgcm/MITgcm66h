@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o fix mnc flags in pkg/seaice so that they are "owned" by seaice,
+  not mnc -- this mistake was found by JMC and is now corrected
+
 checkpoint57g_post
 o add Adams-Bashforth 3rd Order time stepping:
   - default remains AB-2 (#undef ALLOW_ADAMSBASHFORTH_3)

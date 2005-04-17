@@ -27,3 +27,7 @@ C     Storage arrays for time-averages
      &        UICEtave, VICEtave, HEFFtave, AREAtave
 
 #endif /* ALLOW_TIMEAVE */
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***

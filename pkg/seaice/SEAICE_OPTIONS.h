@@ -63,3 +63,7 @@ C     following options are available.
 #undef SEAICE_TEST_ICE_STRESS_1
 
 #endif /* SEAICE_OPTIONS_H */
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***

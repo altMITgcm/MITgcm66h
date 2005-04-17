@@ -110,3 +110,7 @@ C--   Define forcing fields internally.
       _RS  SSTsi1   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
 #endif /* SEAICE_EXTERNAL_FORCING */
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***

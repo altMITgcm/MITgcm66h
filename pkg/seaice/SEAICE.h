@@ -91,3 +91,7 @@ CEOP
 C--   KGEO    Level used as a proxy for geostrophic velocity.
       COMMON/SEAICE_KGEO/KGEO
       integer KGEO   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***
