@@ -6,12 +6,12 @@ C $Name$
 CBOP
 C     !ROUTINE: THSICE_DIAGNOSTICS_FILL
 C     !INTERFACE:
-      SUBROUTINE THSICE_DIAGNOSTICS_FILL( 
+      SUBROUTINE THSICE_DIAGNOSTICS_FILL(
      I                      myTime, myIter, bi, bj, myThid )
 C     !DESCRIPTION: \bv
 C     *==========================================================*
-C     | S/R  THSICE_DIAGNOSTICS_FILL                                              
-C     | o fill-in diagnostics array for THSICE state variables 
+C     | S/R  THSICE_DIAGNOSTICS_FILL
+C     | o fill-in diagnostics array for THSICE state variables
 C     *==========================================================*
 C     \ev
 
@@ -56,7 +56,7 @@ C     == Local variables ==
           tmpFld(i,j) = iceMask(i,j,bi,bj)*iceheight(i,j,bi,bj)
          ENDDO
         ENDDO
-        CALL DIAGNOSTICS_FILL(tmpFld,'SI_Fract',0,1,2,bi,bj,myThid)
+        CALL DIAGNOSTICS_FILL(tmpFld,'SI_Thick',0,1,2,bi,bj,myThid)
        ENDIF
 
        IF ( DIAGNOSTICS_IS_ON('SI_SnowH',myThid) ) THEN
