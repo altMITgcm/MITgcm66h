@@ -445,7 +445,8 @@ C- jmc: but ultimately, this block can/will be removed.
 
       IF ( useOldFreezing .AND. allowFreezing ) THEN
         WRITE(msgBuf,'(2A)')
-     &   'CONFIG_CHECK: cannot set both: allowFreezing & useOldFreezing'
+     &       'CONFIG_CHECK: cannot set both: ',
+     &       'allowFreezing & useOldFreezing'
         CALL PRINT_ERROR( msgBuf , myThid)
         STOP 'ABNORMAL END: S/R CONFIG_CHECK'
       ENDIF
@@ -459,7 +460,8 @@ C- jmc: but ultimately, this block can/will be removed.
 
       IF ( useMATRIX .AND. .NOT.usePTRACERS ) THEN
         WRITE(msgBuf,'(2A)')
-     &   'CONFIG_CHECK: cannot set useMATRIX without setting usePTRACERS'
+     &       'CONFIG_CHECK: cannot set useMATRIX ',
+     &       'without setting usePTRACERS'
         CALL PRINT_ERROR( msgBuf , myThid)
         STOP 'ABNORMAL END: S/R CONFIG_CHECK'
       ENDIF      
