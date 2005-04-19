@@ -28,10 +28,10 @@ C     == Global variables ===
 
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "CPL_PARAMS.h"
 #ifdef ALLOW_MNC
 #include "MNC_PARAMS.h"
 #endif
-#include "CPL_PARAMS.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine Arguments ==       
@@ -78,8 +78,12 @@ C-    Set default value:
       useImportSLP  = .TRUE.
       useImportSIce = .TRUE.
       cpl_taveFreq  = taveFreq
+      cpl_snapshot_mnc = .FALSE.
+      cpl_timeave_mnc  = .FALSE.
+#ifdef ALLOW_MNC
       cpl_snapshot_mnc = snapshot_mnc
       cpl_timeave_mnc  = timeave_mnc
+#endif
       
       _BEGIN_MASTER(myThid)
       
