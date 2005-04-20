@@ -240,5 +240,10 @@ C--   set diagnostics choices
       IF ( useDiagnostics ) CALL DIAGNOSTICS_READPARMS( myThid )
 #endif /* ALLOW_DIAGNOSTICS */
 
+#ifdef ALLOW_MATRIX
+C--    Initialize matrix package parameters
+       IF (useMATRIX) CALL MATRIX_READPARMS ( myThid )
+#endif
+
       RETURN
       END

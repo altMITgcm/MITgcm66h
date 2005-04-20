@@ -127,6 +127,11 @@ C--     Convectively adjust new fields to be statically stable
         ENDIF
 #endif /* ALLOW_OPPS */
 
+#ifdef ALLOW_MATRIX
+      IF (useMATRIX)
+     &  CALL MATRIX_STORE_TENDENCY_IMP( bi, bj, myTime, myIter, myThid )
+#endif
+
 C--    End of 2nd bi,bj loop
        ENDDO
       ENDDO
