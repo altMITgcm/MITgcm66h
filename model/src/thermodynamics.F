@@ -524,7 +524,7 @@ C       field for implicit matrix calculation
 
 #ifdef ALLOW_MATRIX
         IF (useMATRIX) 
-     &    CALL MATRIX_STORE_TENDENCY_EXP( bi, bj, myTime, myIter, myThid )
+     &    CALL MATRIX_STORE_TENDENCY_EXP(bi,bj, myTime,myIter,myThid)
 #endif 
 
         iMin = 1
