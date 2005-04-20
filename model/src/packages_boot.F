@@ -68,7 +68,8 @@ C     data.pkg namelists
      &          usegridalt,
      &          usediagnostics,
      &          useEBM,
-     &          useMNC
+     &          useMNC,
+     &          useMATRIX
 CEOP
 
       _BEGIN_MASTER(myThid)
@@ -108,6 +109,7 @@ C--   Default package configuration
       usediagnostics=.FALSE.
       useEBM=.FALSE.
       useMNC=.FALSE.
+      useMATRIX=.FALSE.
 
 C--   Read parameters from open data file
       READ(UNIT=iUnit,NML=PACKAGES)

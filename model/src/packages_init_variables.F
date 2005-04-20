@@ -261,6 +261,13 @@ C Initialize FIZHI state variables
       ENDIF
 #endif
 
+#ifdef ALLOW_MATRIX
+#ifdef ALLOW_DEBUG
+      IF (debugMode) CALL DEBUG_CALL('MATRIX_INIT',myThid)
+#endif
+      IF ( useMATRIX ) CALL MATRIX_INIT( myThid )
+#endif
+
 #ifdef ALLOW_DEBUG
       IF (debugMode) 
      &     CALL DEBUG_LEAVE('PACKAGES_INIT_VARIABLES',myThid)

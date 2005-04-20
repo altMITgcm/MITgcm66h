@@ -165,6 +165,12 @@ C--   Do ptracer output.
      & CALL PTRACERS_OUTPUT( myTime, myIter, myThid )
 #endif
 
+#ifdef ALLOW_MATRIX
+C--   Do matrix output
+      IF (useMATRIX) 
+     & CALL MATRIX_OUTPUT( myTime, myIter, myThid )
+#endif
+
 #ifdef ALLOW_GCHEM
 C--   Do GCHEM diagnostics.
       IF (useGCHEM)
