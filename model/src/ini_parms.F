@@ -147,6 +147,7 @@ C--   Continuous equation parameters
      & atm_Cp, atm_Rd, atm_Rq,
      & no_slip_sides,no_slip_bottom,
      & momViscosity,  momAdvection, momForcing, useCoriolis,
+     & useConstantF,
      & momPressureForcing, metricTerms, vectorInvariantMomentum,
      & tempDiffusion, tempAdvection, tempForcing,
      & saltDiffusion, saltAdvection, saltForcing,
