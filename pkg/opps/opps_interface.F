@@ -1,8 +1,7 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
-#include "CPP_OPTIONS.h"
+#include "OPPS_OPTIONS.h"
 
 CBOP
 C     !ROUTINE: OPPS_INTERFACE

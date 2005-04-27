@@ -2,7 +2,6 @@ C
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
 #include "EXF_OPTIONS.h"
 
       subroutine exf_GetSurfaceFluxes(

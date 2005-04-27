@@ -2,7 +2,6 @@ C $Header$
 C $Name$
 
 #include "OBCS_OPTIONS.h"
-#include "PACKAGES_CONFIG.h"
 #include "AD_CONFIG.h"
 
 CStartOfInterface

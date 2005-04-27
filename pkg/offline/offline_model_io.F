@@ -1,5 +1,6 @@
-#include "PACKAGES_CONFIG.h"
-#include "CPP_OPTIONS.h"
+C $Header$
+C $Name$
+
 #include "OFFLINE_OPTIONS.h"
 
 CBOP
