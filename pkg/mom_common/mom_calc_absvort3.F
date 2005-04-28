@@ -30,15 +30,21 @@ C     == Local variables ==
       INTEGER i,j
       _RL nonLinFac,useCoriolisFac
 
-      nonLinFac=0.
-      IF (momAdvection) nonLinFac=0.
-      useCoriolisFac=0.
-      IF (useCoriolis) useCoriolisFac=1.
+      IF (momAdvection) THEN
+        nonLinFac=1.
+      ELSE
+        nonLinFac=0.
+      ENDIF
+      IF (useCoriolis) THEN
+        useCoriolisFac=1.
+      ELSE
+        useCoriolisFac=0.
+      ENDIF
 
-      DO J=1-Oly,sNy+Oly
-       DO I=1-Olx,sNx+Olx
+      DO j=1-Oly,sNy+Oly
+       DO i=1-Olx,sNx+Olx
         omega3(I,J)=
-     &      fCoriG(I,J,bi,bj)*useCoriolisFac
+     &      fCoriG(i,j,bi,bj)*useCoriolisFac
      &     +vort3(i,j)*nonLinFac
        ENDDO
       ENDDO
