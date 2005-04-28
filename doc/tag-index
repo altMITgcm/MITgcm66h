@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o bugs fixed (with useAbsVorticity=T & with useJamartMomAdv=T)
 o test AB-3 code with 4th.Order advection scheme (advect_xy/input.ab3_c4)
 o fix mnc flags in pkg/seaice so that they are "owned" by seaice,
   not mnc -- this mistake was found by JMC and is now corrected
