@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o added diagnostics to pkg/kpp, including computation of mixed layer
+  depth based on a temperature/density criterion
+o updated verification/natl_box to test the new pkg/kpp diagnostics
 o bugs fixed (with useAbsVorticity=T & with useJamartMomAdv=T)
 o test AB-3 code with 4th.Order advection scheme (advect_xy/input.ab3_c4)
 o fix mnc flags in pkg/seaice so that they are "owned" by seaice,

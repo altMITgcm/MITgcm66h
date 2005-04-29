@@ -28,6 +28,8 @@ C       |-- CD_CODE_INIT_FIXED
 C       |
 C       |-- GMREDI_INIT_FIXED
 C       |
+C       |-- KPP_INIT_FIXED
+C       |
 C       |-- OPPS_INIT
 C       |
 C       |-- OBCS_INIT_FIXED
@@ -99,6 +101,13 @@ C--   Initialize fixed params for GAD
 C--   Initialize fixed arrays for GM-Redi
       IF ( useGMRedi ) THEN
        CALL GMREDI_INIT_FIXED( myThid )
+      ENDIF
+#endif
+
+#ifdef ALLOW_KPP
+C--   Initialize fixed arrays for KPP
+      IF ( useKPP ) THEN
+       CALL KPP_INIT_FIXED( myThid )
       ENDIF
 #endif
 
