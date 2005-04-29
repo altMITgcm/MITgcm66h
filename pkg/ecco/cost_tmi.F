@@ -134,9 +134,9 @@ c--           Determine the mask on weights
                   endif
                   
 c--   set cmask=0 in areas shallower than 1000m 
-                  if (_hFacC(i,j,13,bi,bj) .eq. 0.) then
-                    cmask(i,j) = 0. _d 0
-                  endif
+cph                  if (_hFacC(i,j,13,bi,bj) .eq. 0.) then
+cph                    cmask(i,j) = 0. _d 0
+cph                  endif
                 enddo
               enddo
 

@@ -196,8 +196,10 @@ c--           Compute model data misfit and cost function term for
 c             the temperature field.
               do j = jmin,jmax
                 do i = imin,imax
-                  if ( _hFacC(i,j,k,bi,bj) .ne. 0. .AND.
-     &                 _hFacC(i,j,13,bi,bj) .ne. 0. ) then
+cph(
+cph no more discard of data for z < 1000
+cph)
+                  if ( _hFacC(i,j,k,bi,bj) .ne. 0. ) then
                      fctile = fctile +
      &                    (wtheta(k,bi,bj)*cmask(i,j)*
      &                    (tbar(i,j,k,bi,bj) - tdat(i,j,k,bi,bj))*
