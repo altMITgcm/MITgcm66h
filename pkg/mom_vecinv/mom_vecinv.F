@@ -370,10 +370,21 @@ c      ENDDO
 c     ENDIF
 
 C--   Horizontal Coriolis terms
-      IF (useCoriolis .AND. .NOT.useCDscheme
-     &    .AND. .NOT. useAbsVorticity) THEN
-       CALL MOM_VI_CORIOLIS(bi,bj,k,uFld,vFld,hFacZ,r_hFacZ,
-     &                      uCf,vCf,myThid)
+c     IF (useCoriolis .AND. .NOT.useCDscheme
+c    &    .AND. .NOT. useAbsVorticity) THEN
+C- jmc: change it to keep the Coriolis terms when useAbsVorticity=T & momAdvection=F
+      IF ( useCoriolis .AND. 
+     &     .NOT.( useCDscheme .OR. useAbsVorticity.AND.momAdvection )
+     &   ) THEN
+       IF (useAbsVorticity) THEN
+        CALL MOM_VI_U_CORIOLIS(bi,bj,K,vFld,omega3,hFacZ,r_hFacZ,
+     &                         uCf,myThid)
+        CALL MOM_VI_V_CORIOLIS(bi,bj,K,uFld,omega3,hFacZ,r_hFacZ,
+     &                         vCf,myThid)
+       ELSE
+        CALL MOM_VI_CORIOLIS(bi,bj,k,uFld,vFld,hFacZ,r_hFacZ,
+     &                       uCf,vCf,myThid)
+       ENDIF
        DO j=jMin,jMax
         DO i=iMin,iMax
          gU(i,j,k,bi,bj) = uCf(i,j) - phxFac*dPhiHydX(i,j)
