@@ -73,14 +73,14 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
         diagName  = 'KPPhbl  '
-        diagTitle = 'KPP mixing layer depth based on bulk Ri criterion'
+        diagTitle = 'KPP boundary layer depth, bulk Ri criterion'
         diagUnits = 'm               '
         diagCode  = 'SM P     1      '
         CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
         diagName  = 'KPPmld  '
-        diagTitle = 'Mixed layer depth for dT=.8degC density criterion'
+        diagTitle = 'Mixed layer depth, dT=.8degC density criterion'
         diagUnits = 'm               '
         diagCode  = 'SM P     1      '
         CALL DIAGNOSTICS_ADD2LIST( diagNum,
