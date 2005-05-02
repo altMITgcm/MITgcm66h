@@ -169,11 +169,6 @@ c--         Compute cost rel. to monthly SCAT field.
             fcthread_scaty     = fcthread_scaty + fctile_scaty
             objf_scaty(bi,bj)  = objf_scaty(bi,bj)  + fctile_scaty
 
-cph(
-            print *, 'ph-scat c ', irec,
-     &           objf_scatx(1,1), objf_scaty(1,1)
-cph)
-
 #ifdef ECCO_VERBOSE
 c--         Print cost fscat for each tile in each thread.
             write(msgbuf,'(a)') ' '
