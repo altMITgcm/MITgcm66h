@@ -1441,6 +1441,7 @@ C diag_choices common
 C     nfields(n) :: number of active diagnostics for output stream # n
 C     nActive(n) :: number of active diagnostics (including counters)
 C                   for output stream # n
+C     fflags(n)  :: character string with per-file flags
 
       integer nlists
 
@@ -1452,6 +1453,7 @@ C                   for output stream # n
       integer jdiag(numperlist,numlists)
       character*8 flds (numperlist,numlists)
       character*80 fnames(numlists)
+      character*8 fflags(numlists)
       logical
      &     diag_mdsio, diag_mnc,
      &     diag_pickup_read,        diag_pickup_write,
@@ -1459,7 +1461,7 @@ C                   for output stream # n
      &     diag_pickup_read_mnc,    diag_pickup_write_mnc
 
       common /diag_choices/ 
-     &     levs, jdiag, flds, fnames, 
+     &     levs, jdiag, flds, fnames, fflags,
      &     freq, nlevels, nfields, nActive, nlists,
      &     diag_mdsio, diag_mnc,
      &     diag_pickup_read,        diag_pickup_write,
