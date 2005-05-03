@@ -44,7 +44,7 @@ C--   Do time averages
 c       CALL TIMEAVE_STATV_WRITE( myTime, myIter, myThid )
 #ifdef ALLOW_PTRACERS
        IF ( usePTRACERS )
-     & CALL PTRACERS_STATV_WRITE( myTime, myIter, myThid )
+     & CALL PTRACERS_WRITE_TIMEAVE( myTime, myIter, myThid )
 #endif
       ENDIF
 #endif
