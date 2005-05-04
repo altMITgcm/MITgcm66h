@@ -76,6 +76,7 @@ C***********************************************************************
       open(kveg,file=vegdata,form='unformatted',access='sequential', 
      .                      iostat=ierr1)
       if( ierr1.eq.0 ) then
+          rewind(kveg)
           read(kveg)im_32,jm_32,Nxg_32,Nyg_32,IVEG_32,VEG_32
       else
        print *
