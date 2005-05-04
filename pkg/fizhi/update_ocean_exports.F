@@ -198,7 +198,6 @@ C---------- Read in Header file ----------------------------------
 
       if( iyear.ne.iyearbc ) then
 
-       close(iunit)
        open (iunit,file=sicedata,form='unformatted',access='direct',
      .                                         recl=xsize*ysize*4)
        nrec = 1
@@ -336,6 +335,7 @@ C---------- Fill sice with depth of ice ------------------------------------
       enddo
       enddo
 C---------------------------------------------------------------------------
+      close(iunit)
  
       return
       end
@@ -446,7 +446,6 @@ C---------- Read in Header file ----------------------------------
 
       if( iyear.ne.iyearbc ) then
 
-       close(iunit)
        open (iunit,file=sstdata,form='unformatted',access='direct',
      .                                        recl=xsize*ysize*4)
        nrec = 1
@@ -569,6 +568,8 @@ C---------- Interpolate SST data ------------------------------------
       enddo
       enddo
  
+      close(iunit)
+
       return
       end
 
