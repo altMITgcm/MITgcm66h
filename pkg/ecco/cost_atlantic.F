@@ -37,6 +37,7 @@ c     == global variables ==
 #include "CG2D.h"
 
 #include "optim.h"
+#include "cost.h"
 #include "ecco_cost.h"
 #include "ctrl_dummy.h"
 
