@@ -56,6 +56,7 @@ c     == global variables ==
 #include "SIZE.h"
 #include "GRID.h"
 #include "PARAMS.h"
+#include "cost.h"
 #include "ecco_cost.h"
 #include "SEAICE.h"
 #include "DYNVARS.h"
@@ -83,9 +84,10 @@ c     == external functions ==
 
 c     == end of interface ==
 
-      if ( mytime .ge. costIceStart .and. mytime .le. costIceEnd ) then
-         tempVar = 1. / ( 1. + int( ( min ( endtime, costIceEnd ) -
-     &        max ( starttime, costIceStart ) ) / deltaTClock ) )
+      if ( myTime .GT. (endTime - lastinterval) ) then
+         tempVar = 1. / 
+     &             ( ( 1. + min(endTime-startTime,lastinterval) )
+     &             / deltaTClock ) 
 
          if ( cost_ice_flag .eq. 1 ) then
 c     sea-ice volume
