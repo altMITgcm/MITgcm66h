@@ -49,7 +49,7 @@ C     !LOCAL VARIABLES:
       _RL temptile(nchp)
 
       ihour = nhms/10000
-      WRITE(fn,'(a,I8,a,I2.2,a)') 'vegtiles_cs32.d',nymd,'z',ihour,'.bin'
+      WRITE(fn,'(a,I8,a,I2.2,a)')'vegtiles_cs32.d',nymd,'z',ihour,'.bin'
       fileprec = 64
 
       call MDSFINDUNIT( iunit, mythid )
