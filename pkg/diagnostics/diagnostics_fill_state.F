@@ -344,6 +344,37 @@ C--   fill tracer state-var diagnostics:
          CALL DIAGNOSTICS_FILL(tmpMk,'SALTSQ  ',0,Nr,0,1,1,myThid)
         ENDIF
       
+        IF ( DIAGNOSTICS_IS_ON('SALTanom',myThid) ) THEN
+         DO bj = myByLo(myThid), myByHi(myThid)
+          DO bi = myBxLo(myThid), myBxHi(myThid)
+           DO K=1,Nr
+            DO j = 1,sNy
+             DO i = 1,sNx
+               tmpMk(i,j,K,bi,bj) = salt(i,j,K,bi,bj)-35
+             ENDDO
+            ENDDO
+           ENDDO
+          ENDDO
+         ENDDO
+         CALL DIAGNOSTICS_FILL(tmpMk,'SALTanom',0,Nr,0,1,1,myThid)
+        ENDIF
+      
+        IF ( DIAGNOSTICS_IS_ON('SALTSQan',myThid) ) THEN
+         DO bj = myByLo(myThid), myByHi(myThid)
+          DO bi = myBxLo(myThid), myBxHi(myThid)
+           DO K=1,Nr
+            DO j = 1,sNy
+             DO i = 1,sNx
+               tmpMk(i,j,K,bi,bj) =
+     &               (salt(i,j,K,bi,bj)-35)*(salt(i,j,K,bi,bj)-35)
+             ENDDO
+            ENDDO
+           ENDDO
+          ENDDO
+         ENDDO
+         CALL DIAGNOSTICS_FILL(tmpMk,'SALTSQan',0,Nr,0,1,1,myThid)
+        ENDIF
+      
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
         IF ( DIAGNOSTICS_IS_ON('UVELMASS',myThid) ) THEN

@@ -26,6 +26,8 @@ C       |-- GAD_INIT
 C       |
 C       |-- CD_CODE_INIT_FIXED
 C       |
+C       |-- EXF_INIT_FIXED
+C       |
 C       |-- GMREDI_INIT_FIXED
 C       |
 C       |-- KPP_INIT_FIXED
@@ -95,6 +97,13 @@ C--   Initialize fixed params for GAD
       IF (useCDscheme) THEN
        CALL CD_CODE_INIT_FIXED(mythid)
       ENDIF
+#endif
+
+#ifdef ALLOW_EXF
+C--   Initialize fixed arrays for EXF
+c     IF ( useEXF ) THEN
+       CALL EXF_INIT_FIXED( myThid )
+c     ENDIF
 #endif
 
 #ifdef ALLOW_GMREDI
