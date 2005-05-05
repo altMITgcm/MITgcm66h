@@ -118,9 +118,17 @@ c     == local variables ==
 
       integer bi,bj
       integer i,j,k
+      character*(max_len_mbuf) msgbuf
 
 c     == end of interface ==
 CEOP
+
+#ifdef ALLOW_ECCO_OPTIMIZATION
+      write(standardmessageunit,'(A,I10)')
+     &   'exf: myiter = ', myiter
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+#endif
 
 c     Get values of climatological fields.
       call exf_getclim( mytime, myiter, mythid )
