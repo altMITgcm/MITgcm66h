@@ -55,6 +55,11 @@ C--   Do gchem diagnostics.
      & CALL GCHEM_DIAGS( myTime, myIter, myThid )
 #endif
 
+#ifdef ALLOW_PTRACERS
+C--   Do ptracer output.
+      IF ( usePTRACERS )
+     & CALL PTRACERS_OUTPUT( myTime, myIter, myThid )
+#endif
 
       RETURN
       END
