@@ -120,10 +120,24 @@ C-    state variables of the main code (and related quadratic var):
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
+      diagName  = 'SST     '
+      diagTitle = 'Sea Surface Temperature (degC,K)'
+      diagUnits = DIAGS_MK_UNITS( tUnit4c, myThid )
+      diagCode  = 'SM      M1      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
       diagName  = 'SALT    '
       diagTitle = 'Salt or Water Vapor mixing ratio (g/kg)'
       diagUnits = DIAGS_MK_UNITS( sUnit4c, myThid )
       diagCode  = 'SM      MR      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+      diagName  = 'SSS     '
+      diagTitle = 'Sea Surface Salinity (g/kg)'
+      diagUnits = DIAGS_MK_UNITS( sUnit4c, myThid )
+      diagCode  = 'SM      M1      '
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
@@ -145,6 +159,20 @@ C-    state variables of the main code (and related quadratic var):
       diagTitle = 'Meridional Component of Velocity (m/s)'
       diagUnits = 'm/s             '
       WRITE(diagCode,'(A,I3.3,A)') 'VV   ', diagNum ,'MR      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+      diagName  = 'UVEL_k2 '
+      diagTitle = 'Zonal Component of Velocity at level 2 (m/s)'
+      diagUnits = 'm/s             '
+      WRITE(diagCode,'(A,I3.3,A)') 'UU   ',diagNum+2,'M1      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+      diagName  = 'VVEL_k2 '
+      diagTitle = 'Meridional Component of Velocity at level 2 (m/s)'
+      diagUnits = 'm/s             '
+      WRITE(diagCode,'(A,I3.3,A)') 'VV   ', diagNum ,'M1      '
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 

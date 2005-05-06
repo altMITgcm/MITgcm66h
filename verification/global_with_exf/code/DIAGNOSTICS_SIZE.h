@@ -15,8 +15,8 @@ C     numdiags   :: maximum size of the storage array for active diagnostics
       INTEGER    numLevels
       INTEGER    numdiags
       PARAMETER( ndiagMax = 500 )
-      PARAMETER( numlists = 7, numperlist = 1, numLevels=Nr )
-      PARAMETER( numdiags = 4*Nr+3 )
+      PARAMETER( numlists = 8, numperlist = 1, numLevels=1 )
+      PARAMETER( numdiags = 8 )
 
 
 CEH3 ;;; Local Variables: ***
