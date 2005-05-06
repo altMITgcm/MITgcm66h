@@ -43,6 +43,11 @@ C     Zero out the qdiag array which accumulates during integration
         ENDDO
       ENDDO
 
+C     Zero out the counters for the qdiag array
+      do n=1,ndiagMax
+        ndiag(n) = 0
+      enddo
+
       CALL DIAGNOSTICS_READ_PICKUP( myThid )
 
       RETURN 
