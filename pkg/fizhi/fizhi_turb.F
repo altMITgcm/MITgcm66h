@@ -540,16 +540,6 @@ c we need to count up the land, sea ice and ocean points
        if( types(i).eq.100 .and. icest(i).gt.0.0 ) nice = nice + 1
       enddo
 
-c Disable following ISTRIP check for MPI version
-c ----------------------------------------------
-c     if( (nland+nocean).ne.istrip ) then
-c     print *
-c     print *,'Error!'
-c     print *,'Problem Stripping Land/Ocean/Ice points in Turbulence'
-c     print *
-c     stop
-c     endif
-
 c Zero out velocities at the bottom edge of the model
 c ---------------------------------------------------
       do i =1,istrip
