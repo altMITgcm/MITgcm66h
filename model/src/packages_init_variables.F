@@ -80,6 +80,12 @@ CEOP
      &     CALL DEBUG_ENTER('PACKAGES_INIT_VARIABLES',myThid)
 #endif
 
+#ifdef ALLOW_DIAGNOSTICS
+      IF ( useDiagnostics ) THEN
+        CALL DIAGNOSTICS_INIT_VARIA( myThid )
+      ENDIF
+#endif
+
 #ifdef ALLOW_CD_CODE
 C--   Initialize CD_CODE variables: 
 C- note(jmc): before packaging CD_CODE, was done within ini_fields (=called before),
@@ -253,12 +259,6 @@ C Initialize FIZHI state variables
       IF (debugMode) CALL DEBUG_CALL('FIZHI_INIT_VARS',myThid)
 #endif
       IF (useFIZHI) CALL FIZHI_INIT_VARS( mythid)
-#endif
-
-#ifdef ALLOW_DIAGNOSTICS
-      IF ( useDiagnostics ) THEN
-        CALL DIAGNOSTICS_INIT_VARIA( myThid )
-      ENDIF
 #endif
 
 #ifdef ALLOW_MATRIX
