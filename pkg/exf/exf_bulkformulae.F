@@ -501,9 +501,9 @@ c             Salt flux from Precipitation and Evaporation.
 #ifdef ALLOW_DIAGNOSTICS
       IF ( useDiagnostics ) THEN
          CALL DIAGNOSTICS_FILL(hs    ,'EXFhs   ',0,1,0,1,1,myThid)
-         CALL DIAGNOSTICS_FILL(hl    ,'EXFhs   ',0,1,0,1,1,myThid)
-         CALL DIAGNOSTICS_FILL(lwflux,'EXFhs   ',0,1,0,1,1,myThid)
-         CALL DIAGNOSTICS_FILL(swflux,'EXFhs   ',0,1,0,1,1,myThid)
+         CALL DIAGNOSTICS_FILL(hl    ,'EXFhl   ',0,1,0,1,1,myThid)
+         CALL DIAGNOSTICS_FILL(lwflux,'EXFlw   ',0,1,0,1,1,myThid)
+         CALL DIAGNOSTICS_FILL(swflux,'EXFsw   ',0,1,0,1,1,myThid)
       ENDIF
 #endif /* ALLOW_DIAGNOSTICS */
 
