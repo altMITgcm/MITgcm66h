@@ -198,7 +198,7 @@ C-    state variables of the main code (and related quadratic var):
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
       diagName  = 'SALTSQan'
-      diagTitle = 'Square of Salt anomaly (=SALTSQ-35^2 (g^2/kg^2)'
+      diagTitle = 'Square of Salt anomaly (=(SALT-35)^2 (g^2/kg^2)'
       diagUnits = DIAGS_MK_UNITS( '('//sUnit4c//')^2', myThid )
       diagCode  = 'SM      MR      '
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
