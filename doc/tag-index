@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint57h_pre
+
 o in mnc, let the user create the output dir if both mnc_outdir_date
   and mnc_outdir_num are false
 o add fflags() to pkg/diagnostics which allows one to specify, on a
