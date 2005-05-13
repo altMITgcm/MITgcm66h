@@ -1445,7 +1445,7 @@ C     fflags(n)  :: character string with per-file flags
 
       integer nlists
 
-      integer freq(numlists)
+      _RL freq(numlists)
       integer nlevels(numlists)
       integer nfields(numlists)
       integer nActive(numlists)
