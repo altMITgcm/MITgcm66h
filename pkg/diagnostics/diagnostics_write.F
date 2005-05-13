@@ -57,7 +57,8 @@ C-    Determine calendar dates for this and previous time step.
 #ifdef ALLOW_FIZHI
          if( useFIZHI) then 
           yymmdd = int(freq(n))
-          realfreq = nsecf2(0,yymmdd,nymd) / deltaTclock
+          hhmmss = int((freq(n) - int(freq(n)))*1.e6)
+          realfreq = nsecf2(hhmmss,yymmdd,nymd) / deltaTclock
          endif
 #endif
 
@@ -103,7 +104,8 @@ C-      wait for everyone before setting arrays to zero:
 #ifdef ALLOW_FIZHI
          if( useFIZHI) then 
           yymmdd = int(freq(n))
-          realfreq = nsecf2(0,yymmdd,nymd) / deltaTclock
+          hhmmss = int((freq(n) - int(freq(n)))*1.e6)
+          realfreq = nsecf2(hhmmss,yymmdd,nymd) / deltaTclock
          endif
 #endif
           IF ( realfreq.LT.0 ) THEN

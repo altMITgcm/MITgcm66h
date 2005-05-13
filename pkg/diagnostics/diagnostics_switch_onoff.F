@@ -57,7 +57,8 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 #ifdef ALLOW_FIZHI
       if( useFIZHI) then
        yymmdd = int(freq(n))
-       realfreq = nsecf2(0,yymmdd,nymd) / deltaTclock
+       hhmmss = int((freq(n) - int(freq(n)))*1.e6)
+       realfreq = nsecf2(hhmmss,yymmdd,nymd) / deltaTclock
       endif
 #endif
 
