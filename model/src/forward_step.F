@@ -132,7 +132,7 @@ c**************************************
 C--   Switch on/off diagnostics for snap-shot output:
 #ifdef ALLOW_DIAGNOSTICS
       IF ( useDiagnostics ) THEN
-        CALL DIAGNOSTICS_SWITCH_ONOFF( myIter, myThid )
+        CALL DIAGNOSTICS_SWITCH_ONOFF( myTime, myIter, myThid )
       ENDIF
 #endif
 
