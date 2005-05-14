@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint57h_post
+o move tIter0 from data.gchem to PTRACERS_Iter0 in data.ptracers
 o pkg/diagnostics: change output frequency, now in seconds (instead
   of Nb of iterations). This requires to change data.diagnostics.
 checkpoint57h_pre
