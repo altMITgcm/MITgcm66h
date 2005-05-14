@@ -17,6 +17,7 @@ C     Package flag
 
 C     PTRACERS_taveFreq :: Frequency with which time-averaged PTRACERS
 C                          are written to post-processing files.
+C     PTRACERS_Iter0    :: timestep number when tracers are initialized
 
 C     PTRACERS parameters
       _RL PTRACERS_dumpFreq
@@ -25,6 +26,7 @@ C     PTRACERS parameters
       _RL PTRACERS_diffKh(PTRACERS_num)
       _RL PTRACERS_diffK4(PTRACERS_num)
       _RL PTRACERS_diffKrNr(Nr,PTRACERS_num)
+      INTEGER PTRACERS_Iter0
       INTEGER PTRACERS_numInUse
       INTEGER PTRACERS_advScheme(PTRACERS_num)
       LOGICAL PTRACERS_ImplVertAdv(PTRACERS_num)
@@ -46,6 +48,7 @@ C     PTRACERS parameters
      &     PTRACERS_diffKh,
      &     PTRACERS_diffK4,
      &     PTRACERS_diffKrNr,
+     &     PTRACERS_Iter0,
      &     PTRACERS_numInUse,
      &     PTRACERS_advScheme,
      &     PTRACERS_ImplVertAdv,
