@@ -47,10 +47,11 @@ CEOP
 C Example of how to add forcing at the surface
        DO iTracer=1,PTRACERS_numInUse
           DO j = jMin, jMax
-             DO i = iMin, iMax
-                surfaceForcingPtr(i,j,bi,bj,iTracer) =
-     &               surfaceForcingS(i,j,bi,bj)
-             ENDDO
+           DO i = iMin, iMax
+             surfaceForcingPtr(i,j,bi,bj,iTracer) = 
+     &               0. _d 0
+c    &               surfaceForcingS(i,j,bi,bj)
+           ENDDO
           ENDDO
        ENDDO
 
