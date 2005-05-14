@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/diagnostics: change output frequency, now in seconds (instead
+  of Nb of iterations). This requires to change data.diagnostics.
 checkpoint57h_pre
 
 o in mnc, let the user create the output dir if both mnc_outdir_date
