@@ -44,11 +44,11 @@ C     fn      :: character buffer for creating filename
       CHARACTER*(MAX_LEN_MBUF) suff
       CHARACTER*(80) fn
       logical glf
-      LOGICAL  DIFF_BASE_MULTIPLE
-      EXTERNAL DIFF_BASE_MULTIPLE
+      LOGICAL  DIFFERENT_MULTIPLE
+      EXTERNAL DIFFERENT_MULTIPLE
 
       IF (
-     &     DIFF_BASE_MULTIPLE(baseTime,dumpFreq,myTime,deltaTClock).OR.
+     &     DIFFERENT_MULTIPLE(dumpFreq,myTime,deltaTClock).OR.
      &     myTime.EQ.endTime .OR.
      &     myTime.EQ.startTime
      &     ) THEN

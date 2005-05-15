@@ -24,8 +24,8 @@ C-- size for MITgcm & Physics package :
 #include "com_physvar.h"
 #include "com_forcing.h"
 
-      LOGICAL  DIFF_BASE_MULTIPLE
-      EXTERNAL DIFF_BASE_MULTIPLE
+      LOGICAL  DIFFERENT_MULTIPLE
+      EXTERNAL DIFFERENT_MULTIPLE
 
 C     == Routine arguments ==
 C     bi,bj  - Tile index
@@ -58,7 +58,7 @@ C--  mean surf. temp. change:
          dTsurf(J,1,myThid) = ABS(dTsurf(J,1,myThid))
        ENDDO
 
-      IF ( DIFF_BASE_MULTIPLE(baseTime,aim_tendFreq,
+      IF ( DIFFERENT_MULTIPLE(aim_tendFreq,
      &                        myTime+deltaTClock,deltaTClock)
      &   ) THEN 
        WRITE(suff,'(I10.10)') myIter+1
@@ -91,7 +91,7 @@ C--   write clear-sky tendencies to files :
 #endif /* ALLOW_CLR_SKY_DIAG */
       ENDIF
 
-      IF ( DIFF_BASE_MULTIPLE(baseTime,aim_diagFreq,
+      IF ( DIFFERENT_MULTIPLE(aim_diagFreq,
      &                        myTime+deltaTClock,deltaTClock)
      &   ) THEN 
        WRITE(suff,'(I10.10)') myIter+1

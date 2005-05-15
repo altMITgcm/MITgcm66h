@@ -16,8 +16,8 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "AIM_DIAGS.h"
-      LOGICAL  DIFF_BASE_MULTIPLE
-      EXTERNAL DIFF_BASE_MULTIPLE
+      LOGICAL  DIFFERENT_MULTIPLE
+      EXTERNAL DIFFERENT_MULTIPLE
 
 C Common (shared with RD_WR_FLD routines in read_write_fld.F)
       COMMON /RD_WR_FLD/ globalFile
@@ -45,7 +45,7 @@ c_jmc gf = .TRUE.
 
 C     Dump files and restart average computation if needed
       IF ( myIter.NE.nIter0 .AND.
-     &     DIFF_BASE_MULTIPLE(baseTime,taveFreq,myTime,deltaTClock)
+     &     DIFFERENT_MULTIPLE(taveFreq,myTime,deltaTClock)
      &   ) THEN
 
 C      Normalize by integrated time

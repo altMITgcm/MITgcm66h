@@ -61,8 +61,8 @@ C     myThid -  Number of this instance of INI_FORCING
 C     !LOCAL VARIABLES:
 C     == Local variables ==
       CHARACTER*(MAX_LEN_MBUF) suff
-      LOGICAL  DIFF_BASE_MULTIPLE
-      EXTERNAL DIFF_BASE_MULTIPLE
+      LOGICAL  DIFFERENT_MULTIPLE
+      EXTERNAL DIFFERENT_MULTIPLE
       INTEGER bi, bj, K
       _RL DDTT
 CEOP
@@ -72,8 +72,7 @@ C     Dump snapshot of PP variables.
 C----------------------------------------------------------------
 
       IF (
-     &     DIFF_BASE_MULTIPLE(baseTime,PPdumpFreq,
-     &     myCurrentTime,deltaTClock)
+     &     DIFFERENT_MULTIPLE(PPdumpFreq,myCurrentTime,deltaTClock)
      &     ) THEN
          
        IF (PPmixingMaps) THEN
@@ -129,9 +128,8 @@ C     Initialize averages to zero
 
 C     Time Average PP fields
       IF ( myIter .EQ. nIter0 .OR.
-     &     DIFF_BASE_MULTIPLE
-     &     (baseTime,PPtaveFreq,myCurrentTime,deltaTClock) )
-     &     THEN
+     &     DIFFERENT_MULTIPLE(PPtaveFreq,myCurrentTime,deltaTClock)
+     &   ) THEN
        DDTT=0.5*deltaTclock
       ELSE
        DDTT=deltaTclock
@@ -151,8 +149,7 @@ C     Keep record of how much time has been integrated over
 
 C     Dump files and restart average computation if needed
       IF ( myIter.NE.nIter0 .AND. 
-     &     DIFF_BASE_MULTIPLE(baseTime,PPtaveFreq,
-     &     myCurrentTime,deltaTClock)
+     &     DIFFERENT_MULTIPLE(PPtaveFreq,myCurrentTime,deltaTClock)
      &     ) THEN
          
 C     Normalize by integrated time

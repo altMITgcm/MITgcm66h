@@ -42,8 +42,8 @@ CEOP
 #ifdef ALLOW_THSICE
 
 C     == Local variables ==
-      LOGICAL  DIFF_BASE_MULTIPLE
-      EXTERNAL DIFF_BASE_MULTIPLE
+      LOGICAL  DIFFERENT_MULTIPLE
+      EXTERNAL DIFFERENT_MULTIPLE
       INTEGER bi, bj, kl
       CHARACTER*(MAX_LEN_MBUF) suff, fn
       LOGICAL gf
@@ -75,7 +75,7 @@ c set arrays to zero if first timestep
 
 C     Dump files and restart average computation if needed
       ELSEIF ( 
-     &  DIFF_BASE_MULTIPLE(baseTime,thSIce_taveFreq,myTime,deltaTClock)
+     &  DIFFERENT_MULTIPLE(thSIce_taveFreq,myTime,deltaTClock)
      &     ) THEN
 
 C--    Normalize by integrated time
@@ -253,7 +253,7 @@ C--    Reset averages to zero
 
 C     Dump a snap-shot of main state variables:
       IF ( 
-     &  DIFF_BASE_MULTIPLE(baseTime,thSIce_diagFreq,myTime,deltaTClock)
+     &  DIFFERENT_MULTIPLE(thSIce_diagFreq,myTime,deltaTClock)
      &     .OR. myTime.EQ.startTime
      &     .OR. myTime.EQ.endTime ) THEN
 

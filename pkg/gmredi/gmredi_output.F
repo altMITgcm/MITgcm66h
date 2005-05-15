@@ -41,15 +41,15 @@ CEOP
 #ifdef ALLOW_GMREDI
 C     !LOCAL VARIABLES:
 C     == Local variables ==
-      LOGICAL  DIFF_BASE_MULTIPLE
-      EXTERNAL DIFF_BASE_MULTIPLE
+      LOGICAL  DIFFERENT_MULTIPLE
+      EXTERNAL DIFFERENT_MULTIPLE
       INTEGER bi, bj, K
       CHARACTER*(MAX_LEN_MBUF) suff
 
 
 #if ( defined (GM_NON_UNITY_DIAGONAL) || defined (GM_EXTRA_DIAGONAL) ) 
 
-      IF ( DIFF_BASE_MULTIPLE(baseTime,diagFreq,myTime,deltaTClock)
+      IF ( DIFFERENT_MULTIPLE(diagFreq,myTime,deltaTClock)
      &   ) THEN 
         WRITE(suff,'(I10.10)') myIter
 #ifdef GM_NON_UNITY_DIAGONAL
@@ -70,7 +70,7 @@ C     == Local variables ==
 #ifdef ALLOW_TIMEAVE
 
 C     Dump files and restart average computation if needed
-      IF ( DIFF_BASE_MULTIPLE(baseTime,taveFreq,myTime,deltaTClock)
+      IF ( DIFFERENT_MULTIPLE(taveFreq,myTime,deltaTClock)
      &     ) THEN
          
 C      Normalize by integrated time
