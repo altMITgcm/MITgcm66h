@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o remove "baseTime" (no used) from arg. list of DIFF_BASE_MULTIPLE
+  and rename it: DIFFERENT_MULTIPLE
+
 checkpoint57h_post
 o move tIter0 from data.gchem to PTRACERS_Iter0 in data.ptracers
 o pkg/diagnostics: change output frequency, now in seconds (instead
