@@ -36,7 +36,7 @@ C     !INPUT PARAMETERS:
 C     myTime     :: current Time of simulation ( s )
 C     myIter     :: current Iteration number
 C     myThid     :: my Thread Id number
-      INTEGER myTime
+      _RL     myTime
       INTEGER myIter
       INTEGER myThid
 CEOP
