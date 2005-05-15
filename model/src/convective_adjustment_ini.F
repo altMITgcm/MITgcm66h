@@ -36,8 +36,8 @@ C     == Global data ==
 #include "tamc.h"
 #include "tamc_keys.h"
 #endif /* ALLOW_AUTODIFF_TAMC */
-      EXTERNAL DIFF_BASE_MULTIPLE
-      LOGICAL  DIFF_BASE_MULTIPLE
+      EXTERNAL DIFFERENT_MULTIPLE
+      LOGICAL  DIFFERENT_MULTIPLE
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
@@ -66,7 +66,7 @@ C     ConvectCount :: Convection freq. counter
 CEOP
 
 C--   Check to see if should convect now
-      IF ( DIFF_BASE_MULTIPLE(baseTime,cAdjFreq,myTime,deltaTClock)
+      IF ( DIFFERENT_MULTIPLE(cAdjFreq,myTime,deltaTClock)
      &   ) THEN
 
 C--   Initialise counters
@@ -180,7 +180,7 @@ C-          Convectively mix passive tracers across interface K
 C--       End DO K=1,Nr
           ENDDO
        
-C--   End IF (DIFF_BASE_MULTIPLE)
+C--   End IF (DIFFERENT_MULTIPLE)
       ENDIF
 
 #endif /* INCLUDE_CONVECT_CALL */

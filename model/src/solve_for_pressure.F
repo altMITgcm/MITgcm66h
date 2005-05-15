@@ -40,8 +40,8 @@ C     == Global variables
 #include "SOLVE_FOR_PRESSURE.h"
 
 C     === Functions ====
-      LOGICAL  DIFF_BASE_MULTIPLE
-      EXTERNAL DIFF_BASE_MULTIPLE
+      LOGICAL  DIFFERENT_MULTIPLE
+      EXTERNAL DIFFERENT_MULTIPLE
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
@@ -216,7 +216,7 @@ C     see CG2D.h for the interface to this routine.
 #endif
 
 C- dump CG2D output at monitorFreq (to reduce size of STD-OUTPUT files) :
-      IF ( DIFF_BASE_MULTIPLE(baseTime,monitorFreq,myTime,deltaTClock)
+      IF ( DIFFERENT_MULTIPLE(monitorFreq,myTime,deltaTClock)
      &   ) THEN
        IF ( debugLevel .GE. debLevA ) THEN
         _BEGIN_MASTER( myThid )
@@ -366,7 +366,7 @@ C Western boundary
      I           myThid )
       _EXCH_XYZ_R8(phi_nh, myThid )
 
-      IF ( DIFF_BASE_MULTIPLE(baseTime,monitorFreq,myTime,deltaTClock)
+      IF ( DIFFERENT_MULTIPLE(monitorFreq,myTime,deltaTClock)
      &   ) THEN
        IF ( debugLevel .GE. debLevA ) THEN
         _BEGIN_MASTER( myThid )

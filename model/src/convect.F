@@ -28,8 +28,8 @@ C     == Global data ==
 #include "DYNVARS.h"
 #include "GRID.h"
 
-      EXTERNAL DIFF_BASE_MULTIPLE
-      LOGICAL  DIFF_BASE_MULTIPLE
+      EXTERNAL DIFFERENT_MULTIPLE
+      LOGICAL  DIFFERENT_MULTIPLE
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
@@ -60,7 +60,7 @@ C     dSum   :: Temp. for layer thicknesses
 CEOP
 
 C--   Check to see if should convect now
-      IF ( DIFF_BASE_MULTIPLE(baseTime,cAdjFreq,myTime,deltaTClock)
+      IF ( DIFFERENT_MULTIPLE(cAdjFreq,myTime,deltaTClock)
      &   ) THEN
 
 C--    Calculate heat content of two level column
