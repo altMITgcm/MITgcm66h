@@ -19,6 +19,9 @@ C     !USES:
 #include "SIZE.h"
 #include "DIAGNOSTICS_SIZE.h"
 #include "DIAGNOSTICS.h"
+#ifdef ALLOW_FIZHI
+#include "PARAMS.h"
+#endif
 
 C     !INPUT PARAMETERS:
       INTEGER myThid
@@ -32,5 +35,11 @@ C--   Set number of levels for all available diagnostics:
 C--   Calculate pointers for diagnostics set to non-zero frequency
       CALL DIAGNOSTICS_SET_POINTERS( myThid )
       
+#ifdef ALLOW_FIZHI
+      if( useFIZHI) then
+      call fizhi_diagalarms(19000101,0,myThid)
+      endif
+#endif
+
       RETURN 
       END
