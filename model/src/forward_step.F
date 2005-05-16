@@ -654,6 +654,17 @@ C--   Do IO if needed.
       CALL TIMER_STOP ('DO_THE_MODEL_IO     [FORWARD_STEP]',myThid)
 #endif
 
+C AMM
+C  Update fizhi timekeeping
+C  WARNING: This call MUST remain AFTER do the model io 
+C            and BEFORE packages write pickup
+#ifdef ALLOW_FIZHI
+      if( useFIZHI) then
+         CALL FIZHI_UPDATE_TIME ( myIter, myThid, deltaTclock )
+      endif
+#endif
+C AMM
+
 C--   Save state for restarts
       CALL TIMER_START('WRITE_CHECKPOINT    [FORWARD_STEP]',myThid)
       CALL PACKAGES_WRITE_PICKUP(
