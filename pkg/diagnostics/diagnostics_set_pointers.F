@@ -39,9 +39,15 @@ C     == Local variables ==
       LOGICAL found
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 
-C--   Calculate pointers for diagnostics set to non-zero frequency
 
       _BEGIN_MASTER( myThid)
+
+C--   Initialize pointer arrays to zero:
+      DO n=1,ndiagMax
+        idiag(n) = 0
+      ENDDO
+
+C--   Calculate pointers for diagnostics set to non-zero frequency
 
       ndiagcount = 0
       nActiveMax = 0
