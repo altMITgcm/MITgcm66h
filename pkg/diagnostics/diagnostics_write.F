@@ -39,7 +39,8 @@ c ===============
       INTEGER thisdate(4), prevdate(4)
 #endif
 #ifdef ALLOW_FIZHI
-      integer nsecf2,mmdd,hhmmss,alarm2
+      integer nsecf2,mmdd,hhmmss
+      logical alarm2
       character *9 tagname
 #endif
 

@@ -50,7 +50,8 @@ c     INTEGER newIter
       LOGICAL time4SnapShot
       _RL     phiSec, freqSec
 #ifdef ALLOW_FIZHI
-      integer mmdd,hhmmss,nsecf2,alarm2
+      integer mmdd,hhmmss,nsecf2
+      logical alarm2
       character *9 tagname
 #endif
 
