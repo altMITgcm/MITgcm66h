@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/diagnostics: prepare for Global/Regional statistics. 
+  add 2nd namelist in data.diagnostics and update DIAGNOSTICS_SIZE.h 
 o remove "baseTime" (no used) from arg. list of DIFF_BASE_MULTIPLE
   and rename it: DIFFERENT_MULTIPLE
 
