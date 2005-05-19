@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-DIC_COST.h
+c DIC_COST.h
          _RL totcost
 c control variables
 cQQ      _RL alpha(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)

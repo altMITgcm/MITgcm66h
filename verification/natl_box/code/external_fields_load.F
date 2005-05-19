@@ -96,7 +96,7 @@ C Now calculate whether it is time to update the forcing arrays
 
       intime0=int(Iftm/Ifprd)
       intime1=mod(intime0+1,nForcingPeriods)
-      aWght=mod(myTime/externForcingPeriod,1.)
+      aWght=mod(myTime/externForcingPeriod,1. _d 0)
       bWght=1.-aWght
 
       intime0=intime0+1

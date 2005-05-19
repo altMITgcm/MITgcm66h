@@ -309,7 +309,7 @@ c     Do some printing for the protocol.
      &                         first, changed, fac
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
-        write(msgbuf,'(a,3(x,i6))')
+        write(msgbuf,'(a,3(1x,i6))')
      &    ' exf_GetFFieldsRec: myiter, count0, count1:',
      &                         myiter, count0, count1
         call print_message( msgbuf, standardmessageunit,

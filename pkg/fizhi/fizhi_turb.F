@@ -3450,7 +3450,7 @@ C =================================
    10 CONTINUE
       DO 20 I=1,ISTNM1
                                                 INT2(I,1) = 0
-      IF( INT1(I,1).EQ.1 .XOR. INT1(I,2).EQ.1 ) INT2(I,1) = 1
+      IF( (INT1(I,1).EQ.1) .NEQV. (INT1(I,2).EQ.1) ) INT2(I,1) = 1
    20 CONTINUE
 C
       DO 40 LMIN = 1,NLEV
