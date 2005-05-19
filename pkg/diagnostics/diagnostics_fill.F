@@ -62,7 +62,7 @@ C     !LOCAL VARIABLES:
 C ===============
       INTEGER m, n, j
       INTEGER ndiagnum, ipointer, iSp, jSd
-      INTEGER region2fill(0:nRegions)
+c     INTEGER region2fill(0:nRegions)
 
 C--   2D/3D Diagnostics :
 C Run through list of active diagnostics to make sure
