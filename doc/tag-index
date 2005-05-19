@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint57h_done
+  tag after changing user customized files (DIAGNOSTICS_SIZE.h, 
+  data.diagnostics, data.gchem, data.ptracers) is done.
+
 o pkg/diagnostics: prepare for Global/Regional statistics. 
   add 2nd namelist in data.diagnostics and update DIAGNOSTICS_SIZE.h 
 o remove "baseTime" (no used) from arg. list of DIFF_BASE_MULTIPLE
