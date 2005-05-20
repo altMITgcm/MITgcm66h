@@ -629,6 +629,13 @@ C--   Final checkpoint (in case the in-loop checkpoint was missed)
 
       CALL TIMER_STOP ('ALL                    [THE_MODEL_MAIN]',myThid)
 
+#ifdef ALLOW_DIAGNOSTICS
+      IF (useDiagnostics) THEN
+C       Close all diagnostics output files
+        CALL DIAGSTATS_CLOSE_IO( myThid )
+      ENDIF
+#endif
+
 #ifdef ALLOW_MNC
       IF (useMNC) THEN
 C       Close all open NetCDF files
