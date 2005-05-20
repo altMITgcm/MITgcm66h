@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/diagnostics: 
+  add new capability: output of Global/Regional & per-level statistics
+
 checkpoint57h_done
   tag after changing user customized files (DIAGNOSTICS_SIZE.h, 
   data.diagnostics, data.gchem, data.ptracers) is done.
