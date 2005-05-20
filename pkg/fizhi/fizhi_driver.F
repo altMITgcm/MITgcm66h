@@ -208,12 +208,10 @@ C ==========
 
 c Add Gravity-Wave Drag Tendency
 c ------------------------------
-C Comment this out for now - run tropospheric resolutions only.
-C Need to see how to get zonal wavelengths on the cube.
+C Comment this out for now 
 
-c     call gwdrag (myid,p,pl,ple,dpres,pkht,pkl,u,v,t,q,phis_var,
-c    .   turbu,turbv,turbt,im,jm,lm,ptop,istrip,npcs,
-c    .   imglobal)
+c     call gwdrag (myid,p,pl,ple,dpres,pkl,u,v,t,q,phis_var,
+c    .   turbu,turbv,turbt,im,jm,lm,istrip,npcs,imglobal)
 
 c Add Rayleigh Friction Damping Above 70 Km
 c -----------------------------------------
