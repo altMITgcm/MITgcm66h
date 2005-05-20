@@ -211,7 +211,7 @@ c ------------------------------
 C Comment this out for now 
 
 c     call gwdrag (myid,p,pl,ple,dpres,pkl,u,v,t,q,phis_var,
-c    .   turbu,turbv,turbt,im,jm,lm,istrip,npcs,imglobal)
+c    .   turbu,turbv,turbt,im,jm,lm,bi,bj,istrip,npcs,imglobal)
 
 c Add Rayleigh Friction Damping Above 70 Km
 c -----------------------------------------
