@@ -44,6 +44,8 @@ C                   &  1  &  levels = 1  \\
 C                   &  R  &  levels = Nr  \\
 C                   &  L  &  levels = MAX(Nr,NrPhys)  \\
 C                   &  M  &  levels = MAX(Nr,NrPhys) - 1  \\
+C                   &  G  &  levels = Ground_level Number \\
+C                   &  I  &  levels = sea-Ice_level Number \\
 C       \end{tabular}
 C     \end{center}
 
@@ -51,7 +53,6 @@ C     !USES:
       IMPLICIT NONE
 #include "SIZE.h"
 #include "EEPARAMS.h"
-c #include "EESUPPORT.h"
 #include "PARAMS.h"
 
 C     !INPUT PARAMETERS:
