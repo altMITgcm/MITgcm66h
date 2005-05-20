@@ -35,6 +35,9 @@ C--   Set number of levels for all available diagnostics:
 C--   Calculate pointers for diagnostics set to non-zero frequency
       CALL DIAGNOSTICS_SET_POINTERS( myThid )
       
+C--   Calculate pointers for statistics-diags set to non-zero frequency
+      CALL DIAGSTATS_SET_POINTERS( myThid )
+
 #ifdef ALLOW_FIZHI
       if( useFIZHI) then
       call fizhi_diagalarms(19000101,0,myThid)
