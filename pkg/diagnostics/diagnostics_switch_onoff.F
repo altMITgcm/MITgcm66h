@@ -115,6 +115,13 @@ C--    Select diagnostics list that uses instantaneous output
         time4SnapShot = DIFF_PHASE_MULTIPLE( phiSec, freqSec,
      &                                       myTime, deltaTclock )
 
+#ifdef ALLOW_FIZHI
+        if( useFIZHI) then
+         write(tagname,'(A,I2.2)')'diagStg',n
+         time4SnapShot = alarm2(tagname)
+        endif
+#endif
+
         DO bj=myByLo(myThid), myByHi(myThid)
          DO bi=myBxLo(myThid), myBxHi(myThid)
           dBugFlag = dBugFlag.AND.(bi.EQ.1.AND.bj.EQ.1.AND.myThid.EQ.1)
