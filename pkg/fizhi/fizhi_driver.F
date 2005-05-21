@@ -179,7 +179,7 @@ c --------------------------------
       enddo
       enddo
 
-      call lwrio ( nymd,nhms,bi,bj,istrip,npcs,
+      call lwrio ( nymd,nhms,bi,bj,myid,istrip,npcs,
      .   low_level,mid_level,im,jm,lm,
      .   p,pl,ple,dpres,pkht,pkl,t,chemq,chemo3,co2,
      .   cfc11,cfc12,cfc22,methane,n2o,emiss,tgz,radlwg,st4,dst4,
