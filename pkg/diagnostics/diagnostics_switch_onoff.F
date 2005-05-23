@@ -49,7 +49,7 @@ c     INTEGER newIter
       _RL     phiSec, freqSec
       LOGICAL dBugFlag
 #ifdef ALLOW_FIZHI
-      logical alarm2
+      logical alarm2,alarm2next
       character *9 tagname
 #endif
 
@@ -73,7 +73,7 @@ C--    Select diagnostics list that uses instantaneous output
 #ifdef ALLOW_FIZHI
         if( useFIZHI) then
          write(tagname,'(A,I2.2)')'diagtag',n
-         time4SnapShot = alarm2(tagname)
+         time4SnapShot = alarm2next(tagname,deltaT)
         endif
 #endif
 
