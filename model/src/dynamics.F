@@ -495,10 +495,10 @@ Cml)
          DO k = 1,Nr
           DO j = 1,sNy
            DO i = 1,sNx
-             tmpFld(i,j) = totPhihyd(i,j,L,bi,bj)*totPhihyd(i,j,L,bi,bj)
+             tmpFld(i,j) = totPhihyd(i,j,k,bi,bj)*totPhihyd(i,j,k,bi,bj)
            ENDDO
           ENDDO
-          CALL DIAGNOSTICS_FILL(tmpFld,'PHIHYDSQ',L,1,2,bi,bj,myThid)
+          CALL DIAGNOSTICS_FILL(tmpFld,'PHIHYDSQ',k,1,2,bi,bj,myThid)
          ENDDO
         ENDDO
         ENDDO
