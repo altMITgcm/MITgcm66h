@@ -403,6 +403,13 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
+      diagName  = 'PHIHYDSQ'
+      diagTitle = 'Square of Hyd. (ocean) press / (atmos) geoPotential'
+      diagUnits = 'm^4/s^4         '
+      diagCode  = 'SM      MR      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
       diagName  = 'PHIBOT  '
       diagTitle = 'ocean bottom pressure / top. atmos geo-Potential'
       diagUnits = 'm^2/s^2         '
