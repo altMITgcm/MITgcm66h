@@ -932,7 +932,7 @@ c -------------------
      .                                                    *sday*tminv
        enddo
        enddo
-       call diagnostics_fill(tmpdiag,'PREACC  ',L,1,3,bi,bj,myid)
+       call diagnostics_fill(tmpdiag,'PREACC  ',0,1,3,bi,bj,myid)
       endif
 
 c Convective Precipitation
@@ -944,7 +944,7 @@ c ------------------------
         tmpdiag(i,j) = raincgath(indgath)*sday*tminv
        enddo
        enddo
-       call diagnostics_fill(tmpdiag,'PRECON  ',L,1,3,bi,bj,myid)
+       call diagnostics_fill(tmpdiag,'PRECON  ',0,1,3,bi,bj,myid)
       endif
 
 #endif
