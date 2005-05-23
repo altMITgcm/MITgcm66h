@@ -46,7 +46,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
       diagName  = 'DPPHYS  '
       diagTitle = 'Pressure Thickness of Layers on Fizhi Grid'
-      diagUnits = 'mb              '
+      diagUnits = 'Pascal          '
       diagCode  = 'SM      ML      '
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
