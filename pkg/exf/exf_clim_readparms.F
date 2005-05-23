@@ -39,6 +39,9 @@ c     == local variables ==
 
       integer i
       integer date_array(4), difftime(4)
+      integer iUnit
+
+      character*(max_len_mbuf) msgbuf
 
 c     == end of interface ==
 
@@ -138,12 +141,23 @@ c     Check for the availability of the right calendar version.
       endif
 
 c     Next, read the forcing data file.
-      call nml_filter( 'data.exf_clim', scrunit1, myThid )
-      if (scrunit1 .eq. 0) then
-         stop 'exf_clim_readparms: reading namelist failed'
-      end if
-      read(  scrunit1, nml = exf_clim_nml )
-      close( scrunit1 )
+        WRITE(msgBuf,'(A)') 'EXF_CLIM_READPARMS: opening data.exf_clim'
+        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT , 1)
+
+        CALL OPEN_COPY_DATA_FILE(
+     I                          'data.exf_clim', 'EXF_CLIM_READPARMS',
+     O                          iUnit,
+     I                          myThid )
+
+      READ(  iUnit, nml = exf_clim_nml )
+
+      WRITE(msgBuf,'(A)') 
+     &     'EXF_CLIM_READPARMS: finished reading data.exf_clim'
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                SQUEEZE_RIGHT , 1)
+
+      CLOSE( iUnit )
 
 c     Complete the start date specifications for the forcing
 c     fields to get a complete calendar date array.
