@@ -5,7 +5,9 @@ $Name$
     ==============================
 
 o pkg/diagnostics: 
-  add new capability: output of Global/Regional & per-level statistics
+  add new capability: output of Global/Regional & per-level statistics ;
+  tested against monitor output (including land & thSIce) on various exp.
+o make seaice-pkg I/O type flags (MNC/MDS) more standard.
 
 checkpoint57h_done
   tag after changing user customized files (DIAGNOSTICS_SIZE.h, 
