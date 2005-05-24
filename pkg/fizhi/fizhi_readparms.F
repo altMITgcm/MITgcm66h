@@ -75,7 +75,7 @@ C  if runlength has been set in the fizhi namelist
        WRITE(msgBuf,'(A,I8)') 
      .         ' CHANGING NUMBER OF MODEL TIMESTEPS TO',ntimesteps
        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,SQUEEZE_RIGHT,1)
-       WRITE(msgBuf,'(A,I8)') ' CHANGING END TIME TO',endtime
+       WRITE(msgBuf,'(A,F10.2)') ' CHANGING END TIME TO',endtime
        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,SQUEEZE_RIGHT,1)
       endif
 
