@@ -117,6 +117,7 @@ C     data pcheckpress/950.,750.,700.,400.,10./
       _RL akap,getcon
       _RL ptop
       logical lpnt,cumfric
+      integer imglobal
 
       istrip = im*jm
       npcs   = 1
@@ -210,8 +211,9 @@ c Add Gravity-Wave Drag Tendency
 c ------------------------------
 C Comment this out for now 
 
-c     call gwdrag (myid,p,pl,ple,dpres,pkl,u,v,t,q,phis_var,
-c    .   turbu,turbv,turbt,im,jm,lm,bi,bj,istrip,npcs,imglobal)
+      imglobal = 128
+      call gwdrag (myid,p,pl,ple,dpres,pkl,u,v,t,q,phis_var,
+     .   turbu,turbv,turbt,im,jm,lm,bi,bj,istrip,npcs,imglobal)
 
 c Add Rayleigh Friction Damping Above 70 Km
 c -----------------------------------------

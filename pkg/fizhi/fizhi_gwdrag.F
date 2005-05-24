@@ -84,6 +84,8 @@ c ---------------
       _RL tmpdiag(im,jm)
 #endif
 
+      return
+
 c Initialization
 c --------------
       pi    = 4.0*atan(1.0)
