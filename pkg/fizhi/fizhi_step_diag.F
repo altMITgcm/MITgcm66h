@@ -54,6 +54,12 @@ C **********************************************************************
       enddo
       enddo
 
+c Surface Pressure (mb)
+c ---------------------------------
+      if(diagnostics_is_on('PS      ',myid) ) then
+       call diagnostics_fill(p(1,1,bi,bj),'PS      ',0,1,3,bi,bj,myid)
+      endif
+
 c Incident Solar Radiation (W/m**2)
 c ---------------------------------
       if(diagnostics_is_on('RADSWT  ',myid) ) then
