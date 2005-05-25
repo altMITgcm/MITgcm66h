@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o for mnc output, fill the 'T' coordinate var with myTime and create a 
+  separate 'iter' variable for iteration count
 o pkg/diagnostics: 
   add new capability: output of Global/Regional & per-level statistics ;
   tested against monitor output (including land & thSIce) on various exp.

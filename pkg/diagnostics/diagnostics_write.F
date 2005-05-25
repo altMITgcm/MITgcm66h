@@ -101,7 +101,7 @@ C-    Yearly  freqSec:
 #endif
 
           IF ( dump2fileNow ) THEN
-            CALL DIAGNOSTICS_OUT(n,wrIter,myThid)
+            CALL DIAGNOSTICS_OUT(n,wrIter,myTime,myThid)
           ENDIF
         ENDDO
 

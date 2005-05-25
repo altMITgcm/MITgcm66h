@@ -72,7 +72,8 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 C       Write fizhi veg-space variables using the MNC package
         CALL MNC_CW_SET_UDIM(bnam, 1, myThid)
-        CALL MNC_CW_I_W_S('I',bnam,0,0,'T', myIter, myThid)
+        CALL MNC_CW_RL_W_S('D',bnam,0,0,'T', myTime, myThid)
+        CALL MNC_CW_I_W_S('I',bnam,0,0,'iter',myIter,myThid)
 
 C       fizhi_coms.h
         CALL MNC_CW_RL_W(prec,bnam,0,0,'ctmt', ctmt, myThid)

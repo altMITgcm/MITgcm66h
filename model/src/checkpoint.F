@@ -599,8 +599,9 @@ C         &    myIter,myThid)
 #ifdef ALLOW_MNC
       IF (useMNC .AND. pickup_write_mnc) THEN
         CALL MNC_CW_SET_UDIM(fn, -1, myThid)
-        CALL MNC_CW_I_W_S('I',fn,0,0,'T', myIter, myThid)
+        CALL MNC_CW_RL_W_S('D',fn,0,0,'T', myTime, myThid)
         CALL MNC_CW_SET_UDIM(fn, 0, myThid)
+        CALL MNC_CW_I_W_S('I',fn,0,0,'iter', myIter, myThid)
         CALL MNC_CW_RL_W('D',fn,0,0,'U', uVel, myThid)
         CALL MNC_CW_RL_W('D',fn,0,0,'V', vVel, myThid)
         CALL MNC_CW_RL_W('D',fn,0,0,'Temp', theta, myThid)
