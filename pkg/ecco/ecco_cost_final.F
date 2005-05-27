@@ -620,10 +620,14 @@ c--   Each process has calculated the global part for itself.
         
       _END_MASTER( mythid )
 
+      call cost_trans_merid( mythid )
+      call cost_trans_zonal( mythid )
+
       taveFreq   = 0.
       dumpFreq   = 0.
       pChkptFreq = 0.
       monitorFreq = 0.
+      useDiagnostics = .FALSE.
 
 #ifdef ECCO_VERBOSE
       write(msgbuf,'(a,D22.15)')
