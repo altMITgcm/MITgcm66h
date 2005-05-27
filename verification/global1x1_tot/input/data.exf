@@ -5,6 +5,7 @@
 # *********************
  &EXF_NML
 #
+ useExfCheckRange   = .TRUE.,
  useExfYearlyFields = .TRUE.,
 #
  hfluxstartdate1   = 19920101,
@@ -40,8 +41,8 @@
 #
  exf_inscal_ustress    = -1.,
  exf_inscal_vstress    = -1.,
- exf_inscal_runoff     = -1.,
+ exf_inscal_runoff     = 3.170979198E-8,
 #
  exf_iprec         = 32,
  exf_yftype        = 'RL',
- /
+ &
