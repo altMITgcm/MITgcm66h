@@ -116,8 +116,6 @@ c       Initialise the calendar parameters
         enddate_1   = 0
         enddate_2   = 0
 
-        open(unit=scrunit1,status='scratch')
-
 c       Next, read the calendar data file.
         WRITE(msgBuf,'(A)') 'CAL_READPARMS: opening data.cal'
         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
