@@ -50,7 +50,7 @@ C-----------------------------------------------------------------------
         do k = 1, Nr
          do j = 1-OLy, sNy+OLy
           do i = 1-OLx, sNx+OLx
-           MYhbl    (i,j  ,bi,bj) = 0.
+           MYhbl    (i,j  ,bi,bj) = 0. _d 0
            MYviscAr (i,j,k,bi,bj) = viscAr
            MYdiffKr (i,j,k,bi,bj) = diffKrNrT(k)
           end do

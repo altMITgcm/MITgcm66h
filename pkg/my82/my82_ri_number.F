@@ -65,7 +65,7 @@ C     rhoK, rhoKm1 - Density below and above current interface
 C     epsilon      - small number
       INTEGER I,J,Km1
       _RL        p5    , p125      
-      PARAMETER( p5=0.5, p125=0.125 )
+      PARAMETER( p5=0.5D0, p125=0.125D0 )
       _RL tempu, tempv
       _RL epsilon
       PARAMETER    (  epsilon = 1.D-10 )
