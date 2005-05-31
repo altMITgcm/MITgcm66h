@@ -301,7 +301,7 @@ c ---------------------------------------------------------------------
 #ifdef EXF_VERBOSE
 c     Do some printing for the protocol.
       _BEGIN_MASTER( mythid )
-        write(msgbuf,'(a)') ' '
+        write(msgbuf,'(a)') ' exf_GetFFieldsRec:'
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,2x,l2,2x,l2,2x,D15.8)')
@@ -314,7 +314,7 @@ c     Do some printing for the protocol.
      &                         myiter, count0, count1
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
-        write(msgbuf,'(a)') ' '
+        write(msgbuf,'(a)') ' exf_GetFFieldsRec:'
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
       _END_MASTER( mythid )
