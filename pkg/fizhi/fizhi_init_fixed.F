@@ -123,7 +123,11 @@ C Read dataset that contains topography variance (10m by 10m in a 2x2.5 box)
        do bi = myBxLo(myThid), myBxHi(myThid)
         do j=jm1,jm2
         do i=im1,im2
-         phis_var(i,j,bi,bj) = tempoverlap(i,j,bi,bj)
+         if(fracland(i,j,bi,bj).gt.0.3) then
+          phis_var(i,j,bi,bj) = tempoverlap(i,j,bi,bj)
+         else
+          phis_var(i,j,bi,bj) = 0.
+         endif
         enddo
         enddo
        enddo
