@@ -772,13 +772,15 @@ C Logical flags for selecting packages
       LOGICAL useEBM
       LOGICAL useMNC
       LOGICAL useMATRIX
+      LOGICAL useRunClock
       COMMON /PARM_PACKAGES/
      &        useKPP, useGMRedi, useOBCS, useAIM, useLand, useECCO, 
      &        useSHAP_FILT, useZONAL_FILT, useGrdchk, useFLT,
      &        usePTRACERS, useGCHEM,
      &        useSBO, useSEAICE, useThSIce, useBulkForce, 
      &        usefizhi, usegridalt, usediagnostics, useEBM, useMNC,
-     &        usePP81, useMY82, useOPPS, useGGL90, useMATRIX
+     &        usePP81, useMY82, useOPPS, useGGL90, useMATRIX,
+     &        useRunClock
 
 CEH3 ;;; Local Variables: ***
 CEH3 ;;; mode:fortran ***

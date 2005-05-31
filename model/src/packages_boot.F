@@ -69,6 +69,7 @@ C     data.pkg namelists
      &          usediagnostics,
      &          useEBM,
      &          useMNC,
+     &          useRunClock,
      &          useMATRIX
 CEOP
 
@@ -109,6 +110,7 @@ C--   Default package configuration
       usediagnostics=.FALSE.
       useEBM=.FALSE.
       useMNC=.FALSE.
+      useRunClock=.FALSE.
       useMATRIX=.FALSE.
 
 C--   Read parameters from open data file

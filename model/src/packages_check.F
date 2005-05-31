@@ -39,6 +39,12 @@ C     msgBuf      :: Informational/error meesage buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 CEOP
 
+#ifdef ALLOW_RUNCLOCK
+      IF (useRunClock) CALL RUNCLOCK_CHECK( myThid )
+#else
+      IF (useRunClock) CALL PACKAGES_CHECK_ERROR('RUNCLOCK', myThid)
+#endif
+
 #ifdef ALLOW_KPP
       IF (useKPP) CALL KPP_CHECK( myThid )
 #else

@@ -30,6 +30,8 @@ C     PACKAGES_READPARMS
 C       |
 C       |-- MNC_READPARMS + MNC_INIT + MNC_CW_INIT
 C       |
+C       |-- RUNCLOCK_READPARMS
+C       |
 C       |-- GMREDI_READPARMS
 C       |
 C       |-- KPP_READPARMS
@@ -107,6 +109,11 @@ CEH3       IF ( mnc_echo_gvtypes ) THEN
 CEH3       CALL MNC_CW_DUMP( myThid )
 CEH3       ENDIF
       ENDIF
+#endif
+
+#ifdef ALLOW_RUNCLOCK
+C--   Initialize RUNCLOCK parameters
+      IF (useRunClock) CALL RUNCLOCK_READPARMS( myThid )
 #endif
 
 #ifdef ALLOW_GMREDI

@@ -19,6 +19,8 @@ C     \ev
 C     !CALLING SEQUENCE:
 C     PACKAGES_INIT_FIXED
 C       |
+C       |-- RUNCLOCK_INIT
+C       |
 C       |-- DIAGNOSTICS_INIT_EARLY
 C       |-- DIAGNOSTICS_MAIN_INIT
 C       |
@@ -80,6 +82,12 @@ C     === Routine arguments ===
 C     myThid -  Number of this instances
       INTEGER myThid
 CEOP
+
+#ifdef ALLOW_RUNCLOCK
+      IF ( useRunClock ) THEN
+        CALL RUNCLOCK_INIT( myThid )
+      ENDIF
+#endif
 
 #ifdef ALLOW_DIAGNOSTICS
       IF ( useDiagnostics ) THEN
