@@ -129,7 +129,7 @@ C                 or that have moved to a different input file and/or namelist.
 
 C--   Continuous equation parameters
       NAMELIST /PARM01/
-     & gravitySign,
+     & gravitySign, nh_Am2,
      & gravity, gBaro, rhonil, tAlpha, sBeta, 
      & f0, beta, omega, rotationPeriod,
      & viscAh, viscAhW, viscAhMax,

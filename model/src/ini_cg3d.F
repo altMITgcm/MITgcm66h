@@ -107,7 +107,7 @@ caja &     +drF(K-1)*_hFacC(i,j,k-1,bi,bj)*0.5
            IF ( theRecip_Dr .NE. 0. ) 
      &      theRecip_Dr = 1. _d 0/theRecip_Dr
            aV3d(I,J,K,bi,bj) = faceArea*theRecip_Dr
-     &                 *horiVertRatio*horiVertRatio 
+     &                 *horiVertRatio*horiVertRatio *nh_Am2
            myNorm = MAX(ABS(aV3d(I,J,K,bi,bj)),myNorm)
           ENDDO
          ENDDO

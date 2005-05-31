@@ -302,7 +302,7 @@ caja           and an hFacUS (above V points) too...
          DO j=jMin,jMax
           DO i=iMin,iMax
            wVel(i,j,k,bi,bj) = wVel(i,j,k,bi,bj) 
-     &     +deltatMom*( ab15*gW(i,j,k,bi,bj)
+     &     +deltatMom*nh_Am2*( ab15*gW(i,j,k,bi,bj)
      &                 +ab05*gWNM1(i,j,k,bi,bj) )
            IF (hFacC(I,J,K,bi,bj).EQ.0.) wVel(i,j,k,bi,bj)=0.
           ENDDO
