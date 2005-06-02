@@ -72,10 +72,10 @@ C  if runlength has been set in the fizhi namelist
        nincr = nsecf2(hhmmss,mmdd,nymdcurrent)
        ntimesteps = int(nincr/deltat)
        endTime = startTime + deltat*float(ntimeSteps)
-       WRITE(msgBuf,'(A,I8)') 
+       WRITE(msgBuf,'(A,I10)') 
      .         ' CHANGING NUMBER OF MODEL TIMESTEPS TO',ntimesteps
        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,SQUEEZE_RIGHT,1)
-       WRITE(msgBuf,'(A,F10.2)') ' CHANGING END TIME TO',endtime
+       WRITE(msgBuf,'(A,F12.2)') ' CHANGING END TIME TO',endtime
        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,SQUEEZE_RIGHT,1)
       endif
 
