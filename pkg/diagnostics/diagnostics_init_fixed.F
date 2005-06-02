@@ -40,7 +40,7 @@ C--   Calculate pointers for statistics-diags set to non-zero frequency
 
 #ifdef ALLOW_FIZHI
       if( useFIZHI) then
-      call fizhi_diagalarms(19000101,0,myThid)
+      call fizhi_diagalarms(myThid)
       endif
 #endif
 
