@@ -395,14 +395,14 @@ C***********************************************************************
       DAY    = MOD(NYMD,100)
 
       IDAY   = MNDY( MONTH ,MOD(YEAR ,4)+1 )
-      month = month - nsegm
-      If( month.lt.1 ) then
-      month = month + 12
-      year = year - 1
+      month = month + nsegm
+      If( month.gt.12 ) then
+      month = month - 12
+      year = year + 1
       endif
       IDAY2  = MNDY( MONTH ,MOD(YEAR ,4)+1 )
 
-                    nday = iday-iday2
+                    nday = iday2-iday
       if(nday.lt.0) nday = nday + 1461
                     nday = nday + nsegd
 
