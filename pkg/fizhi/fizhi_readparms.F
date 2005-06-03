@@ -34,6 +34,7 @@ C     !LOCAL VARIABLES:
       real runlength
       integer  nincr
       integer mmdd,hhmmss,nsecf2
+      integer nymdend,nhmsend
 
       namelist / fizhi_list / 
      .     nymdbegin, nhmsbegin,
@@ -69,7 +70,11 @@ C  if runlength has been set in the fizhi namelist
       if(runlength.gt.0.) then
        mmdd = int(runlength)
        hhmmss = int((runlength - int(runlength))*1.e6)
-       nincr = nsecf2(hhmmss,mmdd,nymdcurrent)
+       if(mmdd.le.100) then
+        nincr = nsecf2(hhmmss,mmdd,nymdcurrent)
+       else
+        call time2freq2(mmdd,nymdcurrent,nhmscurrent,nincr)
+       endif
        ntimesteps = int(nincr/deltat)
        endTime = startTime + deltat*float(ntimeSteps)
        WRITE(msgBuf,'(A,I10)') 
