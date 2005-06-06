@@ -779,7 +779,7 @@ C***********************************************************************
         if(month0.gt.12) then
          month0 = month0 - 12
          year0 = year0 + 1
-         testnymd = testnymd + 10000
+         testnymd = testnymd + 10000 - 1200
         endif
         sec0 = nsecf(testnhms)
         iday0 = (day0-1) + mndy(month0,mod(year0,4)+1)
