@@ -348,6 +348,20 @@ makeclean()
     fi
 }
 
+postclean()
+{
+    # postclean directory
+    if test "x$POSTCLEAN" = xt ; then
+	(
+	    cd $1;
+	    if test -r Makefile ; then
+		$MAKE CLEAN >> /dev/null 2>&1
+	    fi
+	    exit 0
+	)
+    fi
+}
+
 makedependmodel()
 {
     # makedependmodel directory
@@ -636,6 +650,7 @@ QUICK=f
 NOGENMAKE=f
 NOCLEAN=f
 NODEPEND=f
+POSTCLEAN=f
 
 BASH=
 OPTFILE=NONE
@@ -728,6 +743,9 @@ for ac_option ; do
 	    NOCLEAN=t ;;
 	-nodepend | --nodepend | -nd | --nd)
 	    NODEPEND=t ;;
+
+	-postclean | --postclean | -pc | --pc)
+	    POSTCLEAN=t ;;
 
 	-mpi) MPI=t ;;
 
@@ -1040,6 +1058,8 @@ for dir in $TESTDIRS ; do
 	echo "DATE='$DATE'" >> $CDIR"/summary.txt"
 	echo "tdir='$dir'" >> $CDIR"/summary.txt"
     fi
+
+    postclean $dir/$builddir
     
     echo "-------------------------------------------------------------------------------"
     
