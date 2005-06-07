@@ -1128,7 +1128,7 @@ C          Assumes that we always want to be at a month boundary
 C***********************************************************************        
       implicit none
 
-      integer time2freq2,mmdd,nymd,nhms,timeleft
+      integer mmdd,nymd,nhms,timeleft
 
       integer nsday
       parameter ( nsday  = 86400 )
