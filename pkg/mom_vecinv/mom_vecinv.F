@@ -419,11 +419,13 @@ C--   Horizontal advection of relative vorticity
        IF (useAbsVorticity) THEN
         CALL MOM_VI_U_CORIOLIS(bi,bj,K,vFld,omega3,hFacZ,r_hFacZ,
      &                         uCf,myThid)
+       ELSEIF (highOrderVorticity) THEN
+        CALL MOM_VI_U_CORIOLIS_C4(bi,bj,k,vFld,vort3,r_hFacZ,
+     &                         uCf,myThid)
        ELSE
         CALL MOM_VI_U_CORIOLIS(bi,bj,k,vFld,vort3,hFacZ,r_hFacZ,
      &                         uCf,myThid)
        ENDIF
-c      CALL MOM_VI_U_CORIOLIS_C4(bi,bj,K,vFld,vort3,r_hFacZ,uCf,myThid)
        DO j=jMin,jMax
         DO i=iMin,iMax
          gU(i,j,k,bi,bj) = gU(i,j,k,bi,bj)+uCf(i,j)
@@ -432,11 +434,13 @@ c      CALL MOM_VI_U_CORIOLIS_C4(bi,bj,K,vFld,vort3,r_hFacZ,uCf,myThid)
        IF (useAbsVorticity) THEN
         CALL MOM_VI_V_CORIOLIS(bi,bj,K,uFld,omega3,hFacZ,r_hFacZ,
      &                         vCf,myThid)
+       ELSEIF (highOrderVorticity) THEN
+        CALL MOM_VI_V_CORIOLIS_C4(bi,bj,K,uFld,vort3,r_hFacZ,
+     &                         vCf,myThid)
        ELSE
         CALL MOM_VI_V_CORIOLIS(bi,bj,k,uFld,vort3,hFacZ,r_hFacZ,
      &                         vCf,myThid)
        ENDIF
-c      CALL MOM_VI_V_CORIOLIS_C4(bi,bj,K,uFld,vort3,r_hFacZ,vCf,myThid)
        DO j=jMin,jMax
         DO i=iMin,iMax
          gV(i,j,k,bi,bj) = gV(i,j,k,bi,bj)+vCf(i,j)
