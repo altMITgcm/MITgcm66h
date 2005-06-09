@@ -242,15 +242,24 @@ C     Write pickup file for diagnostics package
       ENDIF
 #endif  /* ALLOW_GGL90 */
 
-       _END_MASTER( myThid )
-       _BARRIER
+      _END_MASTER( myThid )
+      _BARRIER
 
 #ifdef ALLOW_PTRACERS
-C      Write restart file for passive tracers
-       IF (usePTRACERS) THEN
-         CALL PTRACERS_WRITE_CHECKPOINT(fn,myIter,myTime,myThid)
-       ENDIF
+C     Write restart file for passive tracers
+      IF (usePTRACERS) THEN
+        CALL PTRACERS_WRITE_CHECKPOINT(fn,myIter,myTime,myThid)
+      ENDIF
 #endif /* ALLOW_PTRACERS */
+
+#ifdef ALLOW_OFFLINE
+C     This is quick fix for A/B checkpoints since the main model
+C     checkpoint routine will not be called in OFFLINE mode and will
+C     thus not have the chance to set the alternating A/B suffix
+      IF ( .NOT. permCheckPoint ) THEN
+        nCheckLev = MOD(nCheckLev, maxNoChkptLev)+1
+      ENDIF
+#endif /* ALLOW_OFFLINE */
 
       RETURN
       END
