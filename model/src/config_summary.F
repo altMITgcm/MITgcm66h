@@ -290,6 +290,8 @@ C     zcoord ::
      & 'useAbsVorticity=',' /* Work with f+zeta in Coriolis */')
       CALL WRITE_0D_L( highOrderVorticity,  INDEX_NONE,
      & 'highOrderVorticity=',' /* High order interp. of vort. flag */')
+      CALL WRITE_0D_L( upwindShear,  INDEX_NONE,
+     & 'upwindShear=', ' /* Upwind vertical Shear advection flag */')
       CALL WRITE_0D_L( momForcing,   INDEX_NONE,
      & 'momForcing =', '  /* Momentum forcing on/off flag */')
       CALL WRITE_0D_L( momPressureForcing, INDEX_NONE,
