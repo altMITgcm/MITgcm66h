@@ -1461,7 +1461,7 @@ C     fflags(n)  :: character string with per-file flags
       character*8 flds (numperlist,numlists)
       character*80 fnames(numlists)
       character*8 fflags(numlists)
-      logical
+      logical dumpatlast, 
      &     diag_mdsio, diag_mnc,
      &     diag_pickup_read,        diag_pickup_write,
      &     diag_pickup_read_mdsio,  diag_pickup_write_mdsio,
@@ -1470,7 +1470,7 @@ C     fflags(n)  :: character string with per-file flags
       common /diag_choices/ 
      &     freq, phase, levs, nlevels, 
      &     nfields, nActive, nlists, jdiag,
-     &     flds, fnames, fflags,
+     &     flds, fnames, fflags, dumpatlast,
      &     diag_mdsio, diag_mnc,
      &     diag_pickup_read,        diag_pickup_write,
      &     diag_pickup_read_mdsio,  diag_pickup_write_mdsio,
