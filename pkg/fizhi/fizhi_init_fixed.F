@@ -131,5 +131,13 @@ C Read dataset that contains topography variance (10m by 10m in a 2x2.5 box)
        enddo
        enddo
 
+C Finally, grab unit numbers for reading sst and sea ice
+C   (held in common block fizhi ocean coms)
+
+       call mdsfindunit( kice, myThid )
+       open(kice)
+       call mdsfindunit( ksst, myThid )
+       open(ksst)
+
        return
        end
