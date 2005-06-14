@@ -219,7 +219,7 @@ c      integer  mpi_comm_model,ierror
       do n=1,ntags
       if( tags(n).eq.tag  ) then
           if( freqs(n).eq.0 ) then
-          alarm2 = (dates(n).eq.datein) .and. (times(n).eq.timein)
+          alarm2 = .false.
           else
           alarm2 = ( datein.gt.dates(n) .or.
      .             (datein.eq.dates(n) .and. timein.ge.times(n)) ) .and.

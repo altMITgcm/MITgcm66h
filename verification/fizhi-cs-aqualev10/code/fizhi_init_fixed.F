@@ -122,5 +122,13 @@ C     to send to fizhi init chem
        enddo
        enddo
 
+C Finally, grab unit numbers for reading sst and sea ice
+C   (held in common block fizhi ocean coms)
+
+       call mdsfindunit( kice, myThid )
+       open(kice)
+       call mdsfindunit( ksst, myThid )
+       open(ksst)
+
        return
        end
