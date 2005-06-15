@@ -498,6 +498,12 @@ C--   surface fluxes:
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+      diagName  = 'PRESSURE'
+      diagTitle = 'Atmospheric Pressure (Pa)     '
+      diagUnits = DIAGS_MK_UNITS( rUnit2c, myThid )
+      diagCode  = 'SM      MR      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
       RETURN
       END
