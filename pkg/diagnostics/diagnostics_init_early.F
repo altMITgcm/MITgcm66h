@@ -1334,8 +1334,13 @@ c     gdiag(123) = 'SM      ML      '
       udiag(237) = 'm/sec/day       '
       gdiag(237) = 'VM   236ML      '
 
+      cdiag(238) = 'PLALBEDO'
+      tdiag(238) ='Planetary Albedo (Fraction)'
+      udiag(238) = 'Fraction        '
+      gdiag(238) = 'SM      L1      '
+
 c-    set the total number of available diagnostics 
-      ndiagt = 237
+      ndiagt = 238
 
 c---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
