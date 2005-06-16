@@ -31,8 +31,8 @@
  ersfile         = 'ERS_ENVISAT_daily_r2',
  ssh_errfile     = 'ssh_s.err',
 #
- scatxdatfile    = 'QSCAT_ustr',
- scatydatfile    = 'QSCAT_vstr',
+ scatxdatfile    = 'QSCAT_ustr_r1',
+ scatydatfile    = 'QSCAT_vstr_r1',
  scatstartdate1  = 19920101, 
  scatstartdate2  = 30000, 
  scatperiod      = 2629800,
@@ -63,8 +63,8 @@
  ctdtfile        = 'ctdT',
  ctdsfile        = 'ctdS',
  xbtfile         = 'XBT_r1',
- argotfile       = 'ARGO_T_r2',
- argosfile       = 'ARGO_S_r2',
+ argotfile       = 'ARGO_T_r4',
+ argosfile       = 'ARGO_S_r4',
 #
  udriftfile      = 'udrifter_1x1',
  vdriftfile      = 'vdrifter_1x1',
@@ -74,18 +74,21 @@
 #
 ## temperrfile     = 'lev01_clim_tmp_sd.bin',
 ## salterrfile     = 'lev01_clim_salt_sd.bin',
- temperrfile     = 'temp_5.err',
- salterrfile     = 'salt_5.err',
+ temperrfile     = 'insitu_estim_theta.err',
+ salterrfile     = 'insitu_estim_salt.err',
 #
 ## hflux_errfile   = 'NCEP_R6_turbflux_sd_1992-2003',
 ## sflux_errfile   = 'NCEP_R6_emp_sd_1992-2003',
 ## tauu_errfile    = 'NCEP_R6_ustr_anom_sd_1992-2003',
 ## tauv_errfile    = 'NCEP_R6_vstr_anom_sd_1992-2003',
- hflux_errfile   = 'totflux_s.err',
- sflux_errfile   = 'pme_s.err',
- tauu_errfile    = 'ustr_ncep_r-qscat_yr2000_s.err',
- tauv_errfile    = 'vstr_ncep_r-qscat_yr2000_s.err',
-
+# hflux_errfile   = 'totflux_s.err',
+# sflux_errfile   = 'pme_s.err',
+# tauu_errfile    = 'ustr_ncep_r-qscat_yr2000_s.err',
+# tauv_errfile    = 'vstr_ncep_r-qscat_yr2000_s.err',
+ atemp_errfile    = 'NCEP_R2day_tmp2m_sd_1992-2003',
+ aqh_errfile      = 'NCEP_R2day_spfh2m_sd_1992-2003',
+ uwind_errfile    = 'NCEP_R2day_u10m_sd_1992-2003',
+ vwind_errfile    = 'NCEP_R2day_v10m_sd_1992-2003',
 #
  scatx_errfile   = 'ustr_ncep_r-qscat_yr2000_s.err',
  scaty_errfile   = 'vstr_ncep_r-qscat_yr2000_s.err',
@@ -99,6 +102,12 @@
  mult_sflux  = 1.,
  mult_tauu   = 1.,
  mult_tauv   = 1.,
+#
+ mult_atemp  = 1.,
+ mult_aqh    = 1.,
+ mult_uwind  = 1.,
+ mult_vwind  = 1.,
+#
  mult_hmean  = 1.,
  mult_h      = 1.,
  mult_temp   = 1.,

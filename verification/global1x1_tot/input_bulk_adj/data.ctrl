@@ -4,8 +4,8 @@
  &ctrl_nml
 #
  doinitxx = .TRUE.,
-### doPackDiag = .TRUE.,
-### doZscalePack = .FALSE.,
+ doPackDiag = .TRUE.,
+ doZscalePack = .TRUE.,
 #
  xx_theta_file='xx_theta',
  xx_salt_file='xx_salt',

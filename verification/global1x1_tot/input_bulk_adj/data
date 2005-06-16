@@ -71,8 +71,7 @@
 # Time stepping parameters
 # ************************
  &PARM03
- forcing_In_AB = .FALSE.,
- startTime=0.,
+ nIter0 = 1,
 # 2 months
 # nTimeSteps=1440,
 # 1 year
@@ -83,7 +82,10 @@
 ### nTimeSteps=96398,
 # 12 years
 # nTimeSteps=105120,
+# 13 years
+ nTimeSteps=113880,
 #
+ forcing_In_AB = .FALSE.,
  tauCD=172800.,
  deltaTmom=3600.0,
  deltaTtracer=3600.0,
@@ -93,7 +95,7 @@
  pChkptFreq  = 31536000.0,
  chkptFreq   = 31536000.0,
 # dumpFreq    = 31536000.0,
- adjDumpFreq = 7905600.0, 
+ adjDumpFreq = 31536000.0, 
 # taveFreq    = 15768000.0,
  taveFreq    = 31536000.0,
  monitorFreq = 31536000.0,

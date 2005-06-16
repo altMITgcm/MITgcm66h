@@ -52,13 +52,13 @@
  precipstartdate2   = 30000,
  precipperiod       = 21600.0,
 #
-# swdownstartdate1  = 19920101,
-# swdownstartdate2  = 30000,
-# swdownperiod      = 21600.0,
+ swdownstartdate1  = 19920101,
+ swdownstartdate2  = 30000,
+ swdownperiod      = 21600.0,
 #
-# lwdownstartdate1  = 19920101,
-# lwdownstartdate2  = 30000,
-# lwdownperiod      = 21600.0,
+ lwdownstartdate1  = 19920101,
+ lwdownstartdate2  = 30000,
+ lwdownperiod      = 21600.0,
 #
 # hfluxfile         = 'NCEP_R6_turbflux',
 # sfluxfile         = 'NCEP_R6_emp',
@@ -71,8 +71,8 @@
  uwindfile         = 'NCEP_R6_u10m',
  vwindfile         = 'NCEP_R6_v10m',
  precipfile        = 'NCEP_R6_rain',
-# swdownfile        = 'NCEP_R6_dsw',
-# lwdownfile        = 'NCEP_R6_dlw',
+ swdownfile        = 'NCEP_R6_dsw',
+ lwdownfile        = 'NCEP_R6_dlw',
  runofffile	   = 'run-off.bin_1x1',
 #
  exf_inscal_ustress    = -1.,
