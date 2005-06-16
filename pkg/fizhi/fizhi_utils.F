@@ -367,7 +367,7 @@ c ------------------------------------
        IF (LDQDT)  DQDT = 0.
       ELSE
        D = 1.0 / D
-       Q = MIN(QX * D,1.0)
+       Q = MIN(QX * D,1.0 _d 0)
        IF (LDQDT)  DQDT = (1.0 + ERFAC*Q) * D * DQX
       ENDIF
       RETURN
