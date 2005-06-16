@@ -24,7 +24,6 @@ c-----------------------------------------------------------------------
        integer i, j, bi, bj, biglobal, bjglobal
        integer im1, im2, jm1, jm2, idim1, idim2, jdim1, jdim2
        integer nSxglobal, nSyglobal
-       integer ksst,kice
        _RL        sstmin 
        parameter ( sstmin = 273.16 )
 
@@ -39,9 +38,6 @@ c-----------------------------------------------------------------------
        nSxglobal = nSx*nPx
        nSyglobal = nSy*nPy
 
-       call mdsfindunit( ksst, myThid )
-       call mdsfindunit( kice, myThid )
- 
 C***********************************************************************
 
        DO BJ = myByLo(myThid),myByHi(myThid)
