@@ -14,6 +14,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/time.h>
+#include <string.h>
 void FC_NAMEMANGLE(mnccdir) ( int *nienc, int *ienc, int *idate )
 {
     char name[512], dname[512];
