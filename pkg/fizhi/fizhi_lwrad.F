@@ -97,8 +97,9 @@ c ---------------------------------------------------------------------
         do L =1,lm
         do j =1,jm
         do i =1,im
-         cldtot(i,j,L)=min(1.0 _d 0,max(cldlw(i,j,L),fccave(i,j,L)/imstturb))
-         cldmxo(i,j,L) =  min( 1.0 _d 0,      clwmo(i,j,L) )
+           cldtot(i,j,L)=min(1.0 _d 0,max(cldlw(i,j,L),fccave(i,j,L)/
+     $          imstturb))
+           cldmxo(i,j,L) =  min( 1.0 _d 0,      clwmo(i,j,L) )
            lwlz(i,j,L) =  lwlz(i,j,L) + qliqave(i,j,L)/imstturb
         enddo
         enddo

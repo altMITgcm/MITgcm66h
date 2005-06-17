@@ -125,7 +125,8 @@ c        and constrain the Maximum Value
 c ----------------------------------------------
       do j=1,jm
       do i=1,im
-      phis_std(i,j) = min( 400.0 _d 0, sqrt( max(0.0 _d 0,phis_var(i,j)) )/grav )
+         phis_std(i,j) = min( 400.0 _d 0, sqrt( max(0.0 _d 0,
+     $        phis_var(i,j)) )/grav )
       enddo
       enddo
 
@@ -183,8 +184,10 @@ c --------------------------------------------------
       do L = 1,Lm
       do j = 1,jm
       do i = 1,im
-      dragu(i,j,L) = sign( min(0.006 _d 0,abs(dragu(i,j,L))),dragu(i,j,L) )
-      dragv(i,j,L) = sign( min(0.006 _d 0,abs(dragv(i,j,L))),dragv(i,j,L) )
+         dragu(i,j,L) = sign( min(0.006 _d 0,abs(dragu(i,j,L))), dragu(i
+     $        ,j,L) ) 
+         dragv(i,j,L) = sign( min(0.006 _d 0,abs(dragv(i,j,L))), dragv(i
+     $        ,j,L) ) 
       dragt(i,j,L) = -( uz(i,j,L)*dragu(i,j,L)+vz(i,j,L)*dragv(i,j,L) )
      .                                                         *cpinv
        dudt(i,j,L) = dudt(i,j,L) + dragu(i,j,L)
