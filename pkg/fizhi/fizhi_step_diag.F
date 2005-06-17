@@ -110,6 +110,21 @@ c ---------------------------------------------------
        call diagnostics_fill(tmpdiag,'OSRCLR  ',0,1,3,bi,bj,myid)
       endif
                                                                                 
+c Planetary Albedo
+c ----------------
+      if(diagnostics_is_on('PLALBEDO',myid) ) then
+       do j=jm1,jm2
+       do i=im1,im2
+        if(radswt(i,j,bi,bj).ne.0.) then
+         tmpdiag(i,j) = osr(i,j,bi,bj)
+        else
+         tmpdiag(i,j) = 0.
+        endif
+       enddo
+       enddo
+       call diagnostics_fill(tmpdiag,'PLALBEDO',0,1,3,bi,bj,myid)
+      endif
+                                                                                
 c Upward Longwave Flux at the Ground (W/m**2)
 c -------------------------------------------
       if(diagnostics_is_on('LWGUP   ',myid) ) then
