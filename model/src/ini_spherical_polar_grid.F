@@ -328,6 +328,8 @@ C--     Cosine(lat) scaling
      &                    **cosPower
           cosFacV(J,bi,bj)=COS((yC(1,J,bi,bj)-0.5*delY(jG))*deg2rad)
      &                    **cosPower
+          cosFacU(J,bi,bj)=ABS(cosFacU(J,bi,bj))
+          cosFacV(J,bi,bj)=ABS(cosFacV(J,bi,bj))
           sqcosFacU(J,bi,bj)=sqrt(cosFacU(J,bi,bj))
           sqcosFacV(J,bi,bj)=sqrt(cosFacV(J,bi,bj))
          ELSE
