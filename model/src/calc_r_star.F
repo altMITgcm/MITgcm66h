@@ -60,9 +60,9 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 #endif
 
       IF (groundAtK1) THEN
-       km = 1
-      ELSE
        km = Nr
+      ELSE
+       km = 1
       ENDIF 
 
       DO bj=myByLo(myThid), myByHi(myThid)
