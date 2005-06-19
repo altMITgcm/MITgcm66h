@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint57i_post
 o Diagnostics package was changed: diagnostic allocation is now deactivated
   by setting an empty file name in the namelist (used to be by setting 0 frequency)
 o momentum advection (VI form) options: activate 4th.O vorticity Coriolis ;
