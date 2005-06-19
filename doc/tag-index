@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o fix few little things to avoid floating error with -ftrapuv (ifort v9)
+ (ini_spherical_polar_grid.F, calc_r_star.F, monitor/mon_surfcor.F)
+
 checkpoint57i_post
 o Diagnostics package was changed: diagnostic allocation is now deactivated
   by setting an empty file name in the namelist (used to be by setting 0 frequency)
