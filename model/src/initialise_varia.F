@@ -237,6 +237,9 @@ C--   Integrate continuity vertically for vertical velocity
 
 #ifdef EXACT_CONSERV
       IF ( exactConserv ) THEN
+#ifdef ALLOW_DEBUG
+        IF (debugMode) CALL DEBUG_CALL('UPDATE_ETAH',myThid)
+#endif
 C--   Update etaH(n) :
          CALL UPDATE_ETAH( startTime, nIter0, myThid )
       ENDIF
