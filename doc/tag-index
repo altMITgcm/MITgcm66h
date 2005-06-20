@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o add Sadourny like discretization to the 4th.O vorticity advection scheme
 o fix bug in rStar code (calc_r_star.F) when used with topo/bathy. 
   update output.txt from: aim.5l_cs (& .thSI), cpl_aim+ocn,
      fizhi-gridalt-hs and global_ocean.cs32x15 (& .thsice).
