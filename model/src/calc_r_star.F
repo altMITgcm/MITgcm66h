@@ -59,7 +59,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       IF (debugMode) CALL DEBUG_ENTER('CALC_R_STAR',myThid)
 #endif
 
-      IF (groundAtK1) THEN
+      IF (usingPCoords) THEN
        km = Nr
       ELSE
        km = 1

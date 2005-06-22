@@ -30,7 +30,7 @@ C     == Local variables ==
       _RL obc_mask
 
       K = 1 
-      IF (groundAtK1) K = Nr
+      IF (usingPCoords) K = Nr
 
 C     Set model variables to OB values on North/South Boundaries
       DO I=1-Olx,sNx+Olx
