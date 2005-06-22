@@ -385,7 +385,7 @@ C--   Tendency is minus divergence of the fluxes + coriolis + pressure term
 #endif
      &  *(fZon(i,j  )          - fZon(i-1,j)
      &   +fMer(i,j+1)          - fMer(i  ,j)
-     &   +fVerU(i,j,kUp)*rkFac - fVerU(i,j,kDown)*rkFac
+     &   -fVerU(i,j,kUp)*rkSign + fVerU(i,j,kDown)*rkSign
      &   )
      &  - phxFac*dPhiHydX(i,j)
        ENDDO
@@ -546,7 +546,7 @@ C--   Tendency is minus divergence of the fluxes + coriolis + pressure term
 #endif
      &  *(fZon(i+1,j)          - fZon(i,j  )
      &   +fMer(i,j  )          - fMer(i,j-1)
-     &   +fVerV(i,j,kUp)*rkFac - fVerV(i,j,kDown)*rkFac
+     &   -fVerV(i,j,kUp)*rkSign + fVerV(i,j,kDown)*rkSign
      &   )
      &  - phyFac*dPhiHydY(i,j)
        ENDDO

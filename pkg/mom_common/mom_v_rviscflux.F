@@ -55,8 +55,8 @@ C     - Laplacian  and bi-harmonic terms
         rViscFluxV(i,j) =
      &   -KappaRV(i,j,kp1)
      &   *rAs(i,j,bi,bj)
-     &   *( vFld(i,j,k,bi,bj)-vFld(i,j,kp1,bi,bj)
-     &    )*rkFac*recip_drC(kp1)
+     &   *( vFld(i,j,kp1,bi,bj)-vFld(i,j,k,bi,bj)
+     &    )*rkSign*recip_drC(kp1)
      &    *_maskS(i,j,k,bi,bj)
      &    *_maskS(i,j,kp1,bi,bj)
        ENDDO

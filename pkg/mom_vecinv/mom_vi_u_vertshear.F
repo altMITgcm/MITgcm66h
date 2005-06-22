@@ -71,16 +71,14 @@ C       Transport at interface k+1 (here wFld is already masked)
 
 C delta_Z( U )  @ interface k
 c       umask_Km1=mask_Km1*maskW(i,j,Km1,bi,bj)
-        uZm=(mask_Km1*uFld(I,J,Km1,bi,bj)-uFld(I,J,K,bi,bj))
-c    &      *rkFac
+        uZm=(uFld(I,J,K,bi,bj)-mask_Km1*uFld(I,J,Km1,bi,bj))*rkSign
 c2   &      *recip_dRC(K)
 c       IF (freeslip1) uZm=uZm*umask_Km1
 c       IF (noslip1.AND.umask_Km1.EQ.0.) uZm=uZm*2.
 
 C delta_Z( U )  @ interface k+1
 c       umask_Kp1=mask_Kp1*maskW(i,j,Kp1,bi,bj)
-        uZp=(uFld(I,J,K,bi,bj)-mask_Kp1*uFld(I,J,Kp1,bi,bj))
-c    &      *rkFac
+        uZp=(mask_Kp1*uFld(I,J,Kp1,bi,bj)-uFld(I,J,K,bi,bj))*rkSign
 c2   &      *recip_dRC(Kp1)
 c       IF (freeslipK) uZp=uZp*umask_Kp1
 c       IF (noslipK.AND.umask_Kp1.EQ.0.) uZp=uZp*2.
