@@ -157,7 +157,6 @@ Cml      sBeta               = 7.4D-4
       allowFreezing       = .FALSE.
       useOldFreezing      = .FALSE.
       ivdc_kappa          = 0.D0
-      groundAtK1          = .FALSE.
       bottomDragLinear    = 0.
       bottomDragQuadratic = 0.
       usePickupBeforeC35    = .FALSE.
