@@ -57,7 +57,7 @@ CEOP
      &    *0.25*(wVelBottomOverride*
      &           (wFld(i,j,kp1,bi,bj)+wFld(i,j-1,kp1,bi,bj))
      &           +wFld(i,j, k ,bi,bj)+wFld(i,j-1, k ,bi,bj)
-     &          )*rkFac*recip_horiVertRatio*gravitySign
+     &          )*recip_horiVertRatio*gravitySign
        ENDDO
       ENDDO
 
