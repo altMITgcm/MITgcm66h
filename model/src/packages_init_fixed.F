@@ -207,7 +207,7 @@ C--   Initialise & Read Land package parameters
 C--   Initialise ecco-specific cost function.
 C--   This needs to preceed the call ctrl_init
 C--   in order to provide the weight files
-      IF (useECCO) CALL ECCO_COST_INIT_FIXED( myThid )
+      CALL ECCO_COST_INIT_FIXED( myThid )
 #endif
 
 #ifdef ALLOW_AUTODIFF

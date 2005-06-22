@@ -227,7 +227,7 @@ ceh3 needs an IF ( useEXF ) THEN
 
 #ifdef ALLOW_ECCO
 c--   Initialize ECCO package parameters
-      IF (useECCO) call ecco_readparms ( myThid )
+      call ecco_readparms ( myThid )
 #endif
 
 #ifdef COMPONENT_MODULE
