@@ -58,7 +58,7 @@ CEOP
        DO i=1-Olx,sNx+Olx
          IF ( _hFacC(i,j,k-1,bi,bj)
      &       *_hFacC(i,j,k,bi,bj) .GT. 0.
-     &  .AND. (rhokm1(i,j)-rhok(i,j))*rKfac*gravitySign .LT. 0.
+     &  .AND. (rhokm1(i,j)-rhok(i,j))*rkSign*gravitySign .GT. 0.
      &      ) THEN
 
 C      Where statically unstable, mix the tracers conserving volume

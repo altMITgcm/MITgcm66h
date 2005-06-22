@@ -97,7 +97,7 @@ C-      Initialisation of Convection Counter
      &                      + act4*max1*max2*max3
 #endif /* ALLOW_AUTODIFF_TAMC */
 
-         IF ( rkFac*gravitySign .LT. 0. ) THEN
+         IF ( rkSign*gravitySign .GT. 0. ) THEN
 C-          <=> usingZCoords:
           kTop    =  2
           kBottom = Nr

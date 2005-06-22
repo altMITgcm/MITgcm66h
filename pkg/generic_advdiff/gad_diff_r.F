@@ -63,7 +63,7 @@ CEOP
          dfr(i,j) =
      &    -_rA(i,j,bi,bj)
      &     *KappaR(i,j)*recip_drC(k)
-     &     *(Tracer(i,j,km1,bi,bj)-Tracer(i,j,k,bi,bj))*rkFac
+     &     *(Tracer(i,j,k,bi,bj)-Tracer(i,j,km1,bi,bj))*rkSign
         ENDDO
        ENDDO
       ENDIF

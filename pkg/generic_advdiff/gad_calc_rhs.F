@@ -141,7 +141,7 @@ C--   Set diagnostic suffix for the current tracer
 
       advFac  = 0. _d 0
       IF (calcAdvection) advFac = 1. _d 0
-      rAdvFac = rkFac*advFac
+      rAdvFac = rkSign*advFac
       IF (implicitAdvection) rAdvFac = 0. _d 0
 
       DO j=1-OLy,sNy+OLy
@@ -506,10 +506,10 @@ C--   Divergence of fluxes
      &   -_recip_hFacC(i,j,k,bi,bj)*recip_drF(k)*recip_rA(i,j,bi,bj)
      &   *( (fZon(i+1,j)-fZon(i,j))
      &     +(fMer(i,j+1)-fMer(i,j))
-     &     +(fVerT(i,j,kUp)-fVerT(i,j,kDown))*rkFac
+     &     +(fVerT(i,j,kDown)-fVerT(i,j,kUp))*rkSign
      &     -localT(i,j)*( (uTrans(i+1,j)-uTrans(i,j))
      &                   +(vTrans(i,j+1)-vTrans(i,j))
-     &                   +(rTrans(i,j)-rTransKp1(i,j))*rAdvFac
+     &                   +(rTransKp1(i,j)-rTrans(i,j))*rAdvFac
      &                  )*advFac
      &    )
        ENDDO

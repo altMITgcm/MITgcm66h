@@ -83,7 +83,6 @@ C-    Internal exchange for calculations in Y
        ENDDO
       ENDDO
 
-C- jmc: Patrick, will this work for TAF ?
       IF (K.EQ.1) THEN
        DO j=1-Oly,sNy+Oly
         DO i=1-Olx,sNx+Olx
@@ -94,21 +93,11 @@ C- jmc: Patrick, will this work for TAF ?
        DO j=1-Oly,sNy+Oly
         DO i=1-Olx,sNx+Olx
          sigmaR(i,j,k)= maskC(i,j,k,bi,bj)
-     &                *recip_drC(k)*rkFac
-     &                *(sigKm1(i,j)-sigKp1(i,j))
+     &                *recip_drC(k)*rkSign
+     &                *(sigKp1(i,j)-sigKm1(i,j))
         ENDDO
        ENDDO
       ENDIF
-C- jmc: leave the old code commented (in case ...)
-c     DO j=1-Oly,sNy+Oly
-c      DO i=1-Olx,sNx+Olx
-c       IF (K.NE.1 .AND. hfacC(i,j,k,bi,bj).NE.0.) THEN
-c        sigmaR(i,j,k)=recip_drC(k)*rkFac*(sigKm1(i,j)-sigKp1(i,j))
-c       ELSE
-c        sigmaR(i,j,k)=0.
-c       ENDIF
-c      ENDDO
-c     ENDDO
 
       RETURN
       END

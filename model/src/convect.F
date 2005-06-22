@@ -83,7 +83,7 @@ C--    Where statically unstable, mix the heat and salt
        DO j=jMin,jmax
         DO i=iMin,imax
          IF ( _hFacC(i,j,k,bi,bj) .GT. 0. .AND.
-     &        (rhokm1(i,j)-rhokp1(i,j))*rkFac*gravitySign .LT. 0. 
+     &        (rhokm1(i,j)-rhokp1(i,j))*rkSign*gravitySign .GT. 0. 
      &        ) THEN
           theta(i,j,k-1,bi,bj) = tMix(i,j)/dSum(i,j)
           theta(i,j,k  ,bi,bj) = tMix(i,j)/dSum(i,j)

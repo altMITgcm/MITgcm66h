@@ -720,9 +720,9 @@ C--   Divergence of vertical fluxes
           localTij(i,j)=localTijk(i,j,k)-dTtracerLev(k)*
      &     _recip_hFacC(i,j,k,bi,bj)*recip_drF(k)
      &     *recip_rA(i,j,bi,bj)
-     &     *( fVerT(i,j,kUp)-fVerT(i,j,kDown)
-     &       -tracer(i,j,k,bi,bj)*(rTrans(i,j)-rTransKp1(i,j))
-     &      )*rkFac
+     &     *( fVerT(i,j,kDown)-fVerT(i,j,kUp)
+     &       -tracer(i,j,k,bi,bj)*(rTransKp1(i,j)-rTrans(i,j))
+     &      )*rkSign
           gTracer(i,j,k,bi,bj)=
      &     (localTij(i,j)-tracer(i,j,k,bi,bj))/dTtracerLev(k)
          ENDDO
