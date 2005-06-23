@@ -30,3 +30,7 @@ C   ( dynamics puts K=1 at bottom of atmos., AIM puts K=1 at top of atmos. )
 
 #endif /* ALLOW_AIM */
 #endif /* AIM_OPTIONS_H */
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***

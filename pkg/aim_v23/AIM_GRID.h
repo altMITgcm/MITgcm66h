@@ -20,3 +20,7 @@ C               (originally in com_physcon.h, common FSIGLT)
       _RL csLat (NGP,MAX_NO_THREADS)
 
 #endif /* ALLOW_AIM */ 
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***

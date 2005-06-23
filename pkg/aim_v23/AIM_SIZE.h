@@ -23,3 +23,6 @@ C      lwTemp2= maximum temperature for LW radiation scheme
       INTEGER NBAND, lwTemp1, lwTemp2
       PARAMETER ( NBAND=4, lwTemp1=100, lwTemp2=400 )
 
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***

@@ -58,3 +58,7 @@ C     and used directly with no time-interpolation.
       EQUIVALENCE (aim_soilWater, aim_sw10) 
 
 #endif /* ALLOW_AIM */
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***
