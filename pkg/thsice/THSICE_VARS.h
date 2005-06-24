@@ -78,3 +78,7 @@ C   v2ocMxL :: velocity (square) in the mixed layer [m2/s2]
       _RL v2ocMxL(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
 #endif /* ALLOW_THSICE */
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***

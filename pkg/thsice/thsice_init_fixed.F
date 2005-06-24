@@ -33,6 +33,12 @@ CEOP
 C     !LOCAL VARIABLES:
 C     === Local variables ===
 
+#ifdef ALLOW_MNC
+      IF ( useMNC ) THEN
+        CALL THSICE_MNC_INIT( myThid )
+      ENDIF
+#endif
+
 #ifdef ALLOW_DIAGNOSTICS
       IF ( useDiagnostics ) THEN
         CALL THSICE_DIAGNOSTICS_INIT( myThid )

@@ -65,3 +65,7 @@ C     ICE_sMxL_Ave   :: cumulated ocean mixed-layer salinity [psu]
 #endif /* ALLOW_TIMEAVE */
 
 #endif /* ALLOW_THSICE */
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***

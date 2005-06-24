@@ -13,3 +13,6 @@ C     nlyr   ::   maximum number of ice layers
 
 #endif /* ALLOW_THSICE */
 
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***

@@ -17,3 +17,7 @@ C CPP Macros go here
 
 #endif /* ALLOW_THSICE */
 #endif /* THSICE_OPTIONS_H */
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***
