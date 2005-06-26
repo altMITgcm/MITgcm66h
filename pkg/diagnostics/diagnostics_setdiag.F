@@ -99,6 +99,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
      &    '- WARNING - SETDIAG: Diagnostic #', ndId, cdiag(ndId),
      &    ' has already been set'
         CALL PRINT_MESSAGE(msgBuf, errUnit, SQUEEZE_RIGHT, myThid)
+        mate = 0
         RETURN
       ENDIF
 
