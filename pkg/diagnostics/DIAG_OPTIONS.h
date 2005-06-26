@@ -19,6 +19,11 @@ C Note: Use with cautious since it does not work for all restart
 C  cases (e.g., changing data.diagnostics).
 #undef  DIAGNOSTICS_HAS_PICKUP
 
+C Allow to fill directly qdiag : 
+C   uses equivalence (especially for the pointer idiag)
+C This code is no longer supported and will be removed soon.
+#undef ALLOW_DIRECT_FILLING_WITH_EQUIV
+
 #endif /* ALLOW_DIAGNOSTICS */
 #endif /* DIAG_OPTIONS_H */
 

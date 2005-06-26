@@ -39,7 +39,7 @@ C     we are trying to fill a valid diagnostic
       do n = 1,ndiagt
         if(chardiag.eq.cdiag(n)) then
           ndiagnum = n
-          ipointer = idiag(n)
+c         ipointer = idiag(n)
         endif
       enddo
       if( ndiagnum.ne.0 .and. ipointer.ne.0 ) then
