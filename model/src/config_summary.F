@@ -324,6 +324,14 @@ C     zcoord ::
      &                '/* Sali. implicit vert. advection on/off */')
       CALL WRITE_0D_L( saltForcing,  INDEX_NONE,
      & 'saltForcing  =', '  /* Salinity forcing on/off flag */')
+      CALL WRITE_0D_L( debugMode,  INDEX_NONE,
+     & ' debugMode  =', '  /* Debug Mode on/off flag */')
+      CALL WRITE_0D_I( debLevA, INDEX_NONE,
+     & '   debLevA  =', '  /* 1rst level of debugging */')
+      CALL WRITE_0D_I( debLevB, INDEX_NONE,
+     & '   debLevB  =', '  /* 2nd  level of debugging */')
+      CALL WRITE_0D_I( debugLevel, INDEX_NONE,
+     & ' debugLevel =', '  /* select debugging level */')
       WRITE(msgBuf,'(A)') '//  '
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, 
      &                    SQUEEZE_RIGHT , 1)
