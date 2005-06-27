@@ -1182,10 +1182,10 @@ c ---------------------------------------------------------------------
       if( (icethk(i).gt.0.).and.(tground(i).gt.tice) ) tground(i)=tice
       enddo
 
-c Update tcanopy and ecanopy from the land points of the 
+c Update tcanopy and ecanopy from the points of the 
 c           tground and qground arrays
 c ---------------------------------------------------------------------
-      do i =1,nchplnd
+      do i =1,nchptot
        tcanopy(i) = tground(i)
        ecanopy(i) = qground(i)
       enddo
