@@ -393,9 +393,9 @@ c                 Evaluate all stability functions assuming hq = ht.
                    x     = sqrt(xsq)
                   psimh  = -psim_fac*huol*stable +
      &                     (exf_one - stable)*
-     &                     log((exf_one + x*(exf_two + x))*
+     &                     (log((exf_one + x*(exf_two + x))*
      &                     (exf_one + xsq)/8.) - exf_two*atan(x) +
-     &                     pi*exf_half
+     &                     pi*exf_half)
                   xsq    = max(sqrt(abs(exf_one - 16.*htol)),exf_one)
                   psixh  = -psim_fac*htol*stable + (exf_one - stable)*
      &                     exf_two*log((exf_one + xsq)/exf_two)
