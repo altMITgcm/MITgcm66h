@@ -487,9 +487,7 @@ Cml)
 #ifdef ALLOW_DIAGNOSTICS
       IF ( usediagnostics ) THEN
 
-       IF ( DIAGNOSTICS_IS_ON('PHIHYD  ',myThid) ) THEN
        CALL DIAGNOSTICS_FILL(totPhihyd,'PHIHYD  ',0,Nr,0,1,1,myThid)
-       ENDIF
 
        IF ( DIAGNOSTICS_IS_ON('PHIHYDSQ',myThid) ) THEN
         DO bj = myByLo(myThid), myByHi(myThid)
@@ -506,9 +504,7 @@ Cml)
         ENDDO
        ENDIF
 
-       IF ( DIAGNOSTICS_IS_ON('PHIBOT  ',myThid) ) THEN
        CALL DIAGNOSTICS_FILL(phiHydLow,'PHIBOT  ',0,1,0,1,1,myThid)
-       ENDIF
 
        IF ( DIAGNOSTICS_IS_ON('PHIBOTSQ',myThid) ) THEN
         DO bj = myByLo(myThid), myByHi(myThid)
