@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o add matlab scripts for CS-grid vectors (in utils/cs_grid)
 o diagnostics pkg: change pointers so that 1 diagnostic can be used
   several times with different frequencies.
 o mnc-ify the thsice package as requested by Daniel Enderton
