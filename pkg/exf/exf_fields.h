@@ -106,6 +106,12 @@ c                  > 0 for ????
 c                  Typical range: ???? < apressure < ????
 c                  Input field
 c
+c     hs        :: sensible heat flux into ocean in W/m^2
+c                  > 0 for increase in theta (ocean warming)
+c
+c     hl        :: latent   heat flux into ocean in W/m^2
+c                  > 0 for increase in theta (ocean warming)
+c
 c
 c     NOTES:
 c     ======
@@ -179,6 +185,9 @@ c
       common /exfl_precip_r/ precip0, precip1
       _RL precip0   (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL precip1   (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      common /exfl_turb_r/ hs, hl
+      _RL hs        (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL hl        (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 #endif
 
 #if defined(ALLOW_ATM_TEMP) || defined(SHORTWAVE_HEATING)

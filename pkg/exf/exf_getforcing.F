@@ -177,6 +177,9 @@ c     Update the tile edges.
 c     Get values of the surface flux anomalies.
       call exf_getsurfacefluxes( mytime, myiter, mythid )
 
+c     Diagnostics output
+      call exf_diagnostics_fill( mytime, myiter, mythid )
+
 c     Map the forcing fields onto the corresponding model fields.
       call exf_mapfields( mythid )
 
