@@ -194,12 +194,6 @@ c             Short wave radiative flux.
              qsw(i,j,bi,bj)  = exf_outscal_swflux*swflux(i,j,bi,bj)
             enddo
           enddo
-C         net heat flux = heat flux (except SW) + SW flux.
-          do j = jmin,jmax
-            do i = imin,imax
-             qnet(i,j,bi,bj) = qnet(i,j,bi,bj) + qsw(i,j,bi,bj)
-            enddo
-          enddo
 #endif
 
 #ifdef ALLOW_CLIMSST_RELAXATION
