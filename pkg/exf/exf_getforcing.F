@@ -183,10 +183,14 @@ c     The location of te summation of Qnet in exf_mapfields is unfortunate.
 c     For backward compatibility issues we want it to happen after
 c     applying control variables, but before exf_diagnostics_fill.
 c     Therefore, we do it exactly here:
-      do j = 1-oLy,sNy+oLy
+      do bj = mybylo(mythid),mybyhi(mythid)
+       do bi = mybxlo(mythid),mybxhi(mythid)
+        do j = 1-oLy,sNy+oLy
          do i = 1-oLx,sNx+oLx
-            hflux(i,j,bi,bj) = hflux(i,j,bi,bj) + swflux(i,j,bi,bj)
+          hflux(i,j,bi,bj) = hflux(i,j,bi,bj) + swflux(i,j,bi,bj)
          enddo
+        enddo
+       enddo
       enddo
 #endif
 
