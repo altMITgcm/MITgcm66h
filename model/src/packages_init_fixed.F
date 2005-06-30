@@ -169,13 +169,6 @@ C--   Latitude circle filter initialisation
       ENDIF
 #endif
 
-#ifdef ALLOW_ATM_COMMON
-C--   Initialise parameters shared by atmospheric physics packages
-      IF ( (useAIM.OR.useFIZHI)  .AND. useDiagnostics ) THEN
-        CALL ATM_DIAGNOSTICS_INIT( myThid )
-      ENDIF
-#endif
-
 #ifdef ALLOW_AIM
 C--   Initialise & Read AIM physical parameters
       IF (useAIM) CALL AIM_INITIALISE( myThid )
