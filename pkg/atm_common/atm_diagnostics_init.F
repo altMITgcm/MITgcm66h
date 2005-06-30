@@ -32,41 +32,6 @@ C     !LOCAL VARIABLES:
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 C     Define diagnostics Names :
 
-      diagName  = 'DTCONV  '
-      diagTitle = 'Temp Change due to Convection (K/sec)'
-      diagUnits = 'K/s             '
-      diagCode  = 'SM      MR      '
-      CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I          diagName, diagCode, diagUnits, diagTitle, myThid )
-
-      diagName  = 'DQCONV  '
-      diagTitle = 'Humidity Change due to Convection (g/kg/sec)'
-      diagUnits = 'g/kg/s          '
-      diagCode  = 'SM      MR      '
-      CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I          diagName, diagCode, diagUnits, diagTitle, myThid )
-
-      diagName  = 'RELHUM  '
-      diagTitle = 'Relative Humidity (fraction)'
-      diagUnits = 'Fraction        '
-      diagCode  = 'SM      MR      '
-      CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I          diagName, diagCode, diagUnits, diagTitle, myThid )
-
-      diagName  = 'PRECLS  '
-      diagTitle = 'Large Scale Precipitation (g/m2/sec)'
-      diagUnits = 'g/m^2/s         '
-      diagCode  = 'SM      M1      '
-      CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I          diagName, diagCode, diagUnits, diagTitle, myThid )
-
-      diagName  = 'ENPREC  '
-      diagTitle = 'Energy of Precipitation (snow, rain Temp) in (J/g)'
-      diagUnits = 'J/g             '
-      diagCode  = 'SM      M1      '
-      CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I          diagName, diagCode, diagUnits, diagTitle, myThid )
-
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 #endif /* ALLOW_DIAGNOSTICS */

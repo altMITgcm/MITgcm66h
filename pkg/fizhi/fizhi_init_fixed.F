@@ -62,6 +62,12 @@ c-----------------------------------------------------------------------
        endif
 #endif
 
+#ifdef ALLOW_DIAGNOSTICS
+      if ( useDiagnostics ) then
+        call fizhi_diagnostics_init( myThid )
+      endif
+#endif
+
        call fizhi_alarms(nymdb,nhmsb,deltaTClock)
 
        do bj = myByLo(myThid), myByHi(myThid)

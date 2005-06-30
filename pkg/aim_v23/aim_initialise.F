@@ -142,6 +142,12 @@ C--   Initialise Land Fraction (in AIM_FFIELDS.h):
       ENDIF
 #endif /*  ALLOW_MNC  */
 
+#ifdef ALLOW_DIAGNOSTICS
+      if ( useDiagnostics ) then
+        call aim_diagnostics_init( myThid )
+      endif
+#endif
+
 #endif /* ALLOW_AIM */
 
       RETURN
