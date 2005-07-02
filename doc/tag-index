@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint57k_post
+o lab_sea now uses diagnostics package and provides a suite of
+  new EXF diagnostics output.
+
 checkpoint57j_post
 o exf
   * bug fix in exf_bulkformulae for psimh (spotted by Eliyahu Biton):
