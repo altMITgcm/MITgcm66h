@@ -68,6 +68,15 @@ C     =====  Fields for the tave output  =====
       CALL MNC_CW_ADD_VNAME('snowH_ave','Cen_xy_Hn__-__t',3,4,myThid)
       CALL MNC_CW_ADD_VATTR_TEXT('snowH_ave','units','---', myThid)
 
+      CALL MNC_CW_ADD_VNAME('Tsrf_ave','Cen_xy_Hn__-__t',3,4,myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('Tsrf','units','---', myThid)
+
+      CALL MNC_CW_ADD_VNAME('Tice1_ave','Cen_xy_Hn__-__t',3,4,myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('Tice1','units','---', myThid)
+
+      CALL MNC_CW_ADD_VNAME('Tice2_ave','Cen_xy_Hn__-__t',3,4,myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('Tice2','units','---', myThid)
+
       CALL MNC_CW_ADD_VNAME('snowPr_ave','Cen_xy_Hn__-__t',3,4,myThid)
       CALL MNC_CW_ADD_VATTR_TEXT('snowPr_ave','units','---', myThid)
 
