@@ -33,8 +33,9 @@ C     !USES:
 #endif
 
 C     !INPUT PARAMETERS:
-C     listId :: Diagnostics list number being written
+C     listId  :: Diagnostics list number being written
 C     myIter  :: current iteration number
+C     myTime  :: Current time of simulation (s)
 C     myThid  :: my Thread Id number
       INTEGER listId, myIter, myTime, myThid
 CEOP
