@@ -98,8 +98,8 @@ C       eight spaces:        12345678
           fields (m,l) = blk8c
         ENDDO
       ENDDO
-      dumpatlast = .FALSE.
-      diag_mnc = useMNC
+      dumpatlast            = .FALSE.
+      diag_mnc              = useMNC
       diag_pickup_read      = .FALSE.
       diag_pickup_write     = .FALSE.
       diag_pickup_read_mnc  = .FALSE.

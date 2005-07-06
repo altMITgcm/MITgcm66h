@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o add mnc output capability to diagnostics/diagstat and update 
+  our cvsignore files for the ACSII output generated
+
 checkpoint57k_post
 o lab_sea now uses diagnostics package and provides a suite of
   new EXF diagnostics output.

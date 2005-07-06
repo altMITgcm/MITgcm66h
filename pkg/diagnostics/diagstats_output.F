@@ -10,8 +10,7 @@ C     !ROUTINE: DIAGSTATS_OUTPUT
 C     !INTERFACE:
       SUBROUTINE  DIAGSTATS_OUTPUT(
      I     listId,
-     I     myIter,
-     I     myThid )
+     I     myIter, myTime, myThid )
 
 C     !DESCRIPTION:
 C     Write output for diagnostics fields.
@@ -37,7 +36,7 @@ C     !INPUT PARAMETERS:
 C     listId :: Diagnostics list number being written
 C     myIter  :: current iteration number
 C     myThid  :: my Thread Id number
-      INTEGER listId, myIter, myThid
+      INTEGER listId, myIter, myTime, myThid
 CEOP
 
 C     !LOCAL VARIABLES:
@@ -123,10 +122,16 @@ C-          Check for empty Diag (= not filled or using empty mask)
           ENDIF
          ENDDO
 
-C--      Write to file:
+C--      Write to ASCII file:
          IF (diagSt_Ascii) THEN
            CALL DIAGSTATS_ASCII_OUT( statGlob, nLev, ndId,
      &                               m, listId, myIter, myThid )
+         ENDIF
+
+         IF (diagSt_mnc) THEN
+           CALL DIAGSTATS_MNC_OUT( 
+     &          statGlob, nLev, ndId,
+     &          m, listId, myIter, myTime, myThid )
          ENDIF
 
 C--    end of Processing Fld # m
