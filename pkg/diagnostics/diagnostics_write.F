@@ -139,7 +139,7 @@ C       state-variable time-step:
           IF ( dump2fileNow .OR.
      &        (myTime.EQ.endTime .AND. dumpatlast) ) THEN
             write2file = .TRUE.
-            CALL DIAGSTATS_OUTPUT(n,wrIter,myTime,myThid)
+            CALL DIAGSTATS_OUTPUT(n,myTime,wrIter,myThid)
           ENDIF
         ENDDO
 
