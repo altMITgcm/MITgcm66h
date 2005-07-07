@@ -126,6 +126,13 @@ C       Update the record dimension by writing the iteration number
         CALL MNC_CW_DEL_VNAME('diag_levels', myThid)
         CALL MNC_CW_DEL_GNAME('diag_levels', myThid)
 
+#ifdef DIAG_MNC_COORD_NEEDSWORK
+C       This part has been placed in an #ifdef because, as its currently
+C       written, it will only work with variables defined on a dynamics
+C       grid.  As we start using diagnostics for physics grids, ice
+C       levels, land levels, etc. the different vertical coordinate
+C       dimensions will have to be taken into account.
+
 C       Now define:  Zmdxxxxxx, Zudxxxxxx, Zldxxxxxx
         ctmp(1:5) = 'mul  '
         DO i = 1,3
@@ -168,6 +175,7 @@ C         for averaged levels.
           CALL MNC_CW_DEL_VNAME(dn(1), myThid)
           CALL MNC_CW_DEL_GNAME(dn(1), myThid)
         ENDDO
+#endif /*  DIAG_MNC_COORD_NEEDSWORK  */
 
       ENDIF
 #endif /*  ALLOW_MNC  */
