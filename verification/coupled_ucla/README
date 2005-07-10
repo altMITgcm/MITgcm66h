@@ -4,12 +4,12 @@ MIT-UCLA ocean (4x4-deg) atmosphere (4x5-deg) model on Columbia.
 
   ssh menemenl@lou.nas.nasa.gov
   cd /u/menemenl/coupled/coupled2
-  dmget camel_7.2p_042903.tar
-  scp camel_7.2p_042903.tar lomax:/nobackup1/menemenl
+  dmget camel_7.2p_linux_071005.tar
+  scp camel_7.2p_linux_071005.tar lomax:/nobackup1/menemenl
 
   ssh menemenl@columbia4.nas.nasa.gov
   cd /nobackup/menemenl/coupled
-  tar xvf camel_7.2p_042903.tar
+  tar xvf camel_7.2p_linux_071005.tar
   mv camel_7.2p_042903 camel_7.2p
   cvs co -r release1_coupled MITgcm_code
   cvs co -r release1_coupled MITgcm/verification/coupled_ucla
@@ -20,16 +20,16 @@ First a test of the ocean model alone:
   mkdir bin exe
   cd bin
   cp ../verification/coupled_ucla/code/*.h .
-  ../tools/genmake -mpi -platform=ames_dbg -makefile
+  ../tools/genmake -mpi -platform=columbia -makefile
   make depend
-  make
+  make -j
   cd ../exe
   cp -f ../verification/coupled_ucla/input/* .
   ln -sf data.coupled_debug data
   ln -sf data.pkg.nokpp data.pkg
   ln -sf data.gmredi.gkw91 data.gmredi
   ln -sf POLY3.COEFFS.15 POLY3.COEFFS
-  mpirun -np 4 mitgcmuv
+  qsub submit.test
 
 Comparison output:
 
@@ -42,9 +42,9 @@ Instructions for creating ocean library for 4x4, 4cpu ocean model:
   cp ../verification/coupled_ucla/code/GMREDI_OPTIONS.h .
   cp ../verification/coupled_ucla/code/CPP_EEOPTIONS.h .
   cp ../verification/coupled_ucla/code/CPP_OPTIONS.h.coupled_nokpp CPP_OPTIONS.h
-  ../tools/genmake -mpi -platform=ames_opt -makefile
+  ../tools/genmake -mpi -platform=columbia -makefile
   make depend
-  make
+  make -j
   rm -f libocean.a
   ar r libocean.a *.o
   chmod 644 libocean.a
@@ -54,34 +54,14 @@ Get some AGCM configuration files
   cd ../..
   mkdir data
   cd camel_7.2p
-  \cp ../MITgcm/verification/coupled_ucla/input/cshrc.setup .
   \cp ../MITgcm/verification/coupled_ucla/input/esminput bin
   \cp ../MITgcm/verification/coupled_ucla/input/esm_input bin
-  \cp ../MITgcm/verification/coupled_ucla/input/UserOptions.h include
 
 Set the correct paths and model configuration in following files
-  emacs cshrc.setup bin/esminput include/UserOptions.h
-
-Replace "format" with "Format" in some files so that "m4"
-preprocessor leaves them untouched.
-  sed 's/format/Format/g' esm/service/bc_for_subdomains_shm.FM > tmp
-  \mv tmp esm/service/bc_for_subdomains_shm.FM
-  sed 's/format(/Format(/g' agcm/llnl/communications/agcm_field_g2s.FM > tmp
-  \mv tmp agcm/llnl/communications/agcm_field_g2s.FM
-  sed 's/format(/Format(/g' agcm/llnl/communications/agcm_field_s2g.FM > tmp
-  \mv tmp agcm/llnl/communications/agcm_field_s2g.FM
-  sed 's/format(/Format(/g' agcm/llnl/tmpx/agcm_field_g2s.FM > tmp
-  \mv tmp agcm/llnl/tmpx/agcm_field_g2s.FM
-  sed 's/format(/Format(/g' agcm/llnl/tmpx/agcm_field_s2g.FM > tmp
-  \mv tmp agcm/llnl/tmpx/agcm_field_s2g.FM
-  sed 's/format(/Format(/g' agcm/llnl/tmpx/agcm_init2.FM > tmp
-  \mv tmp agcm/llnl/tmpx/agcm_init2.FM
+  emacs cshrc.setup bin/esminput
 
 Compile code
-  module switch MIPSpro MIPSpro.7.3.1.1
-  module switch mpt mpt.1.4.0.0
   source cshrc.setup
-  mkmf
   make clean
   make
   make link

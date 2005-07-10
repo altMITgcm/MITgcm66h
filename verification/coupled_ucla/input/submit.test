@@ -1,0 +1,7 @@
+#PBS -l walltime=1:00:00
+#PBS -l ncpus=4
+#PBS -o /nobackup/menemenl/coupled/MITgcm/exe
+#PBS -j oe
+
+cd /nobackup/menemenl/coupled/MITgcm/exe
+mpirun -np 4 mitgcmuv

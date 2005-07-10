@@ -463,7 +463,7 @@ C     Initialize UCLA coupler
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 
-      INTEGER Nx, Ny, myThid
+      INTEGER myThid
 #ifdef COUPLED_UCLA
 C--   Make everyone wait except for master thread in master process.
       _BARRIER

@@ -399,6 +399,17 @@ switch ($platform$USEMPI)
     set FC         = ( 'f90' )
     set LINK       = ( 'f90' )
     breaksw
+  case columbia+mpi:
+    echo "Configuring for Columbia"
+    set CPP        = ( '/lib/cpp  -traditional -P' )
+    set FFLAGS     = ( '-mp -132 -r8 -i4 -w95 -W0 -WB -convert big_endian -assume byterecl' )
+    set FOPTIM     = ( '-O3 -align' )
+    set LIBS       = ( '-L/opt/sgi/mpt/1.11-85/lib -lmpi' )
+    set FC         = ( 'ifort' )
+    set LINK       = ( 'ifort' )
+    set DEFINES    = ( '-DWORDLENGTH=4' )
+    set INCLUDES   = ( '-I/opt/sgi/mpt/1.11-85/include' )
+    breaksw
   case onyx:
   case onyx+mpi:
     echo "Configuring for SGI ONYX running IRIX64"
