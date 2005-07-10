@@ -86,7 +86,7 @@ C          --------------------------------------
      I                       ndId, mate, iSp, iSm, myThid )
 
 C-          Check for empty Diag (= not filled or using empty mask)
-            IF ( statGlob(0,0,j).EQ.0. ) THEN
+            IF ( tmp_Glob(0,0).EQ.0. ) THEN
              _BEGIN_MASTER( myThid )
              WRITE(msgBuf,'(A,I10,A,I3)')
      &        '- WARNING - from DIAGSTATS_OUTPUT at iter=', myIter,
