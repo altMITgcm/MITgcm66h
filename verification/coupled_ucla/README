@@ -8,9 +8,10 @@ MIT-UCLA ocean (4x4-deg) atmosphere (4x5-deg) model on Columbia.
   scp camel_7.2p_linux_071005.tar lomax:/nobackup1/menemenl
 
   ssh menemenl@columbia4.nas.nasa.gov
+  module switch intel-comp.7.1.032 intel-comp.8.1.024
   cd /nobackup/menemenl/coupled
   tar xvf camel_7.2p_linux_071005.tar
-  mv camel_7.2p_042903 camel_7.2p
+  mv camel_7.2p_linux_071005 camel_7.2p
   cvs co -r release1_coupled MITgcm_code
   cvs co -r release1_coupled MITgcm/verification/coupled_ucla
 
@@ -50,17 +51,10 @@ Instructions for creating ocean library for 4x4, 4cpu ocean model:
   chmod 644 libocean.a
   \cp libocean.a ../../camel_7.2p/esm/lib/
 
-Get some AGCM configuration files
+Compile AGCM code
   cd ../..
   mkdir data
   cd camel_7.2p
-  \cp ../MITgcm/verification/coupled_ucla/input/esminput bin
-  \cp ../MITgcm/verification/coupled_ucla/input/esm_input bin
-
-Set the correct paths and model configuration in following files
-  emacs cshrc.setup bin/esminput
-
-Compile code
   source cshrc.setup
   make clean
   make
@@ -68,13 +62,16 @@ Compile code
 
 Now the moment of truth
   cd bin
-  ln -sf ../../MITgcm/verification/coupled_ucla/input/* .
-  ln -sf data.coupled_90x40 data
-  ln -sf data.pkg.nokpp data.pkg
-  ln -sf data.gmredi.gkw91 data.gmredi
-  ln -sf POLY3.COEFFS.15 POLY3.COEFFS
-  rm -f output.txt STD*
-  qsub submit.lomax
+  \cp ../../MITgcm/verification/coupled_ucla/input/eedata .
+  \cp ../../MITgcm/verification/coupled_ucla/input/data.coupled_90x40 data
+  \cp ../../MITgcm/verification/coupled_ucla/input/data.pkg.nokpp data.pkg
+  \cp ../../MITgcm/verification/coupled_ucla/input/data.gmredi.gkw91 data.gmredi
+  \cp ../../MITgcm/verification/coupled_ucla/input/POLY3.COEFFS.15 POLY3.COEFFS
+  \cp ../../MITgcm/verification/coupled_ucla/input/bathymetry.bin .
+  \cp ../../MITgcm/verification/coupled_ucla/input/lev_?.bin .
+  \cp ../../MITgcm/verification/coupled_ucla/input/trenberth_tau* .
+  \cp ../../MITgcm/verification/coupled_ucla/input/ncep_* .
+  qsub submit.columbia
 
 ##############################################################
 ##############################################################
