@@ -4,7 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
-o add mnc output capability to diagnostics/diagstat and update 
+o pkg/diagnostics: 2 new S/R to fill a diagnostics using a scaling factor
+      and/or using a fraction-weight field.
+o fix aim_diagnostics_init.F mate numbers.
+o add mnc output capability to diagnostics/diagstat and update
   our cvsignore files for the ACSII output generated
 
 checkpoint57k_post
