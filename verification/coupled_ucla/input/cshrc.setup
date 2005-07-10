@@ -4,7 +4,7 @@
 ####################################################
 #
 setenv ARCHITECTURE MEM_SGI_O2
-setenv CAMILLEHOME /tmp1/dmenem/oldpbl/camel_7.2p_042903
+setenv CAMILLEHOME /u/menemenl/menemenl/camel_7.2p
 setenv MAKE_INC ${CAMILLEHOME}/include
 alias mkmf 'make -f ${CAMILLEHOME}/Makefile.init Makefile'
 #

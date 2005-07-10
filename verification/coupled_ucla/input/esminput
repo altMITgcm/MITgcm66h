@@ -9,8 +9,8 @@
  timer_esm=0,
  GM_run=1, FE_run=0, CD_run=0, OD_run=1, OD_dtom=6.0,
  FE_tauhst=12.0,1440.0,1440.0,44040.0,999999.0, FE_intwqp=1,8,12,
- FE_datdir='/tmp1/dmenem/oldpbl/data',
- FE_mssdir='/tmp1/dmenem/oldpbl/data',
+ FE_datdir='/u/menemenl/menemenl/data',
+ FE_mssdir='/u/menemenl/menemenl/data',
  /
  &agcm
  NPI_agcm=2,
@@ -130,4 +130,4 @@
  edit_psurface=       0,0,0,0,0,0,0,0,0,0,0,
  /
  dt_agcmedit=43200.0, dt_agcmhist_out=2592000.0,
- agcm_infile='/usr/gcm3/farrara/agcm_4x5x15_oct01_12z_hist+pcw.nc',
+ agcm_infile='/u/menemenl/menemenl/camel_7.2p/bin/agcm_4x5x15_oct01_12z_hist+pcw.nc',

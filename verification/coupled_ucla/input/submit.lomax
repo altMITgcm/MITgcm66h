@@ -1,0 +1,7 @@
+#PBS -l walltime=6:00:00
+#PBS -l ncpus=20
+#PBS -o /u/menemenl/menemenl/camel_7.2p/bin
+#PBS -j oe
+
+cd /u/menemenl/menemenl/camel_7.2p/bin
+mpirun -np 20 camel2

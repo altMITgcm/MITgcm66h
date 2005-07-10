@@ -383,7 +383,7 @@ switch ($platform$USEMPI)
   case ames_dbg+mpi:
     echo "Configuring for SGI Origin2000 running IRIX 6.5"
     set DEFINES    = ( ${DEFINES} '-DTARGET_SGI -DWORDLENGTH=4' )
-    set INCLUDES   = ( '-I/usr/include -I/opt/mpt/1.6.1.beta/usr/include' )
+    set INCLUDES   = ( '-I/usr/include -I/opt/mpt/mpt/usr/include' )
     set FFLAGS     = ( '-n32 -extend_source -bytereclen' )
     set LIBS       = ( '-lmpi -lscs' )
     set FC         = ( 'f90' )
@@ -392,7 +392,7 @@ switch ($platform$USEMPI)
   case ames_opt+mpi:
     echo "Configuring for SGI Origin2000 running IRIX 6.5"
     set DEFINES    = ( ${DEFINES} '-DTARGET_SGI -DWORDLENGTH=4' )
-    set INCLUDES   = ( '-I/usr/include -I/opt/mpt/1.6.1.beta/usr/include' )
+    set INCLUDES   = ( '-I/usr/include -I/opt/mpt/mpt/usr/include' )
     set FFLAGS     = ( '-n32 -extend_source -bytereclen' )
     set FOPTIM     = ( '-O3 -OPT:Olimit=0:roundoff=3:div_split=ON:alias=typed' )
     set LIBS       = ( '-lmpi -lscs' )

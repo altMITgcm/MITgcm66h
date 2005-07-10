@@ -1,3 +1,258 @@
+
+Instruction for setting up and running the coupled coarse-resolution
+MIT-UCLA ocean (4x4-deg) atmosphere (4x5-deg) model on Columbia.
+
+  ssh menemenl@lou.nas.nasa.gov
+  cd /u/menemenl/coupled/coupled2
+  dmget camel_7.2p_042903.tar
+  scp camel_7.2p_042903.tar lomax:/nobackup1/menemenl
+
+  ssh menemenl@columbia4.nas.nasa.gov
+  cd /nobackup/menemenl/coupled
+  tar xvf camel_7.2p_042903.tar
+  mv camel_7.2p_042903 camel_7.2p
+  cvs co -r release1_coupled MITgcm_code
+  cvs co -r release1_coupled MITgcm/verification/coupled_ucla
+
+First a test of the ocean model alone:
+
+  cd MITgcm
+  mkdir bin exe
+  cd bin
+  cp ../verification/coupled_ucla/code/*.h .
+  ../tools/genmake -mpi -platform=ames_dbg -makefile
+  make depend
+  make
+  cd ../exe
+  cp -f ../verification/coupled_ucla/input/* .
+  ln -sf data.coupled_debug data
+  ln -sf data.pkg.nokpp data.pkg
+  ln -sf data.gmredi.gkw91 data.gmredi
+  ln -sf POLY3.COEFFS.15 POLY3.COEFFS
+  mpirun -np 4 mitgcmuv
+
+Comparison output:
+
+  cmp Eta.*10.data ../verification/coupled_ucla/results/Eta.*
+
+Instructions for creating ocean library for 4x4, 4cpu ocean model:
+  cd ../bin
+  \rm *
+  cp ../verification/coupled_ucla/code/SIZE.h .
+  cp ../verification/coupled_ucla/code/GMREDI_OPTIONS.h .
+  cp ../verification/coupled_ucla/code/CPP_EEOPTIONS.h .
+  cp ../verification/coupled_ucla/code/CPP_OPTIONS.h.coupled_nokpp CPP_OPTIONS.h
+  ../tools/genmake -mpi -platform=ames_opt -makefile
+  make depend
+  make
+  rm -f libocean.a
+  ar r libocean.a *.o
+  chmod 644 libocean.a
+  \cp libocean.a ../../camel_7.2p/esm/lib/
+
+Get some AGCM configuration files
+  cd ../..
+  mkdir data
+  cd camel_7.2p
+  \cp ../MITgcm/verification/coupled_ucla/input/cshrc.setup .
+  \cp ../MITgcm/verification/coupled_ucla/input/esminput bin
+  \cp ../MITgcm/verification/coupled_ucla/input/esm_input bin
+  \cp ../MITgcm/verification/coupled_ucla/input/UserOptions.h include
+
+Set the correct paths and model configuration in following files
+  emacs cshrc.setup bin/esminput include/UserOptions.h
+
+Replace "format" with "Format" in some files so that "m4"
+preprocessor leaves them untouched.
+  sed 's/format/Format/g' esm/service/bc_for_subdomains_shm.FM > tmp
+  \mv tmp esm/service/bc_for_subdomains_shm.FM
+  sed 's/format(/Format(/g' agcm/llnl/communications/agcm_field_g2s.FM > tmp
+  \mv tmp agcm/llnl/communications/agcm_field_g2s.FM
+  sed 's/format(/Format(/g' agcm/llnl/communications/agcm_field_s2g.FM > tmp
+  \mv tmp agcm/llnl/communications/agcm_field_s2g.FM
+  sed 's/format(/Format(/g' agcm/llnl/tmpx/agcm_field_g2s.FM > tmp
+  \mv tmp agcm/llnl/tmpx/agcm_field_g2s.FM
+  sed 's/format(/Format(/g' agcm/llnl/tmpx/agcm_field_s2g.FM > tmp
+  \mv tmp agcm/llnl/tmpx/agcm_field_s2g.FM
+  sed 's/format(/Format(/g' agcm/llnl/tmpx/agcm_init2.FM > tmp
+  \mv tmp agcm/llnl/tmpx/agcm_init2.FM
+
+Compile code
+  module switch MIPSpro MIPSpro.7.3.1.1
+  module switch mpt mpt.1.4.0.0
+  source cshrc.setup
+  mkmf
+  make clean
+  make
+  make link
+
+Now the moment of truth
+  cd bin
+  ln -sf ../../MITgcm/verification/coupled_ucla/input/* .
+  ln -sf data.coupled_90x40 data
+  ln -sf data.pkg.nokpp data.pkg
+  ln -sf data.gmredi.gkw91 data.gmredi
+  ln -sf POLY3.COEFFS.15 POLY3.COEFFS
+  rm -f output.txt STD*
+  qsub submit.lomax
+
+##############################################################
+##############################################################
+##############################################################
+##############################################################
+
+Instruction for setting up and running the coupled coarse-resolution
+MIT-UCLA ocean (4x4-deg) atmosphere (4x5-deg) model on lomax.
+
+  ssh menemenl@lou.nas.nasa.gov
+  cd /u/menemenl/coupled/coupled2
+  dmget camel_7.2p_042903.tar
+  scp camel_7.2p_042903.tar lomax:/nobackup1/menemenl
+
+  ssh menemenl@lomax.nas.nasa.gov
+  cd /nobackup1/menemenl
+  tar xvf camel_7.2p_042903.tar
+  mv camel_7.2p_042903 camel_7.2p
+  cvs co -r release1_coupled MITgcm_code
+  cvs co -r release1_coupled MITgcm/verification/coupled_ucla
+
+First a test of the ocean model alone:
+
+  cd MITgcm
+  mkdir bin exe
+  cd bin
+  cp ../verification/coupled_ucla/code/*.h .
+  ../tools/genmake -mpi -platform=ames_dbg -makefile
+  make depend
+  make
+  cd ../exe
+  cp -f ../verification/coupled_ucla/input/* .
+  ln -sf data.coupled_debug data
+  ln -sf data.pkg.nokpp data.pkg
+  ln -sf data.gmredi.gkw91 data.gmredi
+  ln -sf POLY3.COEFFS.15 POLY3.COEFFS
+  mpirun -np 4 mitgcmuv
+
+Comparison output:
+
+  cmp Eta.*10.data ../verification/coupled_ucla/results/Eta.*
+
+Instructions for creating ocean library for 4x4, 4cpu ocean model:
+  cd ../bin
+  \rm *
+  cp ../verification/coupled_ucla/code/SIZE.h .
+  cp ../verification/coupled_ucla/code/GMREDI_OPTIONS.h .
+  cp ../verification/coupled_ucla/code/CPP_EEOPTIONS.h .
+  cp ../verification/coupled_ucla/code/CPP_OPTIONS.h.coupled_nokpp CPP_OPTIONS.h
+  ../tools/genmake -mpi -platform=ames_opt -makefile
+  make depend
+  make
+  rm -f libocean.a
+  ar r libocean.a *.o
+  chmod 644 libocean.a
+  \cp libocean.a ../../camel_7.2p/esm/lib/
+
+Get some AGCM configuration files
+  cd ../..
+  mkdir data
+  cd camel_7.2p
+  \cp ../MITgcm/verification/coupled_ucla/input/cshrc.setup .
+  \cp ../MITgcm/verification/coupled_ucla/input/esminput bin
+  \cp ../MITgcm/verification/coupled_ucla/input/esm_input bin
+  \cp ../MITgcm/verification/coupled_ucla/input/UserOptions.h include
+
+Set the correct paths and model configuration in following files
+  emacs cshrc.setup bin/esminput include/UserOptions.h
+
+Replace "format" with "Format" in some files so that "m4"
+preprocessor leaves them untouched.
+  sed 's/format/Format/g' esm/service/bc_for_subdomains_shm.FM > tmp
+  \mv tmp esm/service/bc_for_subdomains_shm.FM
+  sed 's/format(/Format(/g' agcm/llnl/communications/agcm_field_g2s.FM > tmp
+  \mv tmp agcm/llnl/communications/agcm_field_g2s.FM
+  sed 's/format(/Format(/g' agcm/llnl/communications/agcm_field_s2g.FM > tmp
+  \mv tmp agcm/llnl/communications/agcm_field_s2g.FM
+  sed 's/format(/Format(/g' agcm/llnl/tmpx/agcm_field_g2s.FM > tmp
+  \mv tmp agcm/llnl/tmpx/agcm_field_g2s.FM
+  sed 's/format(/Format(/g' agcm/llnl/tmpx/agcm_field_s2g.FM > tmp
+  \mv tmp agcm/llnl/tmpx/agcm_field_s2g.FM
+  sed 's/format(/Format(/g' agcm/llnl/tmpx/agcm_init2.FM > tmp
+  \mv tmp agcm/llnl/tmpx/agcm_init2.FM
+
+Compile code
+  module switch MIPSpro MIPSpro.7.3.1.1
+  module switch mpt mpt.1.4.0.0
+  source cshrc.setup
+  mkmf
+  make clean
+  make
+  make link
+
+Now the moment of truth
+  cd bin
+  ln -sf ../../MITgcm/verification/coupled_ucla/input/* .
+  ln -sf data.coupled_90x40 data
+  ln -sf data.pkg.nokpp data.pkg
+  ln -sf data.gmredi.gkw91 data.gmredi
+  ln -sf POLY3.COEFFS.15 POLY3.COEFFS
+  rm -f output.txt STD*
+  qsub submit.lomax
+
+##############################################################
+##############################################################
+##############################################################
+##############################################################
+
+
+
+
+
+
+
+Moving to a new path:
+  cd coupled2/camel_7.2p
+  emacs include/UserOptions.h
+  emacs bin/esminput
+  emacs cshrc.setup
+  module switch MIPSpro MIPSpro.7.3.1.1m
+  module switch mpt mpt.1.4.0.0
+  source cshrc.setup
+  cd esm/service
+  make
+  cd ../..
+  make link
+  cd bin
+  qsub submit
+
+Notes:
+
+The path in cshrc.setup cannot be too long or  it won't work.
+
+On May 7, 2003 we were running:
+
+turing -- MIPSpro.7.3.1.1m
+          mpt.1.4.0.0
+          scsl.1.2.0.0
+
+However, since you can't run anything substantial on turing, here's
+the information for lomax and chapman.
+
+lomax -- MIPSpro.7.3.1.1m
+         mpt.1.5.3.0
+         scsl.1.2.0.0
+
+chapman -- MIPSpro.7.3.1.1m.libmp-fix
+           mpt.1.6.1.beta
+           scsl.1.3.0.0
+
+Remember that you will need to use the "module switch ..." command
+for both compiling and running since there are many run-time libraries
+that will need to be consistent with the build environment.
+
+===================================================================
+===================================================================
+===================================================================
+
 before starting, on alhena use:
 
 source /opt/modules/modules/init/tcsh

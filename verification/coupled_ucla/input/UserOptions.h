@@ -8,7 +8,7 @@
 #define FLAT_DIR  ${HOME}/cvsworkdir/flat
 
 /* Define location of esm_input file */
-#define ESM_INPUT_FILE "/tmp1/dmenem/oldpbl/camel_7.2p_042903/bin/esm_input"
+#define ESM_INPUT_FILE "/u/menemenl/menemenl/camel_7.2p/bin/esm_input"
 
 /* Choose package options.
  *
