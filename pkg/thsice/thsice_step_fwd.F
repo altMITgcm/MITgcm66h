@@ -168,7 +168,7 @@ C--    Update Sea-Ice state :
       IF ( useDiagnostics ) THEN
         tmpFac = 1. _d 0
         CALL DIAGNOSTICS_FRACT_FILL(
-     I                   snowPrc,   iceMask,tmpFac,'SIsnwPrc',
+     I                   snowPrc,   iceMask,tmpFac,1,'SIsnwPrc',
      I                   0,1,1,bi,bj,myThid)
       ENDIF
 #endif /* ALLOW_DIAGNOSTICS */
