@@ -7,8 +7,8 @@ CBOP
 C     !ROUTINE: DIAGNOSTICS_FILL
 C     !INTERFACE:
       SUBROUTINE DIAGNOSTICS_FILL(
-     I                inpFld, chardiag,
-     I                kLev, nLevs, bibjFlg, biArg, bjArg, myThid )
+     I               inpFld, chardiag,
+     I               kLev, nLevs, bibjFlg, biArg, bjArg, myThid )
 
 C     !DESCRIPTION:
 C***********************************************************************
@@ -86,9 +86,9 @@ C we are trying to fill a valid diagnostic
            ndId = jdiag(m,n)
 C-    diagnostic is valid & active, do the filling:
            CALL DIAGNOSTICS_FILL_FIELD(
-     I                inpFld, inpFld, scaleFact, 0,
-     I                ndId, ipt, kLev, nLevs,
-     I                bibjFlg, biArg, bjArg, myThid )
+     I              inpFld, inpFld, scaleFact, 1, 0,
+     I              ndId, ipt, kLev, nLevs,
+     I              bibjFlg, biArg, bjArg, myThid )
          ENDIF
         ENDIF
        ENDDO
@@ -123,9 +123,9 @@ C     then add regions from other lists
            ENDDO
 C-    diagnostics is valid and Active: Now do the filling
            CALL DIAGSTATS_FILL(
-     I                inpFld, inpFld, scaleFact, 0,
-     I                ndId, iSp, region2fill, kLev, nLevs,
-     I                bibjFlg, biArg, bjArg, myThid )
+     I              inpFld, inpFld, scaleFact, 1, 0,
+     I              ndId, iSp, region2fill, kLev, nLevs,
+     I              bibjFlg, biArg, bjArg, myThid )
          ENDIF
         ENDIF
        ENDDO
