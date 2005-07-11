@@ -130,11 +130,13 @@ C--      Write to ASCII file:
      &                               m, listId, myIter, myThid )
          ENDIF
 
+#ifdef ALLOW_MNC
          IF (diagSt_mnc) THEN
            CALL DIAGSTATS_MNC_OUT( 
      &          statGlob, nLev, ndId,
      &          m, listId, myTime, myIter, myThid )
          ENDIF
+#endif
 
 C--    end of Processing Fld # m
        ENDIF
