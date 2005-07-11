@@ -220,3 +220,52 @@ C     !LOCAL VARIABLES:
 
       RETURN
       END
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+CBOP 0
+C     !ROUTINE: diagnostics_get_pointers
+C     !INTERFACE:
+      subroutine diagnostics_get_pointers(diagName,ipoint,jpoint,myThid)
+
+C     !DESCRIPTION:
+C     *==========================================================*
+C     | subroutine diagnostics_get_pointers
+C     | o Returns the idiag and jdiag pointers for a
+C     |   specified diagnostic - returns 0 if not active
+C     *==========================================================*
+
+C     !USES:
+      IMPLICIT NONE
+#include "EEPARAMS.h"
+#include "SIZE.h"
+#include "DIAGNOSTICS_SIZE.h"
+#include "DIAGNOSTICS.h"
+
+C     !INPUT PARAMETERS:
+C     diagName   ::  diagnostic identificator name (8 characters long)
+C     myThid     ::  my thread Id number
+C     !OUTPUT PARAMETERS:
+C     ipoint     ::  pointer value into qdiag array
+C     jpoint     ::  pointer value into diagnostics list
+
+      CHARACTER*8 diagName
+      INTEGER ipoint, jpoint, myThid
+CEOP
+
+C     !LOCAL VARIABLES:
+      INTEGER n,m
+
+      ipoint = 0
+      jpoint = 0
+
+C-    search for this diag. in the active 2D/3D diagnostics list
+      DO n=1,nlists
+       DO m=1,nActive(n)
+        IF ( diagName.EQ.flds(m,n) .AND. idiag(m,n).NE.0 ) THEN
+          ipoint = abs(idiag(m,n))
+          jpoint = jdiag(m,n)
+        ENDIF
+       ENDDO
+      ENDDO
+
+      RETURN
+      END
