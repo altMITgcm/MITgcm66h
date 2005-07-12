@@ -214,7 +214,8 @@ C--   Gridding parameters
 
 C--   Input files
       NAMELIST /PARM05/
-     & bathyFile, topoFile, hydrogThetaFile, hydrogSaltFile, 
+     & bathyFile, topoFile, horizGridFile,
+     & hydrogThetaFile, hydrogSaltFile, 
      & zonalWindFile, meridWindFile,
      & thetaClimFile, saltClimFile,
      & surfQfile, surfQnetFile, surfQswFile, EmPmRfile, saltFluxFile,

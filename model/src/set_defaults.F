@@ -276,6 +276,7 @@ C--   Time stepping parameters
 C--   Input files
       bathyFile       = ' '
       topoFile        = ' '
+      horizGridFile   = ' '
       hydrogSaltFile  = ' '
       hydrogThetaFile = ' '
       zonalWindFile   = ' '
