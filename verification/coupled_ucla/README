@@ -4,15 +4,15 @@ MIT-UCLA ocean (4x4-deg) atmosphere (4x5-deg) model on Columbia.
 
   ssh menemenl@lou.nas.nasa.gov
   cd /u/menemenl/coupled
-  dmget camel_7.2p_linux_071005.tar
-  scp camel_7.2p_linux_071005.tar c2:/nobackup/menemenl
+  dmget camel_7.2p_linux_newpbl_071205.tar
+  scp camel_7.2p_linux_newpbl_071205.tar c4:/nobackup/menemenl
 
   ssh menemenl@c2.nas.nasa.gov
   cd /nobackup/menemenl
   mkdir coupled
   cd coupled
-  tar xvf ../camel_7.2p_linux_071005.tar
-  mv camel_7.2p_linux_071005 camel_7.2p
+  tar xvf ../camel_7.2p_linux_newpbl_071205.tar
+  mv camel_7.2p_linux_newpbl_071205 camel_7.2p
   cvs co -r release1_coupled MITgcm_code
   cvs co -r release1_coupled MITgcm/verification/coupled_ucla
 
