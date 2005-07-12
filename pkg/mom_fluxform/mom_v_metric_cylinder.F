@@ -44,20 +44,23 @@ C  vMetricTerms         :: metric term
 C !LOCAL VARIABLES: ====================================================
 C  i,j                  :: loop indices
       INTEGER i,j
+      _RL radius
 CEOP
 
-C jmc: using yG make more sense to me but I might be wrong ?
       DO j=1-Oly+1,sNy+Oly
        DO i=1-Olx,sNx+Olx-1
-          if (yC(i,j,bi,bj).GT. 0) then 
+          radius = (yG(i,j,bi,bj)+yG(i+1,j,bi,bj))*0.5 _d 0
+C-   to get the same results as before:
+c         radius = yC(i,j,bi,bj)
+          IF ( radius.GT.0. ) THEN 
              vMetricTerms(i,j) = 
-     &            -1.*0.25*(uFld(i,j) + uFld(i+1,j) +
-     &            uFld(i,j-1)+uFld(i+1,j-1))*
-     &            0.25*(uFld(i,j) + uFld(i+1,j) +
-     &            uFld(i,j-1)+uFld(i+1,j-1))/yC(i,j,bi,bj)
-          else
+     &           -0.25*(uFld(i,j) + uFld(i+1,j) +
+     &                  uFld(i,j-1)+uFld(i+1,j-1)) 
+     &           *0.25*(uFld(i,j) + uFld(i+1,j) +
+     &                  uFld(i,j-1)+uFld(i+1,j-1))/radius
+          ELSE
              vMetricTerms(i,j) = 0.
-          endif
+          ENDIF
        ENDDO
       ENDDO
 
