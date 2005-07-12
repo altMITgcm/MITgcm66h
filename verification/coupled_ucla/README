@@ -3,14 +3,15 @@ Instruction for setting up and running the coupled coarse-resolution
 MIT-UCLA ocean (4x4-deg) atmosphere (4x5-deg) model on Columbia.
 
   ssh menemenl@lou.nas.nasa.gov
-  cd /u/menemenl/coupled/coupled2
+  cd /u/menemenl/coupled
   dmget camel_7.2p_linux_071005.tar
-  scp camel_7.2p_linux_071005.tar lomax:/nobackup1/menemenl
+  scp camel_7.2p_linux_071005.tar c2:/nobackup/menemenl
 
-  ssh menemenl@columbia4.nas.nasa.gov
-  module switch intel-comp.7.1.032 intel-comp.8.1.024
-  cd /nobackup/menemenl/coupled
-  tar xvf camel_7.2p_linux_071005.tar
+  ssh menemenl@c2.nas.nasa.gov
+  cd /nobackup/menemenl
+  mkdir coupled
+  cd coupled
+  tar xvf ../camel_7.2p_linux_071005.tar
   mv camel_7.2p_linux_071005 camel_7.2p
   cvs co -r release1_coupled MITgcm_code
   cvs co -r release1_coupled MITgcm/verification/coupled_ucla
@@ -58,7 +59,6 @@ Compile AGCM code
   source cshrc.setup
   make clean
   make
-  make link
 
 Now the moment of truth
   cd bin
