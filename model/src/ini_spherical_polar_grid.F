@@ -309,13 +309,15 @@ C         by formula
          ENDDO
         ENDDO
 
-C--     Calculate trigonometric terms
+C--     Calculate trigonometric terms & grid orientation:
         DO J=1-Oly,sNy+Oly
          DO I=1-Olx,sNx+Olx
           lat=0.5*(yGloc(I,J)+yGloc(I,J+1))
-          tanPhiAtU(i,j,bi,bj)=tan(lat*deg2rad)
+          tanPhiAtU(I,J,bi,bj)=tan(lat*deg2rad)
           lat=0.5*(yGloc(I,J)+yGloc(I+1,J))
-          tanPhiAtV(i,j,bi,bj)=tan(lat*deg2rad)
+          tanPhiAtV(I,J,bi,bj)=tan(lat*deg2rad)
+          angleCosC(I,J,bi,bj) = 1.
+          angleSinC(I,J,bi,bj) = 0.
          ENDDO
         ENDDO
 
