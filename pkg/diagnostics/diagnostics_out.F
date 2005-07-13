@@ -116,19 +116,6 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       ilen = ILNBLNK(fnames(listId))
       WRITE( fn, '(A,A,A)' ) fnames(listId)(1:ilen),'.',suff(1:10)
 
-C Initialize the qtmp1 array to all undefs -- need this for unfilled levels
-      DO bj = myByLo(myThid), myByHi(myThid)
-        DO bi = myBxLo(myThid), myBxHi(myThid)
-          DO k = 1,nlevels(listId)
-            DO j = 1-OLy,sNy+OLy
-              DO i = 1-OLx,sNx+OLx
-                qtmp1(i,j,k,bi,bj) = undef
-              ENDDO
-            ENDDO
-          ENDDO
-        ENDDO
-      ENDDO
-
 #ifdef ALLOW_MNC
       IF (useMNC .AND. diag_mnc) THEN
         DO i = 1,MAX_LEN_FNAM
