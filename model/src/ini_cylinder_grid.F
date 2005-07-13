@@ -3,15 +3,13 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-#undef  USE_BACKWARD_COMPATIBLE_GRID
-
 CBOP
-C     !ROUTINE: INI_CYLINDER
+C     !ROUTINE: INI_CYLINDER_GRID
 C     !INTERFACE:
-      SUBROUTINE INI_CYLINDER( myThid )
+      SUBROUTINE INI_CYLINDER_GRID( myThid )
 C     !DESCRIPTION: \bv
 C     /==========================================================\
-C     | SUBROUTINE INI_CYLINDER
+C     | SUBROUTINE INI_CYLINDER_GRID
 C     | o Initialise model coordinate system arrays              |
 C     |==========================================================|
 C     | These arrays are used throughout the code in evaluating  |
@@ -215,16 +213,19 @@ C         by averaging (method I)
 
 
 
-C     Calculate vertical face area 
+C--     Calculate vertical face area 
         DO J=1-Oly,sNy+Oly
          DO I=1-Olx,sNx+Olx
-C     All r(dr)(dtheta)
+C-      All r(dr)(dtheta)
           rA (I,J,bi,bj) = dxF(I,J,bi,bj)*dyF(I,J,bi,bj)
           rAw(I,J,bi,bj) = dxC(I,J,bi,bj)*dyG(I,J,bi,bj)
           rAs(I,J,bi,bj) = dxG(I,J,bi,bj)*dyC(I,J,bi,bj)
           rAz(I,J,bi,bj) = dxV(I,J,bi,bj)*dyU(I,J,bi,bj)
+C--     Set trigonometric terms & grid orientation:
           tanPhiAtU(I,J,bi,bj) = 0.
           tanPhiAtV(I,J,bi,bj) = 0.
+          angleCosC(I,J,bi,bj) = 1.
+          angleSinC(I,J,bi,bj) = 0.
          ENDDO
         ENDDO
 
