@@ -1116,6 +1116,7 @@ c -------------------------------------------------------------
 C***********************************************************************        
 C  PURPOSE                                                                      
 C     COMPUTES TIME IN SECONDS UNTIL WE REACH THE NEXT MMDD
+C       (ASSUME that the target time is 0Z)
 C                                                                               
 C  ARGUMENTS   DESCRIPTION                                                      
 C     MMDD     FREQUENCY (MMDDHHMMSS)                                      
@@ -1172,7 +1173,7 @@ C***********************************************************************
       daysleft = idaynext - iday
       if(daysleft.lt.0) daysleft = daysleft + 1461
 
-      timeleft = daysleft * nsday
+      timeleft = daysleft * nsday - sec
                                                                                 
       RETURN                                                                    
       END                                                                       
