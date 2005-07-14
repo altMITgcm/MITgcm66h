@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint57l_post
+ tag before updating tutorials (pre-release-2) 
 o add cos & sin of grid-direction orientation angle (curvilinear grid only,
    for output and interpolation of input fields onto model grid)
 o fix radius in mom_v_metric_cylinder.F (wrong by dy/2).
