@@ -73,7 +73,9 @@ C--   Forcing term
 
 C     Add windstress momentum impulse into the top-layer
       IF ( kLev .EQ. kSurface ) THEN
-       DO j=1,sNy
+c      DO j=1,sNy
+C-jmc: Without CD-scheme, this is OK ; but with CD-scheme, needs to cover [0:sNy+1]
+       DO j=0,sNy+1
         DO i=1,sNx+1
          gU(i,j,kLev,bi,bj) = gU(i,j,kLev,bi,bj)
      &   +foFacMom*surfaceForcingU(i,j,bi,bj)
@@ -170,7 +172,9 @@ C--   Forcing term
 C     Add windstress momentum impulse into the top-layer
       IF ( kLev .EQ. kSurface ) THEN
        DO j=1,sNy+1
-        DO i=1,sNx
+c       DO i=1,sNx
+C-jmc: Without CD-scheme, this is OK ; but with CD-scheme, needs to cover [0:sNx+1]
+        DO i=0,sNx+1
          gV(i,j,kLev,bi,bj) = gV(i,j,kLev,bi,bj)
      &   +foFacMom*surfaceForcingV(i,j,bi,bj)
      &   *recip_drF(kLev)*recip_hFacS(i,j,kLev,bi,bj)
