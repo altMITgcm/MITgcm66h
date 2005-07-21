@@ -448,7 +448,7 @@ C     !INTERFACE:
      I     myThid ) 
 
 C     !DESCRIPTION:
-C     Close all NetCDF files matching a string.
+C     Close all NetCDF files.
       
 C     !USES:
       implicit none
