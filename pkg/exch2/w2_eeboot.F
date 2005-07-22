@@ -33,8 +33,8 @@ C     == Local variables ==
       INTEGER myThid, I, J, II
       INTEGER iErr, tNx, tNy
       INTEGER pRank
-      INTEGER npe,itemp(nSx),mpiBufSize,mpiRequest
 #ifdef ALLOW_USE_MPI
+      INTEGER npe,itemp(nSx),mpiBufSize,mpiRequest
       INTEGER istatus(MPI_STATUS_SIZE)
 #endif
 

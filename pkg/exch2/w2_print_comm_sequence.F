@@ -25,8 +25,8 @@ C     *==========================================================*
 C     == Local variables ==
       CHARACTER*(MAX_LEN_MBUF) msgBuffer
       INTEGER myTileId, nN
-      INTEGER PI_TC2SC(2), PJ_TC2SC(2), O_TC2SC(2)
-      _RL     SXDIR_TX2CX(2), SYDIR_TX2CX(2)
+c     INTEGER PI_TC2SC(2), PJ_TC2SC(2), O_TC2SC(2)
+c     _RL     SXDIR_TX2CX(2), SYDIR_TX2CX(2)
       INTEGER targetIlo, targetIhi, targetJlo, targetJhi
       INTEGER sourceIlo, sourceIhi, sourceJlo, sourceJhi
       INTEGER I, N, targetTile, myThid, targetProc, sourceProc

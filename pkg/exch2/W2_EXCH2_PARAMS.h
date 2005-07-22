@@ -12,7 +12,7 @@ C     W2_myTileList     :: list of tiles owned by this process
 C     W2_mpi_myTileList :: same as W2_myTileList, but contains
 C                          information for all processes
       INTEGER W2_myTileList(nSx), W2_mpi_myTileList(nPx*nPy,nSx)
-      INTEGER E2_MSGHANDLES(2,MAX_NEIGHBOURS, nSx)
+c     INTEGER E2_MSGHANDLES(2,MAX_NEIGHBOURS, nSx)
       COMMON /W2_EXCH2_PARAMS_I/ W2_myTileList, W2_mpi_myTileList
 
       CHARACTER W2_myCommFlag(MAX_NEIGHBOURS,nSx)
