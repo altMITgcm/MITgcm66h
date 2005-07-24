@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/exch2: filling of face-corner halo regions is optional 
+  (ifdef W2_FILL_NULL_REGIONS) and is turned off by default.
+
 checkpoint57l_post
  tag before updating tutorials (pre-release-2) 
 o add cos & sin of grid-direction orientation angle (curvilinear grid only,
