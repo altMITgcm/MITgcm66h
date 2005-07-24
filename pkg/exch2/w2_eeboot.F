@@ -168,6 +168,17 @@ C     Fill in values for W2_mpi_myTileList
       ENDDO
 #endif /* ALLOW_USE_MPI */
 
+C     Set filling value for face-corner halo regions
+      e2FillValue_RL = 0. _d 0
+      e2FillValue_RS = 0. _d 0
+      e2FillValue_R4 = 0.e0
+      e2FillValue_R8 = 0.d0
+C-    for testing only: put a large value (should not affects the results)
+c     e2FillValue_RL = 1. _d+20
+c     e2FillValue_RS = 1. _d+20
+c     e2FillValue_R4 = 1.e+20
+c     e2FillValue_R8 = 1.d+20
+
 C     Print out the topology communication schedule
       CALL W2_PRINT_COMM_SEQUENCE
 C
