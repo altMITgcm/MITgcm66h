@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o re-arrange exp. adjustment.cs-32x32x1 (adjust_nlfs.cs-32x32x1 merge into)
+  and advect_cs (use EXCH-2 and standard cs-32 grid files).
 o pkg/exch2: filling of face-corner halo regions is optional 
   (ifdef W2_FILL_NULL_REGIONS) and is turned off by default.
 
