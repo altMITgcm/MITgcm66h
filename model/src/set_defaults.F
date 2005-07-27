@@ -179,7 +179,7 @@ Cml      sBeta               = 7.4D-4
       inAdExact           = .TRUE.
 
 C--   Set (free)surface-related parameters
-      implicitFreeSurface = .TRUE.
+      implicitFreeSurface = .FALSE.
       rigidLid            = .FALSE.
       implicSurfPress     = 1.D0
       implicDiv2DFlow     = 1.D0

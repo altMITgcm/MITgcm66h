@@ -396,6 +396,19 @@ C     according to buoyancyRelation
         STOP 'ABNORMAL END: S/R INI_PARMS'
       ENDIF
 
+      IF ( .NOT.rigidLid .AND.
+     &     .NOT.implicitFreeSurface ) THEN
+C-     No barotropic solver selected => use implicitFreeSurface as default
+       WRITE(msgBuf,'(A)')
+     &  'S/R INI_PARMS: No barotropic solver requested'
+       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT , myThid)
+       WRITE(msgBuf,'(A)')
+     &  'S/R INI_PARMS: => Use implicitFreeSurface as default'
+       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT , myThid)
+        implicitFreeSurface = .TRUE.
+      ENDIF
       IF ( implicitFreeSurface ) freeSurfFac = 1.D0
       IF ( rigidLid            ) freeSurfFac = 0.D0
       IF ( gBaro .EQ. UNSET_RL ) gBaro=gravity
