@@ -4,9 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
-checkpoint57n_post
 o adding precip control xx_precip
 o moved ptracer ctrl index 17 -> 32
+o in natl_box_adjoint:
+  * updated: results_bulk/
+  * not yet updated: results/, results_seaice/
 
 checkpoint57m_post
 o re-arrange exp. adjustment.cs-32x32x1 (adjust_nlfs.cs-32x32x1 merge into)
