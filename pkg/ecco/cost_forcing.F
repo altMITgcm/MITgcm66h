@@ -117,4 +117,13 @@ c--   Meridional wind speed contribution to the cost function.
      &                     startrec, endrec, mythid )
 #endif
 
+#if (defined (ALLOW_PRECIP_COST_CONTRIBUTION) && \
+       defined (ALLOW_PRECIP_CONTROL))
+c--   Atmos. temp. contribution to the cost function.
+      startrec = ncvarrecstart(17)
+      endrec   = ncvarrecsend(17)
+      call cost_precip ( myiter, mytime,
+     &                  startrec, endrec, mythid )
+#endif
+
       end

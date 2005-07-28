@@ -113,6 +113,7 @@ c--   Initialize the tiled cost function contributions.
           objf_scatym(bi,bj)   = 0. _d 0
           objf_atemp(bi,bj)    = 0. _d 0
           objf_aqh(bi,bj)      = 0. _d 0
+          objf_precip(bi,bj)   = 0. _d 0
           objf_uwind(bi,bj)    = 0. _d 0
           objf_vwind(bi,bj)    = 0. _d 0
           objf_obcsn(bi,bj)    = 0. _d 0
@@ -162,6 +163,7 @@ c
           num_scatym(bi,bj)   = 0. _d 0
           num_atemp(bi,bj)    = 0. _d 0
           num_aqh(bi,bj)      = 0. _d 0
+          num_precip(bi,bj)   = 0. _d 0
           num_uwind(bi,bj)    = 0. _d 0
           num_vwind(bi,bj)    = 0. _d 0
           num_obcsn(bi,bj)    = 0. _d 0

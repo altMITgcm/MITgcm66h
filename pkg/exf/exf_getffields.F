@@ -228,6 +228,13 @@ c     Precipitation.
      &     mycurrenttime, mycurrentiter, mythid )
 #endif
 
+#ifdef ALLOW_PRECIP_CONTROL
+      call ctrl_get_gen ( 
+     &     xx_precip_file, xx_precipstartdate, xx_precipperiod,
+     &     maskc, precip, xx_precip0, xx_precip1, xx_precip_dummy,
+     &     mycurrenttime, mycurrentiter, mythid )
+#endif
+
 #endif /* ALLOW_ATM_TEMP */
 
 #if defined(ALLOW_ATM_TEMP) || defined(SHORTWAVE_HEATING)

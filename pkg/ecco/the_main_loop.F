@@ -376,15 +376,6 @@ c--     Set the model iteration counter and the model time.
 
 #ifdef ALLOW_AUTODIFF_TAMC
         CALL AUTODIFF_INADMODE_UNSET( myThid )
-# if (defined (ALLOW_AUTODIFF_MONITOR))
-C       Include call to a dummy routine. Its adjoint will be 
-C       called at the proper place in the adjoint code.
-C       The adjoint routine will print out adjoint values 
-C       if requested. The location of the call is important, 
-C       it has to be after the adjoint of the exchanges 
-C       (DO_GTERM_BLOCKING_EXCHANGES).
-        CALL DUMMY_IN_STEPPING( myTime, myIter, myThid )
-# endif
 #endif
 
 
@@ -415,6 +406,12 @@ c**************************************
       CALL TIMER_START('EXF_GETFORCING     [FORWARD_STEP]',mythid)
       CALL EXF_GETFORCING( mytime, myiter, mythid )
       CALL TIMER_STOP ('EXF_GETFORCING     [FORWARD_STEP]',mythid)
+
+#ifdef ALLOW_AUTODIFF_TAMC
+# if (defined (ALLOW_AUTODIFF_MONITOR))
+        CALL DUMMY_IN_STEPPING( myTime, myIter, myThid )
+# endif
+#endif
 
 #ifdef ALLOW_SEAICE
 cph this simple runtime flag causes a lot of recomp.

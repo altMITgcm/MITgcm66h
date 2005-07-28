@@ -669,7 +669,9 @@ c--   Next, do the averages for velocitty.
               do j = jmin,jmax
                 do i =  imin,imax
                   hfluxbar(i,j,bi,bj)=hflux(i,j,bi,bj)
+#ifdef SHORTWAVE_HEATING
      $                  +swflux(i,j,bi,bj)
+#endif
                 enddo
               enddo
           enddo
@@ -680,8 +682,11 @@ c--   Next, do the averages for velocitty.
               do j = jmin,jmax
                 do i = imin,imax
                   hfluxbar(i,j,bi,bj)  = (hfluxbar (i,j,bi,bj) +
-     &                              hflux(i,j,bi,bj)+swflux(i,j,bi,bj))/
-     &                              float(nTimeSteps)
+     &                              hflux(i,j,bi,bj)
+#ifdef SHORTWAVE_HEATING
+     &                              +swflux(i,j,bi,bj)
+#endif
+     &                              )/float(nTimeSteps)
                 enddo
               enddo
           enddo
@@ -704,8 +709,11 @@ c--     Accumulate ubar and vbar.
           do bi = itlo,ithi
               do j = jmin,jmax
                 do i =  imin,imax
-                  hfluxbar(i,j,bi,bj) = hfluxbar (i,j,bi,bj) +
-     &                  swflux(i,j,bi,bj)+hflux(i,j,bi,bj)
+                  hfluxbar(i,j,bi,bj) = hfluxbar (i,j,bi,bj)
+     &                  + hflux(i,j,bi,bj)
+#ifdef SHORTWAVE_HEATING
+     &                  + swflux(i,j,bi,bj)
+#endif
                 enddo
             enddo
           enddo 

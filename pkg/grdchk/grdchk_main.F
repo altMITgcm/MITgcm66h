@@ -143,6 +143,8 @@ c--   Set the loop ranges.
       imin = 1
       imax = snx
 
+      print *, 'ph-check entering grdchk_main '
+
 c--   initialise variables
       call grdchk_init( mythid )
 

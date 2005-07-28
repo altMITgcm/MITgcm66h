@@ -34,7 +34,7 @@ c     == routine arguments ==
 
       integer mythid
 
-cph#ifdef ALLOW_COST_TRANSPORT
+#ifdef ALLOW_COST_TRANSPORT
 
 c     == local variables ==
 
@@ -253,6 +253,6 @@ c-- end loop over irec
 c-- end loop over isect
       enddo
 
-cph#endif
+#endif
 
       end

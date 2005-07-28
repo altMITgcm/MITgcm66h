@@ -32,6 +32,7 @@ DIFF_FLAGS="-toplevel 'the_main_loop'    \
                     xx_tauv_dummy        \
                     xx_atemp_dummy       \
                     xx_aqh_dummy         \
+                    xx_precip_dummy      \
                     xx_uwind_dummy       \
                     xx_vwind_dummy       \
                     xx_obcsn_dummy       \
