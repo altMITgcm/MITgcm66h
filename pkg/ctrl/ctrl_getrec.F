@@ -124,6 +124,14 @@ c     Map the field parameters.
      &        )
          fldperiod = xx_aqhperiod
          lArgErr = .false.
+      else if ( thefield .eq. 'xx_precip'   ) then
+         call cal_CopyDate(
+     I        xx_precipstartdate,
+     O        fldstartdate,
+     I        mythid
+     &        )
+         fldperiod = xx_precipperiod
+         lArgErr = .false.
       else if ( thefield .eq. 'xx_tauu'   ) then
          call cal_CopyDate(
      I        xx_tauustartdate,
