@@ -84,16 +84,4 @@ c     == end of interface ==
      &     mytime, myiter, mythid )
 #endif
 
-#ifdef ALLOW_SWFLUX_CONTROL
-      call ctrl_get_gen ( 
-NOT YET IMPLEMENTED
-     &     mytime, myiter, mythid )
-#endif
-
-#ifdef ALLOW_LWFLUX_CONTROL
-      call ctrl_get_gen ( 
-NOT YET IMPLEMENTED
-     &     mytime, myiter, mythid )
-#endif
-
       end
