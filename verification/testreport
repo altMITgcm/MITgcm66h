@@ -733,7 +733,7 @@ for ac_option ; do
 	-j=*) JOBS=$ac_optarg ;;
 
 	-clean | --clean)
-	    CLEANUP=t ;;
+	    CLEANUP=t ; DELDIR=t ;;
 
 	-quick | --quick | -q | --q)
 	    QUICK=t ;;
