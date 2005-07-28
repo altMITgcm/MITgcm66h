@@ -70,7 +70,7 @@ C  if runlength has been set in the fizhi namelist
       if(runlength.gt.0.) then
        mmdd = int(runlength)
        hhmmss = int((runlength - int(runlength))*1.e6)
-       if(mmdd.le.100) then
+       if(mmdd.lt.100) then
         nincr = nsecf2(hhmmss,mmdd,nymdcurrent)
        else
         call time2freq2(mmdd,nymdcurrent,nhmscurrent,nincr)
