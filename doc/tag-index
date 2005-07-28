@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint57n_post
+o adding precip control xx_precip
+o moved ptracer ctrl index 17 -> 32
+
 checkpoint57m_post
 o re-arrange exp. adjustment.cs-32x32x1 (adjust_nlfs.cs-32x32x1 merge into)
   and advect_cs (use EXCH-2 and standard cs-32 grid files).
