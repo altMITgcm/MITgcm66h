@@ -39,3 +39,7 @@ C     Storage arrays for time-averages
 #endif /* ALLOW_TIMEAVE */
 
 #endif /* ALLOW_GMREDI */
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***

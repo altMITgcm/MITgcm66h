@@ -36,3 +36,7 @@ C  instead of the Skew-Flux form (=default)
 
 #endif /* ALLOW_GMREDI */
 #endif /* GMREDI_OPTIONS_H */
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***
