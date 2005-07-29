@@ -44,20 +44,6 @@ C     diagTitle :: local string (80c): description of field in diagnostic
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
-      diagName  = 'HFLUX   '
-      diagTitle  = 'Sensible Heat Flux (pos.upwrd)  (W/m^2)'
-      diagUnits  = 'watt/m2         '
-      diagCode  = 'SM      L1      '
-      CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I          diagName, diagCode, diagUnits, diagTitle, myThid )
-
-      diagName  = 'EFLUX   '
-      diagTitle  = 'Latent   Heat Flux (pos.upwrd)  (W/m^2)'
-      diagUnits  = 'watt/m2         '
-      diagCode  = 'SM      L1      '
-      CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I          diagName, diagCode, diagUnits, diagTitle, myThid )
-
       diagName  = 'UFLUX   '
       diagTitle  = 'Zonal Wind Surface Stress  (N/m^2)'
       diagUnits  = 'N/m2            '
@@ -69,6 +55,20 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       diagTitle  = 'Meridional Wind Surface Stress  (N/m^2)'
       diagUnits  = 'N/m2            '
       WRITE(diagCode,'(A,I3.3,A)') 'VM   ', diagNum ,'L1      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+      diagName  = 'HFLUX   '
+      diagTitle  = 'Sensible Heat Flux (pos.upwrd)  (W/m^2)'
+      diagUnits  = 'watt/m2         '
+      diagCode  = 'SM      L1      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+      diagName  = 'EFLUX   '
+      diagTitle  = 'Latent   Heat Flux (pos.upwrd)  (W/m^2)'
+      diagUnits  = 'watt/m2         '
+      diagCode  = 'SM      L1      '
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
