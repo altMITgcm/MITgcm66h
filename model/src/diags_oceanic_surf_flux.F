@@ -95,6 +95,22 @@ C     tFlux (=Heat flux [W/m2], positive <-> increasing Theta)
        CALL DIAGNOSTICS_FILL(tmp1k,'TFLUX   ',0,1,0,1,1,myThid)
       ENDIF
 
+#ifdef SHORTWAVE_HEATING
+C-    swflux
+      IF ( DIAGNOSTICS_IS_ON('SWFLUX  ',myThid) ) THEN
+       DO bj = myByLo(myThid), myByHi(myThid)
+        DO bi = myBxLo(myThid), myBxHi(myThid)
+         DO j = 1,sNy
+          DO i = 1,sNx
+           tmp1k(i,j,bi,bj) = -Qsw(i,j,bi,bj)
+          ENDDO
+         ENDDO
+        ENDDO
+       ENDDO
+       CALL DIAGNOSTICS_FILL(tmp1k,'SWFLUX  ',0,1,0,1,1,myThid)
+      ENDIF
+#endif
+
 C     tIce (=Heat flux [W/m2] from melt/freeze of sea-ice, positive <-> increasing Theta)
        tmpFac = HeatCapacity_Cp*recip_horiVertRatio*rhoConst
        CALL DIAGNOSTICS_SCALE_FILL(surfaceForcingTice,tmpFac,1,

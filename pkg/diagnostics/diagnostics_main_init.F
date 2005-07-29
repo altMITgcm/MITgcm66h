@@ -497,6 +497,15 @@ C--   surface fluxes:
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
+#ifdef SHORTWAVE_HEATING
+      diagName  = 'SWFLUX  '
+      diagTitle = 'net upward SW radiation, >0 increases theta     '
+      diagUnits = 'W/m^2           '
+      diagCode  = 'SM      U1      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+#endif
+
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       diagName  = 'PRESSURE'
       diagTitle = 'Atmospheric Pressure (Pa)     '
