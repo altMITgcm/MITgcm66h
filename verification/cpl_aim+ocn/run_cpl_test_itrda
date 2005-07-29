@@ -111,6 +111,7 @@ then
 
   cd rank_2
   ./SHARE_OCN_GRID '../rank_1'
+  ./IMPORT_INPUT_FILES
   cd $dir
 
   rm -rf cpl ocn atm
