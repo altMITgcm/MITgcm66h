@@ -370,14 +370,15 @@ C        and step forward storing the result in gU, gV, etc...
 #ifdef ALLOW_MOM_FLUXFORM
            IF (.NOT. vectorInvariantMomentum) CALL MOM_FLUXFORM(
      I         bi,bj,iMin,iMax,jMin,jMax,k,kup,kDown,
-     I         dPhiHydX,dPhiHydY,KappaRU,KappaRV,
+     I         KappaRU, KappaRV,
      U         fVerU, fVerV,
+     O         guDissip, gvDissip,
      I         myTime, myIter, myThid)
 #endif
 #ifdef ALLOW_MOM_VECINV
            IF (vectorInvariantMomentum) CALL MOM_VECINV(
      I         bi,bj,iMin,iMax,jMin,jMax,k,kup,kDown,
-     I         dPhiHydX,dPhiHydY,KappaRU,KappaRV,
+     I         KappaRU, KappaRV,
      U         fVerU, fVerV,
      O         guDissip, gvDissip,
      I         myTime, myIter, myThid)
