@@ -420,19 +420,6 @@ C--   Step forward fields and calculate time tendency terms.
 #endif
 #endif
 
-#ifdef ALLOW_NONHYDROSTATIC
-C--   Step forward W field in N-H algorithm
-      IF ( momStepping .AND. nonHydrostatic ) THEN
-#ifdef ALLOW_DEBUG
-          IF ( debugLevel .GE. debLevB ) 
-     &     CALL DEBUG_CALL('CALC_GW',myThid)
-#endif
-         CALL TIMER_START('CALC_GW          [FORWARD_STEP]',myThid)
-         CALL CALC_GW(myThid)
-         CALL TIMER_STOP ('CALC_GW          [FORWARD_STEP]',myThid)
-      ENDIF
-#endif
-
 C--   Update time-counter
       myIter = nIter0 + iLoop
       myTime = startTime + deltaTClock * float(iLoop)
