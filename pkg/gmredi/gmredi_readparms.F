@@ -127,12 +127,6 @@ C     Fix to avoid running without getting any output:
 C--   Everyone else must wait for the parameters to be loaded
       _BARRIER
 
-#ifdef ALLOW_MNC
-      IF (useMNC) THEN
-        CALL GMREDI_MNC_INIT( myThid )
-      ENDIF
-#endif /* ALLOW_MNC */
-
 #endif /* ALLOW_GMREDI */
 
       RETURN

@@ -334,11 +334,6 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 C--   Everyone else must wait for the parameters to be loaded
       _BARRIER
 
-      IF ( useMNC ) THEN 
-        CALL LAND_MNC_INIT(sNx,sNy, OLx,OLy, nSx,nSy, nPx,nPy, 
-     &       land_nLev, myThid)
-      ENDIF
-
 #endif /* ALLOW_LAND */
 
       RETURN

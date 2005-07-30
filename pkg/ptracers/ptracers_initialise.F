@@ -47,6 +47,13 @@ c         PTRACERS_multiDimAdv(iTracer) = .TRUE.
 C       end of Tracer loop
       ENDDO
 
+#ifdef ALLOW_MNC
+      IF (useMNC) THEN
+C       Initialize the MNC variable types for PTRACERS
+        CALL PTRACERS_MNC_INIT( myThid )
+      ENDIF
+#endif
+
 #ifdef ALLOW_DIAGNOSTICS
       IF ( useDiagnostics ) THEN
         CALL PTRACERS_DIAGNOSTICS_INIT( myThid )

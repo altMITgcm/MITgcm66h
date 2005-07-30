@@ -33,6 +33,12 @@ CEOP
 C     !LOCAL VARIABLES:
 C     === Local variables ===
 
+#ifdef ALLOW_MNC
+      IF (useMNC) THEN
+        CALL GMREDI_MNC_INIT( myThid )
+      ENDIF
+#endif /* ALLOW_MNC */
+
 #ifdef ALLOW_DIAGNOSTICS
       IF ( useDiagnostics ) THEN
         CALL GMREDI_DIAGNOSTICS_INIT( myThid )
