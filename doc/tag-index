@@ -4,6 +4,15 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o Dissipation & phiHyd gradient are always added to gU,gV in timestep.F
+  (was already the case for dissipation with mom_vecinv,
+   and also the case for grad.PhiHyd when staggered-timeStep)
+  This will allow to put dissipation out-off the AB time-stepping.
+ Unfortunately, affects truncation error. Update output of exp. that "fails"
+  (cg2d matching number) and leave the others for later: front_relax(10),
+  global_ocean_pressure(10),ideal_2D_oce(10),internal_wave(9),lab_sea(12),
+  matrix_example(7!),natl_box(12),plume_on_slope(11),vermix(12x3,11x2).
+
 checkpoint57o_post
 o fix MNC/MDSIO flags in PTRACERS so that (1) it works, and 
   (2) its ready to be documented during the 20050801 DocFest
