@@ -240,5 +240,16 @@ C--     Cosine(lat) scaling
        ENDDO ! bi
       ENDDO ! bj
 
+C--   Set default (=whole domain) for where relaxation to climatology applies
+      IF ( latBandClimRelax.EQ.UNSET_RL ) THEN
+        _BEGIN_MASTER(myThid)
+        latBandClimRelax = 0.
+        DO j=1,Ny
+          latBandClimRelax = latBandClimRelax + delY(j)
+        ENDDO
+        latBandClimRelax = latBandClimRelax*3. _d 0
+        _END_MASTER(myThid)
+      ENDIF
+
       RETURN
       END

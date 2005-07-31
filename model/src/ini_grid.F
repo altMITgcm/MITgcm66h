@@ -37,6 +37,9 @@ C     msgBuf - Used for informational I/O.
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       INTEGER i
 
+C     load grid spacing (vector) from files
+      CALL LOAD_GRID_SPACING( myThid )
+
 C     Set up vertical grid and coordinate system
       CALL INI_VERTICAL_GRID( myThid )
 

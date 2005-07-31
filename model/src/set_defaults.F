@@ -51,6 +51,9 @@ C     Vertical gridding
       ENDDO
 
 C     Horizontal gridding
+      delXFile        = ' '
+      delYFile        = ' '
+      horizGridFile   = ' '
 C     In cartesian coords distances are in metres
       usingCartesianGrid = .FALSE.
       DO i=1,Nx
@@ -276,7 +279,6 @@ C--   Time stepping parameters
 C--   Input files
       bathyFile       = ' '
       topoFile        = ' '
-      horizGridFile   = ' '
       hydrogSaltFile  = ' '
       hydrogThetaFile = ' '
       zonalWindFile   = ' '
