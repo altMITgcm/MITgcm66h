@@ -64,6 +64,8 @@ C       |-- PTRACERS_INITIALISE
 C       |
 C       |-- GCHEM_INIT_FIXED
 C       |
+C       |-- DIC_INIT_FIXED
+C       |
 C       |-- THSICE_INIT_FIXED
 C       |
 C       |-- CPL_INIT_FIXED
@@ -215,6 +217,11 @@ C--   Initialise the control variables
 
 #ifdef ALLOW_GCHEM
       IF (useGCHEM) CALL GCHEM_INIT_FIXED(mythid)
+#endif
+
+#ifdef ALLOW_DIC
+C     IF (useDIC)
+      CALL DIC_INIT_FIXED(mythid)
 #endif
 
 #ifdef ALLOW_THSICE
