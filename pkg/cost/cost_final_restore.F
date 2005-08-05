@@ -57,6 +57,8 @@ c
               open(unit=76,file='costfinal')
               read(76,*) fc        
               close(76)
+           else
+              lastdiva = .FALSE.
            endif
 c
          _END_MASTER( mythid )
