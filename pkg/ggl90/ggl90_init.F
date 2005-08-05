@@ -45,7 +45,7 @@ C
 C     hfacs for w (=tke) control volume
 C     
          recip_hFacI(I,J,K,bi,bj) = .5*hFacC(I,J,Km1,bi,bj)
-     &        + MIN(.5,hFacC(I,J,K,bi,bj))
+     &        + MIN(.5 _d 0,hFacC(I,J,K,bi,bj))
          IF ( recip_hFacI(I,J,K,bi,bj) .NE. 0. _d 0 )
      &        recip_hFacI(I,J,K,bi,bj) = 1./recip_hFacI(I,J,K,bi,bj)
           ENDDO

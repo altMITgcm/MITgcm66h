@@ -174,7 +174,7 @@ C     vertical shear term (dU/dz)^2+(dV/dz)^2
 C     compute Prandtl number (always greater than 0)
          prTemp = 1. _d 0
          IF ( RiNumber .GE. 0.2 ) prTemp = 5.0 * RiNumber
-         TKEPrandtlNumber(I,J,K) = MIN(10.,prTemp)
+         TKEPrandtlNumber(I,J,K) = MIN(10.0 _d 0,prTemp)
 C     mixing length
          GGL90mixingLength(I,J,K) = 
      &        SQRTTKE/SQRT( MAX(Nsquare,GGL90eps) ) 
