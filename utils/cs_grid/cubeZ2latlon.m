@@ -39,7 +39,7 @@ Y(end+1,j)=Y(i,j);
 C(end+1,j)=C(i,j);
 %--
 j=1+floor(nc/2);i=2*nc+j; if Y(i,j)==90, X(i,j)=180; end
-i=2*nc+(nc/2+1:nc);j=1+floor(nc/2);
+i=2*nc+(floor(nc/2)+1:nc);j=1+floor(nc/2);
 X(end,i-2*nc)=X(i,j)'-360;
 Y(end,i-2*nc)=Y(i,j)';
 C(end,i-2*nc)=C(i,j)';
