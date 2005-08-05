@@ -67,7 +67,11 @@ C--   Open the data file
 
 c--   open the filtered data file
       call mdsfindunit( outunit, mythid )
+#ifdef TARGET_BGL
+      open( unit=outunit, file='scratch3', status='unknown' )
+#else
       open( unit=outunit, status='scratch' )
+#endif
 
       if ( errio .lt. 0 ) then
          write(msgBuf,'(A)')  'S/R nml_filter'

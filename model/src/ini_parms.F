@@ -248,8 +248,13 @@ C--   Initialise retired parameters to unlikely value
       groundAtK1      = .FALSE.
 
 C--   Open the parameter file
+#ifdef TARGET_BGL
+      OPEN(UNIT=scrUnit1,FILE='scratch1',STATUS='UNKNOWN')
+      OPEN(UNIT=scrUnit2,FILE='scratch2',STATUS='UNKNOWN')
+#else
       OPEN(UNIT=scrUnit1,STATUS='SCRATCH')
       OPEN(UNIT=scrUnit2,STATUS='SCRATCH')
+#endif
       OPEN(UNIT=modelDataUnit,FILE='data',STATUS='OLD',
      &     IOSTAT=errIO)
       IF ( errIO .LT. 0 ) THEN

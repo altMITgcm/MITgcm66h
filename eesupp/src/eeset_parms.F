@@ -99,8 +99,13 @@ C     We really ought to be using our environment file reading
 C     package - but we have not written it yet.
 
 C     Make scratch copies of input data file with and without comments
+#ifdef TARGET_BGL
+      OPEN(UNIT=scrUnit1,FILE='scratch1',STATUS='UNKNOWN')
+      OPEN(UNIT=scrUnit2,FILE='scratch2',STATUS='UNKNOWN')
+#else
       OPEN(UNIT=scrUnit1,STATUS='SCRATCH')
       OPEN(UNIT=scrUnit2,STATUS='SCRATCH')
+#endif
       OPEN(UNIT=eeDataUnit,FILE='eedata',STATUS='OLD',
      &     err=1,IOSTAT=errIO)
       IF ( errIO .GE. 0 ) GOTO 2
