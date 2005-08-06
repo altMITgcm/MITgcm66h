@@ -88,6 +88,8 @@ c--   Read the namelist input.
      &  xx_precipstartdate1, xx_precipstartdate2, xx_precipperiod,
      &  xx_swflux_file,
      &  xx_swfluxstartdate1, xx_swfluxstartdate2, xx_swfluxperiod,
+     &  xx_swdown_file,
+     &  xx_swdownstartdate1, xx_swdownstartdate2, xx_swdownperiod,
      &  xx_uwind_file,
      &  xx_uwindstartdate1, xx_uwindstartdate2, xx_uwindperiod,
      &  xx_vwind_file,
@@ -171,6 +173,10 @@ c--     Set default values.
         xx_swfluxstartdate2 =   0
         xx_swfluxperiod     =   0. _d 0
         xx_swflux_file      = 'xx_swflux'
+        xx_swdownstartdate1 =   0
+        xx_swdownstartdate2 =   0
+        xx_swdownperiod     =   0. _d 0
+        xx_swdown_file      = 'xx_swdown'
         xx_uwindstartdate1  =   0
         xx_uwindstartdate2  =   0
         xx_uwindperiod      =   0. _d 0

@@ -419,6 +419,21 @@ c--   == end of interface ==
 
 #endif /* ALLOW_SWFLUX_CONTROL */
 
+#ifdef ALLOW_SWDOWN_CONTROL
+      else if ( grdchkvarindex .eq. 34 ) then
+         il=ilnblnk( xx_swdown_file )
+         write(fname(1:80),'(80a)') ' '
+         write(fname(1:80),'(3a,i10.10)')
+     &        yadmark, xx_swdown_file(1:il),'.',optimcycle
+
+         call active_read_xy_loc( fname, tmpfld2d, icvrec,
+     &                        doglobalread, ladinit, optimcycle,
+     &                        mythid, dummy)
+
+         xx_comp = tmpfld2d( itilepos,jtilepos,itile,jtile )
+
+#endif /* ALLOW_SWDOWN_CONTROL */
+
       else
 ce      --> this index does not exist yet.
       endif

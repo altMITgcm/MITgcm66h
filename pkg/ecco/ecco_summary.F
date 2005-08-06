@@ -582,15 +582,15 @@ c--   Short wave radiative flux used as part of the control vector.
      &                    SQUEEZE_RIGHT , mythid)
 #endif
 
-#ifdef ALLOW_LWFLUX_CONTROL
-c--   Long wave radiative flux used as part of the control vector.
+#ifdef ALLOW_SWDOWN_CONTROL
+c--   Short wave radiative flux used as part of the control vector.
       write(msgbuf,'(a)')
-     &'// ALLOW_LWFLUX_CONTROL:                 defined'
+     &'// ALLOW_SWDOWN_CONTROL:                 defined'
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
 #else
       write(msgbuf,'(a)')
-     &'// ALLOW_LWFLUX_CONTROL:             NOT defined'
+     &'// ALLOW_SWDOWN_CONTROL:             NOT defined'
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
 #endif

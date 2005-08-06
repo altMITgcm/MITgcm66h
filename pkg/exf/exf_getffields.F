@@ -303,6 +303,13 @@ c-- Control variables for atmos. state
      &     mycurrenttime, mycurrentiter, mythid )
 #endif
 
+#ifdef ALLOW_SWDOWN_CONTROL
+      call ctrl_get_gen ( 
+     &     xx_swdown_file, xx_swdownstartdate, xx_swdownperiod,
+     &     maskc, swdown, xx_swdown0, xx_swdown1, xx_swdown_dummy,
+     &     mycurrenttime, mycurrentiter, mythid )
+#endif
+
 #ifdef ALLOW_UWIND_CONTROL
       call ctrl_get_gen (
      &     xx_uwind_file, xx_uwindstartdate, xx_uwindperiod,

@@ -115,6 +115,7 @@ c--   Initialize the tiled cost function contributions.
           objf_aqh(bi,bj)      = 0. _d 0
           objf_precip(bi,bj)   = 0. _d 0
           objf_swflux(bi,bj)   = 0. _d 0
+          objf_swdown(bi,bj)   = 0. _d 0
           objf_uwind(bi,bj)    = 0. _d 0
           objf_vwind(bi,bj)    = 0. _d 0
           objf_obcsn(bi,bj)    = 0. _d 0
@@ -166,6 +167,7 @@ c
           num_aqh(bi,bj)      = 0. _d 0
           num_precip(bi,bj)   = 0. _d 0
           num_swflux(bi,bj)   = 0. _d 0
+          num_swdown(bi,bj)   = 0. _d 0
           num_uwind(bi,bj)    = 0. _d 0
           num_vwind(bi,bj)    = 0. _d 0
           num_obcsn(bi,bj)    = 0. _d 0

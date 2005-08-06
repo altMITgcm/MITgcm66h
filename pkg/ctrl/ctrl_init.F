@@ -136,6 +136,7 @@ cph    index 27-29          for uvel0, vvel0, etan0
 cph    index 30-31          for relax. SST, SSS
 cph    index 32    reserved for precip (atmos. state)
 cph    index 33    reserved for swflux (atmos. state)
+cph    index 34    reserved for swdown (atmos. state)
 cph)
 
 c----------------------------------------------------------------------
@@ -670,6 +671,32 @@ c--   Atmos. swflux
      &       snx, sny, 1, 'c', 'xy', mythid )
 
 #endif /* ALLOW_SWFLUX_CONTROL */
+
+c----------------------------------------------------------------------
+c--
+#ifdef ALLOW_SWDOWN_CONTROL
+c--   Atmos. swdown
+
+# ifdef ALLOW_CAL
+        call cal_FullDate( xx_swdownstartdate1, xx_swdownstartdate2,
+     &                     xx_swdownstartdate , mythid )
+        call cal_TimePassed( xx_swdownstartdate, modelstartdate,
+     &                       difftime, mythid )
+        call cal_ToSeconds ( difftime, diffsecs, mythid )
+        startrec = int((modelstart + startTime - diffsecs)/
+     &                 xx_swdownperiod) + 1
+        endrec   = int((modelend + startTime - diffsecs + modelstep/2)/
+     &                 xx_swdownperiod) + 2
+# else
+        startrec = 1
+        endrec   = 1
+# endif
+        diffrec  = endrec - startrec + 1
+        call ctrl_init_ctrlvar ( 
+     &       xx_swdown_file, 34, 134, diffrec, startrec, endrec,
+     &       snx, sny, 1, 'c', 'xy', mythid )
+
+#endif /* ALLOW_SWDOWN_CONTROL */
 
 c----------------------------------------------------------------------
 c----------------------------------------------------------------------
