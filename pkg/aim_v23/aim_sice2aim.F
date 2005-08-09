@@ -47,6 +47,10 @@ C-- Sea-Ice package
 #include "THSICE_TAVE.h"
 #endif
 
+#ifdef COMPONENT_MODULE
+# include "CPL_PARAMS.h"
+#endif
+
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
 C     land_frc :: land fraction [0-1]
@@ -128,7 +132,8 @@ C          temp. is fct of salinity) ; but would be better somewhere else.
       IF ( tauRelax_MxL .EQ. -1. _d 0 
      &     .OR. ( stepFwd_oceMxL  .AND. StartIceModel.NE.0
      &                            .AND. myIter.EQ.nIter0   )
-     &     .OR. ( myIter.EQ.0  .AND. myTime .EQ. 0. )
+     &     .OR. ( myIter.EQ.0 .AND. myTime.EQ.baseTime .AND.
+     &           .NOT.(useCoupler.AND.cpl_earlyExpImpCall) )
      &   ) THEN
         DO j=1,sNy
          DO i=1,sNx
