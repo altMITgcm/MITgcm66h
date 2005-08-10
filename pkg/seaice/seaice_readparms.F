@@ -242,9 +242,6 @@ C-------
 C-    seaice Monitor is (unfortunately) not independent from the main monitor
 C       => turn off MNC flags for now
         SEAICE_mon_mnc  = .FALSE.
-C-    seaice snap-shot with MNC is not yet implemented
-C       => turn off MNC flags for now
-        SEAICE_dump_mnc = .FALSE.
 C-------
         IF ( .NOT.outputTypesInclusive
      &       .AND. SEAICE_tave_mnc ) SEAICE_tave_mdsio = .FALSE.
