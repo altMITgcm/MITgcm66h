@@ -49,6 +49,8 @@ C-- Sea-Ice package
 
 #ifdef COMPONENT_MODULE
 # include "CPL_PARAMS.h"
+#else
+      LOGICAL cpl_earlyExpImpCall
 #endif
 
 C     !INPUT/OUTPUT PARAMETERS:
