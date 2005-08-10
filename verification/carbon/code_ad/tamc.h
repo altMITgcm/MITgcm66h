@@ -62,7 +62,11 @@ c     nthreads_chkpt - Number of threads to be used; nth_chkpt .eq. nTx*nTy
       integer    nchklev_1
       parameter( nchklev_1      =    5 )
       integer    nchklev_2
+#ifdef AUTODIFF_2_LEVEL_CHECKPOINT
+      parameter( nchklev_2      =    6 )
+#else
       parameter( nchklev_2      =    2 )
+#endif
 c      parameter( nchklev_2      =  150 )
       integer    nchklev_3
       parameter( nchklev_3      =    3 )
