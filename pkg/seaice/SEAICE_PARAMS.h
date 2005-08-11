@@ -18,9 +18,10 @@ C     SEAICE_mon_stdio  :: write monitor to std-outp
 C     SEAICE_tave_mnc   :: write TimeAverage output using MNC
 C     SEAICE_dump_mnc   :: write snap-shot output   using MNC
 C     SEAICE_mon_mnc    :: write monitor to netcdf file
-      LOGICAL SEAICEwriteState, SEAICEuseDYNAMICS
-      LOGICAL SEAICE_tave_mdsio, SEAICE_dump_mdsio, SEAICE_mon_stdio
-      LOGICAL SEAICE_tave_mnc,   SEAICE_dump_mnc,   SEAICE_mon_mnc
+      LOGICAL 
+     &     SEAICEwriteState, SEAICEuseDYNAMICS,
+     &     SEAICE_tave_mdsio, SEAICE_dump_mdsio, SEAICE_mon_stdio,
+     &     SEAICE_tave_mnc,   SEAICE_dump_mnc,   SEAICE_mon_mnc
       COMMON /SEAICE_PARM_L/
      &     SEAICEwriteState, SEAICEuseDYNAMICS,
      &     SEAICE_tave_mdsio, SEAICE_dump_mdsio, SEAICE_mon_stdio,
