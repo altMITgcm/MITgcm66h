@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o fix annoying months-old bug in mnc/mdsio output for seaice pkg
+  - bug was reported by Jean-Michel and Ian Fenty
 o Implement 4-level checkpointing: AUTODIFF_4_LEVEL_CHECKPOINT
   Needed for high-res. runs with large global files 
   to be able to limit tapelev size
