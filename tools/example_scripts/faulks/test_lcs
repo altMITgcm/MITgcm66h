@@ -75,6 +75,9 @@ for ac_option ; do
      
 done
 
+#  Turn off stack limit for FIZHI
+ulimit -s unlimited
+
 echo -n "Creating a temp directory ..."
 mach=`hostname`
 file=${OPTFILE##*/}
