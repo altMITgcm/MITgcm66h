@@ -81,7 +81,7 @@ C Only do I/O if I am the master thread
 #endif /* ALLOW_EXCH2 */
 
       call get_landfrac(sNx,sNy,Nsx,Nsy,bi,bj,maxtyp,
-     .        surftype,tilefrac,fracland)
+     .        surftype,tilefrac,fracland(1,1,bi,bj))
 
        do j = 1,sNy
        do i = 1,sNx
