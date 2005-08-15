@@ -50,7 +50,7 @@ C     Generaly only thread 1 does IO here. It can not start until
 C     all threads fields are ready.
       IF (debugMode) THEN 
         IF ( DIFFERENT_MULTIPLE(dumpFreq,myTime,deltaTClock)
-     &     ) THEN
+     &     .AND. (.not. nodumps) ) THEN
 
           _BARRIER
 
@@ -68,7 +68,9 @@ C         Write "text-plots" of certain fields
       ENDIF
 
 C     Write model state to binary file
-      CALL WRITE_STATE( myTime, myIter, myThid )
+      if( .not. nodumps ) then
+       CALL WRITE_STATE( myTime, myIter, myThid )
+      endif
 
 #ifdef ALLOW_TIMEAVE
 C     Do time averages
@@ -78,7 +80,9 @@ C     Do time averages
 #endif
 
 #ifdef ALLOW_FIZHI
+      if( .not. nodumps ) then
       if(useFIZHI) call fizhi_write_state( myTime, myIter, myThid )
+      endif
 #endif
 
 #ifdef ALLOW_AIM

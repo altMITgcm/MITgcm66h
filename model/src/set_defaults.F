@@ -275,6 +275,7 @@ C--   Time stepping parameters
       tCylIn             = 0.
       tCylOut            = 20.
       calendarDumps     = .FALSE.
+      nodumps     = .FALSE.
 
 C--   Input files
       bathyFile       = ' '

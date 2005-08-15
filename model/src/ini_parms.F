@@ -196,7 +196,7 @@ C--   Time stepping parammeters
      & tauThetaClimRelax, tauSaltClimRelax, latBandClimRelax, 
      & tauTr1ClimRelax,
      & periodicExternalForcing, externForcingPeriod, externForcingCycle,
-     & calendarDumps
+     & calendarDumps, nodumps
 
 C--   Gridding parameters
       NAMELIST /PARM04/
