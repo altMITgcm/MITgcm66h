@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o fix initialisation Pb in calc_gw (get NANs in exp5 with g77)
 o fix annoying months-old bug in mnc/mdsio output for seaice pkg
   - bug was reported by Jean-Michel and Ian Fenty
 o fix initialization Pb in AIM-Ocean coupled model (aim_sice2aim.F)
