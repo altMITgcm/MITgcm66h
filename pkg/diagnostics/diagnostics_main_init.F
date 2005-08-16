@@ -140,6 +140,13 @@ C-    state variables of the main code (and related quadratic var):
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
+      diagName  = 'RELHUM  '
+      diagTitle = 'Relative Humidity               '
+      diagUnits = 'percent         '
+      diagCode  = 'SM      MR      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
       diagName  = 'SSS     '
       diagTitle = 'Sea Surface Salinity '
       diagUnits = DIAGS_MK_UNITS( sUnit4c, myThid )
