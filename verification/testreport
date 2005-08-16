@@ -125,6 +125,11 @@ testoutput_for_prop()
         fi
         return 99
     fi
+    non_real_numb=`egrep -c -i 'NAN|INF' tmp1.txt`
+    if [ $non_real_numb -gt 0 ]; then
+	echo testoutput_for_prop: output.txt has $non_real_numb not real numbers 1>&2
+	return 99
+    fi
     if [ $debug -gt 0 ]; then
 	echo testoutput_for_prop: join tmp1.txt tmp2.txt 1>&2
     fi
