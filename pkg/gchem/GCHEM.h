@@ -31,6 +31,11 @@ C
       CHARACTER*(MAX_LEN_FNAM) IceFile
       CHARACTER*(MAX_LEN_FNAM) IronFile
       CHARACTER*(MAX_LEN_FNAM) SilicaFile
+      CHARACTER*(MAX_LEN_FNAM) Filename1
+      CHARACTER*(MAX_LEN_FNAM) Filename2
+      CHARACTER*(MAX_LEN_FNAM) Filename3
+      CHARACTER*(MAX_LEN_FNAM) Filename4
+      CHARACTER*(MAX_LEN_FNAM) Filename5
 
       COMMON /GCHEM_PARAMS/
      &                   WindFile,
@@ -38,6 +43,11 @@ C
      &                   IceFile,
      &                   IronFile,
      &                   SilicaFile,
+     &                   Filename1,
+     &                   Filename2,
+     &                   Filename3,
+     &                   Filename4,
+     &                   Filename5,
      &                   nsubtime
 CEOP
 
