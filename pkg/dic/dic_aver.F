@@ -2,7 +2,7 @@ C $Header$
 C $Name$
 
 cswdcost -- add sunroutine ---
-#include "CPP_OPTIONS.h"
+#include "DIC_OPTIONS.h"
 #include "GCHEM_OPTIONS.h"
 
 
