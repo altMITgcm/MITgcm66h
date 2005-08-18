@@ -12,8 +12,10 @@ function [uE,vN] = rotate_csAg_EN(u,v)
 Rac='grid_files/';
 
 NN=size(u);
-[nnx nc nz]=size(u); 
-nPg=nnx*nc;
+if length(NN) < 3, nz=1;
+else nz=prod(NN(3:end));
+end
+nnx=NN(1); nc=NN(2); nPg=nnx*nc;
 if nnx ~= 6*nc,
  fprintf('Error in CS-dim: %i %i %i \n',NN);
  return
@@ -34,7 +36,7 @@ for k=1:nz;
  vN(:,k)=uvEN(:,2).*u(:,k)+uvEN(:,1).*v(:,k);
 end
 
-uE=reshape(uE,[nnx NN(2:end)]);
-vN=reshape(vN,[nnx NN(2:end)]);
+uE=reshape(uE,NN);
+vN=reshape(vN,NN);
 
 return
