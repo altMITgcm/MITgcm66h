@@ -33,7 +33,7 @@ c
 cccccccccccccccccccccccccc
 c load external data     c
 cccccccccccccccccccccccccc
-#ifdef DIC_BIOTIC
+#ifdef ALLOW_DIC
        call  DIC_FIELDS_LOAD (myIter,myTime,myThid)
 #endif
 

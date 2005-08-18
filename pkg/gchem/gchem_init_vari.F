@@ -29,7 +29,7 @@ CEOP
 ccccccccccccccccccccccccccc
 c initialize parameters   c
 ccccccccccccccccccccccccccc
-#ifdef DIC_BIOTIC
+#ifdef ALLOW_DIC
           print*,'QQ load dic parameters, initial vari' 
 c these two needed to be recalled for adjoint
           call DIC_BIOTIC_PARAM(myThid)
@@ -38,7 +38,7 @@ c --
           CALL DIC_INI_FORCING(myThid)
           call DIC_SURFFORCING_INIT(myThid)
           call DIC_BIOTIC_INIT(myThid )
-#endif /* DIC_BIOTIC */
+#endif /* ALLOW_DIC */
           _END_MASTER( mythid )
 
 

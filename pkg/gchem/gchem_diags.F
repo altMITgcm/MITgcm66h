@@ -30,12 +30,12 @@ cccccccccccccccccccccc
 c diagnostics        c
 cccccccccccccccccccccc
 
-#ifdef DIC_BIOTIC
+#ifdef ALLOW_DIC
 #ifdef ALLOW_TIMEAVE
        IF (myIter.NE.nIter0)
      & call dic_biotic_diags( myTime, myIter, myThid )
 #endif /* ALLOW_TIMEAVE */
-#endif /* DIC_BIOTIC */
+#endif /* ALLOW_DIC */
 
 #endif /* ALLOW_GCHEM */
 

@@ -31,11 +31,11 @@ C     !LOCAL VARIABLES:
 ccccccccccccccccccccccccccc
 c initialize parameters   c
 ccccccccccccccccccccccccccc
-#ifdef DIC_BIOTIC
+#ifdef ALLOW_DIC
           print*,'QQ load dic parameters, initial fixed' 
           call DIC_ABIOTIC_PARAM( myThid )
           call DIC_BIOTIC_PARAM( myThid )
-#endif /* DIC_BIOTIC */
+#endif /* ALLOW_DIC */
 #ifdef ALLOW_CFC
           print*,'QQ start cfc params'
           call CFC_PARAM( myThid )
