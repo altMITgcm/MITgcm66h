@@ -1598,13 +1598,6 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
-      diagName  = 'RELHUM  '
-      diagTitle = 'Relative Humidity (fraction)'
-      diagUnits = 'Fraction        '
-      diagCode  = 'SM      MR      '
-      CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I          diagName, diagCode, diagUnits, diagTitle, myThid )
-
 #endif /* ALLOW_DIAGNOSTICS */
 
       RETURN
