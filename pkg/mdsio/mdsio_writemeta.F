@@ -26,6 +26,12 @@ C
 C Created: 03/20/99 adcroft@mit.edu
 
       implicit none
+
+C Global variables / common blocks
+#include "SIZE.h"
+#include "EEPARAMS.h"
+#include "PARAMS.h"
+
 C Arguments
       character*(*) mFileName
       character*(*) dFileName
@@ -35,11 +41,6 @@ C Arguments
       integer nrecords
       integer myIter
       integer mythid
-
-C Global variables / common blocks
-#include "SIZE.h"
-#include "EEPARAMS.h"
-#include "PARAMS.h"
 
 C Functions
 

@@ -13,14 +13,17 @@ C
 C Created: 03/29/99 eckert@mit.edu + adcroft@mit.edu
 
       implicit none
-C Arguments
-      integer filePrec
-      integer nnn
-      integer mythid
+
 C Global variables
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+C
+C Arguments
+      integer filePrec
+      integer nnn
+      integer mythid
+C
 C Local
       character*(max_len_mbuf) msgbuf
 C     ------------------------------------------------------------------
