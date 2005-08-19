@@ -173,8 +173,8 @@ C     Above use static heap storage to allow exchange.
       COMMON /TDFIELDS_r2/
      &                pload0, pload1
 
-      _RS  Qsw1     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RS  Qsw0     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  pload1   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  pload0   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 #endif
 
 #endif /* ALLOW_EXF */
