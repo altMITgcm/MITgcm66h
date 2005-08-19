@@ -4,7 +4,7 @@ C $Name$
 #include "GAD_OPTIONS.h"
 
       SUBROUTINE GAD_DST3FL_ADV_X( 
-     I           bi,bj,k,deltaT,
+     I           bi,bj,k,deltaTloc,
      I           uTrans, uVel,
      I           maskLocW, tracer,
      O           uT,
@@ -23,7 +23,7 @@ C     == GLobal variables ==
 
 C     == Routine arguments ==
       INTEGER bi,bj,k
-      _RL deltaT
+      _RL deltaTloc
       _RL uTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL uVel(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RS maskLocW(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
@@ -49,7 +49,7 @@ C     uFld   :: velocity [m/s], zonal component
 c       uFld = uVel(i,j,k,bi,bj)
         uFld = uTrans(i,j)*recip_dyG(i,j,bi,bj)
      &       *recip_drF(k)*recip_hFacW(i,j,k,bi,bj)
-        cfl=abs(uFld*deltaT*recip_dxC(i,j,bi,bj))
+        cfl=abs(uFld*deltaTloc*recip_dxC(i,j,bi,bj))
         d0=(2.D0-cfl)*(1.D0-cfl)*oneSixth
         d1=(1.D0-cfl*cfl)*oneSixth
 c       thetaP=0.D0

@@ -8,7 +8,7 @@ C !ROUTINE: GAD_FLUXLIMIT_ADV_Y
 
 C !INTERFACE: ==========================================================
       SUBROUTINE GAD_FLUXLIMIT_ADV_Y( 
-     I           bi,bj,k,deltaT,
+     I           bi,bj,k,deltaTloc,
      I           vTrans, vVel,
      I           maskLocS, tracer,
      O           vT,
@@ -40,7 +40,7 @@ C  vVel              :: meridional flow
 C  tracer            :: tracer field
 C  myThid            :: thread number
       INTEGER bi,bj,k
-      _RL deltaT
+      _RL deltaTloc
       _RL vTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL vVel  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RS maskLocS(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
@@ -96,7 +96,7 @@ c       vFld = vVel(i,j,k,bi,bj)
      &   vTrans(i,j)*(Tracer(i,j)+Tracer(i,j-1))*0.5 _d 0
      &   -0.5*(
      &        (1-Cr)*ABS(vTrans(i,j))
-     &        +vTrans(i,j)*vFld*deltaT
+     &        +vTrans(i,j)*vFld*deltaTloc
      &         *recip_dyC(i,j,bi,bj)*Cr
      &        )*Rj
        ENDDO
