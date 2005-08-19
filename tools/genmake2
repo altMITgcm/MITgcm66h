@@ -2041,7 +2041,7 @@ cat hlist.inc         >> $MAKEFILE
 cat ad_flow_files.inc >> $MAKEFILE
 echo >> $MAKEFILE
 echo 'F77FILES =  $(SRCFILES:.F=.'$FS')'      >> $MAKEFILE
-echo 'F90FILES =  $(F90SRCFILES:.F=.'$FS90')' >> $MAKEFILE
+echo 'F90FILES =  $(F90SRCFILES:.F90=.'$FS90')' >> $MAKEFILE
 echo 'OBJFILES =  $(SRCFILES:.F=.o) $(CSRCFILES:.c=.o) $(F90SRCFILES:.F90=.o)' >> $MAKEFILE
 echo >> $MAKEFILE
 echo '.SUFFIXES:' >> $MAKEFILE
