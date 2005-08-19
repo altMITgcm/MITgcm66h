@@ -5,7 +5,7 @@ C $Name$
 CStartofinterface
       SUBROUTINE TIMEAVE_CUMUL_1VFC( 
      O   fldtave,
-     I   fld1, fld2, Ksize, deltaT,
+     I   fld1, fld2, Ksize, deltaTloc,
      I   bi, bj, myThid )
 C     /==========================================================\
 C     | SUBROUTINE TIMEAVE_CUMUL_1VFC                            |
@@ -28,7 +28,7 @@ C     Ksize - 3rd dimension of local arrays (Input and Output fields)
       _RL fld1(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Ksize,nSx,nSy)
       _RS fld2(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Ksize,nSx,nSy)
       _RL fldtave(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Ksize,nSx,nSy)
-      _RL deltaT
+      _RL deltaTloc
       INTEGER bi, bj, myThid
 
 CEndofinterface
@@ -43,7 +43,7 @@ C      DO bi = myBxLo(myThid), myBxHi(myThid)
          DO j=1,sNy
           DO i=1,sNx
            fldtave(i,j,k,bi,bj)= fldtave(i,j,k,bi,bj)
-     &       + deltaT*fld1(i,j,k,bi,bj)*fld2(i,j,k,bi,bj)
+     &       + deltaTloc*fld1(i,j,k,bi,bj)*fld2(i,j,k,bi,bj)
            ENDDO
           ENDDO
          ENDDO

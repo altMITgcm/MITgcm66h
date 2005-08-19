@@ -5,7 +5,7 @@ C $Name$
 CStartofinterface
       SUBROUTINE TIMEAVE_CUMUL_1T( 
      O              fldtave, 
-     I              fld, Ksize, deltaT, 
+     I              fld, Ksize, deltaTloc, 
      I              bi, bj, myThid )
 C     /==========================================================\
 C     | SUBROUTINE TIMEAVE_CUMUL_1T                              |
@@ -25,7 +25,7 @@ C     Ksize - 3rd dimension of local arrays (Input and Output fields)
       INTEGER Ksize
       _RL fld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Ksize)
       _RL fldtave(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Ksize,nSx,nSy)
-      _RL deltaT
+      _RL deltaTloc
       INTEGER bi, bj, myThid
 
 CEndofinterface
@@ -38,7 +38,7 @@ C     i,j,k,bi,bj  - Loop counters
          DO j=1,sNy
           DO i=1,sNx
              fldtave(i,j,k,bi,bj)=
-     &       fldtave(i,j,k,bi,bj)+fld(i,j,k)*deltaT
+     &       fldtave(i,j,k,bi,bj)+fld(i,j,k)*deltaTloc
            ENDDO
           ENDDO
          ENDDO
