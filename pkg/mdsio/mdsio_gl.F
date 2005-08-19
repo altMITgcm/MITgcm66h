@@ -199,7 +199,6 @@ c-- useSingleCpuIO
       endif
 
       if ( .not. useSingleCpuIO ) then
-cph      if ( .not. ( globalFile .and. useSingleCPUIO ) ) then
       if ( .not. ( globalFile ) ) then
 
 C If we are reading from a global file then we open it here
@@ -330,7 +329,7 @@ C If global file was opened then close it
 c      end of if ( .not. ( globalFile ) ) then
       endif
 
-c      else of if ( .not. ( globalFile .and. useSingleCPUIO ) ) then
+c      else of if ( .not. ( useSingleCPUIO ) ) then
       else
 
        DO k=1,nNz
