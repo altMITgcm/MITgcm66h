@@ -53,7 +53,7 @@ C     bi0, bj0 :: Base global index coordinate ( on CS there is no global
 C                 coord).
       INTEGER bi0(nPx)
       INTEGER bj0(nPy)
-      INTEGER bi, bj, pi, pj
+      INTEGER bi, bj, picnt, pjcnt
       INTEGER pxW, pxE, pyN, pyS
       INTEGER procW, procE, procN, procS
       INTEGER totalTileCount
