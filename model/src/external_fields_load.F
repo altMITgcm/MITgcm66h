@@ -128,6 +128,7 @@ C      data for the period ahead and the period behind myTime.
      &  'S/R EXTERNAL_FIELDS_LOAD: Reading new data:',
      &  intime0, intime1, myIter, myTime
 
+#ifdef ALLOW_MDSIO
       IF ( zonalWindFile .NE. ' '  ) THEN
        CALL MDSREADFIELD ( zonalWindFile, readBinaryPrec,
      &        'RS', 1, taux0, intime0, myThid )
@@ -204,6 +205,7 @@ C-     Qnet is now (after c54) the net Heat Flux (including SW)
      &        'RS', 1, pload1, intime1, myThid )
       ENDIF
 #endif
+#endif /* ALLOW_MDSIO */
 
        _END_MASTER(myThid)
 C
