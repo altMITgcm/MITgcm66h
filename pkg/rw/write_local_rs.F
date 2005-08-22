@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "RW_OPTIONS.h"
 
       SUBROUTINE WRITE_LOCAL_RS(
      I          pref,suff,nNr,field,bi,bj,iRec,myIter,myThid)
@@ -47,9 +47,10 @@ C     e.g. U.0000000100
       ENDIF
 C
       fType='RS'
+#ifdef ALLOW_MDSIO
       CALL MDS_WRITELOCAL(
      &     fullName, writeBinaryPrec, globalFile,
      &     fType, nNr, field, bi, bj, iRec, myIter, myThid )
-C
+#endif
       RETURN
       END

@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "RW_OPTIONS.h"
 
       SUBROUTINE WRITE_FLD_XY_RS( pref,suff,field,myIter,myThid)
 C WRITE_FLD_XY_RS is a "front-end" interface to the low-level I/O
@@ -44,8 +44,9 @@ C
       fType='RS'
       nNz=1
       irec=1
+#ifdef ALLOW_MDSIO
       CALL MDSWRITEFIELD( fullName, writeBinaryPrec, globalFile,
      &     fType, nNz, field, irec, myIter, myThid )
-C
+#endif
       RETURN
       END

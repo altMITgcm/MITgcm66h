@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "RW_OPTIONS.h"
 
       SUBROUTINE READ_FLD_XYZ_RS( pref,suff,field,myIter,myThid)
 C READ_FLD_XYZ_RS is a "front-end" interface to the low-level I/O
@@ -41,8 +41,9 @@ C
       fType='RS'
       nNz=Nr
       irec=1
+#ifdef ALLOW_MDSIO
       CALL MDSREADFIELD( fullName, readBinaryPrec, fType,
      &     nNz, field, irec, myThid )
-C
+#endif
       RETURN
       END
