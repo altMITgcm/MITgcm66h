@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o move some basic S/R (used elsewhere in the code) from pkg/mdsio to eesupp/src
+  allows to compile without pkg/mdsio (& test successfully hs94.1x64x5)
+
 checkpoint57q_post
 o fix initialisation Pb in calc_gw (get NANs in exp5 with g77)
 o fix annoying months-old bug in mnc/mdsio output for seaice pkg
