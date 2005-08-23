@@ -10,8 +10,9 @@ DEFINES='-D_BYTESWAPIO -DWORDLENGTH=4'
 CPP='cpp  -traditional -P'
 INCLUDES='-I/usr/include/netcdf'
 LIBS='-lPEPCF90'
+
 NOOPTFLAGS='-O0'
-NOOPTFILES='mdsio_byteswapr8.F mdsio_byteswapr4.F'
+NOOPTFILES='mds_byteswapr8.F mds_byteswapr4.F mds_byteswapi4.F'
 
 #  Note that the -mp switch is for ieee "maintain precision" and is
 #  roughly equivalent to -ieee
@@ -29,5 +30,5 @@ else
 fi
 
 NOOPTFILES=$NOOPTFILES' mitcplr_char2real.F mitcplr_real2char.F'
-NOOPTFILES=$NOOPTFILES' mitcplr_char2int.F mitcplr_int2char.F'
+NOOPTFILES=$NOOPTFILES' mitcplr_char2int.F mitcplr_int2char.F mds_byteswap.F'
 
