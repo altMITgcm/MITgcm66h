@@ -10,8 +10,10 @@ C  CPP options file for Land package
 
 #include "CPP_OPTIONS.h"
 
+#ifdef ALLOW_TIMEAVE
 C  allow time average diagnostic:
-#define ALLOW_LAND_TAVE
+# define ALLOW_LAND_TAVE
+#endif
 
 C  to write debugging diagnostics:
 #undef LAND_DEBUG
