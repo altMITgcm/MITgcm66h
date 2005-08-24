@@ -5,17 +5,8 @@
 #  are defined so they can be conveniently substituted.
 #
 
-
-# JMC says that aim, aim_v23, land should be off by default
-# bulk_forcing
-
-#EH3  Please keep mnc off by default until I get a chance to fix the
-#EH3  is-NetCDF-available code in genamke2:
-#EH3
-#EH3  gfd : mom_fluxform mom_vecinv generic_advdiff debug mdsio mnc rw monitor
-
 gfd : mom_common mom_fluxform mom_vecinv generic_advdiff debug mdsio rw monitor
 
-oceanic : gfd gmredi kpp timeave
+oceanic : gfd gmredi kpp
 
-atmospheric : gfd timeave shap_filt
+atmospheric : gfd shap_filt
