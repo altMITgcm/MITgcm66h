@@ -48,10 +48,10 @@ C     fn      :: character buffer for creating filename
       EXTERNAL DIFFERENT_MULTIPLE
 
       IF (
-     &     DIFFERENT_MULTIPLE(dumpFreq,myTime,deltaTClock).OR.
-     &     myTime.EQ.endTime .OR.
-     &     myTime.EQ.startTime
-     &     ) THEN
+     &     DIFFERENT_MULTIPLE(dumpFreq,myTime,deltaTClock)
+     &  .OR. dumpInitAndLast.AND.( myTime.EQ.endTime .OR.
+     &                             myTime.EQ.startTime  )
+     &   ) THEN
 
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|

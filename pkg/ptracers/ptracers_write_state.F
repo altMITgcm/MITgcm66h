@@ -47,8 +47,8 @@ C     iRec      :: record number
       EXTERNAL IO_ERRCOUNT
 
       IF ( DIFFERENT_MULTIPLE( PTRACERS_dumpFreq, myTime, deltaTClock )
-     & .OR.myTime.EQ.endTime
-     & .OR.myTime.EQ.startTime
+     &  .OR. dumpInitAndLast.AND.( myTime.EQ.endTime .OR.
+     &                             myTime.EQ.startTime  )
      &   ) THEN
        
 C     Write to files

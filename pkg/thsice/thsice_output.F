@@ -305,9 +305,10 @@ C--    Reset averages to zero
 
 C     Dump a snap-shot of main state variables:
       IF ( 
-     &  DIFFERENT_MULTIPLE(thSIce_diagFreq,myTime,deltaTClock)
-     &     .OR. myTime.EQ.startTime
-     &     .OR. myTime.EQ.endTime ) THEN
+     &     DIFFERENT_MULTIPLE( thSIce_diagFreq, myTime, deltaTClock )
+     &  .OR. dumpInitAndLast.AND.( myTime.EQ.endTime .OR.
+     &                             myTime.EQ.startTime  )
+     &   ) THEN
 
         IF ( thSIce_snapshot_mdsio ) THEN
           
