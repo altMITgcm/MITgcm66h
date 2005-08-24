@@ -52,9 +52,9 @@ C     == Local Variables ==
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
-      IF ( DIFFERENT_MULTIPLE(land_diagFreq,
-     &                        myTime+land_deltaT,land_deltaT)
-     & .OR. myTime+land_deltaT .EQ. endTime 
+      IF ( DIFFERENT_MULTIPLE( land_diagFreq,
+     &                         myTime+land_deltaT, land_deltaT )
+     &  .OR. dumpInitAndLast.AND.( myTime+land_deltaT.EQ.endTime )
      &   ) THEN 
        iterWr = myIter+1
        WRITE(suff,'(I10.10)') iterWr
