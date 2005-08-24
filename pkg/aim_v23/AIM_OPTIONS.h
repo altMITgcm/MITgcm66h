@@ -18,8 +18,10 @@ C  - do not include minor changes (added to avoid negative Q).
 C  allow dew to form on land (=negative evaporation)
 #undef ALLOW_DEW_ON_LAND
 
+#ifdef ALLOW_TIMEAVE
 C  allow time average diagnostic:
-#define ALLOW_AIM_TAVE
+# define ALLOW_AIM_TAVE
+#endif
 
 C  allow time average diagnostic:
 #define ALLOW_CLR_SKY_DIAG
