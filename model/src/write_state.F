@@ -76,11 +76,9 @@ CEOP
 
       IF ( 
      &     DIFFERENT_MULTIPLE(dumpFreq,myTime,deltaTClock)
-#ifndef MINIMAL_TAVE_OUTPUT
-     &     .OR. myTime.EQ.endTime
-     &     .OR. myTime.EQ.startTime
-#endif /* MINIMAL_TAVE_OUTPUT */
-     &     ) THEN
+     &  .OR. dumpInitAndLast.AND.( myTime.EQ.endTime .OR.
+     &                             myTime.EQ.startTime  )
+     &   ) THEN
         IF ( dumpFreq .EQ. 0.0 ) THEN
           iRec = 1
         ELSE

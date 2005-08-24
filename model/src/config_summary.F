@@ -422,6 +422,8 @@ C     zcoord ::
      &     'pickup_write_immed =','   /* Model IO flag. */')
       CALL WRITE_0D_R8( dumpFreq, INDEX_NONE,'dumpFreq =',
      &'   /* Model state write out interval ( s ). */')
+      CALL WRITE_0D_L(dumpInitAndLast,INDEX_NONE,'dumpInitAndLast=',
+     &  ' /* write out Initial & Last iter. model state */')
       CALL WRITE_0D_L(snapshot_mdsio,INDEX_NONE,
      &     'snapshot_mdsio =', '   /* Model IO flag. */')
 #ifdef ALLOW_MNC

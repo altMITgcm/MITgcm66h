@@ -251,6 +251,7 @@ C--   Time stepping parameters
       dumpFreq          = deltaT*0
       adjDumpFreq       = deltaT*0
       diagFreq          = deltaT*0
+      dumpInitAndLast   = .TRUE.
       snapshot_mdsio    = .TRUE.
       monitorFreq       = -1.
       adjMonitorFreq    = 0.
@@ -275,7 +276,6 @@ C--   Time stepping parameters
       tCylIn             = 0.
       tCylOut            = 20.
       calendarDumps     = .FALSE.
-      nodumps     = .FALSE.
 
 C--   Input files
       bathyFile       = ' '
