@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o move pkg timeave out of pkg-groups "oceanic" & "atmospheric" (pkg/pkg_groups)
+o remove MINIMAL_TAVE_OUTPUT option ; 
+  add "dumpInitAndLast" to replace "nodumps" (and MINIMAL_TAVE_OUTPUT).
 o move some basic S/R (used elsewhere in the code) from pkg/mdsio to eesupp/src
   allows to compile without pkg/mdsio (& test successfully hs94.1x64x5)
 
