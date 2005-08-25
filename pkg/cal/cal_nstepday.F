@@ -1,6 +1,7 @@
 C $Header$
+C $Name$
 
-#include "CAL_CPPOPTIONS.h"
+#include "CAL_OPTIONS.h"
 
       integer function cal_nStepDay(
      I                               mythid

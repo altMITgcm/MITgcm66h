@@ -1,6 +1,7 @@
 C $Header$
+C $Name$
 
-#include "CAL_CPPOPTIONS.h"
+#include "CAL_OPTIONS.h"
 
       subroutine cal_TimeInterval(
      I                             timeint,
@@ -56,6 +57,7 @@ c     == local variables ==
       integer nsecs
       integer hhmmss
       integer ierr
+      _RL     tmp1, tmp2
 
 c     == end of interface ==
 
@@ -67,13 +69,15 @@ c     == end of interface ==
       if (timeunit .eq. 'secs') then
 
         date(1) = int(timeint/float(secondsperday))
-        nsecs   = int(timeint - float(date(1)*secondsperday))
+        tmp1    = date(1)
+        tmp2    = secondsperday
+        nsecs   = int(timeint - tmp1 * tmp2 )
 
       else if (timeunit .eq. 'model') then
 
         date(1) = int(timeint*modelstep/float(secondsperday))
         nsecs   = int(timeint*modelstep -
-     &                float(date(1)*secondsperday))
+     &                float(date(1)) * float(secondsperday))
 
       else
 

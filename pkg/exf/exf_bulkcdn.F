@@ -1,6 +1,6 @@
 c $Header$
 
-#include "EXF_CPPOPTIONS.h"
+#include "EXF_OPTIONS.h"
 
 
       _RL function exf_BulkCdn(
@@ -32,7 +32,7 @@ c     ==================================================================
 
       implicit none
 
-#if (defined (ALLOW_BULKFORMULAE) && defined (ALLOW_ATM_TEMP))
+#if (defined (ALLOW_BULKFORMULAE))
 
 c     == global variables ==
 

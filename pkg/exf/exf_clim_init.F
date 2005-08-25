@@ -1,11 +1,9 @@
 c $Header$
 
-#include "EXF_CPPOPTIONS.h"
+#include "EXF_OPTIONS.h"
 
 
-      subroutine exf_clim_init(
-     I                         mythid
-     &                       )
+      subroutine exf_clim_init( mythid )
 
 c     ==================================================================
 c     SUBROUTINE exf_clim_init
@@ -39,9 +37,17 @@ c     == local variables ==
 c     == end of interface ==
 
 c     initialize climatology fields
+#ifdef ALLOW_CLIMTEMP_RELAXATION
       call exf_init_climtemp( mythid )
+#endif
+#ifdef ALLOW_CLIMSALT_RELAXATION
       call exf_init_climsalt( mythid )
+#endif
+#ifdef ALLOW_CLIMSST_RELAXATION
       call exf_init_climsst(  mythid )
+#endif
+#ifdef ALLOW_CLIMSSS_RELAXATION
       call exf_init_climsss(  mythid )
+#endif
 
       end

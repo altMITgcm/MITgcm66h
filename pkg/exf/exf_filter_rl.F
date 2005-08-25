@@ -1,6 +1,7 @@
-c $Header$
+C $Header$
+C $Name$
 
-#include "EXF_CPPOPTIONS.h"
+#include "EXF_OPTIONS.h"
 
       subroutine exf_filter_rl(
      I                          arr,
@@ -53,7 +54,7 @@ c     == end of interface ==
       itlo = mybxlo(mythid)
       ithi = mybxhi(mythid)
 
-c     Don't filter with pkg/seaice because of B/C-grid interpolation
+c     Do not filter with pkg/seaice because of B/C-grid interpolation
       IF ( .NOT. useSEAICE ) THEN
 
 c     filter forcing field array

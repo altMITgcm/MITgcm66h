@@ -24,84 +24,71 @@ c     ustress   :: Zonal surface wind stress in N/m^2
 c                  > 0 for increase in uVel, which is west to
 c                      east for cartesian and spherical polar grids
 c                  Typical range: -0.5 < ustress < 0.5
-c                  Southwest C-grid U point
 c                  Input field
 c
 c     vstress   :: Meridional surface wind stress in N/m^2
 c                  > 0 for increase in vVel, which is south to
 c                      north for cartesian and spherical polar grids
 c                  Typical range: -0.5 < vstress < 0.5
-c                  Southwest C-grid V point
 c                  Input field
 c
 c     hflux     :: Net upward surface heat flux excluding shortwave in W/m^2
 c                  hflux = latent + sensible + lwflux
 c                  > 0 for decrease in theta (ocean cooling)
 c                  Typical range: -250 < hflux < 600
-c                  Southwest C-grid tracer point
 c                  Input field
 c
 c     sflux     :: Net upward freshwater flux in m/s
 c                  sflux = evap - precip - runoff
 c                  > 0 for increase in salt (ocean salinity)
 c                  Typical range: -1e-7 < sflux < 1e-7
-c                  Southwest C-grid tracer point
 c                  Input field
 c
 c     swflux    :: Net upward shortwave radiation in W/m^2
 c                  swflux = - ( swdown - ice and snow absorption - reflected )
 c                  > 0 for decrease in theta (ocean cooling)
 c                  Typical range: -350 < swflux < 0
-c                  Southwest C-grid tracer point
 c                  Input field
 c
 c     uwind     :: Surface (10-m) zonal wind velocity in m/s
 c                  > 0 for increase in uVel, which is west to
 c                      east for cartesian and spherical polar grids
 c                  Typical range: -10 < uwind < 10
-c                  Southwest C-grid U point
 c                  Input or input/output field
 c
 c     vwind     :: Surface (10-m) meridional wind velocity in m/s
 c                  > 0 for increase in vVel, which is south to
 c                      north for cartesian and spherical polar grids
 c                  Typical range: -10 < vwind < 10
-c                  Southwest C-grid V point
 c                  Input or input/output field
 c
 c     atemp     :: Surface (2-m) air temperature in deg K
 c                  Typical range: 200 < atemp < 300
-c                  Southwest C-grid tracer point
 c                  Input or input/output field
 c
 c     aqh       :: Surface (2m) specific humidity in kg/kg
 c                  Typical range: 0 < aqh < 0.02
-c                  Southwest C-grid tracer point
 c                  Input or input/output field
 c
 c     lwflux    :: Net upward longwave radiation in W/m^2
 c                  lwflux = - ( lwdown - ice and snow absorption - emitted )
 c                  > 0 for decrease in theta (ocean cooling)
 c                  Typical range: -20 < lwflux < 170
-c                  Southwest C-grid tracer point
 c                  Input field
 c
 c     evap      :: Evaporation in m/s
 c                  > 0 for increase in salt (ocean salinity)
 c                  Typical range: 0 < evap < 2.5e-7
-c                  Southwest C-grid tracer point
 c                  Input, input/output, or output field
 c
 c     precip    :: Precipitation in m/s
 c                  > 0 for decrease in salt (ocean salinity)
 c                  Typical range: 0 < precip < 5e-7
-c                  Southwest C-grid tracer point
 c                  Input or input/output field
 c
 c     runoff    :: River and glacier runoff in m/s
 c                  > 0 for decrease in salt (ocean salinity)
 c                  Typical range: 0 < runoff < ????
-c                  Southwest C-grid tracer point
 c                  Input or input/output field
 c                  !!! WATCH OUT: Default exf_inscal_runoff !!!
 c                  !!! in exf_readparms.F is not 1.0        !!!
@@ -109,24 +96,26 @@ c
 c     swdown    :: Downward shortwave radiation in W/m^2
 c                  > 0 for increase in theta (ocean warming)
 c                  Typical range: 0 < swdown < 450
-c                  Southwest C-grid tracer point
 c                  Input/output field
 c
 c     lwdown    :: Downward longwave radiation in W/m^2
 c                  > 0 for increase in theta (ocean warming)
 c                  Typical range: 50 < lwdown < 450
-c                  Southwest C-grid tracer point
 c                  Input/output field
 c
 c     apressure :: Atmospheric pressure field in N/m^2
 c                  > 0 for ????
 c                  Typical range: ???? < apressure < ????
-c                  Southwest C-grid tracer point
 c                  Input field
 c
 c
 c     NOTES:
 c     ======
+c
+c     All surface forcing fields are defined at the center of
+c     each grid (the rVel location in model/inc/GRID.h) except
+c     for ustress and vstress, which are defined to coincide
+c     with Southwest C-grid U and V points, respectively.
 c
 c     Input and output units and sign conventions can be customized
 c     using variables exf_inscal_* and exf_outscal_*, which are set
@@ -138,16 +127,12 @@ c
 c     #ifndef SHORTWAVE_HEATING, hflux includes shortwave,
 c     that is, hflux = latent + sensible + lwflux +swflux
 c
-c     If (EXFwindOnBgrid .EQ. .TRUE.), uwind and vwind are
-c     defined on southwest B-grid U and V points, respectively.
-c
 c     Arrays *0 and *1 below are used for temporal interpolation.
 c
 
       common /exf_stress_r/ ustress, vstress
       _RL ustress   (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL vstress   (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
-
       common /exfl_ustress_r/ ustress0, ustress1
       _RL ustress0  (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL ustress1  (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
@@ -210,7 +195,7 @@ c
       _RL swflux1   (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 #endif
 
-#ifdef EXF_READ_EVAP
+#if defined(ALLOW_ATM_TEMP) || defined(EXF_READ_EVAP)
       common /exfl_evap_r/ evap0, evap1
       _RL evap0     (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL evap1     (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)

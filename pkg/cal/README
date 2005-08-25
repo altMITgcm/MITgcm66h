@@ -358,12 +358,12 @@ c                     after you have installed the latter.
 c
 c                     cal_<name>.F      -->  cNN/model/src/cal_<name>.F
 c                     cal.h             -->  cNN/model/inc/cal.h
-c                     CAL_CPPOPTIONS.h  -->  cNN/model/inc/CAL_CPPOPTIONS.h
+c                     CAL_OPTIONS.h     -->  cNN/model/inc/CAL_OPTIONS.h
 c                     data.cal          -->  cNN/exe/data.cal
 c
 c                     Add the line
 c
-c                       #include "CAL_CPPOPTIONS.h"
+c                       #include "CAL_OPTIONS.h"
 c
 c                     to the routine that calls "cal_Init".
 c

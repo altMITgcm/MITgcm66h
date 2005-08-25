@@ -1,6 +1,6 @@
 c $Header$
 
-#include "EXF_CPPOPTIONS.h"
+#include "EXF_OPTIONS.h"
 
 
       subroutine exf_set_climsss( 
@@ -52,40 +52,43 @@ c     == local variables ==
       logical first, changed
       integer count0, count1
       _RL     fac
-
-      integer bi, bj
-      integer i, j
+      integer bi, bj, i, j, interp_method
 
 c     == end of interface ==
 
       if ( climsssfile .NE. ' ' ) then
 
-#ifdef ALLOW_CLIM_CYCLIC
+         if ( climsssperiod .EQ. 0 ) then
+
 c     record numbers are assumed 1 to 12 corresponding to
 c     Jan. through Dec.
-         call cal_GetMonthsRec(
-     O        fac, first, changed,
-     O        count0, count1,
-     I        mycurrenttime, mycurrentiter, mythid
-     &        )
-#else
+            call cal_GetMonthsRec(
+     O           fac, first, changed,
+     O           count0, count1,
+     I           mycurrenttime, mycurrentiter, mythid
+     &           )
+
+         else
+
 c     get record numbers and interpolation factor for climsss
-         call exf_GetFFieldRec(
-     I        climsssstartdate, climsssperiod
-     O        , fac, first, changed
-     O        , count0, count1
-     I        , mycurrenttime, mycurrentiter, mythid
-     &        )
-#endif
+            call exf_GetFFieldRec(
+     I           climsssstartdate, climsssperiod
+     O           , fac, first, changed
+     O           , count0, count1
+     I           , mycurrenttime, mycurrentiter, mythid
+     &           )
+
+         endif
 
          if ( first ) then
 #ifdef USE_EXF_INTERPOLATION
-          call new_interp(
+          interp_method = 2
+          call exf_interp(
      &    climsssfile, exf_clim_iprec
      &  , climsss1, count0, xC, yC
      &  ,climsss_lon0,climsss_lon_inc
      &  ,climsss_lat0,climsss_lat_inc
-     &  ,climsss_nlon,climsss_nlat,mythid )
+     &  ,climsss_nlon,climsss_nlat,interp_method,mythid )
 #else
             call mdsreadfield( climsssfile, exf_clim_iprec
      &           , exf_clim_yftype, 1
@@ -102,12 +105,13 @@ c     get record numbers and interpolation factor for climsss
          if (( first ) .or. ( changed )) then
             call exf_SwapFFields( climsss0, climsss1, mythid )
 #ifdef USE_EXF_INTERPOLATION
-          call new_interp(
+          interp_method = 2
+          call exf_interp(
      &    climsssfile, exf_iprec
      &  , climsss1, count1, xC, yC
      &  ,climsss_lon0,climsss_lon_inc
      &  ,climsss_lat0,climsss_lat_inc
-     &  ,climsss_nlon,climsss_nlat,mythid )
+     &  ,climsss_nlon,climsss_nlat,interp_method,mythid )
 #else
             call mdsreadfield( climsssfile, exf_clim_iprec
      &           , exf_clim_yftype, 1
@@ -189,7 +193,7 @@ c     == end of interface ==
         do bi = mybxlo(mythid), mybxhi(mythid)
           do j = 1, sny
             do i = 1, snx
-              climsss (i,j,bi,bj) = 0. _d 0
+              climsss (i,j,bi,bj) = climsssconst
               climsss0(i,j,bi,bj) = 0. _d 0
               climsss1(i,j,bi,bj) = 0. _d 0
             enddo

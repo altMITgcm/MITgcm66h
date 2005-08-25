@@ -1,6 +1,6 @@
 c $Header$
 
-#include "CPP_OPTIONS.h"
+#include "EXF_OPTIONS.h"
 
 
       subroutine exf_GetFFieldRec(
@@ -25,13 +25,18 @@ c
 c     started: Christian Eckert eckert@mit.edu  30-Jun-1999
 c
 c     changed: Christian Eckert eckert@mit.edu  14-Jan-2000
-c
 c              - Restructured the code in order to create a package
 c                for the MITgcmUV.
 c
 c              Christian Eckert eckert@mit.edu  12-Feb-2000
-c
 c              - Changed Routine names (package prefix: exf_)
+c
+c              Curtis Heisey cheisey@mit.edu    19-Dec-2002
+c              - added "repeatPeriod" for cycling of forcing datasets
+c
+c     menemenlis@jpl.nasa.gov
+c     27-Dec-2002 bug fix for verification/global_with_exf
+c     8-Oct-2003 speed-up computations for long integration interval
 c
 c     ==================================================================
 c     SUBROUTINE exf_GetFFieldRec
@@ -44,10 +49,11 @@ c     == global variables ==
 c cal: modelstart, modelstep
 #include "EEPARAMS.h"
 #include "cal.h"
+#include "exf_param.h"
 
 c     == routine arguments ==
 
-      integer fldstartdate(4)
+      _RL     fldstartdate
       _RL     fldperiod
       _RL     fac
       logical first
@@ -64,12 +70,11 @@ c     == local variables ==
       integer previousdate(4)
       integer difftime(4)
 
-      integer fldcount
       _RL     fldsecs
+      _RL     fldsecs0
+      _RL     fldsecs1
       integer prevfldcount
       _RL     prevfldsecs
-      integer flddate(4)
-
 
 #ifdef EXF_VERBOSE
       character*(max_len_mbuf) msgbuf
@@ -77,48 +82,82 @@ c     == local variables ==
 
 c     == end of interface ==
 
-c     Determine the current date.
-      call cal_GetDate( myiter, mytime, mydate, mythid )
+c     Determine offset in seconds from beginning of input data
+c     to current date.
 
-c     Determine the flux record just before mycurrentdate.
-      call cal_TimePassed( fldstartdate, mydate, difftime, mythid )
-      call cal_ToSeconds( difftime, fldsecs, mythid )
-      fldsecs  = int(fldsecs/fldperiod)*fldperiod
-      fldcount = int(fldsecs/fldperiod) + 1
+c     This is very slow for a long integration interval.
+c     call cal_GetDate( myiter, mytime, mydate, mythid )
+c     call cal_TimePassed( fldstartdate, mydate, difftime, mythid )
+c     call cal_ToSeconds( difftime, fldsecs, mythid )
 
-c     Set switches for reading new records.
+      fldsecs = mytime - fldstartdate
+
+c     Variables needed to set switches for reading new records.
       first = ((mytime - modelstart) .lt. 0.5*modelstep)
+      if ( .not. first ) then
 
-      if ( first) then
-        changed = .false.
+c      This is very slow for a long integration interval.
+c      call cal_GetDate(myiter-1,mytime-modelstep,previousdate,mythid)
+c      call cal_TimePassed(fldstartdate,previousdate,difftime,mythid )
+c      call cal_ToSeconds( difftime, prevfldsecs, mythid )
+
+       prevfldsecs = fldsecs - modelstep
+
       else
-        call cal_GetDate( myiter-1, mytime-modelstep,
-     &                    previousdate, mythid )
-
-        call cal_TimePassed( fldstartdate, previousdate, difftime,
-     &                       mythid )
-        call cal_ToSeconds( difftime, prevfldsecs, mythid )
-        prevfldsecs  = int(prevfldsecs/fldperiod)*fldperiod
-        prevfldcount = int(prevfldsecs/fldperiod) + 1
-
-        if (fldcount .ne. prevfldcount) then
-          changed = .true.
-        else
-          changed = .false.
-        endif
+       prevfldsecs = 0
       endif
 
-      count0 = fldcount
-      count1 = fldcount + 1
+c     Determine the flux records just before and after mycurrentdate.
+      if (repeatPeriod.eq.0.) then
 
-      call cal_TimeInterval( fldsecs, 'secs', difftime, mythid )
-      call cal_AddTime( fldstartdate, difftime, flddate, mythid )
-      call cal_TimePassed( flddate, mydate, difftime, mythid )
-      call cal_ToSeconds( difftime, fldsecs, mythid )
+         if ( fldsecs .lt. 0 ) then
+            print*,'flux data not available for this date'
+            stop 'ABNORMAL END: S/R EXF_GETFFIELDREC'
+         endif
+         count0      = int((fldsecs+0.5)/fldperiod) + 1
+         count1      = count0 + 1
+         prevfldcount= int((prevfldsecs+0.5)/fldperiod) + 1
+         fldsecs     = fldsecs - int((fldsecs+0.5)/fldperiod)*fldperiod
+
+      elseif (repeatPeriod.gt.0.) then
+
+c     If using repeating data (e.g. monthly means) then make
+c     fldsecs cycle around.
+         do while ( fldsecs     .lt. 0 )
+            fldsecs  = fldsecs     + repeatPeriod
+         enddo
+         fldsecs0    = mod(fldsecs,repeatPeriod)
+         count0      = int((fldsecs0+0.5)/fldperiod) + 1
+         fldsecs1    = mod(fldsecs+fldperiod,repeatPeriod)
+         count1      = int((fldsecs1+0.5)/fldperiod) + 1
+         do while ( prevfldsecs .lt. 0 )
+            prevfldsecs = prevfldsecs + repeatPeriod
+         enddo
+         prevfldsecs = mod(prevfldsecs,repeatPeriod)
+         prevfldcount= int((prevfldsecs+0.5)/fldperiod) + 1
+         fldsecs     = fldsecs0-int((fldsecs0+0.5)/fldperiod)*fldperiod
+
+      else
+
+         print*,'repeatPeriod must be positive'
+         stop 'ABNORMAL END: S/R EXF_GETFFIELDREC'
+
+      endif
+
+c     Set switches for reading new records.
+      if ( first) then
+         changed = .false.
+      else
+         if (count0 .ne. prevfldcount) then
+            changed = .true.
+         else
+            changed = .false.
+         endif
+      endif
 
 c     Weight belonging to irec for linear interpolation purposes.
-c     Note: The weight as chosen here is 1. - fac of the "old" MITgcm's
-c           estimation program.
+c     Note: The weight as chosen here is 1. - fac of the "old"
+c           MITgcm's estimation program.
       fac = 1. - fldsecs/fldperiod
 
 #ifdef EXF_VERBOSE

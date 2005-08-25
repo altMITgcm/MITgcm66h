@@ -1,6 +1,7 @@
 C $Header$
+C $Name$
 
-#include "CAL_CPPOPTIONS.h"
+#include "CAL_OPTIONS.h"
 
       subroutine cal_CheckDate(
      I                          date,
@@ -27,6 +28,9 @@ c
 c              - Introduced new routine and function names, cal_<NAME>,
 c                for verion 0.1.3.
 c
+c              21-Sep-2003: fixed check_sign logic to work with
+c              negative intervals (menemenlis@jpl.nasa.gov)
+c
 c     ==================================================================
 c     SUBROUTINE cal_CheckDate
 c     ==================================================================
@@ -52,8 +56,7 @@ c     == local variables ==
       integer hhmmss
       integer yymmdd
       integer fac
-      integer check_sign_1
-      integer check_sign_2
+      _RL check_sign
 
 c     == end of interface ==
 
@@ -62,6 +65,11 @@ c     == end of interface ==
       calerr = 0
       fac    = 1
 
+      check_sign = 1
+      if ( ( (date(1).lt.0) .and. date(2).gt.0 ) .or.
+     &     ( (date(1).gt.0) .and. date(2).lt.0 ) )
+     &     check_sign = -1
+
       if (date(4) .le. 0) then
         if (date(4) .ne. -1) then
           calerr = 1801
@@ -69,9 +77,7 @@ c     == end of interface ==
           if (date(3) .ne. 0) then
             calerr = 1802
           else
-            check_sign_1 = sign(1,date(1))
-            check_sign_2 = sign(1,date(2))
-            if (check_sign_1*check_sign_2 .lt. 0) then
+            if (check_sign .lt. 0) then
               calerr = 1803
             else
               call cal_ConvDate(date,yy,mm,dd,nsecs,lp,wd,mythid)
@@ -95,9 +101,7 @@ c     == end of interface ==
      &        (date(3) .ne. 2)) then
             calerr = 1806
           else
-            check_sign_1 = sign(1,date(1))
-            check_sign_2 = sign(1,date(2))
-            if (check_sign_1*check_sign_2 .lt. 0) then
+            if (check_sign .lt. 0) then
               calerr = 1803
             else
               call cal_ConvDate( date,yy,mm,dd,nsecs,lp,wd,mythid )
