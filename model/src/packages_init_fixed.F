@@ -198,6 +198,13 @@ C--   Initialise & Read Land package parameters
       IF (useLand) CALL LAND_INITIALISE( myThid )
 #endif
 
+#if (defined (ALLOW_SEAICE) && defined (ALLOW_COST))
+C--   Initialise ecco-specific cost function.
+C--   This needs to preceed the call ctrl_init
+C--   in order to provide the weight files
+      CALL SEAICE_COST_INIT_FIXED( myThid )
+#endif
+
 #if (defined (ALLOW_ECCO) && defined (ALLOW_COST))
 C--   Initialise ecco-specific cost function.
 C--   This needs to preceed the call ctrl_init

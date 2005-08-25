@@ -3,10 +3,10 @@ C $Header$
 #include "AD_CONFIG.h"
 #include "COST_CPPOPTIONS.h"
 
-      subroutine ecco_cost_initvaria( mythid )
+      subroutine ecco_cost_init_varia( mythid )
 
 c     ==================================================================
-c     SUBROUTINE ecco_cost_initvaria
+c     SUBROUTINE ecco_cost_init_varia
 c     ==================================================================
 c
 c     o Initialise the variable cost function part.
@@ -15,11 +15,10 @@ c     started: Christian Eckert eckert@mit.edu 30-Jun-1999
 c     changed: Christian Eckert eckert@mit.edu 18-Apr-2000
 c              - Restructured the code in order to create a package
 c                for the MITgcmUV.
-c     added sea-ice term: menemenlis@jpl.nasa.gov 26-Feb-2003
 c     heimbach@mit.edu 05-Nov-2003 Now ecco part of cost
 c
 c     ==================================================================
-c     SUBROUTINE ecco_cost_initvaria
+c     SUBROUTINE ecco_cost_init_varia
 c     ==================================================================
 
       implicit none
@@ -124,7 +123,6 @@ c--   Initialize the tiled cost function contributions.
           objf_obcse(bi,bj)    = 0. _d 0
           objf_curmtr(bi,bj)   = 0. _d 0
           objf_ageos(bi,bj)    = 0. _d 0
-          objf_ice(bi,bj)      = 0. _d 0
           objf_diffkr(bi,bj)   = 0. _d 0
           objf_kapgm(bi,bj)    = 0. _d 0
           objf_theta_ini_fin(bi,bj) = 0. _d 0
@@ -176,7 +174,6 @@ c
           num_obcse(bi,bj)    = 0. _d 0
           num_curmtr(bi,bj)   = 0. _d 0
           num_ageos(bi,bj)    = 0. _d 0
-          num_ice(bi,bj)      = 0. _d 0
           num_diffkr(bi,bj)   = 0. _d 0
           num_kapgm(bi,bj)    = 0. _d 0
           num_theta_ini_fin(bi,bj) = 0. _d 0

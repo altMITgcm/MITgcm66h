@@ -937,7 +937,7 @@ c--   Sum all cost function contributions.
      &    CALL DEBUG_CALL('cost_final',myThid)
 #endif
       call timer_start('COST_FINAL         [ECCO SPIN-DOWN]', mythid)
-      call ecco_cost_final( mythid )
+      call cost_final( mythid )
       call timer_stop ('COST_FINAL         [ECCO SPIN-DOWN]', mythid)
 
 #endif /* ALLOW_COST */

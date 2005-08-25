@@ -49,6 +49,10 @@ c     == end of interface ==
       itlo = mybxlo(mythid)
       ithi = mybxhi(mythid)
 
+#ifdef ALLOW_SEAICE
+      CALL SEAICE_COST_FINAL (myThid)
+#endif
+
 #if (defined (ALLOW_ECCO))
       CALL ECCO_COST_FINAL (myThid)
 

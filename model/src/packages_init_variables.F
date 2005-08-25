@@ -223,7 +223,7 @@ CADJ STORE theta = tapelev_init, key = 1
 #ifdef ALLOW_COST
 c--   Initialise the cost function.
 ceh3 needs an IF ( useCOST ) THEN
-      CALL COST_INITVARIA( mythid )
+      CALL COST_INIT_VARIA( mythid )
       _BARRIER
 #endif
 

@@ -38,7 +38,9 @@ c     == global variables ==
 #include "GRID.h"
 #include "PARAMS.h"
 
+#ifdef ALLOW_CAL
 #include "cal.h"
+#endif
 #include "ecco_cost.h"
 
 c     == routine arguments ==
@@ -96,22 +98,6 @@ c--     ... ARGO data.
      &                     argotstartdate,    mythid )
         call cal_FullDate( argosstartdate1,   argotstartdate2,
      &                     argosstartdate,    mythid )
-
-c--   Sea-ice cost function start and stop times in model seconds.
-
-        call cal_FullDate  ( costIceStart1 , costIceStart2,
-     &                       tempDate1     , mythid )
-        call cal_TimePassed( modelstartdate, tempDate1    ,
-     &                       tempDate2     , mythid )
-        call cal_ToSeconds ( tempDate2 , costIceStart , mythid )
-        costIceStart = costIceStart + startTime
-
-        call cal_FullDate  ( costIceEnd1   , costIceEnd2  ,
-     &                       tempDate1     , mythid )
-        call cal_TimePassed( modelstartdate, tempDate1    ,
-     &                       tempDate2     , mythid )
-        call cal_ToSeconds ( tempDate2 , costIceEnd , mythid )
-        costIceEnd = costIceEnd + startTime
 
       _END_MASTER( mythid )
 
