@@ -146,7 +146,7 @@ c  account for schmidt number and and varible piston velocity
 c OR use a constant  coeff
 c             Kwexch(i,j) = 5e-5
 c ice influence
-cQQ           Kwexch(i,j)  =(1.d0-Fice(i,j,bi,bj))*Kwexch(i,j)
+              Kwexch(i,j)  =(1.d0-Fice(i,j,bi,bj))*Kwexch(i,j)
 
 
 C Calculate flux in terms of DIC units using K0, solubility
@@ -186,7 +186,8 @@ c
 C update tendency      
          DO j=1-OLy,sNy+OLy
           DO i=1-OLx,sNx+OLx
-           GDC(i,j)= maskC(i,j,kLev,bi,bj)*recip_drF(kLev)*(
+           GDC(i,j)= maskC(i,j,kLev,bi,bj)*recip_drF(kLev)*
+     &                     recip_hFacC(i,j,kLev,bi,bj)*(
      &                    FluxCO2(i,j,bi,bj) + VirtualFlux(i,j)
      &                                              )
           ENDDO

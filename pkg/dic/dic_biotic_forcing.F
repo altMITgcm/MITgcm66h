@@ -204,7 +204,8 @@ c add all tendencies for PO4, DOP, ALK, DIC
                GO2(i,j,1)=GO2(i,j,1)+SURO(i,j)
 #ifdef ALLOW_FE
                GFE(i,j,1)=GFE(i,j,1)+alpfe*
-     &                    InputFe(i,j,bi,bj)/drF(1)
+     &                    InputFe(i,j,bi,bj)*recip_drF(1)
+     &                       *recip_hFacC(i,j,1,bi,bj)
 #endif
            ENDIF
           ENDDO
