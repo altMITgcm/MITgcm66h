@@ -122,7 +122,7 @@ C--   Continuous equation parameters
      & nonHydrostatic, globalFiles, useSingleCpuIO,
      & allowFreezing, ivdc_kappa,
      & bottomDragLinear,bottomDragQuadratic,
-     & usePickupBeforeC35, debugMode, 
+     & usePickupBeforeC35, debugMode, debugLevel,
      & readPickupWithTracer, writePickupWithTracer,
      & tempAdvScheme, saltAdvScheme, tracerAdvScheme,
      & multiDimAdvection, useEnergyConservingCoriolis,

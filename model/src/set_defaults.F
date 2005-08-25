@@ -138,6 +138,7 @@ C--   Set default "physical" parameters
       multiDimAdvection   = .TRUE.
       useEnergyConservingCoriolis = .FALSE.
       useJamartWetPoints  = .FALSE.
+      debugLevel          = debLevA
 
 C--   Set (free)surface-related parameters
       implicitFreeSurface = .TRUE.

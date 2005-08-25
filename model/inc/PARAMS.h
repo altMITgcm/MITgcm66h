@@ -126,7 +126,8 @@ C                           =0 Linear free surface ; >0 Non-linear
      &        writeStatePrec, nCheckLev,
      &        writeBinaryPrec, readBinaryPrec,
      &        nonlinFreeSurf,
-     &        tempAdvScheme, saltAdvScheme, tracerAdvScheme
+     &        tempAdvScheme, saltAdvScheme, tracerAdvScheme,
+     &        debugLevel
       INTEGER cg2dMaxIters
       INTEGER cg2dChkResFreq
       INTEGER cg3dMaxIters
@@ -143,6 +144,15 @@ C                           =0 Linear free surface ; >0 Non-linear
       INTEGER tempAdvScheme
       INTEGER saltAdvScheme
       INTEGER tracerAdvScheme
+      INTEGER debugLevel
+
+C
+      INTEGER debLevZero
+      PARAMETER(debLevZero=0)
+      INTEGER debLevA
+      PARAMETER(debLevA=1)
+      INTEGER debLevB
+      PARAMETER(debLevB=2)
 
 C--   COMMON /PARM_L/ Logical valued parameters used by the model.
 C     usingCartesianGrid :: If TRUE grid generation will be in a cartesian
