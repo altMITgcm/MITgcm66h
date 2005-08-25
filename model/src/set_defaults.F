@@ -156,10 +156,14 @@ C--   Set (free)surface-related parameters
       trac_EvPrRn = UNSET_RL
 
 C--   Atmospheric physical parameters (e.g.: EOS)
-      atm_po =  1.D5
-      atm_cp =  1004.D0
-      atm_kappa = 2.D0 / 7.D0
-      Integr_GeoPot = 2
+      celsius2K = 273.16 _d 0
+      atm_Po =  1. _d 5
+      atm_Cp = 1004. _d 0
+      atm_Rd = UNSET_RL
+      atm_kappa = 2. _d 0 / 7. _d 0
+      atm_Rq = 0. _d 0
+      integr_GeoPot = 2
+      selectFindRoSurf = 0
 
 C--   Elliptic solver parameters
       cg2dMaxIters       = 150
