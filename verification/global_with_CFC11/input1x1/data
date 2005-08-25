@@ -38,7 +38,6 @@
  implicitDiffusion=.true.,
  implicitViscosity=.true.,
  allowFreezing=.TRUE.,
- useCDscheme=.TRUE.,
  globalFiles = .TRUE.
  useSingleCpuIO = .TRUE.
  debugLevel = 0
@@ -58,18 +57,15 @@
  endTime    = 2240611200.,
  pChkptFreq = 2240611200.,
  tauCD=172800.,
- deltaTmom=3600.0,
- deltaTtracer=3600.0,
- deltaTClock =3600.0,
- deltaTfreesurf =3600.0,
+ deltaT=3600.0,
  cAdjFreq=0.,
  abEps=0.1,
  tauThetaClimRelax=2592000.0,
  tauSaltClimRelax= 2592000.0,
- ChkptFreq= 262800.,
- dumpFreq=   262800.,
- tr1dumpFreq=262800.,
- taveFreq=   262800.,
+ ChkptFreq= 2628000.,
+ dumpFreq=   2628000.,
+ tr1dumpFreq=2628000.,
+ taveFreq=   2628000.,
  monitorFreq= 2628000.,
  &
 
