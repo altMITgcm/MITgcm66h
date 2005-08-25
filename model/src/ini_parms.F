@@ -870,6 +870,8 @@ C     being combined and a single frame of reference is needed.
       IF ( zCoordInputData ) usingZCoords = .TRUE.
       IF ( pCoordInputData ) usingPCoords = .TRUE.
 
+c-- gradually replacing debugMode by debugLevel
+      IF ( debugMode ) debugLevel = debLevB
 C
       CLOSE(iUnit)
 
