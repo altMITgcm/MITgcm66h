@@ -30,7 +30,7 @@ cp ../verification/global_with_CFC11/code4x4/*.h .
 cp ../verification/global_with_CFC11/code4x4/*.F .
 ../tools/genmake -mpi -platform=ames_opt -makefile
 make depend
-make
+make -j
 
 ---
 
@@ -104,6 +104,61 @@ cp ../verification/global_with_CFC11/code50yr/*.h .
 cp ../verification/global_with_CFC11/code50yr/*.F .
 cp ../verification/global_with_CFC11/code50yr/.genmakerc .
 ../tools/genmake -mpi -platform=o2k -makefile
+make depend
+make
+
+3) run code for first spin-up year (1931)
+
+cd ../exe
+
+get forcing files:
+bathy_50yr.bin     NCEP_1948_sw       NCEP_1948_vstr     lev_clim_temp.bin
+NCEP_1948_emp      NCEP_1948_trb      run-off.bin_1x1    lev_clim_salt.bin
+NCEP_1948_sst      NCEP_1948_ustr     salt_14months.bin
+
+\cp ../verification/global_with_CFC11/input50yr/* .
+\cp ../verification/global_with_CFC11/input/cfc1112.atm .
+\cp ../verification/global_with_CFC11/input/FICE .
+\cp ../verification/global_with_CFC11/input/PATM .
+\cp ../verification/global_with_CFC11/input/XKW .
+
+mpirun -np 64 mitgcmuv
+
+==============================================================
+
+Configuring and running the ecco1x1 configuration with CFC11.
+Surface forcing files are assumed available in MITgcm/../iter69
+
+1) get code:
+
+ cvs co -r release1_50yr MITgcm_code
+ cvs co -r release1_50yr MITgcm/verification/global_with_CFC11
+ cd MITgcm
+ cvs co -d ocean_inversion_project MITgcm_contrib/ocean_inversion_project
+
+2) compile code:
+
+ mkdir bin exe
+ cd bin
+ \cp ../verification/global_with_CFC11/code1x1/* .
+ \cp ../verification/global_with_CFC11/code1x1/.g* .
+ ../tools/genmake -mpi -platform=columbia -makefile
+ make depend
+ make -j
+
+3) execute code
+
+ cd ../exe
+ \cp ../verification/global_with_CFC11/input1x1/* .
+ ln -sf ../../iter69/* .
+ \cp ../verification/global_with_CFC11/input/cfc1112.atm .
+ \cp ../verification/global_with_CFC11/input/FICE .
+ \cp ../verification/global_with_CFC11/input/PATM .
+ \cp ../verification/global_with_CFC11/input/XKW .
+
+
+ qsub job01
+
 make depend
 make
 

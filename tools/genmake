@@ -390,7 +390,7 @@ switch ($platform$USEMPI)
   case ames_dbg+mpi:
     echo "Configuring for SGI Origin2000 running IRIX 6.5"
     set DEFINES    = ( ${DEFINES} '-DTARGET_SGI -DWORDLENGTH=4' )
-    set INCLUDES   = ( '-I/usr/include -I/opt/mpt/1.6.1.beta/usr/include' )
+    set INCLUDES   = ( '-I/usr/include -I/opt/mpt/mpt/usr/include' )
     set FFLAGS     = ( '-n32 -extend_source -bytereclen' )
     set LIBS       = ( '-lmpi -lscs' )
     set FC         = ( 'f90' )
@@ -399,7 +399,7 @@ switch ($platform$USEMPI)
   case ames_opt+mpi:
     echo "Configuring for SGI Origin2000 running IRIX 6.5"
     set DEFINES    = ( ${DEFINES} '-DTARGET_SGI -DWORDLENGTH=4' )
-    set INCLUDES   = ( '-I/usr/include -I/opt/mpt/1.6.1.beta/usr/include' )
+    set INCLUDES   = ( '-I/usr/include -I/opt/mpt/mpt/usr/include' )
     set FFLAGS     = ( '-n32 -extend_source -bytereclen' )
     set FOPTIM     = ( '-O3 -OPT:Olimit=0:roundoff=3:div_split=ON:alias=typed' )
     set LIBS       = ( '-lmpi -lscs' )
@@ -414,6 +414,17 @@ switch ($platform$USEMPI)
     set CFLAGS     = ( '-64' )
     set FOPTIM     = ( '-O3 -OPT:Olimit=0:roundoff=3:div_split=ON' )
     set LIBS       = ( '-lmpi -lscs' )
+    breaksw
+  case columbia+mpi:
+    echo "Configuring for Columbia"
+    set CPP        = ( '/lib/cpp  -traditional -P' )
+    set FFLAGS     = ( '-mp -132 -r8 -i4 -w95 -W0 -WB -convert big_endian -assume byterecl' )
+    set FOPTIM     = ( '-O3 -align' )
+    set LIBS       = ( '-L/opt/sgi/mpt/1.11-85/lib -lmpi' )
+    set FC         = ( 'ifort' )
+    set LINK       = ( 'ifort' )
+    set DEFINES    = ( '-DWORDLENGTH=4' )
+    set INCLUDES   = ( '-I/opt/sgi/mpt/1.11-85/include' )
     breaksw
   case onyx:
   case onyx+mpi:

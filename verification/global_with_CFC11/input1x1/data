@@ -1,0 +1,93 @@
+# ====================
+# | Model parameters |
+# ====================
+#
+# Continuous equation parameters
+ &PARM01
+ tRef= 24.0 , 23.0 , 22.0 , 21.0 , 20.0 ,
+       19.0 , 18.0 , 17.0 , 16.0 , 15.0 ,
+       14.0 , 13.0 , 12.0 , 11.0 , 10.0 ,
+        9.0 ,  8.0 ,  7.0 ,  6.0,   5.0 ,
+        4.0 ,  3.0 ,  2.0 ,
+ sRef= 34.65, 34.75, 34.82, 34.87, 34.90,
+       34.90, 34.86, 34.78, 34.69, 34.60,
+       34.58, 34.62, 34.68, 34.72, 34.73,
+       34.74, 34.73, 34.73, 34.72, 34.72,
+       34.71, 34.70, 34.69,
+ no_slip_sides=.false.,
+ no_slip_bottom=.TRUE.,
+ viscAr=1.E-3,
+ viscAh=1.E4,
+ diffKhT=1.E2,
+ diffKrT=1.E-5,
+ diffKhS=1.E2,
+ diffKrS=1.E-5,
+ beta=1.E-11,
+ tAlpha=2.E-4,
+ sBeta =7.4E-4,
+ gravity=9.81,
+ gBaro=9.81,
+ rigidLid=.FALSE.,
+ implicitFreeSurface=.true.,
+ eosType='POLY3',
+ readBinaryPrec=32,
+ writeBinaryPrec=32,
+ saltStepping=.TRUE.,
+ tempStepping=.TRUE.,
+ momStepping=.TRUE.,
+ implicitDiffusion=.true.,
+ implicitViscosity=.true.,
+ allowFreezing=.TRUE.,
+ useCDscheme=.TRUE.,
+ globalFiles = .TRUE.
+ useSingleCpuIO = .TRUE.
+ debugLevel = 0
+ tr1Stepping=.TRUE.
+ &
+
+# Elliptic solver parameters
+ &PARM02
+ cg2dMaxIters=200,
+ cg2dTargetResidual=1.E-7,
+ &
+
+# Time stepping parameters
+# data.1765-2005.2 is a template for last 11-years (1995-2005).
+ &PARM03
+ starttime  = 0.,
+ endTime    = 2240611200.,
+ pChkptFreq = 2240611200.,
+ tauCD=172800.,
+ deltaTmom=3600.0,
+ deltaTtracer=3600.0,
+ deltaTClock =3600.0,
+ deltaTfreesurf =3600.0,
+ cAdjFreq=0.,
+ abEps=0.1,
+ tauThetaClimRelax=2592000.0,
+ tauSaltClimRelax= 2592000.0,
+ ChkptFreq= 262800.,
+ dumpFreq=   262800.,
+ tr1dumpFreq=262800.,
+ taveFreq=   262800.,
+ monitorFreq= 2628000.,
+ &
+
+# Gridding parameters
+ &PARM04
+ usingCartesianGrid=.FALSE.,
+ usingSphericalPolarGrid=.TRUE.,
+ delX=360*1.E0,
+ delY=160*1.E0,
+ delR=10.,10.,15.,20.,20.,25.,35.,50.,75.,100.,150.,200.,
+  275.,350.,415.,450.,500.,500.,500.,500.,500.,500.,500.,
+ phimin=-80.,
+ thetamin=0.,
+ &
+
+# Input datasets
+ &PARM05
+ bathyFile='bathy_fl.bin',
+ hydrogThetaFile='theta_init69.bin',
+ hydrogSaltFile='salt_init69.bin',
+ &

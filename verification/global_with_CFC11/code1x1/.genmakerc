@@ -1,0 +1,11 @@
+# $Header$
+# $Name$
+
+# Disable packages that are not needed
+set DISABLE=( aim obcs zonal_filt shap_filt autodiff cost ctrl grdchk )
+
+# Enable packages that are needed but are disabled by default
+set ENABLE=( cal exf )
+
+# We can also specify other defaults
+#set ROOTDIR=..

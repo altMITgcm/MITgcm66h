@@ -1,0 +1,44 @@
+# $Header$
+#
+# *********************
+# External Forcing Data
+# *********************
+ &EXF_NML
+#
+# repeat period is 3650 days (10 years, 1992-2001)
+ RepeatPeriod = 346896000
+#
+ hfluxstartdate1   = 19911231,
+ hfluxstartdate2   = 60000,
+ hfluxperiod       = 86400.0,
+#
+ sfluxstartdate1   = 19911231,
+ sfluxstartdate2   = 60000,
+ sfluxperiod       = 86400.0,
+#
+ swfluxstartdate1  = 19911231,
+ swfluxstartdate2  = 60000,
+ swfluxperiod      = 86400.0,
+#
+ ustressstartdate1 = 19911231,
+ ustressstartdate2 = 150000,
+ ustressperiod     = 43200.0,
+#
+ vstressstartdate1 = 19911231,
+ vstressstartdate2 = 150000,
+ vstressperiod     = 43200.0,
+#
+ hfluxfile         = 'heatfl69.bin',
+ sfluxfile         = 'freshfl69.bin',
+ ustressfile       = 'ustress69_sm2.bin',
+ vstressfile       = 'vstress69_sm2.bin',
+ swfluxfile        = 'sw69.bin',
+ runofffile        = 'run-off.bin_1x1',
+#
+ exf_inscal_ustress= -1.,
+ exf_inscal_vstress= -1.,
+ exf_inscal_runoff = 3.1710e-08,
+#
+ exf_iprec         = 32,
+ exf_yftype        = 'RL',
+ &
