@@ -49,6 +49,7 @@ C     myThid   :: my thread Id number
 CEOP
 
 C     !LOCAL VARIABLES:
+#ifdef ALLOW_MNC
       INTEGER im, ix, iv, ist
       PARAMETER ( iv = nStats - 2 , im = nStats - 1 , ix = nStats )
       INTEGER i, j, k
@@ -56,10 +57,8 @@ C     !LOCAL VARIABLES:
       CHARACTER*(3) stat_typ(5)
       INTEGER ILNBLNK
       EXTERNAL ILNBLNK
-#ifdef ALLOW_MNC
       INTEGER ii, ilen
       CHARACTER*(MAX_LEN_FNAM) diag_mnc_bn
-      CHARACTER*(5) ctmp
       INTEGER CW_DIMS, NLEN
       PARAMETER ( CW_DIMS = 10 )
       PARAMETER ( NLEN    = 80 )
@@ -68,7 +67,10 @@ C     !LOCAL VARIABLES:
       CHARACTER*(NLEN) d_cw_gname
       CHARACTER*(NLEN) d_cw_gname0
       CHARACTER*(NLEN) dn_blnk
+#ifdef DIAGST_MNC_NEEDSWORK
+      CHARACTER*(5) ctmp
       _RS ztmp(Nr+Nrphys)
+#endif
       _RL stmp(Nr+Nrphys+1,nRegions+1)
 #endif /*  ALLOW_MNC  */
 
