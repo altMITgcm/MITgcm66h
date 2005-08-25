@@ -1,5 +1,5 @@
 # KPP parameters
  &KPP_PARM01
  KPPmixingMaps   = .FALSE.,
- KPPwriteState   = .TRUE.,
+ KPPwriteState   = .FALSE.,
  &

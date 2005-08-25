@@ -67,6 +67,7 @@
  tr1dumpFreq=2628000.,
  taveFreq=   2628000.,
  monitorFreq= 2628000.,
+ diagfreq=0
  &
 
 # Gridding parameters
