@@ -20,15 +20,18 @@ c     == global variables ==
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "PARAMS.h"
+#ifdef ALLOW_COST
 #include "SEAICE_COST.h"
-
 #include "cost.h"
 #include "ctrl.h"
 #include "optim.h"
+#endif
 
 c     == routine arguments ==
 
       integer mythid
+
+#ifdef ALLOW_COST
 
 c     == local variables ==
 
@@ -103,5 +106,7 @@ c--   Each process has calculated the global part for itself.
       pChkptFreq = 0.
       monitorFreq = 0.
       useDiagnostics = .FALSE.
+
+#endif
 
       end
