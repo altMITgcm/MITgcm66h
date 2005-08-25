@@ -211,9 +211,6 @@ c     assumed that measurements are AREA=0.5 at all times everywhere.
             STOP 'ABNORMAL END: S/R COST_ICE'
          endif
       endif
-cph(
-      print *, 'ph-ice ', objf_ice(1,1)
-cph)
 
 #endif /* ALLOW_COST_ICE */
 

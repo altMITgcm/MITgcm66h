@@ -72,10 +72,6 @@ c--   Sum up all contributions.
 
         enddo
       enddo
-cph(
-      print *, 'ph-ice ', fc, mult_ice, objf_ice(1,1)
-cph)
-
 
 c--   Do global summation.
       _GLOBAL_SUM_R8( fc , myThid )
