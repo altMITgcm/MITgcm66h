@@ -220,6 +220,51 @@ c
 c
 #endif
 
+#ifdef ALLOW_SEAICE
+c
+      CALL MNC_CW_ADD_VNAME('adarea', 'Cen_xy_Hn__-__t', 3,4, myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adarea',
+     &     'units','[cost]/[m^2/m^2]', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adarea','long_name',
+     &     'adjoint fractional ice-covered area', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adarea',
+     &     'coordinates','XC YC RC iter', myThid)
+c
+      CALL MNC_CW_ADD_VNAME('adheff', 'Cen_xy_Hn__-__t', 3,4, myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adheff',
+     &     'units','[cost]/[m]', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adheff','long_name',
+     &     'adjoint effective ice thickness', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adheff',
+     &     'coordinates','XC YC RC iter', myThid)
+c
+      CALL MNC_CW_ADD_VNAME('adhsnow', 'Cen_xy_Hn__-__t', 3,4, myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adhsnow',
+     &     'units','[cost]/[m]', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adhsnow','long_name',
+     &     'adjoint snow thickness', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adhsnow',
+     &     'coordinates','XC YC RC iter', myThid)
+c
+# ifdef ALLOW_DYNAMICS
+      CALL MNC_CW_ADD_VNAME('aduice', 'U_xy_Hn__-__t', 3,4, myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('aduice',
+     &     'units','[cost]/[m/s]', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('aduice','long_name',
+     &     'adjoint zonal ice velocity', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('aduice',
+     &     'coordinates','XG YG RC iter', myThid)
+c
+      CALL MNC_CW_ADD_VNAME('advice', 'V_xy_Hn__-__t', 3,4, myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('advice',
+     &     'units','[cost]/[m/s]', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('advice','long_name',
+     &     'adjoint meridional ice velocity', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('advice',
+     &     'coordinates','XG YG RC iter', myThid)
+# endif
+c
+#endif
 
 C     Write coordinates to "adstate" file
       CALL MNC_CW_SET_UDIM('adstate', 0, myThid)

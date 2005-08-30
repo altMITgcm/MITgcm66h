@@ -249,6 +249,22 @@ c
 # endif
 #endif
 c
+#ifdef ALLOW_SEAICE
+c
+          CALL MNC_CW_RL_W('D','adstate',0,0,'adarea',
+     &         adarea, myThid)
+          CALL MNC_CW_RL_W('D','adstate',0,0,'adheff',
+     &         adheff, myThid)
+          CALL MNC_CW_RL_W('D','adstate',0,0,'adhsnow',
+     &         adhsnow, myThid)
+# ifdef SEAICE_ALLOW_DYNAMICS
+          CALL MNC_CW_RL_W('D','adstate',0,0,'aduice',
+     &         aduice, myThid)
+          CALL MNC_CW_RL_W('D','adstate',0,0,'advice',
+     &         advice, myThid)
+# endif
+c
+#endif
         ENDIF
 #endif /* ALLOW_MNC */
 
