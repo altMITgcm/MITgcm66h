@@ -279,6 +279,34 @@ C     Write coordinates to "adstate" file
       CALL MNC_CW_RS_W('R','adstate',0,0,'RC',rC, myThid)
       CALL MNC_CW_RS_W('R','adstate',0,0,'RF',rF, myThid)
 
+#ifdef ALLOW_EXF
+      CALL MNC_CW_SET_UDIM('adexf', 0, myThid)
+      CALL MNC_CW_RS_W('R','adexf',0,0,'XC',xC, myThid)
+      CALL MNC_CW_RS_W('R','adexf',0,0,'YC',yC, myThid)
+      CALL MNC_CW_RS_W('R','adexf',0,0,'XU',xG, myThid)
+      CALL MNC_CW_RS_W('R','adexf',0,0,'YU',yC, myThid)
+      CALL MNC_CW_RS_W('R','adexf',0,0,'XV',xC, myThid)
+      CALL MNC_CW_RS_W('R','adexf',0,0,'YV',yG, myThid)
+      CALL MNC_CW_RS_W('R','adexf',0,0,'XG',xG, myThid)
+      CALL MNC_CW_RS_W('R','adexf',0,0,'YG',yG, myThid)
+      CALL MNC_CW_RS_W('R','adexf',0,0,'RC',rC, myThid)
+      CALL MNC_CW_RS_W('R','adexf',0,0,'RF',rF, myThid)
+#endif
+
+#ifdef ALLOW_SEAICE
+      CALL MNC_CW_SET_UDIM('adseaice', 0, myThid)
+      CALL MNC_CW_RS_W('R','adseaice',0,0,'XC',xC, myThid)
+      CALL MNC_CW_RS_W('R','adseaice',0,0,'YC',yC, myThid)
+      CALL MNC_CW_RS_W('R','adseaice',0,0,'XU',xG, myThid)
+      CALL MNC_CW_RS_W('R','adseaice',0,0,'YU',yC, myThid)
+      CALL MNC_CW_RS_W('R','adseaice',0,0,'XV',xC, myThid)
+      CALL MNC_CW_RS_W('R','adseaice',0,0,'YV',yG, myThid)
+      CALL MNC_CW_RS_W('R','adseaice',0,0,'XG',xG, myThid)
+      CALL MNC_CW_RS_W('R','adseaice',0,0,'YG',yG, myThid)
+      CALL MNC_CW_RS_W('R','adseaice',0,0,'RC',rC, myThid)
+      CALL MNC_CW_RS_W('R','adseaice',0,0,'RF',rF, myThid)
+#endif
+
       ENDIF
 #endif
 
