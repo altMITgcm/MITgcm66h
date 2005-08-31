@@ -303,7 +303,7 @@ c--   == end of interface ==
 
 #endif /* ALLOW_TR10_CONTROL */
 
-#ifdef ALLOW_SST0_CONTROL
+#if (defined (ALLOW_SST_CONTROL) || defined (ALLOW_SST0_CONTROL))
       else if ( grdchkvarindex .eq. 18 ) then
          il=ilnblnk( xx_sst_file )
          write(fname(1:80),'(80a)') ' '
@@ -318,7 +318,7 @@ c--   == end of interface ==
 
 #endif /* ALLOW_SST0_CONTROL */
 
-#ifdef ALLOW_SSS0_CONTROL
+#if (defined (ALLOW_SSS_CONTROL) || defined (ALLOW_SSS0_CONTROL))
       else if ( grdchkvarindex .eq. 19 ) then
          il=ilnblnk( xx_sss_file )
          write(fname(1:80),'(80a)') ' '

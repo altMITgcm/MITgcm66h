@@ -212,6 +212,22 @@ c     Map the field parameters.
      &        )
          fldperiod = xx_obcseperiod
          lArgErr = .false.
+      else if ( thefield .eq. 'xx_sst'   ) then
+         call cal_CopyDate(
+     I        xx_sststartdate,
+     O        fldstartdate,
+     I        mythid
+     &        )
+         fldperiod = xx_sstperiod
+         lArgErr = .false.
+      else if ( thefield .eq. 'xx_sss'   ) then
+         call cal_CopyDate(
+     I        xx_sssstartdate,
+     O        fldstartdate,
+     I        mythid
+     &        )
+         fldperiod = xx_sssperiod
+         lArgErr = .false.
       endif
       
 c--   Check the field argument.
