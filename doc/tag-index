@@ -10,6 +10,8 @@ o remove MINIMAL_TAVE_OUTPUT option ;
   add "dumpInitAndLast" to replace "nodumps" (and MINIMAL_TAVE_OUTPUT).
 o move some basic S/R (used elsewhere in the code) from pkg/mdsio to eesupp/src
   allows to compile without pkg/mdsio (& test successfully hs94.1x64x5)
+o add MNC output for adjoint of EXF (adexf), SEAICE (adseaice)
+o add time-dependent SST, SSS control
 
 checkpoint57q_post
 o fix initialisation Pb in calc_gw (get NANs in exp5 with g77)
