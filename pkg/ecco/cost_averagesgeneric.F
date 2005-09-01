@@ -25,7 +25,6 @@ c     == global variables ==
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "PARAMS.h"
-#include "SEAICE.h"
 
 #ifdef ALLOW_COST
 # include "optim.h"
