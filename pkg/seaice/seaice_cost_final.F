@@ -47,7 +47,7 @@ c     == local variables ==
       _RL no_ice
       _RL no_smrarea
 
-      character*20 cfname
+      character*23 cfname
 #ifdef ECCO_VERBOSE
       character*(MAX_LEN_MBUF) msgbuf
 #endif
