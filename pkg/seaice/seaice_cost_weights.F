@@ -21,9 +21,9 @@ c     == global variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 
-#include "ctrl.h"
-#include "ecco_cost.h"
 #ifdef ALLOW_COST
+# include "ctrl.h"
+# include "ecco_cost.h"
 # include "SEAICE_COST.h"
 #endif
 
