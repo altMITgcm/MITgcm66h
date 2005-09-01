@@ -26,8 +26,9 @@ c     == global variables ==
 #include "SIZE.h"
 #include "GRID.h"
 #include "PARAMS.h"
-#include "SEAICE_COST.h"
-
+#ifdef ALLOW_COST
+# include "SEAICE_COST.h"
+#endif
 #ifdef ALLOW_CAL
 # include "cal.h"
 #endif
@@ -36,6 +37,7 @@ c     == routine arguments ==
 
       integer mythid
 
+#ifdef ALLOW_COST
 c     == local variables ==
 
       integer tempDate1(4)
@@ -102,5 +104,7 @@ cph         call seaice_cost_init_barfiles( mythid )
 #endif
 
       _BARRIER
+
+#endif /* ALLOW_COST */
 
       end
