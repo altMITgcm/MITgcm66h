@@ -110,7 +110,7 @@ cph      call cost_sst   ( myiter, mytime, mythid )
       call cost_generic(
      &     nnzbar, tbarfile, tbar, xx_tbar_mean_dummy,
      &     nnzobs, tmidatfile, tmidat, mult_tmi,
-     &     nmonsrec, modelstartdate, localperiod,
+     &     nmonsrec, tmistartdate, localperiod,
      &     maskC, wsst, 
      &     spminloc, spmaxloc, spzeroloc,
      &     objf_tmi, num_tmi,
