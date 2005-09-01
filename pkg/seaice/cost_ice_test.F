@@ -2,14 +2,10 @@ C $Header$
 
 #include "SEAICE_OPTIONS.h"
 
-      subroutine cost_ice           (
-     I                                mytime,
-     I                                myiter,
-     I                                mythid
-     &                              )
+      subroutine cost_ice_test( mytime, myiter, mythid )
 
 c     ==================================================================
-c     SUBROUTINE cost_ice
+c     SUBROUTINE cost_ice_test
 c     ==================================================================
 c
 c     o Compute sea-ice cost function.  The following options can
@@ -45,7 +41,7 @@ c
 c     started: menemenlis@jpl.nasa.gov 26-Feb-2003
 c
 c     ==================================================================
-c     SUBROUTINE cost_ice
+c     SUBROUTINE cost_ice_test
 c     ==================================================================
 
       implicit none
@@ -89,6 +85,10 @@ c     == end of interface ==
      &             ( ( 1. + min(endTime-startTime,lastinterval) )
      &             / deltaTClock ) 
 
+cph(
+c      print *, 'ph-ice B ', myiter, theta(18,24,1,1,1),
+c     &     area(18,24,1,1,1), heff(18,24,1,1,1)
+cph)
          if ( cost_ice_flag .eq. 1 ) then
 c     sea-ice volume
             do bj=myByLo(myThid),myByHi(myThid)

@@ -2,13 +2,10 @@ C $Header$
 
 #include "COST_CPPOPTIONS.h"
 
-
-      subroutine cost_AveragesInit(
-     I                              mythid
-     &                            )
+      subroutine cost_averagesinit( mythid )
 
 c     ==================================================================
-c     SUBROUTINE cost_AveragesInit
+c     SUBROUTINE cost_averagesinit
 c     ==================================================================
 c
 c     o Set average fields for temperature, salinity, surface pressure,
@@ -23,7 +20,7 @@ c              - Restructured the code in order to create a package
 c                for the MITgcmUV.
 c
 c     ==================================================================
-c     SUBROUTINE cost_AveragesInit
+c     SUBROUTINE cost_averagesinit
 c     ==================================================================
 
       implicit none
@@ -35,6 +32,9 @@ c     == global variables ==
 
 #include "ecco_cost.h"
 #include "ctrl_dummy.h"
+#ifdef ALLOW_SEAICE
+# include "SEAICE_COST.h"
+#endif
 
 c     == routine arguments ==
 
@@ -185,6 +185,20 @@ c--       Initialise salinity average (2d).
             enddo
           enddo  
           xx_sflux_mean_dummy = 0. _d 0
+#endif    
+
+#ifdef ALLOW_SEAICE
+
+# ifdef ALLOW_SEAICE_COST_SMR_AREA
+c--       Initialise salinity average (2d).
+          do j = jmin,jmax
+            do i =  imin,imax
+              smrareabar(i,j,bi,bj) = 0. _d 0
+            enddo
+          enddo  
+          xx_smrareabar_mean_dummy = 0. _d 0
+# endif
+
 #endif    
 
         enddo
