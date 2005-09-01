@@ -83,7 +83,9 @@ c     secondsperminute - number of seconds in a calendars minute.
      &               modeliter0,
      &               modeliterend,
      &               modelintsteps,
-     &               modelstepsperday
+     &               modelstepsperday,
+     &               startdate_1,
+     &               startdate_2
 
       integer refdate(4)
       integer nmonthyear
@@ -104,6 +106,9 @@ c     secondsperminute - number of seconds in a calendars minute.
       integer modeliterend
       integer modelintsteps
       integer modelstepsperday
+
+      integer startdate_1
+      integer startdate_2
 
 
       common /cal_l/ 

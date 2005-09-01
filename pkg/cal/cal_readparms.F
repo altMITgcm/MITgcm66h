@@ -54,6 +54,7 @@ c     == global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "cal.h"
 
 c     == routine arguments ==
 
@@ -83,8 +84,6 @@ c     == local variables ==
 
 c     Variables related to the calendar tool.
       character*(9) TheCalendar
-      integer       startdate_1
-      integer       startdate_2
       integer       iUnit
 
       character*(max_len_mbuf) msgbuf
