@@ -37,19 +37,6 @@ C--   SEAICE needs forcing_In_AB FALSE
          STOP 'ABNORMAL END: S/R SEAICE_CHECK'
       ENDIF
 
-C--   For time-being seaice_init.F assumes usingSphericalPolarGrid=.TRUE.
-C     The only exception is special provision for cube-sphere geometry.
-#ifdef ALLOW_EXCH2
-      IF ( .NOT. usingSphericalPolarGrid .AND. 
-     &     .NOT. useCubedSphereExchange ) THEN
-#else
-      IF ( .NOT. usingSphericalPolarGrid ) THEN
-#endif /* ALLOW_EXCH2 */
-         WRITE(msgBuf,'(A)') 'Need usingSphericalPolarGrid=.TRUE.'
-         CALL PRINT_ERROR( msgBuf , 1)
-         STOP 'ABNORMAL END: S/R SEAICE_CHECK'
-      ENDIF
-
 C--   SEAICE_ALLOW_DYNAMICS and SEAICEuseDYNAMICS
 #ifndef SEAICE_ALLOW_DYNAMICS
       IF (SEAICEuseDYNAMICS) THEN
