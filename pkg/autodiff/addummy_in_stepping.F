@@ -159,6 +159,14 @@ c
         CALL WRITE_FLD_XY_RL ( 'ADJswdown.',
      &       suff, adswdown, myIter, myThid)
 # endif
+# ifdef ALLOW_CLIMSST_RELAXATION
+        CALL WRITE_FLD_XY_RL ( 'ADJclimsst.',
+     &       suff, adclimsst, myIter, myThid)
+# endif
+# ifdef ALLOW_CLIMSSS_RELAXATION
+        CALL WRITE_FLD_XY_RL ( 'ADJclimsss.',
+     &       suff, adclimsss, myIter, myThid)
+# endif
 #endif
 c
 #ifdef ALLOW_DIFFKR_CONTROL
@@ -253,6 +261,14 @@ c
 # ifdef ALLOW_DOWNWARD_RADIATION
           CALL MNC_CW_RL_W('D','adexf',0,0,'adswdown',
      &         adswdown, myThid)
+# endif
+# ifdef ALLOW_CLIMSST_RELAXATION
+          CALL MNC_CW_RL_W('D','adexf',0,0,'adclimsst',
+     &         adclimsst, myThid)
+# endif
+# ifdef ALLOW_CLIMSSS_RELAXATION
+          CALL MNC_CW_RL_W('D','adexf',0,0,'adclimsss',
+     &         adclimsss, myThid)
 # endif
 #endif
 c

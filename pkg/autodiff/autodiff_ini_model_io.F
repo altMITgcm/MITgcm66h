@@ -217,6 +217,24 @@ c
       CALL MNC_CW_ADD_VATTR_TEXT('adswdown',
      &     'coordinates','XC YC RC iter', myThid)
 # endif
+# ifdef ALLOW_CLIMSST_RELAXATION
+      CALL MNC_CW_ADD_VNAME('adclimsst', 'Cen_xy_Hn__-__t', 3,4, myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adclimsst',
+     &     'units','[cost]/[degC]', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adclimsst','long_name',
+     &     'adjoint sea surface temperature', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adclimsst',
+     &     'coordinates','XC YC RC iter', myThid)
+# endif
+# ifdef ALLOW_CLIMSSS_RELAXATION
+      CALL MNC_CW_ADD_VNAME('adclimsss', 'Cen_xy_Hn__-__t', 3,4, myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adclimsss',
+     &     'units','[cost]/[ppt]', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adclimsss','long_name',
+     &     'adjoint sea surface salinity', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adclimsss',
+     &     'coordinates','XC YC RC iter', myThid)
+# endif
 c
 #endif
 
