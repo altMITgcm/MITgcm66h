@@ -36,6 +36,9 @@ c     == global variables ==
 #ifdef ALLOW_COST
 # include "ecco_cost.h"
 # include "optim.h"
+# ifdef ALLOW_SEAICE
+#  include "SEAICE_COST.h"
+# endif
 #endif
 
 c     == routine arguments ==
@@ -160,7 +163,7 @@ c--   Loop over records for the second time.
 cnew(
         if ( localperiod .EQ. 86400. ) then
 c-- assume daily fields
-           obsrec = -1
+           obsrec = irec
            daytime = FLOAT(secondsperday*(irec-1))
            dayiter = hoursperday*(irec-1)
            call cal_getdate( dayiter, daytime, daydate, mythid )
