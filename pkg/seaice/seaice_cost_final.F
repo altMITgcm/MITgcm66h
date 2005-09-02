@@ -114,11 +114,8 @@ c--   Each process has calculated the global part for itself.
         
       _END_MASTER( mythid )
 
-      taveFreq   = 0.
-      dumpFreq   = 0.
-      pChkptFreq = 0.
-      monitorFreq = 0.
-      useDiagnostics = .FALSE.
+      SEAICE_dumpFreq = 0.
+      SEAICE_taveFreq = 0.
 
 #endif
 
