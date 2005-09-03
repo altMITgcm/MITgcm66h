@@ -153,6 +153,10 @@ CEOP
       CALL COST_CHECK( myThid )
 #endif
 
+#ifdef ALLOW_GRDCHK
+      CALL GRDCHK_CHECK( myThid )
+#endif
+
 #ifdef ALLOW_DIAGNOSTICS
       IF (useDiagnostics) CALL DIAGNOSTICS_CHECK( myThid )
 #else
