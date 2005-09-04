@@ -283,5 +283,14 @@ C     Step forward meridional velocity (store in Gv)
         ENDDO
       ENDDO
 
+#ifdef ALLOW_DIAGNOSTICS
+#ifdef ALLOW_CD_CODE
+      IF ( useCDscheme .AND. useDiagnostics ) THEN
+          CALL DIAGNOSTICS_FILL(guCor,'Um_Cori ',k,1,2,bi,bj,myThid)
+          CALL DIAGNOSTICS_FILL(gvCor,'Vm_Cori ',k,1,2,bi,bj,myThid)
+      ENDIF
+#endif /* ALLOW_CD_CODE */
+#endif /* ALLOW_DIAGNOSTICS */
+
       RETURN
       END

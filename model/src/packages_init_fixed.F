@@ -26,6 +26,8 @@ C       |-- DIAGNOSTICS_MAIN_INIT
 C       |
 C       |-- GAD_INIT
 C       |
+C       |-- MOM_INIT_FIXED
+C       |
 C       |-- CD_CODE_INIT_FIXED
 C       |
 C       |-- EXF_INIT_FIXED
@@ -55,6 +57,8 @@ C       |
 C       |-- FIZHI_INIT_FIXED
 C       |
 C       |-- LAND_INITIALISE
+C       |
+C       |-- SEAICE_COST_INIT_FIXED
 C       |
 C       |-- ECCO_COST_INIT_FIXED
 C       |
@@ -101,6 +105,13 @@ CEOP
 #ifdef ALLOW_GENERIC_ADVDIFF
 C--   Initialize fixed params for GAD
       CALL GAD_INIT( myThid )
+#endif
+
+#ifdef ALLOW_MOM_COMMON
+C--   Initialize fixed params for Momentum pkgs (common, fluxform, vecinv)
+      IF ( momStepping ) THEN
+       CALL MOM_INIT_FIXED( myThid )
+      ENDIF
 #endif
 
 #ifdef ALLOW_CD_CODE
