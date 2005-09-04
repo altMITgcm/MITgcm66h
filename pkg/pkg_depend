@@ -29,13 +29,14 @@ aim_v23		-aim
 #  Ask AJA about:
 #    flt
 
-#  According to JMC, the following probably don't have any dependencies
+#  the following probably don't have any dependencies
 generic_advdiff
 gmredi
 
 #  Known dependencies
 mom_fluxform	+mom_common
 mom_vecinv	+mom_common
+cd_code         +mom_common
 shap_filt	+mom_vecinv
 ptracers	+generic_advdiff
 seaice		-thsice
@@ -59,5 +60,4 @@ matrix          +ptracers
 matrix          -gchem
 
 #  Need more information on the following:
-
 obcs
