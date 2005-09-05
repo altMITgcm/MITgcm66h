@@ -671,7 +671,7 @@ EOF
     RET_C=$?
     cat <<EOF > genmake_tc_2.$FS
       program hello
-      Real*8 wtime
+      REAL*8 wtime
       external cloc
       call cloc(wtime)
       print *," HELLO WORLD", wtime
@@ -1338,7 +1338,7 @@ rm -f genmake_tcomp*
 printf "  Do we have the fdate() command using $FC...  "
 cat > genmake_tcomp.$FS <<EOF
       program hello
-      CHARACTER(128) string
+      CHARACTER*(128) string
       string = ' '
       call fdate( string )
       print *, string
