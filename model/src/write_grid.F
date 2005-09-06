@@ -69,6 +69,7 @@ C     Write horizontal grid arrays
       CALL WRITE_FLD_XY_RS( 'RAC',' ',rA,0,myThid)
       CALL WRITE_FLD_XY_RS( 'RAW',' ',rAw,0,myThid)
       CALL WRITE_FLD_XY_RS( 'RAS',' ',rAs,0,myThid)
+      CALL WRITE_FLD_XY_RS( 'RAZ',' ',rAz,0,myThid)
       CALL WRITE_FLD_XY_RS( 'DXG',' ',DXG,0,myThid)
       CALL WRITE_FLD_XY_RS( 'DYG',' ',DYG,0,myThid)
       CALL WRITE_FLD_XY_RS( 'DXC',' ',DXC,0,myThid)
