@@ -49,6 +49,5 @@
 #
  exf_iprec   = 64,
  exf_yftype  = 'RL',
-#
-#ph EXFwindOnBgrid    = .TRUE.
+ repeatPeriod = 31536000,
  &
