@@ -23,7 +23,7 @@
  climtempfile       = ' ',
  climsaltfile       = ' ',
  climsstfile        = ' ',
- climsssfile        = 'SSS.labsea',
+ climsssfile        = 'SSS_monthly.labsea1979',
 #
  exf_clim_iprec     = 32,
  exf_clim_yftype    = 'RL',
