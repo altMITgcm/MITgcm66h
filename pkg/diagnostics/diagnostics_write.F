@@ -104,7 +104,7 @@ C-    Yearly  freqSec:
           IF ( dump2fileNow .OR.
      &        (myTime.EQ.endTime .AND. dumpatlast) ) THEN
             write2file = .TRUE.
-            CALL DIAGNOSTICS_OUT(n,wrIter,myTime,myThid)
+            CALL DIAGNOSTICS_OUT(n,wrIter,wrTime,myThid)
           ENDIF
         ENDDO
 
@@ -139,7 +139,7 @@ C       state-variable time-step:
           IF ( dump2fileNow .OR.
      &        (myTime.EQ.endTime .AND. dumpatlast) ) THEN
             write2file = .TRUE.
-            CALL DIAGSTATS_OUTPUT(n,myTime,wrIter,myThid)
+            CALL DIAGSTATS_OUTPUT(n,wrTime,wrIter,myThid)
           ENDIF
         ENDDO
 
