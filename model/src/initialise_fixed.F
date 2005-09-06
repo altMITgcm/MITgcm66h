@@ -33,7 +33,7 @@ C      |-- PACKAGES_BOOT
 C      |
 C      |-- PACKAGES_READPARMS
 C      | |
-C      | | - MNC_INIT + MNC_CW_INIT
+C      | | - MNC_INIT + MNC_CW_INIT + INI_MNC_VARS
 C      | |
 C      | | - ${PKG}_READPARMS
 C      |

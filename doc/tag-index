@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o make MNC variable initialization happen earlier
 o add diagnostics for (almost) each term of the momentum Eq.
 o remove SST,SSS,UVEL_k2,VVEL_k2 diagnostics.
 o move pkg timeave out of pkg-groups "oceanic" & "atmospheric" (pkg/pkg_groups)
