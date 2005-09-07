@@ -214,7 +214,7 @@ C       code is being compiled
         WRITE(msgBuf,'(A)')
      &  'Re-compile with pkg "generic_advdiff" in packages.conf'
         CALL PRINT_ERROR( msgBuf , 1)
-cph        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
+        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
       ENDIF
 #endif
 
