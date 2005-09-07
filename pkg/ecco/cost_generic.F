@@ -149,10 +149,6 @@ c--   First, read tiled data.
 
 c--   Loop over records for the second time.
       do irec = 1, nrecloc
-cph(
-        if ( localobsfile .EQ. sstdatfile )
-     &        print *, 'ph-sst A ', irec, nrecloc
-cph)
 
         if ( nnzbar .EQ. 1 ) then
            call active_read_xy( fname1, localbar, irec, doglobalread,
