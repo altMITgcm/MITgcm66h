@@ -3,11 +3,7 @@ C $Header$
 #include "COST_CPPOPTIONS.h"
 
 
-      subroutine cost_forcing(
-     I                         myiter,
-     I                         mytime,
-     I                         mythid
-     &                       )
+      subroutine cost_forcing( myiter, mytime, mythid )
 
 c     ==================================================================
 c     SUBROUTINE cost_forcing

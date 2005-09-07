@@ -83,8 +83,10 @@ c They provide the fields to be stored.
 # include "DYNVARS.h"
 # include "FFIELDS.h"
 # include "EOS.h"
-# include "GAD.h"
 
+# ifdef ALLOW_GENERIC_ADVDIFF
+#  include "GAD.h"
+# endif
 # ifdef ALLOW_CD_CODE
 #  include "CD_CODE_VARS.h"
 # endif
