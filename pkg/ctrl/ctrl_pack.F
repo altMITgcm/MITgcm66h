@@ -362,7 +362,7 @@ C     place holder of obsolete variable jG
 #if (defined (ALLOW_SST_CONTROL) || defined (ALLOW_SST0_CONTROL))
           ivartype = 18
           write(weighttype(1:80),'(80a)') ' '
-          write(weighttype(1:80),'(a)') "wsst0"
+          write(weighttype(1:80),'(a)') "wsst"
           call ctrl_set_pack_xy(
      &         cunit, ivartype, fname_sst(ictrlgrad), "maskCtrlC",
      &         weighttype, lxxadxx, mythid)
@@ -371,7 +371,7 @@ C     place holder of obsolete variable jG
 #if (defined (ALLOW_SSS_CONTROL) || defined (ALLOW_SSS0_CONTROL))
           ivartype = 19
           write(weighttype(1:80),'(80a)') ' '
-          write(weighttype(1:80),'(a)') "wsss0"
+          write(weighttype(1:80),'(a)') "wsss"
           call ctrl_set_pack_xy(
      &         cunit, ivartype, fname_sss(ictrlgrad), "maskCtrlC",
      &         weighttype, lxxadxx, mythid)
