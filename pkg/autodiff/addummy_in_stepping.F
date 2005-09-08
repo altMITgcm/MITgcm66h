@@ -77,11 +77,14 @@ CEOP
      &  DIFFERENT_MULTIPLE(adjDumpFreq,mytime,deltaTClock)
      & ) THEN
 
-         write(*,*) 'myIter= ',myiter
+       write(*,*) 'myIter= ',myiter
 
-
+       call adexch_xy_rl( mythid,adetan)
        call adexch_xyz_rl( mythid,adtheta)
        call adexch_xyz_rl( mythid,adsalt)
+       call adexch_xyz_rl( mythid,adwvel )
+       call adexch_uv_xyz_rl(  .true. ,mythid,aduvel,advvel )
+c
        call adexch_xy_rl( mythid,adfu )
        call adexch_xy_rl( mythid,adfv )
        call adexch_xy_rl( mythid,adqnet )
@@ -124,9 +127,9 @@ C--     Read IO error counter
         CALL WRITE_FLD_XYZ_RL( 
      &       'ADJvvel.',suff, advvel, myIter, myThid)
         CALL WRITE_FLD_XYZ_RL(
-     &       'ADJwvel.',suff, advvel, myIter, myThid)
+     &       'ADJwvel.',suff, adwvel, myIter, myThid)
         CALL WRITE_FLD_XY_RL(
-     &       'ADJetan.',suff, advvel, myIter, myThid)
+     &       'ADJetan.',suff, adetan, myIter, myThid)
         CALL WRITE_FLD_XY_RL ( 'ADJtaux.',suff, adfu, myIter, myThid)
         CALL WRITE_FLD_XY_RL ( 'ADJtauy.',suff, adfv, myIter, myThid)
         CALL WRITE_FLD_XY_RL ( 'ADJqnet.',suff, adqnet, myIter, myThid)
