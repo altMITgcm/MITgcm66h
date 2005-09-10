@@ -213,9 +213,10 @@ C     Write restart file for floats
 #endif
 
 #ifdef ALLOW_LAND
-C     Write pickup file for Lnad package:
+C     Write pickup file for Land package:
       IF (useLand) THEN
-        CALL LAND_WRITE_PICKUP(fn,myTime,myIter,myThid)
+        CALL LAND_WRITE_PICKUP(permCheckPoint,fn,
+     &       myTime,myIter,myThid)
       ENDIF
 #endif
 
