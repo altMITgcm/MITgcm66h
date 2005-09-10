@@ -303,3 +303,42 @@ C     Reaching this point means all tests passed
       END
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+CBOP 1
+C     !ROUTINE: MNC_PSNCM
+
+C     !INTERFACE:
+      SUBROUTINE MNC_PSNCM(
+     O     ostring,
+     I     ival, n )
+
+C     !DESCRIPTION:
+C     Print a zero-padded integer to a String with an N-Character
+C     Minimum length
+
+      IMPLICIT NONE
+
+C     !INPUT PARAMETERS:
+C     ostring :: String to contain formatted output
+      CHARACTER*(*) ostring
+      INTEGER ival, n
+CEOP
+
+C     !LOCAL VARIABLES:
+      INTEGER i, lens, nmin
+      CHARACTER*(25) tmp
+
+      lens = LEN(ostring)
+      DO i = 1,lens
+        ostring(i:i) = ' '
+      ENDDO
+      WRITE(tmp,'(I25.25)') ival
+      nmin = ival / 10 + 1
+      IF (nmin .LT. n)  nmin = n
+      ostring(1:nmin) = tmp((26-nmin):25)
+
+C
+      RETURN
+      END
+
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+

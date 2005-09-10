@@ -424,6 +424,17 @@ C--   Update time-counter
       myIter = nIter0 + iLoop
       myTime = startTime + deltaTClock * float(iLoop)
 
+#ifdef ALLOW_MNC
+C     Update the default next iter for MNC
+      IF ( useMNC ) THEN
+         CALL MNC_CW_CITER_SETG( 1, 1, -1, myIter )
+
+C        TODO: Logic should be added here so that users can specify, on
+C        a per-citer-group basis, when it is time to update the
+C        "current" (and not just the "next") iteration
+       ENDIF
+#endif
+
 C--   Update geometric factors:
 #ifdef NONLIN_FRSURF
 C-    update hfacC,W,S and recip_hFac according to etaH(n+1) :

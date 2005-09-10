@@ -248,7 +248,8 @@ C     Write pickup file for diagnostics package
 #ifdef ALLOW_PTRACERS
 C     Write restart file for passive tracers
       IF (usePTRACERS) THEN
-        CALL PTRACERS_WRITE_CHECKPOINT(fn,myIter,myTime,myThid)
+        CALL PTRACERS_WRITE_CHECKPOINT(permCheckPoint, 
+     &       fn,myIter,myTime,myThid)
       ENDIF
 #endif /* ALLOW_PTRACERS */
 

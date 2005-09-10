@@ -42,18 +42,17 @@ CEOP
 #ifdef ALLOW_MNC
       IF ( PTRACERS_pickup_read_mnc ) THEN
 C       Read variables from the pickup file
-        CALL MNC_FILE_CLOSE_ALL_MATCHING(
-     &       'pickup_ptracers', myThid)
-        CALL MNC_CW_SET_UDIM('pickup_ptracers', 1, myThid)
+        WRITE(fn,'(a)') 'pickup_ptracers'
+        CALL MNC_FILE_CLOSE_ALL_MATCHING(fn, myThid)
+        CALL MNC_CW_SET_UDIM(fn, 1, myThid)
+        CALL MNC_CW_SET_CITER(fn, 3, 3, myIter, -1, myThid)
         DO iTracer = 1,PTRACERS_numInUse
-          CALL MNC_CW_RL_R('D','pickup_ptracers',0,0,
-     &         PTRACERS_names(iTracer),
+          CALL MNC_CW_RL_R('D',fn,0,0, PTRACERS_names(iTracer),
      &         gPtrNm1(1-OLx,1-OLy,1,1,1,iTracer),myThid)
         ENDDO
-        CALL MNC_CW_SET_UDIM('pickup_ptracers', 2, myThid)
+        CALL MNC_CW_SET_UDIM(fn, 2, myThid)
         DO iTracer = 1,PTRACERS_numInUse
-          CALL MNC_CW_RL_R('D','pickup_ptracers',0,0,
-     &         PTRACERS_names(iTracer),
+          CALL MNC_CW_RL_R('D',fn,0,0, PTRACERS_names(iTracer),
      &         pTracer(1-OLx,1-OLy,1,1,1,iTracer),myThid)
         ENDDO
       ENDIF
