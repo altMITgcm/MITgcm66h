@@ -427,7 +427,7 @@ C--   Update time-counter
 #ifdef ALLOW_MNC
 C     Update the default next iter for MNC
       IF ( useMNC ) THEN
-         CALL MNC_CW_CITER_SETG( 1, 1, -1, myIter )
+         CALL MNC_CW_CITER_SETG( 1, 1, -1, myIter , myThid )
 
 C        TODO: Logic should be added here so that users can specify, on
 C        a per-citer-group basis, when it is time to update the
