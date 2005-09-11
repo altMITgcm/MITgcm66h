@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o add HAVE_SETRLSTK define and useSETRLSTK flag (eedata) which calls 
+  a C routine to unlimit the stack size
 o mnc-ify pkg/aim snapshot vars
 o mnc-ify pkg/land as requested by Daniel
 o various changes to mnc including:

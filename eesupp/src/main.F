@@ -129,6 +129,12 @@ C--   Trap errors
        GOTO 999
       ENDIF
 
+#ifdef HAVE_SETRLSTK
+      IF (useSETRLSTK) THEN
+        CALL setrlstk
+      ENDIF
+#endif
+
 #ifdef HAVE_PTHREADS
 C      IF (usePTHREADS) THEN
         CALL PTINIT(nThreads)
