@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o mnc-ify pkg/aim snapshot vars
 o mnc-ify pkg/land as requested by Daniel
 o various changes to mnc including:
   - all files use the new "BASENAME[[.ITER].{t|f}NUM].nc" format
