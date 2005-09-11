@@ -433,7 +433,7 @@ CADJ STORE gU(:,:,:,bi,bj) = comlev1_bibj , key=idynkey, byte=isbyte
 #endif    /* ALLOW_AUTODIFF_TAMC */
           CALL IMPLDIFF(
      I         bi, bj, iMin, iMax, jMin, jMax,
-     I         0, KappaRU,recip_HFacW,
+     I         -1, KappaRU,recip_HFacW,
      U         gU,
      I         myThid )
 #ifdef    ALLOW_AUTODIFF_TAMC
@@ -442,7 +442,7 @@ CADJ STORE gV(:,:,:,bi,bj) = comlev1_bibj , key=idynkey, byte=isbyte
 #endif    /* ALLOW_AUTODIFF_TAMC */
           CALL IMPLDIFF(
      I         bi, bj, iMin, iMax, jMin, jMax,
-     I         0, KappaRV,recip_HFacS,
+     I         -2, KappaRV,recip_HFacS,
      U         gV,
      I         myThid )
         ENDIF
