@@ -49,11 +49,16 @@ C--  Set default value for AIM interface code (AIM_PARAMS.h):
       aim_energPrecip = .FALSE.
       aim_splitSIOsFx = .FALSE.
       aim_clrSkyDiag  = .FALSE.
-      aim_tave_mdsio  = .TRUE.
 #ifdef ALLOW_MNC
-      aim_tave_mnc    = timeave_mnc
+      aim_timeave_mnc       = timeave_mnc .AND. useMNC
+      aim_snapshot_mnc      = snapshot_mnc .AND. useMNC
+      aim_pickup_write_mnc  = pickup_write_mnc .AND. useMNC
+      aim_pickup_read_mnc   = pickup_read_mnc .AND. useMNC
 #else
-      aim_tave_mnc    = .FALSE.
+      aim_timeave_mnc       = .FALSE.
+      aim_snapshot_mnc      = .FALSE.
+      aim_pickup_write_mnc  = .FALSE.
+      aim_pickup_read_mnc   = .FALSE.
 #endif
       aim_MMsufx = '.bin'
       aim_MMsufxLength = 4

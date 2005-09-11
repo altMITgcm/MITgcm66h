@@ -112,7 +112,7 @@ C      Normalize by integrated time
        _BEGIN_MASTER( myThid )
 
 #ifdef ALLOW_MNC
-       IF (useMNC .AND. aim_tave_mnc) THEN
+       IF (useMNC .AND. aim_timeave_mnc) THEN
 C        C             12345678
          mncfn(1:8) = 'aim_tave'
          CALL MNC_CW_SET_UDIM(mncfn, -1, myThid)
@@ -144,7 +144,7 @@ C        C             12345678
        ENDIF
 #endif /*  ALLOW_MNC  */
 
-       IF (aim_tave_mdsio) THEN
+       IF (aim_timeave_mdsio) THEN
 
 C        find wether we are writing globalFile or tile-files:
          CALL GET_WRITE_GLOBAL_FLD( gf )
