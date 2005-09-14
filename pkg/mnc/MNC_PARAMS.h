@@ -52,16 +52,16 @@ C     ===  PARM_MNC_I Common Block  ===
 C     mnc_curr_iter    :: current iter for file names
 
       COMMON /PARM_MNC_I/
-     &     mnc_curr_iter, mnc_filefreq
+     &     mnc_curr_iter
       INTEGER mnc_curr_iter
-      INTEGER mnc_filefreq
 
 C     ===  PARM_MNC_R Common Block  ===
 C     mnc_max_fsize    :: maximum file size
 
       COMMON /PARM_MNC_R/
-     &     mnc_max_fsize
+     &     mnc_max_fsize, mnc_filefreq
       REAL*8  mnc_max_fsize
+      REAL*8  mnc_filefreq
 
 CEH3 ;;; Local Variables: ***
 CEH3 ;;; mode:fortran ***
