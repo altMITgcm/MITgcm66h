@@ -226,7 +226,7 @@ C NOW UPDATE AREA
         ENDDO
         DO J=1,sNy
          DO I=1,sNx
-          GAREA(I,J)=TWO*(ONE-AREA(I,J,2,bi,bj))*GAREA(I,J)/HO
+          GAREA(I,J)=(ONE-AREA(I,J,2,bi,bj))*GAREA(I,J)/HO
      &    +HALF*HCORR(I,J,bi,bj)*AREA(I,J,2,bi,bj)
      &    /(HEFF(I,J,1,bi,bj)+.00001 _d 0)
           AREA(I,J,1,bi,bj)=AREA(I,J,1,bi,bj)+GAREA(I,J)

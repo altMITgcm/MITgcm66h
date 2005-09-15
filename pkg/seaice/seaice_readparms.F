@@ -146,8 +146,6 @@ C--   set default sea ice parameters
       DIFF1      = 2.0*DIFF1
       A22        = 0.15      _d 0
       HO         = 0.5       _d 0
-C DOUBLE HO BECAUSE OF MOD IN GROWTH
-      HO=2.0*HO
       WindForcingStart  = -99999.
       WindForcingEnd    = -99999.
       WindForcingPeriod = -99999.
