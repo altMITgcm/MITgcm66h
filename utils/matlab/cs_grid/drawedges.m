@@ -1,6 +1,10 @@
 function [] = drawedges(xg,yg,varargin)
 % Draws edges of cube on plot
 % >> drawedges(xg,yg)
+%
+% Written by adcroft@.mit.edu, 2001.
+% $Header$
+% $Name$
 
 [nx ny nt]=size(xg);
 hnx=ceil(nx/2);

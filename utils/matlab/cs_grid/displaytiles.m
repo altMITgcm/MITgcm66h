@@ -2,6 +2,10 @@ function [] = displaytiles(A)
 % Display tiled field.
 %
 % Dimensions of A must be (n,n,6)
+%
+% Written by adcroft@.mit.edu, 2001.
+% $Header$
+% $Name$
 
 global cmin cmax
 clf

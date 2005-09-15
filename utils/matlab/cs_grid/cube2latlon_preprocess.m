@@ -15,7 +15,9 @@ function [del] = cube2latlon_preprocess(x,y,xi,yi,varargin)
 % >> del=cube2latlon_preprocess(x,y,xi,yi);
 % >> ti=cube2latlon_fast(del,t);
 %
+% Written by adcroft@.mit.edu, 2004.
 % $Header$
+% $Name$
 
 NN=size(x);
 [nx ny nz]=size(x);

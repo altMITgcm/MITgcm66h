@@ -6,6 +6,10 @@ function [a] = tile(b,varargin)
 % b can have dimensions (M*6,M,Nr) or (M,M,Nr,6)
 %
 % n can be vector of integers between 1 and 6
+%
+% Written by adcroft@.mit.edu, 2001.
+% $Header$
+% $Name$
 
 if nargin==1
  n=1:6;

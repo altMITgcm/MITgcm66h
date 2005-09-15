@@ -2,6 +2,10 @@ function [a]=permutetiles(b,n)
 % a=permutetiles(b) shifts the tile data left by n places around the equator
 %
 % ie. n=1, tile 2->1, 4->2, 5->4, 1->5, the tiles 3 and 6 get rotated 90 degs.
+%
+% Written by adcroft@.mit.edu, 2001.
+% $Header$
+% $Name$
 
 c=b;
 for k=1:n

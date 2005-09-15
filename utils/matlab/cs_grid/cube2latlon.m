@@ -14,7 +14,9 @@ function [z] = cube2latlon(x,y,c,xi,yi,varargin)
 % >> xi=-179:2:180;yi=-89:2:90;
 % >> ti=cube2latlon(x,y,t,xi,yi);
 %
+% Written by adcroft@.mit.edu, 2001.
 % $Header$
+% $Name$
 
 NN=size(c);
 [nx ny nz]=size(c);

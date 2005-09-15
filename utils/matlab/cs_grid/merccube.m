@@ -23,6 +23,10 @@ function [] = merccube(XX,YY,C)
 % xc=rdmds('XC');
 % yc=rdmds('YC');
 % mercube(xc,yc,ps);shading interp
+%
+% Written by adcroft@.mit.edu, 2004.
+% $Header$
+% $Name$
 
 if max(max(max(YY)))-min(min(min(YY))) < 3*pi
  X=XX*180/pi;

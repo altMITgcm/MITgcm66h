@@ -20,8 +20,10 @@ function [] = fancycube(XX,YY,C,H,r)
 % ps=rdmds('Eta.0000000000');
 % h=rdmds('ETOPO5');
 % fancycube(xg,yg,ps,h,0.05/5000);
-
+%
+% Written by adcroft@.mit.edu, 2005.
 % $Header$
+% $Name$
 
 if max(max(max(YY)))-min(min(min(YY))) < 3*pi
  X=tiles(XX*180/pi,1:6);
