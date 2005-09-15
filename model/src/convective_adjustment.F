@@ -178,6 +178,13 @@ C--       End DO K=1,Nr
           ENDIF
 #endif /* ALLOW_TIMEAVE */
 
+#ifdef ALLOW_DIAGNOSTICS 
+          IF ( myIter.NE.nIter0 .AND. useDiagnostics ) THEN
+            CALL DIAGNOSTICS_FILL( ConvectCount, 'CONVADJ ',
+     I                             0, Nr, 2, bi, bj, myThid )
+          ENDIF
+#endif /*  ALLOW_DIAGNOSTICS */
+
 C--   End IF (DIFFERENT_MULTIPLE)
       ENDIF
 

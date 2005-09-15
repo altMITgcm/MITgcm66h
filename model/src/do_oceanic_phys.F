@@ -473,6 +473,10 @@ C--   end bi,bj loops.
       IF ( fluidIsWater .AND. useDiagnostics ) THEN
         CALL DIAGS_OCEANIC_SURF_FLUX( myTime, myIter, myThid )
       ENDIF
+      IF ( ivdc_kappa.NE.0 .AND. useDiagnostics ) THEN
+        CALL DIAGNOSTICS_FILL( IVDConvCount,'CONVADJ ',
+     &                         0, Nr, 0, 1, 1, myThid )
+      ENDIF
 #endif
 
 #ifdef ALLOW_DEBUG
