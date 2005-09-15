@@ -430,18 +430,10 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
-C--   Momentum terms:
-      diagName  = 'VISCA4  '
-      diagTitle = 'Biharmonic Viscosity Coefficient in (m4/s)        '
-      diagUnits = 'm^4/s           '
-      diagCode  = 'SM      MR      '
-      CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I          diagName, diagCode, diagUnits, diagTitle, myThid )
-
-      diagName  = 'VISCAH  '
-      diagTitle = 'Harmonic Viscosity Coefficient in (m2/s)        '
-      diagUnits = 'm^2/s           '
-      diagCode  = 'SM      MR      '
+      diagName  = 'CONVADJ '
+      diagTitle = 'Convective Adjustment Index [0-1] '
+      diagUnits = 'fraction        '
+      diagCode  = 'SM      LR      '
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
