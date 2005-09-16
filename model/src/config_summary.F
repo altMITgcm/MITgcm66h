@@ -109,6 +109,9 @@ C     zcoord ::
       CALL WRITE_0D_L( useFullLeith, INDEX_NONE,
      &'useFullLeith =',
      &'   /* Use Full Form of Leith Viscosity on/off flag*/')
+      CALL WRITE_0D_L( useStrainTensionVisc, INDEX_NONE,
+     &'useStrainTensionVisc =',
+     &'   /* Use Strain-Tension Form of Viscous Operator on/off flag*/')
       CALL WRITE_0D_R8( viscC2leith, INDEX_NONE,'viscC2leith =',
      &' /* Leith harmonic viscosity factor (on grad(vort),non-dim.) */')
       CALL WRITE_0D_R8( viscC2leithD, INDEX_NONE,'viscC2leithD =',
@@ -131,6 +134,8 @@ C     zcoord ::
      &' /* Leith biharm viscosity factor (on grad(vort), non-dim.) */')
       CALL WRITE_0D_R8( viscC4leithD, INDEX_NONE,'viscC4leithD =',
      &' /* Leith biharm viscosity factor (on grad(div), non-dim.) */')
+      CALL WRITE_0D_R8( viscC4Smag, INDEX_NONE,'viscC4Smag =',
+     &' /* Smagorinsky biharm viscosity factor (non-dim) */')
       CALL WRITE_0D_L( no_slip_sides, INDEX_NONE,
      & 'no_slip_sides =', '  /* Viscous BCs: No-slip sides */')
       CALL WRITE_0D_R8( viscAr,  INDEX_NONE,'viscAr =',
