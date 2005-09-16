@@ -2122,6 +2122,11 @@ depend:
 	\$(TOOLSDIR)/f90mkdepend >> \$(MAKEFILE)
 	-rm -f makedepend.out
 
+lib: libmitgcmuv.a
+
+libmitgcmuv.a: \$(OBJFILES)
+	ar rcv libmitgcmuv.a \$(OBJFILES)
+
 links: \$(SRCFILES) \$(CSRCFILES) \$(HEADERFILES) \$(F90SRCFILES) \$(SPECIAL_FILES)
 
 small_f: \$(F77FILES) \$(F90FILES)
