@@ -3,6 +3,7 @@ C $Name$
 
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
+#undef DYNAMICS_GUGV_EXCH_CHECK
 
 CBOP
 C     !ROUTINE: DYNAMICS
@@ -546,6 +547,15 @@ Cml)
        CALL DEBUG_STATS_RL(Nr,gtNm1,'GtNm1 (DYNAMICS)',myThid)
        CALL DEBUG_STATS_RL(Nr,gsNm1,'GsNm1 (DYNAMICS)',myThid)
 #endif
+      ENDIF
+#endif
+
+#ifdef DYNAMICS_GUGV_EXCH_CHECK
+C- jmc: For safety checking only: This Exchange here should not change 
+C       the solution. If solution changes, it means something is wrong, 
+C       but it does not mean that it is less wrong with this exchange.
+      IF ( debugLevel .GT. debLevB ) THEN
+       CALL EXCH_UV_XYZ_RL(gU,gV,.TRUE.,myThid)
       ENDIF
 #endif
 
