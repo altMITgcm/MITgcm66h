@@ -64,12 +64,15 @@ CEOP
           WRITE(fn,'(2a)') 'pickup_ptracers.', suff(1:lChar)
         ENDIF
         CALL MNC_FILE_CLOSE_ALL_MATCHING(fn, myThid)
+C       First ***define*** the file group name
         CALL MNC_CW_SET_UDIM(fn, 1, myThid)
         IF ( permCheckPoint ) THEN
           CALL MNC_CW_SET_CITER(fn, 3, 3, myIter, -1, myThid)
         ELSE
           CALL MNC_CW_SET_CITER(fn, 2, -1, -1, -1, myThid)
         ENDIF
+C       Then set the actual unlimited dimension
+        CALL MNC_CW_SET_UDIM(fn, 1, myThid)
 C       The following two values should probably be for the n-1 time
 C       step since we're saving the gPtrNm1 variable first
         CALL MNC_CW_RL_W_S('D',fn,0,0,'T', myTime, myThid)

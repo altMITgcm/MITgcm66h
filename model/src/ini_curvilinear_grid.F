@@ -122,6 +122,7 @@ C--   Set everything to zero everywhere
         CALL MNC_FILE_CLOSE_ALL_MATCHING(mncFn, myThid)
         CALL MNC_CW_SET_UDIM(mncFn, 1, myThid)
         CALL MNC_CW_SET_CITER(mncFn, 2, -1, -1, -1, myThid)
+        CALL MNC_CW_SET_UDIM(mncFn, 1, myThid)
         CALL MNC_CW_RS_R('R',mncFn,0,0,'XC', XC,  myThid)
         CALL MNC_CW_RS_R('R',mncFn,0,0,'XG', XG,  myThid)
         CALL MNC_CW_RS_R('R',mncFn,0,0,'YC', YC,  myThid)

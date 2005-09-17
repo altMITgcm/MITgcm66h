@@ -72,9 +72,21 @@ C     == Local variables ==
 
 #ifdef ALLOW_MNC
       IF ( thSIce_pickup_write_mnc ) THEN
-        CALL MNC_CW_SET_UDIM(fn, -1, myThid)
-        CALL MNC_CW_I_W_S('I',fn,0,0,'iter', myIter, myThid)
+        IF ( permCheckPoint ) THEN
+          WRITE(fn,'(A)') 'pickup_ic'
+        ELSE
+          WRITE(fn,'(A,A)') 'pickup_ic.',checkPtSuff(nCheckLev)
+        ENDIF
+C       First ***define*** the file group name
         CALL MNC_CW_SET_UDIM(fn, 0, myThid)
+        IF ( permCheckPoint ) THEN
+          CALL MNC_CW_SET_CITER(fn, 3, 3, myIter, 0, myThid)
+        ELSE
+          CALL MNC_CW_SET_CITER(fn, 2, -1, -1, -1, myThid)
+        ENDIF
+C       Then set the actual unlimited dimension
+        CALL MNC_CW_SET_UDIM(fn, 1, myThid)
+        CALL MNC_CW_I_W_S('I',fn,0,0,'iter', myIter, myThid)
 C       CALL MNC_CW_RL_W_S('D',fn,0,0,'T', myTime, myThid)
         CALL MNC_CW_RL_W('D',fn,0,0,'iceMask',   iceMask,   myThid)
         CALL MNC_CW_RL_W('D',fn,0,0,'iceHeight', iceHeight, myThid)

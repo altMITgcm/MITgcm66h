@@ -96,6 +96,7 @@ C     Write 3D geometry arrays
 C       Write the GRID.h variables to a file
         CALL MNC_CW_SET_UDIM(bfname, 0, myThid)
         CALL MNC_CW_SET_CITER(bfname, 2, -1, -1, -1, myThid)
+        CALL MNC_CW_SET_UDIM(bfname, 1, myThid)
         CALL MNC_CW_RL_W('D',bfname,0,0,'RC',rC,myThid)
         CALL MNC_CW_RL_W('D',bfname,0,0,'RF',rF,myThid)
         CALL MNC_CW_RL_W('D',bfname,0,0,'RU',rF(2),myThid)

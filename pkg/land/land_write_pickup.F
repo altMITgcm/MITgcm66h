@@ -98,6 +98,7 @@ C--   Write fields as consecutive records
         ELSE
           CALL MNC_CW_SET_CITER(fn, 2, -1, -1, -1, myThid)
         ENDIF
+        CALL MNC_CW_SET_UDIM(fn, 1, myThid)
 
         CALL MNC_CW_RL_W_S('D',fn,0,0,'T', myTime, myThid)
         CALL MNC_CW_I_W_S('I',fn,0,0,'iter', myIter, myThid)
