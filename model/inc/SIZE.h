@@ -6,7 +6,7 @@ C $Name$
   as an error then it means you have not placed your configuration
   files in the appropriate place. 
   You need to place you own copy of SIZE.h in the include
-  path for the model.
+  path for the model, and comment out these lines.
 
 C
 CBOP
