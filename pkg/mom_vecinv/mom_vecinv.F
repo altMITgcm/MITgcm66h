@@ -207,6 +207,9 @@ C      Calculate del^2 u and del^2 v for bi-harmonic term
          CALL MOM_VI_DEL2UV(bi,bj,k,hDiv,vort3,hFacZ,
      O                      del2u,del2v,
      &                      myThid)
+         CALL MOM_CALC_HDIV(bi,bj,k,2,del2u,del2v,dStar,myThid)
+         CALL MOM_CALC_RELVORT3(bi,bj,k,
+     &                          del2u,del2v,hFacZ,zStar,myThid)
        ENDIF
 
 C      Calculate dissipation terms for U and V equations
