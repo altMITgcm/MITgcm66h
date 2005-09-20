@@ -317,8 +317,6 @@ C--   fill tracer state-var diagnostics:
            call qsat(dummy1,dummy2,dummy3,dummy4,.false.)
            tmpMk(i,j,K,bi,bj) = hfacC(i,j,K,bi,bj) * 
      .                    salt(i,j,k,bi,bj) * 100. / dummy3
-           if(k.lt.4) print *,' Temp ',dummy1,' Pres ',dummy2,' q ',
-     .      salt(i,j,k,bi,bj),' qstar ',dummy3,' rh ',tmpMk(i,j,K,bi,bj)
           enddo
          enddo
         enddo
