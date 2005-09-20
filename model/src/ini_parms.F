@@ -141,6 +141,7 @@ C--   Continuous equation parameters
      & viscAhD, viscAhZ, viscA4D, viscA4Z,
      & viscA4, viscA4W,
      & viscA4Max, viscA4Grid, viscA4GridMax, viscA4GridMin,
+     & viscA4ReMax, viscAhReMax,
      & viscAz,  cosPower, viscAstrain, viscAtension,
      & diffKhT, diffKzT, diffK4T,
      & diffKhS, diffKzS, diffK4S,
