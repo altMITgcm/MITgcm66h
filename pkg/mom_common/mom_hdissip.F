@@ -46,7 +46,7 @@ C     == Local variables ==
      I        bi,bj,k,
      O        viscAh_s,viscAh_t,viscA4_s,viscA4_t,
      O        harmonic,biharmonic,useVariableViscosity,
-     I        hDiv,vort3,tension,strain,KE,
+     I        hDiv,vort3,tension,strain,KE,hfacZ,
      I        myThid)
 
 C     - Laplacian and bi-harmonic terms
