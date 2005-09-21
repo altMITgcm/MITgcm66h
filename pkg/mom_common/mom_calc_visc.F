@@ -411,10 +411,14 @@ C  BiHarmonic on Zeta points
        CALL DIAGNOSTICS_FILL(viscAh_ZLth,'VAHZLTH ',k,1,2,bi,bj,myThid)
        CALL DIAGNOSTICS_FILL(viscA4_ZLth,'VA4ZLTH ',k,1,2,bi,bj,myThid)
 
-       CALL DIAGNOSTICS_FILL(viscAh_DLthD,'VAHDLTHD',k,1,2,bi,bj,myThid)
-       CALL DIAGNOSTICS_FILL(viscA4_DLthD,'VA4DLTHD',k,1,2,bi,bj,myThid)
-       CALL DIAGNOSTICS_FILL(viscAh_ZLthD,'VAHZLTHD',k,1,2,bi,bj,myThid)
-       CALL DIAGNOSTICS_FILL(viscA4_ZLthD,'VA4ZLTHD',k,1,2,bi,bj,myThid)
+       CALL DIAGNOSTICS_FILL(viscAh_DLthD,'VAHDLTHD'
+     &    ,k,1,2,bi,bj,myThid)
+       CALL DIAGNOSTICS_FILL(viscA4_DLthD,'VA4DLTHD'
+     &    ,k,1,2,bi,bj,myThid)
+       CALL DIAGNOSTICS_FILL(viscAh_ZLthD,'VAHZLTHD'
+     &    ,k,1,2,bi,bj,myThid)
+       CALL DIAGNOSTICS_FILL(viscA4_ZLthD,'VA4ZLTHD'
+     &    ,k,1,2,bi,bj,myThid)
 
        CALL DIAGNOSTICS_FILL(viscAh_DSmg,'VAHDSMAG',k,1,2,bi,bj,myThid)
        CALL DIAGNOSTICS_FILL(viscA4_DSmg,'VA4DSMAG',k,1,2,bi,bj,myThid)
