@@ -111,9 +111,12 @@ C     zcoord ::
      &'   /* Use Full Form of Leith Viscosity on/off flag*/')
       CALL WRITE_0D_L( useStrainTensionVisc, INDEX_NONE,
      &'useStrainTensionVisc =',
-     &'   /* Use Strain-Tension Form of Viscous Operator on/off flag*/')
+     &'   /* Use StrainTension Form of Viscous Operator on/off flag*/')
+      CALL WRITE_0D_L( useAreaViscLength, INDEX_NONE,
+     &'useAreaViscLength =',
+     &'   /* Use area for visc length instead of geom. mean*/')
       CALL WRITE_0D_R8( viscC2leith, INDEX_NONE,'viscC2leith =',
-     &' /* Leith harmonic viscosity factor (on grad(vort),non-dim.) */')
+     &' /* Leith harmonic visc. factor (on grad(vort),non-dim.) */')
       CALL WRITE_0D_R8( viscC2leithD, INDEX_NONE,'viscC2leithD =',
      &' /* Leith harmonic viscosity factor (on grad(div),non-dim.) */')
       CALL WRITE_0D_R8( viscC2smag, INDEX_NONE,'viscC2smag =',
