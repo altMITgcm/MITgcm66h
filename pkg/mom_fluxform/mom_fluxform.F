@@ -268,7 +268,7 @@ C---  Calculate vertical transports (at k+1) below U & V points :
      I        bi,bj,k,
      O        viscAh_Z,viscAh_D,viscA4_Z,viscA4_D,
      O        harmonic,biharmonic,useVariableViscosity,
-     I        hDiv,vort3,tension,strain,KE,
+     I        hDiv,vort3,tension,strain,KE,hFacZ,
      I        myThid)
       ENDIF
 
