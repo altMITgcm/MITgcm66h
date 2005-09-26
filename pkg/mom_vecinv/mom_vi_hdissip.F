@@ -7,6 +7,8 @@ C $Name$
      I        bi,bj,k,
      I        hDiv,vort3,tension,strain,KE,
      I        hFacZ,dStar,zStar,
+     I        viscAh_Z,viscAh_D,viscA4_Z,viscA4_D,
+     I        harmonic,biharmonic,useVariableViscosity,
      O        uDissip,vDissip,
      I        myThid)
 
@@ -40,23 +42,16 @@ C     == Routine arguments ==
       _RL zStar(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL uDissip(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL vDissip(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      INTEGER myThid
-
-C     == Local variables ==
-      INTEGER I,J
-      _RL Zip,Zij,Zpj,Dim,Dij,Dmj,uD2,vD2,uD4,vD4
       _RL viscAh_Z(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL viscAh_D(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL viscA4_Z(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL viscA4_D(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       LOGICAL harmonic, biharmonic, useVariableViscosity
+      INTEGER myThid
 
-      CALL MOM_CALC_VISC(
-     I        bi,bj,k,
-     O        viscAh_Z,viscAh_D,viscA4_Z,viscA4_D,
-     O        harmonic,biharmonic,useVariableViscosity,
-     I        hDiv,vort3,tension,strain,KE,hfacZ,
-     I        myThid)
+C     == Local variables ==
+      INTEGER I,J
+      _RL Zip,Zij,Zpj,Dim,Dij,Dmj,uD2,vD2,uD4,vD4
 
 C     - Laplacian  terms
       IF (harmonic) THEN

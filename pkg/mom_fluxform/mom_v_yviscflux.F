@@ -11,7 +11,7 @@ C !INTERFACE: ==========================================================
      I        bi,bj,k,
      I        vFld, del2v,
      O        yViscFluxV,
-     I        viscAh_Z,viscAh_D,viscA4_Z,viscA4_D,
+     I        viscAh_D,viscA4_D,
      I        myThid)
 
 C !DESCRIPTION:
@@ -37,9 +37,7 @@ C  myThid               :: thread number
       INTEGER bi,bj,k
       _RL vFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL del2v(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL viscAh_Z(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL viscAh_D(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL viscA4_Z(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL viscA4_D(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER myThid
 
