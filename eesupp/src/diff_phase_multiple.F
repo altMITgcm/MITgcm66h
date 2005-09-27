@@ -59,7 +59,7 @@ C         Test v1 to see if its a "closest multiple"
           d1 = v1-v4
           d2 = v2-v4
           d3 = v3-v4
-          IF ( ABS(d1) .LE. ABS(d2) .AND. ABS(d1) .LE. ABS(d3) )
+          IF ( ABS(d1) .LT. ABS(d2) .AND. ABS(d1) .LE. ABS(d3) )
      &        DIFF_PHASE_MULTIPLE = .TRUE.
 
         ENDIF
