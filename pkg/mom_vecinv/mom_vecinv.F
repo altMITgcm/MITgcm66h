@@ -611,6 +611,8 @@ C--   Set du/dt & dv/dt on boundaries to zero
         CALL DIAGNOSTICS_FILL(KE,    'momKE   ',k,1,2,bi,bj,myThid)
         CALL DIAGNOSTICS_FILL(hDiv,  'momHDiv ',k,1,2,bi,bj,myThid)
         CALL DIAGNOSTICS_FILL(vort3, 'momVort3',k,1,2,bi,bj,myThid)
+        CALL DIAGNOSTICS_FILL(strain,'Strain  ',k,1,2,bi,bj,myThid)
+        CALL DIAGNOSTICS_FILL(tension,'Tension ',k,1,2,bi,bj,myThid)
         CALL DIAGNOSTICS_FILL(gU(1-Olx,1-Oly,k,bi,bj),
      &                               'Um_Advec',k,1,2,bi,bj,myThid)
         CALL DIAGNOSTICS_FILL(gV(1-Olx,1-Oly,k,bi,bj),
