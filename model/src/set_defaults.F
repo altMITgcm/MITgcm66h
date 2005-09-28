@@ -179,6 +179,7 @@ Cml      sBeta               = 7.4D-4
       highOrderVorticity  = .FALSE.
       useAbsVorticity     = .FALSE.
       upwindShear         = .FALSE.
+      selectKEscheme      = 0
       debugLevel          = debLevA
       inAdMode            = .FALSE.
       inAdExact           = .TRUE.
