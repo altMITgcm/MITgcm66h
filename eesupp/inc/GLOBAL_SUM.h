@@ -28,11 +28,20 @@ C     | make modifications te way these header files are setup or|
 C     | the way the global sum routines work.                    |
 C     *==========================================================*
 CEOP
-      COMMON / GSUM_COMMON_R8 / phiGSRL
-      Real*8  phiGSRL(lShare8, MAX_NO_THREADS )
 
-      COMMON / GSUM_COMMON_R4 / phiGSRS
-      Real*4  phiGSRS(lShare4, MAX_NO_THREADS )
+      COMMON / GSUM_COMMON_R8 / phiGSRL, phiVGSRL
+      Real*8  phiGSRL (lShare8, MAX_NO_THREADS )
+      Real*8  phivGSRL(MAX_VGS, MAX_NO_THREADS )
 
-      COMMON / GSUM_COMMON_I  / phiGSI
-      INTEGER phiGSI (lShare4, MAX_NO_THREADS )
+      COMMON / GSUM_COMMON_R4 / phiGSRS, phiVGSRS
+      Real*4  phiGSRS (lShare4, MAX_NO_THREADS )
+      Real*4  phivGSRS(MAX_VGS, MAX_NO_THREADS )
+
+      COMMON / GSUM_COMMON_I  / phiGSI, phiVGSI
+      INTEGER phiGSI  (lShare4, MAX_NO_THREADS )
+      INTEGER phivGSI (MAX_VGS, MAX_NO_THREADS )
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***
+
