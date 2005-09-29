@@ -113,7 +113,7 @@ C-      this will not give any side-drag along thin wall.
 C       (but this might just be what we want ...)
 #ifdef NONLIN_FRSURF
         hFacZClosedS = h0FacW(i,j,k,bi,bj) - h0FacW(i,j-1,k,bi,bj)
-        hFacZClosedN = hF0acW(i,j,k,bi,bj) - h0FacW(i,j+1,k,bi,bj)
+        hFacZClosedN = h0FacW(i,j,k,bi,bj) - h0FacW(i,j+1,k,bi,bj)
 #else
         hFacZClosedS = hFacW(i,j,k,bi,bj) - hFacW(i,j-1,k,bi,bj)
         hFacZClosedN = hFacW(i,j,k,bi,bj) - hFacW(i,j+1,k,bi,bj)
