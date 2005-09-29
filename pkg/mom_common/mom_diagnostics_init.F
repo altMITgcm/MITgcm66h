@@ -286,6 +286,17 @@ C--    add diagnostics of tendencies from each terms
        CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I              diagName, diagCode, diagUnits, diagTitle, myThid )
 
+       diagName  = 'Um_Ext  '
+       diagTitle = 'U momentum tendency from external forcing'
+       WRITE(diagCode,'(A,I3.3,A)') 'UU   ', diagNum, 'MR      '
+       CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I              diagName, diagCode, diagUnits, diagTitle, myThid )
+       diagName  = 'Vm_Ext  '
+       diagTitle = 'V momentum tendency from external forcing'
+       WRITE(diagCode,'(A,I3.3,A)') 'VV   ', diagNum, 'MR      '
+       CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I              diagName, diagCode, diagUnits, diagTitle, myThid )
+
 #ifdef ALLOW_MOM_VECINV
        diagName  = 'Um_AdvZ3'
        diagTitle = 'U momentum tendency from Vorticity Advection'
@@ -310,6 +321,7 @@ C--    add diagnostics of tendencies from each terms
        WRITE(diagCode,'(A,I3.3,A)') 'VV   ', diagNum, 'MR      '
        CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I              diagName, diagCode, diagUnits, diagTitle, myThid )
+
 #endif /* ALLOW_MOM_VECINV */
 
 C--    add diagnostics of advective & viscous flux :
