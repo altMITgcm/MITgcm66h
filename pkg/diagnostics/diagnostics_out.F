@@ -396,11 +396,14 @@ C           Time dimension
             CALL MNC_CW_ADD_VATTR_TEXT(cdiag(ndId),'units',
      &             udiag(ndId),myThid)
 
-            IF ((fflags(listId)(1:1) .EQ. ' ')
+            IF ( ( (writeBinaryPrec .EQ. precFloat32)
+     &           .AND. (fflags(listId)(1:1) .NE. 'D')
+     &           .AND. (fflags(listId)(1:1) .NE. 'R') )
      &           .OR. (fflags(listId)(1:1) .EQ. 'R')) THEN
               CALL MNC_CW_RL_W('R',diag_mnc_bn,0,0,
      &             cdiag(ndId), qtmp1, myThid)
-            ELSEIF (fflags(listId)(1:1) .EQ. 'D') THEN
+            ELSEIF ( (writeBinaryPrec .EQ. precFloat64) 
+     &             .OR. (fflags(listId)(1:1) .EQ. 'D') ) THEN
               CALL MNC_CW_RL_W('D',diag_mnc_bn,0,0,
      &             cdiag(ndId), qtmp1, myThid)
             ENDIF
