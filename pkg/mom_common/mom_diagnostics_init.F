@@ -253,6 +253,27 @@ C--    add diagnostics of simple derivative quantities:
 C--    add diagnostics of tendencies from each terms
        diagUnits = 'm/s^2           '
 
+       diagName  = 'UBotDrag'
+       diagTitle = 'U momentum tendency from Bottom Drag'
+       WRITE(diagCode,'(A,I3.3,A)') 'UU   ',diagNum+2,'MR      '
+       CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I              diagName, diagCode, diagUnits, diagTitle, myThid )
+       diagName  = 'VBotDrag'
+       diagTitle = 'V momentum tendency from Bottom Drag'
+       WRITE(diagCode,'(A,I3.3,A)') 'VV   ', diagNum, 'MR      '
+       CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I              diagName, diagCode, diagUnits, diagTitle, myThid )
+       diagName  = 'USidDrag'
+       diagTitle = 'U momentum tendency from Side Drag'
+       WRITE(diagCode,'(A,I3.3,A)') 'UU   ',diagNum+2,'MR      '
+       CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I              diagName, diagCode, diagUnits, diagTitle, myThid )
+       diagName  = 'VSidDrag'
+       diagTitle = 'V momentum tendency from Side Drag'
+       WRITE(diagCode,'(A,I3.3,A)') 'VV   ', diagNum, 'MR      '
+       CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I              diagName, diagCode, diagUnits, diagTitle, myThid )
+
        diagName  = 'Um_Diss '
        diagTitle = 'U momentum tendency from Dissipation'
        WRITE(diagCode,'(A,I3.3,A)') 'UU   ',diagNum+2,'MR      '

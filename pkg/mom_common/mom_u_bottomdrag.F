@@ -89,5 +89,11 @@ C-  No-slip BCs impose a drag at bottom
        ENDDO
       ENDDO
 
+#ifdef ALLOW_DIAGNOSTICS
+      IF (useDiagnostics) THEN
+        CALL DIAGNOSTICS_FILL(uDragTerms,'UBotDrag',k,1,2,bi,bj,myThid)
+      ENDIF
+#endif /* ALLOW_DIAGNOSTICS */
+
       RETURN
       END

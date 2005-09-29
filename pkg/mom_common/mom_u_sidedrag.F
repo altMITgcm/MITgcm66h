@@ -154,5 +154,11 @@ C       (but this might just be what we want ...)
 
 #endif /* (not) SIDEDRAG_OLD_VERSION */
 
+#ifdef ALLOW_DIAGNOSTICS
+      IF (useDiagnostics) THEN
+        CALL DIAGNOSTICS_FILL(uDragTerms,'USidDrag',k,1,2,bi,bj,myThid)
+      ENDIF
+#endif /* ALLOW_DIAGNOSTICS */
+
       RETURN
       END
