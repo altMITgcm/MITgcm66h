@@ -2,7 +2,7 @@ C $Header$
 C $Name$
 
 #include "MOM_COMMON_OPTIONS.h"
-#define CALC_CS_CORNER_EXTENDED
+#undef CALC_CS_CORNER_EXTENDED
 
       SUBROUTINE MOM_CALC_RELVORT3(
      I        bi,bj,k,
