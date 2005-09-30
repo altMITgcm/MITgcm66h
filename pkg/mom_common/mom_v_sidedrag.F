@@ -92,11 +92,10 @@ C       (but this might just be what we want ...)
      &      *_recip_dxV(i+1,j,bi,bj) )
      &   *drF(k)*2.*(
      &                Ahtmp*vFld(i,j)*cosFacV(J,bi,bj)
-     &               -A4tmp*del2v(i,j)*cosFacV(J,bi,bj)
 #ifdef COSINEMETH_III
      &               -viscA4*del2v(i,j)*sqcosFacV(J,bi,bj)
 #else
-     &               -viscA4*del2v(i,j)*cosFacV(J,bi,bj)
+     &               -A4tmp*del2v(i,j)*cosFacV(J,bi,bj)
 #endif
      &              )
        ENDDO
