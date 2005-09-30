@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o fix bug in mom_v_sidedrag (biharmonic viscosity was counted 2 times);
+  note that biharmonic viscosity + no-slip is not tested in any experiment.
 o fix bug in non-linear free-surf side-drag ; generate new output for
   global_ocean.cs32x15(+.thsice) & global_ocean_pressure.
 o make mnc honor the writeBinaryPrec flag for most kinds of output
