@@ -159,7 +159,7 @@ C     for now, just stop
      &       Ro_surf(i,j,bi,bj)-R_low(i,j,bi,bj), etaFld(i,j,bi,bj)
             WRITE(errorMessageUnit,'(A)')
      &       'STOP in CALC_R_STAR : too SMALL rStarFacC !'
-             STOP 'ABNORMAL END: S/R CALC_SURF_DR'  
+             STOP 'ABNORMAL END: S/R CALC_R_STAR'  
           ENDIF
           IF ( rStarFacW(i,j,bi,bj).LT.hFacInf ) THEN  
             numbWrite = numbWrite + 1
@@ -173,7 +173,7 @@ C     for now, just stop
      &        etaFld(i-1,j,bi,bj), etaFld(i,j,bi,bj)
             WRITE(errorMessageUnit,'(A)')
      &       'STOP in CALC_R_STAR : too SMALL rStarFacW !'
-             STOP 'ABNORMAL END: S/R CALC_SURF_DR'  
+             STOP 'ABNORMAL END: S/R CALC_R_STAR'  
           ENDIF
           IF ( rStarFacS(i,j,bi,bj).LT.hFacInf ) THEN  
             numbWrite = numbWrite + 1
