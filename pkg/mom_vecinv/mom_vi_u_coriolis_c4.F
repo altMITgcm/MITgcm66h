@@ -88,10 +88,11 @@ C-      using SadournyCoriolis discretization:
 C-      not using SadournyCoriolis discretization:
 
          vBarXY=0.25*(
-     &       vFld( i , j )*dxG( i , j ,bi,bj)*hFacS( i , j ,k,bi,bj)
-     &      +vFld( i ,j+1)*dxG( i ,j+1,bi,bj)*hFacS( i ,j+1,k,bi,bj)
-     &      +vFld(i-1, j )*dxG(i-1, j ,bi,bj)*hFacS(i-1, j ,k,bi,bj)
+     &      (vFld( i , j )*dxG( i , j ,bi,bj)*hFacS( i , j ,k,bi,bj)
+     &      +vFld(i-1, j )*dxG(i-1, j ,bi,bj)*hFacS(i-1, j ,k,bi,bj))
+     &     +(vFld( i ,j+1)*dxG( i ,j+1,bi,bj)*hFacS( i ,j+1,k,bi,bj)
      &      +vFld(i-1,j+1)*dxG(i-1,j+1,bi,bj)*hFacS(i-1,j+1,k,bi,bj))
+     &               )
          IF (upwindVort3) THEN
           IF (vBarXY.GT.0.) THEN
            vort3u=omega3(i,j)*r_hFacZ(i,j)
