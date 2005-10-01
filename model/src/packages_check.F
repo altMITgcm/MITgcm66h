@@ -107,6 +107,10 @@ CEOP
       IF (usePTRACERS) CALL PACKAGES_CHECK_ERROR('PTRACERS', myThid)
 #endif
 
+#ifndef ALLOW_MATRIX
+      IF (useMATRIX) CALL PACKAGES_CHECK_ERROR('MATRIX', myThid)
+#endif
+
 #ifdef ALLOW_GCHEM
       IF (useGCHEM) CALL GCHEM_CHECK( myThid )
 #else
