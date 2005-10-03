@@ -35,7 +35,7 @@ C=======================================================================
 
       integer i, j
 
-      if(klev.eq.Nr .or. rC(klev).lt.7000.)then
+      if(klev.eq.Nr .or. rC(klev).lt.1000.)then
        rayleighdrag = 1./(31.*86400.*2.)
       else
        rayleighdrag = 0.
@@ -84,7 +84,7 @@ C=======================================================================
 
       integer i, j
 
-      if(klev.eq.Nr .or. rC(klev).lt.7000.)then
+      if(klev.eq.Nr .or. rC(klev).lt.1000.)then
        rayleighdrag = 1./(31.*86400.*2.)
       else
        rayleighdrag = 0.
@@ -132,7 +132,7 @@ C=======================================================================
 
       integer i, j
 
-      if(klev.eq.Nr .or. rC(klev).lt.7000.)then
+      if(klev.eq.Nr .or. rC(klev).lt.1000.)then
        cp = getcon('CP')
        kappa = getcon('KAPPA')
        pNrkappa = (rC(klev)/100000.)**kappa 
