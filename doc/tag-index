@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint57t_post
 o test biharmonic viscosity + no-slip with exp: global_ocean.cs32x15.viscA4
 o finish adding brackets (coriolis S/R, vecinv) in multi-terms sum to get
   same truncation, independent of the face number: affects affects several
