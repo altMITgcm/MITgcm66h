@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o CS-grid: fix divergence contribution to Leith viscosity. Affects (@ 
+  truncation level) 4/5 MLAdjust test results (11&12 digits match).
+
 checkpoint57t_post
 o test biharmonic viscosity + no-slip with exp: global_ocean.cs32x15.viscA4
 o finish adding brackets (coriolis S/R, vecinv) in multi-terms sum to get
