@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o reduce number of exch calls in shap_filt (s2). 
 o CS-grid: fix divergence contribution to Leith viscosity. Affects (@ 
   truncation level) 4/5 MLAdjust test results (11&12 digits match).
 
