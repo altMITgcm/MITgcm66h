@@ -95,6 +95,7 @@ C      ( d_xx +d_yy )^n tmpFld
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 C--        Calculate gradient in X direction:
+#ifndef ALLOW_AUTODIFF_TAMC
            IF ( .NOT.Shap_alwaysExchTr
      &          .AND. useCubedSphereExchange ) THEN
 C          to compute d/dx(tmpFld), fill corners with appropriate values:
@@ -102,6 +103,7 @@ C          to compute d/dx(tmpFld), fill corners with appropriate values:
      &                                 tmpFld(1-Olx,1-Oly,k,bi,bj), 
      &                                 bi,bj, myThid )
            ENDIF
+#endif
            IF ( n.LE.nShapComput ) THEN
 C-         Computational space: del_i
              DO j=0,sNy+1
@@ -124,6 +126,7 @@ C-         Physical space: grad_x
            ENDIF
 
 C--        Calculate gradient in Y direction:
+#ifndef ALLOW_AUTODIFF_TAMC
            IF ( .NOT.Shap_alwaysExchTr
      &          .AND. useCubedSphereExchange ) THEN
 C          to compute d/dy(tmpFld), fill corners with appropriate values:
@@ -131,6 +134,7 @@ C          to compute d/dy(tmpFld), fill corners with appropriate values:
      &                                 tmpFld(1-Olx,1-Oly,k,bi,bj), 
      &                                 bi,bj, myThid )
            ENDIF
+#endif
            IF ( n.LE.nShapComput ) THEN
 C-         Computational space: del_j
              DO j=0,sNy+2
