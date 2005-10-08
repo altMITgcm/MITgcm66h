@@ -2139,7 +2139,7 @@ Clean: clean cleanlinks
 	-rm -f genmake_state genmake_*optfile genmake_warnings make.log run.log *.bak
 
 clean:
-	-rm -rf *.o *.$FS *.p *.$FS90 *.mod ${RMFILES} work.{pc,pcl} *.template *_mod.h *_mod.F90 *.mod-whirl
+	-rm -rf *.o *.$FS *.p *.$FS90 *.mod ${RMFILES} work.{pc,pcl} *.template *_mod.h *_mod.F90 *.mod-whirl ad_input*
 
 cleanlinks:
 	-find . -type l -exec rm {} \;
