@@ -2308,8 +2308,8 @@ ad_input_code_sf.w2f.f: ad_input_code_sf.f mfef90 whirl2f whirl2f_be w2f__types.
 	mv \$@.1 \$@  
 
 # canonicalizer
-ad_input_code_sf.w2f.canon.f: ad_input_code_sf.w2f.f canon.v0.py
-	python canon.v0.py \$< > \$@
+ad_input_code_sf.w2f.canon.f: ad_input_code_sf.w2f.f canon.v1.py
+	python canon.v1.py \$< > \$@
 
 # F -> WHIRL
 ad_input_code_sf.w2f.canon.B: ad_input_code_sf.w2f.canon.f mfef90
