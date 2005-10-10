@@ -435,6 +435,11 @@ C-     Apply open boundary conditions
           CALL OBCS_APPLY_TLOC( bi, bj, k, localTij, myThid )
          ELSEIF (tracerIdentity.EQ.GAD_SALINITY) THEN
           CALL OBCS_APPLY_SLOC( bi, bj, k, localTij, myThid )
+#ifdef ALLOW_PTRACERS
+         ELSEIF (tracerIdentity.GE.GAD_TR1) THEN
+          CALL OBCS_APPLY_PTRACER( bi, bj, k, 
+     &         tracerIdentity-GAD_TR1+1, localTij, myThid )
+#endif /* ALLOW_PTRACERS */
          ENDIF
         ENDIF
 #endif /* ALLOW_OBCS */
@@ -572,6 +577,11 @@ C-     Apply open boundary conditions
           CALL OBCS_APPLY_TLOC( bi, bj, k, localTij, myThid )
          ELSEIF (tracerIdentity.EQ.GAD_SALINITY) THEN
           CALL OBCS_APPLY_SLOC( bi, bj, k, localTij, myThid )
+#ifdef ALLOW_PTRACERS
+         ELSEIF (tracerIdentity.GE.GAD_TR1) THEN
+          CALL OBCS_APPLY_PTRACER( bi, bj, k, 
+     &         tracerIdentity-GAD_TR1+1, localTij, myThid )
+#endif /* ALLOW_PTRACERS */
          ENDIF
         ENDIF
 #endif /* ALLOW_OBCS */

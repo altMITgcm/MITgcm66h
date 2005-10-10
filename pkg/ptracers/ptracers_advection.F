@@ -59,7 +59,7 @@ C Loop over tracers
      I                        PTRACERS_ImplVertAdv(iTracer),
      I                        PTRACERS_advScheme(iTracer),
      I                        PTRACERS_advScheme(iTracer),
-     I                        GAD_TR1,
+     I                        GAD_TR1+iTracer-1,
      I                        uVel, vVel, wVel,
      I                        pTracer(1-Olx,1-Oly,1,1,1,iTracer),
      O                        gPtr(1-Olx,1-Oly,1,1,1,iTracer),
