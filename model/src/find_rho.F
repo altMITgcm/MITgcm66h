@@ -82,14 +82,12 @@ CEOP
        ELSE
         kr        = 1
        ENDIF
-
+       refTemp=tRef(kr)
+       refSalt=sRef(kr)
        dRho = rhoNil-rhoConst
 
        DO j=jMin,jMax
         DO i=iMin,iMax
-         refTemp=tRef(kr)
-         refSalt=sRef(kr)
-
          rholoc(i,j)=rhoNil*(
      &     sBeta*(sFld(i,j,k,bi,bj)-refSalt)
      &   -tAlpha*(tFld(i,j,k,bi,bj)-refTemp) )
