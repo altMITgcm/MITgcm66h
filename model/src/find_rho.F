@@ -77,22 +77,18 @@ CEOP
 
       IF (equationOfState.EQ.'LINEAR') THEN
 
-C ***NOTE***
-C In the linear EOS, to make the static stability calculation meaningful
-C we alway calculate the perturbation with respect to the surface level.
-C **********
+       IF ( usingPCoords ) THEN
+        kr        = Nr 
+       ELSE
+        kr        = 1
+       ENDIF
+
        dRho = rhoNil-rhoConst
 
        DO j=jMin,jMax
         DO i=iMin,iMax
-         kr=ksurfC(i,j,bi,bj)
-         IF (kr.LE.Nr) THEN
-           refTemp=tRef(kr)
-           refSalt=sRef(kr)
-         ELSE
-           refTemp=0. _d 0
-           refSalt=0. _d 0
-         ENDIF 
+         refTemp=tRef(kr)
+         refSalt=sRef(kr)
 
          rholoc(i,j)=rhoNil*(
      &     sBeta*(sFld(i,j,k,bi,bj)-refSalt)
