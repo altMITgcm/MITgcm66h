@@ -78,10 +78,6 @@ C     Coriolis map:
 
 
 C--   Set default "physical" parameters
-      DO K =1,Nr
-       tRef(K) = 30.D0 - FLOAT( K )
-Cml       sRef(K) = 35.D0
-      ENDDO
       nh_Am2              = 1.D0
       gravity             = 9.81D0
       rhoNil              = 999.8D0
