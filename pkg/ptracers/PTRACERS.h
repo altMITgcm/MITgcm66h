@@ -38,6 +38,7 @@ C     PTRACERS parameters
       CHARACTER*(MAX_LEN_FNAM) PTRACERS_long_names(PTRACERS_num)
       CHARACTER*(MAX_LEN_FNAM) PTRACERS_units(PTRACERS_num)
       LOGICAL 
+     &     PTRACERS_monitor_mnc, PTRACERS_monitor_stdio,
      &     PTRACERS_timeave_mdsio, PTRACERS_snapshot_mdsio,
      &     PTRACERS_pickup_write_mdsio, PTRACERS_pickup_read_mdsio,
      &     PTRACERS_timeave_mnc, PTRACERS_snapshot_mnc,
@@ -62,8 +63,10 @@ C     PTRACERS parameters
      &     PTRACERS_units,
      &     PTRACERS_timeave_mdsio, PTRACERS_snapshot_mdsio,
      &     PTRACERS_pickup_write_mdsio, PTRACERS_pickup_read_mdsio,
+     &     PTRACERS_monitor_stdio, PTRACERS_monitor_mnc,
      &     PTRACERS_timeave_mnc, PTRACERS_snapshot_mnc,
      &     PTRACERS_pickup_write_mnc, PTRACERS_pickup_read_mnc
+
 
 C     pTracer  :: passive tracer concentration (tr per unit volume).
 C     gPtr     :: work-space for time-stepping
