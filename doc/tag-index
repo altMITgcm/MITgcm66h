@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o vorticity & strain are now computed without masking, to account for 
+  no-slip-side BC in variable viscosity calculation ; mask is applied
+  anyway later on, before computing advection/coriolis terms.
 o modify exp4 to test new obcs support reading from external files
   and for passive tracers
 o fix behavior of ptracers_monitor when monitor output is written to a 
