@@ -67,9 +67,10 @@ c    &             +uFld( I , J )*recip_dxc( I , J ,bi,bj)
 c    &             -uFld( I ,J-1)*recip_dxc( I ,J-1,bi,bj) )
 
 C       Set strain to zero on boundaries (free-slip)
-        IF (hFacZ(i,j).EQ.0.) THEN
-         strain(I,J)=0.
-        ENDIF
+C       mask is now applied afterwards, outside this S/R.
+c       IF (hFacZ(i,j).EQ.0.) THEN
+c        strain(I,J)=0.
+c       ENDIF
 
        ENDDO
       ENDDO
