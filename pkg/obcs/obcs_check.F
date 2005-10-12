@@ -79,6 +79,7 @@ C     msgBuf      - Informational/error meesage buffer
          CALL PRINT_ERROR( msgBuf , 1)
          WRITE(msgBuf,'(A)')
      &   'OBCS_CHECK: undef ALLOW_OBCS_PRESCRIBE'
+         CALL PRINT_ERROR( msgBuf , 1)
          STOP 'ABNORMAL END: S/R OBCS_CHECK'
         ENDIF
 #endif
@@ -88,5 +89,5 @@ C     msgBuf      - Informational/error meesage buffer
      &                   SQUEEZE_RIGHT,myThid)
 
 #endif /* ALLOW_OBCS */
-      return
-      end
+      RETURN
+      END
