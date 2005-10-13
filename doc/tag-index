@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint57v_post
+o change dome exp. to use variable viscosity in side-drag terms.
 o remove all the files from the cfc_offline test since they are now
   incorporated into tutorial_cfc_offline which has been producing
   identical results for a few days of testing
