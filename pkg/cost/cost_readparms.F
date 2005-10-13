@@ -38,8 +38,9 @@ c     == end of interface ==
 
 c--   Read the namelist input.
       namelist /cost_nml/ 
-     &                   mult_atl, mult_test, mult_tracer
-     &                 , lastinterval
+     &         mult_atl, mult_test, mult_tracer
+     &       , multTheta, multSalt, multUvel, multVvel, multEtan
+     &       , lastinterval
 
       _BEGIN_MASTER( myThid )
 
@@ -47,6 +48,11 @@ c--     Set default values.
         mult_atl              =      0. _d 0
         mult_test             =      0. _d 0
         mult_tracer           =      0. _d 0
+        multTheta             =      0. _d 0
+        multSalt              =      0. _d 0
+        multUvel              =      0. _d 0
+        multVvel              =      0. _d 0
+        multEtan              =      0. _d 0
 
 c--     30*24*3600 = 2592000 = 1 model month
         lastinterval = 2592000.
