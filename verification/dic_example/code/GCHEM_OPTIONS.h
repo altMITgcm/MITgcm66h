@@ -20,6 +20,8 @@ CEOP
 #define DIC_BIOTIC
 #undef  ALLOW_CFC
 #undef  ALLOW_FE
+#undef READ_PAR
+#undef MINFE
 
 #endif /* ALLOW_GCHEM */
 #endif /* GCHEM_OPTIONS_H */
