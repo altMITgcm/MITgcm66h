@@ -70,6 +70,10 @@ C   Ligand,FeL,Fe calculation
  
               FeL = ligand_tot-lig
               freefe(i,j,k,bi,bj) = fe (i,j,k,bi,bj)-FeL
+#ifdef MINFE
+              freefe(i,j,k,bi,bj) = min(freefe(i,j,k,bi,bj),freefemax)
+              fe(i,j,k,bi,bj) = FeL+freefe(i,j,k,bi,bj)
+#endif
           END IF  
          ENDDO
         ENDDO

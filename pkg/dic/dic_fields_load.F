@@ -108,6 +108,14 @@ C      data for the period ahead and the period behind myTime.
          CALL READ_REC_XY_RS( IceFile,ice1,intime1,
      &       myIter,myThid )
        ENDIF
+#ifdef READ_PAR
+       IF ( Filename1 .NE. ' '  ) THEN
+         CALL READ_REC_XY_RS( Filename1,par0,intime0,
+     &       myIter,myThid )
+         CALL READ_REC_XY_RS( Filename1,par1,intime1,
+     &       myIter,myThid )
+       ENDIF
+#endif
 #ifdef ALLOW_FE
        IF ( IronFile .NE. ' '  ) THEN
          CALL READ_REC_XY_RS( IronFile,feinput0,intime0,
@@ -128,6 +136,10 @@ C
        _EXCH_XY_R4(silica1, myThid )
        _EXCH_XY_R4(ice0, myThid )
        _EXCH_XY_R4(ice1, myThid )
+#ifdef READ_PAR
+       _EXCH_XY_R4(par0, myThid )
+       _EXCH_XY_R4(par1, myThid )
+#endif
 #ifdef ALLOW_FE
        _EXCH_XY_R4(feinput0, myThid )
        _EXCH_XY_R4(feinput1, myThid )
@@ -171,6 +183,14 @@ c QQ         also need to check units, and conversion factors
            if (FIce(i,j,bi,bj).lt.1d-2) then
               FIce(i,j,bi,bj) = 0.d0
            endif
+#ifdef READ_PAR
+           IF ( Filename1 .NE. ' '  ) THEN
+            PAR(i,j,bi,bj)    = bWght*par0(i,j,bi,bj)
+     &                          +aWght*par1(i,j,bi,bj)
+           ELSE
+            PAR(i,j,bi,bj) =100.d0
+           ENDIF
+#endif
 #ifdef ALLOW_FE
            IF ( IronFile .NE. ' '  ) THEN
             InputFe(i,j,bi,bj)   = bWght*feinput0(i,j,bi,bj)

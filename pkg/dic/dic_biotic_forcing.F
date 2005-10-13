@@ -235,6 +235,15 @@ C update
          ENDDO
        ENDDO
 
+#ifdef ALLOW_FE
+#ifdef MINFE
+c find free iron and get rid of insoluble part
+       call fe_chem(bi,bj,iMin,iMax,jMin,jMax, PTR_FE, freefe,
+     &                myIter, mythid)
+#endif 
+#endif
+
+
 #ifdef ALLOW_TIMEAVE 
 c save averages
       DO k=1,Nr
