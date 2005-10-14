@@ -34,7 +34,7 @@ c -------------------
       integer mmdd,hhmmss,nsecf2
       character *9 tagname
       integer  nymdb,nhmsb
-      integer absfreq
+      _RL absfreq
 
 c Set Alarm Clocks
 c ----------------
