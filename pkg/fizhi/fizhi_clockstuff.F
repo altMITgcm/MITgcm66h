@@ -752,7 +752,8 @@ C***********************************************************************
       NTIME  = NSEC-NSEC0                                      
       IF(NTIME.LT.0) NTIME  = NTIME + NCYCLE
       NALARM2 = NTIME                                           
-      IF(MHMS.NE.0) THEN
+      IF(MHMS.NE.0)NALARM2 = MOD( NALARM2,NSECF(MHMS) )
+      IF(MHMS.GE.1000000) THEN
        testnymd=nymd0
        testnhms=nhms0
        NMMDD = MHMS / 1000000
