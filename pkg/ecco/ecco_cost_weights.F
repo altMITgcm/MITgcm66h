@@ -286,6 +286,84 @@ c--       is no need to add the zonal and meridional directions.
         enddo
       enddo
 
+#ifdef ALLOW_SALT0_COST_CONTRIBUTION
+      if ( salt0errfile .NE. ' ' ) then
+         call mdsreadfield( salt0errfile, 32, 'RL', Nr,
+     &         wsaltLev, 1, mythid)
+         do bj = jtlo,jthi
+          do bi = itlo,ithi
+           do k = 1,nr
+            do j = jmin,jmax
+             do i = imin,imax
+c--           Test for missing values.
+              if ( wsaltLev(i,j,k,bi,bj).eq.0 ) then
+                 wsaltLev(i,j,k,bi,bj) = 0. _d 0
+              else
+                 wsaltLev(i,j,k,bi,bj)=frame(i,j)/(
+     $                wsaltLev(i,j,k,bi,bj)*wsaltLev(i,j,k,bi,bj) )
+              endif
+             enddo
+            enddo
+           enddo
+          enddo
+         enddo
+      else
+         do bj = jtlo,jthi
+          do bi = itlo,ithi
+           do k = 1,nr
+            do j = jmin,jmax
+             do i = imin,imax
+                wsaltLev(i,j,k,bi,bj)=ratio/(wsalt(k,bi,bj)
+     $               *wsalt(k,bi,bj)) *frame(i,j)
+             enddo
+            enddo
+           enddo
+          enddo
+         enddo
+      endif
+      call active_write_xyz( 'wsaltLev', wsaltLev,
+     &     1, 0, mythid, dummy)
+#endif
+
+#ifdef ALLOW_THETA0_COST_CONTRIBUTION
+      if ( temp0errfile .NE. ' ' ) then
+         call mdsreadfield( temp0errfile, 32, 'RL', Nr,
+     &         wthetaLev, 1, mythid)
+         do bj = jtlo,jthi
+          do bi = itlo,ithi
+           do k = 1,nr
+            do j = jmin,jmax
+             do i = imin,imax
+c--           Test for missing values.
+              if ( wthetaLev(i,j,k,bi,bj).eq.0 ) then
+                 wthetaLev(i,j,k,bi,bj) = 0. _d 0
+              else
+                 wthetaLev(i,j,k,bi,bj)=frame(i,j)/(
+     $                wthetaLev(i,j,k,bi,bj)*wthetaLev(i,j,k,bi,bj) )
+              endif
+             enddo
+            enddo
+           enddo
+          enddo
+         enddo
+      else
+         do bj = jtlo,jthi
+          do bi = itlo,ithi
+           do k = 1,nr
+            do j = jmin,jmax
+             do i = imin,imax
+                wthetaLev(i,j,k,bi,bj)=ratio/(wtheta(k,bi,bj)
+     $               *wtheta(k,bi,bj)) *frame(i,j)
+             enddo
+            enddo
+           enddo
+          enddo
+         enddo
+      endif
+      call active_write_xyz( 'wthetaLev', wthetaLev,
+     &     1, 0, mythid, dummy)
+#endif
+
 #if (defined (ALLOW_ARGO_SALT_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDS_COST_CONTRIBUTION)|| \
      defined (ALLOW_CTDSCLIM_COST_CONTRIBUTION))
