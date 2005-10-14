@@ -52,6 +52,7 @@ C                          are written to post-processing files.
      &     PTRACERS_diffK4,
      &     PTRACERS_diffKr,
      &     PTRACERS_diffKrNr,
+     &     PTRACERS_ref,
      &     PTRACERS_useGMRedi,
      &     PTRACERS_useKPP,
      &     PTRACERS_Iter0,
@@ -85,6 +86,7 @@ C     Set defaults values for parameters in PTRACERS.h
         PTRACERS_diffKr(iTracer)=UNSET_RL
         DO k=1,Nr
           PTRACERS_diffKrNr(k,iTracer)=diffKrNrS(k)
+          PTRACERS_ref     (k,iTracer)=0. _d 0
         ENDDO
         PTRACERS_useGMRedi(iTracer)=useGMRedi
         PTRACERS_useKPP(iTracer)=useKPP
