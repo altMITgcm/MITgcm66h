@@ -68,6 +68,7 @@ c--   Read the namelist input.
      &                   udrifterrfile, vdrifterrfile,
      &                   curmtrufile,curmtrvfile,
      &                   salterrfile, temperrfile, velerrfile,
+     &                   salt0errfile, temp0errfile, vel0errfile,
      &                   hflux_errfile, sflux_errfile,
      &                   tauu_errfile, tauv_errfile,
      &                   atemp_errfile, aqh_errfile, 
