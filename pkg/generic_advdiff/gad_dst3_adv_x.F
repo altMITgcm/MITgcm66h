@@ -40,7 +40,7 @@ C     uFld   :: velocity [m/s], zonal component
       _RL psiP,psiM,thetaP,thetaM
       _RL uFld
       _RL smallNo
-      _RL Rjjm,Rjjp
+c     _RL Rjjm,Rjjp
 
       IF (inAdMode) THEN
        smallNo = 1.0D-20
@@ -63,6 +63,9 @@ c       uFld = uVel(i,j,k,bi,bj)
         cfl=abs(uFld*deltaTloc*recip_dxC(i,j,bi,bj))
         d0=(2.-cfl)*(1.-cfl)*oneSixth
         d1=(1.-cfl*cfl)*oneSixth
+#ifdef ALLOW_MATRIX
+        IF (.NOT.useMATRIX) THEN
+#endif /* ALLOW_MATRIX */
         IF ( ABS(Rj).LT.smallNo .OR.
      &       ABS(Rjm).LT.smallNo ) THEN
          thetaP=0.
@@ -84,6 +87,15 @@ c       uFld = uVel(i,j,k,bi,bj)
      &      *( Tracer(i-1,j) + psiP*Rj )
      &  +0.5*(uTrans(i,j)-abs(uTrans(i,j)))
      &      *( Tracer( i ,j) - psiM*Rj )
+#ifdef ALLOW_MATRIX
+        ELSE
+          uT(i,j)=
+     &     0.5*(uTrans(i,j)+abs(uTrans(i,j)))
+     &        *( Tracer(i-1,j) + (d0*Rj+d1*Rjm) )
+     &    +0.5*(uTrans(i,j)-abs(uTrans(i,j)))
+     &        *( Tracer( i ,j) - (d0*Rj+d1*Rjp) )
+        ENDIF
+#endif /* ALLOW_MATRIX */
 
        ENDDO
       ENDDO
