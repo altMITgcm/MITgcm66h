@@ -198,7 +198,7 @@ C--    Integrate continuity vertically for vertical velocity
      I                       myThid )
  
 #ifdef EXACT_CONSERV
-       IF ( k.EQ.Nr .AND. myTime.NE. 0. _d 0 .AND.
+       IF ( k.EQ.Nr .AND. myTime.NE.baseTime .AND.
      &      useRealFreshWaterFlux .AND. usingPCoords ) THEN
 
           DO j=1,sNy
