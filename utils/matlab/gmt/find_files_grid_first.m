@@ -31,7 +31,7 @@ fall = sort(unique(files));
 m = regexp(fall, 'grid.+', 'match');
 grid_files = {};
 data_files = {};
-fordered = {}
+fordered = {};
 for i = 1:length(m)
   if not(isempty(m{i}))
     fordered{end+1} = fall{i};
