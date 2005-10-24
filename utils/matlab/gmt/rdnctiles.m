@@ -47,7 +47,7 @@ if nargin < 3
   tlev = {};
 end
 if nargin < 4 || isempty(flag)
-  flag = 'oldflat'
+  flag = 'oldflat';
 end
 if nargin > 4
   dlev = dblev;
@@ -55,7 +55,7 @@ end
 
 switch lower(flag)
  case 'oldflat'
-  error(['the ''oldflat'' format is not yet implemented.']);
+  % error(['the ''oldflat'' format is not yet implemented.']);
  case 'compact'
   error(['the ''compact'' format is not yet implemented.']);
  case 'bytile'
@@ -122,7 +122,7 @@ end
 res = [];
 switch lower(flag)
  case 'oldflat'
-  res = rdnctiles_oldflat(fall,vnames,tlev,dlev);
+  res = rdnctiles_oldflat(fall,vit,dlev);
  
  case 'compact'
   

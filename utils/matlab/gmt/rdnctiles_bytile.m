@@ -3,7 +3,7 @@ function [tlist] = rdnctiles_bytile(fall,vit, dlev)
 % Function [tlist] = rdnctiles_bytile(fall,vit, dlev)
 %
 % INPUTS
-%   fpat   cell array of file names
+%   fall   cell array of file names
 %   vit    struct containing variable and time information
 %            vit.tdname : "time" dim name (DEF: 'T')
 %            vit.tdname : "time" coord var name (DEF: 'iter')
