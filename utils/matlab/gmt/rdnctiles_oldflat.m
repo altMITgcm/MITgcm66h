@@ -97,8 +97,7 @@ for fi = 1:length(fall)
     % get the corresponding file-local indicies and global-assembly
     % indicies along the time dimension
     loc_times = nc{vit.tvname}(:);
-    [v,ilocal,iglobal] = ...
-        intersect( vit.vars.(vread{iv}), loc_times );
+    [v,ind1,ind2] = intersect( vit.vars.(vread{iv}), loc_times );
     
     % only read the desired time values based on:
     %   the local  "kt" indicies and
@@ -143,13 +142,13 @@ for fi = 1:length(fall)
     % global X,Y indicies
     xk = nc.('exch2_txglobalo')(:) - 1 + kx;
     yk = nc.('exch2_tyglobalo')(:) - 1 + ky;
-    if length(ilocal) > 0
-      for jj = 1:length(ilocal)
-        kt = ilocal(jj);
+    if length(ind1) > 0
+      for jj = 1:length(ind1)
+        kt = ind2(jj);
         eval([ 'tmpv =  nc{vread{iv}}(' indstr ');' ]);
         sz = size(tmpv);
         nd = length(sz);
-        tk = iglobal(jj);
+        tk = ind1(jj);
         comm = [ 'res.var.(char(vread{iv}))(' ...
                  rindstr ') = permute(tmpv,[nd:-1:1]);' ];
         eval(comm);
