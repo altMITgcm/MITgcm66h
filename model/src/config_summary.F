@@ -402,6 +402,8 @@ C     zcoord ::
      &'   /* Convective adjustment interval ( s ) */')
       CALL WRITE_0D_L( forcing_In_AB,INDEX_NONE,'forcing_In_AB =',
      &'   /* put T,S Forcing in Adams-Bash. stepping */')
+      CALL WRITE_0D_L( doAB_onGtGs, INDEX_NONE, 'doAB_onGtGs =',
+     &  ' /* apply AB on Tendencies (rather than on T,S)*/')
       CALL WRITE_0D_R8( abEps, INDEX_NONE,'abEps =',
      &'   /* Adams-Bashforth-2 stabilizing weight */')
 #ifdef ALLOW_ADAMSBASHFORTH_3

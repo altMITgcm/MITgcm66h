@@ -232,6 +232,7 @@ C--   Time stepping parameters
       nEndIter          = nIter0+nTimeSteps
       endTime           = deltaT*float(nEndIter)
       forcing_In_AB     = .TRUE.
+      doAB_onGtGs       = .TRUE.
       abEps             = 0.01
 #ifdef ALLOW_ADAMSBASHFORTH_3
       alph_AB           = 0.5 _d 0
