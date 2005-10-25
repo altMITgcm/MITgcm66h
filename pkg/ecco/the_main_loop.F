@@ -737,10 +737,10 @@ C--   Calculate float trajectories
         CALL AUTODIFF_INADMODE_SET( myThid )
 #endif
 
-C--   State-variables statistics (time-aver, diagnostics ...)
-      CALL TIMER_START('DO_STATEVARS_DIAGS  [FORWARD_STEP]',myThid)
-      CALL DO_STATEVARS_DIAGS( myTime, myIter, myThid )
-      CALL TIMER_STOP ('DO_STATEVARS_DIAGS  [FORWARD_STEP]',myThid)
+C--   State-variables time-averaging
+      CALL TIMER_START('DO_STATEVARS_TAVE   [FORWARD_STEP]',myThid)
+      CALL DO_STATEVARS_TAVE( myTime, myIter, myThid )
+      CALL TIMER_STOP ('DO_STATEVARS_TAVE   [FORWARD_STEP]',myThid)
 
 #ifndef ALLOW_OFFLINE
 #ifdef ALLOW_MONITOR
