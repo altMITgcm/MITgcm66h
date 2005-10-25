@@ -6,7 +6,7 @@
  &EXF_NML
 #
  useExfYearlyFields = .TRUE.,
- useExfCheckRange   = .TRUE.,
+ useExfCheckRange   = .FALSE.,
 #
 # hfluxstartdate1   = 19920101,
 # hfluxstartdate2   = 30000,
