@@ -197,21 +197,21 @@ C Load p to the kappa into a temporary array
              DO k = 1,nplevs1
               p = plevs1(k)
               call prestopres(qprs(1,1,k),qinp,pkz,pksrf,0.,p,sNx,sNy,
-     .                                                 nlevels(listId) )
+     .                                     nlevels(listId),myThid )
              ENDDO
             elseif(fflags(listId)(3:3).eq.'2')then
              nlevsout = nplevs2
              DO k = 1,nplevs2
               p = plevs2(k)
               call prestopres(qprs(1,1,k),qinp,pkz,pksrf,0.,p,sNx,sNy,
-     .                                                 nlevels(listId) )
+     .                                     nlevels(listId),myThid )
              ENDDO
             elseif(fflags(listId)(3:3).eq.'3')then
              nlevsout = nplevs3
              DO k = 1,nplevs3
               p = plevs3(k)
               call prestopres(qprs(1,1,k),qinp,pkz,pksrf,0.,p,sNx,sNy,
-     .                                                 nlevels(listId) )
+     .                                     nlevels(listId),myThid )
              ENDDO
             endif
 
