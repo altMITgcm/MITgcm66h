@@ -588,6 +588,17 @@ C     Grid along selected grid lines
       CALL WRITE_XY_YLINE_RS( rAs, coordLine, tileLine, 
      I 'rAs','( m - cartesian, degrees - spherical )')
 
+      WRITE(msgBuf,'(A)')
+     &'// ======================================================='
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, 
+     &                    SQUEEZE_RIGHT , 1)
+      WRITE(msgBuf,'(A)') '// End of Model config. summary'
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, 
+     &                    SQUEEZE_RIGHT , 1)
+      WRITE(msgBuf,'(A)')
+     &'// ======================================================='
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &  SQUEEZE_RIGHT , 1)
       WRITE(msgBuf,'(A)') ' '
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
