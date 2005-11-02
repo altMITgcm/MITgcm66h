@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
-#include "PACKAGES_CONFIG.h"
-#include "CPP_OPTIONS.h"
+#include "RW_OPTIONS.h"
 
 C--  File read_write_rec.F: Routines to handle mid-level I/O interface.
 C--   Contents

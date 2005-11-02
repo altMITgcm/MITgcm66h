@@ -1,8 +1,7 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
-#include "CPP_OPTIONS.h"
+#include "RW_OPTIONS.h"
 
 #undef  MULTIPLE_RECORD_STATE_FILES
 
@@ -31,9 +30,6 @@ C     == Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "DYNVARS.h"
-#include "GRID.h" 
-#include "EOS.h"
       LOGICAL  DIFFERENT_MULTIPLE
       EXTERNAL DIFFERENT_MULTIPLE
       INTEGER  IO_ERRCOUNT
