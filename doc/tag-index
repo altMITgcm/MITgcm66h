@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint57w_post
 o pkg/mdsio: use MAX_LEN_FNAM (instead of hard coded 80) for file-names
              fix the singleCpuIO RS version of MDSWRITEFIELD
    and add a WARNING if using globalFiles=T with multi-processors.
