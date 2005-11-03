@@ -401,10 +401,6 @@ C     Define variables from FFIELDS.h
      &     'Sea surface salinity for relaxation', myThid)
 
 
-#ifdef ALLOW_AUTODIFF_MONITOR
-      CALL AUTODIFF_INI_MODEL_IO( myThid )
-#endif
-
       ENDIF
 #endif
 
