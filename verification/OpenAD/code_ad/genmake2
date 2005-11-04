@@ -2365,7 +2365,7 @@ ad_input_code_sf.w2f.canon.xb.x2w.w2f.rs.f: ad_input_code_sf.w2f.canon.xb.x2w.w2
 
 # postprocess F'
 ad_input_code_sf.w2f.canon.xb.x2w.w2f.rs.pp.f: ad_input_code_sf.w2f.canon.xb.x2w.w2f.rs.f multi-pp.pl
-	perl multi-pp.pl \$<
+	perl multi-pp.pl -inline=../code_ad/ad_inline.f \$<
 
 # extract all transformed modules 
 all_mods.xb.x2w.w2f.pp.f: ad_input_code_sf.w2f.canon.xb.x2w.w2f.rs.pp.f
