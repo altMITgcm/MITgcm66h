@@ -2288,12 +2288,12 @@ openad: ad_input_code.w2f.canon.xb.x2w.w2f.rs.pp.f
 .PHONY: openad
 
 CB2MFILES= cb2m1.csh cb2m1.awk cb2m2.bash 
-# create the module files:
-\$(CB2M_F90_SRC_FILES) : \$(ALL_LINKED_FILES) \$(CB2MFILES) 
+# create the module files and change the header files
+\$(CB2M_F90_SRC_FILES) \$(addsuffix _mod.h, \$(CB2M_F90_SRC_NAMES)) : \$(ALL_LINKED_FILES) \$(CB2MFILES) 
 	./cb2m1.csh \$(CB2M_F90_SRC_NAMES)
 
 # change everybody else to use the module files:
-\$(CB2M_F77_TO_FF90_SRC_FILES): \$(CB2M_F90_SRC_FILES) 
+\$(CB2M_F77_TO_FF90_SRC_FILES): \$(addsuffix _mod.h, \$(CB2M_F90_SRC_NAMES)) \$(CB2M_F90_SRC_FILES) 
 	./cb2m2.bash
 
 # makefile debug rule
