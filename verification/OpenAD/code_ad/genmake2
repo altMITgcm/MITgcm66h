@@ -2205,7 +2205,7 @@ for i in $AD_FILES ; do
     printf " $i" >> $MAKEFILE
 done
 echo >> $MAKEFILE
-#rm -f ad_files
+rm -f ad_files
 
 cat >>$MAKEFILE <<EOF
 
