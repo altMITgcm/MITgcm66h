@@ -31,7 +31,7 @@ C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine Arguments ==
       INTEGER bi,bj,k
       _RL  gTracer(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-      INTEGER myIter, myThid
+      INTEGER myThid
 #ifdef NONLIN_FRSURF
 C     == Local variables ==
       INTEGER i,j

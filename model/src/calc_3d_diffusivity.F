@@ -62,9 +62,11 @@ C     i, j, k    :: Loop counters
 C     iTr        :: passive tracer index
 C     msgBuf     :: message buffer
       INTEGER i,j,k
-      INTEGER iTr
       _RL KbryanLewis79
       CHARACTER*(MAX_LEN_MBUF) msgBuf
+#ifdef ALLOW_PTRACERS
+      INTEGER iTr
+#endif
 CEOP
 
       IF ( trIdentity.EQ.GAD_TEMPERATURE) THEN

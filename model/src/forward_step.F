@@ -115,7 +115,9 @@ C     myThid - thread number for this instance of the routine.
       _RL     myTime
 
 C     == Local variables ==
+#ifdef COMPONENT_MODULE
       INTEGER myItP1
+#endif
 CEOP
 
 #ifdef ALLOW_DEBUG

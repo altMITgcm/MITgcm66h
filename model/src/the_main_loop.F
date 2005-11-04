@@ -111,11 +111,13 @@ C     myThid - thread number for this instance of the routine.
 
 C     !FUNCTIONS:
 C     == Functions ==
+#ifdef ALLOW_RUNCLOCK
       LOGICAL RUNCLOCK_CONTINUE
+      LOGICAL RC_CONT
+#endif
 
 C     !LOCAL VARIABLES:
 C     == Local variables ==
-      LOGICAL RC_CONT
       integer iloop
 #ifdef ALLOW_AUTODIFF_TAMC
       integer ilev_1

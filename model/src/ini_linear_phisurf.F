@@ -44,7 +44,6 @@ C     !LOCAL VARIABLES:
 C     === Local variables ===
 C     bi,bj  - Loop counters
 C     I,J,K
-      CHARACTER*(MAX_LEN_MBUF) msgBuf
       INTEGER bi, bj
       INTEGER I, J, K
       _RL     rhoLoc

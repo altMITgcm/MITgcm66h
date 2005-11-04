@@ -71,8 +71,10 @@ C     myTime - Current time of simulation ( s )
 
 C     !LOCAL VARIABLES:
       CHARACTER*(MAX_LEN_MBUF) suff
-      CHARACTER*(1) pf
       INTEGER iRec
+#ifdef ALLOW_MNC
+      CHARACTER*(1) pf
+#endif
 CEOP
 
       IF ( 

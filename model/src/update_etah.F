@@ -41,8 +41,8 @@ C     !LOCAL VARIABLES:
 C     Local variables in common block
 
 C     Local variables
-C     i,j,k,bi,bj  :: Loop counters
-      INTEGER i,j,k,bi,bj
+C     i,j,bi,bj  :: Loop counters
+      INTEGER i,j,bi,bj
 CEOP
 
 

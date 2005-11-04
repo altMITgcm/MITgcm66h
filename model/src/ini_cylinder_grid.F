@@ -59,7 +59,6 @@ C     I,J,K
       INTEGER bi, bj
       INTEGER  I,  J
       _RL dtheta, thisRad, xG0, yG0
-      CHARACTER*(MAX_LEN_MBUF) msgBuf
 
 C     "Long" real for temporary coordinate calculation
 C      NOTICE the extended range of indices!!

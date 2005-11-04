@@ -54,7 +54,9 @@ C     oldPrc :: Temp. for holding I/O precision
 C     fn     :: Temp. for building file name string.
 C     lgf    :: Flag to indicate whether to use global file mode.
       LOGICAL permCheckPoint, tempCheckPoint  
+#ifdef ALLOW_CAL
       INTEGER thisdate(4), prevdate(4)
+#endif
 CEOP
 
       permCheckPoint = .FALSE.

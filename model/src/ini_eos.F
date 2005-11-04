@@ -33,10 +33,8 @@ C     myThid -  Number of this instance of INI_CORI
 
 C     !LOCAL VARIABLES:
 C     == Local variables ==
-C     bi,bj  - Loop counters
-C     I,J,K
-      INTEGER bi, bj
-      INTEGER  I,  J,  K
+C     I,K    - Loop counters
+      INTEGER  I,  K
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       
       IF ( .NOT.fluidIsWater ) RETURN

@@ -42,7 +42,6 @@ C     myThid  :: Thread number for this instance of the routine.
       INTEGER myIter
       INTEGER myThid
       INTEGER bi,bj
-      LOGICAL UpdateEtaN_EtaH
       _RL uFld(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy)
       _RL vFld(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy) 
 
@@ -58,7 +57,7 @@ C     hDivFlow :: Div. Barotropic Flow [transport unit m3/s]
       _RL uTrans(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RL vTrans(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RL hDivFlow(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
-      _RL wSurf, facEmP
+      _RL facEmP
 CEOP
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|

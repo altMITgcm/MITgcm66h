@@ -33,13 +33,14 @@ C     myThid - Thread number for this instance of the routine.
       _RL myTime
       INTEGER myIter
       INTEGER myThid
+CEOP
 
 C     !LOCAL VARIABLES:
 C     == Local variables
 C     bi, bj
+#ifdef ALLOW_AIM
       INTEGER bi, bj
-
-CEOP
+#endif
 
 #ifdef ALLOW_DEBUG
       IF ( debugLevel .GE. debLevB ) 

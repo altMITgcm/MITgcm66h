@@ -36,7 +36,7 @@ C     myThid ::  Number of this instances
 C     !LOCAL VARIABLES:
 C     === Local variables ===
 C     msgBuf      :: Informational/error meesage buffer
-      CHARACTER*(MAX_LEN_MBUF) msgBuf
+c     CHARACTER*(MAX_LEN_MBUF) msgBuf
 CEOP
 
 #ifdef ALLOW_RUNCLOCK

@@ -35,12 +35,12 @@ C     == Routine arguments ==
 C     myThid -  Number of this instance of INI_PSURF 
       INTEGER myThid
 
+#ifdef ALLOW_NONHYDROSTATIC
 C     !LOCAL VARIABLES:
 C     == Local variables ==
       INTEGER bi,bj,I,J,K
 CEOP
 
-#ifdef ALLOW_NONHYDROSTATIC
 ceh3 needs an IF ( useNONHYDROSTATIC ) THEN
 
 C--   Initialise surface position anomaly to zero

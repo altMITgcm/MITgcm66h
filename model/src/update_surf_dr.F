@@ -38,8 +38,8 @@ C     myThid - Thread number for this instance of the routine.
 C     !LOCAL VARIABLES:
 #ifdef NONLIN_FRSURF
 C     Local variables
-C     i,j,k,bi,bj - loop counter
-      INTEGER i,j,k,bi,bj
+C     i,j,bi,bj - loop counter
+      INTEGER i,j,bi,bj
       INTEGER ks
 CEOP
 

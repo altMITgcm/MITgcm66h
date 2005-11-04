@@ -35,7 +35,9 @@ CEOP
 C     !LOCAL VARIABLES:
 C     msgBuf - Used for informational I/O.
       CHARACTER*(MAX_LEN_MBUF) msgBuf
+#ifdef ALLOW_MNC
       INTEGER i
+#endif
 
 C     load grid spacing (vector) from files
       CALL LOAD_GRID_SPACING( myThid )

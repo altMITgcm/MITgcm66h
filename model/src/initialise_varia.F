@@ -82,7 +82,7 @@ C     == Routine arguments ==
 
 C     !LOCAL VARIABLES:
 C     == Local variables ==
-      INTEGER bi,bj,K,iMin,iMax,jMin,jMax
+      INTEGER bi,bj,iMin,iMax,jMin,jMax
 CEOP
 
 #ifdef ALLOW_DEBUG

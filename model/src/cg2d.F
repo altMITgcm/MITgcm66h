@@ -92,14 +92,6 @@ C     I, J, N     - Loop counters ( N counts CG iterations )
       _RL    sumRHS,sumRHStile
       _RL    rhsMax
       _RL    rhsNorm
-
-      INTEGER OLw
-      INTEGER OLe
-      INTEGER OLn
-      INTEGER OLs
-      INTEGER exchWidthX
-      INTEGER exchWidthY
-      INTEGER myNz
 CEOP
 
 

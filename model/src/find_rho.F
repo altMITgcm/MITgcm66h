@@ -801,7 +801,7 @@ C     k    :: Level of Theta/Salt slice
 C     !LOCAL VARIABLES:
 C     == Local variables ==
       INTEGER i,j, localWarning
-      character*(max_len_mbuf) msgbuf
+c     character*(max_len_mbuf) msgbuf
 CEOP
 
       localWarning = 0
