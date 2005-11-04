@@ -2359,8 +2359,9 @@ ad_input_code_sf.w2f.canon.xb.x2w.w2f.f: ad_input_code_sf.w2f.canon.xb.x2w.B whi
 	./whirl2f -openad \$<
 
 # undo slice hiding 
+# insert template directives
 ad_input_code_sf.w2f.canon.xb.x2w.w2f.rs.f: ad_input_code_sf.w2f.canon.xb.x2w.w2f.f reslicer.py
-	python reslicer.py \$< > \$@
+	python reslicer.py \$<  | sed -f ../code_ad/insertTemplateDir.sed > \$@
 
 # postprocess F'
 ad_input_code_sf.w2f.canon.xb.x2w.w2f.rs.pp.f: ad_input_code_sf.w2f.canon.xb.x2w.w2f.rs.f multi-pp.pl
