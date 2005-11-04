@@ -392,7 +392,6 @@ C     myThid      :: my Thread Id number
       INTEGER power
       LOGICAL useFract
       _RS regMask(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RS arrMask(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS arrArea(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL specialVal
       LOGICAL exclSpVal

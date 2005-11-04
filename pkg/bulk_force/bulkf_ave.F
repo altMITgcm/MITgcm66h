@@ -30,7 +30,7 @@ c     == routine arguments ==
 #ifdef ALLOW_BULK_FORCE
 #ifdef ALLOW_TIMEAVE
 
-      integer i,j,k
+      integer i,j
 
 C--     Time-average
           do j = 1,sny

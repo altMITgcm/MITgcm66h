@@ -93,6 +93,7 @@ C Use the biggest of nplevs 1-3 (or any others) for the size of qprs
       _RL pksrf(sNx,sNy)
       _RL p
       _RL kappa
+      _RL oneRL
 #ifdef NONLIN_FRSURF
       INTEGER jpoint1,ipoint1
       INTEGER jpoint2,ipoint2
@@ -105,6 +106,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
         IF(fflags(listId)(2:2).eq.'P') then
           kappa = getcon('KAPPA')
+          oneRL = 1. _d 0
 
 c If nonlinear free surf is active, need averaged pressures
 #ifdef NONLIN_FRSURF
@@ -137,7 +139,7 @@ C if fizhi is being  used, may need to get physics grid pressures
 
            DO bj = myByLo(myThid), myByHi(myThid)
             DO bi = myBxLo(myThid), myBxHi(myThid)
-             call getdiag(1.,undef,qtmpsrf(1-OLx,1-OLy,bi,bj),
+             call getdiag(oneRL,undef,qtmpsrf(1-OLx,1-OLy,bi,bj),
      .                       jpoint1,0,ipoint1,0,bi,bj,myThid)
             ENDDO
            ENDDO

@@ -41,7 +41,6 @@ C     !LOCAL VARIABLES:
       INTEGER im, ix, iv
       PARAMETER ( iv = nStats - 2 , im = nStats - 1 , ix = nStats )
       INTEGER i, j, k, klev, nUnit 
-      CHARACTER*(MAX_LEN_MBUF) msgBuf
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 

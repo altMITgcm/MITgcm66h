@@ -27,7 +27,7 @@ CEOP
 
 C     !LOCAL VARIABLES:
       CHARACTER*(MAX_LEN_MBUF) msgBuf
-      INTEGER k,l,n,m
+      INTEGER n,m
 
       _BEGIN_MASTER(myThid)
 
