@@ -39,7 +39,10 @@ C     !LOCAL VARIABLES:
       CHARACTER*(MAX_LEN_MBUF) msgBuf   
       _RL dT
       _RL statsTemp(6)
-      INTEGER time_as_int, i
+c     INTEGER time_as_int
+#ifdef ALLOW_MNC
+      INTEGER i
+#endif
 
       dT=deltaTclock
 

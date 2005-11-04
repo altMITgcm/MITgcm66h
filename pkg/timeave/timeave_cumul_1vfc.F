@@ -24,7 +24,7 @@ C     fldtave - time averaged Field
 C     fld1  - Input Field
 C     fld2  - Input Factor
 C     Ksize - 3rd dimension of local arrays (Input and Output fields)
-      INTEGER Ksize, dir
+      INTEGER Ksize
       _RL fld1(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Ksize,nSx,nSy)
       _RS fld2(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Ksize,nSx,nSy)
       _RL fldtave(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Ksize,nSx,nSy)

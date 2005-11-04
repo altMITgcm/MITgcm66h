@@ -33,10 +33,11 @@ C     myTime - Current time of simulation ( s )
 #ifdef ALLOW_TIMEAVE
 
 C     == Local variables ==
-      INTEGER I, J, K
+      INTEGER k
       _RL DDTT
-      _RL tempArray (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+#ifdef ALLOW_CAL
       INTEGER thisdate(4), prevdate(4)
+#endif
  
 C-    Initialize fields for the first call ever
       IF ( myIter .EQ. nIter0 ) THEN
@@ -78,7 +79,7 @@ c       CALL TIMEAVE_RESET(hFacCtave, Nr, bi, bj, myThid)
 c       CALL TIMEAVE_RESET(hFacWtave, Nr, bi, bj, myThid)
 c       CALL TIMEAVE_RESET(hFacStave, Nr, bi, bj, myThid)
 #endif /* NONLIN_FRSURF */
-        DO K=1,Nr
+        DO k=1,Nr
          TimeAve_half(k,bi,bj)=0.
          TimeAve_full(k,bi,bj)=0.
         ENDDO

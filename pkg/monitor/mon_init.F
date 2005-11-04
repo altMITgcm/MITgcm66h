@@ -25,8 +25,7 @@ C     !INPUT PARAMETERS:
 CEOP
 
 C     !LOCAL VARIABLES:
-      INTEGER i
-      character*(MAX_LEN_MBUF) msgbuf
+c     CHARACTER*(MAX_LEN_MBUF) msgbuf
 
 C     Since monitor does not have a "data" file of its own, all its
 C     output flags are set in "model/src/ini_parms.F".  Please see the

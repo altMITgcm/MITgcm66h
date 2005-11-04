@@ -27,7 +27,6 @@ C Common
       LOGICAL globalFile
 C Local
       CHARACTER*(2) fType
-      INTEGER nNz
       INTEGER s1Lo,s1Hi,s2Lo,s2Hi
       CHARACTER*(80) fullName
 

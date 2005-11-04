@@ -49,8 +49,10 @@ CEOP
 
 C     == Local variables ==
 C     i,j          :: Loop counters
-      _RL dtFac, dtFacR, fwFac, heatFac, locTemp
-      _RL oceTfreez
+      _RL dtFac, fwFac, heatFac
+#ifdef ALLOW_AIM
+      _RL oceTfreez, locTemp, dtFacR
+#endif
       INTEGER i,j
 
       IF ( .NOT.stepFwd_oceMxL ) RETURN

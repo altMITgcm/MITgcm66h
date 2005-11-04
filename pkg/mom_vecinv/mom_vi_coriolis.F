@@ -32,7 +32,7 @@ C     == Routine arguments ==
 
 C     == Local variables ==
       INTEGER I,J
-      _RL vBarXY,uBarXY,vort3u,vort3v
+      _RL vBarXY,uBarXY
       _RS epsil
       epsil = 1. _d -9
 

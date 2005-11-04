@@ -47,7 +47,6 @@ C !LOCAL VARIABLES: ====================================================
 C  i,j                  :: loop indices
       INTEGER I,J
 CEOP
-      _RL tmpFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
       IF ( k.EQ.Nr+1 .AND.
      &     useRealFreshWaterFlux .AND. usingPCoords ) THEN

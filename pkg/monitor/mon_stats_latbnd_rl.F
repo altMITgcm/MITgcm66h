@@ -48,9 +48,8 @@ CEOP
 C     !LOCAL VARIABLES:
       INTEGER bi,bj,i,j,k,n
       INTEGER km, k1, k2
-      INTEGER numPnts
       LOGICAL noPnts(Ny)
-      _RL tmpVal,rNumPnts
+      _RL tmpVal
       _RL tmpVol
 
 C-    set k index range [k1,k2]

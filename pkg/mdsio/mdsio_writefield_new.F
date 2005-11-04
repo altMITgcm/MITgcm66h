@@ -92,7 +92,7 @@ C Local variables
       character*(MAX_LEN_FNAM) dataFName,metaFName,pfName
       character*(MAX_LEN_MBUF) msgbuf
       logical fileIsOpen
-      integer iG,jG,irec,bi,bj,i,j,k,dUnit,IL,pIL
+      integer iG,jG,irec,bi,bj,j,k,dUnit,IL,pIL
       integer dimList(3,3),ndims
       integer x_size,y_size,length_of_rec
 #if defined(ALLOW_EXCH2) && !defined(MISSING_TILE_IO)
@@ -105,7 +105,7 @@ C Local variables
       Real*4 r4seg(sNx)
       Real*8 r8seg(sNx)
 #ifdef ALLOW_USE_MPI
-      INTEGER iG_IO,jG_IO,npe
+      INTEGER iG_IO,jG_IO,npe,i
       Real*4 xy_buffer_r4(x_size,y_size)
       Real*8 xy_buffer_r8(x_size,y_size)
       Real*8 global(Nx,Ny)

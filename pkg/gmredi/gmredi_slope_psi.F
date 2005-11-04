@@ -55,9 +55,7 @@ CEndOfInterface
 #ifdef GM_BOLUS_ADVEC
 
 C     == Local variables ==
-      _RL gradSmod(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RL dSigmaDrLtd(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
-      _RL  SlopeSqr(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RL f1,Smod,f2,Rnondim
       _RL maxSlopeSqr
       _RL slopeCutoff

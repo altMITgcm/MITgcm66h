@@ -40,7 +40,7 @@ C     i,j    :: Loop counters
       INTEGER bi, bj
       INTEGER I, J
       INTEGER prec
-      CHARACTER*(MAX_LEN_FNAM) fn
+c     CHARACTER*(MAX_LEN_FNAM) fn
       _RL v2Loc
 
 

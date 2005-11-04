@@ -29,7 +29,7 @@ CEOP
 
 C     !LOCAL VARIABLES:
       INTEGER bi,bj,I,J,K
-      _RL numPnts,theVol,tmpVal,tmpVol
+      _RL numPnts,theVol,tmpVal
       _RL theMax,theMean,theVolMean,potEnMean
       _RL meanTile, volMeanTile, potEnMnTile, volTile
 
