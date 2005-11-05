@@ -59,9 +59,11 @@ C     == Local variables ==
 C     i,j :: Loop counters
       INTEGER i,j
       _RL varLoc(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
+#ifdef NONLIN_FRSURF
       _RL factorZ, factorP, conv_theta2T
       _RL factPI
       CHARACTER*(MAX_LEN_MBUF) msgBuf
+#endif
 CEOP
 
 #ifdef NONLIN_FRSURF

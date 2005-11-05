@@ -46,7 +46,10 @@ C     !LOCAL VARIABLES:
 #endif
       LOGICAL northWestCorner, northEastCorner 
       LOGICAL southWestCorner, southEastCorner 
-      INTEGER myTile, iG
+      INTEGER iG
+#ifdef ALLOW_EXCH2
+      INTEGER myTile
+#endif
 
       theMin = 1. _d 20
       theMax =-1. _d 20

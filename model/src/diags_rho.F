@@ -40,7 +40,6 @@ C     myThid :: Instance number for this call of the routine.
       INTEGER k, bi,bj
       _RL rhoK  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL rhoKm1(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL tmpFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL myTime
       INTEGER myIter, myThid
 CEOP
@@ -51,6 +50,7 @@ C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     i,j :: Loop counters
       INTEGER i,j
+      _RL tmpFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       LOGICAL  DIAGNOSTICS_IS_ON
       EXTERNAL DIAGNOSTICS_IS_ON
 

@@ -53,8 +53,11 @@ C     !LOCAL VARIABLES:
       INTEGER i,j,k,ks,bi,bj 
       _RL theArea, wT_Mean, wS_Mean, wT_Heat
       _RL vT_Mean, vS_Mean, vT_Heat, theta2PE
-      _RL tmpVol, tmpVal, conv_th2Heat, ddPI
+      _RL tmpVal, ddPI
       _RL areaTile, wT_Tile, wS_Tile, wH_Tile, th2peTile
+#ifdef NONLIN_FRSURF
+      _RL tmpVol, conv_th2Heat
+#endif
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
        theArea = 0.

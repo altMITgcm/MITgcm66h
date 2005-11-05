@@ -38,14 +38,13 @@ C     myThid - Thread number for this instance of the routine.
       _RL     myTime
       INTEGER myIter
       INTEGER myThid
-
 CEOP
 
+#ifdef ALLOW_TIMEAVE
 C     !LOCAL VARIABLES:
 C     == Local variables
       INTEGER bi,bj
 
-#ifdef ALLOW_TIMEAVE
 C--   Fill-in TimeAve pkg diagnostics (for state-variables)
 
       DO bj=myByLo(myThid),myByHi(myThid)
