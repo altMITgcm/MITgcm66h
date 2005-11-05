@@ -26,10 +26,6 @@ C     === Global variables ===
 #include "THSICE_PARAMS.h"
 #include "THSICE_VARS.h"
 
-C     == Common blocks ==
-      COMMON /PCKP_GBLFLS/ globalFile
-      LOGICAL globalFile
-
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
       INTEGER prec
