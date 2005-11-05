@@ -54,11 +54,13 @@ C     == Local variables ==
 C      i,j           :: loop indices
 C      myTile        :: tile number
       INTEGER i,j
-      INTEGER myTile
       LOGICAL southWestCorner
       LOGICAL southEastCorner
       LOGICAL northWestCorner
       LOGICAL northEastCorner
+#ifdef ALLOW_EXCH2
+      INTEGER myTile
+#endif
 CEOP
 
       IF (useCubedSphereExchange) THEN
