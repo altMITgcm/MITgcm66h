@@ -110,9 +110,6 @@ C Local variables
       Real*8 xy_buffer_r8(x_size,y_size)
       Real*8 global(Nx,Ny)
       _RL    local(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      COMMON /GlobalLo/ mpi_myXGlobalLo, mpi_myYGlobalLo
-      INTEGER mpi_myXGlobalLo(nPx*nPy)
-      INTEGER mpi_myYGlobalLo(nPx*nPy)
 #endif
 #ifdef ALLOW_EXCH2
       integer domainHeight,domainLength,tgy,tgx,tny,tnx,tn
