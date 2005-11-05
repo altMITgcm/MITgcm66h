@@ -2364,16 +2364,18 @@ ad_input_code_sf.w2f.canon.xb.x2w.w2f.rs.f: ad_input_code_sf.w2f.canon.xb.x2w.w2
 	python reslicer.py \$<  | sed -f ../code_ad/insertTemplateDir.sed > \$@
 
 # postprocess F'
-ad_input_code_sf.w2f.canon.xb.x2w.w2f.rs.pp.f: ad_input_code_sf.w2f.canon.xb.x2w.w2f.rs.f multi-pp.pl
+ad_input_code_sf.w2f.canon.xb.x2w.w2f.rs.pp.f: ad_input_code_sf.w2f.canon.xb.x2w.w2f.rs.f multi-pp.pl ../code_ad/ad_inline.f
 	perl multi-pp.pl -inline=../code_ad/ad_inline.f \$<
 
 # extract all transformed modules 
 all_mods.xb.x2w.w2f.pp.f: ad_input_code_sf.w2f.canon.xb.x2w.w2f.rs.pp.f
 	cat \$< | sed -n '/MODULE /,/END MODULE/p' > \$@
 
-# remove the transformed globals module from the transformed ad_input_code file
+# remove the transformed globals module from the 
+# transformed ad_input_code file
+# and remove for now the duplicate variables
 ad_input_code.w2f.canon.xb.x2w.w2f.rs.pp.f: ad_input_code_sf.w2f.canon.xb.x2w.w2f.rs.pp.f
-	cat \$< | sed '/MODULE /,/END MODULE/d' > \$@
+	cat \$< | sed '/MODULE /,/END MODULE/d' | sed '/^      INTEGER(w2f__i4) DOLOOP_UB/d' > \$@
 
 # setup some links
 %.xsd:
