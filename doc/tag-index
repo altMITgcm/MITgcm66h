@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o Allow to apply AB on T,S rather than on AB(gT,gS):
+ - implemented within #ifdef ALLOW_ADAMSBASHFORTH_3
+ - use the same arrays (gtNm,gsNm) to hold tracer field at previous
+   time-steps (if AB(T,S)) and tendencies (if AB(gT,gS)).
+ - need a "clever" read_pickup to restart from the other AB formulation
 o move local commom bloc /GlobalLo/ (used for singleCpuIO) in EESUPPORT.h 
 o remove some unused variables (reduces number of compiler warnings)
 
