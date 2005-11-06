@@ -46,12 +46,13 @@ C     myThid - Thread number for this instance of the routine.
       INTEGER myIter
       INTEGER myThid
 
+#ifdef ALLOW_GENERIC_ADVDIFF
 C     !LOCAL VARIABLES:
 C     == Local variables
       INTEGER iMin,iMax
       INTEGER jMin,jMax
       INTEGER bi,bj
-      INTEGER k,i,j
+      INTEGER k
 
 CEOP
 
@@ -139,7 +140,9 @@ C--     Convectively adjust new fields to be statically stable
 C--    End of 2nd bi,bj loop
        ENDDO
       ENDDO
-#endif
+#endif /* ALLOW_OFFLINE */
+
+#endif /* ALLOW_GENERIC_ADVDIFF */
 
       RETURN
       END
