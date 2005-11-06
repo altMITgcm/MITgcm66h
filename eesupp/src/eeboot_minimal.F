@@ -49,7 +49,9 @@ C     msgBuffer        :: Used to build messages for printing.
       CHARACTER*(MAX_LEN_MBUF) msgBuffer
       INTEGER mpiRC
       INTEGER nptmp
+#ifdef COMPONENT_MODULE
       INTEGER mpiMyWid
+#endif
 #endif /* ALLOW_USE_MPI */
 CEOP
 

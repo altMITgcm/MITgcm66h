@@ -77,7 +77,7 @@ cph Not implemented here for EXCH2
 #ifdef ALLOW_USE_MPI
       logical lprint
       INTEGER K,L
-      INTEGER iG_IO,jG_IO,npe
+c     INTEGER iG_IO,jG_IO,npe
       Real*4 xy_buffer_r4(narr*nPx*nPy)
       Real*8 xy_buffer_r8(narr*nPx*nPy)
       Real*8 global(narr*nPx*nPy)
