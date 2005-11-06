@@ -15,7 +15,7 @@ C !INTERFACE: ==========================================================
      I                               myIter,myTime,myThid )
 
 C !DESCRIPTION:
-C     Calculates tendancy for passive tracers and integrates forward
+C     Calculates tendency for passive tracers and integrates forward
 C     in time.
 
 C !USES: ===============================================================
@@ -103,6 +103,7 @@ C (advection, [explicit] diffusion, parameterizations,...)
      I                   PTRACERS_diffKh(iTracer),
      I                   PTRACERS_diffK4(iTracer),
      I                   KappaRtr(1-Olx,1-Oly,iTracer),
+     I                   pTracer(1-Olx,1-Oly,1,1,1,iTracer),
      I                   pTracer(1-Olx,1-Oly,1,1,1,iTracer),
      I                   GAD_TR,
      I                   PTRACERS_advScheme(iTracer),
