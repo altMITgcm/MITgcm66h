@@ -96,6 +96,8 @@ C      I,J,K,bi,bj       :: Loop counters
        INTEGER I,J,K,bi,bj
 CEOP
 
+       _BARRIER
+
        theSimulationMode = simulationMode
        theCornerMode     = cornerMode
 
