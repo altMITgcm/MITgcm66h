@@ -59,6 +59,7 @@ C--   Initialise salinity field to the vertical reference profile
         ENDDO
        ENDDO
       ENDDO
+      _BARRIER
 
       IF ( hydrogSaltFile .NE. ' ' ) THEN
        _BEGIN_MASTER( myThid )

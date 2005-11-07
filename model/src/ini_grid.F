@@ -40,7 +40,9 @@ C     msgBuf - Used for informational I/O.
 #endif
 
 C     load grid spacing (vector) from files
+      _BARRIER
       CALL LOAD_GRID_SPACING( myThid )
+      _BARRIER
 
 C     Set up vertical grid and coordinate system
       CALL INI_VERTICAL_GRID( myThid )

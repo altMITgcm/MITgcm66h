@@ -96,6 +96,7 @@ C-            ocean : R_low = Bottom
         ENDDO
        ENDDO
       ELSE
+        _BARRIER
         _BEGIN_MASTER( myThid )
 C Read the bathymetry using the mid-level I/O pacakage read_write_rec
 C The 0 is the "iteration" argument. The 1 is the record number.
@@ -107,7 +108,7 @@ C Read the bathymetry using the low-level I/O package
 c       CALL MDSREADFIELD( bathyFile, readBinaryPrec,
 c    &                     'RS', 1, R_low, 1, myThid )
         _END_MASTER(myThid)
-
+        _BARRIER
       ENDIF
 C- end setup R_low in the interior
 

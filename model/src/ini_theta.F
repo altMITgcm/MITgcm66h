@@ -60,6 +60,7 @@ C--   Initialise temperature field to the vertical reference profile
         ENDDO
        ENDDO
       ENDDO
+      _BARRIER
 
       IF ( hydrogThetaFile .NE. ' ' ) THEN
        _BEGIN_MASTER( myThid )

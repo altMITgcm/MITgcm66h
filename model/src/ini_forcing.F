@@ -111,6 +111,7 @@ C
        ENDDO
       ENDDO
 C
+      _BARRIER
       _BEGIN_MASTER(myThid)
       IF ( zonalWindFile .NE. ' '  ) THEN
        CALL READ_FLD_XY_RS( zonalWindFile, ' ', fu, 0, myThid )
