@@ -115,6 +115,12 @@ C     !LOCAL VARIABLES:
 C--   Local variables
       INTEGER myThid
       INTEGER I
+
+#ifdef USE_OMP_THREADING
+      INTEGER OMP_GET_THREAD_NUM
+      EXTERNAL OMP_GET_THREAD_NUM
+#endif 
+
 CEOP
 
 C--   Set up the execution environment
@@ -152,27 +158,33 @@ C           number of concurrent threads the OS gives us. This
 C           case causes a deadlock if we do not trap it here.
 #include "MAIN_PDIRECTIVES1.h"
       DO I=1,nThreads
-        myThid = I
+#ifdef USE_OMP_THREADING
+        IF ( OMP_GET_THREAD_NUM() .EQ. I-1 ) THEN
+#endif 
+         myThid = I
 
-C--     Do check to see if there are nThreads threads running
-        IF ( .NOT. eeBootError ) THEN
-         CALL CHECK_THREADS( myThid )
-        ENDIF
+C--      Do check to see if there are nThreads threads running
+         IF ( .NOT. eeBootError ) THEN
+          CALL CHECK_THREADS( myThid )
+         ENDIF
 
-C--     Invoke nThreads instances of the numerical model
-        IF ( .NOT. eeBootError ) THEN
+C--      Invoke nThreads instances of the numerical model
+         IF ( .NOT. eeBootError ) THEN
 #ifdef ALLOW_ADMTLM
-         CALL ADMTLM_DSVD(myThid)
+          CALL ADMTLM_DSVD(myThid)
 #else
-         CALL THE_MODEL_MAIN(myThid)
+          CALL THE_MODEL_MAIN(myThid)
 #endif
-        ENDIF
+         ENDIF
 
-C--     Each threads sets flag indicating it is done
-        threadIsComplete(myThid) = .TRUE.
-        IF ( .NOT. eeBootError ) THEN
-         _BARRIER
+C--      Each threads sets flag indicating it is done
+         threadIsComplete(myThid) = .TRUE.
+         IF ( .NOT. eeBootError ) THEN
+          _BARRIER
+         ENDIF
+#ifdef USE_OMP_THREADING
         ENDIF
+#endif  
       ENDDO
 #include "MAIN_PDIRECTIVES2.h"
 

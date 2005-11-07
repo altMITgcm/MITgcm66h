@@ -47,3 +47,6 @@ C
 #endif
 C
 
+#ifdef USE_OMP_THREADING
+C$OMP  END PARALLEL
+#endif 

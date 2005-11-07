@@ -71,3 +71,8 @@ CMIC$ DO ALL PRIVATE (I, myThid ) SHARED(nThreads)
 CMIC$& SINGLE
 #endif             
 
+
+#ifdef USE_OMP_THREADING
+C$OMP PARALLEL  SHARED(nThreads), PRIVATE(I,myThid)
+#endif
+

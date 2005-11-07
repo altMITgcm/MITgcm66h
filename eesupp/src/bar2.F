@@ -102,6 +102,22 @@ C                  times barrier code looped.
       INTEGER spinCount
 CEOP
 
+#ifdef USE_OMP_THREADING
+C$OMP BARRIER
+      BAR2_barrierCount(1,myThid) = BAR2_barrierCount(1,myThid)+1
+Cdbg C$OMP BARRIER
+Cdbg       DO I = 2, nThreads
+Cdbg        IF ( BAR2_barrierCount(1,I) .NE. BAR2_barrierCount(1,1) ) THEN
+Cdbg         PRINT *, BAR2_barrierCount(1,1:nThreads)
+Cdbg         CALL SYSTEM('sleep 1')
+Cdbg         PRINT *, BAR2_barrierCount(1,1:nThreads)
+Cdbg         Stop ' bar2 OUT OF SYNC '
+Cdbg        ENDIF
+Cdbg       ENDDO
+Cdbg C$OMP BARRIER
+      RETURN
+#endif
+
 C
       spinCount = 0
 C
