@@ -49,6 +49,7 @@ C Global variables / common blocks
 #include "W2_EXCH2_TOPOLOGY.h"
 #include "W2_EXCH2_PARAMS.h"
 #endif /* ALLOW_EXCH2 */
+#include "MDSIO_SCPU.h"
 
 C Routine arguments
       character*(*) fName
@@ -509,11 +510,12 @@ C Otherwise stop program.
           endif
          ENDIF
         _END_MASTER( myThid )
-        CALL SCATTER_2D(global,local,mythid)
+        CALL SCATTER_2D(global,sharedLocalBuf,mythid)
+        _BARRIER
         if (arrType .eq. 'RS') then
-           CALL MDS_PASStoRS( local,arr,k,nNz, .TRUE., mythid )
+           CALL MDS_PASStoRS( sharedLocalBuf,arr,k,nNz, .TRUE.,mythid)
         elseif (arrType .eq. 'RL') then
-           CALL MDS_PASStoRL( local,arr,k,nNz, .TRUE., mythid )
+           CALL MDS_PASStoRL( sharedLocalBuf,arr,k,nNz, .TRUE.,mythid)
         else
            write(msgbuf,'(a)')
      &          ' MDSREADFIELD: illegal value for arrType'
