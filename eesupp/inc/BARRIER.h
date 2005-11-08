@@ -38,7 +38,7 @@ C     *==========================================================*
 CEOP
       COMMON / BARRIER_COMMON / key1,  key2,  key3, 
      &                          door1, door2, door3,
-     &                          bCount
+     &                          bCount, masterSet
       INTEGER key1(lShare4,MAX_NO_THREADS)
       INTEGER key2(lShare4,MAX_NO_THREADS)
       INTEGER key3(lShare4,MAX_NO_THREADS)
@@ -54,3 +54,4 @@ CEOP
       INTEGER SHUT
       PARAMETER ( SHUT = 0 )
       INTEGER bCount(MAX_NO_THREADS)
+      INTEGER masterSet(MAX_NO_THREADS)
