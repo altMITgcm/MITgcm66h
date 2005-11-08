@@ -66,11 +66,6 @@ C           implicDiv2DFlow=0 => etaH=etaN ; =1 => etaH=etaNm1 ;
       _RL  gsNm1(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
 #endif /* ALLOW_ADAMSBASHFORTH_3 */
 
-#ifdef ALLOW_NONHYDROSTATIC
-      COMMON /DYNVARS_NH/ phi_nh
-      _RL  phi_nh(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-#endif /* ALLOW_NONHYDROSTATIC */
-
 cph(
 cph the following block will eventually move to a separate
 cph header file containing requires anomaly fields of control vars.
