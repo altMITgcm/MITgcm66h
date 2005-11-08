@@ -14,7 +14,15 @@ C     \ev
 CEOP
 
 #ifdef ALLOW_NONHYDROSTATIC
-      COMMON / SFP3D_COMMON_R8 / cg3d_x, cg3d_b
-      _RL  cg3d_x(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nR,nSx,nSy)
+
+C--   COMMON /SFP3D_COMMON_R/ variables (RL) used by 3-D pressure solver
+C     cg3d_x  :: Solution vector of the 3-D solver equation A.x=B 
+C     cg3d_b  :: Right Hand side vector of the 3-D solver equation A.x=B
+
+      COMMON /SFP3D_COMMON_R/ 
+     &                        cg3d_b
+c    &                        cg3d_x, cg3d_b
+c     _RL  cg3d_x(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nR,nSx,nSy)
       _RL  cg3d_b(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nR,nSx,nSy)
+
 #endif /* ALLOW_NONHYDROSTATIC */
