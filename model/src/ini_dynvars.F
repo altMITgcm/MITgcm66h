@@ -25,9 +25,6 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "DYNVARS.h"
-#ifdef ALLOW_NONHYDROSTATIC
-#include "GW.h"
-#endif
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
@@ -75,12 +72,6 @@ C-      3D arrays
            gvNm1(I,J,K,bi,bj) =0. _d 0
            gtNm1(I,J,K,bi,bj) =0. _d 0
            gsNm1(I,J,K,bi,bj) =0. _d 0
-#endif
-
-#ifdef ALLOW_NONHYDROSTATIC
-ceh3 needs an IF ( useNONHYDROSTATIC ) THEN
-           gW(I,J,K,bi,bj)=0. _d 0
-           gWnm1(I,J,K,bi,bj)=0. _d 0
 #endif
 
            totPhiHyd(I,J,K,bi,bj)=0. _d 0
