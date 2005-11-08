@@ -159,7 +159,7 @@ CEOP
 
 C     Going to really do some IO. Make everyone except master thread wait.
       _BARRIER
-      _BEGIN_MASTER( myThid )
+C     _BEGIN_MASTER( myThid )
 
       prec = precFloat64
       lgf = globalFile
@@ -246,7 +246,7 @@ C     Write pickup file for diagnostics package
       ENDIF
 #endif  /* ALLOW_GGL90 */
 
-      _END_MASTER( myThid )
+C     _END_MASTER( myThid )
       _BARRIER
 
 #ifdef ALLOW_PTRACERS

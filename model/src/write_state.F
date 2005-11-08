@@ -92,7 +92,7 @@ CEOP
          
 C       Going to really do some IO. Make everyone except master thread wait.
         _BARRIER
-        _BEGIN_MASTER( myThid )
+C       _BEGIN_MASTER( myThid )
 
 C       Write model fields
         IF (snapshot_mdsio) THEN
@@ -151,7 +151,7 @@ c         CALL WRITE_FLD_XYZ_RS('hFacS.',suff,hFacS,myIter,myThid)
 
         ENDIF
         
-        _END_MASTER( myThid )
+C       _END_MASTER( myThid )
         _BARRIER
 
 #ifdef ALLOW_MNC

@@ -63,9 +63,9 @@ C--   Initialise temperature field to the vertical reference profile
       _BARRIER
 
       IF ( hydrogThetaFile .NE. ' ' ) THEN
-       _BEGIN_MASTER( myThid )
+C      _BEGIN_MASTER( myThid )
        CALL READ_FLD_XYZ_RL( hydrogThetaFile, ' ', theta, 0, myThid )
-       _END_MASTER(myThid)
+C      _END_MASTER(myThid)
        _EXCH_XYZ_R8(theta,myThid)
       ENDIF
 
