@@ -139,7 +139,7 @@ C         CALL TIMEAVE_NORMALIZ(hFacStave,TimeAve_half,Nr,bi,bj,myThid)
 
 C       Write to files
         _BARRIER
-        _BEGIN_MASTER( myThid )
+C       _BEGIN_MASTER( myThid )
 
         IF (timeave_mdsio) THEN
           
@@ -303,7 +303,7 @@ C         CALL MNC_CW_RL_W(pf,'tave',0,0,'hFacStave',hFacStave,myThid)
         ENDIF
 #endif /* ALLOW_MNC */
 
-        _END_MASTER( myThid )
+C       _END_MASTER( myThid )
         _BARRIER
         
         DO bj = myByLo(myThid), myByHi(myThid)
