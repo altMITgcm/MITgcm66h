@@ -60,8 +60,7 @@ C     !USES:
 #include "DYNVARS.h"
 #include "SURFACE.h"
 #ifdef ALLOW_NONHYDROSTATIC
-#include "GW.h"
-#include "SOLVE_FOR_PRESSURE3D.h"
+#include "NH_VARS.h"
 #endif
       INTEGER  IO_ERRCOUNT
       EXTERNAL IO_ERRCOUNT
@@ -452,8 +451,7 @@ C     !USES:
 #include "DYNVARS.h"
 #include "SURFACE.h"
 #ifdef ALLOW_NONHYDROSTATIC
-#include "GW.h"
-#include "SOLVE_FOR_PRESSURE3D.h"
+#include "NH_VARS.h"
 #endif
       INTEGER  IO_ERRCOUNT
       EXTERNAL IO_ERRCOUNT

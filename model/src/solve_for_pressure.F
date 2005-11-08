@@ -23,21 +23,21 @@ C     == Global variables
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "DYNVARS.h"
-#ifdef ALLOW_CD_CODE
-#include "CD_CODE_VARS.h"
-#endif
 #include "GRID.h"
 #include "SURFACE.h"
 #include "FFIELDS.h"
+#include "DYNVARS.h"
+#include "SOLVE_FOR_PRESSURE.h"
 #ifdef ALLOW_NONHYDROSTATIC
 #include "SOLVE_FOR_PRESSURE3D.h"
-#include "GW.h"
+#include "NH_VARS.h"
+#endif
+#ifdef ALLOW_CD_CODE
+#include "CD_CODE_VARS.h"
 #endif
 #ifdef ALLOW_OBCS
 #include "OBCS.h"
 #endif
-#include "SOLVE_FOR_PRESSURE.h"
 
 C     === Functions ====
       LOGICAL  DIFFERENT_MULTIPLE
