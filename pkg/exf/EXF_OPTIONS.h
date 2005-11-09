@@ -138,5 +138,9 @@ c         |     |     |     |     | hflux, swflux, and evap.
 c
 c   ====================================================================
 
+#ifdef USING_THREADS
+#define EXF_IREAD_USE_GLOBAL_POINTER
+#endif
+
 #endif /* ALLOW_EXF */
 #endif /* EXF_OPTIONS_H */
