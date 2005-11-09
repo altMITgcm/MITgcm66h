@@ -59,10 +59,6 @@ C     == Global variables ==
 #ifdef ALLOW_AUTODIFF_TAMC
 # include "FFIELDS.h"
 
-# ifdef ALLOW_NONHYDROSTATIC
-#  include "CG3D.h"
-# endif
-
 # include "tamc.h"
 # include "ctrl.h"
 # include "ctrl_dummy.h"

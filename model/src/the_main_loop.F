@@ -61,9 +61,6 @@ c They provide the fields to be stored.
 #  include "PTRACERS_SIZE.h"
 #  include "PTRACERS.h"
 # endif
-# ifdef ALLOW_NONHYDROSTATIC
-#  include "CG3D.h"
-# endif
 # ifdef EXACT_CONSERV
 #  include "SURFACE.h"
 # endif

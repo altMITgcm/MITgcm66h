@@ -459,9 +459,6 @@ C     == Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "DYNVARS.h"
-#ifdef ALLOW_NONHYDROSTATIC
-# include "CG3D.h"
-#endif
 
 #ifdef ALLOW_AUTODIFF_TAMC
 # include "tamc.h"
