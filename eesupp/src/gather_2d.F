@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "CPP_EEOPTIONS.h"
 
       SUBROUTINE GATHER_2D( global, local, myThid )
 C     Gather elements of a 2-D array from all mpi processes to process 0.
