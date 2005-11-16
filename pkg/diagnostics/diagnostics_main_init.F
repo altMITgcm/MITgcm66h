@@ -357,6 +357,20 @@ c    I          diagName, diagCode, diagUnits, diagTitle, myThid )
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
+      diagName  = 'UVELPHI '
+      diagTitle = 'Zonal Transp of Geopotential Height (m2/s2.m/s)'
+      diagUnits = 'm^3/s^3         '
+      WRITE(diagCode,'(A,I3.3,A)') 'UU   ',diagNum+2,'MR      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+      diagName  = 'VVELPHI '
+      diagTitle = 'Meridional Transp of Geopotential Height (m2/s2.m/s)'
+      diagUnits = 'm^3/s^3         '
+      WRITE(diagCode,'(A,I3.3,A)') 'VV   ', diagNum ,'MR      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
       diagName  = 'RHOAnoma'
