@@ -1,4 +1,4 @@
-function [UVtot,UVtrans,U2tot,U2trans,V2tot,V2trans,errFlag]=calc2ndmom(u,v,usq,vsq,uv);
+function [UVtot,UVtrans,U2tot,U2trans,V2tot,V2trans,errFlag]=calc2ndmom(u,v,usq,vsq,uv,cosalpha,sinalpha);
 % [UVtot,UVtrans,U2tot,U2trans,V2tot,V2trans,errFlag]=calc2ndmom(u,v,usq,vsq,uv);
 % Compute UV, U2 and V2 (at cubed-sphere A grid points) using cubed-sphere input
 % u       = time averaged u-wind on cubed sphere grid at u-points
@@ -96,14 +96,16 @@ v2j=reshape(v2j,[nPg nz]);
 vb2j=reshape(v2j,[nPg nz]);
 UV=reshape(uv,[nPg nz]);
 %
-% Read cos and sin of rotation angle
-Rac='/u/u2/jmc/';
-namfil=['proj_cs',int2str(nc),'_2uEvN.bin'];
-cosalpha=zeros(nPg); sinalpha=zeros(nPg);
-fid=fopen([Rac,namfil],'r','b'); 
-cosalpha=fread(fid,nPg,'real*8'); 
-sinalpha=fread(fid,nPg,'real*8'); 
-fclose(fid);
+% Read cos and sin of rotation angle if not provided on input
+if nargin == 5
+ Rac='/u/u2/jmc/';
+ namfil=['proj_cs',int2str(nc),'_2uEvN.bin'];
+ cosalpha=zeros(nPg); sinalpha=zeros(nPg);
+ fid=fopen([Rac,namfil],'r','b'); 
+ cosalpha=fread(fid,nPg,'real*8'); 
+ sinalpha=fread(fid,nPg,'real*8'); 
+ fclose(fid);
+end
 %
 UVtrans=zeros(nPg,nz); UVtot=zeros(nPg,nz);
 U2trans=zeros(nPg,nz); U2tot=zeros(nPg,nz);
