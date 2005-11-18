@@ -139,6 +139,7 @@ else
 end
 
 res = [];
+att = [];
 switch lower(flag)
  case 'oldflat'
   res = rdnctiles_oldflat(fall,vit,dlev);
