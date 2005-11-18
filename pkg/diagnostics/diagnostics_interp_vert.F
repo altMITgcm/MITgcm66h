@@ -129,7 +129,7 @@ C if fizhi is being  used, may need to get physics grid pressures
            endif
 
            if(.not. foundp) then
-            WRITE(msgBuf,'(3A)') 'DIAGNOSTICS_INTERP_VERT: ',
+            WRITE(msgBuf,'(4A)') 'DIAGNOSTICS_INTERP_VERT: ',
      .    ' Have asked for pressure interpolation but have not ',
      .    ' Activated surface and 3D pressure diagnostic, ',
      .    ' RSURF and PRESSURE'
