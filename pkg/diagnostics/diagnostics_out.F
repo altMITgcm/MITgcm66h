@@ -141,6 +141,12 @@ C       grid.  As we start using diagnostics for physics grids, ice
 C       levels, land levels, etc. the different vertical coordinate
 C       dimensions will have to be taken into account.
 
+C       20051021 JMC & EH3 : We need to extend this so that a few
+C       variables each defined on different grids do not have the same
+C       vertical dimension names so we should be using a pattern such
+C       as: Z[uml]td000000 where the 't' is the type as specified by
+C       gdiag(10)
+
 C       Now define:  Zmdxxxxxx, Zudxxxxxx, Zldxxxxxx
         ctmp(1:5) = 'mul  '
         DO i = 1,3
