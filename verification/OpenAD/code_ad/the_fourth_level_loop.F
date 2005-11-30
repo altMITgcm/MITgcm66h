@@ -96,9 +96,9 @@ C     == Local variables ==
       if ( iloop .le. nTimeSteps ) then
 
 #ifdef ALLOW_DEBUG
-         IF (debugMode) CALL DEBUG_CALL('THE_FORWARD_STEP',myThid)
+         IF (debugMode) CALL DEBUG_CALL('FORWARD_STEP',myThid)
 #endif
-         CALL THE_FOURTH_LEVEL_LOOP( iLoop, 
+         CALL FORWARD_STEP( iLoop, 
      +mytime, myiter, mythid )
 
       end if
