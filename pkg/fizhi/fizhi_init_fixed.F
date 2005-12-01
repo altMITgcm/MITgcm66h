@@ -63,9 +63,9 @@ c-----------------------------------------------------------------------
 #endif
 
 #ifdef ALLOW_DIAGNOSTICS
-      if ( useDiagnostics ) then
+       if ( useDiagnostics ) then
         call fizhi_diagnostics_init( myThid )
-      endif
+       endif
 #endif
 
        call fizhi_alarms(nymdb,nhmsb,deltaTClock)
