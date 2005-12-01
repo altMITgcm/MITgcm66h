@@ -88,7 +88,7 @@ C And now fill the earth export landtype
        do bj = myByLo(myThid), myByHi(myThid)
        do bi = myBxLo(myThid), myBxHi(myThid)
         call get_landfrac(im2,jm2,Nsx,Nsy,bi,bj,maxtyp,
-     .        surftype,tilefrac,fracland)
+     .        surftype,tilefrac,fracland(1,1,bi,bj))
         do j=jm1,jm2
         do i=im1,im2
          landtype(i,j,bi,bj) = surftype(i,j,1,bi,bj)
