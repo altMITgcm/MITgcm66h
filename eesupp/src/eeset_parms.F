@@ -46,7 +46,7 @@ C     record :: Temp. for textual I/O
       CHARACTER*(MAX_LEN_PREC) record
       NAMELIST /EEPARMS/
      & nTx, nTy, usingMPI, useCoupler, useCubedSphereExchange,
-     & printMapIncludesZeros, useSETRLSTK
+     & printMapIncludesZeros, useSETRLSTK, useSIGREG
 CEOP
 
 
@@ -97,6 +97,7 @@ C
       nTx                        = 1
       nTy                        = 1
       useSETRLSTK                = .FALSE.
+      useSIGREG                  = .FALSE.
 
 C--   Read in data from eedata file
 C     We really ought to be using our environment file reading
