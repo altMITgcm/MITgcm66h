@@ -37,8 +37,8 @@ static void killhandler(
 /* int main( int argc, char ** argv ) */
 void FC_NAMEMANGLE(sigreg) (int * aip)
 {
-    ip = aip;
     struct sigaction s;
+    ip = aip;
     s.sa_flags = SA_SIGINFO;
     s.sa_sigaction = (void *)killhandler;
     if(sigaction (SIGTERM,&s,(struct sigaction *)NULL)) {
