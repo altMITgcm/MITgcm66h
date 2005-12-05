@@ -91,7 +91,7 @@ C------
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 C- Write to check :
-       WRITE(msgBuf,'(A)')
+       WRITE(msgBuf,'(A)') ' '
        CALL PRINT_MESSAGE( msgBuf, stdUnit, SQUEEZE_RIGHT, myThid )
        WRITE(msgBuf,'(A)') 
      &  'INI_PHIREF: PhiRef/g [m] at level Center (integer)'
