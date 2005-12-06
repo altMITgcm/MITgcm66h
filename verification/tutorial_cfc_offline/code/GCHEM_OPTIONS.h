@@ -17,9 +17,8 @@ c options for biogeochemistry package
 CEOP
 
 #undef  GCHEM_SEPARATE_FORCING
-#undef  DIC_BIOTIC
+
 #define ALLOW_CFC
-#undef  ALLOW_FE
 
 
 #endif /* ALLOW_GCHEM */
