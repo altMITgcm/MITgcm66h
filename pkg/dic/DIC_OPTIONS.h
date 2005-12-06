@@ -8,10 +8,6 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-C CPP Macros go here
-#undef CAR_DISS
-#define DIC_BIOTIC
-#undef  ALLOW_FE
 
 #endif /* ALLOW_DIC */
 #endif /* DIC_OPTIONS_H */
