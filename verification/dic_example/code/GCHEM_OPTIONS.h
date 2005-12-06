@@ -17,11 +17,16 @@ c options for biogeochemistry package
 CEOP
 
 #define GCHEM_SEPARATE_FORCING
+
+c------------------------------------
+c specifics for dic pkg
 #define DIC_BIOTIC
-#undef  ALLOW_CFC
 #undef  ALLOW_FE
 #undef READ_PAR
 #undef MINFE
+c -------------------------------------
+
+#undef  ALLOW_CFC
 
 #endif /* ALLOW_GCHEM */
 #endif /* GCHEM_OPTIONS_H */

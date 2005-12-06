@@ -9,9 +9,6 @@ C $Name$
 #include "CPP_OPTIONS.h"
 
 C CPP Macros go here
-#define DIC_BIOTIC
-#undef  ALLOW_FE
-#undef  CAR_DISS
 
 #endif /* ALLOW_DIC */
 #endif /* DIC_OPTIONS_H */
