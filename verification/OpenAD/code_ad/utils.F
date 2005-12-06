@@ -165,14 +165,12 @@ C     L, LS :: Temps. used in scanning string
 CEOP
 C
       LS      = LEN(string)
-c     ILNBLNK = LS
       ILNBLNK = 0
       L=LS
-      DO while ((L.gt.0).and.(string(L:L) .ne. ' '))
+      DO while ((L.gt.0).and.(string(L:L) .eq. ' '))
         L=L-1
       end do
-      IFNBLNK = L
-      RETURN
+      ILNBLNK = L
       END
 
 CBOP
@@ -201,7 +199,7 @@ C
       LS      = LEN(string)
       index = 0
       L=LS
-      DO while ((L.gt.0).and.(string(L:L) .ne. ' '))
+      DO while ((L.gt.0).and.(string(L:L) .eq. ' '))
         L=L-1
       end do
       index = L
