@@ -104,7 +104,7 @@ C
       LS     = LEN(string)
       IFNBLNK = 0
       L=1
-      DO while ((L.le.LS).and.(string(L:L) .ne. ' '))
+      DO while ((L.le.LS).and.(string(L:L) .eq. ' '))
         L=L+1
       end do
       IFNBLNK = L
@@ -136,7 +136,7 @@ C
       LS     = LEN(string)
       index = 0
       L=1
-      DO while ((L.le.LS).and.(string(L:L) .ne. ' '))
+      DO while ((L.le.LS).and.(string(L:L) .eq. ' '))
         L=L+1
       end do
       index = L
