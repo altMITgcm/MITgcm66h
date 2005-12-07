@@ -26,6 +26,7 @@ C     myThid -  Number of this instances
 C     === Local variables ===
 C     msgBuf      - Informational/error meesage buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
+      INTEGER i,j,bi,bj
 
       WRITE(msgBuf,'(A)') 'OBCS_CHECK: #define ALLOW_OBCS'
       CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,
@@ -83,6 +84,19 @@ C     msgBuf      - Informational/error meesage buffer
          STOP 'ABNORMAL END: S/R OBCS_CHECK'
         ENDIF
 #endif
+
+      IF ( debugLevel.GE.debLevB ) THEN
+       _BEGIN_MASTER( myThid )
+       DO bj = 1,nSy
+        DO bi = 1,nSx
+         write(*,*) 'bi,bj:',bi,bj,' OB_Jn=',(OB_Jn(i,bi,bj),i=1,sNx)
+         write(*,*) 'bi,bj:',bi,bj,' OB_Js=',(OB_Js(i,bi,bj),i=1,sNx)
+         write(*,*) 'bi,bj:',bi,bj,' OB_Ie=',(OB_Ie(j,bi,bj),j=1,sNy)
+         write(*,*) 'bi,bj:',bi,bj,' OB_Iw=',(OB_Iw(j,bi,bj),j=1,sNy)
+        ENDDO
+       ENDDO
+       _END_MASTER(myThid)
+      ENDIF
 
       WRITE(msgBuf,'(A)') 'OBCS_CHECK: OK'
       CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,
