@@ -15,6 +15,7 @@ C     == Global variables ==
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#include "SURFACE.h"
 #include "OBCS.h"
 
 C     == Routine Arguments ==
