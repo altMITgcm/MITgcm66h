@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o add new package rbcs (for relaxing ptracers at boundaries/depth/surface etc)
 o add new offset feature to offline pkg (plus minor cleanup)
 o cfc fixes for final year of integration
 o clean up GCHEM_OPTIONS.h/DIC_OPTIONS.h (all options should
