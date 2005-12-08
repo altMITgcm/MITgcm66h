@@ -15,8 +15,8 @@ C $Name$
 
 C start with a copy of THE_MAIN_LOOP
 C and remove some the obvious extras
-      SUBROUTINE THE_FIRST_LEVEL_LOOP(iLev_1, myTime, myIter, 
-     +myThid )
+      SUBROUTINE THE_FIRST_LEVEL_LOOP(iLoop,
+     +myTime, myIter, myThid )
       IMPLICIT NONE
 
 C     == Global variables ==
@@ -73,37 +73,30 @@ c They provide the fields to be stored.
 
 #endif /* ALLOW_AUTODIFF_TAMC */
 
-      integer iLev_1
+      integer iLoop
       INTEGER myThid 
       INTEGER myIter
       _RL     myTime
 
 C     !LOCAL VARIABLES:
 C     == Local variables ==
-      integer ilev_2
 
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_ENTER('THE_FIRST_LEVEL_LOOP',myThid)
 #endif
+      print *, 'THE_FIRST_LEVEL_LOOP(',iLoop,')'
 
-      if (nchklev_2 .gt. 0) then 
-        do ilev_2 = 1,nchklev_2
+      print *, 'THE_FIRST_LEVEL_LOOP: iloop=',iLoop,' of ',nTimeSteps
+
 #ifdef ALLOW_DEBUG
-          IF (debugMode) CALL DEBUG_CALL('THE_SECOND_LEVEL_LOOP',myThid)
+      IF (debugMode) CALL DEBUG_CALL('FORWARD_STEP',myThid)
 #endif
-          CALL THE_SECOND_LEVEL_LOOP( iLev_1, iLev_2, 
+      CALL FORWARD_STEP( iLoop, 
      +mytime, myiter, mythid )
-        enddo
-      else
-#ifdef ALLOW_DEBUG
-         IF (debugMode) CALL DEBUG_CALL('THE_SECOND_LEVEL_LOOP',myThid)
-#endif
-         CALL THE_SECOND_LEVEL_LOOP( iLev_1, 0, 
-     +mytime, myiter, mythid )
-      end if
-      
+
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_LEAVE('THE_FIRST_LEVEL_LOOP',myThid)
 #endif
 
       END
+
