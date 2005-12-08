@@ -186,11 +186,13 @@ C -- initialize Therm.Sea-Ice parameters
       IF (usePTRACERS) CALL PTRACERS_READPARMS( myThid )
 #endif
 
-cswdptr -- add --
 #ifdef ALLOW_GCHEM
       IF (useGCHEM) CALL GCHEM_READPARMS( myThid )
 #endif
-cswdptr -- end add ---
+
+#ifdef ALLOW_RBCS
+      IF (useRBCS) CALL RBCS_READPARMS( myThid )
+#endif
 
 #ifdef ALLOW_CTRL
 C--   Initialise the optim. parameters.

@@ -264,6 +264,12 @@ CADJ STORE ptracer  = comlev1, key = ikey_dynamics
 # endif
 #endif
 
+#ifdef ALLOW_RBCS
+        IF ( useRBCS ) THEN
+         CALL RBCS_FIELDS_LOAD( mytime, myiter, mythid )
+        ENDIF
+#endif
+
 #ifdef COMPONENT_MODULE
        IF ( useCoupler .AND. cpl_earlyExpImpCall ) THEN
 C      Post coupling data that I export.

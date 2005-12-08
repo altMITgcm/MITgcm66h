@@ -242,6 +242,11 @@ C     IF (useDIC)
       CALL DIC_INIT_FIXED(mythid)
 #endif
 
+#ifdef ALLOW_RBCS
+      IF (useRBCS) CALL RBCS_INIT_FIXED(mythid)
+#endif
+
+
 #ifdef ALLOW_THSICE
       IF (useThSIce) CALL THSICE_INIT_FIXED(mythid)
 #endif

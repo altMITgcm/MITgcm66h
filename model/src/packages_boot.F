@@ -60,6 +60,7 @@ C     data.pkg namelists
      &          useFLT,
      &          usePTRACERS,
      &          useGCHEM,
+     &          useRBCS,
      &          useSBO,
      &          useSEAICE,
      &          useBulkForce,
@@ -101,6 +102,7 @@ C--   Default package configuration
       useFLT=.FALSE.
       usePTRACERS=.FALSE.
       useGCHEM=.FALSE.
+      useRBCS=.FALSE.
       useSBO=.FALSE.
       useSeaIce=.FALSE.
       useBulkForce=.FALSE.
