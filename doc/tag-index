@@ -4,6 +4,12 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint57y_post
+First step for a NLFS adjoint
+o initially suppress rStar (new flag DISABLE_RSTAR_CODE)
+o new init. routines for calc_r_star, calc_surf_dr
+o still need to deal with ini_masks_etc
+o testreport seemed happy
 checkpoint57y_pre
 
 o obcs: always reset wVel & eta (to zero or prescribe it) at the OBs.
