@@ -354,6 +354,7 @@ C--   Tendency is minus divergence of the fluxes + coriolis + pressure term
 
 #ifdef NONLIN_FRSURF
 C-- account for 3.D divergence of the flow in rStar coordinate:
+# ifndef DISABLE_RSTAR_CODE
         IF ( select_rStar.GT.0 ) THEN
          DO j=jMin,jMax
           DO i=iMin,iMax
@@ -371,6 +372,7 @@ C-- account for 3.D divergence of the flow in rStar coordinate:
           ENDDO
          ENDDO
         ENDIF
+# endif /* DISABLE_RSTAR_CODE */
 #endif /* NONLIN_FRSURF */
 
       ELSE
@@ -542,6 +544,7 @@ C--   Tendency is minus divergence of the fluxes + coriolis + pressure term
 
 #ifdef NONLIN_FRSURF
 C-- account for 3.D divergence of the flow in rStar coordinate:
+# ifndef DISABLE_RSTAR_CODE
         IF ( select_rStar.GT.0 ) THEN
          DO j=jMin,jMax
           DO i=iMin,iMax
@@ -559,6 +562,7 @@ C-- account for 3.D divergence of the flow in rStar coordinate:
           ENDDO
          ENDDO
         ENDIF
+# endif /* DISABLE_RSTAR_CODE */
 #endif /* NONLIN_FRSURF */
 
       ELSE

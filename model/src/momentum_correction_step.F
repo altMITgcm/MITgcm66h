@@ -44,6 +44,9 @@ C     == Global variables ===
 #ifdef ALLOW_ZONAL_FILT
 #include "ZONAL_FILT.h"
 #endif
+#ifdef ALLOW_AUTODIFF_TAMC
+#include "tamc.h"
+#endif
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
@@ -134,6 +137,12 @@ C--   Filter (and exchange)
       ENDIF
 #endif
 
+#ifdef ALLOW_AUTODIFF_TAMC
+# ifdef NONLIN_FRSURF
+cph-test
+CADJ STORE uvel, vvel  = comlev1, key = ikey_dynamics
+# endif
+#endif
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
 

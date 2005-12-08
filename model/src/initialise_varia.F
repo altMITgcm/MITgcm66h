@@ -211,11 +211,17 @@ CADJ loop = parallel
 #ifdef NONLIN_FRSURF
 C--   Compute the surface level thickness <-- function of etaH(n)
 C     and modify hFac(C,W,S) accordingly :
+      CALL INI_SURF_DR( myThid )
+      CALL INI_R_STAR( myThid )
+# ifndef DISABLE_RSTAR_CODE
       IF ( select_rStar.NE.0 )
      &  CALL CALC_R_STAR(etaH, startTime, -1 , myThid )
+# endif /* DISABLE_RSTAR_CODE */
       IF (nonlinFreeSurf.GT.0) THEN
        IF ( select_rStar.GT.0 ) THEN
+# ifndef DISABLE_RSTAR_CODE
         CALL UPDATE_R_STAR( startTime, nIter0, myThid )
+# endif /* DISABLE_RSTAR_CODE */
        ELSE
         CALL CALC_SURF_DR(etaH, startTime, -1 , myThid )
         CALL UPDATE_SURF_DR( startTime, nIter0, myThid )
@@ -254,8 +260,10 @@ C--   Update etaH(n) :
 
 #ifdef NONLIN_FRSURF
       IF ( select_rStar.NE.0 ) THEN
+#ifndef ALLOW_AUTODIFF_TAMC
 C--   r* : compute the future level thickness according to etaH(n+1)
           CALL CALC_R_STAR(etaH, startTime, nIter0, myThid )
+#endif
       ELSEIF ( nonlinFreeSurf.GT.0) THEN
 C--   compute the future surface level thickness according to etaH(n+1)
           CALL CALC_SURF_DR(etaH, startTime, nIter0, myThid )

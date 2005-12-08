@@ -174,16 +174,19 @@ C--    Apply OBC to etaN if NonLin-FreeSurf, reset to zero otherwise:
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
-#ifdef NONLIN_FRSURF
+# ifdef NONLIN_FRSURF
       IF (select_rStar .NE. 0) THEN
+#  ifndef DISABLE_RSTAR_CODE
         DO j=1,sNy
          DO i=1,sNx
            rStarDhCDt(i,j,bi,bj) =
      &            dEtaHdt(i,j,bi,bj)*recip_Rcol(i,j,bi,bj)
          ENDDO
-        ENDDO      
+        ENDDO
+#  endif /* DISABLE_RSTAR_CODE */
       ENDIF
-#endif /* NONLIN_FRSURF */
+# endif /* NONLIN_FRSURF */
+
 #endif /* EXACT_CONSERV */
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|

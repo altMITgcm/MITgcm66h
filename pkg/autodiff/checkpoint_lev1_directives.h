@@ -5,6 +5,16 @@ c     store directives for checkpoint level 1
 c
 c     created: heimbach@mit.edu 10-Jan-2002
 c
+#ifdef NONLIN_FRSURF
+CADJ STORE dEtaHdt       = comlev1, key = ikey_dynamics
+CADJ STORE wVel          = comlev1, key = ikey_dynamics
+CADJ STORE gUnm1         = comlev1, key = ikey_dynamics
+CADJ STORE gVnm1         = comlev1, key = ikey_dynamics
+#endif /* NONLIN_FRSURF */
+
+#ifdef ALLOW_CD_CODE
+# include "cd_code_ad_check_lev1_dir.h"
+#endif
 
 #ifdef ALLOW_EXF
 # include "exf_ad_check_lev1_dir.h"

@@ -92,6 +92,7 @@ C-  o Rigid-Lid case: zero at lower and upper boundaries
         ENDIF
 #ifdef NONLIN_FRSURF
       ELSEIF (select_rStar .NE. 0) THEN
+# ifndef DISABLE_RSTAR_CODE
 C-  o rStar case: zero under-ground and at r_lower boundary
 C     can be non-zero at surface (useRealFreshWaterFlux)
         IF (k.eq.Nr) THEN
@@ -118,6 +119,7 @@ C     can be non-zero at surface (useRealFreshWaterFlux)
            ENDDO
           ENDDO
         ENDIF
+# endif /* DISABLE_RSTAR_CODE */
 #endif /* NONLIN_FRSURF */
       ELSE
 C-  o Free Surface case (r-Coordinate): 

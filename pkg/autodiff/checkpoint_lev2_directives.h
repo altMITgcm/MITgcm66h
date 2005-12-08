@@ -33,6 +33,18 @@ CADJ STORE tr1       = tapelev2, key = ilev_2
 CADJ STORE gtr1nm1   = tapelev2, key = ilev_2
 #endif /* ALLOW_PASSIVE_TRACER */
 
+#ifdef NONLIN_FRSURF
+CADJ STORE hfac_surfc    = tapelev2, key = ilev_2
+CADJ STORE hfac_surfs    = tapelev2, key = ilev_2
+CADJ STORE hfac_surfw    = tapelev2, key = ilev_2
+CADJ STORE hfacc         = tapelev2, key = ilev_2
+CADJ STORE hfacs         = tapelev2, key = ilev_2
+CADJ STORE hfacw         = tapelev2, key = ilev_2
+CADJ STORE recip_hfacc   = tapelev2, key = ilev_2
+CADJ STORE recip_hfacs   = tapelev2, key = ilev_2
+CADJ STORE recip_hfacw   = tapelev2, key = ilev_2
+#endif /* NONLIN_FRSURF */
+
 #ifdef ALLOW_CD_CODE
 # include "cd_code_ad_check_lev2_dir.h"
 #endif /* ALLOW_CD_CODE */

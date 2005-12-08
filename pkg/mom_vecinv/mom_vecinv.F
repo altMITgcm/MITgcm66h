@@ -164,6 +164,7 @@ c       mT(i,j)    = 0.
 #ifdef ALLOW_AUTODIFF_TAMC
         strain(i,j)  = 0. _d 0
         tension(i,j) = 0. _d 0
+        hFacZ(i,j)   = 0. _d 0
 #endif
        ENDDO
       ENDDO

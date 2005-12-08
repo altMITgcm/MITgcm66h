@@ -61,7 +61,7 @@ c They provide the fields to be stored.
 #  include "PTRACERS_SIZE.h"
 #  include "PTRACERS.h"
 # endif
-# ifdef EXACT_CONSERV
+# if (defined (EXACT_CONSERV) || defined (NONLIN_FRSURF))
 #  include "SURFACE.h"
 # endif
 # ifdef ALLOW_OBCS
@@ -152,10 +152,15 @@ CADJ  INIT tapelev3 = USER
       CALL TIMER_START('ADJOINT SPIN-UP', mythid)
 #endif
 
+#ifdef ALLOW_AUTODIFF_TAMC
+# ifdef NONLIN_FRSURF
+CADJ STORE hFacC = tapelev_init, key = 1
+# endif
+#endif
+
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_CALL('INITIALISE_VARIA',myThid)
 #endif
-
 C--   Set initial conditions (variable arrays)
       CALL TIMER_START('INITIALISE_VARIA    [THE_MAIN_LOOP]', mythid)
       CALL INITIALISE_VARIA( mythid )

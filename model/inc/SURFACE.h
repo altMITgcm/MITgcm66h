@@ -60,6 +60,12 @@ C     hFac_surfS ::  idem, South interface (V point)
       _RS  hFac_surfW(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  hFac_surfS(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
+C     Local variables in common block
+C     Rmin_surf :: minimum r_value of the free surface position 
+C                  that satisfy  the hFacInf criteria
+      COMMON /LOCAL_CALC_SURF_DR/ Rmin_surf
+      _RL Rmin_surf(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+
 C--   COMMON /RSTAR_CHANGE/ transient variables used with r* Coordinate
 C     rStarFacC :: = dr/dr* = ratio of r-thickness / r*-thickness = h^n / H
 C     rStarFacW :: same but for West  face
