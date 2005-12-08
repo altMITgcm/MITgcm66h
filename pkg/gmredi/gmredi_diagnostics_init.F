@@ -120,6 +120,20 @@ c     IF ( useDiagnotics ) THEN
         CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
+        diagName  = 'GM_KuzTz'
+        diagTitle = 'Redi Off-diagonal Tempetature flux: X component'
+        diagUnits = 'degC.m^3/s      '
+        WRITE(diagCode,'(A,I3.3,A)') 'UU   ',diagNum+2,'MR      '
+        CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+        diagName  = 'GM_KvzTz'
+        diagTitle = 'Redi Off-diagonal Tempetature flux: Y component'
+        diagUnits = 'degC.m^3/s      '
+        WRITE(diagCode,'(A,I3.3,A)') 'VV   ', diagNum ,'MR      '
+        CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
 c     ENDIF
 
 #endif /* ALLOW_DIAGNOSTICS */
