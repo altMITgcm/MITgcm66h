@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o gmredi: fix bugs in slope tapering ldd97 (depthZ had the wrong sign)
+     and update lab_sea output.txt file.
+
 checkpoint57y_post
 First step for a NLFS adjoint
 o initially suppress rStar (new flag DISABLE_RSTAR_CODE)
