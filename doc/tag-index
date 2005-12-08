@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint57y_pre
+
 o obcs: always reset wVel & eta (to zero or prescribe it) at the OBs.
 o add new package rbcs (for relaxing ptracers at boundaries/depth/surface etc)
 o add new offset feature to offline pkg (plus minor cleanup)
