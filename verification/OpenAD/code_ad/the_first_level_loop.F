@@ -84,9 +84,7 @@ C     == Local variables ==
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_ENTER('THE_FIRST_LEVEL_LOOP',myThid)
 #endif
-      print *, 'THE_FIRST_LEVEL_LOOP(',iLoop,')'
-
-      print *, 'THE_FIRST_LEVEL_LOOP: iloop=',iLoop,' of ',nTimeSteps
+      print *, 'JU: THE_FIRST_LEVEL_LOOP: iloop=',iLoop,' of ',nTimeSteps
 
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_CALL('FORWARD_STEP',myThid)

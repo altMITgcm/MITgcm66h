@@ -87,7 +87,7 @@ C     == Local variables ==
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_ENTER('THE_FOURTH_LEVEL_LOOP',myThid)
 #endif
-      print *, 'THE_FOURTH_LEVEL_LOOP(',ilev_4,')'
+      print *, 'JU: THE_FOURTH_LEVEL_LOOP(',ilev_4,')'
       if (uCheckLev3 .gt. 0 ) then 
          do ilev_3 = 0,uCheckLev3-1
 #ifdef ALLOW_DEBUG
@@ -182,7 +182,7 @@ C     == Local variables ==
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_ENTER('THE_FOURTH_LEVEL_PLAIN',myThid)
 #endif
-      print *, 'THE_FOURTH_LEVEL_PLAIN()'
+      print *, 'JU: THE_FOURTH_LEVEL_PLAIN()'
       if (uCheckLev3 .gt. 0 ) then 
          do ilev_3 = 0,uCheckLev3-1
 #ifdef ALLOW_DEBUG

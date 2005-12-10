@@ -208,14 +208,22 @@ cju compute the actual checkpoint counts:
       else
          uCheckLev2 = nchklev_2
       end if
-      leftOvers = leftOvers - uCheckLev1*uCheckLev2
+      if (uCheckLev1*uCheckLev2 .gt. leftOvers) then 
+         leftOvers=0
+      else
+         leftOvers = leftOvers - uCheckLev1*uCheckLev2
+      end if
 
       if ((leftOvers/(uCheckLev1*uCkeckLev2)) .lt. nchklev_3 ) then 
          uCheckLev3=(leftOvers/(uCheckLev1*uCkeckLev2))
       else
          uCheckLev3 = nchklev_3
       end if
-      leftOvers = leftOvers - uCheckLev1*uCheckLev2*uCheckLev3
+      if (uCheckLev1*uCheckLev2*uCheckLev3 .gt. leftOvers) then 
+         leftOvers=0
+      else
+         leftOvers = leftOvers - uCheckLev1*uCheckLev2*uCheckLev3
+      end if
 
       if ((leftOvers/(uCheckLev1*uCkeckLev2*uCkeckLev3)) 
      &.lt. nchklev_4 ) then 
@@ -226,10 +234,10 @@ cju compute the actual checkpoint counts:
       end if
       leftOvers = leftOvers-uCheckLev1*uCheckLev2*uCheckLev3*uCheckLev4
       if (leftOvers .gt. 0) then 
-         print *, 'error, not enough checkpoints allowed'
+         print *, 'JU: error, not enough checkpoints allowed'
       end if
 
-      print* ,'main_loop: ',uCheckLev1, uCheckLev2, 
+      print* ,'JU: main_loop: ',uCheckLev1, uCheckLev2, 
      +uCheckLev3, uCheckLev4
 
       if (uCheckLev4 .gt. 0 ) then 
