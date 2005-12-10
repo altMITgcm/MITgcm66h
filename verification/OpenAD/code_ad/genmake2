@@ -2350,7 +2350,7 @@ ad_input_code_sf.w2f.canon.B: ad_input_code_sf.w2f.canon.f mfef90
 
 # WHIRL -> XAIF
 ad_input_code_sf.w2f.canon.xaif : ad_input_code_sf.w2f.canon.B whirl2xaif
-	./whirl2xaif -o \$@ \$<
+	./whirl2xaif --debug 1 -o \$@ \$<
 
 # XAIF -> XAIF'
 ad_input_code_sf.w2f.canon.xb.xaif : ad_input_code_sf.w2f.canon.xaif xaif.xsd xaif_base.xsd xaif_inlinable_intrinsics.xsd xaif_derivative_propagator.xsd xaif_output.xsd openad_adm
