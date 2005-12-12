@@ -55,8 +55,8 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCc
 C ligand balance in surface layer
 C in surface layer
 
-       DO j=jMin,jMax
-        DO i=iMin,iMax
+       DO j=1-OLy,sNy+OLy
+        DO i=1-OLx,sNx+OLx
          DO k=1,nR
           IF(hFacC(i,j,k,bi,bj) .gt. 0.0)THEN
 
