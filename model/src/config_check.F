@@ -57,7 +57,7 @@ C-  check that CPP option is "defined" when running-flag parameter is on:
         STOP 'ABNORMAL END: S/R CONFIG_CHECK'
       ENDIF
       IF (tauCD.NE.0.) THEN
-        WRITE(msgBuf,'(A)')
+        WRITE(msgBuf,'(2A)')
      &   'CONFIG_CHECK: tauCD has been set but the cd_code package is',
      &   ' enabled'
         CALL PRINT_ERROR( msgBuf , myThid)
