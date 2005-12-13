@@ -2372,7 +2372,7 @@ ad_input_code_sf.w2f.canon.xb.x2w.w2f.rs.f: ad_input_code_sf.w2f.canon.xb.x2w.w2
 	rm \$<.1
 
 # postprocess F'
-ad_input_code_sf.w2f.canon.xb.x2w.w2f.rs.pp.f: ad_input_code_sf.w2f.canon.xb.x2w.w2f.rs.f multi-pp.pl ../code_ad/ad_inline.f ../code_ad/ad_template.checkpoint.f ../code_ad/ad_template.split.f
+ad_input_code_sf.w2f.canon.xb.x2w.w2f.rs.pp.f: ad_input_code_sf.w2f.canon.xb.x2w.w2f.rs.f multi-pp.pl ../code_ad/ad_inline.f ../code_ad/ad_template.checkpoint.f ../code_ad/ad_template.plain.f ../code_ad/ad_template.split.f
 	perl multi-pp.pl -inline=../code_ad/ad_inline.f \$<
 	cat \$@ | sed 's/RETURN//' > \$@.1
 	mv \$@.1 \$@
