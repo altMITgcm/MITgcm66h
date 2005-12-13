@@ -55,14 +55,14 @@ c     == end of interface ==
 c     Get values of climatological temperature fields.
       call exf_set_climtemp ( mytime, myiter, mythid )
 c--   Update the tile edges.
-      _EXCH_XY_R8(climtemp, mythid)
+      _EXCH_XYZ_R8(climtemp, mythid)
 #endif
 
 #ifdef ALLOW_CLIMSALT_RELAXATION
 c     Get values of climatological salinity fields.
       call exf_set_climsalt ( mytime, myiter, mythid )
 c--   Update the tile edges.
-      _EXCH_XY_R8(climsalt, mythid)
+      _EXCH_XYZ_R8(climsalt, mythid)
 #endif
 
 #ifdef ALLOW_CLIMSST_RELAXATION
