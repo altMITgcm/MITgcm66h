@@ -100,7 +100,7 @@ CADJ STORE empmr = tapelev2, key = ilev_2
 # include "ebm_ad_check_lev2_dir.h"
 #endif /* ALLOW_ebm */
 
-#ifdef ALLOW_COST_ATLANTIC_HEAT
+#if (defined (ALLOW_COST_TEST) || defined (ALLOW_COST_ATLANTIC_HEAT))
 CADJ STORE cMeanTheta = tapelev2, key = ilev_2
 CADJ STORE cMeanUVel  = tapelev2, key = ilev_2
 CADJ STORE cMeanVVel  = tapelev2, key = ilev_2

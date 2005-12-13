@@ -26,7 +26,7 @@ C     myThid - Thread number for this instance of the routine.
       integer bi, bj
       integer myThid
 
-#ifdef ALLOW_COST_ATLANTIC_HEAT
+#if (defined (ALLOW_COST_TEST) || defined (ALLOW_COST_ATLANTIC_HEAT))
 C     == Local variables
       _RL thetaRef
 
@@ -61,6 +61,6 @@ C--   Calculate cost function on tile of this instance
         end do
       end do
 
-#endif /* ALLOW_COST_ATLANTIC_HEAT */
+#endif
 
       END

@@ -95,7 +95,7 @@ C--   TAMC need a stmt in front of a HPF directive
       DO bj=myByLo(myThid),myByHi(myThid)
         DO bi=myBxLo(myThid),myBxHi(myThid)
 
-#ifdef ALLOW_COST_ATLANTIC_HEAT
+#if (defined (ALLOW_COST_TEST) || defined (ALLOW_COST_ATLANTIC_HEAT))
            IF ( myTime .GT. (EndTime - lastinterval) )
      &          CALL COST_ACCUMULATE_MEAN (myThid)
 #endif
