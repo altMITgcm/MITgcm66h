@@ -495,13 +495,6 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
-      diagName  = 'PSIGDOT '
-      diagTitle  = 'Pi-Weighted Vertical Sigma Velocity  (hPa/day)'
-      diagUnits  = 'hPa/day         '
-      diagCode  = 'SM      LL      '
-      CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I          diagName, diagCode, diagUnits, diagTitle, myThid )
-
       diagName  = 'DTLS    '
       diagTitle  =
      .  'Temperature Tendency due to Stratiform Processes  (K/day)'
@@ -1595,6 +1588,38 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       diagTitle = 'Pressures for Fizhi (mb)'
       diagUnits = 'mb  (hPa)       '
       diagCode = 'SM      ML      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+      diagName  = 'CORRDU  '
+      diagTitle  =
+     .  'Zonal Wind Tendency Gridalt Correction Term (m/s/day)'
+      diagUnits  = 'm/s/day         '
+      WRITE(diagCode,'(A,I3.3,A)') 'UM   ',diagNum+2,'ML      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+      diagName  = 'CORRDV  '
+      diagTitle  =
+     .  'Meridional Wind Tendency Gridalt Correction Term (m/s/day)'
+      diagUnits  = 'm/s/day         '
+      WRITE(diagCode,'(A,I3.3,A)') 'VM   ', diagNum ,'ML      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+      diagName  = 'CORRDT  '
+      diagTitle  =
+     .  'Temperature Tendency Gridalt Correction Term (K/day)'
+      diagUnits  = 'K/day           '
+      diagCode  = 'SM      ML      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+      diagName  = 'CORRDQ  '
+      diagTitle  =
+     .  'Specific Humidity Tendency Gridalt Correction Term (g/kg/day)'
+      diagUnits  = 'gram/kg/day     '
+      diagCode  = 'SM      ML      '
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
