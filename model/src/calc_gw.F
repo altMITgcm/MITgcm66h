@@ -81,8 +81,13 @@ CEOP
       jMax = sNy
 
 C     Adams-Bashforth timestepping weights
-      ab15 =  1.5 _d 0 + abeps
-      ab05 = -0.5 _d 0 - abeps
+      IF (myIter .EQ. 0) THEN
+       ab15 =  1.0 _d 0
+       ab05 =  0.0 _d 0
+      ELSE
+       ab15 =  1.5 _d 0 + abeps
+       ab05 = -0.5 _d 0 - abeps
+      ENDIF
 
 C     Lateral friction (no-slip, free slip, or half slip):
       IF ( no_slip_sides ) THEN
