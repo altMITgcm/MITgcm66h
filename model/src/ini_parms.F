@@ -204,7 +204,7 @@ C--   Time stepping parammeters
      & diagFreq, monitorFreq, adjMonitorFreq, pChkPtFreq, cAdjFreq, 
      & outputTypesInclusive, 
      & tauThetaClimRelax, tauSaltClimRelax, latBandClimRelax, 
-     & tauTr1ClimRelax,
+     & tauThetaClimRelax3Dim, tauSaltClimRelax3Dim, tauTr1ClimRelax,
      & periodicExternalForcing, externForcingPeriod, externForcingCycle,
      & calendarDumps
 

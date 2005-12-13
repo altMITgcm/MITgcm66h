@@ -271,6 +271,8 @@ C--   Time stepping parameters
       tauCD             =  0.D0
       tauThetaClimRelax =  0.D0
       tauSaltClimRelax  =  0.D0
+      tauThetaClimRelax3Dim =  0.D0
+      tauSaltClimRelax3Dim  =  0.D0
       tauTr1ClimRelax   =  0.D0
       periodicExternalForcing = .FALSE.
       externForcingPeriod     = 0.

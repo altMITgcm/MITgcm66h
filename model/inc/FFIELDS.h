@@ -124,6 +124,16 @@ C     EfluxP - p-component of Eliassen-Palm flux vector
       _RS  EddyTauy (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
 #endif
 
+#ifdef ALLOW_CLIMTEMP_RELAXATION
+      COMMON /FFIELDS_3d_theta/ thetaStar
+      _RS  thetaStar (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+#endif
+
+#ifdef ALLOW_CLIMSALT_RELAXATION
+      COMMON /FFIELDS_3d_salt/ saltStar
+      _RS  saltStar (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+#endif
+
 #ifndef ALLOW_EXF
 C     taux[0,1]     :: Temp. for zonal wind stress
 C     tauy[0,1]     :: Temp. for merid. wind stress

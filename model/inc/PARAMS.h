@@ -629,8 +629,8 @@ C                      (i.e. allows convection at different Rayleigh numbers)
      & diagFreq, taveFreq, tave_lastIter, monitorFreq, adjMonitorFreq,
      & afFacMom, vfFacMom, pfFacMom, cfFacMom, foFacMom, mtFacMom,
      & cosPower, cAdjFreq, omega, rotationPeriod,
-     & tauThetaClimRelax,
-     & tauSaltClimRelax,
+     & tauThetaClimRelax, tauThetaClimRelax3Dim,
+     & tauSaltClimRelax, tauSaltClimRelax3Dim,
      & tauTr1ClimRelax, lambdaTr1ClimRelax, latBandClimRelax,
      & externForcingCycle, externForcingPeriod,
      & convertFW2Salt, temp_EvPrRn, salt_EvPrRn,
@@ -742,6 +742,8 @@ C                      (i.e. allows convection at different Rayleigh numbers)
       _RL rotationPeriod
       _RL tauThetaClimRelax
       _RL tauSaltClimRelax
+      _RL tauThetaClimRelax3Dim
+      _RL tauSaltClimRelax3Dim
       _RL tauTr1ClimRelax
       _RL lambdaTr1ClimRelax
       _RL latBandClimRelax
