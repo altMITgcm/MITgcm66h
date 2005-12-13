@@ -317,6 +317,9 @@ C     zcoord ::
       CALL WRITE_0D_L( momPressureForcing, INDEX_NONE,
      & 'momPressureForcing =',  
      & '  /* Momentum pressure term on/off flag */')
+      CALL WRITE_0D_L( implicitIntGravWave, INDEX_NONE,
+     &  'implicitIntGravWave=',
+     &  ' /* Implicit Internal Gravity Wave flag */')
       CALL WRITE_0D_L( staggerTimeStep, INDEX_NONE,
      &                 'staggerTimeStep =',
      &'   /* Stagger time stepping on/off flag */')

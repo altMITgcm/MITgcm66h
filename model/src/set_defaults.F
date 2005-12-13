@@ -130,6 +130,7 @@ Cml      sBeta               = 7.4D-4
       buoyancyRelation    = 'OCEANIC'
       hFacMin             = 1.D0
       hFacMinDrDefault    = 0.D0
+      implicitIntGravWave = .FALSE.
       staggerTimeStep     = .FALSE.
       momViscosity        = .TRUE.
       momAdvection        = .TRUE.
