@@ -91,7 +91,7 @@ C     == Local variables ==
 #endif
 
       print *, 'JU: THE_SECOND_LEVEL_LOOP(',iLev_4,',',iLev_3,',',iLev_2,')'
-      do ilev_1 = 0,uChkLev1-1
+      do ilev_1 = 0,uCheckLev1-1
          iloop = ilev_1 
      &        + (ilev_2)*uCheckLev1 
      &        + (ilev_3)*uCheckLev2*uCheckLev1
@@ -187,7 +187,7 @@ C     == Local variables ==
 #endif
 
       print *, 'JU: THE_SECOND_LEVEL_PLAIN(',iLev_4,',',iLev_3,')'
-      do ilev_1 = 0,uChkLev1-1
+      do ilev_1 = 0,uCheckLev1-1
          iloop = ilev_1 
      &        + (ilev_3)*uCheckLev2*uCheckLev1
      &        + (ilev_4)*uCheckLev3*uCheckLev2*uCheckLev1
