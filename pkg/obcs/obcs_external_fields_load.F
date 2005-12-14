@@ -471,9 +471,9 @@ C     "interpolate" passive tracer boundary values
 # ifdef ALLOW_OBCS_EAST
         IF ( OBEptrFile(iTracer) .NE. ' '  )
      &       CALL OBCS_EXTERNAL_FIELDS_INTERP_YZ( 
-     O       OBWptr (1-Oly,1,1,1,iTracer), 
-     I       OBWptr0(1-Oly,1,1,1,iTracer), 
-     I       OBWptr1(1-Oly,1,1,1,iTracer), aWght, bWght, myThid )
+     O       OBEptr (1-Oly,1,1,1,iTracer), 
+     I       OBEptr0(1-Oly,1,1,1,iTracer), 
+     I       OBEptr1(1-Oly,1,1,1,iTracer), aWght, bWght, myThid )
 # endif /* ALLOW_OBCS_EAST */
 # ifdef ALLOW_OBCS_WEST
         IF ( OBWptrFile(iTracer) .NE. ' '  )
