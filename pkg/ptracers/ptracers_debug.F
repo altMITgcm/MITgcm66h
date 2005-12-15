@@ -33,7 +33,7 @@ C  none
 
 C !LOCAL VARIABLES: ====================================================
 C  i,j,k,bi,bj,iTracer  :: loop indices
-      INTEGER i,j,iTracer
+      INTEGER iTracer
       CHARACTER*(9) strng
 CEOP
 

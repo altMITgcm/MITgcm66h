@@ -60,7 +60,7 @@ C     PiLoc, zLoc, dzLoc, yLatLoc, phiLoc :: hold on temporary values
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       INTEGER bi,bj,i,j,K, Ks
-      _RL ddPI, Po_surf
+      _RL Po_surf
       _RL hRef(2*Nr+1), rHalf(2*Nr+1)
       LOGICAL findPoSurf
 
