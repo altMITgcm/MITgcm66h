@@ -31,7 +31,10 @@ C     myThid -  Number of this instance of INI_DEPTHS
 C     == Local variables ==
       INTEGER iG, jG, iGm, jGm
       INTEGER bi, bj
-      INTEGER I, J, K
+      INTEGER I, J
+#ifdef NONLIN_FRSURF
+      INTEGER k
+#endif
 
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
