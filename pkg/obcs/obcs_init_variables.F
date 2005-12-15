@@ -287,11 +287,7 @@ C     from a file.
          IF (debugMode) CALL DEBUG_CALL( 
      &        'PTRACERS EXCHANGES in OBCS_INIT_VARIABLES',myThid)
 #endif
-C     Loop over passive tracers
-         DO iTracer=1,PTRACERS_numInUse
-          _EXCH_XYZ_R8( pTracer(1-Olx,1-Oly,1,1,1,iTracer), 
-     &         myThid )
-         ENDDO
+         CALL PTRACERS_FIELDS_BLOCKING_EXCH( myThid )
         ENDIF
 C     endif start from rest
        ENDIF
