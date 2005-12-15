@@ -104,7 +104,6 @@ C        slipSideFac = 0. _d 0
         DO K=1,Nr
          DO j=1-OLy,sNy+OLy
           DO i=1-OLx,sNx+OLx
-           gwNm1(i,j,k,bi,bj) = gW(i,j,k,bi,bj)
            gW(i,j,k,bi,bj) = 0.
           ENDDO
          ENDDO
@@ -317,6 +316,7 @@ caja           and an hFacUS (above V points) too...
      &     +deltatMom*nh_Am2*( ab15*gW(i,j,k,bi,bj)
      &                 +ab05*gwNm1(i,j,k,bi,bj) )
            IF (hFacC(I,J,K,bi,bj).EQ.0.) wVel(i,j,k,bi,bj)=0.
+           gwNm1(i,j,k,bi,bj) = gW(i,j,k,bi,bj)
           ENDDO
          ENDDO
         ENDDO
