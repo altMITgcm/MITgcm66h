@@ -544,6 +544,7 @@ C--   Step forward W field in N-H algorithm
 #endif
          CALL TIMER_START('CALC_GW          [DYNAMICS]',myThid)
          CALL CALC_GW( myTime, myIter, myThid )
+         CALL TIMESTEP_WVEL( myTime, myIter, myThid )
          CALL TIMER_STOP ('CALC_GW          [DYNAMICS]',myThid)
       ENDIF
 #endif
