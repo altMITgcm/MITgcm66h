@@ -4,7 +4,7 @@ C $Name$
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 #ifdef ALLOW_EXF
-# include EXF_OPTIONS.h"
+# include "EXF_OPTIONS.h"
 #endif
 
 CBOP
