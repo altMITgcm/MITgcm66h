@@ -1,4 +1,5 @@
-menemenlis@jpl.nasa.gov 02-May-2003.
+updated December 15, 2005 for iter177 ecco1x1 computation
+menemenlis@jpl.nasa.gov
 
 This verification experiment is identical global_with_exf
 except that it includes CFC-11 diagnostic as per OCMIP-2
@@ -6,6 +7,46 @@ protocol (http://www.ipsl.jussieu.fr/OCMIP/).
 CFC-11 output in mol/m^3 is output in files TR1.*.data
 Example of how to read this output file using matlab is
 in input/lookat.m
+
+==============================================================
+
+Configuring and running the ecco1x1 configuration with iter177
+surface boundary conditions and CFC11.
+Surface forcing files are assumed available in MITgcm/../iter177
+
+1) get code:
+
+ cvs co -r release1_50yr MITgcm_code
+ cvs co -r release1_50yr MITgcm/verification/global_with_CFC11
+ cd MITgcm
+ cvs co -d ocean_inversion_project MITgcm_contrib/ocean_inversion_project
+
+2) compile code:
+
+ mkdir bin exe
+ cd bin
+ \cp ../verification/global_with_CFC11/code1x1/* .
+ \cp ../verification/global_with_CFC11/code1x1/.g* .
+ \mv CPP_OPTIONS.h_iter177 CPP_OPTIONS.h
+ \mv KPP_OPTIONS.h_iter177 KPP_OPTIONS.h
+ \mv SIZE.h.36 SIZE.h
+ ../tools/genmake -mpi -platform=columbia -makefile
+ make depend
+ make -j
+
+3) execute code
+
+ cd ../exe
+ \cp ../verification/global_with_CFC11/input1x1/* .
+ ln -sf ../../iter177/* .
+ \mv data.gmredi_iter177 data.gmredi
+ \mv data_iter177 data
+ \mv data.exf_iter177 data.exf
+ \cp ../verification/global_with_CFC11/input/cfc1112.atm .
+ \cp ../verification/global_with_CFC11/input/FICE .
+ \cp ../verification/global_with_CFC11/input/PATM .
+ \cp ../verification/global_with_CFC11/input/XKW .
+ qsub job.36
 
 ==============================================================
 

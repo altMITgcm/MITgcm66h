@@ -25,7 +25,7 @@
     1.9042, 1.9042, 1.9039, 1.9034, 1.9024, 1.9000, 1.8888, 1.8888
  climsst_nlon     = 192,
  climsst_nlat     = 94,
- climsstfile      = 'NCEP_R_tmp_92-02.bin',
+ climsstfile      = 'NCEP_R_tmp_92-05.bin',
 #
  climsss_lon0     = 0.5
  climsss_lon_inc  = 1
