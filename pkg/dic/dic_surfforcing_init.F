@@ -119,14 +119,14 @@ C =================================================================
       DO bj=myByLo(myThid),myByHi(myThid)
         DO bi=myBxLo(myThid),myBxHi(myThid)
 
-        jMin=1-OLy
-        jMax=sNy+OLy
-        iMin=1-OLx
-        iMax=sNx+OLx
+        jMin=1
+        jMax=sNy
+        iMin=1
+        iMax=sNx
 
 C determine inorganic carbon chem coefficients
-        DO j=1-OLy,sNy+OLy
-         DO i=1-OLx,sNx+OLx
+        DO j=jmin,jmax
+         DO i=imin,imax
 
 #ifdef DIC_BIOTIC
 cQQQQ check ptracer numbers
@@ -154,17 +154,17 @@ C====================================================================
 c set number of iterations for [H+] solvers
 C set guess of pH for first step here
 
-        DO j=1-OLy,sNy+OLy
-         DO i=1-OLx,sNx+OLx
+        DO j=jmin,jmax
+         DO i=imin,imax
                   pH(i,j,bi,bj) = 8.0
           ENDDO
          ENDDO
          print*,'QQ: pCO2 approximation method'
 c first approxmation
 C$TAF LOOP = parallel
-        DO j=1-OLy,sNy+OLy
+        DO j=jmin,jmax
 C$TAF LOOP = parallel
-        DO i=1-OLx,sNx+OLx
+        DO i=imin,imax
          IF(maskC(i,j,kLev,bi,bj) .NE. 0.)THEN
 C$TAF init dic_surf = static, 10
           do it=1,10
