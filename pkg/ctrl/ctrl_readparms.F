@@ -124,7 +124,7 @@ c--   Read the namelist input.
      &  doZscalePack,
      &  doMainUnpack,
      &  doMainPack,
-     &  admtlmBypassAD
+     &  doAdmtlmBypassAD
 
       namelist /ctrl_packnames/
      &  yadmark, yctrlid, yctrlposunpack, yctrlpospack,
@@ -144,7 +144,7 @@ c--     Set default values.
         doZscalePack        = .FALSE.
         doMainUnpack        = .TRUE.
         doMainPack          = .TRUE.
-        admtlmBypassAD      = .FALSE.
+        doAdmtlmBypassAD    = .FALSE.
 
         xx_theta_file      = 'xx_theta'
         xx_salt_file       = 'xx_salt'

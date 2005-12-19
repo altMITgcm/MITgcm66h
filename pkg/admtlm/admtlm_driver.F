@@ -64,7 +64,7 @@ c
 c
       CALL CTRL_INIT( mythid )
 c
-      if ( admtlmBypassAD ) then
+      if ( doAdmtlmBypassAD ) then
 c
          CALL TIMER_START('ADMTLM_DRIVER             [BYPASSAD]',mythid)
          CALL ADMTLM_BYPASSAD( mythid )
