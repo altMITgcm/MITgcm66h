@@ -314,6 +314,13 @@ c     IF ( usePenetratingSW ) THEN
 c     ENDIF
 #endif
 
+#ifdef ALLOW_RBCS
+       if (useRBCS) then
+          call RBCS_ADD_TENDENCY(bi,bj,klev, 1,
+     &                            myTime, myThid )
+       endif
+#endif
+
 #ifdef ALLOW_CLIMTEMP_RELAXATION
        IF ( tauThetaClimRelax3Dim .NE. 0. ) THEN
         DO j=1,sNy
@@ -417,6 +424,13 @@ C     Add fresh-water in top-layer
         ENDDO
        ENDDO
       ENDIF
+
+#ifdef ALLOW_RBCS
+       if (useRBCS) then
+          call RBCS_ADD_TENDENCY(bi,bj,klev, 2,
+     &                            myTime, myThid )
+       endif
+#endif
 
 #ifdef ALLOW_CLIMSALT_RELAXATION
        IF ( tauSaltClimRelax3Dim .NE. 0. ) THEN
