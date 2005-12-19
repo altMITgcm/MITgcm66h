@@ -65,8 +65,10 @@ c     == end of interface ==
 #ifdef ALLOW_COST_STATE_FINAL
          do j=1,sNy
           do i=1,sNx
-           objf_state_final(i,j,bi,bj,1) = 0. _d 0
-           objf_state_final(i,j,bi,bj,2) = 0. _d 0
+           do k=1,4*Nr
+            objf_state_final(i,j,bi,bj,k) = 0. _d 0
+           enddo
+           objf_state_final(i,j,bi,bj,4*Nr+1) = 0. _d 0
 cph No init. of cost_state_final here,
 cph because we need it in ADM*TLM
           end do
