@@ -85,10 +85,8 @@ C     by PTRACERS_FORCING because it is needed by KPP_TRANSPORT_PTR.
 
 #ifdef ALLOW_RBCS
        if (useRBCptracers) then
-         CALL RBCS_ADD_PTENDENCY(
-     I                        bi,bj,iMin,iMax,jMin,jMax,k,
-     I                        iTracer,
-     I                        myTime,myIter, myThid)
+         CALL RBCS_ADD_TENDENCY(bi,bj,k,iTracer+2,
+     I                        myTime, myThid)
        endif
 #endif
 
