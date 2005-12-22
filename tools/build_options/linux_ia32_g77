@@ -47,4 +47,7 @@ elif test -d /usr/local/netcdf ; then
     INCLUDES='-I/usr/local/netcdf/include'
     LIBS='-L/usr/local/netcdf/lib'
 fi
-
+GSLINC=''
+GSLLIB='-lgsl -lgslcblas'
+PAPIINC='-I/usr/local/pkg/papi/papi-3.0.8.1/p4/include'
+PAPILIB='-L/usr/local/pkg/papi/papi-3.0.8.1/p4/lib -lpapi'
