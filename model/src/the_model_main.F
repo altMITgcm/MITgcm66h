@@ -493,6 +493,9 @@ c--   set default:
       IF (debugMode) CALL DEBUG_ENTER('THE_MODEL_MAIN',myThid)
 #endif
 
+#ifdef USE_PAPI
+      CALL TIMER_CONTROL('','INIT','THE_MODEL_MAIN',myThid)
+#endif
 C--   This timer encompasses the whole code
       CALL TIMER_START('ALL                    [THE_MODEL_MAIN]',myThid)
 
