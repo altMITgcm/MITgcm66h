@@ -186,6 +186,9 @@ c       WRITE(fNam,'(A,A)') 'STDOUT.', myProcessStr(1:4)
 c       OPEN(standardMessageUnit,FILE=fNam,STATUS='unknown')
 
 #endif /* ALLOW_USE_MPI */
+#ifdef USE_LIBHPM
+        CALL F_HPMINIT(myProcId, "mitgcmuv")
+#endif
 
  999  CONTINUE
 
