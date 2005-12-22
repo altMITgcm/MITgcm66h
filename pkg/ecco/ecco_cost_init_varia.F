@@ -91,6 +91,8 @@ c--   Initialize the tiled cost function contributions.
           objf_salt(bi,bj)     = 0. _d 0
           objf_temp0(bi,bj)    = 0. _d 0
           objf_salt0(bi,bj)    = 0. _d 0
+          objf_temp0smoo(bi,bj)  = 0. _d 0
+          objf_salt0smoo(bi,bj)  = 0. _d 0
           objf_tmi(bi,bj)      = 0. _d 0
           objf_sst(bi,bj)      = 0. _d 0
           objf_sss(bi,bj)      = 0. _d 0
