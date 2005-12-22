@@ -92,6 +92,7 @@ c--   Read the namelist input.
      &                   mult_obcsw, mult_obcse, mult_obcsvol,
      &                   mult_curmtr, mult_ageos,
      &                   mult_kapgm, mult_diffkr,
+     &                   mult_smooth,
      &                   whflux0, wsflux0, wtau0,
      &                   watemp0, waqh0, 
      &                   wprecip0, wswflux0, wswdown0, wwind0,
@@ -222,6 +223,7 @@ c--     Set default values.
         mult_curmtr           =      0. _d 0
         mult_kapgm            =      0. _d 0
         mult_diffkr           =      0. _d 0
+        mult_smooth           =      0. _d 0
         watemp0               =      0. _d 0
         waqh0                 =      0. _d 0
         wprecip0              =      0. _d 0
