@@ -126,6 +126,10 @@ C--   Local variables
 
 CEOP
 
+#ifdef USE_GSL_IEEE
+      call fgsl_ieee_env_setup ()
+#endif
+
 C--   Set up the execution environment
 C     EEBOOT loads a execution environment parameter file 
 C     ( called "eedata" by default ) and sets variables 
