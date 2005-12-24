@@ -1,0 +1,10 @@
+#!/bin/csh
+#PBS -l ncpus=36
+#PBS -l walltime=100:00:00
+#PBS -j oe
+#PBS -q bts
+#PBS -l ignore_ded=1
+
+cd /nobackup/menemenl/cfc/MITgcm/exe
+mpirun -np 36 ./mitgcmuv
+
