@@ -53,10 +53,10 @@
 # Time stepping parameters
  &PARM03
  starttime  = 0.,
- endTime    = 2240613000.,
- pChkptFreq = 2240613000.,
+ endTime    = 2240611200.,
+ pChkptFreq = 2240611200.,
  tauCD=172800.,
- deltaT=3000.0,
+ deltaT=3600.0,
  cAdjFreq=0.,
  abEps=0.1,
  tauThetaClimRelax=2592000.0,

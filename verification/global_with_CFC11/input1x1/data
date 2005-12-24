@@ -51,7 +51,6 @@
  &
 
 # Time stepping parameters
-# data.1765-2005.2 is a template for last 11-years (1995-2005).
  &PARM03
  starttime  = 0.,
  endTime    = 2240611200.,

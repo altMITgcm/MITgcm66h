@@ -27,7 +27,6 @@ Surface forcing files are assumed available in MITgcm/../iter177
  cd bin
  \cp ../verification/global_with_CFC11/code1x1/* .
  \cp ../verification/global_with_CFC11/code1x1/.g* .
- \mv CPP_OPTIONS.h_iter177 CPP_OPTIONS.h
  \mv KPP_OPTIONS.h_iter177 KPP_OPTIONS.h
  \mv SIZE.h.36 SIZE.h
  ../tools/genmake -mpi -platform=columbia -makefile

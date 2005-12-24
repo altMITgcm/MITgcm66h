@@ -5,7 +5,7 @@
 # *********************
  &EXF_NML
 #
-# repeat period is 3650 days (10 years, 1992-2001)
+# repeat period is 4015 days (11 years, 1992-2002)
  RepeatPeriod = 346896000
 #
  hfluxstartdate1   = 19911231,
