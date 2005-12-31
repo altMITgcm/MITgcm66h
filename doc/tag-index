@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint57z_post
 o make CG3D solver compatible with Free-surface at k > 1 (p-coordinate):
   affects output (@ truncation level) of exp. plume_on_slope ; updated.
 o fix the pickup behavior for obcs in combination with ptracers
