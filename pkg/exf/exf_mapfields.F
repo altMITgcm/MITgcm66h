@@ -213,30 +213,6 @@ c             Short wave radiative flux.
           enddo
 #endif
 
-#ifdef ALLOW_CLIMTEMP_RELAXATION
-          if ( climtempfile .NE. ' ' ) then
-             do k = 1, Nr
-                do j = jmin,jmax
-                   do i = imin,imax
-                      thetaStar(i,j,k,bi,bj)  = climtemp(i,j,k,bi,bj)
-                   enddo
-                enddo
-             enddo
-          endif
-#endif
-
-#ifdef ALLOW_CLIMSALT_RELAXATION
-          if ( climsaltfile .NE. ' ' ) then
-             do k = 1, Nr
-                do j = jmin,jmax
-                   do i = imin,imax
-                      saltStar(i,j,k,bi,bj)  = climsalt(i,j,k,bi,bj)
-                   enddo
-                enddo
-             enddo
-          endif
-#endif
-
 #ifdef ATMOSPHERIC_LOADING
           do j = jmin,jmax
             do i = imin,imax

@@ -77,6 +77,13 @@ cph            endif
 cph         endif
       endif
 
+#ifdef ALLOW_CLIMTEMP_RELAXATION
+      STOP 'ALLOW_CLIMTEMP_RELAXATION no longer supported. Use pkg/rbcs'
+#endif
 
+
+#ifdef ALLOW_CLIMSALT_RELAXATION
+      STOP 'ALLOW_CLIMSALT_RELAXATION no longer supported. Use pkg/rbcs'
+#endif
 
       end

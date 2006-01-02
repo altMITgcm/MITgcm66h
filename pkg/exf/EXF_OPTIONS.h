@@ -55,14 +55,6 @@ c
 c   >>> ATMOSPHERIC_LOADING <<<
 c       If defined, atmospheric pressure can be read-in from files.
 c
-c   >>> ALLOW_CLIMTEMP_RELAXATION <<<
-c       Allow the relaxation to a monthly climatology of potential
-c       temperature, e.g. the Levitus climatology.
-c
-c   >>> ALLOW_CLIMSALT_RELAXATION <<<
-c       Allow the relaxation to a monthly climatology of salinity,
-c       e.g. the Levitus climatology.
-c
 c   >>> ALLOW_CLIMSST_RELAXATION <<<
 c       Allow the relaxation to a monthly climatology of sea surface
 c       temperature, e.g. the Reynolds climatology.
