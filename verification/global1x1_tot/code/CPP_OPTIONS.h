@@ -37,7 +37,7 @@ C   instead of the "virtual salt flux"
 #undef  USE_NATURAL_BCS
 
 C o Include/exclude exact volume conservaion
-#undef EXACT_CONSERV
+#define EXACT_CONSERV
 
 C o Execution environment support options
 #include "CPP_EEOPTIONS.h"
