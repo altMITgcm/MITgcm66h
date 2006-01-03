@@ -61,15 +61,9 @@ c     == local variables ==
       _RL wsi(nr)
       _RL wui(nr)
       _RL wvi(nr)
-      _RL whflux0
       _RL whflux0m
-      _RL wsflux0
       _RL wsflux0m
-      _RL wtau0
       _RL wtau0m
-      _RL watemp0
-      _RL waqh0
-      _RL wwind0
       _RL ratio
       _RL dummy
 

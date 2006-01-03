@@ -39,9 +39,6 @@ c     == global variables ==
 #include "PARAMS.h"
 #include "DYNVARS.h"
 #include "CG2D.h"
-#ifdef ALLOW_DRIFTW_COST_CONTRIBUTION 
-#include "GW.h"
-#endif
 
 #include "optim.h"
 #include "ecco_cost.h"
