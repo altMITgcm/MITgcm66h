@@ -117,7 +117,7 @@ else
            'exist in "tdat"']);
   end
   if isempty(tvals) && not(isempty(alltimes))
-    tvals = alltimes;
+    timelist = alltimes;
   end
 end
 
