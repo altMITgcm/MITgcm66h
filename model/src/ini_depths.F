@@ -115,7 +115,7 @@ C- end setup R_low in the interior
 C- fill in the overlap :
       _EXCH_XY_R4(R_low, myThid )
 
-      PRINT *, ' Calling plot field', myThid
+c      PRINT *, ' Calling plot field', myThid
       CALL PLOT_FIELD_XYRS(R_low,'Bottom depths (ini_depths)',1,myThid)
 c     _BEGIN_MASTER( myThid )
 c     CALL WRITE_FLD_XY_RS( 'R_low' ,' ', R_low, 0,myThid)
