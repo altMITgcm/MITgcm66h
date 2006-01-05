@@ -209,7 +209,7 @@ C     place holder of obsolete variable jG
 #ifdef ALLOW_THETA0_CONTROL
           ivartype = 1
           write(weighttype(1:80),'(80a)') ' '
-          write(weighttype(1:80),'(a)') "wtheta"
+          write(weighttype(1:80),'(a)') "wthetaLev"
           call ctrl_set_pack_xyz(
      &         cunit, ivartype, fname_theta(ictrlgrad), "maskCtrlC",
      &         weighttype, wtheta, lxxadxx, mythid)
@@ -218,7 +218,7 @@ C     place holder of obsolete variable jG
 #ifdef ALLOW_SALT0_CONTROL
           ivartype = 2
           write(weighttype(1:80),'(80a)') ' '
-          write(weighttype(1:80),'(a)') "wsalt"
+          write(weighttype(1:80),'(a)') "wsaltLev"
           call ctrl_set_pack_xyz(
      &         cunit, ivartype, fname_salt(ictrlgrad), "maskCtrlC",
      &         weighttype, wsalt, lxxadxx, mythid)
