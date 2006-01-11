@@ -142,6 +142,12 @@ C--   Trap errors
        GOTO 999
       ENDIF
 
+#ifdef HAVE_EMBED_SRC
+      IF (useEMBEDSRC) THEN
+        CALL embdec
+      ENDIF
+#endif
+
 #ifdef HAVE_SETRLSTK
       IF (useSETRLSTK) THEN
         CALL setrlstk
