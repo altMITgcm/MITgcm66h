@@ -261,5 +261,11 @@ C     IF (useDIC)
       ENDIF
 #endif
 
+#ifdef ALLOW_EMBED_FILES
+      IF ( useEMBED_FILES ) THEN
+        CALL EMBED_FILES_INIT( mythid )
+      ENDIF
+#endif
+
       RETURN
       END

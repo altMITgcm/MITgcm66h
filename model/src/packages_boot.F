@@ -71,7 +71,8 @@ C     data.pkg namelists
      &          useEBM,
      &          useMNC,
      &          useRunClock,
-     &          useMATRIX
+     &          useMATRIX,
+     &          useEMBED_FILES
 CEOP
 
       _BEGIN_MASTER(myThid)
