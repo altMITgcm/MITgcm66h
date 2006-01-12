@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint58
 o add "--embed-source" option to genmake2 which, when the supporting 
   tools can be compiled (as determined by genmake2) will turn on the 
   embed_files package which then embeds the entire MITgcm source code 
