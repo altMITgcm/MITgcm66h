@@ -525,6 +525,34 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
+      diagName  = 'TOTUTEND'
+      diagTitle = 'Tendency of Zonal Component of Velocity (m/s^2)'
+      diagUnits = 'm/s^2           '
+      WRITE(diagCode,'(A,I3.3,A)') 'UU   ',diagNum+2,'MR      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+      diagName  = 'TOTVTEND'
+      diagTitle = 'Tendency of Meridional Component of Velocity (m/s^2)'
+      diagUnits = 'm/s^2           '
+      WRITE(diagCode,'(A,I3.3,A)') 'VV   ', diagNum ,'MR      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+      diagName  = 'TOTTEND '
+      diagTitle = 'Tendency of Potential Temperature (degC,K)'
+      diagUnits = 'deg K/sec'
+      diagCode  = 'SM      MR      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+      diagName  = 'TOTSTEND'
+      diagTitle = 'Tendency of Salt or Water Vapor mixing ratio'
+      diagUnits = 'kg/kg-sec'
+      diagCode  = 'SM      MR      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
 
       RETURN
       END
