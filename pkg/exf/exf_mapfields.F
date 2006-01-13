@@ -240,12 +240,6 @@ c      _EXCH_XY_R4(    fv, mythid )
 #ifdef ALLOW_CLIMSSS_RELAXATION
       _EXCH_XY_R4(   sss, mythid )
 #endif
-#ifdef ALLOW_CLIMTEMP_RELAXATION
-      _EXCH_XYZ_R4( thetaStar, mythid )
-#endif
-#ifdef ALLOW_CLIMSALT_RELAXATION
-      _EXCH_XYZ_R4( saltStar, mythid )
-#endif
 #ifdef ATMOSPHERIC_LOADING
       _EXCH_XY_R4( pload, mythid )
 #endif
