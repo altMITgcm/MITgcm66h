@@ -37,12 +37,7 @@ c     == local variables ==
 c     == end of interface ==
 
 c     initialize climatology fields
-#ifdef ALLOW_CLIMTEMP_RELAXATION
-      call exf_init_climtemp( mythid )
-#endif
-#ifdef ALLOW_CLIMSALT_RELAXATION
-      call exf_init_climsalt( mythid )
-#endif
+
 #ifdef ALLOW_CLIMSST_RELAXATION
       call exf_init_climsst(  mythid )
 #endif
