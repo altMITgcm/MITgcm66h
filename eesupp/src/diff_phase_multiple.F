@@ -47,7 +47,7 @@ C     o Do easy cases first.
       IF ( freq .NE. 0. ) THEN
         IF ( ABS(step) .GT. ABS(freq) ) THEN
          DIFF_PHASE_MULTIPLE = .TRUE.
-        ELSE
+        ELSEIF ( val1 .GE. phase ) THEN
 
 C         o This case is more complex because of round-off error
           v1 = val1
