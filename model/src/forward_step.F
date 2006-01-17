@@ -651,6 +651,11 @@ C--   Do "blocking" sends and receives for field "overlap" terms
       CALL DO_FIELDS_BLOCKING_EXCHANGES( myThid )
       CALL TIMER_STOP ('BLOCKING_EXCHANGES  [FORWARD_STEP]',myThid)
 
+      IF ( usediagnostics ) THEN
+       CALL TIMER_START('DO_STATEVARS_DIAGS  [FORWARD_STEP]',myThid)
+       CALL DO_STATEVARS_DIAGS( myTime, 2, myIter, myThid )
+       CALL TIMER_STOP ('DO_STATEVARS_DIAGS  [FORWARD_STEP]',myThid)
+      ENDIF
 
 C AMM
 #ifdef ALLOW_GRIDALT
