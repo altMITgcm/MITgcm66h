@@ -232,7 +232,7 @@ C=======================================================================
       if(diagnostics_is_on('RFT     ',myThid) ) then
        do j=jMin,jMax
        do i=iMin,iMax
-        tmpdiag(i,j) = rayleighdrag * 0.5 *
+        tmpdiag(i,j) = ( rayleighdrag * 0.5 *
      . (maskW(i,j,kLev,bi,bj)*uVel(i,j,kLev,bi,bj)*uVel(i,j,kLev,bi,bj)+ 
      .  maskW(i+1,j,kLev,bi,bj)*
      .                uVel(i+1,j,kLev,bi,bj)*uVel(i+1,j,kLev,bi,bj)+ 
