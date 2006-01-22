@@ -49,7 +49,9 @@ C     set up bulk formula arrays to zero
              uwind (i,j,bi,bj) = 0.
              vwind (i,j,bi,bj) = 0.
              runoff(i,j,bi,bj) = 0.
+#ifdef ALLOW_FORMULA_AIM
              thAir (i,j,bi,bj) = 0.
+#endif
              qnetch(i,j,bi,bj) = 0.
              empch (i,j,bi,bj) = 0.
            ENDDO
