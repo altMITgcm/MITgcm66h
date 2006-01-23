@@ -10,7 +10,9 @@ C $Name$
 
 CEH3 package-specific options go here
 
-C #define DIAG_DEBUG
+C allow to define specific regions and the corresponding mask ;
+C  used to perform regional statistics over a limited area
+#undef DIAGSTATS_REGION_MASK
 
 C allow to stop & restart at any time (i.e. not at a multiple of 
 C  the diagnostics frequency) reading diagnostics storage arrays 
