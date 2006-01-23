@@ -18,6 +18,7 @@ C     Wrapper routine to set the units of an active diagnostic
       
 C     !USES:
        implicit none
+#include "EEPARAMS.h"
 #include "SIZE.h"
 #include "DIAGNOSTICS_SIZE.h"
 #include "DIAGNOSTICS.h"

@@ -16,11 +16,11 @@ C     myIter :: Current Iteration Number
 C     myThid :: my Thread Id number
 C***********************************************************************
        IMPLICIT NONE
+#include "EEPARAMS.h"
 #include "SIZE.h"
 #include "DIAGNOSTICS_SIZE.h"
-#include "DIAGNOSTICS.h"
-#include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "DIAGNOSTICS.h"
 
 C     !INPUT PARAMETERS:
       _RL     myTime
