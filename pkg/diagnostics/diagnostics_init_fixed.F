@@ -2,7 +2,7 @@ C $Header$
 C $Name$
 
 #include "DIAG_OPTIONS.h"
-      
+
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 CBOP 0
 C     !ROUTINE: DIAGNOSTICS_INIT_FIXED
@@ -12,7 +12,7 @@ C     !INTERFACE:
 
 C     !DESCRIPTION:
 C     Set Pointer Locations for Diagnostics in diag_list.
-      
+
 C     !USES:
       IMPLICIT NONE
 #include "EEPARAMS.h"
@@ -34,7 +34,10 @@ C--   Set number of levels for all available diagnostics:
 
 C--   Calculate pointers for diagnostics set to non-zero frequency
       CALL DIAGNOSTICS_SET_POINTERS( myThid )
-      
+
+C--   Define region-mask for regional statistics diagnostics
+      CALL DIAGSTATS_SET_REGIONS( myThid )
+
 C--   Calculate pointers for statistics-diags set to non-zero frequency
       CALL DIAGSTATS_SET_POINTERS( myThid )
 
@@ -44,5 +47,5 @@ C--   Calculate pointers for statistics-diags set to non-zero frequency
       endif
 #endif
 
-      RETURN 
+      RETURN
       END
