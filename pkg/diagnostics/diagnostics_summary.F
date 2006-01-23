@@ -64,6 +64,8 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
          CALL PRINT_MESSAGE( msgBuf, stdUnit,SQUEEZE_RIGHT, myThid)
         ENDIF
        ENDIF
+      ELSE
+       outpSummary = .FALSE.
       ENDIF
 
       IF ( outpSummary .AND. debugLevel.GE.debLevA ) THEN
