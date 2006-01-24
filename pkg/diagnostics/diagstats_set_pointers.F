@@ -146,7 +146,7 @@ C-    check that all selected regions are actually defined
        DO j=1,nRegions
         IF ( diagSt_region(j,l).NE.0 ) THEN
           IF ( diagSt_kRegMsk(j).LT.1 .OR.
-     &         diagSt_kRegMsk(j).GT.nLevRegMask ) THEN
+     &         diagSt_kRegMsk(j).GT.nSetRegMask ) THEN
             WRITE(msgBuf,'(A,3(A,I3))') 'DIAGSTATS_SET_POINTERS:',
      &       ' region', j, ' undefined (k=', diagSt_kRegMsk(j),
      &       ') in list l=', l
