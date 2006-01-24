@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/diagnostics: add options and parameters for regional-statistics 
+   diagnostics ; define regions by reading a region-mask from a file 
+   (might add other options later)
 o pkg/bulk_force:
  - add option and parameters to use AIM surface-flux formulae.
  - Change loading part: S/R BULKF_FIELDS_LOAD only take care of bulkf_fields ;
