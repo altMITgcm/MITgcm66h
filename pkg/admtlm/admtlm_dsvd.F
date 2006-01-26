@@ -434,7 +434,7 @@ c     &              workd(ipntr(1)+l), workd(ipntr(2)+l), workd(l)
 c            enddo
 cph)
             do l = 1, n
-               phtmpadmtlm(l) = workd(ipntr(1)+l)
+               phtmpadmtlm(l) = workd(ipntr(1)+l-1)
             enddo
 
             IF (optimcycle .GT. 0 ) THEN
@@ -457,7 +457,7 @@ c--         MWMWMWMWMWMWMW
             _END_MASTER( mythid )
 
             do l = 1, n
-               workd(ipntr(2)+l) = phtmpadmtlm(l)
+               workd(ipntr(2)+l-1) = phtmpadmtlm(l)
             enddo
 c
 
