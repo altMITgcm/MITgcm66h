@@ -108,7 +108,7 @@ C       Update the record dimension by writing the iteration number
         CALL MNC_CW_SET_UDIM(diag_mnc_bn, -1, myThid)
         CALL MNC_CW_RL_W_S('D',diag_mnc_bn,0,0,'T',myTime,myThid)
         CALL MNC_CW_SET_UDIM(diag_mnc_bn, 0, myThid)
-        CALL MNC_CW_I_W_S('I',diag_mnc_bn,1,1,'iter',myIter,myThid)
+        CALL MNC_CW_I_W_S('I',diag_mnc_bn,0,0,'iter',myIter,myThid)
 
 C       NOTE: at some point it would be a good idea to add a time_bounds
 C       variable that has dimension (2,T) and clearly denotes the
