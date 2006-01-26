@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o AIM pkg: change threshold on large-scale condensation to conserve Heat.
+   update results of aim.5l_LatLon test ; fix title & units of AIM diagnostics
+   and  change 3 diagnostics names (OSR,OSRCLR,KM -> TSR,TSRCLR,DRAG)
 o pkg/diagnostics: add options and parameters for regional-statistics 
    diagnostics ; define regions by reading a region-mask from a file 
    (might add other options later)
