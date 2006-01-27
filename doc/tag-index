@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o seaice pkg: add a cpp-flag to include a simple formula for a salinity
+  depend freezing point of sea water at the surface
 o AIM pkg: change threshold on large-scale condensation to conserve Heat.
    update results of aim.5l_LatLon test ; fix title & units of AIM diagnostics
    and  change 3 diagnostics names (OSR,OSRCLR,KM -> TSR,TSRCLR,DRAG)
