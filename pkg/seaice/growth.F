@@ -119,6 +119,9 @@ C        / (density of sea-ice = 910 kg/m^3)
 C     Negative YNEG leads to ice growth.
 C     Positive YNEG leads to ice melting.
           if ( .NOT. inAdMode ) then
+#ifdef SEAICE_VARIABLE_FREEZING_POINT
+          TBC = -0.0575 _d 0*salt(I,J,1,bi,bj) + 0.0901 _d 0
+#endif /* SEAICE_VARIABLE_FREEZING_POINT */
           YNEG(I,J,bi,bj)=(theta(I,J,1,bi,bj)-TBC)*dRf(1)/72.0764 _d 0
           else
           YNEG(I,J,bi,bj)= 0.
