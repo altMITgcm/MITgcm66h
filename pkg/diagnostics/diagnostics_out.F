@@ -401,6 +401,8 @@ C           Time dimension
      &             tdiag(ndId),myThid)
             CALL MNC_CW_ADD_VATTR_TEXT(cdiag(ndId),'units',
      &             udiag(ndId),myThid)
+            CALL MNC_CW_ADD_VATTR_DBL(cdiag(ndId),'missing_value',
+     &             0.0 _d 0,myThid)
 
             IF ( ( (writeBinaryPrec .EQ. precFloat32)
      &           .AND. (fflags(listId)(1:1) .NE. 'D')
