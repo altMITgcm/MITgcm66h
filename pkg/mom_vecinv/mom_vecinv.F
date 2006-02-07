@@ -352,6 +352,17 @@ C-    No-slip BCs impose a drag at bottom
         ENDDO
        ENDDO
       ENDIF
+#ifdef ALLOW_SHELFICE
+      IF (useShelfIce.AND.momViscosity.AND.bottomDragTerms) THEN
+       CALL SHELFICE_U_DRAG(bi,bj,k,uFld,KE,KappaRU,vF,myThid)
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         guDiss(i,j) = guDiss(i,j) + vF(i,j)
+        ENDDO
+       ENDDO
+      ENDIF
+#endif /* ALLOW_SHELFICE */
+
 
 C---  Other dissipation terms in Meridional momentum equation
 
@@ -406,6 +417,17 @@ C-    No-slip BCs impose a drag at bottom
         ENDDO
        ENDDO
       ENDIF
+#ifdef ALLOW_SHELFICE
+      IF (useShelfIce.AND.momViscosity.AND.bottomDragTerms) THEN
+         CALL SHELFICE_V_DRAG(bi,bj,k,vFld,KE,KappaRU,vF,myThid)
+         DO j=jMin,jMax
+          DO i=iMin,iMax
+           gvDiss(i,j) = gvDiss(i,j) + vF(i,j)
+          ENDDO
+         ENDDO
+        ENDIF
+#endif /* ALLOW_SHELFICE */
+
 
 C-    Vorticity diagnostics:
       IF ( writeDiag ) THEN
