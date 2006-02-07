@@ -63,6 +63,7 @@ C     data.pkg namelists
      &          useRBCS,
      &          useSBO,
      &          useSEAICE,
+     &          useShelfIce,
      &          useBulkForce,
      &          useThSIce,
      &          usefizhi,
@@ -106,6 +107,7 @@ C--   Default package configuration
       useRBCS=.FALSE.
       useSBO=.FALSE.
       useSeaIce=.FALSE.
+      useShelfIce=.FALSE.
       useBulkForce=.FALSE.
       useThSIce=.FALSE.
       usefizhi=.FALSE.

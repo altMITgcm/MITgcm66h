@@ -72,6 +72,8 @@ C       |-- DIC_INIT_FIXED
 C       |
 C       |-- THSICE_INIT_FIXED
 C       |
+C       |-- SHELFICE_INIT_FIXED
+C       |
 C       |-- CPL_INIT_FIXED
 C       |
 C       |-- DIAGNOSTICS_INIT_FIXED
@@ -250,6 +252,10 @@ C     IF (useDIC)
 #ifdef ALLOW_THSICE
       IF (useThSIce) CALL THSICE_INIT_FIXED(mythid)
 #endif
+
+#ifdef ALLOW_SHELFICE
+      IF (useShelfIce) CALL SHELFICE_INIT_FIXED( myThid )
+#endif /* ALLOW_SHELFICE */
 
 #ifdef COMPONENT_MODULE
       IF ( useCoupler ) CALL CPL_INIT_FIXED( mythid )

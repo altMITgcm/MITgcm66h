@@ -148,6 +148,12 @@ C     Do SBO diagnostics.
       ENDIF
 #endif  /* ALLOW_SEAICE */
 
+#ifdef  ALLOW_SHELFICE
+      IF ( useShelfIce ) THEN
+        CALL SHELFICE_DO_DIAGS( myTime, myIter, myThid )
+      ENDIF
+#endif  /* ALLOW_SHELFICE */
+
 #ifdef ALLOW_BULK_FORCE
 C     Do bulkf diagnostics.
       IF (useBulkForce .AND. myIter.NE.nIter0 )

@@ -218,7 +218,7 @@ C--   Gridding parameters
 
 C--   Input files
       NAMELIST /PARM05/
-     & bathyFile, topoFile,
+     & bathyFile, topoFile, shelfIceFile, 
      & hydrogThetaFile, hydrogSaltFile, 
      & zonalWindFile, meridWindFile,
      & thetaClimFile, saltClimFile,

@@ -141,6 +141,12 @@ CEOP
       IF (useSEAICE) CALL PACKAGES_CHECK_ERROR('SEAICE', myThid)
 #endif
 
+#ifdef ALLOW_SHELFICE
+      IF (useShelfIce) CALL SHELFICE_CHECK( myThid )
+#else
+      IF (useShelfIce) CALL PACKAGES_CHECK_ERROR('SHELFICE', myThid)
+#endif
+
 #ifndef ALLOW_CD_CODE
       IF (useCDscheme) CALL PACKAGES_CHECK_ERROR('CD_CODE', myThid)
 #endif

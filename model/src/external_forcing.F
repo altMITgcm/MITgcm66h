@@ -285,6 +285,13 @@ C     Add heat in top-layer
        ENDDO
       ENDIF
 
+#ifdef ALLOW_SHELFICE
+      IF ( useShelfIce )
+     &     CALL SHELFICE_FORCING_T(
+     I     iMin,iMax, jMin,jMax, bi,bj, kLev,
+     I     myTime, myThid )
+#endif /* ALLOW_SHELFICE */
+
 #ifdef SHORTWAVE_HEATING
 C Penetrating SW radiation
 c     IF ( usePenetratingSW ) THEN
@@ -408,6 +415,13 @@ C     Add fresh-water in top-layer
         ENDDO
        ENDDO
       ENDIF
+
+#ifdef ALLOW_SHELFICE
+      IF ( useShelfIce )
+     &     CALL SHELFICE_FORCING_S(
+     I     iMin,iMax, jMin,jMax, bi,bj, kLev,
+     I     myTime, myThid )
+#endif /* ALLOW_SHELFICE */
 
 #ifdef ALLOW_RBCS
        if (useRBCS) then

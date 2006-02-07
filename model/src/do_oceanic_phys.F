@@ -127,6 +127,22 @@ C       and modify forcing terms including effects from ice
       ENDIF
 #endif /* ALLOW_THSICE */
 
+#ifdef ALLOW_SHELFICE
+      IF ( useShelfIce .AND. fluidIsWater ) THEN
+#ifdef ALLOW_DEBUG
+        IF ( debugLevel .GE. debLevB )
+     &    CALL DEBUG_CALL('SHELFICE_THERMODYNAMICS',myThid)
+#endif
+C     compute temperature and (virtual) salt flux at the 
+C     shelf-ice ocean interface
+       CALL TIMER_START('SHELFICE_THERMODYNAMICS [DO_OCEANIC_PHYS]',
+     &       myThid)
+       CALL SHELFICE_THERMODYNAMICS( myTime, myIter, myThid )
+       CALL TIMER_STOP( 'SHELFICE_THERMODYNAMICS [DO_OCEANIC_PHYS]',
+     &      myThid)
+      ENDIF
+#endif /* ALLOW_SHELFICE */
+
 C--   Freeze water at the surface
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE theta = comlev1, key = ikey_dynamics

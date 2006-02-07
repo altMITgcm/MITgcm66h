@@ -149,6 +149,17 @@ CADJ STORE sFld (:,:,k,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
         CALL FIND_RHO( bi, bj, iMin, iMax, jMin, jMax, k, k,
      &                 tFld, sFld,
      &                 alphaRho, myThid)
+#ifdef ALLOW_SHELFICE
+C     mask rho, so that there is no contribution of phiHyd from 
+C     overlying shelfice (whose density we do not know)
+        IF ( useShelfIce ) THEN
+         DO j=jMin,jMax
+          DO i=iMin,iMax
+           alphaRho(i,j) = alphaRho(i,j)*maskC(i,j,k,bi,bj)
+          ENDDO
+         ENDDO
+        ENDIF
+#endif /* ALLOW_SHELFICE */
 
 #ifdef ALLOW_DIAGNOSTICS
         IF ( useDiagnostics )

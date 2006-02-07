@@ -48,6 +48,8 @@ C       |-- SBO_READPARMS
 C       |
 C       |-- SEAICE_READPARMS
 C       |
+C       |-- SHELFICE_READPARMS
+C       |
 C       |-- SHAP_FILT_READPARMS
 C       |
 C       |-- ZONAL_FILT_READPARMS
@@ -154,6 +156,11 @@ C--   Initialize SBO parameters
 #ifdef ALLOW_SEAICE
 C--   Initialize SEAICE parameters
       IF (useSEAICE) CALL SEAICE_READPARMS( myThid )
+#endif
+
+#ifdef ALLOW_SHELFICE
+C--   Initialize SHELFICE parameters
+      IF (useShelfIce) CALL SHELFICE_READPARMS( myThid )
 #endif
 
 #ifdef ALLOW_SHAP_FILT 
