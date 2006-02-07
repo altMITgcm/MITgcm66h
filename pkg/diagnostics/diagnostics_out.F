@@ -401,8 +401,15 @@ C           Time dimension
      &             tdiag(ndId),myThid)
             CALL MNC_CW_ADD_VATTR_TEXT(cdiag(ndId),'units',
      &             udiag(ndId),myThid)
-            CALL MNC_CW_ADD_VATTR_DBL(cdiag(ndId),'missing_value',
-     &             0.0 _d 0,myThid)
+
+C           Per the observations of Baylor, this has been commented out
+C           until we have code that can write missing_value attributes
+C           in a way thats compatible with most of the more popular
+C           netCDF tools including ferret.  Using all-zeros completely
+C           breaks ferret.
+
+C           CALL MNC_CW_ADD_VATTR_DBL(cdiag(ndId),'missing_value',
+C           &             0.0 _d 0,myThid)
 
             IF ( ( (writeBinaryPrec .EQ. precFloat32)
      &           .AND. (fflags(listId)(1:1) .NE. 'D')
