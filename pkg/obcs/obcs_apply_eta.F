@@ -76,7 +76,7 @@ C Western boundary
           i_obc=OB_Iw(j,bi,bj)
           IF (i_obc.NE.0) THEN
             IF ( ksurfW(i_obc+1,j,bi,bj).LE.Nr )
-     &        etaFld(i_obc,j,bi,bj) = OBEeta(j,bi,bj)
+     &        etaFld(i_obc,j,bi,bj) = OBWeta(j,bi,bj)
           ENDIF
         ENDDO
 
