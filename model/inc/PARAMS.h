@@ -240,6 +240,7 @@ C     implicitFreeSurface :: Set to true to use implicit free surface
 C     exactConserv        :: Set to true to conserve exactly the total Volume
 C     uniformLin_PhiSurf  :: Set to true to use a uniform Bo_surf in the
 C                           linear relation Phi_surf = Bo_surf*eta
+C     use3Dsolver   :: set to true to use 3-D pressure solver
 C     implicitIntGravWave :: treat Internal Gravity Wave implicitly
 C     staggerTimeStep :: enable a Stagger time stepping T,S Rho then U,V
 C     momStepping   :: Turns momentum equation time-stepping off
@@ -320,7 +321,7 @@ C     balancePrintMean:: print substracted global means to STDOUT
      & useFullLeith, useStrainTensionVisc,
      & useAreaViscLength,
      & rigidLid, implicitFreeSurface, exactConserv, uniformLin_PhiSurf,
-     & implicitIntGravWave, staggerTimeStep,
+     & use3Dsolver, implicitIntGravWave, staggerTimeStep,
      & momStepping, tempStepping, saltStepping,
      & metricTerms, usingSphericalPolarMTerms, useNHMTerms,
      & useConstantF, useBetaPlaneF, useSphereF,
@@ -372,6 +373,7 @@ C     balancePrintMean:: print substracted global means to STDOUT
       LOGICAL implicitFreeSurface
       LOGICAL exactConserv
       LOGICAL uniformLin_PhiSurf
+      LOGICAL use3Dsolver
       LOGICAL implicitIntGravWave
       LOGICAL staggerTimeStep
       LOGICAL momStepping
