@@ -29,7 +29,7 @@ C     == Global variables ===
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine Arguments ==
-C     qicen  :: ice enthalpy (J m-3)
+C     qicen  :: ice enthalpy (J/kg)
 C     hnew   :: new ice layer thickness (m)
 C     hlyr   :: individual ice layer thickness (m)
 C     myThid :: Number of this instance
