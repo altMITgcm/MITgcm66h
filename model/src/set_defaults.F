@@ -196,6 +196,9 @@ C--   Set (free)surface-related parameters
       useRealFreshWaterFlux = .FALSE.
       temp_EvPrRn = UNSET_RL
       salt_EvPrRn = 0.
+      balanceEmPmR        = .FALSE.
+      balanceQnet         = .FALSE.
+      balancePrintMean    = .FALSE.
 
 C--   Atmospheric physical parameters (e.g.: EOS)
       celsius2K = 273.16 _d 0

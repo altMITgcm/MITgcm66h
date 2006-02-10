@@ -183,7 +183,8 @@ C--   Continuous equation parameters
      & useRealFreshWaterFlux, convertFW2Salt,
      & temp_EvPrRn, salt_EvPrRn, trac_EvPrRn,
      & zonal_filt_lat,
-     & inAdExact
+     & inAdExact,
+     & balanceEmPmR, balanceQnet, balancePrintMean
 
 C--   Elliptic solver parameters
       NAMELIST /PARM02/

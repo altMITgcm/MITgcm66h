@@ -245,6 +245,19 @@ C     o If calendarDumps is set, pkg/cal is required
       ENDIF
 #endif
 
+#ifndef ALLOW_BALANCE_FLUXES
+      IF (balanceEmPmR .OR. balanceQnet) THEN
+        WRITE(msgBuf,'(A,A)')
+     &  'CONFIG_CHECK: balanceEmPmR/Qnet is set but balance code ',
+     &  'is not compiled.'
+        CALL PRINT_ERROR( msgBuf , 1)
+        WRITE(msgBuf,'(A)')
+     &  'Re-compile with  ALLOW_BALANCE_FLUXES defined'
+        CALL PRINT_ERROR( msgBuf , 1)
+        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
+      ENDIF
+#endif
+
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 C-  check parameter consistency :
