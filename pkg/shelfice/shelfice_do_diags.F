@@ -86,7 +86,7 @@ C--   Time-cumulations
        DO bi = myBxLo(myThid), myBxHi(myThid)
         DO j=1,sNy
          DO i=1,sNx
-          Shelfice_FrshFluxtave(i,j,1,bi,bj)=
+          shelfice_FrshFluxtave(i,j,1,bi,bj)=
      &         shelfice_frshFluxtave(i,j,1,bi,bj)
      &         + shelficeFreshWaterFlux(i,j,bi,bj) *deltaTclock
           shelfice_heatFluxtave(i,j,1,bi,bj) =

@@ -13,8 +13,10 @@ C     Keep track of time
       COMMON /SHELFICE_TAVE/ SHELFICE_TimeAve
 
 C     Storage arrays for time-averages
-      _RL shelfice_heatFluxtave (1-OLx:sNx+OLx,1-OLy:sNy+OLy,1,nSx,nSy)
-      _RL shelfice_frshFluxtave (1-OLx:sNx+OLx,1-OLy:sNy+OLy,1,nSx,nSy)
+      _RL shelfice_heatFluxtave 
+     &     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,1,nSx,nSy)
+      _RL shelfice_frshFluxtave
+     &     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,1,nSx,nSy)
       COMMON /SHELFICE_TAVE_DIAGS/
      &     shelfice_heatFluxtave,
      &     shelfice_frshFluxtave
