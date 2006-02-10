@@ -466,8 +466,10 @@ C--   On/Off flags for each terms of the momentum equation
       useCoriolis  = momStepping .AND. useCoriolis
       useCDscheme  = momStepping .AND. useCDscheme
       momPressureForcing= momStepping .AND. momPressureForcing
+      implicitIntGravWave=momPressureForcing .AND. implicitIntGravWave
       momImplVertAdv   = momAdvection .AND. momImplVertAdv
       implicitViscosity= momViscosity .AND. implicitViscosity
+      use3Dsolver      = nonHydrostatic.OR. implicitIntGravWave
 C--   Momentum viscosity on/off flag.
       IF ( momViscosity        ) THEN
        vfFacMom = 1.D0
