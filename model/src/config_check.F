@@ -66,11 +66,13 @@ C-  check that CPP option is "defined" when running-flag parameter is on:
 #endif
 
 #ifndef ALLOW_NONHYDROSTATIC
-      IF (nonHydrostatic) THEN 
+      IF (use3Dsolver) THEN 
         WRITE(msgBuf,'(A)') 
      &   'CONFIG_CHECK: #undef ALLOW_NONHYDROSTATIC and'
         CALL PRINT_ERROR( msgBuf , myThid)
-        WRITE(msgBuf,'(A)')
+       IF ( implicitIntGravWave ) WRITE(msgBuf,'(A)')
+     &   'CONFIG_CHECK: implicitIntGravWave is TRUE'
+       IF ( nonHydrostatic ) WRITE(msgBuf,'(A)')
      &   'CONFIG_CHECK: nonHydrostatic is TRUE'
         CALL PRINT_ERROR( msgBuf , myThid)
         STOP 'ABNORMAL END: S/R CONFIG_CHECK'
