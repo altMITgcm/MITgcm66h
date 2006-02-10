@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o fix bug (typo) in obcs_apply_eta.F
 o add a new package shelfice which enables us to model the circulation
   underneath shelf-ice with draughts of hundreds of meters.
  - works
