@@ -17,6 +17,8 @@ S64='$(TOOLSDIR)/set64bitConst.sh'
 #EH3 MAKEDEPEND='${TOOLSDIR}/xmakedepend'
 #EH3 MAKEDEPEND=makedepend
 DEFINES='-DWORDLENGTH=4'
+INCLUDES='-I/sw/include'
+LIBS='-L/sw/lib'
 
 #  For IEEE, use the "-ffloat-store" option
 if test "x$IEEE" = x ; then
