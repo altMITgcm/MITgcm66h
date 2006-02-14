@@ -173,7 +173,7 @@ C     solve quadratic equation to get salinity at shelfice-ocean interface
             ENDIF
 #endif /* ALLOW_SHELFICE_DEBUG */
             saltFreeze = (- bqe - SQRT(discrim))*recip_aqe
-            IF ( saltFreeze < 0. _d 0 )
+            IF ( saltFreeze .LT. 0. _d 0 )
      &           saltFreeze = (- bqe + SQRT(discrim))*recip_aqe
 C--   Calculate freezing temperature as a function of salinity and pressure
             thetaFreeze = saltFreeze * a0 + eps4
