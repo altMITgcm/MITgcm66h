@@ -46,7 +46,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
       diagName  = 'DIABT   '
       diagTitle =
-     &  'Potential Temp. Tendency from Diabatic processes (K/s)'
+     &  'Pot. Temp.  Tendency (Mass-Weighted) from Diabatic Processes'
       diagUnits = 'K/s             '
       diagCode  = 'SM      ML      '
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
@@ -54,7 +54,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
       diagName  = 'DIABQ   '
       diagTitle =
-     &  'Specific Humidity Tendency from Diabatic Processes (g/kg/s)'
+     &  'Spec.Humid. Tendency (Mass-Weighted) from Diabatic Processes'
       diagUnits = 'g/kg/s          '
       diagCode  = 'SM      ML      '
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
