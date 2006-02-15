@@ -31,6 +31,8 @@ CEndOfInterface
 #ifdef ALLOW_GMREDI
 
 C     == Local variables ==
+      INTEGER i,j,k
+      _RL tmpfld3dloc (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
@@ -61,6 +63,29 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
          CALL DIAGNOSTICS_FILL(GM_PsiX,'GM_PsiX ',0,Nr,1,bi,bj,myThid)
          CALL DIAGNOSTICS_FILL(GM_PsiY,'GM_PsiY ',0,Nr,1,bi,bj,myThid)
        ENDIF
+#endif
+#ifdef ALLOW_TAU_EDDY
+       DO k = 1, Nr
+	DO j = 1, sny
+	 DO i = 1, snx
+          tmpfld3dloc(i,j,k,bi,bj) =
+     &     0.5*rhoConst*fCori(i,j,bi,bj)*
+     &     GM_Kwy(i,j,k,bi,bj)
+         ENDDO
+        ENDDO
+       ENDDO
+       CALL DIAGNOSTICS_FILL(tmpfld3dloc,'GMEdTauX',0,Nr,1,bi,bj,myThid)
+c
+       DO k = 1, Nr
+	DO j = 1, sny
+	 DO i = 1, snx
+          tmpfld3dloc(i,j,k,bi,bj) =
+     &     -0.5*rhoConst*fCoriG(i,j,bi,bj)*
+     &     GM_Kwx(i,j,k,bi,bj)
+         ENDDO
+        ENDDO
+       ENDDO
+       CALL DIAGNOSTICS_FILL(tmpfld3dloc,'GMEdTauY',0,Nr,1,bi,bj,myThid)
 #endif
       ENDIF
 #endif /* ALLOW_DIAGNOSTICS */

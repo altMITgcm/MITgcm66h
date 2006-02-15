@@ -360,8 +360,8 @@ c-- zonal eddy stress : edtaux
           do k = 1,nr
             do j = jmin,jmax
               do i = imin,imax
-                Eddytaux(i,j,k,bi,bj) = Eddytaux(i,j,k,bi,bj) +
-     &                                tmpfld3d(i,j,k,bi,bj)
+                eddyTauX(i,j,k,bi,bj) = eddyTauX(i,j,k,bi,bj) +
+     &            fCori(i,j,bi,bj)*tmpfld3d(i,j,k,bi,bj)
               enddo
             enddo
           enddo
@@ -382,8 +382,8 @@ c-- meridional eddy stress : edtauy
           do k = 1,nr
             do j = jmin,jmax
               do i = imin,imax
-                Eddytauy(i,j,k,bi,bj) = Eddytauy(i,j,k,bi,bj) +
-     &                                tmpfld3d(i,j,k,bi,bj)
+                eddyTauY(i,j,k,bi,bj) = eddyTauY(i,j,k,bi,bj) +
+     &            fCoriG(i,j,bi,bj)*tmpfld3d(i,j,k,bi,bj)
               enddo
             enddo
           enddo
@@ -542,7 +542,7 @@ c--   Update the tile edges.
 #endif
 
 #if (defined (ALLOW_EDTAUX_CONTROL) && defined (ALLOW_EDTAUY_CONTROL))
-       CALL EXCH_UV_XYZ_RS(Eddytaux,Eddytauy,.TRUE.,myThid)
+       CALL EXCH_UV_XYZ_RS(eddyTauX,eddyTauY,.TRUE.,myThid)
 #elif (defined (ALLOW_EDTAUX_CONTROL) || defined (ALLOW_EDTAUY_CONTROL))
        STOP 'ctrl_map_forcing: need BOTH ALLOW_EDTAU[X,Y]_CONTROL'
 #endif

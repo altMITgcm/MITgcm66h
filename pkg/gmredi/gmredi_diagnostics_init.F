@@ -134,6 +134,22 @@ c     IF ( useDiagnotics ) THEN
         CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
+#ifdef ALLOW_TAU_EDDY
+        diagName  = 'GMEdTauX'
+        diagTitle = 'eddy-induced stress X-comp. estimated from Kwx'
+        diagUnits = 'N/m^2           '
+        WRITE(diagCode,'(A,I3.3,A)') 'UM   ',diagNum+2,'LR      '
+        CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+        diagName  = 'GMEdTauY'
+        diagTitle = 'eddy-induced stress Y-comp. estimated from Kwy'
+        diagUnits = 'N/m^2           '
+        WRITE(diagCode,'(A,I3.3,A)') 'VM   ',diagNum+2,'LR      '
+        CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+#endif
+
 c     ENDIF
 
 #endif /* ALLOW_DIAGNOSTICS */
