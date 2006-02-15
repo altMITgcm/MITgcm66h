@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint58a_post
 o shelfice: 
   - separate shelfice load anomaly from pload (breaks with time 
     dependent forcing), => introduce constant field shelficeLoadAnomaly.
