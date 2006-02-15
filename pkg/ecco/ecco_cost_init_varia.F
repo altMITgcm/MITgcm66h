@@ -212,6 +212,14 @@ c
                endif
                ersobs(i,j,bi,bj)     = 0. _d 0
 #endif
+#ifdef ALLOW_SSH_GFOANOM_COST_CONTRIBUTION
+               if (_hFacC(i,j,k,bi,bj) .eq. 0.) then
+                  gfomask(i,j,bi,bj) = 0. _d 0
+               else
+                  gfomask(i,j,bi,bj) = 1. _d 0
+               endif
+               gfoobs(i,j,bi,bj)     = 0. _d 0
+#endif
 #ifdef ALLOW_TMI_SST_COST_CONTRIBUTION
                if (_hFacC(i,j,k,bi,bj) .eq. 0.) then
                   tmimask(i,j,bi,bj) = 0. _d 0

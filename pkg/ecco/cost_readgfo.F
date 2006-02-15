@@ -3,13 +3,13 @@ C $Header$
 #include "COST_CPPOPTIONS.h"
 
 
-      subroutine cost_readers( irec, mythid )
+      subroutine cost_readgfo( irec, mythid )
 
 c     ==================================================================
-c     SUBROUTINE cost_readers
+c     SUBROUTINE cost_readgfo
 c     ==================================================================
 c
-c     o Read a given record of the ERS SSH data.
+c     o Read a given record of the GFO SSH data.
 c
 c     started: Christian Eckert eckert@mit.edu 25-May-1999
 c
@@ -19,7 +19,7 @@ c              - Restructured the code in order to create a package
 c                for the MITgcmUV.
 c
 c     ==================================================================
-c     SUBROUTINE cost_readers
+c     SUBROUTINE cost_readgfo
 c     ==================================================================
 
       implicit none
@@ -39,7 +39,7 @@ c     == routine arguments ==
       integer irec
       integer mythid
 
-#ifdef ALLOW_SSH_ERSANOM_COST_CONTRIBUTION
+#ifdef ALLOW_SSH_GFOANOM_COST_CONTRIBUTION
 c     == local variables ==
 
       integer bi,bj
@@ -91,7 +91,7 @@ cnew(
       dayiter = hoursperday*(irec-1)
       call cal_getdate( dayiter, daytime, daydate, mythid )
       call cal_convdate( daydate,yday,md,dd,sd,ld,wd,mythid )
-      ymod = ersstartdate(1)/10000
+      ymod = gfostartdate(1)/10000
 
       if ( ymod .EQ. yday ) then
          middate(1) = modelstartdate(1)
@@ -104,21 +104,21 @@ cnew(
 
       call cal_TimePassed( middate, daydate, difftime, mythid )
       call cal_ToSeconds( difftime, diffsecs, mythid )
-      sshrec = int(diffsecs/ersperiod) + 1
+      sshrec = int(diffsecs/gfoperiod) + 1
 
-      il=ilnblnk(ersfile)
+      il=ilnblnk(gfofile)
       write(fnametmp(1:80),'(2a,i4)')
-     &     ersfile(1:il), '_', yday
+     &     gfofile(1:il), '_', yday
       inquire( file=fnametmp, exist=exst )
       if (.NOT. exst) then
-         write(fnametmp(1:80),'(a)') ersfile(1:il)
+         write(fnametmp(1:80),'(a)') gfofile(1:il)
          sshrec = irec
       endif
  
 cnew)
 
 
-      call mdsreadfield( fnametmp, cost_iprec, cost_yftype, 1, ersobs, 
+      call mdsreadfield( fnametmp, cost_iprec, cost_yftype, 1, gfoobs, 
      &                   sshrec, mythid )
 
 
@@ -128,15 +128,15 @@ cnew)
           do j = jmin,jmax
             do i = imin,imax
               if (_hFacC(i,j,k,bi,bj) .eq. 0.) then
-                 ersmask(i,j,bi,bj) = 0. _d 0
+                 gfomask(i,j,bi,bj) = 0. _d 0
               else
-                 ersmask(i,j,bi,bj) = 1. _d 0
+                 gfomask(i,j,bi,bj) = 1. _d 0
               endif
-              if (ersobs(i,j,bi,bj) .le. spval) then
-                ersmask(i,j,bi,bj) = 0. _d 0
+              if (gfoobs(i,j,bi,bj) .le. spval) then
+                gfomask(i,j,bi,bj) = 0. _d 0
               endif
-              if (abs(ersobs(i,j,bi,bj)) .lt. 1.d-8 ) then
-                 ersmask(i,j,bi,bj) = 0. _d 0
+              if (abs(gfoobs(i,j,bi,bj)) .lt. 1.d-8 ) then
+                 gfomask(i,j,bi,bj) = 0. _d 0
               endif
 
 cph(
@@ -148,12 +148,12 @@ cph               if ( rC(K) .GT. -1000. ) then
 cph)
 c             set tpmask=0 in areas shallower than 1000m 
               if (_hFacC(i,j,13,bi,bj) .eq. 0.) then
-                ersmask(i,j,bi,bj) = 0. _d 0
+                gfomask(i,j,bi,bj) = 0. _d 0
               endif
 
-              ersmask(i,j,bi,bj) = ersmask(i,j,bi,bj)*frame(i,j)
-              ersobs(i,j,bi,bj)  = ersobs(i,j,bi,bj)*
-     *                             ersmask(i,j,bi,bj)*
+              gfomask(i,j,bi,bj) = gfomask(i,j,bi,bj)*frame(i,j)
+              gfoobs(i,j,bi,bj)  = gfoobs(i,j,bi,bj)*
+     *                             gfomask(i,j,bi,bj)*
      &                             factor
             enddo
           enddo

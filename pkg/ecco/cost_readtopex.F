@@ -3,13 +3,10 @@ C $Header$
 #include "COST_CPPOPTIONS.h"
 
 
-      subroutine cost_ReadTopex(
-     I                           irec,
-     I                           mythid
-     &                         )
+      subroutine cost_readtopex( irec, mythid )
 
 c     ==================================================================
-c     SUBROUTINE cost_ReadTopex
+c     SUBROUTINE cost_readtopex
 c     ==================================================================
 c
 c     o Read a given record of the TOPEX SSH data.
@@ -22,7 +19,7 @@ c              - Restructured the code in order to create a package
 c                for the MITgcmUV.
 c
 c     ==================================================================
-c     SUBROUTINE cost_ReadTopex
+c     SUBROUTINE cost_readtopex
 c     ==================================================================
 
       implicit none
@@ -52,14 +49,12 @@ c     == local variables ==
       integer jmin,jmax
       integer imin,imax
       integer sshrec
-      integer nobs
       integer difftime(4)
       integer middate(4)
       integer noffset
       _RL diffsecs
       _RL spval
       _RL factor
-      _RL vartile
 
 cnew(
       integer  il
@@ -125,8 +120,6 @@ cnew)
       call mdsreadfield( fnametmp, cost_iprec, cost_yftype, 1, tpobs, 
      &                   sshrec, mythid )
 
-      nobs    = 0
-
       do bj = jtlo,jthi
         do bi = itlo,ithi
           k = 1
@@ -160,31 +153,10 @@ c             set tpmask=0 in areas shallower than 1000m
               tpobs(i,j,bi,bj)  = tpobs(i,j,bi,bj)*
      &                            tpmask(i,j,bi,bj)*
      &                            factor
-              nobs = nobs + int(tpmask(i,j,bi,bj))
             enddo
           enddo
         enddo
       enddo
-
-c--   Calculate the field variance for present subdomain.
-c--   One could of course do a global sum here.
-      vartile = 0. _d 0
-      do bj = jtlo,jthi
-        do bi = itlo,ithi
-          do j = jmin,jmax
-            do i = imin,imax
-              vartile = vartile + tpobs(i,j,bi,bj)*
-     &                            tpobs(i,j,bi,bj)
-            enddo
-          enddo
-        enddo
-      enddo
-
-      if (nobs .gt. 0) then
-        vartile = vartile/float(nobs)
-      else
-        vartile = spval
-      endif
 
 #endif /* ALLOW_SSH_TPANOM_COST_CONTRIBUTION */
 
