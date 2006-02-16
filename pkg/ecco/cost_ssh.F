@@ -237,7 +237,7 @@ c--   Loop over records for the second time.
         call cost_readers( irec, mythid )
 #endif
 
-#ifdef ALLOW_SSH_ERSANOM_COST_CONTRIBUTION
+#ifdef ALLOW_SSH_GFOANOM_COST_CONTRIBUTION
         call cost_readgfo( irec, mythid )
 #endif
 
