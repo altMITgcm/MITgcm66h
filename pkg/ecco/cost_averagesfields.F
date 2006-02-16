@@ -1,4 +1,4 @@
-errC $Header$
+C $Header$
 
 #include "COST_CPPOPTIONS.h"
 #ifdef ALLOW_OBCS
