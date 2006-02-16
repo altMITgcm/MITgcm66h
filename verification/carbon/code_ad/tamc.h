@@ -124,7 +124,7 @@ cph      PARAMETER( maxpass     = PTRACERS_num + 2 )
       INTEGER act0, act1, act2, act3, act4
       INTEGER max0, max1, max2, max3
       INTEGER iikey, kkey, passkey, igadkey, 
-     &        itdkey, idynkey, igmkey, ikppkey, iptrkey
+     &        itdkey, idynkey, igmkey, ikppkey
 
 c     ================================================================
 c     END OF HEADER TAMC
