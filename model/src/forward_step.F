@@ -666,7 +666,7 @@ C AMM
 #ifdef ALLOW_FIZHI
         if( useFIZHI) then
          CALL TIMER_START('FIZHI               [FORWARD_STEP]',mythid)
-         CALL STEP_FIZHI_CORR ( myTime, myIter, myThid )
+         CALL STEP_FIZHI_CORR ( myTime, myIter, myThid, dTtracerLev(1) )
          CALL TIMER_STOP('FIZHI               [FORWARD_STEP]',mythid)
         endif
 #endif
