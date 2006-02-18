@@ -1023,20 +1023,6 @@ c--   Compute cost function contribution of wind stress observations.
       call timer_stop ('cost_scat            [ECCO SPIN-DOWN]', mythid)
 #endif
 
-c--   Compute cost function contribution of wind stress observations.  
-#ifdef ALLOW_MEAN_HFLUX_COST_CONTRIBUTION
-      call timer_start('cost_mean_heatflux   [ECCO SPIN-DOWN]', mythid)
-      call cost_mean_heatflux( myiter, mytime, mythid )
-      call timer_stop ('cost_mean_heatflux   [ECCO SPIN-DOWN]', mythid)
-#endif
-
-c--   Compute cost function contribution of wind stress observations.
-#ifdef ALLOW_MEAN_SFLUX_COST_CONTRIBUTION
-      call timer_start('cost_mean_saltflux   [ECCO SPIN-DOWN]', mythid)
-      call cost_mean_saltflux( myiter, mytime, mythid )
-      call timer_stop ('cost_mean_saltflux   [ECCO SPIN-DOWN]', mythid)        
-#endif
-
 c--   Compute cost function contribution of drift between the first 
 c     and the last year.
 #ifdef ALLOW_DRIFT_COST_CONTRIBUTION
