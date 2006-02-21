@@ -134,8 +134,6 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 #ifdef ALLOW_DIAGNOSTICS
       IF ( useDiagnostics ) THEN
 
-        CALL DIAGNOSTICS_FILL(siceAlb,'SIalbedo',0,1,1,bi,bj,myThid)
-
 C-- Atmospheric fluxes :
        IF ( fluidIsWater ) THEN
         CALL DIAGNOSTICS_FILL(flxAtm, 'SIflxAtm',0,1,2,bi,bj,myThid)

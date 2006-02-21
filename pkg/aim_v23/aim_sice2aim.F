@@ -115,7 +115,7 @@ C-     Compute albedo over sea-ice
           ELSE
            aimAlb(i,j) = ALBICE
           ENDIF
-          siceAlb(i,j,bi,bj) = iceMask(i,j,bi,bj)*aimAlb(i,j)
+          siceAlb(i,j,bi,bj) = aimAlb(i,j)
          ENDDO
         ENDDO
       ELSE
