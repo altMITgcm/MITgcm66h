@@ -37,7 +37,7 @@ CEOP
 C     COMPUTATIONAL CONSTANTS
 C     -----------------------
       PARAMETER ( VECMAX = 65535.5    )
-      PARAMETER ( UNDEF  = 1.E15      )
+      PARAMETER ( UNDEF  = 1.d15      )
 
 C     ASTRONOMICAL CONSTANTS
 C     ----------------------
