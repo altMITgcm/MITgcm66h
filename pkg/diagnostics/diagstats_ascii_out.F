@@ -72,7 +72,7 @@ c    &             ' --      min   --  |', ' --      max    -- |'
 C     full precision, do not write the volume:
 c         WRITE(nUnit,'(I3,1P4E20.12)') k,(statGlob(i,k,j),i=1,nStats)
 C     reduced precision + write the volume (usefull for testing):
-          WRITE(nUnit,'(I3,1P4E18.10,1X,1PE12.5)') 
+          WRITE(nUnit,'(I3,1P5E18.10)') 
      &       k, (statGlob(i,k,j),i=1,nStats), statGlob(0,k,j)
          ENDDO
         ENDIF
