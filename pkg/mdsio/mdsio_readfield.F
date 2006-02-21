@@ -385,8 +385,10 @@ C Check first for global file with simple name (ie. fName)
            if ( debugLevel .GE. debLevA ) then
              write(msgbuf,'(a,a)')
      &        ' MDSREADFIELD: opening global file: ',dataFName(1:IL)
+#ifndef ALLOW_ECCO
              call print_message( msgbuf, standardmessageunit,
      &                          SQUEEZE_RIGHT , mythid)
+#endif
            endif
            globalFile = .TRUE.
          endif
@@ -399,8 +401,10 @@ C If negative check for global file with MDS name (ie. fName.data)
             if ( debugLevel .GE. debLevA ) then
              write(msgbuf,'(a,a)')
      &        ' MDSREADFIELD: opening global file: ',dataFName(1:IL+5)
+#ifndef ALLOW_ECCO
              call print_message( msgbuf, standardmessageunit,
      &                          SQUEEZE_RIGHT , mythid)
+#endif
             endif
             globalFile = .TRUE.
           endif
