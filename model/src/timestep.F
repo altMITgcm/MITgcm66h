@@ -107,7 +107,7 @@ C-    Initialize local arrays (not really necessary but safer)
        ENDDO
       ENDDO
 
-      IF ( .NOT.staggerTimeStep ) THEN
+      IF ( .NOT.staggerTimeStep .AND. .NOT. implicitIntGravWave ) THEN
 C--   Synchronous time step: add grad Phi_Hyp to gU,gV before doing Adams-Bashforth
         DO j=jMin,jMax
          DO i=iMin,iMax

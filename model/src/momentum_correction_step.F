@@ -157,6 +157,8 @@ C--    End of 2nd bi,bj loop
 
       IF ( exactConserv .AND. implicDiv2Dflow .NE. 0. _d 0)
      & _EXCH_XY_R8( etaN , myThid )
+      IF ( implicitIntGravWave ) 
+     & _EXCH_XYZ_R8( wVel , myThid )
 
       RETURN
       END

@@ -172,7 +172,7 @@ C--   Add source term arising from w=d/dt (p_s + p_nh)
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
 #ifdef ALLOW_NONHYDROSTATIC
-        IF ( nonHydrostatic .AND. zeroPsNH ) THEN
+        IF ( use3Dsolver .AND. zeroPsNH ) THEN
          DO j=1,sNy
           DO i=1,sNx
            ks = ksurfC(i,j,bi,bj)
@@ -186,7 +186,7 @@ C--   Add source term arising from w=d/dt (p_s + p_nh)
            ENDIF
           ENDDO
          ENDDO
-        ELSEIF ( nonHydrostatic ) THEN
+        ELSEIF ( use3Dsolver ) THEN
          DO j=1,sNy
           DO i=1,sNx
            ks = ksurfC(i,j,bi,bj)
@@ -313,7 +313,7 @@ C--   Transfert the 2D-solution to "etaN" :
       ENDDO
 
 #ifdef ALLOW_NONHYDROSTATIC
-      IF ( nonHydrostatic ) THEN
+      IF ( use3Dsolver ) THEN
 
 C--   Solve for a three-dimensional pressure term (NH or IGW or both ).
 C     see CG3D.h for the interface to this routine.

@@ -48,12 +48,15 @@ c     _EXCH_XYZ_R8( vVel , myThid )
 #ifndef ALLLOW_OFFLINE
       IF ( .NOT.staggerTimeStep .OR. .NOT.useMultiDimAdvec ) THEN
        CALL EXCH_UV_XYZ_RL(uVel,vVel,.TRUE.,myThid)
-       _EXCH_XYZ_R8( wVel , myThid )
+       IF ( .NOT.implicitIntGravWave )
+     & _EXCH_XYZ_R8( wVel , myThid )
       ENDIF
 c     IF ( exactConserv .AND. implicDiv2Dflow .NE. 0. _d 0)
 c    & _EXCH_XY_R8( etaN , myThid )
-      _EXCH_XYZ_R8( theta, myThid )
-      _EXCH_XYZ_R8( salt , myThid )
+      IF ( .NOT.implicitIntGravWave ) THEN
+       _EXCH_XYZ_R8( theta, myThid )
+       _EXCH_XYZ_R8( salt , myThid )
+      ENDIF
 #endif
 
 #ifndef ALLOW_OFFLINE

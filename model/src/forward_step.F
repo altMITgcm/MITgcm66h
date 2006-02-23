@@ -420,6 +420,13 @@ CADJ STORE etanm1             = comlev1, key = ikey_dynamics
         CALL TIMER_STOP ('THERMODYNAMICS      [FORWARD_STEP]',mythid)
 C--    if not staggerTimeStep: end
       ENDIF
+c #ifdef ALLOW_NONHYDROSTATIC
+      IF ( implicitIntGravWave ) THEN
+        CALL TIMER_START('BLOCKING_EXCHANGES  [FORWARD_STEP]',myThid)
+        CALL DO_STAGGER_FIELDS_EXCHANGES( myTime, myIter, myThid )
+        CALL TIMER_STOP ('BLOCKING_EXCHANGES  [FORWARD_STEP]',myThid)
+      ENDIF
+c #endif
 
 #ifdef COMPONENT_MODULE
        IF ( useCoupler .AND. .NOT.cpl_earlyExpImpCall ) THEN

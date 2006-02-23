@@ -11,9 +11,9 @@ C     !INTERFACE:
      I                       myTime, myThid )
 C     !DESCRIPTION: \bv
 C     *==========================================================*
-C     | S/R CORRECTION_STEP                                       
-C     | o Corrects the horizontal flow fields with the surface    
-C     |   slope.                                                  
+C     | S/R CORRECTION_STEP
+C     | o Corrects the horizontal flow fields with the surface
+C     |   pressure (and Non-Hydrostatic pressure).
 C     *==========================================================*
 C     \ev
 
@@ -33,7 +33,7 @@ C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine Arguments ==
 C     phiSurfX, phiSurfY           - Surface Potential gradient
 C     bi,bj,iMin,iMax,jMin,jMax, K - Loop counters
-C     myThid                       - Instance number for 
+C     myThid                       - Instance number for
 C                                    this call to S/R CORRECTION_STEP
 C     myTime                       - Current simulation time for this instance.
       _RL  phiSurfX(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
@@ -56,7 +56,7 @@ CEOP
 C     On/off scaling paramters
       hxFac = pfFacMom
       hyFac = pfFacMom
-      IF ( nonHydrostatic ) THEN
+      IF ( use3Dsolver ) THEN
         hx3dFac = pfFacMom
         hy3dFac = pfFacMom
       ELSE
