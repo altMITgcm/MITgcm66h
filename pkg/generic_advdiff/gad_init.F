@@ -69,7 +69,8 @@ C-- Set Temp & Salt Adams-Bashforth flag according to advection scheme used
 #ifdef ALLOW_ADAMSBASHFORTH_3
 C-    For now, A-B on T,S is only implemented in AB-3 code, and not working
 C     with synchronous time-step, which would require to do also AB(u,v,w)
-      IF ( .NOT.doAB_onGtGs .AND. staggerTimeStep ) THEN
+      IF ( .NOT.doAB_onGtGs .AND. 
+     &     (staggerTimeStep .OR. implicitIntGravWave) ) THEN
         AdamsBashforth_T = AdamsBashforthGt
         AdamsBashforth_S = AdamsBashforthGs
         AdamsBashforthGt = .FALSE.
