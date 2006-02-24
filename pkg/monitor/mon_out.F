@@ -198,6 +198,15 @@ C     write(*,*) 'mon_write_stdout = ''', mon_write_stdout, ''''
      &           WRITE(msgBuf(36:57),'(1X,I21)')       ival
             IF (itype .EQ. 2)
      &           WRITE(msgBuf(36:57),'(1X,1P1E21.13)') dval
+C    &           WRITE(msgBuf(35:57),'(1X,1P1E22.13E3)') dval
+
+C           Note that the above call fixes problems where there is
+C           insufficient space in the output format to handle variables
+C           such as 1.234500000E107 which, although they are wildly
+C           large, they may actually happen in some situations.  But,
+C           changing the monitor output format also means changing the
+C           routines that parse the monitor output for testreport.
+
             CALL PRINT_MESSAGE(msgBuf, mon_ioUnit, SQUEEZE_RIGHT, 1)
           ENDIF
 
