@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o 1rst implementation of Implicit IGW using the 3-D solver (use3Dsolver=T)
+  and based on a reference stratification. Tested within hs94.cs-32x32x5.
 o seaice advection: add code for choosing between the default (2nd order
   central differences) and multiDim advection schemes provided by
   pkg/generic_advdiff
