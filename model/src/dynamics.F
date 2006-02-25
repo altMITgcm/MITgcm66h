@@ -368,6 +368,10 @@ CADJ STORE theta (:,:,k,bi,bj)
 CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
 CADJ STORE salt  (:,:,k,bi,bj) 
 CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ STORE gt(:,:,k,bi,bj) 
+CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ STORE gs(:,:,k,bi,bj) 
+CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
 # ifdef NONLIN_FRSURF
 cph-test
 CADJ STORE  phiHydC (:,:) 
