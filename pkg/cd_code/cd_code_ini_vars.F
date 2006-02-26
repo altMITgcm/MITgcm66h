@@ -22,9 +22,6 @@ C     bi,bj  - Loop counters
 C     I,J,K
       INTEGER bi, bj
       INTEGER  I,  J, K
-      CHARACTER*(MAX_LEN_FNAM) fn
-      CHARACTER*(10) suff
-      INTEGER prec
 CEOP
 
 #ifdef ALLOW_CD_CODE
