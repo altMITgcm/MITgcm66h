@@ -58,5 +58,7 @@ CADJ STORE fv      = comlev1, key = ikey_dynamics
 CADJ STORE sss     = comlev1, key = ikey_dynamics
 CADJ STORE qnet    = comlev1, key = ikey_dynamics
 CADJ STORE qsw     = comlev1, key = ikey_dynamics
+CADJ STORE empmr   = comlev1, key = ikey_dynamics
+CADJ STORE theta   = comlev1, key = ikey_dynamics
 # include "ebm_ad_check_lev1_dir.h"
 #endif
