@@ -139,7 +139,6 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
      U           fVerS, gS,
      I           myTime, myIter, myThid )
       ELSE
-#endif /* ALLOW_ADAMSBASHFORTH_3 */
         CALL GAD_CALC_RHS(
      I           bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
      I           xA,yA,uTrans,vTrans,rTrans,rTransKp1,maskUp,
@@ -149,9 +148,18 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
      I           calcAdvection, saltImplVertAdv,
      U           fVerS, gS,
      I           myTime, myIter, myThid )
-#ifdef ALLOW_ADAMSBASHFORTH_3
       ENDIF
-#endif
+#else /* ALLOW_ADAMSBASHFORTH_3 */
+        CALL GAD_CALC_RHS(
+     I           bi,bj,iMin,iMax,jMin,jMax,k,kM1,kUp,kDown,
+     I           xA,yA,uTrans,vTrans,rTrans,rTransKp1,maskUp,
+     I           uVel, vVel, wVel,
+     I           diffKhS, diffK4S, KappaRS, gsNm1, salt,
+     I           GAD_SALINITY, saltAdvScheme, saltVertAdvScheme,
+     I           calcAdvection, saltImplVertAdv,
+     U           fVerS, gS,
+     I           myTime, myIter, myThid )
+#endif /* ALLOW_ADAMSBASHFORTH_3 */
 
 C--   External salinity forcing term(s) inside Adams-Bashforth:
       IF ( saltForcing .AND. forcing_In_AB )
