@@ -539,7 +539,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
-      diagName  = 'TOTTEND '
+      diagName  = 'TOTTTEND'
       diagTitle = 'Tendency of Potential Temperature (degC,K)'
       diagUnits = 'deg K/sec'
       diagCode  = 'SM      MR      '
