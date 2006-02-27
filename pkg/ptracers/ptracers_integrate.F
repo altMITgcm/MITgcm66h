@@ -103,7 +103,7 @@ C (advection, [explicit] diffusion, parameterizations,...)
      I                   PTRACERS_diffKh(iTracer),
      I                   PTRACERS_diffK4(iTracer),
      I                   KappaRtr(1-Olx,1-Oly,iTracer),
-     I                   pTracer(1-Olx,1-Oly,1,1,1,iTracer),
+     I                   gPtrNM1(1-Olx,1-Oly,1,1,1,iTracer),
      I                   pTracer(1-Olx,1-Oly,1,1,1,iTracer),
      I                   GAD_TR,
      I                   PTRACERS_advScheme(iTracer),
