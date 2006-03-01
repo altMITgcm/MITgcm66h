@@ -313,11 +313,8 @@ CADJ STORE theta(:,:,:,bi,bj) = comlev1_bibj, key=itdkey, byte=isbyte
 CADJ STORE salt (:,:,:,bi,bj) = comlev1_bibj, key=itdkey, byte=isbyte
 CADJ STORE uvel (:,:,:,bi,bj) = comlev1_bibj, key=itdkey, byte=isbyte
 CADJ STORE vvel (:,:,:,bi,bj) = comlev1_bibj, key=itdkey, byte=isbyte
-# ifdef NONLIN_FRSURF
-cph-test
 CADJ STORE gtnm1(:,:,:,bi,bj) = comlev1_bibj, key=itdkey, byte=isbyte
 CADJ STORE gsnm1(:,:,:,bi,bj) = comlev1_bibj, key=itdkey, byte=isbyte
-# endif
 #ifdef ALLOW_PTRACERS
 cph-- moved to forward_step to avoid key computation
 cphCADJ STORE ptracer(:,:,:,bi,bj,itracer) = comlev1_bibj,
@@ -490,7 +487,6 @@ C        and step forward storing result in gT, gS, etc.
          IF ( tempStepping ) THEN
 #ifdef NONLIN_FRSURF
 # ifdef ALLOW_AUTODIFF_TAMC 
-cph-test 
 CADJ STORE gT(:,:,k,bi,bj)    = comlev1_bibj_k, key=kkey, byte=isbyte
 # endif /* ALLOW_AUTODIFF_TAMC */
 #endif
@@ -524,7 +520,6 @@ CADJ STORE gT(:,:,k,bi,bj)    = comlev1_bibj_k, key=kkey, byte=isbyte
          IF ( saltStepping ) THEN
 #ifdef NONLIN_FRSURF
 # ifdef ALLOW_AUTODIFF_TAMC
-cph-test 
 CADJ STORE gS(:,:,k,bi,bj)    = comlev1_bibj_k, key=kkey, byte=isbyte
 # endif /* ALLOW_AUTODIFF_TAMC */
 #endif
