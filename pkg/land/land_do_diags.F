@@ -61,9 +61,10 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
      &  .OR. dumpInitAndLast.AND.( myTime+land_deltaT.EQ.endTime )
      &   ) THEN 
 
+        iterWr = myIter+1
+
         IF ( land_snapshot_mdsio ) THEN
 
-       iterWr = myIter+1
        WRITE(suff,'(I10.10)') iterWr
 
 c      _BARRIER
