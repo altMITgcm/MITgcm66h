@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o seaice: add runtime flags for turning angles (default to zero)
 o Adding runtime parameter to exf/, ctrl/, to remove on-the-fly global mean 
   and trend from exf forcing and ctrl control adjustments
 o fix variable aliasing in gad_calc_rhs that cannot be handled by TAF
