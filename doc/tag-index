@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o Adding runtime parameter to exf/, ctrl/, to remove on-the-fly global mean 
+  and trend from exf forcing and ctrl control adjustments
+o fix variable aliasing in gad_calc_rhs that cannot be handled by TAF
+  (since checkpoint57x_post)
 o change the default rotation period to 86164.s = the Earth rotation
 o 1rst implementation of Implicit IGW using the 3-D solver (use3Dsolver=T)
   and based on a reference stratification. Tested within hs94.cs-32x32x5.
