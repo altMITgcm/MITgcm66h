@@ -2,7 +2,7 @@ c $Header$
 
 #include "EXF_OPTIONS.h"
 
-      subroutine exf_mapfields( mythid )
+      subroutine exf_mapfields( mytime, myiter, mythid )
 
 c     ==================================================================
 c     SUBROUTINE exf_mapfields
@@ -47,6 +47,7 @@ c     == global variables ==
 
 #include "EEPARAMS.h"
 #include "SIZE.h"
+#include "PARAMS.h"
 #include "FFIELDS.h"
 #include "GRID.h"
 
@@ -64,6 +65,8 @@ c     == routine arguments ==
 c     mythid - thread number for this instance of the routine.
 
       integer mythid
+      integer myiter
+      _RL     mytime
 
 c     == local variables ==
 
@@ -109,6 +112,10 @@ c     == end of interface ==
             do i = imin,imax
 c            Heat flux.
              qnet(i,j,bi,bj) = exf_outscal_hflux*hflux(i,j,bi,bj)
+             if ( hfluxfile .EQ. ' ' ) 
+     &            qnet(i,j,bi,bj) = qnet(i,j,bi,bj) -
+     &            exf_outscal_hflux * ( hflux_exfremo_intercept +
+     &            hflux_exfremo_slope*(mytime-starttime) )
             enddo
           enddo
 
@@ -117,6 +124,10 @@ c            Heat flux.
             do i = imin,imax
 c            Salt flux.
              empmr(i,j,bi,bj)= exf_outscal_sflux*sflux(i,j,bi,bj)
+             if ( sfluxfile .EQ. ' ' )
+     &            empmr(i,j,bi,bj) = empmr(i,j,bi,bj) - 
+     &            exf_outscal_sflux * ( sflux_exfremo_intercept +
+     &            sflux_exfremo_slope*(mytime-starttime) )
             enddo
           enddo
 

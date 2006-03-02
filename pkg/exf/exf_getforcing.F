@@ -220,7 +220,7 @@ c     Diagnostics output
       call exf_diagnostics_fill( mytime, myiter, mythid )
 
 c     Map the forcing fields onto the corresponding model fields.
-      call exf_mapfields( mythid )
+      call exf_mapfields( mytime, myiter, mythid )
 
       end
 
