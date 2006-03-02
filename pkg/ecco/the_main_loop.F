@@ -548,6 +548,9 @@ C--     Step forward fields and calculate time tendency terms.
        CALL TIMER_START('DO_OCEANIC_PHYS     [FORWARD_STEP]',mythid)
        CALL DO_OCEANIC_PHYS( myTime, myIter, myThid )
        CALL TIMER_STOP ('DO_OCEANIC_PHYS     [FORWARD_STEP]',mythid)
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE EmPmR    = comlev1, key = ikey_dynamics
+#endif
 #endif
 
 #ifdef ALLOW_GCHEM
