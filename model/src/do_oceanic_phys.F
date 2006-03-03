@@ -166,6 +166,16 @@ C jmc: do not know precisely where to put this call (bf or af thSIce ?)
 # endif
 #endif /* COMPONENT_MODULE */
 
+#ifdef ALLOW_BALANCE_FLUXES
+C     balance fluxes 
+       IF ( balanceEmPmR )
+     &        CALL REMOVE_MEAN_RS( 1, EmPmR, maskH, maskH, rA, drF,
+     &        'EmPmR', myTime, myThid )
+       IF ( balanceQnet )
+     &        CALL REMOVE_MEAN_RS( 1, Qnet,  maskH, maskH, rA, drF,
+     &        'Qnet ', myTime, myThid )
+#endif /* ALLOW_BALANCE_FLUXES */
+
 #ifdef ALLOW_AUTODIFF_TAMC
 C--   HPF directive to help TAMC
 CHPF$ INDEPENDENT
@@ -367,15 +377,6 @@ C--     Calculate future values on open boundaries
 #ifndef ALLOW_AUTODIFF_TAMC
         IF ( fluidIsWater ) THEN
 #endif
-#ifdef ALLOW_BALANCE_FLUXES
-C     balance fluxes 
-         IF ( balanceEmPmR )
-     &        CALL REMOVE_MEAN_RS( 1, EmPmR, maskH, maskH, rA, drF,
-     &        'EmPmR', myTime, myThid )
-         IF ( balanceQnet )
-     &        CALL REMOVE_MEAN_RS( 1, Qnet,  maskH, maskH, rA, drF,
-     &        'Qnet ', myTime, myThid )
-#endif /* ALLOW_BALANCE_FLUXES */
 C--     Determines forcing terms based on external fields
 C       relaxation terms, etc.
 #ifdef ALLOW_DEBUG
