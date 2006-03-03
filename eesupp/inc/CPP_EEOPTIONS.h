@@ -103,4 +103,3 @@ C           filled in some way.
 
 #include "CPP_EEMACROS.h"
 
-#include "BUILD_INFO.h"

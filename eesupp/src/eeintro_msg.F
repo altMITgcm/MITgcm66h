@@ -16,6 +16,7 @@ C     checkpoint of the code is running.  The routine doesnt currently
 C     report the user id or machine name correctly.
 
 C     !USES:
+#include "BUILD_INFO.h"
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"

@@ -20,6 +20,7 @@ C     information including locations, spacing, areas, \textit{etc}.
 
 C     !USES:
       implicit none
+#include "BUILD_INFO.h"
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
