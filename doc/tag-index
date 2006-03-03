@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o move balancing of fluxes before the call of external_forcing_surf
 o seaice:
   - correct units of turning angles (now they are really in degrees)
   - move computation of GWATX/Y out of main routine into dynsolver
