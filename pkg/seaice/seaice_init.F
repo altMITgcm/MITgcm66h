@@ -216,6 +216,8 @@ C--   Make sure that DXTICE and DYTICE do not contain any zeros
           UICEC(I,J,bi,bj)=ZERO
           VICEC(I,J,bi,bj)=ZERO
           AMASS(I,J,bi,bj)=1000.0 _d 0
+          GWATX(I,J,bi,bj)=ZERO
+          GWATY(I,J,bi,bj)=ZERO
          ENDDO
         ENDDO
 
