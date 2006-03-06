@@ -127,9 +127,9 @@ C--   Compute ice-affected wind stress (interpolate to U/V-points)
      &         SINWAT * 
      &         ( UICE(I,J,1,bi,bj)-GWATX(I,J,bi,bj) )
      &         + COSWAT * 0.5 _d 0 * ( 
-     &          0.5 _d 0*(uIce(I  ,J  ,1,bi,bj)-GWATY(I  ,J  ,bi,bj)
+     &          0.5 _d 0*(uIce(I  ,J  ,1,bi,bj)-GWATX(I  ,J  ,bi,bj)
      &                   +uIce(I+1,J  ,1,bi,bj)-GWATX(I+1,J  ,bi,bj))
-     &         +0.5 _d 0*(uIce(I  ,J-1,1,bi,bj)-GWATY(I  ,J-1,bi,bj) 
+     &         +0.5 _d 0*(uIce(I  ,J-1,1,bi,bj)-GWATX(I  ,J-1,bi,bj) 
      &                   +uIce(I+1,J-1,1,bi,bj)-GWATX(I+1,J-1,bi,bj)) )
      &         )
           fu(I,J,bi,bj)=(ONE-AREA(I,J,1,bi,bj))*fu(I,J,bi,bj)+
