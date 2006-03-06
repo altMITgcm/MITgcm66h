@@ -152,9 +152,9 @@ c             set tpmask=0 in areas shallower than 1000m
               endif
 
               ersmask(i,j,bi,bj) = ersmask(i,j,bi,bj)*frame(i,j)
-              ersobs(i,j,bi,bj)  = ersobs(i,j,bi,bj)*
-     *                             ersmask(i,j,bi,bj)*
-     &                             factor
+              ersobs(i,j,bi,bj)  = ersmask(i,j,bi,bj)*factor*
+     &             ( ersobs(i,j,bi,bj) - 
+     &               ( ersintercept + ersslope*irec*hoursperday ) )
             enddo
           enddo
         enddo
