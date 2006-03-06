@@ -551,6 +551,14 @@ C     Two-dimensional only for conventional hydrostatic or
 C     three-dimensional for non-hydrostatic and/or IGW scheme.
 #ifndef ALLOW_OFFLINE
       IF ( momStepping ) THEN
+#ifdef ALLOW_AUTODIFF_TAMC
+# ifdef NONLIN_FRSURF
+CADJ STORE uvel, vvel
+CADJ &     = comlev1, key = ikey_dynamics
+CADJ STORE empmr,hfacs,hfacw
+CADJ &     = comlev1, key = ikey_dynamics
+# endif
+#endif
         CALL TIMER_START('SOLVE_FOR_PRESSURE  [FORWARD_STEP]',myThid)
         CALL SOLVE_FOR_PRESSURE(myTime, myIter, myThid)
         CALL TIMER_STOP ('SOLVE_FOR_PRESSURE  [FORWARD_STEP]',myThid)

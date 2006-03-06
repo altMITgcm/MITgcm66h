@@ -386,8 +386,10 @@ C       relaxation terms, etc.
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE EmPmR(:,:,bi,bj)
 CADJ &     = comlev1_bibj, key=itdkey, byte=isbyte
+# ifdef EXACT_CONSERV
 CADJ STORE PmEpR(:,:,bi,bj)
 CADJ &     = comlev1_bibj, key=itdkey, byte=isbyte
+# endif
 #endif
          CALL EXTERNAL_FORCING_SURF(
      I             bi, bj, iMin, iMax, jMin, jMax,

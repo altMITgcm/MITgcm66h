@@ -114,7 +114,10 @@ C--   only the kUp part of fverS is set in this subroutine
 C--   the kDown is still required
       fVerS(1,1,kDown) = fVerS(1,1,kDown)
 # ifdef NONLIN_FRSURF
-CADJ STORE fVerS(:,:,:) = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ STORE fVerS(:,:,:) =
+CADJ &     comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ STORE gsNm1(:,:,k,bi,bj) = 
+CADJ &     comlev1_bibj_k, key=kkey, byte=isbyte
 # endif
 #endif
 

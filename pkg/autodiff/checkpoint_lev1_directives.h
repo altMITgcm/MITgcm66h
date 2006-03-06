@@ -10,6 +10,10 @@ CADJ STORE dEtaHdt       = comlev1, key = ikey_dynamics
 CADJ STORE wVel          = comlev1, key = ikey_dynamics
 CADJ STORE gUnm1         = comlev1, key = ikey_dynamics
 CADJ STORE gVnm1         = comlev1, key = ikey_dynamics
+CADJ STORE gTnm1         = comlev1, key = ikey_dynamics
+CADJ STORE gSnm1         = comlev1, key = ikey_dynamics
+CADJ STORE gT            = comlev1, key = ikey_dynamics
+CADJ STORE gS            = comlev1, key = ikey_dynamics
 #endif /* NONLIN_FRSURF */
 
 #ifdef ALLOW_CD_CODE
