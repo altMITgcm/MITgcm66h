@@ -116,7 +116,7 @@ c     Surface flux data.
      &         uwindconst,  vwindconst,          swfluxconst,
      &         lwfluxconst, swdownconst,         lwdownconst,
      &         apressureconst,
-     &     hflux_exfremo_intercept, hflux_exfremo_intercept,
+     &     hflux_exfremo_intercept, hflux_exfremo_slope,
      &     atemp_exfremo_intercept, atemp_exfremo_slope,
      &     aqh_exfremo_intercept, aqh_exfremo_slope,
      &     sflux_exfremo_intercept, sflux_exfremo_slope,
