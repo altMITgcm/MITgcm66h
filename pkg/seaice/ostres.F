@@ -4,7 +4,7 @@ C $Name$
 #include "SEAICE_OPTIONS.h"
 
 CStartOfInterface
-      SUBROUTINE ostres( DWATN, COR_ICE, myThid )
+      SUBROUTINE ostres( COR_ICE, myThid )
 C     /==========================================================\
 C     | SUBROUTINE ostres                                        |
 C     | o Calculate ocean surface stress                         |
@@ -22,11 +22,11 @@ C     === Global variables ===
 
 C     === Routine arguments ===
 C     myThid - Thread no. that called this routine.
-      _RL DWATN      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
       _RL COR_ICE        (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
       INTEGER myThid
 CEndOfInterface
 
+#ifndef SEAICE_CGRID
 C     === Local variables ===
 C     i,j,bi,bj - Loop counters
 
@@ -136,6 +136,7 @@ C--   Compute ice-affected wind stress
       ENDDO
       CALL EXCH_UV_XY_RS(fu, fv, .TRUE., myThid)
 #endif /* SEAICE_TEST_ICE_STRESS_1 */
+#endif /* not SEAICE_CGRID */
 
       RETURN
       END

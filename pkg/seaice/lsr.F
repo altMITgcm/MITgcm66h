@@ -35,6 +35,7 @@ C     myThid - Thread no. that called this routine.
       INTEGER myThid
 CEndOfInterface
 
+#ifndef SEAICE_CGRID
 #ifdef SEAICE_ALLOW_DYNAMICS
 
 C     === Local variables ===
@@ -598,6 +599,7 @@ C NOW MAKE COROLIS TERM IMPLICIT
       CALL SEAICE_EXCH_UV ( UICE, VICE, myThid )
 
 #endif /* SEAICE_ALLOW_DYNAMICS */
+#endif /* SEAICE_CGRID */
 
       RETURN
       END

@@ -91,9 +91,15 @@ C solve ice momentum equations and calculate ocean surface stress
       IF ( 
      &  DIFFERENT_MULTIPLE(SEAICE_deltaTdyn,myTime,SEAICE_deltaTtherm)
      &   ) THEN
+#ifdef SEAICE_CGRID
+         CALL TIMER_START('SEAICE_DYNSOLVER   [SEAICE_MODEL]',myThid)
+         CALL SEAICE_DYNSOLVER ( myTime, myIter, myThid )
+         CALL TIMER_STOP ('SEAICE_DYNSOLVER   [SEAICE_MODEL]',myThid)
+#else
          CALL TIMER_START('DYNSOLVER          [SEAICE_MODEL]',myThid)
          CALL DYNSOLVER ( myTime, myIter, myThid )
          CALL TIMER_STOP ('DYNSOLVER          [SEAICE_MODEL]',myThid)
+#endif /* SEAICE_CGRID */
       ENDIF
 
 #ifdef ALLOW_AUTODIFF_TAMC
