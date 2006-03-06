@@ -144,9 +144,9 @@ C     now interpolate to U and V points respectively
 C     interpolate to V point
           FORCEY(I,J,bi,bj)=0.5 _d 0 * 
      &         ( DAIRN(I,J  ,bi,bj)*(
-     &         COSWIN*uWind(I,J  ,bi,bj)-SINWIN*vWind(I,J  ,bi,bj) )
+     &         SINWIN*uWind(I,J  ,bi,bj)+COSWIN*vWind(I,J  ,bi,bj) )
      &         + DAIRN(I,J-1,bi,bj)*(
-     &         COSWIN*uWind(I,J-1,bi,bj)-SINWIN*vWind(I,J-1,bi,bj) )
+     &         SINWIN*uWind(I,J-1,bi,bj)+COSWIN*vWind(I,J-1,bi,bj) )
      &         )
          ENDDO
         ENDDO
