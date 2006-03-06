@@ -152,7 +152,7 @@ c             set tpmask=0 in areas shallower than 1000m
               endif
 
               gfomask(i,j,bi,bj) = gfomask(i,j,bi,bj)*frame(i,j)
-              gfoobs(i,j,bi,bj)  = gfomask(i,j,bi,bj)*factor
+              gfoobs(i,j,bi,bj)  = gfomask(i,j,bi,bj)*factor*
      &             ( gfoobs(i,j,bi,bj) - 
      &               ( gfointercept + gfoslope*irec*hoursperday ) )
             enddo
