@@ -138,6 +138,7 @@ C     set UV mask to zero except for Arctic and Antarctic cube faces.
            UVM(i,j,bi,bj)=ZERO
           ENDDO
          ENDIF
+        ENDIF
 #endif /* ALLOW_EXCH2 */
 
         DO j=1-OLy,sNy+OLy
