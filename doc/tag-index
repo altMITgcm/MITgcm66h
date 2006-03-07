@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o change forcing_In_AB to affects both T,S forcing and Momentum forcing
+ (allow to differentiate between forcing components using new integer flags:
+  momForcingOutAB=1/0 & tracForcingOutAB=1/0)
+ and add new flag to put Dissipation tendency out of Adams-Bashforth.
 o ecco
   - enable trend removal from SSH anomaly obs.
 o adjoint
