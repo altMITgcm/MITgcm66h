@@ -18,7 +18,7 @@ CPP='/usr/bin/cpp -P -traditional'
 
 MPI='true'
 DEFINES='-DWORDLENGTH=4'
-INCLUDES='-I/usr/mpich/mpich-1.2.5-pgi522/include -I/opt/awi/netcdf-3.6.0-p1/include' 
+INCLUDES='-I/usr/mpich/mpich-1.2.6-pgi524/include -I/opt/awi/netcdf-3.6.0-p1/include' 
 LIBS='-Mmpi -Mfmpi -L/opt/awi/netcdf-3.6.0-p1/lib -lnetcdf'
 
 if test "x$IEEE" = x ; then
