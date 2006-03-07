@@ -415,8 +415,11 @@ c     WRITE(msgBuf,'(2A)') ' Equation of State : eosType = ', eosType
      &'   /* Model clock timestep ( s ) */')
       CALL WRITE_0D_R8( cAdjFreq, INDEX_NONE,'cAdjFreq =',
      &'   /* Convective adjustment interval ( s ) */')
-      CALL WRITE_0D_L( forcing_In_AB,INDEX_NONE,'forcing_In_AB =',
-     &'   /* put T,S Forcing in Adams-Bash. stepping */')
+      CALL WRITE_0D_I( momForcingOutAB, INDEX_NONE, 'momForcingOutAB =',
+     & ' /* =1: take Momentum Forcing out of Adams-Bash. stepping */')
+      CALL WRITE_0D_I( tracForcingOutAB, INDEX_NONE,
+     & 'tracForcingOutAB =',
+     & ' /* =1: take T,S,pTr Forcing out of Adams-Bash. stepping */')
       CALL WRITE_0D_L( doAB_onGtGs, INDEX_NONE, 'doAB_onGtGs =',
      &  ' /* apply AB on Tendencies (rather than on T,S)*/')
       CALL WRITE_0D_R8( abEps, INDEX_NONE,'abEps =',

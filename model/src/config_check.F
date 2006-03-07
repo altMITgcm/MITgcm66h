@@ -468,9 +468,21 @@ C- jmc: but ultimately, this block can/will be removed.
         STOP 'ABNORMAL END: S/R CONFIG_CHECK'
       ENDIF
 
-      IF ( useOldFreezing .AND. allowFreezing ) THEN
-        WRITE(msgBuf,'(2A)')
-     &   'CONFIG_CHECK: cannot set both: allowFreezing & useOldFreezing'
+      IF ( momForcingOutAB.NE.0 .AND. momForcingOutAB.NE.1 ) THEN 
+        WRITE(msgBuf,'(A,I10,A)') 'CONFIG_CHECK: momForcingOutAB=',
+     &                             momForcingOutAB, ' not allowed'
+        CALL PRINT_ERROR( msgBuf , myThid)
+        WRITE(msgBuf,'(2A)') 'CONFIG_CHECK: momForcingOutAB ',
+     &                       'should be =1 (Out of AB) or =0 (In AB)'
+        CALL PRINT_ERROR( msgBuf , myThid)
+        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
+      ENDIF
+      IF ( tracForcingOutAB.NE.0 .AND. tracForcingOutAB.NE.1 ) THEN 
+        WRITE(msgBuf,'(A,I10,A)') 'CONFIG_CHECK: tracForcingOutAB=',
+     &                             tracForcingOutAB, ' not allowed'
+        CALL PRINT_ERROR( msgBuf , myThid)
+        WRITE(msgBuf,'(2A)') 'CONFIG_CHECK: tracForcingOutAB ',
+     &                       'should be =1 (Out of AB) or =0 (In AB)'
         CALL PRINT_ERROR( msgBuf , myThid)
         STOP 'ABNORMAL END: S/R CONFIG_CHECK'
       ENDIF

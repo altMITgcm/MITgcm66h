@@ -235,7 +235,9 @@ C--   Time stepping parameters
       nTimeSteps        = 0
       nEndIter          = nIter0+nTimeSteps
       endTime           = deltaT*float(nEndIter)
-      forcing_In_AB     = .TRUE.
+      momForcingOutAB   = UNSET_I
+      tracForcingOutAB  = UNSET_I
+      momDissip_In_AB   = .TRUE.
       doAB_onGtGs       = .TRUE.
       abEps             = 0.01 _d 0
 #ifdef ALLOW_ADAMSBASHFORTH_3

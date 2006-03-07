@@ -153,7 +153,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 #endif /* ALLOW_ADAMSBASHFORTH_3 */
 
 C--   External salinity forcing term(s) inside Adams-Bashforth:
-      IF ( saltForcing .AND. forcing_In_AB )
+      IF ( saltForcing .AND. tracForcingOutAB.NE.1 )
      & CALL EXTERNAL_FORCING_S(
      I     iMin,iMax,jMin,jMax,bi,bj,k,
      I     myTime,myThid)
@@ -173,7 +173,7 @@ C--   External salinity forcing term(s) inside Adams-Bashforth:
       ENDIF
 
 C--   External salinity forcing term(s) outside Adams-Bashforth:
-      IF ( saltForcing .AND. .NOT.forcing_In_AB )
+      IF ( saltForcing .AND. tracForcingOutAB.EQ.1 )
      & CALL EXTERNAL_FORCING_S(
      I     iMin,iMax,jMin,jMax,bi,bj,k,
      I     myTime,myThid)
