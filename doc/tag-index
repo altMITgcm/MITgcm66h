@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o adjoint:
+  - Another overhaul of store dirs. for NLFS to eliminate  "hidden" recomputations.
+  - TBD: "hidden" mom_vecinv recomp. in dynamics
 o change forcing_In_AB to affects both T,S forcing and Momentum forcing
  (allow to differentiate between forcing components using new integer flags:
   momForcingOutAB=1/0 & tracForcingOutAB=1/0)
