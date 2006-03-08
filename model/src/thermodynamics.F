@@ -485,6 +485,15 @@ CADJ STORE kappaRS(:,:)    = comlev1_bibj_k, key=kkey, byte=isbyte
 C--      Calculate active tracer tendencies (gT,gS,...)
 C        and step forward storing result in gT, gS, etc.
 #ifndef ALLOW_OFFLINE
+C--
+# ifdef ALLOW_AUTODIFF_TAMC 
+#  if (defined (NONLIN_FRSURF) && defined (ALLOW_GMREDI))
+CADJ STORE kux(:,:,k,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ STORE kuz(:,:,k,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ STORE kvy(:,:,k,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ STORE kvz(:,:,k,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
+#  endif
+# endif /* ALLOW_AUTODIFF_TAMC */
          IF ( tempStepping ) THEN
 #ifdef ALLOW_AUTODIFF_TAMC 
 CADJ STORE gTnm1(:,:,k,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte

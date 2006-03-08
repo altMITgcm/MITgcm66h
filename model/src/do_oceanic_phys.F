@@ -390,12 +390,25 @@ CADJ &     = comlev1_bibj, key=itdkey, byte=isbyte
 CADJ STORE PmEpR(:,:,bi,bj)
 CADJ &     = comlev1_bibj, key=itdkey, byte=isbyte
 # endif
+# ifdef NONLIN_FRSURF
+CADJ STORE hFac_surfC(:,:,bi,bj)
+CADJ &     = comlev1_bibj, key=itdkey, byte=isbyte
+CADJ STORE recip_hFacC(:,:,:,bi,bj)
+CADJ &     = comlev1_bibj, key=itdkey, byte=isbyte
+# endif
 #endif
          CALL EXTERNAL_FORCING_SURF(
      I             bi, bj, iMin, iMax, jMin, jMax,
      I             myTime, myIter, myThid )
 #ifndef ALLOW_AUTODIFF_TAMC
         ENDIF
+#endif
+#ifdef ALLOW_AUTODIFF_TAMC
+# ifdef EXACT_CONSERV
+cph-test
+cphCADJ STORE PmEpR(:,:,bi,bj)
+cphCADJ &     = comlev1_bibj, key=itdkey, byte=isbyte
+# endif
 #endif
 
 #ifdef ALLOW_AUTODIFF_TAMC
