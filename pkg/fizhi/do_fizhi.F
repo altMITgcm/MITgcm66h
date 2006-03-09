@@ -303,7 +303,7 @@ C compute pressures - all pressure are converted here to hPa
       enddo
       enddo
 
-      call fizhi_step_diag(myid,p,uphy,vphy,thphy,sphy,qq,pkl,dpres,
+      call fizhi_step_diag(myid,p,u,v,t,q,qq,pkl,dpres,
      .  radswt,radswg,swgclr,osr,osrclr,st4,dst4,tgz,tg0,radlwg,lwgclr,
      .  turbu,turbv,turbt,turbq,moistu,moistv,moistt,moistq,
      .  lwdt,swdt,lwdtclr,swdtclr,dlwdtg,
