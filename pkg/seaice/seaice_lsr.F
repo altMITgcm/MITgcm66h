@@ -529,7 +529,7 @@ C     now set up right-hand-side
           dUdx(I,J) = ( uIceC(I+1,J,bi,bj) - uIceC(I,J,bi,bj) )
      &         * _recip_dxF(I,J,bi,bj)
           dUdy(I,J) = ( uIceC(I,J+1,bi,bj) - uIceC(I,J,bi,bj) )
-     &         * _recip_dyU(I,J,bi,bj)
+     &         * _recip_dyU(I,J+1,bi,bj)
          ENDDO
         ENDDO
         DO J=1,sNy
