@@ -187,14 +187,15 @@ C     Check all the coordinate variables that we know about
         CALL MNC_FILE_REDEF(fname, myThid)
         err = NF_DEF_VAR(fid, cvname, NF_DOUBLE, 
      &       nids, cv_did, vid)
+        i = ILNBLNK( fname )
         write(msgbuf,'(5a)') 'defining coordinate variable ''', 
-     &       cvname(nnf:nnl), ''' in file ''', fname, ''''
+     &       cvname(nnf:nnl), ''' in file ''', fname(1:i), ''''
         CALL MNC_HANDLE_ERR(err, msgbuf, myThid)
         CALL MNC_FILE_ENDDEF(fname, myThid)
         err = NF_PUT_VARA_DOUBLE(fid, vid, 
      &       cv_start, cv_count, rtmp)
         write(msgbuf,'(5a)') 'writing coordinate variable ''', 
-     &       cvname(nnf:nnl), ''' in file ''', fname, ''''
+     &       cvname(nnf:nnl), ''' in file ''', fname(1:i), ''''
         CALL MNC_HANDLE_ERR(err, msgbuf, myThid)
         
       ENDIF
