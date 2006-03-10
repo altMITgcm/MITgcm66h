@@ -44,19 +44,19 @@ C     !LOCAL VARIABLES:
 
       write(*,*) 'mnc_f_names :'
       DO i = 1,n_id
-        write(*,'(i3,a,a40)') i,':', mnc_f_names(i)
+        write(*,'(i3,a,a40)') i,':', mnc_f_names(i)(1:40)
       ENDDO
       write(*,*) 'mnc_g_names :'
       DO i = 1,n_id
-        write(*,'(i3,a,a40)') i,':', mnc_g_names(i)
+        write(*,'(i3,a,a40)') i,':', mnc_g_names(i)(1:40)
       ENDDO
       write(*,*) 'mnc_v_names :'
       DO i = 1,n_id
-        write(*,'(i3,a,a40)') i,':', mnc_v_names(i)
+        write(*,'(i3,a,a40)') i,':', mnc_v_names(i)(1:40)
       ENDDO
       write(*,*) 'mnc_d_names :'
       DO i = 1,n_id
-        write(*,'(i3,a,a40)') i,':', mnc_d_names(i)
+        write(*,'(i3,a,a40)') i,':', mnc_d_names(i)(1:40)
       ENDDO
 
       write(*,*) 'mnc_d_ids, mnc_d_size :'

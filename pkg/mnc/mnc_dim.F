@@ -98,7 +98,7 @@ C     Functions
       dnl = ILNBLNK(dname)
 
 C     Verify that the file exists
-      CALL MNC_GET_IND(MNC_MAX_ID, fname, mnc_f_names, indf, myThid)
+      CALL MNC_GET_IND(MNC_MAX_FID, fname, mnc_f_names, indf, myThid)
       IF ( indf .LT. 1 ) THEN
         write(msgbuf,'(3a)') 'MNC ERROR: file ''', fname(1:nf),
      &       ''' does not exist'
@@ -200,7 +200,7 @@ C     Functions
       nf = ILNBLNK(fname)
 
 C     Verify that the file exists
-      CALL MNC_GET_IND(MNC_MAX_ID, fname, mnc_f_names, indf, myThid)
+      CALL MNC_GET_IND(MNC_MAX_FID, fname, mnc_f_names, indf, myThid)
       IF (indf .LT. 1) THEN
         write(msgbuf,'(3a)') 'MNC ERROR: file ''', fname(1:nf),
      &       ''' does not exist'

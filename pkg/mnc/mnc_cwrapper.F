@@ -727,7 +727,7 @@ C     !LOCAL VARIABLES:
       integer ierr
 
 C     Check if the file is already open
-      CALL MNC_GET_IND(MNC_MAX_ID, fname, mnc_f_names, indf, myThid)
+      CALL MNC_GET_IND(MNC_MAX_FID, fname, mnc_f_names, indf, myThid)
       IF (indf .GT. 0) THEN
         RETURN
       ENDIF

@@ -203,7 +203,7 @@ C     Strip trailing spaces
       lenv = ILNBLNK(vname)
 
 C     Check that the file exists
-      CALL MNC_GET_IND(MNC_MAX_ID, fname, mnc_f_names, indf, myThid)
+      CALL MNC_GET_IND(MNC_MAX_FID, fname, mnc_f_names, indf, myThid)
       IF (indf .LT. 1) THEN
         ind_fv_ids = -1
         RETURN
