@@ -132,7 +132,8 @@ C           Its OK, the names and sizes are identical
         ENDIF
       ENDDO
 
-      CALL MNC_GET_NEXT_EMPTY_IND(MNC_MAX_ID, mnc_d_names, indd, myThid)
+      CALL MNC_GET_NEXT_EMPTY_IND(MNC_MAX_ID, mnc_d_names, 
+     &     'mnc_d_names', indd, myThid)
 
 C     Create the dim within the file
       IF (doWrite(1:1) .EQ. 'Y') THEN

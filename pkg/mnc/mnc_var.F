@@ -225,7 +225,8 @@ C     Add the variable definition
       ENDIF
 
 C     Success, so save the variable info
-      CALL MNC_GET_NEXT_EMPTY_IND(MNC_MAX_ID,mnc_v_names,indv, myThid)
+      CALL MNC_GET_NEXT_EMPTY_IND(MNC_MAX_ID,mnc_v_names,'mnc_v_names',
+     &     indv, myThid)
       mnc_v_names(indv)(1:lenv) = vname(1:lenv)
       nv = mnc_fv_ids(indf,1)
       i = 2 + nv*3

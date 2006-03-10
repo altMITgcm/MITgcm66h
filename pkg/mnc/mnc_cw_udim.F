@@ -50,7 +50,7 @@ C     Check that this name is not already defined
       CALL MNC_GET_IND(MNC_MAX_ID, fgname, mnc_cw_fgnm, indfg, myThid)
       IF (indfg .LT. 1) THEN
         CALL MNC_GET_NEXT_EMPTY_IND(
-     &       MNC_MAX_ID, mnc_cw_fgnm, indfg, myThid)
+     &       MNC_MAX_ID, mnc_cw_fgnm, 'mnc_cw_fgnm', indfg, myThid)
         mnc_cw_fgnm(indfg)(1:(fgl-fgf+1)) = fgname(fgf:fgl)
         mnc_cw_fgud(indfg) = 0
         mnc_cw_fgig(indfg) = 0
