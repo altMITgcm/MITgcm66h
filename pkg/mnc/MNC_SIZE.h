@@ -10,7 +10,7 @@ C
       parameter ( MNC_MAX_CHAR =     40 )
       parameter ( MNC_MAX_PATH =    500 )
       parameter ( MNC_MAX_INFO =    800 )
-      parameter ( MNC_CW_MAX_I =    100 )
+      parameter ( MNC_CW_MAX_I =     20 )
       parameter ( MNC_CW_CVDAT =  50000 )
 
 CEH3 ;;; Local Variables: ***
