@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o AIM+thSIce: fix sign of Short-Wave through the Ice ; 
+  update output.txt of exp. aim.5l_cs.thSI
 o various mnc cleanups and improvements:
   + shrink lookup tables by factor of ~4
   + better error reporting when running out of lookup space
