@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint58b_post
 o AIM+thSIce: fix sign of Short-Wave through the Ice ; 
   update output.txt of exp. aim.5l_cs.thSI
 o various mnc cleanups and improvements:
