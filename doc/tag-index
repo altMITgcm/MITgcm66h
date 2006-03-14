@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o seaice: modify advection so that it works also on the C-grid
+
 checkpoint58b_post
 o AIM+thSIce: fix sign of Short-Wave through the Ice ; 
   update output.txt of exp. aim.5l_cs.thSI
