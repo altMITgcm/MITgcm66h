@@ -115,10 +115,12 @@ C                          than the default formula (LANL)
 
       LOGICAL calcWindStress
       LOGICAL useFluxFormula_AIM
+      LOGICAL useQnetch, useEmPch
 
       COMMON / BULK_PAR_L /
      &       calcWindStress,
-     &       useFluxFormula_AIM
+     &       useFluxFormula_AIM,
+     &       useQnetch, useEmPch
 
 C--   COMMON / BULK_PAR_C / Character string parameters
       CHARACTER*(MAX_LEN_FNAM) AirTempFile
