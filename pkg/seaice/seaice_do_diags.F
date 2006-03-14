@@ -102,8 +102,8 @@ C     == Local variables ==
 
           DO bj=myByLo(myThid),myByHi(myThid)
             DO bi=myBxLo(myThid),myBxHi(myThid)
-              DO j=1,sNy
-                DO i=1,sNx
+              DO j=1-Oly,sNy+Oly
+                DO i=1-Olx,sNx+Olx
                   arr(i,j,bi,bj)=UICE(i,j,1,bi,bj)
                 ENDDO
               ENDDO
@@ -130,8 +130,8 @@ C     == Local variables ==
 
           DO bj=myByLo(myThid),myByHi(myThid)
             DO bi=myBxLo(myThid),myBxHi(myThid)
-              DO j=1,sNy
-                DO i=1,sNx
+              DO j=1-Oly,sNy+Oly
+                DO i=1-Olx,sNx+Olx
                   arr(i,j,bi,bj)=VICE(i,j,1,bi,bj)
                 ENDDO
               ENDDO
@@ -157,8 +157,8 @@ C     == Local variables ==
           
           DO bj=myByLo(myThid),myByHi(myThid)
             DO bi=myBxLo(myThid),myBxHi(myThid)
-              DO j=1,sNy
-                DO i=1,sNx
+              DO j=1-Oly,sNy+Oly
+                DO i=1-Olx,sNx+Olx
                   arr(i,j,bi,bj)=HEFF(i,j,1,bi,bj)
                 ENDDO
               ENDDO
@@ -184,8 +184,8 @@ C     == Local variables ==
           
           DO bj=myByLo(myThid),myByHi(myThid)
             DO bi=myBxLo(myThid),myBxHi(myThid)
-              DO j=1,sNy
-                DO i=1,sNx
+              DO j=1-Oly,sNy+Oly
+                DO i=1-Olx,sNx+Olx
                   arr(i,j,bi,bj)=AREA(i,j,1,bi,bj)
                 ENDDO
               ENDDO
