@@ -120,8 +120,10 @@ C average seaice velocity to c-grid
 #endif /* SEAICE_CGRID */
        ENDDO
       ENDDO
+#ifndef SEAICE_CGRID
 C     Do we need this? I am afraid so.
       CALL EXCH_UV_XY_RL(uc,vc,.TRUE.,myThid)
+#endif /* not SEAICE_CGRID */
 
 C     Thickness (Volume)
       DO bj=myByLo(myThid),myByHi(myThid)
