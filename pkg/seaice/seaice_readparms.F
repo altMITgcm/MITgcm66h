@@ -44,6 +44,7 @@ C--   SEAICE parameters
      & SEAICEwriteState, SEAICEuseDYNAMICS,
      & SEAICEuseFluxForm,
      & useHB87stressCoupling,
+     & SEAICE_clipVelocities, SEAICE_maskRHS,
      & LAD, IMAX_TICE,
      & SEAICEadvScheme,
      & SEAICE_deltaTtherm, SEAICE_deltaTdyn,
@@ -104,6 +105,8 @@ C--   set default sea ice parameters
 #endif
       SEAICEuseFluxForm  = .FALSE.
       useHB87stressCoupling = .FALSE.
+      SEAICE_clipVelocities = .TRUE.
+      SEAICE_maskRHS     = .FALSE.
       SEAICEadvScheme    = 2
       SEAICE_deltaTtherm = dTtracerLev(1)
       SEAICE_deltaTdyn   = dTtracerLev(1)
