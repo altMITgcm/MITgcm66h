@@ -822,6 +822,7 @@ C Logical flags for selecting packages
       LOGICAL usePTRACERS
       LOGICAL useGCHEM
       LOGICAL useRBCS
+      LOGICAL useOffLine
       LOGICAL useSBO
       LOGICAL useSEAICE
       LOGICAL useShelfIce
@@ -838,7 +839,7 @@ C Logical flags for selecting packages
       COMMON /PARM_PACKAGES/
      &        useKPP, useGMRedi, useOBCS, useAIM, useLand, useECCO, 
      &        useSHAP_FILT, useZONAL_FILT, useGrdchk, useFLT,
-     &        usePTRACERS, useGCHEM, useRBCS,
+     &        usePTRACERS, useGCHEM, useRBCS, useOffLine,
      &        useSBO, useSEAICE, useShelfIce, useThSIce, useBulkForce, 
      &        usefizhi, usegridalt, useDiagnostics, useEBM, useMNC,
      &        usePP81, useMY82, useOPPS, useGGL90, useMATRIX,
