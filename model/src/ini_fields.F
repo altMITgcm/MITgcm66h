@@ -38,7 +38,7 @@ C     Set model variables to initial/restart conditions
         CALL INI_EP( myThid )
 #endif
         IF (nonHydrostatic) CALL INI_PNH( myThid )
-      ELSE
+      ELSEIF ( .NOT.useOffLine ) THEN
 c       IF ( nIter0 .EQ. 0 ) THEN
 c         nIter0 = INT(startTime/deltaTClock )
 c       ENDIF
