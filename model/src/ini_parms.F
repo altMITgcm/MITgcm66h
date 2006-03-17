@@ -1048,15 +1048,12 @@ C--   Make metric term settings consistent with underlying grid.
        usingSphericalPolarMterms = .FALSE.
        metricTerms = .FALSE.
        useNHMTerms = .FALSE.
-       mTFacMom = 0.
        useBetaPlaneF = .TRUE.
       ENDIF
 C--   Make metric term settings consistent with underlying grid.
       IF ( usingCylindricalGrid) THEN
        usingSphericalPolarMterms = .FALSE.
-       metricTerms = .FALSE.
        useNHMTerms = .FALSE.
-       mTFacMom = 1.
        useBetaPlaneF = .TRUE.
        WRITE(msgBuf,'(A)') 'S/R INI_PARMS ; Cylinder OK'
        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
