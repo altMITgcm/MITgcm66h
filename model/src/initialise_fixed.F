@@ -37,6 +37,8 @@ C      | | - MNC_INIT + MNC_CW_INIT
 C      | |
 C      | | - ${PKG}_READPARMS
 C      |
+C      |-- SET_PARMS
+C      |
 C      |-- INI_MODEL_IO
 C      |
 C      |-- MON_INIT
@@ -94,6 +96,10 @@ C--   Configure packages
 
 C--   Read configuration parameters for packages
       CALL PACKAGES_READPARMS( myThid )
+
+C--   Set (or reset) parameters (at this point, know which packages are used);
+C     after this call, main model parameters are not supposed to be modified.
+      CALL SET_PARMS( myThid )
 
 C--   Write units/set precision/etc for I/O of variables/arrays belonging
 C     to the core dynamical model
