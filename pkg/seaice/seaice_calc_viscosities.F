@@ -63,9 +63,9 @@ C
          DO i=1,sNx
 C NOW EVALUATE STRAIN RATES
           e11= _recip_dxF(I,J,bi,bj) *
-     &         (uFld(I,J,bi,bj)-uFld(I-1,J  ,bi,bj))
+     &         (uFld(I+1,J,bi,bj)-uFld(I,J,bi,bj))
      &         -HALF*
-     &         (vFld(I,J,bi,bj)+vFld(I  ,J+1,bi,bj))
+     &         (vFld(I,J,bi,bj)+vFld(I,J+1,bi,bj))
      &         * _tanPhiAtU(I,J,bi,bj)*recip_rSphere
           e22= _recip_dyF(I,J,bi,bj) *
      &         (vFld(I,J+1,bi,bj)-vFld(I,J,bi,bj))
