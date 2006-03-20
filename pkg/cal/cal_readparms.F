@@ -101,7 +101,8 @@ c     (version 0.1.3 >> START << )
 
       namelist /CAL_NML/
      & TheCalendar,
-     & startDate_1,startDate_2
+     & startDate_1,startDate_2,
+     & calendarDumps
 
 c     (version 0.1.3 >> END << )
 
@@ -114,6 +115,7 @@ c       Initialise the calendar parameters
         startdate_2 = 0
         enddate_1   = 0
         enddate_2   = 0
+        calendarDumps = .FALSE.
 
 c       Next, read the calendar data file.
         WRITE(msgBuf,'(A)') 'CAL_READPARMS: opening data.cal'
