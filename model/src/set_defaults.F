@@ -249,7 +249,7 @@ C--   Time stepping parameters
       beta_AB           = UNSET_RL
       startFromPickupAB2= .TRUE.
 #endif
-      pchkPtFreq        = deltaT*0
+      pChkPtFreq        = deltaT*0
       chkPtFreq         = deltaT*0
       outputTypesInclusive = .FALSE.
       pickup_read_mdsio = .TRUE.
@@ -282,7 +282,6 @@ C--   Time stepping parameters
       externForcingCycle      = 0.
       tCylIn             = 0.
       tCylOut            = 20.
-      calendarDumps     = .FALSE.
 
 C--   Input files
       bathyFile       = ' '

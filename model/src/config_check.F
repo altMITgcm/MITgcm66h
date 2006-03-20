@@ -234,19 +234,6 @@ C       code is being compiled
       ENDIF
 #endif
 
-C     o If calendarDumps is set, pkg/cal is required
-#ifndef ALLOW_CAL
-      IF (calendarDumps) THEN
-        WRITE(msgBuf,'(A)')
-     &  'CONFIG_CHECK: calendarDumps is set but pkg/cal is not compiled'
-        CALL PRINT_ERROR( msgBuf , 1)
-        WRITE(msgBuf,'(A)')
-     &  'Re-compile with pkg "cal" in packages.conf'
-        CALL PRINT_ERROR( msgBuf , 1)
-        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
-      ENDIF
-#endif
-
 #ifndef ALLOW_BALANCE_FLUXES
       IF (balanceEmPmR .OR. balanceQnet) THEN
         WRITE(msgBuf,'(A,A)')
