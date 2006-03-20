@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o move calendarDumps from "data" to "data.cal" and clean-up the code
+  with a simple call to pkg/cal S/R: CAL_TIME2WRITE
+o add useEXF & useCAL flags (for now, set in hard-coded way)
 o add S/R to compute NH-metrics terms & Coriolis f' in vertical momentum
   (were missing in NH mode, and wrong in quasihydrostatic mode).
   waiting for Chris updated version of calc_gw to add those CALLs.
