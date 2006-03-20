@@ -112,12 +112,10 @@ CADJ &            key = ikey_dynamics + (ilcall-1)*nchklev_1
       CALL SEAICE_CALC_VISCOSITIES( 
      I     uIceC, vIceC, zMin, zMax, hEffM, press0,
      O     eta, zeta, press, 
+#ifdef SEAICE_ALLOW_EVP
+     O     seaice_div, seaice_tension, seaice_shear,
+#endif /* SEAICE_ALLOW_EVP */
      I     myThid )
-
-C--   Update overlap regions
-      _EXCH_XY_R8(ETA, myThid)
-      _EXCH_XY_R8(ZETA, myThid)
-      _EXCH_XY_R8(PRESS, myThid)
 
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)

@@ -214,6 +214,23 @@ C--   Now lets look at all these beasts
 #endif
       ENDIF
 
+#if (defined (SEAICE_CGRID) && defined (SEAICE_ALLOW_EVP))
+       DO bj=myByLo(myThid),myByHi(myThid)
+        DO bi=myBxLo(myThid),myBxHi(myThid)
+         DO j=1-OLy,sNy+OLy
+          DO i=1-OLx,sNx+OLx
+           seaice_sigma1 (I,J,bi,bj) = 0. _d 0
+           seaice_sigma2 (I,J,bi,bj) = 0. _d 0
+           seaice_sigma12(I,J,bi,bj) = 0. _d 0
+           seaice_div    (I,J,bi,bj) = 0. _d 0
+           seaice_tension(I,J,bi,bj) = 0. _d 0
+           seaice_shear  (I,J,bi,bj) = 0. _d 0
+          ENDDO
+         ENDDO
+        ENDDO
+       ENDDO
+#endif /* SEAICE_ALLOW_EVP and SEAICE_CGRID */
+
 C--   Set model variables to initial/restart conditions
       IF ( nIter0 .NE. 0 ) THEN
 
