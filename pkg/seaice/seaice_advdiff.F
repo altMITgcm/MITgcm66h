@@ -58,7 +58,7 @@ C     i,j,bi,bj - Loop counters
 C     uc/vc     - current ice velocity on C-grid
 C     fld       - copy of scalar field
 C     gfld      - tendency of scalar field
-      INTEGER i, j, bi, bj, k3
+      INTEGER i, j, bi, bj
       LOGICAL SEAICEmultiDimAdvection
 
       _RL uc    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
