@@ -83,9 +83,11 @@ C--    Update overlap regions
        _EXCH_XY_R8(TICE , myThid )
        _EXCH_XY_R8(YNEG , myThid )
        _EXCH_XY_R8(HSNOW, myThid )
+#if (defined(SEAICE_CGRID) && defined(SEAICE_ALLOW_EVP))
        _EXCH_XY_R8(seaice_sigma1 , myThid )
        _EXCH_XY_R8(seaice_sigma2 , myThid )
        _EXCH_XY_R8(seaice_sigma12, myThid )
+#endif /* SEAICE_CGRID SEAICE_ALLOW_EVP */
 
       RETURN
       END
