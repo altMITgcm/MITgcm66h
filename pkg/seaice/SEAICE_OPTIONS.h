@@ -79,7 +79,7 @@ C--   Only for the C-grid version it is possible to enable EVP code by
 C     defining the following flag
 #ifdef SEAICE_CGRID
 #undef SEAICE_ALLOW_EVP
-#endif /* SEAICE_CGRID
+#endif /* SEAICE_CGRID */
 
 #endif /* SEAICE_OPTIONS_H */
 
