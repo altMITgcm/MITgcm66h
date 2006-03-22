@@ -28,6 +28,7 @@ c     == global variables ==
 # include "exf_param.h"
 #endif
 #ifdef ALLOW_PTRACERS.h
+# include "PARAMS.h"
 # include "PTRACERS_SIZE.h"
 # include "PTRACERS.h"
 # include "OBCS_PTRACERS.h"
