@@ -443,6 +443,10 @@ c--     Accumulate ubar and vbar.
 
 #endif /* ALLOW_SEAICE */
 
+#if defined ALLOW_PROFILES_CONTRIBUTION
+      CALL profiles_inloop(mytime,mythid)
+#endif
+
       return
       end
 
