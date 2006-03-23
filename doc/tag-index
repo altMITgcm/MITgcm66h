@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o new code to compute profile cost
+  by Gael Forget
+  (modifs in ecco, ctrl, autodiff)
+
 checkpoint58c_post
 o adjoint: finish NLFS adjoint and provide reference output in
   verification/global_ocean.90x40x15/results_ad_nlfs
