@@ -193,11 +193,11 @@ CADJ STORE theta = tapelev_init, key = 1
 c--   Initialise auxiliary xx_ fields
       CALL CTRL_INIT_VARIABLES ( mythid )
 c--   Map the control variables onto the model state.
-#ifdef ALLOW_ECCO
+# ifdef ALLOW_ECCO
       CALL CTRL_MAP_INI_ECCO( mythid )
-#else
+# else
       CALL CTRL_MAP_INI( mythid )
-#endif
+# endif
       _BARRIER
 #endif
 

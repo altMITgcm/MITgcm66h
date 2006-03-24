@@ -239,6 +239,11 @@ c--   Initialize ECCO package parameters
       call ecco_readparms ( myThid )
 #endif
 
+#ifdef ALLOW_PROFILES
+c--   Initialize PROFILES package parameters
+      call profiles_readparms ( myThid )
+#endif
+
 #ifdef COMPONENT_MODULE
 C--   set Coupling parameters
       IF ( useCoupler ) CALL CPL_READPARMS( myThid )
