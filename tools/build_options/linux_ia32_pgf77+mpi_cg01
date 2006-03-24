@@ -20,5 +20,6 @@ else
 fi
 
 INCLUDEDIRS='/usr/local/pkg/mpi/mpi-1.2.4..8a-gm-1.5/pgi/include'
+INCLUDES='-I/usr/local/pkg/mpi/mpi-1.2.4..8a-gm-1.5/pgi/include'
 LIBS='-lnetcdf'
 
