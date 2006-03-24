@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o fix mnc-pickup/restart for ptracers
 o new code to compute profile cost
   by Gael Forget
   (modifs in ecco, ctrl, autodiff)
