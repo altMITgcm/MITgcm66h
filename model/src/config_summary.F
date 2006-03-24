@@ -289,6 +289,9 @@ c     WRITE(msgBuf,'(2A)') ' Equation of State : eosType = ', eosType
      & 'quasiHydrostatic =', ' /* Quasi-Hydrostatic on/off flag */')
       CALL WRITE_0D_L( momStepping,  INDEX_NONE,
      & 'momStepping =', '  /* Momentum equation on/off flag */')
+      CALL WRITE_0D_L( vectorInvariantMomentum,  INDEX_NONE,
+     & 'vectorInvariantMomentum=',
+     & ' /* Vector-Invariant Momentum on/off */')
       CALL WRITE_0D_L( momAdvection, INDEX_NONE,
      & 'momAdvection =', '  /* Momentum advection on/off flag */')
       CALL WRITE_0D_L( momViscosity, INDEX_NONE,

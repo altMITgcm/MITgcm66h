@@ -207,13 +207,38 @@ C       code is being compiled
       ENDIF
 #endif
 
+#ifndef ALLOW_MOM_VECINV
+      IF ( momStepping .AND. vectorInvariantMomentum ) THEN
+        WRITE(msgBuf,'(2A)')
+     &   'CONFIG_CHECK: cannot step forward Momentum',
+     &   ' without pkg/mom_vecinv'
+        CALL PRINT_ERROR( msgBuf , 1)
+        WRITE(msgBuf,'(2A)') 'CONFIG_CHECK: ',
+     &   'Re-compile with pkg "mom_vecinv" in packages.conf'
+        CALL PRINT_ERROR( msgBuf , 1)
+        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
+      ENDIF
+#endif
+#ifndef ALLOW_MOM_FLUXFORM
+      IF ( momStepping .AND. .NOT.vectorInvariantMomentum ) THEN
+        WRITE(msgBuf,'(2A)')
+     &   'CONFIG_CHECK: cannot step forward Momentum',
+     &   ' without pkg/mom_fluxform'
+        CALL PRINT_ERROR( msgBuf , 1)
+        WRITE(msgBuf,'(2A)') 'CONFIG_CHECK: ',
+     &   'Re-compile with pkg "mom_fluxform" in packages.conf'
+        CALL PRINT_ERROR( msgBuf , 1)
+        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
+      ENDIF
+#endif
+
 #ifndef ALLOW_GENERIC_ADVDIFF
       IF ( tempStepping .OR. saltStepping ) THEN
         WRITE(msgBuf,'(2A)')
      &  'CONFIG_CHECK: cannot step forward Temp or Salt',
      &  ' without pkg/generic_advdiff'
         CALL PRINT_ERROR( msgBuf , 1)
-        WRITE(msgBuf,'(A)')
+        WRITE(msgBuf,'(2A)') 'CONFIG_CHECK: ',
      &  'Re-compile with pkg "generic_advdiff" in packages.conf'
         CALL PRINT_ERROR( msgBuf , 1)
         STOP 'ABNORMAL END: S/R CONFIG_CHECK'
