@@ -5,9 +5,11 @@ $Name$
     ==============================
 
 o fix mnc-pickup/restart for ptracers
-o new code to compute profile cost
-  by Gael Forget
+o new package prifiles:
+  code to compute profile-based cost by Gael Forget
   (modifs in ecco, ctrl, autodiff)
+o Benign bug fix in initialization (spotted by M. Mazloff) of
+  ctrl_set_globfld_xz.F ctrl_set_globfld_yz.F
 
 checkpoint58c_post
 o adjoint: finish NLFS adjoint and provide reference output in
