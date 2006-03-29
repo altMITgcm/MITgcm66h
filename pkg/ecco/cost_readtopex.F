@@ -87,8 +87,8 @@ c     == end of interface ==
       spval = -9990. 
 
 cnew(
-      daytime = FLOAT(secondsperday*(irec-1))
-      dayiter = hoursperday*(irec-1)
+      daytime = FLOAT(secondsperday*(irec-1)) + modelstart
+      dayiter = hoursperday*(irec-1)+modeliter0
       call cal_getdate( dayiter, daytime, daydate, mythid )
       call cal_convdate( daydate,yday,md,dd,sd,ld,wd,mythid )
       ymod = topexstartdate(1)/10000
