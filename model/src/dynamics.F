@@ -3,6 +3,10 @@ C $Name$
 
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
+#ifdef ALLOW_OBCS
+# include "OBCS_OPTIONS.h"
+#endif
+
 #undef DYNAMICS_GUGV_EXCH_CHECK
 
 CBOP
@@ -86,6 +90,16 @@ C     == Global variables ===
 # include "EOS.h"
 # ifdef ALLOW_KPP
 #  include "KPP.h"
+# endif
+# ifdef ALLOW_PTRACERS
+#  include "PTRACERS_SIZE.h"
+#  include "PTRACERS.h"
+# endif
+# ifdef ALLOW_OBCS
+#  include "OBCS.h"
+#  ifdef ALLOW_PTRACERS
+#   include "OBCS_PTRACERS.h"
+#  endif
 # endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 

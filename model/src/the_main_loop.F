@@ -66,6 +66,9 @@ c They provide the fields to be stored.
 # endif
 # ifdef ALLOW_OBCS
 #  include "OBCS.h"
+#  ifdef ALLOW_PTRACERS
+#   include "OBCS_PTRACERS.h"
+#  endif
 # endif
 # ifdef ALLOW_EXF
 #  include "exf_fields.h"
@@ -296,6 +299,8 @@ c--
 #ifdef ALLOW_PTRACERS
 CADJ INIT comlev1_bibj_ptracers = COMMON,
 CADJ &    nchklev_1*nsx*nsy*nthreads_chkpt*PTRACERS_num
+CADJ INIT comlev1_bibj_k_ptracers = COMMON,
+CADJ &    nchklev_1*nsx*nsy*nthreads_chkpt*PTRACERS_num*nr
 #endif /* ALLOW_PTRACERS */
 c--
 #ifndef DISABLE_MULTIDIM_ADVECTION
