@@ -43,7 +43,7 @@ CADJ STORE pload1  = comlev1, key = ikey_dynamics
 #endif /* ALLOW_EXF */
 
 #ifdef ALLOW_OBCS
-# include "exf_ad_check_lev1_dir.h"
+# include "obcs_ad_check_lev1_dir.h"
 #endif  /* ALLOW_OBCS */
 
 #ifdef ALLOW_SEAICE
