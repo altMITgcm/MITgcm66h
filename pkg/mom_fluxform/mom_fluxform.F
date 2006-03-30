@@ -745,13 +745,23 @@ c     ELSE
 #endif
       ENDIF
 
-      IF (nonHydrostatic.OR.quasiHydrostatic) THEN
-       CALL MOM_U_CORIOLIS_NH(bi,bj,k,wVel,cf,myThid)
-       DO j=jMin,jMax
-        DO i=iMin,iMax
-         gU(i,j,k,bi,bj) = gU(i,j,k,bi,bj)+fuFac*cf(i,j)
+C--   3.D Coriolis term (horizontal momentum, Eastward component: -f'*w)
+      IF ( nonHydrostatic.OR.quasiHydrostatic ) THEN
+        CALL MOM_U_CORIOLIS_NH(bi,bj,k,wVel,cf,myThid)
+        DO j=jMin,jMax
+         DO i=iMin,iMax
+          gU(i,j,k,bi,bj) = gU(i,j,k,bi,bj)+fuFac*cf(i,j)
+         ENDDO
         ENDDO
-       ENDDO
+       IF ( usingCurvilinearGrid ) THEN
+C-     presently, non zero angleSinC array only supported with Curvilinear-Grid
+        CALL MOM_V_CORIOLIS_NH(bi,bj,k,wVel,cf,myThid)
+        DO j=jMin,jMax
+         DO i=iMin,iMax
+          gV(i,j,k,bi,bj) = gV(i,j,k,bi,bj)+fvFac*cf(i,j)
+         ENDDO
+        ENDDO
+       ENDIF
       ENDIF
 
 C--   Set du/dt & dv/dt on boundaries to zero
