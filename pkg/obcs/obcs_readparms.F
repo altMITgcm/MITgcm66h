@@ -37,7 +37,8 @@ C     === Routine arguments ===
      &          OBSuFile,OBSvFile,OBStFile,OBSsFile,
      &          OBEuFile,OBEvFile,OBEtFile,OBEsFile,
      &          OBWuFile,OBWvFile,OBWtFile,OBWsFile,
-     &          useOBCSsponge, useOBCSbalance, useOBCSprescribe
+     &          useOBCSsponge, useOBCSbalance, useOBCSprescribe,
+     &          OBCSprintDiags
 #ifdef ALLOW_PTRACERS
      &        , OBNptrFile,OBSptrFile,OBEptrFile,OBWptrFile
 #endif
@@ -91,7 +92,8 @@ C--   Default flags and values for OBCS
       useOrlanskiWest =.FALSE.
       useOBCSsponge   =.FALSE.
       useOBCSbalance  =.FALSE.
-      useOBCSprescribe = .FALSE.
+      useOBCSprescribe=.FALSE.
+      OBCSprintDiags  =.TRUE.
 
       OBNuFile = ' '
       OBNvFile = ' '
