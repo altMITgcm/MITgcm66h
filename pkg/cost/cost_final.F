@@ -28,7 +28,9 @@ c     == global variables ==
 #include "PARAMS.h"
 
 #include "cost.h"
-#include "ctrl.h"
+#ifdef ALLOW_CTRL
+# include "ctrl.h"
+#endif
 
 c     == routine arguments ==
 

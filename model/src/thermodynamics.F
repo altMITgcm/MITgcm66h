@@ -197,6 +197,9 @@ CHPF$  INDEPENDENT, NEW (rTrans,fVerT,fVerS
 CHPF$&                  ,utrans,vtrans,xA,yA
 CHPF$&                  ,kappaRT,kappaRS
 CHPF$&                  )
+# ifdef ALLOW_PTRACERS
+CHPF$  INDEPENDENT, NEW (fVerP,kappaRTr)
+# endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
        DO bi=myBxLo(myThid),myBxHi(myThid)
@@ -261,7 +264,7 @@ C- tracer tendency needs to be set to zero (moved here from gad_calc_rhs):
            ENDDO
          ENDDO
 C-      set tracer tendency to zero:
-         DO iTracer=1,PTRACERS_numInUse
+         DO iTracer=1,PTRACERS_num
           DO k=1,Nr
            DO j=1-OLy,sNy+OLy
             DO i=1-OLx,sNx+OLx
@@ -313,11 +316,6 @@ CADJ STORE vvel (:,:,:,bi,bj) = comlev1_bibj, key=itdkey, byte=isbyte
 cph-test
 cphCADJ STORE gtnm1(:,:,:,bi,bj) = comlev1_bibj, key=itdkey, byte=isbyte
 cphCADJ STORE gsnm1(:,:,:,bi,bj) = comlev1_bibj, key=itdkey, byte=isbyte
-#ifdef ALLOW_PTRACERS
-cph-- moved to forward_step to avoid key computation
-cphCADJ STORE ptracer(:,:,:,bi,bj,itracer) = comlev1_bibj,
-cphCADJ &                              key=itdkey, byte=isbyte
-#endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 #ifndef DISABLE_MULTIDIM_ADVECTION
