@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o obcs: add a flag (OBCSprintDiags, defaults is true) that allows 
+  me to turn off the excessive output to STDOUT that this package produces
 o move NH metric terms & 3.D Coriolis S/R to pkg/mom_common
   and add those terms in Vector-Invariant formulation.
 o in ctrl pkg, if ALLOW_CAL, use monthly mean controls 
