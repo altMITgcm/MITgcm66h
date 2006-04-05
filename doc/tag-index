@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o mom_vecinv: add ISOTROPIC_COS_SCALING flags to mom_vi_hdissip for 
+  completeness
 o mom_fluxform: fixing the mutual use of ISOTROPIC_COS_SCALING 
   and COSINEMETH_III, add comments in default CPP_OPTIONS.h
 o ptracers adjoint:
