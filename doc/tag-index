@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o mom_fluxform: fixing the mutual use of ISOTROPIC_COS_SCALING 
+  and COSINEMETH_III, add comments in default CPP_OPTIONS.h
 o ptracers adjoint:
   * avoid extensive recomputatations
   * fix missing re-init. of gptr (missed by TAF)
