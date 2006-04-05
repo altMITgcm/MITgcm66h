@@ -65,6 +65,9 @@ C     Meridional flux d/dy V
      &   *_dxF(i,j,bi,bj)
      &   *_recip_dyF(i,j,bi,bj)
      &   *(vFld(i,j+1)-vFld(i,j))
+#if (defined (ISOTROPIC_COS_SCALING) && defined (COSINEMETH_III))
+     &   *sqcosFacU(J,bi,bj)
+#endif
        ENDDO
       ENDDO
 
