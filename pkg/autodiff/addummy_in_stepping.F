@@ -230,6 +230,11 @@ c
 #ifdef ALLOW_SSS0_CONTROL
           CALL MNC_CW_RL_W('D','adstate',0,0,'adSSS', adsss, myThid)
 #endif
+#ifdef ALLOW_DIFFKR_CONTROL
+          CALL MNC_CW_RL_W('D','adstate',0,0,
+     &         'adDIFFKR', addiffkr, myThid)
+#endif
+
 c
 #ifdef ALLOW_EXF
           CALL MNC_CW_SET_UDIM('adexf', -1, myThid)
