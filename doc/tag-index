@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o thsice adjoint: start
 o mom_vecinv: add ISOTROPIC_COS_SCALING flags to mom_vi_hdissip for 
   completeness
 o mom_fluxform: fixing the mutual use of ISOTROPIC_COS_SCALING 
