@@ -77,6 +77,8 @@ C   v2ocMxL :: velocity (square) in the mixed layer [m2/s2]
       _RL sOceMxL(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL v2ocMxL(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
+      INTEGER iicekey
+
 #endif /* ALLOW_THSICE */
 
 CEH3 ;;; Local Variables: ***

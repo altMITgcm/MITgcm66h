@@ -80,6 +80,9 @@ c They provide the fields to be stored.
 # ifdef ALLOW_SEAICE
 #  include "SEAICE.h"
 # endif
+# ifdef ALLOW_THSICE
+#  include "THSICE_VARS.h"
+# endif
 # ifdef ALLOW_EBM
 #  include "EBM.h"
 # endif

@@ -91,6 +91,9 @@ C     == Global variables ==
 # ifdef ALLOW_CD_CODE
 #  include "CD_CODE_VARS.h"
 # endif
+# ifdef ALLOW_THSICE
+#  include "THSICE_VARS.h"
+# endif
 # ifdef ALLOW_EBM
 #  include "EBM.h"
 # endif
