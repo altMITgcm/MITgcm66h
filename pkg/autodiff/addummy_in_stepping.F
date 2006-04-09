@@ -232,7 +232,7 @@ c
 #endif
 #ifdef ALLOW_DIFFKR_CONTROL
           CALL MNC_CW_RL_W('D','adstate',0,0,
-     &         'adDIFFKR', addiffkr, myThid)
+     &         'adDiffkr', addiffkr, myThid)
 #endif
 
 c
