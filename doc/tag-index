@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o obcs and ptracers: fix boundary conditions for advections schemes 
+  with larger stencil 
 o thsice adjoint: start
 o mom_vecinv: add ISOTROPIC_COS_SCALING flags to mom_vi_hdissip for 
   completeness
