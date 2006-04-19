@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o correct a sign problem in cost_scat.F
 o obcs and ptracers: fix boundary conditions for advections schemes 
   with larger stencil 
 o thsice adjoint: start
