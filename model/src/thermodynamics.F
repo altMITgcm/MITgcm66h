@@ -480,9 +480,11 @@ C--
 # ifdef ALLOW_AUTODIFF_TAMC 
 #  if (defined (NONLIN_FRSURF) && defined (ALLOW_GMREDI))
 CADJ STORE kux(:,:,k,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
-CADJ STORE kuz(:,:,k,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
 CADJ STORE kvy(:,:,k,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
+#   ifdef GM_EXTRA_DIAGONAL
+CADJ STORE kuz(:,:,k,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
 CADJ STORE kvz(:,:,k,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
+#   endif
 #  endif
 # endif /* ALLOW_AUTODIFF_TAMC */
          IF ( tempStepping ) THEN
