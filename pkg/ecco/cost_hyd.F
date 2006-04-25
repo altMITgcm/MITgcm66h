@@ -181,7 +181,7 @@ cph      call cost_sss   ( myiter, mytime, mythid )
       call cost_salt  ( myiter, mytime, mythid )
 #endif
 
-#ifdef ALLOW_PROFILES_CONTRIBUTION
+#if (defined (ALLOW_PROFILES) && defined (ALLOW_PROFILES_CONTRIBUTION))
        CALL cost_profiles( myiter, mytime, mythid)
 #endif
 
