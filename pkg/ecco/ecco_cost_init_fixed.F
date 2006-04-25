@@ -126,7 +126,7 @@ cph!!!
       endif
 #endif
 
-#if defined ALLOW_PROFILES_CONTRIBUTION
+#if (defined (ALLOW_PROFILES) && defined (ALLOW_PROFILES_CONTRIBUTION))
       CALL profiles_init_fixed(mythid)
 #endif
 
