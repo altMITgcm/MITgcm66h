@@ -7,6 +7,9 @@ c     created: heimbach@mit.edu 10-Jan-2002
 c
 #ifdef NONLIN_FRSURF
 c
+CADJ STORE hfacc       = comlev1, key = ikey_dynamics
+CADJ STORE recip_hfacs = comlev1, key = ikey_dynamics
+CADJ STORE recip_hfacw = comlev1, key = ikey_dynamics
 c
 #endif /* NONLIN_FRSURF */
 
