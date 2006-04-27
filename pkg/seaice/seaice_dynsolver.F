@@ -251,6 +251,12 @@ C NOW LSR SCHEME (ZHANG-J/HIBLER 1997)
       ENDIF
 #endif /* SEAICE_ALLOW_DYNAMICS */
 
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE dwatn = comlev1, key=ikey_dynamics
+CADJ STORE uice  = comlev1, key=ikey_dynamics
+CADJ STORE vice  = comlev1, key=ikey_dynamics
+#endif /* ALLOW_AUTODIFF_TAMC */
+
 C Calculate ocean surface stress
       CALL SEAICE_OCEAN_STRESS ( myTime, myIter, myThid )
 
