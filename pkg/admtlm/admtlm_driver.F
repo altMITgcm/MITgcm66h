@@ -66,9 +66,11 @@ c
 c
       if ( doAdmtlmBypassAD ) then
 c
+#ifdef ALLOW_BYPASSAD
          CALL TIMER_START('ADMTLM_DRIVER             [BYPASSAD]',mythid)
          CALL ADMTLM_BYPASSAD( mythid )
          CALL TIMER_STOP ('ADMTLM_DRIVER             [BYPASSAD]',mythid)
+#endif
 c
       else
 c
