@@ -143,6 +143,7 @@ C--   Reset the model iteration counter and the model time.
 #ifdef ALLOW_AUTODIFF_TAMC
 c**************************************
 #include "checkpoint_lev1_directives.h"
+#include "checkpoint_lev1_template.h"
 c**************************************
 #endif
 

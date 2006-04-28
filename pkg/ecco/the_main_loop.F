@@ -469,6 +469,7 @@ c--     Compute meridional heat transport
 #ifdef ALLOW_AUTODIFF_TAMC
 c**************************************
 #include "checkpoint_lev1_directives.h"
+#include "checkpoint_lev1_template.h"
 c**************************************
 #endif
 
@@ -500,9 +501,6 @@ cph this simple runtime flag causes a lot of recomp.
 #ifndef DISABLE_DEBUGMODE
          IF ( debugLevel .GE. debLevB ) 
      &    CALL DEBUG_CALL('SEAICE_MODEL',myThid)
-#endif
-#ifdef ALLOW_AUTODIFF_TAMC
-CADJ STORE area  = comlev1, key = ikey_dynamics
 #endif
          CALL TIMER_START('SEAICE_MODEL       [FORWARD_STEP]',myThid)
          CALL SEAICE_MODEL( myTime, myIter, myThid )
