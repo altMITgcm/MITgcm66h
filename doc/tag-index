@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o SEAICE_CGRID adjoint started
+  (all stores seem to be sorted out, but NANs in adjoint).
+
 checkpoint58d_post
 o upgrade simple test-experiment to tutorial example:
  step.1: duplicate the experiment and (step.2) will remove the old copy.
