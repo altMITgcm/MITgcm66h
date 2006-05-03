@@ -6,6 +6,9 @@ $Name$
 
 o SEAICE_CGRID adjoint started
   (all stores seem to be sorted out, but NANs in adjoint).
+o R_STAR adjoint implemented.
+  * Seems to just work (based on global_ocean.90x40x15/code_ad_nlfs/ )
+  * need to sort out init. of h0facc, etc.
 
 checkpoint58d_post
 o upgrade simple test-experiment to tutorial example:
