@@ -2160,8 +2160,8 @@ CE
       do L = 1,nlev-1
         do i = 1,irun
          if(pl(i,L).le.150.) then
-          kh(i,L) = 5.
-          km(i,L) = 5.
+          kh(i,L) = min(kh(i,L),0.1)
+          km(i,L) = min(kh(i,L),0.1)
          endif
         enddo
       enddo
