@@ -54,6 +54,7 @@ c They provide the fields to be stored.
 # include "FFIELDS.h"
 # include "EOS.h"
 # include "GAD.h"
+# include "MOM_FLUXFORM.h"
 # ifdef ALLOW_CD_CODE
 #  include "CD_CODE_VARS.h"
 # endif
