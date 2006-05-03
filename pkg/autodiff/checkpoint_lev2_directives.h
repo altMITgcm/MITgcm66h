@@ -43,6 +43,16 @@ CADJ STORE hfacw         = tapelev2, key = ilev_2
 CADJ STORE recip_hfacc   = tapelev2, key = ilev_2
 CADJ STORE recip_hfacs   = tapelev2, key = ilev_2
 CADJ STORE recip_hfacw   = tapelev2, key = ilev_2
+# ifndef DISABLE_RSTAR_CODE
+CADJ STORE rstarexpc,rstarexps,rstarexpw 
+CADJ &     = tapelev2, key = ilev_2
+CADJ STORE rstarfacc,rstarfacs,rstarfacw 
+CADJ &     = tapelev2, key = ilev_2
+CADJ STORE rstardhcdt,rstardhsdt,rstardhwdt 
+CADJ &     = tapelev2, key = ilev_2
+CADJ STORE h0facc,h0facs,h0facw
+CADJ &     = tapelev2, key = ilev_2
+# endif
 #endif /* NONLIN_FRSURF */
 
 #ifdef ALLOW_CD_CODE

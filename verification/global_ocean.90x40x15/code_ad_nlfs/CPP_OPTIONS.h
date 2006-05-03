@@ -19,7 +19,7 @@ C o Nonlinear free surface
 #define NONLIN_FRSURF
 
 C o NEW OPTION to disable rStar (z*) code
-#define DISABLE_RSTAR_CODE
+cph#define DISABLE_RSTAR_CODE
 
 C********* RELEVANT CHANGES *********
 

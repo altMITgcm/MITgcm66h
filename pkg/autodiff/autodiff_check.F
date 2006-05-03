@@ -60,10 +60,6 @@ c--   to nTimeSteps: (nchklev_1*nchklev_2*nchklev_3 .ge. nTimeSteps)
       endif
 #endif
 
-      IF ( select_rStar.NE.0 ) THEN
-        STOP 'in autodiff_check: adjoint not implemented for rStar'
-      ENDIF
-
 #endif
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
