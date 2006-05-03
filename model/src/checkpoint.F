@@ -218,7 +218,7 @@ C       Read model fields
 
         IF ( useDynP_inEos_Zc ) THEN
           WRITE(fn,'(A,A10)') 'pickup_ph.',suff
-cph          CALL MDSREADFIELD(fn,prec,'RL',Nr,totPhiHyd,1,myThid)
+          CALL MDSREADFIELD(fn,prec,'RL',Nr,totPhiHyd,1,myThid)
         ENDIF
 #ifdef ALLOW_NONHYDROSTATIC
         IF ( use3Dsolver ) THEN
