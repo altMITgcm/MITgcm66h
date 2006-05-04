@@ -304,12 +304,16 @@ C---  First call (k=1): compute vertical adv. flux fVerU(kUp) & fVerV(kUp)
 C-    Calculate vertical transports above U & V points (West & South face):
 
 #ifdef ALLOW_AUTODIFF_TAMC
+# ifdef NONLIN_FRSURF
+#  ifndef DISABLE_RSTAR_CODE
 CADJ STORE dwtransc(:,:,bi,bj) = 
 CADJ &     comlev1_bibj_k, key = imomkey, byte = isbyte
 CADJ STORE dwtransu(:,:,bi,bj) = 
 CADJ &     comlev1_bibj_k, key = imomkey, byte = isbyte
 CADJ STORE dwtransv(:,:,bi,bj) = 
 CADJ &     comlev1_bibj_k, key = imomkey, byte = isbyte
+#  endif
+# endif /* NONLIN_FRSURF */
 #endif /* ALLOW_AUTODIFF_TAMC */
         CALL MOM_CALC_RTRANS( k, bi, bj,
      O                        rTransU, rTransV,
