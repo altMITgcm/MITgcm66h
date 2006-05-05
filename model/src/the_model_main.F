@@ -495,7 +495,7 @@ c--   set default:
       IF (debugMode) CALL DEBUG_ENTER('THE_MODEL_MAIN',myThid)
 #endif
 
-#ifdef USE_PAPI
+#if defined(USE_PAPI) || defined(USE_PCL_FLOPS_SFP) || defined(USE_PCL_FLOPS) || defined(USE_PCL)
       CALL TIMER_CONTROL('','INIT','THE_MODEL_MAIN',myThid)
 #endif
 C--   This timer encompasses the whole code
