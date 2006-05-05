@@ -1593,6 +1593,7 @@ if test ! "x$HPMT" = x ; then
           INCLUDES="$INCLUDES $HPMTINC"
 	  LIBS="$LIBS $HPMTLIB"
       fi
+      fi
 fi
 if test ! "x$GSL" = x ; then
       echo "  Turning on use of GSL to control floating point calculations"
