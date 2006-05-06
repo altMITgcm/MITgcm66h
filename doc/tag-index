@@ -9,6 +9,8 @@ o SEAICE_CGRID adjoint started
 o R_STAR adjoint implemented.
   * Seems to just work (based on global_ocean.90x40x15/code_ad_nlfs/ )
   * need to sort out init. of h0facc, etc.
+o Make pkg/profile fully independent of ecco,cost, etc. stuff
+  to be able to use it in pure forward.
 
 checkpoint58d_post
 o upgrade simple test-experiment to tutorial example:
