@@ -19,11 +19,9 @@ C ==================== Global Variables ===========================
 #include "PARAMS.h"
 #include "GRID.h"
 #include "DYNVARS.h"
+#ifdef ALLOW_CAL
 #include "cal.h"
-cph#include "ecco_cost.h"
-cph#include "ctrl.h"
-cph#include "ctrl_dummy.h"
-cph#include "optim.h"
+#endif
 #ifdef ALLOW_PROFILES
 # include "profiles.h"
 # include "netcdf.inc"
@@ -42,7 +40,7 @@ C ==================== Routine Variables ==========================
       integer IL, err
       logical  exst
 
-#ifdef ALLOW_PROFILES_CONTRIBUTION
+#ifdef ALLOW_PROFILES
 
 c     == external functions ==
       integer ILNBLNK

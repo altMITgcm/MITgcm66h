@@ -21,7 +21,6 @@ C     ======== Global data ============================
 #ifdef ALLOW_CAL
 #include "cal.h"
 #endif
-cph#include "ecco_cost.h"
 #ifdef ALLOW_CTRL
 #include "ctrl.h"
 #include "ctrl_dummy.h"
@@ -37,7 +36,8 @@ c     == routine arguments ==
       _RL     mytime
       integer mythid
 
-#ifdef ALLOW_PROFILES_CONTRIBUTION
+#ifdef ALLOW_PROFILES
+#ifdef ALLOW_COST
 
 C     ========= Local variables =======================
       integer K,num_file,num_var,prof_num
@@ -105,6 +105,7 @@ c     == end of interface ==
       ENDDO
 C===========================================================
 
+#endif
 #endif
 
       END

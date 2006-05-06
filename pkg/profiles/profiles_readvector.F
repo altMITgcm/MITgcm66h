@@ -19,7 +19,7 @@ C ==================== Global Variables ===========================
 #include "SIZE.h"
 #include "GRID.h"
 #include "DYNVARS.h"
-#ifdef ALLOW_PROFILES_CONTRIBUTION
+#ifdef ALLOW_PROFILES
 #include "netcdf.inc"
 #include "profiles.h"
 #endif
@@ -28,7 +28,7 @@ C ==================== Routine Variables ==========================
       integer irec, fNb, myThid,err,varid1,tmpprofno
       _RL vec_loc(vec_loc_length)
 
-#ifdef ALLOW_PROFILES_CONTRIBUTION
+#ifdef ALLOW_PROFILES
 
       integer vec_start(2),vec_count(2)
       _RL vec_tmp1(1000*NLEVELMAX),vec_tmp2(1000*NLEVELMAX)

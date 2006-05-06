@@ -24,9 +24,6 @@ C ==================== Global Variables ===========================
 #ifdef ALLOW_CAL
 #include "cal.h"
 #endif
-cph#include "ecco_cost.h"
-cph#include "ctrl.h"
-cph#include "ctrl_dummy.h"
 #ifdef ALLOW_CTRL
 #include "optim.h"
 #endif
