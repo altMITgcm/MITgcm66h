@@ -444,7 +444,8 @@ c--     Accumulate ubar and vbar.
 #endif /* ALLOW_SEAICE */
 
 #if (defined (ALLOW_PROFILES) && defined (ALLOW_PROFILES_CONTRIBUTION))
-      CALL profiles_inloop(mytime,mythid)
+cph moved to the_main_loop to separate from cost package
+cph      CALL profiles_inloop(mytime,mythid)
 #endif
 
       return

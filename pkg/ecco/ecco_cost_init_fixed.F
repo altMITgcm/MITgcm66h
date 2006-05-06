@@ -126,10 +126,6 @@ cph!!!
       endif
 #endif
 
-#if (defined (ALLOW_PROFILES) && defined (ALLOW_PROFILES_CONTRIBUTION))
-      CALL profiles_init_fixed(mythid)
-#endif
-
 c--   Summarize the cost function's setup.
       _BEGIN_MASTER( mythid )
       call ecco_cost_summary( mythid )

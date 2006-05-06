@@ -1,6 +1,6 @@
 C $Header$
 
-#include "COST_CPPOPTIONS.h"
+#include "PROFILES_OPTIONS.h"
 
       subroutine profiles_readparms( mythid )
 
@@ -24,7 +24,7 @@ c     == global variables ==
 #include "GRID.h"
 #include "PARAMS.h"
 
-#include "ecco_cost.h"
+cph#include "ecco_cost.h"
 #include "profiles.h"
 
 c     == routine arguments ==

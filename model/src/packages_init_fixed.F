@@ -225,6 +225,10 @@ C--   in order to provide the weight files
       CALL ECCO_COST_INIT_FIXED( myThid )
 #endif
 
+#ifdef ALLOW_PROFILES
+      CALL PROFILES_INIT_FIXED( myThid )
+#endif
+
 #ifdef ALLOW_AUTODIFF
 C--   Initialise the control variables
       CALL CTRL_INIT( myThid )

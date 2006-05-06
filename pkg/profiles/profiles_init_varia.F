@@ -1,7 +1,6 @@
 C $Header$
 
-#include "AD_CONFIG.h"
-#include "COST_CPPOPTIONS.h"
+#include "PROFILES_OPTIONS.h"
 
       subroutine profiles_init_varia( mythid )
 
@@ -29,9 +28,7 @@ c     == global variables ==
 #include "SIZE.h"
 #include "GRID.h"
 
-#include "ecco_cost.h"
-#include "ctrl_dummy.h"
-#ifdef ALLOW_PROFILES_CONTRIBUTION
+#ifdef ALLOW_PROFILES
 #include "profiles.h"
 #endif
 

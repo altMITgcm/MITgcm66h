@@ -227,6 +227,12 @@ ceh3 needs an IF ( useCOST ) THEN
       _BARRIER
 #endif
 
+#ifdef ALLOW_PROFILES
+c--   Initialise the cost function.
+      CALL PROFILES_INIT_VARIA( mythid )
+      _BARRIER
+#endif
+
 #ifdef ALLOW_OBCS
 C--   Open boundaries data
 #ifdef ALLOW_DEBUG

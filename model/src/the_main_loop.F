@@ -429,6 +429,16 @@ c--     >>> Loop body start <<<
         CALL AUTODIFF_INADMODE_UNSET( myThid )
 #endif
 
+#ifdef ALLOW_PROFILES
+#ifdef ALLOW_DEBUG
+      IF (debugMode) CALL DEBUG_CALL('',myThid)
+#endif
+c--     Accumulate in-situ time averages of temperature, salinity, and SSH.
+        call TIMER_START('PROFILES_INLOOP    [THE_MAIN_LOOP]', mythid)
+        call PROFILES_INLOOP( mytime, mythid )
+        call TIMER_STOP ('PROFILES_INLOOP    [THE_MAIN_LOOP]', mythid)
+#endif
+
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_CALL('FORWARD_STEP',myThid)
 #endif
@@ -518,15 +528,22 @@ c--     >>> Loop body end <<<
       enddo
 #endif /* ALLOW_AUTODIFF_TAMC */
 
+#ifdef ALLOW_PROFILES
+c--     Accumulate in-situ time averages of temperature, salinity, and SSH.
+        call TIMER_START('PROFILES_INLOOP    [THE_MAIN_LOOP]', mythid)
+        call PROFILES_INLOOP( mytime, mythid )
+        call TIMER_STOP ('PROFILES_INLOOP    [THE_MAIN_LOOP]', mythid)
+#endif
+
 #ifdef ALLOW_COST
 c--   Sum all cost function contributions.
-      call TIMER_START('COST_FINAL         [ADJOINT SPIN-DOWN]', mythid)
+      call TIMER_START('COST_FINAL           [THE_MAIN_LOOP]', mythid)
       call COST_FINAL ( mythid )
-      call TIMER_STOP ('COST_FINAL         [ADJOINT SPIN-DOWN]', mythid)
+      call TIMER_STOP ('COST_FINAL           [THE_MAIN_LOOP]', mythid)
 #endif
 
       _BARRIER
-      CALL TIMER_STOP ('MAIN LOOP           [THE_MAIN_LOOP]', mythid)
+      CALL TIMER_STOP ('MAIN LOOP            [THE_MAIN_LOOP]', mythid)
 
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_LEAVE('THE_MAIN_LOOP',myThid)

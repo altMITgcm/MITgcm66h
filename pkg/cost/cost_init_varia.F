@@ -97,10 +97,6 @@ cph because we need it in ADM*TLM
       call ecco_cost_init_varia( mythid )
 #endif
 
-# ifdef ALLOW_PROFILES
-      CALL profiles_init_varia( mythid )
-# endif
-
 c--   Initialise the "global" parts of the cost function.
       _BEGIN_MASTER( mythid )
         fc         = 0. _d 0
