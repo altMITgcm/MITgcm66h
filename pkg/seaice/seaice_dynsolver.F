@@ -222,11 +222,11 @@ C NOW DO PREDICTOR TIME STEP
        ENDDO
 
 C NOW LSR SCHEME (ZHANG-J/HIBLER 1997)
-CADJ STORE uice = comlev1, key=ikey_dynamics
-CADJ STORE vice = comlev1, key=ikey_dynamics
        CALL SEAICE_LSR( 1, myThid )
+#ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE uice = comlev1, key=ikey_dynamics
 CADJ STORE vice = comlev1, key=ikey_dynamics
+#endif
 
 C NOW DO MODIFIED EULER STEP
        DO bj=myByLo(myThid),myByHi(myThid)

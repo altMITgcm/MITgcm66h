@@ -44,7 +44,7 @@ C     i,j,k,bi,bj - Loop counters
       _RL DIFFA(1-OLx:sNx+OLx, 1-OLy:sNy+OLy,nSx,nSy)
 
 #ifdef ALLOW_AUTODIFF_TAMC
-CADJ STORE heff  = comlev1, key = ikey_dynamics
+cphCADJ STORE heff  = comlev1, key = ikey_dynamics
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 
