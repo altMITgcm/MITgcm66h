@@ -3,28 +3,33 @@ C $Name$
 
 #include "BULK_FORCE_OPTIONS.h"
 
-CStartOfInterface
-      SUBROUTINE BULKF_INIT( myThid )
-C     /==========================================================\
-C     | SUBROUTINE BULKF_INIT
-C     | o Set bulk formula parameters
-C     |==========================================================|
-      IMPLICIT NONE
+CBOP
+C     !ROUTINE: BULKF_INIT_VARIA
+C     !INTERFACE:
+      SUBROUTINE BULKF_INIT_VARIA( myThid )
 
+C     *==========================================================*
+C     | SUBROUTINE BULKF_INIT_VARIA
+C     | o Initialize bulk formula arrays
+C     *==========================================================*
+C     \ev
+
+C     !USES:
+      IMPLICIT NONE
 C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "BULKF_PARAMS.h"
 #include "BULKF.h"
-#include "BULKF_DIAG.h"
+#include "BULKF_TAVE.h"
 #ifdef CONSERV_BULKF
 #include "BULKF_CONSERV.h"
 #endif
 
-C     == Routine arguments ==
-C     myThid -  Number of this instance of BULKF_INIT
+C     !INPUT/OUTPUT PARAMETERS:
+C     myThid ::  Number of this instance of BULKF_INIT_VARIA
       INTEGER myThid
-CEndOfInterface
+CEOP
 
 #ifdef ALLOW_BULK_FORCE
 C     == Local variables ==
