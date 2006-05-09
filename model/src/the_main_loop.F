@@ -547,7 +547,7 @@ c--   Sum all cost function contributions.
 #endif
 
       _BARRIER
-      CALL TIMER_STOP ('MAIN LOOP            [THE_MAIN_LOOP]', mythid)
+      CALL TIMER_STOP ('MAIN LOOP           [THE_MAIN_LOOP]', mythid)
 
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_LEAVE('THE_MAIN_LOOP',myThid)
