@@ -157,9 +157,9 @@ C     Do SBO diagnostics.
 #endif  /* ALLOW_SHELFICE */
 
 #ifdef ALLOW_BULK_FORCE
-C     Do bulkf diagnostics.
-      IF (useBulkForce .AND. myIter.NE.nIter0 )
-     &     CALL BULKF_DIAGS( myTime, myIter, myThid )
+C     Do bulkf output.
+      IF ( useBulkForce .AND. myIter.NE.nIter0 )
+     &     CALL BULKF_OUTPUT( myTime, myIter, myThid )
 #endif
 
 #ifdef ALLOW_THSICE
