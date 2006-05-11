@@ -113,10 +113,12 @@ C Open file
 
 C Write record
          if (fileIsOpen) then
-            write(msgbuf,'(a,i9.8,2x,i9.8)')
-     &           ' SBO_WRITEVECTOR: irec = ',irecord,narr
-            call print_message( msgbuf, standardmessageunit,
-     &           SQUEEZE_RIGHT , mythid)
+            if (debugLevel .GE. debLevB) then
+              write(msgbuf,'(a,i9.8,2x,i9.8)')
+     &             ' SBO_WRITEVECTOR: irec = ',irecord,narr
+              call print_message( msgbuf, standardmessageunit,
+     &             SQUEEZE_RIGHT , mythid)
+            endif
             write(dUnit,rec=irecord) arr
          else
             write(msgbuf,'(a)')
