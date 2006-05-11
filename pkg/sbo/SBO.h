@@ -19,12 +19,19 @@ C     xcom         - x-comp of center-of-mass of oceans        (m)
 C     ycom         - y-comp of center-of-mass of oceans        (m)
 C     zcom         - z-comp of center-of-mass of oceans        (m)
 C     obp          - ocean-bottom pressure               (Pascals)
+cph(
+C     area         - surface wet area                       (m**2)
+C     sboempmrwet  - net E-P-R over the ocean                (m/s)
+C     sboqnetwet   - net heat flux over the ocean         (W/m**2)
+cph)
 C
       _RL xoamc, yoamc, zoamc, xoamp, yoamp, zoamp          
       _RL mass, xcom, ycom, zcom
+      _RL sboarea, sboempmrwet, sboqnetwet
       _RL obp (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       common /sbo/ xoamc, yoamc, zoamc, xoamp, yoamp, zoamp,
-     &               mass, xcom, ycom, zcom, obp
+     &             mass, xcom, ycom, zcom, obp,
+     &             sboarea, sboempmrwet, sboqnetwet
 
 C     sbo_taveFreq - SBO time-averaging frequency              (s)
 C

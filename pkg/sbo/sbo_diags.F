@@ -32,7 +32,7 @@ c     sbo_diag  - vector of SBO diagnostics contains:
 c                 model time (s), xoamc, yoamc, zoamc,
 c                 xoamp, yoamp, zoamp, mass, xcom, ycom, zcom
       INTEGER bi, bj
-      Real*8   sbo_diag(11)
+      Real*8   sbo_diag(14)
       LOGICAL  DIFFERENT_MULTIPLE
       EXTERNAL DIFFERENT_MULTIPLE
       _RL DDTT
@@ -56,9 +56,12 @@ C-----------------------------------------------------------------
       sbo_diag(9)  = xcom
       sbo_diag(10) = ycom
       sbo_diag(11) = zcom
+      sbo_diag(12) = sboarea
+      sbo_diag(13) = sboempmrwet
+      sbo_diag(14) = sboqnetwet
 
       fName        = 'SBO_DIAG'
-      narr         = 11
+      narr         = 14
       irecord      = myCurrentTime/deltaTClock
 
       CALL SBO_WRITEVECTOR(
