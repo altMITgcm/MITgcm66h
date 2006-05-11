@@ -878,7 +878,7 @@ c--   Each process has calculated the global part for itself.
         write(ifc,*) 'f_obcse =', f_obcse, no_obcse
         write(ifc,*) 'f_ageos =', f_ageos, no_ageos
         write(ifc,*) 'f_kapgm =', f_kapgm, no_kapgm
-        write(ifc,*) 'f_diffkr=', f_diffkr, no_diffkr
+        write(ifc,*) 'f_diffkr =', f_diffkr, no_diffkr
         write(ifc,*) 'f_ini_fin =', f_ini_fin, no_ini_fin
         write(ifc,*) 'f_eddytau =', f_eddytau, no_eddytau
 #ifdef ALLOW_PROFILES
@@ -907,6 +907,7 @@ c--   Each process has calculated the global part for itself.
       pChkptFreq = 0.
       monitorFreq = 0.
       useDiagnostics = .FALSE.
+      useSBO         = .FALSE.
 
 #ifdef ALLOW_MNC
       monitor_mnc=.FALSE.
