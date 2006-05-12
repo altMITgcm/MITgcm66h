@@ -338,7 +338,7 @@ C     place holder of obsolete variable jG
           write(weighttype(1:80),'(a)') "wdiffkr"
           call ctrl_set_pack_xyz(
      &         cunit, ivartype, fname_diffkr(ictrlgrad), "maskCtrlC",
-     &         weighttype, wunit, lxxadxx, mythid)
+     &         weighttype, wdiffkr, lxxadxx, mythid)
 #endif
 
 #ifdef ALLOW_KAPGM_CONTROL
@@ -347,7 +347,7 @@ C     place holder of obsolete variable jG
           write(weighttype(1:80),'(a)') "wkapgm"
           call ctrl_set_pack_xyz(
      &         cunit, ivartype, fname_kapgm(ictrlgrad), "maskCtrlC",
-     &         weighttype, wunit, lxxadxx, mythid)
+     &         weighttype, wkapgm, lxxadxx, mythid)
 #endif
 
 #ifdef ALLOW_TR10_CONTROL
@@ -425,7 +425,7 @@ C     place holder of obsolete variable jG
           write(weighttype(1:80),'(a)') "wedtaux"
           call ctrl_set_pack_xyz(
      &         cunit, ivartype, fname_edtaux(ictrlgrad), "maskCtrlW",
-     &         weighttype, wunit, lxxadxx, mythid)
+     &         weighttype, wedtaux, lxxadxx, mythid)
 #endif
 
 #ifdef ALLOW_EDTAUY_CONTROL
@@ -434,7 +434,7 @@ C     place holder of obsolete variable jG
           write(weighttype(1:80),'(a)') "wedtauy"
           call ctrl_set_pack_xyz(
      &         cunit, ivartype, fname_edtauy(ictrlgrad), "maskCtrlS",
-     &         weighttype, wunit, lxxadxx, mythid)
+     &         weighttype, wedtauy, lxxadxx, mythid)
 #endif
 
 #ifdef ALLOW_UVEL0_CONTROL
