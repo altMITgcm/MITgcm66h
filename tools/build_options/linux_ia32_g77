@@ -8,6 +8,7 @@
 FC=g77
 CC=gcc
 DEFINES='-D_BYTESWAPIO -DWORDLENGTH=4'
+# CPP='gcc -E -traditional -P -'
 CPP='cpp  -traditional -P'
 NOOPTFLAGS='-O0'
 

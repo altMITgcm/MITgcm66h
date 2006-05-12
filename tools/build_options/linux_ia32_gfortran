@@ -17,6 +17,7 @@
 FC=gfortran
 CC=gcc
 DEFINES='-D_BYTESWAPIO -DWORDLENGTH=4 -DNML_TERMINATOR'
+# CPP='gcc -E -traditional -P -'
 CPP='cpp  -traditional -P'
 NOOPTFLAGS='-O0'
 
