@@ -165,6 +165,15 @@ c--   components of the given control variable.
       ncvarcomp     = ncvarcomp*ncvarrecs(grdchkvarindex)
       maxncvarcomps = maxncvarcomps*ncvarrecs(grdchkvarindex)
 
+      iwetsum(0)    = 0
+      do bj = jtlo,jthi
+         do bi = itlo,ithi
+            do k = 1,ncvarnrmax(grdchkvarindex)
+               iwetsum(k) = iwetsum(k-1) + nwettile(bi,bj,k,1)
+            enddo
+         enddo
+      enddo
+
       _END_MASTER( mythid )
 
       _BARRIER

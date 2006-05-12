@@ -188,7 +188,7 @@ c
                         print '(a,7I5)', 
      &                       ' grad-res ', grdchkwhichproc,
      &                       nbeg, itilepos, jtilepos, layer,
-     &                       iG, jG
+     &                       itile, jtile
                      endif
                   else if ( pastit .EQ. 0 .AND. 
      &                    wetlocal .NE.0 ) then
@@ -200,7 +200,7 @@ c
                         print '(a,7I5)', 
      &                       ' grad-res ', grdchkwhichproc,
      &                       nbeg, itilepos, jtilepos, layer,
-     &                       iG, jG
+     &                       itile, jtile
                   endif
 c
                  endif

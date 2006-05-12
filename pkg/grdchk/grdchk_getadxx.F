@@ -288,6 +288,36 @@ c--   == end of interface ==
 
 #endif /* ALLOW_OBCSE_CONTROL */
 
+#ifdef ALLOW_DIFFKR_CONTROL
+      else if ( grdchkvarindex .eq. 15 ) then
+         il=ilnblnk( xx_diffkr_file )
+         write(fname(1:80),'(80a)') ' '
+         write(fname(1:80),'(3a,i10.10)')
+     &        yadmark, xx_diffkr_file(1:il),'.',optimcycle
+
+         call active_read_xyz_loc( fname, tmpfld3d, 1,
+     &                         doglobalread, ladinit, optimcycle,
+     &                         mythid, dummy)
+
+         xx_comp = tmpfld3d( itilepos,jtilepos,layer,itile,jtile )
+
+#endif /* ALLOW_DIFFKR_CONTROL */
+
+#ifdef ALLOW_KAPGM_CONTROL
+      else if ( grdchkvarindex .eq. 16 ) then
+         il=ilnblnk( xx_kapgm_file )
+         write(fname(1:80),'(80a)') ' '
+         write(fname(1:80),'(3a,i10.10)')
+     &        yadmark, xx_kapgm_file(1:il),'.',optimcycle
+
+         call active_read_xyz_loc( fname, tmpfld3d, 1,
+     &                         doglobalread, ladinit, optimcycle,
+     &                         mythid, dummy)
+
+         xx_comp = tmpfld3d( itilepos,jtilepos,layer,itile,jtile )
+
+#endif /* ALLOW_KAPGM_CONTROL */
+
 #ifdef ALLOW_TR10_CONTROL
       else if ( grdchkvarindex .eq. 17 ) then
          il=ilnblnk( xx_tr1_file )

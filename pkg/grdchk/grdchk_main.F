@@ -200,7 +200,8 @@ c--   Compute the finite difference approximations.
 c--   Cycle through all processes doing NINT(nend-nbeg+1)/nstep
 c--   gradient checks.
 
-      if ( nbeg .EQ. 0 ) call grdchk_get_position( mythid )
+      if ( nbeg .EQ. 0 ) 
+     &     call grdchk_get_position( mythid )
 
       do icomp = nbeg, nend, nstep
 
