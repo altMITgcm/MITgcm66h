@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint58e_post
 o SEAICE_CGRID adjoint done
 o R_STAR adjoint implemented.
   * Seems to just work (based on global_ocean.90x40x15/code_ad_nlfs/ )
