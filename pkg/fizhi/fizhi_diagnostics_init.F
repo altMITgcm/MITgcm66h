@@ -610,6 +610,13 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
+      diagName  = 'SLP     '
+      diagTitle  = 'Sea Level Pressure (mb)'
+      diagUnits  = 'mb              '
+      diagCode  = 'SM      L1      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
       diagName  = 'TKE     '
       diagTitle  = 'Time-Averaged Turbulent Kinetic Energy  (m/s)^2'
       diagUnits  = '(m/sec)2        '
