@@ -112,7 +112,7 @@ echo
 
 echo "Running testreport using:"
 cd MITgcm/verification
-comm="./testreport $IEEE -of ../tools/build_options/linux_ia32_ifort -a edhill@mitgcm.org"
+comm="./testreport $IEEE -of ../tools/build_options/linux_ia32_ifort+authors_v9 -a edhill@mitgcm.org"
 echo "  \"$comm\""
 echo "======================"
 echo
