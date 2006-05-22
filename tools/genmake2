@@ -767,6 +767,9 @@ EOF
 
 
 check_HAVE_SIGREG()  {
+    if test ! "x$HAVE_SIGREG" = x ; then
+	return
+    fi
     get_fortran_c_namemangling
     cat <<EOF > genmake_tc_1.c
 $FC_NAMEMANGLE
@@ -1690,7 +1693,7 @@ rm -f genmake_t*
 
 printf "  Can we register a signal handler using $FC...  "
 check_HAVE_SIGREG
-if test "x$HAVE_SIGREG" != x ; then
+if test "x$HAVE_SIGREG" = xt ; then
     echo "yes"
 else
     echo "no"
