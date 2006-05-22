@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o results_ad : rename "output.txt_adm" to "output_adm.txt" and change
+ testreport accordingly
+
 checkpoint58e_post
 o SEAICE_CGRID adjoint done
 o R_STAR adjoint implemented.
