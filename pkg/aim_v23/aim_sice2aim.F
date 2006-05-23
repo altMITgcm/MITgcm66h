@@ -108,7 +108,7 @@ C-     Compute albedo over sea-ice
          DO i=1,sNx
           IF ( iceMask(i,j,bi,bj) .GT. 0. _d 0 ) THEN
            CALL THSICE_ALBEDO(
-     I              snowHeight(i,j,bi,bj), iceHeight(i,j,bi,bj),
+     I              iceHeight(i,j,bi,bj), snowHeight(i,j,bi,bj),
      I              Tsrf(i,j,bi,bj), snowAge(i,j,bi,bj),
      O              aimAlb(i,j),
      I              myThid)
