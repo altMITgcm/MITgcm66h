@@ -25,7 +25,7 @@ C     processes.  Within a process only one thread does the sum, each
 C     thread is assumed to have already summed its local data.  The same
 C     thread also does the inter-process sum for example with MPI and
 C     then writes the result into a shared location. All threads wait
-C     until the sum is avaiailable.
+C     until the sum is available.
 
 C     !USES:
       IMPLICIT NONE
