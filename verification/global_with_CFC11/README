@@ -1,12 +1,16 @@
-updated December 15, 2005 for iter177 ecco1x1 computation
-menemenlis@jpl.nasa.gov
-
 This verification experiment is identical global_with_exf
 except that it includes CFC-11 diagnostic as per OCMIP-2
 protocol (http://www.ipsl.jussieu.fr/OCMIP/).
 CFC-11 output in mol/m^3 is output in files TR1.*.data
 Example of how to read this output file using matlab is
 in input/lookat.m
+
+24 May 2006: updated OCMIP input files FICE, PATM, and XKW
+Previous versions were rotated by 180 deg zonally.
+
+15 Dec 2005: updated for iter177 ecco1x1 computation
+
+menemenlis@jpl.nasa.gov
 
 ==============================================================
 
