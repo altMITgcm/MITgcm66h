@@ -37,7 +37,7 @@ C       |-- SEAICE_INIT
 C       |
 C       |-- OBCS_INIT_VARIABLES
 C       |
-C       |-- PTRACERS_INIT
+C       |-- PTRACERS_INIT_VARIA
 C       |
 C       |-- LAND_INI_VARS
 C       |
@@ -164,9 +164,9 @@ cph#endif
       IF ( usePTRACERS ) THEN
 # endif
 #ifdef ALLOW_DEBUG
-      IF (debugMode) CALL DEBUG_CALL('PTRACERS_INIT',myThid)
+      IF (debugMode) CALL DEBUG_CALL('PTRACERS_INIT_VARIA',myThid)
 #endif
-         CALL PTRACERS_INIT( mythid )
+         CALL PTRACERS_INIT_VARIA( myThid )
 #ifdef ALLOW_GCHEM
 # ifndef ALLOW_AUTODIFF_TAMC
          IF (useGCHEM) THEN

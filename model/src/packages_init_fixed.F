@@ -64,7 +64,7 @@ C       |-- ECCO_COST_INIT_FIXED
 C       |
 C       |-- CTRL_INIT
 C       |
-C       |-- PTRACERS_INITIALISE
+C       |-- PTRACERS_INIT_FIXED
 C       |
 C       |-- GCHEM_INIT_FIXED
 C       |
@@ -236,7 +236,7 @@ C--   Initialise the control variables
 #endif
 
 #ifdef ALLOW_PTRACERS
-      IF (usePTRACERS) CALL PTRACERS_INITIALISE(mythid)
+      IF (usePTRACERS) CALL PTRACERS_INIT_FIXED(myThid)
 #endif
 
 #ifdef ALLOW_GCHEM
