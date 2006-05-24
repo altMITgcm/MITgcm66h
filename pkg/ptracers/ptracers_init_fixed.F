@@ -5,14 +5,14 @@ C $Name$
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 CBOP
-C     !ROUTINE: PTRACERS_INITIALISE
+C     !ROUTINE: PTRACERS_INIT_FIXED
 
 C     !INTERFACE:
-      SUBROUTINE PTRACERS_INITIALISE( myThid )
+      SUBROUTINE PTRACERS_INIT_FIXED( myThid )
 
 C     !DESCRIPTION:
 C     Initialize PTRACERS constant
-      
+
 C     !USES:
       IMPLICIT NONE
 #include "SIZE.h"
@@ -34,10 +34,10 @@ C     msgBuf      - Informational/error meesage buffer
       INTEGER iTracer
       INTEGER minOlSize
       CHARACTER*(MAX_LEN_MBUF) msgBuf
-        
+
 C     Loop over tracers
       DO iTracer = 1, PTRACERS_numInUse
-        
+
         IF (
      &       multiDimAdvection .AND.
      &       PTRACERS_advScheme(iTracer).NE.ENUM_CENTERED_2ND .AND.
@@ -60,13 +60,13 @@ C-    multi-dim-advection on CS-grid requires to double the size of Olx,Oly
      &        PTRACERS_advScheme(iTracer).EQ.ENUM_DST3 ) minOlSize = 4
         ENDDO
         IF ( Olx.LT.minOlSize .OR. Oly.LT.minOlSize ) THEN
-          WRITE(msgBuf,'(2A)') 'PTRACERS_INITIALISE: ',
+          WRITE(msgBuf,'(2A)') 'PTRACERS_INIT_FIXED: ',
      &     'Multi-Dim Advection with 5-points stencil'
           CALL PRINT_ERROR( msgBuf , myThid)
-          WRITE(msgBuf,'(2A,I2)') 'PTRACERS_INITIALISE: ',
+          WRITE(msgBuf,'(2A,I2)') 'PTRACERS_INIT_FIXED: ',
      &     'advection scheme needs at least Olx,Oly=', minOlSize
           CALL PRINT_ERROR( msgBuf , myThid)
-          STOP 'ABNORMAL END: S/R PTRACERS_INITIALISE'
+          STOP 'ABNORMAL END: S/R PTRACERS_INIT_FIXED'
         ENDIF
       ENDIF
 
