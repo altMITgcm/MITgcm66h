@@ -2,9 +2,9 @@ C $Header$
 C $Name$
 
 #include "AIM_OPTIONS.h"
-#ifdef ALLOW_THSICE
-#include "THSICE_OPTIONS.h"
-#endif
+c#ifdef ALLOW_THSICE
+c#include "THSICE_OPTIONS.h"
+c#endif
 
 CBOP
 C     !ROUTINE: AIM_SICE_IMPL
@@ -28,7 +28,7 @@ C     !USES:
 
 C     == Global variables ===
 C-- size for MITgcm & Physics package :
-#include "AIM_SIZE.h" 
+#include "AIM_SIZE.h"
 
 #include "EEPARAMS.h"
 #include "PARAMS.h"
@@ -38,9 +38,9 @@ C-- size for MITgcm & Physics package :
 c #include "com_physvar.h"
 
 #ifdef ALLOW_THSICE
-#include "THSICE_SIZE.h" 
-#include "THSICE_PARAMS.h"
-#include "THSICE_VARS.h"
+c#include "THSICE_SIZE.h"
+c#include "THSICE_PARAMS.h"
+c#include "THSICE_VARS.h"
 #endif
 
 C     !INPUT/OUTPUT PARAMETERS:
@@ -84,7 +84,7 @@ C--   Physics tendency term
 
        DO J=1,NGP
 C-    total surface downward heat flux :
- 
+
 C-    initialize temp. changes and fresh water flux :
          dTsurf(J) = 0.
        ENDDO
