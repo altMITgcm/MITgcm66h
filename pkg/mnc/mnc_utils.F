@@ -339,7 +339,13 @@ C     !LOCAL VARIABLES:
         ostring(i:i) = ' '
       ENDDO
       WRITE(tmp,'(I25.25)') ival
-      nmin = ival / 10 + 1
+      DO i = 1,25
+        IF (tmp(i:i) .NE. '0') THEN
+          nmin = 26 - i
+          GOTO 200
+        ENDIF
+      ENDDO
+ 200  CONTINUE
       IF (nmin .LT. n)  nmin = n
       ostring(1:nmin) = tmp((26-nmin):25)
 
