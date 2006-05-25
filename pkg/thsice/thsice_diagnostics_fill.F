@@ -78,11 +78,11 @@ C-     Ice-Volume weighted quantities:
          ENDDO
         ENDDO
         CALL DIAGNOSTICS_FRACT_FILL(
-     I                   Qice1(1-Olx,1-Oly,bi,bj),
+     I                   Qice1(1-OLx,1-OLy,bi,bj),
      I                   tmpFld,tmpFac,1,'SI_Qice1',
      I                   0,1,2,bi,bj,myThid)
         CALL DIAGNOSTICS_FRACT_FILL(
-     I                   Qice2(1-Olx,1-Oly,bi,bj),
+     I                   Qice2(1-OLx,1-OLy,bi,bj),
      I                   tmpFld,tmpFac,1,'SI_Qice2',
      I                   0,1,2,bi,bj,myThid)
        ENDIF

@@ -48,8 +48,8 @@ c     set up ice arrays to zero if starting ice
         DO bj = myByLo(myThid), myByHi(myThid)
          DO bi = myBxLo(myThid), myBxHi(myThid)
 C-        state variables :
-          DO j=1-Oly,sNy+Oly
-           DO i=1-Olx,sNx+Olx
+          DO j=1-OLy,sNy+OLy
+           DO i=1-OLx,sNx+OLx
             iceMask(i,j,bi,bj)  = 0. _d 0
             iceHeight(i,j,bi,bj)= 0. _d 0
             snowHeight(i,j,bi,bj)=0. _d 0
@@ -62,8 +62,8 @@ C-        state variables :
            ENDDO
           ENDDO
 C-        fluxes :
-          DO j=1-Oly,sNy+Oly
-           DO i=1-Olx,sNx+Olx
+          DO j=1-OLy,sNy+OLy
+           DO i=1-OLx,sNx+OLx
             sHeating(i,j,bi,bj) = 0. _d 0
             flxCndBt(i,j,bi,bj) = 0. _d 0
             snowPrc(i,j,bi,bj)  = 0. _d 0
@@ -71,12 +71,15 @@ C-        fluxes :
 #ifdef COUPLE_MODEL
             dFdT(i,j,bi,bj)     = 0. _d 0
 #endif
+            icFlxSW (i,j,bi,bj) = 0. _d 0
+            icFlxAtm(i,j,bi,bj) = 0. _d 0
+            icFrwAtm(i,j,bi,bj) = 0. _d 0
            ENDDO
           ENDDO
 C-        oceanic mixed layer state :
           v2Loc = vMxL_default*vMxL_default
-          DO j=1-Oly,sNy+Oly
-           DO i=1-Olx,sNx+Olx
+          DO j=1-OLy,sNy+OLy
+           DO i=1-OLx,sNx+OLx
              hOceMxL(i,j,bi,bj) = hMxL_default
              tOceMxL(i,j,bi,bj) = 0. _d 0
              sOceMxL(i,j,bi,bj) = sMxL_default

@@ -341,6 +341,10 @@ C     Dump a snap-shot of main state variables:
           IF ( myTime.NE.startTime ) THEN
             CALL WRITE_FLD_XY_RL('ice_snowPrc.',suff,snowPrc,
      &           myIter,myThid)
+            CALL WRITE_FLD_XY_RL('ice_flxAtm.',suff,icFlxAtm,
+     &           myIter,myThid)
+            CALL WRITE_FLD_XY_RL('ice_frwAtm.',suff,icFrwAtm,
+     &           myIter,myThid)
           ENDIF
           IF ( stepFwd_oceMxL ) THEN
             CALL WRITE_FLD_XY_RL('ice_tOceMxL.', suff, tOceMxL,
