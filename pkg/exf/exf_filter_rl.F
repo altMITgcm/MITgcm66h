@@ -77,7 +77,7 @@ c         Set land points to zero
 
             do j = 1,sny
               do i = 1,snx
-                if ( _hFacC(i,j,1,bi,bj) .eq. 0. ) then
+                if ( maskC(i,j,1,bi,bj) .eq. 0. ) then
                   arr(i,j,bi,bj) = 0. _d 0
                 endif
               enddo
@@ -87,7 +87,7 @@ c         Set land points to zero
 
             do j = 1,sny
               do i = 1,snx
-                if ( maskw(i,j,1,bi,bj) .eq. 0. ) then
+                if ( maskW(i,j,1,bi,bj) .eq. 0. ) then
                   arr(i,j,bi,bj) = 0. _d 0
                 endif
               enddo
@@ -97,7 +97,7 @@ c         Set land points to zero
 
             do j = 1,sny
               do i = 1,snx
-                if ( masks(i,j,1,bi,bj) .eq. 0. ) then
+                if ( maskS(i,j,1,bi,bj) .eq. 0. ) then
                   arr(i,j,bi,bj) = 0. _d 0
                 endif
               enddo

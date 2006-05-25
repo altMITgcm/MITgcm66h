@@ -39,6 +39,11 @@ c     exf_two    2.0
 
 c     2. physical constants
 
+c     Stefan-Boltzmann constant [J*K^-4*m^-2s^-1]
+c     sigma = (2*pi^5*k^4)/(15*h^3*c^2)
+      _RL stefanBoltzmann
+      parameter ( stefanBoltzmann = 5.670D-8 )
+
 #ifdef ALLOW_ATM_TEMP
 c     is identical to "gravity" used in MITgcmUV
 c     needs to be marmonized through common constants.h file
