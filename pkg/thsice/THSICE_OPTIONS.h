@@ -9,6 +9,9 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
+C- allow single grid-point debugging write to standard-output
+#define ALLOW_DBUG_THSICE
+
 C- only to check conservation 
 C  (change content of ICE_qleft,fresh,salFx-T files)
 #undef CHECK_ENERGY_CONSERV
