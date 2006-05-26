@@ -168,7 +168,7 @@ CEOP
 #endif
 
 #ifdef ALLOW_GRDCHK
-      CALL GRDCHK_CHECK( myThid )
+      IF (useGRDCHK) CALL GRDCHK_CHECK( myThid )
 #endif
 
 #ifdef ALLOW_DIAGNOSTICS
