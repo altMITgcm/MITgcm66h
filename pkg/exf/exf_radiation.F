@@ -64,12 +64,12 @@ c     swflux = - ( 1 - albedo ) * swdown
 #ifdef ALLOW_ATM_TEMP
           if ( lwfluxfile .EQ. ' ' .AND. lwdownfile .NE. ' ' )
      &         lwflux(i,j,bi,bj) = 
-     &         surfEmittance*stefanBoltzmann*
+     &         ocean_emissivity*stefanBoltzmann*
      &         ((theta(i,j,k,bi,bj)+cen2kel)**4)
      &         - lwdown(i,j,bi,bj)
           if ( lwfluxfile .NE. ' ' .AND. lwdownfile .EQ. ' ' )
      &         lwdown(i,j,bi,bj) = 
-     &         surfEmittance*stefanBoltzmann*
+     &         ocean_emissivity*stefanBoltzmann*
      &         ((theta(i,j,k,bi,bj)+cen2kel)**4)
      &         - lwflux(i,j,bi,bj)
 #endif
