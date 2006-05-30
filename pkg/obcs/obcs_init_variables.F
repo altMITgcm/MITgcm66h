@@ -133,7 +133,9 @@ C     == Local variables ==
         ENDDO
 
 #ifdef ALLOW_PTRACERS
+#ifndef ALLOW_AUTODIFF_TAMC
         IF ( usePTRACERS ) THEN
+#endif
          DO iTracer=1,PTRACERS_numInUse
           DO K=1,Nr
            DO I=1-Olx,sNx+Olx
@@ -173,7 +175,9 @@ C     == Local variables ==
            ENDDO
           ENDDO
          ENDDO
+#ifndef ALLOW_AUTODIFF_TAMC
         ENDIF
+#endif
 #endif /* ALLOW_PTRACERS */
 
 #ifdef NONLIN_FRSURF
