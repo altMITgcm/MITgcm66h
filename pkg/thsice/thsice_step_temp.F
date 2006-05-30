@@ -124,7 +124,8 @@ C-      surface net SW flux:
 
        CALL THSICE_SOLVE4TEMP(
      I          bi, bj, siLo, siHi, sjLo, sjHi,
-     I          iMin,iMax, jMin,jMax, dBugFlag, useBulkForce,
+     I          iMin,iMax, jMin,jMax, dBugFlag, 
+     I          useBulkForce, useEXF,
      I          iceMask(siLo,sjLo,bi,bj), iceHeight(siLo,sjLo,bi,bj),
      I          snowHeight(siLo,sjLo,bi,bj), tFrzOce, tmpflx,
      U          icFlxSW(siLo,sjLo,bi,bj), Tsrf(siLo,sjLo,bi,bj),

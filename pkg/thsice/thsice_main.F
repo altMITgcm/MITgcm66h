@@ -185,6 +185,15 @@ CADJ STORE qnet    = comlev1, key = iicekey
      I                  iMin,iMax,jMin,jMax, bi,bj, myThid )
          ENDIF
 #endif
+#ifdef ALLOW_EXF
+         IF ( useEXF ) THEN
+           CALL THSICE_MAP_EXF(
+     I                  iceMask,
+     O                  prcAtm, snowPrc(1-OLx,1-OLy,bi,bj),
+     O                  icFlxSW(1-OLx,1-OLy,bi,bj),
+     I                  iMin,iMax,jMin,jMax, bi,bj, myThid )
+         ENDIF
+#endif
 
 
          CALL THSICE_STEP_TEMP(
