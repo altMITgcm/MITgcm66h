@@ -234,7 +234,7 @@ C-   Turbulent Fluxes
               flha  = clha*delq
               evp   = -flha/lath
               ust   = tau*rd*uw
-              ust   = tau*rd*vw
+              vst   = tau*rd*vw
 
 C-   surf.Temp derivative of turbulent Fluxes
               dEvdT  =  tau*re*ssq*dEvdT/Ts2
