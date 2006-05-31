@@ -25,7 +25,11 @@ for ip = 1:length(fpat)
   r = regexp(fpat{ip},'^(?<dirname>.*/)[^/]+$','names');
   for i = 1:length(d)
     if (not(d(i).isdir))
-      fdirs{end+1} = r.dirname;
+      if (not(isempty(r)))
+        fdirs{end+1} = r.dirname;
+      else
+        fdirs{end+1} = '';
+      end
       files{end+1} = d(i).name;
     end
   end
