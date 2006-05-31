@@ -101,7 +101,9 @@ C     == Global variables ===
 #   include "OBCS_PTRACERS.h"
 #  endif
 # endif
-# include "MOM_FLUXFORM.h"
+# ifdef ALLOW_MOM_FLUXFORM
+#  include "MOM_FLUXFORM.h"
+# endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C     !CALLING SEQUENCE:
