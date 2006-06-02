@@ -80,9 +80,9 @@ C     Solve for surface and ice temperature (implicitly) ; compute surf. fluxes
 C-------
       DO j = jMin, jMax
        DO i = iMin, iMax
+        icFlxSW(i,j,bi,bj) = netSW(i,j)
         IF (iceMask(i,j,bi,bj).GT.0. _d 0) THEN
           tFrzOce(i,j) = -mu_Tf*sOceMxL(i,j,bi,bj)
-          icFlxSW(i,j,bi,bj) = netSW(i,j)
 #ifdef ALLOW_DBUG_THSICE
           IF ( dBug(i,j,bi,bj) ) THEN
            WRITE(6,'(A,2I4,2I2)') 'ThSI_IMPL_T: i,j=',i,j,bi,bj
