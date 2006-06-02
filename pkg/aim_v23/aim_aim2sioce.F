@@ -108,7 +108,6 @@ C        model integration and just put this to get meaningfull diagnostics)
          prcAtm(i,j)     = 0. _d 0
          Qnet(i,j,bi,bj) = 0. _d 0
          EmPmR(i,j,bi,bj)= 0. _d 0
-         icFlxSW(i,j,bi,bj)=0. _d 0
          Qsw(i,j,bi,bj)  = 0. _d 0
         ELSE
          I2 = i+(j-1)*sNx
