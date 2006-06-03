@@ -66,13 +66,6 @@ C     At present this option is hardwired for pkg/exf.
      &        SQUEEZE_RIGHT , myThid )
          STOP 'ABNORMAL END: S/R SEAICE_CHECK'
 #endif
-#ifndef ALLOW_ATM_WIND
-         WRITE(msgBuf,'(A)')
-     &        'need to define pkg/exf ALLOW_ATM_WIND'
-         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &        SQUEEZE_RIGHT , myThid )
-         STOP 'ABNORMAL END: S/R SEAICE_CHECK'
-#endif
 #ifndef ALLOW_DOWNWARD_RADIATION
          WRITE(msgBuf,'(A)')
      &        'need to define pkg/exf ALLOW_DOWNWARD_RADIATION'
