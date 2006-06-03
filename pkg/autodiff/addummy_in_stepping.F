@@ -181,7 +181,7 @@ c
      &       3,  adheff, 1, myIter, myThid )
         CALL MDSWRITEFIELD( 
      &       'ADJhsnow', writeBinaryPrec, globalFiles, 'RL', 
-     &       1,  adsnow, 1, myIter, myThid )
+     &       1,  adhsnow, 1, myIter, myThid )
 # ifdef SEAICE_ALLOW_DYNAMICS
         CALL MDSWRITEFIELD( 
      &       'ADJuice', writeBinaryPrec, globalFiles, 'RL', 
