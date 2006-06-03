@@ -161,7 +161,6 @@ c
       _RL wspeed0  (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL wspeed1  (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 
-#ifdef ALLOW_ATM_WIND
       common /exf_atm_wind_r/ uwind, vwind
       _RL uwind     (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL vwind     (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
@@ -171,7 +170,6 @@ c
       common /exfl_vwind_r/ vwind0, vwind1
       _RL vwind0    (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL vwind1    (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
-#endif
 
       common /exf_hsflux_r/ hflux, sflux
       _RL hflux     (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
