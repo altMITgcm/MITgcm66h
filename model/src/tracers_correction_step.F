@@ -112,6 +112,14 @@ C--   Filter (and exchange)
         CALL TIMER_STOP ('ZONAL_FILT_TS      [TRC_CORR_STEP]',myThid)
       ENDIF
 #endif
+C -- Fill negative tracer values (for now, only if Fizhi is running)
+#ifdef ALLOW_FIZHI
+      IF (useFIZHI .and. saltAdvScheme.eq.2) THEN
+        CALL TIMER_START('SALT_FILL       [TRC_CORR_STEP]',myThid)
+        CALL SALT_FILL( uVel,vVel,salt,1,myTime,myIter,myThid )
+        CALL TIMER_STOP ('SALT_FILL       [TRC_CORR_STEP]',myThid)
+      ENDIF
+#endif
 
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
