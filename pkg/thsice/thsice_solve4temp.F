@@ -209,9 +209,15 @@ C compute ice temperatures
       Tice(1) = 0.5 _d 0 *(-b1 - SQRT(b1*b1-4. _d 0*a1*c1))/a1
       Tice(2) = (Lfresh-qicen(2)) / cpice
 
-      IF (Tice(1).GT.0. _d 0 .OR. Tice(2).GT.0. _d 0) THEN
-          WRITE (6,*) 'BBerr Tice(1) > 0 = ',Tice(1)
-          WRITE (6,*) 'BBerr Tice(2) > 0 = ',Tice(2)
+      IF (Tice(1).GT.0. _d 0 ) THEN 
+       WRITE (standardMessageUnit,*) 'BBerr: Tice(1) > 0'
+       WRITE (standardMessageUnit,'(A,4I5,2F11.4)')
+     &      'BBerr: i,j,bi,bj,Tice = ',i,j,bi,bj,Tice
+      ENDIF
+      IF ( Tice(2).GT.0. _d 0) THEN
+       WRITE (standardMessageUnit,*) 'BBerr: Tice(2) > 0'
+       WRITE (standardMessageUnit,'(A,4I5,2F11.4)')
+     &      'BBerr: i,j,bi,bj,Tice = ',i,j,bi,bj,Tice
       ENDIF
 #ifdef ALLOW_DBUG_THSICE
       IF ( dBug(i,j,bi,bj) ) WRITE(6,1010)
