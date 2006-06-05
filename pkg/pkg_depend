@@ -39,8 +39,6 @@ mom_vecinv	+mom_common
 cd_code         +mom_common
 shap_filt	+mom_vecinv
 ptracers	+generic_advdiff
-seaice		-thsice
-thsice		-seaice
 exf		-bulk_force
 bulk_force	-exf
 gchem           +ptracers
