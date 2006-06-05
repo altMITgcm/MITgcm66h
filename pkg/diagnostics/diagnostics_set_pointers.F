@@ -52,7 +52,8 @@ C--   Initialize pointer arrays to zero:
        ENDDO
       ENDDO
 
-C--   Calculate pointers for diagnostics set to non-zero frequency
+C--   Calculate pointers for diagnostics in active output-stream
+C                                   (i.e., with defined filename)
 
       ndiagcount = 0
       nActiveMax = 0
