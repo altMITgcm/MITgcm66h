@@ -41,6 +41,10 @@ C     Zero out the qdiag array which accumulates during integration
 C     Zero out the counters for the qdiag array
             ndiag(k,bi,bj) = 0
           ENDDO
+          DO k = 1,numlists
+C     Zero out the index array for periodic averaging diagnostic
+            pdiag(k,bi,bj) = 0
+          ENDDO
         ENDDO
       ENDDO
 

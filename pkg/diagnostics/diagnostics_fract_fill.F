@@ -99,6 +99,7 @@ C we are trying to fill a valid diagnostic
          ipt = idiag(m,n)
          IF ( ndiag(ipt,bi,bj).GE.0 ) THEN
            ndId = jdiag(m,n)
+           ipt = ipt + pdiag(n,bi,bj)*kdiag(ndId)
 C-    check for a counter-mate:
            mate = 0
            parms1 = gdiag(ndId)(1:8)

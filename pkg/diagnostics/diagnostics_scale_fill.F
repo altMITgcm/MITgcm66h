@@ -87,6 +87,7 @@ C we are trying to fill a valid diagnostic
          ipt = idiag(m,n)
          IF ( ndiag(ipt,bi,bj).GE.0 ) THEN
            ndId = jdiag(m,n)
+           ipt = ipt + pdiag(n,bi,bj)*kdiag(ndId)
 C-    diagnostic is valid & active, do the filling:
            CALL DIAGNOSTICS_FILL_FIELD(
      I              inpFld, inpFld, scaleFact, power, 0,
