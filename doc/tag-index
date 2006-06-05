@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint58f_post
 o couple pkg/thsice and pkg/exf (as a preparation for coupling pkg/thsice 
   to pkg/seaice): 
   - new routines thsice_map_exf and thsice_get_exf provide the interface
