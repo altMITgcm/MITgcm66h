@@ -106,7 +106,7 @@ c     == external ==
 
 c     == end of interface ==
 
-      IF ( useCubedSphereExchange ) THEN
+      IF ( usingCurvilinearGrid ) THEN
 
          if ( uvecfile .NE. ' ' .and. vvecfile .NE. ' ' ) then
 
