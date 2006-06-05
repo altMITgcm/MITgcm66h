@@ -199,8 +199,13 @@ C--   Constants used by sea-ice model
       _RL         QUART            , HALF
       parameter ( QUART = 0.25 _d 0, HALF = 0.5 _d 0 ) 
 
-      INTEGER GAD_HEFF, GAD_AREA
-      PARAMETER ( GAD_HEFF = 101, GAD_AREA = 102 )
+C--   identifiers for advected properties
+      INTEGER GAD_HEFF, GAD_AREA, GAD_QICE1, GAD_QICE2, GAD_SNOW
+      PARAMETER ( GAD_HEFF  = 101, 
+     &            GAD_AREA  = 102,
+     &            GAD_QICE1 = 103,
+     &            GAD_QICE2 = 104,
+     &            GAD_SNOW  = 105 )
 
 
 CEH3 ;;; Local Variables: ***
