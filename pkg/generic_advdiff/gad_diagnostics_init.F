@@ -105,6 +105,11 @@ C-     add diagnostics of advective & diffusive flux of Salt :
        IF ( fluidIsAir ) THEN
          locName = ' Water-Vapor'
          WRITE(diagUnits,'(2A)') 'g/kg',flxUnits
+#ifdef ALLOW_FIZHI
+        IF(useFIZHI)THEN
+         WRITE(diagUnits,'(2A)') 'kg/kg',flxUnits
+        ENDIF
+#endif /* ALLOW_FIZHI */
        ELSE
          locName = ' Salinity   '
          WRITE(diagUnits,'(2A)') 'psu',flxUnits
@@ -149,6 +154,12 @@ C-     Diffusive flux:
        diagTitle = 'Vertical Diffusive Flux of'//locName
      &           //' (Implicit part)'
        diagCode  = 'WM      LR      '
+       CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I              diagName, diagCode, diagUnits, diagTitle, myThid ) 
+
+       diagName  = 'SALTFILL'
+       diagTitle = 'Filling of Negative Values of'//locName
+       diagCode  = 'SM      MR      '
        CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I              diagName, diagCode, diagUnits, diagTitle, myThid ) 
 
