@@ -304,7 +304,7 @@ C     - d/dx[ (eta+zeta) * v * (tanphi/a) ]
      &         )* _recip_dxC(I,J,bi,bj)*recip_rSphere
 C     - 2*eta*(tanphi/a) * dV/dx 
           FXY(I,J,bi,bj)=FXY(I,J,bi,bj) - 
-     &         -TWO * etaMeanU(I,J,bi,bj) * _tanPhiAtV(I,J,bi,bj)
+     &         TWO * etaMeanU(I,J,bi,bj) * _tanPhiAtV(I,J,bi,bj)
      &         *recip_rSphere
      &         *(vIceC(I  ,J,bi,bj) + vIceC(I  ,J+1,bi,bj)
      &          -vIceC(I-1,J,bi,bj) - vIceC(I-1,J+1,bi,bj))
