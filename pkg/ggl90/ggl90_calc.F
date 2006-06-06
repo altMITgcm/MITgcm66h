@@ -324,7 +324,7 @@ C     estimate friction velocity uStar from surface forcing
      &              + surfaceForcingV(I,  J+1,bi,bj) ) )**2
      &                     )
 C     Dirichlet surface boundary condition for TKE
-        gTKE(I,J,kSurf) = MAX(GGL90TKEmin,GGL90m2*uStarSquare)
+        gTKE(I,J,kSurf) = MAX(GGL90TKEsurfMin,GGL90m2*uStarSquare)
      &                     *maskC(I,J,kSurf,bi,bj)
 C     Dirichlet bottom boundary condition for TKE = GGL90TKEbottom
         kBottom   = MIN(MAX(kLowC(I,J,bi,bj),1),Nr)

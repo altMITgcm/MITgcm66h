@@ -27,6 +27,8 @@ C     GGL90m2         - constant relating wind stress to vertical stress of TKE
 C                      in K [d(TKE)/dz](0)=m2*ustar^3
 C     GGL90alpha      - constant relating viscosity to GGL90 diffusivity
 C                      (default=1 in Gaspar etal.)
+C     GGL90TKEsurfmin - minimum of surface kinetic energy boundary condition
+C                      (default=GGL90TKEmin)
 C     GGL90TKEmin     - minimum kinetic energy, leads to minimum mixing if TKE=0.
 C     GGL90TKEbottom  - bottom bounardy condition for kinetic energy 
 C                      (default=GGL90TKEmin)
@@ -59,7 +61,7 @@ CEOP
       _RL    GGL90alpha, GGL90m2
       _RL    GGL90diffTKEh
       _RL    GGL90mixingLengthMin
-      _RL    GGL90TKEmin, GGL90TKEbottom
+      _RL    GGL90TKEmin, GGL90TKEsurfMin, GGL90TKEbottom
       _RL    GGL90viscMax, GGL90diffMax
       _RL    GGL90dumpFreq, GGL90taveFreq
       COMMON /GGL90_PARMS_R/  
@@ -67,7 +69,7 @@ CEOP
      &     GGL90alpha, GGL90m2,
      &     GGL90diffTKEh,
      &     GGL90mixingLengthMin,
-     &     GGL90TKEmin, GGL90TKEbottom,
+     &     GGL90TKEmin, GGL90TKEsurfMin, GGL90TKEbottom,
      &     GGL90viscMax, GGL90diffMax,
      &     GGL90dumpFreq, GGL90taveFreq
 

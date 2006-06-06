@@ -36,7 +36,7 @@ C--   GGL90 vertical mixing parameters
      &     GGL90diffTKEh,
      &     GGL90mixingMaps, GGL90writeState,
      &     GGL90ck, GGL90ceps, GGL90alpha, GGL90m2,
-     &     GGL90TKEmin, GGL90TKEbottom,
+     &     GGL90TKEmin, GGL90TKEsurfMin, GGL90TKEbottom,
      &     GGL90mixingLengthMin, GGL90viscMax, GGL90diffMax,
      &     GGL90TKEFile
       _BEGIN_MASTER(myThid)
@@ -59,8 +59,11 @@ C--   set default TKE vertical mixing parameters
       GGL90ck              = 0.1 _d 0
       GGL90ceps            = 0.7 _d 0
       GGL90alpha           = 1.0 _d 0
-      GGL90m2              = 3.0 _d 0
+C     Blanke and Delecluse (1993, JPO) use
+      GGL90m2              = 3.75 _d 0
       GGL90TKEmin          = 1.0 _d -11
+C     Blanke and Delecluse (1993, JPO) use
+      GGL90TKEsurfMin      = 1.0 _d -04
       GGL90TKEbottom       = UNSET_RL
       GGL90viscMax         = 1.0 _d 0
       GGL90diffMax         = 1.0 _d 1
