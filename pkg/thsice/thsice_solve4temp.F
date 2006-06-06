@@ -339,16 +339,16 @@ C If no convergence, then repeat.
 #endif
          IF ( useBlkFlx .AND. k.EQ.nitMaxTsf
      &                  .AND. ABS(dTsf).GE.Terrmax ) THEN
-            WRITE (6,*) 'BB: thermw conv err ',i,j,bi,bj,dTsf
-            WRITE (6,*) 'BB: thermw conv err, iceheight ', hi
-            WRITE (6,*) 'BB: thermw conv err: Tsf, flx0', Tsf,flx0
+            WRITE (6,'(A,4I4,I12,F15.9)')
+     &                 ' BB: thermw conv err: i,j,it,hi=',i,j,bi,bj,
+     &                                                    myIter,hi
+            WRITE (6,*) 'BB: thermw conv err: Tsf, dTsf=', Tsf,dTsf
+            WRITE (6,*) 'BB: thermw conv err: flx0,dfdT=',flx0,df0dT
             IF (Tsf.LT.-70. _d 0) STOP
          ENDIF
 
-100   continue  ! surface temperature iteration
        ENDIF
       ENDDO
-150   continue
 C ------ end iteration ------------
 
 C Compute new bottom layer temperature.
