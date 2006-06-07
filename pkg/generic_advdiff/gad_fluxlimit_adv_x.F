@@ -71,7 +71,7 @@ CEOP
 
 c       uFld = uVel(i,j,k,bi,bj)
         uFld = uTrans(i,j)*recip_dyG(i,j,bi,bj)
-     &       *recip_drF(k)*recip_hFacW(i,j,k,bi,bj)
+     &       *recip_drF(k)*_recip_hFacW(i,j,k,bi,bj)
         Rjp=(tracer(i+1,j)-tracer( i ,j))*maskLocW(i+1,j)
         Rj =(tracer( i ,j)-tracer(i-1,j))*maskLocW( i ,j)
         Rjm=(tracer(i-1,j)-tracer(i-2,j))*maskLocW(i-1,j)

@@ -639,17 +639,11 @@ c--
 
 c----------------------------------------------------------------------
 c--
-#ifdef ALLOW_HFACC_CONTROL
-# ifdef ALLOW_HFACC3D_CONTROL
+#ifdef ALLOW_DEPTH_CONTROL
         call ctrl_init_ctrlvar ( 
-     &       xx_hfacc_file, 20, 120, 1, 1, 1,
-     &       snx, sny, nr, 'c', '3d', mythid )
-# else
-        call ctrl_init_ctrlvar ( 
-     &       xx_hfacc_file, 20, 120, 1, 1, 1,
+     &       xx_depth_file, 20, 120, 1, 1, 1,
      &       snx, sny,  1, 'c', 'xy', mythid )
-# endif /*ALLOW_HFACC3D_CONTROL*/
-#endif /* ALLOW_HFACC_CONTROL */
+#endif /* ALLOW_DEPTH_CONTROL */
 
 c----------------------------------------------------------------------
 c--

@@ -32,6 +32,10 @@ CEOP
 #define  _recip_hFacS(i,j,k,bi,bj) recip_hFacS(i,j,1,bi,bj)
 #endif
 
+#ifdef ALLOW_DEPTH_CONTROL
+# define _recip_hFacS(i,j,k,bi,bj) recip_hFacS(i,j,k,bi,bj)*maskS(i,j,k,bi,bj)
+#endif
+
 #ifndef _recip_hFacS
 #define  _recip_hFacS(i,j,k,bi,bj) recip_hFacS(i,j,k,bi,bj)
 #endif

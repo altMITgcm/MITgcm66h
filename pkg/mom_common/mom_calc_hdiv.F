@@ -55,7 +55,7 @@ C       due to the lopping. Whether we should do this is not clear!
      &     +( vFld( i ,j+1)*dxg( i ,j+1,bi,bj)*hFacS( i ,j+1,K,bi,bj)
      &       -vFld( i , j )*dxg( i , j ,bi,bj)*hFacS( i , j ,K,bi,bj) )
      &    )*recip_rA(I,J,bi,bj)
-     &     *recip_hFacC(i,j,k,bi,bj)
+     &     *_recip_hFacC(i,j,k,bi,bj)
         ENDDO
        ENDDO
 

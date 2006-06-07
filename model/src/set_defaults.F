@@ -105,6 +105,7 @@ C-    Earth rotation period is 86400*365.25/366.25 (use to be 1.day)
       sideDragFactor      = 2. _d 0
       bottomDragLinear    = 0.
       bottomDragQuadratic = 0.
+      smoothAbsFuncRange  = 0. _d 0
       diffKrTDefault      = 0. _d -3
       diffKrSDefault      = 0. _d -3
       diffKrBL79surf      = 0. _d 0

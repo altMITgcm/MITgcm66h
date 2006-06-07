@@ -65,7 +65,7 @@ CEOP
 
 c       vFld = vVel(i,j,k,bi,bj)
         vFld = vTrans(i,j)*recip_dxG(i,j,bi,bj)
-     &        *recip_drF(k)*recip_hFacS(i,j,k,bi,bj)
+     &        *recip_drF(k)*_recip_hFacS(i,j,k,bi,bj)
         vCFL = ABS(vFld*deltaTloc*recip_dyC(i,j,bi,bj))
 
         vT(i,j) = 

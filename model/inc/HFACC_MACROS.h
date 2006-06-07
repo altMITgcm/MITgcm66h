@@ -32,6 +32,10 @@ CEOP
 #define  _hFacC(i,j,k,bi,bj) hFacC(i,j,1,bi,bj)
 #endif
 
+#ifdef ALLOW_DEPTH_CONTROL
+# define _hFacC(i,j,k,bi,bj) hFacC(i,j,k,bi,bj)*maskC(i,j,k,bi,bj)
+#endif
+
 #ifndef _hFacC
 #define  _hFacC(i,j,k,bi,bj) hFacC(i,j,k,bi,bj)
 #endif

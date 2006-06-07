@@ -117,8 +117,8 @@ C       (but this might just be what we want ...)
         hFacZClosedS = h0FacW(i,j,k,bi,bj) - h0FacW(i,j-1,k,bi,bj)
         hFacZClosedN = h0FacW(i,j,k,bi,bj) - h0FacW(i,j+1,k,bi,bj)
 #else
-        hFacZClosedS = hFacW(i,j,k,bi,bj) - hFacW(i,j-1,k,bi,bj)
-        hFacZClosedN = hFacW(i,j,k,bi,bj) - hFacW(i,j+1,k,bi,bj)
+        hFacZClosedS = _hFacW(i,j,k,bi,bj) - _hFacW(i,j-1,k,bi,bj)
+        hFacZClosedN = _hFacW(i,j,k,bi,bj) - _hFacW(i,j+1,k,bi,bj)
 #endif
         hFacZClosedS = MAX( 0. _d 0, hFacZClosedS )
         hFacZClosedN = MAX( 0. _d 0, hFacZClosedN )

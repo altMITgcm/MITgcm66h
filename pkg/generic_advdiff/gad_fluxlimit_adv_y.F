@@ -73,7 +73,7 @@ CEOP
 
 c       vFld = vVel(i,j,k,bi,bj)
         vFld = vTrans(i,j)*recip_dxG(i,j,bi,bj)
-     &       *recip_drF(k)*recip_hFacS(i,j,k,bi,bj)
+     &       *recip_drF(k)*_recip_hFacS(i,j,k,bi,bj)
         Rjp=(tracer(i,j+1)-tracer(i, j ))*maskLocS(i,j+1)
         Rj =(tracer(i, j )-tracer(i,j-1))*maskLocS(i, j )
         Rjm=(tracer(i,j-1)-tracer(i,j-2))*maskLocS(i,j-1)

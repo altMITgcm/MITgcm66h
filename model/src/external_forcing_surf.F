@@ -77,23 +77,23 @@ C     Heat Flux (restoring term) :
           surfaceForcingT(i,j,bi,bj) = 
      &      -lambdaThetaClimRelax(i,j,bi,bj) * (1-AREA(i,j,1,bi,bj))
      &         *(theta(i,j,ks,bi,bj)-SST(i,j,bi,bj))
-     &         *drF(ks)*hFacC(i,j,ks,bi,bj)
+     &         *drF(ks)*_hFacC(i,j,ks,bi,bj)
 C     Salt Flux (restoring term) : 
           surfaceForcingS(i,j,bi,bj) =
      &      -lambdaSaltClimRelax(i,j,bi,bj) * (1-AREA(i,j,1,bi,bj))
      &         *(salt(i,j,ks,bi,bj)-SSS(i,j,bi,bj))
-     &         *drF(ks)*hFacC(i,j,ks,bi,bj)
+     &         *drF(ks)*_hFacC(i,j,ks,bi,bj)
 #else /* ifndef ALLOW_SEAICE */
 C     Heat Flux (restoring term) : 
           surfaceForcingT(i,j,bi,bj) = 
      &      -lambdaThetaClimRelax(i,j,bi,bj)
      &         *(theta(i,j,ks,bi,bj)-SST(i,j,bi,bj))
-     &         *drF(ks)*hFacC(i,j,ks,bi,bj)
+     &         *drF(ks)*_hFacC(i,j,ks,bi,bj)
 C     Salt Flux (restoring term) : 
           surfaceForcingS(i,j,bi,bj) =
      &      -lambdaSaltClimRelax(i,j,bi,bj)
      &         *(salt(i,j,ks,bi,bj)-SSS(i,j,bi,bj))
-     &         *drF(ks)*hFacC(i,j,ks,bi,bj)
+     &         *drF(ks)*_hFacC(i,j,ks,bi,bj)
 #endif /* ALLOW_SEAICE */
         ENDDO
        ENDDO
@@ -119,9 +119,9 @@ C     of surf.thickness (hFac): account for change in surf.thickness
           DO i=iMin,iMax
            IF (ks.EQ.ksurfC(i,j,bi,bj)) THEN
             surfaceForcingT(i,j,bi,bj) = surfaceForcingT(i,j,bi,bj)
-     &             *recip_hFacC(i,j,ks,bi,bj)*hFac_surfC(i,j,bi,bj)
+     &             *_recip_hFacC(i,j,ks,bi,bj)*hFac_surfC(i,j,bi,bj)
             surfaceForcingS(i,j,bi,bj) = surfaceForcingS(i,j,bi,bj)
-     &             *recip_hFacC(i,j,ks,bi,bj)*hFac_surfC(i,j,bi,bj)
+     &             *_recip_hFacC(i,j,ks,bi,bj)*hFac_surfC(i,j,bi,bj)
            ENDIF
           ENDDO
          ENDDO

@@ -54,7 +54,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
          DO i=1-Olx,sNx+Olx
           IF (k.EQ.ksurfC(i,j,bi,bj)) THEN
            gTracer(i,j,k,bi,bj) = gTracer(i,j,k,bi,bj)
-     &           *hFacC(i,j,k,bi,bj)/hFac_surfC(i,j,bi,bj) 
+     &           *_hFacC(i,j,k,bi,bj)/hFac_surfC(i,j,bi,bj) 
           ENDIF
          ENDDO
         ENDDO

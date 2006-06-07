@@ -199,6 +199,7 @@ C--   Continuous equation parameters
      & zonal_filt_lat,
      & inAdExact,
      & balanceEmPmR, balanceQnet, balancePrintMean
+     & , smoothAbsFuncRange
 
 C--   Elliptic solver parameters
       NAMELIST /PARM02/

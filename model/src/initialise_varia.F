@@ -118,6 +118,16 @@ C--   Set laplace operators for use in 2D conjugate gradient solver.
 # endif
       CALL INI_CG2D( myThid )
 
+#ifdef ALLOW_DEPTH_CONTROL
+C--   get control parameter depth
+      CALL CTRL_DEPTH_INI( myThid )
+C--   Re-calculate hFacS/W and some other parameters from hFacC
+      CALL UPDATE_MASKS_ETC( myThid )
+C--   Update laplace operators for use in 2D conjugate gradient solver.
+      CALL UPDATE_CG2D( startTime, nIter0, myThid )
+CML      CALL UPDATE_CG2D( myThid )
+#endif /* ALLOW_DEPTH_CONTROL */
+
 # ifdef ALLOW_NONHYDROSTATIC
 C--   Set laplace operators for use in 3D conjugate gradient solver.
 ceh3 should add an IF ( useNONHYDROSTATIC ) THEN

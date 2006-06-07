@@ -123,3 +123,7 @@ CADJ STORE cMeanVVel  = tapelev2, key = ilev_2
 #ifdef ALLOW_COST_TRACER
 CADJ STORE objf_tracer = tapelev2, key = ilev_2
 #endif
+
+#ifdef ALLOW_COST_TRANSPORT
+CADJ STORE objf_transport = tapelev2, key = ilev_2
+#endif

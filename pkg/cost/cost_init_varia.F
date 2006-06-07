@@ -56,6 +56,12 @@ c--   Initialize the tiled cost function contributions.
           objf_atl(bi,bj)  = 0. _d 0
           objf_test(bi,bj) = 0. _d 0
           objf_tracer(bi,bj) = 0. _d 0
+#ifdef ALLOW_COST_TRANSPORT
+          objf_transport(bi,bj) = 0. _d 0
+#endif
+#ifdef ALLOW_COST_DEPTH
+          objf_depth(bi,bj) = 0. _d 0
+#endif
 #ifdef ALLOW_COST_VECTOR
           do i=1,sNx
             objf_vector(i,bi,bj) = 0. _d 0

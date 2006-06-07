@@ -110,16 +110,16 @@ C--    Add centered & upwind contributions
            rUpwind = ABS(rCenter)*upwindFac(i,j)
            a3d(i,j,k)   = a3d(i,j,k)
      &                  - (rCenter+rUpwind)*deltaTarg(k)
-     &                   *recip_hFacC(i,j,k,bi,bj)*recip_drF(k)
+     &                   *_recip_hFacC(i,j,k,bi,bj)*recip_drF(k)
            b3d(i,j,k)   = b3d(i,j,k)
      &                  - (rCenter-rUpwind)*deltaTarg(k)
-     &                    *recip_hFacC(i,j,k,bi,bj)*recip_drF(k)
+     &                    *_recip_hFacC(i,j,k,bi,bj)*recip_drF(k)
            b3d(i,j,k-1) = b3d(i,j,k-1)
      &                  + (rCenter+rUpwind)*deltaTarg(k-1)
-     &                    *recip_hFacC(i,j,k-1,bi,bj)*recip_drF(k-1)
+     &                    *_recip_hFacC(i,j,k-1,bi,bj)*recip_drF(k-1)
            c3d(i,j,k-1) = c3d(i,j,k-1)
      &                  + (rCenter-rUpwind)*deltaTarg(k-1)
-     &                    *recip_hFacC(i,j,k-1,bi,bj)*recip_drF(k-1)
+     &                    *_recip_hFacC(i,j,k-1,bi,bj)*recip_drF(k-1)
          ENDDO
        ENDDO
 

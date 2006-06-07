@@ -85,11 +85,18 @@ c--   Sum up all contributions.
      &         ' --> objf_tracer(bi,bj) = ', objf_tracer(bi,bj)
           write(standardmessageunit,'(A,D22.15)') 
      &         ' --> objf_atl(bi,bj)    = ', objf_atl(bi,bj)
+#ifdef ALLOW_COST_TRANSPORT
+          write(standardmessageunit,'(A,D22.15)') 
+     &         ' --> objf_transport(bi,bj) = ', objf_transport(bi,bj)
+#endif
 
           fc = fc
      &            + mult_test   * objf_test(bi,bj)
      &            + mult_tracer * objf_tracer(bi,bj)
      &            + mult_atl    * objf_atl(bi,bj)
+#ifdef ALLOW_COST_TRANSPORT
+     &            + mult_transport * objf_transport(bi,bj)
+#endif
         enddo
       enddo
 

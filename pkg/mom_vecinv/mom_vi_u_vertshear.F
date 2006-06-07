@@ -123,14 +123,14 @@ c2   &                  *_maskW(I,J,K,bi,bj)
           uShearTerm(I,J)=-0.5*
      &                   (     (wBarXp*uZp+wBarXm*uZm)
      &                        +(ABS(wBarXp)*uZp-ABS(wBarXm)*uZm)
-     &                   )*recip_hFacW(i,j,k,bi,bj)
-     &                    *recip_drF(K)
-c3   &                    *recip_rAw(i,j,bi,bj)
+     &                   )*_recip_hFacW(i,j,k,bi,bj)
+     &                    * recip_drF(K)
+c3   &                    * recip_rAw(i,j,bi,bj)
         ELSE
           uShearTerm(I,J)=-0.5*(wBarXp*uZp+wBarXm*uZm)
-     &                    *recip_hFacW(i,j,k,bi,bj)
-     &                    *recip_drF(K)
-c3   &                    *recip_rAw(i,j,bi,bj)
+     &                    *_recip_hFacW(i,j,k,bi,bj)
+     &                    * recip_drF(K)
+c3   &                    * recip_rAw(i,j,bi,bj)
         ENDIF
        ENDDO
       ENDDO

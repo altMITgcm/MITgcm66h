@@ -24,6 +24,17 @@ CADJ STORE uvel,vvel,wvel     = comlev1, key = ikey_dynamics
 # endif
 #endif /* NONLIN_FRSURF */
 
+#ifdef ALLOW_DEPTH_CONTROL
+CADJ STORE pmepr,surfaceforcingtice
+CADJ &     = comlev1, key=ikey_dynamics
+CADJ STORE detahdt
+CADJ &     = comlev1, key=ikey_dynamics
+CADJ STORE gs,gsnm1,gt,gtnm1,gunm1,gvnm1
+CADJ &     = comlev1, key=ikey_dynamics
+CADJ STORE theta,salt,totphihyd,wvel
+CADJ &     = comlev1, key=ikey_dynamics
+#endif /* ALLOW_DEPTH_CONTROL */
+
 #ifdef ALLOW_CD_CODE
 # include "cd_code_ad_check_lev1_dir.h"
 #endif

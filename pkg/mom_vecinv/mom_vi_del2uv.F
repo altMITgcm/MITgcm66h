@@ -91,7 +91,7 @@ c      DO i=1,sNx+1
        DO i=2-Olx,sNx+Olx-1
         del2u(i,j) =
      &   +     ( hDiv(i,j) - hDiv(i-1,j) )*recip_DXC(i,j,bi,bj)
-     &   -recip_hFacW(i,j,k,bi,bj)*
+     &   -_recip_hFacW(i,j,k,bi,bj)*
      &         ( hFacZ(i,j+1)*vort3(i,j+1) - hFacZ(i,j)*vort3(i,j) )
      &                                    *recip_DYG(i,j,bi,bj)
        ENDDO
@@ -111,7 +111,7 @@ c      DO i=1,sNx
        DO i=2-Olx,sNx+Olx-1
         del2v(i,j) =
      &   +     ( hDiv(i,j) - hDiv(i,j-1) )*recip_DYC(i,j,bi,bj)
-     &   +recip_hFacS(i,j,k,bi,bj)*
+     &   +_recip_hFacS(i,j,k,bi,bj)*
      &         ( hFacZ(i+1,j)*vort3(i+1,j) - hFacZ(i,j)*vort3(i,j) )
      &                                    *recip_DXG(i,j,bi,bj)
        ENDDO

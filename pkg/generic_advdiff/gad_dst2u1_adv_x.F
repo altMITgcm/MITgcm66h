@@ -64,7 +64,7 @@ CEOP
 
 c       uFld = uVel(i,j,k,bi,bj)
         uFld = uTrans(i,j)*recip_dyG(i,j,bi,bj)
-     &        *recip_drF(k)*recip_hFacW(i,j,k,bi,bj)
+     &        *recip_drF(k)*_recip_hFacW(i,j,k,bi,bj)
         uCFL = ABS(uFld*deltaTloc*recip_dxC(i,j,bi,bj))
 
         uT(i,j) = 

@@ -370,6 +370,13 @@ CADJ INIT comlev1_lsr = COMMON,nchklev_1*2
 # endif
 #endif /* ALLOW_SEAICE */
 c--
+#ifdef ALLOW_DEPTH_CONTROL
+CADJ INIT comlev1_cg2d
+CADJ &     = COMMON,nchklev_1*nthreads_chkpt
+CADJ INIT comlev1_cg2d_iter
+CADJ &     = COMMON,nchklev_1*nthreads_chkpt*numItersMax
+#endif
+c--
 #endif /* ALLOW_AUTODIFF_TAMC */
 c**************************************
 

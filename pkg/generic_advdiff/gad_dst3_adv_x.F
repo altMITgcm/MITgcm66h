@@ -59,7 +59,7 @@ c     _RL Rjjm,Rjjp
 
 c       uFld = uVel(i,j,k,bi,bj)
         uFld = uTrans(i,j)*recip_dyG(i,j,bi,bj)
-     &       *recip_drF(k)*recip_hFacW(i,j,k,bi,bj)
+     &       *recip_drF(k)*_recip_hFacW(i,j,k,bi,bj)
         cfl=abs(uFld*deltaTloc*recip_dxC(i,j,bi,bj))
         d0=(2.-cfl)*(1.-cfl)*oneSixth
         d1=(1.-cfl*cfl)*oneSixth

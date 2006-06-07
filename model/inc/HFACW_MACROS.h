@@ -32,6 +32,10 @@ CEOP
 #define  _hFacW(i,j,k,bi,bj) hFacW(i,j,1,bi,bj)
 #endif
 
+#ifdef ALLOW_DEPTH_CONTROL
+# define _hFacW(i,j,k,bi,bj) hFacW(i,j,k,bi,bj)*maskW(i,j,k,bi,bj)
+#endif
+
 #ifndef _hFacW
 #define  _hFacW(i,j,k,bi,bj) hFacW(i,j,k,bi,bj)
 #endif
