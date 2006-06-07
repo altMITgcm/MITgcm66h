@@ -12,7 +12,7 @@
 # TAF=~fastopt/bin/taf
 # STAF=staf
 
-TAF=taf
+TAF=staf
 TAMC=tamc
 
 AD_TAMC_FLAGS='-reverse -admark ad -i4 -r4 -l tamc_ad.log'
@@ -43,6 +43,7 @@ DIFF_FLAGS="-toplevel 'the_main_loop'    \
                     xx_obcse_dummy       \
                     xx_sst_dummy         \
                     xx_sss_dummy         \
+                    xx_depth_dummy       \
                     xx_diffkr_dummy      \
                     xx_kapgm_dummy       \
                     xx_efluxy_dummy      \

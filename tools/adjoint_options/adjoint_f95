@@ -12,7 +12,7 @@
 # TAF=~fastopt/bin/taf
 # STAF=staf
 
-TAF=taf
+TAF=staf
 TAMC=tamc
 
 AD_TAMC_FLAGS='-f95 -reverse -admark ad -i4 -r4 -l tamc_ad.log'

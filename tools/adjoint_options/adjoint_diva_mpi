@@ -13,7 +13,7 @@
 # STAF=staf
 
 DIVA='true'
-TAF=taf
+TAF=staf
 TAMC=tamc
 
 
