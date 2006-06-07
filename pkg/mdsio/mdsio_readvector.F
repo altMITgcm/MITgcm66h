@@ -371,7 +371,7 @@ C     ==================================================================
 
       integer narr
       _RL local(narr)
-      _RS arr(narr)
+      _RL arr(narr)
       integer k,nNz
       integer mythid
 
