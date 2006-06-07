@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint58g_post
 o pkg/ggl90: 
   - add parameter (minimum surface kinetic energy)
   - fix bug (avoiding division by zero)
