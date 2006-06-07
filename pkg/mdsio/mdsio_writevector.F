@@ -50,7 +50,7 @@ C Routine arguments
       logical globalfile
       character*(2) arrType
       integer narr
-      Real arr(narr)
+      _RL arr(narr)
       integer irecord
       integer myIter
       integer myThid
