@@ -5,6 +5,9 @@ $Name$
     ==============================
 
 o pkg/ggl90: fix sloppy output and fix a bug
+o pkg/seaice: added SEAICEuseEVPpickup parameter
+  - Set to false in order to start EVP solver with
+    non-EVP pickup files when using SEAICEuseEVP
 
 checkpoint58h_post
 * Modifications for bottom topography control
