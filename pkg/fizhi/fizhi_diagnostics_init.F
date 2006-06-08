@@ -427,7 +427,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       diagName  = 'UAVE    '
       diagTitle  = 'Average Zonal Wind (m/s)'
       diagUnits  = 'm/s             '
-      WRITE(diagCode,'(A,I3.3,A)') 'UM   ',diagNum+2,'MR      '
+      WRITE(diagCode,'(A,I3.3,A)') 'UM   ',diagNum+2,'ML      '
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
@@ -441,7 +441,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       diagName  = 'TAVE    '
       diagTitle  = 'Average Potential Temperature (K)'
       diagUnits  = 'K               '
-      diagCode  = 'SM      MR      '
+      diagCode  = 'SM      ML      '
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
@@ -449,7 +449,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       diagTitle  =
      .  'Average Specific Humidity (g/kg)'
       diagUnits  = 'gram/kg         '
-      diagCode  = 'SM      MR      '
+      diagCode  = 'SM      ML      '
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 

@@ -268,6 +268,13 @@ c    Last: Increment physics state by the correction term
        enddo
 
 #ifdef ALLOW_DIAGNOSTICS
+      call diagnostics_fill(uphy,'UAVE    ',0,Nrphys,0,1,1,myThid)
+      call diagnostics_fill(vphy,'UAVE    ',0,Nrphys,0,1,1,myThid)
+      call diagnostics_fill(thphy,'TAVE    ',0,Nrphys,0,1,1,myThid)
+      call diagnostics_fill(sphy,'QAVE    ',0,Nrphys,0,1,1,myThid)
+#endif
+
+#ifdef ALLOW_DIAGNOSTICS
       do bj = myByLo(myThid), myByHi(myThid)
       do bi = myBxLo(myThid), myBxHi(myThid)
       do L=1,Nrphys
