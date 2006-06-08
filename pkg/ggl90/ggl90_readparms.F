@@ -28,7 +28,10 @@ C     errIO       - IO error flag
 C     iUnit       - Work variable for IO unit number
 
       CHARACTER*(MAX_LEN_MBUF) msgBuf
-      INTEGER errIO, iUnit
+      INTEGER errIO, iUnit, iL
+
+      INTEGER  ILNBLNK
+      EXTERNAL ILNBLNK
 
 C--   GGL90 vertical mixing parameters
       NAMELIST /GGL90_PARM01/
@@ -181,7 +184,9 @@ C--   print TKE vertical mixing parameters to stdout for better debugging
       CALL WRITE_0D_R8( GGL90mixingLengthMin, INDEX_NONE,
      &     'GGL90mixingLengthMin =', 
      &     '   /* GGL90 minimum mixing length ( m ). */')
-      WRITE(msgBuf,'(A,A)') 'GGL90: GGL90TKEFile = ', GGL90TKEFile
+      iL = MAX_LEN_MBUF - 22
+      iL = MIN(iL,ILNBLNK(GGL90TKEFile))
+      WRITE(msgBuf,'(A,A)')'GGL90: GGL90TKEFile = ',GGL90TKEFile(1:iL)
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT , 1)
 
