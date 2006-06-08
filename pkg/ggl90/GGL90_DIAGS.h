@@ -33,7 +33,7 @@ C----------------------------------------------------------------
 C     GGL90*tave    - Time-averaging GGL90 variables
 C----------------------------------------------------------------
 
-      _RL GGL90TKEtave     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL GGL90TKEtave     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL GGL90viscArtave  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL GGL90diffKrtave  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       COMMON /GGL90_TAVE_DIAGS/
