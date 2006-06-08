@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ggl90: fix sloppy output and fix a bug
+
 checkpoint58h_post
 * Modifications for bottom topography control
   o replace hFacC by _hFacC at various places
