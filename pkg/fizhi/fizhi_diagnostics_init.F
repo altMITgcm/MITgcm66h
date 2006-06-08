@@ -158,6 +158,20 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
+      diagName  = 'MOISTU  '
+      diagTitle  = 'Zonal Wind Tendency from Moist Proc  (m/s/day)'
+      diagUnits  = 'm/s/day         '
+      WRITE(diagCode,'(A,I3.3,A)') 'UM   ',diagNum+2,'ML      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+      diagName  = 'MOISTV  '
+      diagTitle  = 'Meridional Wind Tendency from Moist Proc  (m/s/day)'
+      diagUnits  = 'm/s/day         '
+      WRITE(diagCode,'(A,I3.3,A)') 'VM   ', diagNum ,'ML      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
       diagName  = 'MOISTT  '
       diagTitle  =
      .  'Temperature Tendency due to Moist Processes  (K/day)'
