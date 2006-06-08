@@ -17,6 +17,9 @@ checkpoint58h_post
 * Adding verification for 5x5 box (4-layer) bottom topography control
 
 checkpoint58g_post
+o pkg/diagnostics: implement "periodic averaging diagnostics" (e.g.,
+   used for mean seasonal cycle, mean diurnal cycle); add an example
+   in verification/global_ocean.cs32x15/input.thsice/data.diagnostics
 o pkg/ggl90: 
   - add parameter (minimum surface kinetic energy)
   - fix bug (avoiding division by zero)
