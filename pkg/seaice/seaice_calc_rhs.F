@@ -84,7 +84,7 @@ C--   say, diffKhT
        DO j=1-Oly,sNy+Oly-1
         DO i=1-Olx,sNx+Olx-1
          gFld(i,j,bi,bj)= gFld(i,j,bi,bj) 
-     &        + iceMask(i,j,bi,bj)*recip_rA(i,j,bi,bj)
+     &        - iceMask(i,j,bi,bj)*recip_rA(i,j,bi,bj)
      &        *( (fZon(i+1,j)-fZon(i,j))
      &         + (fMer(i,j+1)-fMer(i,j)) )
      &        *MIN( _dxF(I,J,bi,bj), _dyF(I,J,bi,bj))
