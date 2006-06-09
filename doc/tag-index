@@ -8,6 +8,7 @@ o pkg/ggl90: fix sloppy output and fix a bug
 o pkg/seaice: added SEAICEuseEVPpickup parameter
   - Set to false in order to start EVP solver with
     non-EVP pickup files when using SEAICEuseEVP
+  - fix sign error in diffusion in seaice_calc_rhs
 
 checkpoint58h_post
 * Modifications for bottom topography control
