@@ -111,6 +111,7 @@ C     == Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "SEAICE_PARAMS.h"
 #include "SEAICE.h"
 
 C     == Routine arguments ==
