@@ -269,7 +269,7 @@ c    Last: Increment physics state by the correction term
 
 #ifdef ALLOW_DIAGNOSTICS
       call diagnostics_fill(uphy,'UAVE    ',0,Nrphys,0,1,1,myThid)
-      call diagnostics_fill(vphy,'UAVE    ',0,Nrphys,0,1,1,myThid)
+      call diagnostics_fill(vphy,'VAVE    ',0,Nrphys,0,1,1,myThid)
       call diagnostics_fill(thphy,'TAVE    ',0,Nrphys,0,1,1,myThid)
       call diagnostics_fill(sphy,'QAVE    ',0,Nrphys,0,1,1,myThid)
 #endif

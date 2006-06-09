@@ -448,7 +448,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       diagName  = 'VAVE    '
       diagTitle  = 'Average Meridional Wind (m/s)'
       diagUnits  = 'm/s             '
-      WRITE(diagCode,'(A,I3.3,A)') 'VM   ', diagNum ,'MR      '
+      WRITE(diagCode,'(A,I3.3,A)') 'VM   ', diagNum ,'ML      '
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
