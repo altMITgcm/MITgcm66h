@@ -472,14 +472,6 @@ C- jmc: but ultimately, this block can/will be removed.
         STOP 'ABNORMAL END: S/R CONFIG_CHECK'
       ENDIF
 
-      IF ( highOrderVorticity .AND. useCubedSphereExchange ) THEN
-        WRITE(msgBuf,'(2A)')
-     &   'CONFIG_CHECK WARNING: highOrderVorticity Scheme is not ',
-     &   'yet fully implemented on CubedSphere grid'
-        CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
-     &                    SQUEEZE_RIGHT , myThid)
-      ENDIF
-
       IF ( momForcingOutAB.NE.0 .AND. momForcingOutAB.NE.1 ) THEN 
         WRITE(msgBuf,'(A,I10,A)') 'CONFIG_CHECK: momForcingOutAB=',
      &                             momForcingOutAB, ' not allowed'
