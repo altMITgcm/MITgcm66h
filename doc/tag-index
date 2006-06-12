@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o vector_invariant: fix highOrderVorticity(=4.th.Order) advection 
+  on CS-grid: no longer loosing mass.
 o exf & curvilinear-grid: no longer modify longitude xC & xG.
 o pkg/ggl90: fix sloppy output and fix a bug
 o pkg/seaice: added SEAICEuseEVPpickup parameter
