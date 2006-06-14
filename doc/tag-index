@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: add parameter that allows to scale/turn off effect of seaice 
+  on wind stress (SEAICEstressFactor defaults to 1.)
 o Total number of Timers is finite (<=40): comment out 2 non-essential one
   in the_main_loop.F to avoid Pb (e.g., when running fizhi test)
 o vector_invariant: fix highOrderVorticity(=4.th.Order) advection 
