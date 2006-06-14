@@ -125,6 +125,7 @@ C     SEAICE_emissivity  - Stefan-Boltzman constant * emissivity
 C     SEAICE_snowThick   - cutoff snow thickness
 C     SEAICE_shortwave   - penetration shortwave radiation factor
 C     SEAICE_freeze      - FREEZING TEMP. OF SEA WATER
+C     SEAICEstressFactor - factor by which ice affects wind stress (default=1)
 C     LSR_ERROR          - sets accuracy of LSR solver
 C     DIFF1              - parameter used in advect.F
 C     A22                - parameter used in growth.F
@@ -156,6 +157,7 @@ C
       _RL SEAICE_sensHeat, SEAICE_latentWater, SEAICE_latentIce
       _RL SEAICE_iceConduct, SEAICE_snowConduct, SEAICE_emissivity
       _RL SEAICE_snowThick, SEAICE_shortwave, SEAICE_freeze
+      _RL SEAICEstressFactor
       _RL OCEAN_drag, LSR_ERROR, DIFF1, A22, HO
       _RL WindForcingStart, WindForcingEnd, WindForcingPeriod
       _RL FluxForcingStart, FluxForcingEnd, FluxForcingPeriod
@@ -175,6 +177,7 @@ C
      &    SEAICE_sensHeat, SEAICE_latentWater, SEAICE_latentIce,
      &    SEAICE_iceConduct, SEAICE_snowConduct, SEAICE_emissivity,
      &    SEAICE_snowThick, SEAICE_shortwave, SEAICE_freeze,
+     &    SEAICEstressFactor,
      &    OCEAN_drag, LSR_ERROR, DIFF1, A22, HO,
      &    WindForcingStart, WindForcingEnd, WindForcingPeriod,
      &    FluxForcingStart, FluxForcingEnd, FluxForcingPeriod,
