@@ -566,7 +566,7 @@ CCE107 PAPI summary performance
       call PAPIF_ipc(real_time, proc_time, instr, ipc, check)
       WRITE(msgBuf,'(A34,F10.6,A,F10.6)')
      $     'IPC during this timestep:', ipc, ' ', ipc*proc_time
-     $     /(real_time + 1E-36),
+     $     /(real_time + 1E-36)
       CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
 #endif
       _END_MASTER( myThid )

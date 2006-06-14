@@ -1088,7 +1088,6 @@ CCE107 PAPI summary performance
       WRITE(msgBuf,'(F10.6,A34,I8)')
      $        mflops, 'Mflop/s during timestep ', iloop
       CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-      _END_MASTER( myThid )
 #ifdef PAPI_VERSION
       call PAPIF_ipc(real_time, proc_time, instr, ipc, check)
       WRITE(msgBuf,'(F10.6,A34,I8)')
