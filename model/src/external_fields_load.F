@@ -371,12 +371,5 @@ C endif for periodicForcing
 
 #endif /* ALLOW_EXF */
 
-#ifdef ALLOW_AIM
-      IF ( useAIM ) THEN
-C      Update AIM bottom boundary data
-       CALL AIM_FIELDS_LOAD( myTime, myIter, myThid )
-      ENDIF
-#endif
-
       RETURN
       END
