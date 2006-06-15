@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o rename pkg aim_ocn_coupler to atm_ocn_coupler (later on, will be used without aim)
+
 checkpoint58j_post
 o new driver S/R: LOAD_FIELDS_DRIVER to load external forcing fields
   from file (collects calls previously in FORWARD_STEP)
