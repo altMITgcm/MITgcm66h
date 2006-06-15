@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o new routine load_fields_driver
+  handles all forcing/source term calls
+o seaice, thsice calls moved to do_oceanic_phys
+o adjoint store dir. adjusted accordingly
+
 checkpoint58i_post
 o pkg/seaice: add parameter that allows to scale/turn off effect of seaice 
   on wind stress (SEAICEstressFactor defaults to 1.)
