@@ -90,10 +90,10 @@ v2j=(vv2(:,:,1:nc,:)+vv2(:,:,2:nc+1,:))/2;
 %
 ui=reshape(ui,[nPg nz]);
 u2i=reshape(u2i,[nPg nz]);
-ub2i=reshape(u2i,[nPg nz]);
+ub2i=reshape(ub2i,[nPg nz]);
 vj=reshape(vj,[nPg nz]);
 v2j=reshape(v2j,[nPg nz]);
-vb2j=reshape(v2j,[nPg nz]);
+vb2j=reshape(vb2j,[nPg nz]);
 UV=reshape(uv,[nPg nz]);
 %
 % Read cos and sin of rotation angle if not provided on input
