@@ -60,8 +60,9 @@ c     == end of interface ==
       nnzbar = 1
       nnzobs = 1
 cph(
-cph      nrecloc = ndaysrec
-      nrecloc = 4383
+      nrecloc = ndaysrec
+cph hard-coding for ECCO
+cph      nrecloc = 4383
 cph)
       spminloc = 0.
       spmaxloc = 1.
