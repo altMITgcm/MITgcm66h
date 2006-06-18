@@ -160,7 +160,7 @@ c         Physics works top-down. so -> need to flip arrays
         enddo
         enddo
         call dyn2phys(theta,pedyn,im1,im2,jm1,jm2,Nr,Nsx,Nsy,
-     . 1,sNx,1,sNy,bi,bj,windphy,pephy,ksurfC,Nrphys,nlperdyn,0,tempphy)
+     . 1,sNx,1,sNy,bi,bj,windphy,pephy,ksurfC,Nrphys,nlperdyn,2,tempphy)
         do L = 1,Nrphys
         do j = 1,sNy
         do i = 1,sNx
