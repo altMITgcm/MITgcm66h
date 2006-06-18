@@ -495,14 +495,16 @@ linkdata()
 			ln -sf "../input_ad/"$i $i
 		    fi
 		done
-		files=`( cd ../input ; ls -1 | grep -v CVS )`
-		for i in $files ; do
+		if test -d "../input" ; then
+		  files=`( cd ../input ; ls -1 | grep -v CVS )`
+		  for i in $files ; do
 		    if test ! -d "../input/"$i ; then
 		     if test ! -r $i  ; then
 			ln -sf "../input/"$i $i
 		     fi
 		    fi
-		done
+		  done
+		fi
 	    fi
 	)
     fi
