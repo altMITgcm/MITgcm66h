@@ -147,6 +147,7 @@ C Fill array of model levels closest to a given pressure value
       nsubmax = pchecklevs(2)
       Lup = pchecklevs(3)
 
+CCC   cumfric = .true.
       cumfric = .false.
 
 C **********************************************************************        
