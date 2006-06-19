@@ -99,7 +99,7 @@ C       CALL MON_OUT_I( '_secondsi', time_as_int,mon_string_none,myThid)
 
 #ifdef ALLOW_EXF
 C       Print some statistics about input forcing fields
-        CALL EXF_MONITOR( myIter, myTime, myThid )
+c       CALL EXF_MONITOR( myIter, myTime, myThid )
 #endif /* ALLOW_EXF */
 
 #ifdef ALLOW_SEAICE
