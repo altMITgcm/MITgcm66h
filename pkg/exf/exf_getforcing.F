@@ -237,6 +237,9 @@ c     Therefore, we do it exactly here:
 c     Diagnostics output
       call exf_diagnostics_fill( mytime, myiter, mythid )
 
+c     Monitor output
+      call exf_monitor( mytime, myiter, mythid )
+
 c     Map the forcing fields onto the corresponding model fields.
       call exf_mapfields( mytime, myiter, mythid )
 

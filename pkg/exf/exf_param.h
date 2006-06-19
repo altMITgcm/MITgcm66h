@@ -36,6 +36,9 @@ c     year in seconds
 c     Calendar data.
       _RL     repeatPeriod
 
+c     Monitor Frequency (s)
+      _RL     exf_monFreq
+
 c     Sea-water albedo
       _RL     exf_albedo
 c     longwave surface emissivities (ice and snow emissivities are used
@@ -304,8 +307,8 @@ C                           instead of _YEAR for useExfYearlyFields
 
       common /exf_param_r/
      &                     year2sec,          windstressmax,
-     &                     repeatPeriod,      exf_albedo,
-     &                     ocean_emissivity,
+     &                     repeatPeriod,      exf_monFreq,
+     &                     exf_albedo,        ocean_emissivity,
      &                     ice_emissivity,    snow_emissivity,
      &                     hfluxperiod,       hfluxstartdate,
      &                     atempperiod,       atempstartdate,

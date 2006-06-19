@@ -177,6 +177,7 @@ c     Surface flux data.
 c     Set default values.
 
       year2sec           = 365.*86400.
+      exf_monFreq        = monitorFreq
 
 c     Calendar data.
       hfluxstartdate1    = 0
