@@ -754,13 +754,6 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
-      diagName = 'SLP     '
-      diagTitle = 'Time-Averaged Sea-Level Pressure  (mb)'
-      diagUnits = 'hPa             '
-      diagCode = 'SM      L1      '
-      CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I          diagName, diagCode, diagUnits, diagTitle, myThid )
-
       diagName = 'VAVEUQ  '
       diagTitle = 'Vertically Averaged UWND*SPHU  (m/s g/kg)'
       diagUnits = 'm/s gram/kg     '
