@@ -39,6 +39,7 @@ C     SEAICE_mon_mnc    :: write monitor to netcdf file
      &     SEAICE_tave_mnc,   SEAICE_dump_mnc,   SEAICE_mon_mnc
       COMMON /SEAICE_PARM_L/
      &     SEAICEwriteState, SEAICEuseDYNAMICS, SEAICEuseEVP, 
+     &     SEAICEuseEVPpickup,
      &     SEAICEuseFluxForm, useHB87stressCoupling, 
      &     SEAICE_clipVelocities, SEAICE_maskRHS,
      &     SEAICE_tave_mdsio, SEAICE_dump_mdsio, SEAICE_mon_stdio,
