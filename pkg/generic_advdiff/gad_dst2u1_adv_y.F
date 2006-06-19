@@ -63,9 +63,9 @@ CEOP
       DO j=1-Oly+1,sNy+Oly
        DO i=1-Olx,sNx+Olx
 
-c       vLoc = vFld(i,j)
-        vLoc = vTrans(i,j)*recip_dxG(i,j,bi,bj)
-     &        *recip_drF(k)*_recip_hFacS(i,j,k,bi,bj)
+        vLoc = vFld(i,j)
+c       vLoc = vTrans(i,j)*recip_dxG(i,j,bi,bj)
+c    &        *recip_drF(k)*_recip_hFacS(i,j,k,bi,bj)
         vCFL = ABS(vLoc*deltaTloc*recip_dyC(i,j,bi,bj))
 
 c       vT(i,j) =

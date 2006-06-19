@@ -72,8 +72,8 @@ CEOP
        DO j=1-Oly,sNy+Oly
         DO i=1-Olx,sNx+Olx
 
-c        wLoc = wFld(i,j)
-         wLoc = rTrans(i,j)*recip_rA(i,j,bi,bj)
+         wLoc = wFld(i,j)
+c        wLoc = rTrans(i,j)*recip_rA(i,j,bi,bj)
          wCFL = ABS(wLoc*deltaTloc*recip_drC(k))
 
 c        wT(i,j) = maskC(i,j,km1,bi,bj)*(

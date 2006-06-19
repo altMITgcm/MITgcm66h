@@ -52,9 +52,9 @@ C       with no need to compute thetaM (might be easier to differentiate)
         Rj =(tracer( i ,j)-tracer(i-1,j))*maskLocW( i ,j)
         Rjm=(tracer(i-1,j)-tracer(i-2,j))*maskLocW(i-1,j)
 
-c       uLoc = uFld(i,j)
-        uLoc = uTrans(i,j)*recip_dyG(i,j,bi,bj)
-     &       *recip_drF(k)*_recip_hFacW(i,j,k,bi,bj)
+        uLoc = uFld(i,j)
+c       uLoc = uTrans(i,j)*recip_dyG(i,j,bi,bj)
+c    &       *recip_drF(k)*_recip_hFacW(i,j,k,bi,bj)
         cfl=abs(uLoc*deltaTloc*recip_dxC(i,j,bi,bj))
         d0=(2. _d 0 -cfl)*(1. _d 0 -cfl)*oneSixth
         d1=(1. _d 0 -cfl*cfl)*oneSixth

@@ -72,8 +72,8 @@ C  wCFL              :: Courant-Friedrich-Levy number
         Rjm=(tracer(i,j,km2)-tracer(i,j,km1))
      &         *maskC(i,j,km1,bi,bj)
 
-c       wLoc = wFld(i,j)
-        wLoc = rTrans(i,j)*recip_rA(i,j,bi,bj)
+        wLoc = wFld(i,j)
+c       wLoc = rTrans(i,j)*recip_rA(i,j,bi,bj)
         cfl=abs(wLoc*dTarg*recip_drC(k))
         d0=(2. _d 0 -cfl)*(1. _d 0 -cfl)*oneSixth
         d1=(1. _d 0 -cfl*cfl)*oneSixth
