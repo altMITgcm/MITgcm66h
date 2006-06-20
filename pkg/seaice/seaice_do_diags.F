@@ -42,7 +42,7 @@ C     == Local variables ==
       ELSE
         pf(1:1) = 'R'
       ENDIF
-      
+
       IF (SEAICEwriteState) THEN
 
         IF ( DIFFERENT_MULTIPLE(SEAICE_dumpFreq,myTime,deltaTClock)
@@ -373,6 +373,11 @@ C      Reset averages to zero
       ENDIF
       
 #endif /* ALLOW_TIMEAVE */
+
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+
+C--   do SEAICE monitor output : print some statistics about seaice fields
+      CALL SEAICE_MONITOR( myTime, myIter, myThid )
 
       RETURN
       END
