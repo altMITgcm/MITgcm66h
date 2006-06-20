@@ -311,8 +311,10 @@ C/\  | | | |
 C/\  | | | |-CALC_PHI_HYD       :: Integrate the hydrostatic relation.
 C/\  | | | |-MOM_FLUXFORM       :: Flux form mom eqn. package ( see
 C/\  | | | |                       pkg/mom_fluxform ).
+C/\  | | | | |-MOM_CALC_VISC    :: Calculate Horizontal Viscosities
 C/\  | | | |-MOM_VECINV         :: Vector invariant form mom eqn. package ( see
 C/\  | | | |                       pkg/mom_vecinv   ).
+C/\  | | | | |-MOM_CALC_VISC    :: Calculate Horizontal Viscosities
 C/\  | | | |-TIMESTEP           :: Step momentum fields forward in time
 C/\  | | | |-OBCS_APPLY_UV      :: Open bndy. package (see pkg/obcs ).
 C/\  | | | |
