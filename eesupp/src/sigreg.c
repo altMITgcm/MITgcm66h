@@ -25,11 +25,9 @@
 #include <signal.h>
 #include <errno.h>
 #include <ucontext.h>
-#endif
 
 int * ip;
 
-#ifdef HAVE_SIGREG
 static void killhandler(
     unsigned int sn, siginfo_t  si, struct ucontext *sc )
 {
