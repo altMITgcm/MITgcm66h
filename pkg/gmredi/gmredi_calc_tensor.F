@@ -630,7 +630,7 @@ C--   Time-average
 
 #ifdef ALLOW_DIAGNOSTICS
       IF ( useDiagnostics ) THEN
-       CALL GMREDI_DIAGNOSTICS_DRIVER(bi,bj,myThid)
+        CALL GMREDI_DIAGNOSTICS_FILL(bi,bj,myThid)
       ENDIF
 #endif /* ALLOW_DIAGNOSTICS */
 

@@ -4,10 +4,10 @@ C $Name$
 #include "GMREDI_OPTIONS.h"
 
 CStartOfInterface
-      SUBROUTINE GMREDI_DIAGNOSTICS_DRIVER(
+      SUBROUTINE GMREDI_DIAGNOSTICS_FILL(
      I             bi, bj, myThid )
 C     *==========================================================*
-C     | SUBROUTINE GMREDI_DIAGNOSTICS_DRIVER
+C     | SUBROUTINE GMREDI_DIAGNOSTICS_FILL
 C     | o fill GM-Redi diagnostics
 C     *==========================================================*
 C     | note: formerly was part of S/R GMREDI_CALC_TENSOR
