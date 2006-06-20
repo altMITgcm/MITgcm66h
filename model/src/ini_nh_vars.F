@@ -49,6 +49,9 @@ C        common blocs (even if never used later) are always initialised
               phi_nh(i,j,k,bi,bj) = 0. _d 0
               gW   (i,j,k,bi,bj) = 0. _d 0
               gWnm1(i,j,k,bi,bj) = 0. _d 0
+C Set the variable viscosities to default value.
+              viscAh_W(i,j,k,bi,bj) = viscAhW
+              viscA4_W(i,j,k,bi,bj) = viscA4W
             ENDDO
            ENDDO
           ENDDO

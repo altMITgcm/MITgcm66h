@@ -42,7 +42,7 @@ C-  check that CPP option is "defined" when running-flag parameter is on:
 
 #ifndef ALLOW_MNC
       IF (useMNC) THEN
-        WRITE(msgBuf,'(2A)') '**WARNNING** ',
+        WRITE(msgBuf,'(2A)') '**WARNING** ',
      &   'CONFIG_CHECK: useMNC is TRUE and #undef ALLOW_MNC'
         CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
      &       SQUEEZE_RIGHT , myThid)

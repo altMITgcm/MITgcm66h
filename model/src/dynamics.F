@@ -162,6 +162,8 @@ C     phiSurfX,  ::  gradient of Surface potential (Pressure/rho, ocean)
 C     phiSurfY             or geopotential (atmos) in X and Y direction
 C     guDissip   :: dissipation tendency (all explicit terms), u component
 C     gvDissip   :: dissipation tendency (all explicit terms), v component
+C     KappaRU:: vertical viscosity
+C     KappaRV:: vertical viscosity
 C     iMin, iMax     - Ranges and sub-block indices on which calculations
 C     jMin, jMax       are applied.
 C     bi, bj
@@ -615,7 +617,9 @@ C--   Step forward W field in N-H algorithm
      &     CALL DEBUG_CALL('CALC_GW', myThid )
 #endif
          CALL TIMER_START('CALC_GW          [DYNAMICS]',myThid)
-         CALL CALC_GW( myTime, myIter, myThid )
+         CALL CALC_GW(
+     I         KappaRU, KappaRV, 
+     I         myTime, myIter, myThid )
       ENDIF
       IF ( nonHydrostatic.OR.implicitIntGravWave ) 
      &   CALL TIMESTEP_WVEL( myTime, myIter, myThid )
