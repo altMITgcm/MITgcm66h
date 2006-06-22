@@ -14,7 +14,7 @@ C CPP Macros go here
 
 C allow to use of AIM surface flux formulation (S/R BULKF_FORMULA_AIM)
 C rather than the default (S/R BULKF_FORMULA_LANL)
-#undef ALLOW_FORMULA_AIM
+#define ALLOW_FORMULA_AIM
 
 #endif /* ALLOW_BULK_FORCE */
 #endif /* BULK_FORCE_OPTIONS_H */
