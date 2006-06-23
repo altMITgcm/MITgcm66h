@@ -17,12 +17,8 @@ C !USES: ===============================================================
       IMPLICIT NONE
 #include "SIZE.h"
 #include "EEPARAMS.h"
-#include "PARAMS.h"
-#ifdef ALLOW_MNC
-#include "MNC_PARAMS.h"
-#endif
 #include "EESUPPORT.h"
-#include "DYNVARS.h"
+#include "PARAMS.h"
 #include "GRID.h"
 #include "PTRACERS_SIZE.h"
 #include "PTRACERS.h"
