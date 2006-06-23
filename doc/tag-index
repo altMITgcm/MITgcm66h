@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o towards a standard way of dealing with multi-threading in MONITOR
+  and ${PKG}_MONITOR (all except ptracers_monitor) subroutines.
 o Pass variable viscosities (vertical and horizontal, e.g., KPP or Leith) 
    to W momentum equation in nonhydrostatic and quasihydrostatic runs.  
 o make exf_monitor & seaice_monitor independant of the main (dynamics) monitor.
