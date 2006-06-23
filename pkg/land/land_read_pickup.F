@@ -43,7 +43,7 @@ CEOP
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
-      IF ( land_pickup_read_mdsio ) THEN
+      IF ( .NOT.land_pickup_read_mnc ) THEN
 
       WRITE(fn,'(A,I10.10)') 'pickup_land.',myIter
       prec = precFloat64
