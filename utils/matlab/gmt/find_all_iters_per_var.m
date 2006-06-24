@@ -23,6 +23,7 @@ if isempty(vit) || not(isfield(vit,'tvname')) || isempty(vit.tvname)
 end
 
 for ii = 1:length(fall)
+  %  ii
   nc = netcdf(fall{ii},'read');
   
   if isempty(vnames)
@@ -51,7 +52,14 @@ for ii = 1:length(fall)
         vit.vars.(allv{jj}) = [];
       end
     else
+      %  allv
       for jj = 1:length(allv)
+        %  allv{jj}
+        %  nc{allv{jj}}
+        if isempty(nc{allv{jj}})
+          vit.vars.(allv{jj}) = [];
+          continue;
+        end
         if isempty(intersect( ncnames(dim(nc{allv{jj}})), vit.tdname ))
           vit.vars.(allv{jj}) = [];
         else
