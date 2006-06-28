@@ -266,15 +266,15 @@ C     IF (useDIC)
 #endif
 
 #ifdef ALLOW_DIAGNOSTICS
-      IF ( useDiagnostics ) THEN
-        CALL DIAGNOSTICS_INIT_FIXED( myThid )
-      ENDIF
+      IF ( useDiagnostics ) CALL DIAGNOSTICS_INIT_FIXED( myThid )
 #endif
 
 #ifdef ALLOW_EMBED_FILES
-      IF ( useEMBED_FILES ) THEN
-        CALL EMBED_FILES_INIT( mythid )
-      ENDIF
+      IF ( useEMBED_FILES ) CALL EMBED_FILES_INIT( mythid )
+#endif
+
+#ifdef ALLOW_MYPACKAGE
+      IF (useMYPACKAGE) CALL MYPACKAGE_INIT_FIXED(mythid)
 #endif
 
       RETURN

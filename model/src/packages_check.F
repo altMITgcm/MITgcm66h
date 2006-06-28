@@ -178,5 +178,11 @@ CEOP
      &   CALL PACKAGES_CHECK_ERROR('DIAGNOSTICS', myThid )
 #endif
 
+#ifdef ALLOW_MYPACKAGE
+      IF (useMYPACKAGE) CALL MYPACKAGE_CHECK( myThid )
+#else
+      IF (useMYPACKAGE) CALL PACKAGES_CHECK_ERROR('MYPACKAGE', myThid)
+#endif
+
       RETURN
       END

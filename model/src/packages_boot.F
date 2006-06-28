@@ -75,7 +75,8 @@ C     data.pkg namelists
      &          useMNC,
      &          useRunClock,
      &          useMATRIX,
-     &          useEMBED_FILES
+     &          useEMBED_FILES,
+     &          useMYPACKAGE
 CEOP
 
       _BEGIN_MASTER(myThid)
@@ -123,6 +124,7 @@ C--   Default package configuration
       useDiagnostics  =.FALSE.
       useMNC          =.FALSE.
       useRunClock     =.FALSE.
+      useMYPACKAGE    =.FALSE.
 
 C--   Read parameters from open data file
       READ(UNIT=iUnit,NML=PACKAGES)

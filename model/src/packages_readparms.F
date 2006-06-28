@@ -201,6 +201,10 @@ C -- initialize Therm.Sea-Ice parameters
       IF (useRBCS) CALL RBCS_READPARMS( myThid )
 #endif
 
+#ifdef ALLOW_MYPACKAGE
+      IF (useMYPACKAGE) CALL MYPACKAGE_READPARMS( myThid )
+#endif
+
 #ifdef ALLOW_CTRL
 C--   Initialise the optim. parameters.
       call optim_readparms( myThid )

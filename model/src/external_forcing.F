@@ -71,6 +71,12 @@ C--   Forcing term
      &                      myTime, myThid )
 #endif /* ALLOW_FIZHI */
 
+#ifdef ALLOW_MYPACKAGE
+      IF ( useMYPACKAGE ) CALL MYPACKAGE_TENDENCY_APPLY_U(
+     &                      iMin,iMax, jMin,jMax, bi,bj, kLev,
+     &                      myTime, myThid )
+#endif /* ALLOW_MYPACKAGE */
+
 C     Add windstress momentum impulse into the top-layer
       IF ( kLev .EQ. kSurface ) THEN
 c      DO j=1,sNy
@@ -168,6 +174,12 @@ C--   Forcing term
      &                      iMin,iMax, jMin,jMax, bi,bj, kLev,
      &                      myTime, myThid )
 #endif /* ALLOW_FIZHI */
+
+#ifdef ALLOW_MYPACKAGE
+      IF ( useMYPACKAGE ) CALL MYPACKAGE_TENDENCY_APPLY_V(
+     &                      iMin,iMax, jMin,jMax, bi,bj, kLev,
+     &                      myTime, myThid )
+#endif /* ALLOW_MYPACKAGE */
 
 C     Add windstress momentum impulse into the top-layer
       IF ( kLev .EQ. kSurface ) THEN
@@ -273,6 +285,12 @@ C--   Forcing term
      &                      iMin,iMax, jMin,jMax, bi,bj, kLev,
      &                      myTime, myThid )
 #endif /* ALLOW_FIZHI */
+
+#ifdef ALLOW_MYPACKAGE
+      IF ( useMYPACKAGE ) CALL MYPACKAGE_TENDENCY_APPLY_T(
+     &                      iMin,iMax, jMin,jMax, bi,bj, kLev,
+     &                      myTime, myThid )
+#endif /* ALLOW_MYPACKAGE */
 
 C     Add heat in top-layer
       IF ( kLev .EQ. kSurface ) THEN
@@ -404,6 +422,12 @@ C--   Forcing term
      &                      iMin,iMax, jMin,jMax, bi,bj, kLev,
      &                      myTime, myThid )
 #endif /* ALLOW_FIZHI */
+
+#ifdef ALLOW_MYPACKAGE
+      IF ( useMYPACKAGE ) CALL MYPACKAGE_TENDENCY_APPLY_S(
+     &                      iMin,iMax, jMin,jMax, bi,bj, kLev,
+     &                      myTime, myThid )
+#endif /* ALLOW_MYPACKAGE */
 
 C     Add fresh-water in top-layer
       IF ( kLev .EQ. kSurface ) THEN
