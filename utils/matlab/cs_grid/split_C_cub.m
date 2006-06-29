@@ -15,7 +15,8 @@ if nargin < 2, kad=1; end
 if kad~=0 & kad~=1 & kad~=2, fprintf('kad= %f => Bad value',kad); return;end
 %--
 dims=size(v3d);
-nx=dims(1); ny=dims(2);
+nx=dims(1);
+ny=dims(2);
 nyp=ny+1; n2p=ny+2; nye=ny+kad;
 if length(dims) == 2, 
  nr=1; 
