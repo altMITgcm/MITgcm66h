@@ -51,8 +51,10 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       INTEGER myIter
       INTEGER myThid
 
+#ifdef ALLOW_DIAGNOSTICS
       logical  diagnostics_is_on
       external diagnostics_is_on
+#endif
 
       INTEGER bi,bj,i,j,L,LM1
       _RL dpratio, scale
