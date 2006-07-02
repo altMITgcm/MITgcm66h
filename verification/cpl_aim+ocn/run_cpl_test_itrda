@@ -66,7 +66,20 @@ fi
 if test $kpr = 1
 then
 
- cp -p ../../tools/build_options/linux_ia32_g77+mpi_itrda genmake_optfile
+#- find the optfile that corresponds to the currently loaded mpich module
+ . /etc/profile.d/modules.sh
+ module list -t >& tmp_compiler
+ compiler=`sed -n 's/mpich\///p' tmp_compiler`
+ case $compiler in
+  'gnu')   cp -p ../../tools/build_options/linux_ia32_g77+mpi_itrda genmake_optfile ;;
+  'intel') cp -p ../../tools/build_options/linux_ia32_ifc+mpi_itrda genmake_optfile ;;
+  'pgi') cp -p ../../tools/build_options/linux_ia32_pgf77+mpi_itrda genmake_optfile ;;
+   *) echo 'ERROR: cannot use compiler:' $compiler ; 
+      echo ""; cat tmp_compiler ; exit 7 ;;
+ esac
+ rm -f tmp_compiler
+ echo " Using" $compiler "compiler:"
+#---
  echo '==== compile coupler:'
  cd build_cpl
  echo ' --- genmake2 (cpl):'
