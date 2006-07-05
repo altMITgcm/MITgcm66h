@@ -72,11 +72,11 @@ C     msgBuf    - Informational/error meesage buffer
       _RL gfld      (1-Olx:sNx+Olx,1-Oly:sNy+Oly,nSx,nSy)
       _RS xA        (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS yA        (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL recip_area(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL recip_heff(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 #ifdef ALLOW_THSICE
       LOGICAL dBugFlag
 #include "THSICE_DEBUG.h"
-      _RL recip_area(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL recip_heff(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 CEOP
       dBugFlag = debugLevel.GE.debLevB
 #endif /* ALLOW_THSICE */
