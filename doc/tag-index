@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint58k_post
 o testreport:
  - always build in dir. "build" (if not there, mkdir build instead of building 
    & running in input)
