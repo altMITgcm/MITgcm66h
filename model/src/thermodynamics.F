@@ -500,9 +500,12 @@ C
 #ifdef ALLOW_AUTODIFF_TAMC 
 # if (defined NONLIN_FRSURF) || (defined ALLOW_DEPTH_CONTROL)
 cph-test
-CADJ STORE uFld(:,:), vFld(:,:), wFld(:,:) = comlev1_bibj_k, key=kkey, byte=isbyte
-CADJ STORE uTrans(:,:), vTrans(:,:)        = comlev1_bibj_k, key=kkey, byte=isbyte
-CADJ STORE xA(:,:), yA(:,:)                = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ STORE uFld(:,:), vFld(:,:), wFld(:,:)
+CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ STORE uTrans(:,:), vTrans(:,:)
+CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ STORE xA(:,:), yA(:,:)
+CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
 # endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 C
