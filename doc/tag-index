@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o take bi,bj loops outside calc_gw to fix Pb with local array KappaRU,V
+
 checkpoint58k_post
 o testreport:
  - always build in dir. "build" (if not there, mkdir build instead of building 
