@@ -787,15 +787,17 @@ C     o Time step size
       ELSEIF ( dTtracerLev(1) .NE. 0. ) THEN
         deltaTtracer = dTtracerLev(1)
       ENDIF
-      IF ( deltaT       .EQ. 0. ) deltaT       = deltaTmom
+      IF ( deltaT       .EQ. 0. ) deltaT       = deltaTClock
       IF ( deltaT       .EQ. 0. ) deltaT       = deltaTtracer
+      IF ( deltaT       .EQ. 0. ) deltaT       = deltaTmom
+      IF ( deltaT       .EQ. 0. ) deltaT       = deltaTfreesurf
       IF ( deltaTmom    .EQ. 0. ) deltaTmom    = deltaT
       IF ( deltaTtracer .EQ. 0. ) deltaTtracer = deltaT
       IF ( deltaTClock  .EQ. 0. ) deltaTClock  = deltaT
       DO k=1,Nr
        IF (dTtracerLev(k).EQ.0.) dTtracerLev(k)= deltaTtracer
       ENDDO
-C Note that this line should set deltaFreesurf=deltaTmom
+C Note that this line should set deltaFreesurf=deltaTtracer
 C but this would change a lot of existing set-ups so we are
 C obliged to set the default inappropriately.
 C Be advised that when using asynchronous time stepping
