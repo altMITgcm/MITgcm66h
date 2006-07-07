@@ -815,7 +815,7 @@ c--   Each process has calculated the global part for itself.
         no_hmean = num_hmean
 
         f_hfluxmm2 = mult_hfluxmm
-     &       *(f_hfluxmm-1.0)*(f_hfluxmm-1.0)
+     &       *(f_hfluxmm+1.0)*(f_hfluxmm+1.0)
      &       /(wmean_hflux*wmean_hflux)
 
         f_sfluxmm2 = mult_sfluxmm*f_sfluxmm
