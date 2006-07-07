@@ -70,6 +70,20 @@ C--   add diagnostics for viscosity coefficients:
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
+      diagName  = 'VISCAHW '
+      diagTitle = 'Harmonic Viscosity Coefficient (m2/s) (W Pt)'
+      diagUnits = 'm^2/s           '
+      diagCode  = 'WM      LR      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+      diagName  = 'VISCA4W '
+      diagTitle = 'Biharmonic Viscosity Coefficient (m4/s) (W Pt)'
+      diagUnits = 'm^4/s           '
+      diagCode  = 'WM      LR      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
       diagName  = 'VAHZMAX '
       diagTitle = 'CFL-MAX Harm Visc Coefficient (m2/s) (Zeta Pt)'
       diagUnits = 'm^2/s           '
