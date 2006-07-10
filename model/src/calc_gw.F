@@ -96,6 +96,8 @@ C     Lateral friction (no-slip, free slip, or half slip):
 CML   half slip was used before ; keep the line for now, but half slip is
 CML   not used anywhere in the code as far as I can see.
 C        slipSideFac = 0. _d 0
+C- need to fix the side-drag implementation; for now, always impose free-slip
+        slipSideFac =  1. _d 0
 
 C--   Initialise gW to zero
       DO k=1,Nr
