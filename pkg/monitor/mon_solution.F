@@ -47,7 +47,8 @@ C     Statistics for T
      I                myThid )
       ENDIF
       
-      IF (tMax-tMin.GT.1.e3) THEN
+      IF ( (tMax-tMin.GT.3.e3) .or. 
+     .            (fluidIsWater .and. (tMax-tMin.GT.1.e3) )  ) THEN
         _BEGIN_MASTER(myThid)
          WRITE(msgBuf,'(A,1P2E12.3)')
      &    'SOLUTION IS HEADING OUT OF BOUNDS: tMin,tMax=',tMin,tMax
