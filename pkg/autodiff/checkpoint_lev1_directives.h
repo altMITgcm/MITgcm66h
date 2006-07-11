@@ -79,6 +79,10 @@ cph#ifdef ALLOW_THSICE
 cph# include "thsice_ad_check_lev1_dir.h"
 cph#endif
 
+#ifdef ALLOW_RBCS
+# include "rbcs_ad_check_lev1_dir.h"
+#endif /* ALLOW_RBCS */
+
 #ifdef ALLOW_EBM
 CADJ STORE fu      = comlev1, key = ikey_dynamics
 CADJ STORE fv      = comlev1, key = ikey_dynamics

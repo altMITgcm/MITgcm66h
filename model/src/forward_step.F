@@ -106,6 +106,9 @@ C     == Global variables ==
 # ifdef ALLOW_GMREDI
 #  include "GMREDI.h"
 # endif
+# ifdef ALLOW_RBCS
+#  include "RBCS.h"
+# endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C     !LOCAL VARIABLES:

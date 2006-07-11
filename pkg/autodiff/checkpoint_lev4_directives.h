@@ -100,6 +100,14 @@ CADJ STORE pload1  = tapelev4, key = ilev_4
 # include "seaice_ad_check_lev4_dir.h"
 #endif /* ALLOW_SEAICE */
 
+#ifdef ALLOW_THSICE
+# include "thsice_ad_check_lev4_dir.h"
+#endif /* ALLOW_THSICE */
+
+#ifdef ALLOW_RBCS
+# include "rbcs_ad_check_lev4_dir.h"
+#endif /* ALLOW_rbcs */
+
 #ifdef ALLOW_EBM
 CADJ STORE fu    = tapelev4, key = ilev_4
 CADJ STORE fv    = tapelev4, key = ilev_4

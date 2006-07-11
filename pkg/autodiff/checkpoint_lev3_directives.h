@@ -102,7 +102,11 @@ CADJ STORE pload1  = tapelev3, key = ilev_3
 
 #ifdef ALLOW_THSICE
 # include "thsice_ad_check_lev3_dir.h"
-#endif /* ALLOW_SEAICE */
+#endif /* ALLOW_THSICE */
+
+#ifdef ALLOW_RBCS
+# include "rbcs_ad_check_lev3_dir.h"
+#endif /* ALLOW_rbcs */
 
 #ifdef ALLOW_EBM
 CADJ STORE fu    = tapelev3, key = ilev_3

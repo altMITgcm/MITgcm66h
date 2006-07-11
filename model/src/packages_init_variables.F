@@ -264,7 +264,7 @@ C Initialize FIZHI state variables
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_CALL('FIZHI_INIT_VARS',myThid)
 #endif
-      IF (useFIZHI) CALL FIZHI_INIT_VARS( mythid)
+      IF (useFIZHI) CALL FIZHI_INIT_VARS( mythid )
 #endif
 
 #ifdef ALLOW_MATRIX
@@ -274,8 +274,12 @@ C Initialize FIZHI state variables
       IF ( useMATRIX ) CALL MATRIX_INIT( myThid )
 #endif
 
+#ifdef ALLOW_RBCS
+      IF ( useRBCS ) CALL RBCS_INIT_VARIA( myThid )
+#endif
+
 #ifdef ALLOW_MYPACKAGE
-      IF (useMYPACKAGE) CALL MYPACKAGE_INIT_VARIA(mythid)
+      IF ( useMYPACKAGE ) CALL MYPACKAGE_INIT_VARIA( myThid )
 #endif
 
 #ifdef ALLOW_DEBUG

@@ -140,6 +140,9 @@ c They provide the fields to be stored.
 # ifdef ALLOW_GMREDI
 #  include "GMREDI.h"
 # endif
+# ifdef ALLOW_RBCS
+#  include "RBCS.h"
+# endif
 # ifdef ALLOW_DIVIDED_ADJOINT_MPI
 #  include "mpif.h"
 # endif
