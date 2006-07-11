@@ -133,6 +133,9 @@ C     !USES:
 #include "exf_param.h"
 #include "exf_fields.h"
 #include "exf_constants.h"
+#ifdef ALLOW_AUTODIFF_TAMC
+# include "tamc.h"
+#endif
 
 c     == global variables ==
 
@@ -162,6 +165,13 @@ c     Get the surface forcing fields.
 c     Deal set radiative fluxes
       call exf_radiation( mytime, myiter, mythid )
 
+#ifdef ALLOW_AUTODIFF_TAMC
+# ifndef ALLOW_ATM_WIND
+CADJ STORE ustress      = comlev1, key = ikey_dynamics
+CADJ STORE vstress      = comlev1, key = ikey_dynamics
+CADJ STORE wspeed       = comlev1, key = ikey_dynamics
+# endif
+#endif
 c     Deal set radiative fluxes
       call exf_wind( mytime, myiter, mythid )
 
