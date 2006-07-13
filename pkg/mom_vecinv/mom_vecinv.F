@@ -627,7 +627,7 @@ C--   end if momAdvection
       ENDIF
 
 C--   3.D Coriolis term (horizontal momentum, Eastward component: -f'*w)
-      IF ( nonHydrostatic.OR.quasiHydrostatic ) THEN
+      IF ( use3dCoriolis ) THEN
         CALL MOM_U_CORIOLIS_NH(bi,bj,k,wVel,uCf,myThid)
         DO j=jMin,jMax
          DO i=iMin,iMax
