@@ -304,6 +304,14 @@ c     WRITE(msgBuf,'(2A)') ' Equation of State : eosType = ', eosType
      &                '  /* metric-Terms on/off flag */')
       CALL WRITE_0D_L( useNHMTerms,  INDEX_NONE, 'useNHMTerms =',
      &              ' /* Non-Hydrostatic Metric-Terms on/off */')
+      CALL WRITE_0D_L( useConstantF,  INDEX_NONE,
+     & 'useConstantF =', '  /* use Constant f0 Coriolis flag */')
+      CALL WRITE_0D_L( useBetaPlaneF,  INDEX_NONE,
+     & 'useBetaPlaneF =', ' /* use Beta-Plane Coriolis flag */')
+      CALL WRITE_0D_L( useSphereF,  INDEX_NONE,
+     & 'useSphereF  =', '   /* use Spherical Coriolis flag */')
+      CALL WRITE_0D_L( use3dCoriolis,  INDEX_NONE,
+     & 'use3dCoriolis =', ' /* 3-D Coriolis on/off flag */')
       CALL WRITE_0D_L( useCoriolis,  INDEX_NONE,
      & 'useCoriolis =', '  /* Coriolis on/off flag */')
       CALL WRITE_0D_L( useCDscheme,  INDEX_NONE,

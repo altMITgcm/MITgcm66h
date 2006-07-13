@@ -74,7 +74,8 @@ C     General cylindrical coordinate system
 C     Coriolis map:
       useConstantF        = .FALSE.
       useBetaPlaneF       = .FALSE.
-      useSphereF          = .FALSE.
+      useSphereF          = .TRUE.
+      use3dCoriolis       = .TRUE.
 
 
 C--   Set default "physical" parameters

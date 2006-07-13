@@ -54,6 +54,7 @@ C--   On/Off flags for each terms of the momentum equation
       momViscosity = momStepping .AND. momViscosity
       momForcing   = momStepping .AND. momForcing
       useCoriolis  = momStepping .AND. useCoriolis
+      use3dCoriolis= useCoriolis .AND. use3dCoriolis
       useCDscheme  = momStepping .AND. useCDscheme
       momPressureForcing= momStepping .AND. momPressureForcing
       implicitIntGravWave=momPressureForcing .AND. implicitIntGravWave
