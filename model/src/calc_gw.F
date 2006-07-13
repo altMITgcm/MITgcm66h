@@ -382,7 +382,7 @@ C--          prepare for next level (k+1)
            ENDDO
           ENDDO
         ENDIF
-        IF ( useCoriolis ) THEN
+        IF ( use3dCoriolis ) THEN
           CALL MOM_W_CORIOLIS_NH(
      I               bi,bj,k,
      I               uVel, vVel,
