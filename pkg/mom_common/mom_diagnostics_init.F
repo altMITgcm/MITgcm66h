@@ -359,6 +359,20 @@ C--    add diagnostics of tendencies from each terms
 
 #endif /* ALLOW_MOM_VECINV */
 
+#ifdef ALLOW_NONHYDROSTATIC
+C-     vertical momentum tendencies
+       IF ( usingPCoords ) THEN
+         diagUnits = 'Pa/s^2          '
+       ELSE
+         diagUnits = 'm/s^2           '
+       ENDIF
+       diagName  = 'WSidDrag'
+       diagTitle = 'Vertical momentum tendency from Side Drag'
+       diagCode  = 'WM      LR      '
+       CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I              diagName, diagCode, diagUnits, diagTitle, myThid )
+#endif /* ALLOW_NONHYDROSTATIC */
+
 C--    add diagnostics of advective & viscous flux :
        IF ( usingPCoords ) THEN
          diagUnits = 'Pa.m^3/s^2      '
