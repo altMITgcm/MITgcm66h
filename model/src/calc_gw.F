@@ -144,7 +144,7 @@ C-    note: assume fluid @ smaller k than bottom: does not work in p-coordinate 
              recip_rThickC(i,j) = 0.
            ELSE
              recip_rThickC(i,j) = 1. _d 0 /
-     &        ( drF(k-1)*halfRS +
+     &        ( drF(k-1)*halfRS
      &        + drF( k )*MIN( _hFacC(i,j, k ,bi,bj), halfRS )
      &        )
            ENDIF
