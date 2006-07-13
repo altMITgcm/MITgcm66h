@@ -153,7 +153,7 @@ C         Northern OB
               OBNw(I,K,bi,bj)=0.
 #endif
 #ifdef NONLIN_FRSURF
-              OBNeta(J,bi,bj)=0.
+              OBNeta(I,bi,bj)=0.
 #endif
             ENDIF
           ENDDO
@@ -188,7 +188,7 @@ C         Southern OB
               OBSw(I,K,bi,bj)=0.
 #endif
 #ifdef NONLIN_FRSURF
-              OBSeta(J,bi,bj)=0.
+              OBSeta(I,bi,bj)=0.
 #endif
             ENDIF
           ENDDO
