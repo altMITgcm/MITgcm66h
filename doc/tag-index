@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o testreport: change multi-test output-file name 
+  (from output.txt.{name} to output.{name}.txt)
 o profiles: now ok for mutli-threaded case
 o seaice: add 4 parameters for different advection schemes for area, 
   (effective) seaice thickness, enthalphy, and snow height. Their default
