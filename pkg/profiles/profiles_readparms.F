@@ -57,6 +57,20 @@ c--     Set default values.
          enddo
         enddo
 
+      prof_names(1)='prof_T'
+      prof_names(2)='prof_S'
+      prof_names(3)='prof_U'
+      prof_names(4)='prof_V'
+      prof_namesmask(1)='prof_Tmask'
+      prof_namesmask(2)='prof_Smask'
+      prof_namesmask(3)='prof_Umask'
+      prof_namesmask(4)='prof_Vmask'
+      prof_namesweight(1)='prof_Tweight'
+      prof_namesweight(2)='prof_Sweight'
+      prof_namesweight(3)='prof_Uweight'
+      prof_namesweight(4)='prof_Vweight'
+      profilesfile_equi_type=2
+
 c--     Next, read the cost data file.
         WRITE(msgBuf,'(A)') 'PROFILES_READPARMS: opening data.profiles'
         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,

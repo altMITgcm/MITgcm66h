@@ -73,7 +73,7 @@ c
 
       do num_file=1,50
          do num_var=1,10
-            profiles_dummy(num_file,num_var)=0. _d 0
+            profiles_dummy(num_file,num_var,bi,bj)=0. _d 0
          enddo
       enddo
 
