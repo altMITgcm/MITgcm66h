@@ -88,6 +88,7 @@ C     == end of interface ==
       IF ( SEAICEadvScheme .EQ. 2 )
      & CALL WRITE_0D_L ( SEAICEuseFluxForm,   INDEX_NONE,
      & 'SEAICEuseFluxForm =', ' /* advection in FV flux form */')
+#ifdef ALLOW_THSICE
       IF ( useThSice ) THEN
        CALL WRITE_0D_I ( SEAICEadvSchArea,   INDEX_NONE,
      & 'SEAICEadvSchArea   =', ' /* advection scheme for area */')
@@ -98,6 +99,7 @@ C     == end of interface ==
        CALL WRITE_0D_I ( SEAICEadvSchSnow,   INDEX_NONE,
      & 'SEAICEadvSchSnow   =', ' /* advection scheme for snow */')
       ENDIF
+#endif
       CALL WRITE_0D_R8( SEAICE_deltaTtherm,INDEX_NONE,
      & 'SEAICE_deltaTtherm=', ' /* thermodynamic timestep */')
       CALL WRITE_0D_R8( SEAICE_deltaTdyn  ,INDEX_NONE,
