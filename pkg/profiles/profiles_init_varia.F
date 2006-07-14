@@ -58,13 +58,13 @@ c--   Initialize the tiled cost function contributions.
       do bj = jtlo,jthi
         do bi = itlo,ithi
           do num_file=1,NFILESPROFMAX
-           do num_var=1,4
+           do num_var=1,6
             objf_profiles(num_file,num_var,bi,bj)= 0. _d 0
            enddo
           enddo
 c
           do num_file=1,NFILESPROFMAX
-           do num_var=1,4
+           do num_var=1,6
             num_profiles(num_file,num_var,bi,bj) = 0. _d 0
            enddo
           enddo

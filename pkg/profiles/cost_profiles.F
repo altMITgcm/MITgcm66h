@@ -55,7 +55,7 @@ c     == end of interface ==
       do prof_num=1,NOBSGLOB
       if (prof_num.LE.ProfNo(num_file,bi,bj)) then
 
-      do num_var=1,4
+      do num_var=1,6
 
        do K=1,NLEVELMAX
        prof_traj1D(k)=0.
@@ -91,7 +91,7 @@ c     == end of interface ==
       endif !if (prof_num.LE.ProfNo(num_file,bi,bj)) then
       enddo !do prof_num=..
       if (ProfNo(num_file,bi,bj).GT.0) then
-        do num_var=1,4
+        do num_var=1,6
           print*,'bi,bj,prof_num,num_var ',bi,bj,
      & ProfNo(num_file,bi,bj),num_var
           print*,prof_names(num_var),

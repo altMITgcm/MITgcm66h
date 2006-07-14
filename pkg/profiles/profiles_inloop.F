@@ -61,7 +61,7 @@ c     == end of interface ==
      & (prof_time(num_file,prof_num,bi,bj).LT.(mytime+deltaTclock))) 
      & then
 
-      do num_var=1,4
+      do num_var=1,6
       do k=1,NLEVELMAX
       prof_traj1D(k)=0
       prof_mask1D(k)=0
