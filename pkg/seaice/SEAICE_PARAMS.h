@@ -49,13 +49,26 @@ C--   COMMON /SEAICE_PARM_I/ Integer valued parameters of sea ice model.
 C     LAD        - time stepping used for sea-ice advection:
 C                  1 = LEAPFROG,  2 = BACKWARD EULER.
 C     IMAX_TICE  - number of iterations for ice heat budget   10
-C     SEAICEadvScheme - sets the advection scheme for thickness and area
+C     SEAICEadvScheme  - sets the advection scheme for thickness and area
+C     SEAICEadvSchArea - sets the advection scheme for area
+C     SEAICEadvSchHeff - sets the advection scheme for effective thickness 
+C                        (=volume) and snow thickness if available
+C     SEAICEadvSchEnth - sets the advection scheme for sea-ice enthalphy
+C     SEAICEadvSchSnow - sets the advection scheme for snow on sea-ice
 C
       INTEGER LAD, IMAX_TICE
       INTEGER SEAICEadvScheme
+      INTEGER SEAICEadvSchArea
+      INTEGER SEAICEadvSchHeff
+      INTEGER SEAICEadvSchEnth
+      INTEGER SEAICEadvSchSnow
       COMMON /SEAICE_PARM_I/ 
      &     LAD, IMAX_TICE,
-     &     SEAICEadvScheme
+     &     SEAICEadvScheme,
+     &     SEAICEadvSchArea,
+     &     SEAICEadvSchHeff,
+     &     SEAICEadvSchEnth,
+     &     SEAICEadvSchSnow
 
 C--   COMMON /SEAICE_PARM_C/ Character valued sea ice model parameters.
 C     uwindFile       - File containing uwind

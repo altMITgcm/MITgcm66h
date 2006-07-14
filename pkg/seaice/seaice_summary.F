@@ -17,6 +17,10 @@ C     !USES:
       IMPLICIT NONE
 C     == global variables ==
 #include "EEPARAMS.h"
+#ifdef ALLOW_THSICE
+#include "SIZE.h"
+#include "PARAMS.h"
+#endif /* ALLOW_THSICE */
 #include "SEAICE_PARAMS.h"
 
 C     !INPUT PARAMETERS:
@@ -84,6 +88,16 @@ C     == end of interface ==
       IF ( SEAICEadvScheme .EQ. 2 )
      & CALL WRITE_0D_L ( SEAICEuseFluxForm,   INDEX_NONE,
      & 'SEAICEuseFluxForm =', ' /* advection in FV flux form */')
+      IF ( useThSice ) THEN
+       CALL WRITE_0D_I ( SEAICEadvSchArea,   INDEX_NONE,
+     & 'SEAICEadvSchArea   =', ' /* advection scheme for area */')
+       CALL WRITE_0D_I ( SEAICEadvSchHeff,   INDEX_NONE,
+     & 'SEAICEadvSchArea   =', ' /* advection scheme for thickness */')
+       CALL WRITE_0D_I ( SEAICEadvSchEnth,   INDEX_NONE,
+     & 'SEAICEadvSchEnth   =', ' /* advection scheme for enthalphy */')
+       CALL WRITE_0D_I ( SEAICEadvSchSnow,   INDEX_NONE,
+     & 'SEAICEadvSchSnow   =', ' /* advection scheme for snow */')
+      ENDIF
       CALL WRITE_0D_R8( SEAICE_deltaTtherm,INDEX_NONE,
      & 'SEAICE_deltaTtherm=', ' /* thermodynamic timestep */')
       CALL WRITE_0D_R8( SEAICE_deltaTdyn  ,INDEX_NONE,
