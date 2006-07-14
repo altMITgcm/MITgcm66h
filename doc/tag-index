@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o seaice: add 4 parameters for different advection schemes for area, 
+  (effective) seaice thickness, enthalphy, and snow height. Their default
+  is the standard parameter SEAICEadvScheme
 o calc_gw: 
  - add cosFacU in zonal viscous flux (harmonic.visc.).
  - put back side-drag (call new S/R MOM_W_SIDEDRAG) and output.txt.
