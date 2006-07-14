@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o consistent with addition of ptracer and ssh in pkg/profiles
 o profiles: adding ptracer and ssh
 o testreport: change multi-test output-file name 
   (from output.txt.{name} to output.{name}.txt)
