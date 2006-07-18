@@ -334,16 +334,21 @@ c--             The array gfoobs contains SSH anomalies.
             enddo
 #endif
 
-            objf_h(bi,bj) = objf_h(bi,bj) + 
-     &          objf_tp(bi,bj) + objf_ers(bi,bj) + objf_gfo(bi,bj)
-            num_h(bi,bj) = num_h(bi,bj) + 
-     &          num_tp(bi,bj) + num_ers(bi,bj) + num_gfo(bi,bj)
-
           enddo
         enddo
 
       enddo
 c--   End of second loop over records.
+
+      do bj = jtlo,jthi
+        do bi = itlo,ithi
+          objf_h(bi,bj) = objf_h(bi,bj) + 
+     &        objf_tp(bi,bj) + objf_ers(bi,bj) + objf_gfo(bi,bj)
+          num_h(bi,bj) = num_h(bi,bj) + 
+     &        num_tp(bi,bj) + num_ers(bi,bj) + num_gfo(bi,bj)
+        enddo
+      enddo
+
 
 #endif /* ifdef ALLOW_SSH_COST_CONTRIBUTION */
 
