@@ -97,3 +97,18 @@ echo "======================"
 echo
 $comm | tail -100
  
+echo
+echo "======================"
+echo "Cleaning test directories:"
+./testreport -clean > /dev/null 2>&1
+echo "======================"
+echo
+
+echo "Running testreport using:"
+export OMP_NUM_THREADS=2
+comm="./testreport -mth -of ../tools/build_options/linux_ia32_ifort.v9+mth"
+echo "  \"$comm\""
+echo "======================"
+echo
+$comm | tail -100
+ 
