@@ -103,10 +103,8 @@ CADJ STORE hfacw, hfacs  = comlev1, key = ikey_dynamics
       DO bj=myByLo(myThid),myByHi(myThid)
         DO bi=myBxLo(myThid),myBxHi(myThid)
 
-#if (defined (ALLOW_COST_TEST) || defined (ALLOW_COST_ATLANTIC_HEAT))
            IF ( myTime .GT. (EndTime - lastinterval) )
      &          CALL COST_ACCUMULATE_MEAN (myThid)
-#endif
 
 #ifdef ALLOW_COST_TRACER
            CALL COST_TRACER( bi, bj, myThid )

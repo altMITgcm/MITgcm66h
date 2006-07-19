@@ -68,7 +68,7 @@ c--   Initialize the tiled cost function contributions.
           end do
 #endif
 c
-#if (defined (ALLOW_COST_TEST) || defined (ALLOW_COST_ATLANTIC_HEAT))
+#ifdef ALLOW_COST
           do k=1,nr
             do j=1,sNy
               do i=1,sNx
