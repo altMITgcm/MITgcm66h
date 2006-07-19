@@ -26,7 +26,7 @@ C     myThid - Thread number for this instance of the routine.
       integer bi, bj
       integer myThid
 
-#if (defined (ALLOW_COST_TEST) || defined (ALLOW_COST_ATLANTIC_HEAT))
+#ifdef ALLOW_COST
 C     == Local variables
       _RL thetaRef
 
