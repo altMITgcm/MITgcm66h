@@ -111,13 +111,12 @@ C     dynamic masking of areas with no ice
          ENDDO
         ENDDO
        ENDDO
-       _EXCH_XY_R8( seaiceMaskU, myThid )
-       _EXCH_XY_R8( seaiceMaskV, myThid )
+       CALL EXCH_UV_XY_RL( seaiceMaskU, seaiceMaskV, .FALSE., myThid )
       ENDIF
 
 C--   NOW SET UP FORCING FIELDS
 
-C--   Wind stress is computed on center of C-grid cell and interpolated 
+C--   Wind stress is computed on center of C-grid cell and interpolated
 C     to U and V points later
 C     locations from wind on tracer locations
       DO bj=myByLo(myThid),myByHi(myThid)
@@ -309,6 +308,7 @@ c in open water areas (drift of zero thickness ice)
        ENDDO
       ENDIF
 #endif /* SEAICE_ALLOW_DYNAMICS */
+
 #endif /* SEAICE_CGRID */
       RETURN
       END
