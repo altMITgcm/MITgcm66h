@@ -108,6 +108,8 @@ C--   Set everything to zero everywhere
        ENDDO
       ENDDO
 
+C--   Everyone must wait for the initialisation to be done
+      _BARRIER
 
 #ifdef ALLOW_MNC
       IF (useMNC .AND. readgrid_mnc) THEN
