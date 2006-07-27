@@ -8,6 +8,9 @@
  useExfYearlyFields = .TRUE.,
  useExfCheckRange   = .FALSE.,
 #
+ hflux_exfremo_intercept = -9.6385,
+ sflux_exfremo_intercept = -1.1980E-9,
+#
 # hfluxstartdate1   = 19920101,
 # hfluxstartdate2   = 30000,
 # hfluxperiod       = 21600.0,
