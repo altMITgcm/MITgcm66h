@@ -340,5 +340,9 @@ C--   Finally summarise the model state
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_LEAVE('INITIALISE_VARIA',myThid)
 #endif
+
+C--   Check barrier synchronization:
+      CALL BAR_CHECK( 4, myThid )
+
       RETURN
       END

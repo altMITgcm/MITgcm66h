@@ -656,6 +656,9 @@ C--   Write timer statistics
        CALL COMM_STATS
       ENDIF
 
+C--   Check threads synchronization :
+      CALL BAR_CHECK( 9, myThid )
+
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_LEAVE('THE_MODEL_MAIN',myThid)
 #endif
