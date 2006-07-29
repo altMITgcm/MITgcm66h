@@ -94,5 +94,8 @@ C       but this causes KAP to insert a call to mppjoin - which then deadlocks!
       ENDIF
    11 CONTINUE
 
+C--   check barrier synchronization: 1rst (initial) call.
+      CALL BAR_CHECK( 1, myThid )
+
       RETURN
       END
