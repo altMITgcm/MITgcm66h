@@ -3,7 +3,7 @@
 #  $Header$
 #  $Name$
 #
-#  These are the build options used with the PGI compiler for the
+#  These are the build options used with the GNU compiler for the
 #  daily testing on ACES (which are initiated by cron jobs on the "ao"
 #  head node).
 #
