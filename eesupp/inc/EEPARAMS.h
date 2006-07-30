@@ -32,7 +32,7 @@ C     MAX_NO_THREADS  - Maximum number of threads allowed.
 C     MAX_NO_PROCS    - Maximum number of processes allowed.
 C     MAX_NO_BARRIERS - Maximum number of distinct thread "barriers"
       INTEGER MAX_NO_THREADS
-      PARAMETER ( MAX_NO_THREADS =  32 )
+      PARAMETER ( MAX_NO_THREADS =  4 )
       INTEGER MAX_NO_PROCS
       PARAMETER ( MAX_NO_PROCS   =  2048 )
       INTEGER MAX_NO_BARRIERS
