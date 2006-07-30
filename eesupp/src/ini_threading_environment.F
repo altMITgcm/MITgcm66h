@@ -106,6 +106,19 @@ C--   Initialise exchange mechanism
        eeBootError = .TRUE.
        STOP 'ABNORMAL END: S/R INI_THREADING_ENVIRONMENT'
       ENDIF
+      IF   ( nThreads .GT. MAX_NO_THREADS ) THEN
+       WRITE(msgBuf,'(2A,2I6)') 
+     &  'S/R INI_THREADING_ENVIRONMENT:',
+     &  ' Total number of threads exceeds MAX_NO_THREADS',
+     &   nTx*nTy, MAX_NO_THREADS
+       CALL PRINT_ERROR(msgBuf, myThid)
+       WRITE(msgBuf,'(2A)')
+     &    ' Needs to increase MAX_NO_THREADS',
+     &    ' in file "EEPARAMS.h" and to re-compile'
+       CALL PRINT_ERROR(msgBuf, myThid)
+       eeBootError = .TRUE.
+       STOP 'ABNORMAL END: S/R INI_THREADING_ENVIRONMENT'
+      ENDIF
       bxPerThread = nSx/nTx
       IF ( bxPerThread*nTx .NE. nSx ) THEN
        WRITE(msgBuf,'(A,A,A)') 
