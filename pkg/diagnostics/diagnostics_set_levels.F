@@ -69,6 +69,8 @@ C     !LOCAL VARIABLES:
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
+      _BEGIN_MASTER( myThid )
+
       nlevs   = MAX(Nr,Nrphys)
       nGroundLev = land_nLev
 
@@ -93,7 +95,6 @@ C-      others: set 1 level:
         ENDIF
       ENDDO
 
-      _BEGIN_MASTER( myThid )
       stdUnit = standardMessageUnit
       WRITE(msgBuf,'(2A)')
      &   '------------------------------------------------------------'
@@ -190,6 +191,9 @@ C         here where nlevs is defined.
       ENDDO
 
       _END_MASTER( myThid )
+
+C--   Everyone else must wait for the levels to be set
+      _BARRIER
 
       RETURN
       END
