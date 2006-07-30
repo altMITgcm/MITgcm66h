@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o change default MAX_NO_THREADS from 32 to 4 ; 
+  and stop cleanly when MAX_NO_THREADS is too small. 
+o add S/R BAR_CHECK to check multi-threaded barrier synchronization
+
 checkpoint58m_post
 o add a Non-Hydroatatic test (with 3-D Coriolis, NHMTerms, biharmonic Visc.
    and side-drag) on CS-grid : global_ocean.cs32x15.viscA4
