@@ -69,8 +69,8 @@ C ===============
 
       scaleFact = 1. _d 0
       IF ( bibjFlg.EQ.0 ) THEN
-        bi = 1
-        bj = 1
+        bi = myBxLo(myThid)
+        bj = myByLo(myThid)
       ELSE
         bi = biArg
         bj = bjArg
