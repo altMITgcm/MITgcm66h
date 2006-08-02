@@ -26,12 +26,13 @@ C     === Global variables ===
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
-C     myThid -  Number of this instance of INI_VEL 
+C     myThid ::  Number of this instance of INI_VEL
       INTEGER myThid
 
 C     !LOCAL VARIABLES:
 C     == Local variables ==
-C     bi,bj,i,j,k - Loop counters
+C     i,j,k  :: Loop counters
+C     bi,bj  :: tile indices
       INTEGER bi,bj,i,j,k
 CEOP
 
@@ -55,24 +56,17 @@ C
        ENDDO
       ENDDO
 
+      IF (uVelInitFile .NE. ' ' .OR. vVelInitFile .NE. ' ') THEN
+       _BARRIER
 C     Read an initial state for each component if required
-      IF (uVelInitFile .NE. ' ') THEN
-       _BEGIN_MASTER( myThid )
-       CALL READ_FLD_XYZ_RL( uVelInitFile, ' ', uVel, 0, myThid )
-       _END_MASTER(myThid)
-c      _EXCH_XYZ_R8(uVel  , myThid )
-      ENDIF
+       IF (uVelInitFile .NE. ' ')
+     & CALL READ_FLD_XYZ_RL( uVelInitFile, ' ', uVel, 0, myThid )
 
-      IF (vVelInitFile .NE. ' ') THEN
-       _BEGIN_MASTER( myThid )
-       CALL READ_FLD_XYZ_RL( vVelInitFile, ' ', vVel, 0, myThid )
-       _END_MASTER(myThid)
-c      _EXCH_XYZ_R8(vVel  , myThid )
-      ENDIF
+       IF (vVelInitFile .NE. ' ')
+     & CALL READ_FLD_XYZ_RL( vVelInitFile, ' ', vVel, 0, myThid )
 
-c     IF (uVelInitFile .NE. ' ' .OR. vVelInitFile .NE. ' ') THEN
        CALL EXCH_UV_XYZ_RL(uVel,vVel,.TRUE.,myThid)
-c     ENDIF
+      ENDIF
 
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
