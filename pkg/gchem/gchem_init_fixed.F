@@ -27,7 +27,10 @@ CEOP
 
 C     !LOCAL VARIABLES:
 
-         _BEGIN_MASTER( mythid )
+C jmc: simpler to put MASTER thread directive within individual S/R :
+C      that leave the choice, for each S/R, to do either single (master) 
+C      thread tasks or Multi-threaded tasks.
+c        _BEGIN_MASTER( mythid )
 ccccccccccccccccccccccccccc
 c initialize parameters   c
 ccccccccccccccccccccccccccc
@@ -42,7 +45,7 @@ ccccccccccccccccccccccccccc
           print*,'QQ read cfc atmos data'
           call CFC_ATMOS( myThid )
 #endif /* ALLOW_CFC */
-          _END_MASTER( mythid )
+c         _END_MASTER( mythid )
 
 #ifdef ALLOW_DIAGNOSTICS
 C     Define diagnostics Names :
