@@ -63,9 +63,11 @@ C-    Check that all threads have the same barStatus
        IF ( flag ) THEN
          WRITE(msgBuf,'(A,I4,A,I8)') 'BAR_CHECK: thread', myThid,
      &        ' out of Sync when reaching barrierId=', barrierId
-         CALL PRINT_ERROR( msgBuf, 1 )
+         CALL PRINT_ERROR( msgBuf, myThid )
+#ifndef DISABLE_WRITE_TO_UNIT_ZERO
          WRITE(0,*) myThid, barrierId, 'barStatus=', barStatus
-         STOP ' BAR_CHECK: OUT OF SYNC'
+#endif
+         STOP 'ABNORMAL END: S/R BAR_CHECK: OUT OF SYNC'
        ENDIF
 
       ENDIF
