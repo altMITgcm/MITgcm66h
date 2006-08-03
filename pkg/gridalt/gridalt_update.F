@@ -60,6 +60,7 @@ c
 c
         enddo
         enddo
+
        endif
 
 #endif
@@ -72,7 +73,7 @@ c
          do L = 1,Nrphys
           do j = j1,j2
           do i = i1,i2
-           temparr(i,j,L,bi,bj) = dpphys(i,j,L,bi,bj) * 1.e-2
+           temparr(i,j,L,bi,bj) = dpphys(i,j,L,bi,bj) * 1. _d -2
           enddo
           enddo
          enddo
