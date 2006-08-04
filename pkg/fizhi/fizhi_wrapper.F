@@ -194,7 +194,7 @@ C Build pressures on dynamics grid
          Lbotij = ksurfC(i,j,bi,bj)
          do L = Lbotij+1,Nr+1
           pedyn(i,j,L,bi,bj) = pedyn(i,j,L-1,bi,bj) - 
-     .                        drF(L-1)*hfacC(i,j,L-1,bi,bj)
+     .           drF(L-1)* rStarExpC(i,j,bi,bj)*hfacC(i,j,L-1,bi,bj)
          enddo
 c Do not use a zero field as the top edge pressure for interpolation
          if(pedyn(i,j,Nr+1,bi,bj).lt.1.e-5)
@@ -256,7 +256,6 @@ c Do not use a zero field as the top edge pressure for interpolation
        endif
       endif
 #endif
-
 c
 c Compute physics increments
 
