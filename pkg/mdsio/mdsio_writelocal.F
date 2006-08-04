@@ -105,10 +105,14 @@ C     ------------------------------------------------------------------
       globalFile = globFile
 
 #ifndef LOCBIN_IO_THREAD_SAFE
-      IF ( nThreads.GT.1 ) THEN
+      IF ( myThid.GT.1 ) THEN
 C-    do not assume safe Muti-Threaded Binary IO (even to tiled file)
 C      => stop here
         iAmDoingIO = .FALSE.
+        WRITE(msgBuf,'(A,I10,A,2I5,2A)') 
+     &    'MDS_WRITELOCAL (it=', myIter, ' ; bi,bj=', bi,bj, 
+     &    ' ): try to write: ', fName(1:IL)
+        CALL PRINT_ERROR( msgBuf, myThid )
         WRITE(msgBuf,'(2A)') 'MDS_WRITELOCAL: no Multi-Threaded IO',
      &                  ' with #undef LOCBIN_IO_THREAD_SAFE'
         CALL PRINT_ERROR( msgBuf, myThid )
