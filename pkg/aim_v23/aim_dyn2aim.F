@@ -248,8 +248,8 @@ c         WVSurf(I2,myThid) = WVI(K,2)
        ENDDO
       ENDDO
       IF (myIter.EQ.nIter0) 
-     &  CALL AIM_WRITE_LOCAL('aim_WeightSurf','',1,WVSurf(1,myThid),
-     &                        bi,bj,1,myIter,myThid)
+     &  CALL AIM_WRITE_PHYS( 'aim_WeightSurf', '', 1, WVSurf,
+     &                       1, bi, bj, 1, myIter, myThid )
 
 #endif /* ALLOW_AIM */
 
