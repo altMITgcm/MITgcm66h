@@ -174,21 +174,15 @@ C     Check that the Variable Type exists
 C     Set the bi,bj indicies 
       bis = bi
       bie = bi
-      IF (bi .EQ. 0) THEN
+      IF (bi .LT. 1) THEN
         bis = 1
         bie = nSx
-      ELSEIF (bi .LT. 0) THEN
-        bis = -bi
-        bie = -bi
       ENDIF
       bjs = bj
       bje = bj
-      IF (bj .EQ. 0) THEN
+      IF (bj .LT. 1) THEN
         bjs = 1
         bje = nSy
-      ELSEIF (bj .LT. 0) THEN
-        bjs = -bj
-        bje = -bj
       ENDIF
 
       DO lbj = bjs,bje
