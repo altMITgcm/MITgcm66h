@@ -26,7 +26,7 @@ C Local
       INTEGER nNz
       INTEGER irec
       INTEGER s1Lo,s1Hi,s2Lo,s2Hi
-      CHARACTER*(80) fullName
+      CHARACTER*(MAX_LEN_FNAM) fullName
 C
 C--   Build file name
 C     Name has form 'prefix.suffix'

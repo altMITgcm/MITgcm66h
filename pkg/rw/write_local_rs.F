@@ -28,7 +28,7 @@ C Common
 C Local
       CHARACTER*(2) fType
       INTEGER s1Lo,s1Hi,s2Lo,s2Hi
-      CHARACTER*(80) fullName
+      CHARACTER*(MAX_LEN_FNAM) fullName
 
 C--   Build file name
 C     Name has form 'prefix.suffix'
