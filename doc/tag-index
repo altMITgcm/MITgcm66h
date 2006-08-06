@@ -3,7 +3,8 @@ $Name$
 
     Notes on tags used in MITgcmUV
     ==============================
-
+o add "_d 0" to real constant of pkg/cfc subroutines ; 
+   update exp. cfc_exemple & tutorial_cfc_offline output files.
 o multi-threading and IO:
   - all threads call READ_FLD S/R (needed if using SingleCpuIO): 
     (no BEGIN_MASTER/ END_MASTER around the call, but inside MDSIO S/R.
