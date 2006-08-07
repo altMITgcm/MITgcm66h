@@ -3,29 +3,24 @@ C $Name$
 
 #include "MYPACKAGE_OPTIONS.h"
 
-CBOP
-C     !ROUTINE: MYPACKAGE_DIAGNOSTICS_INIT
-C     !INTERFACE:
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+CBOP 0
+C !ROUTINE: MYPACKAGE_DIAGNOSTICS_INIT
+
+C !INTERFACE:
       SUBROUTINE MYPACKAGE_DIAGNOSTICS_INIT( myThid )
 
-C     !DESCRIPTION: \bv
-C     *==========================================================*
-C     | SUBROUTINE MYPACKAGE_DIAGNOSTICS_INIT
-C     | o Routine to initialize list of all available diagnostics
-C     |   for MYPACKAGE package
-C     *==========================================================*
-C     \ev
+C     !DESCRIPTION:
+C     Initialize list of all available diagnostics
+
 C     !USES:
       IMPLICIT NONE
-
-C     === Global variables ===
 #include "EEPARAMS.h"
 c #include "SIZE.h"
 c #include "PARAMS.h"
 c #include "MYPACKAGE.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
-C     === Routine arguments ===
 C     myThid ::  my Thread Id number
       INTEGER myThid
 CEOP
