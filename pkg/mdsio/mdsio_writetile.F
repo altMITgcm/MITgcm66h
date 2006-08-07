@@ -83,6 +83,8 @@ C Local variables
       character*(max_len_mbuf) msgbuf
 C     ------------------------------------------------------------------
 
+      STOP 'S/R MDS_WRITETILE: not maintained'
+
 C Only do I/O if I am the master thread
       _BEGIN_MASTER( myThid )
 
