@@ -101,6 +101,7 @@ $comm | tail -100
  
 echo "Running testreport using:"
 export OMP_NUM_THREADS=2
+export KMP_STACKSIZE=400m
 comm="./testreport -mth -of ../tools/build_options/linux_ia32_ifort.v9+mth -a edhill@mitgcm.org"
 echo "  \"$comm\""
 echo "======================"
