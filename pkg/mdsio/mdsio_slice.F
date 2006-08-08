@@ -687,7 +687,8 @@ C If global file was opened then close it
 
 C We put a barrier here to ensure that all processes have finished
 C writing their data before we update the meta-file
-       _BARRIER
+c      _BARRIER
+C- jmc: No BARRIER within BEGIN_/END_MASTER:  breaks synchronisation !!!
 
       _END_MASTER( myThid )
 
@@ -905,7 +906,8 @@ C If global file was opened then close it
 
 C We put a barrier here to ensure that all processes have finished
 C writing their data before we update the meta-file
-       _BARRIER
+c      _BARRIER
+C- jmc: No BARRIER within BEGIN_/END_MASTER:  breaks synchronisation !!!
 
       _END_MASTER( myThid )
 
