@@ -6,10 +6,14 @@
 # on computer node:
 #  needs to load intel compiler version 9:
 #  > module load ifc/9.0.021 icc/9.0.021 intel/9.0
-#  and set for 2 threads:
-#  > export OMP_NUM_THREADS=2 (sh,bash)
-#  or:
-#  > setenv OMP_NUM_THREADS 2 (csh,tcsh)
+#  and set for 2 threads,
+#  + in many cases, need to increase the stack-size:
+#- sh,bash:
+#  > export OMP_NUM_THREADS=2
+#  > export KMP_STACKSIZE=400m
+#- csh,tcsh:
+#  > setenv OMP_NUM_THREADS 2
+#  > setenv KMP_STACKSIZE 400m
 
 FC='ifort'
 CC='icc'
