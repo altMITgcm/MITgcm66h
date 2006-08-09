@@ -16,7 +16,7 @@ C     === Global variables ===
 #include "PARAMS.h"
 
 C     === Routine arguments ===
-C     myThid -  Number of this instance 
+C     myThid -  Number of this instance
       INTEGER myThid
 
 #ifdef ALLOW_GCHEM
@@ -25,18 +25,22 @@ C     === Local variables ===
 C     msgBuf      - Informational/error meesage buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 
+      _BEGIN_MASTER(myThid)
+
       WRITE(msgBuf,'(A)') 'GCHEM_CHECK: #define ALLOW_GCHEM'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &     SQUEEZE_RIGHT , 1)
+     &     SQUEEZE_RIGHT , myThid )
 
 C     GCHEM needs passive tracer package
       IF ( .NOT.usePTRACERS) THEN
          WRITE(msgBuf,'(A)') 'usePTRACERS has to be .TRUE. for GCHEM'
-         CALL PRINT_ERROR( msgBuf , 1)
+         CALL PRINT_ERROR( msgBuf , myThid )
          STOP 'ABNORMAL END: S/R GCHEM_CHECK'
       ENDIF
 
+      _END_MASTER(myThid)
+
 #endif /* ALLOW_GCHEM */
 
-      return
-      end
+      RETURN
+      END
