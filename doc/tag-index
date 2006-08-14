@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o fix globalArea multi-threaded calculation: need to apply GLOBAL_SUM to 
+   local variable (not in common block).
 o lot of small changes for multi-threaded. Most tests (using OMP & ifort) pass. 
   - still problems with pkgs: mnc, exp2, dic, cal, exf (and probably more); 
   - still BEGIN_MASTER/END_MASTER to remove around READ/WRITE_FLD S/R calls
