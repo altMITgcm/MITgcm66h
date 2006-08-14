@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o shelfice: add a simple boundary layer scheme to reduce noise
+
 checkpoint58n_post
 o fix globalArea multi-threaded calculation: need to apply GLOBAL_SUM to 
    local variable (not in common block).
