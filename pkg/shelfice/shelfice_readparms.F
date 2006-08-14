@@ -45,7 +45,7 @@ CEOP
      &     SHELFICElatentHeat, SHELFICEHeatCapacity_Cp,
      &     SHELFICEDragLinear, SHELFICEDragQuadratic,
      &     SHELFICEthetaSurface,
-     &     useISOMIPTD, no_slip_shelfice,
+     &     useISOMIPTD, no_slip_shelfice, SHELFICEboundaryLayer, 
      &     SHELFICEwriteState,
      &     SHELFICE_dumpFreq,
      &     SHELFICE_taveFreq,
@@ -59,6 +59,7 @@ C internal flag to indicate we are in business
 
 C Set defaults values for parameters in SHELFICE.h
       useISOMIPTD              = .FALSE.
+      SHELFICEboundaryLayer    = .FALSE.
       SHELFICEloadAnomalyFile  = ' '
       SHELFICElatentHeat       =  334.0 _d 3
       SHELFICEHeatCapacity_Cp  = 2000.0 _d 0

@@ -39,8 +39,6 @@ C-----------------------------------------------------------------------
         DO J = 1-OLy, sNy+OLy
          DO I = 1-OLx, sNx+OLx
           kTopC(i,j,bi,bj) = 0
-C     This is the poor mans solution for the shelfice loading.
-C     It should be computed offline and prescribed.
           DO K = Nr, 1, -1
            IF ( hFacC(I,J,K,bi,bj) .NE. 0. _d 0 ) 
      &          kTopC(I,J,bi,bj) = K
