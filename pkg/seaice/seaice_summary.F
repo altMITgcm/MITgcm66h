@@ -93,7 +93,7 @@ C     == end of interface ==
        CALL WRITE_0D_I ( SEAICEadvSchArea,   INDEX_NONE,
      & 'SEAICEadvSchArea   =', ' /* advection scheme for area */')
        CALL WRITE_0D_I ( SEAICEadvSchHeff,   INDEX_NONE,
-     & 'SEAICEadvSchArea   =', ' /* advection scheme for thickness */')
+     & 'SEAICEadvSchHeff   =', ' /* advection scheme for thickness */')
        CALL WRITE_0D_I ( SEAICEadvSchEnth,   INDEX_NONE,
      & 'SEAICEadvSchEnth   =', ' /* advection scheme for enthalphy */')
        CALL WRITE_0D_I ( SEAICEadvSchSnow,   INDEX_NONE,
