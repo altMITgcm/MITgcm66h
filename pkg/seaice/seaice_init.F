@@ -192,8 +192,7 @@ C--   Choose a proxy level for geostrophic velocity,
 
 C--   Update overlap regions
 #ifdef SEAICE_CGRID
-      _EXCH_XY_R8(seaiceMaskU, myThid)
-      _EXCH_XY_R8(seaiceMaskV, myThid)
+      CALL EXCH_UV_XY_RL(seaiceMaskU,seaiceMaskV,.FALSE.,myThid)
 #else
       _EXCH_XY_R8(UVM, myThid)
 #endif
