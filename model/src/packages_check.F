@@ -178,6 +178,12 @@ CEOP
      &   CALL PACKAGES_CHECK_ERROR('DIAGNOSTICS', myThid )
 #endif
 
+#ifdef ALLOW_REGRID
+      IF (useREGRID) CALL REGRID_CHECK( myThid )
+#else
+      IF (useREGRID) CALL PACKAGES_CHECK_ERROR('REGRID', myThid)
+#endif
+
 #ifdef ALLOW_MYPACKAGE
       IF (useMYPACKAGE) CALL MYPACKAGE_CHECK( myThid )
 #else

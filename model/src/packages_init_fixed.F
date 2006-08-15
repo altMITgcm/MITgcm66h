@@ -77,6 +77,8 @@ C       |
 C       |-- CPL_INIT_FIXED
 C       |
 C       |-- DIAGNOSTICS_INIT_FIXED
+C       |
+C       |-- REGRID_INIT_FIXED
 
 C     !USES:
       IMPLICIT NONE
@@ -276,6 +278,10 @@ C-    needs to call DIAGNOSTICS_INIT_FIXED after all package-diag-init calls
 
 #ifdef ALLOW_EMBED_FILES
       IF ( useEMBED_FILES ) CALL EMBED_FILES_INIT( mythid )
+#endif
+
+#ifdef ALLOW_REGRID
+      IF ( useREGRID ) CALL REGRID_INIT_FIXED( mythid )
 #endif
 
       RETURN

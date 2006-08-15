@@ -56,6 +56,8 @@ C       |
 C       |-- THSICE_INI_VARS
 C       |
 C       |-- CPL_INI_VARS
+C       |
+C       |-- REGRID_INIT_FIXED
 
 C     !USES:
       IMPLICIT NONE
@@ -286,5 +288,10 @@ C Initialize FIZHI state variables
       IF (debugMode)
      &     CALL DEBUG_LEAVE('PACKAGES_INIT_VARIABLES',myThid)
 #endif
+
+#ifdef ALLOW_REGRID
+      IF ( useREGRID ) CALL REGRID_INIT_VARIA( myThid )
+#endif
+
       RETURN
       END

@@ -73,6 +73,7 @@ C     data.pkg namelists
      &          usegridalt,
      &          useDiagnostics,
      &          useMNC,
+     &          useREGRID,
      &          useRunClock,
      &          useMATRIX,
      &          useEMBED_FILES,
@@ -124,6 +125,7 @@ C--   Default package configuration
       useDiagnostics  =.FALSE.
       useMNC          =.FALSE.
       useRunClock     =.FALSE.
+      useREGRID       =.FALSE.
       useMYPACKAGE    =.FALSE.
 
 C--   Read parameters from open data file
