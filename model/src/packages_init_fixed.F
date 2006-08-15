@@ -263,6 +263,14 @@ C     IF (useDIC)
       IF (useShelfIce) CALL SHELFICE_INIT_FIXED( myThid )
 #endif /* ALLOW_SHELFICE */
 
+#ifdef ALLOW_EMBED_FILES
+      IF ( useEMBED_FILES ) CALL EMBED_FILES_INIT( mythid )
+#endif
+
+#ifdef ALLOW_REGRID
+      IF ( useREGRID ) CALL REGRID_INIT_FIXED( mythid )
+#endif
+
 #ifdef ALLOW_MYPACKAGE
       IF (useMYPACKAGE) CALL MYPACKAGE_INIT_FIXED(mythid)
 #endif
@@ -274,14 +282,6 @@ C     IF (useDIC)
 #ifdef ALLOW_DIAGNOSTICS
 C-    needs to call DIAGNOSTICS_INIT_FIXED after all package-diag-init calls
       IF ( useDiagnostics ) CALL DIAGNOSTICS_INIT_FIXED( myThid )
-#endif
-
-#ifdef ALLOW_EMBED_FILES
-      IF ( useEMBED_FILES ) CALL EMBED_FILES_INIT( mythid )
-#endif
-
-#ifdef ALLOW_REGRID
-      IF ( useREGRID ) CALL REGRID_INIT_FIXED( mythid )
 #endif
 
       RETURN
