@@ -44,6 +44,25 @@ C     !LOCAL VARIABLES:
 C     Functions
       integer ILNBLNK
 
+C----- 
+C     Need some work to make MNC multi-threaded safe.
+C     For now, switch it off (otherwise, it's hanging up somewhere)
+      IF ( nThreads.GT.1 ) THEN
+        _BEGIN_MASTER( myThid )
+        WRITE(msgBuf,'(2A)') '**WARNING** MNC_READPARMS: ',
+     &                       'useMNC unsafe with multi-threads'
+        CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                      SQUEEZE_RIGHT , myThid )
+        WRITE(msgBuf,'(2A)') '**WARNING** MNC_READPARMS: ',
+     &                       'for now, switch useMNC to FALSE'
+        CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                      SQUEEZE_RIGHT , myThid )
+        useMNC = .FALSE.
+        _END_MASTER( myThid )
+        RETURN
+      ENDIF
+C-----
+
 C     Set default values for MNC run-time parameters
       DO i = 1,MAX_LEN_FNAM
         mnc_outdir_str(i:i) = ' '
