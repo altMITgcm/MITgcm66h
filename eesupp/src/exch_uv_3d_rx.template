@@ -5,21 +5,21 @@ C $Name$
 #include "CPP_EEOPTIONS.h"
 
 CBOP
-C     !ROUTINE: EXCH_S3D_RX
+C     !ROUTINE: EXCH_UV_3D_RX
 
 C     !INTERFACE:
-      SUBROUTINE EXCH_S3D_RX(
-     U                       phi,
-     I                       myNz, myThid )
+      SUBROUTINE EXCH_UV_3D_RX(
+     U                          Uphi, Vphi,
+     I                          withSigns, myNz, myThid )
 
 C     !DESCRIPTION:
 C     *==========================================================*
-C     | SUBROUTINE EXCH_S3D_RX
-C     | o Handle Simple exchanges (= that ignore corners)
-C     |   for _RX, 3-dim scalar arrays with overlap size = 1
+C     | SUBROUTINE EXCH_UV_3D_RX
+C     | o Handle exchanges for _RX, 3-dimensional vector arrays.
 C     *==========================================================*
-C     | Invoke appropriate exchange routine depending on type
-C     | of grid (cube or globally indexed) to be operated on.
+C     | Vector arrays need to be rotated and interchaged for
+C     | exchange operations on some grids. This driver routine
+C     | branches to support this.
 C     *==========================================================*
 
 C     !USES:
@@ -33,10 +33,15 @@ C     === Global data ===
 C     !INPUT/OUTPUT PARAMETERS:
 C     === Routine arguments ===
 C     phi    :: Array with overlap regions are to be exchanged
+C               Note - The interface to EXCH_RX assumes that
+C               the standard Fortran 77 sequence association rules
+C               apply.
 C     myNz   :: 3rd dimension of array to exchange
 C     myThid :: My thread id.
       INTEGER myNz
-      _RX phi(0:sNx+1,0:sNy+1,myNz,nSx,nSy)
+      _RX Uphi(1-OLx:sNx+OLx,1-OLy:sNy+OLy,myNz,nSx,nSy)
+      _RX Vphi(1-OLx:sNx+OLx,1-OLy:sNy+OLy,myNz,nSx,nSy)
+      LOGICAL withSigns
       INTEGER myThid
 
 C     !LOCAL VARIABLES:
@@ -46,18 +51,19 @@ C     exchWidth[XY]  :: Extent of regions that will be exchanged.
       INTEGER OLw, OLe, OLn, OLs, exchWidthX, exchWidthY
 
 CEOP
-
 #ifdef ALLOW_EXCH2
-      CALL EXCH2_S3D_RX( phi, myNz, myThid )
+      CALL EXCH2_UV_3D_RX(
+     U                     Uphi, Vphi,
+     I                     withSigns, myNz, myThid )
       RETURN
 #endif
 
-      OLw        = 1
-      OLe        = 1
-      OLn        = 1
-      OLs        = 1
-      exchWidthX = 1
-      exchWidthY = 1
+      OLw        = OLx
+      OLe        = OLx
+      OLn        = OLy
+      OLs        = OLy
+      exchWidthX = OLx
+      exchWidthY = OLy
 C     ** NOTE ** The exchange routine we use here does not
 C                require the preceeding and following barriers.
 C                However, the slow, simple exchange interface
@@ -65,16 +71,26 @@ C                that is calling it here is meant to ensure
 C                that threads are synchronised before exchanges
 C                begine.
       IF (useCubedSphereExchange) THEN
-       CALL EXCH_RX_CUBE( phi,
+       CALL EXCH_UV_RX_CUBE( Uphi, Vphi, withSigns,
      I            OLw, OLe, OLs, OLn, myNz,
      I            exchWidthX, exchWidthY,
-     I            FORWARD_SIMULATION, EXCH_IGNORE_CORNERS, myThid )
+     I            FORWARD_SIMULATION, EXCH_UPDATE_CORNERS, myThid )
       ELSE
-       CALL EXCH_RX( phi,
+       CALL EXCH_RX( Uphi,
      I            OLw, OLe, OLs, OLn, myNz,
      I            exchWidthX, exchWidthY,
-     I            FORWARD_SIMULATION, EXCH_IGNORE_CORNERS, myThid )
+     I            FORWARD_SIMULATION, EXCH_UPDATE_CORNERS, myThid )
+       CALL EXCH_RX( Vphi,
+     I            OLw, OLe, OLs, OLn, myNz,
+     I            exchWidthX, exchWidthY,
+     I            FORWARD_SIMULATION, EXCH_UPDATE_CORNERS, myThid )
       ENDIF
 
       RETURN
       END
+
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+
+CEH3 ;;; Local Variables: ***
+CEH3 ;;; mode:fortran ***
+CEH3 ;;; End: ***
