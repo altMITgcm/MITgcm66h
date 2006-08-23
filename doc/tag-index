@@ -4,10 +4,14 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o simplify EXCH interface:
+ - change _XYZ_ interface to _3D_ subroutine (with 3rd dim in argument list)
+ - not often used EXCH S/R (exch_z, exch_uv_agrid): keep only the _3D_ version
 o added the regrid package
 o shelfice: 
  - add a simple boundary layer scheme to reduce noise
  - fix the indexing in shelfice_u/v_drag so that there will be actually drag
+
 checkpoint58n_post
 o fix globalArea multi-threaded calculation: need to apply GLOBAL_SUM to 
    local variable (not in common block).
