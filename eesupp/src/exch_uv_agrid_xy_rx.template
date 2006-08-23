@@ -53,9 +53,9 @@ C     b[nsew] - indices of the [nswe] neighboring faces for each face.
       _RX negOne
 
 #ifdef ALLOW_EXCH2
-      CALL EXCH2_UV_AGRID_XY_RX(
+      CALL EXCH2_UV_AGRID_3D_RX(
      U                           component1, component2,
-     I                           withSigns, myThid )
+     I                           withSigns, 1, myThid )
       RETURN
 #endif
 
