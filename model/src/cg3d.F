@@ -6,7 +6,7 @@ C $Name$
 CBOP
 C     !ROUTINE: CG3D
 C     !INTERFACE:
-      SUBROUTINE CG3D(  
+      SUBROUTINE CG3D(
      I                cg3d_b,
      U                cg3d_x,
      O                firstResidual,
@@ -179,11 +179,11 @@ C--   Initial residual calculation (with free-Surface term)
         sumRHS = sumRHS + sumRHStile
        ENDDO
       ENDDO
-       CALL EXCH_S3D_RL( cg3d_r, myThid )
-c      CALL EXCH_S3D_RL( cg3d_s, myThid )
+       CALL EXCH_S3D_RL( cg3d_r, Nr, myThid )
+c      CALL EXCH_S3D_RL( cg3d_s, Nr, myThid )
       _GLOBAL_SUM_R8( sumRHS, myThid )
       _GLOBAL_SUM_R8( err   , myThid )
-      
+
       IF ( debugLevel .GE. debLevZero ) THEN
         _BEGIN_MASTER( myThid )
         write(standardmessageunit,'(A,1P2E22.14)')
@@ -420,7 +420,7 @@ C      Now compute "interior" points.
        actualIts      = it3d
        actualResidual = err
        IF ( actualResidual .LT. cg3dTargetResidual ) GOTO 11
-       CALL EXCH_S3D_RL( cg3d_r, myThid )
+       CALL EXCH_S3D_RL( cg3d_r, Nr, myThid )
 
    10 CONTINUE
    11 CONTINUE
