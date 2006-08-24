@@ -625,12 +625,10 @@ C--   Call time stepping loop of full model
 #endif /* ALLOW_TANGENTLINEAR_RUN ALLOW_ADJOINT_RUN ALLOW_ADMTLM */
 
 C--   Final checkpoint (in case the in-loop checkpoint was missed)
-      CALL TIMER_START('WRITE_CHECKPOINT       [THE_MODEL_MAIN]',myThid)
-      CALL PACKAGES_WRITE_PICKUP(
+      CALL TIMER_START('DO_WRITE_PICKUP        [THE_MODEL_MAIN]',myThid)
+      CALL DO_WRITE_PICKUP(
      I        .TRUE., myCurrentTime, myCurrentIter, myThid )
-      CALL WRITE_CHECKPOINT(
-     I        .TRUE., myCurrentTime, myCurrentIter, myThid )
-      CALL TIMER_STOP ('WRITE_CHECKPOINT       [THE_MODEL_MAIN]',myThid)
+      CALL TIMER_STOP ('DO_WRITE_PICKUP        [THE_MODEL_MAIN]',myThid)
 
       CALL TIMER_STOP ('ALL                    [THE_MODEL_MAIN]',myThid)
 
