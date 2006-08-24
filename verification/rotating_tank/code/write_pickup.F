@@ -111,8 +111,8 @@ C--     Write model fields
          ENDIF
          WRITE(fn,'(A,I10.10)') 'pickup_nh.',myIter
          CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,phi_nh,1,myIter,myThid)
-         CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,gW,   2,myIter,myThid)
-c        CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,gWnm1,3,myIter,myThid)
+c        CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,gW,   2,myIter,myThid)
+         CALL MDSWRITEFIELD(fn,prec,lgf,'RL',Nr,gWnm1,2,myIter,myThid)
         ENDIF
 #endif
        _BARRIER
