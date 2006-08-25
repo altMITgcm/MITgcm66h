@@ -16,7 +16,7 @@ RL_FILES = exch_xy_rl.F exch_3d_rl.F exch_xyz_rl.F exch_s3d_rl.F \
 
 RS_FILES = exch_xy_rs.F exch_3d_rs.F exch_xyz_rs.F exch_s3d_rs.F \
            exch_uv_xy_rs.F exch_uv_3d_rs.F exch_uv_xyz_rs.F \
-           exch_z_3d_rs.F exch_uv_agrid_xy_rs.F \
+           exch_z_3d_rs.F exch_uv_agrid_3d_rs.F \
            exch_z_xy_rs.F exch_z_xyz_rs.F \
            exch_uv_agrid_xy_rs.F exch_uv_agrid_xyz_rs.F \
            exch_rs.F \
@@ -26,7 +26,7 @@ RS_FILES = exch_xy_rs.F exch_3d_rs.F exch_xyz_rs.F exch_s3d_rs.F \
 
 R4_FILES = exch_xy_r4.F exch_3d_r4.F exch_xyz_r4.F exch_s3d_r4.F \
            exch_uv_xy_r4.F exch_uv_3d_r4.F exch_uv_xyz_r4.F \
-           exch_z_3d_r4.F exch_uv_agrid_xy_r4.F \
+           exch_z_3d_r4.F exch_uv_agrid_3d_r4.F \
            exch_z_xy_r4.F exch_z_xyz_r4.F \
            exch_uv_agrid_xy_r4.F exch_uv_agrid_xyz_r4.F \
            exch_r4.F \
@@ -36,7 +36,7 @@ R4_FILES = exch_xy_r4.F exch_3d_r4.F exch_xyz_r4.F exch_s3d_r4.F \
 
 R8_FILES = exch_xy_r8.F exch_3d_r8.F exch_xyz_r8.F exch_s3d_r8.F \
            exch_uv_xy_r8.F exch_uv_3d_r8.F exch_uv_xyz_r8.F \
-           exch_z_3d_r8.F exch_uv_agrid_xy_r8.F \
+           exch_z_3d_r8.F exch_uv_agrid_3d_r8.F \
            exch_z_xy_r8.F exch_z_xyz_r8.F \
            exch_uv_agrid_xy_r8.F exch_uv_agrid_xyz_r8.F \
            exch_r8.F \
