@@ -126,9 +126,10 @@ C    with 2 polar faces + 4 equatorials:
          ENDDO
         ENDIF
 
-        _EXCH_XY_R4(fCori,myThid)
-        CALL EXCH_Z_XY_RS(fCoriG,myThid)
-        _EXCH_XY_R4(fCoriCos,myThid)
+        CALL EXCH_XY_RS( fCori, myThid )
+        CALL EXCH_XY_RS( fCoriCos, myThid )
+c       CALL EXCH_Z_XY_RS( fCoriG, myThid )
+        CALL EXCH_Z_3D_RS( fCoriG, 1, myThid )
       ENDIF
 
 #ifdef ALLOW_MONITOR
