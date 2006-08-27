@@ -38,10 +38,6 @@ C     == Global variables ===
 #ifdef ALLOW_NONHYDROSTATIC
 #include "NH_VARS.h"
 #endif
-      LOGICAL  DIFFERENT_MULTIPLE
-      EXTERNAL DIFFERENT_MULTIPLE
-      INTEGER  IO_ERRCOUNT
-      EXTERNAL IO_ERRCOUNT
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
@@ -50,7 +46,7 @@ C                       be written.
 C     myThid :: Thread number for this instance of the routine.
 C     myIter :: Iteration number
 C     myTime :: Current time of simulation ( s )
-      LOGICAL permCheckPoint  
+      LOGICAL permCheckPoint
       INTEGER myThid
       INTEGER myIter
       _RL     myTime
@@ -69,12 +65,11 @@ C     lgf    :: Flag to indicate whether to use global file mode.
       LOGICAL lgf
 CEOP
 
-      permCheckPoint = .FALSE.
-      permCheckPoint=
-     &     DIFFERENT_MULTIPLE(pChkptFreq,myTime,deltaTClock)
-
 C--    Going to really do some IO. Make everyone except master thread wait.
        _BARRIER
+
+        prec = precFloat64
+        lgf  = globalFile
 
 C--     Write model fields
         IF ( permCheckPoint ) THEN
