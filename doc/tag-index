@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint58o_post
+o replace calls to EXCH_Z & EXCH_UV_AGRID: use the new _3D_ version ;
+  remove old subroutines (_XY_ & _XYZ_); update the adjoint version.
 o change controling S/R for writing pickup file (new S/R do_write_pickup)
   and clean-up reading/writing of pickup files.
 o fix local version of read/write pickup (NH part) in rotating_tank/code
