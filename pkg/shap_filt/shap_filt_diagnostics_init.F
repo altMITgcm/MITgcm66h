@@ -79,6 +79,14 @@ C-    Shapiro Filter tendency:
         CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
+        diagName  = 'SHAP_dKE'
+        diagTitle = 
+     &  'Kinetic Energy Tendency due to Shapiro Filter (Mass Weighted)'
+        diagUnits = 'm^2/s^3         '
+        diagCode  = 'SM      MR      '
+        CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
 c     ENDIF
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
