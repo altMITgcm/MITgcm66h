@@ -303,14 +303,30 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       diagName  = 'UFLUX   '
       diagTitle = 'Zonal Wind Surface Stress  (N/m^2)'
       diagUnits = 'N/m^2           '
-      WRITE(diagCode,'(A,I3.3,A)') 'UM   ',diagNum+2,'L1      '
+      WRITE(diagCode,'(A,I3.3,A)') 'UU   ',diagNum+2,'L1      '
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
       diagName  = 'VFLUX   '
       diagTitle = 'Meridional Wind Surface Stress  (N/m^2)'
       diagUnits = 'N/m^2           '
-      WRITE(diagCode,'(A,I3.3,A)') 'VM   ', diagNum ,'L1      '
+      WRITE(diagCode,'(A,I3.3,A)') 'VV   ', diagNum ,'L1      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+      diagName  = 'dKE_Ustr'
+      diagTitle = 
+     &    'KE sink due to Zonal Surf. Stress and Strat. drag (<0)'
+      diagUnits = 'W/m^2           '
+      WRITE(diagCode,'(A,I3.3,A)') 'SU   ',diagNum+2,'L1      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+      diagName  = 'dKE_Vstr'
+      diagTitle = 
+     &    'KE sink due to Meridional Surf. Stress and Strat. drag (<0)'
+      diagUnits = 'W/m^2           '
+      WRITE(diagCode,'(A,I3.3,A)') 'SV   ', diagNum ,'L1      '
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
