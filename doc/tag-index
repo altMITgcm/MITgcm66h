@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o diagnoctics: modify UVELPHI and VVELPHI to include hfac (i.e. mass-weighted)
+
 checkpoint58o_post
 o replace calls to EXCH_Z & EXCH_UV_AGRID: use the new _3D_ version ;
   remove old subroutines (_XY_ & _XYZ_); update the adjoint version.
