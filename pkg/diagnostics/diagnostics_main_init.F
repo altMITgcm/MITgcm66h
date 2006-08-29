@@ -396,7 +396,7 @@ c    I          diagName, diagCode, diagUnits, diagTitle, myThid )
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
       diagName  = 'UVELPHI '
-      diagTitle = DIAGS_MK_TITLE( 'Zonal Transp of '
+      diagTitle = DIAGS_MK_TITLE( 'Zonal Mass-Weight Transp of '
      I                 //pTitle//' Anomaly', myThid )
       diagUnits = 'm^3/s^3         '
       WRITE(diagCode,'(A,I3.3,A)') 'UU   ',diagNum+2,'MR      '
@@ -404,7 +404,7 @@ c    I          diagName, diagCode, diagUnits, diagTitle, myThid )
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
       diagName  = 'VVELPHI '
-      diagTitle = DIAGS_MK_TITLE( 'Meridional Transp of '
+      diagTitle = DIAGS_MK_TITLE( 'Meridional Mass-Weight Transp of '
      I                 //pTitle//' Anomaly', myThid )
       diagUnits = 'm^3/s^3         '
       WRITE(diagCode,'(A,I3.3,A)') 'VV   ', diagNum ,'MR      '
