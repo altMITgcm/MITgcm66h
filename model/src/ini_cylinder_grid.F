@@ -109,7 +109,7 @@ C       Back-step to the outer grid-line of the "halo" region
          xG0 = xG0 - delX( 1+mod(Olx*Nx-1+iG-i,Nx) )
         ENDDO
 C       Find the Y-coordinate of the outer grid-line of the "real" tile
-        yG0 = 0
+        yG0 = phiMin
         DO j=1, jG-1
          yG0 = yG0 + delY(j)
         ENDDO
