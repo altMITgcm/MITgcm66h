@@ -215,10 +215,11 @@ C     Find the vID
         k = 2 + 3*(i - 1)
         j = mnc_fv_ids(indf,k)
         n = ILNBLNK(mnc_v_names(j))
-        IF ((n .EQ. lenv) 
-     &       .AND. (mnc_v_names(j)(1:n) .EQ. vname(1:n))) THEN
+        IF ( n.EQ.lenv ) THEN
+         IF ( mnc_v_names(j)(1:n).EQ.vname(1:n) ) THEN
           ind_fv_ids = k
           GOTO 10
+         ENDIF
         ENDIF
       ENDDO
       ind_fv_ids = -1
