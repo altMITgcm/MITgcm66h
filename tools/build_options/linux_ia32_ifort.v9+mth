@@ -29,7 +29,7 @@ if test "x$IEEE" = x ; then
     FFLAGS='-132 -r8 -i4 -w95 -W0 -WB -convert big_endian -assume byterecl'
     F90FLAGS='-r8 -i4 -w95 -W0 -WB -openmp -convert big_endian -assume byterecl'
 else
-    FOPTIM='-O0 -noalign'
+    FOPTIM='-O0 -noalign -check all'
     FFLAGS='-132 -r8 -i4 -w95 -W0 -WB -openmp -xN -pc64 -convert big_endian -assume byterecl'
    #FFLAGS='-mp -132 -r8 -i4 -w95 -W0 -WB'
 fi
