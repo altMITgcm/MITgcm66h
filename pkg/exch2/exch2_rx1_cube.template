@@ -133,6 +133,9 @@ C       in its copy of "array".
        ENDDO
       ENDDO
 
+C     without MPI: wait until all threads finish filling buffer
+      CALL BAR2( myThid )
+
 C     Receive messages or extract buffer copies
       DO I=myBxLo(myThid), myBxHi(myThid)
        thisTile=W2_myTileList(I)
