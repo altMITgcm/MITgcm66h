@@ -5,6 +5,11 @@ $Name$
     ==============================
 
 
+o shelfice: 
+ - fix a sign error so that no slip at shelfice interface works
+ - remove stop for combination non-hydrostatic code and shelfice. That does 
+   not mean, that the results are correct, but at least they are numerically
+   stable
 o diagnoctics: modify UVELPHI and VVELPHI to include hfac (i.e. mass-weighted)
 
 checkpoint58o_post
