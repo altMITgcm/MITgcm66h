@@ -91,7 +91,7 @@ echo "======================"
 echo
 
 echo "Running testreport using:"
-comm="./testreport -adm $IEEE -of ../tools/build_options/linux_ia32_g77 -a edhill@mitgcm.org"
+comm="./testreport -adm $IEEE -a edhill@mitgcm.org"
 echo "  \"$comm\""
 echo "======================"
 echo
