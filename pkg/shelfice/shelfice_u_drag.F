@@ -29,7 +29,6 @@ C !USES: ===============================================================
 #include "GRID.h"
 #include "SHELFICE.h"
 
-
 C !INPUT PARAMETERS: ===================================================
 C  bi,bj                :: tile indices
 C  k                    :: vertical level
@@ -77,7 +76,7 @@ CML        IF (k.EQ.kTop) maskUp=0.
         uDragTerms(i,j)=
      &   -_recip_hFacW(i,j,k,bi,bj)*recip_drF(k)
      &   *( 
-     &      2.*KappaRU(i,j,kUpC)*rdrckp1*viscFac
+     &     - 2.*KappaRU(i,j,kUpC)*rdrckp1*viscFac
      &     + SHELFICEDragLinear
      &    )*(1.-maskUp)*uFld(i,j)
         IF ( (KE(i,j)+KE(i-1,j)) .NE. 0. ) THEN
