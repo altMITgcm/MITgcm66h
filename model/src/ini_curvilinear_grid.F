@@ -45,7 +45,7 @@ C     myThid -  Number of this instance of INI_CURVILINEAR_GRID
 
 C     !LOCAL VARIABLES:
 C     == Local variables ==
-      INTEGER bi,bj, myIter
+      INTEGER bi,bj
       INTEGER I,J
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       LOGICAL anglesAreSet
