@@ -861,7 +861,7 @@ C      Data
            IF ( 10*((iBuf-7)/10) .EQ. iBuf-7 ) THEN
             WRITE(plotBuf(iBuf:),'(A)')  '|'
            ELSE
-            WRITE(plotBuf(iBuf:iBuf),'(I1)') MOD(iDx,10)
+            WRITE(plotBuf(iBuf:iBuf),'(I1)') MOD(ABS(iDx),10)
            ENDIF
           ENDDO
          ENDDO
