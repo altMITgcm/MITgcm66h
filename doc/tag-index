@@ -11,6 +11,8 @@ o shelfice:
    not mean, that the results are correct, but at least they are numerically
    stable
 o diagnoctics: modify UVELPHI and VVELPHI to include hfac (i.e. mass-weighted)
+o added adjoint exch routined for all exch*3d* routines
+  and updated flow directives
 
 checkpoint58o_post
 o replace calls to EXCH_Z & EXCH_UV_AGRID: use the new _3D_ version ;
