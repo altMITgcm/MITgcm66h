@@ -833,6 +833,7 @@ C Logical flags for selecting packages
       LOGICAL useSEAICE
       LOGICAL useShelfIce
       LOGICAL useThSIce
+      LOGICAL useATM2d
       LOGICAL useBulkForce
       LOGICAL usefizhi
       LOGICAL usegridalt
@@ -848,7 +849,8 @@ C Logical flags for selecting packages
      &        useCAL, useEXF, useEBM, useGrdchk, useECCO,
      &        useSHAP_FILT, useZONAL_FILT, useFLT,
      &        usePTRACERS, useGCHEM, useRBCS, useOffLine, useMATRIX,
-     &        useSBO, useSEAICE, useShelfIce, useThSIce, useBulkForce,
+     &        useSBO, useSEAICE, useShelfIce, 
+     &        useThSIce, useATM2D, useBulkForce,
      &        usefizhi, usegridalt, useDiagnostics, useMNC, useREGRID,
      &        useRunClock, useEMBED_FILES, useMYPACKAGE
 
