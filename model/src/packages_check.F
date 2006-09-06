@@ -95,6 +95,10 @@ CEOP
       IF (useThSIce) CALL PACKAGES_CHECK_ERROR('THSICE', myThid)
 #endif
 
+#ifndef ALLOW_ATM2D
+      IF (useATM2D) CALL PACKAGES_CHECK_ERROR('ATM2D', myThid)
+#endif
+
 #ifndef ALLOW_AIM
       IF (useAIM) CALL PACKAGES_CHECK_ERROR('AIM', myThid)
 #endif

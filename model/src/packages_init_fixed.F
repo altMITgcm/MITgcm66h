@@ -76,6 +76,8 @@ C       |-- MYPACKAGE_INIT_FIXED
 C       |
 C       |-- CPL_INIT_FIXED
 C       |
+C       |-- ATM2D_INIT_FIXED
+C       |
 C       |-- DIAGNOSTICS_INIT_FIXED
 C       |
 C       |-- REGRID_INIT_FIXED
@@ -277,6 +279,10 @@ C     IF (useDIC)
 
 #ifdef COMPONENT_MODULE
       IF ( useCoupler ) CALL CPL_INIT_FIXED( mythid )
+#endif
+
+#ifdef ALLOW_ATM2D
+      IF ( useAtm2d ) CALL ATM2D_INIT_FIXED( myThid )
 #endif
 
 #ifdef ALLOW_DIAGNOSTICS

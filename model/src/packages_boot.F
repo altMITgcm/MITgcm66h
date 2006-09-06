@@ -67,6 +67,7 @@ C     data.pkg namelists
      &          useSEAICE,
      &          useShelfIce,
      &          useThSIce,
+     &          useATM2D,
      &          useBulkForce,
      &          useEBM,
      &          usefizhi,
@@ -119,6 +120,7 @@ C--   Default package configuration
       useSEAICE       =.FALSE.
       useShelfIce     =.FALSE.
       useThSIce       =.FALSE.
+      useATM2D        =.FALSE.
       useBulkForce    =.FALSE.
       usefizhi        =.FALSE.
       usegridalt      =.FALSE.

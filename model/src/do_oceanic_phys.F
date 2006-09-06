@@ -162,7 +162,7 @@ CADJ STORE uvel,vvel           = comlev1, key = ikey_dynamics
       ENDIF
 #endif /* ALLOW_SEAICE */
 
-#ifdef ALLOW_THSICE
+#if (defined ALLOW_THSICE) && !(defined ALLOW_ATM2D)
       IF ( useThSIce .AND. fluidIsWater ) THEN
 #ifdef ALLOW_DEBUG
         IF ( debugLevel .GE. debLevB )

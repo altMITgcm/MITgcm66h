@@ -446,9 +446,16 @@ c--     Accumulate in-situ time averages of temperature, salinity, and SSH.
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_CALL('FORWARD_STEP',myThid)
 #endif
+
+#ifdef ALLOW_ATM2D
+        CALL TIMER_START('FORWARD_STEP_ATM2D  [THE_MAIN_LOOP]',mythid)
+        CALL FORWARD_STEP_ATM2D( iloop, mytime, myiter, mythid )
+        CALL TIMER_STOP ('FORWARD_STEP_ATM2D  [THE_MAIN_LOOP]',mythid)
+#else
         CALL TIMER_START('FORWARD_STEP        [THE_MAIN_LOOP]',mythid)
         CALL FORWARD_STEP( iloop, mytime, myiter, mythid )
         CALL TIMER_STOP ('FORWARD_STEP        [THE_MAIN_LOOP]',mythid)
+#endif
 
 #ifdef ALLOW_AUTODIFF_TAMC
         CALL AUTODIFF_INADMODE_SET( myThid )
