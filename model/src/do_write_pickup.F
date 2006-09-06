@@ -87,7 +87,7 @@ C-    write a pickup for each package which need it to restart
      I                permPickup, myTime, myIter, myThid )
 
 C-    write main model pickup
-        IF ( .NOT.useOffLine .AND. .NOT.useATM2D ) THEN
+        IF ( .NOT.useOffLine ) THEN
            CALL WRITE_PICKUP(
      I                permPickup, myTime, myIter, myThid )
         ENDIF
