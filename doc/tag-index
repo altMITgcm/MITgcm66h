@@ -4,7 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
-
+checkpoint58p_post
 o shelfice: 
  - fix a sign error so that no slip at shelfice interface works
  - remove stop for combination non-hydrostatic code and shelfice. That does 
