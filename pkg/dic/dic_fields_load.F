@@ -161,7 +161,7 @@ C
 c calculate piston velocity
 c QQ: note - we should have wind speed variance in here
 c QQ         also need to check units, and conversion factors
-           pisvel(i,j,bi,bj)  =0.337*wind(i,j,bi,bj)**2/3.6d5    !QQQQ
+c          pisvel(i,j,bi,bj)  =0.337*wind(i,j,bi,bj)**2/3.6d5    !QQQQ
            IF ( AtmospFile .NE. ' '  ) THEN
              ATMOSP(i,j,bi,bj)    = bWght*atmosp0(i,j,bi,bj)
      &                        +aWght*atmosp1(i,j,bi,bj)

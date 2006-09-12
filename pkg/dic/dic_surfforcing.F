@@ -140,6 +140,7 @@ C first correct pCO2at for surface atmos pressure
      &          AtmosP(i,j,bi,bj)*AtmospCO2(i,j,bi,bj)
 c find exchange coefficient
 c  account for schmidt number and and varible piston velocity
+              pisvel(i,j,bi,bj)  =0.337*wind(i,j,bi,bj)**2/3.6d5
               Kwexch(i,j) =
      &             pisvel(i,j,bi,bj)
      &             / sqrt(SchmidtNoDIC(i,j)/660.0)
