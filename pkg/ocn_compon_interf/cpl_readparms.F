@@ -137,7 +137,7 @@ C-    If land_taveFreq is positive, then must compile the land-diagnostics code
      &  'CPL_READPARMS: pressure loading code is not compiled.'
         CALL PRINT_ERROR( msgBuf , myThid)
         WRITE(msgBuf,'(A)')
-     &  'Re-compile with:  #define ATMOSPHERIC_LOADING',
+     &  'Re-compile with:  #define ATMOSPHERIC_LOADING'
         CALL PRINT_ERROR( msgBuf , myThid)
         STOP 'ABNORMAL END: S/R CPL_READPARMS'
       ENDIF
