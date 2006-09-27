@@ -32,6 +32,21 @@ C     msgBuf      - Informational/error meesage buffer
       CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,
      &                   SQUEEZE_RIGHT,myThid)
 
+#ifdef ALLOW_CD_CODE
+      IF ( useCDscheme ) THEN
+       WRITE(msgBuf,'(A)')
+     &  'OBCS_CHECK: ERROR: useCDscheme = .TRUE.'
+       CALL PRINT_ERROR( msgBuf , 1)
+       WRITE(msgBuf,'(A)')
+     &  'OBCS_CHECK: ERROR: The CD-scheme does not work with OBCS.'
+       CALL PRINT_ERROR( msgBuf , 1)
+       WRITE(msgBuf,'(A)')
+     &  'OBCS_CHECK: ERROR: Sorry, not yet implemented.'
+       CALL PRINT_ERROR( msgBuf , 1)
+       STOP 'ABNORMAL END: S/R OBCS_CHECK'
+      ENDIF
+#endif /* ALLOW_CD_CODE */
+
 #ifdef ALLOW_ORLANSKI
       WRITE(msgBuf,'(A)') 'OBCS_CHECK: #define ALLOW_ORLANSKI'
       CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,

@@ -5,6 +5,7 @@ $Name$
     ==============================
 
 checkpoint58p_post
+o obcs: stop if obcs is used with useCDscheme = .true.
 o shelfice: 
  - fix a sign error so that no slip at shelfice interface works
  - remove stop for combination non-hydrostatic code and shelfice. That does 
