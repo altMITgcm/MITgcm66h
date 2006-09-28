@@ -23,6 +23,8 @@ aim_v23		-aim
 #  Ask PH about the following:
 #    cal cost ctrl ecco exf grdchk
 
+exf             +cal
+
 #  Ask Steph about:
 #    dic gchem
 
