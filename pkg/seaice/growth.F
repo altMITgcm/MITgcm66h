@@ -371,6 +371,17 @@ c          HEFF(I,J,1,bi,bj)=MIN(MAX_HEFF,HEFF(I,J,1,bi,bj))
          ENDDO
         ENDDO
 
+#ifdef ATMOSPHERIC_LOADING
+        IF ( useRealFreshWaterFlux ) THEN
+         DO J=1,sNy
+          DO I=1,sNx
+           sIceLoad(i,j,bi,bj) = HEFF(I,J,1,bi,bj)*SEAICE_rhoIce
+     &                         + HSNOW(I,J,bi,bj)* 330. _d 0
+          ENDDO
+         ENDDO
+        ENDIF
+#endif
+
        ENDDO
       ENDDO
 

@@ -149,6 +149,10 @@ C--   Update overlap regions for a bunch of stuff
 #ifdef SHORTWAVE_HEATING
       _EXCH_XY_R4(Qsw  , myThid )
 #endif
+#ifdef ATMOSPHERIC_LOADING
+      IF ( useRealFreshWaterFlux .AND. .NOT.useThSIce )
+     &   _EXCH_XY_RS( sIceLoad, myThid )
+#endif
       _EXCH_XYZ_R8(theta , myThid )
 
       RETURN

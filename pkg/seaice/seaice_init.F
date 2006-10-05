@@ -21,6 +21,7 @@ C     === Global variables ===
 CML#include "SEAICE_GRID.h"
 #include "SEAICE_DIAGS.h"
 #include "SEAICE_PARAMS.h"
+#include "FFIELDS.h"
 #ifdef ALLOW_EXCH2
 #include "W2_EXCH2_TOPOLOGY.h"
 #include "W2_EXCH2_PARAMS.h"
@@ -296,6 +297,17 @@ C---  Complete initialization
           ETA(I,J,bi,bj)=ZETA(I,J,bi,bj)/4.0 _d 0
          ENDDO
         ENDDO
+#ifdef ATMOSPHERIC_LOADING
+        IF ( useRealFreshWaterFlux .AND. .NOT.useThSIce ) THEN
+         DO j=1-OLy,sNy+OLy
+          DO i=1-OLx,sNx+OLx
+           sIceLoad(i,j,bi,bj) = HEFF(I,J,1,bi,bj)*SEAICE_rhoIce
+     &                         + HSNOW(I,J,bi,bj)* 330. _d 0
+          
+          ENDDO
+         ENDDO
+        ENDIF
+#endif
        ENDDO
       ENDDO
 
