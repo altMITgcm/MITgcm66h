@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: implement sea-ice loading (when using RealFreshWaterFlux)
+
 checkpoint58p_post
 o obcs: stop if obcs is used with useCDscheme = .true.
 o shelfice: 
