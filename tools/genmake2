@@ -946,7 +946,7 @@ EOF
     RET_CPP=f
     COMM="cat genmake_tnc.F | $CPP $DEFINES $INCLUDES"
     echo "$COMM" >> genmake_tnc.log
-    $COMM > genmake_tnc.$FS 2>/dev/null  &&  RET_CPP=t
+    eval $COMM > genmake_tnc.$FS 2>/dev/null  &&  RET_CPP=t
     if test "x$RET_CPP" = xf ; then
 	echo "  WARNING: CPP failed to pre-process the netcdf test." \
 	    >> genmake_tnc.log
