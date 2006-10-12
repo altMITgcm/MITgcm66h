@@ -789,7 +789,8 @@ C     executable code below.
       Real*8 wtime
 #  elif (defined (ALLOW_USE_MPI) && defined (USE_MPI_WTIME))
 C     No declarations necessary
-#  else      Real*8 timenow
+#  else
+      Real*8 timenow
       external timenow
 #  endif /* HAVE_CLOC */
 # endif
