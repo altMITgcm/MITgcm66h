@@ -60,7 +60,8 @@ c--   Read the namelist input.
      &                   scatstartdate1, scatstartdate2, 
      &                   scatperiod, scatxdatfile, scatydatfile,
      &                   scatx_errfile, scaty_errfile,
-     &                   ssh_errfile,
+     &                   ssh_errfile, 
+     &                   tp_errfile, ers_errfile, gfo_errfile,
      &                   tmistartdate1, tmistartdate2, tmidatfile,
      &                   sststartdate1, sststartdate2, sstdatfile, 
      &                   sssstartdate1, sssstartdate2, sssdatfile, 
@@ -153,6 +154,9 @@ c--     Set default values.
         scatxdatfile          =    ' '
         scatydatfile          =    ' '
         ssh_errfile           =    ' '
+        tp_errfile            =    ' '
+        ers_errfile           =    ' '
+        gfo_errfile           =    ' '
         scatx_errfile         =    ' '
         scaty_errfile         =    ' '
         tmistartdate1         =      0
