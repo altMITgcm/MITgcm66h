@@ -20,6 +20,7 @@
 
 FC='mpif77'
 CC='mpicc'
+F90C='mpif90 -fixed -c '
 LINK='mpif77'
 INCLUDES='-I/usr/local/pkg/ifc/ifc-8.1.018/include -I/usr/local/pkg/mpich/mpich-intel/include/'
 LIBS='-L/usr/local/pkg/ifc/ifc-8.1.018/lib'
