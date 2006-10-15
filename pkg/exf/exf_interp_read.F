@@ -75,8 +75,11 @@ C check input arguments
 
 C read in input data
 #ifdef ALLOW_USE_MPI
-C      if (useSingleCPUIO) then
+#ifdef EXF_IREAD_USE_GLOBAL_POINTER
        if (.FALSE.) then
+#else
+      if (useSingleCPUIO) then
+#endif
 
 C master thread of process 0, only, opens a global file
         IF( mpiMyId .EQ. 0 ) THEN
