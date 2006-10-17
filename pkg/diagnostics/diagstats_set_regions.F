@@ -113,12 +113,14 @@ C       _END_MASTER( myThid )
 C-     end of k loop
        ENDDO
       ENDIF
-      nSetRegMask = nSetRegMskFile
 
 C--   Other way to define regions (e.g., latitude bands):
 C      set corresponding set-index of the region-mask array,
 C      starting from nSetRegMskFile+1 up to nSetRegMask
 C note: for now, empty !
+      _BEGIN_MASTER( myThid )
+      nSetRegMask = nSetRegMskFile
+      _END_MASTER( myThid )
 
 C--   Region Identificator arrays
 C       for now, directly filled when reading data.diagnostics

@@ -34,15 +34,18 @@ CEOP
 C     !LOCAL VARIABLES:
       INTEGER n,m
       INTEGER ip,iSp
+      INTEGER bi,bj
 
       DIAGNOSTICS_IS_ON = .FALSE.
+      bi = myBxLo(myThid)
+      bj = myByLo(myThid)
 
 C-    search for this diag. in the active 2D/3D diagnostics list
       DO n=1,nlists
        DO m=1,nActive(n)
         IF ( diagName.EQ.flds(m,n) .AND. idiag(m,n).NE.0 ) THEN
           ip = ABS(idiag(m,n))
-          IF ( ndiag(ip,1,1).GE.0 ) DIAGNOSTICS_IS_ON = .TRUE.
+          IF ( ndiag(ip,bi,bj).GE.0 ) DIAGNOSTICS_IS_ON = .TRUE.
         ENDIF
        ENDDO
       ENDDO
@@ -51,10 +54,10 @@ C-    search for this diag. in the active 2D/3D diagnostics list
 C-    search for this diag. in the active statistics-diagnostics list
        DO n=1,diagSt_nbLists
         DO m=1,diagSt_nbActv(n)
-         IF ( diagName.EQ.diagSt_Flds(m,n) 
+         IF ( diagName.EQ.diagSt_Flds(m,n)
      &               .AND.iSdiag(m,n).NE.0 ) THEN
            iSp = ABS(iSdiag(m,n))
-           IF (qSdiag(0,0,iSp,1,1).GE.0.) DIAGNOSTICS_IS_ON = .TRUE.
+           IF (qSdiag(0,0,iSp,bi,bj).GE.0.) DIAGNOSTICS_IS_ON = .TRUE.
          ENDIF
         ENDDO
        ENDDO
