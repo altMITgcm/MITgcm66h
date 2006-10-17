@@ -38,6 +38,7 @@ C     Dont change before everyone is ready
       CALL BAR2( myThid )
 
 C     Set monitor I/O unit
+      _BEGIN_MASTER(myThid)
       I0 = IFNBLNK( prefString )
       I1 = ILNBLNK( prefString )
       IL = I1-I0+1
@@ -46,6 +47,7 @@ C     Set monitor I/O unit
        mon_prefL = IL
        mon_pref(1:IL) = prefString(I0:I1)
       ENDIF
+      _END_MASTER(myThid)
 
 C     Make sure everyone sees the change
       CALL BAR2( myThid )

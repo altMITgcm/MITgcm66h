@@ -30,7 +30,9 @@ C     Dont change before everyone is ready
       CALL BAR2( myThid )
 
 C     Set monitor I/O unit
-      mon_ioUnit = standardMessageUnit
+      _BEGIN_MASTER(myThid)
+      mon_ioUnit = unit
+      _END_MASTER(myThid)
 
 C     Make sure everyone sees the change
       CALL BAR2( myThid )

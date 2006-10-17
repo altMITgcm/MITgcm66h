@@ -32,6 +32,8 @@ C     msgBuf      - Informational/error meesage buffer
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
+      _BEGIN_MASTER(myThid)
+
 C-- Set Temp & Salt multi-Dim Advec. flag according to advection scheme used
       tempMultiDimAdvec = multiDimAdvection .AND. tempAdvection
       saltMultiDimAdvec = multiDimAdvection .AND. saltAdvection
@@ -69,7 +71,7 @@ C-- Set Temp & Salt Adams-Bashforth flag according to advection scheme used
 #ifdef ALLOW_ADAMSBASHFORTH_3
 C-    For now, A-B on T,S is only implemented in AB-3 code, and not working
 C     with synchronous time-step, which would require to do also AB(u,v,w)
-      IF ( .NOT.doAB_onGtGs .AND. 
+      IF ( .NOT.doAB_onGtGs .AND.
      &     (staggerTimeStep .OR. implicitIntGravWave) ) THEN
         AdamsBashforth_T = AdamsBashforthGt
         AdamsBashforth_S = AdamsBashforthGs
@@ -84,6 +86,8 @@ C             correspond to what is actually needed.
        tempStartAB = nIter0.EQ.0
        saltStartAB = nIter0.EQ.0
 
+      _END_MASTER(myThid)
+
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 #ifdef ALLOW_DIAGNOSTICS
@@ -96,7 +100,6 @@ C--   Add diagnostics of Temp & Salt fluxes to the (long) list of diagnostics:
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 C-- Print out GAD parameters :
-      _BARRIER
       _BEGIN_MASTER(myThid)
 
       WRITE(msgBuf,'(A)') ' '
