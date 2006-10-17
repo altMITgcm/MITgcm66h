@@ -161,9 +161,7 @@ C--   Update overlap regions
      &       buoyancyRelation .eq. 'OCEANICP'         ) 
      &       .AND. .NOT.uniformLin_PhiSurf              ) THEN
 
-        _BEGIN_MASTER( myThid ) 
         CALL WRITE_FLD_XY_RL( 'Bo_surf',' ',Bo_surf,0,myThid) 
-        _END_MASTER( myThid )
 
       ENDIF
 
@@ -198,17 +196,16 @@ C--   AND set phi0surf = starting point for integrating Geopotential;
      O                     topoHloc, 
      I                     Ro_surf, myThid )
 
-        _BEGIN_MASTER( myThid )
-        CALL WRITE_FLD_XY_RS( 'topo_H',' ',topoHloc,0,myThid)
-        _END_MASTER( myThid )
 
        IF (selectFindRoSurf.NE.0) THEN
         _EXCH_XY_RS(phi0surf, myThid)
 
-        _BEGIN_MASTER( myThid ) 
         CALL WRITE_FLD_XY_RS( 'phi0surf',' ',phi0surf,0,myThid) 
-        _END_MASTER( myThid )
+       ELSE
+        _BARRIER
        ENDIF
+
+        CALL WRITE_FLD_XY_RS( 'topo_H',' ',topoHloc,0,myThid)
 
 #endif /* ALLOW_AUTODIFF_TAMC */
 

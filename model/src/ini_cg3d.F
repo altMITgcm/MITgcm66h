@@ -198,8 +198,8 @@ c    &      theRecip_Dr = 1. _d 0/theRecip_Dr
       ELSE
        myNorm = 1. _d 0
       ENDIF
-       cg3dNorm = myNorm
       _BEGIN_MASTER( myThid )
+       cg3dNorm = myNorm
 CcnhDebugStarts
        WRITE(msgBuf,'(A,E40.25)') '// CG3D normalisation factor = '
      &                , cg3dNorm

@@ -35,6 +35,8 @@ C     msgBuf   :: Informational/error meesage buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 CEOP
 
+      _BEGIN_MASTER(myThid)
+
       IF (setCenterDr) THEN
 C-- Interface at middle between 2 centers :
 
@@ -104,6 +106,9 @@ C-    Calculate reciprol vertical grid spacing :
        recip_drC(K)   = 1. _d 0/drC(K)
        recip_drF(K)   = 1. _d 0/drF(K)
       ENDDO
+
+      _END_MASTER(myThid)
+      _BARRIER
 
       RETURN
       END

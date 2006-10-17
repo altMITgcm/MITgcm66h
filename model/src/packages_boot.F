@@ -85,7 +85,7 @@ CEOP
 
       WRITE(msgBuf,'(A)') ' PACKAGES_BOOT: opening data.pkg'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                    SQUEEZE_RIGHT , 1)
+     &                    SQUEEZE_RIGHT , myThid )
     
 
       CALL OPEN_COPY_DATA_FILE(
@@ -136,11 +136,10 @@ C--   Read parameters from open data file
 
       WRITE(msgBuf,'(A)') ' PACKAGES_BOOT: finished reading data.pkg'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                    SQUEEZE_RIGHT , 1)
+     &                    SQUEEZE_RIGHT , myThid )
 
 C--   Close the open data file
       CLOSE(iUnit)
-      _END_MASTER(myThid)
  
 C--   packages with hard-coded switch
 #ifdef ALLOW_EXF
@@ -149,6 +148,8 @@ C--   packages with hard-coded switch
 #ifdef ALLOW_CAL
       useCAL = .TRUE.
 #endif
+
+      _END_MASTER(myThid)
 
 C--   Everyone else must wait for the parameters to be loaded
       _BARRIER

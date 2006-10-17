@@ -287,5 +287,10 @@ CML      CALL WRITE_FLD_XY_RS( 'R_shelfIce' ,' ', R_shelfIce, 0,myThid)
       ENDIF
 #endif /* ALLOW_SHELFICE */
 
+C--   Everyone else must wait for the depth to be loaded
+C-    note: might not be necessary since all single-thread IO above
+C           are followed by an EXCH (with BARRIER)
+      _BARRIER
+
       RETURN
       END
