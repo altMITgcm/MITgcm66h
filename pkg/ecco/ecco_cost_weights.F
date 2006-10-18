@@ -602,12 +602,12 @@ c-- overwrite T/P error field, if available:
 c-- overwrite ERS error field, if available:
       if ( ers_errfile .NE. ' ' ) 
      &     call mdsreadfield( ers_errfile, cost_iprec, cost_yftype, nnz, 
-     &     wtp, irec, mythid )
+     &     wers, irec, mythid )
 
 c-- overwrite GFO error field, if available:
       if ( gfo_errfile .NE. ' ' ) 
      &     call mdsreadfield( gfo_errfile, cost_iprec, cost_yftype, nnz, 
-     &     wtp, irec, mythid )
+     &     wgfo, irec, mythid )
 
          do bj = jtlo,jthi
           do bi = itlo,ithi
