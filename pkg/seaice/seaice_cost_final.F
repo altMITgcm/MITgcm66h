@@ -86,7 +86,8 @@ c--   Sum up all contributions.
       enddo
 
 c--   Do global summation.
-      _GLOBAL_SUM_R8( fc , myThid )
+cph this is done only in ecco_cost_final!
+cph      _GLOBAL_SUM_R8( fc , myThid )
 
 c--   Do global summation for each part of the cost function
             
