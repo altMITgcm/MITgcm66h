@@ -192,9 +192,11 @@ C   ==> no need for applying the mask here.
 C and with "partial thin wall" ==> mask could be applied in S/R UPDATE_SURF_DR
 C-----
 
-      WRITE(suff,'(I10.10)') myIter
-c     CALL WRITE_FLD_XY_RS('hFac_surfC.',suff,hFac_surfC,
-c    &                     myIter,myThid)                    
+c     IF ( myIter.GE.0 ) THEN
+c       WRITE(suff,'(I10.10)') myIter
+c       CALL WRITE_FLD_XY_RS( 'hFac_surfC.', suff, hFac_surfC,
+c    &                         myIter, myThid )                    
+c     ENDIF
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 #endif /* NONLIN_FRSURF */
