@@ -127,7 +127,8 @@ C         NOTE: file size and number problems are *SOLVED* by MNC
         ENDIF
 
 #ifdef ALLOW_MNC
-        IF (KPPwriteState .AND. useMNC .AND. snapshot_mnc) THEN
+        IF (KPPwriteState .AND. useMNC .AND. snapshot_mnc .AND.
+     &      .NOT.useDiagnostics ) THEN
           CALL MNC_CW_SET_UDIM('kpp_state', -1, myThid)
           CALL MNC_CW_RL_W_S('D','kpp_state',0,0,'T',myTime,myThid)
           CALL MNC_CW_SET_UDIM('kpp_state', 0, myThid)
@@ -263,7 +264,8 @@ C         NOTE: file size and number problems are *SOLVED* by MNC
         ENDIF
         
 #ifdef ALLOW_MNC
-        IF (KPPwriteState .AND. useMNC .AND. timeave_mnc) THEN
+        IF (KPPwriteState .AND. useMNC .AND. timeave_mnc .AND.
+     &      .NOT.useDiagnostics) THEN
           CALL MNC_CW_SET_UDIM('kpp_timeave', -1, myThid)
           CALL MNC_CW_RL_W_S('D','kpp_timeave',0,0,'T',myTime,myThid)
           CALL MNC_CW_SET_UDIM('kpp_timeave', 0, myThid)
