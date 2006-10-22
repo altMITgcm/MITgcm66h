@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o Adding some pkg/diagnostics capability to pkg/seaice
+  (will certainly be subject to changes)
+
 checkpoint58q_post
 o added CPP_EEOPTIONS.h flag DISABLE_MPI_READY_TO_RECEIVE.  Speeds up
   1/6-deg Southern Ocean configuration by 8% on IBM Datastar and
