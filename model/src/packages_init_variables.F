@@ -35,7 +35,7 @@ C       |-- MY82_INIT
 C       |
 C       |-- GGL90_INIT
 C       |
-C       |-- SEAICE_INIT
+C       |-- SEAICE_INIT_VARIA
 C       |
 C       |-- PTRACERS_INIT_VARIA
 C       |
@@ -166,9 +166,9 @@ C--   Initialize GGL90 vertical mixing scheme.
 #ifdef ALLOW_SEAICE
 C--   Initialize SEAICE model.
 #ifdef ALLOW_DEBUG
-      IF (debugMode) CALL DEBUG_CALL('SEAICE_INIT',myThid)
+      IF (debugMode) CALL DEBUG_CALL('SEAICE_INIT_VARIA',myThid)
 #endif
-      IF (useSEAICE) CALL SEAICE_INIT( myThid )
+      IF (useSEAICE) CALL SEAICE_INIT_VARIA( myThid )
 #endif
 
 cph-- moved further down

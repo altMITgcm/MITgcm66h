@@ -261,6 +261,10 @@ C     IF (useDIC)
       IF (useThSIce) CALL THSICE_INIT_FIXED(mythid)
 #endif
 
+#ifdef ALLOW_SEAICE
+      IF (useSEAICE) CALL SEAICE_INIT_FIXED(mythid)
+#endif
+
 #ifdef ALLOW_SHELFICE
       IF (useShelfIce) CALL SHELFICE_INIT_FIXED( myThid )
 #endif /* ALLOW_SHELFICE */
