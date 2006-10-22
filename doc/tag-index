@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o GAD: use simpler DST3 formulation as default (old version left within #ifdef)
+  affects the results (but none of the verification test uses this scheme).
 o Adding some pkg/diagnostics capability to pkg/seaice
   (will certainly be subject to changes)
 
