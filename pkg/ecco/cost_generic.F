@@ -145,7 +145,8 @@ c--   First, read tiled data.
       write(fname1(1:128),'(2a,i10.10)') 
      &     localbarfile(1:il),'.',optimcycle
 
-      if ( .NOT. ( mult_local.EQ.0. .OR. localobsfile.EQ.' ' ) ) then
+cph      if ( .NOT. ( mult_local.EQ.0. .OR. localobsfile.EQ.' ' ) ) then
+      if ( .NOT. ( localobsfile.EQ.' ' ) ) then
 
 c--   Loop over records for the second time.
       do irec = 1, nrecloc
