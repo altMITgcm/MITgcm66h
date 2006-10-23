@@ -2207,7 +2207,7 @@ if test ! "x$DIVA" = x ; then
 	perl -i -pe 's/MPI_DISPLACEMENT_CURRENT=-1_8/MPI_DISPLACEMENT_CURRENT=-1/g' mpi_headers/mpif.h
     else
 	echo " We cannot create a copy of mpif.h!"
-	exit -1
+#	exit -1
     fi
 fi
 
