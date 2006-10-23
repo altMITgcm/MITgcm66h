@@ -210,14 +210,4 @@ c--   Atmos. swdown. contribution to the cost function.
      &     maskC, mythid )
 #endif
 
-c--   Compute cost function contribution of wind stress observations.  
-#ifdef ALLOW_MEAN_HFLUX_COST_CONTRIBUTION
-      call cost_mean_heatflux( myiter, mytime, mythid )
-#endif
-
-c--   Compute cost function contribution of wind stress observations.
-#ifdef ALLOW_MEAN_SFLUX_COST_CONTRIBUTION
-      call cost_mean_saltflux( myiter, mytime, mythid )
-#endif
-
       end
