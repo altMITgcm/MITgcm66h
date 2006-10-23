@@ -89,8 +89,6 @@ c     -----------------
           kdiag(n) = nlevs - 1
         ELSEIF (gdiag(n)(10:10) .EQ. 'G') THEN
           kdiag(n) = nGroundLev
-        ELSEIF (gdiag(n)(10:10) .EQ. 'I') THEN
-          kdiag(n) = 3
         ELSEIF (gdiag(n)(10:10) .NE. ' ') THEN
 C-      others: set 1 level:
           kdiag(n) = 1
