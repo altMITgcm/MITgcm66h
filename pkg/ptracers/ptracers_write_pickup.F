@@ -4,10 +4,10 @@ C $Name$
 #include "PTRACERS_OPTIONS.h"
 
 CBOP
-C !ROUTINE: PTRACERS_WRITE_CHECKPOINT
+C !ROUTINE: PTRACERS_WRITE_PICKUP
 
 C !INTERFACE: ==========================================================
-      SUBROUTINE PTRACERS_WRITE_CHECKPOINT( permCheckPoint, 
+      SUBROUTINE PTRACERS_WRITE_PICKUP( permCheckPoint, 
      &     suff,myIter,myTime,myThid )
 
 C !DESCRIPTION:

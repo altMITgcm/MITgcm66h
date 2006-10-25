@@ -5,10 +5,10 @@ C $Name$
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 CBOP
-C     !ROUTINE: PTRACERS_READ_CHECKPOINT
+C     !ROUTINE: PTRACERS_READ_PICKUP
 
 C     !INTERFACE:
-      SUBROUTINE PTRACERS_READ_CHECKPOINT( myIter, myThid )
+      SUBROUTINE PTRACERS_READ_PICKUP( myIter, myThid )
 
 C     !DESCRIPTION:
 C     Reads current state of passive tracers from a pickup file

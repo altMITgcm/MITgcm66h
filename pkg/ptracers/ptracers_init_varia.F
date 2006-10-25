@@ -105,7 +105,7 @@ C     Suffix for pickup files
        ELSE
         WRITE(suff,'(A10)') pickupSuff
        ENDIF
-       CALL PTRACERS_READ_CHECKPOINT( nIter0,myThid )
+       CALL PTRACERS_READ_PICKUP( nIter0,myThid )
       ENDIF
 
 #endif /* ALLOW_PTRACERS */
