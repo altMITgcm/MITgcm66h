@@ -1124,14 +1124,12 @@ c
       call timer_start('ECCO SPIN-DOWN', mythid)
 
 #ifdef ALLOW_PROFILES
-c
-# ifdef ALLOW_DIVIDED_ADJOINT
-CADJ STORE mytime = onetape
-# endif
+#ifndef ALLOW_DIVIDED_ADJOINT
 c--     Accumulate in-situ time averages of temperature, salinity, and SSH.
       call timer_start('PROFILES_INLOOP     [ECCO SPIN-DOWN]', mythid)
       call profiles_inloop( mytime, mythid )
       call timer_stop ('PROFILES_INLOOP     [ECCO SPIN-DOWN]', mythid)
+#endif
 #endif
 
 #ifdef ALLOW_COST
