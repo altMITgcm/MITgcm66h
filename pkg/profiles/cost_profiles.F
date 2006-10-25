@@ -69,7 +69,7 @@ c     == end of interface ==
 cgf for ssh anomalies, prof_traj1D_mean is the model time average, to be removed
 #ifdef ALLOW_SSH_COST_CONTRIBUTION
              if (num_var.EQ.6) then
-              call profiles_interp(prof_traj1D_mean,
+              call profiles_interp_mean(prof_traj1D_mean,
      &         prof_lon(num_file,prof_num,bi,bj),
      &         prof_lat(num_file,prof_num,bi,bj),
      &         num_var,num_file,mytime,bi,bj,myThid)
