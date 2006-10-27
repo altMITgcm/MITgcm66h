@@ -35,6 +35,12 @@ DIFF_FLAGS="-toplevel 'the_main_loop'    \
                     xx_precip_dummy      \
                     xx_swflux_dummy      \
                     xx_swdown_dummy      \
+                    xx_lwflux_dummy      \
+                    xx_lwdown_dummy      \
+                    xx_evap_dummy        \
+                    xx_snowprecip_dummy  \
+                    xx_apressure_dummy   \
+                    xx_runoff_dummy      \
                     xx_uwind_dummy       \
                     xx_vwind_dummy       \
                     xx_obcsn_dummy       \
