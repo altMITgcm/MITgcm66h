@@ -168,9 +168,9 @@ c--     Loop over this thread tiles.
 
       enddo
 
-      do bj = jtlo,jthi
+      if ( wmean_gen .NE. 0. ) then
+       do bj = jtlo,jthi
         do bi = itlo,ithi
-
 c--     Determine the weights to be used.
         kk = 1
         fctilem = 0. _d 0
@@ -188,11 +188,10 @@ c--     Determine the weights to be used.
             endif
           enddo
         enddo
-
         objf_gen_mean(bi,bj) = objf_gen_mean(bi,bj) + fctilem
-
         enddo
-      enddo
+       enddo
+      endif
 
 c--   >>> Loop 2 over records.
       do irec = 1,nrec
