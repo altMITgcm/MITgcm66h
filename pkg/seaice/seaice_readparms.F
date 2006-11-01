@@ -42,7 +42,7 @@ C--   SEAICE parameters
       NAMELIST /SEAICE_PARM01/
      & SEAICEwriteState, SEAICEuseDYNAMICS,
      & SEAICEuseEVP, SEAICEuseEVPpickup, SEAICEuseFluxForm,
-     & useHB87stressCoupling,
+     & useHB87stressCoupling, SEAICEuseFlooding, SEAICEadvSnow,
      & SEAICE_clipVelocities, SEAICE_maskRHS,
      & LAD, IMAX_TICE, SEAICEadvScheme, SEAICEadvSchArea, 
      & SEAICEadvSchHeff, SEAICEadvSchEnth, SEAICEadvSchSnow,
@@ -108,6 +108,8 @@ C--   set default sea ice parameters
       SEAICEuseEVPpickup = .TRUE.
       SEAICEuseFluxForm  = .FALSE.
       useHB87stressCoupling = .FALSE.
+      SEAICEadvSnow      = .FALSE.    
+      SEAICEuseFlooding  = .FALSE.
       SEAICE_clipVelocities = .TRUE.
       SEAICE_maskRHS     = .FALSE.
       SEAICEadvScheme    = 2

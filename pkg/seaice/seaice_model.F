@@ -143,6 +143,7 @@ C--   Update overlap regions for a bunch of stuff
       _BARRIER
       CALL SEAICE_EXCH( HEFF, myThid )
       CALL SEAICE_EXCH( AREA, myThid )
+      _EXCH_XY_R8( HSNOW,  myThid )
       CALL EXCH_UV_XY_RS(fu,fv,.TRUE.,myThid)
       _EXCH_XY_R4(EmPmR, myThid )
       _EXCH_XY_R4(Qnet , myThid )

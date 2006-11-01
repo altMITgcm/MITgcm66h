@@ -79,6 +79,10 @@ C     == end of interface ==
       CALL WRITE_0D_L ( useHB87stressCoupling, INDEX_NONE,
      & 'useHB87stressCoupling  =', ' /* altern. ice-ocean stress */')
 #endif /* SEAICE_CGRID */
+      CALL WRITE_0D_L ( SEAICEadvSnow, INDEX_NONE,
+     & 'SEAICEadvSnow =', ' /* advect snow layer together with ice */')
+      CALL WRITE_0D_L ( SEAICEuseFlooding, INDEX_NONE,
+     & 'SEAICEuseFlooding =', ' /* turn submerged snow into ice */')
       CALL WRITE_0D_I ( LAD,               INDEX_NONE,
      & 'LAD               =', ' /* time stepping scheme */')
       CALL WRITE_0D_I ( IMAX_TICE,         INDEX_NONE,
