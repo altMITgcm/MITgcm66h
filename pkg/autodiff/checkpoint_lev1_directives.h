@@ -64,6 +64,7 @@ CADJ STORE Qsw1    = comlev1, key = ikey_dynamics
 # ifdef ATMOSPHERIC_LOADING
 CADJ STORE pload0  = comlev1, key = ikey_dynamics
 CADJ STORE pload1  = comlev1, key = ikey_dynamics
+CADJ STORE siceload = comlev1, key = ikey_dynamics
 # endif
 #endif /* ALLOW_EXF */
 

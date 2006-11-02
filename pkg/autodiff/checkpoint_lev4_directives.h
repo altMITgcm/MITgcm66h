@@ -84,6 +84,7 @@ CADJ STORE Qsw1    = tapelev4, key = ilev_4
 #ifdef ATMOSPHERIC_LOADING
 CADJ STORE pload0  = tapelev4, key = ilev_4
 CADJ STORE pload1  = tapelev4, key = ilev_4
+CADJ STORE siceload = tapelev4, key = ilev_4
 #endif
 
 #endif /* ALLOW_EXF */
