@@ -1038,16 +1038,23 @@ C--   Do IO if needed.
 #endif
 
 #ifndef ALLOW_DIVIDED_ADJOINT
+# ifdef HAVE_SIGREG
+      IF ( useSIGREG ) THEN
+        IF ( i_got_signal .GT. 0 ) THEN
+          CALL PACKAGES_WRITE_PICKUP(
+     I         .TRUE., myTime, myIter, myThid )
+          CALL WRITE_PICKUP(
+     I         .TRUE., myTime, myIter, myThid )
+          STOP 'Checkpoint completed -- killed by signal handler'
+        ENDIF
+      ENDIF
+# endif /* HAVE_SIGREG */
 C--   Save state for restarts
-      CALL TIMER_START('WRITE_CHECKPOINT    [FORWARD_STEP]',myThid)
-      CALL PACKAGES_WRITE_PICKUP(
+      CALL TIMER_START('DO_WRITE_PICKUP     [FORWARD_STEP]',myThid)
+      CALL DO_WRITE_PICKUP(
      I               .FALSE., myTime, myIter, myThid )
-#ifndef ALLOW_OFFLINE
-      CALL WRITE_CHECKPOINT(
-     I               .FALSE., myTime, myIter, myThid )   
-#endif
-      CALL TIMER_STOP ('WRITE_CHECKPOINT    [FORWARD_STEP]',myThid)
-#endif
+      CALL TIMER_STOP ('DO_WRITE_PICKUP     [FORWARD_STEP]',myThid)
+#endif /* ALLOW_DIVIDED_ADJOINT */
 
 #ifdef TIME_PER_TIMESTEP
 CCE107 Time per timestep information
