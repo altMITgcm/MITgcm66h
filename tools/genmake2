@@ -2468,7 +2468,9 @@ output.txt: \$(EXECUTABLE)
 	@\$(EXECUTABLE) > \$@
 
 clean:
-	-rm -rf *.o *.$FS *.p *.$FS90 *.mod ${RMFILES} work.{pc,pcl} *.template
+	-rm -rf *.p *.$FS90 *.mod ${RMFILES} work.{pc,pcl} *.template
+	-rm -rf *.o
+	-rm -rf *.$FS
 Clean:
 	@make clean
 	@make cleanlinks
