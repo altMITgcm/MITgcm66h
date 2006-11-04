@@ -63,8 +63,6 @@ C     Zero out the qSdiag array (statistics) which accumulates during integratio
 
       CALL DIAGNOSTICS_READ_PICKUP( myThid )
 
-      CALL DIAGSTATS_INI_IO( myThid )
-
       CALL DIAGNOSTICS_SUMMARY( startTime, nIter0, myThid )
 
       RETURN
