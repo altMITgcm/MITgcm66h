@@ -41,6 +41,9 @@ C o Include/exclude exact volume conservaion
 C o Execution environment support options
 #include "CPP_EEOPTIONS.h"
 
+C o Include/exclude atmospheric pressure loading
+#define ATMOSPHERIC_LOADING
+
 C o Include/exclude code specific to the ECCO/SEALION version.
 #ifdef ALLOW_ECCO
 # include "ECCO_CPPOPTIONS.h"
