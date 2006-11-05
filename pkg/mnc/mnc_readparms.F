@@ -39,7 +39,8 @@ C     !LOCAL VARIABLES:
      &     timeave_mnc, snapshot_mnc, monitor_mnc, autodiff_mnc, 
      &     writegrid_mnc, readgrid_mnc,
      &     mnc_outdir_str, mnc_indir_str, mnc_max_fsize,
-     &     mnc_filefreq
+     &     mnc_filefreq,
+     &     mnc_read_bathy, mnc_read_salt, mnc_read_theta
 
 C     Functions
       integer ILNBLNK
@@ -86,6 +87,11 @@ C     Set default values for MNC run-time parameters
 C     2GB is 2147483648 bytes or approx: 2.1475e+09
       mnc_max_fsize         =  2.1 _d 9
       readgrid_mnc          =  .FALSE.
+
+C     New parms for initial files
+      mnc_read_bathy        =  .FALSE.
+      mnc_read_salt         =  .FALSE.
+      mnc_read_theta        =  .FALSE.
 
 C     Temporary hack for Baylor
       mnc_filefreq          =  -1
