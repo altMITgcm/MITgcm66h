@@ -127,18 +127,21 @@ C     sFlux (=salt flux [g/m2/s], positive <-> increasing Salt)
      &      recip_horiVertRatio*rhoConst
           ENDDO
          ENDDO
-#ifdef NONLIN_FRSURF
-         IF ( (nonlinFreeSurf.GT.0 .OR. usingPCoords)
-     &        .AND. useRealFreshWaterFlux ) THEN
-          DO j=1,sNy
-           DO i=1,sNx
-            tmp1k(i,j,bi,bj) = tmp1k(i,j,bi,bj)
-     &       + PmEpR(i,j,bi,bj)*rhoConstFresh
-     &                        *salt(i,j,ks,bi,bj)
-           ENDDO
-          ENDDO
-         ENDIF
-#endif /* NONLIN_FRSURF */
+
+Cdm PmEpR already added to surfaceForcingS in external_forcing_surf.F
+Cdm#ifdef NONLIN_FRSURF
+Cdm         IF ( (nonlinFreeSurf.GT.0 .OR. usingPCoords)
+Cdm     &        .AND. useRealFreshWaterFlux ) THEN
+Cdm          DO j=1,sNy
+Cdm           DO i=1,sNx
+Cdm            tmp1k(i,j,bi,bj) = tmp1k(i,j,bi,bj)
+Cdm     &       + PmEpR(i,j,bi,bj)*rhoConstFresh
+Cdm     &                        *salt(i,j,ks,bi,bj)
+Cdm           ENDDO
+Cdm          ENDDO
+Cdm         ENDIF
+Cdm#endif /* NONLIN_FRSURF */
+
         ENDDO
        ENDDO
        CALL DIAGNOSTICS_FILL(tmp1k,'SFLUX   ',0,1,0,1,1,myThid)
