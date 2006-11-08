@@ -77,6 +77,15 @@ cph            endif
 cph         endif
       endif
 
+#ifdef USE_EXF_INTERPOLATION
+      if ( usingCartesianGrid ) then
+       print*,'USE_EXF_INTERPOLATION assumes latitude/longitude'
+       print*,'input and output coordinates.  Trivial to extend to'
+       print*,'cartesian coordinates, but has not yet been done.'
+       stop
+      endif
+#endif
+
 #ifdef ALLOW_CLIMTEMP_RELAXATION
       STOP 'ALLOW_CLIMTEMP_RELAXATION no longer supported. Use pkg/rbcs'
 #endif
