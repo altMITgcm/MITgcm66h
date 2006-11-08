@@ -148,6 +148,9 @@ CADJ STORE fu, fv              = comlev1, key = ikey_dynamics
 CADJ STORE qnet,qsw            = comlev1, key = ikey_dynamics
 CADJ STORE aqh,precip,swdown   = comlev1, key = ikey_dynamics
 CADJ STORE theta               = comlev1, key = ikey_dynamics
+# ifdef EXF_READ_EVAP
+CADJ STORE evap                = comlev1, key = ikey_dynamics
+# endif
 cph# ifdef SEAICE_ALLOW_DYNAMICS
 CADJ STORE uvel,vvel           = comlev1, key = ikey_dynamics
 cph# endif
