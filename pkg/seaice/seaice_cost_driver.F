@@ -52,8 +52,10 @@ c     == local variables ==
 
 c     == end of interface ==
 
+      if (useSEAICE) then
 
 #ifdef ALLOW_SEAICE_COST_SMR_AREA
+
       write(msgbuf,'(a)') 'ph-cost call cost_smrarea'
       call print_message( msgbuf, standardmessageunit,
      &     SQUEEZE_RIGHT , mythid)
@@ -76,12 +78,14 @@ cph)
      &     spminloc, spmaxloc, spzeroloc,
      &     objf_smrarea, num_smrarea,
      &     myiter, mytime, mythid )
-cph(
+
       write(msgbuf,'(a,1P2E18.10)') 
      &     'ph-cost smrarea ', objf_smrarea(1,1), num_smrarea(1,1)
       call print_message( msgbuf, standardmessageunit,
      &     SQUEEZE_RIGHT , mythid)
-cph)
+
 #endif
+
+      endif
 
       end

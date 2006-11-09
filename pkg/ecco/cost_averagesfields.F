@@ -350,7 +350,7 @@ cph: these are annual means
 
 
 #ifdef ALLOW_SEAICE
-
+      if (useSEAICE) then
 # ifdef ALLOW_SEAICE_COST_SMR_AREA
       call cost_averagesgeneric(
      &     smrareabarfile, 
@@ -358,7 +358,7 @@ cph: these are annual means
      &     first, last, startofday, endofday, inday,
      &     sum1day, dayrec, 1, mythid )
 # endif
-
+      endif
 #endif /* ALLOW_SEAICE */
 
 #if (defined (ALLOW_PROFILES) && defined (ALLOW_PROFILES_CONTRIBUTION))
