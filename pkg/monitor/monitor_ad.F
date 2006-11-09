@@ -3,7 +3,7 @@ C $Name$
 
 #include "MONITOR_OPTIONS.h"
 #include "PACKAGES_CONFIG.h"
-#include "AUTODIFF_OPTIONS.h"
+#include "MONITOR_OPTIONS.h"
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 CBOP
