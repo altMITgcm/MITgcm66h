@@ -465,7 +465,7 @@ c--   Northern obc.
         diffrec  = endrec
         call ctrl_init_ctrlvar ( 
      &       xx_obcsn_file, 11, 111, diffrec, startrec, endrec,
-     &       snx, sny, nr, 'm', 'xz', mythid )
+     &       snx, 1, nr, 'm', 'xz', mythid )
 
 #endif /* ALLOW_OBCSN_CONTROL */
 
@@ -491,7 +491,7 @@ c--   Southern obc.
         diffrec  = endrec
         call ctrl_init_ctrlvar ( 
      &       xx_obcss_file, 12, 112, diffrec, startrec, endrec,
-     &       snx, sny, nr, 'm', 'xz', mythid )
+     &       snx, 1, nr, 'm', 'xz', mythid )
 
 #endif /* ALLOW_OBCSS_CONTROL */
 
@@ -517,7 +517,7 @@ c--   Western obc.
         diffrec  = endrec
         call ctrl_init_ctrlvar ( 
      &       xx_obcsw_file, 13, 113, diffrec, startrec, endrec,
-     &       snx, sny, nr, 'm', 'yz', mythid )
+     &       1, sny, nr, 'm', 'yz', mythid )
 
 #endif  /* ALLOW_OBCSW_CONTROL */
 
@@ -543,7 +543,7 @@ c--   Eastern obc.
         diffrec  = endrec
         call ctrl_init_ctrlvar ( 
      &       xx_obcse_file, 14, 114, diffrec, startrec, endrec,
-     &       snx, sny, nr, 'm', 'yz', mythid )
+     &       1, sny, nr, 'm', 'yz', mythid )
 
 #endif /* ALLOW_OBCSE_CONTROL */
 
