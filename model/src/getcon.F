@@ -65,7 +65,7 @@ C     ---------------------
       PARAMETER ( CFC12  = 0.5        )
       PARAMETER ( CFC22  = 0.2        )
       PARAMETER ( ATMPOPA= 1.d5       )
-      PARAMETER ( PI     = 3.14159 )
+      PARAMETER ( PI     = 3.14159d0  )
       PARAMETER ( YRLEN  = 365.25     )
       PARAMETER ( DAYSCY = 365 *4 +1  )
 
