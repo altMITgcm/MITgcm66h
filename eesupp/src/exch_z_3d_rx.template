@@ -52,7 +52,7 @@ CEOP
      U                    phi,
      I                    myNz, myThid )
       RETURN
-#endif
+#else
 
       OLw        = OLx
       OLe        = OLx
@@ -79,4 +79,5 @@ C                begine.
       ENDIF
 
       RETURN
+#endif
       END

@@ -50,7 +50,7 @@ CEOP
 #ifdef ALLOW_EXCH2
       CALL EXCH2_S3D_RX( phi, myNz, myThid )
       RETURN
-#endif
+#else
 
       OLw        = 1
       OLe        = 1
@@ -77,4 +77,5 @@ C                begine.
       ENDIF
 
       RETURN
+#endif
       END

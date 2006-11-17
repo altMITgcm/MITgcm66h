@@ -47,7 +47,7 @@ CEOP
 #ifdef ALLOW_EXCH2
       CALL EXCH2_3D_RX( phi, Nr, myThid )
       RETURN
-#endif
+#else
 
       OLw        = OLx
       OLe        = OLx
@@ -75,4 +75,5 @@ C                begine.
       ENDIF
 
       RETURN
+#endif
       END
