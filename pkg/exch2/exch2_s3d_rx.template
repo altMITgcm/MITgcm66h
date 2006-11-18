@@ -70,10 +70,12 @@ C                begine.
 
       ELSE
 
+#ifndef AUTODIFF_EXCH2
        CALL EXCH_RX( phi,
      I            OLw, OLe, OLs, OLn, myNz,
      I            exchWidthX, exchWidthY,
      I            FORWARD_SIMULATION, EXCH_IGNORE_CORNERS, myThid )
+#endif
 
       ENDIF
 
