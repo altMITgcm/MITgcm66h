@@ -149,13 +149,13 @@ C-     Diffusive flux:
        diagCode  = 'WM      LR      '
        CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I              diagName, diagCode, diagUnits, diagTitle, myThid ) 
-       diagName  = 'DIFx'//diagSufx
+       diagName  = 'DFxE'//diagSufx
        WRITE(diagTitle,'(2A)') 'Zonal      Diffusive Flux of ',
      &                 locName(1:ilnb)
        WRITE(diagCode,'(A,I3.3,A)') 'UU   ',diagNum+2,'MR      '
        CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I              diagName, diagCode, diagUnits, diagTitle, myThid ) 
-       diagName  = 'DIFy'//diagSufx
+       diagName  = 'DFyE'//diagSufx
        WRITE(diagTitle,'(2A)') 'Meridional Diffusive Flux of ',
      &                 locName(1:ilnb)
        WRITE(diagCode,'(A,I3.3,A)') 'VV   ',diagNum,'MR      '

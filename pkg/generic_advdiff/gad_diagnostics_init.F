@@ -81,12 +81,12 @@ C-     Diffusive flux:
        diagCode  = 'WM      LR      '
        CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I              diagName, diagCode, diagUnits, diagTitle, myThid ) 
-       diagName  = 'DIFx'//diagSufx
+       diagName  = 'DFxE'//diagSufx
        diagTitle = 'Zonal      Diffusive Flux of Pot.Temperature'
        WRITE(diagCode,'(A,I3.3,A)') 'UU   ',diagNum+2,'MR      '
        CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I              diagName, diagCode, diagUnits, diagTitle, myThid ) 
-       diagName  = 'DIFy'//diagSufx
+       diagName  = 'DFyE'//diagSufx
        diagTitle = 'Meridional Diffusive Flux of Pot.Temperature'
        WRITE(diagCode,'(A,I3.3,A)') 'VV   ',diagNum,'MR      '
        CALL DIAGNOSTICS_ADD2LIST( diagNum,
@@ -139,12 +139,12 @@ C-     Diffusive flux:
        diagCode  = 'WM      LR      '
        CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I              diagName, diagCode, diagUnits, diagTitle, myThid ) 
-       diagName  = 'DIFx'//diagSufx
+       diagName  = 'DFxE'//diagSufx
        diagTitle = 'Zonal      Diffusive Flux of'//locName
        WRITE(diagCode,'(A,I3.3,A)') 'UU   ',diagNum+2,'MR      '
        CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I              diagName, diagCode, diagUnits, diagTitle, myThid ) 
-       diagName  = 'DIFy'//diagSufx
+       diagName  = 'DFyE'//diagSufx
        diagTitle = 'Meridional Diffusive Flux of'//locName
        WRITE(diagCode,'(A,I3.3,A)') 'VV   ',diagNum,'MR      '
        CALL DIAGNOSTICS_ADD2LIST( diagNum,
