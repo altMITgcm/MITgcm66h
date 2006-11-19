@@ -113,7 +113,7 @@ c If nonlinear free surf is active, need averaged pressures
           if(select_rStar.GT.0)then
            call diagnostics_get_pointers('RSURF   ',ipoint1,jpoint1,
      .                                                           myThid)
-           call diagnostics_get_pointers('PRESSURE',ipoint2,jpoint2,
+           call diagnostics_get_pointers('RCENTER ',ipoint2,jpoint2,
      .                                                           myThid)
 C if fizhi is being  used, may need to get physics grid pressures
 #ifdef ALLOW_FIZHI

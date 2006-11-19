@@ -303,7 +303,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
          CALL DIAGNOSTICS_FILL(tmpMk,'VVELPHI ',0,Nr,0,1,1,myThid)
         ENDIF
 
-        IF ( DIAGNOSTICS_IS_ON('PRESSURE',myThid) ) THEN
+        IF ( DIAGNOSTICS_IS_ON('RCENTER ',myThid) ) THEN
          DO bj = myByLo(myThid), myByHi(myThid)
           DO bi = myBxLo(myThid), myBxHi(myThid)
            DO j = 1,sNy
@@ -323,7 +323,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
            ENDDO
           ENDDO
          ENDDO
-         CALL DIAGNOSTICS_FILL(tmpMk,'PRESSURE',0,Nr,0,1,1,myThid)
+         CALL DIAGNOSTICS_FILL(tmpMk,'RCENTER ',0,Nr,0,1,1,myThid)
         ENDIF
 
 C First fill sequence for state variable tendency diagnostics: subtract state variable
