@@ -165,11 +165,12 @@ c--   components of the given control variable.
       ncvarcomp     = ncvarcomp*ncvarrecs(grdchkvarindex)
       maxncvarcomps = maxncvarcomps*ncvarrecs(grdchkvarindex)
 
-      iwetsum(0)    = 0
       do bj = jtlo,jthi
          do bi = itlo,ithi
+            iwetsum(bi,bj,0)    = 0
             do k = 1,ncvarnrmax(grdchkvarindex)
-               iwetsum(k) = iwetsum(k-1) + nwettile(bi,bj,k,1)
+               iwetsum(bi,bj,k) = iwetsum(bi,bj,k-1) + 
+     &              nwettile(bi,bj,k,1)
             enddo
          enddo
       enddo
