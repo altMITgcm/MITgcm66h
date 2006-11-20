@@ -4,6 +4,17 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o diagnostics: rename few diags:
+  s/'PRESSURE'/'RCENTER '/g
+  s/'TICE    '/'oceFreez'/g
+  s/'TAUX    '/'oceTAUX '/g
+  s/'TAUY    '/'oceTAUY '/g
+  s/'SWFLUX  '/'oceQsw  '/g
+  s/DIFx/DFxE/g
+  s/DIFy/DFyE/g
+  and add few ocean-forcing diagnostics:
+  atmPload, sIceLoad, oceQnet, oceFWflx, oceSflux, surForcT & surForcS
+
 checkpoint58r_post
 o modifications to pkg/seaice/growth.F, which change results of
   lab_sea experiment: fixes pertain to melting snow over open water, to
