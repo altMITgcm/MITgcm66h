@@ -110,6 +110,10 @@ C           filled in some way.
 #define CAN_PREVENT_X_PERIODICITY
 #define CAN_PREVENT_Y_PERIODICITY
 
+C--   Alternative formulation of BYTESWAP, faster than
+C     compiler flag -byteswapio on the Altix.
+#undef FAST_BYTESWAP
+
 #endif /* _CPP_EEOPTIONS_H_ */
 
 #include "CPP_EEMACROS.h"
