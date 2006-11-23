@@ -176,14 +176,15 @@ C     Initialise intermediate terms
         vort3(i,j) = 0.
         omega3(i,j)= 0.
         KE(i,j)    = 0.
+c       hDiv(i,j)  = 0. 
         viscAh_Z(i,j) = 0.
         viscAh_D(i,j) = 0.
         viscA4_Z(i,j) = 0.
         viscA4_D(i,j) = 0.
 
-#ifdef ALLOW_AUTODIFF_TAMC
         strain(i,j)  = 0. _d 0
         tension(i,j) = 0. _d 0
+#ifdef ALLOW_AUTODIFF_TAMC
         hFacZ(i,j)   = 0. _d 0
 #endif
        ENDDO
