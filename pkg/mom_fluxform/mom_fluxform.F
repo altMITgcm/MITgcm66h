@@ -189,15 +189,13 @@ C     Initialise intermediate terms
         fVrDw(i,j)= 0.
         rTransU(i,j)= 0.
         rTransV(i,j)= 0.
+c       KE(i,j)     = 0.
+c       hDiv(i,j)   = 0.
+        vort3(i,j)  = 0.
         strain(i,j) = 0.
         tension(i,j)= 0.
         guDiss(i,j) = 0.
         gvDiss(i,j) = 0.
-#ifdef ALLOW_AUTODIFF_TAMC
-        vort3(i,j)   = 0. _d 0
-        strain(i,j)  = 0. _d 0
-        tension(i,j) = 0. _d 0
-#endif
        ENDDO
       ENDDO
 
