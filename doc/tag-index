@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o profiles: fix for multithreaded case
+
 o diagnostics: rename few diags:
   s/'PRESSURE'/'RCENTER '/g
   s/'TICE    '/'oceFreez'/g
