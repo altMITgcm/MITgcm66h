@@ -214,6 +214,7 @@ C     == Local variables ==
       IF ( calcLeith .OR. calcSmag ) THEN
        STOP 'calcLeith or calcSmag not implemented for ADJOINT'
       ENDIF
+#endif
       DO j=1-Oly,sNy+Oly
         DO i=1-Olx,sNx+Olx
           viscAh_D(i,j)=viscAhD
@@ -238,9 +239,6 @@ c
           viscA4_ZLthD(i,j)= 0. _d 0
         ENDDO
       ENDDO
-#endif
-
-
 
 C     - Viscosity
       IF (useVariableViscosity) THEN
