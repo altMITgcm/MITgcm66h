@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o verification: remove 2nd copy of input files and use script "prepare_run"
+  to make a symbolic link to the 1rst copy (reduce downloaded size by ~81.M)
 o mom_common/vecinv/fluxform: fix a few initialisation isssues
 o profiles: fix for multithreaded case
 
