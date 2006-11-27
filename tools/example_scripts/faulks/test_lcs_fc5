@@ -28,7 +28,7 @@ echo "  done"
 echo -n "Downloading the MITgcm code from CVS pserver..."
 cd $tdir
 export CVSROOT='/u/gcmpack'
-cvs co MITgcm > /dev/null 2>&1
+cvs co -P MITgcm > /dev/null 2>&1
 echo "  done"
 cd MITgcm/verification
 
