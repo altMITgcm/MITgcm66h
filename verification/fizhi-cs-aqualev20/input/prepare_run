@@ -7,7 +7,7 @@
 #- from this dir:
 fromDir="../../fizhi-cs-32x32x10/input"
 
-fileList=`( cd $fromDir ; ls data.gcmo3 TSMo3.v02.gra )`
+fileList=`( cd $fromDir ; ls data.gcmo3 TSMo3.v02.gra tile00?.mitgrid )`
 
 #echo 'fileList=' $fileList
 
