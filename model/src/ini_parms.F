@@ -225,7 +225,7 @@ C--   Gridding parameters
      & usingCartesianGrid, usingCylindricalGrid,
      & dxSpacing, dySpacing, delX, delY, delXFile, delYFile,
      & usingSphericalPolarGrid, phiMin, thetaMin, rSphere,
-     & usingCurvilinearGrid, horizGridFile,
+     & usingCurvilinearGrid, horizGridFile, deepAtmosphere,
      & Ro_SeaLevel, delZ, delP, delR, delRc, delRFile, delRcFile,
      & rkFac, groundAtK1
 

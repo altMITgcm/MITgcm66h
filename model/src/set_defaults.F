@@ -60,6 +60,7 @@ C-    Horizontal gridding
       delXFile            = ' '
       delYFile            = ' '
       horizGridFile       = ' '
+      deepAtmosphere      = .FALSE.
 C     In cartesian coords distances are in metres
       usingCartesianGrid  = .FALSE.
       DO i=1,Nx
