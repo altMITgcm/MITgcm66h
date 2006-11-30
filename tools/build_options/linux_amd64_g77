@@ -12,7 +12,7 @@ DEFINES='-D_BYTESWAPIO -DWORDLENGTH=4'
 CPP='cpp  -traditional -P'
 NOOPTFLAGS='-O0'
 #MAKEDEPEND=/usr/X11R6/bin/gccmakedep
-MAKEDEPEND=/usr/X11R6/bin/makedepend
+#MAKEDEPEND=/usr/X11R6/bin/makedepend
 #  For IEEE, use the "-ffloat-store" option
 if test "x$IEEE" = x ; then
     FFLAGS='-Wimplicit -Wunused -Wuninitialized'
@@ -21,3 +21,27 @@ else
     FFLAGS='-Wimplicit -Wunused -ffloat-store'
     FOPTIM='-O0 '
 fi
+
+if test -d /usr/include/netcdf-3 ; then
+    INCLUDES='-I/usr/include/netcdf-3'
+    if test -d /usr/lib64/netcdf-3 ; then
+        if test -f /usr/lib64/netcdf-3/libnetcdf_g77.a ; then
+            LIBS='-L/usr/lib64/netcdf-3 -lnetcdf_g77'
+        else
+            LIBS='-L/usr/lib64/netcdf-3'
+        fi
+    elif test -d /usr/lib/netcdf-3 ; then
+        if test -f /usr/lib/netcdf-3/libnetcdf_g77.a ; then
+            LIBS='-L/usr/lib/netcdf-3 -lnetcdf_g77'
+        else
+            LIBS='-L/usr/lib/netcdf-3'
+        fi
+    fi
+elif test -d /usr/include/netcdf ; then
+    INCLUDES='-I/usr/include/netcdf'
+elif test -d /usr/local/netcdf ; then
+    INCLUDES='-I/usr/local/netcdf/include'
+    LIBS='-L/usr/local/netcdf/lib'
+fi
+
+
