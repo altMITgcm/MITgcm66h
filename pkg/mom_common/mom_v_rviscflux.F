@@ -59,7 +59,7 @@ C     - Vertical viscous flux
         DO i=1-Olx,sNx+Olx-1
           rViscFluxV(i,j) =
      &     -KappaRV(i,j,k)
-     &     *rAs(i,j,bi,bj)
+     &     *rAs(i,j,bi,bj)*deepFac2F(k)*rhoFacF(k)
      &     *( vFld(i,j,k,bi,bj)-vFld(i,j,k-1,bi,bj)
      &      )*rkSign*recip_drC(k)
      &     *_maskS(i,j,k,bi,bj)

@@ -7,7 +7,7 @@ CBOP
 C !ROUTINE: GAD_GRAD_X
 
 C !INTERFACE: ==========================================================
-      SUBROUTINE GAD_GRAD_X( 
+      SUBROUTINE GAD_GRAD_X(
      I           bi,bj,k,
      I           xA,
      U           tracer,
@@ -58,10 +58,11 @@ C     o Zonal tracer gradient
       DO j=1-Oly,sNy+Oly
        dTdx(1-Olx,j)=0.
        DO i=1-Olx+1,sNx+Olx
-        dTdx(i,j) = _recip_dxC(i,j,bi,bj)*xA(i,j)
-     &               *(tracer(i,j)-tracer(i-1,j))
+        dTdx(i,j) = xA(i,j)
+     &            *_recip_dxC(i,j,bi,bj)*recip_deepFacC(k)
+     &            *(tracer(i,j)-tracer(i-1,j))
 #ifdef COSINEMETH_III
-     &               *sqCosFacU(j,bi,bj)
+     &            *sqCosFacU(j,bi,bj)
 #endif
        ENDDO
       ENDDO

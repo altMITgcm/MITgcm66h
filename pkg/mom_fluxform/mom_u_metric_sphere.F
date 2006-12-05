@@ -11,7 +11,7 @@ C !INTERFACE: ==========================================================
      I        bi,bj,k,
      I        uFld, vFld,
      O        uMetricTerms,
-     I        myThid)
+     I        myThid )
 
 C !DESCRIPTION:
 C Calculates the zonal metric term due to sphericity:
@@ -48,8 +48,8 @@ CEOP
 
       DO j=1-Olx,sNy+Oly-1
        DO i=1-Olx+1,sNx+Olx
-         uMetricTerms(i,j) = 
-     &    uFld(i,j)*recip_RSphere
+         uMetricTerms(i,j) =
+     &    uFld(i,j)*recip_rSphere*recip_deepFacC(k)
      &    *0.25*( vFld(i,j  )+vFld(i-1,j  )
      &           +vFld(i,j+1)+vFld(i-1,j+1)
      &          )*_tanPhiAtU(i,j,bi,bj)

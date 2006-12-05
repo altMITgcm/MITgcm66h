@@ -12,7 +12,7 @@ C !INTERFACE: ==========================================================
      I        vFld, del2v, hFacZ,
      O        xViscFluxV,
      I        viscAh_Z,viscA4_Z,
-     I        myThid)
+     I        myThid )
 
 C !DESCRIPTION:
 C Calculates the area integrated zonal viscous fluxes of V:
@@ -55,17 +55,19 @@ C     - Laplacian  and bi-harmonic terms
       DO j=1-Oly,sNy+Oly
        DO i=1-Olx+1,sNx+Olx
         xViscFluxV(i,j) =
-     &     _dyU(i,j,bi,bj)*drF(k)*hFacZ(i,j)
+     &    _dyU(i,j,bi,bj)*drF(k)*hFacZ(i,j)
      &     *(
-     &       -viscAh_Z(i,j)*(vFld(i,j)-vFld(i-1,j))
+     &       -viscAh_Z(i,j)*( vFld(i,j)-vFld(i-1,j) )
      &       *cosFacV(J,bi,bj)
-     &       +viscA4_Z(i,j)*(del2v(i,j)       -del2v(i-1,j)       )
+     &       +viscA4_Z(i,j)*(del2v(i,j)-del2v(i-1,j))
 #ifdef COSINEMETH_III
-     &      *sqcosFacV(J,bi,bj)
+     &       *sqCosFacV(J,bi,bj)
 #else
-     &      *cosFacV(J,bi,bj)
+     &       *cosFacV(J,bi,bj)
 #endif
      &      )*_recip_dxV(i,j,bi,bj)
+c    &       *deepFacC(k)        ! dyU scaling factor
+c    &       *recip_deepFacC(k)  ! recip_dxV scaling factor
        ENDDO
       ENDDO
 

@@ -79,7 +79,7 @@ c     scalingFactor=gravitySign*recip_gravity
      &         +uFld(i+1,j,k,bi,bj)*uFld(i+1,j,k,bi,bj))
      &       + (vFld(i, j ,k,bi,bj)*vFld(i, j ,k,bi,bj)
      &         +vFld(i,j+1,k,bi,bj)*vFld(i,j+1,k,bi,bj))
-     &     )* 0.5 _d 0 * recip_rSphere
+     &     )* 0.5 _d 0 * recip_rSphere*recip_deepFacC(k)
         ENDDO
        ENDDO
       ENDIF

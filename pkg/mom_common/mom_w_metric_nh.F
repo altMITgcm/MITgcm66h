@@ -29,8 +29,8 @@ C !USES: ===============================================================
 C !INPUT PARAMETERS: ===================================================
 C  bi,bj                :: tile indices
 C  k                    :: vertical level
-C  uFld                 :: zonal flow 
-C  vFld                 :: meridional flow 
+C  uFld                 :: zonal flow
+C  vFld                 :: meridional flow
 C  myThid               :: my Thread Id number
       INTEGER bi,bj,k
       _RL uFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
@@ -50,8 +50,8 @@ CEOP
       IF ( k.GT.1 .AND. K.LE.Nr ) THEN
         DO j=1-Olx,sNy+Oly-1
          DO i=1-Olx,sNx+Olx-1
-           wMetricTerms(i,j) = 
-     &      -gravitySign*recip_rSphere*(
+           wMetricTerms(i,j) = -gravitySign*horiVertRatio
+     &      *recip_rSphere*recip_deepFacF(k)*(
      &          ( (uFld( i ,j,k-1,bi,bj)*uFld( i ,j,k-1,bi,bj)
      &            +uFld(i+1,j,k-1,bi,bj)*uFld(i+1,j,k-1,bi,bj))
      &          + (vFld(i, j ,k-1,bi,bj)*vFld(i, j ,k-1,bi,bj)
@@ -61,7 +61,7 @@ CEOP
      &            +uFld(i+1,j, k ,bi,bj)*uFld(i+1,j, k ,bi,bj))
      &          + (vFld(i, j , k ,bi,bj)*vFld(i, j , k ,bi,bj)
      &            +vFld(i,j+1, k ,bi,bj)*vFld(i,j+1, k ,bi,bj))
-     &          )                      )*0.25 _d 0 * horiVertRatio
+     &          )                            )*0.25 _d 0
          ENDDO
         ENDDO
       ELSE

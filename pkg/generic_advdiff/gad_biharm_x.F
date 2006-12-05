@@ -7,7 +7,7 @@ CBOP
 C !ROUTINE: GAD_BIHARM_X
 
 C !INTERFACE: ==========================================================
-      SUBROUTINE GAD_BIHARM_X( 
+      SUBROUTINE GAD_BIHARM_X(
      I           bi,bj,k,
      I           xA,del2T,diffK4,
      U           dfx,
@@ -51,14 +51,14 @@ C     Difference of zonal fluxes ...
       DO j=1-Oly,sNy+Oly
 c      dfx(1-Olx,j) = 0.
        DO i=1-Olx+1,sNx+Olx
-c        dfx(i,j) = diffK4
-         dfx(i,j) = dfx(i,j) + diffK4
-     &    *xA(i,j)
-     &    *(del2T(i,j)-del2T(i-1,j))*_recip_dxC(i,j,bi,bj)
+c        dfx(i,j) = diffK4*xA(i,j)
+         dfx(i,j) = dfx(i,j) + diffK4*xA(i,j)
+     &    *_recip_dxC(i,j,bi,bj)*recip_deepFacC(k)
+     &    *(del2T(i,j)-del2T(i-1,j))
 #ifdef COSINEMETH_III
      &    *sqCosFacU(j,bi,bj)
 #else
-     &    *CosFacU(j,bi,bj)
+     &    *cosFacU(j,bi,bj)
 #endif
        ENDDO
       ENDDO

@@ -7,7 +7,7 @@ CBOP
 C !ROUTINE: GAD_GRAD_Y
 
 C !INTERFACE: ==========================================================
-      SUBROUTINE GAD_GRAD_Y( 
+      SUBROUTINE GAD_GRAD_Y(
      I           bi,bj,k,
      I           yA,
      U           tracer,
@@ -60,11 +60,12 @@ C     o Meridional tracer gradient
       ENDDO
       DO j=1-Oly+1,sNy+Oly
        DO i=1-Olx,sNx+Olx
-        dTdy(i,j) = _recip_dyC(i,j,bi,bj)*yA(i,j)
-     &               *(tracer(i,j)-tracer(i,j-1))
+        dTdy(i,j) = yA(i,j)
+     &            *_recip_dyC(i,j,bi,bj)*recip_deepFacC(k)
+     &            *(tracer(i,j)-tracer(i,j-1))
 #ifdef ISOTROPIC_COS_SCALING
 #ifdef COSINEMETH_III
-     &   *sqCosFacV(j,bi,bj)
+     &            *sqCosFacV(j,bi,bj)
 #endif
 #endif
        ENDDO

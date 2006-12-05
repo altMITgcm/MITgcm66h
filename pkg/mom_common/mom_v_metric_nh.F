@@ -53,7 +53,7 @@ CEOP
 
       DO j=1-Olx+1,sNy+Oly
        DO i=1-Olx,sNx+Olx
-         vMetricTerms(i,j) = vFld(i,j)*recip_RSphere
+         vMetricTerms(i,j) = vFld(i,j)*recip_rSphere*recip_deepFacC(k)
      &    *0.25*(wVelBottomOverride*
      &           (wFld(i,j,kp1,bi,bj)+wFld(i,j-1,kp1,bi,bj))
      &           +wFld(i,j, k ,bi,bj)+wFld(i,j-1, k ,bi,bj)
