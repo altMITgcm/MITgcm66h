@@ -77,8 +77,10 @@ c     ENDDO
 C--   Calculate tracer cell face open areas
       DO j=1-OLy,sNy+OLy
        DO i=1-OLx,sNx+OLx
-         xA(i,j) = _dyG(i,j,bi,bj)*drF(k)*_hFacW(i,j,k,bi,bj)
-         yA(i,j) = _dxG(i,j,bi,bj)*drF(k)*_hFacS(i,j,k,bi,bj)
+         xA(i,j) = _dyG(i,j,bi,bj)*deepFacC(k)
+     &           *drF(k)*_hFacW(i,j,k,bi,bj)
+         yA(i,j) = _dxG(i,j,bi,bj)*deepFacC(k)
+     &           *drF(k)*_hFacS(i,j,k,bi,bj)
        ENDDO
       ENDDO
 
@@ -91,10 +93,11 @@ C--   Make a local copy of velocity component :
       ENDDO
 
 C--   Calculate "volume transports" through tracer cell faces.
+C     anelastic: scaled by rhoFacC (~ mass transport)
       DO j=1-OLy,sNy+OLy
        DO i=1-OLx,sNx+OLx
-         uTrans(i,j) = uFld(i,j)*xA(i,j)
-         vTrans(i,j) = vFld(i,j)*yA(i,j)
+         uTrans(i,j) = uFld(i,j)*xA(i,j)*rhoFacC(k)
+         vTrans(i,j) = vFld(i,j)*yA(i,j)*rhoFacC(k)
        ENDDO
       ENDDO
 

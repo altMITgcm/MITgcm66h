@@ -53,12 +53,12 @@ C     hx3dFac,hy3dFac
       _RL hx3dFac,hy3dFac
 CEOP
 
-C     On/off scaling paramters
-      hxFac = pfFacMom
-      hyFac = pfFacMom
+C     On/off scaling parameters (including anelastic & deep-model factors)
+      hxFac = pfFacMom*recip_deepFacC(k)*recip_rhoFacC(k)
+      hyFac = pfFacMom*recip_deepFacC(k)*recip_rhoFacC(k)
       IF ( use3Dsolver ) THEN
-        hx3dFac = pfFacMom
-        hy3dFac = pfFacMom
+        hx3dFac = pfFacMom*recip_deepFacC(k)*recip_rhoFacC(k)
+        hy3dFac = pfFacMom*recip_deepFacC(k)*recip_rhoFacC(k)
       ELSE
         hx3dFac = 0.
         hy3dFac = 0.

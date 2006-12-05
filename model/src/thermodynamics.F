@@ -418,6 +418,7 @@ CADJ STORE rTransKp1(:,:) = comlev1_bibj_k, key=kkey, byte=isbyte
 
 C--       Get temporary terms used by tendency routines :
 C-        Calculate horizontal "volume transport" through tracer cell face
+C         anelastic: uTrans,vTrans are scaled by rhoFacC (~ mass transport)
           CALL CALC_COMMON_FACTORS (
      I         uVel, vVel,
      O         uFld, vFld, uTrans, vTrans, xA, yA,
@@ -435,11 +436,13 @@ C-         Surface interface :
            ENDDO
           ELSE
 C-         Interior interface :
+C          anelastic: rTrans is scaled by rhoFacF (~ mass transport)
            DO j=1-Oly,sNy+Oly
             DO i=1-Olx,sNx+Olx
              wFld(i,j)   = wVel(i,j,k,bi,bj)
              maskUp(i,j) = maskC(i,j,k-1,bi,bj)*maskC(i,j,k,bi,bj)
              rTrans(i,j) = wFld(i,j)*rA(i,j,bi,bj)*maskUp(i,j)
+     &                              *deepFac2F(k)*rhoFacF(k)
             ENDDO
            ENDDO
           ENDIF
