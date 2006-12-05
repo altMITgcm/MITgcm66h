@@ -34,7 +34,7 @@ C     == Routine arguments ==
 C     == Local variables ==
 C     uLoc   :: velocity [m/s], zonal component
       INTEGER i,j
-      _RL Rjm,Rj,Rjp,cfl,d0,d1,psiP,psiM,thetaP,thetaM
+      _RL Rjm,Rj,Rjp,uCFL,d0,d1,psiP,psiM,thetaP,thetaM
       _RL uLoc
       _RL thetaMax
       PARAMETER( thetaMax = 1.D+20 )
@@ -53,11 +53,10 @@ C       with no need to compute thetaM (might be easier to differentiate)
         Rjm=(tracer(i-1,j)-tracer(i-2,j))*maskLocW(i-1,j)
 
         uLoc = uFld(i,j)
-c       uLoc = uTrans(i,j)*recip_dyG(i,j,bi,bj)
-c    &       *recip_drF(k)*_recip_hFacW(i,j,k,bi,bj)
-        cfl=abs(uLoc*deltaTloc*recip_dxC(i,j,bi,bj))
-        d0=(2. _d 0 -cfl)*(1. _d 0 -cfl)*oneSixth
-        d1=(1. _d 0 -cfl*cfl)*oneSixth
+        uCFL = ABS( uLoc*deltaTloc
+     &                  *recip_dxC(i,j,bi,bj)*recip_deepFacC(k) )
+        d0=(2. _d 0 -uCFL)*(1. _d 0 -uCFL)*oneSixth
+        d1=(1. _d 0 -uCFL*uCFL)*oneSixth
 
 C-      the old version: can produce overflow, division by zero,
 c       and is wrong for tracer with low concentration:
@@ -81,16 +80,16 @@ C-      prevent |thetaP,M| to reach too big value:
         ENDIF
 
         psiP=d0+d1*thetaP
-        psiP=MAX(0. _d 0, MIN(MIN(1. _d 0,psiP),
-     &                        thetaP*(1. _d 0 -cfl)/(cfl+1. _d -20) ))
+        psiP=MAX(0. _d 0,MIN(MIN(1. _d 0,psiP),
+     &                       thetaP*(1. _d 0 -uCFL)/(uCFL+1. _d -20) ))
         psiM=d0+d1*thetaM
-        psiM=MAX(0. _d 0, MIN(MIN(1. _d 0,psiM),
-     &                        thetaM*(1. _d 0 -cfl)/(cfl+1. _d -20) ))
+        psiM=MAX(0. _d 0,MIN(MIN(1. _d 0,psiM),
+     &                       thetaM*(1. _d 0 -uCFL)/(uCFL+1. _d -20) ))
 
         uT(i,j)=
-     &   0.5*(uTrans(i,j)+abs(uTrans(i,j)))
+     &   0.5*(uTrans(i,j)+ABS(uTrans(i,j)))
      &      *( Tracer(i-1,j) + psiP*Rj )
-     &  +0.5*(uTrans(i,j)-abs(uTrans(i,j)))
+     &  +0.5*(uTrans(i,j)-ABS(uTrans(i,j)))
      &      *( Tracer( i ,j) - psiM*Rj )
 
        ENDDO

@@ -63,9 +63,8 @@ CEOP
        DO i=1-Olx+1,sNx+Olx
 
         uLoc = uFld(i,j)
-c       uLoc = uTrans(i,j)*recip_dyG(i,j,bi,bj)
-c    &        *recip_drF(k)*_recip_hFacW(i,j,k,bi,bj)
-        uCFL = ABS(uLoc*deltaTloc*recip_dxC(i,j,bi,bj))
+        uCFL = ABS( uLoc*deltaTloc
+     &                  *recip_dxC(i,j,bi,bj)*recip_deepFacC(k) )
 
 c       uT(i,j) =
 c    &     uTrans(i,j)*(tracer(i-1,j)+tracer(i,j))*0.5 _d 0

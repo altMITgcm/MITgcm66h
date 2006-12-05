@@ -64,9 +64,8 @@ CEOP
        DO i=1-Olx,sNx+Olx
 
         vLoc = vFld(i,j)
-c       vLoc = vTrans(i,j)*recip_dxG(i,j,bi,bj)
-c    &        *recip_drF(k)*_recip_hFacS(i,j,k,bi,bj)
-        vCFL = ABS(vLoc*deltaTloc*recip_dyC(i,j,bi,bj))
+        vCFL = ABS( vLoc*deltaTloc
+     &                  *recip_dyC(i,j,bi,bj)*recip_deepFacC(k) )
 
 c       vT(i,j) =
 c    &     vTrans(i,j)*(tracer(i,j-1)+tracer(i,j))*0.5 _d 0
