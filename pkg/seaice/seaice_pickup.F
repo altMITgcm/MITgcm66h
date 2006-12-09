@@ -147,7 +147,7 @@ C--    Write model fields
        CALL MDSWRITEFIELD(fn,prec,lgf,'RL', 3,  HEFF, 6, myIt,myThid)
        CALL MDSWRITEFIELD(fn,prec,lgf,'RL', 3,  AREA, 7, myIt,myThid)
 #if (defined(SEAICE_CGRID) && defined(SEAICE_ALLOW_EVP))
-       IF ( xSEAICEuseEVP ) THEN
+       IF ( SEAICEuseEVP ) THEN
           CALL MDSWRITEFIELD(fn,prec,lgf,'RL', 1, 
      &         seaice_sigma1,  22, myIt,myThid)
           CALL MDSWRITEFIELD(fn,prec,lgf,'RL', 1, 
