@@ -110,7 +110,9 @@ c     == end of interface ==
 #endif
 
 #if (defined (ALLOW_RUNOFF) || defined (ALLOW_SEAICE))
-      call exf_init_runoff   ( mythid )
+      call exf_init_gen (
+     &     runoffconst, runoff, runoff0, runoff1, 
+     &     runoff0file, mythid )
 #endif
 
 c     Initialize climatological fields

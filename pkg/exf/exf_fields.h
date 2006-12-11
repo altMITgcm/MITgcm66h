@@ -251,4 +251,6 @@ c
 #if defined (ALLOW_RUNOFF) || defined (ALLOW_SEAICE)
       common /exfl_runoff_r/ runoff
       _RL runoff    (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL runoff0   (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL runoff1   (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 #endif
