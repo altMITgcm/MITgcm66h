@@ -9,7 +9,8 @@ C     |==========================================================|
 
       COMMON /BIOTIC_NEEDS/
      &     BIOave, CARave, SURave, SUROave, pCO2ave, pHave, 
-     &     fluxCO2ave, omegaCave, pfluxave, cfluxave, dic_timeave,
+     &     fluxCO2ave, omegaCave, pfluxave, epfluxave, cfluxave, 
+     &     dic_timeave,
      &     alpha, rain_ratio, InputFe, omegaC, pHlast,
      &     Kpo4, DOPfraction, zcrit, KRemin,
      &     KDOPremin,zca,R_op,R_cp,R_np, R_fep,
@@ -30,6 +31,7 @@ C     For averages
       _RL fluxCO2ave(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL OmegaCave(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nR,nSx,nSy)
       _RL pfluxave(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nR,nSx,nSy)
+      _RL epfluxave(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nR,nSx,nSy)
       _RL cfluxave(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nR,nSx,nSy)
       _RL DIC_timeave(nSx,nSy,nR)
 

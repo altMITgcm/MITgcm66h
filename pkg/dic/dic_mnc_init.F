@@ -93,6 +93,13 @@ CEOP
      &     '', myThid)
 
       CALL MNC_CW_ADD_VNAME(
+     &     'dic_epflux_ave', 'Cen_xy_Hn__C__t', 4,5, myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT(
+     &     'dic_epflux_ave','units','--', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('dic_epflux_ave','description',
+     &     '', myThid)
+
+      CALL MNC_CW_ADD_VNAME(
      &     'dic_cflux_ave', 'Cen_xy_Hn__C__t', 4,5, myThid)
       CALL MNC_CW_ADD_VATTR_TEXT(
      &     'dic_cflux_ave','units','--', myThid)
