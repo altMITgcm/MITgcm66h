@@ -418,6 +418,8 @@ c--
 # ifdef ALLOW_PTRACERS
 CADJ INIT comlev1_bibj_ptracers = COMMON,
 CADJ &    nchklev_1*nsx*nsy*nthreads_chkpt*PTRACERS_num
+CADJ INIT comlev1_bibj_k_ptracers = COMMON,
+CADJ &    nchklev_1*nsx*nsy*nthreads_chkpt*PTRACERS_num*nr
 # endif /* ALLOW_PTRACERS */
 c--
 cph Now also needed by seaice
