@@ -2458,6 +2458,7 @@ lib: libmitgcmuv.a
 
 libmitgcmuv.a: \$(OBJFILES)
 	ar rcv libmitgcmuv.a \$(OBJFILES)
+	ar d   libmitgcmuv.a main.o
 
 links: \$(SRCFILES) \$(CSRCFILES) \$(HEADERFILES) \$(F90SRCFILES) \$(SPECIAL_FILES)
 
@@ -2540,9 +2541,7 @@ cat >>$MAKEFILE <<EOF
 	\$(CPP) \$(DEFINES) \$(INCLUDES) > \$@
 .$FS.o:
 	\$(FC) \$(FFLAGS) \$(FOPTIM) -c \$<
-.F90.$FS90:
-	\$(CPP) \$(DEFINES) \$(INCLUDES) > \$@
-.$FS90.o:
+.F90.o:   
 	\$(F90C) \$(F90FLAGS) \$(F90OPTIM) -c \$<
 .c.o:
 	\$(CC) \$(CFLAGS) \$(DEFINES) \$(INCLUDES) -c \$<
