@@ -1,6 +1,0 @@
-# Packages
- &PACKAGES
- useAIM=.TRUE.,
- useSHAP_FILT=.TRUE.,
- useZONAL_FILT=.TRUE.,
- &

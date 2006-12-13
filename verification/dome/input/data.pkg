@@ -1,5 +1,0 @@
-# Packages
- &PACKAGES
- useOBCS=.TRUE.,
- useDiagnostics=.TRUE.,
- &
