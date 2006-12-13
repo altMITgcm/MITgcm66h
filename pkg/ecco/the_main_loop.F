@@ -261,8 +261,10 @@ cph because we only have active file handling to real available.
 
       CALL TIMER_START('ECCO SPIN-UP', mythid)
 
+#ifdef ALLOW_CAL
 c--   Get the current date.
       call CAL_TIMESTAMP( myiter, mytime, mydate, mythid )
+#endif
 
 #ifdef ALLOW_AUTODIFF_TAMC
 # ifdef NONLIN_FRSURF
@@ -596,6 +598,9 @@ C--     Step forward fields and calculate time tendency terms.
 # ifdef EXACT_CONSERV
 cphCADJ STORE empmr              = comlev1, key = ikey_dynamics
 cphCADJ STORE pmepr              = comlev1, key = ikey_dynamics
+# endif
+# ifdef ALLOW_PTRACERS
+CADJ STORE ptracer               = comlev1, key = ikey_dynamics
 # endif
 # ifdef NONLIN_FRSURF
 cph-test
