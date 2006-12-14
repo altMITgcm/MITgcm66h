@@ -236,6 +236,9 @@ CADJ STORE vvel               = comlev1, key = ikey_dynamics
 cphCADJ STORE empmr              = comlev1, key = ikey_dynamics
 cphCADJ STORE pmepr              = comlev1, key = ikey_dynamics
 # endif
+# ifdef ALLOW_PTRACERS
+CADJ STORE ptracer               = comlev1, key = ikey_dynamics
+# endif
 # if (defined NONLIN_FRSURF) || (defined ALLOW_DEPTH_CONTROL)
 cph-test
 CADJ STORE hFacC                 = comlev1, key = ikey_dynamics

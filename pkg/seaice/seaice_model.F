@@ -118,8 +118,14 @@ C NOW DO ADVECTION and DIFFUSION
       CALL SEAICE_ADVDIFF( myTime, myIter, myThid ) 
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE heffm  = comlev1, key = ikey_dynamics
-CADJ STORE heff   = comlev1, key = ikey_dynamics
-CADJ STORE area   = comlev1, key = ikey_dynamics
+cph-test(
+cphCADJ STORE heff   = comlev1, key = ikey_dynamics
+cphCADJ STORE area   = comlev1, key = ikey_dynamics
+cphCADJ STORE hsnow  = comlev1, key = ikey_dynamics
+cphCADJ STORE qnet   = comlev1, key = ikey_dynamics
+cphCADJ STORE qsw    = comlev1, key = ikey_dynamics
+cphCADJ STORE tice   = comlev1, key = ikey_dynamics
+cph-test)
 # ifdef SEAICE_ALLOW_DYNAMICS
 cphCADJ STORE uice   = comlev1, key = ikey_dynamics
 cphCADJ STORE vice   = comlev1, key = ikey_dynamics
