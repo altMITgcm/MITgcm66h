@@ -69,6 +69,9 @@ C     case of nThreads > 1. Stop if it isnt.
      &'EXF_INTERP_READ: nThreads > 1 needs EXF_IREAD_USE_GLOBAL_POINTER'
       ENDIF
 #endif
+C check input arguments
+      IF ( .NOT. (filePrec .EQ. 32) )
+     &     STOP 'stop in exf_interp.F: value of filePrec not allowed'
 
 C read in input data
 #ifdef ALLOW_USE_MPI
