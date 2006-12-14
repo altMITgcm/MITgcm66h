@@ -113,7 +113,7 @@ c     get record numbers and interpolation factor for climsst
       _BARRIER
           interp_method = 2
           call exf_interp(
-     &    climsstfile, exf_iprec
+     &    climsstfile, exf_clim_iprec
      &  , climsst1, count1, xC, yC
      &  ,climsst_lon0,climsst_lon_inc
      &  ,climsst_lat0,climsst_lat_inc

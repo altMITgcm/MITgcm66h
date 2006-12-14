@@ -110,7 +110,7 @@ c     get record numbers and interpolation factor for climsss
 #ifdef USE_EXF_INTERPOLATION
           interp_method = 2
           call exf_interp(
-     &    climsssfile, exf_iprec
+     &    climsssfile, exf_clim_iprec
      &  , climsss1, count1, xC, yC
      &  ,climsss_lon0,climsss_lon_inc
      &  ,climsss_lat0,climsss_lat_inc
