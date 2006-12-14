@@ -221,8 +221,8 @@ C--   NOW SET UP ICE PRESSURE AND VISCOSITIES
       IF ( SEAICEuseDYNAMICS ) THEN
 
 #ifdef ALLOW_AUTODIFF_TAMC
-CADJ STORE uice = comlev1, key=ikey_dynamics
-CADJ STORE vice = comlev1, key=ikey_dynamics
+cphCADJ STORE uice = comlev1, key=ikey_dynamics
+cphCADJ STORE vice = comlev1, key=ikey_dynamics
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 #ifdef SEAICE_ALLOW_EVP
@@ -246,11 +246,21 @@ C NOW DO PREDICTOR TIME STEP
         ENDDO
        ENDDO
 
+#ifdef ALLOW_AUTODIFF_TAMC
+# ifdef SEAICE_ALLOW_EVP
+cphCADJ STORE uice = comlev1, key=ikey_dynamics
+cphCADJ STORE vice = comlev1, key=ikey_dynamics
+CADJ STORE uicec = comlev1, key=ikey_dynamics
+CADJ STORE vicec = comlev1, key=ikey_dynamics
+# endif
+#endif
 C NOW LSR SCHEME (ZHANG-J/HIBLER 1997)
        CALL SEAICE_LSR( 1, myThid )
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE uice = comlev1, key=ikey_dynamics
 CADJ STORE vice = comlev1, key=ikey_dynamics
+cphCADJ STORE uicec = comlev1, key=ikey_dynamics
+cphCADJ STORE vicec = comlev1, key=ikey_dynamics
 #endif
 
 C NOW DO MODIFIED EULER STEP
