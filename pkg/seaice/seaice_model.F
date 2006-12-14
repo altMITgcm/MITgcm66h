@@ -134,7 +134,7 @@ C--   called from DO_OCEANIC_PHYSICS
 #endif /* ALLOW_THSICE */
 C     NOW DO GROWTH
 C     MUST CALL GROWTH ONLY AFTER CALLING ADVECTION
-       CALL GROWTH( myTime, myIter, myThid )
+       CALL SEAICE_GROWTH( myTime, myIter, myThid )
 #ifdef ALLOW_THSICE
       ENDIF
 #endif /* ALLOW_THSICE */

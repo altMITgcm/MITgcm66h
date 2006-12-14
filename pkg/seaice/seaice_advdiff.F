@@ -530,6 +530,16 @@ C---   end bi,bj loops
        ENDDO
       ENDDO
 
+CML#ifdef ALLOW_THSICE
+CML      IF ( useThSice ) THEN
+CMLC--   Exchange fields 
+CML      _EXCH_XY_R8( iceMask, myThid )
+CML      _EXCH_XY_R8( iceHeight, myThid )
+CML      _EXCH_XY_R8( snowHeight, myThid )
+CML      _EXCH_XY_R8( Qice1, myThid )
+CML      _EXCH_XY_R8( Qice2, myThid )
+CML      ENDIF
+CML#endif /* ALLOW_THSICE */
 #else
       STOP 'SEAICEmultiDimAdvection not yet implemented for adjoint'
 #endif /* ndef ALLOW_AUTODIFF_TAMC */
