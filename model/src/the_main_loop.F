@@ -363,6 +363,9 @@ c--
 # ifdef SEAICE_ALLOW_DYNAMICS
 CADJ INIT comlev1_lsr = COMMON,nchklev_1*2
 # endif
+# ifdef SEAICE_ALLOW_EVP
+CADJ INIT comlev1_evp = COMMON,nchklev_1
+# endif
 #endif /* ALLOW_SEAICE */
 c--
 #ifdef ALLOW_DEPTH_CONTROL

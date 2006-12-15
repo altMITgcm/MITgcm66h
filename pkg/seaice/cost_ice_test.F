@@ -64,7 +64,7 @@ c     == routine arguments ==
       integer myiter
       integer mythid
 
-#ifdef ALLOW_COST_ICE
+#if (defined (ALLOW_SEAICE) && defined (ALLOW_COST_ICE))
 
 c     == local variables ==
 
