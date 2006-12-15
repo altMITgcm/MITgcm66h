@@ -4,6 +4,15 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o Initial check-in of lab_sea adjoint
+  (very similar to natl_box_adjoint/code_seaice)
+  * used C-grid and EVP solver
+  * used KPP, GM/Redi
+  * uses inAdExact=.TRUE.
+  * gradient checks fail for both ADM and TLM
+    due to sensitive snow melt code in seaice_grwoth (look for "JZ")
+    f.d. gradients actually seem more problematic than ADM, TLM gradients;
+    issue is related to forward mismatch between g77 an ifort
 o pkg/seaice: overhaul of thermodynamics
  - growth.F and groatb.F are replaced by new routine seaice_growth.F
  - budget.F is replaced by two new routines seaice_budget_ocean/ice.F
