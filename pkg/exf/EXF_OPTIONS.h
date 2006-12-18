@@ -54,6 +54,8 @@ c       If defined, river and glacier runoff can be read-in from files.
 c
 c   >>> ATMOSPHERIC_LOADING <<<
 c       If defined, atmospheric pressure can be read-in from files.
+c   WARNING: this flag is set (define/undef) in CPP_OPTIONS.h 
+c            and cannot be changed here (in EXF_OPTIONS)
 c
 c   >>> ALLOW_CLIMSST_RELAXATION <<<
 c       Allow the relaxation to a monthly climatology of sea surface
