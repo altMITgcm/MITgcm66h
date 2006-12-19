@@ -232,7 +232,7 @@ CADJ &                           key = ilockey, byte = isbyte
           ENDDO
          ENDDO
          CALL SEAICE_BUDGET_ICE(
-     I        UG, HICE, hSnwLoc, 
+     I        UG, HICEP, hSnwLoc, 
      U        TICE, 
      O        FICE, QSWI, 
      I        bi, bj)
