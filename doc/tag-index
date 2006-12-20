@@ -8,6 +8,9 @@ o fix multi-category seaice:
  - change cpp flag SEAICE_MULTILEVEL to more meaningful name: 
    SEAICE_MULTICATEGORY
  - fix short wave heat flux
+o pkg/seaice: change default (SEAICE_OPTIONS.h): use C-grid dynamics
+   and allow to use EVP solver. Change forward lab_sea: test both EVP 
+   solver and LSR solver, and use C-grid dynamics (like lab_sea adjoint)
 o Initial check-in of lab_sea adjoint
   (very similar to natl_box_adjoint/code_seaice)
   * used C-grid and EVP solver
