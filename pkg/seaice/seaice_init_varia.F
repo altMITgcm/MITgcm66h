@@ -128,11 +128,11 @@ C     set UV mask to zero except for Arctic and Antarctic cube faces.
         DO j=1-OLy,sNy+OLy
          DO i=1-OLx,sNx+OLx
           TICE(I,J,bi,bj)=273.0 _d 0
-#ifdef SEAICE_MULTILEVEL
+#ifdef SEAICE_MULTICATEGORY
           DO k=1,MULTDIM
            TICES(I,J,k,bi,bj)=273.0 _d 0
           ENDDO
-#endif
+#endif /* SEAICE_MULTICATEGORY */
           UICEC      (I,J,bi,bj)=ZERO
           VICEC      (I,J,bi,bj)=ZERO
           DAIRN      (I,J,bi,bj)=ZERO

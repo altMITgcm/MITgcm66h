@@ -96,10 +96,10 @@ CEOP
       _RL YNEG       (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
       _RL RIVER      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
 
-#ifdef SEAICE_MULTILEVEL
+#ifdef SEAICE_MULTICATEGORY
       INTEGER MULTDIM
       PARAMETER (MULTDIM=7)
-      COMMON/MULTILEVEL/TICES
+      COMMON/MULTICATEGORY/TICES
       _RL TICES      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,MULTDIM,nSx,nSy)
 #endif
 
