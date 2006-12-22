@@ -442,7 +442,7 @@ c--
 CADJ INIT comlev1_lsr = COMMON,nchklev_1*2
 #  endif
 #  ifdef SEAICE_ALLOW_EVP
-CADJ INIT comlev1_evp = COMMON,nchklev_1
+CADJ INIT comlev1_evp = COMMON,nEVPstepMax*nchklev_1
 #  endif
 #  ifdef SEAICE_MULTILEVEL
 CADJ INIT comlev1_multdim 
