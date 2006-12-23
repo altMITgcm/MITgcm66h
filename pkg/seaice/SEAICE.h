@@ -148,7 +148,7 @@ C--   KGEO    Level used as a proxy for geostrophic velocity.
 #ifdef ALLOW_AUTODIFF_TAMC
       integer iicekey
       integer nEVPstepMax
-      parameter ( nEVPstepMax=6 )
+      parameter ( nEVPstepMax=20 )
 #endif
 
 CEH3 ;;; Local Variables: ***
