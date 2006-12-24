@@ -189,8 +189,8 @@ C-      set Nb of levels to the minimum size of all diag of this list:
             CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                          SQUEEZE_RIGHT, myThid)
           ENDDO
-        ELSE
-C-      Check for levels out of range ( > kdiag)
+        ELSEIF ( fflags(ld)(2:2).NE.'P' ) THEN
+C-      if no Vert.Interpolation, check for levels out of range ( > kdiag):
           kLev = 0
           DO k=1,nlevels(ld)
             kLev = MAX(NINT(levs(k,ld)),kLev)
