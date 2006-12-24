@@ -315,7 +315,9 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
             DO j = 1,sNy
              DO i = 1,sNx
               tmpMk(i,j,k,bi,bj) = tmp1k(i,j,bi,bj)
-     &                      + drF(k)*hFacC(i,j,k,bi,bj)*0.5 _d 0
+     &               + (rF(k)-rC(k))*hFacC(i,j,k,bi,bj)
+C         above: more general (setInterFDr/setCenterDr) than line below
+c    &                      + drF(k)*hFacC(i,j,k,bi,bj)*0.5 _d 0
               tmp1k(i,j,bi,bj) =   tmp1k(i,j,bi,bj)
      &                      + drF(k)*hFacC(i,j,k,bi,bj)
              ENDDO
