@@ -137,7 +137,7 @@ C     the_run_name    :: string identifying the name of the model "run"
       CHARACTER*(MAX_LEN_FNAM) lambdaThetaFile
       CHARACTER*(MAX_LEN_FNAM) lambdaSaltFile
       CHARACTER*(MAX_LEN_FNAM) mdsioLocalDir
-      CHARACTER*(MAX_LEN_FNAM) the_run_name
+      CHARACTER*(MAX_LEN_PREC/2) the_run_name
       CHARACTER*(6) eosType
       CHARACTER*(10) pickupSuff
 
