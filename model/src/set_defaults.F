@@ -316,6 +316,7 @@ C--   Input files
       lambdaThetaFile = ' '
       lambdaSaltFile  = ' '
       mdsioLocalDir   = ' '
+      the_run_name    = ' '
 
       RETURN
       END
