@@ -151,7 +151,7 @@ C--   surface fluxes:
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
       diagName  = 'EXFpreci'
-      diagTitle = 'evaporation, > 0 decreases salinity'
+      diagTitle = 'precipitation, > 0 decreases salinity'
       diagUnits = 'm/s             '
       diagCode  = 'SM      U1      '
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
