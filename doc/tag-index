@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint58t_post
 o pkg/diagnostics: fix multi-threaded output (when singleCpuIO=F)
 o pkg/mdsio:
  - clean-up mdsio_readfield.F & mdsio_writefield_new.F and
