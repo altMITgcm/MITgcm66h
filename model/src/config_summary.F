@@ -250,6 +250,9 @@ C     ycoord :: varying parameters.
       CALL WRITE_0D_L( exactConserv, INDEX_NONE,
      &'exactConserv =',
      &'   /* Exact Volume Conservation on/off flag*/')
+      CALL WRITE_0D_L( linFSConserveTr, INDEX_NONE,
+     &'linFSConserveTr =',
+     &'   /* Tracer correction for Lin Free Surface on/off flag*/')
       CALL WRITE_0D_L( uniformLin_PhiSurf, INDEX_NONE,
      &'uniformLin_PhiSurf =',
      &'   /* use uniform Bo_surf on/off flag*/')

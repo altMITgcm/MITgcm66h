@@ -196,6 +196,7 @@ C--   Set (free)surface-related parameters
       implicSurfPress     = 1. _d 0
       implicDiv2DFlow     = 1. _d 0
       exactConserv        = .FALSE.
+      linFSConserveTr     = .FALSE.
       uniformLin_PhiSurf  = .TRUE.
       nonlinFreeSurf      = 0
       hFacInf             = 0.2 _d 0

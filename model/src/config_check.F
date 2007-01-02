@@ -342,6 +342,16 @@ C-    Deep-Atmosphere & Anelastic limitations:
         STOP 'ABNORMAL END: S/R CONFIG_CHECK'
       ENDIF
 
+      IF ( linFSConserveTr .AND. nonlinFreeSurf.NE.0 ) THEN
+        WRITE(msgBuf,'(A)')
+     &   'CONFIG_CHECK: Cannot select both a Nonlinear Free Surf.'
+        CALL PRINT_ERROR( msgBuf , myThid)
+        WRITE(msgBuf,'(A)')
+     &   'CONFIG_CHECK: and Tracer Correction of Lin. Free Surf.'
+        CALL PRINT_ERROR( msgBuf , myThid)
+        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
+      ENDIF
+
       IF (rigidLid .AND. useRealFreshWaterFlux) THEN
         WRITE(msgBuf,'(A)')
      &   'CONFIG_CHECK: useRealFreshWaterFlux not compatible with'
