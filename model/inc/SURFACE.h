@@ -38,6 +38,15 @@ C IMPORTANT:  ksurfC,W,S = Nr+1  where the fluid column is empty (continent)
       INTEGER ksurfW(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       INTEGER ksurfS(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
+C--   COMMON /SURF_CORREC/ Common block for correction of source/sink of 
+C--                        Tracer due to W at the surface with Linear
+C--                        Free Surface
+C     TsurfCor :: Pot.Temp Linear-Free-Surface correction term [K.r_Unit/s]
+C     SsurfCor :: Salinity Linear-Free-Surface correction term [psu.r_Unit/s]
+      COMMON /SURF_CORREC/ TsurfCor, SsurfCor
+      _RL TsurfCor
+      _RL SsurfCor
+
 #ifdef EXACT_CONSERV
 C     etaHnm1 :: surface r-anomaly, etaH, at previous time level
 C     dEtaHdt :: time derivative of total column height [r_unit/s = w unit]
