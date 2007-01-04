@@ -60,9 +60,9 @@ C     == Local variables ==
 #ifdef ALLOW_MNC
       IF ( thSIce_pickup_write_mnc ) THEN
         WRITE(fn,'(A)') 'pickup_ic'
-        CALL MNC_CW_SET_CITER(fn, 3, 3, myIter, 0, myThid)
         CALL MNC_FILE_CLOSE_ALL_MATCHING(fn, myThid)
         CALL MNC_CW_SET_UDIM(fn, 1, myThid)
+        CALL MNC_CW_SET_CITER(fn, 3, 3, myIter, 0, myThid)
         CALL MNC_CW_RL_R('D',fn,0,0,'iceMask',   iceMask,   myThid)
         CALL MNC_CW_RL_R('D',fn,0,0,'iceHeight', iceHeight, myThid)
         CALL MNC_CW_RL_R('D',fn,0,0,'snowHeight',snowHeight,myThid)
