@@ -192,6 +192,11 @@ C--   HPF directive to help TAMC
 CHPF$ INDEPENDENT
 #endif /* ALLOW_AUTODIFF_TAMC */
 
+C-- Compute correction at the surface for Lin Free Surf.
+      IF (linFSConserveTr) 
+     &   CALL CALC_WSURF_TR(theta,salt,wVel,
+     &                      myIter,myTime,myThid)
+
       DO bj=myByLo(myThid),myByHi(myThid)
 
 #ifdef ALLOW_AUTODIFF_TAMC
