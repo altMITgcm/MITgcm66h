@@ -10,7 +10,7 @@ C !INTERFACE: ==========================================================
       SUBROUTINE PTRACERS_ADVECTION( bi,bj,myIter,myTime,myThid )
 
 C !DESCRIPTION:
-C     Calculates tendancy for passive tracers and integrates forward
+C     Calculates tendency for passive tracers and integrates forward
 C     in time.
 
 C !USES: ===============================================================
@@ -75,7 +75,7 @@ C Loop over tracers
 CADJ STORE ptracer(:,:,:,bi,bj,iTracer)
 CADJ &      = comlev1_bibj_ptracers, key=iptrkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
- 
+
        IF (
      &     multiDimAdvection .AND.
      &     PTRACERS_advScheme(iTracer).NE.ENUM_CENTERED_2ND .AND.

@@ -288,7 +288,7 @@ C/\  | | | | | |-KPP_TRANSPORT_PTR:: KPP non-local transport ( see pkg/kpp ).
 C/\  | | | | |
 C/\  | | | | |-PTRACERS_FORCING   :: Problem specific forcing for tracer.
 C/\  | | | | |-GCHEM_FORCING_INT  :: tracer forcing for gchem pkg (if all
-C/\  | | | | |                       tendancy terms calcualted together)
+C/\  | | | | |                       tendency terms calcualted together)
 C/\  | | | | |-ADAMS_BASHFORTH2   :: Extrapolate tendencies forward in time.
 C/\  | | | | |-FREESURF_RESCALE_G :: Re-scale Gs for free-surface height.
 C/\  | | | | |-TIMESTEP_TRACER    :: Step tracer field forward in time

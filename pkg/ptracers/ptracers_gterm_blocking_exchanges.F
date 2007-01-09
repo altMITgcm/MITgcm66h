@@ -10,7 +10,7 @@ C !INTERFACE: ==========================================================
       SUBROUTINE PTRACERS_GTERM_BLOCKING_EXCH( myThid )
 
 C !DESCRIPTION:
-C     Exchange data to update overlaps for passive tracer tendancies
+C     Exchange data to update overlaps for passive tracer tendencies
 
 C !USES: ===============================================================
       IMPLICIT NONE

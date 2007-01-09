@@ -40,7 +40,7 @@ CEOP
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
-C-    Extrapolate tendancies to mid-time level (n+1/2)
+C-    Extrapolate tendencies to mid-time level (n+1/2)
       DO j=jMin,jMax
        DO i=iMin,iMax
          gTracer(i,j,k,bi,bj)=tracer(i,j,k,bi,bj)
