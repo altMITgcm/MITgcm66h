@@ -10,8 +10,7 @@ C !INTERFACE: ==========================================================
       SUBROUTINE PTRACERS_CONVECT( bi,bj,k,weightA,weightB,myThid )
 
 C !DESCRIPTION:
-C     Calculates tendancy for passive tracers and integrates forward
-C     in time.
+C     do passive tracers convection
 
 C !USES: ===============================================================
       IMPLICIT NONE

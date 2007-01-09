@@ -11,8 +11,7 @@ C !INTERFACE: ==========================================================
      I                           myThid )
 
 C !DESCRIPTION:
-C     Calculates tendancy for passive tracers and integrates forward
-C     in time.
+C     print passive tracers stats
 
 C !USES: ===============================================================
       IMPLICIT NONE

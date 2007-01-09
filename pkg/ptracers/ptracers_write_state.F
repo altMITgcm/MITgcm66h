@@ -11,8 +11,7 @@ C     !INTERFACE:
      I     myIter, myTime, myThid )
 
 C     !DESCRIPTION:
-C     Calculates tendancy for passive tracers and integrates forward in
-C     time.
+C     dump to files current passive tracer state
 
 C     !USES:
       IMPLICIT NONE
