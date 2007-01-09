@@ -67,6 +67,11 @@ C   Note - only works with  #undef NO_SLIP_LATERAL  in calc_mom_rhs.F
 C          because the old code did not have no-slip BCs
 #undef  OLD_ADV_BCS
 
+C o Use LONG.bin, LATG.bin, etc., initialization for ini_curviliear_grid.F
+C   Default is to use "new" grid files (OLD_GRID_IO undef) but OLD_GRID_IO
+C   is still useful with, e.g., single-domain curvilinear configurations.
+#undef OLD_GRID_IO
+
 C o Execution environment support options
 #include "CPP_EEOPTIONS.h"
 

@@ -3,9 +3,6 @@ C $Name$
 
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
-C- note: default is to use "new" grid files (OLD_GRID_IO undef)
-C   but can still use (on 1 cpu, with MDSIO) OLD_GRID_IO and EXCH2 independently
-#undef OLD_GRID_IO
 
 CBOP
 C     !ROUTINE: INI_CURVILINEAR_GRID
