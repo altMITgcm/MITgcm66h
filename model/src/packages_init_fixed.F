@@ -111,7 +111,7 @@ C-    needs to call DIAGNOSTICS_INIT_EARLY before all package-diag-init calls
 
 #ifdef ALLOW_GENERIC_ADVDIFF
 C--   Initialize fixed params for GAD
-      CALL GAD_INIT( myThid )
+      CALL GAD_INIT_FIXED( myThid )
 #endif
 
 #ifdef ALLOW_MOM_COMMON
