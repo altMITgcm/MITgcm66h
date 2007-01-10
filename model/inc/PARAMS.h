@@ -838,6 +838,7 @@ C Logical flags for selecting packages
       LOGICAL useMY82
       LOGICAL useGGL90
       LOGICAL useKPP
+      LOGICAL useGAD
       LOGICAL useGMRedi
       LOGICAL useOBCS
       LOGICAL useAIM
@@ -871,7 +872,7 @@ C Logical flags for selecting packages
       LOGICAL useMYPACKAGE
       COMMON /PARM_PACKAGES/
      &        useOPPS, usePP81, useMY82, useGGL90, useKPP,
-     &        useGMRedi, useOBCS, useAIM, useLand,
+     &        useGAD, useGMRedi, useOBCS, useAIM, useLand,
      &        useCAL, useEXF, useEBM, useGrdchk, useECCO,
      &        useSHAP_FILT, useZONAL_FILT, useFLT,
      &        usePTRACERS, useGCHEM, useRBCS, useOffLine, useMATRIX,

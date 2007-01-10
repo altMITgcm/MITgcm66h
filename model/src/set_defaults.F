@@ -175,6 +175,7 @@ Cml      sBeta               = 7.4 _d -4
       tempAdvScheme       = 2
       saltAdvScheme       = 2
       multiDimAdvection   = .TRUE.
+      useMultiDimAdvec    = .FALSE.
       useCDscheme         = .FALSE.
       useEnergyConservingCoriolis = .FALSE.
       useJamartWetPoints  = .FALSE.
