@@ -771,20 +771,20 @@ CADJ &     = comlev1_bibj_k_gad, key=kkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C-    Compute vertical advective flux in the interior:
-         IF ( advectionScheme.EQ.ENUM_UPWIND_1RST
-     &      .OR. advectionScheme.EQ.ENUM_DST2 ) THEN
+         IF ( vertAdvecScheme.EQ.ENUM_UPWIND_1RST
+     &      .OR. vertAdvecScheme.EQ.ENUM_DST2 ) THEN
            CALL GAD_DST2U1_ADV_R( bi,bj,k, advectionScheme,
      I                            dTtracerLev(k),rTrans,wFld,localTijk,
      O                            fVerT(1-Olx,1-Oly,kUp), myThid )
-         ELSEIF (advectionScheme.EQ.ENUM_FLUX_LIMIT) THEN
+         ELSEIF( vertAdvecScheme.EQ.ENUM_FLUX_LIMIT) THEN
            CALL GAD_FLUXLIMIT_ADV_R( bi,bj,k, dTtracerLev(k),
      I                               rTrans, wFld, localTijk,
      O                               fVerT(1-Olx,1-Oly,kUp), myThid )
-         ELSEIF (vertAdvecScheme.EQ.ENUM_DST3 ) THEN
+         ELSEIF( vertAdvecScheme.EQ.ENUM_DST3 ) THEN
            CALL GAD_DST3_ADV_R(      bi,bj,k, dTtracerLev(k),
      I                               rTrans, wFld, localTijk,
      O                               fVerT(1-Olx,1-Oly,kUp), myThid )
-         ELSEIF (vertAdvecScheme.EQ.ENUM_DST3_FLUX_LIMIT ) THEN
+         ELSEIF( vertAdvecScheme.EQ.ENUM_DST3_FLUX_LIMIT ) THEN
            CALL GAD_DST3FL_ADV_R(    bi,bj,k, dTtracerLev(k),
      I                               rTrans, wFld, localTijk,
      O                               fVerT(1-Olx,1-Oly,kUp), myThid )
