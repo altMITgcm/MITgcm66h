@@ -5,7 +5,7 @@
  
 #- in order to save disc space, take *.bin files
 #- from this dir:
-fromDir="../../fizhi-cs-32x32x10/input"
+fromDir="../../fizhi-cs-32x32x40/input"
 
 fileList=`( cd $fromDir ; ls data.gcmo3 TSMo3.v02.gra tile00?.mitgrid )`
 
