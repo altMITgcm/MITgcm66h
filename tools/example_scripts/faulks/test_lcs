@@ -95,8 +95,8 @@ echo "  done"
 new_dir='MITgcm_g77'
 test -e $new_dir  &&  rm -rf $new_dir
 mkdir $new_dir
-(
-  cd $new_dir
+
+  pushd $new_dir
   cp -ra ../MITgcm/* .
   echo "Running testreport using:"
   cd verification
@@ -108,13 +108,13 @@ mkdir $new_dir
   echo "======================"
   echo
   $comm | tail -100
-)
+  popd
 
 new_dir='MITgcm_ifort'
 test -e $new_dir  &&  rm -rf $new_dir
 mkdir $new_dir
-(
-  cd $new_dir
+
+  pushd $new_dir
   cp -ra ../MITgcm/* .
   echo "Running testreport using:"
   cd verification
@@ -123,13 +123,13 @@ mkdir $new_dir
   echo "======================"
   echo
   $comm | tail -100
-)
+  popd
 
 new_dir='MITgcm_pgi'
 test -e $new_dir  &&  rm -rf $new_dir
 mkdir $new_dir
-(
-  cd $new_dir
+
+  pushd $new_dir
   cp -ra ../MITgcm/* .
   echo "Running testreport using:"
   export PGI=/usr/local/pkg/pgi/pgi-5.2-fc3
@@ -139,13 +139,13 @@ mkdir $new_dir
   echo "======================"
   echo
   $comm | tail -100
-)
+  popd
 
 new_dir='MITgcm_adm'
 test -e $new_dir  &&  rm -rf $new_dir
 mkdir $new_dir
-(
-  cd $new_dir
+
+  pushd $new_dir
   cp -ra ../MITgcm/* .
   echo "Running testreport using:"
   cd verification
@@ -157,5 +157,6 @@ mkdir $new_dir
   echo "======================"
   echo
   $comm | tail -100
-)
+  popd
+
 
