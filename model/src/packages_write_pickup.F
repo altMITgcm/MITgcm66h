@@ -64,6 +64,14 @@ C     Create suffix to pass on to package pickup routines
         WRITE(fn,'(A)') checkPtSuff(nCheckLev)
       ENDIF
 
+#ifdef ALLOW_GENERIC_ADVDIFF
+C     Write restart file for 2nd-Order moment (active) Tracers
+      IF ( useGAD ) THEN
+        CALL GAD_WRITE_PICKUP(
+     I                 fn, myTime, myIter, myThid )
+      ENDIF
+#endif /* ALLOW_GENERIC_ADVDIFF */
+
 #ifdef ALLOW_CD_CODE
       IF (useCDscheme) THEN
         CALL CD_CODE_WRITE_PICKUP(

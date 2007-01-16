@@ -22,6 +22,8 @@ C     PACKAGES_INIT_VARIABLES
 C       |
 C       |-- DIAGNOSTICS_INIT_VARIA
 C       |
+C       |-- GAD_GAD_INIT_VARIA
+C       |
 C       |-- CD_CODE_INI_VARS
 C       |
 C       |-- GMREDI_INIT
@@ -104,6 +106,13 @@ CEOP
       ENDIF
 #endif
 
+#ifdef ALLOW_GENERIC_ADVDIFF
+#ifdef ALLOW_DEBUG
+      IF (debugMode) CALL DEBUG_CALL('GAD_INIT_VARIA',myThid)
+#endif
+      IF ( useGAD ) CALL GAD_INIT_VARIA( myThid )
+#endif /* ALLOW_GENERIC_ADVDIFF */
+
 #ifdef ALLOW_CD_CODE
 C--   Initialize CD_CODE variables:
 C- note(jmc): before packaging CD_CODE, was done within ini_fields (=called before),
@@ -117,7 +126,7 @@ C             therefore call CD-ini-vars before others pkg.
 #ifdef ALLOW_GMREDI
 C--   Initialize GM/Redi parameterization
 #ifdef ALLOW_DEBUG
-      IF (debugMode) CALL DEBUG_CALL('CD_CODE_INI',myThid)
+      IF (debugMode) CALL DEBUG_CALL('GMREDI_INIT',myThid)
 #endif
       IF (useGMRedi) CALL GMREDI_INIT( myThid )
 #endif

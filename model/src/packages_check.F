@@ -45,6 +45,10 @@ CEOP
       IF (useRunClock) CALL PACKAGES_CHECK_ERROR('RUNCLOCK', myThid)
 #endif
 
+#ifdef ALLOW_GENERIC_ADVDIFF
+      IF (useGAD) CALL GAD_CHECK( myThid )
+#endif
+
 #ifdef ALLOW_KPP
       IF (useKPP) CALL KPP_CHECK( myThid )
 #else
