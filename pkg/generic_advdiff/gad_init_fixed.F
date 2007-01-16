@@ -34,6 +34,14 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
       _BEGIN_MASTER(myThid)
 
+C-- Set Temp & Salt 2nd-Order Moment Advec. flag according to advection scheme
+      tempSOM_Advection = tempAdvScheme.GE.ENUM_SOM_PRATHER
+     &              .AND. tempAdvScheme.LE.ENUM_SOM_LIMITER
+      tempSOM_Advection = tempSOM_Advection .AND. tempAdvection
+      saltSOM_Advection = saltAdvScheme.GE.ENUM_SOM_PRATHER
+     &              .AND. saltAdvScheme.LE.ENUM_SOM_LIMITER
+      saltSOM_Advection = saltSOM_Advection .AND. saltAdvection
+
 C-- Set Temp & Salt multi-Dim Advec. flag according to advection scheme used
       tempMultiDimAdvec = multiDimAdvection .AND. tempAdvection
       saltMultiDimAdvec = multiDimAdvection .AND. saltAdvection
@@ -119,12 +127,15 @@ C-- Print out GAD parameters :
       CALL WRITE_0D_L( tempMultiDimAdvec, INDEX_NONE,
      & 'tempMultiDimAdvec =',
      & '   /* use Muti-Dim Advec method for Temp */')
+      CALL WRITE_0D_L( tempSOM_Advection, INDEX_NONE,
+     & 'tempSOM_Advection =',
+     & ' /* use 2nd Order Moment Advection for Temp */')
       CALL WRITE_0D_L( AdamsBashforthGt, INDEX_NONE,
      & 'AdamsBashforthGt =',
-     & '   /* apply Adams-Bashforth extrapolation on Gt */')
+     & ' /* apply Adams-Bashforth extrapolation on Gt */')
       CALL WRITE_0D_L( AdamsBashforth_T, INDEX_NONE,
      & 'AdamsBashforth_T =',
-     & '   /* apply Adams-Bashforth extrapolation on Temp */')
+     & ' /* apply Adams-Bashforth extrapolation on Temp */')
 
       CALL WRITE_0D_I( saltAdvScheme, INDEX_NONE,
      & 'saltAdvScheme =',
@@ -135,12 +146,15 @@ C-- Print out GAD parameters :
       CALL WRITE_0D_L( saltMultiDimAdvec, INDEX_NONE,
      & 'saltMultiDimAdvec =',
      & '   /* use Muti-Dim Advec method for Salt */')
+      CALL WRITE_0D_L( saltSOM_Advection, INDEX_NONE,
+     & 'saltSOM_Advection =',
+     & ' /* use 2nd Order Moment Advection for Salt */')
       CALL WRITE_0D_L( AdamsBashforthGs, INDEX_NONE,
      & 'AdamsBashforthGs =',
-     & '   /* apply Adams-Bashforth extrapolation on Gs */')
+     & ' /* apply Adams-Bashforth extrapolation on Gs */')
       CALL WRITE_0D_L( AdamsBashforth_S, INDEX_NONE,
      & 'AdamsBashforth_S =',
-     & '   /* apply Adams-Bashforth extrapolation on Salt */')
+     & ' /* apply Adams-Bashforth extrapolation on Salt */')
 
       WRITE(msgBuf,'(A)') '// ==================================='
       CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
