@@ -4,6 +4,14 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o 2nd-Order Moment Advection Scheme (Prather, 1986): first check-in
+ - enable by setting #define GAD_ALLOW_SOM_ADVECT (in GAD_OPTIONS.h)
+ - used without limiter (AdvScheme=80) or with Prather limiter (AdvScheme=81)
+ - still needs work (not working with some options ; efficiency to improve)
+   and serious testing.
+ - use this scheme for temperature & salinity in 2 advection test exp.:
+   advect_xy & advect_xz, respectively.
+
 checkpoint58u_post
 o new test-exp: fizhi-cs-32x32x40 (40 levels) to replace the 10 levels.
 o move call to INI_FORCING from PACKAGES_INIT_VARIABLES to INITIALISE_VARIA.
