@@ -11,11 +11,12 @@
    if test $sNx = '32' ; then 
     vegfile=../input/veg19232.6tile.data
     ln -sf $vegfile veg19232.data
+    echo ' using' $vegfile
    elif test $sNx = '16' ; then
     vegfile=../input/veg19232.24tile.data
     ln -sf $vegfile veg19232.data
+    echo ' using' $vegfile
    else
     echo 'Error: No veg tile dataset!'
    fi
   fi
-  echo ' using' $vegfile
