@@ -47,6 +47,9 @@ c     in conjunction with thsice/seaice)
       _RL     ice_emissivity
       _RL     snow_emissivity
 
+c     Drag coefficient scaling factor
+      _RL     exf_scal_BulkCdn
+
 c     Maximum absolute windstress, used to reset unreastically high
 c     data values
       _RL     windstressmax
@@ -330,6 +333,7 @@ C                           instead of _YEAR for useExfYearlyFields
      &                     repeatPeriod,      exf_monFreq,
      &                     exf_albedo,        ocean_emissivity,
      &                     ice_emissivity,    snow_emissivity,
+     &                     exf_scal_BulkCdn,
      &                     hfluxperiod,       hfluxstartdate,
      &                     atempperiod,       atempstartdate,
      &                     aqhperiod,         aqhstartdate,

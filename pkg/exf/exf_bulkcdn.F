@@ -38,13 +38,15 @@ c     == global variables ==
 
 #include "SIZE.h"
 #include "exf_constants.h"
+#include "exf_param.h"
 
 c     == function arguments ==
       _RL umps
 
 c     == end of interface ==
 
-      exf_BulkCdn = cdrag_1/umps + cdrag_2 + cdrag_3*umps
+      exf_BulkCdn = exf_scal_BulkCdn *
+     &     ( cdrag_1/umps + cdrag_2 + cdrag_3*umps )
 
 #else
 
