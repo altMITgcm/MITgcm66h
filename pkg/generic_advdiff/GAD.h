@@ -52,6 +52,10 @@ C ENUM_DST3_FLUX_LIMIT :: 3-DST flux limited
       INTEGER ENUM_DST3_FLUX_LIMIT
       PARAMETER(ENUM_DST3_FLUX_LIMIT=33)
 
+C ENUM_OS7MP :: 7th Order One Step method with Monotonicity Preserving Limiter
+      INTEGER ENUM_OS7MP
+      PARAMETER(ENUM_OS7MP=7)
+
 C ENUM_SOM_PRATHER :: 2nd Order-Moment Advection Scheme, Prather, 1986
       INTEGER ENUM_SOM_PRATHER
       PARAMETER(ENUM_SOM_PRATHER=80)

@@ -44,7 +44,7 @@ C We can disable it here using CPP because run-time flags are insufficient.
 C This enable the use of 2nd-Order Moment advection scheme (Prather, 1986)
 C due to large memory space (10 times more / tracer) requirement,
 C by default, this part of the code is not compiled.
-#undef GAD_ALLOW_SOM_ADVECT
+#define GAD_ALLOW_SOM_ADVECT
 
 #else
 
