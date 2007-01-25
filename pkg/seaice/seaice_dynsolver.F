@@ -221,8 +221,8 @@ C--   NOW SET UP ICE PRESSURE AND VISCOSITIES
       IF ( SEAICEuseDYNAMICS ) THEN
 
 #ifdef ALLOW_AUTODIFF_TAMC
-cphCADJ STORE uice = comlev1, key=ikey_dynamics
-cphCADJ STORE vice = comlev1, key=ikey_dynamics
+CADJ STORE uice = comlev1, key=ikey_dynamics
+CADJ STORE vice = comlev1, key=ikey_dynamics
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 #ifdef SEAICE_ALLOW_EVP
