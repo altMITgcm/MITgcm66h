@@ -16,7 +16,6 @@ C tokens in namelist input so for now we have to enter the
 C tokens value into "data" (ie. 2 for 2nd order etc.)
 
 C !USES:
-#include "GAD_OPTIONS.h"
 
 C !DEFINED PARAMETERS:
 
