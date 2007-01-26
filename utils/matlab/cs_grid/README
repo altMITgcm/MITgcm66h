@@ -10,6 +10,7 @@ Interpolate to Lat-Lon grid:
  cube2latlon_preprocess.m 
  uvcube2latlon.m
  uvcube2latlon_fast.m 
+ uvcube2latlongrid.m  (faster version, from Guillaume Maze)
 
 make graphics of cs-grid fields:
  merccube.m 
