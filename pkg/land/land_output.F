@@ -119,10 +119,10 @@ C--   fluxes (2-D map):
           ELSE
             pf(1:1) = 'R'
           ENDIF
-          DO k = 1,80
+          DO k = 1,MAX_LEN_MBUF
             fmnc(k:k) = ' '
           ENDDO
-          WRITE(fmnc,'(a)') 'land'
+          fmnc(1:13) = 'land_snapshot'
 
           CALL MNC_CW_SET_UDIM(fmnc, -1, myThid)
           CALL MNC_CW_RL_W_S('D',fmnc,0,0,'T', myTime, myThid)
