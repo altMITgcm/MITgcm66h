@@ -57,6 +57,11 @@ C     I, J - Loop counters
 #ifdef GM_BOLUS_ADVEC
       _RL uTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 #endif
+#ifdef ALLOW_DIAGNOSTICS
+      LOGICAL  DIAGNOSTICS_IS_ON
+      EXTERNAL DIAGNOSTICS_IS_ON
+      _RL tmp1k(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+#endif
 
 #ifdef ALLOW_AUTODIFF_TAMC
           act0 = tracerIdentity - 1
@@ -173,6 +178,28 @@ CADJ &     comlev1_gmredi_k_gad, key=kkey, byte=isbyte
         ENDDO
        ENDDO
       ENDIF
+
+#ifdef ALLOW_DIAGNOSTICS
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+      IF ( useDiagnostics 
+     &     .AND. DIAGNOSTICS_IS_ON('GM_ubT  ', myThid )
+     &     .AND. tracerIdentity .EQ. 1) THEN
+       kp1 = MIN(k+1,Nr)
+       maskp1 = 1.
+       IF (k.GE.Nr) maskp1 = 0.
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         tmp1k(i,j) = dyG(i,j,bi,bj)*( GM_PsiX(i,j,kp1,bi,bj)*maskp1
+     &                                -GM_PsiX(i,j,k,bi,bj) )
+     &                               *maskW(i,j,k,bi,bj)
+     &               *op5*(Tracer(i,j,k,bi,bj)+Tracer(i-1,j,k,bi,bj))
+        ENDDO
+       ENDDO
+       CALL DIAGNOSTICS_FILL(tmp1k,'GM_ubT  ', k,1,2,bi,bj,myThid)
+
+      ENDIF
+#endif /* ALLOW_DIAGNOSTICS */
+
 #endif /* GM_BOLUS_ADVEC */
 
       ENDIF
