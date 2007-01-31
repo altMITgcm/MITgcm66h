@@ -30,12 +30,7 @@ C     !USES:
 #include "DIAGNOSTICS.h"
 
       INTEGER NrMax
-#ifdef ALLOW_FIZHI
-#include "fizhi_SIZE.h"
-      PARAMETER( NrMax = Nr+Nrphys )
-#else
-      PARAMETER( NrMax = Nr )
-#endif
+      PARAMETER( NrMax = numLevels )
 
 
 C     !INPUT PARAMETERS:
