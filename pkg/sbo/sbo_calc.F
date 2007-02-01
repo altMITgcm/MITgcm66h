@@ -212,7 +212,6 @@ c--
              do I = 1, sNx
               if ( _hFacC(i,j,Kn0,bi,bj) .ne. 0. ) then
 
-                if ( K .EQ. 0 ) then
 c     latitude (rad)
                   lat_deg = yC(I,J,bi,bj)
                   lat = yC(I,J,bi,bj) * pi / 180.0
@@ -222,6 +221,7 @@ c     unit radius
                   darea = dyF(I,J,bi,bj) * dxF(I,J,bi,bj) / ae / ae
      &                    * maskC(I,J,Kn0,bi,bj)
 
+                if ( K .EQ. 0 ) then
                   sboarea = sboarea + darea
                   sboempmrwet = sboempmrwet + empmr(i,j,bi,bj)*darea
                   sboqnetwet  = sboqnetwet  + qnet(i,j,bi,bj) *darea
