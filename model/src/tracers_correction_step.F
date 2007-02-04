@@ -132,8 +132,7 @@ C--     Convectively adjust new fields to be statically stable
         IF ( cAdjFreq .NE. 0. ) THEN
 #endif /* ALLOW_OPPS */
          CALL CONVECTIVE_ADJUSTMENT(
-     I        bi, bj, iMin, iMax, jMin, jMax,
-     I        myTime, myIter, myThid )
+     I        bi, bj, myTime, myIter, myThid )
         ENDIF
 
 #ifdef ALLOW_MATRIX
