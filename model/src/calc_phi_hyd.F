@@ -83,7 +83,6 @@ C     == Local variables ==
       _RL dRlocM,dRlocP, ddRloc, locAlpha
       _RL ddPIm, ddPIp, rec_dRm, rec_dRp
       _RL surfPhiFac
-      INTEGER iMnLoc,jMnLoc
       PARAMETER ( zero= 0. _d 0 , one= 1. _d 0 , half= .5 _d 0 )
       LOGICAL useDiagPhiRlow, addSurfPhiAnom
 CEOP
@@ -488,10 +487,8 @@ C---   Diagnose Full Hydrostatic Potential at cell center level
      I                      myTime, myIter, myThid)
 
       IF (momPressureForcing) THEN 
-        iMnLoc = MAX(1-Olx+1,iMin)
-        jMnLoc = MAX(1-Oly+1,jMin)
         CALL CALC_GRAD_PHI_HYD(
-     I                         k, bi, bj, iMnLoc,iMax, jMnLoc,jMax,
+     I                         k, bi, bj, iMin,iMax, jMin,jMax,
      I                         phiHydC, alphaRho, tFld, sFld,
      O                         dPhiHydX, dPhiHydY,
      I                         myTime, myIter, myThid)  
