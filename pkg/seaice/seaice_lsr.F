@@ -187,10 +187,14 @@ C NOW CALCULATE PRESSURE FORCE AND ADD TO EXTERNAL FORCE
           zetaMinusEta(I,J,bi,bj) = ZETA(I,J,bi,bj)-ETA (I,J,bi,bj)
          ENDDO
         ENDDO
-        DO j=1-Oly+1,sNy+Oly
+        DO j=1-Oly,sNy+Oly
          DO i=1-Olx+1,sNx+Olx
           etaMeanU (I,J,bi,bj) =
      &         HALF*(ETA (I,J,bi,bj) + ETA (I-1,J  ,bi,bj))
+         ENDDO
+        ENDDO
+        DO j=1-Oly+1,sNy+Oly
+         DO i=1-Olx,sNx+Olx
           etaMeanV (I,J,bi,bj) =
      &         HALF*(ETA (I,J,bi,bj) + ETA (I  ,J-1,bi,bj))
          ENDDO
