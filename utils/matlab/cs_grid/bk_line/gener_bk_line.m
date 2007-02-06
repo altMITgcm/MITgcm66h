@@ -158,7 +158,7 @@ end
 %- output : put together the pieces of bk-lines from the 6 faces :
 
 %save_bk_line 
-[svNpts,svFlg,svIuv,svJuv,svXsg,svYsg]= ...
+[svNpts,svFlg,svIuv,svJuv,svXsg,svYsg,svXx1,svYy1]= ...
 save_bk_line( nf1,nf2,nc,ydim,yl,dylat,XYout,xMid,xx1,yy2,yy2, ...
               savI,savJ,savF,isav,jsav,xsav,ncut,icut,xcut,ycut );
 %- easier to debug this way:
@@ -166,8 +166,8 @@ savNpts(jl)=svNpts;
 savFlg(:,jl)=svFlg;
 savIuv(:,jl)=svIuv;
 savJuv(:,jl)=svJuv;
-savXsg(:,jl)=svXsg;
-savYsg(:,jl)=svYsg;
+savXsg(:,jl)=svXx1;
+savYsg(:,jl)=svYy1;
 
 %-- check that this broken-line is different from any previous one :
 check_bk_line( nc,ydim,jl,ylat,savNpts,savFlg,savIuv,savJuv,savXsg,savYsg );
