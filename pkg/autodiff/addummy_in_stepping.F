@@ -254,6 +254,11 @@ c
           CALL MNC_CW_RL_W('D','adstate',0,0,
      &         'adDiffkr', addiffkr, myThid)
 #endif
+#ifdef ALLOW_KAPGM_CONTROL
+          CALL MNC_CW_RL_W('D','adstate',0,0,
+     &         'adkapgm', adkapgm, myThid)
+#endif
+
 
 c
 #ifdef ALLOW_EXF

@@ -141,6 +141,16 @@ CEOP
      &     'coordinates','XC YC RC iter', myThid)
 #endif
 
+#ifdef ALLOW_KAPGM_CONTROL
+      CALL MNC_CW_ADD_VNAME('adkapgm', 'Cen_xy_Hn__C__t', 4,5, myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adkapgm',
+     & 'units','[cost]/[m^2/s]', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adkapgm',
+     & 'long_name','adjoint isopycnal diffusion', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adkapgm',
+     &     'coordinates','XC YC RC iter', myThid)
+#endif
+
 #ifdef ALLOW_EXF
 c
       CALL MNC_CW_ADD_VNAME('adustress', 'Cen_xy_Hn__-__t', 3,4, myThid)
