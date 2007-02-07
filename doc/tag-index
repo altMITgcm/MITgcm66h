@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/exf: changes to properly interpolate/mask/scale initial fields
 o utils/matlab/cs_grid/read_cs: routines to speed up reading of CS510 fields
   and portions thereof.  See read_cs.txt for description and examples.
 o utils/matlab/cs_grid/bk_line: to compute transport through passages,
