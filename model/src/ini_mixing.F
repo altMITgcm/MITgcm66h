@@ -2,6 +2,10 @@ C $Header$
 C $Name$
 
 #include "CPP_OPTIONS.h"
+# if (defined (ALLOW_GMREDI) && defined (ALLOW_KAPGM_CONTROL))
+# include "GMREDI_OPTIONS.h"
+#endif
+
 
 CBOP
 C     !ROUTINE: INI_MIXING
@@ -22,6 +26,9 @@ C     === Global variables ===
 #include "PARAMS.h"
 #include "GRID.h"
 #include "DYNVARS.h"
+# if (defined (ALLOW_GMREDI) && defined (ALLOW_KAPGM_CONTROL))
+# include "GMREDI.h"
+#endif
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
@@ -45,7 +52,7 @@ CEOP
             diffKr(i,j,k,bi,bj) = diffKrNrS(k)
 #endif
 #if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_KAPGM_CONTROL))
-            KapGM(i,j,k,bi,bj) = GMkbackground
+            KapGM(i,j,k,bi,bj) = GM_background_K
 #endif
            ENDDO
           ENDDO
