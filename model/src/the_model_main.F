@@ -568,8 +568,11 @@ c-- The following assumes the TAF option '-pure'
 c--
 #  else /* ALLOW_DIVIDED_ADJOINT undef */
       CALL TIMER_START('ADTHE_MAIN_LOOP          [ADJOINT RUN]', mythid)
+#   ifdef ALLOW_ECCO
       CALL ADTHE_MAIN_LOOP ( myCurrentTime, mythid )
-cph      CALL ADTHE_MAIN_LOOP ( mythid )
+#   else
+      CALL ADTHE_MAIN_LOOP ( mythid )
+#   endif
       CALL TIMER_STOP ('ADTHE_MAIN_LOOP          [ADJOINT RUN]', mythid)
 #  endif /* ALLOW_DIVIDED_ADJOINT */
 c
