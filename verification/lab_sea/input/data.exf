@@ -5,6 +5,7 @@
 # *********************
  &EXF_NML
 #
+ useExfCheckRange  = .FALSE.,
  repeatPeriod      = 31622400.0,
 #
  hfluxstartdate1   = 19781216,
@@ -31,9 +32,9 @@
  aqhstartdate2     = 180000,
  aqhperiod         = 2635200.0,
 #
- evapstartdate1    = 19781216,
- evapstartdate2    = 180000,
- evapperiod        = 2635200.0,
+#evapstartdate1    = 19781216,
+#evapstartdate2    = 180000,
+#evapperiod        = 2635200.0,
 #
  precipstartdate1  = 19781216,
  precipstartdate2  = 180000,
@@ -71,7 +72,7 @@
  aqhfile           = 'qa.labsea1979',
  uwindfile         = 'u10m.labsea1979',
  vwindfile         = 'v10m.labsea1979',
- evapfile          = 'evap.labsea1979',
+#evapfile          = 'evap.labsea1979',
  precipfile        = 'prate.labsea1979',
  lwfluxfile        = ' ',
  swfluxfile        = ' ',
