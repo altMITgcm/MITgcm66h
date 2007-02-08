@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint58v_post
+o change EOS (from POLY3 to JMD95P) in global_ocean.90x45x15 to get
+  useDynP_inEos_Zc tested.
 o pkg/exf: changes to properly interpolate/mask/scale initial fields
 o utils/matlab/cs_grid/read_cs: routines to speed up reading of CS510 fields
   and portions thereof.  See read_cs.txt for description and examples.
