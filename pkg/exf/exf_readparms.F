@@ -648,7 +648,7 @@ c     fields to get a complete calendar date array.
          call cal_ToSeconds ( difftime,   precipstartdate     ,mythid )
          precipstartdate    = modelstart  + precipstartdate
       endif
-      if ( snowprecipfile .NE. ' ' .and. snowperiod .gt. 0. ) then
+      if ( snowprecipfile .NE. ' ' .and. snowprecipperiod .gt. 0. ) then
          call cal_FullDate( snowprecipstartdate1, snowprecipstartdate2,
      &        date_array                        ,mythid )
          call cal_TimePassed(modelstartdate,date_array,difftime,mythid)
