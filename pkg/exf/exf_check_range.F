@@ -50,10 +50,17 @@ c     == end of interface ==
       jthi = mybyhi(mythid)
       itlo = mybxlo(mythid)
       ithi = mybxhi(mythid)
-      jmin = 1-oly
-      jmax = sny+oly
-      imin = 1-olx
-      imax = snx+olx
+
+C Change checking range because some atmospheric fields will
+C not always have valid values in the tile edges.
+C      jmin = 1-oly
+C      jmax = sny+oly
+C      imin = 1-olx
+C      imax = snx+olx
+      jmin = 1
+      jmax = sny
+      imin = 1
+      imax = snx
 
       do bj = jtlo,jthi
        do bi = itlo,ithi

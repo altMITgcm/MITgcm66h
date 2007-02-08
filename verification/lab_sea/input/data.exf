@@ -5,7 +5,7 @@
 # *********************
  &EXF_NML
 #
- useExfCheckRange  = .FALSE.,
+ useExfCheckRange  = .TRUE.,
  repeatPeriod      = 31622400.0,
 #
  hfluxstartdate1   = 19781216,
