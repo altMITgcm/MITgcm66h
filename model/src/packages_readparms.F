@@ -32,6 +32,8 @@ C       |-- MNC_READPARMS + MNC_INIT + MNC_CW_INIT
 C       |
 C       |-- RUNCLOCK_READPARMS
 C       |
+C       |-- CAL_READPARMS
+C       |
 C       |-- GMREDI_READPARMS
 C       |
 C       |-- KPP_READPARMS
@@ -71,8 +73,6 @@ C       |
 C       |-- COST_READPARMS
 C       |
 C       |-- GRDCHK_READPARMS
-C       |
-C       |-- CAL_READPARMS
 C       |
 C       |-- EXF_READPARMS
 C       |
@@ -120,6 +120,12 @@ CEH3       ENDIF
 #ifdef ALLOW_RUNCLOCK
 C--   Initialize RUNCLOCK parameters
       IF (useRunClock) CALL RUNCLOCK_READPARMS( myThid )
+#endif
+
+#ifdef ALLOW_CAL
+C--   Initialise the calendar package.
+ceh3 should have an IF ( useCAL ) THEN
+      call cal_readparms( myThid )
 #endif
 
 #ifdef ALLOW_GMREDI
@@ -224,12 +230,6 @@ C--   Initialise the cost parameters
 #ifdef ALLOW_GRDCHK
 C--   Initialise gradient check parameters
       if (useGrdchk) call grdchk_readparms( myThid )
-#endif
-
-#ifdef ALLOW_CAL
-C--   Initialise the calendar package.
-ceh3 should have an IF ( useCAL ) THEN
-      call cal_readparms( myThid )
 #endif
 
 C--   Custom routine to set forcing fields.
