@@ -18,6 +18,9 @@ function interpickups(dirin,dirout,varargin)
 %
 % May be fishy near boundaries if grid is not uniform...
 
+% $Header$
+% $Name$
+
 if nargin==2
   snap=1
 else

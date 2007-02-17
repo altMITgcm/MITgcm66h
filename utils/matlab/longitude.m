@@ -7,6 +7,9 @@ function [X] = longitude(x)
 
 % also works for radians which are assumed if range of x<=2*pi
 
+% $Header$
+% $Name$
+
 minx=min(min(min(x)));
 maxx=max(max(max(x)));
 %if maxx-minx < 2.2*pi

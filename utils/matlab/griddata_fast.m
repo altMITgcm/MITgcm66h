@@ -9,6 +9,9 @@ function zi = griddata_fast(delau,z,method)
 %   Copyright 1984-2001 The MathWorks, Inc. 
 %   $Revision$  $Date$
 
+% $Header$
+% $Name$
+
 error(nargchk(2,3,nargin))
 
 if nargin<3, method = 'linear'; end

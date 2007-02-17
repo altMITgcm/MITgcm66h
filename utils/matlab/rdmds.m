@@ -64,6 +64,7 @@ function [AA,iters,MM] = rdmds(fnamearg,varargin)
 %
 
 % $Header$
+% $Name$
 
 AA=[];
 iters=[];

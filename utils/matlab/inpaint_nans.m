@@ -65,6 +65,9 @@ function B=inpaint_nans(A,method)
 % arguments (output):
 %   B - nxm array with NaNs replaced
 
+% $Header$
+% $Name$
+
 % I always need to know which elements are NaN,
 % and what size the array is for any method
 [n,m]=size(A);

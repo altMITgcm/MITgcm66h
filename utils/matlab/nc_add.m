@@ -40,6 +40,7 @@ function [] = nc_add(nc,shortName,longName,units,grid,var,varargin)
 %
 % Written by adcroft@mit.edu, 2004.
 % $Header$
+% $Name$
 
 if strcmp(shortName,grid{1})
  nc(shortName) = length(var);

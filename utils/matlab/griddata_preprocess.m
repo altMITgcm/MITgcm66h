@@ -9,6 +9,9 @@ function [del] = griddata_preprocess(x,y,xi,yi,method)
 %   Copyright 1984-2001 The MathWorks, Inc. 
 %   $Revision$  $Date$
 
+% $Header$
+% $Name$
+
 error(nargchk(4,5,nargin))
 
 if prod(size(xi)) ~= prod(size(yi))

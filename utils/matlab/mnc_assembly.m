@@ -43,6 +43,8 @@ function [nt,nf] = mnc_assembly(fpat,vars, fout,fsize)
 %
 % and the resutlt is written as "all.00000.nc"
 
+% $Header$
+% $Name$
 
 %=====  Argument checking and defaults  =====
 

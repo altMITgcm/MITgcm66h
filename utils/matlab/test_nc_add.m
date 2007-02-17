@@ -1,3 +1,7 @@
+
+% $Header$
+% $Name$
+
 xi=-180:4:180;
 yi=-90:4:90;
 [X,Y]=ndgrid(xi,yi);

@@ -1,9 +1,9 @@
 function rho = densjmd95(s,t,p);
-%function rho = densjmd95(S,Theta,P);
 
+%
 % DENSJMD95    Density of sea water
 %=========================================================================
-
+%
 % USAGE:  dens = densjmd95(S,Theta,P)
 %
 % DESCRIPTION:
@@ -26,11 +26,13 @@ function rho = densjmd95(s,t,p);
 % Theta = 3 degC
 % P     = 3000 dbar
 % rho   = 1041.83267 kg/m^3
-%
+
 
 % Jackett and McDougall, 1995, JAOT 12(4), pp. 381-388
 
 % created by mlosch on 2002-08-09
+% $Header$
+% $Name$
   
 %----------------------
 % CHECK INPUT ARGUMENTS

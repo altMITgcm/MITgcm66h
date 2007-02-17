@@ -30,6 +30,9 @@ function [S] = rdmnc(varargin)
 %  Author:  Alistair Adcroft
 %  Modifications:  Daniel Enderton
 
+% $Header$
+% $Name$
+
 % Initializations
 file={};
 filepaths={};

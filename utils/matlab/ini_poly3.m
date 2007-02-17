@@ -3,6 +3,9 @@ function [poly3] = ini_poly3()
 %
 % Reads the file 'POLY3.COEFFS' and returns coefficients in P
 
+% $Header$
+% $Name$
+
 fid=fopen('POLY3.COEFFS','r');
 
 n=fscanf(fid,'%i',1);

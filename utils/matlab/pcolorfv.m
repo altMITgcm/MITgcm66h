@@ -11,8 +11,9 @@ function [hc,hh,hcf] = pcolorfv(x,z,h,a,varargin)
 % A is field to be plotted (matrix)
 %
 % Optional arguments are passed on to PCOLOR
-%
+
 % $Header$
+% $Name$
 
 nx=prod(size(x));
 nz=prod(size(z));

@@ -11,6 +11,9 @@ function [c] = cm_landwater(n,varargin)
 %
 % Green-yellor land/blue water colormap
 
+% $Header$
+% $Name$
+
 if nargin==1
  f=0.5;
 else

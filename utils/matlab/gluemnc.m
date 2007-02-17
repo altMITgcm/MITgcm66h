@@ -12,6 +12,9 @@ function foo = gluemnc(diags,nIter0)
 % EXAMPLE:
 %	   foo = gluemnc('state','0000000000');
 
+% $Header$
+% $Name$
+
 if nargin ~= 2, error('there have to be two input arguments!'); end
 
 nc_in    = [diags,'.',nIter0,'.t%03d.nc'];
