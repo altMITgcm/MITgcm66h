@@ -326,9 +326,9 @@ C===========================================================
       else
 
       write(fnameequinc(1:80),'(2a,i3.3,a,i3.3,a)')
-     & profilesfile(1:IL),'.',iG,'.',jG,'.equi.bin'
+     & profilesfile(1:IL),'.',iG,'.',jG,'.equi.data'
       write(adfnameequinc(1:80),'(3a,i3.3,a,i3.3,a)') 'ad',
-     & profilesfile(1:IL),'.',iG,'.',jG,'.equi.bin'
+     & profilesfile(1:IL),'.',iG,'.',jG,'.equi.data'
 
       inquire( file=fnameequinc, exist=exst )
       if (.NOT.exst) then
