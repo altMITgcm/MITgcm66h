@@ -202,14 +202,14 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       diagName  = 'CLDMAS  '
       diagTitle = 'Cloud-base Mass Flux  (kg/m^2/s)'
       diagUnits = 'kg/m^2/s        '
-      diagCode  = 'SM P    LL      '
+      diagCode  = 'SM P    L1      '
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
       diagName  = 'DRAG    '
       diagTitle = 'Surface Drag Coefficient (kg/m^2/s)'
       diagUnits = 'kg/m^2/s        '
-      diagCode  = 'SM P    LL      '
+      diagCode  = 'SM P    L1      '
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
