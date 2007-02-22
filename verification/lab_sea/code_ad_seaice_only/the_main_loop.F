@@ -112,6 +112,7 @@ c They provide the fields to be stored.
 # endif /* ALLOW_EXF */
 # ifdef ALLOW_SEAICE
 #  include "SEAICE.h"
+#  include "SEAICE_COST.h"
 # endif
 # ifdef ALLOW_KPP
 #  include "KPP.h"
@@ -425,9 +426,11 @@ cph this simple runtime flag causes a lot of recomp.
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE area    = comlev1, key = ikey_dynamics
 cph-new(
+CADJ STORE atemp   = comlev1, key = ikey_dynamics
 CADJ STORE aqh     = comlev1, key = ikey_dynamics
 CADJ STORE precip  = comlev1, key = ikey_dynamics
 CADJ STORE swdown  = comlev1, key = ikey_dynamics
+CADJ STORE lwdown  = comlev1, key = ikey_dynamics
 CADJ STORE theta   = comlev1, key = ikey_dynamics
 cph-new)
 #endif
