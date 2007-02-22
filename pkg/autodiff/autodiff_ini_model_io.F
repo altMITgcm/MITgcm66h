@@ -4,6 +4,12 @@ C $Name$
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 #include "AUTODIFF_OPTIONS.h"
+#ifdef ALLOW_EXF
+# include "EXF_OPTIONS.h"
+#endif
+#ifdef ALLOW_SEAICE
+# include "SEAICE_OPTIONS.h"
+#endif
 
 CBOP
 C     !ROUTINE: AUTODIFF_INI_MODEL_IO
@@ -284,7 +290,7 @@ c
       CALL MNC_CW_ADD_VATTR_TEXT('adhsnow',
      &     'coordinates','XC YC RC iter', myThid)
 c
-# ifdef ALLOW_DYNAMICS
+# ifdef SEAICE_ALLOW_DYNAMICS
       CALL MNC_CW_ADD_VNAME('aduice', 'U_xy_Hn__-__t', 3,4, myThid)
       CALL MNC_CW_ADD_VATTR_TEXT('aduice',
      &     'units','[cost]/[m/s]', myThid)
