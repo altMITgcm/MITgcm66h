@@ -171,6 +171,7 @@ c         CALL MNC_CW_RL_W('D',fn,0,0,'gW', gW, myThid)
         IF ( useDynP_inEos_Zc ) THEN
           CALL MNC_CW_RL_W('D',fn,0,0,'phiHyd', totPhiHyd, myThid)
         ENDIF
+        CALL MNC_FILE_CLOSE_ALL_MATCHING(fn, myThid)
       ENDIF
 #endif /*  ALLOW_MNC  */
 
