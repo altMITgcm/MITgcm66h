@@ -157,7 +157,7 @@ C     Search for the index
 C     If this is code is reached, we have exceeded the array size
       write(msgbuf,'(a,i6,a)')
      &     'MNC_GET_NEXT_EMPTY_IND: array size ', nt, 
-     &     ' exceeded--try increasing MNC_MAX_ID'
+     &     ' exceeded'
       CALL print_error( msgbuf, myThid )
       n = ILNBLNK( var_symb )
       write(msgbuf,'(a,a,a)')
