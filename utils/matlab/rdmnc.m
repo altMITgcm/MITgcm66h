@@ -98,10 +98,10 @@ if isempty(iters)
         nc=netcdf(char(eachfile),'read');
         nciters = nc{'iter'}(:);
         if isempty(nciters), nciters = nc{'T'}(:); end
-        iters = [iters,nciters];
+        iters = [iters,nciters'];
         close(nc);
     end
-    iters = unique(iters);
+    iters = unique(iters');
 end
 
 % Cycle through files for data extraction.
