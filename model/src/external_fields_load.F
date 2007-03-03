@@ -75,6 +75,7 @@ C Now calculate whether it is time to update the forcing arrays
       Imytm = NINT(myTime*rdt)
       Ifprd = NINT(externForcingPeriod*rdt)
       Ifcyc = NINT(externForcingCycle*rdt)
+      Imytm = Imytm + Ifcyc*( 1 - NINT(myTime/externForcingCycle) )
       Iftm  = MOD( Imytm+Ifcyc-Ifprd/2, Ifcyc)
 
       intime0 = 1 + INT(Iftm/Ifprd)
