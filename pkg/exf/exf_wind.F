@@ -97,7 +97,6 @@ C    (ustar, ... etc ...) is derived directly from wind-stress
      &         +ustress(i+1,j,bi,bj)*ustress(i+1,j,bi,bj)
      &         +vstress(i,j,  bi,bj)*vstress(i,j  ,bi,bj)
      &         +vstress(i,j+1,bi,bj)*vstress(i,j+1,bi,bj))
-     &         )
           if ( ustmp .ne. 0. _d 0 ) then
              ustar = sqrt(ustmp/atmrho)
              cw(i,j,bi,bj) = ustress(i,j,bi,bj)/sqrt(ustmp)
