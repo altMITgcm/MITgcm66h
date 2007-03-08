@@ -10,6 +10,7 @@ o exf: when input wind-stress (#undef ALLOW_ATM_WIND):
  - reintroduce computation of wind from stress, 
  - compute tau (in exf_bulkformulae.F) from windstress averaged to 
    mass points to avoid tau = 0
+ - fix serious bug: (1/3) in Fortran is not the same as (1./3.)
 o rdmnc.m: make it work with "global" files created with gluemnc
 o rdmnc.m : some improvements in dealing with singleton dimension
   (tested on all testreport mnc output files).
