@@ -135,7 +135,7 @@ C  deep-model: *deepFacC (faceArea), /deepFacC (recip_dx,y): => no net effect
          ENDDO
         ENDDO
         DO K=2,Nr
-         tmpFac = nh_Fac*recip_horiVertRatio*recip_horiVertRatio
+         tmpFac = nh_Fac*rVel2wUnit(k)*rVel2wUnit(k)
      &          + igwFac*dBdrRef(k)*deltaTMom*dTtracerLev(k)
          IF (tmpFac.GT.0. ) tmpFac = 1. _d 0 / tmpFac
          DO J=1,sNy

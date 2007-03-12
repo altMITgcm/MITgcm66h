@@ -595,6 +595,10 @@ c    &'   /* W spacing ( units of r ) */')
      &  ' /* deep-model grid factor @ cell-Center (-) */')
       CALL WRITE_1D_R8( deepFacF, Nr+1, INDEX_K,'deepFacF = ',
      &  ' /* deep-model grid factor @ W-Interface (-) */')
+      CALL WRITE_1D_R8( rVel2wUnit, Nr+1, INDEX_K,'rVel2wUnit = ',
+     &  ' /* convert units: rVel -> wSpeed (=1 if z-coord)*/')
+      CALL WRITE_1D_R8( wUnit2rVel, Nr+1, INDEX_K,'wUnit2rVel = ',
+     &  ' /* convert units: wSpeed -> rVel (=1 if z-coord)*/')
       CALL WRITE_1D_R8( dBdrRef, Nr, INDEX_K,'dBdrRef = ',
      & ' /* Vertical gradient of reference boyancy [(m/s/r)^2)] */')
 

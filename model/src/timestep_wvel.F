@@ -47,8 +47,8 @@ CEOP
       jMin = 1
       jMax = sNy
 
-      igwFac = 0.
-      IF ( implicitIntGravWave ) igwFac = horiVertRatio*horiVertRatio
+      igwFac = 0. _d 0
+      IF ( implicitIntGravWave ) igwFac = 1. _d 0
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
@@ -74,7 +74,8 @@ C     apply mask to gW and keep a copy of wVel in gW:
           ENDDO
          ENDDO
 C     Step forward vertical velocity
-         tmpFac = nh_Fac + igwFac*dBdrRef(k)*deltaTMom*dTtracerLev(k)
+         tmpFac = nh_Fac + igwFac*wUnit2rVel(k)*wUnit2rVel(k)
+     &                           *dBdrRef(k)*deltaTMom*dTtracerLev(k)
          IF (tmpFac.GT.0. ) tmpFac = 1. _d 0 / tmpFac
          DO j=jMin,jMax
           DO i=iMin,iMax
