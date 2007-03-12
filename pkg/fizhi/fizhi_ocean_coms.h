@@ -3,8 +3,8 @@ C $Name$
 
 c Ocean Parameters
 c -------------------
-      common /ocean_params/sstclim,sstfreq,siceclim,sicefreq,ksst,kice
-      logical sstclim,sstfreq,siceclim,sicefreq
+      common /ocean_params/sstclim,siceclim,ksst,kice
+      logical sstclim,siceclim
       integer ksst, kice
 
 c Ocean Exports
