@@ -43,21 +43,22 @@ C  vMetricTerms         :: metric term
 
 C !LOCAL VARIABLES: ====================================================
 C  i,j                  :: loop indices
-      INTEGER i,j,Kp1
+      INTEGER i,j,kp1
       _RL wVelBottomOverride
 CEOP
 
-      Kp1=min(k+1,Nr)
+      kp1=min(k+1,Nr)
       wVelBottomOverride=1.
       IF (k.EQ.Nr) wVelBottomOverride=0.
 
       DO j=1-Olx+1,sNy+Oly
        DO i=1-Olx,sNx+Olx
          vMetricTerms(i,j) = vFld(i,j)*recip_rSphere*recip_deepFacC(k)
-     &    *0.25*(wVelBottomOverride*
-     &           (wFld(i,j,kp1,bi,bj)+wFld(i,j-1,kp1,bi,bj))
-     &           +wFld(i,j, k ,bi,bj)+wFld(i,j-1, k ,bi,bj)
-     &          )*recip_horiVertRatio*gravitySign
+     &    *0.25*( (wFld(i,j-1,kp1,bi,bj)+wFld(i,j,kp1,bi,bj))
+     &            *rVel2wUnit(kp1)*wVelBottomOverride
+     &          + (wFld(i,j-1, k ,bi,bj)+wFld(i,j, k ,bi,bj))
+     &            *rVel2wUnit( k )
+     &          )*gravitySign
        ENDDO
       ENDDO
 

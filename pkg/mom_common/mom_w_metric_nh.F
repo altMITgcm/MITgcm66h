@@ -47,10 +47,10 @@ C  i,j                  :: loop indices
       INTEGER i,j
 CEOP
 
-      IF ( k.GT.1 .AND. K.LE.Nr ) THEN
+      IF ( k.GT.1 .AND. k.LE.Nr ) THEN
         DO j=1-Olx,sNy+Oly-1
          DO i=1-Olx,sNx+Olx-1
-           wMetricTerms(i,j) = -gravitySign*horiVertRatio
+           wMetricTerms(i,j) = -gravitySign*wUnit2rVel(k)
      &      *recip_rSphere*recip_deepFacF(k)*(
      &          ( (uFld( i ,j,k-1,bi,bj)*uFld( i ,j,k-1,bi,bj)
      &            +uFld(i+1,j,k-1,bi,bj)*uFld(i+1,j,k-1,bi,bj))
