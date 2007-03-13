@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o p-coord. non-hydrostatic using reference profile for w <-> omega conversion:
+  rVel2wUnit & wUnit2rVel are computed from reference profile Tref,Sref
+  (and replace horiVertRatio in NH code).
+  Update output of exp.: tutorial_global_oce_in_p (useNHMTerms !) 
+                     and tutorial_plume_on_slope (sensitive to truncation)
 o seaice: if ALLOW_ATM_WIND is undefined use wind stress
   directly to drive seaice model (C-grid only)
 o exf: when input wind-stress (#undef ALLOW_ATM_WIND):
