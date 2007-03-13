@@ -17,9 +17,10 @@ C     !USES:
       implicit none
 
 #include "chronos.h"
+#include "SIZE.h"
+#include "fizhi_ocean_coms.h"
 #include "fizhi_io_comms.h"
 #include "EEPARAMS.h"
-#include "SIZE.h"
 #include "PARAMS.h"
 
 C     !INPUT PARAMETERS:
