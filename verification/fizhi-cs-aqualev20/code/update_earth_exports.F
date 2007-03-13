@@ -702,7 +702,7 @@ C*********************************************************************
 
       integer sec, imon, iday, nchps, nchpdim, nSx, nSy, bi, bj
       _RL ALAI(nchpdim,nSx,nSy), AGRN(nchpdim,nSx,nSy) 
-      _RL ALAT(nchpdim)
+      _RL ALAT(nchpdim,nSx,nSy)
       integer ITYP(nchpdim,nSx,nSy)
 
       integer i,midmon,midm,midp,id,k1,k2,kk1,kk2
@@ -787,7 +787,7 @@ C*********************************************************************
 
       DO 220 I=1,NCHPS
 
-      IF(ALAT(I).GT.0.) THEN
+      IF(ALAT(I,bi,bj).GT.0.) THEN
        KK1 = K1
        KK2 = K2
       ELSE
