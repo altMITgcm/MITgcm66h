@@ -240,6 +240,14 @@ C     endif (not) useISOMIPTD
        ENDDO
       ENDDO
       
+#ifdef ALLOW_DIAGNOSTICS
+      IF ( useDiagnostics ) THEN
+       CALL DIAGNOSTICS_FILL(shelfIceFreshWaterFlux,'SHIfwFlx',
+     &      0,1,0,1,1,myThid)
+       CALL DIAGNOSTICS_FILL(shelfIceHeatFlux,      'SHIhtFlx',
+     &      0,1,0,1,1,myThid)
+      ENDIF
+#endif /* ALLOW_DIAGNOSTICS */
 #endif /* ALLOW_SHELFICE */
       RETURN
       END

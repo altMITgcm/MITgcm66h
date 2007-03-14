@@ -88,12 +88,12 @@ CML        IF (k.EQ.kTop) maskUp=0.
        ENDDO
       ENDDO
 
-CML#ifdef ALLOW_DIAGNOSTICS
-CML      IF (useDiagnostics) THEN
-CML        CALL DIAGNOSTICS_FILL(uDragTerms,'UIceShelfDrag',k,1,2,bi,bj,
-CML     &      myThid)
-CML      ENDIF
-CML#endif /* ALLOW_DIAGNOSTICS */
+#ifdef ALLOW_DIAGNOSTICS
+      IF (useDiagnostics) THEN
+        CALL DIAGNOSTICS_FILL(uDragTerms,'USHIDrag',k,1,2,bi,bj,
+     &      myThid)
+      ENDIF
+#endif /* ALLOW_DIAGNOSTICS */
 #endif /* ALLOW_SHELFICE */
 
       RETURN

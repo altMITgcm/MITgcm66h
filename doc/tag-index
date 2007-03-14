@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o shelfice: add a few diagnostics
+
 checkpoint58w_post
 o p-coord. non-hydrostatic using reference profile for w <-> omega conversion:
   rVel2wUnit & wUnit2rVel are computed from reference profile Tref,Sref

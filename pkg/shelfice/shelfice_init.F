@@ -24,11 +24,16 @@ C     myThid -  Number of this instance of SHELFICE_INIT
       INTEGER myThid
 
 #ifdef ALLOW_SHELFICE
-
 C     === Local variables ===
 C     I,J,K,bi,bj - Loop counters
-
       INTEGER I, J, K, bi, bj
+#ifdef ALLOW_DIAGNOSTICS
+      INTEGER       diagNum
+      CHARACTER*8   diagName
+      CHARACTER*16  diagCode
+      CHARACTER*16  diagUnits
+      CHARACTER*(80) diagTitle
+#endif /* ALLOW_DIAGNOSTICS */
 
 C-----------------------------------------------------------------------
 C Initialize SHELFICE variables kTopC
@@ -61,6 +66,37 @@ C-    EXCH call implicitly contains Barrier: no need for an other one.
        _EXCH_XY_R4( shelficeLoadAnomaly, myThid )
       ENDIF
 
+#ifdef ALLOW_DIAGNOSTICS
+      IF ( useDiagnostics ) THEN
+       diagName  = 'SHIfwFlx'
+       diagTitle = 'SHELFICE fresh water flux (positive upward)'
+       diagUnits = 'm/s             '
+       diagCode  = 'SM      M1      '
+       CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I      diagName, diagCode, diagUnits, diagTitle, myThid )
+
+       diagName  = 'SHIhtFlx'
+       diagTitle = 'SHELFICE heat flux  (positive upward)'
+       diagUnits = 'W/m^2           '
+       diagCode  = 'SM      M1      '
+       CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I      diagName, diagCode, diagUnits, diagTitle, myThid )
+
+       diagName  = 'USHIDrag'
+       diagTitle = 'U momentum tendency from Shelfice Drag'
+       diagUnits = 'm/s^2           '
+       WRITE(diagCode,'(A,I3.3,A)') 'UU   ',diagNum+2,'MR      '
+       CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I              diagName, diagCode, diagUnits, diagTitle, myThid )
+
+       diagName  = 'VSHIDrag'
+       diagTitle = 'V momentum tendency from Shelfice Drag'
+       diagUnits = 'm/s^2           '
+       WRITE(diagCode,'(A,I3.3,A)') 'VV   ', diagNum, 'MR      '
+       CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I              diagName, diagCode, diagUnits, diagTitle, myThid )
+      ENDIF
+#endif /* ALLOW_DIAGNOSTICS */
 #endif /* ALLOW_SHELFICE */
 
       RETURN
