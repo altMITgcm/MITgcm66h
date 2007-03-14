@@ -93,7 +93,7 @@ C--   Time-cumulations
      &         + shelficeHeatFlux(i,j,bi,bj)  *deltaTclock
          ENDDO
         ENDDO
-        SHELFICE_TimeAve(bi,bj)=SHELFICE_TimeAve(bi,bj)+deltaTclock
+        SHELFICE_TimeAve(1,bi,bj)=SHELFICE_TimeAve(1,bi,bj)+deltaTclock
        ENDDO
       ENDDO
 
@@ -154,7 +154,7 @@ C      Reset averages to zero
         DO bi = myBxLo(myThid), myBxHi(myThid)
          CALL TIMEAVE_RESET(shelfice_frshFluxtave,1,bi,bj,myThid)
          CALL TIMEAVE_RESET(shelfice_heatFluxtave ,1,bi,bj,myThid)
-         SHELFICE_TimeAve(bi,bj) = 0. _d 0
+         SHELFICE_TimeAve(1,bi,bj) = 0. _d 0
         ENDDO
        ENDDO
        
