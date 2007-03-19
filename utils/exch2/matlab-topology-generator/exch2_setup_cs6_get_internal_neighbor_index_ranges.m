@@ -16,6 +16,10 @@ function [tile] = ...
 %   tile.sXLo_tl  :: Target local lower bound index in X
 %   tile.sXHi_tl  :: Target local upper bound index in X
 %   tile.sXOff_t  :: Target local to canonical index offset conversion in X
+
+% $Header$
+% $Name$
+
 for it=1:ntiles
  % First do tiles that are internal to the domain
  % Set west and east edge numbers

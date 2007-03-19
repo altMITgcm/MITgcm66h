@@ -1,3 +1,6 @@
+# $Header$
+# $Name$
+
 Matlab code to generate topology description for MITgcm cs6 conventions.
 
 o To run start matlab and execute script driver.m

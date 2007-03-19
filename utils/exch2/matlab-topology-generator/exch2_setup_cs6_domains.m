@@ -3,6 +3,9 @@
 function [ndomains,domain,domain_nx,domain_ny] = ...
          setup_cs6_domains(nr,nb,ng);
 
+% $Header$
+% $Name$
+
 ndomains=6;
 domain(1).dnx=nb;
 domain(1).dny=nr;

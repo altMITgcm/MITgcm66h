@@ -1,5 +1,9 @@
 function exch2_setup_cs6_plot( domain, tile, tnx, tny)
 % Draw a picture of the domain and its tiles in the standard cube layout
+
+% $Header$
+% $Name$
+
 clf;hold on
 % Plot domains one and two and their tiles
 xoff=0;

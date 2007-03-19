@@ -6,6 +6,10 @@ function [tile] = ...
 % boundary) the index range at +/-1 in the normal direction to the edge is 
 % searched for subject to a possible rotation and translation moving betwee
 % domains.
+
+% $Header$
+% $Name$
+
 for it=1:ntiles
 % Only do tiles that are external to the domain
   myD = tile(it).mydomain;

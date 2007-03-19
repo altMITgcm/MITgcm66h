@@ -1,5 +1,9 @@
 function [tile,ntiles,ierr,domain]= ...
          exch2_setup_cs6_tiles(tnx,tny,domain,ndomains);
+
+% $Header$
+% $Name$
+
 ierr=0;
 tileid=0;
 for i=1:ndomains

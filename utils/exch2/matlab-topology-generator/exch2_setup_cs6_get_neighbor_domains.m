@@ -1,5 +1,9 @@
 function [tile] = exch2_setup_cs6_get_neighbor_domains(tile, domain,ntiles);
 % Set neighboring domain fiel for each tile
+
+% $Header$
+% $Name$
+
 for it=1:ntiles
  dlox=tile(it).tbasex+1;
  dhix=tile(it).tbasex+tile(it).tnx;

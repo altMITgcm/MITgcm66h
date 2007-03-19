@@ -7,6 +7,9 @@ outmode=1;
 %outmode=2;
 outdir='./';
 
+% $Header$
+% $Name$
+
 % Output unit
 fnam=sprintf('%s%s',outdir,'w2_e2setup.F');
 fnamh=sprintf('%s%s',outdir,'W2_EXCH2_TOPOLOGY.h');

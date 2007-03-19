@@ -4,6 +4,9 @@ function [tile, domain] = exch2_setup_squeeze_blanks( domain, tile, tnx, tny, nt
 % ranks that only include the tiles bot listed as blank. This is used to permit
 % simulation in which continent points are omitted from an ocean simulation.
 
+% $Header$
+% $Name$
+
 fstate=exist('blanklist.txt','file');
 if fstate ~= 0
  load blanklist.txt
