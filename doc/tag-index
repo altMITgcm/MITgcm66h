@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o IO option for global-file compact format:
+  - add options when generating topology (utils/exch2/matlab-topology-generator)
+  - add I/O capability (pkg/mdsio).
+  - adapt utils/matlab/rdmds.m to read this format.
+  for now long-line format not yet supported by pkg/mdsio (& exch2).
 o shelfice: add a few diagnostics
 
 checkpoint58w_post
