@@ -379,8 +379,8 @@ c      _BARRIER
        dimList(3,3)=Nr
        nDims=3
        IF (nNz .EQ. 1) nDims=2
-       map2gl(1) = iGjLoc
-       map2gl(2) = jGjLoc
+       map2gl(1) = 0
+       map2gl(2) = 1
        CALL MDS_WRITE_META(
      I              metaFName, dataFName, the_run_name, ' ',
      I              filePrec, nDims,dimList,map2gl, 0,  ' ',
