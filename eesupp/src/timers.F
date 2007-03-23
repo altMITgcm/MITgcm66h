@@ -774,8 +774,8 @@ C     executable code below.
       external etime_, timenow
       Real*4 actual, tarray(2)
 # elif (defined TARGET_T3E || defined TARGET_CRAY_VECTOR)
-     real second, secondr
-     external second, secondr 
+      real second, secondr
+      external second, secondr 
 # else
 #  ifdef HAVE_ETIME
       Real*4 etime
