@@ -100,3 +100,9 @@ CADJ STORE empmr   = comlev1, key = ikey_dynamics
 CADJ STORE theta   = comlev1, key = ikey_dynamics
 # include "ebm_ad_check_lev1_dir.h"
 #endif
+
+#ifdef ALLOW_COST
+CADJ STORE cMeanThetaUVel = comlev1, key = ikey_dynamics
+CADJ STORE cMeanThetaVVel = comlev1, key = ikey_dynamics
+#endif
+

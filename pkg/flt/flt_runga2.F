@@ -32,9 +32,6 @@ c     == global variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 #include "FLT.h"
-#ifdef ALLOW_3D_FLT
-#include "GW.h"
-#endif
 
 c     == routine arguments ==
 

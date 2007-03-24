@@ -93,9 +93,10 @@ C     == Local variables ==
       integer bi, bj
 CEOP
 
-#ifdef ALLOW_DEPTH_CONTROL
-# ifdef ALLOW_AUTODIFF_TAMC
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE theta         = comlev1, key = ikey_dynamics
 CADJ STORE uvel, vvel    = comlev1, key = ikey_dynamics
+# ifdef ALLOW_DEPTH_CONTROL
 CADJ STORE hfacw, hfacs  = comlev1, key = ikey_dynamics
 # endif
 #endif

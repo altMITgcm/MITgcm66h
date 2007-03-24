@@ -123,6 +123,8 @@ CADJ STORE empmr = tapelev3, key = ilev_3
 CADJ STORE cMeanTheta = tapelev3, key = ilev_3
 CADJ STORE cMeanUVel  = tapelev3, key = ilev_3
 CADJ STORE cMeanVVel  = tapelev3, key = ilev_3
+CADJ STORE cMeanThetaUVel = tapelev3, key = ilev_3
+CADJ STORE cMeanThetaVVel = tapelev3, key = ilev_3
 #endif
 
 #ifdef ALLOW_COST_TRACER

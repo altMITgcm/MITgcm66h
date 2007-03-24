@@ -75,6 +75,8 @@ c
                 cMeanTheta(i,j,k,bi,bj) = 0. _d 0
                 cMeanUVel(i,j,k,bi,bj)  = 0. _d 0
                 cMeanVVel(i,j,k,bi,bj)  = 0. _d 0
+                cMeanThetaUVel(i,j,k,bi,bj) = 0. _d 0
+                cMeanThetaVVel(i,j,k,bi,bj) = 0. _d 0
               end do
             end do
           end do
