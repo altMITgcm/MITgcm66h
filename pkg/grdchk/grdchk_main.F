@@ -184,15 +184,15 @@ cphadmtlm)
       end if
 
       print *, 'grad-res -------------------------------'
-      print ('(2a)'), 
+      print '(2a)', 
      &    ' grad-res  proc    #    i    j    k   bi   bj iobc',
      &    '               fc ref           fc + eps           fc - eps'
 #ifdef ALLOW_TANGENTLINEAR_RUN
-      print ('(2a)'), 
+      print '(2a)', 
      &    ' grad-res  proc    #    i    j    k   bi   bj iobc',
      &    '             tlm grad            fd grad         1 - fd/tlm'
 #else
-      print ('(2a)'), 
+      print '(2a)', 
      &    ' grad-res  proc    #    i    j    k   bi   bj iobc',
      &    '             adj grad            fd grad         1 - fd/adj'
 #endif
