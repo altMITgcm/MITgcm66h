@@ -94,7 +94,7 @@ mkdir $new_dir
   pushd $new_dir
   cp -ra ../MITgcm/* .
   echo "Running testreport using:"
-# export PGI=/usr/local/pkg/pgi/pgi-5.2-fc3
+  export PGI=/usr/local/pkg/pgi/pgi-6.1-5
   cd verification
   comm="./testreport $IEEE -of ../tools/build_options/linux_ia32_pgf77+authors_fc5 -a edhill@mitgcm.org"
   echo "  \"$comm\""
