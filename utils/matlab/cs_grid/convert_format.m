@@ -91,7 +91,7 @@ k=1; ccB=[-1 1]*200;
 for n=1:Nfaces,
  nvar=['var=vF.f',int2str(n),';']; eval(nvar);
  if ndims > 2, var=var(:,:,k); end
- if n > 3, var=var'; end
+ if n > 3, var=fliplr(var'); end
  AA=axes('position',xyP(n,:));
  imagesc(var'); set(gca,'YDir','normal');
  if ccB(1) < ccB(2), caxis(ccB); end 
