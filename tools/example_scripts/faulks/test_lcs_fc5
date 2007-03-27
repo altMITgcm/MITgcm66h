@@ -61,6 +61,21 @@ echo "======================"
 echo
 
 echo "Running testreport using:"
+export PGI=/usr/local/pkg/pgi/pgi-6.1-5
+comm="./testreport $IEEE -of ../tools/build_options/linux_ia32_pgf77+authors_fc5 -a edhill@mitgcm.org"
+echo "  \"$comm\""
+echo "======================"
+echo
+$comm | tail -100
+
+echo
+echo "======================"
+echo "Cleaning test directories:"
+./testreport -clean > /dev/null 2>&1
+echo "======================"
+echo
+
+echo "Running testreport using:"
 comm="./testreport $IEEE -of ../tools/build_options/linux_ia32_gfortran -a edhill@mitgcm.org"
 echo "  \"$comm\""
 echo "======================"
@@ -76,21 +91,6 @@ echo
 
 echo "Running testreport using:"
 comm="./testreport $IEEE -of ../tools/build_options/linux_ia32_ifort+authors_v9 -a edhill@mitgcm.org"
-echo "  \"$comm\""
-echo "======================"
-echo
-$comm | tail -100
-
-echo
-echo "======================"
-echo "Cleaning test directories:"
-./testreport -clean > /dev/null 2>&1
-echo "======================"
-echo
-
-echo "Running testreport using:"
-export PGI=/usr/local/pkg/pgi/pgi-6.1-5
-comm="./testreport $IEEE -of ../tools/build_options/linux_ia32_pgf77+authors_fc5 -a edhill@mitgcm.org"
 echo "  \"$comm\""
 echo "======================"
 echo
