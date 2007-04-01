@@ -171,8 +171,8 @@ C     interpolate to V point
 C--   Wind stress is available on U and V points, copy it to seaice variables.
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
-        DO j=1-Oly+1,sNy+Oly
-         DO i=1-Olx+1,sNx+Olx
+        DO j=1-Oly,sNy+Oly-1
+         DO i=1-Olx,sNx+Olx-1
           U1=.5*(FU(I,J,bi,bj)+FU(I+1,J,bi,bj))
           V1=.5*(FV(I,J,bi,bj)+FV(I,J+1,bi,bj))
 C first ocean surface stress
