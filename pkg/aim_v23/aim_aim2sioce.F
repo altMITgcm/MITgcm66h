@@ -68,7 +68,7 @@ C     == Routine arguments ==
 C     land_frc :: land fraction [0-1]
 C     siceFrac :: sea-ice fraction (relative to full grid-cell) [0-1]
 C     prcAtm   :: total precip from the atmosphere [kg/m2/s]
-C     bi,bj    :: Tile index
+C     bi,bj    :: Tile indices
 C     myTime   :: Current time of simulation ( s )
 C     myIter   :: Current iteration number in simulation
 C     myThid   :: My Thread Id number
@@ -142,7 +142,8 @@ C-    Net short wave (ice-free ocean) into the ocean (+=down)
         DO i=1,sNx
          I2 = i+(j-1)*sNx
 C-    Mixed-Layer Ocean: (for thsice slab_ocean and coupler)
-         IF (land_frc(i,j,bi,bj).EQ.1. _d 0) hOceMxL(i,j,bi,bj) = 0.
+C     NOTE: masking is now applied much earlier, during initialisation
+c        IF (land_frc(i,j,bi,bj).EQ.1. _d 0) hOceMxL(i,j,bi,bj) = 0.
 
 C-    Evaporation over sea-ice: (for thsice)
          icFrwAtm(i,j,bi,bj) = EVAP(I2,3,myThid)*conv_precip
