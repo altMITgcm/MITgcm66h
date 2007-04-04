@@ -4,7 +4,7 @@ C $Name$
 #include "GAD_OPTIONS.h"
 
       SUBROUTINE GAD_DST3FL_ADV_Y(
-     I           bi,bj,k,deltaTloc,
+     I           bi,bj,k, calcCFL, deltaTloc,
      I           vTrans, vFld,
      I           maskLocS, tracer,
      O           vT,
@@ -23,6 +23,7 @@ C     == GLobal variables ==
 
 C     == Routine arguments ==
       INTEGER bi,bj,k
+      LOGICAL calcCFL
       _RL deltaTloc
       _RL vTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL vFld  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
@@ -32,10 +33,8 @@ C     == Routine arguments ==
       INTEGER myThid
 
 C     == Local variables ==
-C     vLoc    :: velocity [m/s], meridional component
       INTEGER i,j
       _RL Rjm,Rj,Rjp,vCFL,d0,d1,psiP,psiM,thetaP,thetaM
-      _RL vLoc
       _RL thetaMax
       PARAMETER( thetaMax = 1.D+20 )
 
@@ -50,8 +49,8 @@ C     vLoc    :: velocity [m/s], meridional component
         Rj =(tracer(i, j )-tracer(i,j-1))*maskLocS(i, j )
         Rjm=(tracer(i,j-1)-tracer(i,j-2))*maskLocS(i,j-1)
 
-        vLoc = vFld(i,j)
-        vCFL = ABS( vLoc*deltaTloc
+        vCFL = vFld(i,j)
+        IF ( calcCFL ) vCFL = ABS( vFld(i,j)*deltaTloc
      &                  *recip_dyC(i,j,bi,bj)*recip_deepFacC(k) )
         d0=(2. _d 0 -vCFL)*(1. _d 0 -vCFL)*oneSixth
         d1=(1. _d 0 -vCFL*vCFL)*oneSixth

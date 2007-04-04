@@ -4,7 +4,7 @@ C $Name$
 #include "GAD_OPTIONS.h"
 
       SUBROUTINE GAD_OS7MP_ADV_X(
-     I           bi,bj,k,deltaTloc,
+     I           bi,bj,k, calcCFL, deltaTloc,
      I           uTrans, uFld,
      I           maskLocW, Q,
      O           uT,
@@ -23,6 +23,7 @@ C     == GLobal variables ==
 
 C     == Routine arguments ==
       INTEGER bi,bj,k
+      LOGICAL calcCFL
       _RL deltaTloc
       _RL uTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL uFld  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
@@ -53,7 +54,8 @@ C     == Local variables ==
        DO i=1-Olx+4,sNx+Olx-3
 
         uLoc = uFld(i,j)
-        cfl = abs(uLoc*deltaTloc*recip_dxC(i,j,bi,bj))
+        cfl = uLoc
+        IF ( calcCFL ) cfl = abs(uLoc*deltaTloc*recip_dxC(i,j,bi,bj))
 
         IF (uLoc.gt.0.) THEN
          Qippp = Q(i+2,j)
