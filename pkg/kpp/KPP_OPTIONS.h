@@ -30,8 +30,7 @@ C   Exemplar or Origin 2000, wall clock time is about the
 C   same whether FRUGAL_KPP is turned on or off.
 #undef FRUGAL_KPP
 
-C o When set, smooth zonal shear meridionally and
-C   meridional shear zonally with 121 filters
+C o When set, smooth shear horizontally with 121 filters
 #define KPP_SMOOTH_SHSQ
 #undef KPP_SMOOTH_DVSQ
 
