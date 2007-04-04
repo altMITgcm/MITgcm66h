@@ -7,6 +7,7 @@ CBOP
 C     !ROUTINE: AIM_INITIALISE
 C     !INTERFACE:
       SUBROUTINE AIM_INITIALISE( myThid )
+
 C     !DESCRIPTION: \bv
 C     *==================================================================*
 C     | S/R AIM_INITIALISE
@@ -16,7 +17,6 @@ C     | 1) call iniphys (=> set parameters to default value)
 C     | 2) read AIM parameters
 C     *==================================================================*
 C     \ev
-
 C     !USES:
       IMPLICIT NONE
 
@@ -33,7 +33,7 @@ c #include "AIM_DIAGS.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
-C     myThid :: my Thread Id number
+C     myThid :: my Thread Id. number
       INTEGER myThid
 
 #ifdef ALLOW_AIM
@@ -115,6 +115,8 @@ C--   Initialise Land Fraction (in AIM_FFIELDS.h):
       IF ( aim_LandFile .NE. ' '  ) THEN
          _BARRIER
          CALL READ_REC_XY_RS(aim_LandFile,aim_landFr,1,nIter0,myThid)
+C-    better to fill land fraction overlap (likely to be needed for sea-ice)
+         CALL EXCH_XY_RS( aim_landFr, myThid )
       ENDIF
 
 #ifdef ALLOW_MNC
