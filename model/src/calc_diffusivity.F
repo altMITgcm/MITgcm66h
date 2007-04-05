@@ -63,10 +63,11 @@ CEOP
        DO i = 1-Olx, sNx+Olx
         KappaRT(i,j) =
      &         IVDConvCount(i,j,k,bi,bj)*ivdc_kappa
-#if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_DIFFKR_CONTROL))
+#if (defined ALLOW_3D_DIFFKR || \
+     (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_DIFFKR_CONTROL)))
      &       + diffKr(i,j,k,bi,bj)
 #else
-     &       + diffKr3dT(i,j,k,bi,bj)
+     &       + diffKrNrT(k)
 #endif
      &       + KbryanLewis79
        ENDDO
@@ -76,10 +77,11 @@ CEOP
        DO i = 1-Olx, sNx+Olx
         KappaRS(i,j) =
      &         IVDConvCount(i,j,k,bi,bj)*ivdc_kappa
-#if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_DIFFKR_CONTROL))
+#if (defined ALLOW_3D_DIFFKR || \
+     (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_DIFFKR_CONTROL)))
      &       + diffKr(i,j,k,bi,bj)
 #else
-     &       + diffKr3dS(i,j,k,bi,bj)
+     &       + diffKrNrS(k)
 #endif
      &       + KbryanLewis79
        ENDDO
