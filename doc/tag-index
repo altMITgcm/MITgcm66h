@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o Added capability for 3D specification of vertical diffusion coefficient.
+  This is done by specifying files diffKr3dSfile and diffKr3dTfile that
+  contain the 3D vertical diffusivity coefficients.
+
 checkpoint58x_post
 o IO option for global-file compact format:
   - add options when generating topology (utils/exch2/matlab-topology-generator)

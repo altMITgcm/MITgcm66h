@@ -66,7 +66,7 @@ CEOP
 #if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_DIFFKR_CONTROL))
      &       + diffKr(i,j,k,bi,bj)
 #else
-     &       + diffKrNrT(k)
+     &       + diffKr3dT(i,j,k,bi,bj)
 #endif
      &       + KbryanLewis79
        ENDDO
@@ -79,7 +79,7 @@ CEOP
 #if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_DIFFKR_CONTROL))
      &       + diffKr(i,j,k,bi,bj)
 #else
-     &       + diffKrNrS(k)
+     &       + diffKr3dS(i,j,k,bi,bj)
 #endif
      &       + KbryanLewis79
        ENDDO

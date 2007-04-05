@@ -298,6 +298,8 @@ C--   Input files
       shelfIceFile    = ' '
       hydrogSaltFile  = ' '
       hydrogThetaFile = ' '
+      diffKr3dSfile   = ' '
+      diffKr3dTfile   = ' '
       zonalWindFile   = ' '
       meridWindFile   = ' '
       thetaClimFile   = ' '
