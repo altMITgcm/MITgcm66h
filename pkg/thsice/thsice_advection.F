@@ -136,6 +136,7 @@ C [N,S,E,W]_edge :: true if N,S,E,W edge of myTile is an Edge of the cube
       _RL tmpVol
 CEOP
 
+      k = 1
       dBug = debugLevel.GE.debLevB
      &     .AND. myIter.EQ.nIter0
      &     .AND. ( tracerIdentity.EQ.GAD_SI_HICE .OR.
