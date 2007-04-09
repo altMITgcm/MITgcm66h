@@ -89,14 +89,12 @@ C master thread of process 0, only, opens a global file
          open(interp_unit,file=infile,status='old',access='direct',
      &        recl=length_of_rec)
          IF ( filePrec .EQ. 32 ) THEN
-            read(interp_unit,rec=irecord)
-     &           ((global(i,j),i=1,nx_in),j=1,ny_in)
+            read(interp_unit,rec=irecord) global
 #ifdef _BYTESWAPIO
             call MDS_BYTESWAPR4(nx_in*ny_in,global)
 #endif /* _BYTESWAPIO */
          ELSE
-            read(interp_unit,rec=irecord)
-     &           ((global8(i,j),i=1,nx_in),j=1,ny_in)
+            read(interp_unit,rec=irecord) global8
 #ifdef _BYTESWAPIO
             call MDS_BYTESWAPR8(nx_in*ny_in,global8)
 #endif /* _BYTESWAPIO */
