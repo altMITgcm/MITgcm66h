@@ -163,7 +163,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
       useBlkFlx = useEXF .OR. useBulkForce
 
-      dt  = thSIce_deltaT
+      dt  = thSIce_dtTemp
       DO j = jMin, jMax
        DO i = iMin, iMax
         IF ( iceMask(i,j).GT.0. _d 0) THEN
