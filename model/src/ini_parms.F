@@ -182,6 +182,8 @@ C--   Continuous equation parameters
      & viscAr, diffKrT, diffKrS, diffKrNrT, diffKrNrS, hFacMinDr,
      & viscAp, diffKpT, diffKpS, hFacMinDp,
      & diffKrBL79surf, diffKrBL79deep, diffKrBL79scl, diffKrBL79Ho,
+     & diffKrBLEQsurf, diffKrBLEQdeep, diffKrBLEQscl, diffKrBLEQHo,
+     & KbryanLewisLatTransition,
      & rhoConst, rhoConstFresh, buoyancyRelation, HeatCapacity_Cp,
      & writeBinaryPrec, readBinaryPrec, writeStatePrec,
      & nonHydrostatic, quasiHydrostatic, globalFiles, useSingleCpuIO,
