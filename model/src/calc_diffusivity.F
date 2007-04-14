@@ -53,11 +53,15 @@ C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     I, J :: Loop counters
       INTEGER i,j
-      _RL KbryanLewis79
+      _RL KbryanLewis79, KbryanLewisEQ
 CEOP
 
       KbryanLewis79=diffKrBL79surf+(diffKrBL79deep-diffKrBL79surf)
      & *( atan( -( rF(k)-diffKrBL79Ho )/diffKrBL79scl )/PI+0.5 _d 0)
+#ifdef ALLOW_BL79_LAT_VARY
+      KbryanLewisEQ=diffKrBLEQsurf+(diffKrBLEQdeep-diffKrBLEQsurf)
+     & *( atan( -( rF(k)-diffKrBLEQHo )/diffKrBLEQscl )/PI+0.5 _d 0)
+#endif
 
       DO j = 1-Oly, sNy+Oly
        DO i = 1-Olx, sNx+Olx
@@ -70,6 +74,9 @@ CEOP
      &       + diffKrNrT(k)
 #endif
      &       + KbryanLewis79
+#ifdef ALLOW_BL79_LAT_VARY
+     &       + (KbryanLewisEQ-KbryanLewis79)*BL79LatArray(i,j,bi,bj)
+#endif
        ENDDO
       ENDDO
 
@@ -84,6 +91,9 @@ CEOP
      &       + diffKrNrS(k)
 #endif
      &       + KbryanLewis79
+#ifdef ALLOW_BL79_LAT_VARY
+     &       + (KbryanLewisEQ-KbryanLewis79)*BL79LatArray(i,j,bi,bj)
+#endif
        ENDDO
       ENDDO
 

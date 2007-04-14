@@ -61,6 +61,21 @@ CEOP
         ENDDO
        ENDDO
 
+#ifdef ALLOW_BL79_LAT_VARY
+       DO bj = myByLo(myThid), myByHi(myThid)
+        DO bi = myBxLo(myThid), myBxHi(myThid)
+         DO j = 1-Oly, sNy+Oly
+          DO i = 1-Olx, sNx+Olx
+           BL79LatArray(i,j,bi,bj) = 0.0 _d 0
+           IF ( abs(YC(i,j,bi,bj)) .LT. BL79LatVary )
+     &          BL79LatArray(i,j,bi,bj) =
+     &          ( 1 + cos(YC(i,j,bi,bj)*pi/BL79LatVary) ) / 2
+          ENDDO
+         ENDDO
+        ENDDO
+       ENDDO
+#endif
+
 #if (defined ALLOW_3D_DIFFKR || \
      (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_DIFFKR_CONTROL)))
        IF ( diffKrFile .NE. ' ' ) THEN

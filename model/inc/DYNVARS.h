@@ -94,6 +94,12 @@ C               for mixing of tracers vertically ( units of r^2/s )
 cph
 cph)
 
+#ifdef ALLOW_BL79_LAT_VARY
+C     BL79LatArray :: is used for latitudinal dependence of
+C                     BryanLewis79 vertical diffusivity
+      _RL BL79LatArray (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+#endif
+
 C     diagnostic variables: 
 C     phiHydLow  :: Phi-Hydrostatic at r-lower boundary
 C                  (bottom in z-coordinates, top in p-coordinates)
