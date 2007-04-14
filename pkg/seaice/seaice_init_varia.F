@@ -259,7 +259,11 @@ C--   Read initial sea-ice thickness from file if available.
          DO j=1-OLy,sNy+OLy
           DO i=1-OLx,sNx+OLx
            DO k=1,3
-            IF(HEFF(I,J,k,bi,bj).GT.ZERO) AREA(I,J,k,bi,bj)=ONE
+            IF(HEFF(I,J,k,bi,bj).GT.ZERO) THEN
+             AREA(I,J,k,bi,bj)=ONE
+            ELSE
+             HSNOW(I,J,bi,bj)=ZERO
+            ENDIF
            ENDDO
           ENDDO
          ENDDO
