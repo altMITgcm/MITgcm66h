@@ -278,8 +278,8 @@ C--    Net fluxes :
           Tsrf(i,j,bi,bj)     = tOceMxL(i,j,bi,bj)
           Tice1(i,j,bi,bj)    = 0. _d 0
           Tice2(i,j,bi,bj)    = 0. _d 0
-          Qice1(i,j,bi,bj)    = 0. _d 0
-          Qice2(i,j,bi,bj)    = 0. _d 0
+          Qice1(i,j,bi,bj)    = Lfresh
+          Qice2(i,j,bi,bj)    = Lfresh
         ENDIF
 
 #ifdef ATMOSPHERIC_LOADING
