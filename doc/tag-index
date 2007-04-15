@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint58y_post
 o Added capability for latitudinal dependence of Bryan and Lewis, 1979
   vertical diffusivity, similar to that in MOM4; turned on using
   #define ALLOW_BL79_LAT_VARY in CPP_OPTIONS.h and specified using
