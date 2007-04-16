@@ -39,8 +39,8 @@ c     == global variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 #include "DYNVARS.h"
-#include "exf_fields.h"
-#include "exf_clim_fields.h"
+#include "EXF_FIELDS.h"
+#include "EXF_CLIM_FIELDS.h"
 #ifdef ALLOW_AUTODIFF
 # include "ctrl.h"
 # include "ctrl_dummy.h"

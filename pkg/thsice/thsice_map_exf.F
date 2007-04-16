@@ -30,9 +30,9 @@ C     == Global data ==
 #include "PARAMS.h"
 #include "FFIELDS.h"
 #ifdef ALLOW_EXF
-# include "exf_constants.h"
-# include "exf_param.h"
-# include "exf_fields.h"
+# include "EXF_CONSTANTS.h"
+# include "EXF_PARAM.h"
+# include "EXF_FIELDS.h"
 #endif
 
 C     !INPUT/OUTPUT PARAMETERS:

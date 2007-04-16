@@ -29,9 +29,9 @@ C     == Global data ==
 # include "SIZE.h"
 # include "EEPARAMS.h"
 # include "PARAMS.h"
-# include "exf_constants.h"
-# include "exf_param.h"
-# include "exf_fields.h"
+# include "EXF_CONSTANTS.h"
+# include "EXF_PARAM.h"
+# include "EXF_FIELDS.h"
 #endif
 
 C     !INPUT/OUTPUT PARAMETERS:

@@ -52,7 +52,7 @@ C     All surface forcing fields are defined at the center of
 C     each grid (the rVel location in model/inc/GRID.h).
 C
 C     #ifdef SEAICE_EXTERNAL_FORCING, sea-ice forcing fields
-C     are defined in exf_fields.h
+C     are defined in EXF_FIELDS.h
 C
 C     #ifdef SEAICE_EXTERNAL_FLUXES, additional forcing fields, fu,
 C     fv, Qnet, Qsw, and EmPmR, as defined in FFIELDS.h, are required.
@@ -65,7 +65,7 @@ C
 #ifdef SEAICE_EXTERNAL_FORCING
 
 C--   Define forcing fields outside pkg/seaice.
-#include "exf_fields.h"
+#include "EXF_FIELDS.h"
 
 #else /* SEAICE_EXTERNAL_FORCING undefined */
 
