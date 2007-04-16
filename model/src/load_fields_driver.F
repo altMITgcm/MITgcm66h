@@ -72,10 +72,10 @@ c# if (defined NONLIN_FRSURF) || (defined ALLOW_DEPTH_CONTROL)
 c#  include "GRID.h"
 c# endif
 # ifdef ALLOW_EXF
-#  include "exf_fields.h"
-#  include "exf_clim_fields.h"
+#  include "EXF_FIELDS.h"
+#  include "EXF_CLIM_FIELDS.h"
 #  ifdef ALLOW_BULKFORMULAE
-#   include "exf_constants.h"
+#   include "EXF_CONSTANTS.h"
 #  endif
 # endif
 c# ifdef ALLOW_PTRACERS

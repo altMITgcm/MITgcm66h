@@ -35,7 +35,7 @@ c     == global variables ==
 #include "ctrl_dummy.h"
 #include "optim.h"
 #ifdef ALLOW_EXF
-# include "exf_fields.h"
+# include "EXF_FIELDS.h"
 #endif
 
 c     == routine arguments ==

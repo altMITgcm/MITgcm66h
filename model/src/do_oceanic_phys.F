@@ -64,10 +64,10 @@ C     == Global variables ===
 # endif
 # ifdef ALLOW_EXF
 #  include "ctrl.h"
-#  include "exf_fields.h"
-#  include "exf_clim_fields.h"
+#  include "EXF_FIELDS.h"
+#  include "EXF_CLIM_FIELDS.h"
 #  ifdef ALLOW_BULKFORMULAE
-#   include "exf_constants.h"
+#   include "EXF_CONSTANTS.h"
 #  endif
 # endif
 # ifdef ALLOW_SEAICE
