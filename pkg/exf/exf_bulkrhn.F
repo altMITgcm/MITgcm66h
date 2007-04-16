@@ -1,4 +1,5 @@
-c $Header$
+C $Header$
+C $Name$
 
 #include "EXF_OPTIONS.h"
 
@@ -36,7 +37,7 @@ c     ==================================================================
 c     == global variables ==
 
 #include "SIZE.h"
-#include "exf_constants.h"
+#include "EXF_CONSTANTS.h"
 
 c     == function arguments ==
       _RL stab

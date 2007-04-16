@@ -50,9 +50,9 @@ c     == global variables ==
 #include "SIZE.h"
 #include "PARAMS.h"
 #include "cal.h"
-#include "exf.h"
-#include "exf_param.h"
-#include "exf_constants.h"
+#include "EXF.h"
+#include "EXF_PARAM.h"
+#include "EXF_CONSTANTS.h"
 
 c     == routine arguments ==
 

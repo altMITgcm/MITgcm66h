@@ -1,4 +1,5 @@
-c $Header$
+C $Header$
+C $Name$
 
 #include "EXF_OPTIONS.h"
 
@@ -24,9 +25,9 @@ c     == global variables ==
 #include "DYNVARS.h"
 #include "GRID.h"
 
-#include "exf_param.h"
-#include "exf_fields.h"
-#include "exf_constants.h"
+#include "EXF_PARAM.h"
+#include "EXF_FIELDS.h"
+#include "EXF_CONSTANTS.h"
 
 c     == routine arguments ==
 

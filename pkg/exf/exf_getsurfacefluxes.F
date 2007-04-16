@@ -1,4 +1,3 @@
-C
 C $Header$
 C $Name$
 
@@ -40,7 +39,7 @@ c     == global variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 
-#include "exf_fields.h"
+#include "EXF_FIELDS.h"
 #ifdef ALLOW_AUTODIFF
 # include "ctrl.h"
 # include "ctrl_dummy.h"

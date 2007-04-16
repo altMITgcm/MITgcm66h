@@ -1,4 +1,5 @@
-c $Header$
+C $Header$
+C $Name$
 
 #include "EXF_OPTIONS.h"
 
@@ -36,8 +37,8 @@ c     ==================================================================
 c     == global variables ==
 #include "EEPARAMS.h"
 #include "SIZE.h"
-#include "exf_fields.h"
-#include "exf_clim_fields.h"
+#include "EXF_FIELDS.h"
+#include "EXF_CLIM_FIELDS.h"
 
 c     == routine arguments ==
 

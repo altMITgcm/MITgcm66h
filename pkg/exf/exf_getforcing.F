@@ -1,4 +1,5 @@
-c $Header$
+C $Header$
+C $Name$
 
 #include "EXF_OPTIONS.h"
 
@@ -18,7 +19,7 @@ c * Bulk formulae are implemented to convert atmospheric fields
 c   to surface fluxes.
 c * An interpolation routine provides on-the-fly interpolation of
 c   forcing fields an arbitrary grid onto the model grid.
-c * A list of EXF variables and units is in exf_fields.h
+c * A list of EXF variables and units is in EXF_FIELDS.h
 c
 C     !CALLING SEQUENCE:
 c ...
@@ -130,9 +131,9 @@ C     !USES:
 #include "PARAMS.h"
 #include "GRID.h"
 
-#include "exf_param.h"
-#include "exf_fields.h"
-#include "exf_constants.h"
+#include "EXF_PARAM.h"
+#include "EXF_FIELDS.h"
+#include "EXF_CONSTANTS.h"
 #ifdef ALLOW_AUTODIFF_TAMC
 # include "tamc.h"
 #endif

@@ -1,4 +1,5 @@
-c $Header$
+C $Header$
+C $Name$
 
 #include "EXF_OPTIONS.h"
 
@@ -53,7 +54,7 @@ c     == global variables ==
 c cal: modelstart, modelstep
 #include "EEPARAMS.h"
 #include "cal.h"
-#include "exf_param.h"
+#include "EXF_PARAM.h"
 
 c     == routine arguments ==
 

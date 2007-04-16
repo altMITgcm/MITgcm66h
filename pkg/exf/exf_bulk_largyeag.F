@@ -42,9 +42,9 @@ C     === Global variables ===
 #include "DYNVARS.h"
 #include "GRID.h"
 
-#include "exf_param.h"
-#include "exf_fields.h"
-#include "exf_constants.h"
+#include "EXF_PARAM.h"
+#include "EXF_FIELDS.h"
+#include "EXF_CONSTANTS.h"
 
 #ifdef ALLOW_AUTODIFF_TAMC
 #include "tamc.h"
