@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/exf:
+  move exf header files from lower_case.h to UPPER_CASE.h ; 
+  add missing cvs Header & Name
 o pkg/seaice:
   - remove seaice_exch and seaice_exch_uv
   - remove superfluous exchange of theta
