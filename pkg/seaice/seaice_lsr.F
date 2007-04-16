@@ -415,7 +415,7 @@ cph        GO TO 8001
 cph)
        END IF
       END IF
-      CALL SEAICE_EXCH_UV ( uIce, vIce, myThid )
+      CALL EXCH_UV_3D_RL( uIce, vIce, .TRUE., 3, myThid )
 
 cph(
       END IF
@@ -643,7 +643,7 @@ cph)
        END IF
       END IF
 
-      CALL SEAICE_EXCH_UV ( uIce, vIce, myThid )
+      CALL EXCH_UV_3D_RL( uIce, vIce, .TRUE., 3, myThid )
 
 cph(
       END IF
@@ -670,7 +670,7 @@ C     APPLY MASKS
         END DO
        ENDDO
       ENDDO
-CML      CALL SEAICE_EXCH_UV ( uIce, vIce, myThid )
+CML      CALL EXCH_UV_3D_RL( uIce, vIce, .TRUE., 3, myThid )
 
 #endif /* SEAICE_ALLOW_DYNAMICS */
 #endif /* SEAICE_CGRID */
