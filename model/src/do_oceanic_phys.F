@@ -73,6 +73,9 @@ C     == Global variables ===
 # ifdef ALLOW_SEAICE
 #  include "SEAICE.h"
 # endif
+# ifdef ALLOW_THSICE
+#  include "THSICE_VARS.h"
+# endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C     !INPUT/OUTPUT PARAMETERS:

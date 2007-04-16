@@ -206,6 +206,13 @@ C     thSIceTsurf_InitFile :: File name for initial surf. temp
       CHARACTER*(MAX_LEN_FNAM) thSIceEnthp_InitFile
       CHARACTER*(MAX_LEN_FNAM) thSIceTsurf_InitFile
 
+#ifdef ALLOW_AUTODIFF_TAMC
+      INTEGER iicekey
+      INTEGER ikey_1, ikey_2, ikey_3, ikey_4
+      INTEGER MaxTsf
+      PARAMETER ( MaxTsf = 20 )
+#endif
+
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 #endif /* ALLOW_THSICE */
