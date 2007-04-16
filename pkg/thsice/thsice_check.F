@@ -42,4 +42,6 @@ c     == end of interface ==
       ENDIF
 #endif
 
+      _END_MASTER(myThid)
+
       end
