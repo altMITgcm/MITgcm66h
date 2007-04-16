@@ -126,7 +126,7 @@ C--   Use flux form for MITgcm compliance, unfortunately changes results
       ENDIF
 
       _BARRIER
-      CALL SEAICE_EXCH ( HEFF, myThid )
+      CALL EXCH_3D_RL( HEFF, 3, myThid )
       _BARRIER
 
       IF (LAD .EQ. 2) THEN
@@ -199,7 +199,7 @@ C--   Use flux form for MITgcm compliance, unfortunately changes results
          ENDIF
 
          _BARRIER
-         CALL SEAICE_EXCH( HEFF, myThid )
+         CALL EXCH_3D_RL( HEFF, 3, myThid )
          _BARRIER
 
 C     NOW FIX UP H(I,J,2)
