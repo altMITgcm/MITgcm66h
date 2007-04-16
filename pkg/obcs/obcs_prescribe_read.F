@@ -25,7 +25,7 @@ c     == global variables ==
 #include "GRID.h"
 #include "OBCS.h"
 #ifdef ALLOW_EXF
-# include "exf_param.h"
+# include "EXF_PARAM.h"
 #endif
 #ifdef ALLOW_PTRACERS.h
 # include "PARAMS.h"

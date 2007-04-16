@@ -30,7 +30,7 @@ c     == global variables ==
 #include "EEPARAMS.h"
 #include "ecco.h"
 #include "cal.h"
-#include "exf.h"
+#include "EXF.h"
 
 #ifdef ALLOW_ECCO_OPTIMIZATION
 #include "optim.h"

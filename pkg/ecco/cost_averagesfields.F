@@ -45,7 +45,7 @@ c     == global variables ==
 #include "ecco_cost.h"
 #include "ctrl_dummy.h"
 #ifdef ALLOW_EXF
-# include "exf_fields.h"
+# include "EXF_FIELDS.h"
 #endif
 #ifdef ALLOW_SEAICE
 # include "SEAICE.h"
