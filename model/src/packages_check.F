@@ -183,7 +183,9 @@ C---  Continue with standard packages (with standard usePKG flag)
       IF (useBulkForce) CALL PACKAGES_CHECK_ERROR('BULK?FORCE',myThid)
 #endif
 
-#ifndef ALLOW_THSICE
+#ifdef ALLOW_THSICE
+      IF (useThSIce) CALL THSICE_CHECK( myThid )
+#else
       IF (useThSIce) CALL PACKAGES_CHECK_ERROR('THSICE', myThid)
 #endif
 
