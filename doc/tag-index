@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/exf: fix wind-stress location: defined on A-grid (if ALLOW_ATM_WIND &
+ ALLOW_BULKFORMULAE or USE_EXF_INTERPOLATION), otherwise, defined on C-grid
 o pkg/exf:
   move exf header files from lower_case.h to UPPER_CASE.h ; 
   add missing cvs Header & Name
