@@ -27,7 +27,6 @@ c     == global variables ==
 #include "SIZE.h"
 #include "GRID.h"
 #include "cal.h"
-#include "EXF.h"
 #include "EXF_PARAM.h"
 #include "EXF_FIELDS.h"
 

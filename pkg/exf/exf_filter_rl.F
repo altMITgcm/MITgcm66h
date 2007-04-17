@@ -31,7 +31,6 @@ c     == global variables ==
 #include "GRID.h"
 #include "PARAMS.h"
 #include "EXF_CONSTANTS.h"
-#include "EXF.h"
 #include "EXF_PARAM.h"
 
 c     == routine arguments ==

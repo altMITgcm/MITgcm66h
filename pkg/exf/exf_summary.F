@@ -37,7 +37,6 @@ c     == global variables ==
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "cal.h"
-#include "EXF.h"
 #include "EXF_PARAM.h"
 
 c     == routine arguments ==
