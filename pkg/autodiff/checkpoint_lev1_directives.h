@@ -82,9 +82,9 @@ CADJ STORE siceload = comlev1, key = ikey_dynamics
 # include "seaice_ad_check_lev1_dir.h"
 #endif
 
-cph#ifdef ALLOW_THSICE
-cph# include "thsice_ad_check_lev1_dir.h"
-cph#endif
+#ifdef ALLOW_THSICE
+# include "thsice_ad_check_lev1_dir.h"
+#endif
 
 #ifdef ALLOW_RBCS
 # include "rbcs_ad_check_lev1_dir.h"

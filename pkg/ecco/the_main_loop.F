@@ -134,6 +134,12 @@ c They provide the fields to be stored.
 #  include "SEAICE.h"
 #  include "SEAICE_COST.h"
 # endif
+# ifdef ALLOW_THSICE
+#  include "THSICE_SIZE.h"
+#  include "THSICE_PARAMS.h"
+#  include "THSICE_VARS.h"
+#  include "THSICE_2DYN.h"
+# endif
 # ifdef ALLOW_KPP
 #  include "KPP.h"
 # endif
@@ -423,6 +429,17 @@ CADJ INIT comlev1_multdim
 CADJ &    = COMMON,nchklev_1*nsx*nsy*nthreads_chkpt*multdim
 #  endif
 # endif /* ALLOW_SEAICE */
+c--
+#ifdef ALLOW_THSICE
+CADJ INIT comlev1_thsice_1
+CADJ &     = COMMON,nchklev_1*snx*nsx*sny*nsy*nthreads_chkpt
+CADJ INIT comlev1_thsice_2
+CADJ &     = COMMON,nchklev_1*snx*nsx*sny*nsy*nlyr*nthreads_chkpt
+CADJ INIT comlev1_thsice_3
+CADJ &     = COMMON,nchklev_1*snx*nsx*sny*nsy*MaxTsf*nthreads_chkpt
+CADJ INIT comlev1_thsice_4
+CADJ &     = COMMON,nchklev_1*nsx*nsy*maxpass*nthreads_chkpt
+#endif /* ALLOW_THSICE */
 c--
 #endif /* ALLOW_AUTODIFF_TAMC */
 c**************************************
