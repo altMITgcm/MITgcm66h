@@ -3,7 +3,15 @@
 # *********************
 # External Forcing Data
 # *********************
- &EXF_NML
+ &EXF_NML_01
+#
+ exf_iprec   = 64,
+ exf_yftype  = 'RL',
+ repeatPeriod = 31536000,
+#
+ &
+# *********************
+ &EXF_NML_02
 #
  atempstartdate1   = 19781216,
  atempstartdate2   = 180000,
@@ -47,7 +55,12 @@
  lwdownfile        = 'flo.labsea1979',
  runoffFile        = ' '
 #
- exf_iprec   = 64,
- exf_yftype  = 'RL',
- repeatPeriod = 31536000,
+ &
+
+# *********************
+ &EXF_NML_03
+ &
+
+# *********************
+ &EXF_NML_04
  &
