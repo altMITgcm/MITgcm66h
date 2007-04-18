@@ -73,7 +73,6 @@ c#  include "GRID.h"
 c# endif
 # ifdef ALLOW_EXF
 #  include "EXF_FIELDS.h"
-#  include "EXF_CLIM_FIELDS.h"
 #  ifdef ALLOW_BULKFORMULAE
 #   include "EXF_CONSTANTS.h"
 #  endif
