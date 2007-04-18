@@ -255,3 +255,22 @@ c
       _RL runoff0   (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL runoff1   (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 #endif
+
+#ifdef ALLOW_CLIMSST_RELAXATION
+      common /exf_clim_sst_r/ climsst, lambda_climsst,
+     &                        climsst0, climsst1
+      _RL climsst       (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL lambda_climsst(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL climsst0      (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL climsst1      (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+#endif
+
+#ifdef ALLOW_CLIMSSS_RELAXATION
+      common /exf_clim_sss_r/ climsss, lambda_climsss,
+     &                        climsss0, climsss1
+      _RL climsss       (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL lambda_climsss(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL climsss0      (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL climsss1      (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+#endif
+

@@ -46,7 +46,6 @@ c     == global variables ==
 
 #include "EXF_PARAM.h"
 #include "EXF_CONSTANTS.h"
-#include "EXF_CLIM_PARAM.h"
 
 c     == routine arguments ==
 
