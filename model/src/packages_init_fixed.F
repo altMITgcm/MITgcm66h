@@ -129,9 +129,9 @@ C--   Initialize fixed params for Momentum pkgs (common, fluxform, vecinv)
 
 #ifdef ALLOW_EXF
 C--   Initialize fixed arrays for EXF
-c     IF ( useEXF ) THEN
+      IF ( useEXF ) THEN
        CALL EXF_INIT_FIXED( myThid )
-c     ENDIF
+      ENDIF
 #endif
 
 #ifdef ALLOW_GMREDI

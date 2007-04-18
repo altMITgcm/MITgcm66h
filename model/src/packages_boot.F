@@ -55,6 +55,7 @@ C     data.pkg namelists
      &          useAIM,
      &          useLand,
      &          useGrdchk,
+     &          useEXF,
      &          useECCO,
      &          useSHAP_FILT,
      &          useZONAL_FILT,
@@ -143,7 +144,7 @@ C--   Close the open data file
 
 C--   packages with hard-coded switch
 #ifdef ALLOW_EXF
-      useEXF = .TRUE.
+cph      useEXF = .TRUE.
 #endif
 #ifdef ALLOW_CAL
       useCAL = .TRUE.

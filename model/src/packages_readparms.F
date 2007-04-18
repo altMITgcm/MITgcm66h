@@ -234,8 +234,7 @@ C--   Initialise gradient check parameters
 
 C--   Custom routine to set forcing fields.
 #ifdef ALLOW_EXF
-ceh3 needs an IF ( useEXF ) THEN
-      call exf_readparms  ( mythid )
+      IF (useEXF) call exf_readparms  ( mythid )
 #endif
 
 #ifdef ALLOW_EBM

@@ -229,10 +229,12 @@ c--   Map the control variables onto the model state.
 #endif
 
 #ifdef ALLOW_EXF
+      IF (useEXF) THEN
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_CALL('EXF_INIT',myThid)
 #endif
-      CALL EXF_INIT( myThid )
+       CALL EXF_INIT( myThid )
+      ENDIF
 #endif
 
 #ifdef ALLOW_EBM
