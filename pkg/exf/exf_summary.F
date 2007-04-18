@@ -78,14 +78,6 @@ c     == end of interface ==
      &' '
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
-      write(msgbuf,'(a,a)')
-     &'External forcing version: ',externalforcingversion
-      call print_message( msgbuf, standardmessageunit,
-     &                    SQUEEZE_RIGHT , mythid)
-      write(msgbuf,'(a,a)')
-     &'Uses Calendar version:    ',usescalendarversion
-      call print_message( msgbuf, standardmessageunit,
-     &                    SQUEEZE_RIGHT , mythid)
       write(msgbuf,'(a)')
      &' '
       call print_message( msgbuf, standardmessageunit,

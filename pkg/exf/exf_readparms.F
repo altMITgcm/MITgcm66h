@@ -545,16 +545,6 @@ c     Output scaling factors.
       ENDDO
 #endif /* USE_EXF_INTERPOLATION */
 
-c     Check for the availability of the right calendar version.
-      if ( calendarversion .ne. usescalendarversion ) then
-         print*,' exf_readparms: You are not using the appropriate'
-         print*,'           version of the calendar package.'
-         print*
-         print*,' You are using Calendar version: ', calendarversion
-         print*,' Please use    Calendar version: ', usescalendarversion
-         stop ' stopped in exf_readparms.'
-      endif
-
 c     Next, read the forcing data file.
         WRITE(msgBuf,'(A)') 'EXF_READPARMS: opening data.exf'
         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
