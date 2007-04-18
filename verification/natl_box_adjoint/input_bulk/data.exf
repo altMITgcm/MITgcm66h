@@ -3,7 +3,15 @@
 # *********************
 # External Forcing Data
 # *********************
- &EXF_NML
+ &EXF_NML_01
+#
+ exf_iprec   = 64,
+ exf_yftype  = 'RL',
+#
+ &
+
+# *********************
+ &EXF_NML_02
 #
  hfluxstartdate1 = 19920102,
  hfluxstartdate2 = 30000,
@@ -61,9 +69,16 @@
  lwfluxfile  = 'PH_lwflsfc__020_016_23',
  swfluxfile  = 'PH_swflsfc__020_016_23',
 #
- exf_iprec   = 64,
- exf_yftype  = 'RL',
-#
+ &
+
+# *********************
+ &EXF_NML_03
  exf_inscal_ustress    = -1.,
  exf_inscal_vstress    = -1.,
+#
  &
+
+# *********************
+ &EXF_NML_04
+ &
+
