@@ -147,7 +147,6 @@ C     Complete filename with YR or _YEAR extension
                genfile0 = genfile
             endif
 
-
 #ifdef USE_EXF_INTERPOLATION
             call exf_interp( genfile0, exf_iprec
      &           , gen1, count0, gen_xout, gen_yout
@@ -215,14 +214,6 @@ c     Loop over tiles.
            do j = 1,sny
             do i = 1,snx
 c     Interpolate linearly onto the  time.
-cph             if ( genfile .EQ. climsstfile ) then
-cph                if (gen0(i,j,bi,bj) .lt. climtempfreeze) then
-cph                   gen0(i,j,bi,bj) = climtempfreeze
-cph                endif
-cph                if (gen1(i,j,bi,bj) .lt. climtempfreeze) then
-cph                   gen1(i,j,bi,bj) = climtempfreeze
-cph                endif
-cph             endif
              genfld(i,j,bi,bj) = exf_inscal_gen * (
      &                          fac * gen0(i,j,bi,bj) +
      &              (exf_one - fac) * gen1(i,j,bi,bj) )
@@ -230,9 +221,9 @@ cph             endif
      &            genfld(i,j,bi,bj) -
      &            exf_inscal_gen * ( genremove_intercept +
      &            genremove_slope*(mytime-starttime) )
-                  enddo
-               enddo
             enddo
+           enddo
+          enddo
          enddo
 
       endif

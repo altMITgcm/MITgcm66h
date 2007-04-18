@@ -75,7 +75,9 @@ c     values below climtempfreeze
      &                        climsaltperiod,     climsaltstartdate,
      &                        climsstperiod,      climsststartdate,
      &                        climsssperiod,      climsssstartdate,
-     &                        climsstconst,       climsssconst
+     &                        climsstconst,       climsssconst,
+     &     climsst_exfremo_intercept, climsst_exfremo_slope,
+     &     climsss_exfremo_intercept, climsss_exfremo_slope
 
 c     File names.
       character*(128) climtempfile
