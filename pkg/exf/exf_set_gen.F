@@ -46,6 +46,7 @@ c     == global variables ==
 
 #include "EXF_PARAM.h"
 #include "EXF_CONSTANTS.h"
+#include "EXF_CLIM_PARAM.h"
 
 c     == routine arguments ==
 
@@ -214,6 +215,14 @@ c     Loop over tiles.
            do j = 1,sny
             do i = 1,snx
 c     Interpolate linearly onto the  time.
+cph             if ( genfile .EQ. climsstfile ) then
+cph                if (gen0(i,j,bi,bj) .lt. climtempfreeze) then
+cph                   gen0(i,j,bi,bj) = climtempfreeze
+cph                endif
+cph                if (gen1(i,j,bi,bj) .lt. climtempfreeze) then
+cph                   gen1(i,j,bi,bj) = climtempfreeze
+cph                endif
+cph             endif
              genfld(i,j,bi,bj) = exf_inscal_gen * (
      &                          fac * gen0(i,j,bi,bj) +
      &              (exf_one - fac) * gen1(i,j,bi,bj) )

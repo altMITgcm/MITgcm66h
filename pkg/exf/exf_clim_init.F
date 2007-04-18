@@ -37,9 +37,13 @@ c     == routine arguments ==
 
 c     == local variables ==
 
+      integer interp_method
+
 c     == end of interface ==
 
 c     initialize climatology fields
+
+      interp_method=2
 
 #ifdef ALLOW_CLIMSST_RELAXATION
       call exf_init_gen (
