@@ -47,8 +47,6 @@ c-----------------------------------------------------------------------
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "DYNVARS.h"
-#include "FFIELDS.h"
 #include "KPP_PARAMS.h"
 
 c input
@@ -257,10 +255,7 @@ c
       IMPLICIT NONE
 
 #include "SIZE.h"
-#include "EEPARAMS.h"
-#include "PARAMS.h"
 #include "KPP_PARAMS.h"
-#include "FFIELDS.h"
 
 c input
 c------
