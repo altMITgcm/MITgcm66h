@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/kpp: add code to have mixing in shelf ice caverns
+
 checkpoint59
 o pkg/exf: 
   - fix wind-stress location: defined on A-grid (if ALLOW_ATM_WIND &
