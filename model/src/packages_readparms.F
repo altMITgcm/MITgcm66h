@@ -124,8 +124,7 @@ C--   Initialize RUNCLOCK parameters
 
 #ifdef ALLOW_CAL
 C--   Initialise the calendar package.
-ceh3 should have an IF ( useCAL ) THEN
-      call cal_readparms( myThid )
+      IF ( useCAL ) call cal_readparms( myThid )
 #endif
 
 #ifdef ALLOW_GMREDI
