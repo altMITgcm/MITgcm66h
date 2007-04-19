@@ -157,6 +157,7 @@ C--
 #ifdef ALLOW_DIAGNOSTICS
       IF ( useDiagnostics ) THEN
         tmpFac = 1. _d 0
+        CALL DIAGNOSTICS_FILL(iceMask,'SI_FrcFx',0,1,1,bi,bj,myThid)
         CALL DIAGNOSTICS_FRACT_FILL(
      I                   snowPrc,   iceMask,tmpFac,1,'SIsnwPrc',
      I                   0,1,1,bi,bj,myThid)
