@@ -143,11 +143,8 @@ C--   Close the open data file
       CLOSE(iUnit)
 
 C--   packages with hard-coded switch
-#ifdef ALLOW_EXF
-cph      useEXF = .TRUE.
-#endif
 #ifdef ALLOW_CAL
-      useCAL = .TRUE.
+      IF (useEXF) useCAL = .TRUE.
 #endif
 
 C--   packages with an implied switch
