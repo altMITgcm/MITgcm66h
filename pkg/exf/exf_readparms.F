@@ -72,8 +72,9 @@ c     Surface flux data.
      &      windstressmax,       repeatPeriod,   exf_albedo,   
      &   ocean_emissivity,     ice_emissivity, snow_emissivity,
      &   exf_scal_BulkCdn,     climtempfreeze,
-     &          exf_iprec,  exf_yftype, 
-     & useExfYearlyFields,  twoDigitYear,         useExfCheckRange
+     &          exf_iprec,         exf_yftype,   exf_monFreq,
+     & useExfYearlyFields,  twoDigitYear,   useExfCheckRange,
+     & selectStressGridPosition
 
       NAMELIST /EXF_NML_02/
      &          hfluxfile,          atempfile,       aqhfile,
@@ -418,6 +419,7 @@ c     Initialise file type and field precision
       useExfYearlyFields   = .FALSE.
       twoDigitYear         = .FALSE.
       useExfCheckRange     = .TRUE.
+      selectStressGridPosition = UNSET_I
 
 c     Input scaling factors.
       exf_inscal_hflux     =  1. _d 0
