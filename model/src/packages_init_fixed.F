@@ -240,6 +240,12 @@ C--   Initialise the control variables
       _BARRIER
 #endif
 
+#ifdef ALLOW_ADMTLM
+C--   Initialise ADMTLM
+      CALL CTRL_ADMTLM( myThid )
+      _BARRIER
+#endif
+
 #ifdef ALLOW_PTRACERS
       IF (usePTRACERS) CALL PTRACERS_INIT_FIXED(myThid)
 #endif
