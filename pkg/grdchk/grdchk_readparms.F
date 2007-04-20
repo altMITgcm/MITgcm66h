@@ -70,6 +70,8 @@ c--   Optimization parameters.
      &                  kGloPos,
      &                  iGloTile,
      &                  jGloTile,
+     &                  idep,
+     &                  jdep,
      &                  obcsglo,
      &                  recglo
 
@@ -96,6 +98,8 @@ c--     Set default values.
         kGloPos         = 1
         iGloTile        = 1
         jGloTile        = 1
+        idep            = 1
+        jdep            = 1
         obcsglo         = 1
         recglo          = 1
 
