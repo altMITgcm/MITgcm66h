@@ -162,7 +162,7 @@ C     average strain rates to Z and C points
      &           + 4. _d 0*recip_ecc2*e12Z**2 
      &           + 2. _d 0*e11Z*e22Z*(ONE-recip_ecc2)
             deltaZ = SQRT(MAX(deltaZ,SEAICE_EPS_SQ))
-C     modify pressure
+C     modify pressure (copied from seaice_calc_viscosities)
             zetaLoc          = HALF*press0(I,J,bi,bj)/deltaC
             zetaLoc          = MIN(zMax(I,J,bi,bj),zetaLoc)
             zetaLoc          = MAX(zMin(I,J,bi,bj),zetaLoc)
