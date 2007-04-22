@@ -147,6 +147,20 @@ C     Except under sea ice, SIqsw is also identical to EXFswnet.
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I     diagName, diagCode, diagUnits, diagTitle, myThid )
 
+      diagName  = 'SIsigI  '
+      diagTitle = 'SEAICE normalized principle stress, component one'
+      diagUnits = 'no units        '
+      diagCode  = 'SM      M1      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, myThid )
+
+      diagName  = 'SIsigII '
+      diagTitle = 'SEAICE normalized principle stress, component two'
+      diagUnits = 'no units        '
+      diagCode  = 'SM      M1      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, myThid )
+
 #endif /* ALLOW_DIAGNOSTICS */
 
       RETURN
