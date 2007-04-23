@@ -33,9 +33,9 @@ C     i,j,k,bi,bj - Loop counters
 C     zehat       - zeta * ustar**3
 C     zeta        - Stability parameter d/l
       INTEGER i, j, k, bi, bj
-      _KPP_RL zehat
-      _KPP_RL zeta
-      _KPP_RL usta
+      _RL zehat
+      _RL zeta
+      _RL usta
 
       _BEGIN_MASTER(myThid)
 

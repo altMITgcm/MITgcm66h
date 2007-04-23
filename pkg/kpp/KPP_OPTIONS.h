@@ -17,9 +17,6 @@ C     \==========================================================/
 
 #include "CPP_OPTIONS.h"
 
-C o Set precision for KPP variables (Real*4 or Real*8)
-#define _KPP_RL Real*8
-
 C o When set, smooth shear horizontally with 121 filters
 #define KPP_SMOOTH_SHSQ
 #undef KPP_SMOOTH_DVSQ

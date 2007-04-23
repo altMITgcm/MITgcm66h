@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/kpp: replaced _KPP_RL with _RL
 o bug fixes for vertical diffusivity computations when both KPP and
     3D diffusivity arrays are used.
 o pkg/seaice: fix bug in evp solver, while doing that
