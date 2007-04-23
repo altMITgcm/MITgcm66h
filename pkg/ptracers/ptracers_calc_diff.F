@@ -52,27 +52,37 @@ C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     I, J :: Loop counters
       INTEGER i,j,iTr
-      _RL KbryanLewis79
+      _RL KbryanLewis79, KbryanLewisEQ
 CEOP
 
       KbryanLewis79=diffKrBL79surf+(diffKrBL79deep-diffKrBL79surf)
-     & *( atan( -( rF(k)-diffKrBL79Ho )/diffKrBL79scl )/PI+0.5 _d 0)
+     &     *(atan(-(rF(k)-diffKrBL79Ho)/diffKrBL79scl)/PI+0.5 _d 0)
+#ifdef ALLOW_BL79_LAT_VARY
+      KbryanLewisEQ=diffKrBLEQsurf+(diffKrBLEQdeep-diffKrBLEQsurf)
+     &     *(atan(-(rF(k)-diffKrBLEQHo)/diffKrBLEQscl)/PI+0.5 _d 0)
+#endif
 
 C Loop over tracers
       DO iTr=1,PTRACERS_numInUse
 
+       IF ( .NOT. PTRACERS_useKPP(iTr) ) THEN
         DO j = 1-Oly, sNy+Oly
          DO i = 1-Olx, sNx+Olx
           KappaRtr(i,j,iTr) =
      &         IVDConvCount(i,j,k,bi,bj)*ivdc_kappa
-#if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_DIFFKR_CONTROL))
+#if (defined ALLOW_3D_DIFFKR || \
+     (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_DIFFKR_CONTROL)))
      &       + diffKr(i,j,k,bi,bj)
 #else
      &       + PTRACERS_diffKrNr(k,iTr)
 #endif
      &       + KbryanLewis79
+#ifdef ALLOW_BL79_LAT_VARY
+     &        + (KbryanLewisEQ-KbryanLewis79)*BL79LatArray(i,j,bi,bj)
+#endif
          ENDDO
         ENDDO
+       ENDIF
 
 #ifdef ALLOW_GMREDI
         IF ( PTRACERS_useGMRedi(iTr) ) THEN 

@@ -47,33 +47,21 @@ C     i,j,k     :: Loop counters
 C--   Add Vertical diffusivity contribution from KPP
       IF ( kArg .EQ. 0 ) THEN
 C-    do all levels :
-        DO k=1,MIN(Nr,kSize)
-         DO j=jMin,jMax
-          DO i=iMin,iMax
-            KappaRT(i,j,k) = KappaRT(i,j,k)
-     &                 + ( KPPdiffKzT(i,j,k,bi,bj)
-#if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_DIFFKR_CONTROL))
-     &                     - diffKr(i,j,k,bi,bj) )
-#else
-     &                     - diffKrNrT(k) )
-#endif
-          ENDDO
+       DO k=1,MIN(Nr,kSize)
+        DO j=jMin,jMax
+         DO i=iMin,iMax
+          KappaRT(i,j,k) = KPPdiffKzT(i,j,k,bi,bj)
          ENDDO
         ENDDO
+       ENDDO
       ELSE
 C-    do level k=kArg only :
-         k = MIN(kArg,kSize)
-         DO j=jMin,jMax
-          DO i=iMin,iMax
-            KappaRT(i,j,k) = KappaRT(i,j,k)
-     &                 + ( KPPdiffKzT(i,j,kArg,bi,bj)
-#if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_DIFFKR_CONTROL))
-     &                     - diffKr(i,j,kArg,bi,bj) )
-#else
-     &                     - diffKrNrT(kArg) )
-#endif
-          ENDDO
-         ENDDO
+       k = MIN(kArg,kSize)
+       DO j=jMin,jMax
+        DO i=iMin,iMax
+         KappaRT(i,j,k) = KPPdiffKzT(i,j,kArg,bi,bj)
+        ENDDO
+       ENDDO
       ENDIF
 
 #endif /* ALLOW_KPP */
