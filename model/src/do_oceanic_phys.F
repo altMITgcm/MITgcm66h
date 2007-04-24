@@ -305,6 +305,10 @@ cph although some of these are re-initialised later.
            VisbeckK(i,j,bi,bj)   = 0. _d 0
 #  endif
 # endif /* ALLOW_GMREDI */
+# ifdef ALLOW_KPP
+           KPPdiffKzS(i,j,k,bi,bj)  = 0. _d 0
+           KPPdiffKzT(i,j,k,bi,bj)  = 0. _d 0
+# endif /* ALLOW_KPP */
 #endif /* ALLOW_AUTODIFF_TAMC */
           ENDDO
          ENDDO
