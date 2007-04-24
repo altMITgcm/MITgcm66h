@@ -166,6 +166,7 @@ C     save stress divergence for later
            ENDDO
           ENDDO
          ELSE
+#ifdef ALLOW_EVP
           DO J=1,sNy
            DO I=1,sNx
 C     average wind stress over ice and ocean and apply averaged wind 
@@ -182,6 +183,7 @@ C     stress and internal ice stresses to surface layer of ocean
      &           + stressDivergenceY(I,J,bi,bj) * SEAICEstressFactor
            ENDDO
           ENDDO
+#endif
          ENDIF
         ENDDO
        ENDDO
