@@ -116,6 +116,12 @@ C     initialise fields
           TAUY (I,J,bi,bj)= 0. _d 0
           WINDX(I,J,bi,bj)= 0. _d 0
           WINDY(I,J,bi,bj)= 0. _d 0
+#ifdef ALLOW_AUTODIFF_TAMC
+# ifdef SEAICE_ALLOW_EVP
+          stressDivergenceX(I,J,bi,bj) = 0. _d 0
+          stressDivergenceY(I,J,bi,bj) = 0. _d 0
+# endif
+#endif
          ENDDO
         ENDDO
        ENDDO

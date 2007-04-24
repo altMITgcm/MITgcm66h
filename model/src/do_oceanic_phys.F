@@ -151,6 +151,8 @@ CADJ STORE evap                = comlev1, key = ikey_dynamics
 cph# endif
 cph# ifdef SEAICE_ALLOW_DYNAMICS
 CADJ STORE uvel,vvel           = comlev1, key = ikey_dynamics
+CADJ STORE uice,vice           = comlev1, key = ikey_dynamics
+CADJ STORE zeta, eta           = comlev1, key = ikey_dynamics
 cph# endif
 # ifdef SEAICE_CGRID
 CADJ STORE fu, fv              = comlev1, key = ikey_dynamics

@@ -162,7 +162,7 @@ cdm          UG       forcing
 cdm          hSnwLoc  snow thickness
 cdm          hice  ice thickness
 cdm outputs: A2 is needed for netHeatFlux, which is ice growth rate
-cdm          TSURF
+cdm          tsurfLoc
       DO ITER=1,IMAX_TICE
         
        DO J=1,sNy
