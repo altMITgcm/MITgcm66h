@@ -141,20 +141,23 @@ C-----------------------------------------------------------------------
                   do i = 1-OLx, sNx+OLx
                      KPPghat       (i,j,k,bi,bj) = 0.
                      KPPviscAz  (i,j,k,bi,bj) = viscAr
+                     KPPdiffKzS (i,j,k,bi,bj) = 0.
+                     KPPdiffKzT (i,j,k,bi,bj) = 0.
                   end do
                end do
             end do
 
-            CALL CALC_3D_DIFFUSIVITY(
-     I           bi,bj,1-Olx,sNx+OLx,1-Oly,sNy+OLy,
-     I           GAD_SALINITY, .FALSE., .FALSE.,
-     O           KPPdiffKzS(1-Olx,1-Oly,1,bi,bj),
-     I           myThid)
-            CALL CALC_3D_DIFFUSIVITY(
-     I           bi,bj,1-Olx,sNx+OLx,1-Oly,sNy+OLy,
-     I           GAD_TEMPERATURE, .FALSE., .FALSE.,
-     O           KPPdiffKzT(1-Olx,1-Oly,1,bi,bj),
-     I           myThid)
+cph Not needed here. Do this in kpp_calc.
+cph            CALL CALC_3D_DIFFUSIVITY(
+cph     I           bi,bj,1-Olx,sNx+OLx,1-Oly,sNy+OLy,
+cph     I           GAD_SALINITY, .FALSE., .FALSE.,
+cph     O           KPPdiffKzS(1-Olx,1-Oly,1,bi,bj),
+cph     I           myThid)
+cph            CALL CALC_3D_DIFFUSIVITY(
+cph     I           bi,bj,1-Olx,sNx+OLx,1-Oly,sNy+OLy,
+cph     I           GAD_TEMPERATURE, .FALSE., .FALSE.,
+cph     O           KPPdiffKzT(1-Olx,1-Oly,1,bi,bj),
+cph     I           myThid)
 
        ENDDO
       ENDDO
