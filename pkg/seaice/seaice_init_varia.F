@@ -199,12 +199,11 @@ C--   Now lets look at all these beasts
         DO bi=myBxLo(myThid),myBxHi(myThid)
          DO j=1-OLy,sNy+OLy
           DO i=1-OLx,sNx+OLx
+           stressDivergenceX(I,J,bi,bj) = 0. _d 0
+           stressDivergenceY(I,J,bi,bj) = 0. _d 0
            seaice_sigma1 (I,J,bi,bj) = 0. _d 0
            seaice_sigma2 (I,J,bi,bj) = 0. _d 0
            seaice_sigma12(I,J,bi,bj) = 0. _d 0
-           seaice_div    (I,J,bi,bj) = 0. _d 0
-           seaice_tension(I,J,bi,bj) = 0. _d 0
-           seaice_shear  (I,J,bi,bj) = 0. _d 0
           ENDDO
          ENDDO
         ENDDO
