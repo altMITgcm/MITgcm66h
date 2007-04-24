@@ -222,7 +222,7 @@ c
 #endif
 
 C--   Read settings from model parameter file "data.seaice".
-      READ(UNIT=iUnit,NML=SEAICE_PARM01,IOSTAT=errIO)
+      READ(UNIT=iUnit,NML=SEAICE_PARM01)
       IF ( errIO .LT. 0 ) THEN
        WRITE(msgBuf,'(A)')
      &  'S/R SEAICE_READPARMS'
@@ -241,7 +241,7 @@ C      CALL MODELDATA_EXAMPLE( myThid )
       ENDIF
 
 #ifdef ALLOW_COST
-      READ(UNIT=iUnit,NML=SEAICE_PARM02,IOSTAT=errIO)
+      READ(UNIT=iUnit,NML=SEAICE_PARM02)
       IF ( errIO .LT. 0 ) THEN
        WRITE(msgBuf,'(A)')
      &  'S/R SEAICE_READPARMS'
