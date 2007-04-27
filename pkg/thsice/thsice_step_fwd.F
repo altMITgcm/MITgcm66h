@@ -356,7 +356,6 @@ C--    Net fluxes :
        ENDDO
       ENDDO
 
-#ifdef ATMOSPHERIC_LOADING
 # ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE snowHeight(:,:,bi,bj) = 
 CADJ &     comlev1_bibj, key=iicekey, byte=isbyte
@@ -369,7 +368,6 @@ C--     Compute Sea-Ice Loading (= mass of sea-ice + snow / area unit)
      &                        )*iceMask(i,j,bi,bj)
        ENDDO
       ENDDO
-#endif
 
       IF ( thSIceAdvScheme.GT.0 ) THEN
 C--   note: those fluxes should to be added directly to Qnet, EmPmR & saltFlux

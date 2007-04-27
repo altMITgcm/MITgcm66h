@@ -625,7 +625,6 @@ C     convert snow to ice if submerged
         ENDIF
 #endif /* ALLOW_SEAICE_FLOODING */
 
-#ifdef ATMOSPHERIC_LOADING
         IF ( useRealFreshWaterFlux ) THEN
          DO J=1,sNy
           DO I=1,sNx
@@ -634,7 +633,6 @@ C     convert snow to ice if submerged
           ENDDO
          ENDDO
         ENDIF
-#endif
 
        ENDDO
       ENDDO

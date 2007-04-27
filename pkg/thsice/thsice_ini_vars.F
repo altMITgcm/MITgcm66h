@@ -154,7 +154,6 @@ C--     Read initial conditions:
         _EXCH_XY_R8(Qice2,  myThid)
         _EXCH_XY_R8(snowAge,myThid)
 
-#ifdef ATMOSPHERIC_LOADING
 C--     Initialise Sea-Ice Loading for SeaIce-Dynamics :
         IF ( useSEAICE ) THEN
           DO bj = myByLo(myThid), myByHi(myThid)
@@ -169,7 +168,6 @@ C--     Initialise Sea-Ice Loading for SeaIce-Dynamics :
            ENDDO
           ENDDO
         ENDIF
-#endif /* ATMOSPHERIC_LOADING */
 
 #endif /* ALLOW_THSICE */
 
