@@ -37,6 +37,11 @@ C o Include/exclude nonHydrostatic code
 C o Include pressure loading code
 #define ATMOSPHERIC_LOADING
 
+C o exclude/allow external forcing-fields load 
+C   this allows to read & do simple linear time interpolation of oceanic
+C   forcing fields, if no specific pkg (e.g., EXF) is used to compute them.
+#undef EXCLUDE_FFIELDS_LOAD
+
 C o Use "Exact Convervation" of fluid in Free-Surface formulation
 C   so that d/dt(eta) is exactly equal to - Div.Transport
 #define EXACT_CONSERV
