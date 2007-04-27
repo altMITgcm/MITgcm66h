@@ -832,7 +832,7 @@ c     fields to get a complete calendar date array.
       endif
 #endif
 #ifdef ALLOW_OBCS_WEST
-      if ( obcsNperiod .gt. 0 ) then
+      if ( obcsWperiod .gt. 0 ) then
          call cal_FullDate  ( obcsWstartdate1    ,      obcsWstartdate2,
      &        date_array                        ,mythid )
          call cal_TimePassed(modelstartdate,date_array,difftime,mythid)
