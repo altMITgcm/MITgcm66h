@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o in FFIELDS.h: 
+  - replace #ifndef ALLOW_EXF  by #ifndef EXCLUDE_FFIELDS_LOAD
+  - make pLoad & sIceLoad always available (but still only used if
+     ATMOSPHERIC_LOADING is #define).
 o pkg/kpp: replaced _KPP_RL with _RL
 o bug fixes for vertical diffusivity computations when both KPP and
     3D diffusivity arrays are used.
