@@ -512,7 +512,6 @@ C--   surface fluxes:
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
-#ifdef ATMOSPHERIC_LOADING
       diagName  = 'atmPload'
       diagTitle = 'Atmospheric pressure loading'
       diagUnits = 'Pa              '
@@ -526,7 +525,6 @@ C--   surface fluxes:
       diagCode  = 'SM      U1      '
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
-#endif /* ATMOSPHERIC_LOADING */
 
       diagName  = 'oceFWflx'
       diagTitle = 'net surface Fresh-Water flux into the ocean'
