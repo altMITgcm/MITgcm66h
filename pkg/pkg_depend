@@ -17,16 +17,10 @@
 #  two packages can be compiled together.
 
 
-aim		-aim_v23
-aim_v23		-aim
-
 #  Ask PH about the following:
 #    cal cost ctrl ecco exf grdchk
 
 exf             +cal
-
-#  Ask Steph about:
-#    dic gchem
 
 #  Ask AJA about:
 #    flt
@@ -41,8 +35,6 @@ mom_vecinv	+mom_common
 cd_code         +mom_common
 shap_filt	+mom_vecinv
 ptracers	+generic_advdiff
-exf		-bulk_force
-bulk_force	-exf
 gchem           +ptracers
 dic             +gchem
 cfc             +gchem
