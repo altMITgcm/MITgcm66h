@@ -14,7 +14,6 @@ C !INTERFACE: ==========================================================
       SUBROUTINE SEAICE_ADVECTION(
      I     tracerIdentity,
      I     advectionScheme,
-     I     extensiveFld,
      I     uFld, vFld, uTrans, vTrans, iceFld, r_hFld,
      O     gFld, afx, afy,
      I     bi, bj, myTime, myIter, myThid)
@@ -59,6 +58,8 @@ C !USES: ===============================================================
 #include "W2_EXCH2_TOPOLOGY.h"
 #include "W2_EXCH2_PARAMS.h"
 #endif /* ALLOW_EXCH2 */
+      LOGICAL extensiveFld
+      PARAMETER ( extensiveFld = .TRUE. )
 
 C !INPUT PARAMETERS: ===================================================
 C  tracerIdentity  :: tracer identifier (required only for OBCS)
@@ -76,7 +77,6 @@ C  myIter          :: iteration number
 C  myThid          :: thread number
       INTEGER tracerIdentity
       INTEGER advectionScheme
-      LOGICAL extensiveFld
       _RL uFld  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL vFld  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL uTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
