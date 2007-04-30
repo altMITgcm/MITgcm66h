@@ -47,7 +47,7 @@ CADJ &     = comlev1, key=ikey_dynamics
 
 #ifdef ALLOW_EXF
 # include "exf_ad_check_lev1_dir.h"
-#else /* ALLOW_EXF undef */
+#endif /* ALLOW_EXF undef */
 
 CADJ STORE taux0   = comlev1, key = ikey_dynamics
 CADJ STORE taux1   = comlev1, key = ikey_dynamics
@@ -72,7 +72,6 @@ CADJ STORE pload0  = comlev1, key = ikey_dynamics
 CADJ STORE pload1  = comlev1, key = ikey_dynamics
 CADJ STORE siceload = comlev1, key = ikey_dynamics
 # endif
-#endif /* ALLOW_EXF */
 
 #ifdef ALLOW_OBCS
 # include "obcs_ad_check_lev1_dir.h"

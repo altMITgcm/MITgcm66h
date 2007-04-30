@@ -61,7 +61,7 @@ CADJ &     = tapelev3, key = ilev_3
 
 #ifdef ALLOW_EXF
 # include "exf_ad_check_lev3_dir.h"
-#else /* ALLOW_EXF undef */
+#endif /* ALLOW_EXF undef */
 
 CADJ STORE taux0   = tapelev3, key = ilev_3
 CADJ STORE taux1   = tapelev3, key = ilev_3
@@ -86,8 +86,6 @@ CADJ STORE pload0  = tapelev3, key = ilev_3
 CADJ STORE pload1  = tapelev3, key = ilev_3
 CADJ STORE siceload = tapelev3, key = ilev_3
 #endif
-
-#endif /* ALLOW_EXF */
 
 #ifdef ALLOW_PTRACERS
 # include "ptracers_ad_check_lev3_dir.h"
