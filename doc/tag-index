@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: some parameter clarifications and a little bit of clean up
 o pkg/thsice: rename run-time parameters:
    himin       -> hIceMin
    himin0      -> hThinIce
