@@ -21,6 +21,8 @@
 #    cal cost ctrl ecco exf grdchk
 
 exf             +cal
+# jmc: add this here since does not work when this line is too far below !!!
+seaice		+exf
 
 #  Ask AJA about:
 #    flt
