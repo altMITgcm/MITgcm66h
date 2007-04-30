@@ -19,7 +19,7 @@ C--  o STATEKPP    - Compute buoyancy-related input arrays.
 c***********************************************************************
 
       SUBROUTINE KPPMIX (
-     I       mytime, mythid, imt, Nr, Nrp1, mdiff, viscAr
+     I       mytime, mythid
      I     , kmtj, shsq, dvsq, ustar
      I     , bo, bosol, dbloc, Ritop, coriol
      I     , diffusKzS, diffusKzT
@@ -44,6 +44,11 @@ c-----------------------------------------------------------------------
 
       IMPLICIT NONE
 
+#include "SIZE.h"
+#include "EEPARAMS.h"
+#include "PARAMS.h"
+#include "KPP_PARAMS.h"
+
 c input
 c     myTime           - current time in simulation
 c     myThid           - thread number for this instance of the routine
@@ -67,9 +72,7 @@ c           where hbl(i,j) -> hbl((j-1)*sNx+i)
 
       _RL     mytime
       integer mythid
-      integer imt, Nr, Nrp1, mdiff
       integer kmtj (imt   )
-      _RL viscAr
       _RL shsq     (imt,Nr)
       _RL dvsq     (imt,Nr)
       _RL ustar    (imt   )
