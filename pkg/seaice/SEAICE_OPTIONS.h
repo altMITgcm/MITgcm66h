@@ -33,6 +33,9 @@ C     include file EXF_FIELDS.h.
 #define SEAICE_EXTERNAL_FORCING
 #ifdef SEAICE_EXTERNAL_FORCING
 #include "EXF_OPTIONS.h"
+#else /* ndef SEAICE_EXTERNAL_FORCING */
+#define ALLOW_ATM_TEMP
+#define ALLOW_DOWNWARD_RADIATION
 #endif /* SEAICE_EXTERNAL_FORCING */
 
 C--   By default, the sea-ice package uses its own integrated bulk
