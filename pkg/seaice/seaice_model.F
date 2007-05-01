@@ -162,9 +162,6 @@ cphCADJ STORE uice   = comlev1, key = ikey_dynamics
 cphCADJ STORE vice   = comlev1, key = ikey_dynamics
 # endif
 #endif /* ALLOW_AUTODIFF_TAMC */
-#ifdef ALLOW_THSICE
-      ENDIF
-#endif
 
 C     thermodynamics growth
 C     must call growth after calling advection 
