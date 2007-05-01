@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice
+ - check for inconsistent evp parameter/cpp-flag combination
+ - remove leftover errIO flat for obsolete name list error handling
+
 checkpoint59a
 o pkg/seaice: some parameter clarifications and a little bit of clean up
 o pkg/thsice: rename run-time parameters:
