@@ -22,6 +22,7 @@ c------------------------------------
 c specifics for dic pkg
 #define DIC_BIOTIC
 #undef  ALLOW_FE
+#define ALLOW_O2
 #undef READ_PAR
 #undef MINFE
 c -------------------------------------

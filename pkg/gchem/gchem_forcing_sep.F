@@ -90,6 +90,7 @@ c
      &                          bi,bj,imin,imax,jmin,jmax,
      &                          myIter,myTime,myThid)
 #else
+#ifdef ALLOW_O2
           call DIC_BIOTIC_Forcing( Ptracer(1-Olx,1-Oly,1,bi,bj,1),
      &                          Ptracer(1-Olx,1-Oly,1,bi,bj,2),
      &                          Ptracer(1-Olx,1-Oly,1,bi,bj,3),
@@ -97,6 +98,14 @@ c
      &                          Ptracer(1-Olx,1-Oly,1,bi,bj,5),
      &                          bi,bj,imin,imax,jmin,jmax,
      &                          myIter,myTime,myThid)
+#else
+          call DIC_BIOTIC_Forcing( Ptracer(1-Olx,1-Oly,1,bi,bj,1),
+     &                          Ptracer(1-Olx,1-Oly,1,bi,bj,2),
+     &                          Ptracer(1-Olx,1-Oly,1,bi,bj,3),
+     &                          Ptracer(1-Olx,1-Oly,1,bi,bj,4),
+     &                          bi,bj,imin,imax,jmin,jmax,
+     &                          myIter,myTime,myThid)
+#endif
 #endif
 #endif
 cccccccccccccccccccccccccc END DIC cccccccccccccccccccccccccccccccccc

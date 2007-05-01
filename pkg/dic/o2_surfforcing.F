@@ -44,6 +44,7 @@ C  SGO2                  :: air-sea exchange of oxygen
 
 #ifdef ALLOW_PTRACERS
 
+#ifdef ALLOW_O2
 
 C !LOCAL VARIABLES: ===================================================
 C I, J, K - Loop counters
@@ -132,6 +133,7 @@ C update surface tendencies
      &         *recip_drF(1) * recip_hFacC(i,j,1,bi,bj)
           ENDDO
          ENDDO
+#endif
 #endif
 
 
