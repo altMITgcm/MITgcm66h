@@ -121,6 +121,15 @@ C     At present this option is hardwired for pkg/exf.
         CALL PRINT_ERROR( msgBuf , myThid)
         STOP 'ABNORMAL END: S/R SEAICE_CHECK'
       ENDIF
+#else
+      IF ( SEAICE_deltaTevp .NE. UNSET_RL ) THEN
+        WRITE(msgBuf,'(A)') 'SEAICE_CHECK: SEAICE_deltaTevp is set'
+        CALL PRINT_ERROR( msgBuf , myThid)
+        WRITE(msgBuf,'(A)') 'SEAICE_CHECK: but cpp-flag '//
+     &       'SEAICE_ALLOW_EVP is not defined in SEAICE_OPTIONS.h'
+        CALL PRINT_ERROR( msgBuf , myThid)
+        STOP 'ABNORMAL END: S/R SEAICE_CHECK'
+      ENDIF
 #endif
 
       _END_MASTER(myThid)
