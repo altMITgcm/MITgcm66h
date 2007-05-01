@@ -41,6 +41,7 @@ o pkg/seaice: fix bug in evp solver, while doing that
     of evp, complete rewrite for lsr case (latter is does not yet work
     in all cases)
 o pkg/kpp: add code to have mixing in shelf ice caverns
+  - add myThid to all kpp routines (long overdue)
 
 checkpoint59
 o pkg/exf: 
