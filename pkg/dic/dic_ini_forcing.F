@@ -37,6 +37,7 @@ CEOP
 
 c !LOCAL VARIABLES: ===================================================
        INTEGER bi,bj,i,j
+       CHARACTER*(MAX_LEN_MBUF) msgBuf
 c
 C First call requires that we initialize everything to zero for safety
       CALL LEF_ZERO( wspeed0,myThid )
@@ -72,6 +73,16 @@ C First call requires that we initialize everything to zero for safety
        _EXCH_XY_R4(feinput0, myThid )
        _EXCH_XY_R4(feinput1, myThid )
 # endif
+
+#ifdef READ_PAR
+#ifdef PAR_FROMSW
+        WRITE(msgBuf,'(2A)')
+     &       ' DIC_INI_FORCING: You can not use READ_PAR ',
+     &       ' and PAR_FROMSW'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        STOP 'ABNORMAL END: S/R DIC_INI_FORCING'
+#endif
+#endif
 
 c set reasonable values to those that need at least something
        DO bj = myByLo(myThid), myByHi(myThid)
