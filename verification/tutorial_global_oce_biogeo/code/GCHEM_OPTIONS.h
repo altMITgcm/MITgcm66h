@@ -24,6 +24,7 @@ c specifics for dic pkg
 #undef  ALLOW_FE
 #define ALLOW_O2
 #undef READ_PAR
+#undef PAR_FROMSW
 #undef MINFE
 c -------------------------------------
 
