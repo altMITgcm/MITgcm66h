@@ -139,10 +139,11 @@ c     == local variables ==
       integer bi,bj
       integer i,j,k
 
-      _RL     aln
+      _RL aln
+      _RL czol
 
-#ifdef ALLOW_ATM_TEMP
       integer iter
+      _RL     tmpbulk
       _RL     delq
       _RL     deltap
       _RL     hqol
@@ -170,9 +171,6 @@ c     == local variables ==
       integer ikey_1
       integer ikey_2
 #endif
-#endif /* ALLOW_ATM_TEMP */
-
-      _RL     tmpbulk
 
 c     == external functions ==
 
@@ -188,9 +186,8 @@ c     == external functions ==
 
 c     == end of interface ==
 
-cph   This statement cannot be a PARAMETER statement in the header,
-cph   but must come here; it is not fortran77 standard
       aln = log(ht/zref)
+      czol = hu*karman*gravity_mks
 
 c--   Use atmospheric state to compute surface fluxes.
 

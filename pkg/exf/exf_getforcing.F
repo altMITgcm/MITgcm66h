@@ -180,9 +180,9 @@ CADJ STORE wspeed       = comlev1, key = ikey_dynamics
 c     Deal set radiative fluxes
       call exf_wind( mytime, myiter, mythid )
 
-# ifdef ALLOW_BULK_LARGYEAG04
+# ifdef ALLOW_BULK_LARGEYEAGER04
 c     use Large & Yeager 2004
-      call exf_bulk_largyeag( mytime, myiter, mythid )
+      call exf_bulk_largeyeager04( mytime, myiter, mythid )
 # else
 c     use Large & Pond 1981
       call exf_bulkformulae( mytime, myiter, mythid )
