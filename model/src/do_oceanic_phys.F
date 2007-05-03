@@ -519,11 +519,11 @@ C--     Compute KPP mixing coefficients
      &     CALL DEBUG_CALL('KPP_CALC',myThid)
 #endif
           CALL KPP_CALC(
-     I                  bi, bj, myTime, myThid )
+     I                  bi, bj, myTime, myIter, myThid )
 #ifdef ALLOW_AUTODIFF_TAMC
         ELSE
           CALL KPP_CALC_DUMMY(
-     I                  bi, bj, myTime, myThid )
+     I                  bi, bj, myTime, myIter, myThid )
 #endif /* ALLOW_AUTODIFF_TAMC */
         ENDIF
 
