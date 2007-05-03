@@ -92,6 +92,7 @@ C     hsLocal, hlLocal :: sensible & latent heat flux over sea-ice
       _RL     x
       _RL     tau
       _RL     tmpbulk
+      _RL     czol
 
 C     additional variables that are copied from bulkf_formula_lay:
 C     upward LW at surface (W m-2)
@@ -141,6 +142,9 @@ C     == end of interface ==
      &         + sNx*sNy*max1*max2*act3
      &         + sNx*sNy*max1*max2*max3*act4
 #endif
+
+C-- Set surface parameters :
+      czol = hu*karman*gravity_mks
 
 C     copy a few variables to names used in bulkf_formula_lay
       Tsf    =  tsfCel+cen2kel
