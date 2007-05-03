@@ -5,6 +5,8 @@ $Name$
     ==============================
 
 o pkg/kpp
+ - remove wrong (within bi,bj loops) EXCH calls.
+ - little cleaning (add argument myThid in last position, cvs header ...)
  - move computation of surface related input fields to KPP into a new
    subroutine kpp_forcing_surf.F
 o pkg/seaice
