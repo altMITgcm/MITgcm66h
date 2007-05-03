@@ -322,9 +322,9 @@ c     IF ( usePenetratingSW ) THEN
        swfracb(1)=abs(rF(klev))
        swfracb(2)=abs(rF(klev+1))
        CALL SWFRAC(
-     I     two,minusone,
-     I     myTime,myThid,
-     U     swfracb)
+     I             two, minusone,
+     U             swfracb,
+     I             myTime, 1, myThid )
        kp1 = klev+1
        IF (klev.EQ.Nr) THEN
         kp1 = klev
