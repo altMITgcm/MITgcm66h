@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/kpp
+ - move computation of surface related input fields to KPP into a new
+   subroutine kpp_forcing_surf.F
 o pkg/seaice
  - check for inconsistent evp parameter/cpp-flag combination
  - remove leftover errIO flat for obsolete name list error handling
