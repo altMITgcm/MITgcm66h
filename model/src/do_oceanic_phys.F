@@ -597,6 +597,12 @@ C--   end bi,bj loops.
        ENDDO
       ENDDO
 
+#ifdef  ALLOW_KPP
+      IF (useKPP) THEN
+        CALL KPP_DO_EXCH( myThid )
+      ENDIF
+#endif  /* ALLOW_KPP */
+
 #ifdef ALLOW_DIAGNOSTICS
       IF ( fluidIsWater .AND. useDiagnostics ) THEN
         CALL DIAGS_OCEANIC_SURF_FLUX( myTime, myIter, myThid )
