@@ -2029,7 +2029,7 @@ while test "x$ck" != xtt ; do
     i=0
     # rtot=${#PNAME[@]}
     rtot=$nname
-    while test $i -lt $rtot ; do
+    while test $i -le $rtot ; do
 
 	#  Is $pname in the current $PACKAGES list?
 	#  pname=${PNAME[$i]}
@@ -2063,6 +2063,7 @@ while test "x$ck" != xtt ; do
 
 	#  Do we need to add $dname according to the dependency rules?
 	if test "x$pin" = xt -a "x$plus" = "x+" -a "x$din" = xf ; then
+            #echo "   " $pname ": need to add :" $dname
 	    in_dis="f"
 	    for dis in $DISABLE ; do
 		if test "x$dis" = "x$dname" ; then
