@@ -75,10 +75,10 @@ C First call requires that we initialize everything to zero for safety
 # endif
 
 #ifdef READ_PAR
-#ifdef PAR_FROMSW
+#ifdef USE_QSW
         WRITE(msgBuf,'(2A)')
      &       ' DIC_INI_FORCING: You can not use READ_PAR ',
-     &       ' and PAR_FROMSW'
+     &       ' and USE_QSW'
         CALL PRINT_ERROR( msgBuf, myThid )
         STOP 'ABNORMAL END: S/R DIC_INI_FORCING'
 #endif

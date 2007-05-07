@@ -113,10 +113,15 @@ C using Garcia and Gordon (1992), L&O (mistake in original???)
 c Convert from ml/l to mol/m^3
               O2sat(i,j) = o2s/22391.6*1000.0
 
+#ifdef USE_PLOAD
+c convert from Pa to atmos
+               AtmosP(i,j,bi,bj)=pLoad(i,j,bi,bj)/1.01295e5
+#endif
+
 c Determine flux, inc. correction for local atmos surface pressure
 cQQ PTR_O2?
               FluxO2(i,j) = maskC(i,j,k,bi,bj)*Kwexch(i,j)*
-     &                     (atmosP(i,j,bi,bj)*O2sat(i,j) 
+     &                     (AtmosP(i,j,bi,bj)*O2sat(i,j) 
      &                      - PTR_O2(i,j,1)) 
             ELSE
               FluxO2(i,j) = 0.d0

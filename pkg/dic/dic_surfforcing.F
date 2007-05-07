@@ -63,12 +63,16 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 
       kLev=1
 
+c if coupled to atmsopheric model, use the
+c Co2 value passed from the coupler
+#ifndef USE_ATMOSCO2
 C PRE-INDUSTRIAL STEADY STATE pCO2 = 278.0 ppmv
        DO j=1-OLy,sNy+OLy
         DO i=1-OLx,sNx+OLx
            AtmospCO2(i,j,bi,bj)=278.0d-6
         ENDDO
        ENDDO
+#endif
 
 
 C =================================================================
@@ -131,6 +135,12 @@ C calculate SCHMIDT NO. for CO2
      &          + sca3 * theta(i,j,kLev,bi,bj)*theta(i,j,kLev,bi,bj)  
      &          + sca4 * theta(i,j,kLev,bi,bj)*theta(i,j,kLev,bi,bj) 
      &                *theta(i,j,kLev,bi,bj)
+
+c
+#ifdef USE_PLOAD
+c convert from Pa to atmos
+               AtmosP(i,j,bi,bj)=pLoad(i,j,bi,bj)/1.01295e5
+#endif
 
 C Determine surface flux (FDIC)
 C first correct pCO2at for surface atmos pressure
