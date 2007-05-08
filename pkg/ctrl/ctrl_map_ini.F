@@ -110,7 +110,8 @@ c--   Temperature field.
 #endif
 #ifdef ALLOW_OPENAD
                 theta(i,j,k,bi,bj) = theta(i,j,k,bi,bj) +
-     &                               fac*xx_theta(i,j,k,bi,bj)
+     &                               fac*xx_theta(i,j,k,bi,bj) +
+     &                               fac*tmpfld3d(i,j,k,bi,bj)
 #else
                 theta(i,j,k,bi,bj) = theta(i,j,k,bi,bj) +
      &                               fac*tmpfld3d(i,j,k,bi,bj)
@@ -147,7 +148,8 @@ c--   Temperature field.
 #endif
 #ifdef ALLOW_OPENAD
                 salt(i,j,k,bi,bj) = salt(i,j,k,bi,bj) +
-     &                               fac*xx_salt(i,j,k,bi,bj)
+     &                               fac*xx_salt(i,j,k,bi,bj) +
+     &                               fac*tmpfld3d(i,j,k,bi,bj)
 #else
                 salt(i,j,k,bi,bj) = salt(i,j,k,bi,bj) +
      &                               fac*tmpfld3d(i,j,k,bi,bj)
