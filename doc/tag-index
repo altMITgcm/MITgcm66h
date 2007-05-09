@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: rearrangement of common blocks (really needs more cleaning up)
 o pkg/exf: some cleaning-up:
   - change various "constants" into runtime parameters
   - cleaned-up Large&Yeager04 routine which should eventually
