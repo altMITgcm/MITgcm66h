@@ -5,6 +5,12 @@ $Name$
     ==============================
 
 o pkg/seaice: rearrangement of common blocks (really needs more cleaning up)
+  - change discretisation of evp-solver in order to avoid another exchange
+    (changes lab_sea) and clean up a little
+  - replace SQRT(MAX(deltaC,SEAICE_EPS)) by MAX(SQRT(deltaC),SEAICE_EPS) 
+    help the adjoint (this also changes the results slightly)
+  - add a few "_d 0" where they had been missing in seaice_evp.F
+  - cleaning up: remove unused seaice_calc_rhs.F
 o pkg/exf: some cleaning-up:
   - change various "constants" into runtime parameters
   - cleaned-up Large&Yeager04 routine which should eventually
