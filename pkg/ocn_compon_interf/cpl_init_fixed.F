@@ -92,6 +92,27 @@ CEOP
      &       'ocean surface velocity square', myThid)
         CALL MNC_CW_ADD_VATTR_TEXT('vSqtave','units','m^2/s^2',myThid)
 
+        CALL MNC_CW_ADD_VNAME('aCO2tave','Cen_xy_Hn__-__t',3,4,myThid)
+        CALL MNC_CW_ADD_VATTR_TEXT('aCO2tave','long_name',
+     &       'atm CO2 level', myThid)
+        CALL MNC_CW_ADD_VATTR_TEXT('aCO2tave','units','parts',myThid)
+
+        CALL MNC_CW_ADD_VNAME('sWSpdtave','Cen_xy_Hn__-__t',3,4,myThid)
+        CALL MNC_CW_ADD_VATTR_TEXT('sWSpdtave','long_name',
+     &       'surface wind speed', myThid)
+        CALL MNC_CW_ADD_VATTR_TEXT('sWSpdtave','units','m/s',myThid)
+
+        CALL MNC_CW_ADD_VNAME('iceftave','Cen_xy_Hn__-__t',3,4,myThid)
+        CALL MNC_CW_ADD_VATTR_TEXT('iceftave','long_name',
+     &       'ocean seaice fraction', myThid)
+        CALL MNC_CW_ADD_VATTR_TEXT('iceftave','units','non-dim',myThid)
+
+        CALL MNC_CW_ADD_VNAME('fCO2tave','Cen_xy_Hn__-__t',3,4,myThid)
+        CALL MNC_CW_ADD_VATTR_TEXT('fCO2tave','long_name',
+     &       'ocean CO2 flux -> atm', myThid)
+        CALL MNC_CW_ADD_VATTR_TEXT('fCO2tave','units','mol/m2/s',myThid)
+
+
       ENDIF
 #endif /* ALLOW_MNC */
 

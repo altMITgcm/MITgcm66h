@@ -16,6 +16,7 @@ C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "OCNIDS.h"
 #include "OCNCPL.h"
 #include "CPL_DIAGS.h"
 
@@ -74,6 +75,16 @@ c    &               + DDTT * vVelGround(i,j,bi,bj)
      &               + DDTT * SSSocn2cpl(i,j,bi,bj)
         vSqtave(i,j,bi,bj)  = vSqtave(i,j,bi,bj)
      &               + DDTT * vSqocn2cpl(i,j,bi,bj)
+        IF ( ocnCpl_exchange_DIC ) THEN
+          aCO2tave(i,j,bi,bj)  = aCO2tave(i,j,bi,bj)
+     &               + DDTT * airCO2(i,j,bi,bj)
+          sWSpdtave(i,j,bi,bj) = sWSpdtave(i,j,bi,bj)
+     &               + DDTT * surfWSpeed(i,j,bi,bj)
+          iceftave(i,j,bi,bj)  = iceftave(i,j,bi,bj)
+     &               + DDTT * fracIce(i,j,bi,bj)
+          fCO2tave(i,j,bi,bj)  = fCO2tave(i,j,bi,bj)
+     &               + DDTT * fluxCO2cpl(i,j,bi,bj)
+        ENDIF
        ENDDO
       ENDDO
 

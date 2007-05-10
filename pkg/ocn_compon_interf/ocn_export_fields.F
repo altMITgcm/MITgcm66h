@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CStartOfInterface
@@ -48,6 +49,12 @@ C-    Send sea-surface salinity to coupling layer
 C-    Send ocean surface velocity square to coupling layer
       CALL COMPSEND_R8TILES( ocnSSVsqName,
      I     sNx, OLx, sNy, OLy, 1, nSx, nSy, vSqocn2cpl )
+
+      IF ( ocnCpl_exchange_DIC ) THEN
+C-    Send ocean CO2 flux to coupling layer
+        CALL COMPSEND_R8TILES( ocnFCO2Name,
+     I     sNx, OLx, sNy, OLy, 1, nSx, nSy, fluxCO2cpl )
+      ENDIF
 
       RETURN
       END

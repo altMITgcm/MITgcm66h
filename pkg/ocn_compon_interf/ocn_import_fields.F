@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CStartOfInterface
@@ -69,6 +70,23 @@ C-    Receive sea-ice mass (sea-ice model) from coupling layer.
       CALL COMPRECV_R8TILES( ocnSeaIceName,
      I                       sNx, OLx, sNy, OLy, 1, nSx, nSy,
      O                       seaIceMass )
+
+      IF ( ocnCpl_exchange_DIC ) THEN
+C-      Receive atmos CO2 level from coupling layer.
+        CALL COMPRECV_R8TILES( ocnAirCO2Name,
+     I                       sNx, OLx, sNy, OLy, 1, nSx, nSy,
+     O                       airCO2 )
+
+C-      Receive ground-level windspeed from coupling layer.
+        CALL COMPRECV_R8TILES( ocnWSpdName,
+     I                       sNx, OLx, sNy, OLy, 1, nSx, nSy,
+     O                       surfWSpeed )
+
+C-      Receive seaice fraction from coupling layer.
+        CALL COMPRECV_R8TILES( ocnFIceName,
+     I                       sNx, OLx, sNy, OLy, 1, nSx, nSy,
+     O                       fracIce )
+      ENDIF
 
       RETURN
       END
