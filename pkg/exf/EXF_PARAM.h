@@ -536,9 +536,15 @@ c     exf_outscale_*    output scaling factors
 
 #ifndef USE_EXF_INTERPOLATION
 c-- set dummy dimension 1
+      INTEGER    exf_interp_bufferSize
+      PARAMETER( exf_interp_bufferSize = 1 )
        integer MAX_LAT_INC
        parameter(MAX_LAT_INC = 1)
 #else
+C  To read input data without dynamical allocation (EXF_INTERP_USE_DYNALLOC undef),
+C  buffer size currently set to 20000 (allows to read-in a 2x2 global data set)
+      INTEGER    exf_interp_bufferSize
+      PARAMETER( exf_interp_bufferSize = 10000 )
 c for lat interpolation, arraysize currently set to 2176 max data values
        integer MAX_LAT_INC
        parameter(MAX_LAT_INC = 2176)
