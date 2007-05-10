@@ -36,8 +36,8 @@ C-      local variables:
 
         lagran = numer/denom
 
-       return
-       end
+       RETURN
+       END
 
 
        SUBROUTINE exf_interp(
