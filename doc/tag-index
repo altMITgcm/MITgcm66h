@@ -34,6 +34,8 @@ o pkg/kpp
 o pkg/seaice
  - check for inconsistent evp parameter/cpp-flag combination
  - remove leftover errIO flat for obsolete name list error handling
+o OpenAD
+ - changed verification/OpenAD to full baroclinic setup (including GM/Redi)
 
 checkpoint59a
 o pkg/seaice: some parameter clarifications and a little bit of clean up
