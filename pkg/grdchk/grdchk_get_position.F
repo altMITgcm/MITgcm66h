@@ -46,7 +46,6 @@ c     == local variables ==
 
       integer iG,jG
       integer bi,bj
-      integer pi,pj
       integer i,j,k
       integer iobcs
       integer biwrk,bjwrk
