@@ -58,9 +58,12 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       kLev=1
 
 ccccccccccccccccccccccccccccccccccccccccc
+      IF ( periodicExternalForcing ) THEN
+
 c read in silica field
          CALL LEF_ZERO( silica0,myThid )
          CALL LEF_ZERO( silica1,myThid )
+
        rdt=1. _d 0 / deltaTclock
        nForcingPeriods=
      &  int(externForcingCycle/externForcingPeriod+0.5)
@@ -113,6 +116,9 @@ cswd QQ change for placement of chem forcing (ie. after timestep)
          ENDDO
         ENDDO
        ENDDO
+
+c end periodicExternalForcing
+      ENDIF
 
 C =================================================================
       DO bj=myByLo(myThid),myByHi(myThid)
