@@ -5,6 +5,16 @@ $Name$
     ==============================
 
 o pkg/exf:
+  - implement A-grid / C-grid selection for wind-stress input files.
+  - clean-up exf_wind.F (remove us, use wspeed instead ; add wStress)
+  for now, in exf_bulk_largeyeager04.F only :
+  - change implementation for case where windspeed + 2. components wind-stress
+    are read-in. AND use rhoConstFresh to convert evap.
+o pkg/seaice:
+  - use correct EXCH_UV for wind-forcing (on A-grid).
+  - change SEAICE_OPTIONS.h to limit the number of option combinations (regarding
+    SEAICE_EXTERNAL_FORCING & SEAICE_EXTERNAL_FLUXES); add corresponding stops.
+o pkg/exf:
   - default EXF options are now set in EXF_OPTIONS.h (ifndef ALLOW_AUTODIFF_TAMC)
   EXF_INTERPOLATION: 
   - merge global_with_exf/code version of exf_interp_read.F
