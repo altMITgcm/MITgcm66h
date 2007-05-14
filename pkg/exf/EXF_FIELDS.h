@@ -209,8 +209,10 @@ c
       _RL hl        (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 #endif
 
-      common /exfl_wind_r/ us, cw, sw, sh
-      _RL us        (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+C     wStress   :: wind-stress magnitude [Pa=N/m^2], @ grid-cell center
+C     sh        :: wind-speed [m/s] (always larger than uMin)
+      common /exfl_wind_r/ wStress, cw, sw, sh
+      _RL wStress   (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL cw        (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL sw        (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL sh        (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
