@@ -52,7 +52,7 @@ matrix          +ptracers
 matrix          -gchem
 
 #  default SEAICE_OPTIONS.h requires EXF:
-seaice		+exf
+#seaice		+exf
 
 #  Need more information on the following:
 obcs
