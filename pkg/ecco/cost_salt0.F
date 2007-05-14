@@ -100,7 +100,7 @@ c--   Read state record from global file.
      &       xx_salt_file(1:ilfld),'.',optimcycle
       endif
 
-      call active_read_xyz_loc( fnamefld, tmpfld3d, irec, doglobalread,
+      call active_read_xyz( fnamefld, tmpfld3d, irec, doglobalread,
      &                       ladinit, optimcycle, mythid
      &        , xx_salt_dummy )
 
@@ -135,7 +135,7 @@ c--         Determine the weights to be used.
 
 #ifdef ALLOW_SMOOTH_IC_COST_CONTRIBUTION
 
-      call active_read_xyz_loc( 
+      call active_read_xyz( 
      &     fnamefld, tmpfld3d, irec, doglobalread,
      &     ladinit, optimcycle, mythid, xx_salt_dummy )
 

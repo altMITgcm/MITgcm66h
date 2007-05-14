@@ -148,7 +148,7 @@ c--   >>> Loop 1 to compute mean forcing:
 
       do irec = 1,nrec
 
-        call active_read_xy_loc( 
+        call active_read_xy( 
      &        fnamefld, tmpfld2d, irec, doglobalread,
      &        ladinit, optimcycle, mythid, xx_gen_dummy )
 
@@ -196,7 +196,7 @@ c--     Determine the weights to be used.
 c--   >>> Loop 2 over records.
       do irec = 1,nrec
 
-        call active_read_xy_loc( 
+        call active_read_xy( 
      &        fnamefld, tmpfld2d, irec, doglobalread,
      &        ladinit, optimcycle, mythid, xx_gen_dummy )
 
@@ -238,7 +238,7 @@ c--   End of loop over records.
 c--   >>> Loop 2 over records.
       do irec = 1,nrec
 
-        call active_read_xy_loc( 
+        call active_read_xy( 
      &        fnamefld, tmpfld2d, irec, doglobalread,
      &        ladinit, optimcycle, mythid, xx_gen_dummy )
 

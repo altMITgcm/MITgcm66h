@@ -112,7 +112,7 @@ C--
       il=ilnblnk( xx_depth_file )
       write(fnamedepth(1:80),'(2a,i10.10)')
      &     xx_depth_file(1:il),'.',optimcycle
-      call active_read_xy_loc( fnamedepth, tmpfld2d, 1,
+      call active_read_xy( fnamedepth, tmpfld2d, 1,
      &                     doglobalread, ladinit, optimcycle,
      &                     mythid, xx_depth_dummy )
       do bj = jtlo,jthi

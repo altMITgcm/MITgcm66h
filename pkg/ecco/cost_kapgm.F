@@ -104,7 +104,7 @@ c--   Read state record from global file.
 
       fcthread = 0. _d 0
 
-      call active_read_xyz_loc( fnamefld, tmpfld3d, irec, doglobalread,
+      call active_read_xyz( fnamefld, tmpfld3d, irec, doglobalread,
      &                       ladinit, optimcycle, mythid
      &        , xx_kapgm_dummy )
 
