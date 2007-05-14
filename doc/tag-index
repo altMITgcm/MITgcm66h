@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o Refresh of tutorial_global_oce_latlon (includes changing salinity-like
+  passive tracer to an Age Tracer) + update output.txt
 o pkg/exf:
   - implement A-grid / C-grid selection for wind-stress input files.
   - clean-up exf_wind.F (remove us, use wspeed instead ; add wStress)
