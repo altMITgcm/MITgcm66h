@@ -147,6 +147,27 @@ C     Except under sea ice, SIqsw is also identical to EXFswnet.
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I     diagName, diagCode, diagUnits, diagTitle, myThid )
 
+      diagName  = 'SIpress   '
+      diagTitle = 'SEAICE strength (with upper and lower limit)'
+      diagUnits = 'm^2/s^2         '
+      diagCode  = 'SM      M1      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, myThid )
+
+      diagName  = 'SIzeta   '
+      diagTitle = 'SEAICE nonlinear bulk viscosity'
+      diagUnits = 'm^2/s           '
+      diagCode  = 'SM      M1      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, myThid )
+
+      diagName  = 'SIeta    '
+      diagTitle = 'SEAICE nonlinear shear viscosity'
+      diagUnits = 'm^2/s           '
+      diagCode  = 'SM      M1      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, myThid )
+
       diagName  = 'SIsigI  '
       diagTitle = 'SEAICE normalized principle stress, component one'
       diagUnits = 'no units        '
