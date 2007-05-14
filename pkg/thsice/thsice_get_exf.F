@@ -152,7 +152,7 @@ C     copy a few variables to names used in bulkf_formula_lay
       Tsf    =  tsfCel+cen2kel
       Ts2    = Tsf*Tsf
 C     wind speed
-      ws     = us(i,j,bi,bj)
+      ws     = wspeed(i,j,bi,bj)
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE sh(i,j,bi,bj)     = comlev1_exf_1, key = ikey_1
 #endif
