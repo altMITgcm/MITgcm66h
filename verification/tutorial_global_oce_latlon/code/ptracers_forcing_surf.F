@@ -58,9 +58,11 @@ C Example of how to add forcing at the surface
       DO iTrc=1,PTRACERS_numInUse
           DO j = jMin, jMax
            DO i = iMin, iMax
+C     Restoring to zero at the surface on a 10-day timescale
              surfaceForcingPtr(i,j,bi,bj,iTrc) =
-     &               surfaceForcingS(i,j,bi,bj)
-c    &               0. _d 0
+     &        + 1. _d 0 / (10. _d 0 * 86400. _d 0) 
+     &                  * ( 0. _d 0 - pTracer(i,j,ks,bi,bj,iTrc) ) 
+     &                  * drF(ks) * _hFacC(i,j,ks,bi,bj)
            ENDDO
           ENDDO
       ENDDO
