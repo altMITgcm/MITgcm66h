@@ -162,8 +162,9 @@ c     Get values of climatological fields.
 c     Get the surface forcing fields.
       call exf_getffields( mytime, myiter, mythid )
 #ifndef ALLOW_ATM_WIND
-      IF ( ustressfile.NE.' ' .AND. vstressfile.NE.' ' )
-     &  CALL EXCH_UV_XY_RL(ustress, vstress, .TRUE., myThid )
+      IF ( stressIsOnCgrid .AND. ustressfile.NE.' '
+     &                     .AND. vstressfile.NE.' ' )
+     &  CALL EXCH_UV_XY_RL( ustress, vstress, .TRUE., myThid )
 #endif
 
 #ifdef ALLOW_BULKFORMULAE
@@ -221,12 +222,11 @@ c             Salt flux from Precipitation and Evaporation.
 c     Update the tile edges.
       _EXCH_XY_R8(hflux,   mythid)
       _EXCH_XY_R8(sflux,   mythid)
-#if ( ( defined (ALLOW_BULKFORMULAE) && defined (ALLOW_ATM_WIND) ) \
-     || defined (USE_EXF_INTERPOLATION) )
-       CALL EXCH_UV_AGRID_3D_RL(ustress, vstress, .TRUE., 1, myThid)
-#else
-       CALL EXCH_UV_XY_RL(ustress, vstress, .TRUE., myThid)
-#endif
+      IF ( stressIsOnCgrid ) THEN
+        CALL EXCH_UV_XY_RL( ustress, vstress, .TRUE., myThid )
+      ELSE
+        CALL EXCH_UV_AGRID_3D_RL(ustress, vstress, .TRUE., 1, myThid)
+      ENDIF
 #ifdef SHORTWAVE_HEATING
       _EXCH_XY_R8(swflux, mythid)
 #endif

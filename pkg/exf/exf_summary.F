@@ -105,6 +105,8 @@ C--   Print general parameters:
      &  ' /* Minimum climatological temperature [deg.C] */')
       CALL WRITE_0D_R8( windStressMax, INDEX_NONE,'windStressMax =',
      &  ' /* Maximum absolute windstress [ Pa ] */')
+      CALL WRITE_0D_L( stressIsOnCgrid,INDEX_NONE,'stressIsOnCgrid =',
+     &  ' /* set u,v_stress on Arakawa C-grid */')
       CALL WRITE_0D_R8( cen2kel, INDEX_NONE, 'cen2kel =',
      &  ' /* conversion of deg. Centigrade to Kelvin [K] */')
       CALL WRITE_0D_R8( gravity_mks, INDEX_NONE, 'gravity_mks=',
