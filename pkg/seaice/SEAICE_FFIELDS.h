@@ -65,7 +65,9 @@ C
 #ifdef SEAICE_EXTERNAL_FORCING
 
 C--   Define forcing fields outside pkg/seaice.
+#ifdef ALLOW_EXF
 #include "EXF_FIELDS.h"
+#endif
 
 #else /* SEAICE_EXTERNAL_FORCING undefined */
 
