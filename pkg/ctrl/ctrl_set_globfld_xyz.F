@@ -46,7 +46,7 @@ c     == local variables ==
       integer imin,imax
       integer irec
 
-      _RL     globfld3d( snx,nsx,npx,sny,nsy,npy,nr )
+      _RL     globfld3d( snx,sny,nr,nsx,nsy )
 
 c     == external ==
 
@@ -63,26 +63,25 @@ c     == end of interface ==
 
 c     Initialise temporary file
       do k = 1,nr
-         do jp = 1,nPy
             do bj = jtlo,jthi
                do j = jmin,jmax
-                  do ip = 1,nPx
                      do bi = itlo,ithi
                         do i = imin,imax
-                           globfld3d(i,bi,ip,j,bj,jp,k) = 0. _d 0
+                           globfld3d(i,j,k,bi,bj) = 0. _d 0
                         enddo
                      enddo
-                  enddo
                enddo
             enddo
-         enddo
       enddo
 
 c--   Only the master thread will do I/O.
       _BEGIN_MASTER( mythid )
 
-      do irec = 1, ncvarrecs(ivartype)
-         call MDSWRITEFIELD_3D_GL( fname, ctrlprec, 'RL',
+CMM(add one for good measure
+CMM      do irec = 1, ncvarrecs(ivartype)
+      do irec = 1, ncvarrecs(ivartype)+1
+CMM)
+         call MDSWRITEFIELD( fname, ctrlprec,.FALSE., 'RL',
      &        Nr, globfld3d,
      &        irec,   optimcycle,  mythid)
       enddo
