@@ -512,7 +512,9 @@ C NOW GET FRESH WATER FLUX
           EmPmR(I,J,bi,bj)  = maskC(I,J,kSurface,bi,bj)*(
      &         ( EVAP(I,J,bi,bj)-PRECIP(I,J,bi,bj) )
      &         * ( ONE - AREA(I,J,2,bi,bj) )
+#ifdef ALLOW_RUNOFF
      &         - RUNOFF(I,J,bi,bj)
+#endif
      &         + frWtrIce(I,J)*ICE2WATR/SEAICE_deltaTtherm
      &         )
 #else /* ALLOW_ATM_TEMP */

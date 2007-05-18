@@ -251,7 +251,7 @@ C     sh        :: wind-speed [m/s] (always larger than uMin)
       _RL apressure1(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 #endif
 
-#if defined (ALLOW_RUNOFF) || defined (ALLOW_SEAICE)
+#ifdef ALLOW_RUNOFF
       common /exfl_runoff_r/ runoff, runoff0, runoff1
       _RL runoff    (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL runoff0   (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)

@@ -143,7 +143,7 @@ C       Print some statistics about input forcing fields
         CALL MON_PRINTSTATS_RL(1,apressure,'_apressure',
      &       maskH,maskH,rA ,drF,myThid)
 #endif
-#if defined (ALLOW_RUNOFF) || defined (ALLOW_SEAICE)
+#ifdef ALLOW_RUNOFF
         CALL MON_PRINTSTATS_RL(1,runoff,'_runoff',
      &       maskH,maskH,rA ,drF,myThid)
 #endif

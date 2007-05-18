@@ -49,6 +49,7 @@ C-    current implementation requires those options to be set:
 # undef  SEAICE_EXTERNAL_FLUXES
 # define ALLOW_ATM_TEMP
 # define ALLOW_DOWNWARD_RADIATION
+# define ALLOW_RUNOFF
 
 #endif /* SEAICE_EXTERNAL_FORCING */
 

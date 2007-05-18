@@ -317,7 +317,7 @@ c     Atmos. pressure forcing
      &     mytime, myiter, mythid )
 #endif
 
-#if (defined (ALLOW_RUNOFF) || defined (ALLOW_SEAICE))
+#ifdef ALLOW_RUNOFF
 c     Runoff
       call exf_set_gen  (
      &     runofffile, runoffstartdate, runoffperiod, 
