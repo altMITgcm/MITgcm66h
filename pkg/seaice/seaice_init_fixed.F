@@ -31,8 +31,7 @@ CEndOfInterface
 C     === Local variables ===
 C     i,j,k,bi,bj - Loop counters
 
-      INTEGER i, j, k, bi, bj
-      INTEGER myIter, myTile
+      INTEGER k, bi, bj
 
 #ifdef ALLOW_DIAGNOSTICS
       IF ( useDiagnostics ) THEN
