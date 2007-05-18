@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o exf runoff and seaice: remove ALLOW_SEAICE from exf pkg files and
+  add #define ALLOW_RUNOFF in SEAICE_OPTIONS.h (when not using exf).
+
 checkpoint59b
 o coupler (pkg/atm_ocn_coupler, pkg/ocn_compon_interf, pkg/atm2d):
   - export/import (between ocean & coupler) fields needed for ocean DIC.
