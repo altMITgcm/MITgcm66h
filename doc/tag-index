@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o change error catch in calc_r_star to improve vectorization
 o exf runoff and seaice: remove ALLOW_SEAICE from exf pkg files and
   add #define ALLOW_RUNOFF in SEAICE_OPTIONS.h (when not using exf).
 
