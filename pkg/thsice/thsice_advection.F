@@ -257,6 +257,7 @@ C--   CubedSphere : pass 3 times, with partial update of local seaice field
          calc_fluxes_X = nCFace.EQ.2 .OR. nCFace.EQ.3 .OR. nCFace.EQ.4
          calc_fluxes_Y = nCFace.EQ.5 .OR. nCFace.EQ.6 .OR. nCFace.EQ.1
         ELSE
+         interiorOnly = MOD(nCFace,3).EQ.0
          calc_fluxes_X = nCFace.EQ.5 .OR. nCFace.EQ.6
          calc_fluxes_Y = nCFace.EQ.2 .OR. nCFace.EQ.3
         ENDIF
