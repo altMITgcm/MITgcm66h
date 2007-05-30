@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/obcs:
+ - bug fix for balance code
 o pkg/seaice:
   - allow values of SEAICE_elaticParm > 1
   - make lsr boundary conditions free slip (by default)
