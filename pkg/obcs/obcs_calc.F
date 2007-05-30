@@ -47,7 +47,7 @@ C     msgBuf       - Informational/error meesage buffer
       INTEGER I, J , K, I_obc, J_obc
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 #ifdef ALLOW_OBCS_BALANCE
-      _RL Tr_T, Ar_T, recip_Ar_T, Tr, Ar 
+      _RL Tr_T, Ar_T, Tr, Ar 
 #endif /* ALLOW_OBCS_BALANCE */
 #ifdef ALLOW_PTRACERS
       INTEGER iTracer
