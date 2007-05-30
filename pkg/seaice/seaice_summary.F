@@ -112,6 +112,10 @@ C     == end of interface ==
 #ifdef SEAICE_ALLOW_EVP
       CALL WRITE_0D_R8( SEAICE_deltaTevp  ,INDEX_NONE,
      & 'SEAICE_deltaTevp  =', ' /* EVP timestep */')
+      CALL WRITE_0D_R8( SEAICE_elasticParm  ,INDEX_NONE,
+     & 'SEAICE_elasticParm  =', ' /* EVP elastic parameter */')
+      CALL WRITE_0D_R8( SEAICE_evpTauRelax  ,INDEX_NONE,
+     & 'SEAICE_evpTauRelax  =', ' /* EVP relaxation timescale */')
 #endif
       CALL WRITE_0D_R8( SEAICE_monFreq,  INDEX_NONE,
      & 'SEAICE_monFreq  =',' /* monitor frequency */')

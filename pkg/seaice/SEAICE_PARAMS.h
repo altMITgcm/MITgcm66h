@@ -116,7 +116,8 @@ C     SEAICE_deltaTtherm - Seaice timestep for thermodynamic equations (s)
 C     SEAICE_deltaTdyn   - Seaice timestep for dynamic solver          (s)
 C     SEAICE_deltaTevp   - Seaice timestep for EVP solver              (s)
 C     SEAICE_elasticParm - parameter that sets relaxation timescale
-C                          T = SEAICE_elasticParm * SEAICE_deltaTdyn
+C                          tau = SEAICE_elasticParm * SEAICE_deltaTdyn
+C     SEAICE_evpTauRelax - relaxation timescale tau                    (s)
 C     SEAICE_monFreq     - SEAICE monitor frequency.                   (s)
 C     SEAICE_dumpFreq    - SEAICE dump frequency.                      (s)
 C     SEAICE_taveFreq    - SEAICE time-averaging frequency.            (s)
@@ -192,10 +193,10 @@ C
       _RL SSSForcingStart,  SSSForcingEnd,  SSSForcingPeriod
       _RL StartingYear,     EndingYear
       _RL SEAICE_airTurnAngle, SEAICE_waterTurnAngle
-      _RL SEAICE_elasticParm
+      _RL SEAICE_elasticParm, SEAICE_evpTauRelax
       COMMON /SEAICE_PARM_RL/
      &    SEAICE_deltaTtherm, SEAICE_deltaTdyn,
-     &    SEAICE_deltaTevp, SEAICE_elasticParm,
+     &    SEAICE_deltaTevp, SEAICE_elasticParm, SEAICE_evpTauRelax,
      &    SEAICE_monFreq, SEAICE_dumpFreq, SEAICE_taveFreq,
      &    SEAICE_initialHEFF,
      &    SEAICE_rhoAir, SEAICE_rhoIce,
