@@ -482,6 +482,13 @@ c     diagTitle = 'Square of ocean bottom pressure / top. geo-Potential'
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
+      diagName  = 'MXLDEPTH'
+      diagTitle = 'Mixed-Layer Depth (>0)'
+      diagUnits = 'm               '
+      diagCode  = 'SM      M1      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
       diagName  = 'DRHODR  '
       diagTitle = 'Stratification: d.Sigma/dr (kg/m3/r_unit)'
       diagUnits = 'kg/m^4          '
