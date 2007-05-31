@@ -86,6 +86,7 @@ C-      2D arrays
           etaN(I,J,bi,bj)=0. _d 0
           etaH(I,J,bi,bj)=0. _d 0
           phiHydLow(I,J,bi,bj)=0. _d 0
+          hMixLayer(I,J,bi,bj)=0. _d 0
          ENDDO
         ENDDO
 
