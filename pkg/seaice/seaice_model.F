@@ -110,8 +110,15 @@ CADJ STORE heffm = comlev1, key = ikey_dynamics
 CADJ STORE area  = comlev1, key = ikey_dynamics
 # ifdef SEAICE_ALLOW_DYNAMICS
 #  ifdef SEAICE_CGRID
-cphCADJ STORE uice  = comlev1, key = ikey_dynamics
-cphCADJ STORE vice  = comlev1, key = ikey_dynamics
+CADJ STORE seaicemasku    = comlev1, key = ikey_dynamics
+CADJ STORE seaicemaskv    = comlev1, key = ikey_dynamics
+CADJ STORE fu    = comlev1, key = ikey_dynamics
+CADJ STORE fv    = comlev1, key = ikey_dynamics
+CADJ STORE uice  = comlev1, key = ikey_dynamics
+CADJ STORE vice  = comlev1, key = ikey_dynamics
+CADJ STORE eta   = comlev1, key = ikey_dynamics
+CADJ STORE zeta  = comlev1, key = ikey_dynamics
+
 #  endif
 # endif
 #endif /* ALLOW_AUTODIFF_TAMC */

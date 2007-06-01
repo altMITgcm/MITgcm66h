@@ -162,6 +162,12 @@ CADJ STORE seaicemaskv         = comlev1, key = ikey_dynamics
 CADJ STORE siceload            = comlev1, key = ikey_dynamics
 #  endif
 # endif
+# ifdef SEAICE_ALLOW_EVP
+CADJ STORE dwatn           = comlev1, key = ikey_dynamics
+CADJ STORE seaice_sigma1   = comlev1, key = ikey_dynamics
+CADJ STORE seaice_sigma2   = comlev1, key = ikey_dynamics
+CADJ STORE seaice_sigma12  = comlev1, key = ikey_dynamics
+# endif
 #endif
 #ifdef ALLOW_DEBUG
         IF ( debugLevel .GE. debLevB )
