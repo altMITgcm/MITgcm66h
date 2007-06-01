@@ -175,6 +175,7 @@ Cml      sBeta               = 7.4 _d -4
       allowFreezing       = .FALSE.
       useOldFreezing      = .FALSE.
       ivdc_kappa          = 0. _d 0
+      hMixCriteria        = -.8 _d 0
       usePickupBeforeC54    = .FALSE.
       debugMode             = .FALSE.
       tempAdvScheme       = 2

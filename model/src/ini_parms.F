@@ -189,7 +189,7 @@ C--   Continuous equation parameters
      & rhoConst, rhoConstFresh, buoyancyRelation, HeatCapacity_Cp,
      & writeBinaryPrec, readBinaryPrec, writeStatePrec,
      & nonHydrostatic, quasiHydrostatic, globalFiles, useSingleCpuIO,
-     & allowFreezing, useOldFreezing, ivdc_kappa,
+     & allowFreezing, useOldFreezing, ivdc_kappa, hMixCriteria,
      & usePickupBeforeC35, usePickupBeforeC54, debugMode, debugLevel,
      & tempAdvScheme, tempVertAdvScheme,
      & saltAdvScheme, saltVertAdvScheme, tracerAdvScheme,

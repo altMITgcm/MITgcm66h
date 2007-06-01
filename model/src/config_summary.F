@@ -175,6 +175,10 @@ C     ycoord :: varying parameters.
      &'   /* Depth scale for Bryan and Lewis 1979 ( m ) */')
       CALL WRITE_0D_R8( diffKrBL79Ho, INDEX_NONE,'diffKrBL79Ho =',
      &'   /* Turning depth for Bryan and Lewis 1979 ( m ) */')
+      CALL WRITE_0D_R8( ivdc_kappa, INDEX_NONE,'ivdc_kappa =',
+     &  ' /* Implicit Vertical Diffusivity for Convection ( m^2/s ) */')
+      CALL WRITE_0D_R8( hMixCriteria, INDEX_NONE,'hMixCriteria=',
+     & '  /* Criteria for mixed-layer diagnostic */')
       CALL WRITE_0D_C( eosType, 0, INDEX_NONE, 'eosType =',
      & '  /* Type of Equation of State */')
       CALL WRITE_0D_R8( tAlpha,  INDEX_NONE,'tAlpha =',
