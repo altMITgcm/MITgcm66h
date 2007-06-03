@@ -433,11 +433,13 @@ c ==> should use sigmaR !!!
 C--     end of diagnostic k loop (Nr:1)
         ENDDO
 
+#ifndef ALLOW_AUTODIFF_TAMC
 C--     Diagnose Mixed Layer Depth:
         IF ( useGMRedi .OR. doDiagsRho.GE.1 ) THEN
           CALL CALC_OCE_MXLAYER( rhoK, sigmaR,
      &              bi, bj, myTime, myIter, myThid )
         ENDIF
+#endif
 #ifdef ALLOW_DIAGNOSTICS
         IF ( doDiagsRho.GE.1 ) THEN
           CALL DIAGNOSTICS_FILL (sigmaR, 'DRHODR  ', 0, Nr,
