@@ -742,8 +742,10 @@ C calculate extent changes
          rqh = rq * hi + rs * hs
          freshe=(rhos*hs+rhoi*hi)/dt
          salte=(rhoi*hi*saltIce)/dt
-         IF (extend .LT. rqh) THEN
+         IF ( extend.LT.rqh ) THEN
            iceFrac=(1. _d 0-extend/rqh)*iceFrac
+         ENDIF
+         IF ( extend.LT.rqh .AND. iceFrac.GE.iceMaskMin ) THEN
            fresh=fresh+extend/rqh*freshe
            fsalt(i,j)=fsalt(i,j)+extend/rqh*salte
          ELSE
