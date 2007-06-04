@@ -140,7 +140,7 @@ cph)
      I       kmtj, shsq, dbloc, ghat
      I     , diffusKzS, diffusKzT
      I     , ikppkey
-     O     , diffus )
+     O     , diffus, myThid )
 
 cph(
 cph these storings avoid recomp. of Ri_iwmix

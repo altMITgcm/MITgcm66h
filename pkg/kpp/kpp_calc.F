@@ -487,7 +487,7 @@ c     matching diffusivities at bottom of KPP PBL
      O     , vddiff
      U     , ghat
      O     , hbl
-     I     , mytime, mythid )
+     I     , mytime, myIter, mythid )
       CALL TIMER_STOP ('KPPMIX [KPP_CALC]', myThid)
 
 c-----------------------------------------------------------------------
