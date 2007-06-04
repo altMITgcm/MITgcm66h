@@ -160,6 +160,16 @@ C--   State-variables diagnostics
       ENDIF
 #endif
 
+#ifdef ALLOW_PROFILES
+#ifdef ALLOW_DEBUG
+      IF (debugMode) CALL DEBUG_CALL('',myThid)
+#endif
+c--     Accumulate in-situ time averages of theta, salt, and SSH.
+        CALL TIMER_START('PROFILES_INLOOP    [THE_MAIN_LOOP]', mythid)
+        CALL PROFILES_INLOOP( mytime, mythid )
+        CALL TIMER_STOP ('PROFILES_INLOOP    [THE_MAIN_LOOP]', mythid)
+#endif
+
 C--   Call driver to load external forcing fields from file
 #ifdef ALLOW_DEBUG
       IF ( debugLevel .GE. debLevB )
