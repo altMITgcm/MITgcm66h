@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint59c
 o add S/R and diagnostics for oceanic mixed-layer depth
 o move GMRedi call after all vertical mixing schemes (including KPP)
 o pkg/thsice: 
