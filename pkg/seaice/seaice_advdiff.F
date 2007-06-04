@@ -318,6 +318,9 @@ C--   end if multiDimAdvection
       ENDIF
 C--   end if SEAICEuseDynamics
 
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE AREA   = comlev1, key = ikey_dynamics
+#endif
       IF ( .NOT. usePW79thermodynamics ) THEN
 C     Hiblers "ridging function": Do it now if not in seaice_growth
 C     in principle we should add a "real" ridging function here (or 
