@@ -118,6 +118,7 @@ C     SEAICE_deltaTevp   - Seaice timestep for EVP solver              (s)
 C     SEAICE_elasticParm - parameter that sets relaxation timescale
 C                          tau = SEAICE_elasticParm * SEAICE_deltaTdyn
 C     SEAICE_evpTauRelax - relaxation timescale tau                    (s)
+C     SEAICE_evpDampC    - evp daming constant                         (kg/m^2)
 C     SEAICE_monFreq     - SEAICE monitor frequency.                   (s)
 C     SEAICE_dumpFreq    - SEAICE dump frequency.                      (s)
 C     SEAICE_taveFreq    - SEAICE time-averaging frequency.            (s)
@@ -194,9 +195,11 @@ C
       _RL StartingYear,     EndingYear
       _RL SEAICE_airTurnAngle, SEAICE_waterTurnAngle
       _RL SEAICE_elasticParm, SEAICE_evpTauRelax
+      _RL SEAICE_evpDampC
       COMMON /SEAICE_PARM_RL/
      &    SEAICE_deltaTtherm, SEAICE_deltaTdyn,
      &    SEAICE_deltaTevp, SEAICE_elasticParm, SEAICE_evpTauRelax,
+     &    SEAICE_evpDampC,
      &    SEAICE_monFreq, SEAICE_dumpFreq, SEAICE_taveFreq,
      &    SEAICE_initialHEFF,
      &    SEAICE_rhoAir, SEAICE_rhoIce,
