@@ -91,6 +91,7 @@ C     swdownFile      - File containing swdown
 C     precipFile      - File containing precip
 C     evapFile        - File containing evap
 C     runoffFile      - File containing runoffF
+C     AreaFile        - File containing initial sea-ice concentration
 C     HeffFile        - File containing initial sea-ice thickness
 C        !!! NOTE !!! Initial sea-ice thickness can also be set using
 C        SEAICE_initialHEFF below.  But a constant initial condition
@@ -106,10 +107,11 @@ C
       CHARACTER*(MAX_LEN_FNAM) precipFile
       CHARACTER*(MAX_LEN_FNAM) evapFile
       CHARACTER*(MAX_LEN_FNAM) runoffFile
+      CHARACTER*(MAX_LEN_FNAM) AreaFile
       CHARACTER*(MAX_LEN_FNAM) HeffFile
       COMMON /SEAICE_PARM_C/ uwindFile, vwindFile, atempFile, aqhFile,
      &     lwdownFile, swdownFile, precipFile, evapFile, runoffFile,
-     &	   HeffFile
+     &	   HeffFile, AreaFile
 
 C--   COMMON /SEAICE_PARM_RL/ Real valued parameters of sea ice model.
 C     SEAICE_deltaTtherm - Seaice timestep for thermodynamic equations (s)

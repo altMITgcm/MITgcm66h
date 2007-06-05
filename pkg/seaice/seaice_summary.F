@@ -176,6 +176,16 @@ C     == end of interface ==
       CALL WRITE_0D_R8( SEAICE_freeze     ,INDEX_NONE,
      & 'SEAICE_freeze     =', ' /* freezing temp. of sea water */')
       WRITE(msgBuf,'(a)')
+     &'Initial sea-ice concentration is read from file:'
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT , myThid)
+      il = ilnblnk(AreaFile)
+      WRITE(msgBuf,'(A,A,A)')
+     &'   >>  ',AreaFile(1:il),'  <<'
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT , myThid)
+      WRITE(msgBuf,'(A)')   '    ;     '
+      WRITE(msgBuf,'(a)')
      &'Initial sea-ice thickness is read from file:'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT , myThid)
