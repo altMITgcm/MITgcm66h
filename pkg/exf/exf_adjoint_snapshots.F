@@ -20,9 +20,11 @@ C     myThid - Thread number for this instance of the routine.
       integer myiter
       _RL     mytime 
 
+#ifdef ALLOW_AUTODIFF_MONITOR
       call TIMER_START('I/O (WRITE)        [ADJOINT LOOP]', myThid )
 
       call TIMER_STOP( 'I/O (WRITE)        [ADJOINT LOOP]', myThid )
+#endif
 
       end
 

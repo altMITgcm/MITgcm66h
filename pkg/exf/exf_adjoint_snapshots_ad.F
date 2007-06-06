@@ -1,7 +1,5 @@
 C $Header$
 
-#include "PACKAGES_CONFIG.h"
-#include "AUTODIFF_OPTIONS.h"
 #include "EXF_OPTIONS.h"
 
 CBOP
