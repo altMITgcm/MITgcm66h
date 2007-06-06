@@ -5,6 +5,8 @@ $Name$
     ==============================
 
 o pkg/seaice:
+ - make sure that seaice does not move if not forced (pressure replacement
+   method, Hibler and Ip, 1995), changes results
  - and new damping criterion for EVP solver according to Hunke, JCP, 2001
  - SEAICE_evpDampC = > 0. turns it on (615. is the recommended value). 
    It is turned off by default (=-1.), because it changes the results.
