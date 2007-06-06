@@ -1,11 +1,11 @@
 C $Header$
 
-#include "AUTODIFF_OPTIONS.h"
+#include "EXF_OPTIONS.h"
 
-      subroutine exf_adjoint_snapshots( iwhen, mytime, myiter, myThid )
+      subroutine EXF_ADJOINT_SNAPSHOTS( iwhen, mytime, myiter, myThid )
       IMPLICIT NONE
 C     /==========================================================\
-C     | SUBROUTINE exf_adjoint_snapshots                         |
+C     | SUBROUTINE EXF_ADJOINT_SNAPSHOTS                         |
 C     |==========================================================|
 C     == Global variables ===
 
