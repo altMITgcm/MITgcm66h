@@ -5,6 +5,8 @@ $Name$
     ==============================
 
 o pkg/seaice:
+ - move seaice-diagnostics from seaice_do_diags to do_statevars_diags; this
+   requires a new routine: seaice_diagnostics_fill.F
  - make sure that seaice does not move if not forced (pressure replacement
    method, Hibler and Ip, 1995), changes results
  - and new damping criterion for EVP solver according to Hunke, JCP, 2001
