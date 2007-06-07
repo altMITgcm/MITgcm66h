@@ -74,8 +74,6 @@ CEOP
      &  DIFFERENT_MULTIPLE(adjDumpFreq,mytime,deltaTClock)
      & ) THEN
 
-       write(*,*) 'myIter= ',myiter
-
        call adexch_xy_rl( mythid,adetan)
        call adexch_xyz_rl( mythid,adtheta)
        call adexch_xyz_rl( mythid,adsalt)
@@ -178,11 +176,8 @@ c
        _END_MASTER( myThid )
        _BARRIER
 
-        print *, 'ph-mnc in addummy param ', useMNC
 #ifdef ALLOW_MNC
         IF (useMNC .AND. autodiff_mnc) THEN
-c
-          print *, 'ph-mnc in addummy myiter ', myiter
 c
           CALL MNC_CW_SET_UDIM('adstate', -1, myThid)
           CALL MNC_CW_RL_W_S('D','adstate',0,0,'T',myTime,myThid)
