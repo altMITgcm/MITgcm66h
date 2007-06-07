@@ -78,6 +78,12 @@ C                    and stagger/synchronous TimeStep
         ENDIF
 #endif
 
+#ifdef ALLOW_SEAICE
+       IF ( seqFlag.EQ.0 .AND. useSEAICE ) THEN
+        CALL SEAICE_DIAGNOSTICS_FILL( myTime, myIter, myThid )
+       ENDIF
+#endif /* ALLOW_SEAICE */
+
 #ifdef ALLOW_THSICE
        IF ( seqFlag.EQ.0 .AND. useThSIce ) THEN
         DO bj=myByLo(myThid),myByHi(myThid)
