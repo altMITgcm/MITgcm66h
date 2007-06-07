@@ -152,6 +152,11 @@ cph# ifdef EXF_READ_EVAP
 CADJ STORE evap                = comlev1, key = ikey_dynamics
 cph# endif
 CADJ STORE uvel,vvel           = comlev1, key = ikey_dynamics
+# ifdef SEAICE_ALLOW_EVP
+CADJ STORE seaice_sigma1       = comlev1, key = ikey_dynamics
+CADJ STORE seaice_sigma2       = comlev1, key = ikey_dynamics
+CADJ STORE seaice_sigma12      = comlev1, key = ikey_dynamics
+# endif
 # ifdef ATMOSPHERIC_LOADING
 CADJ STORE siceload            = comlev1, key = ikey_dynamics
 # endif
