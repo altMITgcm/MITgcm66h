@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o additional test (in global_ocean.cs32x15) using seaice+thsice pkgs.
 o pkg/seaice:
  - move seaice-diagnostics from seaice_do_diags to do_statevars_diags; this
    requires a new routine: seaice_diagnostics_fill.F
