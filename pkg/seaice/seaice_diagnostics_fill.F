@@ -70,6 +70,7 @@ C
 C
        CALL DIAGNOSTICS_FILL(HSNOW  ,'SIhsnow ',0,1 ,0,1,1,myThid)
 C     
+#ifdef SEAICE_CGRID
        IF ( DIAGNOSTICS_IS_ON('SIsigI  ',myThid) .OR.
      &      DIAGNOSTICS_IS_ON('SIsigII ',myThid) .OR.
      &      DIAGNOSTICS_IS_ON('SIpress ',myThid) .OR.
@@ -131,6 +132,7 @@ C     principle stress components
          ENDDO
         ENDDO
        ENDIF
+#endif /* SEAICE_CGRID */
 C     endif useDiagnostics
       ENDIF
 #endif /* ALLOW_DIAGNOSTICS */
