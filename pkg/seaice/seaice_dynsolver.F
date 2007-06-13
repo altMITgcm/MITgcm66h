@@ -55,7 +55,7 @@ C--   Compute proxy for geostrophic velocity,
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
         DO j=1-Oly,sNy+Oly
-         DO i=1-Oly,sNx+Olx
+         DO i=1-Olx,sNx+Olx
 CML          GWATX(I,J,bi,bj)=uVel(i,j,KGEO(I,J,bi,bj),bi,bj)
 CML          GWATY(I,J,bi,bj)=vVel(i,j,KGEO(I,J,bi,bj),bi,bj)
           GWATX(I,J,bi,bj)=uVel(i,j,1,bi,bj)
