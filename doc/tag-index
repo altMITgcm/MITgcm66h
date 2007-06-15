@@ -4,6 +4,16 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/profiles:
+ - added option ALLOW_PROFILES_GENERICGRID
+     -> pkg/profiles can thus be used with any grid (e.g. cs32x15) assuming
+     that interpolation information (grid points and coefficients) is provided 
+     within the netcdf input files.
+     -> sample matlab scripts can be found in MITgcm_contrib/gael
+     that allow you to prepare netcdf input files.
+ - also modified: cleaner include statements, cleaner error print statements, 
+   cleaner stops when error, and more tests of the netcdf input files consistency.
+
 o additional test (in global_ocean.cs32x15) using seaice+thsice pkgs.
 o pkg/seaice:
  - move seaice-diagnostics from seaice_do_diags to do_statevars_diags; this
