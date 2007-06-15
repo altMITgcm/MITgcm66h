@@ -82,8 +82,8 @@ c implies that a forward loop is calling
      & vec_count, vec_tmp2)
 
       if (err.NE.NF_NOERR) then
-      print*,"stop readvector",vec_start(2),vec_count(2)
-      stop
+            WRITE(errorMessageUnit,'(A)')
+     & 'WARNING in profiles_readvector: record not found!!'
       endif
 
       do k=1,vec_count(1) 

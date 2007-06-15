@@ -275,8 +275,9 @@ c case 3: between two grid centers
             endif
           enddo
           if (kcur.EQ.0) then
-      print*,"profiles_interp unexpected case: stop 1"
-      stop
+            WRITE(errorMessageUnit,'(A)')
+     & 'ERROR in PROFILES_INTERP: unexpected case 1'
+             STOP 'ABNORMAL END: S/R PROFILES_INTERP'
           endif
           if (mask_cur(kcur+1).EQ.1.) then
 c  subcase 1: 2 wet points=>linear interpolation
@@ -286,8 +287,9 @@ c  subcase 1: 2 wet points=>linear interpolation
      &      +tmp_coeff*traj_cur(kcur+1)
             prof_mask1D_cur(kk,bi,bj)=1
             if (mask_cur(kcur).EQ.0.) then
-      print*,"profiles_interp unexpected case: stop 2"
-      stop
+            WRITE(errorMessageUnit,'(A)')
+     & 'ERROR in PROFILES_INTERP: unexpected case 2'
+             STOP 'ABNORMAL END: S/R PROFILES_INTERP'
             endif
           elseif (prof_depth(file_cur,kk,bi,bj).LT.-rF(kcur+1)) then
 c  subcase 2: only 1 wet point just above=>upper cell value
