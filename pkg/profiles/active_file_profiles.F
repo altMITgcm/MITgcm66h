@@ -1,6 +1,6 @@
 C $Header$
 
-#include "CPP_OPTIONS.h"
+#include "PROFILES_OPTIONS.h"
 
 c     ==================================================================
 c
