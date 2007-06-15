@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o dependencies: pkg/profiles requires pkg/cal
 o pkg/profiles:
  - added option ALLOW_PROFILES_GENERICGRID
      -> pkg/profiles can thus be used with any grid (e.g. cs32x15) assuming

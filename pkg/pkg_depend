@@ -21,6 +21,7 @@
 #    cal cost ctrl ecco exf grdchk
 
 exf             +cal
+profiles        +cal
 
 #  Ask AJA about:
 #    flt

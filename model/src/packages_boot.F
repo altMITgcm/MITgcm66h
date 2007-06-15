@@ -147,6 +147,10 @@ C--   packages with hard-coded switch
       IF (useEXF) useCAL = .TRUE.
 #endif
 
+#ifdef ALLOW_PROFILES
+      useCAL = .TRUE.
+#endif
+
 C--   packages with an implied switch
       useGAD = tempStepping .OR. saltStepping .OR. usePTRACERS
 
