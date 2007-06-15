@@ -17,6 +17,6 @@ if test "x$IEEE" = x ; then
 else
     #  Try to follow IEEE-754
     FFLAGS='-byteswapio -r8'
-    FOPTIM='-O0 -Mcache_align -Mnoflushz -Kieee'
+    FOPTIM='-O0 -Mscalarsse -Mcache_align -Mnoflushz -Kieee'
 fi
 
