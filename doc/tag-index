@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: fix another bug in the LSR no-slip boundary conditons
 o dependencies: pkg/profiles requires pkg/cal
 o pkg/profiles:
  - added option ALLOW_PROFILES_GENERICGRID
