@@ -66,7 +66,7 @@ C     == Local variables ==
       _RL f1,Smod,f2,Rnondim
       _RL maxSlopeSqr
       _RL fpi
-      PARAMETER(fpi=3.141592653589793047592d0)
+      PARAMETER( fpi = PI )
       INTEGER i,j
 
 #ifdef ALLOW_AUTODIFF_TAMC
