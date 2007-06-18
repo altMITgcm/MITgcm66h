@@ -1,38 +1,44 @@
 C $Header$
-C $Name$  
+C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CStartOfInterface
-      SUBROUTINE ATM_STORE_MY_DATA(  bi,bj,
-     I                               myIter, 
-     I                               myTime, 
-     I                               myThid )
-C     /==========================================================\
-C     | SUBROUTINE ATM_STORE_MY_DATA                             |
-C     | o Routine for controlling storage of coupling data to    |
-C     |   coupler layer.                                         |
-C     |==========================================================|
-C     | This version interfaces to the MITgcm AIMPHYS package.   |
-C     \==========================================================/
+CBOP
+C     !ROUTINE: ATM_STORE_MY_DATA
+C     !INTERFACE:
+      SUBROUTINE ATM_STORE_MY_DATA( bi,bj,
+     I                              myTime, myIter, myThid )
+
+C     !DESCRIPTION: \bv
+C     *==========================================================*
+C     | SUBROUTINE ATM_STORE_MY_DATA
+C     | o Routine for controlling storage of coupling data to
+C     |   coupler layer.
+C     *==========================================================*
+C     | This version interfaces to the MITgcm AIMPHYS package.
+C     *==========================================================*
+C     \ev
+
+C     !USES:
       IMPLICIT NONE
 
 C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "ATMIDS.h"
 
+C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
-C     bi,bj  - Current tile indices
-C     myIter - Current timestep number.
-C     myTime - Current internal time.
-C     myThid        - Thread number for this instance 
-C                     of the routine.
+C     bi,bj   :: Current tile indices
+C     myTime  :: Current internal time.
+C     myIter  :: Current timestep number.
+C     myThid  :: my Thread Id number
       INTEGER bi,bj
-      INTEGER myIter
       _RL     myTime
+      INTEGER myIter
       INTEGER myThid
-CEndOfInterface
+CEOP
 
 #ifdef COMPONENT_MODULE
 C     == Local variables ==
@@ -56,6 +62,11 @@ c     CALL ATM_STORE_TAUY(       bi,bj, myTime, myIter, myThid )
       IF ( useThSIce ) THEN
         CALL ATM_STORE_SALTFX(   bi,bj, myTime, myIter, myThid )
         CALL ATM_STORE_SEAICE(   bi,bj, myTime, myIter, myThid )
+      ENDIF
+      IF ( atmCpl_exchange_DIC ) THEN
+        CALL ATM_STORE_WSPEED(   bi,bj, myTime, myIter, myThid )
+        IF ( useThSIce )
+     &  CALL ATM_STORE_FRACICE(  bi,bj, myTime, myIter, myThid )
       ENDIF
 
 #endif /* COMPONENT_MODULE */
