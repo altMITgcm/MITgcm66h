@@ -172,7 +172,7 @@ C-    Slab Ocean : step forward ocean mixed-layer temp. & salinity
 
 #ifdef COMPONENT_MODULE
       IF ( useCoupler ) THEN
-        CALL ATM_STORE_MY_DATA( bi, bj, myIter, myTime, myThid )
+        CALL ATM_STORE_MY_DATA( bi, bj, myTime, myIter, myThid )
       ENDIF
 #endif /* COMPONENT_MODULE */
 
