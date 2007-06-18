@@ -3,16 +3,23 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CStartOfInterface
+CBOP
+C     !ROUTINE: CPL_SEND_ATM_FIELDS
+C     !INTERFACE:
       SUBROUTINE CPL_SEND_ATM_FIELDS
-C     /==========================================================\
-C     | SUBROUTINE CPL_SEND_ATM_FIELDS                           |
-C     | o Routine for sending ocean surface fields to atmos.     |
-C     |   component.                                             |
-C     |==========================================================|
-C     | This version talks to the MITgcm general circulation     |
-C     | model.                                                   |
-C     \==========================================================/
+
+C     !DESCRIPTION: \bv
+C     *==========================================================*
+C     | SUBROUTINE CPL_SEND_ATM_FIELDS
+C     | o Routine for sending ocean surface fields to atmos.
+C     |   component.
+C     *==========================================================*
+C     | This version talks to the MITgcm general circulation
+C     | model.
+C     *==========================================================*
+C     \ev
+
+C     !USES:
       IMPLICIT NONE
 
 C     == Global variables ==
@@ -22,11 +29,11 @@ C     == Global variables ==
 #include "OCNSIZE.h"
 #include "OCNVARS.h"
 
-C     == Routine arguments ==
+C     !INPUT/OUTPUT PARAMETERS:
 
-C     == Local variables ==
+C     !LOCAL VARIABLES:
 
-CEndOfInterface
+CEOP
 
 C--   Map ocean mixed-layer depth onto atmos. grid
       CALL OCN_TO_ATM_MAPXYR8(
@@ -59,6 +66,16 @@ C--   Map ocean surface velocity square onto atmos. grid
 C     Send ocean surface velocity square to atmos. component
       CALL COUPSEND_R8TILES( atmCompName, atmSSVsqName,
      I                       Nx_atm, Ny_atm, vSq_atm )
+
+      IF ( atmCpl_exchange_DIC ) THEN
+C--   Map ocn->atm flux of CO2 onto atmos. grid
+        CALL OCN_TO_ATM_MAPXYR8(
+     I           Nx_ocn, Ny_ocn, fluxCO2_ocn, Nx_atm, Ny_atm,
+     O                           fluxCO2_atm )
+C     Send ocn->atm flux of CO2 to atmos. component
+        CALL COUPSEND_R8TILES( atmCompName, atmFCO2Name,
+     I                         Nx_atm, Ny_atm, vSq_atm )
+      ENDIF
 
       RETURN
       END
