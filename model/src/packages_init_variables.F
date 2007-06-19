@@ -215,6 +215,10 @@ cph#endif
       IF ( useLAND ) CALL LAND_INI_VARS( myThid )
 #endif
 
+#ifdef ALLOW_SMOOTH
+      call smooth_init_varia(mythid)
+#endif
+
 #ifdef ALLOW_AUTODIFF
 CADJ STORE theta = tapelev_init, key = 1
 c--   Initialise auxiliary xx_ fields

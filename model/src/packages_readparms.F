@@ -240,6 +240,11 @@ C--   Custom routine to set forcing fields.
       IF (useEBM) call ebm_readparms( mythid )
 #endif
 
+#ifdef ALLOW_SMOOTH
+c--   Initialize SMOOTH package parameters
+      call smooth_readparms ( myThid )
+#endif
+
 #ifdef ALLOW_ECCO
 c--   Initialize ECCO package parameters
       call ecco_readparms ( myThid )
