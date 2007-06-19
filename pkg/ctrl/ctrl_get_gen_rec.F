@@ -40,6 +40,7 @@ c     == global variables ==
 #ifdef ALLOW_CAL
 # include "cal.h"
 #endif
+#include "PARAMS.h"
 
 c     == routine arguments ==
 
@@ -70,6 +71,8 @@ c     == local variables ==
 
       integer fldstartdate(4)
       _RL     fldperiod
+
+      integer startrec
 
       logical lArgErr
 
@@ -102,6 +105,13 @@ c--   Check the field argument.
 c--   Determine the current date.
       call cal_GetDate( myiter, mytime, mydate, mythid )
 
+c     Determine first record:
+        call cal_TimePassed( fldstartdate, modelstartdate,
+     &                       difftime, mythid )
+        call cal_ToSeconds ( difftime, fldsecs, mythid )
+        startrec = int((modelstart + startTime - fldsecs)/
+     &                 fldperiod) + 1
+
 c     Determine the flux record just before mycurrentdate.
       call cal_TimePassed( fldstartdate, mydate, difftime,
      &                     mythid )
@@ -131,8 +141,10 @@ c     Set switches for reading new records.
         endif
       endif
 
-      count0 = fldcount
-      count1 = fldcount + 1
+c      count0 = fldcount
+c      count1 = fldcount + 1
+      count0 = fldcount - startrec + 1
+      count1 = fldcount - startrec + 2
 
       call cal_TimeInterval( fldsecs, 'secs', difftime, mythid )
       call cal_AddTime( fldstartdate, difftime, flddate, mythid )
