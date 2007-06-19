@@ -211,7 +211,8 @@ C--   NOW SET UP ICE PRESSURE AND VISCOSITIES
           PRESS0(I,J,bi,bj)=PSTAR*HEFF(I,J,1,bi,bj)
      &         *EXP(-20.0 _d 0*(ONE-AREA(I,J,1,bi,bj)))
           ZMAX(I,J,bi,bj)=(5.0 _d +12/(2.0 _d +04))*PRESS0(I,J,bi,bj)
-          ZMIN(I,J,bi,bj)=4.0 _d +08
+CML          ZMIN(I,J,bi,bj)=4.0 _d +08
+          ZMIN(I,J,bi,bj)=0.0 _d +0
           PRESS0(I,J,bi,bj)=PRESS0(I,J,bi,bj)*HEFFM(I,J,bi,bj)
          ENDDO
         ENDDO
