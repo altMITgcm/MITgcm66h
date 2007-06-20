@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ecco: cost function when applying pkg/smooth to controls
+o pkg/ctrl: add forcingPrecond run time parameter
 o pkg/seaice:
  - replace ZMIN=4.e8 with ZMIN=0. in dynsolver.F as in C-grid code
  - fix bug in metric terms of u-equation in LSR solver (implicit part), 
