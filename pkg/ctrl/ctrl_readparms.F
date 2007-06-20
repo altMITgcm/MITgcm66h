@@ -129,7 +129,7 @@ c--   Read the namelist input.
      &  doZscaleUnpack, doZscalePack,
      &  doMainUnpack, doMainPack,
      &  doAdmtlmBypassAD,
-     &  delZexp
+     &  delZexp, forcingPrecond
 
       namelist /ctrl_packnames/
      &  yadmark, yctrlid, yctrlposunpack, yctrlpospack,
@@ -152,6 +152,7 @@ c--     Set default values.
         doAdmtlmBypassAD    = .FALSE.
 
         delZexp = 0.
+        forcingPrecond = 1. _d 0
 
         xx_theta_file      = 'xx_theta'
         xx_salt_file       = 'xx_salt'
