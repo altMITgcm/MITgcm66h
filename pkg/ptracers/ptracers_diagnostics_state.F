@@ -5,13 +5,13 @@ C $Name$
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 CBOP 1
-C     !ROUTINE: PTRACERS_DIAGNOSTICS_FILL
+C     !ROUTINE: PTRACERS_DIAGNOSTICS_STATE
 
 C     !INTERFACE:
-      SUBROUTINE PTRACERS_DIAGNOSTICS_FILL(myThid)
+      SUBROUTINE PTRACERS_DIAGNOSTICS_STATE(myThid)
 
 C     !DESCRIPTION:
-C     Fill the diagnostics array locations
+C     Fill-in the diagnostics array for PTRACERS state variables
       
 C     !USES:
       IMPLICIT NONE
