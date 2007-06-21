@@ -58,7 +58,14 @@ C     !LOCAL VARIABLES:
       _RL fracland(sNx,sNy,Nsx,Nsy)
 
       ihour = nhms/10000
+      if(xsize.eq.192) then
       WRITE(fn,'(a,I8,a,I2.2,a)')'vegtiles_cs32.d',nymd,'z',ihour,'.bin'
+      elseif(xsize.eq.612) then
+      WRITE(fn,'(a,I8,a,I2.2,a)')'vegtiles_cs32.d',nymd,'z',ihour,'.bin'
+      else
+      print *,' xsize is ',xsize
+      stop 'do not seem to have correct vegtiles data '
+      endif
       fileprec = 64
 
       call MDSFINDUNIT( iunit, mythid )
