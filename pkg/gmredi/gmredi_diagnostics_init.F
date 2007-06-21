@@ -57,6 +57,28 @@ c     IF ( useDiagnotics ) THEN
         CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
+        diagName  = 'GM_hTrsL'
+        diagTitle = 'Base depth (>0) of the Transition Layer'
+        diagUnits = 'm               '
+        diagCode  = 'SM P    M1      '
+        CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+        diagName  = 'GM_baseS'
+        diagTitle = 'Slope at the base of the Transition Layer'
+        diagUnits = '1               '
+        diagCode  = 'SM P    M1      '
+        CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+        diagName  = 'GM_rLamb'
+        diagTitle =
+     &    'Slope vertical gradient at Trans. Layer Base (=recip.Lambda)'
+        diagUnits = '1/m             '
+        diagCode  = 'SM P    M1      '
+        CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
         diagName  = 'GM_Kux  '
         diagTitle = 'K_11 element (U.point, X.dir) of GM-Redi tensor'
         diagUnits = 'm^2/s           '
