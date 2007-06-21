@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint59d
 o standard name: {PKG}_DIAGNOSTICS_STATE to fill diagnostics array
  for {PKG} state variables, and called from DO_STATEVARS_DIAGS.
  (keep {PKG}_DIAGNOSTICS_FILL for non-state variables diagnostics)
