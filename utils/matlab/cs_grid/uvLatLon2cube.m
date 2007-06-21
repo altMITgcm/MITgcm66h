@@ -1,4 +1,4 @@
-function [uCs,vCs,errFlag]=uvLatLon2cube(xc,yc,uFld,vFld,xcs,ycs,spv);
+function [uCs,vCs,errFlag]=uvLatLon2cube(xc,yc,uFld,vFld,xcs,ycs,spv,cosalpha,sinalpha);
 % [uCs,vCs]=uvLatLon2cube(xc,yc,uFld,vFld,xcs,ycs,spv);
 % put a vector field (uFld,vFld) on to the C-grid, Cubed-sphere grid: uCs,vCs
 % xc,yc   = long,lat position of vector field (uFld,vFld)
@@ -60,9 +60,19 @@ else
  xExt=xc;
 end
 
-namfil=['proj_cs',int2str(nc),'_2uEvN.bin'];
-fid=fopen([Rac,namfil],'r','b'); uvEN=fread(fid,nPg*2,'real*8'); fclose(fid);
-uvEN=reshape(uvEN,[nPg 2]);
+% Read cos and sin of rotation angle if not provided on input
+if nargin < 9
+ namfil=['proj_cs',int2str(nc),'_2uEvN.bin'];
+ cosalpha=zeros(nPg); sinalpha=zeros(nPg);
+ fid=fopen([Rac,namfil],'r','b');
+ cosalpha=fread(fid,nPg,'real*8');
+ sinalpha=fread(fid,nPg,'real*8');
+ fclose(fid);
+end
+
+uvEN=zeros(nPg, 2);
+uvEN(:,1)=cosalpha;
+uvEN(:,2)=sinalpha;
 
 %- go to CS grid, keeping E-W, N-S direction:
 x6s=permute(reshape(xcs,[nc 6 nc]),[1 3 2]);
