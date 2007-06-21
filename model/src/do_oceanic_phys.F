@@ -565,15 +565,21 @@ C--     Calculate iso-neutral slopes for the GM/Redi parameterisation
      &     CALL DEBUG_CALL('GMREDI_CALC_TENSOR',myThid)
 #endif
           CALL GMREDI_CALC_TENSOR(
-     I             bi, bj, iMin, iMax, jMin, jMax,
+c    I             bi, bj, iMin, iMax, jMin, jMax,
+c    I             sigmaX, sigmaY, sigmaR,
+c    I             myThid )
+     I             iMin, iMax, jMin, jMax,
      I             sigmaX, sigmaY, sigmaR,
-     I             myThid )
+     I             bi, bj, myTime, myIter, myThid )
 #ifdef ALLOW_AUTODIFF_TAMC
         ELSE
           CALL GMREDI_CALC_TENSOR_DUMMY(
-     I             bi, bj, iMin, iMax, jMin, jMax,
+c    I             bi, bj, iMin, iMax, jMin, jMax,
+c    I             sigmaX, sigmaY, sigmaR,
+c    I             myThid )
+     I             iMin, iMax, jMin, jMax,
      I             sigmaX, sigmaY, sigmaR,
-     I             myThid )
+     I             bi, bj, myTime, myIter, myThid )
 #endif /* ALLOW_AUTODIFF_TAMC */
         ENDIF
 #endif  /* ALLOW_GMREDI */
