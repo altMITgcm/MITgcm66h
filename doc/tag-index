@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o seaice adjoint
+  * add AREA, HEFF, HSNOW as control variable
+    (should not change lab_sea results)
+  * CTRL_OPTIONS.h needs new flag: CTRL_SET_OLD_MAXCVARS_40
+
 checkpoint59d
 o standard name: {PKG}_DIAGNOSTICS_STATE to fill diagnostics array
  for {PKG} state variables, and called from DO_STATEVARS_DIAGS.
