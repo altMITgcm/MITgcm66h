@@ -4,13 +4,13 @@ C $Name$
 #include "SEAICE_OPTIONS.h"
 
 CBOP
-C     !ROUTINE: SEAICE_DIAGNOSTICS_FILL
+C     !ROUTINE: SEAICE_DIAGNOSTICS_STATE
 C     !INTERFACE:
-      SUBROUTINE SEAICE_DIAGNOSTICS_FILL(
+      SUBROUTINE SEAICE_DIAGNOSTICS_STATE(
      I                      myTime, myIter, myThid )
 C     !DESCRIPTION: \bv
 C     *==========================================================*
-C     | S/R  SEAICE_DIAGNOSTICS_FILL
+C     | S/R  SEAICE_DIAGNOSTICS_STATE
 C     | o fill-in diagnostics array for SEAICE state variables
 C     *==========================================================*
 C     \ev
