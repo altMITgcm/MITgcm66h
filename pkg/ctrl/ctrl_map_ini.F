@@ -514,6 +514,10 @@ c--   SSS relaxation coefficient.
       enddo
 #endif
 
+#ifdef ALLOW_SEAICE
+      call seaice_ctrl_map_ini( mythid )
+#endif
+
 c--   Update the tile edges.
 
 #if (defined (ALLOW_THETA0_CONTROL) || defined (ALLOW_SST0_CONTROL))

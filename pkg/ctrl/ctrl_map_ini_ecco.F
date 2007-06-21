@@ -459,6 +459,10 @@ c--   SSS relaxation coefficient.
       enddo
 #endif
 
+#ifdef ALLOW_SEAICE
+      call seaice_ctrl_map_ini( mythid )
+#endif
+
 c--   Update the tile edges.
 
 #ifdef ALLOW_THETA0_CONTROL
@@ -501,7 +505,7 @@ c--   Update the tile edges.
       _EXCH_XY_R4( lambdaThetaClimRelax, mythid )
 #endif
 
-#endif
+#endif /* ALLOW_ECCO */
 
       return
       end

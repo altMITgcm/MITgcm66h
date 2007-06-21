@@ -152,6 +152,9 @@ c--   Assign file names.
       call ctrl_set_fname(xx_etan_file, fname_etan, mythid)
       call ctrl_set_fname(xx_relaxsst_file, fname_relaxsst, mythid)
       call ctrl_set_fname(xx_relaxsss_file, fname_relaxsss, mythid)
+      call ctrl_set_fname(xx_siarea_file, fname_siarea, mythid)
+      call ctrl_set_fname(xx_siheff_file, fname_siheff, mythid)
+      call ctrl_set_fname(xx_sihsnow_file, fname_sihsnow, mythid)
 
 c--     Only the master thread will do I/O.
         _BEGIN_MASTER( mythid )
@@ -653,6 +656,33 @@ CML# endif
           write(weighttype(1:80),'(a)') "wrunoff"
           call ctrl_set_unpack_xy( lxxadxx, cunit, ivartype,
      &         fname_runoff(ictrlgrad), "maskCtrlC",
+     &         weighttype, nwetcglobal, mythid)
+#endif
+
+#ifdef ALLOW_SIAREA_CONTROL
+          ivartype    = 41
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wunit"
+          call ctrl_set_unpack_xy( lxxadxx, cunit, ivartype,
+     &         fname_siarea(ictrlgrad), "maskCtrlC",
+     &         weighttype, nwetcglobal, mythid)
+#endif
+
+#ifdef ALLOW_SIHEFF_CONTROL
+          ivartype    = 42
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wunit"
+          call ctrl_set_unpack_xy( lxxadxx, cunit, ivartype,
+     &         fname_siheff(ictrlgrad), "maskCtrlC",
+     &         weighttype, nwetcglobal, mythid)
+#endif
+
+#ifdef ALLOW_SIHSNOW_CONTROL
+          ivartype    = 43
+          write(weighttype(1:80),'(80a)') ' '
+          write(weighttype(1:80),'(a)') "wunit"
+          call ctrl_set_unpack_xy( lxxadxx, cunit, ivartype,
+     &         fname_sihsnow(ictrlgrad), "maskCtrlC",
      &         weighttype, nwetcglobal, mythid)
 #endif
 
