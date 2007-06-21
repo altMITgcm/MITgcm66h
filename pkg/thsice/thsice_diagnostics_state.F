@@ -4,13 +4,13 @@ C $Name$
 #include "THSICE_OPTIONS.h"
 
 CBOP
-C     !ROUTINE: THSICE_DIAGNOSTICS_FILL
+C     !ROUTINE: THSICE_DIAGNOSTICS_STATE
 C     !INTERFACE:
-      SUBROUTINE THSICE_DIAGNOSTICS_FILL(
+      SUBROUTINE THSICE_DIAGNOSTICS_STATE(
      I                      myTime, myIter, bi, bj, myThid )
 C     !DESCRIPTION: \bv
 C     *==========================================================*
-C     | S/R  THSICE_DIAGNOSTICS_FILL
+C     | S/R  THSICE_DIAGNOSTICS_STATE
 C     | o fill-in diagnostics array for THSICE state variables
 C     *==========================================================*
 C     \ev
