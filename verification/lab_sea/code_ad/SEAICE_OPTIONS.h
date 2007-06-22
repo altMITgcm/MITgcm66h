@@ -81,6 +81,9 @@ C     defining the following flag
 #define SEAICE_ALLOW_EVP
 #endif /* SEAICE_CGRID */
 
+C--   Seaice flooding
+#define ALLOW_SEAICE_FLOODING
+
 #endif /* SEAICE_OPTIONS_H */
 
 CEH3 ;;; Local Variables: ***
