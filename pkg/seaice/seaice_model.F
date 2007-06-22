@@ -191,6 +191,7 @@ C--   Update overlap regions for a bunch of stuff
        CALL EXCH_3D_RL( AREA, 3, myThid )
        _EXCH_XY_R8( HSNOW,  myThid )
        _EXCH_XY_R4(EmPmR, myThid )
+       _EXCH_XY_R4(saltFlux, myThid )
        _EXCH_XY_R4(Qnet , myThid )
 #ifdef SHORTWAVE_HEATING
        _EXCH_XY_R4(Qsw  , myThid )
