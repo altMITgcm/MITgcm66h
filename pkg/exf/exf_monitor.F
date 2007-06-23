@@ -156,6 +156,24 @@ C       Print some statistics about input forcing fields
      &       maskH,maskH,rA ,drF,myThid)
 #endif
 
+#ifdef ALLOW_BULK_OFFLINE
+c-- Trick monitor output for testreport
+C-- by writing some statistics into dynstat fields
+c-- which are tested by testreport
+        CALL MON_SET_PREF('dynstat',myThid)
+c--
+        CALL MON_PRINTSTATS_RL(1,hflux,'_theta',
+     &       maskH,maskH,rA ,drF,myThid)
+        CALL MON_PRINTSTATS_RL(1,sflux,'_salt',
+     &       maskH,maskH,rA ,drF,myThid)
+        CALL MON_PRINTSTATS_RL(1,ustress,'_uvel',
+     &       maskH,maskH,rAw,drF,myThid)
+        CALL MON_PRINTSTATS_RL(1,vstress,'_vvel',
+     &       maskH,maskH,rAs,drF,myThid)
+c--
+        CALL MON_SET_PREF('exf',myThid)
+#endif /* ALLOW_BULK_OFFLINE */
+
         IF ( MASTER_CPU_IO(myThid) ) THEN
 C--   only the master thread is allowed to switch On/Off mon_write_stdout
 C     & mon_write_mnc (since it's the only thread that uses those flags):
