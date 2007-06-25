@@ -160,6 +160,10 @@ C       Print some statistics about input forcing fields
 c-- Trick monitor output for testreport
 C-- by writing some statistics into dynstat fields
 c-- which are tested by testreport
+        CALL MON_SET_PREF(' ',myThid)
+        CALL MON_PRINTSTATS_RL(1,hflux,'cg2d_init_res',
+     &       maskH,maskH,rA ,drF,myThid)
+c--
         CALL MON_SET_PREF('dynstat',myThid)
 c--
         CALL MON_PRINTSTATS_RL(1,hflux,'_theta',
