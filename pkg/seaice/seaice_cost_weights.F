@@ -23,7 +23,9 @@ c     == global variables ==
 
 #ifdef ALLOW_COST
 # include "ctrl.h"
-# include "ecco_cost.h"
+# ifdef ALLOW_ECCO
+#  include "ecco_cost.h"
+# endif
 # include "SEAICE_COST.h"
 #endif
 
@@ -31,6 +33,7 @@ c     == routine arguments ==
 
       integer  mythid
 
+#ifdef ALLOW_ECCO
 #ifdef ALLOW_COST
 c     == local variables ==
 
@@ -131,6 +134,7 @@ c--
       enddo
 #endif /* ALLOW_SEAICE_COST_SMR_AREA */
 
+#endif
 #endif
 
       end
