@@ -10,6 +10,9 @@ C $Name$
 #ifdef ALLOW_OBCS
 # include "OBCS_OPTIONS.h"
 #endif
+#ifdef ALLOW_SEAICE
+# include "SEAICE_OPTIONS.h"
+#endif
 
 CBOP
 C     !ROUTINE: FORWARD_STEP
@@ -92,6 +95,9 @@ C     == Global variables ==
 # endif
 # ifdef ALLOW_THSICE
 #  include "THSICE_VARS.h"
+# endif
+# ifdef ALLOW_SEAICE
+#  include "SEAICE.h"
 # endif
 # ifdef ALLOW_EBM
 #  include "EBM.h"
