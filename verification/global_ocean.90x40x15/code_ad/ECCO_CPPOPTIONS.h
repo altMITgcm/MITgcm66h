@@ -62,5 +62,5 @@ C       >>> Initial values.
 #undef ALLOW_SSS0_CONTROL
 #undef ALLOW_SST0_CONTROL
 #define ALLOW_DIFFKR_CONTROL
-#undef ALLOW_KAPGM_CONTROL
+#define ALLOW_KAPGM_CONTROL
 
