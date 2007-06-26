@@ -165,6 +165,10 @@ CADJ STORE dSigmaDrS(:,:)    = comlev1_bibj_k, key=kkey, byte=isbyte
 
 #endif /* GM_EXCLUDE_CLIPPING */
 
+      ELSEIF (GM_taper_scheme.EQ.'fm07') THEN
+
+        STOP 'GMREDI_SLOPE_PSI: AdvForm not yet implemented for fm07'
+
       ELSE
 
 #ifdef GM_EXCLUDE_TAPERING
