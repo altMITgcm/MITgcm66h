@@ -45,6 +45,8 @@ else
     FFLAGS='-132 -r8 -i4 -w95 -W0 -WB -pc64 -xW -assume byterecl -convert big_endian'
     # FLAGS='-mp -132 -r8 -i4 -w95 -W0 -WB -assume byterecl -convert big_endian'
 fi
+F90FLAGS=$FFLAGS
+F90OPTIM=$FOPTIM
 
 NOOPTFILES=$NOOPTFILES' mitcplr_char2real.F mitcplr_real2char.F'
 NOOPTFILES=$NOOPTFILES' mitcplr_char2int.F mitcplr_int2char.F mds_byteswap.F'
