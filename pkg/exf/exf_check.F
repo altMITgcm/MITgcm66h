@@ -85,7 +85,7 @@ cph         endif
         STOP 'wind-stress position defined by Long/Lat'
       ENDIF
 #else
-      IF ( ustressfile .NE. ' ' .OR. ustressfile .NE. ' ' ) THEN
+      IF ( ustressfile .NE. ' ' .OR. vstressfile .NE. ' ' ) THEN
         IF ( (readStressOnAgrid.AND.readStressOnCgrid) .OR.
      &   .NOT.(readStressOnAgrid.OR.readStressOnCgrid) ) THEN
           STOP
