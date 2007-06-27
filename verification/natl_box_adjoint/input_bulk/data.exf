@@ -59,8 +59,8 @@
 #
  hfluxfile   = 'PH_totflsfc__020_016_23',
  sfluxfile   = 'PH_pratesfc__020_016_23',
- ustressfile = 'PH_ustress__020_016_23',
- vstressfile = 'PH_vstress__020_016_23',
+# ustressfile = 'PH_ustress__020_016_23',
+# vstressfile = 'PH_vstress__020_016_23',
  atempfile   = 'PH_atm_atemp__020_016_23',
  aqhfile     = 'PH_atm_humid__020_016_23',
  uwindfile   = 'PH_atm_uwind__020_016_23',
