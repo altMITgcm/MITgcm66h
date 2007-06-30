@@ -523,6 +523,7 @@ C NOW GET FRESH WATER FLUX
      &         - RUNOFF(I,J,bi,bj)
 #endif
      &         + frWtrIce(I,J)*ICE2WATR/SEAICE_deltaTtherm
+     &         + saltWtrIce(I,J)*ICE2WATR/SEAICE_deltaTtherm
      &         )
 #ifdef ALLOW_DIAGNOSTICS
           frWtrAtm(I,J)   = maskC(I,J,kSurface,bi,bj)*(
@@ -534,7 +535,7 @@ C NOW GET FRESH WATER FLUX
 #endif
 
 C NOW GET SALT FLUX
-          saltFlux(I,J,bi,bj) = -maskC(I,J,kSurface,bi,bj)*
+          saltFlux(I,J,bi,bj) = maskC(I,J,kSurface,bi,bj)*
      &         saltWtrIce(I,J)*ICE2WATR/SEAICE_deltaTtherm*
      &         rhoConstFresh*SEAICE_salinity
 
