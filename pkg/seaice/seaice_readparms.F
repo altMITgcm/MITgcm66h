@@ -58,7 +58,7 @@ C--   SEAICE parameters
      & SEAICE_sensHeat, SEAICE_latentWater, SEAICE_latentIce,
      & SEAICE_iceConduct, SEAICE_snowConduct, SEAICE_emissivity,
      & SEAICE_snowThick, SEAICE_shortwave, SEAICE_freeze, OCEAN_drag,
-     & SEAICE_salinity, SEAICEstressFactor,
+     & SEAICE_salinity, SEAICE_availHeatFrac, SEAICEstressFactor,
      & uwindFile, vwindFile, atempFile, aqhFile, lwdownFile, AreaFile, 
      & swdownFile, precipFile, evapFile, runoffFile, HeffFile,
      & HsnowFile, LSR_ERROR, DIFF1, A22, HO,
@@ -165,7 +165,8 @@ C     SEAICE_latentIce   = 1.75 _d -03 * 2.834 _d 06 * 1.3
       SEAICE_snowThick   = 0.15   _d 0
       SEAICE_shortwave   = 0.30   _d 0
       SEAICE_freeze      = -1.96  _d 0
-      SEAICE_salinity    = 0.0   _d 0
+      SEAICE_salinity    = 0.0    _d 0
+      SEAICE_availHeatFrac = 1.   _d 0
       SEAICEstressFactor = 1.     _d 0
       uwindFile  = ' '
       vwindFile  = ' '
