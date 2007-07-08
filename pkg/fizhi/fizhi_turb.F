@@ -981,7 +981,6 @@ c    .                                     nchptot,1,nn)
 c     enddo
 
       enddo
-
 c *********************************************************************
 c **** increment diagnostic arrays for quantities saved in trbflx
 c *********************************************************************
@@ -1234,7 +1233,7 @@ c Reduce clouds from conditionally unstable layer
 c -----------------------------------------------
       call ctei ( tz,qz,fcctmp,qliqtmp,plz,pkz,pkht,im*jm,nlay )
 
-C Bumb Total Cloud Liquid Water and Fraction by Instantanious Values
+C Bump Total Cloud Liquid Water and Fraction by Instantaneous Values
 c ------------------------------------------------------------------
       do l = 1,nlay
        do j=1,jm
