@@ -38,7 +38,7 @@ C     Write snapshot output
       CALL PTRACERS_WRITE_STATE( myIter, myTime, myThid )
 #ifdef ALLOW_TIMEAVE
 C     Write time average output
-      IF (taveFreq.GT.0. .AND. myIter.NE.nIter0 ) THEN
+      IF ( PTRACERS_taveFreq.GT.0. .AND. myIter.NE.nIter0 ) THEN
        CALL PTRACERS_WRITE_TIMEAVE( myTime, myIter, myThid )
       ENDIF
 #endif /* ALLOW_TIMEAVE */
