@@ -97,6 +97,9 @@ C     defining the following flag
 #define SEAICE_ALLOW_EVP
 #endif /* SEAICE_CGRID */
 
+C--   When set use MAX_HEFF to cap sea ice thickness in seaice_growth
+#undef SEAICE_CAP_HEFF
+
 #endif /* SEAICE_OPTIONS_H */
 
 CEH3 ;;; Local Variables: ***
