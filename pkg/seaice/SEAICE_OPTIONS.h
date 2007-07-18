@@ -53,6 +53,10 @@ C-    current implementation requires those options to be set:
 
 #endif /* SEAICE_EXTERNAL_FORCING */
 
+#ifdef ALLOW_OBCS
+C- OBCS information is needed to define the correct sea ice mask.
+#include "OBCS_OPTIONS.h"
+#endif /* ALLOW_OBCS */
 
 C--   By default, the sea-ice package uses 2-category thermodynamics.
 C     When this flag is set, an 8-category calculation of ice
