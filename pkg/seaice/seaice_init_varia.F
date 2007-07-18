@@ -150,7 +150,7 @@ C Western boundary
           seaiceMaskU(I,J,bi,bj)=   0.0 _d 0
           seaiceMaskV(I,J,bi,bj)=   0.0 _d 0
           mask_uice=HEFFM(I,J,bi,bj)+HEFFM(I-1,J  ,bi,bj)
-          IF(mask_uice.GT.1i,bj)=ONE
+          IF(mask_uice.GT.1.5) seaiceMaskU(I,J,bi,bj)=ONE
           mask_uice=HEFFM(I,J,bi,bj)+HEFFM(I  ,J-1,bi,bj)
           IF(mask_uice.GT.1.5) seaiceMaskV(I,J,bi,bj)=ONE
 #else
