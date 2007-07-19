@@ -27,7 +27,7 @@ C Global variables / common blocks
 
 C Routine arguments
       INTEGER nNz
-      _RL local(1-oLx:sNx+oLx,1-oLy:sNy+oLy,nSx,nSy)
+      _RL local(1:sNx,1:sNy,nSx,nSy)
       _RL arr  (1-oLx:sNx+oLx,1-oLy:sNy+oLy,nNz,nSx,nSy)
       INTEGER k
       LOGICAL copyTo
@@ -39,8 +39,8 @@ C Local variables
       IF ( copyTo ) THEN
         DO bj = myByLo(myThid), myByHi(myThid)
           DO bi = myBxLo(myThid), myBxHi(myThid)
-            DO j=1-Oly,sNy+Oly
-              DO i=1-Olx,sNx+Olx
+            DO j=1,sNy
+              DO i=1,sNx
                 arr(i,j,k,bi,bj) = local(i,j,bi,bj)
               ENDDO
             ENDDO
@@ -49,8 +49,8 @@ C Local variables
       ELSE
         DO bj = myByLo(myThid), myByHi(myThid)
           DO bi = myBxLo(myThid), myBxHi(myThid)
-            DO j=1-Oly,sNy+Oly
-              DO i=1-Olx,sNx+Olx
+            DO j=1,sNy
+              DO i=1,sNx
                 local(i,j,bi,bj) = arr(i,j,k,bi,bj)
               ENDDO
             ENDDO
