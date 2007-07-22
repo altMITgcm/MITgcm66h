@@ -10,6 +10,9 @@ C o Shortwave heating as extra term in external_forcing.F
 C Note: this should be a run-time option
 #undef SHORTWAVE_HEATING
 
+C o Include/exclude Duffy et al. (GRL 1999) salt plume scheme
+#undef ALLOW_SALT_PLUME
+
 C o Include/exclude phi_hyd calculation code
 #define INCLUDE_PHIHYD_CALCULATION_CODE
 

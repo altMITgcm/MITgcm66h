@@ -429,6 +429,10 @@ C--     Diagnose Mixed Layer Depth:
      &              bi, bj, myTime, myIter, myThid )
         ENDIF
 #endif
+#ifdef ALLOW_SALT_PLUME
+          CALL CALC_SALT_PLUME_DEPTH( rhoK, sigmaR,
+     &              bi, bj, myTime, myIter, myThid )
+#endif
 #ifdef ALLOW_DIAGNOSTICS
         IF ( doDiagsRho.GE.1 ) THEN
           CALL DIAGNOSTICS_FILL (sigmaR, 'DRHODR  ', 0, Nr,

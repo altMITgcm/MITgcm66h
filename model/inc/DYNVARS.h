@@ -100,6 +100,12 @@ C                     BryanLewis79 vertical diffusivity
       _RL BL79LatArray (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 #endif
 
+#ifdef ALLOW_SALT_PLUME
+C     SaltPlumeDepth :: depth of penetration of salt plumes
+C                       rejected during sea ice growth
+      _RL SaltPlumeDepth (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+#endif /* ALLOW_SALT_PLUME */
+
 C     diagnostic variables:
 C     phiHydLow    :: Phi-Hydrostatic at r-lower boundary
 C                     (bottom in z-coordinates, top in p-coordinates)
