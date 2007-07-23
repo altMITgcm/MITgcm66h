@@ -30,6 +30,7 @@ C     === Global variables ===
 #include "SURFACE.h"
 #ifdef ALLOW_SEAICE
 #include "SEAICE.h"
+#include "SEAICE_PARAMS.h"
 #endif /* ALLOW_SEAICE */
 #ifdef ALLOW_SHELFICE
 #include "SHELFICE.h"
@@ -59,7 +60,7 @@ CEOP
       _RL tmpFac
 #endif /* ALLOW_DIAGNOSTICS */
 #ifdef ALLOW_SALT_PLUME
-     _RL saltPlume
+      _RL saltPlume
 #endif /* ALLOW_SALT_PLUME */
 
       IF ( usingPCoords ) THEN

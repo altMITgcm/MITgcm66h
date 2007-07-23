@@ -49,7 +49,7 @@ C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     i,j :: Loop counters
       INTEGER i,j,k
-      _RL     rhoBigNb, tmpFac
+      _RL     rhoBigNb, tmpFac, SaltPlumeCriterion
       _RL     rhoMxL(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL     rhoKm1(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL     rhoLoc(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
