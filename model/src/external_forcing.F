@@ -501,7 +501,7 @@ C Duffy et al. (GRL 1999)
            gS(i,j,kLev,bi,bj)=gS(i,j,kLev,bi,bj)
      &          +saltPlume*horiVertRatio*recip_rhoConst
      &          *recip_drF(kLev)*_recip_hFacC(i,j,kLev,bi,bj)
-     &          *max(drF(kLev),SaltPlumeDepth(i,j,bi,bj)+rF(kLev))
+     &          *min(drF(kLev),SaltPlumeDepth(i,j,bi,bj)+rF(kLev))
      &          /SaltPlumeDepth(i,j,bi,bj)
           ENDIF
         ENDDO
