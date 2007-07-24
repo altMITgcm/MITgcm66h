@@ -28,7 +28,7 @@ CML#include "SEAICE_GRID.h"
 #endif /* ALLOW_EXCH2 */
 #ifdef ALLOW_OBCS
 #include "OBCS.h"
-#inclulde "OBCS_OPTIONS.h"
+#include "OBCS_OPTIONS.h"
 #endif /* ALLOW_OBCS */
 
 C     === Routine arguments ===
