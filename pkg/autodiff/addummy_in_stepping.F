@@ -132,20 +132,20 @@ C--     Read IO error counter
 
 #ifdef ALLOW_SEAICE
         CALL MDSWRITEFIELD( 
-     &       'ADJarea', writeBinaryPrec, globalFiles, 'RL', 
+     &       'ADJarea.'//suff, writeBinaryPrec, globalFiles, 'RL', 
      &       3,  adarea, 1, myIter, myThid )
         CALL MDSWRITEFIELD( 
-     &       'ADJheff', writeBinaryPrec, globalFiles, 'RL', 
+     &       'ADJheff.'//suff, writeBinaryPrec, globalFiles, 'RL', 
      &       3,  adheff, 1, myIter, myThid )
         CALL MDSWRITEFIELD( 
-     &       'ADJhsnow', writeBinaryPrec, globalFiles, 'RL', 
+     &       'ADJhsnow.'//suff, writeBinaryPrec, globalFiles, 'RL', 
      &       1,  adhsnow, 1, myIter, myThid )
 # ifdef SEAICE_ALLOW_DYNAMICS
         CALL MDSWRITEFIELD( 
-     &       'ADJuice', writeBinaryPrec, globalFiles, 'RL', 
+     &       'ADJuice.'//suff, writeBinaryPrec, globalFiles, 'RL', 
      &       3,  aduice, 1, myIter, myThid )
         CALL MDSWRITEFIELD( 
-     &       'ADJvice', writeBinaryPrec, globalFiles, 'RL', 
+     &       'ADJvice.'//suff, writeBinaryPrec, globalFiles, 'RL', 
      &       3,  advice, 1, myIter, myThid )
 # endif
 #endif
