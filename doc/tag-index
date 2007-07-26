@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint59e
 o exch2: new S/R that only use the cube-tracer (center-position) exchange:
   for B-grid vector (not yet tested) and C-grid vector (<- only used
   when option W2_USE_R1_ONLY in W2_OPTIONS.h is defined).
