@@ -271,7 +271,7 @@ C--   Update etaH(n) :
 
 #ifdef NONLIN_FRSURF
       IF ( select_rStar.NE.0 ) THEN
-#ifndef ALLOW_AUTODIFF_TAMC
+#ifndef DISABLE_RSTAR_CODE
 C--   r* : compute the future level thickness according to etaH(n+1)
           CALL CALC_R_STAR(etaH, startTime, nIter0, myThid )
 #endif

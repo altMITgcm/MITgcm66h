@@ -47,12 +47,12 @@ C  i,j              :: loop indices
       INTEGER i,j
 CEOP
 
-#ifndef ALLOW_AUTODIFF_TAMC
+cph-exch2#ifndef ALLOW_AUTODIFF_TAMC
 C--   Internal exchange for calculations in X
       IF (useCubedSphereExchange) THEN
         CALL FILL_CS_CORNER_TR_RL( .TRUE., tracer, bi,bj, myThid )
       ENDIF
-#endif
+cph-exch2#endif
 
 C     o Zonal tracer gradient
       DO j=1-Oly,sNy+Oly

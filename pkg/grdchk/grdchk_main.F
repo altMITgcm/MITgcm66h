@@ -249,6 +249,7 @@ c--   (B): Get gradient component g_fc from tangent linear run:
 c******************************************************
 c--
 c--   1. perturb control vector component: xx(i)=1.
+            ftlxxmemo = 0.
 
             if ( myProcId .EQ. grdchkwhichproc .AND.
      &           ierr .EQ. 0 ) then
