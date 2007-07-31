@@ -13,7 +13,7 @@
 //EOP
 
 */
-
+#ifdef HAVE_SIGREG
 /*  Here, we get the definition of the FC_NAMEMANGLE() macro. */
 #include "FC_NAMEMANGLE.h"
 
@@ -51,5 +51,5 @@ void FC_NAMEMANGLE(sigreg) (int * aip)
 #endif
     return;
 }
-
+#endif
 
