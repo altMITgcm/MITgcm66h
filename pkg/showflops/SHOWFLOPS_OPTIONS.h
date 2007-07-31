@@ -12,11 +12,7 @@ C Use this file for selecting options within the SHOWFLOPS package
 
 #include "CPP_OPTIONS.h"
 
-#define TIME_PER_TIMESTEP
-#define USE_PAPI_FLOPS
-#define USE_FLIPS
-#define PAPI_VERSION
-#undef USE_PCL_FLOPS
+#undef USE_FLIPS
 
 #endif /* ALLOW_SHOWFLOPS */
 #endif /* SHOWFLOPS_OPTIONS_H */
