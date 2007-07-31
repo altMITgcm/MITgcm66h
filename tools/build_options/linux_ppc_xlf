@@ -13,9 +13,9 @@ MAKEDEPEND=makedepend
 DEFINES='-DWORDLENGTH=4 -DNML_TERMINATOR'
 INCLUDES=''
 CPP='/lib/cpp -traditional -P'
-FC='xlf -q64'
-CC='xlc -q64'
-LINK='xlf -q64'
+FC='xlf'
+CC='xlc'
+LINK='xlf'
 LIBS='' 
 FFLAGS='-qfixed=132'
 if test "x$IEEE" = x ; then
