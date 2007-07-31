@@ -1,5 +1,5 @@
-C$Header$
-C$Name$
+C $Header$
+C $Name$
 
 #include "MOM_COMMON_OPTIONS.h"
 

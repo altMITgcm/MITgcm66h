@@ -1,5 +1,5 @@
-C$Header$
-C$Name$
+C $Header$
+C $Name$
 #include "MY82_OPTIONS.h"
 
       SUBROUTINE MY82_CALC_VISC( 

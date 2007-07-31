@@ -1,5 +1,5 @@
-C$Header$
-C$Name$
+C $Header$
+C $Name$
 
 #include "OPPS_OPTIONS.h"
 

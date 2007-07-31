@@ -1,4 +1,4 @@
-C$Header$
+C $Header$
 
       SUBROUTINE EXCH2_GET_SEND_BOUNDS(
      I           fCode, eWdth,

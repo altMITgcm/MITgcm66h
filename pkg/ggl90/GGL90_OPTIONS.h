@@ -1,5 +1,5 @@
-C$Header$
-C$Name$
+C $Header$
+C $Name$
 C     /=============================================================\
 C     | GGL90_OPTIONS.h                                             |
 C     | o CPP options file for GGL90 package.                       |

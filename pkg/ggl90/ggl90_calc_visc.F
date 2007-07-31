@@ -1,5 +1,5 @@
-C$Header$
-C$Name$
+C $Header$
+C $Name$
 #include "GGL90_OPTIONS.h"
 
       SUBROUTINE GGL90_CALC_VISC( 

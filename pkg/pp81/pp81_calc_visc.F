@@ -1,5 +1,5 @@
-C$Header$
-C$Name$
+C $Header$
+C $Name$
 #include "PP81_OPTIONS.h"
 
       SUBROUTINE PP81_CALC_VISC( 
