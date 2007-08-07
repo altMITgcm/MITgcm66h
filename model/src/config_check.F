@@ -40,6 +40,21 @@ CEOP
 
 C-  check that CPP option is "defined" when running-flag parameter is on:
 
+C     o If diffKrFile is set, then we should make sure the corresponing
+C       code is being compiled
+#if !(defined ALLOW_3D_DIFFKR || \
+      (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_DIFFKR_CONTROL)))
+      IF (diffKrFile.NE.' ') THEN
+        WRITE(msgBuf,'(A)')
+     &  'CONFIG_CHECK: diffKrFile is set but never used.'
+        CALL PRINT_ERROR( msgBuf , myThid)
+        WRITE(msgBuf,'(A)')
+     &  'Re-compile with:  #define ALLOW_3D_DIFFKR'
+        CALL PRINT_ERROR( msgBuf , myThid)
+        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
+      ENDIF
+#endif
+
 #ifndef ALLOW_NONHYDROSTATIC
       IF (use3Dsolver) THEN
         WRITE(msgBuf,'(A)')
