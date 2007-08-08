@@ -66,6 +66,7 @@ while test $count != 0 ; do
             fi
             eval M_$i=done
             count=`expr $count - 1`
+            chmod 644 ../output/tst_$i.std*
         fi
       fi
     done
