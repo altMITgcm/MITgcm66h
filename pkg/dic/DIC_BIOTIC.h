@@ -16,7 +16,7 @@ C     |==========================================================|
      &     KDOPremin,zca,R_op,R_cp,R_np, R_fep,
      &     o2crit, alpfe, KScav, ligand_stab, ligand_tot, KFE,
      &     freefemax, par,
-     &     k0, lit0,
+     &     parfrac, k0, lit0,
      &     nlev
 
       integer nlev
@@ -60,7 +60,7 @@ C     values for biogeochemistry
       _RL  KFe
       _RL freefemax
 C     values for light limited bio activity
-      _RL k0,lit0
+      _RL k0, parfrac, lit0
 #endif
 
 

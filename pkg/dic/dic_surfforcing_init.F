@@ -109,8 +109,6 @@ cswd QQ change for placement of chem forcing (ie. after timestep)
           IF ( SilicaFile .NE. ' '  ) THEN
              SILICA(i,j,bi,bj)    = bWght*silica0(i,j,bi,bj)
      &                        +aWght*silica1(i,j,bi,bj)
-           ELSE
-             SILICA(i,j,bi,bj)   =7.6838e-3*maskC(i,j,1,bi,bj)
            ENDIF
           ENDDO
          ENDDO
