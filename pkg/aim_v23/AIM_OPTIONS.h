@@ -23,8 +23,11 @@ C  allow time average diagnostic:
 # define ALLOW_AIM_TAVE
 #endif
 
-C  allow time average diagnostic:
+C  allow Clear-Sky diagnostic:
 #define ALLOW_CLR_SKY_DIAG
+
+C allow 3D cloud fraction for computation of radiation
+#undef ALLOW_CLOUD_3D
 
 C   Macro mapping dynamics vertical indexing (KD) to AIM vertical indexing (KA).
 C   ( dynamics puts K=1 at bottom of atmos., AIM puts K=1 at top of atmos. )

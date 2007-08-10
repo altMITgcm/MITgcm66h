@@ -192,6 +192,15 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
+#ifdef ALLOW_CLOUD_3D
+      diagName  = 'CLDCLW  '
+      diagTitle = 'Local Cloud Fraction (0-1)'
+      diagUnits = '0-1             '
+      diagCode  = 'SM      ML      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+#endif
+
       diagName  = 'CLDPRS  '
       diagTitle = 'Cloud Top Pressure (normalized)'
       diagUnits = '0-1             '
