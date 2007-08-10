@@ -97,12 +97,14 @@ cph)
 #ifdef ALLOW_BL79_LAT_VARY
 C     BL79LatArray :: is used for latitudinal dependence of
 C                     BryanLewis79 vertical diffusivity
+      COMMON /DYNVARS_BL79LatArray/ BL79LatArray
       _RL BL79LatArray (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 #endif
 
 #ifdef ALLOW_SALT_PLUME
 C     SaltPlumeDepth :: depth of penetration of salt plumes
 C                       rejected during sea ice growth
+      COMMON /DYNVARS_SALT_PLUME/ SaltPlumeDepth
       _RL SaltPlumeDepth (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 #endif /* ALLOW_SALT_PLUME */
 
