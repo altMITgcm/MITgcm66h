@@ -1,5 +1,13 @@
-# current output of: crontab -l
+# $Header$
+
+#-from: jmc@faulks.csail.mit.edu 
+#  current output of: crontab -l
 
 50 23 * * *  cd /u/u2/jmc/testing/faulks && cvs -q update -P -d
 05 1 * * *  /u/u2/jmc/testing/faulks/test_csail
+
+#-from: jmc@eddy.csail.mit.edu 
+#  current output of: crontab -l
+
+15  0 * * 0,2,4,6  /u/u2/jmc/testing/faulks/test_csail_fc5
 
