@@ -70,7 +70,7 @@ c
      &           *( uVel(i,j,k,bi,bj) )
      &           *( uVel(i,j,k,bi,bj) )
 cph(
-               print *, 'ph-cost: objf_test ', 
+               print *, 'ph-cost: objf_test ', ig, jg,
      &              objf_test(bi,bj)
 cph)
 c
