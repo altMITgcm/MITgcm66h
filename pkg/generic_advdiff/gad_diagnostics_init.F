@@ -187,6 +187,7 @@ C     *==========================================================*
 
 C     !USES:
       IMPLICIT NONE
+#include "SIZE.h"
 #include "EEPARAMS.h"
 #include "GAD.h"
 

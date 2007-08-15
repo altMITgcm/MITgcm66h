@@ -63,8 +63,8 @@ CEOP
 
       IF ( limiter.EQ.1 ) THEN
        DO k=1,Nr
-        DO j=1-OLy,sNy+OLy
-         DO i=1-OLx,sNx+OLx
+        DO j=jMinAdvR,jMaxAdvR
+         DO i=iMinAdvR,iMaxAdvR
 C     If flux-limiting transport is to be applied, place limits on
 C     appropriate moments before transport.
           slpmax = 0.
