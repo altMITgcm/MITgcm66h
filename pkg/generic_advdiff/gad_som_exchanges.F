@@ -33,20 +33,15 @@ CEOP
 #ifdef GAD_ALLOW_SOM_ADVECT
 C     !LOCAL VARIABLES:
 C     === Local variables ===
-      INTEGER n
 
 C--   Apply exchanges to Temp. 2nd.O.Moments:
       IF ( tempSOM_Advection ) THEN
-       DO n=1,nSOM
-        CALL EXCH_3D_RL( som_T(1-OLx,1-OLy,1,1,1,n), Nr, myThid )
-       ENDDO
+       CALL GAD_EXCH_SOM( som_T, Nr, myThid )
       ENDIF
 
 C--   Apply exchanges to Salin. 2nd.O.Moments:
       IF ( saltSOM_Advection ) THEN
-       DO n=1,nSOM
-        CALL EXCH_3D_RL( som_S(1-OLx,1-OLy,1,1,1,n), Nr, myThid )
-       ENDDO
+       CALL GAD_EXCH_SOM( som_S, Nr, myThid )
       ENDIF
 
 #endif /* GAD_ALLOW_SOM_ADVECT */
