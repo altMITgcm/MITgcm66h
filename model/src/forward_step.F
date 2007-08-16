@@ -65,6 +65,7 @@ C     == Global variables ==
 
 #ifdef ALLOW_AUTODIFF_TAMC
 # include "FFIELDS.h"
+# include "SURFACE.h"
 
 # include "tamc.h"
 # include "ctrl.h"
@@ -101,9 +102,6 @@ C     == Global variables ==
 # endif
 # ifdef ALLOW_EBM
 #  include "EBM.h"
-# endif
-# ifdef EXACT_CONSERV
-#  include "SURFACE.h"
 # endif
 # ifdef ALLOW_KPP
 #  include "KPP.h"

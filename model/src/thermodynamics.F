@@ -197,9 +197,13 @@ CHPF$ INDEPENDENT
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C-- Compute correction at the surface for Lin Free Surf.
-      IF (linFSConserveTr)
-     &   CALL CALC_WSURF_TR(theta,salt,wVel,
-     &                      myTime,myIter,myThid)
+      IF (linFSConserveTr) THEN
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE theta,salt,wvel = comlev1, key = ikey_dynamics
+#endif
+       CALL CALC_WSURF_TR(theta,salt,wVel,
+     &                    myTime,myIter,myThid)
+      ENDIF
 
       DO bj=myByLo(myThid),myByHi(myThid)
 

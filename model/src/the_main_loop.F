@@ -53,9 +53,10 @@ c They provide the fields to be stored.
 
 #  include "GRID.h"
 #  include "DYNVARS.h"
+#  include "SURFACE.h"
 #  include "FFIELDS.h"
 #  include "EOS.h"
-# include "AUTODIFF.h"
+#  include "AUTODIFF.h"
 
 # ifdef ALLOW_GENERIC_ADVDIFF
 #  include "GAD.h"
@@ -67,9 +68,6 @@ c They provide the fields to be stored.
 #  ifdef ALLOW_PTRACERS
 #   include "PTRACERS_SIZE.h"
 #   include "PTRACERS.h"
-#  endif
-#  if (defined (EXACT_CONSERV) || defined (NONLIN_FRSURF))
-#   include "SURFACE.h"
 #  endif
 #  ifdef ALLOW_OBCS
 #   include "OBCS.h"

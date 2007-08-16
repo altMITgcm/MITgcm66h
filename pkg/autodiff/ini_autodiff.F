@@ -22,9 +22,7 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "FFIELDS.h"
-#ifdef EXACT_CONSERV
-# include "SURFACE.h"
-#endif
+#include "SURFACE.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
@@ -40,6 +38,10 @@ C     I,J,K
       INTEGER bi, bj
       INTEGER  I, J, K
 CEOP
+
+C--   Scalar fields
+      TsurfCor=0. _d 0
+      SsurfCor=0. _d 0
 
 C--   Over all tiles
       DO bj = myByLo(myThid), myByHi(myThid)

@@ -101,6 +101,7 @@ c They provide the fields to be stored.
 
 # include "GRID.h"
 # include "DYNVARS.h"
+# include "SURFACE.h"
 # include "FFIELDS.h"
 # include "EOS.h"
 # include "AUTODIFF.h"
@@ -117,9 +118,6 @@ c They provide the fields to be stored.
 # endif
 # ifdef ALLOW_NONHYDROSTATIC
 #  include "CG3D.h"
-# endif
-# if (defined (EXACT_CONSERV) || defined (NONLIN_FRSURF))
-#  include "SURFACE.h"
 # endif
 # ifdef ALLOW_OBCS
 #  include "OBCS.h"

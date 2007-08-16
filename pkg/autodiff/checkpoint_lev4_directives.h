@@ -10,6 +10,9 @@ CADJ STORE StoreDynVars3D     = tapelev4, key = ilev_4
 CADJ STORE StoreDynVars2D     = tapelev4, key = ilev_4
 cnewCADJ STORE ivdconvcount       = tapelevx, key = ilev_x
 
+CADJ STORE TsurfCor    = tapelev4, key = ilev_4
+CADJ STORE SsurfCor    = tapelev4, key = ilev_4
+
 #ifdef EXACT_CONSERV
 cphCADJ STORE hDivFlow  = tapelev4, key = ilev_4
 #endif /* EXACT_CONSERV */
