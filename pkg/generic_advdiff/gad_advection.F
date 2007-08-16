@@ -355,7 +355,8 @@ C-     Internal exchange for calculations in X
         IF ( useCubedSphereExchange .AND.
      &       ( overlapOnly .OR. ipass.EQ.1 ) ) THEN
 #endif
-         CALL FILL_CS_CORNER_TR_RL( .TRUE., localTij, bi,bj, myThid )
+         CALL FILL_CS_CORNER_TR_RL( .TRUE., .FALSE.,
+     &                              localTij, bi,bj, myThid )
         ENDIF
 cph-exch2#endif
 
@@ -399,7 +400,8 @@ C-     Advective flux in X : done
 cph-exch2#ifndef ALLOW_AUTODIFF_TAMC
 C-     Internal exchange for next calculations in Y
        IF ( overlapOnly .AND. ipass.EQ.1 ) THEN
-         CALL FILL_CS_CORNER_TR_RL(.FALSE., localTij, bi,bj, myThid )
+         CALL FILL_CS_CORNER_TR_RL(.FALSE., .FALSE.,
+     &                              localTij, bi,bj, myThid )
        ENDIF
 cph-exch2#endif
 
@@ -521,7 +523,8 @@ C-     Internal exchange for calculations in Y
         IF ( useCubedSphereExchange .AND.
      &       ( overlapOnly .OR. ipass.EQ.1 ) ) THEN
 #endif
-         CALL FILL_CS_CORNER_TR_RL(.FALSE., localTij, bi,bj, myThid )
+         CALL FILL_CS_CORNER_TR_RL(.FALSE., .FALSE.,
+     &                              localTij, bi,bj, myThid )
         ENDIF
 cph-exch2#endif
 
@@ -572,7 +575,8 @@ C-     Advective flux in Y : done
 cph-exch2#ifndef ALLOW_AUTODIFF_TAMC
 C-     Internal exchange for next calculations in X
        IF ( overlapOnly .AND. ipass.EQ.1 ) THEN
-         CALL FILL_CS_CORNER_TR_RL( .TRUE., localTij, bi,bj, myThid )
+         CALL FILL_CS_CORNER_TR_RL( .TRUE., .FALSE.,
+     &                              localTij, bi,bj, myThid )
        ENDIF
 cph-exch2#endif
 

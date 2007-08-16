@@ -114,7 +114,7 @@ C--        Calculate gradient in X direction:
            IF ( .NOT.Shap_alwaysExchTr
      &          .AND. useCubedSphereExchange ) THEN
 C          to compute d/dx(tmpFld), fill corners with appropriate values:
-             CALL FILL_CS_CORNER_TR_RL( .TRUE.,
+             CALL FILL_CS_CORNER_TR_RL( .TRUE., .FALSE.,
      &                                 tmpFld(1-Olx,1-Oly,k,bi,bj),
      &                                 bi,bj, myThid )
            ENDIF
@@ -145,7 +145,7 @@ C--        Calculate gradient in Y direction:
            IF ( .NOT.Shap_alwaysExchTr
      &          .AND. useCubedSphereExchange ) THEN
 C          to compute d/dy(tmpFld), fill corners with appropriate values:
-             CALL FILL_CS_CORNER_TR_RL(.FALSE.,
+             CALL FILL_CS_CORNER_TR_RL(.FALSE., .FALSE.,
      &                                 tmpFld(1-Olx,1-Oly,k,bi,bj),
      &                                 bi,bj, myThid )
            ENDIF
