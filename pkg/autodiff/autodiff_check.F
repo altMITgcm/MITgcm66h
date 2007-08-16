@@ -60,6 +60,15 @@ c--   to nTimeSteps: (nchklev_1*nchklev_2*nchklev_3 .ge. nTimeSteps)
       endif
 #endif
 
+#ifndef ALLOW_AUTODIFF_MONITOR
+       IF ( adjDumpFreq .NE. 0. ) THEN
+        STOP 'adjDumpFreq <> 0, but undef ALLOW_AUTODIFF_MONITOR'
+       ENDIF
+       IF ( adjMonitorFreq .NE. 0. ) THEN
+        STOP 'adjMonitorFreq <> 0, but undef ALLOW_AUTODIFF_MONITOR'
+       ENDIF
+#endif
+
 #endif
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
