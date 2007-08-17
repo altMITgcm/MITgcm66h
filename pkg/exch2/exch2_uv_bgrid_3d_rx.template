@@ -35,7 +35,7 @@ C     !USES:
 
 #include "SIZE.h"
 #include "EEPARAMS.h"
-#include "EESUPPORT.h"
+c#include "EESUPPORT.h"
 #include "W2_EXCH2_TOPOLOGY.h"
 #include "W2_EXCH2_PARAMS.h"
 
