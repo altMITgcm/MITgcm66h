@@ -59,10 +59,7 @@ c    & _EXCH_XY_R8( etaN , myThid )
 #endif
 
 #ifdef ALLOW_CD_CODE
-c     _EXCH_XYZ_R8( guCD , myThid )
-c     _EXCH_XYZ_R8( gvCD , myThid )
-      _EXCH_XYZ_R8( uVelD , myThid )
-      _EXCH_XYZ_R8( vVelD , myThid )
+      CALL EXCH_UV_DGRID_3D_RL( uVelD,vVelD, .TRUE., Nr, myThid )
 #endif
       IF ( useDynP_inEos_Zc )
      & _EXCH_XYZ_RL( totPhiHyd , myThid )
