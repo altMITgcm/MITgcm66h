@@ -3,15 +3,15 @@ C $Header$
 #include "COST_CPPOPTIONS.h"
 
 
-      subroutine cost_kapgm(
+      subroutine cost_diffkr(
      I                           myiter,
      I                           mytime,
      I                           mythid
      &                         )
 
 C     o==========================================================o
-C     | subroutine cost_kapgm                                    |
-C     | o GM coefficient adjustment penalization                 |
+C     | subroutine cost_diffkr                                   |
+C     | o vertical diffusivity adjustment penalization           |
 C     o==========================================================o
 
       implicit none
@@ -22,9 +22,6 @@ c     == global variables ==
 #include "SIZE.h"
 #include "GRID.h"
 #include "DYNVARS.h"
-#ifdef ALLOW_GMREDI
-# include "GMREDI.h"
-#endif
 
 #include "ecco_cost.h"
 #include "ctrl.h"
@@ -81,19 +78,19 @@ c--   Read state record from global file.
       
       irec = 1
 
-#ifdef ALLOW_KAPGM_COST_CONTRIBUTION
+#ifdef ALLOW_DIFFKR_COST_CONTRIBUTION
 
       if (optimcycle .ge. 0) then
-        ilfld = ilnblnk( xx_kapgm_file )
+        ilfld = ilnblnk( xx_diffkr_file )
         write(fnamefld(1:80),'(2a,i10.10)') 
-     &       xx_kapgm_file(1:ilfld),'.',optimcycle
+     &       xx_diffkr_file(1:ilfld),'.',optimcycle
       endif
 
       fcthread = 0. _d 0
 
       call active_read_xyz( fnamefld, tmpfld3d, irec, doglobalread,
      &                       ladinit, optimcycle, mythid
-     &        , xx_kapgm_dummy )
+     &        , xx_diffkr_dummy )
 
 c--     Loop over this thread's tiles.
         do bj = jtlo,jthi
@@ -110,7 +107,7 @@ c                  tmpx = (tmpfld3d(i,j,k,bi,bj)-GM_background_K)
                   tmpx = tmpfld3d(i,j,k,bi,bj)
 #ifndef ALLOW_SMOOTH_CORREL3D
                   fctile = fctile
-     &                 + wkapgmFld(i,j,k,bi,bj)*cosphi(i,j,bi,bj)
+     &                 + wdiffkrFld(i,j,k,bi,bj)*cosphi(i,j,bi,bj)
      &                 *tmpx*tmpx
 #else
                   fctile = fctile + tmpx*tmpx
@@ -120,7 +117,7 @@ c                  tmpx = (tmpfld3d(i,j,k,bi,bj)-GM_background_K)
             enddo
             enddo
 
-            objf_kapgm(bi,bj) = objf_kapgm(bi,bj) + fctile
+            objf_diffkr(bi,bj) = objf_diffkr(bi,bj) + fctile
             fcthread          = fcthread + fctile
 
 #ifdef ECCO_VERBOSE
@@ -129,7 +126,7 @@ c--         Print cost function for each tile in each thread.
             call print_message( msgbuf, standardmessageunit,
      &                          SQUEEZE_RIGHT , mythid)
             write(msgbuf,'(a,i8.8,1x,i3.3,1x,i3.3)')
-     &        ' cost_kapgm: irec,bi,bj          =  ',irec,bi,bj
+     &        ' cost_diffkr: irec,bi,bj          =  ',irec,bi,bj
             call print_message( msgbuf, standardmessageunit,
      &                          SQUEEZE_RIGHT , mythid)
             write(msgbuf,'(a,d22.15)')
@@ -148,7 +145,7 @@ c--     Print cost function for all tiles.
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,i8.8)')
-     &    ' cost_kapgm:                       irec =  ',irec
+     &    ' cost_diffkr:                     irec =  ',irec
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a,d22.15)')
@@ -172,7 +169,7 @@ c--     Print cost function for all tiles.
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a)')
-     &    ' cost_kapgm : no contribution to cost function'
+     &    ' cost_diffkr : no contribution to cost function'
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
         write(msgbuf,'(a)') ' '
