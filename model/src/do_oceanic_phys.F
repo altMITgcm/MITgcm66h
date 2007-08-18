@@ -49,6 +49,7 @@ C     == Global variables ===
 # include "tamc.h"
 # include "tamc_keys.h"
 # include "FFIELDS.h"
+# include "SURFACE.h"
 # include "EOS.h"
 # ifdef ALLOW_KPP
 #  include "KPP.h"
@@ -58,9 +59,6 @@ C     == Global variables ===
 # endif
 # ifdef ALLOW_EBM
 #  include "EBM.h"
-# endif
-# ifdef EXACT_CONSERV
-#  include "SURFACE.h"
 # endif
 # ifdef ALLOW_EXF
 #  include "ctrl.h"
