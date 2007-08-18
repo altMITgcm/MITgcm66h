@@ -158,6 +158,9 @@ CADJ STORE seaice_sigma12      = comlev1, key = ikey_dynamics
 # ifdef ATMOSPHERIC_LOADING
 CADJ STORE siceload            = comlev1, key = ikey_dynamics
 # endif
+# ifdef NONLIN_FRSURF
+CADJ STORE recip_hfacc         = comlev1, key = ikey_dynamics
+# endif
 #endif
 #ifdef ALLOW_DEBUG
         IF ( debugLevel .GE. debLevB )
