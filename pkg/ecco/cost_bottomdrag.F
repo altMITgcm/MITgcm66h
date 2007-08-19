@@ -105,7 +105,7 @@ c--         Determine the weights to be used.
                   tmpx = tmpfld2d(i,j,bi,bj)
 #ifndef ALLOW_SMOOTH_CORREL3D
                   fctile = fctile
-     &                 + wbottomdragFld(i,j,bi,bj)*cosphi(i,j,bi,bj)
+     &                 + wbottomdrag(i,j,bi,bj)*cosphi(i,j,bi,bj)
      &                 *tmpx*tmpx
 #else
                   fctile = fctile + tmpx*tmpx

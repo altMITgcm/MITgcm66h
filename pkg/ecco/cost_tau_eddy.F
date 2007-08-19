@@ -75,6 +75,10 @@ C------------------------------------------------------
 C     Cost function consistent with ECCO standards
 C------------------------------------------------------
 
+      jtlo = mybylo(mythid)
+      jthi = mybyhi(mythid)
+      itlo = mybxlo(mythid)
+      ithi = mybxhi(mythid)
       jmin = 1
       jmax = sny
       imin = 1
