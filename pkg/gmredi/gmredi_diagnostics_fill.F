@@ -26,6 +26,10 @@ C     == Routine arguments ==
 C
       INTEGER bi,bj
       INTEGER myThid
+#ifdef ALLOW_DIAGNOSTICS
+      LOGICAL     DIAGNOSTICS_IS_ON
+      EXTERNAL    DIAGNOSTICS_IS_ON
+#endif /* ALLOW_DIAGNOSTICS */
 CEndOfInterface
 
 #ifdef ALLOW_GMREDI
