@@ -4,21 +4,31 @@
 #  $Name$
 #
 
-FC=g95
-F90C=g95
+#  Tested with gcc-gfortran v4.0.x as shipped with Fedora Core 4.
+#  It fixes the ' \' versus ' &' terminator problem but some 
+#  namelist problems remain.  The biggest seems to be the inability
+#  of current gfortran versions to support namelist syntax such as:
+#
+#     fields(1,1) = 'UVELSLT ','VVELSLT ','WVELSLT ',
+#
+#  which results in run-time errors.
+
+
+FC=gfortran
+F90C=gfortran
 CC=gcc
-DEFINES='-DWORDLENGTH=4'
+DEFINES='-DWORDLENGTH=4 -DNML_TERMINATOR -DUSE_OMP_THREADING'
 CPP='cpp  -traditional -P'
-NOOPTFLAGS='-O0'
+NOOPTFLAGS='-O0 -fopenmp'
 
 if test "x$DEVEL" != x ; then
-    FFLAGS='-g -Wall -Wextra -fbounds-check -ftrace=full -finteger=-99999 -flogical=false -freal=nan'
+    FFLAGS='-g -Wall -W -ffpe-trap=invalid,zero,overflow -fbounds-check'
 else
-    FFLAGS='-Wunused'
+    FFLAGS=''
 fi
 
-#  "warning: -Wuninitialized is not supported without -O"
-FFLAGS="$FFLAGS -fendian=big -fimplicit-none"
+# Requires gfortran from 2006 onwards for -fconvert=big-endian
+FFLAGS="$FFLAGS -fconvert=big-endian -fimplicit-none -fopenmp"
 
 if test "x$IEEE" = x ; then
     #  No need for IEEE-754
