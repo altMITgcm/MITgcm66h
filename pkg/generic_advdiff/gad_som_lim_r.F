@@ -75,8 +75,8 @@ C     appropriate moments before transport.
      &                 MAX(ABS(s1new)-slpmax,sm_zz(i,j,k))  )
           sm_xz(i,j,k) = MIN( slpmax, MAX(-slpmax,sm_xz(i,j,k)) )
           sm_yz(i,j,k) = MIN( slpmax, MAX(-slpmax,sm_yz(i,j,k)) )
-          sm_z (i,j,k) = s1new ;
-          sm_zz(i,j,k) = s2new ;
+          sm_z (i,j,k) = s1new
+          sm_zz(i,j,k) = s2new
          ENDDO
         ENDDO
        ENDDO

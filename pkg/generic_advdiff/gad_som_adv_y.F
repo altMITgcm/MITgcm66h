@@ -121,8 +121,8 @@ C     appropriate moments before transport.
      &                MAX(ABS(s1new)-slpmax,sm_yy(i,j))  )
          sm_xy(i,j) = MIN( slpmax, MAX(-slpmax,sm_xy(i,j)) )
          sm_yz(i,j) = MIN( slpmax, MAX(-slpmax,sm_yz(i,j)) )
-         sm_y (i,j) = s1new ;
-         sm_yy(i,j) = s2new ;
+         sm_y (i,j) = s1new
+         sm_yy(i,j) = s2new
         ENDDO
        ENDDO
       ENDIF
