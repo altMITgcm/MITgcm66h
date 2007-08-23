@@ -43,7 +43,6 @@ C-    Vertical gridding
       delRFile            = ' '
       delRcFile           = ' '
       rkFacDefault        = 1. _d 0
-      horiVertRatio       = 1. _d 0
       Ro_SeaLevel         = 0.
       DO k=1,Nr
        delRdefault(k)     = 0.
