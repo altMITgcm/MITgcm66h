@@ -65,15 +65,15 @@ C--   Surface Fluxes :
 
 c     Zonal wind stress fu:
           surfaceForcingU(i,j,bi,bj) = 
-     &      fu(i,j,bi,bj)*horiVertRatio*recip_rhoConst
+     &      fu(i,j,bi,bj)*mass2rUnit
      &           + winPert(i,j,bi,bj)
      &            *drF(kSurface)*hFacW(i,j,kSurface,bi,bj)
 c     Meridional wind stress fv:
           surfaceForcingV(i,j,bi,bj) = 
-     &      fv(i,j,bi,bj)*horiVertRatio*recip_rhoConst
+     &      fv(i,j,bi,bj)*mass2rUnit
 c     Net heat flux Qnet:
           surfaceForcingT(i,j,bi,bj) = 
-     &      -Qnet(i,j,bi,bj)*recip_Cp*horiVertRatio*recip_rhoConst
+     &      -Qnet(i,j,bi,bj)*recip_Cp*mass2rUnit
      &      -lambdaThetaZonRelax*maskC(i,j,kSurface,bi,bj)*
      &         (theta(i,j,kSurface,bi,bj)-ZonalMeanSST(j,bj))
      &        *drF(kSurface)*hFacC(i,j,kSurface,bi,bj)

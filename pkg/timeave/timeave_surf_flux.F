@@ -76,7 +76,7 @@ C     tFlux (=Heat flux [W/m2], positive <-> increasing Theta)
      &    -Qsw(i,j,bi,bj)+
 #endif
      &    (surfaceForcingT(i,j,bi,bj)+surfaceForcingTice(I,J,bi,bj))
-     &    *HeatCapacity_Cp*recip_horiVertRatio*rhoConst
+     &    *HeatCapacity_Cp*rUnit2mass
         ENDDO
        ENDDO
 #ifdef NONLIN_FRSURF
@@ -98,8 +98,7 @@ C     sFlux (=salt flux [psu.kg/m2/s], positive <-> increasing Theta)
        DO j=1,sNy
         DO i=1,sNx
          tmpFld(i,j)=
-     &    surfaceForcingS(i,j,bi,bj)*
-     &    recip_horiVertRatio*rhoConst
+     &    surfaceForcingS(i,j,bi,bj)*rUnit2mass
         ENDDO
        ENDDO
 #ifdef NONLIN_FRSURF

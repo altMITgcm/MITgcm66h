@@ -118,7 +118,7 @@ C     calculate (du/dz)^2 + (dv/dz)^2 on W (between T) points.
 C
 C     calculate g*(drho/dz)/rho0= -N^2  .
 C
-        buoyFreq(I,J) = gravity*recip_rhoConst*horiVertRatio *
+        buoyFreq(I,J) = gravity*mass2rUnit *
      &       (rhoKm1(I,J) - rhoK(I,J))*recip_drC(K)
 C     
 C     calculates gradient Richardson number, bounded by

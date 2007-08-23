@@ -605,7 +605,7 @@ C Add YNEG contribution to QNET
           QNET(I,J,bi,bj) = QNET(I,J,bi,bj)
      &         +YNEG(I,J,bi,bj)/SEAICE_deltaTtherm
      &         *maskC(I,J,kSurface,bi,bj)
-     &         *HeatCapacity_Cp*recip_horiVertRatio*rhoConst
+     &         *HeatCapacity_Cp*rUnit2mass
      &         *drF(kSurface)*hFacC(i,j,kSurface,bi,bj)
          ENDDO
         ENDDO
