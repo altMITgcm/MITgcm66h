@@ -96,7 +96,7 @@ mkdir $new_dir
   echo "Running testreport using:"
   export PGI=/usr/local/pkg/pgi/pgi-6.1-5
   cd verification
-  comm="./testreport $IEEE -of ../tools/build_options/linux_ia32_pgf77+authors_fc5"
+  comm="./testreport $IEEE -of ../tools/build_options/linux_ia32_pgf77+authors_fc5 -dd"
   echo "  \"$comm\""
   echo "======================"
   echo
