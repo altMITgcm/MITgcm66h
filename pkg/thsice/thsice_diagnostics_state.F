@@ -54,10 +54,10 @@ C     == Local variables ==
 C-     Ice-fraction weighted quantities:
         tmpFac = 1. _d 0
         CALL DIAGNOSTICS_FRACT_FILL(
-     I                   iceheight, iceMask,tmpFac,1,'SI_Thick',
+     I                   iceHeight, iceMask,tmpFac,1,'SI_Thick',
      I                   0,1,1,bi,bj,myThid)
         CALL DIAGNOSTICS_FRACT_FILL(
-     I                   snowheight,iceMask,tmpFac,1,'SI_SnowH',
+     I                   snowHeight,iceMask,tmpFac,1,'SI_SnowH',
      I                   0,1,1,bi,bj,myThid)
         CALL DIAGNOSTICS_FRACT_FILL(
      I                   Tsrf,      iceMask,tmpFac,1,'SI_Tsrf ',
@@ -74,7 +74,7 @@ C-     Ice-Volume weighted quantities:
      &      DIAGNOSTICS_IS_ON('SI_Qice2',myThid) ) THEN
         DO j=1,sNy
          DO i=1,sNx
-          tmpFld(i,j) = iceMask(i,j,bi,bj)*iceheight(i,j,bi,bj)
+          tmpFld(i,j) = iceMask(i,j,bi,bj)*iceHeight(i,j,bi,bj)
          ENDDO
         ENDDO
         CALL DIAGNOSTICS_FRACT_FILL(

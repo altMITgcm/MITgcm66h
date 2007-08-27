@@ -322,9 +322,9 @@ C     Dump a snap-shot of main state variables:
 
           CALL WRITE_FLD_XY_RL('ice_fract.',  suff,iceMask,
      &         myIter,myThid)
-          CALL WRITE_FLD_XY_RL('ice_iceH.',   suff,iceheight,
+          CALL WRITE_FLD_XY_RL('ice_iceH.',   suff,iceHeight,
      &         myIter,myThid)
-          CALL WRITE_FLD_XY_RL('ice_snowH.',  suff,snowheight,
+          CALL WRITE_FLD_XY_RL('ice_snowH.',  suff,snowHeight,
      &         myIter,myThid)
           CALL WRITE_FLD_XY_RL('ice_Tsrf.',   suff,Tsrf,
      &         myIter,myThid)
