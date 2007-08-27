@@ -30,6 +30,8 @@ c atmospheric model
 #undef USE_QSW
 #undef USE_ATMOSCO2
 #undef USE_PLOAD
+
+#define ALLOW_OLD_VIRTUALFLUX
 c -------------------------------------
 
 #undef  ALLOW_CFC
