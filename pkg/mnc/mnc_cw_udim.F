@@ -69,7 +69,7 @@ C     Check that this name is not already defined
         mnc_cw_fgud(indfg) = mnc_cw_fgud(indfg) + 1
         RETURN
       ENDIF
-      write(msgbuf,'(3a,i,a)') 
+      write(msgbuf,'(3a,i10,a)') 
      &     'MNC_CW_SET_UDIM ERROR: for file group name ''', 
      &     fgname(fgf:fgl), ''' the unlim dim ''', nudim, 
      &     ''' is not allowed'
