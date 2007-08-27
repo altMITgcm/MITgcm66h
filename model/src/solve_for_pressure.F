@@ -62,6 +62,7 @@ C     == Local variables ==
       _RL sumEmP, tileEmP
       LOGICAL putPmEinXvector
       INTEGER numIters, ks
+      CHARACTER*10 sufx
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 #ifdef ALLOW_NONHYDROSTATIC
       INTEGER kp1
@@ -264,6 +265,10 @@ C-    end bi,bj loops
      &                        myThid)
       ENDIF
 #endif
+      IF ( DIFFERENT_MULTIPLE(diagFreq, myTime, deltaTClock) ) THEN
+       WRITE(sufx,'(I10.10)') myIter
+       CALL WRITE_FLD_XY_RS( 'cg2d_b.', sufx, cg2d_b, myIter, myThid )
+      ENDIF
 
 C--   Find the surface pressure using a two-dimensional conjugate
 C--   gradient solver.
