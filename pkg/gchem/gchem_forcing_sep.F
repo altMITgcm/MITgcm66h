@@ -50,6 +50,7 @@ ccccccccccccccccccccccccc
 c global calculations   c
 ccccccccccccccccccccccccc
 #ifdef ALLOW_DIC
+#ifdef ALLOW_OLD_VIRTUALFLUX
 c find global surface averages
        gsm_s = 0.
        gsm_dic = 0.
@@ -60,6 +61,7 @@ c find global surface averages
        print*,'mean surface dic', gsm_dic,gsm_s
        call tracer_meanarea(myThid,
      &               ptracer(1-Olx,1-Oly,1,1,1,2), 1, gsm_alk)
+#endif /* ALLOW_OLD_VIRTUALFLUX */
 #endif
 ccccccccccccccccccccccccccccccccccccccccccc
 
