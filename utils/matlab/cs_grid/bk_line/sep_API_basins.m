@@ -138,7 +138,7 @@ end
 
 if kgr ==1, 
  figure(1); clf; 
- shift=0; cbV=2; ccB=[0 0]; AxBx=[-180 180 -90 90];
+ shift=-1; cbV=2; ccB=[0 0]; AxBx=[-180 180 -90 90];
  for bp=1:3, subplot(310+b);
 %AxBx=[60 180 -75 15];
  var=mskBasC(:,:,1)+2*mskBasC(:,:,2)+3*mskBasC(:,:,3); 

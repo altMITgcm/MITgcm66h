@@ -98,7 +98,7 @@ end
 
 if kgr==1,
  figure(1); clf;
- shift=0; cbV=2; ccB=[0 0]; AxBx=[-180 180 -90 90];
+ shift=-1; cbV=2; ccB=[0 0]; AxBx=[-180 180 -90 90];
 %var=zeros(ncx,nc) ; var(1+rem(ijprt-1,ncx),1+fix((ijprt-1)/ncx))=1 ; ccB=[-1 1];
  var=reshape(bkl_Zon,ncx,nc) ; ccB=[-1 50];
  grph_CS(var,xcs,ycs,xcg,ycg,ccB(1),ccB(2),shift,cbV,AxBx);

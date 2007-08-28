@@ -53,7 +53,7 @@ end
 if kgr > 0,
 rac=Rac;
 load_cs;
-shift=0; ccB=[0 0]; cbV=0; AxBx=[-180 180 -90 90] ;
+shift=-1; ccB=[0 0]; cbV=0; AxBx=[-180 180 -90 90] ;
  ccB=[-140 140];
 %AxBx=[-210 210 30 90];
  grph_CSz(psiBa,xcs,ycs,xcg,ycg,ccB(1),ccB(2),shift,cbV,AxBx)
