@@ -1,4 +1,4 @@
-function [U,V,ub,vb] = uvcube2latlon(LON,LAT,u,v,xc,yc)
+function [U,V,ub,vb] = uvcube2latlon(LON,LAT,u,v,xc,yc,cosalpha,sinalpha)
 % [ui,vi]=cube2latlon(x,y,u,v,xi,yi);
 %
 % Re-grids model output on expanded spherical cube to lat-lon grid.
@@ -43,14 +43,30 @@ end
 ub=(uu(1:ny,:,:,:)+uu(2:ny+1,:,:,:))/2;
 vb=(vv(:,:,1:ny,:)+vv(:,:,2:ny+1,:))/2;
 
-load TUV
-
+% Read cos and sin of rotation angle if not provided on input
+if nargin == 8
+ cosalpha=reshape(cosalpha,[ny 6 ny]);
+ sinalpha=reshape(sinalpha,[ny 6 ny]);
 clear U V
+for kk=1:nz;
+for k=1:6;
+ U(:,k,:,kk)=squeeze(cosalpha(:,k,:)).*squeeze(ub(:,k,:,kk))-squeeze(sinalpha(:,k,:)).*squeeze(vb(:,k,:,kk));
+ V(:,k,:,kk)=squeeze(sinalpha(:,k,:)).*squeeze(ub(:,k,:,kk))+squeeze(cosalpha(:,k,:)).*squeeze(vb(:,k,:,kk));
+end
+end
+
+else
+
+load TUV
+clear U V
+
 for kk=1:nz;
 for k=1:6;
  U(:,k,:,kk)=TUu(:,:,k).*squeeze(ub(:,k,:,kk))+TUv(:,:,k).*squeeze(vb(:,k,:,kk));
  V(:,k,:,kk)=TVu(:,:,k).*squeeze(ub(:,k,:,kk))+TVv(:,:,k).*squeeze(vb(:,k,:,kk));
 end
+end
+
 end
 
 ub=reshape(U,[nnx NN(2:end)]);
