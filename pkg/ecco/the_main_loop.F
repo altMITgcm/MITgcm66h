@@ -136,7 +136,6 @@ c They provide the fields to be stored.
 #  include "THSICE_SIZE.h"
 #  include "THSICE_PARAMS.h"
 #  include "THSICE_VARS.h"
-#  include "THSICE_2DYN.h"
 # endif
 # ifdef ALLOW_KPP
 #  include "KPP.h"
