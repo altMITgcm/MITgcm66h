@@ -25,7 +25,7 @@ if nargin < 11, kEnv=0 ; end
 nc=size(var,2) ; ncp=nc+1 ; nPg=nc*nc*6;
   MxV=min(min(var));
   mnV=max(max(var));
- if shift == 1 | shift == 1,
+ if shift == 1 | shift == -1,
   for j=1:nc, for i=1:6*nc,
    if ~isnan(var(i,j)) & xcs(i,j) > AxBx(1) & xcs(i,j) < AxBx(2) ...
                        & ycs(i,j) > AxBx(3) & ycs(i,j) < AxBx(4) ,
@@ -33,7 +33,6 @@ nc=size(var,2) ; ncp=nc+1 ; nPg=nc*nc*6;
   end ; end ;
  else
   for j=1:nc, for i=1:6*nc,
-  %if var(i,j) ~= NaN ; mnV=min(var(i,j),mnV); MxV=max(var(i,j),MxV) ; end
    if ~isnan(var(i,j)) ; mnV=min(var(i,j),mnV); MxV=max(var(i,j),MxV) ; end
   end ; end ;
  end
