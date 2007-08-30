@@ -28,9 +28,6 @@ C     === Global variables ===
 #include "FFIELDS.h"
 #include "THSICE_PARAMS.h"
 #include "THSICE_VARS.h"
-#ifdef ALLOW_AUTODIFF_TAMC
-# include "THSICE_2DYN.h"
-#endif
 #ifdef ALLOW_AIM
 # include "AIM_FFIELDS.h"
 #endif
@@ -79,11 +76,10 @@ C-        fluxes :
             icFlxSW (i,j,bi,bj) = 0. _d 0
             icFlxAtm(i,j,bi,bj) = 0. _d 0
             icFrwAtm(i,j,bi,bj) = 0. _d 0
-#ifdef ALLOW_AUTODIFF_TAMC
+C-        needed when using advection/diffusion:
             oceFWfx(i,j,bi,bj)  = 0. _d 0
             oceSflx(i,j,bi,bj)  = 0. _d 0
             oceQnet(i,j,bi,bj)  = 0. _d 0
-#endif
            ENDDO
           ENDDO
 C-        oceanic mixed layer state :

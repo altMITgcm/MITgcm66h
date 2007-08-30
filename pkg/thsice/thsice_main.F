@@ -32,9 +32,6 @@ C     === Global variables ===
 #ifdef ALLOW_AUTODIFF_TAMC
 # include "tamc.h"
 # include "tamc_keys.h"
-C--
-# include "THSICE_2DYN.h"
-C--
 #endif
 
 C     !INPUT/OUTPUT PARAMETERS:
