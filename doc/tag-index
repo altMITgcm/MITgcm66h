@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: change a discretization detail to make the B-grid code 
+  "more symmetric". This change is likely to remove all "ridges/leads" that 
+  where quasi-aligned with the grid in B-grid solutions. It may also be 
+  the solution to the stress coupling issues with the B-grid.
 o each tested exp: add a "run" directory with a standard ".cvsignore" file ;
   remove .cvsignore from input dir. (since testreport no longer run here).
 o pkg/thsice:
