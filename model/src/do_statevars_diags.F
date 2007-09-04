@@ -53,7 +53,9 @@ C            = 3 :: fill-in diagnostics for momentum & tracer variables
 C            = 4 :: fill-in state variable tendency diagnostics the second time
 C     bi,bj      :: tile indices
       INTEGER selectVars
+#if defined(ALLOW_THSICE) || defined(ALLOW_LAND)
       INTEGER bi, bj
+#endif
 
 C--   Fill-in Diagnostics pkg storage array (for state-variables)
       IF ( usediagnostics ) THEN

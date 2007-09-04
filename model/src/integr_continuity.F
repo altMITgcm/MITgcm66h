@@ -53,11 +53,14 @@ C     i,j,k  :: Loop counters
 C     uTrans :: Volume transports ( uVel.xA )
 C     vTrans :: Volume transports ( vVel.yA )
 C     hDivFlow :: Div. Barotropic Flow [transport unit m3/s]
-      INTEGER i,j,k, ks
+      INTEGER k
+#ifdef EXACT_CONSERV
+      INTEGER i,j, ks
       _RL uTrans(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RL vTrans(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RL hDivFlow(1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RL facEmP
+#endif
 CEOP
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
