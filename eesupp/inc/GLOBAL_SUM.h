@@ -29,9 +29,10 @@ C     | the way the global sum routines work.                    |
 C     *==========================================================*
 CEOP
 
-      COMMON / GSUM_COMMON_R8 / phiGSRL
+      COMMON / GSUM_COMMON_R8 / phiGSRL, shareBufGSR8
 c    &                        , phiVGSRL
       Real*8  phiGSRL (lShare8, MAX_NO_THREADS )
+      Real*8  shareBufGSR8 ( nSx, nSy )
 c     Real*8  phivGSRL(MAX_VGS, MAX_NO_THREADS )
 
       COMMON / GSUM_COMMON_R4 / phiGSRS
