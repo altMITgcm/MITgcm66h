@@ -48,7 +48,7 @@ C     tmpfld  :: Temporary array used to compute & write Total Depth
       INTEGER I, J, K
       _RL hFacCtmp
       _RL hFacMnSz
-      _RL tileArea, threadArea
+      _RL tileArea(nSx,nSy), threadArea
 CEOP
 
 C- Calculate lopping factor hFacC : over-estimate the part inside of the domain
@@ -203,18 +203,23 @@ C         Inverse of fluid column thickness (1/r_unit)
          ENDDO
         ENDDO
 C-      Compute the domain Area:
-        tileArea = 0. _d 0
+        tileArea(bi,bj) = 0. _d 0
         DO j=1,sNy
          DO i=1,sNx
-          tileArea = tileArea + rA(i,j,bi,bj)*maskH(i,j,bi,bj)
+          tileArea(bi,bj) = tileArea(bi,bj)
+     &                    + rA(i,j,bi,bj)*maskH(i,j,bi,bj)
          ENDDO
         ENDDO
-        threadArea = threadArea + tileArea
+        threadArea = threadArea + tileArea(bi,bj)
        ENDDO
       ENDDO
 C     _EXCH_XY_R4(   recip_Rcol, myThid )
+#ifdef ALLOW_AUTODIFF_TAMC
 C_jmc: apply GLOBAL_SUM to thread-local variable (not in common block)
       _GLOBAL_SUM_R8( threadArea, myThid )
+#else
+      CALL GLOBAL_SUM_TILE_RL( tileArea, threadArea, myThid )
+#endif
       _BEGIN_MASTER( myThid )
       globalArea = threadArea
       _END_MASTER( myThid )
