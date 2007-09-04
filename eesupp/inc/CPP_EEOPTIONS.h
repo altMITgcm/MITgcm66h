@@ -114,6 +114,10 @@ C--   Alternative formulation of BYTESWAP, faster than
 C     compiler flag -byteswapio on the Altix.
 #undef FAST_BYTESWAP
 
+C--   Alternative way of doing global sum without MPI allreduce call
+C     but instead, explicit MPI send & recv calls.
+#undef GLOBAL_SUM_SEND_RECV
+
 #endif /* _CPP_EEOPTIONS_H_ */
 
 #include "CPP_EEMACROS.h"
