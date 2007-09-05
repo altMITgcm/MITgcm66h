@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o new S/R GLOBAL_SUM_TILE to compute global sum independently of number of
+  threads and number of processes (with #define GLOBAL_SUM_SEND_RECV)
+  (but still depend on the tile decompostion of the domain).
 o pkg/seaice: change a discretization detail to make the B-grid code 
   "more symmetric". This change is likely to remove all "ridges/leads" that 
   where quasi-aligned with the grid in B-grid solutions. It may also be 
