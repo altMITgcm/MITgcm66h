@@ -1023,7 +1023,7 @@ c--
         endrec   = 1
         diffrec  = endrec - startrec + 1
         call ctrl_init_ctrlvar ( 
-     &       xx_sihsnow_file, 42, 142, diffrec, startrec, endrec,
+     &       xx_sihsnow_file, 43, 143, diffrec, startrec, endrec,
      &       snx, sny, 1, 'c', 'xy', mythid )
 #endif /* ALLOW_sihsnow_CONTROL */
 
