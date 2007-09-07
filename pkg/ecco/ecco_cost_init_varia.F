@@ -134,6 +134,9 @@ c--   Initialize the tiled cost function contributions.
           objf_salt_ini_fin(bi,bj)  = 0. _d 0
           objf_eddytau(bi,bj)    = 0. _d 0
           objf_bottomdrag(bi,bj)    = 0. _d 0
+          do k=1,NGENCOST
+          objf_gencost(k,bi,bj)    = 0. _d 0
+          enddo
 c
           num_hflux(bi,bj)    = 0. _d 0
           num_hfluxm(bi,bj)   = 0. _d 0
@@ -188,6 +191,9 @@ c
           num_kapgm(bi,bj)    = 0. _d 0
           num_eddytau(bi,bj)    = 0. _d 0
           num_bottomdrag(bi,bj)    = 0. _d 0
+          do k=1,NGENCOST
+          num_gencost(k,bi,bj)    = 0. _d 0
+          enddo
           num_theta_ini_fin(bi,bj) = 0. _d 0
           num_salt_ini_fin(bi,bj)  = 0. _d 0
         enddo

@@ -1195,6 +1195,11 @@ c--   Internal Parameter controls cost terms:
       call timer_stop ('cost_internal_params  [ECCO SPIN-DOWN]', mythid)
       _BARRIER
 
+c--   Compute user defined cost function contributions
+      call timer_start('cost_gencost_all    [ECCO SPIN-DOWN]', mythid)
+      call cost_gencost_all( myiter, mytime, mythid )
+      call timer_stop ('cost_gencost_all    [ECCO SPIN-DOWN]', mythid)
+
 c--   Sum all cost function contributions.
 #ifndef DISABLE_DEBUGMODE
       IF ( debugLevel .GE. debLevB ) 
