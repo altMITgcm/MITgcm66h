@@ -782,7 +782,7 @@ CADJ STORE taperFct(:,:)     = comlev1_bibj_k, key=kkey, byte=isbyte
 
 #ifdef ALLOW_DIAGNOSTICS
        IF (doDiagRediFlx) THEN
-c       km1 = MAX(k-1,1)
+        km1 = MAX(k-1,1)
         DO j=1,sNy+1
          DO i=1,sNx
 C         store in tmp1k Kvz_Redi
