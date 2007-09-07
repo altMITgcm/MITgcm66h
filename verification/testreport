@@ -684,8 +684,8 @@ formatresults()
     listPrt=$@
     listRes=`echo $listPrt | sed 's/>//' | sed 's/<//'`
     xx=`echo $listPrt | sed 's/.*>//' | sed 's/<.*//' | awk '{print $1}'`
-    printf '%3s' $listPrt | sed 's/ 99/ --/g' | sed 's/  > />/' | sed 's/  < /</'
-#   printf '%3s' $listPrt | sed 's/ 99/ --/g' | sed 's/  > / /' | sed 's/  < / /'
+#   printf '%3s' $listPrt | sed 's/ 99/ --/g' | sed 's/  > />/' | sed 's/  < /</'
+    printf '%3s' $listPrt | sed 's/ 99/ --/g' | sed 's/  > / /' | sed 's/  < / /'
     
     if [ $xx = '..' ]; then
 	printf ' N/O '
@@ -1292,11 +1292,10 @@ rm -f tr_cmpnum.c tr_cmpnum
 
 if test "x$CLEANUP" != xt ; then
     cat $SUMMARY | sed 's/  \.  \.  \.  \.  \.  \.  \.  \.  \.  \.  \.  \.//'
-#   cat $SUMMARY | sed 's/  \.//g'
     if test -e tr_out.txt ; then
         mv tr_out.txt tr_out.txt.old
     fi
-    cat $SUMMARY | sed 's/  \.//g' > tr_out.txt
+    cat $SUMMARY | sed '11,$ s/  \.//g' > tr_out.txt
 fi
 
 if test "x$DELDIR" = xt ; then
