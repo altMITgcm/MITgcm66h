@@ -637,7 +637,7 @@ int main( int argc, char** argv )  {
   double a,b,abave,relerr;
   best = -22;
   lncnt = 0;
-  while( 1 & (lncnt+=1) < 999 )  {
+  while( 1 & ( (lncnt+=1) < 999 ) )  {
     scanf("%d", &linnum);
     if (linnum == -1)  break;
     scanf("%lf", &a);  scanf("%lf", &b);
