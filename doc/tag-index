@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: adding ice salinity HSALT as a prognostic variable
 o pkg/seaice: changes for using pkg/seaice with pkg/obcs
 o pkg/ecco: allow user defined cost function contributions 
 o testreport:

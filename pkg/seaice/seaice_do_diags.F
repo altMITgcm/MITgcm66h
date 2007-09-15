@@ -90,6 +90,9 @@ C     == Local variables ==
             CALL WRITE_FLD_XY_RS( 'Qsw.',suff,Qsw,myIter,myThid)
             ENDIF
             CALL WRITE_FLD_XY_RL( 'HSNOW.',suff,HSNOW,myIter,myThid)
+#ifdef SEAICE_SALINITY
+            CALL WRITE_FLD_XY_RL( 'HSALT.',suff,HSALT,myIter,myThid)
+#endif
 #if ( defined(SEAICE_CGRID) && defined(SEAICE_ALLOW_EVP) )
             IF ( SEAICEuseEVP ) THEN
              CALL WRITE_FLD_XY_RL('SIGMA1.',suff,seaice_sigma1,

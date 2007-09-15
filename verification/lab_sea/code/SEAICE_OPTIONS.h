@@ -89,7 +89,7 @@ C--   Allow SEAICEuseFlooding, which converts snow to ice if submerged.
 #undef ALLOW_SEAICE_FLOODING
 
 C--   By default sea ice is fresh.  Set following flag for salty ice.
-#undef SEAICE_SALINITY
+#define SEAICE_SALINITY
 
 C--   By default the seaice model is discretized on a B-Grid (for 
 C     historical reasons). Define the following flag to use a new

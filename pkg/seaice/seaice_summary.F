@@ -85,6 +85,8 @@ C     == end of interface ==
      & 'SEAICEadvArea =', ' /* advect fractional ice area */')
       CALL WRITE_0D_L ( SEAICEadvSnow, INDEX_NONE,
      & 'SEAICEadvSnow =', ' /* advect snow layer together with ice */')
+      CALL WRITE_0D_L ( SEAICEadvSalt, INDEX_NONE,
+     & 'SEAICEadvSalt =', ' /* advect salinity together with ice */')
       CALL WRITE_0D_L ( SEAICEuseFlooding, INDEX_NONE,
      & 'SEAICEuseFlooding =', ' /* turn submerged snow into ice */')
       CALL WRITE_0D_I ( LAD,               INDEX_NONE,
@@ -105,6 +107,9 @@ C     == end of interface ==
       IF ( SEAICEadvSnow )
      &CALL WRITE_0D_I ( SEAICEadvSchSnow,   INDEX_NONE,
      & 'SEAICEadvSchSnow   =', ' /* advection scheme for snow */')
+      IF ( SEAICEadvSalt )
+     &CALL WRITE_0D_I ( SEAICEadvSchSalt,   INDEX_NONE,
+     & 'SEAICEadvSchSalt   =', ' /* advection scheme for salt */')
       CALL WRITE_0D_R8( SEAICE_deltaTtherm,INDEX_NONE,
      & 'SEAICE_deltaTtherm=', ' /* thermodynamic timestep */')
       CALL WRITE_0D_R8( SEAICE_deltaTdyn  ,INDEX_NONE,

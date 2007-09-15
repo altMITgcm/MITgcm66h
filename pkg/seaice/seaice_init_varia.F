@@ -76,6 +76,9 @@ c
          DO I=1-OLx,sNx+OLx
           ZETA(I,J,bi,bj)=0. _d 0
           HSNOW(I,J,bi,bj)=0. _d 0
+#ifdef SEAICE_SALINITY
+          HSALT(I,J,bi,bj)=0. _d 0
+#endif
          ENDDO
         ENDDO
 c
@@ -393,6 +396,25 @@ C--   Read initial snow thickness from file if available.
          ENDDO
         ENDDO
        ENDIF
+
+#ifdef SEAICE_SALINITY
+C--   Read initial sea ice salinity from file if available.
+       IF ( HsaltFile .NE. ' ' ) THEN
+        _BEGIN_MASTER( myThid )
+        CALL READ_FLD_XY_RL( HsaltFile, ' ', ZETA, 0, myThid )
+        _END_MASTER(myThid)
+        _EXCH_XY_R8(ZETA,myThid)
+        DO bj=myByLo(myThid),myByHi(myThid)
+         DO bi=myBxLo(myThid),myBxHi(myThid)
+          DO j=1-OLy,sNy+OLy
+           DO i=1-OLx,sNx+OLx
+            HSALT(I,J,bi,bj) = ZETA(i,j,bi,bj) * HEFF(I,J,1,bi,bj)
+           ENDDO
+          ENDDO
+         ENDDO
+        ENDDO
+       ENDIF
+#endif /* SEAICE_SALINITY */
          
       ENDIF
 

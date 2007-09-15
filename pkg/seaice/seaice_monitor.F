@@ -160,6 +160,19 @@ C       Print some statistics about input forcing fields
         ENDDO
         CALL MON_PRINTSTATS_RL(1,TMP_DIAG,'_hsnow',
      &       maskH,maskH,rA ,drF,myThid)
+#ifdef SEAICE_SALINITY
+        DO bj=myByLo(myThid),myByHi(myThid)
+           DO bi=myBxLo(myThid),myBxHi(myThid)
+              DO J=1-OLy,sNy+OLy
+                 DO I=1-OLx,sNx+OLx
+                    TMP_DIAG(i,j,bi,bj)=HSALT(i,j,bi,bj)
+                 ENDDO
+              ENDDO
+           ENDDO
+        ENDDO
+        CALL MON_PRINTSTATS_RL(1,TMP_DIAG,'_hsalt',
+     &       maskH,maskH,rA ,drF,myThid)
+#endif /* SEAICE_SALINITY */
 
 #ifdef ALLOW_BULK_OFFLINE
 c-- Trick monitor output for testreport

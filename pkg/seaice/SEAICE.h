@@ -31,7 +31,11 @@ C                thickness is HEFF / AREA
 C     HSNOW - effective snow thickness in m
 C             at center of grid, i.e., tracer point
 C             note: for non-zero AREA, actual snow
-C                thickness is HEFF / AREA
+C                thickness is HSNOW / AREA
+C     HSALT - effective sea ice salinity in m * g / kg
+C             at center of grid, i.e., tracer point
+C             note: for non-zero HEFF, actual ice
+C                salinity is HSALT / HEFF
 C \ev
 CEOP
       COMMON/SEAICE_DYNVARS_1/AREA
@@ -76,6 +80,11 @@ CEOP
       COMMON/SEAICE_TRANS/HEFF,HSNOW
       _RL HEFF       (1-OLx:sNx+OLx,1-OLy:sNy+OLy,3,nSx,nSy)
       _RL HSNOW      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
+
+#ifdef SEAICE_SALINITY
+      COMMON/SEAICE_SALINITY/HSALT
+      _RL HSALT      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
+#endif
 
       COMMON/ARRAY/HEFFM
       _RL HEFFM      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)

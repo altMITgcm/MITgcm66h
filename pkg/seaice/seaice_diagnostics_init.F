@@ -79,6 +79,13 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I    diagName, diagCode, diagUnits, diagTitle, myThid )
 
+      diagName  = 'SIhsalt '
+      diagTitle = 'SEAICE effective salinity'
+      diagUnits = 'm.g/kg          '
+      diagCode  = 'SM      M1      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, myThid )
+
       diagName  = 'SIatmFW '
       diagTitle = 'Net freshwater flux from the atmosphere (+=down)'
       diagUnits = 'm/s             '

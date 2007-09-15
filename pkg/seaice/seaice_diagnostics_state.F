@@ -69,6 +69,9 @@ C
        ENDDO
 C
        CALL DIAGNOSTICS_FILL(HSNOW  ,'SIhsnow ',0,1 ,0,1,1,myThid)
+#ifdef SEAICE_SALINITY
+       CALL DIAGNOSTICS_FILL(HSALT  ,'SIhsalt ',0,1 ,0,1,1,myThid)
+#endif
 C     
 #ifdef SEAICE_CGRID
        IF ( DIAGNOSTICS_IS_ON('SIsigI  ',myThid) .OR.
