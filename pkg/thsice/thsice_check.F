@@ -1,14 +1,15 @@
-c $Header$
+C $Header$
+C $Name$
 
 #include "THSICE_OPTIONS.h"
 
-      subroutine THSICE_CHECK( mythid )
+      SUBROUTINE THSICE_CHECK( myThid )
 
 c     ==================================================================
 c     SUBROUTINE THSICE_CHECK
 c     ==================================================================
 c
-      implicit none
+      IMPLICIT NONE
 
 c     == global variables ==
 
@@ -19,9 +20,9 @@ c     == global variables ==
 
 c     == routine arguments ==
 
-c     mythid - thread number for this instance of the routine.
+c     myThid :: thread number for this instance of the routine.
 
-      integer mythid
+      INTEGER myThid
 
 c     == local variables ==
       CHARACTER*(MAX_LEN_MBUF) msgBuf
@@ -44,4 +45,5 @@ c     == end of interface ==
 
       _END_MASTER(myThid)
 
-      end
+      RETURN
+      END
