@@ -11,8 +11,13 @@ C     nlyr   ::   maximum number of ice layers
       INTEGER nlyr
       PARAMETER (nlyr = 2)
 
+C--   Energy distribution (lateral / thickening-thinning) using a power law:
+C     power-law exponent is set to: 1+2^powerLawExp2
+      INTEGER     powerLawExp2
+      PARAMETER ( powerLawExp2 = 2 )
+
 C--   identifiers for advected properties
-      INTEGER GAD_SI_FRAC, GAD_SI_HSNOW 
+      INTEGER GAD_SI_FRAC, GAD_SI_HSNOW
       INTEGER GAD_SI_HICE, GAD_SI_QICE1, GAD_SI_QICE2
       PARAMETER ( GAD_SI_FRAC  = -5,
      &            GAD_SI_HSNOW = -6,
