@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: replaced maskW with seaiceMaskU and maskS with seaiceMaskV
+  in seaice_lsr.F; this solves the pkg/seaice-pkg/obcs problem
+  without requiring DO-IF statements
+
 checkpoint59g
 o adjoint testing: in preparation for changing testreport:
   - output format: cost and grad written on separated lines
