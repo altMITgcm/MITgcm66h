@@ -225,7 +225,7 @@ C
      &    SEAICE_sensHeat, SEAICE_latentWater, SEAICE_latentIce,
      &    SEAICE_iceConduct, SEAICE_snowConduct, SEAICE_emissivity,
      &    SEAICE_snowThick, SEAICE_shortwave, SEAICE_freeze,
-     &    SEAICE_availHeatFrac, SEAICEstressFactor,
+     &    SEAICE_salinity, SEAICE_availHeatFrac, SEAICEstressFactor,
      &    OCEAN_drag, LSR_ERROR, DIFF1, A22, HO,
      &    WindForcingStart, WindForcingEnd, WindForcingPeriod,
      &    FluxForcingStart, FluxForcingEnd, FluxForcingPeriod,
