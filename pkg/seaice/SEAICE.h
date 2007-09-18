@@ -32,10 +32,8 @@ C     HSNOW - effective snow thickness in m
 C             at center of grid, i.e., tracer point
 C             note: for non-zero AREA, actual snow
 C                thickness is HSNOW / AREA
-C     HSALT - effective sea ice salinity in m * g / kg
+C     HSALT - effective sea ice salinity in g/m^2
 C             at center of grid, i.e., tracer point
-C             note: for non-zero HEFF, actual ice
-C                salinity is HSALT / HEFF
 C \ev
 CEOP
       COMMON/SEAICE_DYNVARS_1/AREA

@@ -81,7 +81,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
       diagName  = 'SIhsalt '
       diagTitle = 'SEAICE effective salinity'
-      diagUnits = 'm.g/kg          '
+      diagUnits = 'g/m^2           '
       diagCode  = 'SM      M1      '
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I    diagName, diagCode, diagUnits, diagTitle, myThid )
