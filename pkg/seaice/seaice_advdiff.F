@@ -270,7 +270,7 @@ C     now do the "explicit" time step
         ENDIF
 
 #ifdef SEAICE_SALINITY
-C--   Effective Sea Ice Salinity
+C--   Effective Sea Ice Salinity (Mass of salt)
         IF ( SEAICEadvSalt ) THEN
          DO j=1-Oly,sNy+Oly
           DO i=1-Olx,sNx+Olx
