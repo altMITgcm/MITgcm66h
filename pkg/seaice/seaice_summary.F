@@ -124,6 +124,8 @@ C     == end of interface ==
       CALL WRITE_0D_R8( SEAICE_evpDampC  ,INDEX_NONE,
      & 'SEAICE_evpDampC   =', ' /* EVP damping parameter */')
 #endif
+      CALL WRITE_0D_R8( SEAICE_zetaMin  ,INDEX_NONE,
+     & 'SEAICE_zetaMin    =', ' /* lower bound for viscosity */')
       CALL WRITE_0D_R8( SEAICE_monFreq,  INDEX_NONE,
      & 'SEAICE_monFreq  =',' /* monitor frequency */')
       CALL WRITE_0D_R8( SEAICE_dumpFreq   ,INDEX_NONE,

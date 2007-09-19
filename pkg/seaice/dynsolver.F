@@ -212,7 +212,7 @@ C--   NOW SET UP ICE PRESSURE AND VISCOSITIES
      &         *EXP(-20.0 _d 0*(ONE-AREA(I,J,1,bi,bj)))
           ZMAX(I,J,bi,bj)=(5.0 _d +12/(2.0 _d +04))*PRESS0(I,J,bi,bj)
 CML          ZMIN(I,J,bi,bj)=4.0 _d +08
-          ZMIN(I,J,bi,bj)=0.0 _d +0
+          ZMIN(I,J,bi,bj)=SEAICE_zetaMin
           PRESS0(I,J,bi,bj)=PRESS0(I,J,bi,bj)*HEFFM(I,J,bi,bj)
          ENDDO
         ENDDO
