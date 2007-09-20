@@ -5,7 +5,7 @@
 
 #  tested on frost, ce107 Aug 4 2005
 #  using the following invocation:
-#    ../../../tools/genmake2 -mods=../code -of=../../../tools/build_options/linux_ppc64_xlf
+#    ../../../tools/genmake2 -mods=../code -of=../../../tools/build_options/linux_ppc_xlf
 
 
 S64='$(TOOLSDIR)/set64bitConst.sh'
@@ -13,9 +13,9 @@ MAKEDEPEND=makedepend
 DEFINES='-DWORDLENGTH=4 -DNML_TERMINATOR'
 INCLUDES=''
 CPP='/lib/cpp -traditional -P'
-FC='xlf'
-CC='xlc'
-LINK='xlf'
+FC='xlf -q32'
+CC='xlc -q32'
+LINK='xlf -q32'
 LIBS='' 
 FFLAGS='-qfixed=132'
 if test "x$IEEE" = x ; then
