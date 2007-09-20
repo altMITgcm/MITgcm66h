@@ -132,7 +132,7 @@ c
 c   ====================================================================
 
 C   Do more printout for the protocol file than usual.
-#define EXF_VERBOSE
+#undef EXF_VERBOSE
 
 C   Bulk formulae related flags.
 #define  ALLOW_ATM_TEMP
