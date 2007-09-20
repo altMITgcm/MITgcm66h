@@ -270,8 +270,10 @@ c--   Initialise the "global" parts of the cost function.
         objf_obcsvol = 0. _d 0
         objf_hmean   = 0. _d 0
         objf_sfluxmm = 0. _d 0
+        objf_transp  = 0. _d 0
         num_obcsvol = 0. _d 0
         num_hmean   = 0. _d 0
+        num_transp  = 0. _d 0
       _END_MASTER( mythid )
 
       _BARRIER

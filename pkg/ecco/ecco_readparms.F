@@ -45,6 +45,7 @@ c--   Read the namelist input.
      &                   ubarfile, vbarfile, wbarfile,
      &                   tauxbarfile, tauybarfile,
      &                   hfluxbarfile, sfluxbarfile,
+     &                   costTranspDataFile,
      &                   using_topex,
      &                   topexstartdate1, topexstartdate2,
      &                   topexperiod, topexfile, topexmeanfile,
@@ -139,6 +140,7 @@ c--     Set default values.
         tauybarfile           =    'tauybar'
         hfluxbarfile          =    'hfluxbar'
         sfluxbarfile          =    'sfluxbar'
+        costTranspDataFile    =    ' '
         using_topex           = .false.
         topexstartdate1       =      0
         topexstartdate2       =      0

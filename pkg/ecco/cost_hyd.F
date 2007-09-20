@@ -181,6 +181,13 @@ cph      call cost_sss   ( myiter, mytime, mythid )
       call cost_salt  ( myiter, mytime, mythid )
 #endif
 
+#ifdef ALLOW_TRANSPORT_COST_CONTRIBUTION
+      write(msgbuf,'(a)') 'ph-cost call cost_gen_transport'
+      call print_message( msgbuf, standardmessageunit,
+     &     SQUEEZE_RIGHT , mythid)
+      call cost_gen_transport  ( myiter, mytime, mythid )
+#endif
+
 #if (defined (ALLOW_PROFILES) && defined (ALLOW_PROFILES_CONTRIBUTION))
        CALL cost_profiles( myiter, mytime, mythid)
 #endif

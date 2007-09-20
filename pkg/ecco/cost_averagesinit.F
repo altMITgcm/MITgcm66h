@@ -48,6 +48,7 @@ c     == local variables ==
       integer jtlo,jthi
       integer jmin,jmax
       integer imin,imax
+      integer irec
 
 c     == end of interface ==
 
@@ -204,6 +205,12 @@ c--       Initialise salinity average (2d).
 # endif
 
 #endif    
+
+#ifdef ALLOW_TRANSPORT_COST_CONTRIBUTION
+          do irec = 1, ndaysrec
+             transpbar(irec,bi,bj) = 0. _d 0
+          enddo
+#endif
 
         enddo
       enddo
