@@ -85,6 +85,7 @@ c     == local variables ==
       integer ilps, ils,ilt
 
       character*(128) fnamepsbar
+      character*(128) fnamebpbar
       character*(128) fnametbar
       character*(128) fnamesbar
       character*(128) fnameubar
@@ -132,6 +133,14 @@ c--   Get the time flags and record numbers for the time averaging.
      &     psbar, etan, xx_psbar_mean_dummy,
      &     first, last, startofday, endofday, inday,
      &     sum1day, dayrec, 1, mythid )
+#endif
+
+#ifdef ALLOW_BP_COST_CONTRIBUTION
+      call cost_averagesgeneric(
+     &     bpbarfile, 
+     &     bpbar, phiHydLow, xx_bpbar_mean_dummy,
+     &     first, last, startofmonth, endofmonth, inmonth,
+     &     sum1mon, monrec, 1, mythid )
 #endif
 
 #if (defined (ALLOW_THETA_COST_CONTRIBUTION) || \

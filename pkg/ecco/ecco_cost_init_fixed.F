@@ -94,6 +94,9 @@ c--     ... SST data.
 c--     ... SSS data.
         call cal_FullDate( sssstartdate1,   sssstartdate2,
      &                     sssstartdate,    mythid )     
+c--     ... BP data.
+        call cal_FullDate( bpstartdate1,   bpstartdate2,
+     &                     bpstartdate,    mythid )     
 c--     ... T/P data.
         call cal_FullDate( topexstartdate1, topexstartdate2,
      &                     topexstartdate,  mythid )

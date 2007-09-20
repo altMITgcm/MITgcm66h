@@ -76,6 +76,26 @@ c     == end of interface ==
 cph      call cost_sst   ( myiter, mytime, mythid )
 #endif
 
+#ifdef ALLOW_BP_COST_CONTRIBUTION 
+      write(msgbuf,'(a)') 'ph-cost call cost_bp'
+      call print_message( msgbuf, standardmessageunit,
+     &     SQUEEZE_RIGHT , mythid)
+      nnzbar = nnztbar
+      nnzobs = 1
+      spminloc = ???
+      spmaxloc = ???
+      spzeroloc = 0.
+      localperiod = 0.
+      call cost_generic(
+     &     nnzbar, bpbarfile, bpbar, xx_bpbar_mean_dummy,
+     &     nnzobs, bpdatfile, bpdat, mult_bp,
+     &     nmonsrec, modelstartdate, localperiod,
+     &     maskC, wbp, 
+     &     spminloc, spmaxloc, spzeroloc,
+     &     objf_bp, num_bp,
+     &     myiter, mytime, mythid )
+#endif
+
 #ifdef ALLOW_ARGO_THETA_COST_CONTRIBUTION
       write(msgbuf,'(a)') 'ph-cost call cost_argo_theta'
       call print_message( msgbuf, standardmessageunit,
