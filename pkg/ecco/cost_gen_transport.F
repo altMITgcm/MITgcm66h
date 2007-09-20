@@ -78,8 +78,9 @@ c--   Loop over records for the second time.
         enddo
         _GLOBAL_SUM_R8( ftmp , myThid )
 
-        write(msgbuf,'(A,I,1P2E22.14)') 
-     &       'ph-cost-transport FS ', irec, ftmp
+        write(msgbuf,'(A,I,2(X,P2E22.14))') 
+     &       'ph-cost-transport FS: day, 1-model, 2-obs ', 
+     &       irec, ftmp, transpobs(irec)
         call print_message( msgbuf, standardmessageunit,
      &       SQUEEZE_RIGHT , mythid)
 

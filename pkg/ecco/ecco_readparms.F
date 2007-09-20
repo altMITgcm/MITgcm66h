@@ -111,7 +111,7 @@ c--   Read the namelist input.
      &                   mult_curmtr, mult_ageos,
      &                   mult_kapgm, mult_diffkr,
      &                   mult_edtau, mult_bottomdrag,
-     &                   mult_gencost,
+     &                   mult_gencost, mult_transp,
      &                   mult_smooth_ic, mult_smooth_bc,
      &                   whflux0, wsflux0, wtau0,
      &                   wbottomdrag0,
@@ -293,6 +293,7 @@ c--     Set default values.
         enddo
         mult_smooth_ic        =      0. _d 0
         mult_smooth_bc        =      0. _d 0
+        mult_transp           =      0. _d 0
         watemp0               =      0. _d 0
         waqh0                 =      0. _d 0
         wprecip0              =      0. _d 0
