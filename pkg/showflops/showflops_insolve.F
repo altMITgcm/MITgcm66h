@@ -1,4 +1,4 @@
-2222222222C $Header$
+C $Header$
 C $Name$
 
 #include "PACKAGES_CONFIG.h"
