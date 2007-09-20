@@ -86,7 +86,8 @@ c    &  dd,dh,dm,ds,elapsed_secs,maxtime_secs,tins-RC_start_tins
 
       IF (maxtime_secs.ne.0 .AND. elapsed_secs.GT.maxtime_secs) THEN
        RUNCLOCK_CONTINUE=.FALSE.
-       WRITE(msgBuf,'(A)') ' RUNCLOCK_CONTINUE: Wall Clock limit reached!'
+       WRITE(msgBuf,'(A)') 
+     & ' RUNCLOCK_CONTINUE: Wall Clock limit reached!'
        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT , 1)
        CALL PRINT_ERROR( msgBuf, myThid )
