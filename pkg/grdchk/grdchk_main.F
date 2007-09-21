@@ -472,11 +472,10 @@ c
      &              icompmem(ichknum),itestmem(ichknum),
      &              bimem(ichknum),bjmem(ichknum),obcspos,
      &              adxxmemo, gfd, ratio_ad
-               WRITE(msgBuf,'(A34,2(1PE24.14,X))') 
-     &              'precision_grdchk_result ADM ', fcref, adxxmemo
-               CALL PRINT_MESSAGE
-     &              (msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-c
+c              WRITE(msgBuf,'(A34,2(1PE24.14,X))') 
+c    &              'precision_grdchk_result ADM ', fcref, adxxmemo
+c              CALL PRINT_MESSAGE
+c    &              (msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
                WRITE(msgBuf,'(A34,1PE24.14)') 
      &              ' ADM  precision_derivative_cost =', fcref
                CALL PRINT_MESSAGE
