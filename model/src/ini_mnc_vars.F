@@ -391,6 +391,15 @@ C     Define variables from FFIELDS.h
       CALL MNC_CW_ADD_VATTR_TEXT('saltFlux','description',
      &     'Net upward salt flux', myThid)
 
+#ifdef ALLOW_SALT_PLUME
+      CALL MNC_CW_ADD_VNAME('saltPlumeFlux', 'Cen_xy_Hn__-__t', 3,4, 
+     &                       myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('saltPlumeFlux','units',
+     &     'psu.kg/m^2/s', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('saltPlumeFlux','description',
+     &     'Net downward salt flux rejected during freezing', myThid)
+#endif /* ALLOW_SALT_PLUME */
+
       CALL MNC_CW_ADD_VNAME('SST', 'Cen_xy_Hn__-__t', 3,4, myThid)
       CALL MNC_CW_ADD_VATTR_TEXT('SST','units','deg C', myThid)
       CALL MNC_CW_ADD_VATTR_TEXT('SST','description',

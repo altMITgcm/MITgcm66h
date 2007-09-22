@@ -196,6 +196,9 @@ C--   Update overlap regions for a bunch of stuff
 #endif
        _EXCH_XY_R4(EmPmR, myThid )
        _EXCH_XY_R4(saltFlux, myThid )
+#ifdef ALLOW_SALT_PLUME
+       _EXCH_XY_R4(saltPlumeFlux, myThid )
+#endif
        _EXCH_XY_R4(Qnet , myThid )
 #ifdef SHORTWAVE_HEATING
        _EXCH_XY_R4(Qsw  , myThid )
