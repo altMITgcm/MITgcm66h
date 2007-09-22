@@ -22,6 +22,7 @@ C     KPPdiffKzT - Vertical diffusion coefficient for heat            (m^2/s)
 C     KPPghat    - Nonlocal transport coefficient                     (s/m^2)
 C     KPPhbl     - Mixing layer depth                                     (m)
 C     KPPfrac    - Fraction of short-wave flux penetrating mixing layer
+C     KPPplumefrac - Fraction of saltplume penetrating mixing layer
 C
 C-----------------------------------------------------------------------
 C \ev
@@ -35,6 +36,10 @@ CEOP
       _RL KPPfrac    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,   nSx,nSy)
       COMMON /kpp/ KPPviscAz, KPPdiffKzT, KPPdiffKzS
      &              , KPPghat, KPPhbl
+#ifdef ALLOW_SALT_PLUME
+      _RL KPPplumefrac(1-OLx:sNx+OLx,1-OLy:sNy+OLy,   nSx,nSy)
+      COMMON /kpp_short1/ KPPplumefrac
+#endif /* ALLOW_SALT_PLUME */
       COMMON /kpp_short/ KPPfrac
 
 #endif /* ALLOW_KPP */

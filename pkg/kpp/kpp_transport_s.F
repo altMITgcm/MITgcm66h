@@ -69,7 +69,12 @@ C     I, J - Loop counters
         df(i,j) = - _rA(i,j,bi,bj)
      &        *( KPPdiffKzS(i,j,k,bi,bj) + tmpFac*Kwz(i,j,k,bi,bj) )
      &        *KPPghat(i,j,km1,bi,bj)
-     &        *surfaceForcingS(i,j,bi,bj)
+     &        *( surfaceForcingS(i,j,bi,bj)
+#ifdef ALLOW_SALT_PLUME
+     &          + saltPlumeFlux(i,j,bi,bj)*recip_rhoConst
+     &          *(1.-KPPplumefrac(i,j,bi,bj))
+#endif /* ALLOW_SALT_PLUME */
+     &         )
        ENDDO
       ENDDO
 
@@ -80,7 +85,12 @@ C     I, J - Loop counters
         df(i,j) = - _rA(i,j,bi,bj)
      &        *KPPdiffKzS(i,j,k,bi,bj)
      &        *KPPghat(i,j,km1,bi,bj)
-     &        *surfaceForcingS(i,j,bi,bj)
+     &        *( surfaceForcingS(i,j,bi,bj)
+#ifdef ALLOW_SALT_PLUME
+     &          + saltPlumeFlux(i,j,bi,bj)*recip_rhoConst
+     &          *(1.-KPPplumefrac(i,j,bi,bj))
+#endif /* ALLOW_SALT_PLUME */
+     &         )
        ENDDO
       ENDDO
 

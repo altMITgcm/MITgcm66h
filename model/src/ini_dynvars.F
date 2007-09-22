@@ -87,6 +87,9 @@ C-      2D arrays
           etaH(I,J,bi,bj)=0. _d 0
           phiHydLow(I,J,bi,bj)=0. _d 0
           hMixLayer(I,J,bi,bj)=0. _d 0
+#ifdef ALLOW_SALT_PLUME
+          SaltPlumeDepth(I,J,bi,bj)=0. _d 0
+#endif
          ENDDO
         ENDDO
 
