@@ -152,6 +152,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
      I           gsNm(1-Olx,1-Oly,1,1,1,m2), salt,
      I           GAD_SALINITY, saltAdvScheme, saltVertAdvScheme,
      I           calcAdvection, saltImplVertAdv, AdamsBashforth_S,
+     I           useGMRedi, useKPP,
      U           fVerS, gS,
      I           myTime, myIter, myThid )
 #else /* ALLOW_ADAMSBASHFORTH_3 */
@@ -162,6 +163,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
      I           diffKhS, diffK4S, KappaRS, gsNm1, salt,
      I           GAD_SALINITY, saltAdvScheme, saltVertAdvScheme,
      I           calcAdvection, saltImplVertAdv, AdamsBashforth_S,
+     I           useGMRedi, useKPP,
      U           fVerS, gS,
      I           myTime, myIter, myThid )
 #endif /* ALLOW_ADAMSBASHFORTH_3 */
