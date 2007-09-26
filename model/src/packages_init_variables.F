@@ -172,10 +172,16 @@ C--   Initialize GGL90 vertical mixing scheme.
 
 #ifdef ALLOW_SEAICE
 C--   Initialize SEAICE model.
-#ifdef ALLOW_DEBUG
+# ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_CALL('SEAICE_INIT_VARIA',myThid)
-#endif
-      IF (useSEAICE) CALL SEAICE_INIT_VARIA( myThid )
+# endif
+# ifndef ALLOW_AUTODIFF_TAMC
+      IF (useSEAICE) THEN
+# endif
+       CALL SEAICE_INIT_VARIA( myThid )
+# ifndef ALLOW_AUTODIFF_TAMC
+      ENDIF
+# endif
 #endif
 
 cph-- moved further down

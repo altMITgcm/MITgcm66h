@@ -80,7 +80,7 @@ CEOP
       _RL HSNOW      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
 
 #ifdef SEAICE_SALINITY
-      COMMON/SEAICE_SALINITY/HSALT
+      COMMON/SEAICE_SALINITY_R/HSALT
       _RL HSALT      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
 #endif
 

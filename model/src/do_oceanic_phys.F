@@ -155,6 +155,9 @@ CADJ STORE seaice_sigma1       = comlev1, key = ikey_dynamics
 CADJ STORE seaice_sigma2       = comlev1, key = ikey_dynamics
 CADJ STORE seaice_sigma12      = comlev1, key = ikey_dynamics
 # endif
+# ifdef SEAICE_SALINITY
+CADJ STORE salt                = comlev1, key = ikey_dynamics
+# endif
 # ifdef ATMOSPHERIC_LOADING
 CADJ STORE siceload            = comlev1, key = ikey_dynamics
 # endif

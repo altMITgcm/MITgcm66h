@@ -445,6 +445,9 @@ C-      2D arrays
           seaice_sigma12(I,J,bi,bj) = StoreSEAICE(I,J,bi,bj,24)
 #  endif /* SEAICE_ALLOW_EVP */
 # endif /* SEAICE_ALLOW_DYNAMICS */
+# ifdef SEAICE_SALINITY
+          HSALT(I,J,bi,bj)          = StoreSEAICE(I,J,bi,bj,25)
+# endif
          enddo
         enddo
        enddo
