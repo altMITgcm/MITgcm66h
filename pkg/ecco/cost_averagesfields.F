@@ -352,7 +352,13 @@ cph: these are annual means
      &     sum1year, yearrec, 1, mythid )
 #endif
 
-
+#ifdef ALLOW_BP_COST_CONTRIBUTION
+      call cost_averagesgeneric(
+     &     bpbarfile, 
+     &     bpbar, phiHydLow, xx_bpbar_mean_dummy,
+     &     first, last, startofmonth, endofmonth, inmonth,
+     &     sum1mon, monrec, 1, mythid )
+#endif
 
 #ifdef ALLOW_SEAICE
       if (useSEAICE) then
