@@ -102,6 +102,20 @@ CEOP
        ENDDO
       ENDIF
 
+#ifdef ALLOW_KPP
+      IF (useKPP) THEN
+C--   Set vertical diffusivity contribution from KPP
+         CALL KPP_CALC_DIFF_T(
+     I        bi,bj,iMin+1,iMax,jMin+1,jMax,k,1,
+     O        KappaRT,
+     I        myThid)
+         CALL KPP_CALC_DIFF_S(
+     I        bi,bj,iMin+1,iMax,jMin+1,jMax,k,1,
+     O        KappaRS,
+     I        myThid)
+      ENDIF
+#endif
+
 #ifdef ALLOW_GMREDI
       IF (useGMRedi) THEN
          CALL GMREDI_CALC_DIFF(
@@ -110,19 +124,6 @@ CEOP
      I        myThid)
          CALL GMREDI_CALC_DIFF(
      I        bi,bj,iMin,iMax,jMin,jMax,k,1,
-     U        KappaRS,
-     I        myThid)
-      ENDIF
-#endif
-
-#ifdef ALLOW_KPP
-      IF (useKPP) THEN
-         CALL KPP_CALC_DIFF_T(
-     I        bi,bj,iMin+1,iMax,jMin+1,jMax,k,1,
-     U        KappaRT,
-     I        myThid)
-         CALL KPP_CALC_DIFF_S(
-     I        bi,bj,iMin+1,iMax,jMin+1,jMax,k,1,
      U        KappaRS,
      I        myThid)
       ENDIF

@@ -5,12 +5,12 @@ C $Name$
 
       SUBROUTINE KPP_CALC_DIFF_T( 
      I        bi,bj,iMin,iMax,jMin,jMax,kArg,kSize,
-     U        KappaRT,
+     O        KappaRT,
      I        myThid)
 
 C     /==========================================================\
 C     | SUBROUTINE KPP_CALC_DIFF_T                               |
-C     | o Add contrubution to net diffusivity from KPP mixing    |
+C     | o Return contribution to net diffusivity from KPP mixing |
 C     \==========================================================/
       IMPLICIT NONE
 
@@ -44,7 +44,7 @@ C     == Local variables ==
 C     i,j,k     :: Loop counters
       INTEGER i,j,k
 
-C--   Add Vertical diffusivity contribution from KPP
+C--   Set vertical diffusivity contribution from KPP
       IF ( kArg .EQ. 0 ) THEN
 C-    do all levels :
        DO k=1,MIN(Nr,kSize)
