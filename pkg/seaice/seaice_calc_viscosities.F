@@ -55,7 +55,7 @@ C     i,j,bi,bj - Loop counters
 C     e11, e12, e22 - components of strain rate tensor
 C     ecm2          - inverse of square of eccentricity of yield curve
       INTEGER i, j, bi, bj
-      _RL ECM2, e12C, deltaC, deltaCreg, pressC, etaMax
+      _RL ECM2, e12C, deltaC, deltaCreg
 
 C--   FIRST SET UP BASIC CONSTANTS
       ecm2=0. _d 0
