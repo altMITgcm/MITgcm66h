@@ -19,7 +19,9 @@ C     == Global variables ===
 #include "DYNVARS.h"
 #include "GRID.h"
 #include "SEAICE.h"
-#include "cost.h"
+#ifdef ALLOW_COST
+# include "cost.h"
+#endif
 
 C     == Routine arguments ==
 C     myThid - Thread number for this instance of the routine.
