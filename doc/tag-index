@@ -4,7 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
-o pkg/exf: improve vectorization by moving if-statement out of loops
+o pkg/exf: 
+  - improve vectorization by moving if-statement out of loops in
+    exf_mapfields, exf_radiation
+  - exf_bulkformulae.F: introduce 2D fields and vectorize code
 o pkg/kpp: added the salt plume scheme (ALLOW_SALT_PLUME) to KPP package
 o testreport: 
   - allow to test for Qnet & SeaIce monitor output; clean-up ALLOW_BULK_OFFLINE 
