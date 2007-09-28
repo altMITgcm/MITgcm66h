@@ -16,6 +16,7 @@ C Designed to simplify the Ajoint code:
 C  exclude the clipping/tapering part of the code that is not used
 #define GM_EXCLUDE_CLIPPING
 #define GM_EXCLUDE_AC02_TAP
+#define GM_EXCLUDE_FM07_TAP
 #undef GM_EXCLUDE_TAPERING
  
 C This allows to use Visbeck et al formulation to compute K_GM+Redi
