@@ -55,7 +55,7 @@ c     == local variables ==
 
 c     == end of interface ==
 
-      if (useSEAICE) then
+cph      if (useSEAICE) then
 
 #ifdef ALLOW_SEAICE_COST_SMR_AREA
 
@@ -89,7 +89,7 @@ cph)
 
 #endif
 
-      endif
+cph      endif
 
 #endif /* ALLOW_ECCO */
 

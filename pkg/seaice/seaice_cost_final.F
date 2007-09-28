@@ -8,10 +8,6 @@ C $Header$
 c     ==================================================================
 c     SUBROUTINE seaice_cost_final
 c     ==================================================================
-c
-c     ==================================================================
-c     SUBROUTINE seaice_cost_final
-c     ==================================================================
 
       implicit none
 
@@ -20,6 +16,7 @@ c     == global variables ==
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "PARAMS.h"
+#include "DYNVARS.h"
 #include "SEAICE_PARAMS.h"
 #ifdef ALLOW_COST
 #include "SEAICE_COST.h"
@@ -68,13 +65,18 @@ c
       no_ice     = 0. _d 0
       no_smrarea = 0. _d 0
 
+#ifdef ALLOW_SEAICE_COST_EXPORT
+      call seaice_cost_export( myThid )
+#endif
+
 c--   Sum up all contributions.
       do bj = jtlo,jthi
         do bi = itlo,ithi
  
           fc = fc
-     &            + mult_ice     * objf_ice(bi,bj)
-     &            + mult_smrarea * objf_smrarea(bi,bj)
+     &          + mult_ice_export * objf_ice_export(bi,bj)
+     &          + mult_ice        * objf_ice(bi,bj)
+     &          + mult_smrarea    * objf_smrarea(bi,bj)
 
           f_ice = f_ice + objf_ice(bi,bj)
           f_smrarea = f_smrarea + objf_smrarea(bi,bj)

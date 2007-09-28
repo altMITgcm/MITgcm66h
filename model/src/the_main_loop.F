@@ -83,6 +83,7 @@ c They provide the fields to be stored.
 #  endif /* ALLOW_EXF */
 #  ifdef ALLOW_SEAICE
 #   include "SEAICE.h"
+#   include "SEAICE_COST.h"
 #  endif
 #  ifdef ALLOW_THSICE
 #   include "THSICE_SIZE.h"
