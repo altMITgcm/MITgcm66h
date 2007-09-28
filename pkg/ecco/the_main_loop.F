@@ -1111,9 +1111,11 @@ c--   Compute cost function contribution of Temperature and Salinity.
       IF ( debugLevel .GE. debLevB ) 
      &    CALL DEBUG_CALL('seaice_cost_driver',myThid)
 #endif
+      IF ( useSeaice) THEN
       call timer_start('seaice_cost_driver [ECCO SPIN-DOWN]', mythid)
       call seaice_cost_driver( myiter, mytime, mythid )
       call timer_stop ('seaice_cost_driver [ECCO SPIN-DOWN]', mythid)
+      ENDIF
 #endif
 
 #ifdef ALLOW_OBCS_COST_CONTRIBUTION

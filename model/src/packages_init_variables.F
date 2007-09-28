@@ -175,13 +175,13 @@ C--   Initialize SEAICE model.
 # ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_CALL('SEAICE_INIT_VARIA',myThid)
 # endif
-# ifndef ALLOW_AUTODIFF_TAMC
+cph# ifndef ALLOW_AUTODIFF_TAMC
       IF (useSEAICE) THEN
-# endif
+cph# endif
        CALL SEAICE_INIT_VARIA( myThid )
-# ifndef ALLOW_AUTODIFF_TAMC
+cph# ifndef ALLOW_AUTODIFF_TAMC
       ENDIF
-# endif
+cph# endif
 #endif
 
 cph-- moved further down
