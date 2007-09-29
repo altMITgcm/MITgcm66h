@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint59h
 o pkg/exf: 
   - improve vectorization by moving if-statement out of loops in
     exf_mapfields, exf_radiation
