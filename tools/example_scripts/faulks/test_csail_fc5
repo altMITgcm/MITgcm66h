@@ -122,7 +122,6 @@ comm="./testreport -mth -match $MC -of ../tools/build_options/linux_ia32_ifort.v
 echo "  \"$comm\""
 echo "======================"
 echo
-$comm | tail -100
 $comm > $tdir/output_mth 2>&1
 tail -100 $tdir/output_mth
  
