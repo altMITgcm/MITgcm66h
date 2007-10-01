@@ -286,6 +286,20 @@ C      data for the period ahead and the period behind myTime.
      &       myIter,myThid )
        CALL READ_REC_XY_RS( EmpFile,empch1,intime1,
      &       myIter,myThid )
+       IF ( convertEmP2rUnit.EQ.mass2rUnit ) THEN
+C-     EmPmR is now (after c59h) expressed in kg/m2/s (fresh water mass flux)
+        _BARRIER
+        DO bj = myByLo(myThid), myByHi(myThid)
+         DO bi = myBxLo(myThid), myBxHi(myThid)
+          DO j=1-Oly,sNy+Oly
+           DO i=1-Olx,sNx+Olx
+            empch0(i,j,bi,bj) = empch0(i,j,bi,bj)*rhoConstFresh
+            empch1(i,j,bi,bj) = empch1(i,j,bi,bj)*rhoConstFresh
+           ENDDO
+          ENDDO
+         ENDDO
+        ENDDO
+       ENDIF
       ENDIF
 
 C note: no need for extra barrier here since EXCH contains threads synchronization
@@ -362,9 +376,9 @@ C       -- dasilva data in g, ncep in kg ---
           SNOW(i,j,bi,bj)    = bWght*snow0(i,j,bi,bj)
      &                        +aWght*snow1(i,j,bi,bj)
 #endif
-          QNETCH(i,j,bi,bj)  = bWght*qnetch0(i,j,bi,bj)
+          Qnetch(i,j,bi,bj)  = bWght*qnetch0(i,j,bi,bj)
      &                        +aWght*qnetch1(i,j,bi,bj)
-          EMPCH(i,j,bi,bj)   = bWght*empch0(i,j,bi,bj)
+          EmPch(i,j,bi,bj)   = bWght*empch0(i,j,bi,bj)
      &                        +aWght*empch1(i,j,bi,bj)
          ENDDO
         ENDDO

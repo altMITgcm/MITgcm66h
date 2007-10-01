@@ -188,7 +188,7 @@ C- Heat flux:
 #endif
 C- Fresh-water flux from Precipitation and Evaporation.
               EmPmR(i,j,bi,bj) = (evap(i,j,bi,bj)-rain(i,j,bi,bj)
-     &                           - runoff(i,j,bi,bj))
+     &                           - runoff(i,j,bi,bj))*rhoConstFresh
 C---- cheating: now done in S/R BULKF_FLUX_ADJUST, over ice-free ocean only
 c            Qnet(i,j,bi,bj) = Qnetch(i,j,bi,bj)
 c            EmPmR(i,j,bi,bj) = EmPch(i,j,bi,bj)
