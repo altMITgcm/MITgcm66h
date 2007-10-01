@@ -27,8 +27,8 @@ C     UGtave  - wind speed @ ground, zonal  component (m/s)
 C     VGtave  - wind speed @ ground, merid. component (m/s)
 C     TXtave  - surface stress (Pa=N/m2), zonal compon.
 C     TYtave  - surface stress (Pa=N/m2), merid compon.
-C     FWtave  - Net fresh water flux (=E-P-R)    (m/s, +=upward)
-C     SFxtave - salt flux (from sea-ice) (psu.kg/m2/s, +=upward)
+C     FWtave  - Net fresh water flux (=E-P-R) (kg/m2/s, +=upward)
+C     SFxtave - salt flux (from sea-ice)  (psu.kg/m2/s, +=upward)
 C     SICtave - sea-ice mass (kg/m2)
 C     MXLtave - Ocean mixed-layer depth   (m)
 C     SSTtave - ocean surface temperature (oC)
@@ -41,10 +41,10 @@ C     fCO2tave- flux of CO2 from ocean->atm (mol/m2/s)
 
 C
       COMMON /CPL_TAVE/
-     &                   SLPtave, HFtave, QSWtave, 
+     &                   SLPtave, HFtave, QSWtave,
 c    &                   QLTtave, QSNtave, QLWtave,
 c    &                   UGtave, VGtave,
-     &                   TXtave, TYtave, 
+     &                   TXtave, TYtave,
      &                   FWtave, SFxtave, SICtave,
      &                   MXLtave, SSTtave, SSStave, vSqtave,
      &                   aCO2tave, sWSpdtave,
