@@ -134,6 +134,20 @@ C      data for the period ahead and the period behind myTime.
      &                      intime0, myIter, myThid )
        CALL READ_REC_XY_RS( EmPmRfile, EmPmR1,
      &                      intime1, myIter, myThid )
+       IF ( convertEmP2rUnit.EQ.mass2rUnit ) THEN
+C-     EmPmR is now (after c59h) expressed in kg/m2/s (fresh water mass flux)
+        _BARRIER
+        DO bj = myByLo(myThid), myByHi(myThid)
+         DO bi = myBxLo(myThid), myBxHi(myThid)
+          DO j=1-Oly,sNy+Oly
+           DO i=1-Olx,sNx+Olx
+            EmPmR0(i,j,bi,bj) = EmPmR0(i,j,bi,bj)*rhoConstFresh
+            EmPmR1(i,j,bi,bj) = EmPmR1(i,j,bi,bj)*rhoConstFresh
+           ENDDO
+          ENDDO
+         ENDDO
+        ENDDO
+       ENDIF
       ENDIF
       IF ( saltFluxFile .NE. ' '  ) THEN
        CALL READ_REC_XY_RS( saltFluxFile, saltFlux0,
