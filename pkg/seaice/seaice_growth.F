@@ -561,7 +561,7 @@ C NOW GET FRESH WATER FLUX
 #endif
      &         + frWtrIce(I,J)*ICE2WATR/SEAICE_deltaTtherm
      &         + saltWtrIce(I,J)*ICE2WATR/SEAICE_deltaTtherm
-     &         )
+     &         )*rhoConstFresh
 #ifdef ALLOW_DIAGNOSTICS
           frWtrAtm(I,J)   = maskC(I,J,kSurface,bi,bj)*(
      &           PRECIP(I,J,bi,bj)

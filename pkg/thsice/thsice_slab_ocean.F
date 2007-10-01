@@ -71,7 +71,7 @@ cph      IF ( .NOT.stepFwd_oceMxL ) RETURN
 
 C--    add heat flux and fresh-water + salt flux :
        dtFac   = ocean_deltaT/rhosw
-       fwFac   = ocean_deltaT*sMxL_default*rhofw/rhosw
+       fwFac   = ocean_deltaT*sMxL_default/rhosw
        heatFac = ocean_deltaT/(cpwater*rhosw)
        DO j=1,sNy
         DO i=1,sNx

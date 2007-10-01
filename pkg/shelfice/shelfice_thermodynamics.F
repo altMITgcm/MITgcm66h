@@ -130,11 +130,11 @@ C--   compute surface tendencies
             IF (convertFW2Salt .EQ. -1.) THEN
              shelficeForcingS(i,j,bi,bj) = 
      &            shelfIceFreshWaterFlux(I,J,bi,bj)
-     &            * salt(I,J,K,bi,bj) * convertEmP2rUnit
+     &            * salt(I,J,K,bi,bj) * rhoConstFresh*mass2rUnit
             ELSE
              shelficeForcingS(i,j,bi,bj) = 
      &            shelfIceFreshWaterFlux(I,J,bi,bj)
-     &            * convertFW2Salt * convertEmP2rUnit
+     &            * convertFW2Salt * rhoConstFresh*mass2rUnit
             ENDIF
 C--   stress at the ice/water interface is computed in separate
 C     routines that are called from mom_fluxform/mom_vecinv
@@ -231,7 +231,7 @@ C--   compute surface tendencies
      &           *recip_Cp*mass2rUnit
             shelficeForcingS(i,j,bi,bj) = 
      &           shelfIceFreshWaterFlux(I,J,bi,bj)
-     &           * saltFreeze * convertEmP2rUnit
+     &           * saltFreeze * rhoConstFresh*mass2rUnit
            ENDIF
           ENDDO 
          ENDDO
