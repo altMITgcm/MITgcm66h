@@ -29,9 +29,9 @@ C                  Same sign as wind. Positive zonal wind is westward.
 C     tauY       :: Atmospheric meridional momentum flux at lower boundary (N/m^2).
 C                  Same sign as wind. Positive meridional wind is northward.
 C     EvMPrFlux  :: Fresh water flux (=Evap-Precip) on atmos. grid
-C                      ( m/s, positive into atmosphere).
+C                      ( kg/m2/s, positive into atmosphere).
 C     RunOffFlux :: Fresh water flux (=RunOff) on atmos. grid
-C                      ( m/s, positive is leaving the land bucket)
+C                      ( kg/m2/s, positive is leaving the land bucket)
 C     RunOffEnFx :: Energy carried by RunOff (W/m2) (+=leaving land bucket)
 C     iceSaltFlx :: salt flux from sea-ice compon. (+=upward=leaving the ocean)
 C     seaIceMass :: sea-ice mass (kg/m2)
