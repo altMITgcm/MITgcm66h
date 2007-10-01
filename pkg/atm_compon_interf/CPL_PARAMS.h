@@ -11,7 +11,7 @@ C     *==========================================================*
 
 C--   COMMON /CPL_ATM_PAR_L/: logical parameters
 C     cpl_earlyExpImpCall :: call coupler early in the time stepping call sequence
-C     cpl_oldPickup :: restart from an old pickup (= until checkpoint 52m_post)
+C     cpl_oldPickup :: restart from an old pickup (= until checkpoint 59h)
 C     useImportMxlD :: True => use Imported Mix.Layer Detph from coupler
 C     useImportSST  :: True => use the Imported SST from coupler
 C     useImportSSS  :: True => use the Imported SSS from coupler
