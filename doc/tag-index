@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o add new diagnostics to seaice: advective, diffusive fluxes (only for
+  multidim-advection, for scheme 2 they are not filled) and transports, 
+  thermodynamic growth rates
 o change units of EmPmR (inside the code) from m/s to kg/m2/s (mass flux) but
   leave input file unchanged. Affects results @ truncation level (cg2d match)
   and update output of experiments: lab_sea(6), global_ocean.90x40x15(10),
