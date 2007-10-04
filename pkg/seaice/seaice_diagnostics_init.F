@@ -43,7 +43,7 @@ C     diagTitle :: local string (80c): description of field in diagnostic
       CHARACTER*16  diagUnits
       CHARACTER*(80) diagTitle
 
-      CHARACTER*10  flxUnits
+      CHARACTER*9   flxUnits
       CHARACTER*15  locName
       CHARACTER*4 SEAICE_DIAG_SUFX, diagSufx
 c     EXTERNAL    SEAICE_DIAG_SUFX
@@ -238,7 +238,7 @@ CML     I    diagName, diagCode, diagUnits, diagTitle, myThid )
 
 C     advective and diffusive fluxes
 C     effective thickness
-      flxUnits = '.m^2/s    '
+      flxUnits = '.m^2/s   '
       locName = 'eff ice thickn '
       WRITE(diagUnits,'(2A)') 'm',flxUnits
       diagSufx = SEAICE_DIAG_SUFX( GAD_HEFF, myThid )
