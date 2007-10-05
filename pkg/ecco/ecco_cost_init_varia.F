@@ -80,7 +80,6 @@ c--   Initialize the tiled cost function contributions.
         do bi = itlo,ithi
           objf_hflux(bi,bj)    = 0. _d 0
           objf_hfluxm(bi,bj)   = 0. _d 0
-          objf_hfluxmm(bi,bj)  = 0. _d 0
           objf_sflux(bi,bj)    = 0. _d 0
           objf_sfluxm(bi,bj)   = 0. _d 0
           objf_tauu(bi,bj)     = 0. _d 0
@@ -279,6 +278,7 @@ c--   Initialise the "global" parts of the cost function.
       _BEGIN_MASTER( mythid )
         objf_obcsvol = 0. _d 0
         objf_hmean   = 0. _d 0
+        objf_hfluxmm = 0. _d 0
         objf_sfluxmm = 0. _d 0
         objf_transp  = 0. _d 0
         num_obcsvol = 0. _d 0
