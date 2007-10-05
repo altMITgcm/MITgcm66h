@@ -93,6 +93,21 @@ C     == Local variables ==
          MskIm   = maskLocW(i+1,j)
          MskImm  = maskLocW(i+2,j)
          MskImmm = maskLocW(i+3,j)
+        ELSE
+         Qippp = 0. _d 0
+         Qipp  = 0. _d 0
+         Qip   = 0. _d 0
+         Qi    = 0. _d 0
+         Qim   = 0. _d 0
+         Qimm  = 0. _d 0
+         Qimmm = 0. _d 0
+
+         MskIpp  = 0. _d 0
+         MskIp   = 0. _d 0
+         MskI    = 0. _d 0
+         MskIm   = 0. _d 0
+         MskImm  = 0. _d 0
+         MskImmm = 0. _d 0
         ENDIF
 
         IF (uTrans(i,j).ne.0.) THEN
