@@ -1,5 +1,6 @@
-#
 # $Header$
+# $Name$
+
 #
 #  This is the package "groups" definition file where groups of packages
 #  are defined so they can be conveniently substituted.
