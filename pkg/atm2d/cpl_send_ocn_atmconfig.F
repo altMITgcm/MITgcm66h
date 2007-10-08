@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 #include "ATM2D_OPTIONS.h"
 #ifdef ATM2D_MPI_ON
 
@@ -32,9 +35,9 @@ CEndOfInterface
         ENDDO
       ENDDO
 
-   
+
 C     Send atmos. config to ocean component
-      CALL COUPSEND_R8TILES( ocnCompName, atmDepthName, Nx_ocn, Ny_ocn, 
+      CALL COUPSEND_R8TILES( ocnCompName, atmDepthName, Nx_ocn, Ny_ocn,
      &                       AtmDepths_ocn )
 
       RETURN

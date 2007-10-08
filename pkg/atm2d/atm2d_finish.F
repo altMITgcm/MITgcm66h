@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 #include "ctrparam.h"
 #ifdef OCEAN_3D
 #  include "ATM2D_OPTIONS.h"

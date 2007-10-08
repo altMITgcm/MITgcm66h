@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 C     /==========================================================\
 C     | SUBROUTINE GLOBAL_SUM_R* is linear                       |
 C     | only the array argument is active                        |

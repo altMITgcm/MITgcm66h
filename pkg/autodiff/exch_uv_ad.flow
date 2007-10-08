@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 C     /==========================================================\
 C     | TAMC flow directives                                     |
 C     | for library subroutines    exch_uv_xy_rs  exch_uv_xyz_rs |

@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 #include "ATM2D_OPTIONS.h"
 #ifdef ATM2D_MPI_ON
 

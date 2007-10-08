@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 #include "ctrparam.h"
 #include "ATM2D_OPTIONS.h"
 C     !INTERFACE:
@@ -23,7 +26,7 @@ C     iloop - loop counter for main loop (coupled periods)
 C     aloop - loop counter for atm time steps (within a coupled per.)
 C     inMonth - current month
 C     myThid - Thread no. that called this routine.
-      INTEGER iloop    
+      INTEGER iloop
       INTEGER aloop
       INTEGER inMonth
       INTEGER myIter
@@ -44,7 +47,7 @@ C     LOCAL VARIABLES:
       CALL READ_ATMOS( inMonth,myThid)
 
       IF ( (atmosTauuFile.NE.' ').OR.
-     &   (atmosTauvFile.NE.' ').OR.(atmosWindFile.NE.' ')) THEN     
+     &   (atmosTauvFile.NE.' ').OR.(atmosWindFile.NE.' ')) THEN
         CALL SUBTRACT_MEANS( wght0, wght1,
      &                       intime0, intime1, myThid)
       ENDIF
@@ -56,6 +59,6 @@ C     LOCAL VARIABLES:
 
       CALL RELAX_ADD( wght0,wght1,
      &              intime0,intime1,ifTime,myIter,myThid)
- 
+
       RETURN
       END

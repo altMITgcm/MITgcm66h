@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 #include "ctrparam.h"
 C
       SUBROUTINE ATM2D_INIT_VARS(myThid)
@@ -19,19 +22,19 @@ C     === Local variables ===
 
       CALL atmosphere(0,0)   ! initialize the atmospheric model
 
-#ifdef CLM 
+#ifdef CLM
       CALL clm4mit2d           ! initialize CLM
 #endif
 
-#ifdef ML_2D 
+#ifdef ML_2D
 C    2D mixed layer model  initialization
       CALL ocean_ml(dtocn,dtatm*3600.)
 #  ifdef CPL_OCEANCO2
       CALL zerogary
 #  endif
 #endif
-       
-#ifdef CPL_TEM 
+
+#ifdef CPL_TEM
       PRINT *,' Start of tem_init'
       aocuav=0.0
       nepav=0.0

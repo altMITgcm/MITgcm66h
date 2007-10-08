@@ -1,9 +1,12 @@
+C $Header$
+C $Name$
+
 C     /==========================================================\
 C     | SUBROUTINE DUMMY_IN_STEPPING                             |
 C     \==========================================================/
 cadj SUBROUTINE dummy_in_stepping INPUT   = 1, 2, 3
-cadj SUBROUTINE dummy_in_stepping OUTPUT  = 
-cadj SUBROUTINE dummy_in_stepping ACTIVE  = 
+cadj SUBROUTINE dummy_in_stepping OUTPUT  =
+cadj SUBROUTINE dummy_in_stepping ACTIVE  =
 cadj SUBROUTINE dummy_in_stepping DEPEND  = 1, 2, 3
 cadj SUBROUTINE dummy_in_stepping REQUIRED
 cadj SUBROUTINE dummy_in_stepping INFLUENCED

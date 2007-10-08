@@ -1,3 +1,5 @@
+C $Header$
+C $Name$
 
 #include "AUTODIFF_OPTIONS.h"
 
@@ -23,7 +25,7 @@ c        changed: Christian Eckert eckert@mit.edu 24-Apr-2000
 c                 - Added routines that do active writes on tiles
 c                   instead of a whole thread.
 c        changed: Patrick Heimbach heimbach@mit.edu 27-May-2000
-c                 - changed suboutine argument list: 
+c                 - changed suboutine argument list:
 c                   dropped mycurrentiter, mycurrenttime
 c        changed: heimbach@mit.edu 25-Mar-2002
 c                 - added active file handling of xz-/yz-arrays

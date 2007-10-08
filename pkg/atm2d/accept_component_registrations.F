@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 #include "ATM2D_OPTIONS.h"
 #ifdef ATM2D_MPI_ON
 
@@ -30,10 +33,10 @@ CEndOfInterface
 
 C     === Local variables ===
 
-C     During registration the coupler process collects attributes from each 
-C     of the "component" participants. It collects the attributes from each 
-C     participating component in turn. Individual components comprise of one 
-C     or more processes. Each component process does its own registration call 
+C     During registration the coupler process collects attributes from each
+C     of the "component" participants. It collects the attributes from each
+C     participating component in turn. Individual components comprise of one
+C     or more processes. Each component process does its own registration call
 C     to report its attributes. The attributes that are collected
 C     include information on the grid region that a particular process "owns"
 C     and sends out information from.

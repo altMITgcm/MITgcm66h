@@ -1,18 +1,20 @@
+C $Header$
+C $Name$
 
 ! ==================================================
 !
 ! ctrparam.h
 ! ----------
 !
-!  Purpose:	A header file contains cpp control 
+!  Purpose:	A header file contains cpp control
 !			parameters for the model
 !
 !  -------------------------------------------------
 !	
-!  Usage:	1. (un)comment #define line; or 
+!  Usage:	1. (un)comment #define line; or
 !		2. #define/#undef x [number]
 !		  to set given cpp parameters x
-!		  to be true or false  
+!		  to be true or false
 !
 !  -------------------------------------------------
 !
