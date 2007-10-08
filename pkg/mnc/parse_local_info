@@ -1,6 +1,7 @@
 #! /usr/bin/env sh
 #
 # $Header$
+# $Name$
 #
 
 tag="../../doc/tag-index"

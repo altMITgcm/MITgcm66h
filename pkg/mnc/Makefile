@@ -1,5 +1,6 @@
 #
-#  $Header$
+# $Header$
+# $Name$
 #
 #  A Makefile for MNC templates and testing
 #

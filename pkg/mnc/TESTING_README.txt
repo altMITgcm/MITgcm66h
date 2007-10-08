@@ -1,5 +1,5 @@
 # $Header$
-#
+# $Name$
 
 The files here (the "MNC package") have an intentionally weak link to
 MITgcm.  Since few FORTRAN common blocks are shared with the main
