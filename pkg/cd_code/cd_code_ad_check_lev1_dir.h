@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 #ifdef ALLOW_CD_CODE
 CADJ STORE uveld      = comlev1, key = ikey_dynamics
 CADJ STORE vveld     = comlev1, key = ikey_dynamics

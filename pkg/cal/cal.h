@@ -1,5 +1,5 @@
 C $Header$
-
+C $Name$
 
 c     ==================================================================
 c     HEADER calendar
@@ -116,7 +116,7 @@ C                    for parameters chkPtFreq, pChkPtFreq, taveFreq, SEAICE_tave
 C                    KPP_taveFreq, and freq in pkg/diagnostics are converted to exact
 C                    calendar months and years.  Requires pkg/cal.
 
-      common /cal_l/ 
+      common /cal_l/
      &               calendarDumps,
      &               usingNoCalendar,
      &               usingModelCalendar,

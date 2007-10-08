@@ -1,9 +1,12 @@
+C $Header$
+C $Name$
+
 C     /==========================================================\
 C     | CFC.h                                                |
 C     |==========================================================|
 
        COMMON /CFC_NEEDS/
-     &              AtmosCFC11, AtmosCFC12, AtmosP, 
+     &              AtmosCFC11, AtmosCFC12, AtmosP,
      &              pisvel,fice
       _RL  AtmosCFC11(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL  AtmosCFC12(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
