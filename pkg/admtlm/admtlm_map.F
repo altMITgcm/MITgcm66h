@@ -1,3 +1,5 @@
+C $Header$
+C $Name$
 
 #include "CPP_OPTIONS.h"
 
@@ -31,10 +33,10 @@ C     ========= Local variables =========================
         DO j=1,sNy
          DO i=1,sNx
           DO k=1,4*Nr
-            adobjf_state_final(i,j,bi,bj,k) = 
+            adobjf_state_final(i,j,bi,bj,k) =
      &       g_objf_state_final(i,j,bi,bj,k)
           END DO
-           adobjf_state_final(i,j,bi,bj,4*Nr+1) = 
+           adobjf_state_final(i,j,bi,bj,4*Nr+1) =
      &      g_objf_state_final(i,j,bi,bj,4*Nr+1)
          END DO
         END DO
@@ -42,5 +44,5 @@ C     ========= Local variables =========================
       END DO
 
 #endif
-      
+
       end

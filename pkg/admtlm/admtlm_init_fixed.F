@@ -1,3 +1,5 @@
+C $Header$
+C $Name$
 
 #include "CPP_OPTIONS.h"
 
@@ -55,5 +57,5 @@ c
       call active_write_xy('wetan',wetan,1,0,mythid,dummy)
 
 #endif
-      
+
       end
