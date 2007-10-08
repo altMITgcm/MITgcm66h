@@ -1,4 +1,7 @@
 /* 
+ * $Header$
+ * $Name$
+ *
  * A cross-platform way of providing access to gsl_ieee_env_setup 
  * from Fortran on any system MITgcm runs on currently.
  */

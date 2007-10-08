@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 C---------------------------------------------------------------
 C Subroutine barrier is difficult to handle,
 C it is required but it does not compute values.

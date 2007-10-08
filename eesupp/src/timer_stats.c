@@ -1,3 +1,7 @@
+/*
+ * $Header$
+ * $Name$
+ */
 #include <sys/types.h>
 #include <sys/times.h>
 #include <sys/time.h>
