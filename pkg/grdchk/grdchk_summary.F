@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 
 #include "CPP_OPTIONS.h"
 
@@ -31,7 +32,7 @@ c     == global variables ==
 
 c     == routine arguments ==
 
-      integer mythid 
+      integer mythid
 
 #ifdef ALLOW_GRDCHK
 c     == local variables ==

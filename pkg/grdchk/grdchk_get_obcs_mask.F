@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 
 #include "CTRL_CPPOPTIONS.h"
 
@@ -41,7 +42,7 @@ c     == local variables ==
       integer jtlo,jthi
       integer jmin,jmax
       integer imin,imax
-      
+
       _RL dummy
 
       character*( 80) fname
@@ -77,7 +78,7 @@ c
             do bi = itlo,ithi
                do k = 1,nr
                   do i = imin,imax
-                     grdchk_maskxz(i,k,bi,bj,iobcs) = 
+                     grdchk_maskxz(i,k,bi,bj,iobcs) =
      &                    tmpfldxz(i,k,bi,bj)
                   enddo
                enddo
@@ -100,7 +101,7 @@ c
             do bi = itlo,ithi
                do k = 1,nr
                   do i = imin,imax
-                     grdchk_maskxz(i,k,bi,bj,iobcs) = 
+                     grdchk_maskxz(i,k,bi,bj,iobcs) =
      &                    tmpfldxz(i,k,bi,bj)
                   enddo
                enddo
@@ -123,7 +124,7 @@ c
             do bi = itlo,ithi
                do k = 1,nr
                   do j = jmin,jmax
-                     grdchk_maskyz(j,k,bi,bj,iobcs) = 
+                     grdchk_maskyz(j,k,bi,bj,iobcs) =
      &                    tmpfldyz(j,k,bi,bj)
                   enddo
                enddo
@@ -146,7 +147,7 @@ c
             do bi = itlo,ithi
                do k = 1,nr
                   do j = jmin,jmax
-                     grdchk_maskyz(j,k,bi,bj,iobcs) = 
+                     grdchk_maskyz(j,k,bi,bj,iobcs) =
      &                    tmpfldyz(j,k,bi,bj)
                   enddo
                enddo

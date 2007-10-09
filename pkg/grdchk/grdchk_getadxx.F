@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 
 #include "CTRL_CPPOPTIONS.h"
 
@@ -296,7 +297,7 @@ c--   == end of interface ==
          write(fname(1:80),'(80a)') ' '
          write(fname(1:80),'(3a,i10.10)')
      &        yadmark, xx_tr1_file(1:il),'.',optimcycle
-         
+
          call active_read_xyz( fname, tmpfld3d, 1,
      &                         doglobalread, ladinit, optimcycle,
      &                         mythid, dummy)

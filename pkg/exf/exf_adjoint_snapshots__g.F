@@ -1,10 +1,12 @@
+C $Header$
+C $Name$
 
 #include "EXF_OPTIONS.h"
 
 CBOP
 C     !ROUTINE: g_exf_adjoint_snapshots
 C     !INTERFACE:
-      subroutine g_exf_adjoint_snapshots( 
+      subroutine g_exf_adjoint_snapshots(
      &     iwhen, mytime, myiter, myThid )
 
 C     !DESCRIPTION: \bv

@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 
       SUBROUTINE EXCH2_GET_RECV_BOUNDS(
      I           fCode, eWdth,
