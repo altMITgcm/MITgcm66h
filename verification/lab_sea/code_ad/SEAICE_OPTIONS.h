@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 
 C     /==========================================================\
 C     | SEAICE_OPTIONS.h                                         |
@@ -62,15 +63,15 @@ C     following options are available.
 #undef SEAICE_ORIGINAL_BAD_ICE_STRESS
 #undef SEAICE_TEST_ICE_STRESS_1
 
-C--   By default the freezing point of water is set to the value of 
+C--   By default the freezing point of water is set to the value of
 C     the parameter SEAICE_freeze (=-1.96 by default). To use a
-C     simple linear dependence of the freezing point on salinity, 
+C     simple linear dependence of the freezing point on salinity,
 C     set the following flag (pressure is assumed to have no effect,
 C     which is a good assumption for the top 20 meters). With this
 C     option defined the parameter SEAICE_freeze has no effect.
 #undef SEAICE_VARIABLE_FREEZING_POINT
 
-C--   By default the seaice model is discretized on a B-Grid (for 
+C--   By default the seaice model is discretized on a B-Grid (for
 C     historical reasons). Define the following flag to use a new
 C     (not thoroughly) test version on a C-grid
 #define SEAICE_CGRID

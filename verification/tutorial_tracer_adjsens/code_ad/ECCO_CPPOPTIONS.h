@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 C
 C CPP flags controlling which code is included in the files that
 C will be compiled.
@@ -36,7 +39,7 @@ CPH >>>>>> THERE ARE NO MORE CAL OPTIONS TO BE SET <<<<<<
 C ********************************************************************
 C ***                Cost function Package                         ***
 C ********************************************************************
-C 
+C
 C       >>> Cost function contributions
 #define ALLOW_COST
 #undef ALLOW_COST_TEST
@@ -46,7 +49,7 @@ C       >>> Cost function contributions
 C ********************************************************************
 C ***               Control vector Package                         ***
 C ********************************************************************
-C 
+C
 #define EXCLUDE_CTRL_PACK
 #undef  ALLOW_NONDIMENSIONAL_CONTROL_IO
 C
