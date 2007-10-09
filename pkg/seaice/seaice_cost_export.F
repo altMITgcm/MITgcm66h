@@ -1,3 +1,5 @@
+C $Header$
+C $Name$
 
 #include "SEAICE_OPTIONS.h"
 
@@ -54,5 +56,5 @@ c--   end of bi,bj loop
       end do
 
 #endif
-      
+
       end

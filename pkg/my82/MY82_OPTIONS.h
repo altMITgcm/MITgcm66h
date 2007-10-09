@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 C     /===========================================================\
 C     | MY82_OPTIONS.h                                            |
 C     | o CPP options file for MY82 package.                      |

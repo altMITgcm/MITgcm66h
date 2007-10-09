@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 C     /==========================================================\
 C     | PP81_OPTIONS.h                                            |
 C     | o CPP options file for PP81 package.                      |

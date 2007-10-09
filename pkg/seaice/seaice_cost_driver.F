@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 
 #include "SEAICE_OPTIONS.h"
 
@@ -8,7 +9,7 @@ c     ==================================================================
 c     SUBROUTINE seaice_cost_driver
 c     ==================================================================
 c
-c     o Evaluate cost function contributions of 
+c     o Evaluate cost function contributions of
 c       seaice observations
 c
 c     ==================================================================
@@ -82,7 +83,7 @@ cph)
      &     objf_smrarea, num_smrarea,
      &     myiter, mytime, mythid )
 
-      write(msgbuf,'(a,1P2E18.10)') 
+      write(msgbuf,'(a,1P2E18.10)')
      &     'ph-cost smrarea ', objf_smrarea(1,1), num_smrarea(1,1)
       call print_message( msgbuf, standardmessageunit,
      &     SQUEEZE_RIGHT , mythid)

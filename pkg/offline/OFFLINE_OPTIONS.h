@@ -1,3 +1,5 @@
+C $Header$
+C $Name$
 
 #ifndef OFFLINE_OPTIONS_H
 #define OFFLINE_OPTIONS_H

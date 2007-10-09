@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 
 #include "SEAICE_OPTIONS.h"
 
@@ -10,8 +11,8 @@ C     !INTERFACE:
 C     !DESCRIPTION: \bv
 c     *=================================================================
 c     | SUBROUTINE seaice_ctrl_map_ini
-c     | Add the temperature, salinity, and diffusivity parts of the 
-c     | control vector to the model state and update the tile halos. 
+c     | Add the temperature, salinity, and diffusivity parts of the
+c     | control vector to the model state and update the tile halos.
 c     | The control vector is defined in the header file "ctrl.h".
 c     *=================================================================
 C     \ev

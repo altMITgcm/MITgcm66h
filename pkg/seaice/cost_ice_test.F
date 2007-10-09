@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 
 #include "SEAICE_OPTIONS.h"
 
@@ -81,9 +82,9 @@ c     == external functions ==
 c     == end of interface ==
 
       if ( myTime .GT. (endTime - lastinterval) ) then
-         tempVar = 1. / 
+         tempVar = 1. /
      &             ( ( 1. + min(endTime-startTime,lastinterval) )
-     &             / deltaTClock ) 
+     &             / deltaTClock )
 
 cph(
       print *, 'ph-ice B ', myiter, theta(4,4,1,1,1),

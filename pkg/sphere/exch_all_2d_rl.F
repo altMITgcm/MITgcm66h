@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 
 #include "CPP_OPTIONS.h"
 
@@ -94,7 +95,7 @@ c--     get coordinates of processor (iporc-1)
       enddo
 
 #ifndef ALWAYS_USE_MPI
-      ENDIF                 
+      ENDIF
 #endif
 #endif /* ALLOW_USE_MPI */
 

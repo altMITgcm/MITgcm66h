@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 C     /==========================================================\
 C     | SHELFICE_OPTIONS.h                                       |
 C     | o CPP options file for SHELFICE package.                 |

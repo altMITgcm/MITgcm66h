@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 CADJ SUBROUTINE FSC4DAT input  = 1, 2
 CADJ SUBROUTINE FSC4DAT output = 2
 CADJ SUBROUTINE FSC4DAT depend = 1
