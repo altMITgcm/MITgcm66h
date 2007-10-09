@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 
 #include "CTRL_CPPOPTIONS.h"
 
@@ -15,7 +16,7 @@ c     o Initialise the optimization part of the ECCO release.
 c
 c     started: Christian Eckert eckert@mit.edu 03-Mar-2000
 c
-c     changed: 
+c     changed:
 c
 c     ==================================================================
 c     SUBROUTINE optim_readparms
@@ -31,7 +32,7 @@ c     == global variables ==
 
 c     == routine arguments ==
 
-      integer mythid 
+      integer mythid
 
 c     == local variables ==
 
@@ -83,7 +84,7 @@ c--     Set default values.
 
         READ(unit = iUnit, nml = optim)
 
-        WRITE(msgBuf,'(A)') 
+        WRITE(msgBuf,'(A)')
      &       'OPTIM_READPARMS: finished reading data.optim'
         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                  SQUEEZE_RIGHT , 1)

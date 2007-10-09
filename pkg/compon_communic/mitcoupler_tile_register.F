@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 !=======================================================================
       subroutine MITCOUPLER_tile_register( compName, nnx, nny )
       implicit none
@@ -46,7 +49,7 @@
        rank=rank_component_procs(n,compind)
 
        call MPI_Recv(ibuf, count, dtype, rank, tag, comm, stat, ierr)
-       
+
        if (ierr.ne.0) then
         write(LogUnit,*) 'MITCOUPLER_tile_register: rank(W,G)=',
      &            my_rank_in_world,my_rank_in_global,

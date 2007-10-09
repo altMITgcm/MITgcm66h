@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 !=======================================================================
       subroutine mitcplr_int2char( iarg, carg )
       implicit none

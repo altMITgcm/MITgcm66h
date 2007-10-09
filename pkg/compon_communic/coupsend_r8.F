@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 !=======================================================================
       subroutine coupsend_r8( component, dataname, Nx, Ny, arr )
       implicit none

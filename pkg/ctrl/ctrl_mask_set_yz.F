@@ -1,8 +1,10 @@
+C $Header$
+C $Name$
 
 #include "CTRL_CPPOPTIONS.h"
 
 
-      subroutine ctrl_mask_set_yz( 
+      subroutine ctrl_mask_set_yz(
      &     ip1, OB_I, nwetobcs, ymaskobcs, mythid )
 
 c     ==================================================================
@@ -10,7 +12,7 @@ c     SUBROUTINE ctrl_mask_set_yz
 c     ==================================================================
 c
 c     o count sliced (yz) wet points and set yz masks
-c     
+c
 c     heimbach@mit.edu, 30-Aug-2001
 c     gebbie@mit.edu, corrected array bounds
 c

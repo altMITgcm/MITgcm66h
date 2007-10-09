@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 !=======================================================================
       subroutine compsend_r4( dataname, Ni,Oi,Nj,Oj, arr )
       implicit none

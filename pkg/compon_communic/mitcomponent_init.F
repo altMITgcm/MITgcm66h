@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 !=======================================================================
       subroutine MITCOMPONENT_init( myTypeStr, MPI_COMM_local )
       implicit none

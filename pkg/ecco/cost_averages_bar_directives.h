@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 c
 c     store directives for cost_averagesfields
 c     xx_..._mean_dummy

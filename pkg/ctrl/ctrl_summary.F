@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 
 #include "PACKAGES_CONFIG.h"
 #include "CTRL_CPPOPTIONS.h"
@@ -33,7 +34,7 @@ c     == global variables ==
 
 c     == routine arguments ==
 
-      integer mythid 
+      integer mythid
 
 c     == local variables ==
 

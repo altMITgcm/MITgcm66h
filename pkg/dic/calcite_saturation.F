@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 #include "DIC_OPTIONS.h"
 #include "GCHEM_OPTIONS.h"
 

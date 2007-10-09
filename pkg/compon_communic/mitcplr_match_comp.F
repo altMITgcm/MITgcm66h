@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 !=======================================================================
       integer function mitcplr_match_comp( carg )
       implicit none

@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 
 #include "COST_CPPOPTIONS.h"
 
@@ -41,9 +42,9 @@ c--   Each process has calculated the global part for itself.
       lastdiva = .FALSE.
 
       IF (myProcId .eq. 0) THEN
-         _BEGIN_MASTER( mythid )    
+         _BEGIN_MASTER( mythid )
            open(unit=76,file='costfinal')
-           write(76,*) fc        
+           write(76,*) fc
            close(76)
          _END_MASTER( mythid )
       ENDIF

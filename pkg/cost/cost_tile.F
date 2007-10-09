@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 
 #include "CPP_OPTIONS.h"
 
@@ -59,9 +60,9 @@ C     !INTERFACE:
 
 C     !DESCRIPTION: \bv
 C     *================================================================*
-C     | subroutine cost_tile                                     
+C     | subroutine cost_tile
 C     | o this routine computes is called at each time step to
-C     |   accumulate the cost function for the tiles of this processor 
+C     |   accumulate the cost function for the tiles of this processor
 C     *================================================================*
 C     \ev
 

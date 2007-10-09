@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 !=======================================================================
       subroutine compsend_r4tiles( dataname,Ni,Oi,Nj,Oj,Nk,Ti,Tj, arr )
       implicit none

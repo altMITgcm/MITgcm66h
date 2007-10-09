@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 !=======================================================================
       subroutine couprecv_r8tiles( component, dataname, Nx, Ny, arr )
       implicit none

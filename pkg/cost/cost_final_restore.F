@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 
 #include "COST_CPPOPTIONS.h"
 
@@ -55,7 +56,7 @@ c
            if ( idivbeg .EQ. 0 ) then
               lastdiva = .TRUE.
               open(unit=76,file='costfinal')
-              read(76,*) fc        
+              read(76,*) fc
               close(76)
            else
               lastdiva = .FALSE.

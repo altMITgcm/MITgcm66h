@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 !=======================================================================
       subroutine mitcplr_sortranks( nranks, ranks )
       implicit none

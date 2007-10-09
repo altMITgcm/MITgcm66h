@@ -1,10 +1,12 @@
+C $Header$
+C $Name$
 
 #include "CPP_OPTIONS.h"
 
 C     !ROUTINE: ADCTRL_BOUND_3D
 C     !INTERFACE:
       SUBROUTINE ADCTRL_BOUND_3D(
-     I             bi, bj, 
+     I             bi, bj,
      I             minCur,maxCur,
      I             myThid,adFieldFwd)
 C     !DESCRIPTION: \bv

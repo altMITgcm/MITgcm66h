@@ -1,3 +1,5 @@
+C $Header$
+C $Name$
 
 #include "COST_CPPOPTIONS.h"
 #ifdef ALLOW_OBCS
@@ -113,7 +115,7 @@ c--     Read time averages and the monthly mean data.
      &                        optimcycle, mythid,
      &                        xx_tbar_mean_dummy )
 
-        call mdsreadfieldxz( OBStFile, readBinaryPrec, 'RS', 
+        call mdsreadfieldxz( OBStFile, readBinaryPrec, 'RS',
      &                       nr, OBSt, irec, mythid)
 
         do bj = jtlo,jthi
@@ -150,7 +152,7 @@ c--     Read time averages and the monthly mean data.
      &                        optimcycle, mythid,
      &                        xx_sbar_mean_dummy )
 
-        call mdsreadfieldxz( OBSsFile, readBinaryPrec, 'RS', 
+        call mdsreadfieldxz( OBSsFile, readBinaryPrec, 'RS',
      &                       nr, OBSs, irec, mythid)
 
         do bj = jtlo,jthi
@@ -187,7 +189,7 @@ c--     Read time averages and the monthly mean data.
      &                        optimcycle, mythid,
      &                        dummy )
 
-        call mdsreadfieldxz( OBSuFile, readBinaryPrec, 'RS', 
+        call mdsreadfieldxz( OBSuFile, readBinaryPrec, 'RS',
      &                       nr, OBSu, irec, mythid)
         do bj = jtlo,jthi
           do bi = itlo,ithi
@@ -223,7 +225,7 @@ c--     Read time averages and the monthly mean data.
      &                        optimcycle, mythid,
      &                        dummy )
 
-        call mdsreadfieldxz( OBSvFile, readBinaryPrec, 'RS', 
+        call mdsreadfieldxz( OBSvFile, readBinaryPrec, 'RS',
      &                       nr, OBSv, irec, mythid)
 
         do bj = jtlo,jthi

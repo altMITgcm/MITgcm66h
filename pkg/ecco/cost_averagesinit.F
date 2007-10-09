@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 
 #include "COST_CPPOPTIONS.h"
 
@@ -141,7 +142,7 @@ c--       Initialise salinity average (2d).
           enddo
           xx_sbar_mean_dummy = 0. _d 0
           nnzsbar = 1
-#endif          
+#endif
 #endif
 
 #if (defined (ALLOW_DRIFTER_COST_CONTRIBUTION) || \
@@ -199,9 +200,9 @@ c--       Initialise salinity average (2d).
             do i =  imin,imax
               sfluxbar(i,j,bi,bj) = 0. _d 0
             enddo
-          enddo  
+          enddo
           xx_sflux_mean_dummy = 0. _d 0
-#endif    
+#endif
 
 #ifdef ALLOW_SEAICE
 
@@ -211,11 +212,11 @@ c--       Initialise salinity average (2d).
             do i =  imin,imax
               smrareabar(i,j,bi,bj) = 0. _d 0
             enddo
-          enddo  
+          enddo
           xx_smrareabar_mean_dummy = 0. _d 0
 # endif
 
-#endif    
+#endif
 
 #ifdef ALLOW_TRANSPORT_COST_CONTRIBUTION
           do irec = 1, ndaysrec

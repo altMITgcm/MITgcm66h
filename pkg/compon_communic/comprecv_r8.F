@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 !=======================================================================
       subroutine comprecv_r8( dataname, Ni,Oi,Nj,Oj, arr )
       implicit none

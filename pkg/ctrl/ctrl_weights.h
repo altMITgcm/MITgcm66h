@@ -1,7 +1,9 @@
+C $Header$
+C $Name$
 
 c     Define dummy weights as a placeholder
       common /ctrl_weights_dummy_r/
-     &                        wtheta, wsalt, 
+     &                        wtheta, wsalt,
      &                        wuvvel, wetan,
      &                        wdiffkr, wkapgm,
      &                        wedtaux, wedtauy

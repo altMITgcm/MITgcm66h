@@ -1,3 +1,5 @@
+C $Header$
+C $Name$
 
 #include "DIC_OPTIONS.h"
 #include "GCHEM_OPTIONS.h"
@@ -11,7 +13,7 @@ C !INTERFACE: ==========================================================
 C !DESCRIPTION:
 C Set parameters needed for calculating air-sea exchange of CO2 and O2
 
-C !USES: =============================================================== 
+C !USES: ===============================================================
       IMPLICIT NONE
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -65,7 +67,7 @@ cph this is to please TAF
       gsm_dic = 0.
       gsm_alk = 0.
 
-C Conversion factor for atmospheric pressure pLoad when coupled 
+C Conversion factor for atmospheric pressure pLoad when coupled
 C to atmospheric model: 1 Atm = 1.01325e5 Pa = 1013.25 mb
       Pa2Atm = 1.01325 _d 5
 

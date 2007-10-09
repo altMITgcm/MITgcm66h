@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 #include "DIC_OPTIONS.h"
 #include "GCHEM_OPTIONS.h"
 
@@ -5,7 +8,7 @@ CBOP
 C !ROUTINE: ALK_SURFFORCING
 
 C !INTERFACE: ==========================================================
-      SUBROUTINE ALK_SURFFORCING( PTR_ALK , GALK, 
+      SUBROUTINE ALK_SURFFORCING( PTR_ALK , GALK,
      I           bi,bj,imin,imax,jmin,jmax,
      I           myIter,myTime,myThid)
 

@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 !=======================================================================
       subroutine MITCOUPLER_init( myTypeStr, MPI_COMM_local )
       implicit none

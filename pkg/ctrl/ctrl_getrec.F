@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 
 #include "PACKAGES_CONFIG.h"
 #include "CTRL_CPPOPTIONS.h"
@@ -299,7 +300,7 @@ c
          fldperiod = xx_sssperiod
          lArgErr = .false.
       endif
-      
+
 c--   Check the field argument.
       if ( lArgErr ) then
          print*,' The subroutine *ctrl_GetRec* has been called'

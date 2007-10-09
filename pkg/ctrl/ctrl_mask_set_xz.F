@@ -1,8 +1,10 @@
+C $Header$
+C $Name$
 
 #include "CTRL_CPPOPTIONS.h"
 
 
-      subroutine ctrl_mask_set_xz( 
+      subroutine ctrl_mask_set_xz(
      &     jp1, OB_J, nwetobcs, ymaskobcs, mythid )
 
 c     ==================================================================
@@ -10,7 +12,7 @@ c     SUBROUTINE ctrl_mask_set_xz
 c     ==================================================================
 c
 c     o count sliced (xz) wet points and set xz masks
-c     
+c
 c     heimbach@mit.edu, 30-Aug-2001
 c     gebbie@mit.edu, corrected array bounds
 c

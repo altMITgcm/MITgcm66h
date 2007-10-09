@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 !=======================================================================
       subroutine comprecv_r4tiles( dataname, Ni,Oi,Nj,Oj,Nk,Tx,Ty, arr )
       implicit none

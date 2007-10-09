@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 !=======================================================================
       integer function generate_tag( iarg1, iarg2, carg )
       implicit none

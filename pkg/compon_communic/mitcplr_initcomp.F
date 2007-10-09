@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 !=======================================================================
       subroutine mitcplr_initcomp( compind, carg )
       implicit none

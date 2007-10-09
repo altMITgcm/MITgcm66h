@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 
 #include "PACKAGES_CONFIG.h"
 #include "AD_CONFIG.h"
@@ -93,10 +94,10 @@ c--     ... SST data.
      &                     sststartdate,    mythid )
 c--     ... SSS data.
         call cal_FullDate( sssstartdate1,   sssstartdate2,
-     &                     sssstartdate,    mythid )     
+     &                     sssstartdate,    mythid )
 c--     ... BP data.
         call cal_FullDate( bpstartdate1,   bpstartdate2,
-     &                     bpstartdate,    mythid )     
+     &                     bpstartdate,    mythid )
 c--     ... T/P data.
         call cal_FullDate( topexstartdate1, topexstartdate2,
      &                     topexstartdate,  mythid )
@@ -109,7 +110,7 @@ c--     ... GFO data.
 c--     ... SCAT data.
         call cal_FullDate( scatstartdate1,  scatstartdate2,
      &                     scatxstartdate,  mythid )
-        call cal_FullDate( scatstartdate1,  scatstartdate2,   
+        call cal_FullDate( scatstartdate1,  scatstartdate2,
      &                     scatystartdate,  mythid )
 c--     ... ARGO data.
         call cal_FullDate( argotstartdate1,   argotstartdate2,
@@ -146,7 +147,7 @@ cph!!!
       ilo = ifnblnk(costTranspDataFile)
       ihi = ilnblnk(costTranspDataFile)
       CALL OPEN_COPY_DATA_FILE(
-     I                          costTranspDataFile(ilo:ihi), 
+     I                          costTranspDataFile(ilo:ihi),
      I                          'ECCO_COST_INIT_FIXED',
      O                          gwunit,
      I                          myThid )

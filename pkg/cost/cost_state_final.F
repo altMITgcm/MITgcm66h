@@ -1,3 +1,5 @@
+C $Header$
+C $Name$
 
 #include "COST_CPPOPTIONS.h"
 
@@ -47,5 +49,5 @@ cph      _GLOBAL_SUM_R8( fc , myThid )
 cph      print *, 'fc for admtlm test at 83,33 : ', fc
 
 #endif
-      
+
       end

@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 
 #include "COST_CPPOPTIONS.h"
 
@@ -66,7 +67,7 @@ c--   Convert mean ssh from cm to m
       factor =  0.01
       spval  = -9990.
 
-      call mdsreadfield( topexmeanfile, cost_iprec, cost_yftype, 1, 
+      call mdsreadfield( topexmeanfile, cost_iprec, cost_yftype, 1,
      &                   tpmean, 1, mythid )
 
       do bj = jtlo,jthi
@@ -93,7 +94,7 @@ cph               to make it independnet of Nr:
 cph
 cph               if ( rC(K) .GT. -1000. ) then
 cph)
-c             set tpmask=0 in areas shallower than 1000m 
+c             set tpmask=0 in areas shallower than 1000m
               if (_hFacC(i,j,13,bi,bj) .eq. 0.) then
                 tpmeanmask(i,j,bi,bj) = 0. _d 0
               endif

@@ -1,21 +1,22 @@
 C $Header$
+C $Name$
 
 #include "CPP_OPTIONS.h"
 
       _RL function SW_ADTG  (S,T,P)
 
 c     ==================================================================
-c     SUBROUTINE SW_ADTG  
+c     SUBROUTINE SW_ADTG
 c     ==================================================================
 c
 c     o Calculates adiabatic temperature gradient as per UNESCO 1983 routines.
 c
-c     started: 
+c     started:
 c
 c              Armin Koehl akoehl@ucsd.edu
 c
 c     ==================================================================
-c     SUBROUTINE SW_ADTG  
+c     SUBROUTINE SW_ADTG
 c     ==================================================================
 
       implicit none
@@ -44,8 +45,8 @@ c     ==================================================================
       e1 = +1.8676 _d -14
       e2 = -2.1687 _d -16
 
-      SW_ADTG =      a0 + (a1 + (a2 + a3*T)*T)*T 
-     &     + (b0 + b1*T)*(S-sref)  
-     &     + ( (c0 + (c1 + (c2 + c3*T)*T)*T) + (d0 + d1*T)*(S-sref) )*P 
+      SW_ADTG =      a0 + (a1 + (a2 + a3*T)*T)*T
+     &     + (b0 + b1*T)*(S-sref)
+     &     + ( (c0 + (c1 + (c2 + c3*T)*T)*T) + (d0 + d1*T)*(S-sref) )*P
      &     + (  e0 + (e1 + e2*T)*T )*P*P
       end

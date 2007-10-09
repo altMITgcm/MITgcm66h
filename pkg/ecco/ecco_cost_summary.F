@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 
 #include "COST_CPPOPTIONS.h"
 
@@ -33,7 +34,7 @@ c     == global variables ==
 
 c     == routine arguments ==
 
-      integer mythid 
+      integer mythid
 
 c     == local variables ==
 
@@ -194,7 +195,7 @@ c     == end of interface ==
       write(msgbuf,'(a)')
      &' '
       call print_message( msgbuf, standardmessageunit,
-     &                    SQUEEZE_RIGHT , mythid)     
+     &                    SQUEEZE_RIGHT , mythid)
       write(msgbuf,'(a)')
      &' '
       call print_message( msgbuf, standardmessageunit,

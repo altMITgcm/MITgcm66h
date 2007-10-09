@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 !=======================================================================
       subroutine MITCOUPLER_register( compName, nnx, nny )
       implicit none

@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 ! Special meanings/handles
       integer   MITCPLR_COUPLER
       parameter(MITCPLR_COUPLER=59)

@@ -1,3 +1,5 @@
+C $Header$
+C $Name$
 
 #include "PACKAGES_CONFIG.h"
 

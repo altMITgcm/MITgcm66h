@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 !=======================================================================
       subroutine MITCOMPONENT_tile_register( ntx, nty, ireg, rreg )
       implicit none
@@ -64,7 +67,7 @@
       comm=MPI_COMM_myglobal
 
       call MPI_Send( ibuf, count, datatype, dest, tag, comm, ierr )
-       
+
       if (ierr.ne.0) then
        write(LogUnit,*) 'MITCOMPONENT_tile_register: rank(W,G,L)=',
      &            my_rank_in_world,my_rank_in_global,my_rank_in_local,
@@ -90,7 +93,7 @@
        comm=MPI_COMM_myglobal
 
        call MPI_Send( ibuf, count, datatype, dest, tag, comm, ierr )
-       
+
        if (ierr.ne.0) then
         write(LogUnit,*) 'MITCOMPONENT_tile_register: rank(W,G,L)=',
      &           my_rank_in_world,my_rank_in_global,my_rank_in_local,

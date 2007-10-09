@@ -1,4 +1,5 @@
 C $Header$
+C $Name$
 
 #include "COST_CPPOPTIONS.h"
 
@@ -87,14 +88,14 @@ C------------------------------------------------------
 c--   Read state record from global file.
       doglobalread = .false.
       ladinit      = .false.
-      
+
       irec = 1
 
       fcthread = 0. _d 0
 
       if (optimcycle .ge. 0) then
         ilfld = ilnblnk( xx_edtaux_file )
-        write(fnamefld(1:80),'(2a,i10.10)') 
+        write(fnamefld(1:80),'(2a,i10.10)')
      &       xx_edtaux_file(1:ilfld),'.',optimcycle
       endif
       call active_read_xyz( fnamefld, tmpfld3d, irec, doglobalread,
@@ -208,7 +209,7 @@ C------------------------------------------------------
 C
 C     maximum autorized value of the Eddy stress (squared)
 C     from D. Ferreira
-C     values beyond will be penalized; 
+C     values beyond will be penalized;
 C     values below are not penalized
       tau2_max = 0.4**2
       locfc = 0.0
@@ -276,5 +277,5 @@ c
 
       return
       end
-      
-      
+
+
