@@ -4,6 +4,12 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/shelfice: add option for convservative form of Hellmer&Olbers (1989)
+  thermodynamics
+  - requires a little reorganization, which affects the testreport results 
+    of isomip.htd (only 7 digits of cg2d agree) => update/modify experiment,
+    so that now the conservative form is tested
+  - add a few comments
 o add missing cvs $Header$ or $Name$ in eesupp/*, pkg/* & verification/code*
 o add a little bit of code to gad_os7mp_adv_?.F to help vectorization
 o add new diagnostics to seaice: advective, diffusive fluxes (only for
