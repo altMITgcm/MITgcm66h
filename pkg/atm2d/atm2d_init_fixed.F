@@ -56,7 +56,10 @@ C     MITGCM helper routines; hopefully no unit conflict...
       OPEN(514,file='couple.nml',status='old')
       READ(514,COUPLE_PARM)
       CLOSE(514)
+
+#ifdef OCEAN_3D
       CALL ATM2D_READPARMS(myThid)
+#endif
 
       ncall_atm=dtcouple/dtatm
       ncall_ocean=dtcouple/dtocn
