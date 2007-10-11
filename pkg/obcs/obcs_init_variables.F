@@ -132,6 +132,45 @@ C     == Local variables ==
          ENDDO
         ENDDO
 
+#ifdef ALLOW_SEAICE
+        DO I=1-Olx,sNx+Olx
+#ifdef ALLOW_OBCS_NORTH
+         OBNa (I,bi,bj)=0. _d 0
+         OBNh (I,bi,bj)=0. _d 0
+         OBNa0(I,bi,bj)=0. _d 0
+         OBNh0(I,bi,bj)=0. _d 0
+         OBNa1(I,bi,bj)=0. _d 0
+         OBNh1(I,bi,bj)=0. _d 0
+#endif /* ALLOW_OBCS_NORTH */
+#ifdef ALLOW_OBCS_SOUTH
+         OBSa (I,bi,bj)=0. _d 0
+         OBSh (I,bi,bj)=0. _d 0
+         OBSa0(I,bi,bj)=0. _d 0
+         OBSh0(I,bi,bj)=0. _d 0
+         OBSa1(I,bi,bj)=0. _d 0
+         OBSh1(I,bi,bj)=0. _d 0
+#endif /* ALLOW_OBCS_SOUTH */
+        ENDDO
+        DO J=1-Oly,sNy+Oly
+#ifdef ALLOW_OBCS_EAST
+         OBEa (J,bi,bj)=0. _d 0
+         OBEh (J,bi,bj)=0. _d 0
+         OBEa0(J,bi,bj)=0. _d 0
+         OBEh0(J,bi,bj)=0. _d 0
+         OBEa1(J,bi,bj)=0. _d 0
+         OBEh1(J,bi,bj)=0. _d 0
+#endif /* ALLOW_OBCS_EAST */
+#ifdef ALLOW_OBCS_WEST
+         OBWa (J,bi,bj)=0. _d 0
+         OBWh (J,bi,bj)=0. _d 0
+         OBWa0(J,bi,bj)=0. _d 0
+         OBWh0(J,bi,bj)=0. _d 0
+         OBWa1(J,bi,bj)=0. _d 0
+         OBWh1(J,bi,bj)=0. _d 0
+#endif /* ALLOW_OBCS_WEST */
+        ENDDO
+#endif /* ALLOW_SEAICE */
+
 #ifdef ALLOW_PTRACERS
 #ifndef ALLOW_AUTODIFF_TAMC
         IF ( usePTRACERS ) THEN
