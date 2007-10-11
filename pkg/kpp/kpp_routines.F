@@ -166,9 +166,9 @@ c for blmix
 c-----------------------------------------------------------------------
 
       do md = 1, mdiff
+       do k=1,Nrp1
          do i = 1,imt
-            do k=kmtj(i),Nrp1
-               diffus(i,k,md) = 0.0
+             if(k.ge.kmtj(i))  diffus(i,k,md) = 0.0
             end do
          end do
       end do
