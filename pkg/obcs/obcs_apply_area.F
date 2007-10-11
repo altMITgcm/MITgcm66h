@@ -19,7 +19,7 @@ C     == Global variables ==
 
 C     == Routine Arguments ==
       INTEGER bi,bj
-      _RL aFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      _RL aFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       INTEGER myThid
 
 #if (defined (ALLOW_OBCS) && defined (ALLOW_SEAICE))
