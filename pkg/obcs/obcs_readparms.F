@@ -40,10 +40,10 @@ C     iUnit       - Work variable for IO unit number
      &          OB_Jnorth,OB_Jsouth,OB_Ieast,OB_Iwest,
      &          useOrlanskiNorth,useOrlanskiSouth,
      &          useOrlanskiEast,useOrlanskiWest,
-     &          OBNuFile,OBNvFile,OBNtFile,OBNsFile,
-     &          OBSuFile,OBSvFile,OBStFile,OBSsFile,
-     &          OBEuFile,OBEvFile,OBEtFile,OBEsFile,
-     &          OBWuFile,OBWvFile,OBWtFile,OBWsFile,
+     &          OBNuFile,OBNvFile,OBNtFile,OBNsFile,OBNaFile,OBNhFile,
+     &          OBSuFile,OBSvFile,OBStFile,OBSsFile,OBSaFile,OBShFile,
+     &          OBEuFile,OBEvFile,OBEtFile,OBEsFile,OBEaFile,OBEhFile,
+     &          OBWuFile,OBWvFile,OBWtFile,OBWsFile,OBWaFile,OBWhFile,
      &          useOBCSsponge, useOBCSbalance, useOBCSprescribe,
      &          OBCSprintDiags
 #ifdef ALLOW_PTRACERS
@@ -99,18 +99,26 @@ C--   Default flags and values for OBCS
       OBNvFile = ' '
       OBNtFile = ' '
       OBNsFile = ' '
+      OBNaFile = ' '
+      OBNhFile = ' '
       OBSuFile = ' '
       OBSvFile = ' '
       OBStFile = ' '
       OBSsFile = ' '
+      OBSaFile = ' '
+      OBShFile = ' '
       OBEuFile = ' '
       OBEvFile = ' '
       OBEtFile = ' '
       OBEsFile = ' '
+      OBEaFile = ' '
+      OBEhFile = ' '
       OBWuFile = ' '
       OBWvFile = ' '
       OBWtFile = ' '
       OBWsFile = ' '
+      OBWaFile = ' '
+      OBWhFile = ' '
 #ifdef ALLOW_PTRACERS
       DO iTracer = 1, PTRACERS_num
        OBNptrFile(iTracer) = ' '
