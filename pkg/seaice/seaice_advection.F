@@ -483,9 +483,9 @@ C--   keep advective flux (for diagnostics)
 C-     Apply open boundary conditions
           IF ( useOBCS ) THEN
            IF (tracerIdentity.EQ.GAD_HEFF) THEN
-            CALL OBCS_APPLY_HEFF( bi, bj, k, localTij, myThid )
+            CALL OBCS_APPLY_HEFF( bi, bj, localTij, myThid )
            ELSEIF (tracerIdentity.EQ.GAD_AREA) THEN
-            CALL OBCS_APPLY_AREA( bi, bj, k, localTij, myThid )
+            CALL OBCS_APPLY_AREA( bi, bj, localTij, myThid )
            ENDIF
           ENDIF
 #endif /* ALLOW_OBCS */
@@ -684,9 +684,9 @@ C--   keep advective flux (for diagnostics)
 C-     Apply open boundary conditions
            IF (useOBCS) THEN
             IF (tracerIdentity.EQ.GAD_HEFF) THEN
-             CALL OBCS_APPLY_HEFF( bi, bj, k, localTij, myThid )
+             CALL OBCS_APPLY_HEFF( bi, bj, localTij, myThid )
             ELSEIF (tracerIdentity.EQ.GAD_AREA) THEN
-             CALL OBCS_APPLY_AREA( bi, bj, k, localTij, myThid )
+             CALL OBCS_APPLY_AREA( bi, bj, localTij, myThid )
             ENDIF
            ENDIF
 #endif /* ALLOW_OBCS */

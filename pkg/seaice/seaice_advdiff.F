@@ -376,6 +376,42 @@ C     with LAD=1 (Leapfrog).
        ENDIF
 #endif /* SEAICE_SALINITY */
 
+#ifdef ALLOW_OBCS
+       IF ( useOBCS ) THEN
+C-     Apply open boundary conditions
+        DO bj=myByLo(myThid),myByHi(myThid)
+         DO bi=myBxLo(myThid),myBxHi(myThid)
+          IF ( SEAICEadvHeff ) THEN
+           DO j=1-Oly,sNy+Oly
+            DO i=1-Olx,sNx+Olx
+             iceFld(i,j) = HEFF(i,j,1,bi,bj)
+            ENDDO
+           ENDDO
+           CALL OBCS_APPLY_HEFF( bi, bj, iceFld, myThid )
+           DO j=1-Oly,sNy+Oly
+            DO i=1-Olx,sNx+Olx
+             HEFF(i,j,1,bi,bj) = iceFld(i,j)
+            ENDDO
+           ENDDO
+          ENDIF
+          IF ( SEAICEadvArea ) THEN
+           DO j=1-Oly,sNy+Oly
+            DO i=1-Olx,sNx+Olx
+             iceFld(i,j) = AREA(i,j,1,bi,bj)
+            ENDDO
+           ENDDO
+           CALL OBCS_APPLY_AREA( bi, bj, iceFld, myThid )
+           DO j=1-Oly,sNy+Oly
+            DO i=1-Olx,sNx+Olx
+             AREA(i,j,1,bi,bj) = iceFld(i,j)
+            ENDDO
+           ENDDO
+          ENDIF
+         ENDDO
+        ENDDO
+       ENDIF
+#endif /* ALLOW_OBCS */
+
 C--   end if multiDimAdvection
       ENDIF
 C--   end if SEAICEuseDynamics
