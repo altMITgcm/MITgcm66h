@@ -75,7 +75,6 @@ C     msgBuf      - Informational/error meesage buffer
          CALL PRINT_ERROR( msgBuf , 1)
          STOP 'ABNORMAL END: S/R OBCS_CHECK'
        ENDIF
-#ifdef ALLOW_PTRACERS
        IF (usePTracers) THEN
         WRITE(msgBuf,'(A)')
      &  'OBCS_CHECK: ERROR: useOrlanski* Rad OBC with'
@@ -85,20 +84,38 @@ C     msgBuf      - Informational/error meesage buffer
          CALL PRINT_ERROR( msgBuf , 1)
          STOP 'ABNORMAL END: S/R OBCS_CHECK'
        ENDIF
-#endif ALLOW_PTRACERS
+       IF (useSEAICE) THEN
+        WRITE(msgBuf,'(A)')
+     &  'OBCS_CHECK: ERROR: useOrlanski* Rad OBC with'
+         CALL PRINT_ERROR( msgBuf , 1)
+        WRITE(msgBuf,'(A)')
+     &  'OBCS_CHECK: ERROR: SEAICE not yet implemented'
+         CALL PRINT_ERROR( msgBuf , 1)
+         STOP 'ABNORMAL END: S/R OBCS_CHECK'
+       ENDIF
       ENDIF
 
 #ifndef ALLOW_OBCS_PRESCRIBE
-        IF (useOBCSprescribe) THEN
-         WRITE(msgBuf,'(A)')
-     &   'OBCS_CHECK: ERROR: useOBCSprescribe = .TRUE. for'
-         CALL PRINT_ERROR( msgBuf , 1)
-         WRITE(msgBuf,'(A)')
-     &   'OBCS_CHECK: undef ALLOW_OBCS_PRESCRIBE'
-         CALL PRINT_ERROR( msgBuf , 1)
-         STOP 'ABNORMAL END: S/R OBCS_CHECK'
-        ENDIF
+      IF (useOBCSprescribe) THEN
+       WRITE(msgBuf,'(A)')
+     &  'OBCS_CHECK: ERROR: useOBCSprescribe = .TRUE. for'
+       CALL PRINT_ERROR( msgBuf , 1)
+       WRITE(msgBuf,'(A)')
+     &  'OBCS_CHECK: undef ALLOW_OBCS_PRESCRIBE'
+       CALL PRINT_ERROR( msgBuf , 1)
+       STOP 'ABNORMAL END: S/R OBCS_CHECK'
+      ENDIF
 #endif
+
+      IF (useSEAICE .AND. .NOT. useEXF) THEN
+       WRITE(msgBuf,'(A)')
+     &  'OBCS_CHECK: ERROR: for SEAICE OBCS, use'
+       CALL PRINT_ERROR( msgBuf , 1)
+       WRITE(msgBuf,'(A)')
+     &  'OBCS_CHECK: pkg/exf to read input files'
+       CALL PRINT_ERROR( msgBuf , 1)
+       STOP 'ABNORMAL END: S/R OBCS_CHECK'
+      ENDIF
 
       IF ( debugLevel.GE.debLevB ) THEN
        _BEGIN_MASTER( myThid )
