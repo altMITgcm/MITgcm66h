@@ -290,9 +290,9 @@ c     == global variables ==
 
 c     == routine arguments ==
 
-      _RL obcs_fld_y(1-oly:sny+oly,Nr,nsx,nsy)
-      _RL obcs_y_0(1-oly:sny+oly,Nr,nsx,nsy)
-      _RL obcs_y_1(1-oly:sny+oly,Nr,nsx,nsy)
+      _RL obcs_fld_y(1-oly:sny+oly,nsx,nsy)
+      _RL obcs_y_0(1-oly:sny+oly,nsx,nsy)
+      _RL obcs_y_1(1-oly:sny+oly,nsx,nsy)
       character*(MAX_LEN_FNAM) obcs_file
       character*1 obcsmask
       logical first, changed
