@@ -26,6 +26,8 @@ C                 biogeochemical experiments
 C  Filename*  : : various spare filenames 
 C  gchem_int* : : place holder to read in a integer number, set at run time
 C  gchem_rl*  : : place holder to read in a real number, set at run time
+c  gchem_ForcingPeriod : : periodic forcing parameter specific for gchem (seconds)
+c  gchem_ForcingCycle  : : periodic forcing parameter specific for gchem (seconds)
 
 C  
       INTEGER nsubtime
@@ -49,6 +51,8 @@ C
       _RL     gchem_rl3
       _RL     gchem_rl4
       _RL     gchem_rl5
+      _RL     gchem_ForcingPeriod
+      _RL     gchem_ForcingCycle
 
 
       COMMON /GCHEM_PARAMS/
@@ -66,7 +70,8 @@ C
      &           gchem_int1, gchem_int2, gchem_int3,
      &           gchem_int4, gchem_int5,
      &           gchem_rl1, gchem_rl2, gchem_rl3,
-     &           gchem_rl4, gchem_rl5
+     &           gchem_rl4, gchem_rl5,
+     &           gchem_ForcingPeriod, gchem_ForcingCycle
 CEOP
 
 #endif /* ALLOW_GCHEM */
