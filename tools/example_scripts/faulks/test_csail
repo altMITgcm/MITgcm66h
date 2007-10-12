@@ -67,8 +67,7 @@ mkdir $new_dir
   cp -ra ../MITgcm/* .
   echo "Running testreport using:"
   cd verification
-# comm="./testreport -adm -a edhill@mitgcm.org"
-  comm="./testreport -adm -a edhill@mitgcm.org -skd bottom_ctrl_5x5"
+  comm="./testreport -adm -a edhill@mitgcm.org"
   if test "x$OPTFILE" != x ; then
     comm="$comm -of=$OPTFILE"
   fi
