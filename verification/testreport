@@ -1228,6 +1228,7 @@ for dir in $TESTDIRS ; do
 	done
 # <-- same processing for adjoint & forward test
     if test "x$ADM" = xt ; then
+	head -1 $dir/$builddir/taf_ad.log >> $CDIR"/summary.txt"
 	grep -A3 'Seconds in section "ALL' $dir/$rundir/$OUTPUTFILE \
 			   >> $CDIR"/summary.txt"
     fi
