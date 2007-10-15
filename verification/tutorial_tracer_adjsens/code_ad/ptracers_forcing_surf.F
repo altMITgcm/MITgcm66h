@@ -82,7 +82,7 @@ c
      &          surfaceForcingPtr(i,j,bi,bj,iTrc)
      &        + PmEpR(i,j,bi,bj)
      &          *( PTRACERS_EvPrRn(iTrc) - pTracer(i,j,ks,bi,bj,iTrc) )
-     &          *convertEmP2rUnit
+     &          *mass2rUnit
            ENDDO
           ENDDO
          ENDIF

@@ -251,7 +251,7 @@ C     with this input/output of water is added here to the surface tendency.
           surfaceForcingT(i,j,bi,bj) = surfaceForcingT(i,j,bi,bj)
      &      + PmEpR(i,j,bi,bj)
      &          *( temp_EvPrRn - theta(i,j,ks,bi,bj) )
-     &          *convertEmP2rUnit
+     &          *mass2rUnit
          ENDDO
         ENDDO
        ENDIF
@@ -262,7 +262,7 @@ C     with this input/output of water is added here to the surface tendency.
           surfaceForcingS(i,j,bi,bj) = surfaceForcingS(i,j,bi,bj)
      &      + PmEpR(i,j,bi,bj)
      &          *( salt_EvPrRn - salt(i,j,ks,bi,bj) )
-     &          *convertEmP2rUnit
+     &          *mass2rUnit
          ENDDO
         ENDDO
        ENDIF
@@ -286,7 +286,7 @@ C     account for Rain/Evap heat content (temp_EvPrRn) using local SST
            surfaceForcingT(i,j,bi,bj) = surfaceForcingT(i,j,bi,bj)
      &       + EmPmR(i,j,bi,bj)
      &           *( theta(i,j,ks,bi,bj) - temp_EvPrRn )
-     &           *convertEmP2rUnit
+     &           *mass2rUnit
           ENDDO
          ENDDO
         ENDIF
@@ -297,7 +297,7 @@ C     converts EmPmR to salinity tendency using surface local salinity
            surfaceForcingS(i,j,bi,bj) = surfaceForcingS(i,j,bi,bj)
      &       + EmPmR(i,j,bi,bj)
      &           *( salt(i,j,ks,bi,bj) - salt_EvPrRn )
-     &           *convertEmP2rUnit
+     &           *mass2rUnit
           ENDDO
          ENDDO
         ENDIF
@@ -312,7 +312,7 @@ C     account for Rain/Evap heat content (temp_EvPrRn) assuming uniform SST (=tR
            surfaceForcingT(i,j,bi,bj) = surfaceForcingT(i,j,bi,bj)
      &       + EmPmR(i,j,bi,bj)
      &           *( tRef(ks) - temp_EvPrRn )
-     &           *convertEmP2rUnit
+     &           *mass2rUnit
           ENDDO
          ENDDO
         ENDIF
@@ -323,7 +323,7 @@ C     converts EmPmR to virtual salt flux using uniform salinity (default=35)
            surfaceForcingS(i,j,bi,bj) = surfaceForcingS(i,j,bi,bj)
      &       + EmPmR(i,j,bi,bj)
      &           *( convertFW2Salt - salt_EvPrRn )
-     &           *convertEmP2rUnit
+     &           *mass2rUnit
           ENDDO
          ENDDO
         ENDIF

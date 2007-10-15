@@ -1211,8 +1211,6 @@ C     rUnit2mass: from r-coordinate to mass per unit area [kg/m2] (z:=rho;p:=1/g
          mass2rUnit = recip_rhoConst
          rUnit2mass = rhoConst
       ENDIF
-c     convertEmP2rUnit = rhoConstFresh*mass2rUnit
-      convertEmP2rUnit = mass2rUnit
 
 c-- gradually replacing debugMode by debugLevel
       IF ( debugMode ) debugLevel = debLevB

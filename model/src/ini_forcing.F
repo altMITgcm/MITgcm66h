@@ -127,7 +127,7 @@ C-    every-one waits before master thread loads from file
       ENDIF
       IF ( EmPmRfile .NE. ' '  ) THEN
        CALL READ_FLD_XY_RS( EmPmRfile, ' ', EmPmR, 0, myThid )
-       IF ( convertEmP2rUnit.EQ.mass2rUnit ) THEN
+c      IF ( convertEmP2rUnit.EQ.mass2rUnit ) THEN
 C-     EmPmR is now (after c59h) expressed in kg/m2/s (fresh water mass flux)
         _BARRIER
         DO bj = myByLo(myThid), myByHi(myThid)
@@ -139,7 +139,7 @@ C-     EmPmR is now (after c59h) expressed in kg/m2/s (fresh water mass flux)
           ENDDO
          ENDDO
         ENDDO
-       ENDIF
+c      ENDIF
       ENDIF
       IF ( saltFluxFile .NE. ' '  ) THEN
        CALL READ_FLD_XY_RS( saltFluxFile, ' ', saltFlux, 0, myThid )
