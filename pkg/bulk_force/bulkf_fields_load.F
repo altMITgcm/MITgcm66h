@@ -286,7 +286,7 @@ C      data for the period ahead and the period behind myTime.
      &       myIter,myThid )
        CALL READ_REC_XY_RS( EmpFile,empch1,intime1,
      &       myIter,myThid )
-       IF ( convertEmP2rUnit.EQ.mass2rUnit ) THEN
+c      IF ( convertEmP2rUnit.EQ.mass2rUnit ) THEN
 C-     EmPmR is now (after c59h) expressed in kg/m2/s (fresh water mass flux)
         _BARRIER
         DO bj = myByLo(myThid), myByHi(myThid)
@@ -299,7 +299,7 @@ C-     EmPmR is now (after c59h) expressed in kg/m2/s (fresh water mass flux)
           ENDDO
          ENDDO
         ENDDO
-       ENDIF
+c      ENDIF
       ENDIF
 
 C note: no need for extra barrier here since EXCH contains threads synchronization
