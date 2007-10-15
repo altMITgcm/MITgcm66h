@@ -13,6 +13,11 @@ C $Name$
        INTEGER ncall_atm ! number of atm steps in a coupling period
        INTEGER ncall_ocean ! number of ocn steps in a coupling period
 
+
+      COMMON /DRIVER_FILENAMES/
+     &         caruptfile, fnememiss, last_nep
+      CHARACTER*120 caruptfile, fnememiss, last_nep
+
 #ifdef CPL_TEM
       COMMON /DRIVER_VAR_TEM/
      &          nepan, nepav, n2oann, n2omn, nepmn,
