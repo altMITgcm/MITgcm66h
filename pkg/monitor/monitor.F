@@ -103,8 +103,6 @@ C       Print the time to make grepping the stdout easier
         CALL MON_OUT_RL('_secondsf', myTime,mon_string_none,myThid)
 
 C       Print the basic statistics of model state variables
-          thickFacC(k) = drF(k)*deepFac2C(k)*rhoFacC(k)
-          thickFacF(k) = drC(k)*deepFac2F(k)*rhoFacF(k)
         CALL MON_SET_PREF('dynstat',myThid)
         CALL MON_PRINTSTATS_RL(1,EtaN,'_eta',
      &       maskH,maskH,rA ,drF,myThid)
