@@ -298,9 +298,6 @@ C        CALL emissipcc(tnow,nepmn,ocumn,CO2,xco2ann,nemis)
         IF (iyr.eq.endYear) THEN
 C         NEM emissions and NEP for start of climate-chemistry run
           adupt=aduptt
-          OPEN(367,FILE=last_nep,FORM='unformatted',STATUS='replace')
-          WRITE (367) adupt,temco2
-          CLOSE(367)
           CALL wr_rstrt_nem
         ENDIF
 
