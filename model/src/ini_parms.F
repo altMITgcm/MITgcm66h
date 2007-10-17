@@ -1214,6 +1214,7 @@ C     rUnit2mass: from r-coordinate to mass per unit area [kg/m2] (z:=rho;p:=1/g
 
 c-- gradually replacing debugMode by debugLevel
       IF ( debugMode ) debugLevel = debLevB
+      IF ( debugLevel .GE. debLevB ) debugMode = .TRUE.
 
 c-- flag for approximate adjoint
       IF ( inAdExact ) THEN
