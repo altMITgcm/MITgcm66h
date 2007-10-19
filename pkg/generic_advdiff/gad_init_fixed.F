@@ -87,12 +87,6 @@ C     with synchronous time-step, which would require to do also AB(u,v,w)
       ENDIF
 #endif /* ALLOW_ADAMSBASHFORTH_3 */
 
-C-     Initialize AB starting flags for T & S:
-C      notes: those could be modified when reading a pickup that does
-C             correspond to what is actually needed.
-       tempStartAB = nIter0.EQ.0
-       saltStartAB = nIter0.EQ.0
-
       _END_MASTER(myThid)
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
