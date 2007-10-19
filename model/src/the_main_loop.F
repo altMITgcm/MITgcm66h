@@ -274,10 +274,10 @@ CADJ &    nchklev_1*nsx*nsy*nthreads_chkpt*PTRACERS_num*nr
 #   endif /* ALLOW_PTRACERS */
 c--
 #   ifndef DISABLE_MULTIDIM_ADVECTION
-CADJ INIT comlev1_bibj_k_gad
-CADJ &    = COMMON,nchklev_1*nsx*nsy*nr*nthreads_chkpt*maxpass
-CADJ INIT comlev1_bibj_k_gad_pass
-CADJ &    = COMMON,nchklev_1*nsx*nsy*nr*nthreads_chkpt*maxpass*maxcube
+CADJ INIT comlev1_bibj_k_gad = COMMON,
+CADJ &    nchklev_1*nsx*nsy*nr*nthreads_chkpt*maxpass
+CADJ INIT comlev1_bibj_k_gad_pass = COMMON,
+CADJ &    nchklev_1*nsx*nsy*nr*nthreads_chkpt*maxpass*maxpass
 #   endif /* DISABLE_MULTIDIM_ADVECTION */
 c--
 #   if (defined (ALLOW_EXF) && defined (ALLOW_BULKFORMULAE))
