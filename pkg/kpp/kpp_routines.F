@@ -1504,7 +1504,7 @@ c     work3 - density of t(1)-.8 & s(1  ) at depth 1
          DO J = 1, sNy
             DO I = 1, sNx
                KPPMLD(I,J) = ABS(R_low(I,J,bi,bj))
-               WORK3 (I,J) = WORK1(I,J) - 0.8 * WORK2(I,J)
+               WORK3 (I,J) = WORK1(I,J) - 0.8 _d 0 * WORK2(I,J)
             END DO
          END DO
       ENDIF
