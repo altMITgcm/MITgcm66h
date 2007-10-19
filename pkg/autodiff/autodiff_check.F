@@ -69,6 +69,12 @@ c--   to nTimeSteps: (nchklev_1*nchklev_2*nchklev_3 .ge. nTimeSteps)
        ENDIF
 #endif
 
+#ifdef ALLOW_GRDCHK
+       IF ( useSingleCpuIO .AND. useGrdchk ) THEN
+          STOP 'Need to have useSingleCpuIO=.FALSE. with useGrdchk'
+       ENDIF
+#endif
+
 #endif
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
