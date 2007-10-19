@@ -33,7 +33,7 @@ C     !USES:
       INTEGER MDS_RECLEN
 
 C     !INPUT/OUTPUT PARAMETERS:
-      CHARACTER*(MAX_LEN_FNAM) fn
+      CHARACTER*(*) fn
       INTEGER pickupflg
       _RL myTime
       INTEGER myIter
