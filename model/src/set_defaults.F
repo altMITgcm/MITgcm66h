@@ -283,9 +283,6 @@ C--   Time stepping parameters
       writeStatePrec    = precFloat64
       writeBinaryPrec   = precFloat32
       readBinaryPrec    = precFloat32
-      nCheckLev         = 1
-      checkPtSuff(1)    = 'ckptA'
-      checkPtSuff(2)    = 'ckptB'
       cAdjFreq          =  0. _d 0
       tauCD             =  0. _d 0
       tauThetaClimRelax =  0. _d 0

@@ -26,6 +26,7 @@ C     !USES:
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "RESTART.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     permPickup :: Is or is not a permanent pickup.
