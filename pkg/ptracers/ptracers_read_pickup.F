@@ -63,7 +63,11 @@ C       Read variables from the pickup file
 
       IF ( PTRACERS_pickup_read_mdsio ) THEN
 
-      WRITE(fn,'(A,I10.10)') 'pickup_ptracers.',myIter
+      IF ( pickupSuff.EQ.' ' ) THEN
+        WRITE(fn,'(A,I10.10)') 'pickup_ptracers.',myIter
+      ELSE
+        WRITE(fn,'(A,A10)')    'pickup_ptracers.',pickupSuff
+      ENDIF
       prec = precFloat64
 
       IF ( usePickupBeforeC54 ) THEN
