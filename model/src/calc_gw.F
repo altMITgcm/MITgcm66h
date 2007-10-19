@@ -30,6 +30,7 @@ C     == Global variables ==
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#include "RESTART.h"
 #include "SURFACE.h"
 #include "DYNVARS.h"
 #include "NH_VARS.h"
@@ -523,12 +524,12 @@ c#ifdef ALLOW_ADAMSBASHFORTH_3
 c       CALL ADAMS_BASHFORTH3(
 c    I                         bi, bj, k,
 c    U                         gW, gwNm,
-c    I                         momStartAB, myIter, myThid )
+c    I                         nHydStartAB, myIter, myThid )
 c#else /* ALLOW_ADAMSBASHFORTH_3 */
         CALL ADAMS_BASHFORTH2(
      I                         bi, bj, k,
      U                         gW, gwNm1,
-     I                         myIter, myThid )
+     I                         nHydStartAB, myIter, myThid )
 c#endif /* ALLOW_ADAMSBASHFORTH_3 */
 
 C--   Dissipation term outside the Adams-Bashforth:

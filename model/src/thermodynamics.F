@@ -78,6 +78,7 @@ C     == Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "RESTART.h"
 #include "DYNVARS.h"
 #include "GRID.h"
 #ifdef ALLOW_GENERIC_ADVDIFF

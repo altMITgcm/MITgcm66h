@@ -49,6 +49,7 @@ C     == GLobal variables ==
 #include "DYNVARS.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "RESTART.h"
 #ifdef ALLOW_GENERIC_ADVDIFF
 #include "GAD.h"
 #endif
@@ -129,7 +130,7 @@ C--   the kDown is still required
 # ifdef NONLIN_FRSURF
 CADJ STORE fVerT(:,:,:) =
 CADJ &     comlev1_bibj_k, key=kkey, byte=isbyte
-CADJ STORE gtNm1(:,:,k,bi,bj) = 
+CADJ STORE gtNm1(:,:,k,bi,bj) =
 CADJ &     comlev1_bibj_k, key=kkey, byte=isbyte
 # endif
 #endif
@@ -183,7 +184,7 @@ C--   External thermal forcing term(s) inside Adams-Bashforth:
         CALL ADAMS_BASHFORTH2(
      I                        bi, bj, k,
      U                        gT, gtNm1,
-     I                        iterNb, myThid )
+     I                        tempStartAB, iterNb, myThid )
 #endif
       ENDIF
 
