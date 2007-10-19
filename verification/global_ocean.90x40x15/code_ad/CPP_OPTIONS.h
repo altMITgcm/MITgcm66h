@@ -10,6 +10,15 @@ C will be compiled.
 
 #include "PACKAGES_CONFIG.h"
 
+cph(
+C o Nonlinear free-surface code (but without rStar)
+#define EXACT_CONSERV
+#define NONLIN_FRSURF
+#define DISABLE_RSTAR_CODE
+C o Include/exclude Implicit vertical advection code
+#undef INCLUDE_IMPLVERTADV_CODE
+cph)
+
 #ifdef ALLOW_KPP
 #define  SHORTWAVE_HEATING
 #endif
@@ -25,9 +34,6 @@ C o Include/exclude call to S/R CALC_DIFFUSIVITY
 
 C o Allow nonHydrostatic code
 #undef  ALLOW_NONHYDROSTATIC
-
-C o Exact volume conservation
-#undef EXACT_CONSERV
 
 C o Execution environment support options
 #include "CPP_EEOPTIONS.h"
