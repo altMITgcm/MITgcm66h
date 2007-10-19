@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o prepare for "clever pickup" implementation: add new header file "RESTART.h"
+  for internal parameters related to restart process (formerly from PARAMS.h)
+  and add startAB parameter to argument list of S/R ADAMS_BASHFORTH2.
+o more standard interface to {PKG}_WRITE_PICKUP with pickup suffix passed
+  as argument. (only atm2d & obcs write_pickup have not yet been updated)
 o pkg/monitor:
   - use GLOBAL_SUM_TILE instead of _GLOBAL_SUM
   - fix mon_stats_rs (statistics over the full domain, even where field is zero)
