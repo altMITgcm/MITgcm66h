@@ -58,13 +58,12 @@ C-      2D arrays
       ENDDO
 
       IF ( nIter0.NE.0 ) THEN
-       CALL GGL90_READ_CHECKPOINT( nIter0, myThid )
+       CALL GGL90_READ_PICKUP( nIter0, myThid )
       ELSE
 C--   Read initial turbulent kinetic energy thickness from file if available.
        IF ( GGL90TKEFile .NE. ' ' ) THEN
-        _BEGIN_MASTER( myThid )
+        _BARRIER
         CALL READ_FLD_XYZ_RL( GGL90TKEFile, ' ', GGL90TKE, 0, myThid )
-        _END_MASTER(myThid)
         _EXCH_XYZ_R8(GGL90TKE,myThid)
         DO bj=myByLo(myThid),myByHi(myThid)
          DO bi=myBxLo(myThid),myBxHi(myThid)
@@ -79,7 +78,7 @@ C--   Read initial turbulent kinetic energy thickness from file if available.
          ENDDO
         ENDDO
        ENDIF
-      ENDIF	
+      ENDIF
 
 #endif /*  ALLOW_GGL90  */
 
