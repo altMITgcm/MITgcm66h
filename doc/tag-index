@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint59i
 o adjoint:
   * fix multiDimAdvection adjoint 
     (partial recomputation problem by TAF for fVerT(:,:,kDown)
