@@ -100,6 +100,9 @@ C-    now we make local directories with myProcessStr appended
         WRITE(mdsioLocalDir,'(3A)') namBuf(1:pIL),myProcessStr(1:4),'/'
       ENDIF
 
+C-    Initialise MFLDS variables in common block
+      CALL READ_MFLDS_INIT( myThid )
+
 C     Set globalFiles flag for READ_WRITE_FLD package
       CALL SET_WRITE_GLOBAL_FLD( globalFiles )
 C     Set globalFiles flag for READ_WRITE_REC package
