@@ -12,6 +12,10 @@ C Use this file for selecting options within the RW package
 
 #include "CPP_OPTIONS.h"
 
+C use READ_MFLDS S/R in "safe" mode (set/check/unset for each file to read)
+C involves more thread synchronization (could slow down multi-threaded run)
+#define RW_SAFE_MFLDS
+
 #endif /* ALLOW_RW */
 #endif /* RW_OPTIONS_H */
 
