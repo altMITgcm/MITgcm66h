@@ -209,7 +209,8 @@ C--   Elliptic solver parameters
 
 C--   Time stepping parammeters
       NAMELIST /PARM03/
-     & nIter0, nTimeSteps, nEndIter, pickupSuff,
+     & nIter0, nTimeSteps, nEndIter,
+     & pickupSuff, pickupStrictlyMatch,
      & deltaT, deltaTClock, deltaTmom,
      & deltaTtracer, dTtracerLev, deltaTfreesurf,
      & forcing_In_AB, momForcingOutAB, tracForcingOutAB,

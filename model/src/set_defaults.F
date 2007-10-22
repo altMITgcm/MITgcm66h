@@ -246,6 +246,7 @@ C--   Time stepping parameters
       nIter0            = 0
       startTime         = deltaT*float(nIter0)
       pickupSuff        = ' '
+      pickupStrictlyMatch = .TRUE.
       nTimeSteps        = 0
       nEndIter          = nIter0+nTimeSteps
       endTime           = deltaT*float(nEndIter)
