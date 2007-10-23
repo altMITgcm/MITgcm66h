@@ -548,8 +548,10 @@ C        and step forward storing result in gT, gS, etc.
 C--
 # ifdef ALLOW_AUTODIFF_TAMC 
 #  if ((defined NONLIN_FRSURF) || (defined ALLOW_DEPTH_CONTROL)) && (defined ALLOW_GMREDI)
+#   ifdef GM_NON_UNITY_DIAGONAL
 CADJ STORE kux(:,:,k,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
 CADJ STORE kvy(:,:,k,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
+#   endif
 #   ifdef GM_EXTRA_DIAGONAL
 CADJ STORE kuz(:,:,k,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
 CADJ STORE kvz(:,:,k,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
