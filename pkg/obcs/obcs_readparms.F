@@ -44,6 +44,8 @@ C     iUnit       - Work variable for IO unit number
      &          OBSuFile,OBSvFile,OBStFile,OBSsFile,OBSaFile,OBShFile,
      &          OBEuFile,OBEvFile,OBEtFile,OBEsFile,OBEaFile,OBEhFile,
      &          OBWuFile,OBWvFile,OBWtFile,OBWsFile,OBWaFile,OBWhFile,
+     &          OBNslFile,OBSslFile,OBEslFile,OBWslFile,
+     &          OBNsnFile,OBSsnFile,OBEsnFile,OBWsnFile,
      &          useOBCSsponge, useOBCSbalance, useOBCSprescribe,
      &          OBCSprintDiags
 #ifdef ALLOW_PTRACERS
@@ -100,6 +102,8 @@ C--   Default flags and values for OBCS
       OBNtFile = ' '
       OBNsFile = ' '
       OBNaFile = ' '
+      OBNslFile = ' '
+      OBNsnFile = ' '
       OBNhFile = ' '
       OBSuFile = ' '
       OBSvFile = ' '
@@ -107,18 +111,24 @@ C--   Default flags and values for OBCS
       OBSsFile = ' '
       OBSaFile = ' '
       OBShFile = ' '
+      OBSslFile = ' '
+      OBSsnFile = ' '
       OBEuFile = ' '
       OBEvFile = ' '
       OBEtFile = ' '
       OBEsFile = ' '
       OBEaFile = ' '
       OBEhFile = ' '
+      OBEslFile = ' '
+      OBEsnFile = ' '
       OBWuFile = ' '
       OBWvFile = ' '
       OBWtFile = ' '
       OBWsFile = ' '
       OBWaFile = ' '
       OBWhFile = ' '
+      OBWslFile = ' '
+      OBWsnFile = ' '
 #ifdef ALLOW_PTRACERS
       DO iTracer = 1, PTRACERS_num
        OBNptrFile(iTracer) = ' '
