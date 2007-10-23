@@ -44,7 +44,7 @@ C     KPP needs implicit vertical diffusion and viscosity
          CALL PRINT_ERROR( msgBuf , myThid )
          STOP 'ABNORMAL END: S/R KPP_CHECK'
       ENDIF
-      IF (.NOT.implicitViscosity) THEN
+      IF ( .NOT.implicitViscosity .AND. momStepping ) THEN
          WRITE(msgBuf,'(A)') 'KPP needs implicitViscosity to be enabled'
          CALL PRINT_ERROR( msgBuf , myThid )
          STOP 'ABNORMAL END: S/R KPP_CHECK'
