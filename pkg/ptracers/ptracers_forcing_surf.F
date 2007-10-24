@@ -88,8 +88,64 @@ c
          ENDIF
 
        ENDDO
-      ENDIF
+
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+      ELSE
+#else /* EXACT_CONSERV */
+      IF (.TRUE.) THEN
 #endif /* EXACT_CONSERV */
+
+C--   EmPmR does not really affect the water column height (for tracer budget)
+C     and is converted to a salt tendency.
+
+       IF (convertFW2Salt .EQ. -1.) THEN
+C-    use local surface tracer field to calculate forcing term:
+
+        DO iTrc=1,PTRACERS_numInUse
+
+         IF (PtRACERS_EvPrRn(iTrc).NE.UNSET_RL) THEN
+C        account for Rain/Evap tracer content (PtRACERS_EvPrRn) using
+C        local surface tracer
+          DO j = jMin, jMax
+           DO i = iMin, iMax
+            surfaceForcingPtr(i,j,bi,bj,iTrc) =
+     &          surfaceForcingPtr(i,j,bi,bj,iTrc)
+     &        + EmPmR(i,j,bi,bj)
+     &            *( pTracer(i,j,ks,bi,bj,iTrc) - PtRACERS_EvPrRn(iTrc) )
+     &            *mass2rUnit
+           ENDDO
+          ENDDO
+         ENDIF
+
+        ENDDO
+
+       ELSE
+C-    use uniform tracer value to calculate forcing term:
+
+        DO iTrc=1,PTRACERS_numInUse
+
+         IF (PtRACERS_EvPrRn(iTrc).NE.UNSET_RL) THEN
+C     account for Rain/Evap tracer content (PtRACERS_EvPrRn) assuming uniform
+C     surface tracer (=PTRACERS_ref)
+          DO j = jMin, jMax
+           DO i = iMin, iMax
+            surfaceForcingPtr(i,j,bi,bj,iTrc) =
+     &          surfaceForcingPtr(i,j,bi,bj,iTrc)
+     &        + EmPmR(i,j,bi,bj)
+     &            *( PTRACERS_ref(ks,iTrc) - PtRACERS_EvPrRn(iTrc) )
+     &            *mass2rUnit
+           ENDDO
+          ENDDO
+         ENDIF
+
+        ENDDO
+
+C-    end local-surface-tracer / uniform-value distinction
+       ENDIF
+
+      ENDIF
+
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 #endif /* ALLOW_PTRACERS */
 
