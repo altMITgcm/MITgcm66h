@@ -480,6 +480,7 @@ C--   keep advective flux (for diagnostics)
          ENDDO
 
 #ifdef ALLOW_OBCS
+#ifndef DISABLE_SEAICE_OBCS
 C-     Apply open boundary conditions
           IF ( useOBCS ) THEN
            IF (tracerIdentity.EQ.GAD_HEFF) THEN
@@ -492,6 +493,7 @@ C-     Apply open boundary conditions
             CALL OBCS_APPLY_HSNOW( bi, bj, localTij, myThid )
            ENDIF
           ENDIF
+#endif /* DISABLE_SEAICE_OBCS */
 #endif /* ALLOW_OBCS */
 
 C-     end if/else update overlap-Only

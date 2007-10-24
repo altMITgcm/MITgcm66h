@@ -377,6 +377,7 @@ C     with LAD=1 (Leapfrog).
 #endif /* SEAICE_SALINITY */
 
 #ifdef ALLOW_OBCS
+#ifndef DISABLE_SEAICE_OBCS
        IF ( useOBCS ) THEN
 C-     Apply open boundary conditions
         DO bj=myByLo(myThid),myByHi(myThid)
@@ -436,6 +437,7 @@ C-     Apply open boundary conditions
          ENDDO
         ENDDO
        ENDIF
+#endif /* DISABLE_SEAICE_OBCS */
 #endif /* ALLOW_OBCS */
 
 C--   end if multiDimAdvection
