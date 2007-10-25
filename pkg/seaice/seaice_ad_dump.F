@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "AD_CONFIG.h"
 #include "PACKAGES_CONFIG.h"
 #include "SEAICE_OPTIONS.h"
 
@@ -30,6 +31,7 @@ C     == Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "SEAICE_PARAMS.h"
 #ifdef ALLOW_MNC
 #include "MNC_PARAMS.h"
 #endif
