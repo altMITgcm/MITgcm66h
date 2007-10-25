@@ -111,8 +111,8 @@ C        local surface tracer
             surfaceForcingPtr(i,j,bi,bj,iTrc) =
      &          surfaceForcingPtr(i,j,bi,bj,iTrc)
      &        + EmPmR(i,j,bi,bj)
-     &            *( pTracer(i,j,ks,bi,bj,iTrc) - PtRACERS_EvPrRn(iTrc) )
-     &            *mass2rUnit
+     &          *( pTracer(i,j,ks,bi,bj,iTrc) - PtRACERS_EvPrRn(iTrc) )
+     &          *mass2rUnit
            ENDDO
           ENDDO
          ENDIF
