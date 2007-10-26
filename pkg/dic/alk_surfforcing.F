@@ -52,7 +52,7 @@ CEOP
 #ifdef ALLOW_OLD_VIRTUALFLUX
         DO j=jmin,jmax
           DO i=imin,imax
-            IF (maskC(i,j,1,bi,bj).NE.0.) THEN
+            IF (maskC(i,j,1,bi,bj).NE.0. _d 0) THEN
 c calculate virtual flux
 c EminusPforV = dS/dt*(1/Sglob)
 C NOTE: Be very careful with signs here!
