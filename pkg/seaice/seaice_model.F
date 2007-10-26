@@ -142,6 +142,15 @@ C solve ice momentum equations and calculate ocean surface stress
 #endif /* SEAICE_CGRID */
       ENDIF
 
+#ifdef ALLOW_OBCS
+#ifndef DISABLE_SEAICE_OBCS
+       IF ( useOBCS ) THEN
+C-     Apply ice velocity open boundary conditions
+          CALL OBCS_APPLY_UVICE( bi, bj, iceFld, myThid )
+       ENDIF
+#endif /* DISABLE_SEAICE_OBCS */
+#endif /* ALLOW_OBCS */
+
 #ifdef ALLOW_THSICE
       IF ( .NOT.useThSice ) THEN
 #endif
