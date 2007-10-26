@@ -408,6 +408,7 @@ C-     Apply open boundary conditions
             ENDDO
            ENDDO
           ENDIF
+#ifdef SEAICE_SALINITY
           IF ( SEAICEadvSALT ) THEN
            DO j=1-Oly,sNy+Oly
             DO i=1-Olx,sNx+Olx
@@ -421,6 +422,7 @@ C-     Apply open boundary conditions
             ENDDO
            ENDDO
           ENDIF
+#endif /* SEAICE_SALINITY */
           IF ( SEAICEadvSNOW ) THEN
            DO j=1-Oly,sNy+Oly
             DO i=1-Olx,sNx+Olx
