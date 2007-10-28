@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/mom_fluxform:
+  add a special version of momentum advection intended to conserve momentum
+  next to a bathymetry step or a coastline edge. (default = off = #undef)
 o new read/write pickup version:
   - for now, only implemented for main (mdsio) pickup file.
   - write out only what is needed to restart; merge pickup_nh , pickup_ph
