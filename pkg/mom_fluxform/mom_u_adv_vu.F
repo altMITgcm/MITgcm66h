@@ -38,19 +38,24 @@ C  myThid               :: thread number
       INTEGER myThid
 
 C !OUTPUT PARAMETERS: ==================================================
-C  AdvectFluxVU         :: advective flux 
+C  AdvectFluxVU         :: advective flux
       _RL AdvectFluxVU(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
 C !LOCAL VARIABLES: ====================================================
 C  i,j                  :: loop indices
-      INTEGER I,J
+      INTEGER i,j
 CEOP
 
       DO j=1-Oly+1,sNy+Oly
        DO i=1-Olx+1,sNx+Olx
         AdvectFluxVU(i,j) =
      &  0.25*( vTrans(i,j) + vTrans(i-1,j) )
+#ifdef MOM_BOUNDARY_CONSERVE
+     &      *(   uFld(i,j)*_maskW(i,j-1,k,bi,bj)
+     &         + uFld(i,j-1)*_maskW(i,j,k,bi,bj) )
+#else
      &      *( uFld(i,j) + uFld(i,j-1) )
+#endif
 #ifdef OLD_ADV_BCS
      &      *_maskW(i,j,k,bi,bj)
      &      *_maskW(i,j-1,k,bi,bj)

@@ -42,14 +42,19 @@ C  AdvectFluxUV         :: advective flux
 
 C !LOCAL VARIABLES: ====================================================
 C  i,j                  :: loop indices
-      INTEGER I,J
+      INTEGER i,j
 CEOP
 
       DO j=1-Oly+1,sNy+Oly
        DO i=1-Olx+1,sNx+Olx
         AdvectFluxUV(i,j) =
      &  0.25*( uTrans(i,j) + uTrans(i,j-1) )
+#ifdef MOM_BOUNDARY_CONSERVE
+     &      *(   vFld(i,j)*_maskS(i-1,j,k,bi,bj)
+     &         + vFld(i-1,j)*_maskS(i,j,k,bi,bj) )
+#else
      &      *(   vFld(i,j) +   vFld(i-1,j) )
+#endif
 #ifdef OLD_ADV_BCS
      &      *_maskS(i,j,k,bi,bj)
      &      *_maskS(i-1,j,k,bi,bj)

@@ -45,7 +45,7 @@ C  advectiveFluxWU      :: advective flux
 
 C !LOCAL VARIABLES: ====================================================
 C  i,j                  :: loop indices
-      INTEGER I,J
+      INTEGER i,j
 CEOP
 
       IF ( k.EQ.Nr+1 .AND.
@@ -80,7 +80,12 @@ C     Vertical advection - interior ; assume uFld & wFld are masked
       DO j=1-Oly+1,sNy+Oly
        DO i=1-Olx+1,sNx+Olx
         advectiveFluxWU(i,j) = rTrans(i,j)*
+#ifdef MOM_BOUNDARY_CONSERVE
+     &   0.5 _d 0*( uFld(i,j,k,bi,bj)*_maskW(i,j,k-1,bi,bj)
+     &             +uFld(i,j,k-1,bi,bj)*_maskW(i,j,k,bi,bj) )
+#else
      &   0.5 _d 0*( uFld(i,j,k,bi,bj)+uFld(i,j,k-1,bi,bj) )
+#endif
        ENDDO
       ENDDO
 

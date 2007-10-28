@@ -14,5 +14,9 @@ C Use this file for selecting CPP options within the mom_fluxform package
 
 C CPP macros go here
 
+C A trick to conserve U,V momemtum next to a step (vertical plane)
+C  or a coastline edge (horizontal plane).
+#undef MOM_BOUNDARY_CONSERVE
+
 #endif /* ALLOW_MOM_FLUXFORM */
 #endif /* MOM_FLUXFORM_OPTIONS_H */
