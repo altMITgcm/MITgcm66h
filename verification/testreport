@@ -414,6 +414,7 @@ run_clean()
 	    find . -type l -exec rm {} \;
 	    rm -f $EXECUTABLE *.txt STD* *diagnostics.log datetime
 	    rm -rf mnc_test_*
+ 	    rm -f *_MIT_CE_000.opt0000 costfunction*0000
 	    echo successful 1>&2
 	    exit 0
 	)
