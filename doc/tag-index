@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/dic:
+  - add tons of "_d 0" (--> much better testreports !)
+   and then update outputs of tutorial_global_oce_biogeo
 o pkg/mom_fluxform:
   add a special version of momentum advection intended to conserve momentum
   next to a bathymetry step or a coastline edge. (default = off = #undef)
