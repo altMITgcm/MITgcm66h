@@ -117,8 +117,10 @@ c--   Temperature field.
                 theta(i,j,k,bi,bj) = theta(i,j,k,bi,bj) +
      &                               fac*tmpfld3d(i,j,k,bi,bj)
 #endif
+#ifndef DISABLE_CTRL_THETA_LIMIT
                 if(theta(i,j,k,bi,bj).lt.-2.0)
      &               theta(i,j,k,bi,bj)= -2.0
+#endif
               enddo
             enddo
           enddo
