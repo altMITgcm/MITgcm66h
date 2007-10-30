@@ -97,14 +97,14 @@ C--     Read IO error counter
      &       'ADJhsnow.'//suff, writeBinaryPrec, globalFiles, 'RL',
      &       1,  adhsnow, 1, myIter, myThid )
 # ifdef SEAICE_ALLOW_DYNAMICS
-        IF ( SEAICEuseDynamics ) THEN
+cph        IF ( SEAICEuseDynamics ) THEN
           CALL MDSWRITEFIELD(
      &       'ADJuice.'//suff, writeBinaryPrec, globalFiles, 'RL',
      &       3,  aduice, 1, myIter, myThid )
           CALL MDSWRITEFIELD(
      &       'ADJvice.'//suff, writeBinaryPrec, globalFiles, 'RL',
      &       3,  advice, 1, myIter, myThid )
-        ENDIF
+cph        ENDIF
 # endif
 c
        _END_MASTER( myThid )
