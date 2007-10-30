@@ -70,8 +70,8 @@ CADJ SUBROUTINE write_rec_xyz_rl  OUTPUT =
 C----------------------------------------
 C subroutine  READ_MFLDS_CHECK
 C----------------------------------------
-CADJ SUBROUTINE READ_MFLDS_CHECK  INPUT  =   2,3
-CADJ SUBROUTINE READ_MFLDS_CHECK  OUTPUT = 1,2
+CADJ SUBROUTINE READ_MFLDS_CHECK  INPUT  = 1,2
+CADJ SUBROUTINE READ_MFLDS_CHECK  OUTPUT = 
 
 C----------------------------------------
 C subroutine  READ_MFLDS_INIT
