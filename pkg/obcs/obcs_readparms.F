@@ -19,7 +19,7 @@ C     === Global variables ===
 #ifdef ALLOW_ORLANSKI
 #include "ORLANSKI.h"
 #endif
-#ifdef ALLOW_PTRACERS.h
+#ifdef ALLOW_PTRACERS
 #include "PTRACERS_SIZE.h"
 #include "OBCS_PTRACERS.h"
 #endif /* ALLOW_PTRACERS */
