@@ -21,7 +21,7 @@ C     === Global variables ===
 #include "PARAMS.h"
 #include "GRID.h" 
 #include "OBCS.h"
-#ifdef ALLOW_PTRACERS.h
+#ifdef ALLOW_PTRACERS
 #include "PTRACERS_SIZE.h"
 #include "PTRACERS.h"
 #include "OBCS_PTRACERS.h"

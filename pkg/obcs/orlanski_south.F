@@ -245,7 +245,7 @@ C              copy (current time) t to t-1 arrays
          ENDDO
       ENDDO
 
-#endif ALLOW_OBCS_SOUTH */
+#endif /* ALLOW_OBCS_SOUTH */
 #endif /* ALLOW_ORLANSKI */
       RETURN
       END

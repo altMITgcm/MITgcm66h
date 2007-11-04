@@ -3,7 +3,7 @@ C $Name$
 
 #include "OBCS_OPTIONS.h"
 
-      SUBROUTINE OBCS_APPLY_PTRACER( 
+      SUBROUTINE OBCS_APPLY_PTRACER(
      I                            bi, bj, K, iTracer,
      U                            pFld,
      I                            myThid )
@@ -26,7 +26,7 @@ C     == Global variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 #include "OBCS.h"
-#ifdef ALLOW_PTRACERS.h
+#ifdef ALLOW_PTRACERS
 #include "PTRACERS_SIZE.h"
 #include "OBCS_PTRACERS.h"
 #endif /* ALLOW_PTRACERS */
