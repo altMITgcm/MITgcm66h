@@ -19,7 +19,7 @@ CPP='/usr/bin/cpp -P -traditional'
 MPI='true'
 DEFINES='-DWORDLENGTH=4'
 INCLUDES='-I/usr/mpich/mpich-1.2.6-pgi524/include -I/opt/awi/netcdf-3.6.0-p1/include' 
-LIBS='-L/usr/mpich/mpich-1.2.6-pgi524/lib -Mmpi -Mfmpi -L/opt/awi/netcdf-3.6.0-p1/lib -lnetcdf'
+LIBS='-L/usr/mpich/mpich-1.2.6-pgi524/lib -Mmpi -L/opt/awi/netcdf-3.6.0-p1/lib -lnetcdf'
 
 if test "x$IEEE" = x ; then
     #  No need for IEEE-754
@@ -30,3 +30,4 @@ else
     FFLAGS='-byteswapio -r8 -Mnodclchk -Mextend'
     FOPTIM='-tp amd64 -O0 -Munroll -Kieee'
 fi
+#FFLAGS=$FFLAGS' -mcmodel=medium'
