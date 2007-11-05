@@ -316,7 +316,7 @@ C    Data for the restart of the 2D ML model
         ENDIF
         CALL YR_END_DIAGS(iyr,myTime,myIter,myThid)
 C If necessary, next line can be moved outside OCEAN_3D for IGSM2.2 cleanups
-        IF (iloop.EQ.nTimeSteps) CALL ATM2D_FINISH(myThid)
+        IF (iloop.EQ.nTimeSteps) CALL ATM2D_FINISH(myTime, myIter, myThid)
 #endif
 
 #ifdef CPL_TEM
