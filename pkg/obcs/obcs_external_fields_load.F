@@ -65,7 +65,8 @@ C
 #ifdef ALLOW_PTRACERS
 #include "PTRACERS_SIZE.h"
 #include "OBCS_PTRACERS.h"
-#include "PTRACERS.h"
+#include "PTRACERS_PARAMS.h"
+c#include "PTRACERS_FIELDS.h"
 #endif /* ALLOW_PTRACERS */
 
 C     !LOCAL VARIABLES:

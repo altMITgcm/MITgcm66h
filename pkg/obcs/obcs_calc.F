@@ -23,7 +23,8 @@ C     === Global variables ===
 #include "OBCS.h"
 #ifdef ALLOW_PTRACERS
 #include "PTRACERS_SIZE.h"
-#include "PTRACERS.h"
+#include "PTRACERS_PARAMS.h"
+#include "PTRACERS_FIELDS.h"
 #include "OBCS_PTRACERS.h"
 #endif /* ALLOW_PTRACERS */
 
