@@ -8,7 +8,7 @@ CBOP
 C     !ROUTINE: MATRIX_OUTPUT
 
 C     !INTERFACE:
-      SUBROUTINE MATRIX_OUTPUT( 
+      SUBROUTINE MATRIX_OUTPUT(
      I     myTime, myIter, myThid )
 
 C     !DESCRIPTION:
@@ -20,9 +20,6 @@ C     !USES:
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "PTRACERS_SIZE.h"
-#include "PTRACERS.h"
-#include "MATRIX.h"
 
 C     !INPUT PARAMETERS:
 C     myIter    :: time-step number
@@ -35,15 +32,15 @@ CEOP
 
 #ifdef ALLOW_MATRIX
 C     !LOCAL VARIABLES:
-    
+
       IF (myIter.NE.nIter0) THEN
 C       Write matrix to file
         CALL MATRIX_WRITE_TENDENCY( myTime, myIter, myThid )
       ELSEIF (myIter.EQ.nIter0) THEN
-C       Write grid info for pkg/matrix            
+C       Write grid info for pkg/matrix
         CALL MATRIX_WRITE_GRID( myThid )
       ENDIF
-     
+
 #endif /* ALLOW_MATRIX */
 
       RETURN
