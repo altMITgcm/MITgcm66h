@@ -111,13 +111,16 @@ c
 #endif
 #endif
 
-         call DIC_ATMOS(myIter,myTime,myThid,1)
 #endif
 cccccccccccccccccccccccccc END DIC cccccccccccccccccccccccccccccccccc
 
 c
         ENDDO
        ENDDO
+
+#ifdef ALLOW_DIC
+         call DIC_ATMOS(myIter,myTime,myThid,1)
+#endif
 
 #endif /* GCHEM_SEPARATE_FORCING */
 #endif /* ALLOW_GCHEM */
