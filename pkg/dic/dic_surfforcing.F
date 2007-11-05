@@ -66,16 +66,16 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 
       kLev=1
 
-c if coupled to atmsopheric model, use the
-c Co2 value passed from the coupler
-#ifndef USE_ATMOSCO2
-C PRE-INDUSTRIAL STEADY STATE pCO2 = 278.0 ppmv
-       DO j=1-OLy,sNy+OLy
-        DO i=1-OLx,sNx+OLx
-           AtmospCO2(i,j,bi,bj)=278.0 _d -6
-        ENDDO
-       ENDDO
-#endif
+cc if coupled to atmsopheric model, use the
+cc Co2 value passed from the coupler
+c#ifndef USE_ATMOSCO2
+cC PRE-INDUSTRIAL STEADY STATE pCO2 = 278.0 ppmv
+c       DO j=1-OLy,sNy+OLy
+c        DO i=1-OLx,sNx+OLx
+c           AtmospCO2(i,j,bi,bj)=278.0 _d -6
+c        ENDDO
+c       ENDDO
+c#endif
 
 
 C =================================================================

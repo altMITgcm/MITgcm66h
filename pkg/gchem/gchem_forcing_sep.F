@@ -110,6 +110,8 @@ c
      &                          myIter,myTime,myThid)
 #endif
 #endif
+
+         call DIC_ATMOS(myIter,myTime,myThid,1)
 #endif
 cccccccccccccccccccccccccc END DIC cccccccccccccccccccccccccccccccccc
 

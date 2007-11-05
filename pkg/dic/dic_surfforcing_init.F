@@ -58,6 +58,8 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 
       kLev=1
 
+      call DIC_ATMOS(nIter0,0.d0,myThid,0)
+
 ccccccccccccccccccccccccccccccccccccccccc
       IF ( periodicExternalForcing ) THEN
 
