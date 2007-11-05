@@ -32,7 +32,8 @@ c     == global variables ==
 #include "optim.h"
 #ifdef ALLOW_PTRACERS
 # include "PTRACERS_SIZE.h"
-# include "PTRACERS.h"
+c#include "PTRACERS_PARAMS.h"
+# include "PTRACERS_FIELDS.h"
 #endif
 #ifdef ALLOW_ECCO
 # include "ecco_cost.h"

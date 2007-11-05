@@ -87,7 +87,8 @@ C     == Global variables ===
 #endif
 #ifdef ALLOW_PTRACERS
 # include "PTRACERS_SIZE.h"
-# include "PTRACERS.h"
+# include "PTRACERS_PARAMS.h"
+# include "PTRACERS_FIELDS.h"
 #endif
 #ifdef ALLOW_TIMEAVE
 # include "TIMEAVE_STATV.h"

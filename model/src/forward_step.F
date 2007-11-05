@@ -83,7 +83,7 @@ C     == Global variables ==
 # endif
 # ifdef ALLOW_PTRACERS
 #  include "PTRACERS_SIZE.h"
-#  include "PTRACERS.h"
+#  include "PTRACERS_FIELDS.h"
 # endif
 # ifdef ALLOW_OBCS
 #  include "OBCS.h"
@@ -339,7 +339,7 @@ ctest(
 CADJ STORE IVDConvCount       = comlev1, key = ikey_dynamics
 ctest)
 # ifdef ALLOW_PTRACERS
-CADJ STORE surfaceForcingPtr  = comlev1, key = ikey_dynamics
+CADJ STORE surfaceForcingPTr  = comlev1, key = ikey_dynamics
 # endif
 c
 # ifdef ALLOW_GMREDI

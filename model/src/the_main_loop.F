@@ -69,7 +69,7 @@ c They provide the fields to be stored.
 #  endif
 #  ifdef ALLOW_PTRACERS
 #   include "PTRACERS_SIZE.h"
-#   include "PTRACERS.h"
+#   include "PTRACERS_FIELDS.h"
 #  endif
 #  ifdef ALLOW_OBCS
 #   include "OBCS.h"

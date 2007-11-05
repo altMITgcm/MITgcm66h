@@ -77,13 +77,10 @@ c# endif
 #   include "EXF_CONSTANTS.h"
 #  endif
 # endif
-c# ifdef ALLOW_PTRACERS
-c#  include "PTRACERS_SIZE.h"
-c#  include "PTRACERS.h"
-c# endif
 c# ifdef ALLOW_OBCS
 c#  include "OBCS.h"
 c#  ifdef ALLOW_PTRACERS
+c#   include "PTRACERS_SIZE.h"
 c#   include "OBCS_PTRACERS.h"
 c#  endif
 c# endif
