@@ -19,7 +19,8 @@ C     !USES:
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "PTRACERS_SIZE.h"
-#include "PTRACERS.h"
+#include "PTRACERS_PARAMS.h"
+#include "PTRACERS_FIELDS.h"
 
 C     !INPUT PARAMETERS:
 C     myIter    :: time-step number

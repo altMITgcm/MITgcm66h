@@ -20,7 +20,7 @@ C     !USES:
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "PTRACERS_SIZE.h"
-#include "PTRACERS.h"
+#include "PTRACERS_PARAMS.h"
 #include "PTRACERS_STATV.h"
 C     Functions
       LOGICAL  DIFFERENT_MULTIPLE

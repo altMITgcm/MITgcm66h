@@ -18,7 +18,8 @@ C !USES: ===============================================================
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PTRACERS_SIZE.h"
-#include "PTRACERS.h"
+#include "PTRACERS_PARAMS.h"
+#include "PTRACERS_FIELDS.h"
 
 C !INPUT PARAMETERS: ===================================================
 C  myThid               :: thread number
@@ -47,7 +48,7 @@ C Loop over tracers
      &   gPtr(1-Olx,1-Oly,1,1,1,iTracer),strng,myThid)
        WRITE(strng(1:9),'(a7,i2.2)') 'GNm1TRC',iTracer
        CALL DEBUG_STATS_RL(Nr,
-     &   gPtrNm1(1-Olx,1-Oly,1,1,1,iTracer),strng,myThid)
+     &   gpTrNm1(1-Olx,1-Oly,1,1,1,iTracer),strng,myThid)
 
 C end of tracer loop
       ENDDO

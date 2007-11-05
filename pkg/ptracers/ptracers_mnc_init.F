@@ -5,11 +5,11 @@ C $Name$
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 CBOP
-C     !ROUTINE: 
-      
+C     !ROUTINE:
+
 C     !INTERFACE:
       SUBROUTINE PTRACERS_MNC_INIT( myThid )
-      
+
 C     !DESCRIPTION:
 C     Initialize PTRACERS parameters, read in data.ptracers
 
@@ -18,7 +18,7 @@ C     !USES:
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PTRACERS_SIZE.h"
-#include "PTRACERS.h"
+#include "PTRACERS_PARAMS.h"
 #include "PARAMS.h"
 
 C     !INPUT PARAMETERS:
@@ -70,9 +70,9 @@ C         Add the units attribute if its defined
             CALL MNC_CW_ADD_VATTR_TEXT(PTRACERS_names(ii),'units',
      &           PTRACERS_units(ii),myThid)
           ENDIF
-          
+
         ENDDO
-        
+
       ENDIF
 #endif /*  ALLOW_MNC  */
 #endif /* ALLOW_PTRACERS */

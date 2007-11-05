@@ -17,7 +17,8 @@ C !USES: ===============================================================
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PTRACERS_SIZE.h"
-#include "PTRACERS.h"
+#include "PTRACERS_PARAMS.h"
+#include "PTRACERS_FIELDS.h"
 
 C !INPUT PARAMETERS: ===================================================
 C  bi,bj,k :: tile indices

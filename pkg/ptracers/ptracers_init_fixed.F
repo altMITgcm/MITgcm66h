@@ -19,7 +19,7 @@ C     !USES:
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "PTRACERS_SIZE.h"
-#include "PTRACERS.h"
+#include "PTRACERS_PARAMS.h"
 #include "GAD.h"
 
 C     !INPUT PARAMETERS:

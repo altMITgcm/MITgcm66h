@@ -20,7 +20,8 @@ C !USES: ===============================================================
 #include "PARAMS.h"
 #include "DYNVARS.h"
 #include "PTRACERS_SIZE.h"
-#include "PTRACERS.h"
+#include "PTRACERS_PARAMS.h"
+#include "PTRACERS_FIELDS.h"
 #include "GAD.h"
 #ifdef ALLOW_AUTODIFF_TAMC
 # include "tamc.h"
@@ -72,7 +73,7 @@ C Loop over tracers
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 #ifdef ALLOW_AUTODIFF_TAMC
-CADJ STORE ptracer(:,:,:,bi,bj,iTracer)
+CADJ STORE pTracer(:,:,:,bi,bj,iTracer)
 CADJ &      = comlev1_bibj_ptracers, key=iptrkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 

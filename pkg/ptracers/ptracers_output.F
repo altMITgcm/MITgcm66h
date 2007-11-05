@@ -7,7 +7,7 @@ CBOP
 C     !ROUTINE: PTRACERS_OUTPUT
 
 C     !INTERFACE:
-      SUBROUTINE PTRACERS_OUTPUT( 
+      SUBROUTINE PTRACERS_OUTPUT(
      I     myTime, myIter, myThid )
 
 C     !DESCRIPTION:
@@ -20,7 +20,7 @@ C     !USES:
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "PTRACERS_SIZE.h"
-#include "PTRACERS.h"
+#include "PTRACERS_PARAMS.h"
 
 C     !INPUT PARAMETERS:
 C     myIter    :: time-step number
