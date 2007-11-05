@@ -11,7 +11,7 @@ CStartOfInterFace
      I           myTime,myIter,myThid)
 
 C     /==========================================================\
-C     | SUBROUTINE DIC_AVER  i                            |
+C     | SUBROUTINE DIC_AVER
 C     |==========================================================|
       IMPLICIT NONE
 
@@ -22,7 +22,8 @@ C     == GLobal variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 #include "PTRACERS_SIZE.h"
-#include "PTRACERS.h"
+c#include "PTRACERS_PARAMS.h"
+#include "PTRACERS_FIELDS.h"
 #include "GCHEM.h"
 #include "DIC_ABIOTIC.h"
 #ifdef DIC_BIOTIC

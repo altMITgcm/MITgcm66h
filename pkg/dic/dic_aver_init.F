@@ -22,7 +22,8 @@ C     == GLobal variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 #include "PTRACERS_SIZE.h"
-#include "PTRACERS.h"
+#include "PTRACERS_PARAMS.h"
+#include "PTRACERS_FIELDS.h"
 #include "GCHEM.h"
 #include "DIC_ABIOTIC.h"
 #ifdef DIC_BIOTIC
@@ -75,7 +76,7 @@ cswdmonth -end-
             po4var(k)=0.d0
             o2var(k)=0.d0
             volvar(k)=0.d0
-          enddo 
+          enddo
 cswdmonth
           do k=1,3
            do it=1,12
@@ -87,11 +88,11 @@ cswdmonth
            enddo
           enddo
          ENDDO
-        ENDDO 
+        ENDDO
         _BEGIN_MASTER( myThid )
-        CALL READ_FLD_XYZ_RL( 'input/po4obs.bin', ' ', 
-     &                          po4obs, 0, myThid )        
-        CALL READ_FLD_XYZ_RL( 'input/o2obs.bin', ' ', 
+        CALL READ_FLD_XYZ_RL( 'input/po4obs.bin', ' ',
+     &                          po4obs, 0, myThid )
+        CALL READ_FLD_XYZ_RL( 'input/o2obs.bin', ' ',
      &                          o2obs, 0, myThid )
 cswdmonth
         CALL READ_FLD_XYZ_RL( 'input/po4lev1.bin', ' ',
