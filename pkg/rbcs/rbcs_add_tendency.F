@@ -23,7 +23,7 @@ C !USES: ===============================================================
 #include "PARAMS.h"
 #ifdef ALLOW_PTRACERS
 #include "PTRACERS_SIZE.h"
-#include "PTRACERS.h"
+#include "PTRACERS_FIELDS.h"
 #endif
 #include "RBCS.h"
 

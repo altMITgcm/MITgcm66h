@@ -11,8 +11,8 @@ C !INTERFACE: ==========================================================
 C !DESCRIPTION:
 C     calls subroutine that will update passive tracers values
 C     with a separate timestep. Since GCHEM_FORCING_SEP is now
-C     called before DO_FIELDS_BLOCKING_EXCHANGES, the passive 
-C     tracer values in the halo regions are not up to date and 
+C     called before DO_FIELDS_BLOCKING_EXCHANGES, the passive
+C     tracer values in the halo regions are not up to date and
 C     must not be used.
 
 C !USES: ===============================================================
@@ -23,7 +23,8 @@ C !USES: ===============================================================
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "PTRACERS_SIZE.h"
-#include "PTRACERS.h"
+c#include "PTRACERS_PARAMS.h"
+#include "PTRACERS_FIELDS.h"
 #ifdef ALLOW_DIC
 #include "DIC_BIOTIC.h"
 #include "DIC_ABIOTIC.h"
