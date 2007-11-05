@@ -120,6 +120,7 @@ C     !USES:
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "RESTART.h"
 #include "THSICE_VARS.h"
 #include "ATM2D_VARS.h"
 
