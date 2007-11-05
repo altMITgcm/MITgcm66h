@@ -96,16 +96,16 @@ C-    Need to synchronize here before doing master-thread IO
 
 C--   Define the initial state : read from file
        IF ( land_grT_iniFile .NE. ' ' ) THEN
-        CALL MDSREADFIELD( land_grT_iniFile, readBinaryPrec, 'RL',
-     &                     land_nLev, land_groundT, 1, myThid)
+        CALL READ_REC_3D_RL( land_grT_iniFile, readBinaryPrec,
+     &            land_nLev, land_groundT, 1, nIter0, myThid )
        ENDIF
        IF ( land_grW_iniFile .NE. ' ' ) THEN
-        CALL MDSREADFIELD( land_grW_iniFile, readBinaryPrec, 'RL',
-     &                     land_nLev, land_groundW, 1, myThid)
+        CALL READ_REC_3D_RL( land_grW_iniFile, readBinaryPrec,
+     &            land_nLev, land_groundW, 1, nIter0, myThid )
        ENDIF
        IF ( land_snow_iniFile .NE. ' ' ) THEN
-        CALL MDSREADFIELD( land_snow_iniFile,readBinaryPrec, 'RL',
-     &                     1, land_hSnow, 1, myThid)
+        CALL READ_FLD_XY_RL( land_snow_iniFile, ' ',
+     &                       land_hSnow, nIter0, myThid )
        ENDIF
 
       ELSEIF ( land_calc_grT .OR. land_calc_grW ) THEN
