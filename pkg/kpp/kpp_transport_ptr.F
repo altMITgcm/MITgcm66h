@@ -38,7 +38,8 @@ C     == GLobal variables ==
 #include "KPP_PARAMS.h"
 #ifdef ALLOW_PTRACERS
 #include "PTRACERS_SIZE.h"
-#include "PTRACERS.h"
+c#include "PTRACERS_PARAMS.h"
+#include "PTRACERS_FIELDS.h"
 #endif
 #ifdef ALLOW_GMREDI
 #include "GMREDI.h"
@@ -78,7 +79,7 @@ C     I, J - Loop counters
         df(i,j) = - _rA(i,j,bi,bj)
      &        *( KPPdiffKzS(i,j,k,bi,bj) + tmpFac*Kwz(i,j,k,bi,bj) )
      &        *KPPghat(i,j,km1,bi,bj)
-     &        *surfaceForcingPtr(i,j,bi,bj,tracerIdentity)
+     &        *surfaceForcingPTr(i,j,bi,bj,tracerIdentity)
        ENDDO
       ENDDO
 
@@ -89,7 +90,7 @@ C     I, J - Loop counters
         df(i,j) = - _rA(i,j,bi,bj)
      &        *KPPdiffKzS(i,j,k,bi,bj)
      &        *KPPghat(i,j,km1,bi,bj)
-     &        *surfaceForcingPtr(i,j,bi,bj,tracerIdentity)
+     &        *surfaceForcingPTr(i,j,bi,bj,tracerIdentity)
        ENDDO
       ENDDO
 

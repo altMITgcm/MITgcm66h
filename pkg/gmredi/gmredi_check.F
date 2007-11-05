@@ -32,7 +32,7 @@ C     === Global variables ===
 #endif
 #ifdef ALLOW_PTRACERS
 # include "PTRACERS_SIZE.h"
-# include "PTRACERS.h"
+# include "PTRACERS_PARAMS.h"
 #endif
 
 C     !INPUT/OUTPUT PARAMETERS:
