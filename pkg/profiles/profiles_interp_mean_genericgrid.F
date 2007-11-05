@@ -29,7 +29,7 @@ C ==================== Global Variables ===========================
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "GRID.h"
-#include "DYNVARS.h"
+c#include "DYNVARS.h"
 #include "PARAMS.h"
 #ifdef ALLOW_CAL
 #include "cal.h"
@@ -40,10 +40,10 @@ C ==================== Global Variables ===========================
       integer NLEVELMAX
       parameter (NLEVELMAX=1)
 #endif
-#ifdef ALLOW_PTRACERS
-#include "PTRACERS_SIZE.h"
-#include "PTRACERS.h"
-#endif
+c#ifdef ALLOW_PTRACERS
+c#include "PTRACERS_SIZE.h"
+c#include "PTRACERS_FIELDS.h"
+c#endif
 C ==================== Routine Variables ==========================
       _RL  mytime
       integer mythid

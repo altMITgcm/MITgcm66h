@@ -42,7 +42,7 @@ C ==================== Global Variables ===========================
 #endif
 #ifdef ALLOW_PTRACERS
 #include "PTRACERS_SIZE.h"
-#include "PTRACERS.h"
+#include "PTRACERS_FIELDS.h"
 #endif
 C ==================== Routine Variables ==========================
       _RL  mytime
