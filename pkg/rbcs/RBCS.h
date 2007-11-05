@@ -29,13 +29,6 @@ c number of mask to read
       CHARACTER*(MAX_LEN_FNAM) relaxMaskFile(maskLEN)
       CHARACTER*(MAX_LEN_FNAM) relaxTFile
       CHARACTER*(MAX_LEN_FNAM) relaxSFile
-#ifdef ALLOW_PTRACERS
-      LOGICAL useRBCptrnum(PTRACERS_num)
-      _RL RBC_ptracers(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy,
-     &              PTRACERS_num)
-      _RL tauRelaxPTR(PTRACERS_num)
-      CHARACTER*(MAX_LEN_FNAM) relaxPtracerFile(PTRACERS_num)
-#endif
 
       COMMON /RBCS_PARM01_R/
      &          tauRelaxT,
@@ -57,11 +50,19 @@ c number of mask to read
      &          relaxSFile
 
 #ifdef ALLOW_PTRACERS
-      COMMON /RBCS_PARM02/
-     &          useRBCptrnum,
-     &          tauRelaxPTR,
-     &          relaxPtracerFile,
-     &          RBC_ptracers
+      LOGICAL useRBCptrnum(PTRACERS_num)
+      _RL RBC_ptracers(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy,
+     &              PTRACERS_num)
+      _RL tauRelaxPTR(PTRACERS_num)
+      CHARACTER*(MAX_LEN_FNAM) relaxPtracerFile(PTRACERS_num)
+
+      COMMON /RBCS_PARM02_L/
+     &          useRBCptrnum
+      COMMON /RBCS_PARM02_R/
+     &          RBC_ptracers,
+     &          tauRelaxPTR
+      COMMON /RBCS_PARM02_C/
+     &          relaxPtracerFile
 #endif
 
       COMMON /RBCFFIELDS/
