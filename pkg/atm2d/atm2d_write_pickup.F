@@ -76,11 +76,8 @@ CEOP
       IF (
      &     ( .NOT.modelEnd .AND. (permCheckPoint.OR.tempCheckPoint) )
      &     .OR.
-c     &     ( modelEnd .AND. .NOT.(permCheckPoint.OR.tempCheckPoint) )
-     &     ( modelEnd .AND. .NOT.(permCheckPoint) )
+     &     ( modelEnd .AND. .NOT.(permCheckPoint.OR.tempCheckPoint) )
      &     ) THEN
-
-        IF (modelEnd) permCheckPoint=.TRUE.
 
         IF (tempCheckPoint)   !toggle was done prematurely...
      &       nCheckLev = MOD(nCheckLev, maxNoChkptLev)+1
