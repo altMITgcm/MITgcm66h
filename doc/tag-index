@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/cfc: if compiled with exf and seaice, cfc now can use fields from those
+  packages instead of reading ice cover and wind speed separately
 o split PTRACERS.h in 2 header files: PTRACERS_FIELDS.h & PTRACERS_PARAMS.h
  (keep a temporary version of PTRACERS.h in verification/OpenAD/code_ad_openad
   to allow to compile customized code before the update)
