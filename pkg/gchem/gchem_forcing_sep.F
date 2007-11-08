@@ -119,7 +119,7 @@ c
        ENDDO
 
 #ifdef ALLOW_DIC
-         call DIC_ATMOS(myIter,myTime,myThid,1)
+       CALL DIC_ATMOS( 1, myTime, myIter, myThid )
 #endif
 
 #endif /* GCHEM_SEPARATE_FORCING */
