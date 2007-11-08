@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
        COMMON /INTERACT_ATMOS_NEEDS/
      &              co2atmos,
      &              total_atmos_carbon, total_ocean_carbon,
