@@ -54,16 +54,12 @@ c
 C First call requires that we initialize everything to zero for safety
 cQQQ need to check timing
        IF ( myIter .EQ. nIter0 ) THEN
-#ifndef ALLOW_EXF
          CALL LEF_ZERO( wind0,myThid )
          CALL LEF_ZERO( wind1,myThid )
-#endif
          CALL LEF_ZERO( atmosp0,myThid )
          CALL LEF_ZERO( atmosp1,myThid )
-#ifndef ALLOW_SEAICE
          CALL LEF_ZERO( ice0,myThid )
          CALL LEF_ZERO( ice1,myThid )
-#endif
        ENDIF
 
 
