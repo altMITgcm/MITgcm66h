@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o in pkgs: dic, obcs, offline, rbcs:
+  standard way to compute coeff. for time interpolation between 2 time reccords
+  which retains full precision (& make results less dependent on compiler).
+  update output of exp: tutorial_cfc_offline & tutorial_global_oce_biogeo.
 o pkg/cfc: if compiled with exf and seaice, cfc now can use fields from those
   packages instead of reading ice cover and wind speed separately
 o split PTRACERS.h in 2 header files: PTRACERS_FIELDS.h & PTRACERS_PARAMS.h
