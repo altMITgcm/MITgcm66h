@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint59j
 o in pkgs: dic, obcs, offline, rbcs:
   standard way to compute coeff. for time interpolation between 2 time reccords
   which retains full precision (& make results less dependent on compiler).
