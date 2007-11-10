@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ptracers: 
+  use use a 2 characters string ioLabel to identify tracer (if more than 99 tracers).
+  to-do: fix pkg/diagnostics when large number of diagnostics are defined.
+
 checkpoint59j
 o in pkgs: dic, obcs, offline, rbcs:
   standard way to compute coeff. for time interpolation between 2 time reccords
