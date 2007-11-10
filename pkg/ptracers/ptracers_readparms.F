@@ -75,6 +75,11 @@ C     This routine has been called by the main model so we set our
 C     internal flag to indicate we are in business
       PTRACERSisON=.TRUE.
 
+C     Set ptracer IO & diagnostics labels (2 characters long)
+      CALL PTRACERS_SET_IOLABEL(
+     O                           PTRACERS_ioLabel,
+     I                           PTRACERS_num, myThid )
+
 C     Set defaults values for parameters in PTRACERS.h
       PTRACERS_dumpFreq    = dumpFreq
       PTRACERS_taveFreq    = taveFreq
@@ -271,6 +276,8 @@ C--   Print a summary of pTracer parameter values:
         CALL PRINT_MESSAGE( msgBuf, iUnit, SQUEEZE_RIGHT, myThid )
         WRITE(msgBuf,'(A,I4)') ' tracer number : ',iTracer
         CALL PRINT_MESSAGE( msgBuf, iUnit, SQUEEZE_RIGHT, myThid )
+        CALL WRITE_0D_C( PTRACERS_ioLabel(iTracer), 0, INDEX_NONE,
+     &     'PTRACERS_ioLabel =', ' /* tracer IO Label */')
         CALL WRITE_0D_I( PTRACERS_advScheme(iTracer), INDEX_NONE,
      &     'PTRACERS_advScheme =', ' /* Advection Scheme */')
         CALL WRITE_0D_L( PTRACERS_ImplVertAdv(iTracer), INDEX_NONE,

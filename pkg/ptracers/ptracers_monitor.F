@@ -108,8 +108,8 @@ C      for ptracers as for the dynamics variables.
 C      Print the basic statistics of ptracer variables
        CALL MON_SET_PREF('trcstat_',myThid)
        DO ip = 1, PTRACERS_numInUse
-         WRITE(suff,'(A7,I2.2)') 'ptracer',ip
-c        WRITE(suff,'(A7,I3.3)') 'ptrac_', ip
+         WRITE(suff,'(A7,A2)') 'ptracer',PTRACERS_ioLabel(ip)
+c        WRITE(suff,'(A6,I4.4)') 'ptrac', ip
          CALL MON_PRINTSTATS_RL(
      &        Nr, pTracer(1-Olx,1-Oly,1,1,1,ip),
      &        suff, maskC,hFacC,rA ,drF,myThid)

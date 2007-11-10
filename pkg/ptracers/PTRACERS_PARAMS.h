@@ -84,6 +84,12 @@ C     PTRACERS_Iter0    :: timestep number when tracers are initialized
      &     PTRACERS_long_names,
      &     PTRACERS_units
 
+C     COMMON /PTRACERS_LABELS/ holds pTracers labels
+C     PTRACERS_ioLabel  :: pTracer I/O & diagnostics label (2 charecters long)
+      COMMON /PTRACERS_LABELS/
+     &     PTRACERS_ioLabel
+      CHARACTER*2              PTRACERS_ioLabel(PTRACERS_num)
+
 #endif /* ALLOW_PTRACERS */
 
 CEH3 ;;; Local Variables: ***
