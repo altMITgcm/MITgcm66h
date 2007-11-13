@@ -232,7 +232,7 @@ c     fields to get a complete calendar date array.
 #endif /* ALLOW_OBCS */
 
 #ifdef ALLOW_CLIMSST_RELAXATION
-      IF ( climsstfile .NE. ' ' .AND. climsstperiod .NE. 0. ) THEN
+      IF ( climsstfile .NE. ' ' .AND. climsstperiod .GT. 0. ) THEN
          CALL cal_FullDate( climsststartdate1, climsststartdate2,
      &        date_array,                  myThid )
          CALL cal_TimePassed(modelstartdate,date_array,difftime,myThid)
@@ -242,7 +242,7 @@ c     fields to get a complete calendar date array.
 #endif
 
 #ifdef ALLOW_CLIMSSS_RELAXATION
-      IF ( climsssfile .NE. ' ' .AND. climsssperiod .NE. 0. ) THEN
+      IF ( climsssfile .NE. ' ' .AND. climsssperiod .GT. 0. ) THEN
          CALL cal_FullDate( climsssstartdate1, climsssstartdate2,
      &        date_array,                  myThid )
          CALL cal_TimePassed(modelstartdate,date_array,difftime,myThid)
