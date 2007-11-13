@@ -276,6 +276,7 @@ C     !FUNCTIONS
 
 C     !LOCAL VARIABLES:
       INTEGER j, iL, ioUnit
+      LOGICAL useCurrentDir
       CHARACTER*(2) fType
       CHARACTER*(MAX_LEN_FNAM) fName
       CHARACTER*(MAX_LEN_MBUF) msgBuf
@@ -336,12 +337,16 @@ C-      increment record number
       IF ( nj.GE.1 ) THEN
 C--   read in array "field"
         fName = mFldsFile
+        useCurrentDir = .FALSE.
         fType = 'RL'
 #ifdef ALLOW_MDSIO
-        CALL MDSREADFIELD( fName, fPrec, fType,
-     &                     nNz, field, nj, myThid )
+        CALL MDS_READ_FIELD(
+     I                       fName, fPrec, useCurrentDir,
+     I                       fType, nNz, 1, nNz,
+     O                       field,
+     I                       nj, myThid )
+
 #endif
-c       CALL READ_REC_3D_RL( fName, fPrec, nNz, field, nj, myIter, myThid )
       ENDIF
 
       RETURN
