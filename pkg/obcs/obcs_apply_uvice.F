@@ -72,7 +72,7 @@ C Eastern boundary
       DO J=1-Oly,sNy+Oly
 C Western boundary
        IF (OB_Iw(J,bi,bj).NE.0) THEN
-        uFld(OB_Iw(J,bi,bj)+1,1,J,bi,bj)=OBWuice(J,bi,bj)
+        uFld(OB_Iw(J,bi,bj)+1,J,1,bi,bj)=OBWuice(J,bi,bj)
      &                              *_maskW(OB_Iw(J,bi,bj)+1,J,K,bi,bj)
         vFld(OB_Iw(J,bi,bj),J,1,bi,bj)=OBWvice(J,bi,bj)
      &                              *_maskS(OB_Iw(J,bi,bj),J,K,bi,bj)
