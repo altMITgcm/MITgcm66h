@@ -126,7 +126,7 @@ C     initialise fields
       ENDDO
 
 C--   interface of dynamics with atmopheric forcing fields (wind/stress)
-      CALL SEAICE_GET_DYNFORCING ( 
+      CALL SEAICE_GET_DYNFORCING (
      I     uIce, vIce,
      O     TAUX, TAUY,
      I     myTime, myIter, myThid )
@@ -223,7 +223,7 @@ cphCADJ STORE vice = comlev1, key=ikey_dynamics
 # endif
 #endif
 C NOW LSR SCHEME (ZHANG-J/HIBLER 1997)
-       CALL SEAICE_LSR( 1, myThid )
+       CALL SEAICE_LSR( 1, myTime, myIter, myThid )
 #ifdef ALLOW_AUTODIFF_TAMC
 cphCADJ STORE uice = comlev1, key=ikey_dynamics
 cphCADJ STORE vice = comlev1, key=ikey_dynamics
@@ -246,7 +246,7 @@ C NOW DO MODIFIED EULER STEP
        ENDDO
 
 C NOW LSR SCHEME (ZHANG-J/HIBLER 1997)
-       CALL SEAICE_LSR( 2, myThid )
+       CALL SEAICE_LSR( 2, myTime, myIter, myThid )
 #ifdef SEAICE_ALLOW_EVP
        ENDIF
 #endif /* SEAICE_ALLOW_EVP */
