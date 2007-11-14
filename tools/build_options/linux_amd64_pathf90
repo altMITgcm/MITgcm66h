@@ -33,6 +33,7 @@ fi
 F90FLAGS=$FFLAGS
 F90OPTIM=$FOPTIM
 CFLAGS='-O3 -m64 -fPIC'
+GSLLIB='-lgsl -lgslcblas'
 
 if [ "x$NETCDF_ROOT" != x ] ; then
     INCLUDEDIR="${NETCDF_ROOT}/include"
