@@ -141,7 +141,7 @@ C     free slip
       CALL SEAICE_CALC_STRAINRATES(
      I     uIceC, vIceC,
      O     e11, e22, e12,
-     I     ilcall, myTime, myIter, myThid )
+     I     1, ilcall, myTime, myIter, myThid )
 
       CALL SEAICE_CALC_VISCOSITIES(
      I     e11, e22, e12, zMin, zMax, hEffM, press0,
