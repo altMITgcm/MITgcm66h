@@ -713,17 +713,17 @@ C--   End of ipass loop
 C-    explicit advection is done ; store tendency in gFld:
       DO j=1-OLy,sNy+OLy
        DO i=1-OLx,sNx+OLx
-        gFld(i,j)=
-     &       (localTij(i,j)-iceFld(i,j))/SEAICE_deltaTtherm
-        IF ( dBug
-     &     .AND. i.EQ.12 .AND. j.EQ.11 .AND. bi.EQ.3 ) THEN
-         tmpFac= SEAICE_deltaTtherm*recip_rA(i,j,bi,bj)
-         WRITE(6,'(A,1P4E14.6)') 'ICE_adv:',
-     &    afx(i,j)*tmpFac,afx(i+1,j)*tmpFac,
-     &    afy(i,j)*tmpFac,afy(i,j+1)*tmpFac
-        ENDIF
+        gFld(i,j)=(localTij(i,j)-iceFld(i,j))/SEAICE_deltaTtherm
        ENDDO
       ENDDO
+      IF ( dBug .AND. bi.EQ.3 ) THEN
+       i=12
+       j=11
+       tmpFac= SEAICE_deltaTtherm*recip_rA(i,j,bi,bj)
+       WRITE(6,'(A,1P4E14.6)') 'ICE_adv:',
+     &      afx(i,j)*tmpFac,afx(i+1,j)*tmpFac,
+     &      afy(i,j)*tmpFac,afy(i,j+1)*tmpFac
+      ENDIF
 
 #ifdef ALLOW_DIAGNOSTICS
         IF ( useDiagnostics ) THEN
