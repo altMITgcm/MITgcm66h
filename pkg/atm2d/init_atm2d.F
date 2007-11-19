@@ -127,6 +127,24 @@ c end atmos grid initialization
           atm_oc_frac2(j)=0. _d 0
         ENDIF
       ENDDO
+
+C     compute tauv interpolation points
+      tauv_jpt(1) = 2         ! south pole point; s/b land
+      tauv_jwght(1) = 1. _d 0
+      DO j=2, sNy
+        DO jj=1,jm0-1
+          IF (( yG(1,j,1,1) .GE. atm_yC(jj)).AND.
+     &        ( yG(1,j,1,1) .LT. atm_yC(jj+1))) j_atm=jj
+        ENDDO
+        tauv_jpt(j)= j_atm
+        tauv_jwght(j)= (yG(1,j,1,1) - atm_yC(j_atm)) / 
+     &                 (atm_yC(j_atm+1) - atm_yC(j_atm))
+      ENDDO
+
+C      DO j=1,sNy
+C      print *, 'j, tauv_jpt:', j,tauv_jpt(j),tauv_jwght(j)
+C      ENDDO
+
 c
 c find land fraction
 c
