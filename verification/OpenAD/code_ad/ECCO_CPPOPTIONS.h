@@ -42,16 +42,18 @@ C ********************************************************************
 C 
 C       >>> Cost function contributions
 #define ALLOW_COST
-#undef ALLOW_COST_TEST
+#define ALLOW_COST_TEST
+#define ALLOW_COST_TSQUARED
 #undef ALLOW_COST_TRACER
-#define ALLOW_COST_ATLANTIC_HEAT
+#undef ALLOW_COST_ATLANTIC_HEAT
 #undef ALLOW_COST_ATLANTIC_HEAT_DOMASS 
 
 C ********************************************************************
 C ***               Control vector Package                         ***
 C ********************************************************************
 C 
-#undef  ALLOW_NONDIMENSIONAL_CONTROL_IO
+#define DISABLE_CTRL_THETA_LIMIT
+#undef ALLOW_NONDIMENSIONAL_CONTROL_IO
 C       >>> Initial values.
 #define ALLOW_THETA0_CONTROL
 #define ALLOW_SALT0_CONTROL
