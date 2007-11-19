@@ -67,6 +67,7 @@ C--   Calculate cost function on tile of this instance
             do i=1,sNx
             ig = myXGlobalLo-1+(bi-1)*sNx+i
 
+#ifndef ALLOW_COST_TSQUARED
             if ((ig .eq. iLocOut) .and. (jg .eq. jLocOut)) then
                write(*,'(a,3(x,i4),a,4(x,i4))')
      &              'COST    ',ig,jg,kLocOut,' TILE ',i,j,bi,bj
@@ -76,6 +77,10 @@ cph(
      &              theta(i,j,kLocOut,bi,bj)
 cph)
             endif
+#else
+            objf_test(bi,bj) = objf_test(bi,bj) +
+     &                         theta(i,j,kLocOut,bi,bj)**2
+#endif
 
             end do
           end do
