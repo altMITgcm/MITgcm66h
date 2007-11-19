@@ -107,11 +107,13 @@ C     Files: basic state 3D wind fields, and E,P, and qnet prescibed fluxes (if 
 
 c
 c ocean data zonal means
-      COMMON/OCN_ZONALMN/ ctocn, ctice, cfice, csAlb, ocnArea, cco2flux
+      COMMON/OCN_ZONALMN/ ctocn, ctice, cfice, csAlb, csAlbNIR, 
+     &                    ocnArea, cco2flux
        _RL ctocn(jm0)    ! zonal mean ice-free ocean temp
        _RL ctice(jm0)    ! zonal mean seaice surface temp
        _RL cfice(jm0)    ! zonal mean ice fraction
        _RL csAlb(jm0)    ! zonal mean seaice albedo
+       _RL csAlbNIR(jm0)    ! zonal mean seaice albedo
        _RL ocnArea(jm0)  ! ocean area of latitude strip on atm grid (m2)
        _RL cco2flux(jm0) ! zonally integrated flux of CO2 from ocean->atm (mol/m2/s)
 
