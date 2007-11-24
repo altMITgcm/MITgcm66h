@@ -353,7 +353,7 @@ cph Needed for rhoK, rhoKm1, in the case useGMREDI.
 C--       Calculate gradients of potential density for isoneutral
 C         slope terms (e.g. GM/Redi tensor or IVDC diffusivity)
           IF ( useGMRedi .OR. (k.GT.1 .AND. ivdc_kappa.NE.0.)
-     &                   .OR. doDiagsRho.GE.1 ) THEN
+     &         .OR. usePLUME .OR. doDiagsRho.GE.1 ) THEN
 #ifdef ALLOW_DEBUG
             IF ( debugLevel .GE. debLevB )
      &       CALL DEBUG_CALL('FIND_RHO',myThid)
