@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# $Header$
+
+#  This is the local options file for the "new" version of genmake
+
+AD_TAF_FLAGS="-version 1.9.8"
