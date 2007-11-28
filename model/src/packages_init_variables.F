@@ -76,6 +76,8 @@ C       |
 C       |-- REGRID_INIT_VARIA
 C       |
 C       |-- MYPACKAGE_INIT_VARIA
+C       |
+C       |-- SALT_PLUME_INIT_VARIA
 
 C     !USES:
       IMPLICIT NONE
@@ -325,6 +327,10 @@ C Initialize FIZHI state variables
 
 #ifdef ALLOW_MYPACKAGE
       IF ( useMYPACKAGE ) CALL MYPACKAGE_INIT_VARIA( myThid )
+#endif
+
+#ifdef ALLOW_SALT_PLUME
+      IF ( useSaltPlume ) CALL SALT_PLUME_INIT_VARIA( myThid )
 #endif
 
 #ifdef ALLOW_DEBUG

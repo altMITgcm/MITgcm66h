@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o added pkg/salt_plume
 o script to test restart (for now, in MITgcm_contrib/jmc_script)
 o pkg/seaice: new read/write pickup version. 
   read meta file and write only fields which are needed to restart.

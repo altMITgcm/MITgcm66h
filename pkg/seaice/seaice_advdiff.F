@@ -48,7 +48,6 @@ C     myThid    :: Thread no. that called this routine.
       INTEGER myThid
 CEndOfInterface
 
-#ifdef ALLOW_SEAICE
 C !LOCAL VARIABLES: ====================================================
 C     === Local variables ===
 C     i,j,bi,bj :: Loop counters
@@ -463,7 +462,6 @@ C     somewhere after doing the advection)
         ENDDO
        ENDDO
       ENDIF
-#endif /* ALLOW_SEAICE */
 
       RETURN
       END

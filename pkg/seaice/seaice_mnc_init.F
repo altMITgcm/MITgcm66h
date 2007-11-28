@@ -26,7 +26,6 @@ C     !INPUT PARAMETERS:
       INTEGER myThid
 CEOP
 
-#ifdef ALLOW_SEAICE
 #ifdef ALLOW_MNC
       IF (useMNC) THEN
 
@@ -170,7 +169,6 @@ C       Time averages
 
       ENDIF
 #endif /*  ALLOW_MNC     */
-#endif /*  ALLOW_SEAICE  */
 
       RETURN
       END

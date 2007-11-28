@@ -1,18 +1,17 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
-#include "CPP_OPTIONS.h"
+#include "SALT_PLUME_OPTIONS.h"
 
 CBOP
-C     !ROUTINE: CALC_SALT_PLUME_DEPTH
+C     !ROUTINE: SALT_PLUME_CALC_DEPTH
 C     !INTERFACE:
-      SUBROUTINE CALC_SALT_PLUME_DEPTH(
+      SUBROUTINE SALT_PLUME_CALC_DEPTH(
      I                       rhoSurf, sigmaR,
      I                       bi, bj, myTime, myIter, myThid )
 C     !DESCRIPTION: \bv
 C     *==========================================================*
-C     | S/R CALC_SALT_PLUME_DEPTH
+C     | S/R SALT_PLUME_CALC_DEPTH
 C     | o Compute depth of penetration of salt plumes rejected
 C     |   during sea ice growth
 C     *==========================================================*
@@ -27,6 +26,7 @@ C     == Global variables ==
 #include "GRID.h"
 #include "SURFACE.h"
 #include "DYNVARS.h"
+#include "SALT_PLUME.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine Arguments ==
@@ -42,8 +42,6 @@ C     myThid    :: my Thread Id number
       _RL     myTime
       INTEGER myIter
       INTEGER myThid
-
-#ifdef ALLOW_SALT_PLUME
 
 C     !LOCAL VARIABLES:
 C     == Local variables ==
@@ -93,8 +91,6 @@ C-    potential density (reference level = surface level)
         ENDDO
        ENDDO
       ENDDO
-
-#endif /* ALLOW_SALT_PLUME */
 
       RETURN
       END

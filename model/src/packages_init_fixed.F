@@ -78,9 +78,11 @@ C       |-- CPL_INIT_FIXED
 C       |
 C       |-- ATM2D_INIT_FIXED
 C       |
-C       |-- DIAGNOSTICS_INIT_FIXED
-C       |
 C       |-- REGRID_INIT_FIXED
+C       |
+C       |-- SALT_PLUME_INIT_FIXED
+C       |
+C       |-- DIAGNOSTICS_INIT_FIXED
 
 C     !USES:
       IMPLICIT NONE
@@ -293,6 +295,10 @@ C     IF (useDIC)
 
 #ifdef ALLOW_ATM2D
       IF ( useAtm2d ) CALL ATM2D_INIT_FIXED( myThid )
+#endif
+
+#ifdef ALLOW_SALT_PLUME
+      IF (useSaltPlume) CALL SALT_PLUME_INIT_FIXED(mythid)
 #endif
 
 #ifdef ALLOW_DIAGNOSTICS
