@@ -5,7 +5,6 @@ C $Name$
 
 CBOP 0
 C     !ROUTINE: SALT_PLUME_INIT_VARIA
-
 C     !INTERFACE:
       SUBROUTINE SALT_PLUME_INIT_VARIA( myThid )
 
@@ -23,8 +22,9 @@ C     myThid ::  my Thread Id number
       INTEGER myThid
 CEOP
 
+#ifdef ALLOW_SALT_PLUME
+
 C     !LOCAL VARIABLES:
-C     === Local variables ===
       INTEGER i,j,bi,bj
 
       DO bj = myByLo(myThid), myByHi(myThid)
@@ -42,6 +42,8 @@ C     2-dim.
 C- end bi,bj loops
        ENDDO
       ENDDO
+
+#endif /* ALLOW_SALT_PLUME */
 
       RETURN
       END

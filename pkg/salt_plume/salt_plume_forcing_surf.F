@@ -9,6 +9,7 @@ C     !INTERFACE:
       SUBROUTINE SALT_PLUME_FORCING_SURF(
      I                            bi, bj, iMin, iMax, jMin, jMax,
      I                            myTime,myIter,myThid )
+
 C     !DESCRIPTION: \bv
 C     *==========================================================*
 C     | S/R SALT_PLUME_FORCING_SURF
@@ -28,22 +29,23 @@ C     == Global variables ==
 #include "DYNVARS.h"
 #include "SALT_PLUME.h"
 
-C !INPUT PARAMETERS: ===================================================
-C  bi,bj                :: tile indices
-C  myTime               :: model time
-C  myIter               :: time-step number
-C  myThid               :: thread number
+C     !INPUT PARAMETERS:
+C     bi,bj                :: tile indices
+C     myTime               :: model time
+C     myIter               :: time-step number
+C     myThid               :: thread number
       INTEGER bi, bj, iMin, iMax, jMin, jMax
       _RL myTime
       INTEGER myIter
       INTEGER myThid
+CEOP
+
+#ifdef ALLOW_SALT_PLUME
 
 C     !LOCAL VARIABLES:
-C     == Local variables ==
 C     i,j                  :: loop indices
 C     ks                   :: surface level index
       INTEGER i, j, ks
-CEOP
 
       IF ( usingPCoords ) THEN
          ks = Nr
@@ -57,6 +59,8 @@ CEOP
      &           - saltPlumeFlux(i,j,bi,bj) * mass2rUnit
          ENDDO
       ENDDO
-     
+ 
+#endif /* ALLOW_SALT_PLUME */
+    
       RETURN
       END

@@ -4,9 +4,8 @@ C $Name$
 #include "SALT_PLUME_OPTIONS.h"
 
 CBOP 0
-C !ROUTINE: SALT_PLUME_TENDENCY_APPLY_S
-
-C !INTERFACE:
+C     !ROUTINE: SALT_PLUME_TENDENCY_APPLY_S
+C     !INTERFACE:
       SUBROUTINE SALT_PLUME_TENDENCY_APPLY_S(
      &     iMin, iMax, jMin, jMax,
      &     bi,bj,kLev,myTime,myThid)
@@ -31,6 +30,8 @@ C     !INPUT PARAMETERS:
       integer iMin, iMax, jMin, jMax, kLev, bi, bj, myThid
       _RL myTime
 CEOP
+
+#ifdef ALLOW_SALT_PLUME
 
 C     !LOCAL VARIABLES:
       integer i, j, kp1, two2
@@ -72,6 +73,8 @@ C Penetrating saltplume fraction:
      &         plumefrac,'PLUMEKB ',kLev,1,2,bi,bj,myThid )
        ENDIF
 #endif /* ALLOW_DIAGNOSTICS */
+
+#endif /* ALLOW_SALT_PLUME */
 
       return
       end

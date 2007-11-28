@@ -4,9 +4,8 @@ C $Name$
 #include "SALT_PLUME_OPTIONS.h"
 
 CBOP 0
-C !ROUTINE: SALT_PLUME_INIT_FIXED
-
-C !INTERFACE:
+C     !ROUTINE: SALT_PLUME_INIT_FIXED
+C     !INTERFACE:
       SUBROUTINE SALT_PLUME_INIT_FIXED( myThid )
 
 C     !DESCRIPTION:
@@ -23,8 +22,7 @@ C     myThid ::  my Thread Id number
       INTEGER myThid
 CEOP
 
-C     !LOCAL VARIABLES:
-C     === Local variables ===
+#ifdef ALLOW_SALT_PLUME
 
 #ifdef ALLOW_MNC
       IF (useMNC) THEN
@@ -37,6 +35,8 @@ C     === Local variables ===
         CALL SALT_PLUME_DIAGNOSTICS_INIT( myThid )
       ENDIF
 #endif /* ALLOW_DIAGNOSTICS */
+
+#endif /* ALLOW_SALT_PLUME */
 
       RETURN
       END

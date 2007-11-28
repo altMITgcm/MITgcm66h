@@ -4,9 +4,8 @@ C $Name$
 #include "SALT_PLUME_OPTIONS.h"
 
 CBOP 0
-C !ROUTINE: SALT_PLUME_DIAGNOSTICS_INIT
-
-C !INTERFACE:
+C     !ROUTINE: SALT_PLUME_DIAGNOSTICS_INIT
+C     !INTERFACE:
       SUBROUTINE SALT_PLUME_DIAGNOSTICS_INIT( myThid )
 
 C     !DESCRIPTION:
@@ -21,7 +20,9 @@ C     myThid ::  my Thread Id number
       INTEGER myThid
 CEOP
 
+#ifdef ALLOW_SALT_PLUME
 #ifdef ALLOW_DIAGNOSTICS
+
 C     !LOCAL VARIABLES:
 C     === Local variables ===
 C     diagNum   :: diagnostics number in the (long) list of available diag.
@@ -60,6 +61,7 @@ C     diagTitle :: local string (80c): description of field in diagnostic
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
 #endif /* ALLOW_DIAGNOSTICS */
+#endif /* ALLOW_SALT_PLUME */
 
       RETURN
       END
