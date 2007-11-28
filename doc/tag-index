@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o fix un-initialised variable problem (in mom_vecinv & shap_filt):
+  all experiments pass when compile with un-initilised var. checking option.
 o added pkg/salt_plume
 o script to test restart (for now, in MITgcm_contrib/jmc_script)
 o pkg/seaice: new read/write pickup version. 
