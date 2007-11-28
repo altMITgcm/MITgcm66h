@@ -213,7 +213,7 @@ C--   Update overlap regions for a bunch of stuff
        _EXCH_XY_R4(Qsw  , myThid )
 #endif /* SHORTWAVE_HEATING */
 #ifdef ALLOW_SALT_PLUME
-       IF ( useSaltPlume )
+       IF ( useSALT_PLUME )
      &       _EXCH_XY_R4(saltPlumeFlux, myThid )
 #endif /* ALLOW_SALT_PLUME */
 #ifdef ATMOSPHERIC_LOADING

@@ -1,6 +1,16 @@
 C $Header$
 C $Name$
 
+C--   SALT_PLUME parameters
+
+C     find surface where the potential density (ref.lev=surface) is
+C     larger than surface density plus SaltPlumeCriterion.  Initially
+C     use the default value 0.4 kg/m^3 of Duffy et al, 1999.
+      _RL SaltPlumeCriterion
+      COMMON /SALT_PLUME_PARAMS_R/ SaltPlumeCriterion
+
+C--   SALT_PLUME 2-dim. fields
+
 C     SaltPlumeDepth :: depth of penetration of salt plumes
 C                       rejected during sea ice growth
       COMMON /DYNVARS_SALT_PLUME/ SaltPlumeDepth

@@ -298,7 +298,7 @@ C     IF (useDIC)
 #endif
 
 #ifdef ALLOW_SALT_PLUME
-      IF (useSaltPlume) CALL SALT_PLUME_INIT_FIXED(mythid)
+      IF (useSALT_PLUME) CALL SALT_PLUME_INIT_FIXED(mythid)
 #endif
 
 #ifdef ALLOW_DIAGNOSTICS

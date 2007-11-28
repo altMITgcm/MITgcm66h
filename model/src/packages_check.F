@@ -273,6 +273,12 @@ C---  Continue with standard packages (with standard usePKG flag)
       IF (useMYPACKAGE) CALL PACKAGES_ERROR_MSG('MYPACKAGE',' ',myThid)
 #endif
 
+#ifdef ALLOW_SALT_PLUME
+      IF (useSALT_PLUME)CALL SALT_PLUME_CHECK( myThid )
+#else
+      IF (useSALT_PLUME)CALL PACKAGES_ERROR_MSG('SALT_PLUME',' ',myThid)
+#endif
+
 C---  Exclusive packages (which cannot be used together):
       IF ( useEXF .AND. useBulkForce ) THEN
         WRITE(msgBuf,'(2A)') 'PACKAGES_CHECK: ',

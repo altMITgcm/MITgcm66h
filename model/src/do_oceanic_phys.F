@@ -353,7 +353,7 @@ cph Needed for rhoK, rhoKm1, in the case useGMREDI.
 C--       Calculate gradients of potential density for isoneutral
 C         slope terms (e.g. GM/Redi tensor or IVDC diffusivity)
           IF ( useGMRedi .OR. (k.GT.1 .AND. ivdc_kappa.NE.0.)
-     &         .OR. useSaltPlume .OR. doDiagsRho.GE.1 ) THEN
+     &         .OR. useSALT_PLUME .OR. doDiagsRho.GE.1 ) THEN
 #ifdef ALLOW_DEBUG
             IF ( debugLevel .GE. debLevB )
      &       CALL DEBUG_CALL('FIND_RHO',myThid)
@@ -432,17 +432,18 @@ C--     Diagnose Mixed Layer Depth:
         ENDIF
 
 #ifdef ALLOW_SALT_PLUME
-        IF ( useSaltPlume ) THEN
+        IF ( useSALT_PLUME ) THEN
           CALL SALT_PLUME_CALC_DEPTH( rhoK, sigmaR,
      &              bi, bj, myTime, myIter, myThid )
         ENDIF
-#endif
+#endif /* ALLOW_SALT_PLUME */
+
 #ifdef ALLOW_DIAGNOSTICS
         IF ( doDiagsRho.GE.1 ) THEN
           CALL DIAGNOSTICS_FILL (sigmaR, 'DRHODR  ', 0, Nr,
      &         2, bi, bj, myThid)
         ENDIF
-#endif
+#endif /* ALLOW_DIAGNOSTICS */
 
 C--     Determines forcing terms based on external fields
 C       relaxation terms, etc.

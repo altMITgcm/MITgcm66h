@@ -330,7 +330,7 @@ C Initialize FIZHI state variables
 #endif
 
 #ifdef ALLOW_SALT_PLUME
-      IF ( useSaltPlume ) CALL SALT_PLUME_INIT_VARIA( myThid )
+      IF ( useSALT_PLUME ) CALL SALT_PLUME_INIT_VARIA( myThid )
 #endif
 
 #ifdef ALLOW_DEBUG

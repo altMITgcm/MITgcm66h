@@ -47,16 +47,11 @@ C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     i,j :: Loop counters
       INTEGER i,j,k
-      _RL     rhoBigNb, tmpFac, SaltPlumeCriterion
+      _RL     rhoBigNb, tmpFac
       _RL     rhoMxL(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL     rhoKm1(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL     rhoLoc(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 CEOP
-
-C     find surface where the potential density (ref.lev=surface) is
-C     larger than surface density plus SaltPlumeCriterion.  Initially
-C     use the default value 0.4 kg/m^3 of Duffy et al, 1999.
-      SaltPlumeCriterion = 0.4
 
       rhoBigNb  = rhoConst*1. _d 10
       DO j=1-Oly,sNy+Oly
@@ -91,6 +86,11 @@ C-    potential density (reference level = surface level)
         ENDDO
        ENDDO
       ENDDO
+
+#ifdef ALLOW_DIAGNOSTICS
+      IF ( useDiagnostics )
+     &      CALL SALT_PLUME_DIAGNOSTICS_FILL(bi,bj,myThid)
+#endif /* ALLOW_DIAGNOSTICS */
 
       RETURN
       END

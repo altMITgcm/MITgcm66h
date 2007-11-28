@@ -64,7 +64,15 @@ C       |-- BULKF_READPARMS
 C       |
 C       |-- THSICE_READPARMS
 C       |
+C       |-- PTRACERS_READPARMS
+C       |
 C       |-- GCHEM_READPARMS
+C       |
+C       |-- RBCS_READPARMS
+C       |
+C       |-- MYPACKAGE_READPARMS
+C       |
+C       |-- SALT_PLUME_READPARMS
 C       |
 C       |-- OPTIM_READPARMS
 C       |
@@ -212,6 +220,10 @@ C -- initialize Therm.Sea-Ice parameters
 
 #ifdef ALLOW_MYPACKAGE
       IF (useMYPACKAGE) CALL MYPACKAGE_READPARMS( myThid )
+#endif
+
+#ifdef ALLOW_SALT_PLUME
+      IF (useSALT_PLUME) CALL SALT_PLUME_READPARMS( myThid )
 #endif
 
 #ifdef ALLOW_CTRL
