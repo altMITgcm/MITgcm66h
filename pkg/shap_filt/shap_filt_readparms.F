@@ -102,7 +102,7 @@ C     to get exactly the same results as shap-funct S2G.
 
       IF ( Shap_funct.EQ.1 .OR. Shap_funct.EQ.4
      &     .OR. Shap_funct.EQ.21
-     &     .OR. Olx.LT.3 .OR. Oly.LT.3 ) THEN
+     &   ) THEN
         Shap_alwaysExchUV = .TRUE.
       ENDIF
       IF ( Shap_funct.EQ.1 .OR. Shap_funct.EQ.4
