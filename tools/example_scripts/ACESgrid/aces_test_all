@@ -59,7 +59,7 @@ while test $count != 0 ; do
             if test ! "x$tdir" = x ; then
                 cp -ra $run_dir"/"$tdir "/tmp/tr_aces-"$i"_"$date_str
                 ( cd /tmp ; tar -czf "./tr_aces-"$i".tar.gz" "./tr_aces-"$i"_"$date_str )
-                $MPACK -s MITgcm-test -m 3555000 "/tmp/tr_aces-"$i".tar.gz" edhill@mitgcm.org
+                $MPACK -s MITgcm-test -m 3555000 "/tmp/tr_aces-"$i".tar.gz" jmc@mitgcm.org
                 echo "Email sent for $i"
             else
                 echo "Output not found so no email sent for $i"
