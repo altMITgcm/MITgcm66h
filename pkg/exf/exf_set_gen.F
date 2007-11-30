@@ -154,9 +154,11 @@ C     Complete filename with YR or _YEAR extension
      &           , gen_nlon,gen_nlat,interp_method,mythid
      &           )
 #else
+            _BARRIER
             call mdsreadfield( genfile0, exf_iprec, exf_yftype, 1
      &           , gen1, count0, mythid
      &           )
+            _BARRIER
 #endif /* USE_EXF_INTERPOLATION */
 
             if (exf_yftype .eq. 'RL') then
@@ -195,9 +197,11 @@ C     Complete filename with YR or _YEAR extension
      &           , gen_nlon,gen_nlat,interp_method,mythid
      &           )
 #else
+            _BARRIER
             call mdsreadfield( genfile1, exf_iprec, exf_yftype, 1
      &           , gen1, count1, mythid
      &           )
+            _BARRIER
 #endif /* USE_EXF_INTERPOLATION */
 
             if (exf_yftype .eq. 'RL') then
@@ -227,8 +231,8 @@ c     Interpolate linearly onto the  time.
 
       endif
 
-      end
-
+      RETURN
+      END
 
 C+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 C+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -321,9 +325,11 @@ c     == end of interface ==
      &        , gen_nlon,gen_nlat,interp_method,mythid
      &        )
 #else
+         _BARRIER
          call mdsreadfield( genfile, exf_iprec, exf_yftype, 1
      &        , genfld, count, mythid
      &        )
+         _BARRIER
 #endif /* USE_EXF_INTERPOLATION */
 
          if (exf_yftype .eq. 'RL') then
@@ -347,4 +353,5 @@ c     Interpolate linearly onto the  time.
 
       endif
 
-      end
+      RETURN
+      END
