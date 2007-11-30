@@ -90,7 +90,20 @@ C$TAF INIT bio_export = static, 10
            lit=sfac(j)
 #endif
 #endif
+
+#if (defined (ALLOW_SEAICE) && defined (USE_QSW))
+c if using Qsw and seaice, then ice fraction is already
+c taken into account
+           lit=lit
+#else
+#if (defined (ALLOW_THSICE) && defined (USE_QSW))
+c if using Qsw and seaice, then ice fraction is already
+c taken into account
+           lit=lit
+#else
            lit=lit*(1. _d 0 - FIce(i,j,bi,bj))
+#endif
+#endif
            DO k=1,nlev
 C$TAF STORE lit = bio_export
              atten=(k0*drF(k)*hFacC(i,j,k,bi,bj)*.5 _d 0)

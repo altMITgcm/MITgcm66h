@@ -31,9 +31,9 @@ C     == GLobal variables ==
 #include "DIC_DIAGS.h"
 #include "DIC_COST.h"
 #endif
-#ifdef ALLOW_SEAICE
-#include "ICE.h"
-#endif
+c#ifdef ALLOW_SEAICE
+c#include "SEAICE.h"
+c#endif
 
 C     == Routine arguments ==
       INTEGER myThid

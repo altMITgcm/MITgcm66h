@@ -31,6 +31,9 @@ c#include "PTRACERS_FIELDS.h"
 #ifdef ALLOW_THSICE
 #include "THSICE_VARS.h"
 #endif
+#ifdef ALLOW_SEAICE
+#include "SEAICE.h"
+#endif
 
 C !INPUT PARAMETERS: ===================================================
 C  myThid               :: thread number
@@ -187,6 +190,9 @@ c          pisvel(i,j,bi,bj)  =0.337*wind(i,j,bi,bj)**2/3.6d5    !QQQQ
             ENDDO
            ENDDO
 #else
+#ifdef ALLOW_SEAICE
+             FIce(i,j,bi,bj) = AREA(i,j,1,bi,bj)
+#else
          IF ( IceFile .NE. ' '  ) THEN
            DO j=1-Oly,sNy+Oly
             DO i=1-Olx,sNx+Olx
@@ -195,6 +201,7 @@ c          pisvel(i,j,bi,bj)  =0.337*wind(i,j,bi,bj)**2/3.6d5    !QQQQ
             ENDDO
            ENDDO
          ENDIF
+#endif
 #endif
 #ifdef READ_PAR
          IF ( Filename1 .NE. ' '  ) THEN
