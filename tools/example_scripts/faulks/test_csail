@@ -86,7 +86,7 @@ mkdir $new_dir
   cp -ra ../MITgcm/* .
   echo "Running testreport using:"
   cd verification
-  comm="./testreport -match $MC -of ../tools/build_options/linux_ia32_ifort+authors_v9 -a edhill@mitgcm.org"
+  comm="./testreport -match $MC -of ../tools/build_options/linux_ia32_ifort+authors_v9 -a jmc@mitgcm.org"
   echo "  \"$comm\""
   echo "======================"
   echo
