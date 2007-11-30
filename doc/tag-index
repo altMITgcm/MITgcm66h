@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint59k
 o pkg/seaice: ICE2WATR=SEAICE_rhoIce/rhoConst for consistency between
   dynamics and thermodynamics. Set ICE2WATR=0.92 to reproduce older results.
 o fix un-initialised variable problem (in mom_vecinv & shap_filt):
