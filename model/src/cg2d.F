@@ -2,6 +2,13 @@ C $Header$
 C $Name$
 
 #include "CPP_OPTIONS.h"
+#ifdef TARGET_NEC_SX
+C     set a sensible default for the outer loop unrolling parameter that can
+C     be overriden in the Makefile with the DEFINES macro or in CPP_OPTIONS.h
+#ifndef CG2D_OUTERLOOPITERS
+# define CG2D_OUTERLOOPITERS 10
+#endif
+#endif /* TARGET_NEC_SX */
 
 CBOP
 C     !ROUTINE: CG2D
@@ -164,6 +171,9 @@ C--   Initial residual calculation
        DO bi=myBxLo(myThid),myBxHi(myThid)
         sumRHStile(bi,bj) = 0. _d 0
         errTile(bi,bj)    = 0. _d 0
+#ifdef TARGET_NEC_SX
+!CDIR OUTERUNROLL=CG2D_OUTERLOOPITERS
+#endif /* TARGET_NEC_SX */
         DO J=1,sNy
          DO I=1,sNx
 c         ks = ksurfC(I,J,bi,bj)
@@ -239,6 +249,9 @@ C--    conjugate direction vector "s".
        DO bj=myByLo(myThid),myByHi(myThid)
         DO bi=myBxLo(myThid),myBxHi(myThid)
          eta_qrNtile(bi,bj) = 0. _d 0
+#ifdef TARGET_NEC_SX
+!CDIR OUTERUNROLL=CG2D_OUTERLOOPITERS
+#endif /* TARGET_NEC_SX */
          DO J=1,sNy
           DO I=1,sNx
            cg2d_q(I,J,bi,bj) =
@@ -295,6 +308,9 @@ C==    q = A.s
        DO bj=myByLo(myThid),myByHi(myThid)
         DO bi=myBxLo(myThid),myBxHi(myThid)
          alphaTile(bi,bj) = 0. _d 0
+#ifdef TARGET_NEC_SX
+!CDIR OUTERUNROLL=CG2D_OUTERLOOPITERS
+#endif /* TARGET_NEC_SX */
          DO J=1,sNy
           DO I=1,sNx
 c          ks = ksurfC(I,J,bi,bj)
