@@ -76,11 +76,7 @@ C     msgBuf     :: message buffer
       ENDIF
 #endif
 
-      IF (
-     &     ( .NOT.modelEnd .AND. (permPickup.OR.tempPickup) )
-     &     .OR.
-     &     ( modelEnd .AND. .NOT.(permPickup.OR.tempPickup) )
-     &    ) THEN
+      IF ( modelEnd .OR. permPickup .OR. tempPickup ) THEN
 C--   this is time to write pickup files
 
 C-    write a pickup for each package which need it to restart
