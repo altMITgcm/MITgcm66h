@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o cg2d.F: add 3 compiler directives that speed up this routine by 30% on a NEC
+  SX vector computer.
 o pkg/seaice: removed SEAICE_FFIELDS.h and seaice_get_forcing.F
   seaice forcing fields can now be read only through pkg/exf
 o no longer write pickup from THE_MODEL_MAIN but always from FORWARD_STEP
