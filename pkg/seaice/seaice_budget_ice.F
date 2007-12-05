@@ -23,10 +23,13 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "FFIELDS.h"
 #include "SEAICE_PARAMS.h"
-#include "SEAICE_FFIELDS.h"
 #ifdef SEAICE_VARIABLE_FREEZING_POINT
-#include "DYNVARS.h"
-#endif /* SEAICE_VARIABLE_FREEZING_POINT */
+# include "DYNVARS.h"
+#endif
+#ifdef ALLOW_EXF
+# include "EXF_OPTIONS.h"
+# include "EXF_FIELDS.h"
+#endif
 
 C     === Routine arguments ===
 C     INPUT:

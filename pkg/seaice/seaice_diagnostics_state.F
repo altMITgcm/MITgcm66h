@@ -24,8 +24,11 @@ C     == Global variables ==
 #include "PARAMS.h"
 #include "FFIELDS.h"
 #include "SEAICE_PARAMS.h"
-#include "SEAICE_FFIELDS.h"
 #include "SEAICE.h"
+#ifdef ALLOW_EXF
+# include "EXF_OPTIONS.h"
+# include "EXF_FIELDS.h"
+#endif
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine Arguments ==

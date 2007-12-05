@@ -44,9 +44,7 @@ exf             +mdsio
 matrix          +ptracers
 matrix          -gchem
 showflops       +runclock
-
-#  default SEAICE_OPTIONS.h requires EXF:
-#seaice		+exf
+seaice		+exf
 
 #  Need more information on the following:
 obcs
