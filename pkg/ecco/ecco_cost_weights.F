@@ -211,8 +211,8 @@ c--   Build area weighting matrix used in the cost function
 c--   contributions.
 
 c--   Define frame.
-      do bj = jtlo,jthi
-        do bi = itlo,ithi
+      do j = jmin,jmax
+        do i = imin,imax
 c--       North/South and West/East edges set to zero.
 cph          if ( (j .lt. 1) .or. (j .gt. sny) .or.
 cph     &         (i .lt. 1) .or. (i .gt. snx)      ) then
