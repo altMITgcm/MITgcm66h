@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/obcs: added OBCS_SEAICE_AVOID_CONVERGENCE constraint
 o cg2d.F: add 3 compiler directives that speed up this routine by 30% on a NEC
   SX vector computer.
 o pkg/seaice:
