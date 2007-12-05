@@ -88,13 +88,11 @@ C First call requires that we initialize everything to zero for safety
           QSW_underice=.FALSE.
 #ifdef USE_QSW_UNDERICE
           QSW_underice=.TRUE.
-#endif
-#if (defined (ALLOW_SEAICE) && defined (USE_QSW))
+#elif (defined (ALLOW_SEAICE) && defined (USE_QSW))
 c if using Qsw and seaice, then ice fraction is already
 c taken into account
           QSW_underice=.TRUE.
-#endif
-#if (defined (ALLOW_THSICE) && defined (USE_QSW))
+#elif (defined (ALLOW_THSICE) && defined (USE_QSW))
           QSW_underice=.TRUE.
 #endif
 
