@@ -18,7 +18,6 @@ C     === Global variables ===
 #include "PARAMS.h"
 #include "GRID.h"
 #include "SEAICE_PARAMS.h"
-CML#include "SEAICE_GRID.h"
 
 #ifdef ALLOW_AUTODIFF_TAMC
 # include "tamc.h"

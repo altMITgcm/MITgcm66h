@@ -23,9 +23,6 @@ C
 c   pkg/exf CPP options:
 c   --------------------
 c
-c   >>> INCLUDE_EXTERNAL_FORCING_PACKAGE <<<
-c       Include this package into the setup.
-c
 c   >>> EXF_VERBOSE <<<
 c       Do a bit more printout for the log file than usual.
 c
@@ -152,9 +149,6 @@ C   Relaxation to monthly climatologies.
 C   Use spatial interpolation to interpolate
 C   forcing files from input grid to model grid.
 #undef USE_EXF_INTERPOLATION
-
-C   Subtract UVEL and VVEL from UWIND and VWIND.
-#undef EXF_SUBTRACT_UVVEL_FROM_UVWIND
 
 #define EXF_INTERP_USE_DYNALLOC
 #if ( defined (EXF_INTERP_USE_DYNALLOC) & defined (USING_THREADS) )
