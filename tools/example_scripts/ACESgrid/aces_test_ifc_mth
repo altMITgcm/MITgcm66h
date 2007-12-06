@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#PBS -q long
+#PBS -q four-twelve
 #PBS -N tst_mth
 #PBS -l nodes=1:ppn=2
 #PBS -e /home/jmc/test_ACES/output/tst_mth.stderr
@@ -43,6 +43,6 @@ cvs -d :pserver:cvsanon@mitgcm.org:/u/gcmpack co -P MITgcm > /dev/null 2>&1
 
 cd MITgcm/verification
 OPTFILE="../tools/build_options/linux_ia32_"$FC".aces+mth"
-echo ./testreport -j 2 -mth -match $MC -of $OPTFILE
-./testreport -j 2 -mth -match $MC -of $OPTFILE
+echo ./testreport -j 2 -mth -match $MC -of $OPTFILE -odir aces-mth
+./testreport -j 2 -mth -match $MC -of $OPTFILE -odir aces-mth
 
