@@ -140,9 +140,9 @@ C     Subtract UVEL and VVEL from UWIND and VWIND.
         do bi = mybxlo(mythid),mybxhi(mythid)
          do j = 1,sny
           do i = 1,snx
-           uwind(i,j,bi,bj) = uwind(i,j,bi,bj) - 0.5 *
+           uwind(i,j,bi,bj) = uwind(i,j,bi,bj) - 0.5 _d 0 *
      &          (uVel(i,j,1,bi,bj)+uVel(i+1,j,1,bi,bj))
-           vwind(i,j,bi,bj) = vwind(i,j,bi,bj) - 0.5 *
+           vwind(i,j,bi,bj) = vwind(i,j,bi,bj) - 0.5 _d 0 *
      &          (vVel(i,j,1,bi,bj)+vVel(i,j+1,1,bi,bj))
           enddo
          enddo
