@@ -135,7 +135,7 @@ C       Time averages
         CALL MNC_CW_ADD_VNAME(
      &       'si_EmPmRtave','Cen_xy_Hn__-__t',3,4,myThid)
         CALL MNC_CW_ADD_VATTR_TEXT(
-     &       'si_EmPmRtave','units','m/s',myThid)
+     &       'si_EmPmRtave','units','kg/m^2/s',myThid)
         CALL MNC_CW_ADD_VATTR_TEXT('si_EmPmRtave','description',
      &       'Time-averaged net upward freshwater flux', myThid)
 

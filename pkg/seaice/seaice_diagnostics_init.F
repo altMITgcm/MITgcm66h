@@ -140,7 +140,7 @@ C     are identical but they differ from pkg/diagnostics EXFempmr, which
 C     is EmPmR before impact of ice.
       diagName  = 'SIempmr '
       diagTitle = 'SEAICE upward freshwater flux, > 0 increases salt'
-      diagUnits = 'm/s             '
+      diagUnits = 'kg/m^2/s        '
       diagCode  = 'SM      U1      '
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
