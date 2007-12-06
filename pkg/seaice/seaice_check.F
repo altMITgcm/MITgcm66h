@@ -159,6 +159,17 @@ C--   pkg/seaice requires pkg/exf with following CPP options/
       ENDIF
 #endif
 
+#ifndef ALLOW_SEAICE_FLOODING
+      IF ( SEAICEuseFlooding ) THEN
+        WRITE(msgBuf,'(A)') 'SEAICE_CHECK: SEAICEuseFlooding = .TRUE.'
+        CALL PRINT_ERROR( msgBuf , myThid)
+        WRITE(msgBuf,'(A)') 'SEAICE_CHECK: but cpp-flag '//
+     &       'ALLOW_SEAICE_FLOODING is not defined in SEAICE_OPTIONS.h'
+        CALL PRINT_ERROR( msgBuf , myThid)
+        STOP 'ABNORMAL END: S/R SEAICE_CHECK'
+      ENDIF
+#endif /* ALLOW_SEAICE_FLOODING */
+
 #ifdef ALLOW_SALT_PLUME
 #ifndef SEAICE_SALINITY
       IF ( UseSALT_PlUME ) THEN
