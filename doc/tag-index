@@ -4,6 +4,12 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: 
+  - add timescale for melting due to warm mixed layer as a means of
+    setting SEAICE_availHeatFrac more conveniently
+  - add a CPP-flag/runtime parameter check for flooding algorithm
+o change units attribute of EmPmR netcdf variables to kg/m^2/s to reflect recent
+  unit changes
 o pkg/obcs: added OBCS_SEAICE_AVOID_CONVERGENCE constraint
 o cg2d.F: add 3 compiler directives that speed up this routine by 30% on a NEC
   SX vector computer.
