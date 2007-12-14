@@ -7,7 +7,7 @@ echo -n '-- Starting: '
 date
 if test $# = 0
 then
-  tst_list='gnu ifc pgi mth'
+  tst_list='gnu ifc pgi mth tuv'
 else
   tst_list=$*
 fi
@@ -27,7 +27,7 @@ TST_DIR="/home/jmc/test_ACES/gcm_tests"
 nbtst=0
 for i in $tst_list
 do
-  sfx=`echo ${i}"_mpi" | sed 's/mth_mpi/ifc_mth/g'`
+  sfx=`echo ${i}"_mpi" | sed 's/mth_mpi/ifc_mth/' | sed 's/tuv_mpi/op64_tuv/'`
   if test -f MITgcm_tools/example_scripts/ACESgrid/aces_test_$sfx ; then
     JOB="tst_"$i
     job_exist=`$QSTAT -a | grep $USER | grep $JOB | wc -l`
