@@ -4,10 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
-o pkg/seaice: 
+o pkg/seaice:
   - add timescale for melting due to warm mixed layer as a means of
     setting SEAICE_availHeatFrac more conveniently
   - add a CPP-flag/runtime parameter check for flooding algorithm
+  - reformulated availHeat in seaice_growth.F to be independent of AREA
 o change units attribute of EmPmR netcdf variables to kg/m^2/s to reflect recent
   unit changes
 o pkg/obcs: added OBCS_SEAICE_AVOID_CONVERGENCE constraint
