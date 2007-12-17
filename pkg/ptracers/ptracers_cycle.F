@@ -36,7 +36,7 @@ C  none
 #ifdef ALLOW_PTRACERS
 
 C !LOCAL VARIABLES: ====================================================
-C  iTracer 		:: loop indices
+C  iTracer       :: loop indices
       INTEGER iTracer
 CEOP
 

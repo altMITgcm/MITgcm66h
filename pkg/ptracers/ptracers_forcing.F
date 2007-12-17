@@ -44,12 +44,12 @@ C  myThid               :: thread number
       INTEGER myThid
 
 C !OUTPUT PARAMETERS: ==================================================
-C  gPtracer		:: updates tendency array
+C  gPtracer       :: updates tendency array
 
 #ifdef ALLOW_PTRACERS
 
 C !LOCAL VARIABLES: ====================================================
-C  i,j                  :: loop indices
+C  i,j            :: loop indices
       INTEGER i,j
 C     number of surface interface layer
       INTEGER kSurface
