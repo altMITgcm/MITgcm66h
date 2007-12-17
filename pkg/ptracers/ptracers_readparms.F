@@ -73,7 +73,10 @@ C                          are written to post-processing files.
 
 C     This routine has been called by the main model so we set our
 C     internal flag to indicate we are in business
-      PTRACERSisON=.TRUE.
+c     PTRACERSisON=.TRUE.
+C Note(jmc): remove this flag which is not really usefull (not set properly
+C            when usePTRACERS=F and always TRUE otherwise);
+C            much better to use "usePTRACERS" flag instead.
 
 C     Set ptracer IO & diagnostics labels (2 characters long)
       CALL PTRACERS_SET_IOLABEL(
