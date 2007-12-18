@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint59l
 o pkg/ptracers: new version of ptracers pickup:
   read meta file and write only fields which are needed to restart.
   ( same logic as main pickup file ; also using pickupStrictlyMatch )
