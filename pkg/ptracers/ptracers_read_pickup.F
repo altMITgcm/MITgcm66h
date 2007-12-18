@@ -137,7 +137,7 @@ C-      Old meta-file without List of Fields
      &      ' try to read pickup as it used to be written'
           CALL PRINT_MESSAGE( msgBuf, ioUnit, SQUEEZE_RIGHT, myThid )
           WRITE(msgBuf,'(4A)') 'WARNING >> ',
-     &      ' until checkpoint59k (2007 Dec 18)'
+     &      ' until checkpoint59l (2007 Dec 17)'
           CALL PRINT_MESSAGE( msgBuf, ioUnit, SQUEEZE_RIGHT, myThid )
          ENDIF
         ENDIF
