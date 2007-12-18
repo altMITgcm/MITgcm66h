@@ -408,7 +408,7 @@ c     compute bfsfc = plume fraction at hbf * zgrid
          do i = 1, imt
             worka(i) = zgrid(kl)
          enddo
-         call PLUMEFRAC(
+         call SALT_PLUME_FRAC(
      I       imt, hbf,SPDepth,
      U       worka,
      I       myTime, myIter, myThid)
@@ -519,7 +519,7 @@ CADJ &   , key = ikppkey, shape = (/ (sNx+2*OLx)*(sNy+2*OLy) /)
       do i = 1, imt
          worka(i) = hbl(i)
       enddo
-      call PLUMEFRAC(
+      call SALT_PLUME_FRAC(
      I       imt,minusone,SPDepth,
      U       worka,
      I       myTime, myIter, myThid )
@@ -604,7 +604,7 @@ CADJ &   , key = ikppkey, shape = (/ (sNx+2*OLx)*(sNy+2*OLy) /)
       do i = 1, imt
          worka(i) = hbl(i)
       enddo
-      call PLUMEFRAC(
+      call SALT_PLUME_FRAC(
      I       imt,minusone,SPDepth,
      U       worka,
      I       myTime, myIter, myThid )

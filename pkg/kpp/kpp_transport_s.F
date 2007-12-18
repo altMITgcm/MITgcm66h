@@ -34,7 +34,10 @@ C     == GLobal variables ==
 #include "KPP.h"
 #include "KPP_PARAMS.h"
 #ifdef ALLOW_GMREDI
-#include "GMREDI.h"
+# include "GMREDI.h"
+#endif
+#ifdef ALLOW_SALT_PLUME
+# include "SALT_PLUME.h"
 #endif
 
 C     == Routine arguments ==
