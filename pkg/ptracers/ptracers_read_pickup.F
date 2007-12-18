@@ -239,6 +239,7 @@ C--    Check for missing fields:
      I                     missFldList,
      I                     nMissing, nbFields,
      I                     myIter, myThid )
+       _BARRIER
 
 C--   end: pickup_read_mdsio
       ENDIF
