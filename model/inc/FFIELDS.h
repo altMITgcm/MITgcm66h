@@ -33,6 +33,9 @@ C              EmPmR = Evaporation - precipitation - runoff
 C              > 0 for increase in salt (ocean salinity)
 C              Typical range: -1e-4 < EmPmR < 1e-4
 C              Southwest C-grid tracer point
+C           NOTE: for backward compatibility EmPmRfile is specified in
+C                 m/s when using external_fields_load.F.  It is converted
+C                 to kg/m2/s by multiplying by rhoConstFresh.
 C
 C  saltFlux :: Net upward salt flux in psu.kg/m^2/s
 C              flux of Salt taken out of the ocean per time unit (second).
