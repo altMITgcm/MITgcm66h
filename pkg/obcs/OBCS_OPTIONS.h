@@ -33,6 +33,13 @@ C This includes hooks to sponge layer treatment of uvel, vvel
 C balance barotropic velocity
 #undef ALLOW_OBCS_BALANCE
 
+C     When the prescribed open boundary conditions are incosistent with
+C     forcing, for example, six-hourly forcing and monthly sea ice
+C     boundary conditions, ice convergence at edges can cause model
+C     to blow up.  The following CPP option fixes this problem but this
+C     is at the expense of less accurate boundary conditions.
+#undef OBCS_SEAICE_AVOID_CONVERGENCE
+
 #endif /* ALLOW_OBCS */
 #endif /* OBCS_OPTIONS_H */
 
