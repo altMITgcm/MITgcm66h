@@ -55,7 +55,7 @@ C Penetrating saltplume fraction:
           kp1 = klev+1
           IF (klev.EQ.Nr) THEN
            kp1 = klev
-           plumekb(2)=0. _d 0
+           plumekb(2)=abs(rF(klev))
           ENDIF
           IF ( SaltPlumeDepth(i,j,bi,bj) .GT. -rF(kLev) ) THEN
            plumefrac(I,J) = plumekb(1)*maskC(i,j,klev,bi,bj)

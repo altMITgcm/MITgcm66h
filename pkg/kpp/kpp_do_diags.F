@@ -307,6 +307,9 @@ C       Reset averages to zero
        CALL DIAGNOSTICS_FILL(KPPghat   ,'KPPghat ',0,Nr,0,1,1,myThid)
        CALL DIAGNOSTICS_FILL(KPPhbl    ,'KPPhbl  ',0,1 ,0,1,1,myThid)
        CALL DIAGNOSTICS_FILL(KPPfrac   ,'KPPfrac ',0,1 ,0,1,1,myThid)
+#ifdef ALLOW_SALT_PLUME
+       CALL DIAGNOSTICS_FILL(KPPplumefrac,'KPPpfrac',0,1 ,0,1,1,myThid)
+#endif /* ALLOW_SALT_PLUME */
       ENDIF
 #endif /* ALLOW_DIAGNOSTICS */
      

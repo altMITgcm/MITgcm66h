@@ -58,7 +58,16 @@ C     myThid :: My Thread Id. number
 C     == Local variables ==
 C     I, J - Loop counters
       INTEGER I, J
-      _RL tmpFac
+      _RL tmpFac, tmpFac1
+
+
+#ifdef ALLOW_SALT_PLUME
+      IF ( useSALT_PLUME ) THEN
+         tmpFac1 = 1. _d 0
+      ELSE
+         tmpFac1 = 0. _d 0
+      ENDIF
+#endif /* ALLOW_SALT_PLUME */
 
 #ifdef ALLOW_GMREDI
 
@@ -74,7 +83,7 @@ C     I, J - Loop counters
      &        *KPPghat(i,j,km1,bi,bj)
      &        *( surfaceForcingS(i,j,bi,bj)
 #ifdef ALLOW_SALT_PLUME
-     &          + saltPlumeFlux(i,j,bi,bj)*recip_rhoConst
+     &          + tmpFac1*saltPlumeFlux(i,j,bi,bj)*recip_rhoConst
      &          *(1.-KPPplumefrac(i,j,bi,bj))
 #endif /* ALLOW_SALT_PLUME */
      &         )
@@ -90,7 +99,7 @@ C     I, J - Loop counters
      &        *KPPghat(i,j,km1,bi,bj)
      &        *( surfaceForcingS(i,j,bi,bj)
 #ifdef ALLOW_SALT_PLUME
-     &          + saltPlumeFlux(i,j,bi,bj)*recip_rhoConst
+     &          + tmpFac1*saltPlumeFlux(i,j,bi,bj)*recip_rhoConst
      &          *(1.-KPPplumefrac(i,j,bi,bj))
 #endif /* ALLOW_SALT_PLUME */
      &         )

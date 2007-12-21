@@ -93,6 +93,57 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
         CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
+        diagName  = 'KPPdbsfc'
+        diagTitle = 'Buoyancy difference with respect to surface'
+        diagUnits = 'm/s^2           '
+        diagCode  = 'SM P    UR      '
+        CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+        diagName  = 'KPPbfsfc'
+        diagTitle = 'Bo+radiation absorbed to d=hbf*hbl + plume'
+        diagUnits = 'm^2/s^3         '
+        diagCode  = 'SM P    UR      '
+        CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+        diagName  = 'KPPbo   '
+        diagTitle = 'Surface turbulent buoyancy forcing'
+        diagUnits = 'm^2/s^3         '
+        diagCode  = 'SM P     1      '
+        CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+        diagName  = 'KPPbosol'
+        diagTitle = 'surface radiative buoyancy forcing'
+        diagUnits = 'm^2/s^3         '
+        diagCode  = 'SM P     1      '
+        CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+        diagName  = 'KPPdbloc'
+        diagTitle = 'Local delta buoyancy across interfaces'
+        diagUnits = 'm/s^2           '
+        diagCode  = 'SM P    UR      '
+        CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+#ifdef ALLOW_SALT_PLUME
+        diagName  = 'KPPpfrac'
+        diagTitle = 'Salt plume flux fraction penetrating mixing layer'
+        diagUnits = '                '
+        diagCode  = 'SM P     1      '
+        CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+        diagName  = 'KPPboplm'
+        diagTitle = 'Surface haline buoyancy forcing'
+        diagUnits = 'm^2/s^3         '
+        diagCode  = 'SM P     1      '
+        CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+#endif /* ALLOW_SALT_PLUME */
+
 #endif /* ALLOW_DIAGNOSTICS */
 
       RETURN
