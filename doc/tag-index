@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/obcs and pkg/seaice:
+  - do not set uice and vice to zero when OB*icefile are unspecified
+  - OBCS_SEAICE_AVOID_CONVERGENCE is undefined by default
+  - moved seaice tracer obcs after call to seaice_growth
 o pkg/salt_plume: added various options for salt plume depth
   criterion and for vertical distribution of the salt
 
