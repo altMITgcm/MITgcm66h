@@ -4,6 +4,8 @@ C $Name$
 #ifndef EXF_OPTIONS_H
 #define EXF_OPTIONS_H
 #include "PACKAGES_CONFIG.h"
+#include "AD_CONFIG.h"
+
 #ifdef ALLOW_EXF
 
 #include "CPP_OPTIONS.h"
@@ -129,7 +131,7 @@ c
 c   ====================================================================
 
 C   Do more printout for the protocol file than usual.
-#define EXF_VERBOSE
+#undef EXF_VERBOSE
 
 C   Bulk formulae related flags.
 #define  ALLOW_ATM_TEMP
