@@ -283,5 +283,12 @@ c     Monitor output
 c     Map the forcing fields onto the corresponding model fields.
       call exf_mapfields( mytime, myiter, mythid )
 
+#ifdef ALLOW_AUTODIFF_TAMC
+# if (defined (ALLOW_AUTODIFF_MONITOR))
+      if ( .NOT. useSEAICE )
+     &     CALL EXF_ADJOINT_SNAPSHOTS( 3, myTime, myIter, myThid )
+# endif
+#endif
+
       end
 
