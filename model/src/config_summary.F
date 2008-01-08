@@ -508,6 +508,8 @@ C     ycoord :: varying parameters.
 #endif
       CALL WRITE_0D_R8( monitorFreq, INDEX_NONE,'monitorFreq =',
      &'   /* Monitor output interval ( s ). */')
+      CALL WRITE_0D_I( monitorSelect, INDEX_NONE, 'monitorSelect =',
+     & ' /* select group of variables to monitor */')
       CALL WRITE_0D_L(monitor_stdio,INDEX_NONE,
      &     'monitor_stdio =', '   /* Model IO flag. */')
 #ifdef ALLOW_MNC

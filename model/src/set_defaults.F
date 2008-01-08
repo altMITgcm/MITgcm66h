@@ -277,6 +277,7 @@ C--   Time stepping parameters
       snapshot_mdsio    = .TRUE.
       monitorFreq       = -1.
       adjMonitorFreq    = 0.
+      monitorSelect     = UNSET_I
       monitor_stdio     = .TRUE.
       taveFreq          = deltaT*0
       timeave_mdsio     = .TRUE.

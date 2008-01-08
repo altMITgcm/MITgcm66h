@@ -210,16 +210,16 @@ C--   Elliptic solver parameters
 C--   Time stepping parammeters
       NAMELIST /PARM03/
      & nIter0, nTimeSteps, nEndIter,
-     & pickupSuff, pickupStrictlyMatch,
+     & baseTime, startTime, endTime,
      & deltaT, deltaTClock, deltaTmom,
      & deltaTtracer, dTtracerLev, deltaTfreesurf,
      & forcing_In_AB, momForcingOutAB, tracForcingOutAB,
      & momDissip_In_AB, doAB_onGtGs,
      & abEps, alph_AB, beta_AB, startFromPickupAB2,
-     & tauCD, rCD,
-     & baseTime, startTime, endTime, chkPtFreq,
+     & tauCD, rCD, cAdjFreq,
+     & chkPtFreq, pChkPtFreq, pickupSuff, pickupStrictlyMatch,
      & dumpFreq, dumpInitAndLast, adjDumpFreq, taveFreq, tave_lastIter,
-     & diagFreq, monitorFreq, adjMonitorFreq, pChkPtFreq, cAdjFreq,
+     & diagFreq, monitorFreq, adjMonitorFreq, monitorSelect,
      & outputTypesInclusive,
      & tauThetaClimRelax, tauSaltClimRelax, latBandClimRelax,
      & tauThetaClimRelax3Dim, tauSaltClimRelax3Dim, tauTr1ClimRelax,
@@ -949,6 +949,10 @@ C     o Monitor (should also add CPP flag for monitor?)
        IF (pChkPtFreq.NE.0..AND.pChkPtFreq.LT.monitorFreq)
      &         monitorFreq=pChkPtFreq
        IF (monitorFreq.EQ.0.) monitorFreq=deltaTclock
+      ENDIF
+      IF ( monitorSelect.EQ.UNSET_I ) THEN
+        monitorSelect = 2
+        IF ( fluidIsWater ) monitorSelect = 3
       ENDIF
 
 C--   Grid parameters
