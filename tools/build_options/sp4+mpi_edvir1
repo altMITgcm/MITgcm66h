@@ -26,6 +26,10 @@ FFLAGS='-qfixed=132'
 if test "x$IEEE" = x ; then
     #  No need for IEEE-754
     FOPTIM='-O3 -qhot -qarch=pwr4 -qtune=pwr4 -qcache=auto -qmaxmem=-1'
+    # for some unknown reason, the -qhot option is not so hot with this file 
+    # (compilation takes forever), therefore we take it out here
+    NOOPTFILES='ini_curvilinear_grid.F'
+    NOOPTFLAGS='-O3 -qarch=pwr4 -qtune=pwr4 -qcache=auto -qmaxmem=-1'
 else
     #  Try to follow IEEE-754
     FOPTIM='-O3 -qstrict -qarch=pwr4 -qtune=pwr4 -qcache=auto -qmaxmem=-1'
