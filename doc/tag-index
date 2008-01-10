@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice/seaice_growth.F: use a different time constant for freezing
+  ice due to supercooled sea water, hardwired to SEAICE_deltaTtherm/0.1
 o gad_som : fix flux output (& diagnostics) to have same units as other
   advection scheme fluxes (was previously multiplied by deltaT).
 o added verification/seaice_obcs both to test seaice open boundaries
