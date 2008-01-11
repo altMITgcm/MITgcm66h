@@ -17,10 +17,6 @@ C     \==========================================================/
 C--   Write "text-plots" of certain fields in STDOUT for debugging.
 #undef SEAICE_DEBUG
 
-C--   This flag is meant for options that make more sense than the
-C     original options but that break the verification experiments.
-#undef SEAICE_BREAKS_VERIFICATION
-
 C--   Allow sea-ice dynamic code.
 C     This option is provided to allow use of TAMC
 C     on the thermodynamics component of the code only.
