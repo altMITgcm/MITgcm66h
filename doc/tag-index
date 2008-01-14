@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint59m
 o pkg/seaice: use different time constant for melting (SEAICE_gamma_t)
   and freezing (SEAICE_gamma_t_frz) ice due to mixed layer temperature
 o gad_som : fix flux output (& diagnostics) to have same units as other   
