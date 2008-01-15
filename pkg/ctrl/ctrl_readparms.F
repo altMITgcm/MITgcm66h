@@ -131,6 +131,9 @@ c--   Read the namelist input.
      &  doMainUnpack, doMainPack,
      &  doAdmtlmBypassAD,
      &  delZexp, forcingPrecond
+cHFLUXM_CONTROL
+     &  ,xx_hfluxm_file
+cHFLUXM_CONTROL
 
       namelist /ctrl_packnames/
      &  yadmark, yctrlid, yctrlposunpack, yctrlpospack,
@@ -322,6 +325,9 @@ c
         xx_siarea_file        = 'xx_siarea'
         xx_siheff_file        = 'xx_siheff'
         xx_sihsnow_file        = 'xx_sihsnow'
+cHFLUXM_CONTROL
+        xx_hfluxm_file      = 'xx_hfluxm'
+cHFLUXM_CONTROL
 
 #ifdef ALLOW_TANGENTLINEAR_RUN
         yadprefix           = 'g_'

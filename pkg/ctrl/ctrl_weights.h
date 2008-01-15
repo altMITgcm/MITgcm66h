@@ -41,3 +41,10 @@ c     Define dummy weights as a placeholder
       _RL wobcse     (                      nr,nobcs)
       _RL wobcseLev  (1-oly:sny+oly,nr,nsx,nsy,nobcs)
 #endif
+
+#if (defined (ALLOW_COST_HFLUXM) || defined (ALLOW_HFLUXM_CONTROL))
+c     whfluxm       - weight for heat flux.
+      common /cost_weights_r/ whfluxm
+      _RL whfluxm (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
+#endif
+

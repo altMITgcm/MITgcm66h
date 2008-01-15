@@ -80,6 +80,9 @@ c     ==================================================================
      &                  , xx_theta_ini_fin_dummy
      &                  , xx_salt_ini_fin_dummy
      &                  , xx_smrareabar_mean_dummy
+cHFLUXM_CONTROL
+     &                  , xx_hfluxm_dummy
+cHFLUXM_CONTROL
       _RL xx_theta_dummy
       _RL xx_salt_dummy
       _RL xx_hflux_dummy
@@ -150,6 +153,9 @@ c
       _RL xx_theta_ini_fin_dummy
       _RL xx_salt_ini_fin_dummy
       _RL xx_smrareabar_mean_dummy
+cHFLUXM_CONTROL
+      _RL xx_hfluxm_dummy
+cHFLUXM_CONTROL
 
 c     ==================================================================
 c     END OF HEADER CONTROL DUMMIES

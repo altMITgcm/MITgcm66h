@@ -680,6 +680,14 @@ c--
 
 c----------------------------------------------------------------------
 c--
+#ifdef ALLOW_HFLUXM_CONTROL
+        call ctrl_init_ctrlvar (
+     &       xx_hfluxm_file, 24, 124, 1, 1, 1,
+     &       snx, sny, 1, 'c', 'xy', mythid )
+#endif /* ALLOW_HFLUXM_CONTROL */
+
+c----------------------------------------------------------------------
+c--
 #ifdef ALLOW_EDTAUX_CONTROL
         call ctrl_init_ctrlvar (
      &       xx_edtaux_file, 25, 125, 1, 1, 1,
