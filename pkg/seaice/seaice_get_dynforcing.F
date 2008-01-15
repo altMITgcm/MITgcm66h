@@ -53,7 +53,7 @@ C     === Local variables ===
 C     i,j - Loop counters
       INTEGER bi, bj, i, j
       _RL  U1, V1, AAA
-      _RL  RHOAIR, SINWIN, COSWIN
+      _RL  SINWIN, COSWIN
 C     CDAIR   :: local wind stress coefficient (used twice)
 C     oceTauX :: wind-stress over open-ocean (on Arakawa A-grid), X direction
 C     oceTauY :: wind-stress over open-ocean (on Arakawa A-grid), Y direction
@@ -62,9 +62,6 @@ C     oceTauY :: wind-stress over open-ocean (on Arakawa A-grid), Y direction
       _RL oceTauX (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL oceTauY (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 #endif
-
-C--   FIRST SET UP BASIC CONSTANTS
-      RHOAIR = SEAICE_rhoAir
 
 C--   introduce turning angle (default is zero)
       SINWIN=SIN(SEAICE_airTurnAngle*deg2rad)
