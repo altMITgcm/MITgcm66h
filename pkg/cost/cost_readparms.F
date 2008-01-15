@@ -48,6 +48,9 @@ c--   Read the namelist input.
      &       , mult_depth
 #endif
      &       , lastinterval
+cHFLUXM_CONTROL
+     &                 , mult_temp, mult_hfluxm
+cHFLUXM_CONTROL
 
       _BEGIN_MASTER( myThid )
 
@@ -66,6 +69,10 @@ c--     Set default values.
 #ifdef ALLOW_COST_DEPTH
         mult_depth            =      0. _d 0
 #endif
+cHFLUXM_CONTROL
+        mult_temp             =      0. _d 0
+        mult_hfluxm           =      0. _d 0
+cHFLUXM_CONTROL
 
 c--     30*24*3600 = 2592000 = 1 model month
         lastinterval = 2592000.
@@ -92,6 +99,10 @@ c--     Next, read the cost data file.
      &       lastinterval = MAX(
      &       INT(lastinterval/deltaTclock-1)*deltaTclock,deltaTclock)
 
+cHFLUXM_CONTROL
+c-- get the weights for the cost functions
+      CALL COST_WEIGHTS( myThid )
+cHFLUXM_CONTROL
       _END_MASTER( mythid )
 
       _BARRIER

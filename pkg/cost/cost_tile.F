@@ -104,7 +104,7 @@ CADJ STORE hfacw, hfacs  = comlev1, key = ikey_dynamics
 
       IF ( myTime .GT. (EndTime - lastinterval) ) THEN
 
-#if (defined (ALLOW_COST_TEST) || defined (ALLOW_COST_ATLANTIC_HEAT))
+#if (defined (ALLOW_COST_TEST) || defined (ALLOW_COST_ATLANTIC_HEAT) || defined (ALLOW_COST_TEMP) )
          CALL COST_ACCUMULATE_MEAN (myThid)
 #endif
 
