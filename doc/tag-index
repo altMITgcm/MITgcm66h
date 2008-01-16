@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: add a new flag SEAICEuseTEM to use a slightly different
+  ice rheology (so-called truncated ellipse, that gets rid of tensile stress);
+  for now this is only available for the C-grid code and also within
+  #ifdef SEAICE_ALLOW_TEM, because this option may slow down the EVP code
+
 checkpoint59m
 o pkg/seaice: use different time constant for melting (SEAICE_gamma_t)
   and freezing (SEAICE_gamma_t_frz) ice due to mixed layer temperature

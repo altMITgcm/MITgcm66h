@@ -69,10 +69,12 @@ C     historical reasons). Define the following flag to use a new
 C     (not thoroughly) test version on a C-grid
 #define SEAICE_CGRID
 
-C--   Only for the C-grid version it is possible to enable EVP code by
-C     defining the following flag
+C--   Only for the C-grid version it is possible to 
 #ifdef SEAICE_CGRID
+C     enable EVP code by defining the following flag
 #define SEAICE_ALLOW_EVP
+C     allow the truncated ellipse rheology (runtime flag SEAICEuseTEM)
+#undef SEAICE_ALLOW_TEM
 #endif /* SEAICE_CGRID */
 
 C--   When set use MAX_HEFF to cap sea ice thickness in seaice_growth

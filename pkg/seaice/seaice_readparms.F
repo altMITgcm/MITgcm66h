@@ -39,7 +39,7 @@ C     iUnit       - Work variable for IO unit number
 
 C--   SEAICE parameters
       NAMELIST /SEAICE_PARM01/
-     & SEAICEwriteState, SEAICEuseDYNAMICS,
+     & SEAICEwriteState, SEAICEuseDYNAMICS, SEAICEuseTEM,
      & SEAICEuseEVPpickup, SEAICEuseFluxForm,
      & useHB87stressCoupling, SEAICEuseFlooding, usePW79thermodynamics,
      & SEAICEadvHeff, SEAICEadvArea, SEAICEadvSnow, SEAICEadvSalt,
@@ -101,6 +101,7 @@ C--   set default sea ice parameters
 #else
       SEAICEuseDYNAMICS  = .FALSE.
 #endif
+      SEAICEuseTEM       = .FALSE.
       SEAICEuseEVPpickup = .TRUE.
       SEAICEuseFluxForm  = .FALSE.
       useHB87stressCoupling = .FALSE.

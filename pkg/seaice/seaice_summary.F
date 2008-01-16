@@ -64,6 +64,8 @@ C     == end of interface ==
       CALL WRITE_0D_L ( SEAICEuseDYNAMICS, INDEX_NONE,
      & 'SEAICEuseDYNAMICS =', ' /* use dynamics */')
 #ifdef SEAICE_CGRID
+      CALL WRITE_0D_L ( SEAICEuseTEM, INDEX_NONE,
+     & 'SEAICEuseTEM      =', ' /* use truncated ellipse rheology */')
 #ifdef SEAICE_ALLOW_EVP
       CALL WRITE_0D_L ( SEAICEuseEVP, INDEX_NONE,
      & 'SEAICEuseEVP      =', ' /* use EVP solver */')
