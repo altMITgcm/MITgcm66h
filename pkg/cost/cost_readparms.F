@@ -49,7 +49,7 @@ c--   Read the namelist input.
 #endif
      &       , lastinterval
 cHFLUXM_CONTROL
-     &                 , mult_temp, mult_hfluxm
+     &                 , mult_temp_tut, mult_hflux_tut
 cHFLUXM_CONTROL
 
       _BEGIN_MASTER( myThid )
@@ -70,8 +70,8 @@ c--     Set default values.
         mult_depth            =      0. _d 0
 #endif
 cHFLUXM_CONTROL
-        mult_temp             =      0. _d 0
-        mult_hfluxm           =      0. _d 0
+        mult_temp_tut         =      0. _d 0
+        mult_hflux_tut        =      0. _d 0
 cHFLUXM_CONTROL
 
 c--     30*24*3600 = 2592000 = 1 model month

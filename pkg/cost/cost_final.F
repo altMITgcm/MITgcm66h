@@ -94,11 +94,11 @@ c--   Sum up all contributions.
      &         ' --> objf_atl(bi,bj)    = ', objf_atl(bi,bj)
 #ifdef ALLOW_COST_TEMP
           write(standardmessageunit,'(A,D22.15)')
-     &          ' --> objf_temp(bi,bj)   = ', objf_temp(bi,bj)
+     &          ' --> objf_temp_tut(bi,bj)   = ', objf_temp_tut(bi,bj)
 #endif
 #ifdef ALLOW_COST_HFLUXM
           write(standardmessageunit,'(A,D22.15)')
-     &         ' --> objf_hfluxm(bi,bj) = ', objf_hfluxm(bi,bj)
+     &         ' --> objf_hflux_tut(bi,bj) = ', objf_hflux_tut(bi,bj)
 #endif
 #ifdef ALLOW_COST_TRANSPORT
           write(standardmessageunit,'(A,D22.15)')
@@ -113,10 +113,10 @@ c--   Sum up all contributions.
      &            + mult_transport * objf_transport(bi,bj)
 #endif
 #ifdef ALLOW_COST_TEMP
-     &            + mult_temp   * objf_temp(bi,bj)
+     &            + mult_temp_tut  * objf_temp_tut(bi,bj)
 #endif
 #ifdef ALLOW_COST_HFLUXM
-     &            + mult_hfluxm * objf_hfluxm(bi,bj)
+     &            + mult_hflux_tut * objf_hflux_tut(bi,bj)
 #endif
         enddo
       enddo
