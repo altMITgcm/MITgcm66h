@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: moved DIFFERENT_MULTIPLE from seaice_model to seaice_dynsolver
+  http://forge.csail.mit.edu/pipermail/mitgcm-devel/2008-January/003173.html
 o verification/seaice_obcs: updated for restart test and latest options
 o pkg/seaice: add a new flag SEAICEuseTEM to use a slightly different
   ice rheology (so-called truncated ellipse, that gets rid of tensile stress);
