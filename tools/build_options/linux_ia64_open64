@@ -9,6 +9,8 @@
 
 CC=opencc
 FC=openf90
+F90C=openf90
+F90FIXEDFORMAT='-fixedform -x f95'
 LD=openf90
 DEFINES='-DWORDLENGTH=4'
 CPP='cpp -traditional -P'
@@ -17,9 +19,9 @@ NOOPTFLAGS='-O0 -g'
 NOOPTFILES=''
 
 if test "x$DEVEL" != x ; then
-    FFLAGS='-m64 -convert big_endian -ffortran-bounds-check -trapuv -g'
+    FFLAGS='-convert big_endian -ffortran-bounds-check -trapuv -g'
 else
-    FFLAGS='-m64 -convert big_endian'
+    FFLAGS='-convert big_endian'
 fi
 
 if test "x$IEEE" = x ; then
