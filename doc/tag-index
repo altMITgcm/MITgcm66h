@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o verification/seaice_obcs: updated for restart test and latest options
 o pkg/seaice: add a new flag SEAICEuseTEM to use a slightly different
   ice rheology (so-called truncated ellipse, that gets rid of tensile stress);
   for now this is only available for the C-grid code and also within
