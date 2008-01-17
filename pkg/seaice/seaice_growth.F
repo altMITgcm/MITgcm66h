@@ -708,8 +708,6 @@ C Add YNEG contribution to QNET
 #endif /* ALLOW_DIAGNOSTICS */
 
 #ifdef SEAICE_DEBUG
-       CALL PLOT_FIELD_XYRS( GWATX,'Current GWATX ', myIter, myThid )
-       CALL PLOT_FIELD_XYRS( GWATY,'Current GWATY ', myIter, myThid )
        CALL PLOT_FIELD_XYRL( QSW,'Current QSW ', myIter, myThid )
        CALL PLOT_FIELD_XYRL( QNET,'Current QNET ', myIter, myThid )
        CALL PLOT_FIELD_XYRL( EmPmR,'Current EmPmR ', myIter, myThid )
