@@ -372,6 +372,18 @@ c--   == end of interface ==
 
 #endif /* ALLOW_EFLUXP0_CONTROL */
 
+#ifdef ALLOW_HFLUXM_CONTROL
+      else if ( grdchkvarindex .eq. 24 ) then
+         il=ilnblnk( xx_hfluxm_file )
+         write(fname(1:80),'(80a)') ' '
+         write(fname(1:80),'(3a,i10.10)')
+     &        yadmark, xx_hfluxm_file(1:il),'.',optimcycle
+         call active_read_xy( fname, tmpfld2d, icvrec,
+     &                        doglobalread, ladinit, optimcycle,
+     &                        mythid, dummy)
+         xx_comp = tmpfld2d( itilepos,jtilepos,itile,jtile )
+#endif /* ALLOW_HFLUXM_CONTROL */
+
 #ifdef ALLOW_PRECIP_CONTROL
       else if ( grdchkvarindex .eq. 32 ) then
          il=ilnblnk( xx_precip_file )
