@@ -16,7 +16,7 @@ C !INTERFACE: ==========================================================
 C !DESCRIPTION:
 C Calculates the drag due to friction and the no-slip condition at bottom:
 C \begin{equation*}
-C G^u_{drag} = - ( r_b + C_D |v| + \frac{2}{\Delta r_c} ) u
+C G^u_{drag} = - \frac{1}{\Delta r_f} ( r_b + C_D |v| + \frac{2}{\Delta r_c} ) u
 C \end{equation*}
 
 C !USES: ===============================================================
