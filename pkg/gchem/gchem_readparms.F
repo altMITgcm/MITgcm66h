@@ -77,11 +77,11 @@ C Set defaults values for parameters in GCHEM.h
        gchem_int3=0
        gchem_int4=0
        gchem_int5=0
-       gchem_rl1=0.d0
-       gchem_rl2=0.d0
-       gchem_rl3=0.d0
-       gchem_rl4=0.d0
-       gchem_rl5=0.d0
+       gchem_rl1=0. _d 0
+       gchem_rl2=0. _d 0
+       gchem_rl3=0. _d 0
+       gchem_rl4=0. _d 0
+       gchem_rl5=0. _d 0
 c default periodic forcing to same as for physics
        gchem_ForcingPeriod=externForcingPeriod
        gchem_ForcingCycle=externForcingCycle
