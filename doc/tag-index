@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/obcs: replace obcs_apply_area/heff/hsalt/hsnow with obcs_apply_seaice
 o pkg/seaice: moved DIFFERENT_MULTIPLE from seaice_model to seaice_dynsolver
   http://forge.csail.mit.edu/pipermail/mitgcm-devel/2008-January/003173.html
 o verification/seaice_obcs: updated for restart test and latest options
