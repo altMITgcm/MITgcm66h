@@ -83,8 +83,8 @@ c
             enddo
          enddo
 c
-          objf_temp(bi,bj) = locfc
-          print*,'objf_temp =',locfc,startTime,endTime,tmp
+          objf_temp_tut(bi,bj) = locfc
+c         print*,'objf_temp_tut =',locfc,startTime,endTime,tmp
 c
          ENDDO
       ENDDO
