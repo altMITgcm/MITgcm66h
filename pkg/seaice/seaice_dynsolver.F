@@ -50,7 +50,7 @@ C     i,j,bi,bj - Loop counters
       LOGICAL  DIFFERENT_MULTIPLE
       EXTERNAL DIFFERENT_MULTIPLE
 
-cph# ifdef ALLOW_AUTODIFF_TAMC
+# ifdef ALLOW_AUTODIFF_TAMC
       PSTAR = SEAICE_strength
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
@@ -70,7 +70,7 @@ cph# ifdef ALLOW_AUTODIFF_TAMC
 C
 CADJ STORE uice = comlev1, key=ikey_dynamics
 CADJ STORE vice = comlev1, key=ikey_dynamics
-cph# endif /* ALLOW_AUTODIFF_TAMC */
+# endif /* ALLOW_AUTODIFF_TAMC */
 
       IF (
      &  DIFFERENT_MULTIPLE(SEAICE_deltaTdyn,myTime,SEAICE_deltaTtherm)
