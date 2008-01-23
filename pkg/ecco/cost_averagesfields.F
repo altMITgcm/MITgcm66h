@@ -386,7 +386,12 @@ cph   For some funny reason cal only increments dayrec at the end
 cph   of the day, i.e. for endofday.EQ.T
 cph   Should fix/change this at some point.
 cph   In the mean time increment ad hoc during day
-       locdayrec = dayrec+1
+       locdayrec = 0
+       if (last .or. endofday) then
+        locdayrec = dayrec
+       else
+        locdayrec = dayrec+1
+       endif
        do bj = jtlo,jthi
         do bi = itlo,ithi
          if (first.or.startofday)
@@ -405,7 +410,6 @@ cph   In the mean time increment ad hoc during day
           enddo
          enddo
          if (last .or. endofday) then
-            locdayrec = dayrec
             transpbar(locdayrec,bi,bj) =
      &        transpbar(locdayrec,bi,bj)/float(sum1day)
          endif
