@@ -8,7 +8,7 @@ C     !INTERFACE:
       SUBROUTINE ADCTRL_BOUND_3D(
      I             bi, bj,
      I             minCur,maxCur,
-     I             myThid,adFieldFwd)
+     I             myThid,fieldCur)
 C     !DESCRIPTION: \bv
 C     *==========================================================*
 C     | o bound ctrl vector values in forward mode
@@ -32,7 +32,7 @@ C     !INTERFACE:
       SUBROUTINE ADCTRL_BOUND_2D(
      I             bi, bj,
      I             minCur,maxCur,
-     I             myThid,adFieldFwd)
+     I             myThid,fieldCur)
 C     !DESCRIPTION: \bv
 C     *==========================================================*
 C     | o bound ctrl vector values in forward mode
