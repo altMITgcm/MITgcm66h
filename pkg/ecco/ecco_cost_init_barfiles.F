@@ -25,6 +25,7 @@ c     == global variables ==
 
 #include "EEPARAMS.h"
 #include "SIZE.h"
+#include "PARAMS.h"
 
 #include "optim.h"
 #include "ecco_cost.h"
@@ -348,6 +349,7 @@ c     &                        optimcycle, mythid, xx_sflux_mean_dummy )
 #endif
 
 #ifdef ALLOW_SEAICE
+      if (useSEAICE) then
 
 #ifdef ALLOW_SEAICE_COST_SMR_AREA
       ilps=ilnblnk( smrareabarfile )
@@ -366,6 +368,7 @@ c     &                        optimcycle, mythid, xx_smrareabar_mean_dummy )
       enddo
 #endif /* ALLOW_SEAICE_COST_SMR_AREA */
 
+      endif
 #endif /* ALLOW_SEAICE */
 
 #endif /* ALLOW_COST */
