@@ -194,7 +194,7 @@ C Account for change in level thickness
      I                          bi,bj,K,
      U                          gPtr(1-Olx,1-Oly,1,1,1,iTracer),
      I                          myThid )
-        IF ( PTRACERS_AdamsBashGtr(iTracer) ) THEN
+        IF ( PTRACERS_AdamsBashGtr(iTracer) )
      &  CALL FREESURF_RESCALE_G(
      I                          bi,bj,K,
      U                          gpTrNm1(1-Olx,1-Oly,1,1,1,iTracer),
