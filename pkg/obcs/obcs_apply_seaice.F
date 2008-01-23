@@ -1,8 +1,6 @@
 C $Header$
 C $Name$
 
-#undef OBCS_SEAICE_SMOOTH_EDGE
-
 #include "OBCS_OPTIONS.h"
 
       SUBROUTINE OBCS_APPLY_SEAICE( myThid )
