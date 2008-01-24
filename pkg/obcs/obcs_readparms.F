@@ -49,7 +49,7 @@ C     iUnit       - Work variable for IO unit number
      &          OBNuiceFile,OBSuiceFile,OBEuiceFile,OBWuiceFile,
      &          OBNviceFile,OBSviceFile,OBEviceFile,OBWviceFile,
      &          useOBCSsponge, useOBCSbalance, useOBCSprescribe,
-     &          OBCSprintDiags
+     &          OBCSprintDiags, useOBCSYearlyFields
 #ifdef ALLOW_PTRACERS
      &        , OBNptrFile,OBSptrFile,OBEptrFile,OBWptrFile
 #endif
@@ -90,14 +90,15 @@ C--   Default flags and values for OBCS
        OB_Ieast(J)=0
        OB_Iwest(J)=0
       ENDDO
-      useOrlanskiNorth=.FALSE.
-      useOrlanskiSouth=.FALSE.
-      useOrlanskiEast =.FALSE.
-      useOrlanskiWest =.FALSE.
-      useOBCSsponge   =.FALSE.
-      useOBCSbalance  =.FALSE.
-      useOBCSprescribe=.FALSE.
-      OBCSprintDiags  =.TRUE.
+      useOrlanskiNorth   =.FALSE.
+      useOrlanskiSouth   =.FALSE.
+      useOrlanskiEast    =.FALSE.
+      useOrlanskiWest    =.FALSE.
+      useOBCSsponge      =.FALSE.
+      useOBCSbalance     =.FALSE.
+      useOBCSprescribe   =.FALSE.
+      OBCSprintDiags     =.TRUE.
+      useOBCSYearlyFields=.FALSE.
 
       OBNuFile = ' '
       OBNvFile = ' '

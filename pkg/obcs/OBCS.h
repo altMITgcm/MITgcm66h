@@ -34,7 +34,7 @@ C
      & useOrlanskiNorth,useOrlanskiSouth,
      & useOrlanskiEast,useOrlanskiWest,
      & useOBCSsponge, useOBCSbalance, useOBCSprescribe,
-     & OBCSprintDiags
+     & OBCSprintDiags, useOBCSYearlyFields
       INTEGER OB_Jnorth(Nx)
       INTEGER OB_Jsouth(Nx)
       INTEGER OB_Ieast(Ny)
@@ -48,6 +48,7 @@ C
       LOGICAL useOBCSbalance
       LOGICAL useOBCSprescribe
       LOGICAL OBCSprintDiags
+      LOGICAL useOBCSYearlyFields
 
       COMMON /PARM_R_OB/
      & Urelaxobcsinner,Urelaxobcsbound,
