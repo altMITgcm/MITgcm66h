@@ -87,8 +87,9 @@ C     i,k    :: Loop counters
          ENDDO
          CLOSE(37)
 
-      ELSEIF ( equationOfState(1:5) .EQ. 'JMD95'
-     &         .OR. equationOfState .EQ. 'UNESCO' ) THEN
+      ELSEIF ( equationOfState .EQ. 'JMD95Z'
+     &    .OR. equationOfState .EQ. 'JMD95P'
+     &    .OR. equationOfState .EQ. 'UNESCO' ) THEN
 C
 C     Jackett & McDougall (1995, JPO) equation of state
 C     rho = R(salinity, potential temperature, pressure)
