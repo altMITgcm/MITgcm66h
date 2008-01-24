@@ -285,7 +285,7 @@ c     == local variables ==
       integer year0, year1
       _RL     fac
 #ifdef ALLOW_PTRACERS
-      integer iTracer, i,j,k
+      integer iTracer
 #endif /* ALLOW_PTRACERS */
 
 c     == end of interface ==
@@ -360,7 +360,7 @@ c     get record numbers and interpolation factor
 #endif /* ALLOW_SEAICE */
 #ifdef ALLOW_PTRACERS
       if ( usePTRACERS ) then
-       do itracer = 1, PTRACERS_numInUse
+       do iTracer = 1, PTRACERS_numInUse
         call exf_set_obcs_xz(  OBptr (1-Olx,1,1,1,iTracer)
      I                       , OBptr0(1-Olx,1,1,1,iTracer)
      I                       , OBptr1(1-Olx,1,1,1,iTracer)
@@ -483,7 +483,7 @@ c     == local variables ==
       integer year0, year1
       _RL     fac
 #ifdef ALLOW_PTRACERS
-      integer iTracer, i,j,k
+      integer iTracer
 #endif /* ALLOW_PTRACERS */
 
 c     == end of interface ==
@@ -558,7 +558,7 @@ c     get record numbers and interpolation factor
 #endif /* ALLOW_SEAICE */
 #ifdef ALLOW_PTRACERS
       if ( usePTRACERS ) then
-       do itracer = 1, PTRACERS_numInUse
+       do iTracer = 1, PTRACERS_numInUse
         call exf_set_obcs_yz(  OBptr (1-Olx,1,1,1,iTracer)
      I                       , OBptr0(1-Olx,1,1,1,iTracer)
      I                       , OBptr1(1-Olx,1,1,1,iTracer)
