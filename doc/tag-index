@@ -6,6 +6,8 @@ $Name$
 
 o pkg/exf: rewrite of exf_getffieldrec.F to properly deal with year
   transitions for useExfYearlyFields
+  - add new subroutine that determines the file to read from for 
+    use*YearlyFields = .TRUE. and .FALSE.
 o pkg/obcs/exf: add useOBCSYearlyFields (=.FALSE.) to obcs with exf in 
   analogy to useExfYearlyFields; rearrange obcs_prescribe_read: two new 
   subroutines (which could be generated from a template, because they are 
