@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/exf: rewrite of exf_getffieldrec.F to properly deal with year
+  transitions for useExfYearlyFields
 o pkg/obcs/exf: add useOBCSYearlyFields (=.FALSE.) to obcs with exf in 
   analogy to useExfYearlyFields; rearrange obcs_prescribe_read: two new 
   subroutines (which could be generated from a template, because they are 
