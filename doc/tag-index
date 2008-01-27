@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/mypackage: 
+  - add example of read/write pickup for state-var ; 
+  - add entry points to the main code for state-vars diags & write-pickup.
 o pkg/exf: rewrite of exf_getffieldrec.F to properly deal with year
   transitions for useExfYearlyFields
   - add new subroutine that determines the file to read from for 
