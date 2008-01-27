@@ -106,6 +106,12 @@ C                    and stagger/synchronous TimeStep
        ENDIF
 #endif /* ALLOW_LAND */
 
+#ifdef ALLOW_MYPACKAGE
+       IF ( seqFlag.EQ.0 .AND. useMYPACKAGE ) THEN
+         CALL MYPACKAGE_DIAGNOSTICS_STATE( myTime, myIter, myThid )
+       ENDIF
+#endif /* ALLOW_MYPACKAGE */
+
       ENDIf
 #endif /* ALLOW_DIAGNOSTICS */
 

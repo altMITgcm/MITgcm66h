@@ -152,6 +152,13 @@ C     Write restart file for passive tracers
       ENDIF
 #endif /* ALLOW_PTRACERS */
 
+#ifdef ALLOW_MYPACKAGE
+      IF (useMYPACKAGE) THEN
+        CALL MYPACKAGE_WRITE_PICKUP( permPickup,
+     &                      suffix, myIter, myTime, myThid )
+      ENDIF
+#endif /* ALLOW_MYPACKAGE */
+
 C--   Every one else must wait until writing is done.
       _BARRIER
 
