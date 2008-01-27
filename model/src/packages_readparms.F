@@ -86,15 +86,17 @@ C       |-- EXF_READPARMS
 C       |
 C       |-- EBM_READPARMS
 C       |
+C       |-- SMOOTH_READPARMS
+C       |
 C       |-- ECCO_READPARMS
 C       |
 C       |-- CPL_READPARMS
 C       |
 C       |-- FIZHI_READPARMS
 C       |
-C       |-- CPL_READPARMS
-C       |
 C       |-- DIAGNOSTICS_READPARMS
+C       |
+C       |-- MATRIX_READPARMS
 C       |
 C       |-- REGRID_READPARMS
 
