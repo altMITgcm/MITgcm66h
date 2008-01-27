@@ -51,7 +51,7 @@ C     msgBuf      :: Informational/error message buffer
       INTEGER missFldDim, nMissing
       INTEGER nj, ioUnit
       PARAMETER( missFldDim = 2*PTRACERS_num )
-      CHARACTER*(MAX_LEN_MBUF) fn
+      CHARACTER*(MAX_LEN_FNAM) fn
       CHARACTER*(8) fldName, missFldList(missFldDim)
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 CEOP
