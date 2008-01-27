@@ -14,6 +14,11 @@ C Use this file for selecting options within the GM/Redi package
 
 C Place CPP define/undef flag here
 
+C to reduce memory storage, disable unused array with those CPP flags :
+#define MYPACKAGE_3D_STATE
+#define MYPACKAGE_2D_STATE
+#define MYPACKAGE_TENDENCY
+
 #undef MYPA_SPECIAL_COMPILE_OPTION1
 
 #define MYPA_SPECIAL_COMPILE_OPTION2

@@ -2,8 +2,8 @@ C $Header$
 C $Name$
 
 C----------------------------------------
-C subroutine  mypackage_diagnostics_fill
+C subroutine  mypackage_diagnostics_state
 C----------------------------------------
-CADJ SUBROUTINE mypackage_diagnostics_fill INPUT  = 1,2,3
-CADJ SUBROUTINE mypackage_diagnostics_fill OUTPUT =
+CADJ SUBROUTINE mypackage_diagnostics_state INPUT  = 1,2,3
+CADJ SUBROUTINE mypackage_diagnostics_state OUTPUT =
 
