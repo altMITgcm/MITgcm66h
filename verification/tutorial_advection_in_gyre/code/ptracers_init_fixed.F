@@ -55,7 +55,7 @@ C     Initialise internal parameter in common block:
         ENDIF
 #endif /* ndef GAD_ALLOW_SOM_ADVECT */
 
-        WRITE(msgBuf,'(2A,I,A,L)') 'PTRACERS_INIT_FIXED: ',
+        WRITE(msgBuf,'(2A,I3,A,L)') 'PTRACERS_INIT_FIXED: ',
      &     'PTRACERS_SOM_Advection(', iTracer, ') = ',
      &     PTRACERS_SOM_Advection(iTracer)
         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
