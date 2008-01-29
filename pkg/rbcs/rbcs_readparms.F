@@ -93,15 +93,11 @@ C Open and read the data.rbcs file
       CALL PRINT_MESSAGE(msgBuf, standardMessageUnit,
      &                   SQUEEZE_RIGHT , 1)
       CALL OPEN_COPY_DATA_FILE(
-     I                   'data.rbcs', 'RBCS_PARM01',
+     I                   'data.rbcs', 'RBCS_READPARMS',
      O                   iUnit,
      I                   myThid )
       READ(UNIT=iUnit,NML=RBCS_PARM01)
 #ifdef ALLOW_PTRACERS
-      CALL OPEN_COPY_DATA_FILE(
-     I                   'data.rbcs', 'RBCS_PARM02',
-     O                   iUnit,
-     I                   myThid )
       READ(UNIT=iUnit,NML=RBCS_PARM02)
 #endif
       WRITE(msgBuf,'(A)')
