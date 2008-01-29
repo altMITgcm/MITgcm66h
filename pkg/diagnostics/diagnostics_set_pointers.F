@@ -135,7 +135,7 @@ C     and if it exists. Note: for now, only used to print message.
 
          nd = jdiag(md,ld)
          mate_index = gdiag(nd)(6:8)
-         IF ( mate_index.NE.'   ' ) THEN
+         IF ( mate_index.NE.'   ' .AND. mate_index.NE.'***' ) THEN
           READ(mate_index,'(I3)') mate
           DO j=1,nlists
            DO i=1,nActive(j)
