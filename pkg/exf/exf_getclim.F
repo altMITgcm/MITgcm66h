@@ -71,7 +71,6 @@ c     == end of interface ==
 c     Get values of climatological sst fields.
       call exf_set_gen  (
      &     climsstfile, climsststartdate, climsstperiod, 
-     &     climsststartdate1, climsststartdate2,
      &     exf_inscal_climsst,
      &     climsst_exfremo_intercept, climsst_exfremo_slope,
      &     climsst, climsst0, climsst1, climsstmask, 
@@ -101,7 +100,6 @@ c--   Update the tile edges.
 c     Get values of climatological sss fields.
       call exf_set_gen  (
      &     climsssfile, climsssstartdate, climsssperiod, 
-     &     climsssstartdate1, climsssstartdate2,
      &     exf_inscal_climsss,
      &     climsss_exfremo_intercept, climsss_exfremo_slope,
      &     climsss, climsss0, climsss1, climsssmask, 
