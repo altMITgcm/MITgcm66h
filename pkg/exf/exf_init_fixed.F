@@ -59,7 +59,7 @@ c     or, if useYearlyFields, from the beginning of the year.
         yearStartDate(2) = 0
         yearStartDate(3) = date_array(3)
         yearStartDate(4) = date_array(4)
-        Call cal_TimePassed( yearStartDate,date_array,difftime,myThid)
+        CALL cal_TimePassed( yearStartDate,date_array,difftime,myThid)
         CALL cal_ToSeconds ( difftime,   uwindstartdate       ,myThid)
        ELSE
         CALL cal_TimePassed(modelstartdate,date_array,difftime,myThid)
