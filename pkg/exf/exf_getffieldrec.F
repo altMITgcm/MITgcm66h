@@ -29,8 +29,9 @@ c cal: modelstart, modelstep
 #include "EXF_PARAM.h"
 
 c     == input arguments ==
-c     fldstartdate       :: seconds from beginning of model integration
-c                           or from beginning of year if usefldyearlyfields
+c     fldstartdate       :: time in seconds of first fld record from the
+c                           beginning of the model integration or, if
+c                           usefldyearlyfields, from the beginning of year
 c     fldperiod          :: period between forcing field records
 c     usefldyearlyfields :: when set, use yearly forcing files
 c     mytime             :: current time in simulation
@@ -137,8 +138,9 @@ c     Determine the flux year just before mycurrentdate.
         if ( myDateSeconds .lt. fldstartdate ) year0 = year0 - 1
 
 c     Determine seconds in the flux year just before mycurrentdate.
-        secondsInYear = 31536000.
-        if ( cal_IsLeap(year0,mythid) .eq. 2) secondsInYear = 31622400.
+        secondsInYear = ndaysnoleap * secondsperday
+        if ( cal_IsLeap(year0,mythid) .eq. 2)
+     &       secondsInYear = ndaysleap * secondsperday
 
 c     Determine the record just before mycurrentdate.
         if ( myDateSeconds .lt. fldstartdate )
