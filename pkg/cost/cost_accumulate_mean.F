@@ -58,16 +58,16 @@ C--   Calculate cost function on tile of this instance
 
                 cMeanThetaUVel(i,j,k,bi,bj) = 
      &               cMeanThetaUVel(i,j,k,bi,bj)
-     &               + (theta(i,j,k,bi,bj)+theta(i-1,j,k,bi,bj))*
-     &               uvel(i,j,k,bi,bj)*
-     &               maskW(i,j,k,bi,bj)*maskC(i,j,k,bi,bj)
-     &               /lastinterval*deltaTClock
+     &               + (theta(i,j,k,bi,bj)+theta(i-1,j,k,bi,bj))
+     &                 /2.*uvel(i,j,k,bi,bj)
+     &                 *maskW(i,j,k,bi,bj)*maskC(i,j,k,bi,bj)
+     &                 /lastinterval*deltaTClock
                 cMeanThetaVVel(i,j,k,bi,bj) = 
      &               cMeanThetaVVel(i,j,k,bi,bj)
-     &               + (theta(i,j,k,bi,bj)+theta(i,j-1,k,bi,bj))*
-     &               vvel(i,j,k,bi,bj)*
-     &               maskS(i,j,k,bi,bj)*maskC(i,j,k,bi,bj)
-     &               /lastinterval*deltaTClock
+     &               + (theta(i,j,k,bi,bj)+theta(i,j-1,k,bi,bj))
+     &                 /2.*vvel(i,j,k,bi,bj)
+     &                 *maskS(i,j,k,bi,bj)*maskC(i,j,k,bi,bj)
+     &                 /lastinterval*deltaTClock
               end do
             end do
           end do
