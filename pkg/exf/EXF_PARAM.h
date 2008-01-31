@@ -296,7 +296,9 @@ c     File names.
       character*(128) climsssfile
 
 C     useExfYearlyFields :: when set, automatically add extension
-C                           _YEAR to input file names
+C                           _YEAR to input file names; the yearly files need
+C                           to contain all the records that pertain to
+C                           a particular year, including day 1, hour zero
 C     twoDigitYear       :: when set, use 2-digit year extension YR
 C                           instead of _YEAR for useExfYearlyFields
 C     readStressOnAgrid  :: read wind-streess located on model-grid, A-grid position
