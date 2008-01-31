@@ -151,7 +151,7 @@ c     Determine the record just before mycurrentdate.
 c     Determine the flux year and record just after mycurrentdate.
         year1  = year0
         count1 = count0 + 1
-        if ( (fldstartdate+count0*fldperiod) .gt. secondsInYear ) then
+        if ( (fldstartdate+count0*fldperiod) .ge. secondsInYear ) then
          year1  = year0 + 1
          count1 = 1
         endif
