@@ -66,6 +66,9 @@ c
 #ifdef ATMOSPHERIC_LOADING
          CALL DIAGNOSTICS_FILL(apressure,  'EXFpress',0,1,0,1,1,myThid)
 #endif
+#ifdef ALLOW_RUNOFF
+         CALL DIAGNOSTICS_FILL(runoff,     'EXFroff ',0,1,0,1,1,myThid)
+#endif
 c
       ENDIF
 #endif /* ALLOW_DIAGNOSTICS */

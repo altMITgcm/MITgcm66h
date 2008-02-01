@@ -178,6 +178,12 @@ C--   surface fluxes:
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
+      diagName  = 'EXFroff '
+      diagTitle = 'river runoff, > 0 decreases salinity'
+      diagUnits = 'm/s             '
+      diagCode  = 'SM      U1      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
 #endif /* ALLOW_DIAGNOSTICS */
 
