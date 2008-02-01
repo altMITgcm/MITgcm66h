@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/mnc: have mnc create marginally meaning full coordinate variables
+  (that is the grid indices) if usingCurvilinearGrid and NOT EXCH2 
 o pkg/mypackage: 
   - add example of read/write pickup for state-var ; 
   - add entry points to the main code for state-vars diags & write-pickup.
