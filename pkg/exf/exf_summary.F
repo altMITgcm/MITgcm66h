@@ -566,7 +566,7 @@ C--   Runoff.
      &                    SQUEEZE_RIGHT , mythid)
       il = ilnblnk(runofffile)
       write(msgbuf,'(a,f12.0)')
-     &'   Runnoff starts at     ',
+     &'   Runoff starts at     ',
      &    runoffstartdate
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
