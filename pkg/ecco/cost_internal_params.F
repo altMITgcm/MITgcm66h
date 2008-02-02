@@ -56,6 +56,14 @@ c--   GM coeffs penalty term
 #endif
       _BARRIER
 
+c--   REDI coeffs penalty term
+#ifdef ALLOW_KAPREDI_COST_CONTRIBUTION
+      call timer_start('cost_kapredi      [ECCO SPIN-DOWN]', mythid)
+      call cost_kapredi( myiter, mytime, mythid )
+      call timer_stop ('cost_kapredi      [ECCO SPIN-DOWN]', mythid)
+#endif
+      _BARRIER 
+
 c--   DIFFKR coeffs penalty term
 #ifdef ALLOW_DIFFKR_COST_CONTRIBUTION
       call timer_start('cost_diffkr      [ECCO SPIN-DOWN]', mythid)

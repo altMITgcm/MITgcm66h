@@ -2,7 +2,7 @@ C $Header$
 C $Name$
 
 #include "CPP_OPTIONS.h"
-# if (defined (ALLOW_GMREDI) && defined (ALLOW_KAPGM_CONTROL))
+# if (defined (ALLOW_GMREDI) && (defined (ALLOW_KAPGM_CONTROL)||defined (ALLOW_KAPREDI_CONTROL)))
 # include "GMREDI_OPTIONS.h"
 #endif
 
@@ -26,7 +26,7 @@ C     === Global variables ===
 #include "PARAMS.h"
 #include "GRID.h"
 #include "DYNVARS.h"
-# if (defined (ALLOW_GMREDI) && defined (ALLOW_KAPGM_CONTROL))
+# if (defined (ALLOW_GMREDI) && (defined (ALLOW_KAPGM_CONTROL)||defined (ALLOW_KAPREDI_CONTROL)))
 # include "GMREDI.h"
 #endif
 
@@ -54,6 +54,9 @@ CEOP
 #endif
 #if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_KAPGM_CONTROL))
             KapGM(i,j,k,bi,bj) = GM_background_K
+#endif
+#if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_KAPREDI_CONTROL))
+            kapredi(i,j,k,bi,bj) = GM_isopycK
 #endif
            ENDDO
           ENDDO
@@ -86,6 +89,8 @@ CEOP
 #if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_KAPGM_CONTROL))
       _EXCH_XYZ_R8(KapGM,   myThid )
 #endif
-
+#if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_KAPREDI_CONTROL))
+      _EXCH_XYZ_R8(kapredi,   myThid )
+#endif
       RETURN
       END

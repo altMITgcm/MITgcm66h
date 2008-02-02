@@ -1035,6 +1035,15 @@ c--
      &       snx, sny, 1, 'c', 'xy', mythid )
 #endif /* ALLOW_sihsnow_CONTROL */
 
+
+c----------------------------------------------------------------------
+c--
+#ifdef ALLOW_KAPREDI_CONTROL
+        call ctrl_init_ctrlvar ( 
+     &       xx_kapredi_file, 44, 144, 1, 1, 1,
+     &       snx, sny, nr, 'c', '3d', mythid )
+#endif /* ALLOW_KAPREDI_CONTROL */
+
 c----------------------------------------------------------------------
 c----------------------------------------------------------------------
 

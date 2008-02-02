@@ -105,7 +105,11 @@ c
      &       myIter, myThid)
 #endif
 #ifdef ALLOW_KAPGM_CONTROL
-        CALL WRITE_FLD_XYZ_RL ( 'G_Jkagm.',suff, g_kapgm,
+        CALL WRITE_FLD_XYZ_RL ( 'G_Jkapgm.',suff, g_kapgm,
+     &       myIter, myThid)
+#endif
+#ifdef ALLOW_KAPREDI_CONTROL
+        CALL WRITE_FLD_XYZ_RL ( 'G_Jkapredi.',suff, g_kapredi,
      &       myIter, myThid)
 #endif
 

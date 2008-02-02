@@ -106,7 +106,11 @@ C--   Area integrated meridional flux
 #ifdef GM_NON_UNITY_DIAGONAL
      &    *Kvy(i,j,k,bi,bj)
 #else
+#ifdef ALLOW_KAPREDI_CONTROL
+     &    *(kapredi(i,j,k,bi,bj)
+#else
      &    *(GM_isopycK
+#endif
 #ifdef GM_VISBECK_VARIABLE_K
      &     +op5*(VisbeckK(i,j,bi,bj)+VisbeckK(i,j-1,bi,bj))
 #endif

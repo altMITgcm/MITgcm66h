@@ -102,6 +102,11 @@ C--   heimbach@mit.edu 11-Jan-2001
      &                       adkapgm
       _RL  adkapgm (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
 #endif
+#ifdef ALLOW_KAPREDI_CONTROL
+      COMMON /ADDYNVARS_KAPREDI/
+     &                       adkapredi
+      _RL  adkapredi (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+#endif 
 #ifdef ALLOW_BOTTOMDRAG_CONTROL
       COMMON /ADDYNVARS_BOTTOMDRAG/
      &                adbottomdragfld

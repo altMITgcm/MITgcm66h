@@ -101,6 +101,11 @@ C--   heimbach@mit.edu 11-Jan-2001
      &                       g_kapgm
       _RL  g_kapgm (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
 #endif
+#ifdef ALLOW_KAPREDI_CONTROL
+      COMMON /G_DYNVARS_KAPREDI/
+     &                       g_kapredi
+      _RL  g_kapredi (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+#endif 
 #ifdef ALLOW_BOTTOMDRAG_CONTROL
       COMMON /G_DYNVARS_BOTTOMDRAG/
      &                       g_bottomdragfld

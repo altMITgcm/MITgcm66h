@@ -131,6 +131,7 @@ c--   Initialize the tiled cost function contributions.
           objf_ageos(bi,bj)    = 0. _d 0
           objf_diffkr(bi,bj)   = 0. _d 0
           objf_kapgm(bi,bj)    = 0. _d 0
+          objf_kapredi(bi,bj)    = 0. _d 0
           objf_theta_ini_fin(bi,bj) = 0. _d 0
           objf_salt_ini_fin(bi,bj)  = 0. _d 0
           objf_eddytau(bi,bj)    = 0. _d 0
@@ -191,6 +192,7 @@ c
           num_ageos(bi,bj)    = 0. _d 0
           num_diffkr(bi,bj)   = 0. _d 0
           num_kapgm(bi,bj)    = 0. _d 0
+          num_kapredi(bi,bj)    = 0. _d 0
           num_eddytau(bi,bj)    = 0. _d 0
           num_bottomdrag(bi,bj)    = 0. _d 0
           do k=1,NGENCOST
