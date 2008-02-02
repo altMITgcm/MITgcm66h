@@ -53,6 +53,10 @@ DIFF_FLAGS="-toplevel 'the_main_loop'    \
                     xx_sss_dummy         \
                     xx_diffkr_dummy      \
                     xx_kapgm_dummy       \
+                    xx_edtaux_dummy      \
+                    xx_edtauy_dummy      \
+                    xx_kapredi_dummy       \
+                    xx_bottomdrag_dummy  \
                     xx_efluxy_dummy      \
                     xx_efluxp_dummy      \
                     xx_uvel_dummy        \
