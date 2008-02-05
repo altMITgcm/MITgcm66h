@@ -210,7 +210,7 @@ C-      Check for Mate of a Counter Diagnostic
            mate = hdiag(ndId)
         ELSEIF ( gcode(1:1).EQ.'U' .OR. gcode(1:1).EQ.'V' ) THEN
 C-      Check for Mate of a Vector Diagnostic
-           mate = hdiag(ndId)
+           mVec = hdiag(ndId)
         ENDIF
         IF ( idiag(md,listId).NE.0 .AND. gcode(5:5).NE.'D' ) THEN
 C--     Start processing 1 Fld :
