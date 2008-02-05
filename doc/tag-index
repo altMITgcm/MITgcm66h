@@ -4,6 +4,13 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/diagnostics: for large number of diagnostics, store diagnostic mate 
+  number in dedicate array "hdiag":
+  - new version of S/R DIAGNOSTICS_ADD2LIST : DIAGNOSTICS_ADDTOLIST
+    with 1 more argument (mate number); modify old version DIAGNOSTICS_ADD2LIST.
+  - many small changes (integer format) for large number of diagnostics
+  - start to use DIAGNOSTICS_ADDTOLIST (necessary for diagnostics with
+    a counter mate) in pkg diagnostics, ptracers, thsice & aim_v23.
 o add parameter rotateGrid and Euler angles EulerPhi/Theta/Psi. For
   usingSphericalGrid, this allows to define the rotated grid coordinates
   via phiMin/thetaMin/dxSpacing/dySpacing, etc., but then re-compute the
