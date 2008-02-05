@@ -33,6 +33,7 @@ C     msgBuf      - Informational/error meesage buffer
 c     CHARACTER*(MAX_LEN_MBUF) msgBuf
 
       INTEGER       diagNum
+      INTEGER       diagMate
       CHARACTER*8   diagName
       CHARACTER*16  diagCode
       CHARACTER*16  diagUnits
@@ -90,32 +91,34 @@ C--    Add diagnostics of Tracer concentration & u,v,w Transport
        WRITE(diagTitle,'(2A)') 'Mass-Weighted ', locName(1:ilnb)
        diagUnits = trcUnits//'         '
        diagCode  = 'SM P    MR      '
-       CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I              diagName, diagCode, diagUnits, diagTitle, myThid )
+       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I           diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
        WRITE(diagName,'(A5,A2,A1)') 'UTRAC',PTRACERS_ioLabel(iTrc),' '
        WRITE(diagTitle,'(2A)') 'Zonal Mass-Weighted Transp of ',
      &                 locName(1:ilnb)
        diagUnits = trcUnits//'.m/s   '
-       WRITE(diagCode,'(A,I3.3,A)') 'UU   ',diagNum+2,'MR      '
-       CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I              diagName, diagCode, diagUnits, diagTitle, myThid )
+       diagCode  = 'UU      MR      '
+       diagMate  = diagNum + 2
+       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
 
        WRITE(diagName,'(A5,A2,A1)') 'VTRAC',PTRACERS_ioLabel(iTrc),' '
        WRITE(diagTitle,'(2A)') 'Merid Mass-Weighted Transp of ',
      &                 locName(1:ilnb)
        diagUnits = trcUnits//'.m/s   '
-       WRITE(diagCode,'(A,I3.3,A)') 'VV   ',diagNum,'MR      '
-       CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I              diagName, diagCode, diagUnits, diagTitle, myThid )
+       diagCode  = 'VV      MR      '
+       diagMate  = diagNum
+       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
 
        WRITE(diagName,'(A5,A2,A1)') 'WTRAC',PTRACERS_ioLabel(iTrc),' '
        WRITE(diagTitle,'(2A)') 'Vert  Mass-Weighted Transp of ',
      &                 locName(1:ilnb)
        diagUnits = trcUnits//wUnits
        diagCode  = 'WM      MR      '
-       CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I              diagName, diagCode, diagUnits, diagTitle, myThid )
+       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I           diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 C--    add diagnostics of advective & diffusive flux:
@@ -128,46 +131,51 @@ C-     Advective flux:
        WRITE(diagTitle,'(2A)') 'Vertical   Advective Flux of ',
      &                 locName(1:ilnb)
        diagCode  = 'WM      LR      '
-       CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I              diagName, diagCode, diagUnits, diagTitle, myThid )
+       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I           diagName, diagCode, diagUnits, diagTitle, 0, myThid )
        diagName  = 'ADVx'//diagSufx
        WRITE(diagTitle,'(2A)') 'Zonal      Advective Flux of ',
      &                 locName(1:ilnb)
-       WRITE(diagCode,'(A,I3.3,A)') 'UU   ',diagNum+2,'MR      '
-       CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I              diagName, diagCode, diagUnits, diagTitle, myThid )
+       diagCode  = 'UU      MR      '
+       diagMate  = diagNum + 2
+       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
        diagName  = 'ADVy'//diagSufx
        WRITE(diagTitle,'(2A)') 'Meridional Advective Flux of ',
      &                 locName(1:ilnb)
-       WRITE(diagCode,'(A,I3.3,A)') 'VV   ',diagNum,'MR      '
-       CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I              diagName, diagCode, diagUnits, diagTitle, myThid )
+       diagCode  = 'VV      MR      '
+       diagMate  = diagNum
+       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
+
 C-     Diffusive flux:
        diagName  = 'DFrE'//diagSufx
        WRITE(diagTitle,'(2A)') 'Vertical Diffusive Flux of ',
      &                 locName(1:ilnb)//' (Explicit part)'
        diagCode  = 'WM      LR      '
-       CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I              diagName, diagCode, diagUnits, diagTitle, myThid )
+       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I           diagName, diagCode, diagUnits, diagTitle, 0, myThid )
        diagName  = 'DFxE'//diagSufx
        WRITE(diagTitle,'(2A)') 'Zonal      Diffusive Flux of ',
      &                 locName(1:ilnb)
-       WRITE(diagCode,'(A,I3.3,A)') 'UU   ',diagNum+2,'MR      '
-       CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I              diagName, diagCode, diagUnits, diagTitle, myThid )
+       diagCode  = 'UU      MR      '
+       diagMate  = diagNum + 2
+       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
        diagName  = 'DFyE'//diagSufx
        WRITE(diagTitle,'(2A)') 'Meridional Diffusive Flux of ',
      &                 locName(1:ilnb)
-       WRITE(diagCode,'(A,I3.3,A)') 'VV   ',diagNum,'MR      '
-       CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I              diagName, diagCode, diagUnits, diagTitle, myThid )
+       diagCode  = 'VV      MR      '
+       diagMate  = diagNum
+       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
 
        diagName  = 'DFrI'//diagSufx
        WRITE(diagTitle,'(2A)') 'Vertical Diffusive Flux of ',
      &                 locName(1:ilnb)//' (Implicit part)'
        diagCode  = 'WM      LR      '
-       CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I              diagName, diagCode, diagUnits, diagTitle, myThid )
+       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I           diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       ENDDO
