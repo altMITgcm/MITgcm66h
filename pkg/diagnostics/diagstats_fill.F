@@ -173,10 +173,10 @@ C-      Check for consistency with Nb of levels reserved in storage array
         kStore = kd0 + MAX(ksgn*kFirst,ksgn*kLast) - kInQSd + 1
         IF ( kStore.GT.kdiag(ndId) ) THEN
          _BEGIN_MASTER(myThid)
-          WRITE(msgBuf,'(2A,I3,A)') 'DIAGSTATS_FILL: ',
+          WRITE(msgBuf,'(2A,I4,A)') 'DIAGSTATS_FILL: ',
      &     'exceed Nb of levels(=',kdiag(ndId),' ) reserved '
           CALL PRINT_ERROR( msgBuf , myThid )
-          WRITE(msgBuf,'(2A,I4,2A)') 'DIAGSTATS_FILL: ',
+          WRITE(msgBuf,'(2A,I6,2A)') 'DIAGSTATS_FILL: ',
      &     'for Diagnostics #', ndId, ' : ', cdiag(ndId)
           CALL PRINT_ERROR( msgBuf , myThid )
           WRITE(msgBuf,'(2A,2I4,I3)') 'calling DIAGSTATS_FILL ',

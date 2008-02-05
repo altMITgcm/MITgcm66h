@@ -10,12 +10,12 @@ C     !ROUTINE: DIAGNOSTICS_SETUNITS
 C     !INTERFACE:
       SUBROUTINE DIAGNOSTICS_SETUNITS (
      I     myThid,
-     I     chardiag, 
+     I     chardiag,
      I     diagunits )
 
 C     !DESCRIPTION:
 C     Wrapper routine to set the units of an active diagnostic
-      
+
 C     !USES:
        implicit none
 #include "EEPARAMS.h"
@@ -34,7 +34,7 @@ C     Local variables
 
 C     Run through list of active diagnostics to make sure
 C     we are trying to fill a valid diagnostic
-      
+
       ndiagnum = 0
       ipointer = 0
       do n = 1,ndiagt
@@ -48,7 +48,7 @@ c         ipointer = idiag(n)
       else
         write(6,1000)chardiag
       endif
-      
+
  1000 format(' ',' Warning: Trying to set units of diagnostic ',a8,
      &     ' But it is not a valid (or active) name ')
 

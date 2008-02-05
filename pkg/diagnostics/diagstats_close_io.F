@@ -59,13 +59,13 @@ C-      write a conclusion & close the file:
           iL = ILNBLNK(diagSt_Fname(n))
           WRITE(dataFName,'(2A,I10.10,A)')
      &          diagSt_Fname(n)(1:iL), '.', nIter0, '.txt'
-          WRITE(msgBuf,'(4A,I6)') 'DIAGSTATS_CLOSE_IO: ', 
+          WRITE(msgBuf,'(4A,I6)') 'DIAGSTATS_CLOSE_IO: ',
      &         'close file: ',dataFName(1:iL+15), ' , unit=', nUnit
           CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                        SQUEEZE_RIGHT , myThid)
 
         ENDDO
-       
+
       ENDIF
 
       _END_MASTER( myThid )

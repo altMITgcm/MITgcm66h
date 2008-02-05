@@ -32,7 +32,7 @@ C     !LOCAL VARIABLES:
 C     Zero out the qdiag array which accumulates during integration
       DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
-          DO k = 1,numdiags
+          DO k = 1,numDiags
             DO j = 1-Oly,sNy+Oly
               DO i = 1-Olx,sNx+Olx
                 qdiag(i,j,k,bi,bj) = 0. _d 0

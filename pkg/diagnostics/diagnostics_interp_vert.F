@@ -92,7 +92,7 @@ C-    IF fizhi is being  used, may need to get physics grid pressures
      &                                   jpoint2, ipoint2, myThid )
           ENDIF
           IF ( ipoint1.EQ.0 .OR. ipoint2.EQ.0 ) THEN
-            WRITE(msgBuf,'(2A,I4,2A)') 'DIAGNOSTICS_INTERP_VERT: ',
+            WRITE(msgBuf,'(2A,I6,2A)') 'DIAGNOSTICS_INTERP_VERT: ',
      &      'fails to interpolate diag.(#', ndId,'): ',flds(md,listId)
             CALL PRINT_ERROR( msgBuf , myThid )
             STOP 'ABNORMAL END: S/R DIAGNOSTICS_INTERP_VERT'

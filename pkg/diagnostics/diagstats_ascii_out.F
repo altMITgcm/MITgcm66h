@@ -40,7 +40,7 @@ CEOP
 C     !LOCAL VARIABLES:
       INTEGER im, ix, iv
       PARAMETER ( iv = nStats - 2 , im = nStats - 1 , ix = nStats )
-      INTEGER i, j, k, klev, nUnit 
+      INTEGER i, j, k, klev, nUnit
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
@@ -64,15 +64,15 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
      &    ' ; Iter =',myIter,' ; region #',j, ' ; nb.Lev =',kdiag(ndId)
 c        WRITE(nUnit,'(5A)')       ' k |',
 c    &             ' --   Average  --  |', ' --   Std.Dev   -- |',
-c    &             ' --      min   --  |', ' --      max    -- |' 
+c    &             ' --      min   --  |', ' --      max    -- |'
          WRITE(nUnit,'(6A)')       ' k |',
      &             ' --  Average --  |', ' --  Std.Dev  -- |',
-     &             ' --     min  --  |', ' --     max   -- |',' Vol' 
+     &             ' --     min  --  |', ' --     max   -- |',' Vol'
          DO k=0,klev
 C     full precision, do not write the volume:
 c         WRITE(nUnit,'(I3,1P4E20.12)') k,(statGlob(i,k,j),i=1,nStats)
 C     reduced precision + write the volume (usefull for testing):
-          WRITE(nUnit,'(I3,1P5E18.10)') 
+          WRITE(nUnit,'(I3,1P5E18.10)')
      &       k, (statGlob(i,k,j),i=1,nStats), statGlob(0,k,j)
          ENDDO
         ENDIF
