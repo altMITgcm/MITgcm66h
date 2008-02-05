@@ -132,7 +132,7 @@ c--     Read time averages and the monthly mean data.
 
        if ( wmean_hflux .NE. 0. ) then
           objf_hfluxmm = objf_hfluxmm
-     &        + (fctiletot/sumtot/wmean_hflux)**2
+     &        + ((fctiletot/sumtot+1.D0)/wmean_hflux)**2
        else
           objf_hfluxmm = 0. _d 0
        endif
@@ -141,7 +141,7 @@ c-- diagnostic: imbalance per year:
        write(standardmessageunit,'(A,I5,2(X,D22.14))')
      &      ' --> bal_hfluxmm    =', irec,
      &      fctiletot/sumtot,
-     &      (fctiletot/sumtot/wmean_hflux)**2
+     &      ((fctiletot/sumtot+1.D0)/wmean_hflux)**2
 
       enddo
 

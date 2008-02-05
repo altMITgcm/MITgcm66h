@@ -320,7 +320,7 @@ c--   Save hfluxbar on file.
       write(adfnamehfluxbar,'(3a,i10.10)')
      &     yadprefix, hfluxbarfile(1:ilps), '.', optimcycle
 
-      do irec = 1, 1
+      do irec = 1, nyearsrec
 c        call active_write_xy( fnamehfluxbar, tmpfld2d, irec,
 c     &                        optimcycle, mythid, xx_hflux_mean_dummy )
 #ifndef ALLOW_TANGENTLINEAR_RUN
