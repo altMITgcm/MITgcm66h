@@ -73,7 +73,7 @@ C     Check all the coordinate variables that we know about
          rtmp(i) = xtmin + i
         ENDDO
 #else
-        IF ( usingCurvilinearGrid ) THEN
+        IF ( usingCurvilinearGrid .OR. rotateGrid ) THEN
          DO i = cv_start(1),cv_count(1)
           rtmp(i) = xtmin + i
          ENDDO
@@ -93,7 +93,7 @@ C     Check all the coordinate variables that we know about
          rtmp(i) = xtmin + i
         ENDDO
 #else
-        IF ( usingCurvilinearGrid ) THEN
+        IF ( usingCurvilinearGrid .OR. rotateGrid ) THEN
          DO i = cv_start(1),cv_count(1)
           rtmp(i) = xtmin + i
          ENDDO
@@ -113,7 +113,7 @@ C     Check all the coordinate variables that we know about
          rtmp(i) = xtmin + i
         ENDDO
 #else
-        IF ( usingCurvilinearGrid ) THEN
+        IF ( usingCurvilinearGrid .OR. rotateGrid ) THEN
          DO i = cv_start(1),cv_count(1)
           rtmp(i) = xtmin - OLx + i
          ENDDO
@@ -133,7 +133,7 @@ C     Check all the coordinate variables that we know about
          rtmp(i) = ytmin + i
         ENDDO
 #else
-        IF ( usingCurvilinearGrid ) THEN
+        IF ( usingCurvilinearGrid .OR. rotateGrid ) THEN
          DO i = cv_start(1),cv_count(1)
           rtmp(i) = ytmin + i
          ENDDO
@@ -153,7 +153,7 @@ C     Check all the coordinate variables that we know about
          rtmp(i) = ytmin + i
         ENDDO
 #else
-        IF ( usingCurvilinearGrid ) THEN
+        IF ( usingCurvilinearGrid .OR. rotateGrid ) THEN
          DO i = cv_start(1),cv_count(1)
           rtmp(i) = ytmin + i
          ENDDO
@@ -173,7 +173,7 @@ C     Check all the coordinate variables that we know about
          rtmp(i) = ytmin + i
         ENDDO
 #else
-        IF ( usingCurvilinearGrid ) THEN
+        IF ( usingCurvilinearGrid .OR. rotateGrid ) THEN
          DO i = cv_start(1),cv_count(1)
           rtmp(i) = ytmin - OLy + i
          ENDDO
