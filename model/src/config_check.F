@@ -482,6 +482,30 @@ C- jmc: but ultimately, this block can/will be removed.
         STOP 'ABNORMAL END: S/R CONFIG_CHECK'
       ENDIF
 
+      IF ( rotateGrid ) THEN
+       IF ( .NOT. usingSphericalPolarGrid ) THEN
+        WRITE(msgBuf,'(2A)')
+     &       'CONFIG_CHECK: specifying Euler angles makes only ',
+     &       'sense with usingSphericalGrid=.TRUE.'
+        CALL PRINT_ERROR( msgBuf , myThid)
+        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
+       ENDIF
+       IF ( useFLT .OR. useZonal_Filt .OR. useECCO ) THEN
+        WRITE(msgBuf,'(2A)')
+     &       'CONFIG_CHECK: specifying Euler angles will probably ',
+     &       'not work with pkgs FLT, ZONAL_FLT, ECCO'
+        CALL PRINT_ERROR( msgBuf , myThid)
+        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
+       ENDIF
+#ifdef ALLOW_PROFILES
+        WRITE(msgBuf,'(2A)')
+     &       'CONFIG_CHECK: specifying Euler angles will probably ',
+     &       'not work with pkg profiles'
+        CALL PRINT_ERROR( msgBuf , myThid)
+        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
+#endif /* ALLOW_PROFILES */
+      ENDIF
+
       WRITE(msgBuf,'(A)') 'CONFIG_CHECK: OK'
       CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,
      &                   SQUEEZE_RIGHT,myThid)

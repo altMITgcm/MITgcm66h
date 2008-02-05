@@ -82,6 +82,11 @@ C     Coriolis map:
       useBetaPlaneF       = .FALSE.
       useSphereF          = .TRUE.
       use3dCoriolis       = .TRUE.
+C     grid rotation
+      rotateGrid          = .FALSE.
+      phiEuler            = 0. _d 0
+      thetaEuler          = 0. _d 0
+      psiEuler            = 0. _d 0
 
 C--   Set default "physical" parameters
       nh_Am2              = 1. _d 0

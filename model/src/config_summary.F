@@ -632,6 +632,14 @@ c    &'   /* W spacing ( units of r ) */')
      &  ' /* convert units: wSpeed -> rVel (=1 if z-coord)*/')
       CALL WRITE_1D_R8( dBdrRef, Nr, INDEX_K,'dBdrRef = ',
      & ' /* Vertical gradient of reference boyancy [(m/s/r)^2)] */')
+      CALL WRITE_0D_L( rotateGrid, INDEX_NONE,
+     & 'rotateGrid =',' /* use rotated grid ( True/False ) */')
+      CALL WRITE_0D_R8( mass2rUnit, INDEX_NONE,'phiEuler =',
+     &' /* Euler angle, rotation about original z-coordinate [rad] */')
+      CALL WRITE_0D_R8( mass2rUnit, INDEX_NONE,'thetaEuler =',
+     & ' /* Euler angle, rotation about new x-coordinate [rad] */')
+      CALL WRITE_0D_R8( mass2rUnit, INDEX_NONE,'psiEuler =',
+     & ' /* Euler angle, rotation about new z-coordinate [rad] */')
 
 C     Grid along selected grid lines
       coordLine = 1

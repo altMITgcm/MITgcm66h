@@ -345,5 +345,10 @@ C--     Cosine(lat) scaling
        ENDDO ! bi
       ENDDO ! bj
 
+      IF ( rotateGrid ) THEN
+       CALL ROTATE_SPHERICAL_POLAR_GRID( xC, yC, myThid )
+       CALL ROTATE_SPHERICAL_POLAR_GRID( xG, yG, myThid )
+      ENDIF
+
       RETURN
       END

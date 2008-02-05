@@ -233,7 +233,8 @@ C--   Gridding parameters
      & usingSphericalPolarGrid, phiMin, thetaMin, rSphere,
      & usingCurvilinearGrid, horizGridFile, deepAtmosphere,
      & Ro_SeaLevel, delZ, delP, delR, delRc, delRFile, delRcFile,
-     & rkFac, groundAtK1
+     & rkFac, groundAtK1,
+     & phiEuler, thetaEuler, psiEuler
 
 C--   Input files
       NAMELIST /PARM05/
@@ -1090,6 +1091,10 @@ C--   Make metric term & Coriolis settings consistent with underlying grid.
       IF ( usingCartesianGrid .OR. usingCylindricalGrid
      &     .OR. .NOT.(nonHydrostatic.OR.quasiHydrostatic) )
      &                    use3dCoriolis = .FALSE.
+
+C--   Grid rotation
+      IF ( phiEuler .NE. 0. _d 0 .OR. thetaEuler .NE. 0. _d 0
+     &     .OR. psiEuler .NE. 0. _d 0 ) rotateGrid = .TRUE.
 
 C--   Set default for latitude-band where relaxation to climatology applies
 C     note: done later (once domain size is known) if using CartesianGrid
