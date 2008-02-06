@@ -291,7 +291,8 @@ C--   Now lets look at all these beasts
       ENDIF
 
 C--   Set model variables to initial/restart conditions
-      IF ( nIter0 .NE. 0 ) THEN
+      IF ( .NOT. ( startTime .EQ. baseTime .AND.  nIter0 .EQ. 0
+     &     .AND. pickupSuff .EQ. ' ') ) THEN
 
          CALL SEAICE_READ_PICKUP ( myThid )
 
