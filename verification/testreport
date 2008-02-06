@@ -474,7 +474,7 @@ symlink_mpifiles()
     CODE_DIR=$dir/$code_dir
     
     # These are files that should replace their counter-part when using -mpi
-    MPI_FILES=`(cd $CODE_DIR; find . -name "*_mpi")`
+    MPI_FILES=`(cd $CODE_DIR; find . -name "*_mpi" -print)`
 
     #  Is this an MPI run?
     if test "x$MPI" = xt ; then
