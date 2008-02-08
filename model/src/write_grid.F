@@ -85,7 +85,7 @@ C     Write horizontal grid arrays
         CALL WRITE_FLD_XY_RS( 'DYG',' ',dyG,-1,myThid)
         CALL WRITE_FLD_XY_RS( 'DXC',' ',dxC,-1,myThid)
         CALL WRITE_FLD_XY_RS( 'DYC',' ',dyC,-1,myThid)
-        IF ( usingCurvilinearGrid ) THEN
+        IF ( usingCurvilinearGrid .OR. rotateGrid ) THEN
           CALL WRITE_FLD_XY_RS( 'AngleCS',' ',angleCosC,-1,myThid)
           CALL WRITE_FLD_XY_RS( 'AngleSN',' ',angleSinC,-1,myThid)
         ENDIF
@@ -149,7 +149,7 @@ c       CALL MNC_CW_RL_W('D',bfname,0,0,'YV',yG,myThid)
         CALL MNC_CW_RL_W('D',bfname,0,0,'rAw',rAw,myThid)
         CALL MNC_CW_RL_W('D',bfname,0,0,'rAs',rAs,myThid)
         CALL MNC_CW_RL_W('D',bfname,0,0,'rAz',rAz,myThid)
-        IF ( usingCurvilinearGrid ) THEN
+        IF ( usingCurvilinearGrid .OR. rotateGrid ) THEN
           CALL MNC_CW_RL_W('D',bfname,0,0,'AngleCS',angleCosC,myThid)
           CALL MNC_CW_RL_W('D',bfname,0,0,'AngleSN',angleSinC,myThid)
         ENDIF

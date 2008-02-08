@@ -497,14 +497,6 @@ C- jmc: but ultimately, this block can/will be removed.
         CALL PRINT_ERROR( msgBuf , myThid)
         STOP 'ABNORMAL END: S/R CONFIG_CHECK'
        ENDIF
-       IF ( use3dCoriolis ) THEN
-        WRITE(msgBuf,'(3A)')
-     &       'CONFIG_CHECK: computation of angleCosC and angleSinC ',
-     &       'as required by use3dCoriolis ',
-     &       'not yet implemented with rotated grid. Sorry!'
-        CALL PRINT_ERROR( msgBuf , myThid)
-        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
-       ENDIF
 #ifdef ALLOW_PROFILES
         WRITE(msgBuf,'(2A)')
      &       'CONFIG_CHECK: specifying Euler angles will probably ',
