@@ -14,7 +14,7 @@ C     !INTERFACE:
 C     !DESCRIPTION: \bv
 C     *==========================================================*
 C     | SUBROUTINE GAD_EXCH_SOM
-C     | o Apply exchanges to update overlaps of 1srt & 2nd.Order 
+C     | o Apply exchanges to update overlaps of 1srt & 2nd.Order
 C     |   Moments array, corresponding to 1 tracer
 C     *==========================================================*
 C     \ev
@@ -43,7 +43,7 @@ C     === Local variables ===
 
 C--   Apply exchanges to 1rst.O.Moments:
 C-    Sx,Sy :
-      CALL EXCH_UV_AGRID_3D_RL( 
+      CALL EXCH_UV_AGRID_3D_RL(
      U                 smTr(1-OLx,1-OLy,1,1,1,1),
      U                 smTr(1-OLx,1-OLy,1,1,1,2),
      I                 .TRUE., myNz, myThid )
@@ -54,11 +54,11 @@ C-    Sz :
 
 C--   Apply exchanges to 2nd.O.Moments:
 C-    Sxx,Syy :
-      CALL EXCH_UV_AGRID_3D_RL( 
+      CALL EXCH_UV_AGRID_3D_RL(
      U                 smTr(1-OLx,1-OLy,1,1,1,4),
      U                 smTr(1-OLx,1-OLy,1,1,1,5),
      I                 .FALSE., myNz, myThid )
-C-    Sz :
+C-    Szz :
       CALL EXCH_3D_RL(
      U                 smTr(1-OLx,1-OLy,1,1,1,6),
      I                 myNz, myThid )
@@ -67,11 +67,11 @@ C-    Sxy :
      U                 smTr(1-OLx,1-OLy,1,1,1,7),
      I                 .TRUE., myNz, myThid )
 C-    Sxz,Syz :
-      CALL EXCH_UV_AGRID_3D_RL( 
+      CALL EXCH_UV_AGRID_3D_RL(
      U                 smTr(1-OLx,1-OLy,1,1,1,8),
      U                 smTr(1-OLx,1-OLy,1,1,1,9),
      I                 .TRUE., myNz, myThid )
-      
+
 #endif /* GAD_ALLOW_SOM_ADVECT */
 
       RETURN
