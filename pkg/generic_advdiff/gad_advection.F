@@ -557,10 +557,10 @@ CADJ &     comlev1_bibj_k_gad_pass, key=passkey, byte=isbyte
         ENDIF
 
 C-     Internal exchange for next calculations in X
-       IF ( overlapOnly .AND. ipass.EQ.1 ) THEN
+        IF ( overlapOnly .AND. ipass.EQ.1 ) THEN
          CALL FILL_CS_CORNER_TR_RL( .TRUE., .FALSE.,
      &                              localTij, bi,bj, myThid )
-       ENDIF
+        ENDIF
 
 C-     Advective flux in Y : done
        ENDIF
