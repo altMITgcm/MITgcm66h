@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint59n
 o pkg/diagnostics: for large number of diagnostics, store diagnostic mate 
   number in dedicate array "hdiag":
   - new version of S/R DIAGNOSTICS_ADD2LIST : DIAGNOSTICS_ADDTOLIST
