@@ -30,7 +30,6 @@ c     == global variables ==
 #include "GRID.h"
 #include "DYNVARS.h"
 #include "FFIELDS.h"
-#include "GMREDI.h"
 
 #include "ctrl.h"
 #include "ctrl_dummy.h"
@@ -200,7 +199,6 @@ c     == global variables ==
 #include "GRID.h"
 #include "DYNVARS.h"
 #include "FFIELDS.h"
-#include "GMREDI.h"
 
 #include "ctrl.h"
 #include "ctrl_dummy.h"
