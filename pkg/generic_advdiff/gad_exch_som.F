@@ -39,7 +39,6 @@ CEOP
 #ifdef GAD_ALLOW_SOM_ADVECT
 C     !LOCAL VARIABLES:
 C     === Local variables ===
-      INTEGER n
 
 C--   Apply exchanges to 1rst.O.Moments:
 C-    Sx,Sy :
