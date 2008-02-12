@@ -50,7 +50,9 @@ C     prec    :: precision of pickup files
 C     msgBuf  :: Informational/error meesage buffer
       INTEGER n,prec,iRec,lChar
       CHARACTER*(MAX_LEN_FNAM) fn
+#ifdef ALLOW_MNC
       CHARACTER*(MAX_LEN_MBUF) msgBuf
+#endif
 CEOP
 
 #ifdef ALLOW_MNC
