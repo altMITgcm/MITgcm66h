@@ -99,6 +99,12 @@ C GAD_TR1 :: passive tracer 1
       PARAMETER(GAD_TR1=3)
 CEOP
 
+C--   COMMON /GAD_PARM_C/ Character parameters for GAD pkg routines
+C      somSfx       :: 1rst & 2nd Order moment suffix
+      CHARACTER*2 somSfx(nSOM)
+      COMMON /GAD_PARM_C/
+     & somSfx
+
 C--   COMMON /GAD_PARM_L/ Logical parameters for GAD pkg routines
 C tempSOM_Advection :: set to T if using 2nd-Order Moment advection for Temp
 C saltSOM_Advection :: set to T if using 2nd-Order Moment advection for Salt
