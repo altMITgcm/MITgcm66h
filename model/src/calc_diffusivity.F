@@ -31,6 +31,7 @@ C     == GLobal variables ==
 #include "PARAMS.h"
 #include "DYNVARS.h"
 #include "GRID.h"
+#include "GAD.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
@@ -121,11 +122,11 @@ C--   Set vertical diffusivity contribution from KPP
          CALL GMREDI_CALC_DIFF(
      I        bi,bj,iMin,iMax,jMin,jMax,k,1,
      U        KappaRT,
-     I        myThid)
+     I        GAD_TEMPERATURE,myThid)
          CALL GMREDI_CALC_DIFF(
      I        bi,bj,iMin,iMax,jMin,jMax,k,1,
      U        KappaRS,
-     I        myThid)
+     I        GAD_SALINITY,myThid)
       ENDIF
 #endif
 

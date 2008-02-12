@@ -33,7 +33,7 @@ C     == GLobal variables ==
 #include "PTRACERS_SIZE.h"
 #include "PTRACERS_PARAMS.h"
 c #include "PTRACERS_FIELDS.h"
-c #include "GAD.h"
+#include "GAD.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
@@ -52,7 +52,7 @@ C     KappaRS   :: Net diffusivity for salinity
 C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     I, J :: Loop counters
-      INTEGER i,j,iTr
+      INTEGER i,j,iTr,trIdentity
       _RL KbryanLewis79
 #ifdef ALLOW_BL79_LAT_VARY
       _RL KbryanLewisEQ
@@ -68,6 +68,8 @@ CEOP
 
 C Loop over tracers
       DO iTr=1,PTRACERS_numInUse
+
+       trIdentity = iTr + GAD_TR1 - 1
 
        IF ( .NOT. PTRACERS_useKPP(iTr) ) THEN
         DO j = 1-Oly, sNy+Oly
@@ -103,7 +105,7 @@ C--   Set vertical diffusivity contribution from KPP
          CALL GMREDI_CALC_DIFF(
      I        bi,bj,iMin,iMax,jMin,jMax,k,1,
      U        KappaRtr(1-Olx,1-Oly,iTr),
-     I        myThid)
+     I        trIdentity,myThid)
         ENDIF
 #endif
 

@@ -185,7 +185,7 @@ C--   Set vertical diffusivity contribution from KPP
          CALL GMREDI_CALC_DIFF(
      I        bi,bj,iMin,iMax,jMin,jMax,0,Nr,
      U        KappaRTr,
-     I        myThid)
+     I        trIdentity,myThid)
       ENDIF
 #endif
 
