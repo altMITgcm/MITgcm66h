@@ -2597,6 +2597,8 @@ cat >>$MAKEFILE <<EOF
 	\$(CPP) \$(DEFINES) \$(INCLUDES) > \$@
 .$FS.o:
 	\$(FC) \$(FFLAGS) \$(FOPTIM) -c \$<
+.F.o:
+	\$(FC) \$(FFLAGS) \$(FOPTIM) -c \$<
 .F90.o:   
 	\$(F90C) \$(F90FLAGS) \$(F90OPTIM) -c \$<
 .c.o:
