@@ -343,7 +343,7 @@ C--   Read initial sea-ice thickness from file if available.
         ENDDO
        ENDDO
 
-C--   Read initial area thickness from file if available.
+C--   Read initial sea-ice area from file if available.
        IF ( AreaFile .NE. ' ' ) THEN
         CALL READ_FLD_XY_RL( AreaFile, ' ', ZETA, 0, myThid )
         _EXCH_XY_R8(ZETA,myThid)
