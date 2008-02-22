@@ -10,7 +10,7 @@ C     |   for netcdf profiles data                               |
 C     | started: Gael Forget 15-March-2006                       |
 C     o==========================================================o
 
-      SUBROUTINE profiles_interp_genericgrid(
+      SUBROUTINE profiles_interp_mean_gg(
      O traj_cur_out,
      I i_cur,
      I j_cur,
@@ -29,7 +29,7 @@ C ==================== Global Variables ===========================
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "GRID.h"
-#include "DYNVARS.h"
+c#include "DYNVARS.h"
 #include "PARAMS.h"
 #ifdef ALLOW_CAL
 #include "cal.h"
@@ -40,10 +40,10 @@ C ==================== Global Variables ===========================
       integer NLEVELMAX
       parameter (NLEVELMAX=1)
 #endif
-#ifdef ALLOW_PTRACERS
-#include "PTRACERS_SIZE.h"
-#include "PTRACERS_FIELDS.h"
-#endif
+c#ifdef ALLOW_PTRACERS
+c#include "PTRACERS_SIZE.h"
+c#include "PTRACERS_FIELDS.h"
+c#endif
 C ==================== Routine Variables ==========================
       _RL  mytime
       integer mythid
@@ -70,29 +70,8 @@ c--   == end of interface ==
         pondsSUM=0
        do q=1,NUM_INTERP_POINTS
 
-       if (type_cur.EQ.1) then
-               tab_coeffs1(q)=theta(i_cur(q),j_cur(q),k,bi,bj)
-               tab_coeffs3(q)=maskC(i_cur(q),j_cur(q),k,bi,bj) 
-       elseif (type_cur.EQ.2) then
-               tab_coeffs1(q)=salt(i_cur(q),j_cur(q),k,bi,bj) 
-               tab_coeffs3(q)=maskC(i_cur(q),j_cur(q),k,bi,bj) 
-       elseif (type_cur.EQ.3) then
-               tab_coeffs1(q)=uVel(i_cur(q),j_cur(q),k,bi,bj) 
-               tab_coeffs3(q)=maskW(i_cur(q),j_cur(q),k,bi,bj)  
-       elseif (type_cur.EQ.4) then
-               tab_coeffs1(q)=vVel(i_cur(q),j_cur(q),k,bi,bj) 
-               tab_coeffs3(q)=maskS(i_cur(q),j_cur(q),k,bi,bj)  
-       elseif (type_cur.EQ.5) then
-#ifdef ALLOW_PTRACERS
-cgf if this gets used, an additional common block could be defined, containing
-cgf the pTracer number (now 1, hard-coded), that would be read from the .nc input file
-               tab_coeffs1(q)=pTracer(i_cur(q),j_cur(q),k,bi,bj,1) 
-#else
-               tab_coeffs1(q)=0 
-#endif
-               tab_coeffs3(q)=maskC(i_cur(q),j_cur(q),k,bi,bj) 
-       elseif (type_cur.EQ.6) then
-               tab_coeffs1(q)=etan(i_cur(q),j_cur(q),bi,bj) 
+       if (type_cur.EQ.6) then
+               tab_coeffs1(q)=prof_etan_mean(i_cur(q),j_cur(q),bi,bj) 
                tab_coeffs3(q)=maskC(i_cur(q),j_cur(q),1,bi,bj) 
        else
                tab_coeffs1(q)=0.

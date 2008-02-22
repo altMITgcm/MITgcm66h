@@ -87,7 +87,7 @@ c     == end of interface ==
      & prof_lat(num_file,prof_num,bi,bj),
      & num_var,num_file,mytime,bi,bj,myThid)
 #else
-              call profiles_interp_genericgrid(prof_traj1D,
+              call profiles_interp_gg(prof_traj1D,
      & prof_i1D,prof_j1D,prof_w1D,
      & num_var,num_file,mytime,bi,bj,myThid)
 #endif

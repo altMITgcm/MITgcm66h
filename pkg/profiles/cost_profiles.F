@@ -90,7 +90,7 @@ cgf for ssh anomalies, prof_traj1D_mean is the model time average, to be removed
      &         prof_lat(num_file,prof_num,bi,bj),
      &         num_var,num_file,mytime,bi,bj,myThid)
 #else
-              call profiles_interp_mean_genericgrid(prof_traj1D_mean,
+              call profiles_interp_mean_gg(prof_traj1D_mean,
      &         prof_i1D,prof_j1D,prof_w1D,
      &         num_var,num_file,mytime,bi,bj,myThid)
 
