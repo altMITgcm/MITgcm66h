@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/obcs and pkg/exf: added capability to specify seaice open boundary
+  conditions that have a different sampling frequency than S/T/U/V obcs
 o pkg/diagnostics (stats-diags): 
   - fix global Min/Max in case 1 processor get only empty tiles
 o genmake2: replace (4 times)
