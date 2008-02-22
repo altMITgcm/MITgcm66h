@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/profiles: 
+  rename profiles_interp_mean_genericgrid as profiles_interp_mean_gg
+  (for "less than 32 characters name" compiler requirement)
 o pkg/obcs and pkg/exf: added capability to specify seaice open boundary
   conditions that have a different sampling frequency than S/T/U/V obcs
 o pkg/diagnostics (stats-diags): 
