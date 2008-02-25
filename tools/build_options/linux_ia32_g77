@@ -21,9 +21,6 @@ else
     has_sse2=f
     grep flags /proc/cpuinfo | grep sse2 > /dev/null 2>&1  &&  has_sse2=t
 
-    # older OS on sea.mit.edu does not support sse
-    if [ `uname -n` = "sea" ]; then has_sse2=f; fi
-
     if test "x$has_sse2" = xt ; then
 	FFLAGS='-Wimplicit -Wunused -mfpmath=sse -msse -msse2'
     else
