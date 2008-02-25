@@ -76,7 +76,8 @@ C     msgBuf     :: message buffer
       ENDIF
 #endif
 
-      IF ( modelEnd .OR. permPickup .OR. tempPickup ) THEN
+      IF ( (modelEnd.AND.writePickupAtEnd)
+     &     .OR. permPickup .OR. tempPickup ) THEN
 C--   this is time to write pickup files
 
 C-    write a pickup for each package which need it to restart
@@ -109,6 +110,12 @@ C-    Update pickup level for the next time we write pickup
           nCheckLev = MOD(nCheckLev, maxNoChkptLev)+1
         ENDIF
         _END_MASTER(myThid)
+
+      ELSEIF ( modelEnd ) THEN
+        WRITE(msgBuf,'(A)')
+     &     "Did not write pickup because writePickupAtEnd = FALSE"
+        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT, myThid )
 
 C--   time to write pickup files: end
       ENDIF

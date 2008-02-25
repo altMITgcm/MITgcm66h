@@ -275,6 +275,7 @@ C--   Time stepping parameters
       pickup_read_mdsio = .TRUE.
       pickup_write_mdsio= .TRUE.
       pickup_write_immed= .FALSE.
+      writePickupAtEnd  = .TRUE.
       dumpFreq          = deltaT*0
       adjDumpFreq       = deltaT*0
       diagFreq          = deltaT*0

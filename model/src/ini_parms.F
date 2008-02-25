@@ -218,6 +218,7 @@ C--   Time stepping parammeters
      & abEps, alph_AB, beta_AB, startFromPickupAB2,
      & tauCD, rCD, cAdjFreq,
      & chkPtFreq, pChkPtFreq, pickupSuff, pickupStrictlyMatch,
+     & writePickupAtEnd,
      & dumpFreq, dumpInitAndLast, adjDumpFreq, taveFreq, tave_lastIter,
      & diagFreq, monitorFreq, adjMonitorFreq, monitorSelect,
      & outputTypesInclusive,
