@@ -70,7 +70,7 @@ C-    EXCH call implicitly contains Barrier: no need for an other one.
       IF ( useDiagnostics ) THEN
        diagName  = 'SHIfwFlx'
        diagTitle = 'SHELFICE fresh water flux (positive upward)'
-       diagUnits = 'm/s             '
+       diagUnits = 'kg/m^2/s        '
        diagCode  = 'SM      M1      '
        CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I      diagName, diagCode, diagUnits, diagTitle, myThid )
