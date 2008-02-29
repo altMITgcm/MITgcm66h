@@ -54,7 +54,6 @@ C Solubility relation coefficients
       _RL O2sat(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL Kwexch(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL FluxO2(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL AtmosO2(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL  aTT 
       _RL  aTK
       _RL  aTS
