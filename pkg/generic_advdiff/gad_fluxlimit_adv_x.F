@@ -69,6 +69,8 @@ CEOP
        uT(1-Olx,j)=0.
        uT(2-Olx,j)=0.
        uT(sNx+Olx,j)=0.
+      ENDDO
+      DO j=1-Oly,sNy+Oly
        DO i=1-Olx+2,sNx+Olx-1
 
         uCFL = uFld(i,j)

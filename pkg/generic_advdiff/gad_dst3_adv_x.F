@@ -73,6 +73,8 @@ c     _RL Rjjm,Rjjp
        uT(1-Olx,j)=0.
        uT(2-Olx,j)=0.
        uT(sNx+Olx,j)=0.
+      ENDDO
+      DO j=1-Oly,sNy+Oly
        DO i=1-Olx+2,sNx+Olx-1
         Rjp=(tracer(i+1,j)-tracer( i ,j))*maskLocW(i+1,j)
         Rj =(tracer( i ,j)-tracer(i-1,j))*maskLocW( i ,j)

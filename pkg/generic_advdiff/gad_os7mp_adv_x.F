@@ -57,6 +57,8 @@ C     == Local variables ==
        uT(sNx+Olx-2,j)=0. _d 0
        uT(sNx+Olx-1,j)=0. _d 0
        uT(sNx+Olx,j)=0. _d 0
+      ENDDO
+      DO j=1-Oly,sNy+Oly
        DO i=1-Olx+4,sNx+Olx-3
 
         uLoc = uFld(i,j)

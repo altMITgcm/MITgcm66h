@@ -48,6 +48,8 @@ CEOP
 
       DO j=1-Oly,sNy+Oly
        uT(1-Olx,j)=0.
+      ENDDO
+      DO j=1-Oly,sNy+Oly
        DO i=1-Olx+1,sNx+Olx
         uT(i,j) = 
      &   uTrans(i,j)*(Tracer(i,j)+Tracer(i-1,j))*0.5 _d 0
