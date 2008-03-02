@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o dome/code/obcs_calc.F: avoid division by zero (detected using gfortran).
 o change the loop ordering in most gad_*_adv_x.F to improve vectorization:
   move a few statemens out the main loop into separate loops
 o pkg/shelfice: 
