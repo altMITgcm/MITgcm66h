@@ -152,6 +152,12 @@ C     Write restart file for passive tracers
       ENDIF
 #endif /* ALLOW_PTRACERS */
 
+#ifdef ALLOW_DIC
+C     Write restart file for dic package
+      CALL DIC_WRITE_PICKUP( permPickup,
+     I                   suffix, myIter, myTime, myThid )
+#endif
+
 #ifdef ALLOW_MYPACKAGE
       IF (useMYPACKAGE) THEN
         CALL MYPACKAGE_WRITE_PICKUP( permPickup,
