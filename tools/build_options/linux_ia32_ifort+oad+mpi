@@ -23,10 +23,10 @@ NOOPTFILES='mds_byteswapr8.F mds_byteswapr4.F mds_byteswapi4.F'
 #  roughly equivalent to -ieee
 if test "x$IEEE" = x ; then
     FOPTIM='-O0 -align'
-    FFLAGS='-132 -r8 -i4 -w95 -W0 -WB -assume byterecl -convert big_endian'
+    FFLAGS='-132 -w95 -W0 -WB -assume byterecl -convert big_endian'
 else
     FOPTIM='-O0 -noalign'
-    FFLAGS='-132 -r8 -i4 -w95 -W0 -WB -pc64 -xW -assume byterecl -convert big_endian'
+    FFLAGS='-132 -w95 -W0 -WB -pc64 -xW -assume byterecl -convert big_endian'
 fi
 
 F90FLAGS=$FFLAGS
