@@ -80,8 +80,6 @@ C--   every thread takes its adjoint sum
       END
 
 
-#include "CPP_EEOPTIONS.h"
-
 CStartOfInterface
       SUBROUTINE GLOBAL_ADSUM_R8(
      I                            myThid,
