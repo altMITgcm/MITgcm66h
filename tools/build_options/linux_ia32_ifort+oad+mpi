@@ -13,7 +13,7 @@ LINK='mpif90'
 INCLUDES='-I${MPIROOT}/include'
 LIBS=''
 
-DEFINES='-DALLOW_USE_MPI -DALWAYS_USE_MPI -DWORDLENGTH=4'
+DEFINES='-DALLOW_USE_MPI -DALWAYS_USE_MPI -DWORDLENGTH=4 -DALLOW_AUTODIFF_OPENAD'
 CPP='cpp  -traditional -P'
 
 NOOPTFLAGS='-O0'
@@ -22,7 +22,7 @@ NOOPTFILES='mds_byteswapr8.F mds_byteswapr4.F mds_byteswapi4.F'
 #  Note that the -mp switch is for ieee "maintain precision" and is
 #  roughly equivalent to -ieee
 if test "x$IEEE" = x ; then
-    FOPTIM='-O0 -align'
+    FOPTIM='-O0 -g -align'
     FFLAGS='-132 -w95 -W0 -WB -assume byterecl -convert big_endian'
 else
     FOPTIM='-O0 -noalign'
