@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o in mom_calc_visc, fix average value of viscAh_W & viscA4_W next to the
+  bottom ; only used with variable horizontal viscosity and non-hydrostatic.
+  also fix diagnostics VISCAHW & VISCA4W.
+
 checkpoint59o
 o dome/code/obcs_calc.F: avoid division by zero (detected using gfortran).
 o change the loop ordering in most gad_*_adv_x.F to improve vectorization:
