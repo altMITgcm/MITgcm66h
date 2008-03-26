@@ -59,6 +59,13 @@ C     == end of interface ==
      &' '
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT , myThid)
+#ifdef SEAICE_CGRID
+      CALL WRITE_0D_C( 'C-GRID', -1, INDEX_NONE,
+     & 'model grid type   =', ' /* type of sea ice model grid */')
+#else /* not SEAICE_CGRID */
+      CALL WRITE_0D_C( 'B-GRID', -1, INDEX_NONE,
+     & 'model grid type   =', ' /* type of sea ice model grid */')
+#endif /* SEAICE_CGRID */
       CALL WRITE_0D_L ( SEAICEwriteState,  INDEX_NONE,
      & 'SEAICEwriteState  =', ' /* write sea ice state to file */')
       CALL WRITE_0D_L ( SEAICEuseDYNAMICS, INDEX_NONE,
