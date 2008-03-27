@@ -167,7 +167,11 @@ C     because of ugly time level business
         IF ( debugLevel .GE. debLevB )
      &       CALL DEBUG_CALL( 'SEAICE_GROWTH', myThid )
 #endif
+#ifndef SEAICE_ALLOW_TD_IF
         CALL SEAICE_GROWTH( myTime, myIter, myThid )
+#else
+        CALL SEAICE_GROWTH_IF( myTime, myIter, myThid )
+#endif
        ENDIF
 
 C--   Apply ice tracer open boundary conditions

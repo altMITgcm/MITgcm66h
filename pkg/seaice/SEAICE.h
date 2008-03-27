@@ -157,6 +157,14 @@ C--   KGEO    Level used as a proxy for geostrophic velocity.
      &       uHeffExportCell, vHeffExportCell
 #endif
 
+cif(
+#ifdef SHORTWAVE_HEATING
+      _RL SWFRACB
+      COMMON /SEAICE_SW_R/
+     &       SWFRACB
+#endif
+cif)
+
 #ifdef ALLOW_AUTODIFF_TAMC
       INTEGER iicekey
       INTEGER nEVPstepMax
