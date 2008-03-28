@@ -581,7 +581,7 @@ C-      2D arrays
       enddo
 #endif /* ALLOW_SEAICE */
 
-#ifndef ALLOW_DEBUG
+#ifdef ALLOW_DEBUG
       IF ( debugLevel .GE. debLevB ) 
      &    CALL DEBUG_LEAVE('AUTODIFF_STORE',myThid)
 #endif
