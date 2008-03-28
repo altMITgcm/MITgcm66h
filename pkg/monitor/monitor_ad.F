@@ -30,8 +30,10 @@ C     !USES:
 #ifdef ALLOW_MNC
 # include "MNC_PARAMS.h"
 #endif
-#ifdef ALLOW_AUTODIFF_MONITOR
-# include "adcommon.h"
+#ifdef ALLOW_AUTODIFF
+# ifdef ALLOW_AUTODIFF_MONITOR
+#  include "adcommon.h"
+# endif
 #endif
 
 C     !INPUT PARAMETERS:
@@ -41,7 +43,7 @@ C     !INPUT PARAMETERS:
 CEOP
 
 #if (defined (ALLOW_ADJOINT_RUN) || defined (ALLOW_ADMTLM))
-#ifdef ALLOW_AUTODIFF_MONITOR
+#if (defined (ALLOW_AUTODIFF) && defined (ALLOW_AUTODIFF_MONITOR))
 
 C     === Functions ====
       LOGICAL  DIFFERENT_MULTIPLE

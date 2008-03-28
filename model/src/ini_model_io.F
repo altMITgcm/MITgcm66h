@@ -123,7 +123,7 @@ C       Write units/set precision/etc for I/O of variables/arrays
 C       belonging to the core dynamical model
         CALL INI_MNC_VARS( myThid )
 
-#ifdef ALLOW_AUTODIFF_MONITOR
+#ifdef ALLOW_AUTODIFF
         CALL AUTODIFF_INI_MODEL_IO( myThid )
 #endif
 

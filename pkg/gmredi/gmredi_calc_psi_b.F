@@ -125,7 +125,7 @@ C-  Compute the 2 stream-function Components ( GM bolus vel.)
        DO j=1-Oly,sNy+Oly
         DO i=1-Olx+1,sNx+Olx
           GM_PsiX(i,j,k,bi,bj) = SlopeX(i,j)*taperX(i,j)
-#ifdef ALLOW_KAPGM_CONTROL
+#if (defined (ALLOW_AUTODIFF) && defined (ALLOW_KAPGM_CONTROL))
      &     *( kapgm(i,j,k,bi,bj)
 #else 
      &     *( GM_background_K
@@ -139,7 +139,7 @@ C-  Compute the 2 stream-function Components ( GM bolus vel.)
        DO j=1-Oly+1,sNy+Oly
         DO i=1-Olx,sNx+Olx
          GM_PsiY(i,j,k,bi,bj) = SlopeY(i,j)*taperY(i,j)
-#ifdef ALLOW_KAPGM_CONTROL
+#if (defined (ALLOW_AUTODIFF) && defined (ALLOW_KAPGM_CONTROL))
      &     *( kapgm(i,j,k,bi,bj)
 #else 
      &     *( GM_background_K
