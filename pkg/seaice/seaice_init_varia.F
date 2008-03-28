@@ -46,7 +46,7 @@ C     i,j,k,bi,bj - Loop counters
 cif(
 cif   Helper variable for determining the fraction of sw radiation
 cif   penetrating the model's shallowest layer
-      _RL swfracba(two)
+      _RL swfracba(2)
       _RL FACTORM,dummyTime
       INTEGER IMAX
 cif)
