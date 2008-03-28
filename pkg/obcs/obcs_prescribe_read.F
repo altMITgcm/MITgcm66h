@@ -167,14 +167,14 @@ cgg    calendar information as other boundaries.
       call ctrl_getobcse ( mycurrenttime, mycurrentiter, mythid )
 # endif
 
-#ifndef ALLOW_EXF
       IF ( .NOT. useEXF ) THEN
+#ifndef ALLOW_AUTODIFF_TAMC
        CALL OBCS_EXTERNAL_FIELDS_LOAD(
      &     myCurrentTime, myCurrentIter, myThid )
-      ENDIF
 #else
-      STOP 'PH HAS DISABLED THIS RUNTIME OPTION FOR ALLOW_EXF'
+       STOP 'PH HAS DISABLED THIS RUNTIME OPTION FOR ALLOW_EXF'
 #endif
+      ENDIF
 
 #endif /* ALLOW_OBCS and ALLOW_OBCS_PRESCRIBE */
 
