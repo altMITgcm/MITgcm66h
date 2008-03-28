@@ -169,6 +169,8 @@ C--   iii. Set data read flag + memory sync.
      & theProc , 
      & theTag , 
      & MPI_COMM_MODEL ,
+     & exchReqIdY(exchNReqsY(1,bi,bj)+1,1,bi,bj), 
+     & exchNReqsY(1,bi,bj),
      & mpiStatus , 
      & mpiRc ) 
 # endif /* ALLOW_AUTODIFF_OPENAD */
@@ -200,6 +202,8 @@ C--   iii. Set data read flag + memory sync.
      & theProc , 
      & theTag , 
      & MPI_COMM_MODEL ,
+     & exchReqIdY(exchNReqsY(1,bi,bj)+1,1,bi,bj), 
+     & exchNReqsY(1,bi,bj),
      & mpiStatus , 
      & mpiRc )
 # endif /* ALLOW_AUTODIFF_OPENAD */
