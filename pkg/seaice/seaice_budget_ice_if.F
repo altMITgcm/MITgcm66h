@@ -197,7 +197,7 @@ C         DECIDE ON ALBEDO
           F_swi(I,J) = AbsorbedShortwaveFlux(I,J)
 
 c         set a min ice as 5 cm to limit arbitrarily large conduction.
-          HICE_ACTUAL(I,J) = max(HICE_ACTUAL(I,J),0.05)
+          HICE_ACTUAL(I,J) = max(HICE_ACTUAL(I,J),5. _d -2)
 
           effConduct = XKI * XKS / 
      &        (XKS * HICE_ACTUAL(I,J) + XKI * HSNOW_ACTUAL(I,J))
