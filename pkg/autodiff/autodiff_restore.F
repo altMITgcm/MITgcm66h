@@ -75,7 +75,7 @@ c     == local variables ==
        
 c--   == end of interface ==
 
-#ifndef DISABLE_DEBUGMODE
+#ifndef ALLOW_DEBUG
       IF ( debugLevel .GE. debLevB ) 
      &    CALL DEBUG_ENTER('AUTODIFF_RESTORE',myThid)
 #endif
@@ -454,7 +454,7 @@ C-      2D arrays
       enddo
 #endif /* ALLOW_SEAICE */
 
-#ifndef DISABLE_DEBUGMODE
+#ifndef ALLOW_DEBUG
       IF ( debugLevel .GE. debLevB ) 
      &    CALL DEBUG_LEAVE('AUTODIFF_RESTORE',myThid)
 #endif
