@@ -56,7 +56,7 @@ C     == Local variables ==
            vort3v=0.5*(omega3(i,j)*r_hFacZ(i,j)
      &                +omega3(i+1,j)*r_hFacZ(i+1,j))
          ENDIF
-        ELSEIF ( SadournyCoriolis ) THEN
+        ELSEIF ( selectVortScheme.EQ.2 ) THEN
          Zm=0.5*(
      &       uFld( i , j )*dyG( i , j ,bi,bj)*_hFacW( i , j ,k,bi,bj)
      &      +uFld( i ,j-1)*dyG( i ,j-1,bi,bj)*_hFacW( i ,j-1,k,bi,bj) )

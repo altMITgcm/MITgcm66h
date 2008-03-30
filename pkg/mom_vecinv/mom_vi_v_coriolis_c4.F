@@ -121,7 +121,7 @@ c      DO i=2-Olx,sNx+Olx-2
       DO j=1,sNy+1
        DO i=1,sNx
 
-        IF ( SadournyCoriolis ) THEN
+        IF ( selectVortScheme.EQ.2 ) THEN
 C-      using SadournyCoriolis discretization:
 
          uBarXY=1.
