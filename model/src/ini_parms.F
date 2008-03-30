@@ -196,7 +196,7 @@ C--   Continuous equation parameters
      & multiDimAdvection, useEnergyConservingCoriolis,
      & useCDscheme, useJamartWetPoints, useJamartMomAdv, useNHMTerms,
      & selectVortScheme, upwindVorticity, highOrderVorticity,
-     & useAbsVorticity, upwindShear, selectKEscheme,
+     & SadournyCoriolis, useAbsVorticity, upwindShear, selectKEscheme,
      & useRealFreshWaterFlux, convertFW2Salt,
      & temp_EvPrRn, salt_EvPrRn, trac_EvPrRn,
      & zonal_filt_lat,
