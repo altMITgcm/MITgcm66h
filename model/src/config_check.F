@@ -414,6 +414,15 @@ c     IF (nonlinFreeSurf.NE.0 .AND. nonHydrostatic) THEN
       ENDIF
 #endif /* EXACT_CONSERV */
 
+      IF ( vectorInvariantMomentum.AND.momStepping ) THEN
+       IF ( highOrderVorticity.AND.upwindVorticity ) THEN
+        WRITE(msgBuf,'(2A)') 'CONFIG_CHECK: ',
+     &   '"highOrderVorticity" conflicts with "upwindVorticity"'
+        CALL PRINT_ERROR( msgBuf , myThid)
+        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
+       ENDIF
+      ENDIF
+
       IF (.NOT.useCDscheme .AND. (tauCD.NE.0. .OR. rCD.NE.-1.) ) THEN
 C- jmc: since useCDscheme is a new [04-13-03] flag (default=F),
 C       put this WARNING to stress that even if CD-scheme parameters

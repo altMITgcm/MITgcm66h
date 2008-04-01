@@ -61,6 +61,18 @@ C--   On/Off flags for each terms of the momentum equation
       momImplVertAdv   = momAdvection .AND. momImplVertAdv
       implicitViscosity= momViscosity .AND. implicitViscosity
       use3Dsolver      = nonHydrostatic.OR. implicitIntGravWave
+C--   Set default Vorticity-Term Scheme:
+      IF ( vectorInvariantMomentum ) THEN
+        IF ( selectVortScheme.EQ.UNSET_I ) THEN
+          selectVortScheme = 1
+          IF ( upwindVorticity )    selectVortScheme = 0
+          IF ( highOrderVorticity ) selectVortScheme = 0
+        ENDIF
+      ELSEIF ( selectVortScheme.NE.UNSET_I ) THEN
+        WRITE(msgBuf,'(A,A)') '** WARNING ** SET_PARMS: ',
+     &   'Vector-Invariant Momentum unused => ignore selectVortScheme'
+        CALL PRINT_MESSAGE( msgBuf, errorMessageUnit, SQUEEZE_RIGHT, 1 )
+      ENDIF
 C--   Momentum viscosity on/off flag.
       IF ( momViscosity        ) THEN
        vfFacMom = 1.D0
