@@ -1255,7 +1255,7 @@ for dir in $TESTDIRS ; do
 done
 
 printf "Start time:  " >> $SUMMARY
-echo $start_date >> $SUMMARY
+echo "$start_date" >> $SUMMARY
 printf "End time:    " >> $SUMMARY
 date >> $SUMMARY
 
