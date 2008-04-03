@@ -11,7 +11,7 @@ C     |==========================================================|
      &     BIOave, CARave, SURave, SUROave, pCO2ave, pHave, 
      &     fluxCO2ave, omegaCave, pfluxave, epfluxave, cfluxave, 
      &     dic_timeave,
-     &     alpha, rain_ratio, InputFe, omegaC, pHlast,
+     &     alpha, rain_ratio, InputFe, omegaC,
      &     Kpo4, DOPfraction, zcrit, KRemin,
      &     KDOPremin,zca,R_op,R_cp,R_NP, R_FeP,
      &     O2crit, alpfe, KScav, ligand_stab, ligand_tot, KFE,
@@ -40,7 +40,6 @@ C     values for biogeochemistry
       _RL alpha(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL rain_ratio(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL InputFe(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RL pHlast(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nR,nSx,nSy)
       _RL omegaC(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nR,nSx,nSy)
       _RL Kpo4            
       _RL DOPfraction   

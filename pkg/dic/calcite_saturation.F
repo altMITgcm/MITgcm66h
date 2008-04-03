@@ -92,7 +92,6 @@ c 30 micromol = 0.03 mol m-3
              po4local = PTR_PO4(i,j,k)
              diclocal = PTR_DIC(i,j,k)
              alklocal = PTR_ALK(i,j,k)
-c            pHlocal = pHlast(i,j,k,bi,bj)
              pHlocal = 7.9 _d 0
 
 CMICK - TEMPORARY!!!!!
@@ -157,8 +156,6 @@ cmick....................................................
            else
              omegaC(i,j,k,bi,bj) = 0. _d 0
            endif
-
-           pHlast(i,j,k,bi,bj) = pHlocal
 
          ENDDO
         ENDDO
