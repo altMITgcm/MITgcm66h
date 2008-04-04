@@ -26,10 +26,7 @@ C !USES: ===============================================================
 #include "PARAMS.h"
 #include "GRID.h"
 #include "FFIELDS.h"
-#include "DIC_ABIOTIC.h"
-#ifdef DIC_BIOTIC
-#include "DIC_BIOTIC.h"
-#endif
+#include "DIC_VARS.h"
 #include "PTRACERS_SIZE.h"
 #include "PTRACERS_FIELDS.h"
 #include "GCHEM.h"

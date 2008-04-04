@@ -12,7 +12,7 @@ C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "DIC_ABIOTIC.h"
+#include "DIC_VARS.h"
 
 C     == Routine arguments ==
 C     permPickup :: write a permanent pickup

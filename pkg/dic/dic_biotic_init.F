@@ -18,9 +18,7 @@ C !USES: ===============================================================
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#ifdef DIC_BIOTIC
-#include "DIC_BIOTIC.h"
-#endif
+#include "DIC_VARS.h"
 
 c!INPUT PARAMETERS: ===================================================
 C  myThid               :: thread number

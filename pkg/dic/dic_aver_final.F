@@ -25,9 +25,8 @@ c#include "PTRACERS_SIZE.h"
 c#include "PTRACERS_PARAMS.h"
 c#include "PTRACERS_FIELDS.h"
 #include "GCHEM.h"
-#include "DIC_ABIOTIC.h"
+#include "DIC_VARS.h"
 #ifdef DIC_BIOTIC
-#include "DIC_BIOTIC.h"
 #include "DIC_DIAGS.h"
 #include "DIC_COST.h"
 #endif

@@ -22,7 +22,7 @@ C !USES: ===============================================================
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#include "DIC_BIOTIC.h"
+#include "DIC_VARS.h"
 
 C !INPUT PARAMETERS: ===================================================
 C  myThid               :: thread number

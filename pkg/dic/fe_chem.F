@@ -22,7 +22,7 @@ C     == GLobal variables ==
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#include "DIC_BIOTIC.h"
+#include "DIC_VARS.h"
 
 C     == Routine arguments ==                
 C     bi, bj, iMin, iMax, jMin, jMax - Range of points for which calculation

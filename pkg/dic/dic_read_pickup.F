@@ -11,7 +11,7 @@ C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "DIC_ABIOTIC.h"
+#include "DIC_VARS.h"
 
 C     == Routine arguments ==
 C     myThid -  Number of this instance of DIC_READ_CHECKPOINT

@@ -24,7 +24,7 @@ C     === Global variables ===
 #include "FFIELDS.h"
 #include "GRID.h"
 #include "DYNVARS.h"
-#include "DIC_BIOTIC.h"
+#include "DIC_VARS.h"
 
 C !INPUT PARAMETERS: ===================================================
 C Time                 :: current time

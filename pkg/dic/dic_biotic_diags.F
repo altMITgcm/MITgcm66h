@@ -17,7 +17,7 @@ C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "DIC_BIOTIC.h"
+#include "DIC_VARS.h"
 #include "PTRACERS_SIZE.h"
 #include "PTRACERS_PARAMS.h"
 c#include "PTRACERS_FIELDS.h"

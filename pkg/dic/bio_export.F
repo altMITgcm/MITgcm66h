@@ -26,8 +26,7 @@ C !USES: ===============================================================
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#include "DIC_ABIOTIC.h"
-#include "DIC_BIOTIC.h"
+#include "DIC_VARS.h"
 #ifdef USE_QSW
 #include "FFIELDS.h"
 #endif

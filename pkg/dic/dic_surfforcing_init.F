@@ -23,7 +23,7 @@ C !USES: ===============================================================
 #include "PARAMS.h"
 #include "GRID.h"
 #include "FFIELDS.h"
-#include "DIC_ABIOTIC.h"
+#include "DIC_VARS.h"
 #include "GCHEM.h"
 #include "PTRACERS_SIZE.h"
 #include "PTRACERS_FIELDS.h"
