@@ -23,10 +23,7 @@ C !USES: ===============================================================
 #include "PARAMS.h"
 #include "GRID.h"
 #include "FFIELDS.h"
-#ifdef DIC_BIOTIC
 #include "DIC_ABIOTIC.h"
-#endif
-
 
 c  !INPUT PARAMETERS: ===================================================
 C  myThid               :: thread number

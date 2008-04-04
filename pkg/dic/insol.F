@@ -34,6 +34,8 @@ C Time                 :: current time
 C !OUPUT PARAMETERS: ===================================================
        _RL sfac(1-OLy:sNy+OLy)
 
+#ifdef DIC_BIOTIC
+
 C !LOCAL VARIABLES: ====================================================
        _RL  solar, albedo
        _RL  dayfrac, yday, delta
@@ -88,8 +90,8 @@ c
 c convert to sfac
           sfac(j) = MAX(1. _d -5,fluxi)
        ENDDO !j
-c
+
+#endif /* DIC_BIOTIC */
+
       return
       end
-c
-C==========================================================================
