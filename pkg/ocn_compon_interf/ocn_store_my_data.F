@@ -27,7 +27,7 @@ C     == Global variables ==
 #include "OCNIDS.h"
 #include "OCNCPL.h"
 #ifdef ALLOW_DIC
-#  include "DIC_ABIOTIC.h"
+#  include "DIC_VARS.h"
 #endif
 
 C     == Routine arguments ==

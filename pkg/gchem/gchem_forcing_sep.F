@@ -26,8 +26,7 @@ C !USES: ===============================================================
 c#include "PTRACERS_PARAMS.h"
 #include "PTRACERS_FIELDS.h"
 #ifdef ALLOW_DIC
-#include "DIC_BIOTIC.h"
-#include "DIC_ABIOTIC.h"
+#include "DIC_VARS.h"
 #endif /* ALLOW_DIC */
 
 C !INPUT PARAMETERS: ===================================================

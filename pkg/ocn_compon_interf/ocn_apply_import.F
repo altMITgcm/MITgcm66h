@@ -31,7 +31,7 @@ C     === Global variables ===
 c #include "GRID.h"
 c #include "DYNVARS.h"
 #ifdef ALLOW_DIC
-#  include "DIC_ABIOTIC.h"
+#  include "DIC_VARS.h"
 #endif
 
 C     !INPUT/OUTPUT PARAMETERS:
