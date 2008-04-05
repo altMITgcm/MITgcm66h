@@ -20,6 +20,7 @@ C     !USES:
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "EOS.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     myThid - Number of this instance of SET_PARMS
@@ -117,6 +118,16 @@ C--   Advection and Forcing for Temp and salt  on/off flags
       saltForcing   = saltStepping .AND. saltForcing
       tempImplVertAdv = tempAdvection .AND. tempImplVertAdv
       saltImplVertAdv = saltAdvection .AND. saltImplVertAdv
+
+C--   Dynamically Active Tracers : set flags
+      tempIsActiveTr = momPressureForcing .AND. tempAdvection
+      saltIsActiveTr = momPressureForcing .AND. saltAdvection
+      IF ( eosType.EQ.'IDEALGAS' .AND. atm_Rq.EQ.0. ) THEN
+        saltIsActiveTr = .FALSE.
+      ELSEIF ( eosType.EQ.'LINEAR' ) THEN
+        IF ( tAlpha.EQ.0. ) tempIsActiveTr = .FALSE.
+        IF ( sBeta .EQ.0. ) saltIsActiveTr = .FALSE.
+      ENDIF
 
 C--   When using the dynamical pressure in EOS (with Z-coord.),
 C     needs to activate specific part of the code (restart & exchange)
