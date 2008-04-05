@@ -41,6 +41,12 @@ C     PTRACERS_Iter0    :: timestep number when tracers are initialized
      &     PTRACERS_ref,
      &     PTRACERS_EvPrRn
 
+C     COMMON /PTRACERS_OLD_R/ Old (real type) PTRACERS parameters 
+C        (to be removed 1 day ...)
+      _RL lambdaTr1ClimRelax
+      COMMON /PTRACERS_OLD_R/
+     &     lambdaTr1ClimRelax
+
       INTEGER PTRACERS_Iter0
       INTEGER PTRACERS_numInUse
       INTEGER PTRACERS_advScheme(PTRACERS_num)
