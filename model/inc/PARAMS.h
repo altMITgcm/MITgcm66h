@@ -406,8 +406,10 @@ C                        & Last iteration, in addition multiple of dumpFreq iter
       LOGICAL useCoriolis
       LOGICAL vectorInvariantMomentum
       LOGICAL tempAdvection
+      LOGICAL tempIsActiveTr
       LOGICAL tempForcing
       LOGICAL saltAdvection
+      LOGICAL saltIsActiveTr
       LOGICAL saltForcing
       LOGICAL useRealFreshWaterFlux
       LOGICAL useFullLeith
