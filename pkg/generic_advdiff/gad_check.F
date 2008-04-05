@@ -78,6 +78,25 @@ c     IF ( useMultiDimAdvec ) THEN
 
 C--  Check parameters:
 
+C-   Check internal wave dynamics stability regarding active tracer time-stepping
+      IF ( .NOT.staggerTimeStep ) THEN
+        IF ( tempIsActiveTr .AND.
+     &                      .NOT.(AdamsBashforthGt.OR.AdamsBashforth_T)
+     &  .OR. saltIsActiveTr .AND.
+     &                      .NOT.(AdamsBashforthGs.OR.AdamsBashforth_S)
+     &     ) THEN
+C-      issue a warning in Error msg file:
+           WRITE(msgBuf,'(2A)') '** WARNING ** GAD_CHECK: ',
+     &       'potentially unstable time-stepping (Internal Wave)'
+           CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                         SQUEEZE_RIGHT , myThid)
+           WRITE(msgBuf,'(2A)') '** WARNING ** GAD_CHECK: ',
+     &       'need "staggerTimeStep=.TRUE." in "data", nml PARM01'
+           CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                         SQUEEZE_RIGHT , myThid)
+        ENDIF
+      ENDIF
+
 C--- note: minimum size of overlap due to tracer limitations is checked in
 C     GAD_INIT, PTRACERS_INIT_FIXED and GMREDI_CHECK ; can all move here.
 C     for mom limitations, done in CONFIG_CHECK, but can move to MOM_INIT_FIXED
