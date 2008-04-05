@@ -225,7 +225,7 @@ C--   Time stepping parammeters
      & diagFreq, monitorFreq, adjMonitorFreq, monitorSelect,
      & outputTypesInclusive,
      & tauThetaClimRelax, tauSaltClimRelax, latBandClimRelax,
-     & tauThetaClimRelax3Dim, tauSaltClimRelax3Dim, tauTr1ClimRelax,
+     & tauThetaClimRelax3Dim, tauSaltClimRelax3Dim,
      & periodicExternalForcing, externForcingPeriod, externForcingCycle,
      & calendarDumps
 
@@ -884,14 +884,6 @@ C     o Salinity climatology relaxation time scale
        doSaltClimRelax     = .FALSE.
       ELSE
        doSaltClimRelax     = .TRUE.
-      ENDIF
-C     o Tracer 1 climatology relaxation time scale
-      IF ( tauTr1ClimRelax .EQ. 0.D0 ) THEN
-       doTr1ClimRelax     = .FALSE.
-       lambdaTr1ClimRelax = 0.D0
-      ELSE
-       doTr1ClimRelax     = .TRUE.
-       lambdaTr1ClimRelax = 1./tauTr1ClimRelax
       ENDIF
 
 C     o Base time
