@@ -24,7 +24,7 @@ C     == Global variables ===
 #ifdef ALLOW_COST_TRACER
 # ifdef ALLOW_PTRACERS
 #  include "PTRACERS_SIZE.h"
-c# include "PTRACERS_PARAMS.h"
+#  include "PTRACERS_PARAMS.h"
 #  include "PTRACERS_FIELDS.h"
 # endif
 #endif
