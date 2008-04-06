@@ -43,6 +43,7 @@ C     i,j,k,bi,bj - Loop counters
       _RL PSTAR
       _RS  mask_uice
       INTEGER myIter, myTile
+#ifdef SEAICE_ALLOW_TD_IF
 cif(
 cif   Helper variable for determining the fraction of sw radiation
 cif   penetrating the model's shallowest layer
@@ -50,6 +51,7 @@ cif   penetrating the model's shallowest layer
       _RL FACTORM,dummyTime
       INTEGER IMAX
 cif)
+#endif
 
 #ifdef ALLOW_OBCS
       INTEGER I_obc, J_obc, kSurface
@@ -60,6 +62,7 @@ cif)
       ENDIF
 #endif /* ALLOW_OBCS */
 
+#ifdef SEAICE_ALLOW_TD_IF
 cif(
 #ifdef SHORTWAVE_HEATING
       IMAX = 2
@@ -74,6 +77,7 @@ cif(
       SWFRACB = swfracba(2)
 #endif
 cif)
+#endif
 
 C--   Initialise all variables in common blocks:
       DO bj=myByLo(myThid),myByHi(myThid)
