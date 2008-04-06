@@ -155,7 +155,7 @@ C     Write restart file for passive tracers
 #ifdef ALLOW_GCHEM
 C     Write restart file for GCHEM pkg & GCHEM sub-packages
       IF ( useGCHEM ) THEN
-        CALL DIC_WRITE_PICKUP( permPickup,
+        CALL GCHEM_WRITE_PICKUP( permPickup,
      I                      suffix, myTime, myIter, myThid )
       ENDIF
 #endif
