@@ -127,7 +127,6 @@ C     this S/R, using, e.g., common block (+ Master_thread + Barrier)
       _BEGIN_MASTER( myThid )
 
 C     Assign special directory
-      useCurrentDir = .FALSE.
       iL = ILNBLNK(fileName)
       pL = ILNBLNK( mdsioLocalDir )
       IF ( useCurrentDir .OR. pL.EQ.0 ) THEN
