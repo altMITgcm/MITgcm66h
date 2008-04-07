@@ -1,10 +1,7 @@
 C $Header$
 C $Name$
 
-cswdcost -- add sunroutine ---
 #include "DIC_OPTIONS.h"
-#include "GCHEM_OPTIONS.h"
-
 
 CStartOfInterFace
       SUBROUTINE DIC_AVER_FINAL(

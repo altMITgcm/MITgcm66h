@@ -2,7 +2,6 @@ C $Header$
 C $Name$
 
 #include "DIC_OPTIONS.h"
-c#include "GCHEM_OPTIONS.h"
 
 C !INTERFACE: ==========================================================
       SUBROUTINE TRACER_MEANAREA(myThid,tracer, kLev,

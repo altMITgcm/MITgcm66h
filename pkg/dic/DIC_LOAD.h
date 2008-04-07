@@ -1,8 +1,6 @@
 C $Header$
 C $Name$
 
-#include "GCHEM_OPTIONS.h"
-
       COMMON /dic_load/
      &    wspeed0, wspeed1, ice0, ice1, atmosp0,
      &    atmosp1, silica0, silica1

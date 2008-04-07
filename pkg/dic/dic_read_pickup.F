@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-#include "GCHEM_OPTIONS.h"
 #include "DIC_OPTIONS.h"
 
       SUBROUTINE DIC_READ_PICKUP(

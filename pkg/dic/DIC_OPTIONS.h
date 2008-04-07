@@ -8,6 +8,18 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
+#define DIC_BIOTIC
+#undef  ALLOW_FE
+#define ALLOW_O2
+#undef READ_PAR
+#undef MINFE
+c these all need to be defined for coupling to
+c atmospheric model
+#undef USE_QSW
+#undef USE_ATMOSCO2
+#undef USE_PLOAD
+
+#define ALLOW_OLD_VIRTUALFLUX
 
 #endif /* ALLOW_DIC */
 #endif /* DIC_OPTIONS_H */

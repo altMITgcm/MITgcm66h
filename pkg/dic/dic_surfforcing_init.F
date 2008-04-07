@@ -3,7 +3,6 @@ C $Name$
 
 #include "DIC_OPTIONS.h"
 #include "PTRACERS_OPTIONS.h"
-#include "GCHEM_OPTIONS.h"
 
 CBOP
 C !ROUTINE: DIC_SURFFORCING_INIT

@@ -2,7 +2,6 @@ C $Header$
 C $Name$
 
 #include "DIC_OPTIONS.h"
-#include "GCHEM_OPTIONS.h"
 
 CStartOfInterface
       SUBROUTINE DIC_BIOTIC_DIAGS( myTime, myIter, myThid )
