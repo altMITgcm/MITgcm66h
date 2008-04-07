@@ -520,9 +520,20 @@ C--   Packages conflict
         STOP 'ABNORMAL END: S/R CONFIG_CHECK'
       ENDIF
 
-      WRITE(msgBuf,'(A)') 'CONFIG_CHECK: OK'
-      CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,
-     &                   SQUEEZE_RIGHT,myThid)
+      WRITE(msgBuf,'(A)')
+     &'// ======================================================='
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT, myThid )
+      WRITE(msgBuf,'(A)') '// CONFIG_CHECK : Normal End'
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT, myThid )
+      WRITE(msgBuf,'(A)')
+     &'// ======================================================='
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT, myThid )
+      WRITE(msgBuf,'(A)') ' '
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT, myThid )
 
       RETURN
       END

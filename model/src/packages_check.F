@@ -39,6 +39,14 @@ C     msgBuf :: Informational/error meesage buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 CEOP
 
+      WRITE(msgBuf,'(A)')
+     &'== Packages configuration : Check & print summary =='
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT, myThid )
+      WRITE(msgBuf,'(A)') ' '
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT, myThid )
+
 C---  Start with non-standard packages (without or with non standard flag)
 
 #ifndef ALLOW_MNC
