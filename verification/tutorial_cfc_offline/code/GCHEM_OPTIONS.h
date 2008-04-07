@@ -13,13 +13,10 @@ C    !ROUTINE: GCHEM_OPTIONS.h
 C    !INTERFACE:
 
 C    !DESCRIPTION:
-c options for biogeochemistry package
+C options for biogeochemistry package
 CEOP
 
 #undef  GCHEM_SEPARATE_FORCING
-
-#define ALLOW_CFC
-
 
 #endif /* ALLOW_GCHEM */
 #endif /* GCHEM_OPTIONS_H */
