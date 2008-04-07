@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "GCHEM_OPTIONS.h"
+#ifdef ALLOW_DIC
+#include "DIC_OPTIONS.h"
+#endif
 
 CBOP
 C !ROUTINE: GCHEM_FORCING_SEP
@@ -23,7 +26,6 @@ C !USES: ===============================================================
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "PTRACERS_SIZE.h"
-c#include "PTRACERS_PARAMS.h"
 #include "PTRACERS_FIELDS.h"
 #ifdef ALLOW_DIC
 #include "DIC_VARS.h"
@@ -80,7 +82,7 @@ C$taf loop = parallel
         iMax=sNx
 c
 ccccccccccccccccccccccccccc DIC cccccccccccccccccccccccccccccccc
-c
+
 #ifdef ALLOW_DIC
 #ifdef ALLOW_FE
           call DIC_BIOTIC_Forcing( Ptracer(1-Olx,1-Oly,1,bi,bj,1),
@@ -113,7 +115,6 @@ c
 #endif
 cccccccccccccccccccccccccc END DIC cccccccccccccccccccccccccccccccccc
 
-c
         ENDDO
        ENDDO
 
