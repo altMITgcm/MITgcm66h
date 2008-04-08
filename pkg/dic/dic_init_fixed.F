@@ -55,6 +55,20 @@ C coefficients for determining saturation O2
       oB3= -8.17083 _d -3
       oC0= -4.88682 _d -7
 
+C     Set other constant/flag
+
+#ifdef DIC_BIOTIC
+#ifdef AD_SAFE
+      nlev=Nr
+#else
+      k = 1
+      DO WHILE ( k .LT. Nr .AND. rC(k) .GE. -zcrit )
+        k = k+1
+      ENDDO
+      nlev = k
+#endif
+#endif /* DIC_BIOTIC */
+
       _END_MASTER(myThid)
 
 #ifdef ALLOW_MNC
