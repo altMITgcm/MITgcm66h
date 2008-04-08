@@ -34,7 +34,6 @@ ccccccccccccccccccccccccccc
 #ifdef ALLOW_DIC
       IF ( useDIC ) THEN
           print*,'QQ load dic parameters, initial vari' 
-          CALL DIC_READPARMS(myThid)
           CALL DIC_INI_FORCING(myThid)
           CALL DIC_SURFFORCING_INIT(myThid)
           CALL DIC_BIOTIC_INIT(myThid )
