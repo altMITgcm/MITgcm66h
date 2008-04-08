@@ -19,17 +19,12 @@ C     == GLobal variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 #include "PTRACERS_SIZE.h"
-c#include "PTRACERS_PARAMS.h"
 #include "PTRACERS_FIELDS.h"
-#include "GCHEM.h"
 #include "DIC_VARS.h"
 #ifdef DIC_BIOTIC
 #include "DIC_DIAGS.h"
 #include "DIC_COST.h"
 #endif
-c#ifdef ALLOW_SEAICE
-c#include "SEAICE.h"
-c#endif
 
 C     == Routine arguments ==
       INTEGER myIter

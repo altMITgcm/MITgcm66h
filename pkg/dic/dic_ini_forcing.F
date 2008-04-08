@@ -4,7 +4,7 @@ C $Name$
 #include "DIC_OPTIONS.h"
 
 CBOP
-C !ROUTINE: GCHEM_FORCING_INT
+C !ROUTINE: DIC_INI_FORCING
 
 C !INTERFACE: ==========================================================
       SUBROUTINE DIC_INI_FORCING( myThid )
@@ -20,10 +20,6 @@ C !USES: ===============================================================
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-c#include "PTRACERS_SIZE.h"
-c#include "PTRACERS_PARAMS.h"
-c#include "PTRACERS_FIELDS.h"
-#include "GCHEM.h"
 #include "DIC_VARS.h"
 #include "DIC_LOAD.h"
 
