@@ -139,6 +139,29 @@ C =================================================================
        ENDDO
       ENDDO
 
+      DO bj=myByLo(myThid),myByHi(myThid)
+       DO bi=myBxLo(myThid),myBxHi(myThid)
+        DO j=1-OLy,sNy+OLy
+         DO i=1-OLx,sNx+OLx
+          ak0(i,j,bi,bj)=0. _d 0
+          ak1(i,j,bi,bj)=0. _d 0
+          ak2(i,j,bi,bj)=0. _d 0
+          akw(i,j,bi,bj)=0. _d 0
+          akb(i,j,bi,bj)=0. _d 0
+          akf(i,j,bi,bj)=0. _d 0
+          ak1p(i,j,bi,bj)=0. _d 0
+          ak2p(i,j,bi,bj)=0. _d 0
+          ak3p(i,j,bi,bj)=0. _d 0
+          aksi(i,j,bi,bj)=0. _d 0
+          ff(i,j,bi,bj)=0. _d 0
+          ft(i,j,bi,bj)=0. _d 0
+          st(i,j,bi,bj)=0. _d 0
+          bt(i,j,bi,bj)=0. _d 0
+         ENDDO
+        ENDDO
+       ENDDO
+      ENDDO
+
       pH_isLoaded = .FALSE.
       IF ( nIter0.GT.PTRACERS_Iter0 ) THEN
 C       Read pH from a pickup file if needed

@@ -100,10 +100,6 @@ C  freefe                 :: iron not bound to ligand
        INTEGER I,J,k
        INTEGER nCALCITEstep
 CEOP
-       jmin=1
-       jmax=sNy
-       imin=1
-       imax=sNx
 
        DO k=1,Nr
          DO j=1-OLy,sNy+OLy
