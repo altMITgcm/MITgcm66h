@@ -57,6 +57,13 @@ C--   heimbach@mit.edu 11-Jan-2001
       _RL g_vnm1(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
 #endif
 
+#ifdef ALLOW_AUTODIFF_MONITOR_PHIHYD
+cph this is a tricky one since TAF exctracts it from a
+cph larger common block, so be careful
+      common /g_dynvars_diag/ g_totphihyd
+      _RL g_totphihyd(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+#endif
+
       COMMON /g_ffields_fu/ g_fu
       COMMON /g_ffields_fv/ g_fv
       COMMON /g_ffields_Qnet/ g_Qnet
