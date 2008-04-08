@@ -135,6 +135,12 @@ c      nRetired = nRetired+1
 
       _END_MASTER(myThid)
 
+#ifdef ALLOW_DIC
+      IF ( useDIC ) THEN
+      CALL DIC_READPARMS(myThid)
+      ENDIF
+#endif
+
 C Everyone else must wait for the parameters to be loaded
       _BARRIER
 

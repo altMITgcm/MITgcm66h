@@ -36,8 +36,6 @@ ccccccccccccccccccccccccccc
 #ifdef ALLOW_DIC
       IF ( useDIC ) THEN
           print*,'QQ load dic parameters, initial fixed'
-          CALL DIC_ABIOTIC_PARAM( myThid )
-          CALL DIC_BIOTIC_PARAM( myThid )
           CALL DIC_INIT_FIXED( myThid )
       ENDIF
 #endif /* ALLOW_DIC */

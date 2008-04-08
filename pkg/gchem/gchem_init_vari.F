@@ -15,6 +15,7 @@ C !USES: ===============================================================
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "GCHEM.h"
 #ifdef ALLOW_AUTODIFF_TAMC
 # include "GRID.h"
 # include "DYNVARS.h"
@@ -31,18 +32,14 @@ ccccccccccccccccccccccccccc
 c initialize parameters   c
 ccccccccccccccccccccccccccc
 #ifdef ALLOW_DIC
+      IF ( useDIC ) THEN
           print*,'QQ load dic parameters, initial vari' 
-#ifdef ALLOW_AUTODIFF_TAMC
-c these two needed to be recalled for adjoint
-          call DIC_BIOTIC_PARAM(myThid)
-          call DIC_ABIOTIC_PARAM(myThid)
-#endif /* ALLOW_AUTODIFF_TAMC */
-c -- 
+          CALL DIC_READPARMS(myThid)
           CALL DIC_INI_FORCING(myThid)
-          call DIC_SURFFORCING_INIT(myThid)
-          call DIC_BIOTIC_INIT(myThid )
+          CALL DIC_SURFFORCING_INIT(myThid)
+          CALL DIC_BIOTIC_INIT(myThid )
+      ENDIF
 #endif /* ALLOW_DIC */
-
 
 #endif /* ALLOW_GCHEM */
 
