@@ -69,7 +69,7 @@ CEOP
 
 #ifndef READ_PAR
 #ifndef USE_QSW
-        call insol(myTime,sfac,bj)
+        CALL INSOL(myTime,sfac,bi,bj,myThid)
 #endif
 #endif
         DO j=jmin,jmax

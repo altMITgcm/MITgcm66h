@@ -7,7 +7,7 @@ CBOP
 C !ROUTINE: INSOL
 
 C !INTERFACE: ==========================================================
-      SUBROUTINE insol(Time,sfac,bj)
+      SUBROUTINE insol(Time,sfac,bi,bj,myThid)
 
 C !DESCRIPTION:
 C find light as function of date and latitude
@@ -28,7 +28,8 @@ C     === Global variables ===
 C !INPUT PARAMETERS: ===================================================
 C Time                 :: current time
        _RL Time
-       integer bj
+       INTEGER bi,bj
+       INTEGER myThid
 
 C !OUPUT PARAMETERS: ===================================================
        _RL sfac(1-OLy:sNy+OLy)

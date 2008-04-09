@@ -100,7 +100,7 @@ C FOR NON-INTERACTIVE Si
 
          CALL CARBON_COEFFS(
      I                       theta,salt,
-     I                       bi,bj,iMin,iMax,jMin,jMax)
+     I                       bi,bj,iMin,iMax,jMin,jMax,myThid)
 C====================================================================
 
        DO j=jmin,jmax
@@ -141,7 +141,8 @@ C$TAF LOOP = parallel
      I        aks(i,j,bi,bj),akb(i,j,bi,bj),akw(i,j,bi,bj),
      I        aksi(i,j,bi,bj),akf(i,j,bi,bj),ff(i,j,bi,bj),
      I        bt(i,j,bi,bj),st(i,j,bi,bj),ft(i,j,bi,bj),
-     U        pH(i,j,bi,bj),pCO2(i,j,bi,bj) )
+     U        pH(i,j,bi,bj),pCO2(i,j,bi,bj),
+     I        myThid )
           ELSE
             pCO2(i,j,bi,bj)=0. _d 0
           ENDIF
