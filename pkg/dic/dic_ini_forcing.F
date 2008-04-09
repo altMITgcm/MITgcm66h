@@ -79,19 +79,6 @@ C First call requires that we initialize everything to zero for safety
 #endif
 #endif
 
-#ifdef DIC_BIOTIC
-          QSW_underice=.FALSE.
-#ifdef USE_QSW_UNDERICE
-          QSW_underice=.TRUE.
-#elif (defined (ALLOW_SEAICE) && defined (USE_QSW))
-c if using Qsw and seaice, then ice fraction is already
-c taken into account
-          QSW_underice=.TRUE.
-#elif (defined (ALLOW_THSICE) && defined (USE_QSW))
-          QSW_underice=.TRUE.
-#endif
-#endif
-
 c set reasonable values to those that need at least something
        DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
