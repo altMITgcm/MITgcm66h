@@ -18,6 +18,7 @@ C     !USES:
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "GRID.h"
 #include "DIC_VARS.h"
 
 C     !INPUT PARAMETERS:
@@ -26,6 +27,7 @@ C     myThid               :: thread number
 CEOP
 
 #ifdef ALLOW_DIC
+      INTEGER k
 
       _BEGIN_MASTER(myThid)
 
