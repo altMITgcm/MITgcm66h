@@ -28,6 +28,8 @@ CEOP
 
 #ifdef ALLOW_DIC
       INTEGER k
+      CHARACTER*(MAX_LEN_MBUF) msgBuf
+      INTEGER iUnit
 
       _BEGIN_MASTER(myThid)
 
@@ -69,6 +71,17 @@ C     Set other constant/flag
       ENDDO
       nlev = k
 #endif
+C--   Print out nlev values :
+      iUnit = standardMessageUnit
+      WRITE(msgBuf,'(A)') ' '
+      CALL PRINT_MESSAGE(msgBuf,iUnit,SQUEEZE_RIGHT,myThid)
+      WRITE(msgBuf,'(A)') '// ==================================='
+      CALL PRINT_MESSAGE(msgBuf,iUnit,SQUEEZE_RIGHT,myThid)
+      WRITE(msgBuf,'(A)') '//  DIC_INIT_FIXED parameters :'
+      CALL PRINT_MESSAGE(msgBuf,iUnit,SQUEEZE_RIGHT,myThid)
+
+       CALL WRITE_0D_I( nlev, INDEX_NONE, 'nlev =',
+     &   ' /* Number of level over which Bio act is computed */')
 #endif /* DIC_BIOTIC */
 
       _END_MASTER(myThid)
