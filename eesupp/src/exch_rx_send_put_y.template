@@ -320,7 +320,6 @@ C        Send the data
      &   .AND.   northCommMode .NE. COMM_GET  ) THEN
          STOP ' S/R EXCH: Invalid commN mode.'
         ENDIF
-#ifndef ALLOW_AUTODIFF_OPENAD
 
 c     >>>>>>>>>>>>>>>>>>>             <<<<<<<<<<<<<<<<<<<
 c     >>>>>>>>>>>>>>>>>>> ADJOINT RUN <<<<<<<<<<<<<<<<<<<
@@ -421,7 +420,6 @@ C        Send the data
      &   .AND.   northCommMode .NE. COMM_GET  ) THEN
          STOP ' S/R EXCH: Invalid commN mode.'
         ENDIF
-#endif /* ALLOW_AUTODIFF_OPENAD */
         endif
        ENDDO
       ENDDO
