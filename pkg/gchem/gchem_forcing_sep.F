@@ -57,12 +57,12 @@ c find global surface averages
        gsm_s = 0. _d 0
        gsm_dic = 0. _d 0
        gsm_alk = 0. _d 0
-       call tracer_meanarea(myThid,salt, 1,gsm_s)
-       call tracer_meanarea(myThid,
-     &               ptracer(1-Olx,1-Oly,1,1,1,1), 1, gsm_dic)
+       call tracer_meanarea(salt, 1,gsm_s,myThid)
+       call tracer_meanarea(
+     &             ptracer(1-Olx,1-Oly,1,1,1,1), 1, gsm_dic, myThid )
        print*,'mean surface dic', gsm_dic,gsm_s
-       call tracer_meanarea(myThid,
-     &               ptracer(1-Olx,1-Oly,1,1,1,2), 1, gsm_alk)
+       call tracer_meanarea(
+     &             ptracer(1-Olx,1-Oly,1,1,1,2), 1, gsm_alk, myThid )
 #endif /* ALLOW_OLD_VIRTUALFLUX */
 #endif
 ccccccccccccccccccccccccccccccccccccccccccc

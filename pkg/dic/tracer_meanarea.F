@@ -4,8 +4,10 @@ C $Name$
 #include "DIC_OPTIONS.h"
 
 C !INTERFACE: ==========================================================
-      SUBROUTINE TRACER_MEANAREA(myThid,tracer, kLev,
-     O                    gsm_tracer)
+      SUBROUTINE TRACER_MEANAREA(
+     I                    tracer, kLev,
+     O                    gsm_tracer,
+     I                    myThid )
 
 C !DESCRIPTION:
 C  Calculate surface means of tracer
