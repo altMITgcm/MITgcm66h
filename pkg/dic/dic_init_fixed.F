@@ -27,9 +27,26 @@ C     myThid               :: thread number
 CEOP
 
 #ifdef ALLOW_DIC
+      INTEGER i,j, bi,bj
       INTEGER k
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       INTEGER iUnit
+
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+
+#ifdef DIC_BIOTIC
+C--   Initialise alpha & rain_ratio fields with fixed (& Uniform) values
+      DO bj = myByLo(myThid), myByHi(myThid)
+       DO bi = myBxLo(myThid), myBxHi(myThid)
+         DO j=1-Oly,sNy+Oly
+          DO i=1-Olx,sNx+Olx
+            alpha(i,j,bi,bj)      = alphaUniform
+            rain_ratio(i,j,bi,bj) = rainRatioUniform
+          ENDDO
+         ENDDO
+       ENDDO
+      ENDDO
+#endif /* DIC_BIOTIC */
 
       _BEGIN_MASTER(myThid)
 
