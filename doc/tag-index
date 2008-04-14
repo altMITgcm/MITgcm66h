@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/my82: add netcdf-support and diagnostics 
 o thsice pkg:
   - Now hsMax limits snow heitght by turning it into ice following
     flooding scheme (and now conserving energy)

@@ -3,9 +3,9 @@ C $Name$
 
 #include "MY82_OPTIONS.h"
 
-      SUBROUTINE MY82_INIT( myThid )
+      SUBROUTINE MY82_INIT_VARIA( myThid )
 C     /==========================================================\
-C     | SUBROUTINE MY82_INIT                                     |
+C     | SUBROUTINE MY82_INIT_VARIA                               |
 C     | o Routine to initialize MY82 parameters and variables.   |
 C     |==========================================================|
 C     | Initialize MY92 parameters and variables.                |

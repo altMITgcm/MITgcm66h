@@ -36,6 +36,8 @@ C       |-- GMREDI_INIT_FIXED
 C       |
 C       |-- KPP_INIT_FIXED
 C       |
+C       |-- MY82_INIT_FIXED
+C       |
 C       |-- OPPS_INIT
 C       |
 C       |-- OBCS_INIT_FIXED
@@ -145,6 +147,13 @@ C--   Initialize fixed arrays for GM-Redi
 C--   Initialize fixed arrays for KPP
       IF ( useKPP ) THEN
        CALL KPP_INIT_FIXED( myThid )
+      ENDIF
+#endif
+
+#ifdef ALLOW_MY82
+C--   Initialize fixed arrays for MY82
+      IF ( useMY82 ) THEN
+       CALL MY82_INIT_FIXED( myThid )
       ENDIF
 #endif
 
