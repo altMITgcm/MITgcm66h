@@ -44,21 +44,21 @@ C     diagTitle :: local string (80c): description of field in diagnostic
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
-        diagName  = 'MYviscAr'
+        diagName  = 'MYVISCAR'
         diagTitle = 'MY vertical eddy viscosity coefficient'
         diagUnits = 'm^2/s           '
         diagCode  = 'SM P    UR      '
         CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
-        diagName  = 'MYdiffKr'
+        diagName  = 'MYDIFFKR'
         diagTitle = 'Vertical diffusion coefficient for salt & tracers'
         diagUnits = 'm^2/s           '
         diagCode  = 'SM P    UR      '
         CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
-        diagName  = 'MYhbl   '
+        diagName  = 'MYHBL   '
         diagTitle = 'MY82 boundary layer depth'
         diagUnits = 'm               '
         diagCode  = 'SM P     1      '
