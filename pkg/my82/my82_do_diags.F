@@ -129,10 +129,8 @@ C         transfer analyse a particular snap-shots
      &       'MYviscAr', MYviscAr, myThid)
         CALL MNC_CW_RL_W(pf,'my_state',0,0,
      &       'MYdiffKr', MYdiffKr, myThid)
-        print *, 'ml-hbl 1'
         CALL MNC_CW_RL_W(pf,'my_state',0,0,
      &       'MYhbl', MYhbl, myThid)
-        print *, 'ml-hbl 2'
        ENDIF
 #endif /*  ALLOW_MNC  */
 
