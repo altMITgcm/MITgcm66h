@@ -289,7 +289,7 @@ C--   Initialise retired parameters to unlikely value
       groundAtK1      = .FALSE.
 
 C--   Open the parameter file
-#ifdef TARGET_BGL
+#if defined (TARGET_BGL) || defined (TARGET_CRAYXT)
       OPEN(UNIT=scrUnit1,FILE='scratch1',STATUS='UNKNOWN')
       OPEN(UNIT=scrUnit2,FILE='scratch2',STATUS='UNKNOWN')
 #else

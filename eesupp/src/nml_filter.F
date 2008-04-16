@@ -67,7 +67,7 @@ C--   Open the data file
 
 c--   open the filtered data file
       call mdsfindunit( outunit, mythid )
-#ifdef TARGET_BGL
+#if defined (TARGET_BGL) || defined (TARGET_CRAYXT)
       open( unit=outunit, file='scratch3', status='unknown' )
 #else
       open( unit=outunit, status='scratch' )

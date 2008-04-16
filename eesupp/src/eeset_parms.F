@@ -104,7 +104,7 @@ C     We really ought to be using our environment file reading
 C     package - but we have not written it yet.
 
 C     Make scratch copies of input data file with and without comments
-#ifdef TARGET_BGL
+#if defined (TARGET_BGL) || defined (TARGET_CRAYXT)
       OPEN(UNIT=scrUnit1,FILE='scratch1',STATUS='UNKNOWN')
       OPEN(UNIT=scrUnit2,FILE='scratch2',STATUS='UNKNOWN')
 #else

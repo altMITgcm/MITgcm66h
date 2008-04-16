@@ -62,7 +62,7 @@ C--   Open the parameter file
        STOP 'ABNORMAL END: S/R OPEN_COPY_DATA_FILE'
       ENDIF
 
-#ifdef TARGET_BGL
+#if defined (TARGET_BGL) || defined (TARGET_CRAYXT)
       OPEN(UNIT=scrUnit1,FILE='scratch1',STATUS='UNKNOWN')
       OPEN(UNIT=scrUnit2,FILE='scratch2',STATUS='UNKNOWN')
 #else
