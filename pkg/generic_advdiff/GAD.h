@@ -128,6 +128,11 @@ C AdamsBashforth_S  :: apply Adams-Bashforth extrapolation on Salinity
      & AdamsBashforthGt, AdamsBashforthGs,
      & AdamsBashforth_T, AdamsBashforth_S
 
+#ifdef GAD_SMOLARKIEWICZ_HACK
+      _RL SmolarkiewiczMaxFrac
+      COMMON /GAD_SMOL/ SmolarkiewiczMaxFrac
+#endif
+
 CEH3 ;;; Local Variables: ***
 CEH3 ;;; mode:fortran ***
 CEH3 ;;; End: ***
