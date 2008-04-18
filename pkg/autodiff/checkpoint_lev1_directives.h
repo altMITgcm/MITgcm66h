@@ -105,3 +105,8 @@ CADJ STORE cMeanThetaUVel = comlev1, key = ikey_dynamics
 CADJ STORE cMeanThetaVVel = comlev1, key = ikey_dynamics
 #endif
 
+#ifdef ALLOW_COST_ATLANTIC
+CADJ STORE theta = comlev1, key = ikey_dynamics
+CADJ STORE uVel  = comlev1, key = ikey_dynamics
+CADJ STORE vVel  = comlev1, key = ikey_dynamics
+#endif
