@@ -65,6 +65,8 @@ c     ==================================================================
      &                  , xx_tauy_mean_dummy
      &                  , xx_hflux_mean_dummy
      &                  , xx_sflux_mean_dummy
+     &                  , xx_sstbar_mean_dummy
+     &                  , xx_sssbar_mean_dummy
      &                  , xx_atemp_mean_dummy
      &                  , xx_aqh_mean_dummy
      &                  , xx_precip_mean_dummy
@@ -137,6 +139,8 @@ c
       _RL xx_bpbar_mean_dummy
       _RL xx_hflux_mean_dummy
       _RL xx_sflux_mean_dummy
+      _RL xx_sstbar_mean_dummy
+      _RL xx_sssbar_mean_dummy
       _RL xx_taux_mean_dummy
       _RL xx_tauy_mean_dummy
       _RL xx_atemp_mean_dummy
