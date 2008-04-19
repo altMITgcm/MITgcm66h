@@ -160,7 +160,7 @@ c--     Assign the first value to the array holding the average.
                        tv = tv+p5*(theta(i,j,k,bi,bj)
      $                     + theta(i,j-1,k,bi,bj))*vVel(i,j,k,bi,bj)
      $                     * _dxG(i,j,bi,bj)
-     &                     *  drF(k)*_hFacS(i,j,k,bi,bj)
+     &                     *  drF(k)*maskS(i,j,k,bi,bj)
      $                     *HeatCapacity_Cp*rhoNil
                       endif
                 enddo
@@ -204,7 +204,7 @@ c--     Accumulate the array holding the average.
      $                     +p5*(theta(i,j,k,bi,bj)
      $                     + theta(i,j-1,k,bi,bj))*vVel(i,j,k,bi,bj)
      $                     * _dxG(i,j,bi,bj)
-     &                     *  drF(k)*_hFacS(i,j,k,bi,bj)
+     &                     *  drF(k)*maskS(i,j,k,bi,bj)
      $                     *HeatCapacity_Cp*rhoNil
                    endif
                 enddo
