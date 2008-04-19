@@ -17,8 +17,8 @@ INCLUDES='-I/usr/lpp/ppe.poe/include/thread64 -I/usr/local/include'
 CPP='/lib/cpp -P'
 # The -q64 is redundant on bluevista, default mode is 64bit
 CC='mpcc_r -q64'
-FC='mpxlf95_r -q64'
-LINK='mpxlf95_r -q64'
+FC='mpxlf_r -q64'
+LINK='mpxlf_r -q64'
 LIBS='-lmass -L/usr/local/lib64/r4i4 -L/usr/local/lib64 -L/usr/local/lib'
 FFLAGS='-qfixed=132' 
 if test "x$IEEE" = x ; then
