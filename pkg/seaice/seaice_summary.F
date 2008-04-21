@@ -103,7 +103,7 @@ C     == end of interface ==
       CALL WRITE_0D_I ( IMAX_TICE,         INDEX_NONE,
      & 'IMAX_TICE         =', ' /* iterations for ice heat budget */')
       CALL WRITE_0D_I ( SEAICEadvScheme,   INDEX_NONE,
-     & 'SEAICEadvScheme   =', ' /* advection scheme for thickness */')
+     & 'SEAICEadvScheme   =', ' /* advection scheme for ice */')
       IF ( SEAICEadvScheme .EQ. 2 )
      & CALL WRITE_0D_L ( SEAICEuseFluxForm,   INDEX_NONE,
      & 'SEAICEuseFluxForm =', ' /* advection in FV flux form */')

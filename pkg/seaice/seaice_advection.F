@@ -357,6 +357,12 @@ CADJ &     comlev1_bibj_k_gad_pass, key=passkey, byte=isbyte
           CALL GAD_DST3FL_ADV_X(    bi,bj,k, .TRUE.,
      I         SEAICE_deltaTtherm, uTrans, uFld, maskLocW, localTij,
      O         af, myThid )
+#ifndef ALLOW_AUTODIFF_TAMC
+         ELSEIF (advectionScheme.EQ.ENUM_OS7MP ) THEN
+          CALL GAD_OS7MP_ADV_X(     bi,bj,k, .TRUE., 
+     I         SEAICE_deltaTtherm, uTrans, uFld, maskLocW, localTij,
+     O         af, myThid )
+#endif
          ELSE
           STOP
      & 'SEAICE_ADVECTION: adv. scheme incompatibale with multi-dim'
@@ -547,6 +553,12 @@ CADJ &     comlev1_bibj_k_gad_pass, key=passkey, byte=isbyte
           CALL GAD_DST3FL_ADV_Y(    bi,bj,k, .TRUE.,
      I         SEAICE_deltaTtherm, vTrans, vFld, maskLocS, localTij,
      O         af, myThid )
+#ifndef ALLOW_AUTODIFF_TAMC
+         ELSEIF (advectionScheme.EQ.ENUM_OS7MP ) THEN
+          CALL GAD_OS7MP_ADV_Y(     bi,bj,k, .TRUE.,
+     I         SEAICE_deltaTtherm, vTrans, vFld, maskLocS, localTij,
+     O         af, myThid )
+#endif
          ELSE
           STOP
      &  'SEAICE_ADVECTION: adv. scheme incompatibale with mutli-dim'
