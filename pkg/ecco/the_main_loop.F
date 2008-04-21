@@ -462,6 +462,9 @@ c--     Accumulate time averages of temperature, salinity
 #ifdef ALLOW_COST_ATLANTIC
 CADJ STORE theta = comlev1, key = ikey_dynamics
 CADJ STORE vVel  = comlev1, key = ikey_dynamics
+# ifdef NONLIN_FRSURF
+CADJ STORE hFacS  = comlev1, key = ikey_dynamics
+# endif
 c--     Compute meridional heat transport 
         call timer_start('cost_atlantic         [ECCO MAIN]', mythid)
         call cost_atlantic(  mytime, myiter,mythid )
