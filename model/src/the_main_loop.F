@@ -280,6 +280,11 @@ CADJ INIT comlev1_bibj_k_gad_pass = COMMON,
 CADJ &    nchklev_1*nsx*nsy*nr*nthreads_chkpt*maxpass*maxpass
 #   endif /* DISABLE_MULTIDIM_ADVECTION */
 c--
+#   ifndef AUTODIFF_DISABLE_LEITH
+CADJ INIT comlev1_mom_ijk_loop
+CADJ &     = COMMON,nchklev_1*snx*nsx*sny*nsy*nr*nthreads_chkpt
+#   endif /* AUTODIFF_DISABLE_LEITH */
+c--
 #   if (defined (ALLOW_EXF) && defined (ALLOW_BULKFORMULAE))
 CADJ INIT comlev1_exf_1
 CADJ &     = COMMON,nchklev_1*snx*nsx*sny*nsy*nthreads_chkpt
