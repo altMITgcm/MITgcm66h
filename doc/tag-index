@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: add os7mp as an advection scheme
+              add check for advection schemes
 o pkg/my82: add netcdf-support and diagnostics 
 o thsice pkg:
   - Now hsMax limits snow heitght by turning it into ice following
