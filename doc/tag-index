@@ -6,6 +6,7 @@ $Name$
 
 o pkg/seaice: add os7mp as an advection scheme
               add check for advection schemes
+              add a flag for restoring T and S underneath sea ice
 o pkg/my82: add netcdf-support and diagnostics 
 o thsice pkg:
   - Now hsMax limits snow heitght by turning it into ice following

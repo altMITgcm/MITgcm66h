@@ -42,6 +42,7 @@ C--   SEAICE parameters
      & SEAICEwriteState, SEAICEuseDYNAMICS, SEAICEuseTEM,
      & SEAICEuseEVPpickup, SEAICEuseFluxForm,
      & useHB87stressCoupling, SEAICEuseFlooding, usePW79thermodynamics,
+     & SEAICErestoreUnderIce,
      & SEAICEadvHeff, SEAICEadvArea, SEAICEadvSnow, SEAICEadvSalt,
      & SEAICE_clipVelocities, SEAICE_maskRHS, SEAICE_no_slip,
      & LAD, IMAX_TICE, SEAICEadvScheme, SEAICEadvSchArea, 
@@ -104,6 +105,7 @@ C--   set default sea ice parameters
       SEAICEuseTEM       = .FALSE.
       SEAICEuseEVPpickup = .TRUE.
       SEAICEuseFluxForm  = .FALSE.
+      SEAICErestoreUnderIce = .FALSE.
       useHB87stressCoupling = .FALSE.
       usePW79thermodynamics = .TRUE.
       SEAICEadvHeff      = .TRUE.    
