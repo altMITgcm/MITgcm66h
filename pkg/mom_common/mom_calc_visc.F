@@ -136,10 +136,6 @@ C     == Local variables ==
       _RL viscA4_DSmg(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       LOGICAL calcLeith, calcSmag
 
-cph(
-      print *, 'ph-test a ', mythid, k
-      print *, 'ph-test b ', myBxLo(myThid)
-cph)
 #ifdef ALLOW_AUTODIFF_TAMC
           act1 = bi - myBxLo(myThid)
           max1 = myBxHi(myThid) - myBxLo(myThid) + 1
