@@ -504,6 +504,15 @@ c     diagTitle = 'Square of ocean bottom pressure / top. geo-Potential'
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
+#ifdef ALLOW_NONHYDROSTATIC
+      diagName  = 'PHI_NH  '
+      diagTitle = DIAGS_MK_TITLE( 'Non-Hydrostatic '//pTitle, myThid )
+      diagUnits = 'm^2/s^2         '
+      diagCode  = 'SM      MR      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+#endif /* ALLOW_NONHYDROSTATIC */
+
       diagName  = 'MXLDEPTH'
       diagTitle = 'Mixed-Layer Depth (>0)'
       diagUnits = 'm               '
