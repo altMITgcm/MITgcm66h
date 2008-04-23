@@ -57,7 +57,9 @@ C GM is affected only if GMREDI_AdvForm=.FALSE.
 C The parameter SmolarkiewiczMaxFrac (set in gad_init_fixed) can be used to
 C restrict the fraction of tracer that can leave a cell to be less than 1.
 C This will be necessary to make the tracer strictly positive.
-C This hack applies to all tracers except temperature! 
+C This hack applies to all tracers except temperature and salinity! 
+C Don't use with Adams-Bashforth (for ptracers)!
+C Don't use with OBCS!
 #undef  GAD_SMOLARKIEWICZ_HACK
 
 #else
