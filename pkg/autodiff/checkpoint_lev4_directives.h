@@ -69,6 +69,18 @@ CADJ &     = tapelev4, key = ilev_4
 # include "rbcs_ad_check_lev4_dir.h"
 #endif /* ALLOW_rbcs */
 
+#ifdef ALLOW_GCHEM
+# include "gchem_ad_check_lev4_dir.h"
+#endif
+ 
+#ifdef ALLOW_CFC
+# include "cfc_ad_check_lev4_dir.h"
+#endif
+ 
+#ifdef ALLOW_DIC
+# include "dic_ad_check_lev4_dir.h"
+#endif
+
 #ifdef ALLOW_EBM
 CADJ STORE fu    = tapelev4, key = ilev_4
 CADJ STORE fv    = tapelev4, key = ilev_4

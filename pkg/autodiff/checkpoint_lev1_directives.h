@@ -89,6 +89,18 @@ CADJ STORE siceload = comlev1, key = ikey_dynamics
 # include "rbcs_ad_check_lev1_dir.h"
 #endif /* ALLOW_RBCS */
 
+#ifdef ALLOW_GCHEM
+# include "gchem_ad_check_lev1_dir.h"
+#endif
+
+#ifdef ALLOW_CFC
+# include "cfc_ad_check_lev1_dir.h"
+#endif
+
+#ifdef ALLOW_DIC
+# include "dic_ad_check_lev1_dir.h"
+#endif
+
 #ifdef ALLOW_EBM
 CADJ STORE fu      = comlev1, key = ikey_dynamics
 CADJ STORE fv      = comlev1, key = ikey_dynamics
