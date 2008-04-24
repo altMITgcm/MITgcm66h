@@ -41,7 +41,7 @@ C     === Global variables ===
 # include "SHELFICE.h"
 #endif /* ALLOW_SHELFICE */
 #ifdef ALLOW_MNC
-#include "MNC_PARAMS.h"
+# include "MNC_PARAMS.h"
 #endif
 
 C     !INPUT/OUTPUT PARAMETERS:
@@ -313,6 +313,15 @@ C--   Everyone else must wait for the depth to be loaded
 C-    note: might not be necessary since all single-thread IO above
 C           are followed by an EXCH (with BARRIER)
       _BARRIER
+
+#ifdef ALLOW_OBCS
+      IF ( useOBCS ) THEN
+C     check for inconsistent topography along boundaries and fix it
+       CALL OBCS_CHECK_TOPOGRAPHY( myThid )
+C     update the overlaps
+       _EXCH_XY_R4(R_low, myThid )
+      ENDIF
+#endif /* ALLOW_OBCS */
 
       RETURN
       END
