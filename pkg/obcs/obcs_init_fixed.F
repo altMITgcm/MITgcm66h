@@ -29,7 +29,6 @@ C     myThid -  Number of this instance of INI_DEPTHS
 #ifdef ALLOW_OBCS
 
 C     == Local variables ==
-      INTEGER iG, jG, iGm, jGm
       INTEGER bi, bj
       INTEGER I, J
 #ifdef NONLIN_FRSURF
