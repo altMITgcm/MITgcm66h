@@ -50,7 +50,7 @@ C     iUnit       - Work variable for IO unit number
      &          OBNuiceFile,OBSuiceFile,OBEuiceFile,OBWuiceFile,
      &          OBNviceFile,OBSviceFile,OBEviceFile,OBWviceFile,
      &          useOBCSsponge, useOBCSbalance, useOBCSprescribe,
-     &          OBCSprintDiags, useOBCSYearlyFields
+     &          OBCSprintDiags, useOBCSYearlyFields, OBCSfixTopo
 #ifdef ALLOW_PTRACERS
      &        , OBNptrFile,OBSptrFile,OBEptrFile,OBWptrFile
 #endif
@@ -102,6 +102,7 @@ C--   Default flags and values for OBCS
       useOBCSprescribe   =.FALSE.
       OBCSprintDiags     =.TRUE.
       useOBCSYearlyFields=.FALSE.
+      OBCSfixTopo        =.FALSE.
 
       OBNuFile = ' '
       OBNvFile = ' '
