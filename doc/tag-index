@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o tutorial_deep_convection : 
+  update the set-up and increase resolution and domain size ; start
+  from pseudo initial conditions = output at t=120mn in order to see
+  something happening when running testreport.
 o pkg/seaice: add os7mp as an advection scheme
               add check for advection schemes
               add a flag for restoring T and S underneath sea ice
