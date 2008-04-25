@@ -102,7 +102,7 @@ C--   Default flags and values for OBCS
       useOBCSprescribe   =.FALSE.
       OBCSprintDiags     =.TRUE.
       useOBCSYearlyFields=.FALSE.
-      OBCSfixTopo        =.FALSE.
+      OBCSfixTopo        =.TRUE.
 
       OBNuFile = ' '
       OBNvFile = ' '
