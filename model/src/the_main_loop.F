@@ -71,6 +71,17 @@ c They provide the fields to be stored.
 #   include "PTRACERS_SIZE.h"
 #   include "PTRACERS_FIELDS.h"
 #  endif
+# ifdef ALLOW_GCHEM
+#  include "GCHEM_FIELDS.h"
+# endif
+# ifdef ALLOW_CFC
+#  include "CFC.h"
+# endif
+# ifdef ALLOW_DIC
+#  include "DIC_VARS.h"
+#  include "DIC_LOAD.h"
+#  include "DIC_ATMOS.h"
+# endif
 #  ifdef ALLOW_OBCS
 #   include "OBCS.h"
 #   ifdef ALLOW_PTRACERS
