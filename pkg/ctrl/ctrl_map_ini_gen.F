@@ -5,7 +5,7 @@ C $Name$
 
 
       subroutine ctrl_map_ini_gen3D(xxFileCur, wFileCur, xxDummyCur, 
-     & boundsVec, paramFld3d, maskFld3d, mythid )
+     & boundsVec, paramFld3d, maskFld3d, paramSmooth, mythid )
 
 c     ==================================================================
 c     SUBROUTINE ctrl_map_ini_gen3D
@@ -53,6 +53,7 @@ c     == routine arguments ==
       _RL xxFld3d(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
       _RL paramFld3d(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
       _RL maskFld3d(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+      integer paramSmooth
 
 c     == local variables ==
 
@@ -132,7 +133,9 @@ c avoid xx larger than boundsVec(5) X uncertainty
       endif
 #else
 c apply Weaver And Courtier correlation operator
-       call smooth_correl3D(xxFld3d,2,mythid)
+      if (paramSmooth.NE.0) then
+       call smooth_correl3D(xxFld3d,paramSmooth,mythid)
+      endif
 #endif 
 
       do bj = jtlo,jthi
@@ -174,7 +177,7 @@ c avoid param out of [boundsVec(1) boundsVec(4)]
 
 
       subroutine ctrl_map_ini_gen2D(xxFileCur, wFileCur, xxDummyCur, 
-     & boundsVec, paramFld2d, maskFld3d, mythid )
+     & boundsVec, paramFld2d, maskFld3d, paramSmooth, mythid )
 
 c     ==================================================================
 c     SUBROUTINE ctrl_map_ini_gen2D
@@ -222,6 +225,7 @@ c     == routine arguments ==
       _RL xxFld2d(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL paramFld2d(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL maskFld3d(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+      integer paramSmooth
 
 c     == local variables ==
 
@@ -299,7 +303,9 @@ c avoid xx larger than boundsVec(5) X uncertainty
       endif
 #else
 c apply Weaver And Courtier correlation operator
-       call smooth_correl2d(xxFld2d,maskFld3d,2,mythid)
+      if (paramSmooth.NE.0) then
+       call smooth_correl2d(xxFld2d,maskFld3d,paramSmooth,mythid)
+      endif
 #endif 
 
       do bj = jtlo,jthi
