@@ -142,9 +142,7 @@ C     to diagnose surface buoyancy fluxes and for the non-local transport
 C     term.  Because this call precedes model thermodynamics, temperature
 C     under sea-ice may not be "exactly" at the freezing point by the time
 C     theta is dumped or time-averaged.
-# ifndef ALLOW_ECCO_PRODUCTION
       IF ( useSEAICE ) THEN
-# endif
 # ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE atemp,aqh,precip    = comlev1, key = ikey_dynamics
 CADJ STORE swdown,lwdown       = comlev1, key = ikey_dynamics
@@ -181,9 +179,7 @@ CADJ STORE recip_hfacc         = comlev1, key = ikey_dynamics
 # ifdef ALLOW_COST
         CALL SEAICE_COST_SENSI ( myTime, myIter, myThid )
 # endif
-# ifndef ALLOW_ECCO_PRODUCTION
       ENDIF
-# endif
 #endif /* ALLOW_SEAICE */
 
 #if (defined ALLOW_THSICE) && !(defined ALLOW_ATM2D)
