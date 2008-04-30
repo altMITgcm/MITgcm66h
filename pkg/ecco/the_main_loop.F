@@ -499,7 +499,6 @@ C--   Call driver to load external forcing fields from file
       CALL LOAD_FIELDS_DRIVER( myTime, myIter, myThid )
       CALL TIMER_STOP ('LOAD_FIELDS_DRIVER  [FORWARD_STEP]',myThid)
 
-
 #ifdef ALLOW_AUTODIFF_TAMC
 # if (defined (ALLOW_AUTODIFF_MONITOR))
       CALL DUMMY_IN_STEPPING( myTime, myIter, myThid )
@@ -559,6 +558,10 @@ CADJ STORE hFacC              = comlev1, key = ikey_dynamics
        CALL TIMER_STOP ('DO_OCEANIC_PHYS     [FORWARD_STEP]',mythid)
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE EmPmR              = comlev1, key = ikey_dynamics
+cph-adj-test(
+CADJ STORE qnet, qsw, fu, fv  = comlev1, key = ikey_dynamics
+CADJ STORE theta, salt, uvel, vvel = comlev1, key = ikey_dynamics
+cph-adj-test)
 # ifdef EXACT_CONSERV
 CADJ STORE pmepr              = comlev1, key = ikey_dynamics
 # endif
