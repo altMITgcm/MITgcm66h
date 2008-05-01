@@ -15,12 +15,12 @@ CADJ STORE recip_hfacw = comlev1, key = ikey_dynamics
 cph the following are frequently needed, e.g. with seaice
 CADJ STORE pmepr       = comlev1, key = ikey_dynamics
 CADJ STORE totphihyd   = comlev1, key = ikey_dynamics
-c
-# ifndef DISABLE_RSTAR_CODE
 CADJ STORE detahdt            = comlev1, key = ikey_dynamics
 CADJ STORE gs,gsnm1,gt,gtnm1  = comlev1, key = ikey_dynamics
 CADJ STORE salt,theta         = comlev1, key = ikey_dynamics
 CADJ STORE uvel,vvel,wvel     = comlev1, key = ikey_dynamics
+c
+# ifndef DISABLE_RSTAR_CODE
 CADJ STORE h0facc,h0facs,h0facw 
 CADJ &     = comlev1, key = ikey_dynamics
 CADJ STORE rstarfacc,rstarfacs,rstarfacw
