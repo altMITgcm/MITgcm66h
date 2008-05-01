@@ -14,8 +14,8 @@ cph >>>>>> !!!!!! SPECIAL SEAICE FLAG FOR TESTING !!!!!! <<<<<<
 #define  SEAICE_EXCLUDE_FOR_EXACT_AD_TESTING
 cph >>>>>> !!!!!! SPECIAL SEAICE FLAG FOR TESTING !!!!!! <<<<<<
 
-#define  ALLOW_ECCO_FORWARD_RUN
-#undef  ALLOW_ECCO_OPTIMIZATION
+cph#define  ALLOW_ECCO_FORWARD_RUN
+#define  ALLOW_ECCO_OPTIMIZATION
 
 C       >>> Do a long protocol.
 #undef ECCO_VERBOSE
@@ -115,7 +115,7 @@ c       >>> Make sure that ALLOW_OBCS is defined
 # endif
 
 c       >>> Sea-ice volume
-# define ALLOW_COST_ICE
+# undef ALLOW_COST_ICE
 
 c       >>> Sea-ice misfit to obs
 # define ALLOW_SEAICE_COST_SMR_AREA
