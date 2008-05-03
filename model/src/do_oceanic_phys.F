@@ -134,6 +134,9 @@ C--   dummy statement to end declaration part
 #ifdef ALLOW_SEAICE
       IF ( useSEAICE ) THEN
 # ifdef ALLOW_AUTODIFF_TAMC
+cph-adj-test(
+CADJ STORE area,empmr,qsw,theta   = comlev1, key = ikey_dynamics
+cph-adj-test)
 CADJ STORE atemp,aqh,precip    = comlev1, key = ikey_dynamics
 CADJ STORE swdown,lwdown       = comlev1, key = ikey_dynamics
 cph# ifdef EXF_READ_EVAP

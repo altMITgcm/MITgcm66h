@@ -22,6 +22,10 @@ C     == Global variables ===
 #ifdef ALLOW_COST
 # include "cost.h"
 #endif
+#ifdef ALLOW_AUTODIFF_TAMC
+# include "tamc.h"
+# include "tamc_keys.h"
+#endif
 
 C     == Routine arguments ==
 C     myThid - Thread number for this instance of the routine.
@@ -43,6 +47,10 @@ C     == Local variables
       ithi = mybxhi(mythid)
 
 #ifdef ALLOW_SEAICE_COST_EXPORT
+
+# ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE heff, uice, vice    = comlev1, key = ikey_dynamics
+#endif
 
 C--   Calculate cost function on tile of this instance
       do bj = jtlo,jthi
