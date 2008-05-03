@@ -59,7 +59,7 @@ c     == local variables ==
       integer imin,imax
       integer irec
       integer ilw
-      integer nf, nl
+      integer nf, nl, nfmin
       integer minrec
 
       _RL fctilew
