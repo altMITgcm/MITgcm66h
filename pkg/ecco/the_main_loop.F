@@ -497,11 +497,9 @@ C--   Call driver to load external forcing fields from file
 #endif
 #ifdef ALLOW_AUTODIFF_TAMC
 cph Important STORE that avoids hidden recomp. of load_fields_driver
-CADJ STORE theta      = comlev1, key = ikey_dynamics
-#endif
-cph-adj-test(
+CADJ STORE theta           = comlev1, key = ikey_dynamics
 CADJ STORE uvel,vvel       = comlev1, key = ikey_dynamics
-cph-adj-test)
+#endif
       CALL TIMER_START('LOAD_FIELDS_DRIVER  [FORWARD_STEP]',myThid)
       CALL LOAD_FIELDS_DRIVER( myTime, myIter, myThid )
       CALL TIMER_STOP ('LOAD_FIELDS_DRIVER  [FORWARD_STEP]',myThid)
