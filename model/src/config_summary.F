@@ -350,12 +350,12 @@ c    & 'selectVortScheme=',' /* Scheme selector for Vorticity-Term */')
       WRITE(msgBuf,'(2A)') '   = 2 : energy conserving scheme',
      &         ' (used by Sadourny in JAS 75 paper)'
       CALL PRINT_MESSAGE( msgBuf, ioUnit, SQUEEZE_RIGHT, myThid )
-c     WRITE(msgBuf,'(2A)') '   = 3 : energy (general)',
-c    &             ' and enstrophy (2D, nonDiv.) conserving scheme'
-c     CALL PRINT_MESSAGE( msgBuf, ioUnit, SQUEEZE_RIGHT, myThid )
-c     WRITE(msgBuf,'(2A)') '         from Sadourny',
-c    &                     ' (Burridge & Haseler, ECMWF Rep.4, 1977)'
-c     CALL PRINT_MESSAGE( msgBuf, ioUnit, SQUEEZE_RIGHT, myThid )
+      WRITE(msgBuf,'(2A)') '   = 3 : energy (general)',
+     &             ' and enstrophy (2D, nonDiv.) conserving scheme'
+      CALL PRINT_MESSAGE( msgBuf, ioUnit, SQUEEZE_RIGHT, myThid )
+      WRITE(msgBuf,'(2A)') '         from Sadourny',
+     &                     ' (Burridge & Haseler, ECMWF Rep.4, 1977)'
+      CALL PRINT_MESSAGE( msgBuf, ioUnit, SQUEEZE_RIGHT, myThid )
 c     WRITE(msgBuf,'(2A)') '   = 4 : energy (general)',
 c    &             ' and enstrophy (2D, nonDiv.) conserving scheme'
 c     CALL PRINT_MESSAGE( msgBuf, ioUnit, SQUEEZE_RIGHT, myThid )
