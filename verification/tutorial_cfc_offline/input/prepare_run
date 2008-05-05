@@ -7,7 +7,7 @@
 #- from this dir:
 fromDir="../../tutorial_global_oce_biogeo/input"
 
-fileList=`( cd $fromDir ; ls *.bin | grep -v 'sillev1.bin' )`
+fileList=`( cd $fromDir ; ls *.bin | grep -v 'sillev1.bin' | grep -v 'bathy.bin' )`
 
 #echo 'fileList=' $fileList
 
