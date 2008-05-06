@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint59q
 o pkg/mom_vecinv: Add energy & enstrophy conserving scheme (selectVortScheme=3)
    (from Sadourny, described by Burridge & Haseler, ECMWF Rep.4, 1977)
 o Refresh tutorial_global_oce_biogeo, notably:
