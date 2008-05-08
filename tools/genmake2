@@ -2361,7 +2361,10 @@ for d in $alldirs ; do
 	echo "" >> srclinks.tmp
 	echo "#  These files are linked from $d" >> srclinks.tmp
 	echo "$deplist :" >> srclinks.tmp
-	printf "\t\$(LN) %s/\$@ \$@\n" $d >> srclinks.tmp
+# We need to make sure that the link isn't already there.
+# This may happen when make thinks that a header file has to be "remade"
+# because a module it depends on has changed.  In this case we do nothing.
+	printf "\tif [ ! -L \$@ ]; then \$(LN) %s/\$@ \$@; fi\n" $d >> srclinks.tmp
     fi
 done
 rm -rf .links.tmp
