@@ -22,6 +22,10 @@ C---
 
 
 C CPP Macros go here
+C     This enables the dynamically allocated internal state data structures
+C     for PTracers.  Needed for PTRACERS_SOM_Advection.
+C     This requires a Fortran 90 compiler!
+#undef  PTRACERS_ALLOW_DYN_STATE
 
 #endif /* ALLOW_PTRACERS */
 #endif /* PTRACERS_OPTIONS_H */

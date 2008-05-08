@@ -2,6 +2,7 @@ C $Header$
 C $Name$
 
 #include "PTRACERS_OPTIONS.h"
+#include "GAD_OPTIONS.h"
 
 CBOP
 C !ROUTINE: PTRACERS_ADVECTION
@@ -14,6 +15,7 @@ C     Calculates tendency for passive tracers and integrates forward
 C     in time.
 
 C !USES: ===============================================================
+#include "PTRACERS_MOD.h"
       IMPLICIT NONE
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -77,7 +79,26 @@ CADJ STORE pTracer(:,:,:,bi,bj,iTracer)
 CADJ &      = comlev1_bibj_ptracers, key=iptrkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 
+#if defined(GAD_ALLOW_SOM_ADVECT) && defined(PTRACERS_ALLOW_DYN_STATE)
+       IF ( PTRACERS_SOM_Advection(iTracer) ) THEN
+#ifdef ALLOW_DEBUG
+         IF ( debugLevel .GE. debLevB )
+     &     CALL DEBUG_CALL('GAD_SOM_ADVECT',myThid)
+#endif
+         CALL GAD_SOM_ADVECT(
+     I                       PTRACERS_ImplVertAdv(iTracer),
+     I                       PTRACERS_advScheme(iTracer),
+     I                       PTRACERS_advScheme(iTracer),
+     I                       GAD_TR1+iTracer-1,
+     I                       uVel, vVel, wVel,
+     I                       pTracer(1-Olx,1-Oly,1,1,1,iTracer),
+     U                       _Ptracers_som(1-Olx,1-Oly,1,1,1,1,iTracer),
+     O                       gPtr(1-Olx,1-Oly,1,1,1,iTracer),
+     I                       bi,bj,myTime,myIter,myThid)
+       ELSEIF ( PTRACERS_MultiDimAdv(iTracer) ) THEN
+#else /* GAD_ALLOW_SOM_ADVECT && PTRACERS_ALLOW_DYN_STATE */
        IF ( PTRACERS_MultiDimAdv(iTracer) ) THEN
+#endif /* GAD_ALLOW_SOM_ADVECT && PTRACERS_ALLOW_DYN_STATE */
             CALL GAD_ADVECTION(
      I                        PTRACERS_ImplVertAdv(iTracer),
      I                        PTRACERS_advScheme(iTracer),
