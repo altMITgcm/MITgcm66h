@@ -17,11 +17,11 @@ S64='$(TOOLSDIR)/set64bitConst.sh'
 DEFINES='-D_BYTESWAPIO -DWORDLENGTH=4 -DNML_TERMINATOR'
 INCLUDEDIRS='/sw/include'
 INCLUDES='-I/sw/include'
-LIBS='-L/sw/lib -lnetcdf'
+LIBS='-L/sw/lib'
 
 ##INCLUDEDIRS='/Users/heimbach/NetCDF/netcdf-3.6.0-p1/gfortran/include'
 ##INCLUDES='-I/Users/heimbach/NetCDF/netcdf-3.6.0-p1/gfortran/include'
-##LIBS='-L/Users/heimbach/NetCDF/netcdf-3.6.0-p1/gfortran/lib -lnetcdf'
+##LIBS='-L/Users/heimbach/NetCDF/netcdf-3.6.0-p1/gfortran/lib'
 
 ###FC_NAMEMANGLE="#define FC_NAMEMANGLE(X) _ ## X ## _"
 ###FC_NAMEMANGLE="#define FC_NAMEMANGLE(X) X"
