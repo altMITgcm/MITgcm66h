@@ -21,7 +21,6 @@ C !USES: ===============================================================
 #include "PTRACERS_SIZE.h"
 #include "PTRACERS_PARAMS.h"
 #include "PTRACERS_FIELDS.h"
-!#include "GAD.h"
 
 C !INPUT PARAMETERS: ===================================================
 C  myThid         :: thread number
