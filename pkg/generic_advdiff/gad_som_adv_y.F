@@ -75,7 +75,6 @@ C  vT           :: meridional advective flux
       _RL sm_yz (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL vT    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
-#ifdef GAD_ALLOW_SOM_ADVECT
 C !LOCAL VARIABLES: ====================================================
 C  i,j           :: loop indices
 C  vLoc          :: volume transported (per time step)
@@ -306,8 +305,6 @@ C      add into grid box (j): positive V(j) and negative V(j+1)
 
 C--   end 2nd loop on strip number "ns"
       ENDDO
-
-#endif /* GAD_ALLOW_SOM_ADVECT */
 
       RETURN
       END

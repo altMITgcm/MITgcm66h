@@ -32,7 +32,7 @@ C     myThid  :: my Thread Id. number
 CEOP
 
 #ifdef ALLOW_DIAGNOSTICS
-#ifdef GAD_ALLOW_SOM_ADVECT
+#ifdef GAD_ALLOW_TS_SOM_ADV
 C     ! FUNCTIONS:
       CHARACTER*4  GAD_DIAG_SUFX
       EXTERNAL     GAD_DIAG_SUFX
@@ -142,7 +142,7 @@ C     [Sx^2 + Sy^2 + Sz^2]/3 +[Sxx^2 + Syy^2 + Szz^2]/5 +[Sxy^2 + Sxz^2 + Syz^2]
         ENDDO
       ENDIF
 
-#endif /* GAD_ALLOW_SOM_ADVECT */
+#endif /* GAD_ALLOW_TS_SOM_ADV */
 #endif /* ALLOW_DIAGNOSTICS */
 
       RETURN

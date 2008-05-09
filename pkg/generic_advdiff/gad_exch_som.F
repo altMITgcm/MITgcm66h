@@ -36,7 +36,6 @@ C     myThid ::  my Thread Id number
       INTEGER myThid
 CEOP
 
-#ifdef GAD_ALLOW_SOM_ADVECT
 C     !LOCAL VARIABLES:
 C     === Local variables ===
 
@@ -70,8 +69,6 @@ C-    Sxz,Syz :
      U                 smTr(1-OLx,1-OLy,1,1,1,8),
      U                 smTr(1-OLx,1-OLy,1,1,1,9),
      I                 .TRUE., myNz, myThid )
-
-#endif /* GAD_ALLOW_SOM_ADVECT */
 
       RETURN
       END

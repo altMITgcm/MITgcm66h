@@ -57,7 +57,6 @@ C     myThid     :: my Thread Id number
       INTEGER myThid
 CEOP
 
-#ifdef GAD_ALLOW_SOM_ADVECT
 C     !LOCAL VARIABLES:
 C     === Local variables ===
       INTEGER i,j, jPass, n
@@ -227,8 +226,6 @@ C--   End getting back corner values from storage
 
 C---  End if/else - overlapOnly - block
       ENDIF
-
-#endif /* GAD_ALLOW_SOM_ADVECT */
 
       RETURN
       END

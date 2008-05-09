@@ -103,7 +103,6 @@ C  wT           :: vertical advective flux
       _RL  fn_yz(1-OLx:sNx+OLx,1-OLy:sNy+OLy,2)
       _RL wT    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
-#ifdef GAD_ALLOW_SOM_ADVECT
 C !LOCAL VARIABLES: ====================================================
 C  i,j          :: loop indices
 C  wLoc         :: volume transported (per time step)
@@ -310,8 +309,6 @@ C      add into grid box (k): positive W(kDw) and negative W(kUp)
         sm_xy(i,j,k) = sm_xy(i,j,k) + fp_xy(i,j,kDw) + fn_xy(i,j,kUp)
        ENDDO
       ENDDO
-
-#endif /* GAD_ALLOW_SOM_ADVECT */
 
       RETURN
       END

@@ -37,7 +37,7 @@ C     myThid  :: thread number
 C !OUTPUT PARAMETERS: ==================================================
 C  none
 
-#ifdef GAD_ALLOW_SOM_ADVECT
+#ifdef GAD_ALLOW_TS_SOM_ADV
 C     === Functions ====
       INTEGER  ILNBLNK
       EXTERNAL ILNBLNK
@@ -106,7 +106,7 @@ C       Write 2nd Order moments as consecutive records
 
       ENDIF
 
-#endif /* GAD_ALLOW_SOM_ADVECT */
+#endif /* GAD_ALLOW_TS_SOM_ADV */
 
       RETURN
       END

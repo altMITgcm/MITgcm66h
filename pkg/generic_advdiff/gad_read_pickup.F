@@ -30,7 +30,7 @@ C     myThid  :: thread number
       INTEGER myIter
       INTEGER myThid
 
-#ifdef GAD_ALLOW_SOM_ADVECT
+#ifdef GAD_ALLOW_TS_SOM_ADV
 
 C     !LOCAL VARIABLES:
 C     n       :: 2nd.O. moment loop index
@@ -101,7 +101,7 @@ C       Read 2nd Order moments as consecutive records
 
       ENDIF
 
-#endif /* GAD_ALLOW_SOM_ADVECT */
+#endif /* GAD_ALLOW_TS_SOM_ADV */
 
       RETURN
       END

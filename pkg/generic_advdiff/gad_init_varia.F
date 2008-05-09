@@ -31,7 +31,7 @@ C     myThid ::  my Thread Id number
       INTEGER myThid
 CEOP
 
-#ifdef GAD_ALLOW_SOM_ADVECT
+#ifdef GAD_ALLOW_TS_SOM_ADV
 C     !LOCAL VARIABLES:
 C     === Local variables ===
       INTEGER i,j,k,bi,bj
@@ -72,7 +72,7 @@ C-     Read 2nd-O moments state from pickup files
        ENDIF
       ENDIF
 
-#endif /* GAD_ALLOW_SOM_ADVECT */
+#endif /* GAD_ALLOW_TS_SOM_ADV */
 
       RETURN
       END

@@ -30,7 +30,7 @@ C     myThid ::  my Thread Id number
       INTEGER myThid
 CEOP
 
-#ifdef GAD_ALLOW_SOM_ADVECT
+#ifdef GAD_ALLOW_TS_SOM_ADV
 C     !LOCAL VARIABLES:
 C     === Local variables ===
 
@@ -44,7 +44,7 @@ C--   Apply exchanges to Salin. 2nd.O.Moments:
        CALL GAD_EXCH_SOM( som_S, Nr, myThid )
       ENDIF
 
-#endif /* GAD_ALLOW_SOM_ADVECT */
+#endif /* GAD_ALLOW_TS_SOM_ADV */
 
       RETURN
       END

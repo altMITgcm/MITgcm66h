@@ -58,7 +58,6 @@ C     myThid    :: my Thread Id. number
       INTEGER bi,bj
       INTEGER myThid
 
-#ifdef GAD_ALLOW_SOM_ADVECT
 C     !LOCAL VARIABLES:
 C     == Local variables ==
 CEOP
@@ -81,8 +80,6 @@ CEOP
           CALL FILL_CS_CORNER_AG_RL( fill4dirX, .TRUE.,
      &                               sm_xz, sm_yz, bi,bj, myThid )
       ENDIF
-
-#endif /* GAD_ALLOW_SOM_ADVECT */
 
       RETURN
       END
