@@ -17,6 +17,6 @@ C     array with one PTRACERS_ISTATE for each Ptracer
 C     some compilers do not like empty files, so ...
       SUBROUTINE PTRACERS_DYN_STATE_DATA_MOD_DUMMY
         RETURN
-      END SUBROUTINE
+      END
 #endif
 

@@ -7,7 +7,7 @@ C $Name$
       MODULE PTRACERS_DYN_STATE_MOD
 
 C ptracers internal state data structures
-      TYPE PTRACERS_ISTATE 
+      TYPE PTRACERS_ISTATE
        _RL, POINTER :: som_P(:,:,:,:,:,:)
       END TYPE
 
@@ -51,6 +51,6 @@ C ptracers internal state data structures
 C     some compilers do not like empty files, so ...
       SUBROUTINE PTRACERS_DYN_STATE_MOD_DUMMY
         RETURN
-      END SUBROUTINE
+      END
 #endif
 
