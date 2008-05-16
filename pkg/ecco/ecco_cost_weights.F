@@ -331,7 +331,7 @@ c--
         enddo
       enddo
 
-#ifdef ALLOW_SALT0_COST_CONTRIBUTION
+#if (defined (ALLOW_SALT0_COST_CONTRIBUTION) || defined (ALLOW_SALT0_CONTROL))
       lwsaltLevInUse = .true.
       if ( salt0errfile .NE. ' ' ) then
          call mdsreadfield( salt0errfile, 32, 'RL', Nr,
@@ -372,7 +372,7 @@ c--           Test for missing values.
       _EXCH_XYZ_R8( wsaltLev, myThid )
 #endif
 
-#ifdef ALLOW_THETA0_COST_CONTRIBUTION
+#if (defined (ALLOW_THETA0_COST_CONTRIBUTION) || defined (ALLOW_THETA0_CONTROL))
       lwthetaLevInUse = .true.
       if ( temp0errfile .NE. ' ' ) then
          call mdsreadfield( temp0errfile, 32, 'RL', Nr,
