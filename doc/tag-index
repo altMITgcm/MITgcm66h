@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/thsice/thsice_ini_vars.F added default initial values so that thermodynamics
+  sea ice solver does not blow up when some initial fields are missing.
 o move from external_forcing_surf.F to ini_forcing.F
   the p-coord. hack consisting in using pLoad to set phi0surf ;
   update output of tutorial_global_oce_in_p (affected @ truncation level).
