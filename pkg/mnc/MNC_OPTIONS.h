@@ -8,7 +8,7 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-#include "mnc_id_header.h"
+#include "MNC_ID_HEADER.h"
 
 CEH3 package-specific options go here
 

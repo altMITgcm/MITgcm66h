@@ -20,7 +20,7 @@ C     !USES:
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 #include "PARAMS.h"
-#include "mnc_common.h"
+#include "MNC_COMMON.h"
 #include "MNC_PARAMS.h"
 
 C     !INPUT PARAMETERS:

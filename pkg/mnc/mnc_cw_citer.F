@@ -19,7 +19,7 @@ C     Set CITER information for group "igroup"
 
 C     !USES:
       implicit none
-#include "mnc_common.h"
+#include "MNC_COMMON.h"
 
 C     !INPUT PARAMETERS:
       integer igroup, iflag, ival_curr, ival_next, myThid
@@ -69,7 +69,7 @@ C     Get the current CITER information for group "igroup"
 
 C     !USES:
       implicit none
-#include "mnc_common.h"
+#include "MNC_COMMON.h"
 
 C     !INPUT PARAMETERS:
       integer igroup, iflag, ival_curr, ival_next, myThid
@@ -99,7 +99,7 @@ C     Set the flag and/or current iteration value
 
 C     !USES:
       implicit none
-#include "mnc_common.h"
+#include "MNC_COMMON.h"
 #include "EEPARAMS.h"
 
 C     !INPUT PARAMETERS:
@@ -163,7 +163,7 @@ C     Set the flag and/or current iteration value
 
 C     !USES:
       implicit none
-#include "mnc_common.h"
+#include "MNC_COMMON.h"
 #include "EEPARAMS.h"
 
 C     !INPUT PARAMETERS:

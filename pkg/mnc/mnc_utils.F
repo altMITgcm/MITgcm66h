@@ -188,7 +188,7 @@ C     Get the variable indicies.
 C     !USES:
       implicit none
 #include "netcdf.inc"
-#include "mnc_common.h"
+#include "MNC_COMMON.h"
 
 C     !INPUT PARAMETERS:
       INTEGER  myThid, fid, indf, ind_fv_ids
@@ -251,7 +251,7 @@ C     .  NO   ==>  ires < 0
      I     myThid )
 
       implicit none
-#include "mnc_common.h"
+#include "MNC_COMMON.h"
 #include "EEPARAMS.h"
 
 C     Arguments

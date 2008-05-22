@@ -59,7 +59,7 @@ C     grid name re--definition.
 C     !USES:
       implicit none
 #include "netcdf.inc"
-#include "mnc_common.h"
+#include "MNC_COMMON.h"
 #include "EEPARAMS.h"
 
 C     !INPUT PARAMETERS:
@@ -230,7 +230,7 @@ C     Get the dimension ID (index) for the named dimension.
       
 C     !USES:
       implicit none
-#include "mnc_common.h"
+#include "MNC_COMMON.h"
 
 C     !INPUT PARAMETERS:
       integer indf, ind_fg_ids, myThid

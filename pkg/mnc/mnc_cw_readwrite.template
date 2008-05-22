@@ -91,7 +91,7 @@ C     depending upon the tile indicies.
 C     !USES:
       implicit none
 #include "netcdf.inc"
-#include "mnc_common.h"
+#include "MNC_COMMON.h"
 #include "SIZE.h"
 #include "MNC_BUFF.h"
 #include "EEPARAMS.h"
@@ -765,7 +765,7 @@ C     the case of reading variables that might or might not exist.
 C     !USES:
       implicit none
 #include "netcdf.inc"
-#include "mnc_common.h"
+#include "MNC_COMMON.h"
 #include "SIZE.h"
 #include "MNC_BUFF.h"
 #include "EEPARAMS.h"

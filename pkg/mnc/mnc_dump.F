@@ -33,7 +33,7 @@ C     Create a summary of a specified portion of the current state of
 C     the MNC lookup tables.  This can be helpful for debugging MNC.
 
 C     !USES:
-#include "mnc_common.h"
+#include "MNC_COMMON.h"
 
 C     !INPUT PARAMETERS:
       integer n_id, n_items, myThid

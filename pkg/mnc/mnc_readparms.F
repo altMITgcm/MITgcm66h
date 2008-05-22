@@ -19,7 +19,7 @@ C     errors.
 C     !USES:
       implicit none
 #include "SIZE.h"
-#include "mnc_common.h"
+#include "MNC_COMMON.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "MNC_PARAMS.h"
@@ -169,7 +169,7 @@ C     Create the output (sub--)directory for the MNC output files.
       
 C     !USES:
       implicit none
-#include "mnc_common.h"
+#include "MNC_COMMON.h"
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"

@@ -19,7 +19,7 @@ C     (\texttt{grid.xxxxx.nc}) per tile.
       
 C     !USES:
       implicit none
-#include "mnc_common.h"
+#include "MNC_COMMON.h"
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"

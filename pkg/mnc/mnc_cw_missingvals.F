@@ -19,7 +19,7 @@ C     Set missing values to be associated with a CW variable name.
       
 C     !USES:
       implicit none
-#include "mnc_common.h"
+#include "MNC_COMMON.h"
 #include "EEPARAMS.h"
 
 C     !INPUT PARAMETERS:

@@ -39,10 +39,10 @@ C
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 CBOP 1
-C     !ROUTINE: mnc_common.h
+C     !ROUTINE: MNC_COMMON.h
 
 C     !INTERFACE:
-C     #include "mnc_common.h"
+C     #include "MNC_COMMON.h"
 
 C     !DESCRIPTION:
 C     Contains the ``look-up'' tables for the MNC package.  These tables
