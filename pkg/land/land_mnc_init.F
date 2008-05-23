@@ -39,7 +39,7 @@ C     \end{center}
 C     !USES:
       implicit none
 #ifdef ALLOW_MNC
-#include "mnc_common.h"
+#include "MNC_COMMON.h"
 #endif  /*  ALLOW_MNC  */
 #include "EEPARAMS.h"
 

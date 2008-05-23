@@ -21,7 +21,7 @@ C     !USES:
 #include "REGRID_SIZE.h"
 #include "REGRID.h"
 #ifdef ALLOW_MNC
-#include "mnc_common.h"
+#include "MNC_COMMON.h"
 #endif /* ALLOW_MNC */
 
 C     !INPUT PARAMETERS:

@@ -23,7 +23,7 @@ C     !USES:
 #include "PARAMS.h"
 #ifdef ALLOW_MNC
 #include "MNC_PARAMS.h"
-#include "mnc_common.h"
+#include "MNC_COMMON.h"
 #endif
 
 C     !INPUT PARAMETERS:
