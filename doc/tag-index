@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/mnc: add some attributes to standard 1D-coordinate variables
 o pkg/diagnostics: enforce missing_value attribute for scalar variables at
   mass points, when using mnc for output
   - add runtime parameter (missing_value, missing_value_int) to override 
