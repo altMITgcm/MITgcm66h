@@ -262,6 +262,22 @@ c    I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
+      diagName  = 'UE_VEL_C'
+      diagTitle = 'Eastward Velocity (m/s) (cell center)'
+      diagUnits = 'm/s             '
+      diagCode  = 'UM      MR      '
+      diagMate  = diagNum + 2
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I   diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
+
+      diagName  = 'VN_VEL_C'
+      diagTitle = 'Northward Velocity (m/s) (cell center)'
+      diagUnits = 'm/s             '
+      diagCode  = 'VM      MR      '
+      diagMate  = diagNum
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I   diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
+
       diagName  = 'UV_VEL_C'
       diagTitle ='Product of horizontal Comp of velocity (cell center)'
       diagUnits = 'm^2/s^2         '
