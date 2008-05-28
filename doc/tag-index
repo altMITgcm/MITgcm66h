@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o new S/R (pkg/mdsio/mdsio_facef_read.F) reading of sNx+1 x sNy+1 array
+  from per-face file (take S/R READSYMTILE_RS out of ini_curvilinear_grid.F);
+  fix option to read coriolis(@ cell-corner) from files with CS-grid.
 o pkg/mnc: add some attributes to standard 1D-coordinate variables
 o pkg/diagnostics: enforce missing_value attribute for scalar variables at
   mass points, when using mnc for output
