@@ -41,7 +41,7 @@ c     == end of interface ==
 
 
 c--   Eddy stress penalty term
-#if (defined (ALLOW_TAUEDDY_COST_CONTRIBUTION) || defined (ALLOW_COST_TAU_EDDY))
+#ifdef ALLOW_EDDYPSI_COST_CONTRIBUTION
       call timer_start('cost_tau_eddy      [ECCO SPIN-DOWN]', mythid)
       call cost_tau_eddy( myiter, mytime, mythid )
       call timer_stop ('cost_tau_eddy      [ECCO SPIN-DOWN]', mythid)

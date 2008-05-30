@@ -170,7 +170,7 @@ c     IF ( useDiagnotics ) THEN
         CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
-#ifdef ALLOW_TAU_EDDY
+#ifdef ALLOW_EDDYPSI
         diagName  = 'GMEdTauX'
         diagTitle = 'eddy-induced stress X-comp. estimated from Kwx'
         diagUnits = 'N/m^2           '

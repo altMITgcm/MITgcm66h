@@ -8,11 +8,13 @@ C     Package flag
       logical GM_AdvForm
       logical GM_AdvSeparate 
       logical GM_ExtraDiag 
+      logical GM_InMomAsStress
       logical GM_MNC
       logical GM_MDSIO
       COMMON /GM_PACKAGE/ GMREDIisON, 
      &                    GM_AdvForm, GM_AdvSeparate, 
-     &                    GM_ExtraDiag, GM_MNC, GM_MDSIO
+     &                    GM_ExtraDiag, GM_MNC, GM_MDSIO,
+     &                    GM_InMomAsStress
 
 C     GM/Redi parameters
 C     GM_Small_Number :: epsilon used in computing the slope

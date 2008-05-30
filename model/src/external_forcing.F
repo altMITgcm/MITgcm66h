@@ -84,7 +84,7 @@ C-jmc: Without CD-scheme, this is OK ; but with CD-scheme, needs to cover [0:sNy
        ENDDO
       ENDIF
 
-#if (defined (ALLOW_TAU_EDDY))
+#ifdef ALLOW_EDDYPSI
        CALL TAUEDDY_EXTERNAL_FORCING_U(
      I           iMin,iMax, jMin,jMax, bi,bj, kLev,
      I           myTime, myThid )
@@ -188,7 +188,7 @@ C-jmc: Without CD-scheme, this is OK ; but with CD-scheme, needs to cover [0:sNx
        ENDDO
       ENDIF
 
-#if (defined (ALLOW_TAU_EDDY))
+#ifdef ALLOW_EDDYPSI
        CALL TAUEDDY_EXTERNAL_FORCING_V(
      I           iMin,iMax, jMin,jMax, bi,bj, kLev,
      I           myTime, myThid )

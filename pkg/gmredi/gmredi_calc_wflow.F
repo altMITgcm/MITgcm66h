@@ -43,7 +43,8 @@ C     i, j :: loop indices
       _RL delPsi
 CEOP
 
-      IF (GM_AdvForm .AND. .NOT.GM_AdvSeparate) THEN
+      IF (GM_AdvForm .AND. .NOT.GM_AdvSeparate
+     & .AND. .NOT.GM_InMomAsStress) THEN
 
        DO j=1-Oly,sNy+Oly-1
         DO i=1-Olx,sNx+Olx-1

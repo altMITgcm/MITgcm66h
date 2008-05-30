@@ -688,19 +688,15 @@ c--
 
 c----------------------------------------------------------------------
 c--
-#ifdef ALLOW_EDTAUX_CONTROL
+#ifdef ALLOW_EDDYPSI_CONTROL
         call ctrl_init_ctrlvar (
      &       xx_edtaux_file, 25, 125, 1, 1, 1,
      &       snx, sny, nr, 'w', '3d', mythid )
-#endif /* ALLOW_EDTAUX_CONTROL */
 
-c----------------------------------------------------------------------
-c--
-#ifdef ALLOW_EDTAUY_CONTROL
         call ctrl_init_ctrlvar (
      &       xx_edtauy_file, 26, 126, 1, 1, 1,
      &       snx, sny, nr, 's', '3d', mythid )
-#endif /* ALLOW_EDTAUY_CONTROL */
+#endif /* ALLOW_EDDYPSI_CONTROL */
 
 c----------------------------------------------------------------------
 c--

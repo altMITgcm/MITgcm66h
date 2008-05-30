@@ -49,7 +49,8 @@ C     i, j :: loop indices
       _RL delPsi
 CEOP
 
-      IF (GM_AdvForm .AND. .NOT.GM_AdvSeparate) THEN
+      IF (GM_AdvForm .AND. .NOT.GM_AdvSeparate
+     & .AND. .NOT.GM_InMomAsStress) THEN
 
        kp1 = MIN(k+1,Nr)
        maskp1 = 1.

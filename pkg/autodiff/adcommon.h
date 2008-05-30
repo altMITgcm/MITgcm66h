@@ -112,12 +112,12 @@ C--   heimbach@mit.edu 11-Jan-2001
      &                adbottomdragfld
       _RL  adbottomdragfld (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 #endif
-#if (defined (ALLOW_EDTAUX_CONTROL) || defined (ALLOW_EDTAUY_CONTROL))
-      double precision adeddytaux(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,
+#ifdef ALLOW_EDDYPSI_CONTROL
+      double precision adeddypsix(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,
      $nsy)
-      double precision adeddytauy(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,
+      double precision adeddypsiy(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,
      $nsy)
-      common /adedtauffields/ adeddytaux, adeddytauy
+      common /adeddypsiffields/ adeddypsix, adeddypsiy
 
 #endif
 
