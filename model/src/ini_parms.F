@@ -249,7 +249,7 @@ C--   Input files
      & lambdaThetaFile, lambdaSaltFile,
      & uVelInitFile, vVelInitFile, pSurfInitFile,
      & dQdTFile, ploadFile,tCylIn,tCylOut,
-     & eddyPsiXFile, eddyPsiYFile,
+     & eddyTauXFile, eddyTauYFile,
      & mdsioLocalDir,
      & the_run_name
 CEOP
