@@ -114,3 +114,9 @@ C subroutine mdswritefieldyz_loc
 C----------------------------------------
 CADJ SUBROUTINE mdswritefieldyz_loc  INPUT  = 1,2,3,4,5,6,7,8,9
 CADJ SUBROUTINE mdswritefieldyz_loc  OUTPUT =
+
+C----------------------------------------
+C subroutine MDS_FACEF_READ_RS
+C----------------------------------------
+CADJ SUBROUTINE MDS_FACEF_READ_RS  INPUT  = 1,2,3,4,5,6,7
+CADJ SUBROUTINE MDS_FACEF_READ_RS  OUTPUT =       4
