@@ -115,7 +115,7 @@ c--     Read time averages and the monthly mean data.
                 tmpx=tmpfld2d(i,j,bi,bj)
                 if (maskC(i,j,kk,bi,bj) .ne. 0.) then
                    fctiletot = fctiletot
-     &                + tmpx*cos(yc(i,j,bi,bj)*deg2rad)
+     &                + tmpx*cos(yc(i,j,bi,bj)*deg2rad)/rhoConstFresh
                    sumtot = sumtot
      &                + cos(yc(i,j,bi,bj)*deg2rad)
                    num_sfluxmm(bi,bj) = num_sfluxmm(bi,bj) + 1
