@@ -474,9 +474,9 @@ C     Echo History List Data Structure
      &    ' Averaging Freq.:', averageFreq(n),
      &    ' , Phase: ', averagePhase(n), ' , Cycle:', averageCycle(n)
         CALL PRINT_MESSAGE( msgBuf, stdUnit,SQUEEZE_RIGHT, myThid)
-        WRITE(msgBuf,'(A,E18.6,A,I18))') 
-     &       'missing value:   ', misvalFlt(n),
-     &       ' ; for integers: ', misvalInt(n)
+        WRITE(msgBuf,'(A,1PE20.12,A,I12)') 
+     &       ' missing value:',  misvalFlt(n),
+     &       ' ; for integers:', misvalInt(n)
         CALL PRINT_MESSAGE( msgBuf, stdUnit,SQUEEZE_RIGHT, myThid)
         IF ( nlevels(n).EQ.-1 ) THEN
           WRITE(msgBuf,'(A,A)') ' Levels:    ','will be set later'
