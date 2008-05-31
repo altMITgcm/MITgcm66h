@@ -4,6 +4,10 @@ C $Name$
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
+#ifdef ALLOW_GMREDI
+# include "GMREDI_OPTIONS.h"
+#endif
+
 CBOP
 C     !ROUTINE: TAUEDDY_EXTERNAL_FORCING_U
 C     !INTERFACE:
@@ -177,7 +181,7 @@ C     Add meridional eddy momentum impulse into the layer
        ENDDO
       ENDDO
 #ifdef ALLOW_GMREDI
-      if ( GM_InMomAsStress ) then
+      endif
 #endif
 
 #endif
