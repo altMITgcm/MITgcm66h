@@ -167,8 +167,8 @@ end ; end
  yyI(:,2)=min(ycs(:)); yyI(:,1)=-90;
  [nbsf,S(nbsf)]=part_surf(nbsf,fac,xxI,yyI,vvI,1,2,1,2,c1,c2) ;
 %--------------
-  set(S,'LineStyle','-','LineWidth',0.01);
-  if rem(kEnv,2) > 0, set(S,'EdgeColor','none'); end
+ set(S,'LineStyle','-','LineWidth',0.01);
+ if rem(kEnv,2) > 0, set(S,'EdgeColor','none'); end
 hold off
 if shift == -1,
   axis(AxBx); fprintf('  Axis(Box): %i %i %i %i \n',AxBx);
@@ -185,7 +185,7 @@ else
 end
 
 %--
-if cbV < 2, scalHV_colbar([10-cbV/2 10 7-5*cbV 7+2*cbV]/10,cbV); end
+ if cbV < 2, scalHV_colbar([10-cbV/2 10 7-5*cbV 7+2*cbV]/10,cbV); end
 if mnV < MxV & kEnv < 2,
  ytxt=min(1,cbV);
  if shift == 1 | shift == -1,
