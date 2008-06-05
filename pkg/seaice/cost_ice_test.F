@@ -9,8 +9,8 @@ c     ==================================================================
 c     SUBROUTINE cost_ice_test
 c     ==================================================================
 c
-c     o Compute sea-ice cost function.  The following options can
-c       be selected with data.cost variable cost_ice_flag:
+c     o Compute sea-ice cost function.  The following options can be
+c       selected with data.seaice (SEAICE_PARM02) variable cost_ice_flag
 c
 c     cost_ice_flag = 1
 c     - compute mean sea-ice volume
