@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/exf: read ice area from file (#ifdef ALLOW_ICE_AREAMASK). 
 o pkg/autodiff: more flexibility in zeroadj. 
   model/src: modifying do_oceanic_phys.F accordingly. 
 o pkg/ctrl: Bounds for (kapgm,kapredi,eddypsi) parameter estimation.
