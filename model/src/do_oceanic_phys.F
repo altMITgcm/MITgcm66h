@@ -404,9 +404,9 @@ cph Avoid variable aliasing for adjoint !!!
 #ifdef GMREDI_WITH_STABLE_ADJOINT 
 cgf zero out adjoint fields to stabilize pkg/gmredi adjoint
 cgf -> cuts adjoint dependency from slope to state
-      CALL ZERO_ADJ_3D( bi, bj, sigmaX, myThid)
-      CALL ZERO_ADJ_3D( bi, bj, sigmaY, myThid)
-      CALL ZERO_ADJ_3D( bi, bj, sigmaR, myThid)
+      CALL ZERO_ADJ_LOC( Nr, sigmaX, myThid)
+      CALL ZERO_ADJ_LOC( Nr, sigmaY, myThid)
+      CALL ZERO_ADJ_LOC( Nr, sigmaR, myThid)
 #endif
 #endif /* ALLOW_AUTODIFF_TAMC */
           ENDIF
