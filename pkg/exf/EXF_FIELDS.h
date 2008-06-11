@@ -258,6 +258,15 @@ C     sh        :: wind-speed [m/s] (always larger than uMin)
       _RL runoff1   (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 #endif
 
+#ifdef ALLOW_ICE_AREAMASK
+      common /exf_ice_areamask_r/ areamask, lambda_areamask,
+     &                        areamask0, areamask1
+      _RL areamask       (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL lambda_areamask(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL areamask0      (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL areamask1      (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+#endif
+
 #ifdef ALLOW_CLIMSST_RELAXATION
       common /exf_clim_sst_r/ climsst, lambda_climsst,
      &                        climsst0, climsst1

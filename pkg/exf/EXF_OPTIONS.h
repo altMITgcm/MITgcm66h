@@ -55,6 +55,9 @@ c       If defined, atmospheric pressure can be read-in from files.
 c   WARNING: this flag is set (define/undef) in CPP_OPTIONS.h 
 c            and cannot be changed here (in EXF_OPTIONS)
 c
+c   >>> ICE_AREAMASK <<<
+c       If defined, fractional ice-covered area MASK can be read-in from files.
+c
 c   >>> ALLOW_CLIMSST_RELAXATION <<<
 c       Allow the relaxation to a monthly climatology of sea surface
 c       temperature, e.g. the Reynolds climatology.

@@ -147,6 +147,10 @@ C       Print some statistics about input forcing fields
         CALL MON_PRINTSTATS_RL(1,runoff,'_runoff',
      &       maskH,maskH,rA ,drF,myThid)
 #endif
+#ifdef ALLOW_ICE_AREAMASK
+        CALL MON_PRINTSTATS_RL(1,areamask,'_areamask',
+     &       maskH,maskH,rA ,drF,myThid)
+#endif
 #ifdef ALLOW_CLIMSST_RELAXATION
         CALL MON_PRINTSTATS_RL(1,climsst,'_climsst',
      &       maskH,maskH,rA ,drF,myThid)

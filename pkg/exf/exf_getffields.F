@@ -312,6 +312,21 @@ c     Atmos. pressure forcing
      &     mytime, myiter, mythid )
 #endif
 
+#ifdef ALLOW_ICE_AREAMASK
+c     fractional ice-covered area MASK
+      call exf_set_gen  (
+     &     areamaskfile, areamaskstartdate, areamaskperiod,
+     &     exf_inscal_areamask,
+     &     areamask_exfremo_intercept, areamask_exfremo_slope,
+     &     areamask, areamask0, areamask1, areamaskmask,
+#ifdef USE_EXF_INTERPOLATION
+     &     areamask_lon0, areamask_lon_inc, areamask_lat0,
+     &     areamask_lat_inc, areamask_nlon, areamask_nlat, xC, yC,
+     &     interp_method,
+#endif
+     &     mytime, myiter, mythid )
+#endif
+
 #ifdef ALLOW_RUNOFF
 c     Runoff
       call exf_set_gen  (

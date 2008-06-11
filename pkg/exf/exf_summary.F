@@ -666,6 +666,32 @@ C--   Atmospheric pressure.
      &                    SQUEEZE_RIGHT , mythid)
 #endif
 
+#ifdef ALLOW_ICE_AREAMASK
+C--   fractional ice-covered area MASK.
+      il = ilnblnk(areamaskfile)
+      write(msgbuf,'(a)') ' '
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a,f12.0)')
+     &'   fractional ice-covered area MASK starts at      ',
+     &    areamaskstartdate
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a,f12.0)')
+     &'   fractional ice-covered area MASK period is      ',
+     &    areamaskperiod
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a)')
+     &'   fractional ice-covered area MASK is read from file:'
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a,a,a)')
+     &'   >>  ',areamaskfile(1:il),'  <<'
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+#endif
+
       write(msgbuf,'(a)') ' '
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)

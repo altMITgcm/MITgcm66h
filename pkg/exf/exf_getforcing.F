@@ -242,6 +242,9 @@ c     Update the tile edges.
 #ifdef ATMOSPHERIC_LOADING
       _EXCH_XY_R8(apressure, mythid)
 #endif
+#ifdef ALLOW_ICE_AREAMASK
+      _EXCH_XY_R8(areamask, mythid)
+#endif
 
 c     Get values of the surface flux anomalies.
       call exf_getsurfacefluxes( mytime, myiter, mythid )

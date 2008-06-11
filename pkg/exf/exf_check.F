@@ -55,7 +55,7 @@ c     check for consistency
       endif
 
 #if ( defined (ALLOW_BULKFORMULAE) && defined (ALLOW_ATM_WIND) )
-      IF ( ustressfile .NE. ' ' .OR. vstressfile .NE. ' ' ) THEN
+      IF ( ustressfile .NE. ' ' .OR. ustressfile .NE. ' ' ) THEN
         STOP
      & 'S/R EXF_CHECK: use u,v_wind components but not wind-stress'
       ENDIF
