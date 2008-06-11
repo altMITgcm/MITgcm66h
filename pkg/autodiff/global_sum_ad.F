@@ -57,7 +57,7 @@ cph      call global_sum_r4( tmp,mythid )
 #ifndef ALWAYS_USE_MPI
       IF ( usingMPI ) THEN
 #endif
-         CALL MPI_Bcast(tmp, 1, MPI_REAL, myThid
+         CALL MPI_Bcast(tmp, 1, MPI_REAL, 0
      &        , MPI_COMM_WORLD, mpiRC
      &        )
 #ifndef ALWAYS_USE_MPI
@@ -128,7 +128,7 @@ cph      call global_sum_r8( tmp,mythid )
 #ifndef ALWAYS_USE_MPI
       IF ( usingMPI ) THEN
 #endif
-         CALL MPI_Bcast(tmp, 1, MPI_DOUBLE_PRECISION, myThid
+         CALL MPI_Bcast(tmp, 1, MPI_DOUBLE_PRECISION, 0
      &        , MPI_COMM_WORLD, mpiRC
      &        )
 #ifndef ALWAYS_USE_MPI
