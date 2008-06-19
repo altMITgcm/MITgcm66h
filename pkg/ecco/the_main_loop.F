@@ -858,7 +858,9 @@ CADJ STORE etaH          = comlev1, key = ikey_dynamics
       ENDIF
 # ifdef ALLOW_AUTODIFF_TAMC
 cph-test
-CADJ STORE hFac_surfC    = comlev1, key = ikey_dynamics
+CADJ STORE hFac_surfC         = comlev1, key = ikey_dynamics
+CADJ STORE surfaceforcingtice = comlev1, key = ikey_dynamics
+CADJ STORE theta, salt        = comlev1, key = ikey_dynamics
 # endif 
 #endif /* NONLIN_FRSURF */
 

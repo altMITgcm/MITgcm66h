@@ -19,6 +19,7 @@ CADJ STORE detahdt            = comlev1, key = ikey_dynamics
 CADJ STORE gs,gsnm1,gt,gtnm1  = comlev1, key = ikey_dynamics
 CADJ STORE salt,theta         = comlev1, key = ikey_dynamics
 CADJ STORE uvel,vvel,wvel     = comlev1, key = ikey_dynamics
+CADJ STORE surfaceforcingtice = comlev1, key = ikey_dynamics
 c
 # ifndef DISABLE_RSTAR_CODE
 CADJ STORE h0facc,h0facs,h0facw 
