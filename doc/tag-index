@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint60
+--->>> This is the last checkpoint for which generating the adjoint
+--->>> is done via the TAMC-compatibility TAF-flag "-nonewarg"
+--->>> by default.
+--->>> Future checkpoints will ommit this flag by default.
 o pkg/generic_advdiff, os7mp: simplify and avoid division by zero.
 o pkg/grdchk: Add gradient check to etan0 perturbations.
 o pkg/exf: read ice area from file (#ifdef ALLOW_ICE_AREAMASK). 
