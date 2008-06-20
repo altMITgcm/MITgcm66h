@@ -108,9 +108,9 @@ C     context.
       
 C     !USES:
       implicit none
-#include "netcdf.inc"
 #include "MNC_COMMON.h"
 #include "EEPARAMS.h"
+#include "netcdf.inc"
 
 C     !INPUT PARAMETERS:
       integer irv,myThid
@@ -395,9 +395,9 @@ C     General subroutine for adding attributes to a NetCDF file.
       
 C     !USES:
       implicit none
-#include "netcdf.inc"
 #include "MNC_COMMON.h"
 #include "EEPARAMS.h"
+#include "netcdf.inc"
 
 C     !INPUT PARAMETERS:
       integer myThid,atype,len
@@ -581,9 +581,9 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
      I     myThid )
 
       implicit none
-#include "netcdf.inc"
 #include "MNC_COMMON.h"
 #include "EEPARAMS.h"
+#include "netcdf.inc"
 
 C     Arguments
       integer myThid, vtype

@@ -21,7 +21,6 @@ C     Write a CF-convention coordinate variable (a vector).
 
 C     !USES:
       implicit none
-#include "netcdf.inc"
 #include "MNC_COMMON.h"
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -32,6 +31,7 @@ C     !USES:
 #include "W2_EXCH2_TOPOLOGY.h"
 #include "W2_EXCH2_PARAMS.h"
 #endif
+#include "netcdf.inc"
 
 C     Functions
       integer IFNBLNK, ILNBLNK

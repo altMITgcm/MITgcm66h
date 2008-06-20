@@ -74,9 +74,9 @@ C     Create a dimension within the MNC look-up tables.
 
 C     !USES:
       implicit none
-#include "netcdf.inc"
 #include "MNC_COMMON.h"
 #include "EEPARAMS.h"
+#include "netcdf.inc"
 
 C     !INPUT PARAMETERS:
       integer myThid, dlen, bi,bj
@@ -181,9 +181,9 @@ C     Get the size of the unlimited dimension.
       
 C     !USES:
       implicit none
-#include "netcdf.inc"
 #include "MNC_COMMON.h"
 #include "EEPARAMS.h"
+#include "netcdf.inc"
 
 C     !INPUT PARAMETERS:
       integer myThid, unlim_sz

@@ -734,9 +734,9 @@ C     and, if not, creating a new file.
 
 C     !USES:
       implicit none
-#include "netcdf.inc"
 #include "MNC_COMMON.h"
 #include "EEPARAMS.h"
+#include "netcdf.inc"
 
 C     !INPUT PARAMETERS:
       integer myThid, indf, lbi, lbj, uniq_tnum
