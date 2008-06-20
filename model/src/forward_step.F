@@ -45,8 +45,6 @@ C     == Global variables ==
 
 #ifdef ALLOW_MNC
 #include "MNC_PARAMS.h"
-      EXTERNAL DIFFERENT_MULTIPLE
-      LOGICAL  DIFFERENT_MULTIPLE
 #endif
 
 #ifdef HAVE_SIGREG
@@ -124,6 +122,12 @@ C     == Global variables ==
 #  include "RBCS.h"
 # endif
 #endif /* ALLOW_AUTODIFF_TAMC */
+
+#ifdef ALLOW_MNC
+      EXTERNAL DIFFERENT_MULTIPLE
+      LOGICAL  DIFFERENT_MULTIPLE
+#endif
+
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
