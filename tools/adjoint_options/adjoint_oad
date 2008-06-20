@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+#  $Header$
+#  $Name$
+#
+
+#  This file contains settings for OpenAD
+
+export OPENAD=true
