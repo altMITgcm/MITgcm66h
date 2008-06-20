@@ -39,6 +39,9 @@ C       >>> Extract adjoint state
 C
 C o use divided adjoint to split adjoint computations
 #undef ALLOW_DIVIDED_ADJOINT
+C
+C o TAMC compatible subroutine parameter list
+#undef AUTODIFF_TAMC_COMPATIBILITY
 
 C ********************************************************************
 C ***                     Calendar Package                         ***

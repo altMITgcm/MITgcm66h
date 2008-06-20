@@ -19,10 +19,17 @@ CBOP
 C     !ROUTINE: GLOBAL_ADMAX_R4
 
 C     !INTERFACE:
+#ifdef AUTODIFF_TAMC_COMPATIBILITY
       SUBROUTINE GLOBAL_ADMAX_R4( 
      I                            myThid,
      U                            maxPhi
      &                          )
+#else
+      SUBROUTINE GLOBAL_ADMAX_R4( 
+     U                            maxPhi,
+     I                            myThid
+     &                          )
+#endif
       IMPLICIT NONE
 C     !DESCRIPTION:
 C     *==========================================================*
@@ -106,10 +113,17 @@ CBOP
 C     !ROUTINE: GLOBAL_ADMAX_R8
 
 C     !INTERFACE:
+#ifdef AUTODIFF_TAMC_COMPATIBILITY
       SUBROUTINE GLOBAL_ADMAX_R8( 
      I                            myThid,
-     O                            maxPhi
+     U                            maxPhi
      &                          )
+#else
+      SUBROUTINE GLOBAL_ADMAX_R8( 
+     U                            maxPhi,
+     I                            myThid
+     &                          )
+#endif
       IMPLICIT NONE
 C     !DESCRIPTION:
 C     *==========================================================*

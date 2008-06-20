@@ -26,6 +26,9 @@ C       >>> DO 2-level checkpointing instead of 3-level
 C
 C o use divided adjoint to split adjoint computations
 #undef ALLOW_DIVIDED_ADJOINT
+C
+C o TAMC compatible subroutine parameter list
+#undef AUTODIFF_TAMC_COMPATIBILITY
 
 C ********************************************************************
 C ***                     Calender Package                         ***
