@@ -106,3 +106,8 @@ CADJ STORE objf_tracer = tapelev4, key = ilev_4
 #ifdef ALLOW_COST_TRANSPORT
 CADJ STORE objf_transport = tapelev4, key = ilev_4
 #endif
+
+#ifdef ALLOW_HFLUXM_CONTROL
+CADJ STORE qnetm          = tapelev4, key = ilev_4
+#endif
+
