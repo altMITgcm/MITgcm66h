@@ -76,7 +76,7 @@ C   Ligand,FeL,Fe calculation
      &            )/(2. _d 0*ligand_stab)
  
               FeL = ligand_tot-lig
-              if (tmpfe.eq.0. _d 0) then
+              if (tmpfe.ne.0. _d 0) then
                 freefe(i,j,k,bi,bj) = tmpfe -FeL
               else
                 freefe(i,j,k,bi,bj) = 0. _d 0
