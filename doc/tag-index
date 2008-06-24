@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint61
 o autodiff
   Change default for TAF usage by removing argument '-nonew_arg'
   This changes TAF subroutine argument list (ordering of active var.)
