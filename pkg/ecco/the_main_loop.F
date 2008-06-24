@@ -132,6 +132,9 @@ c They provide the fields to be stored.
 # endif
 # ifdef ALLOW_OBCS
 #  include "OBCS.h"
+#   ifdef ALLOW_PTRACERS
+#    include "OBCS_PTRACERS.h"
+#   endif
 # endif
 # ifdef ALLOW_EXF
 #  include "EXF_FIELDS.h"
