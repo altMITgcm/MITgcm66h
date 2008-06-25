@@ -935,9 +935,7 @@ c    weighted
 #endif
      &                 - (FreshwaterContribFromIce(I,J) +
      &                    FreshwaterContribFromSnowMelt(I,J))/
-     &                    SEAICE_deltaTtherm) 
-
-
+     &                    SEAICE_deltaTtherm )*rhoConstFresh
 
 C     DO SOME DEBUGGING CALCULATIONS.  MAKE SURE SUMS ALL ADD UP.
 #ifdef SEAICE_DEBUG
