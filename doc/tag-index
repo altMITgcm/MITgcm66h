@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o testreport: modify syntax of awk, so that it works also with 
+  awk, and not only with nawk and gawk
+
 checkpoint61
 o autodiff
   Change default for TAF usage by removing argument '-nonew_arg'
