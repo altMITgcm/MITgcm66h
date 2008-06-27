@@ -21,14 +21,14 @@ c     ==================================================================
       subroutine adactive_read_profile(
      I                              active_num_file,
      I                              nadactive_var,
+     I                              adactive_var,
      I                              active_varnum,
      I                              irec,
      I                              lAdInit,
      I                              myiter,
      I                              bi,
      I                              bj,
-     I                              mythid,
-     I                              adactive_var
+     I                              mythid
      &                            )
 
 C     !DESCRIPTION: \bv
@@ -84,13 +84,13 @@ c     ==================================================================
       subroutine adactive_write_profile(
      I                              active_num_file,
      I                              nadactive_var,
+     I                              adactive_var,
      I                              active_varnum,
      I                              irec,
      I                              myiter,
      I                              bi,
      I                              bj,
      I                              mythid,
-     I                              adactive_var,
      I                              dummy
      &                            )
 
