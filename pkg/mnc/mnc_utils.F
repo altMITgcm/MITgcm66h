@@ -46,7 +46,9 @@ C     Functions
         print *, '==='
         print *, NF_STRERROR(status)
         print *, '==='
-        write(msgbuf,'(2a)') 'MNC ERROR: ', msg
+        lenm = ILNBLNK(msg)
+        lenm = MIN(lenm,MAX_LEN_MBUF-11)
+        write(msgbuf,'(2a)') 'MNC ERROR: ', msg(1:lenm)
         lenm = ILNBLNK(msgbuf)
         print *, msgbuf(1:lenm)
         CALL print_error(msgbuf(1:lenm), mythid)

@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/mnc: small fix in mnc_handle_err: make sure that length of msgbuf
+  is exceeded
 o testreport: modify syntax of awk, so that it works also with 
   awk, and not only with nawk and gawk
 
