@@ -24,8 +24,9 @@ NN=size(x);
 
 X=reshape(x,[1 nx*ny]);
 Y=reshape(y,[1 nx*ny]);
-ig=find(X>90);
-il=find(X<-90);
+xMid=mean(X,2);
+ig=find(X>xMid+90);
+il=find(X<xMid-90);
 del=griddata_preprocess([Y Y(il) Y(ig)],[X X(il)+360 X(ig)-360],yi,xi',varargin{:});
 
 del.ig=ig;
