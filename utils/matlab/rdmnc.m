@@ -73,7 +73,7 @@ end
 % Create list of filenames
 for eachfile=file
 	filepathtemp=eachfile{:};
-	indecies = find(filepathtemp=='/');
+	indecies = find(filepathtemp==filesep);
 	if ~isempty(indecies)
         filepathtemp = filepathtemp(1:indecies(end));
 	else
