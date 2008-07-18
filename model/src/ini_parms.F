@@ -165,7 +165,7 @@ C--   Continuous equation parameters
      & diffKhS, diffKzS, diffK4S,
      & tRef, sRef, tRefFile, sRefFile, rhoRefFile,
      & eosType, integr_GeoPot, selectFindRoSurf,
-     & atm_Cp, atm_Rd, atm_Rq,
+     & atm_Cp, atm_Rd, atm_Rq, atm_Po,
      & no_slip_sides, sideDragFactor,
      & no_slip_bottom, bottomDragLinear, bottomDragQuadratic,
      & momViscosity,  momAdvection, momForcing, useCoriolis,
