@@ -44,7 +44,6 @@ C Created: 03/16/99 adcroft@mit.edu
 C Global variables / common blocks
 #include "SIZE.h"
 #include "EEPARAMS.h"
-#include "PARAMS.h"
 
 C Routine arguments
       character*(*) fName

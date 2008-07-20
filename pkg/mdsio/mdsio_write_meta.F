@@ -30,7 +30,6 @@ C     !USES:
 C     == Global variables / common blocks
 #include "SIZE.h"
 #include "EEPARAMS.h"
-#include "PARAMS.h"
 
 C     !INPUT PARAMETERS:
 C     mFileName (string ) :: complete name of meta-file

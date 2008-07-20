@@ -56,7 +56,6 @@ C          open(dUnit, ..., status='old', ... -> status='unknown'
 C Global variables / common blocks
 #include "SIZE.h"
 #include "EEPARAMS.h"
-#include "PARAMS.h"
 
 C Routine arguments
       character*(*) fName
