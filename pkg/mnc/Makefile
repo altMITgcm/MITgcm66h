@@ -101,6 +101,6 @@ testclean:
 	-rm -f mnc_test_???.F mnc_test_??? test_???.nc t_out_???
 
 clean: testclean
-	-rm -f $(TEMPLATE_FILES) MNC_ID_HEADER.h
+	-rm -f $(TEMPLATE_FILES) MNC_ID_HEADER.h mnc_id_header.h
 	-rm -f mnc_netcdf_stubs.o
 
