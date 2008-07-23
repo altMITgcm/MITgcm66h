@@ -1,7 +1,7 @@
 % Make list of subdomains. Assume MITgcm standard cube layout, three color 
 % path labeling and global indexing convention.
 function [ndomains,domain,domain_nx,domain_ny] = ...
-         setup_cs6_domains(nr,nb,ng);
+         exch2_setup_cs6_domains(nr,nb,ng);
 
 % $Header$
 % $Name$
