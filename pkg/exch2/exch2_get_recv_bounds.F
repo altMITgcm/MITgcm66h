@@ -3,17 +3,16 @@ C $Name$
 
       SUBROUTINE EXCH2_GET_RECV_BOUNDS(
      I           fCode, eWdth,
-     U           tiStride, tjStride,
+     O           tiStride, tjStride,
      U           tIlo, tIhi, tJlo, tJhi )
 C
       IMPLICIT NONE
 C
       CHARACTER*2 fCode
       INTEGER     eWdth
-      INTEGER     tIlo, tIhi, tJlo, tJhi
       INTEGER     tiStride, tjStride
+      INTEGER     tIlo, tIhi, tJlo, tJhi
 C
-
       IF ( tIlo .EQ. tIhi .AND. tIlo .EQ. 0 ) THEN
 C      Receiving to a west edge
        tIlo=1-eWdth
