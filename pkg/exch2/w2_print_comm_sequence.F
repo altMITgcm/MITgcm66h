@@ -98,7 +98,7 @@ C       Get the range of points associated with that entry
         targetIhi =exch2_ithi_c(tN,targetTile)
         targetJlo =exch2_jtlo_c(tN,targetTile)
         targetJhi =exch2_jthi_c(tN,targetTile)
-        CALL EXCH2_GET_REC_BOUNDS(
+        CALL EXCH2_GET_RECV_BOUNDS(
      I       'T ', OLx,
      O       iStride, jStride,
      U       targetIlo, targetIhi, targetJlo, targetJhi )
