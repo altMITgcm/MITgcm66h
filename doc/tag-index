@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o exch2/matlab-topology-generator: 
+  fix bug in index bounds for N-S internal exchange (hard to tell if this
+  had any effect on the solution).
 o pkg/mnc: small fix in mnc_handle_err: make sure that length of msgbuf
   is exceeded
 o testreport: modify syntax of awk, so that it works also with 
