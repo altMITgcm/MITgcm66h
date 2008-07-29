@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint61a
 o exch2/matlab-topology-generator: 
   fix bug in index bounds for N-S internal exchange (hard to tell if this
   had any effect on the solution).
