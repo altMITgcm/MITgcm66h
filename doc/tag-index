@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o exch2: 
+ - change index-bounds storage (moved from target to local tile,
+   more intuitive this way) ; rename/remove some variables.
+ - change utils/exch2/matlab-topology-generator accordingly.
+
 checkpoint61a
 o exch2/matlab-topology-generator: 
   fix bug in index bounds for N-S internal exchange (hard to tell if this
