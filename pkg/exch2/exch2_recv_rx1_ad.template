@@ -105,7 +105,7 @@ C     MPI setup
 #endif
 
       tt=exch2_neighbourId(nN, thisTile )
-      oN=exch2_opposingSend_record(nN, thisTile )
+      oN=exch2_opposingSend(nN, thisTile )
 
 C     Handle receive end data transport according to communication mechanism between 
 C     source and target tile
