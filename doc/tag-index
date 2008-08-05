@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint61b
 o exch2: 
   change index bounds in rx2_cube exchanges (new S/R: EXCH2_GET_UV_BOUNDS)
   - no longer depend on the order sequence (N,S,E,W).
