@@ -885,6 +885,7 @@ C Logical flags for selecting packages
       LOGICAL useEMBED_FILES
       LOGICAL useMYPACKAGE
       LOGICAL useSALT_PLUME
+      LOGICAL useCheapAML
       COMMON /PARM_PACKAGES/
      &        useOPPS, usePP81, useMY82, useGGL90, useKPP,
      &        useGAD, useGMRedi, useOBCS, useAIM, useLand,
@@ -894,8 +895,8 @@ C Logical flags for selecting packages
      &        useSBO, useSEAICE, useShelfIce,
      &        useThSIce, useATM2D, useBulkForce,
      &        usefizhi, usegridalt, useDiagnostics, useMNC, useREGRID,
-     &        useRunClock, useEMBED_FILES, useMYPACKAGE, useSALT_PLUME
-
+     &        useRunClock, useEMBED_FILES, useSALT_PLUME, useCheapAML,
+     &        useMYPACKAGE
 CEH3 ;;; Local Variables: ***
 CEH3 ;;; mode:fortran ***
 CEH3 ;;; End: ***
