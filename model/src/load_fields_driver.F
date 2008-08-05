@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
@@ -40,6 +41,8 @@ C       |
 C       |-- RBCS_FIELDS_LOAD
 C       |
 C       |-- AIM_FIELDS_LOAD
+C       |
+C       |-- CHEAPAML_FIELDS_LOAD
 
 
 C     !USES:
@@ -146,6 +149,20 @@ C--   Call external forcing package
         CALL TIMER_STOP ('EXF_GETFORCING     [LOAD_FLDS_DRIVER]',myThid)
       ENDIF
 #endif /* ALLOW_EXF */
+
+
+C--   Call external CheapAML forcing package
+#ifdef ALLOW_CHEAPAML
+      IF ( useCheapAML  ) THEN
+#ifdef ALLOW_DEBUG
+      IF ( debugLevel .GE. debLevB ) 
+     &    CALL DEBUG_CALL('CHEAPAML_FIELDS_LOAD',myThid)
+#endif
+          CALL CHEAPAML_FIELDS_LOAD( myTime,myIter, myThid )
+       ENDIF
+#endif /*ALLOW_CHEAPAML */
+
+
 
 c     IF ( .NOT.useEXF ) THEN
 C- note (useEBM): needs modifications to be compatible with this call

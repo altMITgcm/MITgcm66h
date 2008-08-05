@@ -74,6 +74,8 @@ C       |-- MYPACKAGE_READPARMS
 C       |
 C       |-- SALT_PLUME_READPARMS
 C       |
+C       |-- CHEAPAML_READPARMS
+C       |
 C       |-- OPTIM_READPARMS
 C       |
 C       |-- CTRL_READPARMS
@@ -226,6 +228,11 @@ C -- initialize Therm.Sea-Ice parameters
 
 #ifdef ALLOW_SALT_PLUME
       IF (useSALT_PLUME) CALL SALT_PLUME_READPARMS( myThid )
+#endif
+
+#ifdef ALLOW_CHEAPAML
+C -- initialize cheapaml parameters
+      IF (useCheapAml) CALL CHEAPAML_READPARMS( myThid )
 #endif
 
 #ifdef ALLOW_CTRL

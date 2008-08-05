@@ -160,6 +160,14 @@ C     Write restart file for GCHEM pkg & GCHEM sub-packages
       ENDIF
 #endif
 
+#ifdef ALLOW_CHEAPAML
+C     Write restart file for CHEAPAML pkg
+      IF ( useCheapAML ) THEN
+         CALL CHEAPAML_WRITE_PICKUP( permPickup,
+     I                      suffix, myTime, myIter, myThid)
+       ENDIF
+#endif /* ALLOW_CHEAPAML */
+
 #ifdef ALLOW_MYPACKAGE
       IF (useMYPACKAGE) THEN
         CALL MYPACKAGE_WRITE_PICKUP( permPickup,

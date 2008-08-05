@@ -78,6 +78,8 @@ C       |
 C       |-- MYPACKAGE_INIT_VARIA
 C       |
 C       |-- SALT_PLUME_INIT_VARIA
+C       |
+C       |-- CHEAPAML_INIT_VARIA
 
 C     !USES:
       IMPLICIT NONE
@@ -334,6 +336,10 @@ C Initialize FIZHI state variables
 
 #ifdef ALLOW_SALT_PLUME
       IF ( useSALT_PLUME ) CALL SALT_PLUME_INIT_VARIA( myThid )
+#endif
+
+#ifdef ALLOW_CHEAPAML
+      IF (useCheapaml) CALL CHEAPAML_INIT_VARIA( mythid)
 #endif
 
 #ifdef ALLOW_DEBUG

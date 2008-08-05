@@ -79,8 +79,9 @@ C     data.pkg namelists
      &          useRunClock,
      &          useMATRIX,
      &          useEMBED_FILES,
-     &          useMYPACKAGE,
-     &          useSALT_PLUME
+     &          useSALT_PLUME,
+     &          useCheapAML,
+     &          useMYPACKAGE
 CEOP
 
       _BEGIN_MASTER(myThid)
@@ -130,8 +131,9 @@ C--   Default package configuration
       useMNC          =.FALSE.
       useRunClock     =.FALSE.
       useREGRID       =.FALSE.
-      useMYPACKAGE    =.FALSE.
       useSALT_PLUME   =.FALSE.
+      useCheapAML     =.FALSE.
+      useMYPACKAGE    =.FALSE.
 
 C--   Read parameters from open data file
       READ(UNIT=iUnit,NML=PACKAGES)
