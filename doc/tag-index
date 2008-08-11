@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o change FIND_RHO to FIND_RHO_2D : 
+  pass arguments tFld & sFld as local (tile) 2D-arrays ; +fix EOS_CHECK.
+o new pkg: cheapaml
+
 checkpoint61b
 o exch2: 
   change index bounds in rx2_cube exchanges (new S/R: EXCH2_GET_UV_BOUNDS)
