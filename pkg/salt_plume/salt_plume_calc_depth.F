@@ -74,10 +74,11 @@ C     i,j :: Loop counters
        ENDDO
        DO k = 2,Nr
 C-     potential density (reference level = surface level)
-        CALL FIND_RHO(
-     I         bi, bj, 1-OLx, sNx+OLx, 1-OLy, sNy+OLy, K, 1,
-     I         theta, salt,
-     O         rhoLoc, myThid )
+        CALL FIND_RHO_2D(
+     I       1-OLx, sNx+OLx, 1-OLy, sNy+OLy, 1,
+     I       theta(1-OLx,1-OLy,K,bi,bj), salt(1-OLx,1-OLy,K,bi,bj),
+     O       rhoLoc,
+     I       K, bi, bj, myThid )
 
         DO j=1-Oly,sNy+Oly
          DO i=1-Olx,sNx+Olx
@@ -98,7 +99,7 @@ C-     potential density (reference level = surface level)
         ENDDO
        ENDDO
 
-      ELSEIF ( CriterionType.EQ.2 ) THEN 
+      ELSEIF ( CriterionType.EQ.2 ) THEN
 
         DO k=2,Nr
          DO j=1-Oly,sNy+Oly
