@@ -1,9 +1,9 @@
 C $Header$
 C $Name$
 
-C CPP options file for GM/Redi package
+C CPP options file for MYPACKAGE
 C
-C Use this file for selecting options within the GM/Redi package
+C Use this file for selecting options within package "MyPackage"
 
 #ifndef MYPACKAGE_OPTIONS_H
 #define MYPACKAGE_OPTIONS_H
