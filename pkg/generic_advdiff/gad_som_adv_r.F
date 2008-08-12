@@ -40,8 +40,7 @@ C !USES: ===============================================================
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "SURFACE.h"
-c #include "GRID.h"
+#include "GRID.h"
 #include "GAD.h"
 
 C !INPUT PARAMETERS: ===================================================
