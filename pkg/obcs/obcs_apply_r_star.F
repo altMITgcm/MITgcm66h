@@ -4,7 +4,7 @@ C $Name$
 #include "OBCS_OPTIONS.h"
 
       SUBROUTINE OBCS_APPLY_R_STAR(
-     I                bi, bj, ksurfC, ksurfW, ksurfS,
+     I                bi, bj,
      U                rStarFldC, rStarFldW, rStarFldS,
      I                myTime, myIter, myThid )
 C     *==========================================================*
@@ -20,9 +20,6 @@ C     == Global variables ==
 
 C     == Routine Arguments ==
       INTEGER bi,bj
-      INTEGER ksurfC(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      INTEGER ksurfW(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      INTEGER ksurfS(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL rStarFldC(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL rStarFldW(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL rStarFldS(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
