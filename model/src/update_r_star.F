@@ -76,7 +76,7 @@ CADJ &     comlev1_bibj, key = idynkey, byte = isbyte
 C-- Apply OBC to rStar_Factor_W,S before updating hFacW,S
         IF (useOBCS) THEN
          CALL OBCS_APPLY_R_STAR(
-     I                    bi, bj, ksurfC, ksurfW, ksurfS,
+     I                    bi, bj,
      U                    rStarFacC, rStarFacW, rStarFacS,
      I                    myTime, myIter, myThid )
         ENDIF

@@ -77,7 +77,7 @@ CADJ &     comlev1_bibj, key = idynkey, byte = isbyte
 C-- Apply OBC to hFac_surfW,S before updating hFacW,S
         IF (useOBCS) THEN
          CALL OBCS_APPLY_SURF_DR(
-     I                    bi, bj, ksurfC, ksurfW, ksurfS,
+     I                    bi, bj,
      U                    hFac_surfC, hFac_surfW, hFac_surfS,
      I                    myThid )
         ENDIF
