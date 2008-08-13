@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o move kSurfC,kSurfW 7 kSurfS from SURFACE.h to GRID.h (next to kLowC)
+  (to facilitate conversion of oceanic pkg to p-coordinate).
 o change FIND_RHO to FIND_RHO_2D : 
   pass arguments tFld & sFld as local (tile) 2D-arrays ; +fix EOS_CHECK.
 o new pkg: cheapaml
