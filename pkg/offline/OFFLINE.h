@@ -10,14 +10,15 @@ c -------------------------------
 
 c   Forcing files
       COMMON /OFFLINE_FFIELDS/
-     &       ConvectCount,
+     &       ConvectCount, ICEM,
      &       UvelFile, VvelFile, WvelFile, ThetFile, Saltfile,
      &       ConvFile, GMwxFile, GMwyFile, GMwzFile,
-     &       HfluxFile, SfluxFile,
+     &       HfluxFile, SfluxFile, ICEFile,
      &       KPP_DiffSFile, KPP_ghatFile,
      &       deltaToffline,
      &       offlineIter0, offlineOffsetIter,
      &       offlineForcingPeriod, offlineForcingCycle
+      _RL  ICEM(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  ConvectCount(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nR,nSx,nSy)
       CHARACTER*(MAX_LEN_FNAM) UvelFile
       CHARACTER*(MAX_LEN_FNAM) VvelFile
@@ -30,6 +31,7 @@ c   Forcing files
       CHARACTER*(MAX_LEN_FNAM) GMwzFile
       CHARACTER*(MAX_LEN_FNAM) HFluxFile
       CHARACTER*(MAX_LEN_FNAM) SFluxFile
+      CHARACTER*(MAX_LEN_FNAM) ICEFile
       CHARACTER*(MAX_LEN_FNAM) KPP_DiffSFile
       CHARACTER*(MAX_LEN_FNAM) KPP_ghatFile
       INTEGER offlineIter0

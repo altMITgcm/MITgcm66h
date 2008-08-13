@@ -30,7 +30,7 @@ C--   Bulk Formula parameter
      &         UvelFile, VvelFile, WvelFile, ThetFile,
      &         SaltFile, ConvFile, GMwxFile, GMwyFile,
      &         GMwzFile, HfluxFile, SfluxFile, KPP_DiffSFile,
-     &         KPP_ghatFile
+     &         KPP_ghatFile, ICEFile
 
       NAMELIST /OFFLINE_PARM02/
      &         offlineIter0, offlineOffsetIter,
@@ -69,6 +69,7 @@ C--   Default values
       SFluxFile=' '
       KPP_DiffSFile=' '
       KPP_ghatFile=' '
+      ICEFile=' '
 
 C--   Read parameters from open data file
       READ(UNIT=iUnit,NML=OFFLINE_PARM01)
