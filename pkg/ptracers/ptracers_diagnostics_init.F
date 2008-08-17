@@ -178,6 +178,18 @@ C-     Diffusive flux:
      I           diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+C--    add diagnostics for other pkg contribution to ptracer solution
+       IF ( useDOWN_SLOPE ) THEN
+        diagName  = 'DSLP'//diagSufx
+        WRITE(diagTitle,'(2A)') locName(1:ilnb),
+     &                   ' tendency from Down-Slope package'
+        diagCode  = 'SM      MR      '
+        diagUnits = trcUnits//'/s       '
+        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I           diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+       ENDIF
+
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       ENDDO
 
 #endif /* ALLOW_DIAGNOSTICS */

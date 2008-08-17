@@ -163,6 +163,11 @@ C---  Continue with standard packages (with standard usePKG flag)
       IF (useGMRedi) CALL PACKAGES_ERROR_MSG('GMRedi',' ',myThid)
 #endif
 
+#ifndef ALLOW_DOWN_SLOPE
+      IF (useDOWN_SLOPE)
+     &            CALL PACKAGES_ERROR_MSG('DOWN_SLOPE',' ',myThid)
+#endif
+
 #ifdef ALLOW_OBCS
       IF (useOBCS) CALL OBCS_CHECK( myThid )
 #else

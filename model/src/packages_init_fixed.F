@@ -34,6 +34,8 @@ C       |-- EXF_INIT_FIXED
 C       |
 C       |-- GMREDI_INIT_FIXED
 C       |
+C       |-- DWNSLP_INIT_FIXED
+C       |
 C       |-- KPP_INIT_FIXED
 C       |
 C       |-- MY82_INIT_FIXED
@@ -72,8 +74,6 @@ C       |-- THSICE_INIT_FIXED
 C       |
 C       |-- SHELFICE_INIT_FIXED
 C       |
-C       |-- MYPACKAGE_INIT_FIXED
-C       |
 C       |-- CPL_INIT_FIXED
 C       |
 C       |-- ATM2D_INIT_FIXED
@@ -81,6 +81,8 @@ C       |
 C       |-- REGRID_INIT_FIXED
 C       |
 C       |-- SALT_PLUME_INIT_FIXED
+C       |
+C       |-- MYPACKAGE_INIT_FIXED
 C       |
 C       |-- DIAGNOSTICS_INIT_FIXED
 
@@ -140,6 +142,13 @@ C--   Initialize fixed arrays for EXF
 C--   Initialize fixed arrays for GM-Redi
       IF ( useGMRedi ) THEN
        CALL GMREDI_INIT_FIXED( myThid )
+      ENDIF
+#endif
+
+#ifdef ALLOW_DOWN_SLOPE
+C--   Initialize fixed arrays for Down-Slope pkg
+      IF ( useDOWN_SLOPE ) THEN
+       CALL DWNSLP_INIT_FIXED( myThid )
       ENDIF
 #endif
 
@@ -287,10 +296,6 @@ C--   Initialise ADMTLM
       IF ( useREGRID ) CALL REGRID_INIT_FIXED( myThid )
 #endif
 
-#ifdef ALLOW_MYPACKAGE
-      IF (useMYPACKAGE) CALL MYPACKAGE_INIT_FIXED(myThid)
-#endif
-
 #ifdef COMPONENT_MODULE
       IF ( useCoupler ) CALL CPL_INIT_FIXED( myThid )
 #endif
@@ -301,6 +306,10 @@ C--   Initialise ADMTLM
 
 #ifdef ALLOW_SALT_PLUME
       IF (useSALT_PLUME) CALL SALT_PLUME_INIT_FIXED(myThid)
+#endif
+
+#ifdef ALLOW_MYPACKAGE
+      IF (useMYPACKAGE) CALL MYPACKAGE_INIT_FIXED(myThid)
 #endif
 
 #ifdef ALLOW_DIAGNOSTICS

@@ -61,11 +61,13 @@ C     PTRACERS_SOM_Advection :: internal flag (depend on the advection scheme),
 C                               true if this tracer uses 2nd-order moment advection
 C     PTRACERS_AdamsBashGtr  :: internal flag (depend on the advection scheme),
 C                               true if applies Adams-Bashforth on tracer tendency
+C     PTRACERS_useDWNSLP(n) :: true if Down-Sloping flow applies to pTracer n
       LOGICAL PTRACERS_ImplVertAdv(PTRACERS_num)
       LOGICAL PTRACERS_MultiDimAdv(PTRACERS_num)
       LOGICAL PTRACERS_SOM_Advection(PTRACERS_num)
       LOGICAL PTRACERS_AdamsBashGtr(PTRACERS_num)
       LOGICAL PTRACERS_useGMRedi(PTRACERS_num)
+      LOGICAL PTRACERS_useDWNSLP(PTRACERS_num)
       LOGICAL PTRACERS_useKPP(PTRACERS_num)
       LOGICAL PTRACERS_useRecords
       LOGICAL
@@ -80,6 +82,7 @@ C                               true if applies Adams-Bashforth on tracer tenden
      &     PTRACERS_SOM_Advection,
      &     PTRACERS_AdamsBashGtr,
      &     PTRACERS_useGMRedi,
+     &     PTRACERS_useDWNSLP,
      &     PTRACERS_useKPP,
      &     PTRACERS_useRecords,
      &     PTRACERS_timeave_mdsio, PTRACERS_snapshot_mdsio,

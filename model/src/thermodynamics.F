@@ -683,6 +683,49 @@ CADJ &   , key = kkey, byte = isbyte
 C--     end of thermodynamic k loop (Nr:1)
         ENDDO
 
+#ifdef ALLOW_DOWN_SLOPE
+        IF ( tempStepping .AND. useDOWN_SLOPE ) THEN
+          IF ( usingPCoords ) THEN
+            CALL DWNSLP_APPLY(
+     I                  GAD_TEMPERATURE, bi, bj, kSurfC,
+     I                  recip_drF, recip_hFacC, recip_rA,
+     I                  theta,
+     U                  gT,
+     I                  myTime, myIter, myThid )
+          ELSE
+            CALL DWNSLP_APPLY(
+     I                  GAD_TEMPERATURE, bi, bj, kLowC,
+     I                  recip_drF, recip_hFacC, recip_rA,
+     I                  theta,
+     U                  gT,
+     I                  myTime, myIter, myThid )
+          ENDIF
+        ENDIF
+        IF ( saltStepping .AND. useDOWN_SLOPE ) THEN
+          IF ( usingPCoords ) THEN
+            CALL DWNSLP_APPLY(
+     I                  GAD_SALINITY, bi, bj, kSurfC,
+     I                  recip_drF, recip_hFacC, recip_rA,
+     I                  salt,
+     U                  gS,
+     I                  myTime, myIter, myThid )
+          ELSE
+            CALL DWNSLP_APPLY(
+     I                  GAD_SALINITY, bi, bj, kLowC,
+     I                  recip_drF, recip_hFacC, recip_rA,
+     I                  salt,
+     U                  gS,
+     I                  myTime, myIter, myThid )
+          ENDIF
+        ENDIF
+#ifdef ALLOW_PTRACERS
+        IF ( usePTRACERS .AND. useDOWN_SLOPE ) THEN
+          CALL PTRACERS_DWNSLP_APPLY(
+     I                  bi, bj, myTime, myIter, myThid )
+        ENDIF
+#endif /* ALLOW_PTRACERS */
+#endif /* ALLOW_DOWN_SLOPE */
+
 C       All explicit advection/diffusion/sources should now be
 C       done. The updated tracer field is in gPtr. Accumalate
 C       explicit tendency and also reset gPtr to initial tracer
