@@ -58,6 +58,7 @@ C     tauTr1ClimRelax :: old parameter (will be removed 1 day)
      &     PTRACERS_ref,
      &     PTRACERS_EvPrRn,
      &     PTRACERS_useGMRedi,
+     &     PTRACERS_useDWNSLP,
      &     PTRACERS_useKPP,
      &     PTRACERS_Iter0,
      &     PTRACERS_numInUse,
