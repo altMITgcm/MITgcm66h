@@ -4,7 +4,13 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
-o move kSurfC,kSurfW 7 kSurfS from SURFACE.h to GRID.h (next to kLowC)
+o new pkg: down_slope
+  density-driven downsloping flow parameterisation (Tellus, 1999, 412-430).
+  - presently, modify T & S inland (dwnslp_calc_rho.F).
+    can be avoided if rho was stored in common bloc and used in calc_phi_hyd.
+  - implementation for ocean in P-coords not tested.
+  - add secondary test to global_ocean.90x40x15 (input.dwnslp) to check this pkg.
+o move kSurfC,kSurfW & kSurfS from SURFACE.h to GRID.h (next to kLowC)
   (to facilitate conversion of oceanic pkg to p-coordinate).
 o change FIND_RHO to FIND_RHO_2D : 
   pass arguments tFld & sFld as local (tile) 2D-arrays ; +fix EOS_CHECK.
