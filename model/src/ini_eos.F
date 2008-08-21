@@ -426,12 +426,17 @@ C-    + set rC accordingly
 
           IF ( kcheck .EQ. 1 ) THEN
            WRITE(msgBuf,'(A)') 
+     &          'EOS_CHECK: check values for eosType=JMD95:'
+           CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &          SQUEEZE_RIGHT , myThid )
+          ELSEIF ( kcheck .EQ. 2 ) THEN
+           WRITE(msgBuf,'(A)') 
      &          'EOS_CHECK: check values for eosType=MDJWF:'
            CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &          SQUEEZE_RIGHT , myThid )
           ELSEIF ( kcheck .EQ. 6 ) THEN
            WRITE(msgBuf,'(A)') 
-     &          'EOS_CHECK: check values for eosType=JMD95:'
+     &          'EOS_CHECK: check values for eosType=UNESCO:'
            CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &          SQUEEZE_RIGHT , myThid )
           ENDIF
