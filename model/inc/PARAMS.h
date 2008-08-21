@@ -262,6 +262,7 @@ C                       and off.
 C     useRealFreshWaterFlux :: if True (=Natural BCS), treats P+R-E flux
 C                         as a real Fresh Water (=> changes the Sea Level)
 C                         if F, converts P+R-E to salt flux (no SL effect)
+C     useAddFluid    :: add mass source or sink of fluid in the interior
 C- Time-stepping params:
 C     rigidLid            :: Set to true to use rigid lid
 C     implicitFreeSurface :: Set to true to use implicit free surface
@@ -336,7 +337,7 @@ C                        & Last iteration, in addition multiple of dumpFreq iter
      & momStepping, tempStepping, saltStepping,
      & tempAdvection, tempIsActiveTr, tempForcing,
      & saltAdvection, saltIsActiveTr, saltForcing,
-     & useRealFreshWaterFlux,
+     & useRealFreshWaterFlux, useAddFluid,
      & rigidLid, implicitFreeSurface, exactConserv, linFSConserveTr,
      & uniformLin_PhiSurf,
      & quasiHydrostatic, nonHydrostatic,
@@ -385,6 +386,7 @@ C                        & Last iteration, in addition multiple of dumpFreq iter
       LOGICAL saltIsActiveTr
       LOGICAL saltForcing
       LOGICAL useRealFreshWaterFlux
+      LOGICAL useAddFluid
       LOGICAL useFullLeith
       LOGICAL useStrainTensionVisc
       LOGICAL useAreaViscLength
