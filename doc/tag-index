@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o vermix test experiment: switch from LINEAR EOS to MDJWF (not tested before)
 o new pkg: down_slope
   density-driven downsloping flow parameterisation (Tellus, 1999, 412-430).
   - presently, modify T & S inland (dwnslp_calc_rho.F).
