@@ -93,7 +93,7 @@ C--   Initialise the Vector solution with etaN + deltaT*Global_mean_PmE
 C     instead of simply etaN ; This can speed-up the solver convergence in
 C     the case where |Global_mean_PmE| is large.
       putPmEinXvector = .FALSE.
-c     putPmEinXvector = useRealFreshWaterFlux
+c     putPmEinXvector = useRealFreshWaterFlux.AND.fluidIsWater
 
 C--   Save previous solution & Initialise Vector solution and source term :
       sumEmP = 0.
@@ -108,7 +108,7 @@ C--   Save previous solution & Initialise Vector solution and source term :
           cg2d_b(i,j,bi,bj) = 0.
          ENDDO
         ENDDO
-        IF (useRealFreshWaterFlux) THEN
+        IF (useRealFreshWaterFlux.AND.fluidIsWater) THEN
          tmpFac = freeSurfFac*mass2rUnit
          IF (exactConserv)
      &        tmpFac = freeSurfFac*mass2rUnit*implicDiv2DFlow
