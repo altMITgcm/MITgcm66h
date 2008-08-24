@@ -173,7 +173,7 @@ C--   Continuous equation parameters
      & momPressureForcing, metricTerms, vectorInvariantMomentum,
      & tempDiffusion, tempAdvection, tempForcing,
      & saltDiffusion, saltAdvection, saltForcing,
-     & implicSurfPress, implicDiv2DFlow,
+     & implicSurfPress, implicDiv2Dflow,
      & implicitFreeSurface, rigidLid, freeSurfFac, hFacMin, hFacMinDz,
      & exactConserv, linFSConserveTr, uniformLin_PhiSurf,
      & nonlinFreeSurf, hFacInf, hFacSup, select_rStar,
@@ -197,7 +197,7 @@ C--   Continuous equation parameters
      & useCDscheme, useJamartWetPoints, useJamartMomAdv, useNHMTerms,
      & selectVortScheme, upwindVorticity, highOrderVorticity,
      & SadournyCoriolis, useAbsVorticity, upwindShear, selectKEscheme,
-     & useRealFreshWaterFlux, convertFW2Salt,
+     & selectAddFluid, useRealFreshWaterFlux, convertFW2Salt,
      & temp_EvPrRn, salt_EvPrRn, trac_EvPrRn,
      & zonal_filt_lat,
      & inAdExact, smoothAbsFuncRange,
@@ -553,6 +553,7 @@ C--   z,p,r coord input switching.
       IF (convertFW2Salt.EQ.UNSET_RL) THEN
         convertFW2Salt = 35.
         IF (useRealFreshWaterFlux) convertFW2Salt=-1
+        IF ( selectAddFluid.GE.1 ) convertFW2Salt=-1
       ENDIF
 
       IF ( SadournyCoriolis ) THEN
