@@ -260,6 +260,9 @@ C--  end bi,bj loop
        ENDDO
       ENDDO
 
+C     add a small piece of code to check AddFluid implementation:
+c#include "thsice_test_addfluid.h"
+
       IF ( useSEAICE .OR. thSIceAdvScheme.GT.0 ) THEN
 C--   Exchange fields that are advected by seaice dynamics
         _EXCH_XY_R8( iceMask, myThid )
