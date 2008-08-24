@@ -233,6 +233,14 @@ C-    write Full Pressure for EOS in pressure:
         IF (j.LE.listDim) wrFldList(j) = 'GwNm1   '
        ENDIF
 #endif /* ALLOW_NONHYDROSTATIC */
+#ifdef ALLOW_ADDFLUID
+C-    write mass source/sink of fluid (but not needed if selectAddFluid=-1)
+       IF ( selectAddFluid.NE.0 ) THEN
+        j = j + 1
+        CALL WRITE_REC_3D_RL( fn, fp, Nr,addMass,-j,myIter, myThid )
+        IF (j.LE.listDim) wrFldList(j) = 'AddMass '
+       ENDIF
+#endif /* ALLOW_ADDFLUID */
 
         n3D = j
 C---  Write 2-D fields, starting with Eta:

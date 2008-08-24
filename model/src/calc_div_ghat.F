@@ -173,5 +173,26 @@ C     Explicit+Implicit part of the Barotropic Flow Divergence
       ENDIF
 #endif
 
+#ifdef ALLOW_ADDFLUID
+      IF ( selectAddFluid.GE.1 ) THEN
+        DO j=1,sNy
+         DO i=1,sNx
+          cg2d_b(i,j,bi,bj) = cg2d_b(i,j,bi,bj)
+     &         - addMass(i,j,k,bi,bj)*mass2rUnit/deltaTmom
+         ENDDO
+        ENDDO
+#ifdef ALLOW_NONHYDROSTATIC
+       IF (use3Dsolver) THEN
+        DO j=1,sNy
+         DO i=1,sNx
+          cg3d_b(i,j,k,bi,bj) = cg3d_b(i,j,k,bi,bj)
+     &         - addMass(i,j,k,bi,bj)*mass2rUnit/deltaTmom
+         ENDDO
+        ENDDO
+       ENDIF
+#endif
+      ENDIF
+#endif /* ALLOW_ADDFLUID */
+
       RETURN
       END
