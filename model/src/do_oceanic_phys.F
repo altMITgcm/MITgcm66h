@@ -222,9 +222,7 @@ C--   Freeze water at the surface
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE theta = comlev1, key = ikey_dynamics
 #endif
-      IF ( allowFreezing
-     &                   .AND. .NOT. useSEAICE
-     &                   .AND. .NOT. useThSIce ) THEN
+      IF ( allowFreezing ) THEN
         CALL FREEZE_SURFACE(  myTime, myIter, myThid )
       ENDIF
 
