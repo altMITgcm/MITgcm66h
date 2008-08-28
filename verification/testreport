@@ -988,7 +988,11 @@ fi
 
 #  Create a uniquely named directory to store results
 CMDLINE=$0
-for xx in "$@" ; do CMDLINE="$CMDLINE '$xx'" ; done
+for xx in "$@" ; do nw=`echo $xx | wc -w`
+    if test $nw = '1' ; then CMDLINE="$CMDLINE $xx"
+                        else CMDLINE="$CMDLINE '$xx'" ; fi
+done
+#for xx in "$@" ; do CMDLINE="$CMDLINE '$xx'" ; done
 MACH=`hostname`
 UNAMEA=`uname -a`
 DATE=`date +%Y%m%d`
