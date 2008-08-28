@@ -61,7 +61,7 @@ if [ $checkOut -eq 2 ] ; then
   /usr/bin/find $gcmDIR -type f | xargs chmod g+r
 else
   if test -e $gcmDIR/verification ; then
-     echo "dir $gcmDIR exist"
+     echo "dir $gcmDIR/verification exist"
   else
      echo "no dir $gcmDIR/verification => exit"
      exit

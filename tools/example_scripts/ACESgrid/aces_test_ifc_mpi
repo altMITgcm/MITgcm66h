@@ -64,7 +64,7 @@ if [ $checkOut -eq 2 ] ; then
   /usr/bin/find $gcmDIR -type f | xargs chmod g+r
 else
   if test -e $gcmDIR/verification ; then
-     echo "dir $gcmDIR exist"
+     echo "dir $gcmDIR/verification exist"
   else
      echo "no dir $gcmDIR/verification => exit"
      exit
@@ -72,6 +72,6 @@ else
 fi
 
 cd $gcmDIR/verification
-echo ./testreport $options -of $OPTFILE -command "$EXE" -odir aces-$sfx
+echo ./testreport $options -of $OPTFILE -command \"$EXE\" -odir aces-$sfx
 ./testreport $options -of $OPTFILE -command "$EXE" -odir aces-$sfx
 
