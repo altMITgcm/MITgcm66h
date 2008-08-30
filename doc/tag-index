@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint61c
 o add option ALLOW_ADDFLUID and run-time selector "selectAddFluid" 
   to add mass source/sink of fluid in the interior (3-D generalisation 
   of oceanic real-fresh water flux).
