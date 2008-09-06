@@ -457,8 +457,7 @@ C-    + set rC accordingly
      &         pLoc(kcheck), rhoLoc(i,j), myThid )
           WRITE(msgBuf,'(A,F10.5,1X,F11.5)')
      &         ' rho(find_rho_scalar)             = ',
-     &         rhoLoc(i,j)+rhoConst
-c    &         rhoLoc(i,j)+rhoConst, bulkMod(i,j)
+     &         rhoLoc(i,j)
           CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &         SQUEEZE_RIGHT , myThid )
 
