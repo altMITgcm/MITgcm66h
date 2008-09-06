@@ -4,6 +4,12 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o add initialisation of deepFac if using Pcoords (new S/R set_grid_factors)
+  and rename:
+  ini_phiref.F          --> set_ref_state.F  (+ set anelastic factors)
+  ini_reference_state.F --> load_ref_files.F (- set anelastic factors)
+o change FIND_RHO_SCALAR : return rho (instead of rho - rhoConst)
+
 checkpoint61c
 o add option ALLOW_ADDFLUID and run-time selector "selectAddFluid" 
   to add mass source/sink of fluid in the interior (3-D generalisation 
