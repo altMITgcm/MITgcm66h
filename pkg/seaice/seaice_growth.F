@@ -598,11 +598,11 @@ C NOW GET FRESH WATER FLUX
      &         )*rhoConstFresh
 #ifdef ALLOW_DIAGNOSTICS
           frWtrAtm(I,J)   = maskC(I,J,kSurface,bi,bj)*(
-     &           PRECIP(I,J,bi,bj)
+     &           PRECIP(I,J,bi,bj) 
      &         - EVAP(I,J,bi,bj)
      &               *( ONE - AREA(I,J,2,bi,bj) )
      &         + RUNOFF(I,J,bi,bj)
-     &         )
+     &         )*rhoConstFresh
 #endif /* ALLOW_DIAGNOSTICS */
 
          ENDDO
@@ -713,7 +713,7 @@ C Add YNEG contribution to QNET
 
 #ifdef ALLOW_DIAGNOSTICS
         IF ( useDiagnostics ) THEN
-         CALL DIAGNOSTICS_FILL(frWtrAtm,'SIatmFW ',0,1 ,2,bi,bj,myThid)
+         CALL DIAGNOSTICS_FILL(frWtrAtm,'SIatmFW ',0,1,3,bi,bj,myThid)
         ENDIF
 #endif /* ALLOW_DIAGNOSTICS */
 
