@@ -39,8 +39,6 @@ c
 c
 c calculate costfunction
 
-        _BEGIN_MASTER(myThid)
-
        sumvol= 0. _d 0
        po4cost= 0. _d 0
        o2cost=0.d0
@@ -114,8 +112,6 @@ cswdmonth-end
         totcost=po4cost+o2cost+po4costm+o2costm
 
         print*,'COST ',totcost, po4cost, o2cost,po4costm,o2costm
-
-       _END_MASTER(myThid)
 c
 #endif
       RETURN

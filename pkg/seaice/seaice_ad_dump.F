@@ -78,7 +78,6 @@ CEOP
      & ) THEN
 
        _BARRIER
-       _BEGIN_MASTER( myThid )
 
 C--     Set suffix for this set of data files.
         WRITE(suff,'(I10.10)') myIter
@@ -107,7 +106,6 @@ cph        IF ( SEAICEuseDynamics ) THEN
 cph        ENDIF
 # endif
 c
-       _END_MASTER( myThid )
        _BARRIER
 
 #ifdef ALLOW_MNC
@@ -140,18 +138,10 @@ c
 
       ENDIF
 
-      call TIMER_STOP( 'I/O (WRITE)        [ADJOINT LOOP]', myThid )
+      CALL TIMER_STOP( 'I/O (WRITE)        [ADJOINT LOOP]', myThid )
 
 #endif /* ALLOW_AUTODIFF_MONITOR */
 #endif /* ALLOW_ADJOINT_RUN */
 
-      end
-
-
-
-
-
-
-
-
-
+      RETURN
+      END

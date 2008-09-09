@@ -111,11 +111,9 @@ C               is directly proportional to Delta-Tr due to the Filter
      &     DIFFERENT_MULTIPLE(Shap_diagFreq,myTime,deltaTClock)
      &       ) THEN
            _BARRIER
-           _BEGIN_MASTER( myThid )
            WRITE(suff,'(I10.10)') myIter
            CALL WRITE_FLD_XYZ_RL( 'shap_dT.', suff, Shap_tmpFld1,
      &                            myIter, myThid)
-           _END_MASTER( myThid )
            _BARRIER
           ENDIF
 
@@ -158,11 +156,9 @@ C               is directly proportional to Delta-Tr due to the Filter
      &     DIFFERENT_MULTIPLE(Shap_diagFreq,myTime,deltaTClock)
      &       ) THEN
            _BARRIER
-           _BEGIN_MASTER( myThid )
            WRITE(suff,'(I10.10)') myIter
            CALL WRITE_FLD_XYZ_RL( 'shap_dS.', suff, Shap_tmpFld1,
      &                            myIter, myThid)
-           _END_MASTER( myThid )
            _BARRIER
           ENDIF
 

@@ -113,13 +113,11 @@ C               are directly proportional to Delta-U,V due to the Filter
      &     DIFFERENT_MULTIPLE(Shap_diagFreq,myTime,deltaTClock)
      &       ) THEN
            _BARRIER
-           _BEGIN_MASTER( myThid )
            WRITE(suff,'(I10.10)') myIter
            CALL WRITE_FLD_XYZ_RL( 'shap_dU.', suff, Shap_tmpFld1,
      &                             myIter,myThid)
            CALL WRITE_FLD_XYZ_RL( 'shap_dV.', suff, Shap_tmpFld2,
      &                             myIter,myThid)
-           _END_MASTER( myThid )
            _BARRIER
           ENDIF
 

@@ -89,7 +89,6 @@ c          CALL TIMEAVE_NORMALIZ(VGtave ,CPL_TimeAve,1,bi,bj,myThid)
         IF (cpl_timeave_mdsio) THEN
 
           _BARRIER
-          _BEGIN_MASTER( myThid )
           gf = globalFiles
           WRITE(fn,'(A,I10.10)') 'cplFldtave.',myIter
           CALL MDSWRITEFIELD(fn, writeBinaryPrec, gf, 'RL',
@@ -126,7 +125,6 @@ c          CALL TIMEAVE_NORMALIZ(VGtave ,CPL_TimeAve,1,bi,bj,myThid)
             CALL MDSWRITEFIELD(fn, writeBinaryPrec, gf, 'RL',
      &         1, fCO2tave , 16, myIter, myThid )
           ENDIF
-          _END_MASTER( myThid )
           _BARRIER
 
         ENDIF
