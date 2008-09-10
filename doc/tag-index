@@ -4,6 +4,13 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/shelfice:
+ - disentangle parameters: retire shelfIceFile in data/PARM05 and substitute
+   with SHELFICEtopoFile in data.shelfice
+ - move code for reading ice shelf topography and modifying hFacC into separate
+   subroutines of the shelfice package
+ - separate initialisation of "fixed" and "variable" variables
+ - kTopC is not (yet) replaced by kSurfC, although this is possible
 o fix a bug in diagnostic SIatmFW and changed the units from m/s to kg/m^2/s
 o add initialisation of deepFac if using Pcoords (new S/R set_grid_factors)
   and rename:
