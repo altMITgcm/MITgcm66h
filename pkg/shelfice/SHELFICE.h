@@ -16,6 +16,8 @@ C     \==========================================================/
 C-----------------------------------------------------------------------
 C
 C--   Constants that can be set in data.shelfice
+C     SHELFICEtopoFile         - File containing the topography of the 
+C                                shelfice draught (unit=m)
 C     SHELFICEloadAnomalyFile  - name of shelfice load anomaly file
 C     SHELFICEDragLinear       - linear drag at bottom shelfice (1/s)
 C     SHELFICEDragQuadratic    - quadratic drag at bottom shelfice (1/m)
@@ -111,7 +113,9 @@ CEOP
      &     SHELFICE_tave_mnc
 
       CHARACTER*(MAX_LEN_FNAM) SHELFICEloadAnomalyFile
+      CHARACTER*(MAX_LEN_FNAM) SHELFICEtopoFile
       COMMON /SHELFICE_PARM_C/ 
-     &     SHELFICEloadAnomalyFile
+     &     SHELFICEloadAnomalyFile, 
+     &     SHELFICEtopoFile
 
 #endif /* ALLOW_SHELFICE */

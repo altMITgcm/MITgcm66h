@@ -52,7 +52,7 @@ CEOP
      &     SHELFICE_taveFreq,
      &     SHELFICE_tave_mnc,
      &     SHELFICE_dump_mnc,
-     &     SHELFICEloadAnomalyFile
+     &     SHELFICEtopoFile, SHELFICEloadAnomalyFile
 
       _BEGIN_MASTER(myThid)
 
@@ -65,6 +65,7 @@ C Set defaults values for parameters in SHELFICE.h
       SHELFICEconserve         = .FALSE.
       SHELFICEboundaryLayer    = .FALSE.
       SHELFICEloadAnomalyFile  = ' '
+      SHELFICEtopoFile         = ' '
       SHELFICElatentHeat       =  334.0 _d 3
       SHELFICEHeatCapacity_Cp  = 2000.0 _d 0
       recip_SHELFICElatentHeat =    0.0 _d 0
