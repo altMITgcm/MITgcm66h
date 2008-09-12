@@ -261,13 +261,6 @@ c          IF ( jG .EQ. Ny )  R_low(i,j,bi,bj) = 0.
       ENDIF
 c     CALL WRITE_FLD_XY_RS('Ro_surf',' ',Ro_surf,0,myThid)
 
-#ifdef ALLOW_SHELFICE
-c---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
-      IF ( useShelfIce ) THEN
-       CALL SHELFICE_INI_DEPTH( myThid )
-      ENDIF
-#endif /* ALLOW_SHELFICE */
-
 C--   Everyone else must wait for the depth to be loaded
 C-    note: might not be necessary since all single-thread IO above
 C           are followed by an EXCH (with BARRIER)
