@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o gad_som : allow to switch to SOM advection for T & S without corresponding 
+  pickup files (using new S/R: MDS_CHECK4FILE).
+o keep removing _BEGIN/_END_MASTER between MDSIO S/R call
+  (for useSingleCpuIO to work in multi-threaded)
 o pkg/shelfice:
  - disentangle parameters: retire shelfIceFile in data/PARM05 and substitute
    with SHELFICEtopoFile in data.shelfice
@@ -11,7 +15,7 @@ o pkg/shelfice:
    subroutines of the shelfice package
  - separate initialisation of "fixed" and "variable" variables
  - kTopC is not (yet) replaced by kSurfC, although this is possible
-o fix a bug in diagnostic SIatmFW and changed the units from m/s to kg/m^2/s
+o fix broken diagnostic SIatmFW and changed the units from m/s to kg/m^2/s
 o add initialisation of deepFac if using Pcoords (new S/R set_grid_factors)
   and rename:
   ini_phiref.F          --> set_ref_state.F  (+ set anelastic factors)
