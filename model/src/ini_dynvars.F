@@ -74,6 +74,7 @@ C-      3D arrays
            gsNm1(I,J,K,bi,bj) =0. _d 0
 #endif
            totPhiHyd(I,J,K,bi,bj)=0. _d 0
+           rhoInSitu(I,J,K,bi,bj)=0. _d 0
            IVDConvCount(i,j,k,bi,bj) = 0. _d 0
 #ifdef ALLOW_ADDFLUID
            addMass(I,J,K,bi,bj) = 0. _d 0

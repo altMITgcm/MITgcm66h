@@ -114,7 +114,7 @@ C     for each level save old pressure and compute new pressure
      I          theta, salt,
      U          phiHydF,
      O          phiHydC, dPhiHydX, dPhiHydY,
-     I          startTime, nIter0, myThid)
+     I          startTime, -1, myThid )
 C     compute convergence criterion
            DO j=1,sNy
             DO i=1,sNx
