@@ -39,8 +39,8 @@ CADJ FUNCTION GAD_DIAG_SUFX OUTPUT =
 C----------------------------------------
 C subroutine  diags_rho
 C----------------------------------------
-CADJ SUBROUTINE diags_rho INPUT  = 1,2,3,4,5,6,7,8
-CADJ SUBROUTINE diags_rho OUTPUT =
+cphCADJ SUBROUTINE diags_rho INPUT  = 1,2,3,4,5,6,7,8
+cphCADJ SUBROUTINE diags_rho OUTPUT =
 
 C----------------------------------------
 C subroutine  diagnostics_fill
