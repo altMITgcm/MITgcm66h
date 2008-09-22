@@ -361,7 +361,7 @@ C     needed here, will be used anyway in calc_phi_hyd (data flow easier this wa
 #endif
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE theta(:,:,k,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
-CADJ STORE salt (:,:,k,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ STORE salt(:,:,k,bi,bj)  = comlev1_bibj_k, key=kkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 #ifdef ALLOW_DOWN_SLOPE
           IF ( useDOWN_SLOPE ) THEN
@@ -389,6 +389,7 @@ C         slope terms (e.g. GM/Redi tensor or IVDC diffusivity)
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE theta(:,:,k-1,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
 CADJ STORE salt (:,:,k-1,bi,bj) = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ STORE rhokm1 (bi,bj)       = comlev1_bibj_k, key=kkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
              CALL FIND_RHO_2D(
      I                 iMin, iMax, jMin, jMax, k,
