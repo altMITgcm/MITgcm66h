@@ -83,6 +83,8 @@ c--   == end of interface ==
 C--   Over all tiles
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
+
+#ifndef AUTODIFF_USE_OLDSTORE_2D
 C-      2D arrays
         DO J=1-Oly,sNy+Oly
          DO I=1-Olx,sNx+Olx
@@ -117,6 +119,9 @@ C-      2D arrays
 #endif
          ENDDO
         ENDDO
+#endif /* AUTODIFF_USE_OLDSTORE_2D */
+
+#ifndef AUTODIFF_USE_OLDSTORE_3D
 C-      3D arrays
         DO K=1,Nr
          DO J=1-Oly,sNy+Oly
@@ -136,6 +141,8 @@ C-      3D arrays
           ENDDO
          ENDDO
         ENDDO
+#endif /* AUTODIFF_USE_OLDSTORE_3D */
+
        ENDDO
       ENDDO
        
