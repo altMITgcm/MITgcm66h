@@ -280,8 +280,8 @@ CEOP
      &     fname(1:il+7)
          CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                       SQUEEZE_RIGHT , myThid)
-         WRITE(msgBuf,'(A,4I)')
-     &     'ADWRITE: ph ', length, bx, by, irec
+         WRITE(msgBuf,'(A,I12,4I6)')
+     &     'ADWRITE: ph', length, bx, by, irec
          CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                       SQUEEZE_RIGHT , myThid)
       ENDIF
