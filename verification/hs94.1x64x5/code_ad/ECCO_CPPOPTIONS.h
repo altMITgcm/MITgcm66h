@@ -13,6 +13,9 @@ C
 #define ALLOW_AUTODIFF_TAMC
 C       >>> Checkpointing as handled by TAMC
 #define ALLOW_TAMC_CHECKPOINTING
+C
+C       >>> Extract adjoint state
+#define ALLOW_AUTODIFF_MONITOR
 
 C ********************************************************************
 C ***                     Calender Package                         ***
