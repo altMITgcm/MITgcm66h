@@ -361,6 +361,7 @@ CADJ STORE salt  = comlev1, key = ikey_dynamics
 cph needed to be moved here from do_oceanic_physics
 cph to be visible down the road
 c
+CADJ STORE rhoInSitu          = comlev1, key = ikey_dynamics
 CADJ STORE surfaceForcingS    = comlev1, key = ikey_dynamics
 CADJ STORE surfaceForcingT    = comlev1, key = ikey_dynamics
 CADJ STORE surfaceForcingTice = comlev1, key = ikey_dynamics
