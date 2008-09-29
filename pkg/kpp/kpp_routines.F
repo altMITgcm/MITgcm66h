@@ -874,7 +874,7 @@ CADJ store diffus(:,:,1) = kpp_ri_tape_mr
 CADJ &  , key=mr, shape=(/ (sNx+2*OLx)*(sNy+2*OLy),Nr+2 /)
 
          call z121 (
-     U     diffus(1,0,1)
+     U     diffus(1,0,1),
      I     myThid )
       end do
 #endif
