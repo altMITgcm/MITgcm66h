@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg ggl90:
+      - add missing sqrt(2) factor in computation of mixing length 
+        scale in ggl90_calc.F
+        (see Eq. (2.35) in Blanke and Delecluse, JPO, 1993)
+
 checkpoint61d
 o adjoint modifs
   - adapt to new field rhoInSitu
