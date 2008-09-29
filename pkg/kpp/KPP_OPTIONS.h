@@ -51,6 +51,9 @@ C o Avoid as many as possible AD recomputations
 C   usually not necessary, but useful for testing
 #undef KPP_AUTODIFF_EXCESSIVE_STORE
 
+C o Vertically smooth Ri (for interior shear mixing)
+#undef ALLOW_KPP_VERTICALLY_SMOOTH
+
 #endif /* ALLOW_KPP */
 #endif /* KPP_OPTIONS_H */
 
