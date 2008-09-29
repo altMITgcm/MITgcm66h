@@ -180,7 +180,7 @@ C     compute Prandtl number (always greater than 0)
          IF ( RiNumber .GE. 0.2 ) prTemp = 5.0 * RiNumber
          TKEPrandtlNumber(I,J,K) = MIN(10.0 _d 0,prTemp)
 C     mixing length
-         GGL90mixingLength(I,J,K) =
+         GGL90mixingLength(I,J,K) = SQRTTWO *
      &        SQRTTKE/SQRT( MAX(Nsquare,GGL90eps) )
 C     impose upper bound for mixing length (total depth)
          GGL90mixingLength(I,J,K) = MIN(GGL90mixingLength(I,J,K),
