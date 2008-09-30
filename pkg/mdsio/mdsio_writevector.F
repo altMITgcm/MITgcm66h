@@ -161,25 +161,25 @@ cph)
          IF( mpiMyId .EQ. 0 ) THEN
           irec=irecord
           if (filePrec .eq. precFloat32) then
-#if defined(ALLOW_EXCH2) && !defined(MISSING_TILE_IO)
+cph#if defined(ALLOW_EXCH2) && !defined(MISSING_TILE_IO)
 c
-#else /* defined(ALLOW_EXCH2) && !defined(MISSING_TILE_IO) */
+cph#else /* defined(ALLOW_EXCH2) && !defined(MISSING_TILE_IO) */
            DO L=1,narr*nPx*nPy
             xy_buffer_r4(L) = global(L)
            ENDDO
-#endif /* defined(ALLOW_EXCH2) && !defined(MISSING_TILE_IO) */
+cph#endif /* defined(ALLOW_EXCH2) && !defined(MISSING_TILE_IO) */
 #ifdef _BYTESWAPIO
            call MDS_BYTESWAPR4( vec_size, xy_buffer_r4 )
 #endif
            write(dUnit,rec=irec) xy_buffer_r4
           elseif (filePrec .eq. precFloat64) then
-#if defined(ALLOW_EXCH2) && !defined(MISSING_TILE_IO)
+cph#if defined(ALLOW_EXCH2) && !defined(MISSING_TILE_IO)
 c
-#else /* defined(ALLOW_EXCH2) && !defined(MISSING_TILE_IO) */
+cph#else /* defined(ALLOW_EXCH2) && !defined(MISSING_TILE_IO) */
            DO L=1,narr*nPx*nPy
             xy_buffer_r8(L) = global(L)
            ENDDO
-#endif /* defined(ALLOW_EXCH2) && !defined(MISSING_TILE_IO) */
+cph#endif /* defined(ALLOW_EXCH2) && !defined(MISSING_TILE_IO) */
 #ifdef _BYTESWAPIO
            call MDS_BYTESWAPR8( vec_size, xy_buffer_r8 )
 #endif
