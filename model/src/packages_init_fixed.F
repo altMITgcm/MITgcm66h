@@ -40,6 +40,8 @@ C       |-- KPP_INIT_FIXED
 C       |
 C       |-- MY82_INIT_FIXED
 C       |
+C       |-- GGL90_INIT_FIXED
+C       |
 C       |-- OPPS_INIT
 C       |
 C       |-- OBCS_INIT_FIXED
@@ -163,6 +165,13 @@ C--   Initialize fixed arrays for KPP
 C--   Initialize fixed arrays for MY82
       IF ( useMY82 ) THEN
        CALL MY82_INIT_FIXED( myThid )
+      ENDIF
+#endif
+
+#ifdef ALLOW_GGL90
+C--   Initialize fixed arrays for GGL90
+      IF ( useGGL90 ) THEN
+       CALL GGL90_INIT_FIXED( myThid )
       ENDIF
 #endif
 
