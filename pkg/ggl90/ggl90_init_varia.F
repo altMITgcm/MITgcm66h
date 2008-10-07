@@ -3,7 +3,7 @@ C $Name$
 
 #include "GGL90_OPTIONS.h"
 
-      SUBROUTINE GGL90_INIT( myThid )
+      SUBROUTINE GGL90_INIT_VARIA( myThid )
 
       IMPLICIT NONE
 C     === Global variables ===
