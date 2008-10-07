@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o gmredi(fm07): 
+  - add lower limit on Transition layer thickness D + lower limit on D/lambda
+  - allow to set few more params from data.gmredi
 o pkg ggl90:
       - add missing sqrt(2) factor in computation of mixing length 
         scale in ggl90_calc.F
