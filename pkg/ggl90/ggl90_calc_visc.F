@@ -39,17 +39,19 @@ C     I, J, K - Loop counters
 CEOP
       DO j=jMin,jMax
        DO i=iMin,iMax
-        KappaRU(i,j,k) = max ( KappaRU(i,j,k),
-     &     KappaRU(i,j,k) - viscAr + _maskW(i,j,k,bi,bj) *
-     &     0.5*(GGL90viscAr(i,j,k,bi,bj)+GGL90viscAr(i-1,j,k,bi,bj)) )
+        KappaRU(i,j,k) = KappaRU(i,j,k) + _maskW(i,j,k,bi,bj) *
+     &                   (.5 _d 0*(GGL90viscAr(i,j,k,bi,bj)
+     &                            +GGL90viscAr(i-1,j,k,bi,bj))
+     &                    -viscAr)
        ENDDO
       ENDDO
 
       DO j=jMin,jMax
        DO i=iMin,iMax
-        KappaRV(i,j,k) = max ( KappaRV(i,j,k),
-     &     KappaRV(i,j,k) - viscAr + _maskS(i,j,k,bi,bj) *
-     &     0.5*(GGL90viscAr(i,j,k,bi,bj)+GGL90viscAr(i,j-1,k,bi,bj)) )
+        KappaRV(i,j,k) = KappaRV(i,j,k) + _maskS(i,j,k,bi,bj) *
+     &                   (.5 _d 0*(GGL90viscAr(i,j,k,bi,bj)
+     &                            +GGL90viscAr(i,j-1,k,bi,bj))
+     &                    -viscAr)
        ENDDO
       ENDDO
 
