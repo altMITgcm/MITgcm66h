@@ -99,6 +99,15 @@ CEOP
       _RL YNEG       (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
       _RL RIVER      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
 
+C     saltWtrIce contains m of salty ice melted (<0) or created (>0)
+C     frWtrIce contains m of freshwater ice melted (<0) or created (>0)
+C              that is, ice due to precipitation or snow
+C     frWtrAtm contains freshwater flux from the atmosphere
+      COMMON/ICEFLUX/ saltWtrIce, frWtrIce, frWtrAtm
+      _RL saltWtrIce (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
+      _RL frWtrIce   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
+      _RL frWtrAtm   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
+
       INTEGER MULTDIM
       PARAMETER (MULTDIM=7)
 #ifdef SEAICE_MULTICATEGORY

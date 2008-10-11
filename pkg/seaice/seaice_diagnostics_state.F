@@ -72,6 +72,8 @@ C
        ENDDO
 C
        CALL DIAGNOSTICS_FILL(HSNOW  ,'SIhsnow ',0,1 ,0,1,1,myThid)
+       CALL DIAGNOSTICS_FILL(frWtrAtm,'SIatmFW ',0,1 ,0,1,1,myThid)
+C
 #ifdef SEAICE_SALINITY
        CALL DIAGNOSTICS_FILL(HSALT  ,'SIhsalt ',0,1 ,0,1,1,myThid)
 #endif
