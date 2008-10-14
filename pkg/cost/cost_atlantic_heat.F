@@ -39,7 +39,7 @@ C     ========= Local variables =========================
       _RL     countTU(Nr), countTV(Nr)
       _RL     petawatt
       _RL     sum
-      parameter( petawatt = 1.e+15 )
+      parameter( petawatt = 1. _d +15 )
 
 C     80W - 0W at 24N
       parameter( isecbeg = 69, isecend = 87, jsec = 28 )
