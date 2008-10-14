@@ -1,7 +1,10 @@
 C $Header$
 C $Name$
 
+#include "SEAICE_OPTIONS.h"
+#ifdef ALLOW_COST
 #include "COST_CPPOPTIONS.h"
+#endif
 
 
       subroutine seaice_cost_areasst(
