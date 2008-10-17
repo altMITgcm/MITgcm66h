@@ -5,6 +5,19 @@ c     store directives for checkpoint level 1
 c
 c     created: heimbach@mit.edu 10-Jan-2002
 c
+
+#ifdef ALLOW_DOWN_SLOPE
+# ifdef ALLOW_SEAICE
+CADJ STORE area,heff,hsnow = comlev1, key = ikey_dynamics
+CADJ STORE uice,vice = comlev1, key = ikey_dynamics
+CADJ STORE tice = comlev1, key = ikey_dynamics
+CADJ STORE eta,zeta = comlev1, key = ikey_dynamics
+# endif
+CADJ STORE surfaceforcingtice = comlev1, key = ikey_dynamics
+CADJ STORE totphihyd = comlev1, key = ikey_dynamics
+CADJ STORE pmepr,salt = comlev1, key = ikey_dynamics
+#endif
+
 #ifdef NONLIN_FRSURF
 c
 CADJ STORE hfacc       = comlev1, key = ikey_dynamics
