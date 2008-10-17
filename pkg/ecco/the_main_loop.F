@@ -146,6 +146,9 @@ c They provide the fields to be stored.
 #  include "SEAICE.h"
 #  include "SEAICE_COST.h"
 # endif
+# ifdef ALLOW_SALT_PLUME
+#  include "SALT_PLUME.h"
+# endif
 # ifdef ALLOW_THSICE
 #  include "THSICE_SIZE.h"
 #  include "THSICE_PARAMS.h"
