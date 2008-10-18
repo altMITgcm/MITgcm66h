@@ -360,11 +360,19 @@ cph: switch to annual means:
 
 #ifdef ALLOW_MEAN_SFLUX_COST_CONTRIBUTION
 cph: these are annual means
+# ifndef ALLOW_SEAICE
       call cost_averagesgeneric(
      &     sfluxbarfile,
      &     sfluxbar, empmr, xx_sflux_mean_dummy,
      &     first, last, startofyear, endofyear, inyear,
      &     sum1year, yearrec, 1, mythid )
+# else
+      call cost_averagesgeneric(
+     &     sfluxbarfile,
+     &     sfluxbar, frWtrAtm, xx_sflux_mean_dummy,
+     &     first, last, startofyear, endofyear, inyear,
+     &     sum1year, yearrec, 1, mythid )
+# endif
 #endif
 
 #ifdef ALLOW_BP_COST_CONTRIBUTION
