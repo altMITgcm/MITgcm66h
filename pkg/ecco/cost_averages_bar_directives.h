@@ -10,6 +10,7 @@ c
 CADJ STORE xx_psbar_mean_dummy = onetape
 CADJ STORE xx_tbar_mean_dummy  = onetape
 CADJ STORE xx_sbar_mean_dummy  = onetape
+CADJ STORE xx_sstbar_mean_dummy  = onetape
 CADJ STORE xx_ubar_mean_dummy  = onetape
 CADJ STORE xx_vbar_mean_dummy  = onetape
 CADJ STORE xx_wbar_mean_dummy  = onetape
