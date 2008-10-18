@@ -37,7 +37,7 @@ else
 % set default for nr,ng,nb (only used for compact fmt):
 %  rgbDim=[360 90 90];
    n1=dim0(1); n2=dim0(2);
-   n2=n2-n1; if rem(n2,4) ~= 0, n2=n2-n1; end
+   n2=n2-n1; if rem(n2,4*n1) ~= 0, n2=n2-n1; end
    if rem(n2,4) ~= 0,
      error('compact fmt input => Need grid 3 dims (rgbDim, 5th Arg)')
    end
