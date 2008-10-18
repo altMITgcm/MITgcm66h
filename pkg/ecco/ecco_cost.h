@@ -71,6 +71,7 @@ c             intantaneous field.
       common /averages_r/
      &                    tbar,
      &                    sbar,
+     &                    sstbar,
      &                    psbar,
      &                    bpbar,
      &                    ubar,
@@ -108,6 +109,12 @@ c             intantaneous field.
 #else
       _RL tbar_gen
       _RL sbar_gen
+#endif
+
+#ifdef ALLOW_SEAICE_COST_AREASST
+      _RL sstbar  (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
+#else
+      _RL sstbar
 #endif
 
 #if (defined (ALLOW_SALT_COST_CONTRIBUTION) || \
@@ -194,6 +201,7 @@ c             intantaneous field.
       common /averages_c/
      &                    tbarfile,
      &                    sbarfile,
+     &                    sstbarfile,
      &                    psbarfile,
      &                    bpbarfile,
      &                    ubarfile,
@@ -206,6 +214,7 @@ c             intantaneous field.
      &                    costTranspDataFile
       character*(MAX_LEN_FNAM) tbarfile
       character*(MAX_LEN_FNAM) sbarfile
+      character*(MAX_LEN_FNAM) sstbarfile
       character*(MAX_LEN_FNAM) psbarfile
       character*(MAX_LEN_FNAM) bpbarfile
       character*(MAX_LEN_FNAM) ubarfile

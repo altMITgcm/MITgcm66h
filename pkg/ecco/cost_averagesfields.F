@@ -159,6 +159,14 @@ c--   Get the time flags and record numbers for the time averaging.
 #endif
 #endif
 
+#ifdef ALLOW_SEAICE_COST_AREASST
+      call cost_averagesgeneric(
+     &     sstbarfile,
+     &     sstbar, theta(1-Olx,1-Oly,1,1,1), xx_sstbar_mean_dummy,
+     &     first, last, startofday, endofday, inday,
+     &     sum1day, dayrec, 1, mythid )
+#endif
+
 #if (defined (ALLOW_SALT_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDS_COST_CONTRIBUTION) || \
      defined (ALLOW_ARGO_SALT_COST_CONTRIBUTION) || \

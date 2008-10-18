@@ -42,7 +42,7 @@ c     == end of interface ==
 c--   Read the namelist input.
       namelist /ecco_cost_nml/
      &                   data_errfile,
-     &                   tbarfile, sbarfile,
+     &                   tbarfile, sbarfile,sstbarfile,
      &                   psbarfile, bpbarfile,
      &                   ubarfile, vbarfile, wbarfile,
      &                   tauxbarfile, tauybarfile,
@@ -135,6 +135,7 @@ c--     Set default values.
         data_errfile          =    ' '
         tbarfile              =    'tbar'
         sbarfile              =    'sbar'
+	sstbarfile            =    'sstbar'
         psbarfile             =    'psbar'
         bpbarfile             =    'bpbar'
         ubarfile              =    'ubar'

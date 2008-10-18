@@ -117,6 +117,16 @@ c--       Initialise temperature average (2d).
 #endif
 #endif
 
+#ifdef ALLOW_SEAICE_COST_AREASST
+c--       Initialise temperature average (2d).
+          do j = jmin,jmax
+            do i =  imin,imax
+              sstbar(i,j,bi,bj) = 0. _d 0
+	    enddo
+	  enddo 
+	  xx_sstbar_mean_dummy = 0. _d 0
+#endif
+
 #if (defined (ALLOW_SALT_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDS_COST_CONTRIBUTION) || \
      defined (ALLOW_DRIFT_COST_CONTRIBUTION) || \
