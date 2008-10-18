@@ -60,6 +60,8 @@ cph      if (useSEAICE) then
 
 #ifdef ALLOW_SEAICE_COST_SMR_AREA
 
+# ifndef ALLOW_SEAICE_COST_AREASST
+
       write(msgbuf,'(a)') 'ph-cost call cost_smrarea'
       call print_message( msgbuf, standardmessageunit,
      &     SQUEEZE_RIGHT , mythid)
@@ -87,6 +89,8 @@ cph)
      &     'ph-cost smrarea ', objf_smrarea(1,1), num_smrarea(1,1)
       call print_message( msgbuf, standardmessageunit,
      &     SQUEEZE_RIGHT , mythid)
+
+# endif /* ALLOW_SEAICE_COST_AREASST */
 
 #endif
 
