@@ -153,10 +153,10 @@ C     ycoord :: varying parameters.
      & 'no_slip_bottom =', '  /* Viscous BCs: No-slip bottom */')
       CALL WRITE_0D_R8( bottomDragLinear, INDEX_NONE,
      & 'bottomDragLinear =',
-     & ' /* linear bottom-drag coefficient ('//rUnits//'/s ) */')
+     & ' /* linear bottom-drag coefficient ( m/s ) */')
       CALL WRITE_0D_R8( bottomDragQuadratic, INDEX_NONE,
      & 'bottomDragQuadratic =',
-     & ' /* quadratic bottom-drag coeff. ('//rUnits//'/m ) */')
+     & ' /* quadratic bottom-drag coefficient (-) */')
       CALL WRITE_0D_R8( diffKhT, INDEX_NONE,'diffKhT =',
      &'   /* Laplacian diffusion of heat laterally ( m^2/s ) */')
       CALL WRITE_0D_R8( diffK4T, INDEX_NONE,'diffK4T =',
