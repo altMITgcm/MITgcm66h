@@ -201,7 +201,7 @@ C-       replace derivatives in physical space of Div & Vort by computational on
            IF ( .NOT.Shap_alwaysExchUV
      &          .AND. useCubedSphereExchange ) THEN
 C          to compute d/dx(hDiv), fill corners with appropriate values:
-             CALL FILL_CS_CORNER_TR_RL( .TRUE., .FALSE.,
+             CALL FILL_CS_CORNER_TR_RL( 1, .FALSE.,
      &                                  hDiv, bi,bj, myThid )
            ENDIF
 #endif
@@ -217,7 +217,7 @@ C          to compute d/dx(hDiv), fill corners with appropriate values:
            IF ( .NOT.Shap_alwaysExchUV
      &          .AND. useCubedSphereExchange ) THEN
 C          to compute d/dy(hDiv), fill corners with appropriate values:
-             CALL FILL_CS_CORNER_TR_RL(.FALSE., .FALSE.,
+             CALL FILL_CS_CORNER_TR_RL( 2, .FALSE.,
      &                                  hDiv, bi,bj, myThid )
            ENDIF
 #endif

@@ -60,22 +60,28 @@ C     myThid    :: my Thread Id. number
 
 C     !LOCAL VARIABLES:
 C     == Local variables ==
+      INTEGER selectDir
 CEOP
 
       IF (useCubedSphereExchange) THEN
-          CALL FILL_CS_CORNER_TR_RL( fill4dirX, .FALSE.,
+          IF ( fill4dirX ) THEN
+            selectDir = 1
+          ELSE
+            selectDir = 2
+          ENDIF
+          CALL FILL_CS_CORNER_TR_RL( selectDir, .FALSE.,
      &                               sm_v , bi,bj, myThid )
-          CALL FILL_CS_CORNER_TR_RL( fill4dirX, .FALSE.,
+          CALL FILL_CS_CORNER_TR_RL( selectDir, .FALSE.,
      &                               sm_o , bi,bj, myThid )
           CALL FILL_CS_CORNER_AG_RL( fill4dirX, .TRUE.,
      &                               sm_x , sm_y , bi,bj, myThid )
-          CALL FILL_CS_CORNER_TR_RL( fill4dirX, .FALSE.,
+          CALL FILL_CS_CORNER_TR_RL( selectDir, .FALSE.,
      &                               sm_z , bi,bj, myThid )
           CALL FILL_CS_CORNER_AG_RL( fill4dirX, .FALSE.,
      &                               sm_xx, sm_yy, bi,bj, myThid )
-          CALL FILL_CS_CORNER_TR_RL( fill4dirX, .FALSE.,
+          CALL FILL_CS_CORNER_TR_RL( selectDir, .FALSE.,
      &                               sm_zz, bi,bj, myThid )
-          CALL FILL_CS_CORNER_TR_RL( fill4dirX, .TRUE.,
+          CALL FILL_CS_CORNER_TR_RL( selectDir, .TRUE.,
      &                               sm_xy, bi,bj, myThid )
           CALL FILL_CS_CORNER_AG_RL( fill4dirX, .TRUE.,
      &                               sm_xz, sm_yz, bi,bj, myThid )

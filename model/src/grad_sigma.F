@@ -58,7 +58,7 @@ C-    safer to work on a local copy of rhoK (before a partial update)
 C-    Internal exchange for calculations in X
 cph-exch2#ifndef ALLOW_AUTODIFF_TAMC
       IF ( useCubedSphereExchange ) THEN
-        CALL FILL_CS_CORNER_TR_RL( .TRUE., .FALSE.,
+        CALL FILL_CS_CORNER_TR_RL( 1, .FALSE.,
      &                             rhoLoc, bi,bj, myThid )
       ENDIF
 cph-exch2#endif
@@ -73,7 +73,7 @@ cph-exch2#endif
 C-    Internal exchange for calculations in Y
 cph-exch2#ifndef ALLOW_AUTODIFF_TAMC
       IF ( useCubedSphereExchange ) THEN
-        CALL FILL_CS_CORNER_TR_RL(.FALSE., .FALSE.,
+        CALL FILL_CS_CORNER_TR_RL( 2, .FALSE.,
      &                             rhoLoc, bi,bj, myThid )
       ENDIF
 cph-exch2#endif

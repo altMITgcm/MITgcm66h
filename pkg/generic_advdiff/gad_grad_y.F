@@ -50,7 +50,7 @@ CEOP
 cph-exch2#ifndef ALLOW_AUTODIFF_TAMC
 C--   Internal exchange for calculations in Y
       IF (useCubedSphereExchange) THEN
-        CALL FILL_CS_CORNER_TR_RL(.FALSE., .FALSE.,
+        CALL FILL_CS_CORNER_TR_RL( 2, .FALSE.,
      &                             tracer, bi,bj, myThid )
       ENDIF
 cph-exch2#endif
