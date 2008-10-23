@@ -552,8 +552,10 @@ C--     Compute KPP mixing coefficients
           IF ( debugLevel .GE. debLevB )
      &     CALL DEBUG_CALL('KPP_CALC',myThid)
 #endif
+          CALL TIMER_START('KPP_CALC [DO_OCEANIC_PHYS]', myThid)
           CALL KPP_CALC(
      I                  bi, bj, myTime, myIter, myThid )
+          CALL TIMER_STOP ('KPP_CALC [DO_OCEANIC_PHYS]', myThid)
 #ifdef ALLOW_AUTODIFF_TAMC
         ELSE
           CALL KPP_CALC_DUMMY(
@@ -594,8 +596,10 @@ C--     Compute GGL90 mixing coefficients
           IF ( debugLevel .GE. debLevB )
      &     CALL DEBUG_CALL('GGL90_CALC',myThid)
 #endif
+          CALL TIMER_START('GGL90_CALC [DO_OCEANIC_PHYS]', myThid)
           CALL GGL90_CALC(
      I                  bi, bj, myTime, myThid )
+          CALL TIMER_STOP ('GGL90_CALC [DO_OCEANIC_PHYS]', myThid)
         ENDIF
 #endif /* ALLOW_GGL90 */
 
