@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint61e
 o gmredi (Visbeck-variable-K):
   - fix the "OLD_VISBECK_CALC" option + move the #undef to GMREDI_OPTIONS.h
   - change computation of Visbeck-K where Slope > Smax :        
