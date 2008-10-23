@@ -107,6 +107,13 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
         CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
+        diagName  = 'KPPRi   '
+        diagTitle = 'Bulk Richardson number'
+        diagUnits = 'non-dimensional '
+        diagCode  = 'SM P    UR      '
+        CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
         diagName  = 'KPPbo   '
         diagTitle = 'Surface turbulent buoyancy forcing'
         diagUnits = 'm^2/s^3         '
