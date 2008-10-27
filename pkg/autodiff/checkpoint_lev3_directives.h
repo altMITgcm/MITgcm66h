@@ -113,6 +113,10 @@ CADJ &     = tapelev3, key = ilev_3
 # include "obcs_ad_check_lev3_dir.h"
 #endif  /* ALLOW_OBCS */
 
+#ifdef ALLOW_SALT_PLUME
+# include "salt_plume_ad_check_lev3_dir.h"
+#endif
+
 #ifdef ALLOW_SEAICE
 # include "seaice_ad_check_lev3_dir.h"
 #endif /* ALLOW_SEAICE */
