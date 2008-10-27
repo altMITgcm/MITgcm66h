@@ -109,6 +109,9 @@ C     == Global variables ==
 # ifdef ALLOW_SEAICE
 #  include "SEAICE.h"
 # endif
+# ifdef ALLOW_SALT_PLUME
+#  include "SALT_PLUME.h"
+# endif
 # ifdef ALLOW_EBM
 #  include "EBM.h"
 # endif
@@ -204,6 +207,9 @@ C--   Call driver to load external forcing fields from file
 #ifdef ALLOW_AUTODIFF_TAMC
 cph Important STORE that avoids hidden recomp. of load_fields_driver
 CADJ STORE theta      = comlev1, key = ikey_dynamics
+# ifdef ALLOW_SALT_PLUME
+CADJ STORE uvel, vvel = comlev1, key = ikey_dynamics
+# endif
 #endif
       CALL TIMER_START('LOAD_FIELDS_DRIVER  [FORWARD_STEP]',myThid)
       CALL LOAD_FIELDS_DRIVER( myTime, myIter, myThid )
