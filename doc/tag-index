@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o kpp: retire KPPmld diagnostics --> use MXLDEPTH instead
 o gmredi (Visbeck-variable-K):
  - add more parameters to Visbeck-variable-K.
  - use a 5 points average for dSigmaR in Visbeck-K calculation
