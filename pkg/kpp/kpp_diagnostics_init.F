@@ -79,13 +79,6 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
         CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
-        diagName  = 'KPPmld  '
-        diagTitle = 'Mixed layer depth, dT=.8degC density criterion'
-        diagUnits = 'm               '
-        diagCode  = 'SM P     1      '
-        CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I          diagName, diagCode, diagUnits, diagTitle, myThid )
-
         diagName  = 'KPPfrac '
         diagTitle = 'Short-wave flux fraction penetrating mixing layer'
         diagUnits = '                '
