@@ -72,7 +72,8 @@ C        Search all possible model diagnostics
          IF ( .NOT.found ) THEN
            CALL DIAGNOSTICS_LIST_CHECK(
      O                      ndCount,
-     I                      ld,md,diagSt_nbFlds,diagSt_Flds,myThid)
+     I                      ld,md, diagSt_nbLists,
+     I                      diagSt_nbFlds,diagSt_Flds,myThid)
            IF ( ndCount.EQ.0 ) THEN
              WRITE(msgBuf,'(3A)') 'DIAGSTATS_SET_POINTERS: ',
      &                     diagSt_Flds(md,ld),' is not a Diagnostic'

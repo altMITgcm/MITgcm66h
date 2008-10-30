@@ -10,7 +10,8 @@ C     !ROUTINE: DIAGNOSTICS_LIST_CHECK
 C     !INTERFACE:
       SUBROUTINE DIAGNOSTICS_LIST_CHECK(
      O                       ndCount,
-     I                       ld, md, nbFlds, fldsList, myThid )
+     I                       ld, md,
+     I                       nbLists, nbFlds, fldsList, myThid )
 
 C     !DESCRIPTION:
 C     Check a list of fields for disable diagnostics,
@@ -128,6 +129,15 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
            WRITE(msgBuf,'(5A)') 'DIAGNOSTICS_LIST_CHECK: diagnostic "',
      &             diagName, '" was replaced by "DFyE',
      &             diagName(5:8), '"'
+           CALL PRINT_ERROR( msgBuf , myThid )
+           WRITE(msgBuf,'(3A)') 'DIAGNOSTICS_LIST_CHECK: ',
+     &              '=> need to change "data.diagnostics" accordingly'
+           CALL PRINT_ERROR( msgBuf , myThid )
+           ndCount = ndCount + 1
+         ENDIF
+         IF ( diagName.EQ.'KPPmld  ' ) THEN
+           WRITE(msgBuf,'(3A)') 'DIAGNOSTICS_LIST_CHECK: diagnostic "',
+     &             diagName, '" was retired in favor of "MXLDEPTH"'
            CALL PRINT_ERROR( msgBuf , myThid )
            WRITE(msgBuf,'(3A)') 'DIAGNOSTICS_LIST_CHECK: ',
      &              '=> need to change "data.diagnostics" accordingly'
