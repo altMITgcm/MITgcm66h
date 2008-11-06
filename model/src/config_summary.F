@@ -184,6 +184,8 @@ C     ycoord :: varying parameters.
      &  //rUnits//'^2/s ) */')
       CALL WRITE_0D_R8( hMixCriteria, INDEX_NONE,'hMixCriteria=',
      & '  /* Criteria for mixed-layer diagnostic */')
+      CALL WRITE_0D_R8( dRhoSmall, INDEX_NONE,'dRhoSmall=',
+     & '  /* Parameter for mixed-layer diagnostic */')
       CALL WRITE_0D_C( eosType, 0, INDEX_NONE, 'eosType =',
      & '  /* Type of Equation of State */')
       CALL WRITE_0D_R8( tAlpha,  INDEX_NONE,'tAlpha =',
