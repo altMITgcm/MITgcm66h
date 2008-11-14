@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o Prather Advection scheme: fix tracer conservation for divergent flow
+  (e.g., when using NonLin Free-Surface).
 o kpp: retire KPPmld diagnostics --> use MXLDEPTH instead
 o gmredi (Visbeck-variable-K):
  - add more parameters to Visbeck-variable-K.
