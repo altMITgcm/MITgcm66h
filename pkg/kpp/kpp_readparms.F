@@ -17,7 +17,6 @@ C     !USES:
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "GRID.h"
 #include "KPP_PARAMS.h"
 
 C     !INPUT PARAMETERS:
@@ -68,11 +67,7 @@ C--   set default KPP vertical mixing parameters
       KPPmixingMaps = .FALSE.
       KPPwriteState = .FALSE.
       KPP_ghatUseTotalDiffus = .FALSE.
-      IF ( setCenterDr ) THEN
-        minKPPhbl   = delRc(1)
-      ELSE
-        minKPPhbl   = delR(1)*0.5
-      ENDIF
+      minKPPhbl = UNSET_RL
 
 C-----------------------------------------------------------------------
 C define some non-dimensional constants and
