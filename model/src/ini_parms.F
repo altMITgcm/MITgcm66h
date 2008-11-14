@@ -195,7 +195,7 @@ C--   Continuous equation parameters
      & writeBinaryPrec, readBinaryPrec, writeStatePrec,
      & nonHydrostatic, quasiHydrostatic, globalFiles, useSingleCpuIO,
      & allowFreezing, useOldFreezing, ivdc_kappa, 
-     & hMixCriteria, dRhoSmall,
+     & hMixCriteria, dRhoSmall, hMixSmooth,
      & usePickupBeforeC35, usePickupBeforeC54, debugMode, debugLevel,
      & tempAdvScheme, tempVertAdvScheme,
      & saltAdvScheme, saltVertAdvScheme, tracerAdvScheme,
