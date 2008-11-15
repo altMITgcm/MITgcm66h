@@ -64,7 +64,7 @@ C                    without topography)
       EXTERNAL smoothMin_R4
 # endif /* USE_SMOOTH_MIN */
 #else
-      _RL hFacZOpen
+      _RS     hFacZOpen
       INTEGER hZoption
       LOGICAL northWestCorner, northEastCorner,
      &        southWestCorner, southEastCorner
