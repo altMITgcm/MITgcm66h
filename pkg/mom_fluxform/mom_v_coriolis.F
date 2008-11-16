@@ -7,7 +7,7 @@ CBOP
 C !ROUTINE: MOM_V_CORIOLIS
 
 C !INTERFACE: ==========================================================
-      SUBROUTINE MOM_V_CORIOLIS( 
+      SUBROUTINE MOM_V_CORIOLIS(
      I        bi,bj,k,uFld,
      U        vCoriolisTerm,
      I        myThid)
@@ -31,7 +31,7 @@ C  bi,bj                :: tile indices
 C  k                    :: vertical level
 C  uFld                 :: zonal flow
 C  myThid               :: thread number
-      INTEGER bi,bj,K
+      INTEGER bi,bj,k
       _RL uFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER myThid
 
@@ -41,9 +41,9 @@ C  vCoriolisTerm        :: Coriolis term
 
 C !LOCAL VARIABLES: ====================================================
 C  i,j                  :: loop indices
-      INTEGER I,J
-      _RL one
-      PARAMETER(one=1.d0)
+      INTEGER i,j
+      _RS one
+      PARAMETER( one = 1. _d 0 )
 CEOP
 
       IF (useEnergyConservingCoriolis) THEN
@@ -77,8 +77,9 @@ C         "Numerical Boundary Layers and Spurious Residual Flows"
        DO j=1-Oly+1,sNy+Oly
         DO i=1-Olx,sNx+Olx-1
          vCoriolisTerm(i,j) = vCoriolisTerm(i,j)
-     & *4.d0/max(one, maskW( i , j ,k,bi,bj)+maskW(i+1, j ,k,bi,bj)
-     &               +maskW( i ,j-1,k,bi,bj)+maskW(i+1,j-1,k,bi,bj) )
+     &   *4. _d 0/MAX( one,
+     &                 maskW( i , j ,k,bi,bj)+maskW(i+1, j ,k,bi,bj)
+     &                +maskW( i ,j-1,k,bi,bj)+maskW(i+1,j-1,k,bi,bj) )
         ENDDO
        ENDDO
       ENDIF
