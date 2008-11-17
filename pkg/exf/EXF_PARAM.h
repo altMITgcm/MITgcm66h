@@ -338,6 +338,7 @@ C     useStabilityFct_overIce :: over sea-ice, compute turbulent transfert
 C                                coeff. function of stability (like over
 C                                open ocean) rather than using fixed Coeff.
 C     useRelativeWind    :: Subtract U/VVEL or U/VICE from U/VWIND before computing U/VSTRESS
+C     noNegativeEvap     :: prevent negative evaporation (= sea-surface condensation)
 
       logical useExfYearlyFields, twoDigitYear
       logical useExfCheckRange
@@ -346,13 +347,14 @@ C     useRelativeWind    :: Subtract U/VVEL or U/VICE from U/VWIND before comput
       logical stressIsOnCgrid
       logical useStabilityFct_overIce
       logical useRelativeWind
+      logical noNegativeEvap
 
       common /exf_param_l/
      &                     useExfYearlyFields, twoDigitYear,
      &                     useExfCheckRange,
      &                     readStressOnAgrid, readStressOnCgrid,
      &                     stressIsOnCgrid, useStabilityFct_overIce,
-     &                     useRelativeWind
+     &                     useRelativeWind, noNegativeEvap
       common /exf_param_i/
      &                     hfluxstartdate1,   hfluxstartdate2,
      &                     atempstartdate1,   atempstartdate2,
