@@ -52,14 +52,18 @@ C     myThid  :: my Thread Id number
       INTEGER myIter, myThid
 CEOP
 
+C     !FUNCTIONS:
+#ifdef ALLOW_FIZHI
+      _RL   getcon
+      EXTERNAL getcon
+#endif
+
 C     !LOCAL VARIABLES:
 C     i,j,k :: loop indices
       INTEGER i, j, k
       INTEGER bi, bj
       _RL   qtmpsrf(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL   qtmp2  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,NrMax,nSx,nSy)
-      _RL   getcon
-      EXTERNAL getcon
       INTEGER kLev
       _RL   qprs (sNx,sNy)
       _RL   qinp (sNx,sNy,NrMax)
@@ -75,8 +79,11 @@ C     i,j,k :: loop indices
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
       IF (fflags(listId)(2:2).EQ.'P') THEN
-        kappa = getcon('KAPPA')
         pkTop = 0. _d 0
+        kappa = atm_kappa
+#ifdef ALLOW_FIZHI
+        IF ( useFIZHI ) kappa = getcon('KAPPA')
+#endif
 
 C--   If nonlinear free surf is active, need averaged pressures
         IF (select_rStar.GT.0) THEN
