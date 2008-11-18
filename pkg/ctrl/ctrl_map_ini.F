@@ -247,8 +247,14 @@ c--   diffkr.
           do k = 1,nr
             do j = jmin,jmax
               do i = imin,imax
+#ifdef ALLOW_AUTODIFF_OPENAD
+                diffkr(i,j,k,bi,bj) = diffkr(i,j,k,bi,bj) +
+     &                                xx_diffkr(i,j,k,bi,bj) +
+     &                                tmpfld3d(i,j,k,bi,bj)
+#else
                 diffkr(i,j,k,bi,bj) = diffkr(i,j,k,bi,bj) +
      &                                tmpfld3d(i,j,k,bi,bj)
+#endif
               enddo
             enddo
           enddo
@@ -271,8 +277,14 @@ c--   kapgm.
           do k = 1,nr
             do j = jmin,jmax
               do i = imin,imax
+#ifdef ALLOW_AUTODIFF_OPENAD
+                kapgm(i,j,k,bi,bj) = kapgm(i,j,k,bi,bj) +
+     &                               xx_kapgm(i,j,k,bi,bj) +
+     &                               tmpfld3d(i,j,k,bi,bj)
+#else
                 kapgm(i,j,k,bi,bj) = kapgm(i,j,k,bi,bj) +
      &                               tmpfld3d(i,j,k,bi,bj)
+#endif
               enddo
             enddo
           enddo
