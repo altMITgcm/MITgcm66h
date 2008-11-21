@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint61f
 o pkg/seaice, LSR solver: fix bug in GLOBAL_MAX calls ; 
   update results of global_ocean.cs32x15.icedyn test.
 o move getcon.F from model/src to pkg/fizhi.
