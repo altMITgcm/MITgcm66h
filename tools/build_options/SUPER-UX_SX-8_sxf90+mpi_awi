@@ -8,7 +8,7 @@
 
 # nec use
 CPP='/lib/cpp -traditional -P'
-DEFINES='-DALLOW_USE_MPI -DALWAYS_USE_MPI -DTARGET_NEC_SX -DWORDLENGTH=1 -UHAVE_SIGREG -DSEAICE_VECTORIZE_LSR -DCG2D_OUTERLOOPITERS=10'
+DEFINES='-DALLOW_USE_MPI -DALWAYS_USE_MPI -DTARGET_NEC_SX -DWORDLENGTH=1 -DHAVE_CLOC -UHAVE_SIGREG -DSEAICE_VECTORIZE_LSR -DCG2D_OUTERLOOPITERS=10'
 FC='sxmpif90'
 CC='sxcc -sx8r'
 
@@ -58,6 +58,12 @@ else
 fi
 
 # awi specific paths and stuff
+#NETCDFINC='-I/sx8/user2/awisoft/sx8/netcdf-3.6.2/include'
+#NETCDFLIB='-L/sx8/user2/awisoft/sx8/netcdf-3.6.2/lib -lnetcdf'
+#NETCDFINC='-I/sx8/user2/awisoft/sx8/netcdf-3.6.1/include'
+#NETCDFLIB='-L/sx8/user2/awisoft/sx8/netcdf-3.6.1/lib -lnetcdf'
+#INCLUDES='-I/SX/usr/include '$NETCDFINC
+#LIBS=$NETCDFLIB
 INCLUDES='-I/SX/usr/include -I/home/sx8/sx8bench/netcdf/include'
 LIBS='-L/home/sx8/sx8bench/netcdf/lib -lnetcdf'
 # this is needed for compiling on the compute nodes
