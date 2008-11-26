@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/obcs: fix a CPP-flag, bug reported by Jeff Blundell
 o gather_2d.F/scatter_2d.F: suppress vectorisation on NEC SX in respond to
   a still unfixed compiler/optimization bug
 
