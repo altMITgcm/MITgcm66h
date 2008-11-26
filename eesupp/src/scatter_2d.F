@@ -54,6 +54,9 @@ C--   Process 0 fills-in its local data
          DO bj=1,nSy
             DO bi=1,nSx
                DO j=1,sNy
+#ifdef TARGET_NEC_SX
+!cdir novector
+#endif
                   DO i=1,sNx
                      iG = mpi_myXGlobalLo(npe+1)-1+(bi-1)*sNx+i
                      jG = mpi_myYGlobalLo(npe+1)-1+(bj-1)*sNy+j
@@ -68,6 +71,9 @@ C--   Process 0 sends local arrays to all other processes
             DO bj=1,nSy
                DO bi=1,nSx
                   DO j=1,sNy
+#ifdef TARGET_NEC_SX
+!cdir novector
+#endif
                      DO i=1,sNx
                         iG = mpi_myXGlobalLo(npe+1)-1+(bi-1)*sNx+i
                         jG = mpi_myYGlobalLo(npe+1)-1+(bj-1)*sNy+j
