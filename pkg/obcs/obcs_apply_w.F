@@ -83,7 +83,7 @@ C Eastern boundary
        ENDIF
       ENDDO
 #endif
-#ifdef ALLOW_OBCS_SOUTH
+#ifdef ALLOW_OBCS_WEST
       DO J=1-Oly,sNy+Oly
 C Western boundary
        I_obc=OB_Iw(J,bi,bj)
