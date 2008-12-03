@@ -1,6 +1,13 @@
 C $Header$
 C $Name$
 
+C CPP options file for FLT package
+
+#ifndef FLT_OPTIONS_H
+#define FLT_OPTIONS_H
+#include "PACKAGES_CONFIG.h"
+#ifdef ALLOW_FLT
+
 #include "CPP_OPTIONS.h"
 
 c Include/Exclude part that allows 3-dimensional advection of floats
@@ -17,4 +24,5 @@ c
 #define ALLOW_FLT_3D_NOISE
 #endif
 
-
+#endif /* ALLOW_FLT */
+#endif /* FLT_OPTIONS_H */

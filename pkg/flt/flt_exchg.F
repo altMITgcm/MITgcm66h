@@ -4,7 +4,7 @@ C $Name$
 C /u/gcmpack/MITgcm/pkg/flt/flt_exchg.F,v 1.1 2001/09/13 17:43:55 adcroft Exp
 C checkpoint52h_pre
 
-#include "FLT_CPPOPTIONS.h"
+#include "FLT_OPTIONS.h"
 
       subroutine flt_exchg (
      I                       myCurrentIter,

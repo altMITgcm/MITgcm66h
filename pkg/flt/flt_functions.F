@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "FLT_CPPOPTIONS.h"
+#include "FLT_OPTIONS.h"
 
       _RL     function global2local_i(
      I                                rG,
