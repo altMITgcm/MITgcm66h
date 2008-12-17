@@ -77,6 +77,9 @@ C
 #ifdef SEAICE_SALINITY
        CALL DIAGNOSTICS_FILL(HSALT  ,'SIhsalt ',0,1 ,0,1,1,myThid)
 #endif
+#ifdef SEAICE_AGE
+       CALL DIAGNOSTICS_FILL(IceAge ,'SIage   ',0,1 ,0,1,1,myThid)
+#endif
 C
 #ifdef SEAICE_CGRID
        IF ( DIAGNOSTICS_IS_ON('SIsigI  ',myThid) .OR.

@@ -821,6 +821,19 @@ C     turn GHEFF into a rate
          ENDDO
         ENDIF
 
+#ifdef SEAICE_AGE
+C     Sources and sinks for sea ice age
+        DO J=1,sNy
+         DO I=1,sNx
+          IF ( AREA(I,J,1,bi,bj) .GT. 0.15 ) THEN
+           IceAge(i,j,bi,bj) = IceAge(i,j,bi,bj) + SEAICE_deltaTtherm
+          ELSE
+           IceAge(i,j,bi,bj) = ZERO
+          ENDIF
+         ENDDO
+        ENDDO
+#endif
+
        ENDDO
       ENDDO
 

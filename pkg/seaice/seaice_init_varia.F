@@ -118,6 +118,9 @@ C--   Initialise all variables in common blocks:
 #ifdef SEAICE_SALINITY
           HSALT(i,j,bi,bj)  = 0. _d 0
 #endif
+#ifdef SEAICE_AGE
+          ICEAGE(i,j,bi,bj) = 0. _d 0
+#endif
           HEFFM(i,j,bi,bj)  = 0. _d 0
           YNEG (i,j,bi,bj)  = 0. _d 0
           RIVER(i,j,bi,bj)  = 0. _d 0
@@ -420,6 +423,23 @@ C--   Read initial sea ice salinity from file if available.
         ENDDO
        ENDIF
 #endif /* SEAICE_SALINITY */
+
+#ifdef SEAICE_AGE
+C--   Read initial sea ice age from file if available.
+       IF ( IceAgeFile .NE. ' ' ) THEN
+        CALL READ_FLD_XY_RL( IceAgeFile, ' ', ZETA, 0, myThid )
+        _EXCH_XY_R8(ZETA,myThid)
+        DO bj=myByLo(myThid),myByHi(myThid)
+         DO bi=myBxLo(myThid),myBxHi(myThid)
+          DO j=1-OLy,sNy+OLy
+           DO i=1-OLx,sNx+OLx
+            ICEAGE(i,j,bi,bj) = ZETA(i,j,bi,bj)
+           ENDDO
+          ENDDO
+         ENDDO
+        ENDDO
+       ENDIF
+#endif /* SEAICE_AGE */
 
       ENDIF
 

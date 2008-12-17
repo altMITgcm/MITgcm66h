@@ -64,6 +64,9 @@ C--   Allow SEAICEuseFlooding, which converts snow to ice if submerged.
 C--   By default sea ice is fresh.  Set following flag for salty ice.
 #undef SEAICE_SALINITY
 
+C--   Track sea ice age.
+#undef SEAICE_AGE
+
 C--   By default the seaice model is discretized on a B-Grid (for 
 C     historical reasons). Define the following flag to use a new
 C     (not thoroughly) test version on a C-grid

@@ -107,6 +107,12 @@ C---  continue to write 2-D fields:
         CALL WRITE_REC_3D_RL( fn, fp,  1, HSALT , nj, myIter, myThid )
         IF (j.LE.listDim) wrFldList(j) = 'siHSALT '
 #endif
+#ifdef SEAICE_AGE
+        j = j + 1
+        nj = nj-1
+        CALL WRITE_REC_3D_RL( fn, fp,  1, ICEAGE, nj, myIter, myThid )
+        IF (j.LE.listDim) wrFldList(j) = 'siAGE   '
+#endif
        ENDIF
 
 C--    write Sea-Ice Dynamics variables (all 2-D fields):

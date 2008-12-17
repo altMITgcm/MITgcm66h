@@ -92,6 +92,13 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I    diagName, diagCode, diagUnits, diagTitle, myThid )
 
+      diagName  = 'SIage   '
+      diagTitle = 'SEAICE age'
+      diagUnits = 's               '
+      diagCode  = 'SM      M1      '
+      CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, myThid )
+
       diagName  = 'SIatmFW '
       diagTitle = 'Net freshwater flux from the atmosphere (+=down)'
       diagUnits = 'kg/m^2/s        '

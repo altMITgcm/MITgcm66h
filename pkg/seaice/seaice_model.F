@@ -136,7 +136,7 @@ C--   (called from DO_OCEANIC_PHYSICS) take care of this
 
 C NOW DO ADVECTION and DIFFUSION
       IF ( SEAICEadvHeff .OR. SEAICEadvArea .OR. SEAICEadvSnow
-     &        .OR. SEAICEadvSalt ) THEN
+     &        .OR. SEAICEadvSalt .OR. SEAICEadvAge ) THEN
 #ifdef ALLOW_DEBUG
        IF ( debugLevel .GE. debLevB )
      &      CALL DEBUG_CALL( 'SEAICE_ADVDIFF', myThid )
@@ -188,6 +188,9 @@ C--   Update overlap regions for a bunch of stuff
        _EXCH_XY_R8( HSNOW,  myThid )
 #ifdef SEAICE_SALINITY
        _EXCH_XY_R8( HSALT,  myThid )
+#endif
+#ifdef SEAICE_AGE
+       _EXCH_XY_R8( IceAge,  myThid )
 #endif
        _EXCH_XY_R4(EmPmR, myThid )
        _EXCH_XY_R4(saltFlux, myThid )
