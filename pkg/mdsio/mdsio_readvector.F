@@ -51,6 +51,8 @@ ce
       integer bi,bj
 ce
 
+#if defined(ALLOW_AUTODIFF) || defined(ALLOW_FLT)
+ 
 C Functions
       integer ILNBLNK
       integer MDS_RECLEN
@@ -337,6 +339,8 @@ c      ENDDO k=1,nNz
 
       endif
 c     endif ( useSingleCPUIO )
+
+#endif /* defined(ALLOW_AUTODIFF) || defined(ALLOW_FLT) */
 
       return
       end

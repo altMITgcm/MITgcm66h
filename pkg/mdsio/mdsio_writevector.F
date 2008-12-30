@@ -58,6 +58,8 @@ ce
       integer bi,bj
 ce
 
+#if defined(ALLOW_AUTODIFF) || defined(ALLOW_FLT)
+
 C Functions
       integer ILNBLNK
       integer MDS_RECLEN
@@ -342,6 +344,8 @@ C Create meta-file for global file
 C endif useSingleCpuIO
       endif
 #endif /* ALLOW_USE_MPI */
+
+#endif /* defined(ALLOW_AUTODIFF) || defined(ALLOW_FLT) */
 
 C     ------------------------------------------------------------------
       return
