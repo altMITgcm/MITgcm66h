@@ -2,7 +2,6 @@ C $Header$
 C $Name$
 
 #include "MDSIO_OPTIONS.h"
-#define REPRODUCE_BOTTOM_CTRL_OLDRESULTS
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 CBOP 0
