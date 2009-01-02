@@ -11,6 +11,7 @@ DEFINES='-D_BYTESWAPIO -DWORDLENGTH=4'
 # CPP='gcc -E -traditional -P -'
 CPP='cpp  -traditional -P'
 NOOPTFLAGS='-O0'
+EXTENDED_SRC_FLAG='-ffixed-line-length-132'
 
 if test "x$IEEE" = x ; then
     #  No need for IEEE-754

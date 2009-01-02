@@ -20,6 +20,7 @@ CC=gcc
 DEFINES='-DWORDLENGTH=4 -DNML_TERMINATOR'
 CPP='cpp -traditional -P'
 NOOPTFLAGS='-O0'
+EXTENDED_SRC_FLAG='-ffixed-line-length-132'
 
 if test "x$DEVEL" != x ; then
     FFLAGS='-g -Wall -W -ffpe-trap=invalid,zero,overflow -fbounds-check'
