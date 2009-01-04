@@ -189,8 +189,7 @@ C--   Initialize fixed arrays for OBCS
 #ifdef ALLOW_FLT
 C--   Initialise Float positions
       IF (useFLT) THEN
-       CALL FLT_INIT(nIter0,startTime,myThid )
-      _BARRIER
+       CALL FLT_INIT( myThid )
       ENDIF
 #endif
 

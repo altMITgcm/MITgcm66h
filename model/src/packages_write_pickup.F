@@ -108,7 +108,8 @@ c      ENDIF
 #ifdef ALLOW_FLT
 C     Write restart file for floats
       IF (useFLT) THEN
-        CALL FLT_RESTART(myTime, myIter, myThid)
+        CALL FLT_WRITE_PICKUP(
+     &                  suffix, myTime, myIter, myThid )
       ENDIF
 #endif
 

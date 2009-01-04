@@ -776,7 +776,7 @@ C--   Do "blocking" sends and receives for field "overlap" terms
 C--   Calculate float trajectories
       IF (useFLT) THEN
         CALL TIMER_START('FLOATS            [FORWARD_STEP]',myThid)
-        CALL FLT_MAIN(myIter,myTime, myThid)
+        CALL FLT_MAIN( myTime, myIter, myThid )
         CALL TIMER_STOP ('FLOATS            [FORWARD_STEP]',myThid)
       ENDIF
 #endif
