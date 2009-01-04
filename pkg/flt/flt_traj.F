@@ -5,10 +5,7 @@ C $Name$
 
 
       SUBROUTINE FLT_TRAJ (
-     I                     myIter,
-     I                     myTime,
-     I                     myThid
-     &                     )
+     I                      myTime, myIter, myThid )
 
 C     ==================================================================
 C     SUBROUTINE FLT_TRAJ
@@ -34,16 +31,16 @@ c#include "UNITS.h"
 
 C     == routine arguments ==
 
-      INTEGER myIter, myThid
       _RL myTime
+      INTEGER myIter, myThid
+
+C     == local variables ==
       INTEGER bi, bj, imax
       PARAMETER (imax=10)
 
-C     == local variables ==
-
       INTEGER ip, kp, ii
-      _RL xx, yy, xlo, xhi, ylo, yhi
-      _RL uu,vv,ww,tt,ss, pp
+      _RL xx, yy
+      _RL uu,vv,tt,ss, pp
       _RL global2local_i
       _RL global2local_j
 
