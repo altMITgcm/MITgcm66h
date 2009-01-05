@@ -120,6 +120,7 @@ cccccccccccccccccccccccccc END DIC cccccccccccccccccccccccccccccccccc
 
 #ifdef ALLOW_DIC
        CALL DIC_ATMOS( 1, myTime, myIter, myThid )
+       CALL DIC_STORE_FLUXCO2( myTime, myIter, myThid )
 #endif
 
 #endif /* GCHEM_SEPARATE_FORCING */
