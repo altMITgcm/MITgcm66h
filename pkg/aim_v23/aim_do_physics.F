@@ -102,6 +102,10 @@ C     includes some parts of S/R FORDATE from F.Molteni SPEDDY code (ver23)
      O                  aim_sWght0, aim_sWght1,
      I                  bi, bj, myTime, myIter, myThid )
 
+#ifdef ALLOW_AIM_CO2
+      CALL AIM_DO_CO2( bi, bj, myTime, myIter, myThid )
+#endif
+
 C--   Set surface geopotential: (g * orographic height)
       DO j=1,sNy
        DO i=1,sNx

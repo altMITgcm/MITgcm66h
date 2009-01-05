@@ -38,6 +38,7 @@ c #include "AIM_GRID.h"
 #include "com_forcon.h"
 #include "com_forcing.h"
 c #include "com_physvar.h"
+#include "AIM_CO2.h"
 
 C-- Coupled to the Ocean :
 #ifdef COMPONENT_MODULE
@@ -326,6 +327,18 @@ C     to replace MxL fields (if use sea-ice) or directly AIM SST
      U           sst1(1,myThid), oice1,
      I           myTime, myIter, bi, bj, myThid )
       ENDIF
+
+#ifdef ALLOW_AIM_CO2
+      IF ( useImportFlxCO2 ) THEN
+        DO j=1,sNy
+         DO i=1,sNx
+          I2 = i+(j-1)*sNx
+          aimflxCo2(I2,myThid) = flxCO2ocn(i,j,bi,bj)
+         ENDDO
+        ENDDO
+      ENDIF
+#endif
+
 #endif /* COMPONENT_MODULE */
 
 #ifdef ALLOW_LAND
