@@ -67,6 +67,7 @@ c     CALL ATM_STORE_TAUY(       bi,bj, myTime, myIter, myThid )
         CALL ATM_STORE_WSPEED(   bi,bj, myTime, myIter, myThid )
         IF ( useThSIce )
      &  CALL ATM_STORE_FRACICE(  bi,bj, myTime, myIter, myThid )
+        CALL ATM_STORE_AIRCO2(   bi,bj, myTime, myIter, myThid )
       ENDIF
 
 #endif /* COMPONENT_MODULE */

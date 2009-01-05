@@ -101,15 +101,15 @@ C     i,j :: Loop variables
         ENDDO
        ENDDO
 
-#ifdef ALLOW_DIC
-      IF ( ocnCpl_exchange_DIC ) THEN
-        DO j=1,sNy
-         DO i=1,sNx
-            fluxCO2cpl(i,j,bi,bj) = fluxCO2(i,j,bi,bj)
-         ENDDO
-        ENDDO
-      ENDIF
-#endif
+c#ifdef ALLOW_DIC
+c      IF ( ocnCpl_exchange_DIC ) THEN
+c        DO j=1,sNy
+c         DO i=1,sNx
+c            fluxCO2cpl(i,j,bi,bj) = fluxCO2(i,j,bi,bj)
+c         ENDDO
+c        ENDDO
+c      ENDIF
+c#endif
 
       RETURN
       END

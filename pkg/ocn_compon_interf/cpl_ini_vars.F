@@ -69,8 +69,7 @@ c         vVelGround(I,J,bi,bj)  = 0.
        ENDDO
       ENDDO
 
-      IF ( ( startTime.NE.baseTime .OR. nIter0.NE.0 )
-     &           .AND. .NOT. cpl_earlyExpImpCall ) THEN
+      IF ( ( startTime.NE.baseTime .OR. nIter0.NE.0 ) ) THEN
        CALL OCN_CPL_READ_PICKUP( nIter0, myThid )
       ENDIF
 
