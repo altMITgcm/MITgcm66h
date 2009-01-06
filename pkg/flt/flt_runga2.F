@@ -110,7 +110,7 @@ C expects it to be just a normal kpart type variable.
                         zz=kpart(ip,bi,bj)
                         CALL flt_trilinear(xx,yy,zz,uu,uVel,2,bi,bj)
                         CALL flt_trilinear(xx,yy,zz,vv,vVel,3,bi,bj)
-                        CALL flt_trilinear(zz,yy,zz,ww,wVel,4,bi,bj)
+                        CALL flt_trilinear(xx,yy,zz,ww,wVel,4,bi,bj)
                         zt=zz+0.5*deltaTmom*ww*scalez
                      ELSE
 #endif
