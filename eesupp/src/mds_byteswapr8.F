@@ -5,9 +5,9 @@ C $Name$
 
       subroutine MDS_BYTESWAPR8( n, arr )
 C IN:
-C   n		integer - Number of 8-byte words in arr
+C   n    integer :: Number of 8-byte words in arr
 C IN/OUT:
-C   arr		real*8  - Array declared as real*4(n)
+C   arr  real*8  :: Array declared as real*8(n)
 C
 C Created: 05/05/99 adcroft@mit.edu (This is an unfortunate hack!!)
 

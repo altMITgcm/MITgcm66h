@@ -5,9 +5,9 @@ C $Name$
 
       subroutine MDS_BYTESWAPR4( n, arr )
 C IN:
-C   n		integer - Number of 4-byte words in arr
+C   n    integer :: Number of 4-byte words in arr
 C IN/OUT:
-C   arr		real*4  - Array declared as real*4(n)
+C   arr  real*4  :: Array declared as real*4(n)
 C
 C Created: 05/05/99 adcroft@mit.edu (This is an unfortunate hack!!)
 

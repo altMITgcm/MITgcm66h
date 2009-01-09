@@ -5,11 +5,11 @@ C $Name$
 
       INTEGER FUNCTION MDS_RECLEN( filePrec, nnn, myThid )
 C IN:
-C   filePrec	integer - precision of file in bits
-C   nnn		integer - number of elements in record
-C   myThid	integer - my thread id number
+C   filePrec    integer :: precision of file in bits
+C   nnn         integer :: number of elements in record
+C   myThid      integer :: my thread id number
 C OUT:
-C   MDS_RECLEN  integer - appropriate length of record in bytes or words
+C   MDS_RECLEN  integer :: appropriate length of record in bytes or words
 C
 C Created: 03/29/99 eckert@mit.edu + adcroft@mit.edu
 

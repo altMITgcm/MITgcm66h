@@ -5,9 +5,9 @@ C $Name$
 
       subroutine MDS_BYTESWAPI4( n, arr )
 C IN:
-C   n		integer - Number of 4-byte words in arr
+C   n      integer    :: Number of 4-byte words in arr
 C IN/OUT:
-C   arr		integer*4  - Array declared as integer*4(n)
+C   arr    integer*4  :: Array declared as integer*4(n)
 C
 C Created: 05/05/99 adcroft@mit.edu (This is an unfortunate hack!!)
 

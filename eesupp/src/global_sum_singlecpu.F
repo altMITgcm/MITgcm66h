@@ -75,12 +75,12 @@ C--   Master thread cannot start until everyone is ready:
 #endif
 
 C--   Process 0 sums the global array
-	sumAll = 0.d0
-	DO J=1,Ny
-	 DO I=1,Nx
-	  sumAll = sumAll + globalBuf(I,J)
-	 ENDDO
-	ENDDO
+        sumAll = 0. _d 0
+        DO J=1,Ny
+         DO I=1,Nx
+          sumAll = sumAll + globalBuf(I,J)
+         ENDDO
+        ENDDO
 
 #ifdef ALLOW_USE_MPI
 C--   Process 0 sends result to all other processes

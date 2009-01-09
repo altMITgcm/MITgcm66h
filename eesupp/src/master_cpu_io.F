@@ -25,7 +25,7 @@ C Global variables
 #endif
 
 C     !INPUT/OUTPUT PARAMETERS:
-C   myThid	  :: my Thread number Id.
+C   myThid        :: my Thread Id number
 C   MASTER_CPU_IO :: true if master thread
 C                    and, if using SingleCPUIOS, if master CPU
       INTEGER myThid
