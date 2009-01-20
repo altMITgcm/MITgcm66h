@@ -3,7 +3,7 @@ C $Name$
 
 #include "MY82_OPTIONS.h"
 
-      SUBROUTINE MY82_CALC_DIFF( 
+      SUBROUTINE MY82_CALC_DIFF(
      I        bi,bj,iMin,iMax,jMin,jMax,kArg,kSize,
      U        KappaRx,
      I        myThid)
@@ -18,11 +18,11 @@ C     == GLobal variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "DYNVARS.h"
 #include "GRID.h"
-#ifdef ALLOW_MY82
-#include "MY82.h"
+#ifdef ALLOW_3D_DIFFKR
+#include "DYNVARS.h"
 #endif
+#include "MY82.h"
 
 C     == Routine arguments ==
 C     bi, bj,   :: tile indices
@@ -52,7 +52,7 @@ C-    do all levels :
           DO i=iMin,iMax
             KappaRx(i,j,k) = KappaRx(i,j,k)
      &                  +( MYdiffKr(i,j,k,bi,bj)
-#if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_DIFFKR_CONTROL))
+#ifdef ALLOW_3D_DIFFKR
      &                     - diffKr(i,j,k,bi,bj) )
 #else
      &                     - diffKrNrT(k) )
@@ -67,7 +67,7 @@ C-    do level k=kArg only :
           DO i=iMin,iMax
             KappaRx(i,j,k) = KappaRx(i,j,k)
      &                  +( MYdiffKr(i,j,kArg,bi,bj)
-#if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_DIFFKR_CONTROL))
+#ifdef ALLOW_3D_DIFFKR
      &                     - diffKr(i,j,kArg,bi,bj) )
 #else
      &                     - diffKrNrT(kArg) )
