@@ -7,7 +7,7 @@
 
 #-from: jmc@hugo.csail.mit.edu 
 #  current output of: crontab -l
-05 01 * * 0,3  /u/u2/jmc/testing/faulks/test_csail_fc9
+05 01 * * 0,2,5  /u/u2/jmc/testing/faulks/test_csail_fc9
 
 #-from: jmc@eddy.csail.mit.edu 
 #  current output of: crontab -l
