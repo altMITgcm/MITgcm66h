@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o rename thetaMin,phiMin -> xgOrigin,ygOrigin
+  (maintain temporary backward compatibility, until next checkpoint)
+
 checkpoint61h
 o pkg/diagnostics with "periodic averaging diagnostics":
   fix S/R DIAGNOSTICS_COUNT ; hack diagnostics_out.F to get NetCDF output. 
