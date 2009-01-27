@@ -60,18 +60,18 @@ C-    Horizontal gridding
       delYFile            = ' '
       horizGridFile       = ' '
       deepAtmosphere      = .FALSE.
-C     In cartesian coords distances are in metres
-      usingCartesianGrid  = .FALSE.
+      xgOrigin            = UNSET_RL
+      ygOrigin            = UNSET_RL
       DO i=1,Nx
        delX(i)            = UNSET_RL
       ENDDO
       DO j=1,Ny
        delY(j)            = UNSET_RL
       ENDDO
+C     In cartesian coords distances are in metres
+      usingCartesianGrid  = .FALSE.
 C     In spherical polar distances are in degrees
       usingSphericalPolarGrid = .FALSE.
-      phiMin              = 0.0
-      thetaMin            = 0.
       rSphere             = 6370. _d 3
 C     General curvilinear coordinate system
       usingCurvilinearGrid= .FALSE.

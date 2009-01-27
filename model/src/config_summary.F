@@ -615,10 +615,10 @@ c    &'   /* W spacing ( units of r ) */')
      &'   /* U spacing ( m - cartesian, degrees - spherical ) */')
       CALL WRITE_1D_R8( delY, Ny, INDEX_J,'delY = ',
      &'   /* V spacing ( m - cartesian, degrees - spherical ) */')
-      CALL WRITE_0D_R8( phiMin, INDEX_NONE,'phiMin = ',
-     &'   /* South edge (ignored - cartesian, degrees - spherical ) */')
-      CALL WRITE_0D_R8( thetaMin, INDEX_NONE,'thetaMin = ',
-     &'   /* West edge ( ignored - cartesian, degrees - spherical ) */')
+      CALL WRITE_0D_R8( xgOrigin, INDEX_NONE,'xgOrigin = ',
+     &'/* X-axis origin of West  edge (cartesian: m, lat-lon: deg.) */')
+      CALL WRITE_0D_R8( ygOrigin, INDEX_NONE,'ygOrigin = ',
+     &'/* Y-axis origin of South edge (cartesian: m, lat-lon: deg.) */')
       CALL WRITE_0D_R8( rSphere, INDEX_NONE,'rSphere = ',
      &  ' /* Radius ( ignored - cartesian, m - spherical ) */')
       CALL WRITE_0D_L(deepAtmosphere,INDEX_NONE, 'deepAtmosphere =',
