@@ -4,6 +4,12 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ggl90: a few modifications:
+ - fix bottom boundary condition, and interpolation of KappaE
+   near top and bottom
+ - use same set of viscosity/diffusivity for TKE/momnetum/tracer 
+ - add smoothing option as in Blanke and Delecluse (1993) (--> ALLOW_GGL90_SMOOTH)
+ - add a few options for mixing-length upper limit (--> mxlMaxFlag)  
 o rename thetaMin,phiMin -> xgOrigin,ygOrigin
   (maintain temporary backward compatibility, until next checkpoint)
 
