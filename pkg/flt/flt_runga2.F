@@ -104,7 +104,7 @@ C grid. More information below.
 c                        zz=global2local_k(kpart(ip,bi,bj),bi,bj,mythid)
 
 C recip_drF is in units 1/r (so IF r is in m this is in 1/m)
-                        scalez=recip_drF(kp)
+                        scalez=rkSign*recip_drF(kp)
 C We should not do any special conversions for zz, since flt_trilinear
 C expects it to be just a normal kpart type variable.
                         zz=kpart(ip,bi,bj)
