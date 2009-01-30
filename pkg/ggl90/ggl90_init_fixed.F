@@ -27,6 +27,8 @@ CEOP
 
 C     !LOCAL VARIABLES:
 C     === Local variables ===
+      INTEGER bi,bj
+      INTEGER  I, J
 
 C#ifdef ALLOW_MNC
 C      IF (useMNC) THEN
@@ -38,6 +40,22 @@ C#endif /* ALLOW_MNC */
       IF ( useDiagnostics ) THEN
         CALL GGL90_DIAGNOSTICS_INIT( myThid )
       ENDIF
+#endif
+
+#ifdef ALLOW_GGL90_SMOOTH
+      DO bj=myByLo(myThid),myByHi(myThid)
+       DO bi=myBxLo(myThid),myBxHi(myThid)
+        DO j=1-Oly,sNy+Oly
+         DO i=1-Olx,sNx+Olx
+          mskCor(i,j,bi,bj) = 1. _d 0
+         ENDDO
+        ENDDO
+        IF ( useCubedSphereExchange ) THEN
+          CALL FILL_CS_CORNER_TR_RL( 0, .FALSE.,
+     &                               mskCor, bi,bj, myThid )
+        ENDIF
+       ENDDO
+      ENDDO
 #endif
 
       RETURN

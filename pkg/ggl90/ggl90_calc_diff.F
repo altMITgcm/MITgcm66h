@@ -51,7 +51,11 @@ C-    do all levels :
          DO j=jMin,jMax
           DO i=iMin,iMax
             KappaRx(i,j,k) = KappaRx(i,j,k)
+#ifdef ALLOW_GGL90_SMOOTH
+     &                  +( GGL90diffKrS(i,j,k,bi,bj)
+#else
      &                  +( GGL90diffKr(i,j,k,bi,bj)
+#endif
 #if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_DIFFKR_CONTROL))
      &                     - diffKr(i,j,k,bi,bj) )
 #else
@@ -66,7 +70,11 @@ C-    do level k=kArg only :
          DO j=jMin,jMax
           DO i=iMin,iMax
             KappaRx(i,j,k) = KappaRx(i,j,k)
+#ifdef ALLOW_GGL90_SMOOTH
+     &                  +( GGL90diffKrS(i,j,kArg,bi,bj)
+#else
      &                  +( GGL90diffKr(i,j,kArg,bi,bj)
+#endif
 #if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_DIFFKR_CONTROL))
      &                     - diffKr(i,j,kArg,bi,bj) )
 #else
