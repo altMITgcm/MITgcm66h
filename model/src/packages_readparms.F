@@ -94,6 +94,10 @@ C       |-- SMOOTH_READPARMS
 C       |
 C       |-- ECCO_READPARMS
 C       |
+C       |-- PROFILES_READPARMS
+C       |
+C       |-- FLT_READPARMS
+C       |
 C       |-- CPL_READPARMS
 C       |
 C       |-- FIZHI_READPARMS
@@ -282,6 +286,10 @@ c--   Initialize ECCO package parameters
 c--   Initialize PROFILES package parameters
       CALL PROFILES_READPARMS ( myThid )
 #endif
+
+#ifdef ALLOW_FLT
+      IF ( useFLT ) CALL FLT_READPARMS( myThid )
+#endif /* ALLOW_FLT */
 
 #ifdef COMPONENT_MODULE
 C--   set Coupling parameters

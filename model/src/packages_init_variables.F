@@ -61,6 +61,8 @@ C       |-- COST_INIT_VARIA
 C       |
 C       |-- PROFILES_INIT_VARIA
 C       |
+C       |-- FLT_INIT_VARIA
+C       |
 C       |-- OBCS_INIT_VARIABLES
 C       |
 C       |-- BULKF_INIT_VARIA
@@ -303,6 +305,13 @@ c--   Initialise the cost function.
       CALL PROFILES_INIT_VARIA( myThid )
       _BARRIER
 #endif /* ALLOW_PROFILES */
+
+#ifdef ALLOW_FLT
+c--   Initialise float position
+      IF ( useFLT ) THEN
+        CALL FLT_INIT_VARIA( myThid )
+      ENDIF
+#endif /* ALLOW_FLT */
 
 #ifdef ALLOW_OBCS
 C--   Open boundaries data
