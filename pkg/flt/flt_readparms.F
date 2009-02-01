@@ -8,9 +8,11 @@ C $Name$
 C     ==================================================================
 C     SUBROUTINE FLT_READPARMS
 C     ==================================================================
-C
 C     o read float-pkg parameters from file "data.flt"
-C
+C     ==================================================================
+
+C     !USES:
+      IMPLICIT NONE
 
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -18,7 +20,6 @@ C
 #include "FLT.h"
 
 C     == routine arguments ==
-
 C     myThid - thread number for this instance of the routine.
       INTEGER myThid
 

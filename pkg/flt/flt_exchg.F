@@ -8,21 +8,17 @@ C $Name$
      I                       myTime, myIter, myThid )
 
 C     ==================================================================
-C     SUBROUTINE flt_exchg
+C     SUBROUTINE FLT_EXCHG
 C     ==================================================================
-C
 C     o Exchange particles between tiles.
-C
 C     started: Arne Biastoch
-C
 C     changed: Antti Westerlund antti.westerlund@helsinki.fi 2004.06.10
-C
 C     ==================================================================
-C     SUBROUTINE flt_exchg
-C     ==================================================================
+
+C     !USES:
+      IMPLICIT NONE
 
 C     == global variables ==
-
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
@@ -30,12 +26,10 @@ C     == global variables ==
 #include "FLT.h"
 
 C     == routine arguments ==
-
       _RL myTime
       INTEGER myIter, myThid
 
 C     == local variables ==
-
       INTEGER bi, bj, ic
       INTEGER ip, jp, jl, npNew
       INTEGER icountE, icountW, icountN, icountS
