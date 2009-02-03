@@ -57,7 +57,7 @@ C Routine arguments
       INTEGER myIter
       INTEGER myThid
 
-#if defined(ALLOW_AUTODIFF) || defined(ALLOW_FLT)
+#ifdef ALLOW_AUTODIFF
 
 C Functions
       INTEGER ILNBLNK
@@ -363,7 +363,7 @@ C End-if useSingleCpuIO
       ENDIF
 #endif /* ALLOW_USE_MPI */
 
-#endif /* defined(ALLOW_AUTODIFF) || defined(ALLOW_FLT) */
+#endif /* ALLOW_AUTODIFF */
 
 C     ------------------------------------------------------------------
       RETURN

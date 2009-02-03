@@ -49,7 +49,7 @@ C Routine arguments
       INTEGER irecord
       INTEGER myThid
 
-#if defined(ALLOW_AUTODIFF) || defined(ALLOW_FLT)
+#ifdef ALLOW_AUTODIFF
 
 C Functions
       INTEGER ILNBLNK
@@ -337,7 +337,7 @@ C      end-do k=1,1
       ENDIF
 C     end-if ( useSingleCPUIO )
 
-#endif /* defined(ALLOW_AUTODIFF) || defined(ALLOW_FLT) */
+#endif /* ALLOW_AUTODIFF */
 
       RETURN
       END
