@@ -68,6 +68,18 @@ CADJ SUBROUTINE write_rec_xyz_rl  INPUT  = 1,2,3,4,5
 CADJ SUBROUTINE write_rec_xyz_rl  OUTPUT =
 
 C----------------------------------------
+C subroutine WRITE_GLVEC_RS
+C----------------------------------------
+CADJ SUBROUTINE WRITE_GLVEC_RS  INPUT  = 1,2,3,4,5,6
+CADJ SUBROUTINE WRITE_GLVEC_RS  OUTPUT =
+
+C----------------------------------------
+C subroutine WRITE_GLVEC_RL
+C----------------------------------------
+CADJ SUBROUTINE WRITE_GLVEC_RL  INPUT  = 1,2,3,4,5,6
+CADJ SUBROUTINE WRITE_GLVEC_RL  OUTPUT =
+
+C----------------------------------------
 C subroutine  READ_MFLDS_CHECK
 C----------------------------------------
 CADJ SUBROUTINE READ_MFLDS_CHECK  INPUT  =   2,3,4
