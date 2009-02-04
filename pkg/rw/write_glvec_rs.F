@@ -54,7 +54,7 @@ C     e.g. U.0000000100
       ENDIF
 
       ioUnit = 0
-      fType ='RL'
+      fType ='RS'
       bi = 0
       bj = 0
       iRec = 1
