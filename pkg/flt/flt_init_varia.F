@@ -36,6 +36,8 @@ C     myThid - thread number for this instance of the routine.
 C     == Functions ==
       INTEGER  ILNBLNK
       EXTERNAL ILNBLNK
+      _RL      FLT_MAP_R2K
+      EXTERNAL FLT_MAP_R2K
 
 C     == local variables ==
       INTEGER bi, bj
@@ -44,6 +46,7 @@ C     == local variables ==
       PARAMETER(imax=9)
       _RL tmp(imax)
       _RL xLo, xHi, yLo, yHi
+      _RL zz
       LOGICAL globalFile
       CHARACTER*(MAX_LEN_FNAM) fn
       CHARACTER*(MAX_LEN_MBUF) msgBuf
@@ -164,6 +167,15 @@ C     belong to this current tile (=> do not no check)
            ENDIF
 
          ENDDO
+
+         IF ( nIter0.EQ.0 ) THEN
+C--   Convert z -> k (for initial condition only)
+           DO ip=1,npart_tile(bi,bj)
+             zz = kpart(ip,bi,bj)
+             kpart(ip,bi,bj) = FLT_MAP_R2K( zz, bi, bj, myThid )
+           ENDDO
+         ENDIF
+
          npart_dist = npart_dist + DBLE(npart_tile(bi,bj))
          IF ( npart_tile(bi,bj).GT.max_npart_tile ) THEN
            WRITE(msgBuf,'(2A,2I4,2(A,I8))') 'FLT_INIT_VARIA:',
