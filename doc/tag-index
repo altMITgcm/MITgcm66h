@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/shelfice: fix bug with SHELFICEconserve flag, prepare for 
+  real fresh water flux (not yet)
 o pkg/mdsio & rw:
  - add argument & option to S/R MDS_WRITEVEC_LOC (avoid Open/Close & write-meta)
  - add simple interface S/R to MDS_WRITEVEC_LOC in pkg/rw: WRITE_GLVEC_RX.
