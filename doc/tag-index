@@ -18,6 +18,8 @@ o pkg/flt:
  - more efficient I/O, using new options of MDS_WRITEVEC_LOC S/R.
  - add vert. coordinate & horiz. indices to output files.
  - change vertical position in initial condition, from index to depth [m].
+ - store horizontal (decimal) indices i,j in common block (instead of coord. x,y)
+   (easier to get to a curvilinear grid) ; delX,delY no longer used.
 o pkg/ggl90: a few modifications:
  - fix bottom boundary condition, and interpolation of KappaE
    near top and bottom
