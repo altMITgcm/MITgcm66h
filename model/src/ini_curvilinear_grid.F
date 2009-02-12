@@ -78,6 +78,16 @@ C--   Set everything to zero everywhere
           dyF(i,j,bi,bj)=0.
           dxV(i,j,bi,bj)=0.
           dyU(i,j,bi,bj)=0.
+#ifdef TARGET_NEC_SX
+C     terrible hack to make sure that recip_dxV and recip_dyU are never zero,
+C     until we have a proper exchange for them. Most compilers do not seem
+C     to mind divisions by zero in the overlaps, as long as the results are
+C     not used anywhere. The actual values of dxV/dyU used here do not matter
+C     at all, as long as they are different from zero. I use some absurdely
+C     large values here.
+          dxV(i,j,bi,bj)=1. _d 10
+          dyU(i,j,bi,bj)=1. _d 10
+#endif /* TARGET_NEC_SX */
           rA(i,j,bi,bj)=0.
           rAz(i,j,bi,bj)=0.
           rAw(i,j,bi,bj)=0.
