@@ -4,6 +4,13 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o autodiff
+  new CPP option ALLOW_TAMC_SINGLEPREC_COMLEV
+  allows to switch to single-prec common blocks;
+  corresponding switch occurs in tamc.h, integer isbyte
+  TAF store directivs "byte" and "kind" seem equivalent;
+  Most tamc.h have been updated correspondingly.
+
 checkpoint61i
 o autodiff:
   fix autodiff_sore/_restore indices for obcs
