@@ -206,7 +206,7 @@ C-- Compute correction at the surface for Lin Free Surf.
 #endif
       IF (linFSConserveTr) THEN
 #ifdef ALLOW_AUTODIFF_TAMC
-CADJ STORE theta,salt,wvel = comlev1, key = ikey_dynamics
+CADJ STORE theta,salt,wvel = comlev1, key = ikey_dynamics, byte=isbyte
 #endif
        CALL CALC_WSURF_TR(theta,salt,wVel,
      &                    myTime,myIter,myThid)

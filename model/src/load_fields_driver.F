@@ -175,10 +175,10 @@ C- note (useEBM): needs modifications to be compatible with this call
         CALL EXTERNAL_FIELDS_LOAD( myTime, myIter, myThid )
         CALL TIMER_STOP ('EXTERNAL_FLDS_LOAD [LOAD_FLDS_DRIVER]',myThid)
 #ifdef NONLIN_FRSURF
-CADJ STORE SST    = comlev1, key = ikey_dynamics
-CADJ STORE SSS    = comlev1, key = ikey_dynamics
+CADJ STORE SST    = comlev1, key = ikey_dynamics, kind = isbyte
+CADJ STORE SSS    = comlev1, key = ikey_dynamics, kind = isbyte
 # ifdef SHORTWAVE_HEATING
-CADJ STORE Qsw    = comlev1, key = ikey_dynamics
+CADJ STORE Qsw    = comlev1, key = ikey_dynamics, kind = isbyte
 # endif
 #endif
       ENDIF

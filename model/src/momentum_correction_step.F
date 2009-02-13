@@ -143,7 +143,7 @@ C--   Filter (and exchange)
 
 #ifdef ALLOW_AUTODIFF_TAMC
 # ifdef NONLIN_FRSURF
-CADJ STORE uvel, vvel  = comlev1, key = ikey_dynamics
+CADJ STORE uvel, vvel  = comlev1, key = ikey_dynamics, byte = isbyte
 # endif
 #endif
       DO bj=myByLo(myThid),myByHi(myThid)

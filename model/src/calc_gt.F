@@ -129,9 +129,11 @@ C--   the kDown is still required
       fVerT(1,1,kDown) = fVerT(1,1,kDown)
 # ifdef NONLIN_FRSURF
 CADJ STORE fVerT(:,:,:) =
-CADJ &     comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ &     comlev1_bibj_k, key=kkey, byte=isbyte,
+CADJ &     kind = isbyte
 CADJ STORE gtNm1(:,:,k,bi,bj) =
-CADJ &     comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ &     comlev1_bibj_k, key=kkey, byte=isbyte,
+CADJ &     kind = isbyte
 # endif
 #endif
 

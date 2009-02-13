@@ -336,7 +336,7 @@ C--     Start computation of dynamics
 
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE wvel (:,:,:,bi,bj) = 
-CADJ &     comlev1_bibj, key = idynkey, byte = isbyte
+CADJ &     comlev1_bibj, key=idynkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C--     Explicit part of the Surface Potentiel Gradient (add in TIMESTEP)
