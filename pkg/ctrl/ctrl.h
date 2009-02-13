@@ -66,6 +66,7 @@ cph Need to put this in namelist at some point!
      &                       doZscalePack,
      &                       doMainUnpack,
      &                       doMainPack,
+     &                       doSinglePrecTapelev,
      &                       doAdmtlmBypassAD
 
       logical doInitXX
@@ -75,6 +76,7 @@ cph Need to put this in namelist at some point!
       logical doZscalePack
       logical doMainUnpack
       logical doMainPack
+      logical doSinglePrecTapelev
       logical doAdmtlmBypassAD
 
       common /controlvars_i/

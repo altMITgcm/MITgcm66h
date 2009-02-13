@@ -129,6 +129,7 @@ c--   Read the namelist input.
      &  doPackDiag,
      &  doZscaleUnpack, doZscalePack,
      &  doMainUnpack, doMainPack,
+     &  doSinglePrecTapelev,
      &  doAdmtlmBypassAD,
      &  delZexp, forcingPrecond
 cHFLUXM_CONTROL
@@ -153,6 +154,7 @@ c--     Set default values.
         doZscalePack        = .FALSE.
         doMainUnpack        = .TRUE.
         doMainPack          = .TRUE.
+        doSinglePrecTapelev = .FALSE.
         doAdmtlmBypassAD    = .FALSE.
 
         delZexp = 0.
