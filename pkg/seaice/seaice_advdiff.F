@@ -132,8 +132,8 @@ C     timelevel 3 is the total diffusion tendency * deltaT
 C                 (empty if no diffusion)
 
 #ifdef ALLOW_AUTODIFF_TAMC
-CADJ STORE uc     = comlev1, key = ikey_dynamics
-CADJ STORE vc     = comlev1, key = ikey_dynamics
+CADJ STORE uc     = comlev1, key = ikey_dynamics, kind=isbyte
+CADJ STORE vc     = comlev1, key = ikey_dynamics, kind=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 
       DO bj=myByLo(myThid),myByHi(myThid)
@@ -345,8 +345,8 @@ C---   end bi,bj loops
 C--   if not multiDimAdvection
 
 #ifdef ALLOW_AUTODIFF_TAMC
-CADJ STORE uc   = comlev1, key = ikey_dynamics
-CADJ STORE vc   = comlev1, key = ikey_dynamics
+CADJ STORE uc   = comlev1, key = ikey_dynamics, kind=isbyte
+CADJ STORE vc   = comlev1, key = ikey_dynamics, kind=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 
        IF ( SEAICEadvHEff ) CALL ADVECT( uc, vc, HEFF, HEFFM, myThid )
@@ -442,7 +442,7 @@ C--   end if multiDimAdvection
 C--   end if SEAICEuseDynamics
 
 #ifdef ALLOW_AUTODIFF_TAMC
-CADJ STORE AREA   = comlev1, key = ikey_dynamics
+CADJ STORE AREA   = comlev1, key = ikey_dynamics, kind=isbyte
 #endif
       IF ( .NOT. usePW79thermodynamics ) THEN
 C     Hiblers "ridging function": Do it now if not in seaice_growth

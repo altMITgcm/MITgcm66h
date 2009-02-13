@@ -179,13 +179,13 @@ c     Deal set radiative fluxes
 
 # ifdef ALLOW_AUTODIFF_TAMC
 #  ifndef ALLOW_ATM_WIND
-CADJ STORE ustress      = comlev1, key = ikey_dynamics
-CADJ STORE vstress      = comlev1, key = ikey_dynamics
+CADJ STORE ustress      = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE vstress      = comlev1, key=ikey_dynamics, kind=isbyte
 #  else
-CADJ STORE uwind        = comlev1, key = ikey_dynamics
-CADJ STORE vwind        = comlev1, key = ikey_dynamics
+CADJ STORE uwind        = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE vwind        = comlev1, key=ikey_dynamics, kind=isbyte
 #  endif
-CADJ STORE wspeed       = comlev1, key = ikey_dynamics
+CADJ STORE wspeed       = comlev1, key=ikey_dynamics, kind=isbyte
 # endif
 c     Deal set radiative fluxes
       call exf_wind( mytime, myiter, mythid )

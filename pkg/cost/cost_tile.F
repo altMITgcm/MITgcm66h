@@ -95,10 +95,13 @@ C     == Local variables ==
 CEOP
 
 #ifdef ALLOW_AUTODIFF_TAMC
-CADJ STORE theta         = comlev1, key = ikey_dynamics
-CADJ STORE uvel, vvel    = comlev1, key = ikey_dynamics
+CADJ STORE theta         = comlev1, key = ikey_dynamics,
+CADJ &     kind = isbyte
+CADJ STORE uvel, vvel    = comlev1, key = ikey_dynamics,
+CADJ &     kind = isbyte
 # ifdef ALLOW_DEPTH_CONTROL
-CADJ STORE hfacw, hfacs  = comlev1, key = ikey_dynamics
+CADJ STORE hfacw, hfacs  = comlev1, key = ikey_dynamics,
+CADJ &     kind = isbyte
 # endif
 #endif
 
