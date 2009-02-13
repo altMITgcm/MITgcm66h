@@ -130,6 +130,7 @@ C ***               Control vector Package                         ***
 C ********************************************************************
 C
 #define  ALLOW_NONDIMENSIONAL_CONTROL_IO
+#undef  ALLOW_TAMC_SINGLEPREC_COMLEV
 
 C       >>> Initial values.
 #define ALLOW_THETA0_CONTROL
