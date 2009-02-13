@@ -76,10 +76,6 @@ C     == end of interface ==
           ENDIF
         ENDDO
 
-        IF ( ix .EQ. -1. _d 0 .OR. jy .EQ. -1. _d 0 ) THEN
-          STOP 'FLT_MAP_XY2IJLOCAL: Fail in finding ix,jy'
-        ENDIF
-
       ELSE
         STOP 'FLT_MAP_XY2IJLOCAL: not yet coded for this grid'
       ENDIF

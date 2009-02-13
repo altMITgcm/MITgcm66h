@@ -22,7 +22,6 @@ C     == global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "GRID.h"
 #include "FLT.h"
 
 C     == routine arguments ==
@@ -35,7 +34,6 @@ C     == local variables ==
       INTEGER icountE, icountW, icountN, icountS
       INTEGER deleteList(max_npart_exch*2)
       INTEGER imax, imax2, m
-c     INTEGER iG, jG
       _RL ilo, ihi, jlo, jhi, iNew, jNew
       PARAMETER(imax=9)
       PARAMETER(imax2=imax*max_npart_exch)
