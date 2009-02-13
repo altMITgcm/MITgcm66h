@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint61i
+o autodiff:
+  fix autodiff_sore/_restore indices for obcs
+  (spotted by I. Hoteit, M. Mazloff)
 o pkg/autodiff, pkg/ctrl:
   Add flag to reduce all tapelev I/O to single-prec. 
   In data.ctrl set
