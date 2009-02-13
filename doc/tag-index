@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/autodiff, pkg/ctrl:
+  Add flag to reduce all tapelev I/O to single-prec. 
+  In data.ctrl set
+    doSinglePrecTapelev = .TRUE.
 o model/src/ini_curvilinear_grid.F: check in hack for SX8 compiler
   to make sure that recip_dxV and recip_dyU are never zero, until we 
   have a proper exchange for them. Most compilers do not seem
