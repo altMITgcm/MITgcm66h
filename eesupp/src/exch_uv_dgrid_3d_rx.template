@@ -87,7 +87,7 @@ c    I            exchWidthX, exchWidthY,
 c    I            FORWARD_SIMULATION, EXCH_UPDATE_CORNERS, myThid )
 
 C- note: can substitute the low-level S/R calls above with:
-      CALL EXCH_UV_3D_RL(
+      CALL EXCH_UV_3D_RX(
      U                     vPhi, uPhi,
      I                     .FALSE., myNz, myThid )
 
