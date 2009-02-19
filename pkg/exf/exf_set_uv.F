@@ -101,7 +101,7 @@ c     == external ==
 
 c     == end of interface ==
 
-      IF ( usingCurvilinearGrid ) THEN
+      IF ( usingCurvilinearGrid .OR. rotateGrid ) THEN
 
         if ( uvecfile .NE. ' ' .and. vvecfile .NE. ' ' ) then
 
@@ -289,7 +289,7 @@ c     Interpolate linearly onto the current time.
         endif
 
       ELSE
-c     IF ( .NOT. usingCurvilinearGrid )
+c     IF ( .NOT. ( usingCurvilinearGrid .OR rotateGrid ) )
 
        interp_method=12
         call exf_set_gen(
