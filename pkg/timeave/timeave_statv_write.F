@@ -234,8 +234,7 @@ C-          normal case: 1 message is enough
           CALL MNC_CW_I_W_S('I','tave',0,0,'iter', myIter, myThid)
 C         CALL MNC_CW_RL_W_S('D','tave',0,0,'model_time',myTime,myThid)
           CALL MNC_CW_RL_W(pf,'tave',0,0,'ETAtave',etatave,myThid)
-C         EH3: something is wrong here...
-C         CALL MNC_CW_RL_W(pf,'tave',0,0,'Eta2tave',Eta2tave,myThid)
+          CALL MNC_CW_RL_W(pf,'tave',0,0,'Eta2tave',Eta2tave,myThid)
           CALL MNC_CW_RL_W(pf,'tave',0,0,'Ttave',thetatave,myThid)
           CALL MNC_CW_RL_W(pf,'tave',0,0,'Stave',salttave,myThid)
           CALL MNC_CW_RL_W(pf,'tave',0,0,'uVeltave',uVeltave,myThid)
