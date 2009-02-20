@@ -228,7 +228,7 @@ c             intantaneous field.
 
 #ifdef ALLOW_TRANSPORT_COST_CONTRIBUTION
       INTEGER maxNumDays
-      PARAMETER ( maxNumDays = 5480 )
+      PARAMETER ( maxNumDays = 5844 )
       common /averages_transp_r/
      &                     transpbar
      &                   , transpobs
