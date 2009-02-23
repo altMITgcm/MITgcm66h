@@ -182,7 +182,7 @@ C determine inorganic carbon chem coefficients
              surfphos(i,j)= PTRACER(i,j,klev,bi,bj,3)
      &                          * maskC(i,j,kLev,bi,bj)
 #else
-             surfalk(i,j) = 2.366595 _d 0 * salt(i,j,kLev,bi,bj)/gsm_s
+             surfalk(i,j) = 2.366595 _d 0 * salt(i,j,kLev,bi,bj)/35. _d 0
      &                          * maskC(i,j,kLev,bi,bj)
              surfphos(i,j)= 5.1225 _d -4 * maskC(i,j,kLev,bi,bj)
 #endif
