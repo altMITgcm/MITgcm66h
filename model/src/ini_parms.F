@@ -1013,25 +1013,6 @@ C     In spherical polar distances are in degrees
      &                     SQUEEZE_RIGHT, myThid )
       ENDIF
 
-C     temporary backward compatibility:
-      IF ( thetaMin.NE.UNSET_RL .AND. xgOrigin .EQ. UNSET_RL ) THEN
-        WRITE(msgBuf,'(2A)')
-     &   '** WARNING ** INI_PARMS: thetaMin no longer supported',
-     &   ' <= replaced by xgOrigin'
-        CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
-     &                      SQUEEZE_RIGHT , myThid)
-        xgOrigin = thetaMin
-        thetaMin = UNSET_RL
-      ENDIF
-      IF ( phiMin .NE. UNSET_RL .AND. ygOrigin .EQ. UNSET_RL ) THEN
-        WRITE(msgBuf,'(2A)')
-     &   '** WARNING ** INI_PARMS:   phiMin no longer supported',
-     &   ' <= replaced by ygOrigin'
-        CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
-     &                      SQUEEZE_RIGHT , myThid)
-        ygOrigin = phiMin
-        phiMin   = UNSET_RL
-      ENDIF
 C     Check for retired parameters still being used
       IF ( rkFac .NE. UNSET_RL ) THEN
        nRetired = nRetired+1
