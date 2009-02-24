@@ -98,7 +98,10 @@ C     == Local variables ==
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_ENTER('THE_THIRD_LEVEL_LOOP',myThid)
 #endif
-      print *, 'JU: THE_THIRD_LEVEL_LOOP(',iLev_4,',',iLev_3,')'
+#ifdef OAD_DEBUG_JOINT
+      write(standardmessageunit,'(A,2(I6,A))')
+     + 'OAD: THE_THIRD_LEVEL_LOOP(',iLev_4,',',iLev_3,')'
+#endif
       do ilev_2 = 1,uCheckLev2 
          if (theCurrentStep .le. nTimeSteps) then
 #ifdef ALLOW_DEBUG
@@ -198,7 +201,10 @@ C     == Local variables ==
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_ENTER('THE_THIRD_LEVEL_PLAIN',myThid)
 #endif
-      print *, 'JU: THE_THIRD_LEVEL_PLAIN()'
+#ifdef OAD_DEBUG_JOINT
+      write(standardmessageunit,'(A)')
+     + 'OAD: THE_THIRD_LEVEL_PLAIN()'
+#endif
       if (uCheckLev2 .gt. 0 ) then 
          do ilev_2 = 1,uCheckLev2 
             if (theCurrentStep .le. nTimeSteps) then

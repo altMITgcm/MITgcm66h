@@ -92,8 +92,10 @@ C     == Local variables ==
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_ENTER('THE_FIRST_LEVEL_LOOP',myThid)
 #endif
-      print *, 'JU: THE_FIRST_LEVEL_LOOP: iloop=',iLoop,' of ',nTimeSteps
-
+#ifdef OAD_DEBUG
+      write(standardmessageunit,'(2(A,I6))')
+     + 'OAD: THE_FIRST_LEVEL_LOOP: iloop=',iLoop,' of ',nTimeSteps
+#endif
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_CALL('FORWARD_STEP',myThid)
 #endif
