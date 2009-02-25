@@ -11,16 +11,16 @@ function [flt,data,header] = read_flt_traj(fName)
 % $Header$
 % $Name$
 
-imax=13;		% record size
-ieee='b';		% IEEE big-endian format
-bytesPerRec=imax*8;	% 8 bytes per real*8
+imax=13;                  % record size
+ieee='b';                 % IEEE big-endian format
+bytesPerRec=imax*8;       % 8 bytes per real*8
 
 [I]=strfind(fName,'/');
 if length(I) == 0,
  bDr='';
 else
  fprintf(' found Dir Sep in file name (');
- fprintf(' %i',I); 
+ fprintf(' %i',I);
  bDr=fName(1:I(end));
  fprintf(' ) ; load files from Dir "%s"\n',bDr);
 end
