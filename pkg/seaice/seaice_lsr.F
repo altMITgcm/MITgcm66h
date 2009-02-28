@@ -412,7 +412,11 @@ CADJ LOOP = iteration uice
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
 C NOW SET U(3)=U(1)
+#ifdef SEAICE_VECTORIZE_LSR
+        DO J=0,sNy+1
+#else
         DO J=1,sNy
+#endif
          DO I=1,sNx
           uIce(I,J,3,bi,bj)=uIce(I,J,1,bi,bj)
          END DO
@@ -668,7 +672,11 @@ CADJ LOOP = iteration vice
        DO bi=myBxLo(myThid),myBxHi(myThid)
 C NOW SET V(3)=V(1)
         DO J=1,sNy
+#ifdef SEAICE_VECTORIZE_LSR
+         DO I=0,sNx+1
+#else
          DO I=1,sNx
+#endif
           vIce(I,J,3,bi,bj)=vIce(I,J,1,bi,bj)
          END DO
         END DO
