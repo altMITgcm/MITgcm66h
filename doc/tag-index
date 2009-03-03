@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice/exf/monitor: turn netcdf coordinate variable T into model 
+  time in seconds as promised by the usints in seaice_monitor and exf_monitor
 o pkg/mnc: fix the coordinate variables for multi-tile curvi-linear grids
   that are not cubed-sphere grids
 o pkg/seaice: fix a bug for the rare case of SEAICE_VECTORIZE_LSR
