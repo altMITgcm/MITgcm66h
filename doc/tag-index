@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/mnc: fix the coordinate variables for multi-tile curvi-linear grids
+  that are not cubed-sphere grids
 o pkg/seaice: fix a bug for the rare case of SEAICE_VECTORIZE_LSR
 o pkg/ctrl:
   fix bug in ctrl_depth_ini.F (EXCH_XYZ was applied to 2-D field xx_r_low)
