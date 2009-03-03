@@ -135,7 +135,7 @@ else
     listF=`ls -1 $yy.${zz}*`
     for xx in $listF
     do
-      new=`echo $xx | sed "s/^$yy\.$zz/$yy\.$sufx/"`
+      new=`echo $xx | sed "s/^$yy\.$zz/$yy.$sufx/"`
       if [ $prt -ge 2 ] ; then echo '  '$cmdMV $xx $new ; fi
       if test $action = 1 ; then    $cmdMV $xx $new ; fi
     done
