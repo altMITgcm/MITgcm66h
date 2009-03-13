@@ -37,7 +37,7 @@ c     =============================
       INTEGER NGENCOST
       PARAMETER ( NGENCOST=10 )
 
-  c     Number of days: (hard-coded to set up some vector dimensions
+c     Number of days: (hard-coded to set up some vector dimensions
 c     =============================
       INTEGER maxNumDays
       PARAMETER ( maxNumDays = 5844 )

@@ -184,7 +184,7 @@ c--   Read flags for picking SSH time averages
        gfoTimeMask(irec) = 1. _d 0
       enddo
 c
-     _BEGIN_MASTER(myThid)
+      _BEGIN_MASTER(myThid)
 c
 #ifdef ALLOW_SSH_TPANOM_COST_CONTRIBUTION
       if ( tpTimeMaskFile .NE. ' ' ) then
