@@ -50,7 +50,7 @@ c     == routine arguments ==
       logical endofloc
       logical inloc
 
-      character*(128) localbarfile
+      character*(MAX_LEN_FNAM) localbarfile
 
 c     == local variables ==
 

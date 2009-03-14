@@ -122,6 +122,8 @@ c--     ... ARGO data.
 
 #endif /* ALLOW_CAL */
 
+      call ecco_check( myThid )
+
 c--   Get the weights that are to be used for the individual cost
 c--   function contributions.
       call ecco_cost_weights( mythid )

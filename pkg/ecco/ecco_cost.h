@@ -39,8 +39,9 @@ c     =============================
 
 c     Number of days: (hard-coded to set up some vector dimensions
 c     =============================
+c     17 years: 6210
       INTEGER maxNumDays
-      PARAMETER ( maxNumDays = 5844 )
+      PARAMETER ( maxNumDays = 6210 )
 
 c     Averaged Fields:
 c     ================
