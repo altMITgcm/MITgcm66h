@@ -59,6 +59,7 @@ c     == local variables ==
       _RL     dummy
       _RL     missingObsFlag
       PARAMETER ( missingObsFlag = 1. _d 23 )
+      character*(max_len_mbuf) msgbuf
 
 c     == external functions ==
 
