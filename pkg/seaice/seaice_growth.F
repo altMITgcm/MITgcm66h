@@ -117,7 +117,7 @@ C     local copy of AREA
 C     FREEZING TEMP. OF SEA WATER (deg C)
       TBC          = SEAICE_freeze
 C     RATIO OF WATER DESITY TO SNOW DENSITY
-      SDF          = 1000.0 _d 0/330.0 _d 0
+      SDF          = 1000.0 _d 0/SEAICE_rhoSnow
 C     RATIO OF SEA ICE DENSITY to SNOW DENSITY
       ICE2SNOW     = SDF * ICE2WATR
 C     HEAT OF FUSION OF ICE (m^3/J)

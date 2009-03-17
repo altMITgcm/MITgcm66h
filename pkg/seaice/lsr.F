@@ -46,7 +46,7 @@ C     === Local variables ===
 C     i,j,bi,bj - Loop counters
 
       INTEGER i, j, m, bi, bj, j1, j2, im, jm
-      INTEGER ICOUNT1, ICOUNT2, SOLV_MAX_ITERS, SOLV_NCHECK
+      INTEGER ICOUNT1, ICOUNT2
       INTEGER phexit
 
       _RL  WFAU, WFAV, WFAU1, WFAV1, WFAU2, WFAV2
@@ -91,9 +91,6 @@ C SET SOME VALUES
       S2A=0.80 _d 0
       WFAU=WFAU1
       WFAV=WFAV1
-
-      SOLV_MAX_ITERS=1500
-      SOLV_NCHECK=2
 
       ICOUNT1=SOLV_MAX_ITERS
       ICOUNT2=SOLV_MAX_ITERS
