@@ -110,7 +110,7 @@ C     Post sends as messages or buffer copies
         i1Lo  = 1-myOLw
         i1Hi  = sNx+myOLe
         j1Lo  = 1-myOLs
-        j1Hi  = sNy+myOLs
+        j1Hi  = sNy+myOLn
         k1Lo  = 1
         k1Hi  = myNz
         bi1Lo = I
@@ -157,7 +157,7 @@ C     Receive messages or extract buffer copies
         i1Lo  = 1-myOLw
         i1Hi  = sNx+myOLe
         j1Lo  = 1-myOLs
-        j1Hi  = sNy+myOLs
+        j1Hi  = sNy+myOLn
         k1Lo  = 1
         k1Hi  = myNz
         bi1Lo = I

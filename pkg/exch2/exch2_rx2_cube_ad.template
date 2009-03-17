@@ -128,13 +128,13 @@ C- this is no longer the case after 2008-07-31 (changes in index range)
         i1Lo  = 1-myOLw
         i1Hi  = sNx+myOLe
         j1Lo  = 1-myOLs
-        j1Hi  = sNy+myOLs
+        j1Hi  = sNy+myOLn
         k1Lo  = 1
         k1Hi  = myNz
         i2Lo  = 1-myOLw
         i2Hi  = sNx+myOLe
         j2Lo  = 1-myOLs
-        j2Hi  = sNy+myOLs
+        j2Hi  = sNy+myOLn
         k2Lo  = 1
         k2Hi  = myNz
 C       Receive from neighbour N to fill my points
@@ -196,13 +196,13 @@ C     Post sends as messages or buffer copies
         i1Lo  = 1-myOLw
         i1Hi  = sNx+myOLe
         j1Lo  = 1-myOLs
-        j1Hi  = sNy+myOLs
+        j1Hi  = sNy+myOLn
         k1Lo  = 1
         k1Hi  = myNz
         i2Lo  = 1-myOLw
         i2Hi  = sNx+myOLe
         j2Lo  = 1-myOLs
-        j2Hi  = sNy+myOLs
+        j2Hi  = sNy+myOLn
         k2Lo  = 1
         k2Hi  = myNz
 C       Send to neighbour N to fill neighbor points
