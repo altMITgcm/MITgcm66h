@@ -41,6 +41,7 @@ C--   SEAICE parameters
       NAMELIST /SEAICE_PARM01/
      & SEAICEwriteState, SEAICEuseDYNAMICS, SEAICEuseTEM,
      & SEAICEuseEVPpickup, SEAICEuseFluxForm,
+     & SEAICEuseMetricTerms,
      & useHB87stressCoupling, SEAICEuseFlooding, usePW79thermodynamics,
      & SEAICErestoreUnderIce,
      & SEAICEadvHeff, SEAICEadvArea, SEAICEadvSnow,
@@ -106,6 +107,7 @@ C--   set default sea ice parameters
       SEAICEuseDYNAMICS  = .FALSE.
 #endif
       SEAICEuseTEM       = .FALSE.
+      SEAICEuseMetricTerms = .TRUE.
       SEAICEuseEVPpickup = .TRUE.
       SEAICEuseFluxForm  = .FALSE.
       SEAICErestoreUnderIce = .FALSE.
