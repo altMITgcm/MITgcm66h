@@ -99,7 +99,7 @@ C     no slip boundary conditions apply only to e12
            hFacV = _maskS(i,j,k,bi,bj) - _maskS(i-1,j,k,bi,bj)
 
            e12(I,J,bi,bj) = e12(I,J,bi,bj)
-     &          + recip_rAz(i,j,bi,bj) *
+     &          + recip_rAz(i,j,bi,bj) * 2. _d 0 *
      &          ( hFacU * ( _dxC(i,j-1,bi,bj)*uFld(i,j  ,1,bi,bj)
      &                    + _dxC(i,j,  bi,bj)*uFld(i,j-1,1,bi,bj) )
      &          + hFacV * ( _dyC(i-1,j,bi,bj)*vFld(i  ,j,1,bi,bj)
