@@ -32,7 +32,7 @@ C     i,j,bi,bj - Loop counters
 
       INTEGER i, j, bi, bj
       _RL  SINWIN, COSWIN, SINWAT, COSWAT
-#ifdef SEAICE_TEST_ICE_STRESS_1
+#ifdef SEAICE_BICE_STRESS
       _RL  fuIce, fvIce
 #endif
 
@@ -106,7 +106,7 @@ C     to South-West C-grid for forcing ocean model.
       CALL EXCH_UV_XY_RS(fu, fv, .TRUE., myThid)
 #endif /* ifndef SEAICE_EXTERNAL_FLUXES */
 
-#ifdef SEAICE_TEST_ICE_STRESS_1
+#ifdef SEAICE_BICE_STRESS
 C--   Compute ice-affected wind stress
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
@@ -137,7 +137,7 @@ C--   Compute ice-affected wind stress
        ENDDO
       ENDDO
       CALL EXCH_UV_XY_RS(fu, fv, .TRUE., myThid)
-#endif /* SEAICE_TEST_ICE_STRESS_1 */
+#endif /* SEAICE_BICE_STRESS */
 #endif /* not SEAICE_CGRID */
 
       RETURN

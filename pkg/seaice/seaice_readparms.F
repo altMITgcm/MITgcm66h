@@ -115,10 +115,14 @@ C--   set default sea ice parameters
       usePW79thermodynamics = .TRUE.
       SEAICEadvHeff      = .TRUE.    
       SEAICEadvArea      = .TRUE.
-      SEAICEadvSnow      = .FALSE.
+      SEAICEadvSnow      = .TRUE.
       SEAICEadvSalt      = .FALSE.
       SEAICEadvAge       = .FALSE.
+#ifdef ALLOW_SEAICE_FLOODING
+      SEAICEuseFlooding  = .TRUE.
+#else
       SEAICEuseFlooding  = .FALSE.
+#endif /* ALLOW_SEAICE_FLOODING */
       SEAICE_no_slip     = .FALSE.
       SEAICE_clipVelocities = .TRUE.
       SEAICE_maskRHS     = .FALSE.
