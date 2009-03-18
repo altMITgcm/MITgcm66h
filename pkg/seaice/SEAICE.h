@@ -99,6 +99,13 @@ CEOP
       COMMON/ARRAYC/ seaiceMaskU, seaiceMaskV
       _RL seaiceMaskU(1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
       _RL seaiceMaskV(1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
+C     k1/2AtZ :: coefficients at C and Z points
+C     k1/2AtC    for metric terms in U/V ice equations.
+      COMMON/ARRAYCMETRIC/  k1AtC, k1AtZ, k2AtC, k2AtZ
+      _RS k1AtC      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
+      _RS k1AtZ      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
+      _RS k2AtC      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
+      _RS k2AtZ      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
 #else
       COMMON/ARRAYB/ UVM
       _RL UVM        (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
