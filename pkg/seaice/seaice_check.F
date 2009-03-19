@@ -276,6 +276,22 @@ C--   pkg/seaice requires pkg/exf with following CPP options/
        STOP 'ABNORMAL END: S/R SEAICE_CHECK'
       ENDIF
 #endif
+
+#if !defined(SEAICE_CGRID)
+#ifdef SEAICE_TEST_ICE_STRESS_1
+       WRITE(msgBuf,'(A)')
+     &  'SEAICE_CHECK: Only relevant for B-grid:'
+       CALL PRINT_ERROR( msgBuf, myThid )
+       WRITE(msgBuf,'(A)')
+     &  'SEAICE_CHECK: SEAICE_TEST_ICE_STRESS_1 is replaced by'
+       CALL PRINT_ERROR( msgBuf, myThid )
+       WRITE(msgBuf,'(A)')
+     &  'SEAICE_CHECK: SEAICE_BICE_STRESS (defined by default)'
+       CALL PRINT_ERROR( msgBuf, myThid )
+       STOP 'ABNORMAL END: S/R SEAICE_CHECK'
+#endif / * SEAICE_TEST_ICE_STRESS_1 */      
+#endif / * SEAICE_CGRID not defined */
+
       _END_MASTER(myThid)
 
       RETURN
