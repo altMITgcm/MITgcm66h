@@ -116,8 +116,8 @@ C--   set default sea ice parameters
       SEAICEadvHeff      = .TRUE.    
       SEAICEadvArea      = .TRUE.
       SEAICEadvSnow      = .TRUE.
-      SEAICEadvSalt      = .FALSE.
-      SEAICEadvAge       = .FALSE.
+      SEAICEadvSalt      = .TRUE.
+      SEAICEadvAge       = .TRUE.
 #ifdef ALLOW_SEAICE_FLOODING
       SEAICEuseFlooding  = .TRUE.
 #else
