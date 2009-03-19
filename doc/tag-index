@@ -17,6 +17,8 @@ o pkg/seaice:
   Further changes involve changes in defaults:
   - ALLOW_FLOODING is defined and turned on by default
   - SEAICE_advSnow = .true. is now the default
+  - SEAICE_advSalt = .true. is now the default
+  - SEAICE_advAge  = .true. is now the default
   - B-grid, and thus not tested: SEAICE_TEST_ICE_STRESS_1/EXPLICIT_SSH_SLOPE
     is defined, SEAICE_TEST_ICE_STRESS_1 is renamed into SEAICE_BICE_STRESS
   - seaice_growth: replace computation of UG by a simple copy from wspeed
