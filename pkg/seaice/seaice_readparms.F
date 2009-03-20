@@ -124,7 +124,7 @@ C--   set default sea ice parameters
       SEAICEuseFlooding  = .FALSE.
 #endif /* ALLOW_SEAICE_FLOODING */
       SEAICE_no_slip     = .FALSE.
-      SEAICE_clipVelocities = .TRUE.
+      SEAICE_clipVelocities = .FALSE.
       SEAICE_maskRHS     = .FALSE.
       SEAICEadvScheme    = 2
       SEAICEadvSchArea   = UNSET_I
