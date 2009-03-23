@@ -41,7 +41,7 @@ C     msgBuf      - Informational/error meesage buffer
       _BEGIN_MASTER(myThid)
 
       IF ( ndaysrec .GT. maxNumDays ) THEN
-       WRITE(msgBuf,'(2A,2I)')
+       WRITE(msgBuf,'(2A,2I10)')
      &        'ECCO_CHECK: for ALLOW_TRANSPORT_COST_CONTRIBUTION: ',
      &        'ndaysrec > maxNumDays in ecco_cost.h ',
      &        ndaysrec, maxNumDays

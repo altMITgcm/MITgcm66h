@@ -240,7 +240,7 @@ c
      &   ( ersTimeMask(irec).NE.0. .AND. ersTimeMask(irec).NE.1. ) .OR.
      &   ( ersTimeMask(irec).NE.0. .AND. ersTimeMask(irec).NE.1. ) )
      &  then
-           WRITE(msgBuf,'(2A,I)')
+           WRITE(msgBuf,'(2A,I10)')
      &        'ecco_cost_init_fixed: (SSH)TimeMask not 0. or 1. ',
      &        'for irec (=day) ', irec
            CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
