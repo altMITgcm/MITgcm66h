@@ -48,10 +48,10 @@ C     !LOCAL VARIABLES:
 C     bi, bj        :: tile indices
 C     biW, bjW      :: West tile indices
 C     biE, bjE      :: East tile indices
-C     theProc       :: \
-C     theTag        ::  \
-C     theType       ::  / Variables used in message building
-C     theSize       :: /
+C     theProc       :: Variables used in message building
+C     theTag        :: Variables used in message building
+C     theType       :: Variables used in message building
+C     theSize       :: Variables used in message building
 C     westCommMode  :: variables holding type of communication
 C     eastCommMode  ::  a particular tile face uses.
       INTEGER bi, bj
@@ -245,10 +245,10 @@ C     !LOCAL VARIABLES:
 C     bi, bj        :: tile indices
 C     biS, bjS      :: South tile indices
 C     biN, bjN      :: North tile indices
-C     theProc       :: \
-C     theTag        ::  \
-C     theType       ::  / Variables used in message building
-C     theSize       :: /
+C     theProc       :: Variables used in message building
+C     theTag        :: Variables used in message building
+C     theType       :: Variables used in message building
+C     theSize       :: Variables used in message building
 C     southCommMode :: variables holding type of communication
 C     northCommMode ::  a particular tile face uses.
       INTEGER bi, bj
