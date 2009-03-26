@@ -320,7 +320,7 @@ C     coefficients for UICE(I+1,J)
 C     coefficients for UICE(I1,J)
           BU(I,J,bi,bj)=(ONE - seaiceMaskU(I,J,bi,bj)) +
      &         ( UXX(I-1,J  ,bi,bj) + UXX(I,J,bi,bj)
-     &         + UYY(I  ,J+1,bi,bj) + UYY(I,J,bj,bj)
+     &         + UYY(I  ,J+1,bi,bj) + UYY(I,J,bi,bj)
      &         + UXM(I-1,J  ,bi,bj) - UXM(I,J,bi,bj)
      &         + UYM(I  ,J+1,bi,bj) - UYM(I,J,bi,bj)
      &         ) * seaiceMaskU(I,J,bi,bj)
