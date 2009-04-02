@@ -1917,10 +1917,16 @@ C
   515 CONTINUE
 C
       IF (LENB .LE. 0) THEN
-         DO 5030 I=1,LENC*K
-         HST(I,1) = 0.0
-         QOL(I,1) = 0.0
- 5030    CONTINUE
+c        DO 5030 I=1,LENC*K
+c        HST(I,1) = 0.0
+c        QOL(I,1) = 0.0
+c5030    CONTINUE
+         DO L = 1,K
+          DO I = 1,LENC
+           HST(I,L) = 0.0
+           QOL(I,L) = 0.0
+          ENDDO
+         ENDDO
          DO 5040 I=1,LENC
          PCU(I) = 0.0
  5040    CONTINUE
