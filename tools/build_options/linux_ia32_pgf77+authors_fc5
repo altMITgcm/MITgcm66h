@@ -3,6 +3,10 @@
 #  $Header$
 #
 
+# on author: 
+# (csh,tcsh) setenv PGI /usr/local/pkg/pgi/pgi-6.1-5
+# (sh,bash)  export PGI=/usr/local/pkg/pgi/pgi-6.1-5
+
 FC='/usr/local/pkg/pgi/pgi-6.1-5/linux86/6.1/bin/pgf77'
 CC='/usr/local/pkg/pgi/pgi-6.1-5/linux86/6.1/bin/pgcc'
 DEFINES='-DWORDLENGTH=4'
