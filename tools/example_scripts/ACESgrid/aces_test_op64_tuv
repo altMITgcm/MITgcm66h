@@ -17,6 +17,8 @@ cd $HERE
 if test -f /etc/profile.d/modules.sh ; then
     . /etc/profile.d/modules.sh
 fi
+# Note: added to pass big test (the 2 fizhi-cs-* test)
+ulimit -s unlimited
 
 sfx='tuv'
 module add open64
