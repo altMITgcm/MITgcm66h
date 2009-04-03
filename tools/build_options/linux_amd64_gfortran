@@ -34,7 +34,11 @@ if test "x$IEEE" = x ; then
     FOPTIM='-O3 -funroll-loops'
 else
     #  Try to follow IEEE-754
-    FFLAGS="$FFLAGS -Waliasing -Wampersand -Wnonstd-intrinsics -Wsurprising -Wline-truncation"
+    # these may also be useful, but require specific gfortran versions:
+    # -Wnonstd-intrinsics  for gfortran <= 4.3
+    # -Wintrinsics-std     for gfortran >= 4.4
+    # -Wno-tabs            for gfortran >= 4.3 
+    FFLAGS="$FFLAGS -Waliasing -Wampersand -Wsurprising -Wline-truncation"
 #   to get plenty of warnings :
 #   FFLAGS="$FFLAGS -Wconversion -Wimplicit-interface -Wunused-labels"
     FOPTIM='-O0'
