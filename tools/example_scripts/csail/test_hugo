@@ -74,7 +74,8 @@ do
   'adm') OPTFILE='../tools/build_options/linux_ia32_gfortran' ;;
   'gfo') OPTFILE='../tools/build_options/linux_ia32_gfortran' ;;
   'ifc') OPTFILE='../tools/build_options/linux_ia32_ifort+authors_v9' ;;
-  'mth') OPTFILE='../tools/build_options/linux_ia32_ifort.v9+mth' ;;
+  'mth') OPTFILE='../tools/build_options/linux_ia32_ifort.v9+mth'
+         export KMP_STACKSIZE=400m ;;
   'pgi') OPTFILE='../tools/build_options/linux_ia32_pgf77+authors_fc5' ;;
    *) OPTFILE= ;;
  esac
@@ -183,7 +184,6 @@ do
  then
 
   export OMP_NUM_THREADS=2
-  export KMP_STACKSIZE=400m
   echo "Running testreport using:"
   comm="./testreport -mth -match $MC -a jmc@mitgcm.org"
   if test "x$OPTFILE" != x ; then
