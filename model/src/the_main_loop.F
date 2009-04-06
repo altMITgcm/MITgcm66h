@@ -318,7 +318,8 @@ CADJ &    nchklev_1*nsx*nsy*nr*nthreads_chkpt*maxpass*maxpass
 c--
 #   ifndef AUTODIFF_DISABLE_LEITH
 CADJ INIT comlev1_mom_ijk_loop
-CADJ &     = COMMON,nchklev_1*snx*nsx*sny*nsy*nr*nthreads_chkpt
+CADJ &     = COMMON,nchklev_1*
+CADJ &       (snx+2*olx)*nsx*(sny+2*oly)*nsy*nr*nthreads_chkpt
 #   endif /* AUTODIFF_DISABLE_LEITH */
 c--
 #   if (defined (ALLOW_EXF) && defined (ALLOW_BULKFORMULAE))
