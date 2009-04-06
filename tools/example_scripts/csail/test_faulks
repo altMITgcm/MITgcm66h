@@ -16,7 +16,7 @@ sepDir=1
 tst_list='g77 adm ifc pgi+rs'
 
 #  Turn off stack limit for FIZHI
-#ulimit -s unlimited  <- this is the default
+ulimit -s unlimited
 
 tdir=$TESTDIR
 if test $checkOut = '0' ; then
