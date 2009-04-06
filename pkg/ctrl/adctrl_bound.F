@@ -6,9 +6,9 @@ C $Name$
 C     !ROUTINE: ADCTRL_BOUND_3D
 C     !INTERFACE:
       SUBROUTINE ADCTRL_BOUND_3D(
-     I             fieldCur,maskFld3d,
-     I             boundsVec,myThid,
-     I             adjFieldCur)
+     I             fieldCur, adjFieldCur,
+     I             maskFld3d, boundsVec, myThid
+     I             )
 C     !DESCRIPTION: \bv
 C     *==========================================================*
 C     | started: Gael Forget gforget@mit.edu 20-Aug-2007
@@ -92,9 +92,9 @@ C  otherwise	=> error
 C     !ROUTINE: ADCTRL_BOUND_2D
 C     !INTERFACE:
       SUBROUTINE ADCTRL_BOUND_2D(
-     I             fieldCur,maskFld3d,
-     I             boundsVec,myThid,
-     I             adjFieldCur)
+     I             fieldCur,adjFieldCur,
+     I             maskFld3d,boundsVec,myThid,
+     I             )
 C     !DESCRIPTION: \bv
 C     *==========================================================*
 C     | started: Gael Forget gforget@mit.edu 20-Aug-2007
