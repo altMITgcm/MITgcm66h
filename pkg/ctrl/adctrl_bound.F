@@ -28,7 +28,7 @@ C     *==========================================================*
       _RL adjFieldCur(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nsx,nsy)
       _RL boundsVec(5)
       _RL x0,x0p5,l0p5,x1,x2,x2p5,l2p5,x3
-      _RL tmpCur,xCur,adxCur 
+      _RL tmpCur,xCur,adxCur
 
       jtlo = mybylo(mythid)
       jthi = mybyhi(mythid)
@@ -93,7 +93,7 @@ C     !ROUTINE: ADCTRL_BOUND_2D
 C     !INTERFACE:
       SUBROUTINE ADCTRL_BOUND_2D(
      I             fieldCur,adjFieldCur,
-     I             maskFld3d,boundsVec,myThid,
+     I             maskFld3d,boundsVec,myThid
      I             )
 C     !DESCRIPTION: \bv
 C     *==========================================================*
