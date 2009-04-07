@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint61l
+o Overlaps had been forgotten in calculating ijk keys : fixed
+o fix cyrus makedepend for gcc 4.4
 o experiment fizhi-cs-aqualev20:
   switching to new version of S/R GETPWHERE (#define TRY_NEW_GETPWHERE)
   and generate new output. Note: new output is much closer to the old 
