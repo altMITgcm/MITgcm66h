@@ -44,6 +44,10 @@ c     == routine arguments ==
 
       integer mythid
 
+C     === Functions ====
+      LOGICAL  MASTER_CPU_THREAD
+      EXTERNAL MASTER_CPU_THREAD
+
 c     == local variables ==
 
       integer bi,bj
@@ -876,7 +880,7 @@ c--   Do global summation for each part of the cost function
 #endif
 
 c--   Each process has calculated the global part for itself.
-      _BEGIN_MASTER( mythid )
+      IF ( MASTER_CPU_THREAD(myThid) ) THEN
 
         fc = fc
      &          + mult_hmean*objf_hmean
@@ -1101,7 +1105,7 @@ cph)
 
         close(ifc)
 
-      _END_MASTER( mythid )
+      ENDIF
 
       call cost_trans_merid( mythid )
       call cost_trans_zonal( mythid )
