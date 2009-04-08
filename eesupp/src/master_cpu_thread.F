@@ -16,6 +16,8 @@ C     !USES:
       IMPLICIT NONE
 
 C Global variables
+#include "SIZE.h"
+#include "EEPARAMS.h"
 #ifdef ALLOW_USE_MPI
 # include "EESUPPORT.h"
 #endif
