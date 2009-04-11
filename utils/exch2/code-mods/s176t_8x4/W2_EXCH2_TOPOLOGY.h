@@ -39,7 +39,7 @@ C                        :: to source connection (neighbour entry "n").
        INTEGER exch2_domain_nxt
        INTEGER exch2_global_Nx
        INTEGER exch2_global_Ny
-       PARAMETER ( NTILES = 176)
+       PARAMETER ( NTILES = 192)
        PARAMETER ( MAX_NEIGHBOURS = 5)
        PARAMETER ( exch2_domain_nxt=24)
        PARAMETER ( exch2_domain_nyt=8)
