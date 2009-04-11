@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/exch2 (+ utils/exch2): ignore blank tiles (instead of removing them)
+  and keep the original tile numbering. Note: compatible with old
+  W2_EXCH2_TOPOLOGY.h & w2_e2setup.F topology files.
+
 checkpoint61l
 o Overlaps had been forgotten in calculating ijk keys : fixed
 o fix cyrus makedepend for gcc 4.4
