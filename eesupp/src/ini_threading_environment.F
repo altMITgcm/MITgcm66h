@@ -2,6 +2,7 @@ C $Header$
 C $Name$
 
 #include "CPP_EEOPTIONS.h"
+#include "PACKAGES_CONFIG.h"
 
 CBOP
 
@@ -183,6 +184,7 @@ C     o Write list of tiles each thread is responsible for
       WRITE(msgBuf,'(A)')  ' '
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,SQUEEZE_RIGHT , 1)
 
+#ifndef ALLOW_EXCH2
 C     o For each tile print its communication method(s)
       WRITE(msgBuf,'(A)') 
      &'// ======================================================'
@@ -277,6 +279,7 @@ C       o North communication method
       ENDDO
       WRITE(msgBuf,'(A)')  ' '
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT, 1)
+#endif /* ndef ALLOW_EXCH2 */
 
       RETURN
       END
