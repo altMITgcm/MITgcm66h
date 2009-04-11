@@ -147,9 +147,9 @@ fprintf(fout,'\n');
 
 % Settings
 fprintf(fout,'C      Tile settings table\n');
-for j=1:length(tile)
+for j=1:length(tile), if tile(j).tileid > 0,
 fprintf(fout,'       CALL W2_E2SETUP_%d\n',j);
-end
+end ; end
 fprintf(fout,'       RETURN\n');
 fprintf(fout,'       END\n');
 fprintf(fout,'\n');
@@ -157,7 +157,7 @@ if outmode == 2
 fclose(fout);
 end
 
-for j=1:length(tile)
+for j=1:length(tile), if tile(j).tileid > 0,
 if outmode == 2
 fnam=sprintf('w2_e2setup_%d.F',j);
 fnamf=sprintf('%s%s',outdir,fnam);
@@ -425,7 +425,7 @@ fprintf(fout,'\n');
 if outmode == 2
 fclose(fout);
 end
-end
+end ; end
 %fprintf(fout,'       exch2_pi(%d,1)=%d\n',j,tile(j).w_pi(1,1));
 %fprintf(fout,'       exch2_pi(%d,2)=%d\n',j,tile(j).w_pi(1,2));
 %end
