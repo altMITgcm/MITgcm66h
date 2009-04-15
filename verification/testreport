@@ -11,7 +11,7 @@ usage()
     echo
     echo "where possible OPTIONS are:"
     echo "  (-help|-h)               print usage"
-    echo "  (-mth)                   run multi threaded (using eedata.mth)"
+    echo "  (-mth)                   run multi-threaded (using eedata.mth)"
     echo "  (-mpi)                   compile and run using MPI"
     echo "  (-ieee|-noieee)          if possible, use IEEE compiler flags"
     echo "                             (DEF=\"-ieee\")"
@@ -333,6 +333,10 @@ genmakemodel()
 	    fi
 	    if test "x$MPI" = xt ; then
 		command="$command -mpi"
+	    fi
+	    if test "x$MULTI_THREAD" = xt ; then
+	    #- run multi-threaded using OpenMP:
+		command="$command -omp"
 	    fi
 	    if test "x$TS" = xt ; then
 		command="$command -ts"
