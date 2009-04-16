@@ -76,7 +76,7 @@ do
   'adm') OPTFILE='../tools/build_options/linux_amd64_gfortran' ;;
   'ifc') OPTFILE='../tools/build_options/linux_amd64_ifort' ;;
   'pgi') OPTFILE='../tools/build_options/linux_amd64_pgf77' ;;
-  'mth') OPTFILE='../tools/build_options/linux_amd64_gfortran+mth'
+  'mth') OPTFILE='../tools/build_options/linux_amd64_gfortran'
          export GOMP_STACKSIZE=400m ;;
    *) OPTFILE= ;;
  esac
