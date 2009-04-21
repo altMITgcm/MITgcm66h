@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o move read_write.F to write_utils.F ; new parameter (maxLengthPrt1D) 
+  to reduce length of 1.D array print in STDOUT.
 o adjustment.cs-32x32x1: changed to oceanic test with 1 continent
   + use 48 tiles (16x8): this will allow to test "blank tiles".
 o start to test MPI + multi-threaded (change testreport to skip tests
