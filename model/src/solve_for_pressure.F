@@ -57,7 +57,7 @@ C     == Local variables ==
       INTEGER i,j,k,bi,bj
       _RL firstResidual,lastResidual
       _RL tmpFac
-      _RL sumEmP, tileEmP
+      _RL sumEmP, tileEmP(nSx,nSy)
       LOGICAL putPmEinXvector
       INTEGER numIters, ks
       CHARACTER*10 sufx
@@ -120,19 +120,19 @@ C--   Save previous solution & Initialise Vector solution and source term :
          ENDDO
         ENDIF
         IF ( putPmEinXvector ) THEN
-         tileEmP = 0.
+         tileEmP(bi,bj) = 0.
          DO j=1,sNy
           DO i=1,sNx
-            tileEmP = tileEmP + rA(i,j,bi,bj)*EmPmR(i,j,bi,bj)
-     &                                       *maskH(i,j,bi,bj)
+            tileEmP(bi,bj) = tileEmP(bi,bj) 
+     &                     + rA(i,j,bi,bj)*EmPmR(i,j,bi,bj)
+     &                                    *maskH(i,j,bi,bj)
           ENDDO
          ENDDO
-         sumEmP = sumEmP + tileEmP
         ENDIF
        ENDDO
       ENDDO
       IF ( putPmEinXvector ) THEN
-        _GLOBAL_SUM_R8( sumEmP, myThid )
+        CALL GLOBAL_SUM_TILE_RL( tileEmP, sumEmP, myThid )
       ENDIF
 
       DO bj=myByLo(myThid),myByHi(myThid)
