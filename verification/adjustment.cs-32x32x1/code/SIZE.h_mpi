@@ -41,7 +41,7 @@ C     Nr  - No. points in Z for full process domain.
      &           sNy =   8,
      &           OLx =   2,
      &           OLy =   2,
-     &           nSx =  24,
+     &           nSx =  22,
      &           nSy =   1,
      &           nPx =   2,
      &           nPy =   1,
