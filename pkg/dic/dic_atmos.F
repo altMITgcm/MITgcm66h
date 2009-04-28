@@ -185,8 +185,8 @@ c for 278ppmv we need total_atmos_carbon=4.9206e+16
         ENDDO
        ENDDO
 
-       _GLOBAL_SUM_R8(total_flux,myThid)
-       _GLOBAL_SUM_R8(total_ocean_carbon,myThid)
+       _GLOBAL_SUM_RL(total_flux,myThid)
+       _GLOBAL_SUM_RL(total_ocean_carbon,myThid)
 
        if (istate.eq.0) then
 c use value read in dic_init_fixed
