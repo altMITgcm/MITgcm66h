@@ -80,7 +80,7 @@ C--   All proceses except 0 receive local array from process 0
       _BARRIER
 
 C--   Fill in edges.
-cph      _EXCH_XY_R8( local, myThid )
+cph      _EXCH_XY_RL( local, myThid )
 
       RETURN
       END
