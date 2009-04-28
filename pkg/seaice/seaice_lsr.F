@@ -536,7 +536,7 @@ C     end bi,bj-loops
          ENDDO
         ENDDO
        ENDDO
-       _GLOBAL_MAX_R8( S1, myThid )
+       _GLOBAL_MAX_RL( S1, myThid )
 c       WRITE(standardMessageUnit,'(A,2I6,1P4E16.9)')
 c    &   ' U iters,error,WF = ',ilcall,M,S1,S1A,WFAU
 C SAFEGUARD AGAINST BAD FORCING ETC
@@ -797,7 +797,7 @@ C     end bi,bj-loops
          ENDDO
         ENDDO
        ENDDO
-       _GLOBAL_MAX_R8( S2, myThid )
+       _GLOBAL_MAX_RL( S2, myThid )
 C SAFEGUARD AGAINST BAD FORCING ETC
        IF(M.GT.1.AND.S2.GT.S2A) WFAV=WFAV2
        S2A=S2
@@ -1333,7 +1333,7 @@ C     end bi,bj-loops
          ENDDO
         ENDDO
        ENDDO
-       _GLOBAL_MAX_R8( S1, myThid )
+       _GLOBAL_MAX_RL( S1, myThid )
 C SAFEGUARD AGAINST BAD FORCING ETC
        IF(M.GT.1.AND.S1.GT.S1A) WFAU=WFAU2
        S1A=S1
@@ -1636,7 +1636,7 @@ C     end bi,bj-loops
          ENDDO
         ENDDO
        ENDDO
-       _GLOBAL_MAX_R8( S2, myThid )
+       _GLOBAL_MAX_RL( S2, myThid )
 C SAFEGUARD AGAINST BAD FORCING ETC
        IF(M.GT.1.AND.S2.GT.S2A) WFAV=WFAV2
        S2A=S2

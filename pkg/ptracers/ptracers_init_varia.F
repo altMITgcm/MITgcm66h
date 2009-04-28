@@ -90,7 +90,7 @@ C     Now read initial conditions and always exchange
         IF ( PTRACERS_initialFile(iTracer) .NE. ' ' ) THEN
          CALL READ_FLD_XYZ_RL(PTRACERS_initialFile(iTracer),' ',
      &        pTracer(1-Olx,1-Oly,1,1,1,iTracer),0,myThid)
-         _EXCH_XYZ_R8(pTracer(1-Olx,1-Oly,1,1,1,iTracer),myThid)
+         _EXCH_XYZ_RL(pTracer(1-Olx,1-Oly,1,1,1,iTracer),myThid)
         ENDIF
        ENDDO
       ENDIF

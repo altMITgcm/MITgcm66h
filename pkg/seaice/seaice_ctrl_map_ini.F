@@ -149,15 +149,15 @@ c--   sihsnow.
 c--   Update the tile edges.
 
 #ifdef ALLOW_SIAREA_CONTROL
-      _EXCH_XY_R8( area, mythid )
+      _EXCH_XY_RL( area, mythid )
 #endif
 
 #ifdef ALLOW_SIHEFF_CONTROL
-      _EXCH_XY_R8( heff, mythid )
+      _EXCH_XY_RL( heff, mythid )
 #endif
 
 #ifdef ALLOW_SIHSNOW_CONTROL
-      _EXCH_XY_R8( hsnow, mythid )
+      _EXCH_XY_RL( hsnow, mythid )
 #endif
 
 #endif /* ALLOW_CTRL */

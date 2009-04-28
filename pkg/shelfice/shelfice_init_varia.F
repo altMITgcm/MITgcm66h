@@ -51,7 +51,7 @@ C-    must wait for initialisation to be finished before master loads from file
        CALL READ_FLD_XY_RS( SHELFICEloadAnomalyFile, ' ',
      &      shelficeLoadAnomaly, 0, myThid )
 C-    EXCH call implicitly contains Barrier: no need for an other one.
-       _EXCH_XY_R4( shelficeLoadAnomaly, myThid )
+       _EXCH_XY_RS( shelficeLoadAnomaly, myThid )
       ENDIF
 
 #endif /* ALLOW_SHELFICE */

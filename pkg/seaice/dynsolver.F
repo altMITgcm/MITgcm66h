@@ -297,9 +297,9 @@ C NOW SET VISCOSITIES TO ZERO AT HEFFMFLOW PTS
       ENDDO
 
 C--   Update overlap regions
-      _EXCH_XY_R8(ETA, myThid)
-      _EXCH_XY_R8(ZETA, myThid)
-      _EXCH_XY_R8(PRESS, myThid)
+      _EXCH_XY_RL(ETA, myThid)
+      _EXCH_XY_RL(ZETA, myThid)
+      _EXCH_XY_RL(PRESS, myThid)
 
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
@@ -408,9 +408,9 @@ C NOW SET VISCOSITIES TO ZERO AT HEFFMFLOW PTS
       ENDDO
 
 C--   Update overlap regions
-      _EXCH_XY_R8(ETA, myThid)
-      _EXCH_XY_R8(ZETA, myThid)
-      _EXCH_XY_R8(PRESS, myThid)
+      _EXCH_XY_RL(ETA, myThid)
+      _EXCH_XY_RL(ZETA, myThid)
+      _EXCH_XY_RL(PRESS, myThid)
 
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)

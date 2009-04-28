@@ -63,8 +63,8 @@ C-    Apply Exchanges on Output field, after the filter (but not before):
 
 #ifdef USE_OLD_SHAPIRO_FILTERS
 
-        IF ( tempStepping ) _EXCH_XYZ_R8( tFld,myThid )
-        IF ( saltStepping ) _EXCH_XYZ_R8( sFld,myThid )
+        IF ( tempStepping ) _EXCH_XYZ_RL( tFld,myThid )
+        IF ( saltStepping ) _EXCH_XYZ_RL( sFld,myThid )
 
         DO bj=myByLo(myThid),myByHi(myThid)
          DO bi=myBxLo(myThid),myBxHi(myThid)
@@ -77,8 +77,8 @@ C-    Apply Exchanges on Output field, after the filter (but not before):
          ENDDO
         ENDDO
 
-        IF ( tempStepping ) _EXCH_XYZ_R8( tFld,myThid )
-        IF ( saltStepping ) _EXCH_XYZ_R8( sFld,myThid )
+        IF ( tempStepping ) _EXCH_XYZ_RL( tFld,myThid )
+        IF ( saltStepping ) _EXCH_XYZ_RL( sFld,myThid )
 
 #else
 

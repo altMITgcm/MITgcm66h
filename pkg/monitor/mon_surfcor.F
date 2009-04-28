@@ -172,17 +172,17 @@ C--    end bi,bj loop
         ENDDO
        ENDDO
 
-c      _GLOBAL_SUM_R8(theArea,myThid)
-c      _GLOBAL_SUM_R8(wT_Mean,myThid)
-c      _GLOBAL_SUM_R8(wS_Mean,myThid)
+c      _GLOBAL_SUM_RL(theArea,myThid)
+c      _GLOBAL_SUM_RL(wT_Mean,myThid)
+c      _GLOBAL_SUM_RL(wS_Mean,myThid)
        CALL GLOBAL_SUM_TILE_RL( tileArea, theArea, myThid )
        CALL GLOBAL_SUM_TILE_RL( tile_wT , wT_Mean, myThid )
        CALL GLOBAL_SUM_TILE_RL( tile_wS , wS_Mean, myThid )
        IF ( fluidIsAir ) THEN
         CALL GLOBAL_SUM_TILE_RL( tileWHeat , wT_Heat , myThid )
         CALL GLOBAL_SUM_TILE_RL( tileTh2pe , theta2PE, myThid )
-c       _GLOBAL_SUM_R8(wT_Heat,myThid)
-c       _GLOBAL_SUM_R8(theta2PE,myThid)
+c       _GLOBAL_SUM_RL(wT_Heat,myThid)
+c       _GLOBAL_SUM_RL(theta2PE,myThid)
        ENDIF
        IF (theArea.GT.0.) THEN
          wT_Mean = wT_Mean / theArea

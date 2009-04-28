@@ -94,15 +94,15 @@ c--   Sum up all contributions.
 
 c--   Do global summation.
 cph this is done only in ecco_cost_final!
-cph      _GLOBAL_SUM_R8( fc , myThid )
+cph      _GLOBAL_SUM_RL( fc , myThid )
 
 c--   Do global summation for each part of the cost function
 
-      _GLOBAL_SUM_R8( f_ice , myThid )
-      _GLOBAL_SUM_R8( f_smrarea , myThid )
+      _GLOBAL_SUM_RL( f_ice , myThid )
+      _GLOBAL_SUM_RL( f_smrarea , myThid )
 
-      _GLOBAL_SUM_R8( no_ice , myThid )
-      _GLOBAL_SUM_R8( no_smrarea , myThid )
+      _GLOBAL_SUM_RL( no_ice , myThid )
+      _GLOBAL_SUM_RL( no_smrarea , myThid )
 
       write(standardmessageunit,'(A,D22.15)')
      &     ' --> f_ice     =',f_ice

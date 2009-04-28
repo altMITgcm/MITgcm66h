@@ -134,10 +134,10 @@ C-    Check local Dim
         theVar(n) = theVar(n) -theMean(n)*theMean(n)
         IF ( noPnts(n) ) theMin(n) = theMean(n)
         theMin(n) = -theMin(n)
-        _GLOBAL_MAX_R8(theMin(n), myThid)
+        _GLOBAL_MAX_RL(theMin(n), myThid)
         theMin(n)=-theMin(n)
         IF ( noPnts(n) ) theMax(n) = theMin(n)
-        _GLOBAL_MAX_R8(theMax(n), myThid)
+        _GLOBAL_MAX_RL(theMax(n), myThid)
        ENDIF
       ENDDO
 

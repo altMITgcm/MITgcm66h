@@ -344,8 +344,8 @@ C     from a file.
      &       CALL DEBUG_CALL('EXCHANGES in OBCS_INIT_VARIABLES',myThid)
 #endif
         CALL EXCH_UV_XYZ_RL(uVel,vVel,.TRUE.,myThid)
-        _EXCH_XYZ_R8( theta, myThid )
-        _EXCH_XYZ_R8( salt , myThid )
+        _EXCH_XYZ_RL( theta, myThid )
+        _EXCH_XYZ_RL( salt , myThid )
        ENDIF
 C     endif start from rest
       ENDIF

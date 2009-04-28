@@ -88,7 +88,7 @@ C read in mask for relaxing
          CALL READ_FLD_XYZ_RS(relaxMaskFile(irbc),' ',
      &                RBC_mask(1-Olx,1-Oly,1,1,1,irbc), 0, myThid)
         _END_MASTER(myThid)
-        _EXCH_XYZ_R8(RBC_mask(1-Olx,1-Oly,1,1,1,irbc), myThid )
+        _EXCH_XYZ_RL(RBC_mask(1-Olx,1-Oly,1,1,1,irbc), myThid )
        CALL PLOT_FIELD_XYRS( RBC_mask(1-Olx,1-Oly,1,1,1,irbc),
      &          'Boundary Relaxing' ,1, myThid )
        ENDIF

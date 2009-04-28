@@ -339,7 +339,7 @@ C NOW SET U(3)=U(1)
          END DO
         ENDDO
        ENDDO
-       _GLOBAL_MAX_R8( S1, myThid )
+       _GLOBAL_MAX_RL( S1, myThid )
 C SAFEGUARD AGAINST BAD FORCING ETC
        IF(M.GT.1.AND.S1.GT.S1A) WFAU=WFAU2
        S1A=S1
@@ -587,7 +587,7 @@ C NOW SET U(3)=U(1)
          END DO
         ENDDO
        ENDDO
-       _GLOBAL_MAX_R8( S2, myThid )
+       _GLOBAL_MAX_RL( S2, myThid )
 C SAFEGUARD AGAINST BAD FORCING ETC
        IF(M.GT.1.AND.S2.GT.S2A) WFAV=WFAV2
        S2A=S2

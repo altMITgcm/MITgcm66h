@@ -100,7 +100,7 @@ C     apply mask for safety
        ENDDO
       ENDDO
 
-      _EXCH_XY_R8(HEFF1, myThid)
+      _EXCH_XY_RL(HEFF1, myThid)
 
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)

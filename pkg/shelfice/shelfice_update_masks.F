@@ -75,7 +75,7 @@ C    &      0, myThid )
 C- end setup R_shelfIce in the interior
 
 C- fill in the overlap (+ BARRIER):
-      _EXCH_XY_R4(R_shelfIce, myThid )
+      _EXCH_XY_RS(R_shelfIce, myThid )
 
 C--   Calculate lopping factor hFacC : Remove part outside of the domain
 C     taking into account the Reference (=at rest) Surface Position Ro_shelfIce

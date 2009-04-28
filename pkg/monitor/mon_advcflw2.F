@@ -51,7 +51,7 @@ C     !LOCAL VARIABLES:
         ENDDO
        ENDDO
       ENDDO
-      _GLOBAL_MAX_R8(theMax,myThid)
+      _GLOBAL_MAX_RL(theMax,myThid)
 
       CALL MON_OUT_RL( label, theMax, mon_foot_max ,myThid)
 

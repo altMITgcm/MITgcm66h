@@ -630,12 +630,12 @@ cgf YC grid
       _BARRIER
 
 c2) stop after other kind of errors
-      _GLOBAL_SUM_R8( stopProfiles , myThid )
+      _GLOBAL_SUM_RL( stopProfiles , myThid )
       if ( stopProfiles.GE.1.) then
              STOP 'ABNORMAL END: S/R PROFILES_INIT_FIXED'
       endif
 #ifdef ALLOW_PROFILES_GENERICGRID
-      _GLOBAL_SUM_R8( stopGenericGrid , myThid )
+      _GLOBAL_SUM_RL( stopGenericGrid , myThid )
       if ( stopGenericGrid.GE.1.) then
              STOP 'ABNORMAL END: S/R PROFILES_INIT_FIXED'
       endif
