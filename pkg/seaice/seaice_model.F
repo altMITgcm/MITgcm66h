@@ -185,22 +185,22 @@ C--   Update overlap regions for a bunch of stuff
        _BARRIER
        CALL EXCH_3D_RL( HEFF, 3, myThid )
        CALL EXCH_3D_RL( AREA, 3, myThid )
-       _EXCH_XY_R8( HSNOW,  myThid )
+       _EXCH_XY_RL( HSNOW,  myThid )
 #ifdef SEAICE_SALINITY
-       _EXCH_XY_R8( HSALT,  myThid )
+       _EXCH_XY_RL( HSALT,  myThid )
 #endif
 #ifdef SEAICE_AGE
-       _EXCH_XY_R8( IceAge,  myThid )
+       _EXCH_XY_RL( IceAge,  myThid )
 #endif
-       _EXCH_XY_R4(EmPmR, myThid )
-       _EXCH_XY_R4(saltFlux, myThid )
-       _EXCH_XY_R4(Qnet , myThid )
+       _EXCH_XY_RS(EmPmR, myThid )
+       _EXCH_XY_RS(saltFlux, myThid )
+       _EXCH_XY_RS(Qnet , myThid )
 #ifdef SHORTWAVE_HEATING
-       _EXCH_XY_R4(Qsw  , myThid )
+       _EXCH_XY_RS(Qsw  , myThid )
 #endif /* SHORTWAVE_HEATING */
 #ifdef ALLOW_SALT_PLUME
        IF ( useSALT_PLUME )
-     &       _EXCH_XY_R4(saltPlumeFlux, myThid )
+     &       _EXCH_XY_RL(saltPlumeFlux, myThid )
 #endif /* ALLOW_SALT_PLUME */
 #ifdef ATMOSPHERIC_LOADING
        IF ( useRealFreshWaterFlux )
