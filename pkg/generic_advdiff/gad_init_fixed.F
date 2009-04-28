@@ -169,7 +169,7 @@ C-- Print out GAD parameters :
      & 'AdamsBashforth_S =',
      & ' /* apply Adams-Bashforth extrapolation on Salt */')
 #ifdef GAD_SMOLARKIEWICZ_HACK
-      CALL WRITE_0D_R8( SmolarkiewiczMaxFrac, INDEX_NONE,
+      CALL WRITE_0D_RL( SmolarkiewiczMaxFrac, INDEX_NONE,
      & 'SmolarkiewiczMaxFrac =',
      & ' /* maximal fraction of tracer to flow out of a cell */')
 #endif

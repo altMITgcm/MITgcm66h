@@ -231,7 +231,7 @@ C- namelist CPL_OCN_PARAM:
        CALL WRITE_0D_L( useImportWSpd , INDEX_NONE,
      &                 'useImportWSpd =',
      &   ' /* use Imported Windspeed fr Cpl. on/off flag */')
-       CALL WRITE_0D_R8( cpl_taveFreq, INDEX_NONE, 'cpl_taveFreq =',
+       CALL WRITE_0D_RL( cpl_taveFreq, INDEX_NONE, 'cpl_taveFreq =',
      &   ' /* Frequency^-1 for time-Aver. output (s) */')
        CALL WRITE_0D_L( cpl_timeave_mnc , INDEX_NONE,
      &                 'cpl_timeave_mnc =',

@@ -152,7 +152,7 @@ C- namelist CPL_ATM_PARAM:
        CALL WRITE_0D_L( useImportFlxCO2 , INDEX_NONE,
      &                 'useImportFlxCO2 =',
      &   ' /* use Imported air-sea CO2 flux from Coupler flag */')
-       CALL WRITE_0D_R8( cpl_atmSendFrq, INDEX_NONE, 'cpl_atmSendFrq =',
+       CALL WRITE_0D_RL( cpl_atmSendFrq, INDEX_NONE, 'cpl_atmSendFrq =',
      &   ' /* Frequency^o-1 for sending data to Coupler (s) */')
 C     cpl_atmSendFrq  :: Frequency^-1 for sending data to coupler (s)
        CALL WRITE_0D_I( cplSendFrq_iter, INDEX_NONE,'cplSendFrq_iter =',
