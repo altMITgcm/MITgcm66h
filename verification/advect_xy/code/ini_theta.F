@@ -76,7 +76,7 @@ C--    Initialise temperature field to a circular patch.
        _BEGIN_MASTER( myThid )
        CALL READ_FLD_XYZ_RL( hydrogThetaFile, ' ', theta, 0, myThid )
        _END_MASTER(myThid)
-       _EXCH_XYZ_R8(theta,myThid)
+       _EXCH_XYZ_RL(theta,myThid)
       ENDIF
 
 C--   Apply mask and test consistency
@@ -128,7 +128,7 @@ C--   Check that there are no values of temperature below freezing point.
        ENDDO
       ENDIF
 
-      _EXCH_XYZ_R8(theta,myThid)
+      _EXCH_XYZ_RL(theta,myThid)
 
       CALL PLOT_FIELD_XYZRL( theta, 'Initial Temperature' ,
      &                       Nr, 1, myThid )

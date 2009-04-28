@@ -69,14 +69,14 @@ C     Read an initial state for each component if required
        _BEGIN_MASTER( myThid )
        CALL READ_FLD_XYZ_RL( uVelInitFile, ' ', uVel, 0, myThid )
        _END_MASTER(myThid)
-c      _EXCH_XYZ_R8(uVel  , myThid )
+c      _EXCH_XYZ_RL(uVel  , myThid )
       ENDIF
 
       IF (vVelInitFile .NE. ' ') THEN
        _BEGIN_MASTER( myThid )
        CALL READ_FLD_XYZ_RL( vVelInitFile, ' ', vVel, 0, myThid )
        _END_MASTER(myThid)
-c      _EXCH_XYZ_R8(vVel  , myThid )
+c      _EXCH_XYZ_RL(vVel  , myThid )
       ENDIF
 
 c     IF (uVelInitFile .NE. ' ' .OR. vVelInitFile .NE. ' ') THEN

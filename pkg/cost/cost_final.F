@@ -124,7 +124,7 @@ c--   Sum up all contributions.
       write(standardmessageunit,'(A,D22.15)') '  local fc = ', fc
 
 c--   Do global summation.
-      _GLOBAL_SUM_R8( fc , myThid )
+      _GLOBAL_SUM_RL( fc , myThid )
 
       write(standardmessageunit,'(A,D22.15)') ' global fc = ', fc
 

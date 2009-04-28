@@ -45,7 +45,7 @@ C     ========= Local variables =========================
       END DO
 
 cph      fc = objf_state_final(45,4,1,1,1)
-cph      _GLOBAL_SUM_R8( fc , myThid )
+cph      _GLOBAL_SUM_RL( fc , myThid )
 cph      print *, 'fc for admtlm test at 83,33 : ', fc
 
 #endif

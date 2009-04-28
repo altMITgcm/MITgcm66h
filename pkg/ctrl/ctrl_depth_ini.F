@@ -128,7 +128,7 @@ C--
 
 c--   Update the tile edges.
 
-      _EXCH_XY_R8( xx_r_low, myThid )
+      _EXCH_XY_RL( xx_r_low, myThid )
 
 #endif /* ALLOW_DEPTH_CONTROL */
 

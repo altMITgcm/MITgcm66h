@@ -100,8 +100,8 @@ c --------------------------------
 
        ENDDO
        ENDDO
-       _EXCH_XY_R8(sst,myThid)
-       _EXCH_XY_R8(sice,myThid)
+       _EXCH_XY_RL(sst,myThid)
+       _EXCH_XY_RL(sice,myThid)
 
        return
        end

@@ -50,7 +50,7 @@ C     !LOCAL VARIABLES:
       INTEGER bi,bj
 #endif
 
-      _EXCH_XY_R8( aim_drag, myThid )
+      _EXCH_XY_RL( aim_drag, myThid )
 
 #ifdef ALLOW_THSICE
       IF (useThSIce) THEN

@@ -57,7 +57,7 @@ C  Total number of wet temperature point
             enddo
          ENDDO
       ENDDO
-      _GLOBAL_SUM_R8( tmp , myThid )
+      _GLOBAL_SUM_RL( tmp , myThid )
 c
       locfc = 0. _d 0
       DO bj=myByLo(myThid),myByHi(myThid)

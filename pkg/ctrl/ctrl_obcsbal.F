@@ -156,8 +156,8 @@ c--   Loop over records. For north boundary, we only need V velocity.
         call ctrl_volflux( obcsncount0, area, volflux, mythid)
 
 c--   Do the global summation.
-        _GLOBAL_SUM_R8( volflux, mythid )
-        _GLOBAL_SUM_R8( area,mythid )
+        _GLOBAL_SUM_RL( volflux, mythid )
+        _GLOBAL_SUM_RL( area,mythid )
 
         shiftvel(2) = volflux / area
         print*,'volflux,area',volflux,area
@@ -175,8 +175,8 @@ cgg     Swap the value.
         call ctrl_volflux( obcsncount1, area, volflux, mythid)
 
 c--   Do the global summation.
-        _GLOBAL_SUM_R8( volflux, mythid )
-        _GLOBAL_SUM_R8( area,mythid )
+        _GLOBAL_SUM_RL( volflux, mythid )
+        _GLOBAL_SUM_RL( area,mythid )
 
         shiftvel(2) = volflux /area
         print*,'volflux,area',volflux,area

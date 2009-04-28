@@ -60,7 +60,7 @@ C--   Initialise salinity field to the vertical reference profile
        _BEGIN_MASTER( myThid )
        CALL READ_FLD_XYZ_RL( hydrogSaltFile, ' ', salt, 0, myThid )
        _END_MASTER(myThid)
-       _EXCH_XYZ_R8(salt  , myThid )
+       _EXCH_XYZ_RL(salt  , myThid )
       ENDIF
 
 C     Apply mask and test consistancy

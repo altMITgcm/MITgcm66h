@@ -125,7 +125,7 @@ C--   Apply mask and test consistency
        STOP 'ABNORMAL END: S/R INI_THETA'
       ENDIF
 
-      _EXCH_XYZ_R8(theta , myThid )
+      _EXCH_XYZ_RL(theta , myThid )
 
       CALL PLOT_FIELD_XYZRL( theta, 'Initial Temperature' ,
      &                       Nr, 1, myThid )

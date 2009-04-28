@@ -51,7 +51,7 @@ C
             enddo
          ENDDO
       ENDDO
-      _GLOBAL_SUM_R8( tmpC , myThid )
+      _GLOBAL_SUM_RL( tmpC , myThid )
       locfc = 0. _d 0
 c
         DO bj=myByLo(myThid),myByHi(myThid)

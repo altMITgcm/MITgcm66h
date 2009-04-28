@@ -114,7 +114,7 @@ C Now convert from rh to q
        ENDDO
       ENDDO
 
-       _EXCH_XYZ_R8(salt  , myThid )
+       _EXCH_XYZ_RL(salt  , myThid )
 
       ENDIF
 

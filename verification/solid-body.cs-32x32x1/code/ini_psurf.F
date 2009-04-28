@@ -54,7 +54,7 @@ C     Read an initial state
        _END_MASTER(myThid)
       ENDIF
 C
-      _EXCH_XY_R8(etaN, myThid)
+      _EXCH_XY_RL(etaN, myThid)
 
 #ifdef ALLOW_CD_CODE
 C--   By default, initialize etaNm1 with etaN : 
@@ -68,7 +68,7 @@ C--   By default, initialize etaNm1 with etaN :
        ENDDO
       ENDDO
 
-C     _EXCH_XY_R8(etaNm1, myThid)
+C     _EXCH_XY_RL(etaNm1, myThid)
 #endif
 
       RETURN

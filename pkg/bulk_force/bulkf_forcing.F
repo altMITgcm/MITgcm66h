@@ -213,8 +213,8 @@ C--   end bi,bj loops
 
 C--   Update the tile edges.
 C jmc: Is it necessary ?
-c     _EXCH_XY_R8(Qnet,   myThid)
-c     _EXCH_XY_R8(EmPmR,   myThid)
+c     _EXCH_XY_RS(Qnet,   myThid)
+c     _EXCH_XY_RS(EmPmR,   myThid)
 c     CALL EXCH_UV_XY_RS(fu, fv, .TRUE., myThid)
 
 #endif  /*ALLOW_BULK_FORCE*/

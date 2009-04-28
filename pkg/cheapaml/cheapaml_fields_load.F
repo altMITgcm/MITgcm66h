@@ -248,16 +248,16 @@ C      data for the period ahead and the period behind myTime.
      &       myIter,myThid )
       ENDIF
 
-       _EXCH_XY_R4(trair0 , myThid )
-       _EXCH_XY_R4(qrair0 , myThid )
-       _EXCH_XY_R4(solar0 , myThid )
-       _EXCH_XY_R4(uwind0 , myThid )
-       _EXCH_XY_R4(vwind0 , myThid )
-       _EXCH_XY_R4(trair1 , myThid )
-       _EXCH_XY_R4(qrair1 , myThid )
-       _EXCH_XY_R4(solar1 , myThid )
-       _EXCH_XY_R4(uwind1 , myThid )
-       _EXCH_XY_R4(vwind1 , myThid )
+       _EXCH_XY_RS(trair0 , myThid )
+       _EXCH_XY_RS(qrair0 , myThid )
+       _EXCH_XY_RS(solar0 , myThid )
+       _EXCH_XY_RS(uwind0 , myThid )
+       _EXCH_XY_RS(vwind0 , myThid )
+       _EXCH_XY_RS(trair1 , myThid )
+       _EXCH_XY_RS(qrair1 , myThid )
+       _EXCH_XY_RS(solar1 , myThid )
+       _EXCH_XY_RS(uwind1 , myThid )
+       _EXCH_XY_RS(vwind1 , myThid )
 C
       ENDIF
 

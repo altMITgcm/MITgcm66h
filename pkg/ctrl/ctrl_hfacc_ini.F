@@ -111,8 +111,7 @@ C     this will be no longer necessary
       _BEGIN_MASTER( myThid )
       CALL READ_FLD_XYZ_RL( 'hFacC', ' ', hFacC, 0, myThid )
       _END_MASTER( myThid )
-Cml      _EXCH_XYZ_R8( hFacC ,myThid )
-      _EXCH_XYZ_R4( hFacC ,myThid )
+      _EXCH_XYZ_RS( hFacC ,myThid )
 
 C--
       il=ilnblnk( xx_hfacc_file )
@@ -156,8 +155,7 @@ c                  end if
 c--   Update the tile edges.
 
       CALL dummy_in_hfac( 'C', 0, myThid )
-Cml      _EXCH_XYZ_R8( hFacC, myThid )
-      _EXCH_XYZ_R4( hFacC, myThid )
+      _EXCH_XYZ_RS( hFacC, myThid )
       CALL dummy_in_hfac( 'C', 1, myThid )
 
 #endif /* ALLOW_HFACC_CONTROL */

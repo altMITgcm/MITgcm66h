@@ -66,7 +66,7 @@ C     ========= Local variables =========================
        END DO
       END DO
 
-      _GLOBAL_SUM_R8( myMetric , myThid )
+      _GLOBAL_SUM_RL( myMetric , myThid )
       myMetric = myMetric/(nx*ny*(4*Nr+1))
 
 cph(

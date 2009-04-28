@@ -308,8 +308,8 @@ cgg -- Positive is flux in.
 #endif
 
 c--   Do the global summation.
-        _GLOBAL_SUM_R8( sumvol, mythid )
-        _GLOBAL_SUM_R8( sumarea,mythid )
+        _GLOBAL_SUM_RL( sumvol, mythid )
+        _GLOBAL_SUM_RL( sumarea,mythid )
 
         shiftvel(2) = sumvol /sumarea
       endif
@@ -466,8 +466,8 @@ cgg -- Positive is flux in.
 #endif
 
 c--   Do the global summation.
-        _GLOBAL_SUM_R8( sumvol, mythid )
-        _GLOBAL_SUM_R8( sumarea,mythid )
+        _GLOBAL_SUM_RL( sumvol, mythid )
+        _GLOBAL_SUM_RL( sumarea,mythid )
 
         shiftvel(2) = sumvol /sumarea
       endif
