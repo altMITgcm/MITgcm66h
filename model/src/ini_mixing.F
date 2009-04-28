@@ -84,13 +84,13 @@ CEOP
        IF ( diffKrFile .NE. ' ' ) THEN
           CALL READ_FLD_XYZ_RL(diffKrFile,' ',diffKr,0,myThid)
        ENDIF
-      _EXCH_XYZ_R8(diffKr , myThid )
+      _EXCH_XYZ_RL(diffKr , myThid )
 #endif
 #if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_KAPGM_CONTROL))
-      _EXCH_XYZ_R8(KapGM,   myThid )
+      _EXCH_XYZ_RL(KapGM,   myThid )
 #endif
 #if (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_KAPREDI_CONTROL))
-      _EXCH_XYZ_R8(kapredi,   myThid )
+      _EXCH_XYZ_RL(kapredi,   myThid )
 #endif
       RETURN
       END

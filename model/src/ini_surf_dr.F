@@ -86,7 +86,7 @@ C-    end bi,bj loop.
         ENDDO
        ENDDO
 
-       _EXCH_XY_R8( Rmin_surf, myThid )
+       _EXCH_XY_RL( Rmin_surf, myThid )
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 #endif /* NONLIN_FRSURF */

@@ -133,8 +133,8 @@ C --      end k loop
 Cml        WRITE(msgBuf,'(I10.10)') npiter
 Cml        CALL WRITE_FLD_XYZ_RL( 'POLD.',msgBuf,pold,npiter,myThid)
 Cml        CALL WRITE_FLD_XYZ_RL( 'PINI.',msgBuf,pressure,npiter,myThid)
-        _GLOBAL_SUM_R8( rmspp, myThid )
-        _GLOBAL_SUM_R8( count, myThid )
+        _GLOBAL_SUM_RL( rmspp, myThid )
+        _GLOBAL_SUM_RL( count, myThid )
         IF ( count .EQ. 0. ) THEN
            rmspp = 0. _d 0
         ELSE

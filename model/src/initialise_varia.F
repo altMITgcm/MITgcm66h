@@ -331,7 +331,7 @@ C--   end bi,bj loop.
 #endif
 
 C--   Fill in overlap regions for wVel :
-      _EXCH_XYZ_R8(wVel,myThid)
+      _EXCH_XYZ_RL(wVel,myThid)
 
 C--   Finally summarise the model state
 #ifdef ALLOW_DEBUG

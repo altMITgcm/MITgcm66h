@@ -35,12 +35,12 @@ CEOP
       IF ( staggerTimeStep .AND. useMultiDimAdvec) THEN
         CALL EXCH_UV_XYZ_RL(uVel,vVel,.TRUE.,myThid)
         IF ( .NOT.implicitIntGravWave )
-     &  _EXCH_XYZ_R8( wVel , myThid )
+     &  _EXCH_XYZ_RL( wVel , myThid )
       ENDIF
 c #ifdef ALLOW_NONHYDROSTATIC
       IF ( implicitIntGravWave ) THEN
-        _EXCH_XYZ_R8( gT , myThid )
-        _EXCH_XYZ_R8( gS , myThid )
+        _EXCH_XYZ_RL( gT , myThid )
+        _EXCH_XYZ_RL( gS , myThid )
       ENDIF
 c #endif
 

@@ -101,7 +101,7 @@ C- end bi,bj loop.
      &    _EXCH_XY_RL( etaH, myThid ) 
 
 c     IF (useRealFreshWaterFlux .AND. myTime.EQ.startTime)
-c    &    _EXCH_XY_R4( PmEpR, myThid )
+c    &    _EXCH_XY_RS( PmEpR, myThid )
 
 #endif /* EXACT_CONSERV */
 

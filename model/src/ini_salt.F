@@ -81,7 +81,7 @@ C        _END_MASTER(myThid)
 #ifdef ALLOW_MNC
         ENDIF
 #endif /*  ALLOW_MNC  */
-       _EXCH_XYZ_R8(salt  , myThid )
+       _EXCH_XYZ_RL(salt  , myThid )
       ENDIF
 
 C     Apply mask and test consistancy

@@ -82,7 +82,7 @@ C         _END_MASTER(myThid)
 #ifdef ALLOW_MNC
         ENDIF
 #endif /*  ALLOW_MNC  */
-       _EXCH_XYZ_R8(theta,myThid)
+       _EXCH_XYZ_RL(theta,myThid)
       ENDIF
 
 C--   Apply mask and test consistency

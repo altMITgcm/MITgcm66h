@@ -203,10 +203,10 @@ C-      Compute the domain Area:
         threadArea = threadArea + tileArea(bi,bj)
        ENDDO
       ENDDO
-C     _EXCH_XY_R4(   recip_Rcol, myThid )
+C     _EXCH_XY_RS(   recip_Rcol, myThid )
 #ifdef ALLOW_AUTODIFF_TAMC
 C_jmc: apply GLOBAL_SUM to thread-local variable (not in common block)
-      _GLOBAL_SUM_R8( threadArea, myThid )
+      _GLOBAL_SUM_RL( threadArea, myThid )
 #else
       CALL GLOBAL_SUM_TILE_RL( tileArea, threadArea, myThid )
 #endif

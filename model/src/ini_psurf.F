@@ -62,7 +62,7 @@ C     Read an initial state
        _BARRIER
        CALL READ_FLD_XY_RL( pSurfInitFile, ' ', etaN, 0, myThid )
 C      fill the overlap (+ BARRIER)
-       _EXCH_XY_R8(etaN, myThid)
+       _EXCH_XY_RL(etaN, myThid)
       ENDIF
 
 #ifdef ALLOW_CD_CODE
@@ -77,7 +77,7 @@ C--   By default, initialize etaNm1 with etaN :
        ENDDO
       ENDDO
 
-C     _EXCH_XY_R8(etaNm1, myThid)
+C     _EXCH_XY_RL(etaNm1, myThid)
 #endif
 
 #ifdef EXACT_CONSERV
