@@ -121,15 +121,15 @@ C--   Sum over the tiles
        ENDDO
       ENDDO
 
-      _GLOBAL_SUM_R8( TmlS, myThid )
-      _GLOBAL_SUM_R8( TmlN, myThid )
-      _GLOBAL_SUM_R8( TtS, myThid )
-      _GLOBAL_SUM_R8( TtN, myThid )
+      _GLOBAL_SUM_RL( TmlS, myThid )
+      _GLOBAL_SUM_RL( TmlN, myThid )
+      _GLOBAL_SUM_RL( TtS, myThid )
+      _GLOBAL_SUM_RL( TtN, myThid )
 c
-      _GLOBAL_SUM_R8( CountmlS, myThid )
-      _GLOBAL_SUM_R8( CountmlN, myThid )
-      _GLOBAL_SUM_R8( CounttS, myThid )
-      _GLOBAL_SUM_R8( CounttN, myThid )
+      _GLOBAL_SUM_RL( CountmlS, myThid )
+      _GLOBAL_SUM_RL( CountmlN, myThid )
+      _GLOBAL_SUM_RL( CounttS, myThid )
+      _GLOBAL_SUM_RL( CounttN, myThid )
 
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE CountmlS = comlev1, key = ikey_dynamics

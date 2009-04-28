@@ -75,8 +75,8 @@ C--   Calculate the zonal mean
 
       DO bj=myByLo(myThid),myByHi(myThid)
        DO j=1-OLy,sNy+OLy
-        _GLOBAL_SUM_R8( CountX(j,bj), myThid )
-        _GLOBAL_SUM_R8( ZonalMeanSST(j,bj), myThid )
+        _GLOBAL_SUM_RL( CountX(j,bj), myThid )
+        _GLOBAL_SUM_RL( ZonalMeanSST(j,bj), myThid )
        ENDDO
       ENDDO
 
