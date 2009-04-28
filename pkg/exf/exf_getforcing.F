@@ -229,21 +229,21 @@ c             Salt flux from Precipitation and Evaporation.
       enddo
 
 c     Update the tile edges.
-      _EXCH_XY_R8(hflux,   mythid)
-      _EXCH_XY_R8(sflux,   mythid)
+      _EXCH_XY_RL(hflux,   mythid)
+      _EXCH_XY_RL(sflux,   mythid)
       IF ( stressIsOnCgrid ) THEN
         CALL EXCH_UV_XY_RL( ustress, vstress, .TRUE., myThid )
       ELSE
         CALL EXCH_UV_AGRID_3D_RL(ustress, vstress, .TRUE., 1, myThid)
       ENDIF
 #ifdef SHORTWAVE_HEATING
-      _EXCH_XY_R8(swflux, mythid)
+      _EXCH_XY_RL(swflux, mythid)
 #endif
 #ifdef ATMOSPHERIC_LOADING
-      _EXCH_XY_R8(apressure, mythid)
+      _EXCH_XY_RL(apressure, mythid)
 #endif
 #ifdef ALLOW_ICE_AREAMASK
-      _EXCH_XY_R8(areamask, mythid)
+      _EXCH_XY_RL(areamask, mythid)
 #endif
 
 c     Get values of the surface flux anomalies.

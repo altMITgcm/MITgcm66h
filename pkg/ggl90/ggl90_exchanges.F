@@ -32,7 +32,7 @@ CEOP
 #ifdef ALLOW_GGL90_HORIZDIFF
       IF (GGL90isON .AND. GGL90diffTKEh .GT. 0. _d 0) THEN
 C Exchange overlaps
-       _EXCH_XYZ_R8(GGL90TKE,myThid)
+       _EXCH_XYZ_RL(GGL90TKE,myThid)
       ENDIF
 #endif /* ALLOW_GGL90_HORIZDIFF */
 #endif /* ALLOW_GGL90 */

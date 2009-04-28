@@ -251,7 +251,7 @@ c--   >>> Loop 2 over records.
      &        fnamefld, tmpfld2d, irec, doglobalread,
      &        ladinit, optimcycle, mythid, xx_gen_dummy )
 
-        _EXCH_XY_R8(tmpfld2d, mythid)
+        _EXCH_XY_RL(tmpfld2d, mythid)
 
 c--     Loop over this thread tiles.
         do bj = jtlo,jthi

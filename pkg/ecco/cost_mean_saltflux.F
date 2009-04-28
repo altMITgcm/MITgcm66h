@@ -125,8 +125,8 @@ c--     Read time averages and the monthly mean data.
           enddo
         enddo
 
-       _GLOBAL_SUM_R8( sumtot , myThid )
-       _GLOBAL_SUM_R8( fctiletot , myThid )
+       _GLOBAL_SUM_RL( sumtot , myThid )
+       _GLOBAL_SUM_RL( fctiletot , myThid )
 
        if (sumtot.eq.0.) sumtot = 1.
 

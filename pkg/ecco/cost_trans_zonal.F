@@ -209,12 +209,12 @@ c--     Assign the first value to the array holding the average.
           enddo
         enddo
 
-        _GLOBAL_SUM_R8( tu(isect), mythid )
-        _GLOBAL_SUM_R8( su(isect), mythid )
-        _GLOBAL_SUM_R8( mu(isect), mythid )
+        _GLOBAL_SUM_RL( tu(isect), mythid )
+        _GLOBAL_SUM_RL( su(isect), mythid )
+        _GLOBAL_SUM_RL( mu(isect), mythid )
 c
 	do k =1,nr
-           _GLOBAL_SUM_R8( mulev(isect,k), mythid )
+           _GLOBAL_SUM_RL( mulev(isect,k), mythid )
         enddo
         mumin(isect) = mulev(isect,1)
 	mumax(isect) = mulev(isect,1)

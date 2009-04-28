@@ -124,7 +124,7 @@ c     0.98 for the momentum timescale.
 
 C      CALL PLOT_FIELD_XYRS( winPert, 'winPert',1,myThid)
 
-      _EXCH_XY_R4(winPert  , myThid )
+      _EXCH_XY_RS(winPert  , myThid )
 
 # endif /* EBM_WIND_PERT */
 #endif /* ALLOW_EBM */

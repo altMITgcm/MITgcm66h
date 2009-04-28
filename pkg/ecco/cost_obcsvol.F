@@ -352,7 +352,7 @@ cgg -- Positive is flux in.
 c--   End of loop over records.
 
 c--   Do the global summation.
-      _GLOBAL_SUM_R8( sumvol, mythid )
+      _GLOBAL_SUM_RL( sumvol, mythid )
       objf_obcsvol =  wobcsvol * sumvol* sumvol
 
 #endif

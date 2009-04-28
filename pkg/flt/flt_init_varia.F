@@ -177,7 +177,7 @@ C     belong to this current tile (=> do not no check)
       _END_MASTER( myThid )
       _BARRIER
 
-      _GLOBAL_SUM_R8( npart_dist, myThid )
+      _GLOBAL_SUM_RL( npart_dist, myThid )
 
       _BEGIN_MASTER( myThid )
         WRITE(msgBuf,'(A,2(A,I9))') 'FLT_INIT_VARIA:',

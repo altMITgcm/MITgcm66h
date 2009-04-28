@@ -100,7 +100,7 @@ C (2) write float positions into file
         ENDDO
        ENDDO
 
-       _GLOBAL_SUM_R8( npart_dist, myThid )
+       _GLOBAL_SUM_RL( npart_dist, myThid )
        _BEGIN_MASTER( myThid )
         WRITE(msgBuf,*) 'FLT_WRITE_PICKUP:',
      &                   npart_dist, ' floats written'

@@ -226,7 +226,7 @@ c--       Print cost function for each tile in each thread.
 
 #ifdef ECCO_VERBOSE
 c--     Print cost function for all tiles.
-        _GLOBAL_SUM_R8( fcthread_wdrift , myThid )
+        _GLOBAL_SUM_RL( fcthread_wdrift , myThid )
         write(msgbuf,'(a)') ' '
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)

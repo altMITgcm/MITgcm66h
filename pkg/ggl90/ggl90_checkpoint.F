@@ -42,7 +42,7 @@ C--   Suffix for pickup files
 
 c     _BARRIER
 
-      _EXCH_XYZ_R8( GGL90TKE, myThid )
+      _EXCH_XYZ_RL( GGL90TKE, myThid )
 
 #endif /*  ALLOW_GGL90  */
 

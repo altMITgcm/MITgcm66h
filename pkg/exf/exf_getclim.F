@@ -93,7 +93,7 @@ c
       enddo
 
 c--   Update the tile edges.
-      _EXCH_XY_R8(climsst, mythid)
+      _EXCH_XY_RL(climsst, mythid)
 #endif
 
 #ifdef ALLOW_CLIMSSS_RELAXATION
@@ -111,7 +111,7 @@ c     Get values of climatological sss fields.
 c
 
 c--   Update the tile edges.
-      _EXCH_XY_R8(climsss, mythid)
+      _EXCH_XY_RL(climsss, mythid)
 #endif
 #ifdef ALLOW_SST_CONTROL
       call ctrl_get_gen (

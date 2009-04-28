@@ -64,7 +64,7 @@ C--   Read initial turbulent kinetic energy thickness from file if available.
        IF ( GGL90TKEFile .NE. ' ' ) THEN
         _BARRIER
         CALL READ_FLD_XYZ_RL( GGL90TKEFile, ' ', GGL90TKE, 0, myThid )
-        _EXCH_XYZ_R8(GGL90TKE,myThid)
+        _EXCH_XYZ_RL(GGL90TKE,myThid)
         DO bj=myByLo(myThid),myByHi(myThid)
          DO bi=myBxLo(myThid),myBxHi(myThid)
           DO k=1,Nr

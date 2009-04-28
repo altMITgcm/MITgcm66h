@@ -145,7 +145,7 @@ c--         Determine the weights to be used.
      &     fnamefld, tmpfld3d, irec, doglobalread,
      &     ladinit, optimcycle, mythid, xx_salt_dummy )
 
-        _EXCH_XYZ_R8(tmpfld3d, mythid)
+        _EXCH_XYZ_RL(tmpfld3d, mythid)
 
 c--     Loop over this thread's tiles.
         do bj = jtlo,jthi

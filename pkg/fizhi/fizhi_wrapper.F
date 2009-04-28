@@ -335,8 +335,8 @@ c Convert guphy and gvphy from A-grid to C-grid for use by dynamics
 c Call the c-grid exchange routine to fill in the halo regions (du,dv)
        call exch_uv_xyz_RL(guphy,gvphy,.TRUE.,myThid)
 c Call the a-grid exchange routine to fill in the halo regions (dth,ds)
-       _EXCH_XYZ_R8(gthphy,myThid)
-       _EXCH_XYZ_R8(gsphy,myThid)
+       _EXCH_XYZ_RL(gthphy,myThid)
+       _EXCH_XYZ_RL(gsphy,myThid)
        CALL TIMER_STOP ('EXCHANGES         [FIZHI_WRAPPER]',mythid)
 
       return

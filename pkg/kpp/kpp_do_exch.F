@@ -36,7 +36,7 @@ CEOP
 #ifndef ALLOW_AUTODIFF_TAMC
       CALL EXCH_3D_RL( KPPviscAz, Nr, myThid )
 #else
-      _EXCH_XYZ_R8( KPPviscAz, myThid )
+      _EXCH_XYZ_RL( KPPviscAz, myThid )
 #endif
 
 #endif /* ALLOW_KPP */

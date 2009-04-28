@@ -339,8 +339,8 @@ c--   Pacific
        ENDDO
       ENDDO
 
-      _EXCH_XY_R4(Qnet , myThid )
-      _EXCH_XY_R4(EmPmR , myThid )
+      _EXCH_XY_RS(Qnet , myThid )
+      _EXCH_XY_RS(EmPmR , myThid )
       
 
 C      CALL PLOT_FIELD_XYRS( Qnet, 'Qnet' , 1, myThid )

@@ -102,8 +102,8 @@ c      aWght = DFLOAT( Iftm-Ifprd*(intime0 - 1) ) / DFLOAT( Ifprd )
        ENDIF
 #endif
 
-       _EXCH_XY_R4(silica0, myThid )
-       _EXCH_XY_R4(silica1, myThid )
+       _EXCH_XY_RS(silica0, myThid )
+       _EXCH_XY_RS(silica1, myThid )
 
        IF ( DIC_silicaFile .NE. ' '  ) THEN
         DO bj = myByLo(myThid), myByHi(myThid)

@@ -55,7 +55,7 @@ C--   Read pickup file
         CALL READ_REC_3D_RL( fn, fp, 1, pH, 1, myIter, myThid )
         pH_isLoaded = .TRUE.
 
-        _EXCH_XY_R8( pH, myThid )
+        _EXCH_XY_RL( pH, myThid )
       ELSE
         pH_isLoaded = .FALSE.
         IF ( pickupStrictlyMatch ) THEN

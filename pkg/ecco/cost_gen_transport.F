@@ -77,7 +77,7 @@ c--   Loop over records for the second time.
              ftmp = ftmp + transpbar(irec,bi,bj)
           enddo
         enddo
-        _GLOBAL_SUM_R8( ftmp , myThid )
+        _GLOBAL_SUM_RL( ftmp , myThid )
 
 cph        write(msgbuf,'(A,I,2(X,P2E22.14))')
 cph     &       'ph-cost-transport FS: day, 1-model, 2-obs ',

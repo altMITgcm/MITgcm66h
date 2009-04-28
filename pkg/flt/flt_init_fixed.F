@@ -44,10 +44,10 @@ C Set domain dependent constants:
          yHi = MAX( yHi, yG(1,sNy+1,bi,bj) )
        ENDDO
       ENDDO
-      _GLOBAL_MAX_R8( xLo, myThid )
-      _GLOBAL_MAX_R8( xHi, myThid )
-      _GLOBAL_MAX_R8( yLo, myThid )
-      _GLOBAL_MAX_R8( yHi, myThid )
+      _GLOBAL_MAX_RL( xLo, myThid )
+      _GLOBAL_MAX_RL( xHi, myThid )
+      _GLOBAL_MAX_RL( yLo, myThid )
+      _GLOBAL_MAX_RL( yHi, myThid )
 
       _BEGIN_MASTER(myThid)
        flt_xLo = -xLo

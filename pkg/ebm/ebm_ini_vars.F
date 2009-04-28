@@ -46,8 +46,8 @@ C--   initially all forcing fields are zero
        ENDDO
       ENDDO
 
-      _EXCH_XY_R4(Run,   myThid )
-      _EXCH_XY_R4(winPert,  myThid )
+      _EXCH_XY_RS(Run,   myThid )
+      _EXCH_XY_RS(winPert,  myThid )
 
       CALL EBM_LOAD_CLIMATOLOGY( myThid )
 

@@ -241,20 +241,20 @@ c             Short wave radiative flux.
 
 c     Update the tile edges.
 
-      _EXCH_XY_R4(  qnet, mythid )
-      _EXCH_XY_R4( empmr, mythid )
+      _EXCH_XY_RS(  qnet, mythid )
+      _EXCH_XY_RS( empmr, mythid )
        CALL EXCH_UV_XY_RS(fu, fv, .TRUE., myThid)
 #ifdef SHORTWAVE_HEATING
-      _EXCH_XY_R4(   qsw, mythid )
+      _EXCH_XY_RS(   qsw, mythid )
 #endif
 #ifdef ALLOW_CLIMSST_RELAXATION
-      _EXCH_XY_R4(   sst, mythid )
+      _EXCH_XY_RS(   sst, mythid )
 #endif
 #ifdef ALLOW_CLIMSSS_RELAXATION
-      _EXCH_XY_R4(   sss, mythid )
+      _EXCH_XY_RS(   sss, mythid )
 #endif
 #ifdef ATMOSPHERIC_LOADING
-      _EXCH_XY_R4( pload, mythid )
+      _EXCH_XY_RS( pload, mythid )
 #endif
 
       RETURN

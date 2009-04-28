@@ -202,7 +202,7 @@ c--         End of loop over layers.
 
 #ifdef ECCO_VERBOSE
 c--     Print cost function for all tiles.
-c        _GLOBAL_SUM_R8( fcthread_argos , myThid )
+c        _GLOBAL_SUM_RL( fcthread_argos , myThid )
         write(msgbuf,'(a)') ' '
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)

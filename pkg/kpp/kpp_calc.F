@@ -542,7 +542,7 @@ c     horizontal smoothing of vertical viscosity
      I        myThid )
       ENDDO
 C jmc: No EXCH inside bi,bj loop !!!
-c     _EXCH_XYZ_R8(KPPviscAz  , myThid )
+c     _EXCH_XYZ_RL(KPPviscAz  , myThid )
 #endif /* KPP_SMOOTH_VISC */
 
 #ifdef KPP_SMOOTH_DIFF

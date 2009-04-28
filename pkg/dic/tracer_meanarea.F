@@ -48,7 +48,7 @@ CEOP
          ENDDO
         ENDDO
        ENDDO
-       _GLOBAL_SUM_R8(sumTracer,myThid)
+       _GLOBAL_SUM_RL(sumTracer,myThid)
        gsm_tracer=sumTracer/globalArea
 
        RETURN
