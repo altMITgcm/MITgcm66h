@@ -77,7 +77,7 @@ C- First compute global mole flux at air-sea interface
      &               * rA(i,j,bi,bj) * deltaT
          ENDDO
         ENDDO
-        _GLOBAL_SUM_R8(total_flux,myThid)
+        _GLOBAL_SUM_RL(total_flux,myThid)
 
 
         IF ( startTime.EQ.baseTime .AND. nIter0.EQ.0 ) THEN
