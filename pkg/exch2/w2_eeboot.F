@@ -95,8 +95,7 @@ C     Open message output-file (if needed)
         CALL MDSFINDUNIT( W2_oUnit, myThid )
         OPEN( W2_oUnit, file=fName(1:iLen),
      &                  status='unknown', form='formatted')
-c       WRITE(msgBuf,'(2AA)') '  repport on file: ', fName(1:iLen)
-        WRITE(msgBuf,'(2AA)') ' write to log-file: ', fName(1:iLen)
+        WRITE(msgBuf,'(2A)') ' write to log-file: ', fName(1:iLen)
         CALL PRINT_MESSAGE( msgBuf, stdUnit, SQUEEZE_RIGHT, myThid )
       ENDIF
 
