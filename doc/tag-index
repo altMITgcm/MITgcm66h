@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint61m
 o write_utils : change WRITE_1D_R8 to WRITE_1D_RL 
   and add 3 other S/R for other types (R4,R8,RS). 
   Change calls to WRITE_0D/1D_R[4,8,S,L] to match the type of argument.
