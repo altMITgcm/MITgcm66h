@@ -84,6 +84,20 @@ C-----------------------------------------------------------------------
        WRITE(diagCode,'(A,I3.3,A)') 'VV   ', diagNum, 'MR      '
        CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I              diagName, diagCode, diagUnits, diagTitle, myThid )
+
+       diagName  = 'SHIForcT'
+       diagTitle = 'Ice shelf forcing for theta, >0 increases theta'
+       diagUnits = 'W/m^2           '
+       diagCode  = 'SM      MS      '
+       CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I      diagName, diagCode, diagUnits, diagTitle, myThid )
+
+       diagName  = 'SHIForcS'
+       diagTitle = 'Ice shelf forcing for salt, >0 increases salt'
+       diagUnits = 'g/m^2/s         '
+       diagCode  = 'SM      MS      '
+       CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I      diagName, diagCode, diagUnits, diagTitle, myThid )
       ENDIF
 #endif /* ALLOW_DIAGNOSTICS */
 #endif /* ALLOW_SHELFICE */
