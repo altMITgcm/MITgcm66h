@@ -251,7 +251,14 @@ do
 #-- cleaning:
   echo "======================"
   echo "Cleaning test directories:"
-  ./testreport -clean > /dev/null 2>&1
+  if test $tt != $typ ; then
+    cmdCLN="../tools/do_tst_2+2 -clean"
+    echo " clean tst_2+2 running: $cmdCLN"
+    $cmdCLN >> $tdir/output_2+2 2>&1
+  fi
+    cmdCLN="./testreport -clean"
+    echo " clean dir running: $cmdCLN"
+    $cmdCLN > /dev/null 2>&1
   echo "======================"
   echo
  fi
