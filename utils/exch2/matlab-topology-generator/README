@@ -5,9 +5,10 @@ Matlab code to generate topology description for MITgcm cs6 conventions.
 
 o To run start matlab and execute script driver.m
 o To set sizes edit lines in driver.m
-  - Settings nr, ng, nb are index space sizes for cube grid. These are the
-    number of points normal to the red, green and blue circumferences
-    of a cube. Note - nr, ng and nb do not have to equal, however the
+  - Settings nr, ng, nb are index space sizes for cube grid. 
+    They are (nr,ng) the two dimensions (in x and y) or the 1rst face
+    followed by (nb) the 1rst dimension (in x) of the 2nd face.
+    Note - nr, ng and nb do not have to equal, however the
     current physical grid generation software assumes they
     are equal.
   - Settings tnx and tny are the tile sizes ( these correspond to 
