@@ -102,8 +102,8 @@ C-    Set dimensions:
       xSize = Nx
       ySize = Ny
 #if defined(ALLOW_EXCH2) && !defined(MISSING_TILE_IO)
-      xSize = exch2_domain_nxt * sNx
-      ySize = exch2_domain_nyt * sNy
+      xSize = exch2_global_Nx
+      ySize = exch2_global_Ny
 #endif
       IF (nNx.EQ.1) xSize = 1
       IF (nNy.EQ.1) ySize = 1
