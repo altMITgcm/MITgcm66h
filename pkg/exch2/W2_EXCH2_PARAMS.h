@@ -1,12 +1,21 @@
 C $Header$
 C $Name$
 
-C
-C     /==========================================================\
-C     | W2_EXCH2_PARAMS.h Parameters for a WRAPPER2 topology     |
-C     |==========================================================|
-C     |                                                          |
-C     \==========================================================/
+CBOP
+C     !ROUTINE: W2_EXCH2_PARAMS.h
+C     !INTERFACE:
+C     #include W2_EXCH2_PARAMS.h
+
+C     !DESCRIPTION:
+C     *==========================================================*
+C     | W2_EXCH2_PARAMS.h
+C     | o Header file defining Parameters for WRAPPER2 topology
+C     *==========================================================*
+CEOP
+
+C     W2_ioBufferSize  :: Maximum size of Single-CPU IO buffer
+      INTEGER W2_ioBufferSize
+      PARAMETER( W2_ioBufferSize = exch2_global_Nx*exch2_global_Ny )
 
 C     W2 tile id variables (tile ids are no longer a function of
 C     process and subgrid indicies).
