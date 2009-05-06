@@ -278,7 +278,7 @@ C--    Print summary of processor mapping on standard output
        i1 = IFNBLNK(mpiProcNam)
        i2 = ILNBLNK(mpiProcNam)
        WRITE(msgBuffer,'(A,I3,A,A)') ' My Processor Name (len:',
-     &  mpilProcNam, ' ) = ', mpiProcNam(i1:i2)
+     &  mpilProcNam, ' ) = ', mpiProcNam(i1:mpilProcNam)
        CALL PRINT_MESSAGE( msgBuffer, standardMessageUnit,
      &  SQUEEZE_RIGHT , myThid)
        WRITE(msgBuffer,'(A,I3,A,I3,A,I3,A,I3,A)') ' Located at (',
