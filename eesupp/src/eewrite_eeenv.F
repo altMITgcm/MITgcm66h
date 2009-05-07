@@ -154,25 +154,28 @@ CEOP
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
 
-      WRITE(msgBuf,'(A,L4,A)') 'useCoupler=', useCoupler,
-     & ' ; /* Flag used to control communications with */'
+      WRITE(msgBuf,'(A,L5,A)') 'useCoupler=', useCoupler,
+     & ' ;/* Flag used to control communications with   */'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
-      WRITE(msgBuf,'(A,A,A)') '          ', '     ' ,
-     & '   /*  other model components, through a coupler */'
+      WRITE(msgBuf,'(A,A,A)')  '           ', '     ',
+     & '  /*  other model components, through a coupler */'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
 
-      CALL WRITE_0D_L( printMapIncludesZeros, INDEX_NONE,
-     &                'printMapIncludesZeros=',
-     &                ' /* print zeros in Std.Output maps */' )
-      CALL WRITE_0D_I( maxLengthPrt1D, INDEX_NONE, 'maxLengthPrt1D=',
-     &           ' /* max length of 1.D array printed to Std.Out */' )
+      WRITE(msgBuf,'(A,L5,A)') 
+     &  'printMapIncludesZeros=', printMapIncludesZeros,
+     &  ' ; /* print zeros in Std.Output maps */'
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT , 1)
+      WRITE(msgBuf,'(A,I5,A)') 'maxLengthPrt1D=', maxLengthPrt1D,
+     &           ' /* maxLength of 1D array printed to StdOut */'
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT , 1)
 
       WRITE(msgBuf,'(A)') '                '
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &  SQUEEZE_RIGHT , 1)
 
-C
       RETURN
       END
