@@ -16,18 +16,6 @@ CADJ SUBROUTINE modeldata_example INPUT  = 1
 CADJ SUBROUTINE modeldata_example OUTPUT =
 
 C----------------------------------------
-C subroutine  open_copy_data_file
-C----------------------------------------
-CADJ SUBROUTINE open_copy_data_file  INPUT  = 1,2,  4
-CADJ SUBROUTINE open_copy_data_file  OUTPUT =     3
-
-C----------------------------------------
-C subroutine  print_message
-C----------------------------------------
-CADJ SUBROUTINE print_message INPUT  = 1,2,3,4
-CADJ SUBROUTINE print_message OUTPUT =
-
-C----------------------------------------
 C subroutine  plot_field_xyrs
 C----------------------------------------
 CADJ SUBROUTINE plot_field_xyrs INPUT  = 1,2,3,4
@@ -80,12 +68,6 @@ C subroutine  write_state
 C----------------------------------------
 CADJ SUBROUTINE write_state  INPUT  = 1,2,3
 CADJ SUBROUTINE write_state  OUTPUT =
-
-C----------------------------------------
-C subroutine  write_myfield
-C----------------------------------------
-CADJ SUBROUTINE write_myfield  INPUT  = 1,2,3,4,5
-CADJ SUBROUTINE write_myfield  OUTPUT =
 
 C----------------------------------------
 C subroutine  calc_oce_mxlayer
