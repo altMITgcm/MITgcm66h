@@ -19,9 +19,8 @@ C     !USES:
 C Global variables
 #include "SIZE.h"
 #include "EEPARAMS.h"
-#include "PARAMS.h"
 #ifdef ALLOW_USE_MPI
-# include "EESUPPORT.h"
+# include "PARAMS.h"
 #endif
 
 C     !INPUT/OUTPUT PARAMETERS:
@@ -38,7 +37,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       MASTER_CPU_IO = .FALSE.
 
 #ifdef ALLOW_USE_MPI
-      IF ( .NOT.useSingleCPUIO .OR. mpiMyId.EQ.0 ) THEN
+      IF ( .NOT.useSingleCPUIO .OR. myProcId.EQ.0 ) THEN
         _BEGIN_MASTER( myThid )
         MASTER_CPU_IO = .TRUE.
         _END_MASTER( myThid )
