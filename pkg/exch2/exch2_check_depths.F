@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-c#include "PACKAGES_CONFIG.h"
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 #include "W2_OPTIONS.h"
 
@@ -25,10 +25,12 @@ C     !USES:
 C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
-#include "PARAMS.h"
 c#include "EESUPPORT.h"
 #include "W2_EXCH2_TOPOLOGY.h"
 #include "W2_EXCH2_PARAMS.h"
+#ifdef ALLOW_OBCS
+# include "PARAMS.h"
+#endif
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     === Routine arguments ===
@@ -48,8 +50,10 @@ C     == Local variables ==
       INTEGER errN, errS, errE, errW
       LOGICAL errFlag
 
+#ifdef ALLOW_OBCS
 C-    For now, do nothing if OBCs is used
       IF ( useOBCs ) RETURN
+#endif
 
       errFlag = .FALSE.
       DO bj = myByLo(myThid), myByHi(myThid)
