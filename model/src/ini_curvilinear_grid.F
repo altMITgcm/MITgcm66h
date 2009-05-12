@@ -28,8 +28,8 @@ C     === Global variables ===
 #include "PARAMS.h"
 #include "GRID.h"
 #ifdef ALLOW_EXCH2
+#include "W2_EXCH2_SIZE.h"
 #include "W2_EXCH2_TOPOLOGY.h"
-#include "W2_EXCH2_PARAMS.h"
 #endif
 #ifdef ALLOW_MNC
 #include "MNC_PARAMS.h"
