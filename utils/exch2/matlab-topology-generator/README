@@ -1,6 +1,13 @@
 # $Header$
 # $Name$
 
+---- May 12, 2009 (after checkpoint61n)
+ fortran code to set-up topology is now part of pkg/exch2, with new parameter
+ file "data.exch2". For now, keep a compatile version of matlab-topology-generator
+ (writing files "W2_EXCH2_SIZE.h" and "w2_e2setup.F") as back-up solution 
+ until new code is extensively tested.
+------------------
+
 Matlab code to generate topology description for MITgcm cs6 conventions.
 
 o To run start matlab and execute script driver.m
