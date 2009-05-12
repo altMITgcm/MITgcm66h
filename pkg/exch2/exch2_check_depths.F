@@ -26,8 +26,8 @@ C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 c#include "EESUPPORT.h"
+#include "W2_EXCH2_SIZE.h"
 #include "W2_EXCH2_TOPOLOGY.h"
-#include "W2_EXCH2_PARAMS.h"
 #ifdef ALLOW_OBCS
 # include "PARAMS.h"
 #endif

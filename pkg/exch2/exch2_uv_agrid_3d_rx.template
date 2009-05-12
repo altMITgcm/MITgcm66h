@@ -36,8 +36,8 @@ C     !USES:
 #include "SIZE.h"
 #include "EEPARAMS.h"
 c#include "EESUPPORT.h"
+#include "W2_EXCH2_SIZE.h"
 #include "W2_EXCH2_TOPOLOGY.h"
-#include "W2_EXCH2_PARAMS.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Argument list variables ==

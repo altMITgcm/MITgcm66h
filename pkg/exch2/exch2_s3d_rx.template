@@ -28,8 +28,8 @@ C     === Global data ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 c#include "EESUPPORT.h"
+c#include "W2_EXCH2_SIZE.h"
 c#include "W2_EXCH2_TOPOLOGY.h"
-c#include "W2_EXCH2_PARAMS.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     === Routine arguments ===
