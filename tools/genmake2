@@ -3021,7 +3021,7 @@ ad_output.txt: \$(EXE_AD)
 	@./\$(EXE_AD) > \$@
 
 CB2M_AD_FILES=\$(AD_FILES:.f=_cb2m.f$FS90)
-ad_input_code.f$FS90:  \$(CB2M_AD_FILES) ../OAD_support/maxMinDefs.f
+ad_input_code.f$FS90:  \$(CB2M_AD_FILES)
 	cat \$^ > \$@
 
 # strip all comments and blanks to reduce 
