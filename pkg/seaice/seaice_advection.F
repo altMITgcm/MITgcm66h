@@ -55,8 +55,8 @@ C !USES: ===============================================================
 # include "tamc_keys.h"
 #endif
 #ifdef ALLOW_EXCH2
+#include "W2_EXCH2_SIZE.h"
 #include "W2_EXCH2_TOPOLOGY.h"
-#include "W2_EXCH2_PARAMS.h"
 #endif /* ALLOW_EXCH2 */
       LOGICAL extensiveFld
       PARAMETER ( extensiveFld = .TRUE. )

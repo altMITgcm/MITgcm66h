@@ -25,8 +25,8 @@ C      Calls routine grd2msc to do grid to tile space for each bi bj
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #ifdef ALLOW_EXCH2
+#include "W2_EXCH2_SIZE.h"
 #include "W2_EXCH2_TOPOLOGY.h"
-#include "W2_EXCH2_PARAMS.h"
 #endif /* ALLOW_EXCH2 */
 
 C     !INPUT/OUTPUT PARAMETERS:

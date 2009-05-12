@@ -597,8 +597,8 @@ C     !USES:
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #ifdef ALLOW_EXCH2
+#include "W2_EXCH2_SIZE.h"
 #include "W2_EXCH2_TOPOLOGY.h"
-#include "W2_EXCH2_PARAMS.h"
 #endif
 
 C     !INPUT PARAMETERS:
@@ -647,8 +647,8 @@ C     !USES:
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #ifdef ALLOW_EXCH2
+#include "W2_EXCH2_SIZE.h"
 #include "W2_EXCH2_TOPOLOGY.h"
-#include "W2_EXCH2_PARAMS.h"
 #endif
 
 C     !INPUT PARAMETERS:
@@ -686,8 +686,8 @@ C     !USES:
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #ifdef ALLOW_EXCH2
+#include "W2_EXCH2_SIZE.h"
 #include "W2_EXCH2_TOPOLOGY.h"
-#include "W2_EXCH2_PARAMS.h"
 #endif
 
 C     !INPUT PARAMETERS:

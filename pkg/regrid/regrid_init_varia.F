@@ -22,8 +22,8 @@ C     !USES:
 #include "REGRID_SIZE.h"
 #include "REGRID.h"
 #ifdef ALLOW_EXCH2
+#include "W2_EXCH2_SIZE.h"
 #include "W2_EXCH2_TOPOLOGY.h"
-#include "W2_EXCH2_PARAMS.h"
 #endif
       INTEGER  ILNBLNK
       EXTERNAL ILNBLNK
