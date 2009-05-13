@@ -3,6 +3,9 @@ C $Name$
 
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
+#ifdef ALLOW_MDSIO
+#include "MDSIO_OPTIONS.h"
+#endif /* ALLOW_MDSIO */
 
 CBOP
 C     !ROUTINE: INI_MODEL_IO
