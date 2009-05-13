@@ -171,7 +171,8 @@ c--   Get the time flags and record numbers for the time averaging.
 #endif
 #endif
 
-#ifdef ALLOW_SEAICE_COST_AREASST
+#ifdef ALLOW_DAILYSST_COST_CONTRIBUTION
+cph#ifdef ALLOW_SEAICE_COST_AREASST
 #ifdef ALLOW_DEBUG
       IF ( debugLevel .GE. debLevB )
      &    CALL DEBUG_CALL('cost_averagesgeneric sstbar',myThid)

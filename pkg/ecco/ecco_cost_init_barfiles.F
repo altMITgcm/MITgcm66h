@@ -199,7 +199,8 @@ c     &                        optimcycle, mythid, xx_tbar_mean_dummy )
 #endif
 #endif
 
-#ifdef ALLOW_SEAICE_COST_AREASST
+#ifdef ALLOW_DAILYSST_COST_CONTRIBUTION
+cph#ifdef ALLOW_SEAICE_COST_AREASST
 c--   Save tbar on file.
       ilt=ilnblnk( sstbarfile )
       write(fnamesstbar,'(2a,i10.10)')

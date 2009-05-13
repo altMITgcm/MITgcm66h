@@ -117,7 +117,8 @@ c--       Initialise temperature average (2d).
 #endif
 #endif
 
-#ifdef ALLOW_SEAICE_COST_AREASST
+#ifdef ALLOW_DAILYSST_COST_CONTRIBUTION
+cph#ifdef ALLOW_SEAICE_COST_AREASST
 c--       Initialise temperature average (2d).
           do j = jmin,jmax
             do i =  imin,imax

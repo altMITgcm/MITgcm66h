@@ -117,7 +117,8 @@ c             intantaneous field.
       _RL sbar_gen
 #endif
 
-#ifdef ALLOW_SEAICE_COST_AREASST
+#ifdef ALLOW_DAILYSST_COST_CONTRIBUTION
+cph#ifdef ALLOW_SEAICE_COST_AREASST
       _RL sstbar  (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
 #else
       _RL sstbar
