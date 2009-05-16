@@ -54,6 +54,12 @@ C             = 2 :: all processes do print (used to check).
      &        W2_mapIO,
      &        W2_oUnit, W2_printMsg
 
+C--   COMMON /W2_EXCH2_PARM_L/ Logical valued parameters used by W2-EXCH2
+C     W2_useE2ioLayOut :: =T: use Exch2 global-IO Layout; =F: use model default
+      LOGICAL W2_useE2ioLayOut
+      COMMON /W2_EXCH2_PARM_L/
+     &        W2_useE2ioLayOut
+
 C--   COMMON /W2_EXCH2_BUILD_I/ Integer variables used to build topology
 C     facet_owns  :: Range of tiles this facet "owns"
 C     facet_pij   \  ::

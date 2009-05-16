@@ -57,13 +57,15 @@ C     edges order: N,S,E,W <==> 1,2,3,4
      &       dimsFacets, facetEdgeLink,
      &       blankList,
      &       W2_mapIO,
-     &       W2_printMsg
+     &       W2_printMsg,
+     &       W2_useE2ioLayOut
 
       stdUnit  = standardMessageUnit
 
 C--   Default values for W2_EXCH2
       W2_printMsg = -1
       W2_mapIO = -1
+      W2_useE2ioLayOut = .TRUE.
       IF ( useCubedSphereExchange ) THEN
         preDefTopol = 3
       ELSE
