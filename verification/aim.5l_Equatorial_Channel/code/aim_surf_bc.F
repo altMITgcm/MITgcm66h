@@ -274,8 +274,8 @@ C_EqCh: end
 C_EqCh: start
         IF (myIter.EQ.nIter0) THEN
          WRITE(suff,'(I10.10)') myIter
-         CALL AIM_WRITE_LOCAL('aim_SST.',suff,1,sst1(1,myThid),
-     &                                   bi,bj,1,myIter,myThid)
+         CALL AIM_WRITE_PHYS( 'aim_SST.', suff, 1,sst1,
+     &                        1, bi, bj, 1, myIter, myThid )
         ENDIF
 C_EqCh: end
        ENDIF
