@@ -4,7 +4,7 @@ C $Name$
   These lines are here to deliberately cause a compile-time error.
   If you see these lines in your .F files or the compiler shows them
   as an error then it means you have not placed your configuration
-  files in the appropriate place. 
+  files in the appropriate place.
   You need to place you own copy of SIZE.h in the include
   path for the model, and comment out these lines.
 
@@ -63,9 +63,9 @@ C     Nr  :: No. points in Z for full process domain.
      &           Ny  = sNy*nSy*nPy,
      &           Nr  =  23)
 
-C     MAX_OLX  - Set to the maximum overlap region size of any array
+C     MAX_OLX :: Set to the maximum overlap region size of any array
 C     MAX_OLY    that will be exchanged. Controls the sizing of exch
-C                routine buufers.
+C                routine buffers.
       INTEGER MAX_OLX
       INTEGER MAX_OLY
       PARAMETER ( MAX_OLX = OLx,
