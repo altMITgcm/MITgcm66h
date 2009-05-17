@@ -41,10 +41,10 @@ C     Set model variables to initial/restart conditions
       ELSEIF ( .NOT.useOffLine ) THEN
         CALL READ_PICKUP( nIter0, myThid )
 
-CEH3        IF (pickup_write_immed) THEN
-CEH3          CALL WRITE_CHECKPOINT(
-CEH3     &         .TRUE., myCurrentTime, myCurrentIter, myThid)
-CEH3        ENDIF
+c       IF (pickup_write_immed) THEN
+c         CALL WRITE_PICKUP(
+c    I                       .TRUE., startTime, nIter0, myThid )
+c       ENDIF
 
       ENDIF
 
