@@ -125,7 +125,7 @@ C     but instead, explicit MPI send & recv calls.
 C--   Alternative way of doing global sum on a single CPU
 C     to eliminate tiling-dependent roundoff errors.
 C     Note: This is slow.
-#undef  CG2D_SINGLECPU_SUM
+#define CG2D_SINGLECPU_SUM
 
 #endif /* _CPP_EEOPTIONS_H_ */
 
