@@ -1,6 +1,5 @@
 C $Header$
 C $Name$
-
 C
 CBOP
 C    !ROUTINE: SIZE.h
@@ -8,15 +7,15 @@ C    !INTERFACE:
 C    include SIZE.h
 C    !DESCRIPTION: \bv
 C     *==========================================================*
-C     | SIZE.h Declare size of underlying computational grid.
+C     | SIZE.h Declare size of underlying computational grid.     
 C     *==========================================================*
-C     | The design here support a three-dimensional model grid
-C     | with indices I,J and K. The three-dimensional domain
-C     | is comprised of nPx*nSx blocks of size sNx along one axis
-C     | nPy*nSy blocks of size sNy along another axis and one
-C     | block of size Nz along the final axis.
-C     | Blocks have overlap regions of size OLx and OLy along the
-C     | dimensions that are subdivided.
+C     | The design here support a three-dimensional model grid    
+C     | with indices I,J and K. The three-dimensional domain      
+C     | is comprised of nPx*nSx blocks of size sNx along one axis 
+C     | nPy*nSy blocks of size sNy along another axis and one     
+C     | block of size Nz along the final axis.                    
+C     | Blocks have overlap regions of size OLx and OLy along the 
+C     | dimensions that are subdivided.                           
 C     *==========================================================*
 C     \ev
 CEOP
@@ -44,17 +43,17 @@ C     Nr  :: No. points in Z for full process domain.
       INTEGER Ny
       INTEGER Nr
       PARAMETER (
-     &           sNx =  10,
-     &           sNy =   8,
-     &           OLx =   3,
-     &           OLy =   3,
+     &           sNx =  32,
+     &           sNy =  23,
+     &           OLx =   2,
+     &           OLy =   2,
      &           nSx =   2,
-     &           nSy =   2,
-     &           nPx =   1,
+     &           nSy =   1,
+     &           nPx =   2,
      &           nPy =   1,
      &           Nx  = sNx*nSx*nPx,
      &           Ny  = sNy*nSy*nPy,
-     &           Nr  =  3 )
+     &           Nr  =   5)
 
 C     MAX_OLX :: Set to the maximum overlap region size of any array
 C     MAX_OLY    that will be exchanged. Controls the sizing of exch
@@ -63,7 +62,4 @@ C                routine buffers.
       INTEGER MAX_OLY
       PARAMETER ( MAX_OLX = OLx,
      &            MAX_OLY = OLy )
-
-      integer     nobcs
-      parameter ( nobcs = 4 )
 
