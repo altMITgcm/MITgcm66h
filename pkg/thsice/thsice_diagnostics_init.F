@@ -168,7 +168,7 @@ c     IF ( useDiagnotics ) THEN
 
         diagName  = 'SIfrw2oc'
         diagTitle = 'fresh-water flux out of the ocean (+=up)'
-        diagUnits = 'm/s             '
+        diagUnits = 'kg/m^2/s        '
         diagCode  = 'SM      M1      '
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I            diagName, diagCode, diagUnits, diagTitle, 0, myThid )
