@@ -461,6 +461,7 @@ c--           Test for missing values.
 #if (defined (ALLOW_ARGO_THETA_COST_CONTRIBUTION) || \
      defined (ALLOW_SST_COST_CONTRIBUTION) || \
      defined (ALLOW_TMI_SST_COST_CONTRIBUTION) || \
+     defined (ALLOW_DAILYSST_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDT_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDTCLIM_COST_CONTRIBUTION) || \
      defined (ALLOW_XBT_COST_CONTRIBUTION))
@@ -513,7 +514,9 @@ c--           Test for missing values.
         do bi = itlo,ithi
           do j = jmin,jmax
             do i = imin,imax
-#if (defined (ALLOW_SST_COST_CONTRIBUTION) || defined (ALLOW_SST_CONTROL))
+#if (defined (ALLOW_SST_COST_CONTRIBUTION) || \
+     defined (ALLOW_DAILYSST_COST_CONTRIBUTION) || \
+     defined (ALLOW_SST_CONTROL))
               if ( lwtheta2InUse ) then
                 wsst(i,j,bi,bj) = wtheta2(i,j,k,bi,bj)
               elseif ( lwthetaLevInUse ) then
@@ -537,7 +540,9 @@ c--           Test for missing values.
           enddo
         enddo
       enddo
-#if (defined (ALLOW_SST_COST_CONTRIBUTION) || defined (ALLOW_SST_CONTROL))
+#if (defined (ALLOW_SST_COST_CONTRIBUTION) || \
+     defined (ALLOW_DAILYSST_COST_CONTRIBUTION) || \
+     defined (ALLOW_SST_CONTROL))
       call active_write_xy_loc( 'wsst', wsst, 1, 0, mythid, dummy)
 #endif
 #if (defined (ALLOW_SSS_COST_CONTRIBUTION) || defined (ALLOW_SSS_CONTROL))
