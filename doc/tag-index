@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: 
+   put exchanged variable in (local) common block for MPI+Multi-Threads
+   to work (necessary with exch1, and for now with exch2 too).
 o verification: to get more experiments tested with mpi, mth and mpi+mth,
   change tiling of:
    aim.5l_Equatorial_Channel, aim.5l_LatLon, dome, exp4, global_ocean.90x40x15,
