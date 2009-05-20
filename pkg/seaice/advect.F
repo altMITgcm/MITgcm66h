@@ -67,7 +67,7 @@ C NOW REARRANGE HS
       ENDDO
 
 #ifdef ALLOW_AUTODIFF_TAMC
-CADJ STORE heff  = comlev1, key = ikey_dynamics
+CADJ STORE fld3d  = comlev1, key = ikey_dynamics
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C NOW GO THROUGH STANDARD CONSERVATIVE ADVECTION
