@@ -7,3 +7,7 @@
 #  This file contains settings for OpenAD
 
 export OPENAD=true
+# debug defines OAD_DEBUG, OAD_DEBUG_CP, OAD_DEBUG_JOINT, OAD_DEBUG_SPLIT1, OAD_DEBUG_SPLIT2  
+
+DEFINES="$DEFINES -DOAD_DEBUG"
+
