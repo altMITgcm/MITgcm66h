@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice:
+   Adding separate sea ice albedo and drag coefficients in Southern Ocean
+   from those in Arctic Ocean.  See *_south in SEAICE_PARAMS.h
 o SingleCpuIO:
    fix bug put before chkp61n (May 11), when more than 2 MPI cpu are used.
 o pkg/seaice:
