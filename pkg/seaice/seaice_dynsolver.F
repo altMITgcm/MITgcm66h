@@ -78,6 +78,13 @@ CADJ STORE vice = comlev1, key=ikey_dynamics, kind=isbyte
      &  DIFFERENT_MULTIPLE(SEAICE_deltaTdyn,myTime,SEAICE_deltaTtherm)
      &   ) THEN
 
+# ifdef ALLOW_AUTODIFF_TAMC
+# ifdef SEAICE_ALLOW_EVP
+CADJ STORE press0 = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE zmax   = comlev1, key=ikey_dynamics, kind=isbyte
+# endif
+# endif /* ALLOW_AUTODIFF_TAMC */
+
 C--   FIRST SET UP BASIC CONSTANTS
       PSTAR  = SEAICE_strength
 
