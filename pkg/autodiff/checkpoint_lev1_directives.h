@@ -197,3 +197,23 @@ CADJ &     kind = isbyte
 CADJ STORE vVel  = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
 #endif
+
+#ifdef ALLOW_SEAICE
+cph temporary for HD
+# ifdef ALLOW_HFLUXM_CONTROL
+CADJ STORE qnetm      = comlev1, key = ikey_dynamics, kind = isbyte
+CADJ STORE area       = comlev1, key = ikey_dynamics, kind = isbyte
+CADJ STORE heff,hsnow = comlev1, key = ikey_dynamics, kind = isbyte
+CADJ STORE eta,zeta   = comlev1, key = ikey_dynamics, kind = isbyte
+CADJ STORE pmepr,tice = comlev1, key = ikey_dynamics, kind = isbyte
+CADJ STORE totphihyd,salt = comlev1, key = ikey_dynamics, kind = isbyte
+CADJ STORE uice,vice  = comlev1, key = ikey_dynamics, kind = isbyte
+# endif
+# ifdef ANNUAL_BALANCE
+CADJ STORE balance_itcount = comlev1, key = ikey_dynamics, kind = isbyte
+CADJ STORE atmfw_tilesum   = comlev1, key = ikey_dynamics, kind = isbyte
+CADJ STORE qnet_tilesum    = comlev1, key = ikey_dynamics, kind = isbyte
+CADJ STORE qnet_corr       = comlev1, key = ikey_dynamics, kind = isbyte
+CADJ STORE empmr_corr      = comlev1, key = ikey_dynamics, kind = isbyte
+# endif /* ANNUAL_BALANCE */
+#endif

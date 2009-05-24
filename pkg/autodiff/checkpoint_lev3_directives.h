@@ -170,3 +170,14 @@ CADJ STORE objf_transport = tapelev3, key = ilev_3
 #ifdef ALLOW_HFLUXM_CONTROL
 CADJ STORE qnetm          = tapelev3, key = ilev_3
 #endif
+
+#ifdef ALLOW_SEAICE
+cph temporary for HD
+# ifdef ANNUAL_BALANCE
+CADJ STORE balance_itcount = tapelev3, key = ilev_3
+CADJ STORE atmfw_tilesum   = tapelev3, key = ilev_3
+CADJ STORE qnet_tilesum    = tapelev3, key = ilev_3
+CADJ STORE empmr_corr      = tapelev3, key = ilev_3
+CADJ STORE qnet_corr       = tapelev3, key = ilev_3
+# endif /* ANNUAL_BALANCE */
+#endif
