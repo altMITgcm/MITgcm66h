@@ -176,6 +176,10 @@ CADJ &     kind = isbyte
 CADJ STORE recip_hfacc         = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
 #  endif
+#  ifdef ANNUAL_BALANCE
+CADJ STORE balance_itcount     = comlev1, key = ikey_dynamics,
+CADJ &     kind = isbyte
+#  endif /* ANNUAL_BALANCE */
 # endif
 # ifdef ALLOW_DEBUG
         IF ( debugLevel .GE. debLevB )
