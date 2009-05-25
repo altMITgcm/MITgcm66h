@@ -127,6 +127,10 @@ C     to eliminate tiling-dependent roundoff errors.
 C     Note: This is slow.
 #undef  CG2D_SINGLECPU_SUM
 
+C--   Enablbe some old macro conventions for
+C     backward compatibility
+#undef USE_OLD_MACROS_R4R8toRSRL
+
 #endif /* _CPP_EEOPTIONS_H_ */
 
 #include "CPP_EEMACROS.h"
