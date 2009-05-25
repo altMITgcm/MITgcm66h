@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/exch2:
+   temporary fix for exch2_s3d_rx; update results of exp. hs94.cs-32x32x5.impIGW
 o pkg/seaice:
    Adding separate sea ice albedo and drag coefficients in Southern Ocean
    from those in Arctic Ocean.  See *_south in SEAICE_PARAMS.h
