@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src/ini_curvilinear_grid.F: 
+   compute angleSin/CosC when they are not read from a file
+o pkg/seaice: 
+   add pseudo time stepping for LSOR
 o pkg/exch2:
    temporary fix for exch2_s3d_rx; update results of exp. hs94.cs-32x32x5.impIGW
 o pkg/seaice:
