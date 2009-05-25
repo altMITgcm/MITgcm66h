@@ -50,7 +50,8 @@ C     msgBuf :: Informational/error meesage buffer
 CEOP
 
 C-    Safety check:
-      IF ( nPx*nPy.NE.1 .AND. globalFiles ) THEN
+      IF ( nPx*nPy.NE.1 .AND. globalFiles
+     &                  .AND. .NOT.useSingleCpuIO ) THEN
         _BEGIN_MASTER( myThid )
 c       WRITE(msgBuf,'(2A)')
 c    &   'INI_MODEL_IO: globalFiles=TRUE is not safe',
