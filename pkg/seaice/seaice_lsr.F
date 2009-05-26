@@ -178,6 +178,19 @@ C NOW DO MODIFIED EULER STEP
         ENDDO
        ENDDO
       ENDIF
+      IF ( ilcall .GT. 2 ) THEN
+C     update  u/vIce(k-2)
+       DO bj=myByLo(myThid),myByHi(myThid)
+        DO bi=myBxLo(myThid),myBxHi(myThid)
+         DO j=1-OLy,sNy+OLy
+          DO i=1-OLx,sNx+OLx
+           uIce(I,J,2,bi,bj)=uIce(I,J,1,bi,bj)
+           vIce(I,J,2,bi,bj)=vIce(I,J,1,bi,bj)
+          ENDDO
+         ENDDO
+        ENDDO
+       ENDDO
+      ENDIF
 
 #ifdef ALLOW_AUTODIFF_TAMC
 cph That's an important one! Note, that
