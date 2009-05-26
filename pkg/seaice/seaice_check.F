@@ -119,6 +119,18 @@ C--   Check advection schemes
        STOP 'ABNORMAL END: S/R SEAICE_CHECK'
       ENDIF
 
+C--
+      IF ( NPSEUDOTIMESTEPS .GT. MPSEUDOTIMESTEPS ) THEN
+       WRITE(msgBuf,'(2A)') 'SEAICE_CHECK:',
+     &  ' need to increase MPSEUDOTIMESTEPS in SEAICE_PARAMS.h'
+       CALL PRINT_ERROR( msgBuf, myThid )
+       WRITE(msgBuf,'(2A,2I4)') 'SEAICE_CHECK:',
+     &  ' MPSEUDOTIMESTEPS, NPSEUDOTIMESTEPS = ',
+     &  MPSEUDOTIMESTEPS, NPSEUDOTIMESTEPS
+       CALL PRINT_ERROR( msgBuf, myThid )
+       STOP 'ABNORMAL END: S/R SEAICE_CHECK'
+      ENDIF
+
 C--   SEAICEadvSnow does not work with LAD = 1
       IF (SEAICEadvSnow .AND. SEAICEadvSchSnow .EQ. 2
      &     .AND. LAD .EQ. 1) THEN

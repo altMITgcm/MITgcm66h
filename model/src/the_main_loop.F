@@ -96,6 +96,7 @@ c They provide the fields to be stored.
 #  endif /* ALLOW_EXF */
 #  ifdef ALLOW_SEAICE
 #   include "SEAICE.h"
+#   include "SEAICE_PARAMS.h"
 #   include "SEAICE_COST.h"
 #  endif
 #  ifdef ALLOW_SALT_PLUME
@@ -331,7 +332,8 @@ CADJ &     = COMMON,niter_bulk*nchklev_1*snx*nsx*sny*nsy*nthreads_chkpt
 c--
 #   ifdef ALLOW_SEAICE
 #    ifdef SEAICE_ALLOW_DYNAMICS
-CADJ INIT comlev1_lsr = COMMON,nchklev_1*2
+cphCADJ INIT comlev1_lsr = COMMON,nchklev_1*2
+CADJ INIT comlev1_dynsol = COMMON,nchklev_1*MPSEUDOTIMESTEPS
 #    endif
 #    ifdef SEAICE_ALLOW_EVP
 CADJ INIT comlev1_evp = COMMON,nchklev_1

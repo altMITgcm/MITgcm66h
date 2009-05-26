@@ -91,7 +91,8 @@ C     SEAICEadvSchSalt - sets the advection scheme for sea ice salinity
 C     SEAICEadvSchAge  - sets the advection scheme for sea ice age
 C
       INTEGER LAD, IMAX_TICE
-      INTEGER SOLV_MAX_ITERS, SOLV_NCHECK, NPSEUDOTIMESTEPS
+      INTEGER SOLV_MAX_ITERS, SOLV_NCHECK
+      INTEGER MPSEUDOTIMESTEPS, NPSEUDOTIMESTEPS
       INTEGER SEAICEadvScheme
       INTEGER SEAICEadvSchArea
       INTEGER SEAICEadvSchHeff
@@ -107,6 +108,7 @@ C
      &     SEAICEadvSchSnow,
      &     SEAICEadvSchSalt,
      &     SEAICEadvSchAge
+      PARAMETER (MPSEUDOTIMESTEPS=2)
 
 C--   COMMON /SEAICE_PARM_C/ Character valued sea ice model parameters.
 C     AreaFile        - File containing initial sea-ice concentration

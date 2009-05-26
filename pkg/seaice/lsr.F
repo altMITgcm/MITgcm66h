@@ -101,9 +101,9 @@ C SOLVE FOR UICE
 cph That's an important one! Note, that
 cph * lsr is called twice, thus the icall index
 cph * this storing is still outside the iteration loop
-CADJ STORE uice = comlev1_lsr,
+CADJ STORE uice = comlev1_dynsol,
 CADJ &            key = ikey_dynamics + (ilcall-1)*nchklev_1
-CADJ STORE vice = comlev1_lsr,
+CADJ STORE vice = comlev1_dynsol,
 CADJ &            key = ikey_dynamics + (ilcall-1)*nchklev_1
 #endif /* ALLOW_AUTODIFF_TAMC */
 
