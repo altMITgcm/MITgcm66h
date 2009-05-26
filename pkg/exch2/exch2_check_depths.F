@@ -107,44 +107,57 @@ C- West :
          ENDDO
 
          IF ( errN+errS+errW+errE .GE. 1 ) THEN
-          WRITE(msgBuf,'(A,I6,A,2(I4,A))')
-     &        'EXCH2_CHECK_DEPTHS: tile #', tId,
-     &        ' (bi,bj=', bi, ',', bj, ' ):'
-          CALL PRINT_ERROR( msgBuf, myThid )
+          WRITE(msgBuf,'(2A,I6,A,2(I4,A))')
+     &        '** WARNINGS ** EXCH2_CHECK_DEPTHS: ',
+     &        'tile #', tId, ' (bi,bj=', bi, ',', bj, ' ):'
+          CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                        SQUEEZE_RIGHT, myThid )
           IF ( errN.GE.1 ) THEN
            WRITE(msgBuf,'(A,I5,A)') ' N.Edge has', errN,
      &        ' unconnected points with non-zero depth.'
-           CALL PRINT_ERROR( msgBuf, myThid )
+           CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                         SQUEEZE_RIGHT, myThid )
           ENDIF
           IF ( errS.GE.1 ) THEN
            WRITE(msgBuf,'(A,I5,A)') ' S.Edge has', errS,
      &        ' unconnected points with non-zero depth.'
-           CALL PRINT_ERROR( msgBuf, myThid )
+           CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                         SQUEEZE_RIGHT, myThid )
           ENDIF
           IF ( errE.GE.1 ) THEN
            WRITE(msgBuf,'(A,I5,A)') ' E.Edge has', errE,
      &        ' unconnected points with non-zero depth.'
-           CALL PRINT_ERROR( msgBuf, myThid )
+           CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                         SQUEEZE_RIGHT, myThid )
           ENDIF
           IF ( errW.GE.1 ) THEN
            WRITE(msgBuf,'(A,I5,A)') ' W.Edge has', errW,
      &        ' unconnected points with non-zero depth.'
-           CALL PRINT_ERROR( msgBuf, myThid )
+           CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                         SQUEEZE_RIGHT, myThid )
           ENDIF
-c         CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
-c    &                        SQUEEZE_RIGHT, myThid )
-          errFlag = .TRUE.
           WRITE( msgBuf,'(A)') 'S/R EXCH2_CHECK_DEPTHS: Fatal Error'
+          errFlag = .TRUE.
          ENDIF
 
        ENDDO
       ENDDO
 
 #ifdef USE_ERROR_STOP
-      CALL STOP_IF_ERROR( errFlag, msgBuf, myThid )
+c     CALL STOP_IF_ERROR( errFlag, msgBuf, myThid )
 #else  /* USE_ERROR_STOP */
-      IF ( errFlag ) STOP 'ABNORMAL END: S/R EXCH2_CHECK_DEPTHS'
+c     IF ( errFlag ) STOP 'ABNORMAL END: S/R EXCH2_CHECK_DEPTHS'
 #endif /* USE_ERROR_STOP */
+      IF ( errFlag ) THEN
+          WRITE( msgBuf,'(2A)') '** WARNINGS ** EXCH2_CHECK_DEPTHS:',
+     &        ' some algorithm implementation might not be'
+          CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                        SQUEEZE_RIGHT, myThid )
+          WRITE( msgBuf,'(2A)') '** WARNINGS ** EXCH2_CHECK_DEPTHS:',
+     &        ' safe with non-zero depth next to blank-tile'
+          CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                        SQUEEZE_RIGHT, myThid )
+      ENDIF
 
       RETURN
       END
