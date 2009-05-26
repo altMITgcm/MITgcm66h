@@ -677,8 +677,13 @@ C     UNTIL THE NET ICE THICKNESS RATE IS POSITIVE.  I.E. IF THE MIXED LAYER
 C     HEAT FLUX INTO THE NEW ICE IS ENOUGH TO IMMEDIATELY MELT IT, DO NOT GROW
 C     IT.
                   IF (IceGrowthRateOpenWater(I,J) .GT. 0) THEN
-                     S_a_from_IGROW(I,J) = (ONE - AREA(I,J,2,bi,bj))*
-     &                      IceGrowthRateOpenWater(I,J)/HO
+                     IF ( YC(I,J,bi,bj) .LT. ZERO ) THEN
+                        S_a_from_IGROW(I,J) = (ONE - AREA(I,J,2,bi,bj))*
+     &                     IceGrowthRateOpenWater(I,J)/HO_south
+                     ELSE
+                        S_a_from_IGROW(I,J) = (ONE - AREA(I,J,2,bi,bj))*
+     &                     IceGrowthRateOpenWater(I,J)/HO
+                     ENDIF
 
                      IF (AREA(I,J,2,bi,bj) .GT. 0.) THEN
                         S_a(I,J) = S_a(I,J) + S_a_from_IGROW(I,J)

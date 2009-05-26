@@ -11,8 +11,8 @@ o pkg/seaice:
 o pkg/exch2:
    temporary fix for exch2_s3d_rx; update results of exp. hs94.cs-32x32x5.impIGW
 o pkg/seaice:
-   Adding separate sea ice albedo and drag coefficients in Southern Ocean
-   from those in Arctic Ocean.  See *_south in SEAICE_PARAMS.h
+   Adding separate sea ice albedo, drag coefficients, and HO in Southern
+   Ocean from those in Arctic Ocean.  See *_south in SEAICE_PARAMS.h
 o SingleCpuIO:
    fix bug put before chkp61n (May 11), when more than 2 MPI cpu are used.
 o pkg/seaice:
