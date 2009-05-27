@@ -229,7 +229,11 @@ C     do the original VP solver of Zhang and Hibler (1997), ported to
 C     a C-grid
 #endif /* SEAICE_ALLOW_EVP */
 C     LSR SCHEME (ZHANG-J/HIBLER 1997)
+#ifdef ALLOW_AUTODIFF_TAMC
         DO ipseudo=1,MPSEUDOTIMESTEPS
+#else
+        DO ipseudo=1,NPSEUDOTIMESTEPS
+#endif
          IF ( ipseudo .LE. NPSEUDOTIMESTEPS ) THEN
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE uice = comlev1_dynsol, kind=isbyte,
