@@ -599,6 +599,7 @@ c check hbl limits for hekman or hmonob
 c     ph: test for zero nominator
 c-----------------------------------------------------------------------
 
+      IF ( LimitHblStable ) THEN
       do i = 1, imt
          if (bfsfc(i) .gt. 0.0) then
             hekman = cekman * ustar(i) / max(abs(Coriol(i)),phepsi)
@@ -609,6 +610,8 @@ c-----------------------------------------------------------------------
             hbl(i) = min(hbl(i),hlimit)
          end if
       end do
+      ENDIF
+
 CADJ store hbl = comlev1_kpp
 CADJ &   , key=ikppkey, kind=isbyte, 
 CADJ &     shape = (/ (sNx+2*OLx)*(sNy+2*OLy) /)

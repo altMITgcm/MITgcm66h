@@ -63,12 +63,16 @@ C                       if T : Compute the non-local term using
 C                            the total vertical diffusivity ; 
 C                       if F (=default): use KPP vertical diffusivity 
 C     Note: prior to checkpoint55h_post, was using the total Kz
+C     LimitHblStable    - if TRUE (the default), limits the depth of the
+C                         hbl under stable conditions.
 C
 C-----------------------------------------------------------------------
 
       LOGICAL KPPmixingMaps, KPPwriteState, KPP_ghatUseTotalDiffus
+      LOGICAL LimitHblStable
       COMMON /KPP_PARM_L/
-     &        KPPmixingMaps, KPPwriteState, KPP_ghatUseTotalDiffus
+     &        KPPmixingMaps, KPPwriteState, KPP_ghatUseTotalDiffus,
+     &        LimitHblStable
 
       _RL                 minKPPhbl
       COMMON /KPP_PARM_R/ minKPPhbl
