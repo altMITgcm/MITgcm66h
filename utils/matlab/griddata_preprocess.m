@@ -14,9 +14,13 @@ function [del] = griddata_preprocess(x,y,xi,yi,method)
 
 error(nargchk(4,5,nargin))
 
-if prod(size(xi)) ~= prod(size(yi))
+%- To interpolate to a section (with position vector xi,yi), skip the
+%  ndgrid call hereafter. However, since this is poorly documented, 
+%  leave the unconditional call to ndgrid to avoid falling into this trap 
+%  when doing 2-D interpolation on to a square grid (xi & yi of equal size)
+%if prod(size(xi)) ~= prod(size(yi))
  [yi,xi]=ndgrid(yi,xi);
-end
+%end
 
 if nargin<6, method = 'linear'; end
 if ~isstr(method), 
