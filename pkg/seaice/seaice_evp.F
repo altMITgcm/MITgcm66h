@@ -70,9 +70,6 @@ C     sig11, sig22  - sum and difference of diagonal terms of stress tensor
       _RL SINWAT, COSWAT
       _RL TEMPVAR, ecc2, recip_ecc2, recip_evp_tau
 
-      _RL e11           (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RL e22           (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RL e12           (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL seaice_div    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL seaice_tension(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL seaice_shear  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)

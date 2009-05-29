@@ -42,10 +42,6 @@ C     i,j,bi,bj - Loop counters
       _RL  fuIceLoc, fvIceLoc, FX, FY
       _RL  areaW, areaS
 
-      _RL e11         (1-Olx:sNx+Olx,1-Oly:sNy+Oly,nSx,nSy)
-      _RL e22         (1-Olx:sNx+Olx,1-Oly:sNy+Oly,nSx,nSy)
-      _RL e12         (1-Olx:sNx+Olx,1-Oly:sNy+Oly,nSx,nSy)
-      _RL press       (1-Olx:sNx+Olx,1-Oly:sNy+Oly,nSx,nSy)
       _RL sig11       (1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RL sig22       (1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RL sig12       (1-Olx:sNx+Olx,1-Oly:sNy+Oly)

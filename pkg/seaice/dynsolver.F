@@ -54,12 +54,6 @@ C     i,j,bi,bj - Loop counters
       _RL ECCEN, ECM2, DELT1, DELT2, PSTAR, AAA
       _RL TEMPVAR, U1, V1
 
-C-    MPI+MTH: apply exch (sure with exch1) only to array in common block
-      COMMON / LOCAL_DYNSOLVER / PRESS
-      _RL PRESS      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
-      _RL E11        (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
-      _RL E22        (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
-      _RL E12        (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
       _RL COR_ICE    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,  nSx,nSy)
 
 C--   FIRST SET UP BASIC CONSTANTS
