@@ -156,6 +156,7 @@ cph   Gradient via adjoint has already been computed,
 cph   and so has unperturbed cost function,
 cph   assuming all xx_ fields are initialised to zero.
 
+      ierr      = 0
       ierr_grdchk = 0
       adxxmemo  = 0.
       ftlxxmemo = 0.
