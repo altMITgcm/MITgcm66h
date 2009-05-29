@@ -435,7 +435,6 @@ c--   Meridional wind speed.
 
 #elif (defined (ALLOW_TAUV0_CONTROL))
 c--   initial forcing only
-        diffrec  = endrec - startrec + 1
         call ctrl_init_ctrlvar ( 
      &       xx_tauv_file, 6, 106, 1, 1, 1,
      &       snx, sny, 1, 's', 'xy', mythid )
