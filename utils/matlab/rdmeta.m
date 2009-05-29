@@ -192,7 +192,7 @@ else
  elseif dataprec == 'float64'
   A=myrdda(dname,ldims,1,'real*8',ieee);
  else
-  error(['Unrecognized format in meta-file = ' format]);
+  error(['Unrecognized dataprec in meta-file = ' dataprec]);
  end
 
 end
