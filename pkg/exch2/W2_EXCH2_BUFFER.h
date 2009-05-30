@@ -33,6 +33,13 @@ C--   COMMON /W2_EXCH2_BUF_RX/ real type Buffer used by W2-EXCH2
       COMMON /W2_EXCH2_BUF_R4/ E2BUFR1_R4, E2BUFR2_R4
       COMMON /W2_EXCH2_BUF_R8/ E2BUFR1_R8, E2BUFR2_R8
 
+C--   COMMON /W2_EXCH2_BUF_I/ integer type Buffer used by W2-EXCH2
+C     iBuf1Filled :: actual length of buffer-1 which has been filled in.
+C     iBuf2Filled :: actual length of buffer-2 which has been filled in.
+      INTEGER iBuf1Filled( W2_maxNeighbours, nSx)
+      INTEGER iBuf2Filled( W2_maxNeighbours, nSx)
+      COMMON /W2_EXCH2_BUF_I/ iBuf1Filled, iBuf2Filled
+
 C--   COMMON /W2_EXCH2_COMMFLAG/ EXCH2 character Flag for type of communication
       CHARACTER W2_myCommFlag( W2_maxNeighbours, nSx )
       COMMON /W2_EXCH2_COMMFLAG/ W2_myCommFlag
