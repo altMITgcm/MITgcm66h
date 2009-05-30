@@ -141,7 +141,8 @@ do
  then
 
   echo "Running testreport using:"
-  comm="./testreport -adm -match $MC -a jmc@mitgcm.org"
+# comm="./testreport -adm -match $MC -a jmc@mitgcm.org"
+  comm="./testreport -adm -match $MC -a jmc@mitgcm.org -skd lab_sea"
   if test "x$OPTFILE" != x ; then
     comm="$comm -of=$OPTFILE"
   fi
