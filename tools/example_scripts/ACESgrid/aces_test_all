@@ -18,7 +18,7 @@ start=`date +%Y%m%d`
 
 if test $# = 0
 then
-  tst_list='gnu ifc pgi mth tuv'
+  tst_list='gnu ifc pgi adm mth tuv'
 else
   tst_list=$*
 fi
