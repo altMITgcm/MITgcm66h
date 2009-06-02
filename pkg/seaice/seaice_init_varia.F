@@ -91,9 +91,9 @@ C--   Initialise all variables in common blocks:
           seaiceMassV(i,j,bi,bj)=0. _d 0
           seaiceMaskU(i,j,bi,bj)=0. _d 0
           seaiceMaskV(i,j,bi,bj)=0. _d 0
-# ifdef SEAICE_ALLOW_EVP
           stressDivergenceX(i,j,bi,bj) = 0. _d 0
           stressDivergenceY(i,j,bi,bj) = 0. _d 0
+# ifdef SEAICE_ALLOW_EVP
           seaice_sigma1 (i,j,bi,bj) = 0. _d 0
           seaice_sigma2 (i,j,bi,bj) = 0. _d 0
           seaice_sigma12(i,j,bi,bj) = 0. _d 0

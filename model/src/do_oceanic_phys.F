@@ -153,6 +153,10 @@ CADJ STORE uice                = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
 CADJ STORE vice                = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
+CADJ STORE stressdivergencex   = comlev1, key = ikey_dynamics,
+CADJ &     kind = isbyte
+CADJ STORE stressdivergencey   = comlev1, key = ikey_dynamics,
+CADJ &     kind = isbyte
 #   ifdef SEAICE_ALLOW_EVP
 CADJ STORE seaice_sigma1       = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte

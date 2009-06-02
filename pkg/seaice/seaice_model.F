@@ -90,8 +90,8 @@ CADJ STORE fu    = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE fv    = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE uice  = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE vice  = comlev1, key=ikey_dynamics, kind=isbyte
-CADJ STORE eta   = comlev1, key=ikey_dynamics, kind=isbyte
-CADJ STORE zeta  = comlev1, key=ikey_dynamics, kind=isbyte
+cphCADJ STORE eta   = comlev1, key=ikey_dynamics, kind=isbyte
+cphCADJ STORE zeta  = comlev1, key=ikey_dynamics, kind=isbyte
 cph(
 CADJ STORE dwatn    = comlev1, key=ikey_dynamics, kind=isbyte
 cccCADJ STORE press0   = comlev1, key=ikey_dynamics, kind=isbyte
