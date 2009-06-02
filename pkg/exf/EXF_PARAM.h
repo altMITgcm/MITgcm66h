@@ -515,9 +515,11 @@ c     file precision and field type
 
       common /exf_param_type/
      &                     exf_iprec,
+     &                     exf_iprec_obcs,
      &                     exf_yftype
 
       integer exf_iprec
+      integer exf_iprec_obcs
       character*(2) exf_yftype
 
 c     exf_inscal_*      input scaling factors

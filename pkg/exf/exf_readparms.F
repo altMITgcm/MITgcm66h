@@ -70,6 +70,7 @@ c     Surface flux data.
      &          exf_iceCd,          exf_iceCe,     exf_iceCh,
      &   exf_scal_BulkCdn,     climtempfreeze,
      &          exf_iprec,         exf_yftype,   exf_monFreq,
+     &     exf_iprec_obcs,
      & useExfYearlyFields,  twoDigitYear,   useExfCheckRange,
      & useStabilityFct_overIce, readStressOnAgrid, readStressOnCgrid,
      &    useRelativeWind, noNegativeEvap,
@@ -488,6 +489,7 @@ c     Start dates.
 
 c     Initialise file type and field precision
       exf_iprec            = 32
+      exf_iprec_obcs       = UNSET_I
       exf_yftype           = 'RL'
       useExfYearlyFields   = .FALSE.
       twoDigitYear         = .FALSE.
@@ -730,6 +732,8 @@ c     Next, read the forcing data file.
       IF(siobWstartdate1.EQ.UNSET_I ) siobWstartdate1 = obcsWstartdate1
       IF(siobWstartdate2.EQ.UNSET_I ) siobWstartdate2 = obcsWstartdate2
       IF(siobWperiod    .EQ.UNSET_RL) siobWperiod     = obcsWperiod
+C     
+      IF(exf_iprec_obcs .EQ. UNSET_I) exf_iprec_obcs  = exf_iprec
 #endif
 
       WRITE(msgBuf,'(A)')
