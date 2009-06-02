@@ -25,8 +25,7 @@ module add mpich/gnu
 OPTFILE="../tools/build_options/linux_ia32_g77+mpi_aces"
 options='-adm -mpi'
 #- need this to get "staf":
-#export PATH="$PATH:~/bin" <- does not work
-export MITGCM_AD_OF="/home/jmc/test_ACES/ad_optfil_local"
+export PATH="$PATH:$HOME/bin"
 
 checkOut=1
 #options="$options -nc" ; checkOut=0
