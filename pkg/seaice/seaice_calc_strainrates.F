@@ -77,7 +77,6 @@ C     evaluate strain rates
      &         +HALF*
      &         (uFld(I,J,1,bi,bj)+uFld(I+1,J,1,bi,bj))
      &         * k1AtC(I,J,bi,bj)
-C     one metric term is missing
          ENDDO
         ENDDO
         DO j=1-Oly+1,sNy+Oly
