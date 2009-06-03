@@ -78,7 +78,7 @@ c     == end of interface ==
      O         obcs_file0,
      I         mycurrenttime, mycurrentiter, mythid )
 
-            call mdsreadfieldxz( obcs_file0, exf_iprec_obsc, exf_yftype
+            call mdsreadfieldxz( obcs_file0, exf_iprec_obcs, exf_yftype
      &           , Nr, obcs_xz_1, count0, mythid
      &           )
          endif
