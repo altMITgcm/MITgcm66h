@@ -516,7 +516,6 @@ C     by construction
 
 C     now update other things
 
-#ifdef ALLOW_ATM_TEMP
           IF(FICE(I,J).GT.ZERO) THEN
 C     freezing, add precip as snow
            HSNOW(I,J,bi,bj) = HSNOW(I,J,bi,bj)+SEAICE_deltaTtherm*
@@ -534,9 +533,6 @@ C     through the ice into the ocean)
      &            -PRECIP(I,J,bi,bj)*AREA(I,J,2,bi,bj)*
      &            SEAICE_deltaTtherm/ICE2WATR
           ENDIF
-#else /* ALLOW_ATM_TEMP */
-          STOP 'ABNORMAL END: S/R THSICE_GROWTH: ATM_TEMP undef'
-#endif /* ALLOW_ATM_TEMP */
 
          ENDDO
         ENDDO
