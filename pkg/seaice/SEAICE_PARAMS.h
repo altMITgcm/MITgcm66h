@@ -255,12 +255,16 @@ C     MIN_LWDOWN - minimum downward longwave (W/m^2)
 C     MAX_TICE   - maximum ice temperature   (deg C)
 C     MIN_TICE   - minimum ice temperature   (deg C)
 C     SEAICE_EPS, SEAICE_EPS_SQ - used to reduce derivative singularities
+C     SEAICE_clim_atemp - climatological air temperature over sea ice
+C     SEAICE_clim_aqh   - climatological specific humidity over sea ice
 C
       _RL MAX_HEFF, MIN_ATEMP, MIN_LWDOWN, MAX_TICE, MIN_TICE
       _RL SEAICE_EPS, SEAICE_EPS_SQ
+      _RL SEAICE_clim_atemp(12), SEAICE_clim_aqh(12)
       COMMON /SEAICE_BOUND_RL/
-     &    MAX_HEFF, MIN_ATEMP, MIN_LWDOWN, MAX_TICE, MIN_TICE,
-     &    SEAICE_EPS, SEAICE_EPS_SQ
+     &     MAX_HEFF, MIN_ATEMP, MIN_LWDOWN, MAX_TICE, MIN_TICE,
+     &     SEAICE_EPS, SEAICE_EPS_SQ,
+     &     SEAICE_clim_atemp, SEAICE_clim_aqh
 
 C--   Constants used by sea-ice model
       _RL         ZERO           , ONE           , TWO
