@@ -53,12 +53,12 @@ C--   Over all tiles
        ENDDO
       ENDDO
 
-      IF ( eddyPsixFile .NE. ' ' ) THEN
-       CALL MDSREADFIELD(eddyPsiXFile,precFloat32,
+      IF ( eddyPsiXFile .NE. ' ' ) THEN
+       CALL MDSREADFIELD(eddyPsiXFile,readBinaryPrec,
      &                  'RS',Nr,eddyPsiX,1,myThid)
       ENDIF
-      IF ( eddyPsiyFile .NE. ' ' ) THEN
-       CALL MDSREADFIELD(eddyPsiYFile,precFloat32,
+      IF ( eddyPsiYFile .NE. ' ' ) THEN
+       CALL MDSREADFIELD(eddyPsiYFile,readBinaryPrec,
      &                  'RS',Nr,eddyPsiY,1,myThid)
       ENDIF
 
