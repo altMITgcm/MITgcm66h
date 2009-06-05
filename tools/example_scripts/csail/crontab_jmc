@@ -2,14 +2,15 @@
 
 #-from: jmc@faulks.csail.mit.edu 
 #  current output of: crontab -l
-50 23 * * *  cd /u/u2/jmc/testing/csail && cvs -q update -P -d
-05 00 * * *  /u/u2/jmc/testing/csail/test_csail
+# note: csail scripts update has been moved to mitgcm.org/scripts/daily_update
+#50 23 * * *  cd /u/u2/jmc/testing/csail && cvs -q update -P -d
+05 00 * * *  /u/u2/jmc/testing/csail/test_faulks
 
-#-from: jmc@hugo.csail.mit.edu 
+#-from: jmc@hugo.csail.mit.edu (down since March 30, 2009)
 #  current output of: crontab -l
-05 01 * * 1,3,6  /u/u2/jmc/testing/csail/test_hugo
+#05 01 * * 1,3,6  /u/u2/jmc/testing/csail/test_hugo
 
 #-from: jmc@dickens.csail.mit.edu 
 #  current output of: crontab -l
-15 00 * * 0,2,4,5  /u/u2/jmc/testing/csail/test_dickens
+15 00 * * *        /u/u2/jmc/testing/csail/test_dickens
 
