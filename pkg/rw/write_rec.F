@@ -519,7 +519,7 @@ C Arguments
       CHARACTER*(*) fName
       INTEGER fPrec
       INTEGER kSiz, kLo, kHi
-      _RS field(1-Olx:sNx+Olx,1-Oly:sNy+Oly,kSiz,nSx,nSy)
+      _RL field(1-Olx:sNx+Olx,1-Oly:sNy+Oly,kSiz,nSx,nSy)
       INTEGER iRec
       INTEGER myIter
       INTEGER myThid
