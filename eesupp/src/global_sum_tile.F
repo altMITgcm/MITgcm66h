@@ -66,10 +66,8 @@ C         all 4 needs to have the same length as MPI_DOUBLE_PRECISION
       Real*8  sumAllP
 CEOP
 
-C- note(jmc): do not see why we need this Barrier here + the one at the end ;
-C     however a) both are present in the standard version of global_sum ;
-C             b) with OpenMP on hugo, does not work if both are commented out
-      CALL BAR2( myThid )
+C     this barrier is not necessary:
+c     CALL BAR2( myThid )
 
 C--   write local sum into shared-buffer array
       DO bj = myByLo(myThid), myByHi(myThid)
@@ -188,7 +186,9 @@ C--   Everyone wait for Master thread to be ready
 C--   set result for every threads
       sumPhi = shareBufGSR8(1,1)
 
-C- note(jmc): do not see why we need this Barrier here (see comment @ the top)
+C-    Need a barrier here to prevent thread 1 to modify shareBufGSR8(1,1)
+C     (as it would in the following call to this S/R) before all threads get
+C     their global-sum result out.
       CALL BAR2( myThid )
 
       RETURN
