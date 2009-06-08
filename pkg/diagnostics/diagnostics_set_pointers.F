@@ -160,15 +160,24 @@ C--   Set list of levels to write (if not specified in data.diagnostics)
       DO ld=1,nlists
         IF ( nlevels(ld).EQ.-1 ) THEN
 C-      set Nb of levels to the minimum size of all diag of this list:
-          kLev = numLevels
+          kLev = numLevels*10
           DO md=1,nfields(ld)
             nd = jdiag(md,ld)
             kLev = MIN(kdiag(nd),kLev)
           ENDDO
           IF ( kLev.LE.0 ) THEN
-            WRITE(msgBuf,'(2A,I6,2A)')
-     &      'DIAGNOSTICS_SET_POINTERS: kLev < 1 in ',
-     &      ' setting levs of list l=',ld,', fnames: ', fnames(ld)
+            WRITE(msgBuf,'(2A,I4,2A)')
+     &      'DIAGNOSTICS_SET_POINTERS: kLev < 1 in',
+     &      ' setting levs of list l=',ld,', fnames=', fnames(ld)
+            CALL PRINT_ERROR( msgBuf , myThid )
+            STOP 'ABNORMAL END: S/R DIAGNOSTICS_SET_POINTERS'
+          ELSEIF ( kLev.GT.numLevels ) THEN
+            WRITE(msgBuf,'(A,2(I6,A))')
+     &      'DIAGNOSTICS_SET_POINTERS: kLev=', kLev,
+     &                  ' >', numLevels, ' =numLevels'
+            CALL PRINT_ERROR( msgBuf , myThid )
+            WRITE(msgBuf,'(2A,I4,2A)') 'DIAGNOSTICS_SET_POINTERS: in',
+     &      ' setting levs of list l=',ld,', fnames=', fnames(ld)
             CALL PRINT_ERROR( msgBuf , myThid )
             STOP 'ABNORMAL END: S/R DIAGNOSTICS_SET_POINTERS'
           ENDIF
