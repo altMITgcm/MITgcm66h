@@ -1172,6 +1172,7 @@ for dir in $TESTDIRS ; do
     if test "x$CLEANUP" = xt ; then
 	echo -n '  --- dir:' $BUILD_DIR ': '
 	makeclean $BUILD_DIR
+        rm -f $BUILD_DIR/$EXECUTABLE
 	if test -d $dir/$rundir/CVS ; then
             echo -n '  --- dir:' $dir/$rundir ': '
 	    run_clean $dir/$rundir
