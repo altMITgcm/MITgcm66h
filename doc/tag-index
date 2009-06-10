@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint61p
 o eesupp (global_max & global_sum):
  - add one more element to buffer (start at index 0) for GL_MAX/SUM output;
  - remove starting & endding barrier (no longer needed)
