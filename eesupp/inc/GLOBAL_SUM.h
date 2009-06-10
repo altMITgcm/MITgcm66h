@@ -29,21 +29,21 @@ C     | the way the global sum routines work.                    |
 C     *==========================================================*
 CEOP
 
-      COMMON / GSUM_COMMON_R8 / phiGSRL, shareBufGSR8
-c    &                        , phiVGSRL
-      Real*8  phiGSRL (lShare8, MAX_NO_THREADS )
+      COMMON / GSUM_COMMON_R8 / phiGSR8, shareBufGSR8
+c    &                        , phiVGSR8
+      Real*8  phiGSR8 (lShare8, 0:MAX_NO_THREADS )
       Real*8  shareBufGSR8 ( nSx, nSy )
-c     Real*8  phivGSRL(MAX_VGS, MAX_NO_THREADS )
+c     Real*8  phivGSR8(MAX_VGS, 0:MAX_NO_THREADS )
 
-      COMMON / GSUM_COMMON_R4 / phiGSRS
-c    &                        , phiVGSRS
-      Real*4  phiGSRS (lShare4, MAX_NO_THREADS )
-c     Real*4  phivGSRS(MAX_VGS, MAX_NO_THREADS )
+      COMMON / GSUM_COMMON_R4 / phiGSR4
+c    &                        , phiVGSR4
+      Real*4  phiGSR4 (lShare4, 0:MAX_NO_THREADS )
+c     Real*4  phivGSR4(MAX_VGS, 0:MAX_NO_THREADS )
 
       COMMON / GSUM_COMMON_I  / phiGSI
 c    &                        , phiVGSI
-      INTEGER phiGSI  (lShare4, MAX_NO_THREADS )
-c     INTEGER phivGSI (MAX_VGS, MAX_NO_THREADS )
+      INTEGER phiGSI  (lShare4, 0:MAX_NO_THREADS )
+c     INTEGER phivGSI (MAX_VGS, 0:MAX_NO_THREADS )
 
 CEH3 ;;; Local Variables: ***
 CEH3 ;;; mode:fortran ***
