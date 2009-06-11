@@ -111,15 +111,15 @@ C--     Mixed layer thickness: take the 1rst layer
 #ifdef NONLIN_FRSURF
         IF ( staggerTimeStep .AND. nonlinFreeSurf.GT.0 ) THEN
          IF ( select_rStar.GT.0 ) THEN
-          DO j = jMin, jMax
-           DO i = iMin, iMax
+          DO j=1-OLy,sNy+OLy
+           DO i=1-OLx,sNx+OLx
              hOceMxL(i,j,bi,bj) = drF(1)*h0FacC(i,j,1,bi,bj)
      &                                  *rStarFacC(i,j,bi,bj)
            ENDDO
           ENDDO
          ELSE
-          DO j = jMin, jMax
-           DO i = iMin, iMax
+          DO j=1-OLy,sNy+OLy
+           DO i=1-OLx,sNx+OLx
             IF ( ksurfC(i,j,bi,bj).EQ.1 ) THEN
              hOceMxL(i,j,bi,bj) = drF(1)*hFac_surfC(i,j,bi,bj)
             ELSE
@@ -132,8 +132,8 @@ C--     Mixed layer thickness: take the 1rst layer
 #else /* ndef NONLIN_FRSURF */
         IF (.TRUE.) THEN
 #endif /* NONLIN_FRSURF */
-          DO j = jMin, jMax
-           DO i = iMin, iMax
+          DO j=1-OLy,sNy+OLy
+           DO i=1-OLx,sNx+OLx
              hOceMxL(i,j,bi,bj) = drF(1)*hFacC(i,j,1,bi,bj)
            ENDDO
           ENDDO
