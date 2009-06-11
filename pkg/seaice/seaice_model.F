@@ -220,6 +220,7 @@ C     the seaice model
         CALL DIAGNOSTICS_FILL(EmPmR  ,'SIempmr ',0,1 ,0,1,1,myThid)
         CALL DIAGNOSTICS_FILL(Qnet   ,'SIqnet  ',0,1 ,0,1,1,myThid)
         CALL DIAGNOSTICS_FILL(Qsw    ,'SIqsw   ',0,1 ,0,1,1,myThid)
+        CALL DIAGNOSTICS_FILL(frWtrAtm,'SIatmFW ',0,1 ,0,1,1,myThid)
        ENDIF
 #endif /* ALLOW_DIAGNOSTICS */
 
