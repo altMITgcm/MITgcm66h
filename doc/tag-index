@@ -4,8 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
-o pkg/seaice: make the (placeholder-)tracer IceAge a little more meaningful
+o pkg/seaice: 
+ - make the (placeholder-)tracer IceAge a little more meaningful
   by avoiding ridging of age due to convergent ice flow
+ - add diagnostics for surface temperature
 
 checkpoint61p
 o eesupp (global_max & global_sum):
