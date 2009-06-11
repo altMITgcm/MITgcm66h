@@ -103,7 +103,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
       diagName  = 'SItices '
       diagTitle = 'Surface Temperature over Sea-Ice (area weighted)'
-      diagUnits = 'degC            '
+      diagUnits = 'K               '
       diagCode  = 'SM  C   M1      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I    diagName, diagCode, diagUnits, diagTitle, numArea, myThid )
