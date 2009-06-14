@@ -16,7 +16,7 @@ C     !USES:
 #include "EEPARAMS.h"
 
 C     !INPUT PARAMETERS:
-C     myThid -  Number of this instances
+C     myThid :: my Thread Id number
       INTEGER myThid
 CEOP
 
@@ -26,9 +26,13 @@ C     !LOCAL VARIABLES:
 C     msgBuf      - Informational/error meesage buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 
+      _BEGIN_MASTER(myThid)
+
        WRITE(msgBuf,'(A)') 'SALT_PLUME_CHECK: #define SALT_PLUME'
        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                    SQUEEZE_RIGHT , 1)
+     &                     SQUEEZE_RIGHT , myThid )
+
+      _END_MASTER(myThid)
 
 #endif /* ALLOW_SALT_PLUME */
 
