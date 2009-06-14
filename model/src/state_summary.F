@@ -43,28 +43,22 @@ C     == Local variables ==
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 CEOP
 
-      _BARRIER
-
       _BEGIN_MASTER(myThid)
       WRITE(msgBuf,'(A)')
      &'// ======================================================='
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, 
-     &                    SQUEEZE_RIGHT , 1)
+     &                    SQUEEZE_RIGHT , myThid )
       WRITE(msgBuf,'(A)') '// Model current state'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit, 
-     &                    SQUEEZE_RIGHT , 1)
+     &                    SQUEEZE_RIGHT , myThid )
       WRITE(msgBuf,'(A)')
      &'// ======================================================='
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &  SQUEEZE_RIGHT , 1)
+     &                    SQUEEZE_RIGHT , myThid )
       WRITE(msgBuf,'(A)') ' '
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &  SQUEEZE_RIGHT , 1)
+     &                    SQUEEZE_RIGHT , myThid )
       _END_MASTER(myThid)
-
-      _BARRIER
-
 
       RETURN
       END
-

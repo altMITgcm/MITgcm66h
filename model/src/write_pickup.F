@@ -98,7 +98,8 @@ C     Write model fields
       ENDIF
 
 C     Going to really do some IO. Make everyone except master thread wait.
-      _BARRIER
+C     this is done within IO routines => no longer needed
+c     _BARRIER
 
       IF (pickup_write_mdsio) THEN
 
@@ -338,7 +339,8 @@ c         CALL MNC_CW_RL_W('D',fn,0,0,'gW', gW, myThid)
 #endif /*  ALLOW_MNC  */
 
 C--   Every one else must wait until writing is done.
-      _BARRIER
+C     this is done within IO routines => no longer needed
+c     _BARRIER
 
       RETURN
       END

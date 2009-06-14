@@ -57,7 +57,6 @@ C
       ENDDO
 
       IF (uVelInitFile .NE. ' ' .OR. vVelInitFile .NE. ' ') THEN
-       _BARRIER
 C     Read an initial state for each component if required
        IF (uVelInitFile .NE. ' ')
      & CALL READ_FLD_XYZ_RL( uVelInitFile, ' ', uVel, 0, myThid )

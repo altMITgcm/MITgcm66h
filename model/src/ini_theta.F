@@ -63,7 +63,6 @@ C--   Initialise temperature field to the vertical reference profile
         ENDDO
        ENDDO
       ENDDO
-      _BARRIER
 
       IF ( hydrogThetaFile .NE. ' ' ) THEN
 #ifdef ALLOW_MNC
@@ -76,13 +75,11 @@ C--   Initialise temperature field to the vertical reference profile
           CALL MNC_FILE_CLOSE_ALL_MATCHING(hydrogThetaFile, myThid)
         ELSE
 #endif /*  ALLOW_MNC  */
-C         _BEGIN_MASTER( myThid )
           CALL READ_FLD_XYZ_RL( hydrogThetaFile, ' ', theta, 0, myThid )
-C         _END_MASTER(myThid)
 #ifdef ALLOW_MNC
         ENDIF
 #endif /*  ALLOW_MNC  */
-       _EXCH_XYZ_RL(theta,myThid)
+        _EXCH_XYZ_RL(theta,myThid)
       ENDIF
 
 C--   Apply mask and test consistency

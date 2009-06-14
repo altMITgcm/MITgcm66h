@@ -49,7 +49,8 @@ C     lgf    :: Flag to indicate whether to use global file mode.
 CEOP
 
 C     Going to really do some IO. Make everyone except master thread wait.
-      _BARRIER
+C     this is done within IO routines => no longer needed
+c     _BARRIER
 
       prec = precFloat64
       lgf = globalFiles
@@ -177,7 +178,8 @@ C     Write restart file for CHEAPAML pkg
 #endif /* ALLOW_MYPACKAGE */
 
 C--   Every one else must wait until writing is done.
-      _BARRIER
+C     this is done within IO routines => no longer needed
+c     _BARRIER
 
       RETURN
       END

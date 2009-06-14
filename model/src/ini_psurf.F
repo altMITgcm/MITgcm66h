@@ -59,7 +59,6 @@ C--   Initialise surface position anomaly to zero
       ENDDO
 C     Read an initial state
       IF (pSurfInitFile .NE. ' ') THEN
-       _BARRIER
        CALL READ_FLD_XY_RL( pSurfInitFile, ' ', etaN, 0, myThid )
 C      fill the overlap (+ BARRIER)
        _EXCH_XY_RL(etaN, myThid)

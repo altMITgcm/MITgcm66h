@@ -91,7 +91,8 @@ C     Suffix for pickup files
       WRITE(fn,'(A,A10)') 'pickup.',suff
 
 C     Going to really do some IO. Make everyone except master thread wait.
-      _BARRIER
+C     this is done within IO routines => no longer needed
+c     _BARRIER
 
       IF (pickup_read_mdsio) THEN
 
@@ -440,8 +441,6 @@ c         CALL MNC_CW_RL_R('D',fn,0,0,'gW', gW, myThid)
         ENDIF
       ENDIF
 #endif /*  ALLOW_MNC  */
-
-      _BARRIER
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
