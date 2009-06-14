@@ -51,8 +51,6 @@ C     msgBuf      :: Informational/error message buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 CEOP
 
-      _BARRIER
-
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
        IF ( pickupSuff.EQ.' ' ) THEN
@@ -189,7 +187,7 @@ C-      Assume Agrid position:
 #endif /* MYPACKAGE_2D_STATE */
 
 #endif /* MYPACKAGE_3D_STATE or MYPACKAGE_3D_STATE */
-#endif /* ALLOW_ALLOW_MYPACKAGE */
+#endif /* ALLOW_MYPACKAGE */
 
       RETURN
       END
