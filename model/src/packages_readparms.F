@@ -124,7 +124,6 @@ C     Read run-time flags and initialize look-up tables for MNC
       IF (useMNC) THEN
         CALL MNC_READPARMS( myThid )
       ENDIF
-      _BARRIER
       IF (useMNC) THEN
         CALL MNC_INIT(myThid)
         CALL MNC_CW_INIT(sNx,sNy,OLx,OLy,nSx,nSy,nPx,nPy,
