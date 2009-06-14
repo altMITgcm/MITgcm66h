@@ -54,6 +54,7 @@ C-----
 C     Need some work to make MNC multi-threaded safe.
 C     For now, switch it off (otherwise, it's hanging up somewhere)
       IF ( nThreads.GT.1 ) THEN
+        _BARRIER
         _BEGIN_MASTER( myThid )
         WRITE(msgBuf,'(2A)') '**WARNING** MNC_READPARMS: ',
      &                       'useMNC unsafe with multi-threads'
