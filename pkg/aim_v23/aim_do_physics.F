@@ -67,6 +67,10 @@ C     prcAtm     :: total precip from the atmosphere [kg/m2/s]
       _RL     aim_sWght0, aim_sWght1
       _RL prcAtm(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
+#ifdef ALLOW_AIM_CO2
+      CALL AIM_DO_CO2( myTime, myIter, myThid )
+#endif
+
 C--   Start loops on tile indices
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
@@ -105,10 +109,6 @@ C     includes some parts of S/R FORDATE from F.Molteni SPEDDY code (ver23)
      U                  tYear,
      O                  aim_sWght0, aim_sWght1,
      I                  bi, bj, myTime, myIter, myThid )
-
-#ifdef ALLOW_AIM_CO2
-      CALL AIM_DO_CO2( bi, bj, myTime, myIter, myThid )
-#endif
 
 C--   Set surface geopotential: (g * orographic height)
       DO j=1,sNy
