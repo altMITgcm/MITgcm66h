@@ -26,6 +26,7 @@ CEOP
 #ifdef ALLOW_SALT_PLUME
 
       NAMELIST /SALT_PLUME_PARM01/
+     &     SaltPlumeSouthernOcean,
      &     CriterionType, PlumeMethod, Npower,
      &     SaltPlumeCriterion, SPovershoot
 
@@ -38,6 +39,7 @@ C     iUnit       - Work variable for IO unit number
       _BEGIN_MASTER(myThid)
 
 C--   Default values for SALT_PLUME
+      SaltPlumeSouthernOcean = .TRUE.
       CriterionType       = 1
       PlumeMethod         = 1
       Npower              = 0

@@ -7,6 +7,11 @@ C--   SALT_PLUME parameters
 C     Find surface where the potential density (ref.lev=surface) is
 C     larger than surface density plus SaltPlumeCriterion.
 
+C     SaltPlumeSouthernOcean: TRUE  = apply salt plume globally
+C                             FALSE = apply salt plume in Arctic Ocean only
+      LOGICAL SaltPlumeSouthernOcean
+      COMMON /SALT_PLUME_PARAMS_L/ SaltPlumeSouthernOcean
+
 C     CriterionType: 1=delta_rho, 2=drhodz, default is 1
 C     PlumeMethod: method of distributing salt plume vertically
 C       1=power, 2=exp, 3=overshoot, 5=dump_at_top, 6=reverse of 1

@@ -25,6 +25,7 @@ C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "GRID.h"
 #include "FFIELDS.h"
 #include "DYNVARS.h"
 #include "SALT_PLUME.h"
@@ -54,13 +55,22 @@ C     ks                   :: surface level index
       ENDIF
 
       DO j = jMin, jMax
-         DO i = iMin, iMax
-            surfaceForcingS(i,j,bi,bj) = surfaceForcingS(i,j,bi,bj)
-     &           - saltPlumeFlux(i,j,bi,bj) * mass2rUnit
-         ENDDO
+       DO i = iMin, iMax
+        surfaceForcingS(i,j,bi,bj) = surfaceForcingS(i,j,bi,bj)
+     &       - saltPlumeFlux(i,j,bi,bj) * mass2rUnit
+       ENDDO
       ENDDO
- 
+
+      IF ( .NOT. SaltPlumeSouthernOcean ) THEN
+       DO j = jMin, jMax
+        DO i = iMin, iMax
+         IF ( YC(I,J,bi,bj) .LT. 0.0 _d 0 )
+     &        saltPlumeFlux(i,j,bi,bj) = 0.0 _d 0
+        ENDDO
+       ENDDO
+      ENDIF
+
 #endif /* ALLOW_SALT_PLUME */
-    
+
       RETURN
       END

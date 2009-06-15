@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/salt_plume: add SaltPlumeSouthernOcean to allow disabling
+  of salt_plume package in Southern Ocean 
 o pkg/thsice: 
  - fix hOceMxL in overlap (needed for sea-ice advection); 
    update output of experiment global_ocean.cs32x15.icedyn.
