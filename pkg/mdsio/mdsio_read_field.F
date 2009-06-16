@@ -133,7 +133,7 @@ C Only do I/O if I am the master thread (and mpi process 0 IF useSingleCpuIO):
 
 C Record number must be >= 1
       IF (irecord .LT. 1) THEN
-        WRITE(msgBuf,'(3A,I10))')
+        WRITE(msgBuf,'(3A,I10)')
      &    ' MDS_READ_FIELD: file="', fName(1:IL), '"'
         CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
      &                      SQUEEZE_RIGHT , myThid )
@@ -149,7 +149,7 @@ C Record number must be >= 1
       ENDIF
 C check for valid sub-set of levels:
       IF ( kLo.LT.1 .OR. kHi.GT.kSize ) THEN
-        WRITE(msgBuf,'(3A,I10))')
+        WRITE(msgBuf,'(3A,I10)')
      &    ' MDS_READ_FIELD: file="', fName(1:IL), '"'
         CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
      &                      SQUEEZE_RIGHT , myThid )
@@ -166,7 +166,7 @@ C check for valid sub-set of levels:
       ENDIF
 C check for 3-D Buffer size:
       IF ( .NOT.useSingleCpuIO .AND. nNz.GT.size3dBuf ) THEN
-        WRITE(msgBuf,'(3A,I10))')
+        WRITE(msgBuf,'(3A,I10)')
      &    ' MDS_READ_FIELD: file="', fName(1:IL), '"'
         CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
      &                      SQUEEZE_RIGHT , myThid )
