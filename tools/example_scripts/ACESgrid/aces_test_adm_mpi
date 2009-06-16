@@ -9,16 +9,19 @@
 # $Header$
 # $Name$
 
-umask 0022
-TST_DIR="/home/jmc/test_ACES/gcm_tests"
-HERE='/home/jmc/test_ACES/output'
-#cd $HERE
-
 if test -f /etc/profile.d/modules.sh ; then
     . /etc/profile.d/modules.sh
 fi
 # Note: added "ulimit -s unlimited" in file "~/.bashrc"
-#   to pass big test (the 2 fizhi-cs-* test & adjoint tests) with MPI 
+# to pass big test (the 2 fizhi-cs-* test & adjoint tests) with MPI 
+
+umask 0022
+#- to get case insensitive "ls" (and order of tested experiments)
+export LC_ALL="en_US.UTF-8"
+
+TST_DIR="/home/jmc/test_ACES/gcm_tests"
+HERE='/home/jmc/test_ACES/output'
+#cd $HERE
 
 sfx='adm'
 module add mpich/intel
