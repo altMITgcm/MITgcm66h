@@ -180,8 +180,7 @@ cph)
 
               do j = jmin,jmax
                 do i = imin,imax
-                  if ( _hFacC(i,j,k,bi,bj) .ne. 0. .AND.
-     &                 _hFacC(i,j,13,bi,bj) .ne. 0. ) then
+                  if ( _hFacC(i,j,k,bi,bj) .ne. 0. ) then
                     tmpobs(i,j) = SW_PTMP(rl_35,
      $                   xbtobs(i,j,k,bi,bj),ztop*rc(k),rl_0)
 c--               The array ctdtobs contains CTD temperature.

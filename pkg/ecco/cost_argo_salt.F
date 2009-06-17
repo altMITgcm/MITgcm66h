@@ -163,7 +163,7 @@ cph)
                do i = imin,imax
                 if ( (argosobs(i,j,k,bi,bj) .ge. spval) .and.
      $              (argosobs(i,j,k,bi,bj) .lt. spmax) .and.
-     $              (_hFacC(i,j,13,bi,bj) .ne. 0.) .and.
+cph     $              (_hFacC(i,j,13,bi,bj) .ne. 0.) .and.
      $              (_hFacC(i,j,k,bi,bj) .ne. 0.) ) then
                  fctile_argos = fctile_argos +
      &             wsalt2(i,j,k,bi,bj)*cosphi(i,j,bi,bj)*

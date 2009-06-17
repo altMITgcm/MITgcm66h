@@ -161,16 +161,7 @@ c--           Determine the weights to be used.
                     cmask(i,j) = 0. _d 0
                   endif
 
-cph(
-cph               print *, 'WARNING: SPECIFIC SETUP FOR ECCO'
-cph               below statement could be replaced by following
-cph               to make it independnet of Nr:
-cph
-cph               if ( rC(K) .GT. -1000. ) then
-cph)
-                  if (
-     &             (_hFacC(i,j,13,bi,bj) .ne. 0.).and.
-     &             (_hFacC(i,j,k,bi,bj) .ne. 0.)) then
+                  if ( _hFacC(i,j,k,bi,bj) .ne. 0. ) then
 
                      www(i,j)    = cosphi(i,j,bi,bj)*cmask(i,j)
                      tmpobs(i,j) = ctdsobs(i,j,k,bi,bj)

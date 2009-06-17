@@ -167,7 +167,7 @@ c--           Determine the weights to be used.
                 if( (argotobs(i,j,k,bi,bj) .ne. 0.).and.
      &             (argotobs(i,j,k,bi,bj) .gt. spval).and.
      &             (argotobs(i,j,k,bi,bj) .lt. spmax).and.
-     &             (_hFacC(i,j,13,bi,bj) .ne. 0.).and.
+cph     &             (_hFacC(i,j,13,bi,bj) .ne. 0.).and.
      &             (_hFacC(i,j,k,bi,bj) .ne. 0.) )then
                  tmpobs(i,j) = SW_PTMP(rl_35,
      $             argotobs(i,j,k,bi,bj),ztop*rc(k),rl_0)
