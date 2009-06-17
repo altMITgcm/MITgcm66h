@@ -4,14 +4,14 @@ C $Name$
 #include "CPP_EEOPTIONS.h"
 
 CStartOfInterFace
-      SUBROUTINE CPL_WRITE_DIAGS( myTime, myIter, myThid )
-C     /==========================================================\
-C     | SUBROUTINE CPL_WRITE_DIAGS                               |
-C     | o Calculate CPL diagnostics                              |
-C     | - Atmospheric version -                                  |
-C     |==========================================================|
-C     | Empty S/R for now.                                       |
-C     \==========================================================/
+      SUBROUTINE CPL_OUTPUT( myTime, myIter, myThid )
+C     *==========================================================*
+C     | SUBROUTINE CPL_OUTPUT
+C     | o Write CPL time-average output
+C     | - Atmospheric version -
+C     *==========================================================*
+C     | Empty S/R for now.
+C     *==========================================================*
       IMPLICIT NONE
 
 C     === Global variables ===
@@ -36,6 +36,3 @@ C     == Local variables ==
 
       RETURN
       END
-
-
-
