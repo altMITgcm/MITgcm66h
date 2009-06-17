@@ -9,9 +9,9 @@ C     !INTERFACE:
       SUBROUTINE OFFLINE_MODEL_IO( myTime, myIter, myThid )
 C     !DESCRIPTION: \bv
 C     *==========================================================*
-C     | SUBROUTINE OFFLINE_MODEL_IO                                
-C     | o Controlling routine for IO in offline model  time-stepping  
-C     |   loop.                                                   
+C     | SUBROUTINE OFFLINE_MODEL_IO
+C     | o Controlling routine for IO in offline model
+C     |   time-stepping loop.
 C     *==========================================================*
 C     \ev
 
@@ -51,8 +51,7 @@ c#endif
 
 #ifdef ALLOW_GCHEM
 C--   Do gchem diagnostics.
-      IF ( useGCHEM )
-     & CALL GCHEM_DIAGS( myTime, myIter, myThid )
+      IF ( useGCHEM ) CALL GCHEM_OUTPUT( myTime, myIter, myThid )
 #endif
 
 #ifdef ALLOW_PTRACERS
