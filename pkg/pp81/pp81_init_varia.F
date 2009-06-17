@@ -3,13 +3,13 @@ C $Name$
 
 #include "PP81_OPTIONS.h"
 
-      SUBROUTINE PP81_INIT( myThid )
-C     /==========================================================\
-C     | SUBROUTINE PP81_INIT                                     |
-C     | o Routine to initialize PP81 parameters and variables.   |
-C     |==========================================================|
-C     | Initialize PP81 parameters and variables.                |
-C     \==========================================================/
+      SUBROUTINE PP81_INIT_VARIA( myThid )
+C     *==========================================================*
+C     | SUBROUTINE PP81_INIT_VARIA
+C     | o Routine to initialize PP81 parameters and variables.
+C     *==========================================================*
+C     | Initialize PP81 parameters and variables.
+C     *==========================================================*
       IMPLICIT NONE
 
 C     === Global variables ===
