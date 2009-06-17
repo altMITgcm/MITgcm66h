@@ -2,7 +2,7 @@ C $Header$
 C $Name$
 
 C     *==========================================================*
-C     | SHELFICE_DIAGS.h
+C     | SHELFICE_TAVE.h
 C     | o Header for SHELFICE time-average output
 C     *==========================================================*
 
