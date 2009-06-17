@@ -133,29 +133,13 @@ C--
       ENDIF
 #endif
 
-C--   SEAICEadvSnow does not work with LAD = 1
-      IF (SEAICEadvSnow .AND. SEAICEadvSchSnow .EQ. 2
-     &     .AND. LAD .EQ. 1) THEN
+C--   LAD has been retired
+      IF ( LAD .EQ. 1 ) THEN
        WRITE(msgBuf,'(2A)') 'SEAICE_CHECK:',
-     & ' 2nd order snow advection does not work with Leap frog (LAD==1)'
+     & ' 2nd order advection with Leap frog (LAD==1) has been retired'
        CALL PRINT_ERROR( msgBuf, myThid )
-       STOP 'ABNORMAL END: S/R SEAICE_CHECK'
-      ENDIF
-
-C--   SEAICEadvSalt does not work with LAD = 1
-      IF (SEAICEadvSalt .AND. SEAICEadvSchSalt .EQ. 2
-     &     .AND. LAD .EQ. 1) THEN
        WRITE(msgBuf,'(2A)') 'SEAICE_CHECK:',
-     & ' 2nd order salt advection does not work with Leap frog (LAD==1)'
-       CALL PRINT_ERROR( msgBuf, myThid )
-       STOP 'ABNORMAL END: S/R SEAICE_CHECK'
-      ENDIF
-
-C--   SEAICEadvAge does not work with LAD = 1
-      IF (SEAICEadvAge .AND. SEAICEadvSchAge .EQ. 2
-     &     .AND. LAD .EQ. 1) THEN
-       WRITE(msgBuf,'(2A)') 'SEAICE_CHECK:',
-     & ' 2nd order salt advection does not work with Leap frog (LAD==1)'
+     & ' please use the defauld modified Euler step (LAD==2)'
        CALL PRINT_ERROR( msgBuf, myThid )
        STOP 'ABNORMAL END: S/R SEAICE_CHECK'
       ENDIF
