@@ -124,8 +124,6 @@ cnew)
             do i = imin,imax
               if (maskS(i,j,k,bi,bj) .eq. 0.) then
                 scatymask(i,j,bi,bj) = 0. _d 0
-              else if (_hFacC(i,j,13,bi,bj) .eq. 0.) then
-                scatymask(i,j,bi,bj) = 0. _d 0
               else
                 scatymask(i,j,bi,bj) = 1. _d 0
               endif
