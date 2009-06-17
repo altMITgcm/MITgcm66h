@@ -3,10 +3,10 @@ C $Name$
 
 #ifdef ALLOW_KPP
 
-C     /==========================================================\
-C     | KPP_DIAGS.h                                              |
-C     | o Header for KPP diagnostic output                       |
-C     \==========================================================/
+C     *==========================================================*
+C     | KPP_TAVE.h
+C     | o Header for KPP time-average output
+C     *==========================================================*
 
 C----------------------------------------------------------------
 C     kpp_drctrec     - next record to dump for KPP files
@@ -27,7 +27,7 @@ C     kpp_TimeAve - time of temporal integration (s) for each thread
 C----------------------------------------------------------------
 
       _RL kpp_TimeAve(Nr,nSx,nSy)
-      COMMON /KPP_TAVE/ kpp_TimeAve
+      COMMON /KPP_TAVE_COUNT/ kpp_TimeAve
 
 C----------------------------------------------------------------
 C     KPP*tave    - Time-averaging KPP variables
@@ -38,14 +38,13 @@ C----------------------------------------------------------------
       _RL KPPghattave    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL KPPhbltave     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,   nSx,nSy)
       _RL KPPdiffKzStave (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-      COMMON /KPP_TAVE_DIAGS/
-     &        KPPviscAztave, KPPdiffKzTtave, KPPghattave, KPPhbltave
-     &       ,KPPdiffKzStave
+      COMMON /KPP_TAVE_FIELDS/
+     &        KPPviscAztave, KPPdiffKzTtave,
+     &        KPPghattave, KPPhbltave,
+     &        KPPdiffKzStave
 
-#endif
-
-#endif
-
+#endif /* ALLOW_TIMEAVE */
+#endif /* ALLOW_KPP */
 
 CEH3 ;;; Local Variables: ***
 CEH3 ;;; mode:fortran ***
