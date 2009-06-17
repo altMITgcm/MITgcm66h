@@ -84,7 +84,7 @@ c
       write(msgbuf,'(a)') 'ph-cost call cost_sst'
       call print_message( msgbuf, standardmessageunit,
      &     SQUEEZE_RIGHT , mythid)
-      nnzbar = nnztbar
+      nnzbar = 1
       nnzobs = 1
       nrecloc = ndaysrec
       spminloc = -2.
