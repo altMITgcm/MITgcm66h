@@ -187,7 +187,7 @@ c--   Do a global summation.
         call print_message( msgbuf, standardmessageunit,
      &                          SQUEEZE_RIGHT , mythid)
         _END_MASTER( mythid )
-        stop   '  ... stopped in cost_ssh.'
+cph        stop   '  ... stopped in cost_ssh.'
       else
         _BEGIN_MASTER( mythid )
         write(msgbuf,'(a,d22.15)')
