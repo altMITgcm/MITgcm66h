@@ -39,9 +39,7 @@ C     !FUNCTIONS
 
 C     == Local variables ==
 C     msgBuf       :: I/O Buffer
-C     errCount     :: error counter
       CHARACTER*(MAX_LEN_MBUF) msgBuf
-      INTEGER errCount
 #ifdef ALLOW_USE_MPI
 C     mpiRC        :: Error code reporting variable used with MPI.
       INTEGER mpiRC
