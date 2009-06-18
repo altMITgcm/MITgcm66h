@@ -42,7 +42,7 @@ C     msgBuf     :: Informational/error meesage buffer
       INTEGER j, ii, k, tId, tx, ty
       INTEGER divise, nnx(W2_maxNbFacets)
       INTEGER errCnt, tCnt
-      LOGICAL tileIsActive, flag, prtFlag
+      LOGICAL tileIsActive, prtFlag
 CEOP
 
 C     Set-up tiles mapping and IO global mapping

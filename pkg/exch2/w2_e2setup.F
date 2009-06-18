@@ -34,17 +34,12 @@ C               (Note: not relevant since threading has not yet started)
 
 #ifdef ALLOW_EXCH2
 
-C     !FUNCTIONS:
-      INTEGER  ILNBLNK
-      EXTERNAL ILNBLNK
-
 C     !LOCAL VARIABLES:
 C     === Local variables ===
 C     msgBuf     :: Informational/error meesage buffer
 C     stdUnit    :: Standard-Output IO unit number
       CHARACTER*(MAX_LEN_MBUF) msgBuf
-      CHARACTER*(MAX_LEN_FNAM) fName
-      INTEGER stdUnit, iLen
+      INTEGER stdUnit
       INTEGER i, j, k
       LOGICAL addBlank
 CEOP
