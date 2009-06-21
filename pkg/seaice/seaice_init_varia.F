@@ -133,7 +133,6 @@ C--   Initialise all variables in common blocks:
 #endif
           saltWtrIce(i,j,bi,bj) = 0. _d 0
           frWtrIce(i,j,bi,bj)   = 0. _d 0
-          frWtrAtm(i,j,bi,bj)   = 0. _d 0
          ENDDO
         ENDDO
        ENDDO
