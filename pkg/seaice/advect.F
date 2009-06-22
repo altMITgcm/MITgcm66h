@@ -140,9 +140,7 @@ C--   Use flux form for MITgcm compliance, unfortunately changes results
         ENDDO
        ENDIF
 
-       _BARRIER
-       _EXCH_XY_RL( fld, myThid )
-       _BARRIER
+       CALL EXCH_XY_RL( fld, myThid )
 
       ENDDO
 
