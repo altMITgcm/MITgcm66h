@@ -14,13 +14,13 @@ LD=pathf90
 DEFINES='-DWORDLENGTH=4 -DUSE_OMP_THREADING'
 CPP='cpp -traditional -P'
 MAKEDEPEND=/usr/X11R6/bin/makedepend
-NOOPTFLAGS='-O0 -m64 -g -fPIC -openmp'
+NOOPTFLAGS='-O0 -m32 -g -openmp'
 NOOPTFILES=''
 
 if test "x$DEVEL" != x ; then
-    FFLAGS='-m64 -convert big_endian -fPIC -openmp -ffortran-bounds-check -trapuv -g'
+    FFLAGS='-m32 -convert big_endian -openmp -ffortran-bounds-check -trapuv -g'
 else
-    FFLAGS='-m64 -convert big_endian -fPIC -openmp'
+    FFLAGS='-m32 -convert big_endian -openmp'
 fi
 
 if test "x$IEEE" = x ; then
@@ -33,7 +33,7 @@ fi
 
 F90FLAGS=$FFLAGS
 F90OPTIM=$FOPTIM
-CFLAGS='-O3 -m64 -fPIC -openmp'
+CFLAGS='-O3 -m32 -openmp'
 
 if [ "x$NETCDF_ROOT" != x ] ; then
     INCLUDEDIR="${NETCDF_ROOT}/include"
