@@ -160,7 +160,7 @@ C     is EmPmR before impact of ice.
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
       diagName  = 'SIatmFW '
-      diagTitle = 'Net freshwater flux from the atmosphere (+=down)'
+      diagTitle = 'Net freshwater flux from atmosphere & land (+=down)'
       diagUnits = 'kg/m^2/s        '
       diagCode  = 'SM      U1      '
       CALL DIAGNOSTICS_ADD2LIST( diagNum,
