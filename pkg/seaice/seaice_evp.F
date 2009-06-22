@@ -110,10 +110,6 @@ C     inverse relaxation/damping time scale
        DO bi=myBxLo(myThid),myBxHi(myThid)
         DO j=1-Oly,sNy+Oly
          DO i=1-Olx,sNx+Olx
-C     save last external time step (useless, but consistent with
-C     VP-solver)
-          uIce (I,J,2,bi,bj) = uIce(I,J,1,bi,bj)
-          vIce (I,J,2,bi,bj) = vIce(I,J,1,bi,bj)
 C     use u/vIceC as work arrays: copy previous time step to u/vIceC
           uIceC(I,J,bi,bj)   = uIce(I,J,1,bi,bj)
           vIceC(I,J,bi,bj)   = vIce(I,J,1,bi,bj)

@@ -66,6 +66,14 @@ C--   Initialise all variables in common blocks:
           ENDDO
          ENDDO
         ENDDO
+        DO j=1-OLy,sNy+OLy
+         DO i=1-OLx,sNx+OLx
+          uIceNm1(i,j,bi,bj)=0. _d 0
+          vIceNm1(i,j,bi,bj)=0. _d 0
+          areaNm1(i,j,bi,bj)=0. _d 0
+          hEffNm1(i,j,bi,bj)=0. _d 0
+         ENDDO
+        ENDDO
 #ifdef SEAICE_MULTICATEGORY
         DO k=1,MULTDIM
          DO j=1-OLy,sNy+OLy

@@ -244,8 +244,8 @@ C NOW DO PREDICTOR TIME STEP
        DO bi=myBxLo(myThid),myBxHi(myThid)
         DO j=1-OLy,sNy+OLy
          DO i=1-OLx,sNx+OLx
-          UICE(I,J,2,bi,bj)=UICE(I,J,1,bi,bj)
-          VICE(I,J,2,bi,bj)=VICE(I,J,1,bi,bj)
+          UICENM1(I,J,bi,bj)=UICE(I,J,1,bi,bj)
+          VICENM1(I,J,bi,bj)=VICE(I,J,1,bi,bj)
           UICEC(I,J,bi,bj)=UICE(I,J,1,bi,bj)
           VICEC(I,J,bi,bj)=VICE(I,J,1,bi,bj)
          ENDDO
@@ -363,8 +363,8 @@ C NOW DO MODIFIED EULER STEP
        DO bi=myBxLo(myThid),myBxHi(myThid)
         DO j=1-OLy,sNy+OLy
          DO i=1-OLx,sNx+OLx
-          UICE(I,J,1,bi,bj)=HALF*(UICE(I,J,1,bi,bj)+UICE(I,J,2,bi,bj))
-          VICE(I,J,1,bi,bj)=HALF*(VICE(I,J,1,bi,bj)+VICE(I,J,2,bi,bj))
+          UICE(I,J,1,bi,bj)=HALF*(UICE(I,J,1,bi,bj)+UICENM1(I,J,bi,bj))
+          VICE(I,J,1,bi,bj)=HALF*(VICE(I,J,1,bi,bj)+VICENM1(I,J,bi,bj))
           UICEC(I,J,bi,bj)=UICE(I,J,1,bi,bj)
           VICEC(I,J,bi,bj)=VICE(I,J,1,bi,bj)
          ENDDO
