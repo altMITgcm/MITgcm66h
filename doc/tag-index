@@ -4,6 +4,12 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint61q
+o pkg/seaice: fix bug in free slip boundary conditons for LSOR solver
+ - the boundary conditions along open boundaries are unclear, because the
+   associated masks are set to zero and are thus treated as closed when
+   applying the slip-boundary conditions.
+ - move initialisation of grid variables from seaice_init_varia to _fixed
 o adding doc/diags_changes.txt
 o model/src: 
   do_the_model_io: rename few pkg S/R which are called from do_the_model_io, 
