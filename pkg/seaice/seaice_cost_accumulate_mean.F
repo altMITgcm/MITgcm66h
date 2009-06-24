@@ -59,11 +59,11 @@ C--   Calculate cost function on tile of this instance
             do i=1,sNx
                 uHeffExportCell(i,j,bi,bj) = 
      &               uHeffExportCell(i,j,bi,bj)
-     &               + HEFF(i,j,1,bi,bj)*UICE(i,j,1,bi,bj)
+     &               + HEFF(i,j,bi,bj)*UICE(i,j,bi,bj)
      &               *_dyG(i,j,bi,bj)/lastinterval*deltaTClock
                 vHeffExportCell(i,j,bi,bj) = 
      &               vHeffExportCell(i,j,bi,bj)
-     &               + HEFF(i,j,1,bi,bj)*VICE(i,j,1,bi,bj)
+     &               + HEFF(i,j,bi,bj)*VICE(i,j,bi,bj)
      &               *_dxG(i,j,bi,bj)/lastinterval*deltaTClock
             end do
           end do

@@ -147,7 +147,7 @@ c     heat content of top level plus latent heat of sea-ice
      &                 tempVar * rA(i,j,bi,bj) * (
      &                 (THETA(i,j,1,bi,bj) + 1.96 ) *
      &                 drF(1) * 3996 * 1026 -
-     &                 HEFF(i,j,1,bi,bj) * 334000 * 910 )
+     &                 HEFF(i,j,bi,bj) * 334000 * 910 )
                enddo
               enddo
              enddo
@@ -179,9 +179,9 @@ c     heat content of top level plus sea-ice plus latent heat of snow
      &                 (THETA(i,j,1,bi,bj) + 1.96 ) *
      &                 drF(1) * 3996 * 1026 +
      &                 (TICE(i,j,bi,bj) - 273.15 + 1.96 ) *
-     &                 HEFF(I,J,1,bi,bj) * 2090 * 910 -
-     &                 HEFF(i,j,1,bi,bj) * 334000 * 910 -
-     &                 HSNOW(I,J,bi,bj) * 334000 * 330 )
+     &                 HEFF(i,j,bi,bj) * 2090 * 910 -
+     &                 HEFF(i,j,bi,bj) * 334000 * 910 -
+     &                 HSNOW(i,j,bi,bj) * 334000 * 330 )
                enddo
               enddo
              enddo
@@ -197,8 +197,8 @@ c     assumed that measurements are AREA=0.5 at all times everywhere.
                   do j = 1,sny
                      do i =  1,snx
                         objf_ice(bi,bj) = objf_ice(bi,bj) +
-     &                       ( AREA(i,j,1,bi,bj) - 0.5 ) *
-     &                       ( AREA(i,j,1,bi,bj) - 0.5 )
+     &                       ( AREA(i,j,bi,bj) - 0.5 ) *
+     &                       ( AREA(i,j,bi,bj) - 0.5 )
                      enddo
                   enddo
                enddo
