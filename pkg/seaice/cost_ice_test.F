@@ -97,7 +97,7 @@ c     sea-ice volume
                   do j = 1,sny
                      do i =  1,snx
                         objf_ice(bi,bj) = objf_ice(bi,bj) +
-     &                       tempVar * rA(i,j,bi,bj) * HEFF(i,j,1,bi,bj)
+     &                       tempVar * rA(i,j,bi,bj) * HEFF(i,j,bi,bj)
                      enddo
                   enddo
                enddo
@@ -110,7 +110,7 @@ c     sea-ice area
                   do j = 1,sny
                      do i =  1,snx
                         objf_ice(bi,bj) = objf_ice(bi,bj) +
-     &                       tempVar * rA(i,j,bi,bj) * AREA(i,j,1,bi,bj)
+     &                       tempVar * rA(i,j,bi,bj) * AREA(i,j,bi,bj)
                      enddo
                   enddo
                enddo
