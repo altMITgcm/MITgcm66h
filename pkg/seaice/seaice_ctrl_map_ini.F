@@ -98,8 +98,8 @@ c--   siarea.
         do bi = itlo,ithi
             do j = jmin,jmax
               do i = imin,imax
-                area(i,j,1,bi,bj) = area(i,j,1,bi,bj) +
-     &                                tmpfld2d(i,j,bi,bj)
+                area(i,j,bi,bj) = area(i,j,bi,bj) +
+     &                            tmpfld2d(i,j,bi,bj)
               enddo
             enddo
         enddo
@@ -118,8 +118,8 @@ c--   siheff.
         do bi = itlo,ithi
             do j = jmin,jmax
               do i = imin,imax
-                heff(i,j,1,bi,bj) = heff(i,j,1,bi,bj) +
-     &                                tmpfld2d(i,j,bi,bj)
+                heff(i,j,bi,bj) = heff(i,j,bi,bj) +
+     &                            tmpfld2d(i,j,bi,bj)
               enddo
             enddo
         enddo
@@ -138,8 +138,8 @@ c--   sihsnow.
         do bi = itlo,ithi
             do j = jmin,jmax
               do i = imin,imax
-                hsnow(i,j,1,bi,bj) = hsnow(i,j,1,bi,bj) +
-     &                                tmpfld2d(i,j,bi,bj)
+                hsnow(i,j,bi,bj) = hsnow(i,j,bi,bj) +
+     &                             tmpfld2d(i,j,bi,bj)
               enddo
             enddo
         enddo
