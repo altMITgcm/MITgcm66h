@@ -263,20 +263,20 @@ C NOW EVALUATE STRAIN RATES
      &                -UICE(I,  J+1,bi,bj)-UICE(I,  J,bi,bj))
      &                -QUART*
      &                (VICE(I+1,J+1,bi,bj)+VICE(I,  J+1,bi,bj)
-     &                +VICE(I,  J,  1,bi,bj)+VICE(I+1,J, 1,bi,bj))
+     &                +VICE(I,  J, bi,bj)+VICE(I+1,J,bi,bj))
      &                * _tanPhiAtU(I,J,bi,bj)*recip_rSphere
           E22(I,J,bi,bj)=HALF* _recip_dyF(I,J,bi,bj) *
      &                (VICE(I+1,J+1,bi,bj)+VICE(I,J+1,bi,bj)
-     &                -VICE(I+1,J,  1,bi,bj)-VICE(I,J,  1,bi,bj))
+     &                -VICE(I+1,J, bi,bj)-VICE(I,J, bi,bj))
           E12(I,J,bi,bj)=HALF*(HALF * _recip_dyF(I,J,bi,bj) *
      &                (UICE(I+1,J+1,bi,bj)+UICE(I,J+1,bi,bj)
-     &                -UICE(I+1,J,  1,bi,bj)-UICE(I,J,  1,bi,bj))
+     &                -UICE(I+1,J, bi,bj)-UICE(I,J, bi,bj))
      &                +HALF * _recip_dxF(I,J,bi,bj) *
      &                (VICE(I+1,J+1,bi,bj)+VICE(I+1,J,bi,bj)
      &                -VICE(I,  J+1,bi,bj)-VICE(I,  J,bi,bj))
      &                +QUART*
      &                (UICE(I+1,J+1,bi,bj)+UICE(I,  J+1,bi,bj)
-     &                +UICE(I,  J,  1,bi,bj)+UICE(I+1,J,  1,bi,bj))
+     &                +UICE(I,  J, bi,bj)+UICE(I+1,J, bi,bj))
      &                * _tanPhiAtU(I,J,bi,bj)*recip_rSphere)
 C  NOW EVALUATE VISCOSITIES
           DELT1=(E11(I,J,bi,bj)**2+E22(I,J,bi,bj)**2)*(ONE+ECM2)
@@ -382,20 +382,20 @@ C NOW EVALUATE STRAIN RATES
      &                -UICE(I,  J+1,bi,bj)-UICE(I,  J,bi,bj))
      &                -QUART*
      &                (VICE(I+1,J+1,bi,bj)+VICE(I,  J+1,bi,bj)
-     &                +VICE(I,  J,  1,bi,bj)+VICE(I+1,J,  1,bi,bj))
+     &                +VICE(I,  J,  bi,bj)+VICE(I+1,J,  bi,bj))
      &                * _tanPhiAtU(I,J,bi,bj)*recip_rSphere
           E22(I,J,bi,bj)=HALF * _recip_dyF(I,J,bi,bj) *
      &                (VICE(I+1,J+1,bi,bj)+VICE(I,J+1,bi,bj)
-     &                -VICE(I+1,J,  1,bi,bj)-VICE(I,J,  1,bi,bj))
+     &                -VICE(I+1,J,  bi,bj)-VICE(I,J,  bi,bj))
           E12(I,J,bi,bj)=HALF*(HALF * _recip_dyF(I,J,bi,bj) *
      &                (UICE(I+1,J+1,bi,bj)+UICE(I,J+1,bi,bj)
-     &                -UICE(I+1,J,  1,bi,bj)-UICE(I,J,  1,bi,bj))
+     &                -UICE(I+1,J,  bi,bj)-UICE(I,J,  bi,bj))
      &                +HALF * _recip_dxF(I,J,bi,bj) *
      &                (VICE(I+1,J+1,bi,bj)+VICE(I+1,J,bi,bj)
      &                -VICE(I,  J+1,bi,bj)-VICE(I,  J,bi,bj))
      &                +QUART*
      &                (UICE(I+1,J+1,bi,bj)+UICE(I,  J+1,bi,bj)
-     &                +UICE(I,  J,  1,bi,bj)+UICE(I+1,J,  1,bi,bj))
+     &                +UICE(I,  J,  bi,bj)+UICE(I+1,J,  bi,bj))
      &                * _tanPhiAtU(I,J,bi,bj)*recip_rSphere)
 C  NOW EVALUATE VISCOSITIES
           DELT1=(E11(I,J,bi,bj)**2+E22(I,J,bi,bj)**2)*(ONE+ECM2)
