@@ -118,14 +118,14 @@ C     Is this necessary?
         atempLoc (I,J) = MAX(273.16 _d 0+MIN_ATEMP,ATEMP(I,J,bi,bj))
 # endif
 #ifdef SEAICE_CLIM_AIR
-        atempLoc (I,J) = AREA(I,J,1,bi,bj) *
+        atempLoc (I,J) = AREA(I,J,bi,bj) *
      &       ( fac * SEAICE_clim_atemp(count0) + (1-fac) *
      &       SEAICE_clim_atemp(count1) ) +
-     &       (1-AREA(I,J,1,bi,bj)) * atempLoc(I,J)
-        aqhLoc (I,J)   = AREA(I,J,1,bi,bj) *
+     &       (1-AREA(I,J,bi,bj)) * atempLoc(I,J)
+        aqhLoc (I,J)   = AREA(I,J,bi,bj) *
      &       ( fac * SEAICE_clim_aqh(count0) + (1-fac) *
      &       SEAICE_clim_aqh(count1) ) +
-     &       (1-AREA(I,J,1,bi,bj)) * aqh(I,J,bi,bj)
+     &       (1-AREA(I,J,bi,bj)) * aqh(I,J,bi,bj)
 #endif /* SEAICE_CLIM_AIR */
 # ifdef ALLOW_DOWNWARD_RADIATION
         lwdownLoc(I,J) = MAX(MIN_LWDOWN,LWDOWN(I,J,bi,bj))
