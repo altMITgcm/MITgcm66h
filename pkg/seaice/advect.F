@@ -81,8 +81,8 @@ C     Backward Euler correction step
        ENDIF
 
 #ifdef ALLOW_AUTODIFF_TAMC
-CADJ STORE fld    = comlev1, key = ikey_dynamics
-CADJ STORE fldNm1 = comlev1, key = ikey_dynamics
+cphCADJ STORE fld    = comlev1, key = ikey_dynamics
+cphCADJ STORE fldNm1 = comlev1, key = ikey_dynamics
 CADJ STORE tmpFld = comlev1, key = ikey_dynamics
 #endif /* ALLOW_AUTODIFF_TAMC */
 
