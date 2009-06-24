@@ -86,8 +86,10 @@ c
           AREANM1(i,j,bi,bj) = 0. _d 0
           uIceNm1(i,j,bi,bj) = 0. _d 0
           vIceNm1(i,j,bi,bj) = 0. _d 0
+#ifdef SEAICE_CGRID
           seaiceMaskU(I,J,bi,bj) = 0. _d 0
           seaiceMaskV(I,J,bi,bj) = 0. _d 0
+#endif
          ENDDO
         ENDDO
        ENDDO
