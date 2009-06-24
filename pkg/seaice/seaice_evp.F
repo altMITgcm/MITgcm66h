@@ -160,7 +160,7 @@ C
         CALL SEAICE_CALC_STRAINRATES(
      I       uIceC, vIceC,
      O       e11, e22, e12,
-     I       1, iEVPstep, myTime, myIter, myThid )
+     I       iEVPstep, myTime, myIter, myThid )
 
         DO bj=myByLo(myThid),myByHi(myThid)
          DO bi=myBxLo(myThid),myBxHi(myThid)
