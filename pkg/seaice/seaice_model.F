@@ -183,14 +183,14 @@ C--   Apply ice tracer open boundary conditions
 
 C--   Update overlap regions for a bunch of stuff
        _BARRIER
-       CALL EXCH_3D_RL( HEFF, 3, myThid )
-       CALL EXCH_3D_RL( AREA, 3, myThid )
-       _EXCH_XY_RL( HSNOW,  myThid )
+       _EXCH_XY_RL( HEFF,  myThid )
+       _EXCH_XY_RL( AREA,  myThid )
+       _EXCH_XY_RL( HSNOW, myThid )
 #ifdef SEAICE_SALINITY
-       _EXCH_XY_RL( HSALT,  myThid )
+       _EXCH_XY_RL( HSALT, myThid )
 #endif
 #ifdef SEAICE_AGE
-       _EXCH_XY_RL( IceAge,  myThid )
+       _EXCH_XY_RL( IceAge,myThid )
 #endif
        _EXCH_XY_RS(EmPmR, myThid )
        _EXCH_XY_RS(saltFlux, myThid )

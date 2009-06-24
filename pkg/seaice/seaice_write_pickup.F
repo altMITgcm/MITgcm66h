@@ -89,12 +89,12 @@ C-    switch to 2-D fields:
 C---  continue to write 2-D fields:
         j = j + 1
         nj = nj-1
-        CALL WRITE_REC_LEV_RL(fn, fp, 3,1,1,AREA, nj, myIter, myThid )
+        CALL WRITE_REC_3D_RL( fn, fp,  1, AREA , nj, myIter, myThid )
         IF (j.LE.listDim) wrFldList(j) = 'siAREA  '
 
         j = j + 1
         nj = nj-1
-        CALL WRITE_REC_LEV_RL(fn, fp, 3,1,1,HEFF, nj, myIter, myThid )
+        CALL WRITE_REC_3D_RL( fn, fp,  1, HEFF , nj, myIter, myThid )
         IF (j.LE.listDim) wrFldList(j) = 'siHEFF  '
 
         j = j + 1
@@ -118,12 +118,12 @@ C---  continue to write 2-D fields:
 C--    write Sea-Ice Dynamics variables (all 2-D fields):
        j = j + 1
        nj = nj-1
-       CALL WRITE_REC_LEV_RL( fn, fp, 3,1,1,UICE, nj, myIter, myThid )
+       CALL WRITE_REC_3D_RL( fn, fp,  1, UICE , nj, myIter, myThid )
        IF (j.LE.listDim)  wrFldList(j) = 'siUICE  '
 
        j = j + 1
        nj = nj-1
-       CALL WRITE_REC_LEV_RL( fn, fp, 3,1,1,VICE, nj, myIter, myThid )
+       CALL WRITE_REC_3D_RL( fn, fp,  1, VICE , nj, myIter, myThid )
        IF (j.LE.listDim)  wrFldList(j) = 'siVICE  '
 
 #if (defined(SEAICE_CGRID) && defined(SEAICE_ALLOW_EVP))
