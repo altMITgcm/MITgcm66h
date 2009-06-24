@@ -37,8 +37,7 @@ if test $checkOut = '0' ; then
    cvs -d :pserver:cvsanon@mitgcm.org:/u/gcmpack update -P -d
   fi
   echo "  done"
-  cd $tdir
- else 
+ else
   echo -n $tdir/MITgcm 'missing ; '
   checkOut=1
  fi
@@ -58,6 +57,8 @@ if test $checkOut = '1' ; then
  #cvs co -P MITgcm > /dev/null
   cvs -d :pserver:cvsanon@mitgcm.org:/u/gcmpack co -P MITgcm > /dev/null
   echo "  done"
+else
+  cd $tdir
 fi
 
 #------------------------------------------------------------------------
