@@ -79,12 +79,12 @@ C     Do not restore under sea-ice
          DO i = iMin, iMax
 C     Heat Flux (restoring term) :
           surfaceForcingT(i,j,bi,bj) =
-     &      -lambdaThetaClimRelax(i,j,bi,bj)*(1.-AREA(i,j,1,bi,bj))
+     &      -lambdaThetaClimRelax(i,j,bi,bj)*(1.-AREA(i,j,bi,bj))
      &         *(theta(i,j,ks,bi,bj)-SST(i,j,bi,bj))
      &         *drF(ks)*_hFacC(i,j,ks,bi,bj)
 C     Salt Flux (restoring term) :
           surfaceForcingS(i,j,bi,bj) =
-     &      -lambdaSaltClimRelax(i,j,bi,bj) *(1.-AREA(i,j,1,bi,bj))
+     &      -lambdaSaltClimRelax(i,j,bi,bj) *(1.-AREA(i,j,bi,bj))
      &         *(salt(i,j,ks,bi,bj)-SSS(i,j,bi,bj))
      &         *drF(ks)*_hFacC(i,j,ks,bi,bj)
          ENDDO
