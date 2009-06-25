@@ -58,7 +58,6 @@ C !LOCAL VARIABLES: ====================================================
 C     i,j,bi,bj :: Loop counters
 C     iceFld    :: Copy of seaice field
       INTEGER i, j, bi, bj
-      _RS  mask_uice
 c     _RL iceFld (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 CEOP
 
