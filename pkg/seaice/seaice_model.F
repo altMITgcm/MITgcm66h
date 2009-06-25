@@ -58,6 +58,7 @@ C !LOCAL VARIABLES: ====================================================
 C     i,j,bi,bj :: Loop counters
 C     iceFld    :: Copy of seaice field
       INTEGER i, j, bi, bj
+      _RS  mask_uice
 c     _RL iceFld (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 CEOP
 
@@ -86,10 +87,6 @@ c
           AREANM1(i,j,bi,bj) = 0. _d 0
           uIceNm1(i,j,bi,bj) = 0. _d 0
           vIceNm1(i,j,bi,bj) = 0. _d 0
-#ifdef SEAICE_CGRID
-          seaiceMaskU(I,J,bi,bj) = 0. _d 0
-          seaiceMaskV(I,J,bi,bj) = 0. _d 0
-#endif
          ENDDO
         ENDDO
        ENDDO
