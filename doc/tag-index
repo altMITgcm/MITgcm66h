@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint61r
 o pkg/seaice: 
  - clean up the 3-time levels of UICE,VICE,HEFF,AREA in three steps:
   1. introduce fields for time step (N-1)
