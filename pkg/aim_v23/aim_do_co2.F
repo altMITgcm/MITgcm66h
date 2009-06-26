@@ -155,7 +155,7 @@ C- Write out if time for a new pickup
 C- write values to new pickup
           CALL MDSFINDUNIT( iUnit, myThid )
           length_of_rec = MDS_RECLEN( precFloat64, 2, myThid )
-          OPEN(UNIT=iUnit,FILE=fn,STATUS='new',
+          OPEN(UNIT=iUnit,FILE=fn,STATUS='unknown',
      &      FORM='UNFORMATTED',ACCESS='DIRECT',RECL=length_of_rec)
           tmpco2(1)= Atm_CO2_Moles
           tmpco2(2)= atm_pCO2
