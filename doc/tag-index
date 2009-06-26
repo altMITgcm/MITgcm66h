@@ -4,6 +4,12 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o build_options: ifort+mpi_aces optfile (following Constantinos advise):
+  allow different versions of ifort (8 or 9) and different versions
+   of mpi (mpich or mpich2) to be used with the same optfile.
+  requires to load a netcdf module and set MPI_INC_DIR (see comments inside
+   optfile). Change testing scripts (example_scripts/ACESgrid) accordingly.
+
 checkpoint61r
 o pkg/seaice: 
  - clean up the 3-time levels of UICE,VICE,HEFF,AREA in three steps:
