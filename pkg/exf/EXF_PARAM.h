@@ -454,6 +454,7 @@ C     noNegativeEvap     :: prevent negative evaporation (= sea-surface condensa
      &                     swdown_exfremo_intercept,
      &                     lwdown_exfremo_intercept,
      &                     apressure_exfremo_intercept,
+     &                     areamask_exfremo_intercept,
      &                     hflux_exfremo_slope,
      &                     atemp_exfremo_slope,
      &                     aqh_exfremo_slope,
@@ -471,7 +472,8 @@ C     noNegativeEvap     :: prevent negative evaporation (= sea-surface condensa
      &                     lwflux_exfremo_slope,
      &                     swdown_exfremo_slope,
      &                     lwdown_exfremo_slope,
-     &                     apressure_exfremo_slope
+     &                     apressure_exfremo_slope,
+     &                     areamask_exfremo_slope
 
       common /exf_param_c/
      &                     hfluxfile,
