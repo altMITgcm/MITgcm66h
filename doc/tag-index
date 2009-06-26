@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o add pkg/longstep for ptracer timestep a multiple of U/V/T/S timestep
+  - adds deltaT argument to the subroutines TIMESTEP_TRACER DWNSLP_APPLY
+    GAD_ADVECTION GAD_CALC_RHS GAD_IMPLICIT_R GAD_SOM_ADVECT
+  - verification experiment natl_box.longstep
 o build_options: ifort+mpi_aces optfile (following Constantinos advise):
   allow different versions of ifort (8 or 9) and different versions
    of mpi (mpich or mpich2) to be used with the same optfile.
