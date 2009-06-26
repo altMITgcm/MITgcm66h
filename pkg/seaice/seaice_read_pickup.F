@@ -140,13 +140,13 @@ c       CALL READ_REC_3D_RL( fn, fp, 1, YNEG     , nj, nIter0, myThid )
         CALL READ_REC_3D_RL( fn, fp, 1, HSNOW    , nj, nIter0, myThid )
         nj = nj + 1
         CALL READ_REC_3D_RL( fn, fp, 1, UICE    , nj, nIter0, myThid )
-        nj = nj + 1
+        nj = nj + 3
         CALL READ_REC_3D_RL( fn, fp, 1, VICE    , nj, nIter0, myThid )
-        nj = nj + 1
+        nj = nj + 3
         CALL READ_REC_3D_RL( fn, fp, 1, HEFF    , nj, nIter0, myThid )
-        nj = nj + 1
+        nj = nj + 3
         CALL READ_REC_3D_RL( fn, fp, 1, AREA    , nj, nIter0, myThid )
-        nj = nj + 1
+        nj = nj + 3
 #if (defined(SEAICE_CGRID) && defined(SEAICE_ALLOW_EVP))
         IF ( SEAICEuseEVP .AND. SEAICEuseEVPpickup ) THEN
          CALL READ_REC_3D_RL(fn,fp,1,seaice_sigma1,nj, nIter0, myThid )
