@@ -594,7 +594,7 @@ C--   Runoff.
      &                    SQUEEZE_RIGHT , mythid)
 #endif /* ALLOW_RUNOFF */
 
-#ifdef DOWNWARD_RADIATION
+#ifdef ALLOW_DOWNWARD_RADIATION
 C--   Downward shortwave.
       il = ilnblnk(swdownfile)
       write(msgbuf,'(a)') ' '
