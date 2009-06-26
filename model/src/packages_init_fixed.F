@@ -70,6 +70,8 @@ C       |-- CTRL_INIT
 C       |
 C       |-- FLT_INIT_FIXED
 C       |
+C       |-- LONGSTEP_INIT_FIXED
+C       |
 C       |-- PTRACERS_INIT_FIXED
 C       |
 C       |-- GCHEM_INIT_FIXED
@@ -267,6 +269,10 @@ C--   Initialise ADMTLM
 #ifdef ALLOW_FLT
 C--   Initialise fixed array for Float pkg
       IF ( useFLT ) CALL FLT_INIT_FIXED( myThid )
+#endif
+
+#ifdef ALLOW_LONGSTEP
+      IF (usePTRACERS) CALL LONGSTEP_INIT_FIXED(myThid)
 #endif
 
 #ifdef ALLOW_PTRACERS

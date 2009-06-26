@@ -44,6 +44,9 @@ c#include "PTRACERS_PARAMS.h"
 #ifdef ALLOW_GMREDI
 #include "GMREDI.h"
 #endif
+#ifdef ALLOW_LONGSTEP
+#include "LONGSTEP.h"
+#endif
 
 
 C     == Routine arguments ==
@@ -77,8 +80,13 @@ C     I, J - Loop counters
       DO j=jMin,jMax
        DO i=iMin,iMax
         df(i,j) = - _rA(i,j,bi,bj)
+#ifdef ALLOW_LONGSTEP
+     &        *(LS_KPPdiffKzS(i,j,k,bi,bj) + tmpFac*LS_Kwz(i,j,k,bi,bj))
+     &        *LS_KPPghat(i,j,km1,bi,bj)
+#else
      &        *( KPPdiffKzS(i,j,k,bi,bj) + tmpFac*Kwz(i,j,k,bi,bj) )
      &        *KPPghat(i,j,km1,bi,bj)
+#endif
      &        *surfaceForcingPTr(i,j,bi,bj,tracerIdentity)
        ENDDO
       ENDDO

@@ -21,6 +21,10 @@ C !USES: ===============================================================
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "DYNVARS.h"
+#ifdef ALLOW_LONGSTEP
+#include "LONGSTEP_PARAMS.h"
+#include "LONGSTEP.h"
+#endif
 #include "PTRACERS_SIZE.h"
 #include "PTRACERS_PARAMS.h"
 #include "PTRACERS_FIELDS.h"
@@ -90,7 +94,12 @@ CADJ &      = comlev1_bibj_ptracers, key=iptrkey, byte=isbyte
      I                       PTRACERS_advScheme(iTracer),
      I                       PTRACERS_advScheme(iTracer),
      I                       GAD_TR1+iTracer-1,
+     I                       PTRACERS_dTLev,
+#ifdef ALLOW_LONGSTEP
+     I                       LS_uVel, LS_vVel, LS_wVel,
+#else
      I                       uVel, vVel, wVel,
+#endif
      I                       pTracer(1-Olx,1-Oly,1,1,1,iTracer),
      U                       _Ptracers_som(1-Olx,1-Oly,1,1,1,1,iTracer),
      O                       gPtr(1-Olx,1-Oly,1,1,1,iTracer),
@@ -104,7 +113,12 @@ CADJ &      = comlev1_bibj_ptracers, key=iptrkey, byte=isbyte
      I                        PTRACERS_advScheme(iTracer),
      I                        PTRACERS_advScheme(iTracer),
      I                        GAD_TR1+iTracer-1,
+     I                        PTRACERS_dTLev,
+#ifdef ALLOW_LONGSTEP
+     I                        LS_uVel, LS_vVel, LS_wVel,
+#else
      I                        uVel, vVel, wVel,
+#endif
      I                        pTracer(1-Olx,1-Oly,1,1,1,iTracer),
      O                        gPtr(1-Olx,1-Oly,1,1,1,iTracer),
      I                        bi,bj,myTime,myIter,myThid)

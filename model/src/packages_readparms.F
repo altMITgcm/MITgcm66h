@@ -210,6 +210,10 @@ C--   Initialize SHELFICE parameters
       CALL OFFLINE_READPARMS( myThid )
 #endif
 
+#ifdef ALLOW_LONGSTEP
+      IF (usePTRACERS) call LONGSTEP_READPARMS( myThid )
+#endif
+
 #ifdef ALLOW_BULK_FORCE
 C -- initialize Bulkf parameters
       IF (useBulkForce) CALL BULKF_READPARMS( myThid )

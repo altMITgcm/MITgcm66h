@@ -19,6 +19,10 @@ C !USES: ===============================================================
       IMPLICIT NONE
 #include "SIZE.h"
 #include "EEPARAMS.h"
+#ifdef ALLOW_LONGSTEP
+#include "LONGSTEP_PARAMS.h"
+#include "LONGSTEP.h"
+#endif
 #include "PTRACERS_SIZE.h"
 #include "PTRACERS_PARAMS.h"
 #include "PTRACERS_FIELDS.h"
@@ -103,7 +107,13 @@ CADJ &     key=iptrkey, byte=isbyte
           CALL GAD_IMPLICIT_R(
      I         PTRACERS_ImplVertAdv(iTracer),
      I         PTRACERS_advScheme(iTracer), GAD_TR,
-     I         kappaRk, wVel, pTracer(1-Olx,1-Oly,1,1,1,iTracer),
+     I         PTRACERS_dTLev, kappaRk,
+#ifdef ALLOW_LONGSTEP
+     I         LS_wVel,
+#else
+     I         wVel,
+#endif
+     I         pTracer(1-Olx,1-Oly,1,1,1,iTracer),
      U         gPtr(1-Olx,1-Oly,1,1,1,iTracer),
      I         bi, bj, myTime, myIter, myThid )
 

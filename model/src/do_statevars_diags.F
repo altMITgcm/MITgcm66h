@@ -82,7 +82,7 @@ C                    and stagger/synchronous TimeStep
 #ifdef ALLOW_PTRACERS
         IF ( (selectVars.EQ.1 .OR. selectVars.EQ.3)
      &      .AND. usePTRACERS ) THEN
-          CALL PTRACERS_DIAGNOSTICS_STATE( myThid )
+          CALL PTRACERS_DIAGNOSTICS_STATE( myTime, myIter, myThid )
         ENDIF
 #endif
 

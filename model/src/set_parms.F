@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-c #include "PACKAGES_CONFIG.h"
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
@@ -136,6 +136,12 @@ c     useDynP_inEos_Zc = .FALSE.
      &              .AND. ( eosType .EQ. 'JMD95P' .OR.
      &                      eosType .EQ. 'UNESCO' .OR.
      &                      eosType .EQ. 'MDJWF'       )  )
+
+#ifdef ALLOW_LONGSTEP
+      IF ( usePTRACERS ) THEN
+        CALL LONGSTEP_CHECK_ITERS(myThid)
+      ENDIF
+#endif /* ALLOW_LONGSTEP */
 
 C--  After this point, main model parameters are not supposed to be modified.
        WRITE(msgBuf,'(A,A)') 'SET_PARMS: done'

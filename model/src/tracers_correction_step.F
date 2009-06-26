@@ -70,9 +70,11 @@ C-      Update tracer fields:  T(n) = T**
      U           salt,gS,
      I           myTime,myIter,myThid )
 #ifdef ALLOW_PTRACERS
+#ifndef ALLOW_LONGSTEP
 C-      Update passive tracer fields:  T(n) = T**
         IF (usePTRACERS)
      &      CALL PTRACERS_CYCLE(bi,bj,myTime,myIter,myThid)
+#endif /* ! ALLOW_LONGSTEP */
 #endif /* ALLOW_PTRACERS */
 
 #ifdef ALLOW_NONHYDROSTATIC

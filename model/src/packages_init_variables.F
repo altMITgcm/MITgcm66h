@@ -228,6 +228,12 @@ cph#endif
         IF (debugMode) CALL DEBUG_CALL('PTRACERS_INIT_VARIA',myThid)
 # endif
         CALL PTRACERS_INIT_VARIA( myThid )
+# ifdef ALLOW_LONGSTEP
+#  ifdef ALLOW_DEBUG
+        IF (debugMode) CALL DEBUG_CALL('LONGSTEP_INIT_VARIA',myThid)
+#  endif
+        CALL LONGSTEP_INIT_VARIA( myThid )
+# endif /* ALLOW_LONGSTEP */
 # ifndef ALLOW_AUTODIFF_TAMC
       ENDIF
 # endif

@@ -30,6 +30,9 @@ C     == GLobal variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 #include "DYNVARS.h"
+#ifdef ALLOW_LONGSTEP
+#include "LONGSTEP.h"
+#endif
 #include "PTRACERS_SIZE.h"
 #include "PTRACERS_PARAMS.h"
 c #include "PTRACERS_FIELDS.h"
@@ -75,7 +78,11 @@ C Loop over tracers
         DO j = 1-Oly, sNy+Oly
          DO i = 1-Olx, sNx+Olx
           KappaRtr(i,j,iTr) =
+#ifdef ALLOW_LONGSTEP
+     &         LS_IVDConvCount(i,j,k,bi,bj)*ivdc_kappa
+#else
      &         IVDConvCount(i,j,k,bi,bj)*ivdc_kappa
+#endif
 #if (defined ALLOW_3D_DIFFKR || \
      (defined (ALLOW_AUTODIFF_TAMC) && defined (ALLOW_DIFFKR_CONTROL)))
      &       + diffKr(i,j,k,bi,bj)
@@ -93,7 +100,7 @@ C Loop over tracers
 #ifdef ALLOW_KPP
         IF ( PTRACERS_useKPP(iTr) ) THEN
 C--   Set vertical diffusivity contribution from KPP
-         CALL KPP_CALC_DIFF_S(
+         CALL KPP_CALC_DIFF_PTR(
      I        bi,bj,iMin+1,iMax,jMin+1,jMax,k,1,
      O        KappaRtr(1-Olx,1-Oly,iTr),
      I        myThid)
