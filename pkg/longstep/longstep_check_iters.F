@@ -33,8 +33,6 @@ C     msgBuf     :: message buffer
       INTEGER extraIter
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 
-      _BEGIN_MASTER(myThid)
-
       IF (MOD(nIter0, LS_nIter) .NE. 0) THEN
 C       Restarting from a pickup in the middle of a longstep will lead
 C       to invalid vel,... averages, so we abort
@@ -79,12 +77,7 @@ C       log to standard output too
      &'   /* Number of timesteps */')
       ENDIF
 
-      _END_MASTER(myThid)
-C     Everyone else must wait for the parameters to be loaded
-      _BARRIER
-
 #endif /* ALLOW_LONGSTEP */
 
       RETURN
       END
-
