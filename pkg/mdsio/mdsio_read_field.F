@@ -380,7 +380,7 @@ c         IF (fileIsOpen) THEN
            jGjLoc = 1
 #ifdef ALLOW_EXCH2
            IF ( useExch2ioLayOut ) THEN
-             tN = W2_myTileList(bi)
+             tN = W2_myTileList(bi,bj)
 c            tNx = exch2_tNx(tN)
 c            tNy = exch2_tNy(tN)
 c            global_nTx = exch2_global_Nx/tNx

@@ -89,7 +89,7 @@ C     Special stuff for Cubed Sphere
       IF (useCubedSphereExchange) THEN
        AZcorner = 0.75 _d 0
 #ifdef ALLOW_EXCH2
-       myTile = W2_myTileList(bi)
+       myTile = W2_myTileList(bi,bj)
        myFace = exch2_myFace(myTile)
          southWestCorner = exch2_isWedge(myTile).EQ.1
      &               .AND. exch2_isSedge(myTile).EQ.1

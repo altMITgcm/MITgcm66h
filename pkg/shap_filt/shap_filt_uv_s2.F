@@ -28,10 +28,10 @@ C     == Global variables ===
 #include "PARAMS.h"
 #include "GRID.h"
 #include "SHAP_FILT.h"
-#ifdef ALLOW_EXCH2
-#include "W2_EXCH2_SIZE.h"
-#include "W2_EXCH2_TOPOLOGY.h"
-#endif /* ALLOW_EXCH2 */
+c#ifdef ALLOW_EXCH2
+c#include "W2_EXCH2_SIZE.h"
+c#include "W2_EXCH2_TOPOLOGY.h"
+c#endif /* ALLOW_EXCH2 */
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments

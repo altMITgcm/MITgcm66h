@@ -290,7 +290,7 @@ C Loop over tiles
           tBy = myYGlobalLo-1 + (bj-1)*sNy
 #ifdef ALLOW_EXCH2
           IF ( W2_useE2ioLayOut ) THEN
-            tN = W2_myTileList(bi)
+            tN = W2_myTileList(bi,bj)
 c           global_nTx = exch2_global_Nx/sNx
             tBx = exch2_txGlobalo(tN) - 1
             tBy = exch2_tyGlobalo(tN) - 1

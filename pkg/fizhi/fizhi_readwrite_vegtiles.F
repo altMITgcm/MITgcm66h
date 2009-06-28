@@ -4,7 +4,7 @@ C $Name$
 #include "FIZHI_OPTIONS.h"
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 CBOP
-C     !ROUTINE: FIZHI_WRITE_VEGTILES 
+C     !ROUTINE: FIZHI_WRITE_VEGTILES
 C     !INTERFACE:
       SUBROUTINE FIZHI_WRITE_VEGTILES(fn,pickupflg,myTime,myIter,myThid)
 
@@ -66,7 +66,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
         fileprec = 64
         WRITE(bnam,'(a,a)') 'state_vegtiles.', fn(1:ilst)
       endif
-      
+
 #ifdef ALLOW_MNC
       IF (useMNC.AND. pickup_write_mnc) THEN
 
@@ -112,7 +112,7 @@ C       fizhi_earth_coms.h
       DO bi = myBxLo(myThid), myBxHi(myThid)
 
 #ifdef ALLOW_EXCH2
-       tn = W2_myTileList(bi)
+       tn = W2_myTileList(bi,bj)
        iG = tn
        jG = 1
 #else
@@ -367,7 +367,7 @@ C       fizhi_land_coms.h
       DO bi = myBxLo(myThid), myBxHi(myThid)
 
 #ifdef ALLOW_EXCH2
-       tn = W2_myTileList(bi)
+       tn = W2_myTileList(bi,bj)
        iG = tn
        jG = 1
 #else

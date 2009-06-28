@@ -198,7 +198,7 @@ C Western boundary
 C--   Special stuff for cubed sphere: assume grid is rectangular and
 C     set UV mask to zero except for Arctic and Antarctic cube faces.
         IF (useCubedSphereExchange) THEN
-         myTile = W2_myTileList(bi)
+         myTile = W2_myTileList(bi,bj)
          IF ( exch2_myFace(myTile) .EQ. 1 .OR.
      &        exch2_myFace(myTile) .EQ. 2 .OR.
      &        exch2_myFace(myTile) .EQ. 4 .OR.

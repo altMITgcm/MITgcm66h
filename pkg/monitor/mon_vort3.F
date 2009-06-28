@@ -162,7 +162,7 @@ c          AZcorner = 0.75 _d 0
            northEastCorner = .TRUE.
            iG = bi+(myXGlobalLo-1)/sNx
 #ifdef ALLOW_EXCH2
-           myTile = W2_myTileList(bi)
+           myTile = W2_myTileList(bi,bj)
            iG = exch2_myFace(myTile)
            southWestCorner = exch2_isWedge(myTile).EQ.1
      &                 .AND. exch2_isSedge(myTile).EQ.1

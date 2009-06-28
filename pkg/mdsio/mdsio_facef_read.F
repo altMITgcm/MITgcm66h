@@ -68,7 +68,7 @@ C     == Local variables ==
       iLen = ILNBLNK(fName)
 #ifdef ALLOW_EXCH2
 C     Figure out offset of tile within face
-      tN  = W2_myTileList(bi)
+      tN  = W2_myTileList(bi,bj)
       dNx = exch2_mydnx(tN)
       dNy = exch2_mydny(tN)
       tBx = exch2_tbasex(tN)

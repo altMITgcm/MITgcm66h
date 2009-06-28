@@ -167,7 +167,7 @@ C Create meta-file for each tile IF we are tiling
            map2gl(2) = 1
 #ifdef ALLOW_EXCH2
            IF ( W2_useE2ioLayOut ) THEN
-             tN = W2_myTileList(bi)
+             tN = W2_myTileList(bi,bj)
              tBx = exch2_txGlobalo(tN) - 1
              tBy = exch2_tyGlobalo(tN) - 1
              IF (nNx.EQ.0 .AND. nNy.EQ.0) THEN

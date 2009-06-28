@@ -224,7 +224,7 @@ C--   Set tile-specific parameters for horizontal fluxes
        IF ( npass.GT.maxcube ) STOP 'maxcube needs to be = 3'
 #endif
 #ifdef ALLOW_EXCH2
-       myTile = W2_myTileList(bi)
+       myTile = W2_myTileList(bi,bj)
        nCFace = exch2_myFace(myTile)
        N_edge = exch2_isNedge(myTile).EQ.1
        S_edge = exch2_isSedge(myTile).EQ.1
