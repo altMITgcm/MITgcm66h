@@ -72,7 +72,7 @@ C-    Fill E,W & N,S edges with total depth from the interior
          ENDDO
 
 C-    Reset to zero if connected
-         tId = W2_myTileList(bi)
+         tId = W2_myTileList(bi,bj)
          DO n= 1,exch2_nNeighbours(tId)
           DO j=exch2_jLo(n,tId),exch2_jHi(n,tId)
            DO i=exch2_iLo(n,tId),exch2_iHi(n,tId)

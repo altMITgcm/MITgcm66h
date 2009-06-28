@@ -122,7 +122,7 @@ C      this source tile Id "soT"
        sNb = oNb
        DO j=1,sizeBj
         DO i=1,sizeBi
-         IF ( W2_myTileList(i).EQ.soT ) THEN
+         IF ( W2_myTileList(i,j).EQ.soT ) THEN
            sBi = i
            sBj = j
          ENDIF

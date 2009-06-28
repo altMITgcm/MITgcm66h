@@ -149,7 +149,7 @@ C    with 2 polar faces + 4 equatorials:
            iG = bi+(myXGlobalLo-1)/sNx
            myTile = iG
 #ifdef ALLOW_EXCH2
-           myTile = W2_myTileList(bi)
+           myTile = W2_myTileList(bi,bj)
            iG = exch2_myface(myTile)
 #endif
            WRITE(fName,'(2A,I3.3,A)') 'fCoriG','.face',iG,'.bin'

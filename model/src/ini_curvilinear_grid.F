@@ -282,7 +282,7 @@ C--   Only do I/O if I am the master thread
        DO bi = 1,nSx
 #ifdef ALLOW_EXCH2
 C-    Use face number:
-        jG = W2_myTileList(bi)
+        jG = W2_myTileList(bi,bj)
         iG = exch2_myface(jG)
         WRITE(tmpBuf,'(A,I4)') 'tile:',jG
 #else
