@@ -34,7 +34,7 @@ C       myNr :: number of levels to update
 C     myThid :: my Thread Id number
       INTEGER myNr
       _RL lsFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,myNr,nSx,nSy)
-      INTEGER lsCnt
+      INTEGER lsCnt(nSx,nSy)
       INTEGER myThid
 
 #ifdef ALLOW_LONGSTEP
@@ -44,11 +44,10 @@ C     == Local variables ==
       _RL factor
 CEOP
 
-      factor = FLOAT(lsCnt)
-      IF (lsCnt.NE.0) factor = 1. _d 0 / factor
-
       DO bj=myByLo(myThid), myByHi(myThid)
        DO bi=myBxLo(myThid), myBxHi(myThid)
+        factor = FLOAT(lsCnt(bi,bj))
+        IF (lsCnt(bi,bj).NE.0) factor = 1. _d 0 / factor
         DO k = 1,myNr
          DO j = 1-OLy,sNy+OLy
           DO i = 1-OLx,sNx+OLx

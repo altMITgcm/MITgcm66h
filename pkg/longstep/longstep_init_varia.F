@@ -34,6 +34,13 @@ C     !LOCAL VARIABLES:
 C     == Local variables ==
 CEOP
 
+C     Initialise LS_doTimeStep
+      _BARRIER
+      _BEGIN_MASTER(myThid)
+      LS_doTimeStep = .FALSE.
+      _END_MASTER(myThid)
+      _BARRIER
+
 C     initialize longstep averages to zero
 
       CALL LONGSTEP_RESET_3D(LS_uVelCount, LS_uVel, Nr, myThid)
@@ -67,4 +74,3 @@ C     initialize longstep averages to zero
 
       RETURN
       END
-
