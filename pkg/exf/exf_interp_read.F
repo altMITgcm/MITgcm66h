@@ -113,7 +113,7 @@ C--   master thread of process 0, only, opens a global file
         IL  = ILNBLNK( infile )
         INQUIRE( file=infile, exist=exst )
         IF (exst) THEN
-         IF ( debugLevel .GE. debLevA ) THEN
+         IF ( debugLevel .GT. debLevA ) THEN
           WRITE(msgBuf,'(A,A)')
      &         ' EXF_INTERP_READ: opening file: ',infile(1:IL)
           CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
