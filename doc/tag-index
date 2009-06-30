@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint61s
 o pkg/exch2 (exch2_rxN_cube*):
    remove last BARRIER (no need to synchronise after getting data from shared
    buffer (get) as long as any change to buffer (put,recv) is between BARRIER)
