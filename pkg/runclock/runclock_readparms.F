@@ -88,7 +88,7 @@ C--   Close the open data file
      &                    SQUEEZE_RIGHT , 1)
 c     write(0,*) ' RUNCLOCK_READPARMS: no Wall Clock limit set'
       ELSE
-      WRITE(msgBuf,'(A,I)') 
+      WRITE(msgBuf,'(A,I7)') 
      &  ' RUNCLOCK_READPARMS: Wall Clock limit set to ',tSecs
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT , 1)
