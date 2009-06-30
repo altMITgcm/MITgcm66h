@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "GCHEM_OPTIONS.h"
+#ifdef ALLOW_DARWIN
+#include "DARWIN_OPTIONS.h"
+#endif
 
 C !INTERFACE: ==========================================================
       SUBROUTINE GCHEM_INIT_VARI(myThid )
@@ -40,6 +43,15 @@ ccccccccccccccccccccccccccc
       ENDIF
 #endif /* ALLOW_DIC */
 
+#ifdef ALLOW_DARWIN
+      IF ( useDARWIN ) THEN
+         call DARWIN_INIT_VARI(myThid )
+#ifdef ALLOW_CARBON
+         CALL DIC_SURFFORCING_INIT(myThid)
+         CALL DIC_DIAGS_INIT(myThid)
+#endif
+      ENDIF
+#endif
 #endif /* ALLOW_GCHEM */
 
       RETURN

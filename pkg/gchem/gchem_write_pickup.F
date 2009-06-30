@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "GCHEM_OPTIONS.h"
+#ifdef ALLOW_DARWIN
+#include "DARWIN_OPTIONS.h"
+#endif
 
 CBOP
 C !ROUTINE: GCHEM_WRITE_PICKUP
@@ -44,6 +47,17 @@ C     !LOCAL VARIABLES:
      I                         myTime, myIter, myThid )
       ENDIF
 #endif /* ALLOW_DIC */
+
+#ifdef ALLOW_DARWIN
+      IF ( useDARWIN ) THEN
+        CALL DARWIN_WRITE_PICKUP( permPickup, suff,
+     I                            myTime, myIter, myThid )
+#ifdef ALLOW_CARBON
+        CALL DIC_WRITE_PICKUP( permPickup, suff,
+     I                         myTime, myIter, myThid )
+#endif
+      ENDIF
+#endif /* ALLOW_DARWIN */
 
 #endif /* ALLOW_GCHEM */
       RETURN

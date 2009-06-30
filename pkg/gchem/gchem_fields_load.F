@@ -14,6 +14,8 @@ C !DESCRIPTION:
 C  calls routines which read in fields needed for any tracer experiment
 C !USES: ===============================================================
       IMPLICIT NONE
+#include "EEPARAMS.h"
+#include "GCHEM.h"
 
 C !INPUT PARAMETERS: ===================================================
 C  myTime               :: current time
@@ -39,6 +41,13 @@ cccccccccccccccccccccccccc
 #ifdef ALLOW_CFC
        CALL CFC_FIELDS_LOAD(myIter,myTime,myThid)
 #endif
+
+#ifdef ALLOW_DARWIN
+      IF ( useDARWIN ) THEN
+       call DARWIN_FIELDS_LOAD(myIter,myTime,myThid)
+      ENDIF
+#endif
+
 
 #endif /* ALLOW_GCHEM */
 

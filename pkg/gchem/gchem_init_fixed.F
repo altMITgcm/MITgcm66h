@@ -49,6 +49,12 @@ ccccccccccccccccccccccccccc
 #endif /* ALLOW_CFC */
 c         _END_MASTER( mythid )
 
+#ifdef ALLOW_DARWIN
+      IF ( useDARWIN ) THEN
+         call DARWIN_INIT_FIXED(myThid)
+      ENDIF
+#endif
+
 #ifdef ALLOW_DIAGNOSTICS
 C     Define diagnostics Names :
       IF ( useDiagnostics ) THEN

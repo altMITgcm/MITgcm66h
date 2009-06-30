@@ -47,6 +47,27 @@ C     GCHEM cannot (yet!) run cfc and dic together
          STOP 'ABNORMAL END: S/R GCHEM_CHECK'
       ENDIF
 
+C     GCHEM cannot run darwin and dic together
+      IF ( useDARWIN .AND. useDIC ) THEN
+        WRITE(msgBuf,'(A)') 'useDARWIN and useDIC cannot both be .TRUE.'
+        CALL PRINT_ERROR( msgBuf , myThid )
+        STOP 'ABNORMAL END: S/R GCHEM_CHECK'
+      ENDIF
+
+C     GCHEM cannot run darwin and cfc together
+      IF ( useDARWIN .AND. useCFC ) THEN
+        WRITE(msgBuf,'(A)') 'useDARWIN and useCFC cannot both be .TRUE.'
+        CALL PRINT_ERROR( msgBuf , myThid )
+        STOP 'ABNORMAL END: S/R GCHEM_CHECK'
+      ENDIF
+
+#ifdef ALLOW_DARWIN
+C     run checks specific to darwin
+      IF ( useDARWIN ) THEN
+        CALL DARWIN_CHECK( myThid )
+      ENDIF
+#endif
+
       _END_MASTER(myThid)
 
 #endif /* ALLOW_GCHEM */

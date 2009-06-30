@@ -12,8 +12,9 @@ C Contains tracer parameters and input files for chemical tracers.
 C These can be read in from data.gchem
 C
 C--   COMMON /GCHEM_PARM_L/ Logical valued parameters used by GCHEM pkg.
-C     useDIC   :: flag to turn on/off DIC pkg
-C     useCFC   :: flag to turn on/off CFC pkg
+C     useDIC    :: flag to turn on/off DIC pkg
+C     useCFC    :: flag to turn on/off CFC pkg
+C     useDARWIN :: flag to turn on/off darwin pkg
 C
 C--   COMMON /GCHEM_PARAMS/
 C  nsubtime    :: number of chemistry timesteps per deltaTtracer
@@ -28,9 +29,10 @@ CEOP
 
       COMMON /GCHEM_PARM_L/
      &              useDIC,
-     &              useCFC
+     &              useCFC,
+     &              useDARWIN
 
-      LOGICAL useDIC, useCFC
+      LOGICAL useDIC, useCFC, useDARWIN
 
       COMMON /GCHEM_PARAMS/
      &                   Filename1,
