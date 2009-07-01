@@ -976,7 +976,7 @@ C--   State-variables time-averaging
       IF ( .NOT.useOffLine ) THEN
 C--   Check status of solution (statistics, cfl, etc...)
         CALL TIMER_START('MONITOR             [FORWARD_STEP]',myThid)
-        CALL MONITOR( myIter, myTime, myThid )
+        CALL MONITOR( myTime, myIter, myThid )
         CALL TIMER_STOP ('MONITOR             [FORWARD_STEP]',myThid)
       ENDIF
 #endif /* ALLOW_MONITOR */
