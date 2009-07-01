@@ -9,7 +9,7 @@ C     !ROUTINE: MONITOR
 
 C     !INTERFACE:
       SUBROUTINE MONITOR(
-     I                    myIter, myTime, myThid )
+     I                    myTime, myIter, myThid )
 
 C     !DESCRIPTION:
 C     Monitor key dynamical variables: calculate over the full domain
@@ -29,8 +29,8 @@ C     !USES:
 #endif
 
 C     !INPUT PARAMETERS:
-      INTEGER myIter
       _RL myTime
+      INTEGER myIter
       INTEGER myThid
 CEOP
 
