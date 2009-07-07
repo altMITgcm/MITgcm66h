@@ -24,7 +24,8 @@ dir=`pwd`
 # need to be on one computer node, 
 #  and with the correct module loaded (i.e, one of the 3):
 # > module load mpich/gnu
-# > module load mpich/intel
+# > module load mpich/intel netcdf/3.6.1/icc
+#   export MPI_INC_DIR='/usr/local/pkg/mpich/mpich-intel/include/'
 # > module load mpich/pgi
 if test 'dummy'$PBS_NODEFILE = 'dummy'
 then
