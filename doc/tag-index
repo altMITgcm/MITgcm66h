@@ -4,6 +4,12 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/thsice: add code for Near Infra-Red albedo (from Jeff)
+   (turned on with run-time flag: thSIce_calc_albNIR, in data.ice).
+o move (from packages_readparms.F & initialise_fixed.F) to ini_model_io.F
+  MNC & MONITOR initialisation calls; move MNC calls from {pkg}_readparms.F
+  to {pkg}_init_fixed.F for {pkg}= kpp, seaice & shelfice.
+
 checkpoint61s
 o pkg/exch2 (exch2_rxN_cube*):
    remove last BARRIER (no need to synchronise after getting data from shared
