@@ -45,7 +45,7 @@ CEOP
      &     SHELFICElatentHeat, SHELFICEHeatCapacity_Cp,
      &     SHELFICEDragLinear, SHELFICEDragQuadratic,
      &     SHELFICEthetaSurface,
-     &     useISOMIPTD, no_slip_shelfice, 
+     &     useISOMIPTD, no_slip_shelfice,
      &     SHELFICEconserve, SHELFICEboundaryLayer,
      &     SHELFICEwriteState,
      &     SHELFICE_dumpFreq,
@@ -127,14 +127,6 @@ C-    Set Output type flags :
       _END_MASTER(myThid)
 C Everyone else must wait for the parameters to be loaded
       _BARRIER
-
-#ifdef ALLOW_MNC
-C     Initialize MNC variable information for SHELFICE
-      IF ( useMNC .AND. (shelfice_tave_mnc.OR.shelfice_dump_mnc)
-     &    ) THEN
-       CALL SHELFICE_MNC_INIT( myThid )
-      ENDIF
-#endif /* ALLOW_MNC */
 
 #endif /* ALLOW_SHELFICE */
 
