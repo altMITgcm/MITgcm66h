@@ -114,7 +114,7 @@ C-     Compute albedo over sea-ice
      I          iceMask(siLo,sjLo,bi,bj), iceHeight(siLo,sjLo,bi,bj),
      I          snowHeight(siLo,sjLo,bi,bj), Tsrf(siLo,sjLo,bi,bj),
      I          snowAge(siLo,sjLo,bi,bj),
-     O          siceAlb(siLo,sjLo,bi,bj),
+     O          siceAlb(siLo,sjLo,bi,bj), icAlbNIR(siLo,sjLo,bi,bj),
      I          myTime, myIter, myThid )
         DO j=1,sNy
          DO i=1,sNx
