@@ -32,13 +32,19 @@ C     myThid - Number of this instance of INI_PARMS
       INTEGER iUnit
       INTEGER myThid
 
+C     !FUNCTIONS:
+      INTEGER  ILNBLNK
+      EXTERNAL ILNBLNK
+
 C     !LOCAL VARIABLES:
 C     === Local variables ===
 C     msgBuf    - Informational/error meesage buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       CHARACTER*(MAX_LEN_PREC) record
-      INTEGER  ILNBLNK
-      EXTERNAL ILNBLNK
+#if defined (TARGET_BGL) || defined (TARGET_CRAYXT)
+      CHARACTER*(MAX_LEN_FNAM) scratchFile1
+      CHARACTER*(MAX_LEN_FNAM) scratchFile2
+#endif
       INTEGER  errIO,IL
       LOGICAL  exst
 CEOP
@@ -62,8 +68,10 @@ C--   Open the parameter file
       ENDIF
 
 #if defined (TARGET_BGL) || defined (TARGET_CRAYXT)
-      OPEN(UNIT=scrUnit1,FILE='scratch1',STATUS='UNKNOWN')
-      OPEN(UNIT=scrUnit2,FILE='scratch2',STATUS='UNKNOWN')
+      WRITE(scratchFile1,'(A,I4.4)') 'scratch1.', myProcId
+      WRITE(scratchFile2,'(A,I4.4)') 'scratch2.', myProcId
+      OPEN(UNIT=scrUnit1, FILE=scratchFile1, STATUS='UNKNOWN')
+      OPEN(UNIT=scrUnit2, FILE=scratchFile2, STATUS='UNKNOWN')
 #else
       OPEN(UNIT=scrUnit1,STATUS='SCRATCH')
       OPEN(UNIT=scrUnit2,STATUS='SCRATCH')

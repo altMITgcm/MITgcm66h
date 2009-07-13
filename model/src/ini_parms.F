@@ -25,6 +25,12 @@ C     !INPUT/OUTPUT PARAMETERS:
 C     myThid :: Number of this instance of INI_PARMS
       INTEGER myThid
 
+C     !FUNCTIONS:
+      INTEGER  IFNBLNK
+      EXTERNAL IFNBLNK
+      INTEGER  ILNBLNK
+      EXTERNAL ILNBLNK
+
 C     !LOCAL VARIABLES:
 C     dxSpacing, dySpacing :: Default spacing in X and Y.
 C                          :: Units are that of coordinate system
@@ -46,15 +52,15 @@ C     xxxDefault :: Default value for variable xxx
       _RL deltaTtracer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       CHARACTER*(MAX_LEN_PREC) record
+#if defined (TARGET_BGL) || defined (TARGET_CRAYXT)
+      CHARACTER*(MAX_LEN_FNAM) scratchFile1
+      CHARACTER*(MAX_LEN_FNAM) scratchFile2
+#endif
       LOGICAL SadournyCoriolis
       LOGICAL forcing_In_AB
       INTEGER goptCount
       INTEGER K, i, j, IL, iUnit
       INTEGER errIO
-      INTEGER  IFNBLNK
-      EXTERNAL IFNBLNK
-      INTEGER  ILNBLNK
-      EXTERNAL ILNBLNK
 C     Default values for variables which have vertical coordinate system
 C     dependency.
       _RL viscArDefault
@@ -303,8 +309,10 @@ C--   Initialise retired parameters to unlikely value
 
 C--   Open the parameter file
 #if defined (TARGET_BGL) || defined (TARGET_CRAYXT)
-      OPEN(UNIT=scrUnit1,FILE='scratch1',STATUS='UNKNOWN')
-      OPEN(UNIT=scrUnit2,FILE='scratch2',STATUS='UNKNOWN')
+      WRITE(scratchFile1,'(A,I4.4)') 'scratch1.', myProcId
+      WRITE(scratchFile2,'(A,I4.4)') 'scratch2.', myProcId
+      OPEN(UNIT=scrUnit1, FILE=scratchFile1, STATUS='UNKNOWN')
+      OPEN(UNIT=scrUnit2, FILE=scratchFile2, STATUS='UNKNOWN')
 #else
       OPEN(UNIT=scrUnit1,STATUS='SCRATCH')
       OPEN(UNIT=scrUnit2,STATUS='SCRATCH')
