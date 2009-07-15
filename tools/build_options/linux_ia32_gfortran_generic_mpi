@@ -15,13 +15,14 @@
 #      which results in run-time errors).
 
 
-FC=${FC:=mpif77}
-F90C=${F90C:=mpif90}
-CC=${CC:=mpicc}
+FC=${FC:=mpif77 -m32}
+F90C=${F90C:=mpif90 -m32}
+CC=${CC:=mpicc -m32}
 
 DEFINES='-DALLOW_USE_MPI -DALWAYS_USE_MPI -DWORDLENGTH=4 -DNML_TERMINATOR'
 CPP='cpp -traditional -P'
 EXTENDED_SRC_FLAG='-ffixed-line-length-132'
+OMPFLAG='-fopenmp'
 
 NOOPTFLAGS='-O0'
 NOOPTFILES=''
