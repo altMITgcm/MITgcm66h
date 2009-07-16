@@ -102,7 +102,7 @@ C--    Fluxes:
 
         diagName  = 'RUNOFF  '
         diagTitle = 'Run-Off per surface unit'
-        diagUnits = 'm/s             '
+        diagUnits = 'kg/m2/s         '
         diagCode  = 'SM      L1      '
         CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
