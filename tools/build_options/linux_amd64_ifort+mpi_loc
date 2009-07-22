@@ -41,10 +41,8 @@
 # DON'T FORGET to set environment variable MPI_INC_DIR to the include
 # directory of your MPI implementation
 
-NETCDF_ROOT='/opt/intel/netcdf-3.6.2'
-MPI_INC_DIR='/opt/intel/mpich-1.2.7p1_ic-10.1.012/include'
-#NETCDF_ROOT='/opt/intel/netcdf-4.0.1/11.1'
-#MPI_INC_DIR='/opt/intel/mpich-1.2.7p1_ic-11.1.046/include'
+NETCDF_ROOT='/opt/intel/netcdf-4.0.1/11.1'
+MPI_INC_DIR='/opt/intel/mpich-1.2.7p1_ic-11.1.046/include'
 
 FC=mpif77
 F90C='mpif90 -fixed'
