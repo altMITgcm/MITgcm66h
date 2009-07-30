@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice:
+ - seaice_evp: move if-statement out of loop (TEM) at the cost of 11 new 
+   2d-fields, for slightly better performance
 checkpoint61t
 o pkg/seaice: 
  - remove unused variables in seaice_evp
