@@ -39,7 +39,7 @@ C     == Routine arguments ==
 C     myTime     :: Current time in simulation
 C     myIter     :: Current iteration number in simulation
 C     myThid     :: my Thread Id number
-      INTEGER myTime
+      _RL     myTime
       INTEGER myIter
       INTEGER myThid
 
