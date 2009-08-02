@@ -40,11 +40,11 @@ C     myThid  :: Instance number for this call of CALC_DIV_GHAT
       INTEGER bi,bj
       INTEGER k
       _RL cg2d_b(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-c#ifdef ALLOW_NONHYDROSTATIC
+#ifdef ALLOW_NONHYDROSTATIC
       _RL cg3d_b(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-c#else
-c     _RL cg3d_b(1)
-c#endif
+#else
+      _RL cg3d_b(1)
+#endif
       INTEGER myThid
 
 C     !LOCAL VARIABLES:

@@ -52,6 +52,7 @@ C     bi,bj  :: Tile loop counters.
       INTEGER I,J,K
       INTEGER bi, bj
       _RL     bufRL(Nr+1)
+      INTEGER buffI(1)
       INTEGER coordLine
       INTEGER tileLine
 
@@ -342,7 +343,8 @@ c    & 'selectVortScheme=',' /* Scheme selector for Vorticity-Term */')
       WRITE(msgBuf,'(2A)')
      & 'selectVortScheme=',' /* Scheme selector for Vorticity-Term */'
       CALL PRINT_MESSAGE( msgBuf, ioUnit, SQUEEZE_RIGHT, myThid )
-      CALL PRINT_LIST_I( selectVortScheme, 1, 1, INDEX_NONE,
+      buffI(1) = selectVortScheme
+      CALL PRINT_LIST_I( buffI, 1, 1, INDEX_NONE,
      &                   .FALSE., .TRUE., ioUnit )
       WRITE(msgBuf,'(2A)') '   = 0 : enstrophy (Shallow-Water Eq.)',
      &                  ' conserving scheme by Sadourny, JAS 75'

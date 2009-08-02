@@ -35,11 +35,11 @@ C     wFld       :: Vertical flow
       INTEGER bi,bj,k
       _RL  uFld (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  vFld (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-c#ifdef ALLOW_ADDFLUID
+#ifdef ALLOW_ADDFLUID
       _RL  mFld (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-c#else
-c     _RL  mFld (1)
-c#endif
+#else
+      _RL  mFld (1)
+#endif
       _RL  wFld (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       INTEGER myThid
 
