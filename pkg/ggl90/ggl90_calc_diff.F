@@ -35,7 +35,7 @@ C     KappaRx   :: vertical diffusivity array
 C     myThid    :: Instance number for this innvocation of GGL90_CALC_DIFF
 
       INTEGER bi,bj,iMin,iMax,jMin,jMax,kArg,kSize
-      _RL KappaRx(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
+      _RL KappaRx(1-Olx:sNx+Olx,1-Oly:sNy+Oly,kSize)
       INTEGER myThid
 
 #ifdef ALLOW_GGL90
