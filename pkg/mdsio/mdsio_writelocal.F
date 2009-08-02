@@ -123,6 +123,11 @@ C     bBij  :: base shift in Buffer index for tile bi,bj
 #ifdef ALLOW_EXCH2
       INTEGER tN
 #endif /* ALLOW_EXCH2 */
+      _RL dummyRL(1)
+      CHARACTER*8 blank8c
+
+      DATA dummyRL(1) / 0. _d 0 /
+      DATA blank8c / '        ' /
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 C Set dimensions:
@@ -387,8 +392,8 @@ C Create meta-file for each tile if we are tiling
            map2gl(2) = jGjLoc
            CALL MDS_WRITE_META(
      I              metaFName, dataFName, the_run_name, ' ',
-     I              filePrec, nDims,dimList,map2gl, 0,  ' ',
-     I              0, UNSET_RL, irecord, myIter, myThid )
+     I              filePrec, nDims, dimList, map2gl, 0, blank8c,
+     I              0, dummyRL, irecord, myIter, myThid )
           ENDIF
 
 C End of ith loop
@@ -418,8 +423,8 @@ C Create meta-file for the global-file
          map2gl(2) = 1
          CALL MDS_WRITE_META(
      I              metaFName, dataFName, the_run_name, ' ',
-     I              filePrec, nDims,dimList,map2gl, 0,  ' ',
-     I              0, UNSET_RL, irecord, myIter, myThid )
+     I              filePrec, nDims, dimList, map2gl, 0, blank8c,
+     I              0, dummyRL, irecord, myIter, myThid )
         ENDIF
 
 C-    end if iAmDoingIO

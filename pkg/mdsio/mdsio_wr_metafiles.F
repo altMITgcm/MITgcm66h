@@ -135,7 +135,7 @@ C Only do I/O if I am the master thread (and mpi process 0 IF useSingleCpuIO):
          map2gl(2) = 1
          CALL MDS_WRITE_META(
      I              metaFName, dataFName, the_run_name, titleLine,
-     I              filePrec, nDims,dimList,map2gl, nFlds,  fldList,
+     I              filePrec, nDims,dimList,map2gl, nFlds, fldList,
      I              nTimRec, timList, irecord, myIter, myThid )
 
        ELSE
@@ -204,7 +204,7 @@ C-            default (face fit into global-IO-array)
            IF (nNy.EQ.1) dimList(3,2) = 1
            CALL MDS_WRITE_META(
      I              metaFName, dataFName, the_run_name, titleLine,
-     I              filePrec, nDims,dimList,map2gl, nFlds,  fldList,
+     I              filePrec, nDims,dimList,map2gl, nFlds, fldList,
      I              nTimRec, timList, irecord, myIter, myThid )
 C End of bi,bj loops
          ENDDO
