@@ -168,7 +168,7 @@ C        i.e. we only lock waiting for data that we need.
      &          westRecvAck(1,bi,bj), eastRecvAck(1,bi,bj), spinCount
 #endif
    10    CONTINUE
-          CALL FOOL_THE_COMPILER
+          CALL FOOL_THE_COMPILER( spinCount )
           spinCount = spinCount+1
 #ifdef DBUG_EXCH_VEC
           write(ioUnit,'(A,5I6,I12)') 'spin:', myProcId,bi,bj,
@@ -348,7 +348,7 @@ C        i.e. we only lock waiting for data that we need.
      &          southRecvAck(1,bi,bj), northRecvAck(1,bi,bj), spinCount
 #endif
    10    CONTINUE
-          CALL FOOL_THE_COMPILER
+          CALL FOOL_THE_COMPILER( spinCount )
           spinCount = spinCount+1
 #ifdef DBUG_EXCH_VEC
           write(ioUnit,'(A,5I6,I12)') 'spin:', myProcId,bi,bj,
