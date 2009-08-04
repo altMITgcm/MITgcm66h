@@ -10,7 +10,7 @@ C !INTERFACE: ==========================================================
       SUBROUTINE DIC_BIOTIC_INIT( myThid )
 
 C !DESCRIPTION:
-C  DIC diagnostic initialization                   
+C  DIC diagnostic initialization
 
 C !USES: ===============================================================
       IMPLICIT NONE
@@ -47,15 +47,15 @@ c set arrays to zero if first timestep
           CALL TIMEAVE_RESET(epfluxave,   Nr,  bi, bj, myThid)
           CALL TIMEAVE_RESET(cfluxave,   Nr,  bi, bj, myThid)
           print*,'QQ start timeave'
-          do k=1,Nr
-            DIC_TimeAve(bi,bj,k)=0.d0
-          enddo
+          DO k=1,Nr
+            DIC_timeAve(k,bi,bj) = 0. _d 0
+          ENDDO
          ENDDO
         ENDDO
 
 #endif /* ALLOW_TIMEAVE */
-      
+
 #endif /* DIC_BIOTIC   */
-      
+
       RETURN
       END
