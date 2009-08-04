@@ -9,7 +9,7 @@ C     *==========================================================*
 #ifdef ALLOW_TIMEAVE
 
 C     Keep track of time
-      _RL SHELFICE_TimeAve(1,nSx,nSy)
+      _RL SHELFICE_TimeAve(Nr,nSx,nSy)
       COMMON /SHELFICE_TAVE/ SHELFICE_TimeAve
 
 C     Storage arrays for time-averages
