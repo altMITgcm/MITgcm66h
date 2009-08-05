@@ -48,7 +48,7 @@ C Routine arguments
       integer filePrec
       character*(2) arrType
       integer nNz
-      Real arr(*)
+      _RL  arr(*)
       integer irecord
       integer myThid
 C Functions
@@ -277,7 +277,7 @@ C Routine arguments
       integer filePrec
       character*(2) arrType
       integer nNz
-      Real arr(*)
+      _RL  arr(*)
       integer irecord
       integer myThid
 C Functions
@@ -511,7 +511,7 @@ C Routine arguments
       logical globalFile
       character*(2) arrType
       integer nNz
-      Real arr(*)
+      _RL  arr(*)
       integer irecord
       integer myIter
       integer myThid
@@ -720,7 +720,7 @@ C Routine arguments
       logical globalFile
       character*(2) arrType
       integer nNz
-      Real arr(*)
+      _RL  arr(*)
       integer irecord
       integer myIter
       integer myThid

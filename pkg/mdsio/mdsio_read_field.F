@@ -78,7 +78,7 @@ C !INPUT PARAMETERS:
       INTEGER irecord
       INTEGER myThid
 C !OUTPUT PARAMETERS:
-      Real arr(*)
+      _RL  arr(*)
 
 C !FUNCTIONS
       INTEGER  ILNBLNK

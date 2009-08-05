@@ -50,7 +50,7 @@ C Routine arguments
       INTEGER filePrec
       CHARACTER*(2) arrType
       INTEGER nNz
-      Real    arr(*)
+      _RL     arr(*)
       INTEGER irecord
       INTEGER myThid
 C     ------------------------------------------------------------------
@@ -100,7 +100,7 @@ C Routine arguments
       INTEGER filePrec
       CHARACTER*(2) arrType
       INTEGER nNz
-      Real    arr(*)
+      _RL     arr(*)
       INTEGER irecord
       INTEGER myThid
 C     ------------------------------------------------------------------

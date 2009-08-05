@@ -50,7 +50,7 @@ C Routine arguments
       integer filePrec
       character*(2) arrType
       integer nNz
-      Real arr(*)
+      _RL  arr(*)
       integer bi, bj
       integer irecord
       integer myThid
