@@ -67,6 +67,7 @@ C     == Global variables ==
 #endif
 
 #ifdef ALLOW_AUTODIFF_TAMC
+# include "AUTODIFF_MYFIELDS.h"
 # include "FFIELDS.h"
 # include "SURFACE.h"
 

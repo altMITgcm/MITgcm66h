@@ -51,6 +51,7 @@ c These includes are needed for
 c AD-checkpointing. 
 c They provide the fields to be stored.
 
+#  include "AUTODIFF_MYFIELDS.h"
 #  include "GRID.h"
 #  include "DYNVARS.h"
 #  include "SURFACE.h"

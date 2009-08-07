@@ -30,6 +30,9 @@ C     == Global variables ===
 #include "ctrl.h"
 #include "ctrl_dummy.h"
 #include "optim.h"
+#ifdef ALLOW_AUTODIFF
+#include "AUTODIFF_MYFIELDS.h"
+#endif
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
