@@ -51,6 +51,9 @@ C     iUnit       - Work variable for IO unit number
      &          OBNviceFile,OBSviceFile,OBEviceFile,OBWviceFile,
      &          useOBCSsponge, useOBCSbalance, useOBCSprescribe,
      &          OBCSprintDiags, useOBCSYearlyFields, OBCSfixTopo
+#ifdef NONLIN_FRSURF
+     &        , OBNetaFile, OBSetaFile, OBEetaFile, OBWetaFile
+#endif /* NONLIN_FRSURF */
 #ifdef ALLOW_PTRACERS
      &        , OBNptrFile,OBSptrFile,OBEptrFile,OBWptrFile
 #endif
@@ -144,6 +147,10 @@ C--   Default flags and values for OBCS
       OBWsnFile = ' '
       OBWuiceFile = ' '
       OBWviceFile = ' '
+      OBNetaFile = ' '
+      OBSetaFile = ' '
+      OBEetaFile = ' '
+      OBWetaFile = ' '
 #ifdef ALLOW_PTRACERS
       DO iTracer = 1, PTRACERS_num
        OBNptrFile(iTracer) = ' '
