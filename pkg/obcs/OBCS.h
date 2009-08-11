@@ -321,16 +321,17 @@ C
 
 #ifdef NONLIN_FRSURF
       COMMON /GRID_OB_NLFS/
-     &  OBNhfac0,OBShfac0,OBEhfac0,OBWhfac0,
-     &  OBNeta,  OBSeta,  OBEeta,  OBWeta
+     &  OBNhfac0,OBShfac0,OBEhfac0,OBWhfac0
       _RS OBNhfac0(1-Olx:sNx+Olx,nSx,nSy)
       _RS OBShfac0(1-Olx:sNx+Olx,nSx,nSy)
       _RS OBEhfac0(1-Oly:sNy+Oly,nSx,nSy)
       _RS OBWhfac0(1-Oly:sNy+Oly,nSx,nSy)
-      _RS OBNeta (1-Olx:sNx+Olx,nSx,nSy)
-      _RS OBSeta (1-Olx:sNx+Olx,nSx,nSy)
-      _RS OBEeta (1-Oly:sNy+Oly,nSx,nSy)
-      _RS OBWeta (1-Oly:sNy+Oly,nSx,nSy)
+      COMMON /OB_NLFS/
+     &  OBNeta,  OBSeta,  OBEeta,  OBWeta
+      _RL OBNeta (1-Olx:sNx+Olx,nSx,nSy)
+      _RL OBSeta (1-Olx:sNx+Olx,nSx,nSy)
+      _RL OBEeta (1-Oly:sNy+Oly,nSx,nSy)
+      _RL OBWeta (1-Oly:sNy+Oly,nSx,nSy)
 #endif /* NONLIN_FRSURF */
 
 #ifdef ALLOW_OBCS
