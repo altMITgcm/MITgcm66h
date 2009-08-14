@@ -37,7 +37,7 @@ fi
 
 if test "x$IEEE" = x ; then
     #  No need for IEEE-754
-    FOPTIM='-O3 -LNO:fusion=2 -OPT:roundoff=1:IEEE_arithmetic=3' # -funsafe-math-optimizations'
+    FOPTIM='-O2 -LNO:fusion=2 -OPT:roundoff=1:IEEE_arithmetic=3' # -funsafe-math-optimizations'
 else
     # full checking options:
     NOOPTFILES='mds_byteswapr8.F mds_byteswapr4.F mds_byteswapi4.F'
