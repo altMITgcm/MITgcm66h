@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint61u
 o pkg/obcs:
   - change OB?eta from _RS to _RL and put them into a separate commen block
   - add code to read OB?eta from a file via obcs_prescribe_read: the code
