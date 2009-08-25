@@ -162,7 +162,9 @@ C =================================================================
       ENDDO
 
       pH_isLoaded = .FALSE.
-      IF ( nIter0.GT.PTRACERS_Iter0 ) THEN
+      IF ( nIter0.GT.PTRACERS_Iter0 .OR.
+     &    (nIter0.EQ.PTRACERS_Iter0 .AND. pickupSuff.NE.' ')
+     &   ) THEN
 C       Read pH from a pickup file if needed
         CALL DIC_READ_PICKUP(
      O                        pH_isLoaded,
@@ -182,7 +184,7 @@ C determine inorganic carbon chem coefficients
              surfphos(i,j)= PTRACER(i,j,klev,bi,bj,3)
      &                          * maskC(i,j,kLev,bi,bj)
 #else
-             surfalk(i,j) = 2.366595 _d 0 * salt(i,j,kLev,bi,bj)/35. _d 0
+             surfalk(i,j) = 2.366595 _d 0 *salt(i,j,kLev,bi,bj)/35. _d 0
      &                          * maskC(i,j,kLev,bi,bj)
              surfphos(i,j)= 5.1225 _d -4 * maskC(i,j,kLev,bi,bj)
 #endif

@@ -43,7 +43,7 @@ CML           GGL90TKE(I,J,K,bi,bj)=0. _d 0
            GGL90TKE(I,J,K,bi,bj)=GGL90TKEmin*maskC(I,J,K,bi,bj)
 C
 C     hfacs for w (=tke) control volume
-C     
+C
 c         recip_hFacI(I,J,K,bi,bj) = .5 _d 0*hFacC(I,J,Km1,bi,bj)
 c     &        + MIN(.5 _d 0,hFacC(I,J,K,bi,bj))
 c         IF ( recip_hFacI(I,J,K,bi,bj) .NE. 0. _d 0 )
@@ -57,7 +57,7 @@ C-      2D arrays
        ENDDO
       ENDDO
 
-      IF ( nIter0.NE.0 ) THEN
+      IF ( nIter0.NE.0 .OR. pickupSuff.NE.' ' ) THEN
        CALL GGL90_READ_PICKUP( nIter0, myThid )
       ELSE
 C--   Read initial turbulent kinetic energy thickness from file if available.

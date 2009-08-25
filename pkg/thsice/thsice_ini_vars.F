@@ -109,15 +109,15 @@ C         and this mask is used in thsice_advdiff and if coupled
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
-      IF ( startIceModel.LE.0 .AND. nIter0.NE.0 ) THEN
+      IF ( startIceModel.LE.0 .AND.
+     &     ( nIter0.NE.0  .OR. pickupSuff.NE.' ' )
+     &   ) THEN
 C--     Read ice pickup fields
-        _BARRIER
         prec=precFloat64
         CALL THSICE_READ_PICKUP( prec, nIter0, myThid )
 
       ELSE
 C--     Read initial conditions:
-        _BARRIER
         IF ( thSIceFract_InitFile .NE. ' ' ) THEN
          CALL READ_REC_XY_RL(thSIceFract_InitFile,iceMask,1,0,myThid)
         ENDIF
@@ -138,7 +138,6 @@ C--     Read initial conditions:
          CALL READ_REC_XY_RS(thSIceTsurf_InitFile,Tsrf,1,0,myThid)
         ENDIF
         IF ( thSIceEnthp_InitFile .EQ. ' ' ) THEN
-        _BARRIER
 C-    enthalpy of new ice in J/kg, taken from thsice_extend.F with Tf beeing
 C     the freezing Temp of seawater computed from a fixed salinity (31.5 psu)
 C     Tf = -mu_Tf*salinity = -1.70 deg C;  Qice1 ~ 3.2e5;  Qice2 ~ 3.4e5

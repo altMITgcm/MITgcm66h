@@ -70,7 +70,8 @@ C- end bi,bj loops
        ENDDO
       ENDDO
 
-      IF ( startTime.EQ.baseTime .AND. nIter0.EQ.0 ) THEN
+      IF ( startTime.EQ.baseTime .AND. nIter0.EQ.0
+     &                           .AND. pickupSuff.EQ.' ' ) THEN
 
 C     Prevent loading of new data before everyone has finished initialisation
 C     this is done within IO routines => no longer needed

@@ -52,7 +52,7 @@ C-      2D arrays
        ENDDO
       ENDDO
 
-      IF ( nIter0.NE.0 ) THEN
+      IF ( nIter0.NE.0 .OR. pickupSuff.NE.' ' ) THEN
         CALL CD_CODE_READ_PICKUP( nIter0, myThid )
       ENDIF
 

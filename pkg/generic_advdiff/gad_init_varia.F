@@ -59,7 +59,8 @@ C- end bi,bj loops
       ENDDO
 
       IF ( tempSOM_Advection .OR. saltSOM_Advection ) THEN
-       IF ( startTime.EQ.baseTime .AND. nIter0.EQ.0 ) THEN
+       IF ( startTime.EQ.baseTime .AND. nIter0.EQ.0
+     &                      .AND. pickupSuff.EQ.' ' ) THEN
 C-     Need to synchronize here before doing master-thread IO
 c        _BARRIER
 C-     Read-in initial conditions:
