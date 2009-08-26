@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o setting pickupSuff force to start from a pickup (even if nIter0=0): this
+  is now implemented for all pkgs (previously only done for the main pickup) 
+
 checkpoint61u
 o pkg/obcs:
   - change OB?eta from _RS to _RL and put them into a separate commen block
