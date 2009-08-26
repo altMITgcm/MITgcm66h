@@ -131,7 +131,7 @@ c--     Set default values.
         data_errfile          =    ' '
         tbarfile              =    'tbar'
         sbarfile              =    'sbar'
-	sstbarfile            =    'sstbar'
+        sstbarfile            =    'sstbar'
         psbarfile             =    'psbar'
         bpbarfile             =    'bpbar'
         ubarfile              =    'ubar'
