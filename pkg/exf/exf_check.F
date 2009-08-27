@@ -33,14 +33,11 @@ c     == local variables ==
 c     == end of interface ==
 
 c     check for consistency
-      if (.NOT. 
-     &     (exf_iprec .EQ. 32 .OR. exf_iprec .EQ. 64)
+      if (.NOT.
+     &     (exf_iprec.EQ.precFloat32 .OR. exf_iprec.EQ.precFloat64)
      &     ) then
        stop 'S/R EXF_CHECK: value of exf_iprec not allowed'
-      elseif (.NOT. 
-     &      (exf_yftype .EQ. 'RS' .OR. 
-     &      exf_yftype .EQ. 'RL')
-     &      ) then
+      elseif ( exf_yftype.NE.'RL' ) then
        stop 'S/R EXF_CHECK: value of exf_yftype not allowed'
       endif
 
