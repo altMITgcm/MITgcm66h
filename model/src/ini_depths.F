@@ -112,7 +112,7 @@ C-            ocean : R_low = Bottom
           CALL MNC_CW_SET_UDIM(bathyFile, 1, myThid)
           CALL MNC_CW_SET_CITER(bathyFile, 2, -1, -1, -1, myThid)
           CALL MNC_CW_SET_UDIM(bathyFile, 1, myThid)
-          CALL MNC_CW_RL_R('D',bathyFile,0,0,'bathy',R_low, myThid)
+          CALL MNC_CW_RS_R('D',bathyFile,0,0,'bathy',R_low, myThid)
           CALL MNC_FILE_CLOSE_ALL_MATCHING(bathyFile, myThid)
           CALL MNC_CW_DEL_VNAME('bathy', myThid)
         ELSE
