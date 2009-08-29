@@ -26,6 +26,12 @@ CADJ SUBROUTINE mnc_cw_rl_r  INPUT  = 1,2,3,4,5,6,7
 CADJ SUBROUTINE mnc_cw_rl_r  OUTPUT =
 
 C----------------------------------------
+C subroutine mnc_cw_rs_r
+C----------------------------------------
+CADJ SUBROUTINE mnc_cw_rs_r  INPUT  = 1,2,3,4,5,6,7
+CADJ SUBROUTINE mnc_cw_rs_r  OUTPUT =
+
+C----------------------------------------
 C subroutine  mnc_cw_rl_w_offset
 C----------------------------------------
 CADJ SUBROUTINE mnc_cw_rl_w_offset  INPUT  = 1,2,3,4,5,6,7,8
