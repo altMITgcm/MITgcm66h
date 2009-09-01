@@ -337,6 +337,8 @@ C      end-do k=1,1
       ENDIF
 C     end-if ( useSingleCPUIO )
 
+#else /* ALLOW_AUTODIFF */
+      STOP 'ABNORMAL END: S/R MDSREADVECTOR is empty'
 #endif /* ALLOW_AUTODIFF */
 
       RETURN

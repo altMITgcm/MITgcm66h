@@ -367,6 +367,8 @@ C End-if useSingleCpuIO
       ENDIF
 #endif /* ALLOW_USE_MPI */
 
+#else /* ALLOW_AUTODIFF */
+      STOP 'ABNORMAL END: S/R MDSWRITEVECTOR is empty'
 #endif /* ALLOW_AUTODIFF */
 
 C     ------------------------------------------------------------------
