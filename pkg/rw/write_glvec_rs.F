@@ -10,8 +10,8 @@ C !INTERFACE:
      I           pref, suff, array, sizArr, myIter, myThid )
 
 C !DESCRIPTION:
-C WRITE_GLVEC_RS 
-C  is a "front-end" interface to the low-level MDS I/O routines. 
+C WRITE_GLVEC_RS
+C  is a "front-end" interface to the low-level MDS I/O routines.
 C  Writes a global (=tile independent) vector.
 
 C !USES:
@@ -34,6 +34,7 @@ C !FUNCTIONS:
       EXTERNAL ILNBLNK, IFNBLNK
 
 C !LOCAL VARIABLES:
+      _RL     dummyRL(1)
       CHARACTER*(2) fType
       INTEGER ioUnit, bi, bj, iRec
       INTEGER s1Lo,s1Hi,s2Lo,s2Hi
@@ -61,7 +62,7 @@ C     e.g. U.0000000100
 #ifdef ALLOW_MDSIO
       CALL MDS_WRITEVEC_LOC(
      I                       fullName, writeBinaryPrec, ioUnit,
-     I                       fType, sizArr, array,
+     I                       fType, sizArr, dummyRL, array,
      I                       bi, bj, iRec, myIter, myThid )
 #endif
 

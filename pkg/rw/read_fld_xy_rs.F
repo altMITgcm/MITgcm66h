@@ -20,6 +20,7 @@ C Functions
       INTEGER ILNBLNK,IFNBLNK
 C Local
       LOGICAL useCurrentDir
+      _RL dummyRL(1)
       CHARACTER*(2) fType
       INTEGER nNz
       INTEGER iRec
@@ -47,7 +48,7 @@ C     e.g. U.0000000100
       CALL MDS_READ_FIELD(
      I                     fullName, readBinaryPrec, useCurrentDir,
      I                     fType, nNz, 1, nNz,
-     O                     field,
+     O                     dummyRL, field,
      I                     iRec, myThid )
 #endif
       RETURN
