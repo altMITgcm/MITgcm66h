@@ -55,7 +55,7 @@ c     == local variables ==
       logical first, changed
       integer count0, count1
       integer year0, year1
-      integer bi, bj, i, j, il
+      integer bi, bj, i, j
       _RL     fac
       character*(128) genfile0, genfile1
 
