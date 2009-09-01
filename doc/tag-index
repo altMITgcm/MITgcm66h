@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/mdsio (& pkg/rw): rework high level S/R interface:
+  To avoid mixing type (RS/RL) of input/output array argument,
+  replace single mixed-type array with a pair from each type (RS/RL).
 o setting pickupSuff force to start from a pickup (even if nIter0=0): this
   is now implemented for all pkgs (previously only done for the main pickup) 
 
