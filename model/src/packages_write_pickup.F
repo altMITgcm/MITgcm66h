@@ -40,20 +40,13 @@ C     myThid     :: Thread number for this instance of the routine.
 
 C     !LOCAL VARIABLES:
 C     == Local variables ==
-C     prec   :: file precision
 C     suffix :: pickup-name suffix
-C     lgf    :: Flag to indicate whether to use global file mode.
       CHARACTER*(10) suffix
-      INTEGER prec
-      LOGICAL lgf
 CEOP
 
 C     Going to really do some IO. Make everyone except master thread wait.
 C     this is done within IO routines => no longer needed
 c     _BARRIER
-
-      prec = precFloat64
-      lgf = globalFiles
 
 C     Create suffix to pass on to package pickup routines
       IF ( permPickup ) THEN
@@ -80,8 +73,8 @@ C     Write restart file for 2nd-Order moment (active) Tracers
 #ifdef  ALLOW_OBCS
 C     SPK 4/9/01: Open boundary checkpointing
 c      IF (useOBCS) THEN
-c        CALL OBCS_WRITE_CHECKPOINT(
-c     &       prec, lgf, permPickup, myIter, myThid)
+c        CALL OBCS_WRITE_PICKUP(
+c     &                  suffix, myTime, myIter, myThid )
 c      ENDIF
 #endif  /* ALLOW_OBCS */
 
