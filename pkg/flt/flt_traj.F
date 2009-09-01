@@ -44,6 +44,7 @@ C     == local variables ==
       INTEGER ioUnit, irecord
       _RL tmp(imax)
       _RL npart_read,npart_times
+      _RS dummyRS(1)
       CHARACTER*(MAX_LEN_FNAM) fn
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       CHARACTER*(80) dataFName
@@ -97,7 +98,7 @@ C total number of floats
 
          ioUnit = -1
          CALL MDS_WRITEVEC_LOC( fn, precFloat64, ioUnit,
-     &                          'RL', imax, tmp,
+     &                          'RL', imax, tmp, dummyRS,
      &                           bi,bj,-1, myIter, myThid )
 
          i0x = DFLOAT( myXGlobalLo-1 + (bi-1)*sNx )
@@ -161,7 +162,7 @@ C (3) WRITE float positions into file
             irecord = npart_read+ip+1
             IF ( ip.NE.npart_tile(bi,bj) ) irecord = -irecord
             CALL MDS_WRITEVEC_LOC( fn, precFloat64, ioUnit,
-     &                            'RL', imax, tmp,
+     &                            'RL', imax, tmp, dummyRS,
      &                             bi,bj,irecord, myIter, myThid )
 
          ENDDO
