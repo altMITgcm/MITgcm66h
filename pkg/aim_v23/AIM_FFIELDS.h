@@ -27,7 +27,7 @@ C     aim_sw20,1 :: Holds soil water content, level 2 ( 0-1 )
      &   aim_sst0, aim_lst0, aim_oic0, aim_snw0, aim_sw10, aim_sw20,
      &   aim_sst1, aim_lst1, aim_oic1, aim_snw1, aim_sw11, aim_sw21
 
-      _RL  truncSurfP(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS  truncSurfP(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  aim_landFr(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  aim_veget (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  aim_albedo(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
