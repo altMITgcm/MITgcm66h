@@ -150,8 +150,8 @@ c    &                             gen1, count0, myIter, myThid )
 
             if (exf_yftype .eq. 'RL') then
                call exf_filter_rl( gen1, genmask, mythid )
-            else
-               call exf_filter_rs( gen1, genmask, mythid )
+c           else
+c              call exf_filter_rs( gen1, genmask, mythid )
             end if
          endif
 
@@ -184,8 +184,8 @@ c    &                             gen1, count1, myIter, myThid )
 
             if (exf_yftype .eq. 'RL') then
                call exf_filter_rl( gen1, genmask, mythid )
-            else
-               call exf_filter_rs( gen1, genmask, mythid )
+c           else
+c              call exf_filter_rs( gen1, genmask, mythid )
             end if
          endif
 
@@ -315,8 +315,8 @@ c    &                             genfld, count, 0, myThid )
 
          if (exf_yftype .eq. 'RL') then
             call exf_filter_rl( genfld, genmask, mythid )
-         else
-            call exf_filter_rs( genfld, genmask, mythid )
+c        else
+c           call exf_filter_rs( genfld, genmask, mythid )
          end if
 
 c     Loop over tiles and scale genfld
