@@ -28,7 +28,7 @@ C     === Local variables ===
 
 #ifdef ML_2D
 C    2D mixed layer model  initialization
-      CALL ocean_ml(dtocn,dtatm*3600.)
+      CALL ocean_ml(dtocn*3600.,dtatm*3600.)
 #  ifdef CPL_OCEANCO2
       CALL zerogary
 #  endif
