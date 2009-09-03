@@ -278,10 +278,10 @@ C        Read 2nd Order moments as consecutive records
          DO n=1,nSOM
            iRec = n
            CALL READ_REC_3D_RL( fn, prec, Nr,
-     O               _Ptracers_som(1-Olx,1-Oly,1,1,1,n,iTracer),
+     O               _Ptracers_som(:,:,:,:,:,n,iTracer),
      I               iRec, myIter, myThid )
          ENDDO
-         CALL GAD_EXCH_SOM( _Ptracers_som(1-Olx,1-Oly,1,1,1,1,iTracer),
+         CALL GAD_EXCH_SOM( _Ptracers_som(:,:,:,:,:,:,iTracer),
      &                      Nr, myThid )
         ENDIF
        ENDDO

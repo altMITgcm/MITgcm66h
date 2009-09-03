@@ -101,7 +101,7 @@ CADJ &      = comlev1_bibj_ptracers, key=iptrkey, byte=isbyte
      I                       uVel, vVel, wVel,
 #endif
      I                       pTracer(1-Olx,1-Oly,1,1,1,iTracer),
-     U                       _Ptracers_som(1-Olx,1-Oly,1,1,1,1,iTracer),
+     U                       _Ptracers_som(:,:,:,:,:,:,iTracer),
      O                       gPtr(1-Olx,1-Oly,1,1,1,iTracer),
      I                       bi,bj,myTime,myIter,myThid)
        ELSEIF ( PTRACERS_MultiDimAdv(iTracer) ) THEN
