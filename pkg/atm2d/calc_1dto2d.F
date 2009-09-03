@@ -56,7 +56,7 @@ C     Accumulate runoff into bands (runoff bands are on the ocean grid)
 
 C       do a linear interpolation from atmos data to get tauv
         fv_toC = atm_tauv(tauv_jpt(j)) * tauv_jwght(j) + 
-     &        atm_tauv(tauv_jpt(j+1)) * (1. _d 0 - tauv_jwght(j))
+     &        atm_tauv(tauv_jpt(j)+1) * (1. _d 0 - tauv_jwght(j))
     
         DO i=1,sNx
 
