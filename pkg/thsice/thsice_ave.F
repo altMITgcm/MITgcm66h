@@ -97,12 +97,14 @@ C-- average of atmospheric fluxes :
 
 C-- average of oceanic fluxes :
 #ifndef CHECK_ENERGY_CONSERV
+#ifdef REAL4_IS_SLOW
        CALL TIMEAVE_CUMULATE(ice_flx2oc_Ave, Qnet,
      &                       1, thSIce_deltaT, bi, bj, myThid )
        CALL TIMEAVE_CUMULATE(ice_frw2oc_Ave, EmPmR,
      &                       1, thSIce_deltaT, bi, bj, myThid )
        CALL TIMEAVE_CUMULATE(ice_salFx_Ave, saltFlux,
      &                       1, thSIce_deltaT, bi, bj, myThid )
+#endif
 #endif /* CHECK_ENERGY_CONSERV */
 
 C-- average of Ocean Mixed-Layer temp. & salinity
@@ -141,9 +143,9 @@ C-- Atmospheric fluxes :
 
 C-- Oceanic fluxes :
 c #ifndef CHECK_ENERGY_CONSERV
-        CALL DIAGNOSTICS_FILL(Qnet,    'SIflx2oc',0,1,1,bi,bj,myThid)
-        CALL DIAGNOSTICS_FILL(EmPmR,   'SIfrw2oc',0,1,1,bi,bj,myThid)
-        CALL DIAGNOSTICS_FILL(saltFlux,'SIsaltFx',0,1,1,bi,bj,myThid)
+        CALL DIAGNOSTICS_FILL_RS(Qnet,    'SIflx2oc',0,1,1,bi,bj,myThid)
+        CALL DIAGNOSTICS_FILL_RS(EmPmR,   'SIfrw2oc',0,1,1,bi,bj,myThid)
+        CALL DIAGNOSTICS_FILL_RS(saltFlux,'SIsaltFx',0,1,1,bi,bj,myThid)
 c #endif /* CHECK_ENERGY_CONSERV */
 
       ENDIF
