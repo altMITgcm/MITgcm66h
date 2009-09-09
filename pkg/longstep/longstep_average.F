@@ -91,7 +91,7 @@ C--   update average inside tile (no overlaps) for all bi,bj
      & CALL LONGSTEP_FILL_3D(LS_IVDConvCountCount,
      &                      LS_IVDConvCount, IVDConvCount, Nr, myThid)
 #ifdef SHORTWAVE_HEATING
-      CALL LONGSTEP_FILL_3D(LS_QswCount, LS_Qsw, Qsw, 1, myThid)
+      CALL LONGSTEP_FILL_3D_RS(LS_QswCount, LS_Qsw, Qsw, 1, myThid)
 #endif
 #ifdef ALLOW_GMREDI
       IF ( useGMRedi ) THEN

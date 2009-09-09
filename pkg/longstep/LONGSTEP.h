@@ -78,7 +78,7 @@ C
 #ifdef SHORTWAVE_HEATING
 C     LS_Qsw :: longstep average of net upward shortwave radiation after ice
 C
-      _RS LS_Qsw(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL LS_Qsw(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       INTEGER LS_QswCount(nSx,nSy)
       COMMON /LONGSTEP_EXTRA_R/ LS_Qsw
       COMMON /LONGSTEP_EXTRA_I/ LS_QswCount
