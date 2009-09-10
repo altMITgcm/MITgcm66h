@@ -50,7 +50,9 @@ C     === Local variables ===
 C     i,j,bi,bj - Loop counters
 
       INTEGER i, j, bi, bj, kii
-      _RL RHOICE, RHOAIR, SINWIN, COSWIN, SINWAT, COSWAT
+      _RL RHOICE, RHOAIR
+      _RL COSWIN, COSWAT
+      _RS SINWIN, SINWAT
       _RL ECCEN, ECM2, DELT1, DELT2, PSTAR, AAA
       _RL TEMPVAR, U1, V1
 

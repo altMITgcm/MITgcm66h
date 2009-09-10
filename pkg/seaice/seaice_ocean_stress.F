@@ -39,7 +39,8 @@ C     i,j,bi,bj - Loop counters
 C     kSrf      - vertical index of surface layer
       INTEGER i, j, bi, bj
       INTEGER kSrf
-      _RL  SINWAT, COSWAT, SINWIN, COSWIN
+      _RL  COSWAT
+      _RS  SINWAT
       _RL  fuIceLoc, fvIceLoc
       _RL  areaW, areaS
 
@@ -48,8 +49,6 @@ C     surrface level
 C     introduce turning angle (default is zero)
       SINWAT=SIN(SEAICE_waterTurnAngle*deg2rad)
       COSWAT=COS(SEAICE_waterTurnAngle*deg2rad)
-      SINWIN=SIN(SEAICE_airTurnAngle*deg2rad)
-      COSWIN=COS(SEAICE_airTurnAngle*deg2rad)
 
       IF ( useHB87StressCoupling ) THEN
 C
