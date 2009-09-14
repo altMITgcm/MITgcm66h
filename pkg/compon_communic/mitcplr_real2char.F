@@ -15,7 +15,7 @@ C $Name$
 
 ! Convert the integer array to characters
       do j=1,MAXLEN_COMP_NAME
-       carg(j:j) = char( int( 0.5+rarg(j) ) )
+       carg(j:j) = char( nint( rarg(j) ) )
       enddo
 
 !     ------------------------------------------------------------------
