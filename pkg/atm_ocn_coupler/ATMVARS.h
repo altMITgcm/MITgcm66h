@@ -44,7 +44,7 @@ c    &       uVelGround_atm, vVelGround_atm,
      &       SaltFlx_atm, sIceMass_atm,
      &       aCO2_atm, wSpeed_atm, sIceFrac_atm
 
-      _RS AtmDepths_atm  (Nx_atm,Ny_atm)
+      _RL AtmDepths_atm  (Nx_atm,Ny_atm)
       _RL OcMxlD_atm     (Nx_atm,Ny_atm)
       _RL SST_atm        (Nx_atm,Ny_atm)
       _RL SSS_atm        (Nx_atm,Ny_atm)

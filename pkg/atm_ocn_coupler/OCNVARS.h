@@ -40,7 +40,7 @@ c    &       uVelGround_ocn, vVelGround_ocn,
      &       SaltFlx_ocn, sIceMass_ocn,
      &       aCO2_ocn, wSpeed_ocn, sIceFrac_ocn
 
-      _RS AtmDepths_ocn  (Nx_ocn,Ny_ocn)
+      _RL AtmDepths_ocn  (Nx_ocn,Ny_ocn)
       _RL OcMxlD_ocn     (Nx_ocn,Ny_ocn)
       _RL SST_ocn        (Nx_ocn,Ny_ocn)
       _RL SSS_ocn        (Nx_ocn,Ny_ocn)
