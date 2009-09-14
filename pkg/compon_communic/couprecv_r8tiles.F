@@ -93,7 +93,7 @@ C $Name$
        if (Nj.ne.component_tile_ny(bibj,n,compind))
      &    stop 'couprecv_r8tiles: Nj != component_tile_ny'
 
-       call mitcplr_real2char( r8buf(9), recvdname )
+       call mitcplr_dbl2char( r8buf(9), recvdname )
        if (recvdname .ne. dataname) then
         write(LogUnit,*) 'couprecv_r8tiles: recvdname = ',recvdname
         write(LogUnit,*) 'couprecv_r8tiles:  dataname = ',dataname

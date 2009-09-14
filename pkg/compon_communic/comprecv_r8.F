@@ -54,7 +54,7 @@ C $Name$
       Jo=int(0.5+r8buf(2))
       nx=int(0.5+r8buf(3))
       ny=int(0.5+r8buf(4))
-      call mitcplr_real2char( r8buf(9), recvdname )
+      call mitcplr_dbl2char( r8buf(9), recvdname )
 
       if (Io.ne.my_tile_i0(1)) stop 'comprecv_r8: bad Io'
       if (Jo.ne.my_tile_j0(1)) stop 'comprecv_r8: bad Jo'

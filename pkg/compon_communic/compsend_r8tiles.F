@@ -38,7 +38,7 @@ C $Name$
        r8buf(2)=float( my_tile_nx(bibj) )
        r8buf(3)=float( my_tile_j0(bibj) )
        r8buf(4)=float( my_tile_ny(bibj) )
-       call mitcplr_char2real( dataname, r8buf(9) )
+       call mitcplr_char2dbl( dataname, r8buf(9) )
 
 ! Copy interior of tile to buffer
        k=1

@@ -49,7 +49,7 @@ C $Name$
        r8buf(2)=float( Jo )
        r8buf(3)=float( Ni )
        r8buf(4)=float( Nj )
-       call mitcplr_char2real( dataname, r8buf(9) )
+       call mitcplr_char2dbl( dataname, r8buf(9) )
 
 ! Pack data
        do j=1,Nj

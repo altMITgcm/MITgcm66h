@@ -80,7 +80,7 @@ C $Name$
         stop 'couprecv_r8: Incompatible header/target array'
        endif
 
-       call mitcplr_real2char( r8buf(9), recvdname )
+       call mitcplr_dbl2char( r8buf(9), recvdname )
        if (recvdname .ne. dataname) then
         write(LogUnit,*) 'couprecv_r8: recvdname = ',recvdname
         write(LogUnit,*) 'couprecv_r8:  dataname = ',dataname
