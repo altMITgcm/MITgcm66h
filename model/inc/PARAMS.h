@@ -893,6 +893,7 @@ C Logical flags for selecting packages
       LOGICAL useGridAlt
       LOGICAL useDiagnostics
       LOGICAL useREGRID
+      LOGICAL useLayers
       LOGICAL useMNC
       LOGICAL useRunClock
       LOGICAL useEMBED_FILES
@@ -906,7 +907,7 @@ C Logical flags for selecting packages
      &        usePTRACERS, useGCHEM, useRBCS, useOffLine, useMATRIX,
      &        useSEAICE, useSALT_PLUME, useShelfIce, useThSIce,
      &        useATM2D, useAIM, useLand, useFizhi, useGridAlt,
-     &        useDiagnostics, useREGRID, useMNC,
+     &        useDiagnostics, useREGRID, useLayers, useMNC,
      &        useRunClock, useEMBED_FILES,
      &        useMYPACKAGE
 CEH3 ;;; Local Variables: ***
