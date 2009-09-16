@@ -280,6 +280,12 @@ C---  Continue with standard packages (with standard usePKG flag)
       IF (useREGRID) CALL PACKAGES_ERROR_MSG('REGRID',' ',myThid)
 #endif
 
+#ifdef ALLOW_LAYERS
+      IF ( useLayers ) CALL LAYERS_CHECK( myThid )
+#else
+      IF ( useLayers ) CALL PACKAGES_ERROR_MSG('LAYERS',' ',myThid)
+#endif /* ALLOW_LAYERS */
+
 #ifdef ALLOW_MYPACKAGE
       IF (useMYPACKAGE) CALL MYPACKAGE_CHECK( myThid )
 #else
@@ -294,7 +300,7 @@ C---  Continue with standard packages (with standard usePKG flag)
 
 #ifdef ALLOW_ECCO
       CALL ECCO_CHECK( myThid )
-#endif 
+#endif
 
 C---  Exclusive packages (which cannot be used together):
       IF ( useEXF .AND. useBulkForce ) THEN

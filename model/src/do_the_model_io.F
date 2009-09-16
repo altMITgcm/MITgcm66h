@@ -197,6 +197,16 @@ c    & CALL OFFLINE_STATE( myTime, myIter, myThid )
      &     CALL CPL_OUTPUT( myTime, myIter, myThid )
 #endif
 
+C-- added by RPA
+C- added by RPA
+#ifdef ALLOW_LAYERS
+      IF ( useLayers ) THEN
+        CALL LAYERS_CALC( myTime, myIter, myThid )
+        CALL LAYERS_OUTPUT( myTime, myIter, myThid )
+      ENDIF
+#endif /* ALLOW_LAYERS */
+
+
 #ifdef ALLOW_DIAGNOSTICS
       IF ( useDiagnostics )
      &     CALL DIAGNOSTICS_WRITE( myTime, myIter, myThid )

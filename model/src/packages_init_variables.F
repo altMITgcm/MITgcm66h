@@ -80,6 +80,8 @@ C       |-- RBCS_INIT_VARIA
 C       |
 C       |-- REGRID_INIT_VARIA
 C       |
+C       |-- LAYERS_INIT_VARIA
+C       |
 C       |-- SALT_PLUME_INIT_VARIA
 C       |
 C       |-- CHEAPAML_INIT_VARIA
@@ -389,6 +391,10 @@ C Initialize FIZHI state variables
         CALL REGRID_INIT_VARIA( myThid )
       ENDIF
 #endif /* ALLOW_REGRID */
+
+#ifdef ALLOW_LAYERS
+      IF ( useLayers ) CALL LAYERS_INIT_VARIA( myThid )
+#endif /* ALLOW_LAYERS */
 
 #ifdef ALLOW_SALT_PLUME
       IF ( useSALT_PLUME ) THEN

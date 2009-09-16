@@ -72,8 +72,6 @@ C       |-- GCHEM_READPARMS
 C       |
 C       |-- RBCS_READPARMS
 C       |
-C       |-- MYPACKAGE_READPARMS
-C       |
 C       |-- SALT_PLUME_READPARMS
 C       |
 C       |-- CHEAPAML_READPARMS
@@ -107,6 +105,10 @@ C       |
 C       |-- MATRIX_READPARMS
 C       |
 C       |-- REGRID_READPARMS
+C       |
+C       |-- LAYERS_READPARMS
+C       |
+C       |-- MYPACKAGE_READPARMS
 
 C     !USES:
       IMPLICIT NONE
@@ -228,10 +230,6 @@ C -- initialize Therm.Sea-Ice parameters
       IF (useRBCS) CALL RBCS_READPARMS( myThid )
 #endif
 
-#ifdef ALLOW_MYPACKAGE
-      IF (useMYPACKAGE) CALL MYPACKAGE_READPARMS( myThid )
-#endif
-
 #ifdef ALLOW_SALT_PLUME
       IF (useSALT_PLUME) CALL SALT_PLUME_READPARMS( myThid )
 #endif
@@ -309,6 +307,14 @@ C--    Initialize matrix package parameters
 #ifdef ALLOW_REGRID
       IF ( useREGRID ) CALL REGRID_READPARMS( myThid )
 #endif /* ALLOW_REGRID */
+
+#ifdef ALLOW_LAYERS
+      IF ( useLayers ) CALL LAYERS_READPARMS( myThid )
+#endif /* ALLOW_LAYERS */
+
+#ifdef ALLOW_MYPACKAGE
+      IF (useMYPACKAGE) CALL MYPACKAGE_READPARMS( myThid )
+#endif
 
       RETURN
       END

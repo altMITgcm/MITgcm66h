@@ -80,6 +80,7 @@ c    &          useCAL,
      &          useGridAlt,
      &          useDiagnostics,
      &          useREGRID,
+     &          useLayers,
      &          useMNC,
      &          useRunClock,
      &          useEMBED_FILES,
@@ -135,6 +136,7 @@ c     useGAD          =.FALSE.
       useGridAlt      =.FALSE.
       useDiagnostics  =.FALSE.
       useREGRID       =.FALSE.
+      useLayers       =.FALSE.
       useMNC          =.FALSE.
       useRunClock     =.FALSE.
       useMYPACKAGE    =.FALSE.
