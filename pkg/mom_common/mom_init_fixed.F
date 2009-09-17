@@ -21,6 +21,7 @@ C     !USES:
 #include "PARAMS.h"
 #include "GRID.h"
 #include "SURFACE.h"
+#include "MOM_VISC.h"
 
 C     !INPUT PARAMETERS:
 C     myThid               :: thread number
@@ -28,6 +29,7 @@ C     myThid               :: thread number
 CEOP
 
 C     !LOCAL VARIABLES:
+      INTEGER i,j,bi,bj
 #ifdef NONLIN_FRSURF
 C     i,j,k,bi,bj  :: loop counter
       INTEGER i,j,k,bi,bj
@@ -50,6 +52,45 @@ C-    used for side-drag:
       ENDDO
 #endif /* NONLIN_FRSURF */
 
+       IF (deltaTmom.NE.0.) THEN
+        recip_dt=1. _d 0/deltaTmom
+       ELSE
+        recip_dt=0. _d 0
+       ENDIF
+
+       DO bj=myByLo(myThid), myByHi(myThid)
+        DO bi=myBxLo(myThid), myBxHi(myThid)
+         DO j=1-Oly,sNy+Oly
+          DO i=1-Olx,sNx+Olx
+           IF (useAreaViscLength) THEN
+            L2_D(i,j,bi,bj)=rA(i,j,bi,bj)
+           ELSE
+            L2_D(i,j,bi,bj)=2. _d 0
+     &           /((recip_DXF(i,j,bi,bj)**2+recip_DYF(i,j,bi,bj)**2))
+           ENDIF
+           L3_D(i,j,bi,bj)=L2_D(i,j,bi,bj)**1.5
+           L4rdt_D(i,j,bi,bj)=0.03125 _d 0*recip_dt*L2_D(i,j,bi,bj)**2
+          ENDDO
+         ENDDO
+        ENDDO
+       ENDDO
+
+       DO bj=myByLo(myThid), myByHi(myThid)
+        DO bi=myBxLo(myThid), myBxHi(myThid)
+         DO j=1-Oly,sNy+Oly
+          DO i=1-Olx,sNx+Olx
+           IF (useAreaViscLength) THEN
+            L2_Z(i,j,bi,bj)=rAz(i,j,bi,bj)
+           ELSE
+            L2_Z(i,j,bi,bj)=2. _d 0
+     &           /((recip_DXV(I,J,bi,bj)**2+recip_DYU(I,J,bi,bj)**2))
+           ENDIF
+           L3_Z(i,j,bi,bj)=L2_Z(i,j,bi,bj)**1.5
+           L4rdt_Z(i,j,bi,bj)=0.03125 _d 0*recip_dt*L2_Z(i,j,bi,bj)**2
+          ENDDO
+         ENDDO
+        ENDDO
+       ENDDO
 
 #ifdef ALLOW_DIAGNOSTICS
       IF ( useDiagnostics ) THEN
