@@ -3,6 +3,10 @@ $Name$
 
     Notes on tags used in MITgcmUV
     ==============================
+
+o pkg/mom_common:
+  Move computation of length scales to mom_init_fixed.F (avoid recomputation
+  at each time-steps*levels).
 o pkg/layers:
   Created a new package for computing volume fluxes in temperature or
   [not yet implemented] density layers, e.g. for calculating residual
