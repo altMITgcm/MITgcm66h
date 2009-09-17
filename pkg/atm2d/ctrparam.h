@@ -63,5 +63,5 @@ C $Name$
 !#define CLM 1
 !
 !
-#define NYR_CHEM 124
+#define NYR_CHEM 1
 
