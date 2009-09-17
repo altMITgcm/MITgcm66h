@@ -29,10 +29,10 @@ C     myThid               :: thread number
 CEOP
 
 C     !LOCAL VARIABLES:
+C     i,j,k,bi,bj  :: loop counter
       INTEGER i,j,bi,bj
 #ifdef NONLIN_FRSURF
-C     i,j,k,bi,bj  :: loop counter
-      INTEGER i,j,k,bi,bj
+      INTEGER k
 #endif
 
 #ifdef NONLIN_FRSURF
