@@ -128,6 +128,22 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
         CALL DIAGNOSTICS_ADD2LIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, myThid )
 
+#ifndef EXCLUDE_KPP_DOUBLEDIFF
+        diagName  = 'KPPnuddt'
+        diagTitle = 'Vertical double diffusion coefficient for heat'
+        diagUnits = 'm^2/s           '
+        diagCode  = 'SM P    UR      '
+        CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+
+        diagName  = 'KPPnudds'
+        diagTitle = 'Vertical double diffusion coefficient for salt'
+        diagUnits = 'm^2/s           '
+        diagCode  = 'SM P    UR      '
+        CALL DIAGNOSTICS_ADD2LIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+#endif /* ndef EXCLUDE_KPP_DOUBLEDIFF */
+
 #ifdef ALLOW_SALT_PLUME
         diagName  = 'KPPpfrac'
         diagTitle = 'Salt plume flux fraction penetrating mixing layer'

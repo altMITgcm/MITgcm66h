@@ -47,6 +47,9 @@ C o Include/exclude KPP non/local transport terms
 C o Exclude Interior shear instability mixing
 #undef EXCLUDE_KPP_SHEAR_MIX
 
+C o Exclude double diffusive mixing in the interior
+#undef EXCLUDE_KPP_DOUBLEDIFF
+
 C o Avoid as many as possible AD recomputations
 C   usually not necessary, but useful for testing
 #undef KPP_AUTODIFF_EXCESSIVE_STORE

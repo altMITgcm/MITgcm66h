@@ -80,6 +80,15 @@ C     Hence overlap region needs to be set OLx=4, OLy=4.
 #endif
 #endif
 
+#ifdef EXCLUDE_KPP_DOUBLEDIFF
+      IF ( KPPuseDoubleDiff ) THEN
+       WRITE(msgBuf,'(A,A)') 'KPPuseDoubleDiff=.TRUE. requires ',
+     &      'that EXCLUDE_KPP_DOUBLEDIFF is undefined'
+       CALL PRINT_ERROR( msgBuf , myThid )
+       STOP 'ABNORMAL END: S/R KPP_CHECK'
+      ENDIF
+#endif /* EXCLUDE_KPP_DOUBLEDIFF */
+
 #endif /* ALLOW_KPP */
 
       RETURN

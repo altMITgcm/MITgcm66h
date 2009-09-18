@@ -484,6 +484,19 @@ c     matching diffusivities at bottom of KPP PBL
      I        GAD_TEMPERATURE, .FALSE., .FALSE.,
      O        KPPdiffKzT(1-Olx,1-Oly,1,bi,bj),
      I        myThid)
+#ifndef EXCLUDE_KPP_DOUBLEDIFF
+      IF ( KPPuseDoubleDiff ) THEN
+C     Add the contribution of double diffusive effects (salt fingering 
+C     and diffusive convection) here. It would be more logical to add
+C     them right after Ri_iwmix within kppmix, but ttalpha, ssbeta, theta 
+C     and salt are not passed to kppmix and are thus not available there.
+       CALL KPP_DOUBLEDIFF(
+     I      TTALPHA, SSBETA,
+     U      KPPdiffKzT(1-Olx,1-Oly,1,bi,bj),
+     U      KPPdiffKzS(1-Olx,1-Oly,1,bi,bj),
+     I      ikppkey,1-Olx,sNx+OLx,1-Oly,sNy+OLy,bi,bj,myThid)
+      ENDIF
+#endif /* ndef EXCLUDE_KPP_DOUBLEDIFF */
 
       DO j = 1-OLy, sNy+OLy
          DO i = 1-OLx, sNx+OLx
