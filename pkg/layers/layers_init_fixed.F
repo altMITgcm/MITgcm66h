@@ -118,7 +118,7 @@ C       This means there was a problem
         END IF
 
 C       See which grid box the point lies in
-        IF (ZZc(kk) < Zf(MapIndex(kk)+1)) THEN
+        IF ( ZZc(kk).LT.Zf(MapIndex(kk)+1) ) THEN
           CellIndex(kk) = MapIndex(kk)
         ELSE
           CellIndex(kk) = MapIndex(kk)+1
@@ -141,23 +141,3 @@ C       See which grid box the point lies in
 
       RETURN
       END
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
