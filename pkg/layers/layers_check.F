@@ -33,11 +33,11 @@ C     msgBuf   :: Informational/error meesage buffer
      &                     SQUEEZE_RIGHT , 1)
 
 C--  Print out some key parameters :
-       CALL WRITE_0D_RL( dZZ, INDEX_NONE, 'dZZ =',
-     &  ' /* fine vertical grid spacing for isopycnal interp */')
-
        CALL WRITE_0D_I( NZZ, INDEX_NONE, 'NZZ =',
      &  ' /* number of levels in the fine vertical grid */')
+
+       CALL WRITE_1D_RL( dZZf, NZZ, INDEX_K, 'dZZf =',
+     &  ' /* fine vertical grid spacing for isopycnal interp */')
 
        CALL WRITE_1D_RL(layers_G,Nlayers+1, INDEX_K,'layers_G =',
      &  ' /* boundaries of isopycnal-averaging bins */')
