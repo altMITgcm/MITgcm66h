@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint61v
 o pkg/kpp:
  -add double diffusive contributions as a hack, turned off by default 
   for now, and the code can be excluded with a CPP-flag 
