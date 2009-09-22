@@ -3106,7 +3106,7 @@ whirl2f whirl2f_be:
 oadDriver:
 	\$(LN) \${XAIFBOOSTERROOT}/xaifBooster/algorithms/BasicBlockPreaccumulationReverse/driver/oadDriver \$@
 
-AD_CLEAN += *_mod.h *_mod.F90 *.FF90 *.mod-whirl temp.sed oad_cp.* postProcess.make postProcess.tag postProcess.comp
+AD_CLEAN += *_mod.h *_mod.F90 *.FF90 *.mod-whirl temp.sed oad_cp.* postProcess.make postProcess.tag postProcess.comp \$(PPEXTRAS:.F=.f)
 
 # ============ end OpenAD specific section ==============
 
