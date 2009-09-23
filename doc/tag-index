@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/thsice:
+ -add specific parameter for salt restoring in slab mixed-layer
+   (by default equal to the temperature restoring)
+
 checkpoint61v
 o pkg/kpp:
  -add double diffusive contributions as a hack, turned off by default 
