@@ -220,12 +220,14 @@ c           aim_landFr(i,j,bi,bj)= 0.
             aim_snw0(i,j,bi,bj) = 0.
             aim_sw10(i,j,bi,bj) = 0.
             aim_sw20(i,j,bi,bj) = 0.
+            aim_qfx0(i,j,bi,bj) = 0.
             aim_sst1(i,j,bi,bj) =300.
             aim_lst1(i,j,bi,bj) =300.
             aim_oic1(i,j,bi,bj) = 0.
             aim_snw1(i,j,bi,bj) = 0.
             aim_sw11(i,j,bi,bj) = 0.
             aim_sw21(i,j,bi,bj) = 0.
+            aim_qfx1(i,j,bi,bj) = 0.
            ENDDO
           ENDDO
          ENDDO
@@ -290,6 +292,10 @@ C-      endif 1rst iter.
           nm3 = nm1 + aim_surfForc_NppCycle
           CALL READ_REC_XY_RS(aim_swcFile,aim_sw20,nm2,myIter,myThid)
           CALL READ_REC_XY_RS(aim_swcFile,aim_sw21,nm3,myIter,myThid)
+        ENDIF
+        IF ( aim_qfxFile .NE. ' '  ) THEN
+          CALL READ_REC_XY_RS(aim_qfxFile,aim_qfx0,nm0,myIter,myThid)
+          CALL READ_REC_XY_RS(aim_qfxFile,aim_qfx1,nm1,myIter,myThid)
         ENDIF
 
 C     Stop anyone leaving until all data is read

@@ -46,11 +46,12 @@ C     aim_lstFile  :: file name for Land.Surf.Temp      (F.M. surfBC)
 C     aim_oiceFile :: file name for Sea Ice fraction    (F.M. surfBC)
 C     aim_snowFile :: file name for Snow depth          (F.M. surfBC)
 C     aim_swcFile  :: file name for Soil Water content  (F.M. surfBC)
+C     aim_qfxFile :: file name for ocean q-flux
       COMMON /AIM_PARM_C/
      &  aim_LandFile, aim_MMsufx,
      &  aim_albFile, aim_vegFile, 
      &  aim_sstFile, aim_lstFile, aim_oiceFile, aim_snowFile,
-     &  aim_swcFile
+     &  aim_swcFile, aim_qfxFile
       CHARACTER*(MAX_LEN_FNAM) aim_LandFile
       CHARACTER*(MAX_LEN_FNAM) aim_MMsufx
       CHARACTER*(MAX_LEN_FNAM) aim_albFile
@@ -60,6 +61,7 @@ C     aim_swcFile  :: file name for Soil Water content  (F.M. surfBC)
       CHARACTER*(MAX_LEN_FNAM) aim_oiceFile
       CHARACTER*(MAX_LEN_FNAM) aim_snowFile
       CHARACTER*(MAX_LEN_FNAM) aim_swcFile
+      CHARACTER*(MAX_LEN_FNAM) aim_qfxFile
 
 C--   COMMON /AIM_PARM_I/ Integer valued parameters for AIM
 C     aim_MMsufxLength :: Length of sufix (Monthly Mean surf. forcing files)
