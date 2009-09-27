@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg zonal_filt:
+  - change ZONAL_FILTER S/R interface (allows to filter 2-D fields)
+  - when using rStar, filter uVel*hFacW instead of uVel
+   (tested without topography: fix a Pb of growing instability with NLFS)
 o pkg/aim/thsice:
  -Add capacity to read a Q-Flux to be applied in slab-mixed layer thsice_slab_ocean.F
   (works as SST restoring)
