@@ -99,6 +99,7 @@ C- First compute global mole flux at air-sea interface
         IF ( startTime.EQ.baseTime .AND. nIter0.EQ.0 ) THEN
 C- If  first iteration, use atmpCO2init as initial condition
           atm_pCO2 = atmpCO2init
+          Atm_CO2_Moles = atm_pCO2 * total_atmos_moles
 
         ELSEIF ( myTime .EQ. starttime ) THEN
 C- If restart, read moles number from pickup
