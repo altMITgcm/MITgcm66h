@@ -119,6 +119,10 @@ C      212*24,243*24,273*24,304*24,334*24,365*24
 C For land use
         CALL updatelcluc(idyear)
 #endif
+#ifdef CPL_CHEM
+        print *,' Before eppaemission'
+        CALL eppaemission (iyr)
+#endif
       ENDIF   !end block done at year-start
 
       IF (inyr.EQ.jdofmhr(monid-1)+dtcouple) THEN !do this block month start
