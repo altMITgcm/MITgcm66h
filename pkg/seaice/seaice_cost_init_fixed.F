@@ -77,8 +77,9 @@ c
         call cal_ToSeconds ( tempDate2 , costIceEnd , mythid )
         costIceEnd = costIceEnd + startTime
 c--
-        call cal_FullDate( smrareastartdate1, smrareastartdate2,
-     &                 smrareastartdate, mythid )
+        if ( smrareadatfile .ne. ' ' )
+     &   call cal_FullDate( smrareastartdate1, smrareastartdate2,
+     &                      smrareastartdate,  mythid )
 
       _END_MASTER( mythid )
 
