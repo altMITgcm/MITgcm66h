@@ -115,9 +115,9 @@ c--     Read time averages and the monthly mean data.
                 tmpx=tmpfld2d(i,j,bi,bj)
                 if (maskC(i,j,kk,bi,bj) .ne. 0.) then
                    fctiletot = fctiletot
-     &                + tmpx*cos(yc(i,j,bi,bj)*deg2rad)/rhoConstFresh
+     &                + tmpx* _rA(i,j,bi,bj)/rhoConstFresh
                    sumtot = sumtot
-     &                + cos(yc(i,j,bi,bj)*deg2rad)
+     &                + _rA(i,j,bi,bj)
                    num_sfluxmm(bi,bj) = num_sfluxmm(bi,bj) + 1
                 endif
               enddo
@@ -141,7 +141,7 @@ c-- diagnostic: imbalance per year:
        write(standardmessageunit,'(A,I5,2(X,D22.14))')
      &      ' --> bal_sfluxmm    =', irec,
      &      fctiletot/sumtot,
-     &      ((fctiletot/sumtot)/wmean_sflux)**2
+     &      objf_sfluxmm
 
       enddo
 
