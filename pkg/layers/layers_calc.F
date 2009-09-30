@@ -197,7 +197,7 @@ C ------ Augment the bin values
 
 #ifdef ALLOW_TIMEAVE
 C--   Time-average
-      IF ( taveFreq.GT.0. ) THEN
+      IF ( layers_taveFreq.GT.0. ) THEN
 
 #ifdef LAYERS_UFLUX
          CALL TIMEAVE_CUMULATE( layers_UFlux_T, layers_UFlux, Nlayers,
