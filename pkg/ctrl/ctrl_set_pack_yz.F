@@ -193,7 +193,13 @@ cph                           weightfldyz(bi,ip,j,bj,jp,k,iobcs) = wbaro
 #endif
       enddo
 
-      nrec_nl=int(ncvarrecs(ivartype)/snx)
+      if ( useSingleCPUio ) then
+C     MDSREADFIELD_YZ_GL does not know about useSingleCPUio, so the faster
+C     method that works for .not.useSingleCPUio cannot be used
+       nrec_nl = 0
+      else
+       nrec_nl = int(ncvarrecs(ivartype)/Nx)
+      endif
       do irec = 1, nrec_nl
 cgg       do iobcs = 1, nobcs
 cgg    Need to solve for what iobcs would have been.
@@ -297,7 +303,7 @@ c     -- end of i loop --
 c     -- end of irec loop --
       enddo
 
-      do irec = nrec_nl*snx+1, ncvarrecs(ivartype)
+      do irec = nrec_nl*nx+1, ncvarrecs(ivartype)
 cgg       do iobcs = 1, nobcs
 cgg    Need to solve for what iobcs would have been.
          iobcs= mod(irec-1,nobcs)+1

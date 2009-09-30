@@ -195,7 +195,13 @@ cph                           weightfldxz(i,bi,ip,bj,jp,k,iobcs) = wbaro
 #endif
       enddo
 
-      nrec_nl=int(ncvarrecs(ivartype)/sny)
+      if ( useSingleCPUio ) then
+C     MDSREADFIELD_XZ_GL does not know about useSingleCPUio, so the faster
+C     method that works for .not.useSingleCPUio cannot be used
+       nrec_nl = 0
+      else
+       nrec_nl = int(ncvarrecs(ivartype)/Ny)
+      endif
       do irec = 1, nrec_nl
          call MDSREADFIELD_3D_GL( fname, ctrlprec, 'RL',
      &        nr, globfld3d, irec, mythid)
@@ -292,7 +298,7 @@ c     -- end of j loop --
 c     -- end of irec loop --
       enddo
 
-      do irec = nrec_nl*sny+1, ncvarrecs(ivartype)
+      do irec = nrec_nl*ny+1, ncvarrecs(ivartype)
 cgg       do iobcs = 1, nobcs
 cgg    Need to solve for what iobcs would have been.
          iobcs= mod(irec-1,nobcs)+1

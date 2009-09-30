@@ -198,7 +198,13 @@ cph                           weightfldxz(i,bi,ip,bj,jp,k,iobcs) = wbaro
 #endif /* CTRL_UNPACK_PRECISE */
       enddo
 
-      nrec_nl=int(ncvarrecs(ivartype)/sny)
+      if ( useSingleCPUio ) then
+C     MDSWRITEFIELD_XZ_GL does not know about useSingleCPUio, so the faster
+C     method that works for .not.useSingleCPUio cannot be used
+       nrec_nl = 0
+      else
+       nrec_nl = int(ncvarrecs(ivartype)/Ny)
+      endif
       do irec = 1, nrec_nl
 cgg       do iobcs = 1, nobcs
 cgg       And now back-calculate what iobcs should be.
@@ -290,7 +296,7 @@ cgg       enddo
 c     -- end of irec loop --
       enddo
 
-      do irec = nrec_nl*sny+1, ncvarrecs(ivartype)
+      do irec = nrec_nl*ny+1, ncvarrecs(ivartype)
 cgg       do iobcs = 1, nobcs
 cgg       And now back-calculate what iobcs should be.
          iobcs= mod(irec-1,nobcs)+1
