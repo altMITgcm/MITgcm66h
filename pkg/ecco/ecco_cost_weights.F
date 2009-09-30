@@ -429,8 +429,8 @@ c--           Test for missing values.
             do j = jmin,jmax
              do i = imin,imax
 c--           Test for missing values.
-              if (wsalt(k,bi,bj).eq.0 .and.
-     $             wsalt2(i,j,k,bi,bj).eq.0) then
+              if (wsalt(k,bi,bj).eq.0. .or.
+     $             wsalt2(i,j,k,bi,bj).eq.0.) then
                  wsalt2(i,j,k,bi,bj) = 0. _d 0
               else
                  wsalt2(i,j,k,bi,bj)=frame(i,j)*maskC(i,j,k,bi,bj)/
@@ -476,8 +476,8 @@ c--           Test for missing values.
             do j = jmin,jmax
              do i = imin,imax
 c--           Test for missing values.
-              if (wtheta(k,bi,bj).eq.0 .and.
-     $            wtheta2(i,j,k,bi,bj).eq.0) then
+              if (wtheta(k,bi,bj).eq.0. .or.
+     $            wtheta2(i,j,k,bi,bj).eq.0.) then
                  wtheta2(i,j,k,bi,bj) = 0. _d 0
               else
                  wtheta2(i,j,k,bi,bj)= frame(i,j)*maskC(i,j,k,bi,bj)/
