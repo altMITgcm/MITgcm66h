@@ -453,6 +453,10 @@ c--   Sum up all contributions.
      &         objf_theta_ini_fin(bi,bj) + objf_salt_ini_fin(bi,bj)
           f_eddytau = f_eddytau + objf_eddytau(bi,bj)
           f_bottomdrag = f_bottomdrag + objf_bottomdrag(bi,bj)
+          f_obcsn  = f_obcsn + objf_obcsn(bi,bj)
+          f_obcss  = f_obcss + objf_obcss(bi,bj)
+          f_obcsw  = f_obcsw + objf_obcsw(bi,bj)
+          f_obcse  = f_obcse + objf_obcse(bi,bj)
 #ifdef ALLOW_PROFILES
       do num_file=1,NFILESPROFMAX
        do num_var=1,NVARMAX
