@@ -371,31 +371,40 @@ c--     ... SST data.
         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                  SQUEEZE_RIGHT , 1)
 c--     ... SST data.
-        call cal_FullDate( sststartdate1,   sststartdate2,
-     &                     sststartdate,    mythid )
+        if ( sstdatfile .ne. ' ' )
+     &   call cal_FullDate( sststartdate1,   sststartdate2,
+     &                      sststartdate,    mythid )
 c--     ... TMI data.
-        call cal_FullDate( tmistartdate1,   tmistartdate2,
-     &                     tmistartdate,    mythid )
+        if ( tmidatfile .ne. ' ' )
+     &   call cal_FullDate( tmistartdate1,   tmistartdate2,
+     &                      tmistartdate,    mythid )
 c--     ... SSS data.
-        call cal_FullDate( sssstartdate1,   sssstartdate2,
-     &                     sssstartdate,    mythid )
+        if ( sssdatfile .ne. ' ' )
+     &   call cal_FullDate( sssstartdate1,   sssstartdate2,
+     &                      sssstartdate,    mythid )
 c--     ... BP data.
-        call cal_FullDate( bpstartdate1,   bpstartdate2,
-     &                     bpstartdate,    mythid )
+        if ( bpdatfile .ne. ' ' )
+     &   call cal_FullDate( bpstartdate1,   bpstartdate2,
+     &                      bpstartdate,    mythid )
 c--     ... T/P data.
-        call cal_FullDate( topexstartdate1, topexstartdate2,
+        if ( topexfile .ne. ' ' )
+     &  call cal_FullDate( topexstartdate1, topexstartdate2,
      &                     topexstartdate,  mythid )
 c--     ... ERS data.
-        call cal_FullDate( ersstartdate1,   ersstartdate2,
-     &                     ersstartdate,    mythid )
+        if ( ersfile .ne. ' ' )
+     &   call cal_FullDate( ersstartdate1,   ersstartdate2,
+     &                      ersstartdate,    mythid )
 c--     ... GFO data.
-        call cal_FullDate( gfostartdate1,   gfostartdate2,
-     &                     gfostartdate,    mythid )
+        if ( gfofile .ne. ' ' )
+     &   call cal_FullDate( gfostartdate1,   gfostartdate2,
+     &                      gfostartdate,    mythid )
 c--     ... SCAT data.
-        call cal_FullDate( scatstartdate1,   scatstartdate2,
-     &                     scatxstartdate,    mythid )
-        call cal_FullDate( scatstartdate1,   scatstartdate2,
-     &                     scatystartdate,    mythid )
+        if ( scatxdatfile .ne. ' ' )
+     &   call cal_FullDate( scatstartdate1,   scatstartdate2,
+     &                      scatxstartdate,    mythid )
+        if ( scatydatfile .ne. ' ' )
+     &   call cal_FullDate( scatstartdate1,   scatstartdate2,
+     &                      scatystartdate,    mythid )
 
         WRITE(msgBuf,'(A)') 'ECCO_READPARMS: end assigning cost dates'
         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
