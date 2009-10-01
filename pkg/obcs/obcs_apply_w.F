@@ -30,25 +30,8 @@ C     == Local variables ==
       _RL obc_mask
 #endif
 
-C     Set model variable to zero at the Open Boundaries
-      DO I=1-Olx,sNx+Olx
-C Northern boundary
-        J_obc = OB_Jn(I,bi,bj)
-        IF (J_obc.NE.0) wFld(I,J_obc,K,bi,bj) = 0. _d 0
-C Southern boundary
-        J_obc = OB_Js(I,bi,bj)
-        IF (J_obc.NE.0) wFld(I,J_obc,K,bi,bj) = 0. _d 0
-      ENDDO
-      DO J=1-Oly,sNy+Oly
-C Eastern boundary
-        I_obc = OB_Ie(J,bi,bj)
-        IF (I_obc.NE.0) wFld(I_obc,J,K,bi,bj) = 0. _d 0
-C Western boundary
-        I_obc = OB_Iw(J,bi,bj)
-        IF (I_obc.NE.0) wFld(I_obc,J,K,bi,bj) = 0. _d 0
-      ENDDO
-
 #ifdef ALLOW_NONHYDROSTATIC
+      IF ( nonHydrostatic ) THEN
 
 C     Set model variables to OB values on North/South Boundaries
 #ifdef ALLOW_OBCS_NORTH
@@ -94,6 +77,29 @@ C Western boundary
       ENDDO
 #endif
 
+      ELSE
+#endif /* ALLOW_NONHYDROSTATIC */
+
+C     Set model variable to zero at the Open Boundaries
+      DO I=1-Olx,sNx+Olx
+C Northern boundary
+        J_obc = OB_Jn(I,bi,bj)
+        IF (J_obc.NE.0) wFld(I,J_obc,K,bi,bj) = 0. _d 0
+C Southern boundary
+        J_obc = OB_Js(I,bi,bj)
+        IF (J_obc.NE.0) wFld(I,J_obc,K,bi,bj) = 0. _d 0
+      ENDDO
+      DO J=1-Oly,sNy+Oly
+C Eastern boundary
+        I_obc = OB_Ie(J,bi,bj)
+        IF (I_obc.NE.0) wFld(I_obc,J,K,bi,bj) = 0. _d 0
+C Western boundary
+        I_obc = OB_Iw(J,bi,bj)
+        IF (I_obc.NE.0) wFld(I_obc,J,K,bi,bj) = 0. _d 0
+      ENDDO
+
+#ifdef ALLOW_NONHYDROSTATIC
+      ENDIF
 #endif /* ALLOW_NONHYDROSTATIC */
 
 #endif /* ALLOW_OBCS */
