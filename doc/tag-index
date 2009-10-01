@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg obcs:
+ - go through NH code only if nonHydrostatic=T
+ - fix restart for Orlanski (Hydrostatic; still to fix NH+Orlanski restart)
 o pkg ctrl
  - make obcs as control parameter work also with useSingleCPUio
  - replace a few sny and snx by Ny and Nx to be consistent with
