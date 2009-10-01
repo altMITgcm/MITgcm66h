@@ -71,11 +71,10 @@ C     Write restart file for 2nd-Order moment (active) Tracers
 #endif /* ALLOW_CD_CODE */
 
 #ifdef  ALLOW_OBCS
-C     SPK 4/9/01: Open boundary checkpointing
-c      IF (useOBCS) THEN
-c        CALL OBCS_WRITE_PICKUP(
-c     &                  suffix, myTime, myIter, myThid )
-c      ENDIF
+      IF (useOBCS) THEN
+        CALL OBCS_WRITE_PICKUP(
+     &                  suffix, myTime, myIter, myThid )
+      ENDIF
 #endif  /* ALLOW_OBCS */
 
 #ifdef  ALLOW_SEAICE
