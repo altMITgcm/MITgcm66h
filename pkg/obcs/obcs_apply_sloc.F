@@ -61,7 +61,7 @@ C Eastern boundary
         obc_mask = _maskW(I_obc,J,K,bi,bj)
         DO I = I_obc, I_obc+Olx
          sFld(I,J)=OBEs(J,K,bi,bj)*obc_mask
-        ENDDO	
+        ENDDO
        ENDIF
 #endif
 C Western boundary
