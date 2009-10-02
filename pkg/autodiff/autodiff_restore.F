@@ -426,7 +426,8 @@ C-      2D arrays
           TICE(I,J,bi,bj)     = StoreSEAICE(I,J,bi,bj,4)
           RUNOFF(I,J,bi,bj)   = StoreSEAICE(I,J,bi,bj,5)
 # ifdef SEAICE_MULTICATEGORY
-          TICES(I,J,bi,bj)     = StoreSEAICE(I,J,bi,bj,6)
+cph moved to seaice_ad_check_lev because of extra dim. MULTDIM
+cph          TICES(I,J,bi,bj)     = StoreSEAICE(I,J,bi,bj,6)
 # endif
 # ifdef SEAICE_ALLOW_DYNAMICS
           UICE(I,J,bi,bj)    = StoreSEAICE(I,J,bi,bj,7)
