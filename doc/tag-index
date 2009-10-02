@@ -7,6 +7,10 @@ $Name$
 o pkg obcs:
  - go through NH code only if nonHydrostatic=T
  - fix restart for Orlanski (Hydrostatic; still to fix NH+Orlanski restart)
+ - move call to OBCS_CALC before SEAICE_MODEL which needs seaice-obcields
+   => Update output of experiment seaice_obcs
+ - useOBCSbalance: code is wrong with multi-tile / proc: add a stop.
+ - hack obcs_calc.F to fix restart in experiment seaice_obcs.
 o pkg ctrl
  - make obcs as control parameter work also with useSingleCPUio
  - replace a few sny and snx by Ny and Nx to be consistent with
