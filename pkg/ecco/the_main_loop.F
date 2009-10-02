@@ -561,13 +561,17 @@ C--     Step forward fields and calculate time tendency terms.
        CALL TIMER_STOP ('DO_ATMOSPHERIC_PHYS [FORWARD_STEP]',mythid)
 
 #ifdef ALLOW_AUTODIFF_TAMC
-cphCADJ STORE surfaceforcingtice    = comlev1, key=ikey_dynamics, kind=isbyte
-# ifdef EXACT_CONSERV
-cphCADJ STORE empmr              = comlev1, key=ikey_dynamics, kind=isbyte
-cphCADJ STORE pmepr              = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE surfaceforcingtice = comlev1, key=ikey_dynamics, kind=isbyte
+# ifdef ALLOW_OBCS
+CADJ STORE salt               = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE totphihyd          = comlev1, key=ikey_dynamics, kind=isbyte
+#  ifdef EXACT_CONSERV
+CADJ STORE empmr              = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE pmepr              = comlev1, key=ikey_dynamics, kind=isbyte
+#  endif
 # endif
 # ifdef ALLOW_PTRACERS
-CADJ STORE ptracer               = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE ptracer            = comlev1, key=ikey_dynamics, kind=isbyte
 # endif
 # ifdef NONLIN_FRSURF
 CADJ STORE hFacC              = comlev1, key=ikey_dynamics, kind=isbyte
