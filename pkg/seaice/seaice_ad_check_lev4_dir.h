@@ -3,6 +3,10 @@ C $Name$
 
 CADJ STORE StoreSEAICE    = tapelev4, key = ilev_4
 
+#ifdef SEAICE_MULTICATEGORY
+CADJ STORE tices      =     tapelev4, key = ilev_4
+#endif
+
 #ifdef ALLOW_COST_ICE
 CADJ STORE objf_ice = tapelev4, key = ilev_4
 #endif
