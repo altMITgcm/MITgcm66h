@@ -131,6 +131,22 @@ C--   dummy statement to end declaration part
       ENDIF
 #endif /* ALLOW_DIAGNOSTICS */
 
+#ifdef  ALLOW_OBCS
+      IF (useOBCS) THEN
+C--   Calculate future values on open boundaries
+C--   moved before SEAICE_MODEL call since SEAICE_MODEL needs seaice-obcs fields
+#ifdef ALLOW_DEBUG
+       IF ( debugLevel .GE. debLevB )
+     &     CALL DEBUG_CALL('OBCS_CALC',myThid)
+#endif
+       DO bj=myByLo(myThid),myByHi(myThid)
+        DO bi=myBxLo(myThid),myBxHi(myThid)
+          CALL OBCS_CALC( bi, bj, myTime+deltaTclock, myIter+1,
+     I                    uVel, vVel, wVel, theta, salt, myThid )
+        ENDDO
+       ENDDO
+      ENDIF
+#endif  /* ALLOW_OBCS */
 
 #ifdef ALLOW_SEAICE
       IF ( useSEAICE ) THEN
@@ -718,19 +734,6 @@ C--     Calculate Downsloping Flow for Down_Slope parameterization
 C---  if fluid Is Water: end
         ENDIF
 #endif
-
-#ifdef  ALLOW_OBCS
-C--     Calculate future values on open boundaries
-        IF (useOBCS) THEN
-#ifdef ALLOW_DEBUG
-          IF ( debugLevel .GE. debLevB )
-     &     CALL DEBUG_CALL('OBCS_CALC',myThid)
-#endif
-          CALL OBCS_CALC( bi, bj, myTime+deltaTclock, myIter+1,
-     I            uVel, vVel, wVel, theta, salt,
-     I            myThid )
-        ENDIF
-#endif  /* ALLOW_OBCS */
 
 C--   end bi,bj loops.
        ENDDO
