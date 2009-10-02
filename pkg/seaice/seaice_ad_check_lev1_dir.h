@@ -1,6 +1,10 @@
 C $Header$
 C $Name$
 
+#ifdef SEAICE_MULTICATEGORY
+CADJ STORE tices      = comlev1, key=ikey_dynamics, kind=isbyte
+#endif
+
 #ifdef AUTODIFF_SOMETIMES_NEEDED
 # ifdef EXACT_CONSERV
 CADJ STORE pmepr      = comlev1, key = ikey_dynamics
@@ -16,9 +20,6 @@ cphCADJ STORE heff    = comlev1, key=ikey_dynamics, kind=isbyte
 cphCADJ STORE heffm      = comlev1, key=ikey_dynamics, kind=isbyte
 cphCADJ STORE hsnow      = comlev1, key=ikey_dynamics, kind=isbyte
 cphCADJ STORE tice    = comlev1, key=ikey_dynamics, kind=isbyte
-# ifdef SEAICE_MULTICATEGORY
-CADJ STORE tices      = comlev1, key=ikey_dynamics, kind=isbyte
-# endif
 # ifdef SEAICE_ALLOW_DYNAMICS
 CADJ STORE uice    = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE vice    = comlev1, key=ikey_dynamics, kind=isbyte
