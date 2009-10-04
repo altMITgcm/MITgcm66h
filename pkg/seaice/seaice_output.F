@@ -287,5 +287,8 @@ C--   end dumpFiles block
 C--   do SEAICE monitor output : print some statistics about seaice fields
       CALL SEAICE_MONITOR( myTime, myIter, myThid )
 
+C--   do SEAICE Open-Boundary output
+      IF ( useOBCS ) CALL SEAICE_OBCS_OUTPUT( myTime, myIter, myThid )
+
       RETURN
       END
