@@ -71,7 +71,7 @@ C-----------------------------------------------------------------------
                DO j = 1-OLy, sNy+OLy
                   DO i = 1-OLx, sNx+OLx
                      KPPghat       (i,j,k,bi,bj) = 0.
-                     KPPviscAz  (i,j,k,bi,bj) = viscAr
+                     KPPviscAz  (i,j,k,bi,bj) = viscArNr(1)
                      KPPdiffKzS (i,j,k,bi,bj) = 0.
                      KPPdiffKzT (i,j,k,bi,bj) = 0.
                   ENDDO
