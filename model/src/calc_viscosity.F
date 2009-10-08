@@ -51,8 +51,8 @@ CEOP
 
        DO j = 1-Oly, sNy+Oly
         DO i = 1-Olx, sNx+Olx
-         KappaRU(i,j,k) = viscAr
-         KappaRV(i,j,k) = viscAr
+         KappaRU(i,j,k) = viscArNr(k)
+         KappaRV(i,j,k) = viscArNr(k)
         ENDDO
        ENDDO
 
