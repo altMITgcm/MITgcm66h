@@ -70,6 +70,9 @@ C- calculate flux to each layer from base of k
 C- if no layer below initial layer (because of bottom or
 C- topography), then remineralize in place
 
+           depth_l = 0. _d 0
+           flux_l  = 0. _d 0
+
            IF (k.EQ.Nr) THEN
              pflux(i,j,k)=pflux(i,j,k)
      &                  +BIOac(i,j,k)*(1. _d 0-DOPfraction) 
