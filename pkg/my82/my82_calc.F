@@ -11,12 +11,12 @@ C !INTERFACE: ======================================================
      I     bi, bj, myTime, myThid )
 
 C !DESCRIPTION: \bv
-C     /==========================================================\
+C     *==========================================================*
 C     | SUBROUTINE MY82_CALC                                     |
 C     | o Compute all MY82 fields defined in MY82.h              |
-C     |==========================================================|
+C     *==========================================================*
 C     | This subroutine is based on SPEM code                    |
-C     \==========================================================/
+C     *==========================================================*
       IMPLICIT NONE
 C
 C--------------------------------------------------------------------
@@ -160,7 +160,8 @@ C     M. Satoh: Eq. (11.3.43)
          MYviscAr(I,J,K,bi,bj) = MYhbl(I,J,bi,bj)*tkel*SM(I,J,K)
          MYdiffKr(I,J,K,bi,bj) = MYhbl(I,J,bi,bj)*tkel*SH(I,J,K)
 C     Set a minium (= background) value
-         MYviscAr(I,J,K,bi,bj) = MAX(MYviscAr(I,J,K,bi,bj),viscAr)
+         MYviscAr(I,J,K,bi,bj) = MAX(MYviscAr(I,J,K,bi,bj),
+     &                               viscArnr(k) )
          MYdiffKr(I,J,K,bi,bj) = MAX(MYdiffKr(I,J,K,bi,bj),
      &                               diffKrNrT(k) )
 C     Set a maximum and mask land point

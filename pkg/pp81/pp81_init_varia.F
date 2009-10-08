@@ -16,7 +16,7 @@ C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "GRID.h"
+c#include "GRID.h"
 #include "PP81.h"
 
 C     === Routine arguments ===
@@ -34,20 +34,20 @@ C-----------------------------------------------------------------------
 C Initialize PP variables PPviscAr, PPdiffKrT
 C-----------------------------------------------------------------------
 
-      do bj = myByLo(myThid), myByHi(myThid)
-       do bi = myBxLo(myThid), myBxHi(myThid)
-        do k = 1, Nr
-         do j = 1-OLy, sNy+OLy
-          do i = 1-OLx, sNx+OLx
-           PPviscAr (i,j,k,bi,bj) = viscAr
+      DO bj = myByLo(myThid), myByHi(myThid)
+       DO bi = myBxLo(myThid), myBxHi(myThid)
+        DO k = 1, Nr
+         DO j = 1-OLy, sNy+OLy
+          DO i = 1-OLx, sNx+OLx
+           PPviscAr (i,j,k,bi,bj) = viscArNr(k)
            PPdiffKr (i,j,k,bi,bj) = diffKrNrT(k)
-          end do
-         end do
-        end do
-       end do
-      end do
+          ENDDO
+         ENDDO
+        ENDDO
+       ENDDO
+      ENDDO
 
 #endif /* ALLOW_PP81 */
 
-      return
-      end
+      RETURN
+      END
