@@ -241,6 +241,16 @@ cph#endif
 # endif
 #endif /* ALLOW_PTRACERS */
 
+#ifdef ALLOW_OFFLINE
+# ifndef ALLOW_AUTODIFF_TAMC
+      IF ( useOFFLINE ) THEN
+# endif
+        CALL OFFLINE_INIT_VARIA( myThid )
+# ifndef ALLOW_AUTODIFF_TAMC
+      ENDIF
+# endif
+#endif /* ALLOW_RBCS */
+
 #ifdef ALLOW_GCHEM
 # ifndef ALLOW_AUTODIFF_TAMC
       IF (useGCHEM) THEN

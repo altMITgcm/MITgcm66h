@@ -114,6 +114,9 @@ c They provide the fields to be stored.
 #  ifdef ALLOW_RBCS
 #   include "RBCS.h"
 #  endif
+#  ifdef ALLOW_OFFLINE
+#   include "OFFLINE.h"
+#  endif
 #  ifdef ALLOW_DIVIDED_ADJOINT_MPI
 #   include "mpif.h"
 #  endif

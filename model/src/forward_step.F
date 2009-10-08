@@ -130,6 +130,9 @@ C     == Global variables ==
 # ifdef ALLOW_RBCS
 #  include "RBCS.h"
 # endif
+# ifdef ALLOW_OFFLINE
+#  include "OFFLINE.h"
+# endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 #ifdef ALLOW_MNC
