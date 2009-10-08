@@ -134,6 +134,14 @@ CADJ &     kind = isbyte
 
 #ifdef ALLOW_OBCS
 # include "obcs_ad_check_lev1_dir.h"
+# ifdef ALLOW_SEAICE
+CML required for the combination of seaice and obcs. In combination with
+CML downslope or ALLOW_HFLUXM_CONTROL, these directives are double
+CADJ STORE area,heff,hsnow = comlev1, key=ikey_dynamics, kind=isbyte
+#  ifdef SEAICE_ALLOW_DYNAMICS
+CADJ STORE uice,vice       = comlev1, key=ikey_dynamics, kind=isbyte
+#  endif /* SEAICE_ALLOW_DYNAMICS */
+# endif /* ALLOW_SEAICE */
 #endif  /* ALLOW_OBCS */
 
 #ifdef ALLOW_SALT_PLUME
