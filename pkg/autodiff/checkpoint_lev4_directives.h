@@ -127,7 +127,11 @@ CADJ &     = tapelev4, key = ilev_4
 
 #ifdef ALLOW_RBCS
 # include "rbcs_ad_check_lev4_dir.h"
-#endif /* ALLOW_rbcs */
+#endif /* ALLOW_RBCS */
+
+#ifdef ALLOW_OFFLINE
+# include "offline_ad_check_lev4_dir.h"
+#endif /* ALLOW_OFFLINE */
 
 #ifdef ALLOW_GCHEM
 # include "gchem_ad_check_lev4_dir.h"

@@ -160,6 +160,10 @@ CADJ STORE uice,vice       = comlev1, key=ikey_dynamics, kind=isbyte
 # include "rbcs_ad_check_lev1_dir.h"
 #endif /* ALLOW_RBCS */
 
+#ifdef ALLOW_OFFLINE
+# include "offline_ad_check_lev1_dir.h"
+#endif /* ALLOW_OFFLINE */
+
 #ifdef ALLOW_GCHEM
 # include "gchem_ad_check_lev1_dir.h"
 #endif

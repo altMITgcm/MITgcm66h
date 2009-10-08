@@ -127,7 +127,11 @@ CADJ &     = tapelev2, key = ilev_2
 
 #ifdef ALLOW_RBCS
 # include "rbcs_ad_check_lev2_dir.h"
-#endif /* ALLOW_rbcs */
+#endif /* ALLOW_RBCS */
+
+#ifdef ALLOW_OFFLINE
+# include "offline_ad_check_lev2_dir.h"
+#endif /* ALLOW_OFFLINE */
 
 #ifdef ALLOW_GCHEM
 # include "gchem_ad_check_lev2_dir.h"
