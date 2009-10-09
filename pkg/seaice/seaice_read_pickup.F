@@ -93,7 +93,7 @@ C-      No meta-file or old meta-file without List of Fields
         IF ( pickupStrictlyMatch ) THEN
           WRITE(msgBuf,'(4A)') 'SEAICE_READ_PICKUP: ',
      &      'no field-list found in meta-file',
-     &      ' => cannot check for strick-matching'
+     &      ' => cannot check for strict-matching'
           CALL PRINT_ERROR( msgBuf, myThid )
           WRITE(msgBuf,'(4A)') 'SEAICE_READ_PICKUP: ',
      &      'try with " pickupStrictlyMatch=.FALSE.,"',
