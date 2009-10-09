@@ -98,7 +98,7 @@ C  Temperature weights for cost function
        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                     SQUEEZE_RIGHT , myThid )
 
-      print*,'Weights for temperature: wti', (wti(k),k=1,nr)
+c     print*,'Weights for temperature: wti', (wti(k),k=1,nr)
 
       DO bj = jtlo,jthi
         DO bi = itlo,ithi
@@ -119,7 +119,7 @@ C--   Then the hflux weights :
         DO bi = itlo,ithi
           DO j = jMin,jMax
             DO i = iMin,iMax
-             print*,'Uncertainties for Heat Flux',i,j,whfluxm(i,j,bi,bj)
+c            print*,'Uncertainties for Heat Flux',i,j,whfluxm(i,j,bi,bj)
              IF (whfluxm(i,j,bi,bj) .NE. 0. _d 0) THEN
                  whfluxm(i,j,bi,bj) = 1. _d 0 /whfluxm(i,j,bi,bj)
      &                                        /whfluxm(i,j,bi,bj)
