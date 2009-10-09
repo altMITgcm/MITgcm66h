@@ -2783,7 +2783,7 @@ ad_input_code.$FS: \$(AD_FILES) \$(H_SRC_FILES) \$(AD_FLOW_FILES)
 	-rm -f ad_config.template
 	@make \$(F77_PP_SRC_FILES)
 	@make \$(FLOFILES)
-	cat \$(FLOFILES) \$(AD_FILES) > ad_input_code.$FS
+	cat \$(FLOFILES) \$(AD_FILES) | sed -f \$(TOOLSDIR)/remove_comments_sed > ad_input_code.$FS
 
 ad_taf_output.$FS: ad_input_code.$FS
 	\$(TAF) \$(AD_TAF_FLAGS) \$(TAF_EXTRA) ad_input_code.$FS
