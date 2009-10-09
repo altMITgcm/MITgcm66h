@@ -6,10 +6,8 @@
 # on 28-Nov-2006
 
 CPP='/usr/bin/cpp -traditional -P'
-#FC=/usr/local/bin/gfortran
 FC=gfortran
 ###CC=gcc
-#LINK=/usr/local/bin/gfortran
 LINK=gfortran
 NOOPTFLAGS='-O0'
 EXTENDED_SRC_FLAG='-ffixed-line-length-132'
@@ -21,9 +19,6 @@ DEFINES='-DWORDLENGTH=4 -DNML_TERMINATOR'
 INCLUDEDIRS='/sw/include'
 INCLUDES='-I/sw/include'
 LIBS='-L/sw/lib'
-INCLUDEDIRS='/usr/local/include'
-INCLUDES='-I/usr/local/include'
-LIBS='-L/usr/local/lib'
 
 ##INCLUDEDIRS='/Users/heimbach/NetCDF/netcdf-3.6.0-p1/gfortran/include'
 ##INCLUDES='-I/Users/heimbach/NetCDF/netcdf-3.6.0-p1/gfortran/include'
