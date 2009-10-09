@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg autodiff
+ - fix bug in autodiff_restore
+ - make genmake2 remove comments and empty lines from ad_input_code.f in 
+   order to reduce file size (new script file remove_comments_sed)
 o allows to specify vertical profile of vertical viscosity (viscArNr)
 o pkg autodiff
   autodiff_ini_model_io: comment out writing of grid information to netcdf 
