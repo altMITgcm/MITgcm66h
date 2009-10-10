@@ -46,6 +46,11 @@ C     !LOCAL VARIABLES:
       ENDIF
       prec = precFloat64
 
+C--   Unlike horizontal 2D or 3D IO routines, no thread synchronisation is
+C     done within  Vertical Section IO routines. Since only thread one is
+C     doing IO, we need a barrier here to wait for every one to finish.
+      _BARRIER
+
 #ifdef ALLOW_OBCS_NORTH
       IF ( useOrlanskiNorth ) THEN
 C     READ N and S OB storage and phase speed arrays
@@ -208,6 +213,9 @@ C      same with WE_STORE_n, WE_STORE_n, WW_STORE_n, with n=1,2,3,4
 c      _EXCH_XZ_RL(CVEL_WN , myThid)
 C      same with CVEL_WS,  CVEL_WE,  CVEL_WW
 c#endif
+
+C--   Every one wait for thread 1 to finish (see comment @ the top)
+      _BARRIER
 
 #endif /* ALLOW_ORLANSKI */
       RETURN
