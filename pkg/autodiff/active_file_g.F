@@ -42,13 +42,13 @@ C     !INTERFACE:
       subroutine g_active_read_xy(
      I                           active_var_file,
      O                           active_var,
+     I                           g_active_var,
      I                           irec,
      I                           doglobalread,
      I                           lAdInit,
      I                           myOptimIter,
      I                           mythid,
-     I                           dummy,
-     I                           g_active_var
+     I                           dummy
      &                         )
 
 C     !DESCRIPTION: \bv
@@ -127,13 +127,13 @@ C     !INTERFACE:
       subroutine g_active_read_xyz(
      I                            active_var_file,
      O                            active_var,
+     I                            g_active_var,
      I                            irec,
      I                            doglobalread,
      I                            lAdInit,
      I                            myOptimIter,
      I                            mythid,
-     I                            dummy,
-     I                            g_active_var
+     I                            dummy
      &                           )
 
 C     !DESCRIPTION: \bv
@@ -213,13 +213,13 @@ C     !INTERFACE:
       subroutine g_active_read_xz(
      I                           active_var_file,
      O                           active_var,
+     I                           g_active_var,
      I                           irec,
      I                           doglobalread,
      I                           lAdInit,
      I                           myOptimIter,
      I                           mythid,
-     I                           dummy,
-     I                           g_active_var
+     I                           dummy
      &                         )
 
 C     !DESCRIPTION: \bv
@@ -299,13 +299,13 @@ C     !INTERFACE:
        subroutine g_active_read_yz(
      I                           active_var_file,
      O                           active_var,
+     I                           g_active_var,
      I                           irec,
      I                           doglobalread,
      I                           lAdInit,
      I                           myOptimIter,
      I                           mythid,
-     I                           dummy,
-     I                           g_active_var
+     I                           dummy
      &                         )
 
 C     !DESCRIPTION: \bv
@@ -384,11 +384,11 @@ C     !INTERFACE:
       subroutine g_active_write_xy(
      I                            active_var_file,
      I                            active_var,
+     I                            g_active_var,
      I                            irec,
      I                            myOptimIter,
      I                            mythid,
      I                            dummy,
-     I                            g_active_var,
      I                            g_dummy
      &                          )
 
@@ -464,11 +464,11 @@ C     !INTERFACE:
       subroutine g_active_write_xyz(
      I                             active_var_file,
      I                             active_var,
+     I                             g_active_var,
      I                             irec,
      I                             myOptimIter,
      I                             mythid,
      I                             dummy,
-     I                             g_active_var,
      I                             g_dummy
      &                           )
 
@@ -544,11 +544,11 @@ C     !INTERFACE:
       subroutine g_active_write_xz(
      I                            active_var_file,
      I                            active_var,
+     I                            g_active_var,
      I                            irec,
      I                            myOptimIter,
      I                            mythid,
      I                            dummy,
-     I                            g_active_var,
      I                            g_dummy
      &                          )
 
@@ -624,11 +624,11 @@ C     !INTERFACE:
       subroutine g_active_write_yz(
      I                            active_var_file,
      I                            active_var,
+     I                            g_active_var,
      I                            irec,
      I                            myOptimIter,
      I                            mythid,
      I                            dummy,
-     I                            g_active_var,
      I                            g_dummy
      &                          )
 
