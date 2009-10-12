@@ -32,8 +32,6 @@ c     == global variables ==
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 c**************************************
-#ifdef ALLOW_AUTODIFF_TAMC
-
 c These includes are needed for 
 c AD-checkpointing. 
 c They provide the fields to be stored.
@@ -68,6 +66,7 @@ c           updated.
 c     mythid - thread number for this instance of the routine.
       integer mythid 
 
+#ifdef ALLOW_AUTODIFF_TAMC
 c     == local variables ==
 
       integer bi,bj
