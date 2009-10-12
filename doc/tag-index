@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o adjoint:
+  * update and finish work on adjoint of dic package (G. Forget)
+  * start adjoint of offline package
+  * bug fix for cube-sphere TLM code (active_file_g.F)
 o tutorial_global_oce_optim:
   now tested with 4 tiles (change data.grdchk and update output_adm.txt)
   and add SIZE.h_mpi for MPI testing
