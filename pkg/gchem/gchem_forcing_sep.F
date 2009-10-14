@@ -158,6 +158,10 @@ C array because of last (iPtr) index
        CALL DIC_STORE_FLUXCO2( myTime, myIter, myThid )
 #endif
 
+#ifdef ALLOW_COST
+       CALL DIC_COST( myTime, myIter, myThid )
+#endif
+
 #endif /* GCHEM_SEPARATE_FORCING */
 #endif /* ALLOW_GCHEM */
 
