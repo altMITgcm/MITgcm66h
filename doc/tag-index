@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ptracers:
+  apply zonal filter (if used) to all passive tracers
+
 checkpoint61w
 o adjoint:
   * update and finish work on adjoint of dic package (G. Forget)
