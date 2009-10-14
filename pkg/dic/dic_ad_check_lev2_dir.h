@@ -22,5 +22,9 @@ CADJ STORE gsm_s             = tapelev2, key = ilev_2
 CADJ STORE co2atmos          = tapelev2, key = ilev_2
 CADJ STORE total_atmos_carbon  = tapelev2, key = ilev_2
 
+#ifdef DIC_BIOTIC
+CADJ STORE omegaC  = tapelev2, key = ilev_2
+#endif
+
 #endif /* ALLOW_DIC */
 
