@@ -1,6 +1,8 @@
 C $Header$
 C $Name$
 
+#include "DIC_OPTIONS.h"
+
 C     *==========================================================*
 C     | DIC_VARS.h
 C     | o Carbon Variables
@@ -122,6 +124,8 @@ C     *==========================================================*
      &     freefemax, par,
      &     parfrac, k0, lit0,
      &     alphaUniform, rainRatioUniform,
+     &     alphamax, alphamin,
+     &     calpha, crain_ratio, cInputFe, calpfe, feload, cfeload,
      &     nlev, QSW_underice
 
       INTEGER nlev
@@ -167,6 +171,13 @@ C     values for light limited bio activity
       _RL k0, parfrac, lit0
       _RL alphaUniform
       _RL rainRatioUniform
+      _RL alphamax, alphamin
+      _RL calpha
+      _RL crain_ratio
+      _RL cInputFe(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL calpfe
+      _RL cfeload
+      _RL feload(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
       LOGICAL QSW_underice
 #endif /* DIC_BIOTIC */
