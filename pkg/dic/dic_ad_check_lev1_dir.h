@@ -25,6 +25,9 @@ CADJ STORE total_atmos_carbon  = comlev1, key = ikey_dynamics
 #ifdef DIC_BIOTIC
 CADJ STORE omegaC  = comlev1, key = ikey_dynamics
 #endif
+#ifdef ALLOW_COST
+CADJ STORE totcost  = comlev1, key = ikey_dynamics
+#endif
 
 #endif /* ALLOW_DIC */
 

@@ -25,6 +25,9 @@ CADJ STORE total_atmos_carbon  = tapelev3, key = ilev_3
 #ifdef DIC_BIOTIC
 CADJ STORE omegaC  = tapelev3, key = ilev_3
 #endif
+#ifdef ALLOW_COST
+CADJ STORE totcost  = tapelev3, key = ilev_3
+#endif
 
 #endif /* ALLOW_DIC */
 
