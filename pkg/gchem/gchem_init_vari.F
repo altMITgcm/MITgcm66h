@@ -35,12 +35,16 @@ ccccccccccccccccccccccccccc
 c initialize parameters   c
 ccccccccccccccccccccccccccc
 #ifdef ALLOW_DIC
+# ifndef ALLOW_AUTODIFF_TAMC
       IF ( useDIC ) THEN
-          print*,'QQ load dic parameters, initial vari' 
-          CALL DIC_INI_FORCING(myThid)
-          CALL DIC_SURFFORCING_INIT(myThid)
-          CALL DIC_BIOTIC_INIT(myThid)
+# endif
+         CALL DIC_INIT_VARIA(myThid)
+         CALL DIC_INI_FORCING(myThid)
+         CALL DIC_SURFFORCING_INIT(myThid)
+         CALL DIC_BIOTIC_INIT(myThid)
+# ifndef ALLOW_AUTODIFF_TAMC
       ENDIF
+# endif
 # ifdef ALLOW_CTRL
       CALL DIC_SET_CONTROL(myThid)
 # endif
