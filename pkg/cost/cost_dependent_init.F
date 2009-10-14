@@ -54,6 +54,10 @@ c     == end of interface ==
 #ifdef ALLOW_AUTODIFF
 
       adfc = 1.0
+#ifdef ALLOW_DIC
+      adtotcost = 1.0
+#endif
+
       do bj = jtlo,jthi
        do bi = itlo,ithi
 #ifdef ALLOW_COST_VECTOR

@@ -32,6 +32,12 @@ cph      _RL  adobjf_state_final (snx,sny,nsx,nsy)
       _RL  adobjf_vector(snx,nsx,nsy)
 #endif
 
+#ifdef ALLOW_DIC
+         COMMON /addic_cost_ctrl/
+     &    adtotcost
+      _RL  adtotcost
+#endif
+
 c     ==================================================================
 c     END OF HEADER ADCOST
 c     ==================================================================
