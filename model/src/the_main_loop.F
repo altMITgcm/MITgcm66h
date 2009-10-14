@@ -82,6 +82,8 @@ c They provide the fields to be stored.
 #  include "DIC_VARS.h"
 #  include "DIC_LOAD.h"
 #  include "DIC_ATMOS.h"
+#  include "DIC_CTRL.h"
+#  include "DIC_COST.h"
 # endif
 #  ifdef ALLOW_OBCS
 #   include "OBCS.h"
