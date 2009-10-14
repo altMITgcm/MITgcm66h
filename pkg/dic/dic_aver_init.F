@@ -45,7 +45,7 @@ cswdmonth -add-
 cswddmonth -- end-
 c
 c initialize to zero
-        totcost=0.d0
+cph        totcost=0.d0
         DO bj = myByLo(myThid), myByHi(myThid)
          DO bi = myBxLo(myThid), myBxHi(myThid)
           CALL TIMEAVE_RESET(PO4obs,   Nr,  bi, bj, myThid)
