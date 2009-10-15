@@ -44,7 +44,7 @@ C     == Global variables ==
 #include "PARAMS.h"
 
 c**************************************
-#ifdef ALLOW_AUTODIFF_TAMC
+#ifdef ALLOW_AUTODIFF
 # ifndef ALLOW_AUTODIFF_OPENAD
 
 c These includes are needed for 
@@ -130,7 +130,7 @@ c They provide the fields to be stored.
 # include "ctrl_dummy.h"
 # include "cost.h"
 
-#endif /* ALLOW_AUTODIFF_TAMC */
+#endif /* ALLOW_AUTODIFF */
 c**************************************
 
 C     !INPUT/OUTPUT PARAMETERS:
@@ -224,7 +224,6 @@ c$openad INDEPENDENT(xx_kapgm)
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_CALL('INITIALISE_VARIA',myThid)
 #endif
-
 C--   Set initial conditions (variable arrays)
       CALL TIMER_START('INITIALISE_VARIA    [THE_MAIN_LOOP]', mythid)
       CALL INITIALISE_VARIA( mythid )
@@ -245,7 +244,7 @@ c     >>>>>>>>>>>>>>>>>>>>>>>>>>>  STARTS  <<<<<<<<<<<<<<<<<<<<<<<<<<<<
 c++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #ifndef ALLOW_AUTODIFF_OPENAD
 c++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# ifdef ALLOW_AUTODIFF_TAMC
+# ifdef ALLOW_AUTODIFF
 #  ifdef ALLOW_TAMC_CHECKPOINTING
 
       max_lev4=nTimeSteps/(nchklev_1*nchklev_2*nchklev_3)+1
@@ -405,7 +404,7 @@ c--   to nTimeSteps: (nchklev_0 .ge. nTimeSteps)
       DO iloop = 1, nTimeSteps
 
 #  endif /* ALLOW_TAMC_CHECKPOINTING */
-# endif /* ALLOW_AUTODIFF_TAMC */
+# endif /* ALLOW_AUTODIFF */
 
 #endif /* undef ALLOW_AUTODIFF_OPENAD */
 
@@ -461,7 +460,6 @@ c--     >>> Loop body start <<<
 c--     >>> Loop body end <<<
 #ifdef ALLOW_AUTODIFF
 # ifndef ALLOW_AUTODIFF_OPENAD
-#  ifdef ALLOW_AUTODIFF_TAMC 
 
 #   ifdef ALLOW_TAMC_CHECKPOINTING 
             endif
@@ -479,7 +477,6 @@ c--     >>> Loop body end <<<
 #   else /* ndef ALLOW_TAMC_CHECKPOINTING */
       enddo
 #   endif /* ALLOW_TAMC_CHECKPOINTING */
-#  endif /* ALLOW_AUTODIFF_TAMC */
 # else /* ALLOW_AUTODIFF_OPENAD */
          end do
       else
