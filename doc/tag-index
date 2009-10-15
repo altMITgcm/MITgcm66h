@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src:
+  add run-time parameters to check and/or mask initial Temp & Salt
 o pkg/ptracers:
   apply zonal filter (if used) to all passive tracers
 
