@@ -67,7 +67,7 @@ CEOP
       il=ilnblnk( xx_gen2d_file )
       write(fnamegen2d(1:80),'(2a,i10.10)')
      &     xx_gen2d_file(1:il),'.',optimcycle
-      call active_read_xy_loc( fnamegen2d, tmpfld2d, 1,
+      call active_read_xy( fnamegen2d, tmpfld2d, 1,
      &                      doglobalread, ladinit, optimcycle,
      &                      mythid, xx_gen2d_dummy )
 
