@@ -309,6 +309,10 @@ C--   Input files
       topoFile        = ' '
       hydrogSaltFile  = ' '
       hydrogThetaFile = ' '
+      maskIniTemp     = .TRUE.
+      maskIniSalt     = .TRUE.
+      checkIniTemp    = .TRUE.
+      checkIniSalt    = .TRUE.
       diffKrFile      = ' '
       zonalWindFile   = ' '
       meridWindFile   = ' '

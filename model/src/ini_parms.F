@@ -259,7 +259,9 @@ C--   Gridding parameters
 C--   Input files
       NAMELIST /PARM05/
      & bathyFile, topoFile, shelfIceFile,
-     & hydrogThetaFile, hydrogSaltFile, diffKrFile,
+     & diffKrFile,
+     & hydrogThetaFile, hydrogSaltFile,
+     & maskIniTemp, maskIniSalt, checkIniTemp, checkIniSalt,
      & zonalWindFile, meridWindFile,
      & thetaClimFile, saltClimFile,
      & surfQfile, surfQnetFile, surfQswFile, EmPmRfile, saltFluxFile,
@@ -271,7 +273,6 @@ C--   Input files
      & the_run_name
 CEOP
 
-C
       _BEGIN_MASTER(myThid)
 
 C     Defaults values for input parameters
