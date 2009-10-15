@@ -32,6 +32,10 @@ c     == global variables ==
 #ifdef ALLOW_CTRL
 # include "ctrl.h"
 #endif
+#ifdef ALLOW_DIC
+cph-- quickly for testing
+# include "DIC_COST.h"
+#endif
 
 c     == routine arguments ==
 
@@ -125,6 +129,11 @@ c--   Sum up all contributions.
 
 c--   Do global summation.
       _GLOBAL_SUM_RL( fc , myThid )
+
+#ifdef ALLOW_DIC
+cph-- quickly for testing
+      fc = totcost
+#endif
 
       write(standardmessageunit,'(A,D22.15)') ' global fc = ', fc
 
