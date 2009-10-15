@@ -56,10 +56,6 @@ C--   Initialise alpha & rain_ratio fields with fixed (& Uniform) values
          ENDDO
        ENDDO
       ENDDO
-      alpfe = 0. _d 0
-      kscav =  0. _d 0
-      ligand_stab =  0. _d 0
-      ligand_tot =  0. _d 0
 # ifdef ALLOW_COST
       totcost =  0. _d 0
 # endif
