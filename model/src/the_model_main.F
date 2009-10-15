@@ -494,7 +494,8 @@ c--   set default:
       lastdiva = .TRUE.
 
 #ifdef ALLOW_DEBUG
-      IF (debugMode) CALL DEBUG_ENTER('THE_MODEL_MAIN',myThid)
+C-    cannot test for debugMode which has not yet been set
+      CALL DEBUG_ENTER('THE_MODEL_MAIN',myThid)
 #endif
 
 #if defined(USE_PAPI) || defined(USE_PCL_FLOPS_SFP) || defined(USE_PCL_FLOPS) || defined(USE_PCL)
@@ -504,7 +505,8 @@ C--   This timer encompasses the whole code
       CALL TIMER_START('ALL                    [THE_MODEL_MAIN]',myThid)
 
 #ifdef ALLOW_DEBUG
-      IF (debugMode) CALL DEBUG_CALL('INITIALISE_FIXED',myThid)
+C-    cannot test for debugMode which has not yet been set
+      CALL DEBUG_CALL('INITIALISE_FIXED',myThid)
 #endif
 
 C--   Set model configuration (fixed arrays)
