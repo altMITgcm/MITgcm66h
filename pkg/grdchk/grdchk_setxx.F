@@ -572,7 +572,7 @@ c--   == end of interface ==
 #endif /* ALLOW_HFLUXM_CONTROL */
 
 #ifdef ALLOW_GEN2D_CONTROL
-      else if ( grdchkvarindex .eq. 20 ) then
+      else if ( grdchkvarindex .eq. 30 ) then
          il=ilnblnk( xx_gen2d_file )
          if ( theSimulationMode .EQ. TANGENT_SIMULATION ) then
             write(fname(1:80),'(3a,i10.10)')
