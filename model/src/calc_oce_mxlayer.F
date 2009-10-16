@@ -87,6 +87,7 @@ C--   First method :
 C     where the potential density (ref.lev=surface) is larger than
 C       surface density plus Delta_Rho = hMixCriteria * Alpha(surf)
 C     = density of water which is -hMixCriteria colder than surface water
+C     (see Kara, Rochford, and Hurlburt JGR 2000 for default criterion)
 
 c       hMixCriteria  = -0.8 _d 0
 c       dRhoSmall = 1. _d -6
