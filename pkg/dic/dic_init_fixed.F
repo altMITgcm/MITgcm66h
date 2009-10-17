@@ -95,7 +95,8 @@ C     Set other constant/flag
 #endif
 
 #ifdef DIC_BIOTIC
-#ifdef AD_SAFE
+#ifdef ALLOW_AUTODIFF
+cph nlev=Nr used in TAF store directive
       nlev=Nr
 #else
       k = 1

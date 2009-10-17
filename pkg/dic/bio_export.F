@@ -74,12 +74,11 @@ CEOP
 #endif
         DO j=jmin,jmax
          DO i=imin,imax
-C Fortran-90
-CRG C$TAF INIT bio_export = static, nlev
+cph: following init assumes nlev=nr
+cph: set in dic_init_fixed.F (ALLOW_AUTODIFF)
+C$TAF INIT bio_export = static, nr
 C FORTRAN-77 dynamic memory uses adstore adresto
 CRG C$TAF INIT bio_export = memory
-C FORTRAN-77 with know max of nlev
-C$TAF INIT bio_export = static, 10
 #ifdef READ_PAR
            lit=PAR(i,j,bi,bj)
 #elif (defined USE_QSW)
