@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint61x
 o adjoint: adding two new verification experiments
   * tutorial_global_biogeo: an online dic sensitivity experiment 
     (work with G. Forget)
