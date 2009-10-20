@@ -360,7 +360,19 @@ c--     Accumulate ubar and vbar.
         stop   ' ... stopped in cost_averagesfields; tauxbar part.'
       endif
 
-
+#else
+#ifdef ALLOW_DAILYSCAT_COST_CONTRIBUTION
+      call cost_averagesgeneric(
+     &     tauxbarfile,
+     &     tauxbar, ustress, xx_taux_mean_dummy,
+     &     first, last, startofday, endofday, inday,
+     &     sum1day, dayrec, 1, mythid )
+      call cost_averagesgeneric(
+     &     tauybarfile,
+     &     tauybar, vstress, xx_tauy_mean_dummy,
+     &     first, last, startofday, endofday, inday,
+     &     sum1day, dayrec, 1, mythid )
+#endif
 #endif
 
 #ifdef ALLOW_MEAN_HFLUX_COST_CONTRIBUTION

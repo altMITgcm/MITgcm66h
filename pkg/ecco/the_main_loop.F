@@ -1258,7 +1258,8 @@ c--   Compute cost function contribution of drifter's velocities.
 #endif
 
 c--   Compute cost function contribution of wind stress observations.
-#ifdef ALLOW_SCAT_COST_CONTRIBUTION
+#if (defined (ALLOW_SCAT_COST_CONTRIBUTION) || \
+     defined (ALLOW_DAILYSCAT_COST_CONTRIBUTION) )
 #ifndef DISABLE_DEBUGMODE
       IF ( debugLevel .GE. debLevB ) 
      &    CALL DEBUG_CALL('cost_scat',myThid)

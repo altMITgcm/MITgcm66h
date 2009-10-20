@@ -307,7 +307,8 @@ c     &                         optimcycle, mythid, xx_wbar_mean_dummy)
       enddo
 #endif
 
-#ifdef ALLOW_SCAT_COST_CONTRIBUTION
+#if (defined (ALLOW_SCAT_COST_CONTRIBUTION) || \
+     defined (ALLOW_DAILYSCAT_COST_CONTRIBUTION) )
 c--   Save tauxbar, tauybar on file.
       ilps=ilnblnk( tauxbarfile )
       write(fnametauxbar,'(2a,i10.10)')
@@ -320,7 +321,11 @@ c--   Save tauxbar, tauybar on file.
       write(adfnametauybar,'(3a,i10.10)')
      &     yadprefix, tauybarfile(1:ilps), '.', optimcycle
 
+#ifdef ALLOW_SCAT_COST_CONTRIBUTION
       do irec = 1, nmonsrec
+#else
+      do irec = 1, ndaysrec
+#endif
 c        call active_write_xy( fnametauxbar, tmpfld2d, irec,
 c     &                        optimcycle, mythid, xx_taux_mean_dummy )
 c        call active_write_xy( fnametauybar, tmpfld2d, irec,
