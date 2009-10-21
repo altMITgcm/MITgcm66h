@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o autodiff: fix seaice fields in g_common.h (left over from 3 to 1 level
+  transition in checkpoint61r)
+
 checkpoint61x
 o adjoint: adding two new verification experiments
   * tutorial_global_biogeo: an online dic sensitivity experiment 
