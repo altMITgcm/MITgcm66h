@@ -157,17 +157,13 @@ C--   heimbach@mit.edu 11-Jan-2001
 #endif
 
 #ifdef ALLOW_SEAICE
-      _RL adarea(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
-      common /adseaice_dynvars_1/ adarea
-c
-      _RL adheff(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
-      _RL adhsnow(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
-      common /adseaice_trans/ adheff, adhsnow
-# ifdef SEAICE_ALLOW_DYNAMICS
-      _RL aduice(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
-      _RL advice(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
-      common /adseaice_dynvars_2/ aduice, advice
-# endif
+      _RL adarea  (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL adheff  (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL adhsnow (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL aduice  (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL advice  (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      common /adseaice_dynvars_1/ 
+     &     adarea, adheff, adhsnow, aduice, advice
 #endif
 
 #ifdef ALLOW_DEPTH_CONTROL
