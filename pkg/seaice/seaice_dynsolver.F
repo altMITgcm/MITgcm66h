@@ -272,6 +272,7 @@ C Calculate ocean surface stress
       CALL SEAICE_OCEAN_STRESS ( myTime, myIter, myThid )
 
 #ifdef SEAICE_ALLOW_DYNAMICS
+#ifdef SEAICE_ALLOW_CLIPVELS
       IF ( SEAICEuseDYNAMICS .AND. SEAICE_clipVelocities) THEN
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE uice = comlev1, key=ikey_dynamics, kind=isbyte
@@ -293,6 +294,7 @@ c in open water areas (drift of zero thickness ice)
         ENDDO
        ENDDO
       ENDIF
+#endif /* SEAICE_ALLOW_CLIPVELS */
 #endif /* SEAICE_ALLOW_DYNAMICS */
 
 #endif /* SEAICE_CGRID */

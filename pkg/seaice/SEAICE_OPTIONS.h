@@ -83,6 +83,9 @@ C     in order to use ETAN instead.
 
 C--   When set use MAX_HEFF to cap sea ice thickness in seaice_growth
 #undef SEAICE_CAP_HEFF
+C--   When set use SEAICE_clipVelocties = .true., to clip U/VICE at 40cm/s,
+C--   not recommended
+#undef SEAICE_ALLOW_CLIPVELS
 
 #endif /* SEAICE_OPTIONS_H */
 
