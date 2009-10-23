@@ -5,6 +5,7 @@ $Name$
     ==============================
 
 o pkg/seaice/autodiff:
+ - modify computation and store zetaC/Z in seaice_evp for TAF
  - add CPP-flag SEAICE_ALLOW_CLIPVELS (undefined by default)
  - change seaice_calc_viscosities/strainraties for better 
    vectorization after AD by TAF
