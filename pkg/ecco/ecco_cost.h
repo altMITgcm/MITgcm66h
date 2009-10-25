@@ -35,7 +35,7 @@ c     monrec  - number of averaged theta and salinity records.
 c     Number of Generic Cost terms:
 c     =============================
       INTEGER NGENCOST
-      PARAMETER ( NGENCOST=10 )
+      PARAMETER ( NGENCOST=20 )
 
 c     Number of days: (hard-coded to set up some vector dimensions
 c     =============================
@@ -895,6 +895,8 @@ c     velerrfile            - representation error
      &                salt0errfile,
      &                temp0errfile,
      &                vel0errfile,
+     &                ssterrfile,
+     &                ssserrfile,
      &                atemp_errfile,
      &                aqh_errfile,
      &                precip_errfile,
@@ -942,6 +944,8 @@ c     velerrfile            - representation error
       character*(MAX_LEN_FNAM) salt0errfile
       character*(MAX_LEN_FNAM) temp0errfile
       character*(MAX_LEN_FNAM) vel0errfile
+      character*(MAX_LEN_FNAM) ssterrfile
+      character*(MAX_LEN_FNAM) ssserrfile
       character*(MAX_LEN_FNAM) atemp_errfile
       character*(MAX_LEN_FNAM) aqh_errfile
       character*(MAX_LEN_FNAM) precip_errfile

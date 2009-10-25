@@ -76,6 +76,7 @@ c--   Read the namelist input.
      &                   curmtrufile,curmtrvfile,
      &                   salterrfile, temperrfile, velerrfile,
      &                   salt0errfile, temp0errfile, vel0errfile,
+     &                   ssterrfile, ssserrfile,
      &                   hflux_errfile, sflux_errfile,
      &                   tauu_errfile, tauv_errfile,
      &                   atemp_errfile, aqh_errfile,
@@ -212,6 +213,8 @@ c--     Set default values.
         salt0errfile          =    ' '
         temp0errfile          =    ' '
         vel0errfile           =    ' '
+        ssterrfile            =    ' '
+        ssserrfile            =    ' '
         hflux_errfile         =    ' '
         sflux_errfile         =    ' '
         tauu_errfile          =    ' '
