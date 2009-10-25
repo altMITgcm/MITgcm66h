@@ -280,7 +280,7 @@ c--   only do interior, and exchange outside
      & doglobalread, ladinit, optimcycle, mythid, xxDummyCur )
 
 
-#ifndef ALLOW_SMOOTH_CORREL3D
+#ifndef ALLOW_SMOOTH_CORREL2D
 c avoid xx larger than boundsVec(5) X uncertainty
       if ( boundsVec(5).GT.0.) then
       do bj = jtlo,jthi

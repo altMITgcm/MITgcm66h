@@ -248,6 +248,10 @@ C--   in order to provide the weight files
       IF (useSEAICE) CALL SEAICE_COST_INIT_FIXED( myThid )
 #endif
 
+#ifdef ALLOW_SMOOTH 
+      CALL SMOOTH_INIT_FIXED(myThid)
+#endif /* ALLOW_SMOOTH */
+
 #if (defined (ALLOW_ECCO) && defined (ALLOW_COST))
 C--   Initialise ecco-specific cost function.
 C--   This needs to preceed the call ctrl_init
