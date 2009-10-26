@@ -317,6 +317,7 @@ cph)
           guDissip(i,j)  = 0. _d 0
           gvDissip(i,j)  = 0. _d 0
 #ifdef ALLOW_AUTODIFF_TAMC
+          phiHydLow(i,j,bi,bj) = 0. _d 0
 # ifdef NONLIN_FRSURF
 #  ifndef DISABLE_RSTAR_CODE
           dWtransC(i,j,bi,bj) = 0. _d 0
@@ -398,6 +399,8 @@ C--       kDown  Cycles through 2,1 to point to current layer
          kkey = (idynkey-1)*Nr + k
 c
 CADJ STORE totphihyd (:,:,k,bi,bj) 
+CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ STORE phihydlow (:,:,bi,bj)
 CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
 CADJ STORE theta (:,:,k,bi,bj) 
 CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
