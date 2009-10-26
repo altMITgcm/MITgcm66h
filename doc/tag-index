@@ -5,6 +5,9 @@ $Name$
     ==============================
 
 o pkg/seaice/autodiff:
+ - add CPP flag to include clipping of zeta in EVP code;
+   although clipping of zeta is not necessary for EVP and not recommended
+   it was done by default, now clipping is disabled by default
  - modify computation and store zetaC/Z in seaice_evp for TAF
  - add CPP-flag SEAICE_ALLOW_CLIPVELS (undefined by default)
  - change seaice_calc_viscosities/strainraties for better 
