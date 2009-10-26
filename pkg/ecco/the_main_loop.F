@@ -1205,6 +1205,13 @@ CADJ STORE prof_etan_mean = tapelev_init, key=1
 # endif
 #endif
 
+#ifdef ALLOW_BP_COST_CONTRIBUTION
+c--   Compute bottom pressure cost
+      call timer_start('cost_bp    [ECCO SPIN-DOWN]', mythid)
+      call cost_bp( myiter, mytime, mythid )
+      call timer_stop ('cost_bp    [ECCO SPIN-DOWN]', mythid)
+#endif
+
 c--   Compute cost function contribution of Temperature and Salinity.
 #ifndef DISABLE_DEBUGMODE
       IF ( debugLevel .GE. debLevB ) 

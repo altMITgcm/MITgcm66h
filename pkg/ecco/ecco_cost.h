@@ -897,6 +897,7 @@ c     velerrfile            - representation error
      &                vel0errfile,
      &                ssterrfile,
      &                ssserrfile,
+     &                bperrfile,
      &                atemp_errfile,
      &                aqh_errfile,
      &                precip_errfile,
@@ -946,6 +947,7 @@ c     velerrfile            - representation error
       character*(MAX_LEN_FNAM) vel0errfile
       character*(MAX_LEN_FNAM) ssterrfile
       character*(MAX_LEN_FNAM) ssserrfile
+      character*(MAX_LEN_FNAM) bperrfile
       character*(MAX_LEN_FNAM) atemp_errfile
       character*(MAX_LEN_FNAM) aqh_errfile
       character*(MAX_LEN_FNAM) precip_errfile
