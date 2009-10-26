@@ -64,6 +64,12 @@ C     i,j :: Loop counters
       PARAMETER ( zero= 0. _d 0 , one= 1. _d 0 , half= .5 _d 0 )
 CEOP
 
+         DO j=jMin,jMax
+          DO i=iMin,iMax
+             phiHydLow(i,j,bi,bj) = 0. _d 0
+          ENDDO
+         ENDDO
+
       IF ( buoyancyRelation .EQ. 'OCEANIC' ) THEN
 
 C----- Compute bottom pressure deviation from gravity*rho0*H
