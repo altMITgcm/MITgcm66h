@@ -99,7 +99,7 @@ C     MDSWRITEFIELDXZ does not know about useSingleCPUio, so the faster
 C     method that works for .not.useSingleCPUio cannot be used
        nrec_nl = 0
       else
-       nrec_nl = int(ncvarrecs(ivartype)/Ny)
+       nrec_nl = int(ncvarrecs(ivartype)/Nx)
       endif
 
       do irec = 1, nrec_nl
