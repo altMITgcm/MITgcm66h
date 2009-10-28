@@ -12,7 +12,7 @@ o pkg/seaice/autodiff:
  - add CPP-flag SEAICE_ALLOW_CLIPVELS (undefined by default)
  - change seaice_calc_viscosities/strainraties for better
    vectorization after AD by TAF
- - rearrange common blocks in SEAICE.h once again for easier dumps of 
+ - rearrange common blocks in SEAICE.h once again for easier dumps of
    adjoint output, adjust adcommon.h and g_common.h
  - change flux form of default advection scheme for better vectorization
    of adjoint code
