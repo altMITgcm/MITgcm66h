@@ -14,7 +14,7 @@ export LC_ALL="en_US.UTF-8"
 #  Turn off stack limit for FIZHI & AD-tests
 ulimit -s unlimited
 
-TESTDIR="/scratch/jmc/test_"`hostname`
+TESTDIR="/scratch/jmc/test_"`hostname -s`
 MC=10
 checkOut=1
 sepDir=1
