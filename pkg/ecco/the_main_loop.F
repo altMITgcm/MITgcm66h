@@ -1189,7 +1189,11 @@ c--   Compute cost function contribution of SSH.
       IF ( debugLevel .GE. debLevB )
      &    CALL DEBUG_CALL('cost_ssh',myThid)
 # endif
-# ifdef ALLOW_NEW_SSH_COST
+# if (defined(ALLOW_SSHV4_COST))
+      call timer_start('cost_sshv4         [ECCO SPIN-DOWN]', mythid)
+      call cost_sshv4( myiter, mytime, mythid )
+      call timer_stop ('cost_sshv4         [ECCO SPIN-DOWN]', mythid)
+# elif (defined(ALLOW_NEW_SSH_COST))
       call timer_start('cost_ssh_new       [ECCO SPIN-DOWN]', mythid)
       call cost_ssh_new( myiter, mytime, mythid )
       call timer_stop ('cost_ssh_new       [ECCO SPIN-DOWN]', mythid)
