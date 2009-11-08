@@ -74,8 +74,8 @@ C     == Local variables ==
 CEOP
 
 #ifdef ALLOW_NONHYDROSTATIC
-c       zeroPsNH = .FALSE.
-        zeroPsNH = exactConserv
+        zeroPsNH = .FALSE.
+c       zeroPsNH = exactConserv
 #else
         cg3d_b(1) = 0.
 #endif
