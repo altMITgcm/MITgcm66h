@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o verification/vermix:
+  - change vermix to a more "classical" 1d column with high vertical reoslution,
+    seasonal heat flux forcing and constant wind forcing --> update outputs
 o pkg/seaice
  - fix diagnostics of principal stress components for EVP
  - add optional diagnostics of non-linear convergence for LSOR solver
