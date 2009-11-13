@@ -245,6 +245,16 @@ function [S] = rdmnc_local(nc,varlist,iters,S,dBug)
         if dBug > 1, fprintf(' %i',size(S.(cvar))); fprintf('\n'); end
  
         S.attributes.(cvar)=read_att(nc{cvar});
+	% replace missing or FillValues with NaN
+	attnames=fieldnames(S.attributes.(cvar));
+	if ~isempty(attnames)
+	  for k=1:length(attnames)
+	    if strcmp(attnames{k},'missing_value') ...
+		  | strcmp(attnames{k},'FillValue_')
+	      S.(cvar)(S.(cvar) == S.attributes.(cvar).(attnames{k})) = NaN;
+	    end
+	  end
+	end
 	end
 
 if isempty(S)
