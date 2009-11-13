@@ -315,6 +315,8 @@ C--   Write to check :
         CALL PRINT_MESSAGE(msgBuf, stdUnit, SQUEEZE_RIGHT, myThid )
        ENDDO
       ENDIF
+C--   Write reference density to binary file :
+        CALL WRITE_GLVEC_RL( 'RhoRef',' ',rhoRef, Nr, -1, myThid )
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
