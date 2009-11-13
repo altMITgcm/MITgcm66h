@@ -121,6 +121,13 @@ C-   need to put this one in GM namelist :
       GM_bigSlope = 1. _d +02
 
 #ifdef ALLOW_AUTODIFF_TAMC
+#ifdef TARGET_NEC_SX
+C     TAF thinks for some reason that depthZ is an active variable.
+C     While this does not make the adjoint code wrong, the resulting
+C     code inhibits vectorization in some cases so we tell TAF here
+C     that depthZ is actually a passive grid variable that needs no adjoint
+CADJ PASSIVE depthz
+#endif /* TARGET_NEC_SX */
       act1 = bi - myBxLo(myThid)
       max1 = myBxHi(myThid) - myBxLo(myThid) + 1
       act2 = bj - myByLo(myThid)
