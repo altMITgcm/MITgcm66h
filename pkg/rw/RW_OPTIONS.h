@@ -16,6 +16,10 @@ C use READ_MFLDS S/R in "safe" mode (set/check/unset for each file to read)
 C involves more thread synchronization (could slow down multi-threaded run)
 #define RW_SAFE_MFLDS
 
+C disable writing of small-overlap size array (to reduce memory size 
+C   since those S/R do a local copy to 3-D full-size overlap array)
+#undef RW_DISABLE_SMALL_OVERLAP
+
 #endif /* ALLOW_RW */
 #endif /* RW_OPTIONS_H */
 
