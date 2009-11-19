@@ -493,6 +493,8 @@ c     CALL PRINT_MESSAGE( msgBuf, ioUnit, SQUEEZE_RIGHT, myThid )
      &'   /* CD coupling time-scale ( s ) */')
       CALL WRITE_0D_RL( rCD, INDEX_NONE,'rCD =',
      &'   /* Normalised CD coupling parameter */')
+      CALL WRITE_0D_RL( epsAB_CD, INDEX_NONE,'epsAB_CD =',
+     &  ' /* AB-2 stabilizing weight for CD-scheme*/')
       ENDIF
       I = ILNBLNK(pickupSuff)
       IF ( I.GT.0 ) THEN
