@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/obcs:
+ - fix bug in initialisation (broken since Oct 1rst modification) 
+   for useOBCSprescribe without useEXF.
+
 checkpoint61y
 o pkg/seaice
  - change (once again) the discretization for the evp solver: rather than
