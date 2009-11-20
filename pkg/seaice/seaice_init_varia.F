@@ -132,6 +132,9 @@ C
 #endif
           saltWtrIce(i,j,bi,bj) = 0. _d 0
           frWtrIce(i,j,bi,bj)   = 0. _d 0
+#ifdef ALLOW_MEAN_SFLUX_COST_CONTRIBUTION
+          frWtrAtm(i,j,bi,bj)   = 0. _d 0
+#endif
          ENDDO
         ENDDO
        ENDDO
@@ -140,22 +143,24 @@ C
 C--   Initialize (variable) grid info. As long as we allow masking of
 C--   velocities outside of ice covered areas (in seaice_dynsolver)
 C--   we need to re-initialize seaiceMaskU/V here for TAF/TAMC
-#ifdef SEAICE_CGRID
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
         DO j=1-OLy+1,sNy+OLy
          DO i=1-OLx+1,sNx+OLx
+#ifdef SEAICE_CGRID
           seaiceMaskU(i,j,bi,bj)=   0.0 _d 0
           seaiceMaskV(i,j,bi,bj)=   0.0 _d 0
           mask_uice=HEFFM(i,j,bi,bj)+HEFFM(i-1,j  ,bi,bj)
           IF(mask_uice.GT.1.5 _d 0) seaiceMaskU(i,j,bi,bj)=1.0 _d 0
           mask_uice=HEFFM(i,j,bi,bj)+HEFFM(i  ,j-1,bi,bj)
           IF(mask_uice.GT.1.5 _d 0) seaiceMaskV(i,j,bi,bj)=1.0 _d 0
+#else
+          UVM(i,j,bi,bj)=   0.0 _d 0
+#endif /* SEAICE_CGRID */
          ENDDO
         ENDDO
        ENDDO
       ENDDO
-#endif /* SEAICE_CGRID */
 
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)

@@ -62,10 +62,14 @@ c--   Initialize the tiled cost function contributions.
         do bi = itlo,ithi
           objf_ice(bi,bj)     = 0. _d 0
           objf_smrarea(bi,bj) = 0. _d 0
+          objf_smrsst(bi,bj)  = 0. _d 0
+          objf_smrsss(bi,bj)  = 0. _d 0
           objf_ice_export(bi,bj) = 0. _d 0
 c
           num_ice(bi,bj)      = 0. _d 0
           num_smrarea(bi,bj)  = 0. _d 0
+          num_smrsst(bi,bj)   = 0. _d 0
+          num_smrsss(bi,bj)   = 0. _d 0
         enddo
       enddo
 

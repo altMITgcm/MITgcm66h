@@ -1,6 +1,8 @@
 C $Header$
 C $Name$
 
+CADJ STORE hsnow      = comlev1, key=ikey_dynamics, kind=isbyte
+
 #ifdef SEAICE_MULTICATEGORY
 CADJ STORE tices      = comlev1, key=ikey_dynamics, kind=isbyte
 #endif
