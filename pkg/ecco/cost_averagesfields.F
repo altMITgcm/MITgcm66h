@@ -431,6 +431,7 @@ cph: these are annual means
 #ifdef ALLOW_SEAICE
       if (useSEAICE) then
 # ifdef ALLOW_SEAICE_COST_SMR_AREA
+c
 #ifdef ALLOW_DEBUG
       IF ( debugLevel .GE. debLevB )
      &    CALL DEBUG_CALL('cost_averagesgeneric smrareabar',myThid)
@@ -440,6 +441,29 @@ cph: these are annual means
      &     smrareabar, area, xx_smrareabar_mean_dummy,
      &     first, last, startofday, endofday, inday,
      &     sum1day, dayrec, 1, mythid )
+c
+#ifdef ALLOW_DEBUG
+      IF ( debugLevel .GE. debLevB )
+     &    CALL DEBUG_CALL('cost_averagesgeneric smrsstbar',myThid)
+#endif
+      call cost_averagesgeneric(
+     &     smrsstbarfile, 
+     &     smrsstbar, theta(1-Olx,1-Oly,1,1,1), 
+     &     xx_smrsstbar_mean_dummy,
+     &     first, last, startofday, endofday, inday,
+     &     sum1day, dayrec, 1, mythid )
+c
+#ifdef ALLOW_DEBUG
+      IF ( debugLevel .GE. debLevB )
+     &    CALL DEBUG_CALL('cost_averagesgeneric smrsssbar',myThid)
+#endif
+      call cost_averagesgeneric(
+     &     smrsssbarfile, 
+     &     smrsssbar, salt(1-Olx,1-Oly,1,1,1), 
+     &     xx_smrsssbar_mean_dummy,
+     &     first, last, startofday, endofday, inday,
+     &     sum1day, dayrec, 1, mythid )
+c
 # endif
       endif
 #endif /* ALLOW_SEAICE */

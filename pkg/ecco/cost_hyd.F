@@ -220,6 +220,9 @@ cph      call cost_sss   ( myiter, mytime, mythid )
 
 #ifdef ALLOW_SEAICE_COST_SMR_AREA
 # ifdef ALLOW_SEAICE_COST_AREASST
+cph this block out of date;
+cph similar call moved to seaice_cost_driver and 
+cph and extended using I. Fenty SST, SSS extensions
 
       write(msgbuf,'(a)') 'ph-cost call seaice_cost_areasst'
       call print_message( msgbuf, standardmessageunit,

@@ -10,6 +10,8 @@ c
 CADJ STORE xx_psbar_mean_dummy = onetape
 CADJ STORE xx_tbar_mean_dummy  = onetape
 CADJ STORE xx_sbar_mean_dummy  = onetape
+CADJ STORE xx_tbar_daily_mean_dummy  = onetape
+CADJ STORE xx_sbar_daily_mean_dummy  = onetape
 CADJ STORE xx_sstbar_mean_dummy  = onetape
 CADJ STORE xx_ubar_mean_dummy  = onetape
 CADJ STORE xx_vbar_mean_dummy  = onetape
@@ -26,6 +28,8 @@ CADJ STORE xx_swdown_mean_dummy = onetape
 CADJ STORE xx_uwind_mean_dummy = onetape
 CADJ STORE xx_vwind_mean_dummy = onetape
 CADJ STORE xx_smrareabar_mean_dummy = onetape
+CADJ STORE xx_smrsstbar_mean_dummy = onetape
+CADJ STORE xx_smrsssbar_mean_dummy = onetape
 #ifdef ALLOW_PROFILES
 CADJ STORE profiles_dummy = tapelev_init, key = 1
 #endif
