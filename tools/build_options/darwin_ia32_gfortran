@@ -8,6 +8,7 @@
 CPP='/usr/bin/cpp -traditional -P'
 FC=gfortran
 ###CC=gcc
+CFLAGS='-arch i386'
 LINK=gfortran
 NOOPTFLAGS='-O0'
 EXTENDED_SRC_FLAG='-ffixed-line-length-132'
