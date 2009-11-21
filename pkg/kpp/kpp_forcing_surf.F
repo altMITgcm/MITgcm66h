@@ -231,10 +231,10 @@ cph)
 
 #ifdef ALLOW_DIAGNOSTICS
       IF ( useDiagnostics ) THEN
-         CALL DIAGNOSTICS_FILL(bo     ,'KPPbo   ',0,1,1,bi,bj,myThid)
-         CALL DIAGNOSTICS_FILL(bosol  ,'KPPbosol',0,1,1,bi,bj,myThid)
+         CALL DIAGNOSTICS_FILL(bo     ,'KPPbo   ',0,1,2,bi,bj,myThid)
+         CALL DIAGNOSTICS_FILL(bosol  ,'KPPbosol',0,1,2,bi,bj,myThid)
 #ifdef ALLOW_SALT_PLUME
-         CALL DIAGNOSTICS_FILL(boplume,'KPPboplm',0,1,1,bi,bj,myThid)
+         CALL DIAGNOSTICS_FILL(boplume,'KPPboplm',0,1,2,bi,bj,myThid)
 #endif /* ALLOW_SALT_PLUME */
       ENDIF
 #endif /* ALLOW_DIAGNOSTICS */

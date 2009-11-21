@@ -518,7 +518,7 @@ C     and salt are not passed to kppmix and are thus not available there.
      O     , vddiff
      U     , ghat
      O     , hbl
-     I     , mytime, myIter, mythid )
+     I     , bi, bj, mytime, myIter, mythid )
 
 c-----------------------------------------------------------------------
 c     zero out land values and transfer to global variables
