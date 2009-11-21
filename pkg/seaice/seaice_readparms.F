@@ -194,8 +194,6 @@ C     SEAICE_latentIce   = 1.75 _d -03 * 2.834 _d 06 * 1.3
       SEAICE_snowThick   = 0.15   _d 0
       SEAICE_shortwave   = 0.30   _d 0
       SEAICE_freeze      = -1.96  _d 0
-      SEAICE_clamp_salt  = 27.5   _d 0
-      SEAICE_clamp_theta = 0.0001 _d 0
       SEAICE_salinity    = 0.0    _d 0
       SEAICE_gamma_t     = UNSET_RL
       SEAICE_gamma_t_frz = UNSET_RL
@@ -236,6 +234,8 @@ C     Euler time stepping scheme of Zhang+Hibler (1997)
       costIceEnd1       =  0
       costIceEnd2       =  0
       cost_ice_flag     =  1
+      SEAICE_clamp_salt  = 27.5   _d 0
+      SEAICE_clamp_theta = 0.0001 _d 0
 c
       mult_smrsst       =  0. _d 0
       mult_smrsss       =  0. _d 0
