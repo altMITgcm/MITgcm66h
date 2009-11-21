@@ -245,7 +245,6 @@ c
       smrsstbarfile     =  'smrsstbar'
       smrsssbarfile     =  'smrsssbar'
       smrareabarfile    =  'smrareabar'
-      smrareabarfile    =  'smrareabar'
       smrareadatfile    =  ' '
       smrarea_errfile   =  ' '
 # ifdef ALLOW_CAL
