@@ -67,3 +67,18 @@ C            :: this field is superfluous if your cg2d is self-adjoint.
       COMMON /CG2D_I_WK_R2/ cg2d_z
       _RL  cg2d_z(1-1:sNx+1,1-1:sNy+1,nSx,nSy)
 #endif /* ALLOW_CG2D_NSA */
+
+#ifdef ALLOW_SRCG
+C--   COMMON /CG2D_I_WK_R3/  Work array common block
+C     cg2d_y :: residual scaled by preconditioner
+C     cg2d_v :: z times the operator
+C     cg2d_q :: Intermediate matrix-vector product term
+C     cg2d_r ::   *same*
+C     cg2d_s ::   *same*
+C     sumPhi :: needed to call global_vec_sum_r8 when mutli-threaded 
+      COMMON /CG2D_I_WK_R3/
+     & cg2d_y,cg2d_v,sumPhi
+      _RL  cg2d_y(1-1:sNx+1,1-1:sNy+1,nSx,nSy)
+      _RL  cg2d_v(1-1:sNx+1,1-1:sNy+1,nSx,nSy)
+      _RL  sumPhi(3,nSx,nSy)
+#endif /* ALLOW_SRCG */

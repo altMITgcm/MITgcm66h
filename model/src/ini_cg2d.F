@@ -74,6 +74,10 @@ C     but safer when EXCH do not fill all the overlap regions.
 #ifdef ALLOW_CG2D_NSA
           cg2d_z(I,J,bi,bj) = 0. _d 0
 #endif /* ALLOW_CG2D_NSA */
+#ifdef ALLOW_SRCG
+          cg2d_y(I,J,bi,bj) = 0. _d 0
+          cg2d_v(I,J,bi,bj) = 0. _d 0
+#endif /*  ALLOW_SRCG */
          ENDDO
         ENDDO
        ENDDO

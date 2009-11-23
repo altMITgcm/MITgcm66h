@@ -269,6 +269,10 @@ C     checkIniSalt   :: check for points with identically zero initial salinity
 C     useRealFreshWaterFlux :: if True (=Natural BCS), treats P+R-E flux
 C                         as a real Fresh Water (=> changes the Sea Level)
 C                         if F, converts P+R-E to salt flux (no SL effect)
+C- Pressure solver related parameters (PARM02)
+C     useSRCGSolver  :: Set to true to use conjugate gradient
+C                       solver with single reduction (only one call of
+C                       s/r mpi_allreduce), default is false
 C- Time-stepping params:
 C     rigidLid            :: Set to true to use rigid lid
 C     implicitFreeSurface :: Set to true to use implicit free surface
@@ -363,7 +367,8 @@ C                        & Last iteration, in addition multiple of dumpFreq iter
      & writePickupAtEnd,
      & timeave_mdsio, snapshot_mdsio, monitor_stdio,
      & outputTypesInclusive, dumpInitAndLast, debugMode,
-     & inAdMode, inAdTrue, inAdFalse, inAdExact
+     & inAdMode, inAdTrue, inAdFalse, inAdExact,
+     & useSRCGSolver
 
       LOGICAL fluidIsAir
       LOGICAL fluidIsWater
@@ -455,6 +460,7 @@ C                        & Last iteration, in addition multiple of dumpFreq iter
       LOGICAL dumpInitAndLast
       LOGICAL debugMode
       LOGICAL inAdMode, inAdTrue, inAdFalse, inAdExact
+      LOGICAL useSRCGSolver
 
 C--   COMMON /PARM_R/ "Real" valued parameters used by the model.
 C     cg2dTargetResidual
