@@ -201,6 +201,16 @@ C--    Get MPI id for neighboring procs.
      &   .AND. mpiGridSpec(1) .LT. 0 )
      &  mpiGridSpec(1) = nPx-1
        mpiGridSpec(2) = mpiPy
+
+#ifdef ALLOW_NEST_CHILD
+      IF ( useNEST_CHILD) THEN
+       IF ( mpiPeriodicity(1) .EQ. _mpiFALSE_
+     &      .AND. mpiGridSpec(1) .LT. 0 )
+     &      mpiGridSpec(1) =  0
+      ENDIF
+#endif /* ALLOW_NEST_CHILD */
+
+
        CALL MPI_CART_RANK( mpiComm, mpiGridSpec, mpiPidW , mpiRC )
        IF ( mpiRC .NE. MPI_SUCCESS ) THEN
         eeBootError = .TRUE.
@@ -216,6 +226,15 @@ C--    Get MPI id for neighboring procs.
      &   .AND. mpiGridSpec(1) .GT. nPx-1 )
      &  mpiGridSpec(1) = 0
        mpiGridSpec(2) = mpiPy
+
+#ifdef ALLOW_NEST_CHILD
+      IF ( useNEST_CHILD) THEN
+       IF ( mpiPeriodicity(1) .EQ. _mpiFALSE_
+     &   .AND. mpiGridSpec(1) .GT. nPx-1 )
+     &    mpiGridSpec(1) = nPx-1
+      ENDIF
+#endif /* ALLOW_NEST_CHILD */
+
        CALL MPI_CART_RANK( mpiComm, mpiGridSpec, mpiPidE , mpiRC )
        IF ( mpiRC .NE. MPI_SUCCESS ) THEN
         eeBootError = .TRUE.
