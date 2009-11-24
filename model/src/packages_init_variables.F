@@ -68,6 +68,9 @@ C       |-- BULKF_INIT_VARIA
 C       |
 C       |-- THSICE_INI_VARS
 C       |
+C       |-- NEST_CHILD_INIT_VARIA
+C       |-- NEST_PARENT_INIT_VARIA
+C       |
 C       |-- CPL_INI_VARS
 C       |
 C       |-- ATM2D_INIT_VARS
@@ -352,6 +355,28 @@ C--   Open boundaries data
         CALL THSICE_INI_VARS( myThid)
       ENDIF
 #endif /* ALLOW_THSICE */
+
+#ifdef ALLOW_NEST_CHILD
+C--   Initialize NEST in CHILD configuration
+      IF (useNEST_CHILD) THEN
+#ifdef ALLOW_DEBUG
+       IF (debugMode)
+     &       CALL DEBUG_CALL('NEST_CHILD_INIT_VARIA',myThid)
+#endif
+       CALL NEST_CHILD_INIT_VARIA( myThid )
+      ENDIF
+#endif /* ALLOW_NEST_CHILD */
+C
+#ifdef ALLOW_NEST_PARENT
+C--   Initialize NEST in PARENT configuration
+      IF (useNEST_PARENT) THEN
+#ifdef ALLOW_DEBUG
+       IF (debugMode)
+     &       CALL DEBUG_CALL('NEST_PARENT_INIT',myThid)
+#endif
+       CALL NEST_PARENT_INIT_VARIA( myThid )
+      ENDIF
+#endif /* ALLOW_NEST_PARENT */
 
 #ifdef COMPONENT_MODULE
       IF (useCoupler) THEN

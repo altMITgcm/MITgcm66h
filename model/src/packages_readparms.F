@@ -96,6 +96,9 @@ C       |-- PROFILES_READPARMS
 C       |
 C       |-- FLT_READPARMS
 C       |
+C       |-- NEST_CHILD_READPARMS
+C       |-- NEST_PARENT_READPARMS
+C       |
 C       |-- CPL_READPARMS
 C       |
 C       |-- FIZHI_READPARMS
@@ -267,7 +270,7 @@ C--   Custom routine to set forcing fields.
 
 #ifdef ALLOW_SMOOTH
 c--   Initialize SMOOTH package parameters
-      CALL SMOOTH_READPARMS ( myThid )
+      IF ( useSMOOTH ) CALL SMOOTH_READPARMS ( myThid )
 #endif
 
 #ifdef ALLOW_ECCO
@@ -283,6 +286,16 @@ c--   Initialize PROFILES package parameters
 #ifdef ALLOW_FLT
       IF ( useFLT ) CALL FLT_READPARMS( myThid )
 #endif /* ALLOW_FLT */
+
+#ifdef ALLOW_NEST_CHILD
+C--    Initialize nest(ing) package parameters x CHILD
+       IF (useNEST_CHILD) CALL NEST_CHILD_READPARMS ( myThid )
+#endif /* ALLOW_NEST_CHILD */
+C
+#ifdef ALLOW_NEST_PARENT
+C--    Initialize nest(ing) package parameters x PARENT
+       IF (useNEST_PARENT) CALL NEST_PARENT_READPARMS ( myThid )
+#endif /* ALLOW_NEST_PARENT */
 
 #ifdef COMPONENT_MODULE
 C--   set Coupling parameters
