@@ -221,6 +221,19 @@ C       code is being compiled
       ENDIF
 #endif
 
+#ifndef ALLOW_SRCG
+      IF (useSRCGSolver) THEN
+        WRITE(msgBuf,'(A,A)')
+     &  'CONFIG_CHECK: useSRCGSolver = .TRUE., but single reduction ',
+     &  'code is not compiled.'
+        CALL PRINT_ERROR( msgBuf , 1)
+        WRITE(msgBuf,'(A)')
+     &  'CONFIG_CHECK: Re-compile with ALLOW_SRCG defined'
+        CALL PRINT_ERROR( msgBuf , 1)
+        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
+      ENDIF
+#endif /* ALLOW_SRCG */
+
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 C--   Check parameter consistency :

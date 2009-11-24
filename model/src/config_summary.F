@@ -451,6 +451,8 @@ c     CALL PRINT_MESSAGE( msgBuf, ioUnit, SQUEEZE_RIGHT, myThid )
      &'   /* CG2d target residual [W units] */')
       CALL WRITE_0D_I( cg2dPreCondFreq, INDEX_NONE,'cg2dPreCondFreq =',
      &'   /* Freq. for updating cg2d preconditioner */')
+      CALL WRITE_0D_L( useSRCGSolver, INDEX_NONE,
+     & 'useSRCGSolver =', '  /* use single reduction CG solver(s) */')
 
       WRITE(msgBuf,'(A)') '//  '
       CALL PRINT_MESSAGE( msgBuf, ioUnit, SQUEEZE_RIGHT, myThid )
