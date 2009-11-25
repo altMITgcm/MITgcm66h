@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src:
+  fix missing EmPmR in 3-D solver RHS (was in cg2d_b but missing in cg3d_b).
+    update output of exp. global_ocean.cs32x15.viscA4
 o update output of exp. global_ocean.cs32x15.icedyn after removing
   #define SEAICE_OLD_AND_BAD_DISCRETIZATION from SEAICE_OPTIONS.h
 o add entry points for Gianmaria's Nesting pkgs (from Contrib/nesting_sannino)
