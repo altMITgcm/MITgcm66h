@@ -68,7 +68,7 @@ C     (not thoroughly) test version on a C-grid
 C--   Only for the C-grid version it is possible to enable EVP code by
 C     defining the following flag
 #ifdef SEAICE_CGRID
-#undef SEAICE_ALLOW_EVP
+#define SEAICE_ALLOW_EVP
 #endif /* SEAICE_CGRID */
 
 C--   Seaice flooding
