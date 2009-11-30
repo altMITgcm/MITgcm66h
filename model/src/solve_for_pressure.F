@@ -80,9 +80,9 @@ c       zeroPsNH = use3Dsolver .AND. exactConserv
 c    &                         .AND. select_rStar.EQ.0
         zeroMeanPnh = .FALSE.
 c       zeroMeanPnh = use3Dsolver .AND. select_rStar.NE.0
-        oldFreeSurfTerm = use3Dsolver .AND. select_rStar.EQ.0
-     &                                .AND. .NOT.zeroPsNH
-c       oldFreeSurfTerm = use3Dsolver .AND. .NOT.exactConserv
+c       oldFreeSurfTerm = use3Dsolver .AND. select_rStar.EQ.0
+c    &                                .AND. .NOT.zeroPsNH
+        oldFreeSurfTerm = use3Dsolver .AND. .NOT.exactConserv
 #else
         cg3d_b(1) = 0.
 #endif
