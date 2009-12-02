@@ -1359,9 +1359,9 @@ else
 	    echo "An email containing results was sent to the following addresses:"
 	    echo "  \"$ADDRESSES\""
 	    echo
+	    test -f $DRESULTS".tar"  &&  rm -f $DRESULTS".tar"
+	    test -f $DRESULTS".tar.gz"  &&  rm -f $DRESULTS".tar.gz"
 	fi
-	test -f $DRESULTS".tar"  &&  rm -f $DRESULTS".tar"
-	test -f $DRESULTS".tar.gz"  &&  rm -f $DRESULTS".tar.gz"
     fi
 fi
 
