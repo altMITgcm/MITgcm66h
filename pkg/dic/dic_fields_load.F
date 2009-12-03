@@ -207,7 +207,7 @@ C endif for DIC_forcingCycle
          IF ( useSEAICE ) THEN
            DO j=1-Oly,sNy+Oly
             DO i=1-Olx,sNx+Olx
-             FIce(i,j,bi,bj) = AREA(i,j,1,bi,bj)
+             FIce(i,j,bi,bj) = AREA(i,j,bi,bj)
             ENDDO
            ENDDO
          ENDIF
