@@ -103,7 +103,9 @@ C     == Local variables ==
 #ifdef ALLOW_NONHYDROSTATIC
       INTEGER kp1
 #endif
+#ifdef ALLOW_AUTODIFF_TAMC
       INTEGER lockey_1, lockey_2
+#endif
       _RL smag2fac, smag4fac
       _RL leith2fac, leith4fac
       _RL leithD2fac, leithD4fac
