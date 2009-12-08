@@ -44,10 +44,10 @@ C     etaFld :: current eta field used to update the hFactor
 
 C     !LOCAL VARIABLES:
 C     Local variables
-C     i,j,k,bi,bj  :: loop counter
+C     i,j, bi,bj   :: loop counter
 C     numbWrite    :: count the Number of warning written on STD-ERR file
 C     numbWrMax    ::  maximum  Number of warning written on STD-ERR file
-      INTEGER i,j,k,bi,bj
+      INTEGER i,j,bi,bj
       INTEGER numbWrite, numbWrMax
       INTEGER icntc1, icntc2, icntw, icnts
       INTEGER iic, jjc, iic2, jjc2, iiw, jjw, iis, jjs

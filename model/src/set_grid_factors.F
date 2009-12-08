@@ -31,10 +31,10 @@ C     myThid   :: my Thread Id number
 C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     k        :: loop index
-C     msgBuf   :: Informational/error meesage buffer
+C     msgBuf   :: Informational/error message buffer
       INTEGER k
-      _RL     tmpRatio, checkRatio1, checkRatio2
-      CHARACTER*(MAX_LEN_MBUF) msgBuf
+c     _RL     tmpRatio, checkRatio1, checkRatio2
+c     CHARACTER*(MAX_LEN_MBUF) msgBuf
 CEOP
 
       _BEGIN_MASTER(myThid)
