@@ -345,7 +345,7 @@ C-- explicit part of the NH pressure gradient is added here
          ENDDO
         ENDDO
       ENDIF
-#endif ALLOW_NONHYDROSTATIC
+#endif /* ALLOW_NONHYDROSTATIC */
 
 C     Step forward zonal velocity (store in Gu)
       DO j=jMin,jMax
