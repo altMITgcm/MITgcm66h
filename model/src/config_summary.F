@@ -302,6 +302,12 @@ C     bi,bj  :: Tile loop counters.
      & 'nonHydrostatic =', '  /* Non-Hydrostatic on/off flag */')
       CALL WRITE_0D_RL( nh_Am2, INDEX_NONE, 'nh_Am2 =',
      & ' /* Non-Hydrostatic terms scaling factor */')
+      CALL WRITE_0D_RL( implicitNHPress, INDEX_NONE,
+     & 'implicitNHPress =',
+     & ' /* Non-Hyd Pressure implicit factor (0-1)*/')
+      CALL WRITE_0D_I( selectNHfreeSurf, INDEX_NONE,
+     & 'selectNHfreeSurf =',
+     & ' /* Non-Hyd (free-)Surface option */')
       CALL WRITE_0D_L( quasiHydrostatic, INDEX_NONE,
      & 'quasiHydrostatic =', ' /* Quasi-Hydrostatic on/off flag */')
       CALL WRITE_0D_L( momStepping,  INDEX_NONE,
