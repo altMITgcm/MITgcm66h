@@ -168,8 +168,10 @@ C     myIterTD  :: iteration number at call to thermodynamics
 #ifdef COMPONENT_MODULE
       INTEGER myItP1
 #endif
+#ifdef ALLOW_LONGSTEP
       INTEGER myIterBeg, myIterTD
       _RL myTimeBeg, myTimeTD
+#endif /* ALLOW_LONGSTEP */
 CEOP
 
 #ifdef ALLOW_DEBUG
@@ -187,12 +189,14 @@ C--   Reset the model iteration counter and the model time.
       myTime = startTime + float(iloop-1)*deltaTclock
 #endif
 
+#ifdef ALLOW_LONGSTEP
 C     store this for longstep_average with staggerTimeStep
 C     and longstep_thermodynamics without staggerTimeStep
 C     which are called after myIter and myTime are incremented
 C     but need iter/time at beginning of time step
       myIterBeg = myIter
       myTimeBeg = myTime
+#endif /* ALLOW_LONGSTEP */
 
 #ifdef ALLOW_AUTODIFF_TAMC
 c**************************************
