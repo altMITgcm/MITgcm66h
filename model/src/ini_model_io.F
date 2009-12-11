@@ -127,6 +127,8 @@ C             not correspond to what is actually needed.
       IF ( startFromPickupAB2 ) tempStartAB = MIN( nIter0 , 1 )
       saltStartAB = tempStartAB
       mom_StartAB = tempStartAB
+      nHydStartAB = tempStartAB
+      dPhiNHstatus= 0
 
 C-    Initialise Alternating pickup-suffix
       nCheckLev         = 1

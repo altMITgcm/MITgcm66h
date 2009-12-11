@@ -43,15 +43,24 @@ C- Note: comment out this IF so that we are sure that all variables in
 C        common blocs (even if never used later) are always initialised
         DO bj = myByLo(myThid), myByHi(myThid)
          DO bi = myBxLo(myThid), myBxHi(myThid)
+          DO j=1-Oly,sNy+Oly
+            DO i=1-Olx,sNx+Olx
+              dPhiNH(i,j,bi,bj)    = 0. _d 0
+            ENDDO
+          ENDDO
           DO k=1,Nr
            DO j=1-Oly,sNy+Oly
             DO i=1-Olx,sNx+Olx
-              phi_nh(i,j,k,bi,bj) = 0. _d 0
-              gW   (i,j,k,bi,bj) = 0. _d 0
-              gWnm1(i,j,k,bi,bj) = 0. _d 0
-C Set the variable viscosities to default value.
-              viscAh_W(i,j,k,bi,bj) = viscAhW
-              viscA4_W(i,j,k,bi,bj) = viscA4W
+              phi_nh(i,j,k,bi,bj)  = 0. _d 0
+              gW   (i,j,k,bi,bj)   = 0. _d 0
+#ifdef ALLOW_ADAMSBASHFORTH_3
+              gWnm (i,j,k,bi,bj,1) = 0. _d 0
+              gWnm (i,j,k,bi,bj,2) = 0. _d 0
+#else /* ALLOW_ADAMSBASHFORTH_3 */
+              gWnm1(i,j,k,bi,bj)   = 0. _d 0
+#endif /* ALLOW_ADAMSBASHFORTH_3 */
+              viscAh_W(i,j,k,bi,bj)= 0. _d 0
+              viscA4_W(i,j,k,bi,bj)= 0. _d 0
             ENDDO
            ENDDO
           ENDDO
