@@ -257,7 +257,7 @@ C     Eastern boundary
          CALL READ_REC_YZ_RL( OBEptrFile(iTr), fp, Nr,
      &                OBEptr1(1-Oly,1,1,1,iTr), iRec1, myIter, myThid )
         ENDIF
-# endif /* ALLOW_OBCS_WEST */
+# endif /* ALLOW_OBCS_EAST */
 # ifdef ALLOW_OBCS_WEST
 C     Western boundary
         IF ( OBWptrFile(iTr) .NE. ' '  ) THEN
@@ -345,7 +345,7 @@ C     Eastern boundary
      &                        myIter, myThid )
         ENDIF
 # endif /* NONLIN_FRSURF */
-#endif /* ALLOW_OBCS_WEST */
+#endif /* ALLOW_OBCS_EAST */
 #ifdef ALLOW_OBCS_WEST
 C     Western boundary
         IF ( OBWuFile .NE. ' '  ) THEN
@@ -434,7 +434,7 @@ C     Eastern boundary
            CALL READ_REC_YZ_RL( OBEptrFile(iTr), fp, Nr,
      &               OBEptr0(1-Oly,1,1,1,iTr), iRec0,myIter, myThid )
           ENDIF
-# endif /* ALLOW_OBCS_WEST */
+# endif /* ALLOW_OBCS_EAST */
 # ifdef ALLOW_OBCS_WEST
 C     Western boundary
           IF ( OBWptrFile(iTr) .NE. ' '  ) THEN
