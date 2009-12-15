@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/obcs:
+  - move bi,bj loops into obcs_calc, so obcs_prescribe_read is called only once.
+    Fixes bug in obcs+exf with nSx*nSy.GT.1
+  - fix multi-tile handling in obcs balance code
 o nonHydrostatic:
   - Implement AB-3 for non-hydrostatic vertical momentum ;
     (change ordering of var. stored in pickup file when using NH)

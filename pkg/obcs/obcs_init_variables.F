@@ -330,12 +330,8 @@ C--   Load/compute OBCS values (initial conditions only)
 #ifdef ALLOW_DEBUG
        IF (debugMode) CALL DEBUG_CALL('OBCS_CALC',myThid)
 #endif
-       DO bj = myByLo(myThid), myByHi(myThid)
-        DO bi = myBxLo(myThid), myBxHi(myThid)
-          CALL OBCS_CALC( bi, bj, startTime, nIter0,
+       CALL OBCS_CALC( startTime, nIter0,
      &              uVel, vVel, wVel, theta, salt, myThid )
-        ENDDO
-       ENDDO
 
 C--   Apply OBCS values to initial conditions for consistency
 C      (but initial conditions only)

@@ -139,12 +139,8 @@ C--   moved before SEAICE_MODEL call since SEAICE_MODEL needs seaice-obcs fields
        IF ( debugLevel .GE. debLevB )
      &     CALL DEBUG_CALL('OBCS_CALC',myThid)
 #endif
-       DO bj=myByLo(myThid),myByHi(myThid)
-        DO bi=myBxLo(myThid),myBxHi(myThid)
-          CALL OBCS_CALC( bi, bj, myTime+deltaTclock, myIter+1,
-     I                    uVel, vVel, wVel, theta, salt, myThid )
-        ENDDO
-       ENDDO
+       CALL OBCS_CALC( myTime+deltaTclock, myIter+1,
+     I                 uVel, vVel, wVel, theta, salt, myThid )
       ENDIF
 #endif  /* ALLOW_OBCS */
 
