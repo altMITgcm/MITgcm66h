@@ -99,15 +99,25 @@ C     msgBuf   :: Informational/error message buffer
       IF (useOBCSprescribe) THEN
        WRITE(msgBuf,'(A)')
      &  'OBCS_CHECK: ERROR: useOBCSprescribe = .TRUE. for'
-       CALL PRINT_ERROR( msgBuf , 1)
-        CALL PRINT_ERROR( msgBuf, myThid )
+       CALL PRINT_ERROR( msgBuf, myThid )
        WRITE(msgBuf,'(A)')
      &  'OBCS_CHECK: undef ALLOW_OBCS_PRESCRIBE'
-       CALL PRINT_ERROR( msgBuf , 1)
-        CALL PRINT_ERROR( msgBuf, myThid )
+       CALL PRINT_ERROR( msgBuf, myThid )
        STOP 'ABNORMAL END: S/R OBCS_CHECK'
       ENDIF
-#endif
+#endif /* ALLOW_OBCS_PRESCRIBE */
+
+#ifndef ALLOW_OBCS_BALANCE
+      IF ( useOBCSbalance ) THEN
+       WRITE(msgBuf,'(A)')
+     &  'OBCS_CHECK: useOBCSbalance requires to define'
+       CALL PRINT_ERROR( msgBuf, myThid )
+       WRITE(msgBuf,'(A)')
+     &  'OBCS_CHECK: ALLOW_OBCS_BALANCE in "OBCS_OPTIONS.h"'
+       CALL PRINT_ERROR( msgBuf, myThid )
+       STOP 'ABNORMAL END: S/R OBCS_CHECK'
+      ENDIF
+#endif /* ALLOW_OBCS_BALANCE */
 
       IF ( .NOT.nonHydrostatic .AND.
      &         ( OBNwFile.NE.' ' .OR. OBSwFile.NE.' ' .OR.
