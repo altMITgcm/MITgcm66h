@@ -57,7 +57,7 @@ C      |
 C      |-- PACKAGES_INIT_FIXED
 C      |  |- ${PKG}_INIT_FIXED
 C      |
-C      |-- INI_LINEAR_PHSURF
+C      |-- INI_LINEAR_PHISURF
 C      |
 C      |-- INI_CORI
 C      |
@@ -68,6 +68,7 @@ C      |
 C      |-- CONFIG_SUMMARY
 C      |
 C      |-- PACKAGES_CHECK
+C      |  |- ${PKG}_CHECK
 C      |
 C      |-- CONFIG_CHECK
 C      |
