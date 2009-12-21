@@ -146,7 +146,7 @@ C--   Save previous solution & Initialise Vector solution and source term :
           DO i=1,sNx
             tileEmP(bi,bj) = tileEmP(bi,bj)
      &                     + rA(i,j,bi,bj)*EmPmR(i,j,bi,bj)
-     &                                    *maskH(i,j,bi,bj)
+     &                                    *maskInC(i,j,bi,bj)
           ENDDO
          ENDDO
         ENDIF
