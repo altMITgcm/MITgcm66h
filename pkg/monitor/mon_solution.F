@@ -41,9 +41,9 @@ C     Take statistics from the input argument "statsTemp":
         tMax = statsTemp(2)
       ELSE
 C     Statistics for T
-        CALL MON_STATS_RL(
-     I                Nr, theta, maskC,hFacC,rA,drF,
-     O                tMin,tMax,tMean,tSD,tDel2,tVol,
+        CALL MON_CALC_STATS_RL(
+     I                Nr, theta, hFacC, maskInC, rA, drF,
+     O                tMin, tMax, tMean, tSD, tDel2, tVol,
      I                myThid )
       ENDIF
 
