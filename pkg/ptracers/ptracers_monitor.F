@@ -49,6 +49,7 @@ C  ip                   :: ptracer number
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       CHARACTER*(MAX_LEN_MBUF) suff
       INTEGER ip
+      _RL dummyRL(6)
 CEOP
 
       IF ( DIFFERENT_MULTIPLE( PTRACERS_monitorFreq,myTime,deltaTClock )
@@ -110,9 +111,9 @@ C      Print the basic statistics of ptracer variables
        DO ip = 1, PTRACERS_numInUse
          WRITE(suff,'(A7,A2)') 'ptracer',PTRACERS_ioLabel(ip)
 c        WRITE(suff,'(A6,I4.4)') 'ptrac', ip
-         CALL MON_PRINTSTATS_RL(
-     &        Nr, pTracer(1-Olx,1-Oly,1,1,1,ip),
-     &        suff, maskC,hFacC,rA ,drF,myThid)
+         CALL MON_WRITESTATS_RL(
+     &            Nr, pTracer(1-OLx,1-OLy,1,1,1,ip), suff,
+     &            hFacC, maskInC, rA ,drF, dummyRL, myThid )
        ENDDO
 
 C--   Ptracers field monitor finish
