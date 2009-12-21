@@ -220,7 +220,7 @@ C      (needed for SSH forcing, whether or not exactConserv is used)
       IF ( useRealFreshWaterFlux ) THEN
         DO j=1-OLy,sNy+OLy
          DO i=1-OLx,sNx+OLx
-           EmPmR(i,j,bi,bj) = EmPmR(i,j,bi,bj)*maskH(i,j,bi,bj)
+           EmPmR(i,j,bi,bj) = EmPmR(i,j,bi,bj)*maskInC(i,j,bi,bj)
          ENDDO
         ENDDO
       ENDIF
