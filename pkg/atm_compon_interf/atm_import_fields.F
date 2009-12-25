@@ -35,11 +35,15 @@ C     myThid :: my Thread Id number
 CEOP
 
 #ifdef COMPONENT_MODULE
+C     !LOCAL VARIABLES:
 C     == Local variables ==
 
 C     Fetch data from coupling layer. Note MIT Coupler checkpoint1
 C     does not allow asynchronous extraction of data, so ordering
 C     has to be consistent with ordering coupling layer.
+
+      _BARRIER
+      _BEGIN_MASTER( myThid )
 
 C-    Receive ocean mixed-layer thickness from coupling layer.
       CALL COMPRECV_R8TILES( atmMxlDName,
@@ -62,6 +66,9 @@ C-    Receive air-sea flux of CO2
         CALL COMPRECV_R8TILES( atmFCO2Name,
      I       sNx, OLx, sNy, OLy, 1, nSx, nSy, flxCO2ocn )
       ENDIF
+
+      _END_MASTER( myThid )
+      _BARRIER
 
 #endif /* COMPONENT_MODULE */
 
