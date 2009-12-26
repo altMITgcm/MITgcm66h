@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ocn,aim_compon_interf
+  - changes for multi-threaded coupled run. (tested with ifort-11 on danton)
+
 checkpoint62  (2009/12/23)
 o switch on useOBCSbalance in tutorial_plume_on_slope exp. and update output.
     (was not previously tested in any other exp.)
