@@ -26,6 +26,12 @@ CEOP
 
 #ifdef ALLOW_MYPACKAGE
 
+C     !LOCAL VARIABLES:
+C     msgBuf     :: Informational/error message buffer
+C     iUnit      :: Work variable for IO unit number
+      CHARACTER*(MAX_LEN_MBUF) msgBuf
+      INTEGER iUnit
+
       NAMELIST /MYPACKAGE_PARM01/
      &       myPa_MNC,
      &       myPa_StaV_Cgrid, myPa_Tend_Cgrid,
@@ -38,12 +44,6 @@ CEOP
      &       myPa_Scal1File,  myPa_Scal2File,
      &       myPa_VelUFile,   myPa_VelVFile,
      &       myPa_Surf1File,  myPa_Surf2File
-
-C     === Local variables ===
-C     msgBuf      - Informational/error meesage buffer
-C     iUnit       - Work variable for IO unit number
-      CHARACTER*(MAX_LEN_MBUF) msgBuf
-      INTEGER iUnit
 
       _BEGIN_MASTER(myThid)
 

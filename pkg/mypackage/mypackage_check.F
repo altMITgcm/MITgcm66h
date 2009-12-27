@@ -25,11 +25,10 @@ C     myThid   :: my Thread Id number
       INTEGER myThid
 CEOP
 
-C     !LOCAL VARIABLES:
-C     msgBuf   :: Informational/error meesage buffer
-      CHARACTER*(MAX_LEN_MBUF) msgBuf
-
 #ifdef ALLOW_MYPACKAGE
+C     !LOCAL VARIABLES:
+C     msgBuf   :: Informational/error message buffer
+      CHARACTER*(MAX_LEN_MBUF) msgBuf
 
       _BEGIN_MASTER(myThid)
 
