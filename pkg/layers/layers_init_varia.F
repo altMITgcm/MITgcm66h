@@ -55,6 +55,7 @@ C     Loop through 3D variables:
 
 #ifdef ALLOW_TIMEAVE
 C     Initialize averages to zero
+        layers_TimeAve(bi,bj) = 0. _d 0
 
 #ifdef LAYERS_UFLUX
         CALL TIMEAVE_RESET(layers_UFlux_T,Nlayers,bi,bj,myThid)
@@ -70,9 +71,6 @@ C     Initialize averages to zero
 #endif /* LAYERS_THICKNESS */
 #endif /* LAYERS_VFLUX */
 
-        DO kg=1,Nlayers
-         layers_TimeAve(kg,bi,bj)=0. _d 0
-        ENDDO
 #endif /* ALLOW_TIMEAVE */
 
 C- end bi,bj loops
