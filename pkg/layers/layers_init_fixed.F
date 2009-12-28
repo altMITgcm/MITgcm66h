@@ -30,7 +30,7 @@ C     Zf        :: depth at cell boundaries
 C     Zf        :: depth at cell centers
 C     ZZf       :: depth at cell boundaries (fine grid)
 C     ZZc       :: depth at cell centers (fine grid)
-C     msgBuf    :: Informational/error meesage buffer
+C     msgBuf    :: Informational/error message buffer
       INTEGER k,kk,kkinit
       _RL     Zf(Nr+1)
       _RL     Zc(Nr)
@@ -112,14 +112,14 @@ C       This means there was a problem
      &     ', ZZc(kk)=', ZZc(kk),' , Zc(k)=',Zc(k)
           CALL PRINT_ERROR( msgBuf, myThid )
           STOP 'ABNORMAL END: S/R LAYERS_INIT_FIXED'
-        END IF       
+        ENDIF
 
 C       See which grid box the point lies in
         IF ( ZZc(kk).LT.Zf(MapIndex(kk)+1) ) THEN
           CellIndex(kk) = MapIndex(kk)
         ELSE
           CellIndex(kk) = MapIndex(kk)+1
-        END IF
+        ENDIF
       ENDDO
 
       IF (debugLevel .GT. 0) THEN
@@ -134,10 +134,10 @@ C       See which grid box the point lies in
           CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                     SQUEEZE_RIGHT , 1)
         ENDDO
-      END IF
+      ENDIF
 
 C     Output the layer coordinates
-      CALL WRITE_GLVEC_RS( 'layers_G', ' ', layers_G, 1+Nlayers,
+      CALL WRITE_GLVEC_RL( 'layers_G', ' ', layers_G, 1+Nlayers,
      & -1, myThid )
 
       RETURN
