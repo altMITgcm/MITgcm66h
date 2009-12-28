@@ -42,12 +42,11 @@ C      layers_HV    :: Layer thickness at the V point (m)
 #endif /* LAYERS_THICKNESS */
 #endif /* LAYERS_VFLUX */
 
+#ifdef ALLOW_TIMEAVE
 C-- The same variables, time-averaged
 
-#ifdef ALLOW_TIMEAVE
-
 C     Keep track of time
-      _RL layers_TimeAve(Nlayers,nSx,nSy)
+      _RL layers_TimeAve(nSx,nSy)
       COMMON /LAYERS_TAVE/ layers_TimeAve
 
 #ifdef LAYERS_UFLUX
@@ -73,7 +72,6 @@ C     Keep track of time
 #endif /* LAYERS_VFLUX */
 
 #endif /* ALLOW_TIMEAVE */
-
 
 C     Isopycnal grid parameters:
 C      layers_G :: boundaries of isopycnal layers
