@@ -115,7 +115,7 @@ C-- average of Ocean Mixed-Layer temp. & salinity
      &                       1, thSIce_deltaT, bi, bj, myThid )
       ENDIF
 
-       ice_timeAve(1,bi,bj)=ice_timeAve(1,bi,bj)+thSIce_deltaT
+       ice_timeAve(bi,bj) = ice_timeAve(bi,bj)+thSIce_deltaT
 
       ENDIF
 #endif /* ALLOW_TIMEAVE */
