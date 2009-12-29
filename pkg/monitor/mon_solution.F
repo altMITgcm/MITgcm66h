@@ -60,8 +60,7 @@ C     Statistics for T
         CALL PRINT_MESSAGE(msgBuf,errorMessageUnit,SQUEEZE_RIGHT,myThid)
         _END_MASTER(myThid)
 
-C jmc: add this "if not ..." to avoid beeing stuck when using coupler;
-        IF ( .NOT.useCoupler ) CALL ALL_PROC_DIE( myThid )
+        CALL ALL_PROC_DIE( myThid )
         STOP
      &  'ABNORMAL END: S/R MON_SOLUTION, stops due to EXTREME Pot.Temp'
       ENDIF
