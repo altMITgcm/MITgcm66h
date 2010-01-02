@@ -10,16 +10,14 @@ C     *==========================================================*
 
 #ifdef ALLOW_TIMEAVE
 
-C     Keep track of time
-      _RL GM_TimeAve(Nr,nSx,nSy)
-      COMMON /GM_TAVE/ GM_TimeAve
-
 
 C     Storage arrays for time-averages
+      _RL GM_timeAve  (nSx,nSy)
       _RL GM_Kwx_T    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL GM_Kwy_T    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL GM_Kwz_T    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-      COMMON /GM_TAVE_ARRAYS/
+      COMMON /GM_TAVE_VARS/
+     &                       GM_timeAve,
      &                       GM_Kwx_T,
      &                       GM_Kwy_T,
      &                       GM_Kwz_T
@@ -30,7 +28,7 @@ C     Storage arrays for time-averages
      &                       Visbeck_K_T
 #endif
 
-#ifdef GM_BOLUS_ADVEC 
+#ifdef GM_BOLUS_ADVEC
       _RL GM_PsiXtave(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL GM_PsiYtave(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       COMMON /GM_TAVE_PSI_B/ GM_PsiXtave, GM_PsiYtave

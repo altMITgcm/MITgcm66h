@@ -71,9 +71,7 @@ C     Initialize averages to zero
         CALL TIMEAVE_RESET(GM_Kwx_T,Nr, bi,bj,myThid)
         CALL TIMEAVE_RESET(GM_Kwy_T,Nr, bi,bj,myThid)
         CALL TIMEAVE_RESET(GM_Kwz_T,Nr, bi,bj,myThid)
-        DO k=1,Nr
-         GM_TimeAve(k,bi,bj)=0. _d 0
-        ENDDO
+        GM_timeAve(bi,bj) = 0. _d 0
 #ifdef GM_VISBECK_VARIABLE_K
         CALL TIMEAVE_RESET(Visbeck_K_T, 1, bi,bj,myThid)
 #endif
