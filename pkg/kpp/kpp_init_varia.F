@@ -21,7 +21,6 @@ C     !USES:
 #include "GAD.h"
 #include "KPP.h"
 #include "KPP_PARAMS.h"
-#include "KPP_TAVE.h"
 
 C     !INPUT PARAMETERS:
       INTEGER myThid
@@ -92,15 +91,6 @@ cph     I           myThid)
 
        ENDDO
       ENDDO
-
-C     Initialize record numbers in KPP_TAVE
-      _BEGIN_MASTER( myThid )
-      kpp_drctrec=1
-#ifdef ALLOW_TIMEAVE
-      kpp_drctrecTave=1
-#endif
-      _END_MASTER( myThid )
-      _BARRIER
 
 #endif /* ALLOW_KPP */
 
