@@ -78,13 +78,11 @@ C       |
 C       |-- CALC_R_STAR
 C       |-- CALC_SURF_DR
 C       |
-C       |-- TIMEAVE_STATVARS
-C       |
-C       |-- PTRACERS_STATVARS
-C       |
 C       |-- STATE_SUMMARY
 C       |
 C       |-- MONITOR
+C       |
+C       |-- DO_STATEVARS_TAVE
 C       |
 C       |-- DO_THE_MODEL_IO
 
@@ -309,32 +307,6 @@ c      ENDIF
 #endif
 c     ENDIF
 
-#ifdef ALLOW_TIMEAVE
-#ifdef ALLOW_DEBUG
-      IF (debugMode) CALL DEBUG_CALL('TIMEAVE_STATVARS',myThid)
-#endif
-      DO bj=myByLo(myThid),myByHi(myThid)
-       DO bi=myBxLo(myThid),myBxHi(myThid)
-
-C--   initialise time-average arrays with initial state values
-        IF (taveFreq.GT.0.) THEN
-           CALL TIMEAVE_STATVARS(startTime, nIter0, bi, bj, myThid)
-        ENDIF
-
-#ifdef ALLOW_PTRACERS
-        IF ( usePTRACERS ) THEN
-#ifdef ALLOW_DEBUG
-          IF (debugMode) CALL DEBUG_CALL('PTRACERS_STATVARS',myThid)
-#endif
-           CALL PTRACERS_STATVARS(startTime, nIter0, bi, bj, myThid)
-        ENDIF
-#endif /* ALLOW_PTRACERS */
-
-C--   end bi,bj loop.
-       ENDDO
-      ENDDO
-#endif /* ALLOW_TIMEAVE */
-
 #ifdef ALLOW_GRIDALT
       IF (useGRIDALT) THEN
          CALL TIMER_START('GRIDALT_UPDATE  [INITIALISE_VARIA]',myThid)
@@ -359,6 +331,14 @@ C--   Finally summarise the model state
 C--   Check status of initial state (statistics, cfl, etc...)
       CALL MONITOR( startTime, nIter0, myThid )
 #endif /* ALLOW_MONITOR */
+
+#ifdef ALLOW_TIMEAVE
+#ifdef ALLOW_DEBUG
+      IF (debugMode) CALL DEBUG_CALL('DO_STATEVARS_TAVE',myThid)
+#endif
+C--   Initialise time-average arrays with initial state values
+      CALL DO_STATEVARS_TAVE( startTime, nIter0, myThid )
+#endif
 
 C--   Dump initial state to files
 #ifdef ALLOW_DEBUG
