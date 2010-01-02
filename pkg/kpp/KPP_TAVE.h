@@ -23,11 +23,11 @@ C----------------------------------------------------------------
       COMMON /KPP_RECORDNUM2/ kpp_drctrecTave
 
 C----------------------------------------------------------------
-C     kpp_TimeAve - time of temporal integration (s) for each thread
+C     KPP_timeAve - Cumulated time (s) for time-average fields
 C----------------------------------------------------------------
 
-      _RL kpp_TimeAve(Nr,nSx,nSy)
-      COMMON /KPP_TAVE_COUNT/ kpp_TimeAve
+      _RL KPP_timeAve(nSx,nSy)
+      COMMON /KPP_TAVE_COUNT/ KPP_timeAve
 
 C----------------------------------------------------------------
 C     KPP*tave    - Time-averaging KPP variables
