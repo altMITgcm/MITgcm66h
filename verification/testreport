@@ -463,6 +463,7 @@ makemodel()
 		tail make.log
 		echo failed 1>&2
 		cp make.log $CDIR"/make.log"
+		rm -f $EXECUTABLE
 		return 1
 	    else
 		echo successful 1>&2
