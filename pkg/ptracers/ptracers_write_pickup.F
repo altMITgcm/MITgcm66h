@@ -57,13 +57,16 @@ C     nWrFlds     :: number of fields being written
 C     listDim     :: dimension of "wrFldList" local array
 C     wrFldList   :: list of written fields
 C     msgBuf      :: Informational/error message buffer
-      INTEGER iTracer, j, prec, lChar, n, iRec
+      INTEGER iTracer, j, prec, lChar
       LOGICAL glf
       CHARACTER*(MAX_LEN_FNAM) fn
       INTEGER listDim, nWrFlds
       PARAMETER( listDim = 3*PTRACERS_num )
       CHARACTER*(8) wrFldList(listDim)
       CHARACTER*(MAX_LEN_MBUF) msgBuf
+#ifdef PTRACERS_ALLOW_DYN_STATE
+      INTEGER n, iRec
+#endif
 CEOP
 
 #ifdef ALLOW_MNC

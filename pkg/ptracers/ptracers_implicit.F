@@ -56,7 +56,9 @@ C  iTracer :: tracer index
       INTEGER iTracer
       INTEGER iMin,iMax,jMin,jMax
       INTEGER GAD_TR
-      INTEGER K
+#ifdef ALLOW_OBCS
+      INTEGER k
+#endif
 CEOP
 
       iMin=0
@@ -128,17 +130,17 @@ CADJ &     key=iptrkey, byte=isbyte
      U         gPtr(1-Olx,1-Oly,1,1,1,iTracer),
      I         myThid )
 
-#ifdef   ALLOW_OBCS
+#ifdef ALLOW_OBCS
 C--      Apply open boundary conditions
         IF ( useOBCS ) THEN
-         DO K=1,Nr
+         DO k=1,Nr
           CALL OBCS_APPLY_PTRACER(
-     I         bi, bj, K, iTracer,
-     U         gPtr(1-Olx,1-Oly,K,bi,bj,iTracer),
+     I         bi, bj, k, iTracer,
+     U         gPtr(1-Olx,1-Oly,k,bi,bj,iTracer),
      I         myThid )
          ENDDO
         ENDIF
-#endif   /* ALLOW_OBCS */
+#endif /* ALLOW_OBCS */
 
         ENDIF
 C End of tracer loop

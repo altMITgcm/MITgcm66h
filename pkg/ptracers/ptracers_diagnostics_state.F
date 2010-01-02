@@ -3,7 +3,6 @@ C $Name$
 
 #include "PTRACERS_OPTIONS.h"
 
-C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 CBOP 1
 C     !ROUTINE: PTRACERS_DIAGNOSTICS_STATE
 
@@ -42,7 +41,11 @@ C     !LOCAL VARIABLES:
       INTEGER i,j,k,bi,bj,iTr
       CHARACTER*8 diagName
       INTEGER km1
+#ifdef ALLOW_LONGSTEP
       INTEGER trIter
+#endif
+
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 #ifdef ALLOW_LONGSTEP
 C     fill only once every long time step

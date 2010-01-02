@@ -34,7 +34,10 @@ C     myThid               :: thread number
 
 C     !LOCAL VARIABLES:
 C     i,j,k,bi,bj,iTracer  :: loop indices
-      INTEGER i,j,k,bi,bj,iTracer,n
+      INTEGER i,j,k,bi,bj,iTracer
+#ifdef PTRACERS_ALLOW_DYN_STATE
+      INTEGER n
+#endif
 CEOP
 
 C     Loop over tracers
@@ -81,8 +84,6 @@ C     end bi,bj loops
 
 C     end of Tracer loop
       ENDDO
-
-      _BARRIER
 
 C     Now read initial conditions and always exchange
       IF (nIter0.EQ.PTRACERS_Iter0) THEN
