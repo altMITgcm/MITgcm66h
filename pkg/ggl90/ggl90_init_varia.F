@@ -22,10 +22,8 @@ C     == Local variables ==
 C     bi,bj  - Loop counters
 C     I,J,K
       INTEGER bi, bj
-      INTEGER  I,  J, K, Km1
-      CHARACTER*(MAX_LEN_FNAM) fn
-      CHARACTER*(10) suff
-      INTEGER prec
+      INTEGER I, J, K
+c     INTEGER Km1
 CEOP
 
 #ifdef ALLOW_GGL90
@@ -36,7 +34,7 @@ C--   Over all tiles
 
 C-      3D arrays
         DO K=1,Nr
-         Km1 = MAX(K-1,1)
+c        Km1 = MAX(K-1,1)
          DO J=1-Oly,sNy+Oly
           DO I=1-Olx,sNx+Olx
 CML           GGL90TKE(I,J,K,bi,bj)=0. _d 0
@@ -62,14 +60,13 @@ C-      2D arrays
       ELSE
 C--   Read initial turbulent kinetic energy thickness from file if available.
        IF ( GGL90TKEFile .NE. ' ' ) THEN
-        _BARRIER
         CALL READ_FLD_XYZ_RL( GGL90TKEFile, ' ', GGL90TKE, 0, myThid )
         _EXCH_XYZ_RL(GGL90TKE,myThid)
         DO bj=myByLo(myThid),myByHi(myThid)
          DO bi=myBxLo(myThid),myBxHi(myThid)
-          DO k=1,Nr
-           DO j=1-OLy,sNy+OLy
-            DO i=1-OLx,sNx+OLx
+          DO K=1,Nr
+           DO J=1-OLy,sNy+OLy
+            DO I=1-OLx,sNx+OLx
              GGL90TKE(I,J,K,bi,bj) = MAX(GGL90TKE(I,J,K,bi,bj),
      &            GGL90TKEmin)*maskC(I,J,K,bi,bj)
             ENDDO

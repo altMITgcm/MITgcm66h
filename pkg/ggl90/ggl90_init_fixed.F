@@ -27,8 +27,9 @@ CEOP
 
 C     !LOCAL VARIABLES:
 C     === Local variables ===
-      INTEGER bi,bj
-      INTEGER  I, J
+#ifdef ALLOW_GGL90_SMOOTH
+      INTEGER i, j, bi, bj
+#endif
 
 C#ifdef ALLOW_MNC
 C      IF (useMNC) THEN
