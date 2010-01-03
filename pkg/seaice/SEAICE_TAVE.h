@@ -1,18 +1,29 @@
 C $Header$
 C $Name$
 
-C     /==========================================================\
-C     | SEAICE_DIAGS.h                                           |
-C     | o Header for SEAICE diagnostic output                    |
-C     \==========================================================/
+CBOP
+C     !ROUTINE: SEAICE_TAVE.h
+C     !INTERFACE:
+C     include "SEAICE_TAVE.h"
+C     !DESCRIPTION:
+C     \bv
+C     *==========================================================*
+C     | SEAICE_TAVE.h
+C     | o Header for time-average SEAICE variables
+C     *==========================================================*
+C     \ev
+CEOP
 
 #ifdef ALLOW_TIMEAVE
 
-C     Keep track of time
-      _RL SEAICE_TimeAve(Nr,nSx,nSy)
-      COMMON /SEAICE_TAVE/ SEAICE_TimeAve
+C--   COMMON /SEAICE_TAVE_VARS/ time-averaged variables
+C     SEAICE_timeAve :: cumulated time [s]
+      COMMON /SEAICE_TAVE_VARS/
+     &        SEAICE_timeAve,
+     &        FUtave, FVtave, EmPmRtave, QNETtave, QSWtave,
+     &        UICEtave, VICEtave, HEFFtave, AREAtave
 
-C     Storage arrays for time-averages
+      _RL SEAICE_timeAve(nSx,nSy)
       _RL FUtave    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL FVtave    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL EmPmRtave (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
@@ -22,9 +33,6 @@ C     Storage arrays for time-averages
       _RL VICEtave  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL HEFFtave  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL AREAtave  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      COMMON /SEAICE_TAVE_DIAGS/
-     &        FUtave, FVtave, EmPmRtave, QNETtave, QSWtave,
-     &        UICEtave, VICEtave, HEFFtave, AREAtave
 
 #endif /* ALLOW_TIMEAVE */
 

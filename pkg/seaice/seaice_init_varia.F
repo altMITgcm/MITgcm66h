@@ -18,10 +18,10 @@ C     === Global variables ===
 #include "PARAMS.h"
 #include "GRID.h"
 #include "DYNVARS.h"
-#include "SEAICE.h"
-#include "SEAICE_DIAGS.h"
-#include "SEAICE_PARAMS.h"
 #include "FFIELDS.h"
+#include "SEAICE_PARAMS.h"
+#include "SEAICE.h"
+#include "SEAICE_TAVE.h"
 #ifdef ALLOW_EXCH2
 # include "W2_EXCH2_SIZE.h"
 # include "W2_EXCH2_TOPOLOGY.h"
@@ -39,13 +39,21 @@ CEndOfInterface
 C     === Local variables ===
 C     i,j,k,bi,bj - Loop counters
 
-      INTEGER i, j, k, bi, bj
+      INTEGER i, j, bi, bj
       _RL PSTAR
       _RS  mask_uice
-      INTEGER myIter, myTile, kSurface
+      INTEGER myIter, kSurface
+#ifdef SEAICE_MULTICATEGORY
+      INTEGER k
+#endif
 #ifdef ALLOW_OBCS
       INTEGER I_obc, J_obc
 #endif /* ALLOW_OBCS */
+#ifdef ALLOW_EXCH2
+#ifndef SEAICE_CGRID
+      INTEGER myTile
+#endif
+#endif
 
       IF ( buoyancyRelation .EQ. 'OCEANICP' ) THEN
        kSurface = Nr
@@ -139,6 +147,24 @@ C
         ENDDO
        ENDDO
       ENDDO
+
+#ifdef ALLOW_TIMEAVE
+C     Initialize averages to zero
+      DO bj = myByLo(myThid), myByHi(myThid)
+       DO bi = myBxLo(myThid), myBxHi(myThid)
+        CALL TIMEAVE_RESET( FUtave   , 1, bi, bj, myThid )
+        CALL TIMEAVE_RESET( FVtave   , 1, bi, bj, myThid )
+        CALL TIMEAVE_RESET( EmPmRtave, 1, bi, bj, myThid )
+        CALL TIMEAVE_RESET( QNETtave , 1, bi, bj, myThid )
+        CALL TIMEAVE_RESET( QSWtave  , 1, bi, bj, myThid )
+        CALL TIMEAVE_RESET( UICEtave , 1, bi, bj, myThid )
+        CALL TIMEAVE_RESET( VICEtave , 1, bi, bj, myThid )
+        CALL TIMEAVE_RESET( HEFFtave , 1, bi, bj, myThid )
+        CALL TIMEAVE_RESET( AREAtave , 1, bi, bj, myThid )
+        SEAICE_timeAve(bi,bj) = ZERO
+       ENDDO
+      ENDDO
+#endif /* ALLOW_TIMEAVE */
 
 C--   Initialize (variable) grid info. As long as we allow masking of
 C--   velocities outside of ice covered areas (in seaice_dynsolver)
