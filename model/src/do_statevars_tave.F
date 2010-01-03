@@ -55,7 +55,7 @@ C--   Fill-in TimeAve pkg diagnostics (for state-variables)
            CALL TIMEAVE_STATVARS( myTime, myIter, bi, bj, myThid )
          ENDIF
 # ifdef ALLOW_PTRACERS
-         IF ( usePTRACERS .AND. PTRACERS_taveFreq.GT.0. ) THEN
+         IF ( usePTRACERS ) THEN
            CALL PTRACERS_TIMEAVE( myTime, myIter, bi, bj, myThid )
          ENDIF
 # endif /* ALLOW_PTRACERS */
