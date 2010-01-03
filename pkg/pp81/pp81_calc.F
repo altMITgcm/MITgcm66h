@@ -36,8 +36,6 @@ C !USES: ============================================================
 #ifdef ALLOW_AUTODIFF_TAMC
 #include "tamc.h"
 #include "tamc_keys.h"
-#else /* ALLOW_AUTODIFF_TAMC */
-      integer ikppkey
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C !INPUT PARAMETERS: ===================================================
@@ -93,8 +91,8 @@ CML     &        PPviscAr(I,J,K,bi,bj), PPdiffKr(I,J,K,bi,bj)
 #ifdef ALLOW_PP81_LOWERBOUND
 CRT   This is where the lower limit for subsurface layers
 CRT   (BRIOS special) is set.
-       IF ( (buoyancyRelation .EQ. 'OCEANIC' .AND. K .EQ. 2) .OR.
-     &      (buoyancyRelation .EQ. 'OCEANICP' .AND. K .EQ. Nr) ) THEN
+       IF ( (usingZCoords .AND. K .EQ. 2) .OR.
+     &      (usingPCoords .AND. K .EQ. Nr) ) THEN
         DO J=jMin,jMax
          DO I=iMin,iMax
           PPviscAr(I,J,K,bi,bj) = MAX(PPviscMin,PPviscAr(I,J,K,bi,bj))
