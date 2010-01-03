@@ -8,34 +8,21 @@ C     | PP81_TAVE.h
 C     | o Header for PP81 time-average output
 C     *==========================================================*
 
-C----------------------------------------------------------------
-C     pp_drctrec     - next record to dump for PP files
-C----------------------------------------------------------------
-      INTEGER pp_drctrec
-      COMMON /PP81_RECORDNUM1/ pp_drctrec
-
 #ifdef ALLOW_TIMEAVE
 C----------------------------------------------------------------
-C     pp_drctrecTave - next record to dump for PP averaging files
+C     PP_timeAve - time of temporal integration (s) for each thread
 C----------------------------------------------------------------
 
-      INTEGER pp_drctrecTave
-      COMMON /PP81_RECORDNUM2/ pp_drctrecTave
-
-C----------------------------------------------------------------
-C     pp_TimeAve - time of temporal integration (s) for each thread
-C----------------------------------------------------------------
-
-      _RL pp_TimeAve(Nr,nSx,nSy)
-      COMMON /PP81_TAVE/ pp_TimeAve
+      _RL PP_timeAve(nSx,nSy)
+      COMMON /PP81_TAVE_COUNT/ PP_timeAve
 
 C----------------------------------------------------------------
 C     PP*tave    - Time-averaging PP variables
 C----------------------------------------------------------------
 
-      _RL PPviscArtave  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-      _RL PPdiffKrtave  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-      COMMON /PP81_TAVE_DIAGS/
+      _RL PPviscArtave(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      _RL PPdiffKrtave(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      COMMON /PP81_TAVE_FIELDS/
      &        PPviscArtave, PPdiffKrtave
 
 #endif /* ALLOW_TIMEAVE */
