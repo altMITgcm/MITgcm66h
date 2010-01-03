@@ -17,11 +17,10 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#include "FFIELDS.h"
+#include "SEAICE_PARAMS.h"
 #include "SEAICE.h"
 CML#include "SEAICE_GRID.h"
-#include "SEAICE_DIAGS.h"
-#include "SEAICE_PARAMS.h"
-#include "FFIELDS.h"
 
 C     === Routine arguments ===
 C     myThid - Thread no. that called this routine.
@@ -31,7 +30,7 @@ CEndOfInterface
 C     === Local variables ===
 C     i,j,k,bi,bj - Loop counters
 
-      INTEGER i, j, k, bi, bj
+      INTEGER i, j, bi, bj
       INTEGER kSurface
 #ifndef SEAICE_CGRID
       _RS  mask_uice
@@ -197,26 +196,6 @@ C--   Choose a proxy level for geostrophic velocity,
         CALL SEAICE_DIAGNOSTICS_INIT( myThid )
       ENDIF
 #endif
-
-#ifdef ALLOW_TIMEAVE
-C     Initialize averages to zero
-      DO bj = myByLo(myThid), myByHi(myThid)
-       DO bi = myBxLo(myThid), myBxHi(myThid)
-        CALL TIMEAVE_RESET(FUtave   ,1,bi,bj,myThid)
-        CALL TIMEAVE_RESET(FVtave   ,1,bi,bj,myThid)
-        CALL TIMEAVE_RESET(EmPmRtave,1,bi,bj,myThid)
-        CALL TIMEAVE_RESET(QNETtave ,1,bi,bj,myThid)
-        CALL TIMEAVE_RESET(QSWtave  ,1,bi,bj,myThid)
-        CALL TIMEAVE_RESET(UICEtave ,1,bi,bj,myThid)
-        CALL TIMEAVE_RESET(VICEtave ,1,bi,bj,myThid)
-        CALL TIMEAVE_RESET(HEFFtave ,1,bi,bj,myThid)
-        CALL TIMEAVE_RESET(AREAtave ,1,bi,bj,myThid)
-        DO k=1,Nr
-         SEAICE_TimeAve(k,bi,bj)=ZERO
-        ENDDO
-       ENDDO
-      ENDDO
-#endif /* ALLOW_TIMEAVE */
 
       RETURN
       END
