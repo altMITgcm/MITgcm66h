@@ -67,7 +67,9 @@ C ===============
       INTEGER region2fill(0:nRegions)
       _RL     scaleFact
       _RL     gridField(sNx*sNy,nlevs), gridFrac(sNx*sNy)
+#ifndef REAL4_IS_SLOW
       _RS     dummyRS(1)
+#endif
 
 #ifdef ALLOW_FIZHI
       _RL   getcon
