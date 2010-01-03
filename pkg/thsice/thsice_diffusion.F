@@ -51,16 +51,15 @@ C     myThid    :: My Thread Id number
       _RL     myTime
       INTEGER myIter
       INTEGER myThid
-CEndOfInterface
 
 #ifdef ALLOW_THSICE
 C !LOCAL VARIABLES: ====================================================
 C     === Local variables ===
 C     i,j,      :: Loop counters
 C     iceFld    :: sea-ice + snow mass density
-C     msgBuf    :: Informational/error meesage buffer
+C     msgBuf    :: Informational/error message buffer
       INTEGER i, j
-      CHARACTER*(MAX_LEN_MBUF) msgBuf
+c     CHARACTER*(MAX_LEN_MBUF) msgBuf
       _RL     iceFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL     tmpFld, hIceEpsil
       LOGICAL dBugFlag
