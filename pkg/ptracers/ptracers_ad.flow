@@ -14,7 +14,7 @@ CADJ SUBROUTINE ptracers_read_pickup  INPUT  = 1,2
 CADJ SUBROUTINE ptracers_read_pickup  OUTPUT =
 
 C----------------------------------------
-C subroutine  ptracers_statvars
+C subroutine  ptracers_timeave
 C----------------------------------------
-CADJ SUBROUTINE ptracers_statvars  INPUT  = 1,2,3,4,5
-CADJ SUBROUTINE ptracers_statvars  OUTPUT =
+CADJ SUBROUTINE ptracers_timeave  INPUT  = 1,2,3,4,5
+CADJ SUBROUTINE ptracers_timeave  OUTPUT =
