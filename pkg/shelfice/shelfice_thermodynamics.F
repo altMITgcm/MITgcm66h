@@ -101,7 +101,7 @@ C     non-linear dependence of freezing point on salinity
 C     hardcoding this value here is OK because it only applies to ISOMIP
 C     where this value is part of the protocol
       IF ( convertFW2SaltLoc .EQ. -1. ) convertFW2SaltLoc = 33.4 _d 0
-#endif ALLOW_ISOMIP_TD
+#endif /* ALLOW_ISOMIP_TD */
 
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
