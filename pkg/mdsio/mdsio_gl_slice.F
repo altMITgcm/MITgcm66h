@@ -542,11 +542,16 @@ C Local variables
       Real*4 r4seg(sNx)
       Real*8 r8seg(sNx)
       _RL arr(1-oLx:sNx+oLx,Nr,nSx,nSy)
-      integer dimList(3,3),ndims
+      INTEGER dimList(3,3), nDims, map2gl(2)
+      _RL dummyRL(1)
+      CHARACTER*8 blank8c
       integer length_of_rec
       logical fileIsOpen
       character*(max_len_mbuf) msgbuf
 C     ------------------------------------------------------------------
+
+      DATA dummyRL(1) / 0. _d 0 /
+      DATA blank8c / '        ' /
 
 C Only do I/O if I am the master thread
       _BEGIN_MASTER( myThid )
@@ -664,10 +669,14 @@ C Create meta-file for each tile if we are tiling
          dimList(1,3)=Nr
          dimList(2,3)=1
          dimList(3,3)=Nr
-         ndims=3
-         if (Nr .EQ. 1) ndims=2
-         call MDSWRITEMETA( metaFName, dataFName,
-     &     filePrec, ndims, dimList, irecord, myIter, mythid )
+         nDims=3
+         if (Nr .EQ. 1) nDims=2
+         map2gl(1) = 0
+         map2gl(2) = 1
+         CALL MDS_WRITE_META(
+     I              metaFName, dataFName, the_run_name, ' ',
+     I              filePrec, nDims, dimList, map2gl, 0, blank8c,
+     I              0, dummyRL, irecord, myIter, myThid )
 C End of bi,bj loops
        enddo
       enddo
@@ -761,11 +770,16 @@ C Local variables
       Real*4 r4seg(sNy)
       Real*8 r8seg(sNy)
       _RL arr(1-oLy:sNy+oLy,Nr,nSx,nSy)
-      integer dimList(3,3),ndims
+      INTEGER dimList(3,3), nDims, map2gl(2)
+      _RL dummyRL(1)
+      CHARACTER*8 blank8c
       integer length_of_rec
       logical fileIsOpen
       character*(max_len_mbuf) msgbuf
 C     ------------------------------------------------------------------
+
+      DATA dummyRL(1) / 0. _d 0 /
+      DATA blank8c / '        ' /
 
 C Only do I/O if I am the master thread
       _BEGIN_MASTER( myThid )
@@ -883,10 +897,14 @@ C Create meta-file for each tile if we are tiling
          dimList(1,3)=Nr
          dimList(2,3)=1
          dimList(3,3)=Nr
-         ndims=3
-         if (Nr .EQ. 1) ndims=2
-         call MDSWRITEMETA( metaFName, dataFName,
-     &     filePrec, ndims, dimList, irecord, myIter, mythid )
+         nDims=3
+         if (Nr .EQ. 1) nDims=2
+         map2gl(1) = 0
+         map2gl(2) = 1
+         CALL MDS_WRITE_META(
+     I              metaFName, dataFName, the_run_name, ' ',
+     I              filePrec, nDims, dimList, map2gl, 0, blank8c,
+     I              0, dummyRL, irecord, myIter, myThid )
 C End of bi,bj loops
        enddo
       enddo
