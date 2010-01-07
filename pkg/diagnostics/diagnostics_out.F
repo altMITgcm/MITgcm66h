@@ -135,6 +135,7 @@ C     a) find the time of the previous multiple of output freq:
         timeRec(1) = myTime-deltaTClock*0.5 _d 0
         timeRec(1) = (timeRec(1)-phase(listId))/freq(listId)
         i = INT( timeRec(1) )
+        IF ( timeRec(1).LT.0. ) i = i - 1
         timeRec(1) = phase(listId) + freq(listId)*FLOAT(i)
 c       if ( listId.eq.2 ) write(0,*) 'f',i,timeRec(1)/deltaTClock
         timeRec(1) = MAX( timeRec(1), startTime )
