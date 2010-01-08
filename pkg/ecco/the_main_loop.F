@@ -1043,7 +1043,7 @@ C--   Do IO if needed.
       CALL TIMER_STOP ('OFFLINE_MODEL_IO     [FORWARD_STEP]',myThid)
 #else
       CALL TIMER_START('DO_THE_MODEL_IO     [FORWARD_STEP]',myThid)
-      CALL DO_THE_MODEL_IO( myTime, myIter, myThid )
+      CALL DO_THE_MODEL_IO( .FALSE., myTime, myIter, myThid )
       CALL TIMER_STOP ('DO_THE_MODEL_IO     [FORWARD_STEP]',myThid)
 #endif
 
