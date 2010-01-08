@@ -495,7 +495,7 @@ C--   Check status of solution (statistics, cfl, etc...)
 #endif /* ALLOW_MONITOR */
 
       CALL TIMER_START('DO_THE_MODEL_IO     [FORWARD_STEP]',myThid)
-      CALL DO_THE_MODEL_IO( myTime, myIter, myThid )
+      CALL DO_THE_MODEL_IO( .FALSE.,  myTime, myIter, myThid )
       CALL TIMER_STOP ('DO_THE_MODEL_IO     [FORWARD_STEP]',myThid)
 
 #ifdef ALLOW_AUTODIFF_TAMC
