@@ -185,16 +185,15 @@ C      PRINT *,'Top of ncall_ocean Loop'
 #  else
         myIter = nIter0 + iloop_ocn
         myTime = startTime + deltaTClock *float (iloop_ocn)
-        CALL DO_THE_MODEL_IO( myTime, myIter, myThid )
-        CALL DO_WRITE_PICKUP(
-     &               .FALSE., myTime, myIter, myThid )
+        CALL DO_THE_MODEL_IO( .FALSE., myTime, myIter, myThid )
+        CALL DO_WRITE_PICKUP( .FALSE., myTime, myIter, myThid )
 #  endif
 #endif
 #ifdef ML_2D
         CALL ocean_ml(dtocn*3600.,dtatm*3600.)
 #endif
 
-      ENDDO	! ncall_ocean loop
+      ENDDO ! ncall_ocean loop
 
 C Start of code done at the end of every coupled period
 
