@@ -10,9 +10,8 @@ C     !ROUTINE: DO_THE_MODEL_IO
 
 C     !INTERFACE:
       SUBROUTINE DO_THE_MODEL_IO(
-     I     myTime,
-     I     myIter,
-     I     myThid )
+     I                            modelEnd,
+     I                            myTime, myIter, myThid )
 
 C     !DESCRIPTION:
 C     This is the controlling routine for IO in the model main
@@ -37,9 +36,11 @@ C     !USES:
       EXTERNAL DIFFERENT_MULTIPLE
 
 C     !INPUT/OUTPUT PARAMETERS:
-C     myTime :: Current time of simulation ( s )
-C     myIter :: Iteration number
-C     myThid :: Thread number for this instance of the routine.
+C     modelEnd :: true if call at end of model run.
+C     myTime   :: Current time of simulation ( s )
+C     myIter   :: Iteration number
+C     myThid   :: Thread number for this instance of the routine.
+      LOGICAL modelEnd
       _RL     myTime
       INTEGER myThid
       INTEGER myIter
@@ -198,7 +199,6 @@ c    & CALL OFFLINE_STATE( myTime, myIter, myThid )
 #endif
 
 C-- added by RPA
-C- added by RPA
 #ifdef ALLOW_LAYERS
       IF ( useLayers ) THEN
         CALL LAYERS_CALC( myTime, myIter, myThid )
@@ -209,7 +209,7 @@ C- added by RPA
 
 #ifdef ALLOW_DIAGNOSTICS
       IF ( useDiagnostics )
-     &     CALL DIAGNOSTICS_WRITE( myTime, myIter, myThid )
+     &     CALL DIAGNOSTICS_WRITE( modelEnd, myTime, myIter, myThid )
 #endif
 
       RETURN

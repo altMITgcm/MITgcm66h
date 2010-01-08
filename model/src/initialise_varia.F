@@ -344,7 +344,7 @@ C--   Dump initial state to files
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_CALL('DO_THE_MODEL_IO',myThid)
 #endif
-      CALL DO_THE_MODEL_IO( startTime, nIter0, myThid )
+      CALL DO_THE_MODEL_IO( .FALSE., startTime, nIter0, myThid )
 
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_LEAVE('INITIALISE_VARIA',myThid)
