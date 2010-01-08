@@ -4,6 +4,14 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o do_the_model_io:
+  - pass end-of-model-run flag as argument, from forward_step to diagnostics_write:
+    in case useSIGREG, will write (averaged) diagnostics (if dumpAtLast) before
+    writing pickups and stopping.
+o pkg/diagnostics (for now, only with mdsio):
+  - write time information to meta file (and modify accordingly rdmds.m) :
+    time-averaged diagnostics output: write starting and ending time of the
+    time-averaging interval ; snap-shot diagnostics output remains unchanged;
 o pkg/timeave:
   - S/R TIMEAVE_NORMALIZ: change size of cumulated-time array (was previously
     always Nr), now assumed to be equal to number of levels of averaged field;
