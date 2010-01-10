@@ -8,7 +8,7 @@ CBOP 0
 C     !ROUTINE: DIAGNOSTICS_INTERP_VERT
 
 C     !INTERFACE:
-      SUBROUTINE  DIAGNOSTICS_INTERP_VERT(
+      SUBROUTINE DIAGNOSTICS_INTERP_VERT(
      I                        listId, md, ndId, ip, im, lm,
      U                        qtmp1,
      I                        undef,

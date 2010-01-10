@@ -8,7 +8,7 @@ CBOP 0
 C     !ROUTINE: DIAGSTATS_OUTPUT
 
 C     !INTERFACE:
-      SUBROUTINE  DIAGSTATS_OUTPUT(
+      SUBROUTINE DIAGSTATS_OUTPUT(
      I     listId,
      I     myTime, myIter, myThid )
 
