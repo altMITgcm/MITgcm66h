@@ -168,7 +168,7 @@ for iter=1:size(itrs,2);
    if isempty(ii), jj1=0; jj2=0;
    else jj1=ii; jj2=ii+min(findstr(M(1+ii:end),'];')); end
    if iter==1 & j==1,
-    MM=M; ind2=0; is1=ii1; js1=jj1; M3=''; 
+    MM=M; ind1=0; ind2=0; is1=ii1; js1=jj1; M3=''; 
     if ii1*jj1 > 0, 
      %ind1=min(ii1,jj1); ind2=max(ii2,jj2);
      %if ii1 < jj1, ii3=ii2+1; jj3=jj1-1;
