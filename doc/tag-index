@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/longstep:
+  - change parameters and fix tracer conservation with rstar/nonlinear free surface
 o diagnostics:
  - in all pkgs, replace remaining calls to old S/R DIAGNOSTICS_ADD2LIST with newer
    S/R DIAGNOSTICS_ADDTOLIST ; fix seaice VICE diagnostics.
