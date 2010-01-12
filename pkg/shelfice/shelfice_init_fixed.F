@@ -29,6 +29,7 @@ C     I,J,K,bi,bj - Loop counters
       INTEGER I, J, K, bi, bj
 #ifdef ALLOW_DIAGNOSTICS
       INTEGER       diagNum
+      INTEGER       diagMate
       CHARACTER*8   diagName
       CHARACTER*16  diagCode
       CHARACTER*16  diagUnits
@@ -68,44 +69,46 @@ C-----------------------------------------------------------------------
        diagName  = 'SHIfwFlx'
        diagTitle = 'Ice shelf fresh water flux (positive upward)'
        diagUnits = 'kg/m^2/s        '
-       diagCode  = 'SM      MS      '
-       CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I      diagName, diagCode, diagUnits, diagTitle, myThid )
+       diagCode  = 'SM      L1      '
+       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I      diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
        diagName  = 'SHIhtFlx'
        diagTitle = 'Ice shelf heat flux  (positive upward)'
        diagUnits = 'W/m^2           '
-       diagCode  = 'SM      MS      '
-       CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I      diagName, diagCode, diagUnits, diagTitle, myThid )
+       diagCode  = 'SM      L1      '
+       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I      diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
        diagName  = 'SHIUDrag'
        diagTitle = 'U momentum tendency from ice shelf drag'
        diagUnits = 'm/s^2           '
-       WRITE(diagCode,'(A,I3.3,A)') 'UU   ',diagNum+2,'MR      '
-       CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I              diagName, diagCode, diagUnits, diagTitle, myThid )
+       diagCode  = 'UU      L1      '
+       diagMate  = diagNum + 2
+       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I      diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
 
        diagName  = 'SHIVDrag'
        diagTitle = 'V momentum tendency from ice shelf drag'
        diagUnits = 'm/s^2           '
-       WRITE(diagCode,'(A,I3.3,A)') 'VV   ', diagNum, 'MR      '
-       CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I              diagName, diagCode, diagUnits, diagTitle, myThid )
+       diagCode  = 'VV      L1      '
+       diagMate  = diagNum
+       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I      diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
 
        diagName  = 'SHIForcT'
        diagTitle = 'Ice shelf forcing for theta, >0 increases theta'
        diagUnits = 'W/m^2           '
-       diagCode  = 'SM      MS      '
-       CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I      diagName, diagCode, diagUnits, diagTitle, myThid )
+       diagCode  = 'SM      L1      '
+       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I      diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
        diagName  = 'SHIForcS'
        diagTitle = 'Ice shelf forcing for salt, >0 increases salt'
        diagUnits = 'g/m^2/s         '
-       diagCode  = 'SM      MS      '
-       CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I      diagName, diagCode, diagUnits, diagTitle, myThid )
+       diagCode  = 'SM      L1      '
+       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I      diagName, diagCode, diagUnits, diagTitle, 0, myThid )
       ENDIF
 #endif /* ALLOW_DIAGNOSTICS */
 #endif /* ALLOW_SHELFICE */
