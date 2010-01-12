@@ -41,8 +41,8 @@ C     diagTitle :: local string (80c): description of field in diagnostic
       diagTitle = 'fractional plume: [0-1] (unitless)'
       diagUnits = '                '
       diagCode  = 'SM      MR      '
-      CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I       diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
       diagName  = 'oceSPflx'
       diagTitle = 'net surface Salt flux rejected into the ocean during'
@@ -50,15 +50,15 @@ C     diagTitle :: local string (80c): description of field in diagnostic
      &          //' >0 increases salinity'
       diagUnits = 'g/m^2/s         '
       diagCode  = 'SM      U1      '
-      CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I       diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
       diagName  = 'oceSPDep'
       diagTitle = 'Salt plume depth based on density criterion (>0)'
       diagUnits = 'm               '
       diagCode  = 'SM      U1      '
-      CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I       diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
 #endif /* ALLOW_DIAGNOSTICS */
 #endif /* ALLOW_SALT_PLUME */

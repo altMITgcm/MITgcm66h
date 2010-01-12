@@ -48,8 +48,8 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       diagTitle = 'Pressure Thickness of Layers on Fizhi Grid'
       diagUnits = 'Pascal          '
       diagCode  = 'SM      ML      '
-      CALL DIAGNOSTICS_ADD2LIST( diagNum,
-     I          diagName, diagCode, diagUnits, diagTitle, myThid )
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I       diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
 #endif /* ALLOW_DIAGNOSTICS */
 
