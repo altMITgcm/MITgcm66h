@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o diagnostics:
+ - in all pkgs, replace remaining calls to old S/R DIAGNOSTICS_ADD2LIST with newer
+   S/R DIAGNOSTICS_ADDTOLIST ; fix seaice VICE diagnostics.
 o pkg/diagnostics:
  - Add option for writing vertical integral (sum of selected levels) of an output
     field instead of writing output field levels. Activate this option on a per
