@@ -233,10 +233,15 @@ C-      set tracer tendency to zero:
         ENDIF
 #endif
 
-c       iMin = 1-OLx
-c       iMax = sNx+OLx
-c       jMin = 1-OLy
-c       jMax = sNy+OLy
+        iMin = 1-OLx
+        iMax = sNx+OLx
+        jMin = 1-OLy
+        jMax = sNy+OLy
+
+C     need to recompute surfaceForcingPtr using LS_fwFlux
+        CALL LONGSTEP_FORCING_SURF(
+     I        bi, bj, iMin, iMax, jMin, jMax,
+     I        myTime,myIter,myThid )
 
 #ifdef ALLOW_AUTODIFF_TAMC
 cph avoids recomputation of integrate_for_w

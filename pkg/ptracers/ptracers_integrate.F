@@ -173,7 +173,7 @@ C  prevent gPtr from being replaced by the average of gPtr and gpTrNm1.
 C       compute iter at beginning of ptracer time step
 #ifdef ALLOW_LONGSTEP
         iterNb = myIter - LS_nIter + 1
-        IF (LS_staggerTimeStep) iterNb = myIter - LS_nIter
+        IF (LS_whenToSample.GE.2) iterNb = myIter - LS_nIter
 #else
         iterNb = myIter
         IF (staggerTimeStep) iterNb = myIter - 1

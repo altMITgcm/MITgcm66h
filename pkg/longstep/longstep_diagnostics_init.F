@@ -94,6 +94,13 @@ C--   Add diagnostics to the (long) list
      I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 #endif
 
+      diagName  = 'LSfwFlux'
+      diagTitle = 'net surface Fresh-Water flux into the ocean'
+      diagUnits = 'kg/m^2/s        '
+      diagCode  = 'SM      U1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
 #ifdef ALLOW_GMREDI
       IF ( useGMRedi ) THEN
        diagName  = 'LSkwx   '
