@@ -49,7 +49,7 @@ C     numDiag :: diagnostic number in the list of available diagnostics
 CEOP
 
 C     !LOCAL VARIABLES:
-C     msgBuf :: Informational/error meesage buffer
+C     msgBuf :: Informational/error message buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       INTEGER n
 
