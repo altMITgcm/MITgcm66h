@@ -8,11 +8,11 @@ Np=3
 MTH=
 MTHo=
 MTHa=
-if test $1 = '-mth' ; then
+if [ $# -ge 1 ] ; then if test $1 = '-mth' ; then
   MTH='-omp' ; shift
   if test -f input_ocn/eedata.mth ; then MTHo=$MTH ; fi
   if test -f input_atm/eedata.mth ; then MTHa=$MTH ; fi
-fi
+fi ; fi
 if [ $# -ne 1 ]
 then
   echo 'Usage:'`basename $0`' [opt] step'
