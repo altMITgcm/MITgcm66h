@@ -136,6 +136,10 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 C-      wait for everyone before setting arrays to zero:
           _BARRIER
         ENDIF
+        IF ( modelEnd ) THEN
+C       Close all Stat-diags output files
+          CALL DIAGSTATS_CLOSE_IO( myThid )
+        ENDIF
 
 C--     Clear storage space:
 
