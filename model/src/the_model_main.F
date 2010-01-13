@@ -648,12 +648,12 @@ C--   Call time stepping loop of full model
 
 #endif /* ALLOW_TANGENTLINEAR_RUN ALLOW_ADJOINT_RUN ALLOW_ADMTLM */
 
-#ifdef ALLOW_DIAGNOSTICS
-      IF (useDiagnostics) THEN
-C       Close all diagnostics output files
-        CALL DIAGSTATS_CLOSE_IO( myThid )
-      ENDIF
-#endif
+c#ifdef ALLOW_DIAGNOSTICS
+c     IF (useDiagnostics) THEN
+C       Close all diagnostics output files <= now called from DIAGNOSTICS_WRITE
+c       CALL DIAGSTATS_CLOSE_IO( myThid )
+c     ENDIF
+c#endif
 
 #ifdef ALLOW_MNC
       IF (useMNC) THEN
