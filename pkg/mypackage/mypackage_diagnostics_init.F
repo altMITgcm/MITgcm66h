@@ -94,21 +94,21 @@ c     IF ( useDiagnotics ) THEN
         diagName  = 'MYPadTdt'
         diagTitle = ' Pot.Temp. tendency from package MYPACKAGE'
         diagUnits = 'K/s             '
-        diagCode  = 'SM      MR      '
+        diagCode  = 'SMR     MR      '
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
         diagName  = 'MYPadSdt'
         diagTitle = ' Salinity  tendency from package MYPACKAGE'
         diagUnits = 'psu/s           '
-        diagCode  = 'SM      MR      '
+        diagCode  = 'SMR     MR      '
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
         diagName  = 'MYPadUdt'
         diagTitle = 'u-Velocity tendency from package MYPACKAGE'
         diagUnits = 'm/s^2           '
-        diagCode  = 'UM      MR      '
+        diagCode  = 'UMR     MR      '
         diagMate  = diagNum + 2
         IF ( myPa_Tend_Cgrid ) diagCode(2:2) = 'U'
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
@@ -117,11 +117,20 @@ c     IF ( useDiagnotics ) THEN
         diagName  = 'MYPadVdt'
         diagTitle = 'v-Velocity tendency from package MYPACKAGE'
         diagUnits = 'm/s^2           '
-        diagCode  = 'VM      MR      '
+        diagCode  = 'VMR     MR      '
         diagMate  = diagNum
         IF ( myPa_Tend_Cgrid ) diagCode(2:2) = 'V'
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I   diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
+
+C--     an example of how to set "free levels option" diagnostics
+        diagName  = 'MYPaLev3'
+        diagTitle = '3-levels field for package MYPACKAGE'
+        diagUnits = 'unit            '
+        diagCode  = 'SM      MX      '
+        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+        CALL DIAGNOSTICS_SETKLEV( diagName, 3, myThid )
 
 c     ENDIF
 
