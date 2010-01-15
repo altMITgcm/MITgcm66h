@@ -130,11 +130,6 @@ C       Write to files
 
         IF (timeave_mdsio) THEN
 
-C         Set IO "context" for writing state
-#ifdef USE_DFILE
-          CALL DFILE_SET_RW
-          CALL DFILE_SET_CONT_ON_ERROR
-#endif
 C         Read IO error counter
           beginIOErrCount = IO_ERRCOUNT(myThid)
           CALL WRITE_FLD_XY_RL('ETAtave.' ,suff,etatave  ,myIter,myThid)
