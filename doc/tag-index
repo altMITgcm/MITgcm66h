@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint62a (2010/01/15)
 o model/src:
   - bottom pressure diagnostic: correct for r* (when nonlinFreeSurf >= 4)
 o pkg/diagnostics:
