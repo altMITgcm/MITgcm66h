@@ -58,6 +58,24 @@ C--   Initialise
 
       _BEGIN_MASTER( myThid)
 
+C--   Check if this S/R is called from the right place ;
+C     needs to be after DIAGNOSTICS_INIT_EARLY and before DIAGNOSTICS_INIT_FIXED
+      IF ( .NOT.settingDiags ) THEN
+        WRITE(msgBuf,'(6A)') 'DIAGNOSTICS_ADDTOLIST: ',
+     &     'diagName="', diagName, '", diagCode="',diagCode(1:10),'"'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        WRITE(msgBuf,'(2A)') 'DIAGNOSTICS_ADDTOLIST: ',
+     &     '<== called from the WRONG place, i.e.'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        WRITE(msgBuf,'(2A)') 'DIAGNOSTICS_ADDTOLIST: ',
+     &     'outside diagnostics setting section = from'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        WRITE(msgBuf,'(2A)') 'DIAGNOSTICS_ADDTOLIST: ',
+     &     '   Diag_INIT_EARLY down to Diag_INIT_FIXED'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        STOP 'ABNORMAL END: S/R DIAGNOSTICS_ADDTOLIST'
+      ENDIF
+
 C--   Search for "diagName" in the list of available diagnostics:
       DO n=1,ndiagt
        IF ( cdiag(n).EQ.diagName ) THEN
