@@ -48,6 +48,7 @@ C                   &  L  &  levels = MAX(Nr,NrPhys)  \\
 C                   &  M  &  levels = MAX(Nr,NrPhys) - 1  \\
 C                   &  G  &  levels = Ground_level Number \\
 C                   &  I  &  levels = sea-Ice_level Number \\
+C                   &  X  &  free levels option (need to be set explicitly) \\
 C       \end{tabular}
 C     \end{center}
 

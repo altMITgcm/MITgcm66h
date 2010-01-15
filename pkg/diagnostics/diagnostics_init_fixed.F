@@ -11,7 +11,8 @@ C     !INTERFACE:
       SUBROUTINE DIAGNOSTICS_INIT_FIXED(myThid)
 
 C     !DESCRIPTION:
-C     Set Pointer Locations for Diagnostics in diag_list.
+C     finish setting up the list of available diagnostics and
+C     prepare for storing selected diagnostics and statistics-diags.
 
 C     !USES:
       IMPLICIT NONE
@@ -29,7 +30,8 @@ CEOP
 
 C     !LOCAL VARIABLES:
 
-C--   Set number of levels for all available diagnostics:
+C--   Set number of levels for all available diagnostics
+C     (cannot add diags to list anymore after this call)
       CALL DIAGNOSTICS_SET_LEVELS( myThid )
 
 C--   Calculate pointers for diagnostics set to non-zero frequency

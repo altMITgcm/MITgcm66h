@@ -48,6 +48,7 @@ C                   &  L  &  levels = MAX(Nr,NrPhys)  \\
 C                   &  M  &  levels = MAX(Nr,NrPhys) - 1  \\
 C                   &  G  &  levels = Ground_level Number \\
 C                   &  I  &  levels = sea-Ice_level Number \\
+C                   &  X  &  free levels option (need to be set explicitly) \\
 C       \end{tabular}
 C     \end{center}
 
@@ -78,6 +79,9 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
         udiag(n) = '                '
         tdiag(n) = ' '
       ENDDO
+
+C--   Diagnostics definition/setting starts here (can now add diags to list)
+      settingDiags = .TRUE.
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 C     For each output variable,
