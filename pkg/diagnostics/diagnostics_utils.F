@@ -333,6 +333,8 @@ C     !LOCAL VARIABLES:
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
+      _BEGIN_MASTER( myThid)
+
 C--   Check if this S/R is called from the right place ;
 C     needs to be after DIAGNOSTICS_INIT_EARLY and before DIAGNOSTICS_INIT_FIXED
       IF ( .NOT.settingDiags ) THEN
@@ -403,6 +405,8 @@ C-    for now, do nothing but just send a warning
         CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
      &                      SQUEEZE_RIGHT , myThid )
       ENDIF
+
+      _END_MASTER( myThid)
 
       RETURN
       END
