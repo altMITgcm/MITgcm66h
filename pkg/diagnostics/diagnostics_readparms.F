@@ -549,5 +549,8 @@ C     Echo History List Data Structure
 
       _END_MASTER(myThid)
 
+C--   Everyone else must wait for the parameters to be loaded
+      _BARRIER
+
       RETURN
       END
