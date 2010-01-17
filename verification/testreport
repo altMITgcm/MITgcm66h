@@ -596,9 +596,12 @@ runmodel()
 	printf 'runmodel in %s ...' $1 1>&2
 	# make output.txt
 	echo
-	if test -L $EXECUTABLE -a -x "../"$builddir"/"$EXECUTABLE ; then
+	if test -L $EXECUTABLE ; then
+	  if test -x "../"$builddir"/"$EXECUTABLE ; then
 	    diff -q $EXECUTABLE "../"$builddir"/"$EXECUTABLE > /dev/null 2>&1
 	    outD=$? ; if test $outD != 0 ; then rm -f $EXECUTABLE ; fi
+	  else rm -f $EXECUTABLE
+	  fi
 	fi
         if test ! -x $EXECUTABLE -a -x "../"$builddir"/"$EXECUTABLE ; then
 	    echo " link" $EXECUTABLE "from dir ../"$builddir > run.log_tmp
