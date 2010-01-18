@@ -35,7 +35,7 @@ C       myNr :: number of levels to update
 C     myThid :: my Thread Id number
       INTEGER myNr
       _RL lsFld(1-OLx:sNx+OLx,1-OLy:sNy+OLy,myNr,nSx,nSy)
-      _RL fac(1-OLx:sNx+OLx,1-OLy:sNy+OLy,myNr,nSx,nSy)
+      _RS fac(1-OLx:sNx+OLx,1-OLy:sNy+OLy,myNr,nSx,nSy)
       INTEGER lsCnt(nSx,nSy)
       INTEGER myThid
 
