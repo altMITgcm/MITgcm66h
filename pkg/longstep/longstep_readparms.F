@@ -27,10 +27,9 @@ CEOP
 #ifdef ALLOW_LONGSTEP
 
 C     !LOCAL VARIABLES:
-C     k          :: loop index
 C     iUnit      :: unit number for I/O
 C     msgBuf     :: message buffer
-      INTEGER k,iUnit
+      INTEGER iUnit
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 
 C     LS_nIter        :: number of dynamics time steps between ptracer steps
