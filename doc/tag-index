@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o add 3 "_d 0"s so that fizhi compiles with xlf on iblade, and replace 
+  two " &end" by " &" (in fizhi-cs-*) because S/R NML_SET_TERMINATOR 
+  cannot deal with the former 
 o cleaning:
   - remove unused S/R (MDSWRITEMETA, DIAGNOSTICS_ADD2LIST, old DFILE IO S/R)
   - comment out maskH definition (replaced by maskInC)
