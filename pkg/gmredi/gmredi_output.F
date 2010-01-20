@@ -45,7 +45,10 @@ C     !FUNCTIONS:
 
 C     !LOCAL VARIABLES:
 C     == Local variables ==
+#if ( defined (ALLOW_TIMEAVE) || \
+      defined (GM_NON_UNITY_DIAGONAL) || defined (GM_EXTRA_DIAGONAL) )
       CHARACTER*(MAX_LEN_MBUF) suff
+#endif
 #ifdef ALLOW_TIMEAVE
       INTEGER bi, bj
 #endif
