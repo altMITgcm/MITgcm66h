@@ -80,6 +80,8 @@ C       |-- THSICE_INIT_FIXED
 C       |
 C       |-- SHELFICE_INIT_FIXED
 C       |
+C       |-- ICEFRONT_INIT_FIXED
+C       |
 C       |-- CPL_INIT_FIXED
 C       |
 C       |-- ATM2D_INIT_FIXED
@@ -305,6 +307,10 @@ C--   Initialise fixed array for Float pkg
 #ifdef ALLOW_SHELFICE
       IF (useShelfIce) CALL SHELFICE_INIT_FIXED( myThid )
 #endif /* ALLOW_SHELFICE */
+
+#ifdef ALLOW_ICEFRONT
+      IF (useICEFRONT) CALL ICEFRONT_INIT_FIXED( myThid )
+#endif /* ALLOW_ICEFRONT */
 
 #ifdef ALLOW_EMBED_FILES
       IF ( useEMBED_FILES ) CALL EMBED_FILES_INIT( myThid )

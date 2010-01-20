@@ -54,6 +54,8 @@ C       |-- SEAICE_READPARMS
 C       |
 C       |-- SHELFICE_READPARMS
 C       |
+C       |-- ICEFRONT_READPARMS
+C       |
 C       |-- SHAP_FILT_READPARMS
 C       |
 C       |-- ZONAL_FILT_READPARMS
@@ -189,6 +191,11 @@ C--   Initialize SEAICE parameters
 #ifdef ALLOW_SHELFICE
 C--   Initialize SHELFICE parameters
       IF (useShelfIce) CALL SHELFICE_READPARMS( myThid )
+#endif
+
+#ifdef ALLOW_ICEFRONT
+C--   Initialize ICEFRONT parameters
+      IF (useICEFRONT) CALL ICEFRONT_READPARMS( myThid )
 #endif
 
 #ifdef ALLOW_SHAP_FILT

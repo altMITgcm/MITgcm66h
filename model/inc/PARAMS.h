@@ -908,6 +908,7 @@ C Logical flags for selecting packages
       LOGICAL useSEAICE
       LOGICAL useSALT_PLUME
       LOGICAL useShelfIce
+      LOGICAL useICEFRONT
       LOGICAL useThSIce
       LOGICAL useATM2d
       LOGICAL useAIM
@@ -928,7 +929,8 @@ C Logical flags for selecting packages
      &        useCAL, useEXF, useBulkForce, useEBM, useCheapAML,
      &        useGrdchk, useSMOOTH, useECCO, useSBO, useFLT,
      &        usePTRACERS, useGCHEM, useRBCS, useOffLine, useMATRIX,
-     &        useSEAICE, useSALT_PLUME, useShelfIce, useThSIce,
+     &        useSEAICE, useSALT_PLUME, useShelfIce,
+     &        useICEFRONT, useThSIce,
      &        useATM2D, useAIM, useLand, useFizhi, useGridAlt,
      &        useDiagnostics, useREGRID, useLayers, useMNC,
      &        useRunClock, useEMBED_FILES,

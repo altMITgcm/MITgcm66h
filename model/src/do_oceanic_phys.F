@@ -254,6 +254,22 @@ C     shelf-ice ocean interface
       ENDIF
 #endif /* ALLOW_SHELFICE */
 
+#ifdef ALLOW_ICEFRONT
+      IF ( useICEFRONT .AND. fluidIsWater ) THEN
+#ifdef ALLOW_DEBUG
+        IF ( debugLevel .GE. debLevB )
+     &    CALL DEBUG_CALL('ICEFRONT_THERMODYNAMICS',myThid)
+#endif
+C     compute temperature and (virtual) salt flux at the
+C     ice-front ocean interface
+       CALL TIMER_START('ICEFRONT_THERMODYNAMICS [DO_OCEANIC_PHYS]',
+     &       myThid)
+       CALL ICEFRONT_THERMODYNAMICS( myTime, myIter, myThid )
+       CALL TIMER_STOP( 'ICEFRONT_THERMODYNAMICS [DO_OCEANIC_PHYS]',
+     &      myThid)
+      ENDIF
+#endif /* ALLOW_ICEFRONT */
+
 C--   Freeze water at the surface
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE theta = comlev1, key = ikey_dynamics,

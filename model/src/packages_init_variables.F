@@ -42,6 +42,8 @@ C       |-- SEAICE_INIT_VARIA
 C       |
 C       |-- SHELFICE_INIT_VARIA
 C       |
+C       |-- ICEFRONT_INIT_VARIA
+C       |
 C       |-- PTRACERS_INIT_VARIA
 C       |
 C       |-- GCHEM_INIT_VARI
@@ -216,6 +218,15 @@ cph# endif
        CALL SHELFICE_INIT_VARIA( myThid )
       ENDIF
 #endif /* ALLOW_SHELFICE */
+
+#ifdef ALLOW_ICEFRONT
+      IF (useICEFRONT) THEN
+# ifdef ALLOW_DEBUG
+       IF (debugMode) CALL DEBUG_CALL('ICEFRONT_INIT_VARIA',myThid)
+# endif
+       CALL ICEFRONT_INIT_VARIA( myThid )
+      ENDIF
+#endif /* ALLOW_ICEFRONT */
 
 cph-- moved further down
 cph#ifdef ALLOW_OBCS

@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/icefront: adding the shell of, and the hooks to, a new package that
+   will model melting and freezing of vertical glacier ice fronts
 o momentum: 
   add diagnostics of momentum tendency from Hydrostatic pressure gradient
    (without surf.pressure term: would need a 2nd filling since implicit term).

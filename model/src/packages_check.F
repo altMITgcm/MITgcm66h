@@ -251,6 +251,12 @@ C---  Continue with standard packages (with standard usePKG flag)
       IF (useShelfIce) CALL PACKAGES_ERROR_MSG('ShelfIce',' ',myThid)
 #endif
 
+#ifdef ALLOW_ICEFRONT
+      IF (useICEFRONT) CALL ICEFRONT_CHECK( myThid )
+#else
+      IF (useICEFRONT) CALL PACKAGES_ERROR_MSG('ICEFRONT',' ',myThid)
+#endif
+
 #ifdef ALLOW_AUTODIFF
       CALL AUTODIFF_CHECK( myThid )
 #endif

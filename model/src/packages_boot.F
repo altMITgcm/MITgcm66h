@@ -73,6 +73,7 @@ c    &          useSMOOTH,
      &          useSEAICE,
      &          useSALT_PLUME,
      &          useShelfIce,
+     &          useICEFRONT,
      &          useThSIce,
      &          useATM2D,
      &          useAIM,
@@ -130,6 +131,7 @@ c     useGAD          =.FALSE.
       useSEAICE       =.FALSE.
       useSALT_PLUME   =.FALSE.
       useShelfIce     =.FALSE.
+      useICEFRONT     =.FALSE.
       useThSIce       =.FALSE.
       useATM2D        =.FALSE.
       useAIM          =.FALSE.
