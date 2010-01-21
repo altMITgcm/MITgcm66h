@@ -54,6 +54,14 @@ C     myThid    :: My Thread Id. number
 CEOP
 
 #ifdef ALLOW_AIM
+C     !FUNCTIONS:
+C     !LOCAL VARIABLES:
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+C--   Local Variables originally (Speedy) in common bloc (com_forcing.h):
+C--   COMMON /FORFIX/ Time invariant forcing fields (initialise in INFORC)
+C     phi0       :: surface geopotential
+      _RL     phi0   (NGP)
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 C     == Local variables ==
 C     bi,bj      :: Tile indices
 C     i,j,k,I2   :: Loop counters
@@ -66,6 +74,8 @@ C     prcAtm     :: total precip from the atmosphere [kg/m2/s]
       _RL     tYear, yearLength
       _RL     aim_sWght0, aim_sWght1
       _RL prcAtm(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 #ifdef ALLOW_AIM_CO2
       CALL AIM_DO_CO2( myTime, myIter, myThid )
