@@ -55,16 +55,16 @@ CEOP
       COMMON /ICEFRONT_FIELDS_RL/ 
      &     icefrontForcingT,
      &     icefrontForcingS
-      _RL icefrontForcingT      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RL icefrontForcingS      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL icefrontForcingT      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      _RL icefrontForcingS      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
 
       COMMON /ICEFRONT_FIELDS_RS/ 
      &     R_icefront,
      &     icefrontHeatFlux,
      &     icefrontFreshWaterFlux
       _RS R_icefront            (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RS icefrontHeatFlux      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RS icefrontFreshWaterFlux(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS icefrontHeatFlux      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      _RS icefrontFreshWaterFlux(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       
       LOGICAL ICEFRONTisOn
       LOGICAL useISOMIPTD
