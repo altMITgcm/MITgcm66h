@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint62b (2010/01/26)
 o pkg/monitor:
   - change back mon_printstats_rl.F & mon_stats_rl.F and add a stop 
     (in case someone forgot to update customized pieces of code)
