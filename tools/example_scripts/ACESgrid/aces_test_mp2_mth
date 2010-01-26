@@ -84,6 +84,11 @@ else
   fi
 fi
 
+#-- in case mpiexec get stuck, run this script in background to check
+if test -x $HERE/check_$sfx ; then
+   echo "start check_$sfx in background"
+   ( cd $HERE ; ./check_$sfx > check_${sfx}.log 2>&1 ) &
+fi
 cd $gcmDIR/verification
 echo ./testreport $options -of $OPTFILE -command \"$EXE\" -odir aces-$sfx
 ./testreport $options -of $OPTFILE -command "$EXE" -odir aces-$sfx
