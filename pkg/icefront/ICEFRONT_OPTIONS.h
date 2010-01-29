@@ -17,9 +17,6 @@ C     \==========================================================/
 
 #include "CPP_OPTIONS.h"
 
-C     allow code for simple ISOMIP thermodynamics
-#define ALLOW_ISOMIP_TD
-
 #endif /* ALLOW_ICEFRONT */
 #endif /* ICEFRONT_OPTIONS_H */
 

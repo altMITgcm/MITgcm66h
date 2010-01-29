@@ -27,18 +27,20 @@ CEndOfInterface
 
 #ifdef ALLOW_ICEFRONT
 C     === Local variables ===
-C     I,J,bi,bj - Loop counters
-      INTEGER I, J, bi, bj
+C     I,J,K,bi,bj - Loop counters
+      INTEGER I, J, K, bi, bj
 CEOP
 
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
         DO J = 1-OLy, sNy+OLy
          DO I = 1-OLx, sNx+OLx
-          icefrontForcingT      (i,j,bi,bj) = 0. _d 0
-          icefrontForcingS      (i,j,bi,bj) = 0. _d 0
-          icefrontHeatFlux      (i,j,bi,bj) = 0. _d 0
-          icefrontFreshWaterFlux(i,j,bi,bj) = 0. _d 0
+          DO K = 1, Nr
+           icefront_TendT        (i,j,k,bi,bj) = 0. _d 0
+           icefront_TendS        (i,j,k,bi,bj) = 0. _d 0
+           icefrontHeatFlux      (i,j,k,bi,bj) = 0. _d 0
+           icefrontFreshWaterFlux(i,j,k,bi,bj) = 0. _d 0
+          ENDDO
          ENDDO
         ENDDO
        ENDDO
