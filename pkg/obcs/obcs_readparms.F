@@ -34,8 +34,11 @@ C     msgBuf      - Informational/error message buffer
 C     iUnit       - Work variable for IO unit number
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       INTEGER iUnit
-      INTEGER I,J,iTracer
+      INTEGER I, J
       INTEGER bi, bj, iG, jG, iGm, jGm
+#ifdef ALLOW_PTRACERS
+      INTEGER iTracer
+#endif
 
       NAMELIST /OBCS_PARM01/
      &          OB_Jnorth,OB_Jsouth,OB_Ieast,OB_Iwest,

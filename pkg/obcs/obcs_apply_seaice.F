@@ -27,7 +27,9 @@ C     == Routine Arguments ==
 
 C     == Local variables ==
       INTEGER I, J, bi, bj, I_obc, J_obc
+#ifdef OBCS_SEAICE_SMOOTH_EDGE
       _RL edge_val
+#endif
 
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
