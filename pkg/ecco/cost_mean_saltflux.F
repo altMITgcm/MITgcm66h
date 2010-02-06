@@ -92,9 +92,9 @@ c--   Read tiled data.
 #ifdef ALLOW_MEAN_SFLUX_COST_CONTRIBUTION
 
       if (optimcycle .ge. 0) then
-        ilsalt = ilnblnk( sfluxbarfile )
+        ilsalt = ilnblnk( sfluxmeanbarfile )
         write(fnamesflux(1:80),'(2a,i10.10)')
-     &    sfluxbarfile(1:ilsalt),'.',optimcycle
+     &    sfluxmeanbarfile(1:ilsalt),'.',optimcycle
       endif
 
       do irec = 1, MAX(1,nyearsrec)
