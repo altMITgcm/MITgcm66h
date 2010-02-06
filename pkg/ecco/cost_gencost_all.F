@@ -73,7 +73,7 @@ c     == end of interface ==
      &        nnzobs, gencost_datafile(k), mult_gencost(k),
      &        gencost_nrec(k), modelstartdate, gencost_period(k),
      &        gencost_spzero(k),
-===+++>>>     &        maskC, wsst,
+===+++>>>     &        gencost_mask(k), wsst,
      &        gencost_spmin(k), gencost_spmax(k), 
      &        objf_gencost(1,1,k), num_gencost(1,1,k),
      &        myiter, mytime, mythid )

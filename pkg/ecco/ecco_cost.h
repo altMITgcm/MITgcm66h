@@ -75,11 +75,13 @@ c     objf_gencost - gencost user defined contribution
      &       gencost_errfile,
      &       gencost_datafile,
      &       gencost_barfile,
-     &       gencost_avgperiod
+     &       gencost_avgperiod,
+     &       gencost_mask
       character*(MAX_LEN_FNAM) gencost_errfile(NGENCOST)
       character*(MAX_LEN_FNAM) gencost_datafile(NGENCOST)
       character*(MAX_LEN_FNAM) gencost_barfile(NGENCOST)
       character*(5)            gencost_avgperiod(NGENCOST)
+      character*(1)            gencost_mask(NGENCOST)
 
 #endif /* ALLOW_GENCOST_CONTRIBUTION */
 
