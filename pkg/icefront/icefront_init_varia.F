@@ -38,8 +38,6 @@ CEOP
           DO K = 1, Nr
            icefront_TendT        (i,j,k,bi,bj) = 0. _d 0
            icefront_TendS        (i,j,k,bi,bj) = 0. _d 0
-           icefrontHeatFlux      (i,j,k,bi,bj) = 0. _d 0
-           icefrontFreshWaterFlux(i,j,k,bi,bj) = 0. _d 0
           ENDDO
          ENDDO
         ENDDO
