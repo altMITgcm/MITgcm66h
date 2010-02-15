@@ -6,7 +6,7 @@ C $Name$
 C     !ROUTINE: ADZERO_ADJ_LOC
 C     !INTERFACE:
       SUBROUTINE ADZERO_ADJ_LOC(
-     I             NrIn,myThid,adFieldFwd)
+     I             NrIn, adFieldFwd, myThid)
 C     !DESCRIPTION: \bv
 C     *==========================================================*
 C     | o zero out a local (no nsx,nsy dims.) adjoint field
@@ -42,7 +42,7 @@ C     == Local arguments ==
 C     !ROUTINE: ADZERO_ADJ
 C     !INTERFACE:
       SUBROUTINE ADZERO_ADJ(
-     I             NrIn,myThid,adFieldFwd)
+     I             NrIn, adFieldFwd, myThid)
 C     !DESCRIPTION: \bv
 C     *==========================================================*
 C     | o zero out a full (incl. nsx,nsy dims.) adjoint field
