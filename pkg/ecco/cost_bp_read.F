@@ -107,13 +107,15 @@ ce    --> there is certainly a better place for this.
           k = 1
           do j = jmin,jmax
             do i = imin,imax
-              if (maskC(i,j,k,bi,bj) .eq. 0.) then
+c              if (maskC(i,j,k,bi,bj) .eq. 0.) then
+c                bpmask(i,j,bi,bj) = 0. _d 0
+c              else
+c                bpmask(i,j,bi,bj) = 1. _d 0
+c              endif
+              if (bpdat(i,j,bi,bj) .lt. spval) then
                 bpmask(i,j,bi,bj) = 0. _d 0
               else
                 bpmask(i,j,bi,bj) = 1. _d 0
-              endif
-              if (bpdat(i,j,bi,bj) .lt. spval) then
-                bpmask(i,j,bi,bj) = 0. _d 0
               endif
               bpdat(i,j,bi,bj) = bpdat(i,j,bi,bj)*
      &                              bpmask(i,j,bi,bj)
