@@ -78,9 +78,9 @@ cph)
       localperiod = 86400.
       call cost_generic(
      &     nnzbar, smrareabarfile, smrareabar, xx_smrareabar_mean_dummy,
-     &     nnzobs, smrareadatfile, smrareadat, mult_smrarea,
+     &     nnzobs, smrareadatfile, mult_smrarea,
      &     nrecloc, modelstartdate, localperiod,
-     &     maskC, wsmrarea,
+     &     'C', wsmrarea,
      &     spminloc, spmaxloc, spzeroloc,
      &     objf_smrarea, num_smrarea,
      &     myiter, mytime, mythid )
