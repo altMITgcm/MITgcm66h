@@ -44,7 +44,6 @@ CEOP
      &     rhoIcefront, ICEFRONTkappa,
      &     ICEFRONTlatentHeat, ICEFRONTHeatCapacity_Cp,
      &     ICEFRONTthetaSurface,
-     &     ICEFRONTconserve,
      &     applyIcefrontTendT,applyIcefrontTendS,
      &     ICEFRONTdepthFile, ICEFRONTlengthFile
 
@@ -78,7 +77,6 @@ C Default values when SHELFICE is not used
       ENDIF
 
       recip_ICEFRONTlatentHeat =    0.0 _d 0
-      ICEFRONTconserve         = .FALSE.
       ICEFRONTsaltTransCoeff   = UNSET_RL
       ICEFRONTlengthFile       = ' '
       ICEFRONTdepthFile        = ' '

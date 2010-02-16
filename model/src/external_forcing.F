@@ -347,9 +347,9 @@ C     Add heat in top-layer
 #endif /* ALLOW_SHELFICE */
 
 #ifdef ALLOW_ICEFRONT
-      IF ( useICEFRONT ) CALL ICEFRONT_TENDENCY_APPLY_T(
-     &                      iMin,iMax, jMin,jMax, bi,bj, kLev,
-     &                      myTime, myThid )
+      IF ( useICEFRONT )
+     &     CALL ICEFRONT_TENDENCY_APPLY_T(
+     &     bi,bj, kLev, myTime, myThid )
 #endif /* ALLOW_ICEFRONT */
 
 #ifdef SHORTWAVE_HEATING
@@ -532,9 +532,9 @@ C     Add fresh-water in top-layer
 #endif /* ALLOW_SHELFICE */
 
 #ifdef ALLOW_ICEFRONT
-      IF ( useICEFRONT ) CALL ICEFRONT_TENDENCY_APPLY_S(
-     &                      iMin,iMax, jMin,jMax, bi,bj, kLev,
-     &                      myTime, myThid )
+      IF ( useICEFRONT )
+     &     CALL ICEFRONT_TENDENCY_APPLY_S(
+     &     bi,bj, kLev, myTime, myThid )
 #endif /* ALLOW_ICEFRONT */
 
 #ifdef ALLOW_SALT_PLUME

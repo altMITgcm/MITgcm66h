@@ -33,11 +33,11 @@ CEOP
 
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
-        DO J = 1-OLy, sNy+OLy
-         DO I = 1-OLx, sNx+OLx
+        DO J = 1, OLy
+         DO I = 1, OLx
           DO K = 1, Nr
-           icefront_TendT        (i,j,k,bi,bj) = 0. _d 0
-           icefront_TendS        (i,j,k,bi,bj) = 0. _d 0
+           icefront_TendT (i,j,k,bi,bj) = 0. _d 0
+           icefront_TendS (i,j,k,bi,bj) = 0. _d 0
           ENDDO
          ENDDO
         ENDDO
