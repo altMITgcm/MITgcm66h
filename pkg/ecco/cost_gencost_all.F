@@ -59,6 +59,7 @@ c     == external functions ==
 
 c     == end of interface ==
 
+#ifdef ALLOW_GENCOSTBUG
       do k = 1, NGENCOST
 
          write(msgbuf,'(a,x,i2.2)') 'ph-cost gencost #', k
@@ -79,6 +80,7 @@ c     == end of interface ==
      &        myiter, mytime, mythid )
 
       end do
+#endif /* ALLOW_GENCOSTBUG */
 
 #endif /* ALLOW_GENCOST_CONTRIBUTION */
 

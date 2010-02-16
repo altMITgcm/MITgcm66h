@@ -69,6 +69,9 @@ c     == local variables ==
       integer jtlo,jthi
       integer jmin,jmax
       integer imin,imax
+#ifdef ALLOW_GENCOST_CONTRIBUTION
+      integer num_var
+#endif
 
       logical first
       logical startofday

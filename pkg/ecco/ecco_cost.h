@@ -64,8 +64,10 @@ c     objf_gencost - gencost user defined contribution
       _RL  gencost_spmin(NGENCOST)
       _RL  gencost_spmax(NGENCOST)
       _RL  gencost_spzero(NGENCOST)
-      _RL  gencost_barfld(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy,NGENCOST)
-      _RL  gencost_modfld(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy,NGENCOST)
+      _RL  gencost_barfld(1-olx:snx+olx,1-oly:sny+oly,
+     &       nsx,nsy,NGENCOST)
+      _RL  gencost_modfld(1-olx:snx+olx,1-oly:sny+oly,
+     &       nsx,nsy,NGENCOST)
 
       common /ecco_gencost_i/
      &       gencost_nrec
