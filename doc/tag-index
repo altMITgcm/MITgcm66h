@@ -4,6 +4,12 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src and pkg/exf
+   surface relaxation -- separating data and data.exf options
+   The point is to ensure that we specify the surface relaxation
+   either in data or in data.exf (but not half and half) and to 
+   avoid an accidental relaxation to 0 (which happened if a time 
+   scale was specified but the file name was left empty)
 o model/src model/inc and pkg/mom_common
    ALLOW_3D_VISCAH/ALLOW_3D_VISCA4 => 3D specification of Viscosity
    => addition to the viscosity field as computed by others schemes
