@@ -260,8 +260,8 @@ C--   Gridding parameters
 
 C--   Input files
       NAMELIST /PARM05/
-     & bathyFile, topoFile, shelfIceFile,
-     & diffKrFile,
+     & bathyFile, topoFile, shelfIceFile, diffKrFile,
+     & viscAhDfile, viscAhZfile, viscA4Dfile, viscA4Zfile,
      & hydrogThetaFile, hydrogSaltFile,
      & maskIniTemp, maskIniSalt, checkIniTemp, checkIniSalt,
      & zonalWindFile, meridWindFile,

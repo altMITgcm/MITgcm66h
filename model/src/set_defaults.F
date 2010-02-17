@@ -315,6 +315,10 @@ C--   Input files
       checkIniTemp    = .TRUE.
       checkIniSalt    = .TRUE.
       diffKrFile      = ' '
+      viscAhDfile     = ' '
+      viscAhZfile     = ' '
+      viscA4Dfile     = ' '
+      viscA4Zfile     = ' '
       zonalWindFile   = ' '
       meridWindFile   = ' '
       thetaClimFile   = ' '
