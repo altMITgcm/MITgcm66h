@@ -1318,6 +1318,28 @@ C     Check for retired parameters still being used
        CALL PRINT_ERROR( msgBuf, myThid )
       ENDIF
 
+C     Check for relaxation term:
+       IF ( (tauThetaClimRelax.GT.0.).AND.
+     &      (thetaClimFile.EQ.' ') ) THEN
+         WRITE(msgBuf,'(A)')
+     &   'S/R INI_PARMS: tauThetaClimRelax > 0 but'
+         CALL PRINT_ERROR( msgBuf, myThid )
+         WRITE(msgBuf,'(A)')
+     &   'S/R INI_PARMS: thetaClimFile is undefined'
+         CALL PRINT_ERROR( msgBuf, myThid )
+         STOP 'ABNORMAL END: S/R INI_PARMS'
+       ENDIF
+       IF ( (tauSaltClimRelax.GT.0.).AND.
+     &      (saltClimFile.EQ.' ') ) THEN
+         WRITE(msgBuf,'(A)')
+     &   'S/R INI_PARMS: tauSaltClimRelax > 0 but'
+         CALL PRINT_ERROR( msgBuf, myThid )
+         WRITE(msgBuf,'(A)')
+     &   'S/R INI_PARMS: saltClimFile is undefined'
+         CALL PRINT_ERROR( msgBuf, myThid )
+         STOP 'ABNORMAL END: S/R INI_PARMS'
+       ENDIF
+
 C--   Set Units conversion factor required to incorporate
 C     surface forcing into z-p isomorphic equations:
 C     mass2rUnit: from mass per unit area [kg/m2] to r-coordinate (z:=1/rho;p:=g)
