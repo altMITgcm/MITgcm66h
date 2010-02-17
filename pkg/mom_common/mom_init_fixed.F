@@ -34,7 +34,9 @@ CEOP
 C     !LOCAL VARIABLES:
 C     i,j,k,bi,bj  :: loop counter
       INTEGER i,j,bi,bj
-#ifdef NONLIN_FRSURF
+#if (defined (NONLIN_FRSURF) || \
+     defined (ALLOW_3D_VISCAH) || \
+     defined (ALLOW_3D_VISCA4))
       INTEGER k
 #endif
 
@@ -54,6 +56,27 @@ C-    used for side-drag:
        ENDDO
       ENDDO
 #endif /* NONLIN_FRSURF */
+
+#if defined (ALLOW_3D_VISCAH) || defined (ALLOW_3D_VISCA4)
+      DO bj=myByLo(myThid), myByHi(myThid)
+       DO bi=myBxLo(myThid), myBxHi(myThid)
+        DO k=1,Nr
+         DO j=1-Oly,sNy+Oly
+          DO i=1-Olx,sNx+Olx
+#ifdef ALLOW_3D_VISCAH
+           viscAhDfld(i,j,k,bi,bj) = 0. _d 0
+           viscAhZfld(i,j,k,bi,bj) = 0. _d 0
+#endif
+#ifdef ALLOW_3D_VISCA4           
+           viscA4Dfld(i,j,k,bi,bj) = 0. _d 0
+           viscA4Zfld(i,j,k,bi,bj) = 0. _d 0
+#endif          
+          ENDDO
+         ENDDO
+        ENDDO
+       ENDDO
+      ENDDO
+#endif /* ALLOW_3D_VISCAH */
 
        IF (deltaTmom.NE.0.) THEN
         recip_dt = 1. _d 0/deltaTmom

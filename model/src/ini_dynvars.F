@@ -79,17 +79,6 @@ C-      3D arrays
 #ifdef ALLOW_ADDFLUID
            addMass(I,J,K,bi,bj) = 0. _d 0
 #endif
-#ifdef ALLOW_3D_VISCAH
-           viscAhDfld(I,J,K,bi,bj) = 0. _d 0
-           viscAhZfld(I,J,K,bi,bj) = 0. _d 0
-#endif
-#ifdef ALLOW_3D_VISCA4           
-           viscA4Dfld(I,J,K,bi,bj) = 0. _d 0
-           viscA4Zfld(I,J,K,bi,bj) = 0. _d 0
-#endif          
-#ifdef ALLOW_3D_DIFFKR
-            diffKr(I,J,K,bi,bj) = 0. _d 0
-#endif
           ENDDO
          ENDDO
         ENDDO
