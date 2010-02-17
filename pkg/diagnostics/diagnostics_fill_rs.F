@@ -41,6 +41,7 @@ C                  0 indicates that the bi-bj loop must be done here
 C                  1 indicates that the bi-bj loop is done OUTSIDE
 C                  2 indicates that the bi-bj loop is done OUTSIDE
 C                     AND that we have been sent a local array (with overlap regions)
+C                     (local array here means that it has no bi-bj dimensions)
 C                  3 indicates that the bi-bj loop is done OUTSIDE
 C                     AND that we have been sent a local array
 C                     AND that the array has no overlap region (interior only)
