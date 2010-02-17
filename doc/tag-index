@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src model/inc and pkg/mom_common
+   ALLOW_3D_VISCAH/ALLOW_3D_VISCA4 => 3D specification of Viscosity
+   => addition to the viscosity field as computed by others schemes
 o tools/build_options: 
   - rename "_generic_mpi" -> "+mpi_generic" (like other "+mpi" optfile)
     but keep the former optfile for few weeks for smooth transition
