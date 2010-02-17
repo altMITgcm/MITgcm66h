@@ -28,6 +28,10 @@ C     === Global variables ===
 #ifdef SEAICE_VARIABLE_FREEZING_POINT
 #include "DYNVARS.h"
 #endif /* SEAICE_VARIABLE_FREEZING_POINT */
+#ifdef ALLOW_EXF
+# include "EXF_OPTIONS.h"
+# include "EXF_FIELDS.h"
+#endif
 
 C     === Routine arguments ===
 C     INPUT:
