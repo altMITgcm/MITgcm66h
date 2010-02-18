@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o tools/build_options :
+   move (some) old optfiles from build_options/ to build_options/unsupported/
 o model/src and pkg/exf
    surface relaxation -- separating data and data.exf options
    The point is to ensure that we specify the surface relaxation
