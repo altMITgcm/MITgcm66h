@@ -1,7 +1,8 @@
 C $Header$
 C $Name$
 
-CADJ STORE hsnow      = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE hsnow   = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE tice    = comlev1, key=ikey_dynamics, kind=isbyte
 
 #ifdef SEAICE_MULTICATEGORY
 CADJ STORE tices      = comlev1, key=ikey_dynamics, kind=isbyte
@@ -21,7 +22,6 @@ CADJ STORE area    = comlev1, key=ikey_dynamics, kind=isbyte
 cphCADJ STORE heff    = comlev1, key=ikey_dynamics, kind=isbyte
 cphCADJ STORE heffm      = comlev1, key=ikey_dynamics, kind=isbyte
 cphCADJ STORE hsnow      = comlev1, key=ikey_dynamics, kind=isbyte
-cphCADJ STORE tice    = comlev1, key=ikey_dynamics, kind=isbyte
 # ifdef SEAICE_ALLOW_DYNAMICS
 CADJ STORE uice    = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE vice    = comlev1, key=ikey_dynamics, kind=isbyte

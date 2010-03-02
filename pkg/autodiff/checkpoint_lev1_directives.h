@@ -47,6 +47,8 @@ CADJ STORE detahdt            = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
 CADJ STORE gs,gsnm1,gt,gtnm1  = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
+CADJ STORE gunm1,gvnm1        = comlev1, key = ikey_dynamics,
+CADJ &     kind = isbyte
 CADJ STORE salt,theta         = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
 CADJ STORE uvel,vvel,wvel     = comlev1, key = ikey_dynamics,
