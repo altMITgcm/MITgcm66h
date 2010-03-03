@@ -635,7 +635,7 @@ Usage: "$0" [OPTIONS]
 
   For more detailed genmake documentation, please see:
 
-    http://mitgcm.org/devel_HOWTO/
+    http://mitgcm.org/public/devel_HOWTO/
 
 EOF
 
