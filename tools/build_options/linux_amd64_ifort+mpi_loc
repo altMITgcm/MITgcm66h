@@ -64,10 +64,12 @@ INCLUDES=''
 LIBS=''
 
 if test "x$DEVEL" != x ; then
-    FFLAGS='-r8 -i4 -w95 -W0 -WB -convert big_endian -assume byterecl -fPIC -O0 -g -noalign -fp-stack-check -check all -fpe0 -traceback -ftrapuv -fp-model except -warn all'
+    FFLAGS='-w95 -W0 -WB -convert big_endian -assume byterecl -fPIC -O0 -g -noalign -fp-stack-check -check all -fpe0 -traceback -ftrapuv -fp-model except -warn all'
 else
-    FFLAGS='-r8 -i4 -w95 -W0 -WB -convert big_endian -assume byterecl -fPIC'
+    FFLAGS='-w95 -W0 -WB -convert big_endian -assume byterecl -fPIC'
 fi
+#- might want to use '-r8' for fizhi pkg:
+#FFLAGS="$FFLAGS -r8"
 
 if test "x$IEEE" = x ; then
     #  No need for IEEE-754
