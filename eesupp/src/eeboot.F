@@ -137,9 +137,9 @@ C     o Do other miscellaneous multi-processing set up steps. For
 C       example under MPI we create datatypes for communication
 C       of array edges.
       CALL INI_PROCS
-#ifdef LETS_MAKE_JAM
-      CALL INI_JAM
-#endif
+c#ifdef LETS_MAKE_JAM
+c     CALL INI_JAM
+c#endif
       IF ( eeBootError ) GOTO 999
 
 C--   Initialise variables to support "nThreads" of computation.
