@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o add option to genmake2 & testreport to switch "_RS" type to "real*4"
+  (if allowed in CPP_EEOPTIONS.h); update default CPP_EEOPTIONS.h and return 
+  to default CPP_EEOPTIONS.h for exp. inverted_barometer & solid-body.cs-32x32x1
+  (update also the output).
+
 checkpoint62c (2010/03/02)
 o tools/build_options :
    move (some) old optfiles from build_options/ to build_options/unsupported/
