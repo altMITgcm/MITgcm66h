@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o eesupp: remove JAM communication code (obsolete).
 o add option to genmake2 & testreport to switch "_RS" type to "real*4"
   (if allowed in CPP_EEOPTIONS.h); update default CPP_EEOPTIONS.h and return 
   to default CPP_EEOPTIONS.h for exp. inverted_barometer & solid-body.cs-32x32x1
