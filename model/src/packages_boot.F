@@ -143,6 +143,7 @@ c     useGAD          =.FALSE.
       useLayers       =.FALSE.
       useMNC          =.FALSE.
       useRunClock     =.FALSE.
+      useEMBED_FILES  =.FALSE.
       useMYPACKAGE    =.FALSE.
 
 C--   Read parameters from open data file
