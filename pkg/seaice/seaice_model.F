@@ -76,6 +76,36 @@ C--   Map thSice-variables to HEFF and AREA
       ENDIF
 #endif /* ALLOW_THSICE */
 
+      IF ( .NOT.useThSice ) THEN
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE heff  = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE heffm = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE area  = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE hsnow = comlev1, key=ikey_dynamics, kind=isbyte
+#ifdef SEAICE_SALINITY
+CADJ STORE hsalt = comlev1, key=ikey_dynamics, kind=isbyte
+#endif
+#endif
+      DO bj=myByLo(myThid),myByHi(myThid)
+       DO bi=myBxLo(myThid),myBxHi(myThid)
+        DO j=1-Oly,sNy+Oly
+         DO i=1-Olx,sNx+Olx
+          IF ( (heff(i,j,bi,bj).EQ.0.)
+     &     .OR.(area(i,j,bi,bj).EQ.0.)
+     &     ) THEN
+           HEFF(i,j,bi,bj) = 0. _d 0
+           AREA(i,j,bi,bj) = 0. _d 0
+           HSNOW(i,j,bi,bj) = 0. _d 0
+#ifdef SEAICE_SALINITY
+           HSALT(i,j,bi,bj) = 0. _d 0
+#endif
+          ENDIF
+         ENDDO
+        ENDDO
+       ENDDO
+      ENDDO
+      ENDIF
+
 #ifdef ALLOW_AUTODIFF_TAMC
 c
       DO bj=myByLo(myThid),myByHi(myThid)
