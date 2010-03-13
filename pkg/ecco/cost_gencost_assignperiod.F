@@ -40,8 +40,8 @@ c     == routine arguments ==
       logical startofgen(NGENCOST)
       logical endofgen(NGENCOST)
       logical ingen(NGENCOST)
-      logical sum1gen(NGENCOST)
-      logical genrec(NGENCOST)
+      integer sum1gen(NGENCOST)
+      integer genrec(NGENCOST)
 
       integer mythid
 

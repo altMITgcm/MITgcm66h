@@ -39,27 +39,17 @@ c     == routine arguments ==
 #ifdef ALLOW_GENCOST_CONTRIBUTION
 c     == local variables ==
 
-      integer var_num
-      integer bi,bj
-      integer i,j
-      integer itlo,ithi
-      integer jtlo,jthi
-      integer jmin,jmax
-      integer imin,imax
-      integer irec
-      integer ilps
+      integer i,j,k
+      character*(max_len_mbuf) msgbuf
 
-      logical doglobalread
-      logical ladinit
+      integer nnzbar
+      integer nnzobs
+      integer nrecloc
 
 c     == external functions ==
 
-      integer  ilnblnk
-      external ilnblnk
-
 c     == end of interface ==
 
-#ifdef ALLOW_GENCOSTBUG
       do k = 1, NGENCOST
 
          write(msgbuf,'(a,x,i2.2)') 'ph-cost gencost #', k
@@ -73,14 +63,13 @@ c     == end of interface ==
      &        xx_genbar_dummy(k),
      &        nnzobs, gencost_datafile(k), mult_gencost(k),
      &        gencost_nrec(k), modelstartdate, gencost_period(k),
-     &        gencost_spzero(k),
-===+++>>>     &        gencost_mask(k), wsst,
+     &        gencost_mask(k), gencost_weight(1-Olx,1-Oly,1,1,k),
      &        gencost_spmin(k), gencost_spmax(k), 
+     &        gencost_spzero(k),
      &        objf_gencost(1,1,k), num_gencost(1,1,k),
      &        myiter, mytime, mythid )
 
       end do
-#endif /* ALLOW_GENCOSTBUG */
 
 #endif /* ALLOW_GENCOST_CONTRIBUTION */
 

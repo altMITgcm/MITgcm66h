@@ -265,6 +265,33 @@ c
       _BARRIER
 #endif
 
+#ifdef ALLOW_GENCOST_CONTRIBUTION
+
+      _BEGIN_MASTER( myThid )
+
+      do k = 1, NGENCOST
+         if ( gencost_avgperiod(k) .EQ. 'day' .OR.
+     &        gencost_avgperiod(k) .EQ. 'DAY' ) then
+            gencost_nrec(k)   = ndaysrec
+            gencost_period(k) = 86400.
+         else if ( gencost_avgperiod(k) .EQ. 'month' .OR.
+     &        gencost_avgperiod(k) .EQ. 'MONTH' ) then
+            gencost_nrec(k)   =nmonsrec 
+            gencost_period(k) = 0.
+         else if ( gencost_avgperiod(k) .EQ. 'year' .OR.
+     &        gencost_avgperiod(k) .EQ. 'YEAR' ) then
+            STOP
+     &       'COST_GENCOST_ALL: yearly data not yet implemented'
+         else
+            STOP 
+     &       'COST_GENCOST_ALL: gencost_avgperiod wrongly specified'
+         endif
+      enddo
+
+      _END_MASTER( myThid )
+
+#endif /* ALLOW_GENCOST_CONTRIBUTION */
+
 c--   Summarize the cost function's setup.
       _BEGIN_MASTER( mythid )
       call ecco_cost_summary( mythid )

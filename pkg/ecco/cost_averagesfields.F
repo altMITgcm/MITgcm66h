@@ -69,9 +69,7 @@ c     == local variables ==
       integer jtlo,jthi
       integer jmin,jmax
       integer imin,imax
-#ifdef ALLOW_GENCOST_CONTRIBUTION
       integer num_var
-#endif
 
       logical first
       logical startofday
@@ -94,6 +92,7 @@ c     == local variables ==
 #endif
 
       integer ilps, ils,ilt
+      integer locdayrec
 
       character*(128) fnamepsbar
       character*(128) fnametbar
@@ -103,12 +102,7 @@ c     == local variables ==
       character*(128) fnamewbar
       character*(128) fnametauxbar
       character*(128) fnametauybar
-      character*(128) fnamehfluxmeanbar
-      character*(128) fnamesfluxmeanbar
 
-cph(
-      integer locdayrec
-cph)
 c     == external functions ==
 
       integer  ilnblnk

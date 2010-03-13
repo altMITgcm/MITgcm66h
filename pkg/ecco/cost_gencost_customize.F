@@ -39,18 +39,27 @@ c     == local variables ==
 
 c     == end of interface ==
 
+      jtlo = mybylo(mythid)
+      jthi = mybyhi(mythid)
+      itlo = mybxlo(mythid)
+      ithi = mybxhi(mythid)
+      jmin = 1
+      jmax = sny
+      imin = 1
+      imax = snx
+
       do bj = jtlo,jthi
        do bi = itlo,ithi
         do j = jmin,jmax
          do i =  imin,imax
 c #1:
-          gencost_modfld(i,j,bi,bi,1) = qnet(i,j,bi,bi)
+c          gencost_modfld(i,j,bi,bi,1) = qnet(i,j,bi,bi)
 c #2:
-          gencost_modfld(i,j,bi,bi,2) = empmr(i,j,bi,bi)
+          gencost_modfld(i,j,bi,bi,1) = empmr(i,j,bi,bi)
 c #3:
-          gencost_modfld(i,j,bi,bi,3) = fu(i,j,bi,bi)
+c          gencost_modfld(i,j,bi,bi,3) = fu(i,j,bi,bi)
 c #4:
-          gencost_modfld(i,j,bi,bi,4) = fv(i,j,bi,bi)
+c          gencost_modfld(i,j,bi,bi,4) = fv(i,j,bi,bi)
 c
          enddo
         enddo

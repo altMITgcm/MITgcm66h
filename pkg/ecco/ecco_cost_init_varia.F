@@ -142,10 +142,10 @@ c--   Initialize the tiled cost function contributions.
           enddo
 #endif
           do k=1,NUSERCOST
-          objf_usercost(k,bi,bj)    = 0. _d 0
+            objf_usercost(k,bi,bj)   = 0. _d 0
           enddo
           do k=1,NSSHV4COST
-          objf_sshv4cost(k,bi,bj)    = 0. _d 0
+            objf_sshv4cost(k,bi,bj)  = 0. _d 0
           enddo
 c
           num_hflux(bi,bj)    = 0. _d 0
