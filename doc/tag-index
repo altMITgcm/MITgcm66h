@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: 
+  fix seaice_model.F for adjoint (gael) and update AD results of experiments
+   lab_sea (std + evp + noseaicedyn) and offline_exf_seaice.
 o testreport:
   add option '-runonly' (short: '-ro') to just do the run part (without make).
 o eesupp: remove JAM communication code (obsolete).
