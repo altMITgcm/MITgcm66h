@@ -1,7 +1,7 @@
-c $Header$
+C $Header$
+C $Name$
 
-
-#include "CPP_OPTIONS.h"
+#include "CHEAPAML_OPTIONS.h"
 
 c      real*8 function cheapaml_BulkCdn(
       _RL   function cheapaml_BulkCdn(
