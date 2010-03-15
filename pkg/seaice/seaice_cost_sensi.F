@@ -25,9 +25,10 @@ C     myThid - Thread number for this instance of the routine.
 #ifdef ALLOW_COST
 C     == Local variables
 
-        CALL COST_ICE_TEST ( myTime, myIter, myThid )
+      CALL COST_ICE_TEST ( myTime, myIter, myThid )
 
-        CALL SEAICE_COST_ACCUMULATE_MEAN (myThid)
+      CALL SEAICE_COST_ACCUMULATE_MEAN (
+     &    myTime, myIter, myThid)
 
 #endif
 
