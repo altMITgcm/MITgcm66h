@@ -185,7 +185,7 @@ cnew(
       print *,'ymod, yday     ', ymod,yday
       print *,'smrarstrtdt(1) ', smrareastartdate(1)
       print *,'smrarstartdate ', smrareastartdate
-#endif SEAICE_DEBUG
+#endif /* SEAICE_DEBUG */
 
       if ( ymod .EQ. yday ) then
          middate(1) = smrareastartdate(1) 
