@@ -194,7 +194,7 @@ C     for additional (pseudo-time)steps update u/vIceNm1
       ENDIF
 
 #ifdef ALLOW_AUTODIFF_TAMC
-cph That's an important one! Note, that
+cph That is an important one! Note, that
 cph * lsr is called twice, thus the icall index
 cph * this storing is still outside the iteration loop
 CADJ STORE uice = comlev1_dynsol, kind=isbyte,
@@ -1017,7 +1017,7 @@ C     for additional (pseudo-time)steps update u/vIceNm1
       ENDIF
 
 #ifdef ALLOW_AUTODIFF_TAMC
-cph That's an important one! Note, that
+cph That is an important one! Note, that
 cph * lsr is called twice, thus the icall index
 cph * this storing is still outside the iteration loop
 CADJ STORE uice = comlev1_dynsol, kind=isbyte,

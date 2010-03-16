@@ -274,7 +274,7 @@ C              :: includes the cylinder and no other land, they do not need to b
 c afe:
 c  the below appears to be an attempt to make the heat flux somewhat general in regards
 c  to bathymetry, but jmc pointed out some ways it could be better.  this is not
-c  an issue at this point (July '04) since all experiments are being done with straight-
+c  an issue at this point (July 04) since all experiments are being done with straight-
 c  sided tank and cyclinder walls.
 c  some todo items:
 c  * add terms to top and bottom -- probably critical!!!

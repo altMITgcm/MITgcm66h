@@ -6,7 +6,7 @@ C $Name$
       subroutine seaice_cost_export( myThid )
 C     /==========================================================\
 C     | subroutine seaice_cost_export
-C     | o Poor man's ice export through Fram Strait
+C     | o Poor man ice export through Fram Strait
 C     |   Parameters currently hard-wired for arctic210x192x50
 C     \==========================================================/
        implicit none

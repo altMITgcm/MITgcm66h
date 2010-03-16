@@ -86,7 +86,7 @@ CEOP
       c2Set3 = c1Set1//c2Set2
 
 C--   Set a default.
-C     This shouldn't show up unless there is a problem
+C     This should not show up unless there is a problem
 C     where nbLbl is equal or greater than 10*10 + 10*52 + 52*62 = 62**2
       DO n=1,nbLbl
        ioLbl(n) = '--'

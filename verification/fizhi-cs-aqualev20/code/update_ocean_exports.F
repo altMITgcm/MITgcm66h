@@ -5,7 +5,7 @@ C $Name$
        subroutine update_ocean_exports (myTime, myIter, myThid)
 c----------------------------------------------------------------------
 c  Subroutine update_ocean_exports - 'Wrapper' routine to update
-c        the fields related to the ocean's surface that are needed
+c        the fields related to the ocean surface that are needed
 c        by fizhi (sst and sea ice extent).
 c
 c Call:  getsst  (Return the current sst field-read dataset if needed)
