@@ -236,8 +236,8 @@ C--   Set vertical diffusivity contribution from KPP
 #endif
 
 C-    Apply mask to vertical diffusivity
-C jmc: don't have the impression that masking is needed
-C      but could be removed later if it's the case.
+C jmc: do not have the impression that masking is needed
+C      but could be removed later if it is the case.
 c     DO j = 1-Oly, sNy+Oly
 c      DO i = 1-Olx, sNx+Olx
 c       KappaRTr(i,j,k) = maskUp(i,j)*KappaRTr(i,j,k)

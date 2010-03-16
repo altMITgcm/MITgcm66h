@@ -345,7 +345,7 @@ C--   Free-surface related limitations:
         STOP 'ABNORMAL END: S/R CONFIG_CHECK'
       ENDIF
 
-C- note : not implemented in checkpoint48b but it's done now (since 01-28-03)
+C- note : not implemented in checkpoint48b but it is done now (since 01-28-03)
 c     IF (select_rStar.GT.0 .AND. useOBCS ) THEN
 c       STOP 'ABNORMAL END: S/R CONFIG_CHECK'
 c     ENDIF

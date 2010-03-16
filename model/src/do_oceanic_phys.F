@@ -697,7 +697,7 @@ C--     Compute GGL90 mixing coefficients
 cph storing here is needed only for one GMREDI_OPTIONS:
 cph define GM_BOLUS_ADVEC
 cph keep it although TAF says you dont need to.
-cph but I've avoided the #ifdef for now, in case more things change
+cph but I have avoided the #ifdef for now, in case more things change
 CADJ STORE sigmaX(:,:,:)        = comlev1_bibj, key=itdkey, 
 CADJ &     kind = isbyte
 CADJ STORE sigmaY(:,:,:)        = comlev1_bibj, key=itdkey, 

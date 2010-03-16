@@ -92,8 +92,8 @@ C     seawater, 1983. _Unesco Tech. Pap. in Mar. Sci._, No. 44, 53 pp.
 C     Eqn.(31) p.39
 C
 C     Bryden, H. 1973.
-C     "New Polynomials for thermal expansion, adiabatic temperature gradient
-C     and potential temperature of sea water."
+C     New Polynomials for thermal expansion, adiabatic temperature gradient
+C     and potential temperature of sea water.
 C     DEEP-SEA RES., 1973, Vol20,401-408.
 
 C     !USES:

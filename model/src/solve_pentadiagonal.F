@@ -41,8 +41,8 @@ C     bi,bj  :: tile indices
 C     myThid :: thread number
 C     OUTPUT:
 C     y5d    :: X = solution of A*X=Y
-C     a5d,b5d,c5d,d5d,e5d :: modified to enable to find X' solution of
-C                        A*X'=Y' without solving the full system again
+C     a5d,b5d,c5d,d5d,e5d :: modified to enable to find Xp solution of
+C                        A*Xp=Yp without solving the full system again
 C     errCode :: > 0 if singular matrix
       INTEGER iMin,iMax,jMin,jMax
       _RL a5d(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)

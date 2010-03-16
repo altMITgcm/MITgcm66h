@@ -304,7 +304,7 @@ C--------------------------
           STOP 'ABNORMAL END: S/R WRITE_PICKUP (list-size Pb)'
         ENDIF
 #ifdef ALLOW_MDSIO
-C-    Note: temporary: since it's a pain to add more arguments to
+C-    Note: temporary: since it is a pain to add more arguments to
 C     all MDSIO S/R, uses instead this specific S/R to write only
 C     meta files but with more informations in it.
         nj = ABS(nj)

@@ -250,8 +250,8 @@ C  --  end if integr_GeoPot = ...
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       ELSEIF ( buoyancyRelation .EQ. 'OCEANICP' ) THEN
 C       This is the hydrostatic pressure calculation for the Ocean
-C       which uses the FIND_RHO() routine to calculate density
-C       before integrating (1/rho)'*dp over the current layer/interface
+C       which uses the FIND_RHO() routine to calculate density before
+C       integrating (1/rho)_prime*dp over the current layer/interface
 #ifdef      ALLOW_AUTODIFF_TAMC
 CADJ GENERAL
 #endif      /* ALLOW_AUTODIFF_TAMC */
@@ -283,7 +283,7 @@ CADJ &     kind = isbyte
           ENDDO
         ENDIF
 
-C--     Calculate specific volume anomaly : alpha' = 1/rho - alpha_Cst
+C--     Calculate specific volume anomaly : alpha_prime = 1/rho - alpha_Cst
         DO j=jMin,jMax
           DO i=iMin,iMax
             locAlpha=alphaRho(i,j)+rhoConst
