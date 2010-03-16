@@ -87,7 +87,7 @@ c      print*,'ACFC11north,ACFC11south', ACFC11north,ACFC11south,
 c    &                                   lastYear,thisYear
 C provide gradient between N and S values
 
-C STEPH'S INITIAL VERSION
+C STEPH S INITIAL VERSION
 #ifdef STEPH_GRAD
        DO j=1-OLy,sNy+OLy
           DO i=1-OLx,sNx+OLx

@@ -66,8 +66,8 @@ C contributions (or roundoff errors), it may be necessary to reduce this
 C value to achieve strict positivity.
 C
 C This hack applies to all tracers except temperature and salinity!
-C Don't use with Adams-Bashforth (for ptracers)!
-C Don't use with OBCS!
+C Do not use with Adams-Bashforth (for ptracers)!
+C Do not use with OBCS!
 #undef  GAD_SMOLARKIEWICZ_HACK
 
 #else

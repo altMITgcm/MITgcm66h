@@ -49,7 +49,7 @@ c--   Get the current date.
       call cal_GetDate( myiter, mytime, mydate, mythid )
 
 c--   Print integration step, time, and the corresponding date
-c--   if this is the master thread's instance of this routine.
+c--   if this is the master thread instance of this routine.
 
       _BEGIN_MASTER(mythid)
         write(msgbuf,'(a)')

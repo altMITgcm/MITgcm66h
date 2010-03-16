@@ -319,7 +319,7 @@ C--   end if KPP_taveFreq > 0
 #endif /* ALLOW_TIMEAVE */
 
 #ifdef ALLOW_DIAGNOSTICS
-C     don't fill during call from INITIALISE_VARIA
+C     do not fill during call from INITIALISE_VARIA
       IF ( useDiagnostics .AND. myIter.NE.nIter0 ) THEN
        CALL DIAGNOSTICS_FILL(KPPviscAz ,'KPPviscA',0,Nr,0,1,1,myThid)
        CALL DIAGNOSTICS_FILL(KPPdiffKzS,'KPPdiffS',0,Nr,0,1,1,myThid)

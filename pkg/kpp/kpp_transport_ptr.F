@@ -18,7 +18,7 @@ C     |   passive tracer flux.
 C     *==========================================================*
 C     | The nonlocal transport term is nonzero only for scalars
 C     | in unstable (convective) forcing conditions.
-C     | Note: We don't have a specific KPP diffusion for a
+C     | Note: We do not have a specific KPP diffusion for a
 C     |       passive tracer; use Salinity diffusion instead
 C     | Note: KPPdiffKzS(-,k) is defined at the top of grid cell
 C     |       k while KPPghat(i,j,k,bi,bj) is defined at the

@@ -48,7 +48,7 @@ C--  Check parameters:
 C     For now the package will only work if density ~ temperature
       IF ( (eosType .EQ. 'LINEAR')
      &  .AND. (sBeta .EQ. 0.0 _d 0) ) THEN
-C        we're good
+C        we are good
       ELSE
         WRITE(msgBuf,'(2A)') 'eosType must be eosType=''LINEAR''',
      &   ' and sBeta must = 0.0'

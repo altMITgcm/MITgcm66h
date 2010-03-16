@@ -83,7 +83,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
         IF ( MASTER_CPU_IO(myThid) ) THEN
 C--   only the master thread is allowed to switch On/Off mon_write_stdout
-C     & mon_write_mnc (since it's the only thread that uses those flags):
+C     & mon_write_mnc (since it is the only thread that uses those flags):
 
          IF ( land_mon_stdio ) THEN
            mon_write_stdout = .TRUE.
@@ -298,7 +298,7 @@ c       CALL MON_OUT_RL(mon_var, theMax(3), mon_sufx(3), myThid)
 
         IF ( MASTER_CPU_IO(myThid) ) THEN
 C--   only the master thread is allowed to switch On/Off mon_write_stdout
-C     & mon_write_mnc (since it's the only thread that uses those flags):
+C     & mon_write_mnc (since it is the only thread that uses those flags):
 
           IF (mon_write_stdout) THEN
             WRITE(msgBuf,'(2A)') '// ===========================',
