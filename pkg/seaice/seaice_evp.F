@@ -410,6 +410,15 @@ CADJ STORE stressDivergenceY = comlev1_evp,
 CADJ &     key = ikeyloc, byte = isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 
+
+#ifdef ALLOW_AUTODIFF_TAMC
+#ifdef SEAICE_DYN_STABLE_ADJOINT
+cgf zero out adjoint fields to stabilize pkg/seaice dyna. adjoint
+      CALL ZERO_ADJ( 1, stressDivergenceX, myThid)
+      CALL ZERO_ADJ( 1, stressDivergenceY, myThid)
+#endif
+#endif /* ALLOW_AUTODIFF_TAMC */
+
 C
 C     set up rhs for stepping the velocity field
 C
