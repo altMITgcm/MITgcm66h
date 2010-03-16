@@ -1028,7 +1028,7 @@ c     the fitting for the planck flux is valid in the range 160-345 K.
         enddo
        enddo
 
-c-----the earth's surface, with an index "np+1", is treated as a layer
+c-----the earth surface, with an index "np+1", is treated as a layer
 
        do j=1,n
         do i=1,m

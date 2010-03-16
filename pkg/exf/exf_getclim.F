@@ -20,7 +20,7 @@ c       be set in EXF_OPTIONS.h .
 c
 c       A note on surface fluxes:
 c
-c       The MITgcmUV's vertical coordinate z is positive upward.
+c       The MITgcm-UV vertical coordinate z is positive upward.
 c       This implies that a positive flux is out of the ocean
 c       model. However, the wind stress forcing is not treated
 c       this way. A positive zonal wind stress accelerates the

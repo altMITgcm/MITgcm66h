@@ -55,7 +55,7 @@ C     == Local variables ==
 
         IF ( MASTER_CPU_IO(myThid) ) THEN
 C--   only the master thread is allowed to switch On/Off mon_write_stdout
-C     & mon_write_mnc (since it's the only thread that uses those flags):
+C     & mon_write_mnc (since it is the only thread that uses those flags):
 
           IF (monitor_stdio) THEN
             mon_write_stdout = .TRUE.
@@ -170,7 +170,7 @@ C       Print some statistics about input forcing fields
 
         IF ( MASTER_CPU_IO(myThid) ) THEN
 C--   only the master thread is allowed to switch On/Off mon_write_stdout
-C     & mon_write_mnc (since it's the only thread that uses those flags):
+C     & mon_write_mnc (since it is the only thread that uses those flags):
 
           IF ( mon_write_stdout ) THEN
             WRITE(msgBuf,'(2A)') '// ===========================',

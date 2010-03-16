@@ -33,7 +33,7 @@ C filePrec    integer :: number of bits per word in file (32 or 64)
 C globalFile  logical :: selects between writing a global or tiled file
 C useCurrentDir logic :: always write to the current directory (even if
 C                        "mdsioLocalDir" is set)
-C arrType     char(2) :: which array (fldRL/RS) to write, either "RL" or "RS
+C arrType     char(2) :: which array (fldRL/RS) to write, either "RL" or "RS"
 C kSize       integer :: size of third dimension, normally either 1 or Nr
 C fldRL         RL    :: array to write if arrType="RL", fldRL(:,kSize,:,:)
 C fldRS         RS    :: array to write if arrType="RS", fldRS(:,kSize,:,:)
@@ -265,7 +265,7 @@ C filePrec    integer :: number of bits per word in file (32 or 64)
 C globalFile  logical :: selects between writing a global or tiled file
 C useCurrentDir logic :: always write to the current directory (even if
 C                        "mdsioLocalDir" is set)
-C arrType     char(2) :: which array (fldRL/RS) to write, either "RL" or "RS
+C arrType     char(2) :: which array (fldRL/RS) to write, either "RL" or "RS"
 C kSize       integer :: size of third dimension, normally either 1 or Nr
 C fldRL         RL    :: array to write if arrType="RL", fldRL(:,kSize,:,:)
 C fldRS         RS    :: array to write if arrType="RS", fldRS(:,kSize,:,:)

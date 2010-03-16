@@ -830,7 +830,7 @@ c     ELSE
 #endif
       ENDIF
 
-C--   3.D Coriolis term (horizontal momentum, Eastward component: -f'*w)
+C--   3.D Coriolis term (horizontal momentum, Eastward component: -fprime*w)
       IF ( use3dCoriolis ) THEN
         CALL MOM_U_CORIOLIS_NH(bi,bj,k,wVel,cf,myThid)
         DO j=jMin,jMax

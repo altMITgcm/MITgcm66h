@@ -16,7 +16,7 @@ C !INTERFACE: ==========================================================
 C !DESCRIPTION:
 C Calculates the Coriolis term in the vertical momentum equation:
 C \begin{equation*}
-C + f'\overline{u}^{ik}
+C + f_prime \overline{u}^{ik}
 C \end{equation*}
 
 C !USES: ===============================================================

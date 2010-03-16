@@ -74,7 +74,7 @@ C- topography), then remineralize in place
              cflux(i,j,k)=cflux(i,j,k) + CAR_S(i,j,k) 
            ELSE
 
-C- else, let's flux it downward
+C- else, let us flux it downward
 
              zbase=-rF(k+1)
              DO ko=k+1,Nr

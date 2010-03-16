@@ -49,7 +49,7 @@ c      CHARACTER*(MAX_LEN_MBUF) msgBuf
        integer n,L,dynlev
 C Code that MUST correspond to make_phys_grid in the gridalt package!
 C Require 12 bottom levels (300 mb worth) for the physics,
-C    Counting from bottom to top, the dp's are:
+C    Counting from bottom to top, the dp(s) are:
        integer ntry,ntry10,ntry40
        parameter (ntry40=15)
        parameter (ntry10=12)

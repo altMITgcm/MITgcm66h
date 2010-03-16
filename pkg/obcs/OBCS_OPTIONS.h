@@ -35,7 +35,7 @@ C balance barotropic velocity
 
 C     The following five CPP options are experimental and aim to deal
 C     with artifacts due to the low-frequency specification of sea-ice
-C     boundary conditions compared to the model's forcing frequency.
+C     boundary conditions compared to the model forcing frequency.
 C     Ice convergence at edges can cause model to blow up.  The
 C     following CPP option fixes this problem at the expense of less
 C     accurate boundary conditions.

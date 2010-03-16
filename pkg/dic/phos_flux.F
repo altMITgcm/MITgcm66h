@@ -81,7 +81,7 @@ C- topography), then remineralize in place
      &                  +BIOac(i,j,k)*(1. _d 0-DOPfraction)
            ELSE
 
-C- else, let's flux it downward
+C- else, let us flux it downward
 
              zbase=-rF(k+1)
              DO ko=k+1,Nr

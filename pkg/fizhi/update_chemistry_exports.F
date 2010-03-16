@@ -5,7 +5,7 @@ C $Name$
        subroutine update_chemistry_exports (myTime, myIter, myThid)
 c----------------------------------------------------------------------
 c  Subroutine update_chemistry_exports - 'Wrapper' routine to update
-c        the fields related to the earth's chemistry that are needed
+c        the fields related to the earth chemistry that are needed
 c        by fizhi.
 c        Also: Set up "bi, bj loop" and some timers and clocks here.
 c

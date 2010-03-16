@@ -570,7 +570,7 @@ c     from the beginning of the year.
       _END_MASTER( myThid )
       _BARRIER
 
-C--   Summarize the External forcing's setup.
+C--   Summarize the External forcing setup.
       CALL EXF_SUMMARY( myThid )
 
 #ifdef ALLOW_DIAGNOSTICS

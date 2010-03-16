@@ -52,7 +52,7 @@ C     Functions
 
 C-----
 C     Need some work to make MNC multi-threaded safe.
-C     For now, switch it off (otherwise, it's hanging up somewhere)
+C     For now, switch it off (otherwise, it is hanging up somewhere)
       IF ( nThreads.GT.1 ) THEN
         _BARRIER
         _BEGIN_MASTER( myThid )

@@ -67,7 +67,7 @@ C              wave to travel a distance DX, where DX is the width of the region
 C              near which d(phi)/dx is small.
 C
 C JBG 3/24/03: Fixed phase speed at western boundary (as suggested by
-C              Dale Durran's MWR paper). Fixed value (in m/s) is
+C              Dale Durran in his MWR paper). Fixed value (in m/s) is
 C              passed in as variable CFIX in data.obcs.
 C
 C JBG 4/10/03: allow choice of Orlanski or fixed wavespeed (by means of new

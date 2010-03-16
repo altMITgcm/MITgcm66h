@@ -5,7 +5,7 @@ C $Name$
        subroutine update_earth_exports (myTime, myIter, myThid)
 c----------------------------------------------------------------------
 c  Subroutine update_earth_exports - 'Wrapper' routine to update
-c        the fields related to the earth's surface that are needed
+c        the fields related to the earth surface that are needed
 c        by fizhi.
 c
 c Call:  getlgr    (Set the leaf area index and surface greenness,

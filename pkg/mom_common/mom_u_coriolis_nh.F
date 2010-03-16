@@ -15,7 +15,7 @@ C !INTERFACE: ==========================================================
 C !DESCRIPTION:
 C Calculates the 3.D Coriolis term in the zonal momentum equation:
 C \begin{equation*}
-C - \overline{ f' \overline{w}^{k} }^{i}
+C - \overline{ f_prime \overline{w}^{k} }^{i}
 C \end{equation*}
 C consistent with Non-Hydrostatic (or quasi-hydrostatic) formulation
 
