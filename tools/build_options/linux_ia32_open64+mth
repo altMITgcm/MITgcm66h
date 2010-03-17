@@ -15,10 +15,12 @@ FC=openf90
 F90C=openf90
 F90FIXEDFORMAT='-fixedform -x f95'
 LD=openf90
+LIBS=-lstdc++
 DEFINES='-DWORDLENGTH=4 -DUSE_OMP_THREADING'
 CPP='cpp -traditional -P'
+EXTENDED_SRC_FLAG='-extend-source'
 MAKEDEPEND=/usr/X11R6/bin/makedepend
-NOOPTFLAGS='-O0 -g'
+NOOPTFLAGS='-O0 -m32 -g -openmp'
 # to avoid a bug in ealier version (4.1) of compiler with openMP:
 NOOPTFILES='mon_set_iounit.F mon_init.F'
 
