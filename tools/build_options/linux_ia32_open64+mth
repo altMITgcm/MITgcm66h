@@ -15,7 +15,6 @@ FC=openf90
 F90C=openf90
 F90FIXEDFORMAT='-fixedform -x f95'
 LD=openf90
-LIBS=-lstdc++
 DEFINES='-DWORDLENGTH=4 -DUSE_OMP_THREADING'
 CPP='cpp -traditional -P'
 EXTENDED_SRC_FLAG='-extend-source'
@@ -78,3 +77,8 @@ elif test -d /usr/local/include/netcdf.inc ; then
     LIBS='-L/usr/local/lib'
 fi
 
+if [ "x$LIBS" != x ] ; then
+    LIBS="$LIBS -lstdc++"
+elif
+    LIBS="-lstdc++"
+fi
