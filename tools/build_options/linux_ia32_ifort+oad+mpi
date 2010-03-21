@@ -1,8 +1,9 @@
 #!/bin/bash
 #
-#  $Header$
-#
-#  These are the build options used with the Intel compiler together with OpenAD and MPI
+# $Header$
+# $Name$
+
+# These are the build options used with the Intel compiler together with OpenAD and MPI
 
 
 FC='mpif77'

@@ -1,5 +1,8 @@
 #!/bin/bash
 #
+# $Header$
+# $Name$
+
 #  Build options for the intel compiler with OpenAD
 
 FC=ifort
