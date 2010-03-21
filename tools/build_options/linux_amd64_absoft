@@ -1,6 +1,10 @@
 #!/bin/bash
 #
-# To use our namelists please do a 
+# $Header$
+# $Name$
+
+#
+# To use our namelists please do a
 # setenv ABSOFT_RT_FLAGS -f90nlexts
 FC=af77
 F90C=af90

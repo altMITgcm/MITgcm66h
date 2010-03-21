@@ -1,5 +1,7 @@
 #!/bin/bash
 #
+# $Header$
+# $Name$
 
 FC=f77
 F90C=f90

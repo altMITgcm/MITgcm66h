@@ -1,7 +1,8 @@
 #!/bin/bash
 #
-#  $Header$
-#
+# $Header$
+# $Name$
+
 # adapted for compilation on turing.nas.nasa.gov
 # and execute on turing, lomax, chapman
 

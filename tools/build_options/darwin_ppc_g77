@@ -1,10 +1,11 @@
 #!/bin/bash
-
-# $Header$
 #
+# $Header$
+# $Name$
+
 # tested on G4-PowerBook, 1GHz
-# cc-compiler is available only with the Apple Developer Tools, 
-# so make sure that those are installed 
+# cc-compiler is available only with the Apple Developer Tools,
+# so make sure that those are installed
 # g77 can be optained from FINK: http://fink.sourceforge.net
 #
 
@@ -28,7 +29,7 @@ else
     FOPTIM='-O0'
 fi
 #ifndef REAL4_IS_SLOW
-# _RS expands into real*4 and statements such as 
+# _RS expands into real*4 and statements such as
 # MAX(ABS(aV3d),myNorm) in ini_cg3d.F do not work with 'g77 -O3',
 # so we have to lower the optimization level here to -O1;
 # not clear why this is so, similar statements do work in ini_cg2d.F

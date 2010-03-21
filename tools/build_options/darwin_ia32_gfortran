@@ -1,7 +1,8 @@
 #!/bin/bash
-
-# $Header$
 #
+# $Header$
+# $Name$
+
 # tested on MacBook Pro with Snow Leopard
 # on 20-Nov-2009
 # gcc and gfortran obtained from

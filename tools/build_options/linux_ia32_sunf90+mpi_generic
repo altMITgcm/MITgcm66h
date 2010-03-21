@@ -1,10 +1,12 @@
 #!/bin/bash
 #
+# $Header$
+# $Name$
 
 #  Build options for the Sun fortran compiler with a generic MPI
 # DON'T FORGET to set environment variable MPI_INC_DIR to the include
 # directory of your MPI implementation
- 
+
 FC=${FC:=mpif77}
 F90C=${F90C:=mpif90}
 CC=${CC:=mpicc}

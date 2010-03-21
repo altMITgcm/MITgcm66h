@@ -1,12 +1,11 @@
 #!/bin/bash
 #
-#  $Header$
-#
+# $Header$
+# $Name$
 
 #  tested on Big Red, ce107 Aug 30 2007
 #  using the following invocation:
 #    ../../../tools/genmake2 -mods=../code -of=../../../tools/build_options/linux_ppc_xlf_bigred+mth
-
 
 S64='$(TOOLSDIR)/set64bitConst.sh'
 MAKEDEPEND=makedepend

@@ -1,12 +1,12 @@
 #!/bin/bash
 #
-#  $Header$
-#
-# developed and tested on 
+# $Header$
+# $Name$
+
+# developed and tested on
 # SunOS model 5.9 Generic_112233-11 sun4u sparc SUNW,Sun-Fire-15000
 # (hostname: model.awi-bremerhaven.de)
 #
-
 
 FC_NAMEMANGLE="#define FC_NAMEMANGLE(X) X ## _"
 S64='$(TOOLSDIR)/set64bitConst.sh'

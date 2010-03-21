@@ -1,10 +1,11 @@
 #!/bin/bash
-
-# $Header$
 #
+# $Header$
+# $Name$
+
 #  Notes:
 #    This optfile was created by Nicolas Wienders and Ed Hill and
-#    is known to work (complete with netCDF) on at least one Mac 
+#    is known to work (complete with netCDF) on at least one Mac
 #    system.
 
 CPP='/usr/bin/cpp -traditional -P -xassembler-with-cpp'

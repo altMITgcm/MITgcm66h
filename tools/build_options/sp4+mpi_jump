@@ -1,7 +1,8 @@
 #!/bin/bash
 #
-#  $Header$
-#
+# $Header$
+# $Name$
+
 #  tested on jump.fz-juelich.de, mlosch
 #  uname -a: AIX j36 3 5 00223C3B4C00
 #  using the following invocation:
@@ -27,7 +28,7 @@ LINK='mpxlf95_r -q64'
 LIBS="-lmass $MPIPLIBS"
 #-- according to Constantinos we do no need the esslsmp library
 #LIBS="-lmass -lesslsmp $MPIPLIBS"
-FFLAGS='-qfixed=132' 
+FFLAGS='-qfixed=132'
 if test "x$IEEE" = x ; then
     #  No need for IEEE-754
     FOPTIM='-O3 -Q -qarch=auto -qtune=auto -qcache=auto -qmaxmem=-1'

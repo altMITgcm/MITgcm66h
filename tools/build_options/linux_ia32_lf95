@@ -1,7 +1,7 @@
 #!/bin/bash
 #
-#  $Header$
-#
+# $Header$
+# $Name$
 
 DEFINES='-D_BYTESWAPIO -DWORDLENGTH=4 -DNML_TERMINATOR=" /"'
 CPP='/lib/cpp -traditional -P'

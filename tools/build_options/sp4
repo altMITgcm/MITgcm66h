@@ -1,9 +1,9 @@
 #!/bin/bash
 #
-#  $Header$
-#
+# $Header$
+# $Name$
 
-#  tested on bluesky, ce107 Oct 2005 
+#  tested on bluesky, ce107 Oct 2005
 #  using the following invocation:
 #    ../../../tools/genmake2 -mods=../code -of=../../../tools/build_options/sp4 -make=gmake
 

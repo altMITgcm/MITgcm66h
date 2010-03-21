@@ -1,10 +1,9 @@
 #!/bin/bash
 #
-#  $Header$
-#
+# $Header$
+# $Name$
 
 #  tested on bluesky, ce107 Jan 2005
-
 
 S64='$(TOOLSDIR)/set64bitConst.sh'
 MAKEDEPEND=makedepend
