@@ -37,9 +37,9 @@ INCLUDES=''
 LIBS=''
 
 if test "x$DEVEL" != x ; then
-    FFLAGS='-m64 -fPIC -convert big_endian -assume byterecl -O0 -g -debug all -debug-parameters all -noalign -fp-stack-check -check all -fpe0 -traceback -ftrapuv -fp-model strict -warn all'
+    FFLAGS="$FFLAGS -m64 -fPIC -convert big_endian -assume byterecl -O0 -g -debug all -debug-parameters all -noalign -fp-stack-check -check all -fpe0 -traceback -ftrapuv -fp-model strict -warn all"
 else
-    FFLAGS='-m64 -fPIC -W0 -WB -convert big_endian -assume byterecl'
+    FFLAGS="$FFLAGS -m64 -fPIC -W0 -WB -convert big_endian -assume byterecl"
 fi
 #- might want to use '-r8' for fizhi pkg:
 #FFLAGS="$FFLAGS -r8"
