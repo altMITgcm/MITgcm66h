@@ -8,17 +8,24 @@
 #
 
 FC=pgf77
+
 DEFINES='-DWORDLENGTH=4'
 CPP='cpp  -traditional -P'
-NOOPTFLAGS='-O0'
+EXTENDED_SRC_FLAG='-Mextend'
+
 MAKEDEPEND=/usr/X11R6/bin/makedepend
+
+NOOPTFLAGS='-O0'
+
 if test "x$IEEE" = x ; then
     #  No need for IEEE-754
-    FFLAGS='-byteswapio -r8 -Mnodclchk -Mextend -Ktrap=fp'
+    FFLAGS="$FFLAGS -byteswapio -Mnodclchk -Ktrap=fp"
     FOPTIM='-tp k8-64 -pc=64 -O2 -scalarsse -Mvect=sse' #-fastsse -O3 -Msmart -Mvect=cachesize:1048576,transform'
 else
     #  Try to follow IEEE-754
-    FFLAGS='-byteswapio -r8 -Mnodclchk -Mextend -Ktrap=fp'
+    FFLAGS="$FFLAGS -byteswapio -Ktrap=fp"
     FOPTIM='-tp k8-64 -pc=64 -O2 -scalarsse -Mvect=sse -Kieee' #-fastsse -O3 -Msmart -Kieee -Mvect=cachesize:1048576,transform'
 fi
+#- might want to use '-r8' for fizhi pkg:
+#FFLAGS="$FFLAGS -r8"
 
