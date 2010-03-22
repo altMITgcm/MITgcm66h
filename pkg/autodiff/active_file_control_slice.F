@@ -128,7 +128,7 @@ c       Read the active variable from file.
 
         if (lAdInit) then
 c         Initialise the corresponding adjoint variable on the
-c         adjoint variable's file. These files are tiled.
+c         adjoint variable file. These files are tiled.
 
           writeglobalfile = .false.
           do bj = 1,nsy
@@ -512,7 +512,7 @@ c       Read the active variable from file.
 
         if (lAdInit) then
 c         Initialise the corresponding adjoint variable on the
-c         adjoint variable's file. These files are tiled.
+c         adjoint variable file. These files are tiled.
 
           writeglobalfile = .false.
           do bj = 1,nsy

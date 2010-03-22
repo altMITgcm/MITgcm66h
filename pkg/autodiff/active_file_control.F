@@ -142,7 +142,7 @@ c       Read the active variable from file.
 
         if (lAdInit) then
 c         Initialise the corresponding adjoint variable on the
-c         adjoint variable's file. These files are tiled.
+c         adjoint variable file. These files are tiled.
 
           writeglobalfile = .false.
           do bj = 1,nsy
@@ -595,7 +595,7 @@ c           Copy data to appropriate location in active_var.
 
         if (lAdInit) then
 c         Initialise the corresponding adjoint variable on the
-c         adjoint variable's file.
+c         adjoint variable file.
 
           writeglobalfile = .false.
           do i=1,(snx+2*olx)*(sny+2*oly)

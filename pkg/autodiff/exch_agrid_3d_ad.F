@@ -16,7 +16,7 @@ C     | by TAMC if correct flow directives are given             |
 C     |   tamc -reverse ....                                     |
 C     |                                                          |
 C     | written and tested by Ralf Giering, Jan. 14th 1999       |
-C     | added new S/R's for _xz_ , _yz_ heimbach@mit.edu May-01  |
+C     | added new S/R for _xz_ , _yz_ heimbach@mit.edu May-01    |
 C     \==========================================================/
 
 #include "CPP_OPTIONS.h"
