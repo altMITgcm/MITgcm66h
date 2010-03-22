@@ -253,7 +253,7 @@ cph)
 # endif
                      endif
 #endif /* ALLOW_NONDIMENSIONAL_CONTROL_IO */
-#endif / * ALLOW_SMOOTH_CORREL3D * /
+#endif /* ALLOW_SMOOTH_CORREL3D */
                   else
                      globfld3d(i,bi,ip,j,bj,jp,k) = 0. _d 0
                   endif
