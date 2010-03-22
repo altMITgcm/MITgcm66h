@@ -149,6 +149,6 @@ C--     Check for IO errors
 
       call TIMER_STOP( 'I/O (WRITE)        [ADJOINT LOOP]', myThid )
 #endif /* ALLOW_DEPTH_CONTROL */
-#endif ALLOW_AUTODIFF_MONITOR
+#endif /* ALLOW_AUTODIFF_MONITOR */
 
       end
