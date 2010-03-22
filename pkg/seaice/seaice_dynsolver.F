@@ -51,6 +51,8 @@ C     i,j,bi,bj - Loop counters
       LOGICAL  DIFFERENT_MULTIPLE
       EXTERNAL DIFFERENT_MULTIPLE
 
+      _RL  mask_uice, mask_vice
+
 # ifdef ALLOW_AUTODIFF_TAMC
 C Following re-initialisation breaks some "artificial" AD dependencies
 C incured by IF (DIFFERENT_MULTIPLE ... statement
@@ -113,13 +115,17 @@ C     dynamic masking of areas with no ice
          DO j=1-Oly+1,sNy+Oly
           DO i=1-Olx+1,sNx+Olx
            seaiceMaskU(I,J,bi,bj)=AREA(i,j,bi,bj)+AREA(I-1,J,bi,bj)
-           IF ( seaiceMaskU(I,J,bi,bj) .GT. 0. _d 0 ) THEN
+           mask_uice=HEFFM(i,j,bi,bj)+HEFFM(i-1,j  ,bi,bj)
+           IF ( (seaiceMaskU(I,J,bi,bj) .GT. 0. _d 0) .AND.
+     &         (mask_uice .GT. 1.5 _d 0) ) THEN
             seaiceMaskU(I,J,bi,bj) = 1. _d 0
            ELSE
             seaiceMaskU(I,J,bi,bj) = 0. _d 0
            ENDIF
            seaiceMaskV(I,J,bi,bj)=AREA(i,j,bi,bj)+AREA(I,J-1,bi,bj)
-           IF ( seaiceMaskV(I,J,bi,bj) .GT. 0. _d 0 ) THEN
+           mask_vice=HEFFM(i,j,bi,bj)+HEFFM(i  ,j-1,bi,bj)
+           IF ( (seaiceMaskV(I,J,bi,bj) .GT. 0. _d 0) .AND.
+     &         (mask_vice .GT. 1.5 _d 0) ) THEN
             seaiceMaskV(I,J,bi,bj) = 1. _d 0
            ELSE
             seaiceMaskV(I,J,bi,bj) = 0. _d 0
