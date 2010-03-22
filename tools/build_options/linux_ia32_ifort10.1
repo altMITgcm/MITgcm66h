@@ -37,7 +37,7 @@ INCLUDES=''
 LIBS=''
 
 if test "x$DEVEL" != x ; then
-    FFLAGS="-$FFLAGS convert big_endian -assume byterecl -O0 -g -debug all -debug-parameters all -noalign -fp-stack-check -check all -fpe0 -traceback -ftrapuv -fp-model strict -warn all"
+    FFLAGS="$FFLAGS -convert big_endian -assume byterecl -O0 -g -debug all -debug-parameters all -noalign -fp-stack-check -check all -fpe0 -traceback -ftrapuv -fp-model strict -warn all"
 else
     FFLAGS="$FFLAGS -W0 -WB -convert big_endian -assume byterecl"
 fi

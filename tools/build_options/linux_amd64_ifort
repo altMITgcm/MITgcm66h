@@ -51,7 +51,7 @@ LIBS=''
 if test "x$DEVEL" != x ; then
     FFLAGS="$FFLAGS -w95 -W0 -WB -convert big_endian -assume byterecl -fPIC -O0 -g -noalign -fpstkchk -check all -fpe0 -traceback -ftrapuv -fpmodel except -warn all"
 else
-    FFLAGS="-$FFLAGS w95 -W0 -WB -convert big_endian -assume byterecl -fPIC"
+    FFLAGS="$FFLAGS -w95 -W0 -WB -convert big_endian -assume byterecl -fPIC"
 fi
 #- might want to use '-r8' for fizhi pkg:
 #FFLAGS="$FFLAGS -r8"
