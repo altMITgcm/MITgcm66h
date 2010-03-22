@@ -14,7 +14,7 @@ c     ==================================================================
 c     SUBROUTINE cost_obcs
 c     ==================================================================
 c
-c     o Evaluate cost function contributions for obc's
+c     o Evaluate cost function contributions for obcs
 c
 c     ==================================================================
 c     SUBROUTINE cost_obcs

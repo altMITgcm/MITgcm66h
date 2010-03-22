@@ -150,7 +150,7 @@ c--   Set the loop ranges.
 c--   initialise variables
       call grdchk_init( mythid )
 
-c--   Compute the adjoint models' gradients.
+c--   Compute the adjoint model gradients.
 c--   Compute the unperturbed cost function.
 cph   Gradient via adjoint has already been computed,
 cph   and so has unperturbed cost function,

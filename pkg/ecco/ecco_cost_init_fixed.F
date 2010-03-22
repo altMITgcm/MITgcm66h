@@ -292,7 +292,7 @@ c
 
 #endif /* ALLOW_GENCOST_CONTRIBUTION */
 
-c--   Summarize the cost function's setup.
+c--   Summarize the cost function setup.
       _BEGIN_MASTER( mythid )
       call ecco_cost_summary( mythid )
       _END_MASTER( mythid )

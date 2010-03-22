@@ -275,7 +275,7 @@ c--   Save sbar.
 
 #if (defined (ALLOW_DRIFTER_COST_CONTRIBUTION) || \
      defined (ALLOW_OBCS_COST_CONTRIBUTION))
-cph   There's a mismatch between the cost_drifer and the
+cph   There is a mismatch between the cost_drifer and the
 cph   cost_obcs usage of ubar, vbar.
 cph   cost_obcs refers to monthly means, cost_drifer to total mean.
 cph   Needs to be updated for cost_drifer.

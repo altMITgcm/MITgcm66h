@@ -101,7 +101,7 @@ c--   Read state record from global file.
       call active_read_xyz( fnamefld, tmpfld3d, irec, doglobalread,
      &                       ladinit, optimcycle, mythid
      &        , xx_edtaux_dummy )
-c--     Loop over this thread's tiles.
+c--     Loop over this thread tiles.
         do bj = jtlo,jthi
           do bi = itlo,ithi
 c--         Determine the weights to be used.
@@ -136,7 +136,7 @@ c--         Determine the weights to be used.
       call active_read_xyz( fnamefld, tmpfld3d, irec, doglobalread,
      &                       ladinit, optimcycle, mythid
      &        , xx_edtauy_dummy )
-c--     Loop over this thread's tiles.
+c--     Loop over this thread tiles.
         do bj = jtlo,jthi
           do bi = itlo,ithi
 c--         Determine the weights to be used.

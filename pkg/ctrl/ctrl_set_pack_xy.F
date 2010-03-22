@@ -15,7 +15,7 @@ c     o Compress the control vector such that only ocean points are
 c       written to file.
 c
 c     changed: heimbach@mit.edu 17-Jun-2003
-c              merged Armin's changes to replace write of
+c              merged changes from Armin to replace write of
 c              nr * globfld2d by 1 * globfld3d
 c              (ad hoc fix to speed up global I/O)
 c

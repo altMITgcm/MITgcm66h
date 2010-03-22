@@ -1296,7 +1296,7 @@ c                      and salinity from CTD with out timetag
 c     xbtfile       - reference data file for xbt
 c     ARGOtfile     - reference data file for ARGO
 c     ARGOsfile     - reference data file for ARGO
-c     driftfile     - reference data file for drifter's mean velocities
+c     driftfile     - reference data file for drifter mean velocities
 
       common /ecco_cost_data_c/
      &                     tdatfile,

@@ -142,7 +142,7 @@ cnew(
      &                     imonth, mythid)
 cnew)
 
-c--     Loop over this thread's tiles.
+c--     Loop over this thread tiles.
         do bj = jtlo,jthi
           do bi = itlo,ithi
 c--         Loop over the model layers

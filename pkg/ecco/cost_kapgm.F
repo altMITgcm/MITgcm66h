@@ -96,7 +96,7 @@ c--   Read state record from global file.
      &                       ladinit, optimcycle, mythid
      &        , xx_kapgm_dummy )
 
-c--     Loop over this thread's tiles.
+c--     Loop over this thread tiles.
         do bj = jtlo,jthi
           do bi = itlo,ithi
 

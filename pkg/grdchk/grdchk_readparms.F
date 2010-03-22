@@ -136,7 +136,7 @@ c       Next, read the calendar data file.
            STOP 'S/R grdchk_readparms'
         ENDIF
 
-c--     Summarize the gradient check's setup.
+c--     Summarize the gradient check setup.
         call grdchk_Summary( mythid )
       _END_MASTER( mythid )
 
@@ -145,5 +145,3 @@ c--     Summarize the gradient check's setup.
 #endif /* ALLOW_GRDCHK */
 
       end
-
-

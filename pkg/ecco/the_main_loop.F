@@ -1245,7 +1245,7 @@ c--   Compute cost function contribution of Temperature and Salinity.
       call timer_stop ('cost_curmtr        [ECCO SPIN-DOWN]', mythid)
 #endif
 
-c--   Compute cost function contribution of drifter's velocities.
+c--   Compute cost function contribution of drifter velocities.
 #ifdef ALLOW_DRIFTER_COST_CONTRIBUTION
 #ifndef DISABLE_DEBUGMODE
       IF ( debugLevel .GE. debLevB ) 

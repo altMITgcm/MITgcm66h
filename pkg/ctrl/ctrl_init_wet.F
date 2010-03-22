@@ -183,7 +183,7 @@ c
 #ifdef ALLOW_OBCS_CONTROL
                         do iobcs = 1, nobcs
 cgg   This overcounts the number of o.b. control points by a factor of "nobcs".
-cgg   As an ad-hoc solution I've divided by nobcs everywhere.
+cgg   As an ad-hoc solution I have divided by nobcs everywhere.
                            if ( i .eq. 11 ) then
 #ifdef ALLOW_OBCSN_CONTROL
                               nvarlength = nvarlength + 

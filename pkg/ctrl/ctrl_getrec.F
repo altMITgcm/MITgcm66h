@@ -352,7 +352,7 @@ cgg   Added a 0.5 safety net.
 
 c     Weight belonging to irec for linear interpolation purposes.
 c     Note: The weight as chosen here is 1. - fac of the "old"
-c           MITgcm's estimation program.
+c           MITgcm estimation program.
       fac = 1. - fldsecs/fldperiod
 
 #ifdef ECCO_VERBOSE
