@@ -65,7 +65,7 @@ c     == routine arguments ==
       character*(MAX_LEN_FNAM) localbarfile
       character*(MAX_LEN_FNAM) localobsfile
 
-#ifdef ALLOW_COST
+#if (defined (ALLOW_ECCO) && defined (ALLOW_COST))
 c     == local variables ==
 
       integer bi,bj
