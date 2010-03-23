@@ -27,8 +27,10 @@ c     == global variables ==
 # include "cal.h"
 #endif
 #ifdef ALLOW_COST
-# include "ecco_cost.h"
 # include "optim.h"
+# ifdef ALLOW_ECCO
+#  include "ecco_cost.h"
+# endif
 # ifdef ALLOW_SEAICE
 #  include "SEAICE_COST.h"
 #  include "SEAICE_PARAMS.h"
