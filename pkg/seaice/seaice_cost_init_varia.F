@@ -48,14 +48,14 @@ c     == local variables ==
 c     == external functions ==
 
 c     == end of interface ==
-      jtlo = mybylo(mythid)
-      jthi = mybyhi(mythid)
-      itlo = mybxlo(mythid)
-      ithi = mybxhi(mythid)
+      jtlo = myByLo(mythid)
+      jthi = myByHi(mythid)
+      itlo = myBxLo(mythid)
+      ithi = myBxHi(mythid)
       jmin = 1-OLy
-      jmax = sny+OLy
+      jmax = sNy+OLy
       imin = 1-OLx
-      imax = snx+OLy
+      imax = sNx+OLx
 
 c--   Initialize the tiled cost function contributions.
       do bj = jtlo,jthi
