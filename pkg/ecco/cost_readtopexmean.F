@@ -64,8 +64,8 @@ c     == end of interface ==
       imax = snx
 
 c--   Convert mean ssh from cm to m
-      factor =  0.01
-      spval  = -9990.
+      factor =  0.01 _d 0
+      spval  = -9990. _d 0
 
       call mdsreadfield( topexmeanfile, cost_iprec, cost_yftype, 1,
      &                   tpmean, 1, mythid )
@@ -102,5 +102,5 @@ c--   Convert mean ssh from cm to m
 
 #endif /* ALLOW_SSH_MEAN_COST_CONTRIBUTION */
 
+      return
       end
-

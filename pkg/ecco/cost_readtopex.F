@@ -84,8 +84,8 @@ c     == end of interface ==
       imin = 1
       imax = snx
 
-      factor = 0.01
-      spval = -9990.
+      factor = 0.01 _d 0
+      spval = -9990. _d 0
 
 cnew(
       daytime = FLOAT(secondsperday*(irec-1)) + modelstart
@@ -155,4 +155,3 @@ cnew)
 
       return
       end
-
