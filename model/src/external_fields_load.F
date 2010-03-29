@@ -83,7 +83,7 @@ C-jmc: with some option of g77, FLOAT results in real*4 evaluation
 C      of aWght; using DFLOAT always force real*8 computation:
 c     aWght = DFLOAT( Iftm-Ifprd*(intime0 - 1) ) / DFLOAT( Ifprd )
 C-ph: however, TAF doesnt recognize DFLOAT,
-C-jmc: so let's try this:
+C-jmc: so let me try this:
       tmp1Wght = FLOAT( Iftm-Ifprd*(intime0 - 1) )
       tmp2Wght = FLOAT( Ifprd )
       aWght =  tmp1Wght / tmp2Wght
