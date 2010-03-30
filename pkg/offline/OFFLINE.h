@@ -12,12 +12,14 @@ c   Forcing files
       COMMON /OFFLINE_COMMON_R/
      &       ConvectCount, ICEM,
      &       deltaToffline,
-     &       offlineForcingPeriod, offlineForcingCycle
+     &       offlineForcingPeriod, offlineForcingCycle,
+     &       offlineLoadPrec
       _RL ICEM(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS ConvectCount(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nR,nSx,nSy)
       _RL deltaToffline
       _RL offlineForcingPeriod
       _RL offlineForcingCycle
+      INTEGER offlineLoadPrec
 
       COMMON /OFFLINE_COMMON_C/
      &       UvelFile, VvelFile, WvelFile, ThetFile, Saltfile,

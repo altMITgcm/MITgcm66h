@@ -35,7 +35,7 @@ C--   Bulk Formula parameter
       NAMELIST /OFFLINE_PARM02/
      &         offlineIter0, offlineOffsetIter,
      &         deltaToffline, offlineForcingPeriod, 
-     &         offlineForcingCycle
+     &         offlineForcingCycle, offlineLoadPrec
 
 C     === Local variables ===
 C     msgBuf      - Informational/error meesage buffer
@@ -75,11 +75,11 @@ C--   Read parameters from open data file
       READ(UNIT=iUnit,NML=OFFLINE_PARM01)
 
       deltaToffline=deltaTclock
-      offlineIter0=nIter0       !initial offline field timestep
+      offlineIter0=nIter0        !initial offline field timestep
       offlineOffsetIter=0        !offset
       offlineForcingPeriod=2592000.
       offlineForcingCycle=31104000.
-
+      offlineLoadPrec=readBinaryPrec
      
 C--   Read parameters from open data file
       READ(UNIT=iUnit,NML=OFFLINE_PARM02)

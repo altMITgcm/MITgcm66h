@@ -64,14 +64,14 @@ C     fn      :: Temp. for building file name.
 C     === Local arrays ===
 
       INTEGER bi,bj,i,j,k,intime0,intime1
-      _RL aWght,bWght,rdt, KGM
+      _RL aWght,bWght,rdt
       INTEGER nForcingPeriods,Imytm,Ifprd,Ifcyc,Iftm
       INTEGER I1, I2
 
-      prec = precFloat32
-      KGM=1.d0
+      prec = offlineLoadPrec
 
-      IF ( periodicExternalForcing ) THEN
+c      IF ( offlinePeriodicExternalLoad ) THEN
+      IF ( .TRUE. ) THEN
 
 C First call requires that we initialize everything to zero for safety
       IF ( myIter .EQ. nIter0 ) THEN
