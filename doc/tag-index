@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/offline:
+  - no need to specify periodicExternalForcing, etc ... to use offline pack
+  - offline input files no longer just single prec --> parameter offlineLoadPrec
 o verification/lab_sea:
   change to multi-tile setup.
   NOTE: while cost function values remain very similar,
