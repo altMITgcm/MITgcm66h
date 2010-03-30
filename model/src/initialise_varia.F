@@ -61,8 +61,7 @@ C       |-- PACKAGES_INIT_VARIABLES
 C       |
 C       |-- CONVECTIVE_ADJUSTMENT_INI
 C       |
-C       |-- INI_SURF_DR
-C       |-- INI_R_STAR
+C       |-- INI_NLFS_VARS
 C       |
 C       |-- CALC_R_STAR
 C       |-- UPDATE_R_STAR
@@ -233,10 +232,11 @@ CADJ loop = parallel
       ENDIF
 
 #ifdef NONLIN_FRSURF
+C--   Initialise Non-Lin FreeSurf variables:
+      CALL INI_NLFS_VARS( myThid )
+
 C--   Compute the surface level thickness <-- function of etaH(n)
 C     and modify hFac(C,W,S) accordingly :
-      CALL INI_SURF_DR( myThid )
-      CALL INI_R_STAR( myThid )
 # ifndef DISABLE_RSTAR_CODE
       IF ( select_rStar.NE.0 )
      &  CALL CALC_R_STAR(etaH, startTime, -1 , myThid )
