@@ -19,9 +19,9 @@ umask 0022
 #- to get case insensitive "ls" (and order of tested experiments)
 export LC_ALL="en_US.UTF-8"
 
-TST_DIR="/home/jmc/test_ACES/gcm_tests"
-HERE='/home/jmc/test_ACES/output'
-cd $HERE
+TST_DIR="/home/jmc/test_ACES"
+HERE=$TST_DIR/output
+#cd $HERE
 
 sfx='mth'
 module add ifc/9.0.021 icc/9.0.021 intel/9.0
