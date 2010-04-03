@@ -407,7 +407,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
       ELSEIF ( power.EQ.2 ) THEN
 
-       IF ( arrType.LE.1 ) THEN
+       IF ( arrType.EQ.0 .OR. arrType.EQ.1 ) THEN
         DO j = 1,jRun
          DO i = 1,iRun
           cumFld(i,j) = cumFld(i,j)
@@ -415,7 +415,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
      &                         *inpFldRL(i,j,k,bi,bj)
          ENDDO
         ENDDO
-       ELSEIF ( arrType.LE.3 ) THEN
+       ELSEIF ( arrType.EQ.2 .OR. arrType.EQ.3 ) THEN
         DO j = 1,jRun
          DO i = 1,iRun
           cumFld(i,j) = cumFld(i,j)
@@ -429,7 +429,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
       ELSE
 
-       IF ( arrType.LE.1 ) THEN
+       IF ( arrType.EQ.0 .OR. arrType.EQ.1 ) THEN
         DO j = 1,jRun
          DO i = 1,iRun
 C- jmc: try with fixed ranges, that are known at compiling stage
@@ -440,7 +440,7 @@ c        DO i = 1,sNx
      &                + tmpFact*inpFldRL(i,j,k,bi,bj)
          ENDDO
         ENDDO
-       ELSEIF ( arrType.LE.3 ) THEN
+       ELSEIF ( arrType.EQ.2 .OR. arrType.EQ.3 ) THEN
         DO j = 1,jRun
          DO i = 1,iRun
           cumFld(i,j) = cumFld(i,j)
