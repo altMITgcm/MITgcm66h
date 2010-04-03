@@ -144,6 +144,15 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
            CALL PRINT_ERROR( msgBuf , myThid )
            ndCount = ndCount + 1
          ENDIF
+         IF ( diagName.EQ.'KPPghat ' ) THEN
+           WRITE(msgBuf,'(3A)') 'DIAGNOSTICS_LIST_CHECK: diagnostic "',
+     &             diagName, '" was retired in favor of "KPPghatK"'
+           CALL PRINT_ERROR( msgBuf , myThid )
+           WRITE(msgBuf,'(3A)') 'DIAGNOSTICS_LIST_CHECK: ',
+     &              '=> need to change "data.diagnostics" accordingly'
+           CALL PRINT_ERROR( msgBuf , myThid )
+           ndCount = ndCount + 1
+         ENDIF
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
         ENDIF
         IF ( ndCount.EQ.0 ) RETURN
