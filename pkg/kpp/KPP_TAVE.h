@@ -8,12 +8,6 @@ C     | KPP_TAVE.h
 C     | o Header for KPP time-average output
 C     *==========================================================*
 
-C----------------------------------------------------------------
-C     kpp_drctrec     - next record to dump for KPP files
-C----------------------------------------------------------------
-      INTEGER kpp_drctrec
-      COMMON /KPP_RECORDNUM1/ kpp_drctrec
-
 #ifdef ALLOW_TIMEAVE
 C----------------------------------------------------------------
 C     kpp_drctrecTave - next record to dump for KPP averaging files
@@ -35,13 +29,12 @@ C----------------------------------------------------------------
 
       _RL KPPviscAztave  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL KPPdiffKzTtave (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-      _RL KPPghattave    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-      _RL KPPhbltave     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,   nSx,nSy)
       _RL KPPdiffKzStave (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      _RL KPPghatKStave  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      _RL KPPhbltave     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,   nSx,nSy)
       COMMON /KPP_TAVE_FIELDS/
-     &        KPPviscAztave, KPPdiffKzTtave,
-     &        KPPghattave, KPPhbltave,
-     &        KPPdiffKzStave
+     &        KPPviscAztave, KPPdiffKzTtave, KPPdiffKzStave,
+     &        KPPghatKStave, KPPhbltave
 
 #endif /* ALLOW_TIMEAVE */
 #endif /* ALLOW_KPP */

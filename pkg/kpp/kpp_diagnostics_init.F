@@ -77,9 +77,10 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I       diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
-        diagName  = 'KPPghat '
-        diagTitle = 'Nonlocal transport coefficient'
-        diagUnits = 's/m^2           '
+        diagName  = 'KPPghatK'
+        diagTitle = 'ratio of KPP non-local (salt) flux'
+     &            //' relative to surface-flux'
+        diagUnits = '0-1             '
         diagCode  = 'SM P    LR      '
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I       diagName, diagCode, diagUnits, diagTitle, 0, myThid )

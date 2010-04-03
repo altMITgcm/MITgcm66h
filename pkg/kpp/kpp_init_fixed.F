@@ -84,6 +84,16 @@ C       Define grid types for KPP variables
         CALL MNC_CW_ADD_VATTR_TEXT('KPPGHAT',
      &       'coordinates','XC YC RC iter', myThid)
 
+        CALL MNC_CW_ADD_VNAME('KPPghatKS', 'Cen_xy_Hn__L__t',
+     &       4,5, myThid)
+        CALL MNC_CW_ADD_VATTR_TEXT('KPPghatKS','units','0-1',
+     &       myThid)
+        CALL MNC_CW_ADD_VATTR_TEXT('KPPghatKS','long_name',
+     &  'ratio of KPP non-local (salt) flux relative to surface-flux',
+     &       myThid)
+        CALL MNC_CW_ADD_VATTR_TEXT('KPPghatKS','coordinates',
+     &       'XC YC RF iter', myThid)
+
         CALL MNC_CW_ADD_VNAME('KPPHBL', 'Cen_xy_Hn__-__t',
      &       3,4, myThid)
         CALL MNC_CW_ADD_VATTR_TEXT('KPPHBL','units','m',
