@@ -83,9 +83,6 @@ elif [ "x$NETCDF_INCDIR" != x -a "x$NETCDF_LIBDIR" != x ]; then
     INCLUDES="-I${NETCDF_INCDIR}"
     LIBDIR="${NETCDF_LIBDIR}"
     LIBS="-L${NETCDF_LIBDIR}"
-elif test -d /sopt/netcdf/netcdf3-gcc-serial; then
-    INCLUDES='-I/sopt/netcdf/netcdf3-gcc-serial/include'
-    LIBS='-L/sopt/netcdf/netcdf3-gcc-serial/lib'
 elif test -d /usr/include/netcdf-3 ; then
     INCLUDES='-I/usr/include/netcdf-3'
     LIBS='-L/usr/lib/netcdf-3 -L/usr/lib64/netcdf-3'
