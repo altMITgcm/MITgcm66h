@@ -21,10 +21,6 @@ C !USES: ===============================================================
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#ifdef ALLOW_RBCS
-#include "PTRACERS_SIZE.h"
-#include "RBCS.h"
-#endif
 
 C !INPUT PARAMETERS: ===================================================
 C  bi,bj                :: tile indices
@@ -84,7 +80,7 @@ C     because it is needed by KPP_TRANSPORT_PTR.
       ENDIF
 
 #ifdef ALLOW_RBCS
-      IF ( useRBCptracers ) THEN
+      IF ( useRBCS ) THEN
         CALL RBCS_ADD_TENDENCY(
      I                          bi,bj,k,iTracer+2,
      I                          myTime, myThid )
