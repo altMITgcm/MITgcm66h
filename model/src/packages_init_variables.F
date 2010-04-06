@@ -263,7 +263,7 @@ cph#endif
 # ifndef ALLOW_AUTODIFF_TAMC
       ENDIF
 # endif
-#endif /* ALLOW_RBCS */
+#endif /* ALLOW_OFFLINE */
 
 #ifdef ALLOW_GCHEM
 # ifndef ALLOW_AUTODIFF_TAMC
