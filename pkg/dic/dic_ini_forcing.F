@@ -33,8 +33,10 @@ CEOP
 
 c !LOCAL VARIABLES: ===================================================
        INTEGER bi,bj,i,j
+#if (defined (READ_PAR) && defined (USE_QSW))
        CHARACTER*(MAX_LEN_MBUF) msgBuf
-c
+#endif
+
 C First call requires that we initialize everything to zero for safety
       CALL LEF_ZERO( dicwind0,myThid )
       CALL LEF_ZERO( dicwind1,myThid )

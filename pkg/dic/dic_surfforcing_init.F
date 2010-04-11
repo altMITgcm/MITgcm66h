@@ -37,7 +37,6 @@ C  myThid               :: thread number
 C !LOCAL VARIABLES: ====================================================
        INTEGER i,j, kLev, it
        INTEGER intime0,intime1
-       _RL otime
        _RL aWght,bWght,rdt
        INTEGER nForcingPeriods,Imytm,Ifprd,Ifcyc,Iftm
 C Number of iterations for pCO2 solvers...
@@ -97,8 +96,7 @@ c      aWght = DFLOAT( Iftm-Ifprd*(intime0 - 1) ) / DFLOAT( Ifprd )
 
 #ifdef ALLOW_OFFLINE
        IF ( useOffLine ) THEN
-         otime=nIter0*deltaTclock
-         CALL OFFLINE_FIELDS_LOAD( otime, nIter0, myThid )
+         CALL OFFLINE_FIELDS_LOAD( startTime, nIter0, myThid )
        ENDIF
 #endif
 

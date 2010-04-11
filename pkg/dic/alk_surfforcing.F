@@ -43,12 +43,12 @@ C  GALK                 :: tendency term of alkalinity
 #ifdef ALLOW_PTRACERS
 #ifdef DIC_BIOTIC
 
+#ifdef ALLOW_OLD_VIRTUALFLUX
 C !LOCAL VARIABLES: ====================================================
 C  i,j                  :: loop indices
       INTEGER i,j
 CEOP
 
-#ifdef ALLOW_OLD_VIRTUALFLUX
         DO j=jmin,jmax
           DO i=imin,imax
             IF (maskC(i,j,1,bi,bj).NE.0. _d 0) THEN

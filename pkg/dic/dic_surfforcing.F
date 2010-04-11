@@ -45,7 +45,7 @@ c GDC                   :: tendency due to air-sea exchange
 #ifdef ALLOW_PTRACERS
 
 C !LOCAL VARIABLES: ====================================================
-       INTEGER I,J, kLev, it
+       INTEGER i,j, kLev
 C Number of iterations for pCO2 solvers...
 C Solubility relation coefficients
       _RL SchmidtNoDIC(1-OLx:sNx+OLx,1-OLy:sNy+OLy)

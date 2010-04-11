@@ -32,6 +32,7 @@ C     == GLobal variables ==
 C     == Routine arguments ==
       INTEGER myThid
 
+#ifdef ALLOW_CTRL
 cph#ifdef DIC_BIOTIC
 C     == Local arguments ==
       INTEGER bi, bj
@@ -48,7 +49,6 @@ c     == external ==
 
 c     == end of interface ==
 CEOP
-#ifdef ALLOW_CTRL
 
       doglobalread = .FALSE.
       ladinit      = .FALSE.

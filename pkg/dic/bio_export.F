@@ -60,7 +60,10 @@ C  i,j,k                  :: loop indices
       _RL sfac(1-OLy:sNy+OLy)
       _RL lit, atten
       _RL nutlimit
-      _RL tmpfe, tmppo4
+      _RL tmppo4
+#ifdef ALLOW_FE
+      _RL tmpfe
+#endif
 #ifdef AD_SAFE
       _RL thx, thy, theps
 #endif

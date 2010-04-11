@@ -42,10 +42,11 @@ c !LOCAL VARIABLES: ===================================================
        INTEGER bi,bj,i,j,intime0,intime1
       _RL aWght,bWght,rdt
       INTEGER nForcingPeriods,Imytm,Ifprd,Ifcyc,Iftm
+#ifdef READ_PAR
       CHARACTER*(MAX_LEN_MBUF) msgBuf
+#endif
 CEOP
 
-c
       IF (  DIC_forcingCycle.gt.0. _d 0 ) THEN
 
 
