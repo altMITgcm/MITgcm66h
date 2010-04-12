@@ -27,6 +27,7 @@ sfx='pgi'
 module add mpich/$sfx
 OPTFILE="../tools/build_options/linux_ia32_pgf77+mpi_aces"
 options='-mpi -match 10'
+#options="$options -skd tutorial_advection_in_gyre"
 
 checkOut=1
 #options="$options -nc" ; checkOut=0

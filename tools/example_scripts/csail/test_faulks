@@ -250,6 +250,7 @@ do
   export PGI=/usr/local/pkg/pgi/pgi-6.1-5
   echo "Running testreport using:"
   comm="./testreport -match $MC -dd"
+  #comm="$comm -skd tutorial_advection_in_gyre"
   if test "x$OPTFILE" != x ; then
     comm="$comm -of=$OPTFILE"
   fi
@@ -261,6 +262,7 @@ do
   echo
   echo "Running testreport using:"
   comm="./testreport -match $MC -q -a jmc@mitgcm.org"
+  #comm="$comm -skd tutorial_advection_in_gyre"
   if test "x$OPTFILE" != x ; then
     comm="$comm -of=$OPTFILE"
   fi
