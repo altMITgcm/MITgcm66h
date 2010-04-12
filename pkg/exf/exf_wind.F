@@ -128,7 +128,7 @@ c            ustar = SQRT(usSq/atmrho)
         ENDDO
 
         IF ( wspeedfile .EQ. ' ' ) THEN
-C--   wspeed is not loaded ; devive wind-speed by inversion of
+C--   wspeed is not loaded ; derive wind-speed by inversion of
 C     wind-stress=fct(wind-speed) relation:
 C             The variables us, sh and rdn have to be computed from
 C             given wind stresses inverting relationship for neutral
