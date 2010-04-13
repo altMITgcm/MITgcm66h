@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/obcs:
+  - fix wrong index in OBCS_SPONGE_V for Eastern-OB (reported by David Hebert).
 o pkg/dic:
   -fix bug in fe_chem.F for multi-tile (nSx*nSy > 1) set-up;
     (note: not presently tested in any forward verification exp.)
