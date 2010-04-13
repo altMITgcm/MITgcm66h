@@ -76,7 +76,7 @@ c     Surface flux data.
      &     exf_iprec_obcs,
      & useExfYearlyFields,  twoDigitYear,   useExfCheckRange,
      & useStabilityFct_overIce, readStressOnAgrid, readStressOnCgrid,
-     &    useRelativeWind, noNegativeEvap,
+     & useExfZenithAngle, useRelativeWind, noNegativeEvap,
      & hu, ht, umin, atmrho, atmcp, cen2kel, gravity_mks,
      & cdrag_1, cdrag_2, cdrag_3, cstanton_1, cstanton_2, cdalton,
      & flamb, flami, zolmin, zref,
@@ -210,6 +210,7 @@ c     Set default values.
       year2sec           = 365.*86400.
       exf_monFreq        = monitorFreq
       useExfCheckRange   = .TRUE.
+      useExfZenithAngle  = .FALSE.
       readStressOnAgrid  = .FALSE.
       readStressOnCgrid  = .FALSE.
       useRelativeWind    = .FALSE.

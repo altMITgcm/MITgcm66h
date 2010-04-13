@@ -570,6 +570,12 @@ c     from the beginning of the year.
       _END_MASTER( myThid )
       _BARRIER
 
+#if defined(ALLOW_ZENITHANGLE) && defined(SHORTWAVE_HEATING)
+      IF ( useExfZenithAngle ) THEN
+       CALL EXF_ZENITHANGLE_TABLE(myThid)
+      ENDIF
+#endif
+
 C--   Summarize the External forcing setup.
       CALL EXF_SUMMARY( myThid )
 

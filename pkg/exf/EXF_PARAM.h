@@ -345,6 +345,7 @@ C     noNegativeEvap     :: prevent negative evaporation (= sea-surface condensa
 
       logical useExfYearlyFields, twoDigitYear
       logical useExfCheckRange
+      logical useExfZenithAngle
       logical readStressOnAgrid
       logical readStressOnCgrid
       logical stressIsOnCgrid
@@ -354,7 +355,7 @@ C     noNegativeEvap     :: prevent negative evaporation (= sea-surface condensa
 
       common /exf_param_l/
      &                     useExfYearlyFields, twoDigitYear,
-     &                     useExfCheckRange,
+     &                     useExfCheckRange, useExfZenithAngle,
      &                     readStressOnAgrid, readStressOnCgrid,
      &                     stressIsOnCgrid, useStabilityFct_overIce,
      &                     useRelativeWind, noNegativeEvap
