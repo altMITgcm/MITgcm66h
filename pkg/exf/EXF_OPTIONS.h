@@ -39,6 +39,10 @@ c   >>> ALLOW_DOWNWARD_RADIATION <<<
 c       If defined, downward long-wave and short-wave radiation
 c       can be read-in form files or computed from lwflux and swflux.
 c
+c   >>> ALLOW_ZENITHANGLE <<<
+c       If defined, ocean albedo varies with the zenith angle, and
+c       incoming fluxes at the top of the atmosphere are computed
+c
 c   >>> ALLOW_BULKFORMULAE <<<
 c       Allows the use of bulk formulae in order to estimate
 c       turbulent and radiative fluxes at the ocean surface.
@@ -145,6 +149,15 @@ C   Bulk formulae related flags.
      defined (ALLOW_ATM_WIND))
 # define ALLOW_BULKFORMULAE
 # undef ALLOW_BULK_LARGEYEAGER04
+#endif
+
+C   Zenith Angle/Albedo related flags.
+#ifdef ALLOW_DOWNWARD_RADIATION
+#undef ALLOW_ZENITHANGLE
+# ifdef ALLOW_ZENITHANGLE
+#  undef ALLOW_DIURNAL_ALBEDO
+#  undef ALLOW_DAILY_ALBEDO_AIM
+# endif
 #endif
 
 C   Relaxation to monthly climatologies.

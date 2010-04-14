@@ -113,7 +113,7 @@ c     ENDIF
 #if defined(ALLOW_ATM_TEMP) || defined(SHORTWAVE_HEATING)
       IF ( swfluxfile .EQ. ' ' .AND. swdownfile .NE. ' ' ) THEN
 #ifdef ALLOW_ZENITHANGLE
-      IF ( useExfZenithAngle ) THEN
+      IF ( useExfZenAlbedo .OR. useExfZenIncoming ) THEN
        CALL EXF_ZENITHANGLE(myTime, myIter, myThid)
       ENDIF
 #endif
@@ -122,7 +122,7 @@ c     ENDIF
          DO j = 1,sNy
           DO i = 1,sNx
 #ifdef ALLOW_ZENITHANGLE
-      IF ( useExfZenithAngle ) THEN       
+      IF ( useExfZenAlbedo ) THEN       
            swflux(i,j,bi,bj) = - swdown(i,j,bi,bj) *
      &                         (1.0-zen_albedo(i,j,bi,bj))
       ELSE

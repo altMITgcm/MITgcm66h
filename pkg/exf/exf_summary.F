@@ -135,9 +135,6 @@ C--   Print general parameters:
      &  ' /* reduction of Qsat over salty water [-] */')
       CALL WRITE_0D_L( noNegativeEvap,INDEX_NONE,'noNegativeEvap =',
      &  ' /* prevent negative Evaporation */')
-      CALL WRITE_0D_L( useExfZenithAngle,
-     &  INDEX_NONE,'useExfZenithAngle =',
-     &  ' /* compute albedo from zenith angle */') 
       CALL WRITE_0D_RL( sstExtrapol, INDEX_NONE, 'sstExtrapol =',
      &  ' /* extrapolation coeff from lev. 1 & 2 to surf [-] */')
       CALL WRITE_0D_RL( cdrag_1, INDEX_NONE, 'cDrag_1 =',
@@ -180,6 +177,10 @@ C--   Print general parameters:
      &  ' /* transfert coeff. over sea-ice, Sens.Heat.(fixed)[-] */')
       CALL WRITE_0D_RL( exf_albedo, INDEX_NONE, 'exf_albedo =',
      & '  /* Sea-water albedo [-] */')
+      CALL WRITE_0D_L( useExfZenAlbedo, INDEX_NONE, 'useExfZenAlbedo =',
+     &  ' /* Sea-water albedo varies with zenith angle */') 
+      CALL WRITE_0D_L( useExfZenIncoming, INDEX_NONE,
+     &  'useExfZenIncoming =',' /* compute incoming solar radiation */') 
       CALL WRITE_0D_RL( ocean_emissivity, INDEX_NONE,
      &  'ocean_emissivity =',
      &  ' /* longwave ocean-surface emissivity [-] */')

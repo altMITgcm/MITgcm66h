@@ -571,7 +571,7 @@ c     from the beginning of the year.
       _BARRIER
 
 #if defined(ALLOW_ZENITHANGLE) && defined(SHORTWAVE_HEATING)
-      IF ( useExfZenithAngle ) THEN
+      IF ( useExfZenAlbedo .OR. useExfZenIncoming ) THEN
        CALL EXF_ZENITHANGLE_TABLE(myThid)
       ENDIF
 #endif
