@@ -153,11 +153,7 @@ C   Bulk formulae related flags.
 
 C   Zenith Angle/Albedo related flags.
 #ifdef ALLOW_DOWNWARD_RADIATION
-#undef ALLOW_ZENITHANGLE
-# ifdef ALLOW_ZENITHANGLE
-#  undef ALLOW_DIURNAL_ALBEDO
-#  undef ALLOW_DAILY_ALBEDO_AIM
-# endif
+# undef ALLOW_ZENITHANGLE
 #endif
 
 C   Relaxation to monthly climatologies.

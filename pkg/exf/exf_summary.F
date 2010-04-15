@@ -179,6 +179,8 @@ C--   Print general parameters:
      & '  /* Sea-water albedo [-] */')
       CALL WRITE_0D_L( useExfZenAlbedo, INDEX_NONE, 'useExfZenAlbedo =',
      &  ' /* Sea-water albedo varies with zenith angle */') 
+      CALL WRITE_0D_I( select_ZenAlbedo,INDEX_NONE,'select_ZenAlbedo =',
+     &  ' /* Sea-water albedo computation method */')
       CALL WRITE_0D_L( useExfZenIncoming, INDEX_NONE,
      &  'useExfZenIncoming =',' /* compute incoming solar radiation */') 
       CALL WRITE_0D_RL( ocean_emissivity, INDEX_NONE,
