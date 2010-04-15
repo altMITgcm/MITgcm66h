@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint62e (2010/04/15)
 o pkg/obcs:
   - fix wrong index in OBCS_SPONGE_V for Eastern-OB (reported by David Hebert).
 o pkg/dic:
