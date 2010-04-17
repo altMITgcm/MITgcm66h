@@ -54,7 +54,7 @@ c     == local variables ==
       integer tempDate2(4)
       integer gwunit
       integer ilo,ihi
-      integer irec
+      integer irec,k
       logical exst
       _RL     dummy
       _RL     missingObsFlag

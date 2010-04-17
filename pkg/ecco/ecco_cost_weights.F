@@ -1757,7 +1757,8 @@ cph)
               do k=1,NGENCOST
               if (gencost_weight(i,j,bi,bj,k) .ne. 0.) then
                  gencost_weight(i,j,bi,bj,k) =
-     &                1./gencost_weight(i,j,bi,bj,k)/gencost_weight(i,j,bi,bj,k)
+     &                1./gencost_weight(i,j,bi,bj,k)/
+     &                   gencost_weight(i,j,bi,bj,k)
               else
                  gencost_weight(i,j,bi,bj,k) = 0.0 _d 0
               endif

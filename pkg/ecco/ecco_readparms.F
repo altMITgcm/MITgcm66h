@@ -446,8 +446,8 @@ c--   Set default values.
          gencost_avgperiod(k)  = '     '
          gencost_datafile(k)   = ' '
          gencost_errfile(k)    = ' '
-         gencost_mask(k)       = ' '
-         write(gencost_barfile(k)(1:8),'(a,i2.2)'),
+         gencost_mask(k)       = 'c'
+         write(gencost_barfile(k)(1:8),'(a,i2.2)')
      &        'genbar', k
 cph         gencost_barfile(k)    = ' '
          gencost_spmin         = 0. _d 0
@@ -477,6 +477,8 @@ C--   Check parameters:
      &           'ECCO_READPARMS: gencost_avgperiod not properly set'
          end if
 
+      if ( gencost_datafile(k) .ne. ' ' ) then
+
          if ( gencost_spmin(k) .EQ. 0. _d 0 .AND.
      &        gencost_spmax(k) .EQ. 0. _d 0 ) then
             STOP
@@ -487,6 +489,8 @@ C--   Check parameters:
             STOP
      &       'ECCO_READPARMS: gencost_spzero not set'
          endif
+
+      endif
 
       end do
 
