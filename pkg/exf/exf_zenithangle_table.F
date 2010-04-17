@@ -88,7 +88,7 @@ c       (formula from Hartmann textbook, after Spencer 1971)
      &         + 0.000077 _d 0 * sin ( 2. _d 0 * ALPHA )
 
         tmpINT1=0. _d 0
-        tmpINT2=0. _d 0	   
+        tmpINT2=0. _d 0   
         DO iTday=1,100
             TDAY=iTday/100. _d 0
 c determine DAILY VARYING cos of solar zenith angle CZEN
