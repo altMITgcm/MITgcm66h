@@ -14,6 +14,12 @@ CADJ SUBROUTINE MONITOR ADNAME  = admonitor
 CADJ SUBROUTINE MONITOR FTLNAME = g_monitor
 
 C----------------------------------------
+C subroutine  MON_SET_PREF
+C----------------------------------------
+CADJ SUBROUTINE MON_SET_PREF INPUT  = 1,2
+CADJ SUBROUTINE MON_SET_PREF OUTPUT =
+
+C----------------------------------------
 C subroutine  MON_PRINTSTATS_RS
 C----------------------------------------
 CADJ SUBROUTINE MON_PRINTSTATS_RS INPUT  = 1,2,3,4
