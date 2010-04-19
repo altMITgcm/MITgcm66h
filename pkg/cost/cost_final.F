@@ -36,6 +36,9 @@ c     == global variables ==
 cph-- quickly for testing
 # include "DIC_COST.h"
 #endif
+#ifdef ALLOW_MNC
+# include "MNC_PARAMS.h"
+#endif
 
 c     == routine arguments ==
 
@@ -145,9 +148,14 @@ c--   averaged fields in reverse checkpointing loops
       dumpFreq    = 0.
       pChkptFreq  = 0.
       monitorFreq = 0.
+      useDiagnostics = .FALSE.
+#ifdef ALLOW_MNC
+      monitor_mnc=.FALSE.
+      snapshot_mnc=.FALSE.
+      timeave_mnc=.FALSE.
+#endif
 
 #endif /* ALLOW_COST */
 
       return
       end
-
