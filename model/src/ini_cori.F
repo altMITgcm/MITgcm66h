@@ -202,6 +202,7 @@ C     & mon_write_mnc (since it is the only thread that uses those flags):
 
       ENDIF
 
+      CALL MON_SET_PREF( mon_string_none, myThid )
       CALL MON_PRINTSTATS_RS(1,fCori,'fCori',myThid)
       CALL MON_PRINTSTATS_RS(1,fCoriG,'fCoriG',myThid)
       CALL MON_PRINTSTATS_RS(1,fCoriCos,'fCoriCos',myThid)
