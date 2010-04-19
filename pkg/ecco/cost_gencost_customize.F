@@ -53,13 +53,13 @@ c     == end of interface ==
         do j = jmin,jmax
          do i =  imin,imax
 c #1:
-c          gencost_modfld(i,j,bi,bi,1) = qnet(i,j,bi,bi)
+c          gencost_modfld(i,j,bi,bj,1) = qnet(i,j,bi,bj)
 c #2:
-          gencost_modfld(i,j,bi,bi,1) = empmr(i,j,bi,bi)
+          gencost_modfld(i,j,bi,bj,1) = empmr(i,j,bi,bj)
 c #3:
-c          gencost_modfld(i,j,bi,bi,3) = fu(i,j,bi,bi)
+c          gencost_modfld(i,j,bi,bj,3) = fu(i,j,bi,bj)
 c #4:
-c          gencost_modfld(i,j,bi,bi,4) = fv(i,j,bi,bi)
+c          gencost_modfld(i,j,bi,bj,4) = fv(i,j,bi,bj)
 c
          enddo
         enddo
