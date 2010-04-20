@@ -56,7 +56,7 @@ F90FIXEDFORMAT='-fixed -Tf'
 EXTENDED_SRC_FLAG='-132'
 OMPFLAG='-openmp'
 
-NOOPTFLAGS='-O0 -g -m64 -fPIC'
+NOOPTFLAGS='-O0 -g'
 NOOPTFILES=''
 
 INCLUDEDIRS=''
@@ -80,6 +80,7 @@ else
 #   for automatic testing with testreport (but no relation with IEEE arithmetic):
     FOPTIM="$FOPTIM -fpe0 -ftz -fp-stack-check -check all -ftrapuv"
     FOPTIM="$FOPTIM -noalign -g -traceback"
+    NOOPTFILES='ad_taf_output.f'
 fi
 F90FLAGS=$FFLAGS
 F90OPTIM=$FOPTIM
