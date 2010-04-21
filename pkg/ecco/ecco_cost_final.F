@@ -984,7 +984,6 @@ c--   Do global summation for each part of the cost function
 #endif
 
 c--   Each process has calculated the global part for itself.
-      IF ( MASTER_CPU_THREAD(myThid) ) THEN
 
         fc = fc
      &          + mult_hmean*objf_hmean
@@ -1006,6 +1005,9 @@ cph)
         fc = fc
      &          + f_hfluxmm2 + f_sfluxmm2
      &          + f_transp
+
+C     only master thread of master CPU open and write to file
+      IF ( MASTER_CPU_THREAD(myThid) ) THEN
 
         write(standardmessageunit,'(A,D22.15)')
      &           ' --> f_hfluxmm2           =',f_hfluxmm2
