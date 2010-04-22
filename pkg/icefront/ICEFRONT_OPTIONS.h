@@ -17,6 +17,8 @@ C     \==========================================================/
 
 #include "CPP_OPTIONS.h"
 
+#undef ALLOW_SUBGLACIAL_RUNOFF
+
 #endif /* ALLOW_ICEFRONT */
 #endif /* ICEFRONT_OPTIONS_H */
 

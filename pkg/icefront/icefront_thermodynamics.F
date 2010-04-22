@@ -74,6 +74,12 @@ C     aqe, bqe, cqe, discrim, recip_aqe
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
+#ifdef ALLOW_SUBGLACIAL_RUNOFF
+      IF ( SGrunofffile .NE. ' '  ) THEN
+       CALL SGRUNOFF_READ(myTime, myIter, myThid)
+      ENDIF
+#endif /* ALLOW_SUBGLACIAL_RUNOFF*/
+
 C     Linear dependence of freezing point on salinity.
       a0 = -0.0575   _d  0
       c0 =  0.0901   _d  0
