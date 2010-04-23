@@ -1,6 +1,6 @@
 C $Header$
 C $Name$
- 
+
 C CPP options file for EXCH2 package
 
 #ifndef W2_OPTIONS_H

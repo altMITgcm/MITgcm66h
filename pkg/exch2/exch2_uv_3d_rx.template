@@ -18,7 +18,7 @@ C     *==========================================================*
 C     | SUBROUTINE EXCH2_UV_3D_RX
 C     | o Handle exchanges for _RX, 3-dimensional vector arrays.
 C     *==========================================================*
-C     | Vector arrays need to be rotated and interchaged for
+C     | Vector arrays need to be rotated and interchanged for
 C     | exchange operations on some grids. This driver routine
 C     | branches to support this.
 C     *==========================================================*

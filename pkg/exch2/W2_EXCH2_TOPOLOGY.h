@@ -14,7 +14,7 @@ C     *==========================================================*
 C     | 1rst part holds the full topology structure (same for all
 C     |  process) and is independent of tile-processor repartition
 C     |  (needs W2_EXCH2_SIZE.h to be included before)
-C     | 2nd part (put in this header for convienience) holds
+C     | 2nd part (put in this header for convenience) holds
 C     |   Tile Ids and is function of tile-process repartition
 C     |  (needs SIZE.h to be included before)
 C     *==========================================================*

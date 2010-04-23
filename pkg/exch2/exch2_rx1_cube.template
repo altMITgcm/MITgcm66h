@@ -57,7 +57,7 @@ C                   :: coordinate access to e2Bufr1_RX or to regulate message
 C                   :: buffering. In PUT communication sender will increment
 C                   :: handle entry once data is ready in buffer. Receiver will
 C                   :: decrement handle once data is consumed from buffer.
-C                   :: For MPI MSG communication MPI_Wait uses hanlde to check
+C                   :: For MPI MSG communication MPI_Wait uses handle to check
 C                   :: Isend has cleared. This is done in routine after receives.
 C     note: a) current implementation does not use e2_msgHandles for communication
 C              between threads: all-threads barriers are used (see CNH note below).

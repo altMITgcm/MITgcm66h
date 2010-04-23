@@ -19,7 +19,7 @@ C     User specific version to be modified accordingly
 C     !USES:
       IMPLICIT NONE
 
-C      Tile toplogy settings data structures
+C      Tile topology settings data structures
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #ifdef ALLOW_EXCH2
@@ -38,7 +38,7 @@ C     !FUNCTIONS:
 
 C     !LOCAL VARIABLES:
 C     === Local variables ===
-C     msgBuf     :: Informational/error meesage buffer
+C     msgBuf     :: Informational/error message buffer
 c     CHARACTER*(MAX_LEN_MBUF) msgBuf
 CEOP
 
