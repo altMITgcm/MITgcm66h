@@ -51,7 +51,7 @@ CEOP
 
 C     !LOCAL VARIABLES:
 C     === Local variables ===
-C     msgBuf     :: Informational/error meesage buffer
+C     msgBuf     :: Informational/error message buffer
 c     CHARACTER*(MAX_LEN_MBUF) msgBuf
       _RL     tLoc     (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL     sLoc     (1-OLx:sNx+OLx,1-OLy:sNy+OLy)

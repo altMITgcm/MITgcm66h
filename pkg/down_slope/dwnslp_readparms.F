@@ -35,7 +35,7 @@ C     === Routine arguments ===
 
 C     !LOCAL VARIABLES:
 C     === Local variables ===
-C     msgBuf      - Informational/error meesage buffer
+C     msgBuf      - Informational/error message buffer
 C     iUnit       - Work variable for IO unit number
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       INTEGER iUnit

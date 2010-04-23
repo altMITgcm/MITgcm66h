@@ -35,7 +35,7 @@ C     === Routine arguments ===
 
 C     !LOCAL VARIABLES:
 C     === Local variables ===
-C     msgBuf     :: Informational/error meesage buffer
+C     msgBuf     :: Informational/error message buffer
 C     logFname,STATUS='UNKNOWN')
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       CHARACTER*(19) logFname

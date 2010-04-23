@@ -35,7 +35,7 @@ CEOP
 
 C     !LOCAL VARIABLES:
 C     === Local variables ===
-C     msgBuf     :: Informational/error meesage buffer
+C     msgBuf     :: Informational/error message buffer
 c     CHARACTER*(MAX_LEN_MBUF) msgBuf
       INTEGER n, bi, bj
 
