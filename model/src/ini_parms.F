@@ -216,7 +216,7 @@ C--   Continuous equation parameters
      & SadournyCoriolis, useAbsVorticity, upwindShear, selectKEscheme,
      & selectAddFluid, useRealFreshWaterFlux, convertFW2Salt,
      & temp_EvPrRn, salt_EvPrRn, trac_EvPrRn,
-     & zonal_filt_lat,
+     & temp_addMass, salt_addMass, zonal_filt_lat,
      & inAdExact, smoothAbsFuncRange,
      & balanceEmPmR, balanceQnet, balancePrintMean
 
@@ -1351,6 +1351,11 @@ C     rUnit2mass: from r-coordinate to mass per unit area [kg/m2] (z:=rho;p:=1/g
          mass2rUnit = recip_rhoConst
          rUnit2mass = rhoConst
       ENDIF
+
+C--   For backward compatibility, set temp_addMass and salt_addMass
+C     to temp_EvPrRn and salt_EvPrRn in they are not set in data file
+      IF (temp_addMass .EQ. UNSET_RL) temp_addMass = temp_EvPrRn
+      IF (salt_addMass .EQ. UNSET_RL) salt_addMass = salt_EvPrRn
 
 c-- gradually replacing debugMode by debugLevel
       IF ( debugMode ) debugLevel = debLevB

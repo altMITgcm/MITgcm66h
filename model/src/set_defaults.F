@@ -218,6 +218,8 @@ C--   Set (free)surface-related parameters
       useRealFreshWaterFlux = .FALSE.
       temp_EvPrRn = UNSET_RL
       salt_EvPrRn = 0.
+      temp_addMass = UNSET_RL
+      salt_addMass = UNSET_RL
       balanceEmPmR        = .FALSE.
       balanceQnet         = .FALSE.
       balancePrintMean    = .FALSE.
