@@ -117,7 +117,7 @@ CADJ loop = parallel
 
       _END_MASTER( mythid )
 
-      call global_sum_r8( sphcost, mythid )
+      _GLOBAL_SUM_RL( sphcost, mythid )
 
 #else  /* ALLOW_EGM96_ERROR_COV */
       sphcost = 0.
@@ -125,5 +125,3 @@ CADJ loop = parallel
 #endif /* ALLOW_EGM96_ERROR_COV */
 
       end
-
-
