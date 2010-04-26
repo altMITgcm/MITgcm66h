@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/icefront
+  - ALLOW_SUBGLACIAL_RUNOFF option adds capability for time-evolving
+    specification of addmass array based on a 2D field, which is added
+    at bottommost wet level at each horizontal location.
 o model/src:
  horizontal grid initialisation (other than curvilinear): add code for Exch2 IO
  layout; (not always compatible with delX,delY setting; commented out for now).
