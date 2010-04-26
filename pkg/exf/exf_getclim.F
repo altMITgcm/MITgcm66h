@@ -148,11 +148,19 @@ c
        DO bi=myBxLo(myThid),myBxHi(myThid)
          DO j=1-oLy,sNy+oLy
           DO i=1-oLx,sNx+oLx
-           theta(i,j,1,bi,bj) = climsst(i,j,bi,bj)
-           salt(i,j,1,bi,bj) = climsss(i,j,bi,bj)
+           if ( climsstfile .NE. ' ' .AND. 
+     &          climsstperiod .NE. 0. )
+     &          theta(i,j,1,bi,bj) = climsst(i,j,bi,bj)
+           if ( climsssfile .NE. ' ' .AND. 
+     &          climsssperiod .NE. 0. )
+     &          salt(i,j,1,bi,bj) = climsss(i,j,bi,bj)
 # ifdef ALLOW_CLIMSTRESS_RELAXATION
-           uvel(i,j,1,bi,bj) = climustr(i,j,bi,bj)
-           vvel(i,j,1,bi,bj) = climvstr(i,j,bi,bj)
+           if ( climustrfile .NE. ' ' .AND. 
+     &          climustrperiod .NE. 0. )
+     &          uvel(i,j,1,bi,bj) = climustr(i,j,bi,bj)
+           if ( climvstrfile .NE. ' ' .AND. 
+     &          climvstrperiod .NE. 0. )
+     &          vvel(i,j,1,bi,bj) = climvstr(i,j,bi,bj)
 # endif
            if ( myiter .EQ. niter0 ) then
               if ( maskC(i,j,1,bi,bj) .NE. 0. .AND.
