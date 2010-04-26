@@ -49,11 +49,13 @@ c     == end of interface ==
       itlo = mybxlo(mythid)
       ithi = mybxhi(mythid)
 
-      fc   = 0.0
+      fc   = 0. _d 0
 
 #ifdef ALLOW_AUTODIFF
 
-      adfc = 1.0
+      if ( myProcId .EQ. 0 ) then
+       adfc = 1. _d 0
+      endif
 
       do bj = jtlo,jthi
        do bi = itlo,ithi
