@@ -567,6 +567,42 @@ c     from the beginning of the year.
       ENDIF
 #endif /* ALLOW_CLIMSSS_RELAXATION */
 
+#ifdef ALLOW_CLIMSTRESS_RELAXATION
+      IF ( climustrfile .NE. ' ' .AND. climustrperiod .GT. 0. ) THEN
+       CALL cal_FullDate( climustrstartdate1, climustrstartdate2,
+     &      date_array, myThid )
+       IF ( useExfYearlyFields ) THEN
+        yearStartDate(1) = int(date_array(1)/10000.) * 10000 + 101
+        yearStartDate(2) = 0
+        yearStartDate(3) = date_array(3)
+        yearStartDate(4) = date_array(4)
+        CALL cal_TimePassed( yearStartDate,date_array,difftime,myThid)
+        CALL cal_ToSeconds (difftime,    climustrstartdate     ,myThid)
+       ELSE
+        CALL cal_TimePassed(modelstartdate,date_array,difftime,myThid)
+        CALL cal_ToSeconds (difftime,    climustrstartdate     ,myThid)
+        climustrstartdate =  modelstart + climustrstartdate
+       ENDIF
+      ENDIF
+c
+      IF ( climvstrfile .NE. ' ' .AND. climvstrperiod .GT. 0. ) THEN
+       CALL cal_FullDate( climvstrstartdate1, climvstrstartdate2,
+     &      date_array, myThid )
+       IF ( useExfYearlyFields ) THEN
+        yearStartDate(1) = int(date_array(1)/10000.) * 10000 + 101
+        yearStartDate(2) = 0
+        yearStartDate(3) = date_array(3)
+        yearStartDate(4) = date_array(4)
+        CALL cal_TimePassed( yearStartDate,date_array,difftime,myThid)
+        CALL cal_ToSeconds (difftime,    climvstrstartdate     ,myThid)
+       ELSE
+        CALL cal_TimePassed(modelstartdate,date_array,difftime,myThid)
+        CALL cal_ToSeconds (difftime,    climvstrstartdate     ,myThid)
+        climvstrstartdate =  modelstart + climvstrstartdate
+       ENDIF
+      ENDIF
+#endif /* ALLOW_CLIMSTRESS_RELAXATION */
+
       _END_MASTER( myThid )
       _BARRIER
 

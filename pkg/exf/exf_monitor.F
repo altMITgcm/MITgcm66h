@@ -167,6 +167,12 @@ C       Print some statistics about input forcing fields
         CALL MON_WRITESTATS_RL( 1, climsss, '_climsss',
      &           maskInC, maskInC, rA , drF, dummyRL, myThid )
 #endif
+#ifdef ALLOW_CLIMSTRESS_RELAXATION
+          CALL MON_WRITESTATS_RL( 1, climustr, '_climustr',
+     &             maskInW, maskInW, rAw, drF, dummyRL, myThid )
+          CALL MON_WRITESTATS_RL( 1, climvstr, '_climvstr',
+     &             maskInS, maskInS, rAs, drF, dummyRL, myThid )
+#endif
 
         IF ( MASTER_CPU_IO(myThid) ) THEN
 C--   only the master thread is allowed to switch On/Off mon_write_stdout
