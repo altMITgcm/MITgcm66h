@@ -41,7 +41,7 @@ c     == local variables ==
 c     == end of interface ==
 
 c--   Each process has calculated the global part for itself.
-      IF (myProcId .eq. 0) THEN
+cph      IF (myProcId .eq. 0) THEN
          _BEGIN_MASTER( mythid )
 c
            inquire(file='divided.ctrl',exist=exst)
@@ -63,7 +63,7 @@ c
            endif
 c
          _END_MASTER( mythid )
-      ENDIF
+cph      ENDIF
       _BARRIER
 
 #endif
