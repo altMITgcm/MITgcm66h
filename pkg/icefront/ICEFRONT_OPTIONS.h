@@ -17,8 +17,11 @@ C     \==========================================================/
 
 #include "CPP_OPTIONS.h"
 
+C--   Allow code for specifying sub-glacial runoff.
+C     Adds capability for time-evolving specification
+C     of addmass array based on a 2D field, which is added
+C     at bottommost wet level at each horizontal location.
 #undef ALLOW_SUBGLACIAL_RUNOFF
 
 #endif /* ALLOW_ICEFRONT */
 #endif /* ICEFRONT_OPTIONS_H */
-
