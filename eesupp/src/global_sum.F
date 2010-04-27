@@ -91,7 +91,7 @@ C--
       CALL BAR2( myThid )
 
 C--   set result for every process
-      sumPhi = phiGSR4(1,1)
+      sumPhi = phiGSR4(1,0)
 
       RETURN
       END
