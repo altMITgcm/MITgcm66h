@@ -62,6 +62,8 @@ C     mpiRC  :: MPI return code
 #endif /* ALLOW_USE_MPI */
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 
+      _GLOBAL_SUM_RS( adsumPhi, myThid )
+
 C--   Can not start until everyone is ready
       _BARRIER
 
@@ -167,6 +169,8 @@ C     mpiRC  :: MPI return code
       INTEGER mpiRC
 #endif /* ALLOW_USE_MPI */
       CHARACTER*(MAX_LEN_MBUF) msgBuf
+
+      _GLOBAL_SUM_RL( adsumPhi, myThid )
 
 C--   Can not start until everyone is ready
       _BARRIER
