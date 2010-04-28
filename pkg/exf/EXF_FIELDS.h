@@ -296,7 +296,7 @@ C     zen_fsol_daily     :: incoming solar radiation (daily mean)
 #ifdef ALLOW_CLIMSTRESS_RELAXATION
       COMMON /exf_clim_stress_r/
      &                        climustr, climvstr,
-     &                        climustr0, climustr1
+     &                        climustr0, climustr1,
      &                        climvstr0, climvstr1
       _RL climustr       (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL climustr0      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
