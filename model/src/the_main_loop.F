@@ -341,11 +341,15 @@ c--
 #    ifdef SEAICE_ALLOW_DYNAMICS
 cphCADJ INIT comlev1_lsr = COMMON,nchklev_1*2
 CADJ INIT comlev1_dynsol = COMMON,nchklev_1*MPSEUDOTIMESTEPS
-#    endif
-#    ifdef SEAICE_ALLOW_EVP
-CADJ INIT comlev1_evp = COMMON,nchklev_1
-#    endif
-#   endif /* ALLOW_SEAICE */
+#  endif
+#  ifdef SEAICE_ALLOW_EVP
+CADJ INIT comlev1_evp = COMMON,nEVPstepMax*nchklev_1
+#  endif
+#  ifdef SEAICE_MULTICATEGORY
+CADJ INIT comlev1_multdim 
+CADJ &    = COMMON,nchklev_1*nsx*nsy*nthreads_chkpt*multdim
+#  endif
+# endif /* ALLOW_SEAICE */
 c--
 #   ifdef ALLOW_THSICE
 CADJ INIT comlev1_thsice_1
