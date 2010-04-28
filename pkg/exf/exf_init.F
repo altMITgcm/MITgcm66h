@@ -395,12 +395,10 @@ c
      &          climvstrperiod .NE. 0. )
      &          vvel(i,j,1,bi,bj) = climvstr(i,j,bi,bj)
 # endif
-           if ( myiter .EQ. niter0 ) then
-              if ( maskC(i,j,1,bi,bj) .NE. 0. .AND.
+           if ( maskC(i,j,1,bi,bj) .NE. 0. .AND.
      &             theta(i,j,1,bi,bj) .EQ. 0. ) then
                 print *, 'ph-warn-exf-init ', i, j, theta(i,j,1,bi,bj)
 cph                STOP 'in exf_init'
-              endif
            endif
           ENDDO
          ENDDO
