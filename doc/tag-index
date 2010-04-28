@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src/the_main_loop.F:
+  adjust store directives for seaice evp and multicategory according to
+  pkg/ecco/the_main_loop.F
 o adjoint:
   global_sum_ad was incomplete (noted many times by many people ;) 
   nice description by Jean U. as follows:
