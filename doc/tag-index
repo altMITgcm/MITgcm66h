@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint62f (2010/04/29)
 o model/src/the_main_loop.F:
   adjust store directives for seaice evp and multicategory according to
   pkg/ecco/the_main_loop.F
