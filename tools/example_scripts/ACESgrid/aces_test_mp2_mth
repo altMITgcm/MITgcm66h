@@ -87,6 +87,7 @@ fi
 #-- in case mpiexec get stuck, run this script in background to check
 if test -x $HERE/check_$sfx ; then
    echo "start check_$sfx in background"
+   mv -f $HERE/check_${sfx}.log $HERE/check_${sfx}.log_bak
    ( cd $HERE ; ./check_$sfx > check_${sfx}.log 2>&1 ) &
 fi
 cd $gcmDIR/verification
