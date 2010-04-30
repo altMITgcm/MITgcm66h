@@ -30,7 +30,7 @@ C     === Global Atmosphere Variables ===
 #  include "SURFACE.h"
 #  include "DYNVARS.h"
 #  ifdef ALLOW_DIC
-#    include "DIC_ABIOTIC.h"
+#    include "DIC_VARS.h"
 #  endif
 #endif
 
