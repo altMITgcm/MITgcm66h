@@ -43,6 +43,7 @@ C     == Local variables ==
       INTEGER bi,bj
       INTEGER i,j,k
       INTEGER ks
+      CHARACTER*(MAX_LEN_MBUF) msgBuf
 CEOP
 
       IF ( startTime .EQ. baseTime .AND.  nIter0 .EQ. 0
@@ -58,7 +59,10 @@ c       ENDIF
       ELSE
 C--   Case where restarting from a pickup
 
-       write(0,*) 'INI_NH_FIELDS: dPhiNHstatus=',dPhiNHstatus
+       WRITE(msgBuf,'(A,I4)')
+     &   'INI_NH_FIELDS: dPhiNHstatus=', dPhiNHstatus
+       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                     SQUEEZE_RIGHT, myThid )
        IF ( exactConserv .AND. dPhiNHstatus.EQ.0 ) THEN
 c      IF ( exactConserv ) THEN
 C--   Separate the Hydrostatic Surface Pressure adjusment (=> put it in dPhiNH)
