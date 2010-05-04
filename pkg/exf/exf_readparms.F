@@ -206,6 +206,12 @@ c     Surface flux data.
      & climvstr_lat0, climvstr_lat_inc, climvstr_nlat
 #endif
 
+      NAMELIST /EXF_NML_SGRUNOFF/
+     &    sgrunoffstartdate1, sgrunoffstartdate2,
+     &    sgrunoffstartdate,  sgrunoffperiod,
+     &    sgrunoffconst,      sgrunoff_exfremo_intercept,
+     &    sgrunoff_exfremo_slope, exf_inscal_sgrunoff
+
       NAMELIST /EXF_NML_OBCS/
      &    obcsNstartdate1,    obcsNstartdate2,   obcsNperiod,
      &    obcsSstartdate1,    obcsSstartdate2,   obcsSperiod,
@@ -440,6 +446,15 @@ c     Calendar data.
       climvstrconst         = 0.0 _d 0
       climvstr_exfremo_intercept = 0.0 _d 0
       climvstr_exfremo_slope = 0.0 _d 0
+
+      sgrunoffstartdate1         = 0
+      sgrunoffstartdate2         = 0
+      sgrunoffstartdate          = 0.
+      sgrunoffperiod             = 0.0 _d 0
+      sgrunoffconst              = 0.0 _d 0
+      sgrunoff_exfremo_intercept = 0.0 _d 0
+      sgrunoff_exfremo_slope     = 0.0 _d 0
+      exf_inscal_runoff          = 1. _d 0
 
       obcsNstartdate1    = 0
       obcsNstartdate2    = 0
@@ -777,6 +792,15 @@ c     Next, read the forcing data file.
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &     SQUEEZE_RIGHT , 1)
       READ(  iUnit, nml = EXF_NML_04 )
+
+#ifdef ALLOW_ICEFRONT
+      WRITE(msgBuf,'(A)')
+     &     'EXF_READPARMS: reading EXF_NML_SGRUNOFF'
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &     SQUEEZE_RIGHT , 1)
+      READ(  iUnit, nml = EXF_NML_SGRUNOFF )
+#endif /* ALLOW_ICEFRONT */
+
 #ifdef ALLOW_OBCS
       WRITE(msgBuf,'(A)')
      &     'EXF_READPARMS: reading EXF_NML_OBCS'
@@ -797,7 +821,7 @@ c     Next, read the forcing data file.
       IF(siobWperiod    .EQ.UNSET_RL) siobWperiod     = obcsWperiod
 
       IF(exf_iprec_obcs .EQ. UNSET_I) exf_iprec_obcs  = exf_iprec
-#endif
+#endif /* ALLOW_OBCS */
 
       WRITE(msgBuf,'(A)')
      &     'EXF_READPARMS: finished reading data.exf'
