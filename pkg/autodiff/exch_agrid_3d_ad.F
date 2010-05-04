@@ -22,6 +22,18 @@ C     | written and tested by Ralf Giering, Jan. 14th 1999
 C     | added new S/R for _xz_ , _yz_ heimbach@mit.edu May-01
 C     *==========================================================*
 
+#ifdef ALLOW_EXCH2
+
+C     For exch2 all exch_xy* routines are shown to TAF
+C     and hand-written code below is not needed.
+
+      SUBROUTINE DUMMY_EXCH_AGRID_3D_AD
+
+      RETURN
+      END
+
+#else
+
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 CBOP
 C     !ROUTINE: ADEXCH_UV_AGRID_3D_RS
@@ -177,3 +189,5 @@ CEOP
 
       RETURN
       END
+
+#endif /* ALLOW_EXCH2 */
