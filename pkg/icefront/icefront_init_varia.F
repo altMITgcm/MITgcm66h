@@ -44,6 +44,13 @@ CEOP
        ENDDO
       ENDDO
 
+#ifdef ALLOW_SUBGLACIAL_RUNOFF
+      call exf_init_runoff (
+     &     sgrunofffile, sgrunoffperiod,
+     &     exf_inscal_sgrunoff, sgrunoffmask, sgrunoffconst,
+     &     sgrunoff, sgrunoff0, sgrunoff1, mythid )
+#endif /* ALLOW_SUBGLACIAL_RUNOFF */
+
 #endif /* ALLOW_ICEFRONT */
 
       RETURN

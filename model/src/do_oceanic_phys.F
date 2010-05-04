@@ -131,6 +131,20 @@ C--   dummy statement to end declaration part
       ENDIF
 #endif /* ALLOW_DIAGNOSTICS */
 
+#ifdef ALLOW_ADDFLUID
+      DO bj=myByLo(myThid),myByHi(myThid)
+       DO bi=myBxLo(myThid),myBxHi(myThid)
+        DO K=1,Nr
+         DO j=1-OLy,sNy+OLy
+          DO i=1-OLx,sNx+OLx
+           addmass(I,J,K,bi,bj) =  0. _d 0
+          ENDDO
+         ENDDO
+        ENDDO
+       ENDDO
+      ENDDO
+#endif /* ALLOW_ADDFLUID */
+
 #ifdef  ALLOW_OBCS
       IF (useOBCS) THEN
 C--   Calculate future values on open boundaries
