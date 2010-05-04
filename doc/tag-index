@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/autodiff & exch2:
+  process exch_uv_agrid_3d_rx.f & exch2_uv_agrid_3d_rx.f through TAF
+  (for now, only if ALLOW_EXCH2 is defined).
 o pkg/autodiff:
   - include PACKAGES_CONFIG.h in exch*ad.flow & exch*ad.F 
     (not supposed to be in CPP_OPTIONS.h) to get ALLOW_EXCH2 defined correctly.
