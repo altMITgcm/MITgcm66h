@@ -362,8 +362,8 @@ C     === Routine arguments ===
 C     phi    :: Array with overlap regions are to be exchanged
 C     myNz   :: 3rd dimension of array to exchange
 C     myThid :: My thread id.
-      _RS     adphi(1-OLx:sNx+OLx,1-OLy:sNy+OLy,myNz,nSx,nSy)
       INTEGER myNz
+      _RS     adphi(1-OLx:sNx+OLx,1-OLy:sNy+OLy,myNz,nSx,nSy)
       INTEGER myThid
 
 C     !LOCAL VARIABLES:
@@ -430,8 +430,8 @@ C     === Routine arguments ===
 C     phi    :: Array with overlap regions are to be exchanged
 C     myNz   :: 3rd dimension of array to exchange
 C     myThid :: My thread id.
-      _RL     adphi(1-OLx:sNx+OLx,1-OLy:sNy+OLy,myNz,nSx,nSy)
       INTEGER myNz
+      _RL     adphi(1-OLx:sNx+OLx,1-OLy:sNy+OLy,myNz,nSx,nSy)
       INTEGER myThid
 
 C     !LOCAL VARIABLES:
