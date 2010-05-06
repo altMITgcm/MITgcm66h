@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/exch2:
+  - remove "simulationMode" from arg. list of S/R EXCH2_RX1,2_CUBE ; 
+  - add argument "signOption" to EXCH2_RX1_CUBE (will be needed for SM exch).
 o pkg/autodiff & exch2:
   process exch_uv_agrid_3d_rx.f & exch2_uv_agrid_3d_rx.f through TAF
   (for now, only if ALLOW_EXCH2 is defined).
