@@ -86,14 +86,14 @@ C-     save 2 corners value (in case we find 1 "missing corner")
        ENDDO
       ENDIF
 
-       CALL EXCH2_RX1_CUBE( phi, 'T ',
+       CALL EXCH2_RX1_CUBE( phi, .FALSE., 'T ',
      I            OLw, OLe, OLs, OLn, myNz,
      I            exchWidthX, exchWidthY,
-     I            FORWARD_SIMULATION, EXCH_UPDATE_CORNERS, myThid )
-       CALL EXCH2_RX1_CUBE( phi, 'T ',
+     I            EXCH_UPDATE_CORNERS, myThid )
+       CALL EXCH2_RX1_CUBE( phi, .FALSE., 'T ',
      I            OLw, OLe, OLs, OLn, myNz,
      I            exchWidthX, exchWidthY,
-     I            FORWARD_SIMULATION, EXCH_UPDATE_CORNERS, myThid )
+     I            EXCH_UPDATE_CORNERS, myThid )
 
       IF (useCubedSphereExchange) THEN
 
