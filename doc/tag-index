@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src:
+  - new S/R rotate_uv2en_rl (..._rs) that rotates vector fields.
 o pkg/exch2:
   - remove "simulationMode" from arg. list of S/R EXCH2_RX1,2_CUBE ; 
   - add argument "signOption" to EXCH2_RX1_CUBE (will be needed for SM exch).
