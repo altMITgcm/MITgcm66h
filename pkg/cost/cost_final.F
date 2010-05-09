@@ -36,9 +36,6 @@ c     == global variables ==
 cph-- quickly for testing
 # include "DIC_COST.h"
 #endif
-#ifdef ALLOW_MNC
-# include "MNC_PARAMS.h"
-#endif
 
 c     == routine arguments ==
 
@@ -142,18 +139,9 @@ cph-- quickly for testing
 
 #endif /* ALLOW_ECCO */
 
-c--   set averaging freq. to zero to avoid re-write of
-c--   averaged fields in reverse checkpointing loops
-      taveFreq    = 0.
-      dumpFreq    = 0.
-      pChkptFreq  = 0.
-      monitorFreq = 0.
-      useDiagnostics = .FALSE.
-#ifdef ALLOW_MNC
-      monitor_mnc=.FALSE.
-      snapshot_mnc=.FALSE.
-      timeave_mnc=.FALSE.
-#endif
+c--   to avoid re-write of output in reverse checkpointing loops,
+c--   switch off output flag :
+      CALL TURNOFF_MODEL_IO( 0, myThid )
 
 #endif /* ALLOW_COST */
 
