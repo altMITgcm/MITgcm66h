@@ -23,9 +23,6 @@ c     == global variables ==
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "PARAMS.h"
-#ifdef ALLOW_MNC
-#include "MNC_PARAMS.h"
-#endif
 
 #include "cost.h"
 #include "ecco_cost.h"
@@ -1236,19 +1233,6 @@ C     only master thread of master CPU open and write to file
       call cost_trans_merid( mythid )
       call cost_trans_zonal( mythid )
 
-      taveFreq    = 0.
-      dumpFreq    = 0.
-      pChkptFreq  = 0.
-      monitorFreq = 0.
-      useDiagnostics = .FALSE.
-      useSBO         = .FALSE.
-
-#ifdef ALLOW_MNC
-      monitor_mnc=.FALSE.
-      snapshot_mnc=.FALSE.
-      timeave_mnc=.FALSE.
-#endif
-
 #ifdef ECCO_VERBOSE
       write(msgbuf,'(a,D22.15)')
      &  ' cost_Final: final cost function = ',fc
@@ -1266,4 +1250,5 @@ C     only master thread of master CPU open and write to file
      &                    SQUEEZE_RIGHT , mythid)
 #endif
 
+      return
       end
