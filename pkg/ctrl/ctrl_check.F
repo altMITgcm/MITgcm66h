@@ -111,5 +111,32 @@ C     Can not have both atmos. state and flux field as control
 #endif
 #endif
 
+#ifdef ALLOW_SEAICE
+C     pkg/seaice requires a particular set of control parameters
+C     which in turn require a particular set of input fields
+#ifndef ALLOW_ATM_WIND
+      WRITE(msgBuf,'(A)') 
+     &     'The SEAICE adjoint requires ALLOW_ATM_WIND'
+      CALL PRINT_ERROR( msgBuf , 1)
+      STOP 'ABNORMAL END: S/R CTRL_CHECK'
+#endif
+#if (defined ALLOW_HFLUX_CONTROL || defined ALLOW_SFLUX_CONTROL || \
+     defined ALLOW_USTRESS_CONTROL || defined ALLOW_VSTRESS_CONTROL )
+      WRITE(msgBuf,'(A)') 
+     &     'The SEAICE adjoint does not allow the surface fluxes'
+      CALL PRINT_ERROR( msgBuf , 1)
+      WRITE(msgBuf,'(A)') 'ALLOW_HFLUX_CONTROL'
+      CALL PRINT_ERROR( msgBuf , 1)
+      WRITE(msgBuf,'(A)') 'ALLOW_SFLUX_CONTROL'
+      CALL PRINT_ERROR( msgBuf , 1)
+      WRITE(msgBuf,'(A)') 'ALLOW_USTRESS_CONTROL'
+      CALL PRINT_ERROR( msgBuf , 1)
+      WRITE(msgBuf,'(A)') 'ALLOW_VSTRESS_CONTROL'
+      CALL PRINT_ERROR( msgBuf , 1)
+      WRITE(msgBuf,'(A)') 'to be control vaiables'
+      CALL PRINT_ERROR( msgBuf , 1)
+      STOP 'ABNORMAL END: S/R CTRL_CHECK'
+#endif
+#endif /* ALLOW_SEAICE */
       return
       end
