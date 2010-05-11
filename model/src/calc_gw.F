@@ -509,6 +509,8 @@ C     Tendency is minus divergence of advective fluxes:
 C     anelastic: all transports & advect. fluxes are scaled by rhoFac
           DO j=jMin,jMax
            DO i=iMin,iMax
+C to recover old (before 2009/11/30) results (since flxAdvUp(k=2) was zero)
+c            IF (k.EQ.2) flxAdvUp(i,j) = 0.
              gW(i,j,k,bi,bj) =
      &        -(   ( flx_EW(i+1,j)-flx_EW(i,j) )
      &           + ( flx_NS(i,j+1)-flx_NS(i,j) )
