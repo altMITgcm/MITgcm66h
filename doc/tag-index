@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ctrl: require a specific set of control variables and exf-flags for
+  adjoint of seaice (stop in ctrl_check.F if conditions are not satisfied)
 o model/src:
  a) 1rst version of a new driver S/R to turn-off output freq and flags after the
    1rst forward sweep, to avoid over-writing output files during recomputations
