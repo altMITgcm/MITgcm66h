@@ -97,11 +97,12 @@ CEOP
 
 #ifdef ALLOW_SUBGLACIAL_RUNOFF
       CHARACTER*(MAX_LEN_FNAM) SGrunoffFile
-      COMMON /SUBGLACIAL_RUNOFF/
-     &     SGrunoffFile
       _RL SGrunoff (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL SGrunoff0(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL SGrunoff1(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      COMMON /SUBGLACIAL_RUNOFF/
+     &     SGrunoffFile,
+     &     SGrunoff, SGrunoff0,SGrunoff1
 #endif /* ALLOW_SUBGLACIAL_RUNOFF */
 
 #endif /* ALLOW_ICEFRONT */

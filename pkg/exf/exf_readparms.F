@@ -454,7 +454,7 @@ c     Calendar data.
       sgrunoffconst              = 0.0 _d 0
       sgrunoff_exfremo_intercept = 0.0 _d 0
       sgrunoff_exfremo_slope     = 0.0 _d 0
-      exf_inscal_runoff          = 1. _d 0
+      exf_inscal_sgrunoff        = 1. _d 0
 
       obcsNstartdate1    = 0
       obcsNstartdate2    = 0

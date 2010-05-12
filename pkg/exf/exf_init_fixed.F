@@ -29,6 +29,7 @@ C     === Global variables ===
 #include "EXF_PARAM.h"
 #include "EXF_CONSTANTS.h"
 #ifdef ALLOW_ICEFRONT
+# include "ICEFRONT_OPTIONS.h"
 # include "ICEFRONT.h"
 #endif
 #ifdef ALLOW_OBCS

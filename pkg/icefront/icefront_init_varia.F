@@ -19,6 +19,9 @@ C     === Global variables ===
 #include "PARAMS.h"
 #include "GRID.h"
 #include "ICEFRONT.h"
+#ifdef ALLOW_SUBGLACIAL_RUNOFF
+# include "EXF_PARAM.h"
+#endif
 
 C     === Routine arguments ===
 C     myThid -  Number of this instance of ICEFRONT_INIT_VARIA
