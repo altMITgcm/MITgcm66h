@@ -110,6 +110,12 @@ C--   Print out nlev values :
       ENDIF
 #endif /* ALLOW_MNC */
 
+#ifdef ALLOW_DIAGNOSTICS
+      IF ( useDIAGNOSTICS ) THEN
+        CALL DIC_DIAGNOSTICS_INIT( myThid )
+      ENDIF
+#endif /* ALLOW_DIAGNOSTICS */
+
 #endif /* ALLOW_DIC */
 
       RETURN
