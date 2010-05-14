@@ -324,8 +324,10 @@ cph)
           fVerV  (i,j,2) = 0. _d 0
           phiHydF (i,j)  = 0. _d 0
           phiHydC (i,j)  = 0. _d 0
+#ifndef INCLUDE_PHIHYD_CALCULATION_CODE
           dPhiHydX(i,j)  = 0. _d 0
           dPhiHydY(i,j)  = 0. _d 0
+#endif
           phiSurfX(i,j)  = 0. _d 0
           phiSurfY(i,j)  = 0. _d 0
           guDissip(i,j)  = 0. _d 0
