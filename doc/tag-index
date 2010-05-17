@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/exf/exf_bulk_largeyeager04.F: rewrite for better vectorization, changes
+  global_ocean.cs32x15/input.icedyn (11 digits of agreement), updated
 o eesupp/src (exch-1):
   - Fix AD EXCH code for 2-D domain special cases (Nx=1 or Ny=1).
   - Separate buffer filling and MPI sending: allow EXCH-1 to work for local
