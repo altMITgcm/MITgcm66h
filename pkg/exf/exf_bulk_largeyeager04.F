@@ -289,7 +289,8 @@ C-   Shift wind speed using old coefficient
              usm = MAX(usn, umin)
 
 C-   Update the 10m, neutral stability transfer coefficients (momentum)
-             tmpbulk    = cdrag_1/usm + cdrag_2 + cdrag_3*usm
+             tmpbulk    = exf_scal_BulkCdn *
+     &            ( cdrag_1/usm + cdrag_2 + cdrag_3*usm )
              rdn(i,j)   = SQRT(tmpbulk)
              rd(i,j)    = rdn(i,j)/(exf_one + rdn(i,j)*dzTmp)
              ustar(i,j) = rd(i,j)*sh(i,j,bi,bj)
@@ -370,7 +371,7 @@ c IF ( ATEMP(i,j,bi,bj) .NE. 0. )
 #ifdef ALLOW_ATM_WIND
           wsm     = sh(i,j,bi,bj)
           tmpbulk = exf_scal_BulkCdn *
-     &         ( cdrag_1/umps + cdrag_2 + cdrag_3*umps )
+     &         ( cdrag_1/wsm + cdrag_2 + cdrag_3*wsm )
           ustress(i,j,bi,bj) = atmrho*tmpbulk*wspeed(i,j,bi,bj)*
      &                         uwind(i,j,bi,bj)
           vstress(i,j,bi,bj) = atmrho*tmpbulk*wspeed(i,j,bi,bj)*
