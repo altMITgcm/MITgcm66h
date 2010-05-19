@@ -77,13 +77,13 @@ C   Do more printout for the protocol file than usual.
 
 C   Bulk formulae related flags.
 #define  ALLOW_ATM_TEMP
-#undef   ALLOW_ATM_WIND
+#define   ALLOW_ATM_WIND
 #define  ALLOW_DOWNWARD_RADIATION
 #define  ALLOW_RUNOFF
 #if (defined (ALLOW_ATM_TEMP) || \
      defined (ALLOW_ATM_WIND))
 # define ALLOW_BULKFORMULAE
-# undef ALLOW_BULK_LARGEYEAGER04
+# define ALLOW_BULK_LARGEYEAGER04
 #endif
 
 C   Relaxation to monthly climatologies.
