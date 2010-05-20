@@ -58,7 +58,7 @@ if [ $checkOut -eq 1 ] ; then
     /bin/rm -rf $gcmDIR/verification/tr_aces-${sfx}_????????_?
 #   ( cd $gcmDIR/verification ; ../tools/do_tst_2+2 -clean )
     echo "cvs update of dir $gcmDIR :"
-    ( cd $gcmDIR ; cvs -q -d :pserver:cvsanon@mitgcm.org:/u/gcmpack update -P -d )
+    ( cd $gcmDIR ; cvs -q -d :pserver:cvsanon@mitgcm.org:/u/gcmpack update -P -d ) 2>&1
   else
     echo "no dir: $gcmDIR/CVS => try a fresh check-out"
     checkOut=2
