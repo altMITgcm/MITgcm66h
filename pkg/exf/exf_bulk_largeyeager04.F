@@ -193,7 +193,8 @@ CADJ STORE sh(i,j,bi,bj)     = comlev1_exf_1, key = ikey_1
 #endif /* ALLOW_AUTODIFF_TAMC */
 C--   Wind speed
             wsm        = sh(i,j,bi,bj)
-            tmpbulk    = cdrag_1/wsm + cdrag_2 + cdrag_3*wsm
+            tmpbulk     = exf_scal_BulkCdn *
+     &           ( cdrag_1/wsm + cdrag_2 + cdrag_3*wsm )
             rdn(i,j)   = SQRT(tmpbulk)
             ustar(i,j) = rdn(i,j)*wsm
 #ifndef ALLOW_ATM_WIND
