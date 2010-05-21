@@ -174,7 +174,7 @@ c     Get the surface forcing fields.
 #endif
 
 #ifdef ALLOW_BULKFORMULAE
-c     Deal set radiative fluxes
+c     Set radiative fluxes
       call exf_radiation( mytime, myiter, mythid )
 
 # ifdef ALLOW_AUTODIFF_TAMC
@@ -187,16 +187,10 @@ CADJ STORE vwind        = comlev1, key=ikey_dynamics, kind=isbyte
 #  endif
 CADJ STORE wspeed       = comlev1, key=ikey_dynamics, kind=isbyte
 # endif
-c     Deal set radiative fluxes
+c     Set wind fields
       call exf_wind( mytime, myiter, mythid )
-
-# ifdef ALLOW_BULK_LARGEYEAGER04
-c     use Large & Yeager 2004
-      call exf_bulk_largeyeager04( mytime, myiter, mythid )
-# else
-c     use Large & Pond 1981
+c     Compute turbulent fluxes (and surface stress) from bulk formulae
       call exf_bulkformulae( mytime, myiter, mythid )
-# endif
 #endif
 
 c     Apply runoff, masks and exchanges
