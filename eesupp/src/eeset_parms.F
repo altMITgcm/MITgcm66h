@@ -112,6 +112,10 @@ C     Text map plots of fields ignore exact zero values
 C     Maximum length for printing (to Std-Msg-Unit) 1-D array
       maxLengthPrt1D = 65
 
+C     To write output to global-files and from Master MPI process only
+C     NOTE: read from main parameter file "data"
+      useSingleCpuIO = .FALSE.
+
 C--   Read in data from eedata file
 C     We really ought to be using our environment file reading
 C     package - but we have not written it yet.
