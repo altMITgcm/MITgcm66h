@@ -1,4 +1,4 @@
-#! /usr/bin/env sh
+#! /usr/bin/env bash
 #
 # Converts -Dmacro to #define macro
 #      and -Umacro to #undef macro 
@@ -23,7 +23,7 @@ EOF
 BARRIER=
 
 # Process arguments
-for arg in $@
+for arg in "$@"
 do
  case $arg in
   -b*)
