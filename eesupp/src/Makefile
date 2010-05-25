@@ -56,6 +56,9 @@ OLD_FILES = exch_z_xy_rl.F exch_z_xy_rs.F exch_z_xy_r4.F exch_z_xy_r8.F \
 
 all: $(RL_FILES) $(RS_FILES) $(R4_FILES) $(R8_FILES)
 
+clean_old:
+	-rm -f $(OLD_FILES)
+
 clean:
 	-rm -f $(RL_FILES) $(RS_FILES) $(R4_FILES) $(R8_FILES) $(OLD_FILES)
 
