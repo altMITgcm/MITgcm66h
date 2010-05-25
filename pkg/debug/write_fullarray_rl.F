@@ -29,7 +29,6 @@ C     !USES:
 C     == Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
-#include "PARAMS.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
