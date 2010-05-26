@@ -6,7 +6,7 @@
 #  simultaneously.  The format is:
 #
 #    package0   +package1 -package2
-#  
+#
 #  where:
 #
 #    "+" ==> "must be used" (and will be added automatically)
@@ -36,13 +36,13 @@ fizhi		+gridalt	+diagnostics	-aim
 fizhi		+atm_common
 aim		+atm_common
 aim_v23		+atm_common
-rw		+mdsio
-flt		+mdsio
-sbo		+mdsio
-exf		+mdsio
 exf		+cal
 profiles	+cal
 seaice		+exf
+flt		+mdsio
+autodiff	+mdsio
+ctrl		+mdsio
+ecco		+mdsio
 grdchk		+autodiff	+cost		+ctrl
 showflops	+runclock
 
