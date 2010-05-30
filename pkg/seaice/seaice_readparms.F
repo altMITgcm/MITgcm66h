@@ -27,12 +27,12 @@ C     === Global variables ===
 #endif
 
 C     === Routine arguments ===
-C     myThid -  Number of this instance of SEAICE_READPARMS
+C     myThid :: Number of this instance of SEAICE_READPARMS
       INTEGER myThid
 
 C     === Local variables ===
-C     msgBuf      - Informational/error meesage buffer
-C     iUnit       - Work variable for IO unit number
+C     msgBuf :: Informational/error message buffer
+C     iUnit  :: Work variable for IO unit number
 
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       INTEGER iUnit
@@ -122,8 +122,16 @@ C--   set default sea ice parameters
       SEAICEadvHeff      = .TRUE.
       SEAICEadvArea      = .TRUE.
       SEAICEadvSnow      = .TRUE.
+#ifdef SEAICE_SALINITY
       SEAICEadvSalt      = .TRUE.
+#else
+      SEAICEadvSalt      = .FALSE.
+#endif
+#ifdef SEAICE_AGE
       SEAICEadvAge       = .TRUE.
+#else
+      SEAICEadvAge       = .FALSE.
+#endif
 #ifdef ALLOW_SEAICE_FLOODING
       SEAICEuseFlooding  = .TRUE.
 #else
