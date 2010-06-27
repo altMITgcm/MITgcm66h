@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice:
+ - account for melting in seaice age evolution.
+
 checkpoint62h (2010/06/18)
 o pkg/exch2:
  - remove exch2_*xy_rx files: call was replaced with exch2_*3d_rx(myNz=1).
