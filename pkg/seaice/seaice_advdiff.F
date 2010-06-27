@@ -390,7 +390,6 @@ C     somewhere after doing the advection)
          ENDDO
         ENDDO
        ENDDO
-#endif /* SEAICE_AGE */
       ENDIF
 
       RETURN
