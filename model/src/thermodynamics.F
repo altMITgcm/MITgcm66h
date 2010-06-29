@@ -775,7 +775,7 @@ C--     Implicit vertical advection & diffusion
 #ifdef INCLUDE_IMPLVERTADV_CODE
         IF ( tempImplVertAdv ) THEN
           CALL GAD_IMPLICIT_R(
-     I         tempImplVertAdv, tempAdvScheme, GAD_TEMPERATURE,
+     I         tempImplVertAdv, tempVertAdvScheme, GAD_TEMPERATURE,
      I         dTtracerLev,
      I         kappaRk, wVel, theta,
      U         gT,
@@ -820,7 +820,7 @@ c    I                        Nr, 3, deltaTclock, bi, bj, myThid)
 #ifdef INCLUDE_IMPLVERTADV_CODE
         IF ( saltImplVertAdv ) THEN
           CALL GAD_IMPLICIT_R(
-     I         saltImplVertAdv, saltAdvScheme, GAD_SALINITY,
+     I         saltImplVertAdv, saltVertAdvScheme, GAD_SALINITY,
      I         dTtracerLev,
      I         kappaRk, wVel, salt,
      U         gS,
