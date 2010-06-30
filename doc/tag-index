@@ -4,8 +4,14 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/flt:
+  - with OBCS: stop floats which enter the OB region
+o model/src:
+  - use tempVertAdvScheme & saltVertAdvScheme (instead of horizontal ones)
+    for implicit vertical advection.
 o pkg/seaice:
  - account for melting in seaice age evolution.
+ - remove double counting of seaice ridging effect on seaice age.
 
 checkpoint62h (2010/06/18)
 o pkg/exch2:
