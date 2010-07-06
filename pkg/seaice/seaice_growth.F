@@ -726,6 +726,12 @@ C saltPlumeFlux is defined only during freezing:
      &            HEFFM(I,J,bi,bj)*saltWtrIce(I,J,bi,bj)*
      &            ICE2WATR*rhoConstFresh*(1-SEAICE_salinity)*
      &            salt(I,j,kSurface,bi,bj)/SEAICE_deltaTtherm
+C if SaltPlumeSouthernOcean=.FALSE. turn off salt plume in Southern Ocean
+             IF ( .NOT. SaltPlumeSouthernOcean ) THEN
+              IF ( YC(I,J,bi,bj) .LT. 0.0 _d 0 )
+     &             saltPlumeFlux(i,j,bi,bj) = 0.0 _d 0
+             ENDIF
+
 #endif /* ALLOW_SALT_PLUME */
 C saltWtrIce < 0 : m of sea ice that is melted
           ELSE

@@ -61,15 +61,6 @@ C     ks                   :: surface level index
        ENDDO
       ENDDO
 
-      IF ( .NOT. SaltPlumeSouthernOcean ) THEN
-       DO j = jMin, jMax
-        DO i = iMin, iMax
-         IF ( YC(I,J,bi,bj) .LT. 0.0 _d 0 )
-     &        saltPlumeFlux(i,j,bi,bj) = 0.0 _d 0
-        ENDDO
-       ENDDO
-      ENDIF
-
 #endif /* ALLOW_SALT_PLUME */
 
       RETURN
