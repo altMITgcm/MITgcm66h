@@ -299,7 +299,7 @@ C--    Print summary of processor mapping on standard output
      &  ') on processor grid (0:',nPx-1,',0:',nPy-1,')'
        CALL PRINT_MESSAGE( msgBuffer, standardMessageUnit,
      &  SQUEEZE_RIGHT , myThid)
-       WRITE(msgBuffer,'(A,I4,A,I4,A,I4,A,I4,A)') ' Origin at  (',
+       WRITE(msgBuffer,'(A,I6,A,I6,A,I6,A,I6,A)') ' Origin at  (',
      &  mpiXGlobalLo,',',mpiYGLobalLo,
      &  ') on global grid (1:',nPx*sNx*nSx,',1:',nPy*sNy*nSy,')'
        CALL PRINT_MESSAGE( msgBuffer, standardMessageUnit,
