@@ -62,12 +62,7 @@ c    & _EXCH_XY_RL( etaN , myThid )
 #endif
 
 #ifdef ALLOW_CD_CODE
-# ifdef ALLOW_AUTODIFF_TAMC
-      CALL EXCH_3D_RL( uVelD, Nr, myThid )
-      CALL EXCH_3D_RL( vVelD, Nr, myThid )
-# else
       CALL EXCH_UV_DGRID_3D_RL( uVelD,vVelD, .TRUE., Nr, myThid )
-# endif
 #endif
       IF ( useDynP_inEos_Zc )
      & _EXCH_XYZ_RL( totPhiHyd , myThid )
