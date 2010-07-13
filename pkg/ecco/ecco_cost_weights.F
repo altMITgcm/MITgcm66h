@@ -888,11 +888,17 @@ c--           Test for missing values.
               endif
               wtauu(i,j,bi,bj) = wtauu(i,j,bi,bj)*0.1
               wtauu(i,j,bi,bj) = max(wtauu(i,j,bi,bj),wtau0)
+#ifndef ALLOW_ROTATE_UV_CONTROLS
               wtauu(i,j,bi,bj) = wtauu(i,j,bi,bj)*maskw(i,j,k,bi,bj)
      &                            *frame(i,j)
 cph(
               wtauu2(i,j,bi,bj) = wtau0*maskW(i,j,k,bi,bj)*frame(i,j)
 cph)
+#else
+              wtauu(i,j,bi,bj) = wtauu(i,j,bi,bj)*maskc(i,j,k,bi,bj)
+     &                            *frame(i,j)
+              wtauu2(i,j,bi,bj) = wtau0*maskc(i,j,k,bi,bj)*frame(i,j)
+#endif
              enddo
           enddo
         enddo
@@ -952,11 +958,17 @@ c--           Test for missing values.
               endif
               wtauv(i,j,bi,bj) = wtauv(i,j,bi,bj)*0.1
               wtauv(i,j,bi,bj) = max(wtauv(i,j,bi,bj),wtau0)
+#ifndef ALLOW_ROTATE_UV_CONTROLS              
               wtauv(i,j,bi,bj) = wtauv(i,j,bi,bj)*masks(i,j,k,bi,bj)
      &                            *frame(i,j)
 cph(
               wtauv2(i,j,bi,bj) = wtau0*maskS(i,j,k,bi,bj)*frame(i,j)
 cph)
+#else
+              wtauv(i,j,bi,bj) = wtauv(i,j,bi,bj)*maskc(i,j,k,bi,bj)
+     &                            *frame(i,j)
+              wtauv2(i,j,bi,bj) = wtau0*maskc(i,j,k,bi,bj)*frame(i,j)
+#endif
             enddo
           enddo
         enddo

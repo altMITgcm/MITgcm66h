@@ -261,7 +261,11 @@ C     place holder of obsolete variable jG
           write(weighttype(1:80),'(80a)') ' '
           write(weighttype(1:80),'(a)') "wtauu"
           call ctrl_set_pack_xy(
+#ifndef ALLOW_ROTATE_UV_CONTROLS
      &         cunit, ivartype, fname_tauu(ictrlgrad), "maskCtrlW",
+#else
+     &         cunit, ivartype, fname_tauu(ictrlgrad), "maskCtrlC",
+#endif
      &         weighttype, lxxadxx, mythid)
 #endif
 
@@ -270,7 +274,11 @@ C     place holder of obsolete variable jG
           write(weighttype(1:80),'(80a)') ' '
           write(weighttype(1:80),'(a)') "wtauv"
           call ctrl_set_pack_xy(
+#ifndef ALLOW_ROTATE_UV_CONTROLS
      &         cunit, ivartype, fname_tauv(ictrlgrad), "maskCtrlS",
+#else
+     &         cunit, ivartype, fname_tauv(ictrlgrad), "maskCtrlC",
+#endif
      &         weighttype, lxxadxx, mythid)
 #endif
 

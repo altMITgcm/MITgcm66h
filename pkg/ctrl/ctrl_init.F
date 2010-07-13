@@ -343,7 +343,11 @@ c--   Zonal wind stress.
         diffrec  = endrec - startrec + 1
         call ctrl_init_ctrlvar ( 
      &       xx_tauu_file, 5, 105, diffrec, startrec, endrec,
+#ifndef ALLOW_ROTATE_UV_CONTROLS
      &       snx, sny, 1, 'w', 'xy', mythid )
+#else
+     &       snx, sny, 1, 'c', 'xy', mythid )
+#endif
 
 #elif (defined (ALLOW_UWIND_CONTROL))
 c--   Zonal wind speed.
@@ -407,7 +411,11 @@ c--   Meridional wind stress.
         diffrec  = endrec - startrec + 1
         call ctrl_init_ctrlvar ( 
      &       xx_tauv_file, 6, 106, diffrec, startrec, endrec,
+#ifndef ALLOW_ROTATE_UV_CONTROLS
      &       snx, sny, 1, 's', 'xy', mythid )
+#else     
+     &       snx, sny, 1, 'c', 'xy', mythid )
+#endif
 
 #elif (defined (ALLOW_VWIND_CONTROL))
 c--   Meridional wind speed.

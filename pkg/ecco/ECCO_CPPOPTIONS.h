@@ -130,6 +130,10 @@ C       >>> Atmospheric state.
 #undef  ALLOW_VWIND_CONTROL
 #undef  ALLOW_PRECIP_CONTROL
 
+C  o Rotation of wind/stress controls adjustments
+C    from Eastward/Northward to model grid directions
+#undef ALLOW_ROTATE_UV_CONTROLS
+
 C ********************************************************************
 C ***             External forcing Package                         ***
 C ********************************************************************
