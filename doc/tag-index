@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint62i (2010/07/21)
 o pkg/flt:
   - with OBCS: stop floats which enter the OB region
 o model/src:
