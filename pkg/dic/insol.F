@@ -69,7 +69,7 @@ C latitude in radians
 C     latitute in radians, backed out from coriolis parameter
 C     (makes latitude independent of grid)
           IF ( usingCartesianGrid .OR. usingCylindricalGrid )
-     &         lat = asin( fCori(1,j,1,bj)/(2. _d 0*omega) )*deg2rad
+     &         lat = asin( fCori(1,j,1,bj)/(2. _d 0*omega) )
           sun1 = -sin(delta)/cos(delta) * sin(lat)/cos(lat)
           IF (sun1.LE.-0.999 _d 0) sun1=-0.999 _d 0
           IF (sun1.GE. 0.999 _d 0) sun1= 0.999 _d 0
