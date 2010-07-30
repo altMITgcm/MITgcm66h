@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/dic:
+  -small bug fix in insol for the unlikely case of a cartesian grid
+  -first step towards vectorizing the dic package: bio_export.F
+
 checkpoint62i (2010/07/21)
 o pkg/flt:
   - with OBCS: stop floats which enter the OB region
