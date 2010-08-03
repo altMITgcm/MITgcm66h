@@ -82,7 +82,7 @@ do
     else
     #-- to get outp back:
       if test "x_$job_exist" = x_0 ; then
-        echo -n "did not find any job: $JOB" | tee -a $LOG_FIL
+        echo "did not find any job: $JOB" | tee -a $LOG_FIL
         eval M_$i='skipped'
       else
         echo -n "found a job: $JOB" | tee -a $LOG_FIL
