@@ -175,7 +175,7 @@ C
         DO bi = myBxLo(myThid), myBxHi(myThid)
          DO j=1-Oly,sNy+Oly
           DO i=1-Olx,sNx+Olx
-           FIce(I,J,bi,bj) = AREA(I,J,1,bi,bj)
+           FIce(I,J,bi,bj) = AREA(I,J,bi,bj)
           ENDDO
          ENDDO
         ENDDO
