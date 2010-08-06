@@ -74,12 +74,13 @@ CEOP
      &     GGL90viscMax, GGL90diffMax,
      &     GGL90dumpFreq, GGL90taveFreq, mxlMaxFlag
 
-      _RL GGL90TKE   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-      _RL GGL90viscAr(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-      _RL GGL90diffKr(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      _RL GGL90TKE    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      _RL GGL90viscArU(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      _RL GGL90viscArV(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      _RL GGL90diffKr (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
 c      _RL recip_hFacI(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       COMMON /GGL90_FIELDS/ GGL90TKE,
-     &     GGL90viscAr, GGL90diffKr
+     &     GGL90viscArU, GGL90viscArV, GGL90diffKr
 c     &     ,recip_hFacI
 
       LOGICAL GGL90isOn, GGL90mixingMaps, GGL90writeState
@@ -87,9 +88,8 @@ c     &     ,recip_hFacI
      &     GGL90isOn, GGL90mixingMaps, GGL90writeState
 
 #ifdef ALLOW_GGL90_SMOOTH
-      COMMON /GGL90_CORNER/ mskCor, GGL90diffKrS
+      COMMON /GGL90_CORNER/ mskCor
       _RL mskCor(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RL GGL90diffKrS(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
 #endif
 
 #endif /* ALLOW_GGL90 */

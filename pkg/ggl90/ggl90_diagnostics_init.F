@@ -64,8 +64,15 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
-        diagName  = 'GGL90Ar'
-        diagTitle = 'GGL90 eddy viscosity coefficient'
+        diagName  = 'GGL90ArU'
+        diagTitle = 'GGL90 eddy viscosity at U-point'
+        diagUnits = 'm^2/s           '
+        diagCode  = 'SM      LR      '
+        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
+        diagName  = 'GGL90ArV'
+        diagTitle = 'GGL90 eddy viscosity at V-point'
         diagUnits = 'm^2/s           '
         diagCode  = 'SM      LR      '
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
