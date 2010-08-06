@@ -88,6 +88,10 @@ CADJ &     kind = isbyte
 # include "cd_code_ad_check_lev1_dir.h"
 #endif
 
+#ifdef ALLOW_GGL90
+# include "ggl90_ad_check_lev1_dir.h"
+#endif
+
 #ifdef ALLOW_EXF
 # include "exf_ad_check_lev1_dir.h"
 #endif /* ALLOW_EXF undef */
