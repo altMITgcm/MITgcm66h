@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/cfc: bug fix, AREA(i,j,1,bi,bj) -> AREA(i,j,bi,bj)
 o pkg/dic:
   - model/src/impldiff.F: if TARGET_NEC_SX, extend loop ranges for better
     vectorization
