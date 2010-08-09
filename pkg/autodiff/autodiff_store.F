@@ -137,16 +137,29 @@ C-      3D arrays
           DO I=1-Olx,sNx+Olx
        StoreDynVars3D(I,J,K,bi,bj,1) = gs(I,J,K,bi,bj)
        StoreDynVars3D(I,J,K,bi,bj,2) = gt(I,J,K,bi,bj)             
-       StoreDynVars3D(I,J,K,bi,bj,3) = gtnm1(I,J,K,bi,bj)             
-       StoreDynVars3D(I,J,K,bi,bj,4) = gsnm1(I,J,K,bi,bj)             
-       StoreDynVars3D(I,J,K,bi,bj,5) = gunm1(I,J,K,bi,bj)             
-       StoreDynVars3D(I,J,K,bi,bj,6) = gvnm1(I,J,K,bi,bj)             
+#ifdef ALLOW_ADAMSBASHFORTH_3
+       StoreDynVars3D(I,J,K,bi,bj,3) = gtnm(I,J,K,bi,bj,1)             
+       StoreDynVars3D(I,J,K,bi,bj,4) = gsnm(I,J,K,bi,bj,1)             
+       StoreDynVars3D(I,J,K,bi,bj,5) = gunm(I,J,K,bi,bj,1)             
+       StoreDynVars3D(I,J,K,bi,bj,6) = gvnm(I,J,K,bi,bj,1)             
+#else
+       StoreDynVars3D(I,J,K,bi,bj,3) = gtnm1(I,J,K,bi,bj)
+       StoreDynVars3D(I,J,K,bi,bj,4) = gsnm1(I,J,K,bi,bj)
+       StoreDynVars3D(I,J,K,bi,bj,5) = gunm1(I,J,K,bi,bj)
+       StoreDynVars3D(I,J,K,bi,bj,6) = gvnm1(I,J,K,bi,bj)
+#endif
        StoreDynVars3D(I,J,K,bi,bj,7) = theta(I,J,K,bi,bj)             
        StoreDynVars3D(I,J,K,bi,bj,8) = salt(I,J,K,bi,bj)             
        StoreDynVars3D(I,J,K,bi,bj,9) = uvel(I,J,K,bi,bj)             
        StoreDynVars3D(I,J,K,bi,bj,10) = vvel(I,J,K,bi,bj)     
        StoreDynVars3D(I,J,K,bi,bj,11) = wvel(I,J,K,bi,bj)
        StoreDynVars3D(I,J,K,bi,bj,12) = totphihyd(I,J,K,bi,bj)
+#ifdef ALLOW_ADAMSBASHFORTH_3
+       StoreDynVars3D(I,J,K,bi,bj,13) = gtnm(I,J,K,bi,bj,2)
+       StoreDynVars3D(I,J,K,bi,bj,14) = gsnm(I,J,K,bi,bj,2)
+       StoreDynVars3D(I,J,K,bi,bj,15) = gunm(I,J,K,bi,bj,2)
+       StoreDynVars3D(I,J,K,bi,bj,16) = gvnm(I,J,K,bi,bj,2)
+#endif
           ENDDO
          ENDDO
         ENDDO
