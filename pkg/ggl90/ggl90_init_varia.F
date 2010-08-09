@@ -37,6 +37,9 @@ C-      3D arrays
 c        Km1 = MAX(K-1,1)
          DO J=1-Oly,sNy+Oly
           DO I=1-Olx,sNx+Olx
+           GGL90viscArU(I,J,K,bi,bj) = 0. _d 0
+           GGL90viscArV(I,J,K,bi,bj) = 0. _d 0
+           GGL90diffKr(I,J,K,bi,bj)  = 0. _d 0
 CML           GGL90TKE(I,J,K,bi,bj)=0. _d 0
            GGL90TKE(I,J,K,bi,bj)=GGL90TKEmin*maskC(I,J,K,bi,bj)
 C
