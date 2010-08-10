@@ -784,6 +784,12 @@ C--     Implicit vertical advection & diffusion
         ENDIF
 #ifdef INCLUDE_IMPLVERTADV_CODE
         IF ( tempImplVertAdv ) THEN
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE kappaRk(:,:,:) = comlev1_bibj , key=itdkey, byte=isbyte
+CADJ STORE gT(:,:,:,bi,bj) = comlev1_bibj , key=itdkey, byte=isbyte
+CADJ STORE wvel(:,:,:,bi,bj) = comlev1_bibj , key=itdkey, byte=isbyte
+CADJ STORE theta(:,:,:,bi,bj) = comlev1_bibj , key=itdkey, byte=isbyte
+#endif /* ALLOW_AUTODIFF_TAMC */
           CALL GAD_IMPLICIT_R(
      I         tempImplVertAdv, tempVertAdvScheme, GAD_TEMPERATURE,
      I         dTtracerLev,
@@ -829,6 +835,12 @@ c    I                        Nr, 3, deltaTclock, bi, bj, myThid)
 
 #ifdef INCLUDE_IMPLVERTADV_CODE
         IF ( saltImplVertAdv ) THEN
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE kappaRk(:,:,:) = comlev1_bibj , key=itdkey, byte=isbyte
+CADJ STORE gS(:,:,:,bi,bj) = comlev1_bibj , key=itdkey, byte=isbyte
+CADJ STORE wvel(:,:,:,bi,bj) = comlev1_bibj , key=itdkey, byte=isbyte
+CADJ STORE salt(:,:,:,bi,bj) = comlev1_bibj , key=itdkey, byte=isbyte
+#endif /* ALLOW_AUTODIFF_TAMC */
           CALL GAD_IMPLICIT_R(
      I         saltImplVertAdv, saltVertAdvScheme, GAD_SALINITY,
      I         dTtracerLev,

@@ -560,7 +560,8 @@ C--     end of dynamics k loop (1:Nr)
         ENDDO
 
 C--     Implicit Vertical advection & viscosity
-#if (defined (INCLUDE_IMPLVERTADV_CODE) && defined (ALLOW_MOM_COMMON))
+#if (defined (INCLUDE_IMPLVERTADV_CODE) && \
+     defined (ALLOW_MOM_COMMON) && !(defined ALLOW_AUTODIFF_TAMC))
         IF ( momImplVertAdv ) THEN
           CALL MOM_U_IMPLICIT_R( kappaRU,
      I                           bi, bj, myTime, myIter, myThid )

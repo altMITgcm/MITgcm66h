@@ -121,6 +121,18 @@ C       code is being compiled
       ENDIF
 #endif
 
+#ifdef ALLOW_AUTODIFF_TAMC
+      IF ( momImplVertAdv ) THEN
+        WRITE(msgBuf,'(A)')
+     &   'CONFIG_CHECK: momImplVertAdv is not yet'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        WRITE(msgBuf,'(A)')
+     &   'CONFIG_CHECK: supported in adjoint mode'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
+      ENDIF
+#endif
+
 #ifndef EXACT_CONSERV
       IF (exactConserv) THEN
         WRITE(msgBuf,'(A)')
