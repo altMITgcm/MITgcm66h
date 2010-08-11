@@ -523,7 +523,7 @@ C     solve tri-diagonal system, and store solution on gTKE (previously rhs)
      I                        a, b, c,
      U                        gTKE,
      O                        errCode,
-     I                        bi, bj, myThid )
+     I                        1, 1, myThid )
 
 C     now update TKE
       DO K=1,Nr
