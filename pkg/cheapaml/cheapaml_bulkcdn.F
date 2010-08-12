@@ -38,6 +38,7 @@ c     ==================================================================
 c     == global variables ==
 
 #include "SIZE.h"
+#include "EEPARAMS.h"
 #include "CHEAPAML.h"
 
 c     == function arguments ==
@@ -46,7 +47,7 @@ c      real*8 umps
 
 c     == end of interface ==
 
-	write(*,*)'in bulkcdn ',cdrag_1,cdrag_2,cdrag_3
+      write(*,*)'in bulkcdn ',cdrag_1,cdrag_2,cdrag_3
       cheapaml_BulkCdn = cdrag_1/umps + cdrag_2 + cdrag_3*umps
 
 #else
