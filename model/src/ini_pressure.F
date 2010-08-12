@@ -149,7 +149,7 @@ Cml        CALL WRITE_FLD_XYZ_RL( 'PINI.',msgBuf,pressure,npiter,myThid)
 
 C --   end npiter loop
        ENDDO
-C     print some diagnostics	
+C     print some diagnostics
        _BEGIN_MASTER( myThid )
        IF ( rmspp .NE. 0. ) THEN
         IF ( rmspp .EQ. rmsppold ) THEN
