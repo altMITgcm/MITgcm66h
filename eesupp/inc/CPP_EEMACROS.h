@@ -108,7 +108,7 @@ C      #define _BEGIN_MASTER(a)  IF ( a .EQ. 1 ) THEN  N EWLINE      CALL BARRIE
 C      #define _END_MASTER(a)    CALL BARRIER_MU(a) N EWLINE        ENDIF
 C      'CPP = cat $< | $(TOOLSDIR)/set64bitConst.sh |  grep -v '^[cC].*_MASTER' | cpp  -traditional -P'
 C      .F.f:
-C	        $(CPP) $(DEFINES) $(INCLUDES) |  sed 's/N EWLINE/\n/' > $@
+C      $(CPP) $(DEFINES) $(INCLUDES) |  sed 's/N EWLINE/\n/' > $@
 CcnhDebugEnds
 
 C--   Control storage of floating point operands
