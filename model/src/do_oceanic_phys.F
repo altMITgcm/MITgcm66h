@@ -696,7 +696,7 @@ C--     Compute GGL90 mixing coefficients
 #endif
           CALL TIMER_START('GGL90_CALC [DO_OCEANIC_PHYS]', myThid)
           CALL GGL90_CALC(
-     I                  bi, bj, myTime, myThid )
+     I                  bi, bj, myTime, myIter, myThid )
           CALL TIMER_STOP ('GGL90_CALC [DO_OCEANIC_PHYS]', myThid)
         ENDIF
 #endif /* ALLOW_GGL90 */
