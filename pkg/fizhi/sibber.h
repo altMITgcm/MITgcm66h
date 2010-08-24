@@ -5,7 +5,7 @@ C****
 C**** CHIP HEADER FILE
 C****
 
-C   SCCS VERSION @(#)sibber.h	1.1 10/15/92
+C   SCCS VERSION @(#)sibber.h   1.1 10/15/92
 
       INTEGER  NTYPS, FRSTCH, MemFac
       INTEGER  NLAY, SFCLY, ROOTLY, RECHLY

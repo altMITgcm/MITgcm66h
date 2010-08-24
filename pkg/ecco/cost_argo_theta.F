@@ -177,7 +177,7 @@ cph     &             (_hFacC(i,j,13,bi,bj) .ne. 0.).and.
      &             (tbar(i,j,k,bi,bj)-tmpobs(i,j))
                  if ( wtheta2(i,j,k,bi,bj)*cosphi(i,j,bi,bj) .ne. 0. )
      &             num_argot(bi,bj) = num_argot(bi,bj) + 1. _d 0
-		endif
+                endif
                enddo
               enddo
 c--         End of loop over layers.

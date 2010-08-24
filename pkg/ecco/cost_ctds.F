@@ -174,7 +174,7 @@ c--           Determine the weights to be used.
      &                             (tmpbar(i,j)-tmpobs(i,j))
                      if ( wtmp(i,j)*www(i,j) .ne. 0. )
      &                    num_ctds(bi,bj) = num_ctds(bi,bj) + 1. _d 0
-		  endif
+                  endif
                 enddo
               enddo
             enddo

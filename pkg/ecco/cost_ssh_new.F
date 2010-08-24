@@ -276,7 +276,7 @@ c--   Do a global summation.
       else
         _BEGIN_MASTER( mythid )
         write(msgbuf,'(a,d22.15)')
-     &  	' cost_ssh: offset_sum = ',offset_sum
+     &          ' cost_ssh: offset_sum = ',offset_sum
         call print_message( msgbuf, standardmessageunit,
      &                          SQUEEZE_RIGHT , mythid)
         _END_MASTER( mythid )
@@ -376,7 +376,7 @@ c--             The array ersobs contains SSH anomalies.
      &                              *ersmask(i,j,bi,bj)
      &                              *cosphi(i,j,bi,bj)
 #ifndef ALLOW_SSH_TOT
-                junk = ( psbar(i,j,bi,bj) 
+                junk = ( psbar(i,j,bi,bj)
      &                   - psmeaners(i,j,bi,bj) - ersobs(i,j,bi,bj) )
                 objf_ers(bi,bj) = objf_ers(bi,bj)
      &              + junk*junk*wwwers2(i,j,bi,bj)

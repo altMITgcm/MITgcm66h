@@ -191,7 +191,7 @@ cph        stop   '  ... stopped in cost_ssh.'
       else
         _BEGIN_MASTER( mythid )
         write(msgbuf,'(a,d22.15)')
-     &  	' cost_ssh: offset_sum = ',offset_sum
+     &          ' cost_ssh: offset_sum = ',offset_sum
         call print_message( msgbuf, standardmessageunit,
      &                          SQUEEZE_RIGHT , mythid)
         _END_MASTER( mythid )

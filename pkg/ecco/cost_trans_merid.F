@@ -212,10 +212,10 @@ c--     Assign the first value to the array holding the average.
      $                     + hFacC(i,j-1,k,bi,bj))*vbar(i,j,k,bi,bj)
      $                     * _dxG(i,j,bi,bj)
      &                     *  drF(k)*_hFacS(i,j,k,bi,bj)
-		   endif
+                   endif
                 enddo
               enddo
-	      mvlev(isect,k) = mv(isect)
+              mvlev(isect,k) = mv(isect)
             enddo
           enddo
         enddo
@@ -224,31 +224,31 @@ c--     Assign the first value to the array holding the average.
         _GLOBAL_SUM_RL( sv(isect), mythid )
         _GLOBAL_SUM_RL( mv(isect), mythid )
 c
-	do k =1,nr
+        do k =1,nr
            _GLOBAL_SUM_RL( mvlev(isect,k), mythid )
         enddo
         mvmin(isect) = mvlev(isect,1)
-	mvmax(isect) = mvlev(isect,1)
-	do k = 2,nr
-	   if ( mvlev(isect,k) .GT. mvlev(isect,k-1) ) then
-	      mvmax(isect) = mvlev(isect,k)
-	      kmax(isect) = k
+        mvmax(isect) = mvlev(isect,1)
+        do k = 2,nr
+           if ( mvlev(isect,k) .GT. mvlev(isect,k-1) ) then
+              mvmax(isect) = mvlev(isect,k)
+              kmax(isect) = k
            endif
-	   if ( mvlev(isect,k) .LT. mvlev(isect,k-1) ) then
-	      mvmin(isect) = mvlev(isect,k)
-	      kmin(isect) = k
+           if ( mvlev(isect,k) .LT. mvlev(isect,k-1) ) then
+              mvmin(isect) = mvlev(isect,k)
+              kmin(isect) = k
            endif
         enddo
 
         mvsum(isect) = mvsum(isect) + mv(isect)
 
-	write(msgbuf,'(a,i3,i5,2i3,5(X,D15.8))')
+        write(msgbuf,'(a,i3,i5,2i3,5(X,D15.8))')
      &       'ECCO_TRANS_MER ', isect, irec, kmin(isect), kmax(isect),
      &       tv(isect), sv(isect), mv(isect), mvmin(isect), mvmax(isect)
         call print_message( msgbuf, standardmessageunit,
      &     SQUEEZE_RIGHT, mythid )
 c
-	write(msgbuf,'(a,i3,1(X,D22.15))')
+        write(msgbuf,'(a,i3,1(X,D22.15))')
      &     'ECCO_TRANS_MER_SUM  mvsum ', isect, mvsum(isect)
         call print_message( msgbuf, standardmessageunit,
      &     SQUEEZE_RIGHT, mythid )

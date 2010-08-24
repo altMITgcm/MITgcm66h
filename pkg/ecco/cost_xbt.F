@@ -162,7 +162,7 @@ c--           Determine the weights to be used.
                 do i = imin,imax
                   cmask(i,j) = cosphi(i,j,bi,bj)
                   if ( xbtobs(i,j,k,bi,bj) .lt. spval .or.
-     &		       xbtobs(i,j,k,bi,bj) .gt. spmax .or.
+     &                 xbtobs(i,j,k,bi,bj) .gt. spmax .or.
      &                 xbtobs(i,j,k,bi,bj) .eq. 0. ) then
                     cmask(i,j) = 0. _d 0
                   endif
