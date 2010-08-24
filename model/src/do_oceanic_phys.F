@@ -55,6 +55,9 @@ C     == Global variables ===
 # ifdef ALLOW_KPP
 #  include "KPP.h"
 # endif
+# ifdef ALLOW_GGL90
+#  include "GGL90.h"
+# endif
 # ifdef ALLOW_GMREDI
 #  include "GMREDI.h"
 # endif
@@ -406,6 +409,11 @@ c          rhoInSitu(i,j,k,bi,bj) = 0.
            KPPdiffKzS(i,j,k,bi,bj)  = 0. _d 0
            KPPdiffKzT(i,j,k,bi,bj)  = 0. _d 0
 # endif /* ALLOW_KPP */
+# ifdef ALLOW_GGL90
+           GGL90viscArU(i,j,k,bi,bj)  = 0. _d 0
+           GGL90viscArV(i,j,k,bi,bj)  = 0. _d 0
+           GGL90diffKr(i,j,k,bi,bj)  = 0. _d 0
+# endif /* ALLOW_GGL90 */
 #endif /* ALLOW_AUTODIFF_TAMC */
           ENDDO
          ENDDO
@@ -688,6 +696,10 @@ C--     Compute MY82 mixing coefficients
 #endif /* ALLOW_MY82 */
 
 #ifdef  ALLOW_GGL90
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE GGL90TKE (:,:,:,bi,bj) = comlev1_bibj, key=itdkey,
+CADJ &     kind = isbyte
+#endif /* ALLOW_AUTODIFF_TAMC */
 C--     Compute GGL90 mixing coefficients
         IF (useGGL90) THEN
 #ifdef ALLOW_DEBUG

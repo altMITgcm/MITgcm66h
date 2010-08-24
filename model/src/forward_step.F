@@ -125,6 +125,9 @@ C     == Global variables ==
 # ifdef ALLOW_KPP
 #  include "KPP.h"
 # endif
+# ifdef ALLOW_GGL90
+#  include "GGL90.h"
+# endif
 # ifdef ALLOW_GMREDI
 #  include "GMREDI.h"
 # endif
