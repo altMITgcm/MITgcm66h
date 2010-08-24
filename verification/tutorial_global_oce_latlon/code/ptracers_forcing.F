@@ -44,7 +44,7 @@ C  myThid               :: thread number
       INTEGER myThid
 
 C !OUTPUT PARAMETERS: ==================================================
-C  gPtracer		:: updates tendency array
+C  gPtracer             :: updates tendency array
 
 #ifdef ALLOW_PTRACERS
 
