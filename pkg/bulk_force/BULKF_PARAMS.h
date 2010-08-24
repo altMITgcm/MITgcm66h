@@ -55,7 +55,6 @@ C      dTstab :: potential temp. increment for stability function derivative
 C      FSTAB  :: Amplitude of stability correction (fraction)
 C.. Albedo
 C     ocean_albedo :: ocean surface albedo [0-1]
-	
       _RL  rhoA
 c     _RL  rhoSW
       _RL  rhoFW
