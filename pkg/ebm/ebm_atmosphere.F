@@ -131,7 +131,7 @@ c----------------------------------------
      &     (T_var(3)*T_var(2) - T_var(4)*T_var(1))
         T0(1) = TtS - 0.5*T2(1)*((T_var(3)/T_var(1)) - 1.)
 c----------------------------------------
-c	Northern hemisphere
+c     Northern hemisphere
 c----------------------------------------
         T2(2) =  2.*(TtN - TmlN)*T_var(1)*T_var(2)/
      &     (T_var(3)*T_var(2) - T_var(4)*T_var(1))
