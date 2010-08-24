@@ -112,7 +112,7 @@ c     _RL VSTR   (NGP,3)
       _RL SPEED0 (NGP,MAX_NO_THREADS)
       _RL DRAG   (NGP,0:3,MAX_NO_THREADS)
 
-#ifdef ALLOW_CLR_SKY_DIAG	
+#ifdef ALLOW_CLR_SKY_DIAG
 C      TT_SWclr = temp. tendency due to clear-sky short-wave radiation
 C      TSWclr   = top-of-atm. clear-sky shortwave radiation (downward)
 C      SSWclr   = clear-sky surf. (net) shortwave radiation (downward)
@@ -128,7 +128,7 @@ C      SLWclr   = clear-sky surf. (net) longwave radiation  (upward)
       _RL TT_LWclr(NGP,NLEV,MAX_NO_THREADS)
       _RL OLWclr  (NGP,MAX_NO_THREADS)
       _RL SLWclr  (NGP,MAX_NO_THREADS)
-#endif	
+#endif
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 #endif /* ALLOW_AIM */
