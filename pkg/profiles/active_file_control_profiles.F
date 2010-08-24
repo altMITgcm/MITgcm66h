@@ -7,8 +7,8 @@ C     o==========================================================o
 C     | subroutine active_file_control_profile                   |
 C     | o handles the i/o of active variables for the adjoint    |
 C     |   calculations, related to netcdf profiles data files    |
-C     | o active_read_profile_rl, active_write_profile_rl	 |
-C     | started: Gael Forget 15-March-2006			 |
+C     | o active_read_profile_rl, active_write_profile_rl        |
+C     | started: Gael Forget 15-March-2006                       |
 C     o==========================================================o
 
       subroutine active_read_profile_rl(

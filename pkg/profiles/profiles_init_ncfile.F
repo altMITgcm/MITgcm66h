@@ -5,8 +5,8 @@ C $Name$
 
 C     o==========================================================o
 C     | subroutine profiles_init_ncfile                          |
-C     | o initialization of model counterparts files 		 |
-C     |   for netcdf profiles data 		                 |
+C     | o initialization of model counterparts files             |
+C     |   for netcdf profiles data                               |
 C     | started: Gael Forget 15-March-2006                       |
 C     o==========================================================o
 
