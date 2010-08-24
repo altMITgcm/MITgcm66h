@@ -36,7 +36,7 @@ C                       rejected during sea ice growth
 C     saltPlumeFlux :: Net downward salt flux in psu.kg/m^2/s
 C              Note: a) only used when salty sea-ice forms.
 C                    b) units: when salinity (unit= psu) is expressed
-C              	        in g/kg, saltPlumeFlux unit becomes g/m^2/s.
+C                       in g/kg, saltPlumeFlux unit becomes g/m^2/s.
 C              > 0 for increasing in SSS.
 C              Southwest C-grid tracer point
       _RL SaltPlumeDepth (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)

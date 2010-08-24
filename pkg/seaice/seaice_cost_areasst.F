@@ -22,7 +22,7 @@ c     ==================================================================
 c
 c     o Based on cost_generic
 c     o in case where there is observed sea-ice we not only constrain 
-c	model(area)=obs(area) but also model(sst)@freezing point
+c       model(area)=obs(area) but also model(sst)@freezing point
 c
 c     ==================================================================
 c     SUBROUTINE seaice_cost_areasst
