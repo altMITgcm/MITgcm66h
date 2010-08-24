@@ -459,7 +459,7 @@ c******************************************************
      &              'precision_grdchk_result TLM ', fcref, ftlxxmemo
                CALL PRINT_MESSAGE
      &              (msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
-c	 
+c 
                WRITE(msgBuf,'(A34,1PE24.14)') 
      &              ' TLM  precision_derivative_cost =', fcref
                CALL PRINT_MESSAGE

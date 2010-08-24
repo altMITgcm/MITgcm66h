@@ -31,8 +31,8 @@ C  none
 C !LOCAL VARIABLES: ====================================================
 C  tIter0               :: retired parameter
 C  iTracer              :: loop indices
-C  iUnit		:: unit number for I/O
-C  msgBuf		:: message buffer
+C  iUnit                :: unit number for I/O
+C  msgBuf               :: message buffer
       INTEGER tIter0
       INTEGER iTracer
       INTEGER iUnit
