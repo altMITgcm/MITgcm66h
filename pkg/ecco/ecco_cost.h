@@ -888,6 +888,7 @@ c     velerrfile            - representation error
      &                tp_errfile,
      &                ers_errfile,
      &                gfo_errfile,
+     &                sshv4cost_scalefile,
      &                sshv4cost_errfile,
      &                ctdt_errfile,
      &                ctds_errfile,
@@ -939,6 +940,7 @@ c     velerrfile            - representation error
       character*(MAX_LEN_FNAM) tp_errfile
       character*(MAX_LEN_FNAM) ers_errfile
       character*(MAX_LEN_FNAM) gfo_errfile
+      character*(MAX_LEN_FNAM) sshv4cost_scalefile(NSSHV4COST)
       character*(MAX_LEN_FNAM) sshv4cost_errfile(NSSHV4COST)
       character*(MAX_LEN_FNAM) ctdt_errfile
       character*(MAX_LEN_FNAM) ctds_errfile
