@@ -131,6 +131,7 @@ c--   Read the namelist input.
       namelist /ecco_gencost_nml/
      &         gencost_barfile,
      &         gencost_datafile, 
+     &         gencost_scalefile,
      &         gencost_errfile,
      &         gencost_mask,
      &         gencost_spmin,
@@ -446,6 +447,7 @@ c--   Set default values.
       do k=1,NGENCOST
          gencost_avgperiod(k)  = '     '
          gencost_datafile(k)   = ' '
+         gencost_scalefile(k)  = ' '
          gencost_errfile(k)    = ' '
          gencost_mask(k)       = 'c'
          write(gencost_barfile(k)(1:8),'(a,i2.2)')
