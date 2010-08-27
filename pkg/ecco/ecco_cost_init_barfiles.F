@@ -424,7 +424,7 @@ c--   Save gencost_barfile on file.
      &     gencost_barfile(k)(1:ilt), '.', optimcycle
       write(adfname_gencostbar,'(3a,i10.10)')
      &     yadprefix, gencost_barfile(k)(1:ilt), '.', optimcycle
-      do irec = 1,nmonsrec
+      do irec = 1,gencost_nrec(k)
 #ifndef ALLOW_TANGENTLINEAR_RUN
         call active_write_xy( adfname_gencostbar, tmpfld2d, irec,
      &       optimcycle, mythid, xx_genbar_dummy(k) )
