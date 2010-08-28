@@ -85,12 +85,14 @@ c     objf_gencost - gencost user defined contribution
       integer gencost_nrec(NGENCOST)
 
       common /ecco_gencost_c/
+     &       gencost_name,
      &       gencost_scalefile,
      &       gencost_errfile,
      &       gencost_datafile,
      &       gencost_barfile,
      &       gencost_avgperiod,
      &       gencost_mask
+      character*(MAX_LEN_FNAM) gencost_name(NGENCOST)
       character*(MAX_LEN_FNAM) gencost_scalefile(NGENCOST)
       character*(MAX_LEN_FNAM) gencost_errfile(NGENCOST)
       character*(MAX_LEN_FNAM) gencost_datafile(NGENCOST)

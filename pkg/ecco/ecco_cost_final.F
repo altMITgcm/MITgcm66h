@@ -1198,8 +1198,8 @@ C     only master thread of master CPU open and write to file
 #ifdef ALLOW_GENCOST_CONTRIBUTION
        do num_var=1,NGENCOST
         if (no_gencost(num_var).GT.0) then
-         write(ifc,'(A,i2.0,A,2D22.15)')
-     &    'gencost', num_var, ' = ',
+         write(ifc,'(2A,i2.0,A,2D22.15)')
+     &    gencost_name,' (gencost ', num_var, ') = ',
      &    f_gencost(num_var),
      &    no_gencost(num_var)
          endif

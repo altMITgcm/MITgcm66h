@@ -486,6 +486,7 @@ c
 #ifdef ALLOW_GENCOST_CONTRIBUTION
 cph currently all assumed to be surface fields, i.e. 2-d
       do num_var = 1, NGENCOST
+      if ( gencost_barfile(num_var) .ne. ' ' ) then
       call cost_averagesgeneric(
      &     gencost_barfile(num_var), 
      &     gencost_barfld(1-Olx,1-Oly,1,1,num_var), 
@@ -494,6 +495,7 @@ cph currently all assumed to be surface fields, i.e. 2-d
      &     first, last, 
      &     startofgen(num_var), endofgen(num_var), ingen(num_var),
      &     sum1gen(num_var), genrec(num_var), 1, mythid )
+      endif
       end do
 #endif /* ALLOW_GENCOST_CONTRIBUTION */
 
