@@ -469,7 +469,7 @@ cgf     &        'genbar', k
      &     SQUEEZE_RIGHT , 1)
 
 C--   Check parameters:
-
+#ifndef ALLOW_GENCOST_FREEFORM
       do k=1,NGENCOST
 
          if ( gencost_avgperiod(k) .NE. 'day  ' .AND.
@@ -482,22 +482,23 @@ C--   Check parameters:
      &           'ECCO_READPARMS: gencost_avgperiod not properly set'
          end if
 
-      if ( gencost_datafile(k) .ne. ' ' ) then
+         if ( gencost_datafile(k) .ne. ' ' ) then
 
-         if ( gencost_spmin(k) .EQ. 0. _d 0 .AND.
+           if ( gencost_spmin(k) .EQ. 0. _d 0 .AND.
      &        gencost_spmax(k) .EQ. 0. _d 0 ) then
             STOP
      &       'ECCO_READPARMS: gencost_spmin, gencost_spmax not set'
-         endif
+           endif
 
-         if ( gencost_spzero(k) .EQ. 9876. _d 0 ) then
+           if ( gencost_spzero(k) .EQ. 9876. _d 0 ) then
             STOP
      &       'ECCO_READPARMS: gencost_spzero not set'
-         endif
+           endif
 
-      endif
+        endif
 
       end do
+#endif
 
       _END_MASTER( myThid )
 

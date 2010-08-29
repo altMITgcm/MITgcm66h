@@ -74,8 +74,10 @@ c     == end of interface ==
             ingen(num_var)      = inyear
             sum1gen(num_var)    = sum1year
             genrec(num_var)     = yearrec
+#ifndef ALLOW_GENCOST_FREEFORM
          else
             STOP 'gencost_avgperiod wrongly specified'
+#endif
          end if
       end do
       
