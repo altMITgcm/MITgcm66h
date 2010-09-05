@@ -43,7 +43,7 @@ c     CHARACTER*(MAX_LEN_FNAM) fn
 
       IF ( AirTempFile .NE. ' ' ) THEN
         write(*,*)'Tair initialized from  ->',AirTempFile
-         CALL READ_FLD_XY_RL( AirTempFile,Tair,' ',0,myThid )
+         CALL READ_FLD_XY_RL( AirTempFile, ' ', Tair, 0, myThid )
       ELSE
         write(*,*)'Tair initialized using standard profile'
         DO bj=1,nSy
