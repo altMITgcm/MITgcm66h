@@ -83,10 +83,12 @@ c       cheapaml_dtc=1.d0
 
 C-    Input data files names :
       AirTempFile=' '
+      AirQFile =' '
       SolarFile=' '
       UWindFile=' '
       VWindFile=' '
       TRFile=' '
+      QrFile=' '
 
 C-    e-p option turned off by default
         useFreshwaterFlux=.FALSE.
