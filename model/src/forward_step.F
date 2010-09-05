@@ -273,7 +273,7 @@ C--   Call external chepaml forcing package
       IF ( useCheapAML  ) THEN
 #ifdef ALLOW_DEBUG
        IF ( debugLevel .GE. debLevB )
-     &    CALL DEBUG_CALL('CHEAPAML_FIELDS_LOAD',myThid)
+     &    CALL DEBUG_CALL('CHEAPAML',myThid)
 #endif
        CALL TIMER_START('CHEAPAML      [FORWARD_STEP]',mythid)
 C-    calculate qnet (and wind stress)
