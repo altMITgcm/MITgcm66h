@@ -202,6 +202,13 @@ C--    add diagnostics for other pkg contribution to ptracer solution
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       ENDDO
 
+      diagName  = 'Add2EmP '
+      diagTitle = 'additional EmP from salt relaxation'
+      diagUnits = 'kg/m^2/s        '
+      diagCode  = 'SM      U1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
 #endif /* ALLOW_DIAGNOSTICS */
 
       RETURN
