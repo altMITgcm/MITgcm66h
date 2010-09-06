@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ptracers:
+   option for ptracer to convert Salt Relax into additional EmP.
+    tested in exp. global_ocean.90x40x15.dwnslp (update output)
+
 checkpoint62j (2010/08/25)
 o pkg/ggl90:
    other minor changes: remove 3-D temp array gTKE (+ add argument myIter)
