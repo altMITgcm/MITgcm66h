@@ -130,6 +130,29 @@ c--     ... ARGO data.
      &  call cal_FullDate( argosstartdate1,   argotstartdate2,
      &                     argosstartdate,    mythid )
 
+#ifdef ALLOW_GENCOST_CONTRIBUTION
+      do k = 1, NGENCOST
+         if ( gencost_avgperiod(k) .EQ. 'day' .OR.
+     &        gencost_avgperiod(k) .EQ. 'DAY' ) then
+            gencost_nrec(k)   = ndaysrec
+            gencost_period(k) = 86400.
+         else if ( gencost_avgperiod(k) .EQ. 'month' .OR.
+     &        gencost_avgperiod(k) .EQ. 'MONTH' ) then
+            gencost_nrec(k)   =nmonsrec
+            gencost_period(k) = 0.
+         else if ( gencost_avgperiod(k) .EQ. 'year' .OR.
+     &        gencost_avgperiod(k) .EQ. 'YEAR' ) then
+            STOP
+     &       'COST_GENCOST_ALL: yearly data not yet implemented'
+#ifndef ALLOW_GENCOST_FREEFORM         
+         else
+            STOP 
+     &       'COST_GENCOST_ALL: gencost_avgperiod wrongly specified'
+#endif   
+         endif
+      enddo
+#endif /* ALLOW_GENCOST_CONTRIBUTION */
+
       _END_MASTER( mythid )
 
 #endif /* ALLOW_CAL */
@@ -264,35 +287,6 @@ c
       _END_MASTER(myThid)
       _BARRIER
 #endif
-
-#ifdef ALLOW_GENCOST_CONTRIBUTION
-
-      _BEGIN_MASTER( myThid )
-
-      do k = 1, NGENCOST
-         if ( gencost_avgperiod(k) .EQ. 'day' .OR.
-     &        gencost_avgperiod(k) .EQ. 'DAY' ) then
-            gencost_nrec(k)   = ndaysrec
-            gencost_period(k) = 86400.
-         else if ( gencost_avgperiod(k) .EQ. 'month' .OR.
-     &        gencost_avgperiod(k) .EQ. 'MONTH' ) then
-            gencost_nrec(k)   =nmonsrec 
-            gencost_period(k) = 0.
-         else if ( gencost_avgperiod(k) .EQ. 'year' .OR.
-     &        gencost_avgperiod(k) .EQ. 'YEAR' ) then
-            STOP
-     &       'COST_GENCOST_ALL: yearly data not yet implemented'
-#ifndef ALLOW_GENCOST_FREEFORM         
-         else
-            STOP 
-     &       'COST_GENCOST_ALL: gencost_avgperiod wrongly specified'
-#endif
-         endif
-      enddo
-
-      _END_MASTER( myThid )
-
-#endif /* ALLOW_GENCOST_CONTRIBUTION */
 
 c--   Summarize the cost function setup.
       _BEGIN_MASTER( mythid )
