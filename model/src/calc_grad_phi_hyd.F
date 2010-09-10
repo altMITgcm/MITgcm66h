@@ -99,6 +99,7 @@ C-     Consistent with Phi'= Integr[ theta'.dPi ] :
      &                    -(                 rC(k) /atm_Po)**atm_kappa
      &                  )
            varLoc(i,j) = factPI*alphRho(i,j)
+     &                 + phi0surf(i,j,bi,bj)
           ELSEIF (Ro_surf(i,j,bi,bj).NE.0. _d 0) THEN
            factPI = (rC(k)/Ro_surf(i,j,bi,bj))**atm_kappa
            varLoc(i,j) = phiHydC(i,j)
