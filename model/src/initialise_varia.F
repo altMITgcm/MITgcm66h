@@ -63,6 +63,7 @@ C       |-- INI_NLFS_VARS
 C       |
 C       |-- CALC_R_STAR
 C       |-- UPDATE_R_STAR
+C       |-- UPDATE_SIGMA
 C       |-- CALC_SURF_DR
 C       |-- UPDATE_SURF_DR
 C       |
@@ -237,6 +238,10 @@ C     and modify hFac(C,W,S) accordingly :
        IF ( select_rStar.GT.0 ) THEN
 # ifndef DISABLE_RSTAR_CODE
         CALL UPDATE_R_STAR( startTime, nIter0, myThid )
+# endif /* DISABLE_RSTAR_CODE */
+       ELSEIF ( selectSigmaCoord.NE.0 ) THEN
+# ifndef DISABLE_SIGMA_CODE
+        CALL UPDATE_SIGMA( etaH, startTime, nIter0, myThid )
 # endif /* DISABLE_RSTAR_CODE */
        ELSE
         CALL CALC_SURF_DR(etaH, startTime, -1 , myThid )

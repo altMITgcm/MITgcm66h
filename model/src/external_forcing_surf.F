@@ -129,10 +129,27 @@ C     of surf.thickness (hFac): account for change in surf.thickness
           ENDDO
          ENDDO
 # endif /* DISABLE_RSTAR_CODE */
+        ELSEIF ( selectSigmaCoord.NE.0 ) THEN
+# ifndef DISABLE_SIGMA_CODE
+         DO j=jMin,jMax
+          DO i=iMin,iMax
+            surfaceForcingT(i,j,bi,bj) = surfaceForcingT(i,j,bi,bj)
+     &        *( 1. _d 0 + dEtaHdt(i,j,bi,bj)*deltaTfreesurf
+     &                    *dBHybSigF(ks)*recip_drF(ks)
+     &                    *recip_hFacC(i,j,ks,bi,bj)
+     &         )
+            surfaceForcingS(i,j,bi,bj) = surfaceForcingS(i,j,bi,bj)
+     &        *( 1. _d 0 + dEtaHdt(i,j,bi,bj)*deltaTfreesurf
+     &                    *dBHybSigF(ks)*recip_drF(ks)
+     &                    *recip_hFacC(i,j,ks,bi,bj)
+     &         )
+          ENDDO
+         ENDDO
+# endif /* DISABLE_SIGMA_CODE */
         ELSE
          DO j=jMin,jMax
           DO i=iMin,iMax
-           IF (ks.EQ.ksurfC(i,j,bi,bj)) THEN
+           IF (ks.EQ.kSurfC(i,j,bi,bj)) THEN
             surfaceForcingT(i,j,bi,bj) = surfaceForcingT(i,j,bi,bj)
      &             *_recip_hFacC(i,j,ks,bi,bj)*hFac_surfC(i,j,bi,bj)
             surfaceForcingS(i,j,bi,bj) = surfaceForcingS(i,j,bi,bj)
