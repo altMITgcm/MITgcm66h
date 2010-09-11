@@ -68,7 +68,6 @@ C     dependency.
       _RL diffKrSDefault
       _RL hFacMinDrDefault
       _RL delRDefault(Nr)
-      _RS rkFacDefault
 C     zCoordInputData :: Variables used to select between different coordinate systems.
 C     pCoordInputData :: The vertical coordinate system in the rest of the model is
 C     rCoordInputData :: written in terms of r. In the model "data" file input data
@@ -255,6 +254,7 @@ C--   Gridding parameters
      & delX, delY, delXFile, delYFile, horizGridFile,
      & phiEuler, thetaEuler, psiEuler,
      & rSphere, deepAtmosphere,
+     & selectSigmaCoord, rSigmaBnd, hybSigmFile,
      & Ro_SeaLevel, delZ, delP, delR, delRc, delRFile, delRcFile,
      & rkFac, groundAtK1, thetaMin, phiMin
 
@@ -280,7 +280,7 @@ CEOP
 C     Defaults values for input parameters
       CALL SET_DEFAULTS(
      O   viscArDefault, diffKrTDefault, diffKrSDefault,
-     O   hFacMinDrDefault, delRDefault, rkFacDefault,
+     O   hFacMinDrDefault, delRDefault,
      I   myThid )
       SadournyCoriolis = .FALSE.
 
@@ -415,7 +415,6 @@ C--   Set default "physical" parameters
       tAlpha              = UNSET_RL
       sBeta               = UNSET_RL
       implicitNHPress     = UNSET_RL
-      selectNHfreeSurf  = 0
       tempVertAdvScheme = 0
       saltVertAdvScheme = 0
 C--   z,p,r coord input switching.

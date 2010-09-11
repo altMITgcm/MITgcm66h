@@ -83,6 +83,9 @@ C---  Calculate reciprocals grid lengths (should be part of INI_GRID)
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
+      IF ( selectSigmaCoord.EQ.0 ) THEN
+C---  r-coordinate with partial-cell or full cell mask
+
 C--   Calculate lopping factor hFacC : over-estimate the part inside of the domain
 C     taking into account the lower_R Boundary (Bathymetrie / Top of Atmos)
       DO bj=myByLo(myThid), myByHi(myThid)
@@ -314,6 +317,13 @@ C--   Calculate surface k index for interface W & S (U & V points)
         ENDDO
        ENDDO
       ENDDO
+
+      ELSE
+#ifndef DISABLE_SIGMA_CODE
+C---  Sigma and Hybrid-Sigma set-up:
+        CALL INI_SIGMA_HFAC( myThid )
+#endif /* DISABLE_SIGMA_CODE */
+      ENDIF
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
