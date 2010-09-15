@@ -272,6 +272,10 @@ C       and modify forcing terms including effects from ice
 #endif /* ALLOW_THSICE */
 
 #ifdef ALLOW_SHELFICE
+# ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE salt, theta = comlev1, key = ikey_dynamics,
+CADJ &     kind = isbyte
+# endif
       IF ( useShelfIce .AND. fluidIsWater ) THEN
 #ifdef ALLOW_DEBUG
         IF ( debugLevel .GE. debLevB )

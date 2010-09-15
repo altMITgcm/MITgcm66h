@@ -444,10 +444,21 @@ CADJ STORE gu(:,:,k,bi,bj)
 CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
 CADJ STORE gv(:,:,k,bi,bj) 
 CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
+#  ifndef ALLOW_ADAMSBASHFORTH_3
 CADJ STORE gunm1(:,:,k,bi,bj) 
 CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
 CADJ STORE gvnm1(:,:,k,bi,bj) 
 CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
+#  else
+CADJ STORE gunm(:,:,k,bi,bj,1) 
+CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ STORE gunm(:,:,k,bi,bj,2) 
+CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ STORE gvnm(:,:,k,bi,bj,1) 
+CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ STORE gvnm(:,:,k,bi,bj,2) 
+CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
+#  endif
 #  ifdef ALLOW_CD_CODE
 CADJ STORE unm1(:,:,k,bi,bj) 
 CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
