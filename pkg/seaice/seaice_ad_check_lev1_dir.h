@@ -30,14 +30,16 @@ cphCADJ STORE eta     = comlev1, key=ikey_dynamics, kind=isbyte
 # endif
 #endif /* AUTODIFF_SOMETIMES_NEEDED */
 
+#ifdef SEAICE_CGRID
+CADJ STORE stressdivergencex = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE stressdivergencey = comlev1, key=ikey_dynamics, kind=isbyte
+#endif
 # ifdef SEAICE_ALLOW_DYNAMICS
 #  ifdef SEAICE_CGRID
 CADJ STORE etan    = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE dwatn      = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE seaicemasku = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE seaicemaskv = comlev1, key=ikey_dynamics, kind=isbyte
-CADJ STORE stressdivergencex = comlev1, key=ikey_dynamics, kind=isbyte
-CADJ STORE stressdivergencey = comlev1, key=ikey_dynamics, kind=isbyte
 #  endif
 #  ifdef SEAICE_ALLOW_EVP
 CADJ STORE seaice_sigma1  = comlev1, key=ikey_dynamics, kind=isbyte
