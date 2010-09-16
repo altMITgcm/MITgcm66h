@@ -57,8 +57,10 @@ CADJ &     kind = isbyte
 # else
 CADJ STORE gsnm,gtnm          = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
-CADJ STORE gunm,gvnm          = comlev1, key = ikey_dynamics,
-CADJ &     kind = isbyte
+cphCADJ STORE gunm,gvnm          = comlev1, key = ikey_dynamics,
+cphCADJ &     kind = isbyte
+CADJ STORE rstardhcdt,rstardhsdt,rstardhwdt 
+CADJ &     = comlev1, key = ikey_dynamics, kind = isbyte
 # endif
 CADJ STORE salt,theta         = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
