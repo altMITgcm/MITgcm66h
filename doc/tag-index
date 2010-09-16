@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o adjoint
+   * changed verification/global_ocean.cs32x15 ; adjoint now tests
+     Adams-Bashforth 3 + NLFS + RSTAR
+   * some more modifs required for ECCO-GODAE v4
 o pkg/seaice
    add SEAICE_AGE_VOL option to use volume instead of area for
    integrating SEAICE_AGE
