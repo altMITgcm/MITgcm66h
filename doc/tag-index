@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice
+   add SEAICE_AGE_VOL option to use volume instead of area for
+   integrating SEAICE_AGE
 o model/src:
    first check-in of sigma & hybrid-sigma coordinate code ; also includes
    non-linear free-surface parts ; but pressure-gradient not yet coded.
