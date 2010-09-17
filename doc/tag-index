@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint62k (2010/09/17)
 o adjoint
    * changed verification/global_ocean.cs32x15 ; adjoint now tests
      Adams-Bashforth 3 + NLFS + RSTAR
