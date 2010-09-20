@@ -59,9 +59,9 @@ CEOP
 
       rStarAreaWeight = .TRUE.
 C-    Area-weighted average consistent with KE (& vert. advection):
-c     IF ( vectorInvariantMomentum .AND.
-c    &     (selectKEscheme.EQ.1 .OR. selectKEscheme.EQ.3)
-c    &   ) rStarAreaWeight =.FALSE.
+      IF ( vectorInvariantMomentum .AND.
+     &     (selectKEscheme.EQ.1 .OR. selectKEscheme.EQ.3)
+     &   ) rStarAreaWeight =.FALSE.
 
 #ifdef W2_FILL_NULL_REGIONS
       INTEGER ii,jj
