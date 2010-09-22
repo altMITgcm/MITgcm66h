@@ -680,7 +680,7 @@ C
 C!INPUT PARAMETERS:
 C!      iunit    unit number assigned to the data file
 C!      ndmax    maximum number of date/times of the data
-C!      nrec     record number of the header info (or assume 1??)
+C!      nrec     record number of the header info (or assume 1 ?)
 C
 C!OUTPUT PARAMETERS:
 C!      cname         name of the data in the file header
