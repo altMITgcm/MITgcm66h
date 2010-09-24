@@ -5,6 +5,8 @@ $Name$
     ==============================
 
 o pkg/seaice:
+   fix uninitialised arrays in USE_ORIGINAL_SBI version of seaice_solve4temp.F
+o pkg/seaice:
    new S/R seaice_solve4temp.F: this is the merged version of Ian Fenty
    code (seaice_budget_ice_if.F) which enable to recover old standard
    code (seaice_budget_ice.F) when option USE_ORIGINAL_SBI is defined.
