@@ -25,5 +25,11 @@ C Defining SAFE_IO stops the model from overwriting its own files
 #define _OLD_STATUS 'old'
 #endif
 
+C I/O that includes tile halos in the files
+#undef ALLOW_WHIO
+#ifdef ALLOW_AUTODIFF_TAMC
+# define ALLOW_WHIO
+#endif
+
 #endif /* ALLOW_MDSIO */
 #endif /* MDSIO_OPTIONS_H */
