@@ -56,6 +56,8 @@ c     == routine arguments ==
       _RL     mytime
       integer mythid
 
+#ifndef ALLOW_AUTODIFF_WHTAPEIO
+
 c     == local variables ==
 
       integer bi,bj
@@ -358,6 +360,8 @@ c--     Print cost function for all tiles.
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
 #endif
+
+#endif /* ALLOW_AUTODIFF_WHTAPEIO */
 
 #endif
 

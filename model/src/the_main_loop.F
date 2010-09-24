@@ -171,8 +171,10 @@ CEOP
 c--   Initialize storage for the cost function evaluation.
 CADJ  INIT dummytape = common, 1
 c--   Initialize storage for the outermost loop.
+#ifndef ALLOW_AUTODIFF_WHTAPEIO
 CADJ  INIT tapelev_ini_bibj_k   = USER
 CADJ  INIT tapelev_init   = USER
+#endif
 c
 # if (defined (AUTODIFF_2_LEVEL_CHECKPOINT))
 CADJ  INIT tapelev2 = USER
