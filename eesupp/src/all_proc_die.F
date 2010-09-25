@@ -62,6 +62,9 @@ C     hang here since procs of other comp. are not calling MPI_finalize now.
      &        .OR. useNEST_PARENT
      &        .OR. useNEST_CHILD )
      &    ) THEN
+#ifdef ALLOW_OASIS
+         IF ( useOASIS ) CALL OASIS_ABORT
+#endif /* ALLOW_OASIS */        
          CALL MPI_FINALIZE  ( mpiRC )
          IF ( mpiRC .NE. MPI_SUCCESS ) THEN
           WRITE(msgBuf,'(A,I5)')

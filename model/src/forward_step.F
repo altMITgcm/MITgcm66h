@@ -303,6 +303,17 @@ C      Read in coupling data that I import.
          CALL TIMER_STOP ('CPL_EXPORT-IMPORT  [FORWARD_STEP]',myThid)
       ENDIF
 #endif /* COMPONENT_MODULE */
+#ifdef ALLOW_OASIS
+      IF ( useOASIS ) THEN
+       CALL TIMER_START('OASIS_PUT-GET  [FORWARD_STEP]',myThid)
+C      Post coupling data that I export.
+       CALL OASIS_PUT( myTime, myIter, myThid )
+C      Read in coupling data that I import.
+       CALL OASIS_GET( myTime, myIter, myThid )
+       CALL TIMER_STOP ('OASIS_PUT-GET  [FORWARD_STEP]',myThid)
+      ENDIF
+#endif /* ALLOW_OASIS */
+
 
 #ifdef ALLOW_EBM
       IF ( useEBM ) THEN

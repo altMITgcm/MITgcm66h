@@ -114,6 +114,8 @@ C       |-- REGRID_READPARMS
 C       |
 C       |-- LAYERS_READPARMS
 C       |
+C       |-- OASIS_READPARMS
+C       |
 C       |-- MYPACKAGE_READPARMS
 
 C     !USES:
@@ -332,6 +334,10 @@ C--    Initialize matrix package parameters
 #ifdef ALLOW_LAYERS
       IF ( useLayers ) CALL LAYERS_READPARMS( myThid )
 #endif /* ALLOW_LAYERS */
+
+#ifdef ALLOW_OASIS
+       IF (useOASIS) CALL OASIS_READPARMS ( myThid )
+#endif
 
 #ifdef ALLOW_MYPACKAGE
       IF (useMYPACKAGE) CALL MYPACKAGE_READPARMS( myThid )

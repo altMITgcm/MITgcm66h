@@ -336,6 +336,11 @@ C--   Initialise fixed array for Float pkg
       IF (useSALT_PLUME) CALL SALT_PLUME_INIT_FIXED(myThid)
 #endif
 
+#ifdef ALLOW_OASIS
+C--   needs to be called after the OASIS_INIT
+      IF (useOASIS) CALL OASIS_INIT_FIXED(myThid)
+#endif
+
 #ifdef ALLOW_MYPACKAGE
       IF (useMYPACKAGE) CALL MYPACKAGE_INIT_FIXED(myThid)
 #endif

@@ -347,6 +347,12 @@ C---  Continue with standard packages (with standard usePKG flag)
       IF (useMYPACKAGE) CALL PACKAGES_ERROR_MSG('MYPACKAGE',' ',myThid)
 #endif
 
+#ifdef ALLOW_OASIS
+      IF (useOASIS) CALL OASIS_CHECK( myThid )
+#else
+      IF (useOASIS) CALL PACKAGES_ERROR_MSG('OASIS',' ',myThid)
+#endif
+
 #ifdef ALLOW_ECCO
       CALL ECCO_CHECK( myThid )
 #endif

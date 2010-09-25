@@ -941,6 +941,7 @@ C Logical flags for selecting packages
       LOGICAL useMNC
       LOGICAL useRunClock
       LOGICAL useEMBED_FILES
+      LOGICAL useOASIS
       LOGICAL useMYPACKAGE
       COMMON /PARM_PACKAGES/
      &        useGAD, useOBCS, useSHAP_FILT, useZONAL_FILT,
@@ -954,6 +955,7 @@ C Logical flags for selecting packages
      &        useATM2D, useAIM, useLand, useFizhi, useGridAlt,
      &        useDiagnostics, useREGRID, useLayers, useMNC,
      &        useRunClock, useEMBED_FILES,
+     &        useOASIS,
      &        useMYPACKAGE
 CEH3 ;;; Local Variables: ***
 CEH3 ;;; mode:fortran ***
