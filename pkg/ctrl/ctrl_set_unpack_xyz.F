@@ -244,7 +244,7 @@ cph)
      &                       / sqrt(weightfld(k,bi,bj))
 # endif
                      else
-                        globfld3d(i,bi,ip,j,bj,jp,k) = delZnorm
+                        globfld3d(i,bi,ip,j,bj,jp,k) = 1/delZnorm
      &                       * globfld3d(i,bi,ip,j,bj,jp,k)
 # ifdef CTRL_UNPACK_PRECISE
      &                       * sqrt(weightfld3d(i,bi,ip,j,bj,jp,k))
