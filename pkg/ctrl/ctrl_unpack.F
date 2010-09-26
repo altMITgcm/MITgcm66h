@@ -312,11 +312,11 @@ cgg)  End OBCS mask check.
 
 #endif /* ndef ALLOW_ADMTLM */
 
-#  ifndef ALLOW_PACKUNPACK_LEGACY
+#ifdef ALLOW_PACKUNPACK_METHOD2
       ENDIF
       _END_MASTER( mythid )
       _BARRIER
-#  endif
+#endif
 
 c----------------------------------------------------------------------
 
@@ -726,7 +726,7 @@ CML# endif
 #endif
 
 
-#ifndef ALLOW_PACKUNPACK_LEGACY
+#ifdef ALLOW_PACKUNPACK_METHOD2
       _BEGIN_MASTER( mythid )
       IF ( myProcId .eq. 0 ) THEN
 #endif

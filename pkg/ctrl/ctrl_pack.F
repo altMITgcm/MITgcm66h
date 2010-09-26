@@ -223,7 +223,7 @@ C     place holder of obsolete variable jG
           write(cunit) (ncvargrd(i),   i=1,maxcvars)
           write(cunit)
 
-#ifndef ALLOW_PACKUNPACK_LEGACY
+#ifdef ALLOW_PACKUNPACK_METHOD2
       ENDIF
       _END_MASTER( mythid )
       _BARRIER
@@ -631,7 +631,7 @@ C     place holder of obsolete variable jG
      &         weighttype, wkapredi, lxxadxx, mythid)
 #endif
 
-#ifndef ALLOW_PACKUNPACK_LEGACY
+#ifdef ALLOW_PACKUNPACK_METHOD2
       _BEGIN_MASTER( mythid )
       IF ( myProcId .eq. 0 ) THEN
 #endif
