@@ -155,6 +155,9 @@ C     Use a constant freezing temperature (SEAICE_VARIABLE_FREEZING_POINT undef)
 #else /* USE_ORIGINAL_SBI */
       TB = celsius2K + SEAICE_freeze
 #endif /* USE_ORIGINAL_SBI */
+#ifdef SEAICE_VARIABLE_FREEZING_POINT
+      kSrf = 1
+#endif /* SEAICE_VARIABLE_FREEZING_POINT */
 
 C     SENSIBLE HEAT CONSTANT
       D1=SEAICE_sensHeat
