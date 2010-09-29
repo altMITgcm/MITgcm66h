@@ -334,7 +334,7 @@ cph)
           gvDissip(i,j)  = 0. _d 0
 #ifdef ALLOW_AUTODIFF_TAMC
           phiHydLow(i,j,bi,bj) = 0. _d 0
-# ifdef NONLIN_FRSURF
+# if (defined NONLIN_FRSURF) && (defined MOM_FLUXFORM)
 #  ifndef DISABLE_RSTAR_CODE
           dWtransC(i,j,bi,bj) = 0. _d 0
           dWtransU(i,j,bi,bj) = 0. _d 0
@@ -509,7 +509,7 @@ C--      Calculate accelerations in the momentum equations (gU, gV, ...)
 C        and step forward storing the result in gU, gV, etc...
          IF ( momStepping ) THEN
 #ifdef ALLOW_AUTODIFF_TAMC
-# ifdef NONLIN_FRSURF
+# if (defined NONLIN_FRSURF) && (defined MOM_FLUXFORM)
 #  ifndef DISABLE_RSTAR_CODE
 CADJ STORE dWtransC(:,:,bi,bj) 
 CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
