@@ -214,7 +214,7 @@ c--   == end of interface ==
 
 #ifdef ALLOW_AUTODIFF_TAMC
 c--   Initialize storage for the initialisations.
-#ifdef ALLOW_AUTODIFF_WHTAPEIO
+#ifndef ALLOW_AUTODIFF_WHTAPEIO
 CADJ INIT tapelev_ini_bibj_k   = USER
 #endif
 CADJ INIT tapelev_init = USER
