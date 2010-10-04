@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint62l (2010/10/04)
 o pkg/seaice:
   -fix the USE_ORIGINAL_SBI version (for variable freezing point);
   -use "celsius2K" in SEAICE_VARIABLE_FREEZING_POINT and in new
