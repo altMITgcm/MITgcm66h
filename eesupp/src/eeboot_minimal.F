@@ -114,7 +114,11 @@ cgms)
 #endif /* ALLOW_NEST_PARENT */
 
 #ifdef ALLOW_OASIS
-       CALL OASIS_INIT(MPI_COMM_MODEL)
+C      add a 1rst preliminary call EESET_PARAMS to set useOASIS
+C      (needed to decide either to call OASIS_INIT or not)
+       CALL EESET_PARMS
+       IF ( eeBootError ) GOTO 999
+       IF ( useOASIS ) CALL OASIS_INIT(MPI_COMM_MODEL)
 #endif /* ALLOW_OASIS */
 
 #ifdef COMPONENT_MODULE

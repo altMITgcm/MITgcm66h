@@ -86,7 +86,6 @@ c    &          useSMOOTH,
      &          useMNC,
      &          useRunClock,
      &          useEMBED_FILES,
-     &          useOASIS,
      &          useMYPACKAGE
 CEOP
 
@@ -145,7 +144,6 @@ c     useGAD          =.FALSE.
       useMNC          =.FALSE.
       useRunClock     =.FALSE.
       useEMBED_FILES  =.FALSE.
-      useOASIS        =.FALSE.
       useMYPACKAGE    =.FALSE.
 
 C--   Read parameters from open data file
