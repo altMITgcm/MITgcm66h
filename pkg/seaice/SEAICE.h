@@ -148,6 +148,13 @@ C     frWtrAtm contains freshwater flux from the atmosphere
       _RL TICES      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,MULTDIM,nSx,nSy)
 #endif
 
+#if (defined (SEAICE_CGRID) && defined (SEAICE_ALLOW_FREEDRIFT))
+      COMMON /SEAICE_FD_FIELDS/
+     &     uice_fd, vice_fd
+      _RL uice_fd   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL vice_fd   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+#endif
+
 #if (defined (SEAICE_CGRID) && defined (SEAICE_ALLOW_EVP))
 C
 C     additional fields needed by the EVP solver

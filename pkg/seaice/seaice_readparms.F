@@ -70,7 +70,7 @@ C--   SEAICE parameters
      & SEAICE_availHeatFrac, SEAICE_availHeatFracFrz,
      & AreaFile, HeffFile, HsnowFile, HsaltFile, IceAgeFile,
      & SOLV_MAX_ITERS, SOLV_NCHECK, NPSEUDOTIMESTEPS,
-     & LSR_ERROR, DIFF1, A22,
+     & LSR_ERROR, DIFF1, A22, SEAICEuseFREEDRIFT,
      & SEAICE_airTurnAngle, SEAICE_waterTurnAngle,
      & MAX_HEFF, MIN_ATEMP, MIN_LWDOWN, MAX_TICE, MIN_TICE,
      & SEAICE_EPS, SEAICE_EPS_SQ,
@@ -112,6 +112,7 @@ C--   set default sea ice parameters
 #else
       SEAICEuseDYNAMICS  = .FALSE.
 #endif
+      SEAICEuseFREEDRIFT = .FALSE.
       SEAICEuseTEM       = .FALSE.
       SEAICEuseMetricTerms = .TRUE.
       SEAICEuseEVPpickup = .TRUE.
@@ -328,6 +329,19 @@ C     yet been tried nor thought through.
      &      SEAICE_evpTauRelax = SEAICE_deltaTdyn*SEAICE_elasticParm
       ENDIF
 #endif /* SEAICE_ALLOW_EVP */
+C
+#ifdef SEAICE_ALLOW_FREEDRIFT
+#ifdef SEAICE_ALLOW_EVP
+      IF ( SEAICEuseFREEDRIFT ) SEAICEuseEVP = .FALSE.
+#endif
+      IF ( SEAICEuseFREEDRIFT ) THEN
+        WRITE(msgBuf,'(A,A)')
+     &       'WARNING FROM S/R SEAICE_READPARMS:',
+     &       ' switch seaice from LSR or EVP to "free drift"'
+      CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                    SQUEEZE_RIGHT , myThid)       
+      ENDIF
+#endif /* SEAICE_ALLOW_FREEDRIFT */
 
 C     Check the consitency of a few parameters
       IF ( SEAICE_availHeatFrac .NE. UNSET_RL .AND.
