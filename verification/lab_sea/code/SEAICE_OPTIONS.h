@@ -98,6 +98,9 @@ C--   When set use SEAICE_clipVelocties = .true., to clip U/VICE at 40cm/s,
 C--   not recommended, here enabled for backward compatibility
 #define SEAICE_ALLOW_CLIPVELS
 
+C     enable free drift code
+#define SEAICE_ALLOW_FREEDRIFT
+
 #endif /* SEAICE_OPTIONS_H */
 
 CEH3 ;;; Local Variables: ***

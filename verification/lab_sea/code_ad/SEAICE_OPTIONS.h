@@ -81,6 +81,9 @@ c--   Enable modified sea-ice thermodynamic by Ian Fenty
 c--   Should improve adjoint, but doesnt work so far.
 #undef SEAICE_ALLOW_TD_IF
 
+C     enable free drift code
+#define SEAICE_ALLOW_FREEDRIFT
+
 #endif /* SEAICE_OPTIONS_H */
 
 CEH3 ;;; Local Variables: ***
