@@ -375,6 +375,16 @@ C--   pkg/seaice requires pkg/exf with following CPP options/
 #endif /* SEAICE_TEST_ICE_STRESS_1 */
 #endif /* SEAICE_CGRID not defined */
 
+C--   SEAICE_ALLOW_FREEDRIFT and SEAICEuseFREEDRIFT
+#ifndef SEAICE_ALLOW_FREEDRIFT
+      IF (SEAICEuseFREEDRIFT) THEN
+         WRITE(msgBuf,'(A)')
+     &        'SEAICE_ALLOW_FREEDRIFT needed for SEAICEuseFREEDRIFT'
+         CALL PRINT_ERROR( msgBuf, myThid )
+         STOP 'ABNORMAL END: S/R SEAICE_CHECK'
+      ENDIF
+#endif
+
       _END_MASTER(myThid)
 
       RETURN
