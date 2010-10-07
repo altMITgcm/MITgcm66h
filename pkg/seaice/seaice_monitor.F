@@ -41,7 +41,9 @@ C     === Functions ====
 
 C     == Local variables ==
       CHARACTER*(MAX_LEN_MBUF) msgBuf
-      INTEGER i,j,bi,bj
+#ifdef ALLOW_MNC
+      INTEGER i
+#endif /* ALLOW_MNC */
       _RL dummyRL(6)
 
       IF ( DIFFERENT_MULTIPLE(SEAICE_monFreq,myTime,deltaTClock)
