@@ -1015,8 +1015,12 @@ else
     EXECUTABLE="mitgcmuv"
 fi
 
+xx=`echo $TESTDIRS | awk '{print $1}'`
 if test "x$TESTDIRS" = x ; then
     LIST=`scandirs results/$ref_outp`
+elif test $xx = 'start_from' ; then
+    xx=`echo $TESTDIRS | awk '{print $2}'`
+    LIST=`scandirs results/$ref_outp | sed -n "/$xx/,$ p"`
 else
     #- expand group of experiments:
     LIST=" "
