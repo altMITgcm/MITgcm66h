@@ -137,7 +137,12 @@ c
            tmpscal2= tmpscal1*sol_n*sol_n
            tmpscal3= mIceCor*sol_n
 c
-           sol_a=rhs_a-atan2(tmpscal3,tmpscal2)
+           tmpscal4=tmpscal2*tmpscal2 + tmpscal3*tmpscal3
+           if (tmpscal4.GT.0) then
+             sol_a=rhs_a-atan2(tmpscal3,tmpscal2)
+           else
+             sol_a=0. _d 0
+           endif
 
 c compute uice, vice at cell center:
 c ==================================
