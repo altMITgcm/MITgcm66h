@@ -780,6 +780,13 @@ C--     Calculate Downsloping Flow for Down_Slope parameterization
         ENDIF
 #endif /* ALLOW_DOWN_SLOPE */
 
+#ifdef ALLOW_MYPACKAGE
+        IF ( useMYPACKAGE ) THEN
+         CALL MYPACKAGE_CALC_RHS(
+     I        bi, bj, myTime, myIter, myThid )
+        ENDIF
+#endif /* ALLOW_MYPACKAGE */
+
 #ifndef ALLOW_AUTODIFF_TAMC
 C---  if fluid Is Water: end
         ENDIF
