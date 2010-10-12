@@ -129,17 +129,23 @@ C-------
 CADJ STORE icflxsw(:,:,bi,bj) = comlev1_bibj, key=iicekey, byte=isbyte
 #endif
 
+#ifdef ALLOW_DBUG_THSICE
        DO j = jMin, jMax
         DO i = iMin, iMax
          IF (iceMask(i,j,bi,bj).GT.0. _d 0) THEN
-#ifdef ALLOW_DBUG_THSICE
           IF ( dBug(i,j,bi,bj) ) THEN
            WRITE(6,'(A,2I4,2I2)') 'ThSI_STEP_T: i,j=',i,j,bi,bj
            WRITE(6,1010) 'ThSI_STEP_T: iceMask, hIc, hSn, Tsf  =',
      &                   iceMask(i,j,bi,bj), iceHeight(i,j,bi,bj),
      &                   snowHeight(i,j,bi,bj), Tsrf(i,j,bi,bj)
           ENDIF
+         ENDIF
+        ENDDO
+       ENDDO
 #endif
+       DO j = jMin, jMax
+        DO i = iMin, iMax
+         IF (iceMask(i,j,bi,bj).GT.0. _d 0) THEN
 C-      surface net SW flux:
           icFlxSW(i,j,bi,bj) = icFlxSW(i,j,bi,bj)
      &                       *(1. _d 0 - siceAlb(i,j,bi,bj))
