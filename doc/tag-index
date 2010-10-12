@@ -5,7 +5,11 @@ $Name$
     ==============================
 
 o pkg/thsice:
-   re-arrange calculation in THSICE_SOLVE4TEMP: move outside of i,j loops
+   - change a few routines for better vectorization: thsice_albedo.F,
+     thsice_step_temp.F, and in thsice_calc_thickn.F. Results are
+     not affected, but in particular the latter routine has changed
+     dramatically (not necessarily easier to read now).
+   - re-arrange calculation in THSICE_SOLVE4TEMP: move outside of i,j loops
    iteration loop and call to S/R THSICE_GET_BULKF & THSICE_GET_EXF.
 o verification/lab_sea:
   - overhaul of the forward model experiments. The main motivation
