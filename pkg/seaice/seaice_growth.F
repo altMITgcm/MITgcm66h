@@ -923,7 +923,7 @@ C =================================
            hDraft     = (HSNOW(I,J,bi,bj)*SEAICE_rhoSnow
      &              +HEFF(I,J,bi,bj)*SEAICE_rhoIce)/rhoConst
 cgf - use of 1000 instead of rhoConst (or rhoConstFresh?)
-           tmpscal1 = MAX( 0._d 0, hDraft - HEFF(I,J,bi,bj))
+           tmpscal1 = MAX( 0. _d 0, hDraft - HEFF(I,J,bi,bj))
            d_HEFFbyFLOODING(I,J)=tmpscal1
 c apply tendency
            HEFF(I,J,bi,bj) = HEFF(I,J,bi,bj)+d_HEFFbyFLOODING(I,J)
