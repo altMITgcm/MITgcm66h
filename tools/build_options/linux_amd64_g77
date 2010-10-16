@@ -24,6 +24,9 @@ else
 #   FFLAGS="$FFLAGS -g -mfpmath=sse -msse -msse2 -fbounds-check"
     FOPTIM='-O0'
 fi
+# for big objects:
+FFLAGS="$FFLAGS -fPIC"
+CFLAGS="-O0 -fPIC"
 
 if test -d /usr/include/netcdf-3 ; then
 #-- some FedoraCore standard location used to be "netcdf-3"
