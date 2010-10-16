@@ -99,7 +99,7 @@ C-------
       ENDDO
 
       CALL THSICE_SOLVE4TEMP(
-     I          bi, bj, siLo, siHi, sjLo, sjHi,
+     I          bi, bj,
      I          iMin,iMax, jMin,jMax, dBugFlag, .FALSE.,.FALSE.,
      I          iceMask(siLo,sjLo,bi,bj), iceHeight(siLo,sjLo,bi,bj),
      I          snowHeight(siLo,sjLo,bi,bj), tFrzOce, sFlx,

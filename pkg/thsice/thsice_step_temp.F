@@ -164,7 +164,7 @@ CADJ STORE tice2(:,:,bi,bj) = comlev1_bibj, key=iicekey, byte=isbyte
 CADJ STORE sheating(:,:,bi,bj) = comlev1_bibj, key=iicekey, byte=isbyte
 #endif
        CALL THSICE_SOLVE4TEMP(
-     I          bi, bj, siLo, siHi, sjLo, sjHi,
+     I          bi, bj,
      I          iMin,iMax, jMin,jMax, dBugFlag,
      I          useBulkForce, useEXF,
      I          iceMask(siLo,sjLo,bi,bj), iceHeight(siLo,sjLo,bi,bj),
