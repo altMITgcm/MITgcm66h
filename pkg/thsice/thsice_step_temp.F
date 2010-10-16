@@ -159,6 +159,9 @@ C-      surface net SW flux:
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE qice1(:,:,bi,bj) = comlev1_bibj, key=iicekey, byte=isbyte
 CADJ STORE qice2(:,:,bi,bj) = comlev1_bibj, key=iicekey, byte=isbyte
+CADJ STORE tice1(:,:,bi,bj) = comlev1_bibj, key=iicekey, byte=isbyte
+CADJ STORE tice2(:,:,bi,bj) = comlev1_bibj, key=iicekey, byte=isbyte
+CADJ STORE sheating(:,:,bi,bj) = comlev1_bibj, key=iicekey, byte=isbyte
 #endif
        CALL THSICE_SOLVE4TEMP(
      I          bi, bj, siLo, siHi, sjLo, sjHi,

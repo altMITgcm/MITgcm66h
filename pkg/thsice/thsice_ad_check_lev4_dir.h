@@ -18,3 +18,6 @@ CADJ STORE saltflux = tapelev4, key = ilev_4
 #ifdef ATMOSPHERIC_LOADING
 CADJ STORE siceload = tapelev4, key = ilev_4
 #endif
+
+CADJ STORE sheating = tapelev4, key = ilev_4
+CADJ STORE tice1,tice2 = tapelev4, key = ilev_4

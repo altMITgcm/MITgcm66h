@@ -13,8 +13,10 @@ CADJ STORE oceqnet = comlev1, key = ikey_dynamics
 CADJ STORE ocesflx = comlev1, key = ikey_dynamics
 CADJ STORE hOceMxL = comlev1, key = ikey_dynamics
 
-cphCADJ STORE Tice1   = comlev1, key = ikey_dynamics
-cphCADJ STORE Tice2   = comlev1, key = ikey_dynamics
+CADJ STORE Tice1   = comlev1, key = ikey_dynamics
+CADJ STORE Tice2   = comlev1, key = ikey_dynamics
+CADJ STORE sheating = comlev1, key = ikey_dynamics
+
 cphCADJ STORE snowPrc  = comlev1, key = ikey_dynamics
 cphCADJ STORE siceAlb  = comlev1, key = ikey_dynamics
 cphCADJ STORE tOceMxL = comlev1, key = ikey_dynamics
