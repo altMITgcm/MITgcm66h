@@ -2,6 +2,12 @@ C $Header$
 C $Name$
 
 C----------------------------------------
+C subroutine  the_main_loop
+C----------------------------------------
+CADJ SUBROUTINE the_main_loop  ADNAME = adthe_main_loop
+CADJ SUBROUTINE the_main_loop FTLNAME = g_the_main_loop
+
+C----------------------------------------
 C subroutine  calc_oce_mxlayer
 C----------------------------------------
 CADJ SUBROUTINE calc_oce_mxlayer  INPUT  = 1,2,3,4,5,6,7

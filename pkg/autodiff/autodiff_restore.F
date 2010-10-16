@@ -218,24 +218,26 @@ C-      2D arrays
           precip1(I,J,bi,bj)         = StoreEXF2(I,J,bi,bj,6)
           lwflux0(I,J,bi,bj)         = StoreEXF2(I,J,bi,bj,7) 
           lwflux1(I,J,bi,bj)         = StoreEXF2(I,J,bi,bj,8)
+          snowprecip0(I,J,bi,bj)     = StoreEXF2(I,J,bi,bj,9)
+          snowprecip1(I,J,bi,bj)     = StoreEXF2(I,J,bi,bj,10)
 #   ifdef EXF_READ_EVAP
-          evap0(I,J,bi,bj)           = StoreEXF2(I,J,bi,bj,9)
-          evap1(I,J,bi,bj)           = StoreEXF2(I,J,bi,bj,10)
+          evap0(I,J,bi,bj)           = StoreEXF2(I,J,bi,bj,11)
+          evap1(I,J,bi,bj)           = StoreEXF2(I,J,bi,bj,12)
 #   else
-          evap(I,J,bi,bj)            = StoreEXF2(I,J,bi,bj,9)
+          evap(I,J,bi,bj)            = StoreEXF2(I,J,bi,bj,11)
 #   endif /* EXF_READ_EVAP */
 #   ifdef ALLOW_DOWNWARD_RADIATION
-          swdown0(I,J,bi,bj)         = StoreEXF2(I,J,bi,bj,11)
-          swdown1(I,J,bi,bj)         = StoreEXF2(I,J,bi,bj,12)
-          lwdown0(I,J,bi,bj)         = StoreEXF2(I,J,bi,bj,13)
-          lwdown1(I,J,bi,bj)         = StoreEXF2(I,J,bi,bj,14)
+          swdown0(I,J,bi,bj)         = StoreEXF2(I,J,bi,bj,13)
+          swdown1(I,J,bi,bj)         = StoreEXF2(I,J,bi,bj,14)
+          lwdown0(I,J,bi,bj)         = StoreEXF2(I,J,bi,bj,15)
+          lwdown1(I,J,bi,bj)         = StoreEXF2(I,J,bi,bj,16)
 #   endif
 #  endif /* ALLOW_ATM_TEMP */
 #  ifdef ALLOW_ATM_WIND
-          uwind0(I,J,bi,bj)          = StoreEXF2(I,J,bi,bj,15)
-          uwind1(I,J,bi,bj)          = StoreEXF2(I,J,bi,bj,16)
-          vwind0(I,J,bi,bj)          = StoreEXF2(I,J,bi,bj,17)
-          vwind1(I,J,bi,bj)          = StoreEXF2(I,J,bi,bj,18)
+          uwind0(I,J,bi,bj)          = StoreEXF2(I,J,bi,bj,17)
+          uwind1(I,J,bi,bj)          = StoreEXF2(I,J,bi,bj,18)
+          vwind0(I,J,bi,bj)          = StoreEXF2(I,J,bi,bj,19)
+          vwind1(I,J,bi,bj)          = StoreEXF2(I,J,bi,bj,20)
 #  endif  /* ALLOW_ATM_WIND */
          enddo
         enddo

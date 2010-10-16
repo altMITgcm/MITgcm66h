@@ -16,7 +16,7 @@ C $Name$
 #endif
       PARAMETER (NDV2D  = 23)
       PARAMETER (NEXF1  = 21)
-      PARAMETER (NEXF2  = 18)
+      PARAMETER (NEXF2  = 20)
       PARAMETER (NCTRL1 = 18)
       PARAMETER (NOB = 18)
       PARAMETER (NSI = 19)

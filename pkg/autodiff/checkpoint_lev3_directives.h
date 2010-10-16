@@ -96,6 +96,7 @@ CADJ STORE hfacw         = tapelev3, key = ilev_3
 CADJ STORE recip_hfacc   = tapelev3, key = ilev_3
 CADJ STORE recip_hfacs   = tapelev3, key = ilev_3
 CADJ STORE recip_hfacw   = tapelev3, key = ilev_3
+CADJ STORE phi0surf      = tapelev3, key = ilev_3
 # ifndef DISABLE_RSTAR_CODE
 CADJ STORE rstarexpc,rstarexps,rstarexpw 
 CADJ &     = tapelev3, key = ilev_3

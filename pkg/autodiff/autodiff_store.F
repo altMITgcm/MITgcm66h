@@ -244,35 +244,37 @@ C-      2D arrays
           StoreEXF2(I,J,bi,bj,6) = precip1(I,J,bi,bj)
           StoreEXF2(I,J,bi,bj,7) = lwflux0(I,J,bi,bj)
           StoreEXF2(I,J,bi,bj,8) = lwflux1(I,J,bi,bj)
+          StoreEXF2(I,J,bi,bj,9)  = snowprecip0(I,J,bi,bj)
+          StoreEXF2(I,J,bi,bj,10) = snowprecip1(I,J,bi,bj)
 #   ifdef EXF_READ_EVAP
-          StoreEXF2(I,J,bi,bj,9) = evap0(I,J,bi,bj)
-          StoreEXF2(I,J,bi,bj,10) = evap1(I,J,bi,bj)
+          StoreEXF2(I,J,bi,bj,11) = evap0(I,J,bi,bj)
+          StoreEXF2(I,J,bi,bj,12) = evap1(I,J,bi,bj)
 #   else
-          StoreEXF2(I,J,bi,bj,9) = evap(I,J,bi,bj)
-          StoreEXF2(I,J,bi,bj,10) = 0.0
+          StoreEXF2(I,J,bi,bj,11) = evap(I,J,bi,bj)
+          StoreEXF2(I,J,bi,bj,12) = 0.0
 #   endif /* EXF_READ_EVAP */
 #   ifdef ALLOW_DOWNWARD_RADIATION
-          StoreEXF2(I,J,bi,bj,11) = swdown0(I,J,bi,bj)
-          StoreEXF2(I,J,bi,bj,12) = swdown1(I,J,bi,bj)
-          StoreEXF2(I,J,bi,bj,13) = lwdown0(I,J,bi,bj)
-          StoreEXF2(I,J,bi,bj,14) = lwdown1(I,J,bi,bj)
+          StoreEXF2(I,J,bi,bj,13) = swdown0(I,J,bi,bj)
+          StoreEXF2(I,J,bi,bj,14) = swdown1(I,J,bi,bj)
+          StoreEXF2(I,J,bi,bj,15) = lwdown0(I,J,bi,bj)
+          StoreEXF2(I,J,bi,bj,16) = lwdown1(I,J,bi,bj)
 #   else
-          StoreEXF2(I,J,bi,bj,11) = 0.0
-          StoreEXF2(I,J,bi,bj,12) = 0.0
           StoreEXF2(I,J,bi,bj,13) = 0.0
           StoreEXF2(I,J,bi,bj,14) = 0.0
+          StoreEXF2(I,J,bi,bj,15) = 0.0
+          StoreEXF2(I,J,bi,bj,16) = 0.0
 #   endif
 #  endif /* ALLOW_ATM_TEMP */
 #  ifdef ALLOW_ATM_WIND
-          StoreEXF2(I,J,bi,bj,15) = uwind0(I,J,bi,bj)
-          StoreEXF2(I,J,bi,bj,16) = uwind1(I,J,bi,bj)
-          StoreEXF2(I,J,bi,bj,17) = vwind0(I,J,bi,bj)
-          StoreEXF2(I,J,bi,bj,18) = vwind1(I,J,bi,bj)
+          StoreEXF2(I,J,bi,bj,17) = uwind0(I,J,bi,bj)
+          StoreEXF2(I,J,bi,bj,18) = uwind1(I,J,bi,bj)
+          StoreEXF2(I,J,bi,bj,19) = vwind0(I,J,bi,bj)
+          StoreEXF2(I,J,bi,bj,20) = vwind1(I,J,bi,bj)
 #  else /* ALLOW_ATM_WIND undef */
-          StoreEXF2(I,J,bi,bj,15) = 0.0
-          StoreEXF2(I,J,bi,bj,16) = 0.0
           StoreEXF2(I,J,bi,bj,17) = 0.0
           StoreEXF2(I,J,bi,bj,18) = 0.0
+          StoreEXF2(I,J,bi,bj,19) = 0.0
+          StoreEXF2(I,J,bi,bj,20) = 0.0
 #  endif  /* ALLOW_ATM_WIND */
          enddo
         enddo
