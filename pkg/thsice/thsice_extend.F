@@ -29,10 +29,10 @@ C     !USES:
 
 C     == Global variables ==
 #include "EEPARAMS.h"
+#include "SIZE.h"
 #include "THSICE_SIZE.h"
 #include "THSICE_PARAMS.h"
 #ifdef ALLOW_AUTODIFF_TAMC
-# include "SIZE.h"
 # include "tamc.h"
 # include "tamc_keys.h"
 #endif
