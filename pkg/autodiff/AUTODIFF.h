@@ -17,7 +17,7 @@ C $Name$
       PARAMETER (NDV2D  = 23)
       PARAMETER (NEXF1  = 21)
       PARAMETER (NEXF2  = 20)
-      PARAMETER (NCTRL1 = 18)
+      PARAMETER (NCTRL1 = 20)
       PARAMETER (NOB = 18)
       PARAMETER (NSI = 19)
       _RL StoreDynVars3D
