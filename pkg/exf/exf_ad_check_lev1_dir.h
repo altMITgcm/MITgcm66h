@@ -31,6 +31,8 @@ CADJ STORE lwflux0   = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE lwflux1   = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE swflux0   = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE swflux1   = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE snowprecip0   = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE snowprecip1   = comlev1, key=ikey_dynamics, kind=isbyte
 #  ifdef EXF_READ_EVAP
 CADJ STORE evap0     = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE evap1     = comlev1, key=ikey_dynamics, kind=isbyte
@@ -92,10 +94,6 @@ CADJ STORE siceload      = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE runoff0   = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE runoff1   = comlev1, key=ikey_dynamics, kind=isbyte
 # endif
-# ifdef ALLOW_THSICE
-CADJ STORE snowprecip0   = comlev1, key=ikey_dynamics, kind=isbyte
-CADJ STORE snowprecip1   = comlev1, key=ikey_dynamics, kind=isbyte
-#endif
 
 # ifdef ALLOW_HFLUX_CONTROL
 CADJ STORE xx_hflux0     = comlev1, key=ikey_dynamics, kind=isbyte
