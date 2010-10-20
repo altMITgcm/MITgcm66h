@@ -74,9 +74,9 @@ cgf the choices of smooth2Dtype and smooth2Dsize need comments...
       _EXCH_XY_RL ( smooth2D_Kux , myThid )
       _EXCH_XY_RL ( smooth2D_Kvy , myThid )
 
-            WRITE(standardMessageUnit,'(A,2I4,/,2f5.2)')
+            WRITE(standardMessageUnit,'(A,I4,2f12.0)')
      & 'smooth 2D default parameters: ',
-     & smooth2Dnbt(smoothOpNb),smooth2DtotTime,
+     & smooth2Dnbt(smoothOpNb),
      & smooth2D_Lx0(smoothOpNb),smooth2D_Ly0(smoothOpNb)
 
 c write diffusion operator to file

@@ -59,16 +59,16 @@ c--     Set default values.
       DO smoothOpNb=1,smoothOpNbMax
 
       smooth2Dnbt(smoothOpNb)=0
-      smooth2D_Lx0(smoothOpNb)=0.
-      smooth2D_Ly0(smoothOpNb)=0.
+      smooth2D_Lx0(smoothOpNb)=0. _d 0
+      smooth2D_Ly0(smoothOpNb)=0. _d 0
       smooth2Dtype(smoothOpNb)=0
       smooth2Dsize(smoothOpNb)=0
       smooth2Dfilter(smoothOpNb)=0
 
       smooth3Dnbt(smoothOpNb)=0
-      smooth3D_Lx0(smoothOpNb)=0.
-      smooth3D_Ly0(smoothOpNb)=0.
-      smooth3D_Lz0(smoothOpNb)=0.
+      smooth3D_Lx0(smoothOpNb)=0. _d 0
+      smooth3D_Ly0(smoothOpNb)=0. _d 0
+      smooth3D_Lz0(smoothOpNb)=0. _d 0
       smooth3DtypeH(smoothOpNb)=0
       smooth3DsizeH(smoothOpNb)=0
       smooth3DtypeZ(smoothOpNb)=0
