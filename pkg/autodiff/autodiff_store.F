@@ -9,6 +9,11 @@ C $Name$
 #ifdef ALLOW_SEAICE
 # include "SEAICE_OPTIONS.h"
 #endif
+#ifdef ALLOW_ECCO_EVOLUTION
+#ifdef ALLOW_EXF
+# include "EXF_OPTIONS.h"
+#endif
+#endif
 
       subroutine autodiff_store( mythid )
 

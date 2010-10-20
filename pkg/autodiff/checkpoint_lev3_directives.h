@@ -117,6 +117,10 @@ CADJ &     = tapelev3, key = ilev_3
 # include "ggl90_ad_check_lev3_dir.h"
 #endif
 
+#ifdef ALLOW_ECCO
+# include "ecco_ad_check_lev3_dir.h"
+#endif
+
 #ifdef ALLOW_EXF
 # include "exf_ad_check_lev3_dir.h"
 #endif /* ALLOW_EXF */
