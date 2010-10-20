@@ -166,6 +166,10 @@ C--   packages with hard-coded switch
       useCAL = .TRUE.
 #endif
 
+#ifdef ALLOW_ECCO
+      useCAL = .TRUE.
+#endif
+
 #ifdef ALLOW_SMOOTH
       useSMOOTH = .TRUE.
 #endif
