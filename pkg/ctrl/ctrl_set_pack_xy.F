@@ -419,6 +419,7 @@ c-- 2.2: normalize field if needed
             else
                fld2dNodim(i,j,bi,bj) =
      &              fld2dDim(i,j,bi,bj) * forcingPrecond
+            endif
 #else
 # ifndef ALLOW_NONDIMENSIONAL_CONTROL_IO
             fld2dNodim(i,j,bi,bj) = fld2dDim(i,j,bi,bj)
