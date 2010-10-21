@@ -380,7 +380,8 @@ C     !-----------------------------------------------------------------
 C     for no currents:
           ustar = 5. _d -2
 C frictional velocity between ice and water
-          ustar = SQRT(0.00536 _d 0*v2oc(i,j))
+          IF (v2oc(i,j) .NE. 0.)
+     &     ustar = SQRT(0.00536 _d 0*v2oc(i,j))
           ustar=max(5. _d -3,ustar)
           cpchr =cpWater*rhosw*bMeltCoef
           Fbot(i,j) = cpchr*(tFrz(i,j)-tOce(i,j))*ustar
