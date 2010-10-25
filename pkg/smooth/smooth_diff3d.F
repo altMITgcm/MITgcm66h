@@ -147,9 +147,11 @@ c time stepping:
         DO k=1,Nr
          DO j=1-OLy,sNy+OLy
           DO i=1-OLx,sNx+OLx
+      if (maskc(i,j,k,bi,bj).NE.0.) then
            fld_in(i,j,k,bi,bj)=fld_in(i,j,k,bi,bj)
      &            +smooth3DdelTime*gT_in(i,j,k,bi,bj)
            gT_in(i,j,k,bi,bj)=0
+      endif
           ENDDO
          ENDDO
         ENDDO
