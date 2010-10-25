@@ -5,7 +5,8 @@ $Name$
     ==============================
 
 o pkg/obcs:
-   writing sections with globalFiles=T does not work: add a STOP for this case.
+   writing sections with globalFiles=T does not work: switch to tiled-files
+   when writing sections for OBCS (change pkg/rw/write_rec.F accordingly).
 
 checkpoint62m (2010/10/21)
 o pkg/seaice: vectorize seaice_solve4temp.F
