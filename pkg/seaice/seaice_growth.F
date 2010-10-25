@@ -768,6 +768,12 @@ cgf rain to snow is not a surface process.
 C compute snow melt due to heat available from ocean.
 C =================================================================
 
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE r_QbyOCN(:,:) = comlev1_bibj,
+CADJ &                       key = iicekey, byte = isbyte
+CADJ STORE HSNOW(:,:,bi,bj) = comlev1_bibj,
+CADJ &                       key = iicekey, byte = isbyte
+#endif
 cgf do we need to keep this comment and cpp bracket?
 c
 cph( very sensitive bit here by JZ
