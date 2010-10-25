@@ -80,19 +80,12 @@ C-----
      &   '** WARNING ** INI_MODEL_IO: globalFiles=TRUE is not safe',
      &   ' in Multi-processors (MPI) run'
         CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
-     &                      SQUEEZE_RIGHT , myThid)
+     &                      SQUEEZE_RIGHT, myThid )
         WRITE(msgBuf,'(2A)') '** WARNING ** INI_MODEL_IO:',
      &   ' use instead "useSingleCpuIO=.TRUE."'
         CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
-     &                      SQUEEZE_RIGHT , myThid)
+     &                      SQUEEZE_RIGHT, myThid )
         _END_MASTER( myThid )
-      ENDIF
-      IF ( useOBCS .AND. globalFiles ) THEN
-        WRITE(msgBuf,'(2A)')
-     &   'INI_MODEL_IO: cannot use globalFiles=T',
-     &   ' to write Sections (for OBCS)'
-        CALL PRINT_ERROR( msgBuf , myThid)
-        STOP 'ABNORMAL END: S/R INI_MODEL_IO'
       ENDIF
 
 C-    Check size of IO buffers:
@@ -164,6 +157,16 @@ C     Set globalFiles flag for READ_WRITE_FLD package
       CALL SET_WRITE_GLOBAL_FLD( globalFiles )
 C     Set globalFiles flag for READ_WRITE_REC package
       CALL SET_WRITE_GLOBAL_REC( globalFiles )
+C     Set globalFiles flag for READ_WRITE_SEC package
+      IF ( useOBCS .AND. globalFiles ) THEN
+        WRITE(msgBuf,'(2A)') '** WARNING ** INI_MODEL_IO:',
+     &   ' use tiled-files to write sections (for OBCS)'
+        CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                      SQUEEZE_RIGHT, myThid )
+        CALL SET_WRITE_GLOBAL_SEC( .FALSE. )
+      ELSE
+        CALL SET_WRITE_GLOBAL_SEC( globalFiles )
+      ENDIF
 C     Set globalFiles flag for READ_WRITE_PICKUP
       CALL SET_WRITE_GLOBAL_PICKUP( globalFiles )
 
