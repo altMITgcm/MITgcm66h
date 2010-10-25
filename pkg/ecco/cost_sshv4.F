@@ -611,7 +611,7 @@ cgf =======================================================
       ndaysave=35
       ndaysaveRL=ndaysave
 
-      do irec = 1, ndaysrec-ndaysave+1
+      do irec = 1, ndaysrec-ndaysave+1, 7
 
        do bj = jtlo,jthi
         do bi = itlo,ithi

@@ -29,7 +29,18 @@ c     == routine arguments ==
       _RL     mytime
 
 #ifdef ALLOW_ECCO_EVOLUTION
-      
+
+#ifdef ALLOW_AUTODIFF_TAMC
+# ifdef ALLOW_SSH_COST_CONTRIBUTION
+#  ifdef ALLOW_PROFILES
+#   include "profiles.h"
+#  endif
+# endif
+# ifdef ALLOW_MEAN_HFLUX_COST_CONTRIBUTION
+#  include "ecco_cost.h"
+# endif
+#endif
+
 #ifdef ALLOW_COST_ATLANTIC
 c--   Compute meridional heat transport
 #ifndef DISABLE_DEBUGMODE
