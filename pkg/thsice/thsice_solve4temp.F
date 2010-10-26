@@ -342,6 +342,7 @@ CADJ STORE tsf(:,:)      = comlev1_bibj,key=iicekey,byte=isbyte
 C--   Get surface fluxes over melting surface
 #ifdef ALLOW_AUTODIFF_TAMC
       IF ( useBlkFlx ) THEN
+CADJ STORE tsf(:,:)      = comlev1_bibj,key=iicekey,byte=isbyte
 #else
       IF ( useBlkFlx .AND. iterate4Tsf  ) THEN
 #endif

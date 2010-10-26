@@ -286,6 +286,7 @@ C   and b) the overlap of myTile are not cube-face Edges
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE iceFld(:,:) = comlev1_thsice_4, key=ikey_4, byte=isbyte
 CADJ STORE iceVol(:,:) = comlev1_thsice_4, key=ikey_4, byte=isbyte
+CADJ STORE af(:,:)     = comlev1_thsice_4, key=ikey_4, byte=isbyte
 #endif
         IF ( .NOT.overlapOnly .OR. N_edge .OR. S_edge ) THEN
 
@@ -500,6 +501,7 @@ C   and b) the overlap of myTile are not cube-face edges
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE iceFld(:,:) = comlev1_thsice_4, key=ikey_4, byte=isbyte
 CADJ STORE iceVol(:,:) = comlev1_thsice_4, key=ikey_4, byte=isbyte
+CADJ STORE af(:,:)     = comlev1_thsice_4, key=ikey_4, byte=isbyte
 #endif
         IF ( .NOT.overlapOnly .OR. E_edge .OR. W_edge ) THEN
 
