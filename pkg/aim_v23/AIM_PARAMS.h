@@ -91,6 +91,11 @@ C     aim_tendFreq :: Frequency^-1 for tendencies output (s)
       _RL aim_diagFreq
       _RL aim_tendFreq
 
+C--   COMMON /INSOLATION/
+C      OBLIQ  :: Obliquity (in degree) used with ALLOW_INSOLATION
+      COMMON /INSOLATION/ OBLIQ
+      _RL OBLIQ
+
 #endif /* ALLOW_AIM */ 
 
 CEH3 ;;; Local Variables: ***
