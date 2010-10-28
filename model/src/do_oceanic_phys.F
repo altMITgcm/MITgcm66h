@@ -196,7 +196,7 @@ CADJ &     kind = isbyte
 cph# endif
 CADJ STORE uvel,vvel           = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
-#  ifdef ALLOW_CGRID
+#  ifdef SEAICE_CGRID
 CADJ STORE stressdivergencex   = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
 CADJ STORE stressdivergencey   = comlev1, key = ikey_dynamics,

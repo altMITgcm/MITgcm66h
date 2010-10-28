@@ -47,6 +47,12 @@ CADJ &     kind = isbyte
 cph the following are frequently needed, e.g. with seaice
 CADJ STORE detahdt            = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
+cph-test(
+CADJ STORE etahs,etahw        = comlev1, key = ikey_dynamics,
+CADJ &     kind = isbyte
+CADJ STORE detasdt,detawdt    = comlev1, key = ikey_dynamics,
+CADJ &     kind = isbyte
+cph-test)
 CADJ STORE gs,gt              = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
 # ifndef ALLOW_ADAMSBASHFORTH_3

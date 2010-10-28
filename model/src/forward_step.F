@@ -621,6 +621,10 @@ CADJ STORE recip_hFacW    = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
 CADJ STORE etaN           = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
+cph-test(
+CADJ STORE detasdt,detawdt = comlev1, key = ikey_dynamics,
+CADJ &     kind = isbyte
+cph-test)
 c
 #  ifndef DISABLE_RSTAR_CODE
 CADJ STORE rstarFacC    = comlev1, key = ikey_dynamics,
