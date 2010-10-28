@@ -97,10 +97,6 @@ CADJ STORE recip_hfacc   = tapelev2, key = ilev_2
 CADJ STORE recip_hfacs   = tapelev2, key = ilev_2
 CADJ STORE recip_hfacw   = tapelev2, key = ilev_2
 CADJ STORE phi0surf      = tapelev2, key = ilev_2
-cph-test(
-CADJ STORE etahs,etahw     = tapelev2, key = ilev_2
-CADJ STORE detasdt,detawdt = tapelev2, key = ilev_2
-cph-test)
 
 # ifndef DISABLE_RSTAR_CODE
 CADJ STORE rstarexpc,rstarexps,rstarexpw 
