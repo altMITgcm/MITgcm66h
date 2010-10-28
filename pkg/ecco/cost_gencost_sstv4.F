@@ -299,9 +299,9 @@ cgf =======================================================
       do irec = 1, ndaysrec
 
 c get modeled sst:
-        call active_read_xy( fname, psbar, irec, doglobalread,
+        call active_read_xy( fname, sstbar, irec, doglobalread,
      &                       ladinit, optimcycle, mythid,
-     &                       xx_psbar_mean_dummy )
+     &                       xx_sstbar_mean_dummy )
 
 c get observed sst:
              daytime = FLOAT(secondsperday*(irec-1))
