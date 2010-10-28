@@ -4,7 +4,7 @@ C $Name$
 c pkg/smooth constants
 
       integer     smoothprec
-      parameter ( smoothprec = 64 )
+      parameter ( smoothprec = 32 )
 
       logical smooth3DdoImpldiff
       parameter ( smooth3DdoImpldiff = .TRUE. )
