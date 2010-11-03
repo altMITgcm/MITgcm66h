@@ -855,7 +855,7 @@ OADM=
 # list of pTracers to check for monitor output
 PTRACERS_NUM="1 2 3 4 5"
 
-MATCH_CRIT=13
+MATCH_CRIT=10
 
 printf "parsing options...  "
 
