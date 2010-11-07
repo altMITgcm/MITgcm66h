@@ -716,9 +716,9 @@ CADJ STORE kappaRTr(:,:,:)    = comlev1_bibj_k, key=kkey, byte=isbyte
 
 #ifdef   ALLOW_OBCS
 C--      Apply open boundary conditions
-         IF (useOBCS) THEN
-           CALL OBCS_APPLY_TS( bi, bj, k, gT, gS, myThid )
-         END IF
+c        IF (useOBCS) THEN
+c          CALL OBCS_APPLY_TS( bi, bj, k, gT, gS, myThid )
+c        END IF
 #endif   /* ALLOW_OBCS */
 
 C--      Freeze water
@@ -901,13 +901,15 @@ C--     Vertical advection/diffusion (implicit) for passive tracers
 
 #ifdef   ALLOW_OBCS
 C--      Apply open boundary conditions
-        IF ( ( implicitDiffusion
-     &    .OR. tempImplVertAdv
-     &    .OR. saltImplVertAdv
-     &       ) .AND. useOBCS     ) THEN
-           DO K=1,Nr
-             CALL OBCS_APPLY_TS( bi, bj, k, gT, gS, myThid )
-           ENDDO
+c       IF ( ( implicitDiffusion
+c    &    .OR. tempImplVertAdv
+c    &    .OR. saltImplVertAdv
+c    &       ) .AND. useOBCS     ) THEN
+c          DO K=1,Nr
+c            CALL OBCS_APPLY_TS( bi, bj, k, gT, gS, myThid )
+c          ENDDO
+        IF ( useOBCS ) THEN
+           CALL OBCS_APPLY_TS( bi, bj, 0, gT, gS, myThid )
         ENDIF
 #endif   /* ALLOW_OBCS */
 
