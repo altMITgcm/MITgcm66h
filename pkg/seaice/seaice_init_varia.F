@@ -411,6 +411,30 @@ C--   Read initial sea ice age from file if available.
 
       ENDIF
 
+C--   In case we use scheme with a large stencil that extends into overlap:
+#ifdef ALLOW_OBCS
+      IF ( useOBCS ) THEN
+        DO bj=myByLo(myThid),myByHi(myThid)
+         DO bi=myBxLo(myThid),myBxHi(myThid)
+           CALL OBCS_COPY_TRACER( HEFF(1-Olx,1-Oly,bi,bj),
+     I                            1, bi, bj, myThid )
+           CALL OBCS_COPY_TRACER( AREA(1-Olx,1-Oly,bi,bj),
+     I                            1, bi, bj, myThid )
+           CALL OBCS_COPY_TRACER( HSNOW(1-Olx,1-Oly,bi,bj),
+     I                            1, bi, bj, myThid )
+#ifdef SEAICE_SALINITY
+           CALL OBCS_COPY_TRACER( HSALT(1-Olx,1-Oly,bi,bj),
+     I                            1, bi, bj, myThid )
+#endif
+#ifdef SEAICE_AGE
+           CALL OBCS_COPY_TRACER( ICEAGE(1-Olx,1-Oly,bi,bj),
+     I                            1, bi, bj, myThid )
+#endif
+         ENDDO
+        ENDDO
+      ENDIF
+#endif /* ALLOW_OBCS */
+
 C---  Complete initialization
       PSTAR = SEAICE_strength
       DO bj=myByLo(myThid),myByHi(myThid)
