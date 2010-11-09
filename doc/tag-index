@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint62n (2010/11/09)
 o pkg/seaice:
     fix masking in free-drift S/R ; update results of exp. lab_sea.fd
 o pkg/obcs:
