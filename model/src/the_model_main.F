@@ -530,7 +530,8 @@ c
 # ifndef EXCLUDE_CTRL_PACK
          inquire( file='costfinal', exist=exst )
          IF ( .NOT. exst ) THEN
-            IF ( optimcycle.NE.0 .AND. doMainUnpack ) THEN
+            IF ( (optimcycle.NE.0 .OR. .NOT.doinitxx)
+     &           .AND. doMainUnpack ) THEN
                CALL TIMER_START('CTRL_UNPACK   [THE_MODEL_MAIN]',mythid)
                CALL CTRL_UNPACK( .TRUE. , mythid )
                CALL TIMER_STOP ('CTRL_UNPACK   [THE_MODEL_MAIN]',mythid)

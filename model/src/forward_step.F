@@ -231,17 +231,6 @@ C--   State-variables diagnostics
       ENDIF
 #endif /* ALLOW_NEST_PARENT */
 
-#ifdef ALLOW_ECCO
-#ifdef ALLOW_DEBUG
-      IF ( debugLevel .GE. debLevB )
-     &    CALL DEBUG_CALL('cost_averagesfields',myThid)
-#endif
-c--     Accumulate time averages of temperature, salinity
-      CALL TIMER_START('COST_AVERAGESFIELDS [FORWARD_STEP]',mythid)
-      CALL COST_AVERAGESFIELDS( mytime, mythid )
-      CALL TIMER_STOP ('COST_AVERAGESFIELDS [FORWARD_STEP]',mythid)
-#endif /* ALLOW_ECCO */
-
 #ifdef ALLOW_PROFILES
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_CALL('',myThid)
