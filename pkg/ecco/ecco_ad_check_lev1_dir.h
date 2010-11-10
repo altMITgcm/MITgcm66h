@@ -4,7 +4,7 @@ c
 c     store directives for checkpoint level 1
 c
 
-#ifdef ALLOW_ECCO_EVOLUTION
+#ifdef ALLOW_ECCO_BARSTORES
 
 #ifdef ALLOW_ECCO
 
