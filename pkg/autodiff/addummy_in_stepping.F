@@ -175,6 +175,12 @@ C--     Read IO error counter
 #endif
         endif
 
+#ifdef ALLOW_GGL90
+c        CALL WRITE_FLD_XYZ_RL ( 'ADJggl90diffkr.',suff, adggl90diffkr,
+c     &       myIter, myThid)
+        CALL WRITE_FLD_XYZ_RL ( 'ADJggl90tke.',suff, adggl90tke,
+     &       myIter, myThid)
+#endif
 #ifdef ALLOW_DIFFKR_CONTROL
         CALL WRITE_FLD_XYZ_RL ( 'ADJdiffkr.',suff, addiffkr,
      &       myIter, myThid)

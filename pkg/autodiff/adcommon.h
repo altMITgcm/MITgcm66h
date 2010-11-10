@@ -177,6 +177,13 @@ C--   heimbach@mit.edu 11-Jan-2001
      &     adarea, adheff, adhsnow, aduice, advice
 #endif
 
+#ifdef ALLOW_GGL90
+      _RL adggl90tke     (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+      _RL adggl90diffkr  (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+      common /adggl90_fields/
+     &     adggl90tke, adggl90diffkr
+#endif
+
 #ifdef ALLOW_DEPTH_CONTROL
       _RL adr_low_control(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL adhfacc(1-olx:snx+olx,1-oly:sny+oly,1:nr,nsx,nsy)
