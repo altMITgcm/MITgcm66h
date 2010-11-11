@@ -516,12 +516,16 @@ c     xx_tauv1 - meridional wind stress record after  current date.
       _RL xx_evap1 (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 #endif
 #if (defined  (ALLOW_SNOWPRECIP_CONTROL))
-      _RL xx_snowprecip0 (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
-      _RL xx_snowprecip1 (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL xx_snowprecip0 
+     &    (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL xx_snowprecip1 
+     &    (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 #endif
 #if (defined  (ALLOW_APRESSURE_CONTROL))
-      _RL xx_apressure0 (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
-      _RL xx_apressure1 (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL xx_apressure0 
+     &    (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL xx_apressure1 
+     &    (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 #endif
 #if (defined  (ALLOW_RUNOFF_CONTROL))
       _RL xx_runoff0 (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
