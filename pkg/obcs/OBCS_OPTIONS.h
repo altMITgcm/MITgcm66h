@@ -27,6 +27,9 @@ C Enable OB values to be prescribed via external fields that are read
 C from a file
 #undef ALLOW_OBCS_PRESCRIBE
 
+C Enable OB conditions following Stevens (1990)
+#undef ALLOW_OBCS_STEVENS
+
 C This includes hooks to sponge layer treatment of uvel, vvel
 #undef ALLOW_OBCS_SPONGE
 
