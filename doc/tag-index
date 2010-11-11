@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/obcs: add boundary conditions following Stevens (1990)
+  - the code follows old MOM/NAOSIM code
+  - so far it is only implemented for the eastern and western boundaries
+    and NOT for pTracers
 o pkg/rbcs:
   - replace rbcsInIter by rbcsForcingOffset, the time in seconds at the
     beginning of the first rbcs forcing period.
