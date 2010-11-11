@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice/seaice_growth.F: a few cosmetic changes that reduce the
+  number of lines of code
 o pkg/obcs: add boundary conditions following Stevens (1990)
   - the code follows old MOM/NAOSIM code
   - so far it is only implemented for the eastern and western boundaries
