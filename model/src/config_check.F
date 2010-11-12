@@ -571,6 +571,12 @@ C--   Momentum related limitations:
         STOP 'ABNORMAL END: S/R CONFIG_CHECK'
        ENDIF
       ENDIF
+      IF ( selectCoriMap.LT.0 .OR. selectCoriMap.GT.3 ) THEN
+        WRITE(msgBuf,'(2A,I4)') 'CONFIG_CHECK: ',
+     &       'Invalid option: selectCoriMap=', selectCoriMap
+        CALL PRINT_ERROR( msgBuf, myThid )
+        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
+      ENDIF
 
       IF (.NOT.useCDscheme .AND. (tauCD.NE.0. .OR. rCD.NE.-1.) ) THEN
 C- jmc: since useCDscheme is a new [04-13-03] flag (default=F),
