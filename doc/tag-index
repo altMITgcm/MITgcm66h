@@ -4,8 +4,13 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
-o pkg/seaice/seaice_growth.F: a few cosmetic changes that reduce the
-  number of lines of code
+o model/src, coriolis setting:
+  - integer parameter "selectCoriMap" (=0,1,2) replaces 3 logical
+    useConstantF, useBetaPlaneF, useSphereF ; can now read coriolis from
+    files (selectCoriMap=3) with any grid.
+  - add parameter "fPrime" for constant second Coriolis coeff (default=0).
+o pkg/seaice/seaice_growth.F:
+    a few cosmetic changes that reduce the number of lines of code
 o pkg/obcs: add boundary conditions following Stevens (1990)
   - the code follows old MOM/NAOSIM code
   - so far it is only implemented for the eastern and western boundaries
