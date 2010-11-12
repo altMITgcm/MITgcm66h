@@ -79,9 +79,7 @@ C     General curvilinear coordinate system
 C     General cylindrical coordinate system
       usingCylindricalGrid= .FALSE.
 C     Coriolis map:
-      useConstantF        = .FALSE.
-      useBetaPlaneF       = .FALSE.
-      useSphereF          = .TRUE.
+      selectCoriMap       = -1
       use3dCoriolis       = .TRUE.
 C     grid rotation
       rotateGrid          = .FALSE.
@@ -98,6 +96,7 @@ C         (so that the default produces same results as before)
 c     rhoConstFresh       = 999.8 _d 0
       f0                  = 1. _d -4
       beta                = 1. _d -11
+      fPrime              = 0. _d 0
 C-    Earth rotation period is 86400*365.25/366.25 (use to be 1.day)
       rotationPeriod      = 86164. _d 0
       viscAh              = 0. _d 3
