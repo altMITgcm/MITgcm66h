@@ -220,15 +220,6 @@ C Integrate forward in time, storing in gPtr:  G=T+dt*G
      I                        gPtr(1-Olx,1-Oly,1,1,1,iTracer),
      I                        myIter,myThid )
 
-#ifdef   ALLOW_OBCS
-C Apply open boundary conditions
-         IF (useOBCS) THEN
-          CALL OBCS_APPLY_PTRACER(
-     I         bi, bj, k, iTracer,
-     U         gPtr(1-Olx,1-Oly,k,bi,bj,iTracer),
-     I         myThid )
-         ENDIF
-#endif   /* ALLOW_OBCS */
 C end of tracer loop
       ENDDO
 
