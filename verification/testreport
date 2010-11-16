@@ -25,6 +25,8 @@ usage()
     echo "  (-tdir|-t) STRING        list of group and/or exp. dirs to test"
     echo "                             (recognized groups: basic, tutorials)"
     echo "                             (DEF=\"\" which test all)"
+    echo "                             (if list= 'start_from THIS_EXP' then"
+    echo "                              test THIS_EXP + all the following)"
     echo "  (-skipdir|-skd) STRING   list of exp. dirs to skip"
     echo "                             (DEF=\"\" which test all)"
     echo "  (-bash|-b) STRING        preferred location of a \"bash\" or"
