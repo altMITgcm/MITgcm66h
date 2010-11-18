@@ -8,7 +8,7 @@ CBOP
 C !ROUTINE: PTRACERS_ADVECTION
 
 C !INTERFACE: ==========================================================
-      SUBROUTINE PTRACERS_ADVECTION( bi,bj,myIter,myTime,myThid )
+      SUBROUTINE PTRACERS_ADVECTION( bi,bj,myTime,myIter,myThid )
 
 C !DESCRIPTION:
 C     Calculates tendency for passive tracers and integrates forward
@@ -36,12 +36,12 @@ C !USES: ===============================================================
 
 C !INPUT PARAMETERS: ===================================================
 C  bi,bj                :: tile indices
-C  myIter               :: time-step number
 C  myTime               :: model time
+C  myIter               :: time-step number
 C  myThid               :: thread number
       INTEGER bi,bj
-      INTEGER myIter
       _RL myTime
+      INTEGER myIter
       INTEGER myThid
 
 C !OUTPUT PARAMETERS: ==================================================
@@ -86,8 +86,7 @@ CADJ &      = comlev1_bibj_ptracers, key=iptrkey, byte=isbyte
 #ifdef PTRACERS_ALLOW_DYN_STATE
        IF ( PTRACERS_SOM_Advection(iTracer) ) THEN
 #ifdef ALLOW_DEBUG
-         IF ( debugLevel .GE. debLevB )
-     &     CALL DEBUG_CALL('GAD_SOM_ADVECT',myThid)
+         IF (debugMode) CALL DEBUG_CALL('GAD_SOM_ADVECT',myThid)
 #endif
          CALL GAD_SOM_ADVECT(
      I                       PTRACERS_ImplVertAdv(iTracer),
