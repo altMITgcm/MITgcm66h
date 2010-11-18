@@ -143,12 +143,12 @@ C           mytime are local variables passed around as routine
 C           arguments. Although this is fiddly it saves the need to 
 C           impose additional synchronisation points when they are 
 C           updated.
-C     myIter - iteration counter for this thread
-C     myTime - time counter for this thread
-C     myThid - thread number for this instance of the routine.
-      INTEGER myThid 
-      INTEGER myIter
+C     myTime :: time counter for this thread
+C     myIter :: iteration counter for this thread
+C     myThid :: thread number for this instance of the routine.
       _RL     myTime
+      INTEGER myIter
+      INTEGER myThid 
 
 C     !FUNCTIONS:
 C     == Functions ==
@@ -448,8 +448,7 @@ c--     >>> Loop body start <<<
 #ifdef ALLOW_ECCO_EVOLUTION
 #ifdef ALLOW_ECCO
 #ifdef ALLOW_DEBUG
-      IF ( debugLevel .GE. debLevB )
-     &    CALL DEBUG_CALL('cost_averagesfields',myThid)
+      IF (debugMode) CALL DEBUG_CALL('cost_averagesfields',myThid)
 #endif
 c--   Accumulate time averages of temperature, salinity
 #ifdef ALLOW_AUTODIFF
@@ -557,5 +556,5 @@ c$openad DEPENDENT(fc)
       IF (debugMode) CALL DEBUG_LEAVE('THE_MAIN_LOOP',myThid)
 #endif
 
+      RETURN
       END
-
