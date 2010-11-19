@@ -158,10 +158,10 @@ C     cc0 = TEN ** aa2
 #endif /* SEAICE_VARIABLE_FREEZING_POINT */
 
 C     SENSIBLE HEAT CONSTANT
-      D1=SEAICE_sensHeat
+      D1=SEAICE_dalton*SEAICE_cpAir*SEAICE_rhoAir
 
 C     ICE LATENT HEAT CONSTANT
-      D1I=SEAICE_latentIce
+      D1I=SEAICE_dalton*SEAICE_lhSublim*SEAICE_rhoAir
 
 C     STEFAN BOLTZMAN CONSTANT TIMES 0.97 EMISSIVITY
       D3=SEAICE_emissivity
