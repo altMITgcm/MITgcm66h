@@ -34,6 +34,8 @@ C       |-- RUNCLOCK_READPARMS
 C       |
 C       |-- CAL_READPARMS
 C       |
+C       |-- EXF_READPARMS
+C       |
 C       |-- GMREDI_READPARMS
 C       |
 C       |-- DWNSLP_READPARMS
@@ -86,8 +88,6 @@ C       |
 C       |-- COST_READPARMS
 C       |
 C       |-- GRDCHK_READPARMS
-C       |
-C       |-- EXF_READPARMS
 C       |
 C       |-- EBM_READPARMS
 C       |
@@ -144,6 +144,11 @@ C--   Initialize RUNCLOCK parameters
 #ifdef ALLOW_CAL
 C--   Initialise the calendar package.
       IF ( useCAL ) CALL CAL_READPARMS( myThid )
+#endif
+
+#ifdef ALLOW_EXF
+C--   Custom routine to set forcing fields.
+      IF (useEXF) CALL EXF_READPARMS  ( myThid )
 #endif
 
 #ifdef ALLOW_GMREDI
@@ -267,11 +272,6 @@ C--   Initialise the cost parameters
 #ifdef ALLOW_GRDCHK
 C--   Initialise gradient check parameters
       if (useGrdchk) CALL GRDCHK_READPARMS( myThid )
-#endif
-
-C--   Custom routine to set forcing fields.
-#ifdef ALLOW_EXF
-      IF (useEXF) CALL EXF_READPARMS  ( myThid )
 #endif
 
 #ifdef ALLOW_EBM
