@@ -189,12 +189,6 @@ do
 
   echo "Running testreport using:"
   comm="./testreport -adm -a jmc@mitgcm.org"
-#---
-  chk=`expr $TODAY % 2`
- if test $chk != 0 ; then
-  OPTFILE='../tools/build_options/linux_ia32_g77'
- fi
-#---
 # comm="$comm -match $MC"
   if test "x$OPTFILE" != x ; then
     comm="$comm -of=$OPTFILE"
