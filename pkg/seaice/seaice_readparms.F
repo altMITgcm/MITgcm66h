@@ -204,18 +204,22 @@ C     coefficients for flux computations/bulk formulae
       SEAICE_dalton      = 1.75   _d -03
       SEAICE_lhSublim    = 2.834  _d +06
 #ifdef ALLOW_EXF
+      IF ( useEXF ) THEN
 C     Use parameters that have already been set in data.exf
 C     to be consistent
-      SEAICE_rhoAir      = atmrho
-      SEAICE_cpAir       = atmcp
-      SEAICE_lhEvap      = flamb
-      SEAICE_lhFusion    = flami
+       SEAICE_rhoAir     = atmrho
+       SEAICE_cpAir      = atmcp
+       SEAICE_lhEvap     = flamb
+       SEAICE_lhFusion   = flami
+      ELSE
 #else
-      SEAICE_rhoAir      = 1.3    _d 0
-      SEAICE_cpAir       = 1004.  _d 0
-      SEAICE_lhEvap      = 2.50   _d 6
-      SEAICE_lhFusion    = 3.34   _d 5
+      IF ( .TRUE. ) THEN
 #endif /* ALLOW_EXF */
+       SEAICE_rhoAir     = 1.3    _d 0
+       SEAICE_cpAir      = 1004.  _d 0
+       SEAICE_lhEvap     = 2.50   _d 6
+       SEAICE_lhFusion   = 3.34   _d 5
+      ENDIF
       SEAICE_iceConduct  = 2.1656 _d +00
       SEAICE_snowConduct = 3.1    _d -01
       SEAICE_emissivity  = 5.5    _d -08
