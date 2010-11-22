@@ -6,7 +6,7 @@ $Name$
 
 o pkg/seaice: 
   - seaice_growth.F: fix bug in conservation of freshwater connected to
-    capping of heff
+    capping of heff, put contribution into d_HEFFbyNEG
   - replace irritating parameters SEAICE_latentWater/Ice and SEAICE_sensHeat
     by something more sensible (parameters that are what their name implies)
   - change some defaults, so that by default exf-parameters are used for
