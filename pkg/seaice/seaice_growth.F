@@ -1086,8 +1086,9 @@ CADJ &                         key = iicekey, byte = isbyte
           HEFF(I,J,bi,bj) = HEFF(I,J,bi,bj)*HEFFM(I,J,bi,bj)
 #ifdef SEAICE_CAP_HEFF
 C     This is not energy conserving, but at least it conserves fresh water
-          d_HEFFbyNeg(I,J) = -MAX(HEFF(I,J,bi,bj)-MAX_HEFF,0. _d 0)
-          HEFF(I,J,bi,bj)  = HEFF(I,J,bi,bj) + d_HEFFbyNEG(I,J)
+          tmpscal0         = -MAX(HEFF(I,J,bi,bj)-MAX_HEFF,0. _d 0)
+          d_HEFFbyNeg(I,J) = d_HEFFbyNeg(I,J) + tmpscal0
+          HEFF(I,J,bi,bj)  = HEFF(I,J,bi,bj)  + tmpscal0
 #endif /* SEAICE_CAP_HEFF */
           HSNOW(I,J,bi,bj)  = HSNOW(I,J,bi,bj)*HEFFM(I,J,bi,bj)
          ENDDO
