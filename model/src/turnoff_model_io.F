@@ -91,6 +91,12 @@ C--   Package specific S/R to turn-off IO flags (all threads do call S/R)
       ENDIF
 #endif
 
+#ifdef ALLOW_THSICE
+      IF ( useThSIce ) THEN
+        CALL THSICE_TURNOFF_IO( seqFlag, myThid )
+      ENDIF
+#endif
+
 #ifdef ALLOW_PTRACERS
       IF ( usePTRACERS ) THEN
         CALL PTRACERS_TURNOFF_IO( seqFlag, myThid )
