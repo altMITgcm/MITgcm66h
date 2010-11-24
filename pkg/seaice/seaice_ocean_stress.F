@@ -63,11 +63,15 @@ C     average wind stress over ice and ocean and apply averaged wind
 C     stress and internal ice stresses to surface layer of ocean
            areaW = 0.5 * (AREA(I,J,bi,bj) + AREA(I-1,J,bi,bj))
      &          * SEAICEstressFactor
-           areaS = 0.5 * (AREA(I,J,bi,bj) + AREA(I,J-1,bi,bj))
-     &          * SEAICEstressFactor
            fu(I,J,bi,bj)=(ONE-areaW)*fu(I,J,bi,bj)
      &          + areaW*taux(I,J,bi,bj)
      &          + stressDivergenceX(I,J,bi,bj) * SEAICEstressFactor
+          ENDDO
+         ENDDO
+         DO J=1,sNy
+          DO I=1,sNx
+           areaS = 0.5 * (AREA(I,J,bi,bj) + AREA(I,J-1,bi,bj))
+     &          * SEAICEstressFactor
            fv(I,J,bi,bj)=(ONE-areaS)*fv(I,J,bi,bj)
      &          + areaS*tauy(I,J,bi,bj)
      &          + stressDivergenceY(I,J,bi,bj) * SEAICEstressFactor
