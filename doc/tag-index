@@ -5,6 +5,8 @@ $Name$
     ==============================
 
 o pkg/seaice: 
+  - seaice_ocean_stress: split a loop for better vectorization of the 
+    adjoint code 
   - seaice_growth.F: fix bug in conservation of freshwater connected to
     capping of heff, put contribution into d_HEFFbyNEG
   - replace irritating parameters SEAICE_latentWater/Ice and SEAICE_sensHeat
