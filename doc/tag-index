@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/exf:
+  - change CPP option EXF_VERBOSE to run-time logical param exf_verbose.
 o pkg/seaice: 
   - seaice_ocean_stress: split a loop for better vectorization of the 
     adjoint code 
