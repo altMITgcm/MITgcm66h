@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: explicitly store tsurfloc in seaice_solve4temp.F to avoid 
+  unnecessary copying in adjoint code, requires new parameter NMAX_ITER
+
 checkpoint62o (2010/11/25)
 o pkg/exf:
   - change CPP option EXF_VERBOSE to run-time logical param exf_verbose.
