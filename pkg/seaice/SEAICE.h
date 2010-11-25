@@ -222,6 +222,8 @@ cif)
       INTEGER iicekey
       INTEGER nEVPstepMax
       PARAMETER ( nEVPstepMax=60 )
+      INTEGER NMAX_TICE
+      PARAMETER ( NMAX_TICE=10 )
 #endif
 
 CEH3 ;;; Local Variables: ***
