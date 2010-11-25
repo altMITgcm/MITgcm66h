@@ -41,6 +41,9 @@ C     === Global variables ===
 # include "EXF_OPTIONS.h"
 # include "EXF_FIELDS.h"
 #endif
+#ifdef ALLOW_AUTODIFF_TAMC
+# include "tamc.h"
+#endif
 
 C     !INPUT/OUTPUT PARAMETERS
 C     === Routine arguments ===
@@ -129,6 +132,10 @@ C     powers of temperature
       _RL  t1, t2, t3, t4
       _RL lnTEN
 CEOP
+
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ INIT comlev1_solve4temp = COMMON, sNx*sNy*NMAX_TICE
+#endif /* ALLOW_AUTODIFF_TAMC */
 
       lnTEN = log(10.0 _d 0)
 #ifdef SEAICE_SOLVE4TEMP_LEGACY
@@ -389,6 +396,12 @@ Ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       DO ITER=1,IMAX_TICE
        DO J=1,sNy
         DO I=1,sNx
+#ifdef ALLOW_AUTODIFF_TAMC
+         iicekey = I + sNx*(J-1) + (ITER-1)*sNx*sNy
+CADJ STORE tsurfloc(i,j) = comlev1_solve4temp,
+CADJ &                     key = iicekey, byte = isbyte
+#endif /*  ALLOW_AUTODIFF_TAMC */
+
          IF ( iceOrNot(I,J) ) THEN
 
           t1 = tsurfLoc(I,J)
