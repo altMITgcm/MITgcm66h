@@ -576,6 +576,25 @@ C              (excludes upward conductive fluxes)
      &        F_sens(I,J) + F_lh(I,J)
 #endif /* SEAICE_SOLVE4TEMP_LEGACY */
 
+#ifdef SEAICE_MODIFY_GROWTH_ADJ
+Cgf no additional dependency through solver, snow, etc.
+         if ( SEAICEadjMODE.GE.2 ) then
+         CALL ZERO_ADJ_1D( 1, TSURF(I,J,bi,bj), myThid)
+         t1 = TSURF(I,J,bi,bj)
+         t2 = t1*t1
+         t3 = t2*t1
+         t4 = t2*t2
+         qhice(I,J)=QS1*(C1*t4+C2*t3 +C3*t2+C4*t1+C5)
+
+         A1(I,J)=0.3 _d 0 *SWDOWN(I,J,bi,bj)+lwdownLoc(I,J)*0.97 _d 0
+     &         +D1*UG(I,J)*atempLoc(I,J)+D1I*UG(I,J)*AQH(I,J,bi,bj)
+         A2(I,J)=-D1*UG(I,J)*t1-D1I*UG(I,J)*qhice(I,J)-D3*t4
+
+         F_ia(I,J)=-A1(I,J)-A2(I,J)
+         IcePenetSWFlux(I,J)= 0. _d 0
+         endif
+#endif
+
 C     Caclulate the net ice-ocean and ice-atmosphere fluxes
          IF (F_c(I,J) .LT. 0.0 _d 0) THEN
           F_io_net(I,J) = -F_c(I,J)

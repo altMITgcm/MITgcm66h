@@ -100,6 +100,7 @@ C
       INTEGER SEAICEadvSchSnow
       INTEGER SEAICEadvSchSalt
       INTEGER SEAICEadvSchAge
+      INTEGER SEAICEadjMODE
       COMMON /SEAICE_PARM_I/ 
      &     LAD, IMAX_TICE,
      &     SOLV_MAX_ITERS, SOLV_NCHECK, NPSEUDOTIMESTEPS,
@@ -108,7 +109,8 @@ C
      &     SEAICEadvSchHeff,
      &     SEAICEadvSchSnow,
      &     SEAICEadvSchSalt,
-     &     SEAICEadvSchAge
+     &     SEAICEadvSchAge,
+     &     SEAICEadjMODE
       PARAMETER (MPSEUDOTIMESTEPS=2)
 
 C--   COMMON /SEAICE_PARM_C/ Character valued sea ice model parameters.

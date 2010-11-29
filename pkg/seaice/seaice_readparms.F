@@ -122,6 +122,7 @@ C--   set default sea ice parameters
 #else
       SEAICEuseDYNAMICS  = .FALSE.
 #endif
+      SEAICEadjMODE      = 0
       SEAICEuseFREEDRIFT = .FALSE.
       SEAICEuseTEM       = .FALSE.
       SEAICEuseMetricTerms = .TRUE.
