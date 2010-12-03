@@ -979,6 +979,24 @@ C ===================================================================
 C =============PART 5: determine ice salinity increments=============
 C ===================================================================
 
+#ifndef SEAICE_SALINITY
+        DO J=1,sNy
+         DO I=1,sNx
+Cgf note: flooding does count negatively
+          tmpscal1 = d_HEFFbyNEG(I,J) + d_HEFFbyOCNonICE(I,J) + 
+     &               d_HEFFbyATMonOCN(I,J) - d_HEFFbyFLOODING(I,J)
+          tmpscal2 = tmpscal1 * SIsal0 * HEFFM(I,J,bi,bj)
+     &            /SEAICE_deltaTtherm * ICE2WATR * rhoConstFresh
+          saltFlux(I,J,bi,bj) = saltFlux(I,J,bi,bj) + tmpscal2
+#ifdef ALLOW_SALT_PLUME
+          tmpscal3 = tmpscal1*salt(I,j,kSurface,bi,bj)*HEFFM(I,J,bi,bj)
+     &            /SEAICE_deltaTtherm * ICE2WATR * rhoConstFresh
+          saltPlumeFlux(I,J,bi,bj) = MAX( tmpscal3-tmpscal2 , 0. _d 0)
+#endif /* ALLOW_SALT_PLUME */
+         ENDDO
+        ENDDO
+#endif
+
 #ifdef ALLOW_ATM_TEMP
 #ifdef SEAICE_SALINITY
 

@@ -357,18 +357,6 @@ C--   pkg/seaice requires pkg/exf with following CPP options/
       ENDIF
 #endif /* SEAICE_ALLOW_CLIPZETA */
 
-#ifdef ALLOW_SALT_PLUME
-#ifndef SEAICE_SALINITY
-      IF ( UseSALT_PlUME ) THEN
-        WRITE(msgBuf,'(A)') 'SEAICE_CHECK: UseSALT_PlUME requires that'
-        CALL PRINT_ERROR( msgBuf , myThid)
-        WRITE(msgBuf,'(A)') 'SEAICE_CHECK: SEAICE_SALINITY be defined.'
-        CALL PRINT_ERROR( msgBuf , myThid)
-        STOP 'ABNORMAL END: S/R SEAICE_CHECK'
-      ENDIF
-#endif /* SEAICE_SALINITY */
-#endif /* ALLOW_SALT_PLUME */
-
 #if !defined(SEAICE_ALLOW_TEM) || !defined(SEAICE_CGRID)
       IF ( SEAICEuseTEM ) THEN
        WRITE(msgBuf,'(A)') 'SEAICE_CHECK: SEAICEuseTEM requires that'
