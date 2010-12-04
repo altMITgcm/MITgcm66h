@@ -8,9 +8,11 @@ C--   For computing volume fluxes in isopyncal layers
 
 C --  Parms
       LOGICAL layers_MNC, layers_MDSIO
+      INTEGER LAYER_nb
       _RL layers_taveFreq, layers_diagFreq
       COMMON /LAYERS_PARMS/ layers_MNC, layers_MDSIO,
-     &                      layers_taveFreq, layers_diagFreq
+     &                      layers_taveFreq, layers_diagFreq,
+     &                      LAYER_nb
 
 C     3D Layers fields. The vertical dimension in these fields is nLayers,
 C     i.e. the isopycnal coordinate.

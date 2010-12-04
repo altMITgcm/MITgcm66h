@@ -46,15 +46,15 @@ C--  Check parameters:
 
 
 C     For now the package will only work if density ~ temperature
-      IF ( (eosType .EQ. 'LINEAR')
-     &  .AND. (sBeta .EQ. 0.0 _d 0) ) THEN
+c     IF ( (eosType .EQ. 'LINEAR')
+c    &  .AND. (sBeta .EQ. 0.0 _d 0) ) THEN
 C        we are good
-      ELSE
-        WRITE(msgBuf,'(2A)') 'eosType must be eosType=''LINEAR''',
-     &   ' and sBeta must = 0.0'
-        CALL PRINT_ERROR( msgBuf , 1)
-       STOP 'ABNORMAL END: S/R LAYERS_CHECK'
-      ENDIF
+c     ELSE
+c       WRITE(msgBuf,'(2A)') 'eosType must be eosType=''LINEAR''',
+c    &   ' and sBeta must = 0.0'
+c       CALL PRINT_ERROR( msgBuf , 1)
+c       STOP 'ABNORMAL END: S/R LAYERS_CHECK'
+c     ENDIF
 
       _END_MASTER(myThid)
 
