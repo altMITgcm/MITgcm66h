@@ -275,7 +275,7 @@ C--   Input files
      & uVelInitFile, vVelInitFile, pSurfInitFile,
      & dQdTFile, ploadFile,tCylIn,tCylOut,
      & eddyPsiXFile, eddyPsiYFile,
-     & mdsioLocalDir,
+     & mdsioLocalDir, adTapeDir,
      & the_run_name
 CEOP
 
@@ -1354,6 +1354,16 @@ C     Check for retired parameters still being used
      &  'S/R INI_PARMS: "shelfIceFile" is not allowed in "data", ',
      &  'substitute "SHELFICEtopoFile" in data.shelfice'
        CALL PRINT_ERROR( msgBuf, myThid )
+      ENDIF
+C     Check if two conflicting I/O directories have been specified
+      IF (mdsioLocalDir .NE. ' ' .AND. adTapeDir .NE. ' ') THEN
+         WRITE(msgBuf,'(A)')
+     &   'S/R INI_PARMS: mdsioLocalDir and adTapeDir cannot be'
+         CALL PRINT_ERROR( msgBuf, myThid )
+         WRITE(msgBuf,'(A)')
+     &   'S/R INI_PARMS: specified at the same time'
+         CALL PRINT_ERROR( msgBuf, myThid )
+         STOP 'ABNORMAL END: S/R INI_PARMS'
       ENDIF
 
 C     Check for relaxation term:
