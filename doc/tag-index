@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o add adTapeDir to specify a special directory where adjoint tapes are 
+  written/read (adread_adwrite.F). adTapeDir is specified in data/PARM05 
+  and cannot be used together with mdsioLocalDir.
 o nesting pkgs:
   - packages_init_variables : put call to OBCS_INIT_VARIABLES in last position
   - update Gianmaria's Nesting pkgs (from Contrib/nesting_sannino)
