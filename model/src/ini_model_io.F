@@ -153,8 +153,10 @@ C-    now we make local directories with myProcessStr appended
 C     append "/", if necessay
       IF ( adTapeDir .NE. ' ' ) THEN
        iL = ILNBLNK( adTapeDir )
-       IF ( il .LT. MAX_LEN_FNAM .AND. adTapeDir(iL:iL) .NE. '/' )
-     &      WRITE(adTapeDir,'(2A)') adTapeDir(1:iL),'/'
+       IF ( iL .LT. MAX_LEN_FNAM .AND. adTapeDir(iL:iL) .NE. '/' ) THEN
+        namBuf(1:iL) = adTapeDir(1:iL)
+        WRITE(adTapeDir(1:iL+1),'(2A)') namBuf(1:iL),'/'
+       ENDIF
       ENDIF
 
 C-    Initialise MFLDS variables in common block
