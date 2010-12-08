@@ -145,8 +145,8 @@ fi
 #-------------------------
 echo "prepare parameter file 'data.tst' :"
 cp -p -f data data.tst
-listOut='startTime endTime nIter0 nTimeSteps nEndIter chkPtFreq pChkPtFreq globalFiles'
-listOut=$listOut' pickupSuff usePickupBeforeC54 mdsioLocalDir'
+listOut='startTime endTime nIter0 nTimeSteps nEndIter chkPtFreq pChkPtFreq'
+listOut=$listOut' pickupSuff usePickupBeforeC54 mdsioLocalDir pickupStrictlyMatch'
 #- comment out (in data.tst) all parameters from list: 'listOut'
 for yy in $listOut
 do
