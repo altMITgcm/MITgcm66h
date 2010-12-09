@@ -114,6 +114,9 @@ C     == Global variables ===
 # ifdef ALLOW_EBM
 #  include "EBM.h"
 # endif
+# ifdef ALLOW_SALT_PLUME
+#  include "SALT_PLUME.h"
+# endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C     !INPUT/OUTPUT PARAMETERS:
@@ -440,6 +443,15 @@ C of whether multiDimAdvection is set or not.
      &    CALL DEBUG_MSG('ENTERING DOWNWARD K LOOP',myThid)
 #endif
 
+#ifdef ALLOW_AUTODIFF_TAMC
+# ifdef ALLOW_SALT_PLUME
+CADJ STORE saltPlumeFlux(:,:,bi,bj)   =
+CADJ &     comlev1_bibj, key=itdkey,kind = isbyte
+CADJ STORE saltPlumeDepth(:,:,bi,bj)   =
+CADJ &     comlev1_bibj, key=itdkey,kind = isbyte
+# endif
+#endif /* ALLOW_AUTODIFF_TAMC */
+
 C--     Start of thermodynamics loop
         DO k=Nr,1,-1
 #ifdef ALLOW_AUTODIFF_TAMC
@@ -658,6 +670,7 @@ CADJ STORE gs(:,:,:,bi,bj)    = comlev1_bibj_k, key=kkey, byte=isbyte
 CADJ STORE fvers(:,:,:)       = comlev1_bibj_k, key=kkey, byte=isbyte
 # endif
 #endif /* ALLOW_AUTODIFF_TAMC */
+
           CALL CALC_GS(
      I         bi,bj,iMin,iMax,jMin,jMax, k,km1,kup,kDown,
      I         xA, yA, maskUp, uFld, vFld, wFld,
