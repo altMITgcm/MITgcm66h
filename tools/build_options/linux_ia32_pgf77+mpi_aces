@@ -14,9 +14,10 @@
 
 FC='mpif77'
 CC='mpicc'
-if test "x$ALWAYS_USE_F90" = x1 ; then
+#- as a test: try to always use pgf90
+#if test "x$ALWAYS_USE_F90" = x1 ; then
     FC='mpif90'
-fi
+#fi
 LINK=$FC
 
 DEFINES='-DALLOW_USE_MPI -DALWAYS_USE_MPI -DWORDLENGTH=4'
