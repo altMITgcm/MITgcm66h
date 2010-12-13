@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: add diagnostics for snow precipitation
 o globalFiles:
   commented out in parameter file "data" since it's not safe with MPI
   (e.g., wrong on aces); keep it if useSingleCpuIO=T (but not doing much
