@@ -184,6 +184,13 @@ C     is EmPmR before impact of ice.
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
+      diagName  = 'SIsnPrcp'
+      diagTitle = 'Snow precip. (+=dw) over Sea-Ice (area weighted)'
+      diagUnits = 'kg/m^2/s        '
+      diagCode  = 'SM      U1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
       diagName  = 'SIyneg  '
       diagTitle = 'Ice growth due to oceanic heat flux , >0 melts ice'
       diagUnits = 'm               '

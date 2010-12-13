@@ -775,6 +775,19 @@ C           add precip to the fresh water bucket
 Cgf note: this does not affect air-sea heat flux,
 Cgf since the implied air heat gain to turn
 Cgf rain to snow is not a surface process.
+#ifdef ALLOW_DIAGNOSTICS
+        IF ( useDiagnostics ) THEN
+         IF ( DIAGNOSTICS_IS_ON('SIsnPrcp',myThid) ) THEN
+          DO J=1,sNy
+           DO I=1,sNx
+            DIAGarray(I,J) = maskC(I,J,kSurface,bi,bj) 
+     &           * d_HSNWbyRAIN(I,J)*SEAICE_rhoSnow/SEAICE_deltaTtherm
+           ENDDO
+          ENDDO
+          CALL DIAGNOSTICS_FILL(DIAGarray,'SIsnPrcp',0,1,3,bi,bj,myThid)
+         ENDIF
+        ENDIF
+#endif /* ALLOW_DIAGNOSTICS */
 #endif /* ALLOW_ATM_TEMP */
 
 C compute snow melt due to heat available from ocean.
