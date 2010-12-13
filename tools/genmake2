@@ -1053,6 +1053,7 @@ FOPTIM=
 FEXTRAFLAGS=
 USE_EXTENDED_SRC=
 EXTENDED_SRC_FLAG=
+GET_FC_VERSION=
 CFLAGS=
 KFLAGS1=
 KFLAGS2=
@@ -1497,6 +1498,11 @@ Error: no Fortran compiler: please specify using one of the following:
   3) the "./genmake_local" file
 EOF
     exit 1
+fi
+if test "x$GET_FC_VERSION" != x ; then
+  echo "Get compiler version using: $FC $GET_FC_VERSION" >> $LOGFILE
+  $FC $GET_FC_VERSION >> $LOGFILE 2>&1
+  echo "--- compiler version ----" >> $LOGFILE
 fi
 
 if test "x$CC" = x ; then
