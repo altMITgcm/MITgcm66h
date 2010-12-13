@@ -334,6 +334,10 @@ C--   Print a summary of pTracer parameter values:
         CALL PRINT_MESSAGE( msgBuf, iUnit, SQUEEZE_RIGHT, myThid )
         WRITE(msgBuf,'(A,I4)') ' tracer number : ',iTracer
         CALL PRINT_MESSAGE( msgBuf, iUnit, SQUEEZE_RIGHT, myThid )
+        CALL WRITE_0D_C( PTRACERS_names(iTracer), -1, INDEX_NONE,
+     &     'PTRACERS_names =', ' /* Tracer short name */')
+        CALL WRITE_0D_C( PTRACERS_long_names(iTracer), -1, INDEX_NONE,
+     &     'PTRACERS_long_names =', ' /* Tracer long name */')
         CALL WRITE_0D_C( PTRACERS_ioLabel(iTracer), 0, INDEX_NONE,
      &     'PTRACERS_ioLabel =', ' /* tracer IO Label */')
         CALL WRITE_0D_I( PTRACERS_advScheme(iTracer), INDEX_NONE,
