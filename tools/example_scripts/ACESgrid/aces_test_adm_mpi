@@ -47,7 +47,7 @@ EXE="mpirun -machinefile $MF -v -np $NCPU ./mitgcmuv_ad"
 gcmDIR="MITgcm_$sfx"
 cd $TST_DIR
 #- check for disk space:
-dsp=`df . | tail -1 | awk '{print $5}' | sed 's/%$//'`
+dsp=`df -P . | tail -1 | awk '{print $5}' | sed 's/%$//'`
 if [ $dsp -gt 99 ] ; then
   echo 'Not enough space on this disk => do not run testreport.'
   df .
