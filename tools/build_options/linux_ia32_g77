@@ -4,14 +4,13 @@
 #  $Name$
 #
 
-
 FC=g77
 CC=gcc
-DEFINES='-D_BYTESWAPIO -DWORDLENGTH=4'
-# CPP='gcc -E -traditional -P -'
+DEFINES='-D_BYTESWAPIO -DWORDLENGTH=4 -DNML_EXTENDED_F77'
 CPP='cpp  -traditional -P'
 NOOPTFLAGS='-O0'
 EXTENDED_SRC_FLAG='-ffixed-line-length-132'
+GET_FC_VERSION="-v"
 
 if test "x$IEEE" = x ; then
     #  No need for IEEE-754
