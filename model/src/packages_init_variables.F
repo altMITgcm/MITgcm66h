@@ -26,7 +26,7 @@ C       |-- GAD_GAD_INIT_VARIA
 C       |
 C       |-- CD_CODE_INI_VARS
 C       |
-C       |-- GMREDI_INIT
+C       |-- GMREDI_INIT_VARIA
 C       |
 C       |-- DWNSLP_INIT_VARIA
 C       |
@@ -147,9 +147,9 @@ C             therefore call CD-ini-vars before others pkg.
 C--   Initialize GM/Redi parameterization
       IF (useGMRedi) THEN
 # ifdef ALLOW_DEBUG
-        IF (debugMode) CALL DEBUG_CALL('GMREDI_INIT',myThid)
+        IF (debugMode) CALL DEBUG_CALL('GMREDI_INIT_VARIA',myThid)
 # endif
-        CALL GMREDI_INIT( myThid )
+        CALL GMREDI_INIT_VARIA( myThid )
       ENDIF
 #endif /* ALLOW_GMREDI */
 

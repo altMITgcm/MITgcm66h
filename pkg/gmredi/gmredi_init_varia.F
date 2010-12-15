@@ -4,13 +4,13 @@ C $Name$
 #include "GMREDI_OPTIONS.h"
 
 CBOP
-C     !ROUTINE: GMREDI_INIT
+C     !ROUTINE: GMREDI_INIT_VARIA
 C     !INTERFACE:
-      SUBROUTINE GMREDI_INIT( myThid )
+      SUBROUTINE GMREDI_INIT_VARIA( myThid )
 
 C     !DESCRIPTION: \bv
 C     *==========================================================*
-C     | SUBROUTINE GMREDI_INIT
+C     | SUBROUTINE GMREDI_INIT_VARIA
 C     | o Routine to initialize GM/Redi variables
 C     *==========================================================*
 C     \ev
