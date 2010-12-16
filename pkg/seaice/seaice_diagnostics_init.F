@@ -153,6 +153,13 @@ C     Except under sea ice, SIqsw is also identical to EXFswnet.
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
+      diagName  = 'SIfwSubl'
+      diagTitle = 'Freshwater flux of sublimated ice, >0 decreases ice'
+      diagUnits = 'kg/m^2/s        '
+      diagCode  = 'SM      U1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
       diagName  = 'SIqneto '
       diagTitle = 'Heat flux over ocean, turb+rad, >0 decreases theta'
       diagUnits = 'W/m^2           '
