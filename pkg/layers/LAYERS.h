@@ -7,12 +7,12 @@ C--   Header for LAYERS package. By Ryan Abernathey.
 C--   For computing volume fluxes in isopyncal layers
 
 C --  Parms
-      LOGICAL layers_MNC, layers_MDSIO
+      LOGICAL layers_MNC, layers_MDSIO, useBOLUS
       INTEGER LAYER_nb
       _RL layers_taveFreq, layers_diagFreq
       COMMON /LAYERS_PARMS/ layers_MNC, layers_MDSIO,
      &                      layers_taveFreq, layers_diagFreq,
-     &                      LAYER_nb
+     &                      LAYER_nb, useBOLUS
 
 C     3D Layers fields. The vertical dimension in these fields is nLayers,
 C     i.e. the isopycnal coordinate.

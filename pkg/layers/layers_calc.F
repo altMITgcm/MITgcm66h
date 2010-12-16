@@ -163,7 +163,7 @@ C ------ Augment the bin values
      &    dZZf(kk) * uVel(i,j,kci,bi,bj) * hFacW(i,j,kci,bi,bj)
 
 #if (defined ALLOW_GMREDI) && (defined GM_BOLUS_ADVEC)
-         IF (GM_AdvForm) THEN
+         IF ( GM_AdvForm .AND. useBOLUS ) THEN
            kcip1 = MIN(kci+1,Nr)
            maskp1 = 1.
            IF (kci.GE.Nr) maskp1 = 0.
@@ -234,7 +234,7 @@ C ------ Augment the bin values
      &    + dZZf(kk) * vVel(i,j,kci,bi,bj) * hFacS(i,j,kci,bi,bj)
 
 #if (defined ALLOW_GMREDI) && (defined GM_BOLUS_ADVEC)
-         IF (GM_AdvForm) THEN
+         IF ( GM_AdvForm .AND. useBOLUS ) THEN
            kcip1 = MIN(kci+1,Nr)
            maskp1 = 1.
            IF (kci.GE.Nr) maskp1 = 0.
