@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o global_ocean.cs32x15: additional input.seaice experiment
+    that uses pkg/seaice rather than pkg/thsice.
 checkpoint62p (2010/12/17)
 o pkg/thsice: rename (ad tape index) iicekey as ticekey, and move it
     to THSICE_SIZE.h to avoid conflict with pkg/seaice.
