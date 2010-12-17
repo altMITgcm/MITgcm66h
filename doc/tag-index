@@ -4,9 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint62p (2010/12/17)
 o pkg/seaice: add diagnostics for snow precipitation and sublimation flux
   - first attempt to close budgets by taking into account the freshwater
-    flux implied by the sublimation of snow and ice. So far only the 
+    flux implied by the sublimation of snow and ice. So far only the
     volume budget is closed, turn on with soon-to-be-retired-again CPP-Flag
     SEAICE_ADD_SUBLIMATION_TO_FWBUDGET
 o eesupp/src:
