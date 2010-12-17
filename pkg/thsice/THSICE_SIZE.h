@@ -25,6 +25,13 @@ C--   identifiers for advected properties
      &            GAD_SI_QICE1 = -8,
      &            GAD_SI_QICE2 = -9 )
 
+#ifdef ALLOW_AUTODIFF_TAMC
+      INTEGER ticekey
+      INTEGER ikey_1, ikey_2, ikey_3, ikey_4
+      INTEGER MaxTsf
+      PARAMETER ( MaxTsf = 20 )
+#endif
+
 #endif /* ALLOW_THSICE */
 
 CEH3 ;;; Local Variables: ***
