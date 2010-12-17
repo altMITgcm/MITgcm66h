@@ -130,7 +130,6 @@ CADJ STORE hsalt   = comlev1, key = ikey_dynamics, kind=isbyte
 # endif
 #endif /* ALLOW_AUTODIFF_TAMC */
       IF ( SEAICEmultiDimAdvection ) THEN
-#ifndef ALLOW_AUTODIFF_TAMC
 C     This has to be done to comply with the time stepping in advect.F:
 C     Making sure that the following routines see the different
 C     time levels correctly
@@ -322,9 +321,6 @@ C---   end bi,bj loops
        ENDDO
       ENDDO
 
-#else
-      STOP 'SEAICEmultiDimAdvection not yet implemented for adjoint'
-#endif /* ndef ALLOW_AUTODIFF_TAMC */
       ELSE
 C--   if not multiDimAdvection
 

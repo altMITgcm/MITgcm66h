@@ -8,6 +8,13 @@ CADJ STORE tice    = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE tices      = comlev1, key=ikey_dynamics, kind=isbyte
 #endif
 
+#ifdef NONLIN_FRSURF
+CADJ STORE area  = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE heff  = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE uice  = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE vice  = comlev1, key=ikey_dynamics, kind=isbyte
+#endif
+
 #ifdef AUTODIFF_SOMETIMES_NEEDED
 # ifdef EXACT_CONSERV
 CADJ STORE pmepr      = comlev1, key = ikey_dynamics
