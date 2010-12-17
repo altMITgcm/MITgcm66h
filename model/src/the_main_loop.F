@@ -107,7 +107,6 @@ c They provide the fields to be stored.
 #  endif
 #  ifdef ALLOW_THSICE
 #   include "THSICE_SIZE.h"
-#   include "THSICE_PARAMS.h"
 #   include "THSICE_VARS.h"
 #  endif
 #  ifdef ALLOW_EBM
