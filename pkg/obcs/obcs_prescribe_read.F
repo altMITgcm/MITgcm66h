@@ -180,12 +180,12 @@ cgg    calendar information as other boundaries.
 # endif
 
       IF ( .NOT. useEXF ) THEN
-#ifndef ALLOW_AUTODIFF_TAMC
+cph#ifndef ALLOW_AUTODIFF_TAMC
        CALL OBCS_EXTERNAL_FIELDS_LOAD(
      &     myCurrentTime, myCurrentIter, myThid )
-#else
-       STOP 'PH HAS DISABLED THIS RUNTIME OPTION FOR ALLOW_EXF'
-#endif
+cph#else
+cph       STOP 'PH HAS DISABLED THIS RUNTIME OPTION FOR ALLOW_EXF'
+cph#endif
       ENDIF
 
 #endif /* ALLOW_OBCS and ALLOW_OBCS_PRESCRIBE */
