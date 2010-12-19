@@ -22,3 +22,5 @@ gfd : mom_common mom_fluxform mom_vecinv generic_advdiff debug mdsio rw monitor
 oceanic : gfd gmredi kpp
 
 atmospheric : gfd shap_filt
+
+adjoint : autodiff cost ctrl grdchk
