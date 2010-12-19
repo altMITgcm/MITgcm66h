@@ -15,9 +15,10 @@ LINK='pgf77'
 
 MPI='true'
 
-DEFINES='-DWORDLENGTH=4'
+DEFINES='-DWORDLENGTH=4 -DNML_EXTENDED_F77'
 CPP='/usr/bin/cpp -P -traditional'
 EXTENDED_SRC_FLAG='-Mextend'
+GET_FC_VERSION="-V"
 
 INCLUDES='-I/opt/scali/include -I/var/tmp.shared/netcdf-64/include'
 LIBS='-L/opt/scali/lib64 -L/var/tmp.shared/netcdf-64/lib  -lfmpi -lmpi -lnetcdf'

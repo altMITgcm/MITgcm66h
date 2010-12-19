@@ -13,9 +13,10 @@ FC='pgf77'
 CC='pgcc'
 LINK='pgf77'
 
-DEFINES='-DWORDLENGTH=4'
+DEFINES='-DWORDLENGTH=4 -DNML_EXTENDED_F77'
 CPP='/usr/bin/cpp -P -traditional'
 EXTENDED_SRC_FLAG='-Mextend'
+GET_FC_VERSION="-V"
 
 INCLUDES='-I/var/tmp.shared/netcdf-64/include'
 LIBS='-L/var/tmp.shared/netcdf-64/lib -lnetcdf'

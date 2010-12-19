@@ -17,9 +17,10 @@ LINK='mpif77'
 
 MPI='true'
 
-DEFINES='-DWORDLENGTH=4'
+DEFINES='-DWORDLENGTH=4 -DNML_EXTENDED_F77'
 CPP='/usr/bin/cpp -P -traditional'
 EXTENDED_SRC_FLAG='-Mextend'
+GET_FC_VERSION="-V"
 
 INCLUDES='-I/usr/mpich/mpich-1.2.6-pgi524/include -I/opt/awi/netcdf-3.6.0-p1/include'
 LIBS='-L/usr/mpich/mpich-1.2.6-pgi524/lib -Mmpi -L/opt/awi/netcdf-3.6.0-p1/lib -lnetcdf'
