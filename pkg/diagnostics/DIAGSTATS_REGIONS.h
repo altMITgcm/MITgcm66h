@@ -19,7 +19,7 @@ CEOP
 C     DIAG_STATS_REGMASK common block:
 C     diagSt_regMask :: region mask
 C     diagSt_kRegMsk :: region-mask set-index that identifies the region
-C     diagSt_vRegMsk :: region identificator value in the region mask
+C     diagSt_vRegMsk :: region identifier value in the region mask
 C     (point i,j belong to region "n" <=> regMask(i,j,kRegMsk(n)) = vRegMsk(n))
 
 #ifdef DIAGSTATS_REGION_MASK
