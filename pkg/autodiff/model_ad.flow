@@ -28,12 +28,6 @@ CADJ SUBROUTINE TURNOFF_MODEL_IO INPUT  = 1,2
 CADJ SUBROUTINE TURNOFF_MODEL_IO OUTPUT =
 
 C----------------------------------------
-C subroutine  modeldata_example
-C----------------------------------------
-CADJ SUBROUTINE modeldata_example INPUT  = 1
-CADJ SUBROUTINE modeldata_example OUTPUT =
-
-C----------------------------------------
 C subroutine  plot_field_xyrs
 C----------------------------------------
 CADJ SUBROUTINE plot_field_xyrs INPUT  = 1,2,3,4
