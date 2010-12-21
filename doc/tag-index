@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o global_ocean.cs32x15: additional input_ad.seaice experiment
+    that uses pkg/seaice rather than pkg/thsice.
+    (using multidim advection for seaice)
 o towards more F95 syntax for array specification in namelist:
   - change "data.diagnostics" (data.ptracers was changed before checkpoint62p)
     of all verification experiments.
