@@ -27,6 +27,9 @@ C o use divided adjoint to split adjoint computations
 #undef ALLOW_DIVIDED_ADJOINT
 #undef ALLOW_DIVIDED_ADJOINT_MPI
 
+#define ALLOW_AUTODIFF_WHTAPEIO
+#define ALLOW_PACKUNPACK_METHOD2
+
 C ********************************************************************
 C ***                     Calender Package                         ***
 C ********************************************************************

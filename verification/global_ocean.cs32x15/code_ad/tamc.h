@@ -115,7 +115,7 @@ cph      INTEGER    maxpass
 cph      PARAMETER( maxpass     = PTRACERS_num + 2 )
 #else
       INTEGER    maxpass
-      PARAMETER( maxpass     = 3 )
+      PARAMETER( maxpass     = 6 )
 #endif
       INTEGER    maxcube
       PARAMETER( maxcube     = 3 )
