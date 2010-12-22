@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/flt:
+  - add fourth-order Runge-Kutta integration
+  - add basic exch2 support (only 1 facet supported so far!)
 o pkg/mdsio+rw:
   new S/R to read local (or tile independent) vector (read counterpart of
    mds_writevec_loc, and front-end write_glvec_rl/rs).
