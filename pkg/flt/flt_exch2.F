@@ -25,6 +25,7 @@ C     == global variables ==
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 #include "PARAMS.h"
+#include "FLT_SIZE.h"
 #include "FLT.h"
 #ifdef ALLOW_EXCH2
 #include "W2_EXCH2_SIZE.h"

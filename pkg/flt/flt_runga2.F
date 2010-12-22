@@ -26,6 +26,7 @@ C     == global variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 #include "DYNVARS.h"
+#include "FLT_SIZE.h"
 #include "FLT.h"
 
 C     == routine arguments ==

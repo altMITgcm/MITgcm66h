@@ -21,6 +21,7 @@ C     == global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "FLT_SIZE.h"
 #include "FLT.h"
 
 C     == routine arguments ==

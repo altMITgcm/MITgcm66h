@@ -19,6 +19,7 @@ C     !USES:
 C     == global variables ==
 #include "EEPARAMS.h"
 #include "SIZE.h"
+#include "FLT_SIZE.h"
 #include "FLT.h"
 
 C     == routine arguments ==
