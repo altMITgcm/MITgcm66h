@@ -24,5 +24,9 @@ c
 #define ALLOW_FLT_3D_NOISE
 #endif
 
+c define this to revert to old second-order Runge-Kutta integration
+c
+#undef  FLT_SECOND_ORDER_RUNGE_KUTTA
+
 #endif /* ALLOW_FLT */
 #endif /* FLT_OPTIONS_H */

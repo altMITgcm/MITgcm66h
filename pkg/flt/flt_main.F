@@ -86,11 +86,19 @@ C     myThid - thread number for this instance of the routine.
 
 C     integration of the float trajectories
 
+#ifdef FLT_SECOND_ORDER_RUNGE_KUTTA
 c         WRITE(0,*) ' bf call flt_runga2', myIter
          CALL TIMER_START('FLOATS RUNGA2      [FLT  LOOP]',myThid)
          CALL FLT_RUNGA2( myTime, myIter, myThid )
          CALL TIMER_STOP ('FLOATS RUNGA2      [FLT  LOOP]',myThid)
 c         WRITE(0,*) ' af call flt_runga2', myIter
+#else
+c         WRITE(0,*) ' bf call flt_runga4', myIter
+         CALL TIMER_START('FLOATS RUNGA4      [FLT  LOOP]',myThid)
+         CALL FLT_RUNGA4( myTime, myIter, myThid )
+         CALL TIMER_STOP ('FLOATS RUNGA4      [FLT  LOOP]',myThid)
+c         WRITE(0,*) ' af call flt_runga4', myIter
+#endif
 
 C     check if exchanges between tiles are necessary
 
