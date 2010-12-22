@@ -23,6 +23,10 @@ C     == global variables ==
 #include "PARAMS.h"
 #include "DYNVARS.h"
 #include "FLT.h"
+#ifdef ALLOW_EXCH2
+#include "W2_EXCH2_SIZE.h"
+#include "W2_EXCH2_TOPOLOGY.h"
+#endif
 
 C     == routine arguments ==
       _RL myTime
@@ -49,6 +53,9 @@ C     == local variables ==
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       CHARACTER*(80) dataFName
       INTEGER iG,jG,IL
+#ifdef ALLOW_EXCH2
+      INTEGER nT
+#endif
       LOGICAL exst
       LOGICAL globalFile
 
@@ -101,8 +108,14 @@ C total number of floats
      &                          'RL', imax, tmp, dummyRS,
      &                           bi,bj,-1, myIter, myThid )
 
+#ifdef ALLOW_EXCH2
+         nT = W2_myTileList(bi,bj)
+         i0x = DFLOAT( exch2_txGlobalo(nT) - 1 )
+         j0y = DFLOAT( exch2_tyGlobalo(nT) - 1 )
+#else
          i0x = DFLOAT( myXGlobalLo-1 + (bi-1)*sNx )
          j0y = DFLOAT( myYGlobalLo-1 + (bj-1)*sNy )
+#endif
          DO ip=1,npart_tile(bi,bj)
 
             ix = ipart(ip,bi,bj)
