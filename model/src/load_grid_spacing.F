@@ -3,7 +3,6 @@ C $Name$
 
 c #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
-#undef LOAD_GRID_SPACING_OLD
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 CBOP
