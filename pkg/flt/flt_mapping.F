@@ -133,6 +133,23 @@ C     == end of interface ==
         xx = xG(i,j,bi,bj) + ddx*( xG(i+1,j,bi,bj) - xG(i,j,bi,bj) )
         yy = yG(i,j,bi,bj) + ddy*( yG(i,j+1,bi,bj) - yG(i,j,bi,bj) )
 
+      ELSEIF ( usingCurvilinearGrid ) THEN
+
+        i = NINT(ix)
+        j = NINT(jy)
+        ddx = 0.5 _d 0 + ix - DFLOAT(i)
+        ddy = 0.5 _d 0 + jy - DFLOAT(j)
+
+C       bilinear interpolation within grid cell (should use arcs instead?)
+        xx = xG(i,j,bi,bj) + ddx*( xG(i+1,j,bi,bj) - xG(i,j,bi,bj) )
+     &                     + ddy*( xG(i,j+1,bi,bj) - xG(i,j,bi,bj) )
+     &                 + ddx*ddy*( xG(i+1,j+1,bi,bj) - xG(i+1,j,bi,bj)
+     &                           - xG(i,j+1,bi,bj) + xG(i,j,bi,bj) )
+        yy = yG(i,j,bi,bj) + ddx*( yG(i+1,j,bi,bj) - yG(i,j,bi,bj) )
+     &                     + ddy*( yG(i,j+1,bi,bj) - yG(i,j,bi,bj) )
+     &                 + ddx*ddy*( yG(i+1,j+1,bi,bj) - yG(i+1,j,bi,bj)
+     &                           - yG(i,j+1,bi,bj) + yG(i,j,bi,bj) )
+
       ELSE
         STOP 'FLT_MAP_IJLOCAL2XY: not yet coded for this grid'
       ENDIF
