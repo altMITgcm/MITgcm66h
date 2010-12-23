@@ -26,7 +26,9 @@ C           which should be enough for most applications.
 #endif
 
 C--   COMMON /MDS_3D_BUFFERS/  3-D Shared Local Buffers
-C     Those buffers have be in common block to be shared by all threads
+C     Those buffers have be in common block to be shared by all threads;
+C     considered to be "owned" by master-thread and any access by other 
+C     than master thread needs to be put protected by BARRIER.
 C shared3dBuf_rx :: Heap storage buffer to which master thread
 C                   read-in/write-from data which all threads copy from
 C                   (during read) or copy to (during write).
