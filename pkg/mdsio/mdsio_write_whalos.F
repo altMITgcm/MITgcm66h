@@ -133,16 +133,16 @@ c get the unit and open file
       do i2d=1,n2d
 
         IF (filePrec .EQ. precFloat32) THEN
-          CALL MDS_PASS_WH_R4toRL( fld2d_procbuff_r4, fldRL,
-     &                    1, i2d, n2d, 0, 0, .FALSE., myThid )
+          CALL MDS_PASS_R4toRL( fld2d_procbuff_r4, fldRL,
+     &             OLx, OLy, 1, i2d, n2d, 0, 0, .FALSE., myThid )
           IF ( useSingleCpuIO ) then
             CALL BAR2( myThid )
             CALL GATHER_2D_WH_R4( fld2d_globuff_r4,
      &                            fld2d_procbuff_r4,myThid)
           ENDIF
         ELSE
-          CALL MDS_PASS_WH_R8toRL( fld2d_procbuff_r8, fldRL,
-     &                    1, i2d, n2d, 0, 0, .FALSE., myThid )
+          CALL MDS_PASS_R8toRL( fld2d_procbuff_r8, fldRL,
+     &             OLx, OLy, 1, i2d, n2d, 0, 0, .FALSE., myThid )
           IF ( useSingleCpuIO ) then
             CALL BAR2( myThid )
             CALL GATHER_2D_WH_R8( fld2d_globuff_r8,

@@ -155,16 +155,16 @@ c get the unit and open file
      &                              fld2d_procbuff_r4,myThid)
             CALL BAR2( myThid )
           ENDIF
-          CALL MDS_PASS_WH_R4toRL( fld2d_procbuff_r4, fldRL,
-     &                    1, i2d, n2d, 0, 0, .TRUE., myThid )
+          CALL MDS_PASS_R4toRL( fld2d_procbuff_r4, fldRL,
+     &             OLx, OLy, 1, i2d, n2d, 0, 0, .TRUE., myThid )
         ELSE
           IF ( useSingleCpuIO ) then
             CALL SCATTER_2D_WH_R8 ( fld2d_globuff_r8,
      &                              fld2d_procbuff_r8,myThid)
             CALL BAR2( myThid )
           ENDIF
-          CALL MDS_PASS_WH_R8toRL( fld2d_procbuff_r8, fldRL,
-     &                    1, i2d, n2d, 0, 0, .TRUE., myThid )
+          CALL MDS_PASS_R8toRL( fld2d_procbuff_r8, fldRL,
+     &             OLx, OLy, 1, i2d, n2d, 0, 0, .TRUE., myThid )
         ENDIF
 
       enddo
