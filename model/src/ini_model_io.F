@@ -135,7 +135,8 @@ C-    Initialise Alternating pickup-suffix
       checkPtSuff(1)    = 'ckptA'
       checkPtSuff(2)    = 'ckptB'
 
-C-    Flags specific to RW and MDSIO
+C-    Flags specific to RW and MDSIO (and PLOT_FIELDS)
+      printDomain = debugLevel.GE.debLevA
 
 C-    now we make local directories with myProcessStr appended
       IF ( mdsioLocalDir .NE. ' ' ) THEN

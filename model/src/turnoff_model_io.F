@@ -59,6 +59,7 @@ C     averaged fields in reverse checkpointing loops
       pChkPtFreq   = 0.
       dumpInitAndLast = .FALSE.
       writePickupAtEnd= .FALSE.
+      printDomain  = .FALSE.
 
 #ifdef ALLOW_MNC
 C--   Not the best solution to fix some MNC output, since it is likely
