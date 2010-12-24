@@ -372,5 +372,15 @@ C---  Exclusive packages (which cannot be used together):
         STOP 'ABNORMAL END: S/R PACKAGES_CHECK'
       ENDIF
 
+#ifdef ALLOW_AUTODIFF
+C--   Here INI_MASK_ETC will be called a 2nd time by INITIALISE_VARIA.
+C     This hack prevents a 2nd printing when default debugLevel is used.
+      _BARRIER
+      _BEGIN_MASTER( myThid )
+      IF ( debugLevel.LE.debLevA ) printDomain = .FALSE.
+      _END_MASTER( myThid )
+      _BARRIER
+#endif
+
       RETURN
       END
