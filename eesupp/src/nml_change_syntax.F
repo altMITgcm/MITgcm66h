@@ -3,14 +3,7 @@ C $Name$
 
 #include "CPP_EEOPTIONS.h"
 
-#ifndef NML_TERMINATOR
-#define NML_TERMINATOR  ' &'
-#else
-#define NML_TERMINATOR  ' /'
-#endif
-
 CBOP
-
 C     !ROUTINE: NML_CHANGE_SYNTAX
 
 C     !INTERFACE:
@@ -53,6 +46,13 @@ C     myThid    :: my Thread Id number
 C     !LOCAL VARIABLES:
 C     == Local variables ==
       INTEGER il
+      CHARACTER*(2) nmlEnd
+#ifdef NML_TERMINATOR
+      PARAMETER( nmlEnd = ' /' )
+#else
+      PARAMETER( nmlEnd = ' &' )
+#endif
+
 #ifdef NML_EXTENDED_F77
 C     i0      :: position of active "=" (end of variable name definition)
 C     i1      :: position of 1rst left parenthesis
@@ -75,7 +75,7 @@ CEOP
       il = MAX(ILNBLNK(record),1)
       IF ( il .EQ. 2 ) THEN
        IF ( record(1:2) .EQ. ' &' ) THEN
-        record(1:2) = NML_TERMINATOR
+        record(1:2) = nmlEnd
        ENDIF
       ENDIF
 
