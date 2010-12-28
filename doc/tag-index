@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src:
+  - check horizontal grid-spacing for unset or zero/negative values.
+  - change AD test hs94.1x64x5 to be truly a 2-D set-up.
 o pkg/flt:
   - use (recent) mdsio S/R MDS_READVEC_LOC instead of local FLT_MDSREADVECTOR
   - precision of input and output files set according to readBinaryPrec
