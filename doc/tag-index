@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint62q (2010/12/29)
 o model/src:
   - check horizontal grid-spacing for unset or zero/negative values.
   - change AD test hs94.1x64x5 to be truly a 2-D set-up.
