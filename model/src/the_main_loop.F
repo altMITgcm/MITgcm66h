@@ -109,6 +109,10 @@ c They provide the fields to be stored.
 #   include "THSICE_SIZE.h"
 #   include "THSICE_VARS.h"
 #  endif
+#  ifdef ALLOW_SHELFICE
+#   include "SHELFICE.h"
+#   include "SHELFICE_COST.h"
+#  endif
 #  ifdef ALLOW_EBM
 #   include "EBM.h"
 #  endif

@@ -122,6 +122,10 @@ C     == Global variables ==
 # ifdef ALLOW_SALT_PLUME
 #  include "SALT_PLUME.h"
 # endif
+# ifdef ALLOW_SHELFICE
+#  include "SHELFICE.h"
+#  include "SHELFICE_COST.h"
+# endif
 # ifdef ALLOW_EBM
 #  include "EBM.h"
 # endif
