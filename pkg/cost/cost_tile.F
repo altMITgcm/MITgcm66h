@@ -111,6 +111,10 @@ CADJ &     kind = isbyte
          CALL COST_ACCUMULATE_MEAN (myThid)
 #endif
 
+#ifdef ALLOW_COST_SHELFICE
+         CALL SHELFICE_COST_ACCUMULATE (myThid)
+#endif
+
       ENDIF
 
       DO bj=myByLo(myThid),myByHi(myThid)
