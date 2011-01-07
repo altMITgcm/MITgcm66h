@@ -75,7 +75,9 @@ CADJ STORE StoreDynVars3D     = tapelev3, key = ilev_3
 c
 #endif /* AUTODIFF_USE_OLDSTORE_3D */
 
-cnewCADJ STORE ivdconvcount       = tapelevx, key = ilev_x
+
+
+CADJ STORE phi0surf      = tapelev3, key = ilev_3
 
 #ifdef EXACT_CONSERV
 cphCADJ STORE hDivFlow  = tapelev3, key = ilev_3
@@ -96,7 +98,6 @@ CADJ STORE hfacw         = tapelev3, key = ilev_3
 CADJ STORE recip_hfacc   = tapelev3, key = ilev_3
 CADJ STORE recip_hfacs   = tapelev3, key = ilev_3
 CADJ STORE recip_hfacw   = tapelev3, key = ilev_3
-CADJ STORE phi0surf      = tapelev3, key = ilev_3
 
 # ifndef DISABLE_RSTAR_CODE
 CADJ STORE rstarexpc,rstarexps,rstarexpw 
@@ -145,6 +146,10 @@ CADJ &     = tapelev3, key = ilev_3
 #ifdef ALLOW_THSICE
 # include "thsice_ad_check_lev3_dir.h"
 #endif /* ALLOW_THSICE */
+
+#ifdef ALLOW_SHELFICE
+# include "shelfice_ad_check_lev3_dir.h"
+#endif /* ALLOW_SHELFICE */
 
 #ifdef ALLOW_RBCS
 # include "rbcs_ad_check_lev3_dir.h"
