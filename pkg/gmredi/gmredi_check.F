@@ -145,6 +145,19 @@ C     Make sure we are not trying to use some arrays that are unavailable
       ENDIF
 #endif
 
+#ifndef GM_NON_UNITY_DIAGONAL
+      IF ( GM_iso2dFile .NE. ' ' .OR.
+     &     GM_iso1dFile .NE. ' ' ) THEN
+       WRITE(msgBuf,'(A)')
+     &   ' GMREDI_CHECK: needs #define GM_NON_UNITY_DIAGONAL'
+       CALL PRINT_ERROR( msgBuf, myThid )
+       WRITE(msgBuf,'(A)')
+     &   ' GMREDI_CHECK: to use GM_iso2dFile or GM_iso1dFile'
+       CALL PRINT_ERROR( msgBuf, myThid )
+       STOP 'ABNORMAL END: S/R GMREDI_CHECK'
+      ENDIF
+#endif
+
 #ifdef ALLOW_PTRACERS
       IF ( GM_AdvForm .AND. .NOT.GM_AdvSeparate
      &       .AND. usePTRACERS ) THEN

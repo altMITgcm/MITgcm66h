@@ -14,6 +14,7 @@ C     | SUBROUTINE GMREDI_INIT_VARIA
 C     | o Routine to initialize GM/Redi variables
 C     *==========================================================*
 C     \ev
+
 C     !USES:
       IMPLICIT NONE
 
@@ -84,6 +85,22 @@ C     Initialize averages to zero
 C- end bi,bj loops
        ENDDO
       ENDDO
+
+C--   write GM scaling factors to file:
+      IF ( GM_iso1dFile .NE. ' ' ) THEN
+        CALL WRITE_GLVEC_RS( 'GM_isoFac1d', ' ', GM_isoFac1d,
+     I                        Nr, -1, myThid )
+      ENDIF
+      IF ( GM_bol1dFile .NE. ' ' ) THEN
+        CALL WRITE_GLVEC_RS( 'GM_bolFac1d', ' ', GM_bolFac1d,
+     I                        Nr, -1, myThid )
+      ENDIF
+      IF ( GM_iso2dFile .NE. ' ' ) THEN
+        CALL WRITE_FLD_XY_RS( 'GM_isoFac2d',' ',GM_isoFac2d,-1,myThid )
+      ENDIF
+      IF ( GM_bol2dFile .NE. ' ' ) THEN
+        CALL WRITE_FLD_XY_RS( 'GM_bolFac2d',' ',GM_bolFac2d,-1,myThid )
+      ENDIF
 #endif /* ALLOW_GMREDI */
 
       RETURN
