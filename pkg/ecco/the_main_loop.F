@@ -386,6 +386,12 @@ CADJ INIT comlev1_evp = COMMON,nEVPstepMax*nchklev_1
 CADJ INIT comlev1_multdim
 CADJ &    = COMMON,nchklev_1*nsx*nsy*nthreads_chkpt*multdim
 #  endif
+#  ifndef DISABLE_MULTIDIM_ADVECTION
+CADJ INIT comlev1_bibj_k_gadice = COMMON,
+CADJ &    nchklev_1*nsx*nsy*nthreads_chkpt*maxpass
+CADJ INIT comlev1_bibj_k_gadice_pass = COMMON,
+CADJ &    nchklev_1*nsx*nsy*nthreads_chkpt*maxpass*maxpass
+#  endif /* DISABLE_MULTIDIM_ADVECTION */
 # endif /* ALLOW_SEAICE */
 c--
 #ifdef ALLOW_THSICE
