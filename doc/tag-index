@@ -4,6 +4,13 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice
+  seaice_lsr: move stress-divergence computations out of outer pseudo-
+  timestepping loop  
+o pkg/obcs/obcs_prescribe_read.F: move 'CALL OBCS_EXTERNAL_FIELDS_LOAD'
+  up, so that the calls of the ctrl_* subroutines are really at the end
+  of the routine.
+
 checkpoint62q (2010/12/29)
 o model/src:
   - check horizontal grid-spacing for unset or zero/negative values.
