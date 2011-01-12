@@ -109,7 +109,7 @@ C-    read actual number of floats from file
      &                        bi, bj, 1, myThid )
       ENDIF
 
-      IF ( ioUnit.GT.0 .AND. nIter0.EQ.0 ) THEN
+      IF ( ioUnit.GT.0 .AND. mapIniPos2Index ) THEN
 C--   Found a global file
         WRITE(msgBuf,'(A,2I4,A,1P2E15.8)')
      &    ' bi,bj=', bi, bj, ' , npart,max_npart=', tmp(1), tmp(6)
@@ -155,7 +155,7 @@ C-      end bi,bj loops
 
       ELSEIF ( ioUnit.GT.0 ) THEN
          WRITE(msgBuf,'(2A)') 'FLT_INIT_VARIA:',
-     &                        ' global pickup not supported'
+     &                ' need mapIniPos2Index=T for global file'
          CALL PRINT_ERROR( msgBuf , myThid)
          STOP 'ABNORMAL END: S/R FLT_INIT_VARIA'
 
@@ -182,7 +182,7 @@ C-    read individual float position from file
              CALL MDS_READVEC_LOC( fn, fp, ioUnit,
      &                             'RL', imax, tmp, dummyRS,
      &                             bi, bj, ip+1, myThid )
-             IF ( nIter0.EQ.0 ) THEN
+             IF ( nIter0.EQ.0 .AND. mapIniPos2Index ) THEN
 C--   For initial condition only, convert coordinates to index map:
               CALL FLT_MAP_XY2IJLOCAL( ix, jy,
      I                                 tmp(3), tmp(4),bi,bj,myThid )

@@ -30,7 +30,7 @@ C     == local variables ==
 
       NAMELIST /FLT_NML/ flt_int_traj, flt_int_prof,
      &                   flt_noise, flt_deltaT,
-     &                   flt_file
+     &                   flt_file, mapIniPos2Index
 
 C     == end of interface ==
 
@@ -42,6 +42,7 @@ C     Set default values.
       flt_int_prof = 43200.
       flt_noise    = 0.0
       flt_file     = 'float_pos'
+      mapIniPos2Index = .TRUE.
 
       WRITE(msgBuf,'(A)') ' FLT_READPARMS: opening data.flt'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
