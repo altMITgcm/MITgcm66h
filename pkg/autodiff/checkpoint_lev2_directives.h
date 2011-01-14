@@ -92,21 +92,18 @@ CADJ STORE gtr1nm1   = tapelev2, key = ilev_2
 CADJ STORE hfac_surfc    = tapelev2, key = ilev_2
 CADJ STORE hfac_surfs    = tapelev2, key = ilev_2
 CADJ STORE hfac_surfw    = tapelev2, key = ilev_2
-CADJ STORE hfacc         = tapelev2, key = ilev_2
-CADJ STORE hfacs         = tapelev2, key = ilev_2
-CADJ STORE hfacw         = tapelev2, key = ilev_2
-CADJ STORE recip_hfacc   = tapelev2, key = ilev_2
-CADJ STORE recip_hfacs   = tapelev2, key = ilev_2
-CADJ STORE recip_hfacw   = tapelev2, key = ilev_2
+CADJ STORE hFac_surfNm1C= tapelev2, key = ilev_2
+CADJ STORE hFac_surfNm1S= tapelev2, key = ilev_2
+CADJ STORE hFac_surfNm1W= tapelev2, key = ilev_2
 
 # ifndef DISABLE_RSTAR_CODE
 CADJ STORE rstarexpc,rstarexps,rstarexpw 
 CADJ &     = tapelev2, key = ilev_2
 CADJ STORE rstarfacc,rstarfacs,rstarfacw 
 CADJ &     = tapelev2, key = ilev_2
-CADJ STORE rstardhcdt,rstardhsdt,rstardhwdt 
+CADJ STORE rStarFacNm1C,rStarFacNm1S,rStarFacNm1W
 CADJ &     = tapelev2, key = ilev_2
-CADJ STORE h0facc,h0facs,h0facw
+CADJ STORE rstardhcdt,rstardhsdt,rstardhwdt 
 CADJ &     = tapelev2, key = ilev_2
 # endif
 #endif /* NONLIN_FRSURF */

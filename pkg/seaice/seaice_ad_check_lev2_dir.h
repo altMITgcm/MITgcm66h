@@ -7,7 +7,7 @@ CADJ STORE StoreSEAICE    = tapelev2, key = ilev_2
 CADJ STORE tices      =     tapelev2, key = ilev_2
 #endif
 
-#ifdef NONLIN_FRSURF
+#ifdef AUTODIFF_SOMETIMES_NEEDED
 CADJ STORE area  = tapelev2, key = ilev_2
 CADJ STORE heff  = tapelev2, key = ilev_2
 CADJ STORE uice  = tapelev2, key = ilev_2
