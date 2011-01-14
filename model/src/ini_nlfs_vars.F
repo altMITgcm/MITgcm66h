@@ -56,12 +56,12 @@ C-    1rst bi,bj loop :
 C-- Initialise arrays (NLFS using r-coordinate):
          DO j=1-Oly,sNy+Oly
           DO i=1-Olx,sNx+Olx
-           hFac_surfC(i,j,bi,bj) = _hFacC(i,j,1,bi,bj)
-           hFac_surfW(i,j,bi,bj) = _hFacW(i,j,1,bi,bj)
-           hFac_surfS(i,j,bi,bj) = _hFacS(i,j,1,bi,bj)
-           hFac_surfNm1C(i,j,bi,bj) = _hFacC(i,j,1,bi,bj)
-           hFac_surfNm1W(i,j,bi,bj) = _hFacW(i,j,1,bi,bj)
-           hFac_surfNm1S(i,j,bi,bj) = _hFacS(i,j,1,bi,bj)
+           hFac_surfC(i,j,bi,bj) = 0.
+           hFac_surfW(i,j,bi,bj) = 0.
+           hFac_surfS(i,j,bi,bj) = 0.
+           hFac_surfNm1C(i,j,bi,bj) = 0.
+           hFac_surfNm1W(i,j,bi,bj) = 0.
+           hFac_surfNm1S(i,j,bi,bj) = 0.
            PmEpR(i,j,bi,bj) = 0.
            Rmin_surf(i,j,bi,bj) = Ro_surf(i,j,bi,bj)
           ENDDO
