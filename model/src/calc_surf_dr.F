@@ -64,6 +64,15 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
       DO bj=myByLo(myThid), myByHi(myThid)
        DO bi=myBxLo(myThid), myBxHi(myThid)
+       
+C--   before updating hFac_surfC/S/W save current fields
+         DO j=1-Oly,sNy+Oly
+           DO i=1-Olx,sNx+Olx
+             hFac_surfNm1C(i,j,bi,bj) = hFac_surfC(i,j,bi,bj)
+             hFac_surfNm1S(i,j,bi,bj) = hFac_surfS(i,j,bi,bj)
+             hFac_surfNm1W(i,j,bi,bj) = hFac_surfW(i,j,bi,bj)
+           ENDDO
+         ENDDO
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 C-- Compute the new fractional thickness of surface level (ksurfC):

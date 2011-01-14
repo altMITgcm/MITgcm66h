@@ -239,7 +239,7 @@ C     and modify hFac(C,W,S) accordingly :
       IF (nonlinFreeSurf.GT.0) THEN
        IF ( select_rStar.GT.0 ) THEN
 # ifndef DISABLE_RSTAR_CODE
-        CALL UPDATE_R_STAR( startTime, nIter0, myThid )
+        CALL UPDATE_R_STAR( .TRUE., startTime, nIter0, myThid )
 # endif /* DISABLE_RSTAR_CODE */
        ELSEIF ( selectSigmaCoord.NE.0 ) THEN
 # ifndef DISABLE_SIGMA_CODE
@@ -247,7 +247,7 @@ C     and modify hFac(C,W,S) accordingly :
 # endif /* DISABLE_RSTAR_CODE */
        ELSE
         CALL CALC_SURF_DR(etaH, startTime, -1 , myThid )
-        CALL UPDATE_SURF_DR( startTime, nIter0, myThid )
+        CALL UPDATE_SURF_DR( .TRUE., startTime, nIter0, myThid )
        ENDIF
       ENDIF
 C-    update also CG2D matrix (and preconditioner)

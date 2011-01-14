@@ -77,6 +77,16 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
       DO bj=myByLo(myThid), myByHi(myThid)
        DO bi=myBxLo(myThid), myBxHi(myThid)
+       
+C--   before updating rStarFacC/S/W save current fields
+         DO j=1-Oly,sNy+Oly
+           DO i=1-Olx,sNx+Olx
+             rStarFacNm1C(i,j,bi,bj) = rStarFacC(i,j,bi,bj)
+             rStarFacNm1S(i,j,bi,bj) = rStarFacS(i,j,bi,bj)
+             rStarFacNm1W(i,j,bi,bj) = rStarFacW(i,j,bi,bj)
+           ENDDO
+         ENDDO
+       
 C-    1rst bi,bj loop :
 
 C-- copy rStarFacX -> rStarExpX
