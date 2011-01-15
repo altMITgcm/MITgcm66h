@@ -2719,7 +2719,8 @@ Clean:
 CLEAN:
 	@make Clean
 	-rm -f \$(EXECUTABLE) \$(EXE_AD) *.bak
-	-rm -f $LOGFILE genmake_state genmake_*optfile genmake.tr_log make.tr_log
+	-rm -f $LOGFILE genmake_state genmake_*optfile
+	-rm -f SIZE.h.mpi genmake.tr_log make.tr_log
 	-find \$(EXEDIR) -name "*.meta" -exec rm {} \;
 	-find \$(EXEDIR) -name "*.data" -exec rm {} \;
 	-find \$(EXEDIR) -name "fort.*" -exec rm {} \;
