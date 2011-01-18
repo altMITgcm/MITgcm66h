@@ -613,7 +613,13 @@ CADJ &     kind = isbyte
 CADJ STORE recip_hFacC(:,:,:,bi,bj)
 CADJ &     = comlev1_bibj, key=itdkey,
 CADJ &     kind = isbyte
-# endif
+#  if (defined (ALLOW_PTRACERS))
+CADJ STORE surfaceForcingS(:,:,bi,bj)   = comlev1_bibj, key=itdkey,
+CADJ &     kind = isbyte
+CADJ STORE surfaceForcingT(:,:,bi,bj)   = comlev1_bibj, key=itdkey,
+CADJ &     kind = isbyte
+#  endif /* ALLOW_PTRACERS */
+# endif /* NONLIN_FRSURF */
 #endif
         CALL EXTERNAL_FORCING_SURF(
      I             bi, bj, iMin, iMax, jMin, jMax,
