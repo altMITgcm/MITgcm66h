@@ -198,6 +198,10 @@ CADJ STORE uice,vice       = comlev1, key=ikey_dynamics, kind=isbyte
 # include "gchem_ad_check_lev1_dir.h"
 #endif
 
+#ifdef ALLOW_PTRACERS
+# include "ptracers_ad_check_lev1_dir.h"
+#endif
+
 #ifdef ALLOW_CFC
 # include "cfc_ad_check_lev1_dir.h"
 #endif
