@@ -131,7 +131,7 @@ CADJ &      = comlev1_bibj_k_ptracers, key=kkey, byte=isbyte
 # ifdef NONLIN_FRSURF
 CADJ STORE gpTr(:,:,k,bi,bj,iTracer)
 CADJ &      = comlev1_bibj_k_ptracers, key=kkey, byte=isbyte
-CADJ STORE rFlx(:,:,k,iTracer)
+CADJ STORE rFlx(:,:,:,iTracer)
 CADJ &      = comlev1_bibj_k_ptracers, key=kkey, byte=isbyte
 # endif
 #endif /* ALLOW_AUTODIFF_TAMC */
