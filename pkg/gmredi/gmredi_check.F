@@ -158,6 +158,13 @@ C     Make sure we are not trying to use some arrays that are unavailable
       ENDIF
 #endif
 
+#ifdef ALLOW_EDDYPSI
+       WRITE(msgBuf,'(A)')
+     &   ' GMREDI_CHECK: Bug in ALLOW_EDDYPSI + GM-Redi'
+       CALL PRINT_ERROR( msgBuf, myThid )
+       STOP 'ABNORMAL END: S/R GMREDI_CHECK'
+#endif
+
 #ifdef ALLOW_PTRACERS
       IF ( GM_AdvForm .AND. .NOT.GM_AdvSeparate
      &       .AND. usePTRACERS ) THEN
