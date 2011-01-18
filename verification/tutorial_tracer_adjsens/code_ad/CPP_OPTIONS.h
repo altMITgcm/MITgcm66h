@@ -15,6 +15,11 @@ C o Shortwave heating as extra term in external_forcing.F
 #define  SHORTWAVE_HEATING
 #endif
 
+C o Nonlinear free surface
+#define NONLIN_FRSURF
+cph#define DISABLE_RSTAR_CODE
+#define DISABLE_SIGMA_CODE
+
 C o Include/exclude phi_hyd calculation code
 #define INCLUDE_PHIHYD_CALCULATION_CODE
 
