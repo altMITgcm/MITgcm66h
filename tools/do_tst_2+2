@@ -154,7 +154,7 @@ do
       pp=`expr $px \* $py` > /dev/null 2>&1 ; out=$?
       if test "x$out" = x0 ; then NP_MPI=$pp ; fi
     fi
-    rCommand=`echo $COMMAND | sed "s/-np * XX /-np $NP_MPI /"`
+    rCommand=`echo $COMMAND | sed "s/ TR_NPROC / $NP_MPI /"`
   else
     rCommand=$COMMAND
   fi
