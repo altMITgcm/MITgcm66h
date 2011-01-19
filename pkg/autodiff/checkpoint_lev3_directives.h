@@ -48,14 +48,10 @@ c
 CADJ STORE gs  = tapelev3, key = ilev_3
 CADJ STORE gt  = tapelev3, key = ilev_3             
 #ifdef ALLOW_ADAMSBASHFORTH_3
-CADJ STORE gtnm(:,:,:,:,1)   = tapelev3, key = ilev_3
-CADJ STORE gsnm(:,:,:,:,1)   = tapelev3, key = ilev_3
-CADJ STORE gunm(:,:,:,:,1)   = tapelev3, key = ilev_3
-CADJ STORE gvnm(:,:,:,:,1)   = tapelev3, key = ilev_3
-CADJ STORE gtnm(:,:,:,:,2)   = tapelev3, key = ilev_3
-CADJ STORE gsnm(:,:,:,:,2)   = tapelev3, key = ilev_3
-CADJ STORE gunm(:,:,:,:,2)   = tapelev3, key = ilev_3
-CADJ STORE gvnm(:,:,:,:,2)   = tapelev3, key = ilev_3
+CADJ STORE gtnm  = tapelev3, key = ilev_3
+CADJ STORE gsnm  = tapelev3, key = ilev_3
+CADJ STORE gunm  = tapelev3, key = ilev_3
+CADJ STORE gvnm  = tapelev3, key = ilev_3
 #else
 CADJ STORE gtnm1  = tapelev3, key = ilev_3             
 CADJ STORE gsnm1  = tapelev3, key = ilev_3             
