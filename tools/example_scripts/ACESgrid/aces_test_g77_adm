@@ -27,7 +27,7 @@ sfx='g77'
 #module add netcdf/3.6.1/icc
 #export MPI_INC_DIR='/usr/local/pkg/mpich/mpich-intel/include/'
  OPTFILE="../tools/build_options/linux_ia32_g77"
- options='-adm'
+ options='-adm -do'
 #- need this to get "staf":
 export PATH="$PATH:$HOME/bin"
 
@@ -59,8 +59,8 @@ if [ $checkOut -eq 2 ] ; then
   if test -e $gcmDIR ; then
      rm -rf $gcmDIR
   fi
-  cvs -d :pserver:cvsanon@mitgcm.org:/u/gcmpack co -P -d $gcmDIR MITgcm > /dev/null 2>&1
 # cvs co MITgcm
+  cvs -d :pserver:cvsanon@mitgcm.org:/u/gcmpack co -P -d $gcmDIR MITgcm > /dev/null 2>&1
   /usr/bin/find $gcmDIR -type d | xargs chmod g+rxs
   /usr/bin/find $gcmDIR -type f | xargs chmod g+r
 else
