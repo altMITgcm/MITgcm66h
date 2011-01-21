@@ -1,6 +1,16 @@
 C $Header$
 C $Name$
 
+#ifdef ALLOW_AUTODIFF_WHTAPEIO
+      COMMON /AUTODIFF_WHTAPEIO_I/
+     &  tapeFileCounter, tapeMaxCounter, tapeFileUnit, tapeFileUnitS
+      integer tapeFileCounter, tapeMaxCounter
+      integer tapeFileUnit, tapeFileUnitS(4)
+      COMMON /AUTODIFF_WHTAPEIO_L/ 
+     &  tapeConcatIO, tapeSingleCpuIO, tapeBufferIO
+      logical tapeConcatIO, tapeSingleCpuIO, tapeBufferIO
+#endif
+
       integer ilev_1
       integer ilev_2
       integer ilev_3

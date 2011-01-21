@@ -211,12 +211,12 @@ C       Write units/set precision/etc for I/O of variables/arrays
 C       belonging to the core dynamical model
         CALL INI_MNC_VARS( myThid )
 
+      ENDIF
+#endif /* ALLOW_MNC */
+
 #ifdef ALLOW_AUTODIFF
         CALL AUTODIFF_INI_MODEL_IO( myThid )
 #endif
-
-      ENDIF
-#endif /* ALLOW_MNC */
 
 #ifdef ALLOW_MONITOR
 C--   Initialise MONITOR I/O streams so we can report config. info
