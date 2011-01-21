@@ -29,6 +29,7 @@ C I/O that includes tile halos in the files
 #undef ALLOW_WHIO
 #ifdef ALLOW_AUTODIFF_TAMC
 # define ALLOW_WHIO
+# define ALLOW_WHIO_3D
 #endif
 
 #endif /* ALLOW_MDSIO */

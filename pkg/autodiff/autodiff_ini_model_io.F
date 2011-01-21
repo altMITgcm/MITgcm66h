@@ -10,6 +10,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 #ifdef ALLOW_SEAICE
 # include "SEAICE_OPTIONS.h"
 #endif
+#include "MDSIO_OPTIONS.h"
 
 CBOP
 C     !ROUTINE: AUTODIFF_INI_MODEL_IO
@@ -53,6 +54,16 @@ CEOP
       tapeConcatIO=.TRUE.
       tapeSingleCpuIO=useSingleCpuIO
       tapeBufferIO=.FALSE.
+
+#ifdef EXCLUDE_WHIO_GLOBUFF_2D
+      tapeSingleCpuIO=.FALSE.
+#endif 
+#ifdef ALLOW_WHIO_3D
+#ifndef INCLUDE_WHIO_GLOBUFF_3D
+      tapeSingleCpuIO=.FALSE.
+#endif
+#endif
+
 #endif /* ALLOW_AUTODIFF_WHTAPEIO */
 
 #if (defined (ALLOW_MNC) && defined (ALLOW_AUTODIFF_MONITOR))
