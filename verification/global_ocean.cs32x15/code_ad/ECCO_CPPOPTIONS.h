@@ -29,6 +29,8 @@ C o use divided adjoint to split adjoint computations
 
 #define ALLOW_AUTODIFF_WHTAPEIO
 #define ALLOW_PACKUNPACK_METHOD2
+#define AUTODIFF_USE_OLDSTORE_3D
+#define AUTODIFF_USE_OLDSTORE_2D
 
 C ********************************************************************
 C ***                     Calender Package                         ***
