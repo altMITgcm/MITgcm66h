@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint62r (2011/01/24)
 o testreport:
  - add option -deloutp (-do) to remove output file after successful run
  - add option -mfile (-mf) for MPI machile-file and for each test-exp,
