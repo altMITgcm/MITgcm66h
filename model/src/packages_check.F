@@ -172,7 +172,9 @@ C---  Continue with standard packages (with standard usePKG flag)
       IF (useOBCS) CALL PACKAGES_ERROR_MSG('OBCS',' ',myThid)
 #endif
 
-#ifndef ALLOW_EXF
+#ifdef ALLOW_EXF
+      IF (useEXF) CALL EXF_CHECK( myThid )
+#else
       IF (useEXF) CALL PACKAGES_ERROR_MSG('EXF',' ',myThid)
 #endif
 
