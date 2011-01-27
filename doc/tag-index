@@ -4,6 +4,12 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/gmredi:
+ - apply exchange to GM_PsiX,GM_PsiY to get valid values near CS-corners
+   (needed for multi-dim advection).
+o model/src:
+ - fix wrong re-setting of addMass array (ALLOW_ADDFLUID) for atmospheric run.
+
 checkpoint62r (2011/01/24)
 o testreport:
  - add option -deloutp (-do) to remove output file after successful run
