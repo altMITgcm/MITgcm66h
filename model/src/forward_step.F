@@ -603,12 +603,12 @@ C      Read in coupling data that I import.
 #endif /* COMPONENT_MODULE */
 
 #ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE etaN = comlev1, key = ikey_dynamics, kind = isbyte
 # if (defined ALLOW_DEPTH_CONTROL)
 CADJ STORE hFacC, hFacS, hFacW
 CADJ &     = comlev1, key = ikey_dynamics, kind = isbyte
 CADJ STORE recip_hFacC, recip_hFacS, recip_hFacW
 CADJ &     = comlev1, key = ikey_dynamics, kind = isbyte
-CADJ STORE etaN = comlev1, key = ikey_dynamics, kind = isbyte
 c
 #  ifndef DISABLE_RSTAR_CODE
 CADJ STORE rstarFacC, rstarFacS, rstarFacW = 
