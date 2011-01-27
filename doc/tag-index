@@ -7,6 +7,7 @@ $Name$
 o pkg/gmredi:
  - apply exchange to GM_PsiX,GM_PsiY to get valid values near CS-corners
    (needed for multi-dim advection).
+ - switch on GM Advective form in global_ocean.cs32x15 and update output.txt
 o model/src:
  - fix wrong re-setting of addMass array (ALLOW_ADDFLUID) for atmospheric run.
 
