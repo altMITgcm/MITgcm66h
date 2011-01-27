@@ -509,7 +509,14 @@ function A = ncgetatt(nc,varname)
       if ~ischar(attval)
         attval = double(attval);
       end
-      A.(char(attn))=attval;
+      if strcmp(attn,'_FillValue')
+        % matlab does not allow variable names to begin with an
+        % underscore ("_"), so we have to do change the name of this
+        % obsolete attribute.
+        A.FillValue_=attval;
+      else
+        A.(char(attn))=attval;
+      end
     end
   else
       A = 'none';
