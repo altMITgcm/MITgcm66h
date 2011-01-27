@@ -788,6 +788,12 @@ C--   end bi,bj loops.
        ENDDO
       ENDDO
 
+#ifdef ALLOW_GMREDI
+      IF ( useGMRedi ) THEN
+        CALL GMREDI_DO_EXCH( myTime, myIter, myThid )
+      ENDIF
+#endif /* ALLOW_GMREDI */
+
 #ifdef ALLOW_KPP
       IF (useKPP) THEN
         CALL KPP_DO_EXCH( myThid )
