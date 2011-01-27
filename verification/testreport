@@ -1437,6 +1437,10 @@ for dir in $TESTDIRS ; do
 	echo "tdir='$dir'" >> $locDIR"/summary.txt"
 	if test "x$ADM" = xt ; then
 	    head -1 $dir/$builddir/taf_ad.log >> $locDIR"/summary.txt"
+	    nerr=`grep -c 'TAF *.* ERROR ' $dir/$builddir/taf_ad.log`
+	    nwar=`grep -c 'TAF RECOMPUTATION *.* WARNING ' $dir/$builddir/taf_ad.log`
+	    echo " TAF reports $nerr Errors and $nwar Recomputation Warnings" \
+				>> $locDIR"/summary.txt"
 	    grep -A3 'Seconds in section "ALL' $dir/$rundir/$OUTPUTFILE \
 				>> $locDIR"/summary.txt"
 	fi
@@ -1463,7 +1467,6 @@ for dir in $TESTDIRS ; do
 	    echo "fresults='$fres'" | sed 's/ 99/ --/g' >> $locDIR"/summary.txt"
 	    echo "tdir='$dir.$ex'" >> $locDIR"/summary.txt"
             if test "x$ADM" = xt ; then
-	        head -1 $dir/$builddir/taf_ad.log >> $locDIR"/summary.txt"
 	        grep -A3 'Seconds in section "ALL' $dir/$pfxdir.$ex/$OUTPUTFILE \
 			           >> $locDIR"/summary.txt"
             fi
