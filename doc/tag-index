@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/flt:
+ - add CPP options to prevent floats to re-enter the opposite side of
+   a periodic domain (default: keep periodicity)
 o pkg/gmredi:
  - apply exchange to GM_PsiX,GM_PsiY to get valid values near CS-corners
    (needed for multi-dim advection).
