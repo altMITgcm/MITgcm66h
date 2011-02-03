@@ -13,6 +13,9 @@ o pkg/gmredi:
  - switch on GM Advective form in global_ocean.cs32x15 and update output.txt
 o model/src:
  - fix wrong re-setting of addMass array (ALLOW_ADDFLUID) for atmospheric run.
+o tutorial_tracer_adjsens
+ - extend to NLFS and replace maskC by hFacC
+   (change reference output accordingly)
 
 checkpoint62r (2011/01/24)
 o testreport:
