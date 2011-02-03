@@ -28,7 +28,6 @@ C     == Global variables ===
 #  include "PTRACERS_FIELDS.h"
 # endif
 #endif
-
 #include "cost.h"
 
 C     == Routine arguments ==
@@ -43,6 +42,7 @@ C     == Local variables
 
       integer i, j, k
       integer ig, jg
+
 ce    some reference temperature
       thetaRef = 24.0D0
 
@@ -52,7 +52,7 @@ ce    some reference temperature
       DO j=1,sNy
          DO i=1,sNx
 #ifdef ALLOW_PTRACERS
-            locfc = locfc + maskC(i,j,k,bi,bj)*
+            locfc = locfc + hFacC(i,j,k,bi,bj)*
      &           lambdaTr1ClimRelax*ptracer(i,j,k,bi,bj,1)*
      &           rA(i,j,bi,bj)*drF(k)*dTtracerLev(k)
 #endif
