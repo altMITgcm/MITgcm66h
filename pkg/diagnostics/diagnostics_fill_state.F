@@ -634,8 +634,8 @@ C--   fill tracer state-var diagnostics: end
 
       IF ( selectVars.EQ.4 ) THEN
 C Second fill sequence for state variable tendency diagnostics: add state variable
-C NOTE: send a '-1' for the bibjflag and allow counter to be incremented
-C       this means that diag fill is called from inside the bi-bj loop
+C NOTE: send a '-1' for the bibjflag and do not increment counter
+C     (next fill for these diagnostics WILL allow counter to be incremented)
 
         IF ( DIAGNOSTICS_IS_ON('TOTUTEND',myThid) ) THEN
          DO bj = myByLo(myThid), myByHi(myThid)
