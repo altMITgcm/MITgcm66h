@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/cheapaml:
+ - from Nico Wienders: New version of this package.
 o pkg/flt:
  - add CPP options to prevent floats to re-enter the opposite side of
    a periodic domain (default: keep periodicity)
