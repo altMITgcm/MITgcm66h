@@ -7,12 +7,12 @@ CBOP
 C !ROUTINE: GAD_C2_2d_ADV_X
 
 C !INTERFACE: ==========================================================
-      SUBROUTINE GAD_C2_2d_ADV_X( 
-     I           bi,bj,
-     I           uVel,
-     I           tracer,
-     O           uT,
-     I           myThid )
+      SUBROUTINE GAD_C2_2d_ADV_X(
+     I   bi,bj,
+     I   uVel,
+     I   tracer,
+     O   uT,
+     I   myThid )
 
 C !DESCRIPTION:
 C Calculates the area integrated zonal flux due to advection of a tracer using
@@ -46,11 +46,11 @@ C  i,j                  :: loop indices
 CEOP
 
       DO j=1-Oly,sNy+Oly
-       uT(1-Olx,j)=0.
-       DO i=1-Olx+1,sNx+Olx
-        uT(i,j) = 
-     &   uVel(i,j,bi,bj)*(Tracer(i,j)+Tracer(i-1,j))*0.5 _d 0
-       ENDDO
+        uT(1-Olx,j)=0.
+        DO i=1-Olx+1,sNx+Olx
+          uT(i,j) =
+     &       uVel(i,j,bi,bj)*(Tracer(i,j)+Tracer(i-1,j))*0.5 _d 0
+        ENDDO
       ENDDO
 
       RETURN

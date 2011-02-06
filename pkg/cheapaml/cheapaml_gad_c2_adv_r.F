@@ -4,57 +4,57 @@ C $Name$
 #include "GAD_OPTIONS.h"
 
 CBOP
-C !ROUTINE: GAD_C2_ADV_Y
+C !ROUTINE: CHEAPAML_GAD_C2_ADV_R
 
 C !INTERFACE: ==========================================================
-      SUBROUTINE GAD_C2_2d_ADV_Y(
-     I   bi,bj,
-     I   vVel,
-     I   tracer,
-     O   vT,
-     I   myThid )
+      SUBROUTINE CHEAPAML_GAD_C2_ADV_R(
+     I           bi,bj,
+     I           rTrans,
+     I           tracer,
+     O           wT,
+     I           myThid )
 
 C !DESCRIPTION:
-C Calculates the area integrated meridional flux due to advection of a tracer
+C Calculates the area integrated vertical flux due to advection of a tracer
 C using centered second-order interpolation:
 C \begin{equation*}
-C F^y_{adv} = V \overline{\theta}^j
+C F^r_{adv} = W \overline{\theta}^k
 C \end{equation*}
+c modified for use in Cheapaml
 
 C !USES: ===============================================================
       IMPLICIT NONE
 #include "SIZE.h"
 #include "GRID.h"
+#include "EEPARAMS.h"
+#include "PARAMS.h"
 
 C !INPUT PARAMETERS: ===================================================
 C  bi,bj                :: tile indices
-C  vVel               :: meridional velocity
+C  rTrans               :: vertical volume transport
 C  tracer               :: tracer field
 C  myThid               :: thread number
       INTEGER bi,bj
-      _RL vVel(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RL tracer(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL rTrans(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL tracer(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       INTEGER myThid
 
 C !OUTPUT PARAMETERS: ==================================================
-C  vT                   :: meridional advective flux
-      _RL vT    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+C  wT                   :: vertical advective flux
+      _RL wT    (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
 C !LOCAL VARIABLES: ====================================================
 C  i,j                  :: loop indices
       INTEGER i,j
 CEOP
 
-      DO i=1-Olx,sNx+Olx
-        vT(i,1-Oly)=0.
-      ENDDO
-      DO j=1-Oly+1,sNy+Oly
+
+       DO j=1-Oly,sNy+Oly
         DO i=1-Olx,sNx+Olx
-          vT(i,j) =
-     &       vVel(i,j,bi,bj)*(Tracer(i,j)+Tracer(i,j-1))*0.5 _d 0
+         wT(i,j) = rTrans(i,j)*
+     &        (Tracer(i,j,bi,bj)+Tracer(i,j,bi,bj))*0.5 _d 0
         ENDDO
-      ENDDO
+       ENDDO
 
       RETURN
       END
-

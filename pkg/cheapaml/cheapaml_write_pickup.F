@@ -11,13 +11,14 @@ C !INTERFACE: ==========================================================
      &                    suff, myTime, myIter, myThid )
 
 C !DESCRIPTION:
-C     Writes current state of passive tracers to a pickup file
+C     Writes current state of cheapaml variables  to a pickup file
 
 C !USES: ===============================================================
       IMPLICIT NONE
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "FFIELDS.h"
 #include "CHEAPAML.h"
 
 C !INPUT PARAMETERS: ===================================================
@@ -82,6 +83,31 @@ C-    switch to 2-D fields:
      &                        Tair, nj, myIter, myThid )
         IF (j.LE.listDim) wrFldList(j) = 'Tair'
 
+
+        j = j + 1
+        nj = nj-1
+        CALL WRITE_REC_3D_RL( fn, fp, 1,
+     &                        Qnet, nj, myIter, myThid )
+         IF (j.LE.listDim) wrFldList(j) = 'Qnet'
+
+
+        if (useFreshWaterFlux) then
+
+        j = j + 1
+        nj = nj-1
+        CALL WRITE_REC_3D_RL( fn, fp, 1,
+     &                        qair, nj, myIter, myThid )
+        IF (j.LE.listDim) wrFldList(j) = 'Qair'
+
+
+
+        j = j + 1
+        nj = nj-1
+        CALL WRITE_REC_3D_RL( fn, fp, 1,
+     &                        EmPmR, nj, myIter, myThid )
+         IF (j.LE.listDim) wrFldList(j) = 'EmPmR'
+
+        endif
 
 C--------------------------
         nWrFlds = j
