@@ -86,7 +86,7 @@ C-    switch to 2-D fields:
 
         j = j + 1
         nj = nj-1
-        CALL WRITE_REC_3D_RL( fn, fp, 1,
+        CALL WRITE_REC_3D_RS( fn, fp, 1,
      &                        Qnet, nj, myIter, myThid )
          IF (j.LE.listDim) wrFldList(j) = 'Qnet'
 
@@ -103,7 +103,7 @@ C-    switch to 2-D fields:
 
         j = j + 1
         nj = nj-1
-        CALL WRITE_REC_3D_RL( fn, fp, 1,
+        CALL WRITE_REC_3D_RS( fn, fp, 1,
      &                        EmPmR, nj, myIter, myThid )
          IF (j.LE.listDim) wrFldList(j) = 'EmPmR'
 

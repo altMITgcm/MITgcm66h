@@ -332,7 +332,7 @@ c update edges
          _EXCH_XY_RS(Qnet,mythid)
       if(useFreshwaterFlux)then
          _EXCH_XY_RL(qair,mythid)
-         _EXCH_XY_RL(EmPmR,mythid)
+         _EXCH_XY_RS(EmPmR,mythid)
       endif
 
 c reset edges to open boundary profiles
