@@ -52,6 +52,9 @@ C-    to switch on/off ocean heat contribution to seaice cover reduction:
 #define SEAICE_OCN_MELT_ACT_ON_AREA
 #endif
 
+C-    to use the MCPhee formula in computing ocean/ice fluxes
+#undef MCPHEE_OCEAN_ICE_HEAT_FLUX
+
 C--   Use the Old version of seaice_solve4temp (formerly seaice_budget_ice)
 C     otherwise, use Ian Fenty s version
 #define SEAICE_SOLVE4TEMP_LEGACY
