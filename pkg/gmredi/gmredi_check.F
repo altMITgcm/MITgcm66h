@@ -158,12 +158,26 @@ C     Make sure we are not trying to use some arrays that are unavailable
       ENDIF
 #endif
 
+      IF ( GM_InMomAsStress ) THEN
 #ifdef ALLOW_EDDYPSI
        WRITE(msgBuf,'(A)')
-     &   ' GMREDI_CHECK: Bug in ALLOW_EDDYPSI + GM-Redi'
+     &   ' GMREDI_CHECK: Bug in ALLOW_EDDYPSI with GM_InMomAsStress'
        CALL PRINT_ERROR( msgBuf, myThid )
        STOP 'ABNORMAL END: S/R GMREDI_CHECK'
-#endif
+#else /* ALLOW_EDDYPSI */
+       WRITE(msgBuf,'(2A)')
+     &  ' GMREDI_CHECK: need to define ALLOW_EDDYPSI in CPP_OPTIONS.h',
+     &  ' to use GM_InMomAsStress'
+       CALL PRINT_ERROR( msgBuf, myThid )
+       STOP 'ABNORMAL END: S/R GMREDI_CHECK'
+#endif /* ALLOW_EDDYPSI */
+      ENDIF
+      IF ( GM_InMomAsStress .AND. .NOT.GM_AdvForm ) THEN
+       WRITE(msgBuf,'(A)')
+     &   ' GMREDI_CHECK: need GM_AdvForm=T to use GM_InMomAsStress'
+       CALL PRINT_ERROR( msgBuf, myThid )
+       STOP 'ABNORMAL END: S/R GMREDI_CHECK'
+      ENDIF
 
 #ifdef ALLOW_PTRACERS
       IF ( GM_AdvForm .AND. .NOT.GM_AdvSeparate
