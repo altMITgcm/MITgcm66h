@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: 
+ - McPhee formula for Ice-Ocean fluxes (provided by Ian Fenty).
+ - can be used by #define MCPHEE_OCEAN_ICE_HEAT_FLUX in SEAICE_OPTIONS.h
 o pkg/cheapaml:
  - from Nico Wienders: New version of this package.
 o pkg/flt:
