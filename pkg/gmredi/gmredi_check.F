@@ -96,6 +96,15 @@ C- print out some kee parameters :
        CALL WRITE_0D_RL( GM_maxTransLay, INDEX_NONE,
      &  'GM_maxTransLay =',
      &  ' /* Maximum Transition Layer Thickness [m] */')
+       CALL WRITE_0D_L( GM_UseBVP, INDEX_NONE,
+     &  'GM_UseBVP =',
+     &  ' /* if TRUE => use bvp a la Ferrari et al. (2010) */')
+       CALL WRITE_0D_I( GM_BVP_ModeNumber, INDEX_NONE,
+     &  'GM_BVP_ModeNumber =',
+     &  ' /* Vertical mode number for BVP wave speed */')
+       CALL WRITE_0D_RL( GM_BVP_cMin, INDEX_NONE,
+     &  'GM_BVP_cMin =',
+     &  ' /* Minimum wave speed for BVP [m/s] */')
 
 C--  Check parameters:
 

@@ -202,6 +202,24 @@ c     IF ( useDiagnotics ) THEN
      I    diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
 #endif
 
+#ifdef GM_BOLUS_BVP
+        diagName  = 'GM_BVPcW'
+        diagTitle = 'WKB wave speed (at Western edge location)'
+        diagUnits = 'm/s             '
+        diagCode  = 'SU P    M1      '
+        diagMate  = diagNum + 2
+        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
+
+        diagName  = 'GM_BVPcS'
+        diagTitle = 'WKB wave speed (at Southern edge location)'
+        diagUnits = 'm/s             '
+        diagCode  = 'SV P    M1      '
+        diagMate  = diagNum
+        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
+#endif
+
 c     ENDIF
 
 #endif /* ALLOW_DIAGNOSTICS */

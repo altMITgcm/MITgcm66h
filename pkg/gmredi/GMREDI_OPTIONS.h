@@ -38,6 +38,8 @@ C Allows to use the advective form (Bolus velocity) of GM
 C  instead of the Skew-Flux form (=default)
 #define GM_BOLUS_ADVEC
 
+C Allows to use the Boundary-Value-Problem method to evaluate GM Bolus transport
+#define GM_BOLUS_BVP
 
 #endif /* ALLOW_GMREDI */
 #endif /* GMREDI_OPTIONS_H */
