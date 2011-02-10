@@ -48,6 +48,9 @@ C--   options only available in the merged version (from Ian Fenty s code)
 #ifndef SEAICE_GROWTH_LEGACY
 C-    to switch on/off open-water freezing contribution to thickness tendency:
 #define SEAICE_DO_OPEN_WATER_GROWTH
+C-    ifdef SEAICE_DO_OPEN_WATER_GROWTH then define SEAICE_DO_OPEN_WATER_MELT
+C     to also allow open-water air-sea heat fluxes melt ice
+#undef SEAICE_DO_OPEN_WATER_MELT
 C-    to switch on/off ocean heat contribution to seaice cover reduction:
 #define SEAICE_OCN_MELT_ACT_ON_AREA
 #endif
