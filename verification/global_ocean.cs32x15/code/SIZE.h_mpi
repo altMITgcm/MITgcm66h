@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-
 CBOP
 C    !ROUTINE: SIZE.h
 C    !INTERFACE:
@@ -53,9 +52,9 @@ C    input.icedyn : needs at least Olx=Oly=4 (CS-grid multidimensional Advect.)
      &           sNy =  16,
      &           OLx =   4,
      &           OLy =   4,
-     &           nSx =   6,
+     &           nSx =   3,
      &           nSy =   1,
-     &           nPx =   2,
+     &           nPx =   4,
      &           nPy =   1,
      &           Nx  = sNx*nSx*nPx,
      &           Ny  = sNy*nSy*nPy,

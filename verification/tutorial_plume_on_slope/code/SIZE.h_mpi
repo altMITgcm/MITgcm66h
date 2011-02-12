@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-C
 CBOP
 C    !ROUTINE: SIZE.h
 C    !INTERFACE:
@@ -48,9 +47,9 @@ C     Nr  :: No. points in Z for full process domain.
      &           sNy =   1,
      &           OLx =   3,
      &           OLy =   3,
-     &           nSx =   2,
+     &           nSx =   1,
      &           nSy =   1,
-     &           nPx =   2,
+     &           nPx =   4,
      &           nPy =   1,
      &           Nx  = sNx*nSx*nPx,
      &           Ny  = sNy*nSy*nPy,
