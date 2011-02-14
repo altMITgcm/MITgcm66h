@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-C
 CBOP
 C    !ROUTINE: SIZE.h
 C    !INTERFACE:
@@ -48,9 +47,9 @@ C     Nr  :: No. points in Z for full process domain.
      &           sNy =  20,
      &           OLx =   2,
      &           OLy =   2,
-     &           nSx =   2,
+     &           nSx =   1,
      &           nSy =   1,
-     &           nPx =   1,
+     &           nPx =   2,
      &           nPy =   2,
      &           Nx  = sNx*nSx*nPx,
      &           Ny  = sNy*nSy*nPy,
@@ -64,6 +63,6 @@ C                routine buffers.
       PARAMETER ( MAX_OLX = OLx,
      &            MAX_OLY = OLy )
 
-      integer     nobcs
-      parameter ( nobcs = 4 )
+      INTEGER     nobcs
+      PARAMETER ( nobcs = 4 )
 
