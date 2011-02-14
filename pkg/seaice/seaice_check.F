@@ -47,6 +47,14 @@ C--   SEAICE needs forcing_In_AB FALSE
          STOP 'ABNORMAL END: S/R SEAICE_CHECK'
       ENDIF
 
+C--   check ice cover fraction formula
+      IF ((SEAICEareaFormula.LT.1).OR.(SEAICEareaFormula.GT.3)) THEN
+         WRITE(msgBuf,'(2A)') 'SEAICE_CHECK:',
+     &         ' SEAICEareaFormula must be between 1 and 3'
+         CALL PRINT_ERROR( msgBuf, myThid )
+         STOP 'ABNORMAL END: S/R SEAICE_CHECK'
+      ENDIF
+
 C--   Check advection schemes
       checkAdvSchArea = SEAICEadvArea .AND. (
      &     SEAICEadvSchArea.NE.ENUM_UPWIND_1RST .AND.

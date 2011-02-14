@@ -96,6 +96,8 @@ C     == end of interface ==
      & 'SEAICErestoreUnderIce  =', ' /* restore T and S under ice */')
       CALL WRITE_0D_L ( usePW79thermodynamics, INDEX_NONE,
      & 'usePW79thermodynamics  =', ' /* default 0-layer TD */')
+      CALL WRITE_0D_I ( SEAICEareaFormula,   INDEX_NONE,
+     & 'SEAICEareaFormula =', ' /* ice cover formula */')
       CALL WRITE_0D_L ( SEAICEadvHeff, INDEX_NONE,
      & 'SEAICEadvHeff =', ' /* advect effective ice thickness */')
       CALL WRITE_0D_L ( SEAICEadvArea, INDEX_NONE,
