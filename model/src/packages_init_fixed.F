@@ -32,6 +32,8 @@ C       |-- CD_CODE_INIT_FIXED
 C       |
 C       |-- EXF_INIT_FIXED
 C       |
+C       |-- CHEAPAML_INIT_FIXED
+C       |
 C       |-- GMREDI_INIT_FIXED
 C       |
 C       |-- DWNSLP_INIT_FIXED
@@ -106,7 +108,7 @@ C     === Global variables ===
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     === Routine arguments ===
-C     myThid -  Number of this instances
+C     myThid :: my Thread Id Number
       INTEGER myThid
 CEOP
 
@@ -147,6 +149,10 @@ C--   Initialize fixed arrays for EXF
       IF ( useEXF ) THEN
        CALL EXF_INIT_FIXED( myThid )
       ENDIF
+#endif
+
+#ifdef ALLOW_CHEAPAML
+      IF ( useCheapAML ) CALL CHEAPAML_INIT_FIXED( myThid )
 #endif
 
 #ifdef ALLOW_GMREDI
@@ -250,7 +256,7 @@ C--   in order to provide the weight files
       IF (useSEAICE) CALL SEAICE_COST_INIT_FIXED( myThid )
 #endif
 
-#ifdef ALLOW_SMOOTH 
+#ifdef ALLOW_SMOOTH
       CALL SMOOTH_INIT_FIXED(myThid)
 #endif /* ALLOW_SMOOTH */
 
