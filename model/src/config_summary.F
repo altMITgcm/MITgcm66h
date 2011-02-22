@@ -652,6 +652,11 @@ c     CALL PRINT_MESSAGE( msgBuf, ioUnit, SQUEEZE_RIGHT, myThid )
      &'/* Y-axis origin of South edge (cartesian: m, lat-lon: deg.) */')
       CALL WRITE_0D_RL( rSphere, INDEX_NONE,'rSphere = ',
      &  ' /* Radius ( ignored - cartesian, m - spherical ) */')
+      IF ( usingCurvilinearGrid ) THEN
+       CALL WRITE_0D_RL( radius_fromHorizGrid, INDEX_NONE,
+     &  'radius_fromHorizGrid = ',
+     &  '/* sphere Radius of input horiz. grid */')
+      ENDIF
       CALL WRITE_0D_L(deepAtmosphere,INDEX_NONE, 'deepAtmosphere =',
      &  ' /* Deep/Shallow Atmosphere flag (True/False) */')
       coordLine = 1

@@ -73,9 +73,10 @@ C     In cartesian coords distances are in metres
       usingCartesianGrid  = .FALSE.
 C     In spherical polar distances are in degrees
       usingSphericalPolarGrid = .FALSE.
-      rSphere             = 6370. _d 3
+      rSphere             = UNSET_RL
 C     General curvilinear coordinate system
       usingCurvilinearGrid= .FALSE.
+      radius_fromHorizGrid= UNSET_RL
 C     General cylindrical coordinate system
       usingCylindricalGrid= .FALSE.
 C     Coriolis map:
