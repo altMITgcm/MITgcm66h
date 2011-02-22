@@ -3,11 +3,13 @@
 #  $Header$
 #  $Name$
  
-#- in order to save disc space, take files:
-fileList="dxC1_dXYa.face001.bin dxC1_dXYa.face002.bin dxC1_dXYa.face003.bin dxC1_dXYa.face004.bin dxC1_dXYa.face005.bin dxC1_dXYa.face006.bin"
-
+#- in order to save disc space, take grid files
 #- from this dir:
 fromDir="../../fizhi-cs-32x32x40/input"
+
+fileList=`( cd $fromDir ; ls dxC1_dXYa.face00?.bin )`
+
+#echo 'fileList=' $fileList
 
 #- and do a symbolic link in the current directory 
 #   (if the file does not already exist)
