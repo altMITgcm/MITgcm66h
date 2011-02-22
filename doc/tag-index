@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src:
+ - add new param to scale curvilinear grid distance and area when using
+   a different sphere radius from the grid-files.
+ - test/check multi-threads EXCH applied to local variable (cg2d_x)
+
 checkpoint62s (2011/02/15)
 o pkg/seaice:
  - introduce SEAICEareaFormula run time parameter, which selects the recipe for
