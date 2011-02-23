@@ -467,6 +467,76 @@ C--   Diffusive flux:
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I     diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
 
+      diagName  = 'SIdHbATO'
+      diagTitle = ''
+      diagUnits = 'm               '
+      diagCode  = 'SM      M1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
+      diagName  = 'SIdHbATC'
+      diagTitle = ''
+      diagUnits = 'm               '
+      diagCode  = 'SM      M1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
+
+      diagName  = 'SIdHbOCN'
+      diagTitle = ''
+      diagUnits = 'm               '
+      diagCode  = 'SM      M1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+      
+      diagName  = 'SIdA'
+      diagTitle = ''
+      diagUnits = '1/s             '
+      diagCode  = 'SM      M1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+      
+      diagName  = 'SIdAbATO'
+      diagTitle = ''
+      diagUnits = '                '
+      diagCode  = 'SM      M1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+      
+      diagName  = 'SIdAbATC'
+      diagTitle = ''
+      diagUnits = '                '
+      diagCode  = 'SM      M1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
+      diagName  = 'SIdAbOCN'
+      diagTitle = ''
+      diagUnits = '                '
+      diagCode  = 'SM      M1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
+      diagName  = 'SIaQbATO'
+      diagTitle = ''
+      diagUnits = 'm               '
+      diagCode  = 'SM      M1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
+      diagName  = 'SIaQbATC'
+      diagTitle = ''
+      diagUnits = 'm               '
+      diagCode  = 'SM      M1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
+      diagName  = 'SIaQbOCN'
+      diagTitle = ''
+      diagUnits = 'm               '
+      diagCode  = 'SM      M1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 #endif /* ALLOW_DIAGNOSTICS */
 
       RETURN
