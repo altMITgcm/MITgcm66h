@@ -57,6 +57,13 @@ C--   heimbach@mit.edu 11-Jan-2001
      &                     adetah
       _RL adetah(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 
+#ifdef ALLOW_AUTODIFF_MONITOR_DIAG
+      common /addynvars_diag/ 
+     &                     adtotphihyd, adrhoinsitu
+      _RL adrhoinsitu(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+      _RL adtotphihyd(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+#endif
+
 #ifdef ALLOW_CD_CODE
       common /addynvars_cd/
      &                      aduveld, advveld,

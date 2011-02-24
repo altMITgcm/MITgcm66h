@@ -56,6 +56,13 @@ C--   heimbach@mit.edu 11-Jan-2001
      &                     g_etah
       _RL g_etah(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 
+#ifdef ALLOW_AUTODIFF_MONITOR_DIAG
+      common /g_dynvars_diag/ 
+     &                     g_totphihyd, g_rhoinsitu
+      _RL g_rhoinsitu(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+      _RL g_totphihyd(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+#endif
+
 #ifdef ALLOW_CD_CODE
       common /g_dynvars_cd/
      &                      g_uveld, g_vveld,

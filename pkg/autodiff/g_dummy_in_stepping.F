@@ -100,6 +100,13 @@ c
         CALL WRITE_FLD_XY_RL(
      &       'G_Jetan.',suff, g_etan, myIter, myThid)
 
+#ifdef ALLOW_AUTODIFF_MONITOR_DIAG
+        CALL WRITE_FLD_XYZ_RL(
+     &       'G_Jrhoinsitu.',suff, g_rhoinsitu, myIter, myThid)
+        CALL WRITE_FLD_XYZ_RL(
+     &       'G_Jtotphihyd.',suff, g_totphihyd, myIter, myThid)
+#endif
+
 #ifdef ALLOW_DIFFKR_CONTROL
         CALL WRITE_FLD_XYZ_RL ( 'G_Jdiffkr.',suff, g_diffkr,
      &       myIter, myThid)
