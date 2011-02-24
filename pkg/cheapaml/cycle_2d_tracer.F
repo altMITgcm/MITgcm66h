@@ -7,14 +7,14 @@ CBOP
 C     !ROUTINE: CYCLE_2d_TRACER
 C     !INTERFACE:
       SUBROUTINE CYCLE_2d_TRACER(
-     I                   bi, bj,
+     I                   bi, bj, 
      U                   tracer, gTracer,nt,
      I                   myTime, myIter, myThid )
 C     !DESCRIPTION: \bv
 C     *==========================================================*
-C     | S/R CYCLE_TRACER
+C     | S/R CYCLE_TRACER                                          
 C     *==========================================================*
-C     | o Cycles the time-stepping arrays for a tracer field
+C     | o Cycles the time-stepping arrays for a tracer field      
 C     *==========================================================*
 C     \ev
 C     !USES:
@@ -29,7 +29,7 @@ C     bi,bj                        :: Loop counters
 C     tracer, gTracer, gTrNm1      :: Tracer field, with tendencies
 C     myTime                       :: Current simulation time for this instance.
 C     myIter                       :: Current time-step number
-C     myThid                       :: Instance number for
+C     myThid                       :: Instance number for 
 C                                     this call to S/R CORRECTION_STEP
       INTEGER bi,bj,nt
       _RL tracer (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
@@ -41,7 +41,7 @@ c     _RL gTrNm1 (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 C     !LOCAL VARIABLES:
 C     == Local variables ==
       INTEGER i,j
-c     INTEGER jmin, jmax, imin, imax
+      INTEGER jmin, jmax, imin, imax
 CEOP
 
 C     Rotate tracer/gTracer/gTrNm1

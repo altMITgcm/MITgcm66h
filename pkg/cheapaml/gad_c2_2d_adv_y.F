@@ -7,13 +7,13 @@ CBOP
 C !ROUTINE: GAD_C2_ADV_Y
 
 C !INTERFACE: ==========================================================
-      SUBROUTINE GAD_C2_2d_ADV_Y(
+      SUBROUTINE GAD_C2_2d_ADV_Y( 
      I   bi,bj,
      I   vVel,
      I   tracer,
      O   vT,
      I   myThid )
-
+      
 C !DESCRIPTION:
 C Calculates the area integrated meridional flux due to advection of a tracer
 C using centered second-order interpolation:
@@ -50,11 +50,11 @@ CEOP
       ENDDO
       DO j=1-Oly+1,sNy+Oly
         DO i=1-Olx,sNx+Olx
-          vT(i,j) =
+          vT(i,j) = 
      &       vVel(i,j,bi,bj)*(Tracer(i,j)+Tracer(i,j-1))*0.5 _d 0
         ENDDO
       ENDDO
-
+      
       RETURN
       END
-
+      

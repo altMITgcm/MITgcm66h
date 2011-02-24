@@ -7,14 +7,14 @@ CBOP
 C     !ROUTINE: TIMESTEP_2d_TRACER
 C     !INTERFACE:
       SUBROUTINE TIMESTEP_2d_TRACER(
-     I                     bi, bj, iMin, iMax, jMin, jMax,
+     I                     bi, bj, iMin, iMax, jMin, jMax, 
      I                     deltaTTracer,
      I                     tracer, gTracer,
      I                     myIter, myThid )
 C     !DESCRIPTION: \bv
 C     *==========================================================*
-C     | S/R TIMESTEP_2d_TRACER
-C     | o Step model tracer field forward in time
+C     | S/R TIMESTEP_2d_TRACER                                       
+C     | o Step model tracer field forward in time                 
 C     *==========================================================*
 C     \ev
 
@@ -28,6 +28,7 @@ C     == Global variables ===
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine Arguments ==
       INTEGER bi,bj,iMin,iMax,jMin,jMax
+      INTEGER advection_scheme
       _RL  tracer (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL  gTracer(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL  deltaTTracer
@@ -47,7 +48,7 @@ C     -    Extrapolate tendancies to mid-time level (n+1/2)
      $       +deltaTtracer*gTracer(i,j,bi,bj)
         ENDDO
       ENDDO
-
+      
       RETURN
       END
-
+      
