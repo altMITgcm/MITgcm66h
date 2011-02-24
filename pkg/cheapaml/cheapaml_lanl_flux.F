@@ -106,7 +106,7 @@ c for iterating on turbulence
 c     determine wind stress
         IF(.NOT.useStressOption)THEN
 
-             if (hFacC(i,j,1,bi,bj).ne.0. _d 0) then
+             if (maskC(i,j,1,bi,bj).ne.0. _d 0) then
 #ifdef ALLOW_THSICE
                if (ICEMASK(i,j,bi,bj).gt.0. _d 0) then
                  tmp=Tsrf(i,j,bi,bj)
