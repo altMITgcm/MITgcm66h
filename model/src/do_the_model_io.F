@@ -97,7 +97,7 @@ C     Do LAND output
 #endif
 
 #ifdef ALLOW_OBCS
-      IF (useOBCS .AND. myIter.NE.nIter0 )
+      IF (useOBCS )
      &     CALL OBCS_OUTPUT( myTime, myIter, myThid )
 #endif
 
