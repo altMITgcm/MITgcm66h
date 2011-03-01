@@ -5,6 +5,11 @@ $Name$
     ==============================
 
 o pkg/obcs:
+ - obcs_apply_uv.F: change to a 2 steps method, first tangential component;
+   then normal component. This ensures that the normal component is set
+   correctly even when it conficts with tangential setting from an other OB.
+   Affects results of test-experiment seaice_obcs: update the output.txt
+o pkg/obcs:
  - add code to monitor statistics of dynamical fields at OB.
  - take OBCS_BALANCE code out of obcs_calc.F into new S/R OBCS_BALANCE_FLOW :
    - fix to OBCS_BALANCE code (right hFac ; deal with simple OB intersection).
