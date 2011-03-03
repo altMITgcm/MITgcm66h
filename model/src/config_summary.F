@@ -684,7 +684,7 @@ c     CALL PRINT_MESSAGE( msgBuf, ioUnit, SQUEEZE_RIGHT, myThid )
       CALL WRITE_1D_RL(wUnit2rVel,Nr+1, INDEX_K,'wUnit2rVel =',
      &  ' /* convert units: wSpeed -> rVel (=1 if z-coord)*/')
       CALL WRITE_1D_RL( dBdrRef,  Nr,   INDEX_K, 'dBdrRef =',
-     & ' /* Vertical gradient of reference boyancy [(m/s/r)^2)] */')
+     & ' /* Vertical grad. of reference buoyancy [(m/s/r)^2] */')
       CALL WRITE_0D_L( rotateGrid, INDEX_NONE,
      & 'rotateGrid =',' /* use rotated grid ( True/False ) */')
       CALL WRITE_0D_RL( phiEuler, INDEX_NONE,'phiEuler =',
