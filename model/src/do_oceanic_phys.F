@@ -137,9 +137,13 @@ C--   dummy statement to end declaration part
       IF (useOBCS) THEN
 C--   Calculate future values on open boundaries
 C--   moved before SEAICE_MODEL call since SEAICE_MODEL needs seaice-obcs fields
-#ifdef ALLOW_DEBUG
+# ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE theta = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE salt  = comlev1, key=ikey_dynamics, kind=isbyte
+# endif
+# ifdef ALLOW_DEBUG
        IF (debugMode) CALL DEBUG_CALL('OBCS_CALC',myThid)
-#endif
+# endif
        CALL OBCS_CALC( myTime+deltaTclock, myIter+1,
      I                 uVel, vVel, wVel, theta, salt, myThid )
       ENDIF
