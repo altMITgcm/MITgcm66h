@@ -129,6 +129,14 @@ C---    read CHEAPAML 2-D fields for restart
 #ifdef CHEAPAML_2D_STATE
         CALL READ_MFLDS_3D_RL( 'Tair', Tair,
      &                                 nj, fp, 1 , myIter, myThid )
+        IF(useFreshWaterFlux)THEN
+        CALL READ_MFLDS_3D_RL( 'Qair', qair,
+     &                                 nj, fp, 1 , myIter, myThid )        
+        ENDIF
+        IF(useCheaptracer)THEN
+        CALL READ_MFLDS_3D_RL( 'CheapTracer', Cheaptracer,
+     &                                 nj, fp, 1 ,myIter, myThid )        
+        ENDIF
 #endif /* CHEAPAML_2D_STATE */
 
 C--    end: new way to read pickup file
