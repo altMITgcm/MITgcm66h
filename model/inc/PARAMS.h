@@ -530,7 +530,7 @@ C     rho1Ref   :: reference vertical profile for density
 C     tRef      :: reference vertical profile for potential temperature
 C     sRef      :: reference vertical profile for salinity/specific humidity
 C     phiRef    :: reference potential (pressure/rho, geopotential) profile
-C     dBdrRef   :: vertical gradient of reference boyancy  [(m/s/r)^2)]:
+C     dBdrRef   :: vertical gradient of reference buoyancy  [(m/s/r)^2]:
 C               :: z-coord: = N^2_ref = Brunt-Vaissala frequency [s^-2]
 C               :: p-coord: = -(d.alpha/dp)_ref          [(m^2.s/kg)^2]
 C     rVel2wUnit :: units conversion factor (Non-Hydrostatic code),
