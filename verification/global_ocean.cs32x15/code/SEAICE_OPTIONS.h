@@ -51,8 +51,8 @@ C-    to switch on/off open-water freezing contribution to thickness tendency:
 C-    ifdef SEAICE_DO_OPEN_WATER_GROWTH then define SEAICE_DO_OPEN_WATER_MELT
 C     to also allow open-water air-sea heat fluxes melt ice
 #undef SEAICE_DO_OPEN_WATER_MELT
-C-    to switch on/off ocean heat contribution to seaice cover reduction:	 
-#define SEAICE_OCN_MELT_ACT_ON_AREA	 
+C-    to switch on/off ocean heat contribution to seaice cover reduction:
+#define SEAICE_OCN_MELT_ACT_ON_AREA
 #endif
 
 C-    to use the MCPhee formula in computing ocean/ice fluxes
