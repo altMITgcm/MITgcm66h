@@ -119,6 +119,7 @@ C     buf :: used to exchange OB_Jnorth, ...
 CEOP
 
       NAMELIST /OBCS_PARM01/
+     &          insideOBmaskFile,
      &          OB_Jnorth,OB_Jsouth,OB_Ieast,OB_Iwest,
      &          useOrlanskiNorth,useOrlanskiSouth,
      &          useOrlanskiEast,useOrlanskiWest,
@@ -175,6 +176,7 @@ CEOP
 #endif
 
 C--   Default flags and values for OBCS
+      insideOBmaskFile = ' '
       DO I=1,OBNS_Nx
        OB_Jnorth(I)=0
        OB_Jsouth(I)=0
