@@ -15,8 +15,10 @@ C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "SEAICE_SIZE.h"
 #include "SEAICE_PARAMS.h"
 #include "SEAICE.h"
+#include "SEAICE_TRACER.h"
 #include "GAD.h"
 #ifdef ALLOW_EXF
 # include "EXF_OPTIONS.h"

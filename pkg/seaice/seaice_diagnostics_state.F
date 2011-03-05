@@ -23,8 +23,10 @@ C     == Global variables ==
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "FFIELDS.h"
+#include "SEAICE_SIZE.h"
 #include "SEAICE_PARAMS.h"
 #include "SEAICE.h"
+#include "SEAICE_TRACER.h"
 #ifdef ALLOW_EXF
 # include "EXF_OPTIONS.h"
 # include "EXF_FIELDS.h"
@@ -43,8 +45,9 @@ CEOP
 
 #ifdef ALLOW_DIAGNOSTICS
 C     == Local variables ==
-      INTEGER i,j
-      INTEGER bi,bj
+      INTEGER i,j,bi,bj
+      INTEGER iTracer
+      CHARACTER*8   diagName
       _RL sigI (1-oLx:sNx+oLx,1-oLy:sNy+oLy)
       _RL sigII(1-oLx:sNx+oLx,1-oLy:sNy+oLy)
       _RL sig1, sig2, sig12, sigTmp, recip_prs
@@ -97,7 +100,12 @@ C     division by zero is not possible
        CALL DIAGNOSTICS_FILL(HSALT  ,'SIhsalt ',0,1 ,0,1,1,myThid)
 #endif
 #ifdef SEAICE_AGE
-       CALL DIAGNOSTICS_FILL(IceAge ,'SIage   ',0,1 ,0,1,1,myThid)
+      DO iTracer = 1, SEAICE_num
+       WRITE(diagName,'(A5,I2.2,A1)') 'SIage',iTracer,' '
+       CALL DIAGNOSTICS_FILL(
+     &  IceAgeTr(1-OLx,1-OLy,1,1,iTracer),
+     &  diagName,0,1 ,0,1,1,myThid)
+      ENDDO
 #endif
 
        CALL DIAGNOSTICS_FILL(zeta   ,'SIzeta  ',0,1 ,0,1,1,myThid)

@@ -32,8 +32,10 @@ C !USES: ===============================================================
 #include "PARAMS.h"
 #include "GRID.h"
 #include "FFIELDS.h"
-#include "SEAICE.h"
+#include "SEAICE_SIZE.h"
 #include "SEAICE_PARAMS.h"
+#include "SEAICE.h"
+#include "SEAICE_TRACER.h"
 #ifdef ALLOW_EXF
 # include "EXF_OPTIONS.h"
 # include "EXF_FIELDS.h"
@@ -57,7 +59,7 @@ CEndOfInterface
 C !LOCAL VARIABLES: ====================================================
 C     i,j,bi,bj :: Loop counters
 C     iceFld    :: Copy of seaice field
-      INTEGER i, j, bi, bj
+      INTEGER i, j, bi, bj, iTracer
 c     _RL iceFld (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 CEOP
 
@@ -232,7 +234,9 @@ C--   Update overlap regions for a bunch of stuff
        _EXCH_XY_RL( HSALT, myThid )
 #endif
 #ifdef SEAICE_AGE
-       _EXCH_XY_RL( IceAge,myThid )
+       DO iTracer = 1, SEAICE_num
+        _EXCH_XY_RL( IceAgeTr(1-Olx,1-Oly,1,1,iTracer),myThid )
+       ENDDO
 #endif
        _EXCH_XY_RS(EmPmR, myThid )
        _EXCH_XY_RS(saltFlux, myThid )
@@ -264,12 +268,18 @@ C--   In case we use scheme with a large stencil that extends into overlap:
            CALL OBCS_COPY_TRACER( HSALT(1-Olx,1-Oly,bi,bj),
      I                            1, bi, bj, myThid )
 #endif
-#ifdef SEAICE_AGE
-           CALL OBCS_COPY_TRACER( IceAge(1-Olx,1-Oly,bi,bj),
-     I                            1, bi, bj, myThid )
-#endif
          ENDDO
         ENDDO
+#ifdef SEAICE_AGE
+        DO iTracer = 1, SEAICE_num
+         DO bj=myByLo(myThid),myByHi(myThid)
+          DO bi=myBxLo(myThid),myBxHi(myThid)
+           CALL OBCS_COPY_TRACER( IceAgeTr(1-Olx,1-Oly,bi,bj,iTracer),
+     I                            1, bi, bj, myThid )
+          ENDDO
+         ENDDO
+        ENDDO
+#endif
        ENDIF
 #endif /* ALLOW_OBCS */
 

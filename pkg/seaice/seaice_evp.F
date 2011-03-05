@@ -22,8 +22,9 @@ C     === Global variables ===
 #include "PARAMS.h"
 #include "DYNVARS.h"
 #include "GRID.h"
-#include "SEAICE.h"
+#include "SEAICE_SIZE.h"
 #include "SEAICE_PARAMS.h"
+#include "SEAICE.h"
 
 #ifdef ALLOW_AUTODIFF_TAMC
 # include "tamc.h"

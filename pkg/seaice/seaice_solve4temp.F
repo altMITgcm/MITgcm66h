@@ -30,8 +30,9 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "FFIELDS.h"
-#include "SEAICE.h"
+#include "SEAICE_SIZE.h"
 #include "SEAICE_PARAMS.h"
+#include "SEAICE.h"
 #ifdef SEAICE_VARIABLE_FREEZING_POINT
 #include "DYNVARS.h"
 #endif /* SEAICE_VARIABLE_FREEZING_POINT */

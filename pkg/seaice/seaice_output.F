@@ -23,8 +23,10 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "FFIELDS.h"
+#include "SEAICE_SIZE.h"
 #include "SEAICE_PARAMS.h"
 #include "SEAICE.h"
+#include "SEAICE_TRACER.h"
 #include "SEAICE_TAVE.h"
 #ifdef ALLOW_EXF
 # include "EXF_OPTIONS.h"
@@ -49,11 +51,13 @@ C     == Local variables in common block :
 
 C     == Local variables ==
       CHARACTER*(10) suff
+      CHARACTER*(13) pref
 #if ( defined (ALLOW_TIMEAVE) || defined (ALLOW_MNC) )
 c     INTEGER i, j, bi, bj
 #endif
 #ifdef ALLOW_TIMEAVE
       INTEGER i, j, bi, bj
+      INTEGER iTracer
       LOGICAL dumpFiles
 #endif /* ALLOW_TIMEAVE */
 #ifdef ALLOW_MNC
@@ -124,7 +128,13 @@ CEOP
             CALL WRITE_FLD_XY_RL( 'HSALT.',suff,HSALT,myIter,myThid)
 #endif
 #ifdef SEAICE_AGE
-            CALL WRITE_FLD_XY_RL( 'ICEAGE.',suff,ICEAGE,myIter,myThid)
+            DO iTracer = 1, SEAICE_num
+             WRITE(pref,'(A8,I2.2,A1)') 'ICEAGETR', iTracer, '.'
+             CALL WRITE_FLD_XY_RL( 
+     &            pref,suff,
+     &            IceAgeTr(1-OLx,1-OLy,1,1,iTracer),
+     &            myIter,myThid)
+            ENDDO
 #endif
 #if ( defined(SEAICE_CGRID) && defined(SEAICE_ALLOW_EVP) )
             IF ( SEAICEuseEVP ) THEN
