@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint62t (2011/03/05)
 o pkg/obcs:
  - obcs_apply_uv.F: change to a 2 steps method, first tangential component;
    then normal component. This ensures that the normal component is set
