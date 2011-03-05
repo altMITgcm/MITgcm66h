@@ -77,12 +77,7 @@ C--   By default sea ice is fresh.  Set following flag for salty ice.
 #undef SEAICE_SALINITY
 
 C--   Track sea ice age.
-C     By default sea ice age is associated with ice area.
-C     Define SEAICE_AGE_VOL to associate age with volume.
 #undef SEAICE_AGE
-#ifdef SEAICE_AGE
-# undef SEAICE_AGE_VOL
-#endif
 
 C--   By default the seaice model is discretized on a B-Grid (for
 C     historical reasons). Define the following flag to use a new
