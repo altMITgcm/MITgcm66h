@@ -264,9 +264,22 @@ CADJ &     kind = isbyte
 
 #if (defined ALLOW_THSICE) && !(defined ALLOW_ATM2D)
       IF ( useThSIce .AND. fluidIsWater ) THEN
-#ifdef ALLOW_DEBUG
+# ifdef ALLOW_AUTODIFF_TAMC
+cph(
+#  ifdef NONLIN_FRSURF
+CADJ STORE uice,vice        = comlev1, key = ikey_dynamics,
+CADJ &     kind = isbyte
+CADJ STORE salt,theta       = comlev1, key = ikey_dynamics,
+CADJ &     kind = isbyte
+CADJ STORE qnet,qsw, empmr  = comlev1, key = ikey_dynamics,
+CADJ &     kind = isbyte
+CADJ STORE hFac_surfC       = comlev1, key = ikey_dynamics,
+CADJ &     kind = isbyte
+#  endif
+# endif
+# ifdef ALLOW_DEBUG
         IF (debugMode) CALL DEBUG_CALL('THSICE_MAIN',myThid)
-#endif
+# endif
 C--     Step forward Therm.Sea-Ice variables
 C       and modify forcing terms including effects from ice
         CALL TIMER_START('THSICE_MAIN     [DO_OCEANIC_PHYS]', myThid)
