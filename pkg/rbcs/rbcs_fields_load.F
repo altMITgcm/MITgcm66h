@@ -60,7 +60,6 @@ C     aWght, bWght :: Interpolation weights
 #endif
       INTEGER IL, initer0, initer1
       CHARACTER*(MAX_LEN_FNAM) fullName
-      CHARACTER*(MAX_LEN_MBUF) msgBuf
 
       INTEGER F90MODULO,arg1,arg2
 C statement function to emulate Fortran 90 MODULO
