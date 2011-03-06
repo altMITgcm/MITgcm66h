@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/obcs:
+ - Refine Interior mask definition to work with more complex OB (e.g.
+   if OB_Ie < OB_Iw); In case default setting is not sufficient, allows to
+   read in Interior mask from file. Check if Interior mask is consistent
+   with OB list of indices.
 o pkg/seaice
  - beginning code for a seaice tracer package,
    but currently only used for seaice age: SEAICE_AGE
