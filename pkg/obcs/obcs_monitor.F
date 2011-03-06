@@ -52,11 +52,8 @@ C     !FUNCTIONS:
 
 C     !LOCAL VARIABLES:
 C     msgBuf       :: Informational/error message buffer
-      INTEGER j
       CHARACTER*(MAX_LEN_MBUF) msgBuf
-      CHARACTER*(10) fldName
       _RL fldStats(0:4,4)
-      _RL theMin, theMax, theMean, theSD
 
       IF ( DIFFERENT_MULTIPLE( OBCS_monitorFreq,myTime,deltaTClock )
      &   ) THEN
