@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ecco: remove an obsolete initialization from ecco_cost_init_barfiles.F
 o pkg/obcs:
  - Refine Interior mask definition to work with more complex OB (e.g.
    if OB_Ie < OB_Iw); In case default setting is not sufficient, allows to
