@@ -86,6 +86,13 @@ c     == local variables ==
       logical doglobalread
       logical ladinit
 
+#if (defined ALLOW_OBCSN_CONTROL || defined ALLOW_OBCSS_CONTROL)
+      _RL tmpfldxz (1-olx:snx+olx,nr,nsx,nsy)
+#endif 
+#if (defined ALLOW_OBCSE_CONTROL || defined ALLOW_OBCSW_CONTROL)
+      _RL tmpfldyz (1-oly:sny+oly,nr,nsx,nsy)
+#endif
+
 #ifdef ECCO_VERBOSE
       character*(MAX_LEN_MBUF) msgbuf
 #endif
@@ -325,8 +332,8 @@ cgg -- Positive is flux in.
         ip1 = 0
 
         call active_read_yz( fnameflde, tmpfldyz,
-            (obcsncount-1)*nobcs+3, doglobalread,
-                      ladinit, optimcycle, mythid
+     &      (obcsncount-1)*nobcs+3, doglobalread,
+     &                ladinit, optimcycle, mythid
      &                       , xx_obcse_dummy )
 
 c--     Loop over this thread tiles.
