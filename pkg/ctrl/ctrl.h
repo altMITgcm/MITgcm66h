@@ -307,21 +307,6 @@ c     TAMC sees xx_..._dummy
 # endif
 #endif
 
-
-cgg  This caused a lot of confusion.
-#ifdef ALLOW_OBCS_CONTROL
-      common /controlvars_r_obcs/
-     &                        tmpfldxz
-     &                      , tmpfldxz2
-     &                      , tmpfldyz
-     &                      , tmpfldyz2
-
-      _RL tmpfldxz  (1-olx:snx+olx,nr,nsx,nsy)
-      _RL tmpfldxz2 (1-olx:snx+olx,nr,nsx,nsy)
-      _RL tmpfldyz  (1-oly:sny+oly,nr,nsx,nsy)
-      _RL tmpfldyz2 (1-oly:sny+oly,nr,nsx,nsy)
-#endif
-
 c     Auxiliary storage arrays for the control variables:
 c     ===================================================
 c
