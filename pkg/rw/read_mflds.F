@@ -675,6 +675,7 @@ C--   Do not replace if newName is already in the list (errCode=2):
       ENDIF
 
       IF ( errCode.EQ.0 ) THEN
+        _BARRIER
         _BEGIN_MASTER( myThid )
         fldList(j) = newName
         _END_MASTER( myThid )
