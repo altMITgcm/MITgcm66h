@@ -69,7 +69,7 @@ c     == local variables ==
       integer obcsncount1
 
 cgg      _RL maskxz   (1-olx:snx+olx,nr,nsx,nsy)
-      _RL tmpfldxz (1-oly:sny+oly,nr,nsx,nsy)
+      _RL tmpfldxz (1-olx:snx+olx,nr,nsx,nsy)
 
       logical doglobalread
       logical ladinit
