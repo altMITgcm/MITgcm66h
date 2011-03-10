@@ -4,7 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
-o pkg/ctrl/ctrl_get_gen_rec.F: catch the case of xx_genperiod=0.
+o pkg/ctrl:
+ - ctrl_obcsbal.F, ctrl_obcsvol.F: replace last calls of ctrl_getrec by
+   ctrl_get_gen_rec, put a stop statement into ctrl_getrec. Remove
+   unused and superfluous variables
+ - ctrl_get_gen_rec.F: catch the case of xx_genperiod=0.
 o pkg/ecco
  - enable adjoint of Stevens OB
 o pkg/ctrl/ecco/grdchk: 
