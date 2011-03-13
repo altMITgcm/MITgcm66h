@@ -506,6 +506,8 @@ c--   initial Eta.
 #else
               etaN(i,j,bi,bj) = etaN(i,j,bi,bj) +
      &                              fac*tmpfld2d(i,j,bi,bj)
+              etaH(i,j,bi,bj) = etaH(i,j,bi,bj) +
+     &                              fac*tmpfld2d(i,j,bi,bj)
 #endif
             enddo
           enddo
@@ -609,6 +611,7 @@ c--   Update the tile edges.
 
 #ifdef ALLOW_ETAN0_CONTROL
       _EXCH_XY_RL( etaN, mythid )
+      _EXCH_XY_RL( etaH, mythid )
 #endif
 
 #ifdef ALLOW_RELAXSST_CONTROL

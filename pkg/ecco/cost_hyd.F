@@ -218,6 +218,26 @@ cph      call cost_sss   ( myiter, mytime, mythid )
        CALL cost_profiles( myiter, mytime, mythid)
 #endif
 
+#ifdef ALLOW_ETAN0_COST_CONTRIBUTION
+      write(msgbuf,'(a)') 'ph-cost call cost_etan0'
+      call print_message( msgbuf, standardmessageunit,
+     &     SQUEEZE_RIGHT , mythid)
+      call cost_etan0 ( myiter, mytime, mythid )
+#endif
+
+#ifdef ALLOW_UVEL0_COST_CONTRIBUTION
+      write(msgbuf,'(a)') 'ph-cost call cost_uvel0'
+      call print_message( msgbuf, standardmessageunit,
+     &     SQUEEZE_RIGHT , mythid)
+      call cost_uvel0 ( myiter, mytime, mythid )
+#endif
+#ifdef ALLOW_VVEL0_COST_CONTRIBUTION
+      write(msgbuf,'(a)') 'ph-cost call cost_vvel0'
+      call print_message( msgbuf, standardmessageunit,
+     &     SQUEEZE_RIGHT , mythid)
+      call cost_vvel0 ( myiter, mytime, mythid )
+#endif
+
 #ifdef ALLOW_SEAICE_COST_SMR_AREA
 # ifdef ALLOW_SEAICE_COST_AREASST
 cph this block out of date;

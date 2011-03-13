@@ -569,7 +569,7 @@ CML# endif
           write(weighttype(1:80),'(a)') "wuvel"
           call ctrl_set_unpack_xyz( lxxadxx, cunit, ivartype,
      &         fname_uvel(ictrlgrad), "maskCtrlW",
-     &         weighttype, wunit, nwetwglobal, mythid)
+     &         weighttype, wuvel, nwetwglobal, mythid)
 #endif
 
 #ifdef ALLOW_VVEL0_CONTROL
@@ -578,7 +578,7 @@ CML# endif
           write(weighttype(1:80),'(a)') "wvvel"
           call ctrl_set_unpack_xyz( lxxadxx, cunit, ivartype,
      &         fname_vvel(ictrlgrad), "maskCtrlS",
-     &         weighttype, wunit, nwetsglobal, mythid)
+     &         weighttype, wvvel, nwetsglobal, mythid)
 #endif
 
 #ifdef ALLOW_ETAN0_CONTROL

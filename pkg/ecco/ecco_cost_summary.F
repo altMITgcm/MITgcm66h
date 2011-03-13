@@ -119,6 +119,18 @@ c     == end of interface ==
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
       write(msgbuf,'(a,e10.3)')
+     &'  Sea level ini.:               ',mult_etan0
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a,e10.3)')
+     &'  zonal velocity ini.:          ',mult_uvel0
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a,e10.3)')
+     &'  merid velocity ini.:          ',mult_vvel0
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a,e10.3)')
      &'  TMI Sea surface temperature:  ',mult_tmi
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)

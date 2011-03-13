@@ -517,6 +517,43 @@ c--   Initial state salinity used as part of the control vector.
      &                    SQUEEZE_RIGHT , mythid)
 #endif
 
+#ifdef ALLOW_ETAN0_CONTROL
+c--   Initial state sealevel used as part of the control vector.
+      write(msgbuf,'(a)')
+     &'// ALLOW_ETAN0_CONTROL:                 defined'
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+#else
+      write(msgbuf,'(a)')
+     &'// ALLOW_ETAN0_CONTROL:             NOT defined'
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+#endif
+#ifdef ALLOW_UVEL0_CONTROL
+c--   Initial state velocity used as part of the control vector.
+      write(msgbuf,'(a)')
+     &'// ALLOW_UVEL0_CONTROL:                 defined'
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+#else
+      write(msgbuf,'(a)')
+     &'// ALLOW_UVEL0_CONTROL:             NOT defined'
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+#endif
+#ifdef ALLOW_VVEL0_CONTROL
+c--   Initial state velocity used as part of the control vector.
+      write(msgbuf,'(a)')
+     &'// ALLOW_VVEL0_CONTROL:                 defined'
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+#else
+      write(msgbuf,'(a)')
+     &'// ALLOW_VVEL0_CONTROL:             NOT defined'
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+#endif
+
 #ifdef ALLOW_HFLUX_CONTROL
 c--   Surface heat flux used as part of the control vector.
       write(msgbuf,'(a)')
