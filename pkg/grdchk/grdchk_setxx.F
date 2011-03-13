@@ -126,6 +126,44 @@ c--   == end of interface ==
      &                          mythid, dummy)
 #endif /* ALLOW_SALT0_CONTROL */
 
+#ifdef ALLOW_UVEL0_CONTROL
+      else if ( grdchkvarindex .eq. 27 ) then
+         il=ilnblnk( xx_uvel_file )
+         if ( theSimulationMode .EQ. TANGENT_SIMULATION ) then
+            write(fname(1:80),'(3a,i10.10)')
+     &           yadmark, xx_uvel_file(1:il),'.',optimcycle
+         else if ( theSimulationMode .EQ. FORWARD_SIMULATION ) then
+            write(fname(1:80),'(2a,i10.10)')
+     &           xx_uvel_file(1:il),'.',optimcycle
+         end if
+         call active_read_xyz( fname, tmpfld3d, 1,
+     &                         doglobalread, ladinit, optimcycle,
+     &                         mythid, dummy)
+         tmpfld3d( itilepos,jtilepos,layer,itile,jtile ) = xx_comp_ref
+         call active_write_xyz( fname, tmpfld3d, 1,
+     &                          optimcycle,
+     &                          mythid, dummy)
+#endif /* ALLOW_UVEL0_CONTROL */
+
+#ifdef ALLOW_VVEL0_CONTROL
+      else if ( grdchkvarindex .eq. 28 ) then
+         il=ilnblnk( xx_vvel_file )
+         if ( theSimulationMode .EQ. TANGENT_SIMULATION ) then
+            write(fname(1:80),'(3a,i10.10)')
+     &           yadmark, xx_vvel_file(1:il),'.',optimcycle
+         else if ( theSimulationMode .EQ. FORWARD_SIMULATION ) then
+            write(fname(1:80),'(2a,i10.10)')
+     &           xx_vvel_file(1:il),'.',optimcycle
+         end if
+         call active_read_xyz( fname, tmpfld3d, 1,
+     &                         doglobalread, ladinit, optimcycle,
+     &                         mythid, dummy)
+         tmpfld3d( itilepos,jtilepos,layer,itile,jtile ) = xx_comp_ref
+         call active_write_xyz( fname, tmpfld3d, 1,
+     &                          optimcycle,
+     &                          mythid, dummy)
+#endif /* ALLOW_VVEL0_CONTROL */
+
 #ifdef ALLOW_HFLUX_CONTROL
       else if ( grdchkvarindex .eq. 3 ) then
          il=ilnblnk( xx_hflux_file )
