@@ -120,11 +120,6 @@ c     == end of interface ==
       enddo
 #endif
 
-#ifdef ALLOW_OBCS_CONTROL
-        shiftvel(1) = 0. d0
-        shiftvel(2) = 0. d0
-#endif
- 
       return
       end
 
