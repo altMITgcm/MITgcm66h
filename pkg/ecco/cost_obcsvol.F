@@ -100,6 +100,8 @@ c     == end of interface ==
 #ifdef OBCS_VOLFLUX_COST_CONTRIBUTION
 #ifdef BAROTROPIC_OBVEL_CONTROL
 
+      stop 's/r cost_obcsvol needs to be fixed'
+
       jtlo = mybylo(mythid)
       jthi = mybyhi(mythid)
       itlo = mybxlo(mythid)
