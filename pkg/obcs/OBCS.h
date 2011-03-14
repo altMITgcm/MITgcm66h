@@ -367,7 +367,4 @@ C     etc
 #endif /* ALLOW_OBCS_PRESCRIBE */
 #endif /* NONLIN_FRSURF */
 
-       COMMON /GG_VOLFLUX/ shiftvel
-       _RL shiftvel(2)
-
 #endif /* ALLOW_OBCS */

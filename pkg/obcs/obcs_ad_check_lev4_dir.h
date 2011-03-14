@@ -3,8 +3,6 @@ C $Name$
 
 #ifdef ALLOW_OBCS
 #
-CADJ STORE shiftvel = tapelev4, key = ilev_4
-#
 # ifdef ALLOW_OBCS_NORTH
 CADJ STORE StoreOBCSN     = tapelev4, key = ilev_4
 # endif /* ALLOW_OBCS_NORTH */
