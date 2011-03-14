@@ -69,7 +69,6 @@ c     == local variables ==
       integer jmin,jmax
       integer imin,imax
       integer irec
-      integer il
       integer iobcs
       integer jp1
       integer nrec
