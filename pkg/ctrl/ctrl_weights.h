@@ -11,7 +11,7 @@ c     Define dummy weights as a placeholder
       _RL wtheta   ( nr,nsx,nsy )
       _RL wsalt    ( nr,nsx,nsy )
       _RL wuvvel   ( nr,nsx,nsy )
-      _RL wuve l   ( nr,nsx,nsy )
+      _RL wuvel    ( nr,nsx,nsy )
       _RL wvvel    ( nr,nsx,nsy )
       _RL wetan    ( snx,sny,nsx,nsy )
       _RL wdiffkr  ( nr,nsx,nsy )
