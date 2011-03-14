@@ -113,6 +113,8 @@ c                  tmpx = (tmpfld3d(i,j,k,bi,bj)-GM_background_K)
 #else
                   fctile = fctile + tmpx*tmpx
 #endif
+                  if (wdiffkrFld(i,j,k,bi,bj).ne.0.)
+     &                 num_diffkr(bi,bj) = num_diffkr(bi,bj) + 1. _d 0
                 endif
               enddo
             enddo
