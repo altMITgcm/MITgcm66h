@@ -166,12 +166,6 @@ cph       STOP 'PH HAS DISABLED THIS RUNTIME OPTION FOR ALLOW_EXF'
 cph#endif
       ENDIF
 
-# ifdef ALLOW_OBCS_CONTROL
-cgg   WARNING: Assuming North Open Boundary exists and has same
-cgg    calendar information as other boundaries.
-      call ctrl_obcsbal ( mycurrenttime,mycurrentiter,mythid )
-# endif
-
 # ifdef ALLOW_OBCSN_CONTROL
       call ctrl_getobcsn ( mycurrenttime, mycurrentiter, mythid )
 # endif
