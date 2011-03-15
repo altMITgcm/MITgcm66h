@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint62u (2011/03/15)
 o model/src:
   - for the adjoint, change NonLin-FreeSurf initialisation sequence: fill-in
     h0Fac from INITIALISE_FIXED and reset hFac to h0Fac in INITIALISE_VARIA ;
