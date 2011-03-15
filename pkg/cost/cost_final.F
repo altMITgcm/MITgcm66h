@@ -84,10 +84,8 @@ c     == end of interface ==
 #ifdef ALLOW_COST_TEMP
       CALL COST_TEMP (myThid)
 #endif
-#ifdef ALLOW_SHELFICE
-# ifdef ALLOW_COST_SHELFICE
+#ifdef ALLOW_COST_SHELFICE
       CALL SHELFICE_COST_FINAL (myThid)
-# endif
 #endif
 
 c--   Sum up all contributions.
