@@ -133,6 +133,15 @@ C       code is being compiled
       ENDIF
 #endif
 
+#ifdef ALLOW_DEPTH_CONTROL
+      IF ( useOBCS ) THEN
+        WRITE(msgBuf,'(A)')
+     &   'CONFIG_CHECK: DEPTH_CONTROL code not compatible with OBCS'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        STOP 'ABNORMAL END: S/R CONFIG_CHECK'
+      ENDIF
+#endif
+
 #ifndef EXACT_CONSERV
       IF (exactConserv) THEN
         WRITE(msgBuf,'(A)')
