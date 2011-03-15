@@ -833,12 +833,8 @@ c     initialise some output
        if ( nfac .ne. 1 ) then
 c     This is the case of obcs. I am not sure that this is correct, but
 c     it seems to work in most configurations.
-        print * , 'ml-startrec = ', startrec
-        print * , 'ml-endrec = ', endrec
         endrec   = (endrec - startrec + 1)*nfac
         startrec = (startrec - 1)*nfac + 1
-        print * , 'ml-startrec2 = ', startrec
-        print * , 'ml-endrec2 = ', endrec
        endif
       endif
 # else /* ndef ALLOW_CAL */
