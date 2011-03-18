@@ -51,6 +51,9 @@ c     INTEGER prec
 c     CHARACTER*(MAX_LEN_FNAM) fn
 
 
+      IF ( startTime.EQ.baseTime .AND. nIter0.EQ.0
+     &                           .AND. pickupSuff.EQ.' ' ) THEN      
+
          IF ( AirTempFile .NE. ' ' ) THEN
          write(*,*)'Tair initialized from  ->',AirTempFile
          CALL READ_FLD_XY_RL( AirTempFile,' ',Tair,0,myThid )
@@ -114,6 +117,12 @@ C default value at 290 (!)
         ENDDO
        ENDIF 
        _EXCH_XY_RL(Cheaptracer, mythid)
+
+       ELSE
+C Restart from cheapaml_pickups
+       CALL CHEAPAML_READ_PICKUP( nIter0, myThid ) 
+C End start-from-iter-zero if/else block       
+       ENDIF
 
        
 C Generating mask
