@@ -526,8 +526,6 @@ c                 local=0.d0*cos(2.d0*pi*float(jg-1)/(float(ny-1)))
         IF(useCheapTracer)THEN
           IF ( TracerRFile .NE. ' ' ) THEN
           CALL READ_FLD_XY_RL( TracerRFile,' ',CheaptracerR,0,myThid )
-          write(*,*) 'VIANDE'
-          write(*,*) CheaptracerR
            ELSE
            DO bj = myByLo(myThid), myByHi(myThid)
             DO bi = myBxLo(myThid), myBxHi(myThid)
@@ -540,8 +538,6 @@ c                 local=0.d0*cos(2.d0*pi*float(jg-1)/(float(ny-1)))
            ENDDO
           ENDIF
           _EXCH_XY_RL(CheaptracerR, mythid)
-          write(*,*) 'LEGUMES'
-                    write(*,*) CheaptracerR
         ENDIF     
         IF (FluxFormula.eq.'COARE3')THEN
                 IF (WaveHFile.NE.' ')THEN
