@@ -972,6 +972,15 @@ C Logical flags for selecting packages
      &        useRunClock, useEMBED_FILES,
      &        useMYPACKAGE
 
+C     Logical flags for turning off parts of the code in adjoint mode
+      LOGICAL useKPPinAdMode, useKPPinFwdMode
+      LOGICAL useGMrediInAdMode, useGMrediInFwdMode
+      LOGICAL useSEAICEinAdMode, useSEAICEinFwdMode
+      COMMON /PARM_PACKAGES_ADJ/
+     &       useKPPinAdMode, useKPPinFwdMode,
+     &       useGMrediInAdMode, useGMrediInFwdMode,
+     &       useSEAICEinAdMode, useSEAICEinFwdMode
+      
 CEH3 ;;; Local Variables: ***
 CEH3 ;;; mode:fortran ***
 CEH3 ;;; End: ***

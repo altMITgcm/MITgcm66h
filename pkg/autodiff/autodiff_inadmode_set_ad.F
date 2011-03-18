@@ -17,8 +17,31 @@ C     == Global variables ===
 C     == Routine arguments ==
 C     myThid - Thread number for this instance of the routine.
       integer myThid
+#ifdef ALLOW_DEBUG
+      character*(MAX_LEN_MBUF) msgBuf
+#endif
 
       inAdmode = inAdTrue
+
+      useKPP    = useKPPinAdMode
+      useGMredi = useGMrediInAdMode
+      useSEAICE = useSEAICEinAdMode
+#ifdef ALLOW_DEBUG
+      if ( debugLevel .GE. debLevB ) then
+       write(msgBuf,'(A,L5)')
+     &      'S/R ADAUTODIFF_INADMODE_SET_AD: useKPP    =', useKPP
+       call print_message( msgBuf, standardMessageUnit,
+     &                     SQUEEZE_RIGHT , myThid)
+       write(msgBuf,'(A,L5)')
+     &      'S/R ADAUTODIFF_INADMODE_SET_AD: useGMredi =', useGMredi
+       call print_message( msgBuf, standardMessageUnit,
+     &                     SQUEEZE_RIGHT , myThid)
+       write(msgBuf,'(A,L5)')
+     &      'S/R ADAUTODIFF_INADMODE_SET_AD: useSEAICE =', useSEAICE
+       call print_message( msgBuf, standardMessageUnit,
+     &                     SQUEEZE_RIGHT , myThid)
+      endif
+#endif
 
       end
 
