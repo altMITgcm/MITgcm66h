@@ -64,8 +64,8 @@ C--   each thread takes its tile adjoint sum
          adphiTile(bi,bj) = tmp
        ENDDO
       ENDDO
-C--   reset input to zero (jmc: is it right ? necessary ?)
-c     adsumPhi = 0.
+C--   reset input to zero (jmc: is it right ? necessary ? ml: yes, it is!)
+      adsumPhi = 0.
 
       RETURN
       END
