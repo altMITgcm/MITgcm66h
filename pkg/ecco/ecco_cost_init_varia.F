@@ -296,6 +296,21 @@ c
         enddo
       enddo
 
+#ifdef GENERIC_BAR_MONTH
+      do bj = jtlo,jthi
+       do bi = itlo,ithi
+        do k =1,Nr
+         do j = jmin,jmax
+          do i = imin,imax
+           tbar_gen(i,j,k,bi,bj) = 0. _d 0
+           sbar_gen(i,j,k,bi,bj) = 0. _d 0
+          enddo
+         enddo
+        enddo
+       enddo
+      enddo
+#endif
+
 c--   Initialise the "global" parts of the cost function.
       _BEGIN_MASTER( mythid )
         objf_obcsvol = 0. _d 0
