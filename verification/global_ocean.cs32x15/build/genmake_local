@@ -5,3 +5,5 @@
 #  This is the local options file for the "new" version of genmake
 
 MAKEDEPEND=cyrus_makedepend
+
+AD_TAF_FLAGS='-version 2.1.3'
