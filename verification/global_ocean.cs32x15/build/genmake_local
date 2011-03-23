@@ -6,4 +6,3 @@
 
 MAKEDEPEND=cyrus_makedepend
 
-AD_TAF_FLAGS='-version 2.1.3'
