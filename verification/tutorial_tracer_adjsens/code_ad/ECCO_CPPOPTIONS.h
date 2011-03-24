@@ -26,6 +26,9 @@ C
 C o use divided adjoint to split adjoint computations
 #undef ALLOW_DIVIDED_ADJOINT
 #undef ALLOW_DIVIDED_ADJOINT_MPI
+C
+C o write separate tape files for each ptracer
+#define AUTODIFF_PTRACERS_SPLIT_FILES
 
 C ********************************************************************
 C ***                     Calender Package                         ***
