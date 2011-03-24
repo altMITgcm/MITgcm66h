@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ptracers (adjoint)
+  New option AUTODIFF_PTRACERS_SPLIT_FILES for writing separate 
+  tape file for each tracer
 o model/inc/scr and pkg/autodiff: add parameters that allow to turn 
   of parts of the adjoint code at run time. For now, there are only 
   useKPPinAdMode, useGMrediInAdMode, and useSEAICEinAdMode. These 
