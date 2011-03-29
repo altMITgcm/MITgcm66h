@@ -424,7 +424,9 @@ run_clean()
 	    find . -name "*.data" -exec rm {} \;
 	    find . -name "fort.*" -exec rm {} \;
 	    find . -type l -exec rm {} \;
-	    rm -f $EXECUTABLE $RUNLOG *.txt STD* *diagnostics.log datetime
+	    #- should remove executable only if sym-link (and above does it)
+	    #rm -f $EXECUTABLE
+	    rm -f $RUNLOG *.txt STD* *diagnostics.log datetime
 	    rm -rf mnc_test_*
  	    rm -f *_MIT_CE_000.opt0000 costfunction*0000
 	    echo successful
