@@ -22,9 +22,11 @@ C !USES: ===============================================================
 
 C     == GLobal variables ==
 #include "SIZE.h"
-#include "GRID.h"
+#ifdef OLD_DST3_FORMULATION
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#endif
+#include "GRID.h"
 #include "GAD.h"
 
 C     == Routine arguments ==
