@@ -65,6 +65,9 @@ C     o Zonal tracer gradient
 #ifdef COSINEMETH_III
      &            *sqCosFacU(j,bi,bj)
 #endif
+#ifdef ALLOW_OBCS
+     &            *maskInW(i,j,bi,bj)
+#endif
        ENDDO
       ENDDO
 

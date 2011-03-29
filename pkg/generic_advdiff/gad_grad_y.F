@@ -69,6 +69,9 @@ C     o Meridional tracer gradient
      &            *sqCosFacV(j,bi,bj)
 #endif
 #endif
+#ifdef ALLOW_OBCS
+     &            *maskInS(i,j,bi,bj)
+#endif
        ENDDO
       ENDDO
 
