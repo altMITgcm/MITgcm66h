@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/generic_advdiff with OBCS:
+  use maksInW & maskInS in advective flux and in biharmonic diffusion calculation:
+  equivalent to assumption of no tracer gradient outside the OB region.
+  This will affect the results if using obcs+biharmonic diffusion.
+  update output_adm.txt of experiment bottom_ctrl_5x5 (not expected since no obc)
 o pkg/obcs:
   change definition of maskInW & maskInS: leave OB edges inside (maskIn=1)
   (e.g., maskInW(OB_Ie)=1 ) so that velocity normal-component at OB is still
