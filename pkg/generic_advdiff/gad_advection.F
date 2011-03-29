@@ -272,8 +272,13 @@ C--   Make local copy of tracer array and mask West & South
       DO j=1-OLy,sNy+OLy
        DO i=1-OLx,sNx+OLx
          localTij(i,j)=tracer(i,j,k,bi,bj)
-         maskLocW(i,j)=_maskW(i,j,k,bi,bj)
-         maskLocS(i,j)=_maskS(i,j,k,bi,bj)
+#ifdef ALLOW_OBCS
+         maskLocW(i,j) = _maskW(i,j,k,bi,bj)*maskInW(i,j,bi,bj)
+         maskLocS(i,j) = _maskS(i,j,k,bi,bj)*maskInS(i,j,bi,bj)
+#else /* ALLOW_OBCS */
+         maskLocW(i,j) = _maskW(i,j,k,bi,bj)
+         maskLocS(i,j) = _maskS(i,j,k,bi,bj)
+#endif /* ALLOW_OBCS */
        ENDDO
       ENDDO
 
