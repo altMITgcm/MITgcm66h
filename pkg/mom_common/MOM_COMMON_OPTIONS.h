@@ -12,6 +12,12 @@ C Use this file for selecting CPP options within the mom_common package
 
 #include "CPP_OPTIONS.h"
 
+C allow full 3D specification of horizontal Laplacian Viscosity
+#undef ALLOW_3D_VISCAH
+
+C allow full 3D specification of horizontal Biharmonic Viscosity
+#undef ALLOW_3D_VISCA4
+
 C CPP macros go here
 
 #endif /* ALLOW_MOM_COMMON */
