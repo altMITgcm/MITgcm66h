@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint62v (2011/04/02)
+o update output of exp4, internal_wave, seaice_obcs, tutorial_plume_on_slope
+  (new velocity statistics after changing maskInW & maskInS definition)
 o pkg/generic_advdiff with OBCS:
   use maksInW & maskInS in advective flux and in biharmonic diffusion calculation:
   equivalent to assumption of no tracer gradient outside the OB region.
