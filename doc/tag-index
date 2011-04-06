@@ -5,6 +5,8 @@ $Name$
     ==============================
 
 checkpoint62v (2011/04/02)
+o verification/1D_ocean_ice_column added to test Ian Fenty's
+  pkg/seaice_growth.F modifications for improving sea ice code differentiability
 o update output of exp4, internal_wave, seaice_obcs, tutorial_plume_on_slope
   (new velocity statistics after changing maskInW & maskInS definition)
 o pkg/generic_advdiff with OBCS:
