@@ -16,6 +16,7 @@ C     *==========================================================*
 #include "SIZE.h"
 #include "GRID.h"
 #include "EEPARAMS.h"
+#include "FFIELDS.h"  
 
 C     === Global SeaIce Variables ===
 #include "THSICE_VARS.h"
@@ -55,6 +56,8 @@ C     LOCAL VARIABLES:
             flxCndBt(i,j,1,1)= sum_flxCnB(i,j)/nper ! from temp-solve step
             pass_PrcAtm(i,j)= sum_prcIce(i,j)/nper
             icFrwAtm(i,j,1,1)= sum_evapIce(i,j)/nper
+
+            pass_sIceLoad(i,j)=sIceLoad(i,j,1,1)  
 
 C  Load the following directly into the seaice common block
             snowPrc(i,j,1,1)= sum_snowPrc(i,j)/nper
