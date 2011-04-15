@@ -123,7 +123,7 @@ C     EfluxP - p-component of Eliassen-Palm flux vector
 #endif
 
 #ifndef EXCLUDE_FFIELDS_LOAD
-C     loadedRec     :: time-record currently loaded (in temp arrays [0])
+C     loadedRec     :: time-record currently loaded (in temp arrays *[1])
 C     taux[0,1]     :: Temp. for zonal wind stress
 C     tauy[0,1]     :: Temp. for merid. wind stress
 C     Qnet[0,1]     :: Temp. for heat flux
