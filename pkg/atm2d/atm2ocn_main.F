@@ -54,7 +54,7 @@ C     LOCAL VARIABLES:
 
       CALL CALC_1DTO2D( myThid)
 
-      CALL FIXED_FLUX_ADD( wght0,wght1,
+      CALL FIXED_FLUX_ADD( inMonth, wght0,wght1,
      &              intime0,intime1,ifTime,myIter,myThid)
 
       CALL RELAX_ADD( wght0,wght1,

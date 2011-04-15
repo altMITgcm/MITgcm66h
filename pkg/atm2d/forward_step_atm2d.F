@@ -144,6 +144,9 @@ C For land use
           fluxco2mn(j)=0.0
         ENDDO
 #endif
+#ifdef OCEAN_3D
+        new_mon= .TRUE.
+#endif
       ENDIF  !end block at start of the month
 C
 C------------------- Top of Coupled Period Loop --------------------------
