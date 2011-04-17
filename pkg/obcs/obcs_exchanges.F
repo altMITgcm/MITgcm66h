@@ -3,9 +3,9 @@ C $Name$
 
 #include "OBCS_OPTIONS.h"
 
-      SUBROUTINE OBCS_PRESCRIBE_EXCHANGES( myThid )
+      SUBROUTINE OBCS_EXCHANGES( myThid )
 C     *==========================================================*
-C     | S/R OBCS_PRESCRIBE_EXCHANGES
+C     | S/R OBCS_EXCHANGES
 C     *==========================================================*
 C     | Exchanges are needed in case obcs are read from file.
 C     | EXch of xz, yz fields are avoided, so we exchange full

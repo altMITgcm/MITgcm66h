@@ -664,7 +664,7 @@ C-    end of bi,bj loops
 
 #ifdef ALLOW_OBCS
       IF (useOBCS) THEN
-       CALL OBCS_PRESCRIBE_EXCHANGES(myThid)
+        CALL OBCS_EXCHANGES( myThid )
       ENDIF
 #endif
 
