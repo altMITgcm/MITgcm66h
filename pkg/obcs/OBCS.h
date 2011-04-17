@@ -143,6 +143,12 @@ C     OBNuice is the uice value imposed at the Northern OB
 C     OBNvice is the vice value imposed at the Northern OB
 C     etc
 
+#ifdef ALLOW_OBCS_PRESCRIBE
+C     OBCS_ldRec     :: time-record currently loaded (in temp arrays *[1])
+      COMMON /OBCS_LOAD_I/ OBCS_ldRec
+      INTEGER OBCS_ldRec(nSx,nSy)
+#endif /* ALLOW_OBCS_PRESCRIBE */
+
 #ifdef ALLOW_OBCS_NORTH
       COMMON /GRID_N_OB/
      &      OBNu,OBNv,OBNt,OBNs

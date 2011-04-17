@@ -53,6 +53,9 @@ C     == Local variables ==
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
 
+#ifdef ALLOW_OBCS_PRESCRIBE
+        OBCS_ldRec(bi,bj) = 0
+#endif
         DO K=1,Nr
          DO I=1-Olx,sNx+Olx
 #ifdef ALLOW_OBCS_NORTH
