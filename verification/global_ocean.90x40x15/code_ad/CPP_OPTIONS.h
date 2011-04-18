@@ -1,4 +1,3 @@
-C
 C $Header$
 C $Name$
 
@@ -41,6 +40,9 @@ C o Execution environment support options
 
 #ifdef ALLOW_AUTODIFF
 # include "ECCO_CPPOPTIONS.h"
+# ifndef EXCLUDE_FFIELDS_LOAD
+#  define STORE_LOADEDREC_TEST
+# endif
 #endif
 
 C o Allow full 3D specification of vertical diffusivity

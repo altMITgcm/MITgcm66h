@@ -115,6 +115,10 @@ CADJ &     kind = isbyte
 # include "exf_ad_check_lev1_dir.h"
 #endif /* ALLOW_EXF undef */
 
+#ifdef STORE_LOADEDREC_TEST
+CADJ STORE loadedRec = comlev1, key = ikey_dynamics, kind = 4
+#endif
+
 CADJ STORE taux0   = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
 CADJ STORE taux1   = comlev1, key = ikey_dynamics,
