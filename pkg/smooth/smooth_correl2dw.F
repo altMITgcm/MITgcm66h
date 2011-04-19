@@ -21,7 +21,7 @@ C     *==========================================================*
 c#include "tamc.h"
 #include "SMOOTH.h"
 #include "ctrl.h"
-#include "ecco_cost.h"
+c#include "ecco_cost.h"
 
       _RL mask_in(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nR,nSx,nSy)
       _RL fld_in(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
