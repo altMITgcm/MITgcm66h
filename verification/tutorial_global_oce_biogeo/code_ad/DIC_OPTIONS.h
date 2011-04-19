@@ -21,6 +21,8 @@ c atmospheric model
 
 #define ALLOW_OLD_VIRTUALFLUX
 
+#define WATERVAP_BUG
+
 #endif /* ALLOW_DIC */
 #endif /* DIC_OPTIONS_H */
 
