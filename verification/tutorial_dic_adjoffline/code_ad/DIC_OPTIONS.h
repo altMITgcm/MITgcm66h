@@ -21,7 +21,8 @@ c atmospheric model
 
 #undef ALLOW_OLD_VIRTUALFLUX
 
-#define WATERVAP_BUG
+C put back bugs related to Water-Vapour in carbonate chemistry & air-sea fluxes
+#undef WATERVAP_BUG
 
 #define AD_SAFE
 
