@@ -323,9 +323,13 @@ C     ice-front ocean interface
 #endif /* ALLOW_ICEFRONT */
 
 C--   Freeze water in the ocean interior and let it rise to the surface
+#ifndef ALLOW_AUTODIFF_TAMC
+C     temporarily exclude from adjoint computations until
+C     impact has been vetted in forward integrations
       IF ( allowInteriorFreezing ) THEN
         CALL FREEZE_INTERIOR(  myTime, myIter, myThid )
       ENDIF
+#endif
 
 C--   Freeze water at the surface
 #ifdef ALLOW_AUTODIFF_TAMC
