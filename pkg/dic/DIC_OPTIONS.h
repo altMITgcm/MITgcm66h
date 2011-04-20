@@ -21,6 +21,9 @@ c atmospheric model
 
 #define ALLOW_OLD_VIRTUALFLUX
 
+C put back bugs related to Water-Vapour in carbonate chemistry & air-sea fluxes
+#undef WATERVAP_BUG
+
 #endif /* ALLOW_DIC */
 #endif /* DIC_OPTIONS_H */
 
