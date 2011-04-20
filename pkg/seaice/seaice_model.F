@@ -58,9 +58,10 @@ CEndOfInterface
 
 C !LOCAL VARIABLES: ====================================================
 C     i,j,bi,bj :: Loop counters
-C     iceFld    :: Copy of seaice field
-      INTEGER i, j, bi, bj, iTracer
-c     _RL iceFld (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      INTEGER i, j, bi, bj
+#ifdef SEAICE_AGE
+      INTEGER iTracer
+#endif
 CEOP
 
 #ifdef ALLOW_DEBUG

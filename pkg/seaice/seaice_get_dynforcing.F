@@ -54,9 +54,11 @@ C     i,j - Loop counters
 C     k   - vertical index of surface layer
       INTEGER bi, bj, i, j
       INTEGER k
-      _RL  U1, V1, AAA
       _RL  COSWIN
       _RS  SINWIN
+#if !defined(SEAICE_EXTERNAL_FLUXES) || defined(ALLOW_ATM_WIND)
+      _RL  U1, V1, AAA
+#endif
 C     CDAIR   :: local wind stress coefficient (used twice)
 C     oceTauX :: wind-stress over open-ocean (on Arakawa A-grid), X direction
 C     oceTauY :: wind-stress over open-ocean (on Arakawa A-grid), Y direction

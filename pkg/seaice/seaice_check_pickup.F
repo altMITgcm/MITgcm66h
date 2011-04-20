@@ -59,7 +59,9 @@ C     bi,bj       :: tile indices
 c     LOGICAL oldIceAge
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       CHARACTER*(8) fldName
+#if (defined SEAICE_MULTICATEGORY) || (defined SEAICE_AGE )
       INTEGER i,j,bi,bj
+#endif
 #ifdef SEAICE_MULTICATEGORY
       INTEGER k
 #endif

@@ -54,7 +54,9 @@ C     diagTitle :: local string (80c): description of field in diagnostic
       CHARACTER*16  diagUnits
       CHARACTER*(80) diagTitle
 
+#ifdef SEAICE_AGE
       INTEGER       iTracer
+#endif
       INTEGER       numArea
       CHARACTER*9   flxUnits
       CHARACTER*15  locName
@@ -496,21 +498,21 @@ C--   Diffusive flux:
       diagCode  = 'SM      M1      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
-      
+
       diagName  = 'SIdA'
       diagTitle = 'Actual AREA increment (total)'
       diagUnits = '1/s             '
       diagCode  = 'SM      M1      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
-      
+
       diagName  = 'SIdAbATO'
       diagTitle = 'Actual delta AREA from atm fluxes over open water'
       diagUnits = '                '
       diagCode  = 'SM      M1      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
-      
+
       diagName  = 'SIdAbATC'
       diagTitle = 'Actual delta AREA from atm fluxes over sea ice'
       diagUnits = '                '

@@ -46,14 +46,18 @@ CEOP
 #ifdef ALLOW_DIAGNOSTICS
 C     == Local variables ==
       INTEGER i,j,bi,bj
-      INTEGER iTracer
-      CHARACTER*8   diagName
+#ifdef SEAICE_CGRID
       _RL sigI (1-oLx:sNx+oLx,1-oLy:sNy+oLy)
       _RL sigII(1-oLx:sNx+oLx,1-oLy:sNy+oLy)
       _RL sig1, sig2, sig12, sigTmp, recip_prs
+#endif
 #ifdef SEAICE_MULTICATEGORY
       INTEGER k
       _RL recip_multdim
+#endif
+#ifdef SEAICE_AGE
+      INTEGER iTracer
+      CHARACTER*8   diagName
 #endif
 
       LOGICAL  DIAGNOSTICS_IS_ON

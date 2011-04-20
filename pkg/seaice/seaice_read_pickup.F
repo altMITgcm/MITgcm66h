@@ -51,10 +51,13 @@ C     bi,bj       :: tile indices
       INTEGER filePrec, nbFields
       INTEGER missFldDim, nMissing
       PARAMETER( missFldDim = 20 )
-      CHARACTER*(8) fldName, missFldList(missFldDim)
+      CHARACTER*(8) missFldList(missFldDim)
       INTEGER nj, ioUnit
       CHARACTER*(MAX_LEN_MBUF) msgBuf
+#ifdef SEAICE_AGE
       INTEGER iTracer, kerr
+      CHARACTER*(8) fldName
+#endif
 CEOP
 
 C--

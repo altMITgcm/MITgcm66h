@@ -43,11 +43,13 @@ C     === Functions ====
 
 C     == Local variables ==
       CHARACTER*(MAX_LEN_MBUF) msgBuf
+#ifdef SEAICE_AGE
+      INTEGER iTracer
       CHARACTER*(MAX_LEN_MBUF) suff
+#endif
 #ifdef ALLOW_MNC
       INTEGER i
 #endif /* ALLOW_MNC */
-      INTEGER iTracer
       _RL dummyRL(6)
 
       IF ( DIFFERENT_MULTIPLE(SEAICE_monFreq,myTime,deltaTClock)
@@ -129,7 +131,7 @@ C       Print some statistics about input forcing fields
 #ifdef SEAICE_AGE
         DO iTracer = 1, SEAICE_num
          WRITE(suff,'(A7,I2.2)') '_iceage', iTracer
-         CALL MON_WRITESTATS_RL( 
+         CALL MON_WRITESTATS_RL(
      &          1,IceAgeTr(1-OLx,1-OLy,1,1,iTracer),suff,
      &          maskInC, maskInC, rA , drF, dummyRL, myThid )
         ENDDO
