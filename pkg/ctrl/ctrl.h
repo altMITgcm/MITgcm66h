@@ -381,6 +381,10 @@ c     xx_tauv1 - meridional wind stress record after  current date.
      &                      xx_obcse0,
      &                      xx_obcse1
 #endif
+#ifdef ALLOW_OBCS_CONTROL_MODES 
+       common /ih_modes/ modesv
+       _RL modesv (nr,nr,nr)
+#endif
 #endif
 
 #if (defined  (ALLOW_PRECIP_CONTROL))
