@@ -41,8 +41,12 @@ c   Forcing files
       CHARACTER*(MAX_LEN_FNAM) KPP_DiffSFile
       CHARACTER*(MAX_LEN_FNAM) KPP_ghatKFile
 
+C     offlineLdRec :: time-record currently loaded (in temp arrays *[1])
       COMMON /OFFLINE_COMMON_I/
+     &       offlineLdRec,
      &       offlineIter0, offlineOffsetIter
+
+      INTEGER offlineLdRec(nSx,nSy)
       INTEGER offlineIter0
       INTEGER offlineOffsetIter
 

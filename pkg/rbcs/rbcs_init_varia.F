@@ -36,6 +36,7 @@ C     i,j,k,bi,bj,iTracer  :: loop indices
 
       DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
+          rbcsLdRec(bi,bj) = 0
           DO k=1,Nr
             DO j=1-Oly,sNy+OLy
               DO i=1-Olx,sNx+Olx
