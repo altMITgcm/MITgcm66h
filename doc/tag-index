@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o adding allowInteriorFreezing option to check for water below freezing point
+  at depth and bring the negative heat anomaly to the surface level
 o external_fields_load:
   new S/R GET_PERIODIC_INTERVAL to calculate which time-record (and linear
    interpolation weights) to use in a periodic time-series ; do not divide by

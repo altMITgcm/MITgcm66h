@@ -723,7 +723,7 @@ CADJ STORE kappaRTr(:,:,:)    = comlev1_bibj_k, key=kkey, byte=isbyte
 
 C--      Freeze water
 C  this bit of code is left here for backward compatibility.
-C  freezing at surface level has been moved to FORWARD_STEP
+C  freezing at surface level has been moved to DO_OCEANIC_PHYS
          IF ( useOldFreezing .AND. .NOT. useSEAICE
      &       .AND. .NOT.(useThSIce.AND.k.EQ.1) ) THEN
 #ifdef ALLOW_AUTODIFF_TAMC

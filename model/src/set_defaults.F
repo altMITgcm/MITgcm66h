@@ -178,6 +178,7 @@ Cml      sBeta               = 7.4 _d -4
       globalFiles         = .FALSE.
       useSingleCpuIO      = .FALSE.
       allowFreezing       = .FALSE.
+      allowInteriorFreezing = .FALSE.
       useOldFreezing      = .FALSE.
       ivdc_kappa          = 0. _d 0
       hMixCriteria        = -.8 _d 0

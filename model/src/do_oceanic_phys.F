@@ -322,6 +322,11 @@ C     ice-front ocean interface
       ENDIF
 #endif /* ALLOW_ICEFRONT */
 
+C--   Freeze water in the ocean interior and let it rise to the surface
+      IF ( allowInteriorFreezing ) THEN
+        CALL FREEZE_INTERIOR(  myTime, myIter, myThid )
+      ENDIF
+
 C--   Freeze water at the surface
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE theta = comlev1, key = ikey_dynamics,
