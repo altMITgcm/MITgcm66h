@@ -4,7 +4,7 @@ C $Name$
 #include "SEAICE_OPTIONS.h"
 
 CBOP 0
-C !ROUTINE: W2_PRINT_E2SETUP
+C !ROUTINE: SEAICE_OUTPUT
 
 C !INTERFACE:
       SUBROUTINE SEAICE_OUTPUT( myTime, myIter, myThid )
@@ -51,13 +51,12 @@ C     == Local variables in common block :
 
 C     == Local variables ==
       CHARACTER*(10) suff
+#ifdef SEAICE_AGE
       CHARACTER*(13) pref
-#if ( defined (ALLOW_TIMEAVE) || defined (ALLOW_MNC) )
-c     INTEGER i, j, bi, bj
+      INTEGER iTracer
 #endif
 #ifdef ALLOW_TIMEAVE
       INTEGER i, j, bi, bj
-      INTEGER iTracer
       LOGICAL dumpFiles
 #endif /* ALLOW_TIMEAVE */
 #ifdef ALLOW_MNC
@@ -130,7 +129,7 @@ CEOP
 #ifdef SEAICE_AGE
             DO iTracer = 1, SEAICE_num
              WRITE(pref,'(A8,I2.2,A1)') 'ICEAGETR', iTracer, '.'
-             CALL WRITE_FLD_XY_RL( 
+             CALL WRITE_FLD_XY_RL(
      &            pref,suff,
      &            IceAgeTr(1-OLx,1-OLy,1,1,iTracer),
      &            myIter,myThid)
