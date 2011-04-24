@@ -1,6 +1,6 @@
 #
-# $ Header:  $
-#
+# $Header$
+# $Name$
 
 ALL = \
   devel_HOWTO.ps \
