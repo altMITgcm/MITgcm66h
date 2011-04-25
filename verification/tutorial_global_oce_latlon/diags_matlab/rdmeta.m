@@ -29,7 +29,6 @@ function [AA] = rdmds(fname,varargin)
 %                          byte ordering and 64 bit long data type
 %   'ieee-be.l64' or 's' - IEEE floating point with big-endian byte
 %                          ordering and 64 bit long data type.
-%
 
 % $Header$
 % $Name$
@@ -193,7 +192,7 @@ else
  elseif dataprec == 'float64'
   A=myrdda(dname,ldims,1,'real*8',ieee);
  else
-  error(['Unrecognized format in meta-file = ' format]);
+  error(['Unrecognized dataprec in meta-file = ' dataprec]);
  end
 
 end
