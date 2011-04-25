@@ -273,6 +273,16 @@ C      Calculate del^2 u and del^2 v for bi-harmonic term
          CALL MOM_CALC_HDIV(bi,bj,k,2,del2u,del2v,dStar,myThid)
          CALL MOM_CALC_RELVORT3(bi,bj,k,
      &                          del2u,del2v,hFacZ,zStar,myThid)
+         IF ( writeDiag ) THEN
+           CALL WRITE_LOCAL_RL( 'del2u', 'I10', 1, del2u,
+     &                           bi,bj,k, myIter, myThid )
+           CALL WRITE_LOCAL_RL( 'del2v', 'I10', 1, del2v,
+     &                           bi,bj,k, myIter, myThid )
+           CALL WRITE_LOCAL_RL( 'dStar', 'I10', 1, dStar,
+     &                           bi,bj,k, myIter, myThid )
+           CALL WRITE_LOCAL_RL( 'zStar', 'I10', 1, zStar,
+     &                           bi,bj,k, myIter, myThid )
+         ENDIF
        ENDIF
 
 C-    Strain diagnostics:
