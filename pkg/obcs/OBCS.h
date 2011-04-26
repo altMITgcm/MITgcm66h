@@ -72,17 +72,21 @@ C                     uice/vice :: sea ice u/v drift velocities
       LOGICAL OBCSfixTopo
 
 C OBCS_balanceFacN/S/E/W :: weighting factor for balancing OB normal flow
+C OBCS_uvApplyFac        :: multiplying factor to U,V normal comp. when applying
+C                           OBC to 2nd column/row (for backward compatibility).
 C OBCS_monitorFreq       :: monitor output frequency (s) for OB statistics
 C OBCS_monSelect         :: select group of variables to monitor
       COMMON /PARM_R_OB/
      &     OBCS_balanceFacN, OBCS_balanceFacS,
      &     OBCS_balanceFacE, OBCS_balanceFacW,
+     &     OBCS_uvApplyFac,
      &     OBCS_monitorFreq,
      & Urelaxobcsinner,Urelaxobcsbound,
      & Vrelaxobcsinner,Vrelaxobcsbound,
      & TrelaxStevens, SrelaxStevens
       _RL OBCS_balanceFacN, OBCS_balanceFacS
       _RL OBCS_balanceFacE, OBCS_balanceFacW
+      _RL OBCS_uvApplyFac
       _RL OBCS_monitorFreq
       _RS Urelaxobcsinner
       _RS Urelaxobcsbound

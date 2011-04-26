@@ -74,6 +74,9 @@ C--   Print OBCS set-up summary:
      &   'OBCS_balanceFacW =',
      &   ' /* Western  OB Factor for balancing OB flow [-] */')
       ENDIF
+      CALL WRITE_0D_RL( OBCS_uvApplyFac, INDEX_NONE,
+     &   'OBCS_uvApplyFac =',
+     &   ' /* Factor to apply to U,V 2nd column/row */')
       CALL WRITE_0D_RL( OBCS_monitorFreq, INDEX_NONE,
      &   'OBCS_monitorFreq =', ' /* monitor output frequency [s] */')
       CALL WRITE_0D_I( OBCS_monSelect, INDEX_NONE, 'OBCS_monSelect =',
