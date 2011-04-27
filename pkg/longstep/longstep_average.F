@@ -99,7 +99,7 @@ C--   update average inside tile (no overlaps) for all bi,bj
       CALL LONGSTEP_FILL_3D_RS(LS_QswCount, LS_Qsw, Qsw, 1, myThid)
 #endif
       IF ( LS_usePmEpR ) THEN
-       CALL LONGSTEP_FILL_3D_RS(LS_fwFluxCount,LS_fwFlux,PmEpR,1,myThid)
+       CALL LONGSTEP_FILL_3D(   LS_fwFluxCount,LS_fwFlux,PmEpR,1,myThid)
       ELSE
        CALL LONGSTEP_FILL_3D_RS(LS_fwFluxCount,LS_fwFlux,EmPmR,1,myThid)
       ENDIF
