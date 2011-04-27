@@ -101,7 +101,7 @@ C- end bi,bj loop.
      &    CALL EXCH_XY_RL( etaH, myThid )
 
 c     IF (useRealFreshWaterFlux .AND. myTime.EQ.startTime)
-c    &    _EXCH_XY_RS( PmEpR, myThid )
+c    &    _EXCH_XY_RL( PmEpR, myThid )
 
 #ifdef NONLIN_FRSURF
 # ifndef DISABLE_SIGMA_CODE
