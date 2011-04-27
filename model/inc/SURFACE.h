@@ -44,7 +44,7 @@ C     PmEpR   :: keep the fresh water input (=-EmPmR) of the previous time step
       COMMON /EXACT_ETA_LOCAL/ etaHnm1, dEtaHdt, PmEpR
       _RL etaHnm1(1-Olx:sNx+Olx,1-Oly:sNy+Oly,nSx,nSy)
       _RL dEtaHdt(1-Olx:sNx+Olx,1-Oly:sNy+Oly,nSx,nSy)
-      _RS  PmEpR (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL  PmEpR (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 #endif
 
 #ifdef NONLIN_FRSURF
