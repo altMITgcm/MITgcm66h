@@ -123,7 +123,7 @@ CEOP
             CALL WRITE_FLD_XY_RL( 'HEFF.',suff,hEff,myIter,myThid)
             CALL WRITE_FLD_XY_RL( 'AREA.',suff,area,myIter,myThid)
             CALL WRITE_FLD_XY_RL( 'HSNOW.',suff,HSNOW,myIter,myThid)
-#ifdef SEAICE_SALINITY
+#ifdef SEAICE_VARIABLE_SALINITY
             CALL WRITE_FLD_XY_RL( 'HSALT.',suff,HSALT,myIter,myThid)
 #endif
 #ifdef SEAICE_AGE

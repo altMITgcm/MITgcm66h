@@ -107,7 +107,7 @@ C---  continue to write 2-D fields:
         nj = nj-1
         CALL WRITE_REC_3D_RL( fn, fp,  1, HSNOW , nj, myIter, myThid )
         IF (j.LE.listDim) wrFldList(j) = 'siHSNOW '
-#ifdef SEAICE_SALINITY
+#ifdef SEAICE_VARIABLE_SALINITY
         j = j + 1
         nj = nj-1
         CALL WRITE_REC_3D_RL( fn, fp,  1, HSALT , nj, myIter, myThid )

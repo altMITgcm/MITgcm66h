@@ -472,7 +472,7 @@ cph          TICES(I,J,bi,bj)     = StoreSEAICE(I,J,bi,bj,6)
           seaice_sigma12(I,J,bi,bj) = StoreSEAICE(I,J,bi,bj,18)
 #  endif /* SEAICE_ALLOW_EVP */
 # endif /* SEAICE_ALLOW_DYNAMICS */
-# ifdef SEAICE_SALINITY
+# ifdef SEAICE_VARIABLE_SALINITY
           HSALT(I,J,bi,bj)          = StoreSEAICE(I,J,bi,bj,19)
 # endif
          enddo

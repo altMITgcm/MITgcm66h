@@ -100,7 +100,7 @@ C     division by zero is not possible
 
        CALL DIAGNOSTICS_FILL(HSNOW  ,'SIhsnow ',0,1 ,0,1,1,myThid)
 
-#ifdef SEAICE_SALINITY
+#ifdef SEAICE_VARIABLE_SALINITY
        CALL DIAGNOSTICS_FILL(HSALT  ,'SIhsalt ',0,1 ,0,1,1,myThid)
 #endif
 #ifdef SEAICE_AGE

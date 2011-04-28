@@ -52,7 +52,7 @@ CADJ STORE seaice_sigma2  = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE seaice_sigma12 = comlev1, key=ikey_dynamics, kind=isbyte
 #  endif
 # endif
-# ifdef SEAICE_SALINITY
+# ifdef SEAICE_VARIABLE_SALINITY
 CADJ STORE hsalt    = comlev1, key=ikey_dynamics, kind=isbyte
 # endif
 # ifdef ALLOW_COST_ICE

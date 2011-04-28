@@ -124,10 +124,10 @@ C       Print some statistics about input forcing fields
      &           maskInC, maskInC, rA , drF, dummyRL, myThid )
         CALL MON_WRITESTATS_RL( 1, HSNOW,'_hsnow',
      &           maskInC, maskInC, rA , drF, dummyRL, myThid )
-#ifdef SEAICE_SALINITY
+#ifdef SEAICE_VARIABLE_SALINITY
         CALL MON_WRITESTATS_RL( 1, HSALT,'_hsalt',
      &           maskInC, maskInC, rA , drF, dummyRL, myThid )
-#endif /* SEAICE_SALINITY */
+#endif /* SEAICE_VARIABLE_SALINITY */
 #ifdef SEAICE_AGE
         DO iTracer = 1, SEAICE_num
          WRITE(suff,'(A7,I2.2)') '_iceage', iTracer

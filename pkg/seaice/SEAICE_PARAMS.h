@@ -186,8 +186,9 @@ C     SEAICE_emissivity  - Stefan-Boltzman constant * emissivity
 C     SEAICE_snowThick   - cutoff snow thickness
 C     SEAICE_shortwave   - penetration shortwave radiation factor
 C     SEAICE_freeze      - FREEZING TEMP. OF SEA WATER
-C     SEAICE_salinity    - initial salinity of sea ice defined as a
-C                          fraction of the model surface level salinity
+C     SIsalFRAC          - initial salinity of sea ice defined as a
+C                          fraction of the model surface level salinity at the 
+C                          tiem of freezing
 C     SIsal0             - prescribed salinity of seaice (in g/kg).
 C     SEAICE_gamma_t     - timescale for melting ice from a warm mixed layer (s),
 C                          3d = 259200s is a reasonable value, default=unset
@@ -227,7 +228,7 @@ C
       _RL SEAICE_dalton
       _RL SEAICE_iceConduct, SEAICE_snowConduct, SEAICE_emissivity
       _RL SEAICE_snowThick, SEAICE_shortwave, SEAICE_freeze
-      _RL SEAICE_salinity, SIsal0, SEAICEstressFactor
+      _RL SIsalFRAC, SIsal0, SEAICEstressFactor
       _RL SEAICE_gamma_t, SEAICE_gamma_t_frz
       _RL SEAICE_availHeatFrac, SEAICE_availHeatFracFrz
       _RL OCEAN_drag, LSR_ERROR, DIFF1, A22
@@ -253,7 +254,7 @@ C
      &    SEAICE_dalton, SEAICE_cpAir,
      &    SEAICE_iceConduct, SEAICE_snowConduct, SEAICE_emissivity,
      &    SEAICE_snowThick, SEAICE_shortwave, SEAICE_freeze,
-     &    SEAICE_salinity, SIsal0, SEAICEstressFactor,
+     &    SIsalFRAC, SIsal0, SEAICEstressFactor,
      &    SEAICE_gamma_t, SEAICE_gamma_t_frz,
      &    SEAICE_availHeatFrac, SEAICE_availHeatFracFrz,
      &    OCEAN_drag, LSR_ERROR, DIFF1, A22,

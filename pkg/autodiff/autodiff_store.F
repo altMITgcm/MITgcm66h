@@ -596,7 +596,7 @@ C-      2D arrays
           StoreSEAICE(I,J,bi,bj,17) = 0.0
           StoreSEAICE(I,J,bi,bj,18) = 0.0      
 # endif /* SEAICE_ALLOW_DYNAMICS */
-# ifdef SEAICE_SALINITY
+# ifdef SEAICE_VARIABLE_SALINITY
           StoreSEAICE(I,J,bi,bj,19) = HSALT(I,J,bi,bj)
 # else
           StoreSEAICE(I,J,bi,bj,19) = 0.0

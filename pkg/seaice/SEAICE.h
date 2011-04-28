@@ -110,7 +110,7 @@ C
       _RL ZMAX       (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL ZMIN       (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
-#ifdef SEAICE_SALINITY
+#ifdef SEAICE_VARIABLE_SALINITY
       COMMON/SEAICE_SALINITY_R/HSALT
       _RL HSALT      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 #endif
