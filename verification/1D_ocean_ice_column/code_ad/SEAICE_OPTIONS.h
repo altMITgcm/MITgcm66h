@@ -90,7 +90,7 @@ C--   Seaice flooding
 #define ALLOW_SEAICE_FLOODING
 
 C--   By default sea ice is fresh.  Set following flag for salty ice.
-#define SEAICE_SALINITY
+#define SEAICE_VARIABLE_SALINITY
 
 c--   Enable modified sea-ice thermodynamic by Ian Fenty
 c--   Should improve adjoint, but doesnt work so far.

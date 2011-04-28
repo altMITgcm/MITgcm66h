@@ -68,7 +68,7 @@ C--   Allow SEAICEuseFlooding, which converts snow to ice if submerged.
 #define ALLOW_SEAICE_FLOODING
 
 C--   By default sea ice is fresh.  Set following flag for salty ice.
-#define SEAICE_SALINITY
+#define SEAICE_VARIABLE_SALINITY
 
 C--   Track sea ice age.
 #undef SEAICE_AGE
