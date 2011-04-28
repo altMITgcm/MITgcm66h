@@ -500,7 +500,9 @@ C     myCurrentIter - Iteration counter for this thread
       CHARACTER*(10) suff
 C     Temprarily change precision to agree with ctrlprec
       INTEGER tmpprec
-
+#ifdef OAD_DEBUG
+      INTEGER i1, i2, i3, i4, i5
+#endif
 CEOP
 c--   set default:
       lastdiva = .TRUE.
@@ -651,11 +653,11 @@ C     Temporarily change setting of writeBinaryPrec
       writeBinaryPrec = ctrlprec
       WRITE(suff,'(I10.10)') 0
       foo=xx_theta%d
-      call write_fld_xyz_rl('adxx_theta.',suff,foo,myiter,1)
+      call write_fld_xyz_rl('adxx_theta.',suff,foo,myCurrentIter,1)
       foo=xx_salt%d
-      call write_fld_xyz_rl('adxx_salt.',suff,foo,myiter,1)
+      call write_fld_xyz_rl('adxx_salt.',suff,foo,myCurrentIter,1)
       fooEtan=etan%d
-      call write_fld_xy_rl('adxx_etan.',suff,fooEtan,myiter,1)
+      call write_fld_xy_rl('adxx_etan.',suff,fooEtan,myCurrentIter,1)
 C     Change back to original writeBinaryPrec
       writeBinaryPrec = tmpprec
       our_rev_mode%plain=.TRUE.
