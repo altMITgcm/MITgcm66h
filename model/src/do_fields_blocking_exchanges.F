@@ -46,7 +46,7 @@ CEOP
 C     !LOCAL VARIABLES:
 C     bi, bj :: tile indices
 #ifdef ALLOW_OBCS
-      INTEGER bi, bj
+c     INTEGER bi, bj
 #endif /* ALLOW_OBCS */
 
       IF ( .NOT.useOffLine ) THEN
@@ -64,16 +64,16 @@ c    & _EXCH_XY_RL( etaN , myThid )
        _EXCH_XYZ_RL( salt , myThid )
       ENDIF
 #ifdef ALLOW_OBCS
-      IF ( useOBCS ) THEN
-       DO bj = myByLo(myThid), myByHi(myThid)
-        DO bi = myBxLo(myThid), myBxHi(myThid)
-         CALL OBCS_COPY_TRACER( theta(1-Olx,1-Oly,1,bi,bj),
-     I                          Nr, bi, bj, myThid )
-         CALL OBCS_COPY_TRACER( salt (1-Olx,1-Oly,1,bi,bj),
-     I                          Nr, bi, bj, myThid )
-        ENDDO
-       ENDDO
-      ENDIF
+c     IF ( useOBCS ) THEN
+c      DO bj = myByLo(myThid), myByHi(myThid)
+c       DO bi = myBxLo(myThid), myBxHi(myThid)
+c        CALL OBCS_COPY_TRACER( theta(1-Olx,1-Oly,1,bi,bj),
+c    I                          Nr, bi, bj, myThid )
+c        CALL OBCS_COPY_TRACER( salt (1-Olx,1-Oly,1,bi,bj),
+c    I                          Nr, bi, bj, myThid )
+c       ENDDO
+c      ENDDO
+c     ENDIF
 #endif /* ALLOW_OBCS */
 
 #ifdef ALLOW_GENERIC_ADVDIFF

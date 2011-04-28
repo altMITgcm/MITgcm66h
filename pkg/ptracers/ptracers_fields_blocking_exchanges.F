@@ -37,7 +37,7 @@ C  iTracer        :: loop indices
 C  bi, bj         :: tile indices
       INTEGER iTracer
 #ifdef ALLOW_OBCS
-      INTEGER bi, bj
+c     INTEGER bi, bj
 #endif /* ALLOW_OBCS */
 CEOP
 
@@ -55,14 +55,14 @@ C Exchange overlaps
 #endif /* PTRACERS_ALLOW_DYN_STATE */
 
 #ifdef ALLOW_OBCS
-      IF ( useOBCS ) THEN
-       DO bj = myByLo(myThid), myByHi(myThid)
-        DO bi = myBxLo(myThid), myBxHi(myThid)
-         CALL OBCS_COPY_TRACER( pTracer(1-Olx,1-Oly,1,bi,bj,iTracer),
-     I                          Nr, bi, bj, myThid )
-        ENDDO
-       ENDDO
-      ENDIF
+c     IF ( useOBCS ) THEN
+c      DO bj = myByLo(myThid), myByHi(myThid)
+c       DO bi = myBxLo(myThid), myBxHi(myThid)
+c        CALL OBCS_COPY_TRACER( pTracer(1-Olx,1-Oly,1,bi,bj,iTracer),
+c    I                          Nr, bi, bj, myThid )
+c       ENDDO
+c      ENDDO
+c     ENDIF
 #endif /* ALLOW_OBCS */
 
 C End of tracer loop
