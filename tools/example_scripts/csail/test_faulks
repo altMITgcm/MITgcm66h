@@ -32,7 +32,7 @@ sepDir=1
 option=
 #tst_list='g7a adm mpa g77 gfo+rs mth mp2+rs mpi ifc'
 #tst_list='g77 adm gfo ifc mth pgi+rs'
-tst_list='g77 adm gfo ifc mth pgi'
+tst_list='g77 adm gfo ifc mth'
 #tst_list='g77 gfo+rs mth'
 
 #option="-nc" ; checkOut=0
