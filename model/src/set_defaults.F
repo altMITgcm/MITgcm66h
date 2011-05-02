@@ -257,13 +257,13 @@ C--   Time stepping parameters
         dTtracerLev(k)  = 0. _d 0
       ENDDO
       baseTime          = 0. _d 0
-      nIter0            = 0
-      startTime         = deltaT*float(nIter0)
+      nIter0            = -1
+      startTime         = UNSET_RL
       pickupSuff        = ' '
       pickupStrictlyMatch = .TRUE.
       nTimeSteps        = 0
-      nEndIter          = nIter0+nTimeSteps
-      endTime           = deltaT*float(nEndIter)
+      nEndIter          = 0
+      endTime           = 0. _d 0
       momForcingOutAB   = UNSET_I
       tracForcingOutAB  = UNSET_I
       momDissip_In_AB   = .TRUE.
