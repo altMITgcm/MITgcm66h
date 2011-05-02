@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src:
+  - fix startTime setting when baseTime<>0 & nIter0=0 are specified ;
+  - initialise startTime & nIter0 with unlikely values: allows to set one
+    from the other without ambiguity.
 o seaice_obcs test-exp.:
   add small diffK4T,S to test biharmonic diffusivity with OBCS ; update output.
 o pkg/obcs:
