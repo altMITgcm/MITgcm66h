@@ -5,8 +5,12 @@ $Name$
     ==============================
 
 o exp4 test-exp:
+  - turn on: nonHydrostatic, exactConserv, viscA4 (with momDissip_In_AB=F)
+    and prescribe time-varying OB (without pkg/exf) for zonal-velocity
+    at Western & Eastern Boundaries (+/- 1 per-cent); Also prescribe
+    time-varying OB at Western-side for wVel (NonHyd); update output.
   - add secondary set-up (.nlfs) using NonLin FreeSurf (z*) + mom_vecinv
-    and biharmonic-viscosity ; prescribe time varying OB but without pkg/exf.
+    and biharmonic-viscosity ; also use prescribed time varying OB.
 o pkg/obcs:
   fix bug in OBWeta,OBWeta indices in obcs_apply_r_star.F
 o model/src:
