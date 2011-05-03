@@ -132,13 +132,17 @@ CADJ &     = tapelev4, key = ilev_4
 # include "salt_plume_ad_check_lev4_dir.h"
 #endif
 
-#ifdef ALLOW_SHELFICE
-# include "shelfice_ad_check_lev4_dir.h"
-#endif /* ALLOW_SHELFICE */
+#ifdef ALLOW_SEAICE
+# include "seaice_ad_check_lev4_dir.h"
+#endif /* ALLOW_SEAICE */
 
 #ifdef ALLOW_THSICE
 # include "thsice_ad_check_lev4_dir.h"
 #endif /* ALLOW_THSICE */
+
+#ifdef ALLOW_SHELFICE
+# include "shelfice_ad_check_lev4_dir.h"
+#endif /* ALLOW_SHELFICE */
 
 #ifdef ALLOW_RBCS
 # include "rbcs_ad_check_lev4_dir.h"
