@@ -71,6 +71,9 @@ C     Meridional flux d/dy V
 #if (defined (ISOTROPIC_COS_SCALING) && defined (COSINEMETH_III))
      &   *sqCosFacU(J,bi,bj)
 #endif
+#ifdef ALLOW_OBCS
+     &   *maskInC(i,j,bi,bj)
+#endif
 c    &   *deepFacC(k)        ! dxF scaling factor
 c    &   *recip_deepFacC(k)  ! recip_dyF scaling factor
        ENDDO
@@ -85,6 +88,9 @@ C     del^2 V
      &  *( fZon(i+1,j)    - fZon(i, j )
      &    +fMer( i ,j)    - fMer(i,j-1)
      &   )*_maskS(i,j,k,bi,bj)
+#ifdef ALLOW_OBCS
+     &    *maskInS(i,j,bi,bj)
+#endif
        ENDDO
       ENDDO
 
