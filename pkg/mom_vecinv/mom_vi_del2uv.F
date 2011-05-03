@@ -96,6 +96,9 @@ c      DO i=1,sNx+1
      &         ( hFacZ(i,j+1)*vort3(i,j+1) - hFacZ(i,j)*vort3(i,j) )
      &                                    *recip_dyG(i,j,bi,bj)
      &      )*maskW(i,j,k,bi,bj)
+#ifdef ALLOW_OBCS
+     &       *maskInW(i,j,bi,bj)
+#endif
        ENDDO
       ENDDO
 
@@ -118,6 +121,9 @@ c      DO i=1,sNx
      &         ( hFacZ(i+1,j)*vort3(i+1,j) - hFacZ(i,j)*vort3(i,j) )
      &                                    *recip_dxG(i,j,bi,bj)
      &      )*maskS(i,j,k,bi,bj)
+#ifdef ALLOW_OBCS
+     &       *maskInS(i,j,bi,bj)
+#endif
        ENDDO
       ENDDO
 
