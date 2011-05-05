@@ -216,7 +216,7 @@ cgg       And now back-calculate what iobcs should be.
      &           then
                print *, 'ctrl-set_unpack:xz:WARNING: wrong ncvarindex ',
      &              filencvarindex(ivartype), ncvarindex(ivartype)
-               STOP 'in S/R ctrl_unpack'
+               STOP 'in S/R ctrl_set_unpack_xz'
             endif
             read(cunit) filej
             read(cunit) filei
@@ -228,13 +228,13 @@ cgg       And now back-calculate what iobcs should be.
                   if (filencbuffindex .NE. cbuffindex) then
                      print *, 'WARNING: wrong cbuffindex ',
      &                    filencbuffindex, cbuffindex
-                     STOP 'in S/R ctrl_unpack'
+                     STOP 'in S/R ctrl_set_unpack_xz'
                   endif
                   read(cunit) filek
                   if (filek .NE. k) then
                      print *, 'WARNING: wrong k ',
      &                    filek, k
-                     STOP 'in S/R ctrl_unpack'
+                     STOP 'in S/R ctrl_set_unpack_xz'
                   endif
                   read(cunit) (cbuff(ii), ii=1,cbuffindex)
                endif
@@ -306,7 +306,7 @@ cgg       And now back-calculate what iobcs should be.
      &        then
             print *, 'ctrl-set_unpack:xz:WARNING: wrong ncvarindex ',
      &           filencvarindex(ivartype), ncvarindex(ivartype)
-            STOP 'in S/R ctrl_unpack'
+            STOP 'in S/R ctrl_set_unpack_xz'
          endif
          read(cunit) filej
          read(cunit) filei
@@ -318,13 +318,13 @@ cgg       And now back-calculate what iobcs should be.
                if (filencbuffindex .NE. cbuffindex) then
                   print *, 'WARNING: wrong cbuffindex ',
      &                 filencbuffindex, cbuffindex
-                  STOP 'in S/R ctrl_unpack'
+                  STOP 'in S/R ctrl_set_unpack_xz'
                endif
                read(cunit) filek
                if (filek .NE. k) then
                   print *, 'WARNING: wrong k ',
      &                 filek, k
-                  STOP 'in S/R ctrl_unpack'
+                  STOP 'in S/R ctrl_set_unpack_xz'
                endif
                read(cunit) (cbuff(ii), ii=1,cbuffindex)
             endif

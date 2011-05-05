@@ -180,7 +180,7 @@ c--   Only the master thread will do I/O.
      &        then
             print *, 'ctrl_set_unpack_xyz:WARNING: wrong ncvarindex ',
      &           filencvarindex(ivartype), ncvarindex(ivartype)
-            STOP 'in S/R ctrl_unpack'
+            STOP 'in S/R ctrl_set_unpack_xyz'
          endif
          read(cunit) filej
          read(cunit) filei
@@ -199,13 +199,13 @@ c--   Only the master thread will do I/O.
                if (filencbuffindex .NE. cbuffindex) then
                   print *, 'WARNING: wrong cbuffindex ',
      &                 filencbuffindex, cbuffindex
-                  STOP 'in S/R ctrl_unpack'
+                  STOP 'in S/R ctrl_set_unpack_xyz'
                endif
                read(cunit) filek
                if (filek .NE. k) then
                   print *, 'WARNING: wrong k ',
      &                 filek, k
-                  STOP 'in S/R ctrl_unpack'
+                  STOP 'in S/R ctrl_set_unpack_xyz'
                endif
 cph#endif /* ALLOW_ADMTLM */
                read(cunit) (cbuff(ii), ii=1,cbuffindex)
@@ -368,7 +368,7 @@ c-- 2.1: array <- buffer <- global buffer <- global file
      &        then
             print *, 'ctrl_set_unpack_xyz:WARNING: wrong ncvarindex ',
      &           filencvarindex(ivartype), ncvarindex(ivartype)
-            STOP 'in S/R ctrl_unpack'
+            STOP 'in S/R ctrl_set_unpack_xyz'
          endif
          read(cunit) filej
          read(cunit) filei
@@ -397,12 +397,12 @@ c-- 2.1: array <- buffer <- global buffer <- global file
           if (filencbuffindex .NE. cbuffindex) then
             print *, 'WARNING: wrong cbuffindex ',
      &                 filencbuffindex, cbuffindex
-            STOP 'in S/R ctrl_unpack'
+            STOP 'in S/R ctrl_set_unpack_xyz'
           endif
           if (filek .NE. k) then
             print *, 'WARNING: wrong k ',
      &                 filek, k
-            STOP 'in S/R ctrl_unpack'
+            STOP 'in S/R ctrl_set_unpack_xyz'
           endif
           read(cunit) (cbuff(ii), ii=1,cbuffindex)
         endif
