@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ctrl: 
+  - replace hard coded precision 32 (a bug) in ctrl_map_ini_gen by ctrlprec
+  - improve error messages in ctrl_set_unpack_*
 o OBC implementation in momentum:
    use interior masks (maskInC,W & S) in momentum S/R:
    - multiply divergence, tension and some del^i.u or del^j.v by maskInC
