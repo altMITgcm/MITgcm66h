@@ -5,6 +5,8 @@ $Name$
     ==============================
 
 o pkg/ctrl: 
+  - remove extra 2D field "for good measure" when initializing in
+    ctrl_set_globfld_[xy/xz/yz].F
   - replace hard coded precision 32 (a bug) in ctrl_map_ini_gen by ctrlprec
   - improve error messages in ctrl_set_unpack_*
 o OBC implementation in momentum:
