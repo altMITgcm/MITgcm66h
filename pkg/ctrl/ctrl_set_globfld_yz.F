@@ -109,10 +109,7 @@ C     method that works for .not.useSingleCPUio cannot be used
        
       enddo
 
-CMM( addone for good measure
-CMM      do irec = nrec_nl*Nx+1, ncvarrecs(ivartype)
-      do irec = nrec_nl*Nx+1, ncvarrecs(ivartype)+1
-CMM)
+      do irec = nrec_nl*Nx+1, ncvarrecs(ivartype)
        call MDSWRITEFIELDYZ( fname, ctrlprec,.FALSE., 'RL',
      &      Nr, globfldyz,
      &      irec,   optimcycle,  mythid)

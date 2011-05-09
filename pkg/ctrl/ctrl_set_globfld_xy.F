@@ -100,10 +100,7 @@ c--   Only the master thread will do I/O.
      &        irec,   optimcycle,  mythid)
       enddo
 
-CMM( add one for good measure
-CMM      do irec = nrec_nl*Nr+1, ncvarrecs(ivartype)
-      do irec = nrec_nl*Nr+1, ncvarrecs(ivartype)+1
-CMM)
+      do irec = nrec_nl*Nr+1, ncvarrecs(ivartype)
          call MDSWRITEFIELD( fname, ctrlprec, .FALSE., 'RL',
      &        1, globfld2d,
      &        irec,   optimcycle,  mythid)

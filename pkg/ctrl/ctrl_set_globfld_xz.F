@@ -107,10 +107,7 @@ C     method that works for .not.useSingleCPUio cannot be used
      &      irec,   optimcycle,  mythid)
       enddo
 
-CMM( add one for good measure
-CMM      do irec = nrec_nl*Ny+1, ncvarrecs(ivartype)
-      do irec = nrec_nl*Ny+1, ncvarrecs(ivartype) +1
-CMM)
+      do irec = nrec_nl*Ny+1, ncvarrecs(ivartype)
        call MDSWRITEFIELDXZ( fname, ctrlprec,.FALSE., 'RL',
      &      Nr, globfldxz,
      &      irec,   optimcycle,  mythid)
