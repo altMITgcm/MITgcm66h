@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/shelfice:
+  - start basic adjoint
 o pkg/ctrl: 
   - remove extra 2D field "for good measure" when initializing in
     ctrl_set_globfld_[xy/xz/yz].F
