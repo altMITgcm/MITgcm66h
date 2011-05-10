@@ -92,6 +92,7 @@ c     ==================================================================
 cHFLUXM_CONTROL
      &                  , xx_hfluxm_dummy
 cHFLUXM_CONTROL
+     &                  , xx_shifwflx_dummy
 
       _RL xx_theta_dummy
       _RL xx_salt_dummy
@@ -175,6 +176,7 @@ c
 cHFLUXM_CONTROL
       _RL xx_hfluxm_dummy
 cHFLUXM_CONTROL
+      _RL xx_shifwflx_dummy
 
 c     ==================================================================
 c     END OF HEADER CONTROL DUMMIES

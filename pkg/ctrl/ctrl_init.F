@@ -160,6 +160,8 @@ cph          40                 runoff
 cph          41                 seaice SIAREA
 cph          42                 seaice SIHEFF
 cph          43                 seaice SIHSNOW
+cph          44                 gmredi kapredi
+cph          45                 shelfice shifwflx
 cph)
 
 c----------------------------------------------------------------------
@@ -733,6 +735,21 @@ c--
      &     xx_kapredi_file, 44, 144, 1, 1, 1,
      &     snx, sny, nr, 'c', '3d', mythid )
 #endif /* ALLOW_KAPREDI_CONTROL */
+
+c----------------------------------------------------------------------
+c----------------------------------------------------------------------
+
+#ifdef ALLOW_SHIFWFLX_CONTROL
+c--   freshwater flux underneath ice-shelves
+      call ctrl_init_rec ( 
+     I     xx_shifwflxstartdate1, xx_shifwflxstartdate2,
+     I     xx_shifwflxperiod, 1,
+     O     xx_shifwflxstartdate, diffrec, startrec, endrec,
+     I     mythid )
+      call ctrl_init_ctrlvar ( 
+     &     xx_shifwflx_file, 45, 145, diffrec, startrec, endrec,
+     &     snx, sny, 1, 'i', 'xy', mythid )
+#endif /* ALLOW_SHIFWFLX_CONTROL */
 
 c----------------------------------------------------------------------
 c----------------------------------------------------------------------
