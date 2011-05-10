@@ -4,7 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
-o pkg/ctrl and shelfice: 
+o pkg/ctrl, pkg/shelfice, and optim: 
   - add new control variable xx_shifwflx (fresh water flux underneath ice 
     shelves). This is almost as tedious as obcs-ctrl, because the 
     variables needs its own mask.
