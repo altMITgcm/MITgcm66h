@@ -91,6 +91,11 @@ CEOP
       _RS shelficeLoadAnomaly   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS shelficeHeatFlux      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS shelficeFreshWaterFlux(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+
+#ifdef ALLOW_SHIFWFLX_CONTROL      
+      COMMON /SHELFICE_MASKS_CTRL/ maskSHI
+      _RS maskSHI  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+#endif /* ALLOW_SHIFWFLX_CONTROL */
       
       LOGICAL SHELFICEisOn
       LOGICAL useISOMIPTD
