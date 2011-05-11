@@ -1,10 +1,7 @@
 C $Header$
 C $Name$
 
-#include "COST_CPPOPTIONS.h"
-#ifdef ALLOW_SHELFICE
-# include "SHELFICE_OPTIONS.h"
-#endif
+#include "SHELFICE_OPTIONS.h"
 
 CBOP
 C     !ROUTINE: SHELFICE_COST_SHIFWFLX
