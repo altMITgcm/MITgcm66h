@@ -470,9 +470,9 @@ c     == routine arguments ==
       _RL OBs1    (1-Oly:sNy+Oly,Nr,nSx,nSy)
       CHARACTER*(MAX_LEN_FNAM) OBuFile,OBvFile,OBtFile,OBsFile
 #ifdef NONLIN_FRSURF
-      _RL OBeta   (1-Olx:sNx+Olx,nSx,nSy)
-      _RL OBeta0  (1-Olx:sNx+Olx,nSx,nSy)
-      _RL OBeta1  (1-Olx:sNx+Olx,nSx,nSy)
+      _RL OBeta   (1-Oly:sNy+Oly,nSx,nSy)
+      _RL OBeta0  (1-Oly:sNy+Oly,nSx,nSy)
+      _RL OBeta1  (1-Oly:sNy+Oly,nSx,nSy)
       CHARACTER*(MAX_LEN_FNAM) OBetaFile
 #endif
 #ifdef ALLOW_SEAICE
