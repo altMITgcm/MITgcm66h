@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/grdchk: add gradient check for control variable xx_shifwflx
+o pkg/shelfice/shelfice_init_fixed.F
+  fix CPP-flag combinations
+
 checkpoint62x (2011/05/13)
 o pkg/mom_vecinv:
    high-order vorticity scheme: use interior masks (maskInW & S) 
