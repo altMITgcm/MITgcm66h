@@ -39,7 +39,8 @@ C     I,J,K,bi,bj - Loop counters
       CHARACTER*16  diagUnits
       CHARACTER*(80) diagTitle
 #endif /* ALLOW_DIAGNOSTICS */
-#ifdef ALLOW_COST
+#if  (defined (ALLOW_SHIFWFLX_COST_CONTRIBUTION) && \
+      defined (ALLOW_SHIFWFLX_CONTROL))
       _RL dummy
 #endif
 
@@ -71,7 +72,7 @@ C-----------------------------------------------------------------------
        ENDDO
       ENDDO
 #ifdef ALLOW_COST
-#if  (defined (ALLOW_SHIFWFLX_COST_CONTRIBUTION) || \
+#if  (defined (ALLOW_SHIFWFLX_COST_CONTRIBUTION) && \
       defined (ALLOW_SHIFWFLX_CONTROL))
       IF ( shifwflx_errfile .NE. ' ' ) THEN
        CALL READ_REC_XY_RL( shifwflx_errfile, wshifwflx, 1, 0, myThid )
