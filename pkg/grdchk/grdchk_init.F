@@ -106,6 +106,16 @@ c--   control variable on the current tile.
                enddo
             enddo
          enddo
+#ifdef ALLOW_SHIFWFLX_CONTROL
+      else if ( ncvargrd(grdchkvarindex) .eq. 'i' ) then
+         do bj = jtlo,jthi
+            do bi = itlo,ithi
+               do k = 1,ncvarnrmax(grdchkvarindex)
+                  nwettile(bi,bj,k,1) = nwetitile(bi,bj,k)
+               enddo
+            enddo
+         enddo
+#endif /* ALLOW_SHIFWFLX_CONTROL */
       else if ( ncvargrd(grdchkvarindex) .eq. 'm' ) then
          do bj = jtlo,jthi
             do bi = itlo,ithi

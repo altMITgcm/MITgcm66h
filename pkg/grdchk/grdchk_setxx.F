@@ -885,6 +885,24 @@ c--   == end of interface ==
      &                        mythid, dummy)
 #endif /* ALLOW_SIHSNOW_CONTROL */
 
+#ifdef ALLOW_SHIFWFLX_CONTROL
+      else if ( grdchkvarindex .eq. 45 ) then
+         il=ilnblnk( xx_shifwflx_file )
+         if ( theSimulationMode .EQ. TANGENT_SIMULATION ) then
+            write(fname(1:80),'(3a,i10.10)')
+     &           yadmark, xx_shifwflx_file(1:il),'.',optimcycle
+         else if ( theSimulationMode .EQ. FORWARD_SIMULATION ) then
+            write(fname(1:80),'(2a,i10.10)')
+     &           xx_shifwflx_file(1:il),'.',optimcycle
+         end if
+         call active_read_xy( fname, tmpfld2d, icvrec,
+     &                        doglobalread, ladinit, optimcycle,
+     &                        mythid, dummy)
+         tmpfld2d( itilepos,jtilepos,itile,jtile ) = xx_comp_ref
+         call active_write_xy( fname, tmpfld2d, icvrec,
+     &                        optimcycle,
+     &                        mythid, dummy)
+#endif /* ALLOW_SHIFWFLX_CONTROL */
 
 #ifdef ALLOW_ETAN0_CONTROL
       else if ( grdchkvarindex .eq. 29 ) then
