@@ -14,6 +14,9 @@ C Use this file for selecting options within package "RBCS"
 
 C Place CPP define/undef flag here
 
+C o disable relaxation conditions on momemtum
+#undef DISABLE_RBCS_MOM
+
 #endif /* ALLOW_RBCS */
 #endif /* RBCS_OPTIONS_H */
 
