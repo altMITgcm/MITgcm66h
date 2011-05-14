@@ -90,6 +90,13 @@ C-jmc: Without CD-scheme, this is OK ; but with CD-scheme, needs to cover [0:sNy
      I           myTime, myThid )
 #endif
 
+#ifdef ALLOW_RBCS
+      IF (useRBCS) THEN
+        CALL RBCS_ADD_TENDENCY( bi, bj, klev, -1,
+     &                          myTime, myThid )
+      ENDIF
+#endif
+
 #ifdef ALLOW_OBCS
       IF (useOBCS) THEN
        CALL OBCS_SPONGE_U(
@@ -192,6 +199,13 @@ C-jmc: Without CD-scheme, this is OK ; but with CD-scheme, needs to cover [0:sNx
        CALL TAUEDDY_EXTERNAL_FORCING_V(
      I           iMin,iMax, jMin,jMax, bi,bj, kLev,
      I           myTime, myThid )
+#endif
+
+#ifdef ALLOW_RBCS
+      IF (useRBCS) THEN
+        CALL RBCS_ADD_TENDENCY( bi, bj, klev, -2,
+     &                          myTime, myThid )
+      ENDIF
 #endif
 
 #ifdef ALLOW_OBCS
