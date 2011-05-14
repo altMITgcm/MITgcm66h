@@ -118,7 +118,8 @@ c They provide the fields to be stored.
 #   include "EBM.h"
 #  endif
 #  ifdef ALLOW_RBCS
-#   include "RBCS.h"
+#   include "RBCS_SIZE.h"
+#   include "RBCS_FIELDS.h"
 #  endif
 #  ifdef ALLOW_OFFLINE
 #   include "OFFLINE.h"
