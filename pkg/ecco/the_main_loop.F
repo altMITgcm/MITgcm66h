@@ -170,7 +170,8 @@ c They provide the fields to be stored.
 #  include "GMREDI.h"
 # endif
 # ifdef ALLOW_RBCS
-#  include "RBCS.h"
+#  include "RBCS_SIZE.h"
+#  include "RBCS_FIELDS.h"
 # endif
 # ifdef ALLOW_PROFILES
 #  include "profiles.h"
