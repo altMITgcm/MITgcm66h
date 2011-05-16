@@ -55,13 +55,10 @@ CEOP
       INTEGER K_icefront (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
       COMMON /ICEFRONT_PARMS_R/ 
-     &     ICEFRONTheatTransCoeff, ICEFRONTsaltTransCoeff,
      &     rhoIcefront, ICEFRONTkappa,
      &     ICEFRONTlatentHeat, recip_ICEFRONTlatentHeat,
      &     ICEFRONTheatCapacity_Cp,
      &     ICEFRONTthetaSurface
-      _RL ICEFRONTheatTransCoeff
-      _RL ICEFRONTsaltTransCoeff
       _RL ICEFRONTlatentHeat
       _RL ICEFRONTheatCapacity_Cp
       _RL rhoIcefront
