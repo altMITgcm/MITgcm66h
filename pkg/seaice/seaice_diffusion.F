@@ -95,7 +95,11 @@ C--   say, diffKhT
      &        - iceMask(i,j,bi,bj)*recip_rA(i,j,bi,bj)
      &        *( (fZon(i+1,j)-fZon(i,j))
      &         + (fMer(i,j+1)-fMer(i,j)) )
+#ifndef SEAICE_RM_STRANGE_DIFF_FAC
+c removing this term is necessary for conservation
+c and so that DIFF1 scaled as a standard diffusion
      &        *MIN( _dxF(I,J,bi,bj), _dyF(I,J,bi,bj))
+#endif
          ENDDO
         ENDDO
 #ifdef ALLOW_DIAGNOSTICS
