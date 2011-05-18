@@ -125,8 +125,11 @@ c--   Get the counters, flags, and the interpolation factor.
      &     call ctrl_smooth(xx_gen1,genmask)
 #endif
 #ifdef ALLOW_SMOOTH_CORREL2D
+#ifdef ALLOW_DIMENSIONAL_CONTROL
+      call smooth_correl2Dw(xx_gen1,genmask,xx_gen_file,1,mythid)
+#endif
       call smooth_correl2D(xx_gen1,genmask,1,mythid)
-      call smooth_correl2Dw(xx_gen1,genmask,xx_gen_file,mythid)
+      call smooth_correl2Dw(xx_gen1,genmask,xx_gen_file,2,mythid)
       write(fnamegeneric(1:80),'(2a,i10.10)')
      & xx_gen_file(1:ilgen),'.effective.',optimcycle
       call mdswritefield(fnamegeneric,ctrlprec,.FALSE.,'RL',
@@ -146,8 +149,11 @@ c--   Get the counters, flags, and the interpolation factor.
      &     call ctrl_smooth(xx_gen1,genmask)
 #endif
 #ifdef ALLOW_SMOOTH_CORREL2D
+#ifdef ALLOW_DIMENSIONAL_CONTROL
+      call smooth_correl2Dw(xx_gen1,genmask,xx_gen_file,1,mythid)
+#endif
       call smooth_correl2D(xx_gen1,genmask,1,mythid)
-      call smooth_correl2Dw(xx_gen1,genmask,xx_gen_file,mythid)
+      call smooth_correl2Dw(xx_gen1,genmask,xx_gen_file,2,mythid)
       write(fnamegeneric(1:80),'(2a,i10.10)')
      & xx_gen_file(1:ilgen),'.effective.',optimcycle
       call mdswritefield(fnamegeneric,ctrlprec,.FALSE.,'RL',

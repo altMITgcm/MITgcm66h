@@ -133,6 +133,25 @@ c avoid xx larger than boundsVec(5) X uncertainty
       endif
 #else
 c apply Weaver And Courtier correlation operator
+#ifdef ALLOW_DIMENSIONAL_CONTROL
+      do bj = jtlo,jthi
+        do bi = itlo,ithi
+          do k = 1,nr
+            do j = jmin,jmax
+              do i = imin,imax
+      if ( (maskFld3d(i,j,k,bi,bj).NE.0.)
+     & .AND. (wFld3d(i,j,k,bi,bj).GT.0.) ) then
+      xxFld3d(i,j,k,bi,bj)=xxFld3d(i,j,k,bi,bj)
+     & *sqrt( wFld3d(i,j,k,bi,bj) )
+      else
+      xxFld3d(i,j,k,bi,bj)=0.
+      endif
+              enddo
+            enddo
+          enddo
+       enddo
+      enddo
+#endif
       if (paramSmooth.NE.0) then
        call smooth_correl3D(xxFld3d,paramSmooth,mythid)
       endif
@@ -279,7 +298,6 @@ c--   only do interior, and exchange outside
       call active_read_xy( fnamegeneric, xxFld2d, 1,
      & doglobalread, ladinit, optimcycle, mythid, xxDummyCur )
 
-
 #ifndef ALLOW_SMOOTH_CORREL2D
 c avoid xx larger than boundsVec(5) X uncertainty
       if ( boundsVec(5).GT.0.) then
@@ -303,6 +321,23 @@ c avoid xx larger than boundsVec(5) X uncertainty
       endif
 #else
 c apply Weaver And Courtier correlation operator
+#ifdef ALLOW_DIMENSIONAL_CONTROL
+      do bj = jtlo,jthi
+        do bi = itlo,ithi
+            do j = jmin,jmax
+              do i = imin,imax
+      if ( (maskFld3d(i,j,1,bi,bj).NE.0.)
+     & .AND. (wFld2d(i,j,bi,bj).GT.0.) ) then
+      xxFld2d(i,j,bi,bj)=xxFld2d(i,j,bi,bj)
+     & *sqrt( wFld2d(i,j,bi,bj) )
+      else
+      xxFld2d(i,j,bi,bj)=0.
+      endif
+              enddo
+            enddo
+       enddo
+      enddo
+#endif
       if (paramSmooth.NE.0) then
        call smooth_correl2d(xxFld2d,maskFld3d,paramSmooth,mythid)
       endif
