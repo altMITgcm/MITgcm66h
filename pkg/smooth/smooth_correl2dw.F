@@ -93,9 +93,9 @@ C     *==========================================================*
         endif
 
       if ((mask_in(i,j,1,bi,bj).NE.0.).AND.(tmpW.NE.0.)) then
-        if (mmdim.eq.1)
+        if (mmdim.eq.1) then
           fld_in(i,j,bi,bj)=fld_in(i,j,bi,bj)*sqrt(tmpW)
-        elseif (mmdim.eq.2)
+        elseif (mmdim.eq.2) then
           fld_in(i,j,bi,bj)=fld_in(i,j,bi,bj)/sqrt(tmpW)
         endif
       else
