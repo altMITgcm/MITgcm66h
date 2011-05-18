@@ -15,10 +15,12 @@ C     == Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "ctrl.h"
-#include "AUTODIFF.h"
+#ifndef ALLOW_AUTODIFF_OPENAD
+# include "AUTODIFF.h"
+#endif
 #ifdef ALLOW_WHIO_3D
-# include "MDSIO_BUFF_WH.h"
 # include "tamc.h"
+# include "MDSIO_BUFF_WH.h"
 #endif
 
 C     == Routine arguments ==
