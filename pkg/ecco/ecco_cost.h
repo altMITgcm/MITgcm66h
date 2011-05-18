@@ -51,7 +51,7 @@ c     17 years: 6210
 c     Number of Generic Cost terms:
 c     =============================
       INTEGER NGENCOST
-      PARAMETER ( NGENCOST=1 )
+      PARAMETER ( NGENCOST=20 )
 
 #ifdef ALLOW_GENCOST_CONTRIBUTION
 c     objf_gencost - gencost user defined contribution
