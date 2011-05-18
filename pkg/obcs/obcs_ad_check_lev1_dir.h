@@ -67,15 +67,31 @@ CADJ STORE xx_obcsw0,xx_obcsw1 = comlev1, key = ikey_dynamics
 
 #ifdef ALLOW_OBCS_NORTH
 CADJ STORE OBNptr  = comlev1, key = ikey_dynamics
+#ifdef ALLOW_OBCS_PRESCRIBE
+CADJ STORE OBNptr0 = comlev1, key = ikey_dynamics
+CADJ STORE OBNptr1 = comlev1, key = ikey_dynamics
+#endif /* ALLOW_OBCS_PRESCRIBE */
 #endif /* ALLOW_OBCS_NORTH */
 #ifdef ALLOW_OBCS_SOUTH
 CADJ STORE OBSptr  = comlev1, key = ikey_dynamics
+#ifdef ALLOW_OBCS_PRESCRIBE
+CADJ STORE OBSptr0 = comlev1, key = ikey_dynamics
+CADJ STORE OBSptr1 = comlev1, key = ikey_dynamics
+#endif /* ALLOW_OBCS_PRESCRIBE */
 #endif /* ALLOW_OBCS_SOUTH */
 #ifdef ALLOW_OBCS_EAST
 CADJ STORE OBEptr  = comlev1, key = ikey_dynamics
+#ifdef ALLOW_OBCS_PRESCRIBE
+CADJ STORE OBEptr0 = comlev1, key = ikey_dynamics
+CADJ STORE OBEptr1 = comlev1, key = ikey_dynamics
+#endif /* ALLOW_OBCS_PRESCRIBE */
 #endif /* ALLOW_OBCS_EAST */
 #ifdef ALLOW_OBCS_WEST
 CADJ STORE OBWptr  = comlev1, key = ikey_dynamics
+#ifdef ALLOW_OBCS_PRESCRIBE
+CADJ STORE OBWptr0 = comlev1, key = ikey_dynamics
+CADJ STORE OBWptr1 = comlev1, key = ikey_dynamics
+#endif /* ALLOW_OBCS_PRESCRIBE */
 #endif /* ALLOW_OBCS_WEST */
 
 # endif  /* ALLOW_PTRACERS */
