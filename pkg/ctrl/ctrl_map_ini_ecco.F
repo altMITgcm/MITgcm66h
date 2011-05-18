@@ -276,8 +276,8 @@ c-- exchange UV:
 #ifdef ALLOW_DIFFKR_CONTROL
       boundsVec(1)=1. _d -6
       boundsVec(2)=2. _d -6
-      boundsVec(3)=0.9 _d -3
-      boundsVec(4)=1. _d -3
+      boundsVec(3)=4. _d -4
+      boundsVec(4)=5. _d -4
       boundsVec(5)=0.
       paramSmooth=1      
       call ctrl_map_ini_gen3D(xx_diffkr_file, 'wdiffkrFld', 
@@ -288,8 +288,8 @@ c-- exchange UV:
 
 
 #ifdef ALLOW_KAPGM_CONTROL
-      boundsVec(1)=1. _d 1
-      boundsVec(2)=2. _d 1
+      boundsVec(1)=1. _d 2
+      boundsVec(2)=2. _d 2
       boundsVec(3)=0.9 _d 4
       boundsVec(4)=1. _d 4
       boundsVec(5)=0.
@@ -302,10 +302,10 @@ c-- exchange UV:
 
 
 #ifdef ALLOW_KAPREDI_CONTROL
-      boundsVec(1)=3. _d 2
-      boundsVec(2)=4. _d 2
-      boundsVec(3)=2.5 _d 3
-      boundsVec(4)=3.0 _d 3
+      boundsVec(1)=1. _d 2
+      boundsVec(2)=2. _d 2
+      boundsVec(3)=0.9 _d 4
+      boundsVec(4)=1.0 _d 4
       boundsVec(5)=0.
       paramSmooth=1      
       call ctrl_map_ini_gen3D(xx_kapredi_file, 'wkaprediFld', 
