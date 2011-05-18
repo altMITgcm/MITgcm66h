@@ -18,21 +18,25 @@ C     *==========================================================*
 #include "EEPARAMS.h"
 #include "GRID.h"
 #include "PARAMS.h"
-c#include "tamc.h"
 #include "SMOOTH.h"
-#include "ctrl.h"
-c#include "ecco_cost.h"
+#ifdef ALLOW_CTRL
+# include "ctrl.h"
+#endif
+#ifdef ALLOW_ECCO
+# include "ecco_cost.h"
+#endif
 
       _RL mask_in(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nR,nSx,nSy)
       _RL fld_in(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RL tmpW
       character*(MAX_LEN_FNAM) xx_gen_file
+      integer myThid
+
+# if (defined ALLOW_CTRL) || (defined ALLOW_ECCO)
 
       integer i,j,bi,bj
       integer itlo,ithi
       integer jtlo,jthi
-      integer myThid
-
+      _RL tmpW
 
       jtlo = mybylo(mythid)
       jthi = mybyhi(mythid)
@@ -99,5 +103,7 @@ c#include "ecco_cost.h"
       ENDDO
 
       _EXCH_XY_RL ( fld_in , myThid )
+
+#endif /* ALLOW_ECCO or ALLOW_CTRL */
        
       end
