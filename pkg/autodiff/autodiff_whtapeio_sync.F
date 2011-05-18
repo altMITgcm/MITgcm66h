@@ -18,6 +18,7 @@ C     == Global variables ===
 #include "AUTODIFF.h"
 #ifdef ALLOW_WHIO_3D
 # include "MDSIO_BUFF_WH.h"
+# include "tamc.h"
 #endif
 
 C     == Routine arguments ==
@@ -90,6 +91,25 @@ C Only do I/O if I am the master thread (and mpi process 0 IF tapeSingleCpuIO):
         OPEN( tapeFileUnit, file=fName, status='unknown',
      &         access='direct', recl=length_of_rec )
         tapeFileUnitS(myLev)=tapeFileUnit
+#if (defined (ALLOW_INIT_WHTAPEIO) && defined (ALLOW_WHIO_3D))
+          iWh=tapeMaxCounter*MAX(nchklev_2,nchklev_3)/nWh+1
+          IF ( .NOT.tapeSingleCpuIO ) then
+            IF (filePrec .EQ. precFloat32) THEN
+              WRITE(tapeFileUnit,rec=iWh) fld3d_procbuff_r4
+            ELSE
+              WRITE(tapeFileUnit,rec=iWh) fld3d_procbuff_r8
+            ENDIF 
+          ELSE
+#  ifdef INCLUDE_WHIO_GLOBUFF_3D
+            IF (filePrec .EQ. precFloat32) THEN
+              WRITE(tapeFileUnit,rec=iWh) fld3d_globuff_r4
+            ELSE
+              WRITE(tapeFileUnit,rec=iWh) fld3d_globuff_r8
+            ENDIF
+#  endif  
+          ENDIF
+          iWh=0
+#endif    
       ENDIF
 
 #ifdef ALLOW_WHIO_3D
