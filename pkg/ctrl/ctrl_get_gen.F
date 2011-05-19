@@ -124,10 +124,13 @@ c--   Get the counters, flags, and the interpolation factor.
      &       xx_gen_file .EQ. xx_tauv_file )
      &     call ctrl_smooth(xx_gen1,genmask)
 #endif
-#ifdef ALLOW_SMOOTH_CORREL2D
-#ifdef ALLOW_DIMENSIONAL_CONTROL
+
+#ifdef NONDIMENSIONALIZE_CONTROL
+CMM Requires smoothing package...should be made independant
       call smooth_correl2Dw(xx_gen1,genmask,xx_gen_file,1,mythid)
 #endif
+
+#ifdef ALLOW_SMOOTH_CORREL2D
       call smooth_correl2D(xx_gen1,genmask,1,mythid)
       call smooth_correl2Dw(xx_gen1,genmask,xx_gen_file,2,mythid)
       write(fnamegeneric(1:80),'(2a,i10.10)')
@@ -148,10 +151,13 @@ c--   Get the counters, flags, and the interpolation factor.
      &       xx_gen_file .EQ. xx_tauv_file )
      &     call ctrl_smooth(xx_gen1,genmask)
 #endif
-#ifdef ALLOW_SMOOTH_CORREL2D
-#ifdef ALLOW_DIMENSIONAL_CONTROL
+
+#ifdef NONDIMENSIONALIZE_CONTROL
+CMM Requires smoothing package...should be made independant
       call smooth_correl2Dw(xx_gen1,genmask,xx_gen_file,1,mythid)
 #endif
+
+#ifdef ALLOW_SMOOTH_CORREL2D
       call smooth_correl2D(xx_gen1,genmask,1,mythid)
       call smooth_correl2Dw(xx_gen1,genmask,xx_gen_file,2,mythid)
       write(fnamegeneric(1:80),'(2a,i10.10)')
