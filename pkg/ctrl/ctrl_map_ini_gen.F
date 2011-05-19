@@ -107,7 +107,8 @@ c--   only do interior, and exchange outside
       call active_read_xyz( fnamegeneric, xxFld3d, 1,
      & doglobalread, ladinit, optimcycle, mythid, xxDummyCur )
 
-#ifdef NONDIMENSIONALIZE_CONTROL
+#ifdef NONDIMENSIONALIZE_CONTROL3D
+CMM preparing for ALLOW_SMOOTH_CORREL3D
       do bj = jtlo,jthi
         do bi = itlo,ithi
           do k = 1,nr
@@ -298,7 +299,8 @@ c--   only do interior, and exchange outside
       call active_read_xy( fnamegeneric, xxFld2d, 1,
      & doglobalread, ladinit, optimcycle, mythid, xxDummyCur )
 
-#ifdef NONDIMENSIONALIZE_CONTROL
+#ifdef NONDIMENSIONALIZE_CONTROL2D
+CMM preparing for ALLOW_SMOOTH_CORREL2D
       do bj = jtlo,jthi
         do bi = itlo,ithi
             do j = jmin,jmax

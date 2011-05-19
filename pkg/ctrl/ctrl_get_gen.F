@@ -125,7 +125,8 @@ c--   Get the counters, flags, and the interpolation factor.
      &     call ctrl_smooth(xx_gen1,genmask)
 #endif
 
-#ifdef NONDIMENSIONALIZE_CONTROL
+#ifdef NONDIMENSIONALIZE_CONTROL2D
+CMM  Preparing for ALLOW_SMOOTH_CORREL2D
 CMM Requires smoothing package...should be made independant
       call smooth_correl2Dw(xx_gen1,genmask,xx_gen_file,1,mythid)
 #endif
@@ -152,7 +153,8 @@ CMM Requires smoothing package...should be made independant
      &     call ctrl_smooth(xx_gen1,genmask)
 #endif
 
-#ifdef NONDIMENSIONALIZE_CONTROL
+#ifdef NONDIMENSIONALIZE_CONTROL2D
+CMM  Preparing for ALLOW_SMOOTH_CORREL2D
 CMM Requires smoothing package...should be made independant
       call smooth_correl2Dw(xx_gen1,genmask,xx_gen_file,1,mythid)
 #endif
