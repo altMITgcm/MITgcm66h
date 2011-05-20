@@ -38,10 +38,33 @@ C     \ev
 C     !INPUT/OUTPUT PARAMETERS:
 C     myThid -  Number of this instances
       INTEGER myThid
+
+C     !FUNCTIONS
+      INTEGER  ILNBLNK
+      EXTERNAL ILNBLNK
+
+C     !LOCAL VARIABLES:
+      CHARACTER*(MAX_LEN_FNAM) namBuf
+      INTEGER iL, pIL, myLev
 CEOP
 
+      IF ( adTapeDir .NE. ' ' ) THEN
+       iL = ILNBLNK( adTapeDir )
+C      append "/", if necessay
+       IF ( iL.LT.MAX_LEN_FNAM .AND. adTapeDir(iL:iL).NE.'/' ) THEN
+        namBuf(1:iL) = adTapeDir(1:iL)
+        WRITE(adTapeDir(1:iL+1),'(2A)') namBuf(1:iL),'/'
+       ENDIF
+C      create directory
+       iL = ILNBLNK( adTapeDir ) -1
+       WRITE(namBuf,'(2A)') ' mkdir -p ', adTapeDir(1:iL)
+       pIL = 1 + ILNBLNK( namBuf )
+       WRITE(standardMessageUnit,'(3A)')
+     & '==> SYSTEM CALL (from INI_MODEL_IO): >',namBuf(1:pIL),'<'
+       CALL SYSTEM( namBuf(1:pIL) )
+      ENDIF
+
 #ifdef ALLOW_AUTODIFF_WHTAPEIO
-      integer myLev
 
       tapeFileUnit=0
       do myLev=1,4

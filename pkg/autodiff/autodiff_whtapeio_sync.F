@@ -69,14 +69,16 @@ C Only do I/O if I am the master thread (and mpi process 0 IF tapeSingleCpuIO):
         iAmDoingIO = .TRUE.
         _END_MASTER( myThid )
       ENDIF      
-      
+
       IF ( iAmDoingIO ) THEN
+        IL = ilnblnk( adTapeDir )
         IF ( .NOT.tapeSingleCpuIO ) THEN
-          WRITE(fName,'(A,I1.1,A,I3.3,A)') 
-     &         'tapes',myLev,'.',myProcId,'.data'
+          WRITE(fName,'(2A,I1.1,A,I3.3,A)') 
+     &         adTapeDir(1:IL),'tapes',myLev,'.',myProcId,'.data'
           length_of_rec = MDS_RECLEN( filePrec,sNxWh*procNyWh,myThid )
         ELSE
-          WRITE(fName,'(A,I1.1,A)') 'tapes',myLev,'.data'
+          WRITE(fName,'(2A,I1.1,A)') 
+     &         adTapeDir(1:IL),'tapes',myLev,'.data'
           length_of_rec = MDS_RECLEN( filePrec,sNxWh*gloNyWh,myThid)
         ENDIF
       ENDIF
