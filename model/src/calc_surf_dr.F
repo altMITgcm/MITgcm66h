@@ -182,7 +182,7 @@ C-- Apply OBC to hFac_surfW,S before the EXCH calls
           CALL OBCS_APPLY_SURF_DR(
      I                    bi, bj, etaFld,
      U                    hFac_surfC, hFac_surfW, hFac_surfS,
-     I                    myThid )
+     I                    myTime, myIter, myThid )
         ENDIF
 #endif /* ALLOW_OBCS */
 
