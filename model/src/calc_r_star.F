@@ -31,10 +31,10 @@ C     == Global variables
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
-C     etaFld :: current eta field used to update the hFactor
-C     myTime :: Current time in simulation
-C     myIter :: Current iteration number in simulation
-C     myThid :: Thread number for this instance of the routine.
+C     etaFld    :: current eta field used to update the hFactor
+C     myTime    :: current time in simulation
+C     myIter    :: current iteration number in simulation
+C     myThid    :: thread number for this instance of the routine.
       _RL etaFld(1-Olx:sNx+Olx,1-Oly:sNy+Oly,nSx,nSy)
       _RL myTime
       INTEGER myIter
@@ -166,6 +166,14 @@ C-     Simple average
          ENDDO
         ENDDO
        ENDIF
+#ifdef ALLOW_OBCS
+       IF (useOBCS) THEN
+         CALL OBCS_APPLY_R_STAR(
+     I                    bi, bj, etaFld,
+     U                    rStarFacC, rStarFacW, rStarFacS,
+     I                    myTime, myIter, myThid )
+       ENDIF
+#endif /* ALLOW_OBCS */
 
 C-    Needs to do something when r* ratio is too small ;
 C     for now, just stop
