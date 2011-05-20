@@ -233,7 +233,11 @@ c-- assume monthly fields
         inquire( file=fname2, exist=exst )
         if (.NOT. exst) then
            write(fname2(1:128),'(a)') localobsfile(1:il)
+#ifndef COST_GENERIC_ASSUME_CYCLIC 
+c assume we have one big file, one year after the other
            localrec = obsrec
+c otherwise assume climatology, used for each year 
+#endif
         endif
 
         if ( localrec .GT. 0 ) then

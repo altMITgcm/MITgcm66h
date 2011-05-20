@@ -480,6 +480,9 @@ C--   Check parameters:
 #ifndef ALLOW_GENCOST_FREEFORM
       do k=1,NGENCOST
 
+         if ( gencost_name(k) .EQ. 'gencost' )
+     &        gencost_name(k) = gencost_datafile(k)
+
          if ( gencost_avgperiod(k) .NE. 'day  ' .AND.
      &        gencost_avgperiod(k) .NE. 'DAY  ' .AND.
      &        gencost_avgperiod(k) .NE. 'month' .AND.

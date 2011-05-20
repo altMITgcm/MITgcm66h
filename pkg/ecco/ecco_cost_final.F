@@ -1053,7 +1053,11 @@ C     only master thread of master CPU open and write to file
         write(cfname,'(A,i4.4)') 'costfunction',optimcycle
         open(unit=ifc,file=cfname)
 
+#ifdef ALLOW_ECCO_OLD_FC_PRINT
+        write(ifc,*)
+#else
         write(ifc,'(A,2D22.15)')
+#endif
      &       'fc =', fc, 0.
         write(ifc,'(A,2D22.15)')
      &       'f_temp =', f_temp, no_temp
@@ -1238,10 +1242,10 @@ C     only master thread of master CPU open and write to file
 #ifdef ALLOW_GENCOST_CONTRIBUTION
        do num_var=1,NGENCOST
         if (no_gencost(num_var).GT.0) then
-         IL  = ILNBLNK( gencost_datafile(num_var) )
+         IL  = ILNBLNK( gencost_name(num_var) )
          IL  = max (IL,15)
          write(ifc,'(2A,i2.0,A,2D22.15)')
-     &    gencost_datafile(num_var)(1:IL),' (gencost ', num_var, ') = ',
+     &    gencost_name(num_var)(1:IL),' (gencost ', num_var, ') = ',
      &    f_gencost(num_var),
      &    no_gencost(num_var)
          endif
