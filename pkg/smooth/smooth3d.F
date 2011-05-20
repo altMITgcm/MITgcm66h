@@ -70,7 +70,7 @@ c read smoothing [i.e diffusion] operator:
       _EXCH_XYZ_RL ( smooth3D_kappaR, myThid )
 
 c do the smoothing:
-      nbt_in=smooth3Dnbt(smoothOpNb)/2
+      nbt_in=smooth3Dnbt(smoothOpNb)
       call smooth_diff3D(fld_in,nbt_in,mythid)
 
       end
