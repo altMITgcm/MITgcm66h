@@ -138,6 +138,8 @@ CMM Requires smoothing package...should be made independant
      & xx_gen_file(1:ilgen),'.effective.',optimcycle
       call mdswritefield(fnamegeneric,ctrlprec,.FALSE.,'RL',
      & 1, xx_gen1, gencount0, optimcycle, mythid)
+#elif (defined (ALLOW_SMOOTH_CTRL2D))
+      call smooth2D(xx_gen1,genmask,1,mythid)
 #endif
       endif
 
@@ -166,6 +168,8 @@ CMM Requires smoothing package...should be made independant
      & xx_gen_file(1:ilgen),'.effective.',optimcycle
       call mdswritefield(fnamegeneric,ctrlprec,.FALSE.,'RL',
      & 1, xx_gen1, gencount1, optimcycle, mythid)
+#elif (defined (ALLOW_SMOOTH_CTRL2D))
+      call smooth2D(xx_gen1,genmask,1,mythid)
 #endif
       endif
 

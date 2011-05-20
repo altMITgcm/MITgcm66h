@@ -151,6 +151,9 @@ c avoid xx larger than boundsVec(5) X uncertainty
        enddo
       enddo
       endif
+# ifdef ALLOW_SMOOTH_CTRL3D
+      call smooth3D(xxFld3d,paramSmooth,mythid)
+# endif
 #else
 c apply Weaver And Courtier correlation operator
       if (paramSmooth.NE.0) then
@@ -339,6 +342,9 @@ c avoid xx larger than boundsVec(5) X uncertainty
        enddo
       enddo
       endif
+# ifdef ALLOW_SMOOTH_CTRL3D
+      call smooth2d(xxFld2d,maskFld3d,paramSmooth,mythid)
+# endif
 #else
 c apply Weaver And Courtier correlation operator
       if (paramSmooth.NE.0) then
