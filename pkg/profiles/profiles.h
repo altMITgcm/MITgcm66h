@@ -96,7 +96,8 @@ C===========================================================
       _RL  mult_profiles(NFILESPROFMAX,NVARMAX)
 
       COMMON /profiles_cost_c/
-     &                     profilesfiles
+     &        profilesDir, profilesfiles
+      character*(MAX_LEN_FNAM) profilesDir
       character*(MAX_LEN_FNAM) profilesfiles(50)
 
       COMMON /profiles_ctrl_dummy/

@@ -42,12 +42,15 @@ c     == end of interface ==
 
 c--   Read the namelist input.
       namelist /profiles_nml/
+     &                   profilesDir,
      &                   profilesfiles,
      &                   mult_profiles
 
       _BEGIN_MASTER( myThid )
 
 c--     Set default values.
+        profilesDir=' '
+
         do num_file=1,NFILESPROFMAX
           profilesfiles(num_file)      =    ' '
         enddo
