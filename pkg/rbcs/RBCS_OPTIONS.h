@@ -17,6 +17,10 @@ C Place CPP define/undef flag here
 C o disable relaxation conditions on momemtum
 #undef DISABLE_RBCS_MOM
 
+C use RBCS only in early spin-up phase, reducing
+C the relaxation term strength to 0 over 3 years
+#undef ALLOW_RBCS_SPIN
+
 #endif /* ALLOW_RBCS */
 #endif /* RBCS_OPTIONS_H */
 
