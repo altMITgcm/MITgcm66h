@@ -388,7 +388,7 @@ c--           Test for missing values.
       _EXCH_XYZ_RL( wsaltLev, myThid )
 #endif
 
-#if (defined (ALLOW_THETA0_COST_CONTRIBUTION) || \ 
+#if (defined (ALLOW_THETA0_COST_CONTRIBUTION) || \
      defined (ALLOW_THETA0_CONTROL) || \
      defined (ALLOW_WTHETALEV))
       lwthetaLevInUse = .true.
