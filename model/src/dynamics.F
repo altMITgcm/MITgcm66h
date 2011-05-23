@@ -560,13 +560,6 @@ C
      I         guDissip, gvDissip,
      I         myTime, myIter, myThid)
 
-#ifdef   ALLOW_OBCS
-C--      Apply open boundary conditions
-c          IF (useOBCS) THEN
-c            CALL OBCS_APPLY_UV( bi, bj, k, gU, gV, myThid )
-c          ENDIF
-#endif   /* ALLOW_OBCS */
-
          ENDIF
 
 C--     end of dynamics k loop (1:Nr)
@@ -606,10 +599,6 @@ CADJ STORE gV(:,:,:,bi,bj) = comlev1_bibj , key=idynkey, byte=isbyte
 
 #ifdef   ALLOW_OBCS
 C--      Apply open boundary conditions
-c       IF ( useOBCS .AND.(implicitViscosity.OR.momImplVertAdv) ) THEN
-c          DO K=1,Nr
-c            CALL OBCS_APPLY_UV( bi, bj, k, gU, gV, myThid )
-c          ENDDO
         IF ( useOBCS ) THEN
           CALL OBCS_APPLY_UV( bi, bj, 0, gU, gV, myThid )
         ENDIF
