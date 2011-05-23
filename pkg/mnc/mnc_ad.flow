@@ -2,6 +2,12 @@ C $Header$
 C $Name$
 
 C----------------------------------------
+C subroutine mnc_update_time
+C----------------------------------------
+CADJ SUBROUTINE mnc_update_time  INPUT  = 1,2,3
+CADJ SUBROUTINE mnc_update_time  OUTPUT =
+
+C----------------------------------------
 C subroutine mnc_cw_i_w_s
 C----------------------------------------
 CADJ SUBROUTINE mnc_cw_i_w_s  INPUT  = 1,2,3,4,5,6,7
