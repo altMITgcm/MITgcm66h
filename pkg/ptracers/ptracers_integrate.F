@@ -219,12 +219,10 @@ C Account for change in level thickness
 
 C Integrate forward in time, storing in gPtr:  G=T+dt*G
          CALL TIMESTEP_TRACER(
-     I                        bi,bj,iMin,iMax,jMin,jMax,k,
-     I                        PTRACERS_advScheme(iTracer),
-     I                        PTRACERS_dTLev(k),
+     I                        bi, bj, k, PTRACERS_dTLev(k),
      I                        pTracer(1-Olx,1-Oly,1,1,1,iTracer),
-     I                        gPtr(1-Olx,1-Oly,1,1,1,iTracer),
-     I                        myIter,myThid )
+     U                        gPtr(1-Olx,1-Oly,1,1,1,iTracer),
+     I                        myIter, myThid )
 
 C end of tracer loop
       ENDDO
