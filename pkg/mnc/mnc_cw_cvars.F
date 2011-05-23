@@ -24,7 +24,6 @@ C     !USES:
 #include "MNC_COMMON.h"
 #include "SIZE.h"
 #include "EEPARAMS.h"
-#include "EESUPPORT.h"
 #include "PARAMS.h"
 #include "GRID.h"
 #ifdef ALLOW_EXCH2

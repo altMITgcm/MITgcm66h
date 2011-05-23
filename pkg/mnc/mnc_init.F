@@ -18,7 +18,6 @@ C     that the lookup tables start in a well-defined state.
 C     !USES:
 #include "SIZE.h"
 #include "EEPARAMS.h"
-#include "EESUPPORT.h"
 #include "PARAMS.h"
 #include "MNC_COMMON.h"
 #include "MNC_PARAMS.h"
