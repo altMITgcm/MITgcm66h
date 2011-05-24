@@ -1,8 +1,6 @@
-C
 C $Header$
 C $Name$
 
-#include "AD_CONFIG.h"
 #include "CTRL_CPPOPTIONS.h"
 #ifdef ALLOW_ECCO_EVOLUTION
 #ifdef ALLOW_EXF
