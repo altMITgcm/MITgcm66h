@@ -1,9 +1,7 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
 #include "CTRL_CPPOPTIONS.h"
-
 
       subroutine ctrl_get_gen_rec(
      I                        xx_genstartdate,
