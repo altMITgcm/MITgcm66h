@@ -2,9 +2,6 @@ C $Header$
 C $Name$
 
 #include "COST_CPPOPTIONS.h"
-#ifdef ALLOW_OBCS
-# include "OBCS_OPTIONS.h"
-#endif
 
       subroutine cost_obcsvol(
      I                       myiter,
@@ -34,7 +31,8 @@ c     == global variables ==
 #include "GRID.h"
 CML#include "DYNVARS.h"
 #ifdef ALLOW_OBCS
-# include "OBCS.h"
+c# include "OBCS_PARAMS.h"
+# include "OBCS_GRID.h"
 #endif
 
 #include "cal.h"
@@ -78,7 +76,7 @@ c     == local variables ==
 
 #if (defined ALLOW_OBCSN_CONTROL || defined ALLOW_OBCSS_CONTROL)
       _RL tmpfldxz (1-olx:snx+olx,nr,nsx,nsy)
-#endif 
+#endif
 #if (defined ALLOW_OBCSE_CONTROL || defined ALLOW_OBCSW_CONTROL)
       _RL tmpfldyz (1-oly:sny+oly,nr,nsx,nsy)
 #endif
@@ -361,12 +359,3 @@ c--   Do the global summation.
 
       return
       end
-
-
-
-
-
-
-
-
-
