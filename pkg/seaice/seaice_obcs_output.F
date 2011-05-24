@@ -26,7 +26,8 @@ C     == Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #ifdef ALLOW_OBCS
-#include "OBCS.h"
+# include "OBCS_PARAMS.h"
+# include "OBCS_SEAICE.h"
 #endif
 
 C     !INPUT PARAMETERS:

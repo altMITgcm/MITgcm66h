@@ -104,7 +104,8 @@ C     == Global variables ==
 #  include "DIC_COST.h"
 # endif
 # ifdef ALLOW_OBCS
-#  include "OBCS.h"
+#  include "OBCS_FIELDS.h"
+#  include "OBCS_SEAICE.h"
 #  ifdef ALLOW_PTRACERS
 #   include "OBCS_PTRACERS.h"
 #  endif

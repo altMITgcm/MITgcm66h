@@ -96,7 +96,7 @@ C     == Global variables ===
 #  include "PTRACERS_FIELDS.h"
 # endif
 # ifdef ALLOW_OBCS
-#  include "OBCS.h"
+#  include "OBCS_FIELDS.h"
 #  ifdef ALLOW_PTRACERS
 #   include "OBCS_PTRACERS.h"
 #  endif

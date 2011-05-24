@@ -33,7 +33,7 @@ c#endif
 # include "EXF_PARAM.h"
 #endif
 #ifdef ALLOW_OBCS
-# include "OBCS.h"
+# include "OBCS_PARAMS.h"
 #endif
 
 C     !INPUT/OUTPUT PARAMETERS:
