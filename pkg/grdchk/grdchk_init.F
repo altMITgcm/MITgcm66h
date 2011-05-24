@@ -1,8 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CTRL_CPPOPTIONS.h"
-
+#include "GRDCHK_OPTIONS.h"
 
       subroutine grdchk_init( mythid )
 
@@ -192,5 +191,5 @@ c--   components of the given control variable.
 
 #endif /* ALLOW_GRDCHK */
 
+      return
       end
-

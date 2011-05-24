@@ -1,8 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CTRL_CPPOPTIONS.h"
-
+#include "GRDCHK_OPTIONS.h"
 
       SUBROUTINE GRDCHK_CHECK( myThid )
 

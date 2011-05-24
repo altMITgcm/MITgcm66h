@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CTRL_CPPOPTIONS.h"
+#include "GRDCHK_OPTIONS.h"
 
       subroutine grdchk_get_position( mythid )
 
@@ -28,7 +28,7 @@ c     == global variables ==
 #include "GRID.h"
 #ifdef ALLOW_SHELFICE
 # include "SHELFICE.h"
-#endif 
+#endif
 #include "ctrl.h"
 #include "grdchk.h"
 
@@ -257,5 +257,5 @@ c--   End of if myProcId statement
 
 #endif /* ALLOW_GRDCHK */
 
+      return
       end
-

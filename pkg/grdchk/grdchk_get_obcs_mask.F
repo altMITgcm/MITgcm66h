@@ -1,8 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CTRL_CPPOPTIONS.h"
-
+#include "GRDCHK_OPTIONS.h"
 
       subroutine grdchk_get_obcs_mask( mythid )
 
@@ -47,7 +46,7 @@ c     == local variables ==
 
 #if (defined ALLOW_OBCSN_CONTROL || defined ALLOW_OBCSS_CONTROL)
       _RL tmpfldxz (1-olx:snx+olx,nr,nsx,nsy)
-#endif 
+#endif
 #if (defined ALLOW_OBCSE_CONTROL || defined ALLOW_OBCSW_CONTROL)
       _RL tmpfldyz (1-oly:sny+oly,nr,nsx,nsy)
 #endif
@@ -171,5 +170,5 @@ c
 
 #endif /* ALLOW_GRDCHK */
 
+      return
       end
-
