@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
 #include "COST_CPPOPTIONS.h"
 
       subroutine cost_final( mythid )

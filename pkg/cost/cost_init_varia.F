@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
 #include "COST_CPPOPTIONS.h"
 
       subroutine cost_init_varia( mythid )
@@ -115,4 +114,3 @@ c--   Initialise the "global" parts of the cost function.
 
       return
       end
-
