@@ -1,9 +1,7 @@
 C $Header$
 C $Name$
 
-#include "AD_CONFIG.h"
-#include "CPP_OPTIONS.h"
-
+#include "GRDCHK_OPTIONS.h"
 
       subroutine grdchk_print(
      I                         ichknum,
