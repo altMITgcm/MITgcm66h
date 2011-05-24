@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "COST_CPPOPTIONS.h"
 
 CBOI
 C

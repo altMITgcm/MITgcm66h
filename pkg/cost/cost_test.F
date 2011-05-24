@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "COST_CPPOPTIONS.h"
 
       subroutine cost_test( myThid )
 C     /==========================================================\
@@ -89,4 +89,5 @@ cph)
 
 #endif
 
+      RETURN
       END
