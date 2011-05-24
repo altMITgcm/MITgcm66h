@@ -1,4 +1,3 @@
-C
 C $Header$
 C $Name$
 
@@ -26,12 +25,9 @@ c     == global variables ==
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "PARAMS.h"
-#include "GRID.h"
+c#include "GRID.h"
 
 #include "ctrl.h"
-#ifdef ALLOW_OBCS_CONTROL
-# include "OBCS.h"
-#endif
 
 c     == routine arguments ==
 
@@ -122,6 +118,3 @@ c     == end of interface ==
 
       return
       end
-
-
-
