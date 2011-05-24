@@ -1,8 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
-
+#include "GRDCHK_OPTIONS.h"
 
       subroutine grdchk_Summary(
      I                           mythid
@@ -104,4 +103,3 @@ c     == end of interface ==
 
       return
       end
-

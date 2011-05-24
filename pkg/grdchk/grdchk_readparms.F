@@ -1,8 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
-
+#include "GRDCHK_OPTIONS.h"
 
       subroutine grdchk_readparms( mythid )
 
@@ -144,4 +143,5 @@ c--     Summarize the gradient check setup.
 
 #endif /* ALLOW_GRDCHK */
 
+      return
       end
