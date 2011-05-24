@@ -32,7 +32,10 @@ c     == global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "OBCS.h"
+#include "OBCS_PARAMS.h"
+c#include "OBCS_GRID.h"
+#include "OBCS_FIELDS.h"
+#include "OBCS_SEAICE.h"
 #ifdef ALLOW_EXF
 # include "EXF_PARAM.h"
 #endif

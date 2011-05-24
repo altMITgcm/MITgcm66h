@@ -24,7 +24,7 @@ C     == Global variables ==
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "DYNVARS.h"
-#include "OBCS.h"
+#include "OBCS_PARAMS.h"
 
 C     == Routine Arguments ==
       INTEGER myThid

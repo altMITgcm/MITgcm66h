@@ -31,7 +31,9 @@ C     == Global data ==
 #include "PARAMS.h"
 #include "GRID.h"
 #include "DYNVARS.h"
-#include "OBCS.h"
+#include "OBCS_PARAMS.h"
+#include "OBCS_GRID.h"
+#include "OBCS_FIELDS.h"
 
 C     == Routine arguments ==
 C     iMin - Working range of tile for applying forcing.
@@ -215,7 +217,9 @@ C     == Global data ==
 #include "PARAMS.h"
 #include "GRID.h"
 #include "DYNVARS.h"
-#include "OBCS.h"
+#include "OBCS_PARAMS.h"
+#include "OBCS_GRID.h"
+#include "OBCS_FIELDS.h"
 
 C     == Routine arguments ==
 C     iMin - Working range of tile for applying forcing.
@@ -400,7 +404,9 @@ C     == Global data ==
 #include "PARAMS.h"
 #include "GRID.h"
 #include "DYNVARS.h"
-#include "OBCS.h"
+#include "OBCS_PARAMS.h"
+#include "OBCS_GRID.h"
+#include "OBCS_FIELDS.h"
 #ifdef ALLOW_AUTODIFF_TAMC
 # include "tamc.h"
 # include "tamc_keys.h"
@@ -631,7 +637,9 @@ C     == Global data ==
 #include "PARAMS.h"
 #include "GRID.h"
 #include "DYNVARS.h"
-#include "OBCS.h"
+#include "OBCS_PARAMS.h"
+#include "OBCS_GRID.h"
+#include "OBCS_FIELDS.h"
 #ifdef ALLOW_AUTODIFF_TAMC
 # include "tamc.h"
 # include "tamc_keys.h"

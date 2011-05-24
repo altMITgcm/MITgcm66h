@@ -22,7 +22,8 @@ C     == Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "OBCS.h"
+#include "OBCS_PARAMS.h"
+#include "OBCS_FIELDS.h"
 
 C     !INPUT PARAMETERS:
 C     myTime :: my time in simulation ( s )

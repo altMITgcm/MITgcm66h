@@ -24,7 +24,8 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#include "OBCS.h"
+#include "OBCS_PARAMS.h"
+#include "OBCS_GRID.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     myThid   :: my Thread Id. number

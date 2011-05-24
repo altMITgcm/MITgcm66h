@@ -24,7 +24,7 @@ C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "OBCS.h"
+#include "OBCS_GRID.h"
 #ifdef ALLOW_PTRACERS
 #include "PTRACERS_SIZE.h"
 #include "OBCS_PTRACERS.h"

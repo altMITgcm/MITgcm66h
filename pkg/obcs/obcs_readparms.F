@@ -21,7 +21,9 @@ C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "OBCS.h"
+#include "OBCS_PARAMS.h"
+#include "OBCS_GRID.h"
+#include "OBCS_SEAICE.h"
 #ifdef ALLOW_ORLANSKI
 #include "ORLANSKI.h"
 #endif

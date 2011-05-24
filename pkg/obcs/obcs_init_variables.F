@@ -22,7 +22,10 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "DYNVARS.h"
-#include "OBCS.h"
+#include "OBCS_PARAMS.h"
+c#include "OBCS_GRID.h"
+#include "OBCS_FIELDS.h"
+#include "OBCS_SEAICE.h"
 #ifdef ALLOW_PTRACERS
 #include "PTRACERS_SIZE.h"
 #include "PTRACERS_PARAMS.h"

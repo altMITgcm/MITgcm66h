@@ -26,14 +26,6 @@ C     == global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-c#include "OBCS.h"
-c#ifdef ALLOW_EXF
-c# include "EXF_PARAM.h"
-c#endif
-c#ifdef ALLOW_PTRACERS
-c# include "PTRACERS_SIZE.h"
-c# include "OBCS_PTRACERS.h"
-c#endif /* ALLOW_PTRACERS */
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     myTime :: Simulation time

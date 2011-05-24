@@ -18,7 +18,8 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#include "OBCS.h"
+#include "OBCS_PARAMS.h"
+#include "OBCS_GRID.h"
 
 C     === Routine arguments ===
 C     myThid -  Number of this instances

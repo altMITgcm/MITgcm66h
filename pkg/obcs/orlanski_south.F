@@ -21,7 +21,9 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#include "OBCS.h"
+#include "OBCS_PARAMS.h"
+#include "OBCS_GRID.h"
+#include "OBCS_FIELDS.h"
 #include "ORLANSKI.h"
 
 C SPK 6/2/00: Added radiative OBCs for salinity.

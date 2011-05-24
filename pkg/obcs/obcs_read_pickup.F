@@ -24,7 +24,8 @@ C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "OBCS.h"
+#include "OBCS_PARAMS.h"
+#include "OBCS_FIELDS.h"
 #include "ORLANSKI.h"
 
 C     !INPUT/OUTPUT PARAMETERS:

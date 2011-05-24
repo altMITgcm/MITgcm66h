@@ -30,7 +30,8 @@ C     === Global variables ===
 #include "PARAMS.h"
 #include "GRID.h"
 #include "DYNVARS.h"
-#include "OBCS.h"
+#include "OBCS_PARAMS.h"
+#include "OBCS_GRID.h"
 #ifdef ALLOW_MONITOR
 #include "MONITOR.h"
 #endif
