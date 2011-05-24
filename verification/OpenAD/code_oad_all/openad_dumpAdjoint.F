@@ -46,7 +46,10 @@ c They provide the fields to be stored.
 #  include "SURFACE.h"
 # endif
 # ifdef ALLOW_OBCS
-#  include "OBCS.h"
+#  include "OBCS_PARAMS.h"
+#  include "OBCS_GRID.h"
+#  include "OBCS_FIELDS.h"
+#  include "OBCS_SEAICE.h"
 # endif
 # ifdef ALLOW_EXF
 #  include "EXF_FIELDS.h"
@@ -85,7 +88,7 @@ c They provide the fields to be stored.
       double precision foo4(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 
       CHARACTER*(10) suff
-	
+
       if (Mod(myiter,360).eq.0) then 
          WRITE(suff,'(I10.10)') myIter
          foo5=theta%d

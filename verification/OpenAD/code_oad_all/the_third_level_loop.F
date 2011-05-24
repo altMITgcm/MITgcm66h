@@ -52,7 +52,10 @@ c They provide the fields to be stored.
 #  include "SURFACE.h"
 # endif
 # ifdef ALLOW_OBCS
-#  include "OBCS.h"
+#  include "OBCS_PARAMS.h"
+#  include "OBCS_GRID.h"
+#  include "OBCS_FIELDS.h"
+#  include "OBCS_SEAICE.h"
 # endif
 # ifdef ALLOW_EXF
 #  include "EXF_FIELDS.h"
@@ -157,7 +160,10 @@ c They provide the fields to be stored.
 #  include "SURFACE.h"
 # endif
 # ifdef ALLOW_OBCS
-#  include "OBCS.h"
+#  include "OBCS_PARAMS.h"
+#  include "OBCS_GRID.h"
+#  include "OBCS_FIELDS.h"
+#  include "OBCS_SEAICE.h"
 # endif
 # ifdef ALLOW_EXF
 #  include "EXF_FIELDS.h"
