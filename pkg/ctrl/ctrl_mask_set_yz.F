@@ -3,7 +3,6 @@ C $Name$
 
 #include "CTRL_CPPOPTIONS.h"
 
-
       subroutine ctrl_mask_set_yz(
      &     ip1, OB_I, nwetobcs, ymaskobcs, mythid )
 
@@ -27,9 +26,6 @@ c     == global variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 #include "ctrl.h"
-#ifdef ALLOW_OBCS_CONTROL
-# include "OBCS.h"
-#endif
 
 c     == routine arguments ==
 
@@ -145,4 +141,3 @@ c--               South mask for V
 
       return
       end
-

@@ -3,7 +3,6 @@ C $Name$
 
 #include "CTRL_CPPOPTIONS.h"
 
-
       subroutine ctrl_mask_set_xz(
      &     jp1, OB_J, nwetobcs, ymaskobcs, mythid )
 
@@ -27,9 +26,6 @@ c     == global variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 #include "ctrl.h"
-#ifdef ALLOW_OBCS_CONTROL
-# include "OBCS.h"
-#endif
 
 c     == routine arguments ==
 
@@ -145,7 +141,3 @@ c--               West mask for U
 
       return
       end
-
-
-
-
