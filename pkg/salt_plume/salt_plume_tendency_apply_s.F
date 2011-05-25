@@ -52,14 +52,8 @@ C Penetrating saltplume fraction:
      I                   two2,minusone,SPdepth,
      U                   plumekb,
      I                   myTime, 1, myThid )
-          kp1 = klev+1
-          IF (klev.EQ.Nr) THEN
-           kp1 = klev
-           plumekb(2)=abs(rF(klev))
-          ENDIF
           IF ( SaltPlumeDepth(i,j,bi,bj) .GT. -rF(kLev) ) THEN
-           plumefrac(I,J) = plumekb(1)*maskC(i,j,klev,bi,bj)
-     &            -plumekb(2)*maskC(i,j,kp1, bi,bj)
+           plumefrac(I,J)=(plumekb(1)-plumekb(2))*maskC(i,j,klev,bi,bj)
            gS(i,j,kLev,bi,bj)=gS(i,j,kLev,bi,bj)
      &            +saltPlumeFlux(i,j,bi,bj)*plumefrac(I,J)*mass2rUnit
      &            *recip_drF(kLev)*_recip_hFacC(i,j,kLev,bi,bj)

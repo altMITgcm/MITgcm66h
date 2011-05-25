@@ -56,6 +56,7 @@ C     i,j :: Loop counters
       _RL     GG, GGm1
       _RL     SPIND (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 
+C Initializing the saltplume depth to bottom topography
       DO j=1-Oly,sNy+Oly
        DO i=1-Olx,sNx+Olx
         SaltPlumeDepth(i,j,bi,bj) = rF(1)-R_low(I,J,bi,bj)
@@ -63,6 +64,7 @@ C     i,j :: Loop counters
        ENDDO
       ENDDO
 
+C CriterionType 1 = use delta_rho to determine salt plume depth
       IF (CriterionType.EQ.1) THEN
 
        rhoBigNb  = rhoConst*1. _d 10
@@ -130,7 +132,16 @@ C-     potential density (reference level = surface level)
      &            rF(1)-R_low(i,j,bi,bj) )
          ENDDO
         ENDDO
-       ENDIF
+      ENDIF
+
+C Make sure that the deepest SaltPlumeDepth is bottom topography:
+      DO j=1-Oly,sNy+Oly
+         DO i=1-Olx,sNx+Olx
+          SaltPlumeDepth(i,j,bi,bj) =
+     &       min( SaltPlumeDepth(i,j,bi,bj),
+     &            rF(1)-R_low(i,j,bi,bj) )
+         ENDDO
+      ENDDO
 
 #ifdef ALLOW_DIAGNOSTICS
       IF ( useDiagnostics )
