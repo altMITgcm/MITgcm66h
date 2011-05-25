@@ -29,9 +29,6 @@ C     === Global variables ===
 # include "ICEFRONT_OPTIONS.h"
 # include "ICEFRONT.h"
 #endif
-#ifdef ALLOW_OBCS
-# include "OBCS_PARAMS.h"
-#endif
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     === Routine arguments ===
