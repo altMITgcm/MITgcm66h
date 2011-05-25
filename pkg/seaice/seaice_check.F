@@ -414,6 +414,16 @@ C--   SEAICE_ALLOW_FREEDRIFT and SEAICEuseFREEDRIFT
       ENDIF
 #endif
 
+#if defined(FENTY_AREA_EXPANSION_CONTRACTION) && !defined(SEAICE_DO_OPEN_WATER_GROWTH)
+       WRITE(msgBuf,'(2A)') 'SEAICE_CHECK: ',
+     &      'FENTY_AREA_EXPANSION_CONTRACTION requires that'
+       CALL PRINT_ERROR( msgBuf, myThid )
+       WRITE(msgBuf,'(A)')
+     &  'SEAICE_CHECK: SEAICE_DO_OPEN_WATER_GROWTH is defined'
+       CALL PRINT_ERROR( msgBuf, myThid )
+       STOP 'ABNORMAL END: S/R SEAICE_CHECK'
+#endif
+
       _END_MASTER(myThid)
 
       RETURN
