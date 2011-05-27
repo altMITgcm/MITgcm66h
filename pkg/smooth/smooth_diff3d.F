@@ -140,7 +140,7 @@ c adams bashfort on gT_in:
         DO k=1,Nr
         CALL ADAMS_BASHFORTH2(
      &                        bi, bj, k,
-     &                        gT_in, gTm1_in,
+     &                        gT_in, gTm1_in, .FALSE.,
      &                        myIter(bi,bj) , myThid )
         ENDDO
 c time stepping:
