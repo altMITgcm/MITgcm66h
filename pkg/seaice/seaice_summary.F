@@ -106,6 +106,8 @@ C     == end of interface ==
      & 'SEAICEadvSnow =', ' /* advect snow layer together with ice */')
       CALL WRITE_0D_L ( SEAICEadvSalt, INDEX_NONE,
      & 'SEAICEadvSalt =', ' /* advect salinity together with ice */')
+      CALL WRITE_0D_L ( SEAICEadvAge, INDEX_NONE,
+     & 'SEAICEadvAge =', ' /* advect age together with ice */')
       CALL WRITE_0D_L ( SEAICEuseFlooding, INDEX_NONE,
      & 'SEAICEuseFlooding =', ' /* turn submerged snow into ice */')
       CALL WRITE_0D_I ( LAD,               INDEX_NONE,
@@ -129,6 +131,19 @@ C     == end of interface ==
       IF ( SEAICEadvSalt )
      &CALL WRITE_0D_I ( SEAICEadvSchSalt,   INDEX_NONE,
      & 'SEAICEadvSchSalt   =', ' /* advection scheme for salt */')
+      IF ( SEAICEadvAge )
+     &CALL WRITE_0D_I ( SEAICEadvSchAge,   INDEX_NONE,
+     & 'SEAICEadvSchAge   =', ' /* advection scheme for age */')
+      CALL WRITE_0D_I ( SEAICEdiffKhArea,   INDEX_NONE,
+     & 'SEAICEdiffKhArea   =', ' /* diffusivity (m^2/s) for area */')
+      CALL WRITE_0D_I ( SEAICEdiffKhHeff,   INDEX_NONE,
+     & 'SEAICEdiffKhHeff   =', ' /* diffusivity (m^2/s) for heff */')
+      CALL WRITE_0D_I ( SEAICEdiffKhSnow,   INDEX_NONE,
+     & 'SEAICEdiffKhSnow   =', ' /* diffusivity (m^2/s) for snow */')
+      CALL WRITE_0D_I ( SEAICEdiffKhSalt,   INDEX_NONE,
+     & 'SEAICEdiffKhSalt   =', ' /* diffusivity (m^2/s) for salt */')
+      CALL WRITE_0D_I ( SEAICEdiffKhAge,   INDEX_NONE,
+     & 'SEAICEdiffKhAge   =', ' /* diffusivity (m^2/s) for age */')
       CALL WRITE_0D_RL( SEAICE_deltaTtherm,INDEX_NONE,
      & 'SEAICE_deltaTtherm=', ' /* thermodynamic timestep */')
       CALL WRITE_0D_RL( SEAICE_deltaTdyn  ,INDEX_NONE,
