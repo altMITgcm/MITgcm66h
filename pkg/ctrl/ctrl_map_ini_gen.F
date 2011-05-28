@@ -136,7 +136,7 @@ c avoid xx larger than boundsVec(5) X uncertainty
       write(fnamegeneric(1:80),'(2a,i10.10)')
      & xxFileCur(1:il),'.smooth.',optimcycle
       call mdswritefield(fnamegeneric,ctrlprec,.FALSE.,'RL',
-     & nr, paramFld3d, 1, optimcycle, mythid)
+     & nr, xxFld3d, 1, optimcycle, mythid)
 # endif
 #else
 c apply Weaver And Courtier correlation operator
@@ -313,7 +313,7 @@ c avoid xx larger than boundsVec(5) X uncertainty
       write(fnamegeneric(1:80),'(2a,i10.10)')
      & xxFileCur(1:il),'.smooth.',optimcycle
       call mdswritefield(fnamegeneric,ctrlprec,.FALSE.,'RL',
-     & 1, paramFld2d, 1, optimcycle, mythid)
+     & 1, xxFld2d, 1, optimcycle, mythid)
 # endif
 #else
 c apply Weaver And Courtier correlation operator
