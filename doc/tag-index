@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o adjoint:
+  bug fix spotted by Gael Forget:
+  seaice_advection and thsice_advection still had
+  legacy CPP options to avoid CS corner updates for adjoint
 o pkg/seaice:
   => Change some of the defaults (2011/05/29):
      - change SEAICEuseFluxForm default (from False to True)
