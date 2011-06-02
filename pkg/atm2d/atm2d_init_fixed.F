@@ -80,14 +80,6 @@ C     MITGCM helper routines; hopefully no unit conflict...
       temuptann=0.0
 #endif
 
-#ifdef IPCC_EMI
-      OPEN (961,file='ipccemi.dat',
-     &  status='old')
-      READ (961,*)nemis
-      PRINT *,'IPCC EMI=',nemis
-      CLOSE (961)
-#endif
-
 #ifdef OCEAN_3D
 #  ifdef ATM2D_MPI_ON
 
