@@ -209,7 +209,7 @@ C--   Default flags and values for OBCS
       OBCS_balanceFacE   = 1. _d 0
       OBCS_balanceFacW   = 1. _d 0
       useOBCSprescribe   =.FALSE.
-      OBCSfixTopo        =.TRUE.
+      OBCSfixTopo        =.FALSE.
       OBCS_uvApplyFac    = 1. _d 0
       OBCS_monitorFreq   = monitorFreq
       OBCS_monSelect     = 0
