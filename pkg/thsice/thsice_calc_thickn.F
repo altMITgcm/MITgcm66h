@@ -795,7 +795,7 @@ CML#ifdef ALLOW_AUTODIFF_TAMC
 CMLCADJ STORE hnew(i,j,k) = comlev1_thsice_2, key=ikey_2
 CML#endif
               hq = hnew(i,j,k)*qicen(i,j,k)-dhi*Lfresh
-              hnew(i,j,k) = hnew(i,j,1) - dhi
+              hnew(i,j,k) = hnew(i,j,k) - dhi
               qicen(i,j,k)=hq/hnew(i,j,k)
               evapLoc(i,j)=0. _d 0
              ENDIF
