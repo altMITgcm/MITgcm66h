@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/obcs:
+  - change OBCSfixTopo default from True to False (should not change the results);
+    keep OBCSfixTopo=T in verification-exp. seaice_obcs.
 o pkg/thsice:
   - fix bug in thsice_calc_thickn.F (was introduced in version 1.18) in
     2nd layer seaice sublimation (unlikely to happen)
