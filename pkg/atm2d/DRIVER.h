@@ -44,12 +44,6 @@ C $Name$
        REAL*8 fluxco2(jm0)
 #endif
 
-#if (defined CPL_TEM) || (defined CPL_OCEANCO2)
-      COMMON /DRIVER_VAR_C02TEM/nepan, ocuptp
-       REAL*8 nepan
-       REAL*8 ocuptp      
-#endif
-
 #ifdef IPCC_EMI
       COMMON /DRIVER_VAR_IPCC/nemis
        INTEGER nemis
