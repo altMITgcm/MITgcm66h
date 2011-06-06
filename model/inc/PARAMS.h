@@ -357,7 +357,6 @@ C     snapshot_mdsio     :: use mdsio for "snapshot" (dumpfreq/diagfreq) output
 C     monitor_stdio      :: use stdio for monitor output
 C     dumpInitAndLast :: dumps model state to files at Initial (nIter0)
 C                        & Last iteration, in addition multiple of dumpFreq iter.
-C     debugMode       :: controls printing of debug msg (sequence of S/R calls).
 C     printDomain     :: controls printing of domain fields (bathy, hFac ...).
 
       COMMON /PARM_L/
@@ -398,7 +397,7 @@ C     printDomain     :: controls printing of domain fields (bathy, hFac ...).
      & writePickupAtEnd,
      & timeave_mdsio, snapshot_mdsio, monitor_stdio,
      & outputTypesInclusive, dumpInitAndLast,
-     & debugMode, printDomain,
+     & printDomain,
      & inAdMode, inAdTrue, inAdFalse, inAdExact
 
       LOGICAL fluidIsAir
@@ -487,7 +486,7 @@ C     printDomain     :: controls printing of domain fields (bathy, hFac ...).
       LOGICAL timeave_mdsio, snapshot_mdsio, monitor_stdio
       LOGICAL outputTypesInclusive
       LOGICAL dumpInitAndLast
-      LOGICAL debugMode, printDomain
+      LOGICAL printDomain
       LOGICAL inAdMode, inAdTrue, inAdFalse, inAdExact
 
 C--   COMMON /PARM_R/ "Real" valued parameters used by the model.
@@ -982,7 +981,7 @@ C     Logical flags for turning off parts of the code in adjoint mode
      &       useKPPinAdMode, useKPPinFwdMode,
      &       useGMrediInAdMode, useGMrediInFwdMode,
      &       useSEAICEinAdMode, useSEAICEinFwdMode
-      
+
 CEH3 ;;; Local Variables: ***
 CEH3 ;;; mode:fortran ***
 CEH3 ;;; End: ***
