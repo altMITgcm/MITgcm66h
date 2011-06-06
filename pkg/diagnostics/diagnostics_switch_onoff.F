@@ -61,7 +61,7 @@ c     INTEGER newIter
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
-      dBugFlag = debugLevel.GT.debLevB .AND. myThid.EQ.1
+      dBugFlag = debugLevel.GE.debLevE .AND. myThid.EQ.1
       dBugUnit = errorMessageUnit
 
 c     newIter = 1 + myIter
@@ -150,7 +150,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
        IF ( diagSt_freq(n).LT.0. ) THEN
 C--    Select diagnostics list that uses instantaneous output
 
-        dBugFlag = debugLevel.GT.debLevB
+        dBugFlag = debugLevel.GE.debLevE
 
         freqSec = diagSt_freq(n)
         phiSec = diagSt_phase(n)

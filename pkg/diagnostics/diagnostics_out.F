@@ -378,7 +378,7 @@ C-        Empty diagnostics case :
           ELSE
 C-        diagnostics is not empty :
 
-            IF ( debugLevel.GE.debLevA .AND. myThid.EQ.1 ) THEN
+            IF ( debugLevel.GE.debLevB .AND. myThid.EQ.1 ) THEN
               WRITE(ioUnit,'(A,I6,3A,I8,2A)')
      &         ' Computing Diagnostic # ', ndId, '  ', cdiag(ndId),
      &         '     Counter:',ndiag(ip,1,1),'   Parms: ',gdiag(ndId)

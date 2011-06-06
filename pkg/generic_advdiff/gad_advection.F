@@ -652,7 +652,7 @@ C-    horizontal advection done; store intermediate result in 3D array:
 #endif
 
 #ifdef ALLOW_DEBUG
-      IF ( debugLevel .GE. debLevB
+      IF ( debugLevel .GE. debLevC
      &   .AND. tracerIdentity.EQ.GAD_TEMPERATURE
      &   .AND. k.LE.3 .AND. myIter.EQ.1+nIter0
      &   .AND. nPx.EQ.1 .AND. nPy.EQ.1

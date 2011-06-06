@@ -130,7 +130,7 @@ C       state-variable time-step:
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
         IF ( write2file ) THEN
-          IF ( debugLevel.GE.debLevB ) THEN
+          IF ( debugLevel.GE.debLevC ) THEN
             CALL DIAGNOSTICS_SUMMARY( myTime, myIter, myThid )
           ENDIF
 C-      wait for everyone before setting arrays to zero:
