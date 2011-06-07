@@ -3,13 +3,13 @@ C $Name$
 
 #include "AUTODIFF_OPTIONS.h"
 
-      subroutine adautodiff_inadmode_set( myThid )
-      IMPLICIT NONE
-C     /==========================================================\
-C     | SUBROUTINE adautodiff_inadmode_set                       |
-C     |==========================================================|
-C     == Global variables ===
+      SUBROUTINE ADAUTODIFF_INADMODE_SET( myThid )
+C     *==========================================================*
+C     | SUBROUTINE ADAUTODIFF_INADMODE_SET
+C     *==========================================================*
 
+      IMPLICIT NONE
+C     == Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
@@ -27,7 +27,7 @@ C     myThid - Thread number for this instance of the routine.
       useGMredi = useGMrediInAdMode
       useSEAICE = useSEAICEinAdMode
 #ifdef ALLOW_DEBUG
-      if ( debugLevel .GE. debLevB ) then
+      if ( debugLevel.GE.debLevC ) then
        write(msgBuf,'(A,L5)')
      &      'S/R ADAUTODIFF_INADMODE_SET_AD: useKPP    =', useKPP
        call print_message( msgBuf, standardMessageUnit,
@@ -43,13 +43,5 @@ C     myThid - Thread number for this instance of the routine.
       endif
 #endif
 
+      return
       end
-
-
-
-
-
-
-
-
-
