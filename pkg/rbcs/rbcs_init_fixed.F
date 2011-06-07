@@ -97,7 +97,7 @@ C--   Apply mask:
            ENDDO
           ENDDO
          ENDDO
-         IF ( debugLevel .GE. debLevB ) THEN
+         IF ( debugLevel.GE.debLevC ) THEN
            _BARRIER
            _BEGIN_MASTER( myThid )
            CALL PLOT_FIELD_XYRS( RBC_mask(1-Olx,1-Oly,1,1,1,irbc),
@@ -167,7 +167,7 @@ C--   Apply mask:
            ENDDO
           ENDDO
          ENDDO
-         IF ( debugLevel .GE. debLevB ) THEN
+         IF ( debugLevel.GE.debLevC ) THEN
            _BARRIER
            _BEGIN_MASTER( myThid )
            CALL PLOT_FIELD_XYRS( RBC_maskU,

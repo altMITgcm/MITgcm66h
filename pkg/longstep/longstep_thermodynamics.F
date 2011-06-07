@@ -473,7 +473,7 @@ C--   end bi,bj loops.
       ENDDO
 
 #ifdef ALLOW_DEBUG
-      IF ( debugLevel.GE.debLevB ) THEN
+      IF ( debugLevel.GE.debLevD ) THEN
        CALL DEBUG_STATS_RL(Nr,LS_uVel,'LS_Uvel (THERMODYNAMICS)',myThid)
        CALL DEBUG_STATS_RL(Nr,LS_vVel,'LS_Vvel (THERMODYNAMICS)',myThid)
        CALL DEBUG_STATS_RL(Nr,LS_wVel,'LS_Wvel (THERMODYNAMICS)',myThid)

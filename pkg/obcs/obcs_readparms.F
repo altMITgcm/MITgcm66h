@@ -213,7 +213,7 @@ C--   Default flags and values for OBCS
       OBCS_uvApplyFac    = 1. _d 0
       OBCS_monitorFreq   = monitorFreq
       OBCS_monSelect     = 0
-      OBCSprintDiags     = debugLevel.GE.debLevB
+      OBCSprintDiags     = debugLevel.GE.debLevC
 
       OBNuFile = ' '
       OBNvFile = ' '
