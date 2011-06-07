@@ -49,6 +49,9 @@ C     i,j,k,bi,bj - Loop counters
 #ifdef SEAICE_MULTICATEGORY
       INTEGER k
 #endif
+#ifdef ALLOW_SITRACER
+      INTEGER iTr, jTh
+#endif
 #ifdef SEAICE_AGE
       INTEGER iTracer
 #endif
@@ -130,6 +133,17 @@ C
           HSNOW(i,j,bi,bj)  = 0. _d 0
 #ifdef SEAICE_VARIABLE_SALINITY
           HSALT(i,j,bi,bj)  = 0. _d 0
+#endif
+#ifdef ALLOW_SITRACER
+          DO iTr = 1, SItrMaxNum
+           SItracer(i,j,bi,bj,iTr) = 0. _d 0
+           SItrBucket(i,j,bi,bj,iTr) = 0. _d 0
+c "ice concentration" tracer that should remain .EQ.1.
+           if (SItrName(iTr).EQ.'one') SItracer(i,j,bi,bj,iTr)=1. _d 0
+          ENDDO
+          DO jTh = 1, 5
+           SItrHEFF (i,j,bi,bj,jTh) = 0. _d 0
+          ENDDO
 #endif
 #ifdef SEAICE_AGE
           DO iTracer = 1, SEAICE_num

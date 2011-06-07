@@ -52,7 +52,7 @@ C     iUnit      :: Work variable for IO unit number
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       LOGICAL chkFlag
       INTEGER iUnit
-#ifdef SEAICE_AGE
+#if (defined SEAICE_AGE)||(defined ALLOW_SITRACER)
       INTEGER iTracer
 #endif
 
@@ -121,9 +121,9 @@ C--   SEAICE parameters
      &          smrareastartdate1, smrareastartdate2, smrareaperiod
 #endif
 
-#ifdef SEAICE_AGE
+#if (defined SEAICE_AGE)||(defined ALLOW_SITRACER)
       NAMELIST /SEAICE_PARM03/
-     &          IceAgeTrFile
+     &          IceAgeTrFile, SItrName
 #endif
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
@@ -350,9 +350,12 @@ C--   Read settings from model parameter file "data.seaice".
       READ(UNIT=iUnit,NML=SEAICE_PARM02)
 #endif
 
-#ifdef SEAICE_AGE
+#if (defined SEAICE_AGE)||(defined ALLOW_SITRACER)
       DO iTracer = 1, SEAICE_num
        IceAgeTrFile(iTracer) = ' '
+      ENDDO
+      DO iTracer = 1, SItrMaxNum
+       SItrName(iTracer) = ' '
       ENDDO
 C--
       READ(UNIT=iUnit,NML=SEAICE_PARM03)
