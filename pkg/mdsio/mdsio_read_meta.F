@@ -180,7 +180,7 @@ c    &               fileName(1:iL), ' , ', mFileName(1:iLm)
       ELSE
 
 C--   File exist
-        IF ( debugLevel .GE. debLevA ) THEN
+        IF ( debugLevel .GE. debLevB ) THEN
           WRITE(msgBuf,'(2A)') ' MDS_READ_META: opening file: ',
      &                        mFileName(1:iLm)
           CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,

@@ -98,7 +98,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
      &                         + act4*max1*max2*max3
 #endif /* ALLOW_AUTODIFF_TAMC */
 
-      dBugFlag = debugLevel.GE.debLevB
+      dBugFlag = debugLevel.GE.debLevC
 C-    Initialise flxAtm,evpAtm
        DO j = 1-OLy, sNy+OLy
         DO i = 1-OLx, sNx+OLx

@@ -129,7 +129,7 @@ C     However, if areaEpsil,vol_Epsil are much smaller than minimun ice area
 C     (iceMaskMin*rAc) and minimum ice volume (iceMaskMin*hIceMin*rAc),
 C     good chance that this will never happen within 1 time step.
 
-      dBugFlag = debugLevel.GE.debLevB
+      dBugFlag = debugLevel.GE.debLevC
 
 C-    definitively not an accurate computation of mean grid-cell area;
 C     but what matter here is just to have the right order of magnitude.

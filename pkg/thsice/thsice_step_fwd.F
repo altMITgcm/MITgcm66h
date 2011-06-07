@@ -122,7 +122,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C-    Initialise
-      dBugFlag = debugLevel.GE.debLevB
+      dBugFlag = debugLevel.GE.debLevC
       DO j = 1-OLy, sNy+OLy
         DO i = 1-OLx, sNx+OLx
           isIceFree(i,j) = .FALSE.

@@ -164,7 +164,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 #ifdef ALLOW_DBUG_THSICE
-      dBugFlag = debugLevel.GE.debLevB
+      dBugFlag = debugLevel.GE.debLevC
      &     .AND. myIter.EQ.nIter0
      &     .AND. ( tracerIdentity.EQ.GAD_SI_HICE .OR.
      &             tracerIdentity.EQ.GAD_SI_QICE2 )
@@ -758,7 +758,7 @@ C-    explicit advection is done ; add some debugging print
       ENDIF
 
 #ifdef ALLOW_DEBUG
-      IF ( debugLevel .GE. debLevB
+      IF ( debugLevel .GE. debLevC
      &     .AND. tracerIdentity.EQ.GAD_SI_HICE
      &     .AND. k.LE.3 .AND. myIter.EQ.1+nIter0
      &     .AND. nPx.EQ.1 .AND. nPy.EQ.1

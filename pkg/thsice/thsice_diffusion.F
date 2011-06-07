@@ -68,7 +68,7 @@ CEOP
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
-      dBugFlag = debugLevel.GE.debLevB
+      dBugFlag = debugLevel.GE.debLevC
       hIceEpsil = 1. _d -10
 
       IF ( thSIce_diffK .GT. 0. ) THEN

@@ -72,7 +72,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       iMax = sNx
       jMin = 1
       jMax = sNy
-      dBugFlag = debugLevel.GE.debLevB
+      dBugFlag = debugLevel.GE.debLevC
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 C    part.1 : ice-covered fraction ;

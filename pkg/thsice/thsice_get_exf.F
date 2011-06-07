@@ -165,7 +165,7 @@ C-    Define grid-point location where to print debugging values
 #include "THSICE_DEBUG.h"
 
 #ifdef ALLOW_DBUG_THSICE
-      dBugFlag = debugLevel.GE.debLevB
+      dBugFlag = debugLevel.GE.debLevC
       stdUnit = standardMessageUnit
 #endif
 
