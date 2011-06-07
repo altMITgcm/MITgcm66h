@@ -190,7 +190,7 @@ C     as is already done above in order to allow cross-PoleArctic flow
 
 C check validity of input/output coordinates
 #ifdef ALLOW_DEBUG
-        if ( debugLevel .ge. debLevB ) then
+        if ( debugLevel.GE.debLevC ) then
          do j=1,sny
           do i=1,snx
            if ( xG(i,j,bi,bj) .lt. x_in(0)         .or.
