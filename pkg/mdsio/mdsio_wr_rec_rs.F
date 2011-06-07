@@ -47,7 +47,7 @@ C !LOCAL VARIABLES:
       INTEGER k
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
-      IF ( debugLevel.GT.debLevB ) THEN
+      IF ( debugMode ) THEN
         WRITE(msgBuf,'(A,I9,2x,I9)')
      &      ' MDS_WR_REC_RS: iRec,Dim = ', iRec, nArr
         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
