@@ -109,11 +109,10 @@ C---  read in input data
       IF ( MASTER_CPU_IO(myThid) ) THEN
 C--   master thread of process 0, only, opens a global file
 
-#ifndef ALLOW_ECCO
         IL  = ILNBLNK( infile )
         INQUIRE( file=infile, exist=exst )
         IF (exst) THEN
-         IF ( debugLevel .GT. debLevA ) THEN
+         IF ( debugLevel.GE.debLevB ) THEN
           WRITE(msgBuf,'(A,A)')
      &         ' EXF_INTERP_READ: opening file: ',infile(1:IL)
           CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
@@ -132,7 +131,6 @@ C--   master thread of process 0, only, opens a global file
          CALL PRINT_ERROR( msgBuf, myThid )
          STOP 'ABNORMAL END: S/R EXF_INTERP_READ'
         ENDIF
-#endif /* ALLOW_ECCO */
 
         CALL MDSFINDUNIT( ioUnit, myThid )
         length_of_rec=MDS_RECLEN( filePrec, nx_in*ny_in, myThid )
