@@ -80,8 +80,7 @@ c     == local variables ==
 c--   == end of interface ==
 
 #ifdef ALLOW_DEBUG
-      IF ( debugLevel .GE. debLevB )
-     &    CALL DEBUG_ENTER('AUTODIFF_RESTORE',myThid)
+      IF ( debugMode ) CALL DEBUG_ENTER('AUTODIFF_RESTORE',myThid)
 #endif
 
 C--   Over all tiles
@@ -482,8 +481,7 @@ cph          TICES(I,J,bi,bj)     = StoreSEAICE(I,J,bi,bj,6)
 #endif /* ALLOW_SEAICE */
 
 #ifdef ALLOW_DEBUG
-      IF ( debugLevel .GE. debLevB )
-     &    CALL DEBUG_LEAVE('AUTODIFF_RESTORE',myThid)
+      IF ( debugMode ) CALL DEBUG_LEAVE('AUTODIFF_RESTORE',myThid)
 #endif
 
 #endif /* ALLOW_AUTODIFF_TAMC */

@@ -80,8 +80,7 @@ c     == local variables ==
 c--   == end of interface ==
 
 #ifdef ALLOW_DEBUG
-      IF ( debugLevel .GE. debLevB )
-     &    CALL DEBUG_ENTER('AUTODIFF_STORE',myThid)
+      IF ( debugMode ) CALL DEBUG_ENTER('AUTODIFF_STORE',myThid)
 #endif
 
 C--   Over all tiles
@@ -608,8 +607,7 @@ C-      2D arrays
 #endif /* ALLOW_SEAICE */
 
 #ifdef ALLOW_DEBUG
-      IF ( debugLevel .GE. debLevB )
-     &    CALL DEBUG_LEAVE('AUTODIFF_STORE',myThid)
+      IF ( debugMode ) CALL DEBUG_LEAVE('AUTODIFF_STORE',myThid)
 #endif
 
 #endif /* ALLOW_AUTODIFF_TAMC */
