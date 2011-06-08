@@ -462,7 +462,7 @@ c     CALL WRITE_FULLARRAY_RL('xG' ,xG ,1,0,0,1,0,myThid)
 c     CALL WRITE_FULLARRAY_RL('yG' ,yG ,1,0,0,1,0,myThid)
 
 C--   Now let us look at all these beasts
-      IF ( debugLevel .GE. debLevB ) THEN
+      IF ( debugLevel .GE. debLevC ) THEN
         CALL PLOT_FIELD_XYRS( xC      , 'Current xC      ', 0, myThid )
         CALL PLOT_FIELD_XYRS( yC      , 'Current yC      ', 0, myThid )
         CALL PLOT_FIELD_XYRS( dxF     , 'Current dxF     ', 0, myThid )

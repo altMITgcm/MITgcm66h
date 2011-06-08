@@ -157,7 +157,7 @@ CmlC     - end bi,bj loops.
 Cml       ENDDO
 Cml      ENDDO
 
-      IF ( debugLevel.GE.debLevB ) THEN
+      IF ( debugLevel.GE.debLevC ) THEN
         _BARRIER
         CALL PLOT_FIELD_XYRS( R_low,
      &         'Model R_low (update_masks_etc)', 1, myThid )
@@ -270,7 +270,7 @@ C-    Write to disk: Total Column Thickness & hFac(C,W,S):
       CALL WRITE_FLD_XYZ_RS( 'hFacW.',suff,hFacW,optimcycle,myThid)
       CALL WRITE_FLD_XYZ_RS( 'hFacS.',suff,hFacS,optimcycle,myThid)
 
-      IF ( debugLevel.GE.debLevB ) THEN
+      IF ( debugLevel.GE.debLevC ) THEN
         _BARRIER
 C--   Write to monitor file (standard output)
         CALL PLOT_FIELD_XYZRS( hFacC,'hFacC (update_masks_etc)',
