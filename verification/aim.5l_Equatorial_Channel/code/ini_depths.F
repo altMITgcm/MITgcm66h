@@ -138,7 +138,7 @@ C- end setup R_low in the interior
 C- fill in the overlap (+ BARRIER):
       _EXCH_XY_RS(R_low, myThid )
 
-      IF ( debugLevel.GE.debLevB ) THEN
+      IF ( debugLevel.GE.debLevC ) THEN
 c      PRINT *, ' Calling plot field', myThid
        CALL PLOT_FIELD_XYRS( R_low, 'Bottom depths (ini_depths)',
      &                       -1, myThid )
@@ -270,7 +270,7 @@ C- Domain : Symetric % Eq. & closed at N & S boundaries:
        ENDDO
       ENDIF
 
-      IF ( debugLevel.GE.debLevB ) THEN
+      IF ( debugLevel.GE.debLevC ) THEN
        _BARRIER
        CALL PLOT_FIELD_XYRS( Ro_surf,
      &           'Surface reference r-position (ini_depths)',
