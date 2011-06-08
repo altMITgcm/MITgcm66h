@@ -88,6 +88,10 @@ C     == Routine arguments ==
       INTEGER myThid
 CEOP
 
+#ifdef ALLOW_DEBUG
+      IF (debugMode) CALL DEBUG_ENTER('INITIALISE_FIXED',myThid)
+#endif
+
 C-    here is a way to deliberately break the barrier syncronization
 C     by adding a BARRIER on thread XXX only ; Used to test BAR_CHECK.
 c     IF ( myThid.EQ.XXX ) THEN
@@ -179,6 +183,10 @@ C     and get config. info for other component(s).
 
 C--   Check barrier synchronization:
       CALL BAR_CHECK( 3, myThid )
+
+#ifdef ALLOW_DEBUG
+      IF (debugMode) CALL DEBUG_LEAVE('INITIALISE_FIXED',myThid)
+#endif
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
