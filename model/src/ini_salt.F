@@ -8,6 +8,7 @@ CBOP
 C     !ROUTINE: INI_SALT
 C     !INTERFACE:
       SUBROUTINE INI_SALT( myThid )
+
 C     !DESCRIPTION: \bv
 C     *==========================================================*
 C     | SUBROUTINE INI_SALT
@@ -127,7 +128,7 @@ C--   Apply mask and test consistency
        ENDIF
       ENDIF
 
-      IF (debugMode) THEN
+      IF ( debugLevel.GE.debLevC ) THEN
         CALL PLOT_FIELD_XYZRL( salt, 'Initial Salinity',
      &                         Nr, 1, myThid )
       ENDIF

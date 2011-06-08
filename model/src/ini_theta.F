@@ -8,6 +8,7 @@ CBOP
 C     !ROUTINE: INI_THETA
 C     !INTERFACE:
       SUBROUTINE INI_THETA( myThid )
+
 C     !DESCRIPTION: \bv
 C     *==========================================================*
 C     | SUBROUTINE INI_THETA
@@ -146,7 +147,7 @@ C--   Check that there are no values of temperature below freezing point.
        ENDDO
       ENDIF
 
-      IF (debugMode) THEN
+      IF ( debugLevel.GE.debLevC ) THEN
         CALL PLOT_FIELD_XYZRL( theta, 'Initial Temperature',
      &                         Nr, 1, myThid )
       ENDIF
