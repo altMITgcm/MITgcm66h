@@ -185,7 +185,6 @@ Cml      sBeta               = 7.4 _d -4
       dRhoSmall           = 1. _d -6
       hMixSmooth          = 0. _d 0
       usePickupBeforeC54    = .FALSE.
-      debugMode             = .FALSE.
       tempAdvScheme       = 2
       saltAdvScheme       = 2
       multiDimAdvection   = .TRUE.
@@ -200,7 +199,14 @@ Cml      sBeta               = 7.4 _d -4
       useAbsVorticity     = .FALSE.
       upwindShear         = .FALSE.
       selectKEscheme      = 0
-      debugLevel          = debLevA
+      IF ( debugMode ) THEN
+        debugLevel        = debLevD
+      ELSE
+        debugLevel        = debLevB
+#ifdef ALLOW_AUTODIFF
+        debugLevel        = debLevA
+#endif
+      ENDIF
       inAdMode            = .FALSE.
       inAdExact           = .TRUE.
 
