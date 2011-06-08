@@ -28,7 +28,7 @@ CEOP
       NAMELIST /SALT_PLUME_PARM01/
      &     SaltPlumeSouthernOcean,
      &     CriterionType, PlumeMethod, Npower,
-     &     SaltPlumeCriterion, SPovershoot
+     &     SaltPlumeCriterion, SPovershoot, SPsalFRAC
 
 C     !LOCAL VARIABLES:
 C     msgBuf      - Informational/error meesage buffer
@@ -45,6 +45,7 @@ C--   Default values for SALT_PLUME
       Npower              = 0
       SaltPlumeCriterion  = UNSET_RL
       SPovershoot         = 1.0 _d 0
+      SPsalFRAC           = 1.0 _d 0
 
       WRITE(msgBuf,'(A)')'SALT_PLUME_READPARMS: opening data.salt_plume'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
