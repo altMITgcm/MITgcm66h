@@ -57,7 +57,7 @@ C     LOCAL VARIABLES:
             pass_PrcAtm(i,j)= sum_prcIce(i,j)/nper
             icFrwAtm(i,j,1,1)= sum_evapIce(i,j)/nper
 
-            pass_sIceLoad(i,j)=sIceLoad(i,j,1,1)  
+C            pass_sIceLoad(i,j)=sIceLoad(i,j,1,1) !do this in thsice_step_fwd
 
 C  Load the following directly into the seaice common block
             snowPrc(i,j,1,1)= sum_snowPrc(i,j)/nper
