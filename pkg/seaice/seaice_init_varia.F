@@ -144,6 +144,9 @@ c "ice concentration" tracer that should remain .EQ.1.
           DO jTh = 1, 5
            SItrHEFF (i,j,bi,bj,jTh) = 0. _d 0
           ENDDO
+          DO jTh = 1, 3
+           SItrAREA (i,j,bi,bj,jTh) = 0. _d 0
+          ENDDO
 #endif
 #ifdef SEAICE_AGE
           DO iTracer = 1, SEAICE_num
