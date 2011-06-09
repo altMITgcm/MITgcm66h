@@ -375,6 +375,9 @@ C--     Compute Sea-Ice Loading (= mass of sea-ice + snow / area unit)
         sIceLoad(i,j,bi,bj) = ( snowHeight(i,j,bi,bj)*rhos
      &                         + iceHeight(i,j,bi,bj)*rhoi
      &                        )*iceMask(i,j,bi,bj)
+#ifdef ALLOW_ATM2D
+        pass_sIceLoad(i,j)=sIceLoad(i,j,bi,bj)
+#endif
        ENDDO
       ENDDO
 
