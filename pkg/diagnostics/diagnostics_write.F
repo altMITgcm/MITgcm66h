@@ -88,7 +88,7 @@ C       state-variable time-step:
      &                    .AND. freqSec.GE.0. ) dump2fileNow = .TRUE.
           IF ( dump2fileNow ) THEN
             write2file = .TRUE.
-            CALL DIAGNOSTICS_OUT(n,wrIter,wrTime,myThid)
+            CALL DIAGNOSTICS_OUT(n,wrTime,wrIter,myThid)
           ENDIF
         ENDDO
 
