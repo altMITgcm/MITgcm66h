@@ -161,11 +161,13 @@ C                                 mnc ouput: md loop inside lm loop.
       DO jj=1,jjMx
 
        IF (useMNC .AND. diag_mnc) THEN
+         misValLoc = undef
+         IF ( misvalFlt(listId).NE.UNSET_RL )
+     &        misValLoc = misvalFlt(listId)
          CALL DIAGNOSTICS_MNC_SET(
      I                    nLevOutp, listId, jj,
-     O                    diag_mnc_bn,
-     O                    useMissingValue, misValLoc,
-     I                    myTime, myIter, myThid )
+     O                    diag_mnc_bn, useMissingValue,
+     I                    misValLoc, myTime, myIter, myThid )
        ENDIF
 #endif /*  ALLOW_MNC  */
 
