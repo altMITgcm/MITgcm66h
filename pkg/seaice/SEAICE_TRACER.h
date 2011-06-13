@@ -46,11 +46,16 @@ CEOP
 #if (defined SEAICE_AGE)||(defined ALLOW_SITRACER)
 C     IceAgeTrFile    - File containing initial sea ice age
 C     SItrName        - tracer name ('salinity', 'age', 'one', etc.)
+C     SItrNameLong    - tracer long name
+C     SItrUnit        - tracer unit ('psu','s','kg/kg', etc.)
 C     SItrMate        - variable to which the tracer is associated ('HEFF','AREA',etc.)
       CHARACTER*(MAX_LEN_FNAM) IceAgeTrFile(SEAICE_num)
       CHARACTER*(MAX_LEN_FNAM) SItrName(SItrMaxNum)
-      CHARACTER*(MAX_LEN_FNAM) SItrMate(SItrMaxNum)
-      COMMON /SEAICE_AGE_C/ IceAgeTrFile, SItrName, SItrMate
+      CHARACTER*(MAX_LEN_FNAM) SItrNameLong(SItrMaxNum)
+      CHARACTER*(MAX_LEN_FNAM) SItrUnit(SItrMaxNum)
+      CHARACTER*(4) SItrMate(SItrMaxNum)
+      COMMON /SEAICE_AGE_C/ IceAgeTrFile, SItrName, SItrMate,
+     &  SItrNameLong, SItrUnit
 #endif
 
 CEH3 ;;; Local Variables: ***
