@@ -138,7 +138,11 @@ C     and if it exists. Note: for now, only used to print message.
           DO j=1,nlists
            DO i=1,nActive(j)
             IF ( mdiag(md,ld).EQ.0 .AND. jdiag(i,j).EQ.mate ) THEN
-              mdiag(md,ld) = ABS(idiag(i,j))
+             IF ( freq(j).EQ.freq(ld) .AND. phase(j).EQ.phase(ld)
+     &           .AND. averageFreq(j) .EQ.averageFreq(ld)
+     &           .AND. averagePhase(j).EQ.averagePhase(ld)
+     &           .AND. averageCycle(j).EQ.averageCycle(ld) )
+     &          mdiag(md,ld) = ABS(idiag(i,j))
             ENDIF
            ENDDO
           ENDDO
