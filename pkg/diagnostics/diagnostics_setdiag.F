@@ -99,15 +99,13 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
         ENDIF
       ELSE
         WRITE(msgBuf,'(A,I6,1X,2A)')
-     &    '- WARNING - SETDIAG: Diagnostic #', ndId, cdiag(ndId),
+     &    '- NOTE - SETDIAG: Diagnostic #', ndId, cdiag(ndId),
      &    ' has already been set'
-        CALL PRINT_MESSAGE(msgBuf, errUnit, SQUEEZE_RIGHT, myThid)
-        mate = 0
-        RETURN
+        CALL PRINT_MESSAGE(msgBuf, stdUnit, SQUEEZE_RIGHT, myThid)
       ENDIF
 
-c Check for Counter Diagnostic
-c ----------------------------
+C     Check for Counter Diagnostic
+
       mate = 0
       IF ( gcode(5:5).EQ.'C') THEN
         mate = hdiag(ndId)
