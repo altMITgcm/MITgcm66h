@@ -107,7 +107,6 @@ C-    check for a counter-mate:
            mate = 0
            gcode = gdiag(ndId)(1:10)
            IF ( gcode(5:5).EQ.'C' ) mate = hdiag(ndId)
-           IF ( mdiag(m,n).EQ.0 ) mate = 0
            IF ( mate.LE.0 ) THEN
              WRITE(msgBuf,'(2A)') 'DIAGNOSTICS_FRACT_FILL: ',
      &            'did not find a valid counter-mate'
@@ -147,7 +146,6 @@ C-    check for a counter-mate:
            gcode = gdiag(ndId)(1:10)
 c          IF ( gcode(5:5).EQ.'C' ) READ(gcode,'(5X,I3)') mate
            IF ( gcode(5:5).EQ.'C' ) mate = hdiag(ndId)
-           IF ( mSdiag(m,n).EQ.0 ) mate = 0
            IF ( mate.LE.0 ) THEN
              WRITE(msgBuf,'(2A)') 'DIAGNOSTICS_FRACT_FILL: ',
      &            'did not find a valid counter-mate'
