@@ -72,8 +72,6 @@ CEOP
 
       call TIMER_START('I/O (WRITE)        [ADJOINT LOOP]', myThid )
 
-      IF (useEXF) THEN
-
       IF (
      &  DIFFERENT_MULTIPLE(adjDumpFreq,mytime,deltaTClock)
      & ) THEN
@@ -197,7 +195,9 @@ c
 
       ENDIF
 
-      ENDIF
+#ifdef ALLOW_MONITOR
+      CALL ADEXF_MONITOR ( iwhen, myTime, myIter, myThid )
+#endif
 
       call TIMER_STOP( 'I/O (WRITE)        [ADJOINT LOOP]', myThid )
 

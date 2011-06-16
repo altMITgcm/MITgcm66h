@@ -182,6 +182,14 @@ C--   endif master cpu io
 C     endif different multiple
       ENDIF
 
+#ifdef ALLOW_EXF
+cph This case is handled separately in exf_adjoint_snapshots_ad.F
+#endif
+
+#ifdef ALLOW_SEAICE
+      CALL ADSEAICE_MONITOR ( myTime, myIter, myThid )
+#endif
+
 #endif /* ALLOW_AUTODIFF_MONITOR */
 #endif /* ALLOW_ADJOINT_RUN */
 
