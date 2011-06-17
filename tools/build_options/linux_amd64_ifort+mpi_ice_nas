@@ -39,4 +39,4 @@ fi
 
 #- For really big executable (> 2 GB), uncomment following 2 lines
 #FFLAGS="$FFLAGS -mcmodel=medium -shared-intel"
-#CFLAGS='-mcmodel=medium'
+#CFLAGS="$CFLAGS -mcmodel=medium"
