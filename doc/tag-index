@@ -6,6 +6,7 @@ $Name$
 
 o adjoint monitor:
  - Add adjoint monitor output for packages exf, seaice
+   and update relevant testreport output
 o pkg/seaice:
  - re-order diags inits so that they appear in order in available_diagnostics.log
  - added diags: hsnow thermo. rates of change, area preceeding ridiging process,
