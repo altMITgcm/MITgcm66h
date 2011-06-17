@@ -143,7 +143,7 @@ C       Print some statistics about input forcing fields
         CALL MON_WRITESTATS_RL( 1, adprecip,  '_adprecip',
      &           maskInC, maskInC, rA , drF, dummyRL, myThid )
 #endif /* ALLOW_ATM_TEMP */
-#if defined(ALLOW_ATM_TEMP) || defined(SHORTWAVE_HEATING)
+#if defined(ALLOW_ATM_TEMP) && defined(SHORTWAVE_HEATING)
         CALL MON_WRITESTATS_RL( 1, adswflux,  '_adswflux',
      &           maskInC, maskInC, rA , drF, dummyRL, myThid )
 #endif
