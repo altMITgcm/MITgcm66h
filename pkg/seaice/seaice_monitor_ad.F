@@ -41,7 +41,8 @@ C     !INPUT PARAMETERS:
       INTEGER myThid
 CEOP
 
-#ifdef ALLOW_MONITOR
+#if ( defined (ALLOW_MONITOR) && defined (ALLOW_AUTODIFF_MONITOR) )
+
 C     === Functions ====
       LOGICAL  DIFFERENT_MULTIPLE
       EXTERNAL DIFFERENT_MULTIPLE
