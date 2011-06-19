@@ -480,10 +480,12 @@ C--   Check parameters:
 #ifndef ALLOW_GENCOST_FREEFORM
       do k=1,NGENCOST
 
-         if ( gencost_name(k) .EQ. 'gencost' )
+        if ( gencost_datafile(k) .ne. ' ' ) then
+
+          if ( gencost_name(k) .EQ. 'gencost' )
      &        gencost_name(k) = gencost_datafile(k)
 
-         if ( gencost_avgperiod(k) .NE. 'day  ' .AND.
+          if ( gencost_avgperiod(k) .NE. 'day  ' .AND.
      &        gencost_avgperiod(k) .NE. 'DAY  ' .AND.
      &        gencost_avgperiod(k) .NE. 'month' .AND.
      &        gencost_avgperiod(k) .NE. 'MONTH' .AND.
@@ -491,20 +493,18 @@ C--   Check parameters:
      &        gencost_avgperiod(k) .NE. 'YEAR ' ) then
             STOP 
      &           'ECCO_READPARMS: gencost_avgperiod not properly set'
-         end if
+          end if
 
-         if ( gencost_datafile(k) .ne. ' ' ) then
-
-           if ( gencost_spmin(k) .EQ. 0. _d 0 .AND.
+          if ( gencost_spmin(k) .EQ. 0. _d 0 .AND.
      &        gencost_spmax(k) .EQ. 0. _d 0 ) then
             STOP
      &       'ECCO_READPARMS: gencost_spmin, gencost_spmax not set'
-           endif
+          endif
 
-           if ( gencost_spzero(k) .EQ. 9876. _d 0 ) then
+          if ( gencost_spzero(k) .EQ. 9876. _d 0 ) then
             STOP
      &       'ECCO_READPARMS: gencost_spzero not set'
-           endif
+          endif
 
         endif
 
