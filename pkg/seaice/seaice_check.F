@@ -282,6 +282,17 @@ C--   SEAICE_EXTERNAL_FORCING is obsolete: issue warning but continue.
          CALL PRINT_ERROR( msgBuf, myThid )
 #endif
 
+C--   SEAICE_ALLOW_TD_IF is obsolete: issue warning and stop.
+#ifdef SEAICE_ALLOW_TD_IF
+         WRITE(msgBuf,'(A)')
+     &     'SEAICE_ALLOW_TD_IF option is obsolete:'
+         CALL PRINT_ERROR( msgBuf, myThid )
+         WRITE(msgBuf,'(A)')
+     &     'the seaice*_IF codes are now merged into the main branch.'
+         CALL PRINT_ERROR( msgBuf, myThid )
+         STOP 'ABNORMAL END: S/R SEAICE_CHECK'
+#endif /* SEAICE_SALINITY */
+
 C--   SEAICE_SALINITY is obsolete: issue warning and stop.
 #ifdef SEAICE_SALINITY
          WRITE(msgBuf,'(A)')
