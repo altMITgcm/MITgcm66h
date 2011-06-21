@@ -175,11 +175,9 @@ CEOP
      &                      + act3*max0*max1*max2
      &                      + act4*max0*max1*max2*max3
           IF (tracerIdentity.GT.maxpass) THEN
-           WRITE(msgBuf,'(A,2I3)') 
+           WRITE(msgBuf,'(A,2I3)')
      &      'GAD_ADVECTION: maxpass < tracerIdentity ',
      &      maxpass, tracerIdentity
-           CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &      SQUEEZE_RIGHT , myThid )
            CALL PRINT_ERROR( msgBuf, myThid )
            STOP 'ABNORMAL END: S/R GAD_ADVECTION'
           ENDIF

@@ -162,11 +162,9 @@ CEOP
      &                      + act3*max0*max1*max2
      &                      + act4*max0*max1*max2*max3
           if (tracerIdentity.GT.maxpass) then
-           WRITE(msgBuf,'(A,2I3)') 
+           WRITE(msgBuf,'(A,2I3)')
      &      'SEAICE_ADVECTION: maxpass < tracerIdentity ',
      &      maxpass, tracerIdentity
-           CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &      SQUEEZE_RIGHT , myThid )
            CALL PRINT_ERROR( msgBuf, myThid )
            STOP 'ABNORMAL END: S/R SEAICE_ADVECTION'
           endif
