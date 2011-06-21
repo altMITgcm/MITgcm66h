@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint62z (2011/06/21)
 o adjoint monitor:
  - Add adjoint monitor output for packages exf, seaice
    and update relevant testreport output
