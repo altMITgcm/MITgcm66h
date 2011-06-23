@@ -1,5 +1,5 @@
 C $Header$
-C $fName:  $
+C $Name$
 
 #include "MDSIO_OPTIONS.h"
 
@@ -110,14 +110,14 @@ c     == end of interface ==
       ELSE
         lengthBuff=sNxWh*gloNyWh
       ENDIF
-      
+
 C Only do I/O if I am the master thread (and mpi process 0 IF locSingleCpuIO):
       iAmDoingIO = .FALSE.
       IF ( .NOT.locSingleCpuIO .OR. myProcId.EQ.0 ) THEN
         _BEGIN_MASTER( myThid )
         iAmDoingIO = .TRUE.
         _END_MASTER( myThid )
-      ENDIF      
+      ENDIF
 
       IF ( iAmDoingIO ) THEN
 c get the unit and open file
@@ -135,7 +135,7 @@ c get the unit and open file
      &         access='direct', recl=length_of_rec )
       ELSE
         dUnit=fid
-      ENDIF  
+      ENDIF
       ENDIF
 
 
@@ -242,5 +242,5 @@ c copy
 
 #endif
 
-      return
-      end
+      RETURN
+      END
