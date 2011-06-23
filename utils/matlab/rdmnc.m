@@ -456,7 +456,7 @@ function vf = ncgetvar(fname,varname)
   varid = [];
   for k=0:nvars-1
     if strcmp(netcdf.inqVar(nc,k),varname)
-      varid = netcdf.inqVarId(nc,varname);
+      varid = netcdf.inqVarID(nc,varname);
     end
   end
   if ~isempty(varid); 
@@ -531,7 +531,7 @@ function varid = ncfindvarid(nc,varname)
   varid=[];
   for k=0:nvars-1
     if strcmp(netcdf.inqVar(nc,k),varname);
-      varid = netcdf.inqVarId(nc,varname);
+      varid = netcdf.inqVarID(nc,varname);
       break
     end
   end
