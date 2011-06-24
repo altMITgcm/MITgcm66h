@@ -7,7 +7,7 @@ CBOP
 C !ROUTINE: OPPS_CALC
 
 C !INTERFACE: ======================================================
-      subroutine OPPS_CALC(
+      SUBROUTINE OPPS_CALC(
      U     tracerEnv,
      I     wVel,
      I     kMax, nTracer, nTracerInuse,
@@ -920,7 +920,7 @@ c next, solve for the vertical velocity k.e. using combined eq. 4
 c and eq 5 from the paper
 c
                  if(debug) then
-                   write(0,*)"Dd,De,entr,k ",Dd(k2),De(k2),entrainrate,k2
+                  write(0,*)"Dd,De,entr,k ",Dd(k2),De(k2),entrainrate,k2
                  endif
 c
                  wsqr = wsqr - wsqr*abs(entrainrate)+ 9.81*
