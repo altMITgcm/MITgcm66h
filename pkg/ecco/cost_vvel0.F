@@ -105,7 +105,7 @@ c--   Read state record from global file.
      &     fnamefld, tmpfld3d, irec, doglobalread,
      &     ladinit, optimcycle, mythid, xx_vvel_dummy )
 
-c--     Loop over this thread's tiles.
+c--     Loop over this thread s tiles.
         do bj = jtlo,jthi
           do bi = itlo,ithi
 

@@ -160,7 +160,7 @@ cgg    Need to solve for iobcs would have been.
      &                         doglobalread, ladinit, 0,
      &                         mythid, dummy )
 
-c--     Loop over this thread's tiles.
+c--     Loop over this thread s tiles.
         do bj = jtlo,jthi
           do bi = itlo,ithi
 

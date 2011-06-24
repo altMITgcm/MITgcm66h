@@ -162,7 +162,7 @@ cgg          print*,'S IREC, IOBCS',irec, iobcs
      &                         mythid, dummy )
 
 
-c--     Loop over this thread's tiles.
+c--     Loop over this thread s tiles.
         do bj = jtlo,jthi
           do bi = itlo,ithi
 
