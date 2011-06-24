@@ -58,7 +58,7 @@ C     !LOCAL VARIABLES:
 C     i,j,k :: loop indices
       INTEGER i, j, k
       INTEGER bi, bj
-      CHARACTER*(MAX_LEN_MBUF) msgBuf
+c     CHARACTER*(MAX_LEN_MBUF) msgBuf
 
       INTEGER ks
       INTEGER numIters
