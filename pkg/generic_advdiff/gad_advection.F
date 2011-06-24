@@ -142,8 +142,10 @@ c     _RS maskUp  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       INTEGER npass, ipass
       INTEGER nCFace
       LOGICAL N_edge, S_edge, E_edge, W_edge
+#ifdef ALLOW_AUTODIFF_TAMC
 C     msgBuf     :: Informational/error message buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
+#endif
 #ifdef ALLOW_EXCH2
       INTEGER myTile
 #endif

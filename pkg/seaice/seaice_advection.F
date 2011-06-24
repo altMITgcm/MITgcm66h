@@ -134,6 +134,10 @@ C [N,S,E,W]_edge :: true if N,S,E,W edge of myTile is an Edge of the cube
 #ifdef ALLOW_EXCH2
       INTEGER myTile
 #endif
+#ifdef ALLOW_AUTODIFF_TAMC
+C     msgBuf     :: Informational/error message buffer
+      CHARACTER*(MAX_LEN_MBUF) msgBuf
+#endif
 #ifdef ALLOW_DIAGNOSTICS
       CHARACTER*8 diagName
       CHARACTER*4 SEAICE_DIAG_SUFX, diagSufx
@@ -142,8 +146,6 @@ C [N,S,E,W]_edge :: true if N,S,E,W edge of myTile is an Edge of the cube
       LOGICAL dBug
       INTEGER ioUnit
       _RL tmpFac
-C     msgBuf     :: Informational/error message buffer
-      CHARACTER*(MAX_LEN_MBUF) msgBuf
 CEOP
 
 #ifdef ALLOW_AUTODIFF_TAMC
