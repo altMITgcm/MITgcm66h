@@ -358,6 +358,11 @@ look_for_makedepend()  {
 		MAKEDEPEND=
 	    fi
 	else
+	    echo "${MAKEDEPEND}" | grep 'tools.xmakedepend' > /dev/null 2>&1
+	    RETVAL=$?
+	    if test "x$RETVAL" = x0 ; then
+		MAKEDEPEND='$(TOOLSDIR)/xmakedepend'
+	    fi
 	    echo " -->     MAKEDEPEND=${MAKEDEPEND}" >> $LOGFILE
 	fi
     fi
