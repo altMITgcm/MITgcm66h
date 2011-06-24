@@ -116,8 +116,8 @@ c for the MITGCM.
 
       IF ( SolarFile .EQ. ' '  ) THEN
       IF (useStressOption)then
-        write(*,*)' stress option is turned on.  this is not
-     & consistent with the default time dependent forcing option'
+        write(*,*) ' stress option is turned on.  this is not',
+     & 'consistent with the default time dependent forcing option'
         stop
         ENDIF
          if ( myIter .EQ. nIter0 )then
