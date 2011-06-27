@@ -53,7 +53,9 @@ c     == local variables ==
 c     == end of interface ==
 
       do num_var = 1, NGENCOST
+#ifndef ALLOW_GENCOST_FREEFORM
        if ( gencost_datafile(num_var) .ne. ' ' ) then
+#endif
          if ( gencost_avgperiod(num_var) .EQ. 'day' .OR.
      &        gencost_avgperiod(num_var) .EQ. 'DAY' ) then
             startofgen(num_var) = startofday
@@ -80,7 +82,9 @@ c     == end of interface ==
             STOP 'gencost_avgperiod wrongly specified'
 #endif
          end if
+#ifndef ALLOW_GENCOST_FREEFORM
        end if
+#endif
       end do
       
 #endif /* ALLOW_GENCOST_CONTRIBUTION */
