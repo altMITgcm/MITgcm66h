@@ -38,6 +38,13 @@ C     !LOCAL VARIABLES:
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 C     Check diagnostics parameter consistency
 
+      IF ( useMissingValue .AND. .NOT. diag_mnc ) THEN
+        WRITE(msgBuf,'(2A)') '** WARNING ** DIAGNOSTICS_CHECK: ',
+     &            'ignore "useMissingValue" since "diag_mnc" is off'
+        CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                      SQUEEZE_RIGHT , myThid )
+      ENDIF
+
 #ifdef DIAGNOSTICS_HAS_PICKUP
       IF ( diag_pickup_read ) THEN
         WRITE(msgBuf,'(2A)') '**CAUTION** (DIAGNOSTICS_CHECK): ',
