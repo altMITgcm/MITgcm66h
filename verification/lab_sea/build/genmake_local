@@ -4,4 +4,5 @@
 
 #  This is the local options file for the "new" version of genmake
 
-MAKEDEPEND=cyrus_makedepend
+MAKEDEPEND=tools_xmakedepend
+
