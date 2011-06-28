@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o verification lab_sea & global_ocean.cs32x15:
+ - use tools/xmakedepend (instead of cyrus_makedepend, in genmake_local):
+   does not miss some dependencies (but is slower) and also works with many files
+   (default makedepend limitation for AD built).
+ - use cyrus_makedepend in adjustment.128x64x1 (so that it still tested).
 o pkg/diagnostics:
  - add run-time parameter "useMissingValue" (def=False) to fill land-point
     (i.e., where mask=0) with MissingValue ; used only in MNC output file.
