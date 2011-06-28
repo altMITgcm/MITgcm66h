@@ -255,11 +255,11 @@ function [S] = rdmnc_local(nc,varlist,iters,S,dBug)
     % modifications make the output field smaller, let us see, if it is
     % robust 
     if (firstiter)
-      S.i_first.(cvar) = i0;
-      S.j_first.(cvar) = j0;
+      S.attributes.i_first.(cvar) = i0;
+      S.attributes.j_first.(cvar) = j0;
     end 
-    i0 = i0 - S.i_first.(cvar);
-    j0 = j0 - S.j_first.(cvar);
+    i0 = i0 - S.attributes.i_first.(cvar);
+    j0 = j0 - S.attributes.j_first.(cvar);
     % end code by Bruno Deremble
     
     Sstr = '';
@@ -430,11 +430,11 @@ function [S] = rdmnc_local_matlabAPI(fname,varlist,iters,S,dBug)
     % modifications make the output field smaller, let us see, if it is
     % robust 
     if (firstiter)
-      S.i_first.(cvar) = i0;
-      S.j_first.(cvar) = j0;
+      S.attributes.i_first.(cvar) = i0;
+      S.attributes.j_first.(cvar) = j0;
     end 
-    i0 = i0 - S.i_first.(cvar);
-    j0 = j0 - S.j_first.(cvar);
+    i0 = i0 - S.attributes.i_first.(cvar);
+    j0 = j0 - S.attributes.j_first.(cvar);
     % end code by Bruno Deremble
 
     Sstr = '';
