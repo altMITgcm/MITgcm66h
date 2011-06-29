@@ -359,6 +359,27 @@ C     is EmPmR before impact of ice.
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
+      diagName  = 'SIrsSubl'
+      diagTitle = 'Residual subl. freshwater flux, >0 taken from ocn'
+      diagUnits = 'kg/m^2/s        '
+      diagCode  = 'SM      U1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
+      diagName  = 'SIactLHF'
+      diagTitle = 'Actual latent heat flux over ice'
+      diagUnits = 'W/m^2           '
+      diagCode  = 'SM      U1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
+      diagName  = 'SImaxLHF'
+      diagTitle = 'Maximum latent heat flux over ice'
+      diagUnits = 'W/m^2           '
+      diagCode  = 'SM      U1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
 #ifdef ALLOW_SITRACER
       DO iTr = 1, SItrMaxNum
        IF (SItrMate(iTr).EQ.'HEFF') then
