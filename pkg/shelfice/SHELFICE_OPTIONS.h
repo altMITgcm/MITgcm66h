@@ -20,6 +20,10 @@ C     \==========================================================/
 C     allow code for simple ISOMIP thermodynamics
 #define ALLOW_ISOMIP_TD
 
+C     allow friction velocity-dependent transfer coefficient
+C     following Holland and Jenkins, JPO, 1999
+#define SHI_ALLOW_GAMMAFRICT
+
 #endif /* ALLOW_SHELFICE */
 #endif /* SHELFICE_OPTIONS_H */
 
