@@ -36,6 +36,9 @@ C     !LOCAL VARIABLES:
          ndId  = jdiag(m,listId)
          ipt   = idiag(m,listId)
          nLev  = kdiag(ndId)*averageCycle(listId)
+c        WRITE(0,'(2(A,I3),2A,2(A,I5))') 'CLRDIAG (listId=',listId,
+c    &     ' )',nLev,' levs, diag: ',cdiag(ndId),
+c    &     ' ipt=',ipt,' , ndiag=',ndiag(ipt,1,1)
          CALL DIAGNOSTICS_CLRDIAG( ipt, nLev, myThid )
        ENDIF
       ENDDO
