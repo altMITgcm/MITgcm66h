@@ -89,6 +89,18 @@ CML#endif ALLOW_KPP
       ENDIF
 #endif /* ALLOW_ISOMIP_TD */
 
+#ifndef SHI_ALLOW_GAMMAFRICT
+      IF ( SHELFICEuseGammaFrict ) THEN
+       WRITE(msgBuf,'(A,A,A)')
+     &      'Run-time control flag SHELFICEuseGammaFrict was used'
+       CALL PRINT_ERROR( msgBuf, myThid )
+       WRITE(msgBuf,'(A,A,A)')
+     &      'when CPP flag SHI_ALLOW_GAMMAFRICT was unset'
+       CALL PRINT_ERROR( msgBuf, myThid )
+       STOP 'ABNORMAL END: S/R SHELFICE_CHECK'
+      ENDIF
+#endif /* SHI_ALLOW_GAMMAFRICT */
+
       _END_MASTER(myThid)
 
 #endif /* ALLOW_SHELFICE */
