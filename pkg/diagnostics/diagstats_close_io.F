@@ -63,6 +63,11 @@ C-      write a conclusion & close the file:
 
       ENDIF
 
+C-    Close also local diagnostics output file
+      IF ( diagLoc_ioUnit.GT.0 ) THEN
+        CLOSE(diagLoc_ioUnit)
+      ENDIF
+
       _END_MASTER( myThid )
 
       RETURN

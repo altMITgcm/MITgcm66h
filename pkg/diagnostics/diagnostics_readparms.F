@@ -120,6 +120,7 @@ C     Initialize and Read Diagnostics Namelist
           fields(m,l) = blk8c
         ENDDO
       ENDDO
+      diagLoc_ioUnit = 0
       settingDiags = .FALSE.
       dumpAtLast   = .FALSE.
       diag_mnc     = useMNC
