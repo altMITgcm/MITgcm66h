@@ -37,6 +37,9 @@ C     (cannot add diags to list anymore after this call)
 C--   Calculate pointers for diagnostics set to non-zero frequency
       CALL DIAGNOSTICS_SET_POINTERS( myThid )
 
+C--   Set parameters and variables used in post-processing diagnostics
+      CALL DIAGNOSTICS_SET_CALC( myThid )
+
 C--   Define region-mask for regional statistics diagnostics
       CALL DIAGSTATS_SET_REGIONS( myThid )
 
