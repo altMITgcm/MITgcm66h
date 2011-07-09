@@ -86,7 +86,6 @@ C--   Initialise other params in namelist
 
 C-    Initialise other parameters:
       nFacets = 0
-      nTiles  = 0
       nBlankTiles = 0
       DO j=1,W2_maxNbFacets
         facet_dims(2*j-1) = 0

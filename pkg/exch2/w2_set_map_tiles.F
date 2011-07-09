@@ -92,12 +92,12 @@ C--   Check that tile dims divide facet dims
         STOP 'ABNORMAL END: S/R W2_SET_MAP_TILES'
       ENDIF
 C--   Check that domain size and (SIZE.h + blankList) match:
-      IF ( tCnt.NE.nTiles ) THEN
+      IF ( tCnt.NE.exch2_nTiles ) THEN
         WRITE(msgBuf,'(A,I6,A)')
      &   'W2_SET_MAP_TILES: Domain Total # of tiles =', tCnt, ' does'
         CALL PRINT_ERROR( msgBuf, myThid )
         WRITE(msgBuf,'(A,I6)')
-     &   'W2_SET_MAP_TILES:  not match (SIZE.h+blankList)=', nTiles
+     &   'W2_SET_MAP_TILES:  not match (SIZE.h+blankList)=',exch2_nTiles
         CALL PRINT_ERROR( msgBuf, myThid )
         STOP 'ABNORMAL END: S/R W2_SET_MAP_TILES'
       ENDIF

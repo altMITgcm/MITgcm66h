@@ -57,7 +57,7 @@ c     WRITE(msgBuf,'(2A)') 'W2_SET_F2F_INDEX:',
 
       jp = 0
       IF ( prtFlag ) THEN
-       DO is=1,nTiles
+       DO is=1,exch2_nTiles
         js  = exch2_myFace(is)
         IF ( js.NE.0 ) THEN
 C--     tile is is active
@@ -169,7 +169,7 @@ c     WRITE(msgBuf,'(2A)') 'W2_SET_MAP_TILES:',
      &       ' tile offset within facet and global Map:'
       CALL PRINT_MESSAGE( msgBuf, W2_oUnit, SQUEEZE_RIGHT, myThid )
       jp = 0
-      DO is=1,nTiles
+      DO is=1,exch2_nTiles
        js  = exch2_myFace(is)
        IF ( js.NE.0 ) THEN
          fNx = exch2_mydNx(is)
@@ -199,7 +199,7 @@ c     WRITE(msgBuf,'(2A)') 'W2_SET_TILE2TILES:',
       CALL PRINT_MESSAGE( msgBuf, W2_oUnit, SQUEEZE_RIGHT, myThid )
 
       it = 1
-      DO is=1,nTiles
+      DO is=1,exch2_nTiles
        js  = exch2_myFace(is)
        IF ( js.NE.0 ) THEN
         IF ( exch2_nNeighbours(is).GT.exch2_nNeighbours(it) ) it = is
