@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/exch2:
+ - rename+move: nTiles in W2_EXCH2_PARAMS.h --> exch2_nTiles in W2_EXCH2_TOPOLOGY.h
+ - exch2 version of Cumul-Sum routine: S/R W2_SET_MAP_CUMSUM set up the
+   (2*nTiles)x(nTiles) Cumul-Sum matrix and Master Proc collects all tiles X,Y
+   increments, calculates Cumul-Sum @ tile origin and sends results to each tile.
 o pkg/diagnostics:
  - deal with pairs of post-processed diags which are computed together; in
    particular, re-order list of diags within 1 file to save 2nd computation.
