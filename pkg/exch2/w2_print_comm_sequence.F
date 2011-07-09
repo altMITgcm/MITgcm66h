@@ -22,7 +22,6 @@ C     !USES:
 C     == Global data ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
-#include "EESUPPORT.h"
 #include "W2_EXCH2_SIZE.h"
 #include "W2_EXCH2_TOPOLOGY.h"
 #include "W2_EXCH2_PARAMS.h"
