@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint63 (2011/07/11)
 o pkg/exch2:
  - rename+move: nTiles in W2_EXCH2_PARAMS.h --> exch2_nTiles in W2_EXCH2_TOPOLOGY.h
  - exch2 version of Cumul-Sum routine: S/R W2_SET_MAP_CUMSUM set up the
