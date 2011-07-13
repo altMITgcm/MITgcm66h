@@ -65,8 +65,8 @@ CEOP
 
       calcMixLayerDepth = .FALSE.
 #ifdef ALLOW_GMREDI
-      IF ( useGMRedi ) THEN
-       IF ( .NOT.useKPP ) calcMixLayerDepth = GM_taper_scheme.EQ.'fm07'
+      IF ( useGMRedi .AND. .NOT.useKPP ) THEN
+       calcMixLayerDepth = GM_useSubMeso .OR. GM_taper_scheme.EQ.'fm07'
       ENDIF
 #endif
 #ifdef ALLOW_DIAGNOSTICS

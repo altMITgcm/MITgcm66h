@@ -19,6 +19,7 @@ C #define GM_EXCLUDE_CLIPPING
 C #define GM_EXCLUDE_FM07_TAP
 C #define GM_EXCLUDE_AC02_TAP
 C #define GM_EXCLUDE_TAPERING
+C #define GM_EXCLUDE_SUBMESO
 
 C This allows to use Visbeck et al formulation to compute K_GM+Redi
 #undef GM_VISBECK_VARIABLE_K
