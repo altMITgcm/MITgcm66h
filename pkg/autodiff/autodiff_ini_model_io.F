@@ -187,6 +187,17 @@ C      create directory
      &     'coordinates','XC YC RC iter', myThid)
 #endif
 
+#ifdef ALLOW_BOTTOMDRAG_CONTROL
+      CALL MNC_CW_ADD_VNAME('adBottomDrag', 'Cen_xy_Hn__-__t',
+     .3,4, myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adBottomDrag',
+     &     'units','[cost]/[N/m^2]', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adBottomDrag','long_name',
+     &     'adjoint bottom drag', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adBottomDrag',
+     &     'coordinates','XC YC RC iter', myThid)
+#endif
+
 #ifdef ALLOW_DIFFKR_CONTROL
       CALL MNC_CW_ADD_VNAME('adDiffkr', 'Cen_xy_Hn__C__t', 4,5, myThid)
       CALL MNC_CW_ADD_VATTR_TEXT('adDiffkr',

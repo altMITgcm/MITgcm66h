@@ -246,6 +246,10 @@ c
 #ifdef ALLOW_SSS0_CONTROL
           CALL MNC_CW_RL_W('D','adstate',0,0,'adSSS', adsss, myThid)
 #endif
+#ifdef ALLOW_BOTTOMDRAG_CONTROL
+          CALL MNC_CW_RL_W('D','adstate',0,0,'adBottomDrag',
+     &         adbottomdragfld, myThid)
+#endif
 #ifdef ALLOW_DIFFKR_CONTROL
           CALL MNC_CW_RL_W('D','adstate',0,0,
      &         'adDiffkr', addiffkr, myThid)
