@@ -741,13 +741,13 @@ C     Compute relative wind speed over sea ice.
 
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE tice(:,:,bi,bj) 
-CADJ &     = comlev1, key = ikey_dynamics, byte = isbyte
+CADJ &     = comlev1_bibj, key = iicekey, byte = isbyte
 CADJ STORE hsnowActual = comlev1_bibj, key = iicekey, byte = isbyte
 CADJ STORE heffActual  = comlev1_bibj, key = iicekey, byte = isbyte
 CADJ STORE UG          = comlev1_bibj, key = iicekey, byte = isbyte
 # ifdef SEAICE_MULTICATEGORY
 CADJ STORE tices(:,:,:,bi,bj) 
-CADJ &     = comlev1, key = ikey_dynamics, byte = isbyte
+CADJ &     = comlev1_bibj, key = iicekey, byte = isbyte
 # endif /* SEAICE_MULTICATEGORY */
 #endif /* ALLOW_AUTODIFF_TAMC */
 
