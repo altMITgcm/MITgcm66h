@@ -149,7 +149,8 @@ c     useDynP_inEos_Zc = .FALSE.
       useDynP_inEos_Zc = ( fluidIsWater .AND. usingZCoords
      &              .AND. ( eosType .EQ. 'JMD95P' .OR.
      &                      eosType .EQ. 'UNESCO' .OR.
-     &                      eosType .EQ. 'MDJWF'       )  )
+     &                      eosType .EQ. 'MDJWF'  .OR.
+     &                      eosType .EQ. 'TEOS10'      )  )
 
 C--   Adjust parameters related to length of the simulation
 
