@@ -52,7 +52,6 @@ c     == local variables ==
       integer ip,jp
       integer i,j,k
       integer ii
-      integer il
       integer irec
       integer itlo,ithi
       integer jtlo,jthi
@@ -64,6 +63,8 @@ c     == local variables ==
       _RL     globmsk  ( snx,nsx,npx,sny,nsy,npy,nr )
       _RL     globfld3d( snx,nsx,npx,sny,nsy,npy,nr )
 #ifdef CTRL_UNPACK_PRECISE
+      integer il
+      character*(80) weightname
       _RL   weightfld3d( snx,nsx,npx,sny,nsy,npy,nr )
 #endif
       real*4 cbuff      ( snx*nsx*npx*sny*nsy*npy )
@@ -71,7 +72,6 @@ c     == local variables ==
       real*4 globfldtmp3( snx,nsx,npx,sny,nsy,npy )
 
       character*(128)   cfile
-      character*(80) weightname
 
       _RL delZnorm
       integer reclen, irectrue
