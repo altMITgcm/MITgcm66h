@@ -175,6 +175,7 @@ C------ read from file:
 C- read surface topography (in m) from topoFile (case topoFile.NE.' '):
 
         CALL READ_REC_XY_RS( topoFile, topoZ, 1, 0, myThid )
+        _EXCH_XY_RS( topoZ, myThid )
 
         IF (buoyancyRelation .EQ. 'ATMOSPHERIC') THEN
 C----
