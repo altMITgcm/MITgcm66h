@@ -541,6 +541,16 @@ c     diagTitle = 'Square of ocean bottom pressure / top. geo-Potential'
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
+#ifdef NONLIN_FRSURF
+      diagName  = 'PHIHYDcR'
+      diagTitle = DIAGS_MK_TITLE( 'Hydrostatic '
+     I                       //pTitle//' Anomaly @ const r', myThid )
+      diagUnits = 'm^2/s^2         '
+      diagCode  = 'SMR     MR      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+#endif
+
 #ifdef ALLOW_NONHYDROSTATIC
       diagName  = 'PHI_NH  '
       diagTitle = DIAGS_MK_TITLE( 'Non-Hydrostatic '//pTitle, myThid )
