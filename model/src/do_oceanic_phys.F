@@ -74,6 +74,9 @@ C     == Global variables ===
 # ifdef ALLOW_SEAICE
 #  include "SEAICE.h"
 # endif
+# ifdef ALLOW_THSICE
+#  include "THSICE_VARS.h"
+# endif
 # ifdef ALLOW_SALT_PLUME
 #  include "SALT_PLUME.h"
 # endif
@@ -328,6 +331,8 @@ C     impact has been vetted in forward integrations
       IF ( allowInteriorFreezing ) THEN
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE theta, salt = comlev1, key = ikey_dynamics,
+CADJ &     kind = isbyte
+CADJ STORE recip_hfacc = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
 #endif
         CALL FREEZE_INTERIOR(  myTime, myIter, myThid )
