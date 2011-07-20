@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CBOP
@@ -118,7 +119,12 @@ c          totPhiHyd(i,j,k,bi,bj) = phiHydCstR(i,j)
          ENDDO
         ENDDO
        ENDIF
-       CALL DIAGNOSTICS_FILL(phiHydCstR,'PHIHYDcR',k,1,2,bi,bj,myThid)
+#ifdef ALLOW_DIAGNOSTICS
+       IF ( useDiagnostics ) THEN
+        CALL DIAGNOSTICS_FILL(phiHydCstR,'PHIHYDcR',k,1,2,bi,bj,myThid)
+       ENDIF
+#endif /* ALLOW_DIAGNOSTICS */
+
 c# endif /* DISABLE_RSTAR_CODE */
       ENDIF
 #endif /* NONLIN_FRSURF */
