@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o optim/optim_readdata.F:
+  - add some output about obcs variables that might help debugging
 o pkg/ctrl: once again, fix computation of endrec in s/r ctrl_init_rec
 o pkg/diagnostics (velocity potential):
   - fix mask for OBCS (still problems in stream-function with OBCS);
