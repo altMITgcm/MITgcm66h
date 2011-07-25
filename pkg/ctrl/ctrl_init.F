@@ -881,8 +881,8 @@ c     initialise some output
      &                fldperiod) + 2
        if ( nfac .ne. 1 ) then
 c     This is the case of obcs.
-        endrec   = endrec*nfac + 1
         startrec = (startrec - 1)*nfac + 1
+        endrec   = endrec*nfac
        endif
       endif
 # else /* ndef ALLOW_CAL */
