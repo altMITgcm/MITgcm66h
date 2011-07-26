@@ -333,12 +333,10 @@ C-       get all the levels (for vertical post-processing)
               IF ( mDbl.GT.0 ) THEN
                DO bj = myByLo(myThid), myByHi(myThid)
                 DO bi = myBxLo(myThid), myBxHi(myThid)
-                 DO k = 1,nlevels(listId)
                   CALL DIAGNOSTICS_GET_DIAG(
      I                         0, undefRL,
-     O                         qtmp2(1-OLx,1-OLy,k,bi,bj),
+     O                         qtmp2(1-OLx,1-OLy,1,bi,bj),
      I                         mDbl, 0, im, 0, bi, bj, myThid )
-                 ENDDO
                 ENDDO
                ENDDO
               ENDIF
