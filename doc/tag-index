@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/exf/exf_readparms.F
+  - make treatment of optional namelists (EXF_NML_04, EXF_NML_SGRUNOFF, 
+    EXF_NML_OBCS) more consistent, so that you need not have these lists
+    in data.exf when they are not used.
 o optim/optim_readdata.F:
   - add some output about obcs variables that might help debugging
   - add a check about nvarlength
