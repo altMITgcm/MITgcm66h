@@ -811,7 +811,8 @@ c--   convert to units of meters
 #endif
 
 c--   Read zonal wind stress variance.
-#if (defined (ALLOW_SCAT_COST_CONTRIBUTION))
+#if (defined (ALLOW_SCAT_COST_CONTRIBUTION) || \
+     defined (ALLOW_DAILYSCAT_COST_CONTRIBUTION) )
 
       nnz   =   1
       irec  =   1

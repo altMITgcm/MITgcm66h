@@ -244,7 +244,8 @@ c--   Read the EGM data from file.
      &                    SQUEEZE_RIGHT , mythid)
 #endif
 
-#ifdef ALLOW_SCAT_COST_CONTRIBUTION
+#if (defined (ALLOW_SCAT_COST_CONTRIBUTION) || \
+     defined (ALLOW_DAILYSCAT_COST_CONTRIBUTION) )
 c--   Use NSCAT data for getting the weights.
       write(msgbuf,'(a)')
      &'// ALLOW_SCAT_COST_CONTRIBUTION:                     defined'

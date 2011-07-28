@@ -195,7 +195,8 @@ c--       Initialise uvel, vvel average.
           xx_wbar_mean_dummy = 0. _d 0
 #endif
 
-#ifdef ALLOW_SCAT_COST_CONTRIBUTION
+#if (defined (ALLOW_SCAT_COST_CONTRIBUTION) || \
+     defined (ALLOW_DAILYSCAT_COST_CONTRIBUTION) )
 c--       Initialise salinity average (2d).
           do j = jmin,jmax
             do i =  imin,imax
