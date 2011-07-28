@@ -24,7 +24,9 @@ DEFINES='-D_BYTESWAPIO -DWORDLENGTH=4'
 #DEFINES='-DWORDLENGTH=4'
 CPP='cpp -traditional -P'
 MAKEDEPEND=/usr/X11R6/bin/makedepend
-NOOPTFLAGS='-O0 -m32 -g -fPIC'
+GET_FC_VERSION="--version"
+
+NOOPTFLAGS='-O0 -g'
 NOOPTFILES='ini_vertical_grid.F'
 
 if test "x$DEVEL" != x ; then
