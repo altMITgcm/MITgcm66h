@@ -169,7 +169,7 @@ C     Check for sufficient storage space in mnc_fv_ids
       IF (needed .GE. MNC_MAX_INFO) THEN
         WRITE(msgBuf,'(2A,I7,A)') 'MNC ERROR: MNC_MAX_INFO exceeded',
      &       ': please increase it to ', 2*MNC_MAX_INFO,
-     &       ' in the file ''pkg/mnc/MNC_COMMON.h'''
+     &       ' in the file ''pkg/mnc/MNC_SIZE.h'''
         CALL print_error(msgBuf, myThid)
         STOP 'ABNORMAL END: S/R MNC_VAR_INIT_ANY'
       ENDIF
