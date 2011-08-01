@@ -133,6 +133,7 @@ C     Initialize and Read Diagnostics Namelist
       diag_pickup_read_mnc  = .FALSE.
       diag_pickup_write_mnc = .FALSE.
 
+      prtFirstCall     = .TRUE.
       diagCG_maxIters  = cg2dMaxIters
       diagCG_resTarget = cg2dTargetResidual
       diagCG_prtResFrq = printResidualFreq
