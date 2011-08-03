@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/mypackage:
+  - remove bi,bj arguments from argument list of S/R MYPACKAGE_CALC_RHS
+
 checkpoint63a (2011/08/02)
 o pkg/diagnostics (velocity potential):
   - fix velocity-potential calculation when using OBCS: balance net inflow
