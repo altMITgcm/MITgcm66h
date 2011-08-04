@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o genmake2 & testreport
+  - add target "obj" (just for OBJFILES files) to Makefile;
+  - add option to specify FEXTRAFLAGS on command line.
 o pkg/mypackage:
   - remove bi,bj arguments from argument list of S/R MYPACKAGE_CALC_RHS
 
