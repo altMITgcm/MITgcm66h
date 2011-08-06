@@ -61,11 +61,6 @@ ce    some reference temperature
 
       objf_tracer(bi,bj) = objf_tracer(bi,bj) + locfc
 
-#ifdef ALLOW_PTRACERS
-      print *, 'COST TRACER nach', objf_tracer(bi,bj),
-     &     ptracer(83,33,1,1,1,1), ptracer(83,33,2,1,1,1)
-#endif
-
 #endif /* ALLOW_COST_TRACER */
 
       RETURN
