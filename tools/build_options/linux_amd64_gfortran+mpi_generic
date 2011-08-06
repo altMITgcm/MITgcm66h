@@ -105,8 +105,10 @@ elif test -d /usr/local/include/netcdf.inc ; then
     LIBS='-L/usr/local/lib64'
 fi
 
-INCLUDES="$INCLUDES -I$MPI_INC_DIR"
-INCLUDEDIRS="$INCLUDEDIRS $MPI_INC_DIR"
-MPIINCLUDEDIR="$MPI_INC_DIR"
-MPI_HEADER_FILES='mpif.h mpiof.h'
-MPI_HEADER_FILES_INC='./mpi_headers/mpif.h ./mpi_headers/mpiof.h'
+if [ -n "$MPI_INC_DIR" ]; then
+    INCLUDES="$INCLUDES -I$MPI_INC_DIR"
+    INCLUDEDIRS="$INCLUDEDIRS $MPI_INC_DIR"
+    MPIINCLUDEDIR="$MPI_INC_DIR"
+    MPI_HEADER_FILES='mpif.h mpiof.h'
+    MPI_HEADER_FILES_INC='./mpi_headers/mpif.h ./mpi_headers/mpiof.h'
+fi
