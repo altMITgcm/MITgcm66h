@@ -512,6 +512,9 @@ CADJ &     kind = isbyte
 #endif /* ALLOW_DOWN_SLOPE */
 #ifdef ALLOW_BBL
            IF ( useBBL ) THEN
+C     pkg/bbl requires in-situ bbl density for depths equal to and deeper than the bbl.
+C     To reduce computation and storage requirement, these densities are stored in the
+C     dry grid boxes of rhoInSitu.  See BBL_CALC_RHO for details.
             CALL BBL_CALC_RHO(
      I                  theta, salt,
      O                  rhoInSitu,
