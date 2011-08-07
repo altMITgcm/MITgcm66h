@@ -86,6 +86,12 @@ C                    and stagger/synchronous TimeStep
         ENDIF
 #endif
 
+#ifdef ALLOW_BBL
+       IF ( seqFlag.EQ.0 .AND. useBBL ) THEN
+         CALL BBL_DIAGNOSTICS_STATE( myTime, myIter, myThid )
+       ENDIF
+#endif /* ALLOW_MYPACKAGE */
+
 #ifdef ALLOW_SEAICE
        IF ( seqFlag.EQ.0 .AND. useSEAICE ) THEN
         CALL SEAICE_DIAGNOSTICS_STATE( myTime, myIter, myThid )

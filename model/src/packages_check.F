@@ -166,6 +166,12 @@ C---  Continue with standard packages (with standard usePKG flag)
      &            CALL PACKAGES_ERROR_MSG('DOWN_SLOPE',' ',myThid)
 #endif
 
+#ifdef ALLOW_BBL
+      IF (useBBL) CALL BBL_CHECK( myThid )
+#else
+      IF (useBBL) CALL PACKAGES_ERROR_MSG('BBL',' ',myThid)
+#endif
+
 #ifdef ALLOW_OBCS
       IF (useOBCS) CALL OBCS_CHECK( myThid )
 #else
@@ -367,6 +373,17 @@ C---  Exclusive packages (which cannot be used together):
       IF ( useEXF .AND. useBulkForce ) THEN
         WRITE(msgBuf,'(2A)') 'PACKAGES_CHECK: ',
      &  'both useEXF and useBulkForce are set'
+        CALL PRINT_ERROR( msgBuf , myThid )
+        WRITE(msgBuf,'(2A)') 'PACKAGES_CHECK: ',
+     &  ' but cannot be used together => need to select only one.'
+        CALL PRINT_ERROR( msgBuf , myThid )
+        STOP 'ABNORMAL END: S/R PACKAGES_CHECK'
+      ENDIF
+
+C---  Exclusive packages (which cannot be used together):
+      IF ( useDOWN_SLOPE .AND. useBBL ) THEN
+        WRITE(msgBuf,'(2A)') 'PACKAGES_CHECK: ',
+     &  'both useDOWN_SLOPE and useBBL are set'
         CALL PRINT_ERROR( msgBuf , myThid )
         WRITE(msgBuf,'(2A)') 'PACKAGES_CHECK: ',
      &  ' but cannot be used together => need to select only one.'

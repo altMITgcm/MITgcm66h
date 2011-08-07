@@ -86,20 +86,3 @@ C     !LOCAL VARIABLES:
 
       RETURN
       END
-
-C This following stub is included for compatibility with external_forcing.F.
-C It should be removed if bbl becomes a package.
-      SUBROUTINE BBL_TENDENCY_APPLY_U(
-     &                     iMin, iMax, jMin, jMax,
-     &                     bi, bj, k, myTime, myThid )
-      INTEGER iMin, iMax, jMin, jMax, k, bi, bj, myThid
-      _RL myTime
-      RETURN
-      END
-      SUBROUTINE BBL_TENDENCY_APPLY_V(
-     &                     iMin, iMax, jMin, jMax,
-     &                     bi, bj, k, myTime, myThid )
-      INTEGER iMin, iMax, jMin, jMax, k, bi, bj, myThid
-      _RL myTime
-      RETURN
-      END

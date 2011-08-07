@@ -40,6 +40,8 @@ C       |-- GMREDI_READPARMS
 C       |
 C       |-- DWNSLP_READPARMS
 C       |
+C       |-- BBL_READPARMS
+C       |
 C       |-- KPP_READPARMS
 C       |
 C       |-- PP81_READPARMS
@@ -159,6 +161,11 @@ C--   Initialize GM/Redi parameters
 #ifdef ALLOW_DOWN_SLOPE
 C--   Initialize Down-Slope flow parameters
       IF (useDOWN_SLOPE) CALL DWNSLP_READPARMS( myThid )
+#endif
+
+#ifdef ALLOW_BBL
+C--   Initialize BBL parameters
+      IF (useBBL) CALL BBL_READPARMS( myThid )
 #endif
 
 #ifdef ALLOW_KPP

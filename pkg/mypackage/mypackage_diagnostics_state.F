@@ -19,9 +19,7 @@ C     !USES:
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#ifdef ALLOW_MYPACKAGE
 #include "MYPACKAGE.h"
-#endif
 
 C     !INPUT PARAMETERS:
 C     myTime   :: Current time of simulation ( s )

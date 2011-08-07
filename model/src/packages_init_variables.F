@@ -30,6 +30,8 @@ C       |-- GMREDI_INIT_VARIA
 C       |
 C       |-- DWNSLP_INIT_VARIA
 C       |
+C       |-- BBL_INIT_VARIA
+C       |
 C       |-- KPP_INIT_VARIA
 C       |
 C       |-- PP81_INIT_VARIA
@@ -158,6 +160,12 @@ C--   Initialize GM/Redi parameterization
         CALL DWNSLP_INIT_VARIA( myThid )
       ENDIF
 #endif /* ALLOW_DOWN_SLOPE */
+
+#ifdef ALLOW_BBL
+      IF ( useBBL ) THEN
+        CALL BBL_INIT_VARIA( myThid )
+      ENDIF
+#endif /* ALLOW_BBL */
 
 #ifdef ALLOW_KPP
 C--   Initialize KPP vertical mixing scheme.

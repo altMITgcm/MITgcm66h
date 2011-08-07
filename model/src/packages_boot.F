@@ -55,6 +55,7 @@ C     data.pkg namelists
      &          useKPP,
      &          useGMRedi,
      &          useDOWN_SLOPE,
+     &          useBBL,
 c    &          useCAL,
      &          useEXF,
      &          useBulkForce,
@@ -114,6 +115,7 @@ c     useGAD          =.FALSE.
       useKPP          =.FALSE.
       useGMRedi       =.FALSE.
       useDOWN_SLOPE   =.FALSE.
+      useBBL          =.FALSE.
       useCAL          =.FALSE.
       useEXF          =.FALSE.
       useBulkForce    =.FALSE.

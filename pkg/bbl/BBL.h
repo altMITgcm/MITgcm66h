@@ -18,10 +18,11 @@ C     file names for initial conditions:
       COMMON /BBL_PARM_C/ bbl_thetaFile, bbl_saltFile, bbl_etaFile
 
 C     BBL 2-dim. fields
-      _RL bbl_theta(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RL bbl_salt (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RL bbl_eta  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      COMMON /BBL_STATE_2D/ bbl_theta, bbl_salt, bbl_eta
+      _RL bbl_theta (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL bbl_salt  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL bbl_eta   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL bbl_rho_nr(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      COMMON /BBL_STATE_2D/ bbl_theta, bbl_salt, bbl_eta, bbl_rho_nr
 
 C     BBL tendency terms
       _RL bbl_TendTheta(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)

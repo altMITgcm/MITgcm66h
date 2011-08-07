@@ -38,6 +38,8 @@ C       |-- GMREDI_INIT_FIXED
 C       |
 C       |-- DWNSLP_INIT_FIXED
 C       |
+C       |-- BBL_INIT_FIXED
+C       |
 C       |-- KPP_INIT_FIXED
 C       |
 C       |-- MY82_INIT_FIXED
@@ -166,6 +168,13 @@ C--   Initialize fixed arrays for GM-Redi
 C--   Initialize fixed arrays for Down-Slope pkg
       IF ( useDOWN_SLOPE ) THEN
        CALL DWNSLP_INIT_FIXED( myThid )
+      ENDIF
+#endif
+
+#ifdef ALLOW_BBL
+C--   Initialize fixed arrays for BBL pkg
+      IF ( useBBL ) THEN
+       CALL BBL_INIT_FIXED( myThid )
       ENDIF
 #endif
 

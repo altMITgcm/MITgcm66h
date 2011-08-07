@@ -77,6 +77,13 @@ C     Write restart file for 2nd-Order moment (active) Tracers
       ENDIF
 #endif  /* ALLOW_OBCS */
 
+#ifdef ALLOW_BBL
+      IF (useBBL) THEN
+        CALL BBL_WRITE_PICKUP( permPickup,
+     I                      suffix, myTime, myIter, myThid )
+      ENDIF
+#endif /* ALLOW_MYPACKAGE */
+
 #ifdef  ALLOW_SEAICE
       IF ( useSEAICE ) THEN
         CALL SEAICE_WRITE_PICKUP( permPickup,

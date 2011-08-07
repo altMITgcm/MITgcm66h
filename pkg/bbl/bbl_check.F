@@ -8,7 +8,7 @@ CBOP 0
 C !ROUTINE: BBL_CHECK
 
 C !INTERFACE:
-      SUBROUTINE MYPACKAGE_CHECK( myThid )
+      SUBROUTINE BBL_CHECK( myThid )
 
 C     !DESCRIPTION:
 C     Check dependances with other packages
@@ -37,11 +37,11 @@ C     msgBuf   :: Informational/error message buffer
      &                     SQUEEZE_RIGHT , 1)
 
 C--  Print out some key parameters :
-       CALL WRITE_0D_L( bbl_RelaxH, INDEX_NONE,
+       CALL WRITE_0D_RL( bbl_RelaxH, INDEX_NONE,
      &  'bbl_RelaxH =', ' /* horizontal transfer coefficient */')
-       CALL WRITE_0D_L( bbl_RelaxR, INDEX_NONE,
+       CALL WRITE_0D_RL( bbl_RelaxR, INDEX_NONE,
      &  'bbl_RelaxR =', ' /* vertical transfer coefficient */')
-       CALL WRITE_0D_L( bbl_InitEta, INDEX_NONE,
+       CALL WRITE_0D_RL( bbl_InitEta, INDEX_NONE,
      &  'bbl_InitEta =', ' /* default bbl thickness */')
 
 C--  Check parameters:

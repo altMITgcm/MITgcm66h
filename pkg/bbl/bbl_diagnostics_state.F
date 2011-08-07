@@ -19,9 +19,7 @@ C     !USES:
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#ifdef ALLOW_BBL
 #include "BBL.h"
-#endif
 
 C     !INPUT PARAMETERS:
 C     myTime   :: Current time of simulation ( s )
