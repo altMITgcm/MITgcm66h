@@ -19,7 +19,11 @@ C     !USES:
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+C  put following include within #ifdef in case this file is copied to local
+C  code dir but pkg/mypackage is not compiled (missing file MYPACKAGE.h).
+#ifdef ALLOW_MYPACKAGE
 #include "MYPACKAGE.h"
+#endif
 
 C     !INPUT PARAMETERS:
 C     myTime   :: Current time of simulation ( s )
