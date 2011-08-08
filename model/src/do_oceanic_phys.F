@@ -418,7 +418,7 @@ C This is currently used by GMRedi, IVDC, MXL-depth  and Diagnostics
 #ifdef ALLOW_AUTODIFF_TAMC
 cph all the following init. are necessary for TAF
 cph although some of these are re-initialised later.
-c          rhoInSitu(i,j,k,bi,bj) = 0.
+           rhoInSitu(i,j,k,bi,bj) = 0.
            IVDConvCount(i,j,k,bi,bj) = 0.
 # ifdef ALLOW_GMREDI
            Kwx(i,j,k,bi,bj)  = 0. _d 0
