@@ -26,12 +26,12 @@
 #include <errno.h>
 #include <ucontext.h>
 
-int * ip;
+int * sigreg_ip;
 
 static void killhandler(
     unsigned int sn, siginfo_t  si, struct ucontext *sc )
 {
-    *ip = *ip + 1;
+    *sigreg_ip = *sigreg_ip + 1;
     return;
 }
 #endif
@@ -41,7 +41,7 @@ void FC_NAMEMANGLE(sigreg) (int * aip)
 {
 #ifdef HAVE_SIGREG
     struct sigaction s;
-    ip = aip;
+    sigreg_ip = aip;
     s.sa_flags = SA_SIGINFO;
     s.sa_sigaction = (void *)killhandler;
     if(sigaction (SIGTERM,&s,(struct sigaction *)NULL)) {
