@@ -1522,7 +1522,7 @@ EOF
 fi
 if test "x$GET_FC_VERSION" != x ; then
   echo "Get compiler version using: $FC $GET_FC_VERSION" >> $LOGFILE
-  $FC $GET_FC_VERSION >> $LOGFILE 2>&1
+  $FC $GET_FC_VERSION >> $LOGFILE 2> /dev/null
   echo "<-- compiler version ----" >> $LOGFILE
 fi
 
