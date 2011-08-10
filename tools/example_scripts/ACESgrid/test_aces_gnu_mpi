@@ -2,7 +2,7 @@
 #
 #PBS -q four
 #PBS -N tst_gnu
-#PBS -l nodes=1:ppn=4
+#PBS -l nodes=1:ppn=6
 #PBS -e /mit/jm_c/test_acesgrid/output/tst_gnu.stderr
 #PBS -o /mit/jm_c/test_acesgrid/output/tst_gnu.stdout
 
@@ -28,8 +28,10 @@ sfx='gnu'
  module add gcc
  module add openmpi
  OPTFILE="../tools/build_options/linux_amd64_gfortran+mpi_generic"
- options="-j 2 -MPI 4 -mf $PBS_NODEFILE"
- EXE="mpirun -machinefile TR_MFILE -v -np TR_NPROC ./mitgcmuv"
+#options="-j 2 -MPI 6 -mf $PBS_NODEFILE"
+#EXE="mpirun -machinefile TR_MFILE -v -np TR_NPROC ./mitgcmuv"
+ options="-j 2 -MPI 6"
+ EXE="mpirun -v -np TR_NPROC ./mitgcmuv"
 
 #- keep a copy of MPI_MFILE:
 cp -p $PBS_NODEFILE $HERE"/mf_"$sfx
