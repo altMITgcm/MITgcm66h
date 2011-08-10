@@ -14,7 +14,7 @@ sub_list_jobs()
    for i in $JOB_LIST
    do
      case $i in
-       'mth') sfx='ifc_'${i}  ;;
+       'mth') sfx='path_'${i}  ;;
        'tuv') sfx='op64_'${i} ;;
        'mp2') sfx=${i}'_mth'  ;;
        'g77') sfx=${i}'_adm'  ;;
