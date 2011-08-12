@@ -77,6 +77,14 @@ c     == end of interface ==
      &'  Increment:                       ',nstep
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a,i10)')
+     &'  grdchkWhichProc:                 ',grdchkwhichproc
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(2(A,I8))') '  iLocTile =', iLocTile,
+     &                     '  ,    jLocTile =', jLocTile
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
 
       write(msgbuf,'(a)')
      &' '
