@@ -31,6 +31,7 @@ DEFINES='-DWORDLENGTH=4 -DNML_TERMINATOR'
 CPP='cpp -traditional -P'
 NOOPTFLAGS='-O0'
 EXTENDED_SRC_FLAG='-ffixed-line-length-132'
+GET_FC_VERSION="--version"
 OMPFLAG='-fopenmp'
 
 if test "x$DEVEL" != x ; then
