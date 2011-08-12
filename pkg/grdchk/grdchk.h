@@ -40,8 +40,8 @@ c     maxgrdchecks - maximum number of gradient checks done per tile.
      &                       iGloPos,
      &                       jGloPos,
      &                       kGloPos,
-     &                       iGloTile,
-     &                       jGloTile,
+     &                       iLocTile,
+     &                       jLocTile,
      &                       idep,
      &                       jdep,
      &                       obcsglo,
@@ -56,8 +56,8 @@ c     maxgrdchecks - maximum number of gradient checks done per tile.
       integer iGloPos
       integer jGloPos
       integer kGloPos
-      integer iGloTile
-      integer jGloTile
+      integer iLocTile
+      integer jLocTile
       integer idep
       integer jdep
       integer obcsglo
