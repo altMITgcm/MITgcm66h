@@ -16,7 +16,7 @@ sub_list_jobs()
      case $i in
        'mth') sfx='path_'${i}  ;;
        'tuv') sfx='op64_'${i} ;;
-       'mp2') sfx=${i}'_mth'  ;;
+       'mp2') sfx='gnu_'${i}  ;;
        'g77') sfx=${i}'_adm'  ;;
            *) sfx=${i}'_mpi'  ;;
      esac
@@ -191,7 +191,7 @@ today=`date +%Y%m%d`
 if test $# = 0
 then
  #TEST_LIST='g77 gnu ifc pgi adm mp2 mth tuv'
-  TEST_LIST='gnu pgi adm mth'
+  TEST_LIST='gnu pgi adm mp2 mth'
 else
   TEST_LIST=$*
 fi
