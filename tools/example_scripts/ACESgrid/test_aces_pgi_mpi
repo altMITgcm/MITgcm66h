@@ -52,7 +52,7 @@ fi
 if [ $checkOut -eq 1 ] ; then
   if test -d $gcmDIR/CVS ; then
     /bin/rm -rf $gcmDIR/verification/??_acesgrid-${sfx}_????????_?
-#   ( cd $gcmDIR/verification ; ../tools/do_tst_2+2 -clean )
+    ( cd $gcmDIR/verification ; ../tools/do_tst_2+2 -clean )
     echo "cvs update of dir $gcmDIR :"
     ( cd $gcmDIR ; cvs -q -d :pserver:cvsanon@mitgcm.org:/u/gcmpack update -P -d ) 2>&1
   else
@@ -83,4 +83,10 @@ echo ./testreport $options -of $OPTFILE -command \"$EXE\" -odir acesgrid-$sfx \
  -skd fizhi-cs-32x32x40
 ./testreport $options -of $OPTFILE -command "$EXE" -odir acesgrid-$sfx \
  -skd fizhi-cs-32x32x40
+
+echo ''
+#echo ../tools/do_tst_2+2 -mpi -mf $PBS_NODEFILE -exe \"$EXE\" -o acesgrid-$sfx -a NONE
+#../tools/do_tst_2+2 -mpi -mf $PBS_NODEFILE -exe "$EXE" -o acesgrid-$sfx -a NONE
+echo ../tools/do_tst_2+2 -mpi -exe \"$EXE\" -o acesgrid-$sfx -a NONE
+../tools/do_tst_2+2 -mpi -exe "$EXE" -o acesgrid-$sfx -a NONE
 
