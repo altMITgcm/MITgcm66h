@@ -43,6 +43,8 @@ C
 C       >>> Cost function contributions
 #undef ALLOW_COST_TRACER
 #define ALLOW_DIC_COST
+#undef ALLOW_COST_TEST
+#undef ALLOW_COST_TSQUARED
 
 C ********************************************************************
 C ***               Control vector Package                         ***
