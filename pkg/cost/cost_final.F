@@ -131,7 +131,7 @@ c--   Sum up all contributions.
 c--   Do global summation.
       _GLOBAL_SUM_RL( fc , myThid )
 
-#ifdef ALLOW_DIC
+#ifdef ALLOW_DIC_COST
 cph-- quickly for testing
       fc = totcost
 #endif

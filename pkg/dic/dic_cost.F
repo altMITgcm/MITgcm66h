@@ -29,7 +29,7 @@ C     == Routine arguments ==
       _RL myTime
       INTEGER myThid
 
-#ifdef ALLOW_COST
+#ifdef ALLOW_DIC_COST
 
 C     == Local variables ==
       INTEGER i, j, bi, bj, k, it
