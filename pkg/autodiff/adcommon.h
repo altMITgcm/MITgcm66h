@@ -19,6 +19,9 @@ C--   heimbach@mit.edu 11-Jan-2001
 c#ifdef ALLOW_SEAICE
 c# include "SEAICE_OPTIONS.h"
 c#endif
+#ifdef ALLOW_PTRACERS
+# include "PTRACERS_OPTIONS.h"
+#endif
 
 
       common /addynvars_r/
@@ -222,5 +225,18 @@ c
       common /adgrid_r_s/ adhfacs
       common /adgrid_r_w/ adhfacw
 #endif /* ALLOW_DEPTH_CONTROL */
+
+#ifdef ALLOW_PTRACERS
+      _RL adgptr(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy,
+     $ptracers_num)
+      _RL adgptrnm1(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy,
+     $ptracers_num)
+      _RL adptracer(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy,
+     $ptracers_num)
+      _RL adsurfaceforcingptr(1-olx:snx+olx,1-oly:sny+oly,
+     $nsx,nsy,ptracers_num)
+      common /adptracers_fields/ adptracer, adgptr, adgptrnm1, 
+     $adsurfaceforcingptr
+#endif
 
 #endif /* ALLOW_AUTODIFF_MONITOR */

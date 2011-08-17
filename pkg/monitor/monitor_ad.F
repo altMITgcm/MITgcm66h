@@ -30,6 +30,9 @@ C     !USES:
 #ifdef ALLOW_MNC
 # include "MNC_PARAMS.h"
 #endif
+#ifdef ALLOW_PTRACERS
+# include "PTRACERS_SIZE.h"
+#endif
 #ifdef ALLOW_AUTODIFF
 # ifdef ALLOW_AUTODIFF_MONITOR
 #  include "adcommon.h"
@@ -188,6 +191,10 @@ cph This case is handled separately in exf_adjoint_snapshots_ad.F
 
 #ifdef ALLOW_SEAICE
       CALL ADSEAICE_MONITOR ( myTime, myIter, myThid )
+#endif
+
+#ifdef ALLOW_PTRACERS
+      CALL ADPTRACERS_MONITOR ( myTime, myIter, myThid )
 #endif
 
 #endif /* ALLOW_AUTODIFF_MONITOR */

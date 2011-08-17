@@ -34,6 +34,9 @@ C     == Global variables ===
 #include "MNC_PARAMS.h"
 #endif
 #include "GRID.h"
+#ifdef ALLOW_PTRACERS
+# include "PTRACERS_SIZE.h"
+#endif
 #ifdef ALLOW_AUTODIFF_MONITOR
 # include "adcommon.h"
 #endif
