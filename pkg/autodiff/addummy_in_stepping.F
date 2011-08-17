@@ -218,7 +218,13 @@ cph        IF ( useEXF ) CALL EXF_AD_DUMP( mytime, myiter, myThid )
 #endif
 
 #ifdef ALLOW_SEAICE
-        IF ( useSEAICE ) CALL SEAICE_AD_DUMP( mytime, myiter, myThid )
+        IF ( useSEAICE ) 
+     &   CALL SEAICE_AD_DUMP( mytime, myiter, myThid )
+#endif
+
+#ifdef ALLOW_PTRACERS
+        IF ( usePTRACERS ) 
+     &   CALL PTRACERS_AD_DUMP( mytime, myiter, myThid )
 #endif
 
 #ifdef ALLOW_MNC
