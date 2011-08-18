@@ -71,7 +71,10 @@ c--   to nTimeSteps: (nchklev_1*nchklev_2*nchklev_3 .ge. nTimeSteps)
 
 #ifdef ALLOW_GRDCHK
        IF ( useSingleCpuIO .AND. useGrdchk ) THEN
-          STOP 'Need to have useSingleCpuIO=.FALSE. with useGrdchk'
+        WRITE(msgBuf,'(A)') 
+     &         'Need to have useSingleCpuIO=.FALSE. with useGrdchk'
+        CALL PRINT_ERROR( msgBuf , myThid )
+          STOP 'ABNORMAL END: S/R AUTODIFF_CHECK'
        ENDIF
 #endif
 

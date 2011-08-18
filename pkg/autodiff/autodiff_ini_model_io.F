@@ -30,13 +30,14 @@ C     \ev
 #include "GRID.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#ifdef ALLOW_PTRACERS
-# include "PTRACERS_SIZE.h"
-#endif
-#ifdef ALLOW_AUTODIFF_MONITOR
-#include "adcommon.h"
-#endif
 #include "AUTODIFF.h"
+#ifdef ALLOW_AUTODIFF_MONITOR
+# include "adcommon.h"
+# ifdef ALLOW_PTRACERS
+#  include "PTRACERS_SIZE.h"
+#  include "ptracers_adcommon.h"
+# endif
+#endif /* ALLOW_AUTODIFF_MONITOR */
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     myThid -  Number of this instances

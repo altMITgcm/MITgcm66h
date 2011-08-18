@@ -38,7 +38,7 @@ C     == Global variables ===
 #endif
 #include "GRID.h"
 #ifdef ALLOW_AUTODIFF_MONITOR
-# include "adcommon.h"
+# include "ptracers_adcommon.h"
 #endif
 
       LOGICAL  DIFFERENT_MULTIPLE

@@ -28,7 +28,7 @@ C !USES: ===============================================================
 #endif
 #ifdef ALLOW_AUTODIFF
 # ifdef ALLOW_AUTODIFF_MONITOR
-#  include "adcommon.h"
+#  include "ptracers_adcommon.h"
 # endif
 #endif
 

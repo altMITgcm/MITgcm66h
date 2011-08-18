@@ -30,9 +30,6 @@ C     !USES:
 #ifdef ALLOW_MNC
 # include "MNC_PARAMS.h"
 #endif
-#ifdef ALLOW_PTRACERS
-# include "PTRACERS_SIZE.h"
-#endif
 #ifdef ALLOW_AUTODIFF
 # ifdef ALLOW_AUTODIFF_MONITOR
 #  include "adcommon.h"
