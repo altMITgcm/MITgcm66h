@@ -37,11 +37,11 @@ CEOP
      &       'THE_MAIN_LOOP: TAMC checkpointing parameters'
         CALL PRINT_ERROR( msgBuf , myThid )
         WRITE(msgBuf,'(A,I10)') 
-     &       '            nchklev_1*nchklev_2 = ',
+     &       'nchklev_1*nchklev_2 = ',
      &       nchklev_1*nchklev_2
         CALL PRINT_ERROR( msgBuf , myThid )
         WRITE(msgBuf,'(A,I10)') 
-     &       '            are not consistent with nTimeSteps = ',
+     &       'are not consistent with nTimeSteps = ',
      &       nTimeSteps
         CALL PRINT_ERROR( msgBuf , myThid )
         STOP 'ABNORMAL END: S/R AUTODIFF_CHECK'
@@ -52,11 +52,11 @@ CEOP
      &       'THE_MAIN_LOOP: TAMC checkpointing parameters'
         CALL PRINT_ERROR( msgBuf , myThid )
         WRITE(msgBuf,'(A,I10)') 
-     &       '            nchklev_1*nchklev_2*nchklev_3*nchklev_4 = ',
+     &       'nchklev_1*nchklev_2*nchklev_3*nchklev_4 = ',
      &       nchklev_1*nchklev_2*nchklev_3*nchklev_4
         CALL PRINT_ERROR( msgBuf , myThid )
         WRITE(msgBuf,'(A,I10)') 
-     &       '            are not consistent with nTimeSteps = ',
+     &       'are not consistent with nTimeSteps = ',
      &       nTimeSteps
         CALL PRINT_ERROR( msgBuf , myThid )
         STOP 'ABNORMAL END: S/R AUTODIFF_CHECK'
@@ -69,11 +69,11 @@ c--   to nTimeSteps: (nchklev_1*nchklev_2*nchklev_3 .ge. nTimeSteps)
      &       'THE_MAIN_LOOP: TAMC checkpointing parameters'
         CALL PRINT_ERROR( msgBuf , myThid )
         WRITE(msgBuf,'(A,I10)') 
-     &       '            nchklev_1*nchklev_2*nchklev_3 = ',
+     &       'nchklev_1*nchklev_2*nchklev_3 = ',
      &       nchklev_1*nchklev_2*nchklev_3
         CALL PRINT_ERROR( msgBuf , myThid )
         WRITE(msgBuf,'(A,I10)') 
-     &       '            are not consistent with nTimeSteps = ',
+     &       'are not consistent with nTimeSteps = ',
      &       nTimeSteps
         CALL PRINT_ERROR( msgBuf , myThid )
         STOP 'ABNORMAL END: S/R AUTODIFF_CHECK'
