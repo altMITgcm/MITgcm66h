@@ -38,7 +38,12 @@ FFLAGS="$FFLAGS -m64 -fPIC -convert big_endian"
 #FFLAGS="$FFLAGS -r8"
 
 if test "x$IEEE" = x ; then     #- with optimisation:
-    FOPTIM='-O3 -LNO:fusion=2 -OPT:roundoff=1:IEEE_arithmetic=3' # -funsafe-math-optimizations'
+   #- full optimisation
+   # ("-Ofast" eqv "-O3 -ipa -OPT:Ofast -fno-math-errno -ffast-math" and "-OPT:Ofast"
+   #  eqv to "-OPT:roundoff=2 -OPT:Olimit=0 -OPT:div_split=ON -OPT:alias=typed")
+    FOPTIM='-Ofast -LNO:fusion=2 -OPT:roundoff=1:IEEE_arithmetic=3'
+   #- high optimisation (-O3), might find Pb with few S/R; fully safe: switch to -O2:
+   #FOPTIM='-O3 -LNO:fusion=2 -OPT:roundoff=1:IEEE_arithmetic=3'
 else
   if test "x$DEVEL" = x ; then  #- no optimisation + IEEE :
     FOPTIM='-O0 -OPT:roundoff=0:IEEE_arithmetic=1 -fmath-errno -fno-fast-math'
