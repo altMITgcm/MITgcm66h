@@ -56,6 +56,7 @@ FFLAGS="$FFLAGS -fPIC"
 if test "x$IEEE" = x ; then
     #  No need for IEEE-754
     FOPTIM='-O3 -funroll-loops'
+    NOOPTFILES="$NOOPTFILES ini_masks_etc.F"
     CFLAGS="$FOPTIM -fPIC"
 else
     #  Try to follow IEEE-754
