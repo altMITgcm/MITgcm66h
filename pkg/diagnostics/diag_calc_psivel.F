@@ -76,6 +76,10 @@ c     CHARACTER*(MAX_LEN_MBUF) msgBuf
 #endif /* ALLOW_OBCS */
 CEOP
 
+#ifdef ALLOW_DEBUG
+      IF (debugMode) CALL DEBUG_ENTER('DIAG_CALC_PSIVEL',myThid)
+#endif
+
 C--   Initialise
       zeroPsi = iPsi0(1,1).GE.0
       psiLoc(1) = 0.
@@ -262,6 +266,10 @@ C--   step.3 : shift stream-function to satisfy Psi == 0 @ a particular location
          ENDDO
         ENDDO
       ENDIF
+
+#ifdef ALLOW_DEBUG
+      IF (debugMode) CALL DEBUG_LEAVE('DIAG_CALC_PSIVEL',myThid)
+#endif
 
       RETURN
       END

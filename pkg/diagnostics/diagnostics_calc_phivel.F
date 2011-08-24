@@ -86,6 +86,10 @@ C     psiLoc  :: horizontal stream-function at special location
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
+#ifdef ALLOW_DEBUG
+      IF (debugMode) CALL DEBUG_ENTER('DIAGNOSTICS_CALC_PHIVEL',myThid)
+#endif
+
       DO ks = 1,nlevels(listId)
         k = NINT(levs(ks,listId))
 C--   Solve for velocity potential for each level:
@@ -297,6 +301,10 @@ C-    Put the results back in qtmp[1,2]
         ENDDO
 
       ENDDO
+
+#ifdef ALLOW_DEBUG
+      IF (debugMode) CALL DEBUG_LEAVE('DIAGNOSTICS_CALC_PHIVEL',myThid)
+#endif
 
       RETURN
       END
