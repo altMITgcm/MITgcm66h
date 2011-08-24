@@ -27,13 +27,16 @@ HERE=$TST_DIR/output
 sfx='adm'
  module add pgi
  module add openmpi
- OPTFILE="../tools/build_options/linux_amd64_pgf77+mpi"
+ OPTFILE="../tools/build_options/linux_amd64_pgf77"
 #options="-adm -MPI 6 -mf $PBS_NODEFILE"
 #EXE="mpirun -machinefile TR_MFILE -v -np TR_NPROC ./mitgcmuv_ad"
  options="-adm -MPI 6"
  EXE="mpirun -v -np TR_NPROC ./mitgcmuv_ad"
 #- need this to get "staf":
 export PATH="$PATH:$HOME/bin"
+
+dAlt=`date +%d` ; dAlt=`expr $dAlt % 3`
+if [ $dAlt -eq 1 ] ; then options="$options -fast" ; fi
 
 #- keep a copy of MPI_MFILE:
 cp -p $PBS_NODEFILE $HERE"/mf_"$sfx
@@ -59,7 +62,7 @@ if [ $checkOut -eq 1 ] ; then
     ( cd $gcmDIR ; cvs -q -d :pserver:cvsanon@mitgcm.org:/u/gcmpack update -P -d ) 2>&1
     RETVAL=$?
     if test "x$RETVAL" != x0 ; then
-       echo " cvs update fail (return val=$RETVAL) => exit"
+       echo "cvs update fail (return val=$RETVAL) => exit"
        exit
     fi
   else
@@ -83,7 +86,7 @@ if test -e $gcmDIR/verification ; then
     echo " dir $gcmDIR/verification exist" ; fi
   cd $gcmDIR/verification
 else
-  echo "no dir $gcmDIR/verification => exit"
+  echo "no dir: $gcmDIR/verification => exit"
   exit
 fi
 

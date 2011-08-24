@@ -27,11 +27,14 @@ HERE=$TST_DIR/output
 sfx='gnu'
  module add gcc
  module add openmpi
- OPTFILE="../tools/build_options/linux_amd64_gfortran+mpi_generic"
+ OPTFILE="../tools/build_options/linux_amd64_gfortran"
 #options="-j 2 -MPI 6 -mf $PBS_NODEFILE"
 #EXE="mpirun -machinefile TR_MFILE -v -np TR_NPROC ./mitgcmuv"
  options="-j 2 -MPI 6"
  EXE="mpirun -v -np TR_NPROC ./mitgcmuv"
+
+dAlt=`date +%d` ; dAlt=`expr $dAlt % 3`
+if [ $dAlt -eq 1 ] ; then options="$options -fast" ; fi
 
 #- keep a copy of MPI_MFILE:
 cp -p $PBS_NODEFILE $HERE"/mf_"$sfx
@@ -57,7 +60,7 @@ if [ $checkOut -eq 1 ] ; then
     ( cd $gcmDIR ; cvs -q -d :pserver:cvsanon@mitgcm.org:/u/gcmpack update -P -d ) 2>&1
     RETVAL=$?
     if test "x$RETVAL" != x0 ; then
-       echo " cvs update fail (return val=$RETVAL) => exit"
+       echo "cvs update fail (return val=$RETVAL) => exit"
        exit
     fi
   else
@@ -81,7 +84,7 @@ if test -e $gcmDIR/verification ; then
     echo " dir $gcmDIR/verification exist" ; fi
   cd $gcmDIR/verification
 else
-  echo "no dir $gcmDIR/verification => exit"
+  echo "no dir: $gcmDIR/verification => exit"
   exit
 fi
 
