@@ -27,7 +27,7 @@ C     myThid            :: thread number
       INTEGER myThid
 
 #ifdef ALLOW_MYPACKAGE
-#if (defined MYPACKAGE_3D_STATE) || (defined MYPACKAGE_3D_STATE)
+#if (defined MYPACKAGE_3D_STATE) || (defined MYPACKAGE_2D_STATE)
 
 C     !LOCAL VARIABLES:
 C     fn          :: character buffer for creating filename
@@ -186,7 +186,7 @@ C-      Assume Agrid position:
         CALL EXCH_XY_RL( myPa_Surf2, myThid )
 #endif /* MYPACKAGE_2D_STATE */
 
-#endif /* MYPACKAGE_3D_STATE or MYPACKAGE_3D_STATE */
+#endif /* MYPACKAGE_3D_STATE or MYPACKAGE_2D_STATE */
 #endif /* ALLOW_MYPACKAGE */
 
       RETURN
