@@ -34,6 +34,9 @@ sfx='tuv'
 #export GSL_IEEE_MODE=double-precision,mask-underflow,mask-denormalized
  ulimit -s unlimited
 
+#dAlt=`date +%d` ; dAlt=`expr $dAlt % 3`
+#if [ $dAlt -eq 1 ] ; then options="$options -fast" ; fi
+
 checkOut=1
 #options="$options -nc" ; checkOut=0
 #options="$options -q"  ; checkOut=0
@@ -55,7 +58,7 @@ if [ $checkOut -eq 1 ] ; then
     ( cd $gcmDIR ; cvs -q -d :pserver:cvsanon@mitgcm.org:/u/gcmpack update -P -d ) 2>&1
     RETVAL=$?
     if test "x$RETVAL" != x0 ; then
-       echo " cvs update fail (return val=$RETVAL) => exit"
+       echo "cvs update fail (return val=$RETVAL) => exit"
        exit
     fi
   else
@@ -79,7 +82,7 @@ if test -e $gcmDIR/verification ; then
     echo " dir $gcmDIR/verification exist" ; fi
   cd $gcmDIR/verification
 else
-  echo "no dir $gcmDIR/verification => exit"
+  echo "no dir: $gcmDIR/verification => exit"
   exit
 fi
 
