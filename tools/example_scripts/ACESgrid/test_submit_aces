@@ -37,7 +37,7 @@ sub_list_jobs()
        else
        #-- to submit job
          if test "x_$job_exist" = x_0 ; then
-           #-- update code if not done within submitted script 
+           #-- update code if not done within submitted script
            doUp=`grep -c '^ *checkOut=0' $SUB_DIR/test_aces_$sfx`
            if test ! -e $TST_DIR/MITgcm_$i ; then doUp=0; fi
            if [ $doUp -ge 1 ] ; then
@@ -200,7 +200,6 @@ today=`date +%Y%m%d`
 
 if test $# = 0
 then
- #TEST_LIST='g77 gnu ifc pgi adm mp2 mth tuv'
   TEST_LIST='gnu mp2 adm pgi path mth op64 tuv'
 else
   TEST_LIST=$*
