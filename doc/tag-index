@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/diagnostics (velocity potential solver):
+  - fix initialisation of main diagonal matrix (for overlap values)
 o tools/build_options:
   - towards single optfile for MPI and non-MPI built: merge few +mpi optfile
     into previously non MPI one (linux_am64 pgf77,open64,pathf90,ifort11)
