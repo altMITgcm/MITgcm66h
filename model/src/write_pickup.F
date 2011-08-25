@@ -62,6 +62,7 @@ C     nj          :: record number
 C     msgBuf      :: Informational/error message buffer
       INTEGER fp
       LOGICAL  glf
+      _RL      timList(1)
       CHARACTER*(MAX_LEN_FNAM) fn
       INTEGER listDim, nWrFlds, n3D
       PARAMETER( listDim = 20 )
@@ -309,10 +310,11 @@ C     all MDSIO S/R, uses instead this specific S/R to write only
 C     meta files but with more informations in it.
         nj = ABS(nj)
         glf  = globalFiles
+        timList(1) = myTime
         CALL MDS_WR_METAFILES( fn, fp, glf, .FALSE.,
      &                         0, 0, 1, ' ',
      &                         nWrFlds, wrFldList,
-     &                         1, myTime,
+     &                         1, timList,
      &                         nj, myIter, myThid )
 #endif /* ALLOW_MDSIO */
 C--------------------------

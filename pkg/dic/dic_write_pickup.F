@@ -48,13 +48,13 @@ C     == Local variables ==
 #endif
 #ifdef DIC_BIOTIC
       LOGICAL glf
+      _RL     timList(1)
       INTEGER j, nj
       INTEGER listDim, nWrFlds
       PARAMETER( listDim = 2 )
       CHARACTER*(8) wrFldList(listDim)
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 #endif
-
 
 c     IF ( DIC_pickup_write_mdsio ) THEN
         prec = precFloat64
@@ -111,10 +111,11 @@ C     files
           nj = nWrFlds
         ENDIF
         glf  = globalFiles
+        timList(1) = myTime
         CALL MDS_WR_METAFILES( fn, prec, glf, .FALSE.,
      &                         0, 0, j, ' ',
      &                         nWrFlds, wrFldList,
-     &                         1, myTime,
+     &                         1, timList,
      &                         nj, myIter, myThid )
 #endif /* ALLOW_MDSIO */
 C--------------------------

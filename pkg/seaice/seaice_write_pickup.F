@@ -54,6 +54,7 @@ C     nj          :: record number
 C     msgBuf      :: Informational/error message buffer
       INTEGER fp
       LOGICAL  glf
+      _RL     timList(1)
       CHARACTER*(MAX_LEN_FNAM) fn
       INTEGER listDim, nWrFlds
       PARAMETER( listDim = 20 )
@@ -173,10 +174,11 @@ C--    write Sea-Ice Dynamics variables (all 2-D fields):
 C     uses this specific S/R to write (with more informations) only meta files
        nj = ABS(nj)
        glf  = globalFiles
+       timList(1) = myTime
        CALL MDS_WR_METAFILES( fn, fp, glf, .FALSE.,
      &                         0, 0, 1, ' ',
      &                         nWrFlds, wrFldList,
-     &                         1, myTime,
+     &                         1, timList,
      &                         nj, myIter, myThid )
 #endif /* ALLOW_MDSIO */
 C--------------------------
