@@ -139,7 +139,7 @@ C---    read MYPACKAGE 2-D fields for restart
 #ifdef MYPACKAGE_2D_STATE
         CALL READ_MFLDS_3D_RL( 'myPaSur1', myPa_Surf1,
      &                                 nj, fp, 1 , myIter, myThid )
-        CALL READ_MFLDS_3D_RL( 'myPaSur2', myPa_Surf1,
+        CALL READ_MFLDS_3D_RL( 'myPaSur2', myPa_Surf2,
      &                                 nj, fp, 1 , myIter, myThid )
 #endif /* MYPACKAGE_2D_STATE */
 
