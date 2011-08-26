@@ -4,7 +4,7 @@ C $Name$
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
-      SUBROUTINE MATRIX_INIT( myThid )
+      SUBROUTINE MATRIX_INIT_VARIA( myThid )
 
       IMPLICIT NONE
 

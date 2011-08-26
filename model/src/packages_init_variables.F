@@ -79,7 +79,7 @@ C       |-- ATM2D_INIT_VARS
 C       |
 C       |-- FIZHI_INI_VARS
 C       |
-C       |-- MATRIX_INIT
+C       |-- MATRIX_INIT_VARIA
 C       |
 C       |-- RBCS_INIT_VARIA
 C       |
@@ -412,7 +412,7 @@ C Initialize FIZHI state variables
 # ifdef ALLOW_DEBUG
         IF (debugMode) CALL DEBUG_CALL('MATRIX_INIT',myThid)
 # endif
-        CALL MATRIX_INIT( myThid )
+        CALL MATRIX_INIT_VARIA( myThid )
       ENDIF
 #endif /* ALLOW_MATRIX */
 
