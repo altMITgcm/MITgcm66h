@@ -5,6 +5,15 @@ $Name$
     ==============================
 
 o verification/matrix_example:
+  - split domain in 8 tiles (2x4); add SIZE.h_mpi and eedata.mth for
+    MPI and mutlti-threaded testing.
+o pkg/matrix:
+  - change name of S/R MATRIX_INIT to S/R MATRIX_INIT_VARIA ;
+  - fix for multi-tiles (add bi,bj indices to exp/impMatrixCounter);
+  - fix for multi-threaded (remove DATA statement);
+  - use standard DIFFERENT_MULTIPLE function;
+  - add MATRIX_OPTIONS.h
+o verification/matrix_example:
    To allow to split the domain in several tiles, change the domain size
     from 31x31 to 32x32 by adding 1 row (on Southern side) + 1 column (on
     Western side) of land points.
