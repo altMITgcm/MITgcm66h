@@ -1,8 +1,7 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
-#include "CPP_OPTIONS.h"
+#include "MATRIX_OPTIONS.h"
 
 C     !ROUTINE: MATRIX_READPARMS
 
@@ -34,10 +33,11 @@ C     Open and read the data.matrix file
 
       NAMELIST /MATRIX_PARM01/ expMatrixWriteTime, impMatrixWriteTime
 
+      _BEGIN_MASTER(myThid)
+
       expMatrixWriteTime = 10. _d 10
       impMatrixWriteTime = 10. _d 10
 
-      _BEGIN_MASTER(myThid)
       WRITE(msgBuf,'(A)') ' MATRIX_READPARMS: opening data.matrix'
       CALL PRINT_MESSAGE(msgBuf, standardMessageUnit,
      &                   SQUEEZE_RIGHT , 1)
