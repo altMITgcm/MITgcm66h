@@ -879,18 +879,6 @@ C     o CD coupling (CD scheme):
         IF ( rCD .LT. 0. ) rCD = 1. _d 0 - deltaTMom/tauCD
         IF ( epsAB_CD .EQ. UNSET_RL ) epsAB_CD = abEps
       ENDIF
-C     o Temperature climatology relaxation time scale
-      IF ( tauThetaClimRelax .EQ. 0. _d 0 ) THEN
-       doThetaClimRelax     = .FALSE.
-      ELSE
-       doThetaClimRelax     = .TRUE.
-      ENDIF
-C     o Salinity climatology relaxation time scale
-      IF ( tauSaltClimRelax .EQ. 0. _d 0 ) THEN
-       doSaltClimRelax     = .FALSE.
-      ELSE
-       doSaltClimRelax     = .TRUE.
-      ENDIF
 
       IF ( startTime.EQ.UNSET_RL .AND. nIter0.EQ.-1 ) THEN
 C     o set default value for start time & nIter0

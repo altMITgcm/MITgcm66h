@@ -132,6 +132,10 @@ C--   Advection and Forcing for Temp and salt  on/off flags
       saltForcing   = saltStepping .AND. saltForcing
       tempImplVertAdv = tempAdvection .AND. tempImplVertAdv
       saltImplVertAdv = saltAdvection .AND. saltImplVertAdv
+      doThetaClimRelax = tempForcing .AND.
+     &                 ( tauThetaClimRelax.GT.0. _d 0 )
+      doSaltClimRelax  = saltForcing .AND.
+     &                 ( tauSaltClimRelax .GT.0. _d 0 )
 
 C--   Dynamically Active Tracers : set flags
       tempIsActiveTr = momPressureForcing .AND. tempAdvection
