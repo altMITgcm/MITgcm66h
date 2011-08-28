@@ -3,12 +3,17 @@ C $Name$
 
 #include "EBM_OPTIONS.h"
 
-      SUBROUTINE EBM_ATMOSPHERE ( myTime, myiter, myThid )
+CBOP 0
+C !ROUTINE: EBM_ATMOSPHERE
 
-C     |==========================================================|
-C     | S/R CALCULATE FORCING FROM ENERGY AND MOISTURE           |
-C     | BALANCE ATMOSPHERE                                       |
-C     |==========================================================|
+C !INTERFACE:
+      SUBROUTINE EBM_ATMOSPHERE ( myTime, myIter, myThid )
+
+C     !DESCRIPTION:
+C     *==========================================================*
+C     | S/R CALCULATE FORCING FROM ENERGY AND MOISTURE
+C     | BALANCE ATMOSPHERE
+C     *==========================================================*
 C      References:
 C      * X. Wang, P. Stone and J. Marotzke, 1999:
 C        Global thermohaline circulation. Part I:
@@ -23,8 +28,8 @@ C        Destabilization of the thermohaline circulation
 C        by atmospheric eddy transports.
 C        J. Climate 7(12), 1870-1882
 
+C     !USES:
       IMPLICIT NONE
-
 C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -37,27 +42,23 @@ C     === Global variables ===
 # include "tamc_keys.h"
 #endif
 
+C     !INPUT PARAMETERS:
 C     === Routine arguments ===
-C     myThid - Instance number for this innvocation of CALC_FORCING
-      INTEGER myThid
-      INTEGER myIter
+C     myThid  :: my Thread Id number
       _RL myTime
-CEndOfInterface
+      INTEGER myIter
+      INTEGER myThid
+CEOP
 
 #ifdef ALLOW_EBM
-
-C     == Local variables ==
+C     !LOCAL VARIABLES:
       _RL ReCountX(1-OLy:sNy+OLy,nSy)
       INTEGER bi, bj
       INTEGER i, j
       INTEGER no_so
+#ifdef ALLOW_AUTODIFF_TAMC
       INTEGER iebmkey
-      LOGICAL TOP_LAYER
-
-C--   Top layer only
-cph      TOP_LAYER = k .EQ. 1
-
-cph      IF ( TOP_LAYER ) THEN
+#endif /* ALLOW_AUTODIFF_TAMC */
 
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
@@ -336,6 +337,8 @@ c--   Pacific
            ENDIF
           ENDIF
 #endif
+          EmPmR(i,j,bi,bj) = EmPmR(i,j,bi,bj)
+     &                     - Run(i,j,bi,bj)*scale_runoff
           EmPmR(i,j,bi,bj) = EmPmR(i,j,bi,bj)*rhoConstFresh
          ENDDO
         ENDDO
@@ -345,12 +348,8 @@ c--   Pacific
       _EXCH_XY_RS(Qnet , myThid )
       _EXCH_XY_RS(EmPmR , myThid )
 
-
 C      CALL PLOT_FIELD_XYRS( Qnet, 'Qnet' , 1, myThid )
 C      CALL PLOT_FIELD_XYRS( EmPmR, 'EmPmR' , 1, myThid )
-
-cph  end of IF TOP_LAYER
-cph      ENDIF
 
 #endif /* ALLOW_EBM */
 
