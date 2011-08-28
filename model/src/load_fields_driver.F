@@ -107,9 +107,7 @@ C--   Call external CheapAML forcing package
       ENDIF
 #endif /*ALLOW_CHEAPAML */
 
-c     IF ( .NOT.useEXF ) THEN
-C- note (useEBM): needs modifications to be compatible with this call
-      IF ( .NOT.(useEXF.OR.useEBM.OR.useCheapAML) ) THEN
+      IF ( .NOT.(useEXF.OR.useCheapAML) ) THEN
 #ifdef ALLOW_DEBUG
         IF (debugMode) CALL DEBUG_CALL('EXTERNAL_FIELDS_LOAD',myThid)
 #endif
