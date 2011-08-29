@@ -49,6 +49,8 @@ C     === Functions ====
 #ifdef ALLOW_PTRACERS
 #ifdef ALLOW_MONITOR
 
+#ifdef ALLOW_AUTODIFF_MONITOR
+
 C !LOCAL VARIABLES: ====================================================
 C  i,j                  :: loop indices
 C  ip                   :: ptracer number
@@ -57,8 +59,6 @@ C  ip                   :: ptracer number
       INTEGER ip
       _RL dummyRL(6)
 CEOP
-
-#ifdef ALLOW_AUTODIFF_MONITOR
 
       IF ( DIFFERENT_MULTIPLE( adjmonitorFreq,myTime,deltaTClock )
      &   ) THEN
@@ -141,7 +141,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 C---  endif different multiple
       ENDIF
 
-#endif
+#endif /* ALLOW_AUTODIFF_MONITOR */
 
 #endif /* ALLOW_MONITOR */
 #endif /* ALLOW_PTRACERS */
