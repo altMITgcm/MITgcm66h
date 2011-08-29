@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint63b (2011/08/29)
 o pkg/ebm:
   - fix sign of runoff;
   - update directly forcing fields (Qnet,EmPmR) to use standard
