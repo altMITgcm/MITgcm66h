@@ -29,6 +29,7 @@ C     == local variables ==
       INTEGER iUnit
 
       NAMELIST /FLT_NML/ flt_int_traj, flt_int_prof,
+     &                   flt_selectTrajOutp, flt_selectProfOutp,
      &                   flt_noise, flt_deltaT,
      &                   flt_file, mapIniPos2Index
 
@@ -43,6 +44,8 @@ C     Set default values.
       flt_noise    = 0.0
       flt_file     = 'float_pos'
       mapIniPos2Index = .TRUE.
+      flt_selectTrajOutp = 2
+      flt_selectProfOutp = 2
 
       WRITE(msgBuf,'(A)') ' FLT_READPARMS: opening data.flt'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
