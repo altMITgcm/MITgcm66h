@@ -241,5 +241,11 @@ C--   end global-file / tiled-file separated treatment
      &                      SQUEEZE_RIGHT, myThid )
       _END_MASTER( myThid )
 
+C--   Initial call just to check which variables to write
+      IF ( flt_int_prof.NE.0. )
+     &  CALL FLT_UP( startTime, nIter0, myThid )
+      IF ( flt_int_traj.NE.0. )
+     &  CALL FLT_TRAJ( startTime, nIter0, myThid )
+
       RETURN
       END
