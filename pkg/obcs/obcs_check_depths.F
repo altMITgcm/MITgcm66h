@@ -5,10 +5,10 @@ C $Name$
 
       SUBROUTINE OBCS_CHECK_DEPTHS( myThid )
 C     *==========================================================*
-C     | SUBROUTINE OBCS_CHECK_DEPTHS                         |
-C     | o Check for non-zero normal gradient across open         |
-C     |   boundaries                                             |
-C     | o fix them if required and print a message               |
+C     | SUBROUTINE OBCS_CHECK_DEPTHS
+C     | o Check for non-zero normal gradient across open
+C     |   boundaries
+C     | o fix them if required and print a message
 C     *==========================================================*
 C     *==========================================================*
       IMPLICIT NONE
@@ -22,12 +22,12 @@ C     === Global variables ===
 #include "OBCS_GRID.h"
 
 C     === Routine arguments ===
-C     myThid -  Number of this instances
+C     myThid    :: my Thread Id number
       INTEGER myThid
 
 #ifdef ALLOW_OBCS
 C     === Local variables ===
-C     msgBuf      - Informational/error meesage buffer
+C     msgBuf    :: Informational/error message buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       INTEGER bi, bj, I, J, K, ichanged
 
@@ -106,6 +106,7 @@ C Western boundary
        ENDDO
       ENDDO
 C--   some diagnostics to stdout
+      CALL GLOBAL_SUM_INT( ichanged, myThid )
       IF ( ichanged .GT. 0 ) THEN
        WRITE(msgBuf,'(A,I7,A,A)')
      &      'OBCS message: corrected ', ichanged,
@@ -114,6 +115,7 @@ C--   some diagnostics to stdout
        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &      SQUEEZE_RIGHT, myThid)
       ENDIF
+
 C     endif (OBCSfixTopo)
       ENDIF
 #endif /* ALLOW_OBCS */
