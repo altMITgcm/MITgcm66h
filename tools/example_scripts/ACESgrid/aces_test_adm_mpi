@@ -28,10 +28,10 @@ HERE=$TST_DIR/output
 sfx='adm'
  module add mpich/intel
  module add netcdf/3.6.1/icc
- export MPI_INC_DIR='/usr/local/pkg/mpich/mpich-intel/include/'
- OPTFILE="../tools/build_options/linux_ia32_ifort+mpi_aces"
+ export MPI_INC_DIR='/usr/local/pkg/mpich/mpich-intel/include'
+ OPTFILE="../tools/build_options/linux_ia32_ifort"
 #OPTFILE="$HERE/linux_ia32_ifort+mpi_aces"
- options="-adm -do -MPI 4 -mf $PBS_NODEFILE"
+ options="-adm -do -MPI 4 -mf $PBS_NODEFILE -devel"
  EXE="mpirun -machinefile TR_MFILE -v -np TR_NPROC ./mitgcmuv_ad"
 #- need this to get "staf":
  export PATH="$PATH:$HOME/bin"

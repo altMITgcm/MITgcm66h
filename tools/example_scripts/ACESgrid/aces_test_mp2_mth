@@ -30,12 +30,12 @@ sfx='mp2'
  module add ifc/9.0.021 icc/9.0.021 intel/9.0
  module add mpich2/1.0.3/intel
  module add netcdf/3.6.1/icc
- export MPI_INC_DIR='/usr/local/pkg/mpich2/mpich2-1.0.3/intel/include/'
+ export MPI_INC_DIR='/usr/local/pkg/mpich2/mpich2-1.0.3/intel/include'
 #- to run:
  module add mpiexec
- OPTFILE="../tools/build_options/linux_ia32_ifort+mpi_aces"
+ OPTFILE="../tools/build_options/linux_ia32_ifort"
 #OPTFILE="$HERE/linux_ia32_ifort+mpi_aces"
- options="-j 2 -MPI 3 -mth -mf $PBS_NODEFILE"
+ options="-j 2 -MPI 3 -mth -mf $PBS_NODEFILE -devel"
  export OMP_NUM_THREADS=2
  EXE="mpiexec -pernode -comm pmi -np TR_NPROC ./mitgcmuv"
 #export KMP_STACKSIZE=400m  <-- added in file "~/.bashrc"

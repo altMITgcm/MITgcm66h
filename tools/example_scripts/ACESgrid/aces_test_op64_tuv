@@ -27,8 +27,9 @@ HERE=$TST_DIR/output
 
 sfx='tuv'
  module add open64
- OPTFILE="../tools/build_options/linux_ia32_open64.trapuv"
- options='-j 2 -gsl -do'
+ export NETCDF_ROOT='/usr/local/pkg/netcdf/netcdf-3.5.1/g77'
+ OPTFILE="../tools/build_options/linux_ia32_open64"
+ options='-j 2 -devel -gsl -do'
  export GSL_IEEE_MODE=double-precision,mask-underflow,mask-denormalized
 
 #- keep a copy of MPI_MFILE:

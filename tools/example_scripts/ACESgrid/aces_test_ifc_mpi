@@ -28,10 +28,10 @@ HERE=$TST_DIR/output
 sfx='ifc'
  module add mpich/intel
  module add netcdf/3.6.1/icc
- export MPI_INC_DIR='/usr/local/pkg/mpich/mpich-intel/include/'
- OPTFILE="../tools/build_options/linux_ia32_ifort+mpi_aces"
+ export MPI_INC_DIR='/usr/local/pkg/mpich/mpich-intel/include'
+ OPTFILE="../tools/build_options/linux_ia32_ifort"
 #OPTFILE="$HERE/linux_ia32_ifort+mpi_aces"
- options="-j 2 -MPI 6 -mf $PBS_NODEFILE"
+ options="-j 2 -MPI 6 -mf $PBS_NODEFILE -devel"
  EXE="mpirun -machinefile TR_MFILE -v -np TR_NPROC ./mitgcmuv"
 
 #- keep a copy of MPI_MFILE:

@@ -25,7 +25,8 @@ HERE=$TST_DIR/output
 
 sfx='gnu'
  module add mpich/$sfx
- OPTFILE="../tools/build_options/linux_ia32_g77+mpi_aces"
+ export MPI_INC_DIR='/usr/local/pkg/mpich/mpich-gcc/include'
+ OPTFILE="../tools/build_options/linux_ia32_g77"
  options="-j 2 -MPI 4 -mf $PBS_NODEFILE"
  EXE="mpirun -machinefile TR_MFILE -v -np TR_NPROC ./mitgcmuv"
 

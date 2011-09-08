@@ -25,7 +25,9 @@ HERE=$TST_DIR/output
 
 sfx='pgi'
  module add mpich/$sfx
- OPTFILE="../tools/build_options/linux_ia32_pgf77+mpi_aces"
+ export MPI_INC_DIR='/usr/local/pkg/mpich/mpich-pgi/include'
+ export NETCDF_ROOT='/usr/local/pkg/pgi/pgi-5.2/linux86/5.2'
+ OPTFILE="../tools/build_options/linux_ia32_pgf77"
  options="-MPI 6 -mf $PBS_NODEFILE"
 #options="$options -skd tutorial_advection_in_gyre"
  EXE="mpirun -machinefile TR_MFILE -v -np TR_NPROC ./mitgcmuv"
