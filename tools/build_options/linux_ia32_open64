@@ -15,6 +15,10 @@
 #       - csh,tcsh:
 #       setenv GSL_IEEE_MODE double-precision,mask-underflow,mask-denormalized
 
+# Multithreaded tests require
+#       export OMP_SLAVE_STACK_SIZE=400m
+#       export OMP_NUM_THREADS=2
+
 # MPI : not yet tested
 
 if test "x$MPI" = xtrue ; then
