@@ -11,9 +11,6 @@ DEFINES='-DWORDLENGTH=4'
 CPP='/lib/cpp  -traditional -P'
 EXTENDED_SRC_FLAG='-132'
 
-INCLUDEDIRS="/usr/include"
-INCLUDES="-I/usr/include"
-
 NOOPTFILES='ini_curvilinear_grid.F'
 NOOPTFLAGS='-O3'
 
@@ -21,4 +18,11 @@ FFLAGS="$FFLAGS -mp -w95 -W0 -WB -convert big_endian -assume byterecl"
 FOPTIM='-O3 -align -ip'
 #- might want to use '-r8' for fizhi pkg:
 #FFLAGS="$FFLAGS -r8"
+
+INCLUDEDIRS="/usr/include"
+INCLUDES="-I/usr/include"
+if test "x$MPI" = xtrue ; then
+  LIBS='-lmpi'
+fi
+
 
