@@ -3,13 +3,15 @@
 # $Header$
 # $Name$
 
-S64='$(TOOLSDIR)/set64bitConst.sh'
-MAKEDEPEND=makedepend
-CPP='/lib/cpp -P -traditional'
-
-DEFINES='-DTARGET_SGI -DWORDLENGTH=4'
 FC='f77'
-FFLAGS='-n32 -extend_source -bytereclen'
+
+S64='$(TOOLSDIR)/set64bitConst.sh'
+DEFINES='-DTARGET_SGI -DWORDLENGTH=4'
+CPP='/lib/cpp -P -traditional'
+EXTENDED_SRC_FLAG='-extend_source'
+
+FFLAGS="$FFLAGS -n32 -bytereclen"
 FOPTIM='-O3 -OPT:Olimit=0:roundoff=3:div_split=ON:alias=typed'
-LIBS='-lmpi -lscs'
+
 INCLUDEDIRS='/usr/include'
+LIBS='-lmpi -lscs'
