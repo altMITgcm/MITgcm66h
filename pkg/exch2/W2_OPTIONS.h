@@ -19,4 +19,9 @@ C Fill null regions (face-corner halo regions) with e2FillValue_RX (=0)
 C notes: for testing (allow to check that results are not affected)
 #undef W2_FILL_NULL_REGIONS
 
+C Process Global Cumulated-Sum using a Tile x Tile (x 2) Matrix
+C notes: should be faster (vectorise) but storage of this matrix might
+C        become an issue on large set-up (with many tiles)
+#define W2_CUMSUM_USE_MATRIX
+
 #endif /* W2_OPTIONS_H */
