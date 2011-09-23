@@ -213,6 +213,7 @@ cphCADJ STORE vice   = comlev1, key=ikey_dynamics, kind=isbyte
 # endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
+#ifndef DISABLE_SEAICE_GROWTH
 C     thermodynamics growth
 C     must call growth after calling advection
 C     because of ugly time level business
@@ -222,6 +223,7 @@ C     because of ugly time level business
 #endif
         CALL SEAICE_GROWTH( myTime, myIter, myThid )
        ENDIF
+#endif /* DISABLE_SEAICE_GROWTH */
 
 #ifdef ALLOW_SITRACER
        CALL SEAICE_TRACER_PHYS ( myTime, myIter, myThid )        
