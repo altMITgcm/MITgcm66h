@@ -26,6 +26,7 @@ c     == global variables ==
 #include "SIZE.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#include "DYNVARS.h"
 #include "ctrl.h"
 
 c     == routine arguments ==
@@ -308,6 +309,18 @@ c     == end of interface ==
             do i = imin,imax
               xx_shifwflx0(i,j,bi,bj) = 0. _d 0
               xx_shifwflx1(i,j,bi,bj) = 0. _d 0
+            enddo
+          enddo
+        enddo
+      enddo
+#endif
+
+#ifdef ALLOW_BOTTOMDRAG_CONTROL
+      do bj = jtlo,jthi
+        do bi = itlo,ithi
+          do j = jmin,jmax
+            do i = imin,imax
+              bottomdragfld(i,j,bi,bj) = 0. _d 0
             enddo
           enddo
         enddo
