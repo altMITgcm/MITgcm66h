@@ -50,6 +50,7 @@ fi
 DEFINES='-DWORDLENGTH=4 -DNML_TERMINATOR'
 CPP='cpp -traditional -P'
 EXTENDED_SRC_FLAG='-ffixed-line-length-132'
+F90FIXEDFORMAT='-ffixed-form'
 GET_FC_VERSION="--version"
 OMPFLAG='-fopenmp'
 
