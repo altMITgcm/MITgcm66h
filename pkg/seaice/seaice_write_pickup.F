@@ -142,7 +142,7 @@ C---  continue to write 2-D fields:
           njtrac = njtrac-1
           CALL WRITE_REC_3D_RL( fnTrac, fp,  1,
      &         SItracer(1-Olx,1-Oly,1,1,iTrac),
-     &         nj, myIter, myThid )
+     &         njTrac, myIter, myThid )
           IF (jtrac.LE.listDimTrac) wrFldListTrac(jtrac) = fldName
          ENDDO
 #endif
