@@ -2904,6 +2904,8 @@ adonlyfwd:
 adtrick:
 	patch < \$(TOOLSDIR)/ad_taf_output.f.adtrick.diff
 
+adobj: ad_taf_output.o \$(OBJFILES)
+
 # ... FTL ...
 ftlall: ftl_taf
 ftltaf: ftl_taf_output.$FS
