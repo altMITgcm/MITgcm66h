@@ -9,7 +9,7 @@ C !ROUTINE: ADPTRACERS_MONITOR
 
 C !INTERFACE: ==========================================================
       SUBROUTINE ADPTRACERS_MONITOR(
-     I                    myIter, myTime, myThid )
+     I                    myTime, myIter, myThid )
 
 C !DESCRIPTION:
 C writes out ptracer statistics
