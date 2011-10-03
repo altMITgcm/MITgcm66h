@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/exch2:
+  - alternative code (without tile x tile matrix) for cumulated (global) sum;
+    used as default; keep using matrix version in adjustment.cs-32x32x1.
 o tools/build_options:
   - after merging some MPI and/or multi-threads specific optfiles so that
     the modified default optfile support both built (using genmake2 -mpi
