@@ -22,6 +22,6 @@ C notes: for testing (allow to check that results are not affected)
 C Process Global Cumulated-Sum using a Tile x Tile (x 2) Matrix
 C notes: should be faster (vectorise) but storage of this matrix might
 C        become an issue on large set-up (with many tiles)
-#define W2_CUMSUM_USE_MATRIX
+#undef W2_CUMSUM_USE_MATRIX
 
 #endif /* W2_OPTIONS_H */
