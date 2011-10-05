@@ -5,7 +5,7 @@ C $Name$
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 CBOP 0
-C     !ROUTINE: OBCS_READ_PICKUP
+C     !ROUTINE: OBCS_WRITE_PICKUP
 
 C     !INTERFACE:
       SUBROUTINE OBCS_WRITE_PICKUP(
