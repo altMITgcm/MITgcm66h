@@ -30,10 +30,6 @@ C     == local variables ==
       INTEGER  il
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 
-C     == external ==
-      INTEGER  ILNBLNK
-      EXTERNAL ILNBLNk
-
 C     == end of interface ==
 
       _BARRIER
@@ -239,28 +235,14 @@ C     == end of interface ==
      & 'SEAICE_shortwave  =', ' /* penetration shortwave radiation */')
       CALL WRITE_0D_RL( SEAICE_freeze     ,INDEX_NONE,
      & 'SEAICE_freeze     =', ' /* freezing temp. of sea water */')
-      WRITE(msgBuf,'(a)')
-     &'Initial sea-ice concentration is read from file:'
-      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                    SQUEEZE_RIGHT , myThid)
-      il = ilnblnk(AreaFile)
-      WRITE(msgBuf,'(A,A,A)')
-     &'   >>  ',AreaFile(1:il),'  <<'
-      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                    SQUEEZE_RIGHT , myThid)
-      WRITE(msgBuf,'(A)')   '    ;     '
-      WRITE(msgBuf,'(a)')
-     &'Initial sea-ice thickness is read from file:'
-      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                    SQUEEZE_RIGHT , myThid)
-      il = ilnblnk(HeffFile)
-      WRITE(msgBuf,'(A,A,A)')
-     &'   >>  ',HeffFile(1:il),'  <<'
-      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                    SQUEEZE_RIGHT , myThid)
-      WRITE(msgBuf,'(A)')   '    ;     '
-      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                    SQUEEZE_RIGHT , myThid)
+      CALL WRITE_0D_C( AreaFile, -1, INDEX_NONE,
+     &  'AreaFile =', ' /* Initial ice concentration File */')
+      CALL WRITE_0D_C( HeffFile, -1, INDEX_NONE,
+     &  'HeffFile =', ' /* Initial effective ice thickness File */')
+      CALL WRITE_0D_C( uIceFile, -1, INDEX_NONE,
+     &  'uIceFile =', ' /* Initial U-ice velocity File */')
+      CALL WRITE_0D_C( vIceFile, -1, INDEX_NONE,
+     &  'vIceFile =', ' /* Initial V-ice velocity File */')
       CALL WRITE_0D_I ( SOLV_MAX_ITERS,    INDEX_NONE,
      & 'SOLV_MAX_ITERS    =', ' /* max. number of LSR solver steps */')
       CALL WRITE_0D_I ( SOLV_NCHECK,       INDEX_NONE,
