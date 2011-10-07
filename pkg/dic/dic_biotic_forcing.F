@@ -188,7 +188,7 @@ C- Carbonate sink
 C carbonate
 #ifdef CAR_DISS
 C dissolution only below saturation horizon
-C code following methid by Karsten Friis
+C code following method by Karsten Friis
          nCALCITEstep = 3600
          IF(myIter .lt. (nIter0+5) .or.
      &               mod(myIter,nCALCITEstep) .eq. 0)THEN

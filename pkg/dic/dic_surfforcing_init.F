@@ -37,7 +37,7 @@ C  myThid               :: thread number
 C !LOCAL VARIABLES: ====================================================
        INTEGER i,j, kLev, it
        INTEGER intimeP, intime0, intime1
-       _RL aWght, bWght
+       _RL aWght, bWght, co3dummy
 C Number of iterations for pCO2 solvers...
 C Solubility relation coefficients
 C local variables for carbon chem
@@ -238,7 +238,7 @@ C$TAF STORE surfalk(i,j), surfphos(i,j), surfsi(i,j)   = dic_surf
      I        ak0(i,j,bi,bj), fugf(i,j,bi,bj),
      I        ff(i,j,bi,bj),
      I        bt(i,j,bi,bj),st(i,j,bi,bj),ft(i,j,bi,bj),
-     U        pH(i,j,bi,bj),pCO2(i,j,bi,bj),
+     U        pH(i,j,bi,bj),pCO2(i,j,bi,bj),co3dummy,
      I        i,j,kLev,bi,bj, it ,  myThid )
              ENDDO
             ENDIF

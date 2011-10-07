@@ -46,6 +46,7 @@ c GDC                   :: tendency due to air-sea exchange
 
 C !LOCAL VARIABLES: ====================================================
        INTEGER i,j, kLev
+       _RL co3dummy
 C Number of iterations for pCO2 solvers...
 C Solubility relation coefficients
       _RL SchmidtNoDIC(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
@@ -167,7 +168,7 @@ C$TAF LOOP = parallel
      I        ak0(i,j,bi,bj), fugf(i,j,bi,bj),
      I        ff(i,j,bi,bj),
      I        bt(i,j,bi,bj),st(i,j,bi,bj),ft(i,j,bi,bj),
-     U        pH(i,j,bi,bj),pCO2(i,j,bi,bj),
+     U        pH(i,j,bi,bj),pCO2(i,j,bi,bj),co3dummy,
      I        i,j,kLev,bi,bj,myIter,myThid )
           ELSE
             pCO2(i,j,bi,bj)=0. _d 0
