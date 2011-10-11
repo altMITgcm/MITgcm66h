@@ -7,7 +7,7 @@ C $Name$
 #endif
 
 CBOP
-C     !ROUTINE: OBCS_OUTPUT
+C     !ROUTINE: SEAICE_OBCS_OUTPUT
 
 C     !INTERFACE:
       SUBROUTINE SEAICE_OBCS_OUTPUT( myTime, myIter, myThid )
