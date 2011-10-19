@@ -23,6 +23,9 @@ C Keep track of layer thicknesses?
 C The MNC stuff is too complicated
 #undef LAYERS_MNC
 
+C Allow use of potential density as a layering field.
+#define LAYERS_PRHO_REF
+
 #endif /* ALLOW_LAYERS */
 #endif /* LAYERS_OPTIONS_H */
 
