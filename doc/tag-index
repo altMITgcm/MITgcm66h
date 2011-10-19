@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/layers:
+  - Include potential density as new coordinate (Thanks to David Munday)
+o pkg/dic:
+  - Remove subroutine CALC_PCO2_APPROX_CO3 from carbon_chem.F and add
+    carbonate computation/output to CALC_PCO2_APPROX
 o model/src: 
   - improve vectorization also for adjoint code of 
     solve_tridiagonal and solve_pentadiagonal. As this requires up to
