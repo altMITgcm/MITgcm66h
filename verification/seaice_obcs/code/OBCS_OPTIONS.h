@@ -33,6 +33,9 @@ C This includes hooks to sponge layer treatment of uvel, vvel
 C balance barotropic velocity
 #undef ALLOW_OBCS_BALANCE
 
+C Use older implementation of obcs in seaice-dynamics
+#define OBCS_UVICE_OLD
+
 #endif /* ALLOW_OBCS */
 #endif /* OBCS_OPTIONS_H */
 
