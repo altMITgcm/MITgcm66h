@@ -56,12 +56,12 @@ C     Smooth the component of sea-ice velocity perpendicular to the edge.
 C     Smooth the component of sea ice velocity parallel to the edge.
 #undef OBCS_SEAICE_SMOOTH_UVICE_PAR
 
-C     Smooth the tracer sea-ice variables near the edges.
-#undef OBCS_SEAICE_SMOOTH_EDGE
-
 C     Compute rather than specify seaice velocities at the edges.
 #undef OBCS_SEAICE_COMPUTE_UVICE
 #endif /* OBCS_UVICE_OLD */
+
+C     Smooth the tracer sea-ice variables near the edges.
+#undef OBCS_SEAICE_SMOOTH_EDGE
 
 #endif /* ALLOW_OBCS */
 #endif /* OBCS_OPTIONS_H */
