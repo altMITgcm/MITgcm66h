@@ -13,6 +13,7 @@ C     *==========================================================*
 #define SEAICE_OPTIONS_H
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
+#ifdef ALLOW_SEAICE
 
 C--   Write "text-plots" of certain fields in STDOUT for debugging.
 #undef SEAICE_DEBUG
@@ -128,6 +129,7 @@ C--   not recommended
 C     enable free drift code
 #undef SEAICE_ALLOW_FREEDRIFT
 
+#endif /* ALLOW_SEAICE */
 #endif /* SEAICE_OPTIONS_H */
 
 CEH3 ;;; Local Variables: ***
