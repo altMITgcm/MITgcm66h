@@ -22,7 +22,7 @@ do
   fi
 
 # Finding all the multidimensional variables
-  varls=$(ncdump -h $somefile | grep "double\|float" | grep , )
+  varls=$(ncdump -h $somefile | egrep "double|float" | egrep , )
   IFS=';'
   vars=
   for somevar in ${varls}
