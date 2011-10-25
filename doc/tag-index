@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o make gluemnc/xplodemnc work with (moron) non-GNU shell tools
+
 checkpoint63d (2011/10/25)
 o pkg/obcs + seaice-dynamics:
   - new implementation calls OBCS_APPLY_UVICE (in seaice_dynsolver.F) before
