@@ -76,6 +76,9 @@ C     == Local variables ==
           OBNt1(i,k,bi,bj)=0. _d 0
           OBNs1(i,k,bi,bj)=0. _d 0
 # endif
+# ifdef ALLOW_OBCS_STEVENS
+          OBNvStevens(i,k,bi,bj)=0. _d 0
+# endif /* ALLOW_OBCS_STEVENS */
 #endif /* ALLOW_OBCS_NORTH */
 
 #ifdef ALLOW_OBCS_SOUTH
@@ -93,6 +96,9 @@ C     == Local variables ==
           OBSt1(i,k,bi,bj)=0. _d 0
           OBSs1(i,k,bi,bj)=0. _d 0
 # endif
+# ifdef ALLOW_OBCS_STEVENS
+          OBSvStevens(i,k,bi,bj)=0. _d 0
+# endif /* ALLOW_OBCS_STEVENS */
 #endif /* ALLOW_OBCS_SOUTH */
          ENDDO
 
@@ -112,6 +118,9 @@ C     == Local variables ==
           OBEt1(j,k,bi,bj)=0. _d 0
           OBEs1(j,k,bi,bj)=0. _d 0
 # endif
+# ifdef ALLOW_OBCS_STEVENS
+          OBEuStevens(j,k,bi,bj)=0. _d 0
+# endif /* ALLOW_OBCS_STEVENS */
 #endif /* ALLOW_OBCS_EAST */
 
 #ifdef ALLOW_OBCS_WEST
@@ -129,6 +138,9 @@ C     == Local variables ==
           OBWt1(j,k,bi,bj)=0. _d 0
           OBWs1(j,k,bi,bj)=0. _d 0
 # endif
+# ifdef ALLOW_OBCS_STEVENS
+          OBWuStevens(j,k,bi,bj)=0. _d 0
+# endif /* ALLOW_OBCS_STEVENS */
 #endif /* ALLOW_OBCS_WEST */
          ENDDO
         ENDDO
