@@ -160,6 +160,13 @@ C-    end if PPtaveFreq > 0
       ENDIF
 #endif /* ALLOW_TIMEAVE */
 
+#ifdef ALLOW_DIAGNOSTICS
+      IF ( useDiagnostics ) THEN
+       CALL DIAGNOSTICS_FILL(PPviscAr,'PPviscAr',0,Nr,0,1,1,myThid)
+       CALL DIAGNOSTICS_FILL(PPdiffKr,'PPdiffKr',0,Nr,0,1,1,myThid)
+      ENDIF
+#endif /* ALLOW_DIAGNOSTICS */
+
 #endif /* ALLOW_PP81 */
 
       RETURN
