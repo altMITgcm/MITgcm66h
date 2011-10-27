@@ -475,10 +475,16 @@ C--   pkg/seaice requires pkg/exf with following CPP options/
 C--   SEAICE_ALLOW_FREEDRIFT and SEAICEuseFREEDRIFT
 #ifndef SEAICE_ALLOW_FREEDRIFT
       IF (SEAICEuseFREEDRIFT) THEN
-         WRITE(msgBuf,'(A)')
-     &        'SEAICE_ALLOW_FREEDRIFT needed for SEAICEuseFREEDRIFT'
-         CALL PRINT_ERROR( msgBuf, myThid )
-         STOP 'ABNORMAL END: S/R SEAICE_CHECK'
+        WRITE(msgBuf,'(A)')
+     &   'need to #define SEAICE_ALLOW_FREEDRIFT for SEAICEuseFREEDRIFT'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        STOP 'ABNORMAL END: S/R SEAICE_CHECK'
+      ENDIF
+      IF ( LSR_mixIniGuess.LE.0 ) THEN
+        WRITE(msgBuf,'(A)')
+     &   'need to #define SEAICE_ALLOW_FREEDRIFT to use LSR_mixIniGuess'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        STOP 'ABNORMAL END: S/R SEAICE_CHECK'
       ENDIF
 #endif
 
