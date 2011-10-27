@@ -480,7 +480,7 @@ C--   SEAICE_ALLOW_FREEDRIFT and SEAICEuseFREEDRIFT
         CALL PRINT_ERROR( msgBuf, myThid )
         STOP 'ABNORMAL END: S/R SEAICE_CHECK'
       ENDIF
-      IF ( LSR_mixIniGuess.LE.0 ) THEN
+      IF ( LSR_mixIniGuess.GE.0 ) THEN
         WRITE(msgBuf,'(A)')
      &   'need to #define SEAICE_ALLOW_FREEDRIFT to use LSR_mixIniGuess'
         CALL PRINT_ERROR( msgBuf, myThid )
