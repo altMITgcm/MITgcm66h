@@ -92,14 +92,14 @@ C     find the corresponding pTracer:
            IF ( iTracer.GT.0 ) THEN
              PTRACERS_startAB(iTracer) = 0
              WRITE(msgBuf,'(2A,I4)')
-     &        '** WARNINGS ** PTRACERS_CHECK_PICKUP: ',
+     &        '** WARNING ** PTRACERS_CHECK_PICKUP: ',
      &        'tracer Tendency is missing for pTr# :',iTracer
              CALL PRINT_MESSAGE( msgBuf, ioUnit, SQUEEZE_RIGHT, myThid )
            ENDIF
            IF ( iTracer.GT.0 .AND.
      &          .NOT.pickupStrictlyMatch .AND. .NOT.stopFlag ) THEN
              WRITE(msgBuf,'(4A)')
-     &        '** WARNINGS ** PTRACERS_CHECK_PICKUP: ',
+     &        '** WARNING ** PTRACERS_CHECK_PICKUP: ',
      &        '1rst time-step will use simple Euler time-stepping'
              CALL PRINT_MESSAGE( msgBuf, ioUnit, SQUEEZE_RIGHT, myThid )
            ENDIF
@@ -127,7 +127,7 @@ C-    unrecognized field or tracer:
          CALL PRINT_ERROR( msgBuf, myThid )
          STOP 'ABNORMAL END: S/R PTRACERS_CHECK_PICKUP'
         ELSEIF ( warnCnts .GT. 0 ) THEN
-         WRITE(msgBuf,'(4A)') '** WARNINGS ** PTRACERS_CHECK_PICKUP: ',
+         WRITE(msgBuf,'(4A)') '** WARNING ** PTRACERS_CHECK_PICKUP: ',
      &     'Will get only an approximated Restart'
          CALL PRINT_MESSAGE( msgBuf, ioUnit, SQUEEZE_RIGHT, myThid )
         ENDIF
