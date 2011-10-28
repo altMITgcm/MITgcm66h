@@ -240,11 +240,6 @@ C     check compatibility with Orlanski
       IF (useStevensNorth.OR.useStevensSouth.OR.
      &    useStevensEast.OR.useStevensWest) THEN
        IF (nonlinFreeSurf.GT.0) THEN
-c       WRITE(msgBuf,'(A)')
-c    &  'OBCS_CHECK: ERROR: useStevens* OBC with'
-c        CALL PRINT_ERROR( msgBuf, myThid )
-c       WRITE(msgBuf,'(A)')
-c    &  'OBCS_CHECK: ERROR: nonlinFreeSurf not yet implemented'
         WRITE(msgBuf,'(2A)') 'OBCS_CHECK: ',
      &    'useStevens OBC with nonlinFreeSurf not yet implemented'
         CALL PRINT_ERROR( msgBuf, myThid )
