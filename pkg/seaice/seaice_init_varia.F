@@ -73,6 +73,8 @@ C--   Initialise all variables in common blocks:
           AREA(i,j,bi,bj)=0. _d 0
           UICE(i,j,bi,bj)=0. _d 0
           VICE(i,j,bi,bj)=0. _d 0
+          uice_fd(i,j,bi,bj)=0. _d 0
+          vice_fd(i,j,bi,bj)=0. _d 0
 C
           uIceNm1(i,j,bi,bj)=0. _d 0
           vIceNm1(i,j,bi,bj)=0. _d 0
