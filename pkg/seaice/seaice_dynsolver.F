@@ -76,8 +76,10 @@ C incured by IF (DIFFERENT_MULTIPLE ... statement
           PRESS0(i,j,bi,bj) = PRESS0(i,j,bi,bj)*HEFFM(i,j,bi,bj)
           TAUX(i,j,bi,bj)   = 0. _d 0
           TAUY(i,j,bi,bj)   = 0. _d 0
+#ifdef SEAICE_ALLOW_FREEDRIFT
           uice_fd(i,j,bi,bj)= 0. _d 0
           vice_fd(i,j,bi,bj)= 0. _d 0
+#endif
          ENDDO
         ENDDO
        ENDDO
