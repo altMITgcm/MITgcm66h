@@ -23,9 +23,11 @@ C     Number of tracers
 #ifdef ALLOW_AUTODIFF_TAMC
       INTEGER iicekey
       INTEGER nEVPstepMax
-      PARAMETER ( nEVPstepMax=60 )
+      PARAMETER ( nEVPstepMax=180 )
       INTEGER NMAX_TICE
       PARAMETER ( NMAX_TICE=10 )
+      INTEGER SOLV_MAX_FIXED
+      PARAMETER ( SOLV_MAX_FIXED=500 )
 #endif
 
 CEOP

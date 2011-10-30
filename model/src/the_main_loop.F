@@ -371,9 +371,12 @@ CADJ &     = COMMON,niter_bulk*nchklev_1*snx*nsx*sny*nsy*nthreads_chkpt
 c--
 #   ifdef ALLOW_SEAICE
 #    ifdef SEAICE_ALLOW_DYNAMICS
-cphCADJ INIT comlev1_lsr = COMMON,nchklev_1*2
 CADJ INIT comlev1_dynsol = COMMON,nchklev_1*MPSEUDOTIMESTEPS
-#   endif
+#    ifdef SEAICE_LSR_ADJOINT_ITER
+CADJ INIT comlev1_dyniter = 
+CADJ &    COMMON,nchklev_1*MPSEUDOTIMESTEPS*SOLV_MAX_FIXED
+#    endif
+#    endif
 #   ifdef SEAICE_ALLOW_EVP
 CADJ INIT comlev1_evp = COMMON,nEVPstepMax*nchklev_1
 #   endif
