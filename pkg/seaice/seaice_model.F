@@ -199,18 +199,6 @@ C NOW DO ADVECTION and DIFFUSION
       ENDIF
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE heffm  = comlev1, key=ikey_dynamics, kind=isbyte
-cph-test(
-cphCADJ STORE heff   = comlev1, key=ikey_dynamics, kind=isbyte
-cphCADJ STORE area   = comlev1, key=ikey_dynamics, kind=isbyte
-cphCADJ STORE hsnow  = comlev1, key=ikey_dynamics, kind=isbyte
-cphCADJ STORE qnet   = comlev1, key=ikey_dynamics, kind=isbyte
-cphCADJ STORE qsw    = comlev1, key=ikey_dynamics, kind=isbyte
-cphCADJ STORE tice   = comlev1, key=ikey_dynamics, kind=isbyte
-cph-test)
-# ifdef SEAICE_ALLOW_DYNAMICS
-cphCADJ STORE uice   = comlev1, key=ikey_dynamics, kind=isbyte
-cphCADJ STORE vice   = comlev1, key=ikey_dynamics, kind=isbyte
-# endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 #ifndef DISABLE_SEAICE_GROWTH
