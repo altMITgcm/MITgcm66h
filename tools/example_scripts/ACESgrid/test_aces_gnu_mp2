@@ -91,6 +91,13 @@ else
   exit
 fi
 
+#-- in case 1 proc get stuck, run this script in background to check
+if test -x $HERE/check_aces_$sfx ; then
+   echo "start check_aces_$sfx in background"
+   mv -f $HERE/check_aces_${sfx}.log $HERE/check_aces_${sfx}.log_bak
+   ( cd $HERE ; ./check_aces_$sfx > check_aces_${sfx}.log 2>&1 ) &
+fi
+
 # avoid hanging in fizhi-cs-32x32x40 (due to I/O problems with g77)
 echo ./testreport $options -of $OPTFILE -command \"$EXE\" -odir acesgrid-$sfx
 ./testreport $options -of $OPTFILE -command "$EXE" -odir acesgrid-$sfx
