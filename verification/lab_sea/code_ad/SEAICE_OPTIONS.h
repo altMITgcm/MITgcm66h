@@ -111,7 +111,7 @@ C--   not recommended
 #undef SEAICE_ALLOW_CLIPVELS
 
 C     enable free drift code
-#undef SEAICE_ALLOW_FREEDRIFT
+#define SEAICE_ALLOW_FREEDRIFT
 
 #endif /* SEAICE_OPTIONS_H */
 
