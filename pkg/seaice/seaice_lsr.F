@@ -864,10 +864,10 @@ CADJ LOOP = iteration uice, vice
       SOLV_MAX_TMP = SOLV_MAX_ITERS
 #endif
 
-      DO m = 1, SOLV_MAX_TMP
+      ICOUNT1 = SOLV_MAX_TMP
+      ICOUNT2 = SOLV_MAX_TMP
 
-       ICOUNT1 = SOLV_MAX_TMP
-       ICOUNT2 = SOLV_MAX_TMP
+      DO m = 1, SOLV_MAX_TMP
 
 # ifdef ALLOW_AUTODIFF_TAMC
 #  ifdef SEAICE_LSR_ADJOINT_ITER
