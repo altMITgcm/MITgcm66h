@@ -212,7 +212,7 @@ fi
 # outPfix='acesgrid'
 QSUB=qsub
 QSTAT=qstat
-TST_DIR="/home/jmc/test_ACES"
+TST_DIR="/home/jmc/test_aces"
 logPfix='tst_all'
 outPfix='aces'
 
