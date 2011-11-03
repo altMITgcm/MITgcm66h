@@ -21,3 +21,22 @@ CADJ STORE objf_ice = tapelev2, key = ilev_2
 CADJ STORE uHeffExportCell = tapelev2, key = ilev_2
 CADJ STORE vHeffExportCell = tapelev2, key = ilev_2
 #endif
+
+#ifdef ALLOW_OBCS
+# ifdef ALLOW_OBCS_EAST
+CADJ STORE obeuice,obeuice0,obeuice1 = tapelev2, key = ilev_2
+CADJ STORE obevice,obevice0,obevice1 = tapelev2, key = ilev_2
+# endif
+# ifdef ALLOW_OBCS_NORTH
+CADJ STORE obnuice,obnuice0,obnuice1 = tapelev2, key = ilev_2
+CADJ STORE obnvice,obnvice0,obnvice1 = tapelev2, key = ilev_2
+# endif
+# ifdef ALLOW_OBCS_SOUTH
+CADJ STORE obsuice,obsuice0,obsuice1 = tapelev2, key = ilev_2
+CADJ STORE obsvice,obsvice0,obsvice1 = tapelev2, key = ilev_2
+# endif
+# ifdef ALLOW_OBCS_WEST
+CADJ STORE obwuice,obwuice0,obwuice1 = tapelev2, key = ilev_2
+CADJ STORE obwvice,obwvice0,obwvice1 = tapelev2, key = ilev_2
+# endif
+#endif
