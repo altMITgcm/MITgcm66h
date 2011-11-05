@@ -21,13 +21,6 @@ c    o  active_write_xyz       - Write an active 3D variable to a file.
 c    o  active_write_xz        - Write an active 2D xz-slice to a file.
 c    o  active_write_yz        - Write an active 2D yz-slice to a file.
 c
-c    o  active_read_tile_xy    - Read  an active 2D variable from file.
-c    o  active_read_tile_xyz   - Read  an active 3D variable from file.
-c
-c    o  active_write_tile_xy   - Write an active 2D variable to a file.
-c    o  active_write_tile_xyz  - Write an active 3D variable to a file.
-c
-c
 c        changed: Christian Eckert eckert@mit.edu 24-Apr-2000
 c                 - Added routines that do active writes on tiles
 c                   instead of a whole thread.
