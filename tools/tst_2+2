@@ -120,7 +120,7 @@ echo "cmdEXE='$cmdEXE'"
 if test $flag = '0' -o $Multi = '1' ; then
 #----------------------------------------------------------------------
 # check for executable:
-if test ! -x $gcmEXE
+if test ! -x $gcmEXE ; then
   echo "file '$gcmEXE' does not exist or is not executable"
   exit 7
 fi
