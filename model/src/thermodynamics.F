@@ -183,6 +183,7 @@ C                      index into fVerTerm.
       INTEGER k, km1, kup, kDown
 #ifdef ALLOW_ADAMSBASHFORTH_3
       INTEGER iterNb, m1, m2
+      _RL tmpFld (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 #endif
 #ifdef ALLOW_TIMEAVE
       LOGICAL useVariableK
@@ -323,12 +324,12 @@ C-      Apply AB on T,S :
 C       compute T^n+1/2 (stored in gtNm) extrapolating T forward in time
         IF ( AdamsBashforth_T ) CALL ADAMS_BASHFORTH3(
      I                                  bi, bj, 0,
-     U                                  theta, gtNm,
+     U                                  theta, gtNm, tmpFld,
      I                                  tempStartAB, iterNb, myThid )
 C       compute S^n+1/2 (stored in gsNm) extrapolating S forward in time
         IF ( AdamsBashforth_S ) CALL ADAMS_BASHFORTH3(
      I                                  bi, bj, 0,
-     U                                  salt, gsNm,
+     U                                  salt, gsNm, tmpFld,
      I                                  saltStartAB, iterNb, myThid )
 #endif /* ALLOW_ADAMSBASHFORTH_3 */
 
