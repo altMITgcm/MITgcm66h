@@ -60,7 +60,7 @@ c     IF ( useDiagnotics ) THEN
 c       diagName  = 'RHOAnExt'
 c       diagTitle = 'Density Anomaly (=Rho-rhoConst) + extended inland'
 c       diagUnits = 'kg/m^3          '
-c       diagCode  = 'SM      MR      '
+c       diagCode  = 'SMR     MR      '
 c       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
 c    I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
@@ -87,7 +87,7 @@ c    I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
         diagName  = 'DSLP'//diagSufx
         diagTitle = ' Pot.Temp. tendency from Down-Slope package'
         diagUnits = 'K/s             '
-        diagCode  = 'SM      MR      '
+        diagCode  = 'SMR     MR      '
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
@@ -97,7 +97,7 @@ c    I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
         diagName  = 'DSLP'//diagSufx
         diagTitle = ' Salinity  tendency from Down-Slope package'
         diagUnits = 'psu/s           '
-        diagCode  = 'SM      MR      '
+        diagCode  = 'SMR     MR      '
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
