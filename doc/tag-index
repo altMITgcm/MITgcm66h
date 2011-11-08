@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/obcs/obcs_calc_stevens.F: 
+  - add code for northern and southern boundaries.
+  - reorder some loops to save some operations and so that drFBar can be scalar
 o model/src:
   - re-arrange extrapolation calculation in Adams-Bashforth S/R (affects machine
     truncation) and add diagnostics for Adams-Bashforth tendency increment.
