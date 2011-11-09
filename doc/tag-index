@@ -4,7 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
-o pkg/obcs/obcs_calc_stevens.F: 
+o verification/cpl_aim+ocn:
+  - generate new reference output on baudelaire (gfortran, mpich2) (previously
+    from old aces-grid cluster, ao + ifort) and update 'run_cpl_test' script.
+o pkg/obcs/obcs_calc_stevens.F:
   - add code for northern and southern boundaries.
   - reorder some loops to save some operations and so that drFBar can be scalar
 o model/src:
