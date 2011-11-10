@@ -338,11 +338,11 @@ echo   ncpdq $DEBUG -O -a Xp1,T -F -d Xp1,1,$Xp1len $somegloy $somegloy > $LOGFI
       echo Changing T to record variable in $somevar.$somepre.glob.nc
       ncpdq $DEBUG -O -a T,Xp1 $somevar.$somepre.glob.nc $somevar.$somepre.glob.nc > $LOGFILE
     fi
-    ncrcat $DEBUG -A $somevar.$somepre.glob.nc $somepre.glob.nc > $LOGFILE
+    ncks $DEBUG -A $somevar.$somepre.glob.nc $somepre.glob.nc > $LOGFILE
 #   rm $somevar.$somepre.glob.nc
   done
   if [ -f iter.$somepre.glob.nc ]; then
-    ncrcat $DEBUG -A iter.$somepre.glob.nc $somepre.glob.nc > $LOGFILE
+    ncks $DEBUG -A iter.$somepre.glob.nc $somepre.glob.nc > $LOGFILE
   fi
 # rm iter.$somepre.glob.nc
 
