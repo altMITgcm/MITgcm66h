@@ -4,6 +4,15 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o gluemnc:
+  - replace ncrcat with ncks when adding variables to *.glob.nc
+  - change the way variables without record dimensions are handled so that
+    files that have variables with and without record variables can be glued:
+    add a record dimension with a new unique name to be able to differentiate
+    between variable with and without a-prior record dimensions. Remove
+    this record dimension before adding the variable to the *.glob.nc file.
+    This procedure automatically works also for grid.*.nc files that do not
+    have any record dimension.
 o verification/cpl_aim+ocn:
   - generate new reference output on baudelaire (gfortran, mpich2) (previously
     from old aces-grid cluster, ao + ifort) and update 'run_cpl_test' script.
