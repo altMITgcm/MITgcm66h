@@ -322,6 +322,8 @@ C     i, k   :: Loop counters.
      & ' /* Non-Hyd (free-)Surface option */')
       CALL WRITE_0D_L( quasiHydrostatic, INDEX_NONE,
      & 'quasiHydrostatic =', ' /* Quasi-Hydrostatic on/off flag */')
+      CALL WRITE_0D_L( calc_wVelocity, INDEX_NONE, 'calc_wVelocity =',
+     &             ' /* vertical velocity calculation on/off flag */')
       CALL WRITE_0D_L( momStepping,  INDEX_NONE,
      & 'momStepping =', '  /* Momentum equation on/off flag */')
       CALL WRITE_0D_L( vectorInvariantMomentum,  INDEX_NONE,

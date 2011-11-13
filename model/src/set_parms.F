@@ -63,6 +63,7 @@ C--   On/Off flags for each terms of the momentum equation
       momImplVertAdv   = momAdvection .AND. momImplVertAdv
       implicitViscosity= momViscosity .AND. implicitViscosity
       use3Dsolver      = nonHydrostatic.OR. implicitIntGravWave
+      calc_wVelocity   = momStepping .OR. exactConserv
 
 C--   Free-surface & pressure method
       IF ( selectNHfreeSurf.NE.0 .AND.
