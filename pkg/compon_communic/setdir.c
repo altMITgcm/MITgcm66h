@@ -5,8 +5,10 @@
 
 #include <stdlib.h>
 #include <unistd.h>
-                                                                                
-void setdir_(int *myPEListId )
+/*  Here, we get the definition of the FC_NAMEMANGLE() macro. */
+#include "FC_NAMEMANGLE.h"
+
+void FC_NAMEMANGLE(setdir) (int *myPEListId )
 {
    char RUN_DIR[1024];
    char *rundirsetting;
