@@ -72,8 +72,15 @@ C-     Ice-fraction weighted quantities:
 C-     Ice-Volume weighted quantities:
        IF ( DIAGNOSTICS_IS_ON('SI_Qice1',myThid) .OR.
      &      DIAGNOSTICS_IS_ON('SI_Qice2',myThid) ) THEN
+#ifdef TARGET_NEC_SX
+C     Initialise the entire tmpFld to avoid surprises in
+C     S/R diagstats_calc
+        DO j=1-Oly,sNy+Oly
+         DO i=1-Olx,sNx+Olx
+#else
         DO j=1,sNy
          DO i=1,sNx
+#endif
           tmpFld(i,j) = iceMask(i,j,bi,bj)*iceHeight(i,j,bi,bj)
          ENDDO
         ENDDO
