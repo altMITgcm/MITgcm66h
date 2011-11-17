@@ -151,7 +151,7 @@ C     compute metric term coefficients from finite difference approximation
          ENDDO
          DO j=1-OLy+1,sNy+OLy
           DO i=1-OLx,sNx+OLx
-           k2AtC(I,J,bi,bj) = _recip_dxV(I,J,bi,bj)
+           k2AtZ(I,J,bi,bj) = _recip_dxV(I,J,bi,bj)
      &          * ( _dxC(I,J,bi,bj) - _dxC(I,J-1,bi,bj) )
      &          * _recip_dyU(I,J,bi,bj)
           ENDDO
