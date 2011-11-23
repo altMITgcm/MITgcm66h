@@ -204,7 +204,7 @@ C--   External salinity forcing term(s) inside Adams-Bashforth:
 #endif
 #ifdef ALLOW_DIAGNOSTICS
         IF ( useDiagnostics ) THEN
-          CALL DIAGNOSTICS_FILL(gs_AB,'AB_dS   ',k,1,2,bi,bj,myThid)
+          CALL DIAGNOSTICS_FILL(gs_AB,'AB_gS   ',k,1,2,bi,bj,myThid)
         ENDIF
 #endif /* ALLOW_DIAGNOSTICS */
       ENDIF

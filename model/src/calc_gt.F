@@ -203,7 +203,7 @@ C--   External thermal forcing term(s) inside Adams-Bashforth:
 #endif
 #ifdef ALLOW_DIAGNOSTICS
         IF ( useDiagnostics ) THEN
-          CALL DIAGNOSTICS_FILL(gt_AB,'AB_dT   ',k,1,2,bi,bj,myThid)
+          CALL DIAGNOSTICS_FILL(gt_AB,'AB_gT   ',k,1,2,bi,bj,myThid)
         ENDIF
 #endif /* ALLOW_DIAGNOSTICS */
       ENDIF
