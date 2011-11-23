@@ -51,7 +51,7 @@ do
           if test "x$pp" = "x$ppZ" -a "x$pc" != "x$p1Z" ; then
             ps -f -p $pc | tee -a $pLog
             echo " killing proc: $pc" | tee -a $pLog
-            kill -9 $ppZ
+            kill -9 $pc
             out=$?
             echo " return code: $out" | tee -a $pLog
           fi
