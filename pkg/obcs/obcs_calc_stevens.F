@@ -106,7 +106,7 @@ c     CHARACTER*(MAX_LEN_MBUF) msgBuf
       _RL uMerPri(1-OLy:sNy+OLy,Nr)
       _RL uMerBar(1-OLy:sNy+OLy)
       _RL cflZon (1-OLx:sNx+OLx,Nr)
-      _RL gFacZ  (1-OLx:sNy+OLy,Nr)
+      _RL gFacZ  (1-OLx:sNx+OLx,Nr)
       _RL vZonPri(1-OLx:sNx+OLx,Nr)
       _RL vZonBar(1-OLx:sNx+OLx)
       _RL drFBar 
