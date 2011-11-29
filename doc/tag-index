@@ -5,6 +5,7 @@ $Name$
     ==============================
 
 o pkg/obcs/obcs_calc_stevens.F:
+  - join some loops to reduce number of if-statements
   - fix a bug in code for northern and southern boundaries.
 o pkg/seaice/seaice_init_varia.F
   - undo resetting UVM=0 that has slipped in unnoticed in r1.49 and 
