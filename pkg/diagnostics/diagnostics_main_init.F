@@ -800,6 +800,21 @@ c     diagTitle = 'Free-Surface r-Position (Pressure, Height) (Pa,m)'
       diagCode  = 'SMR     MR      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
+      diagName  = 'gTinAB  '
+      diagTitle = 'Potential Temp. tendency going in Adams-Bashforth'
+      diagUnits = DIAGS_MK_UNITS( tUnit4c//'/s', myThid )
+      diagCode  = 'SMR     MR      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
+      diagName  = 'gSinAB  '
+      diagTitle = DIAGS_MK_TITLE(
+     &            sTitle//'tendency going in Adams-Bashforth', myThid )
+      diagUnits = DIAGS_MK_UNITS( sUnit4c//'/s', myThid )
+      diagCode  = 'SMR     MR      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 #endif /* ALLOW_GENERIC_ADVDIFF */
 
       RETURN
