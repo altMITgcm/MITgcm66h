@@ -54,7 +54,7 @@ c     == routine arguments ==
       integer mythid
 
 c     == local variables ==
-      character*( 80) fname(2)
+      character*( 80) fname(3)
       logical  exst
 
 c     _BEGIN_MASTER( mythid )

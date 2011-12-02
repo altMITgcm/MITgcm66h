@@ -184,8 +184,10 @@ C--      Do check to see if there are nThreads threads running
 
 C--      Invoke nThreads instances of the numerical model
          IF ( .NOT. eeBootError ) THEN
-#ifdef ALLOW_ADMTLM
+#if (defined (ALLOW_ADMTLM))
           CALL ADMTLM_DSVD(myThid)
+#elif (defined (ALLOW_HESSIAN_CODE))
+          CALL HESSIAN_MAIN(myThid)
 #else
           CALL THE_MODEL_MAIN(myThid)
 #endif

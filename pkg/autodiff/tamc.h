@@ -82,6 +82,8 @@ c--   Note always check for the correct sizes of the common blocks!
 
       integer    nchklev_0
       parameter( nchklev_0      =  64800 )
+      integer    nchklev_1
+      parameter( nchklev_1      =    5 )
 
 #endif /* ALLOW_TAMC_CHECKPOINTING */
 
