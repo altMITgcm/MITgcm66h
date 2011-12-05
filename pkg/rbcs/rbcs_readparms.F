@@ -54,6 +54,8 @@ C--   RBCS parameters:
      &          relaxMaskUFile,
      &          relaxMaskVFile,
      &          relaxMaskFile,
+     &          relaxUFile,
+     &          relaxVFile,
      &          relaxTFile,
      &          relaxSFile,
      &          useRBCuVel,
