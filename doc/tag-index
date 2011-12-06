@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ecco
+  - added IES cost term
 o verification/advect_xz
   - scale down the depth by 1/100 (from 200 km to just 2.km)
   - add secondary test using divergent flow, r-star and implicit vertical advection.
