@@ -244,7 +244,8 @@ c     Define unit weight as a placeholder
      &                      wrunoff,
      &                      wsst,
      &                      wsss,
-     &                      wbp
+     &                      wbp,
+     &                      wies
       _RL whflux  (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL wsflux  (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL wtauu   (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
@@ -265,6 +266,7 @@ c     Define unit weight as a placeholder
       _RL wsst    (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL wsss    (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL wbp     (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL wies    (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 #endif
 
 c     Control variables:
