@@ -257,7 +257,7 @@ cph and extended using I. Fenty SST, SSS extensions
       call seaice_cost_areasst(
      &     nnzbar, smrareabarfile, smrareabar, xx_smrareabar_mean_dummy,
      &     nnzobs, smrareadatfile, smrareadat, mult_smrarea,
-     &     nrecloc, modelstartdate, localperiod,
+     &     nrecloc, smrareastartdate, localperiod,
      &     maskC, wsmrarea,
      &     spminloc, spmaxloc, spzeroloc,
      &     objf_smrarea, num_smrarea,
