@@ -30,6 +30,7 @@ CADJ STORE xx_vwind_mean_dummy = onetape
 CADJ STORE xx_smrareabar_mean_dummy = onetape
 CADJ STORE xx_smrsstbar_mean_dummy = onetape
 CADJ STORE xx_smrsssbar_mean_dummy = onetape
+CADJ STORE xx_iestaubar_mean_dummy = onetape
 #ifdef ALLOW_PROFILES
 CADJ STORE profiles_dummy = tapelev_init, key = 1
 #endif

@@ -100,6 +100,16 @@ c--       Initialise surface pressure average.
           xx_bpbar_mean_dummy = 0. _d 0
 #endif
 
+#ifdef ALLOW_IESTAU_COST_CONTRIBUTION
+c--       Initialize roundtrip travel time average
+          do j = jmin,jmax
+            do i =  imin,imax
+              iestaubar(i,j,bi,bj) = 0. _d 0
+            enddo
+          enddo
+          xx_iestaubar_mean_dummy = 0. _d 0
+#endif
+
 #if (defined (ALLOW_THETA_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDT_COST_CONTRIBUTION) || \
      defined (ALLOW_XBT_COST_CONTRIBUTION) || \
