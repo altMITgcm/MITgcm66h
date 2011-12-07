@@ -185,7 +185,7 @@ C--   Continuous equation parameters
      & exactConserv, linFSConserveTr, uniformLin_PhiSurf,
      & nonlinFreeSurf, hFacInf, hFacSup, select_rStar,
      & nonHydrostatic, selectNHfreeSurf, quasiHydrostatic,
-     & implicitIntGravWave, staggerTimeStep,
+     & implicitIntGravWave, staggerTimeStep, doResetHFactors,
      & tempStepping, saltStepping, momStepping,
      & implicitDiffusion, implicitViscosity,
      & tempImplVertAdv, saltImplVertAdv, momImplVertAdv,

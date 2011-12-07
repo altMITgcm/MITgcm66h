@@ -150,6 +150,7 @@ Cml      sBeta               = 7.4 _d -4
       hFacMinDrDefault    = 0. _d 0
       implicitIntGravWave = .FALSE.
       staggerTimeStep     = .FALSE.
+      doResetHFactors     = .FALSE.
       momViscosity        = .TRUE.
       momAdvection        = .TRUE.
       momForcing          = .TRUE.

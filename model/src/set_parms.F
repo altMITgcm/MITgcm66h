@@ -76,6 +76,12 @@ C--   Free-surface & pressure method
      &                      SQUEEZE_RIGHT, myThid )
         selectNHfreeSurf = 0
       ENDIF
+#ifdef ALLOW_AUTODIFF_TAMC
+      doResetHFactors = .TRUE.
+#endif
+#ifndef NONLIN_FRSURF
+      doResetHFactors = .FALSE.
+#endif
 C--   Set default Vorticity-Term Scheme:
       IF ( vectorInvariantMomentum ) THEN
         IF ( selectVortScheme.EQ.UNSET_I ) THEN
