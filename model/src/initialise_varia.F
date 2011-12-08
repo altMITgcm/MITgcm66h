@@ -120,10 +120,8 @@ C--   Set Bo_surf => define the Linear Relation: Phi_surf(eta)
       CALL INI_LINEAR_PHISURF( myThid )
 # endif /* ALLOW_DEPTH_CONTROL */
 
-# ifdef NONLIN_FRSURF
 C--   Initialise Non-Lin FreeSurf variables:
       CALL INI_NLFS_VARS( myThid )
-# endif /* NONLIN_FRSURF */
 
 C--   Set laplace operators for use in 2D conjugate gradient solver.
 # ifdef ALLOW_DEBUG
@@ -150,10 +148,8 @@ C--   Set laplace operators for use in 3D conjugate gradient solver.
 
 #else /* ALLOW_AUTODIFF_TAMC */
 
-# ifdef NONLIN_FRSURF
 C--   Initialise Non-Lin FreeSurf variables:
       CALL INI_NLFS_VARS( myThid )
-# endif /* NONLIN_FRSURF */
 
 #endif /* ALLOW_AUTODIFF_TAMC */
 
