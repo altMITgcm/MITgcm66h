@@ -53,5 +53,13 @@ c       ENDIF
       ENDIF
 #endif /* ALLOW_NONHYDROSTATIC */
 
+#ifdef NONLIN_FRSURF
+# ifndef DISABLE_SIGMA_CODE
+      IF ( selectSigmaCoord.NE.0 ) THEN
+        CALL UPDATE_ETAWS( startTime, nIter0, myThid )
+      ENDIF
+# endif /* DISABLE_SIGMA_CODE */
+#endif /* NONLIN_FRSURF */
+
       RETURN
       END
