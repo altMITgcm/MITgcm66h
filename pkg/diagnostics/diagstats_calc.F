@@ -462,10 +462,16 @@ C     and thus will not compile with a F77 compiler.
        ENDIF
 
       ENDIF
+C     inpArr can be undefined/non-initialised in overlaps, so we need
+C     to clean this fields first by copying the defined range to tmpFld
+      tmpFld = 0. _d 0
+      DO j = 1,jRun
+       DO i = 1,iRun
+        tmpFld(i,j) = inpArr(i,j)
+       ENDDO
+      ENDDO
       IF ( power.EQ.2) THEN
-       tmpFld = inpArr*inpArr
-      ELSE
-       tmpFld = inpArr
+       tmpFld = tmpFld*tmpFld
       ENDIF
 C     sum up the volume
       tmpVol = tmpVol*arrMaskL
