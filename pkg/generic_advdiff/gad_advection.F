@@ -807,7 +807,7 @@ C--   Divergence of vertical fluxes
      &       *recip_rA(i,j,bi,bj)*recip_deepFac2C(k)
      &       *( fVerT(i,j,kDown)-fVerT(i,j,kUp)
      &         -tracer(i,j,k,bi,bj)*(rTransKp1(i,j)-rTrans(i,j))
-     &        )*rkSign
+     &        )*rkSign*maskInC(i,j,bi,bj)
           gTracer(i,j,k,bi,bj)=
      &     (localTij(i,j)-tracer(i,j,k,bi,bj))/deltaTLev(k)
          ENDDO
