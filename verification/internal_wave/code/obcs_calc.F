@@ -17,6 +17,10 @@ C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#ifdef ALLOW_EXCH2
+# include "W2_EXCH2_SIZE.h"
+#endif /* ALLOW_EXCH2 */
+#include "SET_GRID.h"
 #include "GRID.h"
 #include "OBCS_PARAMS.h"
 #include "OBCS_GRID.h"
