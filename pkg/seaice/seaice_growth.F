@@ -1322,6 +1322,7 @@ CADJ STORE d_HEFFbyATMonOCN = comlev1_bibj,key=iicekey,byte=isbyte
 CADJ STORE d_HEFFbyATMonOCN_open = comlev1_bibj,key=iicekey,byte=isbyte
 CADJ STORE d_HEFFbyATMonOCN_cover = comlev1_bibj,key=iicekey,byte=isbyte
 CADJ STORE d_HEFFbyFLOODING = comlev1_bibj,key=iicekey,byte=isbyte
+CADJ STORE d_HEFFbySublim = comlev1_bibj,key=iicekey,byte=isbyte
 CADJ STORE salt(:,:,kSurface,bi,bj) = comlev1_bibj,
 CADJ &                       key = iicekey, byte = isbyte
 # endif /* ALLOW_AUTODIFF_TAMC and ALLOW_SALT_PLUME */
@@ -1330,6 +1331,9 @@ CADJ &                       key = iicekey, byte = isbyte
 Cgf note: flooding does count negatively
           tmpscal1 = d_HEFFbyNEG(I,J) + d_HEFFbyOCNonICE(I,J) +
      &               d_HEFFbyATMonOCN(I,J) - d_HEFFbyFLOODING(I,J)
+#ifdef SEAICE_ADD_SUBLIMATION_TO_FWBUDGET
+     &             + d_HEFFbySublim(I,J)
+#endif
           tmpscal2 = tmpscal1 * SIsal0 * HEFFM(I,J,bi,bj)
      &            /SEAICE_deltaTtherm * SEAICE_rhoIce
           saltFlux(I,J,bi,bj) = tmpscal2
