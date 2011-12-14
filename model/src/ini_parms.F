@@ -25,8 +25,8 @@ C     !USES:
 # include "W2_EXCH2_SIZE.h"
 # include "W2_EXCH2_TOPOLOGY.h"
 #endif /* ALLOW_EXCH2 */
-#include "SET_GRID.h"
 #include "EOS.h"
+#include "SET_GRID.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     myThid :: Number of this instance of INI_PARMS
