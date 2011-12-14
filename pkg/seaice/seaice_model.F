@@ -81,6 +81,7 @@ C--   Map thSice-variables to HEFF and AREA
       ENDIF
 #endif /* ALLOW_THSICE */
 
+#ifdef SEAICE_GROWTH_LEGACY
       IF ( .NOT.useThSice ) THEN
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE heff  = comlev1, key=ikey_dynamics, kind=isbyte
@@ -112,6 +113,7 @@ CADJ STORE hsalt = comlev1, key=ikey_dynamics, kind=isbyte
        ENDDO
       ENDDO
       ENDIF
+#endif
 
 #ifdef ALLOW_AUTODIFF_TAMC
 c
