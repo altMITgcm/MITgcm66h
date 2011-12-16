@@ -4,6 +4,17 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice/seaice_growth.F:
+  fix heat conservation of the coupled ocean-seaice system.
+  when SEAICE_HEAT_CONSERV_FIX is defined, the mismatch of
+  solid vs liquid water treatment is resolved via QNET.
+o pkg/seaice/seaice_growth.F:
+  add missing term for sublimation in saltFlux, which was breaking conservation.
+o pkg/seaice/seaice_model.F:
+  Remove this patholigical case treatment in evolution branch,
+  where it is un-necessary and breaks conservation.
+  Update global_ocean.cs32x15/results accordingly for 
+  output.seaice.txt output_adm.seaice.txt and output_adm.seaice_dynmix.txt 
 o model/src:
   useRealFreshWaterFlux: remove masking of EmPmP (using maskInC) in
   external_forcing_surf.F and apply mask directly in S/R SOLVE_FOR_PRESSURE.
