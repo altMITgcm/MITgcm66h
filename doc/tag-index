@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint63g (2011/12/16)
 o pkg/seaice/seaice_growth.F:
   fix heat conservation of the coupled ocean-seaice system.
   when SEAICE_HEAT_CONSERV_FIX is defined, the mismatch of
