@@ -47,6 +47,8 @@ C     otherwise, use the merged version (with some of Ian Fenty s code)
 
 C--   options only available in the merged version (from Ian Fenty s code)
 #ifndef SEAICE_GROWTH_LEGACY
+C-    to ensure heat conservation in the coupled ocean-seaice system
+#undef SEAICE_HEAT_CONSERV_FIX
 C-    to switch on/off open-water freezing contribution to thickness tendency:
 # define SEAICE_DO_OPEN_WATER_GROWTH
 C-    ifdef SEAICE_DO_OPEN_WATER_GROWTH then define SEAICE_DO_OPEN_WATER_MELT
