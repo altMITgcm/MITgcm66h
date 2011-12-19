@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice/seaice_ocean_budget.F: change (unused) code to make it look better
 o pkg/seaice/seaice_readparms.F: make ocean_emissivity*stefanBoltzmann the
   default for SEAICE_emissivity, if useEXF; requires setting a wrong
   parameter value in global_ocean.cs32x15/input.seaice/data.seaice for
