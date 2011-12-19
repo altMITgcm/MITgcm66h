@@ -118,6 +118,11 @@ C--   By default for B-grid dynamics solver surface tilt is obtained
 C     indirectly via geostrophic velocities. Define following CPP
 C     in order to use ETAN instead.
 # define EXPLICIT_SSH_SLOPE
+C--   Defining this flag turns on a FV-discretization of the B-grid LSOR 
+C     solver. It is smoother and includes all metric terms, similar to the
+C     C-grid solver. It is here for completeness, but its usefulness is
+C     unclear.
+# undef SEAICE_LSRBNEW
 #endif /* SEAICE_CGRID */
 
 C--   When set use MAX_HEFF to cap sea ice thickness in seaice_growth
