@@ -152,6 +152,12 @@ C   Zenith Angle/Albedo related flags.
 # undef ALLOW_ZENITHANGLE
 #endif
 
+C   Use ocean_emissivity*lwdwon in lwFlux. This flag should always be define
+C   but is not because of backward compatibility
+#ifdef ALLOW_DOWNWARD_RADIATION
+# undef EXF_LWDOWN_WITH_EMISSIVITY
+#endif
+
 C   Relaxation to monthly climatologies.
 #define ALLOW_CLIMSST_RELAXATION
 #define ALLOW_CLIMSSS_RELAXATION
