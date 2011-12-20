@@ -74,6 +74,15 @@ C     Loop over tiles.
             lwflux(i,j,bi,bj) =
      &          ocean_emissivity*stefanBoltzmann*TsfSq*TsfSq
      &          - lwdown(i,j,bi,bj)
+#ifdef EXF_LWDOWN_WITH_EMISSIVITY
+     &           *ocean_emissivity
+C     the lw exitance (= out-going long wave radiation) is
+C     emissivity*stefanBoltzmann*T^4 + rho*lwdown, where the
+C     reflectivity rho = 1-emissivity for conservation reasons:
+C     the sum of emissivity, reflectivity, and transmissivity must be
+C     one, and transmissivity is zero in our case (long wave radiation
+C     does not penetrate the ocean surface)
+#endif /* EXF_LWDOWN_WITH_EMISSIVITY */
            ENDDO
           ENDDO
          ELSE
@@ -83,6 +92,15 @@ C     Loop over tiles.
      &          ocean_emissivity*stefanBoltzmann*
      &          ((theta(i,j,k,bi,bj)+cen2kel)**4)
      &          - lwdown(i,j,bi,bj)
+#ifdef EXF_LWDOWN_WITH_EMISSIVITY
+     &           *ocean_emissivity
+C     the lw exitance (= out-going long wave radiation) is
+C     emissivity*stefanBoltzmann*T^4 + rho*lwdown, where the
+C     reflectivity rho = 1-emissivity for conservation reasons:
+C     the sum of emissivity, reflectivity, and transmissivity must be
+C     one, and transmissivity is zero in our case (long wave radiation
+C     does not penetrate the ocean surface)
+#endif /* EXF_LWDOWN_WITH_EMISSIVITY */
            ENDDO
           ENDDO
          ENDIF
