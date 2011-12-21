@@ -607,7 +607,7 @@ cmm   accumulate averate
 #endif
 
 #ifdef ALLOW_GENCOST_CONTRIBUTION
-	cph currently all assumed to be surface fields, i.e. 2-d
+cph currently all assumed to be surface fields, i.e. 2-d
       do num_var = 1, NGENCOST
       if ( gencost_barfile(num_var) .ne. ' ' ) then
       call cost_averagesgeneric(
