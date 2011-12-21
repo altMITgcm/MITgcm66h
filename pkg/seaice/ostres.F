@@ -74,13 +74,13 @@ C--   Compute ice-affected wind stress
      &         ( UICE(I,J,  bi,bj)-GWATX(I,J,  bi,bj)
      &         + UICE(I,J+1,bi,bj)-GWATX(I,J+1,bi,bj) )
      &         -SIGN(SINWAT,COR_ICE(I,J,bi,bj)) *
-     &         ( VICE(I,  J,bi,bj)-GWATY(I,  J,bi,bj)
-     &         + VICE(I+1,J,bi,bj)-GWATY(I+1,J,bi,bj) )
+     &         ( VICE(I,J,  bi,bj)-GWATY(I,J,  bi,bj)
+     &         + VICE(I,J+1,bi,bj)-GWATY(I,J+1,bi,bj) )
      &         )
           fvIce=QUART*( DWATN(I,J,bi,bj)+DWATN(I+1,J,bi,bj) )*(
      &         SIGN(SINWAT,COR_ICE(I,J,bi,bj)) *
-     &         ( UICE(I,J,  bi,bj)-GWATX(I,J,  bi,bj)
-     &         + UICE(I,J+1,bi,bj)-GWATX(I,J+1,bi,bj) )
+     &         ( UICE(I,  J,bi,bj)-GWATX(I,  J,bi,bj)
+     &         + UICE(I+1,J,bi,bj)-GWATX(I+1,J,bi,bj) )
      &         + COSWAT *
      &         ( VICE(I,  J,bi,bj)-GWATY(I,  J,bi,bj)
      &         + VICE(I+1,J,bi,bj)-GWATY(I+1,J,bi,bj) )
