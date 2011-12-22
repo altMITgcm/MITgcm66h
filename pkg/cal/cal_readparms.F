@@ -75,9 +75,6 @@ c     modintsteps     - number of timesteps that are to be performed.
       integer moditerend
       integer modintsteps
 
-      integer errio
-      integer ierr
-      integer il
       integer enddate_1
       integer enddate_2
 
@@ -86,12 +83,6 @@ c     Variables related to the calendar tool.
       integer       iUnit
 
       character*(max_len_mbuf) msgBuf
-      character*(max_len_prec) record
-
-c     == external ==
-
-      integer  ilnblnk
-      external ilnblnk
 
 c     == end of interface ==
 
