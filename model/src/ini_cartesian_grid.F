@@ -41,9 +41,6 @@ C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     bi,bj   :: tile indices
 C     i, j    :: loop counters
-C     lat     :: Temporary variables used to hold latitude values.
-C     dlat    :: Temporary variables used to hold latitudes increment.
-C     dlon    :: Temporary variables used to hold longitude increment.
 C     delXloc :: mesh spacing in X direction
 C     delYloc :: mesh spacing in Y direction
 C     xGloc   :: mesh corner-point location (local "Long" real array type)
@@ -51,7 +48,6 @@ C     yGloc   :: mesh corner-point location (local "Long" real array type)
       INTEGER bi, bj
       INTEGER i,  j
       INTEGER gridNx, gridNy
-      _RL lat, dlat, dlon
 C NOTICE the extended range of indices!!
       _RL delXloc(0-OLx:sNx+OLx)
       _RL delYloc(0-OLy:sNy+OLy)

@@ -39,13 +39,13 @@ C     !LOCAL VARIABLES:
 #ifdef EXACT_CONSERV
 C     Local variables in common block
 
+#ifdef NONLIN_FRSURF
+# ifndef DISABLE_SIGMA_CODE
 C     Local variables
 C     i,j,bi,bj  :: Loop counters
       INTEGER i,j,bi,bj
 CEOP
 
-#ifdef NONLIN_FRSURF
-# ifndef DISABLE_SIGMA_CODE
       IF ( nonlinFreeSurf.GT.0 .AND. selectSigmaCoord.NE.0 ) THEN
 
        DO bj=myByLo(myThid),myByHi(myThid)
@@ -53,8 +53,8 @@ CEOP
 C-     1rst bi,bj loop :
 
 C-- copy etaHX -> dEtaXdt
-         DO j=1-Oly,sNy+Oly
-          DO i=1-Olx,sNx+Olx
+         DO j=1-OLy,sNy+OLy
+          DO i=1-OLx,sNx+OLx
             dEtaWdt(i,j,bi,bj) = etaHw(i,j,bi,bj)
             dEtaSdt(i,j,bi,bj) = etaHs(i,j,bi,bj)
           ENDDO
@@ -87,8 +87,8 @@ C- end 1rst bi,bj loop.
         DO bi=myBxLo(myThid),myBxHi(myThid)
 C-     2nd bi,bj loop :
 
-         DO j=1-Oly,sNy+Oly
-          DO i=1-Olx,sNx+Olx
+         DO j=1-OLy,sNy+OLy
+          DO i=1-OLx,sNx+OLx
             dEtaWdt(i,j,bi,bj) = ( etaHw(i,j,bi,bj)
      &                           - dEtaWdt(i,j,bi,bj) )/deltaTfreesurf
             dEtaSdt(i,j,bi,bj) = ( etaHs(i,j,bi,bj)
