@@ -13,9 +13,11 @@ C $Name$
 #define ALLOW_O2
 #undef READ_PAR
 #undef MINFE
+#undef DIC_NO_NEG
 c these all need to be defined for coupling to
 c atmospheric model
 #undef USE_QSW
+#undef USE_QSW_UNDERICE
 #undef USE_ATMOSCO2
 #undef USE_PLOAD
 
