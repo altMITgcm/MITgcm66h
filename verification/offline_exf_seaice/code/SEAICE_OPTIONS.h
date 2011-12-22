@@ -22,7 +22,7 @@ C     This option is provided to allow use of TAMC
 C     on the thermodynamics component of the code only.
 C     Sea-ice dynamics can also be turned off at runtime
 C     using variable SEAICEuseDYNAMICS.
-#undef SEAICE_ALLOW_DYNAMICS
+#define SEAICE_ALLOW_DYNAMICS
 
 C--   By default, the sea-ice package uses its own integrated bulk
 C     formulae to compute fluxes (fu, fv, EmPmR, Qnet, and Qsw) over
