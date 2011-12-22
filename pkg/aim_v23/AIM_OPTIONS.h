@@ -29,6 +29,9 @@ C  allow Clear-Sky diagnostic:
 C allow 3D cloud fraction for computation of radiation
 #undef ALLOW_CLOUD_3D
 
+C allow CO2 concentration
+#undef ALLOW_AIM_CO2
+
 C   Macro mapping dynamics vertical indexing (KD) to AIM vertical indexing (KA).
 C   ( dynamics puts K=1 at bottom of atmos., AIM puts K=1 at top of atmos. )
 #define _KD2KA( KD ) Nr-KD+1
