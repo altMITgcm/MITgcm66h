@@ -142,16 +142,15 @@ c     == global variables ==
 
 C     !INPUT/OUTPUT PARAMETERS:
 c     == routine arguments ==
-      integer mythid
-      integer myiter
       _RL     mytime
+      integer myiter
+      integer mythid
 
 C     !LOCAL VARIABLES:
 c     == local variables ==
 
       integer bi,bj
       integer i,j,k
-      character*(max_len_mbuf) msgbuf
 
 c     == end of interface ==
 CEOP
@@ -287,5 +286,5 @@ c     Map the forcing fields onto the corresponding model fields.
 # endif
 #endif
 
-      end
-
+      RETURN
+      END

@@ -101,7 +101,7 @@ C     I, J, it2d :: Loop counters ( it2d counts CG iterations )
       _RL    eta_qrNM1
       _RL    cgBeta
       _RL    alpha,  alphaTile(nSx,nSy)
-      _RL    sigma,  sigmaTile(nSx,nSy)
+      _RL    sigma
       _RL    delta,  deltaTile(nSx,nSy)
       _RL    sumRHS, sumRHStile(nSx,nSy)
       _RL    rhsMax

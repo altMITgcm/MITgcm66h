@@ -95,7 +95,7 @@ C local variables
       _RL      arrayin(-1:nx_in+2 ,      -1:ny_in+2)
       _RL      NorthValue
       _RL      x_in   (-1:nx_in+2), y_in(-1:ny_in+2)
-      integer  i, j, k, l, js, bi, bj, sp, interp_unit
+      integer  i, j, k, l, js, bi, bj, sp
 #ifdef TARGET_NEC_SX
       integer  ic, ii, icnt
       integer  inx(snx*sny,2)

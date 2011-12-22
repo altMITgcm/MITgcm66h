@@ -59,8 +59,10 @@ C     eastCommMode  ::  a particular tile face uses.
 c     INTEGER biW, bjW, biE, bjE
       INTEGER westCommMode
       INTEGER eastCommMode
-      INTEGER spinCount
       INTEGER ioUnit
+#ifdef EXCH_USE_SPINNING
+      INTEGER spinCount
+#endif
 #ifdef ALLOW_USE_MPI
       INTEGER theProc, theTag, theType, theSize
       INTEGER mpiStatus(MPI_STATUS_SIZE,4), mpiRc
@@ -273,8 +275,10 @@ C     northCommMode ::  a particular tile face uses.
 c     INTEGER biS, bjS, biN, bjN
       INTEGER southCommMode
       INTEGER northCommMode
-      INTEGER spinCount
       INTEGER ioUnit
+#ifdef EXCH_USE_SPINNING
+      INTEGER spinCount
+#endif
 #ifdef ALLOW_USE_MPI
       INTEGER theProc, theTag, theType, theSize
       INTEGER mpiStatus(MPI_STATUS_SIZE,4), mpiRc
