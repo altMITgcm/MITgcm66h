@@ -4,7 +4,7 @@
 # $Name$
 
 # tested on pleiades using SLES11 and:
-# module load comp-intel/2011.2 mpi-sgi/mpt.2.04-fsa netcdf/4.0
+# module load comp-intel/2011.2 mpi-sgi/mpt.2.04.10789 netcdf/4.0
 
 FC=ifort
 
@@ -15,10 +15,10 @@ OMPFLAG='-openmp'
 CFLAGS='-fPIC'
 LDADD='-shared-intel'
 
-LIBS='-L/nasa/sgi/mpt/2.04-fsa/lib -lmpi -L/nasa/netcdf/4.0/lib -lnetcdf'
-INCLUDES='-I/nasa/sgi/mpt/2.04-fsa/include -I/nasa/netcdf/4.0/include'
-INCLUDEDIRS='/nasa/sgi/mpt/2.04-fsa/include'
-MPIINCLUDEDIR='/nasa/sgi/mpt/2.04-fsa/include'
+LIBS='-L/nasa/sgi/mpt/2.04.10789/lib -lmpi -L/nasa/netcdf/4.0/lib -lnetcdf'
+INCLUDES='-I/nasa/sgi/mpt/2.04.10789/include -I/nasa/netcdf/4.0/include'
+INCLUDEDIRS='/nasa/sgi/mpt/2.04.10789/include'
+MPIINCLUDEDIR='/nasa/sgi/mpt/2.04.10789/include'
 MPI_HEADER_FILES='mpif.h mpiof.h mpif_parameters.h'
 MPI_HEADER_FILES_INC='./mpi_headers/mpif.h ./mpi_headers/mpiof.h ./mpi_headers/mpif_parameters.h'
 
