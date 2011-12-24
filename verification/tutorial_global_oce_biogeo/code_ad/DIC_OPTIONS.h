@@ -4,18 +4,21 @@ C $Name$
 #ifndef DIC_OPTIONS_H
 #define DIC_OPTIONS_H
 #include "PACKAGES_CONFIG.h"
-#ifdef ALLOW_DIC
-
 #include "CPP_OPTIONS.h"
+
+#ifdef ALLOW_DIC
+C     Package-specific Options & Macros go here
 
 #define DIC_BIOTIC
 #define ALLOW_FE
 #define ALLOW_O2
 #undef READ_PAR
 #undef MINFE
+#undef DIC_NO_NEG
 c these all need to be defined for coupling to
 c atmospheric model
 #undef USE_QSW
+#undef USE_QSW_UNDERICE
 #undef USE_ATMOSCO2
 #undef USE_PLOAD
 
@@ -23,6 +26,9 @@ c atmospheric model
 
 C put back bugs related to Water-Vapour in carbonate chemistry & air-sea fluxes
 #undef WATERVAP_BUG
+
+C dissolution only below saturation horizon following method by Karsten Friis
+#undef CAR_DISS
 
 #endif /* ALLOW_DIC */
 #endif /* DIC_OPTIONS_H */
