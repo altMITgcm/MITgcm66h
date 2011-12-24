@@ -2,10 +2,7 @@ C $Header$
 C $Name$
 
 C CPP options file for OBCS package
-C
 C Use this file for selecting options within the OBCS package
-C
-C OBCS is enabled with ALLOW_OBCS in CPP_OPTIONS.h
 
 #ifndef OBCS_OPTIONS_H
 #define OBCS_OPTIONS_H
@@ -13,6 +10,7 @@ C OBCS is enabled with ALLOW_OBCS in CPP_OPTIONS.h
 #include "CPP_OPTIONS.h"
 
 #ifdef ALLOW_OBCS
+C Package-specific Options & Macros go here
 
 C Enable individual open boundaries
 #define ALLOW_OBCS_NORTH

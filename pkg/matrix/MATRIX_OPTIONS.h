@@ -7,8 +7,7 @@ C $Name$
 #include "CPP_OPTIONS.h"
 
 #ifdef ALLOW_MATRIX
-
-C- Matrix pkg Macros and Options go here
+C     Matrix pkg Options & Macros go here
 
 #endif /* ALLOW_MATRIX */
 #endif /* MATRIX_OPTIONS_H */
