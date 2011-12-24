@@ -2,17 +2,15 @@ C $Header$
 C $Name$
 
 C CPP options file for RUNCLOCK package
-C
 C Use this file for selecting options within the RUNCLOCK package
 
 #ifndef RUNCLOCK_OPTIONS_H
 #define RUNCLOCK_OPTIONS_H
 #include "PACKAGES_CONFIG.h"
-#ifdef ALLOW_RUNCLOCK
-
 #include "CPP_OPTIONS.h"
 
-C Put RUNCLOCK specific CPP macros here
+#ifdef ALLOW_RUNCLOCK
+C     Package-specific Options & Macros go here
 
 C Define this macro if using an F90-compiler to compile and link the code
 #undef  RUNCLOCK_USES_DATE_AND_TIME

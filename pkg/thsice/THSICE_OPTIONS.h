@@ -4,10 +4,10 @@ C $Name$
 #ifndef THSICE_OPTIONS_H
 #define THSICE_OPTIONS_H
 #include "PACKAGES_CONFIG.h"
+#include "CPP_OPTIONS.h"
 
 #ifdef ALLOW_THSICE
-
-#include "CPP_OPTIONS.h"
+C     Package-specific Options & Macros go here
 
 C- use continuous power-law function for partition of energy between lateral
 C  melting/freezing and thinning/thickening ; otherwise, use step function.

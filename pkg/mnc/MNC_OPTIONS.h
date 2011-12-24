@@ -4,9 +4,9 @@ C $Name$
 #ifndef MNC_OPTIONS_H
 #define MNC_OPTIONS_H
 #include "PACKAGES_CONFIG.h"
-#ifdef ALLOW_MNC
-
 #include "CPP_OPTIONS.h"
+
+#ifdef ALLOW_MNC
 
 #include "MNC_ID_HEADER.h"
 
@@ -29,7 +29,6 @@ C     per-file and per-tile file names
 
 #endif /* ALLOW_MNC */
 #endif /* MNC_OPTIONS_H */
-
 
 CEH3 ;;; Local Variables: ***
 CEH3 ;;; mode:fortran ***

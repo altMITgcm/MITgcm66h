@@ -4,9 +4,9 @@ C $Name$
 #ifndef GCHEM_OPTIONS_H
 #define GCHEM_OPTIONS_H
 #include "PACKAGES_CONFIG.h"
-#ifdef ALLOW_GCHEM
-
 #include "CPP_OPTIONS.h"
+
+#ifdef ALLOW_GCHEM
 
 CBOP
 C    !ROUTINE: GCHEM_OPTIONS.h

@@ -2,16 +2,14 @@ C $Header$
 C $Name$
 
 C CPP options file for MYPACKAGE
-C
 C Use this file for selecting options within package "MyPackage"
 
 #ifndef MYPACKAGE_OPTIONS_H
 #define MYPACKAGE_OPTIONS_H
 #include "PACKAGES_CONFIG.h"
-#ifdef ALLOW_MYPACKAGE
-
 #include "CPP_OPTIONS.h"
 
+#ifdef ALLOW_MYPACKAGE
 C Place CPP define/undef flag here
 
 C to reduce memory storage, disable unused array with those CPP flags :

@@ -4,9 +4,9 @@ C $Name$
 #ifndef CAL_OPTIONS_H
 #define CAL_OPTIONS_H
 #include "PACKAGES_CONFIG.h"
-#ifdef ALLOW_CAL
-
 #include "CPP_OPTIONS.h"
+
+#ifdef ALLOW_CAL
 
 CPH >>>>>> ALL CAL OPTIONS ARE CURRENTLY SET IN <<<<<<
 CPH >>>>>> ECCO_CPPOPTIONS.h                    <<<<<<

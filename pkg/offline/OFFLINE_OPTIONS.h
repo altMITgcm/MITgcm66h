@@ -4,9 +4,9 @@ C $Name$
 #ifndef OFFLINE_OPTIONS_H
 #define OFFLINE_OPTIONS_H
 #include "PACKAGES_CONFIG.h"
-#ifdef ALLOW_OFFLINE
-
 #include "CPP_OPTIONS.h"
+
+#ifdef ALLOW_OFFLINE
 
 CBOP
 C    !ROUTINE: OFFLINE_OPTIONS.h

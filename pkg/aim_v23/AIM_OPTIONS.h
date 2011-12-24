@@ -1,14 +1,15 @@
 C $Header$
 C $Name$
 
-C  CPP options file for AIM package 
+C  CPP options file for AIM package
 
 #ifndef AIM_OPTIONS_H
 #define AIM_OPTIONS_H
 #include "PACKAGES_CONFIG.h"
-#ifdef ALLOW_AIM
-
 #include "CPP_OPTIONS.h"
+
+#ifdef ALLOW_AIM
+C     Package-specific Options & Macros go here
 
 C  restore the old AIM interface (ref: coupled run, summer 2000):
 C  - use a simple shift of 1/2 mesh for mapping A.grid <-> C.grid.

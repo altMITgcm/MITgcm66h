@@ -7,10 +7,9 @@ C Use this file for selecting options within the salt_plume package
 #ifndef SALT_PLUME_OPTIONS_H
 #define SALT_PLUME_OPTIONS_H
 #include "PACKAGES_CONFIG.h"
-#ifdef ALLOW_SALT_PLUME
-
 #include "CPP_OPTIONS.h"
 
+#ifdef ALLOW_SALT_PLUME
 C Place CPP define/undef flag here
 
 #endif /* ALLOW_SALT_PLUME */

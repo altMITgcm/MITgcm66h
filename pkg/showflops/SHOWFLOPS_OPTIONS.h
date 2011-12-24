@@ -2,15 +2,15 @@ C $Header$
 C $Name$
 
 C CPP options file for SHOWFLOPS package
-C
 C Use this file for selecting options within the SHOWFLOPS package
 
 #ifndef SHOWFLOPS_OPTIONS_H
 #define SHOWFLOPS_OPTIONS_H
 #include "PACKAGES_CONFIG.h"
-#ifdef ALLOW_SHOWFLOPS
-
 #include "CPP_OPTIONS.h"
+
+#ifdef ALLOW_SHOWFLOPS
+C     Package-specific Options & Macros go here
 
 #undef USE_FLIPS
 

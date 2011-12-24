@@ -4,9 +4,10 @@ C $Name$
 #ifndef DIC_OPTIONS_H
 #define DIC_OPTIONS_H
 #include "PACKAGES_CONFIG.h"
-#ifdef ALLOW_DIC
-
 #include "CPP_OPTIONS.h"
+
+#ifdef ALLOW_DIC
+C     Package-specific Options & Macros go here
 
 #define DIC_BIOTIC
 #undef  ALLOW_FE

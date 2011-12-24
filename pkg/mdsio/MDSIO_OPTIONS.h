@@ -4,9 +4,10 @@ C $Name$
 #ifndef MDSIO_OPTIONS_H
 #define MDSIO_OPTIONS_H
 #include "PACKAGES_CONFIG.h"
-#ifdef ALLOW_MDSIO
-
 #include "CPP_OPTIONS.h"
+
+#ifdef ALLOW_MDSIO
+C     Package-specific Options & Macros go here
 
 C Defining SAFE_IO stops the model from overwriting its own files
 #undef  SAFE_IO

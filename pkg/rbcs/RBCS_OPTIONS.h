@@ -2,16 +2,14 @@ C $Header$
 C $Name$
 
 C CPP options file for pkg RBCS
-C
 C Use this file for selecting options within package "RBCS"
 
 #ifndef RBCS_OPTIONS_H
 #define RBCS_OPTIONS_H
 #include "PACKAGES_CONFIG.h"
-#ifdef ALLOW_RBCS
-
 #include "CPP_OPTIONS.h"
 
+#ifdef ALLOW_RBCS
 C Place CPP define/undef flag here
 
 C o disable relaxation conditions on momemtum

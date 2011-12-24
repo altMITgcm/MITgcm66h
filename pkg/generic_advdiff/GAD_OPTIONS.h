@@ -12,15 +12,15 @@ C Contains CPP macros/flags for controlling optional features of package.
 CEOP
 
 C CPP options file for GAD (Generic Advection Diffusion) package
-C
 C Use this file for selecting options within the GAD package
 
 #ifndef GAD_OPTIONS_H
 #define GAD_OPTIONS_H
 #include "PACKAGES_CONFIG.h"
-#ifdef ALLOW_GENERIC_ADVDIFF
-
 #include "CPP_OPTIONS.h"
+
+#ifdef ALLOW_GENERIC_ADVDIFF
+C     Package-specific Options & Macros go here
 
 C This flag selects the form of COSINE(lat) scaling of bi-harmonic term.
 C *only for use on a lat-lon grid*

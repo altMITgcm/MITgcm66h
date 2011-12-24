@@ -1,17 +1,16 @@
 C $Header$
 C $Name$
 
-C
+C CPP options file for LAYERS package
 C Use this file for selecting options within package "LAYERS"
 
 #ifndef LAYERS_OPTIONS_H
 #define LAYERS_OPTIONS_H
-
 #include "PACKAGES_CONFIG.h"
+#include "CPP_OPTIONS.h"
 
 #ifdef ALLOW_LAYERS
-
-#include "CPP_OPTIONS.h"
+C     Package-specific Options & Macros go here
 
 C Compute isopycnal tranports in the U direction?
 #define LAYERS_UFLUX
@@ -28,4 +27,3 @@ C Allow use of potential density as a layering field.
 
 #endif /* ALLOW_LAYERS */
 #endif /* LAYERS_OPTIONS_H */
-

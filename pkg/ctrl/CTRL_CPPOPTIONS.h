@@ -17,10 +17,9 @@ CEOP
 #define CTRL_OPTIONS_H
 #include "PACKAGES_CONFIG.h"
 #include "AD_CONFIG.h"
-#ifdef ALLOW_CTRL
-
 #include "CPP_OPTIONS.h"
 
+#ifdef ALLOW_CTRL
 C-- Package-specific options go here
 C   Note: most of these options have been shifted to the common header
 C         file ECCO_CPPOPTIONS.h
