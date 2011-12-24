@@ -345,12 +345,6 @@ C--   pkg/seaice requires pkg/exf with following CPP options/
          CALL PRINT_ERROR( msgBuf, myThid )
          STOP 'ABNORMAL END: S/R SEAICE_CHECK'
 #endif
-#ifndef ALLOW_RUNOFF
-         WRITE(msgBuf,'(2A)') 'S/R SEAICE_CHECK: ',
-     &        'need to define pkg/exf ALLOW_RUNOFF'
-         CALL PRINT_ERROR( msgBuf, myThid )
-         STOP 'ABNORMAL END: S/R SEAICE_CHECK'
-#endif
 #ifdef SEAICE_EXTERNAL_FLUXES
 #if !defined(EXF_READ_EVAP) && !defined(ALLOW_BULKFORMULAE)
          WRITE(msgBuf,'(2A)') 'S/R SEAICE_CHECK: ',
