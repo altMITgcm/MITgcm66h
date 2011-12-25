@@ -163,6 +163,9 @@ C   Relaxation to monthly climatologies.
 C   Use spatial interpolation to interpolate
 C   forcing files from input grid to model grid.
 #undef USE_EXF_INTERPOLATION
+C   for interpolated vector fields, rotate towards model-grid axis
+C   using old rotation formulae (instead of grid-angles)
+#undef EXF_USE_OLD_VEC_ROTATION
 
 #define EXF_INTERP_USE_DYNALLOC
 #if ( defined (EXF_INTERP_USE_DYNALLOC) && defined (USING_THREADS) )
