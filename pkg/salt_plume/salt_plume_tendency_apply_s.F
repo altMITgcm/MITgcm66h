@@ -34,7 +34,7 @@ CEOP
 #ifdef ALLOW_SALT_PLUME
 
 C     !LOCAL VARIABLES:
-      integer i, j, kp1, two2
+      integer i, j, two2
       parameter(two2 = 2)
       _RL plumefrac(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL plumekb(two2), SPdepth(two2), minusone

@@ -93,7 +93,6 @@ C     === Local variables ===
       _RL F_lwd      (1:sNx,1:sNy)
       _RL F_lwu      (1:sNx,1:sNy)
       _RL F_sens     (1:sNx,1:sNy)
-      _RL hice_tmp
 #endif /* SEAICE_SOLVE4TEMP_LEGACY */
       _RL F_lh       (1:sNx,1:sNy)
       _RL F_c        (1:sNx,1:sNy)
