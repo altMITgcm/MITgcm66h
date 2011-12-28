@@ -403,7 +403,7 @@ c interpolation information consistent (self and with grid)
 
       ProfNo(num_file,bi,bj)=length_for_tile
 
-      write(msgbuf,'(a,i3,i3,i3,i5)')
+      write(msgbuf,'(a,i10,i3,i3,i5)')
      &   'fid dimid ProfNo',fid, dimid,
      & num_file, ProfNo(num_file,bi,bj)
       call print_message(
