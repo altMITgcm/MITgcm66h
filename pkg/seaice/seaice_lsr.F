@@ -74,7 +74,6 @@ C     i,j,bi,bj  :: Loop counters
       INTEGER i, j, k, m, bi, bj, j1, j2, im, jm
       INTEGER ICOUNT1, ICOUNT2
       INTEGER kSrf
-      INTEGER itmpkey, itmpkey2
       INTEGER SOLV_MAX_TMP
       LOGICAL doIterate4u, doIterate4v
       CHARACTER*(MAX_LEN_MBUF) msgBuf
@@ -129,7 +128,9 @@ C     auxillary fields
       _RL CVV  (1-Olx:sNx+Olx,1-Oly:sNy+Oly)
       _RL uTmp (1-Olx:sNx+Olx,1-Oly:sNy+Oly,nSx,nSy)
       _RL vTmp (1-Olx:sNx+Olx,1-Oly:sNy+Oly,nSx,nSy)
-C
+#ifdef ALLOW_AUTODIFF_TAMC
+      INTEGER itmpkey, itmpkey2
+#endif
       _RL COSWAT
       _RS SINWAT
       _RL TEMPVAR
