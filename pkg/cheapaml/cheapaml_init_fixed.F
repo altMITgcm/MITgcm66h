@@ -1,3 +1,5 @@
+C $Header$
+C $Name$
 
 #include "CHEAPAML_OPTIONS.h"
 
