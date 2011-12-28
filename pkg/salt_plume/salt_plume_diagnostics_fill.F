@@ -25,26 +25,22 @@ C     !INPUT PARAMETERS:
 CEOP
 
 #ifdef ALLOW_SALT_PLUME
-
-C     !LOCAL VARIABLES:
-      _RL tmpFac
-
 #ifdef ALLOW_DIAGNOSTICS
+C     !LOCAL VARIABLES:
+
       IF ( useDiagnostics ) THEN
 
 C-    Salt plume depth (>0), [m]
-       tmpFac = 1. _d 0
-       CALL DIAGNOSTICS_SCALE_FILL( SaltPlumeDepth,tmpFac,1,
+       CALL DIAGNOSTICS_FILL( SaltPlumeDepth,
      &                             'oceSPDep',0, 1,0,1,1,myThid )
 
 C-    net Salt plume flux into the ocean during freezing (+=down), [psu.kg/m2/s ~ g/m2/s]
-       tmpFac = 1. _d 0
-       CALL DIAGNOSTICS_SCALE_FILL( saltPlumeFlux,tmpFac,1,
+       CALL DIAGNOSTICS_FILL( saltPlumeFlux,
      &                             'oceSPflx',0, 1,0,1,1,myThid )
 
       ENDIF
-#endif /* ALLOW_DIAGNOSTICS */
 
+#endif /* ALLOW_DIAGNOSTICS */
 #endif /* ALLOW_SALT_PLUME */
 
       RETURN
