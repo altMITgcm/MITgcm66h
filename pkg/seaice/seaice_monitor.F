@@ -104,19 +104,15 @@ C       Print some statistics about input forcing fields
         CALL MON_WRITESTATS_RL( 1, UICE, '_uice',
      &           maskInW, maskInW, rAw, drF, dummyRL, myThid )
 #else
-# ifdef REAL4_IS_SLOW
         CALL MON_WRITESTATS_RL( 1, UICE, '_uice',
      &                   UVM, UVM, rAz, drF, dummyRL, myThid )
-# endif
 #endif
 #ifdef SEAICE_CGRID
         CALL MON_WRITESTATS_RL( 1, VICE, '_vice',
      &           maskInS, maskInS, rAs, drF, dummyRL, myThid )
 #else
-# ifdef REAL4_IS_SLOW
         CALL MON_WRITESTATS_RL( 1, VICE, '_vice',
      &                   UVM, UVM, rAz, drF, dummyRL, myThid )
-# endif
 #endif
         CALL MON_WRITESTATS_RL( 1, AREA, '_area',
      &           maskInC, maskInC, rA , drF, dummyRL, myThid )
