@@ -5,6 +5,9 @@ $Name$
     ==============================
 
 checkpoint63h (2011/12/30)
+o pkg/seaice:
+  - change declaration of UVM from _RL to _RS in order to get B-grid
+    uIce,vIce monitor when _RS = real*4
 o pkg/offline:
   - new S/R OFFLINE_RESET_PARMS for resetting main-model params (switch off flags);
   - compute vertical velocity if not read from file (switch on exactConserv
