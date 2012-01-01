@@ -122,6 +122,7 @@ C     bi, bj      :: tile indices
       INTEGER  js
 #else
       INTEGER  nLoop
+      _RL      tmpVar
 #endif
 #ifdef TARGET_NEC_SX
       INTEGER  ic, ii, icnt
@@ -359,7 +360,8 @@ C--     latitude index
         ENDDO
 C       # of pts = nyIn+2 ; # of interval = nyIn+1 ; evaluate nLoop as
 C       1 + truncated log2(# interval -1); add epsil=1.e-3 for safey
-        nLoop = 1 + INT( LOG(DFLOAT(nyIn)+1. _d -3)/LOG(2. _d 0) )
+        tmpVar = nyIn + 1. _d -3
+        nLoop = 1 + INT( LOG(tmpVar)/LOG(2. _d 0) )
         DO l=1,nLoop
          DO j=1,sNy
           DO i=1,sNx
