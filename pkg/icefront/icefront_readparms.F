@@ -80,9 +80,7 @@ C Default values when SHELFICE is not used
       ICEFRONTdepthFile        = ' '
       applyIcefrontTendS       = .TRUE.
       applyIcefrontTendT       = .TRUE.
-#ifdef ALLOW_SUBGLACIAL_RUNOFF
       SGrunoffFile             = ' '
-#endif
 
 C Open and read the data.icefront file
       WRITE(msgBuf,'(A)') ' ICEFRONT_READPARMS: opening data.icefront'
