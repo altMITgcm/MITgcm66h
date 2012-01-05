@@ -13,9 +13,3 @@ C----------------------------------------
 CADJ SUBROUTINE OBCS_OUTPUT INPUT  = 1,2,3
 CADJ SUBROUTINE OBCS_OUTPUT OUTPUT =
  
-C----------------------------------------
-C subroutine  OBCS_READ_PICKUP
-C----------------------------------------
-CADJ SUBROUTINE OBCS_READ_PICKUP INPUT  = 1,2
-CADJ SUBROUTINE OBCS_READ_PICKUP OUTPUT =
- 
