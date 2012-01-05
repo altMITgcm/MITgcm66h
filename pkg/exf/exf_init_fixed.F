@@ -825,6 +825,11 @@ C-    clim wind-stress:
      &     .AND. climustr_lat_inc(j) .EQ. climvstr_lat_inc(j)
         ENDDO
       ENDIF
+# ifdef EXF_USE_OLD_INTERP_POLE
+      uvInterp_stress = .FALSE.
+      uvInterp_wind   = .FALSE.
+      uvInterp_climstr= .FALSE.
+# endif
 #endif  /* USE_EXF_INTERPOLATION */
 
       _END_MASTER( myThid )

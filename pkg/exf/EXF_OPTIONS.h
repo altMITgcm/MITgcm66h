@@ -166,6 +166,9 @@ C   forcing files from input grid to model grid.
 C   for interpolated vector fields, rotate towards model-grid axis
 C   using old rotation formulae (instead of grid-angles)
 #undef EXF_USE_OLD_VEC_ROTATION
+C   for interpolation around N & S pole, use the old formulation
+C   (no pole symmetry, single vector-comp interp, reset to 0 zonal-comp @ N.pole)
+#undef EXF_USE_OLD_INTERP_POLE
 
 #define EXF_INTERP_USE_DYNALLOC
 #if ( defined (EXF_INTERP_USE_DYNALLOC) && defined (USING_THREADS) )
