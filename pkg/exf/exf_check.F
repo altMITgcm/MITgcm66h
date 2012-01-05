@@ -3,30 +3,27 @@ C $Name$
 
 #include "EXF_OPTIONS.h"
 
-      subroutine exf_check( mythid )
+      SUBROUTINE EXF_CHECK( mythid )
 
 c     ==================================================================
-c     SUBROUTINE exf_check
+c     SUBROUTINE EXF_CHECK
 c     ==================================================================
 c
-      implicit none
+      IMPLICIT NONE
 
 c     == global variables ==
 
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "PARAMS.h"
-c#include "FFIELDS.h"
-c#include "GRID.h"
 
 #include "EXF_PARAM.h"
 #include "EXF_CONSTANTS.h"
-c#include "EXF_FIELDS.h"
 c     == routine arguments ==
 
 c     mythid - thread number for this instance of the routine.
 
-      integer mythid
+      INTEGER mythid
 
 c     == local variables ==
 
@@ -40,8 +37,6 @@ c     check for consistency
      &     (exf_iprec.EQ.precFloat32 .OR. exf_iprec.EQ.precFloat64)
      &     ) then
        stop 'S/R EXF_CHECK: value of exf_iprec not allowed'
-      elseif ( exf_yftype.NE.'RL' ) then
-       stop 'S/R EXF_CHECK: value of exf_yftype not allowed'
       endif
 
       if (repeatPeriod.lt.0.) then
