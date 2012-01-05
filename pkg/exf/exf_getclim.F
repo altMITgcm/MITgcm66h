@@ -135,6 +135,7 @@ c     Get values of climatological ustr fields.
      I     climvstr_lon0, climvstr_lon_inc,
      I     climvstr_lat0, climvstr_lat_inc,
      I     climvstr_nlon, climvstr_nlat, climvstr_interpMethod,
+     I     uvInterp_climstr,
 #endif
      I     mytime, myiter, mythid )
 
