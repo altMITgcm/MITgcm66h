@@ -5,7 +5,14 @@ $Name$
     ==============================
 
 o optim: make Makefile more robust (?)
-o pkg/shelfice: add missing initialisation of num_shifwflx
+o pkg/obcs:
+  * fix treatment of obcs_read_pickup for TAF
+o pkg/shelfice: 
+  * add missing initialisation of num_shifwflx
+  * new adjoint verification exp. for isomip
+  * change Prandtl and Schmidt numbers from generic formulations
+    (in terms of model diffus. and visc.) to separate runtime 
+    parameters, with Holland and Jenkins (1999) default values.
 o pkg/exf (interpolation):
   - extended input field (2 rows) near the N & S poles:
     * fill in with the symetric value (when even Nb of data in longitude)
