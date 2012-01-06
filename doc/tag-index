@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o optim: make Makefile more robust (?)
+o pkg/shelfice: add missing initialisation of num_shifwflx
 o pkg/exf (interpolation):
   - extended input field (2 rows) near the N & S poles:
     * fill in with the symetric value (when even Nb of data in longitude)
