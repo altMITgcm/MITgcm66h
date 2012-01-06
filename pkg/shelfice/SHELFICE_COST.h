@@ -9,18 +9,9 @@ C !ROUTINE: SHELFICE_COST.h
 C !DESCRIPTION: \bv
 C     /==========================================================\
 C     | SHELFICE_COST.h                                          |
-C     | o Basic header thermodnynamic shelf ice package.         |
-C     |   Contains all SHELFICE field declarations.              |
+C     | o shelfice cost terms                                    |
 C     \==========================================================/
 
-C-----------------------------------------------------------------------
-C
-C--   Fields
-C     shelficeForcingT       - analogue of surfaceForcingT
-C                              units are  r_unit.Kelvin/s (=Kelvin.m/s if r=z)
-C     shelficeForcingS       - analogue of surfaceForcingS
-C                              units are  r_unit.psu/s (=psu.m/s if r=z)
-C-----------------------------------------------------------------------
 C \ev
 CEOP
 
