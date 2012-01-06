@@ -56,3 +56,5 @@ C                routine buufers.
       PARAMETER ( MAX_OLX = OLx,
      &            MAX_OLY = OLy )
 
+      INTEGER nobcs
+      PARAMETER ( nobcs = 4 )
