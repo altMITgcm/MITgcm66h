@@ -958,7 +958,7 @@ C--   State-variables time-averaging
 #endif /* ALLOW_NEST_CHILD */
 
 #ifdef ALLOW_MONITOR
-      IF ( monitorFreq.GT.0. ) THEN
+      IF ( monitorFreq.GT.0. .OR. inAdmode .EQV. inAdTrue ) THEN
 C--   Check status of solution (statistics, cfl, etc...)
         CALL TIMER_START('MONITOR             [FORWARD_STEP]',myThid)
         CALL MONITOR( myTime, myIter, myThid )
