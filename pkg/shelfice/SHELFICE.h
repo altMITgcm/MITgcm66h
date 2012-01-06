@@ -64,7 +64,9 @@ CEOP
      &     SHELFICEheatCapacity_Cp,
      &     SHELFICEthetaSurface,
      &     SHELFICEDragLinear, SHELFICEDragQuadratic,
-     &     shiCdrag, shiZetaN, shiRc
+     &     shiCdrag, shiZetaN, shiRc,
+     &     shiPrandtl, shiSchmidt, shiKinVisc
+
       _RL SHELFICE_dumpFreq, SHELFICE_taveFreq
       _RL SHELFICEheatTransCoeff
       _RL SHELFICEsaltTransCoeff
@@ -77,6 +79,7 @@ CEOP
       _RL SHELFICEDragQuadratic
       _RL SHELFICEthetaSurface
       _RL shiCdrag, shiZetaN, shiRc
+      _RL shiPrandtl, shiSchmidt, shiKinVisc
 
 
       COMMON /SHELFICE_FIELDS_RL/ 
