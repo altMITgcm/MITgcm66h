@@ -123,8 +123,10 @@ c
        DO bi=myBxLo(myThid),myBxHi(myThid)
         DO j=1-OLy,sNy+OLy
          DO i=1-OLx,sNx+OLx
-          HEFFNM1(i,j,bi,bj) = 0. _d 0
-          AREANM1(i,j,bi,bj) = 0. _d 0
+#ifdef SEAICE_GROWTH_LEGACY
+          areaNm1(i,j,bi,bj) = 0. _d 0
+          hEffNm1(i,j,bi,bj) = 0. _d 0
+#endif
           uIceNm1(i,j,bi,bj) = 0. _d 0
           vIceNm1(i,j,bi,bj) = 0. _d 0
          ENDDO
