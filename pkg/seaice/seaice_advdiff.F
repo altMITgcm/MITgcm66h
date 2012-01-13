@@ -462,7 +462,7 @@ C--
          ENDIF
         ENDDO
 #ifdef ALLOW_SITRACER_DEBUG_DIAG
-      CALL DIAGNOSTICS_FILL(DIAGarray,'UDIAG2  ',0,Nr,2,bi,bj,myThid)
+c     CALL DIAGNOSTICS_FILL(DIAGarray,'UDIAG2  ',0,Nr,2,bi,bj,myThid)
 #endif
 #endif /* ALLOW_SITRACER */
 
