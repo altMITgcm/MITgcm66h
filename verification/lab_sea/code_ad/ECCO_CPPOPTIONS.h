@@ -190,9 +190,6 @@ C   you have to include the calendar tool as well. KPP can be switched
 C   on or off. The implementation automatically takes care of this.
 #define INCLUDE_EXTERNAL_FORCING_PACKAGE
 
-C   Do more printout for the protocol file than usual.
-#undef EXF_VERBOSE
-
 C   Bulk formulae related flags.
 #undef  ALLOW_BULK_LARGYEAG04
 #define  ALLOW_ATM_TEMP
@@ -201,6 +198,12 @@ C   Bulk formulae related flags.
 #define  ALLOW_DOWNWARD_RADIATION
 #define  ALLOW_RUNOFF
 #undef  EXF_READ_EVAP
+
+C   Use ocean_emissivity*lwdwon in lwFlux. This flag should be define
+C   unless to reproduce old results (obtained with inconsistent old code)
+#ifdef ALLOW_DOWNWARD_RADIATION
+# define EXF_LWDOWN_WITH_EMISSIVITY
+#endif
 
 C   Relaxation to monthly climatologies.
 #define  ALLOW_CLIMSST_RELAXATION
