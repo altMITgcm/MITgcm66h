@@ -33,7 +33,6 @@ C     open-ocean.  When this flag is set, these variables are computed
 C     in a separate external package, for example, pkg/exf, and then
 C     modified for sea-ice effects by pkg/seaice.
 #define SEAICE_EXTERNAL_FLUXES
-#include "EXF_OPTIONS.h"
 
 C--   By default, the sea-ice package uses 2-category thermodynamics.
 C     When this flag is set, an 8-category calculation of ice
