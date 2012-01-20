@@ -123,8 +123,10 @@ C         ONLY if seaice is present
               nearIce=(sstRelax(i,j)+1.0)/3.0
           endif
 
-          qrelflux= lambdaTheta*(sstFromOcn(i,j)-sstRelax(i,j))/
-     &              (recip_Cp*recip_rhoNil*recip_drF(1))*nearIce
+          qrelflux= lambdaTheta*(sstFromOcn(i,j)-sstRelax(i,j))
+     &            * (HeatCapacity_Cp*rhoNil*drF(1))*nearIce
+C-    should use rhoConst instead of rhoNil:
+c    &            * (HeatCapacity_Cp*rhoConst*drF(1))*nearIce
 
 C         no longer restore on top of ice, but effectively full gridpoint UNDER ice
 C         (unless gridpoint is fully ice covered)
