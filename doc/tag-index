@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/diagnostics/diagstats_calc.F
+  - for TARGET_NEC_SX fix the treatment of the scaling factor tmpFac=scaleFact
 o pkg/obcs (with exch2):
   - derive OB indices in overlap region from OB-InsideMask (in obcs_init_fixed.F)
     and remove code (in obcs_readparms.F) which was based on EXCH of indices
