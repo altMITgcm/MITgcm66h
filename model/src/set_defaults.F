@@ -238,7 +238,7 @@ C--   Set (free)surface-related parameters
       balancePrintMean    = .FALSE.
 
 C--   Atmospheric physical parameters (e.g.: EOS)
-      celsius2K = 273.16 _d 0
+      celsius2K = 273.15 _d 0
       atm_Po =  1. _d 5
       atm_Cp = 1004. _d 0
       atm_Rd = UNSET_RL
