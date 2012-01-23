@@ -161,8 +161,8 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 C--   After exchange, set tiled index arrays OB_Jn/Js/Ie/Iw in overlap region
 C     issue a warning if not consistent (similar to OBCS_CHECK but for overlap)
 
-c     IF ( OBCS_indexStatus .LT. 2 ) THEN
-      IF ( .TRUE. ) THEN
+c     IF ( .TRUE. ) THEN
+      IF ( OBCS_indexStatus .LT. 2 ) THEN
        ioUnit = standardMessageUnit
        WRITE(msgBuf,'(2A)')
      &      'OBCS_INIT_FIXED: Setting OB indices in Overlap'
