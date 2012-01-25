@@ -26,7 +26,11 @@ export LC_ALL="en_US.UTF-8"
 HERE=$TST_DIR/output
 sfx='pgi'
  module add pgi
- module add mvapich2
+ module add mvapich
+#- with mpich2, needs module torque to run
+#module add torque
+#module add pgi
+#module add mvapich2
  OPTFILE="../tools/build_options/linux_amd64_pgf77"
 #options="-j 2 -MPI 6 -mf $PBS_NODEFILE"
 #EXE="mpirun -machinefile TR_MFILE -v -np TR_NPROC ./mitgcmuv"
