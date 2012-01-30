@@ -84,31 +84,32 @@ C     ' ' = no masking; 'c' = centered mask; 'w' = western mask; 's' = southern
       sgrunoffmask = 'c'
 
       IF ( useSEAICE ) THEN
-C     Do not filter with pkg/seaice because of B/C-grid interpolation
+C     Avoid masking of vector fields with pkg/seaice (for B/C-grid interp.)
+C     but keep it for fields that might involve calculation using SST on land
        hfluxmask    = ' '
        sfluxmask    = ' '
-       atempmask    = ' '
-       aqhmask      = ' '
-       evapmask     = ' '
-       precipmask   = ' '
-       snowprecipmask=' '
-       runoffmask   = ' '
+c      atempmask    = ' '
+c      aqhmask      = ' '
+c      evapmask     = ' '
+c      precipmask   = ' '
+c      snowprecipmask=' '
+c      runoffmask   = ' '
        ustressmask  = ' '
        vstressmask  = ' '
        uwindmask    = ' '
        vwindmask    = ' '
        wspeedmask   = ' '
        swfluxmask   = ' '
-       lwfluxmask   = ' '
        swdownmask   = ' '
-       lwdownmask   = ' '
+c      lwfluxmask   = ' '
+c      lwdownmask   = ' '
        apressuremask= ' '
-       areamaskmask = ' '
-       climsstmask  = ' '
-       climsssmask  = ' '
+c      areamaskmask = ' '
+c      climsstmask  = ' '
+c      climsssmask  = ' '
        climustrmask = ' '
        climvstrmask = ' '
-       sgrunoffmask = ' '
+c      sgrunoffmask = ' '
       ENDIF
 
 C--   Complete the start date specifications for the forcing
