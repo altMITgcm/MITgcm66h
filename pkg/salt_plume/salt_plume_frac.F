@@ -169,7 +169,7 @@ C     crazy attempt to make the code faster and raise tempN to (Npower+1)
 #endif /* not TARGET_NEC_SX */
         ENDIF
        ELSE
-        plumek(i) = 0._d 0
+        plumek(i) = 0. _d 0
        ENDIF
       ENDDO
       
