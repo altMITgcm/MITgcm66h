@@ -4,6 +4,15 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice:
+  - seaice_solve4temp.F (keeping results unchanged):
+    * add 2 future run-time params to select which saturation vapor pressure
+      formula is used and how post-iteration fluxes are set.
+      Temporary set these 2 params according to option SOLVE4TEMP_LEGACY;
+    * New piece of code (not used) to update surf. atmos. heat flux F_ia using
+      the linearized expression to stay consistent with tsurf finding.
+  - seaice_freedrift.F avoid floating exception in sqrt(y) since y=sqrt(x*x)-x
+    can be < 0.
 o pkg/seaice/seaice_solve4temp.F (SOLVE4TEMP_LEGACY undef):
   - remove from F_ia (and from it's derivative dFiDTs1) the contribution of
     conductive heat flux F_c , and add it explicitly when updating tsurf as
