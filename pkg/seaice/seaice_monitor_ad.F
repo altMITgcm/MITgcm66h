@@ -51,7 +51,7 @@ C     === Functions ====
 
 C     == Local variables ==
       CHARACTER*(MAX_LEN_MBUF) msgBuf
-#ifdef SEAICE_AGE
+#ifdef ALLOW_SITRACER
       INTEGER iTracer
       CHARACTER*(MAX_LEN_MBUF) suff
 #endif

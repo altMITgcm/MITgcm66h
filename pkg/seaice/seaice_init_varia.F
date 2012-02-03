@@ -51,9 +51,6 @@ C     i,j,k,bi,bj :: Loop counters
 #ifdef ALLOW_SITRACER
       INTEGER iTr, jTh
 #endif
-#ifdef SEAICE_AGE
-      INTEGER iTracer
-#endif
 #ifdef OBCS_UVICE_OLD
       INTEGER I_obc, J_obc
 #endif /* ALLOW_OBCS */
@@ -146,11 +143,6 @@ c "ice concentration" tracer that should remain .EQ.1.
           ENDDO
           DO jTh = 1, 3
            SItrAREA (i,j,bi,bj,jTh) = 0. _d 0
-          ENDDO
-#endif
-#ifdef SEAICE_AGE
-          DO iTracer = 1, SEAICE_num
-           IceAgeTr(i,j,bi,bj,iTracer) = 0. _d 0
           ENDDO
 #endif
           TICE(i,j,bi,bj)   = 0. _d 0
@@ -407,16 +399,16 @@ C--   Read initial sea ice salinity from file if available.
        ENDIF
 #endif /* SEAICE_VARIABLE_SALINITY */
 
-#ifdef SEAICE_AGE
+#ifdef ALLOW_SITRACER
 C--   Read initial sea ice age from file if available.
-       DO iTracer = 1, SEAICE_num
-        IF ( IceAgeTrFile(iTracer) .NE. ' ' ) THEN
-        CALL READ_FLD_XY_RL( IceAgeTrFile(iTracer), ' ',
-     &   IceAgeTr(1-OLx,1-OLy,1,1,iTracer), 0, myThid )
-        _EXCH_XY_RL(IceAgeTr(1-OLx,1-OLy,1,1,iTracer),myThid)
+       DO iTr = 1, SItrMaxNum
+        IF ( SItrFile(iTr) .NE. ' ' ) THEN
+        CALL READ_FLD_XY_RL( siTrFile(iTr), ' ',
+     &   SItracer(1-OLx,1-OLy,1,1,iTr), 0, myThid )
+        _EXCH_XY_RL(SItracer(1-OLx,1-OLy,1,1,iTr),myThid)
         ENDIF
        ENDDO
-#endif /* SEAICE_AGE */
+#endif /* ALLOW_SITRACER */
 
       ENDIF
 

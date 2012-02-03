@@ -55,7 +55,7 @@ C     == Local variables ==
       INTEGER k
       _RL recip_multdim
 #endif
-#if (defined SEAICE_AGE)||(defined ALLOW_SITRACER)
+#ifdef ALLOW_SITRACER
       INTEGER iTracer
       CHARACTER*8   diagName
 #endif
@@ -116,14 +116,6 @@ C     division by zero is not possible
 #endif
 #ifdef SEAICE_VARIABLE_SALINITY
        CALL DIAGNOSTICS_FILL(HSALT  ,'SIhsalt ',0,1 ,0,1,1,myThid)
-#endif
-#ifdef SEAICE_AGE
-      DO iTracer = 1, SEAICE_num
-       WRITE(diagName,'(A5,I2.2,A1)') 'SIage',iTracer,' '
-       CALL DIAGNOSTICS_FILL(
-     &  IceAgeTr(1-OLx,1-OLy,1,1,iTracer),
-     &  diagName,0,1 ,0,1,1,myThid)
-      ENDDO
 #endif
 
        CALL DIAGNOSTICS_FILL(zeta   ,'SIzeta  ',0,1 ,0,1,1,myThid)

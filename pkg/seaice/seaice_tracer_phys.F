@@ -245,9 +245,7 @@ c ==============
         DIAGarray(I,J,1+(iTr-1)*5) = SItracer(i,j,bi,bj,iTr)
         DIAGarray(I,J,2+(iTr-1)*5) = SItracer(i,j,bi,bj,iTr)*HEFFpost
 c DIAGarray(:,:,3) is the term of comparison for DIAGarray(:,:,2)
-        if (SItrName(iTr).EQ.'age') then
-          DIAGarray(I,J,3+(iTr-1)*5) = IceAgeTr(i,j,bi,bj,2)
-        elseif (SItrName(iTr).EQ.'salinity') then
+        if (SItrName(iTr).EQ.'salinity') then
           DIAGarray(I,J,3+(iTr-1)*5) = HSALT(i,j,bi,bj)/SEAICE_rhoIce
         elseif (SItrName(iTr).EQ.'one') then
           DIAGarray(I,J,3+(iTr-1)*5) = HEFFpost
@@ -262,10 +260,6 @@ c DIAGarray(:,:,5) is the tracer flux from the ocean (<0 incr. ocean tracer)
         AREApost=SItrAREA(i,j,bi,bj,3)
         DIAGarray(I,J,1+(iTr-1)*5) = SItracer(i,j,bi,bj,iTr)
         DIAGarray(I,J,2+(iTr-1)*5) = SItracer(i,j,bi,bj,iTr)*AREApost
-c DIAGarray(:,:,3) is the term of comparison for DIAGarray(:,:,2)
-        if (SItrName(iTr).EQ.'age') then
-          DIAGarray(I,J,3+(iTr-1)*5) = IceAgeTr(i,j,bi,bj,1)
-        endif
        ENDDO
       ENDDO
       endif

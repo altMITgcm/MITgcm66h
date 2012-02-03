@@ -11,14 +11,12 @@ C #include SEAICE_SIZE.h
 C    !DESCRIPTION:
 C Contains seaice tracer array size (number of tracers).
 
-C SEAICE_num defines how many passive tracers are allocated/exist.
-C  and is set here (default 4)
+C SItrMaxNum defines how many passive tracers are allocated/exist.
+C  and is set here (default 3)
 C
 C     Number of tracers
       INTEGER SItrMaxNum
       PARAMETER(SItrMaxNum = 3 )
-      INTEGER SEAICE_num
-      PARAMETER(SEAICE_num = 4 )
 
 #ifdef ALLOW_AUTODIFF_TAMC
       INTEGER iicekey

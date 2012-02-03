@@ -64,9 +64,6 @@ C     i,j,bi,bj :: Loop counters
 #ifdef ALLOW_SITRACER
       INTEGER iTr
 #endif
-#ifdef SEAICE_AGE
-      INTEGER iTracer
-#endif
 CEOP
 
 #ifdef ALLOW_DEBUG
@@ -195,7 +192,7 @@ C--   (called from DO_OCEANIC_PHYSICS) take care of this
 
 C NOW DO ADVECTION and DIFFUSION
       IF ( SEAICEadvHeff .OR. SEAICEadvArea .OR. SEAICEadvSnow
-     &        .OR. SEAICEadvSalt .OR. SEAICEadvAge ) THEN
+     &        .OR. SEAICEadvSalt ) THEN
 #ifdef ALLOW_DEBUG
        IF (debugMode) CALL DEBUG_CALL( 'SEAICE_ADVDIFF', myThid )
 #endif
@@ -251,11 +248,6 @@ C--   Update overlap regions for a bunch of stuff
 #ifdef ALLOW_SITRACER
        DO iTr = 1, SItrMaxNum
         _EXCH_XY_RL( SItracer(1-OLx,1-OLy,1,1,iTr),myThid )
-       ENDDO
-#endif
-#ifdef SEAICE_AGE
-       DO iTracer = 1, SEAICE_num
-        _EXCH_XY_RL( IceAgeTr(1-OLx,1-OLy,1,1,iTracer),myThid )
        ENDDO
 #endif
        _EXCH_XY_RS(EmPmR, myThid )

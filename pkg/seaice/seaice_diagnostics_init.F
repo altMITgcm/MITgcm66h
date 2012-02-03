@@ -59,9 +59,6 @@ C     diagTitle :: local string (80c): description of field in diagnostic
       CHARACTER*8   locUnitTr
       CHARACTER*30  locNameTr
 #endif
-#ifdef SEAICE_AGE
-      INTEGER       iTracer
-#endif
       INTEGER       numArea,numAreaPreTh,numHeff,numHeffPreTh
       CHARACTER*9   flxUnits
       CHARACTER*15  locName
@@ -185,17 +182,6 @@ C-     use name & units from data.seaice :
        CALL DIAGNOSTICS_ADDTOLIST( diagNum, diagName,
      I      diagCode, diagUnits, diagTitle, numMateTrPreTh, myThid )
 
-      ENDDO
-#endif
-
-#ifdef SEAICE_AGE
-      DO iTracer = 1, SEAICE_num
-       WRITE(diagName,'(A5,I2.2,A1)') 'SIage',iTracer,' '
-       WRITE(diagTitle,'(A,I2.2)') 'SEAICE age of tracer no. ', iTracer
-       diagUnits = 's               '
-       diagCode  = 'SM      M1      '
-       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
-     I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
       ENDDO
 #endif
 

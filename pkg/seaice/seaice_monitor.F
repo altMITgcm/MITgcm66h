@@ -43,7 +43,7 @@ C     === Functions ====
 
 C     == Local variables ==
       CHARACTER*(MAX_LEN_MBUF) msgBuf
-#ifdef SEAICE_AGE
+#ifdef ALLOW_SITRACER
       INTEGER iTracer
       CHARACTER*(MAX_LEN_MBUF) suff
 #endif
@@ -124,14 +124,14 @@ C       Print some statistics about input forcing fields
         CALL MON_WRITESTATS_RL( 1, HSALT,'_hsalt',
      &           maskInC, maskInC, rA , drF, dummyRL, myThid )
 #endif /* SEAICE_VARIABLE_SALINITY */
-#ifdef SEAICE_AGE
-        DO iTracer = 1, SEAICE_num
-         WRITE(suff,'(A7,I2.2)') '_iceage', iTracer
+#ifdef ALLOW_SITRACER
+        DO iTracer = 1, SItrMaxNum
+         WRITE(suff,'(A9,I2.2)') '_sitracer', iTracer
          CALL MON_WRITESTATS_RL(
-     &          1,IceAgeTr(1-OLx,1-OLy,1,1,iTracer),suff,
+     &          1,SItracer(1-OLx,1-OLy,1,1,iTracer),suff,
      &          maskInC, maskInC, rA , drF, dummyRL, myThid )
         ENDDO
-#endif /* SEAICE_AGE */
+#endif /* ALLOW_SITRACER */
 
         IF ( MASTER_CPU_IO(myThid) ) THEN
 C--   only the master thread is allowed to switch On/Off mon_write_stdout
