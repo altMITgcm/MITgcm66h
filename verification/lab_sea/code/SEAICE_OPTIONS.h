@@ -83,11 +83,8 @@ C--   Allow SEAICEuseFlooding, which converts snow to ice if submerged.
 C--   By default sea ice is fresh.  Set following flag for salty ice.
 #define SEAICE_VARIABLE_SALINITY
 
-C--   Track sea ice age.
-#define SEAICE_AGE
-
 C--   Tracers of ice and/or ice cover.
-#undef ALLOW_SITRACER
+#define ALLOW_SITRACER
 #ifdef ALLOW_SITRACER
 C--   To try avoid 'spontaneous generation' of tracer maxima by advdiff.
 # define ALLOW_SITRACER_ADVCAP
