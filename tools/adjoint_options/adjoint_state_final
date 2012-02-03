@@ -63,6 +63,8 @@ DIFF_FLAGS="-toplevel 'the_main_loop'    \
                     xx_uvel_dummy        \
                     xx_vvel_dummy        \
                     xx_etan_dummy        \
+                    xx_gen2d_dummy        \
+                    xx_gen3d_dummy        \
                     xx_relaxsst_dummy    \
                     xx_relaxsss_dummy'     \
             -output 'objf_state_final'"
