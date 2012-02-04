@@ -208,6 +208,11 @@ C--   Initialize SHELFICE parameters
       IF (useShelfIce) CALL SHELFICE_READPARMS( myThid )
 #endif
 
+#ifdef ALLOW_STREAMICE
+C--   Initialize STREAMICE parameters
+      IF (useStreamIce) CALL STREAMICE_READPARMS( myThid )
+#endif
+
 #ifdef ALLOW_ICEFRONT
 C--   Initialize ICEFRONT parameters
       IF (useICEFRONT) CALL ICEFRONT_READPARMS( myThid )

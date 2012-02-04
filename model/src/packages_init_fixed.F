@@ -482,6 +482,15 @@ C--   Initialise fixed array for Float pkg
       ENDIF
 #endif /* ALLOW_ICEFRONT */
 
+#ifdef ALLOW_STREAMICE
+      IF (useStreamIce) THEN
+# ifdef ALLOW_DEBUG
+        IF (debugMode) CALL DEBUG_CALL('STREAMICE_INIT_FIXED',myThid)
+# endif
+       CALL STREAMICE_INIT_FIXED( myThid )
+      ENDIF
+#endif /* ALLOW_STREAMICE */
+
 #ifdef ALLOW_EMBED_FILES
       IF ( useEMBED_FILES ) THEN
 # ifdef ALLOW_DEBUG

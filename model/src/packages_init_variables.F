@@ -236,6 +236,15 @@ cph# endif
       ENDIF
 #endif /* ALLOW_ICEFRONT */
 
+#ifdef ALLOW_STREAMICE
+      IF (useStreamIce) THEN
+# ifdef ALLOW_DEBUG
+       IF (debugMode) CALL DEBUG_CALL('STREAMICE_INIT_VARIA',myThid)
+# endif
+       CALL STREAMICE_INIT_VARIA( myThid )
+      ENDIF
+#endif /* ALLOW_STREAMICE */
+
 #ifdef ALLOW_PTRACERS
 # ifndef ALLOW_AUTODIFF_TAMC
       IF ( usePTRACERS ) THEN
