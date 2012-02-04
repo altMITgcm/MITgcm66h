@@ -4,6 +4,12 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/salt_plume:
+   - isolate saltPlumeFlux array exch into a specific S/R called from
+     do_oceanic_phys.F
+   - add interface to pkg/salt_plume (filling of saltPlumeFlux) in pkg/thsice.
+o verification:
+   - move untested set-up to MITgcm_contrib/verification_other.
 o pkg/seaice:
   - retire old way of SEAICE_AGE. Now replaced with ALLOW_SITRACER.
 o pkg/seaice:
