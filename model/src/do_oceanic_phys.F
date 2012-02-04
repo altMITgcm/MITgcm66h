@@ -328,6 +328,12 @@ C     ice-front ocean interface
       ENDIF
 #endif /* ALLOW_ICEFRONT */
 
+#ifdef ALLOW_SALT_PLUME
+      IF ( useSALT_PLUME ) THEN
+          CALL SALT_PLUME_DO_EXCH( myTime, myIter, myThid )
+      ENDIF
+#endif /* ALLOW_SALT_PLUME */
+
 C--   Freeze water in the ocean interior and let it rise to the surface
 C     temporarily exclude from adjoint computations until
 C     impact has been vetted in forward integrations
