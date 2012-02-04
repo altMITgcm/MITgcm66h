@@ -302,6 +302,17 @@ c#endif
        ENDDO
       ENDDO
 
+#ifdef ALLOW_SALT_PLUME
+      IF ( useSALT_PLUME ) THEN
+        CALL THSICE_SALT_PLUME(
+     I          iceMask(1-Olx,1-Oly,bi,bj),
+     I          sOceMxL(1-Olx,1-Oly,bi,bj),
+     I          frw2oc,
+     I          iMin,iMax, jMin,jMax, bi, bj, 
+     I          0, myTime, myIter, myThid )
+      ENDIF
+#endif /* ALLOW_SALT_PLUME */
+
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 C    part.3 : freezing of sea-water
 C     over ice-free fraction and what is left from ice-covered fraction
@@ -364,6 +375,17 @@ C--    Net fluxes :
         ENDIF
        ENDDO
       ENDDO
+
+#ifdef ALLOW_SALT_PLUME
+      IF ( useSALT_PLUME ) THEN
+        CALL THSICE_SALT_PLUME(
+     I          frzmltMxL,      
+     I          sOceMxL(1-Olx,1-Oly,bi,bj),
+     I          frw2oc,
+     I          iMin,iMax, jMin,jMax, bi, bj, 
+     I          1, myTime, myIter, myThid )
+      ENDIF
+#endif /* ALLOW_SALT_PLUME */
 
 # ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE snowHeight(:,:,bi,bj) =
