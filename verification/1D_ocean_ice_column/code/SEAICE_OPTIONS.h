@@ -91,7 +91,7 @@ C--   Seaice flooding
 #define ALLOW_SEAICE_FLOODING
 
 C--   By default sea ice is fresh.  Set following flag for salty ice.
-#define SEAICE_VARIABLE_SALINITY
+#undef SEAICE_VARIABLE_SALINITY
 
 
 #endif /* ALLOW_SEAICE */
