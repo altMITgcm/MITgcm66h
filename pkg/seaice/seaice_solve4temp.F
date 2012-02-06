@@ -203,9 +203,6 @@ C     Snow-Thickness above HCUT: SW optically thick snow (=> snow-albedo).
 C     Snow-Thickness below HCUT: linear transition to ice-albedo
       HCUT = SEAICE_snowThick
 
-C     Wet/dry albebo temperature threshold
-      SEAICE_wetAlbTemp = - 1. _d -3
-
 C     PENETRATION SHORTWAVE RADIATION FACTOR
       XIO=SEAICE_shortwave
 
