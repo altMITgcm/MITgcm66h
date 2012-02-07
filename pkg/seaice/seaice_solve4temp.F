@@ -519,8 +519,6 @@ C     Update fluxes (consistent with the linearized formulation)
 c        ELSEIF ( postSolvTempIter.EQ.0 ) THEN
 C     Take fluxes from last iteration
 
-         ELSEIF ( postSolvTempIter.NE.0 ) THEN
-           STOP 'SEAICE_SOLVE4TEMP: invalid postSolvTempIter'
          ENDIF
 
 C     Fresh water flux (kg/m^2/s) from latent heat of sublimation.
