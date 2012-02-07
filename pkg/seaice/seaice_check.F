@@ -205,6 +205,13 @@ C     Avoid using both type of diffusion scheme (DIFF1 & SEAICEdiffKh)
        STOP 'ABNORMAL END: S/R SEAICE_CHECK'
       ENDIF
 
+      IF ( postSolvTempIter.GT.2 .OR. postSolvTempIter .LT. 0 ) THEN
+       WRITE(msgBuf,'(2A)') 'SEAICE_CHECK:',
+     &  ' => allowed values for postSolveTempIter: 0, 1, 2'
+       CALL PRINT_ERROR( msgBuf, myThid )
+       STOP 'ABNORMAL END: S/R SEAICE_CHECK'
+      ENDIF
+
 C--
 #ifdef ALLOW_AUTODIFF_TAMC
       IF ( NPSEUDOTIMESTEPS .GT. MPSEUDOTIMESTEPS ) THEN
