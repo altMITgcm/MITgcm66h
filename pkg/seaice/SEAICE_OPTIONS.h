@@ -62,9 +62,6 @@ C-    to preclude infinitesimal ice concentrations:
 # undef ALLOW_PRECLUDE_INFINITESIMAL_AREA
 #endif
 
-C-    to use the MCPhee formula in computing ocean/ice fluxes
-#undef MCPHEE_OCEAN_ICE_HEAT_FLUX
-
 C--   By default the freezing point of water is set to the value of
 C     the parameter SEAICE_freeze (=-1.96 by default). To use a
 C     simple linear dependence of the freezing point on salinity,
