@@ -45,10 +45,6 @@ C     in the middle of an integration.
 #undef SEAICE_MODIFY_GROWTH_ADJ
 #undef SEAICE_SIMPLIFY_GROWTH_ADJ
 
-c     Use the McPhee Ocean-Ice heat flux
-#define MCPHEE_OCEAN_ICE_HEAT_FLUX
-#define GRADIENT_MIXED_LAYER_TURBULENCE_FACTOR
-
 #define SEAICE_DO_OPEN_WATER_GROWTH
 #define SEAICE_DO_OPEN_WATER_MELT
 
