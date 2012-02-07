@@ -86,7 +86,9 @@ C
         netHeatFlux(I,J) = 0. _d 0
         SWHeatFlux (I,J) = 0. _d 0
 C
-        tsurfLoc (I,J) = MIN(celsius2K+MAX_TICE,TSURF(I,J))
+C     MAX_TICE does not exist anly longer, lets see if it works without
+C       tsurfLoc (I,J) = MIN(celsius2K+MAX_TICE,TSURF(I,J))
+        tsurfLoc (I,J) = TSURF(I,J)
 # ifdef ALLOW_ATM_TEMP
 C     Is this necessary?
         atempLoc (I,J) = MAX(celsius2K+MIN_ATEMP,ATEMP(I,J,bi,bj))
