@@ -144,6 +144,10 @@ CADJ &     = tapelev3, key = ilev_3
 # include "shelfice_ad_check_lev3_dir.h"
 #endif /* ALLOW_SHELFICE */
 
+#ifdef ALLOW_STREAMICE
+# include "streamice_ad_check_lev3_dir.h"
+#endif /* ALLOW_STREAMICE */
+
 #ifdef ALLOW_RBCS
 # include "rbcs_ad_check_lev3_dir.h"
 #endif /* ALLOW_RBCS */
