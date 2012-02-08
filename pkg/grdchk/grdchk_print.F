@@ -161,7 +161,7 @@ c--   Individual checks.
           call print_message( msgbuf, standardmessageunit,
      &                        SQUEEZE_RIGHT, mythid )
 #ifdef ALLOW_TANGENTLINEAR_RUN
-          ratio_RMS  = ratio_RMS + ratio_flt*ratio_flt
+          ratio_RMS  = ratio_RMS + ratio_ftl*ratio_ftl
           write(msgbuf,'(A,I4,3x,1P3E21.13)')
      &          'grdchk output (g):',
      &         i, gfd, ftlxxmemo, ratio_ftl
