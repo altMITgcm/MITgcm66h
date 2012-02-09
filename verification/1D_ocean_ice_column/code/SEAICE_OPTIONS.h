@@ -45,11 +45,6 @@ C     in the middle of an integration.
 #undef SEAICE_MODIFY_GROWTH_ADJ
 #undef SEAICE_SIMPLIFY_GROWTH_ADJ
 
-#define SEAICE_DO_OPEN_WATER_GROWTH
-#define SEAICE_DO_OPEN_WATER_MELT
-
-#define FENTY_AREA_EXPANSION_CONTRACTION
-
 #undef SEAICE_ADD_SUBLIMATION_TO_FWBUDGET
 
 C--   By default cdm wind stress under sea-ice is set to the
