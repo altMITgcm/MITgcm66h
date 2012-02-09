@@ -5,7 +5,7 @@ C $Name$
 #ifdef ALLOW_ATM2D
 # include "ctrparam.h"
 #endif
-#define THSICE_OLD_STEP_FWD
+#undef THSICE_OLD_STEP_FWD
 
 CBOP
 C     !ROUTINE: THSICE_STEP_FWD
