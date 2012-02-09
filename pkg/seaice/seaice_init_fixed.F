@@ -104,6 +104,12 @@ c     ... is hard-coded (after McPhee)
         SEAICE_availHeatFracFrz=ZERO
       endif
 
+C--   convert SEAICE_doOpenWaterGrowth/Melt logical switch to numerical facOpenGrow/Melt
+        facOpenGrow=0. _d 0
+        facOpenMelt=0. _d 0
+        if (SEAICE_doOpenWaterGrowth) facOpenGrow=1. _d 0
+        if (SEAICE_doOpenWaterMelt)   facOpenMelt=1. _d 0
+
 C--   Initialize grid info
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
