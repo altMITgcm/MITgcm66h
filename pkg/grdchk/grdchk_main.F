@@ -230,11 +230,15 @@ cph-print               print *, 'ph-grd ----- back from loc -----',
 cph-print     &             icvrec, itilepos, jtilepos, layer, obcspos
 cph)
             else
+              icvrec   = 0
               itile    = 0
               jtile    = 0
               layer    = 0
+              obcspos  = 0
               itilepos = 0
               jtilepos = 0
+              icglo    = 0
+              itest    = 0
             endif
             _BARRIER
 
