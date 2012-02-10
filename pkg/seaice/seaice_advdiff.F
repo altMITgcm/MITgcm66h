@@ -72,7 +72,8 @@ C     xA,yA     :: "areas" of X and Y face of tracer cells
       _RL hEffNm1    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL areaNm1    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 # endif /* ndef SEAICE_GROWTH_LEGACY */
-      INTEGER iTr, SEAICEadvSchSItr, SEAICEdiffKhSItr
+      INTEGER iTr, SEAICEadvSchSItr
+      _RL SEAICEdiffKhSItr
       _RL SItrExt   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL tmpscal1, tmpscal2
 # ifdef ALLOW_SITRACER_ADVCAP
