@@ -286,6 +286,22 @@ C     Except under sea ice, SIqsw is also identical to EXFswnet.
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
+      diagName  = 'SItflux '
+      diagTitle = 'Same as TFLUX but incl seaice (>0 incr T decr H)'
+      diagUnits = 'W/m^2           '
+      diagCode  = 'SM      U1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
+#ifndef SEAICE_DISABLE_HEATCONSFIX
+      diagName  = 'SIaaflux'
+      diagTitle = 'conservative ocn<->seaice adv. heat flux adjust.'
+      diagUnits = 'W/m^2           '
+      diagCode  = 'SM      U1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+#endif
+
       diagName  = 'SIhl    '
       diagTitle = 'Latent heat flux into ocean, >0 increases theta'
       diagUnits = 'W/m^2           '

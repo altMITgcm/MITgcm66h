@@ -103,6 +103,15 @@ c     ... is hard-coded (after McPhee)
      &    USTAR_BASE / dRf(kSurface) * SEAICE_deltaTtherm
         SEAICE_availHeatFracFrz=ZERO
       endif
+C--   tapering of ocean-ice turbulent flux as AREA increases
+      if ( (SEAICEturbFluxFormula.EQ.3).OR.
+     &       (SEAICEturbFluxFormula.EQ.4) ) then
+c          hard-coded (after McPhee)
+           SEAICE_availHeatTaper = 
+     &       (MCPHEE_TAPER_FAC-ONE)/MCPHEE_TAPER_FAC
+      elseif (SEAICE_availHeatTaper.EQ.UNSET_RL) then
+           SEAICE_availHeatTaper = ZERO
+      endif
 
 C--   convert SEAICE_doOpenWaterGrowth/Melt logical switch to numerical facOpenGrow/Melt
         facOpenGrow=0. _d 0

@@ -380,6 +380,14 @@ C     check concistency of turbulent flux term specification
        CALL PRINT_ERROR( msgBuf, myThid )
        STOP 'ABNORMAL END: S/R SEAICE_CHECK'
       ENDIF
+      IF ( ( SEAICE_availHeatTaper .LT. 0. _d 0 ) .OR.
+     &     ( SEAICE_availHeatTaper .GT. 1. _d 0 ) ) THEN
+         WRITE(msgBuf,'(A)')
+     &      'SEAICE_availHeatTaper cannot be specified  '//
+     &      'outside of the [0. 1.] range'
+         CALL PRINT_ERROR( msgBuf , myThid)
+         STOP 'ABNORMAL END: S/R SEAICE_READPARMS'
+      ENDIF
 
 C--   SEAICE_AGE is obsolete: issue warning and stop.
 #ifdef SEAICE_AGE
