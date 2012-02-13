@@ -49,6 +49,9 @@ C--   Since the missing sublimation term is now included
 C     this flag is needed for backward compatibility
 #define SEAICE_DISABLE_SUBLIM
 
+C--   Suspected missing term in coupled ocn-ice heat budget (to be further tested)
+#define SEAICE_DISABLE_HEATCONSFIX
+
 C--   The freezing point of water is a simple linear dependence to salinity.
 C     The flag below is now obsolete, but kept to ease the transition
 C     from the old constant freezing point default (see seaice_check.F).

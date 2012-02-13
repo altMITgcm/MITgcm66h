@@ -49,6 +49,9 @@ C--   Since the missing sublimation term is now included
 C     this flag is needed for backward compatibility
 #define SEAICE_DISABLE_SUBLIM
 
+C--   Suspected missing term in coupled ocn-ice heat budget (to be further tested)
+#define SEAICE_DISABLE_HEATCONSFIX
+
 C--   By default cdm wind stress under sea-ice is set to the
 C     same value as it would be if there was no sea-ice.
 C     This is a placeholder until a more physically-sensible
