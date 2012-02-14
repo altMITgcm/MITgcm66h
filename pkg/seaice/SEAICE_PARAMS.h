@@ -59,9 +59,7 @@ C     SEAICE_mon_mnc    :: write monitor to netcdf file
       LOGICAL
      &     SEAICEwriteState, SEAICEuseDYNAMICS, SEAICEuseEVP,
      &     SEAICEuseFREEDRIFT, SEAICEuseTEM,
-#ifndef SEAICE_DISABLE_HEATCONSFIX
      &     SEAICEheatConsFix,
-#endif
      &     SEAICEuseMetricTerms,
      &     SEAICEuseEVPpickup, SEAICEuseFlooding,
      &     SEAICEadvHeff, SEAICEadvArea,
@@ -76,9 +74,7 @@ C     SEAICE_mon_mnc    :: write monitor to netcdf file
       COMMON /SEAICE_PARM_L/
      &     SEAICEwriteState, SEAICEuseDYNAMICS, SEAICEuseEVP,
      &     SEAICEuseFREEDRIFT, SEAICEuseTEM,
-#ifndef SEAICE_DISABLE_HEATCONSFIX
      &     SEAICEheatConsFix,
-#endif
      &     SEAICEuseMetricTerms,
      &     SEAICEuseEVPpickup, SEAICEuseFlooding,
      &     SEAICEadvHeff, SEAICEadvArea,

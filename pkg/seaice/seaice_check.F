@@ -117,6 +117,19 @@ C--   check ice cover fraction formula
         CALL PRINT_ERROR( msgBuf, myThid )
         STOP 'ABNORMAL END: S/R SEAICE_CHECK'
       ENDIF
+
+#ifdef SEAICE_DISABLE_HEATCONSFIX
+      IF ( SEAICEheatConsFix ) THEN
+        WRITE(msgBuf,'(2A)') 'SEAICE_CHECK: ',
+     &       'to use SEAICEheatConsFix, you need to '
+        CALL PRINT_ERROR( msgBuf, myThid )
+        WRITE(msgBuf,'(A)')
+     &   'undef SEAICE_DISABLE_HEATCONSFIX and recompile'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        STOP 'ABNORMAL END: S/R SEAICE_CHECK'
+      ENDIF
+#endif
+
       
 C--   Check advection schemes
       checkAdvSchArea = SEAICEadvArea .AND. (
