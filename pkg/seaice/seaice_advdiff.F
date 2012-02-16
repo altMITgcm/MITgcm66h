@@ -316,7 +316,7 @@ C     now do the "explicit" time step
 
 #ifdef ALLOW_SITRACER
 C--   Sea Ice Tracers
-        DO iTr = 1, SItrMaxNum
+        DO iTr = 1, SItrNumInUse
         IF ( (SEAICEadvHEFF.AND.(SItrMate(iTr).EQ.'HEFF')).OR.
      &       (SEAICEadvAREA.AND.(SItrMate(iTr).EQ.'AREA')) ) THEN
 C--   scale to effective value

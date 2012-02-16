@@ -125,7 +125,7 @@ C       Print some statistics about input forcing fields
      &           maskInC, maskInC, rA , drF, dummyRL, myThid )
 #endif /* SEAICE_VARIABLE_SALINITY */
 #ifdef ALLOW_SITRACER
-        DO iTracer = 1, SItrMaxNum
+        DO iTracer = 1, SItrNumInUse
          WRITE(suff,'(A9,I2.2)') '_sitracer', iTracer
          CALL MON_WRITESTATS_RL(
      &          1,SItracer(1-OLx,1-OLy,1,1,iTracer),suff,

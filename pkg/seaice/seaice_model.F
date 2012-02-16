@@ -243,7 +243,7 @@ C--   Update overlap regions for a bunch of stuff
        _EXCH_XY_RL( HSALT, myThid )
 #endif
 #ifdef ALLOW_SITRACER
-       DO iTr = 1, SItrMaxNum
+       DO iTr = 1, SItrNumInUse
         _EXCH_XY_RL( SItracer(1-OLx,1-OLy,1,1,iTr),myThid )
        ENDDO
 #endif

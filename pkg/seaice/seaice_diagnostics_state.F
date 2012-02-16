@@ -101,7 +101,7 @@ C     division by zero is not possible
        CALL DIAGNOSTICS_FILL(HSNOW  ,'SIhsnow ',0,1 ,0,1,1,myThid)
 
 #ifdef ALLOW_SITRACER
-      DO iTracer = 1, SItrMaxNum
+      DO iTracer = 1, SItrNumInUse
        WRITE(diagName,'(A4,I2.2,A2)') 'SItr',iTracer,'  '
        if (SItrMate(iTracer).EQ.'HEFF') then
         CALL DIAGNOSTICS_FRACT_FILL(

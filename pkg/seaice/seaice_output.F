@@ -127,7 +127,7 @@ CEOP
             CALL WRITE_FLD_XY_RL( 'HSALT.',suff,HSALT,myIter,myThid)
 #endif
 #ifdef ALLOW_SITRACER
-            DO iTracer = 1, SItrMaxNum
+            DO iTracer = 1, SItrNumInUse
              WRITE(pref,'(A8,I2.2,A1)') 'SITRACER', iTracer, '.'
              CALL WRITE_FLD_XY_RL(
      &            pref,suff,

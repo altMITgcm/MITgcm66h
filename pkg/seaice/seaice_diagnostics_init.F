@@ -134,7 +134,7 @@ C=============== state variables ============
      I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
 #ifdef ALLOW_SITRACER
-      DO iTr = 1, SItrMaxNum
+      DO iTr = 1, SItrNumInUse
 
 C--    Set default name & tracer Units:
        WRITE(locNameTr,'(A,I4.4,A)') 'sea ice tracer no. ',iTr
@@ -383,7 +383,7 @@ C     is EmPmR before impact of ice.
      I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
 #ifdef ALLOW_SITRACER
-      DO iTr = 1, SItrMaxNum
+      DO iTr = 1, SItrNumInUse
        IF (SItrMate(iTr).EQ.'HEFF') then
 C--    Set default name & tracer Units:
        WRITE(diagUnits,'(A)') 'kg/m^2/s'
