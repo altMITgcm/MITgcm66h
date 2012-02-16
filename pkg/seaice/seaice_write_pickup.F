@@ -115,7 +115,7 @@ C---  continue to write 2-D fields:
         IF (j.LE.listDim) wrFldList(j) = 'siHSALT '
 #endif
 #ifdef ALLOW_SITRACER
-         DO iTrac = 1, SItrMaxNum
+         DO iTrac = 1, SItrNumInUse
           WRITE(fldName,'(A6,I2.2)') 'siTrac', iTrac
           j = j + 1
           nj = nj-1

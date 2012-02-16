@@ -201,7 +201,7 @@ C--    continue with 2-D fields:
      &                                      nj, fp, 1, nIter0, myThid )
 #endif
 #ifdef ALLOW_SITRACER
-         DO iTrac = 1, SItrMaxNum
+         DO iTrac = 1, SItrNumInUse
           WRITE(fldName,'(A6,I2.2)') 'siTrac', iTrac
           CALL READ_MFLDS_3D_RL( fldName,
      &         SItracer(1-Olx,1-Oly,1,1,iTrac),
