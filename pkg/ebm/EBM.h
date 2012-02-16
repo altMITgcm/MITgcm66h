@@ -63,7 +63,7 @@ C-    Longwave parameters
       PARAMETER ( LW0 = 195. _d 0 , LW1 = 2.78 _d 0 )
 C-    Heat transport parameters
       _RL H1, H3, H5
-      PARAMETER ( H1 = 3.866 _d 0 , H3 = -2.851 _d 0 , H5 = -1.016 _d 0 )
+      PARAMETER ( H1 = 3.866 _d 0 , H3 = -2.851 _d 0, H5 = -1.016 _d 0 )
 C-    Freshwater flux parameters
       _RL F1, F2, F3, F4, F5
       PARAMETER ( F1 = 2.092 _d 0 , F2 = 5.796 _d 0 , F3 = 8.472 _d 0 )
