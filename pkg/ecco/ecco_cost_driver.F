@@ -90,7 +90,7 @@ c--   Compute cost function contribution of SSH.
       call timer_start('cost_ssh_new       [ECCO SPIN-DOWN]', mythid)
       call cost_ssh_new( myiter, mytime, mythid )
       call timer_stop ('cost_ssh_new       [ECCO SPIN-DOWN]', mythid)
-# else
+# elif (!defined (ALLOW_GENCOST_SSHV4))
       call timer_start('cost_ssh           [ECCO SPIN-DOWN]', mythid)
       call cost_ssh( myiter, mytime, mythid )
       call timer_stop ('cost_ssh           [ECCO SPIN-DOWN]', mythid)

@@ -95,7 +95,7 @@ cnew(
       ymod = ersstartdate(1)/10000
 
       if ( ymod .EQ. yday ) then
-         middate(1) = modelstartdate(1)
+         middate(1) = ersstartdate(1)
       else
          middate(1) = yday*10000+100+1
       endif
