@@ -80,23 +80,31 @@ c     _END_MASTER( mythid )
       IF ( .NOT. exst) THEN
 
          if ( whichxyz .EQ. '3d') then
+#ifdef ALLOW_ADJOINT_RUN
             if ( .NOT.doAdmTlm .OR. (doAdmTlm.AND.yadprefix.EQ.'ad') )
      &           call ctrl_set_globfld_xyz( fname(2), ivarindex, mythid)
+#endif
             if ( ( doInitXX .AND. optimcycle.eq.0 ) .OR. doAdmTlm )
      &           call ctrl_set_globfld_xyz( fname(1), ivarindex, mythid)
          else if ( whichxyz .EQ. 'xy') then
+#ifdef ALLOW_ADJOINT_RUN     
             if ( .NOT.doAdmTlm .OR. (doAdmTlm.AND.yadprefix.EQ.'ad') )
      &           call ctrl_set_globfld_xy( fname(2), ivarindex, mythid)
+#endif
             if ( ( doInitXX .AND. optimcycle.eq.0 ) .OR. doAdmTlm )
      &           call ctrl_set_globfld_xy( fname(1), ivarindex, mythid )
          else if ( whichxyz .EQ. 'xz') then
+#ifdef ALLOW_ADJOINT_RUN     
             if ( .NOT.doAdmTlm .OR. (doAdmTlm.AND.yadprefix.EQ.'ad') )
      &           call ctrl_set_globfld_xz( fname(2), ivarindex, mythid)
+#endif
             if ( ( doInitXX .AND. optimcycle.eq.0 ) .OR. doAdmTlm )
      &           call ctrl_set_globfld_xz( fname(1), ivarindex, mythid )
          else if ( whichxyz .EQ. 'yz') then
+#ifdef ALLOW_ADJOINT_RUN     
             if ( .NOT.doAdmTlm .OR. (doAdmTlm.AND.yadprefix.EQ.'ad') )
      &           call ctrl_set_globfld_yz( fname(2), ivarindex, mythid)
+#endif
             if ( ( doInitXX .AND. optimcycle.eq.0 ) .OR. doAdmTlm )
      &           call ctrl_set_globfld_yz( fname(1), ivarindex, mythid )
          else
