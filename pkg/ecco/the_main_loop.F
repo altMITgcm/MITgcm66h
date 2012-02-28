@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "AD_CONFIG.h"
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
@@ -282,7 +283,8 @@ c--   Do the model integration.
 c     >>>>>>>>>>>>>>>>>>>>>>>>>>>   LOOP   <<<<<<<<<<<<<<<<<<<<<<<<<<<<
 c     >>>>>>>>>>>>>>>>>>>>>>>>>>>  STARTS  <<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-#ifdef ALLOW_AUTODIFF_TAMC
+#  if (defined ALLOW_AUTODIFF_TAMC && \
+      (defined (ALLOW_ADJOINT_RUN) || defined (ALLOW_ADMTLM)) )
 #ifdef ALLOW_TAMC_CHECKPOINTING
 
       max_lev4=nTimeSteps/(nchklev_1*nchklev_2*nchklev_3)+1
@@ -1162,7 +1164,8 @@ C--   Save state for restarts
       IF (debugMode) CALL DEBUG_CALL('END OF TIMESTEP',myThid)
 #endif /* ALLOW_DEBUG */
 
-#ifdef ALLOW_AUTODIFF_TAMC
+#  if (defined ALLOW_AUTODIFF_TAMC && \
+      (defined (ALLOW_ADJOINT_RUN) || defined (ALLOW_ADMTLM)) )
 #ifdef ALLOW_TAMC_CHECKPOINTING
              endif
             enddo
