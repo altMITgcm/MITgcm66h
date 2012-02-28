@@ -58,6 +58,7 @@ c     == routine arguments ==
       integer mythid
 
 #ifndef EXCLUDE_CTRL_PACK
+#if (defined (ALLOW_ADJOINT_RUN)||defined (ALLOW_TANGENTLINEAR_RUN))
 c     == local variables ==
 
       _RL    fcloc
@@ -653,6 +654,7 @@ c          write(cunit) nWetiGlobal(1)
        ENDIF !IF ( myProcId .eq. 0 )
        _END_MASTER( mythid )
       _BARRIER
+#endif /* (defined (ALLOW_ADJOINT_RUN)||defined (ALLOW_TANGENTLINEAR_RUN)) */
 #endif /* EXCLUDE_CTRL_PACK */
 
       return
