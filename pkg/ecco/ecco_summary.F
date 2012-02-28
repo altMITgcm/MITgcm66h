@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "AD_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 
