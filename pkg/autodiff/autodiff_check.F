@@ -29,7 +29,8 @@ C     msgBuf :: Informational/error message buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 CEOP
 
-#ifdef ALLOW_AUTODIFF_TAMC
+#if (defined ALLOW_AUTODIFF_TAMC && \
+    (defined (ALLOW_ADJOINT_RUN) || defined (ALLOW_ADMTLM)) )
 
 #ifdef ALLOW_TAMC_CHECKPOINTING
 # if (defined (AUTODIFF_2_LEVEL_CHECKPOINT))
