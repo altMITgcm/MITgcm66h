@@ -4,6 +4,13 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/shelfice/shelfice_thermodynamics.F
+  - fix exponents for velocity dependent exchange coefficients: change 
+    from 2/3(=0) to 0.66666666666666667
+  - move computation of velocity dependent exchange coefficients into 
+    separate loop, so that it applies to both thermodynamics
+  - move some divisions by constants out of loops
+
 checkpoint63j (2012/02/16)
 o pkg/seaice:
   - overhaul of seaice_summary.F after feb 2012 clean-up of seaice_growth.F etc.
