@@ -40,3 +40,10 @@ CADJ STORE obwuice,obwuice0,obwuice1 = tapelev3, key = ilev_3
 CADJ STORE obwvice,obwvice0,obwvice1 = tapelev3, key = ilev_3
 # endif
 #endif
+
+#ifdef ALLOW_SITRACER
+CADJ STORE sitracer = tapelev3, key = ilev_3
+CADJ STORE sitrarea = tapelev3, key = ilev_3
+CADJ STORE sitrheff = tapelev3, key = ilev_3
+#endif
+

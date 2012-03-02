@@ -89,3 +89,9 @@ CADJ STORE obwvice,obwvice0,obwvice1 = comlev1,
 CADJ &     key=ikey_dynamics, kind=isbyte
 # endif
 #endif
+
+#ifdef ALLOW_SITRACER
+CADJ STORE sitracer = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE sitrarea = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE sitrheff = comlev1, key=ikey_dynamics, kind=isbyte
+#endif
