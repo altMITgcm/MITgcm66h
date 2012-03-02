@@ -142,6 +142,7 @@ c They provide the fields to be stored.
 #  include "SEAICE.h"
 #  include "SEAICE_PARAMS.h"
 #  include "SEAICE_COST.h"
+#  include "SEAICE_TRACER.h"
 # endif
 # ifdef ALLOW_SHELFICE
 #  include "SHELFICE.h"
