@@ -200,7 +200,7 @@ today=`date +%Y%m%d`
 
 if test $# = 0
 then
-  TEST_LIST='g77 gnu ifc pgi adm mp2 mth tuv'
+  TEST_LIST='g77 gnu ifc pgi adm mp2 mth tuv opa'
 else
   TEST_LIST=$*
 fi
