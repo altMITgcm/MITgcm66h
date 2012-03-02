@@ -40,6 +40,8 @@ C       |-- MY82_INIT_VARIA
 C       |
 C       |-- GGL90_INIT_VARIA
 C       |
+C       |-- FRAZIL_INIT_VARIA
+C       |
 C       |-- SEAICE_INIT_VARIA
 C       |
 C       |-- SHELFICE_INIT_VARIA
@@ -203,6 +205,15 @@ C--   Initialize GGL90 vertical mixing scheme.
        CALL GGL90_INIT_VARIA( myThid )
       ENDIF
 #endif /* ALLOW_GGL90 */
+
+#ifdef ALLOW_FRAZIL
+      IF (useFRAZIL) THEN
+# ifdef ALLOW_DEBUG
+        IF (debugMode) CALL DEBUG_CALL('FRAZIL_INIT_VARIA',myThid)
+# endif
+        CALL FRAZIL_INIT_VARIA( myThid)
+      ENDIF
+#endif /* ALLOW_FRAZIL */
 
 #ifdef ALLOW_SEAICE
 C--   Initialize SEAICE model.

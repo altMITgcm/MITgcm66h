@@ -186,6 +186,13 @@ c     IF ( fluidIsWater ) THEN
 # endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
+#ifdef ALLOW_FRAZIL
+      IF ( useFRAZIL ) THEN
+C--   Freeze water in the ocean interior and let it rise to the surface
+       CALL FRAZIL_CALC_RHS( myTime, myIter, myThid )
+      ENDIF
+#endif /* ALLOW_FRAZIL */
+
 #ifdef ALLOW_SEAICE
       IF ( useSEAICE ) THEN
 # ifdef ALLOW_AUTODIFF_TAMC
@@ -333,19 +340,6 @@ C     ice-front ocean interface
           CALL SALT_PLUME_DO_EXCH( myTime, myIter, myThid )
       ENDIF
 #endif /* ALLOW_SALT_PLUME */
-
-C--   Freeze water in the ocean interior and let it rise to the surface
-C     temporarily exclude from adjoint computations until
-C     impact has been vetted in forward integrations
-      IF ( allowInteriorFreezing ) THEN
-#ifdef ALLOW_AUTODIFF_TAMC
-CADJ STORE theta, salt = comlev1, key = ikey_dynamics,
-CADJ &     kind = isbyte
-CADJ STORE recip_hfacc = comlev1, key = ikey_dynamics,
-CADJ &     kind = isbyte
-#endif
-        CALL FREEZE_INTERIOR(  myTime, myIter, myThid )
-      ENDIF
 
 C--   Freeze water at the surface
       IF ( allowFreezing ) THEN

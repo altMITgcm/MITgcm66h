@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o added pkg/frazil - see frazil_description.tex for details
 o pkg/shelfice/shelfice_thermodynamics.F
   - fix exponents for velocity dependent exchange coefficients: change 
     from 2/3(=0) to 0.66666666666666667

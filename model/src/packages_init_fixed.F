@@ -82,7 +82,11 @@ C       |-- PTRACERS_INIT_FIXED
 C       |
 C       |-- GCHEM_INIT_FIXED
 C       |
+C       |-- FRAZIL_INIT_FIXED
+C       |
 C       |-- THSICE_INIT_FIXED
+C       |
+C       |-- SEAICE_INIT_FIXED
 C       |
 C       |-- SHELFICE_INIT_FIXED
 C       |
@@ -443,6 +447,15 @@ C--   Initialise fixed array for Float pkg
         IF (debugMode) CALL DEBUG_CALL('RBCS_INIT_FIXED',myThid)
 # endif
         CALL RBCS_INIT_FIXED(myThid)
+      ENDIF
+#endif
+
+#ifdef ALLOW_FRAZIL
+      IF (useFRAZIL) THEN
+# ifdef ALLOW_DEBUG
+        IF (debugMode) CALL DEBUG_CALL('FRAZIL_INIT_FIXED',myThid)
+# endif
+        CALL FRAZIL_INIT_FIXED(myThid)
       ENDIF
 #endif
 

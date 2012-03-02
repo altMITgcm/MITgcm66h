@@ -71,6 +71,7 @@ c    &          useSMOOTH,
      &          useRBCS,
      &          useOffLine,
      &          useMATRIX,
+     &          useFRAZIL,
      &          useSEAICE,
      &          useSALT_PLUME,
      &          useShelfIce,
@@ -132,6 +133,7 @@ c     useGAD          =.FALSE.
       useRBCS         =.FALSE.
       useOffLine      =.FALSE.
       useMATRIX       =.FALSE.
+      useFRAZIL       =.FALSE.
       useSEAICE       =.FALSE.
       useSALT_PLUME   =.FALSE.
       useShelfIce     =.FALSE.

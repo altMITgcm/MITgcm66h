@@ -352,6 +352,13 @@ C     Add heat in top-layer
        ENDDO
       ENDIF
 
+#ifdef ALLOW_FRAZIL
+      IF ( useFRAZIL )
+     &     CALL FRAZIL_TENDENCY_APPLY_T(
+     I     iMin,iMax, jMin,jMax, bi,bj, kLev,
+     I     myTime, myThid )
+#endif /* ALLOW_FRAZIL */
+
 #ifdef ALLOW_SHELFICE
       IF ( useShelfIce )
      &     CALL SHELFICE_FORCING_T(

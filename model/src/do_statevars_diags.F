@@ -92,6 +92,12 @@ C                    and stagger/synchronous TimeStep
        ENDIF
 #endif /* ALLOW_BBL */
 
+#ifdef ALLOW_FRAZIL
+       IF ( seqFlag.EQ.0 .AND. useFRAZIL ) THEN
+        CALL FRAZIL_DIAGNOSTICS_STATE( myTime, myIter, myThid )
+       ENDIF
+#endif /* ALLOW_FRAZIL */
+
 #ifdef ALLOW_SEAICE
        IF ( seqFlag.EQ.0 .AND. useSEAICE ) THEN
         CALL SEAICE_DIAGNOSTICS_STATE( myTime, myIter, myThid )
