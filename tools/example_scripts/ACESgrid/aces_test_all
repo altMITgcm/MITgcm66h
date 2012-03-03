@@ -16,8 +16,9 @@ sub_list_jobs()
      case $i in
        'mth') sfx='ifc_'${i}  ;;
        'tuv') sfx='op64_'${i} ;;
-       'mp2') sfx=${i}'_mth'  ;;
+       'opa') sfx='op64_adm'  ;;
        'g77') sfx=${i}'_adm'  ;;
+       'mp2') sfx=${i}'_mth'  ;;
            *) sfx=${i}'_mpi'  ;;
      esac
      if test -f $SUB_DIR/aces_test_$sfx ; then
