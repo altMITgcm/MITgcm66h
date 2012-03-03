@@ -45,10 +45,10 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 c     IF ( useDiagnotics ) THEN
 
-        diagName  = 'FRAZdTdt'
-        diagTitle = ' Pot.Temp. tendency from package FRAZIL'
-        diagUnits = 'K/s             '
-        diagCode  = 'SMR     MR      '
+        diagName  = 'FrzForcT'
+        diagTitle = 'Frazil temperature forcing, > 0 increases theta'
+        diagUnits = 'W/m^2           '
+        diagCode  = 'SM      MR      '
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 

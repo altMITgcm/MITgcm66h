@@ -10,7 +10,8 @@ o pkg/seaice :
        SEAICE_mcPheeTaper (default is 0.)
        SEAICE_frazilFrac (defualt is 1.)
        SEAICE_mcPheeStepFunc (default is false)
-  - changes results at trunction error level.
+  - changes results at trunction error level
+  - ifdef SEAICE_EXTERNAL_FLUXES, disallow SEAICE_waterAlbedo
 o added pkg/frazil - see frazil_description.tex for details
 o pkg/shelfice/shelfice_thermodynamics.F
   - fix exponents for velocity dependent exchange coefficients: change 

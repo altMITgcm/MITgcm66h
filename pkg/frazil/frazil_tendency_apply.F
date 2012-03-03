@@ -35,14 +35,14 @@ CEOP
 C     !LOCAL VARIABLES:
       INTEGER i, j
 
-      IF ( myPa_applyTendT ) THEN
-        DO j=jMin,jMax
-         DO i=iMin,iMax
-          gT(i,j,k,bi,bj) = gT(i,j,k,bi,bj)
-     &     + maskC(i,j,k,bi,bj) * frazil_TendT(i,j,k,bi,bj)
-         ENDDO
-        ENDDO
-      ENDIF
+      DO j=jMin,jMax
+       DO i=iMin,iMax
+        gT(i,j,k,bi,bj) = gT(i,j,k,bi,bj)
+     &       + maskC(i,j,k,bi,bj) * FrazilForcingT(i,j,k,bi,bj)
+     &       * recip_Cp * mass2rUnit * recip_drF(k)
+     &       * _recip_hFacC(i,j,k,bi,bj)
+       ENDDO
+      ENDDO
 #endif /* ALLOW_FRAZIL */
 
       RETURN

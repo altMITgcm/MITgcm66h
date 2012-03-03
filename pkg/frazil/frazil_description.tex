@@ -18,12 +18,13 @@ column, that is, frazil does not transport salt anomalies.
 
 The difference with interior_freeze.F is that rather than directly change
 potential temperature THETA, pkg/frazil instead stores the required
-adjustments in a temperature tendency matrix frazil_TendT.
+adjustments in a frazil temperature forcing matrix:
+FrazilForcingT : frazil temperature forcing, > 0 increases theta [W/m^2].
 
-These tendency terms are computed prior to any of the ``ice'' packages and
-routines (i.e., seaice, thsice, shelfice, icefront, and freeze_surface).  This
-allows the ice packages to operate on frazil_TendT, if they need to do so,
-prior to applying this frazil_TendT to THETA in external_forcing.F
+These frazil forcing terms are computed prior to any of the ``ice'' packages
+and routines (i.e., seaice, thsice, shelfice, icefront, and freeze_surface).
+This allows the ice packages to operate on FrazilForcingT, if they need to do
+so, prior to applying this FrazilForcingT to THETA in external_forcing.F
 
 Package frazil is enabled with CPP option ALLOW_FRAZIL and runtime parameter
 useFRAZIL, in the usual MITgcm ways.

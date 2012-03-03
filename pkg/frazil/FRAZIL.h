@@ -3,9 +3,9 @@ C $Name$
 
 #ifdef ALLOW_FRAZIL
 
-C     frazil_TendT           - temperature tendency (Kelvin/s)
-      _RL frazil_TendT(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-      COMMON /FRAZIL_TENDENCY/ frazil_TendT
+C     FrazilForcingT : frazil temperature forcing, > 0 increases theta [W/m^2]
+      _RL FrazilForcingT(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      COMMON /FRAZIL_FORCING/ FrazilForcingT
 
 #endif /* ALLOW_FRAZIL */
 

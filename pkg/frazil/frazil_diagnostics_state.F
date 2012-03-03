@@ -22,7 +22,7 @@ C     !USES:
 C  put following include within #ifdef in case this file is copied to local
 C  code dir but pkg/frazil is not compiled (missing file FRAZIL.h).
 #ifdef ALLOW_FRAZIL
-#include "FRAZIL.h"
+# include "FRAZIL.h"
 #endif
 
 C     !INPUT PARAMETERS:
@@ -34,17 +34,12 @@ C     myThid   :: my Thread Id number
 CEOP
 
 #ifdef ALLOW_FRAZIL
-C     !LOCAL VARIABLES:
-
-#ifdef ALLOW_DIAGNOSTICS
+# ifdef ALLOW_DIAGNOSTICS
       IF ( useDiagnostics ) THEN
-
-         CALL DIAGNOSTICS_FILL( frazil_TendT,'FRAZdTdt',
+         CALL DIAGNOSTICS_FILL( FrazilForcingT, 'FrzForcT',
      &                          0,Nr, 0, 1, 1, myThid )
-
       ENDIF
-#endif /* ALLOW_DIAGNOSTICS */
-
+# endif /* ALLOW_DIAGNOSTICS */
 #endif /* ALLOW_FRAZIL */
 
       RETURN

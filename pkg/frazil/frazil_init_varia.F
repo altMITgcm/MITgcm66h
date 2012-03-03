@@ -40,7 +40,7 @@ C     3-dim.
         DO k=1,Nr
          DO j=1-Oly,sNy+OLy
           DO i=1-Olx,sNx+Olx
-           frazil_TendT(i,j,k,bi,bj) = 0. _d 0
+           FrazilForcingT(i,j,k,bi,bj) = 0. _d 0
           ENDDO
          ENDDO
         ENDDO
