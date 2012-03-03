@@ -78,49 +78,6 @@ C     Initialize MNC variable information for SEAICE
 #endif /* SHORTWAVE_HEATING */
       _END_MASTER(myThid)
       
-
-C--   efficiency of ocean-ice turbulent flux ...
-      if (SEAICEturbFluxFormula.EQ.1) then
-c     ... can be specified as fractions between 0 and 1
-        IF ( SEAICE_availHeatFrac .EQ. UNSET_RL )
-     &    SEAICE_availHeatFrac = ONE
-        IF ( SEAICE_availHeatFracFrz .EQ. UNSET_RL )
-     &    SEAICE_availHeatFracFrz = SEAICE_availHeatFrac
-      elseif (SEAICEturbFluxFormula.EQ.2) then
-c     ... can be specified as time scales (>SEAICE_deltaTtherm)
-        IF ( SEAICE_gamma_t .EQ. UNSET_RL )
-     &    SEAICE_gamma_t=SEAICE_deltaTtherm   
-        IF ( SEAICE_gamma_t_frz .EQ. UNSET_RL )
-     &    SEAICE_gamma_t_frz=SEAICE_gamma_t     
-        IF ( SEAICE_gamma_t .LE. SEAICE_deltaTtherm ) THEN
-            SEAICE_availHeatFracFrz = 1. _d 0
-        ELSE
-            SEAICE_availHeatFrac = SEAICE_deltaTtherm/SEAICE_gamma_t
-        ENDIF
-        IF ( SEAICE_gamma_t_frz .LE. SEAICE_deltaTtherm ) THEN
-            SEAICE_availHeatFracFrz = 1. _d 0
-        ELSE
-            SEAICE_availHeatFracFrz = 
-     &        SEAICE_deltaTtherm/SEAICE_gamma_t_frz
-        ENDIF
-      elseif ( (SEAICEturbFluxFormula.EQ.3).OR.
-     &         (SEAICEturbFluxFormula.EQ.4) ) then
-c     ... is hard-coded (after McPhee)
-        SEAICE_availHeatFrac= MCPHEE_TAPER_FAC * STANTON_NUMBER * 
-     &    USTAR_BASE / dRf(kSurface) * SEAICE_deltaTtherm
-        SEAICE_availHeatFracFrz=ZERO
-      endif
-C--   tapering of ocean-ice turbulent flux as AREA increases
-      if ( (SEAICEturbFluxFormula.EQ.3).OR.
-     &       (SEAICEturbFluxFormula.EQ.4) ) then
-c          hard-coded (after McPhee)
-           SEAICE_availHeatTaper = 
-     &       (MCPHEE_TAPER_FAC-ONE)/MCPHEE_TAPER_FAC
-      elseif (SEAICE_availHeatTaper.EQ.UNSET_RL) then
-           SEAICE_availHeatTaper = ZERO
-      endif
-
-
 C--   SItracer specifications for basic tracers
 #ifdef ALLOW_SITRACER
       DO iTracer = 1, SItrNumInUse
