@@ -67,6 +67,11 @@ C     The flag below is now obsolete, but kept to ease the transition
 C     from the old constant freezing point default (see seaice_check.F).
 #define SEAICE_VARIABLE_FREEZING_POINT
 
+C--   The flags below are obsolete, but kept to ease the transition
+C     from the old default to the new one (see seaice_check.F).
+#define MCPHEE_OCEAN_ICE_HEAT_FLUX
+#define GRADIENT_MIXED_LAYER_TURBULENCE_FACTOR
+
 C--   By default sea ice is fresh.  Set following flag for salty ice.
 #define SEAICE_VARIABLE_SALINITY
 
