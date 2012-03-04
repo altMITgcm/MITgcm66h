@@ -33,9 +33,12 @@ sfx='tuv'
 #export OMP_SLAVE_STACK_SIZE=400m
 #export GSL_IEEE_MODE=double-precision,mask-underflow,mask-denormalized
  ulimit -s unlimited
+#- need this to get "staf":
+export PATH="$PATH:$HOME/bin"
 
-#dAlt=`date +%d` ; dAlt=`expr $dAlt % 3`
-#if [ $dAlt -eq 1 ] ; then options="$options -fast" ; fi
+
+dAlt=`date +%d` ; dAlt=`expr $dAlt % 3`
+if [ $dAlt -eq 1 ] ; then options="-adm -do -devel" ; fi
 
 #- keep a copy of MPI_MFILE:
 cp -p $PBS_NODEFILE $HERE"/mf_"$sfx
