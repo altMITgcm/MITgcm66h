@@ -11,22 +11,18 @@ C !INTERFACE:
       SUBROUTINE FRAZIL_INIT_FIXED( myThid )
 
 C     !DESCRIPTION:
-C     Initialize FRAZIL variables that are kept fixed during the run.
+C     Initialize FRAZIL variables that are kept fixed during the run
 
 C     !USES:
       IMPLICIT NONE
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "PARAMS.h"
-#include "FRAZIL.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
-C     myThid ::  my Thread Id number
+C     myThid :: my Thread Id number
       INTEGER myThid
 CEOP
-
-C     !LOCAL VARIABLES:
-C     === Local variables ===
 
 #ifdef ALLOW_DIAGNOSTICS
       IF ( useDiagnostics ) THEN

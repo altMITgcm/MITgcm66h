@@ -15,18 +15,15 @@ C     Initialize list of all available diagnostics
 
 C     !USES:
       IMPLICIT NONE
-#include "EEPARAMS.h"
-#include "SIZE.h"
-#include "FRAZIL.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
-C     myThid ::  my Thread Id number
+C     myThid :: my Thread Id number
       INTEGER myThid
 CEOP
 
 #ifdef ALLOW_DIAGNOSTICS
+
 C     !LOCAL VARIABLES:
-C     === Local variables ===
 C     diagNum   :: diagnostics number in the (long) list of available diag.
 C     diagMate  :: diag. mate number in the (long) list of available diag.
 C     diagName  :: local short name (8c) of a diagnostics
@@ -41,18 +38,12 @@ C     diagTitle :: local string (80c): description of field in diagnostic
       CHARACTER*16  diagUnits
       CHARACTER*(80) diagTitle
 
-C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
-
-c     IF ( useDiagnotics ) THEN
-
-        diagName  = 'FrzForcT'
-        diagTitle = 'Frazil temperature forcing, > 0 increases theta'
-        diagUnits = 'W/m^2           '
-        diagCode  = 'SM      MR      '
-        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
-     I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
-
-c     ENDIF
+      diagName  = 'FrzForcT'
+      diagTitle = 'Frazil temperature forcing, > 0 increases theta'
+      diagUnits = 'W/m^2           '
+      diagCode  = 'SM      MR      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
 #endif /* ALLOW_DIAGNOSTICS */
 
