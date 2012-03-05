@@ -140,10 +140,8 @@ C     frWtrAtm contains freshwater flux from the atmosphere
 
       INTEGER MULTDIM
       PARAMETER (MULTDIM=7)
-#ifdef SEAICE_MULTICATEGORY
       COMMON/MULTICATEGORY/TICES
       _RL TICES      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,MULTDIM,nSx,nSy)
-#endif
 
 C     TICE  :: Seaice/snow surface temperature
       COMMON/SEAICE_TEMPERATURE/ TICE

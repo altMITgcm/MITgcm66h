@@ -2,10 +2,7 @@ C $Header$
 C $Name$
 
 CADJ STORE StoreSEAICE    = tapelev3, key = ilev_3
-
-#ifdef SEAICE_MULTICATEGORY
 CADJ STORE tices      =     tapelev3, key = ilev_3
-#endif
 
 #ifdef AUTODIFF_SOMETIMES_NEEDED
 CADJ STORE area  = tapelev3, key = ilev_3

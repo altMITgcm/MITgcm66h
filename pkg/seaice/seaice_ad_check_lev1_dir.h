@@ -3,10 +3,7 @@ C $Name$
 
 CADJ STORE hsnow   = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE tice    = comlev1, key=ikey_dynamics, kind=isbyte
-
-#ifdef SEAICE_MULTICATEGORY
 CADJ STORE tices      = comlev1, key=ikey_dynamics, kind=isbyte
-#endif
 
 CADJ STORE area  = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE heff  = comlev1, key=ikey_dynamics, kind=isbyte
