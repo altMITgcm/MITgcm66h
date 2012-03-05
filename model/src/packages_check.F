@@ -197,6 +197,10 @@ C---  Continue with standard packages (with standard usePKG flag)
       IF (useCheapAML) CALL PACKAGES_ERROR_MSG('CheapAML',' ',myThid)
 #endif
 
+#ifndef ALLOW_FRAZIL
+      IF (useFRAZIL) CALL PACKAGES_ERROR_MSG('FRAZIL',' ',myThid)
+#endif
+
 #ifdef ALLOW_THSICE
       IF (useThSIce) CALL THSICE_CHECK( myThid )
 #else
