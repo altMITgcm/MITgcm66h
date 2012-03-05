@@ -95,6 +95,11 @@ c     &     ,vVel(i,j+1,3,bi,bj),vVel(i+1,j+1,3,bi,bj)
 C--   NOW SET UP MASS PER UNIT AREA AND CORIOLIS TERM
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
+        DO j=1-OLy,sNy+OLy
+         DO i=1-OLx,sNx+OLx
+          COR_ICE(i,j,bi,bj) = 0.
+         ENDDO
+        ENDDO
         DO j=1,sNy
          DO i=1,sNx
           AMASS(I,J,bi,bj)=RHOICE*QUART*(
