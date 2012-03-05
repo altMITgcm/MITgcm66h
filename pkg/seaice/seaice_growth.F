@@ -436,6 +436,11 @@ CADJ STORE heff(:,:,bi,bj)  = comlev1_bibj, key = iicekey,byte=isbyte
             tmpscal2=-HEFF(I,J,bi,bj)
             tmpscal3=-HSNOW(I,J,bi,bj)
             TICE(I,J,bi,bj)=celsius2K
+#ifdef SEAICE_MULTICATEGORY
+            DO IT=1,MULTDIM
+              TICES(I,J,IT,bi,bj)=celsius2K
+            ENDDO
+#endif
           endif
           HEFF(I,J,bi,bj)=HEFF(I,J,bi,bj)+tmpscal2
           d_HEFFbyNEG(I,J)=d_HEFFbyNEG(I,J)+tmpscal2
