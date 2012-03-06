@@ -138,8 +138,6 @@ C     frWtrAtm contains freshwater flux from the atmosphere
       _RL saltWtrIce (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL frWtrIce   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
-      INTEGER MULTDIM
-      PARAMETER (MULTDIM=7)
       COMMON/MULTICATEGORY/TICES
       _RL TICES      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,MULTDIM,nSx,nSy)
 
