@@ -33,7 +33,7 @@ C     === Global variables ===
 c#include "THSICE_SIZE.h"
 c#include "THSICE_PARAMS.h"
 #ifdef ALLOW_SEAICE
-c# include "SEAICE_PARAMS.h"
+# include "SEAICE_SIZE.h"
 # include "SEAICE.h"
 #endif /* ALLOW_SEAICE */
 
