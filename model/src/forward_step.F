@@ -117,6 +117,7 @@ C     == Global variables ==
 #  include "THSICE_VARS.h"
 # endif
 # ifdef ALLOW_SEAICE
+#  include "SEAICE_SIZE.h"
 #  include "SEAICE.h"
 #  include "SEAICE_COST.h"
 # endif

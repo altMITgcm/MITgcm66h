@@ -29,11 +29,12 @@ C     === Global variables ===
 #include "GRID.h"
 #include "SURFACE.h"
 #ifdef ALLOW_SEAICE
-#include "SEAICE_PARAMS.h"
-#include "SEAICE.h"
+# include "SEAICE_SIZE.h"
+# include "SEAICE_PARAMS.h"
+# include "SEAICE.h"
 #endif /* ALLOW_SEAICE */
 #ifdef ALLOW_SHELFICE
-#include "SHELFICE.h"
+# include "SHELFICE.h"
 #endif /* ALLOW_SHELFICE */
 #ifdef ALLOW_AUTODIFF_TAMC
 # include "tamc.h"
