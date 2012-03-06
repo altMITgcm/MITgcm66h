@@ -6,7 +6,6 @@ C $Name$
 #include "COST_CPPOPTIONS.h"
 #endif
 
-
       subroutine seaice_cost_areasst(
      &     nnzbar, localbarfile, localbar, xx_localbar_mean_dummy,
      &     nnzobs, localobsfile, localobs, mult_local,
@@ -38,8 +37,9 @@ c     == global variables ==
 #ifdef ALLOW_CAL
 # include "cal.h"
 #endif
-#include "SEAICE.h"
+#include "SEAICE_SIZE.h"
 #include "SEAICE_PARAMS.h"
+#include "SEAICE.h"
 #include "SEAICE_COST.h"
 #ifdef ALLOW_COST
 # ifdef ALLOW_ECCO

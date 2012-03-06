@@ -25,6 +25,7 @@ c     == global variables ==
 #include "SIZE.h"
 #include "GRID.h"
 #ifdef ALLOW_COST
+# include "SEAICE_SIZE.h"
 # include "SEAICE.h"
 # include "SEAICE_COST.h"
 #endif
@@ -93,4 +94,3 @@ c
 
       return
       end
-

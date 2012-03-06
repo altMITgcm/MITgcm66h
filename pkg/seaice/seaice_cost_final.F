@@ -3,7 +3,6 @@ C $Name$
 
 #include "SEAICE_OPTIONS.h"
 
-
       subroutine seaice_cost_final( mythid )
 
 c     ==================================================================
@@ -152,4 +151,5 @@ c--   Each process has calculated the global part for itself.
 
 #endif /* ALLOW_COST */
 
+      return
       end

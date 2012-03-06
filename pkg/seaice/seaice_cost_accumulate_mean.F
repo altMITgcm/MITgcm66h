@@ -9,8 +9,6 @@ C     *==========================================================*
 C     | subroutine seaice_cost_accumulate_mean                   |
 C     | o accumulate time-mean state for cost evalualtion        |
 C     *==========================================================*
-C     |                                                          |
-C     *==========================================================*
       IMPLICIT NONE
 
 C     == Global variables ===
@@ -19,6 +17,7 @@ C     == Global variables ===
 #include "PARAMS.h"
 #include "DYNVARS.h"
 #include "GRID.h"
+#include "SEAICE_SIZE.h"
 #include "SEAICE.h"
 #ifdef ALLOW_COST
 # include "cost.h"

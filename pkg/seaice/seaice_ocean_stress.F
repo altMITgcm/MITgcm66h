@@ -6,12 +6,12 @@ C $Name$
 CStartOfInterface
       SUBROUTINE SEAICE_OCEAN_STRESS(
      I     myTime, myIter, myThid )
-C     /==========================================================\
+C     *==========================================================*
 C     | SUBROUTINE SEAICE_OCEAN_STRESS                           |
 C     | o Calculate ocean surface stresses                       |
 C     |   - C-grid version                                       |
-C     |==========================================================|
-C     \==========================================================/
+C     *==========================================================*
+C     *==========================================================*
       IMPLICIT NONE
 
 C     === Global variables ===
@@ -21,8 +21,9 @@ C     === Global variables ===
 #include "DYNVARS.h"
 #include "GRID.h"
 #include "FFIELDS.h"
-#include "SEAICE.h"
+#include "SEAICE_SIZE.h"
 #include "SEAICE_PARAMS.h"
+#include "SEAICE.h"
 
 C     === Routine arguments ===
 C     myTime - Simulation time

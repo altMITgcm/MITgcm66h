@@ -9,7 +9,6 @@ C     *==========================================================*
 C     | SUBROUTINE ostres                                        |
 C     | o Calculate ocean surface stress                         |
 C     *==========================================================*
-C     *==========================================================*
       IMPLICIT NONE
 
 C     === Global variables ===
@@ -17,8 +16,9 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "FFIELDS.h"
-#include "SEAICE.h"
+#include "SEAICE_SIZE.h"
 #include "SEAICE_PARAMS.h"
+#include "SEAICE.h"
 
 C     === Routine arguments ===
 C     myThid - Thread no. that called this routine.

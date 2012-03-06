@@ -27,6 +27,7 @@ c     == global variables ==
 #include "GRID.h"
 #include "DYNVARS.h"
 #include "FFIELDS.h"
+#include "SEAICE_SIZE.h"
 #include "SEAICE.h"
 #ifdef ALLOW_CTRL
 # include "ctrl.h"
@@ -164,4 +165,3 @@ c--   Update the tile edges.
 
       return
       end
-

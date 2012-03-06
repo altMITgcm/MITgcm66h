@@ -53,6 +53,7 @@ c     == global variables ==
 #include "SIZE.h"
 #include "GRID.h"
 #include "PARAMS.h"
+#include "SEAICE_SIZE.h"
 #include "SEAICE_COST.h"
 #include "SEAICE.h"
 #include "DYNVARS.h"

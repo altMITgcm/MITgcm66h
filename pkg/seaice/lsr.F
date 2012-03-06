@@ -11,15 +11,14 @@ C#define SEAICE_TEST
 
 CStartOfInterface
       SUBROUTINE lsr( ilcall, myThid )
-C     /==========================================================\
+C     *==========================================================*
 C     | SUBROUTINE  lsr                                          |
 C     | o Solve ice momentum equation with an LSR dynamics solver|
 C     |   (see Zhang and Hibler,   JGR, 102, 8691-8702, 1997     |
 C     |    and Zhang and Rothrock, MWR, 131,  845- 861, 2003)    |
 C     |   Written by Jinlun Zhang, PSC/UW, Feb-2001              |
 C     |                     zhang@apl.washington.edu             |
-C     |==========================================================|
-C     \==========================================================/
+C     *==========================================================*
       IMPLICIT NONE
 
 C     === Global variables ===
@@ -27,8 +26,9 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#include "SEAICE.h"
+#include "SEAICE_SIZE.h"
 #include "SEAICE_PARAMS.h"
+#include "SEAICE.h"
 C#include "SEAICE_GRID.h"
 
 #ifdef ALLOW_AUTODIFF_TAMC
