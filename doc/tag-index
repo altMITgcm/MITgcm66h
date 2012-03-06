@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ecco:
+  - fix writing of output file DiagnosCost_ClimSalt/Theta
+    and DiagnosCost_DriftSalt/Theta (if multi-tiles per proc).
 o pkg/seaice :
   - add missing initialisation of COR_ICE array in dynsolver.F
   - merging SEAICE_MULTICATEGORY define and undef cases. Now the same code is
