@@ -30,6 +30,7 @@ C !USES: ===============================================================
 #endif
 #include "PTRACERS_SIZE.h"
 #include "PTRACERS_PARAMS.h"
+#include "PTRACERS_START.h"
 #include "PTRACERS_FIELDS.h"
 #include "PARAMS.h"
 #include "GRID.h"
@@ -72,6 +73,7 @@ CEOP
 
 C Loop over tracers
       DO iTracer=1,PTRACERS_numInUse
+       IF ( PTRACERS_StepFwd(iTracer) ) THEN
 
 #ifdef ALLOW_AUTODIFF_TAMC
           act0 = iTracer - 1
@@ -146,6 +148,7 @@ C--     Apply open boundary conditions
 #endif /* ALLOW_OBCS */
 
 C End of tracer loop
+       ENDIF
       ENDDO
 
 #endif /* ALLOW_PTRACERS */

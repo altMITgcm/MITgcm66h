@@ -27,6 +27,7 @@ C !USES: ===============================================================
 #endif
 #include "PTRACERS_SIZE.h"
 #include "PTRACERS_PARAMS.h"
+#include "PTRACERS_START.h"
 #include "PTRACERS_FIELDS.h"
 #include "GAD.h"
 #ifdef ALLOW_AUTODIFF_TAMC
@@ -60,6 +61,7 @@ CEOP
 
 C Loop over tracers
       DO iTracer=1,PTRACERS_numInUse
+      IF ( PTRACERS_StepFwd(iTracer) ) THEN
 
 #ifdef ALLOW_AUTODIFF_TAMC
           act0 = iTracer - 1
@@ -99,9 +101,9 @@ CADJ &      = comlev1_bibj_ptracers, key=iptrkey, byte=isbyte
 #else
      I                       uVel, vVel, wVel,
 #endif
-     I                       pTracer(1-Olx,1-Oly,1,1,1,iTracer),
+     I                       pTracer(1-OLx,1-OLy,1,1,1,iTracer),
      U                       _Ptracers_som(:,:,:,:,:,:,iTracer),
-     O                       gPtr(1-Olx,1-Oly,1,1,1,iTracer),
+     O                       gPtr(1-OLx,1-OLy,1,1,1,iTracer),
      I                       bi,bj,myTime,myIter,myThid)
        ELSEIF ( PTRACERS_MultiDimAdv(iTracer) ) THEN
 #else /* PTRACERS_ALLOW_DYN_STATE */
@@ -118,13 +120,14 @@ CADJ &      = comlev1_bibj_ptracers, key=iptrkey, byte=isbyte
 #else
      I                        uVel, vVel, wVel,
 #endif
-     I                        pTracer(1-Olx,1-Oly,1,1,1,iTracer),
-     O                        gPtr(1-Olx,1-Oly,1,1,1,iTracer),
+     I                        pTracer(1-OLx,1-OLy,1,1,1,iTracer),
+     O                        gPtr(1-OLx,1-OLy,1,1,1,iTracer),
      I                        bi,bj,myTime,myIter,myThid)
        ENDIF
 
 
 C end of tracer loop
+      ENDIF
       ENDDO
 
 #endif /* ALLOW_PTRACERS */
