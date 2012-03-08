@@ -52,16 +52,6 @@ C     this flag is needed for backward compatibility
 C--   Suspected missing term in coupled ocn-ice heat budget (to be further tested)
 #define SEAICE_DISABLE_HEATCONSFIX
 
-C--   The freezing point of water is a simple linear dependence to salinity.
-C     The flag below is now obsolete, but kept to ease the transition
-C     from the old constant freezing point default (see seaice_check.F).
-#define SEAICE_VARIABLE_FREEZING_POINT
-
-C--   The flags below are obsolete, but kept to ease the transition
-C     from the old default to the new one (see seaice_check.F).
-#define MCPHEE_OCEAN_ICE_HEAT_FLUX
-#define GRADIENT_MIXED_LAYER_TURBULENCE_FACTOR
-
 C--   By default cdm wind stress under sea-ice is set to the
 C     same value as it would be if there was no sea-ice.
 C     This is a placeholder until a more physically-sensible
