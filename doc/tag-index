@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/obcs:
+  - allow to switch to upwind 1rst order advection scheme for the advective
+    flux computation at the open-boundary; disabled for adjoint built.
 o pkg/ptracers:
   - rename PTRACERS_RESTART.h -> PTRACERS_START.h
   - rename ptracers_fields_blocking_exchanges.F -> ptracers_fields_blocking_exch.F
