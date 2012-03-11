@@ -35,9 +35,9 @@ C     modified for sea-ice effects by pkg/seaice.
 #define SEAICE_EXTERNAL_FLUXES
 
 C--   The actual number of ice categories used to solve for seaice flux is
-C     now a run-time parameter (SEAICE_multDim). 
+C     now a run-time parameter (SEAICE_multDim).
 C     This CPP-flag has been removed from main code and is just used to set
-C     default number of category, i.e., =1 if undef, or =MULTDIM (=7 in 
+C     default number of category, i.e., =1 if undef, or =MULTDIM (=7 in
 C     default SEAICE_SIZE.h) if defined. To be completely removed soon.
 C     Note: be aware of pickup_seaice.* compatibility issues when restarting
 C     a simulation with a different number of categories.
