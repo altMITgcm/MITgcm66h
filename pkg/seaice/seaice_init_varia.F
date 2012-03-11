@@ -370,8 +370,8 @@ C--   Read initial snow thickness from file if available.
          DO j=1-OLy,sNy+OLy
           DO i=1-OLx,sNx+OLx
            HSALT(i,j,bi,bj)=HEFF(i,j,bi,bj)*salt(i,j,kSurface,bi,bj)*
-     &            SEAICE_rhoIce*SIsalFRAC
-cif     &            ICE2WATR*rhoConstFresh*SIsalFRAC
+     &            SEAICE_rhoIce*SEAICE_saltFrac
+cif     &            ICE2WATR*rhoConstFresh*SEAICE_saltFrac
 
           ENDDO
          ENDDO
