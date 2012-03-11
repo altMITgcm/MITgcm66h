@@ -16,7 +16,7 @@ C o Nonlinear free-surface code (but without rStar)
 #define DISABLE_RSTAR_CODE
 #define DISABLE_SIGMA_CODE
 C o Include/exclude Implicit vertical advection code
-#undef INCLUDE_IMPLVERTADV_CODE
+#define INCLUDE_IMPLVERTADV_CODE
 cph)
 
 #ifdef ALLOW_KPP
