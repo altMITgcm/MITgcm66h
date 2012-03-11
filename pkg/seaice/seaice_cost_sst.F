@@ -114,6 +114,11 @@ c     == external functions ==
 
 c     == end of interface ==
 
+C- jmc: params SEAICE_freeze has been retired; set it locally until someone
+C       who knows what this cost-cointribution means fix it.
+      _RL SEAICE_freeze
+      SEAICE_freeze  = -1.96  _d 0
+
       jtlo = mybylo(mythid)
       jthi = mybyhi(mythid)
       itlo = mybxlo(mythid)
