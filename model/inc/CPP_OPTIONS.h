@@ -57,6 +57,12 @@ C o Allow mass source or sink of Fluid in the interior
 C   (3-D generalisation of oceanic real-fresh water flux)
 #undef ALLOW_ADDFLUID
 
+C o Choices for implicit solver routines solve_*diagonal.F
+C   The following has low memory footprint, but not suitable for AD
+#undef SOLVE_DIAGONAL_LOWMEMORY
+C   The following one suitable for AD but does not vectorize
+#undef SOLVE_DIAGONAL_KINNER
+
 C o ALLOW isotropic scaling of harmonic and bi-harmonic terms when
 C   using an locally isotropic spherical grid with (dlambda) x (dphi*cos(phi))
 C *only for use on a lat-lon grid*
