@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o ECCO-CLIVAR merge:
+  1. seaice AREA relaxation 
+     * CPP option: SEAICE_ALLOW_AREA_RELAXATION
+     * runtime flag: SEAICE_tauAreaObsRelax
+  2. modified global mean cost imbalance code: CPP option ALLOW_SSH_GLOBMEAN_COST_CONTRIBUTION
 o another iteration on solve_*diagonal.F
   Make choices independent of AUTODIFF
   Default is now the adjoinable vectorized version
