@@ -71,6 +71,7 @@ c They provide the fields to be stored.
 #  ifdef ALLOW_PTRACERS
 #   include "PTRACERS_SIZE.h"
 #   include "PTRACERS_FIELDS.h"
+#   include "PTRACERS_START.h"
 #  endif
 # ifdef ALLOW_GCHEM
 #  include "GCHEM_FIELDS.h"

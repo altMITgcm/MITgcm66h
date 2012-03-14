@@ -3,11 +3,6 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CMLC o Switch to code that has the k-loop inside the 
-CMLC   ij-loops, which matters in adjoint mode.
-# undef SOLVE_DIAGONAL_LOWMEMORY
-# undef SOLVE_DIAGONAL_KINNER
-
 CBOP
 C     !ROUTINE: SOLVE_PENTADIAGONAL
 C     !INTERFACE:
