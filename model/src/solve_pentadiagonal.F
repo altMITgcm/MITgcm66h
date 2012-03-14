@@ -5,10 +5,8 @@ C $Name$
 
 CMLC o Switch to code that has the k-loop inside the 
 CMLC   ij-loops, which matters in adjoint mode.
-#ifdef ALLOW_AUTODIFF 
-# define SOLVE_DIAGONAL_AUTODIFF
+# undef SOLVE_DIAGONAL_LOWMEMORY
 # undef SOLVE_DIAGONAL_KINNER
-#endif
 
 CBOP
 C     !ROUTINE: SOLVE_PENTADIAGONAL
@@ -68,7 +66,7 @@ C     == Local variables ==
       _RL tmpval
       _RL c5dtmp
 
-#ifdef SOLVE_DIAGONAL_AUTODIFF
+#ifndef SOLVE_DIAGONAL_LOWMEMORY
       _RL y5d_m1(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
 # ifdef SOLVE_DIAGONAL_KINNER
       _RL c5d_prime(Nr)
@@ -83,12 +81,12 @@ C     == Local variables ==
       _RL y5d_prime(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
       _RL y5d_update(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
 # endif
-#endif /* SOLVE_DIAGONAL_AUTODIFF */
+#endif /* SOLVE_DIAGONAL_LOWMEMORY */
 CEOP
 
       errCode = 0
 
-#ifndef SOLVE_DIAGONAL_AUTODIFF
+#ifdef SOLVE_DIAGONAL_LOWMEMORY
 
       DO k=1,Nr
 C--   forward sweep (starting from top)
@@ -178,7 +176,7 @@ C-      end if k= .. ; end of k loop
        ENDIF
       ENDDO
 
-#else /* def SOLVE_DIAGONAL_AUTODIFF */
+#else /* ndef SOLVE_DIAGONAL_LOWMEMORY */
 
 C--   Temporary array
       DO k=1,Nr
@@ -393,7 +391,7 @@ ccc        DO i=iMin,iMax
 
 #endif /* SOLVE_DIAGONAL_KINNER */
 
-#endif /* SOLVE_DIAGONAL_AUTODIFF */
+#endif /* SOLVE_DIAGONAL_LOWMEMORY */
 
       RETURN
       END
