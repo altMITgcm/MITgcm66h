@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src:
+   - selectAddFluid (ALLOW_ADDFLUID): add missing term in horizontal momentum
+     flux-form (mom_fluxform.F) and vertical momentum (calc_gw.F) equations.
+   - SOLVE_DIAGONAL: switch default to use adjoinable & vectorized version
+     (#undef SOLVE_DIAGONAL_LOWMEMORY); update output of exp. front_relax.bvp.
 o model/src: solve_*diagonal.F
    - replace division with multiplication by inverse (similar to original version)
      update output of AD exp. global_ocean.90x40x15.
