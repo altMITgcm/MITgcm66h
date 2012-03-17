@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint63k (2012/03/17)
 o model/src:
    - selectAddFluid (ALLOW_ADDFLUID): add missing term in horizontal momentum
      flux-form (mom_fluxform.F) and vertical momentum (calc_gw.F) equations.
