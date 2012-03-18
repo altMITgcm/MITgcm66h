@@ -81,8 +81,8 @@ else
   if test "x$DEVEL" = x ; then  #- no optimisation + IEEE :
     FOPTIM='-O0'
   else                          #- development/check options:
-    FOPTIM='-O0'
-    FOPTIM="$FOPTIM -g -ffpe-trap=invalid,zero,overflow -fbounds-check"
+    FOPTIM='-O0 -g -fbounds-check'
+    FOPTIM="$FOPTIM -ffpe-trap=invalid,zero,overflow -finit-real=inf"
   fi
 fi
 
