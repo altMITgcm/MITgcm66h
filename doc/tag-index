@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o momentum:
+  - separate fVer?(:,:,kUp) & fVer?(:,:,kDown) in argument list of MOM_FLUXFORM
+    & MOM_VECINV subroutines (to help TAF). This fixes Pb of uninitialised
+    fVer?(kUp) in admom_fluxform with non-lin free-surf or bottom control.
+
 checkpoint63k (2012/03/17)
 o model/src:
    - selectAddFluid (ALLOW_ADDFLUID): add missing term in horizontal momentum
