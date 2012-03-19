@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/icefront: fix bug and reorder loop in icefront_init_varia.F
 o model/src: move k-loop outside of i/j-loops when (re-)computing R_low 
   in ini/update_masks_etc.F in order to avoid -O3 optimization problems with 
   some compilers (gfortran 4.6.0 on MacOS)
