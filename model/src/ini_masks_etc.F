@@ -116,7 +116,11 @@ C-    Re-calculate lower-R Boundary position, taking into account hFacC
         DO j=1-Oly,sNy+Oly
          DO i=1-Olx,sNx+Olx
           R_low(i,j,bi,bj) = rF(1)
-          DO k=Nr,1,-1
+         ENDDO
+        ENDDO
+        DO k=Nr,1,-1
+         DO j=1-Oly,sNy+Oly
+          DO i=1-Olx,sNx+Olx
            R_low(i,j,bi,bj) = R_low(i,j,bi,bj)
      &                      - drF(k)*hFacC(i,j,k,bi,bj)
           ENDDO

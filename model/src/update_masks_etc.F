@@ -121,10 +121,14 @@ C-  Re-calculate lower-R Boundary position, taking into account hFacC
        DO bi=myBxLo(myThid), myBxHi(myThid)
         DO J=1-Oly,sNy+Oly
          DO I=1-Olx,sNx+Olx
-          R_low(I,J,bi,bj) = rF(1)
-          DO K=Nr,1,-1
+          R_low(i,j,bi,bj) = rF(1)
+         ENDDO
+        ENDDO
+        DO K=Nr,1,-1
+         DO J=1-Oly,sNy+Oly
+          DO I=1-Olx,sNx+Olx
            R_low(I,J,bi,bj) = R_low(I,J,bi,bj)
-     &                      - drF(k)*hFacC(I,J,K,bi,bj)
+     &                      - drF(K)*hFacC(I,J,K,bi,bj)
           ENDDO
          ENDDO
         ENDDO
