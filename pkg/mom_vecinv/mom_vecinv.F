@@ -360,8 +360,8 @@ C     Combine fluxes
        ENDDO
 
 C--   Tendency is minus divergence of the fluxes
-       DO j=2-OLy,sNy+OLy-1
-        DO i=2-OLx,sNx+OLx-1
+       DO j=jMin,jMax
+        DO i=iMin,iMax
          guDiss(i,j) = guDiss(i,j)
      &   -_recip_hFacW(i,j,k,bi,bj)*recip_drF(k)
      &   *recip_rAw(i,j,bi,bj)
