@@ -19,6 +19,10 @@ C--   o FIXDATE
 C--   o INTERP_TIME
 C--   o TICK
 C--   o TIC_TIME
+C--   o NALARM     (function)
+C--   o NALARM2    (function)
+C--   o INCYMD     (function)
+C--   o ASTRO
 C--   o TIME_BOUND
 C--   o TIME2FREQ2
 
@@ -889,6 +893,7 @@ C ---------------
       _RL pi, zero, one, two, six, dg2rd, yrlen, eqnx, ob, ecc, per
       _RL daylen, fac, thm, thp, thnow, zs, zc, sj, cj
 
+      parameter ( zero  = 0.0 )
       parameter ( one   = 1.0 )
       parameter ( two   = 2.0 )
       parameter ( six   = 6.0 )
