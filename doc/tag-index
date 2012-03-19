@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src: move k-loop outside of i/j-loops when (re-)computing R_low 
+  in ini/update_masks_etc.F in order to avoid -O3 optimization problems with 
+  some compilers (gfortran 4.6.0 on MacOS)
 o momentum:
   - separate fVer?(:,:,kUp) & fVer?(:,:,kDown) in argument list of MOM_FLUXFORM
     & MOM_VECINV subroutines (to help TAF). This fixes Pb of uninitialised
