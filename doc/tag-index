@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/gmredi:
+  - add diagnostic of Redi (main diagnonal) vertical diffusive flux of Temp
 o pkg/fizhi:
   - fix few initialisation and multi-tile Pb: aqualev & gridalt now pass the
     (old)aces open64 tuv test.
