@@ -195,6 +195,13 @@ c     IF ( useDiagnotics ) THEN
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I    diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
 
+        diagName  = 'GM_KwzTz'
+        diagTitle = 'Redi main-diagonal vertical Temperature flux'
+        diagUnits = 'degC.m^3/s      '
+        diagCode  = 'WM      LR      '
+        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I       diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
         diagName  = 'GM_ubT  '
         diagTitle = 'Zonal Mass-Weight Bolus Transp of Pot Temp'
         diagUnits = 'degC.m^3/s      '
