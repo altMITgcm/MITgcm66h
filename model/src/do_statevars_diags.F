@@ -86,6 +86,12 @@ C                    and stagger/synchronous TimeStep
         ENDIF
 #endif /* ALLOW_PTRACERS */
 
+#ifdef ALLOW_GMREDI
+       IF ( seqFlag.EQ.2 .AND. useGMRedi ) THEN
+         CALL GMREDI_DIAGNOSTICS_IMPL( myTime, myIter, myThid )
+       ENDIF
+#endif /* ALLOW_GMREDI */
+
 #ifdef ALLOW_BBL
        IF ( seqFlag.EQ.0 .AND. useBBL ) THEN
          CALL BBL_DIAGNOSTICS_STATE( myTime, myIter, myThid )
