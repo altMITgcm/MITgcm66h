@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/fizhi:
+  - fix few initialisation and multi-tile Pb: aqualev & gridalt now pass the
+    (old)aces open64 tuv test.
 o pkg/icefront: fix bug and reorder loop in icefront_init_varia.F
 o pkg/mom_vecinv:
   - fix 1 loop range in mom_vecinv.F to be like all the other loops which
