@@ -24,5 +24,13 @@ CADJ STORE xx_tauu1      = tapelev3, key = ilev_3
 CADJ STORE xx_tauv0      = tapelev3, key = ilev_3
 CADJ STORE xx_tauv1      = tapelev3, key = ilev_3
 # endif
+# ifdef ALLOW_SST_CONTROL
+CADJ STORE xx_sst0      = tapelev3, key = ilev_3
+CADJ STORE xx_sst1      = tapelev3, key = ilev_3
+# endif
+# ifdef ALLOW_SSS_CONTROL
+CADJ STORE xx_sss0      = tapelev3, key = ilev_3
+CADJ STORE xx_sss1      = tapelev3, key = ilev_3
+# endif
 
 #endif /* ALLOW_EXF */
