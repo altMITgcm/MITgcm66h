@@ -109,7 +109,8 @@ c--   Read the namelist input.
      &  xx_obcse_file,
      &  xx_obcsestartdate1,  xx_obcsestartdate2,  xx_obcseperiod,
      &  xx_diffkr_file, xx_kapgm_file, xx_kapredi_file, xx_tr1_file,
-     &  xx_sst_file, xx_sss_file,
+     &  xx_sst_file, xx_sst_remo_intercept, xx_sst_remo_slope,
+     &  xx_sss_file, xx_sss_remo_intercept, xx_sss_remo_slope,
      &  xx_sststartdate1, xx_sststartdate2, xx_sstperiod,
      &  xx_sssstartdate1, xx_sssstartdate2, xx_sssperiod,
      &  xx_depth_file, xx_gen2d_file, xx_gen3d_file,
@@ -305,11 +306,15 @@ c
         xx_sststartdate2    =   0
         xx_sstperiod        =   0. _d 0
         xx_sst_file         = 'xx_sst'
+        xx_sst_remo_intercept =   0. _d 0
+        xx_sst_remo_slope =   0. _d 0
 c
         xx_sssstartdate1    =   0
         xx_sssstartdate2    =   0
         xx_sssperiod        =   0. _d 0
         xx_sss_file         = 'xx_sss'
+        xx_sss_remo_intercept =   0. _d 0
+        xx_sss_remo_slope =   0. _d 0
 c
         xx_shifwflxstartdate1  =   0
         xx_shifwflxstartdate2  =   0

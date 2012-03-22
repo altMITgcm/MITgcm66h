@@ -800,6 +800,8 @@ c                      control part.
      &       xx_snowprecip_remo_slope,
      &       xx_apressure_remo_intercept, 
      &       xx_apressure_remo_slope,
+     &       xx_sst_remo_intercept, xx_sst_remo_slope,
+     &       xx_sss_remo_intercept, xx_sss_remo_slope,
      &       xx_runoff_remo_intercept, xx_runoff_remo_slope,
      &       xx_uwind_remo_intercept, xx_uwind_remo_slope,
      &       xx_vwind_remo_intercept, xx_vwind_remo_slope,
@@ -821,6 +823,8 @@ c                      control part.
       _RL xx_snowprecip_remo_slope
       _RL xx_apressure_remo_intercept
       _RL xx_apressure_remo_slope
+      _RL xx_sst_remo_intercept, xx_sst_remo_slope
+      _RL xx_sss_remo_intercept, xx_sss_remo_slope
       _RL xx_runoff_remo_intercept, xx_runoff_remo_slope
       _RL xx_uwind_remo_intercept, xx_uwind_remo_slope
       _RL xx_vwind_remo_intercept, xx_vwind_remo_slope
