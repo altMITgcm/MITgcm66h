@@ -93,6 +93,14 @@ c--   Update the tile edges.
       _EXCH_XY_RL(climsst, mythid)
 #endif
 
+#ifdef ALLOW_SST_CONTROL
+      call ctrl_get_gen (
+     &     xx_sst_file, xx_sststartdate, xx_sstperiod,
+     &     maskc, climsst, xx_sst0, xx_sst1, xx_sst_dummy,
+     &     xx_sst_remo_intercept, xx_sst_remo_slope,
+     &     mytime, myiter, mythid )
+#endif
+
 #ifdef ALLOW_CLIMSSS_RELAXATION
 c     Get values of climatological sss fields.
       call exf_set_gen  (
@@ -110,10 +118,11 @@ c--   Update the tile edges.
       _EXCH_XY_RL(climsss, mythid)
 #endif
 
-#ifdef ALLOW_SST_CONTROL
+#ifdef ALLOW_SSS_CONTROL
       call ctrl_get_gen (
-     &     xx_sst_file, xx_sststartdate, xx_sstperiod,
-     &     maskc, climsst, xx_sst0, xx_sst1, xx_sst_dummy,
+     &     xx_sss_file, xx_sssstartdate, xx_sssperiod,
+     &     maskc, climsss, xx_sss0, xx_sss1, xx_sss_dummy,
+     &     xx_sss_remo_intercept, xx_sss_remo_slope,
      &     mytime, myiter, mythid )
 #endif
 
