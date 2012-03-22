@@ -9,12 +9,10 @@ C $Name$
 #ifdef ALLOW_FIZHI
 C     Package-specific options go here
 
-C     #define FIZHI_DEBUG
-
 C     use fixed day in the year:
 #define FIZHI_USE_FIXED_DAY
 
-C     try new version of S/R GETPWHERE
+C     use new version of S/R GETPWHERE
 #define TRY_NEW_GETPWHERE
 
 #endif /* ALLOW_FIZHI */
