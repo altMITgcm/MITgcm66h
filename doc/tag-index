@@ -4,6 +4,13 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o verification/lab_sea
+  * #undef SEAICE_EXCLUDE_FOR_EXACT_AD_TESTING
+  * #define ALLOW_SST_CONTROL & ALLOW_SST_CONTROL
+  * nTimeSteps 3 -> 4
+  * changed reference output accordingly
+o pkg/ctrl:
+  * fix ctrl_get_gen for xx_sst, xx_sss
 o pkg/fizhi:
   - fix 2 calls to S/R GRD2MSC (argument igrd) in update_earth_exports.F
     update results of exp. fizhi-cs-32x32x40 (fail with only 6 digits for cg2d)
