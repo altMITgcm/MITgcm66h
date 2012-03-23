@@ -76,6 +76,10 @@ C-    local variables:
       WRITE(standardMessageUnit,'(2A)') ' FIZHI_INIT_VEG: ',
      &   'defining surface type and fraction: ----------------------'
 
+#ifdef _BYTESWAPIO
+C     using MDS_BYTESSWAP for sequential acces file does not work
+      STOP 'ABNORMAL END: S/R FIZHI_INIT_VEG'
+#endif
       CALL MDSFINDUNIT( kveg, myThid )
       close(kveg)
       open(kveg,file=vegdata,form='unformatted',access='sequential',
