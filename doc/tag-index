@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src/config_check.F: add a check for OLx>sNx/OLy>sNy
 o verification/lab_sea
   * #undef SEAICE_EXCLUDE_FOR_EXACT_AD_TESTING
   * #define ALLOW_SST_CONTROL & ALLOW_SST_CONTROL
