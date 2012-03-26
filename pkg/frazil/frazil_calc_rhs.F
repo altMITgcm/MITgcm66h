@@ -105,6 +105,13 @@ C     Move the negative heat to surface level.
        ENDDO
       ENDDO
 
+# ifdef ALLOW_DIAGNOSTICS
+      IF ( useDiagnostics ) THEN
+         CALL DIAGNOSTICS_FILL( FrazilForcingT, 'FrzForcT',
+     &                          0,Nr, 0, 1, 1, myThid )
+      ENDIF
+# endif /* ALLOW_DIAGNOSTICS */
+
 #endif /* ALLOW_FRAZIL */
 
       RETURN

@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/frazil:
+  move FrzForcT diag from frazil_diagnostics_state.F to frazil_calc_rhs.F
+  http://mitgcm.org/pipermail/mitgcm-devel/2012-March/005384.html
 o model/src/config_check.F: add a check for OLx>sNx/OLy>sNy
 o verification/lab_sea
   * #undef SEAICE_EXCLUDE_FOR_EXACT_AD_TESTING
