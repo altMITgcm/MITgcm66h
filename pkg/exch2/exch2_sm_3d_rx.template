@@ -71,7 +71,7 @@ C--   First call the exchanges
        CALL EXCH2_RX1_CUBE( phi, .FALSE., 'T ',
      I            OLw, OLe, OLs, OLn, myNz,
      I            exchWidthX, exchWidthY,
-     I            EXCH_UPDATE_CORNERS, myThid )
+     I            EXCH_IGNORE_CORNERS, myThid )
        CALL EXCH2_RX1_CUBE( phi, .FALSE., 'T ',
      I            OLw, OLe, OLs, OLn, myNz,
      I            exchWidthX, exchWidthY,

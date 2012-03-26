@@ -78,7 +78,7 @@ C--   First call the exchanges for the two components
        CALL EXCH2_RX1_CUBE( uPhi, .FALSE., 'T ',
      I            OLw, OLe, OLs, OLn, myNz,
      I            exchWidthX, exchWidthY,
-     I            EXCH_UPDATE_CORNERS, myThid )
+     I            EXCH_IGNORE_CORNERS, myThid )
        CALL EXCH2_RX1_CUBE( uPhi, .FALSE., 'T ',
      I            OLw, OLe, OLs, OLn, myNz,
      I            exchWidthX, exchWidthY,
@@ -87,7 +87,7 @@ C--   First call the exchanges for the two components
        CALL EXCH2_RX1_CUBE( vPhi, .FALSE., 'T ',
      I            OLw, OLe, OLs, OLn, myNz,
      I            exchWidthX, exchWidthY,
-     I            EXCH_UPDATE_CORNERS, myThid )
+     I            EXCH_IGNORE_CORNERS, myThid )
        CALL EXCH2_RX1_CUBE( vPhi, .FALSE., 'T ',
      I            OLw, OLe, OLs, OLn, myNz,
      I            exchWidthX, exchWidthY,
