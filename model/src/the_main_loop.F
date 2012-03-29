@@ -12,6 +12,9 @@ C $Name$
 #ifdef ALLOW_GMREDI
 # include "GMREDI_OPTIONS.h"
 #endif
+#ifdef ALLOW_STREAMICE
+# include "STREAMICE_OPTIONS.h"
+#endif
 
 CBOP
 C     !ROUTINE: THE_MAIN_LOOP
@@ -116,6 +119,12 @@ c They provide the fields to be stored.
 #  ifdef ALLOW_SHELFICE
 #   include "SHELFICE.h"
 #   include "SHELFICE_COST.h"
+#  endif
+#  ifdef ALLOW_STREAMICE
+#   include "STREAMICE.h"
+#   include "STREAMICE_ADV.h"
+#   include "STREAMICE_BDRY.h"
+#   include "STREAMICE_CG.h"
 #  endif
 #  ifdef ALLOW_EBM
 #   include "EBM.h"
