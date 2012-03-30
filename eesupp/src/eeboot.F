@@ -52,6 +52,7 @@ C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     I :: Loop counter
       INTEGER I
+      LOGICAL doReport
 CEOP
 
 C--   Set error reporting flags and I/O streams
@@ -124,7 +125,8 @@ C--   Now we can write a startup message
       CALL EEINTRO_MSG
 
 C--   Initialise parameters associated with execution environment.
-      CALL EESET_PARMS
+      doReport = .TRUE.
+      CALL EESET_PARMS ( doReport )
       IF ( eeBootError ) GOTO 999
 
 C--   Write summary of execution environment configuration for this run
