@@ -230,7 +230,18 @@ c      eeBootError = .TRUE.
       ENDIF
       usingMPI = .TRUE.
 #endif
-#endif
+#else /* ALLOW_USE_MPI */
+      IF ( doReport .AND. usingMPI ) THEN
+       WRITE(msgBuf,'(2A)') 'EESET_PARMS: ',
+     &                      'in eedata: usingMPI=T conflicts'
+       CALL PRINT_ERROR( msgBuf, 1 )
+       WRITE(msgBuf,'(A)') 'EESET_PARMS:  with #undef ALLOW_USE_MPI'
+       CALL PRINT_ERROR( msgBuf, 1 )
+       STOP 'ABNORMAL END: S/R EESET_PARMS'
+c      eeBootError = .TRUE.
+      ENDIF
+      usingMPI = .FALSE.
+#endif /* ALLOW_USE_MPI */
 
 Cdbg  eeDataUnit = 42
 Cdbg  OPEN(UNIT=eeDataUnit,FILE='eedata',STATUS='OLD',IOSTAT=errIO)
