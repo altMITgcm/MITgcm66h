@@ -65,6 +65,17 @@ C--   Default values set to single processor case
 C     Set a dummy value for myThid because we are not multi-threading yet.
       myThid        = 1
 
+C     Annoyingly there is no universal way to have the usingMPI
+C     parameter work as one might expect. This is because, on some
+C     systems I/O does not work until MPI_Init has been called.
+C     The solution for now is that the parameter below may need to
+C     be changed manually!
+#ifdef ALLOW_USE_MPI
+      usingMPI = .TRUE.
+#else
+      usingMPI = .FALSE.
+#endif
+
       IF ( .NOT.usingMPI ) THEN
 
         WRITE(myProcessStr,'(I4.4)') myProcId
@@ -212,6 +223,5 @@ C      is an exact match makes things easier.
 #endif
 
  999  CONTINUE
-
       RETURN
       END
