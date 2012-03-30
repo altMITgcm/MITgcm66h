@@ -65,7 +65,7 @@ C-    Default: take global dimension from SIZE.h (will fail with blank tiles)
      &     ' unvalid 1rst 2 dimensions:', facet_dims(1), facet_dims(2)
          CALL PRINT_MESSAGE( msgBuf, W2_oUnit,SQUEEZE_RIGHT,myThid )
          CALL PRINT_ERROR( msgBuf, myThid )
-         CALL ALL_PROC_DIE( myThid )
+         CALL ALL_PROC_DIE( 0 )
          STOP 'ABNORMAL END: S/R W2_SET_SINGLE_FACET: unvalid dims'
       ENDIF
       DO j=3,W2_maxNbFacets*2
@@ -74,7 +74,7 @@ C-    Default: take global dimension from SIZE.h (will fail with blank tiles)
      &     ' no more than 2 dims (X,Y) expected for single facet'
          CALL PRINT_MESSAGE( msgBuf, W2_oUnit,SQUEEZE_RIGHT,myThid )
          CALL PRINT_ERROR( msgBuf, myThid )
-         CALL ALL_PROC_DIE( myThid )
+         CALL ALL_PROC_DIE( 0 )
          STOP 'ABNORMAL END: S/R W2_SET_SINGLE_FACET: unexpected dims'
        ENDIF
       ENDDO
