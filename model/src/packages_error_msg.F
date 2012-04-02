@@ -35,7 +35,7 @@ C     myThid ::  My thread Id number
 
 C     !LOCAL VARIABLES:
 C     === Local variables ===
-C     msgBuf :: Informational/error meesage buffer
+C     msgBuf :: Informational/error message buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       CHARACTER*(MAX_LEN_MBUF) msgLwc,msgUpc
       INTEGER iLen
@@ -61,6 +61,7 @@ CEOP
      &  '==> Re-compile with pkg "',msgLwc(1:iLen),
      &  '" in file "packages.conf"'
       CALL PRINT_ERROR( msgBuf, myThid )
+      CALL ALL_PROC_DIE( myThid )
       STOP 'ABNORMAL END: S/R PACKAGE_ERROR_MSG'
 
       RETURN
