@@ -105,7 +105,8 @@ C     in botommost wet grid box.
 
 C     If bbl occupies most of the bottom model grid box or
 C     if model density is higher than BBL then mix instantly.
-           IF ( (resThk.LE.1.) .OR. (rhoLoc(i,j).GE.rhoBBL(i,j)) ) THEN
+           IF ( (resThk.LE.1. _d 0) .OR.
+     &          (rhoLoc(i,j).GE.rhoBBL(i,j)) ) THEN
             bbl_theta(i,j,bi,bj) = tLoc(i,j)
             bbl_salt (i,j,bi,bj) = sLoc(i,j)
 
