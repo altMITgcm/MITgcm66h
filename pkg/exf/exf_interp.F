@@ -261,6 +261,7 @@ C     averaging properly done if uvInterp=T in S/R EXF_INTERP_UV
 C     prtPole(l)=0 : extended, =1 : changed to pole, =2 : changed to symetric
       IF ( debugFlag ) THEN
         l = ILNBLNK(inFile)
+        _BEGIN_MASTER(myThid)
         WRITE(msgBuf,'(3A,I6,A,2L5)')
      &   'EXF_INTERP: file="',inFile(1:l),'", rec=', irecord,
      &   ' , x-Per,P.Sym=', xIsPeriodic, poleSymmetry
@@ -274,6 +275,7 @@ C     prtPole(l)=0 : extended, =1 : changed to pole, =2 : changed to symetric
      &   ' proc=', (prtPole(j),j=2,4), ', yIn=',(y_in(j),j=nyIn,nyIn+2)
         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                      SQUEEZE_RIGHT, myThid )
+        _END_MASTER(myThid)
       ENDIF
 #endif /* ALLOW_DEBUG */
 
