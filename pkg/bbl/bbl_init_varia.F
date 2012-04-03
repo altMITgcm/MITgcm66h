@@ -29,15 +29,15 @@ CEOP
 #ifdef ALLOW_BBL
 
 C     !LOCAL VARIABLES:
-C     i,j,k,bi,bj :: loop indices
+C     i,j,bi,bj :: loop indices
 C     kBot      :: k index of bottommost wet grid
-      INTEGER i,j,k,bi,bj,kBot
+      INTEGER i,j,bi,bj,kBot
 
 C     Initialize arrays in common blocks.
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
-        DO j=1-Oly,sNy+OLy
-         DO i=1-Olx,sNx+Olx
+        DO j=1-OLy,sNy+OLy
+         DO i=1-OLx,sNx+OLx
           kBot = max(1,kLowC(i,j,bi,bj))
           bbl_theta(i,j,bi,bj)     = theta(i,j,kBot,bi,bj)
           bbl_salt (i,j,bi,bj)     = salt (i,j,kBot,bi,bj)
