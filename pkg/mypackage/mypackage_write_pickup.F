@@ -121,6 +121,7 @@ C--------------------------
           WRITE(msgBuf,'(2A,I5,A)') 'MYPACKAGE_WRITE_PICKUP: ',
      &     'field-list dimension (listDim=',listDim,') too small'
           CALL PRINT_ERROR( msgBuf, myThid )
+          CALL ALL_PROC_DIE( myThid )
           STOP 'ABNORMAL END: S/R MYPACKAGE_WRITE_PICKUP (list-size Pb)'
         ENDIF
 #ifdef ALLOW_MDSIO

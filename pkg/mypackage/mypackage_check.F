@@ -63,7 +63,6 @@ C-   add some other as example:
 
 C--  Check parameters:
 
-
 C-     Put stops here if some flags are wrongly chosen.
 C-     For example, require this package to use tempStepping
        IF ( .NOT.tempStepping .AND. myPa_applyTendT ) THEN
@@ -71,6 +70,7 @@ C-     For example, require this package to use tempStepping
         CALL PRINT_ERROR( msgBuf , 1)
         WRITE(msgBuf,'(A)') 'myPa_applyTendT needs tempStepping=.true.'
         CALL PRINT_ERROR( msgBuf , 1)
+        CALL ALL_PROC_DIE( 0 )
         STOP 'ABNORMAL END: S/R MYPACKAGE_CHECK'
        ENDIF
 
