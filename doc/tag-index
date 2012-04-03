@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/bbl:
+  - fix call to FIND_RHO_2D in bbl_calc_rho.F (case multi-tiles per proc);
+    update global_with_exf output.yearly.txt file.
 o pkg/cal:
   - start to clean-up cal_set.F ; fix for the case where baseTime is non-zero.
   - remove 2 unsused and very short (1 line only) functions ;
