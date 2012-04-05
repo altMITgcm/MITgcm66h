@@ -21,6 +21,8 @@ C     PACKAGES_INIT_FIXED
 C       |
 C       |-- RUNCLOCK_INIT
 C       |
+C       |-- CAL_INIT_FIXED
+C       |
 C       |-- DIAGNOSTICS_INIT_EARLY
 C       |-- DIAGNOSTICS_MAIN_INIT
 C       |
@@ -132,6 +134,16 @@ CEOP
         CALL RUNCLOCK_INIT( myThid )
       ENDIF
 #endif
+
+#ifdef ALLOW_CAL
+C--   Initialise the calendar package.
+      IF ( useCAL ) THEN
+# ifdef ALLOW_DEBUG
+        IF (debugMode) CALL DEBUG_CALL('CAL_INIT_FIXED',myThid)
+# endif
+        CALL CAL_INIT_FIXED( myThid )
+      ENDIF
+#endif /* ALLOW_CAL */
 
 #ifdef ALLOW_DIAGNOSTICS
       IF ( useDiagnostics ) THEN
