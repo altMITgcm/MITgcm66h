@@ -40,7 +40,6 @@ C     == global variables ==
 
 #include "EEPARAMS.h"
 #include "SIZE.h"
-#include "cal.h"
 #include "EXF_CONSTANTS.h"
 #include "EXF_PARAM.h"
 

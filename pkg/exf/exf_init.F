@@ -26,7 +26,6 @@ c     == global variables ==
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "GRID.h"
-#include "cal.h"
 #include "EXF_PARAM.h"
 #include "EXF_FIELDS.h"
 #ifdef ALLOW_BULK_OFFLINE

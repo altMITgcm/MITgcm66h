@@ -3,6 +3,13 @@ C $Name$
 
 #include "CTRL_CPPOPTIONS.h"
 
+C--  File ctrl_init.F:
+C--   Contents
+C--   o CTRL_INIT
+C--   o CTRL_INIT_REC
+
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+
       subroutine ctrl_init( mythid )
 
 c     ==================================================================
@@ -68,9 +75,6 @@ c     == global variables ==
 #include "ctrl.h"
 #include "optim.h"
 
-#ifdef ALLOW_CAL
-# include "cal.h"
-#endif
 #ifdef ALLOW_DIC_CONTROL
 # include "DIC_CTRL.h"
 #endif
@@ -797,6 +801,8 @@ c----------------------------------------------------------------------
 
       return
       end
+
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
       subroutine ctrl_init_rec(
      I     fldstartdate1, fldstartdate2, fldperiod, nfac,
