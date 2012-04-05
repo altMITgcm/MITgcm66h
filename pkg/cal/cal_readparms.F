@@ -53,8 +53,6 @@ C     myThid       :: my Thread Id number
       INTEGER myThid
 
 C     == local variables ==
-C     Variables related to the calendar tool.
-      CHARACTER*(9) TheCalendar
       INTEGER       iUnit
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 
@@ -73,6 +71,7 @@ C     Calendar parameters
       _BEGIN_MASTER(myThid)
 
 C       Initialise the calendar parameters
+        cal_setStatus = 0
         TheCalendar = ' '
         startdate_1 = 0
         startdate_2 = 0
@@ -94,22 +93,19 @@ C       Next, read the calendar data file.
      &                SQUEEZE_RIGHT , 1)
         CLOSE( iUnit )
 
-C       Check consistency of the date specifications with the MITgcm
-C       startTime, endTime, and nTimeSteps, then set all the calendar
-C       parameters.
-        CALL CAL_SET(
-     I                startTime, endTime, deltaTclock,
-     I                nIter0, nEndIter, nTimeSteps,
-     I                startdate_1, startdate_2,
-     I                TheCalendar,
-     I                myThid )
-
-        CALL CAL_SUMMARY( myThid )
-
       _END_MASTER(myThid)
 
 C     Everyone else must wait for the parameters to be loaded
       _BARRIER
+
+#ifdef ALLOW_ECCO
+C-    because of few (unfortunate) calendar settings in ECCO_READPARMS
+C     needs this hack until ecco_readparms.F is cleaned up
+      CALL CAL_SET(
+     I              startTime, endTime, deltaTclock,
+     I              nIter0, nEndIter, nTimeSteps,
+     I              myThid )
+#endif /* ALLOW_ECCO */
 
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_LEAVE('CAL_READPARMS',myThid)
