@@ -56,7 +56,7 @@ C-    Special case to return starDate_1 & _2 :
 
       ELSEIF ( cal_setStatus .LT. 3 ) THEN
 
-        WRITE( msgBuf,'(2A,I10,AF19.2)') 'CAL_GETDATE: ',
+        WRITE( msgBuf,'(2A,I10,A,F19.2)') 'CAL_GETDATE: ',
      &       'myIter=', myIter, ' , myTime=', myTime
         CALL PRINT_ERROR( msgBuf, myThid )
         WRITE( msgBuf,'(2A,I2,A)') 'CAL_GETDATE: ',
