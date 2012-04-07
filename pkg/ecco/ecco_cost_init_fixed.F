@@ -103,6 +103,10 @@ c--     ... BP data.
         if ( bpdatfile .ne. ' ' )
      &   call cal_FullDate( bpstartdate1,   bpstartdate2,
      &                      bpstartdate,    mythid )
+c--     ... IES data.
+        if ( iesdatfile .ne. ' ' )
+     &   call cal_FullDate( iesstartdate1,   iesstartdate2,
+     &                      iesstartdate,    mythid )
 c--     ... T/P data.
         if ( topexfile .ne. ' ' )
      &  call cal_FullDate( topexstartdate1, topexstartdate2,
