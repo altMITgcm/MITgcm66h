@@ -98,15 +98,6 @@ C       Next, read the calendar data file.
 C     Everyone else must wait for the parameters to be loaded
       _BARRIER
 
-#ifdef ALLOW_ECCO
-C-    because of few (unfortunate) calendar settings in ECCO_READPARMS
-C     needs this hack until ecco_readparms.F is cleaned up
-      CALL CAL_SET(
-     I              startTime, endTime, deltaTclock,
-     I              nIter0, nEndIter, nTimeSteps,
-     I              myThid )
-#endif /* ALLOW_ECCO */
-
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_LEAVE('CAL_READPARMS',myThid)
 #endif
