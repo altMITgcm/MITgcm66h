@@ -71,7 +71,7 @@ C--   Separate the Hydrostatic Surface Pressure adjusment (=> put it in dPhiNH)
 C     from the Non-hydrostatic pressure (since cg3d_x contains both contribution)
         DO bj=myByLo(myThid),myByHi(myThid)
          DO bi=myBxLo(myThid),myBxHi(myThid)
-          IF ( select_rStar.EQ.0 .AND. usingZCoords ) THEN
+          IF ( select_rStar.EQ.0 .AND. uniformFreeSurfLev ) THEN
 C-       Z coordinate: assume surface @ level k=1
            DO j=1-OLy,sNy+OLy
             DO i=1-OLx,sNx+OLx
