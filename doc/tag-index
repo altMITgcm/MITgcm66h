@@ -4,6 +4,12 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ctrl/ctrl_init.F: 
+ - add a formal parameter to s/r ctrl_init_rec to print 
+   xx_$(ctrl_valiable)_file for easier debugging
+ - move call of cal_* routines into the if-block where they are really
+   needed so that xx_$(ctrl_variable)_period can be 0 or -12 without having 
+   to specify a startdate
 o pkg/seaice:
  - update comments in SEAICE_OPTIONS.h (+ similar update of lab_sea/code and
    global_ocean.cs32x15/code versions).
