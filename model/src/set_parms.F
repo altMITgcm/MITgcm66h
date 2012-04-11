@@ -63,6 +63,9 @@ C--   On/Off flags for each terms of the momentum equation
       calc_wVelocity   = momStepping .OR. exactConserv
 
 C--   Free-surface & pressure method
+      uniformFreeSurfLev = usingZCoords
+C- note: should be instead:
+c     uniformFreeSurfLev = usingZCoords .AND. .NOT.useShelfIce
       IF ( selectNHfreeSurf.NE.0 .AND.
      &      ( .NOT.nonHydrostatic .OR. usingPCoords
      &        .OR. .NOT.exactConserv
