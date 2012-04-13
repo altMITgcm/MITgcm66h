@@ -48,6 +48,7 @@ c     == local variables ==
       integer imin,imax
       integer sshrec
       integer difftime(4)
+      integer tempDate_1
       integer middate(4)
       integer noffset
       _RL diffsecs
@@ -102,8 +103,8 @@ c select data record to read
       if ( ymod .GE. yday ) then
          call cal_FullDate( sla_startdate(1), 0, middate, mythid)
       else
-         middate(1) = yday*10000+100+1
-         call cal_FullDate( middate(1), 0, middate, mythid)
+         tempDate_1 = yday*10000+100+1
+         call cal_FullDate( tempDate_1, 0, middate, mythid)
       endif
 
       call cal_TimePassed( middate, daydate, difftime, mythid )
@@ -118,7 +119,7 @@ c      sshrec = floor(diffsecs/sla_period) + 1
 
 c read data:
       if ( (sshrec .GT. 0).AND.(exst) ) then
-       call mdsreadfield( fnametmp, cost_iprec, cost_yftype, 
+       call mdsreadfield( fnametmp, cost_iprec, cost_yftype,
      &                          1, sla_obs, sshrec, mythid )
       else
        do bj = jtlo,jthi

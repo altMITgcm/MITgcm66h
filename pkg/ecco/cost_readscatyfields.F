@@ -68,6 +68,7 @@ cnew(
       integer dayiter
       integer daydate(4)
       integer difftime(4)
+      integer tempDate_1
       integer middate(4)
       integer yday, ymod
       integer md, dd, sd, ld, wd
@@ -128,14 +129,14 @@ c-- assume daily fields
            if ( ymod .GE. yday ) then
               call cal_FullDate( scatystartdate(1), 0, middate, mythid)
            else
-              middate(1) = yday*10000+100+1
-              call cal_FullDate( middate(1), 0, middate, mythid)
+              tempDate_1 = yday*10000+100+1
+              call cal_FullDate( tempDate_1, 0, middate, mythid)
            endif
            call cal_TimePassed( middate, daydate, difftime, mythid )
            call cal_ToSeconds( difftime, diffsecs, mythid )
 c           localrec = floor(diffsecs/86400. _d 0) + 1
            localrec = int(diffsecs/86400. _d 0) + 1
-#endif  
+#endif
         il=ilnblnk(scatydatfile)
         write(fnametmp(1:128),'(2a,i4)')
      &       scatydatfile(1:il), '_', yday
@@ -157,7 +158,7 @@ c-- assume daily fields
            call cal_ToSeconds( difftime, diffsecs, mythid )
 c           localrec = floor(diffsecs/86400. _d 0) + 1
            localrec = int(diffsecs/86400. _d 0) + 1
-#endif  
+#endif
         endif
 
         if ( (localrec .GT. 0).AND.(obsrec .GT. 0) ) then
