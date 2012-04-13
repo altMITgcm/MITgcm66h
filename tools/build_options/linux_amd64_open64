@@ -59,6 +59,8 @@ if test "x$IEEE" = x ; then     #- with optimisation:
     FOPTIM='-O3 -OPT:Ofast:roundoff=1:IEEE_arithmetic=3 -ffast-math -LNO:fusion=2'
    #- high optimisation (-O3), might find Pb with few S/R; fully safe: switch to -O2:
    #FOPTIM='-O3 -OPT:roundoff=1:IEEE_arithmetic=3 -LNO:fusion=2'
+    NOOPTFLAGS='-O3 -OPT:roundoff=1:IEEE_arithmetic=2 -LNO:fusion=2'
+    NOOPTFILES='seaice_evp.F'
 else
   if test "x$DEVEL" = x ; then  #- no optimisation + IEEE :
     FOPTIM='-O0 -OPT:roundoff=0:IEEE_arithmetic=1 -fmath-errno -fno-fast-math'
