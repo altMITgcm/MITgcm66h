@@ -87,6 +87,9 @@ C-    should call a S/R OBCS_TURNOFF_IO (like SEAICE) to reset this flag
 C--   Disable SBO output
       useSBO       = .FALSE.
 
+C--   Disable layers package
+      useLayers    = .FALSE.
+
 C--   For now, also disable diagnostics output (might need to change
 C     this if we want to use diagnostics to output adjoint-variables)
       useDiagnostics = .FALSE.
