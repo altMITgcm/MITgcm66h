@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ptracers:
+ - move ptracers summary and setup check into separated S/R ; add a check for
+   valid PTRACERS_Iter0 value (error+stop or just warning).
 o pkg/cal (+ pkg/ecco):
  - avoid calling a S/R with 2 times the same arg (FWD: unless both are only used
    as input; and for AD, unless both are not differentiable (e.g., k index)).
