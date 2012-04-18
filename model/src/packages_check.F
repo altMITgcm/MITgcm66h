@@ -234,7 +234,9 @@ C---  Continue with standard packages (with standard usePKG flag)
       IF (useGridAlt) CALL PACKAGES_ERROR_MSG('GridAlt',' ',myThid)
 #endif
 
-#ifndef ALLOW_PTRACERS
+#ifdef ALLOW_PTRACERS
+      IF (usePTRACERS) CALL PTRACERS_CHECK( myThid )
+#else
       IF (usePTRACERS) CALL PACKAGES_ERROR_MSG('PTRACERS',' ',myThid)
 #endif
 
