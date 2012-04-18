@@ -869,7 +869,7 @@ C     Negative sublimation is resublimation and will be added as snow.
 #ifdef SEAICE_DISABLE_SUBLIM
 cgf just for those who may need to omit this term to reproduce old results
           a_FWbySublim(I,J) = ZERO
-#endif /* SEAICE_CAP_SUBLIM */
+#endif /* SEAICE_DISABLE_SUBLIM */
           a_FWbySublim(I,J) = SEAICE_deltaTtherm*recip_rhoIce
      &           * a_FWbySublim(I,J)*AREApreTH(I,J)
           r_FWbySublim(I,J)=a_FWbySublim(I,J)
