@@ -161,7 +161,7 @@ cph     &           maskInC, maskInC, rA , drF, dummyRL, myThid )
 cph        CALL MON_WRITESTATS_RL( 1, adrunoff,  '_adrunoff',
 cph     &           maskInC, maskInC, rA , drF, dummyRL, myThid )
 #endif
-#ifdef ALLOW_ICE_AREAMASK
+#ifdef EXF_ALLOW_SEAICE_RELAX
 cph        CALL MON_WRITESTATS_RL( 1, areamask,'_areamask',
 cph     &           maskInC, maskInC, rA , drF, dummyRL, myThid )
 #endif

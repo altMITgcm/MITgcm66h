@@ -780,7 +780,7 @@ C--   Atmospheric pressure.
 #endif
 #endif /* ATMOSPHERIC_LOADING */
 
-#ifdef ALLOW_ICE_AREAMASK
+#ifdef EXF_ALLOW_SEAICE_RELAX
 C--   fractional ice-covered area MASK.
       il = ilnblnk(areamaskfile)
       write(msgbuf,'(a)') ' '
@@ -809,7 +809,7 @@ C--   fractional ice-covered area MASK.
      & areamask_lon_inc, areamask_lat0, areamask_lat_inc,
      & areamask_nlon, areamask_nlat, areamask_interpMethod, myThid )
 #endif
-#endif /* ALLOW_ICE_AREAMASK */
+#endif /* EXF_ALLOW_SEAICE_RELAX */
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 

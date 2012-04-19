@@ -235,7 +235,7 @@ c     Update the tile edges.
 #ifdef ATMOSPHERIC_LOADING
       _EXCH_XY_RL(apressure, mythid)
 #endif
-#ifdef ALLOW_ICE_AREAMASK
+#ifdef EXF_ALLOW_SEAICE_RELAX
       _EXCH_XY_RL(areamask, mythid)
 #endif
 

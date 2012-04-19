@@ -155,7 +155,7 @@ C       Print some statistics about input forcing fields
         CALL MON_WRITESTATS_RL( 1, runoff,  '_runoff',
      &           maskInC, maskInC, rA , drF, dummyRL, myThid )
 #endif
-#ifdef ALLOW_ICE_AREAMASK
+#ifdef EXF_ALLOW_SEAICE_RELAX
         CALL MON_WRITESTATS_RL( 1, areamask,'_areamask',
      &           maskInC, maskInC, rA , drF, dummyRL, myThid )
 #endif

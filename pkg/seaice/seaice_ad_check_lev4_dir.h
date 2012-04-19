@@ -18,6 +18,9 @@ CADJ STORE objf_ice = tapelev4, key = ilev_4
 CADJ STORE uHeffExportCell = tapelev4, key = ilev_4
 CADJ STORE vHeffExportCell = tapelev4, key = ilev_4
 #endif
+#if (defined (ALLOW_MEAN_SFLUX_COST_CONTRIBUTION) || defined (ALLOW_SSH_GLOBMEAN_COST_CONTRIBUTION))
+CADJ STORE AREAforAtmFW = tapelev4, key = ilev_4
+#endif
 
 #ifdef ALLOW_OBCS
 # ifdef ALLOW_OBCS_EAST

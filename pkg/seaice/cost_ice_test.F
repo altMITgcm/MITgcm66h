@@ -206,6 +206,21 @@ c     assumed that measurements are AREA=0.5 at all times everywhere.
                enddo
             enddo
 
+         elseif ( cost_ice_flag .eq. 7 ) then
+
+            do bj=myByLo(myThid),myByHi(myThid)
+               do bi=myBxLo(myThid),myBxHi(myThid)
+                  do j = 1,sny
+                     do i =  1,snx
+                        objf_ice(bi,bj) = objf_ice(bi,bj) +
+     &                       UICE(i,j,bi,bj) * UICE(i,j,bi,bj) +
+     &                       VICE(i,j,bi,bj) * VICE(i,j,bi,bj)
+
+                     enddo
+                  enddo
+               enddo
+            enddo
+
          else
             WRITE(msgBuf,'(A)')
      &           'COST_ICE: invalid cost_ice_flag'

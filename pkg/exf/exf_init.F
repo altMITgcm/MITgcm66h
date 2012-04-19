@@ -273,7 +273,7 @@ C--   Initialise to zero intermediate fields (in common block)
      &     mythid )
 #endif /* ATMOSPHERIC_LOADING */
 
-#ifdef ALLOW_ICE_AREAMASK
+#ifdef EXF_ALLOW_SEAICE_RELAX
       call exf_init_gen (
      &     areamaskfile, areamaskperiod,
      &     exf_inscal_areamask, areamaskmask,
@@ -284,7 +284,7 @@ C--   Initialise to zero intermediate fields (in common block)
      &     areamask_nlon, areamask_nlat, xC, yC, areamask_interpMethod,
 #endif
      &     mythid )
-#endif /* ALLOW_ICE_AREAMASK */
+#endif /* EXF_ALLOW_SEAICE_RELAX */
 
 #ifdef ALLOW_RUNOFF
       call exf_init_gen (
