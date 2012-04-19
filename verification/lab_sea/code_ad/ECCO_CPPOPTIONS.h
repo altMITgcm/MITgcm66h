@@ -212,3 +212,7 @@ C   unless to reproduce old results (obtained with inconsistent old code)
 C   Relaxation to monthly climatologies.
 #define  ALLOW_CLIMSST_RELAXATION
 #define  ALLOW_CLIMSSS_RELAXATION
+
+C   Seaice area relaxation code
+#define EXF_ALLOW_SEAICE_RELAX
+
