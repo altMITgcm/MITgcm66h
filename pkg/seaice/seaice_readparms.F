@@ -395,10 +395,15 @@ C-    end retired parameters
       SEAICE_debugPointJ = UNSET_I
 
 #ifdef ALLOW_COST
+      locDate(1) = 0
+      locDate(2) = 0
+# ifdef ALLOW_CAL
+      CALL CAL_GETDATE( -1, startTime, locDate, myThid )
+# endif /* ALLOW_CAL */
       mult_ice_export   =  0. _d 0
       mult_ice          =  0. _d 0
-      costIceStart1     =  0
-      costIceStart2     =  0
+      costIceStart1     = locDate(1)
+      costIceStart2     = locDate(2)
       costIceEnd1       =  0
       costIceEnd2       =  0
       cost_ice_flag     =  1
@@ -415,11 +420,8 @@ c
       smrareabarfile    =  'smrareabar'
       smrareadatfile    =  ' '
       smrarea_errfile   =  ' '
-# ifdef ALLOW_CAL
-      CALL CAL_GETDATE( -1, startTime, locDate, myThid )
       smrareastartdate1 = locDate(1)
       smrareastartdate2 = locDate(2)
-# endif
 #endif /* ALLOW_COST */
 
 #ifdef ALLOW_SITRACER
