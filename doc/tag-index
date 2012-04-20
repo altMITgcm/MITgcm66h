@@ -4,12 +4,16 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o ad test experiments:
+ - update and rename to "ad_optfile.local" local AD-optfile specific to a
+   particular adjoint verification experiment (in verification/*/code_ad/)
 o pkg/seaice & pkg/exf:
-   Part two of ECCO-CLIVAR code merges.
+ - Part two of ECCO-CLIVAR code merges.
    Completes merge of seaice area relax. code.
    Requires unified CPP option EXF_ALLOW_SEAICE_RELAX
    to be set in EXF_OPTIONS.h since this pkg controls its I/O
    (and avoids second CPP option in SEAICE_OPTIONS.h)
+ - change default value of costIceStart & costIceEnd to a valid date.
 o pkg/ptracers:
  - move ptracers summary and setup check into separated S/R ; add a check for
    valid PTRACERS_Iter0 value (error+stop or just warning).
