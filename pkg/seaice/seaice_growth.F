@@ -1104,6 +1104,17 @@ C           add precip to the fresh water bucket
 Cgf note: this does not affect air-sea heat flux,
 Cgf since the implied air heat gain to turn
 Cgf rain to snow is not a surface process.
+
+C add snow precipitation
+        IF ( snowPrecipFile .NE. ' ' ) THEN
+         DO J=1,sNy
+          DO I=1,sNx
+           HSNOW(I,J,bi,bj) = HSNOW(I,J,bi,bj) +
+     &          convertPRECIP2HI*ICE2SNOW*snowPrecip(i,j,bi,bj)
+          ENDDO
+         ENDDO
+        ENDIF
+
 #endif /* ALLOW_ATM_TEMP */
 
 C compute snow melt due to heat available from ocean.
