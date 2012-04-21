@@ -327,6 +327,35 @@ c     == end of interface ==
       enddo
 #endif
 
+#ifdef ALLOW_ATM_MEAN_CONTROL
+      do bj = jtlo,jthi
+        do bi = itlo,ithi
+          do j = jmin,jmax
+            do i = imin,imax
+# ifdef ALLOW_ATEMP_CONTROL
+              xx_atemp_mean (i,j,bi,bj) = 0. _d 0
+# endif
+# ifdef ALLOW_AQH_CONTROL
+              xx_aqh_mean   (i,j,bi,bj) = 0. _d 0
+# endif
+# ifdef ALLOW_UWIND_CONTROL
+              xx_uwind_mean (i,j,bi,bj) = 0. _d 0
+# endif
+# ifdef ALLOW_VWIND_CONTROL
+              xx_vwind_mean (i,j,bi,bj) = 0. _d 0
+# endif
+# ifdef ALLOW_PRECIP_CONTROL
+              xx_precip_mean(i,j,bi,bj) = 0. _d 0
+# endif
+# ifdef ALLOW_SWDOWN_CONTROL
+              xx_swdown_mean(i,j,bi,bj) = 0. _d 0
+# endif
+            enddo
+          enddo
+        enddo
+      enddo
+#endif /* ALLOW_ATM_MEAN_CONTROL */
+
 #ifdef ALLOW_OBCS_CONTROL
       IF (useOBCS) CALL CTRL_INIT_OBCS_VARIABLES( mythid )
 #endif
