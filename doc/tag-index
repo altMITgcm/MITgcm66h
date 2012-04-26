@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/shelfice:
+ - account for partical cells in surface level below ice-shelf for hydrostatic
+   pressure calculion (set uniformFreeSurfLev to F); update isomip experiments.
 o ad test experiments:
  - update and rename to "ad_optfile.local" local AD-optfile specific to a
    particular adjoint verification experiment (in verification/*/code_ad/)
