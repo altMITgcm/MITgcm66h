@@ -224,6 +224,19 @@ c     Snow.
      &     snowprecip_interpMethod,
 #endif
      &     mytime, myiter, mythid )
+c     Take care of case where total precip is not defined
+      IF ( snowPrecipFile .NE. ' ' ) THEN
+       do bj = mybylo(mythid),mybyhi(mythid)
+        do bi = mybxlo(mythid),mybxhi(mythid)
+         do j = 1,sny
+          do i = 1,snx
+           precip(i,j,bi,bj) =
+     &          max( precip(i,j,bi,bj), snowPrecip(i,j,bi,bj) )
+          enddo
+         enddo
+        enddo
+       enddo
+      ENDIF
 
 #endif /* ALLOW_ATM_TEMP */
 
