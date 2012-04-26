@@ -90,9 +90,8 @@ c      dragFac = wUnit2rVel(k)
      &      2.*KappaRV(i,j,kDownC)*rdrckp1*viscFac
 #ifdef ALLOW_BOTTOMDRAG_CONTROL
      &     + bottomdragfld(i,j,bi,bj)*dragFac
-#else
-     &     + bottomDragLinear*dragFac
 #endif
+     &     + bottomDragLinear*dragFac
      &    )*(1.-maskDown)*vFld(i,j)
         IF ( (KE(i,j)+KE(i,j-1)) .NE. 0. ) THEN
          vDragTerms(i,j)=vDragTerms(i,j)
