@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint63m (2012/04/27)
 o pkg/shelfice:
  - account for partical cells in surface level below ice-shelf for hydrostatic
    pressure calculion (set uniformFreeSurfLev to F); update isomip experiments.
