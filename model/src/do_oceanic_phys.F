@@ -477,6 +477,10 @@ CADJ &     kind = isbyte
 CADJ STORE vvel (:,:,:,bi,bj) = comlev1_bibj, key=itdkey,
 CADJ &     kind = isbyte
 # endif
+# ifdef ALLOW_SALT_PLUME
+CADJ STORE saltplumedepth(:,:,bi,bj) = comlev1_bibj, key=itdkey,
+CADJ &     kind = isbyte
+# endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C--   Always compute density (stored in common block) here; even when it is not
