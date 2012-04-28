@@ -202,10 +202,13 @@ c-- assume daily fields
            call cal_getdate( dayiter, daytime, daydate, mythid )
            call cal_convdate( daydate,yday,md,dd,sd,ld,wd,mythid )
            ymod = localstartdate(1)/10000
+           do k=1,4
+              middate(k)=0
+           enddo
+           tempDate_1 = yday*10000+100+1
            if ( ymod .GE. yday ) then
               call cal_FullDate( localstartdate(1), 0, middate, mythid)
            else
-              tempDate_1 = yday*10000+100+1
               call cal_FullDate( tempDate_1, 0, middate, mythid)
            endif
            call cal_TimePassed( middate, daydate, difftime, mythid )
