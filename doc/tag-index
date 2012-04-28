@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/salt_plume added to lab_sea/input_ad.noseaicedyn
+
 checkpoint63m (2012/04/27)
 o pkg/shelfice:
  - account for partical cells in surface level below ice-shelf for hydrostatic
