@@ -158,6 +158,14 @@ CEOP
 c     Get values of climatological fields.
       call exf_getclim( mytime, myiter, mythid )
 
+#ifdef ALLOW_AUTODIFF_TAMC
+# ifdef ALLOW_ATM_TEMP
+CADJ STORE precip0     = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE precip1     = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE snowprecip0 = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE snowprecip1 = comlev1, key=ikey_dynamics, kind=isbyte
+# endif
+#endif
 c     Get the surface forcing fields.
       call exf_getffields( mytime, myiter, mythid )
 #ifndef ALLOW_ATM_WIND
