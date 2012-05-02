@@ -1544,16 +1544,20 @@ C in principle a_QSWbyATM_cover should always be included here, however
 C for backward compatibility it is left out of the LEGACY branch
      &         +   a_QSWbyATM_cover(I,J)
 #endif /* SEAICE_GROWTH_LEGACY */
-     &         - ( d_HEFFbyOCNonICE(I,J) +
-     &             d_HSNWbyOCNonSNW(I,J)*SNOW2ICE +
-     &             d_HEFFbyNEG(I,J) +
+     &         - ( d_HEFFbyOCNonICE(I,J)
+     &           + d_HSNWbyOCNonSNW(I,J)*SNOW2ICE
+     &           + d_HEFFbyNEG(I,J)
 #ifdef EXF_ALLOW_SEAICE_RELAX
-     &             d_HEFFbyRLX(I,J) +
+     &           + d_HEFFbyRLX(I,J)
 #endif
-     &             d_HSNWbyNEG(I,J)*SNOW2ICE -
-     &             convertPRECIP2HI *
-     &             snowPrecip(i,j,bi,bj) * (ONE-AREApreTH(I,J)) )
-     &         * maskC(I,J,kSurface,bi,bj)
+     &           + d_HSNWbyNEG(I,J)*SNOW2ICE
+     &           - convertPRECIP2HI *
+     &             snowPrecip(i,j,bi,bj) * (ONE-AREApreTH(I,J))
+     &           ) * maskC(I,J,kSurface,bi,bj)
+         ENDDO
+        ENDDO
+        DO J=1,sNy
+         DO I=1,sNx
           QSW(I,J,bi,bj)  = a_QSWbyATM_cover(I,J) + a_QSWbyATM_open(I,J)
          ENDDO
         ENDDO
