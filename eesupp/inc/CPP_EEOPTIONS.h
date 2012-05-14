@@ -125,6 +125,10 @@ C           filled in some way.
 #define CAN_PREVENT_X_PERIODICITY
 #define CAN_PREVENT_Y_PERIODICITY
 
+C--   disconnect tiles (no exchange between tiles, just fill-in edges
+C     assuming locally periodic subdomain)
+#undef DISCONNECTED_TILES
+
 C--   Alternative way of doing global sum without MPI allreduce call
 C     but instead, explicit MPI send & recv calls.
 #undef GLOBAL_SUM_SEND_RECV
