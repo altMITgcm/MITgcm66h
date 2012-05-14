@@ -315,8 +315,8 @@ C--   Check parameter consistency :
         errCount = errCount + 1
       ENDIF
 
-C     Overlaps cannot be larger than interior tile except for special
-C     cases
+#ifndef DISCONNECTED_TILES
+C     Overlaps cannot be larger than interior tile except for special cases
       IF ( sNx.LT.OLx ) THEN
 #ifdef ALLOW_EXCH2
        WRITE(msgBuf,'(A)')
@@ -345,6 +345,7 @@ C     cases
         errCount = errCount + 1
        ENDIF
       ENDIF
+#endif /* ndef DISCONNECTED_TILES */
 
 C--   Deep-Atmosphere & Anelastic limitations:
       IF ( deepAtmosphere .AND.
