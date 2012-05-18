@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/shelfice: 
+  - add parameterisation of advective-diffusive flux into the ice shelf 
+    according to Holland and Jenkins (1999), eq.22-33, as suggested by Jan De Ryd
+  - simply eps3/3a computation
 o eesupp:
  - add new CPP option (DISCONNECTED_TILES) to disconnect tiles (no exchange
    between tiles, just fill-in edges assuming locally periodic subdomain) and
