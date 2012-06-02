@@ -43,7 +43,7 @@ C     == Local variables ==
 #endif
 
 C     Dump files and restart average computation if needed
-      IF ( DIFFERENT_MULTIPLE(taveFreq,myTime,deltaTClock) ) THEN
+      IF (DIFFERENT_MULTIPLE(PTRACERS_taveFreq,myTime,deltaTClock)) THEN
 
 C      Normalize by integrated time
        DO bj = myByLo(myThid), myByHi(myThid)

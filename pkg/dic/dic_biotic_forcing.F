@@ -293,7 +293,7 @@ c find free iron and get rid of insoluble part
 
 #ifdef ALLOW_TIMEAVE
 C save averages
-       IF ( taveFreq.GT.0. ) THEN
+       IF ( PTRACERS_taveFreq.GT.0. ) THEN
         DO k=1,Nr
          DO j=jmin,jmax
           DO i=imin,imax
