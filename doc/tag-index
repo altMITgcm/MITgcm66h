@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint63n (2012/06/04)
 o model/src:
   - recompute rSurfW & S to ensure consistent column thickness (needed for rStar)
     between Sum_k(hFac*drF) and rSurf-rLow, for now only when using pkg/shelfice;
