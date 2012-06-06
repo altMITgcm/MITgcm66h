@@ -185,6 +185,10 @@ C---  Continue with standard packages (with standard usePKG flag)
       IF (useOBCS) CALL PACKAGES_ERROR_MSG('OBCS',' ',myThid)
 #endif
 
+#ifndef ALLOW_CAL
+      IF (useCAL) CALL PACKAGES_ERROR_MSG('CAL',' ',myThid)
+#endif
+
 #ifdef ALLOW_EXF
       IF (useEXF) CALL EXF_CHECK( myThid )
 #else

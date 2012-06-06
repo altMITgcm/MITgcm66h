@@ -56,7 +56,7 @@ C     data.pkg namelists
      &          useGMRedi,
      &          useDOWN_SLOPE,
      &          useBBL,
-c    &          useCAL,
+     &          useCAL,
      &          useEXF,
      &          useBulkForce,
      &          useEBM,
@@ -189,14 +189,14 @@ C--   packages with an implied switch
       useGAD = tempStepping .OR. saltStepping .OR. usePTRACERS
 
 C--   packages in adjoint mode
-C--   store value of use$pkg as it will be reset in 
+C--   store value of use$pkg as it will be reset in
 C--   S/R AUTODIFF_INADMODE_SET_AD
       useKPPinFwdMode    = useKPP
       useGMrediInFwdMode = useGMredi
       useSEAICEinFwdMode = useSEAICE
 
       IF ( useKPPinAdMode.AND..NOT.useKPP ) useKPPinAdMode = .FALSE.
-      IF ( useGMrediinAdMode.AND..NOT.useGMredi ) 
+      IF ( useGMrediinAdMode.AND..NOT.useGMredi )
      &     useGMrediinAdMode = .FALSE.
       IF ( useSEAICEinAdMode.AND..NOT.useSEAICE )
      &     useSEAICEinAdMode = .FALSE.
