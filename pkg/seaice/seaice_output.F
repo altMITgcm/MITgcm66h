@@ -195,7 +195,7 @@ C     Dump files and restart average computation if needed
      &     DIFFERENT_MULTIPLE(SEAICE_taveFreq,myTime,deltaTClock)
 #ifdef ALLOW_CAL
         IF ( useCAL ) THEN
-          CALL CAL_TIME2DUMP( SEAICE_taveFreq, deltaTClock,
+          CALL CAL_TIME2DUMP( ZERO, SEAICE_taveFreq, deltaTClock,
      U                        dumpFiles,
      I                        myTime, myIter, myThid )
         ENDIF

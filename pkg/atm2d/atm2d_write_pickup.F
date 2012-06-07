@@ -50,6 +50,8 @@ C                       be written.
 C     tempCheckPoint :: Flag indicating if it is time to write a non-permanent
 C                       checkpoint (that will be permanent if permCheckPoint=T)
       LOGICAL permCheckPoint, tempCheckPoint
+      _RL zeroRL
+      PARAMETER( zeroRL = 0. _d 0 )
 CEOP
 
       permCheckPoint = .FALSE.
@@ -61,10 +63,10 @@ CEOP
 
 #ifdef ALLOW_CAL
       IF ( useCAL ) THEN
-         CALL CAL_TIME2DUMP( pChkPtFreq, deltaTClock,
+         CALL CAL_TIME2DUMP( zeroRL, pChkPtFreq, deltaTClock,
      U                       permCheckPoint,
      I                       myTime, myIter, myThid )
-         CALL CAL_TIME2DUMP( chkPtFreq,  deltaTClock,
+         CALL CAL_TIME2DUMP( zeroRL, chkPtFreq,  deltaTClock,
      U                       tempCheckPoint,
      I                       myTime, myIter, myThid )
       ENDIF

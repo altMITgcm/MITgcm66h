@@ -45,6 +45,8 @@ C     !FUNCTIONS:
 C     !LOCAL VARIABLES:
       LOGICAL dumpFiles
       _RL DDTT
+      _RL zeroRL
+      PARAMETER( zeroRL = 0. _d 0 )
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
@@ -100,7 +102,7 @@ C--   Cumulate state-variables with Half or Full time step :
         dumpFiles = DIFFERENT_MULTIPLE(taveFreq,myTime,deltaTClock)
 #ifdef ALLOW_CAL
         IF ( useCAL ) THEN
-          CALL CAL_TIME2DUMP( taveFreq, deltaTClock,
+          CALL CAL_TIME2DUMP( zeroRL, taveFreq, deltaTClock,
      U                        dumpFiles,
      I                        myTime, myIter, myThid )
         ENDIF
