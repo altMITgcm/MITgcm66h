@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/cal:
+  - change cal_getdate.F so that output date is function of input time only
+    (less ambiguous, not mixed up with input iteration number).
+  - fix calendarDumps for non-zero phase-lag (S/R CAL_TIME2DUMP).
 o pkg/diagnostics:
   - implement calendarDumps also for stats-diags
   - implement calendarDumps also for snap-shot output (negative freq)
