@@ -120,10 +120,10 @@ C     data for the period ahead and the period behind myTime.
      &       myIter,myThid )
         ENDIF
 #ifdef READ_PAR
-        IF ( Filename1 .NE. ' '  ) THEN
-         CALL READ_REC_XY_RS( Filename1,par0,intime0,
+        IF ( DIC_parFile .NE. ' '  ) THEN
+         CALL READ_REC_XY_RS( DIC_parFile,par0,intime0,
      &       myIter,myThid )
-         CALL READ_REC_XY_RS( Filename1,par1,intime1,
+         CALL READ_REC_XY_RS( DIC_parFile,par1,intime1,
      &       myIter,myThid )
         ENDIF
 #endif
@@ -206,7 +206,7 @@ c          pisvel(i,j,bi,bj)  =0.337*wind(i,j,bi,bj)**2/3.6d5    !QQQQ
          ENDIF
 
 #ifdef READ_PAR
-         IF ( Filename1 .NE. ' '  ) THEN
+         IF ( DIC_parFile .NE. ' '  ) THEN
            DO j=1-OLy,sNy+OLy
             DO i=1-OLx,sNx+OLx
              PAR(i,j,bi,bj) = bWght*par0(i,j,bi,bj)
