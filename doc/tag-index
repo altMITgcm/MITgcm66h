@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o verification/1D_ocean_ice_column/
+  For verification purposes, the exact adjoint rather than an approx.
+  should be used (e.g., to comare against F.D. or TLM).
+  removed autodiff_inadmode*_ad.F routines in code_ad/
+  Update results/ accordingly.
 o pkg/cal:
   - change cal_getdate.F so that output date is function of input time only
     (less ambiguous, not mixed up with input iteration number).
