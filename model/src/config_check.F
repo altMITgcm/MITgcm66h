@@ -140,12 +140,12 @@ C       code is being compiled
 #endif
 
 #ifdef ALLOW_DEPTH_CONTROL
-      IF ( implicitDiffusion ) THEN
-        WRITE(msgBuf,'(2A)') 'CONFIG_CHECK: ',
-     &       'implicitDiffusion not available with DEPTH_CONTROL'
-        CALL PRINT_ERROR( msgBuf, myThid )
-        errCount = errCount + 1
-      ENDIF
+cc      IF ( implicitDiffusion ) THEN
+cc        WRITE(msgBuf,'(2A)') 'CONFIG_CHECK: ',
+cc     &       'implicitDiffusion not available with DEPTH_CONTROL'
+cc        CALL PRINT_ERROR( msgBuf, myThid )
+cc        errCount = errCount + 1
+cc      ENDIF
       IF ( useOBCS ) THEN
         WRITE(msgBuf,'(A)')
      &   'CONFIG_CHECK: DEPTH_CONTROL code not compatible with OBCS'
