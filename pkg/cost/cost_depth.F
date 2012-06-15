@@ -41,7 +41,7 @@ C--   Calculate cost function on tile of this instance
        DO bi=myBxLo(myThid), myBxHi(myThid)
         DO J=1,sNy
          DO I=1,sNx
-          IF ( maskC(I,J,K,BI,BJ) .NE. 0. ) THEN
+          IF ( maskC(I,J,1,BI,BJ) .NE. 0. ) THEN
            objf_depth(BI,BJ) = objf_depth(BI,BJ) + R_low(I,J,BI,BJ)
           ENDIF
          END DO
