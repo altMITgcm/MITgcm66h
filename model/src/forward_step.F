@@ -147,6 +147,9 @@ C     == Global variables ==
 # ifdef ALLOW_OFFLINE
 #  include "OFFLINE.h"
 # endif
+# ifdef ALLOW_DEPTH_CONTROL
+#  include "CG2D.h"
+# endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C     !INPUT/OUTPUT PARAMETERS:
@@ -683,6 +686,12 @@ CADJ STORE hFacC, hFacS, hFacW =
 CADJ &     comlev1, key = ikey_dynamics, kind = isbyte
 CADJ STORE recip_hFacC, recip_hFacS, recip_hFacW  =
 CADJ &     comlev1, key = ikey_dynamics, kind = isbyte
+#  ifdef ALLOW_DEPTH_CONTROL
+CADJ STORE aW2d, aS2d, aC2d =
+CADJ &     comlev1, key = ikey_dynamics, kind = isbyte
+CADJ STORE pc, ps, pw =
+CADJ &     comlev1, key = ikey_dynamics, kind = isbyte
+#  endif
 # endif
 C-    update also CG2D matrix (and preconditioner)
       IF ( momStepping .AND. nonlinFreeSurf.GT.2 ) THEN
