@@ -79,6 +79,11 @@ C     but safer when EXCH do not fill all the overlap regions.
        ENDDO
       ENDDO
 
+C--   Init. scalars
+      cg2dNorm = 0. _d 0
+      cg2dNormaliseRHS = .FALSE.
+      cg2dtolerance = 0. _d 0
+
 C--   Initialise laplace operator
 C     aW2d: integral in Z Ax/dX
 C     aS2d: integral in Z Ay/dY
