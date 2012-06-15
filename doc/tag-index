@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/generic_advdiff:
+  - implement vertical bi-harmonic diffusion (for now, only for T & S and
+    only explicitly).
 o verification/bottom_ctrl_5x5/
   update reference output (results changed quite some time ago,
   not sure when; but new reference results look ok in terms of grdchk)
