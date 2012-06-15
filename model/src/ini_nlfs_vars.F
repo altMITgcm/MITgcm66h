@@ -112,9 +112,9 @@ C--  to make TAF happy: reset hFac to h0Fac (copied from hFac in ini_linear_phis
          DO k=1,Nr
           DO j=1-OLy,sNy+OLy
            DO i=1-OLx,sNx+OLx
-            _hFacC(i,j,k,bi,bj) = h0FacC(i,j,k,bi,bj)
-            _hFacW(i,j,k,bi,bj) = h0FacW(i,j,k,bi,bj)
-            _hFacS(i,j,k,bi,bj) = h0FacS(i,j,k,bi,bj)
+            hFacC(i,j,k,bi,bj) = h0FacC(i,j,k,bi,bj)
+            hFacW(i,j,k,bi,bj) = h0FacW(i,j,k,bi,bj)
+            hFacS(i,j,k,bi,bj) = h0FacS(i,j,k,bi,bj)
            ENDDO
           ENDDO
          ENDDO
