@@ -204,8 +204,8 @@ C--   Continuous equation parameters
      & tempImplVertAdv, saltImplVertAdv, momImplVertAdv,
      & viscAz, diffKzT, diffKzS, viscAp, diffKpT, diffKpS,
      & viscAr, diffKrT, diffKrS, viscArNr, diffKrNrT, diffKrNrS,
+     & diffKr4T, diffKr4S, BL79LatVary,
      & diffKrBL79surf, diffKrBL79deep, diffKrBL79scl, diffKrBL79Ho,
-     & BL79LatVary,
      & diffKrBLEQsurf, diffKrBLEQdeep, diffKrBLEQscl, diffKrBLEQHo,
      & rhoConst, rhoConstFresh, buoyancyRelation, HeatCapacity_Cp,
      & writeBinaryPrec, readBinaryPrec, writeStatePrec,
@@ -360,9 +360,6 @@ C--   Set default "physical" parameters
       diffKpS  = UNSET_RL
       diffKrS  = UNSET_RL
       DO k=1,Nr
-       viscArNr(k)  = UNSET_RL
-       diffKrNrT(k) = UNSET_RL
-       diffKrNrS(k) = UNSET_RL
        tRef(k)      = UNSET_RL
        sRef(k)      = UNSET_RL
       ENDDO
