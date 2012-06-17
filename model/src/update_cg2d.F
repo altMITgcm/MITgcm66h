@@ -66,10 +66,13 @@ C     aW2d: integral in Z Ax/dX
 C     aS2d: integral in Z Ay/dY
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
-        DO j=1,sNy+1
-         DO i=1,sNx+1
+        DO j=1-OLy,sNy+OLy
+         DO i=1-OLx,sNx+OLx
           aW2d(i,j,bi,bj) = 0. _d 0
           aS2d(i,j,bi,bj) = 0. _d 0
+#ifdef ALLOW_AUTODIFF
+          aC2d(i,j,bi,bj) = 0. _d 0
+#endif /* ALLOW_AUTODIFF */
          ENDDO
         ENDDO
         DO k=1,Nr
