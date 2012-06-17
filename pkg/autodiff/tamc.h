@@ -125,11 +125,17 @@ c     and writing data.
 
       INTEGER act0, act1, act2, act3, act4
       INTEGER max0, max1, max2, max3
-      INTEGER iikey, kkey, passkey, igadkey, 
+      INTEGER iikey, kkey, passkey, igadkey,
      &        itdkey, idynkey, igmkey, ikppkey, iptrkey
+
+#ifdef ALLOW_CG2D_NSA
+C     Parameter that is needed for the tape complev_cg2d_iter
+C     cannot be smaller than the allowed number of iterations in cg2d
+C     (numItersMax >= cg2dMaxIters in data-file)
+      INTEGER numItersMax
+      PARAMETER ( numItersMax = 100 )
+#endif
 
 c     ================================================================
 c     END OF HEADER TAMC
 c     ================================================================
-
-
