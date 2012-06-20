@@ -10,7 +10,7 @@ C $Name$
 #ifdef ALLOW_EXF
 C     Package-specific Options & Macros go here
 
-#ifdef ALLOW_AUTODIFF_TAMC
+#if (defined (ALLOW_AUTODIFF_TAMC) && !defined (ALLOW_ECCO_EVOLUTION))
 
 C When compile for AD mode,
 C this package is currently configured by ECCO_CPPOPTIONS.h
