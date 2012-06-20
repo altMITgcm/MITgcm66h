@@ -16,6 +16,12 @@ C $Name$
 #ifdef ALLOW_PTRACERS
 # include "PTRACERS_OPTIONS.h"
 #endif
+#ifdef ALLOW_GGL90
+# include "GGL90_OPTIONS.h"
+#endif
+#ifdef ALLOW_EXF
+# include "EXF_OPTIONS.h"
+#endif
 
 CBOP
 C     !ROUTINE: FORWARD_STEP
@@ -275,16 +281,6 @@ C--   State-variables diagnostics
         CALL NEST_PARENT_IO_1( myTime, myIter, myThid )
       ENDIF
 #endif /* ALLOW_NEST_PARENT */
-
-#ifdef ALLOW_PROFILES
-#ifdef ALLOW_DEBUG
-      IF (debugMode) CALL DEBUG_CALL('',myThid)
-#endif
-c--     Accumulate in-situ time averages of theta, salt, and SSH.
-      CALL TIMER_START('PROFILES_INLOOP    [FORWARD_STEP]', mythid)
-      CALL PROFILES_INLOOP( mytime, mythid )
-      CALL TIMER_STOP ('PROFILES_INLOOP    [FORWARD_STEP]', mythid)
-#endif
 
 C--   Call driver to load external forcing fields from file
 #ifdef ALLOW_DEBUG
