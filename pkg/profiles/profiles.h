@@ -60,7 +60,7 @@ C===========================================================
       integer profiles_maxind_buff(nsx,nsy)
       integer profiles_curfile_buff(nsx,nsy)
 
-      integer profilesfile_equi_type
+      logical profilesDoNcOutput, profilesDoGenGrid
       integer prof_num_var_tot(NFILESPROFMAX,nsx,nsy)
       integer prof_num_var_cur(NFILESPROFMAX,NVARMAX,nsx,nsy)
 
@@ -73,8 +73,9 @@ C===========================================================
      & prof_etan_mean, prof_theta_mean, prof_salt_mean
       COMMON /profiles_i/ prof_ind_glob, profNo, profDepthNo,
      & fidforward, fidadjoint, fidtangent, fiddata,
-     & prof_num_var_tot, prof_num_var_cur, profilesfile_equi_type
-      COMMON /profiles_l/ vec_quantities
+     & prof_num_var_tot, prof_num_var_cur
+      COMMON /profiles_l/ vec_quantities, profilesDoNcOutput, 
+     & profilesDoGenGrid
       COMMON /profiles_c/ prof_names, prof_namesmask, prof_namesweight
 
 #ifdef ALLOW_PROFILES_GENERICGRID

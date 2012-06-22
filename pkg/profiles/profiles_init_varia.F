@@ -42,10 +42,7 @@ c     == local variables ==
       integer bi,bj
       integer itlo,ithi
       integer jtlo,jthi
-      integer i,j,k
       integer num_file,num_var
-
-      logical exst
 
 c     == external functions ==
 

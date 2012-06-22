@@ -13,6 +13,11 @@ C Use this file for selecting options within the PROFILES package
 #ifdef ALLOW_PROFILES
 C     Package-specific Options & Macros go here
 
+C Unless one uses a straight cartesian grid, the user needs 
+C to provide grid dependent interpolation points/coeffs, define
+C ALLOW_PROFILES_GENERICGRID, and set profilesDoGenGrid to TRUE
+# undef ALLOW_PROFILES_GENERICGRID
+
 #endif /* ALLOW_PROFILES */
 #endif /* PROFILES_OPTIONS_H */
 

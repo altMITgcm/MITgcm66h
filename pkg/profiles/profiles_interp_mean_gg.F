@@ -59,8 +59,8 @@ C ==================== Local Variables ==========================
       _RL tab_coeffs1(NUM_INTERP_POINTS)
       _RL tab_coeffs3(NUM_INTERP_POINTS)
       _RL ponderations(NUM_INTERP_POINTS)
-      _RL pondsSUM,distance1,distance2
-      integer q,i,j,k,kk,kcur,iG,jG,bi,bj
+      _RL pondsSUM
+      integer q,k,kk,kcur,bi,bj
       _RL traj_cur(nR),mask_cur(nR)
       _RL tmp_coeff
 c--   == end of interface ==
