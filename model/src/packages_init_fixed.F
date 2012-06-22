@@ -394,10 +394,12 @@ C--   in order to provide the weight files
 #endif
 
 #ifdef ALLOW_PROFILES
+      IF (usePROFILES) THEN
 # ifdef ALLOW_DEBUG
         IF (debugMode) CALL DEBUG_CALL('PROFILES_INIT_FIXED',myThid)
 # endif
-      CALL PROFILES_INIT_FIXED( myThid )
+        CALL PROFILES_INIT_FIXED( myThid )
+      ENDIF
 #endif
 
 #ifdef ALLOW_AUTODIFF

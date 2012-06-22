@@ -285,6 +285,7 @@ c--   Do a global summation.
       offset = offset / offset_sum
 
 #ifdef ALLOW_PROFILES
+      if ( usePROFILES ) then
       do bj = jtlo,jthi
         do bi = itlo,ithi
           do j = 1,sny
@@ -295,6 +296,7 @@ c--   Do a global summation.
         enddo
       enddo
       _EXCH_XY_RL( prof_etan_mean, mythid )
+      endif
 #endif
 
 #ifdef ALLOW_SSH_MEAN_COST_CONTRIBUTION

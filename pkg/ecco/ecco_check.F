@@ -51,6 +51,18 @@ C     msgBuf      - Informational/error meesage buffer
        STOP 'ABNORMAL END: S/R ECCO_CHECK'
       ENDIF
 
+#ifdef ALLOW_PROFILES_CONTRIBUTION
+      IF ( .NOT.usePROFILES ) THEN
+       WRITE(msgBuf,'(2A)')
+     &        'ECCO_CHECK: for ALLOW_PROFILES_CONTRIBUTION ',
+     &        'requires usePROFILES to be .true.'
+       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                     SQUEEZE_RIGHT , myThid )
+       CALL PRINT_ERROR( msgBuf , myThid )
+       STOP 'ABNORMAL END: S/R ECCO_CHECK'
+      ENDIF
+#endif
+
       _END_MASTER(myThid)
 
       RETURN

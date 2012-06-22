@@ -302,7 +302,7 @@ c--   Initialize ECCO package parameters
 
 #ifdef ALLOW_PROFILES
 c--   Initialize PROFILES package parameters
-      CALL PROFILES_READPARMS ( myThid )
+      IF ( usePROFILES) CALL PROFILES_READPARMS ( myThid )
 #endif
 
 #ifdef ALLOW_FLT

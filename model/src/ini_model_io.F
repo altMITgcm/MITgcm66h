@@ -210,9 +210,9 @@ C       belonging to the core dynamical model
 #endif
 
 #ifdef ALLOW_PROFILES
-c     IF ( useProfiles ) THEN
+      IF ( usePROFILES ) THEN
         CALL PROFILES_INI_IO( myThid )
-c     ENDIF
+      ENDIF
 #endif
 
 #ifdef ALLOW_MONITOR

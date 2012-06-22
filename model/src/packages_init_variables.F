@@ -355,7 +355,9 @@ ceh3 needs an IF ( useCOST ) THEN
 
 #ifdef ALLOW_PROFILES
 c--   Initialise the cost function.
-      CALL PROFILES_INIT_VARIA( myThid )
+      IF (usePROFILES) THEN
+        CALL PROFILES_INIT_VARIA( myThid )
+      ENDIF
       _BARRIER
 #endif /* ALLOW_PROFILES */
 

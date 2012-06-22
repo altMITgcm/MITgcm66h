@@ -949,6 +949,7 @@ C Logical flags for selecting packages
       LOGICAL useCheapAML
       LOGICAL useGrdchk
       LOGICAL useSMOOTH
+      LOGICAL usePROFILES
       LOGICAL useECCO
       LOGICAL useSBO
       LOGICAL useFLT
@@ -981,7 +982,7 @@ C Logical flags for selecting packages
      &        useOPPS, usePP81, useMY82, useGGL90, useKPP,
      &        useGMRedi, useBBL, useDOWN_SLOPE,
      &        useCAL, useEXF, useBulkForce, useEBM, useCheapAML,
-     &        useGrdchk, useSMOOTH, useECCO, useSBO, useFLT,
+     &        useGrdchk,useSMOOTH,usePROFILES,useECCO,useSBO, useFLT,
      &        usePTRACERS, useGCHEM, useRBCS, useOffLine, useMATRIX,
      &        useFRAZIL, useSEAICE, useSALT_PLUME, useShelfIce,
      &        useStreamIce, useICEFRONT, useThSIce,

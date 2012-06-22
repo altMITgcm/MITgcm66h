@@ -63,6 +63,7 @@ C     data.pkg namelists
      &          useCheapAML,
      &          useGrdchk,
 c    &          useSMOOTH,
+     &          usePROFILES,
      &          useECCO,
      &          useSBO,
      &          useFLT,
@@ -125,6 +126,7 @@ c     useGAD          =.FALSE.
       useCheapAML     =.FALSE.
       useGrdchk       =.FALSE.
       useSMOOTH       =.FALSE.
+      usePROFILES     =.FALSE.
       useECCO         =.FALSE.
       useSBO          =.FALSE.
       useFLT          =.FALSE.
@@ -174,7 +176,7 @@ C--   packages with hard-coded switch
 #endif
 
 #ifdef ALLOW_PROFILES
-      useCAL = .TRUE.
+      IF (usePROFILES) useCAL = .TRUE.
 #endif
 
 #ifdef ALLOW_ECCO

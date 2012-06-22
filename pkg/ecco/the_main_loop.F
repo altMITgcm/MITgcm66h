@@ -485,6 +485,7 @@ C--   Switch on/off diagnostics for snap-shot output:
 #endif
 
 #ifdef ALLOW_PROFILES
+      if ( usePROFILES ) then
 c--     Accumulate in-situ time averages of temperature, salinity, and SSH.
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_CALL('profiles_inloop',myThid)
@@ -492,6 +493,7 @@ c--     Accumulate in-situ time averages of temperature, salinity, and SSH.
         call timer_start('PROFILES_INLOOP       [ECCO MAIN]', mythid)
         call profiles_inloop( mytime, mythid )
         call timer_stop ('PROFILES_INLOOP       [ECCO MAIN]', mythid)
+      endif
 #endif
 
 #ifdef ALLOW_COST
@@ -1171,10 +1173,12 @@ c
 
 #ifdef ALLOW_PROFILES
 #ifndef ALLOW_DIVIDED_ADJOINT
+      if ( usePROFILES ) then
 c--     Accumulate in-situ time averages of temperature, salinity, and SSH.
       call timer_start('PROFILES_INLOOP     [ECCO SPIN-DOWN]', mythid)
       call profiles_inloop( mytime, mythid )
       call timer_stop ('PROFILES_INLOOP     [ECCO SPIN-DOWN]', mythid)
+      endif
 #endif
 #endif
 

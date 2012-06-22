@@ -332,6 +332,10 @@ C---  Continue with standard packages (with standard usePKG flag)
       IF (useSMOOTH) CALL PACKAGES_ERROR_MSG('SMOOTH',' ',myThid)
 #endif
 
+#ifndef ALLOW_PROFILES
+      IF (usePROFILES) CALL PACKAGES_ERROR_MSG('PROFILES',' ',myThid)
+#endif
+
 #ifdef ALLOW_DIAGNOSTICS
       IF (useDiagnostics) CALL DIAGNOSTICS_CHECK( myThid )
 #else

@@ -215,7 +215,7 @@ cph      call cost_sss   ( myiter, mytime, mythid )
 #endif
 
 #if (defined (ALLOW_PROFILES) && defined (ALLOW_PROFILES_CONTRIBUTION))
-       CALL cost_profiles( myiter, mytime, mythid)
+      if ( usePROFILES ) CALL cost_profiles( myiter, mytime, mythid)
 #endif
 
 #ifdef ALLOW_ETAN0_COST_CONTRIBUTION
