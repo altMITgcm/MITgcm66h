@@ -44,7 +44,8 @@ c--   Read the namelist input.
       namelist /profiles_nml/
      &                   profilesDir,
      &                   profilesfiles,
-     &                   mult_profiles
+     &                   mult_profiles,
+     &                   profilesfile_equi_type
 
       _BEGIN_MASTER( myThid )
 
@@ -84,9 +85,8 @@ c--     Set default values.
       if (NVARMAX.GT.6) then
         WRITE(msgBuf,'(A)')
      & 'PROFILES_READPARMS: you need to define variables 7 to NVARMAX'
-        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                    SQUEEZE_RIGHT , 1)
-        stop
+        CALL PRINT_ERROR( msgBuf, myThid)
+        STOP 'ABNORMAL END: S/R PROFILES_READPARMS'
       endif
 
 c--     Next, read the cost data file.
