@@ -62,7 +62,7 @@ FFLAGS="$FFLAGS -fconvert=big-endian -fimplicit-none"
 # for big objects:
 FFLAGS="$FFLAGS -fPIC"
 #- might want to use '-fdefault-real-8' for fizhi pkg:
-#FFLAGS="$FFLAGS -fdefault-real-8"
+#FFLAGS="$FFLAGS -fdefault-real-8 -fdefault-double-8"
 
 if test "x$IEEE" = x ; then     #- with optimisation:
    #- full optimisation
