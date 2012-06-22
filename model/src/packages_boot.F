@@ -175,6 +175,29 @@ C--   packages with hard-coded switch
       IF (useEXF) useCAL = .TRUE.
 #endif
 
+#ifndef ALLOW_PROFILES
+cgf This is a preliminary fix for the case when netcdf is missing
+cgf which would have lead genmake2 to undef ALLOW_PROFILES.
+cgf The test should later be based upon HAVE_NETCDF.
+      IF (usePROFILES) THEN
+        _BEGIN_MASTER(myThid)
+        WRITE(msgBuf,'(2A)') '** WARNING **',
+     &   ' PACKAGES_CHECK: usePROFILES is TRUE but'
+        CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                      SQUEEZE_RIGHT, myThid )
+        WRITE(msgBuf,'(2A)') '** WARNING **',
+     &   ' pkg/profiles has not been compiled (#undef ALLOW_PROFILES)'
+        CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                      SQUEEZE_RIGHT, myThid )
+        WRITE(msgBuf,'(2A)') '** WARNING **',
+     &   ' so we here reset usePROFILES to FALSE'
+        CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                      SQUEEZE_RIGHT, myThid )
+        usePROFILES=.FALSE.
+        _END_MASTER(myThid)
+      ENDIF
+#endif
+
 #ifdef ALLOW_PROFILES
       IF (usePROFILES) useCAL = .TRUE.
 #endif

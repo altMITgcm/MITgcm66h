@@ -696,8 +696,7 @@ C--   Grid limitations:
         CALL PRINT_ERROR( msgBuf, myThid )
         errCount = errCount + 1
        ENDIF
-       IF ( useFLT .OR. useZonal_Filt .OR. useECCO .OR. 
-     &      usePROFILES ) THEN
+       IF ( useFLT .OR. useZonal_Filt .OR. useECCO ) THEN
         WRITE(msgBuf,'(2A)')
      &       'CONFIG_CHECK: specifying Euler angles will probably ',
      &       'not work with pkgs FLT, ZONAL_FLT, ECCO'
