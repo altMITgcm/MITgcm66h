@@ -73,7 +73,8 @@ c
 
 
 
-CADJ STORE phi0surf      = tapelev4, key = ilev_4
+CADJ STORE phi0surf     = tapelev4, key = ilev_4
+CADJ STORE saltflux     = tapelev4, key = ilev_4
 
 #ifdef EXACT_CONSERV
 cphCADJ STORE hDivFlow  = tapelev4, key = ilev_4
@@ -102,6 +103,14 @@ CADJ &     = tapelev4, key = ilev_4
 CADJ STORE rstardhcdt,rstardhsdt,rstardhwdt 
 CADJ &     = tapelev4, key = ilev_4
 # endif
+
+# ifdef ALLOW_CG2D_NSA
+CADJ STORE aW2d, aS2d, aC2d =
+CADJ &     tapelev3, key = ilev_3 
+CADJ STORE pc, ps, pw =
+CADJ &     tapelev3, key = ilev_3 
+# endif
+
 #endif /* NONLIN_FRSURF */
 
 #ifdef ALLOW_CD_CODE

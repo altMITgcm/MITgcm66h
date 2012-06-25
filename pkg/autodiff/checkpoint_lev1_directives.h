@@ -6,17 +6,19 @@ c
 c     created: heimbach@mit.edu 10-Jan-2002
 c
 
-CADJ STORE totphihyd = comlev1, key = ikey_dynamics,
-CADJ &     kind = isbyte
+CADJ STORE totphihyd = comlev1,
+CADJ &     key = ikey_dynamics, kind = isbyte
 CADJ STORE phi0surf = comlev1,
+CADJ &     key = ikey_dynamics, kind = isbyte
+CADJ STORE saltflux = comlev1,
 CADJ &     key = ikey_dynamics, kind = isbyte
 #ifdef EXACT_CONSERV
 CADJ STORE pmepr = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
 #endif
 
-#ifdef ALLOW_DOWN_SLOPE
-# ifdef ALLOW_SEAICE
+#ifdef ALLOW_SEAICE
+# ifdef ALLOW_DOWN_SLOPE
 CADJ STORE area,heff,hsnow = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
 CADJ STORE uice,vice = comlev1, key = ikey_dynamics,
