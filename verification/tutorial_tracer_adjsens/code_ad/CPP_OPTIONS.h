@@ -20,6 +20,9 @@ C o Nonlinear free surface
 cph#define DISABLE_RSTAR_CODE
 #define DISABLE_SIGMA_CODE
 
+#define ALLOW_CG2D_NSA
+#define USE_SMOOTH_MIN
+
 C o Include/exclude phi_hyd calculation code
 #define INCLUDE_PHIHYD_CALCULATION_CODE
 
