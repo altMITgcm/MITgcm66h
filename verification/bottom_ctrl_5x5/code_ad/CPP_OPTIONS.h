@@ -35,7 +35,9 @@ C o Allow nonHydrostatic code
 #undef  ALLOW_NONHYDROSTATIC
 
 C o NEW OPTION to disable rStar (z*) code
+#undef NONLIN_FRSURF
 #define DISABLE_RSTAR_CODE
+#define DISABLE_SIGMA_CODE
 
 C o Exact volume conservation
 #define EXACT_CONSERV
