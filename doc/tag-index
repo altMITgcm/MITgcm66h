@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o tools/genmake2:
+  - add "-DHAVE_NETCDF" to the DEFINES list when NetCDF is available ;
+    refine usePROFILES switching off (only when NetCDF is not available).
 o verification (atmospheric set-up):
   - change eosType='IDEALGAS' to eosType='IDEALG' to match variable declaration
 o pkg/profiles : refine profiles and files handling.
