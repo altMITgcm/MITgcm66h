@@ -142,7 +142,7 @@ c They provide the fields to be stored.
 #  ifdef ALLOW_OFFLINE
 #   include "OFFLINE.h"
 #  endif
-#  ifdef ALLOW_DEPTH_CONTROL
+#  ifdef ALLOW_CG2D_NSA
 #   include "CG2D.h"
 #  endif
 #  ifdef ALLOW_DIVIDED_ADJOINT_MPI
