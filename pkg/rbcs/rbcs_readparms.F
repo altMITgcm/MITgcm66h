@@ -67,6 +67,7 @@ C--   RBCS parameters:
      &          rbcsForcingPeriod,
      &          rbcsForcingCycle,
      &          rbcsForcingOffset,
+     &          rbcsVanishingTime,
      &          rbcsSingleTimeFiles,
      &          deltaTrbcs,
      &          rbcsIter0
@@ -103,6 +104,7 @@ C--   Default values
       rbcsForcingPeriod = 0. _d 0
       rbcsForcingCycle  = 0. _d 0
       rbcsForcingOffset = 0. _d 0
+      rbcsVanishingTime = 0. _d 0
       rbcsSingleTimeFiles = .FALSE.
       deltaTrbcs = deltaTclock
       rbcsIter0 = 0
