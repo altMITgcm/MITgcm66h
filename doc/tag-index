@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o testreport:
+  - change adjustment of SIZE.h for mpi+mth testing: preserve enough tiles
+    (nSx,nSy) for the number of threads (from eedata.mth)
 o model/src:
   - remove 2nd set of calls at the top of initialise_varia.F (Adjoint part)
     related to Non_Lin Free-Surf or Bottom-Control (but not longer necessary).
