@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src:
+  - remove 2nd set of calls at the top of initialise_varia.F (Adjoint part)
+    related to Non_Lin Free-Surf or Bottom-Control (but not longer necessary).
 o verification/tutorial_tracer_adjsens/
   - compile with ALLOW_CG2D_NSA
   - run with nonlinFreeSurf=3
