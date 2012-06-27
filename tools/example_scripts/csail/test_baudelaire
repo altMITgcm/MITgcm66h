@@ -155,6 +155,9 @@ do
     export PATH="$PATH:$PGI/linux86-64/10.9/bin"
     export LM_LICENSE_FILE=$PGI/license.dat
   fi
+  basename $OPTFILE | grep gfortran > /dev/null 2>&1 ; retv=$? ; 
+  GFORTRAN_OPTFILE=f ; if test $retv == 0 ; then GFORTRAN_OPTFILE='t' ; fi 
+  export GFORTRAN_OPTFILE
 
   if test $sepDir = 0 -a $checkOut = '1' -a  $tt = $firstTst ; then
 #-- cleaning:
