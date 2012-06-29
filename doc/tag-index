@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint63o (2012/06/29)
 o vertical mixing schemes:
   - remove unused S/R CALC_BUOYANCY (left from branch-atmos merging)
   - replace computation of density (in Function STATE1, opps_calc.F) by a call
