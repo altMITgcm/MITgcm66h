@@ -278,6 +278,19 @@ C       code is being compiled
       ENDIF
 #endif
 
+#ifndef ALLOW_BALANCE_RELAX
+      IF (balanceThetaClimRelax .OR. balanceSaltClimRelax) THEN
+        WRITE(msgBuf,'(A,A)')
+     &  'CONFIG_CHECK: balanceTheta/SaltClimRelax is set ',
+     &  'but balance code is not compiled.'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        WRITE(msgBuf,'(A)')
+     &  'Re-compile with  ALLOW_BALANCE_RELAX defined'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        errCount = errCount + 1
+      ENDIF
+#endif
+
 #ifndef ALLOW_SRCG
       IF (useSRCGSolver) THEN
         WRITE(msgBuf,'(A,A)')

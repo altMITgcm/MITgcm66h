@@ -223,7 +223,8 @@ C--   Continuous equation parameters
      & temp_EvPrRn, salt_EvPrRn, trac_EvPrRn,
      & temp_addMass, salt_addMass, zonal_filt_lat,
      & inAdExact, smoothAbsFuncRange,
-     & balanceEmPmR, balanceQnet, balancePrintMean
+     & balanceEmPmR, balanceQnet, balancePrintMean,
+     & balanceThetaClimRelax, balanceSaltClimRelax
 
 C--   Elliptic solver parameters
       NAMELIST /PARM02/

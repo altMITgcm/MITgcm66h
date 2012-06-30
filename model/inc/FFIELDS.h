@@ -96,6 +96,17 @@ C     EfluxP - p-component of Eliassen-Palm flux vector
       COMMON /FFIELDS_pLoad/ pLoad
       COMMON /FFIELDS_sIceLoad/ sIceLoad
 
+#ifdef ALLOW_BALANCE_RELAX
+      COMMON/RMMEANRLX/ SSSrlx,SSSrlxTile,SSSrlxGlob,
+     &                  SSTrlx,SSTrlxTile,SSTrlxGlob
+      _RL SSTrlx    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL SSTrlxTile(nSx,nSy)
+      _RL SSTrlxGlob
+      _RL SSSrlx    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL SSSrlxTile(nSx,nSy)
+      _RL SSSrlxGlob
+#endif
+
       _RS  fu       (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  fv       (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  Qnet     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)

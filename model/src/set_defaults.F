@@ -245,6 +245,8 @@ C--   Set (free)surface-related parameters
       balanceEmPmR        = .FALSE.
       balanceQnet         = .FALSE.
       balancePrintMean    = .FALSE.
+      balanceThetaClimRelax = .FALSE.
+      balanceSaltClimRelax  = .FALSE.
 
 C--   Atmospheric physical parameters (e.g.: EOS)
       celsius2K = 273.15 _d 0
