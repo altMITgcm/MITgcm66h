@@ -9,6 +9,9 @@ C $Name$
 #ifdef ALLOW_SEAICE
 # include "SEAICE_OPTIONS.h"
 #endif
+#ifdef ALLOW_GENERIC_ADVDIFF
+# include "GAD_OPTIONS.h"
+#endif
 #ifdef ALLOW_GMREDI
 # include "GMREDI_OPTIONS.h"
 #endif
@@ -70,6 +73,7 @@ c They provide the fields to be stored.
 
 #  ifdef ALLOW_GENERIC_ADVDIFF
 #   include "GAD.h"
+#   include "GAD_SOM_VARS.h"
 #  endif
 #  ifdef ALLOW_MOM_FLUXFORM
 #   include "MOM_FLUXFORM.h"
