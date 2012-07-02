@@ -25,6 +25,13 @@
 #       export MPI_GCC_DIR=/srv/software/gcc/gcc-packages/gcc-4.4.5/mpich2/mpich2-1.3
 #       export MPI_INC_DIR=$MPI_GCC_DIR/include
 #       export PATH=$MPI_GCC_DIR/bin:$PATH
+#
+# and on IRIDIS at Southampton 
+# http://www.southampton.ac.uk/isolutions/computing/hpc/iridis/
+#    with
+#       module load openmpi/1.4.3/gcc-4.3.3
+#    and
+#       export MPI_INC_DIR=$MPIROOT/include
 
 #-------
 # run with OpenMP: needs to set environment var. OMP_NUM_THREADS
