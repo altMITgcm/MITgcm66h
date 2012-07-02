@@ -177,6 +177,10 @@ CADJ &     tapelev3, key = ilev_3
 # include "dic_ad_check_lev3_dir.h"
 #endif
 
+#ifdef ALLOW_GENERIC_ADVDIFF
+# include "gad_ad_check_lev3_dir.h"
+#endif
+
 #ifdef ALLOW_EBM
 CADJ STORE fu    = tapelev3, key = ilev_3
 CADJ STORE fv    = tapelev3, key = ilev_3
