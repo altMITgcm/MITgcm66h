@@ -152,3 +152,10 @@ C subroutine MDS_FACEF_READ_RS
 C----------------------------------------
 CADJ SUBROUTINE MDS_FACEF_READ_RS  INPUT  = 1,2,3,4,5,6,7
 CADJ SUBROUTINE MDS_FACEF_READ_RS  OUTPUT =       4
+
+C----------------------------------------
+C subroutine MDS_CHECK4FILE
+C----------------------------------------
+CADJ SUBROUTINE MDS_CHECK4FILE INPUT  = 1,2,3,   6,7
+CADJ SUBROUTINE MDS_CHECK4FILE OUTPUT =       4,5
+
