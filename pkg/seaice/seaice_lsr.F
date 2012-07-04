@@ -47,6 +47,7 @@ C     === Global variables ===
 #include "SEAICE.h"
 
 #ifdef ALLOW_AUTODIFF_TAMC
+# include "AUTODIFF_PARAMS.h"
 # include "tamc.h"
 #endif
 
@@ -856,11 +857,11 @@ CADJ LOOP = iteration uice, vice
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 #if (defined (ALLOW_AUTODIFF_TAMC) && defined (SEAICE_LSR_ADJOINT_ITER))
-      IF ( inAdmode ) THEN
+      IF ( inAdMode ) THEN
         SOLV_MAX_TMP = SOLV_MAX_FIXED
       ELSE
         SOLV_MAX_TMP = SOLV_MAX_ITERS
-      END IF
+      ENDIF
 #else
       SOLV_MAX_TMP = SOLV_MAX_ITERS
 #endif

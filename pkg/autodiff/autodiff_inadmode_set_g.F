@@ -3,31 +3,24 @@ C $Name$
 
 #include "AUTODIFF_OPTIONS.h"
 
-      subroutine g_autodiff_inadmode_set( myThid )
-      IMPLICIT NONE
-C     /==========================================================\
-C     | SUBROUTINE adautodiff_inadmode_set                       |
-C     |==========================================================|
-C     == Global variables ===
+      SUBROUTINE G_AUTODIFF_INADMODE_SET( myThid )
+C     *==========================================================*
+C     | SUBROUTINE G_ADAUTODIFF_INADMODE_SET
+C     *==========================================================*
 
+      IMPLICIT NONE
+C     == Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "AUTODIFF_PARAMS.h"
 
 C     == Routine arguments ==
-C     myThid - Thread number for this instance of the routine.
-      integer myThid
+C     myThid :: my Thread Id number
+      INTEGER myThid
 
-cph      inAdmode = inAdTrue
+cph   inAdmode = inAdTrue
       inAdmode = .FALSE.
 
-      end
-
-
-
-
-
-
-
-
-
+      RETURN
+      END
