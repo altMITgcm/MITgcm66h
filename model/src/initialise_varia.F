@@ -43,7 +43,7 @@ C       |-- TAUEDDY_INIT_VARIA
 C       |
 C       |-- INI_FORCING
 C       |
-C       |-- INI_AUTODIFF
+C       |-- AUTODIFF_INIT_VARIA
 C       |
 C       |-- PACKAGES_INIT_VARIABLES
 C       |
@@ -149,9 +149,9 @@ C--   Initialise model forcing fields.
 #endif
       CALL INI_FORCING( myThid )
 
-#ifdef ALLOW_AUTODIFF_TAMC
+#ifdef ALLOW_AUTODIFF
 C--   Initialise active fields to help TAMC
-      CALL INI_AUTODIFF( myThid )
+      CALL AUTODIFF_INIT_VARIA( myThid )
 #endif
 
 C--   Initialize variable data for packages
