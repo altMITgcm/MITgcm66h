@@ -220,8 +220,6 @@ Cml      sBeta               = 7.4 _d -4
         debugLevel        = debLevA
 #endif
       ENDIF
-      inAdMode            = .FALSE.
-      inAdExact           = .TRUE.
 
 C--   Set (free)surface-related parameters
       implicitFreeSurface = .FALSE.

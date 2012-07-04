@@ -406,8 +406,7 @@ C     printDomain     :: controls printing of domain fields (bathy, hFac ...).
      & writePickupAtEnd,
      & timeave_mdsio, snapshot_mdsio, monitor_stdio,
      & outputTypesInclusive, dumpInitAndLast,
-     & printDomain,
-     & inAdMode, inAdTrue, inAdFalse, inAdExact
+     & printDomain
 
       LOGICAL fluidIsAir
       LOGICAL fluidIsWater
@@ -502,7 +501,6 @@ C     printDomain     :: controls printing of domain fields (bathy, hFac ...).
       LOGICAL outputTypesInclusive
       LOGICAL dumpInitAndLast
       LOGICAL printDomain
-      LOGICAL inAdMode, inAdTrue, inAdFalse, inAdExact
 
 C--   COMMON /PARM_R/ "Real" valued parameters used by the model.
 C     cg2dTargetResidual
@@ -995,15 +993,6 @@ C Logical flags for selecting packages
      &        useDiagnostics, useREGRID, useLayers, useMNC,
      &        useRunClock, useEMBED_FILES,
      &        useMYPACKAGE
-
-C     Logical flags for turning off parts of the code in adjoint mode
-      LOGICAL useKPPinAdMode, useKPPinFwdMode
-      LOGICAL useGMrediInAdMode, useGMrediInFwdMode
-      LOGICAL useSEAICEinAdMode, useSEAICEinFwdMode
-      COMMON /PARM_PACKAGES_ADJ/
-     &       useKPPinAdMode, useKPPinFwdMode,
-     &       useGMrediInAdMode, useGMrediInFwdMode,
-     &       useSEAICEinAdMode, useSEAICEinFwdMode
 
 CEH3 ;;; Local Variables: ***
 CEH3 ;;; mode:fortran ***

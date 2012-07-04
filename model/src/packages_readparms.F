@@ -83,6 +83,8 @@ C       |-- SALT_PLUME_READPARMS
 C       |
 C       |-- CHEAPAML_READPARMS
 C       |
+C       |-- AUTODIFF_READPARMS
+C       |
 C       |-- OPTIM_READPARMS
 C       |
 C       |-- CTRL_READPARMS
@@ -267,6 +269,11 @@ C-- note: need to call LONGSTEP_READPARMS before PTRACERS_READPARMS
 #ifdef ALLOW_CHEAPAML
 C -- initialize cheapaml parameters
       IF (useCheapAML) CALL CHEAPAML_READPARMS( myThid )
+#endif
+
+#ifdef ALLOW_AUTODIFF
+C--   Initialise autodiff parameters
+      CALL AUTODIFF_READPARMS( myThid )
 #endif
 
 #ifdef ALLOW_CTRL
