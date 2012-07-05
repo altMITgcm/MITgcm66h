@@ -21,15 +21,18 @@ C     inAdExact :: get an exact adjoint (no approximation)
       LOGICAL inAdMode, inAdTrue, inAdFalse, inAdExact
 
 C-    Logical flags for turning off parts of the code in adjoint mode
+C     turnFreeDriftInAdMode :: switch SEAICE to Free-Drift in adjoint mode (def=F)
       LOGICAL useKPPinAdMode,    useKPPinFwdMode
       LOGICAL useGMRediInAdMode, useGMRediInFwdMode
       LOGICAL useSEAICEinAdMode, useSEAICEinFwdMode
+      LOGICAL turnFreeDriftInAdMode
 
       COMMON /AUTODIFF_PARM_L/
      &       inAdMode, inAdTrue, inAdFalse, inAdExact,
      &       useKPPinAdMode,    useKPPinFwdMode,
      &       useGMRediInAdMode, useGMRediInFwdMode,
-     &       useSEAICEinAdMode, useSEAICEinFwdMode
+     &       useSEAICEinAdMode, useSEAICEinFwdMode,
+     &       turnFreeDriftInAdMode
 
 C--   COMMON /AUTODIFF_PARM_I/ Integer valued parameters used by the pkg.
 
