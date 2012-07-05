@@ -1,10 +1,7 @@
-C
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
 #include "COST_CPPOPTIONS.h"
-
 
       subroutine cost_dependent_init( mythid )
 
@@ -81,4 +78,3 @@ cph because we need it in ADM*TLM
 
       return
       end
-
