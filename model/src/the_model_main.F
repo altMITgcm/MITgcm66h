@@ -191,9 +191,9 @@ C \ev
 C
 CEOI
 
-#include "AD_CONFIG.h"
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
+#include "AD_CONFIG.h"
 
 CBOP
 C     !ROUTINE: THE_MODEL_MAIN
