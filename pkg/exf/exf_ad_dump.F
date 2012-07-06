@@ -1,9 +1,8 @@
 C $Header$
 C $Name$
 
-#include "AD_CONFIG.h"
-#include "PACKAGES_CONFIG.h"
 #include "EXF_OPTIONS.h"
+#include "AD_CONFIG.h"
 
 CBOP
 C     !ROUTINE: exf_ad_dump

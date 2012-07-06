@@ -1,10 +1,8 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
-#include "AD_CONFIG.h"
 #include "COST_CPPOPTIONS.h"
-
+#include "AD_CONFIG.h"
 
       subroutine ecco_cost_init_barfiles( mythid )
 

@@ -1,9 +1,8 @@
 C $Header$
 C $Name$
 
-#include "AD_CONFIG.h"
-#include "PACKAGES_CONFIG.h"
 #include "PTRACERS_OPTIONS.h"
+#include "AD_CONFIG.h"
 
 CBOP
 C     !ROUTINE: ptracers_ad_dump

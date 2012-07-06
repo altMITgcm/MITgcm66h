@@ -1,9 +1,8 @@
 C $Header$
 C $Name$
 
-#include "AD_CONFIG.h"
-#include "PACKAGES_CONFIG.h"
 #include "SEAICE_OPTIONS.h"
+#include "AD_CONFIG.h"
 
 CBOP
 C     !ROUTINE: seaice_ad_dump
