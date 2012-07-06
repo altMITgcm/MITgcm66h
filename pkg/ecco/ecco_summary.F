@@ -1,9 +1,8 @@
 C $Header$
 C $Name$
 
-#include "AD_CONFIG.h"
 #include "CPP_OPTIONS.h"
-
+#include "AD_CONFIG.h"
 
       subroutine ecco_Summary(
      I                         mythid
