@@ -7,6 +7,7 @@ C $Name$
 # include "EXF_OPTIONS.h"
 #endif
 #endif
+#include "AD_CONFIG.h"
 
       SUBROUTINE CTRL_CHECK( myThid )
 C     /==========================================================\

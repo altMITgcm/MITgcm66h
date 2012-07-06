@@ -2,6 +2,7 @@ C $Header$
 C $Name$
 
 #include "GRDCHK_OPTIONS.h"
+#include "AD_CONFIG.h"
 
 CBOI
 C

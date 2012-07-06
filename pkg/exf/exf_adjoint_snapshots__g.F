@@ -2,6 +2,7 @@ C $Header$
 C $Name$
 
 #include "EXF_OPTIONS.h"
+#include "AD_CONFIG.h"
 
 CBOP
 C     !ROUTINE: g_exf_adjoint_snapshots
@@ -138,13 +139,5 @@ C--     Read IO error counter
 #endif /* ALLOW_AUTODIFF_MONITOR */
 #endif /* ALLOW_TANGENTLINEAR_RUN */
 
-      end
-
-
-
-
-
-
-
-
-
+      RETURN
+      END

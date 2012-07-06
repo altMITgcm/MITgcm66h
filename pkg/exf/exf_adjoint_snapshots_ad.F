@@ -2,6 +2,7 @@ C $Header$
 C $Name$
 
 #include "EXF_OPTIONS.h"
+#include "AD_CONFIG.h"
 
 CBOP
 C     !ROUTINE: adexf_adjoint_snapshots
@@ -204,13 +205,5 @@ c
 #endif /* ALLOW_AUTODIFF_MONITOR */
 #endif /* ALLOW_ADJOINT_RUN */
 
-      end
-
-
-
-
-
-
-
-
-
+      RETURN
+      END

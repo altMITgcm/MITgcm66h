@@ -2,6 +2,7 @@ C $Header$
 C $Name$
 
 #include "PROFILES_OPTIONS.h"
+#include "AD_CONFIG.h"
 
 C     *==========================================================*
 C     | subroutine profiles_init_fixed

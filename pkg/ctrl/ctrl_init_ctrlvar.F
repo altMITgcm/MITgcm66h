@@ -2,6 +2,7 @@ C $Header$
 C $Name$
 
 #include "CTRL_CPPOPTIONS.h"
+#include "AD_CONFIG.h"
 
       subroutine ctrl_init_ctrlvar( 
      &       xx_fname
@@ -119,7 +120,6 @@ c-- for DIVA, avoid forward-related output in adjoint part
       ENDIF
 
 #endif /* CTRL_DO_PACK_UNPACK_ONLY */
-
 
       return
       end

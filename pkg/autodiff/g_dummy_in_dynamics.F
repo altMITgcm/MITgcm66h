@@ -2,6 +2,7 @@ C $Header$
 C $Name$
 
 #include "AUTODIFF_OPTIONS.h"
+#include "AD_CONFIG.h"
 
 CBOP
 C     !ROUTINE: g_dummy_in_dynamics

@@ -2,6 +2,7 @@ C $Header$
 C $Name$
 
 #include "CTRL_CPPOPTIONS.h"
+#include "AD_CONFIG.h"
 
       subroutine ctrl_readparms( mythid )
 

@@ -4,6 +4,7 @@ C $Name$
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 #include "AUTODIFF_OPTIONS.h"
+#include "AD_CONFIG.h"
 
 CBOP
 C     !ROUTINE: AUTODIFF_CHECK
