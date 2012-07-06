@@ -2,7 +2,6 @@ C $Header$
 C $Name$
 
 #include "OBCS_OPTIONS.h"
-#include "AD_CONFIG.h"
 
 C--   File obcs_sponge.F:
 C--    Contents:

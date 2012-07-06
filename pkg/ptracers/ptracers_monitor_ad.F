@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-#include "AD_CONFIG.h"
 #include "PTRACERS_OPTIONS.h"
 
 CBOP
