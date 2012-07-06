@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 #
 # Converts -Dmacro to #define macro
-#      and -Umacro to #undef macro 
+#      and -Umacro to #undef macro
 # on standard output
 #
 # Any options that do not take the form -D* or -U* are placed as comments.
@@ -13,8 +13,7 @@
 
 cat << EOF
 /*
- This file created by convert_cpp_cmd2defines with the following command
- line arguments:
+ This file created by convert_cpp_cmd2defines with the following command line arguments:
  $@
 */
 
