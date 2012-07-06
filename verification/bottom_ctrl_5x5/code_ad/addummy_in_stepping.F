@@ -2,6 +2,7 @@ C $Header$
 C $Name$
 
 #include "CPP_OPTIONS.h"
+#include "AD_CONFIG.h"
 
 CBOP
 C     !ROUTINE: addummy_in_stepping
@@ -174,13 +175,5 @@ C--     Check for IO errors
 #endif /* ALLOW_AUTODIFF_MONITOR */
 #endif /* ALLOW_ADJOINT_RUN */
 
-      end
-
-
-
-
-
-
-
-
-
+      RETURN
+      END
