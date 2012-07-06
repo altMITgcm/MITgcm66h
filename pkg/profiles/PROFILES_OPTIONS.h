@@ -6,7 +6,6 @@ C Use this file for selecting options within the PROFILES package
 
 #ifndef PROFILES_OPTIONS_H
 #define PROFILES_OPTIONS_H
-#include "AD_CONFIG.h"
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 

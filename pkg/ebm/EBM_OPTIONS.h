@@ -7,7 +7,6 @@ C Use this file for selecting CPP options within the EBM package
 #ifndef EBM_OPTIONS_H
 #define EBM_OPTIONS_H
 #include "PACKAGES_CONFIG.h"
-#include "AD_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 #ifdef ALLOW_EBM
