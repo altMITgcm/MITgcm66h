@@ -1,8 +1,8 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
 #include "AUTODIFF_OPTIONS.h"
+#include "AD_CONFIG.h"
 
 CBOP
 C     !ROUTINE: addummy_in_stepping
