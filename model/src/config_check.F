@@ -447,6 +447,16 @@ C--   Free-surface related limitations:
         errCount = errCount + 1
       ENDIF
 
+      IF ( select_rStar.GE.1 .AND. nonlinFreeSurf.LE.0 ) THEN
+        WRITE(msgBuf,'(2A,I3,A)') 'CONFIG_CHECK: r* Coordinate',
+     &   ' (select_rStar=', select_rStar, ' ) cannot be used'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        WRITE(msgBuf,'(2A,I3,A)') 'CONFIG_CHECK: ',
+     &   ' with Linear FreeSurf (nonlinFreeSurf=', nonlinFreeSurf,' )'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        errCount = errCount + 1
+      ENDIF
+
       IF ( selectSigmaCoord.NE.0 ) THEN
        IF ( fluidIsWater ) THEN
         WRITE(msgBuf,'(A)')
