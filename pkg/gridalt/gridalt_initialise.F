@@ -1,21 +1,21 @@
 C $Header$
 C $Name$
 
+#include "GRIDALT_OPTIONS.h"
+
        subroutine gridalt_initialise (myThid)
 c-----------------------------------------------------------------------
 c  Routine to initialise the gridalt package.
-c  
+c
 c  Input: myThid       - Process number calling this routine
 c
-c  Notes: 
-c   When used with fizhi, this routine is the interface 
+c  Notes:
+c   When used with fizhi, this routine is the interface
 c                                       to make_phys_grid
 c  Calls: make_phys_grid (define the physics grid and mappings)
 c         when diagnostics are used, call gridalt_diagnostics_init
 c-----------------------------------------------------------------------
        implicit none
-#include "PACKAGES_CONFIG.h"
-#include "CPP_OPTIONS.h"
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"

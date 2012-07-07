@@ -1,11 +1,13 @@
 C $Header$
 C $Name$
 
+#include "GRIDALT_OPTIONS.h"
+
        subroutine gridalt_update(myThid)
 c***********************************************************************
 c subroutine gridalt_update
-c 
-c Purpose: Update the pressure thicknesses of the layers of the 
+c
+c Purpose: Update the pressure thicknesses of the layers of the
 c          alternative vertical grid (used now for atmospheric physics).
 c
 c Calculate: dpphys    - new delta r (p*) edge-to-edge of physics grid
@@ -13,9 +15,7 @@ c                        using dpphys0 (initial value) and rstarfacC
 c
 c***********************************************************************
        implicit none
-c
-#include "PACKAGES_CONFIG.h"
-#include "CPP_OPTIONS.h"
+
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"

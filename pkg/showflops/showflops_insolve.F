@@ -1,8 +1,7 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
-#include "CPP_OPTIONS.h"
+#include "SHOWFLOPS_OPTIONS.h"
 
 CBOP
 C     !ROUTINE: SHOWFLOPS_INSOLVE
@@ -26,14 +25,14 @@ C     == Global variables ==
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
-C     note: under the multi-threaded model myiter and 
-C           mytime are local variables passed around as routine 
-C           arguments. Although this is fiddly it saves the need to 
-C           impose additional synchronisation points when they are 
+C     note: under the multi-threaded model myiter and
+C           mytime are local variables passed around as routine
+C           arguments. Although this is fiddly it saves the need to
+C           impose additional synchronisation points when they are
 C           updated.
 C     myThid - thread number for this instance of the routine.
       integer iloop
-      INTEGER myThid 
+      INTEGER myThid
 
 C     !FUNCTIONS:
 C     == Functions ==

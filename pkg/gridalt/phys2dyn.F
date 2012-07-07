@@ -1,12 +1,14 @@
 C $Header$
 C $Name$
 
+#include "GRIDALT_OPTIONS.h"
+
       subroutine phys2dyn(qphy,pephy,im1,im2,jm1,jm2,lmphy,Nsx,Nsy,
      .     idim1,idim2,jdim1,jdim2,bi,bj,pedyn,Lbot,lmdyn,nlperdyn,qdyn)
 C***********************************************************************
 C Purpose:
 C   To interpolate an arbitrary quantity from the 'dynamics' eta (pstar)
-C               grid to the higher resolution physics grid 
+C               grid to the higher resolution physics grid
 C Algorithm:
 C   Routine works one layer (edge to edge pressure) at a time.
 C   Physics -> Dynamics computes the physics layer mean value,
@@ -36,8 +38,6 @@ C   1) This algorithm assumes that the output (physics) grid levels
 C      fit exactly into the input (dynamics) grid levels
 C***********************************************************************
       implicit none
-cinterp1 #include "PACKAGES_CONFIG.h"
-#include "CPP_OPTIONS.h"
 
       integer  im1, im2, jm1, jm2, lmdyn, lmphy, Nsx, Nsy
       integer idim1, idim2, jdim1, jdim2, bi, bj
