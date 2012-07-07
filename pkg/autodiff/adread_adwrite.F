@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
 #include "AUTODIFF_OPTIONS.h"
 
 c     ==================================================================
