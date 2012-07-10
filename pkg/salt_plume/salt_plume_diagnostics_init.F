@@ -44,6 +44,14 @@ C     diagTitle :: local string (80c): description of field in diagnostic
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I       diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
+      diagName  = 'oceSPtnd'
+      diagTitle = 'salt tendency due to salt plume flux' 
+     &          //' >0 increases salinity'
+      diagUnits = 'g/m^2/s         '
+      diagCode  = 'SM      MR      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I       diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
       diagName  = 'oceSPflx'
       diagTitle = 'net surface Salt flux rejected into the ocean during'
      &          //' freezing, (+=down),'
