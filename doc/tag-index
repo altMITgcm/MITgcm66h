@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/salt_plume: added diagnotic for salt tendency (oceSPtnd).
 o AD_CONFIG.h file:
  - in genmake2: remove "#undef ALLOW_ECCO_OPTIMIZATION" from AD_CONFIG.h;
  - remove #include "AD_CONFIG.h" from all included OPTIONS files and
