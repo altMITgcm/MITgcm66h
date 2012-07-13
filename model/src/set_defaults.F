@@ -80,6 +80,7 @@ C     In spherical polar distances are in degrees
 C     General curvilinear coordinate system
       usingCurvilinearGrid= .FALSE.
       radius_fromHorizGrid= UNSET_RL
+      hasWetCSCorners     = .FALSE.
 C     General cylindrical coordinate system
       usingCylindricalGrid= .FALSE.
 C     Coriolis map:
