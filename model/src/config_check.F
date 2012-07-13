@@ -39,6 +39,16 @@ C     msgBuf :: Informational/error message buffer
       INTEGER errCount
 CEOP
 
+      _BEGIN_MASTER(myThid)
+      WRITE(msgBuf,'(A)')
+     &'// ======================================================='
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT, myThid )
+      WRITE(msgBuf,'(A)') '// Check Model config. (CONFIG_CHECK):'
+      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                    SQUEEZE_RIGHT, myThid )
+      _END_MASTER(myThid)
+
 C--   MPI + multi-threads: seems to be OK to let master-thread check & stop
 C      (as long as all procs finish cleanly by calling ALL_PROC_DIE)
       _BEGIN_MASTER(myThid)
@@ -641,6 +651,20 @@ C--   Momentum related limitations:
         errCount = errCount + 1
        ENDIF
       ENDIF
+      IF ( .NOT.vectorInvariantMomentum .AND. momAdvection ) THEN
+       IF ( usingCurvilinearGrid ) THEN
+        WRITE(msgBuf,'(2A)') '** WARNING ** CONFIG_CHECK: ',
+     &       'missing metric-terms for CurvilinearGrid'
+        CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                      SQUEEZE_RIGHT, myThid )
+       ENDIF
+       IF ( hasWetCSCorners ) THEN
+        WRITE(msgBuf,'(2A)') 'CONFIG_CHECK: momAdvection ',
+     &   'in flux-form is wrong on CubedSphere grid (corners)'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        errCount = errCount + 1
+       ENDIF
+      ENDIF
       IF ( selectCoriMap.LT.0 .OR. selectCoriMap.GT.3 ) THEN
         WRITE(msgBuf,'(2A,I4)') 'CONFIG_CHECK: ',
      &       'Invalid option: selectCoriMap=', selectCoriMap
@@ -668,20 +692,17 @@ C- jmc: but ultimately, this block can/will be removed.
      &   'CD-scheme is OFF but params(tauCD,rCD) are set'
         CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
      &                      SQUEEZE_RIGHT, myThid )
-        WRITE(msgBuf,'(3A)') '** WARNING ** ',
-     &   'to turn ON CD-scheme: => "useCDscheme=.TRUE."',
-     &   ' in "data", namelist PARM01'
         WRITE(msgBuf,'(3A)') '** WARNING ** to turn ON CD-scheme:',
      &   ' => "useCDscheme=.TRUE." in "data", namelist PARM01'
         CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
      &                      SQUEEZE_RIGHT, myThid )
       ENDIF
 
-      IF ( useCDscheme .AND. useCubedSphereExchange ) THEN
+      IF ( useCDscheme .AND. hasWetCSCorners ) THEN
         WRITE(msgBuf,'(2A)')
      &   'CONFIG_CHECK: CD-scheme not implemented on CubedSphere grid'
         CALL PRINT_ERROR( msgBuf, myThid )
-cph        errCount = errCount + 1
+        errCount = errCount + 1
       ENDIF
 
 C--   Time-stepping limitations
@@ -758,10 +779,6 @@ C--   Packages conflict
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
       _BEGIN_MASTER(myThid)
-      WRITE(msgBuf,'(A)')
-     &'// ======================================================='
-      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                    SQUEEZE_RIGHT, myThid )
       WRITE(msgBuf,'(A)') '// CONFIG_CHECK : Normal End'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT, myThid )
