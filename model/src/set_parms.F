@@ -84,6 +84,7 @@ C        calculation in surface grid-cell below ice-shelf
 #ifndef NONLIN_FRSURF
       doResetHFactors = .FALSE.
 #endif
+
 C--   Set default Vorticity-Term Scheme:
       IF ( vectorInvariantMomentum ) THEN
         IF ( selectVortScheme.EQ.UNSET_I ) THEN
@@ -157,7 +158,7 @@ C--   Advection and Forcing for Temp and salt  on/off flags
 C--   Dynamically Active Tracers : set flags
       tempIsActiveTr = momPressureForcing .AND. tempAdvection
       saltIsActiveTr = momPressureForcing .AND. saltAdvection
-      IF ( eosType.EQ.'IDEALGAS' .AND. atm_Rq.EQ.0. ) THEN
+      IF ( eosType.EQ.'IDEALG' .AND. atm_Rq.EQ.0. ) THEN
         saltIsActiveTr = .FALSE.
       ELSEIF ( eosType.EQ.'LINEAR' ) THEN
         IF ( tAlpha.EQ.0. ) tempIsActiveTr = .FALSE.
