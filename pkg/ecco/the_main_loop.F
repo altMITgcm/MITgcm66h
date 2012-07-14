@@ -1187,7 +1187,7 @@ c--     Accumulate in-situ time averages of temperature, salinity, and SSH.
 #ifdef ALLOW_DIVIDED_ADJOINT
 CADJ STORE mytime = onetape
 #ifdef ALLOW_IESTAU_COST_CONTRIBUTION
-CADJ STORE etan,niter0,salt,theta,totphihyd = onetape
+CADJ STORE etan,salt,theta,totphihyd = onetape
 #endif
 #endif
 c--   Accumulate time averages of temperature, salinity, and SSH.
