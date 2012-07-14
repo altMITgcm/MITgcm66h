@@ -123,7 +123,7 @@ c--   == end of interface ==
       write(msgbuf,'(a)') 'general packages parameters :'
       JL  = ILNBLNK( profilesDir )
       if (JL.NE.0) then
-        write(msgbuf,'(a,a)') '  profilesDir ',profilesDir
+        write(msgbuf,'(a,a)') '  profilesDir ',profilesDir(1:JL)
       else
         write(msgbuf,'(a,a)') '  profilesDir ','./'
       endif
