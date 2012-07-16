@@ -105,10 +105,16 @@ C--   Check that domain size and (SIZE.h + blankList) match:
       IF ( W2_mapIO.EQ.1 ) THEN
 C--   Compact IO map (mostly in Y dir): search for Greatest Common Divisor
 C     of all x-size (faster to apply GCD to Nb of Tiles in X):
+        k = 0
+        nnx(1) = 0
         DO j=1,nFacets
-          nnx(j) = facet_dims(2*j-1)/tNx
+C     skip empty facet
+          IF ( facet_dims(2*j-1).GT.0 ) THEN
+            k = k + 1
+            nnx(k) = facet_dims(2*j-1)/tNx
+          ENDIF
         ENDDO
-        divide = FIND_GCD_N( nnx, nFacets)
+        divide = FIND_GCD_N( nnx, k )
         W2_mapIO = divide*tNx
         WRITE(msgBuf,'(A,2(I5,A))') ' W2_mapIO =', W2_mapIO,
      &                              ' (=', divide, '*sNx)'
