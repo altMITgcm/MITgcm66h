@@ -79,7 +79,7 @@ CML        IF (k.EQ.kTop) maskUp=0.
      &     - 2.*KappaRV(i,j,kUpC)*rdrckp1*viscFac
      &     + bottomDragLinear
      &    )*(1.-maskUp)*vFld(i,j)
-        IF ( (KE(i,j)+KE(i,j-1)) .NE. 0. ) THEN
+        IF ( (KE(i,j)+KE(i,j-1)) .GT. 0. ) THEN
          vDragTerms(i,j)=vDragTerms(i,j)
      &    -_recip_hFacS(i,j,k,bi,bj)*recip_drF(k)
      &    *bottomDragQuadratic*sqrt(KE(i,j)+KE(i,j-1))
