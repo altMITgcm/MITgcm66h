@@ -86,7 +86,7 @@ c      dragFac = wUnit2rVel(k)
 #endif
      &     + bottomDragLinear*dragFac
      &    )*(1.-maskDown)*uFld(i,j)
-        IF ( (KE(i,j)+KE(i-1,j)) .NE. 0. ) THEN
+        IF ( (KE(i,j)+KE(i-1,j)) .GT. 0. ) THEN
          uDragTerms(i,j)=uDragTerms(i,j)
      &    -_recip_hFacW(i,j,k,bi,bj)*recip_drF(k)
      &    *bottomDragQuadratic*SQRT(KE(i,j)+KE(i-1,j))*dragFac
