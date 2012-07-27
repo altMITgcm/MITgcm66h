@@ -182,6 +182,12 @@ cHFLUXM_CONTROL
 cHFLUXM_CONTROL
       _RL xx_shifwflx_dummy
 
+      common /ctrl_dummy_arr/
+     &    xx_genarr2d_dummy
+     &  , xx_genarr3d_dummy
+      _RL xx_genarr2d_dummy(maxCtrlArr2D)
+      _RL xx_genarr3d_dummy(maxCtrlArr3D)
+
 c     ==================================================================
 c     END OF HEADER CONTROL DUMMIES
 c     ==================================================================

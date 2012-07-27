@@ -557,6 +557,10 @@ c--   SSS relaxation coefficient.
       enddo
 #endif
 
+#if (defined (ALLOW_GENARR2D_CONTROL) || defined (ALLOW_GENARR3D_CONTROL))
+      call ctrl_map_ini_genarr( mythid )
+#endif
+
 #ifdef ALLOW_SEAICE
       call seaice_ctrl_map_ini( mythid )
 #endif
