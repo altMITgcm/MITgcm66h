@@ -30,7 +30,7 @@ c       >>> Reduce to 2-level checkpointing
 #define AUTODIFF_2_LEVEL_CHECKPOINT
 C
 C       >>> Extract adjoint state
-#define ALLOW_AUTODIFF_MONITOR
+#undef ALLOW_AUTODIFF_MONITOR
 C
 C o use divided adjoint to split adjoint computations
 #undef ALLOW_DIVIDED_ADJOINT
