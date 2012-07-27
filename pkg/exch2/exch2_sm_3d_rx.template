@@ -80,8 +80,8 @@ C--   First call the exchanges
 C- note: can substitute the low-level S/R call above with:
 c      CALL EXCH2_3D_RX( phi, myNz, myThid )
 
-      IF ( useCubedSphereExchange ) THEN
-C---  using CubedSphereExchange:
+      IF ( useCubedSphereExchange .AND. withSigns ) THEN
+C---  using CubedSphereExchange with Signs:
 
 C--   Then we may need to switch the signs depending on which cube face
 C     we are located.
@@ -178,7 +178,7 @@ C--    end of Loops on tile and level indices (k,bi,bj).
         ENDDO
        ENDDO
 
-C---  using or not using CubedSphereExchange: end
+C---  using or not using CubedSphereExchange with Signs: end
       ENDIF
 
       RETURN
