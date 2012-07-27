@@ -4,6 +4,12 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ctrl:
+  enable the use of a variable number (maxCtrlArr2D, maxCtrlArr3D) of
+  generic control variables via
+  #define ALLOW_GENARR2D_CONTROL and/or #define ALLOW_GENARR3D_CONTROL
+  Only required customization should be S/R ctrl_map_ini_genarr.F
+  (routine in repository contains example)
 o pkg/exf:
   - fix and refine checking of surface-relaxation setting when using EXF
 o verification (adjoint exp):
