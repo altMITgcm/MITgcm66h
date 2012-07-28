@@ -35,6 +35,14 @@ C     turnFreeDriftInAdMode :: switch SEAICE to Free-Drift in adjoint mode (def=
      &       turnFreeDriftInAdMode
 
 C--   COMMON /AUTODIFF_PARM_I/ Integer valued parameters used by the pkg.
+C     dumpAdVarExch :: control ad-variables exchange before dumping output
+C     mon_AdVarExch :: control ad-variables exchange before monitor output
+C      - for both   :: =0 : no exch ; =1 : apply adexch ;
+C      *AdVarExch - :: =2 : do adexch on a local copy.
+      INTEGER dumpAdVarExch
+      INTEGER mon_AdVarExch
+      COMMON /AUTODIFF_PARM_I/
+     &       dumpAdVarExch, mon_AdVarExch
 
 C--   COMMON /AUTODIFF_PARM_R/ "Real" valued parameters used by the pkg.
 
