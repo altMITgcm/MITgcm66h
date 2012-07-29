@@ -45,8 +45,8 @@ C--   Default values for AUTODIFF
       dumpAdVarExch      = 2
       mon_AdVarExch      = 2
 C-    to recover old ad-monitor & ad-dump behaviour:
-      dumpAdVarExch      = 1
-      mon_AdVarExch      = 0
+c     dumpAdVarExch      = 1
+c     mon_AdVarExch      = 0
       useKPPinAdMode     = .TRUE.
       useGMRediInAdMode  = .TRUE.
       useSEAICEinAdMode  = .TRUE.
