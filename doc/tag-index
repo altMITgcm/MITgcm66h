@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint63q (2012/07/30)
 o pkg/autodiff:
   note about monitor and snap-shot of ad-variables:
   a) need to apply ADEXCH before monitor or output of ad-vars to include
