@@ -13,12 +13,12 @@ C     maxCtrlArr3D :: number of 3-dim. generic control variables
 
 #ifdef ALLOW_GENARR2D_CONTROL
       integer     maxCtrlArr2D
-      parameter ( maxCtrlArr2D = 3 )
+      parameter ( maxCtrlArr2D = 1 )
 #endif
 
 #ifdef ALLOW_GENARR3D_CONTROL
       integer     maxCtrlArr3D
-      parameter ( maxCtrlArr3D = 3 )
+      parameter ( maxCtrlArr3D = 1 )
 #endif
 
 CEH3 ;;; Local Variables: ***
