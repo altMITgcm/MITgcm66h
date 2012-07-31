@@ -30,7 +30,9 @@ c     == global variables ==
 #include "SIZE.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#include "CTRL_SIZE.h"
 #include "ctrl.h"
+#include "CTRL_GENARR.h"
 #include "optim.h"
 
 #ifdef ALLOW_DIC_CONTROL

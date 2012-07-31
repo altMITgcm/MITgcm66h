@@ -28,6 +28,7 @@ c     == global variables ==
 # include "cal.h"
 #endif
 #ifdef ALLOW_COST
+# include "CTRL_SIZE.h"
 # include "ctrl.h"
 # include "ctrl_dummy.h"
 # ifdef ALLOW_ECCO

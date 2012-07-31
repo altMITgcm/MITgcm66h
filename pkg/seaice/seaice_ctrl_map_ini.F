@@ -30,6 +30,7 @@ c     == global variables ==
 #include "SEAICE_SIZE.h"
 #include "SEAICE.h"
 #ifdef ALLOW_CTRL
+# include "CTRL_SIZE.h"
 # include "ctrl.h"
 # include "ctrl_dummy.h"
 # include "optim.h"

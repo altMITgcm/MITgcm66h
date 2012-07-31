@@ -20,12 +20,10 @@ C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-
+#include "DYNVARS.h"
 #include "ecco_cost.h"
 #include "ctrl.h"
-#include "ctrl_dummy.h"
 #include "optim.h"
-#include "DYNVARS.h"
 #ifdef ALLOW_PROFILES
 #include "profiles.h"
 #endif

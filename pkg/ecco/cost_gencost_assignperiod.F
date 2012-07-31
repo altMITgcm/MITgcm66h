@@ -24,7 +24,6 @@ c     == global variables ==
 #include "PARAMS.h"
 #include "optim.h"
 #include "ecco_cost.h"
-#include "ctrl_dummy.h"
 
 c     == routine arguments ==
 

@@ -42,6 +42,7 @@ c     == global variables ==
 #include "EXF_FIELDS.h"
 #include "EXF_PARAM.h"
 #ifdef ALLOW_AUTODIFF
+# include "CTRL_SIZE.h"
 # include "ctrl.h"
 # include "ctrl_dummy.h"
 #endif

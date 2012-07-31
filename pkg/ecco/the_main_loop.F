@@ -150,6 +150,7 @@ c They provide the fields to be stored.
 # endif
 
 # include "tamc.h"
+# include "CTRL_SIZE.h"
 # include "ctrl.h"
 # include "ctrl_dummy.h"
 # include "cost.h"

@@ -32,6 +32,8 @@ c     == global variables ==
 #include "SIZE.h"
 
 #include "ecco_cost.h"
+#include "CTRL_SIZE.h"
+#include "ctrl.h"
 #include "ctrl_dummy.h"
 #ifdef ALLOW_SEAICE
 # include "SEAICE_COST.h"

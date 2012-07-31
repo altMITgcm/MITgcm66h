@@ -45,6 +45,8 @@ c     == global variables ==
 
 #include "optim.h"
 #include "ecco_cost.h"
+#include "CTRL_SIZE.h"
+#include "ctrl.h"
 #include "ctrl_dummy.h"
 #ifdef ALLOW_EXF
 # include "EXF_FIELDS.h"

@@ -48,6 +48,7 @@ c     == global variables ==
 # include "optim.h"
 #endif
 #ifdef ALLOW_CTRL
+# include "CTRL_SIZE.h"
 # include "ctrl.h"
 # include "ctrl_dummy.h"
 #endif

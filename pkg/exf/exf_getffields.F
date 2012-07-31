@@ -33,6 +33,7 @@ c     == global variables ==
 #include "EXF_CONSTANTS.h"
 
 #ifdef ALLOW_AUTODIFF
+# include "CTRL_SIZE.h"
 # include "ctrl.h"
 # include "ctrl_dummy.h"
 #endif

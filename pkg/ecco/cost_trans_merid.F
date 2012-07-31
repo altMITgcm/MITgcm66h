@@ -29,7 +29,6 @@ c     == global variables ==
 #include "optim.h"
 #include "cost.h"
 #include "ecco_cost.h"
-#include "ctrl_dummy.h"
 
 c     == routine arguments ==
 

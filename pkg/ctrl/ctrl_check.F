@@ -21,7 +21,6 @@ C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-
 #include "ctrl.h"
 #ifdef ALLOW_EXF
 # include "EXF_PARAM.h"

@@ -45,6 +45,7 @@ C     == Global variables ==
 
 #ifdef ALLOW_AUTODIFF_TAMC
 # include "tamc.h"
+# include "CTRL_SIZE.h"
 # include "ctrl.h"
 # include "ctrl_dummy.h"
 # include "cost.h"
