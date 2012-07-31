@@ -41,8 +41,8 @@ C ********************************************************************
 C 
 #undef  ALLOW_NONDIMENSIONAL_CONTROL_IO
 C       >>> Initial values.
-#define ALLOW_THETA0_CONTROL
-#define ALLOW_SALT0_CONTROL
+#undef ALLOW_THETA0_CONTROL
+#undef ALLOW_SALT0_CONTROL
 #undef ALLOW_TR10_CONTROL
 #undef ALLOW_TAUU0_CONTROL
 #undef ALLOW_TAUV0_CONTROL
@@ -52,4 +52,8 @@ C       >>> Initial values.
 #undef ALLOW_SST0_CONTROL
 #define ALLOW_DIFFKR_CONTROL
 #undef ALLOW_KAPGM_CONTROL
-
+cph(
+#define ALLOW_BOTTOMDRAG_CONTROL
+#define ALLOW_GENARR2D_CONTROL
+#define ALLOW_GENARR3D_CONTROL
+cph)
