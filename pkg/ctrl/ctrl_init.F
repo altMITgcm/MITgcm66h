@@ -448,7 +448,7 @@ c--
 
 c----------------------------------------------------------------------
 c--
-#ifdef ALLOW_BOTTOMDRAG_CONTROL
+#ifdef ALLOW_BOTTOMDRAG_CONTROL_NONGENERIC
         call ctrl_init_ctrlvar (
      &       xx_bottomdrag_file, 23, 123, 1, 1, 1,
      &       snx, sny, 1, 'c', 'xy', mythid )

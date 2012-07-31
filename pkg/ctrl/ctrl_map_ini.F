@@ -375,7 +375,7 @@ cph     &                                  *fac*tmpfld3d(i,j,k,bi,bj)
       enddo
 #endif
 
-#ifdef ALLOW_BOTTOMDRAG_CONTROL
+#ifdef ALLOW_BOTTOMDRAG_CONTROL_NONGENERIC
 c--   bottom drag
       il=ilnblnk( xx_bottomdrag_file )
       write(fnamegeneric(1:80),'(2a,i10.10)')
