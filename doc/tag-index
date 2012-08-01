@@ -4,11 +4,16 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/thsice:
+  - re-anable balanceEmPmR when useSEAICE=T with useThSIce=T.
+  - option to correct ocean fresh-water flux for imbalance of Atmos+Land
+    fresh-water flux: uniform correction or proportional to local precip.
 o pkg/ctrl:
   - new header file CTRL_SIZE.h for parameters maxCtrlArr2D, maxCtrlArr3D
   - redefine CPP option ALLOW_BOTTOMDRAG_CONTROL to
                         ALLOW_BOTTOMDRAG_CONTROL_NONGENERIC
   - verification/hs94.1x64x5/ tests ALLOW_GENARR{2D,3D}_CONTROL
+
 checkpoint63q (2012/07/30)
 o pkg/autodiff:
   note about monitor and snap-shot of ad-variables:
