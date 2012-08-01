@@ -106,6 +106,7 @@ C         and this mask is used in thsice_advdiff and if coupled
 #endif /* ALLOW_AIM */
         ENDDO
       ENDDO
+      adjustFrW = 0. _d 0
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
