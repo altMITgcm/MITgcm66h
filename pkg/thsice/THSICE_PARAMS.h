@@ -170,12 +170,15 @@ C     startIceModel   :: =1 : start ice model at nIter0 ; =0 : use pickup files
 C                     :: -1 : start from a small pickup (without Mix.Layer)
 C     nitMaxTsf       :: maximum Nb of iter to find Surface Temp (Trsf)
 C     thSIceAdvScheme :: thSIce Advection scheme selector
+C     thSIceBalanceAtmFW :: select balancing Fresh-Water flux from Atm+Land
+C                        :: =0 : none ; =1 : uniform ; =2 : scaled by Precip
       COMMON / THSICE_PAR_I /
-     &  startIceModel, nitMaxTsf, thSIceAdvScheme
+     &  startIceModel, nitMaxTsf, thSIceAdvScheme, thSIceBalanceAtmFW
 
       INTEGER startIceModel
       INTEGER nitMaxTsf
       INTEGER thSIceAdvScheme
+      INTEGER thSIceBalanceAtmFW
 
 C--   COMMON / THSICE_PAR_R / ice model (real) parameters
 C     thSIce_deltaT   :: ice model time-step, seaice thicken/extend [s]
