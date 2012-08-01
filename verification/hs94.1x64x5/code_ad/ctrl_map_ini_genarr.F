@@ -22,7 +22,7 @@ C     !USES:
 
 c     == global variables ==
 #include "SIZE.h"
-#include "EEPARAMS.h"#include "
+#include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
 #include "DYNVARS.h"
@@ -172,4 +172,3 @@ c--
 
       return
       end
-
