@@ -49,7 +49,7 @@ c     == routine arguments ==
 
       _RL localobs   (1-olx:snx+olx,1-oly:sny+oly,nnzobs,nsx,nsy)
       _RL localweight(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
-      _RL localmask  (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+      _RS localmask  (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
       _RL xx_localbar_mean_dummy
       _RL xx_areabar_mean_dummy
       _RL mult_local

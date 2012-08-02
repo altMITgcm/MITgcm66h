@@ -44,7 +44,7 @@ c     == routine arguments ==
       character*(MAX_LEN_FNAM) xx_gen_file
       integer xx_genstartdate(4)
       _RL     xx_genperiod
-      _RL     genmask(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+      _RS     genmask(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
       _RL     genfld(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL     xx_gen0(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL     xx_gen1(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)

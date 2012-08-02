@@ -52,7 +52,7 @@ c     == routine arguments ==
       _RL areaSigma
 #endif
 
-      _RL localmask  (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+      _RS localmask  (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
       _RL xx_localbar_mean_dummy
       _RL mult_local
       _RL mytime

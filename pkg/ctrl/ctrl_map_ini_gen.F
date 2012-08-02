@@ -53,7 +53,7 @@ c     == routine arguments ==
       _RL wFld3d(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
       _RL xxFld3d(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
       _RL paramFld3d(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
-      _RL maskFld3d(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+      _RS maskFld3d(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
       integer paramSmooth
 
 c     == local variables ==
@@ -180,9 +180,10 @@ c avoid param out of [boundsVec(1) boundsVec(4)]
 #endif
 
 
-       end
+      RETURN
+      END
 
-
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
       subroutine ctrl_map_ini_gen2D(xxFileCur, wFileCur, xxDummyCur,
      & boundsVec, paramFld2d, maskFld3d, paramSmooth, mythid )
@@ -232,7 +233,7 @@ c     == routine arguments ==
       _RL wFld2d(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL xxFld2d(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL paramFld2d(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
-      _RL maskFld3d(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+      _RS maskFld3d(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
       integer paramSmooth
 
 c     == local variables ==
@@ -353,11 +354,5 @@ c scale param adjustment
      & 1, paramFld2d, 1, optimcycle, mythid)
 #endif
 
-
-       end
-
-
-
-
-
-
+      RETURN
+      END
