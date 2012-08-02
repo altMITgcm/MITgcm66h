@@ -35,9 +35,9 @@ C     !USES:
 #endif
 
 C     !INPUT PARAMETERS:
-      INTEGER myIter
-      _RL myTime
       INTEGER iwhen
+      _RL myTime
+      INTEGER myIter
       INTEGER myThid
 CEOP
 
@@ -182,13 +182,13 @@ cph     &             maskInS, maskInS, rAs, drF, dummyRL, myThid )
 
         ELSEIF ( iwhen .EQ.3 ) THEN
 
-          CALL MON_WRITESTATS_RL( 1, adfu, '_adfu',
+          CALL MON_WRITESTATS_RS( 1, adfu, '_adfu',
      &             maskInC, maskInC, rA , drF, dummyRL, myThid )
-          CALL MON_WRITESTATS_RL( 1, adfv, '_adfv',
+          CALL MON_WRITESTATS_RS( 1, adfv, '_adfv',
      &             maskInC, maskInC, rA , drF, dummyRL, myThid )
-          CALL MON_WRITESTATS_RL( 1, adqnet,   '_adqnet',
+          CALL MON_WRITESTATS_RS( 1, adqnet,   '_adqnet',
      &           maskInC, maskInC, rA , drF, dummyRL, myThid )
-          CALL MON_WRITESTATS_RL( 1, adempmr,   '_adempmr',
+          CALL MON_WRITESTATS_RS( 1, adempmr,   '_adempmr',
      &           maskInC, maskInC, rA , drF, dummyRL, myThid )
 
         ENDIF
