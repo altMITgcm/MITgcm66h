@@ -349,7 +349,7 @@ c     >>>>>>>>>>>>>>>>>>>             <<<<<<<<<<<<<<<<<<<
 c             Add active_var from appropriate location to data.
         do bj = 1,nsy
            do bi = 1,nsx
-              do k = 1,nr
+              do k = 1,mynr
                  do i = 1,snx
                     active_var(i,k,bi,bj) =
      &                   active_var(i,k,bi,bj) +
