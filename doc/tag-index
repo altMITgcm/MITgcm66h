@@ -13,6 +13,8 @@ o pkg/autodiff:
   - update and merge active_file_control_slice.flow into active_file_control.flow
   - update the calls in lower level S/R (active_file.F, active_file_g.F and
     active_file_ad.F) keeping the argument list and function unchanged.
+  - also update lower-level "_LOC" version (call same S/R with "useCurrentDir
+    =.TRUE.") and remove high-level (control) _loc version (not called anymore).
 o autodiff and RS=real*4:
   - call the right type (_RS instead of _RL) of S/R in few output S/R (pkg/exf
     ad-monitor and snapshots); disable arrType='RS' in mdsio_gl*.F ;
