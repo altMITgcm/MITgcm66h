@@ -15,6 +15,10 @@ o pkg/autodiff:
     active_file_ad.F) keeping the argument list and function unchanged.
   - also update lower-level "_LOC" version (call same S/R with "useCurrentDir
     =.TRUE.") and remove high-level (control) _loc version (not called anymore).
+  - new low-level active I/O routines, one for each type (RL/RS), for active var
+    of various (XY,XZ,YZ) shape and level number (arguments: arrShape, myNr);
+    fix ctrl_init_wet.F & ecco_cost_weights.F by calling the new S/R with the
+    right type.
 o autodiff and RS=real*4:
   - call the right type (_RS instead of _RL) of S/R in few output S/R (pkg/exf
     ad-monitor and snapshots); disable arrType='RS' in mdsio_gl*.F ;
