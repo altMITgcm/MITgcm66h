@@ -70,7 +70,8 @@ else
    #FFLAGS="$FFLAGS -debug all -debug-parameters all -fp-model strict"
     FOPTIM="-O0 -noalign -g -traceback $PROCF"
     NOOPTFLAGS=$FOPTIM
-    NOOPTFILES='adread_adwrite.F'
+    NOOPTFILES='adread_adwrite.F mdsio_rw_field.F mdsio_rw_slice.F'
+    NOOPTFILES="$NOOPTFILES mdsio_readvector.F mdsio_writevector.F"
     FOPTIM="$FOPTIM -warn all -warn nounused"
     FOPTIM="$FOPTIM -fpe0 -ftz -fp-stack-check -check all -ftrapuv"
   fi
