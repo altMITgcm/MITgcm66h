@@ -67,8 +67,6 @@ C     msgBuf       :: Informational/error message buffer
       _RL tileFlow(nSx,nSy)
       _RL tileAreaOB(nSx,nSy)
       _RL tileInFlow(nSx,nSy)
-      _RS zeroRS
-      PARAMETER( zeroRS = 0. )
       LOGICAL flag
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
