@@ -15,7 +15,7 @@ C    o  adACTIVE_WRITE_GEN_RS   - Adjoint of ACTIVE_WRITE_GEN_RS
 C
 C     Generic version for each array type (_RL or _RS).
 C     Note: the _RL version can replace the 4 x 2 shape-specific
-C           (_xy,_xyz,_xz,_yz) and standard or "_loc' routines.
+C           (_xy,_xyz,_xz,_yz) and standard or "_loc" routines.
 C     ==================================================================
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
