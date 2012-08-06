@@ -60,9 +60,7 @@ c     INTEGER nWv
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 
 C     !FUNCTIONS:
-      _RL oneRL
       _RL ampfact
-      PARAMETER( oneRL = 1. _d 0 )
       _RS lat
       ampfact(lat,i) = MIN( oneRL,
      &   ( COS( ABS(lat)*deg2rad )
