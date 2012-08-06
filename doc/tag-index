@@ -4,7 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
-o model/src: move balancing of relaxation terms to new S/R balance_relax.F.
+o eesupp/inc:
+  - in EEPARAMS.h, add real-type constant for some frequently used simple number
+     (0,1,2,1/2), with name explicitly referring to RS/RL type.
+o model/src:
+  - move balancing of relaxation terms to new S/R balance_relax.F.
 o pkg/autodiff:
   re-write active I/O high-level (control) S/R:
   - rename  S/R ACTIVE_READ/WRITE_RL to ACTIVE_READ/WRITE_3D_RL
