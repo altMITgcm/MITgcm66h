@@ -87,7 +87,7 @@ C Set defaults values for parameters in SHELFICE.h
       SHELFICEthetaSurface     = - 20.0 _d 0
       no_slip_shelfice         = no_slip_bottom
       SHELFICEDragLinear       = bottomDragLinear
-      SHELFICEDragQuadratic    = bottomDragQuadratic
+      SHELFICEDragQuadratic    = UNSET_RL
       SHELFICEwriteState       = .FALSE.
       SHELFICE_dumpFreq        = dumpFreq
       SHELFICE_taveFreq        = taveFreq
@@ -137,6 +137,15 @@ C Now set-up any remaining parameters that result from the input parameters
       IF ( SHELFICEsaltTransCoeff .EQ. UNSET_RL )
      &     SHELFICEsaltTransCoeff =
      &     5.05 _d -3 *SHELFICEheatTransCoeff
+
+C Set quadratic bottom drag depending on choices:
+      IF ( SHELFICEDragQuadratic .EQ. UNSET_RL) THEN
+       IF ( SHELFICEuseGammaFrict ) THEN
+       SHELFICEDragQuadratic = shiCdrag
+      ELSE
+       SHELFICEDragQuadratic = bottomDragQuadratic
+      ENDIF
+
 
 C-    Set Output type flags :
       SHELFICE_tave_mdsio = .TRUE.
