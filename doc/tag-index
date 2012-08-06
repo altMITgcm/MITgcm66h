@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/shelfice:
+  When initializing SHELFICEDragQuadratic, set default to be 
+  consistent with shiCdrag in case SHELFICEuseGammaFrict is used, 
+  but retain option to set it independently
+  (inconsistenty spotted by Veronique Dansereau)
 o eesupp/inc:
   - in EEPARAMS.h, add real-type constant for some frequently used simple number
      (0,1,2,1/2), with name explicitly referring to RS/RL type.
