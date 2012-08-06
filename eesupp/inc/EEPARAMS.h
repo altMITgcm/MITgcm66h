@@ -65,13 +65,20 @@ C               one dimensional.
 
 C     ========  EESIZE.h  ========================================
 
-
 C     Symbolic values
 C     precXXXX :: precision used for I/O
       INTEGER precFloat32
       PARAMETER ( precFloat32 = 32 )
       INTEGER precFloat64
       PARAMETER ( precFloat64 = 64 )
+
+C     Real-type constant for some frequently used simple number (0,1,2,1/2):
+      _RS     zeroRS, oneRS, twoRS, halfRS
+      PARAMETER ( zeroRS = 0.0 _d 0 , oneRS  = 1.0 _d 0 )
+      PARAMETER ( twoRS  = 2.0 _d 0 , halfRS = 0.5 _d 0 )
+      _RL     zeroRL, oneRL, twoRL, halfRL
+      PARAMETER ( zeroRL = 0.0 _d 0 , oneRL  = 1.0 _d 0 )
+      PARAMETER ( twoRL  = 2.0 _d 0 , halfRL = 0.5 _d 0 )
 
 C     UNSET_xxx :: Used to indicate variables that have not been given a value
       Real*8  UNSET_FLOAT8
