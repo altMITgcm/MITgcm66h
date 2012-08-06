@@ -46,7 +46,7 @@ C o Include/exclude balancing surface forcing fluxes code
 #define ALLOW_BALANCE_FLUXES
 
 C o Include/exclude balancing surface forcing relaxation code
-#undef ALLOW_BALANCE_RELAX
+#define ALLOW_BALANCE_RELAX
 
 C o Include/exclude GM-like eddy stress in momentum code
 #undef ALLOW_EDDYPSI
