@@ -141,9 +141,10 @@ C Now set-up any remaining parameters that result from the input parameters
 C Set quadratic bottom drag depending on choices:
       IF ( SHELFICEDragQuadratic .EQ. UNSET_RL) THEN
        IF ( SHELFICEuseGammaFrict ) THEN
-       SHELFICEDragQuadratic = shiCdrag
-      ELSE
-       SHELFICEDragQuadratic = bottomDragQuadratic
+        SHELFICEDragQuadratic = shiCdrag
+       ELSE
+        SHELFICEDragQuadratic = bottomDragQuadratic
+       ENDIF
       ENDIF
 
 
