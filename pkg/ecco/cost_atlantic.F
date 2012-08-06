@@ -40,7 +40,9 @@ c     == global variables ==
 #include "optim.h"
 #include "cost.h"
 #include "ecco_cost.h"
-#include "ctrl_dummy.h"
+c#include "CTRL_SIZE.h"
+c#include "ctrl.h"
+c#include "ctrl_dummy.h"
 
 #endif
 
