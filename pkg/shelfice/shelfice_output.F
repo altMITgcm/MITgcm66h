@@ -45,8 +45,6 @@ C     == Local variables ==
 #ifdef ALLOW_TIMEAVE
       INTEGER i, j, bi, bj
       LOGICAL dumpFiles
-      _RL zeroRL
-      PARAMETER( zeroRL = 0. _d 0 )
 #endif
 #ifdef ALLOW_MNC
       CHARACTER*(1) pf

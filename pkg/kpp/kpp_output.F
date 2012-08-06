@@ -88,8 +88,6 @@ C     local variable:
 #endif
 #ifdef ALLOW_TIMEAVE
       _RL DDTT
-      _RL zeroRL
-      PARAMETER( zeroRL = 0. _d 0 )
       LOGICAL dumpFiles
 #endif
 #ifdef ALLOW_DIAGNOSTICS

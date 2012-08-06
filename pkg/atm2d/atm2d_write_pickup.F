@@ -50,8 +50,6 @@ C                       be written.
 C     tempCheckPoint :: Flag indicating if it is time to write a non-permanent
 C                       checkpoint (that will be permanent if permCheckPoint=T)
       LOGICAL permCheckPoint, tempCheckPoint
-      _RL zeroRL
-      PARAMETER( zeroRL = 0. _d 0 )
 CEOP
 
       permCheckPoint = .FALSE.

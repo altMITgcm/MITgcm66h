@@ -52,8 +52,6 @@ C     useVariableK :: T when vertical diffusion is not constant
       INTEGER endIOErrCount
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       LOGICAL dumpFiles
-      _RL zeroRL
-      PARAMETER( zeroRL = 0. _d 0 )
 #ifdef ALLOW_MNC
       CHARACTER*(1) pf
 #endif

@@ -45,8 +45,6 @@ C     !FUNCTIONS:
 C     !LOCAL VARIABLES:
       LOGICAL dumpFiles
       _RL DDTT
-      _RL zeroRL
-      PARAMETER( zeroRL = 0. _d 0 )
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 

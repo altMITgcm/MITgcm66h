@@ -54,8 +54,6 @@ C     i, j      :: loop indices
       _RL sumPrc, sumTilePrc(nSx,nSy)
       _RL sumFrW, sumTileFrW(nSx,nSy)
       _RL tmpFac, tmpVar
-      _RL zeroRL
-      PARAMETER( zeroRL = 0. _d 0 )
 
 C--   Calculate and global-mean precip (+RunOff)
 C     and global-mean imbalance of net Atmos Fresh-Water flux
