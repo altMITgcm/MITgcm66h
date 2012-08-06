@@ -96,10 +96,6 @@ C     i,j,k         :: Loop counters
       _RL  tmp_WbarZ
       _RL  uTrans, vTrans, rTrans
       _RL  viscLoc
-      _RL  halfRL
-      _RS  halfRS, zeroRS
-      PARAMETER( halfRL = 0.5 _d 0 )
-      PARAMETER( halfRS = 0.5 , zeroRS = 0. )
       PARAMETER( iMin = 1 , iMax = sNx )
       PARAMETER( jMin = 1 , jMax = sNy )
 CEOP
