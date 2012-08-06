@@ -27,7 +27,6 @@ c     == global variables ==
 
 #include "cal.h"
 #include "ctrl.h"
-#include "ctrl_dummy.h"
 #include "ecco_cost.h"
 
 c     == routine arguments ==

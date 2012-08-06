@@ -46,7 +46,6 @@ c     == global variables ==
 
 #include "ecco_cost.h"
 #include "ctrl.h"
-#include "ctrl_dummy.h"
 #include "optim.h"
 
 c     == routine arguments ==

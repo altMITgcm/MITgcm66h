@@ -44,6 +44,7 @@ c# include "OBCS_PARAMS.h"
 
 #include "cal.h"
 #include "ecco_cost.h"
+#include "CTRL_SIZE.h"
 #include "ctrl.h"
 #include "ctrl_dummy.h"
 #include "optim.h"
