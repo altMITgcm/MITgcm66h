@@ -1352,7 +1352,7 @@ CADJ &                       key = iicekey, byte = isbyte
      &               d_HEFFbyATMonOCN(I,J) + d_HEFFbyFLOODING(I,J)
      &             + d_HEFFbySublim(I,J)
 #ifdef EXF_ALLOW_SEAICE_RELAX
-                   + d_HEFFbyRLX(I,J)
+     &             + d_HEFFbyRLX(I,J)
 #endif
           tmpscal2 = tmpscal1 * SEAICE_salt0 * HEFFM(I,J,bi,bj)
      &            * recip_deltaTtherm * SEAICE_rhoIce
