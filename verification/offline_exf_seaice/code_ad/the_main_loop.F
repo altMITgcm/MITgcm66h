@@ -111,6 +111,7 @@ c They provide the fields to be stored.
 #  include "tamc.h"
 # endif /* undef ALLOW_AUTODIFF_OPENAD */
 
+# include "CTRL_SIZE.h"
 # include "ctrl.h"
 # include "ctrl_dummy.h"
 # include "cost.h"
