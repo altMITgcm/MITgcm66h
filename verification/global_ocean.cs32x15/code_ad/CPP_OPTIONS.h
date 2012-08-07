@@ -41,6 +41,12 @@ C   this allows to read & do simple linear time interpolation of oceanic
 C   forcing fields, if no specific pkg (e.g., EXF) is used to compute them.
 #undef EXCLUDE_FFIELDS_LOAD
 
+C o Include/exclude balancing surface forcing fluxes code
+#define ALLOW_BALANCE_FLUXES
+
+C o Include/exclude balancing surface forcing relaxation code
+#define ALLOW_BALANCE_RELAX
+
 C o Use "Exact Convervation" of fluid in Free-Surface formulation
 C   so that d/dt(eta) is exactly equal to - Div.Transport
 #define EXACT_CONSERV
