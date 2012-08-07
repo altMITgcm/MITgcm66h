@@ -27,12 +27,16 @@ C     turnFreeDriftInAdMode :: switch SEAICE to Free-Drift in adjoint mode (def=
       LOGICAL useSEAICEinAdMode, useSEAICEinFwdMode
       LOGICAL turnFreeDriftInAdMode
 
+C-    Logical for ad dump format (if true then write all records 
+C       to one file per variable; else write one file per record)
+      LOGICAL dumpAdByRec
+
       COMMON /AUTODIFF_PARM_L/
      &       inAdMode, inAdTrue, inAdFalse, inAdExact,
      &       useKPPinAdMode,    useKPPinFwdMode,
      &       useGMRediInAdMode, useGMRediInFwdMode,
      &       useSEAICEinAdMode, useSEAICEinFwdMode,
-     &       turnFreeDriftInAdMode
+     &       turnFreeDriftInAdMode, dumpAdByRec
 
 C--   COMMON /AUTODIFF_PARM_I/ Integer valued parameters used by the pkg.
 C     dumpAdVarExch :: control ad-variables exchange before dumping output

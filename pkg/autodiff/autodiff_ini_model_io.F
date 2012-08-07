@@ -45,6 +45,11 @@ C     !LOCAL VARIABLES:
       INTEGER iL, pIL, myLev
 CEOP
 
+c     initialize ad dump record number (used only if dumpAdByRec is true)
+      dumpAdRecMn=0
+      dumpAdRecDy=0
+      dumpAdRecSi=0
+
       IF ( adTapeDir .NE. ' ' ) THEN
        iL = ILNBLNK( adTapeDir )
 C      append "/", if necessay

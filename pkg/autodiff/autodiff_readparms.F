@@ -34,6 +34,7 @@ C     iUnit      :: Work variable for IO unit number
 
       NAMELIST /AUTODIFF_PARM01/
      &       dumpAdVarExch, mon_AdVarExch,
+     &       dumpAdByRec, 
      &       useKPPinAdMode,
      &       useGMRediInAdMode,
      &       useSEAICEinAdMode, turnFreeDriftInAdMode,
@@ -47,6 +48,8 @@ C--   Default values for AUTODIFF
 C-    to recover old ad-monitor & ad-dump behaviour:
 c     dumpAdVarExch      = 1
 c     mon_AdVarExch      = 0
+C--   default : write one file per record 
+      dumpAdByRec        = .FALSE.
       useKPPinAdMode     = .TRUE.
       useGMRediInAdMode  = .TRUE.
       useSEAICEinAdMode  = .TRUE.
