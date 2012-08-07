@@ -31,6 +31,7 @@ C     === Global variables ===
 #include "FFIELDS.h"
 #include "SHELFICE.h"
 #ifdef ALLOW_AUTODIFF
+# include "CTRL_SIZE.h"
 # include "ctrl.h"
 # include "ctrl_dummy.h"
 #endif /* ALLOW_AUTODIFF */
