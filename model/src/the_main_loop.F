@@ -268,7 +268,7 @@ c$openad INDEPENDENT(xx_tauv0)
 # ifdef ALLOW_DIFFKR_CONTROL
 c$openad INDEPENDENT(xx_diffkr)
 # endif
-# ifdef ALLOW_ KAPGM_CONTROL
+# ifdef ALLOW_KAPGM_CONTROL
 c$openad INDEPENDENT(xx_kapgm)
 # endif
 #endif
