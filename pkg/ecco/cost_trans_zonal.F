@@ -26,8 +26,12 @@ c     == global variables ==
 #include "GRID.h"
 #include "DYNVARS.h"
 
-#include "optim.h"
-#include "cost.h"
+#ifdef ALLOW_CTRL
+# include "optim.h"
+#endif
+c#ifdef ALLOW_COST
+c# include "cost.h"
+c#endif
 #include "ecco_cost.h"
 
 c     == routine arguments ==

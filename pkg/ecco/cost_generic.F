@@ -35,12 +35,12 @@ c     == global variables ==
 #ifdef ALLOW_CAL
 # include "cal.h"
 #endif
-#ifdef ALLOW_COST
+#ifdef ALLOW_CTRL
 # include "ecco_cost.h"
 # include "optim.h"
-# ifdef ALLOW_SEAICE
-#  include "SEAICE_COST.h"
-# endif
+#endif
+#ifdef ALLOW_SEAICE
+# include "SEAICE_COST.h"
 #endif
 
 c     == routine arguments ==
@@ -68,7 +68,6 @@ c     == routine arguments ==
       character*(MAX_LEN_FNAM) localbarfile
       character*(MAX_LEN_FNAM) localobsfile
 
-#ifdef ALLOW_COST
 c     == local variables ==
 
       integer bi,bj
@@ -304,7 +303,5 @@ c--   End of second loop over records.
 
 c--   End of mult_local or localobsfile
       endif
-
-#endif /* ifdef ALLOW_COST */
 
       end

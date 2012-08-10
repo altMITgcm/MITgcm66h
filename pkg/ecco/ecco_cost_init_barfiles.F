@@ -27,11 +27,13 @@ c     == global variables ==
 #include "SIZE.h"
 #include "PARAMS.h"
 
-#include "optim.h"
 #include "ecco_cost.h"
-#include "CTRL_SIZE.h"
-#include "ctrl.h"
-#include "ctrl_dummy.h"
+#ifdef ALLOW_CTRL
+# include "optim.h"
+# include "CTRL_SIZE.h"
+# include "ctrl.h"
+# include "ctrl_dummy.h"
+#endif
 #ifdef ALLOW_SEAICE
 # include "SEAICE_COST.h"
 #endif
@@ -40,7 +42,6 @@ c     == routine arguments ==
 
       integer mythid
 
-#ifdef ALLOW_COST
 c     == local variables ==
 
       integer bi,bj
@@ -425,8 +426,6 @@ c--   Save gencost_barfile on file.
       enddo
 
 #endif 
-
-#endif /* ALLOW_COST */
 
       return
       end

@@ -4,6 +4,16 @@ c
 c     store directives for checkpoint level 3
 c
 
+#ifdef ALLOW_ECCO_EVOLUTION
+#ifdef ALLOW_COST_ATLANTIC
+CADJ STORE theta = tapelev3, key=ilev_3
+CADJ STORE vVel  = tapelev3, key=ilev_3
+# ifdef NONLIN_FRSURF
+CADJ STORE hFacS  = tapelev3, key=ilev_3
+# endif
+#endif
+#endif /* ALLOW_ECCO_EVOLUTION */
+
 #ifdef ALLOW_ECCO_BARSTORES
 
 #ifdef ALLOW_ECCO
@@ -50,5 +60,5 @@ CADJ STORE xx_smrsstbar_mean_dummy  = dummytape, key=1, kind=isbyte
 CADJ STORE xx_smrsssbar_mean_dummy  = dummytape, key=1, kind=isbyte
 #endif /* ALLOW_SEAICE */
 
-#endif /* ALLOW_ECCO_EVOLUTION */
+#endif /* ALLOW_ECCO_BARSTORES */
 

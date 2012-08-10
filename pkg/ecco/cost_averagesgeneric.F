@@ -27,11 +27,11 @@ c     == global variables ==
 #include "SIZE.h"
 #include "PARAMS.h"
 
-#ifdef ALLOW_COST
+#include "ecco_cost.h"
+#ifdef ALLOW_CTRL
 # include "optim.h"
-# include "ecco_cost.h"
-#include "CTRL_SIZE.h"
-#include "ctrl.h"
+# include "CTRL_SIZE.h"
+# include "ctrl.h"
 # include "ctrl_dummy.h"
 #endif
 

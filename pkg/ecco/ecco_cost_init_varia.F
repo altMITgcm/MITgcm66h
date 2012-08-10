@@ -31,6 +31,9 @@ c     == global variables ==
 #include "GRID.h"
 
 #include "ecco_cost.h"
+#ifdef ALLOW_COST
+# include "cost.h"
+#endif
 
 c     == routine arguments ==
 
@@ -131,6 +134,9 @@ c--   Initialize the tiled cost function contributions.
           objf_obcsw(bi,bj)    = 0. _d 0
           objf_obcse(bi,bj)    = 0. _d 0
           objf_curmtr(bi,bj)   = 0. _d 0
+#if ( defined (ALLOW_COST) && defined (ALLOW_COST_ATLANTIC) )
+          objf_atl(bi,bj)      = 0. _d 0
+#endif
           objf_ageos(bi,bj)    = 0. _d 0
           objf_diffkr(bi,bj)   = 0. _d 0
           objf_kapgm(bi,bj)    = 0. _d 0

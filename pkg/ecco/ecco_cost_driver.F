@@ -41,16 +41,6 @@ c     == routine arguments ==
 # endif
 #endif
 
-#ifdef ALLOW_COST_ATLANTIC
-c--   Compute meridional heat transport
-#ifdef ALLOW_DEBUG
-      IF (debugMode) CALL DEBUG_CALL('cost_atlantic',myThid)
-#endif
-      call timer_start('cost_atlantic      [ECCO SPIN-DOWN]', mythid)
-      call cost_atlantic(  mytime, myiter,mythid )
-      call timer_stop ('cost_atlantic      [ECCO SPIN-DOWN]', mythid)
-#endif
-
 c--   Compute the cost function contribution of the boundary forcing,
 c--   i.e. heat flux, salt flux, zonal and meridional wind stress.
 #ifdef ALLOW_DEBUG
