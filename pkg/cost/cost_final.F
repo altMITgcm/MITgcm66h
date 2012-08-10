@@ -144,6 +144,9 @@ c--   Sum up all contributions.
 c--   Do global summation.
       _GLOBAL_SUM_RL( fc , myThid )
 
+c--   Add contributions from global mean constraints
+      fc = fc +glofc 
+
 #ifdef ALLOW_DIC_COST
 cph-- quickly for testing
       fc = totcost

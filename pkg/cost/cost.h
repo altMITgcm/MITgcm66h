@@ -31,12 +31,14 @@ c     The cost function, its contributions, and multipliers:
 c     ======================================================
 c
 c     fc         - Final cost function.
+c     glofc      - contributions from global mean constraints
 c     mult_"var" - multipliers for the individual cost
 c                  function contributions.
 
       common /cost_r/
-     &                fc
+     &                fc, glofc
       _RL  fc
+      _RL  glofc
 
       common /cost_objf/
      &                objf_atl,

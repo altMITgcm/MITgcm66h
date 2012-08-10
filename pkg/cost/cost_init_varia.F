@@ -110,6 +110,7 @@ cph because we need it in ADM*TLM
 c--   Initialise the "global" parts of the cost function.
       _BEGIN_MASTER( mythid )
         fc         = 0. _d 0
+        glofc      = 0. _d 0
       _END_MASTER( mythid )
 
       _BARRIER
