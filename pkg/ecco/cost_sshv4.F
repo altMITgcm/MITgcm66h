@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "COST_CPPOPTIONS.h"
+#include "ECCO_OPTIONS.h"
 
 
       subroutine cost_sshv4(
@@ -917,7 +917,7 @@ cgf =======================================================
       write(fname4test(1:80),'(1a)') 'slaobs_gfo_raw'
       call mdswritefield(fname4test,32,.false.,'RL',
      & 1,anom_gfoobs,irec,1,mythid)
-#endif 
+#endif
 
        do bj = jtlo,jthi
         do bi = itlo,ithi

@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "COST_CPPOPTIONS.h"
+#include "ECCO_OPTIONS.h"
 
 
       subroutine cost_sla_read_yd( sla_file, sla_startdate,
@@ -96,9 +96,9 @@ c     == end of interface ==
       factor = 0.01
       spval = -9990.
 
-      if ( (day.GE.1).AND.( ( 
+      if ( (day.GE.1).AND.( (
      & (cal_IsLeap(year,mythid).eq.2).AND.(day.LE.366)
-     & ).OR.(day.LE.365) ) ) then 
+     & ).OR.(day.LE.365) ) ) then
 
       il=ilnblnk(sla_file)
 

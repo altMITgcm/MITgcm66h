@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "COST_CPPOPTIONS.h"
+#include "ECCO_OPTIONS.h"
 
       subroutine cost_gencost_assignperiod(
      I                    startofday, startofmonth, startofyear,
@@ -85,7 +85,7 @@ c     == end of interface ==
        end if
 #endif
       end do
-      
+
 #endif /* ALLOW_GENCOST_CONTRIBUTION */
 
       end

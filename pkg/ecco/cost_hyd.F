@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "COST_CPPOPTIONS.h"
+#include "ECCO_OPTIONS.h"
 
 
       subroutine cost_hyd( myiter, mytime, mythid )
@@ -242,7 +242,7 @@ cph      call cost_sss   ( myiter, mytime, mythid )
 #ifdef ALLOW_SEAICE_COST_SMR_AREA
 # ifdef ALLOW_SEAICE_COST_AREASST
 cph this block out of date;
-cph similar call moved to seaice_cost_driver and 
+cph similar call moved to seaice_cost_driver and
 cph and extended using I. Fenty SST, SSS extensions
 
       write(msgbuf,'(a)') 'ph-cost call seaice_cost_areasst'
@@ -265,7 +265,7 @@ cph and extended using I. Fenty SST, SSS extensions
      &     myiter, mytime, mythid )
 
       write(msgbuf,'(a,1P2E18.10)')
-     & 'ph-cost seaice_cost_areasst ', 
+     & 'ph-cost seaice_cost_areasst ',
      & objf_smrarea(1,1), num_smrarea(1,1)
       call print_message( msgbuf, standardmessageunit,
      &     SQUEEZE_RIGHT , mythid)

@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "COST_CPPOPTIONS.h"
+#include "ECCO_OPTIONS.h"
 
 
       subroutine cost_tau_eddy(
@@ -237,7 +237,7 @@ c
              locfc = locfc + maskW(i,j,k,bi,bj)*
      &               ( tau2_temp - tau2_max )
            endif
-           tau2_temp = ( rhonil*eddyPsiY(i,j,k,bi,bj) 
+           tau2_temp = ( rhonil*eddyPsiY(i,j,k,bi,bj)
      &  *0.5*(_fCori(i,j,bi,bj)+_fCori(i,j-1,bi,bj)) )**2
            if ( tau2_temp .gt. tau2_max) then
              locfc = locfc + maskS(i,j,k,bi,bj)*

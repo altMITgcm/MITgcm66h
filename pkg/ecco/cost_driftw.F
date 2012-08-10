@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "COST_CPPOPTIONS.h"
+#include "ECCO_OPTIONS.h"
 
 
       subroutine cost_driftw(
@@ -149,7 +149,7 @@ c--     Read time averages and the monthly mean data.
       enddo
 
       do irec = nmonsrec-minrec+1, nmonsrec
- 
+
 c--     Read time averages and the monthly mean data.
         call active_read_xyz( fnamew, wbar, irec,
      &                        doglobalread, ladinit,

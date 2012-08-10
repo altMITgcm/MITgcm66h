@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "COST_CPPOPTIONS.h"
+#include "ECCO_OPTIONS.h"
 
 
       subroutine cost_scat(
@@ -134,9 +134,9 @@ c rotated to EW/NS tracer point
             do j = jmin,jmax
               do i = imin,imax
                 uBarC = 0.5 _d 0
-     &           *(tauxbar(i,j,bi,bj)+tauxbar(i+1,j,bi,bj))             
+     &           *(tauxbar(i,j,bi,bj)+tauxbar(i+1,j,bi,bj))
                 vBarC = 0.5 _d 0
-     &           *(tauybar(i,j,bi,bj)+tauybar(i,j+1,bi,bj))                     
+     &           *(tauybar(i,j,bi,bj)+tauybar(i,j+1,bi,bj))
                 tmpU(i,j,bi,bj) = angleCosC(i,j,bi,bj)*uBarC
      &                           -angleSinC(i,j,bi,bj)*vBarC
                 tmpV(i,j,bi,bj) = angleSinC(i,j,bi,bj)*uBarC

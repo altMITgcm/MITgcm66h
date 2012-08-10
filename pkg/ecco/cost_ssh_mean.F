@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "COST_CPPOPTIONS.h"
+#include "ECCO_OPTIONS.h"
 #define ORIGINAL_COST_SSH_MEAN
 
       subroutine cost_ssh_mean(
