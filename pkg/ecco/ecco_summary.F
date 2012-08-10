@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "ECCO_OPTIONS.h"
 #include "AD_CONFIG.h"
 
       subroutine ecco_Summary(

@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "ECCO_OPTIONS.h"
 
       SUBROUTINE ECCO_CHECK( myThid )
 C     /==========================================================\
