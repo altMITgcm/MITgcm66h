@@ -1,7 +1,11 @@
 C $Header$
 C $Name$
 
-#include "CTRL_CPPOPTIONS.h"
+#include "PACKAGES_CONFIG.h"
+#include "CPP_OPTIONS.h"
+#ifdef ALLOW_CTRL
+# include "CTRL_OPTIONS.h"
+#endif
 
       subroutine admtlm_dsvd2model(
      &     first, postprocev, mythid )
