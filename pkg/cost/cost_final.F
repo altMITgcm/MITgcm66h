@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "COST_CPPOPTIONS.h"
+#include "COST_OPTIONS.h"
 
       subroutine cost_final( mythid )
 
@@ -67,7 +67,7 @@ c     == end of interface ==
 
 #ifdef ALLOW_COST_STATE_FINAL
       CALL COST_STATE_FINAL (myThid)
-cgf : effectively using this in adjoint requires the 
+cgf : effectively using this in adjoint requires the
 c     use of adjoint_state_final. That will activate the
 c     objf_state_final vector in place of the fc scalar.
 c     objf_state_final is therefore not added to fc.

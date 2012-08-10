@@ -3,7 +3,7 @@ C $Name$
 
 #include "SEAICE_OPTIONS.h"
 #ifdef ALLOW_COST
-#include "COST_CPPOPTIONS.h"
+#include "COST_OPTIONS.h"
 #endif
 
       subroutine seaice_cost_areasst(

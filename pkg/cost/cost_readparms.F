@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "COST_CPPOPTIONS.h"
+#include "COST_OPTIONS.h"
 
       subroutine cost_readparms( mythid )
 
