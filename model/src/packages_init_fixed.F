@@ -364,7 +364,7 @@ C--   Initialise & Read Land package parameters
       ENDIF
 #endif
 
-#if (defined (ALLOW_SEAICE) && defined (ALLOW_COST))
+#ifdef ALLOW_SEAICE
 C--   Initialise ecco-specific cost function.
 C--   This needs to preceed the call ctrl_init
 C--   in order to provide the weight files
@@ -383,7 +383,7 @@ C--   in order to provide the weight files
       CALL SMOOTH_INIT_FIXED(myThid)
 #endif /* ALLOW_SMOOTH */
 
-#if (defined (ALLOW_ECCO) && defined (ALLOW_COST))
+#ifdef ALLOW_ECCO
 C--   Initialise ecco-specific cost function.
 C--   This needs to preceed the call ctrl_init
 C--   in order to provide the weight files

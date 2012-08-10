@@ -80,10 +80,14 @@ C     == Global variables ==
 # include "SURFACE.h"
 
 # include "tamc.h"
-#include "CTRL_SIZE.h"
-# include "ctrl.h"
-# include "ctrl_dummy.h"
-# include "cost.h"
+# ifdef ALLOW_CTRL
+#  include "CTRL_SIZE.h"
+#  include "ctrl.h"
+#  include "ctrl_dummy.h"
+# endif
+# ifdef ALLOW_COST
+#  include "cost.h"
+# endif
 # ifdef ALLOW_ECCO
 #  include "ecco_cost.h"
 # endif
