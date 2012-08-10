@@ -102,6 +102,7 @@ c--     Next, read the cost data file.
 #if (defined ALLOW_COST_HFLUXM) || (defined ALLOW_COST_TEMP)
 c-- get the weights for the cost functions
       CALL COST_WEIGHTS( myThid )
+cgf : to compile previous line user is expected to provide cost_weights.F
 #endif
       _END_MASTER( mythid )
 

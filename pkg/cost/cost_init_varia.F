@@ -53,7 +53,9 @@ c     == end of interface ==
 c--   Initialize the tiled cost function contributions.
       do bj = jtlo,jthi
         do bi = itlo,ithi
+#if ( !defined (ALLOW_ECCO) || !defined (ALLOW_COST_ATLANTIC) )
           objf_atl(bi,bj)  = 0. _d 0
+#endif
           objf_test(bi,bj) = 0. _d 0
           objf_tracer(bi,bj) = 0. _d 0
 #ifdef ALLOW_COST_TRANSPORT
