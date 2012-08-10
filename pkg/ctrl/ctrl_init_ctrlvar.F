@@ -1,10 +1,10 @@
 C $Header$
 C $Name$
 
-#include "CTRL_CPPOPTIONS.h"
+#include "CTRL_OPTIONS.h"
 #include "AD_CONFIG.h"
 
-      subroutine ctrl_init_ctrlvar( 
+      subroutine ctrl_init_ctrlvar(
      &       xx_fname
      &     , ivarindex
      &     , ncvarindex_loc

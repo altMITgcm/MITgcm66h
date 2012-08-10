@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CTRL_CPPOPTIONS.h"
+#include "CTRL_OPTIONS.h"
 #ifdef ALLOW_ECCO_EVOLUTION
 #ifdef ALLOW_EXF
 # include "EXF_OPTIONS.h"

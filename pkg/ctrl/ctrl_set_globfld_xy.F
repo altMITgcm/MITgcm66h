@@ -2,9 +2,9 @@ C
 C $Header$
 C $Name$
 
-#include "CTRL_CPPOPTIONS.h"
+#include "CTRL_OPTIONS.h"
 
-      subroutine ctrl_set_globfld_xy( 
+      subroutine ctrl_set_globfld_xy(
      I     fname, ivartype, mythid )
 
 c     ==================================================================

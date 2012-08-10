@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CTRL_CPPOPTIONS.h"
+#include "CTRL_OPTIONS.h"
 
 CBOP
 C     !ROUTINE: ctrl_depth_ini
@@ -10,9 +10,9 @@ C     !INTERFACE:
 
 C     !DESCRIPTION: \bv
 c     *=================================================================
-c     | SUBROUTINE ctrl_depth_ini 
+c     | SUBROUTINE ctrl_depth_ini
 c     | Add the depth part of the control vector to the model state
-c     | and update the tile halos. 
+c     | and update the tile halos.
 c     | The control vector is defined in the header file "ctrl.h".
 c     *=================================================================
 C     \ev
@@ -81,9 +81,9 @@ CEOP
         fac = 0. _d 0
       endif
 
-      write(standardmessageunit,'(21x,a)') 
+      write(standardmessageunit,'(21x,a)')
      &     'ctrl_depth_ini: ctrl update R_low,'
-      write(standardmessageunit,'(21x,a)') 
+      write(standardmessageunit,'(21x,a)')
      &     '                adding the control vector.'
 
 C     Re-initialize hFacC, so that TAMC/TAF can see it
@@ -99,12 +99,12 @@ C     this will be no longer necessary
        enddo
       enddo
 
-C--   
+C--
       do bj = jtlo,jthi
         do bi = itlo,ithi
           do j = jmin,jmax
             do i = imin,imax
-              xx_r_low(i,j,bi,bj) = 0. _d 0 
+              xx_r_low(i,j,bi,bj) = 0. _d 0
             enddo
           enddo
         enddo
@@ -120,7 +120,7 @@ C--
        do bi = itlo,ithi
         do j = jmin,jmax
          do i = imin,imax
-          xx_r_low(i,j,bi,bj) = r_low(i,j,bi,bj) 
+          xx_r_low(i,j,bi,bj) = r_low(i,j,bi,bj)
      &                        + fac*tmpfld2d(i,j,bi,bj)
          enddo
         enddo

@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CTRL_CPPOPTIONS.h"
+#include "CTRL_OPTIONS.h"
 
       subroutine ctrl_init_variables( mythid )
 

@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CTRL_CPPOPTIONS.h"
+#include "CTRL_OPTIONS.h"
 
       subroutine ctrl_mask_set_xz(
      &     jp1, OB_J, nwetobcs, ymaskobcs, mythid )

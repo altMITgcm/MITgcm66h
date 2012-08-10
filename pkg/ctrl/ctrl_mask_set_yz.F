@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CTRL_CPPOPTIONS.h"
+#include "CTRL_OPTIONS.h"
 
       subroutine ctrl_mask_set_yz(
      &     ip1, OB_I, nwetobcs, ymaskobcs, mythid )

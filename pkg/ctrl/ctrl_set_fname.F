@@ -2,7 +2,7 @@ C
 C $Header$
 C $Name$
 
-#include "CTRL_CPPOPTIONS.h"
+#include "CTRL_OPTIONS.h"
 
       subroutine ctrl_set_fname( xx_fname, fname, mythid )
 

@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CTRL_CPPOPTIONS.h"
+#include "CTRL_OPTIONS.h"
 
       subroutine ctrl_set_pack_yz(
      &     cunit, ivartype, fname, masktype, weighttype,

@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CTRL_CPPOPTIONS.h"
+#include "CTRL_OPTIONS.h"
 
 CBOP
 C     !ROUTINE: ctrl_map_ini
@@ -97,7 +97,7 @@ c--   tauu0.
           do j = jmin,jmax
             do i = imin,imax
 # ifdef ALLOW_AUTODIFF_OPENAD
-              fu(i,j,bi,bj) = fu(i,j,bi,bj) + 
+              fu(i,j,bi,bj) = fu(i,j,bi,bj) +
      &                        xx_tauu0(i,j,bi,bj) +
      &                        tmpfld2d(i,j,bi,bj)
 #else
@@ -122,7 +122,7 @@ c--   tauv0.
           do j = jmin,jmax
             do i = imin,imax
 # ifdef ALLOW_AUTODIFF_OPENAD
-              fv(i,j,bi,bj) = fv(i,j,bi,bj) + 
+              fv(i,j,bi,bj) = fv(i,j,bi,bj) +
      &                        xx_tauv0(i,j,bi,bj) +
      &                        tmpfld2d(i,j,bi,bj)
 #else
@@ -148,7 +148,7 @@ c--   sflux0.
             do i = imin,imax
 # ifdef ALLOW_AUTODIFF_OPENAD
               empmr(i,j,bi,bj) = empmr(i,j,bi,bj) +
-     &                           xx_sflux0(i,j,bi,bj) + 
+     &                           xx_sflux0(i,j,bi,bj) +
      &                           tmpfld2d(i,j,bi,bj)
 #else
               empmr(i,j,bi,bj) = empmr(i,j,bi,bj) + tmpfld2d(i,j,bi,bj)
@@ -172,8 +172,8 @@ c--   hflux0.
           do j = jmin,jmax
             do i = imin,imax
 # ifdef ALLOW_AUTODIFF_OPENAD
-              qnet(i,j,bi,bj) = qnet(i,j,bi,bj) + 
-     &                          xx_hflux0(i,j,bi,bj) + 
+              qnet(i,j,bi,bj) = qnet(i,j,bi,bj) +
+     &                          xx_hflux0(i,j,bi,bj) +
      &                          tmpfld2d(i,j,bi,bj)
 #else
               qnet(i,j,bi,bj) = qnet(i,j,bi,bj) + tmpfld2d(i,j,bi,bj)

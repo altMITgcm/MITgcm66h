@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CTRL_CPPOPTIONS.h"
+#include "CTRL_OPTIONS.h"
 
       subroutine ctrl_set_unpack_yz(
      &     cunit, ivartype, fname, masktype, weighttype,
@@ -232,7 +232,7 @@ c     And now back-calculate what iobcs should be.
                        globfld3d(ii,bi,ip,jj,bj,jp,kk) =
      &                      cbuff(cbuffindex)
 cph(
-                       globfldtmp2(bi,ip,jj,bj,jp) = 
+                       globfldtmp2(bi,ip,jj,bj,jp) =
      &                      cbuff(cbuffindex)
 cph)
 #ifdef ALLOW_NONDIMENSIONAL_CONTROL_IO

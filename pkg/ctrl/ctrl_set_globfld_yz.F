@@ -2,9 +2,9 @@ C
 C $Header$
 C $Name$
 
-#include "CTRL_CPPOPTIONS.h"
+#include "CTRL_OPTIONS.h"
 
-      subroutine ctrl_set_globfld_yz( 
+      subroutine ctrl_set_globfld_yz(
      I     fname, ivartype, mythid )
 
 c     ==================================================================
@@ -106,7 +106,7 @@ C     method that works for .not.useSingleCPUio cannot be used
        call MDSWRITEFIELD( fname, ctrlprec,.FALSE., 'RL',
      &      Nr, globfld3d,
      &      irec,   optimcycle,  mythid)
-       
+
       enddo
 
       do irec = nrec_nl*Nx+1, ncvarrecs(ivartype)
