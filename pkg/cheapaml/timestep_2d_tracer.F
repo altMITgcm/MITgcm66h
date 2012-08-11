@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "CHEAPAML_OPTIONS.h"
 
 CBOP
 C     !ROUTINE: TIMESTEP_2d_TRACER
@@ -50,4 +50,3 @@ C     -    Extrapolate tendancies to mid-time level (n+1/2)
 
       RETURN
       END
-

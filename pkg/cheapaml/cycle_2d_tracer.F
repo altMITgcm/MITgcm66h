@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "CHEAPAML_OPTIONS.h"
 
 CBOP
 C     !ROUTINE: CYCLE_2d_TRACER
@@ -17,12 +17,14 @@ C     *==========================================================*
 C     | o Cycles the time-stepping arrays for a tracer field
 C     *==========================================================*
 C     \ev
+
 C     !USES:
       IMPLICIT NONE
 C Common
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine Arguments ==
 C     bi,bj                        :: Loop counters
