@@ -1,21 +1,20 @@
 C $Header$
-C $Name$  
+C $Name$
 
-#include "CPP_OPTIONS.h"
 #include "DIC_OPTIONS.h"
 
 CStartOfInterface
-      SUBROUTINE DIC_STORE_FLUXCO2(  myTime, 
-     I                               myIter, 
+      SUBROUTINE DIC_STORE_FLUXCO2(  myTime,
+     I                               myIter,
      I                               myThid )
-C     /==========================================================\
+C     *==========================================================*
 C     | SUBROUTINE DIC_STORE_FLUXCO2                             |
 C     | o Routine for controlling storage of air-sea CO2 flux to |
 C     |   to the coupling layer.                                 |
-C     |==========================================================|
+C     |==========================================================*
 C     | This version talks to the MIT Coupler. It uses the MIT   |
 C     | Coupler "checkpoint1" library calls.                     |
-C     \==========================================================/
+C     *==========================================================*
       IMPLICIT NONE
 
 C     == Global variables ==
@@ -32,9 +31,9 @@ C     == Global variables for coupling interface ==
 #endif
 
 C     == Routine arguments ==
-C     myThid - Thread number for this instance of the routine
-C     myIter - Current timestep number
-C     myTime - Current model time
+C     myThid :: Thread number for this instance of the routine
+C     myIter :: Current timestep number
+C     myTime :: Current model time
       _RL     myTime
       INTEGER myIter
       INTEGER myThid
@@ -42,8 +41,8 @@ CEndOfInterface
 
 #ifdef COMPONENT_MODULE
 C     == Local variables ==
-C     i,j - Loop counters
-C     bi,bj  - Tile index
+C     i,j    :: Loop counters
+C     bi,bj  :: Tile index
       INTEGER i,j,bi,bj
 
 #ifdef USE_ATMOSCO2
