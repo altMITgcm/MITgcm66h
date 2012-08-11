@@ -50,5 +50,5 @@ CADJ STORE xx_smrsstbar_mean_dummy  = dummytape, key=1, kind=isbyte
 CADJ STORE xx_smrsssbar_mean_dummy  = dummytape, key=1, kind=isbyte
 #endif /* ALLOW_SEAICE */
 
-#endif /* ALLOW_ECCO_EVOLUTION */
+#endif /* ALLOW_ECCO_BARSTORES */
 
