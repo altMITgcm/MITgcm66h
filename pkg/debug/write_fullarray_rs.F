@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "CPP_EEOPTIONS.h"
 
 CBOP
 C     !ROUTINE: WRITE_FULLARRAY_RS
@@ -51,7 +51,6 @@ C     == Local variables ==
       INTEGER s1Lo,s1Hi, dUnit, filePrec, length_of_rec, kRec
       CHARACTER*(MAX_LEN_FNAM) fullName
 CEOP
-
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
