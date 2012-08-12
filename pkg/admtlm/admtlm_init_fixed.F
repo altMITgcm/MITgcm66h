@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "ADMTLM_OPTIONS.h"
 
       subroutine admtlm_init_fixed( myThid )
 C     /==========================================================\
