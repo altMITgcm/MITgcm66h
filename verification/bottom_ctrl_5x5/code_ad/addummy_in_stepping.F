@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "AUTODIFF_OPTIONS.h"
 #include "AD_CONFIG.h"
 
 CBOP
