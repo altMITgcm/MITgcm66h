@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CBOP
@@ -79,7 +80,7 @@ CEOP
 
       IF ( useDynP_inEos_Zc ) THEN
 
-#ifndef ALLOW_AUTODIFF_TAMC
+#ifndef ALLOW_AUTODIFF
 cph-- deal with this iterative loop for AD once it will
 cph-- really be needed;
 cph-- would need storing of totPhiHyd for each npiter
@@ -179,7 +180,7 @@ C     print some diagnostics
      &      SQUEEZE_RIGHT , myThid)
        _END_MASTER( myThid )
 
-#endif /* ALLOW_AUTODIFF_TAMC */
+#endif /* ALLOW_AUTODIFF */
 
 c-- else of if useDynP_inEos_Zc
       ELSE

@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CBOP
@@ -51,7 +52,7 @@ C     i,j,k  :: Loop counters
 CEOP
 
 C--   Initialisation
-#ifdef ALLOW_AUTODIFF_TAMC
+#ifdef ALLOW_AUTODIFF
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
         DO j=1-OLy,sNy+OLy
@@ -62,7 +63,7 @@ C--   Initialisation
         ENDDO
        ENDDO
       ENDDO
-#endif /* ALLOW_AUTODIFF_TAMC */
+#endif /* ALLOW_AUTODIFF */
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
@@ -181,7 +182,7 @@ C                               or topographic geopotential anom. (p-coord)
 
       IF ( fluidIsAir .AND. topoFile.NE.' ' ) THEN
 
-#ifdef ALLOW_AUTODIFF_TAMC
+#ifdef ALLOW_AUTODIFF
          STOP 'CANNOT PRESENTLY USE THIS OPTION WITH ADJOINT'
 #else
 
@@ -202,7 +203,7 @@ C--   AND set phi0surf = starting point for integrating Geopotential;
 
         CALL WRITE_FLD_XY_RS( 'topo_H',' ',topoHloc,0,myThid)
 
-#endif /* ALLOW_AUTODIFF_TAMC */
+#endif /* ALLOW_AUTODIFF */
 
       ENDIF
 
