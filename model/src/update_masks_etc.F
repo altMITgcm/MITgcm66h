@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 C--  File update_masks_etc.F:

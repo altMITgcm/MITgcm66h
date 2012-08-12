@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 
 CML THIS DOES NOT WORK +++++
