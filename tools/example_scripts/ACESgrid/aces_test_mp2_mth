@@ -37,7 +37,6 @@ sfx='mp2'
  OPTFILE="../tools/build_options/linux_ia32_ifort"
 #OPTFILE="$HERE/linux_ia32_ifort+mpi_aces"
  options="-j 2 -MPI 3 -mth -mf $PBS_NODEFILE -devel"
-#options="-do $options"
  export OMP_NUM_THREADS=2
  EXE="mpiexec -pernode -comm pmi -np TR_NPROC ./mitgcmuv"
 #export KMP_STACKSIZE=400m  <-- added in file "~/.bashrc"
@@ -45,7 +44,7 @@ sfx='mp2'
 #- keep a copy of MPI_MFILE:
 cp -p $PBS_NODEFILE $HERE"/mf_"$sfx
 
-checkOut=1
+checkOut=1 ; options="$options -do"
 #options="$options -nc" ; checkOut=0
 #options="$options -q"  ; checkOut=0
 
