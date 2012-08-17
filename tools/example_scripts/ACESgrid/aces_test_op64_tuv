@@ -30,13 +30,13 @@ sfx='tuv'
  module add open64
  export NETCDF_ROOT='/usr/local/pkg/netcdf/netcdf-3.5.1/g77'
  OPTFILE="../tools/build_options/linux_ia32_open64"
- options='-j 2 -devel -gsl -do'
+ options='-j 2 -devel -gsl'
  export GSL_IEEE_MODE=double-precision,mask-underflow,mask-denormalized
 
 #- keep a copy of MPI_MFILE:
 cp -p $PBS_NODEFILE $HERE"/mf_"$sfx
 
-checkOut=1
+checkOut=1 ; options="$options -do"
 #options="$options -nc" ; checkOut=0
 #options="$options -q"  ; checkOut=0
 

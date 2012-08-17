@@ -29,14 +29,14 @@ sfx='g77'
 #module add netcdf/3.6.1/icc
 #export MPI_INC_DIR='/usr/local/pkg/mpich/mpich-intel/include/'
  OPTFILE="../tools/build_options/linux_ia32_g77"
- options='-adm -do'
+ options='-adm'
 #- need this to get "staf":
  export PATH="$PATH:$HOME/bin"
 
 #- keep a copy of MPI_MFILE:
 cp -p $PBS_NODEFILE $HERE"/mf_"$sfx
 
-checkOut=1
+checkOut=1 ; options="$options -do"
 #options="$options -nc" ; checkOut=0
 #options="$options -q"  ; checkOut=0
 
