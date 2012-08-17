@@ -17,6 +17,7 @@ sub_list_jobs()
        'mth') sfx='ifc_'${i}  ;;
        'tuv') sfx='op64_'${i} ;;
        'opa') sfx='op64_adm'  ;;
+       'tlm') sfx='op64_'${i} ;;
        'g77') sfx=${i}'_adm'  ;;
        'mp2') sfx=${i}'_mth'  ;;
            *) sfx=${i}'_mpi'  ;;
@@ -201,7 +202,7 @@ today=`date +%Y%m%d`
 
 if test $# = 0
 then
-  TEST_LIST='g77 gnu ifc pgi adm mp2 mth tuv opa'
+  TEST_LIST='g77 gnu ifc pgi adm mp2 mth tuv opa tlm'
 else
   TEST_LIST=$*
 fi
