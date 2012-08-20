@@ -32,9 +32,9 @@ C     === Local variables ===
 #endif
 
 #ifdef CLM35
-C     next line is hack to call atmos one more time step
+C     next line is hack to call clm one more time step
 C     as CLM35 writes end-of-year file at start of next year
-      CALL atmosphere(1,1)
+      CALL clm4mit2d 
 #endif
 
 #ifdef ATM2D_MPI_ON
