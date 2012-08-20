@@ -393,15 +393,15 @@ C If necessary, next line can be moved outside OCEAN_3D for IGSM2.2 cleanups
         PRINT *,' CH4=',ch4ann,' N2O=',n2oann
 #  endif
         OPEN(333,ACCESS='APPEND',FILE=caruptfile,STATUS='old')
-#    ifdef CPL_TEM
-C   For ocean carbon model only
+#    ifndef CPL_TEM
+C       For ocean carbon model only
         WRITE(333,'(i7,3e15.5)')iyr,ocuptp
 #    else
 #      ifndef CPL_OCEANCO2
 C       For ocean TEM only
         WRITE(333,'(i7,3e15.5)')iyr,nepan,nepan-1.e-12*ch4ann*12./16.
 #      else
-C For ocean both TEM OCM
+C        For ocean both TEM OCM
         WRITE(333,'(i7,3e15.5)')iyr,nepan,nepan-1.e-12*ch4ann*12./16.
      &                  ,ocuptp
 #      endif
