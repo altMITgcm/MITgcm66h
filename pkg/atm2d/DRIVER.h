@@ -4,6 +4,9 @@ C $Name$
       COMMON /DRIVER_VARS/
      &        dtcouple, dtatm, dtocn, startYear, endYear, taveDump,
      &        ncall_atm, ncall_ocean
+#ifdef NCEPWIND
+     &        , rand_newseed
+#endif
        INTEGER dtcouple  ! coupling period (hrs)
        INTEGER dtatm     ! atmos time step (hrs)
        INTEGER dtocn     ! ocean time step (hrs)
