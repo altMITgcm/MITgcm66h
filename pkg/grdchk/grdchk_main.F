@@ -245,6 +245,7 @@ cph)
 c make sure that all procs have correct file records, so that useSingleCpuIO works
       CALL GLOBAL_SUM_INT( icvrec , myThid )
       CALL GLOBAL_SUM_INT( layer , myThid )
+      CALL GLOBAL_SUM_INT( ierr , myThid )
 
 c******************************************************
 c--   (A): get gradient component calculated via adjoint
