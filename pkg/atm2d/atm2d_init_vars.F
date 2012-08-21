@@ -33,7 +33,7 @@ C     === Local variables ===
       PRINT *,'After clm4mit2d  initialization'
       PRINT *,'orbfix=',orbfix,' dyn_pft=',dyn_pft
       PRINT *,'orbyr=',orbyr,' rampyr_dynpft=',rampyr_dynpft
-#    ifdef ORBITAL_FOR 
+#    ifndef ORBITAL_FOR 
       IF (orbyr.ne.2000) THEN
          PRINT *,'Wrong orbyr for CLM3.5'
          STOP
