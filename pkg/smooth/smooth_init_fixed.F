@@ -27,11 +27,33 @@ C     *==========================================================*
 #ifdef ALLOW_SMOOTH_INV
 #include "ctrl.h"
 #endif
-        integer k
-        integer myThid
-        integer ikey_bak
-        integer smoothOpNb
 
+      integer myThid
+      integer ikey_bak
+      integer smoothOpNb
+
+      integer i,j,k, bi, bj, imin, imax, jmin, jmax
+      integer itlo,ithi
+      integer jtlo,jthi
+
+      jtlo = mybylo(mythid)
+      jthi = mybyhi(mythid)
+      itlo = mybxlo(mythid)
+      ithi = mybxhi(mythid)
+
+      DO bj=jtlo,jthi
+       DO bi=itlo,ithi
+        DO k=1,Nr
+         DO j=1-OLy,sNy+OLy
+          DO i=1-OLx,sNx+OLx
+          smooth_recip_hFacC(i,j,k,bi,bj)=_recip_hFacC(i,j,k,bi,bj)
+          smooth_hFacW(i,j,k,bi,bj)=_hFacW(i,j,k,bi,bj)
+          smooth_hFacS(i,j,k,bi,bj)=_hFacS(i,j,k,bi,bj)
+          ENDDO
+         ENDDO
+        ENDDO
+       ENDDO
+      ENDDO
 
 #ifdef ALLOW_SMOOTH2D
       DO smoothOpNb=1,smoothOpNbMax

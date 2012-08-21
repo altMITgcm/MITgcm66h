@@ -98,9 +98,9 @@ c 2nd k loop: flux computation
        DO i=1-OLx,sNx+OLx
         df(i,j,bi,bj)        = 0. _d 0
         xA(i,j,bi,bj) = _dyG(i,j,bi,bj)
-     &   *drF(k)*_hFacW(i,j,k,bi,bj)
+     &   *drF(k)*smooth_hFacW(i,j,k,bi,bj)
         yA(i,j,bi,bj) = _dxG(i,j,bi,bj)
-     &   *drF(k)*_hFacS(i,j,k,bi,bj)
+     &   *drF(k)*smooth_hFacS(i,j,k,bi,bj)
       IF (K .EQ. 1) THEN
           maskUp(i,j,bi,bj) = 0.
       ELSE
@@ -344,7 +344,8 @@ c 3rd k loop: Divergence of fluxes
          DO j=jMin,jMax
           DO i=iMin,iMax
         gt_in(i,j,k,bi,bj)=gt_in(i,j,k,bi,bj)
-     &   -_recip_hFacC(i,j,k,bi,bj)*recip_drF(k)*recip_rA(i,j,bi,bj)
+     &   -smooth_recip_hFacC(i,j,k,bi,bj)*recip_drF(k)
+     &   *recip_rA(i,j,bi,bj)
      &   *( (fZon(i+1,j,k,bi,bj)-fZon(i,j,k,bi,bj))
      &     +(fMer(i,j+1,k,bi,bj)-fMer(i,j,k,bi,bj))
      &     +(fVerT(i,j,k,bi,bj)-fVerT(i,j,k-1,bi,bj))*rkSign
@@ -355,7 +356,8 @@ c 3rd k loop: Divergence of fluxes
          DO j=jMin,jMax
           DO i=iMin,iMax
         gt_in(i,j,k,bi,bj)=gt_in(i,j,k,bi,bj)
-     &   -_recip_hFacC(i,j,k,bi,bj)*recip_drF(k)*recip_rA(i,j,bi,bj)
+     &   -smooth_recip_hFacC(i,j,k,bi,bj)*recip_drF(k)
+     &   *recip_rA(i,j,bi,bj)
      &   *( (fZon(i+1,j,k,bi,bj)-fZon(i,j,k,bi,bj))
      &     +(fMer(i,j+1,k,bi,bj)-fMer(i,j,k,bi,bj))
      &     +(fVerT(i,j,k,bi,bj))*rkSign

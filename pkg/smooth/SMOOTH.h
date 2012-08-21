@@ -18,6 +18,11 @@ c pkg/smooth constants
 
 c fields:
 
+      _RS
+     & smooth_recip_hFacC(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy),
+     & smooth_hFacW(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy),
+     & smooth_hFacS(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr,nSx,nSy)
+
       integer smooth3Dnbt(smoothOpNbMax),
      & smooth3DtypeZ(smoothOpNbMax),smooth3DsizeZ(smoothOpNbMax),
      & smooth3DtypeH(smoothOpNbMax),smooth3DsizeH(smoothOpNbMax),
@@ -55,7 +60,10 @@ c fields:
      & smooth2D_Kux (1-Olx:sNx+Olx,1-Oly:sNy+Oly,nSx,nSy),
      & smooth2D_Kvy (1-Olx:sNx+Olx,1-Oly:sNy+Oly,nSx,nSy)
 
-      COMMON /smooth_flds_r/
+      COMMON /smooth_flds_rs/
+     & smooth_recip_hFacC, smooth_hFacW, smooth_hFacS
+
+      COMMON /smooth_flds_rl/
      & smooth3Dnorm,smooth3DtotTime,
      & smooth2Dnorm,smooth2DtotTime,
      & smooth3D_Lx0,smooth3D_Ly0,smooth3D_Lz0,
