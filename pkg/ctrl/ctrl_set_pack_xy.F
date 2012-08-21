@@ -376,8 +376,10 @@ c     == end of interface ==
 
 c-- part 1: preliminary reads and definitions
 
+#ifdef ALLOW_NONDIMENSIONAL_CONTROL_IO
       call active_read_xy(weighttype, wei2d, 1,
      &    .FALSE., .FALSE., 0 , mythid, 1)
+#endif
 
       call active_read_xyz(masktype, msk3d, 1,
      &    .FALSE., .FALSE., 0 , mythid, 1)

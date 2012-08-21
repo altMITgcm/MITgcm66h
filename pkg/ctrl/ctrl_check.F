@@ -164,5 +164,33 @@ C     which in turn require a particular set of input fields
       endif
 # endif
 #endif /* ALLOW_SEAICE */
+
+#ifndef ALLOW_PACKUNPACK_METHOD2
+# ifndef EXCLUDE_CTRL_PACK
+       IF ( useSingleCpuIO ) THEN
+        WRITE(msgBuf,'(3A)') '** WARNING ** CTRL_CHECK: ',
+     &        'relying on mdsio_gl.F to pack/unpack the control',
+     &        'vector is unsafe when useSingleCpuIO is true.'
+        CALL PRINT_MESSAGE( msgBuf, errorMessageUnit, 
+     &  SQUEEZE_RIGHT, myThid )
+       ENDIF
+# endif
+#endif
+
+#ifdef ALLOW_PACKUNPACK_METHOD2
+#ifndef EXCLUDE_CTRL_PACK
+#if (defined (ALLOW_OBCSN_CONTROL) || \
+     defined (ALLOW_OBCSS_CONTROL) || \
+     defined (ALLOW_OBCSW_CONTROL) || \
+     defined (ALLOW_OBCSE_CONTROL))
+        WRITE(msgBuf,'(2A)') 
+     &        'ALLOW_PACKUNPACK_METHOD2 does not work with',
+     &        'open boundary controls (see verif/obcs_ctrl).'
+         CALL PRINT_ERROR( msgBuf, myThid )
+         STOP 'ABNORMAL END: S/R CTRL_CHECK'
+#endif
+#endif
+#endif
+
       RETURN
       END
