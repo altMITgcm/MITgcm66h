@@ -57,6 +57,7 @@ C      212*24,243*24,273*24,304*24,334*24,365*24
       INTEGER ndmonth(12)
       DATA ndmonth/31,28,31,30,31,30,31,31,30,31,30,31/
       REAL*4 totup, aduptt
+      REAL*8 tcumn
 #endif
 #if (defined CPL_TEM) || (defined CPL_OCEANCO2)
       REAL*8 nepan
