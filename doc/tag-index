@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/grdchk :
+  - grdchk_main.F : added CALL GLOBAL_SUM_INT( ierr , myThid )
+  - grdchk_getadxx.F etc. : omit I/O if ierr.EQ.0 
 o pkg/autodiff/ctrl/grdchk :
   - attempt to sort out what works and what does not, 
     with regard to I/O, and to warn/stop accordingly.
