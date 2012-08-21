@@ -28,6 +28,9 @@ C     == global variables ==
 #include "EXF_PARAM.h"
 #include "EXF_FIELDS.h"
 #include "EXF_CONSTANTS.h"
+#ifdef ALLOW_AUTODIFF_TAMC
+# include "tamc.h"
+#endif 
 
 C     == routine arguments ==
 
@@ -133,6 +136,20 @@ c     ENDIF
 #ifdef ALLOW_ZENITHANGLE
       IF ( useExfZenAlbedo .OR. useExfZenIncoming ) THEN
        CALL EXF_ZENITHANGLE(myTime, myIter, myThid)
+#ifdef ALLOW_AUTODIFF_TAMC
+      ELSE
+       DO bj = myByLo(myThid),myByHi(myThid)
+        DO bi = myBxLo(myThid),myBxHi(myThid)
+         DO j = 1,sNy
+          DO i = 1,sNx
+           zen_albedo (i,j,bi,bj) = 0. _d 0
+           zen_fsol_diurnal (i,j,bi,bj) = 0. _d 0
+           zen_fsol_daily (i,j,bi,bj) = 0. _d 0
+          ENDDO
+         ENDDO
+        ENDDO
+       ENDDO
+#endif
       ENDIF
 #endif
        DO bj = myByLo(myThid),myByHi(myThid)
