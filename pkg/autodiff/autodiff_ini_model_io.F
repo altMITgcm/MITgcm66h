@@ -31,6 +31,9 @@ C     \ev
 #include "PARAMS.h"
 #include "GRID.h"
 #include "AUTODIFF.h"
+#ifdef ALLOW_WHIO
+#include "MDSIO_BUFF_WH.h"
+#endif
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     myThid  :: my Thread Id number
@@ -74,7 +77,7 @@ C      create directory
       enddo
 
       tapeFileCounter=0
-      tapeMaxCounter=30*nR
+      tapeMaxCounter=nWh
 
       tapeConcatIO=.TRUE.
       tapeSingleCpuIO=useSingleCpuIO

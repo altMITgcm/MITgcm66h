@@ -112,12 +112,14 @@ c--   to nTimeSteps: (nchklev_1*nchklev_2*nchklev_3 .ge. nTimeSteps)
        ENDIF
 #endif
 
-#ifdef ALLOW_GRDCHK
-       IF ( useSingleCpuIO .AND. useGrdchk ) THEN
-        WRITE(msgBuf,'(A)') 
-     &         'Need to have useSingleCpuIO=.FALSE. with useGrdchk'
-        CALL PRINT_ERROR( msgBuf , myThid )
-        STOP 'ABNORMAL END: S/R AUTODIFF_CHECK'
+
+#ifndef ALLOW_AUTODIFF_WHTAPEIO
+       IF ( useSingleCpuIO ) THEN
+        WRITE(msgBuf,'(3A)') '** WARNING ** AUTODIFF_CHECK: ',
+     &        'relying on mdsio_read/writevector.F to write ',
+     &        'tapes is unsafe when useSingleCpuIO is true.'
+        CALL PRINT_MESSAGE( msgBuf, errorMessageUnit, 
+     &  SQUEEZE_RIGHT, myThid )
        ENDIF
 #endif
 
