@@ -12,6 +12,9 @@ C $Name$
        INTEGER taveDump  ! frequency of tave dumps for atm2ocn fluxes (yrs)
        INTEGER ncall_atm ! number of atm steps in a coupling period
        INTEGER ncall_ocean ! number of ocn steps in a coupling period
+#ifdef NCEPWIND
+       LOGICAL rand_newseed
+#endif
 
 
       COMMON /DRIVER_FILENAMES/
