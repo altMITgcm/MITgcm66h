@@ -159,8 +159,10 @@ cph   assuming all xx_ fields are initialised to zero.
       ierr_grdchk = 0
       adxxmemo  = 0.
       ftlxxmemo = 0.
-#ifdef ALLOW_ADMTLM
+#if (defined  (ALLOW_ADMTLM))
       fcref = objf_state_final(idep,jdep,1,1,1)
+#elif (defined (ALLOW_AUTODIFF_OPENAD))
+      fcref = fc%v
 #else
       fcref = fc
 #endif
@@ -323,9 +325,16 @@ c--   positive perturbation
 c--   forward run with perturbed control vector
             mytime = starttime
             myiter = niter0
+#ifdef ALLOW_AUTODIFF_OPENAD
+            call OpenAD_the_main_loop( mytime, myiter, mythid )
+#else
             call the_main_loop( mytime, myiter, mythid )
-#ifdef ALLOW_ADMTLM
+#endif
+
+#if (defined (ALLOW_ADMTLM))
             fcpertplus = objf_state_final(idep,jdep,1,1,1)
+#elif (defined (ALLOW_AUTODIFF_OPENAD))
+            fcpertplus = fc%v
 #else
             fcpertplus = fc
 #endif
@@ -355,9 +364,16 @@ c--   repeat the proceedure for a negative perturbation
 c--   forward run with perturbed control vector
                mytime = starttime
                myiter = niter0
+#ifdef ALLOW_AUTODIFF_OPENAD
+               call OpenAD_the_main_loop( mytime, myiter, mythid )
+#else
                call the_main_loop( mytime, myiter, mythid )
-#ifdef ALLOW_ADMTLM
+#endif
+
+#if (defined (ALLOW_ADMTLM))
                fcpertminus = objf_state_final(idep,jdep,1,1,1)
+#elif (defined (ALLOW_AUTODIFF_OPENAD))
+               fcpertminus = fc%v
 #else
                fcpertminus = fc
 #endif
