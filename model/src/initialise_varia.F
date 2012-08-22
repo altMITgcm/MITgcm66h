@@ -47,6 +47,8 @@ C       |-- AUTODIFF_INIT_VARIA
 C       |
 C       |-- PACKAGES_INIT_VARIABLES
 C       |
+C       |-- COST_INIT_VARIA
+C       |
 C       |-- CONVECTIVE_ADJUSTMENT_INI
 C       |
 C       |-- CALC_R_STAR
@@ -160,6 +162,12 @@ C--   Initialize variable data for packages
 #endif
       CALL PACKAGES_INIT_VARIABLES( myThid )
 
+#ifdef ALLOW_COST
+C--   Initialise the cost function (moved out of packages_init_variables to
+C     here to prevent resetting cost-funct in adinitialise_varia recomput.)
+      CALL COST_INIT_VARIA( myThid )
+#endif /* ALLOW_COST */
+
 c#ifndef ALLOW_AUTODIFF_TAMC
 c     IF ( usePickupBeforeC35 .AND. startTime .NE. baseTime ) THEN
 C-- IMPORTANT : Need to activate the following call to restart from a pickup
@@ -184,7 +192,7 @@ CADJ loop = parallel
          ENDDO
         ENDDO
       ENDIF
-#endif
+#endif /* ALLOW_AUTODIFF_WHTAPEIO */
 
 #ifdef NONLIN_FRSURF
 C--   Compute the surface level thickness <-- function of etaH(n)
