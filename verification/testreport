@@ -1344,8 +1344,8 @@ if test "x$OPTFILE" != xNONE ; then
 	echo >> $SUMMARY
 	echo "  OPTFILE=$OPTFILE" >> $SUMMARY
     else
-	echo | tee $SUMMARY
-	echo "ERROR: can't read OPTFILE=\"$OPTFILE\"" | tee $SUMMARY
+	echo | tee -a $SUMMARY
+	echo "ERROR: can't read OPTFILE=\"$OPTFILE\"" | tee -a $SUMMARY
 	exit 1
     fi
 else
