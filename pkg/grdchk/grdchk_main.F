@@ -80,9 +80,7 @@ C     == global variables ==
 #include "grdchk.h"
 #include "cost.h"
 #include "ctrl.h"
-#ifdef ALLOW_TANGENTLINEAR_RUN
 #include "g_cost.h"
-#endif
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == routine arguments ==
