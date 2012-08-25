@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o tools/genmake2:
+  - improve error msg when failing in 2nd test of check_for_broken_Ff
+  - fix option '-makefile' short-name (-mf according to genmake2 -help)
+  - source local config file "genmake_local" just after processing the genmake2
+    command arguments (previously done before processing arg).
 o pkg/grdchk:
   - add a call to TURNOFF_MODEL_IO for Tangent-Linear run (in this case, call
     to this routine from cost_final has been dropped in g_cost_final)
