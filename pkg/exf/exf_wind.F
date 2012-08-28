@@ -45,14 +45,11 @@ C     == local variables ==
       INTEGER bi,bj
       INTEGER i,j
       _RL     wsLoc(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-#ifdef ALLOW_ATM_WIND
       _RL     wsSq
-#else
       _RL     usSq, recip_sqrtRhoA, ustar
       _RL     tmp1, tmp2, tmp3, tmp4
       _RL     oneThirdRL
       PARAMETER ( oneThirdRL = 1.d0 / 3.d0 )
-#endif
 
 C     == end of interface ==
 
@@ -86,7 +83,13 @@ C--   Initialise
          ENDDO
         ENDDO
 
-#ifdef ALLOW_ATM_WIND
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE uwind (:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
+CADJ STORE vwind (:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
+CADJ STORE wspeed(:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
+#endif
+
+        IF ( useAtmWind ) THEN
 
 C--   Wind speed and direction.
         DO j = 1,sNy
@@ -113,7 +116,7 @@ C-    wind-speed is not loaded from file: save local array into common block
           ENDDO
         ENDIF
 
-#else  /* ifndef ALLOW_ATM_WIND */
+        ELSE
 
 C--   Wind stress and direction.
         DO j = 1,sNy
@@ -181,6 +184,14 @@ C-    save local array wind-speed to common block
          ENDDO
         ENDIF
 
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE wspeed(:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
+CADJ STORE uwind (:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
+CADJ STORE vwind (:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
+CADJ STORE cw    (:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
+CADJ STORE sw    (:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte
+#endif
+
 C--   infer wind field from wind-speed & wind-stress direction
         DO j = 1,sNy
          DO i = 1,sNx
@@ -188,7 +199,7 @@ C--   infer wind field from wind-speed & wind-stress direction
            vwind(i,j,bi,bj) = wspeed(i,j,bi,bj)*sw(i,j,bi,bj)
          ENDDO
         ENDDO
-#endif /* ifndef ALLOW_ATM_WIND */
+        ENDIF
 
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE wspeed(:,:,bi,bj) = comlev1_bibj, key=ikey, byte=isbyte

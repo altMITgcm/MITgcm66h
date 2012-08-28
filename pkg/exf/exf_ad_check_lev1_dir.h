@@ -55,14 +55,10 @@ CADJ STORE swflux1   = comlev1, key=ikey_dynamics, kind=isbyte
 
 # endif /* ALLOW_ATM_TEMP */
 
-# ifdef ALLOW_ATM_WIND
 CADJ STORE uwind0    = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE uwind1    = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE vwind0    = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE vwind1    = comlev1, key=ikey_dynamics, kind=isbyte
-# else /* ALLOW_ATM_WIND undef */
-
-# endif  /* ALLOW_ATM_WIND */
 
 # ifdef ALLOW_BULKFORMULAE
 CADJ STORE theta     = comlev1, key=ikey_dynamics, kind=isbyte

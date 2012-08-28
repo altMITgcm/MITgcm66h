@@ -31,6 +31,7 @@ C     == Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "EXF_PARAM.h"
 #ifdef ALLOW_MNC
 # include "MNC_PARAMS.h"
 #endif
@@ -110,12 +111,12 @@ c#endif
         CALL WRITE_FLD_XY_RL ( 'ADJprecip.',
      &       suff, adprecip, myIter, myThid)
 # endif
-# ifdef ALLOW_ATM_WIND
+      IF ( useAtmWind ) THEN
         CALL WRITE_FLD_XY_RL ( 'ADJuwind.',
      &       suff, aduwind, myIter, myThid)
         CALL WRITE_FLD_XY_RL ( 'ADJvwind.',
      &       suff, advwind, myIter, myThid)
-# endif
+      ENDIF
 # ifdef ALLOW_DOWNWARD_RADIATION
         CALL WRITE_FLD_XY_RL ( 'ADJswdown.',
      &       suff, adswdown, myIter, myThid)
@@ -164,12 +165,12 @@ c#endif
         CALL WRITE_REC_XY_RL ( 'ADJprecip',
      &       adprecip, dumpAdRecEx, myIter, myThid)
 # endif
-# ifdef ALLOW_ATM_WIND
+      IF ( useAtmWind ) THEN
         CALL WRITE_REC_XY_RL ( 'ADJuwind',
      &       aduwind, dumpAdRecEx, myIter, myThid)
         CALL WRITE_REC_XY_RL ( 'ADJvwind',
      &       advwind, dumpAdRecEx, myIter, myThid)
-# endif
+      ENDIF
 # ifdef ALLOW_DOWNWARD_RADIATION
         CALL WRITE_REC_XY_RL ( 'ADJswdown',
      &       adswdown, dumpAdRecEx, myIter, myThid)
@@ -231,12 +232,12 @@ c
           CALL MNC_CW_RL_W('D','adexf',0,0,'adprecip',
      &         adprecip, myThid)
 # endif
-# ifdef ALLOW_ATM_WIND
+      IF ( useAtmWind ) THEN
           CALL MNC_CW_RL_W('D','adexf',0,0,'aduwind',
      &         aduwind, myThid)
           CALL MNC_CW_RL_W('D','adexf',0,0,'advwind',
      &         advwind, myThid)
-# endif
+      ENDIF
 # ifdef ALLOW_DOWNWARD_RADIATION
           CALL MNC_CW_RL_W('D','adexf',0,0,'adswdown',
      &         adswdown, myThid)

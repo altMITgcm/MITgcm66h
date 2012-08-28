@@ -112,7 +112,7 @@ c     Meridional wind stress.
            exferr = 1
           endif
 c
-#ifdef ALLOW_ATM_WIND
+      IF ( useAtmWind ) THEN
 c     zonal wind speed
           if ( ABS(uwind(i,j,bi,bj)) .GT. 100. .AND.
      &         maskW(i,j,1,bi,bj) .NE. 0. ) then
@@ -130,7 +130,7 @@ c     zonal wind speed
      &          bi, bj, i, j, myiter, vwind(i,j,bi,bj)
            exferr = 1
           endif
-#endif
+      ENDIF
 c
 c     wind speed modulus
           if ( ( wspeed(i,j,bi,bj) .LT. 0. .OR.

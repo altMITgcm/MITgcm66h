@@ -82,6 +82,7 @@ c     == end of interface ==
      &     mytime, myiter, mythid )
 #endif
 
+      IF ( .NOT.useAtmWind ) THEN
 #ifndef ALLOW_ROTATE_UV_CONTROLS
 
 #ifdef ALLOW_USTRESS_CONTROL
@@ -154,7 +155,7 @@ c     == end of interface ==
 
 #endif
 #endif /* ALLOW_ROTATE_UV_CONTROLS */
-
+      ENDIF
 
 
       end

@@ -150,11 +150,11 @@ C--   heimbach@mit.edu 11-Jan-2001
       common /adexf_swflux_r/ adswflux
 #  endif
 # endif
-# ifdef ALLOW_ATM_WIND
+
       _RL aduwind     (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL advwind     (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       common /adexf_atm_wind_r/ aduwind, advwind
-# endif
+
 # ifdef ALLOW_DOWNWARD_RADIATION
       _RL adswdown    (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL adlwdown    (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)

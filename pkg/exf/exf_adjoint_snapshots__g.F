@@ -105,12 +105,12 @@ C--     Read IO error counter
         CALL WRITE_FLD_XY_RL ( 'G_Jprecip.',
      &       suff, g_precip, myIter, myThid)
 # endif
-# ifdef ALLOW_ATM_WIND
+      IF ( useAtmWind ) THEN
         CALL WRITE_FLD_XY_RL ( 'G_Juwind.',
      &       suff, g_uwind, myIter, myThid)
         CALL WRITE_FLD_XY_RL ( 'G_Jvwind.',
      &       suff, g_vwind, myIter, myThid)
-# endif
+      ENDIF
 # ifdef ALLOW_DOWNWARD_RADIATION
         CALL WRITE_FLD_XY_RL ( 'G_Jswdown.',
      &       suff, g_swdown, myIter, myThid)

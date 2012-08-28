@@ -127,12 +127,12 @@ C       Print some statistics about input forcing fields
 
         ELSEIF ( iwhen .EQ.2 ) THEN
 
-#ifdef ALLOW_ATM_WIND
+      IF ( useAtmWind ) THEN
         CALL MON_WRITESTATS_RL( 1, aduwind,   '_aduwind',
      &           maskInC, maskInC, rA , drF, dummyRL, myThid )
         CALL MON_WRITESTATS_RL( 1, advwind,   '_advwind',
      &           maskInC, maskInC, rA , drF, dummyRL, myThid )
-#endif /* ALLOW_ATM_WIND */
+      ENDIF
 #ifdef ALLOW_ATM_TEMP
         CALL MON_WRITESTATS_RL( 1, adatemp,   '_adatemp',
      &           maskInC, maskInC, rA , drF, dummyRL, myThid )
