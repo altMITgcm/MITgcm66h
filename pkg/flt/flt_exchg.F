@@ -366,16 +366,16 @@ c              CALL PRINT_ERROR( msgBuf, myThid )
               ENDIF
              ENDIF
 
-#ifdef FLT_WITHOUT_y_PERIODICITY
+#ifdef FLT_WITHOUT_Y_PERIODICITY
              IF ( sSide .AND.
      &           (myTime.LE.tend(ip,bi,bj) .OR. tend(ip,bi,bj).EQ.-1.)
      &           .AND. jpart(ip,bi,bj).LT.jlo ) THEN
 C          stop the float:
               tend(ip,bi,bj) = flt_stopped
              ELSEIF ( jpart(ip,bi,bj).LT.jlo ) THEN
-#else /* FLT_WITHOUT_y_PERIODICITY */
+#else /* FLT_WITHOUT_Y_PERIODICITY */
              IF ( jpart(ip,bi,bj).LT.jlo ) THEN
-#endif /* FLT_WITHOUT_y_PERIODICITY */
+#endif /* FLT_WITHOUT_Y_PERIODICITY */
               icountS=icountS+1
               IF ( icountS.LE.max_npart_exch ) THEN
 
