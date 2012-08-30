@@ -5,8 +5,7 @@
 
 #  Notes:
 #    This optfile was created by Nicolas Wienders and Ed Hill and
-#    is known to work (complete with netCDF) on at least one Mac
-#    system.
+#    is known to work (complete with netCDF) on at least one Mac system.
 
 CPP='/usr/bin/cpp -traditional -P -xassembler-with-cpp'
 FC=/opt/ibmcmp/xlf/8.1/bin/f77
@@ -22,4 +21,4 @@ FC_NAMEMANGLE="#define FC_NAMEMANGLE(X) X"
 
 S64='$(TOOLSDIR)/set64bitConst.sh'
 MAKEDEPEND='$(TOOLSDIR)/cyrus-imapd-makedepend/makedepend'
-DEFINES='-DWORDLENGTH=4 -DNML_TERMINATOR=" /"'
+DEFINES='-DWORDLENGTH=4 -DNML_TERMINATOR'

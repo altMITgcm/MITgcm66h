@@ -3,7 +3,7 @@
 # $Header$
 # $Name$
 
-DEFINES='-D_BYTESWAPIO -DWORDLENGTH=4 -DNML_TERMINATOR=" /"'
+DEFINES='-D_BYTESWAPIO -DWORDLENGTH=4 -DNML_TERMINATOR'
 CPP='/lib/cpp -traditional -P'
 FC='lf95'
 # FFLAGS='-byteswapio -r8 -Mnodclchk -Mextend'
