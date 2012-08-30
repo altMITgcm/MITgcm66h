@@ -46,14 +46,15 @@ C#endif /* ALLOW_MNC */
 #ifdef ALLOW_GGL90_SMOOTH
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
-        DO j=1-Oly,sNy+Oly
-         DO i=1-Olx,sNx+Olx
+        DO j=1-OLy,sNy+OLy
+         DO i=1-OLx,sNx+OLx
           mskCor(i,j,bi,bj) = 1. _d 0
          ENDDO
         ENDDO
         IF ( useCubedSphereExchange ) THEN
           CALL FILL_CS_CORNER_TR_RL( 0, .FALSE.,
-     &                               mskCor, bi,bj, myThid )
+     U                               mskCor(1-OLx,1-OLy,bi,bj),
+     I                               bi,bj, myThid )
         ENDIF
        ENDDO
       ENDDO
