@@ -38,7 +38,6 @@ C !USES:
 #include "W2_EXCH2_SIZE.h"
 #include "W2_EXCH2_TOPOLOGY.h"
 
-
 C !INPUT/OUTPUT PARAMETERS:
 C     === Routine arguments ===
 C     tIlo1, tIhi1  :: index range in I that will be filled in target "array1"
@@ -120,11 +119,6 @@ C     itb, jtb    :: Target local to canonical offsets
       INTEGER pi(2), pj(2)
       _RX     sa1, sa2, val1, val2
 
-C     MPI setup
-#ifdef ALLOW_USE_MPI
-      INTEGER theTag1, theTag2, theType, theHandle1, theHandle2
-      INTEGER sProc, tProc, mpiRc
-#endif
 #if ( (defined W2_E2_DEBUG_ON) || (defined W2_USE_E2_SAFEMODE) )
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 #endif
