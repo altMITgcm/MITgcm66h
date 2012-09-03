@@ -536,14 +536,14 @@ C--   Case without using MPI (usingMPI=F)
 C--   case without tile-communication (DISCONNECTED_TILES defined) is not
 C     yet coded for multi-procs; for now, just stop if multi-procs domain
        IF ( nPx*nPy .NE. 1 ) THEN
-c       eeBootError = .TRUE.
+        eeBootError = .TRUE.
         WRITE(msgBuf,'(2A,I6,A)') 'INI_PROCS: ',
      &    'needs MPI for multi-procs (nPx*nPy=',  nPx*nPy, ') setup'
         CALL PRINT_ERROR( msgBuf, myThid )
         WRITE(msgBuf,'(2A)') 'INI_PROCS: ',
      &    ' but presently usingMPI = False (in "eedata")'
         CALL PRINT_ERROR( msgBuf, myThid )
-c       GOTO 999
+        GOTO 999
        ENDIF
 
 C--   End if usingMPI
