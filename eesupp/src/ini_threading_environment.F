@@ -5,12 +5,10 @@ C $Name$
 #include "PACKAGES_CONFIG.h"
 
 CBOP
-
 C     !ROUTINE: INI_THREADING_ENVIRONMENT
 
 C     !INTERFACE:
       SUBROUTINE INI_THREADING_ENVIRONMENT
-      IMPLICIT NONE
 
 C     !DESCRIPTION:
 C     *==========================================================*
@@ -27,6 +25,7 @@ C     | routine.
 C     *==========================================================*
 
 C     !USES:
+      IMPLICIT NONE
 C     == Global data ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -283,10 +282,18 @@ C       o North communication method
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT, 1)
 #endif /* ndef ALLOW_EXCH2 */
 
-C--   Check threading options
+C--   Check EXCH-1 options
 #ifndef ALLOW_EXCH2
+      IF ( usingMPI .AND. useCubedSphereExchange ) THEN
+C-    not working with multi-procs (checked within EXCH1-CUBE S/R) and
+C-    if compiled with MPI (without EXCH2) safer to set usingMPI to False.
+        WRITE(msgBuf,'(2A)') 'EXCH-1 useCubedSphereExchange',
+     &                       ' unsafe with usingMPI=True'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        STOP 'ABNORMAL END: S/R INI_THREADING_ENVIRONMENT'
+      ENDIF
       IF ( nThreads.GT.1 .AND. useCubedSphereExchange ) THEN
-C-    multi-threads not working for local arrays; could remove the stop if 
+C-    multi-threads not working for local arrays; could remove the stop if
 C     we are sure that only shared array (=in common blocks) are exchanged.
         WRITE(msgBuf,'(2A)') 'EXCH-1 useCubedSphereExchange',
      &                       ' unsafe with multi-threads'
