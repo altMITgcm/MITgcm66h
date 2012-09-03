@@ -3,8 +3,6 @@ C $Name$
 
 #include "CPP_EEOPTIONS.h"
 
-#undef  Dbg
-
 CBOP
 C     !ROUTINE: EXCH_RX_CUBE_AD
 
@@ -146,6 +144,7 @@ C     Wait until all threads finish filling buffer
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 #ifdef ALLOW_USE_MPI
+      IF ( usingMPI ) THEN
 C  AD: all MPI part is acting on buffer and is identical to forward code,
 C  AD: except a) the buffer level: send from lev.2, receive into lev.1
 C  AD:        b) the length of transferred buffer (<- match the ad_put/ad_get)
@@ -230,6 +229,7 @@ c        farTile=exch2_neighbourId(N,thisTile)
 C     Everyone waits until master-thread finishes receiving
       CALL BAR2( myThid )
 
+      ENDIF
 #endif /* ALLOW_USE_MPI */
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
