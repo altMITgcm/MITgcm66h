@@ -40,8 +40,4 @@ C     iBuf2Filled :: actual length of buffer-2 which has been filled in.
       INTEGER iBuf2Filled( W2_maxNeighbours, nSx, nSy )
       COMMON /W2_EXCH2_BUF_I/ iBuf1Filled, iBuf2Filled
 
-C--   COMMON /W2_EXCH2_COMMFLAG/ EXCH2 character Flag for type of communication
-      CHARACTER W2_myCommFlag( W2_maxNeighbours, nSx, nSy )
-      COMMON /W2_EXCH2_COMMFLAG/ W2_myCommFlag
-
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
