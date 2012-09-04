@@ -48,9 +48,6 @@ C     msgBuf :: Informational/error message buffer
 #ifdef ALLOW_EXCH2
       INTEGER xySize
 #endif /* ALLOW_EXCH2 */
-#ifdef ALLOW_USE_MPI
-      INTEGER iG,jG,np
-#endif /* ALLOW_USE_MPI */
 CEOP
 
 C-    Safety check:
