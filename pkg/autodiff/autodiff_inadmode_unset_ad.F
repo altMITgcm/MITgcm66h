@@ -28,6 +28,8 @@ C     myThid :: my Thread Id number
       useKPP    = useKPPinFwdMode
       useGMRedi = useGMRediInFwdMode
       useSEAICE = useSEAICEinFwdMode
+      useGGL90    = useGGL90inFwdMode
+      useSALT_PLUME    = useSALT_PLUMEinFwdMode
 
       IF ( debugLevel.GE.debLevC ) THEN
        WRITE(msgBuf,'(A,L5)')
@@ -40,6 +42,15 @@ C     myThid :: my Thread Id number
      &                     SQUEEZE_RIGHT, myThid )
        WRITE(msgBuf,'(A,L5)')
      &      'S/R ADAUTODIFF_INADMODE_UNSET: useSEAICE =', useSEAICE
+       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                     SQUEEZE_RIGHT, myThid )
+       WRITE(msgBuf,'(A,L5)')
+     &      'S/R ADAUTODIFF_INADMODE_UNSET: useGGL90    =', useGGL90
+       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                     SQUEEZE_RIGHT, myThid )
+       WRITE(msgBuf,'(A,L5)')
+     &      'S/R ADAUTODIFF_INADMODE_UNSET: useSALT_PLUME    =', 
+     &      useSALT_PLUME
        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                     SQUEEZE_RIGHT, myThid )
       ENDIF
