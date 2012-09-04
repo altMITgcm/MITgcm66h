@@ -234,7 +234,7 @@ cph(
      &                 phtmpadmtlm(nveccount)
 cph)
 #endif
-#ifndef ALLOW_SMOOTH_CORREL3D
+                     IF ( .NOT.ctrlSmoothCorrel3D ) THEN
 #ifdef ALLOW_NONDIMENSIONAL_CONTROL_IO
                      if ( lxxadxx ) then
                         globfld3d(i,bi,ip,j,bj,jp,k) = delZnorm
@@ -254,7 +254,7 @@ cph)
 # endif
                      endif
 #endif /* ALLOW_NONDIMENSIONAL_CONTROL_IO */
-#endif /* ALLOW_SMOOTH_CORREL3D */
+                     ENDIF !IF ( .NOT.ctrlSmoothCorrel3D ) THEN
                   else
                      globfld3d(i,bi,ip,j,bj,jp,k) = 0. _d 0
                   endif
@@ -450,9 +450,9 @@ c-- 2.2: normalize field if needed
             nveccount = nveccount + 1
             fld3dNodim(i,j,k,bi,bj)=phtmpadmtlm(nveccount)
 #endif
-#ifdef ALLOW_SMOOTH_CORREL3D
+            IF ( ctrlSmoothCorrel3D ) THEN
             fld3dDim(i,j,k,bi,bj)=fld3dNodim(i,j,k,bi,bj)
-#else
+            ELSE !IF ( ctrlSmoothCorrel3D ) THEN
 # ifndef ALLOW_NONDIMENSIONAL_CONTROL_IO
             fld3dDim(i,j,k,bi,bj) = fld3dNodim(i,j,k,bi,bj)
 # else
@@ -474,7 +474,7 @@ c-- 2.2: normalize field if needed
 #  endif
             endif
 # endif /* ALLOW_NONDIMENSIONAL_CONTROL_IO */
-#endif /* ALLOW_SMOOTH_CORREL3D */
+            ENDIF !IF ( ctrlSmoothCorrel3D ) THEN
            endif
           ENDDO
          ENDDO
