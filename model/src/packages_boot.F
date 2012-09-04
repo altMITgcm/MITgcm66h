@@ -63,7 +63,7 @@ C     data.pkg namelists
      &          useEBM,
      &          useCheapAML,
      &          useGrdchk,
-c    &          useSMOOTH,
+     &          useSMOOTH,
      &          usePROFILES,
      &          useECCO,
      &          useSBO,
@@ -193,10 +193,6 @@ C--   packages with hard-coded switch
 
 #ifdef ALLOW_ECCO
       useCAL = .TRUE.
-#endif
-
-#ifdef ALLOW_SMOOTH
-      useSMOOTH = .TRUE.
 #endif
 
 C--   packages with an implied switch
