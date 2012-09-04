@@ -124,7 +124,7 @@ c--   Read the namelist input.
      &  xx_shifwflx_file,
      &  xx_shifwflx_remo_intercept, xx_shifwflx_remo_slope,
      &  xx_shifwflxstartdate1, xx_shifwflxstartdate2, xx_shifwflxperiod,
-     &  doInitXX,
+     &  doInitXX, ctrlSmoothCorrel3D, ctrlSmoothCorrel2D,
      &  doPackDiag,
      &  doZscaleUnpack, doZscalePack,
      &  doMainUnpack, doMainPack,
@@ -143,6 +143,16 @@ cHFLUXM_CONTROL
 
 c--     Set default values.
         doInitXX            = .TRUE.
+#ifdef ALLOW_SMOOTH_CORREL3D 
+        ctrlSmoothCorrel3D  = .TRUE.
+#else
+        ctrlSmoothCorrel3D  = .FALSE.
+#endif
+#ifdef ALLOW_SMOOTH_CORREL2D 
+        ctrlSmoothCorrel2D  = .TRUE.
+#else
+        ctrlSmoothCorrel2D  = .FALSE.
+#endif
 #ifdef ALLOW_ADMTLM
         doAdmTlm            = .TRUE.
 #else
