@@ -97,7 +97,7 @@ C- loop over neighboring tiles
 #ifndef ALWAYS_USE_MPI
          IF ( usingMPI ) THEN
 #endif
-         theProc = exch2_tProc(tgT) - 1
+         theProc = W2_tileProc(tgT) - 1
          theTag  = (tgT-1)*W2_maxNeighbours + oNb
          theSize = myd1
          theType = _MPI_TYPE_RL
