@@ -172,7 +172,7 @@ c--   Salinity field.
       boundsVec(3)=0.
       boundsVec(4)=0.
       boundsVec(5)=0.
-      paramSmooth=1
+      paramSmooth=0
 c-- initial zonal velocity
       call ctrl_map_ini_gen3D(xx_uvel_file, 'wuvel',
      & xx_uvel_dummy, boundsVec, uvel, maskw, paramSmooth,
@@ -260,7 +260,7 @@ c--   SSS relaxation coefficient.
       boundsVec(3)=0.3
       boundsVec(4)=0.4
       boundsVec(5)=0.
-      paramSmooth=1
+      paramSmooth=0
 c-- zonal eddy streamfunction : eddyPsiX
       call ctrl_map_ini_gen3D(xx_edtaux_file, 'wedtauxFld',
      & xx_edtaux_dummy, boundsVec, eddyPsiX, maskw, paramSmooth,
