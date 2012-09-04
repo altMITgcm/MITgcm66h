@@ -112,13 +112,13 @@ c--         Determine the weights to be used.
               do i = imin,imax
                 if (_hFacC(i,j,k,bi,bj) .ne. 0.) then
                   tmpx = tmpfld3d(i,j,k,bi,bj)
-#ifndef ALLOW_SMOOTH_CORREL3D
+                  IF ( .NOT.ctrlSmoothCorrel3D ) THEN
                   fctile = fctile
      &                 + wedtauxFld(i,j,k,bi,bj)*cosphi(i,j,bi,bj)
      &                 *tmpx*tmpx
-#else
+                  ELSE !IF ( .NOT.ctrlSmoothCorrel3D ) THEN
                   fctile = fctile + tmpx*tmpx
-#endif
+                  ENDIF !IF ( .NOT.ctrlSmoothCorrel3D ) THEN
                 endif
               enddo
             enddo
@@ -147,13 +147,13 @@ c--         Determine the weights to be used.
               do i = imin,imax
                 if (_hFacC(i,j,k,bi,bj) .ne. 0.) then
                   tmpx = tmpfld3d(i,j,k,bi,bj)
-#ifndef ALLOW_SMOOTH_CORREL3D
+                  IF ( .NOT.ctrlSmoothCorrel3D ) THEN
                   fctile = fctile
      &                 + wedtauyFld(i,j,k,bi,bj)*cosphi(i,j,bi,bj)
      &                 *tmpx*tmpx
-#else
+                  ELSE !IF ( .NOT.ctrlSmoothCorrel3D ) THEN
                   fctile = fctile + tmpx*tmpx
-#endif
+                  ENDIF !IF ( .NOT.ctrlSmoothCorrel3D ) THEN
                 endif
               enddo
             enddo

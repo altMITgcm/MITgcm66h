@@ -49,7 +49,6 @@ c     == routine arguments ==
       integer mythid
 
 #ifdef ALLOW_BP_COST_CONTRIBUTION
-#ifdef ALLOW_SMOOTH
 
 c     == local variables ==
 
@@ -243,10 +242,16 @@ c--    Smooth field of anomalies
      & 1,bpdatanom,irec,1,mythid)
 #endif
 
-      call smooth_basic2D(bpdifanom,maskc,750000. _d 0,5000,mythid)
+#ifdef ALLOW_SMOOTH
+      if ( useSMOOTH )
+     &  call smooth_basic2D(bpdifanom,maskc,750000. _d 0,5000,mythid)
+#endif
 
 #ifdef ALLOW_BP_COST_OUTPUT
-      call smooth_basic2D(bpdatanom,maskc,750000. _d 0,5000,mythid)
+#ifdef ALLOW_SMOOTH
+      if ( useSMOOTH ) 
+     &  call smooth_basic2D(bpdatanom,maskc,750000. _d 0,5000,mythid)
+#endif
 
       write(fname4test(1:80),'(1a)') 'bpdifanom_smooth'
       call mdswritefield(fname4test,32,.false.,'RL',
@@ -276,7 +281,6 @@ c--    Compute cost function
 
       enddo
 
-#endif /* ifdef ALLOW_SMOOTH */
 #endif /* ifdef ALLOW_BP_COST_CONTRIBUTION */
 
       end

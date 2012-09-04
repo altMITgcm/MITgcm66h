@@ -118,13 +118,13 @@ c--         Determine the weights to be used.
               do i = imin,imax
                 if (_hFacW(i,j,k,bi,bj) .ne. 0.) then
                   tmpx = tmpfld3d(i,j,k,bi,bj)
-#ifndef ALLOW_SMOOTH_CORREL3D
+                  IF ( .NOT.ctrlSmoothCorrel3D ) THEN
                   fctile = fctile
      &                 + wuvel3d(i,j,k,bi,bj)*cosphi(i,j,bi,bj)
      &                 *tmpx*tmpx
-#else
+                  ELSE !IF ( .NOT.ctrlSmoothCorrel3D ) THEN
                   fctile = fctile + tmpx*tmpx
-#endif
+                  ENDIF !IF ( .NOT.ctrlSmoothCorrel3D ) THEN
                   if ( wuvel3d(i,j,k,bi,bj)*cosphi(i,j,bi,bj).ne.0. )
      &                 num_uvel0(bi,bj) = num_uvel0(bi,bj) + 1. _d 0
                 endif

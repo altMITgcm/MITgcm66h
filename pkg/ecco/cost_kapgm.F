@@ -110,13 +110,13 @@ c--         Determine the weights to be used.
                 if (_hFacC(i,j,k,bi,bj) .ne. 0.) then
 c                  tmpx = (tmpfld3d(i,j,k,bi,bj)-GM_background_K)
                   tmpx = tmpfld3d(i,j,k,bi,bj)
-#ifndef ALLOW_SMOOTH_CORREL3D
+                IF ( .NOT.ctrlSmoothCorrel3D ) THEN
                   fctile = fctile
      &                 + wkapgmFld(i,j,k,bi,bj)*cosphi(i,j,bi,bj)
      &                 *tmpx*tmpx
-#else
+                ELSE !IF ( .NOT.ctrlSmoothCorrel3D ) THEN
                   fctile = fctile + tmpx*tmpx
-#endif
+                ENDIF !IF ( .NOT.ctrlSmoothCorrel3D ) THEN
                 endif
               enddo
             enddo
