@@ -17,10 +17,7 @@ C     *==========================================================*
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "DYNVARS.h"
 #include "GRID.h"
-c#include "tamc.h"
-#include "FFIELDS.h"
 #include "SMOOTH.h"
 
       integer i,j,k, bi, bj, ii, jj, kk

@@ -23,11 +23,7 @@ cgf for now I focus on the simpler smooth3DtypeH=1 case
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "DYNVARS.h"
 #include "GRID.h"
-c#include "tamc.h"
-#include "FFIELDS.h"
-#include "EOS.h"
 #include "SMOOTH.h"
 
       integer i,j,k, bi, bj, imin, imax, jmin, jmax

@@ -19,23 +19,9 @@ C     !USES:
       IMPLICIT NONE
 C     == Global data ==
 #include "SIZE.h"
-#include "DYNVARS.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#ifdef ALLOW_GENERIC_ADVDIFF
-#include "GAD.h"
-#endif
-#ifdef ALLOW_LONGSTEP
-#include "LONGSTEP_PARAMS.h"
-#endif
-#ifdef ALLOW_PTRACERS
-#include "PTRACERS_SIZE.h"
-#include "PTRACERS_PARAMS.h"
-#endif
-#ifdef ALLOW_AUTODIFF_TAMC
-#include "tamc_keys.h"
-#endif
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine Arguments ==

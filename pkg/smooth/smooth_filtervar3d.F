@@ -18,22 +18,20 @@ C     *==========================================================*
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "DYNVARS.h"
 #include "GRID.h"
-c#include "tamc.h"
-#include "FFIELDS.h"
 #include "SMOOTH.h"
+
+      integer smoothOpNb, myThid
 
       integer i,j,k, bi, bj, ii, jj, kk
       integer itlo,ithi, jtlo,jthi
       integer diLoc, djLoc,  dkLoc
-      integer myThid, nbRand
+      integer nbRand, nbt_in
       character*( 80) fnamegeneric
       _RL smoothTmpFld (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL smoothTmpMean(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL smoothTmpVar(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL port_rand, port_rand_norm
-      integer nbt_in,smoothOpNb
 
       jtlo = mybylo(myThid)
       jthi = mybyhi(myThid)

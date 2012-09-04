@@ -15,11 +15,6 @@ C     *==========================================================*
 #include "SIZE.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#include "DYNVARS.h"
-#include "FFIELDS.h"
-c#include "ctrl.h"
-c#include "ctrl_dummy.h"
-c#include "optim.h"
 #ifdef ALLOW_AUTODIFF_TAMC
 #include "tamc.h"
 #include "tamc_keys.h"
