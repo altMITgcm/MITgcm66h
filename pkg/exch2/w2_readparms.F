@@ -95,6 +95,17 @@ C-    Initialise other parameters:
         ENDDO
       ENDDO
 
+C     Set filling value for face-corner halo regions
+      e2FillValue_RL = 0. _d 0
+      e2FillValue_RS = 0. _d 0
+      e2FillValue_R4 = 0.e0
+      e2FillValue_R8 = 0.d0
+C-    for testing only: put a large value (should not affects the results)
+c     e2FillValue_RL = 1. _d+20
+c     e2FillValue_RS = 1. _d+20
+c     e2FillValue_R4 = 1.e+20
+c     e2FillValue_R8 = 1.d+20
+
 C-    Check for file "data.ech2":
       fileExist = .FALSE.
       INQUIRE( FILE='data.exch2', EXIST=fileExist )
