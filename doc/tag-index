@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint63s (2012/09/05)
 o pkg/exch2:
   - add "if usingMPI" where it was missing (in exch2_rx?_cube*.template)
     + to remove ALWAYS_USE_MPI in source code that TAF does not see.
