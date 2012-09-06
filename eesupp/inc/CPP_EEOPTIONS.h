@@ -96,7 +96,6 @@ CXXX We no longer select the use of MPI via this file (CPP_EEOPTIONS.h)
 CXXX To use MPI, use an appropriate genmake2 options file or use
 CXXX genmake2 -mpi .
 CXXX #undef  ALLOW_USE_MPI
-CXXX #undef  ALWAYS_USE_MPI
 
 C--   Control use of communication that might overlap computation.
 C     Under MPI selects/deselects "non-blocking" sends and receives.
