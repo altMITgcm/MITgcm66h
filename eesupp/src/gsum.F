@@ -138,18 +138,14 @@ C
         answer = answer+GSR8_value(curLev,I)
        ENDDO
 
-#ifdef  ALLOW_USE_MPI
-#ifndef ALWAYS_USE_MPI
+#ifdef ALLOW_USE_MPI
        IF ( usingMPI ) THEN
-#endif
         tmp = answer
         CALL MPI_Allreduce(tmp,sumPhi,1,MPI_DOUBLE_PRECISION,MPI_SUM,
      &                   MPI_COMM_MODEL,mpiRC)
         answer = sumPhi
-#ifndef ALWAYS_USE_MPI
        ENDIF
-#endif
-#endif /*  ALLOW_USE_MPI */
+#endif /* ALLOW_USE_MPI */
 
        GSR8_value(curLev,1) = answer
 
