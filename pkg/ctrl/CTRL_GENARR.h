@@ -11,6 +11,9 @@ c     ==================================================================
       character*(MAX_LEN_FNAM)
      &     xx_genarr2d_file(maxCtrlArr2D)
      &   , xx_genarr3d_file(maxCtrlArr3D)
+     
+      character*( 80) fname_genarr2d(3,maxCtrlArr2D)
+      character*( 80) fname_genarr3d(3,maxCtrlArr3D)
 
 CEH3 ;;; Local Variables: ***
 CEH3 ;;; mode:fortran ***
