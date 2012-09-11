@@ -124,6 +124,18 @@ C         Write each snap-shot as a new file (original and default
 C         method) -- creates many files but for large configurations is
 C         easier to transfer analyse a particular snap-shots
           WRITE(suff,'(I10.10)') myIter
+
+#ifdef ALLOW_AUTODIFF_OPENAD
+          CALL WRITE_FLD_XYZ_RL( 'U.',suff,uVel%v,myIter,myThid)
+          CALL WRITE_FLD_XYZ_RL( 'V.',suff,vVel%v,myIter,myThid)
+          CALL WRITE_FLD_XYZ_RL( 'T.',suff,theta%v,myIter,myThid)
+          CALL WRITE_FLD_XYZ_RL( 'S.',suff,salt%v,myIter,myThid)
+          CALL WRITE_FLD_XY_RL('Eta.',suff,etaN%v,myIter,myThid)
+          CALL WRITE_FLD_XYZ_RL( 'W.',suff,wVel%v,myIter,myThid)
+          IF ( useDynP_inEos_Zc .OR. myIter.NE.nIter0 ) THEN
+            CALL WRITE_FLD_XYZ_RL('PH.',suff,totPhiHyd%v,myIter,myThid)
+          ENDIF
+#else
           CALL WRITE_FLD_XYZ_RL( 'U.',suff,uVel,myIter,myThid)
           CALL WRITE_FLD_XYZ_RL( 'V.',suff,vVel,myIter,myThid)
           CALL WRITE_FLD_XYZ_RL( 'T.',suff,theta,myIter,myThid)
@@ -133,6 +145,8 @@ C         easier to transfer analyse a particular snap-shots
           IF ( useDynP_inEos_Zc .OR. myIter.NE.nIter0 ) THEN
             CALL WRITE_FLD_XYZ_RL('PH.',suff,totPhiHyd,myIter,myThid)
           ENDIF
+#endif
+
           IF ( fluidIsWater .AND. (myIter.NE.nIter0) ) THEN
             CALL WRITE_FLD_XY_RL('PHL.',suff,phiHydLow,myIter,myThid)
           ENDIF

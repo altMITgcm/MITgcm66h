@@ -176,7 +176,11 @@ c     >>> Initialise control vector for optimcycle=0 <<<
 c     >>> Write gradient vector <<<
           lxxadxx   = .FALSE.
           ictrlgrad = 2
+#ifdef ALLOW_AUTODIFF_OPENAD
+          fcloc     = fc%v
+#else
           fcloc     = fc
+#endif
           write(cfile(1:128),'(4a,i4.4)')
      &         costname(1:9),'_',yctrlid(1:10),
      &         yctrlpospack, optimcycle
