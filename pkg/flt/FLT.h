@@ -41,6 +41,7 @@ C    flt_deltaT   :: time-step to step forward floats (in flt_runga2.F)
 C                    default is deltaTClock
 C    flt_int_traj :: period between storing model state at float position, in s
 C    flt_int_prof :: period between float vertical profiles, in s
+C    FLT_Iter0    :: timestep number when float are initialized
 C
 C    note:  flt_int_prof is the time between getting profiles, not the
 C           the return  cycle of the float to the surface. The latter can
@@ -51,9 +52,11 @@ C           The subsampling of profiles can be done later in the analysis.
 
       _RL flt_noise, flt_deltaT
       _RL flt_int_traj, flt_int_prof
+      INTEGER FLT_Iter0
       COMMON / FLT_PARAM_R /
      &       flt_noise, flt_deltaT,
-     &       flt_int_traj, flt_int_prof
+     &       flt_int_traj, flt_int_prof,
+     &       FLT_Iter0
 
 C  flt_selectTrajOutp :: select which var. to output along trajectories
 C  flt_selectProfOutp :: select which var. to output along profiles
