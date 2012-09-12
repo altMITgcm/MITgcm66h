@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/mdsio:
+  - fix missing STOP in mdsio_readvec_loc.F (case ioUnit=0) when file is missing
 o tools/genmake2:
   - add similar dependences for target EXE_AD & EXE_FTL as we have for EXECUTABLE
     (added by Alistair in version 1.51 for building without make depend);
