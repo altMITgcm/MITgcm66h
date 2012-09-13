@@ -345,8 +345,10 @@ C--   Time-average
 #endif /* LAYERS_VFLUX */
 
 #ifdef LAYERS_PRHO_REF
+      IF (LAYER_nb .EQ. 3) THEN
          CALL TIMEAVE_CUMULATE( prho_tave, prho, Nr,
      &                          deltaTclock, bi, bj, myThid )
+      ENDIF
 #endif /* LAYERS_PRHO_REF */
 
          layers_TimeAve(bi,bj)=layers_TimeAve(bi,bj)+deltaTclock
