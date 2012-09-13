@@ -143,12 +143,12 @@ cHFLUXM_CONTROL
 
 c--     Set default values.
         doInitXX            = .TRUE.
-#ifdef ALLOW_SMOOTH_CORREL3D 
+#ifdef ALLOW_SMOOTH_CORREL3D
         ctrlSmoothCorrel3D  = .TRUE.
 #else
         ctrlSmoothCorrel3D  = .FALSE.
 #endif
-#ifdef ALLOW_SMOOTH_CORREL2D 
+#ifdef ALLOW_SMOOTH_CORREL2D
         ctrlSmoothCorrel2D  = .TRUE.
 #else
         ctrlSmoothCorrel2D  = .FALSE.
@@ -162,7 +162,11 @@ c--     Set default values.
         doZscaleUnpack      = .FALSE.
         doZscalePack        = .FALSE.
         doMainUnpack        = .TRUE.
+#if (defined (ALLOW_ADJOINT_RUN)||defined (ALLOW_TANGENTLINEAR_RUN))
         doMainPack          = .TRUE.
+#else
+        doMainPack          = .FALSE.
+#endif
         doSinglePrecTapelev = .FALSE.
         doAdmtlmBypassAD    = .FALSE.
 
