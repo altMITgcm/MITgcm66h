@@ -4,6 +4,14 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/layers :
+ - add diagnostics to pkg/layers
+ - move the meat of pkg/layers from layers_calc.F to layers_fluxcalc.F
+   (from R.Tulloch). Layers_calc.F now calls layers_fluxcalc.F accordingly.
+o pkg/generic_advdiff/gad_implicit_r.F :
+  - fix ADVr diagnostics in case of implicit vertical advection.
+o pkg/seaice/seaice_growth.F : 
+  - fix SItflux diagnostics in virtual salt flux + balanceEmpmr case.
 o pkg/obcs:
   - change default setting of OBCS_UVICE_OLD from defined to undef;
   - use new parameter OB_indexNone for null index value (instead of hard-coded 0)
