@@ -182,7 +182,7 @@ C     retired parameters
 #endif
 
 C--   Default flags and values for OBCS
-      OB_indexNone  = 0
+      OB_indexNone  = -99
       OB_indexUnset = 0
       insideOBmaskFile = ' '
       DO i=1,OBNS_Nx
