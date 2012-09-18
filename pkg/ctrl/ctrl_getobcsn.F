@@ -135,6 +135,7 @@ c--   Get the counters, flags, and the interpolation factor.
           if (iobcs .gt. 2) then
            do i = imin,imax
             j = OB_Jn(i,bi,bj)
+            IF ( j.EQ.OB_indexNone ) j = 1
 cih    Determine number of open vertical layers.
             nz = 0
             do k = 1,Nr
@@ -203,6 +204,7 @@ cgg   &                                    *   maskxz (i,k,bi,bj)
           if (iobcs .gt. 2) then
            do i = imin,imax
             j = OB_Jn(i,bi,bj)
+            IF ( j.EQ.OB_indexNone ) j = 1
 cih    Determine number of open vertical layers.
             nz = 0
             do k = 1,Nr
@@ -255,6 +257,7 @@ c--   Calculate mask for tracer cells (0 => land, 1 => water).
          do k = 1,nr
           do i = 1,snx
            j = OB_Jn(I,bi,bj)
+           IF ( j.EQ.OB_indexNone ) j = 1
            if (iobcs .EQ. 1) then
             OBNt(i,k,bi,bj) = OBNt (i,k,bi,bj)
      &           + obcsnfac            *xx_obcsn0(i,k,bi,bj,iobcs)
