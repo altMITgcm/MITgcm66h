@@ -95,9 +95,9 @@ C     == Local variables ==
 
 C     Southern OB (Orlanski Radiation Condition)
        DO K=1,Nr
-         DO I=1-Olx,sNx+Olx
+         DO I=1-OLx,sNx+OLx
             J_obc=OB_Js(I,bi,bj)
-            IF (J_obc.ne.0) THEN
+            IF ( J_obc.NE.OB_indexNone ) THEN
 C              uVel
                IF ((US_STORE_2(I,K,bi,bj).eq.0.).and.
      &            (US_STORE_3(I,K,bi,bj).eq.0.)) THEN
