@@ -146,28 +146,32 @@ c--             Ice shelf mask.
 c--   Count wet points at Northern boundary.
 c--   mask conventions are adopted from obcs_apply_ts, obcs_apply_uv
       ymaskobcs = 'maskobcsn'
-      call ctrl_mask_set_xz( 0, OB_Jn, nwetobcsn, ymaskobcs, mythid )
+      call ctrl_mask_set_xz( 0, OB_indexNone, OB_Jn,
+     &                       nwetobcsn, ymaskobcs, mythid )
 #endif
 
 #ifdef ALLOW_OBCSS_CONTROL
 c--   Count wet points at Southern boundary.
 c--   mask conventions are adopted from obcs_apply_ts, obcs_apply_uv
       ymaskobcs = 'maskobcss'
-      call ctrl_mask_set_xz( 1, OB_Js, nwetobcss, ymaskobcs, mythid )
+      call ctrl_mask_set_xz( 1, OB_indexNone, OB_Js,
+     &                       nwetobcss, ymaskobcs, mythid )
 #endif
 
 #ifdef ALLOW_OBCSW_CONTROL
 c--   Count wet points at Western boundary.
 c--   mask conventions are adopted from obcs_apply_ts, obcs_apply_uv
       ymaskobcs = 'maskobcsw'
-      call ctrl_mask_set_yz( 1, OB_Iw, nwetobcsw, ymaskobcs, mythid )
+      call ctrl_mask_set_yz( 1, OB_indexNone, OB_Iw,
+     &                       nwetobcsw, ymaskobcs, mythid )
 #endif
 
 #ifdef ALLOW_OBCSE_CONTROL
 c--   Count wet points at Eastern boundary.
 c--   mask conventions are adopted from obcs_apply_ts, obcs_apply_uv
       ymaskobcs = 'maskobcse'
-      call ctrl_mask_set_yz( 0, OB_Ie, nwetobcse, ymaskobcs, mythid )
+      call ctrl_mask_set_yz( 0, OB_indexNone, OB_Ie,
+     &                       nwetobcse, ymaskobcs, mythid )
 #endif
 
       _BEGIN_MASTER( mythid )
