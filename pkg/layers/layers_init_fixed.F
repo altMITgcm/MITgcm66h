@@ -140,5 +140,11 @@ C     Output the layer coordinates
       CALL WRITE_GLVEC_RL( 'layers_G', ' ', layers_G, 1+Nlayers,
      & -1, myThid )
 
+#ifdef ALLOW_DIAGNOSTICS
+      IF ( useDiagnostics ) THEN
+        CALL LAYERS_DIAGNOSTICS_INIT( myThid )
+      ENDIF
+#endif
+
       RETURN
       END

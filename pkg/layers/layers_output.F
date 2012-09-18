@@ -54,6 +54,11 @@ C     == Local variables ==
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
+#ifdef ALLOW_DIAGNOSTICS
+      IF ( useDiagnostics )
+     &  CALL LAYERS_DIAGNOSTICS_FILL( myThid )
+#endif
+
 #ifdef ALLOW_MNC
       IF ( writeBinaryPrec .EQ. precFloat64 ) THEN
         pf(1:1) = 'D'
