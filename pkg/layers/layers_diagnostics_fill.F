@@ -45,7 +45,7 @@ C     myThid ::  my Thread Id number
 # endif
 #endif
 
-#ifdef LAYERS_UFLUX
+#ifdef LAYERS_VFLUX
          WRITE(diagName,'(A4,I1,A3)') 'LaVH',iLa,layers_name(iLa)
          CALL DIAGNOSTICS_FILL( layers_VFlux(1-OLx,1-OLy,1,1,1,iLa),
      &                          diagName,0,Nlayers, 0, 1, 1, myThid )
