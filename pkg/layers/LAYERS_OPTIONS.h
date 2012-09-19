@@ -22,6 +22,11 @@ C Keep track of layer thicknesses?
 C The MNC stuff is too complicated
 #undef LAYERS_MNC
 
+C To allow use for snapshots and time average without 
+C pkg/diagnostics, using pkg/layers own codes and timeave
+C the old-fasioned way, only for the first set of layers.
+#undef ALLOW_LAYERS_OUTPUT
+
 C Allow use of potential density as a layering field.
 #define LAYERS_PRHO_REF
 

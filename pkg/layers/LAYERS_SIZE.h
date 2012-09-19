@@ -13,8 +13,9 @@ C        NLayers      :: the number if isopycnal layers (must match data.layers)
 C        FineGridFact :: how many fine-grid cells per dF cell
 C        FineGridMax  :: the number of points in the finer vertical grid
 C                         used for interpolation
-      INTEGER    Nlayers, FineGridFact, FineGridMax
+      INTEGER    Nlayers, FineGridFact, FineGridMax, layers_maxNum
       PARAMETER( Nlayers = 20 )
       PARAMETER( FineGridFact = 10 )
       PARAMETER( FineGridMax = Nr * FineGridFact )
+      PARAMETER( layers_maxNum = 1 )
 
