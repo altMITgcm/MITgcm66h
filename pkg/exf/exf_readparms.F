@@ -314,7 +314,7 @@ c     humid_fac   =  atm_Rq     <- default is zero !!!
       exf_albedo       = 0.1 _d 0
 C--   this default is chosen to be backward compatible with
 C--   an earlier setting of 5.5 = ocean_emissivity*stefanBoltzmann
-      ocean_emissivity = 5.50 _d-8 / 5.670 _d-8
+      ocean_emissivity = 5.50 _d -8 / 5.670 _d -8
       ice_emissivity   = 0.95 _d 0
       snow_emissivity  = 0.95 _d 0
 
