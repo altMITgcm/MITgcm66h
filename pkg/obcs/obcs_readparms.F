@@ -93,6 +93,7 @@ C OB_Ieast(W2_maxYStackNy)  :: global index array of eastern  open-boundary poin
 C OB_Iwest(W2_maxYStackNy)  :: global index array of western  open-boundary point
 
       COMMON/OBCS_GLOBAL/ OB_Jnorth, OB_Jsouth, OB_Ieast, OB_Iwest
+     &                  , OB_indexUnset
 #ifdef ALLOW_EXCH2
       INTEGER OB_Jnorth(W2_maxXStackNx)
       INTEGER OB_Jsouth(W2_maxXStackNx)
