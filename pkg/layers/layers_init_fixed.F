@@ -145,7 +145,7 @@ C     Output the layer coordinates
       DO iLa=1,layers_maxNum
       IF ( layers_num(iLa).NE.0 ) THEN
       WRITE(tmpName,'(A7,I1,A3)') 'layers',iLa,layers_name(iLa)
-      CALL WRITE_GLVEC_RL( tmpName, ' ', layers_G, 1+Nlayers,
+      CALL WRITE_GLVEC_RL(tmpName,' ',layers_bounds(1,iLa), 1+Nlayers,
      & -1, myThid )
       ENDIF
       ENDDO
