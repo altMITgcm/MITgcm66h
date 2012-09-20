@@ -31,6 +31,9 @@ C Enable OB conditions following Stevens (1990)
 C This includes hooks to sponge layer treatment of uvel, vvel
 #undef ALLOW_OBCS_SPONGE
 
+C Include hooks to sponge layer treatment of pkg/seaice variables
+#undef ALLOW_OBCS_SEAICE_SPONGE
+
 C balance barotropic velocity
 #define ALLOW_OBCS_BALANCE
 

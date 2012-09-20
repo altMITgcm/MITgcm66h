@@ -288,6 +288,13 @@ C     Western Boundary
        ENDDO
       ENDDO
 
+#ifdef ALLOW_OBCS_SEAICE_SPONGE
+      IF ( useSeaiceSponge ) THEN
+       CALL OBCS_SEAICE_SPONGE_A( myThid )
+       CALL OBCS_SEAICE_SPONGE_H( myThid )
+      ENDIF
+#endif /* ALLOW_OBCS_SEAICE_SPONGE */
+
 #endif /* defined (ALLOW_OBCS) && defined (ALLOW_SEAICE) */
 
       RETURN

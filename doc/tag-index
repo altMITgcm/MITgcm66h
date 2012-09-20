@@ -5,6 +5,8 @@ $Name$
     ==============================
 
 o pkg/obcs:
+  - added obcs_seaice_sponge.F for obcs relaxation of seaice variables;
+    see verification/seaice_obcs/input.seaiceSponge for example application.
   - remove local commom bloc "OBCS_GLOBAL" in obcs_readparms.F and do all the OB
     index setting by master-thread. This fix multi-threads Pb in previous modifs.
 o pkg/layers :
