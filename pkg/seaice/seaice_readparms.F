@@ -125,7 +125,7 @@ C--   SEAICE parameters
      & AreaFile, HeffFile, uIceFile, vIceFile, HsnowFile, HsaltFile,
      & SOLV_MAX_ITERS, SOLV_NCHECK, NPSEUDOTIMESTEPS, LSR_mixIniGuess,
      & LSR_ERROR, DIFF1, SEAICEuseFREEDRIFT, SEAICEuseTILT,
-     & SEAICEheatConsFix, SEAICE_multDim,
+     & SEAICEheatConsFix, SEAICE_multDim, SEAICE_useMultDimSnow,
      & SEAICE_area_reg, SEAICE_hice_reg,
      & SEAICE_area_floor, SEAICE_area_max, SEAICE_tauAreaObsRelax,
      & SEAICE_airTurnAngle, SEAICE_waterTurnAngle,
@@ -294,6 +294,7 @@ C     old default value of 0.97001763668430343479
 #else
       SEAICE_multDim     = 1
 #endif
+      SEAICE_useMultDimSnow = .FALSE.
 C     default to be set later (ocean-seaice turbulent flux coeff):
       SEAICE_mcPheeStepFunc = .FALSE.
       SEAICE_mcPheeTaper    = UNSET_RL
