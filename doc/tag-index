@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/obcs:
+  - fixed some indexing bugs in obcs_seaice_sponge.F
+  - added obcs relaxation subroutines for HSALT and HSNOW
+  - changes verification/seaice_obcs/results/obcs_seaice_sponge.F
 o pkg/seaice:
   - add "multicategory" parameterization for snow in analogy to ice,
     default is off for now.
