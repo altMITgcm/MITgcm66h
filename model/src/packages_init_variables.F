@@ -243,12 +243,12 @@ C--   Initialize SEAICE model.
 #endif /* ALLOW_ICEFRONT */
 
 #ifdef ALLOW_STREAMICE
-      IF (useStreamIce) THEN
+cph      IF (useStreamIce) THEN
 # ifdef ALLOW_DEBUG
        IF (debugMode) CALL DEBUG_CALL('STREAMICE_INIT_VARIA',myThid)
 # endif
        CALL STREAMICE_INIT_VARIA( myThid )
-      ENDIF
+cph      ENDIF
 #endif /* ALLOW_STREAMICE */
 
 #ifdef ALLOW_PTRACERS
