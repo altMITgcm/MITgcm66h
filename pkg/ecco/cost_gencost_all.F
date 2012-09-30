@@ -83,12 +83,14 @@ c     == end of interface ==
       end do
 
 # if (defined(ALLOW_GENCOST_SSHV4))
-      call cost_gencost_sshv4( myiter, mytime, mythid )
-#endif /* ALLOW_GENCOST_SSHV4 */
+      IF (using_cost_altim) 
+     &    call cost_gencost_sshv4( myiter, mytime, mythid )
+# endif /* ALLOW_GENCOST_SSHV4 */
 
 # if (defined(ALLOW_GENCOST_SSTV4))
-      call cost_gencost_sstv4( myiter, mytime, mythid )
-#endif /* ALLOW_GENCOST_SSTV4 */
+      IF (using_cost_sst)
+     &    call cost_gencost_sstv4( myiter, mytime, mythid )
+# endif /* ALLOW_GENCOST_SSTV4 */
 
 #endif /* ALLOW_GENCOST_CONTRIBUTION */
 

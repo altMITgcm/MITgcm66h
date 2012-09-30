@@ -221,7 +221,7 @@ c-- set weight to zero for missing values
       endif
 #endif /* ALLOW_TRANSPORT_COST_CONTRIBUTION */
 
-#ifdef ALLOW_SSH_COST_CONTRIBUTION
+#ifdef ALLOW_NEW_SSH_COST
 
 c--   Read flags for picking SSH time averages
       do irec = 1, ndaysrec
@@ -295,7 +295,7 @@ c
 c
       _END_MASTER(myThid)
       _BARRIER
-#endif
+#endif /* ALLOW_NEW_SSH_COST */
 
 c--   Summarize the cost function setup.
       _BEGIN_MASTER( mythid )

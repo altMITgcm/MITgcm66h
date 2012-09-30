@@ -61,6 +61,7 @@ c     == local variables ==
 c     == end of interface ==
 
 
+      IF (using_cost_sst) THEN
 #if (defined (ALLOW_SST_COST_CONTRIBUTION))
       write(msgbuf,'(a)') 'ph-cost call cost_sst'
       call print_message( msgbuf, standardmessageunit,
@@ -102,6 +103,7 @@ c
      &     myiter, mytime, mythid )
 cph      call cost_sst   ( myiter, mytime, mythid )
 #endif
+      ENDIF
 
 #ifdef ALLOW_ARGO_THETA_COST_CONTRIBUTION
       write(msgbuf,'(a)') 'ph-cost call cost_argo_theta'
@@ -124,6 +126,7 @@ cph      call cost_sst   ( myiter, mytime, mythid )
       call cost_xbt   ( myiter, mytime, mythid )
 #endif
 
+      IF (using_cost_sst) THEN
 #ifdef ALLOW_TMI_SST_COST_CONTRIBUTION
       write(msgbuf,'(a)') 'ph-cost call cost_tmi'
       call print_message( msgbuf, standardmessageunit,
@@ -144,6 +147,7 @@ cph      call cost_sst   ( myiter, mytime, mythid )
      &     myiter, mytime, mythid )
 cph      call cost_tmi( myiter, mytime, mythid )
 #endif
+      ENDIF
 
 #ifdef ALLOW_SSS_COST_CONTRIBUTION
       write(msgbuf,'(a)') 'ph-cost call cost_sss'
