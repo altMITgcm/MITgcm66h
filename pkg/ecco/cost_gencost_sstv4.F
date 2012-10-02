@@ -49,7 +49,6 @@ c     == routine arguments ==
 #ifdef ALLOW_DAILYSST_COST_CONTRIBUTION
 #ifdef ALLOW_SMOOTH
 #ifdef ALLOW_GENCOST_CONTRIBUTION
-#ifdef ALLOW_GENCOST_FREEFORM
 c     == local variables ==
 
       integer bi,bj
@@ -424,7 +423,6 @@ c compute cost:
 
       enddo
 
-#endif /* ifdef ALLOW_GENCOST_FREEFORM */
 #endif /* ifdef ALLOW_GENCOST_CONTRIBUTION */
 #endif /* ifdef ALLOW_SMOOTH */
 #endif /* ifdef ALLOW_DAILYSST_COST_CONTRIBUTION */

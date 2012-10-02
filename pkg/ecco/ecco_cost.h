@@ -81,8 +81,13 @@ c     objf_gencost - gencost user defined contribution
       _RL     gencost_period(NGENCOST)
 
       common /ecco_gencost_i_1/
-     &       gencost_nrec
+     &       gencost_nrec, gencost_flag
       integer gencost_nrec(NGENCOST)
+      integer gencost_flag(NGENCOST)
+
+      common /ecco_gencost_l_1/
+     &       using_gencost
+      LOGICAL using_gencost(NGENCOST)
 
       common /ecco_gencost_c/
      &       gencost_name,

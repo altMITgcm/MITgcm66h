@@ -225,7 +225,7 @@ c     == end of interface ==
      &                    SQUEEZE_RIGHT , mythid)
 
 #ifdef ALLOW_SSH_MEAN_COST_CONTRIBUTION
-      if (using_topex) then
+      if (using_cost_altim) then
         il = ilnblnk(topexmeanfile)
         write(msgbuf,'(a,a)')
      &  '  T/P mean is read from:          ',topexmeanfile(1:il)

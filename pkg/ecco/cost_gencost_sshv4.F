@@ -62,7 +62,6 @@ c     == routine arguments ==
 
 #ifdef ALLOW_SSH_COST_CONTRIBUTION
 #ifdef ALLOW_GENCOST_CONTRIBUTION
-#ifdef ALLOW_GENCOST_FREEFORM
 c     == local variables ==
 
       integer bi,bj
@@ -1061,7 +1060,6 @@ c--             The array gfoobs contains SSH anomalies.
       enddo
 
 
-#endif /* ifdef ALLOW_GENCOST_FREEFORM */
 #endif /* ifdef ALLOW_GENCOST_CONTRIBUTION */
 #endif /* ifdef ALLOW_SSH_COST_CONTRIBUTION */
 
