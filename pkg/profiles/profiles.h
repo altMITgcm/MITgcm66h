@@ -102,7 +102,7 @@ C===========================================================
       COMMON /profiles_cost_c/
      &        profilesDir, profilesfiles
       character*(MAX_LEN_FNAM) profilesDir
-      character*(MAX_LEN_FNAM) profilesfiles(50)
+      character*(MAX_LEN_FNAM) profilesfiles(NFILESPROFMAX)
 
       COMMON /profiles_ctrl_dummy/
      &                profiles_dummy
