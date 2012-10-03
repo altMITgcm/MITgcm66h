@@ -458,7 +458,7 @@ c--
 CADJ INIT comlev1_stream_nl = COMMON,nchklev_1*streamice_max_nl
 CADJ INIT comlev1_stream_front = COMMON,nchklev_1*4
 CADJ INIT comlev1_stream_ij
-CADJ &     = COMMON,nchklev_1*4*snx*nsx*sny*nsy
+CADJ &     = COMMON,nchklev_1*4*(snx+2)*nsx*(sny+2)*nsy
 CADJ INIT comlev1_stream_hybrid
 CADJ &     = COMMON,nchklev_1*snx*nsx*sny*nsy*nr*nthreads_chkpt
 #   endif
