@@ -90,7 +90,7 @@ CML        IF (k.EQ.kTop) maskUp=0.
 
 #ifdef ALLOW_DIAGNOSTICS
       IF (useDiagnostics) THEN
-        CALL DIAGNOSTICS_FILL(uDragTerms,'USHIDrag',k,1,2,bi,bj,
+        CALL DIAGNOSTICS_FILL(uDragTerms,'SHIUDrag',k,1,2,bi,bj,
      &      myThid)
       ENDIF
 #endif /* ALLOW_DIAGNOSTICS */

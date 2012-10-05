@@ -122,7 +122,7 @@ c--   use weight as mask
        diagName  = 'SHIUDrag'
        diagTitle = 'U momentum tendency from ice shelf drag'
        diagUnits = 'm/s^2           '
-       diagCode  = 'UU      L1      '
+       diagCode  = 'UU      MR      '
        diagMate  = diagNum + 2
        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I      diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
@@ -130,7 +130,7 @@ c--   use weight as mask
        diagName  = 'SHIVDrag'
        diagTitle = 'V momentum tendency from ice shelf drag'
        diagUnits = 'm/s^2           '
-       diagCode  = 'VV      L1      '
+       diagCode  = 'VV      MR      '
        diagMate  = diagNum
        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I      diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
