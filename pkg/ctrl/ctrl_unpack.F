@@ -804,7 +804,7 @@ c----------------------------------------------------------------------
           write(weighttype(1:80),'(a)') "wunit"
           call ctrl_set_unpack_xyz( lxxadxx, cunit, ivartype,
      &         fname_local(ictrlgrad), "maskCtrlC",
-     &         weighttype, nwetcglobal, mythid)
+     &         weighttype, wunit, nwetcglobal, mythid)
        enddo
 #endif
 
