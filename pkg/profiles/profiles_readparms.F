@@ -128,7 +128,7 @@ c--     Next, read the cost data file.
             if (.NOT.exst) then
 c warn user as we override profilesfiles
              WRITE(msgBuf,'(3A)')
-     &       '** WARNING ** PROFILES_READ_PARMS: missing file',
+     &       '** WARNING ** PROFILES_READ_PARMS: missing file: ',
      &       profilesfiles(num_file)(1:IL),' gets switched off'
              CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
      &                    SQUEEZE_RIGHT , myThid)
