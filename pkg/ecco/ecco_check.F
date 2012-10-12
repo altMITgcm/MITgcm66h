@@ -102,7 +102,7 @@ c
      &     .AND.(.NOT.using_gfo) ) THEN
 c warn user as we override using_cost_altim
              WRITE(msgBuf,'(2A)')
-     &       '** WARNING ** ECCO_CHECK_FILES: missing file',
+     &       '** WARNING ** S/R ECCO_CHECK: missing file: ',
      &       ' for altimeter data so cost gets switched off'
              CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
      &                    SQUEEZE_RIGHT , myThid)
