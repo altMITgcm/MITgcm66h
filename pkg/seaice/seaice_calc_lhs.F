@@ -145,9 +145,6 @@ C
          ENDDO
         ENDDO
 C     compute lhs side of momentum equations
-C     TO DO: proper boundary conditions for drag and coriolis terms
-C     but they may not be necesssary (and are done in the same way for
-C     the other solvers)
         DO J=1,sNy
          DO I=1,sNx
 C     mass*(uIce)/deltaT - dsigma/dx 
