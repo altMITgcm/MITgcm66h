@@ -1088,9 +1088,9 @@ C--   Calculate final residual of the linearised system
      O                  residUend, residVend, uTmp, vTmp,
      I                  printResidual, myIter, myThid )
         _BEGIN_MASTER( myThid )
-        WRITE(standardMessageUnit,'(A,1P3E16.8)')
-     &    ' SEAICE_LSR: Residual Initial Uice,Vice=',
-     &        residUini, residVini
+        WRITE(standardMessageUnit,'(A,I10,1P3E16.8)')
+     &    ' SEAICE_LSR: Residual Initial ipass,Uice,Vice=',
+     &        ilcall, residUini, residVini
 #ifdef SEAICE_ALLOW_FREEDRIFT
         IF ( LSR_mixIniGuess.GE.0 )
      &  WRITE(standardMessageUnit,'(A,1P3E16.8)')
