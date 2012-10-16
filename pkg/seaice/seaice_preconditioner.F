@@ -767,7 +767,7 @@ C--   Calculate final residual of the linearised system
      O                  residUend, residVend, uTmp, vTmp,
      I                  printResidual, myIter, myThid )
         _BEGIN_MASTER( myThid )
-        WRITE(standardMessageUnit,'(A,1X,I6,1P3E16.8)')
+        WRITE(standardMessageUnit,'(A,1X,1P3E16.8)')
      &       ' SEAICE_PRECONDITIONER: Residual Initial Uice,Vice=',
      &       residUini, residVini
         WRITE(standardMessageUnit,'(A,I4,A,I4,A,I6,1P2E16.8)')
