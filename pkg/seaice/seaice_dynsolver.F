@@ -300,12 +300,21 @@ CADJ STORE vicenm1 = comlev1, key=ikey_dynamics, kind=isbyte
        ENDIF
 #endif /* SEAICE_ALLOW_EVP */
 
-#if defined(SEAICE_ALLOW_EVP) || defined(SEAICE_ALLOW_FREEDRIFT)
-       IF ( .NOT.SEAICEuseFREEDRIFT .AND. .NOT.SEAICEuseEVP ) THEN
+#if (!defined ALLOW_AUTODIFF_TAMC && defined SEAICE_ALLOW_JFNK)
+       IF ( SEAICEuseJFNK ) THEN
+        CALL SEAICE_JFNK( myTime, myIter, myThid )
+       ENDIF
+#endif /* SEAICE_ALLOW_JFNK */
+
+#if defined(SEAICE_ALLOW_EVP) || defined(SEAICE_ALLOW_EVP) \
+                              || defined(SEAICE_ALLOW_FREEDRIFT)
+       IF ( .NOT.SEAICEuseFREEDRIFT .AND. .NOT.SEAICEuseEVP
+     &      .AND. .NOT.SEAICEuseJFNK ) THEN
 #endif /* SEAICE_ALLOW_EVP or SEAICE_ALLOW_FREEDRIFT */
 C     LSR SCHEME (ZHANG-J/HIBLER 1997), PORTED ON A C-GRID
           CALL SEAICE_LSR( myTime, myIter, myThid )
-#if defined(SEAICE_ALLOW_EVP) || defined(SEAICE_ALLOW_FREEDRIFT)
+#if defined(SEAICE_ALLOW_EVP) || defined(SEAICE_ALLOW_EVP) \
+                              || defined(SEAICE_ALLOW_FREEDRIFT)
        ENDIF
 #endif /* SEAICE_ALLOW_EVP or SEAICE_ALLOW_FREEDRIFT */
 
