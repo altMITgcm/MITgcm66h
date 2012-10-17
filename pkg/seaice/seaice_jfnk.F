@@ -78,10 +78,11 @@ C     du/vIce   :: ice velocity increment to be added to u/vIce
       _RL duIce  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL dvIce  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 C     precomputed (= constant per Newton iteration) versions of 
-C     zeta, eta, and DWATN 
-      _RL zetaPre(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RL etaPre (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RL dwatPre(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+C     zeta, eta, and DWATN, press
+      _RL zetaPre (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL etaPre  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL dwatPre (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL pressPre(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 CEOP
 
 C     Initialise
@@ -137,9 +138,10 @@ C     constant for the preconditioner
         DO bi=myBxLo(myThid),myBxHi(myThid)
          DO j=1-Oly,sNy+Oly
           DO i=1-Olx,sNx+Olx
-           zetaPre(I,J,bi,bj) =  zeta(I,J,bi,bj)
-            etaPre(I,J,bi,bj) =   eta(I,J,bi,bj)
-           dwatPre(I,J,bi,bj) = DWATN(I,J,bi,bj)
+            zetaPre(I,J,bi,bj) =  zeta(I,J,bi,bj)
+             etaPre(I,J,bi,bj) =   eta(I,J,bi,bj)
+            dwatPre(I,J,bi,bj) = DWATN(I,J,bi,bj)
+           pressPre(I,J,bi,bj) = press(I,J,bi,bj)
           ENDDO
          ENDDO
         ENDDO
@@ -229,7 +231,7 @@ C     iteration
 C     Call preconditioner
           CALL SEAICE_PRECONDITIONER( 
      U         duIce, dvIce, 
-     I         zetaPre, etaPre, dwatPre,
+     I         zetaPre, etaPre, dwatPre, pressPre,
      I         newtonIter, krylovIter, myTime, myIter, myThid )
          ELSEIF (iCode.GE.2) THEN
 C     Compute Jacobian times vector
