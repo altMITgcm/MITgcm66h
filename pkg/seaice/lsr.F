@@ -77,6 +77,9 @@ C     coefficients for lateral points, v(i+/-1)
 C     RHS
       _RL rhsU (1:sNx,1:sNy,nSx,nSy)
       _RL rhsV (1:sNx,1:sNy,nSx,nSy)
+C     symmetric and anti-symmetric drag coefficients
+      _RL DRAGS      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL DRAGA      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 #ifdef SEAICE_LSRBNEW
       LOGICAL doIterate4u, doIterate4v
       CHARACTER*(MAX_LEN_MBUF) msgBuf

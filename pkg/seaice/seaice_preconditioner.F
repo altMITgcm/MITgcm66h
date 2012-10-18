@@ -158,7 +158,9 @@ C SET SOME VALUES
       S1 = 0.
       S2 = 0.
 
+C
 C     Initialise
+C
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
         DO j=1-OLy,sNy+OLy
@@ -172,18 +174,6 @@ C     first guess for the increment is 0.
           dvIce(I,J,bi,bj) = 0. _d 0
          ENDDO
         ENDDO
-       ENDDO
-      ENDDO
-
-      DO bj=myByLo(myThid),myByHi(myThid)
-       DO bi=myBxLo(myThid),myBxHi(myThid)
-C
-        DO J=1,sNy
-         DO I=1,sNx
-          DRAGS(I,J,bi,bj) = dwatPre(I,J,bi,bj)*COSWAT
-         ENDDO
-        ENDDO
-
        ENDDO
       ENDDO
 C

@@ -81,8 +81,6 @@ C
 #endif
           ETA (i,j,bi,bj)   = 0. _d 0
           ZETA(i,j,bi,bj)   = 0. _d 0
-          DRAGS(i,j,bi,bj)  = 0. _d 0
-          DRAGA(i,j,bi,bj)  = 0. _d 0
           FORCEX(i,j,bi,bj) = 0. _d 0
           FORCEY(i,j,bi,bj) = 0. _d 0
           uIceC(i,j,bi,bj)  = 0. _d 0
