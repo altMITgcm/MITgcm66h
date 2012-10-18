@@ -52,8 +52,8 @@ C     i,j,bi,bj - Loop counters
 
       INTEGER i, j, bi, bj
       _RL RHOICE, RHOAIR
-      _RL COSWIN, COSWAT
-      _RS SINWIN, SINWAT
+      _RL COSWIN
+      _RS SINWIN
       _RL ECCEN, ECM2, PSTAR, AAA
       _RL U1, V1
 
@@ -69,8 +69,6 @@ C--   FIRST SET UP BASIC CONSTANTS
 C--   introduce turning angle (default is zero)
       SINWIN=SIN(SEAICE_airTurnAngle*deg2rad)
       COSWIN=COS(SEAICE_airTurnAngle*deg2rad)
-      SINWAT=SIN(SEAICE_waterTurnAngle*deg2rad)
-      COSWAT=COS(SEAICE_waterTurnAngle*deg2rad)
 
 C--   Compute proxy for geostrophic velocity,
       DO bj=myByLo(myThid),myByHi(myThid)
