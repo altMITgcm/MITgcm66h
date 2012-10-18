@@ -28,14 +28,14 @@ C     === Local variables ===
       INTEGER i,j,kg,bi,bj,iLa
 
       DO iLa=1,layers_maxNum
-      
+
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
 
 C     Loop through 3D variables:
         DO kg=1,Nlayers
-         DO j=1-Oly,sNy+OLy
-          DO i=1-Olx,sNx+Olx
+         DO j=1-OLy,sNy+OLy
+          DO i=1-OLx,sNx+OLx
 
 #ifdef LAYERS_UFLUX
            layers_UH(i,j,kg,bi,bj,iLa) = 0. _d 0
@@ -59,7 +59,6 @@ C     Loop through 3D variables:
          ENDDO
         ENDDO
 
-#ifdef ALLOW_LAYERS_OUTPUT
 #ifdef ALLOW_TIMEAVE
 cgf layers_maxNum loop and dimension would be needed for
 cgf the following and tave output to work beyond iLa.EQ.1
@@ -82,7 +81,6 @@ C     Initialize averages to zero
 #endif /* LAYERS_VFLUX */
       ENDIF !IF ( iLa.EQ.1 ) THEN
 #endif /* ALLOW_TIMEAVE */
-#endif /* ALLOW_LAYERS_OUTPUT */
 
 C- end bi,bj loops
        ENDDO
