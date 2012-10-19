@@ -5,6 +5,9 @@ $Name$
     ==============================
 
 o pkg/layers (adjust changes from Sept 19):
+  - do snap-shot output and fill diagnostics from inside iLa loop (layers_calc.F)
+    this allows to remove "layers_maxNum" dimension from all layers arrays.
+o pkg/layers (adjust changes from Sept 19):
   - remove ALLOW_LAYERS_OUTPUT ; fix snap-shot and time-ave output ;
   - snap-shot extended to all type of layers (not just the 1rst type);
   - remove layers variables when corresponding CPP option is undef.
