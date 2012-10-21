@@ -403,11 +403,11 @@ C--   Large&Pond1981:
      &               ( exf_two*LOG(exf_half*(exf_one+xsq)) )
 
             IF ( solve4Stress ) THEN
+CADJ STORE rdn(i,j)       = comlev1_exf_2, key = ikey_2
 C-   Shift wind speed using old coefficient
 #ifdef ALLOW_BULK_LARGEYEAGER04
 C--   Large&Yeager04:
              dzTmp = (zwln-psimh)/karman
-CADJ STORE rdn   (i,j)       = comlev1_exf_2, key = ikey_2
              usn   = wspeed(i,j,bi,bj)/(exf_one + rdn(i,j)*dzTmp )
 #else
 C--   Large&Pond1981:
