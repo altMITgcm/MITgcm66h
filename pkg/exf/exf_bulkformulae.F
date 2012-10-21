@@ -407,6 +407,7 @@ C-   Shift wind speed using old coefficient
 #ifdef ALLOW_BULK_LARGEYEAGER04
 C--   Large&Yeager04:
              dzTmp = (zwln-psimh)/karman
+CADJ STORE rdn   (i,j)       = comlev1_exf_2, key = ikey_2
              usn   = wspeed(i,j,bi,bj)/(exf_one + rdn(i,j)*dzTmp )
 #else
 C--   Large&Pond1981:
