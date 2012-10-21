@@ -72,17 +72,19 @@ CADJ STORE surfaceforcingtice = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
 c
 # ifndef DISABLE_RSTAR_CODE
-CADJ STORE rstarfacc,rstarfacs,rstarfacw
-CADJ &     = comlev1, key = ikey_dynamics,
-CADJ &     kind = isbyte
+CADJ STORE rstarfacc
+CADJ &     = comlev1, key = ikey_dynamics, kind = isbyte
+ccCADJ STORE rstarfacc,rstarfacs,rstarfacw
+ccCADJ &     = comlev1, key = ikey_dynamics,
+ccCADJ &     kind = isbyte
 CADJ STORE rStarFacNm1C,rStarFacNm1S,rStarFacNm1W
 CADJ &     = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
 CADJ STORE rstarexpc,rstarexps,rstarexpw
 CADJ &     = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
-CADJ STORE rstardhcdt,rstardhsdt,rstardhwdt
-CADJ &     = comlev1, key = ikey_dynamics, kind = isbyte
+ccCADJ STORE rstardhcdt,rstardhsdt,rstardhwdt
+ccCADJ &     = comlev1, key = ikey_dynamics, kind = isbyte
 # endif
 #endif /* NONLIN_FRSURF */
 
