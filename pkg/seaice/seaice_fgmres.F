@@ -280,10 +280,10 @@ C 1    continue
 C      call fgmres (n,im,rhs,sol,i,vv,w,wk1, wk2,eps,maxits,iout,icode)
 C
 C      if (icode .eq. 1) then
-C         call  precon(n, wk1, wk2)    <--- user's variable preconditioning
+C         call  precon(n, wk1, wk2)    <--- user variable preconditioning
 C         goto 1
 C      else if (icode .ge. 2) then
-C         call  matvec (n,wk1, wk2)    <--- user's matrix vector product. 
+C         call  matvec (n,wk1, wk2)    <--- user matrix vector product. 
 C         goto 1
 C      else 
 C         ----- done ---- 

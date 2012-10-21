@@ -304,7 +304,7 @@ C     Elastic-Viscous-Plastic solver, following Hunke (2001)
 #ifdef SEAICE_ALLOW_JFNK
        IF ( SEAICEuseJFNK ) THEN
 # ifdef ALLOW_AUTODIFF_TAMC
-        STOP 'Adjoint does not work with JFNK solver.
+        STOP 'Adjoint does not work with JFNK solver.'
 # else
 C     Jacobian-free Newton Krylov solver (Lemieux et al. 2010, 2012)
         CALL SEAICE_JFNK( myTime, myIter, myThid )
