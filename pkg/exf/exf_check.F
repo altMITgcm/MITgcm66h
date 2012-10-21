@@ -49,29 +49,19 @@ c     check for consistency
        stop 'ABNORMAL END: S/R EXF_CHECK'
       endif
 
-      IF ( .NOT.useAtmWind ) THEN
-       IF ( ustressfile .EQ. ' ' .OR. vstressfile .EQ. ' ' ) THEN
-        WRITE(msgBuf,'(A,A)') ' ** WARNING ** EXF_CHECK : no specs.',
-     &        'of u & vstressfile in data.exf, while .NOT.useAtmWind.'
-        CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
-     &                    SQUEEZE_RIGHT , myThid)
-       ENDIF
+#if ( defined (ALLOW_BULKFORMULAE) && defined (ALLOW_ATM_WIND) )
+      IF ( ustressfile .NE. ' ' .OR. ustressfile .NE. ' ' ) THEN
+        STOP
+     & 'S/R EXF_CHECK: use u,v_wind components but not wind-stress'
       ENDIF
-
-      IF ( useAtmWind.OR.useRelativeWind ) THEN
-#ifndef ALLOW_BULKFORMULAE
-        WRITE(msgBuf,'(A,A)') 'EXF_CHECK: useAtmWind or ',
-     &        'useRelativeWind require ALLOW_BULKFORMULAE'
-        CALL PRINT_ERROR( msgBuf, myThid )
-        STOP 'ABNORMAL END: S/R EXF_CHECK'
 #endif
-       IF ( uwindfile .EQ. ' ' .OR. vwindfile .EQ. ' ' ) THEN
-        WRITE(msgBuf,'(A,A)') 'EXF_CHECK: useAtmWind or ',
-     &        'useRelativeWind require u & vwindfile spec.'
-        CALL PRINT_ERROR( msgBuf, myThid )
-        STOP 'ABNORMAL END: S/R EXF_CHECK'
-       ENDIF
+
+#ifndef ALLOW_ATM_WIND
+      IF ( uwindfile .NE. ' ' .OR. vwindfile .NE. ' ' ) THEN
+        STOP
+     & 'S/R EXF_CHECK: read-in wind-stress but not u,v_wind components'
       ENDIF
+#endif
 
 #ifndef ALLOW_ZENITHANGLE
       IF ( useExfZenAlbedo .OR. useExfZenIncoming .OR.
