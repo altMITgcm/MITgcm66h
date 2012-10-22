@@ -34,6 +34,13 @@ C     SEAICE_timeAve :: cumulated time [s]
       _RL HEFFtave  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL AREAtave  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
+#ifdef SEAICE_ITD
+      COMMON /SEAICE_TAVE_VARS_ITD/
+     &        HEFFITDtave, AREAITDtave
+      _RL HEFFITDtave(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nITD,nSx,nSy)
+      _RL AREAITDtave(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nITD,nSx,nSy)
+#endif
+
 #endif /* ALLOW_TIMEAVE */
 
 CEH3 ;;; Local Variables: ***

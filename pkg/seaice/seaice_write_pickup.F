@@ -95,19 +95,37 @@ C-    switch to 2-D fields:
 
 C---  continue to write 2-D fields:
         j = j + 1
+#ifdef SEAICE_ITD
+        nj = nj-nITD
+        CALL WRITE_REC_3D_RL(fn, fp, nITD, AREAITD , nj, myIter, myThid)
+        IF (j.LE.listDim) wrFldList(j) = 'siAREAn '
+#else
         nj = nj-1
         CALL WRITE_REC_3D_RL( fn, fp,  1, AREA , nj, myIter, myThid )
         IF (j.LE.listDim) wrFldList(j) = 'siAREA  '
+#endif
 
         j = j + 1
+#ifdef SEAICE_ITD
+        nj = nj-nITD
+        CALL WRITE_REC_3D_RL(fn, fp, nITD, HEFFITD , nj, myIter, myThid)
+        IF (j.LE.listDim) wrFldList(j) = 'siHEFFn '
+#else
         nj = nj-1
         CALL WRITE_REC_3D_RL( fn, fp,  1, HEFF , nj, myIter, myThid )
         IF (j.LE.listDim) wrFldList(j) = 'siHEFF  '
+#endif
 
         j = j + 1
+#ifdef SEAICE_ITD
+        nj = nj-nITD
+        CALL WRITE_REC_3D_RL(fn, fp, nITD, HSNOWITD, nj, myIter, myThid)
+        IF (j.LE.listDim) wrFldList(j) = 'siHSNOWn'
+#else
         nj = nj-1
         CALL WRITE_REC_3D_RL( fn, fp,  1, HSNOW , nj, myIter, myThid )
         IF (j.LE.listDim) wrFldList(j) = 'siHSNOW '
+#endif
 #ifdef SEAICE_VARIABLE_SALINITY
         j = j + 1
         nj = nj-1

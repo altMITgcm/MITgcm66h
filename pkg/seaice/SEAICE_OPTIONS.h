@@ -124,6 +124,17 @@ C     SEAICE_CAP_SUBLIM is not needed as of now, but kept just in case.
 C--   Enable free drift code
 #undef SEAICE_ALLOW_FREEDRIFT
 
+CToM<<<
+C--   run with sea ice thickness distribution;
+C     set number of categories (nITD) in SIZE.h
+#undef SEAICE_ITD
+C
+C--   SEAICE_ITD replaces SEAICE_MULTICATEGORY
+#ifdef SEAICE_ITD
+#undef SEAICE_MULTICATEGORY
+#endif
+C>>>ToM
+
 #endif /* ALLOW_SEAICE */
 #endif /* SEAICE_OPTIONS_H */
 
