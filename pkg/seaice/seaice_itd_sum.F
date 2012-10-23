@@ -99,5 +99,4 @@ c      ENDDO
 C---+-|--1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 #endif /* SEAICE_ITD */
       RETURN
-      END SUBROUTINE SEAICE_ITD_SUM
-
+      END
