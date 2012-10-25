@@ -214,8 +214,10 @@ C--   KGEO    Level used as a proxy for geostrophic velocity.
 #ifdef ALLOW_SEAICE_COST_EXPORT
       _RL uHeffExportCell(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL vHeffExportCell(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL icevolMeanCell(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       COMMON /SEAICE_COST_EXPORT_R/
-     &       uHeffExportCell, vHeffExportCell
+     &       uHeffExportCell, vHeffExportCell,
+     &       icevolMeanCell
 #endif
 
 C     SWFracB :: fraction of surface Short-Wave radiation reaching

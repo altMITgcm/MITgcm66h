@@ -17,6 +17,7 @@ CADJ STORE objf_ice = tapelev3, key = ilev_3
 #ifdef ALLOW_SEAICE_COST_EXPORT
 CADJ STORE uHeffExportCell = tapelev3, key = ilev_3
 CADJ STORE vHeffExportCell = tapelev3, key = ilev_3
+CADJ STORE icevolMeanCell = tapelev3, key = ilev_3
 #endif
 #if (defined (ALLOW_MEAN_SFLUX_COST_CONTRIBUTION) || defined (ALLOW_SSH_GLOBMEAN_COST_CONTRIBUTION))
 CADJ STORE AREAforAtmFW = tapelev3, key = ilev_3

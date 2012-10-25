@@ -152,6 +152,7 @@ c "ice concentration" tracer that should remain .EQ.1.
 #ifdef ALLOW_SEAICE_COST_EXPORT
           uHeffExportCell(i,j,bi,bj) = 0. _d 0
           vHeffExportCell(i,j,bi,bj) = 0. _d 0
+          icevolMeanCell(i,j,bi,bj) = 0. _d 0
 #endif
           saltWtrIce(i,j,bi,bj) = 0. _d 0
           frWtrIce(i,j,bi,bj)   = 0. _d 0
