@@ -36,6 +36,7 @@ C-- options set in Makefile by genmake2:
 #undef HAVE_STAT
 #undef HAVE_NETCDF
 #undef HAVE_LAPACK
+#undef HAVE_FLUSH
 
 C-- options that can be set in Makefile by the OPTFILE
 C-  platform specific options:
