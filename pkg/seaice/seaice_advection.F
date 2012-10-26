@@ -203,7 +203,12 @@ C--   Set tile-specific parameters for horizontal fluxes
       IF (useCubedSphereExchange) THEN
        nipass=3
 #ifdef ALLOW_AUTODIFF_TAMC
-       IF ( nipass.GT.maxcube ) STOP 'maxcube needs to be = 3'
+       IF ( nipass.GT.maxcube ) THEN
+           WRITE(msgBuf,'(A)')
+     &      'SEAICE_ADVECTION: maxcube needs to be =3; check tamc.h '
+           CALL PRINT_ERROR( msgBuf, myThid )
+           STOP 'ABNORMAL END: S/R SEAICE_ADVECTION'
+       ENDIF
 #endif
 #ifdef ALLOW_EXCH2
        myTile = W2_myTileList(bi,bj)
@@ -281,7 +286,11 @@ C--   For cube need one pass for each of red, green and blue axes.
 #ifdef ALLOW_AUTODIFF_TAMC
        passkey = ipass + (igadkey-1)*maxpass
        IF (nipass .GT. maxpass) THEN
-        STOP 'SEAICE_ADVECTION: nipass > maxcube. check tamc.h'
+           WRITE(msgBuf,'(A,2I3)')
+     &      'SEAICE_ADVECTION: nipass > max[ass. check tamc.h ',
+     &      nipass, maxpass
+           CALL PRINT_ERROR( msgBuf, myThid )
+           STOP 'ABNORMAL END: S/R SEAICE_ADVECTION'
        ENDIF
 #endif /* ALLOW_AUTODIFF_TAMC */
 
@@ -382,8 +391,11 @@ CADJ &     comlev1_bibj_k_gadice_pass, key=passkey, byte=isbyte
      O         af, myThid )
 #endif
          ELSE
-          STOP
-     & 'SEAICE_ADVECTION: adv. scheme incompatibale with multi-dim'
+           WRITE(msgBuf,'(A,I3,A)')
+     &      'SEAICE_ADVECTION: adv. scheme ', advectionScheme,
+     &      ' incompatibale with multi-dim. adv.'
+           CALL PRINT_ERROR( msgBuf, myThid )
+           STOP 'ABNORMAL END: S/R SEAICE_ADVECTION'
          ENDIF
 
 C--   Advective flux in X : done
@@ -581,8 +593,11 @@ CADJ &     comlev1_bibj_k_gadice_pass, key=passkey, byte=isbyte
      O         af, myThid )
 #endif
          ELSE
-          STOP
-     &  'SEAICE_ADVECTION: adv. scheme incompatibale with mutli-dim'
+           WRITE(msgBuf,'(A,I3,A)')
+     &      'SEAICE_ADVECTION: adv. scheme ', advectionScheme,
+     &      ' incompatibale with multi-dim. adv.'
+           CALL PRINT_ERROR( msgBuf, myThid )
+           STOP 'ABNORMAL END: S/R SEAICE_ADVECTION'
          ENDIF
 
 C-     Advective flux in Y : done
