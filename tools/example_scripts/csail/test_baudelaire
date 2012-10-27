@@ -100,6 +100,9 @@ do
     new_dir="MITgcm_$typ"
     if test -d $new_dir/CVS -a $checkOut = '0' ; then
       pushd $new_dir
+      if test $tt != $typ ; then
+        ( cd verification ; ../tools/do_tst_2+2 -clean )
+      fi
       echo -n "Update the MITgcm code using: $cmdCVS ..."
       $cmdCVS update -P -d
       echo "  done"
