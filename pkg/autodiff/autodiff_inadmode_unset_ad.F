@@ -15,6 +15,7 @@ C     == Global variables ===
 #include "PARAMS.h"
 #include "AUTODIFF_PARAMS.h"
 #ifdef ALLOW_SEAICE
+#include "SEAICE_SIZE.h"
 #include "SEAICE_PARAMS.h"
 #endif
 
@@ -56,6 +57,14 @@ C     myThid :: my Thread Id number
       ENDIF
 
 #ifdef ALLOW_SEAICE
+      SEAICEuseDYNAMICS = SEAICEuseDYNAMICSinFwdMode
+      IF ( debugLevel.GE.debLevC ) THEN
+        WRITE(msgBuf,'(2A,L5)') 'S/R ADAUTODIFF_INADMODE_UNSET: ',
+     &       'SEAICEuseDYNAMICS =', SEAICEuseDYNAMICS
+        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                      SQUEEZE_RIGHT, myThid )
+      ENDIF
+
       IF ( turnFreeDriftInAdMode ) THEN
         SEAICEuseFREEDRIFT = .FALSE.
         IF ( debugLevel.GE.debLevC ) THEN
