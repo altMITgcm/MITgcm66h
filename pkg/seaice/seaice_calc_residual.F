@@ -27,11 +27,7 @@ C     !USES:
 C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
-#include "PARAMS.h"
-#include "DYNVARS.h"
-#include "GRID.h"
 #include "SEAICE_SIZE.h"
-#include "SEAICE_PARAMS.h"
 #include "SEAICE.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
