@@ -101,7 +101,7 @@ C     not sure if this works properly
       _BEGIN_MASTER ( myThid )
       IF ( iCode .EQ. 0 ) THEN
 C     first guess is zero because it is a correction
-C     wk2 needs to reset for iCode = 0, because it contains
+C     wk2 needs to be reset for iCode = 0, because it may contain
 C     remains of the previous Krylov iteration
        DO k=1,n
         sol(k) = 0. _d 0
@@ -109,9 +109,12 @@ C     remains of the previous Krylov iteration
        ENDDO
       ELSEIF ( iCode .EQ. 3 ) THEN
        CALL SEAICE_MAP2VEC(n,uIceRes,vIceRes,rhs,.TRUE.,myThid)
-C     change sign because we are solving J*u = -F
+C     change sign of rhs because we are solving J*u = -F
+C     wk2 needs to be initialised for iCode = 3, because it may contain
+C     garbage
        DO k=1,n
         rhs(k) = -rhs(k)
+        wk2(k) = 0. _d 0
        ENDDO
       ELSE
 C     map preconditioner results or Jacobian times vector,
