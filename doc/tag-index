@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: simplify seaice_evp by avoiding use of extra fields u/vIceC
 o pkg/autodiff
   - Add inAdMode switch for SEAICEuseDYNAMICS:
     SEAICEuseDYNAMICSinAdMode 
