@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ggl90: fix computation of control volumes for the case of 
+  ALLOW_GGL90_HORIZDIFF (probably not used very often): move control volumes
+  up half a grid cell from C-centered to W-centered (pointed out by C. Eden)
 o pkg/seaice: simplify seaice_evp by avoiding use of extra fields u/vIceC
 o pkg/autodiff
   - Add inAdMode switch for SEAICEuseDYNAMICS:
