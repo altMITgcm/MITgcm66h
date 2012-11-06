@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice/seaice_calc_l/rhs.F: replace maskW/S by maskInW/S; this fixes
+  a serious convergence problem when open boundaries are involved
 o pkg/ggl90: fix computation of control volumes for the case of 
   ALLOW_GGL90_HORIZDIFF (probably not used very often): move control volumes
   up half a grid cell from C-centered to W-centered (pointed out by C. Eden)
