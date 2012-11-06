@@ -83,7 +83,6 @@ CML      _RL g_dvIce(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 CML      _RL g_uIceRes(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 CML      _RL g_vIceRes(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 CML
-CML      IF (.false.) then
 CMLC     Initialise
 CML      DO bj=myByLo(myThid),myByHi(myThid)
 CML       DO bi=myBxLo(myThid),myBxHi(myThid)
