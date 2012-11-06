@@ -262,6 +262,9 @@ C     Update linear solution vector and return to Newton iteration
            DO I=1-Olx,sNx+Olx
             uIce(I,J,bi,bj) = uIce(I,J,bi,bj)+duIce(I,J,bi,bj)
             vIce(I,J,bi,bj) = vIce(I,J,bi,bj)+dvIce(I,J,bi,bj)
+C     reset du/vIce here instead of setting sol = 0 in seaice_fgmres_driver
+            duIce(I,J,bi,bj)= 0. _d 0
+            dvIce(I,J,bi,bj)= 0. _d 0
            ENDDO
           ENDDO
          ENDDO
