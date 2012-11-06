@@ -89,9 +89,9 @@ C     ( remember to average to correct velocity points )
      &         + DWATN(I,J-1,bi,bj) * 0.5 _d 0 *
      &          ( uVel(I,J-1,kSrf,bi,bj)+uVel(I+1,J-1,kSrf,bi,bj))
      &         ) )
-C     apply masks
-          uIceRHS(I,J,bi,bj) = uIceRHS(I,J,bi,bj)*maskW(I,J,kSrf,bi,bj)
-          vIceRHS(I,J,bi,bj) = vIceRHS(I,J,bi,bj)*maskS(I,J,kSrf,bi,bj)
+C     apply masks for interior (important when we have open boundaries)
+          uIceRHS(I,J,bi,bj) = uIceRHS(I,J,bi,bj)*maskinW(I,J,bi,bj)
+          vIceRHS(I,J,bi,bj) = vIceRHS(I,J,bi,bj)*maskinS(I,J,bi,bj)
          ENDDO
         ENDDO
        ENDDO

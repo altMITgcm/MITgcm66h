@@ -187,9 +187,9 @@ C                           + Cdrag*(vIce*cosWat + uIce*sinWat)
      &         +  DWATN(I,J-1,bi,bj) * 0.5 _d 0 *
      &         (uIceLoc(I,J-1,bi,bj)+uIceLoc(I+1,J-1,bi,bj))
      &         )
-C     apply masks
-          uIceLHS(I,J,bi,bj) = uIceLHS(I,J,bi,bj)*maskW(I,J,1,bi,bj)
-          vIceLHS(I,J,bi,bj) = vIceLHS(I,J,bi,bj)*maskS(I,J,1,bi,bj)
+C     apply masks for interior (important when we have open boundaries)
+          uIceLHS(I,J,bi,bj) = uIceLHS(I,J,bi,bj)*maskinW(I,J,bi,bj)
+          vIceLHS(I,J,bi,bj) = vIceLHS(I,J,bi,bj)*maskinS(I,J,bi,bj)
          ENDDO
         ENDDO
        ENDDO
