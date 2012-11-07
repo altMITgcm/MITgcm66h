@@ -5,6 +5,9 @@ $Name$
     ==============================
 
 o pkg/seaice:
+  - seaice_preconditioner: 
+    + replace one remaining press by pressLoc (mistake)
+    + adjust printing of residuals
   - improve I/O of diagnostics of JFNK in seaice_jfnk.F:
     + add (SEAICE.h) and rename some counters (initiliased in 
       seaice_init_fixed.F)
