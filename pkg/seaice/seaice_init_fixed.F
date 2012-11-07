@@ -370,6 +370,15 @@ C--   Choose a proxy level for geostrophic velocity,
       ENDDO
 #endif /* SEAICE_CGRID */
 
+#ifdef SEAICE_ALLOW_JFNK
+C     initialise some diagnostic counters for the JFNK solver
+      totalNewtonIters   = 0
+      totalNewtonFails   = 0
+      totalKrylovIters   = 0
+      totalKrylovFails   = 0
+      totalJFNKtimeSteps = 0
+#endif /* SEAICE_ALLOW_JFNK */
+
 #ifdef ALLOW_DIAGNOSTICS
       IF ( useDiagnostics ) THEN
         CALL SEAICE_DIAGNOSTICS_INIT( myThid )
