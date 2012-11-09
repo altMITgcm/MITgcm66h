@@ -726,7 +726,7 @@ C    and update AREA, HEFF, and HSNOW
 #ifdef SEAICE_ITD
         WRITE(msgBufForm,'(A,I2,A)') '(A,',nITD,'F14.10)'
 #else
-        WRITE(msgBufForm,'(A,I2,A)') '(A,  F14.10)'
+        WRITE(msgBufForm,'(A,A)') '(A,  F14.10)'
 #endif
         WRITE(msgBuf,msgBufForm)
      &    ' SEAICE_GROWTH: Heff increments 0, HEFF = ',
@@ -1984,26 +1984,6 @@ C =================================================================
 	  ENDDO
 	 ENDDO
 #endif
-c ToM<<< debug seaice_growth
-        WRITE(msgBuf,msgBufForm)
-     &    ' SEAICE_GROWTH: Heff increments 9, HEFF = ',
-#ifdef SEAICE_ITD
-     &     HEFFITD(1,1,:,bi,bj)
-#else
-     &     HEFF(1,1,bi,bj)
-#endif
-        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &    SQUEEZE_RIGHT , myThid)
-        WRITE(msgBuf,msgBufForm)
-     &    ' SEAICE_GROWTH: Area increments 9, AREA = ',
-#ifdef SEAICE_ITD
-     &     AREAITD(1,1,:,bi,bj)
-#else
-     &     AREA(1,1,bi,bj)
-#endif
-        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &    SQUEEZE_RIGHT , myThid)
-c ToM>>>
 
 C ===================================================================
 C ==========PART 4: determine ice cover fraction increments=========-
