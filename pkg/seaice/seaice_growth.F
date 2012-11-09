@@ -58,13 +58,11 @@ C     !FUNCTIONS:
 
 C     !LOCAL VARIABLES:
 C     === Local variables ===
-#ifdef SEAICE_DEBUG
 c ToM<<< debug seaice_growth
 C     msgBuf      :: Informational/error message buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       CHARACTER*12 msgBufForm
 c ToM>>>
-#endif
 C
 C unit/sign convention:
 C    Within the thermodynamic computation all stocks, except HSNOW,
