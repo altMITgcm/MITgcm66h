@@ -88,6 +88,7 @@ C
           hEffNm1(i,j,bi,bj)=0. _d 0
 #endif
           ETA (i,j,bi,bj)   = 0. _d 0
+          etaZ(i,j,bi,bj)   = 0. _d 0
           ZETA(i,j,bi,bj)   = 0. _d 0
           FORCEX(i,j,bi,bj) = 0. _d 0
           FORCEY(i,j,bi,bj) = 0. _d 0
