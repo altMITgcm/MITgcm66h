@@ -240,8 +240,9 @@ C     FGMRES returns iCode either asking for an new preconditioned vector
 C     or product of matrix (Jacobian) times vector. For iCode = 0, terminate
 C     iteration
          IF (iCode.EQ.1) THEN
-C     Call preconditioner
-          CALL SEAICE_PRECONDITIONER( 
+C     Call preconditioner 
+          IF ( SOLV_MAX_ITERS .GT. 0 )
+     &         CALL SEAICE_PRECONDITIONER( 
      U         duIce, dvIce, 
      I         zetaPre, etaPre, dwatPre, pressPre,
      I         newtonIter, krylovIter, myTime, myIter, myThid )
