@@ -462,6 +462,10 @@ c     CALL PRINT_MESSAGE( msgBuf, ioUnit, SQUEEZE_RIGHT, myThid )
      &                ' /* Temp. implicit vert. advection on/off */')
       CALL WRITE_0D_L( tempForcing,  INDEX_NONE,
      & 'tempForcing  =', '  /* Temperature forcing on/off flag */')
+#ifdef ALLOW_FRICTION_HEATING
+      CALL WRITE_0D_L( addFrictionHeating, INDEX_NONE,
+     & 'addFrictionHeating=',' /* account for frictional heating */')
+#endif
 #ifdef ALLOW_BALANCE_FLUXES
       CALL WRITE_0D_L( balanceQnet, INDEX_NONE, 'balanceQnet  =',
      &             '  /* balance net heat-flux on/off flag */')

@@ -178,6 +178,7 @@ Cml      sBeta               = 7.4 _d -4
       saltStepping        = .TRUE.
       saltAdvection       = .TRUE.
       saltForcing         = .TRUE.
+      addFrictionHeating  = .FALSE.
       metricTerms         = .TRUE.
       useNHMTerms         = .FALSE.
       useFullLeith        = .FALSE.
@@ -271,8 +272,8 @@ C--   Elliptic solver parameters
 
 C--   Time stepping parameters
       deltaT            = 0. _d 0
-      deltaTmom         = 0. _d 0
-      deltaTfreesurf    = 0. _d 0
+      deltaTMom         = 0. _d 0
+      deltaTFreeSurf    = 0. _d 0
       DO k=1,Nr
         dTtracerLev(k)  = 0. _d 0
       ENDDO
@@ -357,7 +358,8 @@ C--   Input files
       vVelInitFile    = ' '
       pSurfInitFile   = ' '
       dQdTFile        = ' '
-      ploadFile       = ' '
+      pLoadFile       = ' '
+      addMassFile     = ' '
       eddyPsiXFile    = ' '
       eddyPsiYFile    = ' '
       lambdaThetaFile = ' '
