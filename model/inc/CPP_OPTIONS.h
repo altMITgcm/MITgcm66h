@@ -46,6 +46,9 @@ C o Include/exclude AdamsBashforth-3rd-Order code
 C o Include/exclude nonHydrostatic code
 #undef ALLOW_NONHYDROSTATIC
 
+C o Allow to account for heating due to friction (and momentum dissipation)
+#undef ALLOW_FRICTION_HEATING
+
 C o Allow mass source or sink of Fluid in the interior
 C   (3-D generalisation of oceanic real-fresh water flux)
 #undef ALLOW_ADDFLUID
