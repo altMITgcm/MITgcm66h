@@ -35,6 +35,9 @@ C     == Global variables ==
 #include "SURFACE.h"
 #include "DYNVARS.h"
 #include "NH_VARS.h"
+#ifdef ALLOW_ADDFLUID
+# include "FFIELDS.h"
+#endif
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
