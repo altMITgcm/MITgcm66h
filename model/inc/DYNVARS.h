@@ -105,14 +105,6 @@ C                     BryanLewis79 vertical diffusivity
       _RL BL79LatArray (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 #endif
 
-#ifdef ALLOW_ADDFLUID
-C     addMass   :: source (<0: sink) of fluid in the domain interior
-C                  in mass per unit of time [kg/s]
-C                  (generalisation of oceanic real fresh-water flux)
-      COMMON /DYNVARS_ADD_FLUID/ addMass
-      _RL addMass(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-#endif
-
 C     Diagnostic Variables:
 C     phiHydLow    :: Phi-Hydrostatic at r-lower boundary
 C                     (bottom in z-coordinates, top in p-coordinates)
