@@ -88,7 +88,7 @@ C     viscosities are required
      I     krylovIter, myTime, myIter, myThid )
       CALL SEAICE_CALC_VISCOSITIES(
      I     e11, e22, e12, zMin, zMax, hEffM, press0,
-     O     eta, zeta, press,
+     O     eta, etaZ, zeta, press,
      I     krylovIter, myTime, myIter, myThid )
 
 C     The scheme is backward Euler in time, i.e. the rhs-vector contains 
