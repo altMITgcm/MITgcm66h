@@ -25,6 +25,7 @@ C     === Global variables ===
 #ifndef SEAICE_EXTERNAL_FLUXES
 # include "PARAMS.h"
 # include "GRID.h"
+# include "SEAICE_SIZE.h"
 # include "SEAICE_PARAMS.h"
 # ifdef ALLOW_EXF
 #  include "EXF_OPTIONS.h"

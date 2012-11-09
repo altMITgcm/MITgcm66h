@@ -30,6 +30,7 @@ c     == global variables ==
 # endif
 # ifdef ALLOW_SEAICE
 #  include "SEAICE_COST.h"
+#  include "SEAICE_SIZE.h"
 #  include "SEAICE_PARAMS.h"
 # endif
 #endif

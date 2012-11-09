@@ -25,6 +25,7 @@ C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 c#include "PARAMS.h"
+#include "SEAICE_SIZE.h"
 #include "SEAICE_PARAMS.h"
 
 C     !INPUT/OUTPUT PARAMETERS:

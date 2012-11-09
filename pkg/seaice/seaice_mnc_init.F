@@ -19,6 +19,7 @@ C     !USES:
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #ifdef SEAICE_ALLOW_EVP
+#include "SEAICE_SIZE.h"
 #include "SEAICE_PARAMS.h"
 #endif /* SEAICE_ALLOW_EVP */
 
