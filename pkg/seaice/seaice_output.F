@@ -197,7 +197,7 @@ C- note(jmc): surf.Fluxes have not yet been computed when called @ nIter0
           ENDDO
          ENDDO
 #ifdef SEAICE_ITD
-	 DO k=1,nITD
+         DO k=1,nITD
           DO j=1,sNy
            DO i=1,sNx
             HEFFITDtave(i,j,k,bi,bj) =
