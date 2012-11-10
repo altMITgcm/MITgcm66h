@@ -164,6 +164,7 @@ cph break artificial dependencies
           press(i,j,bi,bj)=0. _d 0
           zeta(i,j,bi,bj)=0. _d 0
           eta(i,j,bi,bj)=0. _d 0
+          etaZ(i,j,bi,bj)=0. _d 0
          ENDDO
         ENDDO
        ENDDO
