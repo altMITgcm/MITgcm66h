@@ -914,7 +914,7 @@ C--   Overwrite tauThetaClimRelax but stop if already set.
 C- Note: need this, even if EXF option ALLOW_CLIMSST_RELAXATION is undef;
 C        this prevents to apply relaxation towards potentially wrong SST since,
 C        with EXF, we skip the update of loaded SST in EXTERNAL_FIELDS_LOAD.
-C- Note2: let's see whether we can put this back under ifdef
+C- Note2: let s see whether we can put this back under ifdef
 C        ALLOW_CLIMSST_RELAXATION, but always call EXTERNAL_FIELDS_LOAD.
 C        If ALLOW_CLIMSST_RELAXATION is undef, clim.relaxation could still
 C        be done outside of exf.
