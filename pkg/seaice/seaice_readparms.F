@@ -94,6 +94,7 @@ C--   SEAICE parameters
      & SEAICEdiffKhHeff, SEAICEdiffKhSnow, SEAICEdiffKhArea,
      & SEAICEdiffKhSalt, SEAICEdiffKhAge,
      & SEAICE_deltaTtherm, SEAICE_deltaTdyn,
+     & SEAICE_LSRrelaxU, SEAICE_LSRrelaxV,
      & SEAICE_deltaTevp, SEAICE_elasticParm, SEAICE_evpTauRelax,
      & SEAICE_evpDampC, SEAICE_zetaMin, SEAICE_zetaMaxFac,
      & SEAICEuseJFNK, SEAICEnewtonIterMax, SEAICEkrylovIterMax,
@@ -367,6 +368,9 @@ c     SEAICE_dTempFrz_dS = 0. _d 0
       vIceFile   = ' '
       IMAX_TICE  = 10
       postSolvTempIter = 2
+C     LSR parameters
+      SEAICE_LSRrelaxU = 0.95 _d 0
+      SEAICE_LSRrelaxV = 0.95 _d 0
       SOLV_MAX_ITERS = UNSET_I
       SOLV_NCHECK= 2
 C     two pseudo time steps correspond to the original modified
