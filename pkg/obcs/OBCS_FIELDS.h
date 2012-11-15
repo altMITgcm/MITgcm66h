@@ -131,8 +131,8 @@ C     etc
 # endif /* ALLOW_OBCS_STEVENS */
 # ifdef ALLOW_OBCS_TIDES
       COMMON /OBCS_FIELDS_TIDES_E/ OBEam, OBEph
-      _RL OBEam (1-Olx:sNx+Olx,tidalComponents,nSx,nSy)
-      _RL OBEph (1-Olx:sNx+Olx,tidalComponents,nSx,nSy)
+      _RL OBEam (1-Oly:sNy+Oly,tidalComponents,nSx,nSy)
+      _RL OBEph (1-Oly:sNy+Oly,tidalComponents,nSx,nSy)
 # endif /* ALLOW_OBCS_TIDES */
 #endif /* ALLOW_OBCS_EAST */
 
@@ -165,8 +165,8 @@ C     etc
 # endif /* ALLOW_OBCS_STEVENS */
 # ifdef ALLOW_OBCS_TIDES
       COMMON /OBCS_FIELDS_TIDES_W/ OBWam, OBWph
-      _RL OBWam (1-Olx:sNx+Olx,tidalComponents,nSx,nSy)
-      _RL OBWph (1-Olx:sNx+Olx,tidalComponents,nSx,nSy)
+      _RL OBWam (1-Oly:sNy+Oly,tidalComponents,nSx,nSy)
+      _RL OBWph (1-Oly:sNy+Oly,tidalComponents,nSx,nSy)
 # endif /* ALLOW_OBCS_TIDES */
 #endif /* ALLOW_OBCS_WEST */
 
