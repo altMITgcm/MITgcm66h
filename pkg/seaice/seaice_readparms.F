@@ -205,6 +205,7 @@ c     SEAICEuseFluxForm  = .FALSE.
       SEAICE_no_slip     = .FALSE.
       SEAICE_clipVelocities = .FALSE.
       SEAICE_maskRHS     = .FALSE.
+      SEAICEetaZmethod   = 0
       SEAICEadvScheme    = 2
       SEAICEadvSchArea   = UNSET_I
       SEAICEadvSchHeff   = UNSET_I
