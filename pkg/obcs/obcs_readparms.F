@@ -138,17 +138,20 @@ C     retired parameters
      &          OBNviceFile,OBSviceFile,OBEviceFile,OBWviceFile,
      &          OBNetaFile, OBSetaFile, OBEetaFile, OBWetaFile,
      &          OBNwFile, OBSwFile, OBEwFile, OBWwFile,
+     &          OBNAmFile, OBSAmFile, OBEAmFile, OBWAmFile,
+     &          OBNPhFile, OBSPhFile, OBEPhFile, OBWPhFile,
 #ifdef ALLOW_PTRACERS
      &          OBCS_u1_adv_Tr,
      &          OBNptrFile,OBSptrFile,OBEptrFile,OBWptrFile,
 #endif
      &          useOBCSsponge, useSeaiceSponge,
-     &          useOBCSbalance, useOBCSprescribe,
+     &          useOBCSbalance, useOBCStides, useOBCSprescribe,
      &          OBCS_balanceFacN, OBCS_balanceFacS,
      &          OBCS_balanceFacE, OBCS_balanceFacW,
      &          useOBCSYearlyFields, OBCSfixTopo,
      &          OBCS_uvApplyFac,
-     &          OBCS_monitorFreq, OBCS_monSelect, OBCSprintDiags
+     &          OBCS_monitorFreq, OBCS_monSelect, OBCSprintDiags,
+     &          tidalPeriod
 
 #ifdef ALLOW_ORLANSKI
       NAMELIST /OBCS_PARM02/
@@ -233,11 +236,11 @@ C--   Default flags and values for OBCS
       OBNtFile = ' '
       OBNsFile = ' '
       OBNaFile = ' '
+      OBNhFile = ' '
       OBNslFile = ' '
       OBNsnFile = ' '
       OBNuiceFile = ' '
       OBNviceFile = ' '
-      OBNhFile = ' '
       OBSuFile = ' '
       OBSvFile = ' '
       OBStFile = ' '
@@ -276,6 +279,14 @@ C--   Default flags and values for OBCS
       OBSwFile = ' '
       OBEwFile = ' '
       OBWwFile = ' '
+      OBNAmFile = ' '
+      OBSAmFile = ' '
+      OBEAmFile = ' '
+      OBWAmFile = ' '
+      OBNPhFile = ' '
+      OBSPhFile = ' '
+      OBEPhFile = ' '
+      OBWPhFile = ' '
 #ifdef ALLOW_PTRACERS
       DO iTracer = 1, PTRACERS_num
        OBCS_u1_adv_Tr(iTracer) = 0
@@ -283,6 +294,11 @@ C--   Default flags and values for OBCS
        OBSptrFile(iTracer) = ' '
        OBEptrFile(iTracer) = ' '
        OBWptrFile(iTracer) = ' '
+      ENDDO
+#endif
+#ifdef ALLOW_OBCS_TIDES
+      DO i = 1, tidalComponents
+       tidalPeriod(i) = 0. _d 0
       ENDDO
 #endif
 C-    retired parameters

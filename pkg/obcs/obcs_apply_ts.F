@@ -23,9 +23,7 @@ C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#ifdef ALLOW_OBCS_STEVENS
 #include "OBCS_PARAMS.h"
-#endif /* ALLOW_OBCS_STEVENS */
 #include "OBCS_GRID.h"
 #include "OBCS_FIELDS.h"
 

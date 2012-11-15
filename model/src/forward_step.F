@@ -125,6 +125,7 @@ C     == Global variables ==
 #  include "GAD_SOM_VARS.h"
 # endif
 # ifdef ALLOW_OBCS
+#  include "OBCS_PARAMS.h"
 #  include "OBCS_FIELDS.h"
 #  include "OBCS_SEAICE.h"
 #  ifdef ALLOW_PTRACERS

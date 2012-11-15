@@ -25,6 +25,7 @@ C     == Global variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 #include "SURFACE.h"
+#include "OBCS_PARAMS.h"
 #include "OBCS_GRID.h"
 #include "OBCS_FIELDS.h"
 

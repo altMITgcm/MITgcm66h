@@ -40,10 +40,9 @@ C                            are linearly interpolated from these values
       _RS SLrelaxobcsinner, SLrelaxobcsbound
       _RS SNrelaxobcsinner, SNrelaxobcsbound
 
-C OB[N,S,E,W][u,v,t,s,a,h,sn,sl,uice,vice]File :: Files with boundary conditions,
-C                                                 the letter combinations mean:
+C OB[N,S,E,W][a,h,sn,sl,uice,vice]File :: Files with boundary conditions,
+C                                         the letter combinations mean:
 C                     N/S/E/W   :: northern/southern/eastern/western boundary
-C                     u/v/t/s   :: ocean u/v velocities, temperature/salinity
 C                     a/h       :: sea ice concentration/effective thickness
 C                     sn/sl     :: effective snow thickness/sea ice salinity
 C                     uice/vice :: sea ice u/v drift velocities

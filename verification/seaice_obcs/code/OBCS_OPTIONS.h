@@ -37,6 +37,9 @@ C Include hooks to sponge layer treatment of pkg/seaice variables
 C balance barotropic velocity
 #undef ALLOW_OBCS_BALANCE
 
+C add tidal contributions to normal OB flow
+#define ALLOW_OBCS_TIDES
+
 C Use older implementation of obcs in seaice-dynamics
 C note: most of the "experimental" options listed below have not yet
 C       been implementated in new version.
