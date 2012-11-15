@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "SEAICE_OPTIONS.h"
+#ifdef ALLOW_EXF
+# include "EXF_OPTIONS.h"
+#endif
 
 CBOP 0
 C !ROUTINE: SEAICE_OUTPUT
@@ -29,7 +32,6 @@ C     === Global variables ===
 #include "SEAICE_TRACER.h"
 #include "SEAICE_TAVE.h"
 #ifdef ALLOW_EXF
-# include "EXF_OPTIONS.h"
 # include "EXF_FIELDS.h"
 #endif
 
@@ -102,8 +104,8 @@ CEOP
             CALL MNC_CW_RL_W(pf,'sice',0,0,'si_HEFF',hEff,myThid)
             CALL MNC_CW_RL_W(pf,'sice',0,0,'si_AREA',area,myThid)
 #ifdef SEAICE_ITD
-            CALL MNC_CW_RL_W(pf,'sice',0,0,'si_HEFFITD',HEFFITD,myThid)
-            CALL MNC_CW_RL_W(pf,'sice',0,0,'si_AREAITD',AREAITD,myThid)
+c           CALL MNC_CW_RL_W(pf,'sice',0,0,'si_HEFFITD',HEFFITD,myThid)
+c           CALL MNC_CW_RL_W(pf,'sice',0,0,'si_AREAITD',AREAITD,myThid)
 #endif
             CALL MNC_CW_RL_W(pf,'sice',0,0,'si_UWIND',uwind,myThid)
             CALL MNC_CW_RL_W(pf,'sice',0,0,'si_VWIND',vwind,myThid)
@@ -131,9 +133,12 @@ CEOP
             CALL WRITE_FLD_XY_RL( 'AREA.',suff,area,myIter,myThid)
             CALL WRITE_FLD_XY_RL( 'HSNOW.',suff,HSNOW,myIter,myThid)
 #ifdef SEAICE_ITD
-            CALL WRITE_FLD_XY_RL( 'HEFFITD.',suff,HEFFITD,myIter,myThid)
-            CALL WRITE_FLD_XY_RL( 'AREAITD.',suff,AREAITD,myIter,myThid)
-           CALL WRITE_FLD_XY_RL('HSNOWITD.',suff,HSNOWITD,myIter,myThid)
+            CALL WRITE_FLD_3D_RL( 'HEFFITD.', suff, nITD, HEFFITD,
+     &                            myIter, myThid )
+            CALL WRITE_FLD_3D_RL( 'AREAITD.', suff, nITD, AREAITD,
+     &                            myIter, myThid )
+            CALL WRITE_FLD_3D_RL('HSNOWITD.', suff, nITD, HSNOWITD,
+     &                            myIter, myThid )
 #endif
 #ifdef SEAICE_VARIABLE_SALINITY
             CALL WRITE_FLD_XY_RL( 'HSALT.',suff,HSALT,myIter,myThid)
