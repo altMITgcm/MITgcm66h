@@ -87,7 +87,7 @@ C--   SEAICE parameters
      & SEAICEadvHeff, SEAICEadvArea, SEAICEadvSnow,
      & SEAICEadvSalt, SEAICEadvAge,
      & SEAICE_clipVelocities, SEAICE_maskRHS, SEAICE_no_slip,
-     & LAD, IMAX_TICE, postSolvTempIter,
+     & SEAICEetaZmethod, LAD, IMAX_TICE, postSolvTempIter,
      & SEAICEadvScheme, SEAICEadvSchArea,
      & SEAICEadvSchHeff, SEAICEadvSchSnow,
      & SEAICEadvSchSalt, SEAICEadvSchAge,
