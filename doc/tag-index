@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/obcs:
+  - adding tidal velocity forcing capability to obcs
+    for usage example, see verification/seaice_obcs/input.tides
 o pkg/seaice:
   - turn the LSR-relaxation parameters WFAU/V into runtime parameters 
     SEAICE_LSRrelaxU/V
