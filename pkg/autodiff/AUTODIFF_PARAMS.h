@@ -21,16 +21,17 @@ C     inAdExact :: get an exact adjoint (no approximation)
       LOGICAL inAdMode, inAdTrue, inAdFalse, inAdExact
 
 C-    Logical flags for turning off parts of the code in adjoint mode
-C     turnFreeDriftInAdMode :: switch SEAICE to Free-Drift in adjoint mode (def=F)
+C     SEAICEuseFREEDRIFTswitchInAd :: switch on/off Free-Drift in adjoint mode (def=F)
+C     SEAICEuseDYNAMICSswitchInAd  :: switch on/off seaice Dyn in adjoint mode (def=F)
       LOGICAL useKPPinAdMode,    useKPPinFwdMode
       LOGICAL useGMRediInAdMode, useGMRediInFwdMode
       LOGICAL useSEAICEinAdMode, useSEAICEinFwdMode
       LOGICAL useGGL90inAdMode,    useGGL90inFwdMode
       LOGICAL useSALT_PLUMEinAdMode, useSALT_PLUMEInFwdMode
-      LOGICAL turnFreeDriftInAdMode
-      LOGICAL SEAICEuseDYNAMICSinAdMode, SEAICEuseDYNAMICSinFwdMode
+      LOGICAL SEAICEuseFREEDRIFTswitchInAd, SEAICEuseFREEDRIFTinFwdMode
+      LOGICAL SEAICEuseDYNAMICSswitchInAd, SEAICEuseDYNAMICSinFwdMode
 
-C-    Logical for ad dump format (if true then write all records 
+C-    Logical for ad dump format (if true then write all records
 C       to one file per variable; else write one file per record)
       LOGICAL dumpAdByRec
 
@@ -41,8 +42,9 @@ C       to one file per variable; else write one file per record)
      &       useSEAICEinAdMode, useSEAICEinFwdMode,
      &       useGGL90inAdMode,    useGGL90inFwdMode,
      &       useSALT_PLUMEinAdMode, useSALT_PLUMEInFwdMode,
-     &       turnFreeDriftInAdMode, dumpAdByRec,
-     &       SEAICEuseDYNAMICSinAdMode, SEAICEuseDYNAMICSinFwdMode
+     &       SEAICEuseFREEDRIFTswitchInAd, SEAICEuseFREEDRIFTinFwdMode,
+     &       SEAICEuseDYNAMICSswitchInAd, SEAICEuseDYNAMICSinFwdMode,
+     &       dumpAdByRec
 
 C--   COMMON /AUTODIFF_PARM_I/ Integer valued parameters used by the pkg.
 C     dumpAdVarExch :: control ad-variables exchange before dumping output
