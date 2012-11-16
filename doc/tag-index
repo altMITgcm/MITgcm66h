@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint64a (2012/11/16)
 o pkg/autodiff:
   - improve pkg-internal logical parameter switch (inAd/inFwd mode) so that
     autodiff_readparms.F no longer depends on calling order (within
