@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o tools/genmake2:
+  - comment out the "mpif.h" include in NetCDF test programm (for MPI built)
+    since it's not necessary (and was preventing to use MNC in some cases).
+
 checkpoint64a (2012/11/16)
 o pkg/autodiff:
   - improve pkg-internal logical parameter switch (inAd/inFwd mode) so that
