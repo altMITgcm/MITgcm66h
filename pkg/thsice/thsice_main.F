@@ -214,11 +214,13 @@ C Note: will inline this S/R once thSIce in Atmos. set-up is settled
 #endif
 
 #ifdef ALLOW_AUTODIFF_TAMC
-CADJ STORE sheating(:,:,bi,bj) = comlev1_bibj, key = ticekey
+CADJ STORE sHeating(:,:,bi,bj) = comlev1_bibj, key = ticekey
 CADJ STORE tice1(:,:,bi,bj) = comlev1_bibj, key = ticekey
 CADJ STORE tice2(:,:,bi,bj) = comlev1_bibj, key = ticekey
+#else
+        IF ( .NOT.thSIce_skipThermo ) THEN
 #endif
-        CALL THSICE_STEP_TEMP(
+          CALL THSICE_STEP_TEMP(
      I                     bi, bj, iMin, iMax, jMin, jMax,
      I                     myTime, myIter, myThid )
 
@@ -232,13 +234,15 @@ cphCADJ STORE Tsrf(:,:,bi,bj)    = comlev1_bibj, key = ticekey
 CADJ STORE Qice1(:,:,bi,bj)   = comlev1_bibj, key = ticekey
 CADJ STORE Qice2(:,:,bi,bj)   = comlev1_bibj, key = ticekey
 CADJ STORE snowAge(:,:,bi,bj) = comlev1_bibj, key = ticekey
-CADJ STORE sheating(:,:,bi,bj) = comlev1_bibj, key = ticekey
+CADJ STORE sHeating(:,:,bi,bj) = comlev1_bibj, key = ticekey
 #endif
-
-        CALL THSICE_STEP_FWD(
+          CALL THSICE_STEP_FWD(
      I                     bi, bj, iMin, iMax, jMin, jMax,
      I                     prcAtm(1-OLx,1-OLy,bi,bj),
      I                     myTime, myIter, myThid )
+#ifndef ALLOW_AUTODIFF_TAMC
+        ENDIF
+#endif
 
 C--  end bi,bj loop
        ENDDO
@@ -247,7 +251,7 @@ C--  end bi,bj loop
 #ifdef ALLOW_BALANCE_FLUXES
 C--   Balance net Fresh-Water flux from Atm+Land
       IF ( thSIceBalanceAtmFW.NE.0 ) THEN
-        CALL THSICE_BALANCE_FRW( 
+        CALL THSICE_BALANCE_FRW(
      I                      iMin, iMax, jMin, jMax,
      I                      prcAtm, myTime, myIter, myThid )
       ENDIF
