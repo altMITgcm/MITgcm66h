@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: 
+  - remove unused field pressPre from jfnk solver
+  - rename two subroutines in seaice_preconditioner.F
 o eesupp/src:
    - S/R MDSFINDUNIT avoids reserved unit numbers (scrUnit1, eeDataUnit ...)
 o pkg/seaice/seaice_preconditioner.F: fix preconditioner once again
