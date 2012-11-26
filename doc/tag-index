@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o eesupp/src:
+   - S/R MDSFINDUNIT avoids reserved unit numbers (scrUnit1, eeDataUnit ...)
 o pkg/seaice/seaice_preconditioner.F: fix preconditioner once again
    - remove wrong parts of the rhs and the lhs (were in there
      because I did not understand the concept of this preconditioner)
