@@ -164,7 +164,8 @@ C             are directly proportional to Delta-U,V due to the Filter
                DO j=1,sNy
                 DO i=1,sNx
                    frictionHeating(i,j,k,bi,bj) =
-     &             frictionHeating(i,j,k,bi,bj) - dKE_shap(i,j)*drF(k)
+     &                             frictionHeating(i,j,k,bi,bj)
+     &                           - dKE_shap(i,j)*drF(k)*rUnit2mass
                 ENDDO
                ENDDO
               ENDIF
