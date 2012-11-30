@@ -4,7 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
-o pkg/seaice: 
+o pkg/aim_v23 & pkg/shap_filt:
+  - fix dissipation heating (erroneous gravity multiplication factor).
+o pkg/seaice:
   - remove unused field pressPre from jfnk solver
   - rename two subroutines in seaice_preconditioner.F
 o eesupp/src:
