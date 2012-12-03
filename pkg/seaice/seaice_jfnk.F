@@ -357,7 +357,7 @@ C     Decide whether it is time to dump and reset the counter
      &' // ======================================================='
        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &      SQUEEZE_RIGHT, myThid )
-       WRITE(msgBuf,'(A)') ' // Begin JFNK statistics'
+       WRITE(msgBuf,'(A)') ' // End JFNK statistics'
        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &      SQUEEZE_RIGHT, myThid )
        WRITE(msgBuf,'(A)') 
