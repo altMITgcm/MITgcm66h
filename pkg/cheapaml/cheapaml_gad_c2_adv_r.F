@@ -48,9 +48,10 @@ C  i,j                  :: loop indices
       INTEGER i,j
 CEOP
 
-
-       DO j=1-OLy,sNy+OLy
-        DO i=1-OLx,sNx+OLx
+c      DO j=1-OLy,sNy+OLy
+c       DO i=1-OLx,sNx+OLx
+       DO j=1,sNy
+        DO i=1,sNx
          wT(i,j) = rTrans(i,j)*
      &        (Tracer(i,j)+Tracer(i,j))*0.5 _d 0
         ENDDO

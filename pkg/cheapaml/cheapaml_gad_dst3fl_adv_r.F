@@ -9,7 +9,7 @@ C !ROUTINE: GAD_DST3FL_ADV_R
 C !INTERFACE: ==========================================================
       SUBROUTINE cheapaml_GAD_DST3FL_ADV_R(
      I           bi,bj,dTarg,
-     I           rTrans, 
+     I           rTrans,
      I           tracer,
      O           wT,
      I           myThid )
@@ -61,8 +61,10 @@ C  wCFL              :: Courant-Friedrich-Levy number
       Rj =  0. _d 0
       Rjm = 0. _d 0
 
-      DO j=1-Oly,sNy+Oly
-       DO i=1-Olx,sNx+Olx
+c     DO j=1-OLy,sNy+OLy
+c      DO i=1-OLx,sNx+OLx
+      DO j=1,sNy
+       DO i=1,sNx
 
         wLoc = rTrans(i,j)
         wCFL = ABS(wLoc*dTarg*recip_drC(1))
