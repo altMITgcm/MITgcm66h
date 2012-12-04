@@ -1188,6 +1188,9 @@ GSL=
 DEVEL=
 HAVE_TEST_L=
 
+# comment this line out to enable lapack test
+SKIP_LAPACK_CHECK=t
+
 # DEFINES checked by test compilation or command-line
 HAVE_SYSTEM=
 HAVE_FDATE=
