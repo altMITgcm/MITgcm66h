@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o verification:
+  - add new experiment "cheapAML_box" (simple 1 layer set-up from Bruno Deremble)
+    to test pkg/cheapaml.
 o pkg/aim_v23 & pkg/shap_filt:
   - fix dissipation heating (erroneous gravity multiplication factor).
 o pkg/seaice:
