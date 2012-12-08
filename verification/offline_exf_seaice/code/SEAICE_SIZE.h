@@ -17,7 +17,20 @@ CEOP
 
 C-    Maximum Number of categories
       INTEGER MULTDIM
+C--
+#ifdef SEAICE_ITD
+CToM<<<
+C nITD defines number of ice thickness categories,
+C i.e. size of additional dimension to AREA, HEFF, HSNOW, etc.
+C Bitz et al. (2001, JGR) suggest a minimum of nITD = 5
+      INTEGER nITD
+      PARAMETER(nITD = 7)
+      PARAMETER (MULTDIM=nITD)
+C>>>ToM
+#else
+c     PARAMETER (MULTDIM=7)
       PARAMETER (MULTDIM=1)
+#endif
 
 C-    Maximum Number of tracers
       INTEGER SItrMaxNum
