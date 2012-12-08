@@ -283,7 +283,7 @@ C-   Pot. Temp and saturated specific humidity
           IF ( atemp(i,j,bi,bj) .NE. 0. _d 0 ) THEN
 C-   Surface Temp.
            Tsf = theta(i,j,ksrf,bi,bj) + cen2kel
-           IF ( sstExtrapol.GT.0. _d 0 ) THEN
+           IF ( Nr.GE.2 .AND. sstExtrapol.GT.0. _d 0 ) THEN
             SSTtmp = sstExtrapol
      &              *( theta(i,j,ksrf,bi,bj)-theta(i,j,ksrfp1,bi,bj) )
      &              *  maskC(i,j,ksrfp1,bi,bj)
