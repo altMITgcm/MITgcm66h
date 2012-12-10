@@ -62,8 +62,6 @@ C     msgBuf      :: Informational/error message buffer
       CHARACTER*10 HlimitMsgFormat
 #endif
 #ifdef SEAICE_ITD
-C ToM a random number to generate divergence and convergence randomly for the 1-D case
-      _RL divergence
       INTEGER IT
 #endif
 C#if defined(SEAICE_GROWTH_LEGACY) || defined(ALLOW_AUTODIFF_TAMC)
@@ -313,22 +311,6 @@ CADJ STORE heffm  = comlev1, key=ikey_dynamics, kind=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 #ifdef SEAICE_ITD
-c      create some open water
-       divergence = 1.0/(5*365.*86400./SEAICE_deltaTtherm)
-       DO bj=myByLo(myThid),myByHi(myThid)
-        DO bi=myBxLo(myThid),myBxHi(myThid)
-         DO IT=1,nITD
-          DO J=1-OLy,sNy+OLy
-           DO I=1-OLx,sNx+OLx
-            AREAITD(I,J,IT,bi,bj)=MAX(0.0,AREAITD(I,J,IT,bi,bj)
-     &                           -divergence)
-            HEFFITD(I,J,IT,bi,bj)=HEFFITD(I,J,IT,bi,bj)
-     &                           -divergence*HEFFITD(I,J,IT,bi,bj)
-           ENDDO
-          ENDDO
-         ENDDO
-        ENDDO
-       ENDDO
 #ifdef SEAICE_DEBUG
 C     ToM: generate some test output
        WRITE(HlimitMsgFormat,'(A,I2,A)') '(A,',nITD,'F8.4)'
