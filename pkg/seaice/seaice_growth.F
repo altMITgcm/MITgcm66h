@@ -1985,6 +1985,28 @@ C =================================================================
           ENDDO
          ENDDO
 #endif
+#ifdef SEAICE_DEBUG
+c ToM<<< debug seaice_growth
+        WRITE(msgBuf,msgBufForm)
+     &    ' SEAICE_GROWTH: Heff increments 9, HEFF = ',
+#ifdef SEAICE_ITD
+     &     HEFFITD(1,1,:,bi,bj)
+#else
+     &     HEFF(1,1,bi,bj)
+#endif
+        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &    SQUEEZE_RIGHT , myThid)
+        WRITE(msgBuf,msgBufForm)
+     &    ' SEAICE_GROWTH: Area increments 9, AREA = ',
+#ifdef SEAICE_ITD
+     &     AREAITD(1,1,:,bi,bj)
+#else
+     &     AREA(1,1,bi,bj)
+#endif
+        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &    SQUEEZE_RIGHT , myThid)
+c ToM>>>
+#endif /* SEAICE_DEBUG */
 
 C ===================================================================
 C ==========PART 4: determine ice cover fraction increments=========-
