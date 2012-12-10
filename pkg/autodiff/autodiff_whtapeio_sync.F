@@ -97,8 +97,11 @@ C Only do I/O if I am the master thread (and mpi process 0 IF tapeSingleCpuIO):
       IF ( iAmDoingIO.AND.(myStep.EQ.0).AND.
      &    (myLev.GT.0).AND.(tapeFileUnit.EQ.0) ) THEN
         inquire( file=fName, exist=exst )
-c       CALL MDSFINDUNIT( tapeFileUnit, myThid )
+#ifndef ALLOW_PROFILES
+        CALL MDSFINDUNIT( tapeFileUnit, myThid )
+#else
         tapeFileUnit=1000+myLev
+#endif
         OPEN( tapeFileUnit, file=fName, status='unknown',
      &         access='direct', recl=length_of_rec )
         tapeFileUnitS(myLev)=tapeFileUnit
