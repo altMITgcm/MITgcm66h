@@ -43,14 +43,12 @@ tdir=$TESTDIR
 if test $checkOut = '0' ; then
   if test -e $tdir/MITgcm/CVS ; then
     echo $tdir/MITgcm/CVS 'exist'
-    echo -n "Update the MITgcm code using: $cmdCVS ..."
-    cd $tdir/MITgcm
-    if test $sepDir = 1 ; then
-      $cmdCVS update -P -d > /dev/null
-    else
+    if test $sepDir = 0 ; then
+      echo -n "Update the MITgcm code using: $cmdCVS ..."
+      cd $tdir/MITgcm
       $cmdCVS update -P -d
+      echo "  done"
     fi
-    echo "  done"
   else
     echo -n $tdir/MITgcm 'missing ; '
     checkOut=1
