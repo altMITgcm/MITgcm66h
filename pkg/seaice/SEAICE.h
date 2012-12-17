@@ -238,6 +238,10 @@ C     diagnostics for the JFNK solver
      &     totalNewtonIters, totalNewtonFails,
      &     totalKrylovIters, totalKrylovFails,
      &     totalJFNKtimeSteps
+      INTEGER nVec
+      PARAMETER ( nVec=2*sNx*sNy )
+      _RL scalarProductMetric( nVec, 1, nSx, nSy )
+      COMMON /SEAICE_JFNK_RL/ scalarProductMetric
 #endif /* SEAICE_ALLOW_JFNK */
 
 CEH3 ;;; Local Variables: ***

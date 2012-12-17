@@ -467,6 +467,22 @@ c       ENDDO
 c     ENDIF
 #endif /* ALLOW_OBCS */
 
+#ifdef SEAICE_ALLOW_JFNK
+C     Computing this metric cannot be done in S/R SEAICE_INIT_FIXED 
+C     where it belongs, because globalArea is only defined later after 
+C     S/R PACKAGES_INIT_FIXED, so we move this computation here.
+      CALL SEAICE_MAP2VEC( nVec, rAw, rAs, 
+     &     scalarProductMetric, .TRUE., myThid )
+      DO bj=myByLo(myThid),myByHi(myThid)
+       DO bi=myBxLo(myThid),myBxHi(myThid)
+        DO i=1,nVec
+         scalarProductMetric(i,1,bi,bj) =
+     &        scalarProductMetric(i,1,bi,bj)/globalArea
+        ENDDO
+       ENDDO
+      ENDDO
+#endif /* SEAICE_ALLOW_JFNK */
+
 C---  Complete initialization
       PSTAR = SEAICE_strength
       DO bj=myByLo(myThid),myByHi(myThid)
