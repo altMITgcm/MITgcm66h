@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/aim_v23:
+  - fix an other bug in dissipation heating (grid-cell area was missing).
 o model/src + pkg/seaice:
   - add global (multi-tile) linear solver for pair of tri-diagonal system
     along X and Y lines, respectively for U and V component.
