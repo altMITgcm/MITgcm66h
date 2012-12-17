@@ -132,7 +132,7 @@ CEOP
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
-      printResidual = debugLevel.GE.debLevA
+      printResidual = debugLevel.GE.debLevC
      &  .AND. DIFFERENT_MULTIPLE( SEAICE_monFreq, myTime, deltaTClock )
       massU = -1. _d 0
       massV = -1. _d 0
