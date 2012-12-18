@@ -47,11 +47,6 @@ C--   run with sea Ice Thickness Distribution (ITD);
 C     set number of categories (nITD) in SEAICE_SIZE.h
 #undef SEAICE_ITD
 
-C--   SEAICE_ITD replaces SEAICE_MULTICATEGORY
-#ifdef SEAICE_ITD
-#undef SEAICE_MULTICATEGORY
-#endif
-
 C--   Use the Old version of seaice_growth (close to cvs version 1.70)
 C     otherwise, use the merged version (with some of Ian Fenty s code)
 #define SEAICE_GROWTH_LEGACY

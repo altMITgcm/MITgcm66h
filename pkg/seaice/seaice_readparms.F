@@ -310,10 +310,8 @@ C     old default value of 0.97001763668430343479
       SEAICE_salt0       = 0.0    _d 0
       SEAICE_saltFrac    = 0.0    _d 0
 CToM<<<
-C#ifdef SEAICE_MULTICATEGORY
-#if defined(SEAICE_MULTICATEGORY) || defined(SEAICE_ITD)
+#ifdef SEAICE_ITD
 C in case defined(SEAICE_ITD) MULTDIM = nITD (see SEAICE_SIZE.h)
-C because SEAICE_ITD uses code related to SEAICE_MULTICATEGORY
 C>>>ToM
       SEAICE_multDim     = MULTDIM
 #else
