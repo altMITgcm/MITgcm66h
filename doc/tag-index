@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o verification/seaice_obcs:
+  - disable SEAICE_GROWTH_LEGACY; reset input files to match those of
+    verification/lab_sea/input.salt_plume; changes results/output.txt*
 o model/src:
   - adapt quasi-hydrostatic formulation to work with p or p* coordinate.
 o pkg/seaice:
