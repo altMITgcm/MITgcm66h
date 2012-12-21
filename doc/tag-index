@@ -5,6 +5,10 @@ $Name$
     ==============================
 
 o pkg/seaice/seaice_lsr.F
+  - move calculation of matrix coefficients into new 
+    S/R SEAICE_CALC_LSR_COEFFS; for now this routine remains in the same
+    file; the main purpose of this change is to be able to reuse the code
+    in S/R SEAICE_PRECONDITIONER
   - modify the computation of the residual so that the mass of sea-ice
     is not used twice; this simplyfies the calculations, but since
     the residual is never used except when LSR_mixIniGuess.ge.4---and this is
