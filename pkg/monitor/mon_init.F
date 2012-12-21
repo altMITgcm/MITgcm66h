@@ -42,6 +42,8 @@ C     otherwise decide to stop the code.
 c     mon_overrideStop=.FALSE.
       monSolutionMaxRange = 1. _d +4
       IF ( fluidIsWater ) monSolutionMaxRange = 1. _d +3
+      mon_output_AM = fluidIsAir .AND. useCoriolis
+     &                           .AND. selectCoriMap.GE.2
       _END_MASTER(myThid)
 
       _BARRIER
