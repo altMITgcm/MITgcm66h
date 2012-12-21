@@ -122,7 +122,8 @@ C                          in JFNK-solver
 C     SEAICEkrylovIterMax :: maximum number of allowed Krylov iterations
 C                          in JFNK-solver
 C     LSR_mixIniGuess   :: control mixing of free-drift sol. into LSR initial guess
-C                       :: =0 : no mix ; =2,4 : mix with (1/err)^2,4 factor
+C                       :: =0 : nothing; =1 : no mix, but print free-drift resid.;
+C                       :: =2,4 : mix with (1/local-residual)^2,4 factor
 C     SEAICEpresPow0    :: HEFF exponent for ice strength below SEAICEpresH0
 C     SEAICEpresPow1    :: HEFF exponent for ice strength above SEAICEpresH0
 C     SEAICEadvScheme   :: sets the advection scheme for thickness and area
