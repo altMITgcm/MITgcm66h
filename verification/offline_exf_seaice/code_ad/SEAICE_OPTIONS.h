@@ -47,7 +47,7 @@ C     set number of categories (nITD) in SEAICE_SIZE.h
 
 C--   Use the Old version of seaice_growth (close to cvs version 1.70)
 C     otherwise, use the merged version (with some of Ian Fenty s code)
-#define SEAICE_GROWTH_LEGACY
+#undef SEAICE_GROWTH_LEGACY
 
 C--   Since the missing sublimation term is now included
 C     this flag is needed for backward compatibility
