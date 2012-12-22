@@ -4,8 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src:
+  - add run-time parameter to select CG2D solver minimum-residual solution
+    (in case of a poor convergence).
 o pkg/seaice/seaice_lsr.F
-  - move calculation of matrix coefficients into new 
+  - move calculation of matrix coefficients into new
     S/R SEAICE_CALC_LSR_COEFFS; for now this routine remains in the same
     file; the main purpose of this change is to be able to reuse the code
     in S/R SEAICE_PRECONDITIONER
