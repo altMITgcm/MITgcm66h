@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o verification/offline_exf_seaice and lab_sea adjoint:
+ - switch to new code (#undef SEAICE_GROWTH_LEGACY).
+ - switch to 4 time steps in offline, consistent with lab_sea.
+ - match paramaters from SEAICE_GROWTH_LEGACY branch in data.seaice.
+ - update results after change of experiment seaice.
 o model/src:
   - add run-time parameter to select CG2D solver minimum-residual solution
     (in case of a poor convergence).
