@@ -456,6 +456,19 @@ C--   SEAICE_EXTERNAL_FORCING is obsolete: issue warning but continue.
          CALL PRINT_ERROR( msgBuf, myThid )
 #endif
 
+C--   SEAICE_MULTICATEGORY is obsolete: issue warning but continue.
+#ifdef SEAICE_MULTICATEGORY
+      WRITE(msgBuf,'(2A)') '** WARNING ** SEAICE_CHECK: ',
+     &     'CPP flag SEAICE_MULTICATEGORY has been retired.'
+      CALL PRINT_ERROR( msgBuf , myThid)
+      WRITE(msgBuf,'(2A)') '** WARNING ** SEAICE_CHECK: ',
+     &     'Specify SEAICE_multDim=7 in data.seaice to recover'
+      CALL PRINT_ERROR( msgBuf , myThid)
+      WRITE(msgBuf,'(2A)') '** WARNING ** SEAICE_CHECK: ',
+     &     'previous default SEAICE_MULTICATEGORY setting.'
+      CALL PRINT_ERROR( msgBuf , myThid)
+#endif /* SEAICE_MULTICATEGORY */
+
 C--   SEAICE_ALLOW_TD_IF is obsolete: issue warning and stop.
 #ifdef SEAICE_ALLOW_TD_IF
          WRITE(msgBuf,'(A)')
@@ -788,19 +801,6 @@ C--   SEAICE_ALLOW_FREEDRIFT and SEAICEuseFREEDRIFT
         STOP 'ABNORMAL END: S/R SEAICE_CHECK'
       ENDIF
 #endif /* SEAICE_ALLOW_JFNK */
-
-#ifdef SEAICE_MULTICATEGORY
-      WRITE(msgBuf,'(2A)') 'SEAICE_CHECK: CPP flag ',
-     &     'SEAICE_MULTICATEGORY has been retired.'
-      CALL PRINT_ERROR( msgBuf , myThid)
-      WRITE(msgBuf,'(2A)') 'SEAICE_CHECK: Specify ',
-     &     'SEAICE_multDim=7 in data.seaice to recover'
-      CALL PRINT_ERROR( msgBuf , myThid)
-      WRITE(msgBuf,'(2A)') 'SEAICE_CHECK: previous ',
-     &     'default SEAICE_MULTICATEGORY setting.'
-      CALL PRINT_ERROR( msgBuf , myThid)
-      STOP 'ABNORMAL END: S/R SEAICE_CHECK'
-#endif /* SEAICE_MULTICATEGORY */
 
       _END_MASTER(myThid)
 
