@@ -263,6 +263,7 @@ C--   Elliptic solver parameters
       cg2dTargetResidual = 1. _d -7
       cg2dTargetResWunit = -1.
       cg2dChkResFreq     = 1
+      cg2dUseMinResSol   = UNSET_I
       cg2dpcOffDFac      = 0.51 _d 0
       cg2dPreCondFreq    = 1
       cg3dMaxIters       = 150
