@@ -64,7 +64,7 @@ C     diagTitle :: local string (80c): description of field in diagnostic
       CHARACTER*9   flxUnits
       CHARACTER*15  locName
       CHARACTER*4 SEAICE_DIAG_SUFX, diagSufx
-c     EXTERNAL    SEAICE_DIAG_SUFX
+      EXTERNAL    SEAICE_DIAG_SUFX
 C     Functions ::
       INTEGER     ILNBLNK
       EXTERNAL    ILNBLNK
