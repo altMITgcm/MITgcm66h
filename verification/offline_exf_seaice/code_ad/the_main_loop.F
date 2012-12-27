@@ -420,6 +420,12 @@ c**************************************
 c**************************************
 #endif
 
+cph-test(
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE uvel, vvel = comlev1, key = ikey_dynamics
+#endif
+cph-test)
+
 C--   Switch on/off diagnostics for snap-shot output:
 #ifdef ALLOW_DIAGNOSTICS
       IF ( useDiagnostics ) THEN
