@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o verification/offline_exf_seaice :
+  - add thermodynamics only test.
+
 checkpoint64b (2012/12/24)
 o pkg/cheapaml:
   - remove un-used variables (Qnet,EmPmR) from pickup files.
