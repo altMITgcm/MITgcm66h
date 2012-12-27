@@ -4,8 +4,13 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
-o verification/offline_exf_seaice :
+o verification/offline_exf_seaice:
   - add thermodynamics only test.
+o verification/cheapAML_box:
+  - split the domain in 8 (2x4) tiles; add MPI and multi-threaded test;
+    keep same output (same 14 digits for cg2d).
+  - switch on "-r8" compiler option (some numerical values are missing
+    the "_d 0") and update output (only 6 digits for cg2d were preserved).
 
 checkpoint64b (2012/12/24)
 o pkg/cheapaml:
