@@ -4,6 +4,13 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src/the_main_loop.F:
+  - fix revision 129 : need both ALLOW_ECCO and ALLOW_ECCO_EVOLUTION.
+o pkg/seaice:
+  - remove legacy branch code.
+  - retire SEAICE_GROWTH_LEGACY and SEAICE_CAP_HEFF accordingly.
+o verification/*/code*/SEAICE_OPTIONS.h:
+  - remove documentation for retired CPP flags (SEAICE_GROWTH_LEGACY, SEAICE_CAP_HEFF).
 o pkg/cheapaml:
   - use standard routine (S/R GET_PERIODIC_INTERVAL) to decide when it is time
     to load new forcing fields.
