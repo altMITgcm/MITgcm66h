@@ -84,12 +84,6 @@ CToM<<<
 #endif
 C>>>ToM
 
-#ifdef SEAICE_GROWTH_LEGACY
-      COMMON/SEAICE_DYNVARS_2/ areaNm1, hEffNm1
-      _RL areaNm1    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RL hEffNm1    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-#endif /* SEAICE_GROWTH_LEGACY */
-
 C     uIceC :: average of UICE between last two time steps
 C     vIceC :: average of VICE between last two time steps
       COMMON/SEAICE_DYNVARS_3/

@@ -83,10 +83,6 @@ C>>>ToM
 C
           uIceNm1(i,j,bi,bj)=0. _d 0
           vIceNm1(i,j,bi,bj)=0. _d 0
-#ifdef SEAICE_GROWTH_LEGACY
-          areaNm1(i,j,bi,bj)=0. _d 0
-          hEffNm1(i,j,bi,bj)=0. _d 0
-#endif
           ETA (i,j,bi,bj)   = 0. _d 0
           etaZ(i,j,bi,bj)   = 0. _d 0
           ZETA(i,j,bi,bj)   = 0. _d 0

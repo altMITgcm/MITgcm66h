@@ -372,14 +372,6 @@ c
      & 'SEAICE_salinityTracer =', ' /* test SITR varia. salinity */')
       CALL WRITE_0D_L ( SEAICEuseFlooding, INDEX_NONE,
      & 'SEAICEuseFlooding =', ' /* turn submerged snow into ice */')
-#ifndef SEAICE_CAP_HEFF
-      WRITE(msgBuf,'(A,A)')
-     &     'MAX_HEFF has no effect because SEAICE_CAP_HEFF is undefined'
-      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                    SQUEEZE_RIGHT, myThid )
-#endif /* SEAICE_CAP_HEFF */
-      CALL WRITE_0D_RL( MAX_HEFF          ,INDEX_NONE,
-     & 'MAX_HEFF          =', ' /* maximum ice thickness */')
 
       WRITE(msgBuf,'(A)') ' '
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
