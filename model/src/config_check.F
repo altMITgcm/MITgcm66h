@@ -480,6 +480,15 @@ C--   Free-surface related limitations:
         CALL PRINT_ERROR( msgBuf, myThid )
         errCount = errCount + 1
       ENDIF
+      IF ( select_rStar.EQ.2 .AND. nonlinFreeSurf.NE.4 ) THEN
+C-    not consistent to account for the slope of the coordinate when
+C     ignoring the variations of level-thickness in PhiHyd calculation;
+C     for now, issue a warning (but might change the code later on):
+        WRITE(msgBuf,'(2A,I3)') '** WARNING ** CONFIG_CHECK: ',
+     &   'select_rStar=2 not right with nonlinFreeSurf=', nonlinFreeSurf
+        CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                      SQUEEZE_RIGHT, myThid )
+      ENDIF
 
       IF ( selectSigmaCoord.NE.0 ) THEN
        IF ( fluidIsWater ) THEN
