@@ -115,7 +115,7 @@ C-     Consistent with Phi'= Integr[ theta'.dPi ] :
           IF (Ro_surf(i,j,bi,bj).EQ.rC(k)) THEN
            WRITE(msgBuf,'(3A)') 'CALC_GRAD_PHI_HYD: ',
      &      'Problem when Ro_surf=rC',
-     &      ' with select_rStar,integr_GeoPot=1,4'
+     &      ' with select_rStar,nonlinFreeSurf=1,4'
            CALL PRINT_ERROR( msgBuf , myThid)
            STOP 'CALC_GRAD_PHI_HYD: Pb in r* options implementation'
           ELSE
