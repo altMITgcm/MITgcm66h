@@ -464,10 +464,10 @@ c     ENDIF
 #endif /* ALLOW_OBCS */
 
 #ifdef SEAICE_ALLOW_JFNK
-C     Computing this metric cannot be done in S/R SEAICE_INIT_FIXED 
-C     where it belongs, because globalArea is only defined later after 
+C     Computing this metric cannot be done in S/R SEAICE_INIT_FIXED
+C     where it belongs, because globalArea is only defined later after
 C     S/R PACKAGES_INIT_FIXED, so we move this computation here.
-      CALL SEAICE_MAP2VEC( nVec, rAw, rAs, 
+      CALL SEAICE_MAP_RS2VEC( nVec, rAw, rAs,
      &     scalarProductMetric, .TRUE., myThid )
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
