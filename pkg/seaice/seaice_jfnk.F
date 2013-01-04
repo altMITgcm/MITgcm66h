@@ -80,6 +80,8 @@ C
 C     u/vIceRes :: residual of sea-ice momentum equations
       _RL uIceRes(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL vIceRes(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+C     vector version of the residuals
+      _RL resTmp (nVec,1,nSx,nSy)
 C     du/vIce   :: ice velocity increment to be added to u/vIce
       _RL duIce  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL dvIce  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
@@ -90,8 +92,6 @@ C     zeta, eta, and DWATN, press
       _RL etaZPre (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL dwatPre (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 CEOP
-      INTEGER n
-      _RL resTmp (nVec,1,nSx,nSy)
 
 C     Initialise
       newtonIter          = 0
