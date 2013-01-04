@@ -194,7 +194,15 @@ C--  Seaice-Dynamics parameters
      & 'SEAICE_evpTauRelax=', ' /* EVP relaxation timescale */')
        CALL WRITE_0D_RL( SEAICE_evpDampC  ,INDEX_NONE,
      & 'SEAICE_evpDampC   =', ' /* EVP damping parameter */')
-      CALL WRITE_0D_L ( SEAICEuseEVPpickup, INDEX_NONE,
+       CALL WRITE_0D_L ( SEAICEuseEVPstar, INDEX_NONE,
+     & 'SEAICEuseEVPstar=', ' /* use EVP* solver */')
+       CALL WRITE_0D_RL( SEAICE_evpAlpha  ,INDEX_NONE,
+     & 'SEAICE_evpAlpha   =', ' /* EVP* parameter*/')
+       CALL WRITE_0D_RL( SEAICE_evpBeta   ,INDEX_NONE,
+     & 'SEAICE_evpBeta    =', ' /* EVP*  parameter */')
+       CALL WRITE_0D_I ( SEAICEnEVPstarSteps,  INDEX_NONE,
+     & 'SEAICEnEVPstarSteps =', ' /* num. of EVP* steps */')
+       CALL WRITE_0D_L ( SEAICEuseEVPpickup, INDEX_NONE,
      & 'SEAICEuseEVPpickup=', ' /* start EVP solver with EVP pickup*/')
 #endif /* SEAICE_ALLOW_EVP */
       ENDIF
