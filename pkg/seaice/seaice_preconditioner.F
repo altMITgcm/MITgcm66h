@@ -77,7 +77,6 @@ C     i,j,bi,bj  :: Loop counters
 
       _RL WFAU, WFAV
       _RL AA3
-      _RL hFacM, hFacP
 
 C     diagonals of coefficient matrices
       _RL AU   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
