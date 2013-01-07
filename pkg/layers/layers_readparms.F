@@ -84,7 +84,7 @@ c  print statement or two as I override the new way)
       IF ( LAYER_nb.NE.0 ) THEN
         layers_num(1) = LAYER_nb
         layers_krho(1) = layers_kref
-        layers_bolus(iLa) = useBOLUS
+        layers_bolus(1) = useBOLUS
         DO k=1,Nlayers+1
           layers_bounds(k,1) = layers_G(k)
         ENDDO
