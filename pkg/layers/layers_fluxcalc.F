@@ -183,14 +183,14 @@ C ------ Augment the bin values
 #ifdef ALLOW_GMREDI
          IF ( layers_bolus(iLa)  ) THEN
            IF ( .NOT.GM_AdvForm ) THEN
-             delPsi= 0.5 _d 0 *(
-     &   0.5 _d 0 * (rA(i-1,j,bi,bj)*Kwx(i-1,j,kcip1,bi,bj)
-     &              +rA( i ,j,bi,bj)*Kwx( i ,j,kcip1,bi,bj))
-     &            * maskW(i,j,kcip1,bi,bj) * maskp1
-     &  -0.5 _d 0 * (rA(i-1,j,bi,bj)*Kwx(i-1,j, kci ,bi,bj)
-     &              +rA( i ,j,bi,bj)*Kwx( i ,j, kci ,bi,bj))
-     &            * maskW(i,j, kci ,bi,bj)
-     &                         ) / rAw(i,j,bi,bj)
+             delPsi = 0.25 _d 0 *(
+     &              ( rA(i-1,j,bi,bj)*Kwx(i-1,j,kcip1,bi,bj)
+     &               +rA( i ,j,bi,bj)*Kwx( i ,j,kcip1,bi,bj)
+     &              ) * maskW(i,j,kcip1,bi,bj) * maskp1
+     &            - ( rA(i-1,j,bi,bj)*Kwx(i-1,j, kci ,bi,bj)
+     &               +rA( i ,j,bi,bj)*Kwx( i ,j, kci ,bi,bj)
+     &              ) * maskW(i,j, kci ,bi,bj)
+     &                           ) * recip_rAw(i,j,bi,bj)
 #ifdef GM_BOLUS_ADVEC
            ELSE
              delPsi = GM_PsiX(i,j,kcip1,bi,bj)*maskp1
@@ -259,14 +259,14 @@ C ------ Augment the bin values
 #ifdef ALLOW_GMREDI
          IF ( layers_bolus(iLa) ) THEN
            IF ( .NOT.GM_AdvForm ) THEN
-             delPsi= 0.5 _d 0 *(
-     &   0.5 _d 0 * (rA(i,j-1,bi,bj)*Kwy(i,j-1,kcip1,bi,bj)
-     &              +rA(i, j ,bi,bj)*Kwy(i, j ,kcip1,bi,bj))
-     &            * maskS(i,j,kcip1,bi,bj) * maskp1
-     &  -0.5 _d 0 * (rA(i,j-1,bi,bj)*Kwy(i,j-1, kci ,bi,bj)
-     &              +rA(i, j ,bi,bj)*Kwy(i, j , kci ,bi,bj))
-     &            * maskS(i,j, kci ,bi,bj)
-     &                         ) / rAs(i,j,bi,bj)
+             delPsi = 0.25 _d 0 *(
+     &              ( rA(i,j-1,bi,bj)*Kwy(i,j-1,kcip1,bi,bj)
+     &               +rA(i, j ,bi,bj)*Kwy(i, j ,kcip1,bi,bj)
+     &              ) * maskS(i,j,kcip1,bi,bj) * maskp1
+     &            - ( rA(i,j-1,bi,bj)*Kwy(i,j-1, kci ,bi,bj)
+     &               +rA(i, j ,bi,bj)*Kwy(i, j , kci ,bi,bj)
+     &              ) * maskS(i,j, kci ,bi,bj)
+     &                           ) * recip_rAs(i,j,bi,bj)
 #ifdef GM_BOLUS_ADVEC
            ELSE
              delPsi = GM_PsiY(i,j,kcip1,bi,bj)*maskp1
