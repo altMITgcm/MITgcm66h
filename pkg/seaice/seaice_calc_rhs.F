@@ -14,7 +14,7 @@ C     !DESCRIPTION: \bv
 C     *==========================================================*
 C     | SUBROUTINE SEAICE_CALC_RHS
 C     | o Right-hand side of momentum equations, i.e. all terms
-C     |   that do not depend on the ice velocities of the current 
+C     |   that do not depend on the ice velocities of the current
 C     |   iterate of the Newton-Krylov iteration
 C     *==========================================================*
 C     | written by Martin Losch, Oct 2012
@@ -56,7 +56,8 @@ C     u/vIceRHS :: RHS of momentum equations
 C     i,j,bi,bj,kSrf :: loop indices
       INTEGER i,j,bi,bj
       INTEGER kSrf
-      _RL     SINWAT, COSWAT
+      _RS     SINWAT
+      _RL     COSWAT
 CEOP
 
       kSrf=1

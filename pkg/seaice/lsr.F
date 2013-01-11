@@ -56,7 +56,7 @@ C     i,j,bi,bj - Loop counters
       _RL e11loc, e22loc, e12loc
 
       _RL COSWAT
-      _RL SINWAT
+      _RS SINWAT
       _RL ECM2, DELT1, DELT2
       _RL TEMPVAR
 
