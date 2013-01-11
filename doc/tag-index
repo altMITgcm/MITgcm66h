@@ -4,6 +4,12 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/exf & thsice:
+  - for diagnostics purpose, fill-up and update Qsw array (+ fill the diagnostics)
+    even when SHORTWAVE_HEATING is #undef; 
+o verification/cfc_example:
+  - turn on pkg/layers with pkg/diagnostics (to test pkg/layers and to illustrate
+    how to use it).
 o verification/offline_exf_seaice:
   in input: add SEAICErestoreUnderIce=.TRUE., and reduce size of forcing
     files to only one time-record.
