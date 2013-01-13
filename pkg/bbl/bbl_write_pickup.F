@@ -105,7 +105,7 @@ C     uses this specific S/R to write meta file
         CALL MDS_WR_METAFILES( fn, fp, glf, .FALSE.,
      &                         0, 0, 1, ' ',
      &                         nWrFlds, wrFldList,
-     &                         1, timList,
+     &                         1, timList, oneRL,
      &                         j, myIter, myThid )
 #endif /* ALLOW_MDSIO */
 C--------------------------

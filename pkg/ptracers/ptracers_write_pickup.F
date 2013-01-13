@@ -171,7 +171,7 @@ C     uses this specific S/R to write (with more informations) only meta files
         CALL MDS_WR_METAFILES( fn, prec, glf, .FALSE.,
      &                         0, 0, Nr, ' ',
      &                         nWrFlds, wrFldList,
-     &                         1, timList,
+     &                         1, timList, oneRL,
      &                         j, myIter, myThid )
 #endif /* ALLOW_MDSIO */
 C--------------------------

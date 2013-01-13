@@ -446,7 +446,8 @@ C     meta files but with more informations in it.
             nRec = averageCycle(listId)*nfields(listId)
             CALL MDS_WR_METAFILES(fn, prec, glf, .FALSE.,
      &              0, 0, nLevOutp, ' ',
-     &              nfields(listId), flds(1,listId), nTimRec, timeRec,
+     &              nfields(listId), flds(1,listId),
+     &              nTimRec, timeRec, undefRL,
      &              nRec, myIter, myThid)
       ENDIF
 #endif /*  ALLOW_MDSIO  */
