@@ -16,6 +16,7 @@ C !INTERFACE:
      I   titleLine,
      I   nFlds, fldList,
      I   nTimRec, timList,
+     I   misVal,
      I   irecord,
      I   myIter,
      I   myThid )
@@ -64,6 +65,7 @@ C nFlds     (integer) :: number of fields from "fldList" to write
 C fldList   (string)  :: array of fields name to write
 C nTimRec   (integer) :: number of time-info from "fldList" to write
 C timList   (real)    :: array of time-info to write
+C misVal    (real)    :: missing value (ignored if = 1.)
 C irecord   (integer) :: record number to write
 C myIter    (integer) :: time step number
 C myThid    (integer) :: thread identifier
@@ -79,6 +81,7 @@ C Routine arguments
       CHARACTER*(8) fldList(*)
       INTEGER nTimRec
       _RL     timList(*)
+      _RL     misVal
       INTEGER irecord
       INTEGER myIter
       INTEGER myThid
@@ -136,7 +139,7 @@ C Only do I/O if I am the master thread (and mpi process 0 IF useSingleCpuIO):
          CALL MDS_WRITE_META(
      I              metaFName, dataFName, the_run_name, titleLine,
      I              filePrec, nDims,dimList,map2gl, nFlds, fldList,
-     I              nTimRec, timList, irecord, myIter, myThid )
+     I              nTimRec, timList, misVal, irecord, myIter, myThid )
 
        ELSE
 
@@ -205,7 +208,7 @@ C-            default (face fit into global-IO-array)
            CALL MDS_WRITE_META(
      I              metaFName, dataFName, the_run_name, titleLine,
      I              filePrec, nDims,dimList,map2gl, nFlds, fldList,
-     I              nTimRec, timList, irecord, myIter, myThid )
+     I              nTimRec, timList, misVal, irecord, myIter, myThid )
 C End of bi,bj loops
          ENDDO
         ENDDO

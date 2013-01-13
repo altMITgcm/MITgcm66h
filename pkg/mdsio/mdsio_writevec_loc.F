@@ -243,7 +243,7 @@ C--   we are writing a tiled array (bi>0,bj>0):
           CALL MDS_WRITE_META(
      I              metaFName, dataFName, the_run_name, ' ',
      I              filePrec, nDims, dimList, map2gl, 0, blank8c,
-     I              0, dummyRL, iRec, myIter, myThid )
+     I              0, dummyRL, oneRL, irecord, myIter, myThid )
         ENDIF
 
         _END_MASTER( myThid )

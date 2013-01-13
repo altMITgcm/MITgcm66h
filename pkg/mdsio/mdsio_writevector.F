@@ -226,7 +226,7 @@ C Close data-file and create meta-file
          CALL MDS_WRITE_META(
      I              metaFName, dataFName, the_run_name, ' ',
      I              filePrec, nDims, dimList, map2gl, 0, blank8c,
-     I              0, dummyRL, irecord, myIter, myThid )
+     I              0, dummyRL, oneRL, irecord, myIter, myThid )
         ENDIF
        _END_MASTER( myThid )
 C To be safe, make other processes wait for I/O completion
@@ -326,7 +326,7 @@ C Create meta-file for each tile file
          CALL MDS_WRITE_META(
      I              metaFName, dataFName, the_run_name, ' ',
      I              filePrec, nDims, dimList, map2gl, 0, blank8c,
-     I              0, dummyRL, irecord, myIter, myThid )
+     I              0, dummyRL, oneRL, irecord, myIter, myThid )
         ENDIF
 C End of bi,bj loops
 c      ENDDO
@@ -354,10 +354,10 @@ C Create meta-file for global file
        CALL MDS_WRITE_META(
      I              metaFName, dataFName, the_run_name, ' ',
      I              filePrec, nDims, dimList, map2gl, 0, blank8c,
-     I              0, dummyRL, irecord, myIter, myThid )
+     I              0, dummyRL, oneRL, irecord, myIter, myThid )
 c    I              metaFName, dataFName, the_run_name, titleLine,
 c    I              filePrec, nDims, dimList, map2gl, nFlds, fldList,
-c    I              nTimRec, timList, irecord, myIter, myThid )
+c    I              nTimRec, timList, misVal, irecord, myIter, myThid )
       ENDIF
 
       _END_MASTER( myThid )

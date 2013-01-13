@@ -715,7 +715,7 @@ C Create meta-file for each tile if we are tiling
          CALL MDS_WRITE_META(
      I              metaFName, dataFName, the_run_name, ' ',
      I              filePrec, nDims, dimList, map2gl, 0, blank8c,
-     I              0, dummyRL, irecord, myIter, myThid )
+     I              0, dummyRL, oneRL, irecord, myIter, myThid )
 C End of bi,bj loops
        enddo
       enddo
@@ -956,7 +956,7 @@ C Create meta-file for each tile if we are tiling
          CALL MDS_WRITE_META(
      I              metaFName, dataFName, the_run_name, ' ',
      I              filePrec, nDims, dimList, map2gl, 0, blank8c,
-     I              0, dummyRL, irecord, myIter, myThid )
+     I              0, dummyRL, oneRL, irecord, myIter, myThid )
 C End of bi,bj loops
        enddo
       enddo
