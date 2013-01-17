@@ -198,6 +198,8 @@ C--  Seaice-Dynamics parameters
      & 'JFNKgamma_nonlin=', ' /* JFNK tolerance */')
         CALL WRITE_0D_RL( JFNKres_t  ,INDEX_NONE,
      & 'JFNKres_t=', ' /* JFNK parameter */')       
+        CALL WRITE_0D_RL( JFNKres_tFac  ,INDEX_NONE,
+     & 'JFNKres_tFac=', ' /* JFNK parameter */')       
        ENDIF
 #endif /* SEAICE_ALLOW_JFNK */
 #ifdef SEAICE_ALLOW_EVP
