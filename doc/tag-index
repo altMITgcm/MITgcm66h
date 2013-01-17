@@ -5,6 +5,12 @@ $Name$
     ==============================
 
 o pkg/seaice: add a line search option to the JFNK solver
+  - move update of u/vIce and computation of initial residual into a separate 
+    routine (same file); makes the code a little easier to read (?)
+  - the line search requires computation of the residual and for some reason
+    I cannot do the update of u/vIce at the beginning of the Newton loop 
+    without changing the results, so we move computation of the new residual
+    also to the end of the Newton loop, even without the line search
 o pkg/mdsio:
   - write missing value (corresponding to undefined array value) to meta files;
     skip this if missing value is one (UNSET_RL would be a better value for the 
