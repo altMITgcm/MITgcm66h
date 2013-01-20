@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/thsice:
+  - add a missing EXCH of sIceLoad in thsice_main.F (ocean set-up) for the case
+    where just seaice diffusion is used without seaice-dynamics.
+
 checkpoint64c (2013/01/18)
 o pkg/seaice:
   - add a parameter JFNKres_tFac that can replace JFNKres_t
