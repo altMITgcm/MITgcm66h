@@ -278,7 +278,8 @@ C--   Exchange fields that are advected by seaice dynamics
         _EXCH_XY_RL( iceMask, myThid )
       ENDIF
 #ifdef ATMOSPHERIC_LOADING
-      IF ( useRealFreshWaterFlux .AND. (useEXF.OR.useSEAICE ) )
+      IF ( useRealFreshWaterFlux .AND.
+     &    ( useEXF .OR. useSEAICE .OR. thSIceAdvScheme.GT.0 ) )
      &  _EXCH_XY_RS( sIceLoad, myThid )
 #endif
 
