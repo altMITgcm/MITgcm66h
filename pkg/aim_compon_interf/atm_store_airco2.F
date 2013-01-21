@@ -58,7 +58,7 @@ CEOP
 #ifdef ALLOW_AIM_CO2
 C     == Local variables ==
 C     i,j :: Loop counters
-      INTEGER i,j, ij
+      INTEGER i,j
       _RL cplTimeFraction
 
 C     o Accumulate atmospheric CO2 from Aim pkg that will be exported
@@ -67,9 +67,8 @@ C       to the coupling layer.
        airCO2Time(bi,bj) = airCO2Time(bi,bj) + cplTimeFraction
        DO j=1,sNy
          DO i=1,sNx
-          ij = i + (j-1)*sNx
           airCO2(i,j,bi,bj) = airCO2(i,j,bi,bj)
-     &                      + aim_CO2(ij,myThid)*cplTimeFraction
+     &                      + aim_CO2(i,j,bi,bj)*cplTimeFraction
          ENDDO
        ENDDO
 
