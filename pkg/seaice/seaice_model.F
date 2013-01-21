@@ -161,7 +161,14 @@ C--   Apply ice velocity open boundary conditions
 #endif /* ALLOW_OBCS */
 
 #ifdef ALLOW_THSICE
-      IF ( .NOT.useThSice ) THEN
+      IF ( useThSice ) THEN
+#ifndef OLD_THSICE_CALL_SEQUENCE
+#ifdef ALLOW_DEBUG
+        IF (debugMode) CALL DEBUG_CALL( 'THSICE_DO_ADVECT', myThid )
+#endif
+        CALL THSICE_DO_ADVECT( 0, 0, myTime, myIter, myThid )
+#endif /* OLD_THSICE_CALL_SEQUENCE */
+      ELSE
 #endif
 C--   Only call advection of heff, area, snow, and salt and
 C--   growth for the generic 0-layer thermodynamics of seaice
