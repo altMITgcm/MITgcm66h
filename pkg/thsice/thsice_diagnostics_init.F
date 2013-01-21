@@ -233,9 +233,15 @@ C-     Advective flux:
         ENDIF
       ENDDO
 
+#ifdef OLD_THSICE_CALL_SEQUENCE
 C--   Intermediate State, just after advection:
+        locName   = ' after advection'
+#else /* OLD_THSICE_CALL_SEQUENCE */
+C--   Intermediate State, just before advection:
+        locName   = 'before advection'
+#endif /* OLD_THSICE_CALL_SEQUENCE */
         diagName  = 'SI_AdvFr'
-        diagTitle = 'Sea-Ice fraction  [0-1] (after advection)'
+        diagTitle = 'Sea-Ice fraction  [0-1] ('//locName//')'
         diagUnits = '0-1             '
         diagCode  = 'SM P    M1      '
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
@@ -243,7 +249,7 @@ C--   Intermediate State, just after advection:
         numFract  = diagNum
 
         diagName  = 'SI_AdvHi'
-        diagTitle = 'Sea-Ice thickness (after advection)'
+        diagTitle = 'Sea-Ice thickness ('//locName//')'
         diagUnits = 'm               '
         diagCode  = 'SM PC   M1      '
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
@@ -251,21 +257,21 @@ C--   Intermediate State, just after advection:
         numThick  = diagNum
 
         diagName  = 'SI_AdvHs'
-        diagTitle = 'Snow thickness over Sea-Ice (after advection)'
+        diagTitle = 'Snow thickness over Sea-Ice ('//locName//')'
         diagUnits = 'm               '
         diagCode  = 'SM PC   M1      '
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I     diagName, diagCode, diagUnits, diagTitle, numFract, myThid )
 
         diagName  = 'SI_AdvQ1'
-        diagTitle = 'Sea-Ice enthalpy, 1srt layer (after advection)'
+        diagTitle = 'Sea-Ice enthalpy, 1srt layer ('//locName//')'
         diagUnits = 'J/kg            '
         diagCode  = 'SM  C   M1      '
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I     diagName, diagCode, diagUnits, diagTitle, numThick, myThid )
 
         diagName  = 'SI_AdvQ2'
-        diagTitle = 'Sea-Ice enthalpy, 2nd  layer (after advection)'
+        diagTitle = 'Sea-Ice enthalpy, 2nd  layer ('//locName//')'
         diagUnits = 'J/kg            '
         diagCode  = 'SM  C   M1      '
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
