@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ptracers:
+  - from Ryan A.: code to allow to restart a tracer at regular time interval
+    specifying a reset frequency and a reset-phase (for each tracers).
 o pkg/thsice:
   - implement new sequence of calls for thsice+seaice:
       previously:   ice-Dyn,ice-Advect,ice-Thermo(thsice)
