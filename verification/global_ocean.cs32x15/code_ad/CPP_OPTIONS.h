@@ -117,10 +117,6 @@ C   Default is to use "new" grid files (OLD_GRID_IO undef) but OLD_GRID_IO
 C   is still useful with, e.g., single-domain curvilinear configurations.
 #undef OLD_GRID_IO
 
-C o Use thsice+seaice (old) call sequence: ice-Dyn,ice-Advect,ice-Thermo(thsice)
-C              as opposed to new sequence: ice-Thermo(thsice),ice-Dyn,ice-Advect
-#define OLD_THSICE_CALL_SEQUENCE
-
 C o Execution environment support options
 #include "CPP_EEOPTIONS.h"
 
