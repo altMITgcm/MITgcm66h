@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o verification/global_ocean.cs32x15:
+  - switch off OLD_THSICE_CALL_SEQUENCE (both forward and AD code) to use new
+    thsice calling sequence and update "output.icedyn.txt" output file.
 o pkg/ptracers:
   - from Ryan A.: code to allow to restart a tracer at regular time interval
     specifying a reset frequency and a reset-phase (for each tracers).
