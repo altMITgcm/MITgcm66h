@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ctrl
+  - 1st step toward generic time-varying control variable (2D) via CPP option
+    ALLOW_GENTIM2D_CONTROL
+  - note new namelist ctrl_nml_genarr in data.ctrl
 o verification/global_ocean.cs32x15:
   - switch off OLD_THSICE_CALL_SEQUENCE (both forward and AD code) to use new
     thsice calling sequence and update "output.icedyn.txt" output file.

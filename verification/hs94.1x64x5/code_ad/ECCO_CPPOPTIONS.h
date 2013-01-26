@@ -65,6 +65,7 @@ cph(
 #define ALLOW_BOTTOMDRAG_CONTROL
 #define ALLOW_GENARR2D_CONTROL
 #define ALLOW_GENARR3D_CONTROL
+#define ALLOW_GENTIM2D_CONTROL
 cph)
 
 C ********************************************************************

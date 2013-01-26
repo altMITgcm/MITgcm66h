@@ -11,15 +11,14 @@ C
 C     maxCtrlArr2D :: number of 2-dim. generic control variables
 C     maxCtrlArr3D :: number of 3-dim. generic control variables
 
-#ifdef ALLOW_GENARR2D_CONTROL
       integer     maxCtrlArr2D
       parameter ( maxCtrlArr2D = 3 )
-#endif
 
-#ifdef ALLOW_GENARR3D_CONTROL
       integer     maxCtrlArr3D
       parameter ( maxCtrlArr3D = 3 )
-#endif
+
+      integer     maxCtrlTim2D
+      parameter ( maxCtrlTim2D = 1 )
 
 CEH3 ;;; Local Variables: ***
 CEH3 ;;; mode:fortran ***
