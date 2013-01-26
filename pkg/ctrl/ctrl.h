@@ -21,8 +21,8 @@ c     ==================================================================
       parameter ( maxcvars = 30 )
 #elif (defined (CTRL_SET_OLD_MAXCVARS_40))
       parameter ( maxcvars = 40 )
-#elif (defined (ALLOW_GENARR2D_CONTROL) || defined (ALLOW_GENARR3D_CONTROL))
-      parameter ( maxcvars = 300 )
+#elif (defined (ALLOW_GENARR2D_CONTROL) || defined (ALLOW_GENARR3D_CONTROL) || defined (ALLOW_GENTIM2D_CONTROL))
+      parameter ( maxcvars = 400 )
 #else
       parameter ( maxcvars = 60 )
 #endif

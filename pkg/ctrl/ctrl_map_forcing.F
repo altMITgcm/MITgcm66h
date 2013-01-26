@@ -4,7 +4,7 @@ C $Name$
 #include "CTRL_OPTIONS.h"
 
 CBOP
-C     !ROUTINE: ctrl_map_ini
+C     !ROUTINE: CTRL_MAP_FORCING
 C     !INTERFACE:
       SUBROUTINE CTRL_MAP_FORCING(myThid)
 
