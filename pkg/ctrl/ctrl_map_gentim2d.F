@@ -88,15 +88,15 @@ C--   generic - user-defined control vars
        ENDDO
 C
        CALL CTRL_GET_GEN (
-     I      xx_gentim2d_file(iarr)(1:MAX_LEN_FNAM), 
-     I      xx_gentim2d_startdate(1,iarr), 
+     I      xx_gentim2d_file(iarr)(1:MAX_LEN_FNAM),
+     I      xx_gentim2d_startdate(1,iarr),
      I      xx_gentim2d_period(iarr),
-     I      maskC, 
-     O      xx_gentim2d_loc, 
+     I      maskC,
+     O      xx_gentim2d_loc,
      I      xx_gentim2d0(1-Olx,1-Oly,1,1,iarr),
      I      xx_gentim2d1(1-Olx,1-Oly,1,1,iarr),
      I      xx_gentim2d_dummy(iarr),
-     I      0.0, 0.0,
+     I      zeroRL, zeroRL,
      I      mytime, myiter, mythid )
 C
       ENDDO
