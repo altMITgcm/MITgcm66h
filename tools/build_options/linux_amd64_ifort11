@@ -38,7 +38,7 @@ else
   CC=icc
   FC=ifort
   F90C=ifort
-  LINK=ifort
+  LINK="$F90C -shared-intel"
 fi
 
 DEFINES='-DWORDLENGTH=4'
