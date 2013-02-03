@@ -8,6 +8,8 @@ o model/src:
   - account for moist thermodynamics in (dry) potential temperature equation;
     update results of experiments: aim.5l_cs (x2), fizhi-cs (std + aqualev)
     and cpl_aim+ocn.
+  - also switch to standard compiler (gfortran, was using ifort previously)
+    for fizhi-cs experiments reference output.
 o pkg/ctrl:
   - 1st step toward generic time-varying control variable (2D) via CPP option
     ALLOW_GENTIM2D_CONTROL
