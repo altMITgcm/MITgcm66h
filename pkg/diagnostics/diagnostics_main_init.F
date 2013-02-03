@@ -760,6 +760,13 @@ c     diagTitle = 'Free-Surface r-Position (Pressure, Height) (Pa,m)'
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
+      diagName  = 'MoistCor'
+      diagTitle = 'Heating correction due to moist thermodynamics'
+      diagUnits = 'W/s^2           '
+      diagCode  = 'SM      MR      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
       diagName  = 'AB_gU   '
       diagTitle = 'U momentum tendency from Adams-Bashforth'
       diagUnits = 'm/s^2           '
