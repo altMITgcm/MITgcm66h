@@ -155,9 +155,11 @@ c read data:
                  gfomask(i,j,bi,bj) = 0. _d 0
               endif
 
+#ifndef ALLOW_SHALLOW_ALTIMETRY
               if ( R_low(i,j,bi,bj) .GT. -200. ) then
                 gfomask(i,j,bi,bj) = 0. _d 0
               endif
+#endif
 
               gfomask(i,j,bi,bj) = gfomask(i,j,bi,bj)*frame(i,j)
               gfoobs(i,j,bi,bj)  = gfomask(i,j,bi,bj)*factor*

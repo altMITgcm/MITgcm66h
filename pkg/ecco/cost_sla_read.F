@@ -152,9 +152,11 @@ c mask data:
               endif
 
 cph(
+#ifndef ALLOW_SHALLOW_ALTIMETRY
               if ( R_low(i,j,bi,bj) .GT. -200. ) then
                 sla_mask(i,j,bi,bj) = 0. _d 0
               endif
+#endif
 cph)
 
               sla_mask(i,j,bi,bj) = sla_mask(i,j,bi,bj)*frame(i,j)

@@ -156,9 +156,11 @@ c read data:
               endif
 
 cph(
+#ifndef ALLOW_SHALLOW_ALTIMETRY
               if ( R_low(i,j,bi,bj) .GT. -200. ) then
                 ersmask(i,j,bi,bj) = 0. _d 0
               endif
+#endif
 cph)
 
               ersmask(i,j,bi,bj) = ersmask(i,j,bi,bj)*frame(i,j)

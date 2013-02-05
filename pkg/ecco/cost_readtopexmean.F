@@ -87,9 +87,11 @@ c--   Convert mean ssh from cm to m
                  tpmeanmask(i,j,bi,bj) = 0. _d 0
               endif
 
+#ifndef ALLOW_SHALLOW_ALTIMETRY
               if ( R_low(i,j,bi,bj) .GT. -200. ) then
                 tpmeanmask(i,j,bi,bj) = 0. _d 0
               endif
+#endif
 
               tpmeanmask(i,j,bi,bj) = tpmeanmask(i,j,bi,bj)*frame(i,j)
               tpmean(i,j,bi,bj) = tpmean(i,j,bi,bj)*
