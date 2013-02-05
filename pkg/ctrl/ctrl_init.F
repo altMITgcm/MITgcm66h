@@ -801,7 +801,8 @@ c--
 #ifdef ALLOW_GENTIM2D_CONTROL
        do iarr = 1, maxCtrlTim2D
 
-         call mdsreadfield( xx_gentim2d_weight, ctrlprec, 'RL',
+        if (xx_gentim2d_weight(iarr).NE.' ')
+     &   call mdsreadfield( xx_gentim2d_weight, ctrlprec, 'RL',
      &      1, wgentim2d(1-Olx,1-Oly,1,1,iarr), 1, mythid )
 
         call ctrl_init_rec ( xx_gentim2d_file(iarr)(1:MAX_LEN_FNAM),

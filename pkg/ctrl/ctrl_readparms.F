@@ -144,7 +144,7 @@ cHFLUXM_CONTROL
      &  xx_genarr2d_weight, xx_genarr3d_weight, xx_gentim2d_weight,
      &  xx_gentim2d_startdate1, xx_gentim2d_startdate2,
      &  xx_gentim2d_startdate, xx_gentim2d_period,
-     &  genarr2dPrecond, gentim2dPrecond
+     &  genarr2dPrecond, gentim2dPrecond,mult_gentim2d
 #endif
 
       _BEGIN_MASTER( myThid )
@@ -212,6 +212,7 @@ c
          xx_gentim2d_startdate2(iarr) = 0
          xx_gentim2d_period(iarr)     = 0. _d 0
          gentim2dPrecond(iarr)        = 1. _d 0
+         mult_gentim2d(iarr)          = 0. _d 0
         enddo
 #endif
 c
