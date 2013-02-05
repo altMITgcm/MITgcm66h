@@ -1376,6 +1376,7 @@ C     only master thread of master CPU open and write to file
 #endif
 
 #ifdef ALLOW_CTRL
+#ifdef ALLOW_GENTIM2D_CONTROL
        do num_var=1,maxCtrlTim2D
         if (no_gentim2d(num_var).GT.0) then
          IL  = ILNBLNK( xx_gentim2d_file(num_var) )
@@ -1387,7 +1388,8 @@ C     only master thread of master CPU open and write to file
      &    no_gentim2d(num_var)
          endif
        enddo
-#endif      
+#endif
+#endif
 
         close(ifc)
 
