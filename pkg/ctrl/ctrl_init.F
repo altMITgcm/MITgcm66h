@@ -800,6 +800,10 @@ c----------------------------------------------------------------------
 c--
 #ifdef ALLOW_GENTIM2D_CONTROL
        do iarr = 1, maxCtrlTim2D
+
+         call mdsreadfield( xx_gentim2d_weight, ctrlprec, 'RL',
+     &      1, wgentim2d(1-Olx,1-Oly,1,1,iarr), 1, mythid )
+
         call ctrl_init_rec ( xx_gentim2d_file(iarr)(1:MAX_LEN_FNAM),
      I       xx_gentim2d_startdate1(iarr), 
      I       xx_gentim2d_startdate2(iarr), 
