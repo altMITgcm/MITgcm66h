@@ -208,6 +208,11 @@ c--   Compute user defined cost function contributions (basic)
       call cost_usercost_all( myiter, mytime, mythid )
       call timer_stop ('cost_usercost_all    [ECCO SPIN-DOWN]', mythid)
 
+c--   Compute user defined cost function contributions (controls)
+      call timer_start('cost_genctrl       [ECCO SPIN-DOWN]', mythid)
+      call cost_genctrl( myiter, mytime, mythid )
+      call timer_stop ('cost_genctrl       [ECCO SPIN-DOWN]', mythid)
+
 #endif /* ALLOW_ECCO_EVOLUTION */
 
       return
