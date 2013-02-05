@@ -28,6 +28,9 @@ C $Name$
 #ifdef ALLOW_STREAMICE
 # include "STREAMICE_OPTIONS.h"
 #endif
+#ifdef ALLOW_CTRL
+# include "CTRL_OPTIONS.h"
+#endif
 
 CBOP
 C     !ROUTINE: FORWARD_STEP
@@ -87,6 +90,7 @@ C     == Global variables ==
 #  include "CTRL_SIZE.h"
 #  include "ctrl.h"
 #  include "ctrl_dummy.h"
+#  include "CTRL_GENARR.h"
 # endif
 # ifdef ALLOW_COST
 #  include "cost.h"

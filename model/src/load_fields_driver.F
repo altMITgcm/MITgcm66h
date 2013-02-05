@@ -134,6 +134,11 @@ C--   Call external forcing package
       ENDIF
 #endif /* ALLOW_EXF */
 
+C--   Add generic controls (if specified by user)
+#ifdef ALLOW_CTRL
+      CALL CTRL_MAP_GENTIM2D( myTime, myIter, myThid )
+#endif
+
 C--   Call external CheapAML forcing package
 #ifdef ALLOW_CHEAPAML
       IF ( useCheapAML  ) THEN

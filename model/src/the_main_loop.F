@@ -24,6 +24,9 @@ C $Name$
 #ifdef ALLOW_EXF
 # include "EXF_OPTIONS.h"
 #endif
+#ifdef ALLOW_CTRL
+# include "CTRL_OPTIONS.h"
+#endif
 
 CBOP
 C     !ROUTINE: THE_MAIN_LOOP
@@ -175,6 +178,7 @@ c They provide the fields to be stored.
 # include "CTRL_SIZE.h"
 # include "ctrl.h"
 # include "ctrl_dummy.h"
+# include "CTRL_GENARR.h"
 # endif
 # ifdef ALLOW_COST
 #  include "cost.h"
