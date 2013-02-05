@@ -129,6 +129,10 @@ CADJ &     tapelev2, key = ilev_2
 # include "exf_ad_check_lev2_dir.h"
 #endif /* ALLOW_EXF */
 
+#ifdef ALLOW_CTRL
+# include "ctrl_ad_check_lev2_dir.h"
+#endif 
+
 #ifdef ALLOW_PTRACERS
 # include "ptracers_ad_check_lev2_dir.h"
 #endif

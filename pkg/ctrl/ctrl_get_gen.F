@@ -58,8 +58,6 @@ c     == routine arguments ==
 
 c     == local variables ==
 
-#ifdef ALLOW_EXF
-
       integer bi,bj
       integer i,j,k
       integer itlo,ithi
@@ -148,7 +146,7 @@ c--   Get the counters, flags, and the interpolation factor.
       endif
 
       if (( genfirst ) .or. ( genchanged )) then
-        call exf_SwapFFields( xx_gen0, xx_gen1, mythid )
+        call CTRL_SWAPFFIELDS( xx_gen0, xx_gen1, mythid )
 
         call active_read_xy( fnamegen, xx_gen1 , gencount1,
      &                       doglobalread, ladinit, optimcycle,
@@ -253,8 +251,6 @@ CMLCML)
 cph(
       endif
 cph)
-
-#endif /* ALLOW_EXF */
 
       RETURN
       END

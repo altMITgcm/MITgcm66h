@@ -119,6 +119,10 @@ CADJ &     kind = isbyte
 # include "exf_ad_check_lev1_dir.h"
 #endif /* ALLOW_EXF undef */
 
+#ifdef ALLOW_CTRL
+# include "ctrl_ad_check_lev1_dir.h"
+#endif
+
 #ifdef STORE_LOADEDREC_TEST
 CADJ STORE loadedRec = comlev1, key = ikey_dynamics, kind = 4
 #endif
