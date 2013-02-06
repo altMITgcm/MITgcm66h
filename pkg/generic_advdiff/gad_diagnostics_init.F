@@ -182,10 +182,11 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 C-     add diagnostics of advective & diffusive flux of Salt :
        IF ( fluidIsAir ) THEN
          locName = 'Water-Vapor '
-         trUnits = 'g/kg'
-#ifdef ALLOW_FIZHI
-        IF ( useFIZHI ) trUnits = 'kg/kg'
-#endif /* ALLOW_FIZHI */
+         IF ( useAIM ) THEN
+           trUnits = 'g/kg'
+         ELSE
+           trUnits = 'kg/kg'
+         ENDIF
        ELSE
          locName = 'Salinity    '
          trUnits = 'psu'
