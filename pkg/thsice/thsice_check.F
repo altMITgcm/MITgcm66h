@@ -77,6 +77,18 @@ C--   Check parameter consistency:
       ENDIF
 #endif
 
+#ifdef OLD_THSICE_CALL_SEQUENCE
+        WRITE(msgBuf,'(2A)') '** WARNING ** THSICE_CHECK: ',
+     &   'OLD_THSICE_CALL_SEQUENCE code no longer maintained'
+        CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                      SQUEEZE_RIGHT, myThid )
+        WRITE(msgBuf,'(2A)') '** WARNING ** THSICE_CHECK: ',
+     &   'option and related code will be removed after chkpt-64e'
+        CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                      SQUEEZE_RIGHT, myThid )
+
+#endif
+
       _END_MASTER(myThid)
 
       RETURN
