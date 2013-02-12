@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice:
+  - fix a serious bug in seaice_fgmres.F, s/r seaice_scalprod, connected
+    to the scalarProductMetric and the unrolling. By chance this does not
+    change the verification experiment, because of the particular domain 
+    decomposition
 o pkg/diagnostics:
   - change default missing_value from UNSET_RL to -999.
 o pkg/layers: improve vectorization of layers_fluxcalc.F
