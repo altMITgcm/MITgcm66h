@@ -734,6 +734,7 @@ c     if( m .eq. 0 ) go to 40
         if ( m .ne. 0 ) then
          do i = 1,m
           dtemp(bi,bj) = dtemp(bi,bj) + dx(i,i1,bi,bj)*dy(i,i2,bi,bj)
+     &         * scalarProductMetric(i,1,bi,bj)
          enddo
         endif
         if ( n .ge. 5 ) then
