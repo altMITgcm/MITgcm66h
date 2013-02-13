@@ -828,7 +828,7 @@ C
      &       SEAICE_OLx, '/', SEAICE_Oly
         CALL PRINT_ERROR( msgBuf, myThid )
         WRITE(msgBuf,'(2A,I2,A,I2)') 
-     &       'S/R SEAICE_CHECK: SEAICE_OLx/y cannot be smaller than 0',
+     &       'S/R SEAICE_CHECK: SEAICE_OLx/y cannot be smaller than 0 ',
      &       'or larger than OLx/y-2 = ', OLx-2, '/', OLy-2
         CALL PRINT_ERROR( msgBuf, myThid )
         STOP 'ABNORMAL END: S/R SEAICE_CHECK'
