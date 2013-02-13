@@ -74,6 +74,8 @@ C--   Only for the C-grid version it is possible to
 #ifdef SEAICE_CGRID
 C     enable JFNK code by defining the following flag
 # define SEAICE_ALLOW_JFNK
+C     enable this flag to reproduce old verification results for JFNK
+# define SEAICE_PRECOND_EXTRA_EXCHANGE
 C     enable LSR to use global (multi-tile) tri-diagonal solver
 # define SEAICE_GLOBAL_3DIAG_SOLVER
 C     enable EVP code by defining the following flag
