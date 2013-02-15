@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: replace a hard coded parameter by a runtime parameter
+   SEAICE_JFNK_tolIter
 o pkg/seaice: introduce a restricted additive Schwarz (RAS) method in
     preconditioner for JFNK (run LSR into the overlaps as far as possible,
     i.e OLx/y-2, but overwrite the solution in the overlaps)
