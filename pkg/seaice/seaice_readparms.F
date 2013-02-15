@@ -103,7 +103,7 @@ C--   SEAICE parameters
      & SEAICE_evpDampC, SEAICEnEVPstarSteps,
      & SEAICE_zetaMin, SEAICE_zetaMaxFac,
      & SEAICEuseJFNK, SEAICEnewtonIterMax, SEAICEkrylovIterMax,
-     & SEAICE_JFNK_lsIter,JFNKres_t,JFNKres_tFac,
+     & SEAICE_JFNK_lsIter, SEAICE_JFNK_tolIter, JFNKres_t,JFNKres_tFac,
      & JFNKgamma_nonlin,JFNKgamma_lin_min,JFNKgamma_lin_max,
      & SEAICE_OLx, SEAICE_OLy,
      & SEAICEpresH0, SEAICEpresPow0, SEAICEpresPow1,
@@ -226,6 +226,7 @@ C     JFNK stuff
       SEAICEnewtonIterMax = 10
       SEAICEkrylovIterMax = 10
       SEAICE_JFNK_lsIter  = UNSET_I
+      SEAICE_JFNK_tolIter = 100
       SEAICE_OLx          = OLx-2
       SEAICE_OLy          = OLy-2
       JFNKgamma_nonlin    = 1. _d -05
