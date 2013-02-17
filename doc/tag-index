@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint64d (2013/02/17)
 o pkg/monitor (angular momentum):
   - do not add Eta contribution to the total AM if using rigid-lid;
   - correct for Adams-Bashforth in zonal-wind part (instead of in AM_eta).
