@@ -93,6 +93,8 @@ C     Write horizontal grid arrays
         IF ( usingCurvilinearGrid .OR. rotateGrid ) THEN
           CALL WRITE_FLD_XY_RS( 'AngleCS',' ',angleCosC,-1,myThid)
           CALL WRITE_FLD_XY_RS( 'AngleSN',' ',angleSinC,-1,myThid)
+          CALL WRITE_FLD_XY_RS( 'U2zonDir',' ',u2zonDir,-1,myThid)
+          CALL WRITE_FLD_XY_RS( 'V2zonDir',' ',v2zonDir,-1,myThid)
         ENDIF
 C     Write 3D geometry arrays
         CALL WRITE_FLD_XY_RS( 'Depth',' ',tmpfld,-1,myThid)
