@@ -390,7 +390,7 @@ C     now continue with diabatic forcing
      &             xolw,ssqt,q100)
             ELSEIF (FluxFormula.EQ.'COARE3') THEN
               CALL cheapaml_COARE3_flux(i,j,bi,bj,fsha,flha,evp,
-     &             xolw,ssqt,q100,cdq)
+     &             xolw,ssqt,q100,cdq, myIter, myThid )
             ENDIF
 
 C atmospheric upwelled long wave
