@@ -344,7 +344,7 @@ C     update edges
        ENDIF                   ! if use tracer
 
 C reset boundaries to open boundary profile
-       IF ( .NOT.(cheapamlXperiodic.AND.cheapamlXperiodic) ) THEN
+       IF ( .NOT.(cheapamlXperiodic.AND.cheapamlYperiodic) ) THEN
         DO bj=myByLo(myThid),myByHi(myThid)
          DO bi=myBxLo(myThid),myBxHi(myThid)
            CALL CHEAPAML_COPY_EDGES(
@@ -543,7 +543,7 @@ C update edges
       ENDIF
 
 C reset edges to open boundary profiles
-c     IF ( .NOT.(cheapamlXperiodic.AND.cheapamlXperiodic) ) THEN
+c     IF ( .NOT.(cheapamlXperiodic.AND.cheapamlYperiodic) ) THEN
       IF ( notUsingXPeriodicity.OR.notUsingYPeriodicity ) THEN
         xIsPeriodic = .NOT.notUsingXPeriodicity
         yIsPeriodic = .NOT.notUsingYPeriodicity
