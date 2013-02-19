@@ -620,12 +620,12 @@ C-    Compute effective gW_[n+1/2] terms (including Adams-Bashforth weights)
 C     and save gW_[n] into gwNm1 for the next time step.
 #ifdef ALLOW_ADAMSBASHFORTH_3
         CALL ADAMS_BASHFORTH3(
-     I                         bi, bj, k,
+     I                         bi, bj, k, Nr,
      U                         gW, gwNm, gw_AB,
      I                         nHydStartAB, myIter, myThid )
 #else /* ALLOW_ADAMSBASHFORTH_3 */
         CALL ADAMS_BASHFORTH2(
-     I                         bi, bj, k,
+     I                         bi, bj, k, Nr,
      U                         gW, gwNm1, gw_AB,
      I                         nHydStartAB, myIter, myThid )
 #endif /* ALLOW_ADAMSBASHFORTH_3 */

@@ -197,7 +197,7 @@ C       compute iter at beginning of ptracer time step
         IF (staggerTimeStep) iterNb = myIter - 1
 #endif
         CALL ADAMS_BASHFORTH2(
-     I                      bi,bj,k,
+     I                      bi, bj, k, Nr,
      U                      gPtr(1-OLx,1-OLy,1,1,1,iTracer),
      U                      gpTrNm1(1-OLx,1-OLy,1,1,1,iTracer),
      U                      gTr_AB,

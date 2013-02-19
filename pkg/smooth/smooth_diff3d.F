@@ -135,7 +135,7 @@ c adams bashfort on gT_in:
       myIter(bi,bj)=iloop-1
         DO k=1,Nr
         CALL ADAMS_BASHFORTH2(
-     &                        bi, bj, k,
+     &                        bi, bj, k, Nr,
      &                        gT_in, gTm1_in, gt_AB, .FALSE.,
      &                        myIter(bi,bj) , myThid )
         ENDDO
