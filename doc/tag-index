@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src:
+  - add 3-D array 3rd dimension to argument list of S/R ADAMS_BASHFORTH2/3;
+  - pkg/cheapaml: remove local S/R ADAMS2d and use instead standard S/R
+    ADAMS_BASHFORTH2.
 o pkg/cheapaml:
   - add new parameter (default=F, same as before) to disable full domain
     (including land) periodicity in X & Y dir.
