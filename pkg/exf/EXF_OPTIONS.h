@@ -158,7 +158,7 @@ C   Zenith Angle/Albedo related flags.
 # undef ALLOW_ZENITHANGLE
 #endif
 
-C   Use ocean_emissivity*lwdwon in lwFlux. This flag should be define
+C   Use ocean_emissivity*lwdown in lwFlux. This flag should be defined
 C   unless to reproduce old results (obtained with inconsistent old code)
 #ifdef ALLOW_DOWNWARD_RADIATION
 # define EXF_LWDOWN_WITH_EMISSIVITY
