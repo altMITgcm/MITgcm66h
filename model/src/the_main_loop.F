@@ -312,7 +312,7 @@ c     >>>>>>>>>>>>>>>>>>>>>>>>>>>   LOOP   <<<<<<<<<<<<<<<<<<<<<<<<<<<<
 c     >>>>>>>>>>>>>>>>>>>>>>>>>>>  STARTS  <<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
       CALL TIMER_START('MAIN_DO_LOOP        [THE_MAIN_LOOP]', mythid)
-      CALL MAIN_DO_LOOP( myThid )
+      CALL MAIN_DO_LOOP( myTime, myIter, myThid )
       CALL TIMER_STOP('MAIN_DO_LOOP         [THE_MAIN_LOOP]', mythid)
 
 c     >>>>>>>>>>>>>>>>>>>>>>>>>>>   LOOP   <<<<<<<<<<<<<<<<<<<<<<<<<<<<
