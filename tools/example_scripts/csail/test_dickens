@@ -159,7 +159,7 @@ do
     export LM_LICENSE_FILE=$PGI/license.dat
   fi
 
-  if test $sepDir = 0 -a $checkOut = '1' -a  $tt = $firstTst ; then
+  if test $sepDir = 0 -a $checkOut = '0' -a  $tt = $firstTst ; then
 #-- cleaning:
     echo "======================"
     echo "Cleaning test directories:"	| tee -a $tdir/output_$tt
