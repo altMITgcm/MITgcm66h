@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o OpenAD support
+  Reorganize S/R call for overall time-stepping loop to facilitate
+  OpenAD revolve loop replacement
+  (new S/R main_do_loop.F)
 o model/src:
   - add 3-D array 3rd dimension to argument list of S/R ADAMS_BASHFORTH2/3;
   - pkg/cheapaml: remove local S/R ADAMS2d and use instead standard S/R
