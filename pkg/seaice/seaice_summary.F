@@ -186,6 +186,10 @@ C--  Seaice-Dynamics parameters
        CALL WRITE_0D_L ( SEAICEuseMultiTileSolver, INDEX_NONE,
      & 'SEAICEuseMultiTileSolver =',
      & ' /* use full domain tri-diag solver */')
+       CALL WRITE_0D_I ( SEAICE_OLx,  INDEX_NONE,
+     & 'SEAICE_OLx =', ' /* overlap for LSR/preconditioner */')
+       CALL WRITE_0D_I ( SEAICE_OLy,  INDEX_NONE,
+     & 'SEAICE_OLy =', ' /* overlap for LSR/preconditioner */')
 #ifdef SEAICE_ALLOW_JFNK
        IF ( SEAICEuseJFNK ) THEN
         CALL WRITE_0D_I ( SEAICEnewtonIterMax,  INDEX_NONE,
@@ -196,10 +200,6 @@ C--  Seaice-Dynamics parameters
      & 'SEAICE_JFNK_lsIter =', ' /* start of line search */')
         CALL WRITE_0D_I ( SEAICE_JFNK_tolIter,  INDEX_NONE,
      & 'SEAICE_JFNK_tolIter =', ' /* tol. is relaxed after this */')
-        CALL WRITE_0D_I ( SEAICE_OLx,  INDEX_NONE,
-     &  'SEAICE_OLx =', ' /* overlap for preconditioner */')
-        CALL WRITE_0D_I ( SEAICE_OLy,  INDEX_NONE,
-     &  'SEAICE_OLy =', ' /* overlap for preconditioner */')
         CALL WRITE_0D_RL( JFNKgamma_nonlin  ,INDEX_NONE,
      & 'JFNKgamma_nonlin=', ' /* JFNK tolerance */')
         CALL WRITE_0D_RL( JFNKres_t  ,INDEX_NONE,
