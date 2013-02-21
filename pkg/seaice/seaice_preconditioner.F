@@ -184,7 +184,7 @@ C
 C     calculate coefficients of tridiagonal matrices for both u- and
 C     v-equations
 C
-      CALL SEAICE_CALC_LSR_COEFFS(
+      CALL SEAICE_LSR_CALC_COEFFS(
      I     etaPlusZeta, zetaMinusEta, etaZpre, dwatPre,
      O     AU, BU, CU, AV, BV, CV, uRt1, uRt2, vRt1, vRt2,
      I     iMin, iMax, jMin, jMax, myTime, myIter, myThid )
