@@ -515,7 +515,7 @@ c--     >>> Loop body end <<<
 #   else /* ndef ALLOW_TAMC_CHECKPOINTING */
       ENDDO
 #   endif /* ALLOW_TAMC_CHECKPOINTING */
-# else # else /* ALLOW_AUTODIFF_OPENAD */
+# else /* ndef ALLOW_AUTODIFF_OPENAD */
       ENDDO
 # endif /* ALLOW_AUTODIFF_OPENAD */
 #else /* ALLOW_AUTODIFF */
