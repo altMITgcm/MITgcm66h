@@ -206,11 +206,10 @@ C     == Functions ==
 
 C     !LOCAL VARIABLES:
 C     == Local variables ==
-      integer iloop
+      INTEGER iloop
 #ifdef ALLOW_AUTODIFF_TAMC
-      integer ilev_4
 #ifdef STORE_LOADEDREC_TEST
-      integer bi,bj
+      INTEGER bi,bj
 #endif /* STORE_LOADEDREC_TEST */
 #endif
 
@@ -514,13 +513,13 @@ c--     >>> Loop body end <<<
       enddo
 #    endif
 #   else /* ndef ALLOW_TAMC_CHECKPOINTING */
-      enddo
+      ENDDO
 #   endif /* ALLOW_TAMC_CHECKPOINTING */
 # else # else /* ALLOW_AUTODIFF_OPENAD */
-      enddo
+      ENDDO
 # endif /* ALLOW_AUTODIFF_OPENAD */
 #else /* ALLOW_AUTODIFF */
-      enddo
+      ENDDO
 #endif /* ALLOW_AUTODIFF */
 
 #ifdef ALLOW_DEBUG
