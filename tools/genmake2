@@ -3224,7 +3224,8 @@ w2f__types.F90 \
 OAD_active.F90 \
 OAD_cp.F90 \
 OAD_rev.F90 \
-OAD_tape.F90
+OAD_tape.F90 \
+revolve.F90
 
 OPENAD_SUPPORT_C_SRC_FILES = \
 iaddr.c \
