@@ -206,6 +206,8 @@ C--  Seaice-Dynamics parameters
      & 'JFNKres_t=', ' /* JFNK parameter */')       
         CALL WRITE_0D_RL( JFNKres_tFac  ,INDEX_NONE,
      & 'JFNKres_tFac=', ' /* JFNK parameter */')       
+        CALL WRITE_0D_RL( SEAICE_JFNKepsilon, INDEX_NONE,
+     & 'SEAICE_JFNKepsilon=', ' /* JFNK: FD-gradient step size */')       
        ENDIF
 #endif /* SEAICE_ALLOW_JFNK */
 #ifdef SEAICE_ALLOW_EVP
