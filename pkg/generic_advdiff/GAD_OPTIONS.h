@@ -41,6 +41,11 @@ C introduces excessive recomputation/storage for the adjoint.
 C We can disable it here using CPP because run-time flags are insufficient.
 #undef DISABLE_MULTIDIM_ADVECTION
 
+C Use compressible flow method for multi-dim advection instead of old, less
+C accurate jmc method. Note: option has no effect on SOM advection which
+C always use compressible flow method.
+#undef GAD_MULTIDIM_COMPRESSIBLE
+
 C This enable the use of 2nd-Order Moment advection scheme (Prather, 1986) for
 C Temperature and Salinity ; due to large memory space (10 times more / tracer)
 C requirement, by default, this part of the code is not compiled.
