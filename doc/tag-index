@@ -5,6 +5,13 @@ $Name$
     ==============================
 
 o pkg/generic_advdiff:
+  - implement compressible flow method for multi-dim advection (similar to
+    gad_som_advect.F); add new option "GAD_MULTIDIM_COMPRESSIBLE" (since
+    TAF generates many recomputations) to use it; no yet coded with implicit
+    vertical advection.
+  - change experiment advect_cs (new output) and advect_xy (same output)
+    to test compressible flow multi-dim advection.
+o pkg/generic_advdiff:
   - fix SOM advection for unusual cases (linear Free-Surf in r*, other
     cases where linear Free-Surf is not @ k=1, e.g., useShelfIce)
 o pkg/seaice:
