@@ -368,11 +368,7 @@ c--
       IF (debugMode) CALL DEBUG_CALL('ADTHE_MAIN_LOOP',myThid)
 #   endif
       CALL TIMER_START('ADTHE_MAIN_LOOP          [ADJOINT RUN]', myThid)
-#   ifdef ALLOW_ECCO
-      CALL ADTHE_MAIN_LOOP ( myTime, myThid )
-#   else
       CALL ADTHE_MAIN_LOOP ( myThid )
-#   endif
       CALL TIMER_STOP ('ADTHE_MAIN_LOOP          [ADJOINT RUN]', myThid)
 #  endif /* ALLOW_DIVIDED_ADJOINT */
 c
