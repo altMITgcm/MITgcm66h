@@ -64,6 +64,7 @@ DIFF_FLAGS="-toplevel 'the_main_loop'    \
                     xx_gen3d_dummy        \
                     xx_genarr2d_dummy    \
                     xx_genarr3d_dummy    \
+                    xx_gentim2d_dummy    \
                     xx_siarea_dummy        \
                     xx_siheff_dummy        \
                     xx_sihsnow_dummy        \
