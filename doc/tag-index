@@ -4,6 +4,15 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice:
+  modify lsr-algorithm so that it vectorizes AND converges by using a
+  "zebra" method: split vector loop into two with step size 2; this
+  solves a general convergence problem for the JFNK solver on a vector
+  computer. It has the potential to even improve convergence for
+  non-vector machines, but it does change the results so it is turned
+  off by default. To turn on define CPP-flags SEAICE_VECTORIZE_LSR and
+  SEAICE_VECTORIZE_LSR_ZEBRA in SEAICE_OPTIONS.h
+
 checkpoint64e (2013/03/05)
 o pkg/ecco and several verification experiments:
    Remove special versions of the_model_main.F, the_main_loop.F, forward_step.F
