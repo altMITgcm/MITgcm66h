@@ -270,6 +270,9 @@ c$openad INDEPENDENT(xx_diffkr)
 # ifdef ALLOW_KAPGM_CONTROL
 c$openad INDEPENDENT(xx_kapgm)
 # endif
+# ifdef ALLOW_TR10_CONTROL
+c$openad INDEPENDENT(xx_tr1)
+# endif
 #endif
 
 #ifdef ALLOW_DEBUG

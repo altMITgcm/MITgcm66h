@@ -183,8 +183,14 @@ c--   Temperature field.
           do k = 1,nr
             do j = jmin,jmax
               do i = imin,imax
+#ifdef ALLOW_AUTODIFF_OPENAD
+                ptracer(i,j,k,bi,bj,1) = ptracer(i,j,k,bi,bj,1) +
+     &                               fac*xx_tr1(i,j,k,bi,bj) +
+     &                               fac*tmpfld3d(i,j,k,bi,bj)
+#else
                 ptracer(i,j,k,bi,bj,1) = ptracer(i,j,k,bi,bj,1) +
      &                               fac*tmpfld3d(i,j,k,bi,bj)
+#endif
               enddo
             enddo
           enddo

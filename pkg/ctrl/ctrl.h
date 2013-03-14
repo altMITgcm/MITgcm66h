@@ -306,6 +306,9 @@ c     TAMC sees xx_..._dummy
 # ifdef ALLOW_KAPGM_CONTROL
      &      , xx_kapgm
 # endif
+# ifdef ALLOW_TR10_CONTROL
+     &      , xx_tr1
+# endif
       _RL xx_theta(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
       _RL xx_salt(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
       _RL xx_uvel(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
@@ -316,6 +319,9 @@ c     TAMC sees xx_..._dummy
 # endif
 # ifdef ALLOW_KAPGM_CONTROL
       _RL xx_kapgm(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+# endif
+# ifdef ALLOW_TR10_CONTROL
+      _RL xx_tr1(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
 # endif
 #endif
 
