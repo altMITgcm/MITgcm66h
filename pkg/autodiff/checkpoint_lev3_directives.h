@@ -100,8 +100,8 @@ CADJ STORE rstarfacc,rstarfacs,rstarfacw
 CADJ &     = tapelev3, key = ilev_3
 CADJ STORE rStarFacNm1C,rStarFacNm1S,rStarFacNm1W
 CADJ &     = tapelev3, key = ilev_3
-ccCADJ STORE rstardhcdt,rstardhsdt,rstardhwdt 
-ccCADJ &     = tapelev3, key = ilev_3
+CADJ STORE rstardhcdt,rstardhsdt,rstardhwdt 
+CADJ &     = tapelev3, key = ilev_3
 # endif
 
 # ifdef ALLOW_CG2D_NSA

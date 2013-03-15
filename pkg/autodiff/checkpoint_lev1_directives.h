@@ -83,8 +83,8 @@ CADJ &     kind = isbyte
 CADJ STORE rstarexpc,rstarexps,rstarexpw
 CADJ &     = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
-ccCADJ STORE rstardhcdt,rstardhsdt,rstardhwdt
-ccCADJ &     = comlev1, key = ikey_dynamics, kind = isbyte
+CADJ STORE rstardhcdt,rstardhsdt,rstardhwdt
+CADJ &     = comlev1, key = ikey_dynamics, kind = isbyte
 # endif
 #endif /* NONLIN_FRSURF */
 
