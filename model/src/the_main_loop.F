@@ -273,6 +273,12 @@ c$openad INDEPENDENT(xx_kapgm)
 # ifdef ALLOW_TR10_CONTROL
 c$openad INDEPENDENT(xx_tr1)
 # endif
+# ifdef ALLOW_GENARR2D_CONTROL
+c$openad INDEPENDENT(xx_genarr2d)
+# endif
+# ifdef ALLOW_GENARR3D_CONTROL
+c$openad INDEPENDENT(xx_genarr3d)
+# endif
 #endif
 
 #ifdef ALLOW_DEBUG

@@ -294,6 +294,7 @@ c     TAMC sees xx_..._dummy
      &    (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
 
 #ifdef ALLOW_AUTODIFF_OPENAD
+C
       common /controlvars_r_openad/
      &        xx_theta
      &      , xx_salt
@@ -309,6 +310,13 @@ c     TAMC sees xx_..._dummy
 # ifdef ALLOW_TR10_CONTROL
      &      , xx_tr1
 # endif
+# ifdef ALLOW_GENARR2D_CONTROL
+     &      , xx_genarr2d
+# endif
+# ifdef ALLOW_GENARR3D_CONTROL
+     &      , xx_genarr3d
+# endif
+C
       _RL xx_theta(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
       _RL xx_salt(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
       _RL xx_uvel(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
@@ -322,6 +330,12 @@ c     TAMC sees xx_..._dummy
 # endif
 # ifdef ALLOW_TR10_CONTROL
       _RL xx_tr1(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+# endif
+# ifdef ALLOW_GENARR2D_CONTROL
+      _RL xx_genarr2d(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy,maxCtrlArr2D)
+# endif
+# ifdef ALLOW_GENARR3D_CONTROL
+      _RL xx_genarr3d(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy,maxCtrlArr3D)
 # endif
 #endif
 
