@@ -65,7 +65,8 @@ C ********************************************************************
 C       >>> Initial values.
 #define ALLOW_THETA0_CONTROL
 #define ALLOW_SALT0_CONTROL
-#define ALLOW_TR10_CONTROL
+cph#define ALLOW_TR10_CONTROL
+#define ALLOW_GENARR3D_CONTROL
 #define ALLOW_TAUU0_CONTROL
 #define ALLOW_TAUV0_CONTROL
 #define ALLOW_SFLUX0_CONTROL
