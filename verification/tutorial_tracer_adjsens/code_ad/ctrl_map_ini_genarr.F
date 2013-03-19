@@ -141,7 +141,7 @@ C--   generic - user-defined control vars
             do i = imin,imax
 #ifdef ALLOW_AUTODIFF_OPENAD
               pTracer(i,j,k,bi,bj,iarr) = pTracer(i,j,k,bi,bj,iarr)
-     &         + fac*xx_pTracer(i,j,k,bi,bj,iarr)
+     &         + fac*xx_genarr3d(i,j,k,bi,bj,iarr)
 #else
               pTracer(i,j,k,bi,bj,iarr) = pTracer(i,j,k,bi,bj,iarr)
      &         + fac*tmpfld3d(i,j,k,bi,bj)
