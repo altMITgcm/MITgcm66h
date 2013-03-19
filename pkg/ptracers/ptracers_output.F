@@ -46,8 +46,6 @@ C     Write time average output
 C     Compute and print monitor statistics
       CALL PTRACERS_MONITOR( myIter, myTime, myThid )
 #endif /* ALLOW_MONITOR */
-C     Reset the ptracers (but after the io is done)
-      CALL PTRACERS_RESET( myTime, myIter, myThid )
 
 #endif /* ALLOW_PTRACERS */
 

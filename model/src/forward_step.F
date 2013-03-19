@@ -1056,6 +1056,15 @@ C--   Do IO if needed.
       CALL DO_THE_MODEL_IO( modelEnd, myTime, myIter, myThid )
       CALL TIMER_STOP ('DO_THE_MODEL_IO     [FORWARD_STEP]',myThid)
 
+#ifdef ALLOW_PTRACERS
+C     Reset the ptracers (but after the io is done)
+      IF ( usePTRACERS ) THEN
+        CALL TIMER_START('PTRACERS_RESET      [FORWARD_STEP]',myThid)
+        CALL PTRACERS_RESET( myTime, myIter, myThid )
+        CALL TIMER_STOP ('PTRACERS_RESET      [FORWARD_STEP]',myThid)
+      ENDIF
+#endif /* ALLOW_PTRACERS */
+
 C--   Save state for restarts
       CALL TIMER_START('DO_WRITE_PICKUP     [FORWARD_STEP]',myThid)
       CALL DO_WRITE_PICKUP( modelEnd, myTime, myIter, myThid )
