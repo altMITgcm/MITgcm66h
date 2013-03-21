@@ -339,9 +339,11 @@ cph)
           phiHydLow(i,j,bi,bj) = 0. _d 0
 # if (defined NONLIN_FRSURF) && (defined ALLOW_MOM_FLUXFORM)
 #  ifndef DISABLE_RSTAR_CODE
+#   ifndef ALLOW_AUTODIFF_OPENAD
           dWtransC(i,j,bi,bj) = 0. _d 0
           dWtransU(i,j,bi,bj) = 0. _d 0
           dWtransV(i,j,bi,bj) = 0. _d 0
+#   endif
 #  endif
 # endif
 #endif
