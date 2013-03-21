@@ -42,6 +42,7 @@ C     i,j,k,bi,bj,iTracer  :: loop indices
 C     msgBuf      :: Informational/error message buffer
       INTEGER i,j,k,bi,bj,iTracer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
+      CHARACTER*(MAX_LEN_FNAM) tmpInitialFile
 
 #ifdef PTRACERS_ALLOW_DYN_STATE
       INTEGER n
@@ -81,8 +82,10 @@ C     Initialise again this tracer arrays
         ENDDO
 
 C     Read initial conditions and exchange
-        IF ( PTRACERS_initialFile(iTracer) .NE. ' ' ) THEN
-         CALL READ_FLD_XYZ_RL(PTRACERS_initialFile(iTracer),' ',
+        tmpInitialFile = ' '
+        tmpInitialFile = PTRACERS_initialFile(iTracer)
+        IF ( tmpInitialFile .NE. ' ' ) THEN
+         CALL READ_FLD_XYZ_RL(tmpInitialFile,' ',
      &        pTracer(1-OLx,1-OLy,1,1,1,iTracer),0,myThid)
          _EXCH_XYZ_RL(pTracer(1-OLx,1-OLy,1,1,1,iTracer),myThid)
         ENDIF
