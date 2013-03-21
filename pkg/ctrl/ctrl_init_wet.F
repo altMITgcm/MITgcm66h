@@ -113,7 +113,7 @@ c--   Count wet points on each tile.
             do j = jmin,jmax
               do i = imin,imax
 c--             Center mask.
-                if (hFacC(i,j,k,bi,bj) .ne. 0.) then
+                if (maskC(i,j,k,bi,bj) .ne. 0.) then
                   nwetctile(bi,bj,k) = nwetctile(bi,bj,k) + 1
                 endif
 c--             South mask.
