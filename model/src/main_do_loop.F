@@ -172,6 +172,14 @@ c They provide the fields to be stored.
 #  endif
 # endif
 
+# else /* undef ALLOW_AUTODIFF_OPENAD */
+
+#  ifdef ALLOW_PTRACERS
+#   include "PTRACERS_SIZE.h"
+#   include "PTRACERS_FIELDS.h"
+#   include "PTRACERS_START.h"
+#  endif
+
 # endif /* undef ALLOW_AUTODIFF_OPENAD */
 
 # ifdef ALLOW_CTRL
