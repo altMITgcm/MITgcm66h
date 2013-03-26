@@ -47,11 +47,14 @@ C     ==================================================================
       common /controlaux_gentim2d_r/
      &                      xx_gentim2d0,
      &                      xx_gentim2d1,
+     &                      xx_gentim2d,
      &                      wgentim2d
       _RL 
      & xx_gentim2d0(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy,maxCtrlTim2D)
       _RL 
      & xx_gentim2d1(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy,maxCtrlTim2D)
+      _RL
+     & xx_gentim2d(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy,maxCtrlTim2D)
       _RL
      & wgentim2d(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy,maxCtrlTim2D)
 #endif

@@ -316,6 +316,19 @@ c-- exchange UV:
 #endif
 
 
+#ifdef ALLOW_GENTIM2D_CONTROL
+      DO bj=myByLo(myThid),myByHi(myThid)
+       DO bi=myBxLo(myThid),myBxHi(myThid)
+          do k = 1,maxCtrlTim2D
+            do j = 1,sNy
+              do i =  1,sNx
+                xx_gentim2d(i,j,bi,bj,k)=0. _d 0
+              enddo
+            enddo
+          enddo
+        enddo
+      enddo
+#endif
 
 #endif /* ALLOW_ECCO */
 
