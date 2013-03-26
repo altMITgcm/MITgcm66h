@@ -98,6 +98,14 @@ c     == end of interface ==
       jthi = mybyhi(mythid)
       itlo = mybxlo(mythid)
       ithi = mybxhi(mythid)
+
+      CALL ECCO_PHYS(mythid)
+#ifdef ALLOW_PSBAR_STERIC
+      RHOsumGlob_0=RHOsumGlob
+      VOLsumGlob_0=VOLsumGlob
+      RHOsumGlob_0=RHOsumGlob_0/VOLsumGlob_0
+#endif
+
 c--   only do interior, and exchange at the end
       jmin = 1
       jmax = sny

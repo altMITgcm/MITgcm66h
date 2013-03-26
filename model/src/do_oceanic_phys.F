@@ -926,6 +926,10 @@ C---  if fluid Is Water: end
       ENDIF
 #endif
 
+#ifdef ALLOW_ECCO
+      CALL ECCO_PHYS(mythid)
+#endif
+
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_LEAVE('DO_OCEANIC_PHYS',myThid)
 #endif
