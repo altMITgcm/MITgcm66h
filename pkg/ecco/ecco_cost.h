@@ -159,7 +159,13 @@ c             intantaneous field.
      &                    Tfmean,
      &                    sbar_gen,
      &                    tbar_gen,
+     &                    VOLsumGlob_0,
+     &                    VOLsumGlob,
+     &                    RHOsumGlob_0,
+     &                    RHOsumGlob,
      &                    wfmean
+
+      _RL VOLsumGlob_0, VOLsumGlob, RHOsumGlob_0, RHOsumGlob
 
 #if (defined (ALLOW_THETA_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDT_COST_CONTRIBUTION) || \
