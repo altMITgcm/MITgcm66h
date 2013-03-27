@@ -41,6 +41,11 @@ C     ==================================================================
       _RL xx_gentim2d_period(maxCtrlTim2D)
       _RL gentim2dPrecond(maxCtrlTim2D)
 
+      COMMON /CONTROLFILES_LTIM/
+     &     xx_gentim2d_cumsum, xx_gentim2d_glosum
+      LOGICAL xx_gentim2d_cumsum(maxCtrlTim2D)
+      LOGICAL xx_gentim2d_glosum(maxCtrlTim2D)
+
 #endif
 
 #ifdef ALLOW_GENTIM2D_CONTROL
