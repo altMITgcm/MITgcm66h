@@ -167,6 +167,11 @@ c run time switches for main cost terms
 #else
       using_cost_altim=.FALSE.
 #endif
+#ifdef ALLOW_SEAICE_COST_CONTRIBUTION
+      using_cost_seaice=.TRUE.
+#else
+      using_cost_seaice=.FALSE.
+#endif
 #ifdef ALLOW_BP_COST_CONTRIBUTION
       using_cost_bp=.TRUE.
 #else
@@ -493,6 +498,9 @@ cgf     &        'genbar', k
      &        (gencost_name(k).EQ.'sshv4-ers').OR.
      &        (gencost_name(k).EQ.'sshv4-gfo').OR.
      &        (gencost_name(k).EQ.'sshv4-lsc').OR.
+     &        (gencost_name(k).EQ.'siv4-conc').OR.
+     &        (gencost_name(k).EQ.'siv4-sst').OR.
+     &        (gencost_name(k).EQ.'siv4-vol').OR.
      &        (gencost_name(k).EQ.'sstv4-amsre').OR.
      &        (gencost_name(k).EQ.'sstv4-amsre-lsc') ) then
 c pre-specified generic cost terms
