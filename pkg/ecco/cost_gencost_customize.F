@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "ECCO_OPTIONS.h"
+#ifdef ALLOW_SEAICE
+# include "SEAICE_OPTIONS.h"
+#endif
 
       subroutine cost_gencost_customize( mythid )
 
@@ -15,12 +18,17 @@ c     == global variables ==
 
 #include "EEPARAMS.h"
 #include "SIZE.h"
+#include "GRID.h"
 #include "PARAMS.h"
 #include "DYNVARS.h"
 #include "FFIELDS.h"
 
 #include "optim.h"
 #include "ecco_cost.h"
+#ifdef ALLOW_SEAICE
+#  include "SEAICE_SIZE.h"
+#  include "SEAICE.h"
+#endif
 
 c     == routine arguments ==
 
@@ -30,7 +38,7 @@ c     == routine arguments ==
 c     == local variables ==
 
       integer bi,bj
-      integer i,j
+      integer i,j,k
       integer itlo,ithi
       integer jtlo,jthi
       integer jmin,jmax
@@ -60,6 +68,18 @@ c          gencost_modfld(i,j,bi,bj,3) = fu(i,j,bi,bj)
 c #4:
 c          gencost_modfld(i,j,bi,bj,4) = fv(i,j,bi,bj)
 c
+
+#ifdef ALLOW_GENCOST_SEAICEV4
+      do k=1,NGENCOST
+        if (gencost_name(k).EQ.'siv4-conc') gencost_modfld(i,j,bi,bj,k)
+     &        = area(i,j,bi,bj)*maskC(i,j,1,bi,bj) 
+        if (gencost_name(k).EQ.'siv4-sst') gencost_modfld(i,j,bi,bj,k)
+     &        = theta(i,j,1,bi,bj)*maskC(i,j,1,bi,bj)
+        if (gencost_name(k).EQ.'siv4-vol') gencost_modfld(i,j,bi,bj,k)  
+     &        = heff(i,j,bi,bj)*maskC(i,j,1,bi,bj)
+      enddo
+#endif
+
          enddo
         enddo
        enddo
