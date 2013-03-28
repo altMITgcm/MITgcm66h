@@ -10,7 +10,7 @@ C $Name$
 C     Package-specific Options & Macros go here
 
 #define DIC_BIOTIC
-#define ALLOW_FE
+#undef ALLOW_FE
 #define ALLOW_O2
 #undef READ_PAR
 #undef MINFE
