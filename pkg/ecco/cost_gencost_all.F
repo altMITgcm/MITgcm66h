@@ -86,6 +86,11 @@ c     == end of interface ==
      &    call cost_gencost_sstv4( myiter, mytime, mythid )
 # endif /* ALLOW_GENCOST_SSTV4 */
 
+#ifdef ALLOW_GENCOST_SEAICEV4
+      IF (using_cost_seaice)
+     &    call cost_gencost_seaicev4( mythid )
+# endif /* ALLOW_GENCOST_SEAICEV4 */
+
 #endif /* ALLOW_GENCOST_CONTRIBUTION */
 
       end

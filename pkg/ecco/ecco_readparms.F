@@ -58,7 +58,7 @@ c--   Read the namelist input.
      &                   costTranspDataFile,  topexmeanfile,
      &                   using_cost_altim, 
      &                   using_cost_bp, using_cost_scat, 
-     &                   using_cost_sst,
+     &                   using_cost_sst, using_cost_seaice,
      &                   using_topex, using_ers, using_gfo,
      &                   topexstartdate1, topexstartdate2,
      &                   topexperiod, topexfile, tpTimeMaskFile,
