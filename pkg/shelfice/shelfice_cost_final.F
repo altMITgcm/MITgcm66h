@@ -114,6 +114,7 @@ CML        no_shelfice = no_shelfice + num_shelfice(bi,bj)
 CML      _GLOBAL_SUM_RL( no_shelfice , myThid )
       _GLOBAL_SUM_RL( no_shifwflx , myThid )
 
+# ifndef ALLOW_AUTODIFF_OPENAD
 c--   Each process has calculated the global part for itself.
       IF ( MASTER_CPU_THREAD(myThid) ) THEN
 
@@ -129,6 +130,8 @@ CML       WRITE(ifc,*) 'f_shelfice =', f_shelfice, no_shelfice
        CLOSE(ifc)
 
       ENDIF
+# endif /* ALLOW_AUTODIFF_OPENAD */
+
 #endif /* ALLOW_COST */
 
       END

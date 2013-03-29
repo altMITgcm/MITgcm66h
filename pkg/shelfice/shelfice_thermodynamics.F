@@ -97,8 +97,10 @@ C     drKp1, recip_drLoc
       PARAMETER ( shiTwoThirds = 0.66666666666666666666666666667D0 )
 #endif
 
+#ifndef ALLOW_AUTODIFF_OPENAD
       _RL SW_TEMP
       EXTERNAL SW_TEMP
+#endif
 
 #ifdef ALLOW_SHIFWFLX_CONTROL
       _RL xx_shifwflx_loc(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
@@ -281,7 +283,11 @@ C--   turn potential temperature into in-situ temperature relative
 C--   to the surface
         DO J = 1, sNy
          DO I = 1, sNx
+#ifndef ALLOW_AUTODIFF_OPENAD
           tLoc(I,J) = SW_TEMP(sLoc(I,J),tLoc(I,J),pLoc(I,J),0.D0)
+#else
+          CALL SW_TEMP(sLoc(I,J),tLoc(I,J),pLoc(I,J),0.D0,tLoc(I,J))
+#endif
          ENDDO
         ENDDO
 
