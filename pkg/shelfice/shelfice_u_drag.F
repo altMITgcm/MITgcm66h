@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "SHELFICE.h"
+#include "SHELFICE_OPTIONS.h"
 #include "MOM_COMMON_OPTIONS.h"
 
 CBOP
