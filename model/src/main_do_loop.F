@@ -74,6 +74,8 @@ c They provide the fields to be stored.
 #  include "EOS.h"
 #  include "AUTODIFF.h"
 
+# endif /* ALLOW_AUTODIFF_OPENAD */
+
 #  ifdef ALLOW_GENERIC_ADVDIFF
 #   include "GAD.h"
 #   include "GAD_SOM_VARS.h"
@@ -172,15 +174,7 @@ c They provide the fields to be stored.
 #  endif
 # endif
 
-# else /* undef ALLOW_AUTODIFF_OPENAD */
-
-#  ifdef ALLOW_PTRACERS
-#   include "PTRACERS_SIZE.h"
-#   include "PTRACERS_FIELDS.h"
-#   include "PTRACERS_START.h"
-#  endif
-
-# endif /* undef ALLOW_AUTODIFF_OPENAD */
+cph# endif /* undef ALLOW_AUTODIFF_OPENAD */
 
 # ifdef ALLOW_CTRL
 # include "CTRL_SIZE.h"

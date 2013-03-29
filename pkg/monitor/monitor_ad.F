@@ -26,11 +26,9 @@ C     !USES:
 #ifdef ALLOW_MNC
 # include "MNC_PARAMS.h"
 #endif
-#ifdef ALLOW_AUTODIFF
+#if (defined (ALLOW_AUTODIFF) && defined (ALLOW_AUTODIFF_MONITOR))
 # include "AUTODIFF_PARAMS.h"
-# ifdef ALLOW_AUTODIFF_MONITOR
-#  include "adcommon.h"
-# endif
+# include "adcommon.h"
 #endif
 
 C     !INPUT PARAMETERS:
