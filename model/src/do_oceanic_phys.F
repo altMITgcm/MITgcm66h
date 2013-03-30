@@ -197,6 +197,8 @@ CADJ STORE Qice1, Qice2      = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
 CADJ STORE sHeating, snowAge = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
+CADJ STORE hocemxl = comlev1, key = ikey_dynamics,
+CADJ &     kind = isbyte
 CADJ STORE salt,theta        = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
 CADJ STORE uvel,vvel         = comlev1, key = ikey_dynamics,

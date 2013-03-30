@@ -127,6 +127,10 @@ CADJ &     kind = isbyte
          CALL SHELFICE_COST_ACCUMULATE (myThid)
 #endif
 
+#ifdef ALLOW_COST_THSICE
+         if (useTHSICE) CALL THSICE_COST_DRIVER (myThid)
+#endif
+
       ENDIF
 
       DO bj=myByLo(myThid),myByHi(myThid)

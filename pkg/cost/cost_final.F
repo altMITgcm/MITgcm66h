@@ -54,12 +54,20 @@ c     == end of interface ==
       ithi = mybxhi(mythid)
 
 #ifdef ALLOW_SEAICE
-      CALL SEAICE_COST_FINAL (myThid)
+      if (useSEAICE) CALL SEAICE_COST_FINAL (myThid)
 #endif
 
 #ifdef ALLOW_SHELFICE
       CALL SHELFICE_COST_FINAL (myThid)
 #endif
+
+      print *, 'ph-1 in thsice_cost_final'
+
+#ifdef ALLOW_THSICE
+      if (useTHSICE) CALL THSICE_COST_FINAL (myThid)
+#endif
+
+      print *, 'ph-3 in thsice_cost_final'
 
 #ifdef ALLOW_ECCO
       CALL ECCO_COST_FINAL (myThid)

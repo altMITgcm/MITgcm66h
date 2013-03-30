@@ -103,6 +103,10 @@ cph because we need it in ADM*TLM
       call seaice_cost_init_varia( mythid )
 #endif
 
+#ifdef ALLOW_THSICE
+      call thsice_cost_init_varia( mythid )
+#endif
+
 #ifdef ALLOW_ECCO
       call ecco_cost_init_varia( mythid )
 #endif
