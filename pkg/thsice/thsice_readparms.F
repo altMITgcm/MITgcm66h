@@ -193,7 +193,7 @@ C--   Read parameters from open data file
 
 #ifdef ALLOW_COST
       READ(UNIT=iUnit,NML=THSICE_COST)
-      WRITE(msgBuf,'(A)') ' THSICE_READPARMS: read THSICE_PARM02'
+      WRITE(msgBuf,'(A)') ' THSICE_READPARMS: read THSICE_COST'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT , 1)
 #endif
