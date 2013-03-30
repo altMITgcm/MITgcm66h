@@ -74,8 +74,6 @@ c They provide the fields to be stored.
 #  include "EOS.h"
 #  include "AUTODIFF.h"
 
-# endif /* ALLOW_AUTODIFF_OPENAD */
-
 #  ifdef ALLOW_GENERIC_ADVDIFF
 #   include "GAD.h"
 #   include "GAD_SOM_VARS.h"
@@ -174,7 +172,7 @@ c They provide the fields to be stored.
 #  endif
 # endif
 
-cph# endif /* undef ALLOW_AUTODIFF_OPENAD */
+# endif /* undef ALLOW_AUTODIFF_OPENAD */
 
 # ifdef ALLOW_CTRL
 # include "CTRL_SIZE.h"
