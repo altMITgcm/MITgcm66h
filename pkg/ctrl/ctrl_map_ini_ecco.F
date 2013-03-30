@@ -103,7 +103,6 @@ c     == end of interface ==
 #ifdef ALLOW_PSBAR_STERIC
       RHOsumGlob_0=RHOsumGlob
       VOLsumGlob_0=VOLsumGlob
-      RHOsumGlob_0=RHOsumGlob_0/VOLsumGlob_0
 #endif
 
 c--   only do interior, and exchange at the end
