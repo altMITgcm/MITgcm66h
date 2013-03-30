@@ -135,7 +135,7 @@ c--     ... ARGO data.
 
 #ifdef ALLOW_GENCOST_CONTRIBUTION
       do k = 1, NGENCOST
-       if ( (using_gencost(k)).AND.( gencost_flag(k).EQ.1 ) ) then
+       if ( (using_gencost(k)).AND.( gencost_flag(k).GE.1 ) ) then
          if ( gencost_avgperiod(k) .EQ. 'day' .OR.
      &        gencost_avgperiod(k) .EQ. 'DAY' ) then
             gencost_nrec(k)   = ndaysrec
