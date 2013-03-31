@@ -203,7 +203,7 @@ c--   Get the time flags and record numbers for the time averaging.
      defined (ALLOW_PSBAR_GENPRECIP))
                 genprecipGloH=0. _d 0
                 do iarr = 1, maxCtrlTim2D
-                if (xx_gentim2d_file(iarr).EQ.'xx_genprecip') 
+                if (xx_gentim2d_file(iarr).EQ.'xx_gen_precip')
      &          genprecipGloH=xx_gentim2d(i,j,bi,bj,iarr)
      &          *rhoConstFresh*recip_rhoConst*deltaTClock
                 enddo
