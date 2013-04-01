@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/thsice:
+  - account for ice velocity (ocean relative velocity) in turbulent heat flux
+    at the base of the ice; update output of global_ocean.cs32x15 (icedyn)
+    and offline_exf_seaice (main test).
+
 checkpoint64f (2013/03/31)
 o verification/OpenAD:
   - new (smaller, without OAD_DEBUG) output_oadm.txt generated using gfortran.
