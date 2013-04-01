@@ -122,6 +122,14 @@ c left for later : slightly different treatment would apply to profiles and genc
          if ( gencost_datafile(k) .ne. ' ' ) then
            CALL ECCO_CHECK_FILES( using_gencost(k), 'gencost',
      &       gencost_datafile(k), modelstartdate(1), myThid )
+#ifdef ALLOW_SEAICE_COST_CONTRIBUTION
+         if (gencost_name(k).EQ.'siv4-conc') 
+     &       using_cost_seaice=using_gencost(k)
+         if (gencost_name(k).EQ.'siv4-sst')
+     &       using_cost_seaice=using_gencost(k)
+         if (gencost_name(k).EQ.'siv4-vol')
+     &       using_cost_seaice=using_gencost(k)
+#endif
          endif
       enddo
 #endif
