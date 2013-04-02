@@ -34,25 +34,15 @@ C     ==================================================================
       IMPLICIT NONE
 
 C     == global variables ==
-
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "PARAMS.h"
-#include "DYNVARS.h"
 #include "GRID.h"
-
 #include "EXF_PARAM.h"
 #include "EXF_FIELDS.h"
 #include "EXF_CONSTANTS.h"
 
-#ifdef ALLOW_AUTODIFF
-# include "CTRL_SIZE.h"
-# include "ctrl.h"
-# include "ctrl_dummy.h"
-#endif
-
 C     == routine arguments ==
-
 C     *vec_lon_0,          :: longitude and latitude of SouthWest
 C     *vec_lat_0              corner of global input grid for *vec
 C     *vec_nlon, *vec_nlat :: input x-grid and y-grid size for *vec
@@ -89,7 +79,6 @@ C     *vec_lat_inc         :: vector y-grid increments for *vec
       INTEGER myThid
 
 C     == local variables ==
-
 #ifdef USE_EXF_INTERPOLATION
       CHARACTER*(128) uvecfile0, uvecfile1
       CHARACTER*(128) vvecfile0, vvecfile1
