@@ -69,9 +69,7 @@ C     u/vIceRes :: residual F(u)
       _RL uIceRes(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL vIceRes(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
-#if ( defined (SEAICE_CGRID) && \
-      defined (SEAICE_ALLOW_JFNK) && \
-      defined (SEAICE_ALLOW_DYNAMICS) )
+#ifdef SEAICE_ALLOW_JFNK
 C     Local variables:
 C     k :: loop indices
       INTEGER k, bi, bj
@@ -809,7 +807,7 @@ c60   continue
       enddo
       CALL GLOBAL_SUM_TILE_RL( dtemp,t,myThid )
 
-#endif /* SEAICE_ALLOW_DYNAMICS and SEAICE_CGRID and SEAICE_ALLOW_JFNK */
+#endif /* SEAICE_ALLOW_JFNK */
 
       RETURN
       END

@@ -53,9 +53,7 @@ C     myThid :: my Thread Id. number
       INTEGER myIter
       INTEGER myThid
 
-#if ( (defined SEAICE_CGRID) && \
-      (defined SEAICE_ALLOW_JFNK) && \
-      (defined SEAICE_ALLOW_DYNAMICS) )
+#ifdef SEAICE_ALLOW_JFNK
 C     !FUNCTIONS:
       LOGICAL  DIFFERENT_MULTIPLE
       EXTERNAL DIFFERENT_MULTIPLE
@@ -529,7 +527,7 @@ C     iterations, 0.25*du/vIce in the second, etc.
 C     This is the new residual
       JFNKresidual = resLoc
 
-#endif /* SEAICE_ALLOW_DYNAMICS and SEAICE_CGRID and SEAICE_ALLOW_JFNK */
+#endif /* SEAICE_ALLOW_JFNK */
 
       RETURN
       END

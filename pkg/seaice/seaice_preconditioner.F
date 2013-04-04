@@ -70,9 +70,7 @@ C     du/vIce :: solution vector
       _RL dvIce(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 CEOP
 
-#if ( defined (SEAICE_CGRID) && \
-      defined (SEAICE_ALLOW_JFNK) && \
-      defined (SEAICE_ALLOW_DYNAMICS) )
+#ifdef SEAICE_ALLOW_JFNK
 C     !FUNCTIONS:
       LOGICAL  DIFFERENT_MULTIPLE
       EXTERNAL DIFFERENT_MULTIPLE
@@ -665,7 +663,7 @@ C-    add Coriolis term
        ENDDO
       ENDIF
 
-#endif /* SEAICE_ALLOW_DYNAMICS and SEAICE_CGRID and SEAICE_ALLOW_JFNK */
+#endif /* SEAICE_ALLOW_JFNK */
 
       RETURN
       END
