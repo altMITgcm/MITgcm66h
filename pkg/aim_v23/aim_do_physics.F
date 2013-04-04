@@ -209,8 +209,6 @@ C-    Slab Ocean : step forward ocean mixed-layer temp. & salinity
      I                        aim_sWght0, aim_sWght1,
      O                        dTsurf(1,2,myThid),
      I                        bi, bj, myTime, myIter, myThid )
-          CALL THSICE_AVE(
-     I                     bi, bj, myTime, myIter, myThid )
         ENDIF
 #endif /* ALLOW_THSICE */
 
