@@ -124,6 +124,8 @@ do
     export GOMP_STACKSIZE=400m
     export OMP_NUM_THREADS=2
     comm="$comm -mth"
+  else
+    comm="$comm -md makedepend"
   fi
   comm="$comm -a jmc@mitgcm.org"
 #-- set the optfile (+ mpi & match-precision)
