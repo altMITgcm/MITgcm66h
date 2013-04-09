@@ -84,7 +84,7 @@ C--   SEAICE parameters
      & SEAICEuseTEM, SEAICEuseMetricTerms, SEAICEuseTilt,
      & useHB87stressCoupling, SEAICEuseFlooding,
      & usePW79thermodynamics, useMaykutSatVapPoly,
-     & SEAICErestoreUnderIce,
+     & SEAICErestoreUnderIce, SEAICE_growMeltByConv,
      & SEAICE_salinityTracer, SEAICE_ageTracer,
      & SEAICEadvHeff, SEAICEadvArea, SEAICEadvSnow,
      & SEAICEadvSalt, SEAICEadvAge,
@@ -187,6 +187,7 @@ C--   set default sea ice parameters
       SEAICEuseEVPpickup = .TRUE.
       SEAICEuseEVPstar   = .FALSE.
       SEAICErestoreUnderIce = .FALSE.
+      SEAICE_growMeltByConv = .FALSE.
       SEAICE_salinityTracer = .FALSE.
       SEAICE_ageTracer      = .FALSE.
       useHB87stressCoupling = .FALSE.

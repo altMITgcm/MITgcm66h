@@ -347,6 +347,12 @@ C- note: air and seaice (+ snow ?) density are used in both dynamics & thermo
       CALL WRITE_0D_RL( SEAICE_dTempFrz_dS,INDEX_NONE,
      & 'SEAICE_dTempFrz_dS=',
      & ' /* freezing temp. of sea water (slope) */')
+      CALL WRITE_0D_L ( SEAICE_growMeltByConv , INDEX_NONE,
+     & 'SEAICE_growMeltByConv  =', ' /* grow,melt by vert. conv. */')
+      CALL WRITE_0D_L ( SEAICE_doOpenWaterGrowth , INDEX_NONE,
+     & 'SEAICE_doOpenWaterGrowth =', ' /* grow by open water */')
+      CALL WRITE_0D_L ( SEAICE_doOpenWaterMelt , INDEX_NONE,
+     & 'SEAICE_doOpenWaterMelt =', ' /* melt by open water */')
 c print the various values meining for SEAICE_areaGain/LossFormula
       WRITE(msgBuf,'(2A)') 'SEAICE_areaGainFormula =',
      & ' /* ice cover gain formula (1,2)*/'
