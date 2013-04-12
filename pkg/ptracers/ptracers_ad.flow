@@ -2,6 +2,12 @@ C $Header$
 C $Name$
 
 C----------------------------------------
+C subroutine  ptracers_check_pickup
+C----------------------------------------
+CADJ SUBROUTINE PTRACERS_CHECK_PICKUP  INPUT  = 1,2,3,4,5
+CADJ SUBROUTINE PTRACERS_CHECK_PICKUP  OUTPUT =
+
+C----------------------------------------
 C subroutine  ptracers_debug
 C----------------------------------------
 CADJ SUBROUTINE ptracers_debug  INPUT  = 1
