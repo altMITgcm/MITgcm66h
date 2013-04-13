@@ -3,7 +3,7 @@ C $Name$
 
 #include "THSICE_OPTIONS.h"
 
-      subroutine thsice_cost_driver( myiter, mytime, mythid )
+      subroutine thsice_cost_driver( mytime, myiter, mythid )
 
 c     ==================================================================
 c     SUBROUTINE thsice_cost_driver
@@ -39,7 +39,7 @@ c     == routine arguments ==
 c     == end of interface ==
 
 #ifdef ALLOW_THSICE_COST_TEST
-       CALL THSICE_COST_TEST( myiter, mytime, mythid )
+       CALL THSICE_COST_TEST( mytime, myiter, mythid )
 #endif
 
       end

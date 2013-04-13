@@ -128,7 +128,8 @@ CADJ &     kind = isbyte
 #endif
 
 #ifdef ALLOW_THSICE_COST_TEST
-         if (useTHSICE) CALL THSICE_COST_DRIVER (myThid)
+         IF (useTHSICE) 
+     &    CALL THSICE_COST_DRIVER (myTime, myIter, myThid)
 #endif
 
       ENDIF
