@@ -127,7 +127,7 @@ CADJ &     kind = isbyte
          CALL SHELFICE_COST_ACCUMULATE (myThid)
 #endif
 
-#ifdef ALLOW_COST_THSICE
+#ifdef ALLOW_THSICE_COST_TEST
          if (useTHSICE) CALL THSICE_COST_DRIVER (myThid)
 #endif
 
