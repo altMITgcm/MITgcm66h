@@ -168,6 +168,8 @@ C     for vectorization
         ENDIF
        ENDDO
       ENDDO
+C
+#ifndef ALLOW_AUTODIFF
 C     catch potential errors
       IF (icount .gt. 0) THEN
 c       print*,'QQ - albedo problem', albedo, age, hs, albsno
@@ -180,6 +182,7 @@ c       print*,'QQ - albedo problem', albedo, age, hs, albsno
        CALL PRINT_ERROR( msgBuf , myThid)
        STOP 'THSICE_ALBEDO: albedo out of range'
       ENDIF
+#endif
 
 #endif  /* ALLOW_THSICE */
 

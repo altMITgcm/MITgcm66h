@@ -21,3 +21,7 @@ CADJ STORE siceload = tapelev4, key = ilev_4
 
 CADJ STORE sheating = tapelev4, key = ilev_4
 CADJ STORE tice1,tice2 = tapelev4, key = ilev_4
+
+#ifdef ALLOW_THSICE_COST_TEST
+CADJ STORE objf_thsice = tapelev4, key = ilev_4
+#endif

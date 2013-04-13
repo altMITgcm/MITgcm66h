@@ -34,3 +34,7 @@ CADJ STORE totphihyd = comlev1, key = ikey_dynamics
 #ifdef ATMOSPHERIC_LOADING
 CADJ STORE siceload = comlev1, key = ikey_dynamics
 #endif
+
+#ifdef ALLOW_THSICE_COST_TEST
+CADJ STORE objf_thsice = comlev1, key = ikey_dynamics
+#endif
