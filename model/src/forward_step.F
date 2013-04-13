@@ -13,6 +13,9 @@ C $Name$
 #ifdef ALLOW_OBCS
 # include "OBCS_OPTIONS.h"
 #endif
+#ifdef ALLOW_THSICE
+# include "THSICE_OPTIONS.h"
+#endif
 #ifdef ALLOW_SEAICE
 # include "SEAICE_OPTIONS.h"
 #endif
@@ -104,6 +107,7 @@ C     == Global variables ==
 # endif
 # ifdef ALLOW_EXF
 #  include "EXF_FIELDS.h"
+#  include "EXF_PARAM.h"
 #  ifdef ALLOW_BULKFORMULAE
 #   include "EXF_CONSTANTS.h"
 #  endif
@@ -140,7 +144,10 @@ C     == Global variables ==
 #  include "CD_CODE_VARS.h"
 # endif
 # ifdef ALLOW_THSICE
+#  include "THSICE_PARAMS.h"
+#  include "THSICE_SIZE.h"
 #  include "THSICE_VARS.h"
+#  include "THSICE_COST.h"
 # endif
 # ifdef ALLOW_SEAICE
 #  include "SEAICE_SIZE.h"

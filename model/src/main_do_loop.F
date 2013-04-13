@@ -111,6 +111,7 @@ c They provide the fields to be stored.
 #  ifdef ALLOW_THSICE
 #   include "THSICE_SIZE.h"
 #   include "THSICE_VARS.h"
+#   include "THSICE_COST.h"
 #  endif
 #  ifdef ALLOW_EBM
 #   include "EBM.h"
@@ -373,6 +374,8 @@ CADJ INIT comlev1_thsice_3
 CADJ &     = COMMON,nchklev_1*snx*nsx*sny*nsy*MaxTsf*nthreads_chkpt
 CADJ INIT comlev1_thsice_4
 CADJ &     = COMMON,nchklev_1*nsx*nsy*maxpass*nthreads_chkpt
+CADJ INIT comlev1_thsice_s4t
+CADJ &     = COMMON,nchklev_1*nsx*nsy*maxtsf*nthreads_chkpt
 #   endif /* ALLOW_THSICE */
 c--
 #   ifdef ALLOW_STREAMICE
