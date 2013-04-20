@@ -675,9 +675,9 @@ C  buffer size currently set to 65000 (allows to read-in a 1x1 global data set)
 C  Increase to 140000 to accommodate for ECMWF-INTERIM
       INTEGER    exf_interp_bufferSize
       PARAMETER( exf_interp_bufferSize = 140000 )
-c for lat interpolation, arraysize currently set to 2176 max data values
+c for lat interpolation, arraysize currently set to 360 max data values
       INTEGER MAX_LAT_INC
-      PARAMETER(MAX_LAT_INC = 2176)
+      PARAMETER(MAX_LAT_INC = 360)
 
 C-- Interpolation parameters (for each input field):
 C  {inputField}_lon0    :: longitude of the 1rst point (South-East corner)
