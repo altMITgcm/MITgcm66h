@@ -68,14 +68,20 @@ C--   Check parameter consistency:
        ENDIF
       ENDIF
 
-#ifdef ALLOW_AUTODIFF_TAMC
+#ifdef ALLOW_AUTODIFF
       IF ( nitMaxTsf .GT. MaxTsf ) THEN
         WRITE(msgBuf,'(2A)')
      &   'THSICE_CHECK: Need to set MaxTsf >= nitMaxTsf for TAF'
         CALL PRINT_ERROR( msgBuf , myThid )
         STOP 'ABNORMAL END: S/R THSICE_CHECK'
       ENDIF
-#endif
+# ifdef ALLOW_DBUG_THSICE
+        WRITE(msgBuf,'(2A)')
+     &   'THSICE_CHECK: cannot compile AD-code with ALLOW_DBUG_THSICE'
+        CALL PRINT_ERROR( msgBuf , myThid )
+        STOP 'ABNORMAL END: S/R THSICE_CHECK'
+# endif
+#endif /* ALLOW_AUTODIFF */
 
 #ifdef OLD_THSICE_CALL_SEQUENCE
         WRITE(msgBuf,'(2A)') '** WARNING ** THSICE_CHECK: ',
