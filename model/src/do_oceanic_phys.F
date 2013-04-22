@@ -44,17 +44,12 @@ C     == Global variables ===
 #ifdef ALLOW_TIMEAVE
 #include "TIMEAVE_STATV.h"
 #endif
-#ifdef ALLOW_BALANCE_FLUXES
-#include "FFIELDS.h"
-#endif
 
 #ifdef ALLOW_AUTODIFF_TAMC
 # include "AUTODIFF_MYFIELDS.h"
 # include "tamc.h"
 # include "tamc_keys.h"
-#ifndef ALLOW_BALANCE_FLUXES
 # include "FFIELDS.h"
-#endif
 # include "SURFACE.h"
 # include "EOS.h"
 # ifdef ALLOW_KPP
@@ -427,15 +422,10 @@ C jmc: do not know precisely where to put this call (bf or af thSIce ?)
       ENDIF
 #endif /* ALLOW_OCN_COMPON_INTERF */
 
-#ifdef ALLOW_BALANCE_FLUXES
-C     balance fluxes
-      IF ( balanceEmPmR .AND. (.NOT.useSeaice .OR. useThSIce) )
-     &      CALL REMOVE_MEAN_RS( 1, EmPmR, maskInC, maskInC, rA, drF,
-     &        'EmPmR', myTime, myThid )
-      IF ( balanceQnet  .AND. (.NOT.useSeaice .OR. useThSIce) )
-     &      CALL REMOVE_MEAN_RS( 1, Qnet,  maskInC, maskInC, rA, drF,
-     &        'Qnet ', myTime, myThid )
-#endif /* ALLOW_BALANCE_FLUXES */
+C--   Balance and Apply exchanges to surface forcing
+      IF ( fluidIsWater ) THEN
+        CALL EXTERNAL_FORCING_ADJUST( myTime, myIter, myThid )
+      ENDIF
 
 #ifdef ALLOW_AUTODIFF_TAMC
 C--   HPF directive to help TAMC
