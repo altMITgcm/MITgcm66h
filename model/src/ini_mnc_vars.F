@@ -400,10 +400,6 @@ C     Define variables from FFIELDS.h
       CALL MNC_CW_ADD_VATTR_TEXT('Qsw','description',
      &     'Net upward shortwave radiation', myThid)
 
-      CALL MNC_CW_ADD_VNAME('dQdt', 'Cen_xy_Hn__-__t', 3,4, myThid)
-      CALL MNC_CW_ADD_VATTR_TEXT('dQdt','units',
-     &     'W/m^2/degrees', myThid)
-
       CALL MNC_CW_ADD_VNAME('EmPmR', 'Cen_xy_Hn__-__t', 3,4, myThid)
       CALL MNC_CW_ADD_VATTR_TEXT('EmPmR','units','kg/m^2/s', myThid)
       CALL MNC_CW_ADD_VATTR_TEXT('EmPmR','description',

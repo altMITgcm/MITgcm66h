@@ -358,7 +358,6 @@ C--   Input files
       uVelInitFile    = ' '
       vVelInitFile    = ' '
       pSurfInitFile   = ' '
-      dQdTFile        = ' '
       pLoadFile       = ' '
       addMassFile     = ' '
       eddyPsiXFile    = ' '

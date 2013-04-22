@@ -144,6 +144,7 @@ C     phiMin     :: unfortunate variable name ; replaced by ygOrigin
 C Namelist PARM05:
 C     shelfIceFile :: File containing the topography of the shelfice draught
 C                     (replaced by SHELFICEtopoFile in SHELFICE.h)
+C     dQdTfile     :: File containing thermal relaxation coefficient
 
       INTEGER nRetired
       LOGICAL useConstantF, useBetaPlaneF, useSphereF
@@ -164,6 +165,7 @@ C-
       _RL rkFac
       _RL thetaMin, phiMin
       CHARACTER*(MAX_LEN_FNAM) shelfIceFile
+      CHARACTER*(MAX_LEN_FNAM) dQdTfile
 
 C--   Continuous equation parameters
       NAMELIST /PARM01/
@@ -331,6 +333,7 @@ C--   Initialise retired parameters to unlikely value
       thetaMin        = UNSET_RL
       phiMin          = UNSET_RL
       shelfIceFile    = ' '
+      dQdTFile        = ' '
 
 C--   Open the parameter file
       WRITE(msgBuf,'(A)')
@@ -1287,6 +1290,12 @@ C     Check for retired parameters still being used
        WRITE(msgBuf,'(A,A)')
      &  'S/R INI_PARMS: "shelfIceFile" is not allowed in "data", ',
      &  'substitute "SHELFICEtopoFile" in data.shelfice'
+       CALL PRINT_ERROR( msgBuf, myThid )
+      ENDIF
+      IF ( dQdTFile .NE. ' ' ) THEN
+       nRetired = nRetired+1
+       WRITE(msgBuf,'(A,A)')
+     &  'S/R INI_PARMS: "dQdTFile" has been retired from file "data"'
        CALL PRINT_ERROR( msgBuf, myThid )
       ENDIF
 C     Check if two conflicting I/O directories have been specified
