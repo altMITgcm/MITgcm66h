@@ -69,7 +69,6 @@ C--   heimbach@mit.edu 11-Jan-2001
       COMMON /adffields_fv/ adfv
       COMMON /adffields_Qnet/ adQnet
       COMMON /adffields_Qsw/ adQsw
-      COMMON /adffields_dQdT/ addQdT
       COMMON /adffields_EmPmR/ adEmPmR
       COMMON /adffields_saltFlux/ adsaltFlux
       COMMON /adffields_SST/ adSST
@@ -85,7 +84,6 @@ C--   heimbach@mit.edu 11-Jan-2001
       _RS  adfv       (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  adQnet     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  adQsw      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RS  addQdT     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  adEmPmR    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  adsaltFlux (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS  adSST      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
