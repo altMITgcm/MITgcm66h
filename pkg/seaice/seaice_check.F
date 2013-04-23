@@ -853,6 +853,16 @@ C
       ENDIF
 #endif /* SEAICE_ALLOW_JFNK */
 
+      IF ( .NOT.(SEAICEetaZmethod.EQ.0.OR.SEAICEetaZmethod.EQ.3) ) THEN
+       WRITE(msgBuf,'(A,I2)')
+     &      'SEAICE_CHECK: SEAICEetaZmethod = ', SEAICEetaZmethod
+        CALL PRINT_ERROR( msgBuf, myThid )
+        WRITE(msgBuf,'(A)') 'SEAICE_CHECK: '//
+     &       'is no longer allowed; allowed values are 0 and 3' 
+        CALL PRINT_ERROR( msgBuf, myThid )
+        STOP 'ABNORMAL END: S/R SEAICE_CHECK'
+      ENDIF
+
       _END_MASTER(myThid)
 
       RETURN
