@@ -208,6 +208,10 @@ C--  Seaice-Dynamics parameters
      & 'JFNKres_tFac=', ' /* JFNK parameter */')       
         CALL WRITE_0D_RL( SEAICE_JFNKepsilon, INDEX_NONE,
      & 'SEAICE_JFNKepsilon=', ' /* JFNK: FD-gradient step size */')       
+        CALL WRITE_0D_RL( SEAICE_JFNKphi, INDEX_NONE,
+     & 'SEAICE_JFNKphi =', ' /* JFNK: inexact Newtow parameter */')
+        CALL WRITE_0D_RL( SEAICE_JFNKalpha, INDEX_NONE,
+     &  'SEAICE_JFNKalpha =', ' /* JFNK: inexact Newtow parameter */')
        ENDIF
 #endif /* SEAICE_ALLOW_JFNK */
 #ifdef SEAICE_ALLOW_EVP
