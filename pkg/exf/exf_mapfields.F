@@ -142,7 +142,8 @@ C--   Account for energy content of Precip + RunOff & Evap. Assumes:
 C     1) Rain has same temp as Air
 C     2) Snow has no heat capacity (consistent with seaice & thsice pkgs)
 C     3) No distinction between sea-water Cp and fresh-water Cp
-C     4) Run-Off comes at the temp of surface water (with same Cp)
+C     4) By default, RunOff comes at the temp of surface water (with same Cp);
+C        ifdef ALLOW_RUNOFTEMP, RunOff temp can be specified in runoftempfile.
 C     5) Evap is released to the Atmos @ surf-temp (=SST); should be using
 C        the water-vapor heat capacity here and consistently in Bulk-Formulae;
 C        Could also be put directly into Latent Heat flux.
@@ -177,17 +178,6 @@ C--   Account for rain-temp
              ENDDO
             ENDDO
            ENDIF
-#ifdef ALLOW_RUNOFF
-C--   Account for energy content of RunOff:
-           DO j = 1, sNy
-            DO i = 1, sNx
-              Qnet(i,j,bi,bj) = Qnet(i,j,bi,bj)
-     &              - HeatCapacity_Cp
-     &               *( theta(i,j,ks,bi,bj) - temp_EvPrRn )
-     &               *runoff(i,j,bi,bj)*rhoConstFresh
-            ENDDO
-           ENDDO
-#endif
 C--   Account for energy content of Evap:
            DO j = 1, sNy
             DO i = 1, sNx
@@ -199,6 +189,30 @@ C--   Account for energy content of Evap:
             ENDDO
            ENDDO
           ENDIF
+# ifdef ALLOW_RUNOFF
+C--   Account for energy content of RunOff:
+#  ifdef ALLOW_RUNOFTEMP
+          DO j = 1, sNy
+           DO i = 1, sNx
+              Qnet(i,j,bi,bj) = Qnet(i,j,bi,bj)
+     &             - HeatCapacity_Cp
+     &             *( theta(i,j,ks,bi,bj) - runoftemp(i,j,bi,bj) )
+     &             *runoff(i,j,bi,bj)*rhoConstFresh
+           ENDDO
+          ENDDO
+#  else /* ifndef ALLOW_RUNOFTEMP */
+          IF ( temp_EvPrRn .NE. UNSET_RL ) THEN
+           DO j = 1, sNy
+            DO i = 1, sNx
+               Qnet(i,j,bi,bj) = Qnet(i,j,bi,bj)
+     &              - HeatCapacity_Cp
+     &              *( theta(i,j,ks,bi,bj) - temp_EvPrRn )
+     &              *runoff(i,j,bi,bj)*rhoConstFresh
+            ENDDO
+           ENDDO
+          ENDIF
+#  endif /* ALLOW_RUNOFTEMP */
+# endif /* ALLOW_RUNOFF */
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 #endif /* ALLOW_ATM_TEMP */
 

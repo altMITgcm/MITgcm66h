@@ -189,6 +189,12 @@ C       Print some statistics about input forcing fields
           CALL MON_WRITESTATS_RL( 1, runoff,  '_runoff',
      &             maskInC, maskInC, rA , drF, dummyRL, myThid )
         ENDIF
+# ifdef ALLOW_RUNOFTEMP
+        IF ( runoftempfile .NE. ' ' ) THEN
+          CALL MON_WRITESTATS_RL( 1, runoftemp,  '_runoftemp',
+     &             maskInC, maskInC, rA , drF, dummyRL, myThid )
+        ENDIF
+# endif
 #endif
 #ifdef EXF_ALLOW_SEAICE_RELAX
         IF ( areamaskfile .NE. ' ' ) THEN

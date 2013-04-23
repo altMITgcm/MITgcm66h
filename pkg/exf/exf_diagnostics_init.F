@@ -194,6 +194,13 @@ C--   surface fluxes:
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
+      diagName  = 'EXFroft '
+      diagTitle = 'river runoff temperature'
+      diagUnits = 'deg C           '
+      diagCode  = 'SM      U1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
 #endif /* ALLOW_DIAGNOSTICS */
 
       RETURN

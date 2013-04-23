@@ -60,6 +60,10 @@ C
 C   >>> ALLOW_RUNOFF <<<
 C       If defined, river and glacier runoff can be read-in from files.
 C
+C   >>> ALLOW_RUNOFTEMP <<<
+C       If defined, river and glacier runoff temperature
+C       can be read-in from files.
+C
 C   >>> ATMOSPHERIC_LOADING <<<
 C       If defined, atmospheric pressure can be read-in from files.
 C   WARNING: this flag is set (define/undef) in CPP_OPTIONS.h
@@ -148,6 +152,7 @@ C   Bulk formulae related flags.
 #define  ALLOW_ATM_WIND
 #define  ALLOW_DOWNWARD_RADIATION
 #define  ALLOW_RUNOFF
+#undef   ALLOW_RUNOFTEMP
 #if (defined (ALLOW_ATM_TEMP) || defined (ALLOW_ATM_WIND))
 # define ALLOW_BULKFORMULAE
 # undef  ALLOW_BULK_LARGEYEAGER04
