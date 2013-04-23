@@ -150,9 +150,9 @@ C Note: will inline this S/R once thSIce in Atmos. set-up is settled
 #ifdef ALLOW_BULK_FORCE
         IF ( useBulkforce ) THEN
          CALL THSICE_GET_PRECIP(
-     I                  iceMask,
+     I                  iceMask, tOceMxL,
      O                  prcAtm(1-OLx,1-OLy,bi,bj),
-     O                  snowPrc(1-OLx,1-OLy,bi,bj),
+     O                  snowPrc(1-OLx,1-OLy,bi,bj), qPrcRn,
      O                  icFlxSW(1-OLx,1-OLy,bi,bj),
      I                  iMin,iMax,jMin,jMax, bi,bj, myThid )
         ENDIF
