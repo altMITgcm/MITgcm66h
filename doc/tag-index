@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o verification/tutorial_global_oce_biogeo:
+  - add preliminary OpenAD setup (still has problems)
 o model/src:
   - remove unused (since Aug 2006) S/R SET_WRITE_GLOBAL_PICKUP and its call.
   - remove unused forcing field "dQdT" and associated parameter "dQdTFile".
