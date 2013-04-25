@@ -368,8 +368,7 @@ C--   Get surface fluxes over melting surface
 #ifndef ALLOW_AUTODIFF
         IF ( useEXF ) THEN
 #endif
-           k = 1
-           CALL THSICE_GET_EXF(   bi, bj, k,
+           CALL THSICE_GET_EXF(   bi, bj,
      I                            iMin, iMax, jMin, jMax,
      I                            iceFlag, hSnow1, Tsf,
      O                            flx0exSW, dFlxdT, evap00, dEvdT,
@@ -430,7 +429,7 @@ C--   Compute top surface flux.
 #ifndef ALLOW_AUTODIFF
          IF ( useEXF ) THEN
 #endif
-           CALL THSICE_GET_EXF(   bi, bj, k,
+           CALL THSICE_GET_EXF(   bi, bj,
      I                            iMin, iMax, jMin, jMax,
      I                            iceFlag, hSnow1, Tsf,
      O                            flxTexSW, dFlxdT, evapT, dEvdT,
