@@ -194,7 +194,7 @@ CADJ STORE sHeating, snowAge = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
 CADJ STORE hocemxl = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
-CADJ STORE icflxsw, snowprc  = comlev1, key = ikey_dynamics,
+CADJ STORE icflxsw = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
 CADJ STORE salt,theta        = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
