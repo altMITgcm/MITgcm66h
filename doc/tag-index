@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/thsice:
+  - remove snowPrc from common block THSICE_FLUX, in THSICE_VARS.h and
+    declared it locally (without bi,bj) in thsice_main.F & aim_do_physics.F;
+    changed accordingly pkg/atm2d.
+
 checkpoint64g (2013/05/01)
 o pkg/exf ALLOW_RUNOFTEMP
   - if defined,  river and glacier runoff temperature can be read-in from
