@@ -99,7 +99,6 @@ C--     Mixed layer thickness: take the 1rst layer
           icFrwAtm(i,j,bi,bj) = 0. _d 0
           icFlxAtm(i,j,bi,bj) = 0. _d 0
           icFlxSW (i,j,bi,bj) = 0. _d 0
-          snowPrc (i,j,bi,bj) = 0. _d 0
           siceAlb (i,j,bi,bj) = 0. _d 0
          ENDDO
         ENDDO

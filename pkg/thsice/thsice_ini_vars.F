@@ -71,7 +71,6 @@ C-        fluxes :
            DO i=1-OLx,sNx+OLx
             sHeating(i,j,bi,bj) = 0. _d 0
             flxCndBt(i,j,bi,bj) = 0. _d 0
-            snowPrc(i,j,bi,bj)  = 0. _d 0
             siceAlb(i,j,bi,bj)  = 0. _d 0
             icFlxSW (i,j,bi,bj) = 0. _d 0
             icFlxAtm(i,j,bi,bj) = 0. _d 0
