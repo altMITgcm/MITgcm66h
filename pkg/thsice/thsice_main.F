@@ -58,6 +58,8 @@ CEOP
 #ifdef ALLOW_THSICE
 C     !LOCAL VARIABLES:
 C     === Local variables ===
+C     prcAtm    :: total precip from the atmosphere [kg/m2/s]
+C     snowPr    :: snow precipitation               [kg/m2/s]
 C     qPrcRn    :: Energy content of Precip+RunOff (+=down) [W/m2]
       INTEGER i,j
       INTEGER bi,bj
@@ -69,7 +71,6 @@ C     qPrcRn    :: Energy content of Precip+RunOff (+=down) [W/m2]
 c     _RL evpAtm(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 c     _RL flxAtm(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 c     _RL flxSW (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-
       _RL tauFac
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
