@@ -55,11 +55,11 @@ CEndOfInterface
 
 C !LOCAL VARIABLES: ====================================================
 C     i,j,bi,bj :: Loop counters
-#ifdef SEAICE_ITD
-      INTEGER IT
+#ifdef ALLOW_AUTODIFF_TAMC
+      INTEGER i, j
 #endif
 #if defined(ALLOW_AUTODIFF_TAMC) || defined(SEAICE_ITD)
-      INTEGER i, j, bi, bj
+      INTEGER bi, bj
 #endif
 #ifdef ALLOW_SITRACER
       INTEGER iTr
