@@ -85,10 +85,12 @@ C     parameters for log-normal distribution (LND)
       _RL LND_dx
       _RL LND_tmp
 C     bin width of distribution
-      PARAMETER(LND_dx=0.1)
-      PARAMETER(LND_iend=INT(100./LND_dx))
-      _RL LND_x  (INT(LND_iend))
-      _RL LND_pdf(INT(LND_iend))
+      PARAMETER( LND_iend = 1000 )
+      PARAMETER( LND_dx = 100.D0 / LND_iend )
+c     PARAMETER(LND_dx=0.1)
+c     PARAMETER(LND_iend=INT(100./LND_dx))
+      _RL LND_x  (LND_iend)
+      _RL LND_pdf(LND_iend)
 C     flag for pickup scheme
       LOGICAL simpleSchemeFlag
 
