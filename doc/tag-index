@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice (ITD code):
+  - introduce floe size dependent lateral melt for ITD case;
+  - cleaning (avoid division by zero, change to f77 syntax, remove tabs)
+  - update seaice_itd experiment main output.
 o pkg/thsice:
   - remove snowPrc from common block THSICE_FLUX, in THSICE_VARS.h and
     declared it locally (without bi,bj) in thsice_main.F & aim_do_physics.F;
