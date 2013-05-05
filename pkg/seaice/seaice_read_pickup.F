@@ -236,7 +236,7 @@ C        multi-category fields available, continue reading
 C        update total ice area as well as mean ice and snow thickness
           DO bj=myByLo(myThid),myByHi(myThid)
            DO bi=myBxLo(myThid),myBxHi(myThid)
-            CALL SEAICE_ITD_SUM( bi, bj, 1.0, nIter0, myThid )
+            CALL SEAICE_ITD_SUM( bi, bj, startTime, nIter0, myThid )
            ENDDO
           ENDDO
          ENDIF
