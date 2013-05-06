@@ -977,9 +977,10 @@ C Logical flags for selecting packages
       LOGICAL useStreamIce
       LOGICAL useICEFRONT
       LOGICAL useThSIce
+      LOGICAL useLand
       LOGICAL useATM2d
       LOGICAL useAIM
-      LOGICAL useLand
+      LOGICAL useAtm_Phys
       LOGICAL useFizhi
       LOGICAL useGridAlt
       LOGICAL useDiagnostics
@@ -997,8 +998,8 @@ C Logical flags for selecting packages
      &        useGrdchk,useSMOOTH,usePROFILES,useECCO,useSBO, useFLT,
      &        usePTRACERS, useGCHEM, useRBCS, useOffLine, useMATRIX,
      &        useFRAZIL, useSEAICE, useSALT_PLUME, useShelfIce,
-     &        useStreamIce, useICEFRONT, useThSIce,
-     &        useATM2D, useAIM, useLand, useFizhi, useGridAlt,
+     &        useStreamIce, useICEFRONT, useThSIce, useLand,
+     &        useATM2D, useAIM, useAtm_Phys, useFizhi, useGridAlt,
      &        useDiagnostics, useREGRID, useLayers, useMNC,
      &        useRunClock, useEMBED_FILES,
      &        useMYPACKAGE
