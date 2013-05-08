@@ -80,9 +80,10 @@ C     data.pkg namelists
      &          useStreamIce,
      &          useICEFRONT,
      &          useThSIce,
+     &          useLand,
      &          useATM2D,
      &          useAIM,
-     &          useLand,
+     &          useAtm_Phys,
      &          useFizhi,
      &          useGridAlt,
      &          useDiagnostics,
@@ -141,9 +142,10 @@ c     useGAD          =.FALSE.
       useStreamIce    =.FALSE.
       useICEFRONT     =.FALSE.
       useThSIce       =.FALSE.
+      useLand         =.FALSE.
       useATM2D        =.FALSE.
       useAIM          =.FALSE.
-      useLand         =.FALSE.
+      useAtm_Phys     =.FALSE.
       useFizhi        =.FALSE.
       useGridAlt      =.FALSE.
       useDiagnostics  =.FALSE.
