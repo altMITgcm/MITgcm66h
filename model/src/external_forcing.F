@@ -65,6 +65,12 @@ C--   Forcing term
      &                      myTime, myThid )
 #endif /* ALLOW_AIM */
 
+#ifdef ALLOW_ATM_PHYS
+      IF ( useAtm_Phys ) CALL ATM_PHYS_TENDENCY_APPLY_U(
+     &                      iMin,iMax, jMin,jMax, bi,bj, kLev,
+     &                      myTime, myThid )
+#endif /* ALLOW_ATM_PHYS */
+
 #ifdef ALLOW_FIZHI
       IF ( useFIZHI ) CALL FIZHI_TENDENCY_APPLY_U(
      &                      iMin,iMax, jMin,jMax, bi,bj, kLev,
@@ -175,6 +181,12 @@ C--   Forcing term
      &                      iMin,iMax, jMin,jMax, bi,bj, kLev,
      &                      myTime, myThid )
 #endif /* ALLOW_AIM */
+
+#ifdef ALLOW_ATM_PHYS
+      IF ( useAtm_Phys ) CALL ATM_PHYS_TENDENCY_APPLY_V(
+     &                      iMin,iMax, jMin,jMax, bi,bj, kLev,
+     &                      myTime, myThid )
+#endif /* ALLOW_ATM_PHYS */
 
 #ifdef ALLOW_FIZHI
       IF ( useFIZHI ) CALL FIZHI_TENDENCY_APPLY_V(
@@ -299,6 +311,12 @@ C--   Forcing term
      &                      iMin,iMax, jMin,jMax, bi,bj, kLev,
      &                      myTime, myThid )
 #endif /* ALLOW_AIM */
+
+#ifdef ALLOW_ATM_PHYS
+      IF ( useAtm_Phys ) CALL ATM_PHYS_TENDENCY_APPLY_T(
+     &                      iMin,iMax, jMin,jMax, bi,bj, kLev,
+     &                      myTime, myThid )
+#endif /* ALLOW_ATM_PHYS */
 
 #ifdef ALLOW_FIZHI
       IF ( useFIZHI ) CALL FIZHI_TENDENCY_APPLY_T(
@@ -581,6 +599,12 @@ C--   Forcing term
      &                      iMin,iMax, jMin,jMax, bi,bj, kLev,
      &                      myTime, myThid )
 #endif /* ALLOW_AIM */
+
+#ifdef ALLOW_ATM_PHYS
+      IF ( useAtm_Phys ) CALL ATM_PHYS_TENDENCY_APPLY_S(
+     &                      iMin,iMax, jMin,jMax, bi,bj, kLev,
+     &                      myTime, myThid )
+#endif /* ALLOW_ATM_PHYS */
 
 #ifdef ALLOW_FIZHI
       IF ( useFIZHI ) CALL FIZHI_TENDENCY_APPLY_S(

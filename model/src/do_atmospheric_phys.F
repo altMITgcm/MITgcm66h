@@ -54,7 +54,16 @@ C     bi, bj
         CALL FIZHI_UPDATE_TIME ( myIter, myThid, deltaTClock )
         CALL TIMER_STOP ('FIZHI          [DO_ATMOSPHERIC_PHYS]',myThid)
       ENDIF
-#endif
+#endif /* ALLOW_FIZHI */
+
+#ifdef ALLOW_ATM_PHYS
+C     Atmospheric Physics package - Atm_Phys - main driver
+      IF ( useAtm_Phys ) THEN
+        CALL TIMER_START('ATM_PHYS_DRIVER [DO_ATMOSPHERIC_PHYS]',myThid)
+        CALL ATM_PHYS_DRIVER( myTime, myIter, myThid )
+        CALL TIMER_STOP( 'ATM_PHYS_DRIVER [DO_ATMOSPHERIC_PHYS]',myThid)
+      ENDIF
+#endif /* ALLOW_ATM_PHYS */
 
 #ifdef ALLOW_AIM
       IF ( useAIM ) THEN
