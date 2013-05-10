@@ -85,11 +85,12 @@ C--   Now calculate whether it is time to update the forcing arrays
      &        nIter0,myThid )
        ENDIF
 
-#ifdef ALLOW_OFFLINE
-       IF ( useOffLine ) THEN
-         CALL OFFLINE_FIELDS_LOAD( startTime, nIter0, myThid )
-       ENDIF
-#endif
+c#ifdef ALLOW_OFFLINE
+C--    This call has been moved to S/R OFFLINE_INIT_VARIA
+c      IF ( useOffLine ) THEN
+c        CALL OFFLINE_FIELDS_LOAD( startTime, nIter0, myThid )
+c      ENDIF
+c#endif
 
        _EXCH_XY_RS(silica0, myThid )
        _EXCH_XY_RS(silica1, myThid )

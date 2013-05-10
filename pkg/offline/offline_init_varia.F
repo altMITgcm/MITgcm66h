@@ -30,8 +30,8 @@ C     i,j,k,bi,bj  :: loop indices
         DO bi = myBxLo(myThid), myBxHi(myThid)
           offlineLdRec(bi,bj) = 0
           DO k=1,Nr
-            DO j=1-Oly,sNy+OLy
-              DO i=1-Olx,sNx+Olx
+            DO j=1-OLy,sNy+OLy
+              DO i=1-OLx,sNx+OLx
                  save0(i,j,k,bi,bj) = 0. _d 0
                  tave0(i,j,k,bi,bj) = 0. _d 0
                  uvel0(i,j,k,bi,bj) = 0. _d 0
@@ -43,7 +43,7 @@ C     i,j,k,bi,bj  :: loop indices
                  gmkz0(i,j,k,bi,bj) = 0. _d 0
                  kdfs0(i,j,k,bi,bj) = 0. _d 0
                  kght0(i,j,k,bi,bj) = 0. _d 0
-C
+
                  save1(i,j,k,bi,bj) = 0. _d 0
                  tave1(i,j,k,bi,bj) = 0. _d 0
                  uvel1(i,j,k,bi,bj) = 0. _d 0
@@ -58,12 +58,12 @@ C
               ENDDO
             ENDDO
           ENDDO
-          DO j=1-Oly,sNy+OLy
-            DO i=1-Olx,sNx+Olx
+          DO j=1-OLy,sNy+OLy
+            DO i=1-OLx,sNx+OLx
                  hflx0(i,j,bi,bj) = 0. _d 0
                  sflx0(i,j,bi,bj) = 0. _d 0
                  icem0(i,j,bi,bj) = 0. _d 0
-C
+
                  hflx1(i,j,bi,bj) = 0. _d 0
                  sflx1(i,j,bi,bj) = 0. _d 0
                  icem1(i,j,bi,bj) = 0. _d 0
@@ -71,6 +71,13 @@ C
           ENDDO
         ENDDO
       ENDDO
+
+C     Used to be called only when using pkg/dic. but since main state
+C     variables are nor read from pickup-files (when useOffLine),
+C     seems logical to always load them here from offline files.
+c     IF ( useDIC ) THEN
+        CALL OFFLINE_FIELDS_LOAD( startTime, nIter0, myThid )
+c     ENDIF
 
       RETURN
       END
