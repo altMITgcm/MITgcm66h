@@ -332,10 +332,12 @@ C
       _RL xx_tr1(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
 # endif
 # ifdef ALLOW_GENARR2D_CONTROL
-      _RL xx_genarr2d(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy,maxCtrlArr2D)
+      _RL xx_genarr2d(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy,
+     &                maxCtrlArr2D)
 # endif
 # ifdef ALLOW_GENARR3D_CONTROL
-      _RL xx_genarr3d(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy,maxCtrlArr3D)
+      _RL xx_genarr3d(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy,
+     &                maxCtrlArr3D)
 # endif
 #endif
 
