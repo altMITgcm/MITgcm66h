@@ -21,6 +21,8 @@ C     PACKAGES_INIT_VARIABLES
 C       |
 C       |-- DIAGNOSTICS_INIT_VARIA
 C       |
+C       |-- OFFLINE_INIT_VARIA
+C       |
 C       |-- GAD_INIT_VARIA
 C       |
 C       |-- CD_CODE_INI_VARS
@@ -52,8 +54,6 @@ C       |
 C       |-- PROFILES_INIT_VARIA
 C       |
 C       |-- FLT_INIT_VARIA
-C       |
-C       |-- OFFLINE_INIT_VARIA
 C       |
 C       |-- PTRACERS_INIT_VARIA
 C       |
@@ -132,6 +132,19 @@ CEOP
         CALL DIAGNOSTICS_INIT_VARIA( myThid )
       ENDIF
 #endif /* ALLOW_DIAGNOSTICS */
+
+#ifdef ALLOW_OFFLINE
+C--   Here we call OFFLINE_INIT_VARIA (which calls OFFLINE_FIELDS_LOAD)
+C     before other {PKG}_init_varia, closer to where main pickup-file
+C     are usually read-in (but skipped when using pkg/offline)
+# ifndef ALLOW_AUTODIFF_TAMC
+      IF ( useOFFLINE ) THEN
+# endif
+        CALL OFFLINE_INIT_VARIA( myThid )
+# ifndef ALLOW_AUTODIFF_TAMC
+      ENDIF
+# endif
+#endif /* ALLOW_OFFLINE */
 
 #ifdef ALLOW_GENERIC_ADVDIFF
       IF ( useGAD ) THEN
@@ -260,18 +273,6 @@ C--   Initialise float position
         CALL FLT_INIT_VARIA( myThid )
       ENDIF
 #endif /* ALLOW_FLT */
-
-#ifdef ALLOW_OFFLINE
-C--   better to call OFFLINE_INIT_VARIA before GCHEM_INIT_VARI
-C      (which calls --> DIC_SURFFORCING_INIT --> OFFLINE_FIELDS_LOAD )
-# ifndef ALLOW_AUTODIFF_TAMC
-      IF ( useOFFLINE ) THEN
-# endif
-        CALL OFFLINE_INIT_VARIA( myThid )
-# ifndef ALLOW_AUTODIFF_TAMC
-      ENDIF
-# endif
-#endif /* ALLOW_OFFLINE */
 
 #ifdef ALLOW_PTRACERS
 # ifndef ALLOW_AUTODIFF_TAMC
