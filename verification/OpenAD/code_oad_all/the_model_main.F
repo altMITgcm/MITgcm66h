@@ -623,7 +623,9 @@ C--   Call time stepping loop of full model
       our_rev_mode%plain=.FALSE.
       our_rev_mode%tape=.FALSE.
       our_rev_mode%adjoint=.TRUE.
-      fc%d=1.0
+      IF (myProcID .EQ. 0) THEN
+        fc%d=1.0
+      ENDIF
       call timeratio()
       CALL OpenAD_THE_MAIN_LOOP( myCurrentTime, myCurrentIter, myThid )
       call timeratio()
