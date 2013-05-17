@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o tools/OAD_support:
+  - use a local copy (ourRWCPinBd) to ensure index ourRWCP stays within bounds
+    of array "ourStepOf" in function rvNextAction (revolve.F90).
 o pkg/aim_compon_interf renamed to pkg/atm_compon_interf
   - change pkg name (to be used with other atmospheric physics pkg)
     but by-pass CVS when making the new pkg so that we keep the CVS history.
