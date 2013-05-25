@@ -108,8 +108,15 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
      I            diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
       diagName  = 'CH_SH   '
-      diagTitle = 'cheapAML sensible heat     '
+      diagTitle = 'cheapAML sensible heat   '
       diagUnits = 'W/m2            '
+      diagCode  = 'SM      L1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I            diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
+      diagName  = 'CH_Prec '
+      diagTitle = 'cheapAML precipitation   '
+      diagUnits = 'kg/m2/s         '
       diagCode  = 'SM      L1      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I            diagName, diagCode, diagUnits, diagTitle, 0, myThid )
