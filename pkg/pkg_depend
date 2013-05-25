@@ -38,7 +38,6 @@ aim		+atm_common
 aim_v23		+atm_common
 exf		+cal
 profiles	+cal
-seaice		+exf
 flt		+mdsio
 autodiff	+mdsio
 ctrl		+mdsio
