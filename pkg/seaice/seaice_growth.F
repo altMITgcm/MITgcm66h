@@ -50,6 +50,7 @@ C     myThid :: Thread no. that called this routine.
       INTEGER myIter, myThid
 CEOP
 
+#ifdef ALLOW_EXF
 C     !FUNCTIONS:
 #ifdef ALLOW_DIAGNOSTICS
       LOGICAL  DIAGNOSTICS_IS_ON
@@ -2654,6 +2655,10 @@ c SIatmFW follows the same convention as empmr -- SIatmFW diag does not
          CALL DIAGNOSTICS_SCALE_FILL(SIatmFW,
      &      tmpscal1,1,'SIatmFW ',0,1,0,1,1,myThid)
 #endif /* ALLOW_DIAGNOSTICS */
+
+#else  /* ALLOW_EXF */
+      STOP 'SEAICE_GROWTH not compiled without EXF'
+#endif /* ALLOW_EXF */
 
       RETURN
       END

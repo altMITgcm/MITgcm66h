@@ -107,8 +107,10 @@ CEOP
 c           CALL MNC_CW_RL_W(pf,'sice',0,0,'si_HEFFITD',HEFFITD,myThid)
 c           CALL MNC_CW_RL_W(pf,'sice',0,0,'si_AREAITD',AREAITD,myThid)
 #endif
+#ifdef ALLOW_EXF
             CALL MNC_CW_RL_W(pf,'sice',0,0,'si_UWIND',uwind,myThid)
             CALL MNC_CW_RL_W(pf,'sice',0,0,'si_VWIND',vwind,myThid)
+#endif
             CALL MNC_CW_RS_W(pf,'sice',0,0,'fu',fu,myThid)
             CALL MNC_CW_RS_W(pf,'sice',0,0,'fv',fv,myThid)
             CALL MNC_CW_RS_W(pf,'sice',0,0,'EmPmR',EmPmR,myThid)
@@ -119,8 +121,10 @@ c           CALL MNC_CW_RL_W(pf,'sice',0,0,'si_AREAITD',AREAITD,myThid)
           IF (SEAICE_dump_mdsio) THEN
             WRITE(suff,'(I10.10)') myIter
             IF ( myIter.NE.nIter0 ) THEN
+#ifdef ALLOW_EXF
              CALL WRITE_FLD_XY_RL('UWIND.',suff,uwind,myIter,myThid)
              CALL WRITE_FLD_XY_RL('VWIND.',suff,vwind,myIter,myThid)
+#endif
              CALL WRITE_FLD_XY_RS('FU.',suff,fu,myIter,myThid)
              CALL WRITE_FLD_XY_RS('FV.',suff,fv,myIter,myThid)
              CALL WRITE_FLD_XY_RS('EmPmR.',suff,EmPmR,myIter,myThid)

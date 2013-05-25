@@ -70,8 +70,10 @@ CEOP
       IF (debugMode) CALL DEBUG_ENTER( 'SEAICE_MODEL', myThid )
 #endif
 
+#ifdef ALLOW_EXF
 C--   Winds are from pkg/exf, which does not update edges.
       CALL EXCH_UV_AGRID_3D_RL( uwind, vwind, .TRUE., 1, myThid )
+#endif
 
 #ifdef ALLOW_THSICE
       IF ( useThSice ) THEN
