@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint64h (2013/05/26)
 o pkg/cheapaml:
   - replace one ()**.5 with SQRT + use temp var "cdu = tau/Du" (coare3_flux);
     affect machine truncation (but exp cheapAML_box still pass with 13 digits).
