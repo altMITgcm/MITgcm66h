@@ -130,6 +130,17 @@ C        if SEAICEuseEVPpickup then stop / else warning / endif
            CALL PRINT_MESSAGE( msgBuf, ioUnit, SQUEEZE_RIGHT, myThid )
            _END_MASTER( myThid )
           ENDIF
+         ELSEIF ( fldName(1:8).EQ.'siUicNm1' .OR.
+     &            fldName(1:8).EQ.'siVicNm1' ) THEN
+          IF ( .NOT.pickupStrictlyMatch ) THEN
+C     print a warning and restart anyway
+           SEAICEmomStartAB = 0
+           _BEGIN_MASTER( myThid )
+           WRITE(msgBuf,'(4A)') '** WARNING ** SEAICE_CHECK_PICKUP:',
+     &      ' restart without "',fldName,'" (set to zero)'
+           CALL PRINT_MESSAGE( msgBuf, ioUnit, SQUEEZE_RIGHT, myThid )
+           _END_MASTER( myThid )
+          ENDIF
          ELSEIF ( fldName.EQ.'siTICES ' .OR.
      &            fldName.EQ.'siTICE  ' .OR.
      &            fldName.EQ.'siUICE  ' .OR.
