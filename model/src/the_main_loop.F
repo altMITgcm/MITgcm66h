@@ -129,6 +129,7 @@ c They provide the fields to be stored.
 #  ifdef ALLOW_THSICE
 #   include "THSICE_SIZE.h"
 #   include "THSICE_VARS.h"
+#   include "THSICE_COST.h"
 #  endif
 #  ifdef ALLOW_SHELFICE
 #   include "SHELFICE.h"
@@ -480,14 +481,6 @@ CADJ &     = COMMON,nchklev_1*nthreads_chkpt*numItersMax
 #   endif
 c--
 c**************************************
-
-#ifdef STORE_LOADEDREC_TEST
-          DO bj = myByLo(myThid), myByHi(myThid)
-           DO bi = myBxLo(myThid), myBxHi(myThid)
-            loadedRec(bi,bj) = 0
-           ENDDO
-          ENDDO
-#endif /* STORE_LOADEDREC_TEST */
 
 #ifdef ALLOW_TAMC_CHECKPOINTING
 

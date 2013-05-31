@@ -217,6 +217,14 @@ C     == Local variables ==
 
 CEOP
 
+#ifdef STORE_LOADEDREC_TEST
+          DO bj = myByLo(myThid), myByHi(myThid)
+           DO bi = myBxLo(myThid), myBxHi(myThid)
+            loadedRec(bi,bj) = 0
+           ENDDO
+          ENDDO
+#endif /* STORE_LOADEDREC_TEST */
+
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_ENTER('MAIN_DO_LOOP',myThid)
 #endif
