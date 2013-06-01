@@ -332,10 +332,10 @@ C     start iteration
      &                  + niter_bulk*sNx*sNy*MaxTsf*max1*act2
      &                  + niter_bulk*sNx*sNy*MaxTsf*max1*max2*act3
      &                  + niter_bulk*sNx*sNy*MaxTsf*max1*max2*max3*act4
-CADJ STORE rdn    = comlev1_thsice_5, key = ikey_2
-CADJ STORE ustar  = comlev1_thsice_5, key = ikey_2
-CADJ STORE qstar  = comlev1_thsice_5, key = ikey_2
-CADJ STORE tstar  = comlev1_thsice_5, key = ikey_2
+CADJ STORE rdn(i,j)    = comlev1_thsice_5, key = ikey_2
+CADJ STORE ustar(i,j)  = comlev1_thsice_5, key = ikey_2
+CADJ STORE qstar(i,j)  = comlev1_thsice_5, key = ikey_2
+CADJ STORE tstar(i,j)  = comlev1_thsice_5, key = ikey_2
 CADJ STORE sh(i,j,bi,bj)     = comlev1_thsice_5, key = ikey_2
 #endif
 
