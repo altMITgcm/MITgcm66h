@@ -368,7 +368,8 @@ C--   Get surface fluxes over melting surface
 #ifndef ALLOW_AUTODIFF
         IF ( useEXF ) THEN
 #endif
-           CALL THSICE_GET_EXF(   bi, bj,
+           k = 1
+           CALL THSICE_GET_EXF(   bi, bj, k,
      I                            iMin, iMax, jMin, jMax,
      I                            iceFlag, hSnow1, Tsf,
      O                            flx0exSW, dFlxdT, evap00, dEvdT,
@@ -407,6 +408,10 @@ CADJ STORE devdt(:,:)    = comlev1_bibj,key=ticekey,byte=isbyte
 CADJ STORE dflxdt(:,:)   = comlev1_bibj,key=ticekey,byte=isbyte
 CADJ STORE flx0exsw(:,:) = comlev1_bibj,key=ticekey,byte=isbyte
 CADJ STORE flxtexsw(:,:) = comlev1_bibj,key=ticekey,byte=isbyte
+CADJ STORE dflxdt(:,:) = comlev1_bibj,key=ticekey,byte=isbyte
+CADJ STORE evap00(:,:) = comlev1_bibj,key=ticekey,byte=isbyte
+CADJ STORE evapt(:,:) = comlev1_bibj,key=ticekey,byte=isbyte
+CADJ STORE flxtexsw(:,:) = comlev1_bibj,key=ticekey,byte=isbyte
 #endif
 
 C ----- begin iteration  -----
@@ -419,17 +424,16 @@ C
 #else
           kkey = (ticekey-1)*MaxTsf + k
 CADJ STORE iceflag = comlev1_thsice_s4t, key=kkey, byte=isbyte
-CADJ STORE hSnow1 = comlev1_thsice_s4t, key=kkey, byte=isbyte
-CADJ STORE tsf = comlev1_thsice_s4t, key=kkey, byte=isbyte
-CADJ STORE dFlxdT, evapT, dEvdT
-CADJ &     = comlev1_thsice_s4t, key=kkey, byte=isbyte
+CADJ STORE hSnow1  = comlev1_thsice_s4t, key=kkey, byte=isbyte
+CADJ STORE tsf     = comlev1_thsice_s4t, key=kkey, byte=isbyte
+CADJ STORE dEvdT   = comlev1_thsice_s4t, key=kkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF */
 
 C--   Compute top surface flux.
 #ifndef ALLOW_AUTODIFF
          IF ( useEXF ) THEN
 #endif
-           CALL THSICE_GET_EXF(   bi, bj,
+           CALL THSICE_GET_EXF(   bi, bj, k+1,
      I                            iMin, iMax, jMin, jMax,
      I                            iceFlag, hSnow1, Tsf,
      O                            flxTexSW, dFlxdT, evapT, dEvdT,
