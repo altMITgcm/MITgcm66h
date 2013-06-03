@@ -60,7 +60,7 @@ C     == end of interface ==
       if (timeunit .eq. 'secs') then
 
         IF ( cal_setStatus .LT. 1 ) THEN
-          WRITE( msgBuf,'(2A,F19.2,2A))')  'CAL_TIMEINTERVAL: ',
+          WRITE( msgBuf,'(2A,F19.2,2A)')  'CAL_TIMEINTERVAL: ',
      &          'timeint=',timeint,' , timeunit=',timeunit
           CALL PRINT_ERROR( msgBuf, myThid )
           WRITE( msgBuf,'(2A,I2,A)') 'CAL_TIMEINTERVAL: ',
