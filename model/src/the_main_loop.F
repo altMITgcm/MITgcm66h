@@ -245,6 +245,9 @@ CADJ  INIT tapelev3 = USER
 # ifdef NONLIN_FRSURF
 CADJ STORE hFacC = tapelev_init, key = 1
 # endif
+# ifdef ALLOW_SEAICE
+CADJ STORE heffm = tapelev_init, key = 1
+# endif
 #endif
 
 #ifdef ALLOW_AUTODIFF_OPENAD
