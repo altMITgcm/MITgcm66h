@@ -119,7 +119,7 @@ C     myThid      :: my Thread Id number
       _RL flxCnB (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL icFrac (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL hIce   (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL hSnow1  (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RL hSnow1 (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL tSrf   (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL qIc1   (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL qIc2   (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
@@ -292,7 +292,8 @@ C     initialise local arrays
       DO k = 1,nlyr
        DO j=1-OLy,sNy+OLy
         DO i=1-OLx,sNx+OLx
-         hnew(i,j,k) = 0. _d 0
+         qicen(i,j,k) = 0. _d 0
+         hnew (i,j,k) = 0. _d 0
         ENDDO
        ENDDO
       ENDDO

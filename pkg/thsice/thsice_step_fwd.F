@@ -140,9 +140,13 @@ C-    Initialise
           frzSeaWat(i,j) = 0. _d 0
 #ifdef ALLOW_AUTODIFF_TAMC
           iceFrac(i,j) = 0.
-c         flx2oc(i,j) = 0. _d 0
-c         frw2oc(i,j) = 0. _d 0
-c         fsalt (i,j) = 0. _d 0
+C-   set these arrays everywhere: overlap are not set and not used,
+C     but some arrays are stored and storage includes overlap.
+          flx2oc(i,j) = 0. _d 0
+          frw2oc(i,j) = 0. _d 0
+          fsalt (i,j) = 0. _d 0
+c         tFrzOce  (i,j) = 0. _d 0
+c         frzmltMxL(i,j) = 0. _d 0
 #endif
        ENDDO
       ENDDO
