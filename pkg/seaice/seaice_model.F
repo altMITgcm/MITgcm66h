@@ -176,7 +176,7 @@ C NOW DO ADVECTION and DIFFUSION
 #ifdef ALLOW_DEBUG
        IF (debugMode) CALL DEBUG_CALL( 'SEAICE_ADVDIFF', myThid )
 #endif
-       CALL SEAICE_ADVDIFF( myTime, myIter, myThid )
+       CALL SEAICE_ADVDIFF( uIce, vIce, myTime, myIter, myThid )
 #ifdef SEAICE_ITD
 C     check that all ice thickness categories meet their limits
 C     (includes Hibler-type ridging)

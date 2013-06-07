@@ -8,7 +8,7 @@ C !ROUTINE: SEAICE_ADVDIFF
 
 C !INTERFACE: ==========================================================
       SUBROUTINE SEAICE_ADVDIFF(
-     I     myTime, myIter, myThid )
+     I     uc, vc, myTime, myIter, myThid )
 
 C !DESCRIPTION: \bv
 C     *===========================================================*
@@ -109,15 +109,9 @@ C--   make a local copy of the velocities for compatibility with B-grid
 C--   alternatively interpolate to C-points if necessary
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
-#ifdef SEAICE_CGRID
-        DO j=1-OLy,sNy+OLy
-         DO i=1-OLx,sNx+OLx
-          uc(i,j,bi,bj)=UICE(i,j,bi,bj)
-          vc(i,j,bi,bj)=VICE(i,j,bi,bj)
-         ENDDO
-        ENDDO
-#else /* not SEAICE_CGRID = BGRID */
-C average seaice velocity to C-grid
+#ifndef SEAICE_CGRID /* not SEAICE_CGRID = BGRID */
+C--   hack to ensure backward compatibility: 
+C     average B-grid seaice velocity to C-grid
         DO j=1-OLy,sNy+OLy-1
          DO i=1-OLx,sNx+OLx-1
           uc(i,j,bi,bj)=.5 _d 0*(UICE(i,j,bi,bj)+UICE(i,j+1,bi,bj))
