@@ -34,20 +34,22 @@ cccccccccccccccccccccccccc
 c load external data     c
 cccccccccccccccccccccccccc
 #ifdef ALLOW_DIC
+      IF ( useDIC ) THEN
        CALL DIC_FIELDS_LOAD (myIter,myTime,myThid)
+      ENDIF
 #endif
 
-
 #ifdef ALLOW_CFC
-       CALL CFC_FIELDS_LOAD(myIter,myTime,myThid)
+      IF ( useCFC ) THEN
+       CALL CFC_FIELDS_LOAD( myTime, myIter, myThid )
+      ENDIF
 #endif
 
 #ifdef ALLOW_DARWIN
       IF ( useDARWIN ) THEN
-       call DARWIN_FIELDS_LOAD(myIter,myTime,myThid)
+       CALl DARWIN_FIELDS_LOAD(myIter,myTime,myThid)
       ENDIF
 #endif
-
 
 #endif /* ALLOW_GCHEM */
 
