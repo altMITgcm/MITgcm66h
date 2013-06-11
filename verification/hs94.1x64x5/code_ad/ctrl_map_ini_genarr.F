@@ -95,7 +95,7 @@ C--   generic - user-defined control vars
                 bottomdragfld(i,j,bi,bj) = bottomdragfld(i,j,bi,bj)
      &                                   + tmpfld2d(i,j,bi,bj)
 #endif
-              elseif ( iarr. eq. 2 ) then
+              elseif ( iarr .eq. 2 ) then
                 theta(i,j,1,bi,bj) = theta(i,j,1,bi,bj)
      &                             + tmpfld2d(i,j,bi,bj)
               elseif ( iarr .eq. 3 ) then
