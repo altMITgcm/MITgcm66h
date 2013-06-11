@@ -181,7 +181,9 @@ C--
 
 #ifdef ALLOW_DIAGNOSTICS
       IF ( useDiagnostics ) THEN
+# ifdef OLD_THSICE_CALL_SEQUENCE
         CALL DIAGNOSTICS_FILL(iceMask,'SI_FrcFx',0,1,1,bi,bj,myThid)
+# endif
         CALL DIAGNOSTICS_FRACT_FILL( snowPrc,
      I                       iceMask(1-OLx,1-OLy,bi,bj), oneRL, 1,
      I                              'SIsnwPrc', 0,1,2,bi,bj,myThid )

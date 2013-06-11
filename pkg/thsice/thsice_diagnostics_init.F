@@ -65,6 +65,7 @@ c     IF ( useDiagnotics ) THEN
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I            diagName, diagCode, diagUnits, diagTitle, 0, myThid )
         numFract  = diagNum
+        numFrcFx  = diagNum
 
         diagName  = 'SI_Thick'
         diagTitle = 'Sea-Ice thickness (area weighted average)'
@@ -123,6 +124,7 @@ c     IF ( useDiagnotics ) THEN
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I            diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
+#ifdef OLD_THSICE_CALL_SEQUENCE
         diagName  = 'SI_FrcFx'
         diagTitle = 'Sea-Ice fraction [0-1], synchro. with fluxes'
         diagUnits = '0-1             '
@@ -130,6 +132,7 @@ c     IF ( useDiagnotics ) THEN
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I            diagName, diagCode, diagUnits, diagTitle, 0, myThid )
         numFrcFx  = diagNum
+#endif /* OLD_THSICE_CALL_SEQUENCE */
 
         diagName  = 'SIalbedo'
         diagTitle = 'Sea-Ice Albedo [0-1] (area weighted average)'
