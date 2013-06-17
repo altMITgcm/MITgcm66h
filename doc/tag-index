@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o utils/python: add subpackage for cubed sphere function, first example is 
+   simple cs.pcol to plot 2D fields on a map
 o pkg/streamice:
   - This is a new package in MITgcm, which solves dynamic equations for ice
      sheets and ice streams
