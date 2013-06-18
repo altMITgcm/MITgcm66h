@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint64i (2013/06/18)
 o pkg/cheapaml:
   - take src files from MITgcm_contrib/verification_other/offline_cheapaml/code
     that enable the use of seaice (pkg/thsice thermo & pkg/seaice dynamics)
