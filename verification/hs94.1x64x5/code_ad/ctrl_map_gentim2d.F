@@ -55,6 +55,7 @@ C     == Local variables ==
       logical equal
       logical doglobalread
       logical ladinit
+      character*(MAX_LEN_FNAM) fnamebase
       character*( 80)   fnamegeneric
 
       _RL fac
@@ -89,8 +90,9 @@ C--   generic - user-defined control vars
         ENDDO
        ENDDO
 C
+       fnamebase = xx_gentim2d_file(iarr)
        CALL CTRL_GET_GEN (
-     I      xx_gentim2d_file(iarr)(1:MAX_LEN_FNAM),
+     I      fnamebase(1:MAX_LEN_FNAM),
      I      xx_gentim2d_startdate(1,iarr),
      I      xx_gentim2d_period(iarr),
      I      maskC,
