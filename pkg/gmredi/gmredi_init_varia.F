@@ -63,6 +63,9 @@ C     Initialize arrays in common blocks :
 #ifdef GM_VISBECK_VARIABLE_K
           VisbeckK(i,j,bi,bj) = 0. _d 0
 #endif
+#ifdef GM_K3D
+          K3D(i,j,k,bi,bj) = 0. _d 0
+#endif
           ENDDO
          ENDDO
         ENDDO

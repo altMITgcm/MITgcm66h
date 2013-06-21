@@ -100,6 +100,11 @@ c
      &   0,Nr,1,bi,bj,myThid)
        ENDIF
 #endif /* ALLOW_EDDYPSI */
+#ifdef GM_K3D
+       IF (GM_useK3D) THEN
+         CALL DIAGNOSTICS_FILL(K3D, 'GM_K3D  ',0,Nr,0,1,1,myThid)
+       ENDIF
+#endif
 
       ENDIF
 #endif /* ALLOW_DIAGNOSTICS */
