@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ptracers:
+  - allow to restart without SOM pickup (resetting SOM to zero).
 o pkg/gmredi:
   - New parameterisation for the calculation of K and (GM_PsiX,GM_PsiY) added.
   - It uses mixing length theory and suppression by steering level effects to
@@ -11,7 +13,7 @@ o pkg/gmredi:
     to JPO, for more details).
   - It also uses the diffusivity to calculate an eddy induced streamfunction
     based on a PV closure (rather than a buoyancy closure as in GM).
-  - New files added to pkg/gmredi: 
+  - New files added to pkg/gmredi:
     gmredi_k3d.F calculates the diffusivity for the Redi tensor and the eddy
       induced overturning streamfunction (called from gmredi_calc_tensor)
     gmredi_calc_eigs.F calculates the eigenvalues and eigenvectors required
