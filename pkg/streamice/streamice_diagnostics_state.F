@@ -22,7 +22,7 @@ C     === Global variables ===
 #include "PARAMS.h"
 #include "STREAMICE.h"
 
-      _RL mytime
+      _RL myTime
       INTEGER myIter, myThid
 
 #ifdef ALLOW_STREAMICE
@@ -49,7 +49,7 @@ C     === Global variables ===
      &      0,1,0,1,1,myThid)
        CALL DIAGNOSTICS_FILL(float_frac_streamice,'SI_float',
      &      0,1,0,1,1,myThid)
-       CALL DIAGNOSTICS_FILL(STREAMICE_hmask,'SI_hmask',
+       CALL DIAGNOSTICS_FILL_RS(STREAMICE_hmask,'SI_hmask',
      &      0,1,0,1,1,myThid)
 #ifdef STREAMICE_HYBRID_STRESS
        CALL DIAGNOSTICS_FILL(streamice_u_surf,'SI_usurf',
