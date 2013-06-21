@@ -1,4 +1,5 @@
-
+C $Header$
+C $Name$
 
 #include "STREAMICE_OPTIONS.h"
 
@@ -8,7 +9,7 @@ CBOP
       SUBROUTINE STREAMICE_DIAGNOSTICS_STATE( myTime, myIter, myThid )
 
 C     /============================================================\
-C     | SUBROUTINE                                                 |   
+C     | SUBROUTINE                                                 |
 C     | o                                                          |
 C     |============================================================|
 C     |                                                            |
@@ -31,13 +32,13 @@ C     === Global variables ===
 #ifdef ALLOW_DIAGNOSTICS
 
 
-      
+
 
       IF ( useDiagnostics ) THEN
        WRITE(msgBuf,'(A)') 'CALLING FILL DIAGNOSTICS'
        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                     SQUEEZE_RIGHT , 1)
-     
+
        CALL DIAGNOSTICS_FILL(U_streamice,'SI_Uvel ',
      &      0,1,0,1,1,myThid)
        CALL DIAGNOSTICS_FILL(V_streamice,'SI_Vvel ',
