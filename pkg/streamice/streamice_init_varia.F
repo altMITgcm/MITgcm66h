@@ -430,7 +430,7 @@ C The 0 is the "iteration" argument. The ' ' is an empty suffix
       CALL STREAMICE_UPD_FFRAC_UNCOUPLED ( myThid )
 
       _EXCH_XY_RL(H_streamice, myThid )
-      _EXCH_XY_RL(STREAMICE_hmask, myThid )
+      _EXCH_XY_RS(STREAMICE_hmask, myThid )
       _EXCH_XY_RL(area_shelf_streamice, myThid )
       _EXCH_XY_RL(C_basal_friction, myThid )
       _EXCH_XY_RL(B_glen, myThid )
