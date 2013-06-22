@@ -18,6 +18,8 @@ CEOP
 
 C CPP flags controlling particular source code features
 
+#include "PACKAGES_CONFIG.h"
+
 C o Shortwave heating as extra term in external_forcing.F
 C Note: this should be a run-time option
 #undef SHORTWAVE_HEATING
