@@ -91,8 +91,10 @@ C     -------------------------- CHAR PARAMS -----------------------------------
       CHARACTER*(MAX_LEN_FNAM) STREAMICEdelsigFile
       CHARACTER*(MAX_LEN_FNAM) STREAMICEbasalTracConfig
       CHARACTER*(MAX_LEN_FNAM) STREAMICEGlenConstConfig
+      CHARACTER*(MAX_LEN_FNAM) STREAMICEBdotConfig
       CHARACTER*(MAX_LEN_FNAM) STREAMICEbasalTracFile
       CHARACTER*(MAX_LEN_FNAM) STREAMICEGlenConstFile
+      CHARACTER*(MAX_LEN_FNAM) STREAMICEBdotFile
       CHARACTER*(MAX_LEN_FNAM) STREAMICEvelOptimFile
       CHARACTER*(MAX_LEN_FNAM) STREAMICEtopogFile
       CHARACTER*(MAX_LEN_FNAM) STREAMICEcostMaskFile
@@ -129,6 +131,7 @@ C     -------------------------- CHAR PARAMS -----------------------------------
      &     STREAMICEsigcoordFile,
      &     STREAMICEdelsigFile,
      &     STREAMICEbasalTracConfig,
+     &     STREAMICEBdotConfig,
      &     STREAMICEbasalTracFile,
      &     STREAMICEvelOptimFile,
      &     STREAMICEtopogFile,
@@ -140,6 +143,7 @@ C     -------------------------- CHAR PARAMS -----------------------------------
      &     STREAMICEuDirichValsFile,
      &     STREAMICEvDirichValsFile,
      &     STREAMICEGlenConstFile,
+     &     STREAMICEBdotFile,
      &     STREAMICEGlenConstConfig,
      &     STREAMICEcostMaskFile,
      &     STREAMICE_ADV_SCHEME

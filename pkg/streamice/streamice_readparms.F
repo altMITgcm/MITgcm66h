@@ -62,7 +62,9 @@ C     iUnit      :: Work variable for IO unit number
      &     streamice_bg_surf_slope_x, streamice_bg_surf_slope_y,
      &     streamice_kx_b_init, streamice_ky_b_init,
      &     STREAMICEbasalTracConfig,
+     &     STREAMICEBdotConfig,
      &     STREAMICEbasalTracFile,
+     &     STREAMICEBdotFile,
      &     STREAMICEvelOptimFile,
      &     STREAMICEtopogFile,
      &     STREAMICEhmaskFile,
@@ -175,6 +177,8 @@ C--   Default values for STREAMICE
       STREAMICEsigcoordInit = 'UNIFORM'
       STREAMICEsigcoordFile = ' '
       STREAMICEbasalTracConfig = 'UNIFORM'
+      STREAMICEBdotConfig = ''
+      STREAMICEBdotFile = ''
       STREAMICEbasalTracFile = ' '
       STREAMICEvelOptimFile = ''
       STREAMICEtopogFile = ''
