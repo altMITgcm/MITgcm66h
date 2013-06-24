@@ -374,6 +374,12 @@ C     LOCAL VARIABLES
        ENDDO
       ENDDO
 
+      call KSPDestroy (ksp, ierr)
+      call VecDestroy (rhs, ierr)
+      call VecDestroy (solution, ierr)
+      call MatDestroy (matrix, ierr)
+         
+
 
 
 #else  /* ALLOW_PETSC */
