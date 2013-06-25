@@ -149,8 +149,8 @@ C     LOCAL VARIABLES
 
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
-        DO j=1-Oly,sNy+Oly
-         DO i=1-Olx,sNx+Olx
+        DO j=1,sNy
+         DO i=1,sNx
           DO colx=-1,1
            DO coly=-1,1
 
