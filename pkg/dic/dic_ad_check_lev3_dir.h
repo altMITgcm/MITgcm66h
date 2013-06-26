@@ -19,7 +19,7 @@ CADJ STORE feinput0,feinput1 = tapelev3, key = ilev_3
 #endif
 
 CADJ STORE gsm_s             = tapelev3, key = ilev_3
-CADJ STORE co2atmos          = tapelev3, key = ilev_3
+CADJ STORE co2atmos,pco2     = tapelev3, key = ilev_3
 CADJ STORE total_atmos_carbon  = tapelev3, key = ilev_3
 
 #ifdef DIC_BIOTIC

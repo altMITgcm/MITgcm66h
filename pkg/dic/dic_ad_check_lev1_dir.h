@@ -19,7 +19,7 @@ CADJ STORE feinput0,feinput1 = comlev1, key = ikey_dynamics
 #endif
 
 CADJ STORE gsm_s             = comlev1, key = ikey_dynamics
-CADJ STORE co2atmos          = comlev1, key = ikey_dynamics
+CADJ STORE co2atmos,pco2     = comlev1, key = ikey_dynamics
 CADJ STORE total_atmos_carbon  = comlev1, key = ikey_dynamics
 
 #ifdef DIC_BIOTIC
