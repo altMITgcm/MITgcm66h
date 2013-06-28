@@ -29,6 +29,7 @@ CEOP
 C     !LOCAL VARIABLES:
 C     msgBuf   :: Informational/error message buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
+      INTEGER k
 
       _BEGIN_MASTER(myThid)
 
@@ -51,6 +52,13 @@ C--  Print out some kee parameters :
      &  ' /* apply Atm-Phys tendency to V momentum Eq.*/')
        CALL WRITE_0D_L( atmPhys_stepSST, INDEX_NONE,
      &  'atmPhys_stepSST =', ' /* step forward SST field */')
+       IF ( atmPhys_tauDampUV.LE.zeroRL ) THEN
+        CALL WRITE_0D_RL( atmPhys_tauDampUV, INDEX_NONE,
+     &  'atmPhys_tauDampUV =', ' /* U,V damping time-scale (s) */')
+       ELSE
+        CALL WRITE_1D_RL( atmPhys_dampUVfac, Nr, INDEX_K,
+     &  'atmPhys_dampUVfac =', ' /* U,V danping coefficient (1/s) */')
+       ENDIF
 
        CALL WRITE_0D_C( atmPhys_SSTFile, -1, INDEX_NONE,
      &  'atmPhys_SSTFile =',' /* SST input file */')
