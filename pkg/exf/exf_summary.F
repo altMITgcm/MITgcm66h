@@ -679,7 +679,7 @@ C--   Runoff.
      &                    SQUEEZE_RIGHT, myThid )
 # ifdef ALLOW_RUNOFTEMP
       write(msgbuf,'(a)')
-     &'// ALLOW_RUNOFFTEMP:                   defined'
+     &'// ALLOW_RUNOFTEMP:                   defined'
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT, myThid )
       il = ilnblnk(runoftempfile)
@@ -688,7 +688,7 @@ C--   Runoff.
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT, myThid )
       write(msgbuf,'(a,a,a)')
-     &'   >>  ',runofffile(1:il),'  <<'
+     &'   >>  ',runoftempfile(1:il),'  <<'
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT, myThid )
 # else /* ALLOW_RUNOFTEMP */
