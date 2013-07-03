@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/offline:
+  - to enable the use of other features with pkg offline (e.g., obcs),
+    also call S/R DO_OCEANIC_PHYS in offline run - more modifs to come.
+  - comment out "allowFreezing" (now active) in 2 offline testing exp.
 o pkg/exf ALLOW_RUNOFTEMP
   - fix sign and make compatible with temp_EvPrRn .NE. UNSET_RL
   - added RUNOFTEMP test to verification/global_ocean.cs32x15/input.seaice
