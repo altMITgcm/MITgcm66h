@@ -101,8 +101,13 @@ c find global surface averages
        CALL TRACER_MEANAREA(
      &             pTracer(1-OLx,1-OLy,1,1,1,iALK), 1, gsm_alk, myThid )
 #endif
-#endif /* ALLOW_OLD_VIRTUALFLUX */
 ccccccccccccccccccccccccccccccccccccccccccc
+#ifdef ALLOW_OFFLINE
+       IF ( useOffLine ) THEN
+         CALL OFFLINE_GET_SURFFORCING( myTime, myIter, myThid )
+       ENDIF
+#endif /* ALLOW_OFFLINE */
+#endif /* ALLOW_OLD_VIRTUALFLUX */
 
 #ifdef ALLOW_DARWIN
        IF ( useDARWIN ) THEN
