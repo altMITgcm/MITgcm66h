@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint64j (2013/07/04)
 o pkg/offline:
   - to enable the use of other features with pkg offline (e.g., obcs),
     also call S/R DO_OCEANIC_PHYS in offline run - more modifs to come.
