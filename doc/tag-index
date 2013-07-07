@@ -4,6 +4,12 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/offline:
+  - comment out unused field-array: ICEM, ConvectCount, hflx[01], icem[01];
+  - add S/R OFFLINE_CHECK to print offline parameter summary
+    and stop if loading a file that is not used;
+  - enable to calculate GMRedi tensor, KPP mixing and convective index
+    when the corresponding file(s) is/are not specified (but pkg is used).
 o OpenAD:
   - do not define OAD_DEBUG (in tools/adjoint_options/adjoint_oad) to get
     smaller standard output) and generate new (smaller) output (on baudelaire
