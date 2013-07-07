@@ -20,7 +20,5 @@ CADJ STORE gmky0 = comlev1, key = ikey_dynamics
 CADJ STORE gmky1 = comlev1, key = ikey_dynamics
 CADJ STORE gmkz0 = comlev1, key = ikey_dynamics
 CADJ STORE gmkz1 = comlev1, key = ikey_dynamics
-CADJ STORE hflx0 = comlev1, key = ikey_dynamics
-CADJ STORE hflx1 = comlev1, key = ikey_dynamics
 CADJ STORE sflx0 = comlev1, key = ikey_dynamics
 CADJ STORE sflx1 = comlev1, key = ikey_dynamics

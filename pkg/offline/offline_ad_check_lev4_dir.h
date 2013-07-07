@@ -28,7 +28,5 @@ CADJ STORE gmky0 = tapelev4, key = ilev_4
 CADJ STORE gmky1 = tapelev4, key = ilev_4
 CADJ STORE gmkz0 = tapelev4, key = ilev_4
 CADJ STORE gmkz1 = tapelev4, key = ilev_4
-CADJ STORE hflx0 = tapelev4, key = ilev_4
-CADJ STORE hflx1 = tapelev4, key = ilev_4
 CADJ STORE sflx0 = tapelev4, key = ilev_4
 CADJ STORE sflx1 = tapelev4, key = ilev_4
