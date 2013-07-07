@@ -232,7 +232,9 @@ C---  Continue with standard packages (with standard usePKG flag)
       IF (useRBCS) CALL PACKAGES_ERROR_MSG('RBCS',' ',myThid)
 #endif
 
-#ifndef ALLOW_OFFLINE
+#ifdef ALLOW_OFFLINE
+      IF (useOffLine) CALL OFFLINE_CHECK( myThid )
+#else
       IF (useOffLine) CALL PACKAGES_ERROR_MSG('OffLine',' ',myThid)
 #endif
 
