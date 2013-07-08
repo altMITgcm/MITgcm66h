@@ -105,8 +105,6 @@ if [ $checkOut -eq 2 ] ; then
    echo " add dir: atm_gray (from Contrib:verification_other)"
    ( cd $gcmDIR/verification ; cvs $cvsArg co -P -d atm_gray \
                   MITgcm_contrib/verification_other/atm_gray > /dev/null 2>&1 )
-   ( cd $gcmDIR/verification/atm_gray ; ln -s code_cs code ; ln -s inp_cs input
-     cd results ; ln -s output.cs.txt output.txt )
   fi
   /usr/bin/find $gcmDIR -type d | xargs chmod g+rxs
   /usr/bin/find $gcmDIR -type f | xargs chmod g+r
