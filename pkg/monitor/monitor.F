@@ -103,20 +103,25 @@ C       Print the time to make grepping the stdout easier
         CALL MON_OUT_I( '_tsnumber', myIter,mon_string_none,myThid )
         CALL MON_OUT_RL('_secondsf', myTime,mon_string_none,myThid )
 
+        IF ( monitorSelect.GE.1 ) THEN
 C       Print the basic statistics of model state variables
-        CALL MON_SET_PREF( 'dynstat', myThid )
-        CALL MON_WRITESTATS_RL(  1, etaN, '_eta',
-     &           maskInC, maskInC, rA , drF, dummyRL, myThid )
-        CALL MON_WRITESTATS_RL( Nr, uVel, '_uvel',
-     &           hFacW, maskInW, rAw, thickFacC, dummyRL, myThid )
-        CALL MON_WRITESTATS_RL( Nr, vVel, '_vvel',
-     &           hFacS, maskInS, rAs, thickFacC, dummyRL, myThid )
-        CALL MON_WRITESTATS_RL( Nr, wVel, '_wvel',
-     &           maskC, maskInC, rA , thickFacF, dummyRL, myThid )
-        CALL MON_WRITESTATS_RL( Nr, theta,'_theta',
-     &           hFacC, maskInC, rA , thickFacC, statsTemp, myThid )
-        CALL MON_WRITESTATS_RL( Nr, salt, '_salt',
-     &           hFacC, maskInC, rA , thickFacC, dummyRL, myThid )
+         CALL MON_SET_PREF( 'dynstat', myThid )
+         CALL MON_WRITESTATS_RL(  1, etaN, '_eta',
+     &            maskInC, maskInC, rA , drF, dummyRL, myThid )
+         CALL MON_WRITESTATS_RL( Nr, uVel, '_uvel',
+     &            hFacW, maskInW, rAw, thickFacC, dummyRL, myThid )
+         CALL MON_WRITESTATS_RL( Nr, vVel, '_vvel',
+     &            hFacS, maskInS, rAs, thickFacC, dummyRL, myThid )
+         CALL MON_WRITESTATS_RL( Nr, wVel, '_wvel',
+     &            maskC, maskInC, rA , thickFacF, dummyRL, myThid )
+         CALL MON_WRITESTATS_RL( Nr, theta,'_theta',
+     &            hFacC, maskInC, rA , thickFacC, statsTemp, myThid )
+         CALL MON_WRITESTATS_RL( Nr, salt, '_salt',
+     &            hFacC, maskInC, rA , thickFacC, dummyRL, myThid )
+        ELSE
+         statsTemp(1) = 1.
+         statsTemp(2) = 0.
+        ENDIF
         IF ( monitorSelect.GE.3 .AND.
      &       nSx.EQ.1 .AND. nSy.EQ.1 ) THEN
 C-      print stats only if nSx=nSy=1 since otherwise stats are wrong
