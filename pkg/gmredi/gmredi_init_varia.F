@@ -106,5 +106,12 @@ C--   write GM scaling factors to file:
       ENDIF
 #endif /* ALLOW_GMREDI */
 
+
+#ifdef GM_K3D
+      IF (.NOT.( startTime.EQ.baseTime .AND. nIter0.EQ.0
+     &     .AND. pickupSuff.EQ.' ' )) THEN
+        IF (GM_useK3D) CALL GMREDI_READ_PICKUP( niter0, myThid )
+      ENDIF
+#endif
       RETURN
       END

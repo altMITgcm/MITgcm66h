@@ -64,7 +64,7 @@ C     GM_slopeSqCutoff :: slope^2 cut-off value
      &          GM_UseBVP, GM_BVP_cMin, GM_BVP_ModeNumber,
      &          GM_useSubMeso, subMeso_Ceff, subMeso_invTau,
      &          subMeso_LfMin, subMeso_Lmax,
-     &          GM_K3D_gamma, GM_useK3D, GM_K3D_NModes,
+     &          GM_K3D_gamma, GM_useK3D, GM_K3D_vecFreq,
      &          GM_K3D_EadyMinDepth, GM_K3D_EadyMaxDepth,
      &          GM_K3D_Lambda, GM_K3D_smallK, GM_K3D_maxSlope,
      &          GM_K3D_maxC, GM_K3D_minCori, GM_K3D_minN2,
@@ -134,10 +134,10 @@ C--   Default values for K3D
       GM_K3D_maxC    = 0.15
       GM_maxK3D      = 20e3
       GM_K3D_maxLurms= 75e3
-      GM_K3D_NModes  = 3
       GM_K3D_minCori = zeroRL
       GM_K3D_minN2   = 1.0e-8
       GM_K3D_surfMinDepth = 100.0
+      GM_K3D_vecFreq = 2592000.0
       
       WRITE(msgBuf,'(A)') ' GM_READPARMS: opening data.gmredi'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,

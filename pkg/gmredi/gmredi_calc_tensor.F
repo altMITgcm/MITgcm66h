@@ -273,7 +273,7 @@ C     Calculate the 3D diffusivity as per Bates et al. (2013)
         CALL GMREDI_K3D(
      I       iMin, iMax, jMin, jMax,
      I       sigmaX, sigmaY, sigmaR,
-     I       bi, bj, myThid)
+     I       bi, bj, myTime, myThid)
         
         CALL TIMER_STOP('GMREDI_K3D      [GMREDI_CALC_TENSOR]', 
      &                  myThid)
