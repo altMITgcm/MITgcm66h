@@ -10,6 +10,8 @@ o pkg/offline:
     and stop if loading a file that is not used;
   - enable to calculate GMRedi tensor, KPP mixing and convective index
     when the corresponding file(s) is/are not specified (but pkg is used).
+  - comment out resetting of monitorFreq (to endTime) since it still useful
+    for monitoring CFL numbers and checking offline fields.
 o OpenAD:
   - do not define OAD_DEBUG (in tools/adjoint_options/adjoint_oad) to get
     smaller standard output) and generate new (smaller) output (on baudelaire
