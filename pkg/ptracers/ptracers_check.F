@@ -81,6 +81,9 @@ C--   Print a summary of pTracer parameter values:
       CALL WRITE_1D_RL( PTRACERS_dTLev, Nr, INDEX_K,
      &   'PTRACERS_dTLev =',
      &'   /* Ptracer timestep ( s ) */')
+      CALL WRITE_0D_RL(PTRACERS_monitorFreq, INDEX_NONE,
+     &   'PTRACERS_monitorFreq =',
+     &   ' /* Frequency^-1 for monitor output (s) */')
       CALL WRITE_0D_RL(PTRACERS_dumpFreq, INDEX_NONE,
      &   'PTRACERS_dumpFreq =',
      &   ' /* Frequency^-1 for snapshot output (s) */')
