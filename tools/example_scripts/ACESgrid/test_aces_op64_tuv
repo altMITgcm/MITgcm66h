@@ -27,11 +27,11 @@ HERE=$TST_DIR/output
 sfx='tuv'
  module add open64
  OPTFILE="../tools/build_options/linux_amd64_open64"
- options="-j 2 -devel"
+ options="-j 2 -devel -gsl"
 #options="-j 2 -mth -gsl"
 #export OMP_NUM_THREADS=2
 #export OMP_SLAVE_STACK_SIZE=400m
-#export GSL_IEEE_MODE=double-precision,mask-underflow,mask-denormalized
+ export GSL_IEEE_MODE=double-precision,mask-underflow,mask-denormalized
  ulimit -s unlimited
 #- need this to get "staf":
 export PATH="$PATH:$HOME/bin"
