@@ -41,13 +41,13 @@ C-    For off-line calculation, switch off Momentum and Active-tracers (=T,S):
       momStepping  = .FALSE.
 
 C-    Switch off dynstat monitor (but keep one @ the end)
-      IF ( monitorFreq.GT.0. ) THEN
-        monitorFreq = endTime
-          WRITE(msgBuf,'(A,A,1PE18.10)') ' OFFLINE_RESET_PARMS: ',
-     &    '=> reset monitorFreq to:', monitorFreq
-          CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                        SQUEEZE_RIGHT, myThid )
-      ENDIF
+c     IF ( monitorFreq.GT.0. ) THEN
+c       monitorFreq = endTime
+c         WRITE(msgBuf,'(A,A,1PE18.10)') ' OFFLINE_RESET_PARMS: ',
+c    &    '=> reset monitorFreq to:', monitorFreq
+c         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+c    &                        SQUEEZE_RIGHT, myThid )
+c     ENDIF
 
       IF ( Wvelfile .EQ. ' '  ) THEN
 C--   Make sure we compute vertical velocity since it is not read from a file
