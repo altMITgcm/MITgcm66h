@@ -54,15 +54,33 @@ siz = size(xi);
 xi = xi(:); yi = yi(:); % Treat these as columns
 x = x(:); y = y(:); % Treat these as columns
 
-% Triangularize the data
-tri = delaunayn([x y]);
-if isempty(tri),
-  warning('Data cannot be triangulated.');
-  return
-end
+% older version of matlab do not have DelaunayTri, later versions do not
+% have tsearch
+msg=which('DelaunayTri');
+if length(msg) > 0 % version is 2012 or newer
+  % Triangularize the data
+  tri=DelaunayTri(x,y);
+  if isempty(tri),
+    warning('Data cannot be triangulated.');
+    return
+  end
+  
+  % Find the nearest triangle (t)
+  [t, bcs] = pointLocation(tri, xi, yi);
+  
+else % use delaunay and tsearch (and hope it is available)
 
-% Find the nearest triangle (t)
-t = tsearch(x,y,tri,xi,yi);
+  % Triangularize the data
+  tri = delaunayn([x y]);
+  if isempty(tri),
+    warning('Data cannot be triangulated.');
+    return
+  end
+  
+  % Find the nearest triangle (t)
+  t = tsearch(x,y,tri,xi,yi);
+
+end % end of selecting version
 
 % Only keep the relevant triangles.
 out = find(isnan(t));
