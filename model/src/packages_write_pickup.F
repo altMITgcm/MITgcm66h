@@ -169,6 +169,11 @@ C     Write pickup file for diagnostics package
       ENDIF
 #endif
 
+#ifdef ALLOW_GMREDI
+      CALL GMREDI_WRITE_PICKUP( permPickup,
+     I                          suffix, myTime, myIter, myThid )
+#endif
+
 #ifdef  COMPONENT_MODULE
       IF (useCoupler) THEN
         CALL CPL_WRITE_PICKUP(
