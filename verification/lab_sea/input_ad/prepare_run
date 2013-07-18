@@ -28,3 +28,4 @@ if test -d $fromDir ; then
 else
   echo " Error:" $fromDir "not a directory"
 fi
+
