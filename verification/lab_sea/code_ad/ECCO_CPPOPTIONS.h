@@ -46,7 +46,7 @@ C       >>> Extract adjoint state
 #define ALLOW_AUTODIFF_MONITOR
 
 C o use divided adjoint to split adjoint computations
-#undef ALLOW_DIVIDED_ADJOINT
+#define ALLOW_DIVIDED_ADJOINT
 
 C o TAMC compatible subroutine parameter list
 #undef AUTODIFF_TAMC_COMPATIBILITY
