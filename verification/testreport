@@ -547,7 +547,8 @@ makemodel()
 	nwar=`grep -c 'TAF RECOMPUTATION *.* WARNING ' taf_ad.log`
 	if test -f taf_output ; then
 	    n2er=`grep -c 'TAF *.* ERROR ' taf_output`
-	    nerr=`expr $nerr + $n2er`
+	    n3er=`grep -c '\*ERROR\* ' taf_output`
+	    nerr=`expr $nerr + $n2er + $n3er`
 	fi
 	echo " TAF reports $nerr Errors and $nwar Recomputation Warnings" \
 				>> $CDIR"/summary.txt"
