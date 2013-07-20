@@ -68,6 +68,6 @@ if [ -n "$MPI_INC_DIR" -a "x$MPI" = xtrue ] ; then
     INCLUDES="$INCLUDES -I$MPI_INC_DIR"
     INCLUDEDIRS="$INCLUDEDIRS $MPI_INC_DIR"
     MPIINCLUDEDIR="$MPI_INC_DIR"
-    MPI_HEADER_FILES='mpif.h mpiof.h'
-    MPI_HEADER_FILES_INC='./mpi_headers/mpif.h ./mpi_headers/mpiof.h'
+    MPI_HEADER_FILES='mpif.h mpif-common.h mpif-config.h mpif-mpi-io.h'
+    MPI_HEADER_FILES_INC='./mpi_headers/mpif.h ./mpi_headers/mpif-common.h ./mpi_headers/mpif-config.h ./mpi_headers/mpif-mpi-io.h'
 fi
