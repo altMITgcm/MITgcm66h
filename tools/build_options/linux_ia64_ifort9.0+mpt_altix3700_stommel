@@ -77,7 +77,6 @@ fi
 
 if test ! "x$MPI" = x ; then
     LIBS="$LIBS -lmpi"
-    MPI_HEADER_FILES='mpif.h mpiof.h mpif_parameters.h'
-    MPI_HEADER_FILES_INC='./mpi_headers/mpif.h ./mpi_headers/mpiof.h ./mpi_headers/mpif_parameters.h'
+   #MPI_HEADER_FILES='mpif.h mpiof.h mpif_parameters.h'
     DEFINES="-DALLOW_USE_MPI -DALWAYS_USE_MPI $DEFINES"
 fi

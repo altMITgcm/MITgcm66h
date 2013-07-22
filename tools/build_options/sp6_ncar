@@ -42,7 +42,7 @@ LIBS='-lmass -L/contrib/netcdf-3.6.2/lib'
 
 if test "x$MPI" = xtrue ; then
     INCLUDES="-I/usr/lpp/ppe.poe/include/thread64 $INCLUDES"
+    #- used for parallel (MPI) DIVA
     MPIINCLUDEDIR='/usr/lpp/ppe.poe/include/thread64'
-    MPI_HEADER_FILES='mpif.h'
-    MPI_HEADER_FILES_INC='./mpi_headers/mpif.h'
+   #MPI_HEADER_FILES='mpif.h'
 fi

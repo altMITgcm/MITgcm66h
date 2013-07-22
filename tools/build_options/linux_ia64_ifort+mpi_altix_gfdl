@@ -43,6 +43,7 @@ INCLUDES="-I/usr/local/include -I$cpath"
 cpath=`echo $CPATH | sed 's/:/ /g'`
 INCLUDEDIRS="/usr/local/include $cpath"
 #LIBDIRS='/usr/local/lib'
-#MPIINCLUDEDIR='/opt/mpt/1.14/include'
-#MPI_HEADER_FILES='mpif.h mpiof.h mpif_parameters.h'
-#MPI_HEADER_FILES_INC='./mpi_headers/mpif.h ./mpi_headers/mpiof.h ./mpi_headers/mpif_parameters.h'
+
+#- used for parallel (MPI) DIVA
+# MPIINCLUDEDIR='/opt/mpt/1.14/include'
+##MPI_HEADER_FILES='mpif.h mpiof.h mpif_parameters.h'

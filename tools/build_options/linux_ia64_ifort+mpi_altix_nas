@@ -16,9 +16,11 @@ EXTENDED_SRC_FLAG='-132'
 LIBS='-L/opt/sgi/mpt/1.16.0.0/lib -lmpi -L/opt/pd/netcdf/3.6.0-p1/lib -lnetcdf'
 INCLUDES='-I/opt/sgi/mpt/1.16.0.0/include -I/opt/pd/netcdf/3.6.0-p1/include'
 INCLUDEDIRS='/opt/sgi/mpt/1.16.0.0/include'
+
+#- used for parallel (MPI) DIVA
 MPIINCLUDEDIR='/opt/sgi/mpt/1.16.0.0/include'
-MPI_HEADER_FILES='mpif.h mpiof.h mpif_parameters.h'
-MPI_HEADER_FILES_INC='./mpi_headers/mpif.h ./mpi_headers/mpiof.h ./mpi_headers/mpif_parameters.h'
+#MPI_HEADER_FILES='mpif.h mpiof.h mpif_parameters.h'
+
 #PAPIINC='-I/usr/local/include'
 #PAPILIB='-L/usr/local/lib -lpapi'
 

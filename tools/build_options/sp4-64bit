@@ -39,7 +39,7 @@ LIBS='-L/usr/local/apps/mass -lmass -L/usr/local/lib64/r4i4'
 if test "x$MPI" = xtrue ; then
     INCLUDES='-I/usr/local/include'
     INCLUDES="-I/usr/lpp/ppe.poe/include/thread64 $INCLUDES"
-#   MPIINCLUDEDIR='/usr/lpp/ppe.poe/include/thread'
-#   MPI_HEADER_FILES='mpif.h'
-#   MPI_HEADER_FILES_INC='./mpi_headers/mpif.h'
+    #- used for parallel (MPI) DIVA
+#   MPIINCLUDEDIR='/usr/lpp/ppe.poe/include/thread64'
+#  #MPI_HEADER_FILES='mpif.h'
 fi
