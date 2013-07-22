@@ -283,6 +283,7 @@ else
 fi
 
 #- when it's done, retrieve output and send e-mail
+  sleep 60
   get_outp_back $NB_JOBS2GET
  #echo " info-main:     REJECTED='$REJECTED'" >> $LOG_FIL
 
