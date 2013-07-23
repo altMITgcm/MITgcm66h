@@ -4,9 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint64k (2013/07/23)
 o tools/OAD_support:
-  - avoid the need for file "oadtempflile" in insertTemplateDir.bash;
-    and remove it from genmake2
+  - avoid the need for file "oadtempflile" in insertTemplateDir.bash
+    and remove it from genmake2.
 o tools/build_options:
   - remove MPI_HEADER_FILES_INC setting (no longer used) and comment out
     MPI_HEADER_FILES list (let genmake2 find the missing headers)
