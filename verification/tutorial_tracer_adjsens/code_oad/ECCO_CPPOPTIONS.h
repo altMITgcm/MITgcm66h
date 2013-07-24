@@ -32,7 +32,6 @@ C#define AUTODIFF_2_LEVEL_CHECKPOINT
 
 C o use divided adjoint to split adjoint computations
 #undef ALLOW_DIVIDED_ADJOINT
-#undef ALLOW_DIVIDED_ADJOINT_MPI
 
 C o write separate tape files for each ptracer
 C#define AUTODIFF_PTRACERS_SPLIT_FILES

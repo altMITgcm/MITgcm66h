@@ -3,7 +3,6 @@ C $Name$
 
 #ifndef ECCO_CPPOPTIONS_H
 #define ECCO_CPPOPTIONS_H
-c#include "AD_CONFIG.h"
 c#include "PACKAGES_CONFIG.h"
 c#include "CPP_OPTIONS.h"
 
@@ -41,7 +40,6 @@ C       >>> Extract adjoint state
 
 C o use divided adjoint to split adjoint computations
 #undef ALLOW_DIVIDED_ADJOINT
-#undef ALLOW_DIVIDED_ADJOINT_MPI
 
 c#define ALLOW_AUTODIFF_WHTAPEIO
 c#define ALLOW_PACKUNPACK_METHOD2

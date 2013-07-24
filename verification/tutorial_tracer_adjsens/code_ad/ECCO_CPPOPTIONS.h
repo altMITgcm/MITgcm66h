@@ -32,7 +32,6 @@ C       >>> DO 2-level checkpointing instead of 3-level
 
 C o use divided adjoint to split adjoint computations
 #undef ALLOW_DIVIDED_ADJOINT
-#undef ALLOW_DIVIDED_ADJOINT_MPI
 
 C o write separate tape files for each ptracer
 #define AUTODIFF_PTRACERS_SPLIT_FILES

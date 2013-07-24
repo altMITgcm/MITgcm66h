@@ -32,7 +32,6 @@ C       >>> DO 2-level checkpointing instead of 3-level
 
 C o use divided adjoint to split adjoint computations
 #undef ALLOW_DIVIDED_ADJOINT
-#undef ALLOW_DIVIDED_ADJOINT_MPI
 
 #define ALLOW_AUTODIFF_OPENAD
 
