@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o Divided Adjoint (DIVA) with MPI:
+  - genmake2: do not create local ./mpi_headers dir when no file to copy into.
+  - remove option ALLOW_DIVIDED_ADJOINT_MPI (replaced by ALLOW_DIVIDED_ADJOINT
+    and ALLOW_USE_MPI) from model/src code and from ECCO_CPPOPTIONS.h.
+
 checkpoint64k (2013/07/23)
 o tools/OAD_support:
   - avoid the need for file "oadtempflile" in insertTemplateDir.bash
