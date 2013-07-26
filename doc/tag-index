@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src:
+  - extend length of drC & recip_drC from Nr to Nr+1.
 o Divided Adjoint (DIVA) with MPI:
   - genmake2: do not create local ./mpi_headers dir when no file to copy into.
   - remove option ALLOW_DIVIDED_ADJOINT_MPI (replaced by ALLOW_DIVIDED_ADJOINT
