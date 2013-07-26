@@ -19,9 +19,9 @@ C     units, etc. primarily for state and snapshot variables.
 C     !USES:
       IMPLICIT NONE
 #include "SIZE.h"
-#include "GRID.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "GRID.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     myThid :: my Thread Id number
@@ -126,7 +126,7 @@ C     End define coordinates for all MNC files  ----------------------
 
 
 C     Grid variables  ------------------------------------------------
-      CALL MNC_CW_ADD_VNAME('drC', '-_-_--__C__-', 0,0, myThid)
+      CALL MNC_CW_ADD_VNAME('drC', '-_-_--__I__-', 0,0, myThid)
       CALL MNC_CW_ADD_VNAME('drF', '-_-_--__C__-', 0,0, myThid)
       CALL MNC_CW_ADD_VNAME('dxC', 'U_xy_Hn__-__-', 3,4, myThid)
       CALL MNC_CW_ADD_VNAME('dyC', 'V_xy_Hn__-__-', 3,4, myThid)

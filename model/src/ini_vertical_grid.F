@@ -105,7 +105,7 @@ C        when trying to optimise this loop :
 
       IF (setCenterDr) THEN
 C--   Cell Center r-distances are defined:
-       DO k=1,Nr
+       DO k=1,Nr+1
          drC(k) = delRc(k)
        ENDDO
 C-    Check that all thickness are > 0 :
@@ -127,6 +127,7 @@ C     assume Center at middle between 2 Interfaces
        DO k=2,Nr
          drC(k) = 0.5 _d 0 *(delR(k-1)+delR(k))
        ENDDO
+       drC(Nr+1) = 0.5 _d 0 *delR(Nr)
       ENDIF
 
 C---  Set r-position of  interFace (rF) and cell-Center (rC):
@@ -164,8 +165,10 @@ c       write(0,*) 'rC=',rC
       ENDDO
 
 C-    Calculate reciprol vertical grid spacing :
-      DO k=1,Nr
+      DO k=1,Nr+1
        recip_drC(k)   = 1. _d 0/drC(k)
+      ENDDO
+      DO k=1,Nr
        recip_drF(k)   = 1. _d 0/drF(k)
       ENDDO
 
