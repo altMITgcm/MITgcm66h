@@ -465,14 +465,14 @@ C--   Non-hydrostatic/quasi-hydrostatic
 C--  Advection and Forcing for Temp and salt
       IF (tempVertAdvScheme.EQ.0) tempVertAdvScheme = tempAdvScheme
       IF (saltVertAdvScheme.EQ.0) saltVertAdvScheme = saltAdvScheme
-C--  horizontal viscosity for vertical moments
-      IF ( viscAhW .EQ. UNSET_RL ) viscAhW = viscAh
-      IF ( viscA4W .EQ. UNSET_RL ) viscA4W = viscA4
 C--  horizontal viscosity (acting on Divergence or Vorticity)
       IF ( viscAhD .EQ. UNSET_RL ) viscAhD = viscAh
       IF ( viscAhZ .EQ. UNSET_RL ) viscAhZ = viscAh
       IF ( viscA4D .EQ. UNSET_RL ) viscA4D = viscA4
       IF ( viscA4Z .EQ. UNSET_RL ) viscA4Z = viscA4
+C--  horizontal viscosity for vertical moments
+      IF ( viscAhW .EQ. UNSET_RL ) viscAhW = viscAhD
+      IF ( viscA4W .EQ. UNSET_RL ) viscA4W = viscA4D
 C--   z,p,r coord input switching.
       IF ( viscAz .NE. UNSET_RL ) zCoordInputData = .TRUE.
       IF ( viscAp .NE. UNSET_RL ) pCoordInputData = .TRUE.
