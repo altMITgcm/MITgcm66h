@@ -27,13 +27,11 @@ C     viscA?_W  :: Horizontal variable viscosities
 #ifdef ALLOW_ADAMSBASHFORTH_3
       COMMON /NH_VARS_R/
      &                   phi_nh, dPhiNH,
-     &                   gW, gwNm,
-     &                   viscAh_W, viscA4_W
+     &                   gW, gwNm
 #else /* ALLOW_ADAMSBASHFORTH_3 */
       COMMON /NH_VARS_R/
      &                   phi_nh, dPhiNH,
-     &                   gW, gwNm1,
-     &                   viscAh_W, viscA4_W
+     &                   gW, gwNm1
 #endif /* ALLOW_ADAMSBASHFORTH_3 */
       _RL  phi_nh(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  dPhiNH(1-OLx:sNx+OLx,1-OLy:sNy+OLy,   nSx,nSy)
@@ -43,7 +41,5 @@ C     viscA?_W  :: Horizontal variable viscosities
 #else /* ALLOW_ADAMSBASHFORTH_3 */
       _RL  gwNm1(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
 #endif /* ALLOW_ADAMSBASHFORTH_3 */
-      _RL  viscAh_W(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-      _RL  viscA4_W(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
 
 #endif /* ALLOW_NONHYDROSTATIC */

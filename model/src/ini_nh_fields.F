@@ -122,20 +122,6 @@ C-     end of if-block: dPhiNH_status
 
       ENDIF
 
-C--   Set the variable viscosities to default value.
-      DO bj = myByLo(myThid), myByHi(myThid)
-       DO bi = myBxLo(myThid), myBxHi(myThid)
-        DO k = 1,Nr
-         DO j=1-OLy,sNy+OLy
-          DO i=1-OLx,sNx+OLx
-           viscAh_W(i,j,k,bi,bj) = viscAhW
-           viscA4_W(i,j,k,bi,bj) = viscA4W
-          ENDDO
-         ENDDO
-        ENDDO
-       ENDDO
-      ENDDO
-
 #endif /* ALLOW_NONHYDROSTATIC */
       RETURN
       END
