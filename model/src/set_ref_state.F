@@ -36,7 +36,7 @@ C     == Routine arguments ==
 
 C     !LOCAL VARIABLES:
 C     == Local variables ==
-C     msgBuf :: Informational/error meesage buffer
+C     msgBuf :: Informational/error message buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       INTEGER k, ks, stdUnit
       _RL rHalf(2*Nr+1)
