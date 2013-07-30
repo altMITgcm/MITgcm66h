@@ -66,6 +66,7 @@ C--   On/Off flags for each terms of the momentum equation
       implicitIntGravWave=momPressureForcing .AND. implicitIntGravWave
       momImplVertAdv   = momAdvection .AND. momImplVertAdv
       implicitViscosity= momViscosity .AND. implicitViscosity
+      useSmag3D        = momViscosity .AND. useSmag3D
       use3Dsolver      = nonHydrostatic.OR. implicitIntGravWave
       calc_wVelocity   = momStepping .OR. exactConserv
 

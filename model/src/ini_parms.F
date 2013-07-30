@@ -174,7 +174,7 @@ C--   Continuous equation parameters
      & selectCoriMap, f0, beta, fPrime, omega, rotationPeriod,
      & viscAh, viscAhW, viscAhMax,
      & viscAhGrid, viscAhGridMax, viscAhGridMin,
-     & viscC2leith, viscC4leith,
+     & viscC2leith, viscC4leith, smag3D_coeff, useSmag3D,
      & useFullLeith, useAnisotropicViscAgridMax, useStrainTensionVisc,
      & useAreaViscLength,
      & viscC2leithD, viscC4leithD, viscC2smag, viscC4smag,
