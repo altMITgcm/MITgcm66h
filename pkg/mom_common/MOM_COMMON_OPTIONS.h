@@ -12,6 +12,9 @@ C Use this file for selecting CPP options within the mom_common package
 #ifdef ALLOW_MOM_COMMON
 C     Package-specific options go here
 
+C allow isotropic 3-D Smagorinsky viscosity
+#undef ALLOW_SMAG_3D
+
 C allow full 3D specification of horizontal Laplacian Viscosity
 #undef ALLOW_3D_VISCAH
 
