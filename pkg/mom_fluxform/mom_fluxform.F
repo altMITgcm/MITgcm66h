@@ -350,7 +350,6 @@ C-    Free surface correction term (flux at k=1)
 C---  endif momAdvection & k=1
       ENDIF
 
-
 C---  Calculate vertical transports (at k+1) below U & V points :
       IF (momAdvection) THEN
         CALL MOM_CALC_RTRANS( k+1, bi, bj,
@@ -369,10 +368,20 @@ C---  Calculate vertical transports (at k+1) below U & V points :
 #endif /* MOM_BOUNDARY_CONSERVE */
 
       IF (momViscosity) THEN
-       CALL MOM_CALC_VISC( bi, bj, k,
-     O        viscAh_Z, viscAh_D, viscA4_Z, viscA4_D,
-     I        hDiv, vort3, tension, strain, KE, hFacZ,
-     I        myThid )
+       DO j=1-OLy,sNy+OLy
+        DO i=1-OLx,sNx+OLx
+         viscAh_D(i,j) = viscAhD
+         viscAh_Z(i,j) = viscAhZ
+         viscA4_D(i,j) = viscA4D
+         viscA4_Z(i,j) = viscA4Z
+        ENDDO
+       ENDDO
+       IF ( useVariableVisc ) THEN
+        CALL MOM_CALC_VISC( bi, bj, k,
+     O           viscAh_Z, viscAh_D, viscA4_Z, viscA4_D,
+     I           hDiv, vort3, tension, strain, KE, hFacZ,
+     I           myThid )
+       ENDIF
       ENDIF
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
