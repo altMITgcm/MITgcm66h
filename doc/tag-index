@@ -6,6 +6,8 @@ $Name$
 
 o model/src:
   - in dynamics.F, skip the call to CALC_VISCOSITY if momViscosity=F
+  - main_do_loop.F: no longer includes additional (AUTODIFF) header files
+    when using TAF but only if using OpenAD.
 o pkg/mom_common+fluxform+vecinv:
   - always set horiz. viscosity arrays to background value before calling
     MOM_CALC_VISC (in MOM_FLUXFORM & MOM_VECINV) and call S/R MOM_CALC_VISC
