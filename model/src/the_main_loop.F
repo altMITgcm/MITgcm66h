@@ -210,6 +210,9 @@ C     == Functions ==
 C     !LOCAL VARIABLES:
 C     == Local variables ==
       INTEGER iloop
+#ifdef STORE_LOADEDREC_TEST
+      INTEGER bi,bj
+#endif /* STORE_LOADEDREC_TEST */
 CEOP
 
 #ifdef ALLOW_DEBUG
@@ -489,6 +492,14 @@ CADJ &     = COMMON,nchklev_1*nthreads_chkpt*numItersMax
 #   endif
 c--
 c**************************************
+
+#ifdef STORE_LOADEDREC_TEST
+          DO bj = myByLo(myThid), myByHi(myThid)
+           DO bi = myBxLo(myThid), myBxHi(myThid)
+            loadedRec(bi,bj) = 0
+           ENDDO
+          ENDDO
+#endif /* STORE_LOADEDREC_TEST */
 
 #ifdef ALLOW_TAMC_CHECKPOINTING
 
