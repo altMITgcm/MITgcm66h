@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src:
+  - in dynamics.F, skip the call to CALC_VISCOSITY if momViscosity=F
 o pkg/mom_common+fluxform+vecinv:
   - always set horiz. viscosity arrays to background value before calling
     MOM_CALC_VISC (in MOM_FLUXFORM & MOM_VECINV) and call S/R MOM_CALC_VISC
