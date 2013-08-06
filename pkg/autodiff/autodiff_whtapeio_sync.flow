@@ -11,3 +11,4 @@ cadj SUBROUTINE autodiff_whtapeio_sync DEPEND  = 1, 2, 3
 cadj SUBROUTINE autodiff_whtapeio_sync REQUIRED
 cadj SUBROUTINE autodiff_whtapeio_sync INFLUENCED
 cadj SUBROUTINE autodiff_whtapeio_sync FTLNAME = autodiff_whtapeio_sync
+c$taf SUBROUTINE autodiff_whtapeio_sync ADNAME=adautodiff_whtapeio_sync
