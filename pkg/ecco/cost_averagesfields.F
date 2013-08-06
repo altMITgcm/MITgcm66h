@@ -93,8 +93,8 @@ c     == local variables ==
       logical startofgen(NGENCOST)
       logical endofgen(NGENCOST)
       logical ingen(NGENCOST)
-      logical sum1gen(NGENCOST)
-      logical genrec(NGENCOST)
+      integer sum1gen(NGENCOST)
+      integer genrec(NGENCOST)
 #endif
 #if (defined (ALLOW_CTRL) && \
      defined (ALLOW_GENTIM2D_CONTROL) && \
