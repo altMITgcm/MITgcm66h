@@ -642,8 +642,8 @@ C          Meridional thickness flux at the southern cell face
       ENDDO
 
 C     Calculate gradq
-      IF (GM_K3D_likeGM) THEN
-C       To make it similar to GM, we ignore beta
+      IF (GM_K3D_likeGM .OR. GM_K3D_beta_eq_0) THEN
+C       Ignore beta in the calculation of grad(q)
         DO k=1,Nr
          DO j=1-Oly+1,sNy+Oly
           DO i=1-Olx+1,sNx+Olx
