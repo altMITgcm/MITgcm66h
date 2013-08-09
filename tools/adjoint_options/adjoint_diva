@@ -26,9 +26,9 @@ SVD_TAF_FLAGS="-reverse -forward -pure -i4 -r4 -intrinsic system,flush -l taf_sv
 
 #- using DIVA, we need to show some MPI code to TAF:
 if test "x$MPI" != x ; then
-  AD_TAF_FLAGS="$AD_TAF_FLAGS"' -include $(LOCAL_MPI_HEADERS) -I./mpi_headers/'
-  FLT_TAF_FLAGS="$FLT_TAF_FLAGS"' -include $(LOCAL_MPI_HEADERS) -I./mpi_headers/'
-  SVD_TAF_FLAGS="$SVD_TAF_FLAGS"' -include $(LOCAL_MPI_HEADERS) -I./mpi_headers/'
+  AD_TAF_FLAGS="$AD_TAF_FLAGS"' -mpi -include $(LOCAL_MPI_HEADERS) -I./mpi_headers/'
+  FLT_TAF_FLAGS="$FLT_TAF_FLAGS"' -mpi -include $(LOCAL_MPI_HEADERS) -I./mpi_headers/'
+  SVD_TAF_FLAGS="$SVD_TAF_FLAGS"' -mpi -include $(LOCAL_MPI_HEADERS) -I./mpi_headers/'
 fi
 
 DIFF_FLAGS="-toplevel 'the_main_loop'    \
