@@ -3,8 +3,8 @@
 #  $Header$
 #  $Name$
 
-#  This AD option-file contains the default settings for the adjoint and
-#  tangent-linear compilers.  If you need to change these settings,
+#  This AD option-file contains the default settings for the adjoint
+#  and tangent-linear compilers.  If you need to change these settings,
 #  please make a separate (local) copy of this file.
 
 # TAMC=/data43/ralf/tamc/tamc
