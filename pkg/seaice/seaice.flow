@@ -1,0 +1,9 @@
+C $Header$
+C $Name$
+
+C----------------------------------------
+C FUNCTION  SEAICE_DIAG_SUFX
+C----------------------------------------
+CADJ FUNCTION SEAICE_DIAG_SUFX INPUT  = 1,2
+CADJ FUNCTION SEAICE_DIAG_SUFX OUTPUT =
+
