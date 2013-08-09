@@ -102,7 +102,7 @@ C--   Error checks
      &  STOP ' S/R EXCH1_RX: myOLw .GT. MAX_OLX_EXCH'
       IF ( myOLe      .GT. MAX_OLX_EXCH )
      &  STOP ' S/R EXCH1_RX: myOLe .GT. MAX_OLX_EXCH'
-      IF ( myOLn      .GT. MAX_OLX_EXCH )
+      IF ( myOLn      .GT. MAX_OLY_EXCH )
      &  STOP ' S/R EXCH1_RX: myOLn .GT. MAX_OLY_EXCH'
       IF ( myOLs      .GT. MAX_OLY_EXCH )
      &  STOP ' S/R EXCH1_RX: myOLs .GT. MAX_OLY_EXCH'
