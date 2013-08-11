@@ -14,9 +14,6 @@ C     here. Notes describing the parameters can also be found here.
 
 CEOP
 
-C     Macros for special grid options
-#include "PARAMS_MACROS.h"
-
 C--   Contants
 C     Useful physical values
       Real*8 PI
