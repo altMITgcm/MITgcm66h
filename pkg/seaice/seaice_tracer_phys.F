@@ -15,6 +15,7 @@ C     *=======================================================*
 C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
+#include "PARAMS.h"
 #include "FFIELDS.h"
 #include "DYNVARS.h"
 #include "SEAICE_SIZE.h"
@@ -190,12 +191,12 @@ c ice melt reduces ridges/roughness
 c 3) ice-ocean tracer exchange/mapping to external variables
 c ==========================================================
 #ifdef ALLOW_DIAGNOSTICS
-      if (SItrMate(iTr).EQ.'HEFF') then
+      IF ( useDiagnostics .AND. SItrMate(iTr).EQ.'HEFF') THEN
         WRITE(diagName,'(A4,I2.2,A2)') 'SItr',iTr,'Fx'
         tmpscal1=-ONE/SEAICE_deltaTtherm*SEAICE_rhoIce
         CALL DIAGNOSTICS_SCALE_FILL(SItrBucket(1-OLx,1-OLy,bi,bj,iTr),
      &   tmpscal1, 1, diagName,0,1,2,bi,bj,myThid)
-      endif
+      ENDIF
 #endif
 
       if ( (SItrName(iTr).EQ.'salinity').AND.
