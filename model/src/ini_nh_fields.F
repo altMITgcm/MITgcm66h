@@ -41,9 +41,12 @@ C     myThid  :: My Thread Id number
 C     !LOCAL VARIABLES:
 C     == Local variables ==
       INTEGER bi,bj
-      INTEGER i,j,k
+      INTEGER i,j
       INTEGER ks
       CHARACTER*(MAX_LEN_MBUF) msgBuf
+#ifdef NONLIN_FRSURF
+      INTEGER k
+#endif
 CEOP
 
       IF ( startTime .EQ. baseTime .AND.  nIter0 .EQ. 0
