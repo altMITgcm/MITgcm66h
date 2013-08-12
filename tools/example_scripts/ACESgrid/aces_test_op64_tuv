@@ -71,6 +71,8 @@ if [ $checkOut -eq 1 ] ; then
         fi
       done )
 #   ( cd $gcmDIR/verification ; ../tools/do_tst_2+2 -clean )
+#- clean-up previous TAF output temp dir (generated on old system like here)
+#   ( cd $gcmDIR/verification ; /bin/rm -rf  */build/PaxHeaders.[0-9]* )
     echo "cvs update of dir $gcmDIR :"
     ( cd $gcmDIR ; cvs -q $cvsArg update -P -d ) 2>&1
     RETVAL=$?
