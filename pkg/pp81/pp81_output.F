@@ -161,7 +161,9 @@ C-    end if PPtaveFreq > 0
 #endif /* ALLOW_TIMEAVE */
 
 #ifdef ALLOW_DIAGNOSTICS
-      IF ( useDiagnostics ) THEN
+C- note: should move this part to S/R MY82_CALC (like we do in pkg/ggl90)
+C     do not fill during call from INITIALISE_VARIA
+      IF ( useDiagnostics .AND. myIter.NE.nIter0 ) THEN
        CALL DIAGNOSTICS_FILL(PPviscAr,'PPviscAr',0,Nr,0,1,1,myThid)
        CALL DIAGNOSTICS_FILL(PPdiffKr,'PPdiffKr',0,Nr,0,1,1,myThid)
       ENDIF
