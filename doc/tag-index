@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint64m (2013/08/13)
 o model/inc:
   - move FCORI_MACROS.h from PARAMS(_MACROS).h to GRID_MACROS.h (left from
     8 yrs ago modif when Coriolis arrays were moved from PARAMS.h to GRID.h)
