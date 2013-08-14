@@ -82,7 +82,8 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       ENDDO
 
 C--   Diagnostics definition/setting starts here (can now add diags to list)
-      settingDiags = .TRUE.
+c     IF ( diag_pkgStatus.NE.1 ) STOP
+      diag_pkgStatus = ready2setDiags
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 C     For each output variable,

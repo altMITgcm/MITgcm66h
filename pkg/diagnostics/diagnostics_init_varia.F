@@ -29,26 +29,32 @@ CEOP
 C     !LOCAL VARIABLES:
       INTEGER i,j,k,bi,bj
 
-C     Zero out the qdiag array which accumulates during integration
+C--   Track diagnostics pkg activation status:
+      _BEGIN_MASTER( myThid )
+c      IF ( diag_pkgStatus.NE.3 ) STOP
+       diag_pkgStatus = 10
+      _END_MASTER( myThid )
+
+C--   Zero out the qdiag array which accumulates during integration
       DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
           DO k = 1,numDiags
-            DO j = 1-Oly,sNy+Oly
-              DO i = 1-Olx,sNx+Olx
+            DO j = 1-OLy,sNy+OLy
+              DO i = 1-OLx,sNx+OLx
                 qdiag(i,j,k,bi,bj) = 0. _d 0
               ENDDO
             ENDDO
-C     Zero out the counters for the qdiag array
+C-    Zero out the counters for the qdiag array
             ndiag(k,bi,bj) = 0
           ENDDO
-          DO k = 1,numlists
-C     Zero out the index array for periodic averaging diagnostic
+          DO k = 1,numLists
+C-    Zero out the index array for periodic averaging diagnostic
             pdiag(k,bi,bj) = 0
           ENDDO
         ENDDO
       ENDDO
 
-C     Zero out the qSdiag array (statistics) which accumulates during integration
+C--   Zero out the qSdiag array (statistics) which accumulates during integration
       DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
           DO k = 1,diagSt_size
