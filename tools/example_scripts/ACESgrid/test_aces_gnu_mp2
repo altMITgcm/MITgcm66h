@@ -2,7 +2,7 @@
 #
 #PBS -q one
 #PBS -N tst_mp2
-#PBS -l nodes=1:ppn=6
+#PBS -l nodes=1:ppn=12
 #PBS -e /data/jm_c/test_acesgrid/output/tst_mp2.stderr
 #PBS -o /data/jm_c/test_acesgrid/output/tst_mp2.stdout
 
