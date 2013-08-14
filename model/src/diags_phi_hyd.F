@@ -120,7 +120,8 @@ c          totPhiHyd(i,j,k,bi,bj) = phiHydCstR(i,j)
         ENDDO
        ENDIF
 #ifdef ALLOW_DIAGNOSTICS
-       IF ( useDiagnostics ) THEN
+C--    skip diagnostics if called from INI_PRESSURE
+       IF ( useDiagnostics .AND. myIter.GE.0 ) THEN
         CALL DIAGNOSTICS_FILL(phiHydCstR,'PHIHYDcR',k,1,2,bi,bj,myThid)
        ENDIF
 #endif /* ALLOW_DIAGNOSTICS */
