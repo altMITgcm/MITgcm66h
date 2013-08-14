@@ -74,6 +74,13 @@ C     ndId      :: diagnostic Id number (in available diagnostics list)
       _RS     dummyRS(1)
 C ===============
 
+C--   Check if this S/R is called from the right place ;
+C     needs to be after DIAGNOSTICS_SWITCH_ONOFF and before DIAGNOSTICS_WRITE
+      IF ( diag_pkgStatus.NE.ready2fillDiags ) THEN
+        CALL DIAGNOSTICS_STATUS_ERROR( 'DIAGNOSTICS_SCALE_FILL',
+     &                   ' ', chardiag, ready2fillDiags, myThid )
+      ENDIF
+
       arrType = 0
       IF ( bibjFlg.EQ.0 ) THEN
         bi = myBxLo(myThid)
