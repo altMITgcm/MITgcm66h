@@ -319,7 +319,7 @@ C--   Initialize SBO parameters
 #endif
 
 #ifdef ALLOW_ATM_PHYS
-C -- initialize ATm_Phys parameters
+C -- initialize Atm_Phys parameters
       IF (useAtm_Phys) CALL ATM_PHYS_READPARMS( myThid )
 #endif
 
@@ -329,8 +329,9 @@ C--   set model date and time and other fizhi parameters
 #endif /* ALLOW_FIZHI */
 
 #ifdef ALLOW_DIAGNOSTICS
-C--   set diagnostics choices
-      IF ( useDiagnostics ) CALL DIAGNOSTICS_READPARMS( myThid )
+C--   if useDiagnostics=T, set diagnostics choices
+C      otherwise, just set pkgStatus=-1 and return
+      CALL DIAGNOSTICS_READPARMS( myThid )
 #endif /* ALLOW_DIAGNOSTICS */
 
 #ifdef ALLOW_REGRID
