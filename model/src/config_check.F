@@ -624,6 +624,22 @@ c     ENDIF
      &                      SQUEEZE_RIGHT, myThid )
       ENDIF
 
+C--   Pressure calculation and pressure gradient:
+#ifndef INCLUDE_PHIHYD_CALCULATION_CODE
+      IF ( momPressureForcing .OR. useDynP_inEos_Zc ) THEN
+        WRITE(msgBuf,'(2A)') 'CONFIG_CHECK: ',
+     &   'missing code to calculate pressure (totPhiHyd)'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        errCount = errCount + 1
+      ENDIF
+#endif /* INCLUDE_PHIHYD_CALCULATION_CODE */
+      IF ( useDynP_inEos_Zc .AND. .NOT.momStepping ) THEN
+        WRITE(msgBuf,'(2A)') 'CONFIG_CHECK: ',
+     &   'useDynP_inEos_Zc = TRUE but pressure is not computed'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        errCount = errCount + 1
+      ENDIF
+
 C--   Non-hydrostatic and 3-D solver related limitations:
       IF (nonlinFreeSurf.NE.0 .AND. use3Dsolver) THEN
         WRITE(msgBuf,'(A)')
