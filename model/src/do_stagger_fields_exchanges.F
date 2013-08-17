@@ -32,6 +32,9 @@ C     myThid  :: Thread number for this instance of the routine.
       INTEGER myThid
 CEOP
 
+      IF ( .NOT.useOffLine ) THEN
+C-    Apply Exchanges on dynamics state variable, except in Off-Line mode
+
 C- note: use less common EXCH S/R here (instead of usual ones) to
 C        force TAF to also generate AD version for these rare ones
       IF ( staggerTimeStep .AND. useMultiDimAdvec) THEN
@@ -50,6 +53,9 @@ c       _EXCH_XYZ_RL( gS , myThid )
         CALL EXCH_SM_3D_RL( gS, .FALSE., Nr, myThid )
       ENDIF
 c #endif
+
+C-    if not useOffLine: end
+      ENDIF
 
       RETURN
       END
