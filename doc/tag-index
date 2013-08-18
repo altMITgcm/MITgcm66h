@@ -4,6 +4,16 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/exf:
+  - in exf_getforcing.F: comment out most of the EXCH calls (fields used by
+    main model or other pkgs are exchanged in EXF_MAPFIELDS).
+o model/src:
+  - do_stagger_fields_exchanges.F: skip EXCH calls when using pkg/offline
+    (similar to do_fields_blocking_exchanges.F).
+o tools/genmake2:
+  - remove TAF output src code just before calling staf (when not doing a fresh
+    built, will stop if things go wrong with staf).
+  - fix target "adobj" (left from TAF version-2 transition)
 o pkg/diagnostics:
   - add a parameter to track the status of pkg/diagnostics activation;
     this replace/extend the use of logical param "settingDiags" (to check
