@@ -193,7 +193,7 @@ case $1 in
  '-getOnly') action=2 ; shift ;;
  '-sub+get') action=3 ; shift ;;
  '-double' ) action=4 ; shift ;;
-          *) action=3 ;;
+          *) action=1 ;;
 esac
 #echo "action= $action , Arg= $# "
 

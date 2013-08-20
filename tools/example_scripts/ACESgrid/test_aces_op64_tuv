@@ -36,7 +36,6 @@ sfx='tuv'
 #- need this to get "staf":
 export PATH="$PATH:$HOME/bin"
 
-
 dAlt=`date +%d` ; dAlt=`expr $dAlt % 3`
 if [ $dAlt -eq 1 ] ; then options="-adm -do -devel" ; fi
 
@@ -115,10 +114,17 @@ else
   exit
 fi
 
-echo ./testreport $options -of $OPTFILE -odir ${dNam}-$sfx
-./testreport $options -of $OPTFILE -odir ${dNam}-$sfx
+SavD="$HOME/test_$dNam/send"
+SEND="ssh login $SavD/mpack"
+
+echo ./testreport $options -of $OPTFILE -odir ${dNam}-$sfx \
+  -send \"$SEND\" -sd $SavD -a jmc@mitgcm.org
+./testreport $options -of $OPTFILE -odir ${dNam}-$sfx \
+  -send "$SEND" -sd $SavD -a jmc@mitgcm.org
 
 #echo ''
-#echo ../tools/do_tst_2+2 -o ${dNam}-$sfx -a NONE
-#../tools/do_tst_2+2 -o ${dNam}-$sfx -a NONE
+##echo ../tools/do_tst_2+2 -o ${dNam}-$sfx -a NONE
+##../tools/do_tst_2+2 -o ${dNam}-$sfx -a NONE
+#echo ../tools/do_tst_2+2 -o ${dNam}-$sfx -send \"$SEND\" -sd $SavD -a jmc@mitgcm.org
+#../tools/do_tst_2+2 -o ${dNam}-$sfx -send "$SEND" -sd $SavD -a jmc@mitgcm.org
 

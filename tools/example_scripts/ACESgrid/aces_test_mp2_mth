@@ -126,10 +126,19 @@ if test -x $HERE/$check_sh ; then
    ( cd $HERE ; ./$check_sh > ${check_sh}.log 2>&1 ) &
 fi
 
-echo ./testreport $options -of $OPTFILE -command \"$EXE\" -odir ${dNam}-$sfx
-./testreport $options -of $OPTFILE -command "$EXE" -odir ${dNam}-$sfx
+SavD="$HOME/test_$dNam/send"
+SEND="ssh geo $SavD/mpack"
+
+echo ./testreport $options -of $OPTFILE -command \"$EXE\" -odir ${dNam}-$sfx \
+  -send \"$SEND\" -sd $SavD -a jmc@mitgcm.org
+./testreport $options -of $OPTFILE -command "$EXE" -odir ${dNam}-$sfx \
+  -send "$SEND" -sd $SavD -a jmc@mitgcm.org
 
 #echo ''
-#echo ../tools/do_tst_2+2 -mpi -mf $PBS_NODEFILE -exe \"$EXE\" -o ${dNam}-$sfx -a NONE
-#../tools/do_tst_2+2 -mpi -mf $PBS_NODEFILE -exe "$EXE" -o ${dNam}-$sfx -a NONE
+#echo ../tools/do_tst_2+2 -mpi -mf $PBS_NODEFILE -exe \"$EXE\" -o ${dNam}-$sfx \
+#  -send \"$SEND\" -sd $SavD -a jmc@mitgcm.org
+## -a NONE
+#../tools/do_tst_2+2 -mpi -mf $PBS_NODEFILE -exe "$EXE" -o ${dNam}-$sfx \
+#  -send "$SEND" -sd $SavD -a jmc@mitgcm.org
+## -a NONE
 

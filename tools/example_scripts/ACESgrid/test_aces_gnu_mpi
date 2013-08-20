@@ -111,6 +111,11 @@ else
   exit
 fi
 
-echo ./testreport $options -of $OPTFILE -command \"$EXE\" -odir ${dNam}-$sfx
-./testreport $options -of $OPTFILE -command "$EXE" -odir ${dNam}-$sfx
+SavD="$HOME/test_$dNam/send"
+SEND="ssh login $SavD/mpack"
+
+echo ./testreport $options -of $OPTFILE -command \"$EXE\" -odir ${dNam}-$sfx \
+  -send \"$SEND\" -sd $SavD -a jmc@mitgcm.org
+./testreport $options -of $OPTFILE -command "$EXE" -odir ${dNam}-$sfx \
+  -send "$SEND" -sd $SavD -a jmc@mitgcm.org
 

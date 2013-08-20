@@ -108,9 +108,14 @@ else
   exit
 fi
 
+SavD="$HOME/test_$dNam/send"
+SEND="ssh geo $SavD/mpack"
+
 # avoid hanging in fizhi-cs-32x32x40 (due to I/O problems with g77)
 echo ./testreport $options -of $OPTFILE -command \"$EXE\" -odir ${dNam}-$sfx \
- -skd fizhi-cs-32x32x40
+  -send \"$SEND\" -sd $SavD -a jmc@mitgcm.org -skd fizhi-cs-32x32x40
+# -skd fizhi-cs-32x32x40
 ./testreport $options -of $OPTFILE -command "$EXE" -odir ${dNam}-$sfx \
- -skd fizhi-cs-32x32x40
+  -send "$SEND" -sd $SavD -a jmc@mitgcm.org -skd fizhi-cs-32x32x40
+# -skd fizhi-cs-32x32x40
 
