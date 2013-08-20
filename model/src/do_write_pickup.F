@@ -85,7 +85,7 @@ C-    write a pickup for each package which need it to restart
      I                permPickup, myTime, myIter, myThid )
 
 C-    write main model pickup
-        IF ( .NOT.useOffLine ) THEN
+        IF ( .NOT.useOffLine .OR. nonlinFreeSurf.GT.0 ) THEN
            CALL WRITE_PICKUP(
      I                permPickup, myTime, myIter, myThid )
         ENDIF

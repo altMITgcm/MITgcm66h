@@ -37,7 +37,7 @@ C     Set model variables to initial/restart conditions
 #ifdef INCLUDE_EP_FORCING_CODE
         CALL INI_EP( myThid )
 #endif
-      ELSEIF ( .NOT.useOffLine ) THEN
+      ELSEIF ( .NOT.useOffLine .OR. nonlinFreeSurf.GT.0 ) THEN
         CALL READ_PICKUP( nIter0, myThid )
 
 c       IF (pickup_write_immed) THEN
