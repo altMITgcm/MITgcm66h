@@ -370,7 +370,7 @@ genmakemodel()
 	    if test $KIND = 1 -o $KIND = 2 ; then
 		command="$command --mods=../code_ad"
 	    elif test $KIND = 4 ; then
-		command="$command -adof ../../../tools/adjoint_options/adjoint_oad -mods '../code_oad ../../OpenAD/code_oad_all'"
+		command="$command -adof ../../../tools/adjoint_options/adjoint_oad -mods ../code_oad"
 	    else
 		command="$command -mods=../code"
 	    fi
