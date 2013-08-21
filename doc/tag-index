@@ -4,6 +4,13 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o adjoint with OpenAD:
+  - move OpenAD-specific files from verification/OpenAD/code_oad_all to a new
+    package openad.  This package has to be compiled for all runs with OpenAD
+    instead of specifying code_oad_all as a modification directory.
+  - link the fortran templates from tools/OAD_support to the build directory
+    for preprocessing to avoid conflicts between different setups compiled
+    simultaneously and simplify cleanup.
 o pkg/exf:
   - in exf_getforcing.F: comment out most of the EXCH calls (fields used by
     main model or other pkgs are exchanged in EXF_MAPFIELDS).
