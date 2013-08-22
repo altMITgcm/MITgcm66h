@@ -50,12 +50,12 @@ C     !USES:
 C     == Global variables ===
 #include "EEPARAMS.h"
 #include "SIZE.h"
-#include "THSICE_SIZE.h"
 #include "THSICE_PARAMS.h"
-#include "THSICE_VARS.h"
 #ifdef ALLOW_AUTODIFF_TAMC
 # include "tamc.h"
 # include "tamc_keys.h"
+#include "THSICE_SIZE.h"
+c#include "THSICE_VARS.h"
 # ifdef ALLOW_EXF
 #  include "EXF_FIELDS.h"
 #  include "EXF_PARAM.h"
