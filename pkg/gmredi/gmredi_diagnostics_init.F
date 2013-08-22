@@ -387,7 +387,7 @@ c     IF ( useDiagnotics ) THEN
         
         diagName  = 'GM_Xix  '
         diagTitle = '-k dq/dx expansion'
-        diagUnits = '1/(m*s)         '
+        diagUnits = 'm/s**2          '
         diagCode  = 'UU      MR      '
         diagMate  = diagNum
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
@@ -395,7 +395,7 @@ c     IF ( useDiagnotics ) THEN
         
         diagName  = 'GM_Xiy  '
         diagTitle = '-k dq/dy expansion'
-        diagUnits = '1/(m*s)         '
+        diagUnits = 'm/s**2          '
         diagCode  = 'VV      MR      '
         diagMate  = diagNum
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
