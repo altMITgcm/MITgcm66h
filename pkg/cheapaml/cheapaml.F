@@ -760,6 +760,10 @@ C--   end bi,bj loops
 #endif /*  ALLOW_SEAGER */
 
 #ifdef ALLOW_DIAGNOSTICS
+C- note: with thSIce, CH_QNET and CH_EmP correspond to the fluxes over the
+C     open-ocean fraction of the grid-cell (similar to EXFqnet and EXFempmr).
+C     Use instead diagnostics SIflxAtm & SIfrwAtm to get the grid-cell
+C      averaged (open-ocean fraction + ice-covered fraction).
       IF ( useDiagnostics ) THEN
        CALL DIAGNOSTICS_FILL(uWind,  'CH_Uwind',0,1,0,1,1,myThid)
        CALL DIAGNOSTICS_FILL(vWind,  'CH_Vwind',0,1,0,1,1,myThid)
