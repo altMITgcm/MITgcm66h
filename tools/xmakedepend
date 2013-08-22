@@ -37,17 +37,17 @@ fi
 
 silent='-'
 
-TMP=./mdep$$
+#TMP=./mdep$$
 #- try to put temporary files in system-local /tmp dir
-#TMP=/tmp/mdep$$
-#touch $TMP ; retVal=$?
-#if [ $retVal -eq 0 ] ; then
-#  if test ! -r $TMP ; then TMP=./mdep$$ ; fi
-#else
-#  TMP=./mdep$$
-#fi
-#rm -f $TMP
-##echo "temp files: $TMP"
+TMP=/tmp/mdep$$
+touch $TMP ; retVal=$?
+if [ $retVal -eq 0 ] ; then
+  if test ! -r $TMP ; then TMP=./mdep$$ ; fi
+else
+  TMP=./mdep$$
+fi
+rm -f $TMP
+#echo "temp files: $TMP"
 
 CPPCMD=${TMP}a
 DEPENDLINES=${TMP}b
