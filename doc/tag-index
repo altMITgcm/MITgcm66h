@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o verification/halfpipe_streamice:
+  - change to matrix construction; update both Fwd & AD output.
 o verification/tutorial_tracer_adjsens:
   - OpenAD test: switch to vector-invariant momentum since fluxform with
     rStar causes problems with OpenAD; update output.
