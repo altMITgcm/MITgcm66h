@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint64n (2013/08/26)
 o verification/halfpipe_streamice:
   - change to matrix construction; update both Fwd & AD output.
 o verification/tutorial_tracer_adjsens:
