@@ -33,15 +33,15 @@ C     iUnit      :: Work variable for IO unit number
       INTEGER iUnit
 
       NAMELIST /BBL_PARM01/
-     &     bbl_RelaxH, bbl_RelaxR, bbl_InitEta,
+     &     bbl_wvel, bbl_hvel, bbl_initEta,
      &     bbl_thetaFile, bbl_saltFile, bbl_etaFile
 
       _BEGIN_MASTER(myThid)
 
 C--   Default values for BBL
-      bbl_RelaxH    =   86400. _d 0
-      bbl_RelaxR    = 2592000. _d 0
-      bbl_InitEta   =      20. _d 0
+      bbl_wvel      = 1. _d -5
+      bbl_hvel      = 1. _d 0
+      bbl_initEta   = 20. _d 0
 
 C-    file names for initial conditions:
       bbl_thetaFile = ' '

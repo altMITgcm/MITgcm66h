@@ -37,12 +37,12 @@ C     msgBuf   :: Informational/error message buffer
      &                     SQUEEZE_RIGHT , 1)
 
 C--  Print out some key parameters :
-       CALL WRITE_0D_RL( bbl_RelaxH, INDEX_NONE,
-     &  'bbl_RelaxH =', ' /* horizontal transfer coefficient */')
-       CALL WRITE_0D_RL( bbl_RelaxR, INDEX_NONE,
-     &  'bbl_RelaxR =', ' /* vertical transfer coefficient */')
-       CALL WRITE_0D_RL( bbl_InitEta, INDEX_NONE,
-     &  'bbl_InitEta =', ' /* default bbl thickness */')
+       CALL WRITE_0D_RL( bbl_wvel, INDEX_NONE,
+     &  'bbl_wvel =', ' /* vertical entrainment (m/s) */')
+       CALL WRITE_0D_RL( bbl_hvel, INDEX_NONE,
+     &  'bbl_hvel =', ' /* horizontal velocity (m/s) */')
+       CALL WRITE_0D_RL( bbl_initEta, INDEX_NONE,
+     &  'bbl_initEta =', ' /* default thickness (m) */')
 
 C--  Check parameters:
 
