@@ -345,7 +345,15 @@ c     IF ( useDiagnotics ) THEN
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I    diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
         
-        diagName  = 'GM_LRHNS'
+        diagName  = 'GM_RURMS'
+        diagTitle = 'Mixing length for calculating u_rms'
+        diagUnits = 'm               '
+        diagCode  = 'SM P    M1      '
+        diagMate  = diagNum
+        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
+        
+        diagName  = 'GM_RRHNS'
         diagTitle = 'Rhines Radius'
         diagUnits = 'm               '
         diagCode  = 'SM P    M1      '
