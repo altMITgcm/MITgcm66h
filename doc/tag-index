@@ -4,6 +4,12 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/atm_compon_interf:
+  - regroup per field origin (model & pkgs) the coupling storage routines
+     (which accumalate in time each coupling field)
+  - move bi,bj loops inside atm_store_my_data.F and store also wind-stress; 
+    update accordingly + simplify aim_do_physics.F
+
 checkpoint64n (2013/08/26)
 o pkg/bbl:
   - update formulation to reduce dispersion of tracer properties in bbl
