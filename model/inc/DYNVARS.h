@@ -49,6 +49,10 @@ C           implicDiv2DFlow=1 => etaH=etaN ; =0 => etaH=etaN^(n-1);
       _RL  uVel (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  vVel (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  wVel (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+#ifdef ALLOW_EDDYPSI
+      _RL  uMean(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      _RL  vMean(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+#endif
       _RL  theta(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  salt (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  gU(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
@@ -98,6 +102,12 @@ cph header file containing requires anomaly fields of control vars.
       _RL  bottomdragFld (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 #endif
 cph)
+#ifdef ALLOW_EDDYPSI
+      COMMON /DYNVARS_EDDYPSI/ tauxEddy,tauyEddy
+
+      _RL tauxEddy(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      _RL tauyEddy(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+#endif
 
 #ifdef ALLOW_BL79_LAT_VARY
 C     BL79LatArray :: is used for latitudinal dependence of
