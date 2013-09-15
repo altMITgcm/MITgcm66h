@@ -51,6 +51,10 @@ C-      3D arrays
            uVel (i,j,k,bi,bj) = 0. _d 0
            vVel (i,j,k,bi,bj) = 0. _d 0
            wVel (i,j,k,bi,bj) = 0. _d 0
+#ifdef ALLOW_EDDYPSI
+           uMean(i,j,k,bi,bj) = 0. _d 0
+           vMean(i,j,k,bi,bj) = 0. _d 0
+#endif
            theta(i,j,k,bi,bj) = 0. _d 0
            salt (i,j,k,bi,bj) = 0. _d 0
 

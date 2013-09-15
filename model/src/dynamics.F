@@ -116,6 +116,8 @@ C      |-- CALC_GRAD_PHI_SURF
 C      |
 C      |-- CALC_VISCOSITY
 C      |
+C      |-- CALC_EDDY_STRESS
+C      |
 C      |-- CALC_PHI_HYD
 C      |
 C      |-- MOM_FLUXFORM
@@ -418,6 +420,10 @@ C     (copied) to a narrow strip outside the domain
      I         Nr, bi, bj, myThid )
         ENDIF
 #endif /* ALLOW_OBCS */
+
+#ifdef ALLOW_EDDYPSI
+        CALL CALC_EDDY_STRESS(bi,bj,myThid)
+#endif
 
 C--     Start of dynamics loop
         DO k=1,Nr
