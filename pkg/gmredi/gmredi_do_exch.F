@@ -1,6 +1,7 @@
 C $Header$
 C $Name$
 
+#include "CPP_OPTIONS.h"
 #include "GMREDI_OPTIONS.h"
 
 CBOP
@@ -37,6 +38,9 @@ CEOP
 C     !LOCAL VARIABLES:
 
 #ifdef GM_BOLUS_ADVEC
+#ifdef ALLOW_EDDYPSI
+      IF ( GM_InMomAsStress ) THEN
+#else
 C     For multi-dim advection, need valid bolus velocity in halo regions
 C     near CS-corners: Because of sigmaR averaging @ U & V points, that
 C     would require calling FILL_CS_CORNER_TR before each averaging (similar
@@ -47,6 +51,7 @@ C     with GM-bolus 2-D mapping factor (GM_bolFac2d).
      &     .AND. GM_AdvForm
      &     .AND. .NOT.GM_AdvSeparate
      &     .AND. useMultiDimAdvec ) THEN
+#endif
 #ifdef ALLOW_DEBUG
         IF (debugMode) CALL DEBUG_CALL('EXCH_UV(GM_PsiX,Y)',myThid)
 #endif

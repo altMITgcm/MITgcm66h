@@ -265,10 +265,18 @@ C     Make sure we are not trying to use some arrays that are unavailable
 
       IF ( GM_InMomAsStress ) THEN
 #ifdef ALLOW_EDDYPSI
-       WRITE(msgBuf,'(A)')
-     &   ' GMREDI_CHECK: Bug in ALLOW_EDDYPSI with GM_InMomAsStress'
-       CALL PRINT_ERROR( msgBuf, myThid )
-       STOP 'ABNORMAL END: S/R GMREDI_CHECK'
+        IF (.NOT. GM_AdvForm) THEN
+          WRITE(msgBuf,'(2A)') ' GMREDI_CHECK: ',
+     &         'GM_InMomAsStress=.TRUE. but GM_AdvForm=.FALSE.'
+          CALL PRINT_ERROR( msgBuf, myThid )
+          STOP 'ABNORMAL END: S/R GMREDI_CHECK'
+        ENDIF
+        IF (.NOT. GM_useK3D) THEN
+          WRITE(msgBuf,'(3A)')
+     &         ' GMREDI_CHECK: Using GM_InMomAsStress and not',
+     &         ' GM_useK3D. GM_InMomAsStress=.true. has only been',
+     &         ' tested with GM_K3D=.true.'
+        ENDIF
 #else /* ALLOW_EDDYPSI */
        WRITE(msgBuf,'(2A)')
      &  ' GMREDI_CHECK: need to define ALLOW_EDDYPSI in CPP_OPTIONS.h',

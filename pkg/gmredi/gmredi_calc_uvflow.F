@@ -21,6 +21,9 @@ C     == GLobal variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 #include "GMREDI.h"
+#ifdef ALLOW_EDDYPSI
+# include "DYNVARS.h"
+#endif
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
@@ -47,6 +50,9 @@ C     i, j :: loop indices
       INTEGER kp1
       _RL maskp1
       _RL delPsi
+#ifdef ALLOW_EDDYPSI
+      _RL ustar, vstar
+#endif
 CEOP
 
       IF (GM_AdvForm .AND. .NOT.GM_AdvSeparate
@@ -76,6 +82,30 @@ CEOP
         ENDDO
        ENDDO
 
+#ifdef ALLOW_EDDYPSI
+      ELSEIF(GM_AdvForm .AND. .NOT.GM_AdvSeparate
+     & .AND. GM_InMomAsStress) THEN
+C       Calculate the mean velocity from the residual and bolus
+       kp1 = MIN(k+1,Nr)
+       maskp1 = 1.
+       IF (k.GE.Nr) maskp1 = 0.
+       DO j=1-OLy,sNy+OLy
+        DO i=1-OLx,sNx+OLx
+         delPsi = GM_PsiX(i,j,kp1,bi,bj)*maskp1
+     &          - GM_PsiX(i,j, k, bi,bj)
+         ustar = delPsi*recip_drF(k)*_recip_hFacW(i,j,k,bi,bj)
+         uMean(i,j,k,bi,bj) = uVel(i,j,k,bi,bj) - ustar
+        ENDDO
+       ENDDO
+       DO j=1-OLy,sNy+OLy
+        DO i=1-OLx,sNx+OLx
+         delPsi = GM_PsiY(i,j,kp1,bi,bj)*maskp1
+     &          - GM_PsiY(i,j, k, bi,bj)
+         vstar  = delPsi*recip_drF(k)*_recip_hFacS(i,j,k,bi,bj)
+         vMean(i,j,k,bi,bj) = vVel(i,j,k,bi,bj) - vstar
+        ENDDO
+       ENDDO
+#endif /* ALLOW_EDDYPSI */       
       ENDIF
 #endif /* GM_BOLUS_ADVEC */
 #endif /* ALLOW_GMREDI */
