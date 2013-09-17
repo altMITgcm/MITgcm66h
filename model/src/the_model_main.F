@@ -194,6 +194,10 @@ CEOI
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 #include "AD_CONFIG.h"
+#ifdef ALLOW_STREAMICE
+# include "STREAMICE_OPTIONS.h"
+#endif
+
 
 CBOP
 C     !ROUTINE: THE_MODEL_MAIN
@@ -281,10 +285,16 @@ C     myIter :: Iteration counter for this thread
       _RL     myTime
       LOGICAL  exst
       LOGICAL  lastdiva
+
+
 CEOP
 c--   set default:
       exst     = .TRUE.
       lastdiva = .TRUE.
+
+#ifdef ALLOW_PETSC
+      call streamice_initialize_petsc 
+#endif
 
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_ENTER('THE_MODEL_MAIN',myThid)
@@ -421,6 +431,10 @@ C--   Call time stepping loop of full model
       CALL TIMER_STOP ('THE_MAIN_LOOP          [THE_MODEL_MAIN]',myThid)
 
 #endif /* ALLOW_TANGENTLINEAR_RUN ALLOW_ADJOINT_RUN ALLOW_ADMTLM */
+
+#ifdef ALLOW_PETSC
+      call streamice_finalize_petsc 
+#endif
 
 #ifdef ALLOW_MNC
       IF (useMNC) THEN
