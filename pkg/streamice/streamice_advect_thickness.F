@@ -288,9 +288,11 @@ CADJ STORE streamice_hmask  = comlev1, key=ikey_dynamics
 
 ! NOTE: AT THIS POINT H IS NOT VALID ON OVERLAP!!!
 
+      if (streamice_move_front) then
       CALL STREAMICE_ADV_FRONT (
      &  myThid, time_step_loc,
      &  hflux_x_SI, hflux_y_SI )
+      endif
 
 
 #ifdef ALLOW_STREAMICE_2DTRACER
