@@ -511,6 +511,8 @@ c     if iters has reached max_iters there is no convergence
 
 #else /* STREAMICE_SERIAL_TRISOLVE */
 
+      iters = 0
+
       CALL STREAMICE_TRIDIAG_SOLVE( 
      U                               cg_Uin,     ! x-velocities
      U                               cg_Vin,
