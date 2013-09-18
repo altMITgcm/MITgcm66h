@@ -37,7 +37,7 @@ C     !USES:
 #ifdef ALLOW_MNC
 # include "MNC_PARAMS.h"
 #endif
-#ifdef ALLOW_EDDYPSI && ALLOW_GMREDI
+#if defined(ALLOW_EDDYPSI) && defined(ALLOW_GMREDI)
 # include "GMREDI.h"
 #endif
 
@@ -264,7 +264,7 @@ C---    read State 3-D fields for restart
      &                                     nj, fp, Nr, myIter, myThid )
           CALL READ_MFLDS_3D_RL( 'Vvel    ', vVel,
      &                                     nj, fp, Nr, myIter, myThid )
-#ifdef ALLOW_EDDYPSI && ALLOW_GMREDI
+#if defined(ALLOW_EDDYPSI) && defined(ALLOW_GMREDI)
           IF (GM_InMomAsStress) THEN
             CALL READ_MFLDS_3D_RL( 'Umean   ', uMean,
      &                                      nj, fp, Nr, myIter, myThid )
@@ -450,7 +450,7 @@ C--   end: pickup_read_mdsio
         CALL MNC_CW_SET_CITER(fn, 3, 3, myIter, -1, myThid)
         CALL MNC_CW_RL_R('D',fn,0,0,'U',uVel, myThid)
         CALL MNC_CW_RL_R('D',fn,0,0,'V',vVel, myThid)
-#ifdef ALLOW_EDDYPSI && ALLOW_GMREDI
+#if defined(ALLOW_EDDYPSI) && defined(ALLOW_GMREDI)
         IF (GM_InMomAsStress) THEN
           CALL MNC_CW_RL_R('D',fn,0,0,'Umean',uMean, myThid)
           CALL MNC_CW_RL_R('D',fn,0,0,'Vmean',vMean, myThid)
@@ -496,7 +496,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 C     Fill in edge regions
       CALL EXCH_UV_3D_RL( uVel, vVel, .TRUE., Nr, myThid )
-#ifdef ALLOW_EDDYPSI && ALLOW_GMREDI
+#if defined(ALLOW_EDDYPSI) && defined(ALLOW_GMREDI)
       IF (GM_InMomAsStress) THEN
         CALL EXCH_UV_3D_RL( uMean, vMean, .TRUE., Nr, myThid )
       ENDIF
