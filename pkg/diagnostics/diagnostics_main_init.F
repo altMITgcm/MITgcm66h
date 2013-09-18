@@ -829,5 +829,23 @@ c     diagTitle = 'Free-Surface r-Position (Pressure, Height) (Pa,m)'
      I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 #endif /* ALLOW_GENERIC_ADVDIFF */
 
+#ifdef ALLOW_DIAGNOSTICS
+        diagName  = 'TAUXEDDY'
+        diagTitle = 'Zonal Eddy Stress'
+        diagUnits = 'N/m**2          '
+        diagCode  = 'UU P    MR      '
+        diagMate  = diagNum
+        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
+        
+        diagName  = 'TAUYEDDY'
+        diagTitle = 'Meridional Eddy Stress'
+        diagUnits = 'N/m**2          '
+        diagCode  = 'VV P    MR      '
+        diagMate  = diagNum
+        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
+#endif /* ALLOW_DIAGNOSTICS */
+
       RETURN
       END
