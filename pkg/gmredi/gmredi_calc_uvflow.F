@@ -105,6 +105,11 @@ C       Calculate the mean velocity from the residual and bolus
          vMean(i,j,k,bi,bj) = vVel(i,j,k,bi,bj) - vstar
         ENDDO
        ENDDO
+
+#ifdef ALLOW_DIAGNOSTICS
+       CALL DIAGNOSTICS_FILL(uMean, 'UVELMEAN',0,Nr,0,1,1,myThid)
+       CALL DIAGNOSTICS_FILL(vMean, 'VVELMEAN',0,Nr,0,1,1,myThid)
+#endif /* ALLOW_DIAGNOSTICS */
 #endif /* ALLOW_EDDYPSI */       
       ENDIF
 #endif /* GM_BOLUS_ADVEC */
