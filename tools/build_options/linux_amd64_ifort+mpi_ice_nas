@@ -5,7 +5,9 @@
 
 # Used to run the testreport on pleiades with:
 # module load comp-intel/2011.2 mpi-sgi/mpt.2.06a67 netcdf/4.0
-# note: comp-intel/2011.7.256 is recommanded for Sandy Bridge nodes
+
+# Tested and reccommended for Ivy and Sandy Bridge nodes:
+# module load comp-intel/2011.7.256 mpi-sgi/mpt.2.08r7 netcdf/4.0
 
 FC=ifort
 CC=icc
