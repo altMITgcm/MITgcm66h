@@ -69,11 +69,11 @@ CFLAGS='-O0'
 #- Requires gfortran from 2006 onwards for -fconvert=big-endian
 FFLAGS="$FFLAGS -fconvert=big-endian -fimplicit-none"
 #- for big setups, compile & link with "-fPIC" or set memory-model to "medium":
- CFLAGS="$CFLAGS -fPIC"
- FFLAGS="$FFLAGS -fPIC"
+#CFLAGS="$CFLAGS -fPIC"
+#FFLAGS="$FFLAGS -fPIC"
 #-  with FC 19, need to use this without -fPIC (which cancels -mcmodel option):
-#CFLAGS="$CFLAGS -mcmodel=medium"
-#FFLAGS="$FFLAGS -mcmodel=medium"
+ CFLAGS="$CFLAGS -mcmodel=medium"
+ FFLAGS="$FFLAGS -mcmodel=medium"
 #- might want to use '-fdefault-real-8' for fizhi pkg:
 #FFLAGS="$FFLAGS -fdefault-real-8 -fdefault-double-8"
 
