@@ -965,6 +965,8 @@ C---  if fluid Is Water: end
         CALL DIAGS_RHO_G(
      I                    rhoInSitu, uVel, vVel, wVel,
      I                    myTime, myIter, myThid )
+      ENDIF
+      IF ( useDiagnostics ) THEN
         CALL DIAGS_OCEANIC_SURF_FLUX( myTime, myIter, myThid )
       ENDIF
       IF ( calcConvect .AND. useDiagnostics ) THEN
