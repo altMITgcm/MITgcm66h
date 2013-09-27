@@ -473,6 +473,30 @@ c     IF ( useDiagnotics ) THEN
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I    diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
         
+        diagName  = 'GM_M4   '
+        diagTitle = 'M**4'
+        diagUnits = '1/s**4          '
+        diagCode  = 'SM      MR      '
+        diagMate  = diagNum
+        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
+        
+        diagName  = 'GM_N2   '
+        diagTitle = 'N**2'
+        diagUnits = '1/s**2          '
+        diagCode  = 'SM      MR      '
+        diagMate  = diagNum
+        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
+        
+        diagName  = 'GM_SLOPE'
+        diagTitle = 'SLOPE'
+        diagUnits = 'm/m             '
+        diagCode  = 'SM      MR      '
+        diagMate  = diagNum
+        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
+        
         diagName  = 'GM_KDEF '
         diagTitle = 'Rossby wavenumber'
         diagUnits = '1/m             '

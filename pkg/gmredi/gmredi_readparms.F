@@ -70,7 +70,7 @@ C     GM_slopeSqCutoff :: slope^2 cut-off value
      &          GM_K3D_maxC, GM_K3D_minCori, GM_K3D_minN2,
      &          GM_K3D_surfMinDepth, GM_maxK3D, GM_K3D_maxLurms,
      &          GM_K3D_constK, GM_K3D_likeGM, GM_K3D_smooth,
-     &          GM_K3D_beta_eq_0
+     &          GM_K3D_beta_eq_0, GM_K3D_minLurms
 
       _BEGIN_MASTER(myThid)
 
@@ -135,6 +135,7 @@ C--   Default values for K3D
       GM_K3D_maxSlope  = UNSET_RL
       GM_K3D_maxC      = 0.15
       GM_maxK3D        = 20e3
+      GM_K3D_minLurms  =   0.0
       GM_K3D_maxLurms  = 75e3
       GM_K3D_minCori   = zeroRL
       GM_K3D_minN2     = 1.0e-8
