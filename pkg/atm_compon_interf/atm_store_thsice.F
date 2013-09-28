@@ -29,7 +29,7 @@ C     == Global variables ==
 
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-c#include "ATMIDS.h"
+#include "ATMIDS.h"
 #include "CPL_PARAMS.h"
 #ifdef ALLOW_THSICE
 # include "THSICE_PARAMS.h"
@@ -72,7 +72,7 @@ c         seaIceMass(i,j,bi,bj) = seaIceMass(i,j,bi,bj) +
         ENDDO
        ENDDO
 
-c     IF ( atmCpl_exchange_DIC ) THEN
+      IF ( atmCpl_exchange_DIC ) THEN
 C     o Accumulate Sea-Ice concentration (no-units) from thSIce pkg
 C       that will be exported to the coupling layer.
        cplTimeFraction = 1. _d 0 / DFLOAT(cplSendFrq_iter)
@@ -83,7 +83,7 @@ C       that will be exported to the coupling layer.
      &                       + iceMask(i,j,bi,bj)*cplTimeFraction
         ENDDO
        ENDDO
-c     ENDIF
+      ENDIF
 
 #endif /* ALLOW_THSICE */
 
