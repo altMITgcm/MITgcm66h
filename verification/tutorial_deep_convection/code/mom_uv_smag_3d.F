@@ -58,6 +58,14 @@ C     !LOCAL VARIABLES:
       IF ( k.LE.1 )  maskM1 = 0.
       IF ( k.GE.Nr ) maskP1 = 0.
 
+C-    Initialise output arrays:
+      DO j=1-OLy,sNy+OLy
+       DO i=1-OLx,sNx+OLx
+         uDissip(i,j) = 0. _d 0
+         vDissip(i,j) = 0. _d 0
+       ENDDO
+      ENDDO
+
 C     - Laplacian and bi-harmonic terms
 c     IF (harmonic) THEN
 
@@ -90,7 +98,7 @@ c    &         *maskW(i,j,km1,bi,bj)*maskM1
 
        DO j=2-OLy,sNy+OLy-1
         DO i=2-OLx,sNx+OLx-1
-        vDissip(i,j) = recip_rAs(i,j,bi,bj)*(
+         vDissip(i,j) = recip_rAs(i,j,bi,bj)*(
      &     ( viscAh3d_12(i+1, j , k )*str12(i+1, j ,k)
      &         *dyU(i+1, j ,bi,bj)
      &      -viscAh3d_12( i , j , k )*str12( i , j ,k)
