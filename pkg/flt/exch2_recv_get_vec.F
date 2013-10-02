@@ -62,7 +62,6 @@ C     theTag        :: Variables used in message building
 C     theType       :: Variables used in message building
 C     theSize       :: Variables used in message building
       INTEGER bi, bj
-      INTEGER spinCount
       INTEGER ioUnit
       INTEGER thisTile, nN, tgT, oNb, dir
       INTEGER theProc, theTag, theType, theSize
