@@ -213,7 +213,7 @@ C   Relaxation to monthly climatologies.
 #define  ALLOW_CLIMSSS_RELAXATION
 
 C   Seaice area relaxation code
-#define EXF_ALLOW_SEAICE_RELAX
+#define EXF_SEAICE_FRACTION
 
 C ********************************************************************
 #endif /* ECCO_CPPOPTIONS_H */
