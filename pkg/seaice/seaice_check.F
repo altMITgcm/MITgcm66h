@@ -646,6 +646,14 @@ C--   pkg/seaice requires pkg/exf with following CPP options/
            STOP 'ABNORMAL END: S/R SEAICE_CHECK'
          ENDIF
 #endif
+#ifndef EXF_SEAICE_FRACTION
+         IF ( SEAICE_tauAreaObsRelax.GT.zeroRL ) THEN
+           WRITE(msgBuf,'(2A)') 'S/R SEAICE_CHECK: ',
+     &        'ice-area relaxation needs #define EXF_SEAICE_FRACTION'
+           CALL PRINT_ERROR( msgBuf, myThid )
+           STOP 'ABNORMAL END: S/R SEAICE_CHECK'
+         ENDIF
+#endif
 #endif /* ALLOW_EXF */
       ENDIF
 
@@ -758,7 +766,6 @@ C--   pkg/seaice requires pkg/exf with following CPP options/
         STOP 'ABNORMAL END: S/R SEAICE_CHECK'
       ENDIF
 #endif /* SEAICE_ALLOW_CLIPZETA */
-
 
 #if !defined(SEAICE_ALLOW_TEM) || !defined(SEAICE_CGRID)
       IF ( SEAICEuseTEM ) THEN
