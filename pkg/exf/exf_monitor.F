@@ -196,7 +196,7 @@ C       Print some statistics about input forcing fields
         ENDIF
 # endif
 #endif
-#ifdef EXF_ALLOW_SEAICE_RELAX
+#ifdef EXF_SEAICE_FRACTION
         IF ( areamaskfile .NE. ' ' ) THEN
           CALL MON_WRITESTATS_RL( 1, areamask,'_areamask',
      &             maskInC, maskInC, rA , drF, dummyRL, myThid )

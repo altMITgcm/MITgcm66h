@@ -319,7 +319,7 @@ C     from the beginning of the year.
       ENDIF
 #endif /* ATMOSPHERIC_LOADING */
 
-#ifdef EXF_ALLOW_SEAICE_RELAX
+#ifdef EXF_SEAICE_FRACTION
       IF ( areamaskfile .NE. ' ' .AND. areamaskperiod .GT. 0. ) THEN
 # ifdef ALLOW_DEBUG
        IF (debugMode) CALL DEBUG_CALL('GETFIELD_START areamask',myThid)
@@ -329,7 +329,7 @@ C     from the beginning of the year.
      O                          areamaskstartdate,
      I                          myThid )
       ENDIF
-#endif /* EXF_ALLOW_SEAICE_RELAX */
+#endif /* EXF_SEAICE_FRACTION */
 
 #ifdef ALLOW_OBCS
       IF ( obcsNperiod .GT. 0. ) THEN

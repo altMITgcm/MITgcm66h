@@ -88,7 +88,7 @@ C     & mon_write_mnc (since it is the only thread that uses those flags):
             WRITE(msgBuf,'(2A)') '// ===========================',
      &           '============================'
             CALL PRINT_MESSAGE(msgBuf, mon_ioUnit, SQUEEZE_RIGHT, 1)
-            WRITE(msgBuf,'(A,I2)') 
+            WRITE(msgBuf,'(A,I2)')
      &           '// Begin AD_MONITOR EXF statistics for iwhen = ',
      &           iwhen
             CALL PRINT_MESSAGE(msgBuf, mon_ioUnit, SQUEEZE_RIGHT, 1)
@@ -161,7 +161,7 @@ cph     &           maskInC, maskInC, rA , drF, dummyRL, myThid )
 cph        CALL MON_WRITESTATS_RL( 1, adrunoff,  '_adrunoff',
 cph     &           maskInC, maskInC, rA , drF, dummyRL, myThid )
 #endif
-#ifdef EXF_ALLOW_SEAICE_RELAX
+#ifdef EXF_SEAICE_FRACTION
 cph        CALL MON_WRITESTATS_RL( 1, areamask,'_areamask',
 cph     &           maskInC, maskInC, rA , drF, dummyRL, myThid )
 #endif
@@ -201,7 +201,7 @@ C     & mon_write_mnc (since it is the only thread that uses those flags):
             WRITE(msgBuf,'(2A)') '// ===========================',
      &           '============================'
             CALL PRINT_MESSAGE(msgBuf, mon_ioUnit, SQUEEZE_RIGHT, 1)
-            WRITE(msgBuf,'(A,I2)') 
+            WRITE(msgBuf,'(A,I2)')
      &           '// End AD_MONITOR EXF statistics for iwhen = ',
      &           iwhen
             CALL PRINT_MESSAGE(msgBuf, mon_ioUnit, SQUEEZE_RIGHT, 1)

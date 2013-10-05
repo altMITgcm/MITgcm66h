@@ -7,7 +7,7 @@ CADJ STORE StoreEXF1        = tapelev4, key = ilev_4
 CADJ STORE StoreEXF2        = tapelev4, key = ilev_4
 CADJ STORE StoreCTRLS1      = tapelev4, key = ilev_4
 
-# ifdef EXF_ALLOW_SEAICE_RELAX
+# ifdef EXF_SEAICE_FRACTION
 CADJ STORE areamask0    = tapelev4, key = ilev_4
 CADJ STORE areamask1    = tapelev4, key = ilev_4
 # endif
@@ -36,6 +36,5 @@ CADJ STORE xx_sst1      = tapelev4, key = ilev_4
 CADJ STORE xx_sss0      = tapelev4, key = ilev_4
 CADJ STORE xx_sss1      = tapelev4, key = ilev_4
 # endif
-
 
 #endif /* ALLOW_EXF */

@@ -90,7 +90,7 @@ CADJ STORE siceload      = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE runoff0   = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE runoff1   = comlev1, key=ikey_dynamics, kind=isbyte
 # endif
-# ifdef EXF_ALLOW_SEAICE_RELAX
+# ifdef EXF_SEAICE_FRACTION
 CADJ STORE areamask0     = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE areamask1     = comlev1, key=ikey_dynamics, kind=isbyte
 # endif
