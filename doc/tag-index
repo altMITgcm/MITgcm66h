@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/exf:
+  - to allow to use seaice-fraction from pkg/exf in other pkgs than pkg/seaice:
+     rename CPP option EXF_ALLOW_SEAICE_RELAX to EXF_SEAICE_FRACTION
+     and rename array obsSIce to exf_iceFraction.
 o tutorial_deep_convection:
   - add 1rst version of isotropic 3-D Smagorinsky code (from Louis-Philippe),
     for now all in this exp. code dir.
