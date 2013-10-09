@@ -220,7 +220,7 @@ c     IF ( useDiagnotics ) THEN
 
 #ifdef ALLOW_EDDYPSI
         diagName  = 'GMEdTauX'
-        diagTitle = 'eddy-induced stress X-comp. estimated from Kwx'
+        diagTitle = 'eddy-induced stress X-comp.'
         diagUnits = 'N/m^2           '
         diagCode  = 'UM      LR      '
         diagMate  = diagNum + 2
@@ -228,7 +228,7 @@ c     IF ( useDiagnotics ) THEN
      I    diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
 
         diagName  = 'GMEdTauY'
-        diagTitle = 'eddy-induced stress Y-comp. estimated from Kwy'
+        diagTitle = 'eddy-induced stress Y-comp.'
         diagUnits = 'N/m^2           '
         diagCode  = 'VM      LR      '
         diagMate  = diagNum
