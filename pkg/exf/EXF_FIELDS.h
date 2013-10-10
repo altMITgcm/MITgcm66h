@@ -33,7 +33,7 @@ C                      north for cartesian and spherical polar grids
 C                  Typical range: -0.5 < vstress < 0.5
 C                  Input field
 c
-C     hflux     :: Net upward surface heat flux excluding shortwave in W/m^2
+C     hflux     :: Net upward surface heat flux including shortwave in W/m^2
 C                  hflux = latent + sensible + lwflux + swflux
 C                  > 0 for decrease in theta (ocean cooling)
 C                  Typical range: -250 < hflux < 600
