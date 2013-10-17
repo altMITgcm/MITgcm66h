@@ -33,6 +33,7 @@ R4_FILES = exch_xy_r4.F exch_3d_r4.F exch_xyz_r4.F exch_s3d_r4.F \
            exch_r4_recv_get_x.F exch_r4_recv_get_y.F \
            exch_r4_send_put_x.F exch_r4_send_put_y.F \
            gather_2d_r4.F scatter_2d_r4.F \
+           gather_vec_r4.F scatter_vec_r4.F \
            gather_2d_wh_r4.F scatter_2d_wh_r4.F
 
 R8_FILES = exch_xy_r8.F exch_3d_r8.F exch_xyz_r8.F exch_s3d_r8.F \
@@ -44,6 +45,7 @@ R8_FILES = exch_xy_r8.F exch_3d_r8.F exch_xyz_r8.F exch_s3d_r8.F \
            exch_r8_recv_get_x.F exch_r8_recv_get_y.F \
            exch_r8_send_put_x.F exch_r8_send_put_y.F \
            gather_2d_r8.F scatter_2d_r8.F \
+           gather_vec_r8.F scatter_vec_r8.F \
            gather_2d_wh_r8.F scatter_2d_wh_r8.F
 
 OLD_FILES = exch_z_xy_rl.F exch_z_xy_rs.F exch_z_xy_r4.F exch_z_xy_r8.F \
@@ -313,6 +315,16 @@ scatter_2d_r8.F: scatter_2d_rx.template
 	sed 's/RX/R8/g' scatter_2d_rx.template > $@
 scatter_2d_r4.F: scatter_2d_rx.template
 	sed 's/RX/R4/g' scatter_2d_rx.template > $@
+
+# gather_vec_rx, scatter_vec_rx
+gather_vec_r8.F: gather_vec_rx.template
+	sed 's/RX/R8/g' gather_vec_rx.template > $@
+gather_vec_r4.F: gather_vec_rx.template
+	sed 's/RX/R4/g' gather_vec_rx.template > $@
+scatter_vec_r8.F: scatter_vec_rx.template
+	sed 's/RX/R8/g' scatter_vec_rx.template > $@
+scatter_vec_r4.F: scatter_vec_rx.template
+	sed 's/RX/R4/g' scatter_vec_rx.template > $@
 
 # gather_2d_wh_rx, scatter_2d_wh_rx
 gather_2d_wh_r8.F: gather_2d_wh_rx.template
