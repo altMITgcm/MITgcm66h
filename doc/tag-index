@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint64p (2013/10/20)
 o pkg/autodiff:
   - adread_adwrite.F: when type and length do not match ALLOW_AUTODIFF_WHTAPEIO
     criteria, return to simple (default) tape IO format.
