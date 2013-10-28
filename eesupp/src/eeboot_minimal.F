@@ -156,10 +156,19 @@ C--    Get my process number
        mpiPidIo = myProcId
        pidIO    = mpiPidIo
        IF ( mpiPidIo .EQ. myProcId ) THEN
-        WRITE(fNam,'(A,A)') 'STDERR.', myProcessStr(1:4)
-        OPEN(errorMessageUnit,FILE=fNam,STATUS='unknown')
-        WRITE(fNam,'(A,A)') 'STDOUT.', myProcessStr(1:4)
-        OPEN(standardMessageUnit,FILE=fNam,STATUS='unknown')
+#ifdef SINGLE_DISK_IO
+        IF( myProcId .EQ. 0 ) THEN
+#endif
+         WRITE(fNam,'(A,A)') 'STDERR.', myProcessStr(1:4)
+         OPEN(errorMessageUnit,FILE=fNam,STATUS='unknown')
+         WRITE(fNam,'(A,A)') 'STDOUT.', myProcessStr(1:4)
+         OPEN(standardMessageUnit,FILE=fNam,STATUS='unknown')
+#ifdef SINGLE_DISK_IO
+        ELSE
+         OPEN(errorMessageUnit,FILE='/dev/null',STATUS='unknown')
+         standardMessageUnit=errorMessageUnit
+        ENDIF
+#endif
        ENDIF
 
 #if defined(ALLOW_NEST_PARENT) || defined(ALLOW_NEST_CHILD)
