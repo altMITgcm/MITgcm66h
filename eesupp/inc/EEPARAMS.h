@@ -34,7 +34,7 @@ C     MAX_NO_BARRIERS - Maximum number of distinct thread "barriers"
       INTEGER MAX_NO_THREADS
       PARAMETER ( MAX_NO_THREADS =  4 )
       INTEGER MAX_NO_PROCS
-      PARAMETER ( MAX_NO_PROCS   =  8192 )
+      PARAMETER ( MAX_NO_PROCS   =  46800 )
       INTEGER MAX_NO_BARRIERS
       PARAMETER ( MAX_NO_BARRIERS = 1 )
 
