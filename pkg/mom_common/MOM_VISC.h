@@ -23,6 +23,20 @@ C     useVariableVisc   :: variable (in space or time) viscosity is used
       _RL L4rdt_D(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL L4rdt_Z(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
+#ifdef ALLOW_SMAG_3D
+C     smag3D_hLsC :: horiz. grid length scale (power 2/3) at grid cell center
+C     smag3D_hLsW :: horiz. grid length scale (power 2/3) at western  edge
+C     smag3D_hLsS :: horiz. grid length scale (power 2/3) at southern egde
+C     smag3D_hLsZ :: horiz. grid length scale (power 2/3) at grid cell corner
+      COMMON /MOM_SMAG_3D_LENGTH/
+     &        smag3D_hLsC, smag3D_hLsW,
+     &        smag3D_hLsS, smag3D_hLsZ
+      _RS smag3D_hLsC(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS smag3D_hLsW(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS smag3D_hLsS(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RS smag3D_hLsZ(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+#endif /* ALLOW_SMAG_3D */
+
 #ifdef ALLOW_3D_VISCAH
 C     viscAhDfld, viscAhZfld :: full 3D specification of Laplacian Viscosity
 C               coeff. for mixing of momentum horizontally ( units of m^2/s )
