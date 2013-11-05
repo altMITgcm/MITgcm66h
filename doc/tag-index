@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/mom_common:
+  - move to pkg/mom_common and model/src (previously in tutorial_deep_convection
+    code) 2nd version of isotropic 3-D Smagorinsky code interface: strain and
+    viscosity are locally declared in dynmics.F and pass as argument to CALC_GW;
+    ensure that all field value that are used are set.
 o tutorial_deep_convection (smag3d):
   - add missing scaling in mom_calc_smag_3d.F;
   - set smag3D_coeff in input.smag3d such that results do not change.
