@@ -357,6 +357,14 @@ C--   Check parameter consistency :
         CALL PRINT_ERROR( msgBuf, myThid )
         errCount = errCount + 1
       ENDIF
+      IF ( ( OLx.LT.3 .OR. OLy.LT.3 ) .AND.
+     &     useSmag3D .AND. useCDscheme ) THEN
+        WRITE(msgBuf,'(A,A)')
+     &  'CONFIG_CHECK: cannot use Smag-3D + CD-scheme with',
+     &  ' overlap (OLx,OLy) smaller than 3'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        errCount = errCount + 1
+      ENDIF
 
 #ifndef DISCONNECTED_TILES
 C     Overlaps cannot be larger than interior tile except for special cases
