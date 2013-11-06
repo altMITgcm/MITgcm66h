@@ -51,6 +51,7 @@ C     !OUTPUT PARAMETERS:
       _RL wDissip(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 CEOP
 
+#ifdef ALLOW_SMAG_3D
 C     !LOCAL VARIABLES:
       INTEGER i,j
       INTEGER km1
@@ -100,5 +101,6 @@ c     IF (biharmonic) THEN
 c      STOP 'MOM_UV_SMAG_3D: BIHARMONIC NOT ALLOWED WITH SMAG_3D'
 c     ENDIF
 
+#endif /* ALLOW_SMAG_3D */
       RETURN
       END

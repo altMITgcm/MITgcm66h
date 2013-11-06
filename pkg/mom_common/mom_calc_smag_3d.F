@@ -68,6 +68,7 @@ C     viscAh3d_23 :: Smagorinsky viscosity @ above vVel
       _RL viscAh3d_23(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr+1)
 CEOP
 
+#ifdef ALLOW_SMAG_3D
 C     !LOCAL VARIABLES:
       INTEGER i, j
       INTEGER kp, n
@@ -235,5 +236,6 @@ c      CALL DIAGNOSTICS_FILL(viscAh_D,'VISCAHD ',k,1,2,bi,bj,myThid)
 c     ENDIF
 #endif
 
+#endif /* ALLOW_SMAG_3D */
       RETURN
       END
