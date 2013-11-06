@@ -368,7 +368,7 @@ c--   Sum up all contributions.
       do bj = jtlo,jthi
         do bi = itlo,ithi
 
-          fc = fc
+          tile_fc(bi,bj) = tile_fc(bi,bj)
      &         + mult_temp    * objf_temp(bi,bj)
      &         + mult_salt    * objf_salt(bi,bj)
      &         + mult_temp0   * ( objf_temp0(bi,bj)
@@ -442,7 +442,7 @@ c--   Sum up all contributions.
 #ifdef ALLOW_PROFILES
       do num_file=1,NFILESPROFMAX
        do num_var=1,NVARMAX
-          fc = fc
+          tile_fc(bi,bj) = tile_fc(bi,bj)
      &            + mult_profiles(num_file,num_var)
      &            *objf_profiles(num_file,num_var,bi,bj)
        enddo
@@ -450,28 +450,28 @@ c--   Sum up all contributions.
 #endif
 #ifdef ALLOW_GENCOST_CONTRIBUTION
        do num_var=1,NGENCOST
-          fc = fc
+          tile_fc(bi,bj) = tile_fc(bi,bj)
      &            + mult_gencost(num_var)
      &            *objf_gencost(bi,bj,num_var)
        enddo
 #endif
 #ifdef ALLOW_USERCOST_CONTRIBUTION
        do num_var=1,NUSERCOST
-          fc = fc
+          tile_fc(bi,bj) = tile_fc(bi,bj)
      &            + mult_usercost(num_var)
      &            *objf_usercost(num_var,bi,bj)
        enddo
 #endif
 #ifdef ALLOW_SSHV4_COST
        do num_var=1,NSSHV4COST
-          fc = fc
+          tile_fc(bi,bj) = tile_fc(bi,bj)
      &            + mult_sshv4cost(num_var)
      &            *objf_sshv4cost(num_var,bi,bj)
        enddo
 #endif
 #ifdef ALLOW_CTRL
        do num_var=1,maxCtrlTim2D      
-          fc = fc
+          tile_fc(bi,bj) = tile_fc(bi,bj)
      &            + mult_gentim2d(num_var)
      &            *objf_gentim2d(bi,bj,num_var)
        enddo
