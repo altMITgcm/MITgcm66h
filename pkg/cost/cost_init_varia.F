@@ -3,7 +3,7 @@ C $Name$
 
 #include "COST_OPTIONS.h"
 
-      subroutine cost_init_varia( mythid )
+      SUBROUTINE COST_INIT_VARIA( mythid )
 
 c     ==================================================================
 c     SUBROUTINE cost_init_varia
@@ -53,6 +53,7 @@ c     == end of interface ==
 c--   Initialize the tiled cost function contributions.
       do bj = jtlo,jthi
         do bi = itlo,ithi
+          tile_fc(bi,bj)   = 0. _d 0
 #if ( !defined (ALLOW_ECCO) || !defined (ALLOW_COST_ATLANTIC) )
           objf_atl(bi,bj)  = 0. _d 0
 #endif
@@ -71,7 +72,7 @@ c--   Initialize the tiled cost function contributions.
 #endif
 c
 #ifdef ALLOW_COST
-          do k=1,nr
+          do k=1,Nr
             do j=1,sNy
               do i=1,sNx
                 cMeanTheta(i,j,k,bi,bj) = 0. _d 0
@@ -119,5 +120,5 @@ c--   Initialise the "global" parts of the cost function.
 
       _BARRIER
 
-      return
-      end
+      RETURN
+      END

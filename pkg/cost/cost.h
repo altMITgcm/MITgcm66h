@@ -26,7 +26,6 @@ c     ==================================================================
 c     HEADER COST
 c     ==================================================================
 
-
 c     The cost function, its contributions, and multipliers:
 c     ======================================================
 c
@@ -39,6 +38,10 @@ c                  function contributions.
      &                fc, glofc
       _RL  fc
       _RL  glofc
+
+C     tile_fc   :: Final cost function contribution from this tile
+      COMMON /COST_FINAL_R/ tile_fc
+      _RL  tile_fc (nSx,nSy)
 
       common /cost_objf/
      &                objf_atl,
@@ -161,5 +164,4 @@ cHFLUXM_CONTROL
 c     ==================================================================
 c     END OF HEADER COST
 c     ==================================================================
-
 
