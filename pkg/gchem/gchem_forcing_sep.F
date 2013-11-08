@@ -82,24 +82,24 @@ c find global surface averages
        gsm_s = 0. _d 0
        gsm_dic = 0. _d 0
        gsm_alk = 0. _d 0
-       CALL TRACER_MEANAREA(salt, 1,gsm_s,myThid)
+       CALL TRACER_MEANAREA(salt,gsm_s,myThid)
        CALL TRACER_MEANAREA(
-     &             pTracer(1-OLx,1-OLy,1,1,1,1), 1, gsm_dic, myThid )
+     &             pTracer(1-OLx,1-OLy,1,1,1,1), gsm_dic, myThid )
        print*,'mean surface dic', gsm_dic,gsm_s
        CALL TRACER_MEANAREA(
-     &             pTracer(1-OLx,1-OLy,1,1,1,2), 1, gsm_alk, myThid )
+     &             pTracer(1-OLx,1-OLy,1,1,1,2), gsm_alk, myThid )
 #endif
 #ifdef ALLOW_DARWIN
 c find global surface averages
        gsm_s = 0. _d 0
        gsm_dic = 0. _d 0
        gsm_alk = 0. _d 0
-       CALL TRACER_MEANAREA(salt, 1,gsm_s,myThid)
+       CALL TRACER_MEANAREA(salt,gsm_s,myThid)
        CALL TRACER_MEANAREA(
-     &             pTracer(1-OLx,1-OLy,1,1,1,iDIC), 1, gsm_dic, myThid )
+     &             pTracer(1-OLx,1-OLy,1,1,1,iDIC), gsm_dic, myThid )
        print*,'mean surface dic', gsm_dic,gsm_s
        CALL TRACER_MEANAREA(
-     &             pTracer(1-OLx,1-OLy,1,1,1,iALK), 1, gsm_alk, myThid )
+     &             pTracer(1-OLx,1-OLy,1,1,1,iALK), gsm_alk, myThid )
 #endif
 ccccccccccccccccccccccccccccccccccccccccccc
 #ifdef ALLOW_OFFLINE
