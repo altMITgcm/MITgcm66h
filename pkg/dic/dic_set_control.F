@@ -21,7 +21,6 @@ C     == GLobal variables ==
 #include "PARAMS.h"
 #ifdef DIC_BIOTIC
 # include "DIC_VARS.h"
-# include "DIC_DIAGS.h"
 # include "DIC_CTRL.h"
 #endif
 #ifdef ALLOW_CTRL
