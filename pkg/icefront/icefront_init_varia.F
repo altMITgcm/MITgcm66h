@@ -19,9 +19,6 @@ C     === Global variables ===
 #include "PARAMS.h"
 #include "GRID.h"
 #include "ICEFRONT.h"
-#ifdef ALLOW_SUBGLACIAL_RUNOFF
-# include "EXF_PARAM.h"
-#endif
 
 C     === Routine arguments ===
 C     myThid -  Number of this instance of ICEFRONT_INIT_VARIA
@@ -46,13 +43,6 @@ CEOP
         ENDDO
        ENDDO
       ENDDO
-
-#ifdef ALLOW_SUBGLACIAL_RUNOFF
-      CALL EXF_INIT_RUNOFF (
-     &     sgrunofffile, sgrunoffperiod,
-     &     exf_inscal_sgrunoff, sgrunoffmask, sgrunoffconst,
-     &     sgrunoff, sgrunoff0, sgrunoff1, myThid )
-#endif /* ALLOW_SUBGLACIAL_RUNOFF */
 
 #endif /* ALLOW_ICEFRONT */
 

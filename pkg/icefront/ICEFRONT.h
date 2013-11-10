@@ -94,12 +94,4 @@ CEOP
      &     ICEFRONTdepthFile,
      &     SGrunoffFile
 
-#ifdef ALLOW_SUBGLACIAL_RUNOFF
-      _RL SGrunoff (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RL SGrunoff0(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RL SGrunoff1(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      COMMON /SUBGLACIAL_RUNOFF/
-     &     SGrunoff, SGrunoff0,SGrunoff1
-#endif /* ALLOW_SUBGLACIAL_RUNOFF */
-
 #endif /* ALLOW_ICEFRONT */

@@ -44,9 +44,6 @@ CEOP
      &     ICEFRONTthetaSurface,
      &     applyIcefrontTendT,applyIcefrontTendS,
      &     ICEFRONTdepthFile, ICEFRONTlengthFile
-#ifdef ALLOW_SUBGLACIAL_RUNOFF
-     &   , SGrunoffFile
-#endif
 
       _BEGIN_MASTER(myThid)
 
