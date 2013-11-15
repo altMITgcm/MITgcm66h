@@ -2006,10 +2006,11 @@ C            AREA(I,J,bi,bj) = 0.1 _d 0 * HEFF(I,J,bi,bj)
         ENDIF
 #endif
 #ifdef SEAICE_ITD
-C check categories for consistency with limits after growth/melt
-        CALL SEAICE_ITD_REDIST(bi, bj, myTime,myIter,myThid)
-C finally update total AREA, HEFF, HSNOW
-        CALL SEAICE_ITD_SUM(bi, bj, myTime,myIter,myThid)
+C check categories for consistency with limits after growth/melt ...
+        CALL SEAICE_ITD_REDIST(bi, bj, myTime, myIter, myThid)
+C ... and update total AREA, HEFF, HSNOW
+C     (the updated HEFF is used below for ice salinity increments)
+        CALL SEAICE_ITD_SUM(bi, bj, myTime, myIter, myThid)
 #endif
 
 C ===================================================================

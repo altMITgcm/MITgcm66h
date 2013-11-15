@@ -177,28 +177,6 @@ C NOW DO ADVECTION and DIFFUSION
        IF (debugMode) CALL DEBUG_CALL( 'SEAICE_ADVDIFF', myThid )
 #endif
        CALL SEAICE_ADVDIFF( uIce, vIce, myTime, myIter, myThid )
-#ifdef SEAICE_ITD
-C     check that all ice thickness categories meet their limits
-C     (includes Hibler-type ridging)
-#ifdef ALLOW_DEBUG
-        IF (debugMode) CALL DEBUG_CALL( 'SEAICE_ITD_REDIST', myThid )
-#endif
-       DO bj=myByLo(myThid),myByHi(myThid)
-        DO bi=myBxLo(myThid),myBxHi(myThid)
-         CALL SEAICE_ITD_REDIST(bi, bj, myTime, myIter, myThid)
-        ENDDO
-       ENDDO
-C     update mean ice thickness HEFF and total ice concentration AREA
-C     to match single category values
-#ifdef ALLOW_DEBUG
-        IF (debugMode) CALL DEBUG_CALL( 'SEAICE_ITD_SUM', myThid )
-#endif
-       DO bj=myByLo(myThid),myByHi(myThid)
-        DO bi=myBxLo(myThid),myBxHi(myThid)
-         CALL SEAICE_ITD_SUM(bi, bj, myTime, myIter, myThid)
-        ENDDO
-       ENDDO
-#endif
       ENDIF
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE heffm  = comlev1, key=ikey_dynamics, kind=isbyte
@@ -213,25 +191,6 @@ C     because of ugly time level business
         IF (debugMode) CALL DEBUG_CALL( 'SEAICE_GROWTH', myThid )
 #endif
         CALL SEAICE_GROWTH( myTime, myIter, myThid )
-#ifdef SEAICE_ITD
-C     redistribute sea ice into proper sea ice category after growth/melt
-C     in case model runs with ice thickness distribution
-C---+-|--1----+----2----+----3----+----4----+----5----+----6----+----7-|
-#ifdef ALLOW_DEBUG
-        IF (debugMode) CALL DEBUG_CALL( 'SEAICE_ITD_REDIST', myThid )
-#endif
-       DO bj=myByLo(myThid),myByHi(myThid)
-        DO bi=myBxLo(myThid),myBxHi(myThid)
-         CALL SEAICE_ITD_REDIST(bi, bj, myTime, myIter, myThid)
-        ENDDO
-       ENDDO
-C     store the mean ice thickness in HEFF (for dynamic solver and diagnostics)
-       DO bj=myByLo(myThid),myByHi(myThid)
-        DO bi=myBxLo(myThid),myBxHi(myThid)
-         CALL SEAICE_ITD_SUM(bi, bj, myTime, myIter, myThid)
-        ENDDO
-       ENDDO
-#endif
 C
        ENDIF
 #endif /* DISABLE_SEAICE_GROWTH */
