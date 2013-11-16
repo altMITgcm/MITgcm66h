@@ -24,6 +24,7 @@ C Place CPP define/undef flag here
 #undef ALLOW_PETSC
 #undef ALLOW_STREAMICE_2DTRACER
 #undef STREAMICE_TRACER_AB
+#undef STREAMICE_SERIAL_TRISOLVE
 
 #endif /* ALLOW_MYPACKAGE */
 #endif /* MYPACKAGE_OPTIONS_H */
