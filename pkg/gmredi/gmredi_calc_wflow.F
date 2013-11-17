@@ -46,15 +46,19 @@ CEOP
       IF (GM_AdvForm .AND. .NOT.GM_AdvSeparate
      & .AND. .NOT.GM_InMomAsStress) THEN
 
-       DO j=1-Oly,sNy+Oly-1
-        DO i=1-Olx,sNx+Olx-1
+       DO j=1-OLy,sNy+OLy-1
+        DO i=1-OLx,sNx+OLx-1
          delPsi = ( dyG(i+1,j,bi,bj)*GM_PsiX(i+1,j,k,bi,bj)
      &             -dyG( i ,j,bi,bj)*GM_PsiX( i ,j,k,bi,bj)
      &             +dxG(i,j+1,bi,bj)*GM_PsiY(i,j+1,k,bi,bj)
      &             -dxG(i, j ,bi,bj)*GM_PsiY(i, j ,k,bi,bj)
      &            )*maskC(i,j,k,bi,bj)
          wFld(i,j)   = wFld(i,j)   + delPsi*recip_rA(i,j,bi,bj)
+#ifdef GM_CALC_TRANSP_FROM_VEL
+         rTrans(i,j) = wFld(i,j)*rA(i,j,bi,bj)
+#else
          rTrans(i,j) = rTrans(i,j) + delPsi
+#endif
         ENDDO
        ENDDO
 
