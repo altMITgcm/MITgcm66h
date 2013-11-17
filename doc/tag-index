@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint64q (2013/11/17)
 o verification:
   - generate new output on baudelaire (gfortran, -ieee) for OpenAD experiments
     tutorial_global_oce_biogeo and global_ocean.90x40x15.
