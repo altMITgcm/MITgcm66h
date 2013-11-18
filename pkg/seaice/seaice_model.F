@@ -57,8 +57,6 @@ C !LOCAL VARIABLES: ====================================================
 C     i,j,bi,bj :: Loop counters
 #ifdef ALLOW_AUTODIFF_TAMC
       INTEGER i, j
-#endif
-#if defined(ALLOW_AUTODIFF_TAMC) || defined(SEAICE_ITD)
       INTEGER bi, bj
 #endif
 #ifdef ALLOW_SITRACER
