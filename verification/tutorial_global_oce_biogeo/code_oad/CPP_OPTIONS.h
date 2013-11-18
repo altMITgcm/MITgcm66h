@@ -16,8 +16,6 @@ C | Control which optional features to compile in model/src code.
 C *==================================================================*
 CEOP
 
-#include "PACKAGES_CONFIG.h"
-
 C CPP flags controlling particular source code features
 
 C o Shortwave heating as extra term in external_forcing.F
@@ -47,6 +45,9 @@ C o Include/exclude AdamsBashforth-3rd-Order code
 
 C o Include/exclude nonHydrostatic code
 #undef ALLOW_NONHYDROSTATIC
+
+C o Allow to account for heating due to friction (and momentum dissipation)
+#undef ALLOW_FRICTION_HEATING
 
 C o Allow mass source or sink of Fluid in the interior
 C   (3-D generalisation of oceanic real-fresh water flux)
@@ -123,9 +124,7 @@ C   each of the above pkg get its own options from its specific option file.
 C   Although this method, inherited from ECCO setup, has been traditionally
 C   used for all adjoint built, work is in progress to allow to use the
 C   standard method also for adjoint built.
-#if (defined (ALLOW_AUTODIFF) || \
-     defined (ALLOW_ECCO) || \
-     defined (ALLOW_EXF))
+#ifdef PACKAGES_CONFIG_H
 # include "ECCO_CPPOPTIONS.h"
 #endif
 
