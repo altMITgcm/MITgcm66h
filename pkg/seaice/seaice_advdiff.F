@@ -653,6 +653,20 @@ C-    Add tendency due to diffusion
 #endif
        ENDIF
 
+#ifdef SEAICE_ITD
+       DO bj=myByLo(myThid),myByHi(myThid)
+        DO bi=myBxLo(myThid),myBxHi(myThid)
+C     check that all ice thickness categories meet their limits
+C     (includes Hibler-type ridging)
+         CALL SEAICE_ITD_REDIST(bi, bj, myTime, myIter, myThid)
+C     update mean ice thickness HEFF and total ice concentration AREA
+C     to match single category values
+C     (necessary here because updated HEFF is used below for SItracer)
+         CALL SEAICE_ITD_SUM(bi, bj, myTime, myIter, myThid)
+        ENDDO
+       ENDDO
+#endif
+
 #ifdef SEAICE_VARIABLE_SALINITY
        IF ( SEAICEadvSalt ) THEN
 #ifdef ALLOW_AUTODIFF_TAMC
