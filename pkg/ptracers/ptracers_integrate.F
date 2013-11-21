@@ -141,7 +141,12 @@ C--   Loop over tracers
            fVerT(i,j,2) = 0. _d 0
          ENDDO
         ENDDO
-#ifdef ALLOW_AUTODIFF_TAMC
+#ifdef ALLOW_AUTODIFF
+        DO j=1-OLy,sNy+OLy
+         DO i=1-OLx,sNx+OLx
+           rTrans(i,j) = 0. _d 0
+         ENDDO
+        ENDDO
         DO k=1,Nr
          DO j=1-OLy,sNy+OLy
           DO i=1-OLx,sNx+OLx
@@ -149,7 +154,7 @@ C--   Loop over tracers
           ENDDO
          ENDDO
         ENDDO
-#endif /* ALLOW_AUTODIFF_TAMC */
+#endif /* ALLOW_AUTODIFF */
 
         IF ( .NOT.implicitDiffusion ) THEN
           CALL CALC_3D_DIFFUSIVITY(
