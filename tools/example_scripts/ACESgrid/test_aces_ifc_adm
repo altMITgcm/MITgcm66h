@@ -35,7 +35,7 @@ sfx='iad'
 export PATH="$PATH:$HOME/bin"
 
 dAlt=`date +%j` ; dAlt=`expr $dAlt % 2`
-if [ $dAlt -eq 1 ] ; then options="$options -fast" ; fi
+#if [ $dAlt -eq 1 ] ; then options="$options -fast" ; fi
 
 #- keep a copy of MPI_MFILE:
 cp -p $PBS_NODEFILE $HERE"/mf_"$sfx
@@ -75,7 +75,9 @@ if [ $checkOut -eq 1 ] ; then
         fi
       done )
 #   ( cd $gcmDIR/verification ; ../tools/do_tst_2+2 -clean )
-    echo "cvs update of dir $gcmDIR :"
+    echo ' remove all Makefile_syntax and do "cvs update -P -d"'
+    ( cd $gcmDIR/verification ; rm -f */build/Makefile_syntax )
+#   echo "cvs update of dir $gcmDIR :"
     ( cd $gcmDIR ; cvs -q $cvsArg update -P -d ) 2>&1
     RETVAL=$?
     if test "x$RETVAL" != x0 ; then
@@ -115,8 +117,26 @@ fi
 SavD="$HOME/test_$dNam/send"
 SEND="ssh login $SavD/mpack"
 
-echo ./testreport $options -of $OPTFILE -odir ${dNam}-$sfx \
-  -send \"$SEND\" -sd $SavD -a jmc@mitgcm.org
-./testreport $options -of $OPTFILE -odir ${dNam}-$sfx \
-  -send "$SEND" -sd $SavD -a jmc@mitgcm.org
+if [ $dAlt -eq 1 ] ; then
+  options="$options -fast"
 
+  echo ./testreport $options -of $OPTFILE -odir ${dNam}-$sfx \
+    -send \"$SEND\" -sd $SavD -a jmc@mitgcm.org
+  ./testreport $options -of $OPTFILE -odir ${dNam}-$sfx \
+    -send "$SEND" -sd $SavD -a jmc@mitgcm.org
+
+else
+  options="$options -devel"
+
+  echo ./testreport $options -of $OPTFILE \
+    -repl_mk do_make_syntax.sh -obj -dd
+  ./testreport $options -of $OPTFILE \
+    -repl_mk do_make_syntax.sh -obj -dd 2>&1
+
+  echo ''
+  echo ./testreport $options -of $OPTFILE -odir ${dNam}-$sfx \
+    -q -send \"$SEND\" -sd $SavD -a jmc@mitgcm.org
+  ./testreport $options -of $OPTFILE -odir ${dNam}-$sfx \
+    -q -send "$SEND" -sd $SavD -a jmc@mitgcm.org
+
+fi
