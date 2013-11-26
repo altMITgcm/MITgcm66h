@@ -91,6 +91,11 @@ C     division by zero is not possible
 
        CALL DIAGNOSTICS_FILL(HSNOW  ,'SIhsnow ',0,1 ,0,1,1,myThid)
 
+#ifdef SEAICE_ITD
+       CALL DIAGNOSTICS_FILL(HEFFITD ,'SIheffN ',0,nITD ,0,1,1,myThid)
+       CALL DIAGNOSTICS_FILL(AREAITD ,'SIareaN ',0,nITD ,0,1,1,myThid)
+#endif
+
 #ifdef ALLOW_SITRACER
       DO iTracer = 1, SItrNumInUse
        WRITE(diagName,'(A4,I2.2,A2)') 'SItr',iTracer,'  '
