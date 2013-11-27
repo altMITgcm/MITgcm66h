@@ -13,14 +13,12 @@ C     !INTERFACE:
 
 C     !DESCRIPTION:
 C     Define MNC variables for use by the coupler.
-      
+
 C     !USES:
       IMPLICIT NONE
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "DYNVARS.h"
-#include "GRID.h"
 
 C     !INPUT PARAMETERS:
       INTEGER myThid
