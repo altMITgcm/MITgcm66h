@@ -88,7 +88,9 @@ else
    # -Wnonstd-intrinsics  for gfortran <= 4.3
    # -Wintrinsics-std     for gfortran >= 4.4
    # -Wno-tabs            for gfortran >= 4.3
-    FFLAGS="$FFLAGS -Waliasing -Wampersand -Wsurprising -Wline-truncation"
+   #FFLAGS="$FFLAGS -Waliasing -Wampersand -Wsurprising -Wline-truncation"
+   #- or simply:
+    FFLAGS="$FFLAGS -Wall -Wno-unused-dummy-argument"
    #- to get plenty of warnings: -Wall -Wextra (older form: -Wall -W) or:
    #FFLAGS="$FFLAGS -Wconversion -Wimplicit-interface -Wunused-labels"
   if test "x$DEVEL" = x ; then  #- no optimisation + IEEE :
