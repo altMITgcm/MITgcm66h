@@ -39,9 +39,8 @@ c     parameter (VERB=.TRUE.)
       integer LogUnit
       parameter( LogUnit=99 )
 
-! Temporary arrays for local use
-c     integer rank(MAX_PROCS)
-      integer ibuf(MAX_IBUF)
+! Temporary arrays for local use: now declared locally where needed
+c     integer ibuf(MAX_IBUF)
 
 ! The list of components
       integer num_components

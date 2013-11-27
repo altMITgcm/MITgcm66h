@@ -3,17 +3,20 @@ C $Name$
 
 !=======================================================================
       subroutine mitcplr_init2b( myTypeStr )
+
       implicit none
-! Arguments
-      character*(*) myTypeStr
 ! Predefined constants/arrays
 #include "CPLR_SIG.h"
 ! MPI variables
 #include "mpif.h"
+
+! Arguments
+      character*(*) myTypeStr
+! Local
       integer myid, numprocs, ierr
       integer MPI_COMM_temp
-! Local
       integer n,j,lenbuf,compind
+      integer ibuf(MAX_IBUF)
 !     ------------------------------------------------------------------
 
 ! Foreach component type
@@ -81,7 +84,7 @@ C $Name$
        enddo
 
        if (num_coupler_procs .ne. 1) then
-        stop 'MITCPLR_init2b: I can only handle one coupling process'
+        STOP 'MITCPLR_init2b: I can only handle one coupling process'
        endif
 
       enddo
