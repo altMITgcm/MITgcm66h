@@ -37,7 +37,7 @@ C     suff    :: suffix for pickup file (eg. ckptA or 0000000010)
 C     myTime  :: Current time in simulation
 C     myIter  :: Current iteration number in simulation
 C     myThid  :: My Thread Id number
-      LOGICAL permPickup
+c     LOGICAL permPickup
       CHARACTER*(*) suff
       _RL     myTime
       INTEGER myIter
