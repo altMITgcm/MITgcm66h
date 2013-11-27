@@ -217,9 +217,6 @@ C     modelEnd  :: true if reaching the end of the run
 C     myTimeBeg :: time at beginning of time step (needed by longstep)
 C     myIterBeg :: iteration number at beginning of time step
       LOGICAL modelEnd
-#ifdef COMPONENT_MODULE
-      INTEGER myItP1
-#endif
 #ifdef ALLOW_LONGSTEP
       INTEGER myIterBeg
       _RL myTimeBeg
