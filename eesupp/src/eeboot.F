@@ -137,15 +137,15 @@ C       execution at this stage.
       CALL INI_THREADING_ENVIRONMENT
       IF ( eeBootError ) GOTO 999
 
-C--   Pass attributes to the coupler
-#ifdef COMPONENT_MODULE
-      IF ( useCoupler ) CALL CPL_REGISTER
-#endif
-
 #ifdef ALLOW_EXCH2
 C--   Initialise WRAPPER2 execution environment
       CALL W2_EEBOOT
 #endif /* ALLOW_EXCH2 */
+
+C--   Pass attributes to the coupler
+#ifdef COMPONENT_MODULE
+      IF ( useCoupler ) CALL CPL_REGISTER
+#endif
 
   999 CONTINUE
       RETURN
