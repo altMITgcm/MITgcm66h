@@ -3,30 +3,43 @@ C $Name$
 
 #include "CPP_OPTIONS.h"
 
-CStartOfInterface
-      SUBROUTINE CPL_READ_PARAMS
+CBOP 0
+C !ROUTINE: CPL_READ_PARAMS
+
+C !INTERFACE:
+      SUBROUTINE CPL_READ_PARAMS( msgUnit )
+
+C !DESCRIPTION:
 C     *==========================================================*
 C     | SUBROUTINE CPL_READ_PARAMS
-C     | o Read coupler and mapping parameters 
+C     | o Read coupler and mapping parameters
 C     *==========================================================*
+
+C !USES:
       IMPLICIT NONE
-
-#include "ATMSIZE.h"
+C     == Global variables ==
 #include "CPL_PARAMS.h"
-#include "CPL_MAP2GRIDS.h"
 
-C     == Routine arguments ==
-CEndOfInterface
+C !INPUT/OUTPUT PARAMETERS:
+C     msgUnit          :: log-file I/O unit
+      INTEGER msgUnit
 
-C     == Local variables ==
-        
+C !LOCAL VARIABLES:
+CEOP
+
+      WRITE(msgUnit,'(2A)') 'CPL_READ_PARAMS: ',
+     &                      'reading parameter file "data"'
         OPEN(88, FILE='data', STATUS='OLD')
-        READ(88,*) nCouplingSteps
-        READ(88,*) nROmap
-        READ(88,'(A)') runoffmapFile
+c       READ(88,*) nCouplingSteps
+        READ(88,*)
+        READ(88,*) runOffMapSize
+        READ(88,'(A)') runOffMapFile
         CLOSE(88)
 
-        WRITE(6,*) 'CPL_READ_PARAMS: nCouplingSteps=',nCouplingSteps
+        WRITE(msgUnit,'(2A,I8)') 'CPL_READ_PARAMS: ',
+     &                'runOffMapSize=', runOffMapSize
+        WRITE(msgUnit,'(3A)') 'CPL_READ_PARAMS: ',
+     &                'runOffMapFile=', runOffMapFile
 
       RETURN
       END
