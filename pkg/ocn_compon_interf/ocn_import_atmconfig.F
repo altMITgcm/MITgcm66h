@@ -38,8 +38,8 @@ C     o Import atmosphere model orography
       _BARRIER
       _BEGIN_MASTER( myThid )
       CALL COMPRECV_R8TILES(
-     I              atmDepthName, sNx, OLx, sNy, OLy, 1, nSx, nSy,
-     O              Hatm )
+     I              atmLandName, sNx, OLx, sNy, OLy, 1, nSx, nSy,
+     O              landMask )
       _END_MASTER( myThid )
       _BARRIER
 
