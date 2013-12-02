@@ -3,11 +3,11 @@ C $Name$
 
   These lines are here to deliberately cause a compile-time error.
   If you see these lines in your .F files or the compiler shows them
-    as an error then it means you have not placed your coupler 
+    as an error then it means you have not placed your coupler
     configuration files in the appropriate place.
   You need: a) to place you own copy of OCNIDS.h in a directory
     (e.g.: shared_code) which is both in the include path of the
-    coupler and in include path of the ocean component ; 
+    coupler and in include path of the ocean component ;
   and b) to comment out these lines.
 
 C     *==========================================================*
@@ -15,7 +15,7 @@ C     | OCNIDS.h Declare symbolic constants holding strings that
 C     |          are used to identify this component and the
 C     |          fields it exchanges with other components.
 C     *==========================================================*
-      CHARACTER*(8)  ocnCompName 
+      CHARACTER*(8)  ocnCompName
       PARAMETER( ocnCompName         = 'UV-Ocean'       )
 
       CHARACTER*(10) ocnMxlDName
