@@ -28,17 +28,19 @@ C     == Global variables ==
 #include "OCNIDS.h"
 
 C !INPUT/OUTPUT PARAMETERS:
-C     == Routine arguments ==
-C     myThid :: Thread number for this instance of the routine
+C     myThid   :: Thread number for this instance of the routine
 c     INTEGER myThid
 CEOP
 
+#ifdef COMPONENT_MODULE
 C !LOCAL VARIABLES:
-C     == Local variables ==
+C     msgUnit  :: log-file I/O unit
+      INTEGER msgUnit
 
 C--   Initialise connection with coupler
-#ifdef COMPONENT_MODULE
-      CALL MITCOMPONENT_INIT( ocnCompName, MPI_COMM_MODEL )
+      CALL MITCOMPONENT_INIT(
+     I                  ocnCompName,
+     O                  MPI_COMM_MODEL, msgUnit )
 #endif
 
       RETURN
