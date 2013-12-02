@@ -2,7 +2,9 @@ C $Header$
 C $Name$
 
 !=======================================================================
-      subroutine MITCOMPONENT_init( myTypeStr, MPI_COMM_local )
+      subroutine MITCOMPONENT_init(
+     I                      myTypeStr, 
+     O                      MPI_COMM_local, msgUnit )
       implicit none
 
 ! MPI variables
@@ -14,6 +16,7 @@ C $Name$
 ! Arguments
       character*(*) myTypeStr
       integer MPI_COMM_local
+      integer msgUnit
 
 ! Functions
 
@@ -23,8 +26,10 @@ C $Name$
 !     ------------------------------------------------------------------
 
 ! Homogeneous registration phase (every process Bcasts)
-      couplerFlag=.FALSE.
+!  also open a coupling log file (.clog) with I/O unit: LogUnit
+      couplerFlag = .FALSE.
       call MITCPLR_init1( myTypeStr, couplerFlag )
+      msgUnit = LogUnit
 
 ! Return the communicator for my component
       MPI_COMM_local = MPI_COMM_mylocal
