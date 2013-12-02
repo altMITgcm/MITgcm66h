@@ -6,7 +6,7 @@ C     | OCNIDS.h Declare symbolic constants holding strings that
 C     |          are used to identify this component and the
 C     |          fields it exchanges with other components.
 C     *==========================================================*
-      CHARACTER*(8)  ocnCompName 
+      CHARACTER*(8)  ocnCompName
       PARAMETER( ocnCompName         = 'UV-Ocean'       )
 
       CHARACTER*(10) ocnMxlDName
