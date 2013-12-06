@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src & pkg/ptracers:
+  - move calls to GAD_ADVECTION (Multi-Dim advection) from thermodynamics.F to
+    inside temp_integrate.F and salt_integrate.F and from ptracers_advection.F
+    to inside ptracers_integrate.F ; remove ptracers_advection.F
 o coupling interface pkgs:
     [atm_compon_interf, ocn_compon_interf & atm_ocn_coupler]
   - change the config check to test the agreement of Ocean Depth
