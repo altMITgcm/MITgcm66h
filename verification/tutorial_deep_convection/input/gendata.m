@@ -57,7 +57,7 @@ end ; end
 var=2*pi*[0:1000]/1000; xl=Rc*cos(var); yl=Rc*sin(var);
 figure(1);clf;
 var=Qc; var(find(var==0))=NaN;
-imagesc(xc,yc,var'); set(gca,'YDir','normal');
+imagesc(x,y,var'); set(gca,'YDir','normal');
 caxis([-15 820]);
 %change_colmap(-1);
 colorbar
