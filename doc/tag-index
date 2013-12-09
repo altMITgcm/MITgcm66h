@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice/seaice_lsr.F: fix an initialisation bug for the 
+  SEAICE_VECTORIZE_LSR_ZEBRA option that lead to NaNs on a NEC-SX8
+
 checkpoint64r (2013/12/08)
 o verification/*/results:
   - Update reference output of experiments that were passing with just 13 digits
