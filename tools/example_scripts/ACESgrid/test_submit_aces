@@ -210,8 +210,8 @@ else
   TEST_LIST=$*
 fi
 
-QSUB="/usr/local/bin/qsub"
-QSTAT="/usr/local/bin/qstat"
+QSUB="/usr/bin/qsub"
+QSTAT="/usr/bin/qstat"
 TST_DIR="/data/jm_c/test_acesgrid"
 logPfix='tst_submit'
 outPfix='acesgrid'
