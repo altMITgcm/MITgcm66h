@@ -162,7 +162,7 @@ C--   end if MASTER_CPU_IO
       _BEGIN_MASTER( myThid )
 #ifdef ALLOW_USE_MPI
 C--   broadcast to all processes
-       IF ( useSingleCPUIO ) THEN
+       IF ( useSingleCpuInput ) THEN
          IF ( filePrec .EQ. 32 ) THEN
            CALL MPI_BCAST(buffer_r4,nx_in*ny_in,MPI_REAL,
      &          0,MPI_COMM_MODEL,ierr)

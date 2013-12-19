@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o useSingleCpuInput separates single-CPU input from single-CPU output
 o pkg/seaice/seaice_lsr.F: fix an initialisation bug for the 
   SEAICE_VECTORIZE_LSR_ZEBRA option that lead to NaNs on a NEC-SX8
 

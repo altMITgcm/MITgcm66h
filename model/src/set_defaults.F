@@ -195,6 +195,7 @@ Cml      sBeta               = 7.4 _d -4
       quasiHydrostatic    = .FALSE.
       globalFiles         = .FALSE.
       useSingleCpuIO      = .FALSE.
+      useSingleCpuInput   = .FALSE.
       allowFreezing       = .FALSE.
       ivdc_kappa          = 0. _d 0
       hMixCriteria        = -.8 _d 0
