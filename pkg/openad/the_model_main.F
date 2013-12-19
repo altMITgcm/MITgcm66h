@@ -483,8 +483,10 @@ C     Temporarily change setting of writeBinaryPrec
       foo=xx_salt%d
       call write_fld_xyz_rl('adxx_salt.',suff,foo,myIter,1)
 #  endif
+#  ifndef ALLOW_STREAMICE
       fooEtan=etan%d
       call write_fld_xy_rl('adxx_etan.',suff,fooEtan,myIter,1)
+#  endif
 #  ifdef ALLOW_GENARR3D_CONTROL
       do ik = 1, maxCtrlArr3D
         foo=xx_genarr3d(:,:,:,:,:,ik)%d
