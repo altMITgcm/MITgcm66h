@@ -126,6 +126,7 @@ C         easier to transfer analyse a particular snap-shots
           WRITE(suff,'(I10.10)') myIter
 
 #ifdef ALLOW_AUTODIFF_OPENAD
+# ifndef ALLOW_STREAMICE
           CALL WRITE_FLD_XYZ_RL( 'U.',suff,uVel%v,myIter,myThid)
           CALL WRITE_FLD_XYZ_RL( 'V.',suff,vVel%v,myIter,myThid)
           CALL WRITE_FLD_XYZ_RL( 'T.',suff,theta%v,myIter,myThid)
@@ -135,6 +136,7 @@ C         easier to transfer analyse a particular snap-shots
           IF ( useDynP_inEos_Zc .OR. myIter.NE.nIter0 ) THEN
             CALL WRITE_FLD_XYZ_RL('PH.',suff,totPhiHyd%v,myIter,myThid)
           ENDIF
+# endif
 #else
           CALL WRITE_FLD_XYZ_RL( 'U.',suff,uVel,myIter,myThid)
           CALL WRITE_FLD_XYZ_RL( 'V.',suff,vVel,myIter,myThid)
