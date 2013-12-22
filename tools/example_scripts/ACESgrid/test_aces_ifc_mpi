@@ -27,8 +27,6 @@ HERE=$TST_DIR/output
 sfx='ifc'
  export MODULEPATH="/mit/jahn/usr/modulefiles:${MODULEPATH}"
  module add intel
-#- with mpich2, needs module torque to run
- module add torque
  OPTFILE="../tools/build_options/linux_amd64_ifort11"
  options="-j 2 -MPI 6"
 #- need this to get "staf":

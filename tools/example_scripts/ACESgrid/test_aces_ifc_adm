@@ -27,8 +27,6 @@ HERE=$TST_DIR/output
 sfx='iad'
  export MODULEPATH="/mit/jahn/usr/modulefiles:${MODULEPATH}"
  module add intel
-#- with mpich2, needs module torque to run
- module add torque
  OPTFILE="../tools/build_options/linux_amd64_ifort11"
  options="-adm -MPI 6"
 #- need this to get "staf":
