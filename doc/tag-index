@@ -4,9 +4,15 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
-o useSingleCpuInput separates single-CPU input from single-CPU output
-o pkg/seaice/seaice_lsr.F: fix an initialisation bug for the 
-  SEAICE_VECTORIZE_LSR_ZEBRA option that lead to NaNs on a NEC-SX8
+o useSingleCpuInput separates single-CPU input from single-CPU output;
+    for now only implemented for in exf_interp_read.F
+o verification/advect_xy:
+  - fix missing EXCH call in local version of ini_salt.F and update output.
+o momentum diagnostics:
+  - fix which deltaT is used in Total-Tendency diagnostics.
+  - fix typo in diagnostics for momentum tendency from AB.
+o pkg/seaice/seaice_lsr.F: fix an initialisation bug for the
+    SEAICE_VECTORIZE_LSR_ZEBRA option that lead to NaNs on a NEC-SX8
 
 checkpoint64r (2013/12/08)
 o verification/*/results:
