@@ -43,6 +43,7 @@ C     iUnit       :: Work variable for IO unit number
 #endif
 C--   useRBCptracers is no longer used
       LOGICAL useRBCptracers
+      INTEGER rbcsIniter
 CEOP
 
 C--   RBCS parameters:
@@ -74,7 +75,7 @@ C--   RBCS parameters:
 
 #ifdef ALLOW_PTRACERS
       NAMELIST /RBCS_PARM02/
-     &          useRBCptrnum, tauRelaxPTR,
+     &          useRBCpTrNum, tauRelaxPTR,
      &          relaxPtracerFile
 #endif
 
@@ -110,7 +111,7 @@ C--   Default values
       rbcsIter0 = 0
 #ifdef ALLOW_PTRACERS
       DO iTracer=1,PTRACERS_num
-        useRBCptrnum(iTracer)=.FALSE.
+        useRBCpTrNum(iTracer)=.FALSE.
         tauRelaxPTR(iTracer) = 0.
         relaxPtracerFile(iTracer) = ' '
       ENDDO
@@ -205,7 +206,7 @@ C---  Check RBCS config and params:
       ENDIF
 #ifdef ALLOW_PTRACERS
       DO iTracer=1,PTRACERS_num
-       IF ( useRBCptrnum(iTracer) ) THEN
+       IF ( useRBCpTrNum(iTracer) ) THEN
         IF ( .NOT.usePTRACERS ) THEN
          WRITE(msgBuf,'(2A,I6,A)') 'RBCS_READPARMS: ',
      &   'usePTRACERS=F => cannot use RBCS for tracer:', iTracer

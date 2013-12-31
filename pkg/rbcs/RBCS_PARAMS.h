@@ -32,7 +32,6 @@ C
       _RL rbcsForcingOffset
       _RL deltaTrbcs
       _RL rbcsVanishingTime
-      INTEGER rbcsIniter
       INTEGER rbcsIter0
       LOGICAL rbcsSingleTimeFiles
       LOGICAL useRBCuVel
@@ -58,7 +57,6 @@ C
      &          rbcsVanishingTime,
      &          deltaTrbcs
       COMMON /RBCS_PARM01_I/
-     &          rbcsIniter,
      &          rbcsIter0
       COMMON /RBCS_PARM01_L/
      &          rbcsSingleTimeFiles,
@@ -76,12 +74,12 @@ C
      &          relaxSFile
 
 #ifdef ALLOW_PTRACERS
-      LOGICAL useRBCptrnum(PTRACERS_num)
+      LOGICAL useRBCpTrNum(PTRACERS_num)
       _RL tauRelaxPTR(PTRACERS_num)
       CHARACTER*(MAX_LEN_FNAM) relaxPtracerFile(PTRACERS_num)
 
       COMMON /RBCS_PARM02_L/
-     &          useRBCptrnum
+     &          useRBCpTrNum
       COMMON /RBCS_PARM02_R/
      &          tauRelaxPTR
       COMMON /RBCS_PARM02_C/
