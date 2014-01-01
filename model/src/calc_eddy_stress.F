@@ -68,7 +68,7 @@ C     Calculate the eddy stress from the eddy induced streamfunction
            coriU = op5*(fcori(i-1,j,bi,bj)
      &                 +fCori(i  ,j,bi,bj))
 
-           tauxEddy(i,j,k,bi,bj) = -rhoConst*coriU*psiy
+           tauxEddy(i,j,k,bi,bj) =  rhoConst*coriU*psiy
           ENDDO
          ENDDO
 
