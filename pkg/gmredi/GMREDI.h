@@ -24,6 +24,8 @@ C     GM_useK3D        :: use the 3 dimensional calculation for K
 C     GM_K3D_beta_eq_0 :: Ignores the beta term when calculating grad(q)
 C     GM_K3D_likeGM    :: Makes the PV closure similar to the GM closure (for debugging only!)
 C     GM_K3D_ThickSheet:: Use a thick PV sheet (should pretty much always be false)
+C     GM_K3D_surfK     :: Imposes a constant K in the surface layer    
+C     GM_K3D_constRedi :: Imposes a constant K for the Redi isoneutral diffusivity
 C     GM_K3D_smooth    :: Expand PV closure in terms of baroclinic modes (for debugging only!)
       LOGICAL GM_AdvForm
       LOGICAL GM_AdvSeparate
@@ -36,6 +38,8 @@ C     GM_K3D_smooth    :: Expand PV closure in terms of baroclinic modes (for de
       LOGICAL GM_useK3D
       LOGICAL GM_K3D_likeGM
       LOGICAL GM_K3D_ThickSheet
+      LOGICAL GM_K3D_surfK
+      LOGICAL GM_K3D_constRedi
       LOGICAL GM_K3D_beta_eq_0
       LOGICAL GM_K3D_smooth
       COMMON /GM_PARAMS_L/
@@ -44,7 +48,8 @@ C     GM_K3D_smooth    :: Expand PV closure in terms of baroclinic modes (for de
      &                   GM_ExtraDiag, GM_MNC, GM_MDSIO,
      &                   GM_InMomAsStress,
      &                   GM_useK3D, GM_K3D_likeGM, GM_K3D_smooth,
-     &                   GM_K3D_beta_eq_0, GM_K3D_ThickSheet
+     &                   GM_K3D_beta_eq_0, GM_K3D_ThickSheet, 
+     &                   GM_K3D_surfK, GM_K3D_constRedi
 
 C--   GM/Redi Integer-type parameters
 C     GM_BVP_modeNumber :: vertical mode number used for speed "c" in BVP transport

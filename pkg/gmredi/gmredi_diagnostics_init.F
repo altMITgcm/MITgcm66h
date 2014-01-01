@@ -255,8 +255,24 @@ c     IF ( useDiagnotics ) THEN
 #endif
 
 #ifdef GM_K3D
-        diagName  = 'GM_K3D'
+        diagName  = 'GM_K3D  '
         diagTitle = '3D diffusivity'
+        diagUnits = 'm**2/s          '
+        diagCode  = 'SM P    MR      '
+        diagMate  = diagNum
+        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
+        
+        diagName  = 'GM_KPV  '
+        diagTitle = '3D eddy transport diffusivity'
+        diagUnits = 'm**2/s          '
+        diagCode  = 'SM P    MR      '
+        diagMate  = diagNum
+        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
+        
+        diagName  = 'GM_K3D_T'
+        diagTitle = '3D Redi diffusivity'
         diagUnits = 'm**2/s          '
         diagCode  = 'SM P    MR      '
         diagMate  = diagNum
