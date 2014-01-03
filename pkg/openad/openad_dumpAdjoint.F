@@ -34,7 +34,7 @@ c They provide the fields to be stored.
 # include "DYNVARS.h"
 # include "FFIELDS.h"
 # include "EOS.h"
-#ifdef ALLOW_GENERIC_ADVDIFF
+# ifdef ALLOW_GENERIC_ADVDIFF
 #  include "GAD.h"
 # endif
 # ifdef ALLOW_CD_CODE
