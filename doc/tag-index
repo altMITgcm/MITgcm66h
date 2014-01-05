@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint64s (2014/01/05)
 o tools/adjoint_options:
   - switch to fastopt.net TAF server (instead of default fastopt.de) for
     AD optfiles adjoint_diva & adjoint_f95 (similar to adjoint_default).
