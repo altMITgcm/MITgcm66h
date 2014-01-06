@@ -4,6 +4,15 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/exf/exf_check.F
+ - fix a small bug again (originally found by Wentao Liu, now found again)
+ - streamline error output
+o pkg/streamice and aim_v23:
+  replace a few "_EXCH_XY_RL (" with "_EXCH_XY_RL(", so that
+  Apple's /usr/bin/cpp knows what to do:
+  Apple LLVM version 5.0 (clang-500.2.79) (based on LLVM 3.3svn)
+  Target: x86_64-apple-darwin13.0.0
+
 checkpoint64s (2014/01/05)
 o tools/adjoint_options:
   - switch to fastopt.net TAF server (instead of default fastopt.de) for
