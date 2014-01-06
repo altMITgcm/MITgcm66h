@@ -73,8 +73,8 @@ C     DIRICHLET BOUNDARY VALUES ADDED TO RHS
      O    ubd_SI, 
      O    vbd_SI)
 
-      _EXCH_XY_RL (ubd_SI, myThid)
-      _EXCH_XY_RL (vbd_SI, myThid)
+      _EXCH_XY_RL(ubd_SI, myThid)
+      _EXCH_XY_RL(vbd_SI, myThid)
 
 !      CALL WRITE_FLD_XY_RL ( "ubd_SI", "",
 !     &   ubd_SI, 0, myThid )

@@ -341,7 +341,7 @@ CADJ STORE streamice_hmask  = comlev1, key=ikey_dynamics
        ENDDO
       ENDDO
 
-      _EXCH_XY_RL (H_streamice,myThid)
+      _EXCH_XY_RL(H_streamice,myThid)
 
 
       WRITE(msgBuf,'(A)') 'END STREAMICE_ADVECT_THICKNESS'
