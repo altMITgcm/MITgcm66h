@@ -64,7 +64,7 @@ C--  Set default value for atmos. physics parameters:
        Katm = _KD2KA( k )
        HSG(Katm) = rF(k)/pGround
 
-      _END_MASTER ( myThid )
+      _END_MASTER( myThid )
 
 C--   set default value for all atmos. physics parameter:
       CALL INPHYS( HSG, myThid )
@@ -76,7 +76,7 @@ C--   set energy fractions in LW bands as a function of temperature:
 C     initialize common block RADFIX (originally called from FORDATE in SPEEDY)
       _BEGIN_MASTER(myThid )
        CALL RADSET( myThid )
-      _END_MASTER ( myThid )
+      _END_MASTER( myThid )
 
 C--   Set truncSurfP : used to correct for truncation (because of hFacMin)
 C      of surface reference pressure Ro_surf that affects Surf.Temp.
