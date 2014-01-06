@@ -2356,27 +2356,6 @@ EOF
     fi
 fi
 
-#  Check for package RADTRANS: if LAPACK is not available,
-#  then issue a warning that the direct radtrans solver is not available.
-if test "x$HAVE_LAPACK" != xt ; then
-    echo " $PACKAGES " | grep ' radtrans ' > /dev/null 2>&1
-    RETVAL=$?
-    if test "x$RETVAL" = x0 ; then
-	cat <<EOF
-*********************************************************************
-WARNING: the "radtrans" package was enabled but tests failed to
-  compile LAPACK applications.  This means that the direct radtrans
-  solver is not available and compilation will fail if it is enabled.
-  If you want to use the direct solver, please check that:
-
-  1) LAPACK is correctly installed for this compiler and
-  2) the LIBS variable (within the "optfile") specifies the correct
-     LAPACK library to link against.
-*********************************************************************
-EOF
-    fi
-fi
-
 #  Make sure the openad package is enabled if using OpenAD
 if test "x$OPENAD" != x ; then
     echo " $PACKAGES " | grep ' openad ' > /dev/null 2>&1
