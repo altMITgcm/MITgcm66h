@@ -49,9 +49,6 @@ c#undef AUTODIFF_4_LEVEL_CHECKPOINT
 C o use divided adjoint to split adjoint computations
 #undef ALLOW_DIVIDED_ADJOINT
 
-C o Enable some temporary constructs for OpenAD
-#undef ALLOW_AUTODIFF_OPENAD
-
 C   ==================================================================
 #endif /* ndef ECCO_CPPOPTIONS_H */
 #endif /* ALLOW_AUTODIFF */
