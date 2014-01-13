@@ -411,7 +411,11 @@ C--   Implicit vertical advection & diffusion
 #ifdef INCLUDE_IMPLVERTADV_CODE
       IF ( tempImplVertAdv ) THEN
 #ifdef ALLOW_AUTODIFF_TAMC
-CADJ STORE gT(:,:,:,bi,bj) = comlev1_bibj , key=itdkey, byte=isbyte
+CADJ STORE kappaRk(:,:,:) = comlev1_bibj , key=itdkey, byte=isbyte	 
+CADJ STORE gT(:,:,:,bi,bj) = comlev1_bibj , key=itdkey, byte=isbyte	 
+CADJ STORE wFld(:,:,:) = comlev1_bibj , key=itdkey, byte=isbyte	 
+CADJ STORE theta(:,:,:,bi,bj) = comlev1_bibj , key=itdkey, byte=isbyte	 
+CADJ STORE recip_hFac(:,:,:) = comlev1_bibj , key=itdkey, byte=isbyte	 
 #endif /* ALLOW_AUTODIFF_TAMC */
         CALL GAD_IMPLICIT_R(
      I         tempImplVertAdv, tempVertAdvScheme, GAD_TEMPERATURE,
@@ -424,6 +428,7 @@ CADJ STORE gT(:,:,:,bi,bj) = comlev1_bibj , key=itdkey, byte=isbyte
       IF     ( implicitDiffusion ) THEN
 #endif /* INCLUDE_IMPLVERTADV_CODE */
 #ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE kappaRk(:,:,:) = comlev1_bibj , key=itdkey, byte=isbyte	
 CADJ STORE gT(:,:,:,bi,bj) = comlev1_bibj , key=itdkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
         CALL IMPLDIFF(
