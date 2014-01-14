@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src/temp_integrate.F and salt_integrate.F
+ - re-include store directives that were removed on Dec 27th.
 o model/src/external_forcing_surf.F
  - add storage directives for EmPmR and PmEpR to avoid recomputation of seaice_model 
    in the adjoint that is problematic when seaice_model is turned off in the adjoint. 
