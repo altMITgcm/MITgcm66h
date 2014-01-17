@@ -234,7 +234,13 @@ c--   hfluxm.
         do bi = itlo,ithi
           do j = jmin,jmax
             do i = imin,imax
+# ifdef ALLOW_AUTODIFF_OPENAD
+              Qnetm(i,j,bi,bj) = Qnetm(i,j,bi,bj) +
+     &                          xx_hfluxm(i,j,bi,bj) +
+     &                          tmpfld2d(i,j,bi,bj)
+#else
               Qnetm(i,j,bi,bj) = Qnetm(i,j,bi,bj) + tmpfld2d(i,j,bi,bj)
+#endif
             enddo
           enddo
         enddo
