@@ -310,6 +310,9 @@ C
 # ifdef ALLOW_TR10_CONTROL
      &      , xx_tr1
 # endif
+# ifdef ALLOW_HFLUXM_CONTROL
+     &      , xx_hfluxm
+# endif
 # ifdef ALLOW_GENARR2D_CONTROL
      &      , xx_genarr2d
 # endif
@@ -330,6 +333,9 @@ C
 # endif
 # ifdef ALLOW_TR10_CONTROL
       _RL xx_tr1(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+# endif
+# ifdef ALLOW_HFLUXM_CONTROL
+      _RL xx_hfluxm(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 # endif
 # ifdef ALLOW_GENARR2D_CONTROL
       _RL xx_genarr2d(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy,
