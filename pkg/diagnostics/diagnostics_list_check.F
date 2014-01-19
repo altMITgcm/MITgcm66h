@@ -49,9 +49,8 @@ C     !LOCAL VARIABLES:
       CHARACTER*8 diagName
       INTEGER n,m,m1,i
 
-      ndCount = 0.
+      ndCount = 0
       _BEGIN_MASTER(myThid)
-
 
 C-    File names:
       m1 = md
@@ -206,8 +205,6 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
        ENDDO
        m1 = 1
       ENDDO
-
-C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
       _END_MASTER(myThid)
 
