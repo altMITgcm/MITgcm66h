@@ -115,7 +115,6 @@ C     qicAv     :: mean enthalpy of ice (layer 1 & 2) [J/m^3]
 C-    define grid-point location where to print debugging values
 #include "THSICE_DEBUG.h"
 
- 1010 FORMAT(A,I3,3F8.3)
  1020 FORMAT(A,1P4E11.3)
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
