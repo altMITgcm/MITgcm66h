@@ -55,7 +55,7 @@ C     diagTitle :: local string (80c): description of field in diagnostic
       diagName  = 'oceSPflx'
       diagTitle = 'net surface Salt flux rejected into the ocean during'
      &          //' freezing, (+=down),'
-     &          //' >0 increases salinity'
+c    &          //' >0 increases salinity'
       diagUnits = 'g/m^2/s         '
       diagCode  = 'SM      U1      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,

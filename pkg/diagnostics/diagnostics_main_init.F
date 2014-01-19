@@ -484,7 +484,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
       diagName  = 'RHOANOSQ'
       diagTitle = 'Square of Density Anomaly (=(Rho-rhoConst)^2)'
-      diagUnits = 'kg^2/m^6          '
+      diagUnits = 'kg^2/m^6        '
       diagCode  = 'SMRP    MR      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
