@@ -86,8 +86,14 @@ c     objf_gencost - gencost user defined contribution
       integer gencost_flag(NGENCOST)
 
       common /ecco_gencost_l_1/
+#ifdef ALLOW_GENCOST_TIMEVARY_WEIGHT
+     &       gencost_timevaryweight,
+#endif /* ALLOW_GENCOST_TIMEVARY_WEIGHT */
      &       using_gencost
       LOGICAL using_gencost(NGENCOST)
+#ifdef ALLOW_GENCOST_TIMEVARY_WEIGHT
+      LOGICAL gencost_timevaryweight(NGENCOST)
+#endif /* ALLOW_GENCOST_TIMEVARY_WEIGHT */
 
       common /ecco_gencost_c/
      &       gencost_name,
