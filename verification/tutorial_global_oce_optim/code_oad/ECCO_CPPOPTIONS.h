@@ -11,16 +11,7 @@ C   Although this method, inherited from ECCO setup, has been traditionally
 C   used for all adjoint built, work is in progess to allow to use the
 C   standard metod (each of the above pkg get its own options from its
 C   specific option-file) also for adjoint built.
-
-C ********************************************************************
-C ***                         ECCO Package                         ***
-C ********************************************************************
-
-cph#define  ALLOW_ECCO_OPTIMIZATION
-
-C o Enable some temporary constructs for OpenAD
-#define ALLOW_AUTODIFF_OPENAD
-
+C
 C ********************************************************************
 C ***                  Adjoint Support Package                     ***
 C ********************************************************************
@@ -38,6 +29,9 @@ C       >>> Extract adjoint state
 
 C o use divided adjoint to split adjoint computations
 #undef ALLOW_DIVIDED_ADJOINT
+
+C o Enable some temporary constructs for OpenAD
+#define ALLOW_AUTODIFF_OPENAD
 
 C ********************************************************************
 C ***                     Calendar Package                         ***
@@ -62,8 +56,8 @@ C ********************************************************************
 
 #define  ALLOW_NONDIMENSIONAL_CONTROL_IO
 C       >>> Initial values.
-#undef ALLOW_THETA0_CONTROL
-#undef ALLOW_SALT0_CONTROL
+#define ALLOW_THETA0_CONTROL
+#define ALLOW_SALT0_CONTROL
 #undef ALLOW_TR10_CONTROL
 #undef ALLOW_TAUU0_CONTROL
 #undef ALLOW_TAUV0_CONTROL
