@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/thsice
+  - corrected store directive fixes thsice adjoint gradient checks
 o genmake2 & testreport:
   - add genmake2 option "-oad" to generate a Makefile for OpenAD built and
     in this case, use tools/adjoint_options/adjoint_oad as default AD optfile.
