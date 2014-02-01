@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint64t (2014/02/01)
 o pkg/thsice
   - corrected store directive fixes thsice adjoint gradient checks
 o genmake2 & testreport:
