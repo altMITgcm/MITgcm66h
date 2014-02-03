@@ -320,7 +320,7 @@ C-    Vertical viscosity parameters:
      &  ' /* free-surface level-index is uniform */')
       CALL WRITE_0D_RL( hFacMin, INDEX_NONE, 'hFacMin = ',
      & '  /* minimum partial cell factor (hFac) */')
-      CALL WRITE_0D_RL( hFacMin, INDEX_NONE, 'hFacMinDr =',
+      CALL WRITE_0D_RL( hFacMinDr, INDEX_NONE, 'hFacMinDr =',
      &  ' /* minimum partial cell thickness ('//rUnits//') */')
       CALL WRITE_0D_L( exactConserv, INDEX_NONE,
      & 'exactConserv =',
