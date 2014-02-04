@@ -262,7 +262,7 @@ C--    read Sea-Ice Dynamics variables (all 2-D fields):
      &                                      nj, fp, 1, nIter0, myThid )
          CALL READ_MFLDS_3D_RL( 'siVICE  ', VICE,
      &                                      nj, fp, 1, nIter0, myThid )
-         IF ( SEAICEuseAB2 ) THEN
+         IF ( SEAICEuseBDF2 ) THEN
           CALL READ_MFLDS_3D_RL('siUicNm1', uIceNm1,
      &                                      nj, fp, 1, nIter0, myThid )
           CALL READ_MFLDS_3D_RL('siVicNm1', vIceNm1,

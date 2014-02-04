@@ -68,8 +68,8 @@ C     Initialize MNC variable information for SEAICE
       ENDIF
 
 C     restart parameter
-      SEAICEmomStartAB = 0
-      IF ( SEAICEuseAB2 ) SEAICEmomStartAB = nIter0
+      SEAICEmomStartBDF = 0
+      IF ( SEAICEuseBDF2 ) SEAICEmomStartBDF = nIter0
 
       _BEGIN_MASTER(myThid)
 #ifdef SHORTWAVE_HEATING

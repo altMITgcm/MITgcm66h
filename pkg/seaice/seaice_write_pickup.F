@@ -158,7 +158,7 @@ C--    write Sea-Ice Dynamics variables (all 2-D fields):
        CALL WRITE_REC_3D_RL( fn, fp,  1, VICE , nj, myIter, myThid )
        IF (j.LE.listDim)  wrFldList(j) = 'siVICE  '
 
-       IF ( SEAICEuseAB2 ) THEN
+       IF ( SEAICEuseBDF2 ) THEN
         j = j + 1
         nj = nj-1
         CALL WRITE_REC_3D_RL( fn, fp,  1, uIceNm1 , nj, myIter, myThid )

@@ -887,8 +887,8 @@ C
 #endif /* SEAICE_ALLOW_JFNK */
 
       IF ( .NOT.SEAICEuseJFNK ) THEN
-       IF ( SEAICEuseAB2 ) THEN
-        WRITE(msgBuf,'(A)') 'SEAICE_CHECK: SEAICEuseAB2 = .TRUE. '//
+       IF ( SEAICEuseBDF2 ) THEN
+        WRITE(msgBuf,'(A)') 'SEAICE_CHECK: SEAICEuseBDF2 = .TRUE. '//
      &       'only allowed with SEAICEuseJFNK = .TRUE.'
         CALL PRINT_ERROR( msgBuf, myThid )
         STOP 'ABNORMAL END: S/R SEAICE_CHECK'
