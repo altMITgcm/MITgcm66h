@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: 
+  - rename recently introduced parameters from (wrong name) AB to
+    BDF (backward difference time discretisation)
+  - retire runtime parameters SEAICEuseAB2, SEAICE_abEps
+
 checkpoint64t (2014/02/01)
 o pkg/thsice
   - corrected store directive fixes thsice adjoint gradient checks
