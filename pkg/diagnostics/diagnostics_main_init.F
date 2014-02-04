@@ -767,7 +767,7 @@ c     diagTitle = 'Free-Surface r-Position (Pressure, Height) (Pa,m)'
 
       diagName  = 'MoistCor'
       diagTitle = 'Heating correction due to moist thermodynamics'
-      diagUnits = 'W/s^2           '
+      diagUnits = 'W/m^2           '
       diagCode  = 'SM      MR      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
