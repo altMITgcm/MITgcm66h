@@ -482,6 +482,8 @@ C--       kDown  Cycles through 2,1 to point to current layer
          kkey = (idynkey-1)*Nr + k
 CADJ STORE totPhiHyd (:,:,k,bi,bj)
 CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
+CADJ STORE phiHydLow (:,:,bi,bj)
+CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte     
 CADJ STORE theta (:,:,k,bi,bj)
 CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
 CADJ STORE salt  (:,:,k,bi,bj)
