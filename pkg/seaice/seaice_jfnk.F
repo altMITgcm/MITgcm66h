@@ -153,7 +153,7 @@ C     cycle ice velocities
         IF ( .NOT.SEAICEuseIMEX ) THEN
 C     Compute things that do no change during the Newton iteration:
 C     sea-surface tilt and wind stress:
-C     FORCEX/Y0 - mass*(abA*u/vIceNm1+abB*(u/vIceNm1-u/vIceNm2))/deltaT
+C     FORCEX/Y0 - mass*(1.5*u/vIceNm1+0.5*(u/vIceNm1-u/vIceNm2))/deltaT
         DO J=1-OLy,sNy+OLy
          DO I=1-OLx,sNx+OLx
           FORCEX(I,J,bi,bj) = FORCEX0(I,J,bi,bj)
