@@ -337,6 +337,8 @@ C--   Time stepping parameters
 C--   Input files
       bathyFile       = ' '
       topoFile        = ' '
+      addWwallFile    = ' '
+      addSwallFile    = ' '
       hydrogSaltFile  = ' '
       hydrogThetaFile = ' '
       maskIniTemp     = .TRUE.
