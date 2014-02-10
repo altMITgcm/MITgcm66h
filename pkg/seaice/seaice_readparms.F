@@ -562,7 +562,7 @@ C     below is the only one that is supported at this time.  Does not
 C     mean that something fancier will not work, just that it has not
 C     yet been tried nor thought through.
       IF ( SEAICE_deltaTtherm .NE. dTtracerLev(1)     .OR.
-     &     SEAICE_deltaTdyn   .LT. SEAICE_deltaTtherm .OR.
+     &     SEAICE_deltaTdyn   .GT. SEAICE_deltaTtherm .OR.
      &     (SEAICE_deltaTdyn/SEAICE_deltaTtherm) .NE.
      &     INT(SEAICE_deltaTdyn/SEAICE_deltaTtherm) ) THEN
          WRITE(msgBuf,'(A)')
