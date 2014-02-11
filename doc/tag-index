@@ -4,6 +4,12 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/mom_vecinv:
+  - remove unused arguments from S/R MOM_VI_HDISSIP & MOM_HDISSIP (as it used
+    to be before mom_calc_visc.F)
+  - skip the call to MOM_CALC_TENSION & MOM_CALC_STRAIN if not needed.
+  - add 2nd copy of vort3 & strain that knows about lateral BC (free/no slip):
+    this is simpler for the adjoint and for diagnostics.
 o model/src + pkg/momentum:
   - add input files for  2-D additional Western and Southern cell-edge wall
      (e.g., to add "thin-wall" where it is =1).
