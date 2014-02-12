@@ -302,7 +302,7 @@ C     anelastic: transports are scaled by rhoFacC (~ mass transport)
       ENDDO
 
       CALL MOM_CALC_KE( bi,bj,k,2,uFld,vFld,KE,myThid )
-      IF ( momViscosity ) THEN
+      IF ( useVariableVisc ) THEN
         CALL MOM_CALC_HDIV( bi,bj,k,2,uFld,vFld,hDiv,myThid )
         CALL MOM_CALC_RELVORT3( bi,bj,k,uFld,vFld,hFacZ,vort3,myThid )
         CALL MOM_CALC_TENSION( bi,bj,k,uFld,vFld,tension,myThid )
