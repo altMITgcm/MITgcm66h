@@ -106,12 +106,12 @@ C     Western Mode
           ENDDO
          ENDDO
         ENDDO
-        m = m + 1
-        CALL WRITE_REC_3D_RL( fn, fp, Nr,
-     &       vec, -m, myIter, myThid )
-        WRITE(fieldname, '(A,I2.2,A)') 'mode',n,'W'
-        IF (m.LE.listDim) wrFldList(m) = fieldname
        ENDDO
+       m = m + 1
+       CALL WRITE_REC_3D_RL( fn, fp, Nr,
+     &      vec, -m, myIter, myThid )
+       WRITE(fieldname, '(A,I2.2,A)') 'mode',n,'W'
+       IF (m.LE.listDim) wrFldList(m) = fieldname
       ENDDO
 
 C     Southern Mode
