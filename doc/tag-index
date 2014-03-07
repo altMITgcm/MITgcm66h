@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint64u (2014/03/07)
 o verification/MLAdjust:
   - rename secondary test suffix:
      1.leith  -> A4FlxF  + switch to flux-form & add side-drag
