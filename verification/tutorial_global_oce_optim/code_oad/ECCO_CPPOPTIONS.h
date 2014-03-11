@@ -56,8 +56,8 @@ C ********************************************************************
 
 #define  ALLOW_NONDIMENSIONAL_CONTROL_IO
 C       >>> Initial values.
-#define ALLOW_THETA0_CONTROL
-#define ALLOW_SALT0_CONTROL
+#undef ALLOW_THETA0_CONTROL
+#undef ALLOW_SALT0_CONTROL
 #undef ALLOW_TR10_CONTROL
 #undef ALLOW_TAUU0_CONTROL
 #undef ALLOW_TAUV0_CONTROL
