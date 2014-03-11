@@ -127,6 +127,10 @@ c They provide the fields to be stored.
          foo4=fv%d
          call write_fld_xy_rl('adjfv.',suff,foo4,myiter,1)
 # endif
+# ifdef ALLOW_HFLUXM_CONTROL
+         foo4=qnetm%d
+         call write_fld_xy_rl('adjhfluxm.',suff,foo4,myiter,1)
+#endif
       endif
       END
 
