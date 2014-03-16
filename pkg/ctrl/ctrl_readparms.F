@@ -171,7 +171,7 @@ c--     Set default values.
         doZscaleUnpack      = .FALSE.
         doZscalePack        = .FALSE.
         doMainUnpack        = .TRUE.
-#if (defined (ALLOW_ADJOINT_RUN)||defined (ALLOW_TANGENTLINEAR_RUN))
+#if (defined (ALLOW_ADJOINT_RUN)||defined (ALLOW_TANGENTLINEAR_RUN) || defined (ALLOW_AUTODIFF_OPENAD))
         doMainPack          = .TRUE.
 #else
         doMainPack          = .FALSE.

@@ -515,6 +515,11 @@ C <<-- OpenAD
 # endif /* forward run only within AD setting */
 
 # ifndef EXCLUDE_CTRL_PACK
+#  ifdef ALLOW_OPENAD
+cph-- ad hoc fix for OpenAD time stepping counter lagging one step
+cph-- after final adjoint step
+      myIter=nIter0
+#  endif
       IF ( lastdiva .AND. doMainPack ) THEN
          CALL TIMER_START('CTRL_PACK           [THE_MODEL_MAIN]',myThid)
          CALL CTRL_PACK( .FALSE. , myThid )
