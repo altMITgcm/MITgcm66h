@@ -494,7 +494,7 @@ C     Temporarily change setting of writeBinaryPrec
      &     'ad',xx_salt_file(1:il),'.'
       call write_fld_xyz_rl(fname,suff,foo,myIter,1)
 #  endif
-#  ifdef ALLOW_TAUU0_CONTROL
+#  ifdef ALLOW_DIFFKR_CONTROL
       foo=diffkr%d
       il=ilnblnk( xx_diffkr_file )
       write(fname(1:MAX_LEN_FNAM),'(3a)')
