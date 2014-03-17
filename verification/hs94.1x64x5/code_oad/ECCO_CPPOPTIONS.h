@@ -69,7 +69,7 @@ cph#define ALLOW_BOTTOMDRAG_CONTROL
 #define ALLOW_GENARR2D_CONTROL
 #define ALLOW_GENARR3D_CONTROL
 cph-- GENTIM2D_CONTROL disabled for OpenAD (I need to fix this)
-cph#define ALLOW_GENTIM2D_CONTROL
+#define ALLOW_GENTIM2D_CONTROL
 cph)
 
 C ********************************************************************
