@@ -54,7 +54,7 @@ cd $TST_DIR
 #dsp=`df -P . | tail -1 | awk '{print $5}' | sed 's/%$//'`
 #if [ $dsp -gt 99 ] ; then
 dsp=`df -P . | tail -1 | awk '{print $4}'`
-if [ $dsp -le 10000000 ] ; then
+if [ $dsp -le 200000000 ] ; then
   echo 'Not enough space on this disk => do not run testreport.'
   df .
   exit
