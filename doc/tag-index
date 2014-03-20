@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: 
+  - refine checks for jfnk-related parameters
+  - comment out if statement with SEAICEuseIMEX parameter as long as there
+    is no IMEX code to avoid confusion and surprises
+
 checkpoint64u (2014/03/07)
 o verification/MLAdjust:
   - rename secondary test suffix:
