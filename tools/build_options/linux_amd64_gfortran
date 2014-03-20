@@ -85,9 +85,10 @@ if test "x$IEEE" = x ; then     #- with optimisation:
    #FOPTIM='-O2 -funroll-loops'
 else
    # these may also be useful, but require specific gfortran versions:
-   # -Wnonstd-intrinsics  for gfortran <= 4.3
-   # -Wintrinsics-std     for gfortran >= 4.4
-   # -Wno-tabs            for gfortran >= 4.3
+   # -Wnonstd-intrinsics        for gfortran <= 4.3
+   # -Wintrinsics-std           for gfortran >= 4.4
+   # -Wno-tabs                  for gfortran >= 4.3
+   # -Wno-unused-dummy-argument for gfortran >= 4.6
    #FFLAGS="$FFLAGS -Waliasing -Wampersand -Wsurprising -Wline-truncation"
    #- or simply:
     FFLAGS="$FFLAGS -Wall -Wno-unused-dummy-argument"
