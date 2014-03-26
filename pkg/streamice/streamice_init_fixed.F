@@ -69,9 +69,9 @@ C       The 0 is the "iteration" argument. The ' ' is an empty suffix
         CALL READ_FLD_XY_RS( STREAMICEcalveMaskFile, ' ',
      &   STREAMICE_calve_mask, 0, myThid )
        ELSE
-        WRITE(msgBuf,'(A)') 'INIT CALVE MASK - NOT IMPLENTED'
-        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                    SQUEEZE_RIGHT , 1)
+        STOP 'ABNORMAL END - CALVEMASK FILE MISSING'
+!         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+!      &                    SQUEEZE_RIGHT , 1)
        ENDIF
       ENDIF
 
