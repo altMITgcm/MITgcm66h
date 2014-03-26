@@ -34,7 +34,7 @@ C     === Global variables ===
 #ifdef ALLOW_STREAMICE
 
       INTEGER i, j, bi, bj, ki, kj
-      INTEGER maskFlag
+      INTEGER maskFlag, myThidCopy
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 #ifdef ALLOW_USE_MPI
       integer mpiRC, mpiMyWid
@@ -188,7 +188,8 @@ C     === Global variables ===
 !      CALL WRITE_FLD_XY_RL ("vfacemask","",STREAMICE_vfacemask,0,myThid)
 
 #ifdef ALLOW_PETSC
-      call streamice_petsc_numerate (myThid)
+      myThidCopy = myThid
+      call streamice_petsc_numerate (myThidCopy)
 #endif
 
 
