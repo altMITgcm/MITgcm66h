@@ -6,7 +6,7 @@ C $Name$
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 CBOP
-      SUBROUTINE STREAMICE_PETSC_NUMERATE 
+      SUBROUTINE STREAMICE_PETSC_NUMERATE (myThid)
 
 C     /============================================================\
 C     | SUBROUTINE                                                 |
@@ -28,6 +28,7 @@ C     === Global variables ===
 # endif
 #endif
 
+      INTEGER myThid
 
 #ifdef ALLOW_STREAMICE
 
