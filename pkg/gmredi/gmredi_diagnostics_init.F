@@ -545,6 +545,14 @@ c     IF ( useDiagnotics ) THEN
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I    diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
         
+        diagName  = 'GM_RENRM'
+        diagTitle = 'renormalisation factor'
+        diagUnits = 'none            '
+        diagCode  = 'SM      M1      '
+        diagMate  = diagNum
+        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
+        
 #endif
 
 c     ENDIF

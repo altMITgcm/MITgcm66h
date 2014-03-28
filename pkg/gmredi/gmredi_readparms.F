@@ -71,7 +71,8 @@ C     GM_slopeSqCutoff :: slope^2 cut-off value
      &          GM_K3D_surfMinDepth, GM_maxK3D, GM_K3D_Rmax,
      &          GM_K3D_constK, GM_K3D_likeGM, GM_K3D_smooth,
      &          GM_K3D_beta_eq_0, GM_K3D_Rmin, GM_K3D_ThickSheet,
-     &          GM_K3D_constRedi
+     &          GM_K3D_constRedi, GM_K3D_minRenorm,
+     &          GM_K3D_maxRenorm
 
       _BEGIN_MASTER(myThid)
 
@@ -145,6 +146,8 @@ C--   Default values for K3D
       GM_K3D_minN2     = 1.0e-8
       GM_K3D_surfMinDepth = 100.0
       GM_K3D_vecFreq   = 2592000.0
+      GM_K3D_minRenorm = oneRL
+      GM_K3D_maxRenorm = 20.0
       
       WRITE(msgBuf,'(A)') ' GM_READPARMS: opening data.gmredi'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
