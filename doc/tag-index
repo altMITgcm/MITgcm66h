@@ -4,7 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
-o pkg/seaice: 
+o pkg/rw:
+  - add RS version of S/R READ_MFLDS_LEV.
+o pkg/streamice:
+  - fix the restart test by writing/reading pickup_streamice files.
+o pkg/seaice:
   - refine checks for jfnk-related parameters
   - comment out if statement with SEAICEuseIMEX parameter as long as there
     is no IMEX code to avoid confusion and surprises
