@@ -447,7 +447,7 @@ c     compute bfsfc = plume fraction at hbf * zgrid
      U         worka,
      I         myTime, myIter, myThid)
            do i = 1, imt
-              bfsfc(i) = bfsfc(i) + boplume(i)*(1. - worka(i))
+              bfsfc(i) = bfsfc(i) + boplume(i)*(worka(i))
            enddo
          ENDIF
 #endif /* ALLOW_SALT_PLUME */
@@ -581,7 +581,7 @@ CADJ &     shape = (/ (sNx+2*OLx)*(sNy+2*OLy) /)
      U         worka,
      I         myTime, myIter, myThid )
         do i = 1, imt
-           bfsfc(i) = bfsfc(i) + boplume(i) * (1. - worka(i))
+           bfsfc(i) = bfsfc(i) + boplume(i) * (worka(i))
         enddo
       ENDIF
 #endif /* ALLOW_SALT_PLUME */
@@ -677,7 +677,7 @@ CADJ &     shape = (/ (sNx+2*OLx)*(sNy+2*OLy) /)
      U         worka,
      I         myTime, myIter, myThid )
         do i = 1, imt
-           bfsfc(i) = bfsfc(i) + boplume(i) * (1. - worka(i))
+           bfsfc(i) = bfsfc(i) + boplume(i) * (worka(i))
         enddo
       ENDIF
 #endif /* ALLOW_SALT_PLUME */

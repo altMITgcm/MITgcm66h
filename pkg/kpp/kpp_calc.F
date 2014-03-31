@@ -608,7 +608,7 @@ C     the bottom of the mixing layer.
      I       myTime, myIter, myThid )
         DO j=1-OLy,sNy+OLy
            DO i=1-OLx,sNx+OLx
-              KPPplumefrac(i,j,bi,bj) = worka(i,j)
+              KPPplumefrac(i,j,bi,bj) = 1. _d 0 - worka(i,j)
            ENDDO
         ENDDO
       ENDIF
