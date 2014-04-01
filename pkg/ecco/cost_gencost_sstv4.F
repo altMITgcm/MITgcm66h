@@ -282,11 +282,13 @@ c ----------------------------------------
 #endif
 
          call smooth_hetero2d(anom_sst,maskc,
-     &     gencost_scalefile(igen_amsre_lsc),smooth2Ddiffnbt,mythid)
+     &     gencost_scalefile(igen_amsre_lsc),
+     &     gencost_smooth2Ddiffnbt(igen_amsre_lsc),mythid)
 
 #ifdef ALLOW_GENCOST_SSTV4_OUTPUT
          call smooth_hetero2d(obs_sst,maskc,
-     &     gencost_scalefile(igen_amsre_lsc),smooth2Ddiffnbt,mythid)
+     &     gencost_scalefile(igen_amsre_lsc),
+     &     gencost_smooth2Ddiffnbt(igen_amsre_lsc),mythid)
 
          write(fname2(1:80),'(1a)') 'sstdiff_smooth'
          call mdswritefield(fname2,32,.false.,'RL',

@@ -83,6 +83,19 @@ c     == local variables ==
       _RL psmean    ( 1-olx:snx+olx, 1-oly:sny+oly, nsx, nsy )
       _RL diagnosfld ( 1-olx:snx+olx, 1-oly:sny+oly, nsx, nsy )
 
+catn -------------
+c After moving smooth2Ddiffnbt param from pkg/smooth into
+c gencost in pkg/ecco/, there is an inconsistency between
+c that param being read in versus harcoded here to 300
+c for ecco-v4.  As a result, this is my attempt to define
+c this param locally here to remind that it needs to be
+c set dependent on your grid horz spacing.  for example
+c for llc270 it should be about 1000 else get nan.
+#ifdef ALLOW_SMOOTH
+      integer smooth2Ddiffnbt
+#endif /* ALLOW_SMOOTH */
+catn -------------
+
 c for PART 1: re-reference MDT (tpmean) to the inferred SLA reference field
       _RL mean_slaobs(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL mean_slaobs_NUM(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
@@ -149,6 +162,11 @@ c     == end of interface ==
       jmax = sny
       imin = 1
       imax = snx
+
+catn default set to 300 for ecco-v4
+#ifdef ALLOW_SMOOTH
+      smooth2Ddiffnbt = 300
+#endif /* ALLOW_SMOOTH */
 
 c--   First, read tiled data.
       doglobalread = .false.

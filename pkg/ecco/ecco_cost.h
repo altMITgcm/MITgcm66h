@@ -82,8 +82,14 @@ c     objf_gencost - gencost user defined contribution
 
       common /ecco_gencost_i_1/
      &       gencost_nrec, gencost_flag
+#ifdef ALLOW_SMOOTH
+     &       , gencost_smooth2Ddiffnbt
+#endif /* ALLOW_SMOOTH */
       integer gencost_nrec(NGENCOST)
       integer gencost_flag(NGENCOST)
+#ifdef ALLOW_SMOOTH
+      integer  gencost_smooth2Ddiffnbt(NGENCOST)
+#endif /* ALLOW_SMOOTH */
 
       common /ecco_gencost_l_1/
 #ifdef ALLOW_GENCOST_TIMEVARY_WEIGHT
