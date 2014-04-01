@@ -42,7 +42,6 @@ c--   Read the namelist input.
      &                   smooth2D_Lx0,
      &                   smooth2D_Ly0,
      &                   smooth2Dfilter,
-     &                   smooth2Ddiffnbt,
      &                   smooth3Dnbt,
      &                   smooth3DtypeH,
      &                   smooth3DsizeH,
@@ -65,7 +64,6 @@ c--     Set default values.
       smooth2Dtype(smoothOpNb)=0
       smooth2Dsize(smoothOpNb)=0
       smooth2Dfilter(smoothOpNb)=0
-      smooth2Ddiffnbt = 300
 
       smooth3Dnbt(smoothOpNb)=0
       smooth3D_Lx0(smoothOpNb)=0. _d 0

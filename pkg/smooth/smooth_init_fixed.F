@@ -44,9 +44,6 @@ C     *==========================================================*
        ENDDO
       ENDDO
 
-            WRITE(standardMessageUnit,'(A,I6)')
-     & 'smooth2Ddiffnbt: ',smooth2Ddiffnbt
-
       DO smoothOpNb=1,smoothOpNbMax
       if (smooth2Dtype(smoothOpNb).NE.0) then
       call smooth_init2D(smoothOpNb,mythid)
