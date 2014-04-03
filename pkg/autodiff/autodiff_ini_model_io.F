@@ -322,6 +322,13 @@ c
      &     'adjoint downward shortwave radiation', myThid)
       CALL MNC_CW_ADD_VATTR_TEXT('adswdown',
      &     'coordinates','XC YC RC iter', myThid)
+      CALL MNC_CW_ADD_VNAME('adlwdown', 'Cen_xy_Hn__-__t', 3,4, myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adlwdown',
+     &     'units','[cost]/[W/m^2]', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adlwdown','long_name',
+     &     'adjoint downward wave radiation', myThid)
+      CALL MNC_CW_ADD_VATTR_TEXT('adlwdown',
+     &     'coordinates','XC YC RC iter', myThid)
 # endif
 # ifdef ALLOW_CLIMSST_RELAXATION
       CALL MNC_CW_ADD_VNAME('adclimsst', 'Cen_xy_Hn__-__t', 3,4, myThid)

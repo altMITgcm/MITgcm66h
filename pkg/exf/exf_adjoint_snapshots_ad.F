@@ -124,6 +124,8 @@ c#endif
 # ifdef ALLOW_DOWNWARD_RADIATION
         CALL WRITE_FLD_XY_RL ( 'ADJswdown.',
      &       suff, adswdown, myIter, myThid)
+        CALL WRITE_FLD_XY_RL ( 'ADJlwdown.',
+     &       suff, adlwdown, myIter, myThid)
 # endif
 # ifdef ALLOW_CLIMSST_RELAXATION
         CALL WRITE_FLD_XY_RL ( 'ADJclimsst.',
@@ -178,6 +180,8 @@ c#endif
 # ifdef ALLOW_DOWNWARD_RADIATION
         CALL WRITE_REC_XY_RL ( 'ADJswdown',
      &       adswdown, dumpAdRecEx, myIter, myThid)
+        CALL WRITE_REC_XY_RL ( 'ADJlwdown',
+     &       adlwdown, dumpAdRecEx, myIter, myThid)
 # endif
 # ifdef ALLOW_CLIMSST_RELAXATION
         CALL WRITE_REC_XY_RL ( 'ADJclimsst',
@@ -245,6 +249,8 @@ c
 # ifdef ALLOW_DOWNWARD_RADIATION
           CALL MNC_CW_RL_W('D','adexf',0,0,'adswdown',
      &         adswdown, myThid)
+          CALL MNC_CW_RL_W('D','adexf',0,0,'adlwdown',
+     &         adlwdown, myThid)
 # endif
 # ifdef ALLOW_CLIMSST_RELAXATION
           CALL MNC_CW_RL_W('D','adexf',0,0,'adclimsst',
