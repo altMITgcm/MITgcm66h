@@ -96,7 +96,7 @@ c--   tauu0.
         do bi = itlo,ithi
           do j = jmin,jmax
             do i = imin,imax
-# ifdef ALLOW_AUTODIFF_OPENAD
+# ifdef ALLOW_OPENAD
               fu(i,j,bi,bj) = fu(i,j,bi,bj) +
      &                        xx_tauu0(i,j,bi,bj) +
      &                        tmpfld2d(i,j,bi,bj)
@@ -121,7 +121,7 @@ c--   tauv0.
         do bi = itlo,ithi
           do j = jmin,jmax
             do i = imin,imax
-# ifdef ALLOW_AUTODIFF_OPENAD
+# ifdef ALLOW_OPENAD
               fv(i,j,bi,bj) = fv(i,j,bi,bj) +
      &                        xx_tauv0(i,j,bi,bj) +
      &                        tmpfld2d(i,j,bi,bj)
@@ -146,7 +146,7 @@ c--   sflux0.
         do bi = itlo,ithi
           do j = jmin,jmax
             do i = imin,imax
-# ifdef ALLOW_AUTODIFF_OPENAD
+# ifdef ALLOW_OPENAD
               empmr(i,j,bi,bj) = empmr(i,j,bi,bj) +
      &                           xx_sflux0(i,j,bi,bj) +
      &                           tmpfld2d(i,j,bi,bj)
@@ -171,7 +171,7 @@ c--   hflux0.
         do bi = itlo,ithi
           do j = jmin,jmax
             do i = imin,imax
-# ifdef ALLOW_AUTODIFF_OPENAD
+# ifdef ALLOW_OPENAD
               qnet(i,j,bi,bj) = qnet(i,j,bi,bj) +
      &                          xx_hflux0(i,j,bi,bj) +
      &                          tmpfld2d(i,j,bi,bj)
@@ -234,7 +234,7 @@ c--   hfluxm.
         do bi = itlo,ithi
           do j = jmin,jmax
             do i = imin,imax
-# ifdef ALLOW_AUTODIFF_OPENAD
+# ifdef ALLOW_OPENAD
               Qnetm(i,j,bi,bj) = Qnetm(i,j,bi,bj) +
      &                          xx_hfluxm(i,j,bi,bj) +
      &                          tmpfld2d(i,j,bi,bj)
