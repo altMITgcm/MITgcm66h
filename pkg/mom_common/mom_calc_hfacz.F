@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "MOM_COMMON_OPTIONS.h"
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 
 CBOP
 C !ROUTINE: MOM_CALC_HFACZ
@@ -22,7 +25,7 @@ C !USES: ===============================================================
 #include "PARAMS.h"
 #include "GRID.h"
 #ifdef ALLOW_DEPTH_CONTROL
-# ifdef ALLOW_AUTODIFF_TAMC
+# ifdef ALLOW_AUTODIFF
 #  include "tamc.h"
 #  include "tamc_keys.h"
 # endif

@@ -42,16 +42,16 @@ C     == Local variables ==
       INTEGER myTile
 #endif /* ALLOW_EXCH2 */
 
-#ifdef ALLOW_AUTODIFF_TAMC
-      DO J=1-Oly,sNy+Oly
-       DO I=1-Olx,sNx+Olx
+#ifdef ALLOW_AUTODIFF
+      DO J=1-OLy,sNy+OLy
+       DO I=1-OLx,sNx+OLx
         vort3(I,J) = 0. _d 0
        ENDDO
       ENDDO
 #endif
 
-      DO J=2-Oly,sNy+Oly
-       DO I=2-Olx,sNx+Olx
+      DO J=2-OLy,sNy+OLy
+       DO I=2-OLx,sNx+OLx
 
 C       Horizontal curl of flow field - ignoring lopping factors
         vort3(I,J)=

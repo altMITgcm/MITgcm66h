@@ -53,7 +53,7 @@ C                 1  /  ___I    ___J   \
 C           KE = --- |   U    +  V     |
 C                 2  \                 /
 C
-#ifdef ALLOW_AUTODIFF_TAMC
+#ifdef ALLOW_AUTODIFF
       DO j=1-OLy,sNy+OLy
        DO i=1-OLx,sNx+OLx
          KE(i,j) = 0.

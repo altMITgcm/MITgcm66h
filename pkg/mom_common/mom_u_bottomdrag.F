@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "MOM_COMMON_OPTIONS.h"
+#ifdef ALLOW_CTRL
+# include "CTRL_OPTIONS.h"
+#endif
 
 CBOP
 C !ROUTINE: MOM_U_BOTTOMDRAG
@@ -96,7 +99,7 @@ C-    viscous (no-slip BC) and linear bottom drag
      &    *(
      &       KappaRU(i,j,kLowF)*recDrC*viscFac
 #ifdef ALLOW_BOTTOMDRAG_CONTROL
-     &     + bottomdragfld(i,j,bi,bj)*dragFac
+     &     + bottomDragFld(i,j,bi,bj)*dragFac
 #endif
      &     + bottomDragLinear*dragFac
      &     )*uFld(i,j)
