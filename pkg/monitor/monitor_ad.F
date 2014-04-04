@@ -2,6 +2,12 @@ C $Header$
 C $Name$
 
 #include "MONITOR_OPTIONS.h"
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
+#ifdef ALLOW_CTRL
+# include "CTRL_OPTIONS.h"
+#endif
 #include "AD_CONFIG.h"
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
@@ -26,7 +32,7 @@ C     !USES:
 #ifdef ALLOW_MNC
 # include "MNC_PARAMS.h"
 #endif
-#if (defined (ALLOW_AUTODIFF) && defined (ALLOW_AUTODIFF_MONITOR))
+#ifdef ALLOW_AUTODIFF_MONITOR
 # include "AUTODIFF_PARAMS.h"
 # include "adcommon.h"
 #endif
@@ -38,7 +44,7 @@ C     !INPUT PARAMETERS:
 CEOP
 
 #if (defined (ALLOW_ADJOINT_RUN) || defined (ALLOW_ADMTLM))
-#if (defined (ALLOW_AUTODIFF) && defined (ALLOW_AUTODIFF_MONITOR))
+#ifdef ALLOW_AUTODIFF_MONITOR
 
 C     === Functions ====
       LOGICAL  DIFFERENT_MULTIPLE
