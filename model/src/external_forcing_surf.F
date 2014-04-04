@@ -3,6 +3,9 @@ C $Name$
 
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 #undef CHECK_OVERLAP_FORCING
 
 CBOP
@@ -29,7 +32,7 @@ C     === Global variables ===
 #include "DYNVARS.h"
 #include "GRID.h"
 #include "SURFACE.h"
-#ifdef ALLOW_AUTODIFF_TAMC
+#ifdef ALLOW_AUTODIFF
 # include "tamc.h"
 # include "tamc_keys.h"
 #endif

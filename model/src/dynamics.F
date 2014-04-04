@@ -3,6 +3,9 @@ C $Name$
 
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 #ifdef ALLOW_MOM_COMMON
 # include "MOM_COMMON_OPTIONS.h"
 #endif
@@ -89,7 +92,7 @@ C     == Global variables ===
 #ifdef ALLOW_CD_CODE
 # include "CD_CODE_VARS.h"
 #endif
-#ifdef ALLOW_AUTODIFF_TAMC
+#ifdef ALLOW_AUTODIFF
 # include "tamc.h"
 # include "tamc_keys.h"
 # include "FFIELDS.h"
@@ -111,7 +114,7 @@ C     == Global variables ===
 # ifdef ALLOW_MOM_FLUXFORM
 #  include "MOM_FLUXFORM.h"
 # endif
-#endif /* ALLOW_AUTODIFF_TAMC */
+#endif /* ALLOW_AUTODIFF */
 
 C     !CALLING SEQUENCE:
 C     DYNAMICS()
@@ -483,7 +486,7 @@ C--       kDown  Cycles through 2,1 to point to current layer
 CADJ STORE totPhiHyd (:,:,k,bi,bj)
 CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
 CADJ STORE phiHydLow (:,:,bi,bj)
-CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte     
+CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
 CADJ STORE theta (:,:,k,bi,bj)
 CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
 CADJ STORE salt  (:,:,k,bi,bj)

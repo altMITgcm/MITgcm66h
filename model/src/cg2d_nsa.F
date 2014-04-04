@@ -3,6 +3,9 @@ C $Name$
 
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 
 CML THIS DOES NOT WORK +++++
 #undef ALLOW_LOOP_DIRECTIVE
@@ -50,7 +53,7 @@ C     === Global data ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "CG2D.h"
-#ifdef ALLOW_AUTODIFF_TAMC
+#ifdef ALLOW_AUTODIFF
 # include "tamc.h"
 # include "tamc_keys.h"
 #endif

@@ -3,6 +3,18 @@ C $Name$
 
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
+#ifdef ALLOW_COST
+# include "COST_OPTIONS.h"
+#endif
+#ifdef ALLOW_CTRL
+# include "CTRL_OPTIONS.h"
+#endif
+#ifdef ALLOW_EXF
+# include "EXF_OPTIONS.h"
+#endif
 
 CBOP
 C     !ROUTINE: LOAD_FIELDS_DRIVER
@@ -44,7 +56,7 @@ C     == Global variables ==
 #include "PARAMS.h"
 #include "FFIELDS.h"
 
-#ifdef ALLOW_AUTODIFF_TAMC
+#ifdef ALLOW_AUTODIFF
 # include "tamc.h"
 # include "CTRL_SIZE.h"
 # include "ctrl.h"
@@ -53,11 +65,9 @@ C     == Global variables ==
 # include "EOS.h"
 # ifdef ALLOW_EXF
 #  include "EXF_FIELDS.h"
-#  ifdef ALLOW_BULKFORMULAE
-#   include "EXF_CONSTANTS.h"
-#  endif
+#  include "EXF_CONSTANTS.h"
 # endif
-#endif /* ALLOW_AUTODIFF_TAMC */
+#endif /* ALLOW_AUTODIFF */
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     myTime :: time counter for this thread
