@@ -63,13 +63,13 @@ c     IF ( DIC_pickup_write_mdsio ) THEN
         IF ( dic_int1.EQ.3 ) THEN
           WRITE(fn,'(A,A)') 'pickup_dic_co2atm.',suff
           ioUnit = 0
-#ifdef ALLOW_AUTODIFF_OPENAD
+#ifdef ALLOW_OPENAD
           tmpFld(1) = total_atmos_carbon%v
           tmpFld(2) = atpco2%v
-#else /* ALLOW_AUTODIFF_OPENAD */
+#else /* ALLOW_OPENAD */
           tmpFld(1) = total_atmos_carbon
           tmpFld(2) = atpco2
-#endif /* ALLOW_AUTODIFF_OPENAD */
+#endif /* ALLOW_OPENAD */
 #ifdef ALLOW_MDSIO
           CALL MDS_WRITEVEC_LOC(
      I                         fn, prec, ioUnit,

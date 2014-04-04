@@ -107,7 +107,7 @@ C--   Sum up all contributions.
 cML      CALL GLOBAL_SUM_TILE_RL( num_shelfice, no_shelfice, myThid )
       CALL GLOBAL_SUM_TILE_RL( num_shifwflx, no_shifwflx, myThid )
 
-# ifndef ALLOW_AUTODIFF_OPENAD
+# ifndef ALLOW_OPENAD
 C--   Each process has calculated the global part for itself.
       IF ( MASTER_CPU_THREAD(myThid) ) THEN
 
@@ -123,7 +123,7 @@ cML       WRITE(ifc,*) 'f_shelfice =', f_shelfice, no_shelfice
        CLOSE(ifc)
 
       ENDIF
-# endif /* ALLOW_AUTODIFF_OPENAD */
+# endif /* ALLOW_OPENAD */
 
 #endif /* ALLOW_COST */
 

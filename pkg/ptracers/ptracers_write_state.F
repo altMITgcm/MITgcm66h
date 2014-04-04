@@ -109,7 +109,7 @@ C     Write each passive tracer in its own file
          ENDIF
 #endif /* MULTIPLE_RECORD_STATE_FILES */
 
-#ifdef ALLOW_AUTODIFF_OPENAD
+#ifdef ALLOW_OPENAD
          CALL WRITE_REC_XYZ_RL(pref,
      &        pTracer(:,:,:,:,:,iTracer)%v,iRec,myIter,myThid)
 #else
