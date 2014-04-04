@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "MOM_VECINV_OPTIONS.h"
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 #ifdef ALLOW_MOM_COMMON
 # include "MOM_COMMON_OPTIONS.h"
 #endif
@@ -132,7 +135,7 @@ C     xxxFac :: On-off tracer parameters used for switching terms off.
       CHARACTER*(1) pf
 #endif
 
-#ifdef ALLOW_AUTODIFF_TAMC
+#ifdef ALLOW_AUTODIFF
 C--   only the kDown part of fverU/V is set in this subroutine
 C--   the kUp is still required
 C--   In the case of mom_fluxform Kup is set as well
@@ -206,7 +209,7 @@ c       viscA4_D(i,j) = 0.
         strain(i,j)  = 0. _d 0
         strainBC(i,j)= 0. _d 0
         tension(i,j) = 0. _d 0
-#ifdef ALLOW_AUTODIFF_TAMC
+#ifdef ALLOW_AUTODIFF
         hFacZ(i,j)   = 0. _d 0
 #endif
        ENDDO
