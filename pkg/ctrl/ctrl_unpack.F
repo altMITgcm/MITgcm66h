@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "CTRL_OPTIONS.h"
+#ifdef ALLOW_COST
+# include "COST_OPTIONS.h"
+#endif
 #ifdef ALLOW_EXF
 # include "EXF_OPTIONS.h"
 #endif
