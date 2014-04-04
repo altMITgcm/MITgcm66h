@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "COST_OPTIONS.h"
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 
 CBOI
 C
@@ -76,7 +79,7 @@ C     == Global variables ===
 #include "DYNVARS.h"
 #include "GRID.h"
 #include "cost.h"
-#ifdef ALLOW_AUTODIFF_TAMC
+#ifdef ALLOW_AUTODIFF
 # include "tamc.h"
 # ifdef ALLOW_PTRACERS
 #  include "PTRACERS_SIZE.h"
@@ -128,7 +131,7 @@ CADJ &     kind = isbyte
 #endif
 
 #ifdef ALLOW_THSICE_COST_TEST
-         IF (useTHSICE) 
+         IF (useThSIce)
      &    CALL THSICE_COST_DRIVER (myTime, myIter, myThid)
 #endif
 

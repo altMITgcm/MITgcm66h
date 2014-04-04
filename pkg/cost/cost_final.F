@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "COST_OPTIONS.h"
+#ifdef ALLOW_CTRL
+# include "CTRL_OPTIONS.h"
+#endif
 
       SUBROUTINE COST_FINAL( myThid )
 
@@ -53,7 +56,7 @@ c     == end of interface ==
 
 c     print *, 'ph-1 in thsice_cost_final'
 #ifdef ALLOW_THSICE
-      IF (useTHSICE) CALL THSICE_COST_FINAL (myThid)
+      IF (useThSIce) CALL THSICE_COST_FINAL (myThid)
 #endif
 c     print *, 'ph-3 in thsice_cost_final'
 
