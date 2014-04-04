@@ -58,18 +58,18 @@ C     == Local variables ==
 #endif /* ALLOW_EXCH2 */
 CEOP
 
-#ifdef ALLOW_AUTODIFF_TAMC
+#ifdef ALLOW_AUTODIFF
 C-    Initialisation :
-      DO j=1-Oly,sNy+Oly
-        DO i=1-Olx,sNx+Olx
+      DO j=1-OLy,sNy+OLy
+        DO i=1-OLx,sNx+OLx
           vort(i,j)= 0.
         ENDDO
       ENDDO
 #endif
 
 C-    replace Physical calc Div & Vort by computational one :
-      DO j=2-Oly,sNy+Oly
-        DO i=2-Olx,sNx+Olx
+      DO j=2-OLy,sNy+OLy
+        DO i=2-OLx,sNx+OLx
           vort(i,j) = ( vFld(i,j)-vFld(i-1,j) )
      &              - ( uFld(i,j)-uFld(i,j-1) )
           maskZ = (maskW(i,j,k,bi,bj)+maskW(i,j-1,k,bi,bj))
