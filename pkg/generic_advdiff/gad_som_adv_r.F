@@ -117,7 +117,7 @@ C  wLoc         :: volume transported (per time step)
       _RL  alfn, alnq, aln1, locTn
 CEOP
 
-#ifdef ALLOW_AUTODIFF_TAMC
+#ifdef ALLOW_AUTODIFF
       alp(1,1,kDw) = alp(1,1,kDw)
       aln(1,1,kDw) = aln(1,1,kDw)
       fp_v(1,1,kDw) = fp_v(1,1,kDw)

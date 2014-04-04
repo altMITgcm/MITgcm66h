@@ -63,9 +63,9 @@ C  wCFL              :: Courant-Friedrich-Levy number
       km1=MAX(1,k-1)
       kp1=MIN(Nr,k+1)
 
-      DO j=1-Oly,sNy+Oly
-       DO i=1-Olx,sNx+Olx
-#if (defined ALLOW_AUTODIFF_TAMC && defined TARGET_NEC_SX)
+      DO j=1-OLy,sNy+OLy
+       DO i=1-OLx,sNx+OLx
+#if (defined ALLOW_AUTODIFF && defined TARGET_NEC_SX)
 C     These lines make TAF create vectorizable code
         thetaP = 0. _d 0
         thetaM = 0. _d 0

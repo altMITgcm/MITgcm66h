@@ -38,14 +38,14 @@ C     == Local variables ==
       _RL thetaMax
       PARAMETER( thetaMax = 1.D+20 )
 
-      DO i=1-Olx,sNx+Olx
-       vT(i,1-Oly)=0. _d 0
-       vT(i,2-Oly)=0. _d 0
-       vT(i,sNy+Oly)=0. _d 0
+      DO i=1-OLx,sNx+OLx
+       vT(i,1-OLy)=0. _d 0
+       vT(i,2-OLy)=0. _d 0
+       vT(i,sNy+OLy)=0. _d 0
       ENDDO
-      DO j=1-Oly+2,sNy+Oly-1
-       DO i=1-Olx,sNx+Olx
-#if (defined ALLOW_AUTODIFF_TAMC && defined TARGET_NEC_SX)
+      DO j=1-OLy+2,sNy+OLy-1
+       DO i=1-OLx,sNx+OLx
+#if (defined ALLOW_AUTODIFF && defined TARGET_NEC_SX)
 C     These lines make TAF create vectorizable code
         thetaP = 0. _d 0
         thetaM = 0. _d 0
