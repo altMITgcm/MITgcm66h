@@ -125,7 +125,7 @@ C         method) -- creates many files but for large configurations is
 C         easier to transfer analyse a particular snap-shots
           WRITE(suff,'(I10.10)') myIter
 
-#ifdef ALLOW_AUTODIFF_OPENAD
+#ifdef ALLOW_OPENAD
 # ifndef ALLOW_STREAMICE
           CALL WRITE_FLD_XYZ_RL( 'U.',suff,uVel%v,myIter,myThid)
           CALL WRITE_FLD_XYZ_RL( 'V.',suff,vVel%v,myIter,myThid)
