@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "GRDCHK_OPTIONS.h"
+#ifdef ALLOW_CTRL
+# include "CTRL_OPTIONS.h"
+#endif
 
       subroutine grdchk_loc(
      I                     icomp,
