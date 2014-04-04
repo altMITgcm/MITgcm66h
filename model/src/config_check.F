@@ -151,7 +151,7 @@ C       code is being compiled
       ENDIF
 #endif
 
-#ifdef ALLOW_AUTODIFF_TAMC
+#ifdef ALLOW_AUTODIFF
       IF ( momImplVertAdv ) THEN
         WRITE(msgBuf,'(A)')
      &   'CONFIG_CHECK: momImplVertAdv is not yet'

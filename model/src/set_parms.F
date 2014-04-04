@@ -136,7 +136,7 @@ C        calculation in surface grid-cell below ice-shelf
      &                      SQUEEZE_RIGHT, myThid )
         selectNHfreeSurf = 0
       ENDIF
-#ifdef ALLOW_AUTODIFF_TAMC
+#ifdef ALLOW_AUTODIFF
       doResetHFactors = .TRUE.
 #endif
 #ifndef NONLIN_FRSURF
