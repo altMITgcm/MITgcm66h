@@ -4,6 +4,9 @@ C $Name$
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 #include "AUTODIFF_OPTIONS.h"
+#ifdef ALLOW_CTRL
+# include "CTRL_OPTIONS.h"
+#endif
 #ifdef ALLOW_EXF
 # include "EXF_OPTIONS.h"
 #endif
@@ -68,7 +71,8 @@ C      create directory
        WRITE(namBuf,'(2A)') ' mkdir -p ', adTapeDir(1:iL)
        pIL = 1 + ILNBLNK( namBuf )
        WRITE(standardMessageUnit,'(3A)')
-     & '==> SYSTEM CALL (from INI_MODEL_IO): >',namBuf(1:pIL),'<'
+     &  '==> SYSTEM CALL (from AUTODIFF_INI_MODEL_IO): >',
+     &                                 namBuf(1:pIL), '<'
        CALL SYSTEM( namBuf(1:pIL) )
       ENDIF
 

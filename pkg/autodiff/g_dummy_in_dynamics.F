@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "AUTODIFF_OPTIONS.h"
+#ifdef ALLOW_CTRL
+# include "CTRL_OPTIONS.h"
+#endif
 #include "AD_CONFIG.h"
 
 CBOP
@@ -64,7 +67,6 @@ CEOP
 
         CALL TIMER_START('I/O (WRITE)        [ADJOINT LOOP]', myThid )
 c       write(*,*) 'myIter= ',myIter
-
 
 C--     Set suffix for this set of data files.
         WRITE(suff,'(I10.10)') myIter

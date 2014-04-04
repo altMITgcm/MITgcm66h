@@ -2,16 +2,17 @@ C $Header$
 C $Name$
 
 #include "AUTODIFF_OPTIONS.h"
+#ifdef ALLOW_CTRL
+# include "CTRL_OPTIONS.h"
+#endif
 #ifdef ALLOW_OBCS
 # include "OBCS_OPTIONS.h"
 #endif
 #ifdef ALLOW_SEAICE
 # include "SEAICE_OPTIONS.h"
 #endif
-#ifdef ALLOW_ECCO_EVOLUTION
 #ifdef ALLOW_EXF
 # include "EXF_OPTIONS.h"
-#endif
 #endif
 
       subroutine autodiff_store( mythid )

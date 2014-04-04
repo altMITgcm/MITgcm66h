@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "AUTODIFF_OPTIONS.h"
+#ifdef ALLOW_CTRL
+# include "CTRL_OPTIONS.h"
+#endif
 
 C     ==================================================================
 C     active_file_control.F: Routines to handle the I/O of active
