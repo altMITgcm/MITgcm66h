@@ -46,7 +46,7 @@ c     == end of interface ==
       itlo = mybxlo(mythid)
       ithi = mybxhi(mythid)
 
-#ifdef ALLOW_AUTODIFF_OPENAD
+#ifdef ALLOW_OPENAD
       fc%v = 0.0
 #else
       fc   = 0. _d 0
@@ -54,7 +54,7 @@ c     == end of interface ==
 
 #ifdef ALLOW_AUTODIFF
 
-#ifdef ALLOW_AUTODIFF_OPENAD
+#ifdef ALLOW_OPENAD
       adfc = 1.0
 #else
       if ( myProcId .EQ. 0 ) then
