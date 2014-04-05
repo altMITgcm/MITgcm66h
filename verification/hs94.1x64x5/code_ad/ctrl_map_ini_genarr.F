@@ -93,7 +93,7 @@ C--   generic - user-defined control vars
         DO bi=myBxLo(myThid), myBxHi(myThid)
           do j = jmin,jmax
             do i = imin,imax
-#ifndef ALLOW_AUTODIFF_OPENAD
+#ifndef ALLOW_OPENAD
               if ( iarr .eq. 1 ) then
 # ifdef ALLOW_BOTTOMDRAG_CONTROL
                 bottomdragfld(i,j,bi,bj) = bottomdragfld(i,j,bi,bj)
@@ -122,7 +122,7 @@ C--   generic - user-defined control vars
      &           + xx_genarr2d(i,j,bi,bj,iarr)
      &           + tmpfld2d(i,j,bi,bj)
               endif
-#endif /* ALLOW_AUTODIFF_OPENAD */
+#endif /* ALLOW_OPENAD */
             enddo
           enddo
         ENDDO
@@ -159,7 +159,7 @@ C--   generic - user-defined control vars
           do k = 1,Nr
            do j = jmin,jmax
             do i = imin,imax
-#ifndef ALLOW_AUTODIFF_OPENAD
+#ifndef ALLOW_OPENAD
               if ( iarr .eq. 1 ) then
                 theta(i,j,k,bi,bj) = theta(i,j,k,bi,bj)
      &                             + fac*tmpfld3d(i,j,k,bi,bj)
@@ -177,7 +177,7 @@ C--   generic - user-defined control vars
      &           + fac*xx_genarr3d(i,j,k,bi,bj,iarr)
      &           + fac*tmpfld3d(i,j,k,bi,bj)
               endif
-#endif /* ALLOW_AUTODIFF_OPENAD */
+#endif /* ALLOW_OPENAD */
             enddo
            enddo
           enddo
