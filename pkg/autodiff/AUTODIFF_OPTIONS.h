@@ -52,6 +52,11 @@ C o use divided adjoint to split adjoint computations
 C o Enable some temporary constructs for OpenAD
 #undef ALLOW_AUTODIFF_OPENAD
 
+#undef ALLOW_AUTODIFF_WHTAPEIO
+#undef ALLOW_PACKUNPACK_METHOD2
+#undef AUTODIFF_USE_OLDSTORE_3D
+#undef AUTODIFF_USE_OLDSTORE_2D
+
 C   ==================================================================
 #endif /* ndef ECCO_CPPOPTIONS_H */
 #endif /* ALLOW_AUTODIFF */

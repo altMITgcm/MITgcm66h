@@ -46,6 +46,10 @@ C       >>> Cost function contributions
 #undef ALLOW_CTDS_COST_CONTRIBUTION
 #undef ALLOW_COST_ATLANTIC
 
+#undef ALLOW_COST_TEST
+#undef ALLOW_COST_TSQUARED
+#undef ALLOW_COST_TRACER
+
 C       >>> ALLOW_GENCOST_CONTRIBUTION: interactive way to add basic 2D cost
 C         function terms.
 C       > In data.ecco, this requires the specification of data file (name,
