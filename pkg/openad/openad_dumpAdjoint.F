@@ -80,9 +80,6 @@ c They provide the fields to be stored.
 #  include "KPP_DIAGS.h"
 #  include "KPP_PARAMS.h"
 # endif
-# ifdef ALLOW_DIVIDED_ADJOINT_MPI
-#  include "mpif.h"
-# endif
 
 # include "tamc.h"
 # include "ctrl.h"
