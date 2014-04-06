@@ -1,6 +1,9 @@
 C $Header$
 C $Name$
 
+#ifndef ECCO_CPPOPTIONS_H
+#define ECCO_CPPOPTIONS_H
+
 C
 C CPP flags controlling which code is included in the files that
 C will be compiled.
@@ -17,6 +20,7 @@ C
 C       >>> Checkpointing as handled by TAMC
 #define ALLOW_TAMC_CHECKPOINTING
 C
+#undef ALLOW_AUTODIFF_OPENAD
 C       >>> Extract adjoint state
 #undef ALLOW_AUTODIFF_MONITOR
 C
@@ -42,4 +46,6 @@ C
 C
 C       >>> Initial values.
 #define ALLOW_GENARR2D_CONTROL
+
+#endif /* ECCO_CPPOPTIONS_H */
 
