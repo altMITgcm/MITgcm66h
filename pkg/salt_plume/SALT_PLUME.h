@@ -30,10 +30,22 @@ C       default is 1.0
 C     SPsalFRAC: fraction of the salt by-product of seaice growth (not melt) that
 C       will be re-distributed vertically according to the salt_plume_frac.F
 C       Its default is 1. (for 100% effect), and its range is [0. 1.]
+C     SPinflectionPoint: the inflection point of a nonlinear function 
+C       f(AREA) controlling saltPlumeFlux. f(AREA) is a logistic curve
+C       (sigmoid) with range [0. 1.] and f(SPinflectionPoint) == 0.5.
+C       Usage: pkg/salt_plume activates when AREA>=SPinflectionPoint.
+C       To assure only narrow leads generate plumes: 
+C       set SPinflectionPoint >= 0.8.
 
       _RL SPsalFRAC, SaltPlumeCriterion, SPovershoot
+#ifdef SALT_PLUME_IN_LEADS
+      _RL SPinflectionPoint
+#endif
       COMMON /SALT_PLUME_PARAMS_R/
      &   SPsalFRAC, SaltPlumeCriterion, SPovershoot
+#ifdef SALT_PLUME_IN_LEADS
+     &   , SPinflectionPoint
+#endif
 C--   SALT_PLUME 2-dim. fields
 C     SaltPlumeDepth :: depth of penetration of salt plumes
 C                       rejected during sea ice growth

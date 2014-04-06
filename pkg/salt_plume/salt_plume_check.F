@@ -41,6 +41,16 @@ C     msgBuf      - Informational/error meesage buffer
        STOP 'ABNORMAL END: S/R SALT_PLUME_CHECK'
       ENDIF
 
+#ifdef SALT_PLUME_IN_LEADS
+      IF ( (SPinflectionPoint .LT. 0. _d 0).OR.
+     &     (SPinflectionPoint .GT. 1. _d 0) ) then
+       WRITE(msgBuf,'(2A)') 'SALT_PLUME_CHECK:',
+     &  ' SPinflectionPoint needs to lie between 0. and 1.'
+       CALL PRINT_ERROR( msgBuf, myThid )
+       STOP 'ABNORMAL END: S/R SALT_PLUME_CHECK'
+      ENDIF
+#endif
+
       _END_MASTER(myThid)
 
 #endif /* ALLOW_SALT_PLUME */
