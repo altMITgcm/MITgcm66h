@@ -112,7 +112,7 @@ c switch off cost function term
 #endif
 #ifdef ALLOW_SSH_MEAN_COST_CONTRIBUTION
       CALL ECCO_CHECK_FILES( using_cost_altim,
-     & 'mdt', topexmeanfile, modelstartdate(1), myThid ) 
+     & 'mdt', mdtdatfile, modelstartdate(1), myThid ) 
 #endif
 
 c left for later : slightly different treatment would apply to profiles and gencost

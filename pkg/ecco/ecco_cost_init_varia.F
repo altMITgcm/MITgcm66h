@@ -242,11 +242,11 @@ c
             do i = imin,imax
 #ifdef ALLOW_SSH_COST_CONTRIBUTION
                if (_hFacC(i,j,k,bi,bj) .eq. 0.) then
-                  tpmeanmask(i,j,bi,bj) = 0. _d 0
+                  mdtmask(i,j,bi,bj) = 0. _d 0
                else
-                  tpmeanmask(i,j,bi,bj) = 1. _d 0
+                  mdtmask(i,j,bi,bj) = 1. _d 0
                endif
-               tpmean(i,j,bi,bj)     = 0. _d 0
+               mdt(i,j,bi,bj)     = 0. _d 0
 #endif
 #ifdef ALLOW_SSH_TPANOM_COST_CONTRIBUTION
                if (_hFacC(i,j,k,bi,bj) .eq. 0.) then
