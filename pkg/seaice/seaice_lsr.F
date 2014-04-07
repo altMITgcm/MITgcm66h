@@ -283,7 +283,7 @@ CADJ &     key = itmpkey
 
       CALL SEAICE_CALC_VISCOSITIES(
      I     e11, e22, e12, zMin, zMax, hEffM, press0,
-     O     eta, etaZ, zeta, press,
+     O     eta, etaZ, zeta, press, deltaC,
      I     ilcall, myTime, myIter, myThid )
 
       CALL SEAICE_OCEANDRAG_COEFFS(
