@@ -462,6 +462,9 @@ c
      & 'SEAICEmuRidging  =', ' /* ridging parameter */')
       CALL WRITE_0D_RL( SEAICEmaxRaft  ,INDEX_NONE,
      & 'SEAICEmaxRaft  =', ' /* ridging parameter */')
+      CALL WRITE_0D_RL( SEAICEsnowFracRidge ,INDEX_NONE,
+     & 'SEAICEsnowFracRidge  =',
+     &     ' /* fraction of snow remaining on ridges */')
 #else
       CALL WRITE_0D_I (SEAICE_multDim,INDEX_NONE,'SEAICE_multDim    ='
      & , ' /* number of ice categories (1 or 7) */')

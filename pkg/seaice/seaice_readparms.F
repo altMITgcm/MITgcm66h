@@ -110,7 +110,7 @@ C--   SEAICE parameters
      & SEAICE_JFNKepsilon, SEAICE_OLx, SEAICE_OLy,
      & SEAICE_JFNKphi, SEAICE_JFNKalpha, SEAICEuseIMEX, SEAICEuseBDF2,
      & useHibler79IceStrength, SEAICEpartFunc, SEAICEredistFunc,
-     & SEAICEridgingIterMax, SEAICEsimpleRidging, SEAICEsnowFractRidge,
+     & SEAICEridgingIterMax, SEAICEsimpleRidging, SEAICEsnowFracRidge,
      & SEAICEgStar, SEAICEhStar, SEAICEaStar, SEAICEshearParm,
      & SEAICEmuRidging, SEAICEmaxRaft, SEAICE_cf,
      & SEAICEuseAB2, SEAICE_abEps,
@@ -214,7 +214,7 @@ C     ridging parameters
       SEAICEaStar           = 0.05 _d 0
       SEAICEmuRidging       = 5. _d 0
       SEAICEmaxRaft         = 1. _d 0
-      SEAICEsnowFractRidge  = 0.5 _d 0
+      SEAICEsnowFracRidge   = 0.5 _d 0
 C     end ridging parampeters
       useMaykutSatVapPoly = .FALSE.
       SEAICEuseFluxForm  = .TRUE.
