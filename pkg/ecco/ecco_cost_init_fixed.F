@@ -106,6 +106,16 @@ c--     ... IES data.
         if ( iesdatfile .ne. ' ' )
      &   call cal_FullDate( iesstartdate1,   iesstartdate2,
      &                      iesstartdate,    mythid )
+#ifdef ALLOW_SSH_MEAN_COST_CONTRIBUTION
+c--     ... mdt data.
+        if ( mdtdatfile .ne. ' ' )
+     &  call cal_FullDate( mdtstartdate1, mdtstartdate2,
+     &                     mdtstartdate,  mythid )
+c--     ... mdt data.
+        if ( mdtdatfile .ne. ' ' )
+     &  call cal_FullDate( mdtenddate1, mdtenddate2,
+     &                     mdtenddate,  mythid )
+#endif /* ALLOW_SSH_MEAN_COST_CONTRIBUTION */
 c--     ... T/P data.
         if ( topexfile .ne. ' ' )
      &  call cal_FullDate( topexstartdate1, topexstartdate2,
