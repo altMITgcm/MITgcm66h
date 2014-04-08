@@ -225,7 +225,7 @@ c     == end of interface ==
      &                    SQUEEZE_RIGHT , mythid)
 
 #ifdef ALLOW_SSH_MEAN_COST_CONTRIBUTION
-      write(msgbuf,'(a,l)')
+      write(msgbuf,'(A,L5)')
      &  '  using_cost_altim[T=mdt,F=no]:   ',using_cost_altim
         call print_message( msgbuf, standardmessageunit,
      &                      SQUEEZE_RIGHT , mythid)
