@@ -713,6 +713,14 @@ C=============== ice thickness categories ============
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
       CALL DIAGNOSTICS_SETKLEV( diagName, nITD, myThid )
+
+      diagName  = 'SIhsnowN'
+      diagTitle = 'SEAICE effective snow thickness per category'
+      diagUnits = 'm               '
+      diagCode  = 'SM      MX      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+      CALL DIAGNOSTICS_SETKLEV( diagName, nITD, myThid )
 #endif
 
 #endif /* ALLOW_DIAGNOSTICS */

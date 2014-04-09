@@ -94,6 +94,7 @@ C     division by zero is not possible
 #ifdef SEAICE_ITD
        CALL DIAGNOSTICS_FILL(HEFFITD ,'SIheffN ',0,nITD ,0,1,1,myThid)
        CALL DIAGNOSTICS_FILL(AREAITD ,'SIareaN ',0,nITD ,0,1,1,myThid)
+       CALL DIAGNOSTICS_FILL(HSNOWITD,'SIhsnowN',0,nITD ,0,1,1,myThid)
 #endif
 
 #ifdef ALLOW_SITRACER
