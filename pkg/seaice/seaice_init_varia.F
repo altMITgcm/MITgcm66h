@@ -384,6 +384,7 @@ C--   Read initial snow thickness from file if available.
            AREAITD(I,J,1,bi,bj) =AREA(I,J,bi,bj)
            HEFFITD(I,J,1,bi,bj) =HEFF(I,J,bi,bj)
            HSNOWITD(I,J,1,bi,bj)=HSNOW(I,J,bi,bj)
+           opnWtrFrac(I,J,bi,bj)=1. _d 0 - AREA(I,J,bi,bj)
           ENDDO
          ENDDO
         ENDDO
