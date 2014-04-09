@@ -69,7 +69,7 @@ CEndOfInterface
 C !LOCAL VARIABLES: ====================================================
 C     === Local variables ===
 C     i,j,k       :: inner loop counters
-C     openWater   :: open water area fraction
+C     i/jMin/Max  :: loop boundaries
 C
       INTEGER i, j, k
       INTEGER iMin, iMax, jMin, jMax
