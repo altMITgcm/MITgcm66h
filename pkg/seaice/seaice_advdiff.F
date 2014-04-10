@@ -126,6 +126,14 @@ C-    compute cell areas used by all tracers
           yA(i,j,bi,bj) = _dxG(i,j,bi,bj)*_maskS(i,j,ks,bi,bj)
          ENDDO
         ENDDO
+#ifdef SEAICE_ITD
+C     compute the fraction of open water before advection
+        DO j=1-OLy,sNy+OLy
+         DO i=1-OLx,sNx+OLx
+          opnWtrFrac(i,j,bi,bj)=1. _d 0 - AREA(i,j,bi,bj)
+         ENDDO
+        ENDDO
+#endif /* SEAICE_ITD */
        ENDDO
       ENDDO
 
@@ -138,15 +146,6 @@ C     Do we need this? I am afraid so.
 CADJ STORE uc   = comlev1, key = ikey_dynamics, kind=isbyte
 CADJ STORE vc   = comlev1, key = ikey_dynamics, kind=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
-
-#ifdef SEAICE_ITD
-C     compute the fraction of open water before advection
-        DO j=1-OLy,sNy+OLy
-         DO i=1-OLx,sNx+OLx
-          opnWtrFrac(i,j,bi,bj)=1. _d 0 - AREA(i,j,bi,bj)
-         ENDDO
-        ENDDO
-#endif /* SEAICE_ITD */
 
       SEAICEmultidimadvection = .TRUE.
       IF ( SEAICEadvScheme.EQ.ENUM_CENTERED_2ND
