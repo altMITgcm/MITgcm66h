@@ -733,23 +733,5 @@ C-    Add tendency due to diffusion
 C--   end if multiDimAdvection
       ENDIF
 
-#ifdef ALLOW_AUTODIFF_TAMC
-CADJ STORE AREA   = comlev1, key = ikey_dynamics, kind=isbyte
-#endif
-      IF ( .NOT. usePW79thermodynamics ) THEN
-C     Hiblers "ridging function": Do it now if not in seaice_growth
-C     in principle we should add a "real" ridging function here (or
-C     somewhere after doing the advection)
-       DO bj=myByLo(myThid),myByHi(myThid)
-        DO bi=myBxLo(myThid),myBxHi(myThid)
-         DO j=1-OLy,sNy+OLy
-          DO i=1-OLx,sNx+OLx
-           AREA(I,J,bi,bj) = MIN(ONE,AREA(I,J,bi,bj))
-          ENDDO
-         ENDDO
-        ENDDO
-       ENDDO
-      ENDIF
-
       RETURN
       END
