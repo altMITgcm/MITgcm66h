@@ -95,6 +95,34 @@ C     myThid ::  my Thread Id number
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I      diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
+      diagName  = 'SI_ubase'
+      diagTitle = 'Ice stream basal x-vel'
+      diagUnits = 'none       '
+      diagCode  = 'SM      L1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I      diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
+      diagName  = 'SI_vbase'
+      diagTitle = 'Ice stream basal y-vel'
+      diagUnits = 'none       '
+      diagCode  = 'SM      L1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I      diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
+      diagName  = 'SI_taubx'
+      diagTitle = 'Ice stream basal x-stress'
+      diagUnits = 'none       '
+      diagCode  = 'SM      L1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I      diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
+      diagName  = 'SI_tauby'
+      diagTitle = 'Ice stream basal y-stress'
+      diagUnits = 'none       '
+      diagCode  = 'SM      L1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I      diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
       diagName  = 'SI_selev'
       diagTitle = 'Ice stream surface elev'
       diagUnits = 'none       '

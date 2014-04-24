@@ -56,6 +56,14 @@ C     === Global variables ===
      &      0,1,0,1,1,myThid)
        CALL DIAGNOSTICS_FILL(STREAMICE_v_surf,'SI_vsurf',
      &      0,1,0,1,1,myThid)
+       CALL DIAGNOSTICS_FILL(streamice_u_bed,'SI_ubase',
+     &      0,1,0,1,1,myThid)
+       CALL DIAGNOSTICS_FILL(STREAMICE_v_bed,'SI_vbase',
+     &      0,1,0,1,1,myThid)
+       CALL DIAGNOSTICS_FILL(streamice_taubx,'SI_taubx',
+     &      0,1,0,1,1,myThid)
+       CALL DIAGNOSTICS_FILL(STREAMICE_tauby,'SI_tauby',
+     &      0,1,0,1,1,myThid)
 #endif
        CALL DIAGNOSTICS_FILL(surf_el_streamice,'SI_selev',
      &      0,1,0,1,1,myThid)

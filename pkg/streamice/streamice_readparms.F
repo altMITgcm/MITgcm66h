@@ -74,6 +74,12 @@ C     iUnit      :: Work variable for IO unit number
      &     STREAMICEvFaceBdryFile,
      &     STREAMICEuDirichValsFile,
      &     STREAMICEvDirichValsFile, 
+     &     STREAMICEuMassFluxFile, 
+     &     STREAMICEvMassFluxFile, 
+     &     STREAMICEuNormalStressFile,
+     &     STREAMICEvNormalStressFile,
+     &     STREAMICEuShearStressFile,
+     &     STREAMICEvShearStressFile,
      &     STREAMICEGlenConstFile, STREAMICEGlenConstConfig,
      &     STREAMICE_ppm_driving_stress,
      &     STREAMICE_h_ctrl_const_surf,
@@ -185,6 +191,11 @@ C--   Default values for STREAMICE
       STREAMICEhmaskFile = ''
       STREAMICEHBCyFile = ''
       STREAMICEHBCxFile = ''
+      STREAMICEuNormalStressFile = ''
+      STREAMICEvNormalStressFile = ''
+      STREAMICEuShearStressFile = ''
+      STREAMICEvShearStressFile = ''
+
 #ifdef ALLOW_STREAMICE_2DTRACER
       STREAMICETrac2DBCxFile = ''
       STREAMICETrac2DBCyFile = ''
@@ -194,6 +205,8 @@ C--   Default values for STREAMICE
       STREAMICEvFaceBdryFile = ''
       STREAMICEuDirichValsFile = ''
       STREAMICEvDirichValsFile = ''
+      STREAMICEuMassFluxFile = ''
+      STREAMICEvMassFluxFile = ''
       STREAMICEGlenConstFile = ''
       STREAMICEcostMaskFile = ''
       STREAMICEGlenConstConfig = 'UNIFORM'
