@@ -189,9 +189,13 @@ CADJ &     = comlev1_stream_hybrid, key=ikey_1
 
            ub = umid - streamice_taubx(i,j,bi,bj) *
      &      streamice_omega(i,j,bi,bj) / H_streamice(i,j,bi,bj)
+ 
+           streamice_u_bed (i,j,bi,bj) = ub
 
            vb = vmid - streamice_tauby(i,j,bi,bj) *
      &      streamice_omega(i,j,bi,bj) / H_streamice(i,j,bi,bj)
+
+           streamice_v_bed (i,j,bi,bj) = vb
 
            unorm = sqrt(ub**2+vb**2+eps_u_min**2)
 
