@@ -66,7 +66,7 @@ C--   Dynamical variables
 #ifdef SEAICE_ITD
       COMMON/SEAICE_DYNVARS_1/AREA,HEFF,HSNOW,UICE,VICE,
      &                        AREAITD,HEFFITD,HSNOWITD,
-     &                        opnWtrFrac 
+     &                        opnWtrFrac, fw2ObyRidge
 #else
       COMMON/SEAICE_DYNVARS_1/AREA,HEFF,HSNOW,UICE,VICE
 #endif
