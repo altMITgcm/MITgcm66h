@@ -63,6 +63,21 @@ C     LOCAL VARIABLES
        CALL STREAMICE_DRIVING_STRESS (myThid)
       ENDIF
 
+#ifdef ALLOW_AUTODIFF_TAMC
+#ifdef STREAMICE_STRESS_BOUNDARY_CONTROL
+!$TAF STORE taudx_SI = comlev1, key=ikey_dynamics
+!$TAF STORE taudy_SI = comlev1, key=ikey_dynamics
+#endif
+#endif
+
+#ifdef STREAMICE_STRESS_BOUNDARY_CONTROL
+      _EXCH_XY_RL( taudx_SI , myThid )
+      _EXCH_XY_RL( taudy_SI , myThid )
+      CALL STREAMICE_FORCED_BUTTRESS (myThid)
+#endif
+
+      
+
       cgtol = streamice_cg_tol
 
 !       CALL WRITE_FULLARRAY_RL ("taudy_SI",taudy_SI,1,0,0,1,0,myThid)

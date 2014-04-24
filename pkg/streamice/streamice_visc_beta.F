@@ -93,7 +93,11 @@ C     LOCAL VARIABLES
 
 
            visc_streamice(i,j,bi,bj) = 
+#ifdef STREAMICE_3D_GLEN_CONST
+     &      .5 * (B_glen(i,j,1,bi,bj))**2 *
+#else
      &      .5 * (B_glen(i,j,bi,bj))**2 *
+#endif
      &      second_inv**((1-n_glen)/n_glen) * H_streamice(i,j,bi,bj)
 
            unorm = sqrt(umid**2+vmid**2+eps_u_min**2)

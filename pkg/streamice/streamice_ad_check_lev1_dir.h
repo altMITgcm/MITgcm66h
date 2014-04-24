@@ -47,7 +47,26 @@ CADJ &     = comlev1, key=ikey_dynamics, kind=isbyte
 # ifdef ALLOW_GENTIM2D_CONTROL
 CADJ STORE bdot_streamice
 CADJ &     = comlev1, key=ikey_dynamics, kind=isbyte
-# endif
+#ifdef  STREAMICE_STRESS_BOUNDARY_CONTROL
+CADJ STORE streamice_u_normal_stress
+CADJ &     = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE streamice_v_normal_stress
+CADJ &     = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE streamice_u_shear_stress
+CADJ &     = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE streamice_v_shear_stress
+CADJ &     = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE streamice_u_normal_pert
+CADJ &     = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE streamice_v_normal_pert
+CADJ &     = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE streamice_u_shear_pert
+CADJ &     = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE streamice_v_shear_pert
+CADJ &     = comlev1, key=ikey_dynamics, kind=isbyte
+#endif
+#endif
+
 
 #ifdef STREAMICE_TRACER_AB
 CADJ STORE GAD_trac_2d

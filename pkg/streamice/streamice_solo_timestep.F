@@ -99,9 +99,9 @@ c**************************************
 !#endif
 ! NEW DIRECTIVES - DNG
 
-#ifdef ALLOW_GENTIM2D_CONTROL
-      CALL CTRL_MAP_GENTIM2D (myTime, myIter, myThid)
-#endif
+!#ifdef ALLOW_GENTIM2D_CONTROL
+!      CALL CTRL_MAP_GENTIM2D (myTime, myIter, myThid)
+!#endif
 
       if (myIter.eq.0) then
       CALL STREAMICE_UPD_FFRAC_UNCOUPLED ( myThid )

@@ -40,6 +40,24 @@ CADJ &     = tapelev3, key = ilev_3
 # ifdef ALLOW_GENTIM2D_CONTROL
 CADJ STORE bdot_streamice
 CADJ &     = tapelev3, key = ilev_3
+#ifdef  STREAMICE_STRESS_BOUNDARY_CONTROL
+CADJ STORE streamice_u_normal_stress
+CADJ &     = tapelev3, key=ilev_3
+CADJ STORE streamice_v_normal_stress
+CADJ &     = tapelev3, key=ilev_3
+CADJ STORE streamice_u_shear_stress
+CADJ &     = tapelev3, key=ilev_3
+CADJ STORE streamice_v_shear_stress
+CADJ &     = tapelev3, key=ilev_3
+CADJ STORE streamice_u_normal_pert
+CADJ &     = tapelev3, key=ilev_3
+CADJ STORE streamice_v_normal_pert
+CADJ &     = tapelev3, key=ilev_3
+CADJ STORE streamice_u_shear_pert
+CADJ &     = tapelev3, key=ilev_3
+CADJ STORE streamice_v_shear_pert
+CADJ &     = tapelev3, key=ilev_3
+#endif
 # endif
 
 #ifdef STREAMICE_TRACER_AB
