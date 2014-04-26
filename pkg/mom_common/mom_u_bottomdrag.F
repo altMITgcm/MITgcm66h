@@ -28,8 +28,8 @@ C !USES: ===============================================================
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#ifdef ALLOW_BOTTOMDRAG_CONTROL
-# include "DYNVARS.h"
+#ifdef ALLOW_CTRL
+# include "CTRL_FIELDS.h"
 #endif
 
 C !INPUT PARAMETERS: ===================================================
