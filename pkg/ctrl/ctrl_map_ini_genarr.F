@@ -29,12 +29,12 @@ C     == global variables ==
 #include "FFIELDS.h"
 #include "CTRL_SIZE.h"
 #include "ctrl.h"
+#include "CTRL_FIELDS.h"
 #include "CTRL_GENARR.h"
 #include "ctrl_dummy.h"
 #include "optim.h"
 #ifdef ALLOW_PTRACERS
 # include "PTRACERS_SIZE.h"
-c#include "PTRACERS_PARAMS.h"
 # include "PTRACERS_FIELDS.h"
 #endif
 
@@ -92,7 +92,7 @@ C--   generic - user-defined control vars
             do i = imin,imax
               if ( iarr .eq. 1 ) then
 #ifdef ALLOW_BOTTOMDRAG_CONTROL
-                bottomdragfld(i,j,bi,bj) = bottomdragfld(i,j,bi,bj)
+                bottomDragFld(i,j,bi,bj) = bottomDragFld(i,j,bi,bj)
      &                                   + tmpfld2d(i,j,bi,bj)
 #endif
               elseif ( iarr. eq. 2 ) then
@@ -109,7 +109,7 @@ C--   generic - user-defined control vars
 C--   end iarr loop
       ENDDO
 #ifdef ALLOW_BOTTOMDRAG_CONTROL
-       _EXCH_XY_RL( bottomdragfld, myThid )
+       _EXCH_XY_RL( bottomDragFld, myThid )
 #endif
        _EXCH_XYZ_RL( theta, myThid )
        _EXCH_XYZ_RL( salt, myThid )
@@ -145,7 +145,7 @@ C--   generic - user-defined control vars
      &                            + fac*tmpfld3d(i,j,k,bi,bj)
               elseif ( iarr .eq. 3 ) then
 #ifdef ALLOW_DIFFKR_CONTROL
-                diffkr(i,j,k,bi,bj) = diffkr(i,j,k,bi,bj)
+                diffKr(i,j,k,bi,bj) = diffKr(i,j,k,bi,bj)
      &                              + tmpfld3d(i,j,k,bi,bj)
 #endif
               endif
