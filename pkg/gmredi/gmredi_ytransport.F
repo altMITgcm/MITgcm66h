@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "GMREDI_OPTIONS.h"
+#ifdef ALLOW_CTRL
+# include "CTRL_OPTIONS.h"
+#endif
 
       SUBROUTINE GMREDI_YTRANSPORT(
      I     iMin,iMax,jMin,jMax,bi,bj,K,
@@ -21,6 +24,9 @@ C     == GLobal variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 #include "GMREDI.h"
+#ifdef ALLOW_CTRL
+# include "CTRL_FIELDS.h"
+#endif
 
 #ifdef ALLOW_AUTODIFF_TAMC
 # include "tamc.h"
@@ -109,7 +115,7 @@ C--   Area integrated meridional flux
      &    *Kvy(i,j,k,bi,bj)
 #else
 #ifdef ALLOW_KAPREDI_CONTROL
-     &    *(kapredi(i,j,k,bi,bj)
+     &    *(kapRedi(i,j,k,bi,bj)
 #else
      &    *(GM_isopycK
 #endif
