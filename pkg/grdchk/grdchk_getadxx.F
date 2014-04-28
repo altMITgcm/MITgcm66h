@@ -238,7 +238,7 @@ c--   == end of interface ==
 #endif /* ALLOW_KAPGM_CONTROL */
 
 #ifdef ALLOW_KAPREDI_CONTROL
-      else if ( grdchkvarindex .eq. 16 ) then
+      else if ( grdchkvarindex .eq. 44 ) then
          il=ilnblnk( xx_kapredi_file )
          write(fname(1:80),'(80a)') ' '
          write(fname(1:80),'(3a,i10.10)')
@@ -485,7 +485,8 @@ c--   == end of interface ==
      &     grdchkvarindex.EQ.27 .OR. grdchkvarindex.EQ.28 .OR.
      &     grdchkvarindex.EQ.15 .OR. grdchkvarindex.EQ.16 .OR.
      &     grdchkvarindex.EQ.17 .OR. grdchkvarindex.EQ.21 .OR.
-     &     grdchkvarindex.EQ.22 .OR. grdchkvarindex.EQ.31
+     &     grdchkvarindex.EQ.22 .OR. grdchkvarindex.EQ.31 .OR.
+     &     grdchkvarindex.EQ.44
 #ifdef ALLOW_GENARR3D_CONTROL
      &     .OR. ( grdchkvarindex .ge. 201 .and.
      &     grdchkvarindex .le. 200+maxCtrlArr3D )
