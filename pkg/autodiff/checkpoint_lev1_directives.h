@@ -23,7 +23,7 @@ CADJ STORE area,heff,hsnow = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
 CADJ STORE uice,vice = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
-CADJ STORE tice = comlev1, key = ikey_dynamics,
+CADJ STORE tices = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
 CADJ STORE eta,zeta = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
