@@ -165,12 +165,9 @@ C     frWtrAtm contains freshwater flux from the atmosphere
       _RL saltWtrIce (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL frWtrIce   (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
+C     TICES :: Seaice/snow surface temperature for each category
       COMMON/MULTICATEGORY/TICES
       _RL TICES      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,MULTDIM,nSx,nSy)
-
-C     TICE  :: Seaice/snow surface temperature
-      COMMON/SEAICE_TEMPERATURE/ TICE
-      _RL TICE       (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
 #if (defined (SEAICE_CGRID) && defined (SEAICE_ALLOW_FREEDRIFT))
       COMMON /SEAICE_FD_FIELDS/
