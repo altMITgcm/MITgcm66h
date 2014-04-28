@@ -543,7 +543,7 @@ C-      2D arrays
           StoreSEAICE(I,J,bi,bj,1) = AREA(I,J,bi,bj)
           StoreSEAICE(I,J,bi,bj,2) = HEFF(I,J,bi,bj)
           StoreSEAICE(I,J,bi,bj,3) = HSNOW(I,J,bi,bj)
-          StoreSEAICE(I,J,bi,bj,4) = TICE(I,J,bi,bj)
+          StoreSEAICE(I,J,bi,bj,4) = 0.0
           StoreSEAICE(I,J,bi,bj,5) = RUNOFF(I,J,bi,bj)
           StoreSEAICE(I,J,bi,bj,6) = 0.0
 #  ifdef SEAICE_CGRID

@@ -445,7 +445,7 @@ C-      2D arrays
           AREA(I,J,bi,bj)   = StoreSEAICE(I,J,bi,bj,1)
           HEFF(I,J,bi,bj)   = StoreSEAICE(I,J,bi,bj,2)
           HSNOW(I,J,bi,bj)    = StoreSEAICE(I,J,bi,bj,3)
-          TICE(I,J,bi,bj)     = StoreSEAICE(I,J,bi,bj,4)
+CML          TICE(I,J,bi,bj)     = StoreSEAICE(I,J,bi,bj,4)
           RUNOFF(I,J,bi,bj)   = StoreSEAICE(I,J,bi,bj,5)
 # ifdef SEAICE_CGRID
           stressDivergenceX(I,J,bi,bj) = StoreSEAICE(I,J,bi,bj,14)
