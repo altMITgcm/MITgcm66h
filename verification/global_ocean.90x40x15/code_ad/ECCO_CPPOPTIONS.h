@@ -74,6 +74,9 @@ C       >>> Initial values.
 #undef ALLOW_SST0_CONTROL
 #define ALLOW_DIFFKR_CONTROL
 #define ALLOW_KAPGM_CONTROL
+#define ALLOW_KAPREDI_CONTROL
+#define ALLOW_BOTTOMDRAG_CONTROL
+#define ALLOW_GENARR2D_CONTROL
 
 C ********************************************************************
 #endif /* ECCO_CPPOPTIONS_H */
