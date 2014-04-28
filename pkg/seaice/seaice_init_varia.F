@@ -140,7 +140,6 @@ c "ice concentration" tracer that should remain .EQ.1.
            SItrAREA (i,j,bi,bj,jTh) = 0. _d 0
           ENDDO
 #endif
-          TICE(i,j,bi,bj)   = 0. _d 0
           DO k=1,MULTDIM
             TICES(i,j,k,bi,bj)=0. _d 0
           ENDDO
@@ -228,7 +227,6 @@ C Western boundary
 
         DO j=1-OLy,sNy+OLy
          DO i=1-OLx,sNx+OLx
-          TICE(i,j,bi,bj)=273.0 _d 0
           DO k=1,MULTDIM
            TICES(i,j,k,bi,bj)=273.0 _d 0
           ENDDO
