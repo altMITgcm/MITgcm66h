@@ -401,7 +401,7 @@ C     Calculate the flux terms based on the updated tsurfLoc
           F_lh(I,J)   = D1I*UG(I,J)*(qhice(I,J)-AQH(I,J,bi,bj))
 #ifdef SEAICE_CAP_SUBLIM
 C     if the latent heat flux implied by tsurfLoc exceeds
-C     F_lh_max, cap F_lh and decouple the flux magnitude from TICE
+C     F_lh_max, cap F_lh and decouple the flux magnitude from tIce (tsurfLoc)
           IF (F_lh(I,J) .GT. F_lh_max(I,J)) THEN
              F_lh(I,J)  = F_lh_max(I,J)
              dqh_dTs(I,J) = ZERO
