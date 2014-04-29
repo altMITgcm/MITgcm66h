@@ -613,6 +613,8 @@ CADJ &     kind = isbyte
 # ifdef ALLOW_SALT_PLUME
 CADJ STORE saltplumedepth(:,:,bi,bj) = comlev1_bibj, key=itdkey,
 CADJ &     kind = isbyte
+CADJ STORE saltplumeflux(:,:,bi,bj) = comlev1_bibj, key=itdkey,
+CADJ &     kind = isbyte
 # endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
