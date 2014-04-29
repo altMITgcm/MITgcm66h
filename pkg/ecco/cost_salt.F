@@ -217,8 +217,9 @@ c--         End of loop over layers.
 
           enddo
         enddo
-        CALL WRITE_REC_XYZ_RL( 'DiagnosCost_ClimSalt',
-     &                 diagnosfld3d, irec, optimcycle, mythid )
+
+cph        CALL WRITE_REC_XYZ_RL( 'DiagnosCost_ClimSalt',
+cph     &                 diagnosfld3d, irec, optimcycle, mythid )
 
       enddo
 c--   End of loop over records.
