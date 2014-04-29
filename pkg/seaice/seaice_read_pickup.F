@@ -328,6 +328,11 @@ C--    Update overlap regions
 #ifdef SEAICE_VARIABLE_SALINITY
        _EXCH_XY_RL(HSALT, myThid )
 #endif
+#ifdef SEAICE_ITD
+       CALL EXCH_3D_RL( HEFFITD,  nITD, myThid )
+       CALL EXCH_3D_RL( AREAITD,  nITD, myThid )
+       CALL EXCH_3D_RL( HSNOWITD, nITD, myThid )
+#endif /* SEAICE_ITD */
 
       RETURN
       END
