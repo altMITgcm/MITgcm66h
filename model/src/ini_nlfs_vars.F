@@ -87,6 +87,7 @@ C-- Initialise arrays (NLFS using r* coordinate):
             rStarFacC(i,j,bi,bj) = 1.
             rStarFacW(i,j,bi,bj) = 1.
             rStarFacS(i,j,bi,bj) = 1.
+            pStarFacK(i,j,bi,bj) = 1.
             rStarFacNm1C(i,j,bi,bj) = 1.
             rStarFacNm1W(i,j,bi,bj) = 1.
             rStarFacNm1S(i,j,bi,bj) = 1.
