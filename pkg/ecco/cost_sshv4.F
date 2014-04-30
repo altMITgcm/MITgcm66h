@@ -631,7 +631,7 @@ cgf =======================================================
         enddo
       enddo
 
-      CALL WRITE_FLD_XY_RL( 'DiagnosSSHmean', ' ', diagnosfld,
+      CALL WRITE_FLD_XY_RL( 'DiagnosMDT', ' ', diagnosfld,
      &                           optimcycle, mythid )
 
 #endif /* ALLOW_SSH_MEAN_COST_CONTRIBUTION */

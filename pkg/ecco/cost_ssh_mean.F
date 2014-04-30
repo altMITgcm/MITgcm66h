@@ -290,7 +290,7 @@ C--   Do the global summation.
 #endif /* else ORIGINAL_COST_SSH_MEAN */
 
 cph(
-      CALL WRITE_FLD_XY_RL( 'DiagnosSSHmean', ' ', diagnosfld,
+      CALL WRITE_FLD_XY_RL( 'DiagnosMDT', ' ', diagnosfld,
      &                           optimcycle, mythid )
 cph)
 
