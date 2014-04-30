@@ -29,6 +29,10 @@ C     === Global variables ===
 !#endif
 ! #include "STREAMICE_ADV.h"
 
+#ifdef ALLOW_AUTODIFF_TAMC
+# include "tamc.h"
+#endif
+
       INTEGER myThid
 
 #ifdef ALLOW_STREAMICE
@@ -187,15 +191,18 @@ C     === Global variables ===
        ENDDO
       ENDDO
 
+!$TAF STORE streamice_umask = comlev1, key=ikey_dynamics 
+!$TAF STORE streamice_vmask = comlev1, key=ikey_dynamics 
+
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
-        DO j=0,sNy+1
-         DO i=0,sNx+1
+        DO j=1,sNy
+         DO i=1,sNx
           IF(streamice_umask(i,j,bi,bj).eq.-1.0) THEN
-           u_streamice(i,j,bi,bj)=0. _d 0
+           streamice_umask(i,j,bi,bj)=0.0
           ENDIF
           IF(streamice_vmask(i,j,bi,bj).eq.-1.0) THEN
-           v_streamice(i,j,bi,bj)=0. _d 0
+           streamice_vmask(i,j,bi,bj)=0.0
           ENDIF
          ENDDO
         ENDDO
