@@ -313,6 +313,18 @@ c     == end of interface ==
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
 #endif
+#ifdef ALLOW_SMOOTH_CORREL3D
+      write(msgbuf,'(a,L5)')
+     &'ctrlSmoothCorrel3D: ',ctrlSmoothCorrel3D
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+#endif /* ALLOW_SMOOTH_CORREL3D */
+#ifdef ALLOW_SMOOTH_CORREL2D
+      write(msgbuf,'(a,L5)')
+     &'ctrlSmoothCorrel2D: ',ctrlSmoothCorrel2D
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+#endif /* ALLOW_SMOOTH_CORREL2D */
 
       write(msgbuf,'(a)')
      &' '
