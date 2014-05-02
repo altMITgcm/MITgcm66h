@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/exf:
+  - from Jeff Scott: add option (#define EXF_CALC_ATMRHO) to calculate local
+    air density as function of air Temp, Humidity and atm pressure.
+
 checkpoint64w (2014/05/02)
 o verification:
   - update output_adm.txt files for experiment global_ocean.cs32x15 (seaice &
