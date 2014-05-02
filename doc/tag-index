@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint64w (2014/05/02)
 o verification:
   - update output_adm.txt files for experiment global_ocean.cs32x15 (seaice &
     seaice_dynmix) and lab_sea (primary test & noseaicedyn): moving/changing
