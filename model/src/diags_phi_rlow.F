@@ -140,7 +140,7 @@ C-    Integral of b.dr = rStarFac * Integral of b.dr* :
 C-     Consistent with Phi'= Integr[ theta'.dPi ] :
          DO j=jMin,jMax
           DO i=iMin,iMax
-           facP = rStarFacC(i,j,bi,bj)**atm_kappa
+           facP = pStarFacK(i,j,bi,bj)
            dPhiRef = phiRef(2*k+1) - gravity*topoZ(i,j,bi,bj)
      &                             - phi0surf(i,j,bi,bj)
            phiHydLow(i,j,bi,bj) =
