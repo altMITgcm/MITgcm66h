@@ -81,6 +81,8 @@ C       |-- SALT_PLUME_READPARMS
 C       |
 C       |-- SHELFICE_READPARMS
 C       |
+C       |-- STREAMICE_READPARMS
+C       |
 C       |-- ICEFRONT_READPARMS
 C       |
 C       |-- THSICE_READPARMS
