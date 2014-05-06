@@ -1,16 +1,16 @@
 C $Header$
 C $Name$
 
-#include "DIC_OPTIONS.h"
+#include "GCHEM_OPTIONS.h"
 
 C !INTERFACE: ==========================================================
-      SUBROUTINE TRACER_MEANAREA(
+      SUBROUTINE GCHEM_SURFMEAN(
      I                    tracer,
      O                    gsm_tracer,
      I                    myThid )
 
 C !DESCRIPTION:
-C  Calculate surface means of tracer
+C  Calculate surface mean of tracer
 
 C !USES: ===============================================================
       IMPLICIT NONE
