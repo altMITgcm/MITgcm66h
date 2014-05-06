@@ -49,6 +49,7 @@ C--   Set reference Potential Temperature
 C-    set default vertical profile for temperature: tRef
         tracerDefault = 20.
         IF ( fluidIsAir ) tracerDefault = 300.
+        IF ( thetaConst.NE.UNSET_RL ) tracerDefault = thetaConst
         DO k=1,Nr
           IF (tRef(k).EQ.UNSET_RL) tRef(k) = tracerDefault
           tracerDefault = tRef(k)
@@ -73,6 +74,7 @@ C-    read from file:
         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                      SQUEEZE_RIGHT , myThid )
       ENDIF
+      IF ( thetaConst.EQ.UNSET_RL ) thetaConst = tRef(1)
 
 C--   Set reference Salinity/Specific Humidity
       IF ( sRefFile .EQ. ' ' ) THEN
