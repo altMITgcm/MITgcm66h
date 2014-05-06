@@ -41,7 +41,9 @@ CEOP
 
 C     !LOCAL VARIABLES:
       INTEGER i, j
+      _RL recip_Cp
 
+      recip_Cp = 1. _d 0 / HeatCapacity_Cp
       DO j=jMin,jMax
        DO i=iMin,iMax
         gT(i,j,k,bi,bj) = gT(i,j,k,bi,bj)

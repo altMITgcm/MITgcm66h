@@ -45,7 +45,7 @@ C     myThid    :: Thread Id number
 C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     i,j       :: Loop counters
-C     kSurface  :: index of surface layer
+C     kSurface  :: index of surface level
       INTEGER i, j
       INTEGER kSurface
 CEOP
@@ -143,7 +143,7 @@ C     myThid    :: Thread Id number
 C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     i,j       :: Loop counters
-C     kSurface  :: index of surface layer
+C     kSurface  :: index of surface level
       INTEGER i, j
       INTEGER kSurface
 CEOP
@@ -241,9 +241,10 @@ C     myThid    :: Thread Id number
 C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     i,j       :: Loop counters
-C     kSurface  :: index of surface layer
+C     kSurface  :: index of surface level
       INTEGER i, j
       INTEGER kSurface
+      _RL recip_Cp
 CEOP
 C     iG, jG             :: Global index temps.
 C     hC, hW, hE, hN, hS :: Fractional vertical distance open to fluid temps.
@@ -303,6 +304,7 @@ c    (plexiglass, air, water in the compound tank case)
       ELSE
        kSurface = 1
       ENDIF
+      recip_Cp = 1. _d 0 / HeatCapacity_Cp
 
 C--   Forcing term
 #ifdef ALLOW_AIM
@@ -475,7 +477,7 @@ C     myThid    :: Thread Id number
 C     !LOCAL VARIABLES:
 C     == Local variables ==
 C     i,j       :: Loop counters
-C     kSurface  :: index of surface layer
+C     kSurface  :: index of surface level
       INTEGER i, j
       INTEGER kSurface
 CEOP

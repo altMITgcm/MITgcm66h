@@ -86,7 +86,6 @@ C-jmc: Without CD-scheme, this is OK ; but with CD-scheme, needs to cover [0:sNy
        ENDDO
       ENDIF
 
-
 C--   Tidal body force: written as gradient of geopotential
 C True M2 frequency is
 c     tidal_freq=2.*pi/(43200.+25.*60.)
@@ -275,6 +274,7 @@ C     i,j       :: Loop counters
 C     kSurface  :: index of surface layer
       INTEGER i, j
       INTEGER kSurface
+      _RL recip_Cp
 CEOP
 #ifdef SHORTWAVE_HEATING
       integer two
@@ -291,6 +291,7 @@ CEOP
       ELSE
        kSurface = 1
       ENDIF
+      recip_Cp = 1. _d 0 / HeatCapacity_Cp
 
 C--   Forcing term
 #ifdef ALLOW_AIM
