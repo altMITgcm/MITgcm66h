@@ -90,6 +90,7 @@ C     PTRACERS_startAllTrc   :: internal flag, all tracers start at startTime
       LOGICAL PTRACERS_addSrelax2EmP
       LOGICAL PTRACERS_startAllTrc
       LOGICAL PTRACERS_useRecords
+      LOGICAL PTRACERS_calcSurfCor
       LOGICAL
      &     PTRACERS_monitor_mnc, PTRACERS_monitor_stdio,
      &     PTRACERS_timeave_mdsio, PTRACERS_snapshot_mdsio,
@@ -107,6 +108,7 @@ C     PTRACERS_startAllTrc   :: internal flag, all tracers start at startTime
      &     PTRACERS_addSrelax2EmP,
      &     PTRACERS_startAllTrc,
      &     PTRACERS_useRecords,
+     &     PTRACERS_calcSurfCor,
      &     PTRACERS_timeave_mdsio, PTRACERS_snapshot_mdsio,
      &     PTRACERS_pickup_write_mdsio, PTRACERS_pickup_read_mdsio,
      &     PTRACERS_monitor_stdio, PTRACERS_monitor_mnc,

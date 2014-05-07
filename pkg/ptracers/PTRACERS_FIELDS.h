@@ -29,6 +29,9 @@ C     surfaceForcingPTr :: passive tracer surface forcing
       COMMON /PTRACERS_FIELDS/
      &              pTracer, gPtr, gpTrNm1, surfaceForcingPTr
 
+      _RL totSurfCorPTr(PTRACERS_num)
+      COMMON /PTRACERS_SURFCOR_FIELDS/ totSurfCorPTr
+
 #endif /* ALLOW_PTRACERS */
 
 CEH3 ;;; Local Variables: ***

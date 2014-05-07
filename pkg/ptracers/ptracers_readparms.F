@@ -236,6 +236,9 @@ C     Check for valid advection-scheme number
         ENDIF
       ENDDO
 
+C     Whether to compute linear surface correction (set by other packages)
+      PTRACERS_calcSurfCor = .FALSE.
+
 #ifdef ALLOW_MNC
       PTRACERS_timeave_mnc      = useMNC .AND. PTRACERS_timeave_mnc
       PTRACERS_snapshot_mnc     = useMNC .AND. PTRACERS_snapshot_mnc

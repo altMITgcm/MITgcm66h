@@ -182,6 +182,10 @@ CADJ STORE theta,salt,wvel = comlev1, key = ikey_dynamics, byte=isbyte
      &                     myTime, myIter, myThid )
       ENDIF
 
+      IF ( PTRACERS_calcSurfCor ) THEN
+       CALL PTRACERS_CALC_WSURF_TR(wVel,myTime,myIter,myThid)
+      ENDIF
+
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
 
