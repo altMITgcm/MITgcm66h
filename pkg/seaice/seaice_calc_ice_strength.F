@@ -158,8 +158,8 @@ C     not useHiber79IceStrength
         ENDDO
        ENDIF
 C
-       tmpscal1 = SEAICE_cf*0.5*gravity*(rhoConst-SEAICE_rhoSnow)
-     &      * SEAICE_rhoSnow/rhoConst
+       tmpscal1 = SEAICE_cf*0.5*gravity*(rhoConst-SEAICE_rhoIce)
+     &      * SEAICE_rhoIce/rhoConst
        DO j=jMin,jMax
         DO i=iMin,iMax
          PRESS0(i,j,bi,bj) = PRESS0(i,j,bi,bj)/ridgingModeNorm(i,j)
