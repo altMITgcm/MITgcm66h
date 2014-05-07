@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice/seaice_calc_ice_strength.F: replace SEAICE_rhoSnow by 
+   SEAICE_rhoIce in the Rothrock (1975)-type strength calculations
+   (bug fix)
+ 
 o model/src:
   - since we have several heat capacity (even in model/src), define "recip_Cp"
     as local variable (no longer in common block) to avoid any confusion.
