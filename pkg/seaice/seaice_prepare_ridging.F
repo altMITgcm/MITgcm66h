@@ -100,7 +100,7 @@ CML         ENDIF
 C     regularize as in seaice_growth: compute hActual with regularized 
 C     AREA and regularize from below with a minimum thickness
           tmp = HEFFITD(i,j,k,bi,bj)
-     &         /( AREAITD(i,j,k,bi,bj)**2 + area_reg_sq )
+     &         /SQRT( AREAITD(i,j,k,bi,bj)**2 + area_reg_sq )
           hActual(i,j,k) = SQRT(tmp * tmp + hice_reg_sq)
          ENDIF
         ENDDO
