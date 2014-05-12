@@ -148,6 +148,7 @@ C     initialisation
         areaFraction(i,j)      = 0. _d 0
         volFraction(i,j)       = 0. _d 0
         fw2ObyRidge(i,j,bi,bj) = 0. _d 0
+        ridgedArea(i,j)        = 0. _d 0
        ENDDO
       ENDDO
       CALL SEAICE_PREPARE_RIDGING(
@@ -305,6 +306,8 @@ C     this ridging category
 C     inner loop over categories: distribute what has been removed from the 
 C     kth category to all categories according to area/volFraction
        DO l=1,nITD
+C     initialising these is essential, because here the ridging-mask doRidging
+C     to area/volFraction, and applied via these fields
         DO j=jMin,jMax
          DO i=iMin,iMax
           areaFraction(i,j) = 0. _d 0
