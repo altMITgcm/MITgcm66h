@@ -86,8 +86,9 @@ C--   Alternative formulation of BYTESWAP, faster than
 C     compiler flag -byteswapio on the Altix.
 #undef FAST_BYTESWAP
 
-C--   Flag defined for eeset_parms.F and open_copy_data_file.F
-C     to write scratch files from process 0 only
+C--   Flag defined for eeboot_minimal.F, eeset_parms.F,
+C     and open_copy_data_file.F to write STDOUT, STDERR,
+C     and scratch files from process 0 only.
 #undef SINGLE_DISK_IO
 
 C=== MPI, EXCH and GLOBAL_SUM related options ===
