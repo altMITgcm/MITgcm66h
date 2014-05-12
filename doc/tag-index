@@ -4,7 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
-o pkg/seaice/seaice_do_ridging.F: clean up the insectarium
+o pkg/seaice
+  seaice_calc_ice_strength.F: modify expression to avoid divisions 
+    (affects truncation)
+  seaice_do_ridging.F: clean up the insectarium
   - fix a bug that was compensated by areaScaling (-> remove areaScaling code)
   - added SEAICEsnowFracRidge to redistributed snow (2nd bug)
   - set closing/openingRate to zero where no extra iteration is need (3rd bug)
