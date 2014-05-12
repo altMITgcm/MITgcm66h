@@ -257,9 +257,6 @@ CADJ  INIT tapelev3 = USER
 CADJ STORE hFacC = tapelev_init, key = 1
 CADJ STORE recip_hFacC = tapelev_init, key = 1
 # endif
-# ifdef ALLOW_SEAICE
-CADJ STORE heffm = tapelev_init, key = 1
-# endif
 #endif
 
 #ifdef ALLOW_OPENAD
