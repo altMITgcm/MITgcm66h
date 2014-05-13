@@ -42,9 +42,7 @@ C     i,j,k,bi,bj :: Loop counters
       INTEGER i, j, bi, bj
       _RL PSTAR
       INTEGER kSurface
-#ifdef SEAICE_CGRID
       _RS  mask_uice
-#endif
       INTEGER k
 #ifdef ALLOW_SITRACER
       INTEGER iTr, jTh
