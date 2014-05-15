@@ -403,7 +403,6 @@ C     we need a new estimate of the total AREA
         ENDDO
        ENDDO
       ENDDO
-      doRidging(i,j) = .FALSE.
       doRidgeAgain   = .FALSE.
       DO j=jMin,jMax
        DO i=iMin,iMax
@@ -419,6 +418,7 @@ C     we need a new estimate of the total AREA
 C     set to zero avoid going through this grid point again
          closingRate(i,j) = 0. _d 0
          openingRate(i,j) = 0. _d 0
+         doRidging(i,j)   = .FALSE.
         ENDIF
        ENDDO
       ENDDO
