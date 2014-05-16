@@ -168,6 +168,16 @@ C--    Get my process number
          OPEN(errorMessageUnit,FILE='/dev/null',STATUS='unknown')
          standardMessageUnit=errorMessageUnit
         ENDIF
+        IF( myProcId .EQ. 0 ) THEN
+          WRITE(msgBuf,'(2A)') '** WARNING ** EEBOOT_MINIMAL: ',
+     &     'defined SINGLE_DISK_IO will result in losing'
+          CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                        SQUEEZE_RIGHT, myThid )
+          WRITE(msgBuf,'(2A)') '** WARNING ** EEBOOT_MINIMAL: ',
+     &     'any message (error/warning) from any proc <> 0'
+          CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                        SQUEEZE_RIGHT, myThid )
+        ENDIF
 #endif
        ENDIF
 
