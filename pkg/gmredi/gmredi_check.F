@@ -155,9 +155,9 @@ C     Make sure we are not trying to use some arrays that are unavailable
 #endif
 
 #ifdef GM_K3D
-# ifndef use_lapack
+# ifndef HAVE_LAPACK
       WRITE(msgBuf, '(A)')
-     &     'Must use CPP option use_lapack when using GM_K3D'
+     &     'Must use CPP option HAVE_LAPACK when using GM_K3D'
       CALL PRINT_ERROR( msgBuf, myThid )
       STOP ' ABNORMAL END: S/R GMREDI_CHECK'
 # endif

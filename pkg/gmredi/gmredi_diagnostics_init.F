@@ -279,7 +279,7 @@ c     IF ( useDiagnotics ) THEN
         CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I    diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
         
-#ifdef use_lapack
+#ifdef HAVE_LAPACK
         diagName  = 'GM_A3D'
         diagTitle = '3D lower diagona'
         diagUnits = '1/m**2          '
