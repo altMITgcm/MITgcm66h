@@ -235,15 +235,15 @@ C     ======================================
        ENDDO
       ENDDO
 
-C     Dummy values for the edges 
-C     This avoids weirdness in gmredi_calc_eigs
+C     Dummy values for the edges. This does not affect the results
+C     but avoids problems when solving for the eigenvalues.
       i=1-Olx
       DO j=1-Oly,sNy+Oly
-       kLow_U(i,j) = kLow_C(i,j)
+       kLow_U(i,j) = 0
       ENDDO
       j=1-Oly
       DO i=1-Olx,sNx+Olx
-       kLow_V(i,j) = kLow_C(i,j)
+       kLow_V(i,j) = 0
       ENDDO
 
       g_reciprho_sq = (gravity*recip_rhoConst)**2

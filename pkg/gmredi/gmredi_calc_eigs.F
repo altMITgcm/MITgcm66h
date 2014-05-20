@@ -203,7 +203,7 @@ C         and the first M baroclinic modes (eigenvectors)
           DO k=1,kLow(i,j)
            eigval(0) = MAX(eigval(0),eigR(k))
           ENDDO
-          DO m=1,MIN(nmodes,klow(i,j))
+          DO m=1,MIN(nmodes,klow(i,j)-1)
            DO k=1,kLow(i,j)
             IF (eigR(k).LT.eigval(m-1)) THEN
               eigval(m) = MAX(eigval(m),eigR(k))
