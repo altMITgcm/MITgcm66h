@@ -39,7 +39,7 @@ else
 fi
 
 sfx='ifc'
-addExp=''
+addExp='global_ocean.gm_k3d'
  export MODULEPATH="/mit/jahn/usr/modulefiles:${MODULEPATH}"
  module add intel
  OPTFILE="../tools/build_options/linux_amd64_ifort11"
