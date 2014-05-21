@@ -100,7 +100,7 @@ C use dMbdt+temp as a temporary arrays here to save memory:
        CALL SALT_PLUME_FRAC(
      I               imt,oneRS,temp,
 #ifdef SALT_PLUME_SPLIT_BASIN
-     I               XC,YC,
+     I               XC(1-Olx,1-Oly,bi,bj),YC(1-Olx,1-Oly,bi,bj),
 #endif
      U               dMbdt,
      I               myTime, 1, myThid )
