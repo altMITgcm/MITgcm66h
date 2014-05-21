@@ -25,8 +25,9 @@ CEOP
 #ifdef ALLOW_SALT_PLUME
 
 C     !LOCAL VARIABLES:
-      INTEGER i,j,bi,bj
+      INTEGER i,j,k,bi,bj,Nrp1
 
+      Nrp1=Nr+1
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
 
@@ -36,6 +37,19 @@ C     2-dim.
          DO i=1-Olx,sNx+Olx
           SaltPlumeDepth (i,j,bi,bj) = 0. _d 0
           saltPlumeFlux  (i,j,bi,bj) = 0. _d 0
+#ifdef SALT_PLUME_VOLUME
+          SPbrineVolFlux (i,j,bi,bj) = 0. _d 0
+          SPforcS1       (i,j,bi,bj) = 0. _d 0
+          DO k=1,Nr
+           dSPvolSurf2kLev (i,j,k,bi,bj) = 0. _d 0
+           dSPvolkLev2Above(i,j,k,bi,bj) = 0. _d 0
+           SPforcingS      (i,j,k,bi,bj) = 0. _d 0
+           SPforcingT      (i,j,k,bi,bj) = 0. _d 0
+           SPplumek        (i,j,k,bi,bj) = 1. _d 0
+          ENDDO
+          dSPvolkLev2Above (i,j,Nrp1,bi,bj) = 0. _d 0
+          SPplumek         (i,j,Nrp1,bi,bj) = 1. _d 0
+#endif
          ENDDO
         ENDDO
 
