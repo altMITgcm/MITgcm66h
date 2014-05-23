@@ -677,11 +677,7 @@ coj   Add outgoing fluxes
      &      +MAX(0. _d 0,fVerT(i,j,kDown)*rkSign)
      &      +MAX(0. _d 0,-fVerT(i,j,kUp)*rkSign)
      &     )
-         IF ( applyAB_onTracer ) THEN
-           trac=TracerN(i,j,k,bi,bj)
-         ELSE
-           trac=TracAB(i,j,k,bi,bj)
-         ENDIF
+         trac = localT(i,j)
 coj   If they would reduce tracer by a fraction of more than
 coj   SmolarkiewiczMaxFrac, scale them down
          IF (outFlux.GT.0. _d 0 .AND.
