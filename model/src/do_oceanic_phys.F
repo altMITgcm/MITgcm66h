@@ -797,8 +797,6 @@ C--     Diagnose Mixed Layer Depth:
           CALL SALT_PLUME_VOLFRAC(
      I              bi, bj, myTime, myIter, myThid )
 C-- get forcings for kpp
-C-- note: temprray is just a dummy var here, not used anywhere.
-C         so didnt need initialization, all zero on output.
           CALL SALT_PLUME_APPLY(
      I              1, bi, bj, recip_hFacC(1-OLx,1-OLy,1,bi,bj),
      I              theta, 0,
