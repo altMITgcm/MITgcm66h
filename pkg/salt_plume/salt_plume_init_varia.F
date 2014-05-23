@@ -25,7 +25,10 @@ CEOP
 #ifdef ALLOW_SALT_PLUME
 
 C     !LOCAL VARIABLES:
-      INTEGER i,j,k,bi,bj,Nrp1
+      INTEGER i,j, bi,bj,Nrp1
+#ifdef SALT_PLUME_VOLUME
+      INTEGER k
+#endif
 
       Nrp1=Nr+1
       DO bj = myByLo(myThid), myByHi(myThid)
@@ -33,8 +36,8 @@ C     !LOCAL VARIABLES:
 
 C     Initialize arrays in common blocks :
 C     2-dim.
-        DO j=1-Oly,sNy+OLy
-         DO i=1-Olx,sNx+Olx
+        DO j=1-OLy,sNy+OLy
+         DO i=1-OLx,sNx+OLx
           SaltPlumeDepth (i,j,bi,bj) = 0. _d 0
           saltPlumeFlux  (i,j,bi,bj) = 0. _d 0
 #ifdef SALT_PLUME_VOLUME

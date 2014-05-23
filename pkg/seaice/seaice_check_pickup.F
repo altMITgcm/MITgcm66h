@@ -11,7 +11,6 @@ C     !INTERFACE:
      I                        nMissing, nbFields,
      I                        myIter, myThid )
 
-
 C     !DESCRIPTION:
 C     Check that fields that are needed to restart have been read.
 C     In case some fields are missing, stop if pickupStrictlyMatch=T
@@ -65,7 +64,7 @@ C      (program will stop if fields liek AREA are missing)
 #endif
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       CHARACTER*(8) fldName
-      INTEGER i,j,k,bi,bj
+c     INTEGER i,j,k,bi,bj
 #ifdef ALLOW_SITRACER
       INTEGER iTracer
       CHARACTER*(2) fldNum

@@ -36,15 +36,11 @@ C     msgBuf      :: Informational/error message buffer
 C     k - loop counter for ITD categories
       INTEGER k
 #endif
-C     i,j,k,bi,bj - Loop counters
-
-      INTEGER i, j, bi, bj
+C     i,j, bi,bj  :: Loop counters
+c     INTEGER i, j, bi, bj
       INTEGER kSurface
 #ifdef ALLOW_SITRACER
       INTEGER iTracer
-#endif
-#ifndef SEAICE_CGRID
-      _RS  mask_uice
 #endif
 #ifdef SHORTWAVE_HEATING
 cif   Helper variable for determining the fraction of sw radiation
