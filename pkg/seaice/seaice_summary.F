@@ -641,6 +641,12 @@ C--  Output related param.
       CALL WRITE_0D_RL( SEAICE_area_floor        ,INDEX_NONE,
      & 'SEAICE_area_floor =', ' /* reduce derivative singularities */')
 
+#ifdef ALLOW_AUTODIFF_TAMC
+       CALL WRITE_0D_I ( SEAICEadjMODE, INDEX_NONE,
+     & 'SEAICEadjMODE =',
+     & ' /* -1:SEAICE_FAKE */')
+#endif /* ALLOW_AUTODIFF_TAMC */
+
       WRITE(msgBuf,'(A)') ' '
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT, myThid )
