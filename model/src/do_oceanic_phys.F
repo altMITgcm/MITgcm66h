@@ -123,7 +123,6 @@ C     i,j,k         :: loop indices
       INTEGER i, j, k
       INTEGER doDiagsRho
       LOGICAL calcGMRedi, calcKPP, calcConvect
-      CHARACTER*(MAX_LEN_MBUF) msgBuf
 #ifdef ALLOW_DIAGNOSTICS
       LOGICAL  DIAGNOSTICS_IS_ON
       EXTERNAL DIAGNOSTICS_IS_ON
