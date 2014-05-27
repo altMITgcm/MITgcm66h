@@ -45,6 +45,16 @@ C     iUnit      :: Work variable for IO unit number
      &       myPa_VelUFile,   myPa_VelVFile,
      &       myPa_Surf1File,  myPa_Surf2File
 
+      IF ( .NOT.useMYPACKAGE ) THEN
+C-    pkg MYPACKAGE is not used
+        _BEGIN_MASTER(myThid)
+C-    Track pkg activation status:
+C     print a (weak) warning if data.mypackage is found
+         CALL PACKAGES_UNUSED_MSG( 'useMYPACKAGE', ' ', ' ' )
+        _END_MASTER(myThid)
+        RETURN
+      ENDIF
+
       _BEGIN_MASTER(myThid)
 
 C--   Default values for MYPACKAGE

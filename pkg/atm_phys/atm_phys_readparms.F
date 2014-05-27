@@ -42,6 +42,16 @@ C     iUnit      :: Work variable for IO unit number
 
       _BEGIN_MASTER(myThid)
 
+      IF ( .NOT.useAtm_Phys ) THEN
+C-    pkg ATM_PHYS is not used
+        _BEGIN_MASTER(myThid)
+C-    Track pkg activation status:
+C     print a (weak) warning if data.atm_phys is found
+         CALL PACKAGES_UNUSED_MSG( 'useAtm_Phys', ' ', ' ' )
+        _END_MASTER(myThid)
+        RETURN
+      ENDIF
+
 C--   Default values for ATM_PHYS
       atmPhys_addTendT  = .TRUE.
       atmPhys_addTendS  = .TRUE.

@@ -35,6 +35,16 @@ C     == local variables ==
 
 C     == end of interface ==
 
+      IF ( .NOT.useFLT ) THEN
+C-    pkg FLT is not used
+        _BEGIN_MASTER(myThid)
+C-    Track pkg activation status:
+C     print a (weak) warning if data.flt is found
+         CALL PACKAGES_UNUSED_MSG( 'useFLT', ' ', ' ' )
+        _END_MASTER(myThid)
+        RETURN
+      ENDIF
+
       _BEGIN_MASTER(myThid)
 
 C     Set default values.

@@ -84,6 +84,18 @@ C     tauTr1ClimRelax :: old parameter (will be removed 1 day)
      &     PTRACERS_pickup_write_mnc,
      &     PTRACERS_pickup_read_mnc
 
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+
+      IF ( .NOT.usePTRACERS ) THEN
+C-    pkg PTRACERS is not used
+        _BEGIN_MASTER(myThid)
+C-    Track pkg activation status:
+C     print a (weak) warning if data.ptracers is found
+         CALL PACKAGES_UNUSED_MSG( 'usePTRACERS', ' ', ' ' )
+        _END_MASTER(myThid)
+        RETURN
+      ENDIF
+
       _BEGIN_MASTER(myThid)
 
 C     Set ptracer IO & diagnostics labels (2 characters long)

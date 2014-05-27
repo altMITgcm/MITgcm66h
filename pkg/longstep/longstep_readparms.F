@@ -45,6 +45,19 @@ C                            staggerTimeStep=.TRUE. for LS_nIter=1)
       NAMELIST /LONGSTEP_PARM01/
      &     LS_nIter, LS_whenToSample
 
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+
+      IF ( .NOT.usePTRACERS ) THEN
+C-    pkg LONGSTEP is not used
+        _BEGIN_MASTER(myThid)
+C-    Track pkg activation status:
+C     print a (weak) warning if data.longstep is found
+         CALL PACKAGES_UNUSED_MSG(
+     &        'usePTRACERS', 'LONGSTEP_READPARMS', 'longstep' )
+        _END_MASTER(myThid)
+        RETURN
+      ENDIF
+
       _BEGIN_MASTER(myThid)
 
 C     Set defaults values for parameters in LONGSTEP_PARAMS.h

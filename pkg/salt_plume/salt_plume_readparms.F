@@ -24,6 +24,11 @@ C     !INPUT PARAMETERS:
 CEOP
 
 #ifdef ALLOW_SALT_PLUME
+C     !LOCAL VARIABLES:
+C     msgBuf      - Informational/error message buffer
+C     iUnit       - Work variable for IO unit number
+      CHARACTER*(MAX_LEN_MBUF) msgBuf
+      INTEGER iUnit
 
       NAMELIST /SALT_PLUME_PARM01/
      &     SaltPlumeSouthernOcean,
@@ -39,11 +44,17 @@ CEOP
      &     , SPbrineSconst, SPbrineSaltmax
 #endif
 
-C     !LOCAL VARIABLES:
-C     msgBuf      - Informational/error meesage buffer
-C     iUnit       - Work variable for IO unit number
-      CHARACTER*(MAX_LEN_MBUF) msgBuf
-      INTEGER iUnit
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+
+      IF ( .NOT.useSALT_PLUME ) THEN
+C-    pkg SALT_PLUME is not used
+        _BEGIN_MASTER(myThid)
+C-    Track pkg activation status:
+C     print a (weak) warning if data.salt_plume is found
+         CALL PACKAGES_UNUSED_MSG( 'useSALT_PLUME', ' ', ' ' )
+        _END_MASTER(myThid)
+        RETURN
+      ENDIF
 
       _BEGIN_MASTER(myThid)
 
@@ -81,7 +92,7 @@ C--   Default values for SALT_PLUME
 
 C     Read parameters from open data file
       READ(UNIT=iUnit,NML=SALT_PLUME_PARM01)
-      WRITE(msgBuf,'(A)') 
+      WRITE(msgBuf,'(A)')
      &    'SALT_PLUME_READPARMS: finished reading data.salt_plume'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &    SQUEEZE_RIGHT , 1)

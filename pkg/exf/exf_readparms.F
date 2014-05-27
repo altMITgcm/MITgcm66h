@@ -258,6 +258,16 @@ C     Surface flux data.
 # endif /* ALLOW_EXCH2 */
 #endif /* USE_EXF_INTERPOLATION */
 
+      IF ( .NOT.useEXF ) THEN
+C-    pkg EXF is not used
+        _BEGIN_MASTER(myThid)
+C-    Track pkg activation status:
+C     print a (weak) warning if data.exf is found
+         CALL PACKAGES_UNUSED_MSG( 'useEXF', ' ', ' ' )
+        _END_MASTER(myThid)
+        RETURN
+      ENDIF
+
       _BEGIN_MASTER(myThid)
 
 C     Set default values.

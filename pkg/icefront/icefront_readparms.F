@@ -45,11 +45,22 @@ CEOP
      &     applyIcefrontTendT,applyIcefrontTendS,
      &     ICEFRONTdepthFile, ICEFRONTlengthFile
 
+      IF ( .NOT.useICEFRONT ) THEN
+C-    pkg ICEFRONT is not used
+        _BEGIN_MASTER(myThid)
+C-    Track pkg activation status:
+         ICEFRONTisON = .FALSE.
+C     print a (weak) warning if data.icefront is found
+         CALL PACKAGES_UNUSED_MSG( 'useICEFRONT', ' ', ' ' )
+        _END_MASTER(myThid)
+        RETURN
+      ENDIF
+
       _BEGIN_MASTER(myThid)
 
 C This routine has been called by the main model so we set our
 C internal flag to indicate we are in business
-      ICEFRONTisON=.TRUE.
+      ICEFRONTisON = .TRUE.
 
 C Set defaults values for parameters in ICEFRONT.h
 #ifdef ALLOW_SHELFICE

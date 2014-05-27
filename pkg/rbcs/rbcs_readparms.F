@@ -81,6 +81,16 @@ C--   RBCS parameters:
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
+      IF ( .NOT.useRBCS ) THEN
+C-    pkg RBCS is not used
+        _BEGIN_MASTER(myThid)
+C-    Track pkg activation status:
+C     print a (weak) warning if data.rbcs is found
+         CALL PACKAGES_UNUSED_MSG( 'useRBCS', ' ', ' ' )
+        _END_MASTER(myThid)
+        RETURN
+      ENDIF
+
       _BEGIN_MASTER(myThid)
 
 C--   Default values

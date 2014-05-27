@@ -36,6 +36,18 @@ C     iUnit      :: Work variable for IO unit number
      &     bbl_wvel, bbl_hvel, bbl_initEta,
      &     bbl_thetaFile, bbl_saltFile, bbl_etaFile
 
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+
+      IF ( .NOT.useBBL ) THEN
+C-    pkg BBL is not used
+        _BEGIN_MASTER(myThid)
+C-    Track pkg activation status:
+C     print a (weak) warning if data.bbl is found
+         CALL PACKAGES_UNUSED_MSG( 'useBBL', ' ', ' ' )
+        _END_MASTER(myThid)
+        RETURN
+      ENDIF
+
       _BEGIN_MASTER(myThid)
 
 C--   Default values for BBL

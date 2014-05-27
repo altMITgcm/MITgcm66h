@@ -68,6 +68,17 @@ C     Calendar parameters
       IF (debugMode) CALL DEBUG_ENTER('CAL_READPARMS',myThid)
 #endif
 
+      IF ( .NOT.useCAL ) THEN
+C-    pkg CAL is not used
+        _BEGIN_MASTER(myThid)
+C-    Track pkg activation status:
+         cal_setStatus = -1
+C     print a (weak) warning if data.cal is found
+         CALL PACKAGES_UNUSED_MSG( 'useCAL', ' ', ' ' )
+        _END_MASTER(myThid)
+        RETURN
+      ENDIF
+
       _BEGIN_MASTER(myThid)
 
 C       Initialise the calendar parameters
