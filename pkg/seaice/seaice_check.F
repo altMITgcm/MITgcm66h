@@ -917,6 +917,31 @@ C
        STOP 'ABNORMAL END: S/R SEAICE_CHECK'
       ENDIF
 
+#ifdef SEAICE_ITD
+C     The ice thickness distribution (ITD) module can only be used with
+C     the zero-layer thermodynamics of S/R SEAICE_GROWTH and the
+C     advection in S/R SEAICE_ADVDIFF
+C     If useThSice=.TRUE., do not reset it here, but issue a warning
+      IF ( useThSice ) THEN
+       WRITE(msgBuf,'(A)') '** WARNING ** SEAICE_CHECK: '//
+     &      'SEAICE_ITD is defined, but useThSice = .TRUE.'
+       CALL PRINT_MESSAGE( msgBuf, ioUnit, SQUEEZE_RIGHT, myThid )
+       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &      SQUEEZE_RIGHT, myThid )
+       WRITE(msgBuf,'(A)') '** WARNING ** SEAICE_CHECK: '//
+     &      'avoids the ice thickness distribution code.'
+       CALL PRINT_MESSAGE( msgBuf, ioUnit, SQUEEZE_RIGHT, myThid )
+       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &      SQUEEZE_RIGHT, myThid )
+       WRITE(msgBuf,'(A)') '** WARNING ** SEAICE_CHECK: '//
+     &      'If you want the ITD code, set useThSice=.FALSE.'       
+       CALL PRINT_MESSAGE( msgBuf, ioUnit, SQUEEZE_RIGHT, myThid )
+       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &      SQUEEZE_RIGHT, myThid )
+      ENDIF
+C     SEAICE_GROWTH, i.e. needs usePW79thermodynamics = .TRUE.
+#endif
+
       _END_MASTER(myThid)
 
       RETURN
