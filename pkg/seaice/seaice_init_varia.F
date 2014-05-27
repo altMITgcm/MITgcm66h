@@ -329,7 +329,7 @@ c "ice concentration" tracer that should remain .EQ.1.
            SItrAREA (i,j,bi,bj,jTh) = 0. _d 0
           ENDDO
 #endif
-          DO k=1,MULTDIM
+          DO k=1,nITD
             TICES(i,j,k,bi,bj)=0. _d 0
           ENDDO
           TAUX(i,j,bi,bj)   = 0. _d 0
@@ -416,7 +416,7 @@ C Western boundary
 
         DO j=1-OLy,sNy+OLy
          DO i=1-OLx,sNx+OLx
-          DO k=1,MULTDIM
+          DO k=1,nITD
            TICES(i,j,k,bi,bj)=273.0 _d 0
           ENDDO
 #ifndef SEAICE_CGRID

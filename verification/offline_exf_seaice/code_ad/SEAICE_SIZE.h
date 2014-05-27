@@ -12,24 +12,21 @@ C    !DESCRIPTION:
 C Contains seaice array-size definition (number of tracers,categories).
 
 C SItrMaxNum :: number of passive tracers to allocate
-C MULTDIM    :: number of seaice categories to allocate
+C nITD       :: number of seaice categories to allocate
 CEOP
 
 C-    Maximum Number of categories
-      INTEGER MULTDIM
+      INTEGER nITD
 C--
 #ifdef SEAICE_ITD
 CToM<<<
 C nITD defines number of ice thickness categories,
 C i.e. size of additional dimension to AREA, HEFF, HSNOW, etc.
 C Bitz et al. (2001, JGR) suggest a minimum of nITD = 5
-      INTEGER nITD
-      PARAMETER(nITD = 7)
-      PARAMETER (MULTDIM=nITD)
+      PARAMETER (nITD = 7)
 C>>>ToM
 #else
-c     PARAMETER (MULTDIM=7)
-      PARAMETER (MULTDIM=1)
+      PARAMETER (nITD = 1)
 #endif
 
 C-    Maximum Number of tracers
