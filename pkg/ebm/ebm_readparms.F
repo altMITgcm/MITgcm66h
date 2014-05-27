@@ -44,6 +44,18 @@ C--   Namelist
      & scale_runoff,
      & RunoffFile
 
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+
+      IF ( .NOT.useEBM ) THEN
+C-    PKG ebm is not used
+        _BEGIN_MASTER(myThid)
+C-    Track pkg activation status:
+C     print a (weak) warning if data.ebm is found
+         CALL PACKAGES_UNUSED_MSG( 'useEBM', ' ', ' ' )
+        _END_MASTER(myThid)
+        RETURN
+      ENDIF
+
       _BEGIN_MASTER(myThid)
 
       WRITE(msgBuf,'(A)') ' EBM_READPARMS: opening data.ebm'
