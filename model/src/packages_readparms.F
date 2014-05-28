@@ -87,6 +87,8 @@ C       |-- ICEFRONT_READPARMS
 C       |
 C       |-- THSICE_READPARMS
 C       |
+C       |-- LAND_READPARMS
+C       |
 C       |-- AUTODIFF_READPARMS
 C       |
 C       |-- OPTIM_READPARMS
@@ -286,6 +288,11 @@ C--   if useICEFRONT=T, set ICEFRONT parameters; otherwise just return
 #ifdef ALLOW_THSICE
 C--   if useThSIce=T, set Therm.Sea-Ice parameters; otherwise just return
       CALL THSICE_READPARMS( myThid )
+#endif
+
+#ifdef ALLOW_LAND
+C--   if useLand=T, set LAND pkg parameters; otherwise just return
+      CALL LAND_READPARMS( myThid )
 #endif
 
 #ifdef ALLOW_AUTODIFF

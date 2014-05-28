@@ -93,7 +93,7 @@ C       |-- ICEFRONT_INIT_FIXED
 C       |
 C       |-- THSICE_INIT_FIXED
 C       |
-C       |-- LAND_INITIALISE
+C       |-- LAND_INIT_FIXED
 C       |
 C       |-- ATM2D_INIT_FIXED
 C       |
@@ -120,7 +120,6 @@ C       |
 C       |-- MYPACKAGE_INIT_FIXED
 C       |
 C       |-- DIAGNOSTICS_INIT_FIXED
-
 
 C     !USES:
       IMPLICIT NONE
@@ -491,12 +490,12 @@ C--   Initialise fixed array for Float pkg
 #endif
 
 #ifdef ALLOW_LAND
-C--   Initialise & Read Land package parameters
-      IF (useLand) THEN
+C--   Initialise Land package
+      IF ( useLand ) THEN
 # ifdef ALLOW_DEBUG
-        IF (debugMode) CALL DEBUG_CALL('LAND_INITIALISE',myThid)
+        IF (debugMode) CALL DEBUG_CALL('LAND_INIT_FIXED',myThid)
 # endif
-        CALL LAND_INITIALISE( myThid )
+        CALL LAND_INIT_FIXED( myThid )
       ENDIF
 #endif
 
