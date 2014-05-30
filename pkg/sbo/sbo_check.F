@@ -26,6 +26,8 @@ C     === Local variables ===
 C     msgBuf   :: Informational/error message buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 
+      _BEGIN_MASTER(myThid)
+
       WRITE(msgBuf,'(A)') 'SBO_CHECK: #define ALLOW_SBO'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT, myThid )
@@ -41,6 +43,8 @@ C     SBO assumes spherical polar coordinates
         CALL PRINT_ERROR( msgBuf, myThid )
         STOP 'ABNORMAL END: S/R SBO_CHECK'
       ENDIF
+
+      _END_MASTER(myThid)
 
 #endif /* ALLOW_SBO */
 

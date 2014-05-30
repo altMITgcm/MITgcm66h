@@ -86,16 +86,15 @@ C-----------------------------------------------------------------
       irecord      = myIter - nIter0 + 1
 
 #ifdef ALLOW_MDSIO
-      IF ( nThreads.EQ.1 ) THEN
-C-    multi-threaded: avoid writing wrong results
-C     (due to Pb with GLOBAL_SUM in sbo_calc.F, cf comments there)
+      _BEGIN_MASTER(myThid)
+C-    multi-threaded: only write it once (by master thread)
        WRITE(fName,'(A,I10.10)') 'SBO_global.', nIter0
        ioUnit  = 0
        CALL MDS_WRITEVEC_LOC(
      I           fName, precFloat64, ioUnit,
      I           'RL', narr, sbo_diag, dummyRS,
      I           0, 0, irecord, myIter, myThid )
-      ENDIF
+      _END_MASTER(myThid)
 #endif /* ALLOW_MDSIO */
 
 #ifdef ALLOW_TIMEAVE
@@ -108,6 +107,8 @@ C-----------------------------------------------------------------
       IF ( myIter .EQ. nIter0 .OR.
      &     DIFFERENT_MULTIPLE(sbo_monFreq,myTime,deltaTClock)
      &   ) THEN
+
+        _BEGIN_MASTER(myThid)
 
         ioUnit = standardMessageUnit
         WRITE(msgBuf,'(A,1PE21.13)')
@@ -123,10 +124,11 @@ C-----------------------------------------------------------------
      &    '%SBO sbo_zoamp                    = ', zoamp
         CALL PRINT_MESSAGE( msgBuf, ioUnit, SQUEEZE_RIGHT, myThid )
 
+        _END_MASTER(myThid)
+
       ENDIF
 
 #endif /* ALLOW_SBO */
 
       RETURN
       END
-
