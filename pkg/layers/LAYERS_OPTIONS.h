@@ -18,6 +18,8 @@ C Compute isopycnal tranports in the V direction?
 #define LAYERS_VFLUX
 C Keep track of layer thicknesses?
 #define LAYERS_THICKNESS
+C Do water mass thermodynamics?
+#undef LAYERS_THERMODYNAMICS
 
 C The MNC stuff is too complicated
 #undef LAYERS_MNC

@@ -374,6 +374,10 @@ C         otherwise counter is not incremented !!
             ENDDO
           ENDIF
           CALL DIAGNOSTICS_FILL(df,diagName, k,1, 2,bi,bj, myThid)
+#ifdef ALLOW_LAYERS
+          CALL LAYERS_FILL_DFR( df, tracerId,
+     &                           k, 1, 2,bi,bj, myThid )
+#endif /* ALLOW_LAYERS */
          ENDDO
         ENDIF
       ENDIF
