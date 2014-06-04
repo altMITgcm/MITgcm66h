@@ -115,9 +115,6 @@ C     LOCAL VARIABLES
             if (streamice_vfacemask(i,j+1,bi,bj).eq.2.0) then
           
 
-             if (i.lt.70) then
-              print *, "GOT HERE FORCED BUTTRESS ", i, j
-             endif
              do k=0,1
               if (streamice_umask(i+k,j+1,bi,bj).eq.1.0) then
 
@@ -137,9 +134,6 @@ C     LOCAL VARIABLES
 
             if (streamice_vfacemask(i,j,bi,bj).eq.2.0) then
            
-             if (i.lt.70) then
-              print *, "GOT HERE FORCED BUTTRESS ", i, j
-             endif
              do k=0,1
               if (streamice_umask(i+k,j,bi,bj).eq.1.0) then
 
