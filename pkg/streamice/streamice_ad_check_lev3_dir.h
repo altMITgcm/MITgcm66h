@@ -60,6 +60,32 @@ CADJ &     = tapelev3, key=ilev_3
 #endif
 # endif
 
+#ifdef ALLOW_STREAMICE_TIMEDEP_FORCING
+CADJ STORE bdot_streamice0
+CADJ &     = tapelev3, key = ilev_3
+CADJ STORE bdot_streamice1
+CADJ &     = tapelev3, key = ilev_3
+#ifdef  STREAMICE_STRESS_BOUNDARY_CONTROL
+CADJ STORE streamice_u_normal_stress0
+CADJ &     = tapelev3, key = ilev_3
+CADJ STORE streamice_v_normal_stress0
+CADJ &     = tapelev3, key = ilev_3
+CADJ STORE streamice_u_shear_stress0
+CADJ &     = tapelev3, key = ilev_3
+CADJ STORE streamice_v_shear_stress0
+CADJ &     = tapelev3, key = ilev_3
+CADJ STORE streamice_u_normal_stress1
+CADJ &     = tapelev3, key = ilev_3
+CADJ STORE streamice_v_normal_stress1
+CADJ &     = tapelev3, key = ilev_3
+CADJ STORE streamice_u_shear_stress1
+CADJ &     = tapelev3, key = ilev_3
+CADJ STORE streamice_v_shear_stress1
+CADJ &     = tapelev3, key = ilev_3
+#endif
+#endif
+
+
 #ifdef STREAMICE_TRACER_AB
 CADJ STORE GAD_trac_2d
 CADJ &     = tapelev3, key = ilev_3
