@@ -112,7 +112,12 @@ c**************************************
 
 #ifdef ALLOW_STREAMICE_FLUX_CONTROL
       CALL STREAMICE_APPLY_FLUX_CTRL ( myTime, myIter, myThid )
-#endif      
+#endif     
+
+#ifdef ALLOW_STREAMICE_TIMEDEP_FORCING
+      CALL STREAMICE_FIELDS_LOAD( myTime, myIter, myThid )
+#endif
+
 
       CALL STREAMICE_VEL_SOLVE( myThid )
       
