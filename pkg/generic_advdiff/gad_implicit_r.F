@@ -318,9 +318,11 @@ C         since skipping k=1 DIAGNOSTICS_FILL call.
            CALL DIAGNOSTICS_FILL(df,diagName, k,1, 2,bi,bj, myThid)
            IF ( k.EQ.2 ) CALL DIAGNOSTICS_COUNT(diagName,bi,bj,myThid)
 #ifdef ALLOW_LAYERS
-           IF ( (tracerIdentity.EQ.1).OR.(tracerIdentity.EQ.2) ) THEN
+           IF ( useLayers ) THEN
+            IF ( (tracerIdentity.EQ.1).OR.(tracerIdentity.EQ.2) ) THEN
              CALL LAYERS_FILL_DFR( df, tracerIdentity,
      &                           k, 1, 2,bi,bj, myThid )
+            ENDIF
            ENDIF 
 #endif /* ALLOW_LAYERS */
           ENDIF
