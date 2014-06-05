@@ -184,24 +184,24 @@ c     Set switch for reading new record.
 c     if (fldperiod .eq. 0.)
 
 c     Do some printing for the protocol.
-      IF ( exf_verbose ) THEN
+      IF ( exf_debugLev.GE.debLevD ) THEN
         _BEGIN_MASTER( myThid )
         WRITE(msgBuf,'(a)') ' EXF_GetFFieldRec:'
         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                      SQUEEZE_RIGHT, myThid )
-        WRITE(msgBuf,'(a,2x,l2,2x,l2,2x,D15.8)')
+        WRITE(msgBuf,'(A,2X,L2,2X,L2,2X,D15.8)')
      &    ' EXF_GetFFieldRec: first, changed, fac:',
      &                        first, changed, fac
         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                      SQUEEZE_RIGHT, myThid )
-        WRITE(msgBuf,'(a,3(1x,i6))')
+        WRITE(msgBuf,'(A,I10,2I7)')
      &    ' EXF_GetFFieldRec: myIter, count0, count1:',
      &                        myIter, count0, count1
         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                      SQUEEZE_RIGHT, myThid )
-        WRITE(msgBuf,'(a)') ' EXF_GetFFieldRec:'
-        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                      SQUEEZE_RIGHT, myThid )
+c       WRITE(msgBuf,'(A)') ' EXF_GetFFieldRec:'
+c       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+c    &                      SQUEEZE_RIGHT, myThid )
         _END_MASTER( myThid )
       ENDIF
 

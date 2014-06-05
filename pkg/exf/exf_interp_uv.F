@@ -31,6 +31,9 @@ C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#ifdef ALLOW_DEBUG
+# include "EXF_PARAM.h"
+#endif
 
 C !INPUT/OUTPUT PARAMETERS:
 C  inFileU     (string)  :: input file name for the 1rst component (U)
@@ -275,8 +278,8 @@ C     put back zonal-mean value but locally orientated
       ENDIF
 
 #ifdef ALLOW_DEBUG
-      debugFlag = ( debugLevel.GE.debLevC )
-     &       .OR. ( debugLevel.GE.debLevB .AND. myIter.LE.nIter0 )
+      debugFlag = ( exf_debugLev.GE.debLevC )
+     &       .OR. ( exf_debugLev.GE.debLevB .AND. myIter.LE.nIter0 )
 C     prtPole(l)=0 : extended, =1 : changed to pole, =2 : changed to symetric
       IF ( debugFlag ) THEN
         l = ILNBLNK(inFileU)

@@ -254,7 +254,7 @@ C     Get values of the surface flux anomalies.
       CALL exf_getsurfacefluxes( myTime, myIter, myThid )
 
       IF ( useExfCheckRange .AND.
-     &     ( myIter.EQ.nIter0 .OR. debugLevel.GE.debLevC ) ) THEN
+     &     ( myIter.EQ.nIter0 .OR. exf_debugLev.GE.debLevC ) ) THEN
          CALL exf_check_range( myTime, myIter, myThid )
       ENDIF
 
