@@ -273,7 +273,6 @@ C     print a (weak) warning if data.exf is found
 
 C     Set default values.
 
-      year2sec           = 365.*86400.
 c     exf_verbose        = debugMode
       exf_verbose        = .FALSE.
       exf_debugLev       = debugLevel

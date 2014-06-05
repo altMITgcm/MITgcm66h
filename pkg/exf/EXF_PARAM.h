@@ -86,9 +86,6 @@ C     exf_monFreq        :: Monitor Frequency (s) for EXF
       INTEGER exf_debugLev
       _RL     exf_monFreq
 
-C     Year in seconds
-      _RL     year2sec
-
 C     Drag coefficient scaling factor
       _RL     exf_scal_BulkCdn
 
@@ -441,9 +438,8 @@ c     File names.
      &       areamaskstartdate1,areamaskstartdate2
 
       COMMON /EXF_PARAM_R/
-     &       year2sec,          windstressmax,
      &       repeatPeriod,      exf_monFreq,
-     &       exf_scal_BulkCdn,
+     &       exf_scal_BulkCdn,  windstressmax,
      &       hfluxperiod,       hfluxstartdate,
      &       atempperiod,       atempstartdate,
      &       aqhperiod,         aqhstartdate,
