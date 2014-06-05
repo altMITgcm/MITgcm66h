@@ -50,7 +50,6 @@ C     ks        :: surface level index
       INTEGER ks
       _RL tmp1k(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL tmpFac
-      CHARACTER*(MAX_LEN_MBUF) msgBuf
 
 C-    Time Averages of surface fluxes
        IF ( usingPCoords ) THEN
