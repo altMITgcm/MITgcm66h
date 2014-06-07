@@ -139,11 +139,11 @@ C-    get record numbers and interpolation factor
      &       'processing: ', uvecfile(1:i), ' & ', vvecfile(1:j)
            CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                         SQUEEZE_RIGHT, myThid )
-           WRITE(msgBuf,'(2A,I10,2I7)') ' EXF_SET_UV: ',
+           WRITE(msgBuf,'(2A,I10,2I7)') ' EXF_SET_UV:  ',
      &       ' myIter, count0, count1:', myIter, count0, count1
            CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                         SQUEEZE_RIGHT, myThid )
-           WRITE(msgBuf,'(2A,2(L2,2X),E16.9)') ' EXF_SET_UV: ',
+           WRITE(msgBuf,'(2A,2(L2,2X),E16.9)') ' EXF_SET_UV:  ',
      &       ' first, changed, fac:  ', first, changed, fac
            CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                         SQUEEZE_RIGHT, myThid )
