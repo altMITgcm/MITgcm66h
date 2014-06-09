@@ -92,7 +92,7 @@ c--   Convert mean ssh from cm to m
                 mdtmask(i,j,bi,bj) = 0. _d 0
               endif
 #endif
-#ifndef ALLOW_HIGHLAT_ALTIMETRY
+#ifdef OMIT_HIGHLAT_MDT
               if ( abs(YC(i,j,bi,bj)) .GT. 66. ) then
                 mdtmask(i,j,bi,bj) = 0. _d 0
               endif
