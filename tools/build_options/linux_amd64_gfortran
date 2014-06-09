@@ -147,6 +147,9 @@ elif test -d /usr/include/netcdf.inc ; then
     LIBS='-L/usr/lib64'
 fi
 
+if [ -n "$MPI_HOME" -a -z "$MPI_INC_DIR" ]; then
+    MPI_INC_DIR="$MPI_HOME/include"
+fi
 if [ -n "$MPI_INC_DIR" -a "x$MPI" = xtrue ] ; then
     INCLUDES="$INCLUDES -I$MPI_INC_DIR"
     INCLUDEDIRS="$INCLUDEDIRS $MPI_INC_DIR"
