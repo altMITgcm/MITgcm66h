@@ -548,6 +548,7 @@ cgf     &        'genbar', k
      &        (gencost_name(k).EQ.'sshv4-ers').OR.
      &        (gencost_name(k).EQ.'sshv4-gfo').OR.
      &        (gencost_name(k).EQ.'sshv4-lsc').OR.
+     &        (gencost_name(k).EQ.'sshv4-gmsl').OR.
      &        (gencost_name(k).EQ.'sstv4-amsre').OR.
      &        (gencost_name(k).EQ.'sstv4-amsre-lsc') ) then
 c pre-specified generic cost terms using otherwise created barfiles

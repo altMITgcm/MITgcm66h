@@ -160,7 +160,11 @@ c read data:
                 gfomask(i,j,bi,bj) = 0. _d 0
               endif
 #endif
-
+#ifndef ALLOW_HIGHLAT_ALTIMETRY
+              if ( abs(YC(i,j,bi,bj)) .GT. 66. ) then
+                gfomask(i,j,bi,bj) = 0. _d 0
+              endif
+#endif
               gfomask(i,j,bi,bj) = gfomask(i,j,bi,bj)*frame(i,j)
               gfoobs(i,j,bi,bj)  = gfomask(i,j,bi,bj)*factor*
      &             ( gfoobs(i,j,bi,bj) -

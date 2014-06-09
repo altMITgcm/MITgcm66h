@@ -187,6 +187,11 @@ c read data:
                 tpmask(i,j,bi,bj) = 0. _d 0
               endif
 #endif
+#ifndef ALLOW_HIGHLAT_ALTIMETRY
+              if ( abs(YC(i,j,bi,bj)) .GT. 66. ) then
+                tpmask(i,j,bi,bj) = 0. _d 0
+              endif
+#endif
 
               tpmask(i,j,bi,bj) = tpmask(i,j,bi,bj)*frame(i,j)
               tpobs(i,j,bi,bj)  = tpmask(i,j,bi,bj)*factor*
