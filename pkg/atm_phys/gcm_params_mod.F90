@@ -60,7 +60,11 @@ subroutine gcm_params_init(                                          &
                inp_debugLevel, inp_debugMode,                        &
                myThid )
 
-  real,    intent(in) :: inp_unset_RS
+#ifdef LET_RS_BE_REAL4
+  real*4,  intent(in) :: inp_unset_RS
+#else
+  real*8,  intent(in) :: inp_unset_RS
+#endif
   real,    intent(in) :: inp_unset_RL
   integer, intent(in) :: inp_unset_I
 ! integer, intent(in) :: inp_LEN_MBUF
