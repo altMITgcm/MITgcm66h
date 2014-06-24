@@ -4,6 +4,14 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o replace content of verification/seaice_itd
+  - instead of a 1D column use the configuration of offline_exf_seaice
+    to test the ice thickness distribution code with ridging
+  - this is a first shot at this experiment
+  - change of some defaults of ridging parameters SEAICEhStar (from
+    100 to 25) and SEAICEmuRidging (from 5 to 3) in seaice_readparms.F
+    and lost of new comments 
+
 checkpoint64y (2014/06/20)
 o pkg/seaice/seaice_reg_ridge.F:
   - modify the regularization of very small volumes of ice; only check
