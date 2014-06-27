@@ -5,6 +5,13 @@ $Name$
     ==============================
 
 o pkg/seaice
+  - remove unnecessary u/vTmp from subroutine call of
+    seaice_lsr_tridiagu/v
+  - remove some store directives and add new ones in an effort to get
+    finally rid off the recomputation warnings. This is successful
+    for SEAICE_VECTORIZE_LSR defined (i.e. no extensive recomputation
+    warnings left), but there are still too many recomputations on the
+    solver iteration level
   - move definition of MPSEUDOTIMESTEPS into TAMC-block in
     SEAICE_SIZE.h
   - add a store directive in S/R seaice_calc_viscosities
