@@ -26,6 +26,9 @@ c     == global variables ==
 #include "CTRL_SIZE.h"
 #include "ctrl.h"
 #include "CTRL_GENARR.h"
+#ifdef ALLOW_AUTODIFF
+#include "AUTODIFF_PARAMS.h"
+#endif
 
 c     == routine arguments ==
 
@@ -443,6 +446,16 @@ c--     Next, read the cost data file.
      &                  SQUEEZE_RIGHT , 1)
 
         CLOSE( iUnit )
+
+#ifdef ALLOW_AUTODIFF
+c allow for switching off correl2d in adjoint
+      useSmoothCorrel2DinFwdMode = ctrlSmoothCorrel2D
+      useSmoothCorrel2DinAdMode =
+     &         useSmoothCorrel2DinAdMode .AND. ctrlSmoothCorrel2D
+       CALL WRITE_0D_L( useSmoothCorrel2DinAdMode, INDEX_NONE,
+     &   'useSmoothCorrel2DinAdMode =',
+     &   ' /* use ctrlSmoothCorrel2D in adjoint mode */')
+#endif
 
       _END_MASTER( myThid )
 
