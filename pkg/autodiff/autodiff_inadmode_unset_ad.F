@@ -18,6 +18,9 @@ C     == Global variables ===
 #include "SEAICE_SIZE.h"
 #include "SEAICE_PARAMS.h"
 #endif
+#ifdef ALLOW_CTRL
+#include "ctrl.h"
+#endif
 
 C     == Routine arguments ==
 C     myThid :: my Thread Id number
@@ -31,6 +34,9 @@ C     myThid :: my Thread Id number
       useSEAICE = useSEAICEinFwdMode
       useGGL90    = useGGL90inFwdMode
       useSALT_PLUME    = useSALT_PLUMEinFwdMode
+#ifdef ALLOW_CTRL
+      ctrlSmoothCorrel2D    = useSmoothCorrel2DinFwdMode
+#endif
 #ifdef ALLOW_SEAICE
       IF ( SEAICEuseFREEDRIFTswitchInAd ) THEN
         SEAICEuseFREEDRIFT = SEAICEuseFREEDRIFTinFwdMode
@@ -62,6 +68,14 @@ C     myThid :: my Thread Id number
      &      useSALT_PLUME
        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                     SQUEEZE_RIGHT, myThid )
+
+#ifdef ALLOW_CTRL
+       WRITE(msgBuf,'(A,L5)')
+     &      'S/R ADAUTODIFF_INADMODE_UNSET: ctrlSmoothCorrel2D    =',
+     &       ctrlSmoothCorrel2D
+       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                     SQUEEZE_RIGHT, myThid )
+#endif
 
 #ifdef ALLOW_SEAICE
        IF ( SEAICEuseFREEDRIFTswitchInAd ) THEN

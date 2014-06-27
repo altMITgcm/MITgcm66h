@@ -38,7 +38,7 @@ C     iUnit      :: Work variable for IO unit number
      &       dumpAdByRec,
      &       useKPPinAdMode, useGGL90inAdMode,
      &       useGMRediInAdMode, useSALT_PLUMEinAdMode,
-     &       useSEAICEinAdMode,
+     &       useSEAICEinAdMode, useSmoothCorrel2DinAdMode,
      &       inAdExact,
      &       SEAICEuseFREEDRIFTswitchInAd, SEAICEuseDYNAMICSswitchInAd
 
@@ -63,6 +63,7 @@ C--   default : write one file per record
 C-- pkg/seaice related switches
       SEAICEuseFREEDRIFTswitchInAd = .FALSE.
       SEAICEuseDYNAMICSswitchInAd  = .FALSE.
+      useSmoothCorrel2DinAdMode = .TRUE.
 
       WRITE(msgBuf,'(A)') 'AUTODIFF_READPARMS: opening data.autodiff'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
