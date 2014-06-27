@@ -76,6 +76,8 @@ c     == end of interface ==
 
       end do
 
+      call cost_gencost_boxmean( mythid )
+
 # if (defined(ALLOW_GENCOST_SSHV4))
       IF (using_cost_altim) 
      &    call cost_gencost_sshv4( myiter, mytime, mythid )
