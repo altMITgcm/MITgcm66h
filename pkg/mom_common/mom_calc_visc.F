@@ -404,6 +404,9 @@ C  Harmonic on Div.u points
      &          +viscAh_DLth(i,j)+viscAh_DSmg(i,j)
 #ifdef ALLOW_3D_VISCAH
      &          +viscAhDfld(i,j,k,bi,bj)
+#ifdef ALLOW_AUTODIFF
+     &          *viscFacAdj
+#endif
 #endif
          viscAh_DMin(i,j)=MAX(viscAhGridMin*L2rdt,Uscl)
          viscAh_D(i,j)=MAX(viscAh_DMin(i,j),Alin)
@@ -415,6 +418,9 @@ C  BiHarmonic on Div.u points
      &          +viscA4_DLth(i,j)+viscA4_DSmg(i,j)
 #ifdef ALLOW_3D_VISCA4
      &          +viscA4Dfld(i,j,k,bi,bj)
+#ifdef ALLOW_AUTODIFF
+     &          *viscFacAdj
+#endif
 #endif
          viscA4_DMin(i,j)=MAX(viscA4GridMin*L4rdt,U4scl)
          viscA4_D(i,j)=MAX(viscA4_DMin(i,j),Alin)
