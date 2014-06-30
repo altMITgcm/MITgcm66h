@@ -17,8 +17,6 @@ o pkg/mom_common/mom_calc_visc.F :
 o pkg/seaice/seaice_summary.F : 
   - statement for SEAICEadjMODE now in autodiff_readparms.F
 o pkg/seaice
-  - remove unnecessary u/vTmp from subroutine call of
-    seaice_lsr_tridiagu/v
   - remove some store directives and add new ones in an effort to get
     finally rid off the recomputation warnings. This is successful
     when SEAICE_VECTORIZE_LSR ***and*** SEAICE_LSR_ADJOINT_ITER are
