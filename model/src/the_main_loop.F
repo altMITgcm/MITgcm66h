@@ -453,6 +453,10 @@ CADJ INIT comlev1_lsr = COMMON,
 CADJ &                        nchklev_1*MPSEUDOTIMESTEPS*SOLV_MAX_FIXED
 CADJ INIT comlev1_bibj_dyniter = COMMON,
 CADJ & nchklev_1*nsx*nsy*nthreads_chkpt*MPSEUDOTIMESTEPS*SOLV_MAX_FIXED
+#    ifdef SEAICE_VECTORIZE_LSR_ZEBRA
+CADJ INIT comlev1_bibj_dyniter2 = COMMON,
+CADJ &nchklev_1*nsx*nsy*nthreads_chkpt*MPSEUDOTIMESTEPS*SOLV_MAX_FIXED*2
+#    endif /* SEAICE_VECTORIZE_LSR_ZEBRA */
 #    ifdef SEAICE_LSR_ADJOINT_ITER
 CADJ INIT comlev1_dyniter =
 CADJ &    COMMON,nchklev_1*MPSEUDOTIMESTEPS*SOLV_MAX_FIXED
