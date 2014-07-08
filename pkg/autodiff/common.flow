@@ -1,3 +1,6 @@
+C $Header$
+C $Name$
+
 c$taf COMMON dynvars_r  ADNAME = addynvars_r
 c$taf COMMON dynvars_r FTLNAME = g_dynvars_r
 
