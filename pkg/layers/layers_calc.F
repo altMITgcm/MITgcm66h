@@ -52,10 +52,13 @@ C     bi, bj   :: tile indices
 C     i,j      :: horizontal indices
 C     iLa      :: layer coordinate index
 C     k        :: vertical index for model grid
-      INTEGER bi, bj, iLa, iTracer
+      INTEGER bi, bj, iLa
       CHARACTER*(MAX_LEN_MBUF) suff
 #ifdef LAYERS_PRHO_REF
       INTEGER i, j, k
+#endif
+#ifdef LAYERS_THERMODYNAMICS
+      INTEGER iTracer
 #endif
 #ifdef ALLOW_DIAGNOSTICS
       CHARACTER*8    diagName
