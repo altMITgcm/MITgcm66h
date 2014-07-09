@@ -190,8 +190,6 @@ C     FIND INITIAL RESIDUAL, and initialize r
        ENDDO
       ENDDO
 
-      
-
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
         DO j=1,sNy
@@ -205,8 +203,20 @@ C     FIND INITIAL RESIDUAL, and initialize r
        ENDDO
       ENDDO
 
+
       CALL GLOBAL_SUM_TILE_RL( dot_p1_tile, dot_p1, myThid ) 
       resid_0 = sqrt(dot_p1)
+
+      DO bj = myByLo(myThid), myByHi(myThid)
+       DO bi = myBxLo(myThid), myBxHi(myThid)
+
+       WRITE(msgBuf,'(A,I1,I1,E14.7)') 'CONJ GRAD INIT RESID LOCAL, ',
+     &         bi,bj, dot_p1_tile(bi,bj)
+       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                     SQUEEZE_RIGHT , 1)
+
+       enddo
+      enddo
 
       WRITE(msgBuf,'(A,E14.7)') 'CONJ GRAD INIT RESID, ',
      &         resid_0
