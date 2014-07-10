@@ -252,8 +252,8 @@ C-   write out logical parameters
      & ' streamice_dump_mnc =', ' /* user defined parameter */')
        CALL WRITE_0D_L( STREAMICE_tave_mnc, INDEX_NONE,
      & ' streamice_tave_mnc =', ' /* user defined parameter */')
-       CALL WRITE_0D_L( STREAMICE_GL_regularize, INDEX_NONE,
-     & ' streamice_GL_regularize =', ' /* user defined parameter */')
+!       CALL WRITE_0D_L( STREAMICE_GL_regularize, INDEX_NONE,
+!     & ' streamice_GL_regularize =', ' /* user defined parameter */')
        CALL WRITE_0D_L( STREAMICE_move_front, INDEX_NONE,
      & ' streamice_move_front =', ' /* user defined parameter */')
        CALL WRITE_0D_L( STREAMICE_calve_to_mask, INDEX_NONE,
