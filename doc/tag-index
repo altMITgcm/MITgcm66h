@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint64z (2014/07/10)
 o model/src and several pkgs:
   - change argument list of all S/R called from external_forcing.F and
     called from ptracers_forcing.F (renamed to ptracers_apply_forcing.F)
