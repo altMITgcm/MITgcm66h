@@ -4,6 +4,13 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice/seaice_lsr, a little bit of clean up
+  - rearrange some code blocks, so that now all calculations for
+    setting up the right-hand-sides done within one single block 
+    (I find that easier to read and understand)
+  - rearrange freedrift-code to reduce the number of ifdefs
+  - adjust some indentations and comments
+
 checkpoint64z (2014/07/10)
 o model/src and several pkgs:
   - change argument list of all S/R called from external_forcing.F and
