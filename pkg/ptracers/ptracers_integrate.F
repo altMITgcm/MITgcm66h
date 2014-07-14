@@ -336,7 +336,7 @@ C-    end of vertical index (k) loop (Nr:1)
           IF ( usingPCoords ) THEN
             CALL DWNSLP_APPLY(
      I                  GAD_TR, bi, bj, kSurfC,
-     I                  recip_drF, recip_hFacC, recip_rA,
+     I                  recip_drF, recip_hFac, recip_rA,
      I                  PTRACERS_dTLev,
      I                  pTracer(1-OLx,1-OLy,1,1,1,iTracer),
      O                  gPtr(1-OLx,1-OLy,1,1,1,iTracer),
@@ -344,7 +344,7 @@ C-    end of vertical index (k) loop (Nr:1)
           ELSE
             CALL DWNSLP_APPLY(
      I                  GAD_TR, bi, bj, kLowC,
-     I                  recip_drF, recip_hFacC, recip_rA,
+     I                  recip_drF, recip_hFac, recip_rA,
      I                  PTRACERS_dTLev,
      I                  pTracer(1-OLx,1-OLy,1,1,1,iTracer),
      O                  gPtr(1-OLx,1-OLy,1,1,1,iTracer),

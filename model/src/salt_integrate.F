@@ -382,7 +382,7 @@ C-    end of vertical index (k) loop (Nr:1)
         IF ( usingPCoords ) THEN
           CALL DWNSLP_APPLY(
      I                  GAD_SALINITY, bi, bj, kSurfC,
-     I                  recip_drF, recip_hFacC, recip_rA,
+     I                  recip_drF, recip_hFac, recip_rA,
      I                  dTtracerLev,
      I                  salt,
      U                  gS,
@@ -390,7 +390,7 @@ C-    end of vertical index (k) loop (Nr:1)
         ELSE
           CALL DWNSLP_APPLY(
      I                  GAD_SALINITY, bi, bj, kLowC,
-     I                  recip_drF, recip_hFacC, recip_rA,
+     I                  recip_drF, recip_hFac, recip_rA,
      I                  dTtracerLev,
      I                  salt,
      U                  gS,
