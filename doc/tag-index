@@ -5,6 +5,15 @@ $Name$
     ==============================
 
 o model/src:
+  - using MOM fluxform and Non-Lin Free-Surf with momDissip_In_AB=F
+    (not currently tested): add dissipation terms before NLFS rescaling of
+    tendencies (previously done after).
+o pkg/diagnostics:
+  - write stats-diags in ascii file with more digits (same as in monitor).
+o pkg/down_slope:
+  - drop the bi,bj dimension of argument recip_hFac in S/R DWNSLP_APPLY; with
+    NLFS (not tested), use new recip_hFac value in order to conserve tracer.
+o model/src:
   - new file "apply_forcing.F" containing all the code previously in
     external_forcing.F, but with new argument list: pass, as new argument,
     the current level tendency array to update (instead of a direct update
