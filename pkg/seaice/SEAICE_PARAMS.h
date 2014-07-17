@@ -187,8 +187,8 @@ C                        :: 2=from predicted growth by ATM
 C     SEAICEetaZmethod   :: determines how shear-viscosity eta is computed at
 C                           Z-points
 C                           0=simple averaging from C-points (default and old)
-C                           1=linear averaging of strain rates to Z-points
-C                           2=averaging of squares of strain rates
+C                           3=weighted averaging of squares of strain rates 
+C                             (recommended for energy conservation)
 C     SEAICE_multDim     :: number of ice categories
 C     SEAICE_debugPointI :: I,J index for seaice-specific debuggin
 C     SEAICE_debugPointJ
