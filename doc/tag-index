@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ptracers & diagnostics:
+  - use ptracers (short) name (instead of long one) to make ptracers diagnostics
+    title (to avoid some unexpected truncation); sort out ptracers diags units.
+
 checkpoint65 (2014/07/18)
 o pkg/fizhi:
   - add parenthesis around fizhi tendencies in fizhi_tendency_apply.F: this
