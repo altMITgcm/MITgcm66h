@@ -120,6 +120,15 @@ do
         echo "  done"
       fi
     else
+      if test -d prev ; then
+      #-- save previous summary:
+        oldS=`ls -t ${new_dir}/verification/tr_${outDir}_*/summary.txt 2> /dev/null | head -1`
+        if test "x$oldS" != x ; then cp -p -f $oldS prev/tr_out.$typ ; fi
+       if test $tt != $typ ; then
+        oldS=`ls -t ${new_dir}/verification/rs_${outDir}_*/summary.txt 2> /dev/null | head -1`
+        if test "x$oldS" != x ; then cp -p -f $oldS prev/rs_out.$typ ; fi
+       fi
+      fi
       test -e $new_dir  &&  rm -rf $new_dir
       mkdir $new_dir
       pushd $new_dir
