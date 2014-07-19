@@ -4,8 +4,8 @@ C $Name$
 #include "CPP_OPTIONS.h"
 
 CStartOfInterface
-      SUBROUTINE ATM_TO_OCN_MAPRUNOFF( 
-     I           fld_atm, 
+      SUBROUTINE ATM_TO_OCN_MAPRUNOFF(
+     I           fld_atm,
      U           fld_ocn )
 C     *==========================================================*
 C     | SUBROUTINE ATM_TO_OCN_MAPRUNOFF
@@ -28,12 +28,12 @@ CEndOfInterface
 C     == Local variables ==
       INTEGER n, ijo, ija
 
-C       Set to zero's everywhere
+C       Set to zero everywhere
 c       DO ijo=1,Nx_ocn*Ny_ocn
 c         fld_ocn(ijo)=0.
 c       ENDDO
 
-C       Maps Runoff from land grid point to ocean grid point 
+C       Maps Runoff from land grid point to ocean grid point
 C       and update oceanic FreshWater flux (substract RunOff)
         DO n=1,nROmap
           ijo=ijROocn(n)

@@ -4,9 +4,9 @@ C $Name$
 #include "CPP_OPTIONS.h"
 
 CStartOfInterface
-      SUBROUTINE ATM_TO_OCN_MAPXYR8( 
+      SUBROUTINE ATM_TO_OCN_MAPXYR8(
      I           aNx, aNy,
-     I           fld_atm, 
+     I           fld_atm,
      I           oNx, oNy,
      O           fld_ocn )
 C     /==========================================================\
@@ -35,7 +35,7 @@ CEndOfInterface
 C     == Local variables ==
       INTEGER I,J
 
-C     Set to zero's everywhere
+C     Set to zero everywhere
       DO J=1,oNy
        DO I=1,oNx
         fld_ocn(I,J)=0.
