@@ -282,13 +282,13 @@ C-      Apply AB on T,S :
         m2 = 1 + MOD( iterNb ,2)
 C       compute T^n+1/2 (stored in gtNm) extrapolating T forward in time
         IF ( AdamsBashforth_T ) CALL ADAMS_BASHFORTH3(
-     I                                  bi, bj, 0, Nr,
-     U                                  theta, gtNm, tmpFld,
+     I                                  bi, bj, 0, Nr, theta,
+     U                                  gtNm, tmpFld,
      I                                  tempStartAB, iterNb, myThid )
 C       compute S^n+1/2 (stored in gsNm) extrapolating S forward in time
         IF ( AdamsBashforth_S ) CALL ADAMS_BASHFORTH3(
-     I                                  bi, bj, 0, Nr,
-     U                                  salt, gsNm, tmpFld,
+     I                                  bi, bj, 0, Nr, salt,
+     U                                  gsNm, tmpFld,
      I                                  saltStartAB, iterNb, myThid )
 #endif /* ALLOW_ADAMSBASHFORTH_3 */
 
