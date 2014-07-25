@@ -724,7 +724,7 @@ c local copy used in print statements, for
 c which we always want to do the global sum.
       do bj = jtlo,jthi
         do bi = itlo,ithi
-          locfc=tile_fc(bi,bj)
+          locfc=locfc + tile_fc(bi,bj)
         enddo
       enddo
       _GLOBAL_SUM_RL( locfc , myThid )
