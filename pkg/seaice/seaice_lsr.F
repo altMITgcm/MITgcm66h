@@ -1569,7 +1569,7 @@ C     go back to original order
         ilockey = 1 + I-iMin + (sNx+2*OLx)*(J-jMin)
 CADJ STORE urt(i,j) = comlev1_tridiagu, kind=isbyte, key = ilockey
 #endif /* ALLOW_AUTODIFF_TAMC */
-        IM=sNx-I
+        IM=iMax-I
         URT(IM,J)=URT(IM,J)-CUU(IM,J)*URT(IM+1,J)
        ENDDO
        DO I=iMin,iMax
@@ -1741,7 +1741,7 @@ C     go back to original order
         ilockey = 1 + J-jMin + (sNy+2*OLy)*(I-iMin)
 CADJ STORE vrt(i,j) = comlev1_tridiagv, kind=isbyte, key = ilockey
 #endif /* ALLOW_AUTODIFF_TAMC */
-        JM=sNy-J
+        JM=jMax-J
         VRT(I,JM)=VRT(I,JM)-CVV(I,JM)*VRT(I,JM+1)
        ENDDO
        DO J=jMin,jMax
