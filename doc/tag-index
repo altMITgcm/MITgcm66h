@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/kl10:
+  - add new pkg "kl10" for mixing due to internal wave breaking, from
+    http://www.sciencedirect.com/science/article/pii/S1463500310000144
+    (contribution from Jody Klymak), tested in verification experiment
+    verification/internal_wave/input.kl10/
 o isomip experiment:
   - test pkg/shelfice with Non-Lin Free-Surf in one of the FWD set-up
     (input.htd) and update the output.
