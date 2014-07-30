@@ -35,6 +35,8 @@ C       |-- CD_CODE_INI_VARS
 C       |
 C       |-- PP81_INIT_VARIA
 C       |
+C       |-- KL10_INIT_VARIA
+C       |
 C       |-- MY82_INIT_VARIA
 C       |
 C       |-- GGL90_INIT_VARIA
@@ -182,6 +184,16 @@ C--   Initialize PP81 vertical mixing scheme.
        CALL PP81_INIT_VARIA( myThid )
       ENDIF
 #endif /* ALLOW_PP81 */
+
+#ifdef ALLOW_KL10
+C--   Initialize KL10 vertical mixing scheme.
+      IF (useKL10) THEN
+# ifdef ALLOW_DEBUG
+       IF (debugMode) CALL DEBUG_CALL('KL10_INIT_VARIA',myThid)
+# endif
+       CALL KL10_INIT_VARIA( myThid )
+      ENDIF
+#endif /* ALLOW_KL10 */
 
 #ifdef ALLOW_MY82
 C--   Initialize MY82 vertical mixing scheme.

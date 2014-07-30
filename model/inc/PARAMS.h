@@ -952,6 +952,7 @@ C Logical flags for selecting packages
       LOGICAL useZONAL_FILT
       LOGICAL useOPPS
       LOGICAL usePP81
+      LOGICAL useKL10
       LOGICAL useMY82
       LOGICAL useGGL90
       LOGICAL useKPP
@@ -996,7 +997,7 @@ C Logical flags for selecting packages
       LOGICAL useMYPACKAGE
       COMMON /PARM_PACKAGES/
      &        useGAD, useOBCS, useSHAP_FILT, useZONAL_FILT,
-     &        useOPPS, usePP81, useMY82, useGGL90, useKPP,
+     &        useOPPS, usePP81, useKL10, useMY82, useGGL90, useKPP,
      &        useGMRedi, useBBL, useDOWN_SLOPE,
      &        useCAL, useEXF, useBulkForce, useEBM, useCheapAML,
      &        useGrdchk,useSMOOTH,usePROFILES,useECCO,useSBO, useFLT,

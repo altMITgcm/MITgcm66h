@@ -46,7 +46,6 @@ C     myThid   :: Thread number for this instance of the routine.
       INTEGER myIter
 CEOP
 
-
 C     Generaly only thread 1 does IO here. It can not start until
 C     all threads fields are ready.
       IF (debugMode) THEN
@@ -117,6 +116,12 @@ C     Do KPP diagnostics.
 C     Do PP81 diagnostics.
       IF ( usePP81 )
      &     CALL PP81_OUTPUT( myTime, myIter, myThid )
+#endif
+
+#ifdef ALLOW_KL10
+C     Do KL10 diagnostics.
+      IF ( useKL10 )
+     &     CALL KL10_OUTPUT( myTime, myIter, myThid )
 #endif
 
 #ifdef ALLOW_MY82
@@ -205,7 +210,6 @@ C-- added by RPA
         CALL LAYERS_OUTPUT( myTime, myIter, myThid )
       ENDIF
 #endif /* ALLOW_LAYERS */
-
 
 #ifdef ALLOW_DIAGNOSTICS
       IF ( useDiagnostics )

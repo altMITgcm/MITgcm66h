@@ -46,6 +46,8 @@ C       |-- OPPS_INIT
 C       |
 C       |-- PP81_INIT_FIXED
 C       |
+C       |-- KL10_INIT_FIXED
+C       |
 C       |-- MY82_INIT_FIXED
 C       |
 C       |-- GGL90_INIT_FIXED
@@ -265,6 +267,16 @@ C--   Initialize fixed arrays for PP81
         CALL PP81_INIT_FIXED( myThid )
       ENDIF
 #endif
+
+#ifdef ALLOW_KL10
+C--   Initialize fixed arrays for KL10
+      IF ( useKL10 ) THEN
+# ifdef ALLOW_DEBUG
+        IF (debugMode) CALL DEBUG_CALL('KL10_INIT_FIXED',myThid)
+# endif
+        CALL KL10_INIT_FIXED( myThid )
+      ENDIF
+#endif /* ALLOW_KL10 */
 
 #ifdef ALLOW_MY82
 C--   Initialize fixed arrays for MY82

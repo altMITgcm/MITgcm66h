@@ -44,6 +44,8 @@ C       |-- OPPS_READPARMS
 C       |
 C       |-- PP81_READPARMS
 C       |
+C       |-- KL10_READPARMS
+C       |
 C       |-- MY82_READPARMS
 C       |
 C       |-- GGL90_READPARMS
@@ -178,6 +180,11 @@ C--   if useOPPS=T, set OPPS parameters; otherwise just return
 #ifdef ALLOW_PP81
 C--   if usePP81=T, set PP81 parameters; otherwise just return
       CALL PP81_READPARMS( myThid )
+#endif
+
+#ifdef ALLOW_KL10
+C--   if useKL10=T, set KL10 parameters; otherwise just return
+      CALL KL10_READPARMS( myThid )
 #endif
 
 #ifdef ALLOW_MY82

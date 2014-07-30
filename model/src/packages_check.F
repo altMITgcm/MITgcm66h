@@ -154,6 +154,12 @@ C---  Continue with standard packages (with standard usePKG flag)
       IF (usePP81) CALL PACKAGES_ERROR_MSG('PP81',' ',myThid)
 #endif
 
+#ifdef ALLOW_KL10
+      IF (useKL10) CALL KL10_CHECK( myThid )
+#else
+      IF (useKL10) CALL PACKAGES_ERROR_MSG('KL10',' ',myThid)
+#endif
+
 #ifdef ALLOW_MY82
       IF (useMY82) CALL MY82_CHECK( myThid )
 #else

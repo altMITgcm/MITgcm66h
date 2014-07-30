@@ -708,7 +708,8 @@ c#endif /* ALLOW_AUTODIFF_TAMC */
 C--       Calculate gradients of potential density for isoneutral
 C         slope terms (e.g. GM/Redi tensor or IVDC diffusivity)
           IF ( calcGMRedi .OR. (k.GT.1 .AND. calcConvect)
-     &         .OR. usePP81 .OR. useMY82 .OR. useGGL90
+     &         .OR. usePP81 .OR. useKL10
+     &         .OR. useMY82 .OR. useGGL90
      &         .OR. useSALT_PLUME .OR. doDiagsRho.GE.1 ) THEN
             IF (k.GT.1) THEN
 #ifdef ALLOW_AUTODIFF_TAMC
@@ -869,6 +870,17 @@ C--     Compute PP81 mixing coefficients
      I                     bi, bj, sigmaR, myTime, myIter, myThid )
         ENDIF
 #endif /* ALLOW_PP81 */
+
+#ifdef  ALLOW_KL10
+C--     Compute KL10 mixing coefficients
+        IF (useKL10) THEN
+#ifdef ALLOW_DEBUG
+          IF (debugMode) CALL DEBUG_CALL('KL10_CALC',myThid)
+#endif
+          CALL KL10_CALC(
+     I                     bi, bj, sigmaR, myTime, myIter, myThid )
+        ENDIF
+#endif /* ALLOW_KL10 */
 
 #ifdef  ALLOW_MY82
 C--     Compute MY82 mixing coefficients
