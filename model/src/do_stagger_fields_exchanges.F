@@ -37,7 +37,7 @@ C-    Apply Exchanges on dynamics state variable, except in Off-Line mode
 
 C- note: use less common EXCH S/R here (instead of usual ones) to
 C        force TAF to also generate AD version for these rare ones
-      IF ( staggerTimeStep .AND. useMultiDimAdvec) THEN
+      IF ( staggerTimeStep ) THEN
 c       CALL EXCH_UV_XYZ_RL( uVel,vVel, .TRUE., myThid )
         CALL EXCH_UV_3D_RL( uVel, vVel, .TRUE., Nr, myThid )
 c       IF ( .NOT.implicitIntGravWave )
