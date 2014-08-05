@@ -45,21 +45,6 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT, myThid )
 
-C--   Update Overlap minimum size according to tracer advection
-      DO iTracer = 1, PTRACERS_numInUse
-        GAD_OlMinSize(1) = MAX( GAD_OlMinSize(1),
-     &          GAD_Scheme_olSize(PTRACERS_advScheme(iTracer)) )
-      ENDDO
-C-    Constraint on size of the overlap :
-      IF ( useCubedSphereExchange .AND. useMultiDimAdvec ) THEN
-C-    multi-dim-advection on CS-grid requires to double the size of OLx,OLy
-        GAD_OlMinSize(3) = MAX( GAD_OlMinSize(3), 2 )
-      ENDIF
-      WRITE(msgBuf,'(2A,9I3)') 'PTRACERS_CHECK: ',
-     &      'updated GAD_OlMinSize=', GAD_OlMinSize
-      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                    SQUEEZE_RIGHT, myThid )
-
 C--   Print a summary of pTracer parameter values:
       iUnit = standardMessageUnit
       WRITE(msgBuf,'(A)') '// ==================================='
