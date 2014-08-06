@@ -428,21 +428,29 @@ C       This is the hydrostatic geopotential calculation for the Atmosphere
 C       The ideal gas law is used implicitly here rather than calculating
 C       the specific volume, analogous to the oceanic case.
 
+        IF ( implicitIntGravWave .OR. myIter.LT.0 ) THEN
 C--     virtual potential temperature anomaly (including water vapour effect)
-        IF ( select_rStar.GE.1 .OR. selectSigmaCoord.GE.1 ) THEN
+          IF ( select_rStar.GE.1 .OR. selectSigmaCoord.GE.1 ) THEN
 C-      isothermal (theta=const) reference state
-          thetaRef = thetaConst
-        ELSE
+            thetaRef = thetaConst
+          ELSE
 C-      horizontally uniform (tRef) reference state
-          thetaRef = tRef(k)
+            thetaRef = tRef(k)
+          ENDIF
+          DO j=jMin,jMax
+           DO i=iMin,iMax
+            alphaRho(i,j) = ( tFld(i,j,k,bi,bj)
+     &                        *( sFld(i,j,k,bi,bj)*atm_Rq + oneRL )
+     &                      - thetaRef )*maskC(i,j,k,bi,bj)
+           ENDDO
+          ENDDO
+        ELSE
+          DO j=jMin,jMax
+           DO i=iMin,iMax
+             alphaRho(i,j) = rhoInSitu(i,j,k,bi,bj)
+           ENDDO
+          ENDDO
         ENDIF
-        DO j=jMin,jMax
-         DO i=iMin,iMax
-          alphaRho(i,j) = ( tFld(i,j,k,bi,bj)
-     &                      *( sFld(i,j,k,bi,bj)*atm_Rq + oneRL )
-     &                    - thetaRef )*maskC(i,j,k,bi,bj)
-         ENDDO
-        ENDDO
 
 #ifdef ALLOW_MOM_COMMON
 C--     Quasi-hydrostatic terms are added in as if they modify the Pot.Temp
