@@ -298,6 +298,7 @@ c$openad INDEPENDENT(xx_genarr3d)
 # endif
 # ifdef ALLOW_GENTIM2D_CONTROL
 c$openad INDEPENDENT(xx_gentim2d)
+c$openad INDEPENDENT(xx_gentim2d_dummy)
 # endif
 #endif /* ALLOW_OPENAD */
 
