@@ -641,6 +641,21 @@ C     Ocean: Add temperature surface forcing (e.g., heat-flux) in surface level
        ENDDO
       ENDIF
 
+#ifdef ALLOW_GEOTHERMAL_FLUX
+      IF ( usingZCoords ) THEN
+       DO j=1,sNy
+        DO i=1,sNx
+         IF ( k.EQ.kLowC(i,j,bi,bj) ) THEN
+          gT_arr(i,j)=gT_arr(i,j)
+     &      + geothermalFlux(i,j,bi,bj)
+     &        *recip_Cp*mass2rUnit
+     &        *recip_drF(k)*_recip_hFacC(i,j,k,bi,bj)
+         ENDIF
+        ENDDO
+       ENDDO
+      ENDIF
+#endif /* ALLOW_GEOTHERMAL_FLUX */
+
 #ifdef SHORTWAVE_HEATING
 C Penetrating SW radiation
 c     IF ( usePenetratingSW ) THEN

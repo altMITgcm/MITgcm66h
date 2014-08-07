@@ -118,6 +118,14 @@ C     EfluxP - p-component of Eliassen-Palm flux vector
       COMMON /FFIELDS_ADD_FLUID/ addMass
       _RL addMass(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
 #endif
+#ifdef ALLOW_GEOTHERMAL_FLUX
+C  geothermalFlux :: Upward geothermal flux through bottom cell [W/m^2]
+C                    > 0 for increase in theta (ocean warming)
+C                    Typical range: 0 < geothermalFlux < 1.5 W/m^2
+C                    (global mean on the order 0.09 - 0.1 W/m^2)
+      COMMON /FFIELDS_geothermal/ geothermalFlux
+      _RS geothermalFlux(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+#endif
 
 C- jmc: commented out until corresponding (ghost-like) code apparition
 C     dQdT  :: Thermal relaxation coefficient in W/m^2/degrees
