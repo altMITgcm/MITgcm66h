@@ -39,7 +39,6 @@ C     msgBuf     :: message buffer
       INTEGER k, iTracer
       INTEGER iUnit
       INTEGER ic
-      LOGICAL validNum
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       _RL PTRACERS_diffKr(PTRACERS_num)
       _RL tauTr1ClimRelax
