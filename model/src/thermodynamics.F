@@ -390,7 +390,7 @@ C       Also apply open boundary conditions for each passive tracer
 #ifdef   ALLOW_OBCS
 C--   Apply open boundary conditions
         IF ( useOBCS ) THEN
-           CALL OBCS_APPLY_TS( bi, bj, 0, gT, gS, myThid )
+           CALL OBCS_APPLY_TS( bi, bj, 0, theta, salt, myThid )
         ENDIF
 #endif   /* ALLOW_OBCS */
 

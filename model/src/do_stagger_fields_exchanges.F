@@ -47,10 +47,10 @@ c    &  _EXCH_XYZ_RL( wVel, myThid )
       ENDIF
 c #ifdef ALLOW_NONHYDROSTATIC
       IF ( implicitIntGravWave ) THEN
-c       _EXCH_XYZ_RL( gT , myThid )
-c       _EXCH_XYZ_RL( gS , myThid )
-        CALL EXCH_SM_3D_RL( gT, .FALSE., Nr, myThid )
-        CALL EXCH_SM_3D_RL( gS, .FALSE., Nr, myThid )
+c       _EXCH_XYZ_RL( theta, myThid )
+c       _EXCH_XYZ_RL( salt , myThid )
+        CALL EXCH_SM_3D_RL( theta, .FALSE., Nr, myThid )
+        CALL EXCH_SM_3D_RL( salt , .FALSE., Nr, myThid )
       ENDIF
 c #endif
 

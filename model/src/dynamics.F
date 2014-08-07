@@ -534,21 +534,12 @@ CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C--      Integrate hydrostatic balance for phiHyd with BC of phiHyd(z=0)=0
-         IF ( implicitIntGravWave ) THEN
-           CALL CALC_PHI_HYD(
-     I        bi,bj,iMin,iMax,jMin,jMax,k,
-     I        gT, gS,
-     U        phiHydF,
-     O        phiHydC, dPhiHydX, dPhiHydY,
-     I        myTime, myIter, myThid )
-         ELSE
-           CALL CALC_PHI_HYD(
+         CALL CALC_PHI_HYD(
      I        bi,bj,iMin,iMax,jMin,jMax,k,
      I        theta, salt,
      U        phiHydF,
      O        phiHydC, dPhiHydX, dPhiHydY,
      I        myTime, myIter, myThid )
-         ENDIF
 #ifdef ALLOW_DIAGNOSTICS
          IF ( dPhiHydDiagIsOn ) THEN
            tmpFac = -1. _d 0
