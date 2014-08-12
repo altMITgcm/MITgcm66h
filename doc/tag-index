@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint65b (2014/08/12)
 o pkg/matrix:
   - pass, as argument, updated tracer field to S/R MATRIX_STORE_TENDENCY_EXP
 o model/src:
