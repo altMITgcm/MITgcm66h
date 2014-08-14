@@ -282,12 +282,14 @@ C-      Apply AB on T,S :
         m2 = 1 + MOD( iterNb ,2)
 C       compute T^n+1/2 (stored in gtNm) extrapolating T forward in time
         IF ( AdamsBashforth_T ) CALL ADAMS_BASHFORTH3(
-     I                                  bi, bj, 0, Nr, theta,
+     I                                  bi, bj, 0, Nr,
+     I                                  theta(1-OLx,1-OLy,1,bi,bj),
      U                                  gtNm, tmpFld,
      I                                  tempStartAB, iterNb, myThid )
 C       compute S^n+1/2 (stored in gsNm) extrapolating S forward in time
         IF ( AdamsBashforth_S ) CALL ADAMS_BASHFORTH3(
-     I                                  bi, bj, 0, Nr, salt,
+     I                                  bi, bj, 0, Nr,
+     I                                  salt(1-OLx,1-OLy,1,bi,bj),
      U                                  gsNm, tmpFld,
      I                                  saltStartAB, iterNb, myThid )
 #endif /* ALLOW_ADAMSBASHFORTH_3 */
@@ -346,8 +348,9 @@ CADJ STORE kvz(:,:,:,bi,bj) = comlev1_bibj, key=itdkey, byte=isbyte
 # endif
 #endif /* ALLOW_AUTODIFF_TAMC */
 
-C--     Calculate active tracer tendencies (gT,gS,...)
-C       and step forward, storing result in gT, gS, etc.
+C--     Calculate active tracer tendencies and step forward in time.
+C       Active tracer arrays are updated while adjustments (filters,
+C       conv.adjustment) are applied later in TRACERS_CORRECTION_STEP.
 
         IF ( tempStepping ) THEN
 #ifdef ALLOW_DEBUG
@@ -372,8 +375,9 @@ C       and step forward, storing result in gT, gS, etc.
         ENDIF
 
 #ifdef DO_PTRACERS_HERE
-C--     Calculate passive tracer tendencies
-C       and step forward, storing result in gPtr
+C--     Calculate passive tracer tendencies and step forward in time.
+C       Passive tracer arrays are updated while adjustments (filters,
+C       conv.adjustment) are applied later in TRACERS_CORRECTION_STEP.
 C       Also apply open boundary conditions for each passive tracer
         IF ( usePTRACERS ) THEN
 #ifdef ALLOW_DEBUG
