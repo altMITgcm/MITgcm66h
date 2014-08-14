@@ -517,8 +517,8 @@ C     contribution to the rhs part of grad(sigma)_x
      &       - _dxV(I  ,J  ,bi,bj)*sig12(I  ,J  ) )
        ENDDO
       ENDDO
-      IF ( fricFac+coriFac .NE. 0. _d 0 ) THEN
 C     neglected for preconditioning step
+      IF ( fricFac+coriFac .NE. 0. _d 0 ) THEN
        DO J=jMin,jMax
         DO I=iMin,iMax
          rhsU(I,J,bi,bj) = rhsU(I,J,bi,bj)
