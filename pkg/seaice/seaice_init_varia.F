@@ -277,8 +277,6 @@ C
           ZETA(i,j,bi,bj)   = 0. _d 0
           FORCEX(i,j,bi,bj) = 0. _d 0
           FORCEY(i,j,bi,bj) = 0. _d 0
-          uIceC(i,j,bi,bj)  = 0. _d 0
-          vIceC(i,j,bi,bj)  = 0. _d 0
 #ifdef SEAICE_CGRID
           seaiceMassC(i,j,bi,bj)=0. _d 0
           seaiceMassU(i,j,bi,bj)=0. _d 0
@@ -291,6 +289,8 @@ C
           seaice_sigma12(i,j,bi,bj) = 0. _d 0
 # endif /* SEAICE_ALLOW_EVP */
 #else /* SEAICE_CGRID */
+          uIceC(i,j,bi,bj)  = 0. _d 0
+          vIceC(i,j,bi,bj)  = 0. _d 0
           AMASS(i,j,bi,bj)  = 0. _d 0
           DAIRN(i,j,bi,bj)  = 0. _d 0
           WINDX(i,j,bi,bj)  = 0. _d 0
