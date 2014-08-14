@@ -185,7 +185,7 @@ C--   end if momImplVertAdv
 C--   Solve tri-diagonal system :
         CALL SOLVE_TRIDIAGONAL( iMin,iMax, jMin,jMax,
      I                          b5d, c5d, d5d,
-     U                          gU,
+     U                          gU(1-OLx,1-OLy,1,bi,bj),
      O                          errCode,
      I                          bi, bj, myThid )
         IF (errCode.GE.1) THEN
