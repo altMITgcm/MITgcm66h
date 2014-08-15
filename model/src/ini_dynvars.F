@@ -60,8 +60,10 @@ C-      3D arrays
 
            gU(i,j,k,bi,bj) = 0. _d 0
            gV(i,j,k,bi,bj) = 0. _d 0
+#ifdef USE_OLD_EXTERNAL_FORCING
            gT(i,j,k,bi,bj) = 0. _d 0
            gS(i,j,k,bi,bj) = 0. _d 0
+#endif
 #ifdef ALLOW_ADAMSBASHFORTH_3
            guNm(i,j,k,bi,bj,1) = 0. _d 0
            gvNm(i,j,k,bi,bj,1) = 0. _d 0
