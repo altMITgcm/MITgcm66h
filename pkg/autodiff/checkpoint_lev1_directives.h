@@ -51,8 +51,6 @@ CADJ &     kind = isbyte
 c
 CADJ STORE detahdt            = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
-CADJ STORE gs,gt              = comlev1, key = ikey_dynamics,
-CADJ &     kind = isbyte
 # ifndef ALLOW_ADAMSBASHFORTH_3
 CADJ STORE gsnm1,gtnm1        = comlev1, key = ikey_dynamics,
 CADJ &     kind = isbyte
@@ -95,7 +93,7 @@ CADJ &     kind = isbyte
 CADJ STORE detahdt
 CADJ &     = comlev1, key=ikey_dynamics,
 CADJ &     kind = isbyte
-CADJ STORE gs,gsnm1,gt,gtnm1,gunm1,gvnm1
+CADJ STORE gsnm1,gtnm1,gunm1,gvnm1
 CADJ &     = comlev1, key=ikey_dynamics,
 CADJ &     kind = isbyte
 CADJ STORE theta,salt,totphihyd,wvel

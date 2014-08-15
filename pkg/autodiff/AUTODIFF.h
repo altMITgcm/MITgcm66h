@@ -27,9 +27,9 @@ c ad dump record number (used only if dumpAdByRec is true)
       integer max_lev4
       integer NDV3D, NDV2D, NEXF1, NEXF2, NCTRL1, NOB, NSI
 #ifdef ALLOW_ADAMSBASHFORTH_3
-      PARAMETER (NDV3D  = 16)
+      PARAMETER (NDV3D  = 14)
 #else
-      PARAMETER (NDV3D  = 12)
+      PARAMETER (NDV3D  = 10)
 #endif
       PARAMETER (NDV2D  = 23)
       PARAMETER (NEXF1  = 21)
