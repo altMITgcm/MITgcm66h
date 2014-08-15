@@ -36,13 +36,13 @@ C           implicDiv2DFlow=1 => etaH=etaN ; =0 => etaH=etaN^(n-1);
       COMMON /DYNVARS_R/
      &                   etaN,
      &                   uVel,vVel,wVel,theta,salt,
-     &                   gU,   gV,   gT,   gS,
+     &                   gU,   gV,
      &                   guNm, gvNm, gtNm, gsNm
 #else /* ALLOW_ADAMSBASHFORTH_3 */
       COMMON /DYNVARS_R/
      &                   etaN,
      &                   uVel,vVel,wVel,theta,salt,
-     &                   gU,   gV,   gT,   gS,
+     &                   gU,   gV,
      &                   guNm1,gvNm1,gtNm1,gsNm1
 #endif /* ALLOW_ADAMSBASHFORTH_3 */
       _RL  etaN  (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
@@ -53,8 +53,6 @@ C           implicDiv2DFlow=1 => etaH=etaN ; =0 => etaH=etaN^(n-1);
       _RL  salt (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  gU(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  gV(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-      _RL  gT(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-      _RL  gS(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
 #ifdef ALLOW_ADAMSBASHFORTH_3
       _RL  guNm(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy,2)
       _RL  gvNm(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy,2)
@@ -66,6 +64,13 @@ C           implicDiv2DFlow=1 => etaH=etaN ; =0 => etaH=etaN^(n-1);
       _RL  gtNm1(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL  gsNm1(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
 #endif /* ALLOW_ADAMSBASHFORTH_3 */
+
+#ifdef USE_OLD_EXTERNAL_FORCING
+      COMMON /DYNVARS_OLD/
+     &                   gT,   gS
+      _RL  gT(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+      _RL  gS(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
+#endif
 
       COMMON /DYNVARS_R_2/
      &                   etaH
@@ -80,7 +85,7 @@ C               for mixing of tracers vertically ( units of r^2/s )
 #endif
 
 C   The following blocks containing requires anomaly fields of control vars
-C   and related to Options: 
+C   and related to Options:
 C   ALLOW_KAPGM_CONTROL , ALLOW_KAPREDI_CONTROL and ALLOW_BOTTOMDRAG_CONTROL
 C   have been moved to header file "CTRL_FIELDS.h"
 
