@@ -212,6 +212,13 @@ cph      call cost_sss   ( myiter, mytime, mythid )
       call cost_salt  ( myiter, mytime, mythid )
 #endif
 
+#ifdef ALLOW_SIGMAR_COST_CONTRIBUTION
+      write(msgbuf,'(a)') 'ph-cost call cost_sigmar'
+      call print_message( msgbuf, standardmessageunit,
+     &     SQUEEZE_RIGHT , mythid)
+      call cost_sigmar  ( myiter, mytime, mythid )
+#endif
+
 #ifdef ALLOW_TRANSPORT_COST_CONTRIBUTION
       write(msgbuf,'(a)') 'ph-cost call cost_gen_transport'
       call print_message( msgbuf, standardmessageunit,

@@ -309,6 +309,20 @@ c--   Include code to use the meridional wind stress contribution.
      &                    SQUEEZE_RIGHT , mythid)
 #endif
 
+#ifdef ALLOW_SIGMAR_COST_CONTRIBUTION
+c--   Enable testing of the 3d sigmaR field contribution
+c--   to the cost function.
+      write(msgbuf,'(a)')
+     &'// ALLOW_SIGMAR_COST_CONTRIBUTION:        defined'
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+#else
+      write(msgbuf,'(a)')
+     &'// ALLOW_SIGMAR_COST_CONTRIBUTION:    NOT defined'
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+#endif
+
 #ifdef ALLOW_THETA_COST_CONTRIBUTION
 c--   Enable testing of the 3d temperature field contribution
 c--   to the cost function.

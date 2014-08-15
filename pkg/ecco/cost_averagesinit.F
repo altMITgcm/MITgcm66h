@@ -112,6 +112,19 @@ c--       Initialize roundtrip travel time average
           xx_iestaubar_mean_dummy = 0. _d 0
 #endif
 
+#ifdef ALLOW_SIGMAR_COST_CONTRIBUTION
+c--       Initialise sigmaR average (3d).
+          do k = 1,nr
+            do j = jmin,jmax
+              do i =  imin,imax
+                sigmaRbar(i,j,k,bi,bj) = 0. _d 0
+              enddo
+            enddo
+          enddo
+          xx_sigmaRbar_mean_dummy = 0. _d 0
+          nnzsigmaRbar = nr
+#endif
+
 #if (defined (ALLOW_THETA_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDT_COST_CONTRIBUTION) || \
      defined (ALLOW_XBT_COST_CONTRIBUTION) || \

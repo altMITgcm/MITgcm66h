@@ -233,6 +233,18 @@ c--   Get the time flags and record numbers for the time averaging.
       ENDIF
 #endif
 
+#ifdef ALLOW_SIGMAR_COST_CONTRIBUTION
+#ifdef ALLOW_DEBUG
+      IF ( debugMode )
+     &    CALL DEBUG_CALL('cost_averagesgeneric sigmaRbar',myThid)
+#endif
+      call cost_averagesgeneric(
+     &     sigmaRbarfile,
+     &     sigmaRbar, sigmaRfield, xx_sigmaRbar_mean_dummy,
+     &     first, last, startofmonth, endofmonth, inmonth,
+     &     sum1mon, monrec, nr, mythid )
+#endif /* ALLOW_SIGMAR_COST_CONTRIBUTION */
+
 #if (defined (ALLOW_THETA_COST_CONTRIBUTION) || \
      defined (ALLOW_CTDT_COST_CONTRIBUTION) || \
      defined (ALLOW_XBT_COST_CONTRIBUTION) || \

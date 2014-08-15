@@ -55,6 +55,9 @@ cph >>>>>> !!!!!! SPECIAL SEAICE FLAG FOR TESTING !!!!!! <<<<<<
 C       >>> Do a long protocol.
 #undef ECCO_VERBOSE
 
+C-- default turn off cost for sigmaR
+#undef ALLOW_SIGMAR_COST_CONTRIBUTION
+
 C   ==================================================================
 #endif /* ndef ECCO_CPPOPTIONS_H */
 #endif /* ALLOW_ECCO */

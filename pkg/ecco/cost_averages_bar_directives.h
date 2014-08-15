@@ -9,6 +9,9 @@ c     created: heimbach@mit.edu 4-Mar-2003
 c
 CADJ STORE xx_psbar_mean_dummy = onetape
 CADJ STORE xx_tbar_mean_dummy  = onetape
+#ifdef ALLOW_SIGMAR_COST_CONTRIBUTION
+CADJ STORE xx_sigmaRbar_mean_dummy  = onetape
+#endif
 CADJ STORE xx_sbar_mean_dummy  = onetape
 CADJ STORE xx_tbar_daily_mean_dummy  = onetape
 CADJ STORE xx_sbar_daily_mean_dummy  = onetape
