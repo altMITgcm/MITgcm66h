@@ -63,7 +63,6 @@ C     Initialize arrays in common blocks :
           DO j=1-OLy,sNy+OLy
            DO i=1-OLx,sNx+OLx
             pTracer(i,j,k,bi,bj,iTracer) = PTRACERS_ref(k,iTracer)
-            gPtr(i,j,k,bi,bj,iTracer)    = 0. _d 0
             gpTrNm1(i,j,k,bi,bj,iTracer) = 0. _d 0
            ENDDO
           ENDDO
