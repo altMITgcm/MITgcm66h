@@ -491,10 +491,6 @@ CADJ STORE theta (:,:,k,bi,bj)
 CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
 CADJ STORE salt  (:,:,k,bi,bj)
 CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
-CADJ STORE gT(:,:,k,bi,bj)
-CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
-CADJ STORE gS(:,:,k,bi,bj)
-CADJ &     = comlev1_bibj_k, key=kkey, byte=isbyte
 # ifdef NONLIN_FRSURF
 cph-test
 CADJ STORE  phiHydC (:,:)
@@ -762,8 +758,6 @@ Cml)
        CALL DEBUG_STATS_RL(Nr,salt,'Salt (DYNAMICS)',myThid)
        CALL DEBUG_STATS_RL(Nr,gU,'Gu (DYNAMICS)',myThid)
        CALL DEBUG_STATS_RL(Nr,gV,'Gv (DYNAMICS)',myThid)
-       CALL DEBUG_STATS_RL(Nr,gT,'Gt (DYNAMICS)',myThid)
-       CALL DEBUG_STATS_RL(Nr,gS,'Gs (DYNAMICS)',myThid)
 #ifndef ALLOW_ADAMSBASHFORTH_3
        CALL DEBUG_STATS_RL(Nr,guNm1,'GuNm1 (DYNAMICS)',myThid)
        CALL DEBUG_STATS_RL(Nr,gvNm1,'GvNm1 (DYNAMICS)',myThid)
