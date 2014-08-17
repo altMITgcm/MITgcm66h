@@ -52,7 +52,7 @@ export PATH="$PATH:$HOME/bin"
 dAlt=`date +%d` ; dAlt=`expr $dAlt % 3`
 if [ $dAlt -eq 1 ] ; then options="$options -fast" ; fi
 
-checkOut=2
+checkOut=2 ; options="$options -do"
 #options="$options -nc" ; checkOut=1
 #options="$options -q"  ; checkOut=0
 
