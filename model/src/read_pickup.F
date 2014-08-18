@@ -366,10 +366,16 @@ C--     Temperature
         IF ( AdamsBashforthGt ) THEN
           CALL READ_MFLDS_3D_RL( 'GtNm1   ', gtNm1,
      &                                     nj, fp, Nr, myIter, myThid )
+        ELSEIF ( AdamsBashforth_T ) THEN
+          CALL READ_MFLDS_3D_RL( 'TempNm1 ', gtNm1,
+     &                                     nj, fp, Nr, myIter, myThid )
         ENDIF
 C--     Salinity
         IF ( AdamsBashforthGs ) THEN
           CALL READ_MFLDS_3D_RL( 'GsNm1   ', gsNm1,
+     &                                     nj, fp, Nr, myIter, myThid )
+        ELSEIF ( AdamsBashforth_S ) THEN
+          CALL READ_MFLDS_3D_RL( 'SaltNm1 ', gsNm1,
      &                                     nj, fp, Nr, myIter, myThid )
         ENDIF
 #ifdef ALLOW_NONHYDROSTATIC

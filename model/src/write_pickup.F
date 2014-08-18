@@ -239,15 +239,21 @@ C--   W velocity:
         CALL WRITE_REC_3D_RL( fn, fp, Nr, gvNm1,  -j, myIter, myThid )
         IF (j.LE.listDim) wrFldList(j) = 'GvNm1   '
        ENDIF
-       IF ( AdamsBashforthGt ) THEN
+       IF ( AdamsBashforthGt.OR.AdamsBashforth_T ) THEN
         j = j + 1
         CALL WRITE_REC_3D_RL( fn, fp, Nr, gtNm1,  -j, myIter, myThid )
-        IF (j.LE.listDim) wrFldList(j) = 'GtNm1   '
+        IF (j.LE.listDim) THEN
+         IF ( AdamsBashforthGt ) wrFldList(j) = 'GtNm1   '
+         IF ( AdamsBashforth_T ) wrFldList(j) = 'TempNm1 '
+        ENDIF
        ENDIF
-       IF ( AdamsBashforthGs ) THEN
+       IF ( AdamsBashforthGs.OR.AdamsBashforth_S ) THEN
         j = j + 1
         CALL WRITE_REC_3D_RL( fn, fp, Nr, gsNm1,  -j, myIter, myThid )
-        IF (j.LE.listDim) wrFldList(j) = 'GsNm1   '
+        IF (j.LE.listDim) THEN
+         IF ( AdamsBashforthGs ) wrFldList(j) = 'GsNm1   '
+         IF ( AdamsBashforth_S ) wrFldList(j) = 'SaltNm1 '
+        ENDIF
        ENDIF
 #ifdef ALLOW_NONHYDROSTATIC
        IF ( nonHydrostatic ) THEN
