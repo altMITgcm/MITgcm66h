@@ -142,13 +142,16 @@ C     record number < 0 : a hack not to write meta files now:
 
 C       Then write ptracer tendencies (if this tracer is using AB time-stepping)
         DO iTracer = 1, PTRACERS_numInUse
-         IF ( PTRACERS_AdamsBashGtr(iTracer) ) THEN
+         IF ( PTRACERS_AdamsBashGtr(iTracer) .OR.
+     &        PTRACERS_AdamsBash_Tr(iTracer) ) THEN
           j = j + 1
           CALL WRITE_REC_3D_RL( fn, prec, Nr,
      &         gpTrNm1(1-OLx,1-OLy,1,1,1,iTracer),
      &         -j, myIter, myThid )
-          IF (j.LE.listDim)
+          IF ( j.LE.listDim .AND. PTRACERS_AdamsBashGtr(iTracer) )
      &      wrFldList(j) = 'gPtr'//PTRACERS_ioLabel(iTracer)//'m1'
+          IF ( j.LE.listDim .AND. PTRACERS_AdamsBash_Tr(iTracer) )
+     &      wrFldList(j) = 'pTr'//PTRACERS_ioLabel(iTracer)//'Nm1'
          ENDIF
 
         ENDDO

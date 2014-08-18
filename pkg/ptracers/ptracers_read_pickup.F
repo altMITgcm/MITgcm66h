@@ -228,8 +228,12 @@ C---    read pTracer 3-D fields for restart
         ENDDO
         DO iTracer = 1, PTRACERS_numInUse
 C---    read pTracer 3-D tendencies for AB-restart
-         IF ( PTRACERS_AdamsBashGtr(iTracer) ) THEN
-          fldName = 'gPtr'//PTRACERS_ioLabel(iTracer)//'m1'
+         IF ( PTRACERS_AdamsBashGtr(iTracer) .OR.
+     &        PTRACERS_AdamsBash_Tr(iTracer) ) THEN
+          IF ( PTRACERS_AdamsBashGtr(iTracer) )
+     &      fldName = 'gPtr'//PTRACERS_ioLabel(iTracer)//'m1'
+          IF ( PTRACERS_AdamsBash_Tr(iTracer) )
+     &      fldName = 'pTr'//PTRACERS_ioLabel(iTracer)//'Nm1'
           CALL READ_MFLDS_3D_RL( fldName,
      O                     gpTrNm1(1-OLx,1-OLy,1,1,1,iTracer),
      &                     nj, prec, Nr, myIter, myThid )
