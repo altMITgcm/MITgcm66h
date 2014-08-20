@@ -70,7 +70,7 @@ C-    !FUNCTIONS:
 C     !LOCAL VARIABLES:
 C     === Local variables ===
 C     msgBuf     :: Informational/error message buffer
-      INTEGER ij, k
+      INTEGER k
       INTEGER n,ijd,ijs,kshelf
       _RL     gTrLoc(0:Nr)
       _RL     tmpFld
