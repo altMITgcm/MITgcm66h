@@ -233,6 +233,10 @@ C--  end bi,bj loop
 #ifdef ALLOW_BALANCE_FLUXES
 C--   Balance net Fresh-Water flux from Atm+Land
       IF ( thSIceBalanceAtmFW.NE.0 ) THEN
+# ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE icFrwAtm =
+CADJ &     comlev1, key = ikey_dynamics, kind = isbyte
+# endif
         CALL THSICE_BALANCE_FRW(
      I                      iMin, iMax, jMin, jMax,
      I                      prcAtm, myTime, myIter, myThid )
