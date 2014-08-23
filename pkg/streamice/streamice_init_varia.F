@@ -314,6 +314,13 @@ C The 0 is the "iteration" argument. The ' ' is an empty suffix
 ! STREAMICE_GEOM_FILE_SETUP
 
 
+      IF ( .NOT. ( startTime .EQ. baseTime .AND.  nIter0 .EQ. 0
+     &     .AND. pickupSuff .EQ. ' ') ) THEN
+              
+                          CALL STREAMICE_READ_PICKUP ( myThid )
+              
+      ENDIF
+
 ! finish initialize thickness
 
 ! initialize glen constant
