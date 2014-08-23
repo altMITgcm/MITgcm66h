@@ -243,7 +243,7 @@ C       tendency multiplied by maskInC)
        CALL DIC_COST( myTime, myIter, myThid )
 # endif
       ENDIF
-#endif */ ALLOW_DIC */
+#endif /* ALLOW_DIC */
 
 #endif /* GCHEM_SEPARATE_FORCING */
 #endif /* ALLOW_GCHEM */
