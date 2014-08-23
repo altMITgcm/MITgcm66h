@@ -135,8 +135,20 @@ C     simple, made up, ice surface roughness index prototype
          SItrFromOceanFrac(iTracer) =ZERO
          SItrFromFloodFrac(iTracer) =ZERO
        ENDIF
+#ifdef SEAICE_GREASE
+C     grease ice tracer:
+c     (Smedrud and Martin, 2014, Ann. Glac.)
+       IF (SItrName(iTracer).EQ.'grease') THEN
+         SItrMate(iTracer)          ='HEFF'
+         SItrFromOcean0(iTracer)    =ZERO
+         SItrFromFlood0(iTracer)    =ZERO
+         SItrExpand0(iTracer)       =ZERO
+         SItrFromOceanFrac(iTracer) =ZERO
+         SItrFromFloodFrac(iTracer) =ZERO
+       ENDIF
+#endif /* SEAICE_GREASE */
       ENDDO
-#endif
+#endif /* ALLOW_SITRACER */
 
 #ifdef SEAICE_ITD
 C     use Equ. 22 of Lipscomb et al. (2001, JGR) to generate ice
