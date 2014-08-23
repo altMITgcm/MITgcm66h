@@ -79,7 +79,11 @@ c global calculations   c
 ccccccccccccccccccccccccc
 #ifdef ALLOW_OLD_VIRTUALFLUX
 #ifdef ALLOW_DIC
-c     IF ( useDIC ) THEN
+# ifdef ALLOW_AUTODIFF
+      IF ( .NOT.useDIC ) STOP 'ABNORMAL END: S/R GCHEM_FORCING_SEP'
+# else /* ALLOW_AUTODIFF */
+      IF ( useDIC ) THEN
+# endif /* ALLOW_AUTODIFF */
 c find global surface averages
        gsm_s = 0. _d 0
        gsm_dic = 0. _d 0
@@ -90,7 +94,9 @@ c find global surface averages
        print*,'mean surface dic', gsm_dic,gsm_s
        CALL GCHEM_SURFMEAN(
      &             pTracer(1-OLx,1-OLy,1,1,1,2), gsm_alk, myThid )
-c     ENDIF
+# ifndef ALLOW_AUTODIFF
+      ENDIF
+# endif /* ALLOW_AUTODIFF */
 #endif /* ALLOW_DIC */
 #ifdef ALLOW_DARWIN
 c     IF ( useDARWIN ) THEN
@@ -136,7 +142,11 @@ c
 ccccccccccccccccccccccccccc DIC cccccccccccccccccccccccccccccccc
 
 #ifdef ALLOW_DIC
-c       IF ( useDIC ) THEN
+# ifdef ALLOW_AUTODIFF
+        IF ( .NOT.useDIC ) STOP 'ABNORMAL END: S/R GCHEM_FORCING_SEP'
+# else /* ALLOW_AUTODIFF */
+        IF ( useDIC ) THEN
+# endif /* ALLOW_AUTODIFF */
 #ifdef ALLOW_FE
           CALL DIC_BIOTIC_FORCING( pTracer(1-OLx,1-OLy,1,bi,bj,1),
      &                          pTracer(1-OLx,1-OLy,1,bi,bj,2),
@@ -164,7 +174,9 @@ c       IF ( useDIC ) THEN
      &                          myIter,myTime,myThid)
 #endif
 #endif
-c       ENDIF
+# ifndef ALLOW_AUTODIFF
+        ENDIF
+# endif /* ALLOW_AUTODIFF */
 #endif /* ALLOW_DIC */
 cccccccccccccccccccccccccc END DIC cccccccccccccccccccccccccccccccccc
 
