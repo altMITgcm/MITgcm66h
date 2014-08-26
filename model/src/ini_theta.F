@@ -57,8 +57,8 @@ C--   Initialise temperature field to the vertical reference profile
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
         DO k=1,Nr
-         DO j=1-Oly,sNy+Oly
-          DO i=1-Olx,sNx+Olx
+         DO j=1-OLy,sNy+OLy
+          DO i=1-OLx,sNx+OLx
            theta(i,j,k,bi,bj) = tRef(k)
           ENDDO
          ENDDO
@@ -90,8 +90,8 @@ C--   Apply mask and test consistency
        DO bi = myBxLo(myThid), myBxHi(myThid)
         DO k=1,Nr
          IF ( maskIniTemp ) THEN
-          DO j=1-Oly,sNy+Oly
-           DO i=1-Olx,sNx+Olx
+          DO j=1-OLy,sNy+OLy
+           DO i=1-OLx,sNx+OLx
             IF (maskC(i,j,k,bi,bj).EQ.0.) theta(i,j,k,bi,bj) = 0.
            ENDDO
           ENDDO
@@ -117,7 +117,7 @@ C--   Apply mask and test consistency
         CALL PRINT_ERROR( msgBuf , myThid)
         WRITE(msgBuf,'(A,A)')
      &  ' If this is intentional, you need to',
-     &  ' set checkIniTemp=.false. in "data", namelist PARM05'
+     &  ' set checkIniTemp=.FALSE. in "data", namelist PARM05'
         CALL PRINT_ERROR( msgBuf , myThid)
         STOP 'ABNORMAL END: S/R INI_THETA'
        ELSE
@@ -130,13 +130,13 @@ C--   Apply mask and test consistency
       ENDIF
 
 C--   Check that there are no values of temperature below freezing point.
-      Tfreezing=-1.9 _d 0
-      IF ( allowFreezing ) THEN
+      IF ( checkIniTemp .AND. allowFreezing ) THEN
+       Tfreezing=-1.9 _d 0
        DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
          DO k=1,Nr
-          DO j=1-Oly,sNy+Oly
-           DO i=1-Olx,sNx+Olx
+          DO j=1-OLy,sNy+OLy
+           DO i=1-OLx,sNx+OLx
             IF (theta(i,j,k,bi,bj) .LT. Tfreezing) THEN
                theta(i,j,k,bi,bj) = Tfreezing
             ENDIF
@@ -145,6 +145,8 @@ C--   Check that there are no values of temperature below freezing point.
          ENDDO
         ENDDO
        ENDDO
+c     ELSEIF ( allowFreezing ) THEN
+c      CALL FREEZE_SURFACE( startTime, nIter0, myThid )
       ENDIF
 
       IF ( debugLevel.GE.debLevC ) THEN
