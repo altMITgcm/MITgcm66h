@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src:
+  - when allowFreezing=T, only reset below freezing initial Temp to Tfreezing
+    (at any k) if checkIniTemp is not set to FALSE (default checkIniTemp=T).
 o pkg/diagnostics (Stats-Diags):
   - re-write S/R DIAGSTATS_CALC (more similar to TARGET_NEC_SX part) to:
     a) refine region where stats are computed, excluding where arrhFac=0 ;
