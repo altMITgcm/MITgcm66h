@@ -56,7 +56,7 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 
       kLev=1
 
-      CALL DIC_ATMOS(0, startTime, nIter0, myThid )
+      CALL DIC_INI_ATMOS( startTime, nIter0, myThid )
 
 ccccccccccccccccccccccccccccccccccccccccc
       IF ( periodicExternalForcing ) THEN
