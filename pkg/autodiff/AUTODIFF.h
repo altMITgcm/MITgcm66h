@@ -35,7 +35,7 @@ c ad dump record number (used only if dumpAdByRec is true)
       PARAMETER (NEXF1  = 21)
       PARAMETER (NEXF2  = 20)
       PARAMETER (NCTRL1 = 20)
-      PARAMETER (NOB = 18)
+      PARAMETER (NOB = 20)
       PARAMETER (NSI = 19)
       _RL StoreDynVars3D
      &    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy,NDV3D)
