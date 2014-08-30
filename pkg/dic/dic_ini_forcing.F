@@ -21,7 +21,6 @@ C !USES: ===============================================================
 #include "GRID.h"
 #include "DIC_VARS.h"
 #include "DIC_LOAD.h"
-#include "DIC_ATMOS.h"
 
 C !INPUT PARAMETERS: ===================================================
 C  myThid               :: thread number
@@ -72,8 +71,8 @@ C First call requires that we initialize everything to zero for safety
 c set reasonable values to those that need at least something
        DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
-         DO j=1-Oly,sNy+Oly
-          DO i=1-Olx,sNx+Olx
+         DO j=1-OLy,sNy+OLy
+          DO i=1-OLx,sNx+OLx
              WIND(i,j,bi,bj)   = 5. _d 0*maskC(i,j,1,bi,bj)
              AtmosP(i,j,bi,bj) = 1. _d 0*maskC(i,j,1,bi,bj)
              SILICA(i,j,bi,bj) = 7.6838 _d -3*maskC(i,j,1,bi,bj)
@@ -89,8 +88,6 @@ c set reasonable values to those that need at least something
          ENDDO
         ENDDO
        ENDDO
-
-       total_atmos_carbon = 0. _d 0
 
 #endif /* ALLOW_DIC */
       RETURN
