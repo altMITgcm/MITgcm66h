@@ -4,6 +4,13 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/dic:
+  - multiply tracer tendencies by maskInC (if ussing OBCS) before updating
+    gchem tracers: this allows to skip the 2nd call to OBCS_APPLY_PTRACER
+    in gchem_forcing_sep.F
+o pkg/autodiff & obcs:
+  - add storage of current OB values for U & V (was already done for T & S).
+
 checkpoint65c (2014/08/30)
 o pkg/dic:
   - take out of dic_atmos.F the initialisation part (corresponding to istate=0)
