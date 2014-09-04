@@ -21,6 +21,20 @@ C     | o originally, part of S/R thermodynamics & forward_step
 C     *==========================================================*
 C     \ev
 
+C     !CALLING SEQUENCE:
+C     DO_ATMOSPHERIC_PHYS
+C       |
+C       |-- UPDATE_OCEAN_EXPORTS
+C       |-- UPDATE_EARTH_EXPORTS
+C       |-- UPDATE_CHEMISTRY_EXPORTS
+C       |-- FIZHI_WRAPPER
+C       |-- STEP_FIZHI_FG
+C       |-- FIZHI_UPDATE_TIME
+C       |
+C       |-- ATM_PHYS_DRIVER
+C       |
+C       |-- AIM_DO_PHYSICS
+
 C     !USES:
       IMPLICIT NONE
 C     == Global variables ===

@@ -21,6 +21,49 @@ C     This routine (S/R PACKAGES_WRITE_PICKUP) calls per-package
 C     write-pickup (or checkpoint) routines.  It writes both
 C     "rolling-pickup" files (ckptA,ckptB) and permanent pickup.
 
+C     !CALLING SEQUENCE:
+C     PACKAGES_WRITE_PICKUP
+C       |
+C       |-- GAD_WRITE_PICKUP
+C       |
+C       |-- CD_CODE_WRITE_PICKUP
+C       |
+C       |-- OBCS_WRITE_PICKUP
+C       |
+C       |-- GGL90_WRITE_PICKUP
+C       |
+C       |-- BBL_WRITE_PICKUP
+C       |
+C       |-- CHEAPAML_WRITE_PICKUP
+C       |
+C       |-- FLT_WRITE_PICKUP
+C       |
+C       |-- PTRACERS_WRITE_PICKUP
+C       |
+C       |-- GCHEM_WRITE_PICKUP
+C       |
+C       |-- SEAICE_WRITE_PICKUP
+C       |
+C       |-- STREAMICE_WRITE_PICKUP
+C       |
+C       |-- THSICE_WRITE_PICKUP
+C       |
+C       |-- LAND_WRITE_PICKUP
+C       |
+C       |-- ATM_PHYS_WRITE_PICKUP
+C       |
+C       |-- FIZHI_WRITE_PICKUP
+C       |-- FIZHI_WRITE_VEGTILES
+C       |-- FIZHI_WRITE_DATETIME
+C       |
+C       |-- DIAGNOSTICS_WRITE_PICKUP
+C       |
+C       |-- GMREDI_WRITE_PICKUP
+C       |
+C       |-- CPL_WRITE_PICKUP
+C       |
+C       |-- MYPACKAGE_WRITE_PICKUP
+
 C     !USES:
       IMPLICIT NONE
 #include "SIZE.h"
@@ -177,8 +220,10 @@ C     Write pickup file for diagnostics package
 #endif
 
 #ifdef ALLOW_GMREDI
-      CALL GMREDI_WRITE_PICKUP( permPickup,
-     I                          suffix, myTime, myIter, myThid )
+      IF ( useGMRedi ) THEN
+        CALL GMREDI_WRITE_PICKUP( permPickup,
+     I                            suffix, myTime, myIter, myThid )
+      ENDIF
 #endif
 
 #ifdef  COMPONENT_MODULE
