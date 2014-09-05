@@ -97,6 +97,7 @@ C ###########################################################
      I                               A_vv,       ! section of matrix that multiplies v and projects on v
      I                               tolerance, 
      O                               iters,
+     I                               maxiter,
      I                               myThid )
       IMPLICIT NONE
 
@@ -107,6 +108,7 @@ C ###########################################################
 #include "STREAMICE_CG.h"
       INTEGER myThid
       INTEGER iters
+      INTEGER maxiter
       _RL tolerance
       _RL cg_Uin (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL cg_Vin (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
