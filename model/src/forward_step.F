@@ -140,7 +140,7 @@ C       |-- DO_ATMOSPHERIC_PHYS
 C       |
 C       |-- DO_OCEANIC_PHYS
 C       |
-C       |-- STREAMICE_SOLO_TIMESTEP
+C       |-- STREAMICE_TIMESTEP
 C       |
 C       |-- GCHEM_CALC_TENDENCY
 C       |
@@ -601,7 +601,7 @@ CADJ STORE hFacC = comlev1, key = ikey_dynamics, kind = isbyte
        CALL TIMER_STOP ('DO_OCEANIC_PHYS     [FORWARD_STEP]',myThid)
 
 #ifdef ALLOW_STREAMICE
-       CALL STREAMICE_SOLO_TIMESTEP ( myThid, myIter,
+       CALL STREAMICE_TIMESTEP ( myThid, myIter,
      &   iLoop, myTime )
 #endif
 
