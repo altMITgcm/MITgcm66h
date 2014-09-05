@@ -65,12 +65,9 @@ C for carbon budget ouput
       _RL total_ocean_carbon_old
       _RL total_atmos_carbon_old
       _RL total_carbon_old, carbon_diff
-      _RL year_diff_ocean, year_diff_atmos, year_total
-      _RL start_diff_ocean, start_diff_atmos, start_total
 C variables for reading CO2 input files
       _RL aWght, bWght
       _RL atm_pCO2
-      LOGICAL timeCO2budget
 CEOP
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
