@@ -49,6 +49,9 @@ CEOP
        DO bi = myBxLo(myThid), myBxHi(myThid)
         DO j=1-Oly,sNy+Oly
          DO i=1-Olx,sNx+Olx
+         if (STREAMICE_hmask(i,j,bi,bj).eq.1.0 .or.
+     &        STREAMICE_hmask(i,j,bi,bj).eq.2.0) THEN
+
           
           if (STREAMICE_hmask(i,j,bi,bj).eq.1.0 .or.
      &        STREAMICE_hmask(i,j,bi,bj).eq.2.0) THEN
@@ -78,7 +81,7 @@ CEOP
      &       streamice_smooth_gl_width)
 
           ENDIF
-
+         ENDIF
          ENDDO
         ENDDO
        ENDDO
