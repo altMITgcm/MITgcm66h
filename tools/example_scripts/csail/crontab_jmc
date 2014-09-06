@@ -5,24 +5,23 @@
 #  current output of "crontab -l":
 MAILTO=jmc@ocean.mit.edu
 
-05 00 * * *  /u/u2/jmc/testing/csail/test_baudelaire
-
-------------------------------------
-#-from: jmc@dickens.csail.mit.edu
-#  current output of "crontab -l":
-MAILTO=jmc@ocean.mit.edu
-
-15 00 * * *  /u/u2/jmc/testing/csail/test_dickens
+05 00 * * * /u/u2/jmc/testing/csail/test_baudelaire
+15 00 * * * /u/u2/jmc/testing/csail/test_baudelaire_2
 
 ------------------------------------
 # and the update of ~jmc/testing/csail/ dir is part of the script
-#  mitgcm.org/scripts/daily_update run daily from cron on forge.csail.mit.edu:
+#  mitgcm.org/scripts/daily_update run daily from cron also on baudelaire:
 30 23 * * * /u/u2/jmc/testing/scripts/daily_update
 
 ------------------------------------
 #-----------------
 # older cron-jobs:
 #-----------------
+#-from: jmc@dickens.csail.mit.edu
+#  current output of "crontab -l":
+#MAILTO=jmc@ocean.mit.edu
+#15 00 * * *  /u/u2/jmc/testing/csail/test_dickens
+#------------------
 #-from: jmc@faulks.csail.mit.edu (down since Jan 01, 2012)
 #  current output of "crontab -l":
 #MAILTO=jmc@ocean.mit.edu
