@@ -65,6 +65,7 @@ C     !INPUT/OUTPUT ARGUMENTS
         ENDDO
        ENDDO
 
+       CALL GLOBAL_MAX_R8 (err_max, myThid)
 
 
 
