@@ -13,6 +13,7 @@ sub_list_jobs()
    NB_SUB_JOBS=0
    for i in $JOB_LIST
    do
+   ( cd output ; test -e tst_${i}.stdout && mv -f tst_${i}.stdout tst_${i}.stdout.old )
      case $i in
        'mth') sfx='ifc_'${i}  ;;
        'mp2') sfx='ifc_'${i}  ;;
