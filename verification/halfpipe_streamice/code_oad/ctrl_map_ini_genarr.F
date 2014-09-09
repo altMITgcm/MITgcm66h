@@ -4,7 +4,6 @@ C $Name$
 #include "CTRL_OPTIONS.h"
 #include "STREAMICE_OPTIONS.h"
 
-
 CBOP
 C     !ROUTINE: CTRL_MAP_INI_GENARR
 C     !INTERFACE:
@@ -100,7 +99,7 @@ C--   generic - user-defined control vars
                   H_streamice(i,j,bi,bj) =
      &                  H_streamice(i,j,bi,bj)
      &                  + tmpfld2d(i,j,bi,bj)
-#ifdef ALLOW_AUTODIFF_OPENAD
+#ifdef ALLOW_OPENAD
      &                  + xx_genarr2d(i,j,bi,bj,iarr)
 #endif
 
@@ -108,7 +107,7 @@ C--   generic - user-defined control vars
                   B_glen(i,j,bi,bj) =
      &                  B_glen(i,j,bi,bj)
      &                  + tmpfld2d(i,j,bi,bj)
-#ifdef ALLOW_AUTODIFF_OPENAD
+#ifdef ALLOW_OPENAD
      &                  + xx_genarr2d(i,j,bi,bj,iarr)
 #endif
 
@@ -119,7 +118,6 @@ C--   generic - user-defined control vars
 
                 endif
 
-
             enddo
           enddo
         ENDDO
@@ -127,11 +125,9 @@ C--   generic - user-defined control vars
 C--   end iarr loop
       ENDDO
 
-
        _EXCH_XY_RL( H_streamice, myThid )
        _EXCH_XY_RL( R_low_si, myThid )
        _EXCH_XY_RL( C_basal_friction, myThid )
-
 
 #endif /* ALLOW_GENARR2D_CONTROL */
 
