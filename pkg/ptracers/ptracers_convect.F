@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "PTRACERS_OPTIONS.h"
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 
 CBOP
 C !ROUTINE: PTRACERS_CONVECT
