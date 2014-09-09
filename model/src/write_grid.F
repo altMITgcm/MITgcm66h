@@ -4,6 +4,9 @@ C $Name$
 #include "PACKAGES_CONFIG.h"
 #include "CPP_OPTIONS.h"
 #include "AD_CONFIG.h"
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 CBOP
