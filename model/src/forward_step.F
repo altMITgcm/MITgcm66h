@@ -438,7 +438,8 @@ CADJ STORE hFacC, hFacS, hFacW =
 CADJ &     comlev1, key = ikey_dynamics, kind = isbyte
 CADJ STORE recip_hFacC, recip_hFacS, recip_hFacW  =
 CADJ &     comlev1, key = ikey_dynamics, kind = isbyte
-#else
+#endif
+#ifndef ALLOW_AUTODIFF
       ENDIF
 #endif
 #endif /* NONLIN_FRSURF */
