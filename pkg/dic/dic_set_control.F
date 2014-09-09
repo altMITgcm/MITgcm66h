@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "DIC_OPTIONS.h"
+#ifdef ALLOW_CTRL
+# include "CTRL_OPTIONS.h"
+#endif
 
 cphc$taf COMMON DIC_XX        adname = addic_xx
 cphc$taf COMMON DIC_COST_CTRL adname = ADDIC_COST_CTRL
