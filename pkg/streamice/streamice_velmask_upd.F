@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "STREAMICE_OPTIONS.h"
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
@@ -191,8 +194,8 @@ C     === Global variables ===
        ENDDO
       ENDDO
 
-!$TAF STORE streamice_umask = comlev1, key=ikey_dynamics 
-!$TAF STORE streamice_vmask = comlev1, key=ikey_dynamics 
+!$TAF STORE streamice_umask = comlev1, key=ikey_dynamics
+!$TAF STORE streamice_vmask = comlev1, key=ikey_dynamics
 
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
@@ -208,8 +211,6 @@ C     === Global variables ===
         ENDDO
        ENDDO
       ENDDO
-
-      
 
       _EXCH_XY_RS( STREAMICE_ufacemask, myThid )
       _EXCH_XY_RS( STREAMICE_vfacemask, myThid )
@@ -227,7 +228,6 @@ C     === Global variables ===
       myThidCopy = myThid
       call streamice_petsc_numerate (myThidCopy)
 #endif
-
 
 #endif
       RETURN

@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "STREAMICE_OPTIONS.h"
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 #ifdef ALLOW_COST
 # include "COST_OPTIONS.h"
 #endif
