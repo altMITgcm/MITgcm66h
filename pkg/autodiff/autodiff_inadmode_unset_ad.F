@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "AUTODIFF_OPTIONS.h"
+#ifdef ALLOW_CTRL
+# include "CTRL_OPTIONS.h"
+#endif
 
       SUBROUTINE ADAUTODIFF_INADMODE_UNSET( myThid )
 C     *==========================================================*

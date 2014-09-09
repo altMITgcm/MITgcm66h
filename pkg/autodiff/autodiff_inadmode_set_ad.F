@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "AUTODIFF_OPTIONS.h"
+#ifdef ALLOW_CTRL
+# include "CTRL_OPTIONS.h"
+#endif
 
       SUBROUTINE ADAUTODIFF_INADMODE_SET( myThid )
 C     *==========================================================*
@@ -79,7 +82,7 @@ C     myThid :: my Thread Id number
 
 #ifdef ALLOW_CTRL
        WRITE(msgBuf,'(A,L5)')
-     &      'S/R ADAUTODIFF_INADMODE_SET: ctrlSmoothCorrel2D    =', 
+     &      'S/R ADAUTODIFF_INADMODE_SET: ctrlSmoothCorrel2D    =',
      &       ctrlSmoothCorrel2D
        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                     SQUEEZE_RIGHT, myThid )
