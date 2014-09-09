@@ -20,7 +20,7 @@ C o Include/exclude code in order to be able to automatically
 C   differentiate the MITgcmUV by using the Tangent Linear and
 C   Adjoint Model Compiler (TAMC).
 
-#define ALLOW_AUTODIFF_TAMC
+#undef ALLOW_AUTODIFF_TAMC
 C       >>> Checkpointing as handled by TAMC
 #define ALLOW_TAMC_CHECKPOINTING
 
@@ -29,9 +29,6 @@ C       >>> Extract adjoint state
 
 C o use divided adjoint to split adjoint computations
 #undef ALLOW_DIVIDED_ADJOINT
-
-C o Enable some temporary constructs for OpenAD
-#define ALLOW_AUTODIFF_OPENAD
 
 C ********************************************************************
 C ***                     Calendar Package                         ***
