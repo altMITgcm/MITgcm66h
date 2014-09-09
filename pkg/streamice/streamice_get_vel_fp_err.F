@@ -25,23 +25,18 @@ C     === Global variables ===
 !#include "finclude/petsc.h"
 !#endif
 
-#ifdef ALLOW_AUTODIFF_TAMC
-# include "tamc.h"
-#endif
-
 C     !INPUT/OUTPUT ARGUMENTS
       _RL err_max
       INTEGER myThid
-      
+
 #ifdef ALLOW_STREAMICE
 
       INTEGER conv_flag, i, j, bi, bj
-      
+
       INTEGER ikey_nl
-      _RL err_tempu, err_tempv 
+      _RL err_tempu, err_tempv
       _RL max_vel, tempu, tempv, err_lastchange, cgtol
       CHARACTER*(MAX_LEN_MBUF) msgBuf
-
 
        err_max = 0. _d 0
 
@@ -67,11 +62,6 @@ C     !INPUT/OUTPUT ARGUMENTS
 
        CALL GLOBAL_MAX_R8 (err_max, myThid)
 
-
-
-
-   
 #endif
       RETURN
       END
-
