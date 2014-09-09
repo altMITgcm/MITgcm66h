@@ -27,8 +27,6 @@ C       >>> Checkpointing as handled by TAMC
 C       >>> Extract adjoint state
 #undef ALLOW_AUTODIFF_MONITOR
 
-#define ALLOW_AUTODIFF_OPENAD
-
 C ********************************************************************
 C ***                     Calendar Package                         ***
 C ********************************************************************
