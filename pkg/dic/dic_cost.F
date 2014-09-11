@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "DIC_OPTIONS.h"
+#ifdef ALLOW_COST
+# include "COST_OPTIONS.h"
+#endif
 
 CBOP
 C     !ROUTINE: DIC_COST
