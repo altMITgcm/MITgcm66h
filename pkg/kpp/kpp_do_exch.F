@@ -33,7 +33,7 @@ C     myThid    :: My Thread Id number
 C     !LOCAL VARIABLES:
 CEOP
 
-#ifndef ALLOW_AUTODIFF_TAMC
+#ifndef ALLOW_AUTODIFF
       CALL EXCH_3D_RL( KPPviscAz, Nr, myThid )
 #else
       _EXCH_XYZ_RL( KPPviscAz, myThid )
