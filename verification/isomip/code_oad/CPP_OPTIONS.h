@@ -22,6 +22,9 @@ C o Shortwave heating as extra term in external_forcing.F
 C Note: this should be a run-time option
 #undef SHORTWAVE_HEATING
 
+C o Include/exclude Geothermal Heat Flux at the bottom of the ocean
+#undef ALLOW_GEOTHERMAL_FLUX
+
 C o Include/exclude phi_hyd calculation code
 #define INCLUDE_PHIHYD_CALCULATION_CODE
 
@@ -80,6 +83,9 @@ C   this implies that surface thickness (hFactors) vary with time
 #define DISABLE_RSTAR_CODE
 #define DISABLE_SIGMA_CODE
 
+C o Use Non Self-Adjoint (NSA) conjugate-gradient solver
+#undef ALLOW_CG2D_NSA
+
 C o Include/exclude code for single reduction Conjugate-Gradient solver
 #undef ALLOW_SRCG
 
@@ -126,8 +132,8 @@ C   each of the above pkg get its own options from its specific option file.
 C   Although this method, inherited from ECCO setup, has been traditionally
 C   used for all adjoint built, work is in progress to allow to use the
 C   standard method also for adjoint built.
-#ifdef PACKAGES_CONFIG_H
-# include "ECCO_CPPOPTIONS.h"
-#endif
+c#ifdef PACKAGES_CONFIG_H
+c# include "ECCO_CPPOPTIONS.h"
+c#endif
 
 #endif /* CPP_OPTIONS_H */
