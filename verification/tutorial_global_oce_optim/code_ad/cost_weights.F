@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "COST_OPTIONS.h"
+#ifdef ALLOW_CTRL
+# include "CTRL_OPTIONS.h"
+#endif
 
       SUBROUTINE COST_WEIGHTS( myThid )
 
@@ -107,7 +110,7 @@ c     print*,'Weights for temperature: wti', (wti(k),k=1,nr)
           ENDDO
         ENDDO
       ENDDO
-#endif
+#endif /* ALLOW_COST_TEMP */
 
 C--   Then the hflux weights :
 
@@ -133,6 +136,6 @@ c            print*,'Uncertainties for Heat Flux',i,j,whfluxm(i,j,bi,bj)
 #ifdef ALLOW_NONDIMENSIONAL_CONTROL_IO
       CALL ACTIVE_WRITE_XY('whfluxm',whfluxm,1,0,myThid,dummy)
 #endif
-#endif
+#endif /* ALLOW_COST_HFLUXM or ALLOW_HFLUXM_CONTROL */
       RETURN
       END
