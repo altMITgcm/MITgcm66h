@@ -29,6 +29,9 @@ c     == global variables ==
 #ifdef ALLOW_COST
 # include "ecco_cost.h"
 # include "optim.h"
+# include "ctrl.h"
+# include "CTRL_SIZE.h"
+# include "CTRL_GENARR.h"
 # include "ctrl_dummy.h"
 #endif
 
