@@ -22,6 +22,9 @@ C o Shortwave heating as extra term in external_forcing.F
 C Note: this should be a run-time option
 #define SHORTWAVE_HEATING
 
+C o Include/exclude Geothermal Heat Flux at the bottom of the ocean
+#undef ALLOW_GEOTHERMAL_FLUX
+
 C o Include/exclude phi_hyd calculation code
 #define INCLUDE_PHIHYD_CALCULATION_CODE
 
@@ -45,6 +48,9 @@ C o Include/exclude AdamsBashforth-3rd-Order code
 
 C o Include/exclude nonHydrostatic code
 #undef ALLOW_NONHYDROSTATIC
+
+C o Allow to account for heating due to friction (and momentum dissipation)
+#undef ALLOW_FRICTION_HEATING
 
 C o Allow mass source or sink of Fluid in the interior
 C   (3-D generalisation of oceanic real-fresh water flux)
@@ -74,7 +80,7 @@ C   so that d/dt(eta) is exactly equal to - Div.Transport
 C o Allow the use of Non-Linear Free-Surface formulation
 C   this implies that surface thickness (hFactors) vary with time
 #define NONLIN_FRSURF
-cph#define DISABLE_RSTAR_CODE
+#undef  DISABLE_RSTAR_CODE
 #define DISABLE_SIGMA_CODE
 
 C o Use Non Self-Adjoint (NSA) conjugate-gradient solver
@@ -126,8 +132,8 @@ C   each of the above pkg get its own options from its specific option file.
 C   Although this method, inherited from ECCO setup, has been traditionally
 C   used for all adjoint built, work is in progress to allow to use the
 C   standard method also for adjoint built.
-#ifdef PACKAGES_CONFIG_H
-# include "ECCO_CPPOPTIONS.h"
-#endif
+c#ifdef PACKAGES_CONFIG_H
+c# include "ECCO_CPPOPTIONS.h"
+c#endif
 
 #endif /* CPP_OPTIONS_H */
