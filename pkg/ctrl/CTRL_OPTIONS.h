@@ -61,6 +61,7 @@ C       >>> Atmospheric state.
 C       >>> Other Control.
 #undef ALLOW_DIFFKR_CONTROL
 #undef ALLOW_KAPGM_CONTROL
+#undef ALLOW_KAPREDI_CONTROL
 #undef ALLOW_BOTTOMDRAG_CONTROL
 
 C       >>> Generic Control.
