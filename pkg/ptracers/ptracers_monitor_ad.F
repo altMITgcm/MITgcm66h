@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "PTRACERS_OPTIONS.h"
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 
 CBOP
 C !ROUTINE: ADPTRACERS_MONITOR
@@ -23,12 +26,10 @@ C !USES: ===============================================================
 #include "PTRACERS_PARAMS.h"
 #include "PTRACERS_FIELDS.h"
 #ifdef ALLOW_MONITOR
-#include "MONITOR.h"
+# include "MONITOR.h"
 #endif
-#ifdef ALLOW_AUTODIFF
-# ifdef ALLOW_AUTODIFF_MONITOR
-#  include "ptracers_adcommon.h"
-# endif
+#ifdef ALLOW_AUTODIFF_MONITOR
+# include "ptracers_adcommon.h"
 #endif
 
 C !INPUT PARAMETERS: ===================================================
