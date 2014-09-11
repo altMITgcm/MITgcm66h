@@ -49,13 +49,13 @@ c#undef AUTODIFF_4_LEVEL_CHECKPOINT
 C o use divided adjoint to split adjoint computations
 #undef ALLOW_DIVIDED_ADJOINT
 
-C o Enable some temporary constructs for OpenAD
-#undef ALLOW_AUTODIFF_OPENAD
-
 #undef ALLOW_AUTODIFF_WHTAPEIO
 #undef ALLOW_PACKUNPACK_METHOD2
 #undef AUTODIFF_USE_OLDSTORE_3D
 #undef AUTODIFF_USE_OLDSTORE_2D
+
+C o write separate tape files for each ptracer
+#undef AUTODIFF_PTRACERS_SPLIT_FILES
 
 C   ==================================================================
 #endif /* ndef ECCO_CPPOPTIONS_H */
