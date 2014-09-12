@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/generic_advdiff:
+  - fix bug causing negatives in GAD_SMOLARKIEWICZ_HACK, introduced 8/8/2014.
 o pkg/exf : 
   - exf_getffields.F : add xxg_atemp, xxg_aqh, xxg_swdown, xxg_lwdown, xxg_precip capability
   - exf_wind.F : no need for ALLOW_WSPEED_CONTROL cpp switch
