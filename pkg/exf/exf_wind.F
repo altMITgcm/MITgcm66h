@@ -32,8 +32,7 @@ C     == global variables ==
 #include "tamc_keys.h"
 #endif
 #if (defined (ALLOW_CTRL) && \
-     defined (ALLOW_GENTIM2D_CONTROL) && \
-     defined (ALLOW_WSPEED_CONTROL))
+     defined (ALLOW_GENTIM2D_CONTROL))
 # include "ctrl.h"
 # include "optim.h"
 # include "CTRL_SIZE.h"
@@ -59,8 +58,7 @@ C     == local variables ==
       _RL     oneThirdRL
       PARAMETER ( oneThirdRL = 1.d0 / 3.d0 )
 #if (defined (ALLOW_CTRL) && \
-     defined (ALLOW_GENTIM2D_CONTROL) && \
-     defined (ALLOW_WSPEED_CONTROL))
+     defined (ALLOW_GENTIM2D_CONTROL))
       INTEGER iarr
 #endif
 C     == end of interface ==
@@ -214,8 +212,7 @@ C--   infer wind field from wind-speed & wind-stress direction
         ENDIF
 
 #if (defined (ALLOW_CTRL) && \
-     defined (ALLOW_GENTIM2D_CONTROL) && \
-     defined (ALLOW_WSPEED_CONTROL))
+     defined (ALLOW_GENTIM2D_CONTROL))
         DO j = 1,sNy
          DO i = 1,sNx
            do iarr = 1, maxCtrlTim2D
