@@ -120,6 +120,11 @@ C--   Initialise forcing arrays that may receive multiple contributions
       ENDIF
 #endif /* ALLOW_FRICTION_HEATING */
 
+C--   Map generic time varying controls to xx_gentim2d
+#ifdef ALLOW_CTRL
+      CALL CTRL_MAP_GENTIM2D( myTime, myIter, myThid )
+#endif
+
 #ifdef ALLOW_BULK_FORCE
       IF ( useBulkForce ) THEN
 C--   Bulk-Formulae pkg: load all forcing fields at current time
@@ -143,11 +148,6 @@ C--   Call external forcing package
         CALL TIMER_STOP ('EXF_GETFORCING     [LOAD_FLDS_DRIVER]',myThid)
       ENDIF
 #endif /* ALLOW_EXF */
-
-C--   Add generic controls (if specified by user)
-#ifdef ALLOW_CTRL
-      CALL CTRL_MAP_GENTIM2D( myTime, myIter, myThid )
-#endif
 
 C--   Call external CheapAML forcing package
 #ifdef ALLOW_CHEAPAML
