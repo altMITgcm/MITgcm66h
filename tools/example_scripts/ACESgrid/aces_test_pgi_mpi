@@ -128,8 +128,10 @@ fi
 
 if [ $dblRun -ge 1 ] ; then
 
+ test -f tr_cmpnum && cp -p tr_cmpnum tr_cmpnum.sav
  echo ./testreport $options -of $OPTFILE -command \"$EXE\" -odir ${dNam}-$sfx
  ./testreport $options -of $OPTFILE -command "$EXE" -odir ${dNam}-$sfx
+ test -f tr_cmpnum.sav && mv -f tr_cmpnum.sav tr_cmpnum
 
  iRun=0 ; nFail=0 ; pFail=$nFail
  outpSum=`ls -t tr_${dNam}-${sfx}_????????_?/summary.txt | head -1`
