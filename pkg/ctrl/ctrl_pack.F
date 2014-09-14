@@ -749,7 +749,7 @@ cc          write(weighttype(1:80),'(a)') "wunit"
 
 #ifdef ALLOW_GENTIM2D_CONTROL
        do iarr = 1, maxCtrlTim2D
-        if (xx_gentim2d_file(iarr).NE.' ') then
+        if (xx_gentim2d_weight(iarr).NE.' ') then
           call ctrl_set_fname( xx_gentim2d_file(iarr),
      O                         fname_local, mythid )
           ivartype    = 300+iarr

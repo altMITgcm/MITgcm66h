@@ -83,7 +83,8 @@ C--   generic - user-defined control vars
         ENDDO
        ENDDO
 C
-       CALL CTRL_GET_GEN (
+       if (xx_gentim2d_weight(iarr).NE.' ') 
+     & CALL CTRL_GET_GEN (
      I      xx_gentim2d_file(iarr)(1:MAX_LEN_FNAM),
      I      xx_gentim2d_startdate(1,iarr),
      I      xx_gentim2d_period(iarr),
