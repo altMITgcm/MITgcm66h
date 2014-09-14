@@ -720,6 +720,7 @@ c          write(cunit) nWetiGlobal(1)
 
 #ifdef ALLOW_GENARR2D_CONTROL
        do iarr = 1, maxCtrlArr2D
+        if (xx_genarr2d_weight(iarr).NE.' ') then
           call ctrl_set_fname( xx_genarr2d_file(iarr),
      O                         fname_local, mythid )
           ivartype    = 100+iarr
@@ -730,11 +731,13 @@ cc          write(weighttype(1:80),'(a)') "wunit"
      &         fname_local(ictrlgrad), "maskCtrlC",
      &         xx_genarr2d_weight(iarr),
      &         lxxadxx, mythid)
+        endif
        enddo
 #endif
 
 #ifdef ALLOW_GENARR3D_CONTROL
        do iarr = 1, maxCtrlArr3D
+        if (xx_genarr3d_weight(iarr).NE.' ') then
           call ctrl_set_fname( xx_genarr3d_file(iarr),
      O                         fname_local, mythid )
           ivartype    = 200+iarr
@@ -744,6 +747,7 @@ cc          write(weighttype(1:80),'(a)') "wunit"
      &         cunit, ivartype, fname_local(ictrlgrad), "maskCtrlC",
      &         xx_genarr3d_weight(iarr),
      &         wunit, lxxadxx, mythid)
+        endif
        enddo
 #endif
 
