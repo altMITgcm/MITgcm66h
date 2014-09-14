@@ -90,12 +90,6 @@ c     == end of interface ==
       itlo = mybxlo(mythid)
       ithi = mybxhi(mythid)
 
-      CALL ECCO_PHYS(mythid)
-#ifdef ALLOW_PSBAR_STERIC
-      RHOsumGlob_0=RHOsumGlob
-      VOLsumGlob_0=VOLsumGlob
-#endif
-
 c--   only do interior, and exchange at the end
       jmin = 1
       jmax = sny
@@ -218,10 +212,6 @@ c--   SSS relaxation coefficient.
      & xx_relaxsss_dummy, boundsVec,
      & lambdaSaltClimRelax, maskc, paramSmooth, mythid )
       _EXCH_XY_RS( lambdaSaltClimRelax, mythid)
-#endif
-
-#ifdef ALLOW_SEAICE
-      call seaice_ctrl_map_ini( mythid )
 #endif
 
 #ifdef ALLOW_BOTTOMDRAG_CONTROL

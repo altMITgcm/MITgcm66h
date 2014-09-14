@@ -361,5 +361,26 @@ c     == end of interface ==
       IF (useOBCS) CALL CTRL_INIT_OBCS_VARIABLES( myThid )
 #endif
 
+C--   Map the control variables onto the model state.
+C-    Needs to be called after few {PKG}_init_varia (e.g., PTRACERS_INIT_VARIA)
+# ifdef ALLOW_ECCO
+#  ifdef ALLOW_DEBUG
+      IF (debugMode) CALL DEBUG_CALL('CTRL_MAP_INI_ECCO',myThid)
+#  endif
+      CALL CTRL_MAP_INI_ECCO( myThid )
+# else
+#  ifdef ALLOW_DEBUG
+      IF (debugMode) CALL DEBUG_CALL('CTRL_MAP_INI',myThid)
+#  endif
+      CALL CTRL_MAP_INI( myThid )
+# endif
+
+#if (defined (ALLOW_GENARR2D_CONTROL) || defined (ALLOW_GENARR3D_CONTROL))
+      CALL CTRL_MAP_INI_GENARR( myThid )
+#endif
+#ifdef ALLOW_SEAICE
+      CALL SEAICE_CTRL_MAP_INI( myThid )
+#endif
+
       RETURN
       END
