@@ -56,6 +56,7 @@ c--   Evaluate the individual cost function contributions.
 #ifdef ALLOW_GENTIM2D_CONTROL
       do iarr = 1, maxCtrlTim2D
 
+      if (xx_gentim2d_weight(iarr).NE.' ') then
       startrec = ncvarrecstart(300+iarr)
       endrec   = ncvarrecsend(300+iarr)
       call cost_forcing_gen (
@@ -67,6 +68,7 @@ c--   Evaluate the individual cost function contributions.
      &     objf_gentim2d(1,1,iarr), objf_gentim2dm(1,1,iarr), 
      &     objf_gentim2dsmoo(1,1,iarr), 0. _d 0, 0. _d 0,
      &     maskC, mythid )
+      endif
 
       enddo
 #endif
