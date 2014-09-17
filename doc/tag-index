@@ -4,6 +4,17 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ecco :
+   - remove cost_genctrl.F (now pkg/ctrl/ctrl_cost_driver.F)
+   - remove cost_forcing_gen.F (now pkg/ctrl/ctrl_cost_gen2d.F)
+   - update cost_forcing_gen calls in cost_forcing.F
+   - update cost_genctrl call in ecco_cost_driver.F
+   - update ecco_ad_diff.list accordingly
+o pkg/ctrl :
+   - add ctrl_cost_driver.F (replaces pkg/ecco/cost_genctrl.F)
+   - add ctrl_cost_gen2d.F (replaces pkg/ecco/cost_forcing_gen.F)
+   - update ctrl_ad_diff.list accordingly
+
 checkpoint65d (2014/09/15)
 o pkg/ctrl/CTRL_GENARR.h, ctrl_readparms.F :
   - add xx_genarr2d_bounds,xx_genarr3d_bounds,
