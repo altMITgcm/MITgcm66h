@@ -363,6 +363,7 @@ c     == end of interface ==
 
 C--   Map the control variables onto the model state.
 C-    Needs to be called after few {PKG}_init_varia (e.g., PTRACERS_INIT_VARIA)
+      IF ( .NOT. ctrlUseGen ) THEN
 # ifdef ALLOW_ECCO
 #  ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_CALL('CTRL_MAP_INI_ECCO',myThid)
@@ -374,10 +375,14 @@ C-    Needs to be called after few {PKG}_init_varia (e.g., PTRACERS_INIT_VARIA)
 #  endif
       CALL CTRL_MAP_INI( myThid )
 # endif
+      ENDIF !IF ( .NOT. ctrlUseGen ) THEN
 
+      IF ( ctrlUseGen ) THEN
 #if (defined (ALLOW_GENARR2D_CONTROL) || defined (ALLOW_GENARR3D_CONTROL))
       CALL CTRL_MAP_INI_GENARR( myThid )
 #endif
+      ENDIF !IF ( .NOT. ctrlUseGen ) THEN
+
 #ifdef ALLOW_SEAICE
       CALL SEAICE_CTRL_MAP_INI( myThid )
 #endif
