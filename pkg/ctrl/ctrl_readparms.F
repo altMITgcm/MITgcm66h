@@ -152,7 +152,8 @@ cHFLUXM_CONTROL
      &  xx_gentim2d_startdate1, xx_gentim2d_startdate2,
      &  xx_gentim2d_startdate, xx_gentim2d_period,
      &  xx_gentim2d_cumsum,xx_gentim2d_glosum,
-     &  genarr2dPrecond, gentim2dPrecond,mult_gentim2d
+     &  genarr2dPrecond, gentim2dPrecond,
+     &  mult_gentim2d,mult_genarr2d,mult_genarr3d
 #endif
 
       _BEGIN_MASTER( myThid )
