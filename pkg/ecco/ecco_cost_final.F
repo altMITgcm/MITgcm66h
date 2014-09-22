@@ -1253,6 +1253,15 @@ c--   Do global summation for each part of the cost function
         endif
        enddo
 #endif
+#ifdef ALLOW_GENARR3D_CONTROL
+       do num_var=1,maxCtrlArr3D
+        if (no_genarr3d(num_var).GT.0) then
+         write(standardmessageunit,'(A,D22.15,i2.0,i2.0)')
+     &     ' --> f_genarr3d =',f_genarr3d(num_var),
+     &      num_var
+        endif
+       enddo
+#endif
 
 c--   Each process has calculated the global part for itself.
 

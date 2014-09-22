@@ -185,17 +185,21 @@ cph      call cost_sss   ( myiter, mytime, mythid )
 #endif
 
 #ifdef ALLOW_THETA0_COST_CONTRIBUTION
+      if (.NOT.ctrlUseGen) then
       write(msgbuf,'(a)') 'ph-cost call cost_theta0'
       call print_message( msgbuf, standardmessageunit,
      &     SQUEEZE_RIGHT , mythid)
       call cost_theta0 ( myiter, mytime, mythid )
+      endif
 #endif
 
 #ifdef ALLOW_SALT0_COST_CONTRIBUTION
+      if (.NOT.ctrlUseGen) then
       write(msgbuf,'(a)') 'ph-cost call cost_salt0'
       call print_message( msgbuf, standardmessageunit,
      &     SQUEEZE_RIGHT , mythid)
       call cost_salt0  ( myiter, mytime, mythid )
+      endif
 #endif
 
 #ifdef ALLOW_THETA_COST_CONTRIBUTION
