@@ -55,8 +55,8 @@ c--   Evaluate the individual cost function contributions.
       endrec   = ncvarrecsend(300+iarr)
       call ctrl_cost_gen2d (
      &     startrec, endrec,
-     &     xx_gentim2d_file(1),xx_gentim2d_dummy(1),
-     &     xx_gentim2d_period(1),
+     &     xx_gentim2d_file(iarr),xx_gentim2d_dummy(iarr),
+     &     xx_gentim2d_period(iarr),
      &     0. _d 0, wgentim2d(1-Olx,1-Oly,1,1,iarr),
      &     num_gentim2d(1,1,iarr), num_gentim2dm(1,1,iarr),
      &     objf_gentim2d(1,1,iarr), objf_gentim2dm(1,1,iarr), 

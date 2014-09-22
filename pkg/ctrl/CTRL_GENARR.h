@@ -36,9 +36,12 @@ C     ==================================================================
       CHARACTER*(MAX_LEN_FNAM) xx_gentim2d_weight(maxCtrlTim2D)
 
       COMMON /CONTROLFILES_ITIM/
+     &     xx_gentim2d_numsmooth,
      &     xx_gentim2d_startdate1,
      &     xx_gentim2d_startdate2,
      &     xx_gentim2d_startdate
+c (xx_gentim2d_numsmooth is not used yet, cause hard coded 1 in ctrl_get_gen)
+      INTEGER xx_gentim2d_numsmooth(maxCtrlTim2D)
       INTEGER xx_gentim2d_startdate1(maxCtrlTim2D)
       INTEGER xx_gentim2d_startdate2(maxCtrlTim2D)
       INTEGER xx_gentim2d_startdate(4,maxCtrlTim2D)
