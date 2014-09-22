@@ -409,7 +409,7 @@ C-- Control variables for atmos. state
      &     xx_precip_file, xx_precipstartdate, xx_precipperiod,
      &     maskc, precip, xx_precip0, xx_precip1, xx_precip_dummy,
      &     xx_precip_remo_intercept, xx_precip_remo_slope,
-     &     precip, myTime, myIter, myThid )
+     &     wprecip, myTime, myIter, myThid )
 #endif
 
 #ifdef ALLOW_SWFLUX_CONTROL
