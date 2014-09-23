@@ -59,6 +59,8 @@ c     == routine arguments ==
 
 c     == global variables ==
 
+#ifdef ALLOW_CTRL
+
 #ifdef ALLOW_ROTATE_UV_CONTROLS
       _RL     tmpUE(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL     tmpVN(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
@@ -204,5 +206,6 @@ c     == end of interface ==
 #endif /* ALLOW_ROTATE_UV_CONTROLS */
       ENDIF
 
+#endif /* ALLOW_CTRL */
 
       end
