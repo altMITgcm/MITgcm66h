@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/obcs:
+  - add additional compile-time options for sponge boundary layers
+    (see pkg/obcs/OBCS_OPTIONS.h for details)
 o pkg/atm_phys:
   - implement simple (obliquity only, assuming circular planet orbit)
     seasonal cycle for incoming insolation ; used when run-time parameter
