@@ -53,6 +53,9 @@ CEOP
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
+C-    for now, only needs pickup if stepping forward SST
+      IF ( .NOT.atmPhys_stepSST ) RETURN
+
        IF ( pickupSuff.EQ.' ' ) THEN
         WRITE(fn,'(A,I10.10)') 'pickup_atmPhys.',myIter
        ELSE
@@ -161,7 +164,7 @@ C--    Check for missing fields:
        ENDIF
 
 C--    Update overlap regions:
-        CALL EXCH_XY_RL( atmPhys_SST, myThid )
+       CALL EXCH_XY_RL( atmPhys_SST, myThid )
 
 #endif /* ALLOW_ATM_PHYS */
 

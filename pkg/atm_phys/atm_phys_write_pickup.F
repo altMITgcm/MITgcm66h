@@ -62,6 +62,9 @@ C     msgBuf      :: Informational/error message buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 CEOP
 
+C-    for now, only needs pickup if stepping forward SST
+      IF ( .NOT.atmPhys_stepSST ) RETURN
+
         lChar = ILNBLNK(suff)
         IF ( lChar.EQ.0 ) THEN
           WRITE(fn,'(2A)') 'pickup_atmPhys'
