@@ -5,7 +5,10 @@ $Name$
     ==============================
 
 o pkg/obcs:
-  - add additional compile-time options for sponge boundary layers
+  - replaced the just-added CPP options with run-time variables
+    (see pkg/obcs/OBCS_PARAMS.h for details)
+o pkg/obcs:
+  - add additional CPP options for sponge boundary layers
     (see pkg/obcs/OBCS_OPTIONS.h for details)
 o pkg/atm_phys:
   - implement simple (obliquity only, assuming circular planet orbit)
