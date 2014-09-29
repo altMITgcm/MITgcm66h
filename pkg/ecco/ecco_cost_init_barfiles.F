@@ -435,7 +435,7 @@ c--   Save gencost_barfile on file.
       do irec = 1,gencost_nrec(k)
 #ifdef ALLOW_ADJOINT_RUN
         call active_write_xy( adfname_gencostbar, tmpfld2d, irec,
-     &       optimcycle, mythid, xx_genbar_dummy(k) )
+     &       optimcycle, mythid, gencost_dummy(k) )
 #endif
       enddo
       endif

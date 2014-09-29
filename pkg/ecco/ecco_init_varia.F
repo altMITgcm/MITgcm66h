@@ -39,6 +39,10 @@ c     == external functions ==
 
 c     == end of interface ==
 
+#ifdef ALLOW_PSBAR_STERIC
+      RHOsumGlob_0=0. _d 0
+      VOLsumGlob_0=0. _d 0
+#endif
 
       CALL ECCO_PHYS( myThid )
 

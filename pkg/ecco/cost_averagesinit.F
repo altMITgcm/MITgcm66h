@@ -76,7 +76,7 @@ c--   Set the loop ranges.
                 gencost_modfld(i,j,bi,bj,k) = 0. _d 0
               enddo
             enddo
-            xx_genbar_dummy(k) = 0. _d 0
+            gencost_dummy(k) = 0. _d 0
           enddo
 #endif
 

@@ -677,7 +677,7 @@ cph currently all assumed to be surface fields, i.e. 2-d
      &     gencost_barfile(k),
      &     gencost_barfld(1-Olx,1-Oly,1,1,k),
      &     gencost_modfld(1-Olx,1-Oly,1,1,k),
-     &     xx_genbar_dummy(k),
+     &     gencost_dummy(k),
      &     first, last,
      &     startofgen(k), endofgen(k), ingen(k),
      &     sum1gen(k), genrec(k), 1, mythid )

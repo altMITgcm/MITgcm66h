@@ -29,6 +29,7 @@ c     ==================================================================
 c     == global variables ==
 
 #include "EEPARAMS.h"
+#include "SIZE.h"
 #include "ecco.h"
 
 #ifdef ALLOW_ECCO_OPTIMIZATION
