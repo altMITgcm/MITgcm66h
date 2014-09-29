@@ -44,7 +44,7 @@ cccCADJ STORE xx_sssbar_mean_dummy  = dummytape, key=1, kind=isbyte
 
 #ifdef ALLOW_GENCOST_CONTRIBUTION
 CADJ STORE gencost_barfld  = tapelev3, key=ilev_3
-CADJ STORE xx_genbar_dummy = dummytape, key=1, kind=isbyte
+CADJ STORE gencost_dummy = dummytape, key=1, kind=isbyte
 #endif /* ALLOW_GENCOST_CONTRIBUTION */
 
 #endif /* ALLOW_ECCO */
