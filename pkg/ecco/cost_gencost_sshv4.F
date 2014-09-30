@@ -359,6 +359,21 @@ c minimum number of observations to consider re-referenced MDT
       do year=mdt_y0,mdt_y1
        do day=1,366
 
+       do bj = jtlo,jthi
+        do bi = itlo,ithi
+         do j = jmin,jmax
+          do i = imin,imax
+              tpma(i,j,bi,bj) = 0. _d 0
+              tpob(i,j,bi,bj) = 0. _d 0
+              ersma(i,j,bi,bj) = 0. _d 0
+              ersob(i,j,bi,bj) = 0. _d 0
+              gfoma(i,j,bi,bj) = 0. _d 0
+              gfoob(i,j,bi,bj) = 0. _d 0
+          enddo
+         enddo
+        enddo
+       enddo
+
        if (using_tpj)
      & call cost_sla_read_yd( tpfi, tpsta,
      &                tpob, tpma,
@@ -501,6 +516,21 @@ cgf =======================================================
         CALL REMOVE_MEAN_RL( 1, etabar, maskInC, maskInC, rA, drF,
      &        'etabar', 0. _d 0, myThid )
 #endif
+
+       do bj = jtlo,jthi
+        do bi = itlo,ithi
+         do j = jmin,jmax
+          do i = imin,imax
+              tpma(i,j,bi,bj) = 0. _d 0
+              tpob(i,j,bi,bj) = 0. _d 0
+              ersma(i,j,bi,bj) = 0. _d 0
+              ersob(i,j,bi,bj) = 0. _d 0
+              gfoma(i,j,bi,bj) = 0. _d 0
+              gfoob(i,j,bi,bj) = 0. _d 0
+          enddo
+         enddo
+        enddo
+       enddo
 
         if (using_tpj)
      &  call cost_sla_read( tpfi, tpsta, tpper,
@@ -837,6 +867,21 @@ c ------------------------------------------------------
      &        'etabar', 0. _d 0, myThid )
 #endif
 
+       do bj = jtlo,jthi
+        do bi = itlo,ithi
+         do j = jmin,jmax
+          do i = imin,imax
+              tpma(i,j,bi,bj) = 0. _d 0
+              tpob(i,j,bi,bj) = 0. _d 0
+              ersma(i,j,bi,bj) = 0. _d 0
+              ersob(i,j,bi,bj) = 0. _d 0
+              gfoma(i,j,bi,bj) = 0. _d 0
+              gfoob(i,j,bi,bj) = 0. _d 0
+          enddo
+         enddo
+        enddo
+       enddo
+
         if (using_tpj)
      &  call cost_sla_read( tpfi, tpsta, tpper,
      &                zeroRL, zeroRL,
@@ -1097,6 +1142,21 @@ c time associated with this ndaysrec mean
         CALL REMOVE_MEAN_RL( 1, etabar, maskInC, maskInC, rA, drF,
      &        'etabar', 0. _d 0, myThid )
 #endif
+
+       do bj = jtlo,jthi
+        do bi = itlo,ithi
+         do j = jmin,jmax
+          do i = imin,imax
+              tpma(i,j,bi,bj) = 0. _d 0
+              tpob(i,j,bi,bj) = 0. _d 0
+              ersma(i,j,bi,bj) = 0. _d 0
+              ersob(i,j,bi,bj) = 0. _d 0
+              gfoma(i,j,bi,bj) = 0. _d 0
+              gfoob(i,j,bi,bj) = 0. _d 0
+          enddo
+         enddo
+        enddo
+       enddo
 
         if (using_tpj)
      &  call cost_sla_read( tpfi, tpsta, tpper,
