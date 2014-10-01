@@ -2,7 +2,9 @@ C $Header$
 C $Name$
 
 #include "ECCO_OPTIONS.h"
-
+#ifdef ALLOW_SEAICE
+# include "SEAICE_OPTIONS.h"
+#endif
 
       subroutine cost_hyd( myiter, mytime, mythid )
 
