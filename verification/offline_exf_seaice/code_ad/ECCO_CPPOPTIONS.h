@@ -63,7 +63,6 @@ C       >>> Atmospheric state and radiation.
 #define ALLOW_ATEMP_COST_CONTRIBUTION
 #define ALLOW_SWDOWN_COST_CONTRIBUTION
 
-#define ALLOW_COST_ICE
 #define ALLOW_THSICE_COST_TEST
 
 C ********************************************************************
