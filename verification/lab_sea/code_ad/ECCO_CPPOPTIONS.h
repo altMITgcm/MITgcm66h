@@ -123,12 +123,6 @@ c       >>> Make sure that ALLOW_OBCS is defined
 #  define ALLOW_OBCS_COST_CONTRIBUTION
 # endif
 
-c       >>> Sea-ice volume
-# undef ALLOW_COST_ICE
-
-c       >>> Sea-ice misfit to obs
-# define ALLOW_SEAICE_COST_SMR_AREA
-
 C ********************************************************************
 C ***               Control vector Package                         ***
 C ********************************************************************
