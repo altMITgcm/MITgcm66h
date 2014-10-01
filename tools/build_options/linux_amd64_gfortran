@@ -91,7 +91,7 @@ else
    # -Wno-unused-dummy-argument for gfortran >= 4.6
    #FFLAGS="$FFLAGS -Waliasing -Wampersand -Wsurprising -Wline-truncation"
    #- or simply:
-    FFLAGS="$FFLAGS -Wall -Wno-unused-dummy-argument"
+    FFLAGS="$FFLAGS -Wall"
    #- to get plenty of warnings: -Wall -Wextra (older form: -Wall -W) or:
    #FFLAGS="$FFLAGS -Wconversion -Wimplicit-interface -Wunused-labels"
   if test "x$DEVEL" = x ; then  #- no optimisation + IEEE :
