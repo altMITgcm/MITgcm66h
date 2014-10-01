@@ -33,6 +33,7 @@ C     !INPUT/OUTPUT PARAMETERS:
       INTEGER myThid
 
 #ifdef ALLOW_COST
+#ifdef ALLOW_SEAICE_COST_SMR_AREA
 C     ! FUNCTIONS:
       LOGICAL  MASTER_CPU_THREAD
       EXTERNAL MASTER_CPU_THREAD
@@ -121,6 +122,7 @@ C--   Each process has calculated the global part for itself.
 
       ENDIF
 
+#endif /* ALLOW_SEAICE_COST_SMR_AREA */
 #endif /* ALLOW_COST */
 
       RETURN

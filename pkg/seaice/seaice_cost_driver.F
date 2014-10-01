@@ -129,7 +129,7 @@ c--     &     nnzbar, smrareabarfile, smrareabar, xx_smrareabar_mean_dummy,
 c--     &     nnzobs, smrareadatfile, mult_smrarea,
 c--     &     nrecloc, modelstartdate, localperiod,
 c--     &     'C', wsmrarea,
-c--     &     spminloc, spmaxloc, spzeroloc,
+c--     &     spminloc, spmaxloc, spzeroloc, no_preproc,
 c--     &     objf_smrarea, num_smrarea,
 c--     &     myiter, mytime, mythid )
 
