@@ -42,6 +42,9 @@ c     == local variables ==
 
       integer bi,bj
       integer i,j,k
+#ifdef ALLOW_GENCOST3D
+      integer k2,kk
+#endif
       integer itlo,ithi
       integer jtlo,jthi
       integer jmin,jmax
@@ -95,7 +98,21 @@ c     == end of interface ==
            gencost_modfld(i,j,bi,bj,k) = 
      &      heff(i,j,bi,bj)*maskC(i,j,1,bi,bj)
 #endif
-       endif
+#ifdef ALLOW_GENCOST3D
+         elseif (gencost_barfile(k)(1:5).EQ.'theta') then
+           kk=gencost_pointer3d(k)
+           do k2=1,nr
+            gencost_mod3d(i,j,k2,bi,bj,kk) =
+     &       theta(i,j,k2,bi,bj)*maskC(i,j,k2,bi,bj)
+           enddo
+         elseif (gencost_barfile(k)(1:4).EQ.'salt') then
+           kk=gencost_pointer3d(k)
+           do k2=1,nr
+            gencost_mod3d(i,j,k2,bi,bj,kk) =
+     &       salt(i,j,k2,bi,bj)*maskC(i,j,k2,bi,bj)
+           enddo
+#endif
+         endif
 
          enddo
         enddo

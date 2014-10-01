@@ -46,7 +46,7 @@ c     == routine arguments ==
 c     == local variables ==
 
       integer bi,bj
-      integer i,j,k
+      integer i,j,k,kk
       integer itlo,ithi
       integer jtlo,jthi
       integer jmin,jmax
@@ -78,6 +78,18 @@ c--   Set the loop ranges.
             enddo
             gencost_dummy(k) = 0. _d 0
           enddo
+#ifdef ALLOW_GENCOST3D
+          do  kk=1,NGENCOST3D
+            do j = jmin,jmax
+              do i = imin,imax
+                do k = 1,nr
+                gencost_bar3d(i,j,k,bi,bj,kk) = 0. _d 0
+                gencost_mod3d(i,j,k,bi,bj,kk) = 0. _d 0
+                enddo
+              enddo
+            enddo
+          enddo
+#endif
 #endif
 
 #ifdef ALLOW_SSH_COST_CONTRIBUTION
