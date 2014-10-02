@@ -127,10 +127,10 @@ c--      localperiod = 86400.
 c--      call cost_generic(
 c--     &     nnzbar, smrareabarfile, smrareabar, xx_smrareabar_mean_dummy,
 c--     &     nnzobs, smrareadatfile, mult_smrarea,
-c--     &     nrecloc, modelstartdate, localperiod,
+c--     &     nrecloc, nrecloc, modelstartdate, localperiod,
 c--     &     'C', wsmrarea,
 c--     &     spminloc, spmaxloc, spzeroloc, no_preproc,
-c--     &     objf_smrarea, num_smrarea,
+c--     &     no_posproc, no_scalefile, 0, objf_smrarea, num_smrarea,
 c--     &     myiter, mytime, mythid )
 
 c--      write(msgbuf,'(a,1P2E18.10)')
