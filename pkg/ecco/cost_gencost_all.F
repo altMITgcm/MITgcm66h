@@ -66,13 +66,15 @@ c     == end of interface ==
          nnzobs = 1
          call cost_generic(
      &     nnzbar, gencost_barfile(k),
-     &     gencost_barfld(1-Olx,1-Oly,1,1,k),
-     &     gencost_dummy(k),
+     &     gencost_barfld(1-Olx,1-Oly,1,1,k), gencost_dummy(k),
      &     nnzobs, gencost_datafile(k), mult_gencost(k),
-     &     gencost_nrec(k), gencost_startdate(1,k), gencost_period(k),
+     &     gencost_nrec(k), gencost_nrecperiod(k),
+     &     gencost_startdate(1,k), gencost_period(k),
      &     gencost_mask(k), gencost_weight(1-Olx,1-Oly,1,1,k),
      &     gencost_spmin(k), gencost_spmax(k),
      &     gencost_spzero(k), gencost_preproc(k),
+     &     gencost_posproc(k), gencost_scalefile(k),
+     &     gencost_outputlevel(k),
      &     objf_gencost(1,1,k), num_gencost(1,1,k),
      &     myiter, mytime, mythid )
 
@@ -96,10 +98,13 @@ c     == end of interface ==
      &     gencost_bar3d(1-Olx,1-Oly,1,1,1,kk),
      &     gencost_dummy(k),
      &     nnzobs, gencost_datafile(k), mult_gencost(k),
-     &     gencost_nrec(k), gencost_startdate(1,k), gencost_period(k),
+     &     gencost_nrec(k), gencost_nrecperiod(k),
+     &     gencost_startdate(1,k), gencost_period(k),
      &     gencost_mask(k), gencost_wei3d(1-Olx,1-Oly,1,1,1,kk),
      &     gencost_spmin(k), gencost_spmax(k),
      &     gencost_spzero(k), gencost_preproc(k),
+     &     gencost_posproc(k), gencost_scalefile(k),
+     &     gencost_outputlevel(k),
      &     objf_gencost(1,1,k), num_gencost(1,1,k),
      &     myiter, mytime, mythid )
 #endif
