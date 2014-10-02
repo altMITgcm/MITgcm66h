@@ -3,6 +3,9 @@ C $Name$
 
 #include "ECCO_OPTIONS.h"
 #include "AD_CONFIG.h"
+#ifdef ALLOW_SEAICE
+# include "SEAICE_OPTIONS.h"
+#endif
 
       subroutine ecco_cost_init_barfiles( mythid )
 
