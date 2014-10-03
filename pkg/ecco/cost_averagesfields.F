@@ -670,8 +670,10 @@ cmm   accumulate average
      &     sum1day, dayrec, 1, mythid )
 #endif
 
+
+
+
 #ifdef ALLOW_GENCOST_CONTRIBUTION
-cph currently all assumed to be surface fields, i.e. 2-d
       do k = 1, NGENCOST
       if ( (using_gencost(k)).AND.(.NOT.gencost_barskip(k)) ) then
       if ( .NOT.gencost_is3d(k) ) then
