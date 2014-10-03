@@ -128,9 +128,9 @@ c--      call cost_generic(
 c--     &     nnzbar, smrareabarfile, smrareabar, xx_smrareabar_mean_dummy,
 c--     &     nnzobs, smrareadatfile, mult_smrarea,
 c--     &     nrecloc, nrecloc, modelstartdate, localperiod,
-c--     &     'C', wsmrarea,
-c--     &     spminloc, spmaxloc, spzeroloc, no_preproc,
-c--     &     no_posproc, no_scalefile, 0, objf_smrarea, num_smrarea,
+c--     &     'C', wsmrarea, spminloc, spmaxloc, spzeroloc,
+c--     &     no_preproc, no_posproc, no_scalefile,
+c--     &     0, smrareadatfile, objf_smrarea, num_smrarea,
 c--     &     myiter, mytime, mythid )
 
 c--      write(msgbuf,'(a,1P2E18.10)')
