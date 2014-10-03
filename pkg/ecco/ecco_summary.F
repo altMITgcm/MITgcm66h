@@ -829,9 +829,10 @@ c
          write(msgbuf,'(a,a)') ' posprocess = ',gencost_posproc(k)
          call print_message( msgbuf, msgunit, SQUEEZE_RIGHT , mythid)
 c
-         write(msgbuf,'(a,i2,L2,i2,L2,i2,a)') ' flags etc. = ',
+         write(msgbuf,'(a,i2,L2,i2,L2,L2,i2,a)') ' flags etc. = ',
      &        gencost_flag(k), gencost_is3d(k),gencost_pointer3d(k),
-     &        gencost_timevaryweight(k), gencost_outputlevel(k)
+     &        gencost_timevaryweight(k), gencost_barskip(k),
+     &        gencost_outputlevel(k)
          call print_message( msgbuf, msgunit, SQUEEZE_RIGHT , mythid)
 
         write(msgbuf,'(a)') ' '
