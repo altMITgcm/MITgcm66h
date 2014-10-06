@@ -10,7 +10,7 @@ C     !INTERFACE:
       subroutine cost_gendif(
      I                   localbar, nnzbar, localobs, nnzobs, localmask,
      I                   spminloc, spmaxloc, spzeroloc,
-     I                   posproc, scalefile,
+     I                   posproc, posproc_c,
      O                   localdif, difmask,
      I                   myThid
      &                   )
@@ -31,6 +31,10 @@ C     !USES:
 C     == global variables ==
 #include "EEPARAMS.h"
 #include "SIZE.h"
+#include "PARAMS.h"
+#ifdef ALLOW_ECCO
+# include "ecco.h"
+#endif
 
 c     == routine arguments ==
 
@@ -45,8 +49,8 @@ c     == routine arguments ==
 
       _RL spminloc, spmaxloc, spzeroloc
 
-      character*(16) posproc
-      character*(MAX_LEN_FNAM) scalefile
+      character*(MAX_LEN_FNAM) posproc(NGENPPROC)
+      character*(MAX_LEN_FNAM) posproc_c(NGENPPROC)
 
 #ifdef ALLOW_ECCO
 
