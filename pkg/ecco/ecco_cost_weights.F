@@ -857,9 +857,11 @@ c--   Read zonal wind stress variance.
 
       nnz   =   1
       irec  =   1
-      call mdsreadfield( scatx_errfile, cost_iprec, cost_yftype, nnz,
+      if ( scatx_errfile .NE. ' ' ) 
+     &call mdsreadfield( scatx_errfile, cost_iprec, cost_yftype, nnz,
      &                   wscatx, irec, mythid )
-      call mdsreadfield( scaty_errfile, cost_iprec, cost_yftype, nnz,
+      if ( scaty_errfile .NE. ' ' )
+     &call mdsreadfield( scaty_errfile, cost_iprec, cost_yftype, nnz,
      &                   wscaty, irec, mythid )
 
       do bj = jtlo,jthi

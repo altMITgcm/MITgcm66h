@@ -70,7 +70,8 @@ c     == end of interface ==
 c-- detect the relevant gencost indices
       kgen=0
       do k=1,NGENCOST
-        if (gencost_name(k).EQ.'boxmean') kgen=k
+        if ( (gencost_name(k).EQ.'boxmean').AND.
+     &     (using_gencost(k)) ) kgen=k
       enddo
 
       if (kgen.NE.0) then
