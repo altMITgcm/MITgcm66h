@@ -615,6 +615,7 @@ cgf use general hydrography weights
 c--   Read egm-96 geoid covariance. Data in units of meters.
       nnz   =  1
       irec  =  1
+      if ( geoid_errfile .NE. ' ' ) then
       call mdsreadfield( geoid_errfile, cost_iprec, cost_yftype,
      &    nnz, wp, irec, mythid )
 c--   Set all tile edges to zero.
@@ -635,6 +636,7 @@ cph-indonesian)
           enddo
         enddo
       enddo
+      endif
 #else
       do bj = jtlo,jthi
         do bi = itlo,ithi
