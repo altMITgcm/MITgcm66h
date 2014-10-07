@@ -104,6 +104,8 @@ c--   Read tiled data.
       doglobalread = .false.
       ladinit      = .false.
 
+      if ( sdatfile.NE.' ') then
+
       if (optimcycle .ge. 0) then
         ilsalt = ilnblnk( sbarfile )
         write(fnamesalt(1:80),'(2a,i10.10)')
@@ -223,6 +225,8 @@ cph     &                 diagnosfld3d, irec, optimcycle, mythid )
 
       enddo
 c--   End of loop over records.
+
+      endif !if ( sdatfile.NE.' ') then
 
 #endif /* ALLOW_SALT_COST_CONTRIBUTION */
 

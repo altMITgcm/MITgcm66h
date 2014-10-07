@@ -104,6 +104,8 @@ c--   Read tiled data.
       doglobalread = .false.
       ladinit      = .false.
 
+      if ( tdatfile.NE.' ') then
+
       if (optimcycle .ge. 0) then
         iltheta = ilnblnk( tbarfile )
         write(fnametheta(1:80),'(2a,i10.10)')
@@ -223,6 +225,8 @@ cph     &                 diagnosfld3d, irec, optimcycle, mythid )
 
       enddo
 c--   End of loop over records.
+
+      endif !if ( tdatfile.NE.' ') then
 
 #endif /* ALLOW_THETA_COST_CONTRIBUTION */
 
