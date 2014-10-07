@@ -89,7 +89,7 @@ c (xx_gentim2d_numsmooth is not used yet, cause hard coded 1 in ctrl_get_gen)
       common /controlaux_genarr3d_r/
      &                      wgenarr3d
       _RL wgenarr3d(1-olx:snx+olx,1-oly:sny+oly,
-     &              nr,nsx,nsy,maxCtrlArr2D)
+     &              nr,nsx,nsy,maxCtrlArr3D)
 #endif
 
 #ifdef ALLOW_GENTIM2D_CONTROL
