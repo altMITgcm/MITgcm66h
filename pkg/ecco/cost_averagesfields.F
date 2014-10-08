@@ -46,12 +46,14 @@ c     == global variables ==
 #include "GRID.h"
 #include "CG2D.h"
 
-#include "optim.h"
 #include "ecco_cost.h"
-#include "CTRL_SIZE.h"
-#include "ctrl.h"
-#include "ctrl_dummy.h"
-#include "CTRL_GENARR.h"
+#ifdef ALLOW_CTRL
+# include "optim.h"
+# include "CTRL_SIZE.h"
+# include "ctrl.h"
+# include "ctrl_dummy.h"
+# include "CTRL_GENARR.h"
+#endif
 #ifdef ALLOW_EXF
 # include "EXF_FIELDS.h"
 #endif
