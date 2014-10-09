@@ -212,6 +212,8 @@ c--    set observation start/enddate
        else
          call cal_CopyDate(modelStartDate,
      &     gencost_startdate(1,k),mythid)
+         gencost_startdate1(k)=startdate_1
+         gencost_startdate2(k)=startdate_2
        endif
 
        if (gencost_enddate1(k).GT.0) then
