@@ -26,6 +26,7 @@ c     == global variables ==
 #include "CTRL_SIZE.h"
 #include "ctrl.h"
 #include "CTRL_GENARR.h"
+#include "CTRL_OBCS.h"
 #ifdef ALLOW_AUTODIFF
 #include "AUTODIFF_PARAMS.h"
 #endif

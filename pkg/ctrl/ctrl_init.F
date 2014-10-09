@@ -31,6 +31,7 @@ c     == global variables ==
 #include "CTRL_SIZE.h"
 #include "ctrl.h"
 #include "CTRL_GENARR.h"
+#include "CTRL_OBCS.h"
 #include "optim.h"
 #ifdef ALLOW_EXF
 # include "EXF_PARAM.h"

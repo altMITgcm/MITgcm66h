@@ -34,6 +34,7 @@ c     == global variables ==
 #include "GRID.h"
 
 #include "ctrl.h"
+#include "CTRL_OBCS.h"
 #include "optim.h"
 
 c     == routine arguments ==

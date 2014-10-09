@@ -30,10 +30,6 @@ c     ==================================================================
      &                  , xx_runoff_dummy
      &                  , xx_uwind_dummy
      &                  , xx_vwind_dummy
-     &                  , xx_obcsn_dummy
-     &                  , xx_obcss_dummy
-     &                  , xx_obcsw_dummy
-     &                  , xx_obcse_dummy
      &                  , xx_diffkr_dummy
      &                  , xx_kapgm_dummy
      &                  , xx_kapredi_dummy
@@ -115,10 +111,6 @@ cHFLUXM_CONTROL
       _RL xx_runoff_dummy
       _RL xx_uwind_dummy
       _RL xx_vwind_dummy
-      _RL xx_obcsn_dummy
-      _RL xx_obcss_dummy
-      _RL xx_obcsw_dummy
-      _RL xx_obcse_dummy
       _RL xx_diffkr_dummy
       _RL xx_kapgm_dummy
       _RL xx_kapredi_dummy

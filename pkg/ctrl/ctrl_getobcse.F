@@ -40,6 +40,7 @@ c#include "OBCS_PARAMS.h"
 #include "ctrl.h"
 #include "ctrl_dummy.h"
 #include "optim.h"
+#include "CTRL_OBCS.h"
 #endif /* ALLOW_OBCSE_CONTROL */
 
 c     == routine arguments ==

@@ -41,6 +41,7 @@ c#include "OBCS_PARAMS.h"
 #include "CTRL_SIZE.h"
 #include "ctrl.h"
 #include "ctrl_dummy.h"
+#include "CTRL_OBCS.h"
 #include "optim.h"
 #endif /* ALLOW_OBCSS_CONTROL */
 
