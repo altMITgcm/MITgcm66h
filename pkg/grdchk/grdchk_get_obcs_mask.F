@@ -28,6 +28,7 @@ c     == global variables ==
 #include "SIZE.h"
 #include "GRID.h"
 #include "ctrl.h"
+#include "CTRL_OBCS.h"
 #include "grdchk.h"
 
 c     == routine arguments ==

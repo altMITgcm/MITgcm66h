@@ -36,6 +36,7 @@ c     == global variables ==
 # include "OBCS_GRID.h"
 #endif
 #include "ctrl.h"
+#include "CTRL_OBCS.h"
 #include "grdchk.h"
 
 c     == routine arguments ==
