@@ -41,28 +41,30 @@ c These includes are needed for
 c AD-checkpointing.
 c They provide the fields to be stored.
 
-# include "GRID.h"
-# include "DYNVARS.h"
-# include "FFIELDS.h"
-# include "SURFACE.h"
-# include "AUTODIFF.h"
+#include "GRID.h"
+#include "DYNVARS.h"
+#include "FFIELDS.h"
+#include "SURFACE.h"
+#include "AUTODIFF.h"
 
-# ifdef ALLOW_OBCS
-#  include "OBCS_FIELDS.h"
-#  include "OBCS_SEAICE.h"
+#ifdef ALLOW_OBCS
+# include "OBCS_FIELDS.h"
+# include "OBCS_SEAICE.h"
+#endif
+#ifdef ALLOW_EXF
+# include "EXF_FIELDS.h"
+# ifdef ALLOW_BULKFORMULAE
+#  include "EXF_CONSTANTS.h"
 # endif
-# ifdef ALLOW_EXF
-#  include "EXF_FIELDS.h"
-#  ifdef ALLOW_BULKFORMULAE
-#   include "EXF_CONSTANTS.h"
-#  endif
-# endif /* ALLOW_EXF */
-# ifdef ALLOW_SEAICE
-#  include "SEAICE_SIZE.h"
-#  include "SEAICE.h"
-# endif
-
+#endif /* ALLOW_EXF */
+#ifdef ALLOW_SEAICE
+# include "SEAICE_SIZE.h"
+# include "SEAICE.h"
+#endif
+#ifdef ALLOW_CTRL
 # include "ctrl.h"
+# include "CTRL_OBCS.h"
+#endif
 
 c     == routine arguments ==
 c     note: under the multi-threaded model myIter and
