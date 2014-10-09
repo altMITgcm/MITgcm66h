@@ -61,6 +61,10 @@ c     == end of interface ==
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
 
+      write(msgbuf,'(a,i10)')
+     &'  grdchkvarindex :                 ',grdchkvarindex
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
       write(msgbuf,'(a,e10.3)')
      &'  eps:                             ',grdchk_eps
       call print_message( msgbuf, standardmessageunit,
