@@ -28,11 +28,16 @@ c     == global variables ==
 #include "SIZE.h"
 #include "PARAMS.h"
 #include "GRID.h"
-#include "CTRL_SIZE.h"
-#include "ctrl.h"
-#include "CTRL_GENARR.h"
-#include "CTRL_OBCS.h"
-#include "optim.h"
+#ifdef ALLOW_CTRL
+# include "CTRL_SIZE.h"
+# include "ctrl.h"
+# include "CTRL_GENARR.h"
+# include "CTRL_OBCS.h"
+# include "optim.h"
+#endif
+#ifdef ALLOW_CAL
+# include "cal.h"
+#endif
 #ifdef ALLOW_EXF
 # include "EXF_PARAM.h"
 #endif
@@ -805,6 +810,13 @@ c--
         if (xx_gentim2d_weight(iarr).NE.' ')
      &   call mdsreadfield( xx_gentim2d_weight(iarr), ctrlprec, 'RL',
      &      1, wgentim2d(1-Olx,1-Oly,1,1,iarr), 1, myThid )
+
+#ifdef ALLOW_CAL
+        if (xx_gentim2d_startdate1(iarr).EQ.0) then
+          xx_gentim2d_startdate1(iarr)=startdate_1
+          xx_gentim2d_startdate2(iarr)=startdate_2
+        endif
+#endif
 
         call ctrl_init_rec ( xx_gentim2d_file(iarr)(1:MAX_LEN_FNAM),
      I       xx_gentim2d_startdate1(iarr), 

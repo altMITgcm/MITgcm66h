@@ -388,7 +388,7 @@ c allow for switching off correl2d in adjoint
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
       write(msgbuf,'(a,L5,a)')
-     &' ctrlUseGen  = ',ctrlSmoothCorrel3D,
+     &' ctrlUseGen  = ',ctrlUseGen,
      &' /* use generic controls */'
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
