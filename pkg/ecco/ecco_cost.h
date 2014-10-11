@@ -972,8 +972,6 @@ c     wvdrift    - weight for mean meridional velocity from drifters.
 c     wetan      - weight for etan0
 
       common /ecco_cost_weights_r/
-     &                      frame,
-     &                      cosphi,
      &                      whflux,wsflux,wtauu,wtauv,
      &                      watemp,waqh,wprecip,wsnowprecip,
      &                      wswflux,wswdown,wlwflux,wlwdown,
@@ -1001,8 +999,6 @@ c     wetan      - weight for etan0
      &                      wcurrentLev,wbaro,wetan,
      &                      wuvel,wvvel
 
-      _RL frame   (1-olx:snx+olx,1-oly:sny+oly           )
-      _RL cosphi  (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
       _RL whflux  (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
       _RL whfluxm (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
       _RL whfluxmm(1-olx:snx+olx,1-oly:sny+oly)

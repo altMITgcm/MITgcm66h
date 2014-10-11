@@ -131,13 +131,13 @@ c                 the current model integration.
 
       common /ecco_r/
      &                    etanFull,
-     &                    VOLsumGlob_0,
-     &                    VOLsumGlob,
-     &                    RHOsumGlob_0,
-     &                    RHOsumGlob
-
+     &                    VOLsumGlob_0, VOLsumGlob,
+     &                    RHOsumGlob_0, RHOsumGlob,
+     &                    frame, cosphi
       _RL VOLsumGlob_0, VOLsumGlob, RHOsumGlob_0, RHOsumGlob
       _RL etanFull       (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL frame   (1-olx:snx+olx,1-oly:sny+oly           )
+      _RL cosphi  (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
 
 c     file precision and field type
       common /prec_type_cost/

@@ -49,7 +49,7 @@ c     == external ==
 
 c     == end of interface ==
 
-#ifdef ALLOW_OLD_ESTIM_CODES
+#ifdef CODES_BEING_PHASED_OUT
 
       write(msgbuf,'(a)')
      &' '
@@ -315,7 +315,7 @@ c     == end of interface ==
       endif
 #endif /* ALLOW_SSH_GFOANOM_COST_CONTRIBUTION */
 
-#endif /* ALLOW_OLD_ESTIM_CODES */
+#endif /* CODES_BEING_PHASED_OUT */
 
       return
       end
