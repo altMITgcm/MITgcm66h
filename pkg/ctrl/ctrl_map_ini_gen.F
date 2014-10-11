@@ -32,18 +32,16 @@ c     == global variables ==
 #include "GRID.h"
 #include "DYNVARS.h"
 #include "FFIELDS.h"
-#include "CTRL_SIZE.h"
-#include "ctrl.h"
-#include "CTRL_GENARR.h"
-#include "ctrl_dummy.h"
-#include "optim.h"
-#ifdef ALLOW_ECCO
-#include "ecco_cost.h"
+#ifdef ALLOW_CTRL
+# include "CTRL_SIZE.h"
+# include "ctrl.h"
+# include "CTRL_GENARR.h"
+# include "ctrl_dummy.h"
+# include "optim.h"
 #endif
-
 #ifdef ALLOW_AUTODIFF
-#include "tamc.h"
-#include "tamc_keys.h"
+# include "tamc.h"
+# include "tamc_keys.h"
 #endif /* ALLOW_AUTODIFF */
 
 c     == routine arguments ==
@@ -230,14 +228,12 @@ c     == global variables ==
 #include "GRID.h"
 #include "DYNVARS.h"
 #include "FFIELDS.h"
-#include "CTRL_SIZE.h"
-#include "ctrl.h"
-#include "ctrl_dummy.h"
-#include "optim.h"
-#ifdef ALLOW_ECCO
-#include "ecco_cost.h"
+#ifdef ALLOW_CTRL
+# include "CTRL_SIZE.h"
+# include "ctrl.h"
+# include "ctrl_dummy.h"
+# include "optim.h"
 #endif
-
 #ifdef ALLOW_AUTODIFF
 #include "tamc.h"
 #include "tamc_keys.h"
