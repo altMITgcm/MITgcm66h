@@ -22,12 +22,12 @@ C     *==========================================================*
 #include "GRID.h"
 #include "PARAMS.h"
 #include "SMOOTH.h"
-#ifdef ALLOW_CTRL
+#if (defined (ALLOW_CTRL) && defined (CODES_BEING_PHASED_OUT))
 # include "ctrl.h"
 # include "CTRL_SIZE.h"
 # include "CTRL_GENARR.h"
 #endif
-#ifdef ALLOW_ECCO
+#if (defined (ALLOW_ECCO) && defined (CODES_BEING_PHASED_OUT))
 # include "ecco_cost.h"
 #endif
 
@@ -35,6 +35,8 @@ C     *==========================================================*
       _RL fld_in(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       character*(MAX_LEN_FNAM) xx_gen_file
       integer myThid
+
+#ifdef CODES_BEING_PHASED_OUT
 
 # if (defined ALLOW_CTRL) || (defined ALLOW_ECCO)
 
@@ -129,5 +131,7 @@ C     *==========================================================*
      &       'WARNING: no weights found for ',xx_gen_file
 
 #endif /* ALLOW_ECCO or ALLOW_CTRL */
+
+#endif /* CODES_BEING_PHASED_OUT */
        
       end
