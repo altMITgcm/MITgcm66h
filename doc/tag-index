@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ctrl, ecco, seaice : minor changes in headers
 o global_oce_llc90 : 
   - ecco_v4 verification experiments now test generic cost 
     function and control capabilities added since checkpoint65c.
