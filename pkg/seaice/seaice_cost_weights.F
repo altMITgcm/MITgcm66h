@@ -25,7 +25,7 @@ c     == global variables ==
 #ifdef ALLOW_COST
 # include "ctrl.h"
 # ifdef ALLOW_ECCO
-#  include "ecco_cost.h"
+#  include "ecco.h"
 # endif
 # include "SEAICE_COST.h"
 #endif
