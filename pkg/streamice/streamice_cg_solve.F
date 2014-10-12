@@ -113,8 +113,8 @@ C     LOCAL VARIABLES
      I         A_vu,       ! section of matrix that multiplies u and projects on v
      I         A_vv,       ! section of matrix that multiplies v and projects on v
      I         tolerance,
-     I         maxIter,
-     O         iters,
+     I         iters,
+     O         maxiter,
      I         myThid )
 
 
