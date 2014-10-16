@@ -40,6 +40,8 @@ c     == routine arguments ==
       integer irec
       integer mythid
 
+#ifdef ALLOW_ARGO_SALT_COST_CONTRIBUTION
+
 c     == local variables ==
 
       integer bi,bj
@@ -96,6 +98,9 @@ ce    --> there is certainly a better place for this.
             enddo
          enddo
       endif
+
+#endif /* ALLOW_ARGO_SALT_COST_CONTRIBUTION */
+
       return
       end
 

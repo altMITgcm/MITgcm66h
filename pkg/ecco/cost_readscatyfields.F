@@ -43,6 +43,9 @@ c     == routine arguments ==
       integer irec
       integer mythid
 
+#if (defined (ALLOW_SCAT_COST_CONTRIBUTION) || \
+     defined (ALLOW_DAILYSCAT_COST_CONTRIBUTION) )
+
 c     == local variables ==
 
       integer bi,bj
@@ -222,6 +225,7 @@ c--   One could of course do a global sum here.
         vartile = spval
       endif
 
+#endif /* ALLOW_SCAT_COST_CONTRIBUTION || ALLOW_DAILYSCAT_COST_CONTRIBUTION */
       return
       end
 

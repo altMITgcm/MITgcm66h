@@ -61,6 +61,8 @@ c     == routine arguments ==
       _RL     costmean
       integer mythid
 
+#ifdef ALLOW_SSH_COST_CONTRIBUTION
+
 c     == local variables ==
 
       integer bi,bj
@@ -295,6 +297,8 @@ cph(
 cph)
 
 #endif /* else ALLOW_EGM96_ERROR_COV */
+
+#endif /* ALLOW_SSH_COST_CONTRIBUTION */
 
       return
       end
