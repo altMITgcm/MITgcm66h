@@ -33,14 +33,15 @@ C     == global variables ==
 #include "EXF_CONSTANTS.h"
 
 #ifdef ALLOW_AUTODIFF
-# include "CTRL_SIZE.h"
-# include "ctrl.h"
-# if (defined (ALLOW_CTRL) && \
-     defined (ALLOW_GENTIM2D_CONTROL))
+# ifdef ALLOW_CTRL
+#  include "CTRL_SIZE.h"
+#  include "ctrl.h"
+#  include "ctrl_dummy.h"
+#  ifdef ALLOW_GENTIM2D_CONTROL
 #   include "CTRL_GENARR.h"
+#  endif
 # endif
-# include "ctrl_dummy.h"
-# ifdef ALLOW_ECCO
+# if (defined (ALLOW_ECCO) && defined (ECCO_CTRL_DEPRECATED))
 #   include "ecco_cost.h"
 # endif
 #endif
@@ -386,6 +387,8 @@ C     Runoff temperature
      &     myTime, myIter, myThid )
 #endif /* ALLOW_RUNOFTEMP */
 
+# if (!defined (ALLOW_ECCO) || defined (ECCO_CTRL_DEPRECATED))
+
 C-- Control variables for atmos. state
 #ifdef ALLOW_CTRL
       if (.NOT.ctrlUseGen) then
@@ -582,8 +585,9 @@ cdm #endif
 
 #endif /* ALLOW_CTRL */
 
-#if (defined (ALLOW_CTRL) && \
-     defined (ALLOW_GENTIM2D_CONTROL))
+#endif /* undef ALLOW_ECCO) || def ECCO_CTRL_DEPRECATED */
+
+#if (defined (ALLOW_CTRL) && defined (ALLOW_GENTIM2D_CONTROL))
       if (ctrlUseGen) then
       DO bj = myByLo(myThid),myByHi(myThid)
        DO bi = myBxLo(myThid),mybxhi(myThid)

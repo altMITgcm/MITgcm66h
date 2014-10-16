@@ -42,11 +42,13 @@ c     == global variables ==
 #include "EXF_FIELDS.h"
 #include "EXF_PARAM.h"
 #ifdef ALLOW_AUTODIFF
-# include "CTRL_SIZE.h"
-# include "ctrl.h"
-# include "ctrl_dummy.h"
-# include "CTRL_GENARR.h"
-# ifdef ALLOW_ECCO
+# ifdef ALLOW_CTRL
+#  include "CTRL_SIZE.h"
+#  include "ctrl.h"
+#  include "ctrl_dummy.h"
+#  include "CTRL_GENARR.h"
+# endif
+# if (defined (ALLOW_ECCO) && defined (ECCO_CTRL_DEPRECATED))
 #   include "ecco_cost.h"
 # endif
 #endif
@@ -121,6 +123,8 @@ c     == end of interface ==
       ENDDO
       endif !if (ctrlUseGen) then
 #endif
+
+# if (!defined (ALLOW_ECCO) || defined (ECCO_CTRL_DEPRECATED))
 
 #ifdef ALLOW_HFLUX_CONTROL
       call ctrl_get_gen ( 
@@ -205,6 +209,8 @@ c     == end of interface ==
 #endif
 #endif /* ALLOW_ROTATE_UV_CONTROLS */
       ENDIF
+
+#endif /* undef ALLOW_ECCO) || def ECCO_CTRL_DEPRECATED */
 
 #endif /* ALLOW_CTRL */
 
