@@ -114,7 +114,7 @@ c--   Temperature field.
           do k = 1,nr
             do j = jmin,jmax
               do i = imin,imax
-#ifdef ALLOW_ECCO
+#if (defined (ALLOW_ECCO) && defined (ECCO_CTRL_DEPRECATED))
                IF (abs(tmpfld3d(i,j,k,bi,bj)).gt.
      $          2.0/sqrt(wtheta(k,bi,bj)))
      $          tmpfld3d(i,j,k,bi,bj)=
@@ -154,7 +154,7 @@ c--   Temperature field.
           do k = 1,nr
             do j = jmin,jmax
               do i = imin,imax
-#ifdef ALLOW_ECCO
+#if (defined (ALLOW_ECCO) && defined (ECCO_CTRL_DEPRECATED))
                IF (abs(tmpfld3d(i,j,k,bi,bj)).gt.
      $          2.0/sqrt(wsalt(k,bi,bj)))
      $          tmpfld3d(i,j,k,bi,bj)=

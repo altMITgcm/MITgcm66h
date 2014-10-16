@@ -23,10 +23,15 @@ c     == global variables ==
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "PARAMS.h"
-#include "CTRL_SIZE.h"
-#include "ctrl.h"
-#include "CTRL_GENARR.h"
-#include "CTRL_OBCS.h"
+#ifdef ALLOW_CTRL
+# include "CTRL_SIZE.h"
+# include "ctrl.h"
+# include "CTRL_GENARR.h"
+# include "CTRL_OBCS.h"
+# ifndef ECCO_CTRL_DEPRECATED
+#  include "ctrl_local_params.h"
+# endif
+#endif
 #ifdef ALLOW_AUTODIFF
 #include "AUTODIFF_PARAMS.h"
 #endif
