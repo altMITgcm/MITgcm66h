@@ -147,8 +147,9 @@ c--     Determine the model-data difference mask
             do k = 1,nnzobs
              do j = jmin,jmax
               do i = imin,imax
-#ifdef CODES_BEING_PHASED_OUT
-               difmask(i,j,k,bi,bj) = cosphi(i,j,bi,bj)*localmask(i,j,k,bi,bj)
+#ifdef ECCO_CTRL_DEPRECATED
+               difmask(i,j,k,bi,bj) = cosphi(i,j,bi,bj)*
+     &                           localmask(i,j,k,bi,bj)
 #else
                difmask(i,j,k,bi,bj) = localmask(i,j,k,bi,bj)
 #endif

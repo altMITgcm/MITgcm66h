@@ -37,7 +37,7 @@ c     == global variables ==
 #include "PARAMS.h"
 #include "GRID.h"
 
-#ifdef ALLOW_ECCO
+#if (defined (ALLOW_ECCO) && defined (ECCO_CTRL_DEPRECATED))
 # include "ecco_cost.h"
 #endif
 #ifdef ALLOW_CTRL
@@ -50,6 +50,8 @@ c     == routine arguments ==
       integer  mythid
 
 c     == local variables ==
+
+#if (defined (ALLOW_ECCO) && defined (ECCO_CTRL_DEPRECATED))
 
       integer bi,bj
       integer i,j,k
@@ -2125,5 +2127,9 @@ c#endif
       call active_write_xy_loc( 'wbottomdrag', wbottomdrag
      & , 1, 0, mythid, dummy)
 #endif
+
+
+#endif /* ALLOW_ECCO and ECCO_CTRL_DEPRECATED */
+
       RETURN
       END

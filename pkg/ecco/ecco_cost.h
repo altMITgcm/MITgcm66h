@@ -16,6 +16,8 @@ c     ==================================================================
 
 #include "ecco.h"
 
+#ifdef ECCO_CTRL_DEPRECATED
+
 c     Number of days: (hard-coded to set up some vector dimensions
 c     =============================
 c     22 years: 8050
@@ -1469,6 +1471,8 @@ cgf factor to convert sshv4cost_errfile in m
       character*(MAX_LEN_FNAM) tpTimeMaskFile
       character*(MAX_LEN_FNAM) ersTimeMaskFile
       character*(MAX_LEN_FNAM) gfoTimeMaskFile
+
+#endif /* ECCO_CTRL_DEPRECATED */
 
 c     ==================================================================
 c     END OF HEADER COST

@@ -13,7 +13,7 @@ c     ==================================================================
 c
 c     o Summarize the setup of the ECCO release.
 c
-#ifdef CODES_BEING_PHASED_OUT
+#ifdef ECCO_CTRL_DEPRECATED
 c     started: Christian Eckert eckert@mit.edu 29-Feb-1999
 c
 c              - Introduced to create a package for the MITgcmUV.
@@ -73,7 +73,7 @@ c     == end of interface ==
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
 
-#ifdef CODES_BEING_PHASED_OUT
+#ifdef ECCO_CTRL_DEPRECATED
       write(msgbuf,'(a)')
      &' '
       call print_message( msgbuf, standardmessageunit,
@@ -779,7 +779,7 @@ c--   Generation of adjoint code not enabled.
       call print_message( msgbuf, standardmessageunit,
      &                    SQUEEZE_RIGHT , mythid)
 #endif
-#endif /* CODES_BEING_PHASED_OUT */
+#endif /* ECCO_CTRL_DEPRECATED */
 
 
 #ifdef ALLOW_GENCOST_CONTRIBUTION
