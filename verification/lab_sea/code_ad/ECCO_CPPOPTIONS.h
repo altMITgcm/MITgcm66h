@@ -16,6 +16,9 @@ C ********************************************************************
 C ***                         ECCO Package                         ***
 C ********************************************************************
 
+C allow use of legacy ecco/ctrl codes
+#define ECCO_CTRL_DEPRECATED
+
 cph >>>>>> !!!!!! SPECIAL SEAICE FLAG FOR TESTING !!!!!! <<<<<<
 cph#define  SEAICE_EXCLUDE_FOR_EXACT_AD_TESTING
 cph >>>>>> !!!!!! SPECIAL SEAICE FLAG FOR TESTING !!!!!! <<<<<<

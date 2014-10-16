@@ -29,6 +29,9 @@ C   are specific to this package are assumed to be set in ECCO_CPPOPTIONS.h
 C   ==================================================================
 C-- Package-specific Options & Macros go here
 
+C allow use of legacy ecco/ctrl codes
+#define ECCO_CTRL_DEPRECATED
+
 #undef EXCLUDE_CTRL_PACK
 #define ALLOW_NONDIMENSIONAL_CONTROL_IO
 

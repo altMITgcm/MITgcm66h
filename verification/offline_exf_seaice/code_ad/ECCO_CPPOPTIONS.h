@@ -18,6 +18,10 @@ C ********************************************************************
 C ***                         ECCO Package                         ***
 C ********************************************************************
 C
+
+C allow use of legacy ecco/ctrl codes
+#define ECCO_CTRL_DEPRECATED
+
 C       >>> Do a long protocol.
 #undef ECCO_VERBOSE
 C       >>> use model/src/forward_step.F

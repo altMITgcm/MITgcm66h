@@ -16,6 +16,9 @@ C ********************************************************************
 C ***                         ECCO Package                         ***
 C ********************************************************************
 
+C allow use of legacy ecco/ctrl codes
+#define ECCO_CTRL_DEPRECATED
+
 cph#define  ALLOW_ECCO_FORWARD_RUN
 #define  ALLOW_ECCO_OPTIMIZATION
 

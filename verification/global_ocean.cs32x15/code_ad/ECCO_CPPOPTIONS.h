@@ -16,6 +16,9 @@ C ********************************************************************
 C ***                  Adjoint Support Package                     ***
 C ********************************************************************
 
+C allow use of legacy ecco/ctrl codes
+#define ECCO_CTRL_DEPRECATED
+
 C o Include/exclude code in order to be able to automatically
 C   differentiate the MITgcmUV by using the Tangent Linear and
 C   Adjoint Model Compiler (TAMC).
