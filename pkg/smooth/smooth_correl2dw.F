@@ -22,12 +22,12 @@ C     *==========================================================*
 #include "GRID.h"
 #include "PARAMS.h"
 #include "SMOOTH.h"
-#if (defined (ALLOW_CTRL) && defined (CODES_BEING_PHASED_OUT))
+#if (defined (ALLOW_CTRL) && defined (ECCO_CTRL_DEPRECATED))
 # include "ctrl.h"
 # include "CTRL_SIZE.h"
 # include "CTRL_GENARR.h"
 #endif
-#if (defined (ALLOW_ECCO) && defined (CODES_BEING_PHASED_OUT))
+#if (defined (ALLOW_ECCO) && defined (ECCO_CTRL_DEPRECATED))
 # include "ecco_cost.h"
 #endif
 
@@ -36,7 +36,7 @@ C     *==========================================================*
       character*(MAX_LEN_FNAM) xx_gen_file
       integer myThid
 
-#ifdef CODES_BEING_PHASED_OUT
+#ifdef ECCO_CTRL_DEPRECATED
 
 # if (defined ALLOW_CTRL) || (defined ALLOW_ECCO)
 
@@ -132,6 +132,6 @@ C     *==========================================================*
 
 #endif /* ALLOW_ECCO or ALLOW_CTRL */
 
-#endif /* CODES_BEING_PHASED_OUT */
+#endif /* ECCO_CTRL_DEPRECATED */
        
       end
