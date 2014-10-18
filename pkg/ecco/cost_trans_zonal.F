@@ -20,6 +20,7 @@ c     ==================================================================
 
 c     == global variables ==
 
+#ifdef ALLOW_COST_TRANSPORT
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "PARAMS.h"
@@ -33,6 +34,7 @@ c#ifdef ALLOW_COST
 c# include "cost.h"
 c#endif
 #include "ecco_cost.h"
+#endif
 
 c     == routine arguments ==
 

@@ -32,17 +32,17 @@ c     ==================================================================
 
 c     == global variables ==
 
+#if (defined (ALLOW_ECCO) && defined (ECCO_CTRL_DEPRECATED))
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "PARAMS.h"
 #include "GRID.h"
 
-#if (defined (ALLOW_ECCO) && defined (ECCO_CTRL_DEPRECATED))
-# include "ecco_cost.h"
-#endif
+#include "ecco_cost.h"
 #ifdef ALLOW_CTRL
 # include "ctrl.h"
 # include "CTRL_OBCS.h"
+#endif
 #endif
 
 c     == routine arguments ==

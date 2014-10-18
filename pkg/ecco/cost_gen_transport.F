@@ -24,6 +24,7 @@ c     ==================================================================
 
 c     == global variables ==
 
+#ifdef ALLOW_TRANSPORT_COST_CONTRIBUTION
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "PARAMS.h"
@@ -34,6 +35,7 @@ c     == global variables ==
 #include "DYNVARS.h"
 #ifdef ALLOW_PROFILES
 #include "profiles.h"
+#endif
 #endif
 
 c     == routine arguments ==

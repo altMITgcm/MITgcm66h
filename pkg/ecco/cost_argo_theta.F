@@ -29,6 +29,7 @@ c     == global variables ==
 
 #include "EEPARAMS.h"
 #include "SIZE.h"
+#ifdef ALLOW_ARGO_THETA_COST_CONTRIBUTION
 #include "GRID.h"
 #include "DYNVARS.h"
 
@@ -38,12 +39,15 @@ c     == global variables ==
 #include "ctrl.h"
 #include "ctrl_dummy.h"
 #include "optim.h"
+#endif
 
 c     == routine arguments ==
 
       integer myiter
       _RL     mytime
       integer mythid
+
+#ifdef ALLOW_ARGO_THETA_COST_CONTRIBUTION
 
 c     == local variables ==
 
@@ -106,8 +110,6 @@ c     == end of interface ==
 c--   Read state record from global file.
       doglobalread = .false.
       ladinit      = .false.
-
-#ifdef ALLOW_ARGO_THETA_COST_CONTRIBUTION
 
       if (optimcycle .ge. 0) then
         ilu=ilnblnk( tbarfile )
@@ -230,35 +232,6 @@ c        _GLOBAL_SUM_RL( fcthread_argot , myThid )
       enddo
 c--   End of second loop over records.
 
-#else
-c--   Do not enter the calculation of the CTD temperature contribution
-c--   to the final cost function.
-
-      fctile_argot   = 0. _d 0
-      fcthread_argot = 0. _d 0
-
-crg
-      nrec = 1
-crg
-
-      _BEGIN_MASTER( mythid )
-        write(msgbuf,'(a)') ' '
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-        write(msgbuf,'(a,a)')
-     &    ' cost_ARGOT: no contribution of ARGO temperature ',
-     &                    ' to cost function.'
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-        write(msgbuf,'(a,a,i9.8)')
-     &    ' cost_ARGOT: number of records that would have',
-     &                      ' been processed: ',nrec
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-        write(msgbuf,'(a)') ' '
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-      _END_MASTER( mythid )
 #endif
 
       return

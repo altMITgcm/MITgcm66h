@@ -29,6 +29,7 @@ c     == global variables ==
 
 #include "EEPARAMS.h"
 #include "SIZE.h"
+#ifdef ALLOW_BP_COST_CONTRIBUTION
 #include "PARAMS.h"
 #include "GRID.h"
 
@@ -40,6 +41,7 @@ c     == global variables ==
 #include "DYNVARS.h"
 #ifdef ALLOW_PROFILES
 #include "profiles.h"
+#endif
 #endif
 
 c     == routine arguments ==

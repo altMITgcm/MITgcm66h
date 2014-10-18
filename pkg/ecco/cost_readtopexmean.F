@@ -29,12 +29,14 @@ c     ==================================================================
 
 c     == global variables ==
 
+#ifdef ALLOW_SSH_MEAN_COST_CONTRIBUTION
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "PARAMS.h"
 #include "GRID.h"
 
 #include "ecco_cost.h"
+#endif
 
 c     == routine arguments ==
 

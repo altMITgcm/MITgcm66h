@@ -29,6 +29,7 @@ c     ==================================================================
 
 c     == global variables ==
 
+#ifdef ALLOW_COST_ATLANTIC
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "GRID.h"
@@ -46,6 +47,7 @@ c     == global variables ==
 c#include "CTRL_SIZE.h"
 c#include "ctrl.h"
 c#include "ctrl_dummy.h"
+#endif
 
 c     == routine arguments ==
 

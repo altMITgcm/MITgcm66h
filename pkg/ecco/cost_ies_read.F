@@ -25,6 +25,7 @@ c     ==================================================================
 
 c     == global variables ==
 
+#ifdef ALLOW_IESTAU_COST_CONTRIBUTION
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "PARAMS.h"
@@ -32,6 +33,7 @@ c     == global variables ==
 
 #include "cal.h"
 #include "ecco_cost.h"
+#endif
 
 c     == routine arguments ==
 

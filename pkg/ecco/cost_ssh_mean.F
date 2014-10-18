@@ -39,6 +39,7 @@ c     == global variables ==
 
 #include "EEPARAMS.h"
 #include "SIZE.h"
+#ifdef ALLOW_SSH_COST_CONTRIBUTION
 #include "PARAMS.h"
 
 #include "ecco_cost.h"
@@ -52,6 +53,7 @@ c     == global variables ==
       PARAMETER (nProcs=1)
 # endif
 # include "sphere.h"
+#endif
 #endif
 
 c     == routine arguments ==

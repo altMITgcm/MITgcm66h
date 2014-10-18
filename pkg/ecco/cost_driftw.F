@@ -29,6 +29,7 @@ c     ==================================================================
 
 c     == global variables ==
 
+#ifdef ALLOW_DRIFTW_COST_CONTRIBUTION
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "GRID.h"
@@ -40,6 +41,7 @@ c     == global variables ==
 #include "ctrl.h"
 #include "ctrl_dummy.h"
 #include "optim.h"
+#endif
 
 c     == routine arguments ==
 
@@ -47,6 +49,7 @@ c     == routine arguments ==
       _RL     mytime
       integer mythid
 
+#ifdef ALLOW_DRIFTW_COST_CONTRIBUTION
 c     == local variables ==
 
       _RS        one_rs
@@ -92,8 +95,6 @@ c     == end of interface ==
 c--   Read tiled data.
       doglobalread = .false.
       ladinit      = .false.
-
-#ifdef ALLOW_DRIFTW_COST_CONTRIBUTION
 
       if (optimcycle .ge. 0) then
         ilw = ilnblnk( wbarfile )

@@ -29,6 +29,7 @@ c     == global variables ==
 
 #include "EEPARAMS.h"
 #include "SIZE.h"
+#ifdef ALLOW_ARGO_SALT_COST_CONTRIBUTION
 #include "GRID.h"
 #include "DYNVARS.h"
 
@@ -38,6 +39,7 @@ c     == global variables ==
 #include "ctrl.h"
 #include "ctrl_dummy.h"
 #include "optim.h"
+#endif
 
 c     == routine arguments ==
 
@@ -47,6 +49,7 @@ c     == routine arguments ==
 
 c     == local variables ==
 
+#ifdef ALLOW_ARGO_SALT_COST_CONTRIBUTION
       integer bi,bj
       integer i,j,k
       integer itlo,ithi
@@ -103,8 +106,6 @@ c     == end of interface ==
 c--   Read state record from global file.
       doglobalread = .false.
       ladinit      = .false.
-
-#ifdef ALLOW_ARGO_SALT_COST_CONTRIBUTION
 
       if (optimcycle .ge. 0) then
         ilu=ilnblnk( sbarfile )
@@ -224,35 +225,6 @@ c        _GLOBAL_SUM_RL( fcthread_argos , myThid )
       enddo
 c--   End of second loop over records.
 
-#else
-c--   Do not enter the calculation of the ARGO salinity contribution
-c--   to the final cost function.
-
-      fctile_argos   = 0. _d 0
-      fcthread_argos = 0. _d 0
-
-crg
-      nrec = 1
-crg
-
-      _BEGIN_MASTER( mythid )
-        write(msgbuf,'(a)') ' '
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-        write(msgbuf,'(a,a)')
-     &    ' cost_ARGOS: no contribution of ARGO salt ',
-     &                    ' to cost function.'
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-        write(msgbuf,'(a,a,i9.8)')
-     &    ' cost_ARGOS: number of records that would have',
-     &                      ' been processed: ',nrec
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-        write(msgbuf,'(a)') ' '
-        call print_message( msgbuf, standardmessageunit,
-     &                      SQUEEZE_RIGHT , mythid)
-      _END_MASTER( mythid )
 #endif
 
       return

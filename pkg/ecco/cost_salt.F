@@ -30,6 +30,7 @@ c     ==================================================================
 
 c     == global variables ==
 
+#ifdef ALLOW_SALT_COST_CONTRIBUTION
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "PARAMS.h"
@@ -42,6 +43,7 @@ c     == global variables ==
 #include "ctrl.h"
 #include "ctrl_dummy.h"
 #include "optim.h"
+#endif
 
 c     == routine arguments ==
 

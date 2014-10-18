@@ -29,6 +29,7 @@ c     ==================================================================
       implicit none
 
 c     == global variables ==
+#ifdef ECCO_CTRL_DEPRECATED
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "PARAMS.h"
@@ -42,6 +43,7 @@ c     == global variables ==
 #ifdef ALLOW_SEAICE
 # include "SEAICE_COST.h"
 #endif
+#endif
 
 c     == routine arguments ==
 
@@ -49,6 +51,7 @@ c     == routine arguments ==
       _RL     mytime
       integer mythid
 
+#ifdef ECCO_CTRL_DEPRECATED
 c     == local variables ==
       character*(max_len_mbuf) msgbuf
 
@@ -294,5 +297,7 @@ cph and extended using I. Fenty SST, SSS extensions
 
 # endif /* ALLOW_SEAICE_COST_AREASST */
 #endif
+
+#endif /* ECCO_CTRL_DEPRECATED */
 
       end

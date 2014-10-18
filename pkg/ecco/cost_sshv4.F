@@ -38,6 +38,7 @@ c     ==================================================================
 
 c     == global variables ==
 
+#ifdef ALLOW_SSH_COST_CONTRIBUTION
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "PARAMS.h"
@@ -54,6 +55,7 @@ c     == global variables ==
 #endif
 #ifdef ALLOW_SMOOTH
 #include "SMOOTH.h"
+#endif
 #endif
 
 c     == routine arguments ==

@@ -35,6 +35,7 @@ c     ==================================================================
 
 c     == global variables ==
 
+#ifdef ALLOW_EGM96_ERROR_COV
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "PARAMS.h"
@@ -42,6 +43,10 @@ c     == global variables ==
 #include "ecco_cost.h"
 #ifdef ALLOW_SPHERE
 # include "sphere.h"
+#else
+      integer ncShc
+      parameter (ncShc=1)
+#endif
 #else
       integer ncShc
       parameter (ncShc=1)
@@ -118,9 +123,6 @@ CADJ loop = parallel
       _END_MASTER( mythid )
 
       _GLOBAL_SUM_RL( sphcost, mythid )
-
-#else  /* ALLOW_EGM96_ERROR_COV */
-      sphcost = 0.
 
 #endif /* ALLOW_EGM96_ERROR_COV */
 

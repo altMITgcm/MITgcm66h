@@ -36,10 +36,12 @@ c     ==================================================================
 c     == global variables ==
 
 #include "EEPARAMS.h"
+#ifdef ALLOW_EGM96_ERROR_COV
 #include "SIZE.h"
 #include "PARAMS.h"
 #ifdef ALLOW_SPHERE
 # include "sphere.h"
+#endif
 #endif
 
 c     == routine arguments ==

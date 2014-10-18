@@ -21,6 +21,7 @@ c     ==================================================================
       implicit none
 
 c     == global variables ==
+#ifdef ECCO_CTRL_DEPRECATED
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "PARAMS.h"
@@ -39,6 +40,7 @@ c     == global variables ==
 # include "ctrl.h"
 # include "ctrl_dummy.h"
 #endif
+#endif
 
 c     == routine arguments ==
 
@@ -46,6 +48,7 @@ c     == routine arguments ==
       _RL     mytime
       integer mythid
 
+#ifdef ECCO_CTRL_DEPRECATED
 c     == end of interface ==
 
 
@@ -92,5 +95,7 @@ c--   Bottom Drag penalty term
       call timer_stop ('cost_bottomdrag      [ECCO SPIN-DOWN]', mythid)
 #endif
       _BARRIER
+
+#endif
 
       end

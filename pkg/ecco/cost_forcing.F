@@ -29,6 +29,7 @@ c     ==================================================================
 
 c     == global variables ==
 
+#ifdef ECCO_CTRL_DEPRECATED
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
@@ -48,6 +49,7 @@ c     == global variables ==
 #ifdef ALLOW_EXF
 # include "EXF_PARAM.h"
 #endif
+#endif
 
 c     == routine arguments ==
 
@@ -55,7 +57,7 @@ c     == routine arguments ==
 
 c     == local variables ==
 
-#if (defined (ALLOW_ECCO) && defined (ALLOW_CTRL))
+#if (defined (ALLOW_ECCO) && defined (ALLOW_CTRL)&& defined (ECCO_CTRL_DEPRECATED))
 
       integer startrec
       integer endrec
