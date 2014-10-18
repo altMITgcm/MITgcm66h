@@ -169,12 +169,6 @@ c--   Initialise local variables.
 
       do bj = jtlo,jthi
         do bi = itlo,ithi
-          objf_gencost(bi,bj,igen_conc) = 0. _d 0
-          objf_gencost(bi,bj,igen_exconc) = 0. _d 0
-          objf_gencost(bi,bj,igen_deconc) = 0. _d 0
-          num_gencost(bi,bj,igen_conc) = 0. _d 0
-          num_gencost(bi,bj,igen_exconc) = 0. _d 0
-          num_gencost(bi,bj,igen_deconc) = 0. _d 0
           do k = 1,nnzobs
             do j = jmin,jmax
               do i = imin,imax
