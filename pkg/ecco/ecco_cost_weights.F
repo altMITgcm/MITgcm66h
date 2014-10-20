@@ -2,7 +2,9 @@ C $Header$
 C $Name$
 
 #include "ECCO_OPTIONS.h"
-
+#ifdef ALLOW_CTRL
+# include "CTRL_OPTIONS.h"
+#endif
 
       subroutine ecco_cost_weights( mythid )
 
