@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "EXF_OPTIONS.h"
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 
 CBOI
 C

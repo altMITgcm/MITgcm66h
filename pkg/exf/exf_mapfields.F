@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "EXF_OPTIONS.h"
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 
 CBOP 0
 C     !ROUTINE: EXF_MAPFIELDS

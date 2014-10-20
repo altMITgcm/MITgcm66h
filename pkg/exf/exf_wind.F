@@ -2,6 +2,12 @@ C $Header$
 C $Name$
 
 #include "EXF_OPTIONS.h"
+#ifdef ALLOW_CTRL
+# include "CTRL_OPTIONS.h"
+#endif
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 
       SUBROUTINE EXF_WIND( myTime, myIter, myThid )
 

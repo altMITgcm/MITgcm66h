@@ -2,7 +2,12 @@ C $Header$
 C $Name$
 
 #include "EXF_OPTIONS.h"
-
+#ifdef ALLOW_CTRL
+# include "CTRL_OPTIONS.h"
+#endif
+#ifdef ALLOW_ECCO
+# include "ECCO_OPTIONS.h"
+#endif
 
       subroutine exf_getclim(
      I                        mytime,
