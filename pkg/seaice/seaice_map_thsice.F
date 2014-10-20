@@ -5,6 +5,9 @@ C $Name$
 #ifdef ALLOW_THSICE
 # include "THSICE_OPTIONS.h"
 #endif /* ALLOW_THSICE */
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 
 CStartOfInterface
       SUBROUTINE SEAICE_MAP_THSICE( myTime, myIter, myThid )

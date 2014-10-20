@@ -7,6 +7,9 @@ C $Name$
 #else
 # define OBCS_UVICE_OLD
 #endif
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 
 CBOP
 C     !ROUTINE: SEAICE_CALC_STRAINRATES

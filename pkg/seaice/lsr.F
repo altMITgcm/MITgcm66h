@@ -8,6 +8,9 @@ C#define SEAICE_TEST
 #endif
 
 #include "SEAICE_OPTIONS.h"
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 
 CStartOfInterface
       SUBROUTINE lsr( ilcall, myThid )

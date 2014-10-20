@@ -3,6 +3,9 @@ C $Name$
 
 #include "SEAICE_OPTIONS.h"
 #include "AD_CONFIG.h"
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 
 CBOP
 C     !ROUTINE: seaice_ad_dump

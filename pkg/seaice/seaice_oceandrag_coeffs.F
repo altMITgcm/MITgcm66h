@@ -5,6 +5,9 @@ C $Name$
 #ifdef ALLOW_OBCS
 # include "OBCS_OPTIONS.h"
 #endif
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 
 CBOP
 C     !ROUTINE: SEAICE_OCEANDRAG_COEFFS

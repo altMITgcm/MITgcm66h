@@ -2,6 +2,18 @@ C $Header$
 C $Name$
 
 #include "SEAICE_OPTIONS.h"
+#ifdef ALLOW_ECCO
+# include "ECCO_OPTIONS.h"
+#endif
+#ifdef ALLOW_COST
+# include "COST_OPTIONS.h"
+#endif
+#ifdef ALLOW_CTRL
+# include "CTRL_OPTIONS.h"
+#endif
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 
       subroutine seaice_cost_concentration(
      &     nnzbar, localbarfile, localbar, xx_localbar_mean_dummy,
@@ -24,7 +36,9 @@ c     == global variables ==
 # include "cal.h"
 #endif
 #ifdef ALLOW_COST
-# include "optim.h"
+# ifdef ALLOW_CTRL
+#  include "optim.h"
+# endif
 # ifdef ALLOW_ECCO
 #  include "ecco.h"
 # endif
@@ -93,7 +107,6 @@ c     == local variables ==
       _RL cmask (1-olx:snx+olx,1-oly:sny+oly,nnzobs)
 
       character*(128) fname1, fname2
-      character*(MAX_LEN_MBUF) msgbuf
 
 cnew(
       _RL daytime
@@ -104,8 +117,6 @@ cnew(
       integer middate(4)
       integer yday, ymod
       integer md, dd, sd, ld, wd
-      integer mody, modm
-      integer beginmodel, beginlocal
       logical exst
 cnew)
 

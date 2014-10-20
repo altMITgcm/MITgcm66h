@@ -5,6 +5,15 @@ C $Name$
 #ifdef ALLOW_COST
 #include "COST_OPTIONS.h"
 #endif
+#ifdef ALLOW_ECCO
+#include "ECCO_OPTIONS.h"
+#endif
+#ifdef ALLOW_CTRL
+#include "CTRL_OPTIONS.h"
+#endif
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 
       subroutine seaice_cost_areasst(
      &     nnzbar, localbarfile, localbar, xx_localbar_mean_dummy,
@@ -41,13 +50,11 @@ c     == global variables ==
 #include "SEAICE_PARAMS.h"
 #include "SEAICE.h"
 #include "SEAICE_COST.h"
-#ifdef ALLOW_COST
-# ifdef ALLOW_ECCO
-#  include "ecco_cost.h"
-# endif
-# include "optim.h"
+#ifdef ALLOW_ECCO
+# include "ecco_cost.h"
 #endif
 #ifdef ALLOW_CTRL
+# include "optim.h"
 # include "CTRL_SIZE.h"
 # include "ctrl.h"
 # include "ctrl_dummy.h"

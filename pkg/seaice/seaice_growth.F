@@ -8,6 +8,9 @@ C $Name$
 #ifdef ALLOW_SALT_PLUME
 # include "SALT_PLUME_OPTIONS.h"
 #endif
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 
 CBOP
 C     !ROUTINE: SEAICE_GROWTH
