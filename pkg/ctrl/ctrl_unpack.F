@@ -8,6 +8,9 @@ C $Name$
 #ifdef ALLOW_EXF
 # include "EXF_OPTIONS.h"
 #endif
+#ifdef ALLOW_ECCO
+# include "ECCO_OPTIONS.h"
+#endif
 
       subroutine ctrl_unpack( first, mythid )
 

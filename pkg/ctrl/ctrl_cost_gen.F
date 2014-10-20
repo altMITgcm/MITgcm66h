@@ -9,6 +9,9 @@ c ----------------------------------------------------------------
 c ----------------------------------------------------------------
 
 #include "CTRL_OPTIONS.h"
+#ifdef ALLOW_ECCO
+# include "ECCO_OPTIONS.h"
+#endif
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 CBOP
@@ -90,9 +93,7 @@ c     == local variables ==
 
       _RL fctile
       _RL fctilem
-      _RL fctilemm
       _RL tmpx
-      _RL sumcos
       _RL lengthscale
 
       _RL xx_mean(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
@@ -101,8 +102,6 @@ c     == local variables ==
       logical ladinit
 
       character*(80) fnamefld
-
-      character*(MAX_LEN_MBUF) msgbuf
 
 c     == external functions ==
 
@@ -387,15 +386,12 @@ c     == local variables ==
       integer irec
       integer ilfld
 
-      _RL fcthread
       _RL tmpx
 
       logical doglobalread
       logical ladinit
 
       character*(80) fnamefld
-
-      character*(MAX_LEN_MBUF) msgbuf
 
 c     == external functions ==
 
