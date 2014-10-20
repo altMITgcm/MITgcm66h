@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "SALT_PLUME_OPTIONS.h"
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 
 CBOP
 C     !ROUTINE: SALT_PLUME_CALC_DEPTH
