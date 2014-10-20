@@ -5,6 +5,9 @@ C $Name$
 #ifdef ALLOW_CTRL
 # include "CTRL_OPTIONS.h"
 #endif
+#ifdef ALLOW_ECCO
+# include "ECCO_OPTIONS.h"
+#endif
 
       subroutine smooth_correl2Dw (
      U     fld_in,mask_in,xx_gen_file,mythid)

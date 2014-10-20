@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "SMOOTH_OPTIONS.h"
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 
       subroutine smooth_diff2D (
      U     fld_in,mask_in,nbt_in,mythid)

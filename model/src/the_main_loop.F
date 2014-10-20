@@ -33,6 +33,9 @@ C $Name$
 #ifdef ALLOW_CTRL
 # include "CTRL_OPTIONS.h"
 #endif
+#ifdef ALLOW_ECCO
+# include "ECCO_OPTIONS.h"
+#endif
 
 CBOP
 C     !ROUTINE: THE_MAIN_LOOP
