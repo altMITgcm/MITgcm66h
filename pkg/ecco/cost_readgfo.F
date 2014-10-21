@@ -36,7 +36,6 @@ c     == global variables ==
 #include "cal.h"
 #include "ecco_cost.h"
 #endif
-#endif
 
 c     == routine arguments ==
 
