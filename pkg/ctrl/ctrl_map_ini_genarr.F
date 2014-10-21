@@ -2,6 +2,9 @@ C $Header$
 C $Name$
 
 #include "CTRL_OPTIONS.h"
+#ifdef ALLOW_GMREDI
+# include "GMREDI_OPTIONS.h"
+#endif
 
 CBOP
 C     !ROUTINE: CTRL_MAP_INI_GENARR
