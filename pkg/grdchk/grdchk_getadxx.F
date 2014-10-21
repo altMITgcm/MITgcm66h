@@ -94,6 +94,8 @@ c--   == end of interface ==
       if ( grdchkvarindex .eq. 0 ) then
          STOP 'GRDCHK INDEX 0 NOT ALLOWED'
 
+#ifdef ECCO_CTRL_DEPRECATED
+
 #ifdef ALLOW_THETA0_CONTROL
       else if ( grdchkvarindex .eq. 1 ) then
          il=ilnblnk( xx_theta_file )
@@ -190,6 +192,8 @@ c--   == end of interface ==
      &        yadmark, xx_vwind_file(1:il),'.',optimcycle
 #endif /* ALLOW_VWIND_CONTROL */
 
+#endif /* ECCO_CTRL_DEPRECATED */
+
 #ifdef ALLOW_OBCSN_CONTROL
       else if ( grdchkvarindex .eq. 11 ) then
          il=ilnblnk( xx_obcsn_file )
@@ -221,6 +225,8 @@ c--   == end of interface ==
          write(fname(1:80),'(3a,i10.10)')
      &        yadmark, xx_obcse_file(1:il),'.',optimcycle
 #endif /* ALLOW_OBCSE_CONTROL */
+
+#ifdef ECCO_CTRL_DEPRECATED
 
 #ifdef ALLOW_DIFFKR_CONTROL
       else if ( grdchkvarindex .eq. 15 ) then
@@ -437,6 +443,8 @@ c--   == end of interface ==
          write(fname(1:80),'(3a,i10.10)')
      &        yadmark, xx_etan_file(1:il),'.',optimcycle
 #endif /* ALLOW_ETAN0_CONTROL */
+
+#endif /* ECCO_CTRL_DEPRECATED */
 
 #ifdef ALLOW_GENARR2D_CONTROL
       else if ( grdchkvarindex .ge. 101 .and.
