@@ -98,6 +98,8 @@ c--     Set default values.
 
       _BARRIER
 
+#ifdef ECCO_CTRL_DEPRECATED
+
 c--   =====================
 c--   Initial state fields.
 c--   =====================
@@ -308,6 +310,8 @@ c--   Meridional wind speed.
 #endif
 #endif /* ALLOW_VWIND_CONTROL */
 
+#endif /* ECCO_CTRL_DEPRECATED */
+
 c--   ===========================
 c--   Open boundary contributions.
 c--   ===========================
@@ -393,6 +397,8 @@ c     using model mean dRho/dz, see
 c     MITgcm/verification/obcs_ctrl/input/gendata.m
 c    This code is compatible with partial cells
 #endif
+
+#ifdef ECCO_CTRL_DEPRECATED
 
 c----------------------------------------------------------------------
 c--
@@ -779,6 +785,8 @@ c--
      &       snx, sny, 1, 'c', 'xy', myThid )
 # endif
 #endif /* ALLOW_ATM_MEAN_CONTROL */
+
+#endif /* ECCO_CTRL_DEPRECATED */
 
 c----------------------------------------------------------------------
 c--

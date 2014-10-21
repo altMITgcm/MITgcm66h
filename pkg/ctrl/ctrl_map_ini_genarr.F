@@ -96,7 +96,7 @@ C--   generic 3D control variables
 #ifdef ALLOW_KAPREDI_CONTROL
       call ctrl_map_genarr3d(kapredi,igen_kapredi,myThid)
 #endif
-#ifdef ALLOW_DIFFKR_CONTROL
+#ifdef ALLOW_3D_DIFFKR
       call ctrl_map_genarr3d(diffkr,igen_diffkr,myThid)
 #endif
 

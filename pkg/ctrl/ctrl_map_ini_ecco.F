@@ -36,6 +36,7 @@ c     ==================================================================
 
       implicit none
 
+#ifdef ECCO_CTRL_DEPRECATED
 c     == global variables ==
 
 #include "EEPARAMS.h"
@@ -55,11 +56,13 @@ c     == global variables ==
 #ifdef ALLOW_ECCO
 # include "ecco_cost.h"
 #endif
+#endif /* ECCO_CTRL_DEPRECATED */
 
 c     == routine arguments ==
 
       integer mythid
 
+#ifdef ECCO_CTRL_DEPRECATED
 #ifdef ALLOW_ECCO
 c     == local variables ==
 
@@ -302,6 +305,7 @@ c-- exchange UV:
 #endif
 
 #endif /* ALLOW_ECCO */
+#endif /* ECCO_CTRL_DEPRECATED */
 
       return
       end
