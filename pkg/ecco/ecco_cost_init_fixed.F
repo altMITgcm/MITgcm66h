@@ -190,6 +190,10 @@ c--    set time averaging parameters
      &        gencost_avgperiod(k) .EQ. 'MONTH' ) then
             gencost_nrec(k)   =nmonsrec
             gencost_period(k) = 0.
+         else if ( gencost_avgperiod(k) .EQ. 'step' .OR.
+     &        gencost_avgperiod(k) .EQ. 'STEP' ) then
+            gencost_nrec(k)   =nTimeSteps+1
+            gencost_period(k) = dTtracerLev(1)
          else if ( gencost_avgperiod(k) .EQ. 'year' .OR.
      &        gencost_avgperiod(k) .EQ. 'YEAR' ) then
            STOP

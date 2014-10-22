@@ -9,7 +9,7 @@ C $Name$
       subroutine cost_gencost_customize( mythid )
 
 c     ==================================================================
-c     SUBROUTINE cost_gencost_assignperiod
+c     SUBROUTINE cost_gencost_customize
 c     ==================================================================
 
       implicit none

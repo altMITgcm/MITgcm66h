@@ -30,6 +30,7 @@ C     !USES:
 C     == global variables ==
 #include "EEPARAMS.h"
 #include "SIZE.h"
+#include "PARAMS.h"
 #ifdef ALLOW_CAL
 # include "cal.h"
 #endif
@@ -81,7 +82,10 @@ CEOP
       write(fname1(1:128),'(2a,i10.10)')
      &     localbarfile(1:il),'.',eccoiter
 
-        if ( localperiod .EQ. 86400. ) then
+        if ( localperiod.EQ.dTtracerLev(1) ) then
+           localrec = irec
+           obsrec = irec
+        elseif ( localperiod .EQ. 86400. ) then
 c-- assume daily fields
            obsrec = irec
            daytime = FLOAT(secondsperday*(irec-1)) + modelstart

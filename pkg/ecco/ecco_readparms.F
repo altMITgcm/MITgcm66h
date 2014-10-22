@@ -640,6 +640,8 @@ C--   Check parameters:
      &        gencost_avgperiod(k) .NE. 'DAY  ' .AND.
      &        gencost_avgperiod(k) .NE. 'month' .AND.
      &        gencost_avgperiod(k) .NE. 'MONTH' .AND.
+     &        gencost_avgperiod(k) .NE. 'step' .AND.
+     &        gencost_avgperiod(k) .NE. 'STEP' .AND.
      &        gencost_avgperiod(k) .NE. 'year ' .AND.
      &        gencost_avgperiod(k) .NE. 'YEAR ' ) then
 

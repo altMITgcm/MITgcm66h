@@ -161,6 +161,12 @@ c--     Compute masked model-data difference
      &     localmask, spminloc, spmaxloc, spzeroloc, 
      &     localdif, difmask, myThid )
 
+#ifdef ALLOW_SMOOTH
+      if ( (useSMOOTH).AND.(posproc(1).EQ.'smooth') )
+     &  call smooth_hetero2d(localdif,maskc,
+     &     posproc_c(1),posproc_i(1),mythid)
+#endif
+
 c--     Compute normalized model-obs cost function
         call ecco_addcost(
      I                   localdif, localweight, difmask, nnzobs,
