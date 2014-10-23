@@ -87,7 +87,7 @@ CEOP
        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                     SQUEEZE_RIGHT , 1)
 
-      print *, "GOT HERE mythid=", mythid, tolerance
+!      print *, "GOT HERE mythid=", mythid, tolerance
 
       conv_flag = 0
       ad_tolerance = 1.e-14
@@ -109,7 +109,7 @@ CEOP
        ENDDO
       ENDDO
 
-      print *, "GOT HERE 2 mythid=", mythid, tolerance
+!      print *, "GOT HERE 2 mythid=", mythid, tolerance
 
       CALL STREAMICE_CG_SOLVE(
      &  U_state,
@@ -125,7 +125,7 @@ CEOP
      &  maxiters,
      &  myThid )
 
-      print *, "GOT HERE 3 mythid=", mythid, tolerance
+!      print *, "GOT HERE 3 mythid=", mythid, tolerance
 
       tmpiter = 0
 
@@ -146,7 +146,7 @@ CEOP
      &  maxiters,
      &  myThid )
 
-      print *, "GOT HERE 4 mythid=", mythid, tolerance
+!      print *, "GOT HERE 4 mythid=", mythid, tolerance
 
       _EXCH_XY_RL( cg_Uin, myThid )
       _EXCH_XY_RL( cg_Vin, myThid )
