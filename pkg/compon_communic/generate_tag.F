@@ -11,23 +11,24 @@ C $Name$
       integer iarg2
       character*(*) carg
 ! Local
-      integer j,hash,pow
-      integer itrans(MAXLEN_COMP_NAME)
+c     integer j,hash,pow
+c     integer itrans(MAXLEN_COMP_NAME)
 !     ------------------------------------------------------------------
 
 ! Convert the characters to an integer array
-      call mitcplr_char2int( carg, itrans )
+c     call mitcplr_char2int( carg, itrans )
 
 ! Hash the integer array
-      hash=1
-      pow=1
-      do j=1,MAXLEN_COMP_NAME
-       hash=abs(hash+itrans(j)*pow)
-       pow=mod(pow*128,256*256)
-      enddo
+c     hash=1
+c     pow=1
+c     do j=1,MAXLEN_COMP_NAME
+c      hash=abs(hash+itrans(j)*pow)
+c      pow=mod(pow*128,256*256)
+c     enddo
 
-      generate_tag=(hash*256+iarg2)*128+iarg1
-      generate_tag=abs(mod(generate_tag,256*256*256))
+c     generate_tag=(hash*256+iarg2)*128+iarg1
+c     generate_tag=abs(mod(generate_tag,256*256*256))
+      generate_tag = iarg1*MAX_TILES + iarg2
 
 c     if (DEBUG)
 c    & write(0,*) 'generate_tag = ',generate_tag,iarg1,iarg2,carg
