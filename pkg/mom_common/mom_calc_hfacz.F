@@ -60,9 +60,8 @@ C                    how free surface affects hFacW,hFacS it using r* and
 C                    without topography)
       INTEGER i,j
 #ifdef ALLOW_DEPTH_CONTROL
-      _RL hFacZOpen (1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL hFacZOpenI(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
-      _RL hFacZOpenJ(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RS hFacZOpenI(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      _RS hFacZOpenJ(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
 # ifdef USE_SMOOTH_MIN
       _RS      SMOOTHMIN_RS
       EXTERNAL SMOOTHMIN_RS
@@ -102,7 +101,6 @@ C--   Calculate open water fraction at vorticity points
        DO i=1-OLx,sNx+OLx
         hFacZ(i,j)     =0.
         r_hFacZ(i,j)   =0.
-        hFacZOpen(i,j) =0.
         hFacZOpenI(i,j)=0.
         hFacZOpenJ(i,j)=0.
        ENDDO
