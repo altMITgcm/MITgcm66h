@@ -969,6 +969,7 @@ C Logical flags for selecting packages
       LOGICAL useSMOOTH
       LOGICAL usePROFILES
       LOGICAL useECCO
+      LOGICAL useCTRL
       LOGICAL useSBO
       LOGICAL useFLT
       LOGICAL usePTRACERS
@@ -999,7 +1000,7 @@ C Logical flags for selecting packages
       COMMON /PARM_PACKAGES/
      &        useGAD, useOBCS, useSHAP_FILT, useZONAL_FILT,
      &        useOPPS, usePP81, useKL10, useMY82, useGGL90, useKPP,
-     &        useGMRedi, useBBL, useDOWN_SLOPE,
+     &        useGMRedi, useBBL, useDOWN_SLOPE, useCTRL,
      &        useCAL, useEXF, useBulkForce, useEBM, useCheapAML,
      &        useGrdchk,useSMOOTH,usePROFILES,useECCO,useSBO, useFLT,
      &        usePTRACERS, useGCHEM, useRBCS, useOffLine, useMATRIX,
