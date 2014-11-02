@@ -163,6 +163,16 @@ cHFLUXM_CONTROL
      &  mult_gentim2d,mult_genarr2d,mult_genarr3d
 #endif
 
+      IF ( .NOT.useCTRL ) THEN
+C-    pkg CTRL is not used
+        _BEGIN_MASTER(myThid)
+C-    Track pkg activation status:
+C     print a (weak) warning if data.ctrl is found
+         CALL PACKAGES_UNUSED_MSG( 'useCTRL', ' ', ' ' )
+        _END_MASTER(myThid)
+        RETURN
+      ENDIF
+
       _BEGIN_MASTER( myThid )
 
 c--     Set default values.
