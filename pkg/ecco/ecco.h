@@ -159,7 +159,7 @@ c     =============================
 
       INTEGER NGENCOST3D
 #ifdef ALLOW_GENCOST3D
-      PARAMETER ( NGENCOST3D=2 )
+      PARAMETER ( NGENCOST3D=4 )
 #else
       PARAMETER ( NGENCOST3D=0 )
 #endif
