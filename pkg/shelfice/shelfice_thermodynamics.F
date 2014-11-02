@@ -214,13 +214,15 @@ C     where this value is part of the protocol
         ENDDO
        ENDDO
       ENDDO
-      CALL CTRL_GET_GEN (
+#ifdef ALLOW_CTRL
+      if (useCTRL) CALL CTRL_GET_GEN (
      &     xx_shifwflx_file, xx_shifwflxstartdate, xx_shifwflxperiod,
      &     maskSHI, xx_shifwflx_loc, xx_shifwflx0, xx_shifwflx1,
      &     xx_shifwflx_dummy,
      &     xx_shifwflx_remo_intercept, xx_shifwflx_remo_slope,
      &     wshifwflx,
      &     myTime, myIter, myThid )
+#endif
 #endif /* ALLOW_SHIFWFLX_CONTROL */
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
