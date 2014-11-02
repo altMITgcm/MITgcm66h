@@ -519,9 +519,9 @@ C-    calculate qnet (and wind stress)
       ENDIF
 #endif /*ALLOW_CHEAPAML */
 
-#ifdef ALLOW_AUTODIFF
+#ifdef ALLOW_CTRL
 C--   Add control vector for forcing and parameter fields
-      IF ( myIter .EQ. nIter0 )
+      IF ( ( useCTRL ).AND.( myIter .EQ. nIter0 ) )
      &     CALL CTRL_MAP_FORCING (myThid)
 #endif
 

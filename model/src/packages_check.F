@@ -394,7 +394,7 @@ C---  Continue with standard packages (with standard usePKG flag)
 #endif
 
 #ifdef ALLOW_CTRL
-      CALL CTRL_CHECK( myThid )
+      IF (useCTRL) CALL CTRL_CHECK( myThid )
 #endif
 
 #ifdef ALLOW_COST
@@ -422,7 +422,7 @@ C---  Continue with standard packages (with standard usePKG flag)
 #endif
 
 #ifdef ALLOW_ECCO
-      CALL ECCO_CHECK( myThid )
+      IF (useECCO) CALL ECCO_CHECK( myThid )
 #endif
 
 #ifdef ALLOW_DIAGNOSTICS

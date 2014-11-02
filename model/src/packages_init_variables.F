@@ -487,16 +487,18 @@ C--   Initialise pkg/profiles
 
 C--   Initialise pkg/ecco (and related pkgs components)
 #ifdef ALLOW_ECCO
-      CALL ECCO_INIT_VARIA( myThid )
+      IF ( useECCO ) CALL ECCO_INIT_VARIA( myThid )
 #endif
 
 C--   Initialise pkg/ctl (and related pkgs components)
 #ifdef ALLOW_CTRL
+      IF (useCTRL) THEN
 # ifdef ALLOW_DEBUG
-      IF (debugMode) CALL DEBUG_CALL('CTRL_INIT_VARIABLES',myThid)
+        IF (debugMode) CALL DEBUG_CALL('CTRL_INIT_VARIABLES',myThid)
 # endif
-      CALL CTRL_INIT_VARIABLES ( myThid )
-#endif /* ALLOW_AUTODIFF */
+        CALL CTRL_INIT_VARIABLES ( myThid )
+      ENDIF
+#endif /* ALLOW_CTRL */
 
 #ifdef ALLOW_OBCS
 C--   put this call in last position (needs to come after few {PKG}_init_varia)

@@ -122,7 +122,7 @@ C--   Initialise forcing arrays that may receive multiple contributions
 
 C--   Map generic time varying controls to xx_gentim2d
 #ifdef ALLOW_CTRL
-      CALL CTRL_MAP_GENTIM2D( myTime, myIter, myThid )
+      if (useCTRL) CALL CTRL_MAP_GENTIM2D( myTime, myIter, myThid )
 #endif
 
 #ifdef ALLOW_BULK_FORCE

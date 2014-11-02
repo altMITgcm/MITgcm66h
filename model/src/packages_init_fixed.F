@@ -358,13 +358,15 @@ C--   in order to provide the weight files
 #endif /* ALLOW_SMOOTH */
 
 #ifdef ALLOW_ECCO
+      IF (useECCO) THEN
 C--   Initialise ecco-specific cost function.
 C--   This needs to preceed the call ctrl_init
 C--   in order to provide the weight files
 # ifdef ALLOW_DEBUG
         IF (debugMode) CALL DEBUG_CALL('ECCO_COST_INIT_FIXED',myThid)
 # endif
-      CALL ECCO_COST_INIT_FIXED( myThid )
+        CALL ECCO_COST_INIT_FIXED( myThid )
+      ENDIF
 #endif
 
 #ifdef ALLOW_PROFILES
@@ -376,20 +378,26 @@ C--   in order to provide the weight files
       ENDIF
 #endif
 
-#ifdef ALLOW_AUTODIFF
+#ifdef ALLOW_CTRL
+      IF (useCTRL) THEN
 C--   Initialise the control variables
 # ifdef ALLOW_DEBUG
         IF (debugMode) CALL DEBUG_CALL('CTRL_INIT',myThid)
 # endif
-      CALL CTRL_INIT( myThid )
+        CALL CTRL_INIT( myThid )
+      ENDIF
 #endif
 
 #ifdef ALLOW_ADMTLM
+#ifdef ALLOW_CTRL
+      IF (useCTRL) THEN
 C--   Initialise ADMTLM
 # ifdef ALLOW_DEBUG
         IF (debugMode) CALL DEBUG_CALL('CTRL_ADMTLM',myThid)
 # endif
-      CALL CTRL_ADMTLM( myThid )
+        CALL CTRL_ADMTLM( myThid )
+      ENDIF
+#endif
 #endif
 
 #ifdef ALLOW_FLT

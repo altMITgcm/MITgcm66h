@@ -635,6 +635,7 @@ C--   Set model configuration (fixed arrays)
 #elif ( defined (ALLOW_AUTODIFF))
 
 # ifndef EXCLUDE_CTRL_PACK
+      IF ( useCTRL ) THEN
          inquire( file='costfinal', exist=exst )
          IF ( .NOT. exst ) THEN
             IF ( (optimcycle.NE.0 .OR. .NOT.doinitxx)
@@ -644,6 +645,7 @@ C--   Set model configuration (fixed arrays)
                CALL TIMER_STOP ('CTRL_UNPACK   [THE_MODEL_MAIN]',myThid)
             ENDIF
          ENDIF
+       ENDIF
 # endif /* EXCLUDE_CTRL_PACK */
 
 # ifdef ALLOW_COST
@@ -705,6 +707,7 @@ C--   Call time stepping loop of full model
 # endif /* forward run only within AD setting */
 
 # ifndef EXCLUDE_CTRL_PACK
+      IF ( useCTRL ) THEN
       IF ( lastdiva .AND. doMainPack ) THEN
          CALL TIMER_START('CTRL_PACK           [THE_MODEL_MAIN]',myThid)
          CALL CTRL_PACK( .FALSE. , myThid )
@@ -715,6 +718,7 @@ C--   Call time stepping loop of full model
             CALL CTRL_PACK( .TRUE. , myThid )
             CALL TIMER_STOP ('CTRL_PACK     [THE_MODEL_MAIN]',myThid)
          ENDIF
+      ENDIF
       ENDIF
 # endif /* EXCLUDE_CTRL_PACK */
 

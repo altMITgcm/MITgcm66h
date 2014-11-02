@@ -1145,7 +1145,7 @@ C---  if fluid Is Water: end
 #endif
 
 #ifdef ALLOW_ECCO
-      CALL ECCO_PHYS( myThid )
+      IF ( useECCO ) CALL ECCO_PHYS( myThid )
 #endif
 
 #ifdef ALLOW_DEBUG
