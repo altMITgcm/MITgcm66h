@@ -219,14 +219,14 @@ c--   Compute user defined cost function contributions (elaborate)
 #endif
 
 #ifdef ALLOW_CTRL
+      IF (useCTRL) THEN
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_CALL('ctrl_cost_driver',myThid)
 #endif
-c     IF ( useCtrl ) THEN
       call timer_start('ctrl_cost_driver [ECCO SPIN-DOWN]', myThid)
       call ctrl_cost_driver( myThid )
       call timer_stop ('ctrl_cost_driver [ECCO SPIN-DOWN]', myThid)
-c     ENDIF
+      ENDIF
 #endif
 
 #endif /* ALLOW_ECCO_EVOLUTION */

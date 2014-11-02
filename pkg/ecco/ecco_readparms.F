@@ -198,6 +198,16 @@ c--   Read the namelist input.
      &         mult_gencost
 #endif /* ALLOW_GENCOST_CONTRIBUTION */
 
+      IF ( .NOT.useECCO ) THEN
+C-    pkg ECCO is not used
+        _BEGIN_MASTER(myThid)
+C-    Track pkg activation status:
+C     print a (weak) warning if data.ecco is found
+         CALL PACKAGES_UNUSED_MSG( 'useECCO', ' ', ' ' )
+        _END_MASTER(myThid)
+        RETURN
+      ENDIF
+
       _BEGIN_MASTER( myThid )
 
 c--     Set default values.
