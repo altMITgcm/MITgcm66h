@@ -70,7 +70,7 @@ C     du/vIce :: solution vector
       _RL dvIce(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 CEOP
 
-#ifdef SEAICE_ALLOW_JFNK
+#if (defined SEAICE_ALLOW_DYNAMICS && defined SEAICE_ALLOW_JFNK)
 C     !FUNCTIONS:
       LOGICAL  DIFFERENT_MULTIPLE
       EXTERNAL DIFFERENT_MULTIPLE
