@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice/seaice_preconditioner.F : fix cpp flags, so that code also 
+  compiles when SEAICE_ALLOW_DYNAMICS is undefined
 o global_oce_llc90,cs32 : ecco_v4 verification exps now use separate 
   AUTODIFF_OPTIONS.h, CTRL_OPTIONS.h, ECCO_OPTIONS.h rather than
   ECCO_CPPOPTIONS.h (i.e. replacing the deprecated, circumvoluted, 
