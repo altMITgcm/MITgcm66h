@@ -30,6 +30,11 @@ C put back bugs related to Water-Vapour in carbonate chemistry & air-sea fluxes
 C dissolution only below saturation horizon following method by Karsten Friis
 #undef CAR_DISS
 
+C Include self-shading effect by phytoplankton
+#undef LIGHT_CHL
+C Include iron sediment source using DOP flux
+#undef SEDFE
+
 #endif /* ALLOW_DIC */
 #endif /* DIC_OPTIONS_H */
 
