@@ -3,6 +3,7 @@ C $Name$
 
 C--   COMMON /DIC_LOAD/
 C     DIC_ldRec     :: time-record currently loaded (in temp arrays *[1])
+C     chlinput      :: chlorophyll climatology input field [mg/m3]
 
       COMMON /DIC_LOAD_I/ DIC_ldRec
       COMMON /DIC_LOAD_RS/
@@ -13,6 +14,9 @@ C     DIC_ldRec     :: time-record currently loaded (in temp arrays *[1])
 #endif
 #ifdef ALLOW_FE
      &    ,feinput0,feinput1
+#endif
+#ifdef LIGHT_CHL
+     &    ,chlinput
 #endif
 
       INTEGER DIC_ldRec(nSx,nSy)
@@ -31,6 +35,9 @@ C     DIC_ldRec     :: time-record currently loaded (in temp arrays *[1])
 #ifdef ALLOW_FE
       _RS feinput0 (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RS feinput1 (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+#endif
+#ifdef LIGHT_CHL
+      _RS chlinput (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 #endif
 
 CEH3 ;;; Local Variables: ***
