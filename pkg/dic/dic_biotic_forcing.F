@@ -104,6 +104,11 @@ C  freefe                 :: iron not bound to ligand
 #ifdef CAR_DISS
        INTEGER nCALCITEstep
 #endif
+#ifdef ALLOW_FE
+# ifdef SEDFE
+       INTEGER kBottom
+# endif
+#endif
 CEOP
 
        DO k=1,Nr
@@ -270,6 +275,13 @@ C add all tendencies for PO4, DOP, ALK, DIC
                GFE(i,j,1)=GFE(i,j,1)+alpfe*
      &                    InputFe(i,j,bi,bj)*recip_drF(1)
      &                       *recip_hFacC(i,j,1,bi,bj)
+# ifdef SEDFE
+C include iron sediment source using the flux of po4 into bottom layer
+               kBottom   = MAX(kLowC(i,j,bi,bj),1)
+               GFE(i,j,kBottom)=GFE(i,j,kBottom)
+     &              +( fesedflux_pcm*pflux(i,j,kBottom) + FeIntSec )
+     &              *recip_drF(kBottom)*recip_hFacC(i,j,kBottom,bi,bj)
+# endif
 #endif
          ENDDO
        ENDDO
