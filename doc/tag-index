@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model, pkg : add useCTRL, useECCO parameters (on/off run time switch).
 o pkg/dic: add modifications from Hajoon:
   - add iron sedimentation flux function of the flux of PO4 out of bottom layer
   - light attenuation: add self-shading effect by climatological Chlorophyll
