@@ -118,9 +118,11 @@ c     == end of interface ==
      &                         xx_gentim2d(i,j,bi,bj,iarr)
 #else
            if (xx_gentim2d_file(iarr).EQ.'xx_tauu')
-     &       tmpUE(i,j,bi,bj)=xx_gentim2d(i,j,bi,bj,iarr)
+     &       tmpUE(i,j,bi,bj)=tmpUE(i,j,bi,bj)
+     &          +xx_gentim2d(i,j,bi,bj,iarr)
            if (xx_gentim2d_file(iarr).EQ.'xx_tauv')
-     &       tmpVN(i,j,bi,bj)=xx_gentim2d(i,j,bi,bj,iarr)
+     &       tmpVN(i,j,bi,bj)=tmpVN(i,j,bi,bj)
+     &          +xx_gentim2d(i,j,bi,bj,iarr)
 #endif
            enddo
          ENDDO
