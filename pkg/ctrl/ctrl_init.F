@@ -70,6 +70,11 @@ c     == local variables ==
       EXTERNAL MDS_RECLEN
 #endif
 
+#ifdef ALLOW_GENTIM2D_CONTROL
+      CHARACTER*(MAX_LEN_FNAM) fnamegen
+      INTEGER ilgen
+#endif
+
 c     == external ==
 
       integer  ilnblnk
@@ -840,6 +845,16 @@ C
      &       300+iarr, 400+iarr,
      &       diffrec, startrec, endrec,
      &       snx, sny, 1, 'c', 'xy', myThid )
+C
+        ilgen=ilnblnk( xx_gentim2d_file(iarr) )
+        write(fnamegen(1:MAX_LEN_FNAM),'(2a)')
+     &       xx_gentim2d_file(iarr)(1:ilgen),'.effective'
+        call ctrl_init_ctrlvar (
+     &       fnamegen(1:MAX_LEN_FNAM),
+     &       300+iarr, 400+iarr,
+     &       diffrec, startrec, endrec,
+     &       snx, sny, 1, 'c', 'xy', myThid )
+C
        enddo
 #endif /* ALLOW_GENTIM2D_CONTROL */
 
