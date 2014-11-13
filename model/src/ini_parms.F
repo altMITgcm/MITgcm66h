@@ -1352,16 +1352,16 @@ C     Check for relaxation term:
 C     Check vertical diffusivity setting:
 #ifdef ALLOW_3D_DIFFKR
        IF ( specifiedDiffKrT ) THEN
-         WRITE(msgBuf,'(2A)') 'S/R INI_PARMS: Cannot set diffKrT',
-     &    ' (or Kp,Kz) in param file data with ALLOW_3D_DIFFKR'
-         CALL PRINT_ERROR( msgBuf, myThid )
-         errCount = errCount + 1
+         WRITE(msgBuf,'(2A)') '** WARNING ** INI_PARMS: Ignores diffKr',
+     &   'T (or Kp,Kz) setting in file "data" with ALLOW_3D_DIFFKR'
+         CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                       SQUEEZE_RIGHT, myThid )
        ENDIF
        IF ( specifiedDiffKrS .AND. diffKrFile.NE.' ' ) THEN
-         WRITE(msgBuf,'(2A)') 'S/R INI_PARMS: Cannot set both ',
-     &    'diffKrS (or Kp,Kz) and diffKrFile in param file data'
-         CALL PRINT_ERROR( msgBuf, myThid )
-         errCount = errCount + 1
+         WRITE(msgBuf,'(2A)') '** WARNING ** INI_PARMS: Ignores diffKr',
+     &   'S (or Kp,Kz) setting in file "data" and uses diffKrFile'
+         CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                       SQUEEZE_RIGHT, myThid )
        ENDIF
 #endif
 
