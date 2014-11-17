@@ -31,8 +31,11 @@ C !USES: ============================================================
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
-#include "MY82.h"
 #include "GRID.h"
+#include "MY82.h"
+#ifdef ALLOW_3D_DIFFKR
+# include "DYNVARS.h"
+#endif
 
 C !INPUT PARAMETERS: ===================================================
 C Routine arguments
@@ -164,7 +167,11 @@ C     Set a minium (= background) value
          MYviscAr(I,J,K,bi,bj) = MAX(MYviscAr(I,J,K,bi,bj),
      &                               viscArnr(k) )
          MYdiffKr(I,J,K,bi,bj) = MAX(MYdiffKr(I,J,K,bi,bj),
+#ifdef ALLOW_3D_DIFFKR
+     &                               diffKr(i,j,k,bi,bj) )
+#else
      &                               diffKrNrT(k) )
+#endif
 C     Set a maximum and mask land point
          MYviscAr(I,J,K,bi,bj) = MIN(MYviscAr(I,J,K,bi,bj),MYviscMax)
      &        * maskC(I,J,K,bi,bj)
