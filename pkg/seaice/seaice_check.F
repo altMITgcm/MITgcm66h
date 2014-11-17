@@ -692,7 +692,7 @@ C--   pkg/seaice requires pkg/exf with following CPP options/
        STOP 'ABNORMAL END: S/R SEAICE_CHECK'
       ENDIF
 # endif
-      IF ( .NOT.SEAICEuseEVPstar
+      IF ( .NOT.(SEAICEuseEVPstar.OR.SEAICEuseEVPrev)
      &     .AND. SEAICEnEVPstarSteps.NE.UNSET_I ) THEN
        WRITE(msgBuf,'(A)') 'SEAICE_CHECK: SEAICEnEVPstarSteps is '//
      &      'set, but SEAICEuseEVPstar = .FALSE.'
