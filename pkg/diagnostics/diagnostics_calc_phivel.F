@@ -99,8 +99,8 @@ C--   Solve for velocity potential for each level:
         DO bj = myByLo(myThid), myByHi(myThid)
          DO bi = myBxLo(myThid), myBxHi(myThid)
 C-    Initialise fist guess & RHS
-           DO j = 1-Oly,sNy+Oly
-            DO i = 1-Olx,sNx+Olx
+           DO j = 1-OLy,sNy+OLy
+            DO i = 1-OLx,sNx+OLx
               b2d(i,j,bi,bj) = 0.
               x2d(i,j,bi,bj) = 0.
             ENDDO
@@ -177,7 +177,7 @@ C-    Normalise Matrice & RHS :
           residCriter = diagCG_resTarget
         ELSE
           residCriter = a2dNorm * ABS(diagCG_resTarget)
-     &                          * globalArea / deltaTmom
+     &                          * globalArea / deltaTMom
         ENDIF
         IF ( normaliseMatrice .OR. diagNormaliseRHS ) THEN
           DO bj = myByLo(myThid), myByHi(myThid)
@@ -205,7 +205,7 @@ c             x2d(i,j,bi,bj) =  x2d(i,j,bi,bj) /x2dNorm
         numIters = diagCG_maxIters
         CALL DIAG_CG2D(
      I                aW2d, aS2d, b2d,
-     I                residCriter,
+     I                diagCG_pcOffDFac, residCriter,
      O                firstResidual, minResidual, lastResidual,
      U                x2d, numIters,
      O                nIterMin,
@@ -225,8 +225,8 @@ C-    Un-normalise the answer
         IF (diagNormaliseRHS) THEN
           DO bj = myByLo(myThid), myByHi(myThid)
            DO bi = myBxLo(myThid), myBxHi(myThid)
-            DO j = 1-Oly,sNy+Oly
-             DO i = 1-Olx,sNx+Olx
+            DO j = 1-OLy,sNy+OLy
+             DO i = 1-OLx,sNx+OLx
               x2d(i,j,bi,bj) =  x2d(i,j,bi,bj)*x2dNorm
              ENDDO
             ENDDO
