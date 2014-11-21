@@ -4,6 +4,13 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/diagnostcis:
+  - improve treatment of Open-Boundaries in Velocity-Potential calculation:
+  a) use non zero matrix element across OB and solve for Phi 1 grid point
+     outside OB (i.e, where tracer OBCS are applied).
+  b) global imbalance of inFlow/outFlow across OB: instead of modifying
+     velocity across OB, spread it uniformly along the OB in the RHS.
+
 checkpoint65g (2014/11/19)
 o pkg/diagnostcis:
   - add preconditioner off-diagonal factor (diagCG_pcOffDFac) as run-time param
