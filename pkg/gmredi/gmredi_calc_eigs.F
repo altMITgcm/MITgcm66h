@@ -233,7 +233,6 @@ C         and the first M baroclinic modes (eigenvectors)
        ENDDO
       ENDDO
 
-      DO k=1,Nr
        DO j=1-Oly,sNy+Oly
         DO i=1-Olx,sNx+Olx
          IF (kLow(i,j).GT.2 .AND. val(i,j).NE.zeroRL) THEN
@@ -243,7 +242,6 @@ C         and the first M baroclinic modes (eigenvectors)
          ENDIF
         ENDDO
        ENDDO
-      ENDDO
 
 # else      
       DO k=1,Nr
