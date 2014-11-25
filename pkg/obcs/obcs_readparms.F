@@ -122,6 +122,8 @@ C     retired parameters
 
       NAMELIST /OBCS_PARM01/
      &          insideOBmaskFile,
+     &          OBNconnectFile, OBSconnectFile,
+     &          OBEconnectFile, OBWconnectFile,
      &          OB_Jnorth,OB_Jsouth,OB_Ieast,OB_Iwest,
      &          useOrlanskiNorth,useOrlanskiSouth,
      &          useOrlanskiEast,useOrlanskiWest,
@@ -211,6 +213,10 @@ C--   Default flags and values for OBCS
       OB_indexNone  = -99
       OB_indexUnset = 0
       insideOBmaskFile = ' '
+      OBNconnectFile   = ' '
+      OBSconnectFile   = ' '
+      OBEconnectFile   = ' '
+      OBWconnectFile   = ' '
       DO i=1,OBNS_Nx
        OB_Jnorth(i) = OB_indexUnset
        OB_Jsouth(i) = OB_indexUnset
