@@ -208,6 +208,10 @@ C-    set tile increments
            WRITE(standardMessageUnit,'(3(A,2I4))')
      &          ' diag_calc_psivel:            is,js=', is,js,
      &                 ' ; ix,jx=', ix,jx, ' ; iy,jy=', iy,jy
+c          IF ( iPsi0(bi,bj)*jPsi0(bi,bj).GT.0 )
+c    &     WRITE(standardMessageUnit,'(A,L5))')
+c    &          ' diag_calc_psivel:          kPsi @ i,jPsi0 =',
+c    &                          kPsi(iPsi0(bi,bj),jPsi0(bi,bj))
            _END_MASTER( myThid )
          ENDIF
 #endif /* ALLOW_OBCS */
