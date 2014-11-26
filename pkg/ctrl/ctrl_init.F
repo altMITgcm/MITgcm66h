@@ -72,7 +72,7 @@ c     == local variables ==
 
 #ifdef ALLOW_GENTIM2D_CONTROL
       CHARACTER*(MAX_LEN_FNAM) fnamegen
-      INTEGER ilgen
+      INTEGER ilgen, k2
 #endif
 
 c     == external ==
@@ -839,6 +839,14 @@ c--
      O       xx_gentim2d_startdate(1,iarr), 
      O       diffrec, startrec, endrec,
      I       myThid )
+C
+        do k2 = 1, maxCtrlProc
+         if (xx_gentim2d_preproc(k2,iarr).EQ.'replicate') then
+           if (xx_gentim2d_preproc_i(k2,iarr).NE.0) then
+            endrec=min(endrec,xx_gentim2d_preproc_i(k2,iarr))
+           endif
+         endif
+        enddo
 C
         call ctrl_init_ctrlvar (
      &       xx_gentim2d_file(iarr)(1:MAX_LEN_FNAM),
