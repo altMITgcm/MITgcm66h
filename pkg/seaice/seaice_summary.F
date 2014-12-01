@@ -119,6 +119,8 @@ C--  Seaice-Dynamics parameters
       CALL WRITE_0D_C( 'B-GRID', -1, INDEX_NONE,
      & 'model grid type   =', ' /* type of sea ice model grid */')
 #endif /* SEAICE_CGRID */
+      CALL WRITE_0D_L ( SEAICEuseStrImpCpl, INDEX_NONE,
+     & 'SEAICEuseStrImpCpl =', ' /* use strongly implicit coupling */')
       CALL WRITE_0D_L ( SEAICEuseEVP, INDEX_NONE,
      & 'SEAICEuseEVP      =', ' /* use EVP solver rather than LSR */')
 #ifdef SEAICE_ALLOW_FREEDRIFT
