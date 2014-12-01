@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice
+  - add overlap for restrictive additive Schwartz method also to LSR, but
+    turn it off by default (because it only seems to work for non-cubed
+    sphere/llc topologies)
 o pkg/autodiff
   - add extra exchanges in addummy_in_steppging also for mnc output
 o pkg/seaice:
