@@ -200,7 +200,8 @@ c     >>> Initialise control vector for optimcycle=0 <<<
           write(cfile(1:128),'(4a,i4.4)')
      &         ctrlname(1:9),'_',yctrlid(1:10),
      &         yctrlposunpack(1:4), optimcycle
-          print *, 'ph-pack: unpacking ', ctrlname(1:9)
+          write(standardMessageUnit,*) 'ph-pack: unpacking ', 
+     &         ctrlname(1:9)
       else
 c     >>> Write gradient vector <<<
           lxxadxx   = .FALSE.
@@ -208,7 +209,8 @@ c     >>> Write gradient vector <<<
           write(cfile(1:128),'(4a,i4.4)')
      &         costname(1:9),'_',yctrlid(1:10),
      &         yctrlposunpack(1:4), optimcycle
-          print *, 'ph-pack: unpacking ', costname(1:9)
+          write(standardMessageUnit,*) 'ph-pack: unpacking ', 
+     &         costname(1:9)
        endif
 
 c--   Only Proc 0 will do I/O.
