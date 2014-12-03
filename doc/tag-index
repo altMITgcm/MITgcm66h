@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o add eesupp/src/fill_cs_corner_rl.F (_RL-copy of fill_cs_corner_rs.F)
+  and call it in seaice_lsr when using nonzero SEAICE_OLx/y
 o pkg/seaice: introduce strongly implicit coupling, intended for stabilizing
   LSR (following Hutchings et al. 2004)
   - introduce zetaZ as a global variable (requires adjustments in
