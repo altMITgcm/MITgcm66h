@@ -772,6 +772,16 @@ C SAFEGUARD AGAINST BAD FORCING ETC
         ENDIF
 
         CALL EXCH_UV_XY_RL( uIce, vIce,.TRUE.,myThid)
+        IF ( useCubedSphereExchange .AND.
+     &       (SEAICE_OLx.EQ.OLx-2 .OR. SEAICE_OLy.EQ.OLy-2) ) THEN
+         DO bj=myByLo(myThid),myByHi(myThid)
+          DO bi=myBxLo(myThid),myBxHi(myThid)
+           CALL FILL_CS_CORNER_UV_RL( .TRUE., 
+     U          uIce(1-OLx,1-OLy,bi,bj), vIce(1-OLx,1-OLy,bi,bj), 
+     I          bi,bj, myThid )
+          ENDDO
+         ENDDO
+        ENDIF
 
 C--    end doIterate4u or doIterate4v
        ENDIF
