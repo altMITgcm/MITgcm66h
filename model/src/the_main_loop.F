@@ -410,6 +410,10 @@ CADJ INIT comlev1        = COMMON,nchklev_1
 CADJ INIT comlev1_bibj   = COMMON,nchklev_1*nsx*nsy*nthreads_chkpt
 CADJ INIT comlev1_bibj_k = COMMON,nchklev_1*nsx*nsy*nr*nthreads_chkpt
 c--
+#ifdef ALLOW_CTRL
+CADJ INIT ctrltape       = COMMON,1
+#endif
+c--
 #   ifdef ALLOW_KPP
 CADJ INIT comlev1_kpp    = COMMON,nchklev_1*nsx*nsy
 CADJ INIT comlev1_kpp_k  = COMMON,nchklev_1*nsx*nsy*nr
