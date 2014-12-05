@@ -1,6 +1,6 @@
 C $Header$
 C $Name$
-#include "CPP_OPTIONS.h"
+
 #include "GMREDI_OPTIONS.h"
 
 C     !ROUTINE: GMREDI_K3D
@@ -21,10 +21,10 @@ C     \ev
 
 C     == Global variables ==
 #include "SIZE.h"
-#include "GRID.h"
-#include "DYNVARS.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#include "GRID.h"
+#include "DYNVARS.h"
 #include "GMREDI.h"
 
 C     !INPUT/OUTPUT PARAMETERS:

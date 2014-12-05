@@ -1,7 +1,6 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
 #include "GMREDI_OPTIONS.h"
 
 CBOP
