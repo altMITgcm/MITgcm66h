@@ -10,19 +10,19 @@ C $Name$
 C     Package-specific Options & Macros go here
 
 #define DIC_BIOTIC
-#undef  ALLOW_FE
 #define ALLOW_O2
+#undef ALLOW_FE
 #undef READ_PAR
 #undef MINFE
 #undef DIC_NO_NEG
-c these all need to be defined for coupling to
-c atmospheric model
+C these all need to be defined for coupling to atmospheric model:
 #undef USE_QSW
 #undef USE_QSW_UNDERICE
 #undef USE_ATMOSCO2
 #undef USE_PLOAD
 
-#define ALLOW_OLD_VIRTUALFLUX
+C use surface salinity forcing (scaled by mean surf value) for DIC & ALK forcing
+#undef ALLOW_OLD_VIRTUALFLUX
 
 C put back bugs related to Water-Vapour in carbonate chemistry & air-sea fluxes
 #undef WATERVAP_BUG
