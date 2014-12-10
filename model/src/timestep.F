@@ -379,6 +379,10 @@ C     Step forward meridional velocity (store in Gv)
       ENDDO
 
 #ifdef ALLOW_DIAGNOSTICS
+      IF ( momViscosity .AND. useDiagnostics ) THEN
+        CALL DIAGNOSTICS_FILL( guDissip,'Um_Diss ',k,1,2,bi,bj,myThid )
+        CALL DIAGNOSTICS_FILL( gvDissip,'Vm_Diss ',k,1,2,bi,bj,myThid )
+      ENDIF
       IF ( momForcing .AND. useDiagnostics ) THEN
         CALL DIAGNOSTICS_FILL( guExt,'Um_Ext  ',k,1,2,bi,bj,myThid )
         CALL DIAGNOSTICS_FILL( gvExt,'Vm_Ext  ',k,1,2,bi,bj,myThid )
