@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice/seaice_lsr.F: fix computation of BU/BV, make sure they are 
+  non-zero, only necessary for cubed sphere exchanges and SEAICE_OLx/y>0.
+  This makes calling s/r fill_cs_corner_rl obsolete (removed).
 o verification/global_ocean.cs32x15/input.seaice
   - add test for strong implicit coupling and restricted addtive Schwarz
     methods for LSR
