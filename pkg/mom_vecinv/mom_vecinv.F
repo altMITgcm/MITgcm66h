@@ -762,8 +762,6 @@ C--   Set du/dt & dv/dt on boundaries to zero
         CALL DIAGNOSTICS_FILL(KE,     'momKE   ',k,1,2,bi,bj,myThid)
        IF (momViscosity) THEN
         CALL DIAGNOSTICS_FILL(hDiv,   'momHDiv ',k,1,2,bi,bj,myThid)
-        CALL DIAGNOSTICS_FILL(guDiss, 'Um_Diss ',k,1,2,bi,bj,myThid)
-        CALL DIAGNOSTICS_FILL(gvDiss, 'Vm_Diss ',k,1,2,bi,bj,myThid)
        ENDIF
        IF ( useVariableVisc .OR. useStrainTensionVisc ) THEN
         CALL DIAGNOSTICS_FILL(tension, 'Tension ',k,1,2,bi,bj,myThid)
