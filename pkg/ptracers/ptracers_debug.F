@@ -22,35 +22,35 @@ C !USES: ===============================================================
 #include "PTRACERS_FIELDS.h"
 
 C !INPUT PARAMETERS: ===================================================
-C  myThid               :: thread number
+C  myThid      :: thread number
       INTEGER myThid
 
 C !OUTPUT PARAMETERS: ==================================================
 C  none
 
 #ifdef ALLOW_PTRACERS
-#ifdef  ALLOW_DEBUG
+#ifdef ALLOW_DEBUG
 
 C !LOCAL VARIABLES: ====================================================
-C  i,j,k,bi,bj,iTracer  :: loop indices
+C  iTracer     :: tracer index
       INTEGER iTracer
-      CHARACTER*(9) strng
+      CHARACTER*(12) strng
 CEOP
 
 C Loop over tracers
       DO iTracer=1,PTRACERS_num
 
-       WRITE(strng(1:9),'(a7,i2.2)') 'PTRACER',iTracer
-       CALL DEBUG_STATS_RL(Nr,
-     &   pTracer(1-OLx,1-OLy,1,1,1,iTracer),strng,myThid)
-       WRITE(strng(1:9),'(a7,i2.2)') 'GNm1TRC',iTracer
-       CALL DEBUG_STATS_RL(Nr,
-     &   gpTrNm1(1-OLx,1-OLy,1,1,1,iTracer),strng,myThid)
+       WRITE(strng,'(A8,I4.4)') 'PTRACER.', iTracer
+       CALL DEBUG_STATS_RL( Nr, pTracer(1-OLx,1-OLy,1,1,1,iTracer),
+     &                      strng, myThid )
+       WRITE(strng,'(A8,I4.4)') 'GNm1TRC.', iTracer
+       CALL DEBUG_STATS_RL( Nr, gpTrNm1(1-OLx,1-OLy,1,1,1,iTracer),
+     &                      strng, myThid )
 
 C end of tracer loop
       ENDDO
 
-#endif
+#endif /* ALLOW_DEBUG */
 #endif /* ALLOW_PTRACERS */
 
       RETURN
