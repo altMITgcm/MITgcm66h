@@ -111,6 +111,7 @@ CEOP
 
 !      print *, "GOT HERE 2 mythid=", mythid, tolerance
 
+#ifndef ALLOW_OPENAD
       CALL STREAMICE_CG_SOLVE(
      &  U_state,
      &  V_state,
@@ -124,6 +125,7 @@ CEOP
      &  tmpiter,
      &  maxiters,
      &  myThid )
+#endif
 
 !      print *, "GOT HERE 3 mythid=", mythid, tolerance
 
