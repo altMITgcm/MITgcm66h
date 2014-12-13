@@ -72,7 +72,8 @@ C--   generic 2D control variables
       if (xx_genarr2d_file(iarr).EQ.'xxg_geothermal') igen_geoth=iarr
       ENDDO
 
-      call ctrl_map_genarr2d(etaN,igen_etan0,myThid)
+      if (igen_etan0.GT.0)
+     &      call ctrl_map_genarr2d(etaN,igen_etan0,myThid)
 #ifdef ALLOW_BOTTOMDRAG_CONTROL
       if (igen_bdrag.GT.0)
      &  call ctrl_map_genarr2d(bottomDragFld,igen_bdrag,myThid)
