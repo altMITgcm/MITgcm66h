@@ -50,7 +50,7 @@ addExp=''
 #options="$options -skd tutorial_advection_in_gyre"
  EXE="mpirun -machinefile TR_MFILE -v -np TR_NPROC ./mitgcmuv"
 
-checkOut=1 ; options="$options -do" ; dblRun=6 ;
+checkOut=1 ; options="$options -do" ; dblRun=9 ;
 #options="$options -nc" ; checkOut=0 ; dblRun=0 ;
 #options="$options -q"  ; checkOut=0 ; dblRun=0 ;
 
