@@ -1,5 +1,8 @@
 C $Header$
 C $Name$
+
+#include "OPENAD_OPTIONS.h"
+
 C ###########################################################
       SUBROUTINE EXCH1_RL(
      U                 array,
@@ -135,6 +138,8 @@ C ###########################################################
       LOGICAL doglobalread
       LOGICAL lAdInit
       _RL     dummy
+#ifdef ALLOW_OPENAD_ACTIVE_FILE
       active_var = dummy + active_var
       dummy = active_var(1,1,1,1) + dummy
+#endif /* ALLOW_OPENAD_ACTIVE_FILE */
       end subroutine
