@@ -16,6 +16,7 @@ CEOP
 #ifndef OPENAD_OPTIONS_H
 #define OPENAD_OPTIONS_H
 #include "PACKAGES_CONFIG.h"
+#include "CPP_OPTIONS.h"
 
 #ifdef ALLOW_OPENAD
 
@@ -23,4 +24,3 @@ CEOP
 
 #endif /* ALLOW_OPENAD */
 #endif /* OPENAD_OPTIONS_H */
-
