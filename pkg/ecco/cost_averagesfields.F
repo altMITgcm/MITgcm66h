@@ -77,7 +77,7 @@ c     == local variables ==
       integer myiter
 #ifdef ECCO_CTRL_DEPRECATED
       integer bi,bj
-      integer i,j,k
+      integer i,j
       integer ig,jg
       integer itlo,ithi
       integer jtlo,jthi
