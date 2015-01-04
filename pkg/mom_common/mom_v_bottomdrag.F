@@ -100,9 +100,8 @@ C--   Linear bottom drag:
      &    - recDrF_bot(i,j)
      &    *( bottomDragLinear*dragFac
 #ifdef ALLOW_BOTTOMDRAG_CONTROL
-c    &     + halfRL*( bottomDragFld(i,j-1,bi,bj)
-c    &              + bottomDragFld(i,j,bi,bj) )*dragFac
-     &              + bottomDragFld(i,j,bi,bj)  *dragFac
+     &     + halfRL*( bottomDragFld(i,j-1,bi,bj)
+     &              + bottomDragFld(i,j,bi,bj) )*dragFac
 #endif
      &     )*vFld(i,j)
        ENDDO
