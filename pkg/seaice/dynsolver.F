@@ -223,7 +223,7 @@ C NOW KEEP FORCEX0
 #endif /* EXPLICIT_SSH_SLOPE */
 C--   NOW SET UP ICE PRESSURE AND VISCOSITIES
           PRESS0(I,J,bi,bj)=PSTAR*HEFF(I,J,bi,bj)
-     &         *EXP(-20.0 _d 0*(ONE-AREA(I,J,bi,bj)))
+     &         *EXP(-SEAICE_cStar*(ONE-AREA(i,j,bi,bj)))
 CML          ZMAX(I,J,bi,bj)=(5.0 _d +12/(2.0 _d +04))*PRESS0(I,J,bi,bj)
           ZMAX(I,J,bi,bj)=SEAICE_zetaMaxFac*PRESS0(I,J,bi,bj)
 CML          ZMIN(I,J,bi,bj)=4.0 _d +08

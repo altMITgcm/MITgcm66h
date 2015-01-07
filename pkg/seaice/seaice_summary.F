@@ -143,6 +143,10 @@ C--  Seaice-Dynamics parameters
      & 'SEAICEuseTEM      =', ' /* use truncated ellipse rheology */')
       CALL WRITE_0D_RL( SEAICE_strength   ,INDEX_NONE,
      & 'SEAICE_strength   =', ' /* sea-ice strength Pstar */')
+      CALL WRITE_0D_RL( SEAICE_cStar   ,INDEX_NONE,
+     & 'SEAICE_cStar      =', ' /* sea-ice strength parameter cStar */')
+      CALL WRITE_0D_RL( SEAICE_tensilFac   ,INDEX_NONE,
+     & 'SEAICE_tensilFac  =', ' /* sea-ice tensile strength factor */')
       CALL WRITE_0D_RL( SEAICEpresH0   ,INDEX_NONE,
      & 'SEAICEpresH0   =', ' /* sea-ice strength Heff threshold */')
        CALL WRITE_0D_I ( SEAICEpresPow0,    INDEX_NONE,
