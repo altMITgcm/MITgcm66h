@@ -51,7 +51,6 @@ C     iUnit      :: Work variable for IO unit number
 
       _BARRIER
       _BEGIN_MASTER(myThid)
-        useDynP_inEos_Zc = .TRUE.
         module_is_initialized =.false.
         turb = .false.
         ldry_convection = .false.
