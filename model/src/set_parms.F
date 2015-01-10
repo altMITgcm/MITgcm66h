@@ -233,6 +233,8 @@ c     useDynP_inEos_Zc = .FALSE.
      &                      eosType .EQ. 'UNESCO' .OR.
      &                      eosType .EQ. 'MDJWF'  .OR.
      &                      eosType .EQ. 'TEOS10'      )  )
+C-    pkg/atm_phys uses main-model geopotential:
+      useDynP_inEos_Zc = useDynP_inEos_Zc .OR. useAtm_Phys
 
 C--   Adjust parameters related to length of the simulation
 
