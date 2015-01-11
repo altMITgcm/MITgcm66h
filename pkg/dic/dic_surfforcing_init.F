@@ -175,7 +175,7 @@ C determine inorganic carbon chem coefficients
      &                          min(10. _d 0,PTRACER(i,j,kLev,bi,bj,2)))
      &                          * maskC(i,j,kLev,bi,bj)
              surfphos(i,j)  = max(1.0 _d -11,
-     &                          min(1._d -1, PTRACER(i,j,kLev,bi,bj,3)))
+     &                          min(1. _d -1,PTRACER(i,j,kLev,bi,bj,3)))
      &                          * maskC(i,j,kLev,bi,bj)
 #else
              surfalk(i,j) = PTRACER(i,j,kLev,bi,bj,2)
