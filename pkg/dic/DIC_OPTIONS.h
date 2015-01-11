@@ -15,6 +15,7 @@ C     Package-specific Options & Macros go here
 #undef READ_PAR
 #undef MINFE
 #undef DIC_NO_NEG
+#undef DIC_BOUNDS
 C these all need to be defined for coupling to atmospheric model:
 #undef USE_QSW
 #undef USE_QSW_UNDERICE
