@@ -37,6 +37,7 @@ C #endif
 C       |-- INI_NLFS_VARS
 C       |-- INI_DYNVARS
 C       |-- INI_NH_VARS
+C       |-- INI_FFIELDS
 C       |
 C       |-- INI_FIELDS
 C       |
@@ -127,6 +128,9 @@ C--   Initialize NH_VARS arrays to zero [always]
 #ifdef ALLOW_NONHYDROSTATIC
       CALL INI_NH_VARS( myThid )
 #endif
+
+C--   Initialize FFIELDS arrays to zero [always]
+      CALL INI_FFIELDS( myThid )
 
 C--   Initialise model fields.
 C     Starting values of U, V, W, temp., salt. and tendency terms
