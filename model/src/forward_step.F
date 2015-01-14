@@ -153,7 +153,7 @@ C       |
 C       |-- THERMODYNAMICS
 C       |
 C       |-- LONGSTEP_AVERAGE
-C       |--_THERMODYNAMICS
+C       |-- LONGSTEP_THERMODYNAMICS
 C       |
 C       |-- DO_STAGGER_FIELDS_EXCHANGES
 C       |
