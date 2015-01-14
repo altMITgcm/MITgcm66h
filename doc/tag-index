@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src:
+  - move (from ini_forcing.F) initialisation of all arrays in header file
+    FFIELDS.h into new S/R ini_ffields.F ; this fix broken restart
+    (since Nov 2012) with option selectAddFluid=1.
 o pkg/shelfice:
   - change units (+ document) of newly added field "shelfIceMassDynTendency"
   - upgrade from _RS to _RL shelficeMass & shelficeLoadAnomaly arrays.
