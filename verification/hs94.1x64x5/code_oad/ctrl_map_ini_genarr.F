@@ -57,7 +57,7 @@ C     == local variables ==
 
       logical doglobalread
       logical ladinit
-      character*(MAX_LEN_FNAM) fnamebase
+      character*( 80)   fnamebase
       character*( 80)   fnamegeneric
       character*(MAX_LEN_MBUF) msgBuf
       _RL     fac
