@@ -73,6 +73,18 @@ C     set coefficients to constant values
        ENDDO
       ENDDO
 
+      IF (shelficeMassStepping) THEN
+
+      IF ( .NOT. ( startTime .EQ. baseTime .AND.  nIter0 .EQ. 0
+     &     .AND. pickupSuff .EQ. ' ') ) THEN
+
+          CALL SHELFICE_READ_PICKUP ( myThid )
+
+      ENDIF
+    
+      ENDIF
+
+
 #ifdef ALLOW_COST
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
