@@ -23,6 +23,7 @@ C     == GLobal variables ==
 #include "GMREDI.h"
 #ifdef ALLOW_EDDYPSI
 # include "DYNVARS.h"
+# include "FFIELDS.h"
 #endif
 
 C     !INPUT/OUTPUT PARAMETERS:
@@ -105,7 +106,7 @@ C     Calculate the mean velocity from the residual and bolus
           delPsi = GM_PsiX(i,j,kp1,bi,bj)*maskp1
      &           - GM_PsiX(i,j, k, bi,bj)
           ustar = delPsi*recip_drF(k)*_recip_hFacW(i,j,k,bi,bj)
-          uMean(i,j,k,bi,bj) = uVel(i,j,k,bi,bj) - ustar
+          uEulerMean(i,j,k,bi,bj) = uVel(i,j,k,bi,bj) - ustar
          ENDDO
         ENDDO
         DO j=1-OLy,sNy+OLy
@@ -113,15 +114,17 @@ C     Calculate the mean velocity from the residual and bolus
           delPsi = GM_PsiY(i,j,kp1,bi,bj)*maskp1
      &           - GM_PsiY(i,j, k, bi,bj)
           vstar  = delPsi*recip_drF(k)*_recip_hFacS(i,j,k,bi,bj)
-          vMean(i,j,k,bi,bj) = vVel(i,j,k,bi,bj) - vstar
+          vEulerMean(i,j,k,bi,bj) = vVel(i,j,k,bi,bj) - vstar
          ENDDO
         ENDDO
 
        ENDDO
 
 #ifdef ALLOW_DIAGNOSTICS
-       CALL DIAGNOSTICS_FILL( uMean, 'UVELMEAN', 0,Nr,1,bi,bj,myThid )
-       CALL DIAGNOSTICS_FILL( vMean, 'VVELMEAN', 0,Nr,1,bi,bj,myThid )
+       IF ( useDiagnostics ) THEN
+        CALL DIAGNOSTICS_FILL(uEulerMean,'U_EulerM',0,Nr,1,bi,bj,myThid)
+        CALL DIAGNOSTICS_FILL(vEulerMean,'V_EulerM',0,Nr,1,bi,bj,myThid)
+       ENDIF
 #endif /* ALLOW_DIAGNOSTICS */
 #endif /* ALLOW_EDDYPSI */
 
