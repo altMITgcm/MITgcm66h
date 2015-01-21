@@ -170,7 +170,7 @@ C--   Assume Agrid position:
           DO i=1,sNx
            frictionHeating(i,j,k,bi,bj) = frictionHeating(i,j,k,bi,bj)
      &         - halfRL * ( damp_dKE( i, j)*rAs(i, j ,bi,bj)
-     &                    + damp_dKE(i+1,j)*rAs(i,j+1,bi,bj)
+     &                    + damp_dKE(i,j+1)*rAs(i,j+1,bi,bj)
      &                    )*recip_rA(i,j,bi,bj)
           ENDDO
          ENDDO
