@@ -156,7 +156,7 @@ C             are directly proportional to Delta-U,V due to the Filter
      &                *_hFacS(i,j  ,k,bi,bj)*rAs(i,j  ,bi,bj)
      &              +Shap_tmpFld2(i,j+1,k,bi,bj)*vFld(i,j+1,k,bi,bj)
      &                *_hFacS(i,j+1,k,bi,bj)*rAs(i,j+1,bi,bj)
-     &             )                       )
+     &             )                       )*recip_rA(i,j,bi,bj)
                ENDDO
               ENDDO
 #ifdef ALLOW_FRICTION_HEATING
@@ -172,11 +172,6 @@ C             are directly proportional to Delta-U,V due to the Filter
 #endif /* ALLOW_FRICTION_HEATING */
 #ifdef ALLOW_DIAGNOSTICS
               IF ( diag_dKE ) THEN
-               DO j=1,sNy
-                DO i=1,sNx
-                   dKE_shap(i,j) = dKE_shap(i,j) * recip_rA(i,j,bi,bj)
-                ENDDO
-               ENDDO
                CALL DIAGNOSTICS_FILL( dKE_shap, 'SHAP_dKE',
      &                                k, 1, 2, bi, bj, myThid )
               ENDIF

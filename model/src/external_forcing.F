@@ -425,8 +425,7 @@ C         conversion from W/m^2/r_unit to K/s
         DO j=1,sNy
           DO i=1,sNx
             gT(i,j,kLev,bi,bj) = gT(i,j,kLev,bi,bj)
-     &         + frictionHeating(i,j,kLev,bi,bj)
-     &          *tmpFac*recip_rA(i,j,bi,bj)
+     &         + frictionHeating(i,j,k,bi,bj)*tmpFac
      &          *recip_drF(kLev)*_recip_hFacC(i,j,kLev,bi,bj)
           ENDDO
         ENDDO

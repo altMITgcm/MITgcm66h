@@ -155,8 +155,9 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
         DO j=1,sNy
          DO i=1,sNx
            frictionHeating(i,j,k,bi,bj) = frictionHeating(i,j,k,bi,bj)
-     &        -0.5 _d 0 * ( aim_dKE( i, j)*rAw( i, j,bi,bj)
-     &                    + aim_dKE(i+1,j)*rAw(i+1,j,bi,bj) )
+     &         - halfRL * ( aim_dKE( i, j)*rAw( i, j,bi,bj)
+     &                    + aim_dKE(i+1,j)*rAw(i+1,j,bi,bj)
+     &                    )*recip_rA(i,j,bi,bj)
          ENDDO
         ENDDO
       ENDIF
@@ -342,8 +343,9 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
         DO j=1,sNy
          DO i=1,sNx
            frictionHeating(i,j,k,bi,bj) = frictionHeating(i,j,k,bi,bj)
-     &        -0.5 _d 0 * ( aim_dKE(i, j )*rAs(i, j, bi,bj)
-     &                    + aim_dKE(i,j+1)*rAs(i,j+1,bi,bj) )
+     &         - halfRL * ( aim_dKE(i, j )*rAs(i, j, bi,bj)
+     &                    + aim_dKE(i,j+1)*rAs(i,j+1,bi,bj)
+     &                    )*recip_rA(i,j,bi,bj)
          ENDDO
         ENDDO
       ENDIF
