@@ -82,6 +82,17 @@ C--   latitude and pressure levels
           pHalf3d(:,:,k) = rF(Nr+1) + ( rF(ki) - rF(Nr+1) )
      &                               *rStarFacC(1:sNx,1:sNy,bi,bj)
          ENDDO
+       ELSEIF ( select_rStar.GT.0 ) THEN
+         DO k=1,Nr
+          kc = Nr-k+1
+          pFull3d(:,:,k) = rF(Nr+1) + ( rC(kc) - rF(Nr+1) )
+     &                               *rStarFacNm1C(1:sNx,1:sNy,bi,bj)
+         ENDDO
+         DO k=1,Nr+1
+          ki = Nr-k+2
+          pHalf3d(:,:,k) = rF(Nr+1) + ( rF(ki) - rF(Nr+1) )
+     &                               *rStarFacNm1C(1:sNx,1:sNy,bi,bj)
+         ENDDO
        ELSE
          STOP 'ATM_PHYS_DYN2PHYS: misssing code - 1 -'
        ENDIF
