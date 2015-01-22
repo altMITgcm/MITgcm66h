@@ -826,12 +826,6 @@ C--   Time-stepping limitations
         CALL PRINT_ERROR( msgBuf, myThid )
         errCount = errCount + 1
       ENDIF
-      IF ( addFrictionHeating .AND. .NOT.staggerTimeStep ) THEN
-        WRITE(msgBuf,'(2A)') 'CONFIG_CHECK: addFrictionHeating',
-     &  ' not yet coded for synchronous time-stepping.'
-        CALL PRINT_ERROR( msgBuf, myThid )
-        errCount = errCount + 1
-      ENDIF
       IF ( implBottomFriction ) THEN
         WRITE(msgBuf,'(2A)') 'CONFIG_CHECK: implBottomFriction',
      &  ' not yet coded.'
