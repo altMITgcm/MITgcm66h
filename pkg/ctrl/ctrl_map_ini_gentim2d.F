@@ -159,7 +159,7 @@ CADJ STORE xx_gentim2d_dummy = ctrltape, key = 1 , kind = isbyte
             ENDDO
            ENDDO
 
-           _EXCH_XY_RL ( xx_gen , myThid )
+           CALL EXCH_XY_RL ( xx_gen , myThid )
           ENDIF
          ENDIF
 #endif /* ALLOW_SMOOTH */
