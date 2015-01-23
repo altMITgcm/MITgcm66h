@@ -41,8 +41,8 @@ c read smoothing [i.e diffusion] operator:
      &           1, smooth2D_Kux,1,1,mythid)
       CALL READ_REC_3D_RL(fnamegeneric,smoothprec,
      &           1, smooth2D_Kvy,2,1,mythid)
-      _EXCH_XY_RL ( smooth2D_Kux, myThid )
-      _EXCH_XY_RL ( smooth2D_Kvy, myThid )
+      CALL EXCH_XY_RL ( smooth2D_Kux, myThid )
+      CALL EXCH_XY_RL ( smooth2D_Kvy, myThid )
 
 c do the smoothing:
       nbt_in=smooth2Dnbt(smoothOpNb)

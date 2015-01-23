@@ -128,7 +128,7 @@ C     *==========================================================*
        ENDDO 
       ENDDO
 
-      _EXCH_XY_RL ( fld_in , myThid )
+      CALL EXCH_XY_RL ( fld_in , myThid )
 
       if (.NOT.weightWasFound) WRITE(errorMessageUnit,'(2A)' )
      &       'WARNING: no weights found for ',xx_gen_file

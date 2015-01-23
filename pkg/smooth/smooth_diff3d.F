@@ -65,9 +65,9 @@ c       in order not to overwrite the same tape
        ENDDO
       ENDDO
 
-      _EXCH_XYZ_RL ( fld_in , myThid )
-      _EXCH_XYZ_RL ( gt_in , myThid )
-      _EXCH_XYZ_RL ( gtm1_in , myThid )
+      CALL EXCH_XYZ_RL ( fld_in , myThid )
+      CALL EXCH_XYZ_RL ( gt_in , myThid )
+      CALL EXCH_XYZ_RL ( gtm1_in , myThid )
 
 #ifdef ALLOW_TAMC_CHECKPOINTING
 
@@ -126,7 +126,7 @@ CADJ & key = key_in*nchklev_1 + ilev_1
        ENDDO
       ENDDO
 
-      _EXCH_XYZ_RL ( gt_in , myThid )
+      CALL EXCH_XYZ_RL ( gt_in , myThid )
 
 c compute gT_in:
       CALL smooth_rhs( fld_in, gT_in, myThid )
@@ -172,9 +172,9 @@ CADJ & key = key_in*nchklev_1 + ilev_1
        ENDDO
       ENDDO
 
-      _EXCH_XYZ_RL ( fld_in , myThid )
-      _EXCH_XYZ_RL ( gt_in , myThid )
-      _EXCH_XYZ_RL ( gtm1_in , myThid )
+      CALL EXCH_XYZ_RL ( fld_in , myThid )
+      CALL EXCH_XYZ_RL ( gt_in , myThid )
+      CALL EXCH_XYZ_RL ( gtm1_in , myThid )
 
 #ifdef ALLOW_TAMC_CHECKPOINTING
       endif
