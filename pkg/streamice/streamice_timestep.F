@@ -122,9 +122,9 @@ c**************************************
 
       CALL STREAMICE_VELMASK_UPD (myThid)
 
-#ifdef ALLOW_STREAMICE_FLUX_CONTROL
-      CALL STREAMICE_APPLY_FLUX_CTRL ( myTime, myIter, myThid )
-#endif
+!#ifdef ALLOW_STREAMICE_FLUX_CONTROL
+!      CALL STREAMICE_APPLY_FLUX_CTRL ( myTime, myIter, myThid )
+!#endif
 
 #ifdef ALLOW_STREAMICE_TIMEDEP_FORCING
       CALL STREAMICE_FIELDS_LOAD( myTime, myIter, myThid )
