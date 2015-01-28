@@ -77,6 +77,7 @@ c     == local variables ==
 #if (defined ALLOW_OBCSE_CONTROL || defined ALLOW_OBCSW_CONTROL)
       _RL tmpfldyz (1-oly:sny+oly,nr,nsx,nsy)
 #endif
+      _RL loctmp2d (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
 
       character*(80) fname
 
@@ -733,12 +734,12 @@ ce      --> this index does not exist yet.
 
       else
 
-         call active_read_xy( fname, tmpfld2d, icvrec,
+         call active_read_xy( fname, loctmp2d, icvrec,
      &                        doglobalread, ladinit, optimcycle,
      &                        mythid, dummy)
          if ( myProcId .EQ. grdchkwhichproc )
-     &   tmpfld2d( itilepos,jtilepos,itile,jtile ) = xx_comp_ref
-         call active_write_xy( fname, tmpfld2d, icvrec,
+     &   loctmp2d( itilepos,jtilepos,itile,jtile ) = xx_comp_ref
+         call active_write_xy( fname, loctmp2d, icvrec,
      &                         optimcycle,
      &                         mythid, dummy)
 
