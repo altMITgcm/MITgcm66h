@@ -295,7 +295,7 @@ c$openad INDEPENDENT(xx_tr1)
 c$openad INDEPENDENT(xx_hfluxm)
 # endif
 # ifdef ALLOW_GENARR2D_CONTROL
-cph c$openad INDEPENDENT(xx_genarr2d)
+c$openad INDEPENDENT(xx_genarr2d)
 c$openad INDEPENDENT(xx_genarr2d_dummy)
 # endif
 # ifdef ALLOW_GENARR3D_CONTROL

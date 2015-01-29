@@ -319,7 +319,7 @@ C
 # endif /* ECCO_CTRL_DEPRECATED */
 
 # ifdef ALLOW_GENARR2D_CONTROL
-cph     &      , xx_genarr2d
+     &      , xx_genarr2d
 # endif
 # ifdef ALLOW_GENARR3D_CONTROL
      &      , xx_genarr3d
@@ -348,8 +348,8 @@ C
       _RL xx_place_holder
 
 # ifdef ALLOW_GENARR2D_CONTROL
-cph      _RL xx_genarr2d(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy,
-cph     &                maxCtrlArr2D)
+      _RL xx_genarr2d(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy,
+     &                maxCtrlArr2D)
 # endif
 # ifdef ALLOW_GENARR3D_CONTROL
       _RL xx_genarr3d(1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy,
