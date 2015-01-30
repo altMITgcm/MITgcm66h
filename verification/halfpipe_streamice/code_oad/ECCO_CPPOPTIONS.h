@@ -45,6 +45,6 @@ C ********************************************************************
 
 C       >>> Initial values.
 #define ALLOW_GENARR2D_CONTROL
-cph#define ALLOW_GENTIM2D_CONTROL
+#define ALLOW_GENTIM2D_CONTROL
 
 #endif /* ECCO_CPPOPTIONS_H */
