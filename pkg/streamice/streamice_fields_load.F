@@ -312,7 +312,7 @@ C-      endif 1rst iter.
         ENDDO
 
 !      print *, "GOT HERE STREAMICE FIELDS LOAD",
-     &  first,changed,nm0,nm1,fac
+!     &  first,changed,nm0,nm1,fac
 #endif
 #endif
 
