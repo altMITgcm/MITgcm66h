@@ -100,7 +100,7 @@ C--   generic - user-defined control vars
      &                  H_streamice(i,j,bi,bj)
      &                  + tmpfld2d(i,j,bi,bj)
 #ifdef ALLOW_OPENAD
-     &                  + xx_genarr2d(i,j,bi,bj,iarr)
+cph     &                  + xx_genarr2d(i,j,bi,bj,iarr)
 #endif
 
                 elseif (iarr.eq.1) then
@@ -108,7 +108,7 @@ C--   generic - user-defined control vars
      &                  B_glen(i,j,bi,bj)
      &                  + tmpfld2d(i,j,bi,bj)
 #ifdef ALLOW_OPENAD
-     &                  + xx_genarr2d(i,j,bi,bj,iarr)
+cph     &                  + xx_genarr2d(i,j,bi,bj,iarr)
 #endif
 
 !                elseif (iarr.eq.5) then
