@@ -4,11 +4,13 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/shelfice:
+  - change setting of kTopC to also be zero where there is no ice-shelf.
 o pkg/seaice: add the option to prescribe a fixed thickness PDF
   for thermodynamic calculations
-  - because of divisions of the type 7/7 not exactly equal to 1, this change 
+  - because of divisions of the type 7/7 not exactly equal to 1, this change
     affects results of some verification experiments by up to 4 digits:
-    global_ocean.cs32x15.seaice, lab_sea, lab_sea.fd, lab_sea.salt_plume, 
+    global_ocean.cs32x15.seaice, lab_sea, lab_sea.fd, lab_sea.salt_plume,
     seaice_obcs, seaice_obcs.seaiceSponge, seaice_obcs.tides
     adjoint: lab_sea, lab_sea.noseaicedyn
     -> updated
