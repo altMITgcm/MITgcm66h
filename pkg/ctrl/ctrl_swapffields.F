@@ -60,6 +60,15 @@ C     == end of interface ==
           DO j = 1,sNy
             DO i = 1,sNx
               ffld0(i,j,bi,bj) = ffld1(i,j,bi,bj)
+            ENDDO
+          ENDDO
+        ENDDO
+      ENDDO
+
+      DO bj=myByLo(myThid),myByHi(myThid)
+        DO bi=myBxLo(myThid),myBxHi(myThid)
+          DO j = 1,sNy
+            DO i = 1,sNx
               ffld1(i,j,bi,bj) = 0. _d 0
             ENDDO
           ENDDO
