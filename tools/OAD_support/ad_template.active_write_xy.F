@@ -36,6 +36,7 @@ C     !FUNCTIONS
 #ifdef ALLOW_OPENAD_ACTIVE_WRITE
 
       myNr = 1
+      globalFile = .FALSE.
       useCurrentDir = .FALSE.
 
       if (our_rev_mode%plain) then
