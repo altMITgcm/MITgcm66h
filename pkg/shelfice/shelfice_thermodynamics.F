@@ -575,8 +575,10 @@ C     Transfer coefficients
        CALL DIAGNOSTICS_FILL(shiTransCoeffS,'SHIgammS',
      &      0,1,0,1,1,myThid)
 C     Friction velocity
+#ifdef SHI_ALLOW_GAMMAFRICT
        IF ( SHELFICEuseGammaFrict )
      &  CALL DIAGNOSTICS_FILL(uStarDiag,'SHIuStar',0,1,0,1,1,myThid)
+#endif /* SHI_ALLOW_GAMMAFRICT */
       ENDIF
 #endif /* ALLOW_DIAGNOSTICS */
 
