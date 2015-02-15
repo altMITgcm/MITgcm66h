@@ -225,6 +225,13 @@ c     ENDIF
        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I      diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
+       diagName  = 'SHIuStar'
+       diagTitle = 'Friction velocity at bottom of ice shelf'
+       diagUnits = 'm/s             '
+       diagCode  = 'SM      L1      '
+       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I      diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
        diagName  = 'SHI_mass'
        diagTitle = 'dynamic ice shelf mass for surface load anomaly'
        diagUnits = 'kg/m^2          '
