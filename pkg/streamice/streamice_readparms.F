@@ -106,7 +106,8 @@ C     iUnit      :: Work variable for IO unit number
 
 #ifdef ALLOW_PETSC
       NAMELIST /STREAMICE_PARMPETSC/
-     &     PETSC_PRECOND_TYPE, PETSC_SOLVER_TYPE
+     &     PETSC_PRECOND_TYPE, PETSC_SOLVER_TYPE, 
+     &     streamice_use_petsc
 #endif
 
 !#ifdef ALLOW_STREAMICE_FLUX_CONTROL
@@ -246,6 +247,7 @@ C--   Default values for STREAMICE
 #ifdef ALLOW_PETSC
       PETSC_PRECOND_TYPE = 'PCBJACOBI'
       PETSC_SOLVER_TYPE = 'KSPCG'
+      streamice_use_petsc = .true.
 #endif
       STREAMICE_ADV_SCHEME = ''
 

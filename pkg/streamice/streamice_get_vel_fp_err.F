@@ -21,9 +21,7 @@ C     === Global variables ===
 #include "PARAMS.h"
 #include "STREAMICE.h"
 #include "STREAMICE_CG.h"
-!#ifdef ALLOW_PETSC
-!#include "finclude/petsc.h"
-!#endif
+
 
 C     !INPUT/OUTPUT ARGUMENTS
       _RL err_max

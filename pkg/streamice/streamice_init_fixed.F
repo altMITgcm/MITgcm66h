@@ -46,7 +46,9 @@ C     === Local variables ===
 #endif
 
 #ifdef ALLOW_PETSC
+      if (streamice_use_petsc) then
       CALL STREAMICE_INITIALIZE_PETSC
+      endif
 #endif
 
 #ifdef ALLOW_MNC

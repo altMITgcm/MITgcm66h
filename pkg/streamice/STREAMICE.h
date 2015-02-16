@@ -210,6 +210,7 @@ C     -------------------------- LOGICAL PARAMS --------------------------------
       LOGICAL STREAMICE_chkfixedptconvergence
       LOGICAL STREAMICE_chkresidconvergence
       LOGICAL STREAMICE_allow_cpl
+      LOGICAL STREAMICE_use_petsc
       
 
 C     The following parameters specify periodic boundary conditions.
@@ -235,7 +236,7 @@ C      LOGICAL STREAMICE_hybrid_stress
      & STREAMICE_h_ctrl_const_surf,
      & STREAMICE_chkfixedptconvergence,
      & STREAMICE_chkresidconvergence,
-     & STREAMICE_allow_cpl
+     & STREAMICE_allow_cpl, streamice_use_petsc
 
 C     -------------------------- AND NOW ARRAYS ---------------------------------------------------
 

@@ -226,7 +226,9 @@ C     === Global variables ===
 
 #ifdef ALLOW_PETSC
       myThidCopy = myThid
+      if (streamice_use_petsc) then
       call streamice_petsc_numerate (myThidCopy)
+      endif
 #endif
 
 #endif
