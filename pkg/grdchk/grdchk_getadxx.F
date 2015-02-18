@@ -75,6 +75,7 @@ c     == local variables ==
       _RL tmpfldyz (1-oly:sny+oly,nr,nsx,nsy)
 #endif
       _RL loctmp2d (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      _RL loctmp3d (1-olx:snx+olx,1-oly:sny+oly,Nr,nsx,nsy)
 
       character*(80) fname
 
@@ -503,11 +504,11 @@ c--   == end of interface ==
 #endif
      &                                            ) then
 
-         call active_read_xyz( fname, tmpfld3d, 1,
+         call active_read_xyz( fname, loctmp3d, 1,
      &                         doglobalread, ladinit, optimcycle,
      &                         mythid, dummy)
          if ( myProcId .EQ. grdchkwhichproc )
-     &   xx_comp = tmpfld3d( itilepos,jtilepos,layer,itile,jtile )
+     &   xx_comp = loctmp3d( itilepos,jtilepos,layer,itile,jtile )
 
 #if (defined ALLOW_OBCSN_CONTROL || defined ALLOW_OBCSS_CONTROL)
       elseif ( grdchkvarindex.EQ.11 .OR. grdchkvarindex.EQ.12) then

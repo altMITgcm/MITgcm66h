@@ -49,8 +49,9 @@ c     == local variables ==
 #ifdef ALLOW_OBCS_CONTROL
       integer ntmpob(nobcs)
 #endif
-      _RL     dummy
-      _RS     dummyRS
+      _RL dummy
+      _RS dummyRS
+      _RL loctmp3d (1-olx:snx+olx,1-oly:sny+oly,Nr,nsx,nsy)
 
       character*(80) ymaskobcs
       character*(max_len_mbuf) msgbuf
@@ -601,7 +602,7 @@ c
             do k=1,Nr
              do j=1-oly,sNy+oly
               do i=1-olx,sNx+olx
-               tmpfld3d(i,j,k,bi,bj) = 1. _d 0
+               loctmp3d(i,j,k,bi,bj) = 1. _d 0
               enddo
              enddo
             enddo
@@ -626,7 +627,7 @@ c#endif
 #if (defined (ALLOW_EFLUXP0_CONTROL))
       call active_write_xyz( 'maskhFacV', hFacV, 1, 0, mythid, dummy)
 #endif
-      call active_write_xyz( 'wunit', tmpfld3d, 1, 0, mythid, dummy)
+      call active_write_xyz( 'wunit', loctmp3d, 1, 0, mythid, dummy)
 #ifdef ALLOW_SHIFWFLX_CONTROL
 c#ifdef REAL4_IS_SLOW
 c     call active_write_xyz( 'maskCtrlI', maskSHI, 1, 0, mythid, dummy)
