@@ -265,10 +265,10 @@ CADJ STORE recip_hFacC = tapelev_init, key = 1
 
 #ifdef ALLOW_OPENAD
 # ifdef ALLOW_THETA0_CONTROL
-c$openad INDEPENDENT(xx_theta)
+c$openad INDEPENDENT(xx_theta_dummy)
 # endif
 # ifdef ALLOW_SALT0_CONTROL
-c$openad INDEPENDENT(xx_salt)
+c$openad INDEPENDENT(xx_salt_dummy)
 # endif
 # ifdef ALLOW_HFLUX0_CONTROL
 c$openad INDEPENDENT(xx_hflux0)
@@ -283,7 +283,7 @@ c$openad INDEPENDENT(xx_tauu0)
 c$openad INDEPENDENT(xx_tauv0)
 # endif
 # ifdef ALLOW_DIFFKR_CONTROL
-c$openad INDEPENDENT(xx_diffkr)
+c$openad INDEPENDENT(xx_diffkr_dummy)
 # endif
 # ifdef ALLOW_KAPGM_CONTROL
 c$openad INDEPENDENT(xx_kapgm)

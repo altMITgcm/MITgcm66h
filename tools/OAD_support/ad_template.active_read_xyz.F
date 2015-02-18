@@ -28,13 +28,13 @@ C     !FUNCTIONS
       INTEGER il
       INTEGER myNr
       LOGICAL useCurrentDir
-      Real*8  active_var_p(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      Real*8  active_var_p(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       INTEGER  ILNBLNK
       EXTERNAL ILNBLNK
 
-#ifdef ALLOW_OPENAD_ACTIVE_READ_XY
+#ifdef ALLOW_OPENAD_ACTIVE_READ_XYZ
 
-      myNr = 1
+      myNr = Nr
       useCurrentDir = .FALSE.
 
       if (our_rev_mode%plain) then
@@ -107,6 +107,6 @@ C     !FUNCTIONS
          active_var%d = active_var_p
       end if
 
-#endif /* ALLOW_OPENAD_ACTIVE_READ_XY */
+#endif /* ALLOW_OPENAD_ACTIVE_READ_XYZ */
 
       end
