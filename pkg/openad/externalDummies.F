@@ -187,7 +187,7 @@ C ###########################################################
 #ifdef ALLOW_OPENAD_ACTIVE_READ_XYZ
       active_var = dummy + active_var
       dummy = active_var(1,1,1,1,1) + dummy
-#endif /* ALLOW_OPENAD_ACTIVE_READ_XY */
+#endif /* ALLOW_OPENAD_ACTIVE_READ_XYZ */
       end subroutine
 C ###########################################################
       subroutine active_read_xy(
