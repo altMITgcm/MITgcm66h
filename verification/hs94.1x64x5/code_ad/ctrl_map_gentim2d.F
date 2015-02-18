@@ -92,7 +92,7 @@ C--   generic - user-defined control vars
 C
        fnamebase = xx_gentim2d_file(iarr)
        CALL CTRL_GET_GEN (
-     I      fnamebase(1:MAX_LEN_FNAM),
+     I      xx_gentim2d_file(iarr),
      I      xx_gentim2d_startdate(1,iarr),
      I      xx_gentim2d_period(iarr),
      I      maskC,

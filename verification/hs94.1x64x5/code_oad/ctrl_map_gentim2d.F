@@ -99,7 +99,7 @@ C
      O      xx_gentim2d_loc,
      I      xx_gentim2d0(1-Olx,1-Oly,1,1,iarr),
      I      xx_gentim2d1(1-Olx,1-Oly,1,1,iarr),
-     I      xx_gentim2d_dummy,
+     I      xx_gentim2d_dummy(iarr),
      I      zeroRL, zeroRL,
      I      wgentim2d(1-Olx,1-Oly,1,1,iarr),
      I      mytime, myiter, mythid )
