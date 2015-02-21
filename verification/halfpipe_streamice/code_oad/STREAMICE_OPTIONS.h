@@ -17,13 +17,11 @@ C Use this file for selecting options within package "streamice"
 C Place CPP define/undef flag here
 
 #define STREAMICE_CONSTRUCT_MATRIX
-#define STREAMICE_HYBRID_STRESS
 #define USE_ALT_RLOW
-#undef STREAMICE_GEOM_FILE_SETUP
 #define STREAMICE_SMOOTH_FLOATATION
-#undef ALLOW_PETSC
-#undef ALLOW_STREAMICE_2DTRACER
-#undef STREAMICE_TRACER_AB
+#define STREAMICE_ALLOW_BGLEN_CONTROL
+#define ALLOW_STREAMICE_OAD_FP
+#define STREAMICE_HYBRID_STRESS
 
 #endif /* ALLOW_MYPACKAGE */
 #endif /* MYPACKAGE_OPTIONS_H */
