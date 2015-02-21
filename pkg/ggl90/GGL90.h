@@ -109,7 +109,6 @@ CEOP
       _RL mskCor(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 #endif
 
-
 #ifdef ALLOW_GGL90_IDEMIX
 c-----------------------------------------------------------------------
 c   IDEMIX parameter
