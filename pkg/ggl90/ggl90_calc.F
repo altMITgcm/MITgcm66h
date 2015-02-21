@@ -450,7 +450,7 @@ C     compute Prandtl number (always greater than 0)
 CML         IDEMIX_RiNumber = 1./GGL90eps
          IDEMIX_RiNumber = MAX( KappaM*Nsquare(i,j,k), 0. _d 0)/
      &    (GGL90eps+IDEMIX_tau_d(i,j,k,bi,bj)*IDEMIX_E(i,j,k,bi,bj)**2)
-         prTemp         = MIN(5.*RiNumber, 6.6*IDEMIX_RiNumber)
+         prTemp         = MIN(5.*RiNumber, 6.6 _d 0*IDEMIX_RiNumber)
 #else
          prTemp = 1. _d 0
          IF ( RiNumber .GE. 0.2 _d 0 ) prTemp = 5. _d 0 * RiNumber
