@@ -567,6 +567,16 @@ C The 0 is the "iteration" argument. The ' ' is an empty suffix
 
        CALL STREAMICE_UPD_FFRAC_UNCOUPLED ( myThid )
        CALL STREAMICE_VELMASK_UPD (myThid)
+
+#if (defined (ALLOW_OPENAD) && defined (ALLOW_STREAMICE_OAD_FP))
+
+       CALL STREAMICE_VEL_SOLVE_OPENAD ( myThid,
+     &                           streamice_max_nl_iter,
+     &                           streamice_max_cg_iter,
+     &                           0 )
+
+#else
+
        CALL STREAMICE_VEL_SOLVE(
      &     myThid,
      &     streamice_max_nl_iter,
@@ -574,8 +584,9 @@ C The 0 is the "iteration" argument. The ' ' is an empty suffix
      &     0 )
 
 #endif
+#endif
 
-!#endif
+
 
       CALL WRITE_FLD_XY_RL ( "C_basal_fric", "",
      & C_basal_friction, 0, myThid )
