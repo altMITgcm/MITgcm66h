@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ggl90 (idemix code):
+  - apply few fixes ; add some missing "_d 0" ; update output of exp.
+    global_ocean.90x40x15.idemix
 o OpenAD
   - enable active file I/O and begin removal of work-around code
     for OpenAD for handling control variables (memory vs. active files)
