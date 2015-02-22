@@ -142,14 +142,14 @@ C--   generic - user-defined control vars
           do k = 1,Nr
            do j = jmin,jmax
             do i = imin,imax
-#ifdef ALLOW_OPENAD
+cc#ifdef ALLOW_OPENAD
+cc              pTracer(i,j,k,bi,bj,iarr) = pTracer(i,j,k,bi,bj,iarr)
+cc     &         + fac*xx_genarr3d(i,j,k,bi,bj,iarr)
+cc     &         + fac*tmpfld3d(i,j,k,bi,bj)
+cc#else
               pTracer(i,j,k,bi,bj,iarr) = pTracer(i,j,k,bi,bj,iarr)
-     &         + fac*xx_genarr3d(i,j,k,bi,bj,iarr)
      &         + fac*tmpfld3d(i,j,k,bi,bj)
-#else
-              pTracer(i,j,k,bi,bj,iarr) = pTracer(i,j,k,bi,bj,iarr)
-     &         + fac*tmpfld3d(i,j,k,bi,bj)
-#endif
+cc#endif
             enddo
            enddo
           enddo
