@@ -14,10 +14,10 @@ C     maxCtrlTim2D :: number of 2-d generic tim-varying ctrl variables
 C     maxCtrlProc  :: number of pre-processing options per ctrl variable
 
       integer     maxCtrlArr2D
-      parameter ( maxCtrlArr2D = 3 )
+      parameter ( maxCtrlArr2D = 2 )
 
       integer     maxCtrlArr3D
-      parameter ( maxCtrlArr3D = 3 )
+      parameter ( maxCtrlArr3D = 1 )
 
       integer     maxCtrlTim2D
       parameter ( maxCtrlTim2D = 1 )
