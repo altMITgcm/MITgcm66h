@@ -40,7 +40,7 @@ C-----------------------------------------------------------------------
          DO j = 1-OLy, sNy+OLy
           DO i = 1-OLx, sNx+OLx
            KLviscAr (i,j,k,bi,bj) = viscArNr(k)
-           KLdiffKr (i,j,k,bi,bj) = diffKrNrT(k)
+           KLdiffKr (i,j,k,bi,bj) = diffKrNrS(k)
           ENDDO
          ENDDO
         ENDDO

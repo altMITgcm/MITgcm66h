@@ -3,7 +3,7 @@ C $Name$
 
 #include "GGL90_OPTIONS.h"
 
-      SUBROUTINE GGL90_CALC_DIFF( 
+      SUBROUTINE GGL90_CALC_DIFF(
      I        bi,bj,iMin,iMax,jMin,jMax,kArg,kSize,
      U        KappaRx,
      I        myThid)
@@ -35,7 +35,7 @@ C     KappaRx   :: vertical diffusivity array
 C     myThid    :: Instance number for this innvocation of GGL90_CALC_DIFF
 
       INTEGER bi,bj,iMin,iMax,jMin,jMax,kArg,kSize
-      _RL KappaRx(1-Olx:sNx+Olx,1-Oly:sNy+Oly,kSize)
+      _RL KappaRx(1-OLx:sNx+OLx,1-OLy:sNy+OLy,kSize)
       INTEGER myThid
 
 #ifdef ALLOW_GGL90
@@ -52,7 +52,7 @@ C-    do all levels :
           DO i=iMin,iMax
             KappaRx(i,j,k) = KappaRx(i,j,k)
      &                  +( GGL90diffKr(i,j,k,bi,bj)
-     &                     - diffKrNrT(k) )
+     &                     - diffKrNrS(k) )
           ENDDO
          ENDDO
         ENDDO
@@ -63,7 +63,7 @@ C-    do level k=kArg only :
           DO i=iMin,iMax
             KappaRx(i,j,k) = KappaRx(i,j,k)
      &                  +( GGL90diffKr(i,j,kArg,bi,bj)
-     &                     - diffKrNrT(kArg) )
+     &                     - diffKrNrS(kArg) )
           ENDDO
          ENDDO
       ENDIF

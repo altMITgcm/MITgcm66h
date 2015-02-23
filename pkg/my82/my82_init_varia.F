@@ -52,7 +52,7 @@ C-----------------------------------------------------------------------
           DO i = 1-OLx, sNx+OLx
            MYhbl    (i,j  ,bi,bj) = 0. _d 0
            MYviscAr (i,j,k,bi,bj) = viscArNr(k)
-           MYdiffKr (i,j,k,bi,bj) = diffKrNrT(k)
+           MYdiffKr (i,j,k,bi,bj) = diffKrNrS(k)
           ENDDO
          ENDDO
         ENDDO

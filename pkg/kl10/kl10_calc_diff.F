@@ -57,7 +57,7 @@ C-    do all levels :
 #ifdef ALLOW_3D_DIFFKR
      &                     - diffKr(i,j,k,bi,bj) )
 #else
-     &                     - diffKrNrT(k) )
+     &                     - diffKrNrS(k) )
 #endif
           ENDDO
          ENDDO
@@ -72,7 +72,7 @@ C-    do level k=kArg only :
 #ifdef ALLOW_3D_DIFFKR
      &                     - diffKr(i,j,kArg,bi,bj) )
 #else
-     &                     - diffKrNrT(kArg) )
+     &                     - diffKrNrS(kArg) )
 #endif
           ENDDO
          ENDDO

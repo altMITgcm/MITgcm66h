@@ -170,7 +170,7 @@ C     Set a minium (= background) value
 #ifdef ALLOW_3D_DIFFKR
      &                               diffKr(i,j,k,bi,bj) )
 #else
-     &                               diffKrNrT(k) )
+     &                               diffKrNrS(k) )
 #endif
 C     Set a maximum and mask land point
          MYviscAr(I,J,K,bi,bj) = MIN(MYviscAr(I,J,K,bi,bj),MYviscMax)
