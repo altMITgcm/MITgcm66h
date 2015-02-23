@@ -13,9 +13,8 @@ C     !DESCRIPTION: \bv
 C     *==========================================================*
 C     | S/R GGL90_IDEMIX
 C     |
-C     | IDEMIX model as described in
+C     | IDEMIX1 model as described in
 C     | - Olbers, D. and Eden, C. (2013), JPO, doi:10.1175/JPO-D-12-0207.1
-C     | - Eden, C. and Olbers, D. (2014), JPO, doi:10.1175/JPO-D-13-0224.1
 C     | in a nutshell:
 C     | computes contribution of internal wave field to vertical mixing
 C     *==========================================================*

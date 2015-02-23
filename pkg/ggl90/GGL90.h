@@ -38,11 +38,9 @@ C     mxlMaxFlag      - Flag for limiting mixing-length method (default=0)
 C     mxlSurfFlag     - Flag to force mixing near ocean surface (default=.FALSE.)
 C
 C     useIDEMIX       - turn on internal wave mixing contribution modeled by
-C                       IDEMIX:
-C                     - Olbers, D. and Eden, C. (2013)
+C                       IDEMIX version 1:
+C                     - Olbers, D. and Eden, C. (2013), J. Phys. Oceano.
 C                       doi:10.1175/JPO-D-12-0207.1
-C                     - Eden, C. and Olbers, D. (2014)
-C                       doi:10.1175/JPO-D-13-0224.1
 C
 C     GGL90dumpFreq   - analogue of dumpFreq (= default)
 C     GGL90taveFreq   - analogue of taveFreq (= default)
