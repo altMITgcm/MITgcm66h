@@ -552,20 +552,25 @@ C-    set default scheme for quadratic bottom-drag
         CALL PRINT_ERROR( msgBuf, myThid )
         errCount = errCount + 1
       ENDIF
-      specifiedDiffKrS = vertSetCount.EQ.Nr
-      IF ( diffKrS .EQ. UNSET_RL ) THEN
-        diffKrS = diffKrSDefault
-      ELSEIF ( vertSetCount.GT.0 ) THEN
-        WRITE(msgBuf,'(2A)') 'S/R INI_PARMS: Cannot set both ',
-     &     'diffKrNrS and diffKrS (or Kp,Kz) in param file data'
-        CALL PRINT_ERROR( msgBuf, myThid )
-        errCount = errCount + 1
-      ELSE
+      IF ( vertSetCount.EQ.Nr ) THEN
         specifiedDiffKrS = .TRUE.
-      ENDIF
-      IF ( vertSetCount.EQ.0 ) THEN
+        IF ( diffKrS.NE.UNSET_RL ) THEN
+         WRITE(msgBuf,'(2A)') 'S/R INI_PARMS: Cannot set both ',
+     &     'diffKrNrS and diffKrS (or Kp,Kz) in param file data'
+         CALL PRINT_ERROR( msgBuf, myThid )
+         errCount = errCount + 1
+        ENDIF
+      ELSEIF ( diffKrS.NE.UNSET_RL ) THEN
+        specifiedDiffKrS = .TRUE.
         DO k=1,Nr
           diffKrNrS(k) = diffKrS
+        ENDDO
+      ELSE
+        specifiedDiffKrS = .FALSE.
+        diffKrS = diffKrSDefault
+C-    use temp diffusivity as default salt diffusivity:
+        DO k=1,Nr
+          diffKrNrS(k) = diffKrNrT(k)
         ENDDO
       ENDIF
 
