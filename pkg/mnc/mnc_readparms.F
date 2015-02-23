@@ -95,8 +95,8 @@ C     Set default values for MNC run-time parameters
         mnc_outdir_date     =  .FALSE.
         mnc_outdir_num      =  .TRUE.
       mnc_use_name_ni0      =  .FALSE.
-      pickup_write_mnc      =  .TRUE.
-      pickup_read_mnc       =  .TRUE.
+      pickup_write_mnc      =  .FALSE.
+      pickup_read_mnc       =  .FALSE.
       mnc_use_indir         =  .FALSE.
         mnc_indir_str(1:4)  =  '    '
       monitor_mnc           =  .TRUE.
