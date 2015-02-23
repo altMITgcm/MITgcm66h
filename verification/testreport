@@ -776,7 +776,7 @@ runmodel()
 	if test "x$MPI" != x0 ; then
 	    #- adjust the MPI run command with the right number of Procs
 	    #echo '' ; echo "  COMMAND='$COMMAND'"
-	    COMMAND=`echo $COMMAND | sed "s/ TR_NPROC / $LOC_NPROC /"`
+	    COMMAND=`echo $COMMAND | sed "s/ TR_NPROC/ $LOC_NPROC/"`
 	    if test "x$MPI_MFILE" != x ; then
 	      COMMAND=`echo $COMMAND | sed "s/ TR_MFILE / ..\/..\/$LOC_MFILE /"`
 	    fi
