@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/openad
+  - synchronize seawater.F with version in model/src: replace routine 
+    body of sw_temp by calling sw_ptmp and fix/add a few comments
 o pkg/mnc:
   - change default value of pickup_read/write_mnc params to FALSE
     (since few features are missing in reading MNC pickup files).
