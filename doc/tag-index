@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src: add new file gsw_teos10.F that contains
+    3 functions, more or less a copy of the gsw_toolbox.f90 of the TEOS-10
+    fortran interface, that are used to convert from conservative to
+    potential temperature. For now they are not called anywhere.
 o pkg/ggl90: make "useIDEMIX" useful
   - re-organize code in s/r ggl90_calc a little to move computations that
     are different for idemix into separate loops (changes verification 
