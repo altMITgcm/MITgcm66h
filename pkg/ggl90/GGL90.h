@@ -85,15 +85,8 @@ CEOP
       _RL GGL90viscArU(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL GGL90viscArV(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
       _RL GGL90diffKr (1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-#ifdef ALLOW_GGL90_IDEMIX
-      _RL       hFacI(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-      _RL recip_hFacI(1-OLx:sNx+OLx,1-OLy:sNy+OLy,Nr,nSx,nSy)
-#endif /* ALLOW_GGL90_IDEMIX */
       COMMON /GGL90_FIELDS/ GGL90TKE,
      &     GGL90viscArU, GGL90viscArV, GGL90diffKr
-#ifdef ALLOW_GGL90_IDEMIX
-     &     , recip_hFacI, hFacI
-#endif /* ALLOW_GGL90_IDEMIX */
 
       LOGICAL GGL90isOn, GGL90mixingMaps, GGL90writeState
       LOGICAL GGL90_dirichlet, mxlSurfFlag, useIDEMIX
