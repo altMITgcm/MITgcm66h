@@ -41,10 +41,11 @@ C     CT :: Conservative Temperature                        (deg C)
 
 C     !FUNCTIONS:
 C     == Functions ==
-      _RL gsw_gibbs
+CML      _RL gsw_gibbs
       _RL gsw_gibbs_pt0_pt0
       _RL gsw_ct_from_pt
-      EXTERNAL gsw_gibbs, gsw_gibbs_pt0_pt0, gsw_ct_from_pt
+CML      EXTERNAL gsw_gibbs, gsw_gibbs_pt0_pt0, gsw_ct_from_pt
+      EXTERNAL gsw_gibbs_pt0_pt0, gsw_ct_from_pt
 
 C     !LOCAL VARIABLES:
 C     == Local variables ==
