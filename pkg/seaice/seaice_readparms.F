@@ -289,8 +289,8 @@ C     JFNK stuff
       SEAICE_JFNK_lsIter  = UNSET_I
       SEAICE_JFNK_tolIter = 100
 C     This should be the default for both JFNK and for LSR but in order
-C     not jeopardize any existing results, and because it does not yet
-C     work for llc/cubed-sphere topologies, we require that the use knows
+C     to not jeopardize any existing results, and because it does not yet
+C     work for llc/cubed-sphere topologies, we require that the user knows
 C     what he/she is doing when turning this on.
 CML      SEAICE_OLx          = OLx-2
 CML      SEAICE_OLy          = OLy-2
