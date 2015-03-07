@@ -23,9 +23,9 @@ C     === Global variables ===
 #include "PARAMS.h"
 #include "STREAMICE.h"
 #ifdef ALLOW_PETSC
-# ifdef ALLOW_USE_MPI
-#  include "EESUPPORT.h"
-# endif
+#ifdef ALLOW_USE_MPI
+#include "EESUPPORT.h"
+#endif
 #endif
 
       INTEGER myThid
