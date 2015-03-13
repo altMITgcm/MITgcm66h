@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/exf/exf_interp.F: add code to allow input grids with latitude
+  starting in the north (i.e. when j=1 corresponds to northern edge of
+  field); modify global_with_exf to test this feature
 o verification/testreport:
   - replace "grep -A3" with POSIX conformal sed command, because there are
     implementations of grep that cannot do contextual searches
