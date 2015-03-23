@@ -229,6 +229,7 @@ c--   Initialize the tiled cost function contributions.
             num_gencost(bi,bj,k)    = 0. _d 0
           enddo
 #endif
+
 #if (defined (ALLOW_CTRL) && defined (ALLOW_OBCS))
           objf_obcsn(bi,bj)    = 0. _d 0
           objf_obcss(bi,bj)    = 0. _d 0
@@ -241,6 +242,13 @@ c--   Initialize the tiled cost function contributions.
           num_obcse(bi,bj)    = 0. _d 0
           num_ageos(bi,bj)    = 0. _d 0
 #endif
+
+          do j = jmin,jmax
+            do i = imin,imax
+              frame(i,j)        = 1. _d 0
+              cosphi(i,j,bi,bj) = 1. _d 0
+            enddo
+          enddo
 
         enddo
       enddo
