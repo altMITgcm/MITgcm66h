@@ -131,9 +131,13 @@ cc        call oad_active_read_xy( fnamegen, xx_gen1, gencount0,
 cc     &                       doglobalread, ladinit, optimcycle,
 cc     &                       mythid, xx_gen_dummy )
 cc#else
+#ifdef ALLOW_AUTODIFF
         call active_read_xy( fnamegen, xx_gen1, gencount0,
      &                       doglobalread, ladinit, optimcycle,
      &                       mythid, xx_gen_dummy )
+#else
+      CALL READ_REC_XY_RL( fnamegen, xx_gen1, gencount0, 1, myThid )
+#endif
 cc#endif /* ALLOW_OPENAD */
 
 #ifdef ECCO_CTRL_DEPRECATED
@@ -164,9 +168,13 @@ cc        call oad_active_read_xy( fnamegen, xx_gen1 , gencount1,
 cc     &                       doglobalread, ladinit, optimcycle,
 cc     &                       mythid, xx_gen_dummy )
 cc#else
+#ifdef ALLOW_AUTODIFF
         call active_read_xy( fnamegen, xx_gen1 , gencount1,
      &                       doglobalread, ladinit, optimcycle,
      &                       mythid, xx_gen_dummy )
+#else
+        CALL READ_REC_XY_RL( fnamegen, xx_gen1, gencount1, 1, myThid )
+#endif
 cc#endif /* ALLOW_OPENAD */
 #ifdef ECCO_CTRL_DEPRECATED
 #ifdef ALLOW_CTRL_SMOOTH

@@ -609,6 +609,7 @@ c
          enddo
       enddo
 
+#ifdef ALLOW_AUTODIFF
 c     write masks and weights to files to be read by a master process
 c
 c#ifdef REAL4_IS_SLOW
@@ -636,6 +637,7 @@ c#else
      I                          1, .FALSE., 0, mythid, dummyRS )
 c#endif
 #endif
+#endif /* ALLOW_AUTODIFF */
 
       RETURN
       END

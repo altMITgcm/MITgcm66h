@@ -120,6 +120,7 @@ c--               West mask for U
         enddo
       enddo
 
+#ifdef ALLOW_AUTODIFF
       il=ilnblnk( ymaskobcs )
       write(fname(1:80),'(80a)') ' '
       write(fname(1:80),'(a)') ymaskobcs
@@ -135,8 +136,8 @@ c--               West mask for U
           enddo
         enddo
         call active_write_xz( fname, gg, iobcs, 0, mythid, dummy )
-
       enddo
+#endif
 
       _END_MASTER( mythid )
 

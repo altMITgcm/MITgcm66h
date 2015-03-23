@@ -121,6 +121,7 @@ c--               South mask for V
         enddo
       enddo
 
+#ifdef ALLOW_AUTODIFF
       il=ilnblnk( ymaskobcs )
       write(fname(1:80),'(80a)') ' '
       write(fname(1:80),'(a)') ymaskobcs
@@ -137,6 +138,7 @@ c--               South mask for V
         enddo
         call active_write_yz( fname, gg, iobcs, 0, mythid, dummy)
       enddo
+#endif
 
       _END_MASTER( mythid )
 

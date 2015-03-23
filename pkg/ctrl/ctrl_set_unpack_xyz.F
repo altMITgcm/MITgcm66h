@@ -352,12 +352,20 @@ c     == end of interface ==
 c-- part 1: preliminary reads and definitions
 
 #ifdef CTRL_UNPACK_PRECISE
+#ifdef ALLOW_AUTODIFF
       call active_read_xyz(weighttype, wei3d, 1,
      &    .FALSE., .FALSE., 0 , mythid, dummy)
+#else
+      CALL READ_REC_XYZ_RL( weighttype, wei3d, 1, 1, myThid )
+#endif
 #endif
 
+#ifdef ALLOW_AUTODIFF
       call active_read_xyz(masktype, msk3d, 1,
      &    .FALSE., .FALSE., 0 , mythid, dummy)
+#else
+      CALL READ_REC_XYZ_RL( masktype, msk3d, 1, 1, myThid )
+#endif
 
       if ( doPackDiag ) then
          write(cfile2(1:80),'(80a)') ' '
