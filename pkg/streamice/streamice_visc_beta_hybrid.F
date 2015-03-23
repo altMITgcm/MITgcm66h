@@ -140,7 +140,7 @@ CADJ &     = comlev1_stream_hybrid, key=ikey_1
      &            0.25 * streamice_vert_shear_vz(m)**2)
 
 #ifdef STREAMICE_3D_GLEN_CONST
-#if (defined (ALLOW_OPENAD) && defined (ALLOW_STREAMICE_OAD_FP))
+#if (defined (ALLOW_STREAMICE_OAD_FP))
             visc_full_new_si(i,j,m,bi,bj) =
 #else
             visc_streamice_full(i,j,m,bi,bj) =
@@ -148,7 +148,7 @@ CADJ &     = comlev1_stream_hybrid, key=ikey_1
      &       .5 * B_glen(i,j,m,bi,bj)**2 *
      &        second_inv**((1-n_glen)/n_glen)
 #else
-#if (defined (ALLOW_OPENAD) && defined (ALLOW_STREAMICE_OAD_FP))
+#if (defined (ALLOW_STREAMICE_OAD_FP))
             visc_full_new_si(i,j,m,bi,bj) =
 #else
             visc_streamice_full(i,j,m,bi,bj) =
@@ -159,7 +159,7 @@ CADJ &     = comlev1_stream_hybrid, key=ikey_1
 
             visc_streamice (i,j,bi,bj) = visc_streamice (i,j,bi,bj) +
      &       H_streamice(i,j,bi,bj) * streamice_delsigma (m) *
-#if (defined (ALLOW_OPENAD) && defined (ALLOW_STREAMICE_OAD_FP))
+#if (defined (ALLOW_STREAMICE_OAD_FP))
      &       visc_full_new_si(i,j,m,bi,bj)
 #else
      &       visc_streamice_full(i,j,m,bi,bj)
@@ -167,7 +167,7 @@ CADJ &     = comlev1_stream_hybrid, key=ikey_1
 
             omega_temp (m) = omega_temp(m+1) +
      &       streamice_sigma_coord(m) * streamice_delsigma(m) /
-#if (defined (ALLOW_OPENAD) && defined (ALLOW_STREAMICE_OAD_FP))
+#if (defined (ALLOW_STREAMICE_OAD_FP))
      &       visc_full_new_si(i,j,m,bi,bj)
 #else
      &       visc_streamice_full(i,j,m,bi,bj)

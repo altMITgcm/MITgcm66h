@@ -45,7 +45,7 @@ C     LOCAL VARIABLES
       CHARACTER*(MAX_LEN_MBUF) msgBuf      
 
       INTEGER NL_iter 
-      _RL err_last_change, cgtol
+      _RL err_last_change, cgtol, err_init
       LOGICAL CONVERGED
 
 #ifdef ALLOW_OPENAD
@@ -55,14 +55,14 @@ C     LOCAL VARIABLES
 
 
 
-#ifdef ALLOW_OPENAD
+#ifdef ALLOW_STREAMICE_OAD_FP
       isinloop0 =0
       isinloop1 =1
       isinloop2 =2
 #endif
 
 
-#if (defined (ALLOW_OPENAD) && defined (ALLOW_STREAMICE_OAD_FP))
+#if (defined (ALLOW_STREAMICE_OAD_FP))
 
       IF (STREAMICE_ppm_driving_stress) THEN
        CALL STREAMICE_DRIVING_STRESS_PPM (myThid)
@@ -109,6 +109,7 @@ C     LOCAL VARIABLES
      &    (streamice_maxnliter_cpl.eq.0 .and. myIter.eq.0)) then
 
         CALL STREAMICE_GET_VEL_RESID_ERR_OAD ( err_init, myThid )
+        err_last_change = err_init
 
         WRITE(msgBuf,'(A,E15.7)') 'initial nonlinear resid (error): ',
      &                       err_init

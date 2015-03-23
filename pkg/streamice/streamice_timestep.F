@@ -127,7 +127,7 @@ c**************************************
 #endif
 
 
-#if (defined (ALLOW_OPENAD) && defined (ALLOW_STREAMICE_OAD_FP))
+#if (defined (ALLOW_STREAMICE_OAD_FP))
 
        CALL STREAMICE_VEL_SOLVE_OPENAD ( myThid,
      &                           streamice_max_nl_iter,

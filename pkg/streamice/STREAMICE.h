@@ -91,7 +91,7 @@ C     -------------------------- INT PARAMS ------------------------------------
       INTEGER streamice_maxcgiter_cpl, streamice_maxnliter_cpl
 !      INTEGER streamice_n_sub_regularize
 
-#if (defined (ALLOW_OPENAD) && defined (ALLOW_STREAMICE_OAD_FP))
+#if (defined (ALLOW_STREAMICE_OAD_FP))
       COMMON /STREAMICE_PARMS_I_OPENAD/
      &     isinloop0, isinloop1, isinloop2
      
@@ -583,7 +583,7 @@ C        velocity initial guess, so they are kept
       INTEGER n_dofs_process (0:nPx*nPy-1)
 #endif
 
-#if (defined (ALLOW_OPENAD) && defined (ALLOW_STREAMICE_OAD_FP))
+#if (defined (ALLOW_STREAMICE_OAD_FP))
       COMMON /STREAMICE_OPENAD_PARMS/
      &      streamice_oad_nonlin_tol_fp
       _RL streamice_oad_nonlin_tol_fp
