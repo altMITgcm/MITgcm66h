@@ -36,6 +36,8 @@ C     == routine arguments ==
       integer mythid
 
 #ifdef ALLOW_COST
+#ifdef ALLOW_COST_ICE
+
 C     == local variables ==
       integer tempDate1(4)
       integer tempDate2(4)
@@ -105,6 +107,7 @@ cph         call seaice_cost_init_barfiles( mythid )
 
       _BARRIER
 
+#endif /* ALLOW_COST_ICE */
 #endif /* ALLOW_COST */
 
       RETURN

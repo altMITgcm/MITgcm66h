@@ -30,6 +30,8 @@ C     myThid - Thread number for this instance of the routine.
       INTEGER myThid
 
 #ifdef ALLOW_COST
+#ifdef ALLOW_SEAICE_COST_EXPORT
+
 C     == Local variables
       INTEGER bi, bj
       INTEGER i, j
@@ -40,8 +42,6 @@ C     == Local variables
       jthi = myByHi(myThid)
       itlo = myBxLo(myThid)
       ithi = myBxHi(myThid)
-
-#ifdef ALLOW_SEAICE_COST_EXPORT
 
       IF ( myTime .GT. (EndTime - lastinterval) ) THEN
 

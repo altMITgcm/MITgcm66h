@@ -34,6 +34,8 @@ c     == routine arguments ==
       integer mythid
 
 #ifdef ALLOW_COST
+#if (defined(ALLOW_SEAICE_COST_SMR_AREA) || defined(ALLOW_COST_ICE))
+
 c     == local variables ==
 
       integer bi,bj
@@ -89,6 +91,7 @@ c
 
       _BARRIER
 
+#endif
 #endif
 
       return

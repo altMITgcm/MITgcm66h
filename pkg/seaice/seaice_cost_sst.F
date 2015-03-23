@@ -78,6 +78,8 @@ c     == routine arguments ==
       character*(MAX_LEN_FNAM) localobsfile
 
 #if (defined (ALLOW_ECCO) && defined (ALLOW_COST))
+#ifdef ALLOW_SEAICE_COST_SMR_AREA
+
 c     == local variables ==
 
       integer bi,bj
@@ -364,6 +366,8 @@ c--   End of second loop over records.
 
 c--   End of mult_local or localobsfile
       endif
+
+#endif /* ALLOW_SEAICE_COST_SMR_AREA */
 #endif /* ifdef ALLOW_COST */
 
       end
