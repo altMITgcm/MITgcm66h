@@ -160,7 +160,7 @@ C--   Initialise model forcing fields.
 
 #ifdef ALLOW_AUTODIFF
 C--   Initialise active fields to help TAMC
-      CALL AUTODIFF_INIT_VARIA( myThid )
+      if (useAUTODIFF) CALL AUTODIFF_INIT_VARIA( myThid )
 #endif
 
 C--   Initialize variable data for packages

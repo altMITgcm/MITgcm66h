@@ -208,7 +208,7 @@ C       belonging to the core dynamical model
 #endif /* ALLOW_MNC */
 
 #ifdef ALLOW_AUTODIFF
-        CALL AUTODIFF_INI_MODEL_IO( myThid )
+        if (useAUTODIFF) CALL AUTODIFF_INI_MODEL_IO( myThid )
 #endif
 
 #ifdef ALLOW_PROFILES
