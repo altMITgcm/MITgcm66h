@@ -148,9 +148,15 @@ c--   ============
       do irec = 1, nmonsrec
 
 c--     Compute the mean over all bpdat records.
+#ifdef ALLOW_AUTODIFF
         call active_read_xy( fname, locbpbar, irec, doglobalread,
      &                       ladinit, eccoiter, mythid,
      &                       gencost_dummy(kgen) )
+#else
+        CALL READ_REC_XY_RL( fname, locbpbar,
+     &                       iRec, 1, myThid )
+#endif
+
 
         call cost_bp_read( gencost_datafile(kgen), 
      &       gencost_startdate(1,kgen),
@@ -197,9 +203,14 @@ c--   ==========
 c--   Loop over records for the second time.
       do irec = 1, nmonsrec
 
+#ifdef ALLOW_AUTODIFF
         call active_read_xy( fname, locbpbar, irec, doglobalread,
      &                       ladinit, eccoiter, mythid,
      &                       gencost_dummy(kgen) )
+#else
+        CALL READ_REC_XY_RL( fname, locbpbar,
+     &                       iRec, 1, myThid )
+#endif
 
         call cost_bp_read( gencost_datafile(kgen), 
      &       gencost_startdate(1,kgen),

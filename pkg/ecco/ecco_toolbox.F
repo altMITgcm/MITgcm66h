@@ -594,6 +594,7 @@ CEOP
       doglobalread = .false.
       ladinit      = .false.
 
+#ifdef ALLOW_AUTODIFF
         if ( nnzbar .EQ. 1 ) then
            call active_read_xy( active_var_file, active_var,
      &                      irec, doglobalread,
@@ -605,6 +606,15 @@ CEOP
      &                       ladinit, eccoiter, mythid,
      &                       dummy )
         endif
+#else
+        if ( nnzbar .EQ. 1 ) then
+           CALL READ_REC_XY_RL( active_var_file, active_var,
+     &                          iRec, 1, myThid )
+        else
+           CALL READ_REC_XYZ_RL( active_var_file, active_var,
+     &                          iRec, 1, myThid )
+        endif
+#endif
 
 #endif /* ALLOW_ECCO */
 

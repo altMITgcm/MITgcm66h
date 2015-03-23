@@ -243,6 +243,7 @@ c--   First, read tiled data.
 c--   Loop over records for the second time.
       do irec = 1, nrecloc
 
+#ifdef ALLOW_AUTODIFF
            call active_read_xy( fname1, areabbbar, irec, doglobalread,
      &                      ladinit, eccoiter, mythid,
      &                      xx_areabbbar_mean_dummy )
@@ -254,6 +255,16 @@ c--   Loop over records for the second time.
            call active_read_xy( fname3, deconcbbbar, irec,doglobalread,
      &                      ladinit, eccoiter, mythid,
      &                      xx_deconcbbbar_mean_dummy )
+#else
+           CALL READ_REC_XY_RL( fname1, areabbbar,
+     &                          iRec, 1, myThid )
+
+           CALL READ_REC_XY_RL( fname2, exconcbbbar,
+     &                          iRec, 1, myThid )
+
+           CALL READ_REC_XY_RL( fname3, deconcbbbar,
+     &                          iRec, 1, myThid )
+#endif
 
         if ( localperiod .EQ. 86400. ) then
 c-- assume daily fields

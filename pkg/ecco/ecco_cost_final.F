@@ -1272,7 +1272,7 @@ C     only master thread of master CPU open and write to file
         write(standardmessageunit,'(A,D22.15)')
      &           ' --> fc               =', locfc
 
-        write(cfname,'(A,i4.4)') 'costfunction',optimcycle
+        write(cfname,'(A,i4.4)') 'costfunction',eccoiter
         open(unit=ifc,file=cfname)
 
 #ifdef ALLOW_ECCO_OLD_FC_PRINT

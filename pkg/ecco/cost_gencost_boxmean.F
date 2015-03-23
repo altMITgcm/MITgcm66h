@@ -127,10 +127,15 @@ c main loop where cost is computed and time series is displayed
       do irec = 1,nmonsrec
 
 c read bar field
+#ifdef ALLOW_AUTODIFF
         call active_read_xyz( myfname, mybar, irec,
      &                        doglobalread, ladinit,
      &                        eccoiter, mythid,
      &                        mydummy )
+#else
+        CALL READ_REC_XYZ_RL( myfname, mybar,
+     &                        iRec, 1, myThid )
+#endif
 
 c read mask for averaging (3d, time series)
         call mdsreadfield( gencost_errfile(kgen),
