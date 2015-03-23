@@ -42,6 +42,16 @@ C     iUnit      :: Work variable for IO unit number
      &       inAdExact, SEAICEapproxLevInAd, viscFacInAd,
      &       SEAICEuseFREEDRIFTswitchInAd, SEAICEuseDYNAMICSswitchInAd
 
+      IF ( .NOT.useAUTODIFF ) THEN
+C-    pkg AUTODIFF is not used
+        _BEGIN_MASTER(myThid)
+C-    Track pkg activation status:
+C     print a (weak) warning if data.autodiff is found
+         CALL PACKAGES_UNUSED_MSG( 'useAUTODIFF', ' ', ' ' )
+        _END_MASTER(myThid)
+        RETURN
+      ENDIF
+
       _BEGIN_MASTER(myThid)
       errCount = 0
 

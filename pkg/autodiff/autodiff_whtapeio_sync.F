@@ -62,6 +62,10 @@ c     == functions ==
       EXTERNAL ILNBLNK
       EXTERNAL MDS_RECLEN
 
+      IF ( .NOT.useAUTODIFF ) THEN
+        RETURN
+      ENDIF
+
       IF ( tapeConcatIO ) THEN
 
       IF ( doSinglePrecTapelev ) THEN
