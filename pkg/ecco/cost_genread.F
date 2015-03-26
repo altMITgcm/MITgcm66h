@@ -60,12 +60,7 @@ c     == local variables ==
       integer iyear, imon
 CEOP
 
-      if ( preproc(1) .EQ. ' ') then
-
-         call ecco_readbar( active_var_file, active_var,
-     &                      irec, nnzbar, dummy, mythid )
-
-      elseif ( preproc(1) .EQ. 'clim') then
+      if ( preproc(1) .EQ. 'clim') then
 
 c--   Loop over month
          nyearsINT=int((nrecloc-irec)/preproc_i(1))+1
@@ -82,7 +77,9 @@ c--   Loop over month
 
          call ecco_div(active_tmp,nnzbar,nyearsRL,myThid)
          call ecco_cp(active_tmp,nnzbar,active_var,nnzbar,myThid)
-
+      else
+         call ecco_readbar( active_var_file, active_var,
+     &                      irec, nnzbar, dummy, mythid )
       endif
 
 #endif /* ALLOW_ECCO */
