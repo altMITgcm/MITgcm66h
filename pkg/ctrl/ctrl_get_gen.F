@@ -135,6 +135,11 @@ cc#else
         call active_read_xy( fnamegen, xx_gen1, gencount0,
      &                       doglobalread, ladinit, optimcycle,
      &                       mythid, xx_gen_dummy )
+        if (.false.) then
+        call active_read_xy( fnamegen, xx_gen0, gencount0,
+     &                       doglobalread, ladinit, optimcycle,
+     &                       mythid, xx_gen_dummy )
+        endif
 #else
       CALL READ_REC_XY_RL( fnamegen, xx_gen1, gencount0, 1, myThid )
 #endif
