@@ -703,6 +703,13 @@ C=============== dynamics ============
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
+      diagName  = 'SIshear '
+      diagTitle = 'SEAICE shear deformation'
+      diagUnits = 's^{-1}          '
+      diagCode  = 'SM      M1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
       diagName  = 'SIdelta '
       diagTitle = 'SEAICE Delta deformation'
       diagUnits = 's^{-1}          '
