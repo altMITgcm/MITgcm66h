@@ -58,10 +58,10 @@ FFLAGS="$FFLAGS"
 #FFLAGS="$FFLAGS -r8" ???
 
 if test "x$IEEE" = x ; then     #- with optimisation:
-# this is the default anyway
-    FOPTIM='-O2'
-# more aggressive
-#    FOPTIM='-O3 -hfp3'
+# this is the default
+#   FOPTIM='-O2'
+# more aggressive (and recommended in some only document)
+    FOPTIM='-O3 -hfp3'
 else
   if test "x$DEVEL" = x ; then  #- no optimisation + IEEE :
     FOPTIM='-O0 -hfp0'
