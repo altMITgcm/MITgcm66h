@@ -55,6 +55,8 @@ C     === Global variables ===
 
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 
+      CALL TIMER_START ('STREAMICE_ADVECT_THICKNESS',myThid)
+
       sec_per_year = 365.*86400.
 
       time_step_loc = time_step / sec_per_year
@@ -363,6 +365,7 @@ CADJ STORE streamice_hmask  = comlev1, key=ikey_dynamics
       WRITE(msgBuf,'(A)') 'END STREAMICE_ADVECT_THICKNESS'
        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                     SQUEEZE_RIGHT , 1)
+      CALL TIMER_STOP ('STREAMICE_ADVECT_THICKNESS',myThid)
 
 #endif
       RETURN
