@@ -142,12 +142,14 @@ C!!!!!!!!!!! conv check
              DO i=1-OLx,sNx+OLx
               U_streamice (i,j,bi,bj)=u_new_SI (i,j,bi,bj)
               V_streamice (i,j,bi,bj)=v_new_SI (i,j,bi,bj)
+#ifdef STREAMICE_HYBRID_STRESS
               streamice_taubx(i,j,bi,bj)=taubx_new_si(i,j,bi,bj)
               streamice_tauby(i,j,bi,bj)=tauby_new_si(i,j,bi,bj)
               DO m=Nr,1,-1
                visc_streamice_full(i,j,m,bi,bj)= visc_full_new_si(i,j,m,
      +bi,bj)
               ENDDO
+#endif
              ENDDO
             ENDDO
            ENDDO
