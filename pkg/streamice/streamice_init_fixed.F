@@ -374,7 +374,7 @@ C         INITIALIZE BOUNDARY CONDS AT SOUTH
            IF ((x .gt. min_x_FluxBdry_SOUTH) .AND.
      &         (x .le. max_x_FluxBdry_SOUTH)) THEN
             STREAMICE_vfacemask_bdry (i,j,bi,bj) = 4.0
-            u_flux_bdry_SI (i,j,bi,bj) = flux_bdry_val_SOUTH
+            v_flux_bdry_SI (i,j,bi,bj) = flux_bdry_val_SOUTH
            ENDIF
            IF ((x .gt. min_x_Dirich_SOUTH) .AND.
      &         (x .le. max_x_Dirich_SOUTH)) THEN
