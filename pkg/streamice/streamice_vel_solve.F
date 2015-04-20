@@ -149,6 +149,7 @@ C-------------------------------------------------------------------
 
       DO iter=1,maxNLIter
 
+
 C     To avoid using "exit", loop goes through all iterations
 C       but after convergence loop does nothing
 
@@ -323,7 +324,7 @@ C       but after convergence loop does nothing
 C END NL ITER. LOOP
 C-------------------------------------------------------------------
 
-      if (iter_numconv .lt. streamice_max_nl_iter) then
+      if (iter_numconv .lt. maxnliter) then
        WRITE(msgBuf,'(A,I5,A)') 'VELOCITY SOLVE CONVERGED, ',
      &         iter_numconv, ' iterations'
        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
