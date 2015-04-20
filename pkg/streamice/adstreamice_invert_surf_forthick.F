@@ -19,6 +19,7 @@ C $Name$
       INTEGER myThid
 
 #ifdef ALLOW_STREAMICE
+#ifdef ALLOW_AUTODIFF
 
       _RL resid, f, fp, hf, htmp
       _RL rhoi, rhow, r, i_r, delta
@@ -88,7 +89,7 @@ C $Name$
         enddo
       enddo
 
-
+#endif
 #endif
       RETURN
       END
