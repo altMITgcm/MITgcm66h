@@ -73,8 +73,10 @@ C  i,j                  :: loop indices
           DO j=1-OLy,sNy+OLy
            DO i=1-OLx,sNx+OLx
 
+           IF (.NOT. SHELFICEDynMassOnly) then
             shelficeMass(i,j,bi,bj) = shelficeMass(i,j,bi,bj)
      &      + shelfIceFreshWaterFlux(I,J,bi,bj) * deltaT
+           ENDIF
 
             shelficeMass(i,j,bi,bj) = shelficeMass(i,j,bi,bj)
      &      + shelfIceMassDynTendency(I,J,bi,bj)*deltaT
