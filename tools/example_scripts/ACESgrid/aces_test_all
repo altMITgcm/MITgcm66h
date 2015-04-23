@@ -202,10 +202,12 @@ esac
 #echo "action= $action , Arg= $# "
 
 today=`date +%Y%m%d`
+dAlt=`date +%d` ; dAlt=`expr $dAlt % 3`
 
 if test $# = 0
 then
   TEST_LIST='opa g77 adm tlm ifc mp2 mth pgi tuv gnu'
+  if [ $dAlt -ne 0 ] ; then TEST_LIST=`echo $TEST_LIST | sed 's/ pgi / /'` ; fi
 else
   TEST_LIST=$*
 fi
@@ -228,6 +230,7 @@ MPACK="MITgcm_tools/mpack-1.6/mpack"
 SUB_DIR="MITgcm_tools/example_scripts/ACESgrid"
 TMP_FIL="$HERE/output/TTT.$$"
 LOG_FIL="$HERE/output/$logPfix."`date +%m%d`".log"
+#SUB_DIR="temp"
 
 #-- clean up old log files and start a new one:
 cd $HERE/output
