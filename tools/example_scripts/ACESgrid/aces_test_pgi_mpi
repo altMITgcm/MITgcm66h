@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#PBS -q four-twelve
+#PBS -q long
 #PBS -N tst_pgi
 #PBS -l nodes=3:ppn=2
 #PBS -e /home/jmc/test_aces/output/tst_pgi.stderr
