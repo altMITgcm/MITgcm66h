@@ -170,7 +170,7 @@ if [ $dblRun -ge 1 ] ; then
  done
 
  #-- send output (adapted from testreport):
- outpSum=`ls -t tr_${dNam}-${sfx}_????????_?/summary.txt | head -1`
+ outpSum=`ls -t tr_${dNam}-${sfx}_????????_*/summary.txt | head -1`
  #- only if converge within "dblRun" attempt
  if test $difNb != 0 -a $difNb != $nFail ; then outpSum='' ; fi
  if test "x$outpSum" != x ; then
