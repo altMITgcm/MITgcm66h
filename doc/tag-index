@@ -4,6 +4,12 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/shelfice:
+  - in shelfice_thermodynamics.F, if SHELFICEBoundaryLayer=.true., then set 
+    factor drKp1 to zero where it is negative (ie. do not use 
+    SHELFICEBoundaryLayer if hFacC>1)
+  - the same for factor drLoc in shelfice_forcing.F
+
 o tools/genmake2: move FEXTRAFLAGS from FFLAGS to FOPTIM to avoid a problem
   with modules in ptracers, when using testreport option "-small_f"
 o pkg/seaice/seaice_growth.F (in case of SEAICE_ITD)
