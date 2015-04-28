@@ -71,8 +71,8 @@ C-    need some form of ATM-surface pkg to provide Air-Ice surf fluxes
 
       IF ( thSIceBalanceAtmFW.NE.0 ) THEN
 #ifndef ALLOW_BALANCE_FLUXES
-        WRITE(msgBuf,'(2A)') 'THSICE_CHECK: to use thSIceBalanceAtmFW',
-     &       'needs to compile with ALLOW_BALANCE_FLUXES defined'
+        WRITE(msgBuf,'(2A)') 'THSICE_CHECK: needs to have ',
+     &     'ALLOW_BALANCE_FLUXES defined to use thSIceBalanceAtmFW'
         CALL PRINT_ERROR( msgBuf, myThid )
         STOP 'ABNORMAL END: S/R THSICE_CHECK'
 #endif
