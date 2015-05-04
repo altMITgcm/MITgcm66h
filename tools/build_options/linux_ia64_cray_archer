@@ -20,8 +20,8 @@ EXTENDED_SRC_FLAG='-Mextend'
 GET_FC_VERSION="-V"
 CHECK_FOR_LAPACK=t
 
-INCLUDES='-I/opt/cray/netcdf-hdf5parallel/4.3.2/cray/83/include -I/opt/cray/mpt/7.0.3/gni/mpich2-cray/83/include'
-LIBS='-L/opt/cray/netcdf-hdf5parallel/4.3.2/cray/83/lib -L/opt/cray/mpt/7.0.3/gni/mpich2-cray/83/lib'
+INCLUDES='-I/opt/cray/netcdf-hdf5parallel/4.3.2/cray/83/include -I/opt/cray/mpt/7.1.1/gni/mpich2-cray/83/include'
+LIBS='-L/opt/cray/netcdf-hdf5parallel/4.3.2/cray/83/lib -L/opt/cray/mpt/7.1.1/gni/mpich2-cray/83/lib'
 
 NOOPTFLAGS='-O0'
 NOOPTFILES=''
