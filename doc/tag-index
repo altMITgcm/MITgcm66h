@@ -4,6 +4,14 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: 
+  - seaice_calc_viscosity.F: change computation of deltaC**2 to ensure
+    positiveness, modify a few comments and improve variable names, 
+  - the changed computation of deltaC affects most seaice-related 
+    experiments at the truncation level. 
+    seaice_itd.thermo is affected by far the most, with
+    only 7 digits of agreement remaining; update experiments.
+
 checkpoint65l (2015/05/04)
 o pkg/shelfice:
   - in shelfice_thermodynamics.F, if SHELFICEBoundaryLayer=.true., then set
