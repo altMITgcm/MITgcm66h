@@ -18,6 +18,7 @@ C     !USES:
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #include "PARAMS.h"
+#include "GRID.h"
 #ifdef ALLOW_LAYERS
 # include "LAYERS_SIZE.h"
 # include "LAYERS.h"
@@ -57,6 +58,20 @@ c     IF ( useDiagnostics ) THEN
 
       DO iLa=1,layers_maxNum
        IF ( layers_num(iLa).NE.0 ) THEN
+
+#ifdef LAYERS_PRHO_REF
+       IF ( layers_num(iLa).EQ.3 ) THEN
+        WRITE(diagName,'(A4,I1,A3)') 'LaTr',iLa,layers_name(iLa)
+        WRITE(diagTitle,'(A,I4,A,F9.2,A)')
+     &     'Potential density (k=',
+     &        layers_krho(iLa), ', z=', rC(layers_krho(iLa)),
+     &     ') used for layer averaging'
+        diagUnits = 'kg/m^3          '
+        diagCode  = 'SMR     MR      '
+        CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I   diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+       ENDIF
+#endif
 
 #if (defined LAYERS_UFLUX) || (defined LAYERS_VFLUX)
 
