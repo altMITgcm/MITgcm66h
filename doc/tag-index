@@ -5,6 +5,11 @@ $Name$
     ==============================
 
 o pkg/layers:
+  - shift potential density field "prho" by -1000 for density layer averaging so
+    that it corresponds to usual "sigma" definition (i.e., rho(p=const)-1000);
+    Note that density bin boundaries (layers_bounds in data.layers) have
+    to be set accordingly (i.e., shifted, in sigma scale).
+o pkg/layers:
   - fix snap-shot output of layer thickness @ V.pt and output of pot.density
   - fix calculation of layer non-weighted velocity and layer probability
   - add diagnostics for pot.density used for layer averaging
