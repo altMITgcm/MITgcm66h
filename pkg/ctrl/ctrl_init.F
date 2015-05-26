@@ -880,6 +880,15 @@ C
      &       diffrecFull, startrec, endrecFull,
      &       snx, sny, 1, 'c', 'xy', myThid )
 C
+        ilgen=ilnblnk( xx_gentim2d_file(iarr) )
+        write(fnamegen(1:MAX_LEN_FNAM),'(2a)')
+     &       xx_gentim2d_file(iarr)(1:ilgen),'.tmp'
+        call ctrl_init_ctrlvar (
+     &       fnamegen(1:MAX_LEN_FNAM),
+     &       300+iarr, 400+iarr,
+     &       diffrecFull, startrec, endrecFull,
+     &       snx, sny, 1, 'c', 'xy', myThid )
+C
         call ctrl_init_ctrlvar (
      &       xx_gentim2d_file(iarr)(1:MAX_LEN_FNAM),
      &       300+iarr, 400+iarr,
