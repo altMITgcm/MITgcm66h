@@ -602,33 +602,33 @@ cdm #endif
         DO j = 1,sNy
          DO i = 1,sNx
            do iarr = 1, maxCtrlTim2D
-           if (xx_gentim2d_file(iarr).EQ.'xx_atemp')
+           if (xx_gentim2d_file(iarr)(1:8).EQ.'xx_atemp')
      &       atemp(i,j,bi,bj)=atemp(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
-           if (xx_gentim2d_file(iarr).EQ.'xx_aqh')
+           if (xx_gentim2d_file(iarr)(1:6).EQ.'xx_aqh')
      &       aqh(i,j,bi,bj)=aqh(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
-           if (xx_gentim2d_file(iarr).EQ.'xx_swdown')
+           if (xx_gentim2d_file(iarr)(1:9).EQ.'xx_swdown')
      &       swdown(i,j,bi,bj)=swdown(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
-           if (xx_gentim2d_file(iarr).EQ.'xx_lwdown')
+           if (xx_gentim2d_file(iarr)(1:9).EQ.'xx_lwdown')
      &       lwdown(i,j,bi,bj)=lwdown(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
-           if (xx_gentim2d_file(iarr).EQ.'xx_precip')
+           if (xx_gentim2d_file(iarr)(1:9).EQ.'xx_precip')
      &       precip(i,j,bi,bj)=precip(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
 #ifndef ALLOW_ROTATE_UV_CONTROLS
-           if (xx_gentim2d_file(iarr).EQ.'xx_uwind')
+           if (xx_gentim2d_file(iarr)(1:8).EQ.'xx_uwind')
      &       uwind(i,j,bi,bj)=uwind(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
-           if (xx_gentim2d_file(iarr).EQ.'xx_vwind')
+           if (xx_gentim2d_file(iarr)(1:8).EQ.'xx_vwind')
      &       vwind(i,j,bi,bj)=vwind(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
 #else
-           if (xx_gentim2d_file(iarr).EQ.'xx_uwind')
+           if (xx_gentim2d_file(iarr)(1:8).EQ.'xx_uwind')
      &       uwind(i,j,bi,bj)=uwind(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
-           if (xx_gentim2d_file(iarr).EQ.'xx_vwind')
+           if (xx_gentim2d_file(iarr)(1:8).EQ.'xx_vwind')
      &       vwind(i,j,bi,bj)=vwind(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
 
