@@ -117,12 +117,12 @@ C--   generic 2D control variables
         write(fnamegenTmp(1:80),'(2a,i10.10)')
      &       fnamebase(1:ilgen),'.tmp.',optimcycle
 
-c-- cycle
+c-- docycle
 
         replicated_nrec=endrec
         replicated_ntimes=0
         do k2 = 1, maxCtrlProc
-         if (xx_gentim2d_preproc(k2,iarr).EQ.'replicate') then
+         if (xx_gentim2d_preproc(k2,iarr).EQ.'docycle') then
            if (xx_gentim2d_preproc_i(k2,iarr).NE.0) then
             replicated_nrec=min(endrec,xx_gentim2d_preproc_i(k2,iarr))
             replicated_ntimes=
