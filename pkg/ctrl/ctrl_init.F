@@ -68,7 +68,7 @@ c     == local variables ==
       _RL loctmp3d (1-olx:snx+olx,1-oly:sny+oly,Nr,nsx,nsy)
 
 #ifdef ALLOW_OBCS_CONTROL_MODES
-      INTEGER  k,length_of_rec,dUnit
+      INTEGER  length_of_rec,dUnit
       INTEGER  MDS_RECLEN
       EXTERNAL MDS_RECLEN
 #endif
