@@ -2,7 +2,9 @@ C $Header$
 C $Name$
 
 #include "COST_OPTIONS.h"
-
+#ifdef ALLOW_AUTODIFF
+# include "AUTODIFF_OPTIONS.h"
+#endif
 
       subroutine cost_final_store ( mythid, lastdiva )
 
