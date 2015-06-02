@@ -67,10 +67,12 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
 C--   Track diagnostics pkg activation status:
       IF ( myIter.EQ.nIter0 ) THEN
-        _BEGIN_MASTER(myThid)
 c       IF ( diag_pkgStatus.NE.10 ) STOP
+        _BARRIER
+        _BEGIN_MASTER(myThid)
         diag_pkgStatus = ready2fillDiags
         _END_MASTER(myThid)
+        _BARRIER
 c     ELSEIF
 c       IF ( diag_pkgStatus.NE.ready2fillDiags ) STOP
       ENDIF

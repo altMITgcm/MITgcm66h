@@ -30,10 +30,12 @@ C     !LOCAL VARIABLES:
       INTEGER i,j,k,bi,bj
 
 C--   Track diagnostics pkg activation status:
+      _BARRIER
       _BEGIN_MASTER( myThid )
 c      IF ( diag_pkgStatus.NE.3 ) STOP
        diag_pkgStatus = 10
       _END_MASTER( myThid )
+      _BARRIER
 
 C--   Zero out the qdiag array which accumulates during integration
       DO bj = myByLo(myThid), myByHi(myThid)

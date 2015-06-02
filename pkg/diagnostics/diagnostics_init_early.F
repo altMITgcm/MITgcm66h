@@ -70,6 +70,7 @@ C     !LOCAL VARIABLES:
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
+      _BARRIER
       _BEGIN_MASTER( myThid )
 
       DO n=1,ndiagMax

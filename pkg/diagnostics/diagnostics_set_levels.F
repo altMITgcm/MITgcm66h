@@ -72,6 +72,7 @@ C     !LOCAL VARIABLES:
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
+      _BARRIER
       _BEGIN_MASTER( myThid )
 
 C--   Diagnostics definition/setting ends (cannot add diags to list anymore)
@@ -196,7 +197,7 @@ C     write a summary of the (long) list of all available diagnostics:
          ccLine(l:l) = '-'
         ENDDO
 
-        CALL MDSFINDUNIT( dUnit, mythid )
+        CALL MDSFINDUNIT( dUnit, myThid )
         OPEN(dUnit, file='available_diagnostics.log',
      &              status='unknown', form='formatted')
         WRITE(dUnit,'(A,I6)')

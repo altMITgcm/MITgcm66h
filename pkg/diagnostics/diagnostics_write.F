@@ -149,10 +149,12 @@ C-      wait for everyone before setting arrays to zero:
         ENDIF
         IF ( modelEnd ) THEN
 C-      Track diagnostics pkg activation status:
-          _BEGIN_MASTER(myThid)
 c         IF ( diag_pkgStatus.NE.ready2fillDiags ) STOP
+          _BARRIER
+          _BEGIN_MASTER(myThid)
           diag_pkgStatus = 99
           _END_MASTER(myThid)
+          _BARRIER
 C       Close all Stat-diags output files
           CALL DIAGSTATS_CLOSE_IO( myThid )
         ENDIF

@@ -112,6 +112,7 @@ C-    Track diagnostics pkg activation status:
 C     print a (weak) warning if data.diagnostics is found
          CALL PACKAGES_UNUSED_MSG( 'useDiagnostics', ' ', ' ' )
         _END_MASTER(myThid)
+        _BARRIER
         RETURN
       ENDIF
 
