@@ -265,6 +265,7 @@ CADJ &      = comlev1_bibj_ptracers, key=iptrkey, byte=isbyte
 
 C-    Start vertical index (k) loop (Nr:1)
         calcAdvection = .NOT.PTRACERS_MultiDimAdv(iTracer)
+     &                  .AND. (PTRACERS_advScheme(iTracer).NE.0)
         DO k=Nr,1,-1
 #ifdef ALLOW_AUTODIFF_TAMC
           kkey = (iptrkey-1)*Nr + k

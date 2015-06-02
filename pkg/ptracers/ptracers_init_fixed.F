@@ -59,6 +59,7 @@ C--   Loop over tracers
       DO iTracer = 1, PTRACERS_numInUse
 
 C-    Check for valid advection-scheme number
+        IF ( PTRACERS_advScheme(iTracer).NE.0 ) THEN
         minSize = GAD_ADVSCHEME_GET( PTRACERS_advScheme(iTracer) )
         IF ( minSize.LT.0 ) THEN
           WRITE(msgBuf,'(2A,I6)') 'PTRACERS_INIT_FIXED: ',
@@ -71,11 +72,15 @@ C-    Check for valid advection-scheme number
         ENDIF
 C     Overlap minimum size consistent with ptracers advection
         tracMinSize = MAX( tracMinSize, minSize )
+        ELSE
+        tracMinSize = 1
+        ENDIF
 
         IF (
      &       PTRACERS_advScheme(iTracer).EQ.ENUM_CENTERED_2ND .OR.
      &       PTRACERS_advScheme(iTracer).EQ.ENUM_UPWIND_3RD .OR.
-     &       PTRACERS_advScheme(iTracer).EQ.ENUM_CENTERED_4TH
+     &       PTRACERS_advScheme(iTracer).EQ.ENUM_CENTERED_4TH .OR.
+     &       PTRACERS_advScheme(iTracer).EQ.0
      &     ) PTRACERS_MultiDimAdv(iTracer) = .FALSE.
         useMultiDimAdvec = useMultiDimAdvec
      &                .OR. PTRACERS_MultiDimAdv(iTracer)
