@@ -65,12 +65,7 @@ c     IF ( useDiagnostics ) THEN
 
 #ifdef LAYERS_PRHO_REF
        IF ( layers_num(iLa).EQ.3 ) THEN
-C ------- This diagnostic used to be called 'LaTr', but that name
-C         conflicts with a new layers_thermodynamics variable.
-C         I renamed it simply 'La', and the whole name will be
-C         something like La1RHO, which shold be obvious enough.
-C         -RPA
-        WRITE(diagName,'(A4,I1,A3)') 'La',iLa,layers_name(iLa)
+        WRITE(diagName,'(A4,I1,A3)') 'LaTr',iLa,layers_name(iLa)
         rLoc = 0.
         kLoc = layers_krho(iLa)
         IF ( kLoc.GE.1 .AND. kLoc.LE.Nr ) THEN
@@ -200,7 +195,9 @@ C --- U, V
      I   diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
         CALL DIAGNOSTICS_SETKLEV( diagName, Nlayers-1 , myThid )
 
-        WRITE(diagName,'(A4,I1,A3)') 'LaTr',iLa,layers_name(iLa)
+C ------- This diagnostic used to be called 'LaTr', but that name
+C         conflicts with JMC's prho diagnostics.
+        WRITE(diagName,'(A4,I1,A3)') 'LaTz',iLa,layers_name(iLa)
         diagTitle = 'Layer THETA transformation from vert. diff.'
         diagUnits = 'm deg./s        '
         diagCode  = 'SM      MX      '
