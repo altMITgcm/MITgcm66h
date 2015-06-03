@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ptracers:
+  - add capability of stepping a passive tracer forward 
+    without advection by setting PTRACERS_advScheme to 0.
 o pkg/diagnostics:
   - add few (threads) _BARRIER around any update of "diag_pkgStatus".
 o pkg/layers:
