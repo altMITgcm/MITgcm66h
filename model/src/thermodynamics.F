@@ -127,6 +127,13 @@ CADJ STORE theta,salt,wvel = comlev1, key = ikey_dynamics, byte=isbyte
        CALL CALC_WSURF_TR( theta, salt, wVel,
      &                     myTime, myIter, myThid )
       ENDIF
+#ifdef ALLOW_LAYERS
+       IF ( useLayers ) THEN
+          CALL LAYERS_WSURF_TR( theta, salt, wVel,
+     &                     myTime, myIter, myThid )
+       ENDIF
+#endif /* ALLOW_LAYERS */
+
 
 #ifdef DO_PTRACERS_HERE
       IF ( PTRACERS_calcSurfCor ) THEN

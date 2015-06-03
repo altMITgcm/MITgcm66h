@@ -319,10 +319,8 @@ C         since skipping k=1 DIAGNOSTICS_FILL call.
            IF ( k.EQ.2 ) CALL DIAGNOSTICS_COUNT(diagName,bi,bj,myThid)
 #ifdef ALLOW_LAYERS
            IF ( useLayers ) THEN
-            IF ( (tracerIdentity.EQ.1).OR.(tracerIdentity.EQ.2) ) THEN
-             CALL LAYERS_FILL_DFR( df, tracerIdentity,
+             CALL LAYERS_FILL( df, tracerIdentity, 'DFR',
      &                           k, 1, 2,bi,bj, myThid )
-            ENDIF
            ENDIF
 #endif /* ALLOW_LAYERS */
           ENDIF
@@ -403,6 +401,12 @@ cc#endif
            ENDDO
            diagName = 'ADVr'//diagSufx
            CALL DIAGNOSTICS_FILL(af,diagName, k,1, 2,bi,bj, myThid)
+#ifdef ALLOW_LAYERS
+           IF ( useLayers ) THEN
+             CALL LAYERS_FILL(af,tracerIdentity,'AFR',
+     &                            k,1,2,bi,bj,myThid)
+           ENDIF
+#endif /* ALLOW_LAYERS */
           ENDIF
          ENDDO
         ENDIF

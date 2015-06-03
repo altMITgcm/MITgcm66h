@@ -149,6 +149,24 @@ C     Output the layer coordinates
      & -1, myThid )
       ENDIF
       ENDDO
+      
+C --- Set up layers "w-grid" for transformation calculation 
+#ifdef LAYERS_THERMODYNAMICS
+      DO iLa=1,layers_maxNum
+       IF ( layers_num(iLa).NE.0 ) THEN
+        DO k=1,Nlayers
+          layers_bounds_w(k,iLa) = 0.5 _d 0 * (
+     &           layers_bounds(k+1,iLa) +
+     &           layers_bounds(k,iLa) )
+        ENDDO
+        DO k=1,Nlayers-1
+          layers_recip_delta(k,iLa) = 1.0 _d 0 / (
+     &           layers_bounds_w(k+1,iLa) -
+     &           layers_bounds(k,iLa) )
+        ENDDO
+       ENDIF
+      ENDDO
+#endif /* LAYERS_THERMODYNAMICS */
 
 #ifdef ALLOW_DIAGNOSTICS
       IF ( useDiagnostics ) THEN

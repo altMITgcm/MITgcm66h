@@ -376,7 +376,7 @@ C         otherwise counter is not incremented !!
           CALL DIAGNOSTICS_FILL(df,diagName, k,1, 2,bi,bj, myThid)
 #ifdef ALLOW_LAYERS
           IF ( useLayers ) THEN
-           CALL LAYERS_FILL_DFR( df, tracerId,
+           CALL LAYERS_FILL( df, tracerId, 'DFR',
      &                           k, 1, 2,bi,bj, myThid )
           ENDIF
 #endif /* ALLOW_LAYERS */
