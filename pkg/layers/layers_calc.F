@@ -361,7 +361,7 @@ C--   Fill-in diagnostics
          CALL DIAGNOSTICS_FILL( layers_TtendAdvh,
      &                          diagName,0,Nlayers-1, 0, 1, 1, myThid )
 
-         WRITE(diagName,'(A4,I1,A3)') 'LTra',iLa,layers_name(iLa)
+         WRITE(diagName,'(A4,I1,A3)') 'LTza',iLa,layers_name(iLa)
          CALL DIAGNOSTICS_FILL( layers_TtendAdvr,
      &                          diagName,0,Nlayers-1, 0, 1, 1, myThid )
 
@@ -377,7 +377,7 @@ C--   Fill-in diagnostics
          CALL DIAGNOSTICS_FILL( layers_StendDiffh,
      &                          diagName,0,Nlayers-1, 0, 1, 1, myThid )
 
-         WRITE(diagName,'(A4,I1,A3)') 'LaSr',iLa,layers_name(iLa)
+         WRITE(diagName,'(A4,I1,A3)') 'LaSz',iLa,layers_name(iLa)
          CALL DIAGNOSTICS_FILL( layers_StendDiffr,
      &                          diagName,0,Nlayers-1, 0, 1, 1, myThid )
 
@@ -385,7 +385,7 @@ C--   Fill-in diagnostics
          CALL DIAGNOSTICS_FILL( layers_StendAdvh,
      &                          diagName,0,Nlayers-1, 0, 1, 1, myThid )
 
-         WRITE(diagName,'(A4,I1,A3)') 'LSra',iLa,layers_name(iLa)
+         WRITE(diagName,'(A4,I1,A3)') 'LSza',iLa,layers_name(iLa)
          CALL DIAGNOSTICS_FILL( layers_StendAdvr,
      &                          diagName,0,Nlayers-1, 0, 1, 1, myThid )
 

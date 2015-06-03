@@ -215,7 +215,7 @@ C         conflicts with JMC's prho diagnostics.
      I   diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
         CALL DIAGNOSTICS_SETKLEV( diagName, Nlayers-1 , myThid )
 
-        WRITE(diagName,'(A4,I1,A3)') 'LTra',iLa,layers_name(iLa)
+        WRITE(diagName,'(A4,I1,A3)') 'LTza',iLa,layers_name(iLa)
         diagTitle = 'Layer THETA transformation from vert. adv.'
         diagUnits = 'm deg./s        '
         diagCode  = 'SM      MX      '
@@ -251,7 +251,7 @@ C         conflicts with JMC's prho diagnostics.
      I   diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
         CALL DIAGNOSTICS_SETKLEV( diagName, Nlayers-1 , myThid )
 
-        WRITE(diagName,'(A4,I1,A3)') 'LaSr',iLa,layers_name(iLa)
+        WRITE(diagName,'(A4,I1,A3)') 'LaSz',iLa,layers_name(iLa)
         diagTitle = 'Layer SALT transformation from vert. diff.'
         diagUnits = 'm PSU/s        '
         diagCode  = 'SM      MX      '
@@ -269,7 +269,7 @@ C         conflicts with JMC's prho diagnostics.
      I   diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
         CALL DIAGNOSTICS_SETKLEV( diagName, Nlayers-1 , myThid )
 
-        WRITE(diagName,'(A4,I1,A3)') 'LSra',iLa,layers_name(iLa)
+        WRITE(diagName,'(A4,I1,A3)') 'LSza',iLa,layers_name(iLa)
         diagTitle = 'Layer SALT transformation from vert. adv.'
         diagUnits = 'm PSU/s        '
         diagCode  = 'SM      MX      '
