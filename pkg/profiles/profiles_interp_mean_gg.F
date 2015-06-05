@@ -71,16 +71,8 @@ c--   == end of interface ==
        do q=1,NUM_INTERP_POINTS
 
        if (type_cur.EQ.6) then
-               tab_coeffs1(q)=prof_etan_mean(i_cur(q),j_cur(q),bi,bj)
-               tab_coeffs3(q)=maskC(i_cur(q),j_cur(q),1,bi,bj)
-#ifdef ALLOW_PROFILES_ANOM_COST
-       elseif (type_cur.EQ.1) then
-               tab_coeffs1(q)=prof_theta_mean(i_cur(q),j_cur(q),k,bi,bj)
-               tab_coeffs3(q)=maskC(i_cur(q),j_cur(q),k,bi,bj)
-       elseif (type_cur.EQ.2) then
-               tab_coeffs1(q)=prof_salt_mean(i_cur(q),j_cur(q),k,bi,bj)
-               tab_coeffs3(q)=maskC(i_cur(q),j_cur(q),k,bi,bj)
-#endif
+               tab_coeffs1(q)=prof_etan_mean(i_cur(q),j_cur(q),bi,bj) 
+               tab_coeffs3(q)=maskC(i_cur(q),j_cur(q),1,bi,bj) 
        else
                tab_coeffs1(q)=0.
                tab_coeffs3(q)=0.
