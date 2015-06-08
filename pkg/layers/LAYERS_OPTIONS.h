@@ -20,6 +20,8 @@ C Keep track of layer thicknesses?
 #define LAYERS_THICKNESS
 C Do water mass thermodynamics?
 #undef LAYERS_THERMODYNAMICS
+C Use refined grid for diapycnal terms? (gives worse results)
+#undef LAYERS_FINEGRID_DIAPYCNAL
 
 C The MNC stuff is too complicated
 #undef LAYERS_MNC
