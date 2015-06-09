@@ -370,6 +370,11 @@ C     (next fill for these diagnostics will NOT allow counter to be incremented)
           ENDDO
          ENDDO
          CALL DIAGNOSTICS_FILL(tmpMk,'TOTTTEND',0,Nr,0,1,1,myThid)
+#ifdef ALLOW_LAYERS
+         IF ( useLayers ) THEN
+           CALL LAYERS_FILL(tmpMk,1,'TOT',0,Nr,0,1,1,myThid)
+         ENDIF
+#endif /* ALLOW_LAYERS */         
         ENDIF
 
         IF ( DIAGNOSTICS_IS_ON('TOTSTEND',myThid) ) THEN
@@ -386,6 +391,11 @@ C     (next fill for these diagnostics will NOT allow counter to be incremented)
           ENDDO
          ENDDO
          CALL DIAGNOSTICS_FILL(tmpMk,'TOTSTEND',0,Nr,0,1,1,myThid)
+#ifdef ALLOW_LAYERS
+         IF ( useLayers ) THEN
+           CALL LAYERS_FILL(tmpMk,2,'TOT',0,Nr,0,1,1,myThid)
+         ENDIF
+#endif /* ALLOW_LAYERS */
         ENDIF
 
 C--   fill momentum state-var diagnostics: end
@@ -662,6 +672,11 @@ C     (previous fill for these diagnostics DID allow counter to be incremented)
             ENDDO
            ENDDO
            CALL DIAGNOSTICS_FILL(tmpMk,'TOTTTEND',0,Nr,-1,bi,bj,myThid)
+#ifdef ALLOW_LAYERS
+           IF ( useLayers ) THEN
+             CALL LAYERS_FILL(tmpMk,1,'TOT',0,Nr,-1,bi,bj,myThid)
+           ENDIF
+#endif /* ALLOW_LAYERS */    
           ENDDO
          ENDDO
         ENDIF
@@ -678,6 +693,11 @@ C     (previous fill for these diagnostics DID allow counter to be incremented)
             ENDDO
            ENDDO
            CALL DIAGNOSTICS_FILL(tmpMk,'TOTSTEND',0,Nr,-1,bi,bj,myThid)
+#ifdef ALLOW_LAYERS
+           IF ( useLayers ) THEN
+            CALL LAYERS_FILL(tmpMk,2,'TOT',0,Nr,-1,bi,bj,myThid)
+           ENDIF
+#endif /* ALLOW_LAYERS */    
           ENDDO
          ENDDO
         ENDIF

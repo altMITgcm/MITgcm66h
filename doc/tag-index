@@ -5,6 +5,9 @@ $Name$
     ==============================
 
 o pkg/layers:
+  - Added missing call to layers_fill for keeping track of tottend in
+    pkg/diagnostics/diagnostics_fill_state.F
+o pkg/layers:
   - added CPP flux LAYERS_FINEGRID_DIAPYCNAL to disable fine-grid binning
     of diapycnal fluxes
 o pkg/layers:
