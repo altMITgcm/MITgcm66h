@@ -626,10 +626,10 @@ cdm #endif
      &                         xx_gentim2d(i,j,bi,bj,iarr)
 #else
            if (xx_gentim2d_file(iarr)(1:8).EQ.'xx_uwind')
-     &       uwind(i,j,bi,bj)=uwind(i,j,bi,bj)+
+     &       tmpUE(i,j,bi,bj)=tmpUE(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
            if (xx_gentim2d_file(iarr)(1:8).EQ.'xx_vwind')
-     &       vwind(i,j,bi,bj)=vwind(i,j,bi,bj)+
+     &       tmpVN(i,j,bi,bj)=tmpVN(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
 
 #endif
