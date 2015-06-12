@@ -65,10 +65,11 @@ C     ==================================================================
 
       COMMON /CONTROLFILES_RTIM/
      &     xx_gentim2d_period, gentim2dPrecond,
-     &     xx_gentim2d_preproc_r
+     &     xx_gentim2d_preproc_r, xx_gentim2d_bounds
       _RL xx_gentim2d_period(maxCtrlTim2D)
       _RL gentim2dPrecond(maxCtrlTim2D)
       _RL xx_gentim2d_preproc_r(maxCtrlProc,maxCtrlTim2D)
+      _RL xx_gentim2d_bounds(5,maxCtrlTim2D)
 
       COMMON /CONTROLFILES_LTIM/
      &     xx_gentim2d_cumsum, xx_gentim2d_glosum
