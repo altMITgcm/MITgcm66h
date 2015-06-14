@@ -641,13 +641,23 @@ c fully interactive generic cost terms
 C--   Check parameters:
       do k=1,NGENCOST
 
-cgf backward compatibility:
+cgf ensure backward compatibility:
         if (gencost_barfile(k).NE.' ') then
-        if (gencost_barfile(k)(1:2).NE.'m_') then
+         if (gencost_barfile(k)(1:2).NE.'m_') then
           il=ilnblnk(gencost_barfile(k))
           WRITE(msgBuf,'(A,A)') 'm_',gencost_barfile(k)(1:il)
           gencost_barfile(k)=msgBuf(1:il+2)
-        endif
+         endif
+         if (gencost_barfile(k)(1:8).EQ.'m_tauZon') then
+          il=ilnblnk(gencost_barfile(k))
+          WRITE(msgBuf,'(A,A)') 'm_ustress',gencost_barfile(k)(9:il)
+          gencost_barfile(k)=msgBuf(1:il+1)
+         endif
+         if (gencost_barfile(k)(1:8).EQ.'m_tauMer') then
+          il=ilnblnk(gencost_barfile(k))
+          WRITE(msgBuf,'(A,A)') 'm_vstress',gencost_barfile(k)(9:il)
+          gencost_barfile(k)=msgBuf(1:il+1)
+         endif
         endif
 
         if ( (using_gencost(k)).AND.( gencost_flag(k).GE.1 ) ) then
