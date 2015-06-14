@@ -78,14 +78,19 @@ c     == end of interface ==
             genrec(k)     = yearrec
          else if ( gencost_avgperiod(k) .EQ. 'step' .OR.
      &        gencost_avgperiod(k) .EQ. 'STEP' ) then
-c the following is un-tested, but should work
-c with the revised logic in cost_averagesgeneric
-c (write everytime startofgen AND endofgen) 
             startofgen(k) = .TRUE.
             endofgen(k)   = .TRUE.
             ingen(k)      = .TRUE.
             sum1gen(k)    = 1
             genrec(k)     = 1+ myiter - niter0
+         else if ( gencost_avgperiod(k) .EQ. 'const' .OR.
+     &        gencost_avgperiod(k) .EQ. 'CONST' ) then
+            startofgen(k) = .TRUE.
+            endofgen(k)   = (myiter.EQ.niter0)
+            ingen(k)      = (myiter.EQ.niter0)
+            sum1gen(k)    = 1
+            genrec(k)     = 1
+            print*,'gf-const ',startofgen(k),myiter,niter0
          else
             STOP 'gencost_avgperiod wrongly specified'
          end if
