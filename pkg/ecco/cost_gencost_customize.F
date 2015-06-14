@@ -176,7 +176,7 @@ c    &     .TRUE.,.TRUE.,.TRUE.,1,myThid)
            gencost_modfld(i,j,bi,bj,k) = 
      &      theta(i,j,1,bi,bj)*maskC(i,j,1,bi,bj)
          elseif ( (gencost_name(k).EQ.'siv4-exconc').OR.
-     &            (gencost_barfiles(k)(1:8).EQ.'m_siheff') ) then  
+     &            (gencost_barfile(k)(1:8).EQ.'m_siheff') ) then  
            gencost_modfld(i,j,bi,bj,k) = 
      &      heff(i,j,bi,bj)*maskC(i,j,1,bi,bj)
          elseif (gencost_barfile(k)(1:9).EQ.'m_sihsnow') then
