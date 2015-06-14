@@ -169,17 +169,17 @@ c    &     .TRUE.,.TRUE.,.TRUE.,1,myThid)
 #endif
 #ifdef ALLOW_SEAICE
          elseif ( (gencost_name(k).EQ.'siv4-conc').OR.
-     &            (gencost_name(k).EQ.'m_siarea') ) then
+     &            (gencost_barfile(k)(1:8).EQ.'m_siarea') ) then
            gencost_modfld(i,j,bi,bj,k) = 
      &      area(i,j,bi,bj)*maskC(i,j,1,bi,bj) 
          elseif (gencost_name(k).EQ.'siv4-deconc') then
            gencost_modfld(i,j,bi,bj,k) = 
      &      theta(i,j,1,bi,bj)*maskC(i,j,1,bi,bj)
          elseif ( (gencost_name(k).EQ.'siv4-exconc').OR.
-     &            (gencost_name(k).EQ.'m_siheff') ) then  
+     &            (gencost_barfiles(k)(1:8).EQ.'m_siheff') ) then  
            gencost_modfld(i,j,bi,bj,k) = 
      &      heff(i,j,bi,bj)*maskC(i,j,1,bi,bj)
-         elseif (gencost_name(k).EQ.'m_sihsnow') then
+         elseif (gencost_barfile(k)(1:9).EQ.'m_sihsnow') then
            gencost_modfld(i,j,bi,bj,k) =
      &      hsnow(i,j,bi,bj)*maskC(i,j,1,bi,bj)
 #endif
