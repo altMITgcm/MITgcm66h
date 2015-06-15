@@ -547,6 +547,14 @@ C         INITIALIZE BOUNDARY CONDS AT NORTH
 
       CALL STREAMICE_INIT_PHI( myThid )
 
+
+#if (defined (ALLOW_OPENAD) && defined (ALLOW_STREAMICE_OAD_FP) )
+#ifdef ALLOW_PETSC
+      STREAMICE_need2createmat = .true.
+      STREAMICE_need2destroymat = .true.
+#endif
+#endif
+
 #endif /* ALLOW_STREAMICE */
 
       RETURN
