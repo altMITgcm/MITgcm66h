@@ -61,9 +61,11 @@ C     !LOCAL VARIABLES:
 C     === Local variables ===
 C     i,j,bi,bj :: Loop counters
       INTEGER i, j, bi, bj
-      _RL PSTAR
       _RL phiSurf(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL  mask_uice, mask_vice
+#ifdef ALLOW_AUTODIFF_TAMC
+      _RL PSTAR
+#endif /* ALLOW_AUTODIFF_TAMC */
 
 # ifdef ALLOW_AUTODIFF_TAMC
 C Following re-initialisation breaks some "artificial" AD dependencies
