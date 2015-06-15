@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o coupler (atm & ocn _compon_interf):
+  - avoid using Exch2 IO mapping if not suitable.
+
 checkpoint65m (2015/06/15)
 o pkg/layers:
   - clean-up old parameters setting (from Sep 2012):
