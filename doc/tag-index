@@ -10,8 +10,9 @@ o pkg/layers:
 o pkg/seaice:
   - Rename SEAICE_VECTORIZE_LSR_ZEBRA to SEAICE_LSR_ZEBRA and define it
     in lab_sea forward experiment (changes results -> updated)
-o pkg/seaice: modify seaice_lsr.F in order to improve the gradient
-   computations; for SEAICE_VECTORIZE_LSR
+  - update adjoint experiment lab_sea after cleaning up seaice_lsr_tridiagu/v
+o pkg/seaice: modify seaice_lsr.F in order to improve the gradient 
+  computations; for SEAICE_VECTORIZE_LSR
   - move the loops over which the tridiagonal solvers (seaice_lsr_tridiagu/v)
     sweep to the outside,
   - remove store directives and add "CADJ loop sequential" directives
