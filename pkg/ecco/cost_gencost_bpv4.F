@@ -90,7 +90,7 @@ c     == end of interface ==
 
       kgen=0
       do k=1,NGENCOST
-      if ( (gencost_barfile(k)(1:2).EQ.'bp').AND.
+      if ( (gencost_barfile(k)(1:4).EQ.'m_bp').AND.
      &     (using_gencost(k)) ) kgen=k
       enddo
 

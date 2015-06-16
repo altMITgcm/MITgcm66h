@@ -162,7 +162,7 @@ c check that one of the used gencost term defines etaday (needed in sshv4)
 
       igen_etaday=0
       do k=1,NGENCOST
-        if ( (gencost_barfile(k).EQ.'etaday').AND.
+        if ( (gencost_barfile(k)(1:5).EQ.'m_eta').AND.
      &       (using_gencost(k)) )  igen_etaday=k
       enddo
 
