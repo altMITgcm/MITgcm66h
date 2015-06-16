@@ -74,7 +74,7 @@ c--     Set default values.
 
         do num_file=1,NFILESPROFMAX
          do num_var=1,NVARMAX
-          mult_profiles(num_file,num_var) = 0. _d 0
+          mult_profiles(num_file,num_var) = 1. _d 0
          enddo
         enddo
 
