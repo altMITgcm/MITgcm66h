@@ -162,7 +162,7 @@ C --- Set up layers "w-grid" for transformation calculation
         DO k=1,Nlayers-1
           layers_recip_delta(k,iLa) = 1.0 _d 0 / (
      &           layers_bounds_w(k+1,iLa) -
-     &           layers_bounds(k,iLa) )
+     &           layers_bounds_w(k,iLa) )
         ENDDO
        ENDIF
       ENDDO

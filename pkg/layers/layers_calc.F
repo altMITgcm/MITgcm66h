@@ -291,37 +291,6 @@ c#endif /* ALLOW_MNC */
 
        ENDIF
 
-#ifdef LAYERS_THERMODYNAMICS
-C--   Reset temporary flux arrays to zero
-       DO bj = myByLo(myThid), myByHi(myThid)
-        DO bi = myBxLo(myThid), myBxHi(myThid)
-          DO iTracer = 1,2
-           DO j=1-OLy,sNy+OLy
-            DO i=1-OLx,sNx+OLx
-             layers_surfflux(i,j,1,iTracer,bi,bj) = 0. _d 0
-            ENDDO
-           ENDDO
-           DO k=1,Nr
-            DO j=1-OLy,sNy+OLy
-             DO i=1-OLx,sNx+OLx
-              layers_dfx     (i,j,k,iTracer,bi,bj) = 0. _d 0
-              layers_dfy     (i,j,k,iTracer,bi,bj) = 0. _d 0
-              layers_dfr     (i,j,k,iTracer,bi,bj) = 0. _d 0
-              layers_afx     (i,j,k,iTracer,bi,bj) = 0. _d 0
-              layers_afy     (i,j,k,iTracer,bi,bj) = 0. _d 0
-              layers_afr     (i,j,k,iTracer,bi,bj) = 0. _d 0
-              layers_tottend (i,j,k,iTracer,bi,bj) = 0. _d 0
-#ifdef SHORTWAVE_HEATING
-             layers_sw       (i,j,k,1      ,bi,bj) = 0. _d 0
-#endif /* SHORTWAVE_HEATING */
-             ENDDO
-            ENDDO
-           ENDDO
-          ENDDO
-        ENDDO
-       ENDDO
-#endif /* LAYERS_THERMODYNAMICS */
-
 #ifdef ALLOW_DIAGNOSTICS
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 C--   Fill-in diagnostics
@@ -459,6 +428,39 @@ C --- End bi,bj loop
 #endif /* ALLOW_TIMEAVE */
 
       ENDDO !DO iLa=1,layers_maxNum
+
+
+#ifdef LAYERS_THERMODYNAMICS
+C--   Reset temporary flux arrays to zero
+      DO bj = myByLo(myThid), myByHi(myThid)
+       DO bi = myBxLo(myThid), myBxHi(myThid)
+        DO iTracer = 1,2
+         DO j=1-OLy,sNy+OLy
+          DO i=1-OLx,sNx+OLx
+           layers_surfflux(i,j,1,iTracer,bi,bj) = 0. _d 0
+          ENDDO
+         ENDDO
+         DO k=1,Nr
+          DO j=1-OLy,sNy+OLy
+           DO i=1-OLx,sNx+OLx
+            layers_dfx     (i,j,k,iTracer,bi,bj) = 0. _d 0
+            layers_dfy     (i,j,k,iTracer,bi,bj) = 0. _d 0
+            layers_dfr     (i,j,k,iTracer,bi,bj) = 0. _d 0
+            layers_afx     (i,j,k,iTracer,bi,bj) = 0. _d 0
+            layers_afy     (i,j,k,iTracer,bi,bj) = 0. _d 0
+            layers_afr     (i,j,k,iTracer,bi,bj) = 0. _d 0
+            layers_tottend (i,j,k,iTracer,bi,bj) = 0. _d 0
+#ifdef SHORTWAVE_HEATING
+            layers_sw       (i,j,k,1      ,bi,bj) = 0. _d 0
+#endif /* SHORTWAVE_HEATING */
+           ENDDO
+          ENDDO
+         ENDDO
+        ENDDO
+       ENDDO
+      ENDDO
+#endif /* LAYERS_THERMODYNAMICS */
+
 
 #endif /* ALLOW_LAYERS */
 
