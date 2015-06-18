@@ -37,7 +37,7 @@ C     myThid :: my Thread Id number
       useSEAICE = useSEAICEinAdMode
       useGGL90  = useGGL90inAdMode
       useSALT_PLUME = useSALT_PLUMEinAdMode
-#ifdef ALLOW_CTRL
+#if (defined (ALLOW_CTRL) && defined (ECCO_CTRL_DEPRECATED))
       ctrlSmoothCorrel2D  = useSmoothCorrel2DinAdMode
 #endif
 #ifdef ALLOW_SEAICE
@@ -80,7 +80,7 @@ C     myThid :: my Thread Id number
        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                     SQUEEZE_RIGHT, myThid )
 
-#ifdef ALLOW_CTRL
+#if (defined (ALLOW_CTRL) && defined (ECCO_CTRL_DEPRECATED))
        WRITE(msgBuf,'(A,L5)')
      &      'S/R ADAUTODIFF_INADMODE_SET: ctrlSmoothCorrel2D    =',
      &       ctrlSmoothCorrel2D
