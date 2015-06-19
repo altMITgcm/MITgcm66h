@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: replace erroneously storing e12Csqr on the wrong tape with
+  the wrong key by inialising it before use -> fixes a recomputation
+  problem but does not fix the gradient
 o pkg/layers:
   - move resetting of flux arrays to outside the iLa loop
     (this caused layers_diapycnal to not work with more than one layer coord.)
