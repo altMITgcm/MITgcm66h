@@ -640,10 +640,12 @@ C--  Output related param.
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT, myThid )
 
+      CALL WRITE_0D_RL( SEAICE_deltaMin   ,INDEX_NONE,
+     & 'SEAICE_deltaMin   =', ' /* reduce singularities in Delta */')
       CALL WRITE_0D_RL( SEAICE_EPS        ,INDEX_NONE,
-     & 'SEAICE_EPS        =', ' /* reduce derivative singularities */')
+     & 'SEAICE_EPS        =', ' /* small number */')
       CALL WRITE_0D_RL( SEAICE_EPS_SQ        ,INDEX_NONE,
-     & 'SEAICE_EPS_SQ     =', ' /* reduce derivative singularities */')
+     & 'SEAICE_EPS_SQ     =', ' /* small number squared */')
       CALL WRITE_0D_RL( SEAICE_area_reg        ,INDEX_NONE,
      & 'SEAICE_area_reg   =', ' /* reduce derivative singularities */')
       CALL WRITE_0D_RL( SEAICE_hice_reg        ,INDEX_NONE,
