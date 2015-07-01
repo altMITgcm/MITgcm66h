@@ -4,6 +4,12 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice:
+ - initialise deltaC in seaice_lsr, cosmetic changes in seaice_lsr
+ - add cpp-flag SEAICE_DELTA_SMOOTHREG for option of regularising
+   delta with a smooth function in s/r seaice_calc_viscosity
+   (no effect on EVP)
+ - rename local suffix "sqr" into "sq" for more consistent variable names
 o pkg/seaice: add new parameter SEAICE_deltaMin that is used ***only***
   for regularizing Delta (and nothing else, like the parameter 
   which is also used for all sorts of things SEAICE_EPS). Defaults to
