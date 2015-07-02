@@ -35,9 +35,9 @@ C !USES: ============================================================
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "DYNVARS.h"
-#include "GGL90.h"
 #include "FFIELDS.h"
 #include "GRID.h"
+#include "GGL90.h"
 
 C !INPUT PARAMETERS: ===================================================
 C Routine arguments
