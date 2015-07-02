@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o OpenAD
+ - Adding preliminary ggl90 test to OpenAD verification.
+   Config. with ggl90 currently diverges after 64 time steps
+   so will need more work to become more stable
 o pkg/seaice:
  - initialise deltaC in seaice_lsr, cosmetic changes in seaice_lsr
  - add cpp-flag SEAICE_DELTA_SMOOTHREG for option of regularising
