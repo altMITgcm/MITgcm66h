@@ -493,7 +493,9 @@ c--   Sum up all contributions.
      &         + mult_obcss   * objf_obcss(bi,bj)
      &         + mult_obcsw   * objf_obcsw(bi,bj)
      &         + mult_obcse   * objf_obcse(bi,bj)
+# ifdef ECCO_CTRL_DEPRECATED
      &         + mult_ageos   * objf_ageos(bi,bj)
+# endif
 #endif
 #ifdef ALLOW_PROFILES
       do num_file=1,NFILESPROFMAX
@@ -622,7 +624,9 @@ c--   Sum up all contributions.
           f_obcss  = f_obcss + objf_obcss(bi,bj)
           f_obcsw  = f_obcsw + objf_obcsw(bi,bj)
           f_obcse  = f_obcse + objf_obcse(bi,bj)
+# ifdef ECCO_CTRL_DEPRECATED
           f_ageos  = f_ageos + objf_ageos(bi,bj)
+# endif
 #endif
 #ifdef ALLOW_PROFILES
       do num_file=1,NFILESPROFMAX
@@ -1171,8 +1175,10 @@ c--   Do global summation for each part of the cost function
      &     ' --> f_obcsw   =',f_obcsw
       write(standardmessageunit,'(A,D22.15)')
      &     ' --> f_obcse   =',f_obcse
+# ifdef ECCO_CTRL_DEPRECATED
       write(standardmessageunit,'(A,D22.15)')
      &     ' --> f_ageos   =',f_ageos
+# endif
 #endif
 #ifdef ALLOW_PROFILES
       do num_file=1,NFILESPROFMAX
@@ -1463,8 +1469,10 @@ C     only master thread of master CPU open and write to file
      &       'f_obcsw =', f_obcsw, no_obcsw
         write(ifc,'(A,2D22.15)')
      &       'f_obcse =', f_obcse, no_obcse
+# ifdef ECCO_CTRL_DEPRECATED
         write(ifc,'(A,2D22.15)')
      &       'f_ageos =', f_ageos, no_ageos
+# endif
 #endif
 #ifdef ALLOW_PROFILES
       do num_file=1,NFILESPROFMAX
