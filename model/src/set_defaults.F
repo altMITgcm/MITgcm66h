@@ -298,6 +298,7 @@ C--   Time stepping parameters
       pickupSuff        = ' '
       pickupStrictlyMatch = .TRUE.
       nTimeSteps        = 0
+      nTimeSteps_l2     = 0
       nEndIter          = 0
       endTime           = 0. _d 0
       momForcingOutAB   = UNSET_I
