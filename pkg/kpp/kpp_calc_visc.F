@@ -20,6 +20,7 @@ C     == GLobal variables ==
 #include "PARAMS.h"
 #include "DYNVARS.h"
 #include "GRID.h"
+#include "KPP.h"
 
 C     == Routine arguments ==
 C     bi, bj, iMin, iMax, jMin, jMax - Range of points for which calculation
@@ -29,9 +30,6 @@ C
       _RL KappaRU(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
       _RL KappaRV(1-Olx:sNx+Olx,1-Oly:sNy+Oly,Nr)
       INTEGER myThid
-
-#ifdef ALLOW_KPP
-#include "KPP.h"
 
 C     == Local variables ==
 C     I, J, K - Loop counters
@@ -52,8 +50,6 @@ C     I, J, K - Loop counters
      &         0.5*(KPPviscAz(i,j,k,bi,bj)+KPPviscAz(i,j-1,k,bi,bj)) )
        ENDDO
       ENDDO
-
-#endif /* ALLOW_KPP */
 
       RETURN
       END
