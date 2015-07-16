@@ -88,7 +88,7 @@ C--   First call requires that we initialize everything to zero for safety
 C      <= already done in OFFLINE_INIT_VARIA
 
 C--   Now calculate whether it is time to update the forcing arrays
-      locTime = myTime -offlineOffsetIter*deltaToffline
+      locTime = myTime - offlineTimeOffset
       CALL GET_PERIODIC_INTERVAL(
      O                  intimeP, intime0, intime1, bWght, aWght,
      I                  offlineForcingCycle, offlineForcingPeriod,

@@ -33,15 +33,15 @@ C-  Forcing files
 
       COMMON /OFFLINE_PARAMS_I/
      &       offlineLoadPrec,
-     &       offlineIter0, offlineOffsetIter
+     &       offlineIter0
       INTEGER offlineLoadPrec
       INTEGER offlineIter0
-      INTEGER offlineOffsetIter
 
       COMMON /OFFLINE_PARAMS_R/
-     &       deltaToffline,
+     &       deltaToffline, offlineTimeOffset,
      &       offlineForcingPeriod, offlineForcingCycle
       _RL deltaToffline
+      _RL offlineTimeOffset
       _RL offlineForcingPeriod
       _RL offlineForcingCycle
 

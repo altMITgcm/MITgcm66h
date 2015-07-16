@@ -53,8 +53,8 @@ C--   Print out some kee parameters :
      & 'offlineLoadConvec=', ' /* load (not compute) Convect Mix */')
        CALL WRITE_0D_I( offlineIter0, INDEX_NONE,
      &   'offlineIter0 =', ' /* initial offline field timestep */')
-       CALL WRITE_0D_I( offlineOffsetIter, INDEX_NONE,
-     &   'offlineOffsetIter=', ' /* iteration number offset */')
+       CALL WRITE_0D_RL( offlineTimeOffset, INDEX_NONE,
+     &   'offlineTimeOffset =', ' /* time offset [s] */')
        CALL WRITE_0D_I( offlineLoadPrec, INDEX_NONE,
      &   'offlineLoadPrec =',
      &   ' /* precision (32,64) of offline files */')
