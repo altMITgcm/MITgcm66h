@@ -10,6 +10,7 @@ o pkg/offline:
     (offlineTimeOffset) to offset-iter x deltaToffline;
   - do not turn-off Temp & Salinity surface relaxation when using KPP (used
     in KPP as part of surface buoyancy forcing) in offline run.
+  - fix ptracers KPP non-local term in the case where KPP is re-computed.
 o OpenAD
   - Adding preliminary ggl90 test to OpenAD verification.
     Config. with ggl90 currently diverges after 64 time steps
