@@ -3,7 +3,7 @@ C $Name$
 
 #include "KPP_OPTIONS.h"
 #ifdef ALLOW_GMREDI
-#include "GMREDI_OPTIONS.h"
+# include "GMREDI_OPTIONS.h"
 #endif
 
       SUBROUTINE KPP_TRANSPORT_PTR (
@@ -37,15 +37,18 @@ C     == GLobal variables ==
 #include "KPP.h"
 #include "KPP_PARAMS.h"
 #ifdef ALLOW_PTRACERS
-#include "PTRACERS_SIZE.h"
+# include "PTRACERS_SIZE.h"
 c#include "PTRACERS_PARAMS.h"
-#include "PTRACERS_FIELDS.h"
+# include "PTRACERS_FIELDS.h"
 #endif
 #ifdef ALLOW_GMREDI
-#include "GMREDI.h"
+# include "GMREDI.h"
 #endif
 #ifdef ALLOW_LONGSTEP
-#include "LONGSTEP.h"
+# include "LONGSTEP.h"
+#endif
+#ifdef ALLOW_OFFLINE
+# include "OFFLINE_SWITCH.h"
 #endif
 
 C     == Routine arguments ==
@@ -74,7 +77,7 @@ C     i, j      :: Loop counters
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
-      IF (useOffLine) THEN
+      IF ( useOffLine.AND.offlineLoadKPP ) THEN
 
 C--   Note: in this case (offline) KPPghat array already contains
 C           the product ghat*diffKzS which has been loaded from file
