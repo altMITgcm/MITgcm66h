@@ -49,6 +49,8 @@ c#include "PTRACERS_PARAMS.h"
 #endif
 #ifdef ALLOW_OFFLINE
 # include "OFFLINE_SWITCH.h"
+#else
+      LOGICAL offlineLoadKPP
 #endif
 
 C     == Routine arguments ==
