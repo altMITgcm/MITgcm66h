@@ -119,11 +119,6 @@ c find global surface averages
 c     ENDIF
 #endif
 ccccccccccccccccccccccccccccccccccccccccccc
-#ifdef ALLOW_OFFLINE
-      IF ( useOffLine ) THEN
-        CALL OFFLINE_GET_SURFFORCING( myTime, myIter, myThid )
-      ENDIF
-#endif /* ALLOW_OFFLINE */
 #endif /* ALLOW_OLD_VIRTUALFLUX */
 
 #ifdef ALLOW_DARWIN
