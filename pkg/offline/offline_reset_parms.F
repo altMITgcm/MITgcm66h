@@ -60,15 +60,6 @@ C--   Make sure we compute vertical velocity since it is not read from a file
      &                        SQUEEZE_RIGHT, myThid )
           exactConserv = .TRUE.
         ENDIF
-        IF ( .NOT.staggerTimeStep ) THEN
-          WRITE(msgBuf,'(A,A)') '** WARNING ** OFFLINE_RESET_PARMS: ',
-     &    '=> turn on staggerTimeStep to use computed wVel'
-          CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                        SQUEEZE_RIGHT, myThid )
-          CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
-     &                        SQUEEZE_RIGHT, myThid )
-          staggerTimeStep = .TRUE.
-        ENDIF
       ELSE
 C--   Vertical velocity is read from a file: make sure it is not re-computed
         IF ( exactConserv ) THEN
