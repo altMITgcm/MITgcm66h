@@ -40,8 +40,6 @@ C       |-- CHEAPAML_FIELDS_LOAD
 C       |
 C       |-- EXTERNAL_FIELDS_LOAD
 C       |
-C       |-- OFFLINE_FIELDS_LOAD
-C       |
 C       |-- GCHEM_FIELDS_LOAD
 C       |
 C       |-- RBCS_FIELDS_LOAD
@@ -174,17 +172,6 @@ CADJ STORE Qsw    = comlev1, key = ikey_dynamics, kind = isbyte
 # endif
 #endif
       ENDIF
-
-#ifdef ALLOW_OFFLINE
-      IF ( useOffLine ) THEN
-#ifdef ALLOW_DEBUG
-        IF (debugMode) CALL DEBUG_CALL('OFFLINE_FIELDS_LOAD',myThid)
-#endif /* ALLOW_DEBUG */
-        CALL TIMER_START('OFFLINE_FLDS_LOAD  [LOAD_FLDS_DRIVER]',myThid)
-        CALL OFFLINE_FIELDS_LOAD( myTime, myIter, myThid )
-        CALL TIMER_STOP ('OFFLINE_FLDS_LOAD  [LOAD_FLDS_DRIVER]',myThid)
-      ENDIF
-#endif /* ALLOW_OFFLINE */
 
 #ifdef ALLOW_GCHEM
       IF ( useGCHEM ) THEN
