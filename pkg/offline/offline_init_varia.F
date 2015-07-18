@@ -73,12 +73,8 @@ C--   end bi,bj loops.
        ENDDO
       ENDDO
 
-C     Used to be called only when using pkg/dic. but since main state
-C     variables are nor read from pickup-files (when useOffLine),
-C     seems logical to always load them here from offline files.
-      IF ( nonlinFreeSurf.LE.0 ) THEN
-        CALL OFFLINE_FIELDS_LOAD( startTime, nIter0, myThid )
-      ENDIF
+C     Load offline fields from files (for beginning of first time-step)
+      CALL OFFLINE_FIELDS_LOAD( startTime, nIter0, myThid )
 
       RETURN
       END
