@@ -79,6 +79,16 @@ C--   Interpolate Diffusivity Components:
         aWght = offline_Wght(2,bi,bj)
 #endif /* ndef ALLOW_AUTODIFF */
 
+        IF ( Wvelfile .NE. ' '  .AND. myIter.EQ.nIter0 ) THEN
+         DO k=1,Nr
+          DO j=1-OLy,sNy+OLy
+           DO i=1-OLx,sNx+OLx
+            wVel(i,j,k,bi,bj) = bWght*wvel0(i,j,k,bi,bj)
+     &                        + aWght*wvel1(i,j,k,bi,bj)
+           ENDDO
+          ENDDO
+         ENDDO
+        ENDIF
         IF ( offlineLoadConvec ) THEN
          DO k=1,Nr
           DO j=1-OLy,sNy+OLy
