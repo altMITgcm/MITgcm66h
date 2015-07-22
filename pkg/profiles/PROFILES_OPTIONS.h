@@ -17,6 +17,10 @@ C to provide grid dependent interpolation points/coeffs, define
 C ALLOW_PROFILES_GENERICGRID, and set profilesDoGenGrid to TRUE
 # undef ALLOW_PROFILES_GENERICGRID
 
+C To use file units between 9 and 99 (seems to conflict
+C with NF_OPEN some times, but is needed when using g77)
+# undef PROFILES_USE_MDSFINDUNITS
+
 #endif /* ALLOW_PROFILES */
 #endif /* PROFILES_OPTIONS_H */
 
