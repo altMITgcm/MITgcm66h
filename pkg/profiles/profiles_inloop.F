@@ -90,7 +90,9 @@ c     == end of interface ==
           call profiles_interp(prof_traj1D,
      &        prof_lon(num_file,prof_num,bi,bj), 
      &        prof_lat(num_file,prof_num,bi,bj),
-     &        num_var,num_file,mytime,bi,bj,myThid)
+     &        prof_namesmod(num_file,num_var),
+     &        prof_itracer(num_file,num_var),
+     &        num_file,mytime,bi,bj,myThid)
 #ifdef ALLOW_PROFILES_GENERICGRID
         else
           call profiles_interp_gg(prof_traj1D,

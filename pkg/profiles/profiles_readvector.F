@@ -77,11 +77,11 @@ c implies that a forward loop is calling
 
       do kkk=1,NVARMAX
       if (vec_quantities(fNb,kkk,bi,bj).EQV..TRUE.) then
-      err = NF_INQ_VARID(fiddata(fNb,bi,bj),prof_names(kkk),
+      err = NF_INQ_VARID(fiddata(fNb,bi,bj),prof_names(fNb,kkk),
      & varid1 )
       err = NF_GET_VARA_DOUBLE(fiddata(fNb,bi,bj), varid1 , vec_start,
      & vec_count, vec_tmp1)
-      err = NF_INQ_VARID(fiddata(fNb,bi,bj),prof_namesweight(kkk)
+      err = NF_INQ_VARID(fiddata(fNb,bi,bj),prof_namesweight(fNb,kkk)
      & , varid1 )
       err = NF_GET_VARA_DOUBLE(fiddata(fNb,bi,bj), varid1 , vec_start,
      & vec_count, vec_tmp2)
