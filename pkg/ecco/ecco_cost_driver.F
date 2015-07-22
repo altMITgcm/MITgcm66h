@@ -214,10 +214,6 @@ c--   Compute user defined cost function contributions (elaborate)
       call cost_gencost_all( myIter, myTime, myThid )
       call timer_stop ('cost_gencost_all    [ECCO SPIN-DOWN]', myThid)
 
-#if (defined (ALLOW_PROFILES) && defined (ALLOW_PROFILES_CONTRIBUTION))
-      if ( usePROFILES ) CALL cost_profiles( myiter, mytime, mythid)
-#endif
-
 #ifdef ALLOW_CTRL
       IF (useCTRL) THEN
 #ifdef ALLOW_DEBUG

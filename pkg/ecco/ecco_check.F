@@ -65,16 +65,6 @@ C     msgBuf      - Informational/error meesage buffer
       ENDIF
 #endif
 
-#ifdef ALLOW_PROFILES_CONTRIBUTION
-      IF ( .NOT.usePROFILES ) THEN
-       WRITE(msgBuf,'(3A)') '** WARNING ** S/R ECCO_CHECK: ', 
-     &        'ALLOW_PROFILES_CONTRIBUTION requires ',
-     &        'netcdf and usePROFILES to be .true.'
-       CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
-     &                     SQUEEZE_RIGHT , myThid )
-      ENDIF
-#endif
-
 cgf next line is only for backward compatibility
       IF ( (using_topex).AND.(.NOT.using_tpj) ) using_tpj=.TRUE.
 
