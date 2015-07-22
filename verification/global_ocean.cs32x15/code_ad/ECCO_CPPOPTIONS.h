@@ -37,6 +37,7 @@ C o use divided adjoint to split adjoint computations
 #undef ALLOW_DIVIDED_ADJOINT
 
 #define ALLOW_AUTODIFF_WHTAPEIO
+#define AUTODIFF_USE_MDSFINDUNITS
 #define ALLOW_PACKUNPACK_METHOD2
 #define AUTODIFF_USE_OLDSTORE_3D
 #define AUTODIFF_USE_OLDSTORE_2D
