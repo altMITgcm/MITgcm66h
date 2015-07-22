@@ -1481,7 +1481,8 @@ C     only master thread of master CPU open and write to file
          IL  = ILNBLNK( profilesfiles(num_file) )
          IL  = max (IL,30)
          write(ifc,'(4A,2D22.15)')
-     &    profilesfiles(num_file)(1:IL),' ',prof_names(num_var), ' = ',
+     &    profilesfiles(num_file)(1:IL),' ',
+     &    prof_names(num_file,num_var), ' = ',
      &    f_profiles(num_file,num_var),
      &    no_profiles(num_file,num_var)
         endif
