@@ -85,6 +85,7 @@ CEOP
         if ( localperiod.EQ.dTtracerLev(1) ) then
            localrec = irec
            obsrec = irec
+           yday = 0
         elseif ( localperiod .EQ. 86400. ) then
 c-- assume daily fields
            obsrec = irec
