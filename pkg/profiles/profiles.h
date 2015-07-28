@@ -97,10 +97,12 @@ C===========================================================
       COMMON /profiles_cost_r/
      &                objf_profiles,
      &                num_profiles,
-     &                mult_profiles
+     &                mult_profiles,
+     &                prof_facmod
       _RL  objf_profiles(NFILESPROFMAX,NVARMAX,nsx,nsy)
       _RL  num_profiles(NFILESPROFMAX,NVARMAX,nsx,nsy)
       _RL  mult_profiles(NFILESPROFMAX,NVARMAX)
+      _RL  prof_facmod(NFILESPROFMAX,NVARMAX)
 
       COMMON /profiles_cost_c/
      &        profilesDir, profilesfiles
