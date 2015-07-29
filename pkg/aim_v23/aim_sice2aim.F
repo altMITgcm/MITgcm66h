@@ -44,7 +44,6 @@ C-- Sea-Ice package
 #include "THSICE_SIZE.h"
 #include "THSICE_PARAMS.h"
 #include "THSICE_VARS.h"
-#include "THSICE_TAVE.h"
       INTEGER siLo, siHi, sjLo, sjHi
       PARAMETER ( siLo = 1-OLx , siHi = sNx+OLx )
       PARAMETER ( sjLo = 1-OLy , sjHi = sNy+OLy )
