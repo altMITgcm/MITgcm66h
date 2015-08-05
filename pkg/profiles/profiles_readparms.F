@@ -111,13 +111,6 @@ c--     Set default values.
       profilesDoGenGrid=.false.
 #endif
 
-      if (NVARMAX.GT.6) then
-        WRITE(msgBuf,'(A)')
-     & 'PROFILES_READPARMS: you need to define variables 7 to NVARMAX'
-        CALL PRINT_ERROR( msgBuf, myThid)
-        STOP 'ABNORMAL END: S/R PROFILES_READPARMS'
-      endif
-
 c--     Next, read the cost data file.
         WRITE(msgBuf,'(A)') 'PROFILES_READPARMS: opening data.profiles'
         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
