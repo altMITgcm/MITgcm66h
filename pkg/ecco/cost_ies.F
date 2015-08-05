@@ -39,9 +39,6 @@ c     == global variables ==
 #include "ctrl_dummy.h"
 #include "optim.h"
 #include "DYNVARS.h"
-#ifdef ALLOW_PROFILES
-#include "profiles.h"
-#endif
 #endif
 
 c     == routine arguments ==

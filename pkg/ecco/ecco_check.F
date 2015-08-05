@@ -34,9 +34,6 @@ C     === Global variables ===
 #ifdef ALLOW_ECCO
 # include "ecco_cost.h"
 #endif
-#ifdef ALLOW_PROFILES
-# include "profiles.h"
-#endif
 
 C     === Routine arguments ===
 C     myThid -  Number of this instances
@@ -90,8 +87,6 @@ c check for missing data files
       CALL ECCO_CHECK_FILES( using_cost_scat,'scat',
      & scatydatfile, scatystartdate(1), myThid )
 #endif
-
-c left for later : slightly different treatment would apply to profiles and gencost
 
 #ifdef ALLOW_GENCOST_CONTRIBUTION
       do k=1,NGENCOST
