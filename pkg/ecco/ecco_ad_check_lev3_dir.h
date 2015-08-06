@@ -4,7 +4,6 @@ c
 c     store directives for checkpoint level 3
 c
 
-#ifdef ALLOW_ECCO_EVOLUTION
 #ifdef ALLOW_COST_ATLANTIC
 CADJ STORE theta = tapelev3, key=ilev_3
 CADJ STORE vVel  = tapelev3, key=ilev_3
@@ -12,7 +11,6 @@ CADJ STORE vVel  = tapelev3, key=ilev_3
 CADJ STORE hFacS  = tapelev3, key=ilev_3
 # endif
 #endif
-#endif /* ALLOW_ECCO_EVOLUTION */
 
 #ifdef ALLOW_ECCO_BARSTORES
 
