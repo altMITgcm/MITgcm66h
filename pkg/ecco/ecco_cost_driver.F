@@ -36,6 +36,7 @@ c     == routine arguments ==
 #ifdef ALLOW_AUTODIFF_TAMC
 # ifdef ALLOW_SSH_COST_CONTRIBUTION
 #  ifdef ALLOW_PROFILES
+#   include "PROFILES_SIZE.h"
 #   include "profiles.h"
 #  endif
 # endif

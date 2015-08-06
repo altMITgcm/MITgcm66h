@@ -47,10 +47,11 @@ c     == global variables ==
 # include "ecco.h"
 #endif
 #ifdef ALLOW_PROFILES
-#include "profiles.h"
+# include "PROFILES_SIZE.h"
+# include "profiles.h"
 #endif
 #ifdef ALLOW_SMOOTH
-#include "SMOOTH.h"
+# include "SMOOTH.h"
 #endif
 
 c     == routine arguments ==
