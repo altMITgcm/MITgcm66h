@@ -29,8 +29,6 @@ cph#define  ALLOW_ECCO_FORWARD_RUN
 C       >>> Do a long protocol.
 #undef ECCO_VERBOSE
 
-#define ALLOW_ECCO_EVOLUTION
-
 C ********************************************************************
 C ***                  Adjoint Support Package                     ***
 C ********************************************************************

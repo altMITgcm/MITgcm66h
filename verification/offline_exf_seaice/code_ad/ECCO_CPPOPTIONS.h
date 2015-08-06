@@ -24,8 +24,6 @@ C allow use of legacy ecco/ctrl codes
 
 C       >>> Do a long protocol.
 #undef ECCO_VERBOSE
-C       >>> use model/src/forward_step.F
-#define ALLOW_ECCO_EVOLUTION
 
 C ********************************************************************
 C ***                  Adjoint Support Package                     ***
@@ -56,16 +54,6 @@ C ********************************************************************
 C ***                Cost function Package                         ***
 c ********************************************************************
 C
-
-C       >>> Cost function contributions
-#define ALLOW_ECCO_OLD_FC_PRINT
-
-C       >>> Initial values.
-#define ALLOW_THETA0_COST_CONTRIBUTION
-
-C       >>> Atmospheric state and radiation.
-#define ALLOW_ATEMP_COST_CONTRIBUTION
-#define ALLOW_SWDOWN_COST_CONTRIBUTION
 
 #define ALLOW_THSICE_COST_TEST
 
