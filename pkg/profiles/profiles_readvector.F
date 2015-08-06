@@ -21,8 +21,9 @@ C ==================== Global Variables ===========================
 #include "GRID.h"
 #include "DYNVARS.h"
 #ifdef ALLOW_PROFILES
-#include "netcdf.inc"
-#include "profiles.h"
+# include "netcdf.inc"
+# include "PROFILES_SIZE.h"
+# include "profiles.h"
 #endif
 C ==================== Routine Variables ==========================
       integer vec_loc_length, vNb, k, kk, kkk,bi,bj

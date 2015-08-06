@@ -30,7 +30,8 @@ c     == global variables ==
 #include "GRID.h"
 
 #ifdef ALLOW_PROFILES
-#include "profiles.h"
+# include "PROFILES_SIZE.h"
+# include "profiles.h"
 #endif
 
 c     == routine arguments ==

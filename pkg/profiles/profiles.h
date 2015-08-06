@@ -1,24 +1,6 @@
 C $Header$
 C $Name$
 
-C============================================================
-C NOBSMAX : maximal number of profiles
-C============================================================
-      INTEGER  NOBSGLOB
-      PARAMETER ( NOBSGLOB = 200000  )
-      INTEGER NFILESPROFMAX
-      PARAMETER ( NFILESPROFMAX=20 )
-      INTEGER NVARMAX
-      PARAMETER ( NVARMAX=6 )
-      INTEGER NLEVELMAX
-      PARAMETER ( NLEVELMAX=110 )
-      INTEGER NUM_INTERP_POINTS
-#ifndef ALLOW_PROFILES_GENERICGRID
-      PARAMETER (NUM_INTERP_POINTS = 4)
-#else
-      PARAMETER (NUM_INTERP_POINTS = 1)
-#endif
-
 C===========================================================
 C variables
 C===========================================================

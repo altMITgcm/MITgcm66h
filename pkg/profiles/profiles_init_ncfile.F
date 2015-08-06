@@ -21,6 +21,7 @@ C ==================== Global Variables ===========================
 #include "GRID.h"
 #include "DYNVARS.h"
 #ifdef ALLOW_PROFILES
+# include "PROFILES_SIZE.h"
 # include "profiles.h"
 # include "netcdf.inc"
 #endif

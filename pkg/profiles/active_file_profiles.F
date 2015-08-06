@@ -46,6 +46,7 @@ c     == global variables ==
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #ifdef ALLOW_PROFILES
+# include "PROFILES_SIZE.h"
 # include "profiles.h"
 #endif
 
@@ -113,6 +114,7 @@ c     == global variables ==
 #include "EEPARAMS.h"
 #include "SIZE.h"
 #ifdef ALLOW_PROFILES
+# include "PROFILES_SIZE.h"
 # include "profiles.h"
 #endif
 

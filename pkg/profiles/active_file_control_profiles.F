@@ -41,8 +41,9 @@ c     == global variables ==
 #include "SIZE.h"
 #include "PARAMS.h"
 #ifdef ALLOW_PROFILES
-#include "netcdf.inc"
-#include "profiles.h"
+# include "netcdf.inc"
+# include "PROFILES_SIZE.h"
+# include "profiles.h"
 #endif
 
 c     == routine arguments ==
@@ -269,8 +270,9 @@ c     == global variables ==
 #include "SIZE.h"
 #include "PARAMS.h"
 #ifdef ALLOW_PROFILES
-#include "netcdf.inc"
-#include "profiles.h"
+# include "netcdf.inc"
+# include "PROFILES_SIZE.h"
+# include "profiles.h"
 #endif
 
 c     == routine arguments ==

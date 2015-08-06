@@ -23,6 +23,7 @@ C     \ev
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
 #include "PARAMS.h"
+#include "PROFILES_SIZE.h"
 #include "profiles.h"
 
 C     !INPUT/OUTPUT PARAMETERS:

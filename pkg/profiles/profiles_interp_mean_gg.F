@@ -35,6 +35,7 @@ c#include "DYNVARS.h"
 #include "cal.h"
 #endif
 #ifdef ALLOW_PROFILES
+# include "PROFILES_SIZE.h"
 # include "profiles.h"
 #else
       integer NLEVELMAX

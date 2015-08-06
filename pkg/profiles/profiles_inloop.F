@@ -31,6 +31,7 @@ C ==================== Global Variables ===========================
 #include "optim.h"
 #endif
 #ifdef ALLOW_PROFILES
+# include "PROFILES_SIZE.h"
 # include "profiles.h"
 # include "netcdf.inc"
 #endif

@@ -23,14 +23,15 @@ C     ======== Global data ============================
 #include "GRID.h"
 #include "DYNVARS.h"
 #ifdef ALLOW_CAL
-#include "cal.h"
+# include "cal.h"
 #endif
 #ifdef ALLOW_PROFILES
-#include "profiles.h"
-#include "netcdf.inc"
+# include "PROFILES_SIZE.h"
+# include "profiles.h"
+# include "netcdf.inc"
 #endif
 #ifdef ALLOW_CTRL
-#include "optim.h"
+# include "optim.h"
 #endif
 
 c     == routine arguments ==
@@ -241,6 +242,9 @@ c
       write(msgbuf,'(a)') ' '
       call print_message( msgbuf,
      &  standardmessageunit,SQUEEZE_RIGHT , mythid)
+
+
+c     call profiles_make_ncfile(mythid)
 
 C===========================================================
 
