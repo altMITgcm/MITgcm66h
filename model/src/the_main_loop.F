@@ -36,6 +36,9 @@ C $Name$
 #ifdef ALLOW_ECCO
 # include "ECCO_OPTIONS.h"
 #endif
+#ifdef ALLOW_PROFILES
+# include "PROFILES_OPTIONS.h"
+#endif
 
 CBOP
 C     !ROUTINE: THE_MAIN_LOOP
@@ -175,6 +178,7 @@ c They provide the fields to be stored.
 #  include "GGL90.h"
 # endif
 # ifdef ALLOW_PROFILES
+#  include "PROFILES_SIZE.h"
 #  include "profiles.h"
 # endif
 
