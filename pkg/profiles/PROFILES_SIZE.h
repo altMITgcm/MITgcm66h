@@ -18,9 +18,5 @@ C============================================================
       INTEGER NLEVELMAX
       PARAMETER ( NLEVELMAX=110 )
       INTEGER NUM_INTERP_POINTS
-#ifndef ALLOW_PROFILES_GENERICGRID
       PARAMETER (NUM_INTERP_POINTS = 4)
-#else
-      PARAMETER (NUM_INTERP_POINTS = 1)
-#endif
 
