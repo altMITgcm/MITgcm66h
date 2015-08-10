@@ -130,14 +130,16 @@ c                 the current model integration.
       integer ndaysrec
 
       common /ecco_r/
-     &                    etanFull,
+     &                    m_eta,m_UE,m_VN,
      &                    VOLsumGlob_0, VOLsumGlob,
      &                    RHOsumGlob_0, RHOsumGlob,
      &                    frame, cosphi
       _RL VOLsumGlob_0, VOLsumGlob, RHOsumGlob_0, RHOsumGlob
-      _RL etanFull       (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL frame   (1-olx:snx+olx,1-oly:sny+oly           )
       _RL cosphi  (1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
+      _RL m_eta(1-olx:snx+olx,1-oly:sny+oly,   nsx,nsy)
+      _RL m_UE (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
+      _RL m_VN (1-olx:snx+olx,1-oly:sny+oly,nr,nsx,nsy)
 
 c     file precision and field type
       common /prec_type_cost/

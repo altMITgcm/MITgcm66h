@@ -116,7 +116,7 @@ c    &     .TRUE.,.TRUE.,.TRUE.,1,myThid)
 
          if (gencost_barfile(k)(1:5).EQ.'m_eta') then
            gencost_modfld(i,j,bi,bj,k) = 
-     &      etanFull(i,j,bi,bj)*maskC(i,j,1,bi,bj)
+     &      m_eta(i,j,bi,bj)*maskC(i,j,1,bi,bj)
          elseif (gencost_barfile(k)(1:5).EQ.'m_sst') then
            gencost_modfld(i,j,bi,bj,k) = 
      &      THETA(i,j,1,bi,bj)*maskC(i,j,1,bi,bj)
@@ -198,6 +198,18 @@ c    &     .TRUE.,.TRUE.,.TRUE.,1,myThid)
            do k2=1,nr
             gencost_mod3d(i,j,k2,bi,bj,kk) =
      &       salt(i,j,k2,bi,bj)*maskC(i,j,k2,bi,bj)
+           enddo
+         elseif (gencost_barfile(k)(1:7).EQ.'m_UE') then
+           kk=gencost_pointer3d(k)
+           do k2=1,nr
+            gencost_mod3d(i,j,k2,bi,bj,kk) =
+     &       m_UE(i,j,k2,bi,bj)*maskC(i,j,k2,bi,bj)
+           enddo
+         elseif (gencost_barfile(k)(1:6).EQ.'m_VN') then
+           kk=gencost_pointer3d(k)
+           do k2=1,nr
+            gencost_mod3d(i,j,k2,bi,bj,kk) =
+     &       m_VN(i,j,k2,bi,bj)*maskC(i,j,k2,bi,bj)
            enddo
 #if (defined (ALLOW_3D_DIFFKR) || defined (ALLOW_DIFFKR_CONTROL))
          elseif (gencost_barfile(k)(1:8).EQ.'m_diffkr') then

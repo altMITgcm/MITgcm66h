@@ -107,7 +107,7 @@ c    &                       SQUEEZE_RIGHT, myThid )
        DO bi=myBxLo(myThid),myBxHi(myThid)
             do j = jmin,jmax
               do i =  imin,imax
-                etanFull(i,j,bi,bj)=
+                m_eta(i,j,bi,bj)=
      &                 etan(i,j,bi,bj)
      &                +sIceLoad(i,j,bi,bj)*recip_rhoConst
 #ifdef ALLOW_PSBAR_STERIC
@@ -117,6 +117,23 @@ c    &                       SQUEEZE_RIGHT, myThid )
             enddo
         enddo
       enddo
+
+      DO bj=myByLo(myThid),myByHi(myThid)
+       DO bi=myBxLo(myThid),myBxHi(myThid)
+          do k = 1,nr
+            do j = 1,sNy
+              do i =  1,sNx
+                m_UE(i,j,k,bi,bj)=0. _d 0
+                m_VN(i,j,k,bi,bj)=0. _d 0
+              enddo
+            enddo
+          enddo
+        enddo
+      enddo
+
+      CALL ROTATE_UV2EN_RL(
+     U          uVel, vVel, m_UE, m_VN,
+     I          .TRUE., .TRUE., .FALSE., Nr, mythid )
 
       return
       end
