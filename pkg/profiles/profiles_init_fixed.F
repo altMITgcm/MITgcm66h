@@ -126,14 +126,6 @@ c--   == end of interface ==
       endif
       call print_message(
      &   msgbuf, standardmessageunit, SQUEEZE_RIGHT , mythid)
-      write(msgbuf,'(a,a)') '  ALLOW_PROFILES_GENERICGRID ',
-#ifdef ALLOW_PROFILES_GENERICGRID
-     &   'was compiled'
-#else
-     &   'was NOT compiled'
-#endif
-      call print_message(
-     &   msgbuf, standardmessageunit, SQUEEZE_RIGHT , mythid)
       write(msgbuf,'(a,l5)') '  profilesDoGenGrid  ',profilesDoGenGrid
       call print_message(
      &   msgbuf, standardmessageunit, SQUEEZE_RIGHT , mythid)

@@ -88,11 +88,12 @@ c--     Set default values.
       enddo
 
       profilesDoNcOutput=.false.
-#ifdef ALLOW_PROFILES_GENERICGRID
-      profilesDoGenGrid=.true.
-#else
-      profilesDoGenGrid=.false.
-#endif
+
+      IF ( (.NOT.usingSphericalPolarGrid .OR. rotateGrid) ) THEN
+        profilesDoGenGrid=.true.
+      ELSE
+        profilesDoGenGrid=.false.
+      ENDIF
 
 c--     Next, read the cost data file.
         WRITE(msgBuf,'(A)') 'PROFILES_READPARMS: opening data.profiles'
