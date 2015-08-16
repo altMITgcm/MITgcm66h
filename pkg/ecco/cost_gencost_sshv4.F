@@ -46,10 +46,6 @@ c     == global variables ==
 #ifdef ALLOW_ECCO
 # include "ecco.h"
 #endif
-#ifdef ALLOW_PROFILES
-# include "PROFILES_SIZE.h"
-# include "profiles.h"
-#endif
 #ifdef ALLOW_SMOOTH
 # include "SMOOTH.h"
 #endif
@@ -784,23 +780,6 @@ cgf     1) mean_psMssh_all is the sample mean <etaday-slaobs-mdt-offset>,
 cgf             to which a smoothing filter has been applied.
 cgf     2) mean_psMtpobs is the (unsmoothed) sample mean <etaday-tpobs>.
 cgf             And similarly for ers and gfo, each treated separately.
-
-#ifdef ALLOW_PROFILES
-      if ( usePROFILES ) then
-      do bj = jtlo,jthi
-        do bi = itlo,ithi
-          do j = 1,sny
-            do i = 1,snx
-cgf this has not been tested recently
-              prof_etan_mean(i,j,bi,bj)=psmean(i,j,bi,bj)
-            enddo
-          enddo
-        enddo
-      enddo
-      _EXCH_XY_RL( prof_etan_mean, mythid )
-      endif
-#endif
-
 
 cgf =======================================================
 cgf PART 3: compute MDT cost term
