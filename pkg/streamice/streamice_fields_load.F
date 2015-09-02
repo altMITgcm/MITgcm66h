@@ -311,6 +311,23 @@ C-      endif 1rst iter.
          ENDDO
         ENDDO
 
+      CALL EXCH_XY_RL 
+     & (streamice_v_shear_stress, myThid)
+      CALL EXCH_XY_RL 
+     & (streamice_u_shear_stress, myThid)
+      CALL EXCH_XY_RL 
+     & (streamice_v_normal_stress, myThid)
+      CALL EXCH_XY_RL 
+     & (streamice_u_normal_stress, myThid)
+
+       _EXCH_XY_RL(bdot_streamice, mythid )
+#ifdef ALLOW_STREAMICE_FLUX_CONTROL
+      CALL EXCH_XY_RL
+     & (u_flux_bdry_pert, myThid)
+      CALL EXCH_XY_RL
+     & (v_flux_bdry_pert, myThid)
+#endif
+
 !      print *, "GOT HERE STREAMICE FIELDS LOAD",
 !     &  first,changed,nm0,nm1,fac
 #endif
