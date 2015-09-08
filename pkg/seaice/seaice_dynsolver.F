@@ -213,13 +213,24 @@ C-    add atmospheric loading and Sea-Ice loading
           ENDDO
         ENDIF
 #endif /* ATMOSPHERIC_LOADING */
-        DO j=1-OLy+1,sNy+OLy
-         DO i=1-OLx+1,sNx+OLx
 C--   basic forcing by wind stress
-          FORCEX0(I,J,bi,bj)=TAUX(I,J,bi,bj)
-          FORCEY0(I,J,bi,bj)=TAUY(I,J,bi,bj)
+        IF ( SEAICEscaleSurfStress ) THEN
+         DO j=1-OLy+1,sNy+OLy
+          DO i=1-OLx+1,sNx+OLx
+           FORCEX0(I,J,bi,bj)=TAUX(I,J,bi,bj)
+     &          * 0.5 _d 0*(AREA(I,J,bi,bj)+AREA(I-1,J,bi,bj))
+           FORCEY0(I,J,bi,bj)=TAUY(I,J,bi,bj)
+     &          * 0.5 _d 0*(AREA(I,J,bi,bj)+AREA(I,J-J,bi,bj))
+          ENDDO
          ENDDO
-        ENDDO
+        ELSE
+         DO j=1-OLy+1,sNy+OLy
+          DO i=1-OLx+1,sNx+OLx
+           FORCEX0(I,J,bi,bj)=TAUX(I,J,bi,bj)
+           FORCEY0(I,J,bi,bj)=TAUY(I,J,bi,bj)
+          ENDDO
+         ENDDO
+        ENDIF
 
         IF ( SEAICEuseTILT ) then
         DO j=1-OLy+1,sNy+OLy
