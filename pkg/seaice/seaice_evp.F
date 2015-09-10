@@ -312,7 +312,9 @@ CML            deltaCreg  = deltaC(I,J,bi,bj) + SEAICE_deltaMin
 #else
             deltaCreg  = MAX(deltaC(I,J,bi,bj),SEAICE_deltaMin)
 #endif /* SEAICE_DELTA_SMOOTHREG */
-            zetaC(I,J) = HALF*press0(I,J,bi,bj)/deltaCreg
+            zetaC(I,J) = HALF*( press0(I,J,bi,bj) 
+     &           + tensileStrength(I,J,bi,bj) 
+     &           )/deltaCreg
            ENDDO
           ENDDO
           IF (.TRUE.) THEN
@@ -399,6 +401,7 @@ C     recompute pressure
           DO j=0,sNy+1
            DO i=0,sNx+1
             pressC(I,J) = TWO*zetaC(I,J)*deltaC(I,J,bi,bj)
+     &           - 2. _d 0 * tensileStrength(I,J,bi,bj)
            ENDDO
           ENDDO
 #ifdef ALLOW_DIAGNOSTICS
