@@ -7,7 +7,7 @@ C $Name$
      I        bi,bj,k, hDivScheme,
      I        uFld, vFld,
      O        hDiv,
-     I        myThid)
+     I        myThid )
       IMPLICIT NONE
 C     *==========================================================*
 C     | S/R MOM_CALC_HDIV                                        |
@@ -31,8 +31,8 @@ C     == Local variables ==
       INTEGER i,j
 
       IF (hDivScheme.EQ.1) THEN
-       DO j=1-Oly,sNy+Oly-1
-        DO i=1-Olx,sNx+Olx-1
+       DO j=1-OLy,sNy+OLy-1
+        DO i=1-OLx,sNx+OLx-1
 C       This discretization is the straight forward horizontal divergence
 C       that only considers the horizontal grid variations.
          hDiv(i,j)=(
@@ -40,7 +40,7 @@ C       that only considers the horizontal grid variations.
      &      -uFld( i , j )*dyG( i , j ,bi,bj)
      &      +vFld( i ,j+1)*dxG( i ,j+1,bi,bj)
      &      -vFld( i , j )*dxG( i , j ,bi,bj)
-     &             )*recip_rA(i,j,bi,bj)
+     &             )*recip_rA(i,j,bi,bj)*recip_deepFacC(k)
 #ifdef ALLOW_OBCS
      &              *maskInC(i,j,bi,bj)
 #endif
@@ -48,8 +48,8 @@ C       that only considers the horizontal grid variations.
        ENDDO
 
       ELSEIF (hDivScheme.EQ.2) THEN
-       DO j=1-Oly,sNy+Oly-1
-        DO i=1-Olx,sNx+Olx-1
+       DO j=1-OLy,sNy+OLy-1
+        DO i=1-OLx,sNx+OLx-1
 C       This discretization takes into account the fractional areas
 C       due to the lopping. Whether we should do this is not clear!
          hDiv(i,j)=
@@ -57,7 +57,7 @@ C       due to the lopping. Whether we should do this is not clear!
      &       -uFld( i , j )*dyG( i , j ,bi,bj)*hFacW( i , j ,k,bi,bj) )
      &     +( vFld( i ,j+1)*dxG( i ,j+1,bi,bj)*hFacS( i ,j+1,k,bi,bj)
      &       -vFld( i , j )*dxG( i , j ,bi,bj)*hFacS( i , j ,k,bi,bj) )
-     &    )*recip_rA(i,j,bi,bj)
+     &    )*recip_rA(i,j,bi,bj)*recip_deepFacC(k)
      &     *_recip_hFacC(i,j,k,bi,bj)
 #ifdef ALLOW_OBCS
      &     *maskInC(i,j,bi,bj)
