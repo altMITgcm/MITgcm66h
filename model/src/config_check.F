@@ -429,15 +429,6 @@ C--   Deep-Atmosphere & Anelastic limitations:
         CALL PRINT_ERROR( msgBuf, myThid )
         errCount = errCount + 1
       ENDIF
-      IF ( vectorInvariantMomentum .AND.
-     &        ( deepAtmosphere .OR.
-     &          usingZCoords.AND.rhoRefFile .NE. ' ' ) ) THEN
-        WRITE(msgBuf,'(A,A)')
-     &  'CONFIG_CHECK: Deep-Atmosphere or Anelastic',
-     &  ' not yet implemented in Vector-Invariant momentum code'
-        CALL PRINT_ERROR( msgBuf, myThid )
-        errCount = errCount + 1
-      ENDIF
 
 C--   Free-surface related limitations:
       IF ( cg2dUseMinResSol.LT.0 .OR. cg2dUseMinResSol.GT.1 ) THEN
@@ -707,7 +698,7 @@ C--   Non-hydrostatic and 3-D solver related limitations:
         CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
      &                      SQUEEZE_RIGHT, myThid )
         WRITE(msgBuf,'(2A)') '** WARNING ** => not consistent with',
-     &    'final vertical shear (after appling 3-D solver solution'
+     &    ' final vertical shear (after appling 3-D solver solution'
         CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
      &                      SQUEEZE_RIGHT, myThid )
       ENDIF
