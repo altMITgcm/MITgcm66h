@@ -717,6 +717,13 @@ C=============== dynamics ============
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
+      diagName  = 'SItensil'
+      diagTitle = 'SEAICE maximal tensile strength'
+      diagUnits = 'm^2/s^2         '
+      diagCode  = 'SM      M1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I    diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
 #ifdef SEAICE_ITD
 C=============== ice thickness categories ============
 

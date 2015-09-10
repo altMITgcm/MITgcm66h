@@ -127,6 +127,8 @@ C     division by zero is not possible
        CALL DIAGNOSTICS_FILL(press  ,'SIpress ',0,1 ,0,1,1,myThid)
        CALL DIAGNOSTICS_FILL(deltaC ,'SIdelta ',0,1 ,0,1,1,myThid)
 #ifdef SEAICE_CGRID
+       CALL DIAGNOSTICS_FILL(tensileStrength,
+     &                               'SItensil',0,1 ,0,1,1,myThid)
        IF ( DIAGNOSTICS_IS_ON('SIsigI  ',myThid) .OR.
      &      DIAGNOSTICS_IS_ON('SIsigII ',myThid) .OR.
      &      DIAGNOSTICS_IS_ON('SIshear ',myThid) ) THEN
