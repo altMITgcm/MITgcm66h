@@ -256,7 +256,9 @@ C and should be less than 1/8, for example viscAh=0.01
        DO j=1-OLy,sNy+OLy-1
         DO i=1-OLx,sNx+OLx-1
          uDissip(i,j) = uDissip(i,j)*maskW(i,j,k,bi,bj)
+     &                              *recip_deepFacC(k)
          vDissip(i,j) = vDissip(i,j)*maskS(i,j,k,bi,bj)
+     &                              *recip_deepFacC(k)
         ENDDO
        ENDDO
       ENDIF
