@@ -120,10 +120,13 @@ C--   Dynamical variables
       _RL vIceC      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 #else
       COMMON/SEAICE_DYNVARS_CGRID/
-     &     seaiceMassC, seaiceMassU, seaiceMassV
-      _RL seaiceMassC(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RL seaiceMassU(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
-      _RL seaiceMassV(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+     &     seaiceMassC, seaiceMassU, seaiceMassV, tensileStrength
+      _RL seaiceMassC    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL seaiceMassU    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL seaiceMassV    (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+C     the maximal tensile stress that ice able to withstand, 
+C     in analogy to the maximal compressive stress PRESS0
+      _RL tensileStrength(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 #endif
 
       COMMON/SEAICE_DYNVARS_4/
