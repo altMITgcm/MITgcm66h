@@ -837,7 +837,7 @@ c
           endif
          enddo
 c
-         write(msgbuf,'(a,L2)') ' gencost_flag = ',gencost_flag(k)
+         write(msgbuf,'(a,i2)') ' gencost_flag = ',gencost_flag(k)
          call print_message( msgbuf, msgunit, SQUEEZE_RIGHT , mythid)
          write(msgbuf,'(a,i2)') ' gencost_outputlevel = ',
      &         gencost_outputlevel(k)
