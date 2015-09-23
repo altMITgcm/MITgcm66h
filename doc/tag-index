@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice/seaice_evp.F: fix a bug (factor of four in front of e12Csq)
+  that entered with r1.54 on Sep04, 2015, -> update results
+
 checkpoint65o (2015/09/14)
 o pkg/mom_vecinv & mom_common:
   - add deep-atmosphere geometry factor in mom_calc_visc.F + in routines
