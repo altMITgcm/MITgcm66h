@@ -4,12 +4,15 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
-o pkg/seaice: 
+o pkg/exf:
+  - remove STOP statement that prevented to use wind or (wind-)stress
+    interpolation for constant-in-time forcing fields (wind/stress period = 0).
+o pkg/seaice:
   - replace SEAICE_EVP_USE_ADAPTATION by run time parameters, requires
     5 additionals 2D fields and 6 new store directives
   - change logic in seaice_readparms.F: EVP code can now be turned on in
-    various ways, setting SEAICE_deltaTev is no longer required, 
-    alternatively set SEAICE_evpAlpha/Beta, SEAICEuseEVPstar, SEAICEuseEVPrev, 
+    various ways, setting SEAICE_deltaTev is no longer required,
+    alternatively set SEAICE_evpAlpha/Beta, SEAICEuseEVPstar, SEAICEuseEVPrev,
     or SEAICEaEVPcoeff
 o pkg/shelfice/shelfice_thermodynamics.F
   - redefining uLoc/vLoc to u/v, instead of 2u/v
