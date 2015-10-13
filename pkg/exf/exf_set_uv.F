@@ -115,7 +115,7 @@ C     records, corresponding to Jan. (rec=1) through Dec. (rec=12)
      O             count0, count1,
      I             myTime, myIter, myThid )
 
-        ELSEIF ( uvecperiod .LE. 0. ) THEN
+        ELSEIF ( uvecperiod .LT. 0. ) THEN
           j = ILNBLNK(uvecfile)
           WRITE(msgBuf,'(A,1PE16.8,2A)')
      &        'EXF_SET_UV: Invalid uvecperiod=', uvecperiod,
