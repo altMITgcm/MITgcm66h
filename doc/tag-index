@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/streamice:
+  - spotted bug in streamice_driving_stress using dyG where should have been 
+    dxG
 o pkg/exf:
   - remove STOP statement that prevented to use wind or (wind-)stress
     interpolation for constant-in-time forcing fields (wind/stress period = 0).
