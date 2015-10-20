@@ -59,10 +59,12 @@ CEOP
 #endif
 #if (defined (ALLOW_CTRL) && defined (ALLOW_GMREDI))
 # ifdef ALLOW_KAPGM_CONTROL
-            KapGM(i,j,k,bi,bj) = GM_background_K
+            KapGM(i,j,k,bi,bj) = GM_background_K*
+     &        GM_bolFac2d(i,j,bi,bj)*GM_bolFac1d(k)
 # endif
 # ifdef ALLOW_KAPREDI_CONTROL
-            kapRedi(i,j,k,bi,bj) = GM_isopycK
+            kapRedi(i,j,k,bi,bj) = GM_isopycK*
+     &        GM_isoFac2d(i,j,bi,bj)*GM_isoFac1d(k)
 # endif
 #endif /* ALLOW_CTRL & ALLOW_GMREDI */
            ENDDO
@@ -95,9 +97,11 @@ CEOP
 #ifdef ALLOW_CTRL
 # ifdef ALLOW_KAPGM_CONTROL
       _EXCH_XYZ_RL( KapGM, myThid )
+       CALL WRITE_FLD_XYZ_RS( 'KapGM',' ',KapGM, 0,myThid)
 # endif
 # ifdef ALLOW_KAPREDI_CONTROL
       _EXCH_XYZ_RL( kapRedi, myThid )
+       CALL WRITE_FLD_XYZ_RS( 'kapRedi',' ',kapRedi, 0,myThid)
 # endif
 #endif /* ALLOW_CTRL */
       RETURN
