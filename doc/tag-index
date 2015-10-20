@@ -5,7 +5,7 @@ $Name$
     ==============================
 
 o tools/adjoint_options/adjoint_diva:
-  - fix typo in Tang-Linear FLAGS setting for MPI + DIVA
+  - fix bug (typo) in Tang-Linear FLAGS setting for MPI + DIVA
 o pkg/streamice:
   - spotted bug in streamice_driving_stress using dyG where should have been dxG
 o pkg/exf:
