@@ -84,6 +84,23 @@ c--   Evaluate the individual cost function contributions.
       enddo
 #endif
 
+#ifdef ALLOW_GENARR2D_CONTROL
+      do iarr = 1, maxCtrlArr2D
+
+      if (xx_genarr2d_weight(iarr).NE.' ') then
+      call ctrl_cost_gen2d (
+     &     1,1,
+     &     xx_genarr2d_file(iarr),xx_genarr2d_dummy(iarr),
+     &     zeroRL,
+     &     wgenarr2d(1-Olx,1-Oly,1,1,iarr),
+     &     num_genarr2d(1,1,iarr), objf_genarr2d(1,1,iarr),
+     &     maskC, myThid )
+      endif
+
+      enddo
+#endif
+
+
 #ifdef ALLOW_GENARR3D_CONTROL
       do iarr = 1, maxCtrlArr3D
 
