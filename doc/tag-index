@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice/seaice_evp.F: slight modification of averaging so that EVP stands
+  a chance of giving the same results as a fully converged VP (JFNK) solver
 o tools/adjoint_options/adjoint_diva:
   - fix bug (typo) in Tang-Linear FLAGS setting for MPI + DIVA
 o pkg/streamice:
