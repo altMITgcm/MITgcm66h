@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice/seaice_evp.F: fix store directives and key computations, since
+  there is no adjoint test for EVP, we don't know what it does to the adjoint
+  solution, but at least there are no more recomputation warnings left
 o pkg/seaice/seaice_evp.F: slight modification of averaging so that EVP stands
   a chance of giving the same results as a fully converged VP (JFNK) solver
 o tools/adjoint_options/adjoint_diva:
