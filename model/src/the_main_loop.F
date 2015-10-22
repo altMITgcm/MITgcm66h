@@ -473,6 +473,8 @@ CADJ &  nsx*nsy*nthreads_chkpt*nchklev_1*MPSEUDOTIMESTEPS
 #    endif
 #    ifdef SEAICE_ALLOW_EVP
 CADJ INIT comlev1_evp = COMMON,nEVPstepMax*nchklev_1
+CADJ INIT comlev1_bibj_evp = COMMON,
+CADJ &  nsx*nsy*nthreads_chkpt*nEVPstepMax*nchklev_1
 #    endif
 CML#   ifdef SEAICE_MULTICATEGORY
 CMLCADJ INIT comlev1_multdim
