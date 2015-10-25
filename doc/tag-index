@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/rbcs:
+  - select RBCS-mask for Temp & Salt the same way as for pTracer ; this allows
+    to compile with maskLEN=1 when all tracers use the same RBCS-mask.
+  - add a short report (to STDOUT) about RBCS-mask settings.
+
 checkpoint65p (2015/10/23)
 o pkg/seaice/seaice_evp.F: fix store directives and key computations, since
     there is no adjoint test for EVP, we don't know what it does to the adjoint
