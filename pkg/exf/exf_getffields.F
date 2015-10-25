@@ -617,6 +617,9 @@ cdm #endif
            if (xx_gentim2d_file(iarr)(1:9).EQ.'xx_precip')
      &       precip(i,j,bi,bj)=precip(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
+           if (xx_gentim2d_file(iarr)(1:9).EQ.'xx_runoff')
+     &       runoff(i,j,bi,bj)=runoff(i,j,bi,bj)+
+     &                         xx_gentim2d(i,j,bi,bj,iarr)
 #ifndef ALLOW_ROTATE_UV_CONTROLS
            if (xx_gentim2d_file(iarr)(1:8).EQ.'xx_uwind')
      &       uwind(i,j,bi,bj)=uwind(i,j,bi,bj)+
