@@ -136,6 +136,11 @@ C--   heimbach@mit.edu 11-Jan-2001
       _RL adwspeed(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       common /adexf_wspeed_r/ adwspeed
 
+# ifdef ALLOW_RUNOFF
+      _RL adrunoff    (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
+      common /adexf_runoff_r/ adrunoff
+# endif
+
 # ifdef ALLOW_ATM_TEMP
       _RL adatemp     (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
       _RL adaqh       (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
