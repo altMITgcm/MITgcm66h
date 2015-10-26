@@ -551,9 +551,11 @@ c     =========================
        no_posproc_r(k2) = 0. _d 0
        clim_preproc(k2)   = ' '
        clim_preproc_i(k2) = 0
+       anom_preproc(k2)   = ' '
       enddo
       clim_preproc(1)   = 'clim'
       clim_preproc_i(1) = 12
+      anom_preproc(1)   = 'anom'
       _END_MASTER( myThid )
 
 #ifdef ALLOW_GENCOST_CONTRIBUTION
