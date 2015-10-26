@@ -238,6 +238,14 @@ cph     &                      , tmpfld3d
       double precision phtmpadmtlm(maxn)
 #endif
 
+#ifdef ECCO_CTRL_DEPRECATED
+      _RL num_zero_mean (nsx,nsy)
+      _RL objf_zero_mean (nsx,nsy)
+      _RL objf_zero_smoo (nsx,nsy)
+      common /ctrl_zero_r/ num_zero_mean, 
+     & objf_zero_mean, objf_zero_smoo
+#endif
+
 #ifndef ALLOW_ECCO
       common /ctrl_weights_atmos_r/
      &                      whflux,
