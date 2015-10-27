@@ -162,6 +162,11 @@ c-- detect the relevant gencost indices
       if ((igen_conc.NE.0).AND.(igen_deconc.NE.0)
      &    .AND.(igen_exconc.NE.0)) then
 
+      call ecco_zero(gencost_weight(:,:,1,1,igen_conc),1,zeroRL,myThid)
+      if ( gencost_errfile(igen_conc) .NE. ' ' ) 
+     &  call ecco_readwei(gencost_errfile(igen_conc),
+     &  gencost_weight(:,:,1,1,igen_conc),1,1,mythid)
+
 c--   Initialise local variables.
 
       localwww = 0. _d 0

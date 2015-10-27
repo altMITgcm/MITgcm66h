@@ -96,6 +96,11 @@ c     == end of interface ==
 
       if (kgen.GT.0) then
 
+      call ecco_zero(gencost_weight(:,:,1,1,kgen),1,zeroRL,myThid)
+      if ( gencost_errfile(kgen) .NE. ' ' )
+     &     call ecco_readwei(gencost_errfile(kgen),
+     &     gencost_weight(:,:,1,1,kgen),1,1,mythid)
+
 c-- initialise local variables
 cgf convert phibot from m2/s2 to cm
       fac = 1. _d 2 / 9.81 _d 0
