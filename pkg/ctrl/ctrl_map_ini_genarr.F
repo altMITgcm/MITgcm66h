@@ -201,7 +201,6 @@ c--   Now, read the control vector.
 
       dosmooth=.false.
       dowc01  = .false.
-      if (ctrlSmoothCorrel2d) dowc01=.TRUE.
       doscaling=.true.
 
       numsmo=1
@@ -340,7 +339,6 @@ c--   Now, read the control vector.
 
       dosmooth=.false.
       dowc01  = .false.
-      if (ctrlSmoothCorrel3D) dowc01=.TRUE.
       doscaling=.true.
 
       numsmo=1

@@ -852,10 +852,6 @@ c--
 #ifdef ALLOW_GENTIM2D_CONTROL
        do iarr = 1, maxCtrlTim2D
 
-        if (xx_gentim2d_weight(iarr).NE.' ')
-     &   call mdsreadfield( xx_gentim2d_weight(iarr), ctrlprec, 'RL',
-     &      1, wgentim2d(1-Olx,1-Oly,1,1,iarr), 1, myThid )
-
 #ifdef ALLOW_CAL
         if (xx_gentim2d_startdate1(iarr).EQ.0) then
           xx_gentim2d_startdate1(iarr)=startdate_1
