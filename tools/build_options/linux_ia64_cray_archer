@@ -27,10 +27,16 @@ NOOPTFLAGS='-O0'
 NOOPTFILES=''
 
 if test "x$IEEE" = x ; then   #- with optimisation:
-#   FOPTIM='-O3 -hfp0 -hflex_mp=intolerant'
-    FOPTIM='-O3 -hfp2'
+#   FOPTIM='-O2 -hfp3 -Oipa5' for less agressive optimization 
+#   Be aware not all experiments pass the restart test with optimization 
+    FOPTIM='-O3 -hfp3 -Oipa5'
 else
-    FOPTIM='-O0'
+    if test "x$DEVEL" = x ; then  #- no optimisation + IEEE :
+      FOPTIM='-O0 -hfp0'
+    else                          #- development/check options:
+      FOPTIM='-O0 -hfp0'
+      FOPTIM="$FOPTIM -g -Rbc -rm -hmsgs -hnegmsgs"
+    fi
 fi
 
 #- For big executable, this could help:
