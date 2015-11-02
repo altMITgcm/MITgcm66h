@@ -183,10 +183,12 @@ CEOP
       CHARACTER*(MAX_LEN_FNAM) SHELFICEmassFile
       CHARACTER*(MAX_LEN_FNAM) SHELFICEtopoFile
       CHARACTER*(MAX_LEN_FNAM) SHELFICEMassDynTendFile
+      CHARACTER*(MAX_LEN_FNAM) SHELFICETransCoeffTFile
       COMMON /SHELFICE_PARM_C/
      &     SHELFICEloadAnomalyFile,
      &     SHELFICEmassFile,
      &     SHELFICEtopoFile,
-     &     SHELFICEMassDynTendFile
+     &     SHELFICEMassDynTendFile,
+     &     SHELFICETransCoeffTFile
 
 #endif /* ALLOW_SHELFICE */

@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/shelfice:
+  - add SHELFICETransCoeffTFile for initializing spatially varying
+    heat and salt transfer coefficients
 o pkg/atm_compon_interf & ocn_compon_interf:
   - combine into 1 (new) S/R CPL_EXPORT_IMPORT_DATA the two previous
     S/R CPL_EXPORT_MY_DATA & CPL_IMPORT_EXTERNAL_DATA
