@@ -4,20 +4,22 @@ C $Name$
 !=======================================================================
       subroutine coupsend_r8tiles( component, dataname, Nx, Ny, arr )
       implicit none
+! Predefined constants/arrays
+#include "CPLR_SIG.h"
+! MPI variables
+#include "mpif.h"
 ! Arguments
       character*(*) component
       character*(*) dataname
       integer Nx,Ny
       real*8 arr(Nx,Ny)
-! Predefined constants/arrays
-#include "CPLR_SIG.h"
-! MPI variables
-#include "mpif.h"
-      integer count,dtype,dest,tag,comm,ierr
 ! Functions
       integer mitcplr_match_comp
       integer generate_tag
+      external mitcplr_match_comp
+      external generate_tag
 ! Local
+      integer count,dtype,dest,tag,comm,ierr
       integer compind,numprocs
       integer i,j,ij,n,bibj
       integer Ni,Io,Nj,Jo
@@ -83,7 +85,7 @@ C $Name$
          write(LogUnit,*) 'coupsend_r8tiles: rank(W,G)=',
      &            my_rank_in_world,my_rank_in_global,
      &            ' ierr=',ierr
-         stop 'coupsend_r8tiles: MPI_Recv failed'
+         stop 'coupsend_r8tiles: MPI_Send failed'
         endif
 
        enddo ! bibj
