@@ -120,7 +120,7 @@ C     assuming locally periodic subdomain)
 
 C--   Always cumulate tile local-sum in the same order by applying MPI allreduce
 C     to array of tiles ; can get slower with large number of tiles (big set-up)
-#undef GLOBAL_SUM_ORDER_TILES
+#define GLOBAL_SUM_ORDER_TILES
 
 C--   Alternative way of doing global sum without MPI allreduce call
 C     but instead, explicit MPI send & recv calls. Expected to be slower.
