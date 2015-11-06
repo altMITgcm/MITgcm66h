@@ -354,10 +354,10 @@ def pcol(*arguments, **kwargs):
 
     if mapit:
         # not all projections work, catch few of these here
-        if (m.projection == 'hammer') | \
-           (m.projection == 'robin')  | \
-           (m.projection == 'moll')   | \
-           (m.projection == 'cea'):
+        if ( (m.projection == 'hammer') | 
+             (m.projection == 'robin')  | 
+             (m.projection == 'moll')   | 
+             (m.projection == 'cea') ):
             sys.exit("selected projection '"+m.projection
                      +"' is not supported")
 
@@ -486,7 +486,7 @@ def pcol(*arguments, **kwargs):
         zz = np.copy(f[2][t][nn:,:])
         # need to mask some zz-values so that there is no erroneous wrap-around
         zz = np.ma.masked_where(xx>rangle,zz)
-#        xx = np.where(xx>rangle,np.nan,xx)
+        xx = np.where(xx>rangle,np.nan,xx)
         #
         if mapit: x, y = m(_sqCoord(xx),_sqCoord(yy))
         else:     x, y =   _sqCoord(xx),_sqCoord(yy)
