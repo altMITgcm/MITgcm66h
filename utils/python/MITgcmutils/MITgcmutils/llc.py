@@ -316,8 +316,8 @@ def _sqData(a):
     b = np.copy(np.squeeze(a))
     # it appears to be important, that here we do not mask the array
     # but reset zeros to NaN (only used for coordinate arrays!!!)
-    b = np.ma.masked_where(b==0., b)
-    b = np.ma.masked_where(np.isnan(b), b)
+#    b = np.ma.masked_where(b==0., b)
+#    b = np.ma.masked_where(np.isnan(b), b)
     return b
 
 def pcol(*arguments, **kwargs):
@@ -440,6 +440,12 @@ def pcol(*arguments, **kwargs):
             else:    tmp = np.atleast_2d(np.append(fe[k],f0[k][3+tp][:1,::-1]))
             f[k][t] = np.concatenate((f[k][t],tmp.transpose()),axis=1)
         
+    # we do not really have a sixth face so we overwrite the southernmost row
+    # of face 4 and 5 by a hack:
+    for t in [3,4]:
+        f[0][t][:,-1] = f[0][t][:,-2]
+        f[1][t][:,-1] = -90. # degree = south pole
+ 
     # make sure that only longitudes of one sign are on individual lateral faces
     i0 = f[0][3]<0.
     f[0][3][i0] = f[0][3][i0]+360.
