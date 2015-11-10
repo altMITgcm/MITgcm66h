@@ -238,9 +238,6 @@ C     == Global variables ==
 #ifdef ALLOW_ZONAL_FILT
 # include "ZONAL_FILT.h"
 #endif
-#ifdef COMPONENT_MODULE
-# include "CPL_PARAMS.h"
-#endif
 
 #ifdef ALLOW_LONGSTEP
 # include "LONGSTEP_PARAMS.h"
