@@ -97,6 +97,18 @@ c--   Set the loop ranges.
               enddo
             enddo
           enddo
+#ifdef ALLOW_GENCOST_TRANSPORT
+            do j = jmin,jmax
+              do i = imin,imax
+                do k = 1,nr
+                gencost_bar3dS(i,j,k,bi,bj) = 0. _d 0
+                gencost_bar3dW(i,j,k,bi,bj) = 0. _d 0
+                gencost_mod3dS(i,j,k,bi,bj) = 0. _d 0
+                gencost_mod3dW(i,j,k,bi,bj) = 0. _d 0
+                enddo
+              enddo
+            enddo
+#endif
 #endif
 #endif
 

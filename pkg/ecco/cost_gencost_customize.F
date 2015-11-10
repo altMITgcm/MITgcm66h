@@ -211,6 +211,26 @@ c    &     .TRUE.,.TRUE.,.TRUE.,1,myThid)
             gencost_mod3d(i,j,k2,bi,bj,kk) =
      &       m_VN(i,j,k2,bi,bj)*maskC(i,j,k2,bi,bj)
            enddo
+#ifdef ALLOW_GENCOST_TRANSPORT
+         elseif (gencost_barfile(k)(1:7).EQ.'m_trVol') then
+           kk=gencost_pointer3d(k)
+           do k2=1,nr
+             gencost_mod3dW(i,j,k2,bi,bj) = trVolW(i,j,k2,bi,bj)
+             gencost_mod3dS(i,j,k2,bi,bj) = trVolS(i,j,k2,bi,bj)
+           enddo
+         elseif (gencost_barfile(k)(1:8).EQ.'m_trHeat') then
+           kk=gencost_pointer3d(k)
+           do k2=1,nr
+             gencost_mod3dW(i,j,k2,bi,bj) = trHeatW(i,j,k2,bi,bj)
+             gencost_mod3dS(i,j,k2,bi,bj) = trHeatS(i,j,k2,bi,bj)
+           enddo
+         elseif (gencost_barfile(k)(1:8).EQ.'m_trSalt') then
+           kk=gencost_pointer3d(k)
+           do k2=1,nr
+             gencost_mod3dW(i,j,k2,bi,bj) = trHeatW(i,j,k2,bi,bj)
+             gencost_mod3dS(i,j,k2,bi,bj) = trHeatS(i,j,k2,bi,bj)
+           enddo
+#endif /* ALLOW_GENCOST_TRANSPORT */
 #if (defined (ALLOW_3D_DIFFKR) || defined (ALLOW_DIFFKR_CONTROL))
          elseif (gencost_barfile(k)(1:8).EQ.'m_diffkr') then
            kk=gencost_pointer3d(k)
