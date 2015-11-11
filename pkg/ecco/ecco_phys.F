@@ -164,7 +164,7 @@ c-- init: if done with overlap, more efficient. But since overwritten
 c immediately afterward, init is probably not needed.
           do k = 1,nr
             do j = 1-OLy,sNy+Oly
-              do i = 1-OLx:sNx+OLx
+              do i = 1-OLx,sNx+OLx
                 trVolW(i,j,k)=0. _d 0
                 trVolS(i,j,k)=0. _d 0
                 trHeatW(i,j,k)=0. _d 0
