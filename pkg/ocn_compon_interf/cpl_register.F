@@ -1,8 +1,7 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
-#include "CPP_OPTIONS.h"
+#include "OCN_CPL_OPTIONS.h"
 
 CBOP 0
 C !ROUTINE: CPL_REGISTER

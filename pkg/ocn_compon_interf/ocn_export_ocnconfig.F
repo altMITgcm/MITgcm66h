@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
 
-#include "CPP_OPTIONS.h"
+#include "OCN_CPL_OPTIONS.h"
 
 CBOP 0
 C !ROUTINE: OCN_EXPORT_OCNCONFIG
