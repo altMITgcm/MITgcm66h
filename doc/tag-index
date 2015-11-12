@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/atm_ocn_coupler + ocn_compon_interf:
+  - in prep for using pkg/seaice Dyn in coupled set-up, implement sequential
+    coupling option-1: ATM -(cpl)-> OCN and then OCN -(cpl)-> ATM ;
+    add corresponding call in DO_OCEANIC_PHYS.
 o coupler pkgs:
   Start a new way to set-up optionally-exchanged variables (previously, only
    there for exchange_DIC): switch on/off from 1 place, at run-time, in coupler
