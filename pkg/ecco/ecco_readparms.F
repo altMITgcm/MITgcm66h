@@ -78,6 +78,9 @@ c--   Read the namelist input.
      &                   using_cost_altim,
      &                   using_cost_bp, using_cost_scat, 
      &                   using_cost_sst, using_cost_seaice,
+#ifdef ALLOW_GENCOST_TRANSPORT
+     &                   using_cost_transp,
+#endif
      &                   using_mdt, using_tpj, using_ers, using_gfo,
      &                   using_topex,
      &                   topexstartdate1, topexstartdate2,
@@ -223,6 +226,10 @@ c run time switches for main cost terms
       using_cost_seaice=.TRUE.
 #else
       using_cost_seaice=.FALSE.
+#endif
+#ifdef ALLOW_GENCOST_TRANSPORT
+c- set default to false
+      using_cost_transp=.FALSE.
 #endif
 #ifdef ALLOW_BP_COST_CONTRIBUTION
       using_cost_bp=.TRUE.
