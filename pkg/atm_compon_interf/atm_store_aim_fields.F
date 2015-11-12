@@ -1,8 +1,7 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
-#include "CPP_OPTIONS.h"
+#include "ATM_CPL_OPTIONS.h"
 #ifdef ALLOW_AIM
 # include "AIM_OPTIONS.h"
 #endif
@@ -75,7 +74,7 @@ C       that will be exported to the coupling layer.
        ENDDO
 
 #ifdef ALLOW_AIM_CO2
-c     IF ( atmCpl_exchange_DIC ) THEN
+c     IF ( atm_cplExch_DIC ) THEN
 C     o Accumulate atmospheric CO2 from Aim pkg that will be exported
 C       to the coupling layer.
        airCO2Time(bi,bj) = airCO2Time(bi,bj) + cplTimeFraction

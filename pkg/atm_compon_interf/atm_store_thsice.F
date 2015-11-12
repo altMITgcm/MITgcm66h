@@ -1,8 +1,7 @@
 C $Header$
 C $Name$
 
-#include "PACKAGES_CONFIG.h"
-#include "CPP_OPTIONS.h"
+#include "ATM_CPL_OPTIONS.h"
 
 CBOP
 C     !ROUTINE: ATM_STORE_THSICE
@@ -72,7 +71,7 @@ c         seaIceMass(i,j,bi,bj) = seaIceMass(i,j,bi,bj) +
         ENDDO
        ENDDO
 
-      IF ( atmCpl_exchange_DIC ) THEN
+      IF ( atm_cplExch_DIC ) THEN
 C     o Accumulate Sea-Ice concentration (no-units) from thSIce pkg
 C       that will be exported to the coupling layer.
        cplTimeFraction = 1. _d 0 / DFLOAT(cplSendFrq_iter)
