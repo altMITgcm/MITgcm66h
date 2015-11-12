@@ -34,7 +34,6 @@ c     == routine arguments ==
       integer mythid
 
 #ifdef ALLOW_GENCOST_CONTRIBUTION
-#ifdef ALLOW_GENCOST_TRANSPORT
 
 c     == local variables ==
 
@@ -52,7 +51,7 @@ c     == local variables ==
 
       _RL dummy,facCost,facNum
 c- facNum is 1 divided by the number of tiles in SIZE dot h
-      parameter  ( facNum = 1/float(nPx) )
+      parameter  ( facNum = 1./float(nPx) )
       _RL localperiod
       _RL spminloc, spmaxloc, spzeroloc
 
@@ -305,7 +304,6 @@ c-- make num_gencost equals number of months/days used
       endif !if (kgen.NE.0)
       enddo !icount_transp
 
-#endif /* ALLOW_GENCOST_TRANSPORT */
 #endif /* ALLOW_GENCOST_CONTRIBUTION */
 
       RETURN
