@@ -40,10 +40,12 @@ C     Initialise the coupler component
 C     Perform registration with other components
       CALL ACCEPT_COMPONENT_REGISTRATIONS
 
-C     Coordinate the transfer configuration information
-C     between components
-      CALL EXCH_COMPONENT_CONFIGS(
-     I                             msgUnit )
+C     Send Coupler-params to both components
+      CALL CPL_SEND_ATM_CPLPARMS( msgUnit )
+      CALL CPL_SEND_OCN_CPLPARMS( msgUnit )
+
+C     Coordinate the transfer configuration information between components
+      CALL EXCH_COMPONENT_CONFIGS( msgUnit )
 
       DO I=1,nCouplingSteps
 
