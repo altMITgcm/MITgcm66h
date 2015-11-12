@@ -21,9 +21,10 @@ C     *==========================================================*
 C !USES:
       IMPLICIT NONE
 C     == Global variables ==
+c#include "CPL_PARAMS.h"
+#include "ATMIDS.h"
 #include "ATMSIZE.h"
 #include "ATMVARS.h"
-#include "ATMIDS.h"
 #include "OCNSIZE.h"
 #include "OCNVARS.h"
 
@@ -31,14 +32,14 @@ C !INPUT/OUTPUT PARAMETERS:
 C !LOCAL VARIABLES:
 CEOP
 
-C     Map ocean depth map onto atmos. grid
+C-    Map ocean depth map onto atmos. grid
       CALL OCN_TO_ATM_MAPXYR8(
      I     Nx_ocn, Ny_ocn,
      I     OcMxlD_ocn,
      I     Nx_atm, Ny_atm,
      O     OcMxlD_atm)
 
-C     Send ocean config to atmos. component
+C-    Send ocean config to atmos. component
       CALL COUPSEND_R8TILES( atmCompName, atmMxlDName, Nx_atm, Ny_atm,
      &                       OcMxlD_atm )
 
