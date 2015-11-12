@@ -23,6 +23,7 @@ C     !USES:
       IMPLICIT NONE
 
 C     == Global variables ==
+#include "CPL_PARAMS.h"
 #include "ATMSIZE.h"
 #include "ATMVARS.h"
 #include "ATMIDS.h"
@@ -67,13 +68,13 @@ C     Send ocean surface velocity square to atmos. component
       CALL COUPSEND_R8TILES( atmCompName, atmSSVsqName,
      I                       Nx_atm, Ny_atm, vSq_atm )
 
-      IF ( atmCpl_exchange_DIC ) THEN
+      IF ( cpl_exchange_DIC.GE.2 ) THEN
 C--   Map ocn->atm flux of CO2 onto atmos. grid
         CALL OCN_TO_ATM_MAPXYR8(
      I           Nx_ocn, Ny_ocn, fluxCO2_ocn, Nx_atm, Ny_atm,
      O                           fluxCO2_atm )
 C     Send ocn->atm flux of CO2 to atmos. component
-        CALL COUPSEND_R8TILES( atmCompName, atmFCO2Name,
+        CALL COUPSEND_R8TILES( atmCompName, atmCO2FluxName,
      I                         Nx_atm, Ny_atm, fluxCO2_atm )
       ENDIF
 

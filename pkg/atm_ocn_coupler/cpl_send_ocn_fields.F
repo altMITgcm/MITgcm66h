@@ -22,6 +22,7 @@ C     !USES:
       IMPLICIT NONE
 
 C     == Global variables ==
+#include "CPL_PARAMS.h"
 #include "ATMSIZE.h"
 #include "ATMVARS.h"
 #include "OCNSIZE.h"
@@ -105,10 +106,10 @@ C--   Map sea-ice mass onto ocean grid
      I         Nx_atm, Ny_atm, sIceMass_atm, Nx_ocn, Ny_ocn,
      O                         sIceMass_ocn )
 C     Send sea-ice mass to ocean component
-      CALL COUPSEND_R8TILES( ocnCompName, ocnSeaIceName,
+      CALL COUPSEND_R8TILES( ocnCompName, ocnSIceMassName,
      I                       Nx_ocn, Ny_ocn, sIceMass_ocn )
 
-      IF ( ocnCpl_exchange_DIC ) THEN
+      IF ( MOD(cpl_exchange_DIC,2).EQ.1 ) THEN
 
 C--   Map atmos CO2 onto ocean grid
         CALL ATM_TO_OCN_MAPXYR8(
@@ -123,7 +124,7 @@ C--   Map surf wind speed onto ocean grid
      I           Nx_atm, Ny_atm, wSpeed_atm, Nx_ocn, Ny_ocn,
      O                           wSpeed_ocn )
 C     Send surface windspeed to ocean component
-        CALL COUPSEND_R8TILES( ocnCompName, ocnWSpdName,
+        CALL COUPSEND_R8TILES( ocnCompName, ocnWindSpdName,
      I                         Nx_ocn, Ny_ocn, wSpeed_ocn )
 
 C--   Map seaice fraction from sea-ice compon. onto ocean grid
@@ -131,7 +132,7 @@ C--   Map seaice fraction from sea-ice compon. onto ocean grid
      I           Nx_atm, Ny_atm, SIceFrac_atm, Nx_ocn, Ny_ocn,
      O                           SIceFrac_ocn )
 C     Send sea-ice fraction to ocean component
-        CALL COUPSEND_R8TILES( ocnCompName, ocnFIceName,
+        CALL COUPSEND_R8TILES( ocnCompName, ocnSIceFracName,
      I                         Nx_ocn, Ny_ocn, SIceFrac_ocn )
 
       ENDIF
