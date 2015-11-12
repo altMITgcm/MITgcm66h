@@ -25,9 +25,9 @@ C     == DIC variables
 #include "DIC_VARS.h"
 #ifdef COMPONENT_MODULE
 C     == Global variables for coupling interface ==
+#include "CPL_PARAMS.h"
 #include "OCNCPL.h"
 #include "OCNIDS.h"
-#include "CPL_PARAMS.h"
 #endif
 
 C     == Routine arguments ==
@@ -46,7 +46,7 @@ C     bi,bj  :: Tile index
       INTEGER i,j,bi,bj
 
 #ifdef USE_ATMOSCO2
-      IF ( ocnCpl_exchange_DIC ) THEN
+      IF ( ocn_cplExch_DIC ) THEN
        DO bj=myByLo(myThid),myByHi(myThid)
         DO bi=myBxLo(myThid),myBxHi(myThid)
          DO j=1,sNy

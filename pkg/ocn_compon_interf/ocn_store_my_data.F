@@ -1,7 +1,7 @@
 C $Header$
 C $Name$
-#include "PACKAGES_CONFIG.h"
-#include "CPP_OPTIONS.h"
+
+#include "OCN_CPL_OPTIONS.h"
 
 C     !ROUTINE: OCN_STORE_MY_DATA
 C     !INTERFACE:
@@ -105,7 +105,7 @@ C--   bi,bj loop over my tiles
          ENDDO
 
 c#ifdef ALLOW_DIC
-c       IF ( ocnCpl_exchange_DIC ) THEN
+c       IF ( ocn_cplExch_DIC ) THEN
 c        DO j=1,sNy
 c         DO i=1,sNx
 c           fluxCO2cpl(i,j,bi,bj) = fluxCO2(i,j,bi,bj)
