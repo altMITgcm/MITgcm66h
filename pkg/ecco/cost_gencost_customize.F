@@ -224,7 +224,7 @@ c    &     .TRUE.,.TRUE.,.TRUE.,1,myThid)
          elseif (gencost_barfile(k)(1:8).EQ.'m_trSalt') then
            kk=gencost_pointer3d(k)
            do k2=1,nr
-             gencost_mod3d(i,j,k2,bi,bj,kk) = trHeat(i,j,k2,bi,bj)
+             gencost_mod3d(i,j,k2,bi,bj,kk) = trSalt(i,j,k2,bi,bj)
            enddo
 #if (defined (ALLOW_3D_DIFFKR) || defined (ALLOW_DIFFKR_CONTROL))
          elseif (gencost_barfile(k)(1:8).EQ.'m_diffkr') then
