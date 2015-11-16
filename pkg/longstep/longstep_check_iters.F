@@ -58,7 +58,7 @@ C       of a long time step, so that the pickup will be valid.
         extraIter = LS_nIter - MOD(nEndIter, LS_nIter)
         nEndIter = nEndIter + extraIter
         nTimeSteps = nEndIter - nIter0
-        endTime = baseTime + deltaTClock*float(nEndIter)
+        endTime = baseTime + deltaTClock*DFLOAT(nEndIter)
         WRITE(msgBuf,'(2A)') '**WARNING** ',
      &       ' LONGSTEP_CHECK_ITERS: adjusting to'
         CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,

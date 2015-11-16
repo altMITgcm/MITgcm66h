@@ -46,7 +46,7 @@ CEOP
 
       DO bj=myByLo(myThid), myByHi(myThid)
        DO bi=myBxLo(myThid), myBxHi(myThid)
-        factor = FLOAT(lsCnt(bi,bj))
+        factor = lsCnt(bi,bj)
         IF (lsCnt(bi,bj).NE.0) factor = 1. _d 0 / factor
         DO k = 1,myNr
          DO j = 1-OLy,sNy+OLy
