@@ -391,7 +391,7 @@ CEOP
 #ifdef ALLOW_AUTODIFF
 C--   Reset the model iteration counter and the model time.
       myIter = nIter0 + (iloop-1)
-      myTime = startTime + float(iloop-1)*deltaTClock
+      myTime = startTime + deltaTClock*(iLoop-1)
 #endif
 
 #ifdef ALLOW_LONGSTEP
@@ -814,7 +814,7 @@ CADJ &     kind = isbyte
 
 C--   Update time-counter
       myIter = nIter0 + iLoop
-      myTime = startTime + deltaTClock * float(iLoop)
+      myTime = startTime + deltaTClock*iLoop
 
 #ifdef ALLOW_MNC
 C     Update MNC time information
