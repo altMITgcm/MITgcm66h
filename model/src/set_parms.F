@@ -240,7 +240,7 @@ C--   Adjust parameters related to length of the simulation
 
 C-    Need to adjust endTime for sub-timestep mismatch , since in
 C     several places, test for last iteration with time==endTime :
-      tmpVar = startTime + deltaTClock*FLOAT(nTimeSteps)
+      tmpVar = startTime + deltaTClock*DFLOAT(nTimeSteps)
       IF ( endTime.NE.tmpVar ) THEN
        IF ( ABS(endTime-tmpVar).GT.deltaTClock*1. _d -6 ) THEN
         WRITE(msgBuf,'(A,A)') '** WARNING ** SET_PARMS: ',
