@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice/seaice_evp.F
+  - fix residual computations so that they no longer affect the actual
+    simulation code
 o model/src:
   - fix wrong truncation (single prec) from "FLOAT" function in expressions
     like: deltaT*FLOAT(myIter) when myIter is large:
