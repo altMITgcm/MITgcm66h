@@ -216,7 +216,7 @@ c     objf_gencost - gencost user defined contribution
       _RL  gencost_dummy(NGENCOST)
 
       common /ecco_gencost_r_1/
-     &       objf_gencost, num_gencost, mult_gencost,
+     &       objf_gencost, num_gencost, mult_gencost, gencost_storefld,
      &       gencost_barfld, gencost_modfld, gencost_weight,
      &       gencost_mskCsurf, gencost_mskWsurf, gencost_mskSsurf,
 #ifdef ALLOW_GENCOST3D
@@ -232,6 +232,8 @@ c     objf_gencost - gencost user defined contribution
       _RL  gencost_spmax(NGENCOST)
       _RL  gencost_spzero(NGENCOST)
       _RL  gencost_period(NGENCOST)
+      _RL  gencost_storefld(1-olx:snx+olx,1-oly:sny+oly,
+     &       nsx,nsy,NGENCOST)
       _RL  gencost_barfld(1-olx:snx+olx,1-oly:sny+oly,
      &       nsx,nsy,NGENCOST)
       _RL  gencost_modfld(1-olx:snx+olx,1-oly:sny+oly,

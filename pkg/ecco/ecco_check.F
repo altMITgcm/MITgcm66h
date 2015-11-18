@@ -228,9 +228,11 @@ c-- check errfile
 
 c-- check barfile, make sure character m_[theta,salt] match exactly
 c-- (upper/lower-case matters) in cost_gencost_customize
-           if (.not.( (gencost_barfile(k)(1:7).EQ.'m_theta').OR.
-     &                (gencost_barfile(k)(1:5).EQ.'m_eta').OR.
-     &                (gencost_barfile(k)(1:6).EQ.'m_salt') )) then
+           if (.not.( 
+     &          (gencost_barfile(k)(1:15).EQ.'m_boxmean_theta').OR.
+     &          (gencost_barfile(k)(1:13).EQ.'m_boxmean_eta').OR.
+     &          (gencost_barfile(k)(1:14).EQ.'m_boxmean_salt') 
+     &        )) then
             using_gencost(k)=.FALSE.
             il=ilnblnk(gencost_barfile(k))
             WRITE(msgBuf,'(3A)')
