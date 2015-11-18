@@ -4,7 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
-o pkg/seaice/seaice_evp
+checkpoint65q (2015/11/18)
+o pkg/seaice/seaice_evp:
   - fix residual computations so that they no longer affect the actual
     simulation code
   - fix seaice_readparams to be able to actually set new parameters
