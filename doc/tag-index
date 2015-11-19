@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice/seaice_evp:
+  - refine residual computation
+
 checkpoint65q (2015/11/18)
 o pkg/seaice/seaice_evp:
   - fix residual computations so that they no longer affect the actual
