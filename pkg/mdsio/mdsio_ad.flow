@@ -136,6 +136,14 @@ CADJ SUBROUTINE mdswritefieldyz_loc  INPUT  = 1,2,3,4,5,6,7,8,9
 CADJ SUBROUTINE mdswritefieldyz_loc  OUTPUT =
 
 C----------------------------------------
+C subroutine mds_readvec_loc
+C----------------------------------------
+CADJ SUBROUTINE mds_readvec_loc  INPUT  = 1,2,3,4,5,    8,9,10,11
+CADJ SUBROUTINE mds_readvec_loc  OUTPUT =           6,7
+CADJ SUBROUTINE mds_readvec_loc  DEPEND = 1,2,3,4,5,6,7,8,9,10,11
+CADJ SUBROUTINE mds_readvec_loc  REQUIRED
+
+C----------------------------------------
 C subroutine MDS_FACEF_READ_RS
 C----------------------------------------
 CADJ SUBROUTINE MDS_FACEF_READ_RS  INPUT  = 1,2,3,4,5,6,7
