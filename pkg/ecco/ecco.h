@@ -220,6 +220,7 @@ c     objf_gencost - gencost user defined contribution
      &       objf_gencost, num_gencost, mult_gencost, gencost_storefld,
      &       gencost_barfld, gencost_modfld, gencost_weight,
      &       gencost_mskCsurf, gencost_mskWsurf, gencost_mskSsurf,
+     &       gencost_mskVertical,
 #ifdef ALLOW_GENCOST3D
      &       gencost_bar3d, gencost_mod3d, gencost_wei3d,
 #endif
@@ -247,6 +248,7 @@ c     objf_gencost - gencost user defined contribution
      &       nsx,nsy,NGENCOST)
       _RL  gencost_mskSsurf(1-olx:snx+olx,1-oly:sny+oly,
      &       nsx,nsy,NGENCOST)
+      _RL  gencost_mskVertical(nr,NGENCOST)
 #ifdef ALLOW_GENCOST3D
       _RL  gencost_bar3d(1-olx:snx+olx,1-oly:sny+oly,
      &       nr,nsx,nsy,NGENCOST3D)
