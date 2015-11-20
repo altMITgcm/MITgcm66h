@@ -1968,9 +1968,7 @@ printf "  Do we have the etime() command using $FC...  "
 cat > genmake_tcomp.$FS <<EOF
       program hello
       REAL*4 ACTUAL, TARRAY(2)
-      EXTERNAL ETIME
-      REAL*4 ETIME
-      actual = etime( tarray )
+      call etime( tarray, actual )
       print *, tarray
       end
 EOF
