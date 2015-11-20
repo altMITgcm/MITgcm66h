@@ -74,11 +74,15 @@ c         seaIceMass(i,j,bi,bj) = seaIceMass(i,j,bi,bj) +
       IF ( atm_cplExch_DIC ) THEN
 C     o Accumulate Sea-Ice concentration (no-units) from thSIce pkg
 C       that will be exported to the coupling layer.
-       cplTimeFraction = 1. _d 0 / DFLOAT(cplSendFrq_iter)
-       fracIceTime(bi,bj) = fracIceTime(bi,bj) + cplTimeFraction
+c      cplTimeFraction = 1. _d 0 / DFLOAT(cplSendFrq_iter)
+c      fracIceTime(bi,bj) = fracIceTime(bi,bj) + cplTimeFraction
+C-     Better to store the last time-step value and not the average
+       cplTimeFraction = 1. _d 0
+       fracIceTime(bi,bj) = cplTimeFraction
        DO j=1,sNy
         DO i=1,sNx
-          fracIce(i,j,bi,bj) = fracIce(i,j,bi,bj)
+c         fracIce(i,j,bi,bj) = fracIce(i,j,bi,bj)
+          fracIce(i,j,bi,bj) = 0. _d 0
      &                       + iceMask(i,j,bi,bj)*cplTimeFraction
         ENDDO
        ENDDO
