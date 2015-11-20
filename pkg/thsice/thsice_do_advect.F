@@ -127,10 +127,8 @@ C--     cumulate time-averaged fields and also fill-up flux diagnostics
 
        IF ( stressReduction.GT. 0. _d 0 )
      &   _EXCH_XY_RL( iceMask, myThid )
-#ifdef ATMOSPHERIC_LOADING
        IF ( useRealFreshWaterFlux )
      &  _EXCH_XY_RS( sIceLoad, myThid )
-#endif
 #endif /* ndef OLD_THSICE_CALL_SEQUENCE */
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
