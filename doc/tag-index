@@ -4,6 +4,12 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ecco:
+  - retire old codes to the Attic. The calls to retired 
+    functions are left in a commented form in case they
+    ever need to be re-activated.
+  - ecco_check.F: issue warning if any old CPP option is
+    defined that corresponds to retired codes -- then stop.
 o pkg/atm_compon_interf:
   - change seaice fraction (use for OCN dic surf.flux) stored and sent to
     coupler: use last time-step value instead of average over cplSendFrq_iter
