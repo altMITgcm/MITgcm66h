@@ -1549,10 +1549,10 @@ C     only master thread of master CPU open and write to file
 
       ENDIF
 
-#ifdef ECCO_CTRL_DEPRECATED
-      call cost_trans_merid( mythid )
-      call cost_trans_zonal( mythid )
-#endif /* ECCO_CTRL_DEPRECATED */
+c#ifdef ECCO_CTRL_DEPRECATED
+c      call cost_trans_merid( mythid )
+c      call cost_trans_zonal( mythid )
+c#endif /* ECCO_CTRL_DEPRECATED */
 
 #ifdef ECCO_VERBOSE
       write(msgbuf,'(a,D22.15)')
