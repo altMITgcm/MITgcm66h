@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice/seaice_growth:
+  - catch potential division by zero in ITD code, does not change 
+    verification results
 o pkg/ecco:
   - retire old codes to the Attic. The calls to retired 
     functions are left in a commented form in case they
