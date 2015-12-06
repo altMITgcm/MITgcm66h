@@ -1329,7 +1329,7 @@ if test "x$MPI" = x0 ; then
   if test "x$COMMAND" = x ; then COMMAND="./$EXECUTABLE > $OUTPUTFILE" ; fi
 else
   OUTPUTFILE="STDOUT.0000"
-  if test "x$COMMAND" = x ; then COMMAND="mpirun -v -np TR_NPROC ./$EXECUTABLE" ; fi
+  if test "x$COMMAND" = x ; then COMMAND="mpirun -np TR_NPROC ./$EXECUTABLE" ; fi
 fi
 
 echo "OK (COMMAND='$COMMAND')"
