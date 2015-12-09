@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/ggl90: 
+  - within IDEMIX add upper limit for horizontal group velocity to
+    avoid instability problems in the explicit horizontal diffusion term for
+    long time steps or high resolution
 o pkg/diagnostics:
   - simplify setting of local-array size in diagstats_output.F: uses "numLevels"
     (from DIAGNOSTICS_SIZE.h) to allow to write out more than Nr levels.
