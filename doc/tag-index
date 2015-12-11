@@ -4,7 +4,13 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
-o pkg/ggl90: 
+o pkg/atm_phys:
+  - add diagnostics for 3-D, Nr+1 levels diagnostics of radiative fluxes
+    (shortwave & longwave, net & downward) and diagnostics of temp. tendency
+    for individual contribution (convection, LSC cond, radiation)
+  - add Ruth Geen etal, GRL 2016, radiation optionis (see paper supp.
+    information); activated with: solar_exponent=0. and wv_exponent=-1.
+o pkg/ggl90:
   - within IDEMIX add upper limit for horizontal group velocity to
     avoid instability problems in the explicit horizontal diffusion term for
     long time steps or high resolution
