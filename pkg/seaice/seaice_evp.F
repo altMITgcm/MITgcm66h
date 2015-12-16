@@ -264,7 +264,7 @@ C     initialise fractional areas at velocity points
            areaW(I,J,bi,bj) = 
      &          0.5 _d 0*(AREA(I,J,bi,bj)+AREA(I-1,J,bi,bj))
            areaS(I,J,bi,bj) = 
-     &          0.5 _d 0*(AREA(I,J,bi,bj)+AREA(I,J-J,bi,bj))
+     &          0.5 _d 0*(AREA(I,J,bi,bj)+AREA(I,J-1,bi,bj))
           ENDDO
          ENDDO
         ELSE

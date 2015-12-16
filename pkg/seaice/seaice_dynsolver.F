@@ -220,7 +220,7 @@ C--   basic forcing by wind stress
            FORCEX0(I,J,bi,bj)=TAUX(I,J,bi,bj)
      &          * 0.5 _d 0*(AREA(I,J,bi,bj)+AREA(I-1,J,bi,bj))
            FORCEY0(I,J,bi,bj)=TAUY(I,J,bi,bj)
-     &          * 0.5 _d 0*(AREA(I,J,bi,bj)+AREA(I,J-J,bi,bj))
+     &          * 0.5 _d 0*(AREA(I,J,bi,bj)+AREA(I,J-1,bi,bj))
           ENDDO
          ENDDO
         ELSE

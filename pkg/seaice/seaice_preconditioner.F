@@ -603,7 +603,7 @@ C     neglected for preconditioning step
        IF ( SEAICEscaleSurfStress ) THEN
         DO J=jMin,jMax
          DO I=iMin,iMax
-          areaS(I,J) = 0.5 _d 0*(AREA(I,J,bi,bj)+AREA(I,J-J,bi,bj))
+          areaS(I,J) = 0.5 _d 0*(AREA(I,J,bi,bj)+AREA(I,J-1,bi,bj))
          ENDDO
         ENDDO
        ELSE
