@@ -23,6 +23,9 @@ C     allow code for simple ISOMIP thermodynamics
 C     allow friction velocity-dependent transfer coefficient
 C     following Holland and Jenkins, JPO, 1999
 #define SHI_ALLOW_GAMMAFRICT
+C     in uStar expression, use wet-point method to average velocity
+C     at grid-cell center
+#undef SHI_USTAR_WETPOINT
 
 #endif /* ALLOW_SHELFICE */
 #endif /* SHELFICE_OPTIONS_H */
