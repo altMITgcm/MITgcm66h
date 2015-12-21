@@ -38,7 +38,8 @@ C     iUnit      :: Work variable for IO unit number
      &       atmPhys_addTendU, atmPhys_addTendV,
      &       atmPhys_tauDampUV, atmPhys_dampUVfac,
      &       atmPhys_stepSST,
-     &       atmPhys_SSTFile, atmPhys_QflxFile
+     &       atmPhys_sstFile,  atmPhys_qFlxFile,
+     &       atmPhys_mxldFile, atmPhys_albedoFile
 
       _BEGIN_MASTER(myThid)
 
@@ -63,8 +64,10 @@ C--   Default values for ATM_PHYS
       ENDDO
 C-    additional parameters:
       atmPhys_stepSST   = .FALSE.
-      atmPhys_SSTFile  = ' '
-      atmPhys_QflxFile = ' '
+      atmPhys_sstFile   = ' '
+      atmPhys_qFlxFile  = ' '
+      atmPhys_mxldFile  = ' '
+      atmPhys_albedoFile= ' '
 
       WRITE(msgBuf,'(A)') 'ATM_PHYS_READPARMS: opening data.atm_phys'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,

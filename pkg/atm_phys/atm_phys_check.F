@@ -29,7 +29,6 @@ CEOP
 C     !LOCAL VARIABLES:
 C     msgBuf   :: Informational/error message buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
-      INTEGER k
 
       _BEGIN_MASTER(myThid)
 
@@ -60,10 +59,14 @@ C--  Print out some kee parameters :
      &  'atmPhys_dampUVfac =', ' /* U,V danping coefficient (1/s) */')
        ENDIF
 
-       CALL WRITE_0D_C( atmPhys_SSTFile, -1, INDEX_NONE,
-     &  'atmPhys_SSTFile =',' /* SST input file */')
+       CALL WRITE_0D_C( atmPhys_sstFile, -1, INDEX_NONE,
+     &  'atmPhys_sstFile =',' /* SST input file */')
        CALL WRITE_0D_C( atmPhys_QflxFile, -1, INDEX_NONE,
-     &  'atmPhys_QflxFile =',' /* Q-flux input file */')
+     &  'atmPhys_qFlxFile =',' /* Q-flux input file */')
+       CALL WRITE_0D_C( atmPhys_mxldFile, -1, INDEX_NONE,
+     &  'atmPhys_mxldFile =',' /* Mixed-Layer Depth inp. file */')
+       CALL WRITE_0D_C( atmPhys_albedoFile, -1, INDEX_NONE,
+     &  'atmPhys_albedoFile =',' /* Albedo input file */')
 
 C--  Check parameters:
 
