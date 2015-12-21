@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/atm_phys:
+  - allow to provide 2-d map of albedo and mixed-layer depth from files (but
+    hold fixed in time).
+
 checkpoint65r (2015/12/21)
 o pkg/seaice:
     fix bug in tridiagonal solvers for SEAICE_OLx/y>0, this affects the JFNK
