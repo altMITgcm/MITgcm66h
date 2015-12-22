@@ -900,6 +900,17 @@ C--   SEAICE_ALLOW_FREEDRIFT and SEAICEuseFREEDRIFT
        STOP 'ABNORMAL END: S/R SEAICE_CHECK'
       ENDIF
 
+      IF ( SEAICEpressReplFac .LT. 0. _d 0 .OR.
+     &     SEAICEpressReplFac .GT. 1. _d 0 ) THEN
+       WRITE(msgBuf,'(A,I2)')
+     &      'SEAICE_CHECK: SEAICEpressReplFac = ', SEAICEpressReplFac
+       CALL PRINT_ERROR( msgBuf, myThid )
+       WRITE(msgBuf,'(A)') 'SEAICE_CHECK: '//
+     &      'cannot < 0 or > 1'
+       CALL PRINT_ERROR( msgBuf, myThid )
+       STOP 'ABNORMAL END: S/R SEAICE_CHECK'
+      ENDIF
+
 #ifdef SEAICE_ITD
 C     The ice thickness distribution (ITD) module can only be used with
 C     the zero-layer thermodynamics of S/R SEAICE_GROWTH and the
