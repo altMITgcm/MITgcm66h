@@ -36,6 +36,11 @@ c     == global variables ==
 # include "SHELFICE_COST.h"
 #endif
 
+#ifdef ALLOW_PROFILES
+# include "PROFILES_SIZE.h"
+# include "profiles.h"
+#endif
+
 c     == routine arguments ==
       INTEGER myThid
 
@@ -43,6 +48,9 @@ c     == routine arguments ==
 c     == local variables ==
       INTEGER bi,bj
       _RL glob_fc, loc_fc
+#ifdef ALLOW_PROFILES
+      integer num_file,num_var
+#endif
 
 c     == end of interface ==
 
@@ -61,7 +69,7 @@ c     print *, 'ph-1 in thsice_cost_final'
 c     print *, 'ph-3 in thsice_cost_final'
 
 #ifdef ALLOW_ECCO
-      CALL ECCO_COST_FINAL (myThid)
+      IF (useECCO) CALL ECCO_COST_FINAL (myThid)
 #endif
 
 #ifdef ALLOW_COST_STATE_FINAL
@@ -150,7 +158,19 @@ c--   Sum up all contributions.
 #ifdef ALLOW_COST_HFLUXM
      &            + mult_hflux_tut * objf_hflux_tut(bi,bj)
 #endif
+
+#ifdef ALLOW_PROFILES
+      do num_file=1,NFILESPROFMAX
+       do num_var=1,NVARMAX
+          tile_fc(bi,bj) = tile_fc(bi,bj)
+     &            + mult_profiles(num_file,num_var)
+     &            *objf_profiles(num_file,num_var,bi,bj)
+       enddo
+      enddo
+#endif
+
          loc_fc = loc_fc + tile_fc(bi,bj)
+
        ENDDO
       ENDDO
 
