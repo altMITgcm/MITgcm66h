@@ -27,7 +27,6 @@ C     == Global variables ==
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "CPL_PARAMS.h"
-#include "ATMIDS.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     myTime    :: Current internal time.
@@ -58,9 +57,11 @@ C     Store coupling data ready for export
         IF ( useLand ) THEN
          CALL ATM_STORE_LAND(       bi, bj, myTime, myIter, myThid )
         ENDIF
-        IF ( useThSIce ) THEN
-         CALL ATM_STORE_THSICE(     bi, bj, myTime, myIter, myThid )
-        ENDIF
+C-    This call has been moved to CPL_EXPORT_IMPORT_DATA so that
+C     thSIce state-vars are stored just before beeing exported to CPL
+c       IF ( useThSIce ) THEN
+c        CALL ATM_STORE_THSICE(     bi, bj, myTime, myIter, myThid )
+c       ENDIF
 
 C--   end bi,bj loops.
        ENDDO

@@ -27,6 +27,7 @@ C     !USES:
 C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
+#include "PARAMS.h"
 #include "CPL_PARAMS.h"
 #include "ATMCPL.h"
 #include "ATMIDS.h"
@@ -44,7 +45,9 @@ CEOP
 #ifdef COMPONENT_MODULE
 C     !LOCAL VARIABLES:
 C     == Local variables ==
+C     bi, bj  :: Tile indices
 C     msgBuf  :: Informational/error message buffer
+      INTEGER bi, bj
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
@@ -63,6 +66,16 @@ C     Send data to coupling layer
          countPrtExp = countPrtExp + 1
         ENDIF
        _END_MASTER( myThid )
+
+C--   Store state variables (without averaging over cplSendFrq_iter time-steps)
+        DO bj=myByLo(myThid),myByHi(myThid)
+         DO bi=myBxLo(myThid),myBxHi(myThid)
+c          CALL ATM_STORE_DYNVARS( bi, bj, myTime, myIter, myThid )
+           IF ( useThSIce ) THEN
+            CALL ATM_STORE_THSICE( bi, bj, myTime, myIter, myThid )
+           ENDIF
+         ENDDO
+        ENDDO
 
 C-    export Sea-Level pressure:
         CALL ATM_EXPORT_FLD( atmSLPrName,
