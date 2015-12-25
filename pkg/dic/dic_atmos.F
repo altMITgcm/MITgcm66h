@@ -189,7 +189,7 @@ C if end of forcing cycle, find total change in ocean carbon
       ENDIF
 
 #ifndef ALLOW_AUTODIFF
-      IF ( dic_int1.EQ.0 .OR. dic_int1.EQ.1 ) THEN
+      IF ( dic_int1.EQ.2 .OR. dic_int1.EQ.3 ) THEN
 #endif
 C--    Set AtmospCO2 for next iteration:
        DO bj=myByLo(myThid),myByHi(myThid)
