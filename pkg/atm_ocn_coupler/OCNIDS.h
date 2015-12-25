@@ -74,6 +74,3 @@ C--   fields sent from ATM to OCN:
       PARAMETER( ocnWindSpdName      = 'OCN WindSpd'    )
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
-C     Pass carbon/DIC variables only if flag set below
-      LOGICAL ocnCpl_exchange_DIC
-      PARAMETER( ocnCpl_exchange_DIC = .FALSE.)
