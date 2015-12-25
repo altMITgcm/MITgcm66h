@@ -120,7 +120,11 @@ c
          enddo
       enddo
 
+#ifdef ALLOW_AUTODIFF
       call active_write_xyz( 'wunit', loctmp3d, 1, 0, mythid, dummy)
+#else
+      CALL WRITE_REC_XYZ_RL( 'wunit', loctmp3d, 1, 1, myThid )
+#endif
 
       _BARRIER
 

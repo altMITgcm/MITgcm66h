@@ -27,6 +27,8 @@ c     ==================================================================
 c     == global variables ==
 
 #include "EEPARAMS.h"
+#include "SIZE.h"
+#include "PARAMS.h"
 
 #include "optim.h"
 
@@ -57,6 +59,16 @@ c--   Optimization parameters.
      &                 numiter, nfunc, fmin, iprint,
      &                 epsf, epsx, epsg,
      &                 nupdate, eps
+
+      IF ( .NOT.useCTRL ) THEN
+C-    pkg CTRL is not used
+        _BEGIN_MASTER(myThid)
+C-    Track pkg activation status:
+C     print a (weak) warning if data.optim is found
+         CALL PACKAGES_UNUSED_MSG( 'useCTRL', ' ', ' ' )
+        _END_MASTER(myThid)
+        RETURN
+      ENDIF
 
       _BEGIN_MASTER( mythid )
 
