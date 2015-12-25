@@ -222,7 +222,7 @@ C--   infer wind field from wind-speed & wind-stress direction
         DO j = 1,sNy
          DO i = 1,sNx
            do iarr = 1, maxCtrlTim2D
-           if (xx_gentim2d_file(iarr).EQ.'xxg_wspeed')
+           if (xx_gentim2d_file(iarr)(1:9).EQ.'xx_wspeed')
      &       wspeed(i,j,bi,bj)=wspeed(i,j,bi,bj)+
      &                         xx_gentim2d(i,j,bi,bj,iarr)
            enddo
