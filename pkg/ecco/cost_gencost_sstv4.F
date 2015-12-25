@@ -290,12 +290,14 @@ c ----------------------------------------
      &     1,obs_sst,irec,1,mythid)
 #endif
 
-         call smooth_hetero2d(anom_sst,maskc,
+         if ( useSMOOTH )
+     &     call smooth_hetero2d(anom_sst,maskc,
      &     gencost_scalefile(kgen_lsc),
      &     gencost_smooth2Ddiffnbt(kgen_lsc),mythid)
 
 #ifdef ALLOW_GENCOST_SSTV4_OUTPUT
-         call smooth_hetero2d(obs_sst,maskc,
+         if ( useSMOOTH )
+     &     call smooth_hetero2d(obs_sst,maskc,
      &     gencost_scalefile(kgen_lsc),
      &     gencost_smooth2Ddiffnbt(kgen_lsc),mythid)
 
