@@ -351,10 +351,12 @@ C--   in order to provide the weight files
 #endif
 
 #ifdef ALLOW_SMOOTH
+      IF (useSMOOTH) THEN
 # ifdef ALLOW_DEBUG
         IF (debugMode) CALL DEBUG_CALL('SMOOTH_INIT_FIXED',myThid)
 # endif
-      CALL SMOOTH_INIT_FIXED(myThid)
+        CALL SMOOTH_INIT_FIXED(myThid)
+      ENDIF
 #endif /* ALLOW_SMOOTH */
 
 #ifdef ALLOW_ECCO

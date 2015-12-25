@@ -475,7 +475,9 @@ CADJ STORE diffkr = tapelev_init, key = 1
 
 C--   Initialise pkg/smooth
 #ifdef ALLOW_SMOOTH
-      CALL SMOOTH_INIT_VARIA(myThid)
+      IF (useSMOOTH) THEN
+        CALL SMOOTH_INIT_VARIA(myThid)
+      ENDIF
 #endif /* ALLOW_SMOOTH */
 
 C--   Initialise pkg/profiles

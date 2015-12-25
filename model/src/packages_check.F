@@ -390,7 +390,7 @@ C---  Continue with standard packages (with standard usePKG flag)
 #endif
 
 #ifdef ALLOW_AUTODIFF
-      CALL AUTODIFF_CHECK( myThid )
+      if (useAUTODIFF) CALL AUTODIFF_CHECK( myThid )
 #endif
 
 #ifdef ALLOW_CTRL
