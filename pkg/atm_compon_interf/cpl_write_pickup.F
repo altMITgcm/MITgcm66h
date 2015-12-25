@@ -146,7 +146,6 @@ c     ENDIF
      &                        sWSpeed   , -j, myIter, myThid )
         IF (j.LE.listDim) wrFldList(j) = 'wndSpeed'
       ENDIF
-# endif /* ALLOW_THSICE */
 #endif /* ALLOW_AIM */
 C-    with only 2-D fields:
         nj = -j
