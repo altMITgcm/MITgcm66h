@@ -103,7 +103,7 @@ CEOP
 C     !LOCAL VARIABLES:
 C     == Local variables ==
 #ifdef GMREDI_WITH_STABLE_ADJOINT
-      _RL slopeSqTmp,slopeSqMax
+      _RL slopeSqTmp,slopeTmp,slopeMax
 #endif
       _RL dSigmMod(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL SlopeMod(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
@@ -590,7 +590,7 @@ C-      Large, Danabasoglu and Doney, JPO 1997
 c special choice for adjoint/optimization of parameters
 c (~ strong clipping, reducing non linearity of kw=f(K))
 
-        slopeSqMax=( 2. _d -3 )**2
+        slopeMax= 2. _d -3
 
 CADJ STORE SlopeX(:,:)     = comlev1_bibj, key=ikey, byte=isbyte
 CADJ STORE SlopeY(:,:)     = comlev1_bibj, key=ikey, byte=isbyte
@@ -598,11 +598,12 @@ CADJ STORE SlopeY(:,:)     = comlev1_bibj, key=ikey, byte=isbyte
         DO j=1-OLy,sNy+OLy
          DO i=1-OLx+1,sNx+OLx
           slopeSqTmp=SlopeX(i,j)*SlopeX(i,j)
-     &            +SlopeY(i,j)*SlopeY(i,j)
+     &              +SlopeY(i,j)*SlopeY(i,j)
         
-          IF ( slopeSqTmp .GT. slopeSqMax ) then
-           SlopeX(i,j)=SlopeX(i,j)*sqrt(slopeSqMax/slopeSqTmp)
-           SlopeY(i,j)=SlopeY(i,j)*sqrt(slopeSqMax/slopeSqTmp)
+          IF ( slopeSqTmp .GT. slopeMax**2 ) then
+           slopeTmp=sqrt(slopeSqTmp)
+           SlopeX(i,j)=SlopeX(i,j)*slopeMax/slopeTmp
+           SlopeY(i,j)=SlopeY(i,j)*slopeMax/slopeTmp
           ENDIF
           SlopeSqr(i,j) = SlopeX(i,j)*SlopeX(i,j)
      &                   +SlopeY(i,j)*SlopeY(i,j)
