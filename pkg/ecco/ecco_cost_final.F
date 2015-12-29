@@ -498,6 +498,15 @@ c--   Sum up all contributions.
      &         + mult_ageos   * objf_ageos(bi,bj)
 # endif
 #endif
+#ifdef ALLOW_PROFILES
+      do num_file=1,NFILESPROFMAX
+       do num_var=1,NVARMAX
+          tile_fc(bi,bj) = tile_fc(bi,bj)
+     &            + mult_profiles(num_file,num_var)
+     &            *objf_profiles(num_file,num_var,bi,bj)
+       enddo
+      enddo
+#endif
 #ifdef ALLOW_GENCOST_CONTRIBUTION
        do num_var=1,NGENCOST
           tile_fc(bi,bj) = tile_fc(bi,bj)
