@@ -6,7 +6,7 @@ C $Name$
 CBOP
 C     !ROUTINE: ATM_IMPORT_FIELDS
 C     !INTERFACE:
-      SUBROUTINE ATM_IMPORT_FIELDS( myThid )
+      SUBROUTINE ATM_IMPORT_FIELDS( myIter, myThid )
 
 C     !DESCRIPTION: \bv
 C     *==========================================================*
@@ -31,7 +31,9 @@ C     == Global variables ==
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
-C     myThid :: my Thread Id number
+C     myIter  :: Current timestep number.
+C     myThid  :: my Thread Id number
+      INTEGER myIter
       INTEGER myThid
 CEOP
 
