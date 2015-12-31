@@ -25,9 +25,8 @@ C     == DIC variables
 #include "DIC_VARS.h"
 #ifdef COMPONENT_MODULE
 C     == Global variables for coupling interface ==
-#include "CPL_PARAMS.h"
-#include "OCNCPL.h"
-#include "OCNIDS.h"
+# include "CPL_PARAMS.h"
+# include "OCNCPL.h"
 #endif
 
 C     == Routine arguments ==
