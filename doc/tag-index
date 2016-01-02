@@ -4,6 +4,14 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/dic:
+  - fix an other bug (also from 2014/08/30) in dic_atmos.F, in dic_int1=3 code.
+o pkg/thsice:
+  - when coupled to ATM (useCoupler) with thSIce_skipThermo=T, skip reading
+    and writing of thsice pickup files.
+o pkg/atm_compon_interf:
+  - move all field individual export-call out of cpl_export_import_data.F
+    into new S/R ATM_EXPORT_FIELDS
 o pkg/atm_compon_interf:
   - store state variables (for now, only thSIce fields) just before beeing
     exported (in cpl_export_import_data.F, like on ocean side) instead of from
