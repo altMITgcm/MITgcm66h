@@ -107,6 +107,13 @@ C for 278ppmv we need total_atmos_carbon=4.9206e+16
         DO bi=myBxLo(myThid),myBxHi(myThid)
          tile_flux(bi,bj)   = 0.
          tile_carbon(bi,bj) = 0.
+         DO j=1,sNy
+           DO i=1,sNx
+             tile_flux(bi,bj) = tile_flux(bi,bj)
+     &                        + fluxCO2(i,j,bi,bj)*rA(i,j,bi,bj)
+     &                         *maskC(i,j,1,bi,bj)*dTtracerLev(1)
+           ENDDO
+         ENDDO
          DO k=1,Nr
           DO j=1,sNy
            DO i=1,sNx
