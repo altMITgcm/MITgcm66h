@@ -40,10 +40,15 @@ C     myThid  :: My Thread Id number
 CEOP
 
 #ifdef ALLOW_THSICE
-
 C     == Local variables ==
       CHARACTER*(MAX_LEN_FNAM) fn
       INTEGER prec
+
+C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
+
+#ifdef ALLOW_OCN_COMPON_INTERF
+      IF ( useCoupler .AND. thSIce_skipThermo ) RETURN
+#endif /* ALLOW_OCN_COMPON_INTERF */
 
       IF ( thSIce_pickup_write_mdsio ) THEN
         prec = precFloat64
@@ -102,5 +107,3 @@ C       CALL MNC_CW_RL_W_S('D',fn,0,0,'T', myTime, myThid)
 #endif  /* ALLOW_THSICE */
       RETURN
       END
-
-C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|

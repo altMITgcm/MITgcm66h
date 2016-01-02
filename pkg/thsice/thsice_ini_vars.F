@@ -109,6 +109,10 @@ C         and this mask is used in thsice_advdiff and if coupled
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
+#ifdef ALLOW_OCN_COMPON_INTERF
+      IF ( useCoupler .AND. thSIce_skipThermo ) RETURN
+#endif /* ALLOW_OCN_COMPON_INTERF */
+
       IF ( startIceModel.LE.0 .AND.
      &     ( nIter0.NE.0  .OR. pickupSuff.NE.' ' )
      &   ) THEN
