@@ -52,9 +52,14 @@ CEOP
           ROEnFx_atm     (i,j) = 0. _d 0
           SaltFlx_atm    (i,j) = 0. _d 0
           sIceMass_atm   (i,j) = 0. _d 0
+          saltPlmFlx_atm (i,j) = 0. _d 0
           aCO2_atm       (i,j) = 0. _d 0
           wSpeed_atm     (i,j) = 0. _d 0
           sIceFrac_atm   (i,j) = 0. _d 0
+          sIceThick_atm  (i,j) = 0. _d 0
+          sIceSnowH_atm  (i,j) = 0. _d 0
+          sIceQ1_atm     (i,j) = 0. _d 0
+          sIceQ2_atm     (i,j) = 0. _d 0
         ENDDO
       ENDDO
 

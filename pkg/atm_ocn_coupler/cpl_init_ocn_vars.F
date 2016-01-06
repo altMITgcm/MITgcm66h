@@ -50,9 +50,15 @@ CEOP
           FWFlux_ocn     (i,j) = 0. _d 0
           SaltFlx_ocn    (i,j) = 0. _d 0
           sIceMass_ocn   (i,j) = 0. _d 0
+          saltPlmFlx_ocn (i,j) = 0. _d 0
+          RunOff_ocn     (i,j) = 0. _d 0
           aCO2_ocn       (i,j) = 0. _d 0
           wSpeed_ocn     (i,j) = 0. _d 0
           sIceFrac_ocn   (i,j) = 0. _d 0
+          sIceThick_ocn  (i,j) = 0. _d 0
+          sIceSnowH_ocn  (i,j) = 0. _d 0
+          sIceQ1_ocn     (i,j) = 0. _d 0
+          sIceQ2_ocn     (i,j) = 0. _d 0
         ENDDO
       ENDDO
 
