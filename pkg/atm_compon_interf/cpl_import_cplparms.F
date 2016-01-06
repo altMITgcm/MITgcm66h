@@ -72,6 +72,12 @@ C-    o Set options for coupling exchange
         atm_cplExch2W_sIce = parBuf(4).GE.2
         atm_cplExch_SaltPl = parBuf(5).GE.2
         atm_cplExch_DIC    = parBuf(6).GE.2
+C-    save coupler parameter:
+        cpl_exchange_RunOff = parBuf(2)
+        cpl_exchange1W_sIce = parBuf(3)
+        cpl_exchange2W_sIce = parBuf(4)
+        cpl_exchange_SaltPl = parBuf(5)
+        cpl_exchange_DIC    = parBuf(6)
       ELSE
 C-    If not using an up-to-date ATMIDS.h with the wrong atmParSize
         cplErrorCount = cplErrorCount + 1
