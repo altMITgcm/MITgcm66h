@@ -28,5 +28,11 @@ C      IF (useMNC) THEN
 C      ENDIF
 #endif /* ALLOW_MNC */
 
+#ifdef ALLOW_DIAGNOSTICS
+      IF ( useDiagnostics ) THEN
+        CALL CPL_DIAGNOSTICS_INIT( myThid )
+      ENDIF
+#endif
+
       RETURN
       END
