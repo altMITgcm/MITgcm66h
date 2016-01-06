@@ -66,7 +66,7 @@ C     Sequential coupling: Send data to coupling layer
         CALL OCN_STORE_MY_DATA(
      I           myTime, myIter, myThid )
 
-        CALL OCN_EXPORT_FIELDS ( myThid )
+        CALL OCN_EXPORT_FIELDS ( myIter, myThid )
 
       ENDIF
 

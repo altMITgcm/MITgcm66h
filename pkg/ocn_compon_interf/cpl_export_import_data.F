@@ -64,7 +64,7 @@ C     Synchronous coupling: Send data to coupling layer
         CALL OCN_STORE_MY_DATA(
      I           myTime, myIter, myThid )
 
-        CALL OCN_EXPORT_FIELDS ( myThid )
+        CALL OCN_EXPORT_FIELDS ( myIter, myThid )
 
       ENDIF
 
@@ -81,7 +81,10 @@ C-    Fetch data from coupling layer.
          _END_MASTER( myThid )
         ENDIF
 
-        CALL OCN_IMPORT_FIELDS ( myThid )
+        CALL OCN_IMPORT_FIELDS ( myIter, myThid )
+
+C     Fill diagnostics with updated coupling fields just received from Coupler
+        CALL CPL_DIAGNOSTICS_FILL( myTime, myIter, myThid )
 
       ENDIF
 
