@@ -82,6 +82,7 @@ C       that will be exported to the coupling layer.
         ENDDO
        ENDDO
 
+#ifdef ALLOW_THSICE
       IF ( useThSIce ) THEN
 C     o Accumulate SaltFlux from sea-ice (saltFlux, +=upward, g/m^2/s)
 C       that will be exported to the coupling layer.
@@ -93,6 +94,7 @@ C       that will be exported to the coupling layer.
         ENDDO
        ENDDO
       ENDIF
+#endif /* ALLOW_THSICE */
 
       IF ( useAtm_Phys ) THEN
 C     o Accumulate surface wind-stress
