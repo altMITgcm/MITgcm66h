@@ -53,7 +53,19 @@ C.        Export fields
           SSTocn2cpl(i,j,bi,bj) = 0.
           SSSocn2cpl(i,j,bi,bj) = 0.
           vSqocn2cpl(i,j,bi,bj) = 0.
+#ifdef ALLOW_DIC
           fluxCO2cpl(i,j,bi,bj) = 0.
+#endif
+C-        Import and/or export fields
+#if (defined ALLOW_DIC) || (defined ALLOW_THSICE)
+          sIceFrac_cpl  (i,j,bi,bj) = 0.
+#endif
+#ifdef ALLOW_THSICE
+          sIceThick_cpl (i,j,bi,bj) = 0.
+          sIceSnowH_cpl (i,j,bi,bj) = 0.
+          sIceQ1_cpl    (i,j,bi,bj) = 0.
+          sIceQ2_cpl    (i,j,bi,bj) = 0.
+#endif
 C-        Import fields
           atmSLPr   (i,j,bi,bj) = 0.
           HeatFlux  (i,j,bi,bj) = 0.
@@ -63,9 +75,14 @@ C-        Import fields
           FWflux    (i,j,bi,bj) = 0.
           iceSaltFlx(i,j,bi,bj) = 0.
           seaIceMass(i,j,bi,bj) = 0.
+#ifdef ALLOW_SALT_PLUME
+          saltPlmFlx_cpl(i,j,bi,bj) = 0.
+#endif
+#ifdef ALLOW_DIC
+          RunOff_cpl(i,j,bi,bj) = 0.
           airCO2    (i,j,bi,bj) = 0.
           surfWSpeed(i,j,bi,bj) = 0.
-          fracIce   (i,j,bi,bj) = 0.
+#endif
          ENDDO
         ENDDO
        ENDDO
@@ -93,11 +110,12 @@ C      i.e. not loaded from history file for now ).
          CALL TIMEAVE_RESET( SSTtave,  1, bi, bj, myThid )
          CALL TIMEAVE_RESET( SSStave,  1, bi, bj, myThid )
          CALL TIMEAVE_RESET( vSqtave,  1, bi, bj, myThid )
+#ifdef ALLOW_DIC
          CALL TIMEAVE_RESET( aCO2tave, 1, bi, bj, myThid )
          CALL TIMEAVE_RESET( sWSpdtave,1, bi, bj, myThid )
          CALL TIMEAVE_RESET( iceftave, 1, bi, bj, myThid )
          CALL TIMEAVE_RESET( fCO2tave, 1, bi, bj, myThid )
-
+#endif
          CPL_timeAve(bi,bj) = 0.
        ENDDO
       ENDDO
