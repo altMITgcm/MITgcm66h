@@ -25,7 +25,6 @@ C     == Global variables ==
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "CPL_PARAMS.h"
-#include "ATMIDS.h"
 #include "ATMCPL.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
@@ -128,12 +127,12 @@ c       nj = nj-1
      &                        iceSaltFlx, -j, myIter, myThid )
         IF (j.LE.listDim) wrFldList(j) = 'saltFlux'
       ENDIF
-c     IF ( atm_cplExch_SaltPl ) THEN
-c       j = j + 1
-c       CALL WRITE_REC_3D_RL( fn, fp, 1,
-c    &                        saltPlmFlx, -j, myIter, myThid )
-c       IF (j.LE.listDim) wrFldList(j) = 'sltPlmFx'
-c     ENDIF
+      IF ( atm_cplExch_SaltPl ) THEN
+        j = j + 1
+        CALL WRITE_REC_3D_RL( fn, fp, 1,
+     &                        saltPlmFlx_cpl, -j, myIter, myThid )
+        IF (j.LE.listDim) wrFldList(j) = 'sltPlmFx'
+      ENDIF
 #endif /* ALLOW_THSICE */
 #ifdef ALLOW_AIM
       IF ( atm_cplExch_DIC ) THEN
