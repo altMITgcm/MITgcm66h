@@ -68,6 +68,22 @@ C--   Read-in parameter file:
      &                '==> set ErrorCount=', cplErrorCount, ' (Fatal)'
       ENDIF
 
+C--   Check parameter consistency:
+      IF ( cpl_exchange2W_sIce.EQ.3 .AND. cpl_sequential.EQ.0 ) THEN
+        cplErrorCount = cplErrorCount + 1
+        WRITE(msgUnit,'(2A)') ' *** ERROR *** CPL_READ_PARAMS: ',
+     &       'needs "cpl_sequential=1" to use: cpl_exchange2W_sIce=3'
+        WRITE(msgUnit,'(2A,I4,A)') ' *** ERROR *** CPL_READ_PARAMS: ',
+     &                '==> set ErrorCount=', cplErrorCount, ' (Fatal)'
+      ENDIF
+      IF ( cpl_exchange2W_sIce.EQ.1 .AND. cpl_sequential.EQ.1 ) THEN
+        cplErrorCount = cplErrorCount + 1
+        WRITE(msgUnit,'(2A)') ' *** ERROR *** CPL_READ_PARAMS: ',
+     &       'needs "cpl_sequential=0" to use: cpl_exchange2W_sIce=1'
+        WRITE(msgUnit,'(2A,I4,A)') ' *** ERROR *** CPL_READ_PARAMS: ',
+     &                '==> set ErrorCount=', cplErrorCount, ' (Fatal)'
+      ENDIF
+
 C--   Print summary of Coupler parameters value
       IF ( cplErrorCount.EQ.0 ) THEN
         WRITE(msgUnit,'(2A)') 'CPL_READ_PARAMS: ',
