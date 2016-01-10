@@ -94,7 +94,7 @@ C       |-- MYPACKAGE_CHECK
 C       |
 C       |-- GAD_CHECK
 
-      !USES:
+C     !USES:
       IMPLICIT NONE
 C     === Global variables ===
 #include "SIZE.h"
@@ -390,7 +390,7 @@ C---  Continue with standard packages (with standard usePKG flag)
 #endif
 
 #ifdef ALLOW_AUTODIFF
-      if (useAUTODIFF) CALL AUTODIFF_CHECK( myThid )
+      IF (useAUTODIFF) CALL AUTODIFF_CHECK( myThid )
 #endif
 
 #ifdef ALLOW_CTRL
