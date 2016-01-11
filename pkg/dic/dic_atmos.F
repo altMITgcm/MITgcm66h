@@ -39,12 +39,6 @@ C  myThid             :: my Thread Id number
 
 #ifdef ALLOW_DIC
 
-#ifdef USE_ATMOSCO2
-C if coupled to atmsopheric model, use the
-C CO2 value passed from the coupler
-
-#else /* USE_ATMOSCO2 */
-
 C !FUNCTIONS:       ====================================================
       LOGICAL  DIFFERENT_MULTIPLE
       EXTERNAL DIFFERENT_MULTIPLE
@@ -211,8 +205,6 @@ C--    Set AtmospCO2 for next iteration:
 #ifndef ALLOW_AUTODIFF
       ENDIF
 #endif
-
-#endif /* ndef USE_ATMOSCO2 */
 
 #endif /* ALLOW_DIC */
 

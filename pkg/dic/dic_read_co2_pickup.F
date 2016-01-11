@@ -21,12 +21,6 @@ C     myThid  :: my Thread Id number
 
 #ifdef ALLOW_DIC
 
-#ifdef USE_ATMOSCO2
-C if coupled to atmsopheric model, use the
-C CO2 value passed from the coupler
-
-#else /* USE_ATMOSCO2 */
-
 C     !FUNCTIONS
       INTEGER  MDS_RECLEN
       EXTERNAL MDS_RECLEN
@@ -81,8 +75,6 @@ C--   First check if pickup file exist
        _END_MASTER(myThid)
 c      _BARRIER
       ENDIF
-
-#endif /* ndef USE_ATMOSCO2 */
 
 #endif /*  ALLOW_DIC  */
 

@@ -19,7 +19,6 @@ C     Package-specific Options & Macros go here
 C these all need to be defined for coupling to atmospheric model:
 #undef USE_QSW
 #undef USE_QSW_UNDERICE
-#undef USE_ATMOSCO2
 #undef USE_PLOAD
 
 C use surface salinity forcing (scaled by mean surf value) for DIC & ALK forcing
