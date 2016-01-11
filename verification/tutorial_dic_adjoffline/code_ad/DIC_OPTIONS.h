@@ -10,18 +10,18 @@ C $Name$
 C     Package-specific Options & Macros go here
 
 #define DIC_BIOTIC
-#define ALLOW_FE
 #define ALLOW_O2
+#define ALLOW_FE
 #undef READ_PAR
 #undef MINFE
 #undef DIC_NO_NEG
-c these all need to be defined for coupling to
-c atmospheric model
+#undef DIC_BOUNDS
+C these all need to be defined for coupling to atmospheric model:
 #undef USE_QSW
 #undef USE_QSW_UNDERICE
-#undef USE_ATMOSCO2
 #undef USE_PLOAD
 
+C use surface salinity forcing (scaled by mean surf value) for DIC & ALK forcing
 #undef ALLOW_OLD_VIRTUALFLUX
 
 C put back bugs related to Water-Vapour in carbonate chemistry & air-sea fluxes
@@ -30,6 +30,12 @@ C put back bugs related to Water-Vapour in carbonate chemistry & air-sea fluxes
 C dissolution only below saturation horizon following method by Karsten Friis
 #undef CAR_DISS
 
+C Include self-shading effect by phytoplankton
+#undef LIGHT_CHL
+C Include iron sediment source using DOP flux
+#undef SEDFE
+
+C For Adjoint built
 #define AD_SAFE
 
 #endif /* ALLOW_DIC */
