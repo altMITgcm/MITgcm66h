@@ -53,7 +53,8 @@ c     INTEGER bi, bj
 C-    Apply Exchanges on dynamics state variable, except in Off-Line mode
 
       IF ( .NOT.staggerTimeStep ) THEN
-       CALL EXCH_UV_XYZ_RL(uVel,vVel,.TRUE.,myThid)
+       IF ( .NOT.applyExchUV_early )
+     &  CALL EXCH_UV_XYZ_RL(uVel,vVel,.TRUE.,myThid)
        IF ( .NOT.implicitIntGravWave )
      & _EXCH_XYZ_RL( wVel , myThid )
       ENDIF

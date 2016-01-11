@@ -176,6 +176,7 @@ C-    viscosity and diffusivity default value:
       hFacMinDrDefault    = 0. _d 0
       implicitIntGravWave = .FALSE.
       staggerTimeStep     = .FALSE.
+      applyExchUV_early   = .FALSE.
       doResetHFactors     = .FALSE.
       momViscosity        = .TRUE.
       momAdvection        = .TRUE.

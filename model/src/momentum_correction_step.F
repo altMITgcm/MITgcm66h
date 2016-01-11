@@ -129,5 +129,10 @@ C--   Filter (and exchange)
       ENDIF
 #endif
 
+C--   Try to fix restart (Pb at machine trucation level accumulating in wVel):
+C     Apply EXCH to horiz velocity before integrating continuity (-> wVel)
+      IF ( applyExchUV_early )
+     &  CALL EXCH_UV_3D_RL( uVel, vVel, .TRUE., Nr, myThid )
+
       RETURN
       END
