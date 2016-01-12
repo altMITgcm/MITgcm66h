@@ -249,7 +249,7 @@ C--   Time stepping parammeters
      & deltaTtracer, dTtracerLev, deltaTFreeSurf,
      & forcing_In_AB, momForcingOutAB, tracForcingOutAB,
      & momDissip_In_AB, doAB_onGtGs,
-     & abEps, alph_AB, beta_AB, startFromPickupAB2,
+     & abEps, alph_AB, beta_AB, startFromPickupAB2, applyExchUV_early,
      & tauCD, rCD, epsAB_CD, cAdjFreq,
      & chkPtFreq, pChkPtFreq, pickupSuff, pickupStrictlyMatch,
      & writePickupAtEnd,
