@@ -68,7 +68,7 @@ C-    Send data to coupling layer
 C-    Store state variables (without averaging over cplSendFrq_iter time-steps)
         DO bj=myByLo(myThid),myByHi(myThid)
          DO bi=myBxLo(myThid),myBxHi(myThid)
-c          CALL ATM_STORE_DYNVARS( bi, bj, myTime, myIter, myThid )
+           CALL ATM_STORE_DYNVARS( bi, bj, myTime, myIter, myThid )
            IF ( useThSIce ) THEN
             CALL ATM_STORE_THSICE( bi, bj, myTime, myIter, myThid )
            ENDIF

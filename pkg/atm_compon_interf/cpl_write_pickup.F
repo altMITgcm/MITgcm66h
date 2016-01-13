@@ -80,11 +80,6 @@ C     record number < 0 : a hack not to write meta files now:
 c       nj = nj-1
         j = j + 1
         CALL WRITE_REC_3D_RL( fn, fp, 1,
-     &                        atmSLPr   , -j, myIter, myThid )
-        IF (j.LE.listDim) wrFldList(j) = 'SLPress '
-
-        j = j + 1
-        CALL WRITE_REC_3D_RL( fn, fp, 1,
      &                        HeatFlux  , -j, myIter, myThid )
         IF (j.LE.listDim) wrFldList(j) = 'qHeatFlx'
 

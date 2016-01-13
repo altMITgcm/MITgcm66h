@@ -132,7 +132,7 @@ c       CALL READ_REC_3D_RL( fn, fp, 1, ocMxlD    ,  1, myIter,myThid )
 c       CALL READ_REC_3D_RL( fn, fp, 1, SSTocn    ,  2, myIter,myThid )
 c       CALL READ_REC_3D_RL( fn, fp, 1, SSSocn    ,  3, myIter,myThid )
 c       CALL READ_REC_3D_RL( fn, fp, 1, vSqocn    ,  4, myIter,myThid )
-        CALL READ_REC_3D_RL( fn, fp, 1, atmSLPr   ,  5, myIter,myThid )
+c       CALL READ_REC_3D_RL( fn, fp, 1, atmSLPr   ,  5, myIter,myThid )
         CALL READ_REC_3D_RL( fn, fp, 1, HeatFlux  ,  6, myIter,myThid )
         CALL READ_REC_3D_RL( fn, fp, 1, qShortWave,  7, myIter,myThid )
         CALL READ_REC_3D_RL( fn, fp, 1, tauX      ,  8, myIter,myThid )
@@ -164,8 +164,6 @@ C---    read ATM_CPL 3-D fields for restart
         nj = nj*Nr
 
 C---    read ATM_CPL 2-D fields for restart
-        CALL READ_MFLDS_3D_RL( 'SLPress ', atmSLPr,
-     &                                 nj, fp, 1 , myIter, myThid )
         CALL READ_MFLDS_3D_RL( 'qHeatFlx', HeatFlux,
      &                                 nj, fp, 1 , myIter, myThid )
         CALL READ_MFLDS_3D_RL( 'qShortW ', qShortWave,
