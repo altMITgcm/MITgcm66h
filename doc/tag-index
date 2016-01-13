@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint65s (2016/01/13)
 o eesupp & genmake2:
    - first check for Function ETIME and, if it fails, then check for subroutine
      ETIME and consistent output; use the appropriate version in timers.F
