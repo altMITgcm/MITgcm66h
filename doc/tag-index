@@ -4,6 +4,12 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/atm_compon_interf:
+  - skip time-ave over cpl_atmSendFrq of Sea-Level Pressure (atmSLPr) and just 
+    pass last value, stored directly before export to CPL ;
+    Note: this affects results of Coupled set-up where OCN uses useImportSLP=T
+  - remove atmSLPr from pickup files (no longer needed for restart)
+
 checkpoint65s (2016/01/13)
 o eesupp & genmake2:
    - first check for Function ETIME and, if it fails, then check for subroutine
