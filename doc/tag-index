@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o eesupp & genmake2:
+   - first check for Function ETIME and, if it fails, then check for subroutine
+     ETIME and consistent output; use the appropriate version in timers.F
 o model/src:
   - to check restart test, add option to apply EXCH to U,V earlier, just before
     integr_continuity; turned off by default.
