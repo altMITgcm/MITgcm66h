@@ -35,7 +35,9 @@ C                      (default=GGL90TKEmin)
 C     GGL90TKEFile    - File with initial field of TKE
 C     GGL90mixingLengthMin - Mininum mixing length
 C     mxlMaxFlag      - Flag for limiting mixing-length method (default=0)
-C     mxlSurfFlag     - Flag to force mixing near ocean surface (default=.FALSE.)
+C     mxlSurfFlag     - Flag to force mixing near ocean surface (default= F )
+C     calcMeanVertShear :: calculate the mean (@ grid-cell center) of vertical
+C                          shear compon. (instead of vert. shear of mean flow)
 C
 C     useIDEMIX       - turn on internal wave mixing contribution modeled by
 C                       IDEMIX version 1:
@@ -89,10 +91,12 @@ CEOP
      &     GGL90viscArU, GGL90viscArV, GGL90diffKr
 
       LOGICAL GGL90isOn, GGL90mixingMaps, GGL90writeState
-      LOGICAL GGL90_dirichlet, mxlSurfFlag, useIDEMIX
+      LOGICAL GGL90_dirichlet, mxlSurfFlag, calcMeanVertShear
+      LOGICAL useIDEMIX
       COMMON /GGL90_PARMS_L/
      &     GGL90isOn, GGL90mixingMaps, GGL90writeState,
-     &     GGL90_dirichlet, mxlSurfFlag, useIDEMIX
+     &     GGL90_dirichlet, mxlSurfFlag, calcMeanVertShear,
+     &     useIDEMIX
 
 #ifdef ALLOW_GGL90_SMOOTH
       COMMON /GGL90_CORNER/ mskCor
