@@ -1318,10 +1318,6 @@ done
 if test $count = 1 ; then echo "" ; echo -n " ... " ; fi
 #echo 'TESTDIRS='${TESTDIRS}'<'
 
-if test "x$OPTFILE" = xNONE -a "x$MITGCM_OF" != x ; then
-    OPTFILE=$MITGCM_OF
-fi
-
 LOC_MFILE='tr_mpi_mfile'
 RUNLOG="run.tr_log"
 if test "x$MPI" = x0 ; then
