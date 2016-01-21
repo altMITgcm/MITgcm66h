@@ -294,6 +294,11 @@ C     Elastic-Viscous-Plastic solver, following Hunke (2001)
        ENDIF
 #endif /* SEAICE_ALLOW_EVP */
 
+       IF ( SEAICEuseLSR ) THEN
+C     LSR scheme (Zhang-J/Hibler 1997), ported to a C-grid
+        CALL SEAICE_LSR( myTime, myIter, myThid )
+       ENDIF
+
 #ifdef SEAICE_ALLOW_JFNK
        IF ( SEAICEuseJFNK ) THEN
 # ifdef ALLOW_AUTODIFF_TAMC
@@ -304,18 +309,6 @@ C     Jacobian-free Newton Krylov solver (Lemieux et al. 2010, 2012)
 # endif /*  ALLOW_AUTODIFF_TAMC */
        ENDIF
 #endif /* SEAICE_ALLOW_JFNK */
-
-#if defined(SEAICE_ALLOW_EVP) || defined(SEAICE_ALLOW_JFNK) \
-                              || defined(SEAICE_ALLOW_FREEDRIFT)
-       IF ( .NOT.SEAICEuseFREEDRIFT .AND. .NOT.SEAICEuseEVP
-     &      .AND. .NOT.SEAICEuseJFNK ) THEN
-#endif /* SEAICE_ALLOW_EVP or SEAICE_ALLOW_FREEDRIFT */
-C     LSR scheme (Zhang-J/Hibler 1997), ported to a C-grid
-          CALL SEAICE_LSR( myTime, myIter, myThid )
-#if defined(SEAICE_ALLOW_EVP) || defined(SEAICE_ALLOW_JFNK) \
-                              || defined(SEAICE_ALLOW_FREEDRIFT)
-       ENDIF
-#endif /* SEAICE_ALLOW_EVP or SEAICE_ALLOW_FREEDRIFT */
 
 C End of IF (SEAICEuseDYNAMICS ...
       ENDIF

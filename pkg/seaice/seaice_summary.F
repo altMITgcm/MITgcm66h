@@ -121,6 +121,10 @@ C--  Seaice-Dynamics parameters
 #endif /* SEAICE_CGRID */
       CALL WRITE_0D_L ( SEAICEuseStrImpCpl, INDEX_NONE,
      & 'SEAICEuseStrImpCpl =', ' /* use strongly implicit coupling */')
+      CALL WRITE_0D_L ( SEAICEusePicardAsPrecon, INDEX_NONE,
+     & 'SEAICEusePicardAsPrecon =', ' /* Picard as preconditioner */')
+      CALL WRITE_0D_L ( SEAICEuseLSR, INDEX_NONE,
+     & 'SEAICEuseLSR      =', ' /* use default LSR solver */')
       CALL WRITE_0D_L ( SEAICEuseEVP, INDEX_NONE,
      & 'SEAICEuseEVP      =', ' /* use EVP solver rather than LSR */')
 #ifdef SEAICE_ALLOW_FREEDRIFT
