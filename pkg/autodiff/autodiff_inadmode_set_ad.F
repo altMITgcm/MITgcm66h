@@ -43,6 +43,7 @@ C     myThid :: my Thread Id number
 #ifdef ALLOW_SEAICE
       IF ( SEAICEuseFREEDRIFTswitchInAd ) THEN
         SEAICEuseFREEDRIFT = .NOT.SEAICEuseFREEDRIFTinFwdMode
+        SEAICEuseLSR       = .NOT.SEAICEuseFREEDRIFT
       ENDIF
       IF ( SEAICEuseDYNAMICSswitchInAd ) THEN
         SEAICEuseDYNAMICS  = .NOT.SEAICEuseDYNAMICSinFwdMode
@@ -92,6 +93,10 @@ C     myThid :: my Thread Id number
        IF ( SEAICEuseFREEDRIFTswitchInAd ) THEN
          WRITE(msgBuf,'(2A,L5)') 'S/R ADAUTODIFF_INADMODE_SET: ',
      &        'SEAICEuseFREEDRIFT =', SEAICEuseFREEDRIFT
+         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                       SQUEEZE_RIGHT, myThid )
+         WRITE(msgBuf,'(2A,L5)') 'S/R ADAUTODIFF_INADMODE_SET: ',
+     &        'SEAICEuseLSR       =', SEAICEuseLSR
          CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                       SQUEEZE_RIGHT, myThid )
        ENDIF
