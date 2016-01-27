@@ -235,22 +235,22 @@ C                the bottom of ocean surface level
       COMMON /SEAICE_SW_R/
      &       SWFracB
 
-#ifdef SEAICE_ALLOW_JFNK
-C     diagnostics for the JFNK solver
+#if (defined SEAICE_ALLOW_JFNK) || (defined SEAICE_ALLOW_KRYLOV)
+C     diagnostics for the JFNK and Krylov solver
       INTEGER totalNewtonIters
       INTEGER totalNewtonFails
       INTEGER totalKrylovIters
       INTEGER totalKrylovFails
       INTEGER totalJFNKtimeSteps
-      COMMON /SEAICE_JFNK_I/
+      COMMON /SEAICE_SOLVER_I/
      &     totalNewtonIters, totalNewtonFails,
      &     totalKrylovIters, totalKrylovFails,
      &     totalJFNKtimeSteps
       INTEGER nVec
       PARAMETER ( nVec=2*sNx*sNy )
       _RL scalarProductMetric( nVec, 1, nSx, nSy )
-      COMMON /SEAICE_JFNK_RL/ scalarProductMetric
-#endif /* SEAICE_ALLOW_JFNK */
+      COMMON /SEAICE_KRYLOV_RL/ scalarProductMetric
+#endif /* SEAICE_ALLOW_JFNK or SEAICE_ALLOW_KRYLOV */
 
 CEH3 ;;; Local Variables: ***
 CEH3 ;;; mode:fortran ***
