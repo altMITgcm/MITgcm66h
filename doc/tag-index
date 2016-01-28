@@ -5,6 +5,8 @@ $Name$
     ==============================
 
 o pkg/seaice:
+  - change the termination criterion so that maxits (SEAICElinearIterMax)
+    has an effect
   - unify iteration parameters for implicit solvers (JFNK and Picard)
     SEAICEnonLinIterMax replaces SEAICEnewtonIterMax/NPSEUDOTIMESTEPS
     SEAICElinearIterMax replaces SEAICEkrylovIterMax/SOLV_MAX_ITER
