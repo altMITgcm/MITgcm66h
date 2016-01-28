@@ -545,7 +545,10 @@ C
      &      SQUEEZE_RIGHT, myThid )
        _END_MASTER( myThid )
       endif
-      if (i .lt. im .and. (ro .gt. eps1))  goto 4
+CML   The original code uses only im as the maximum allowed iterations, but
+CML   I want no more than maxits iterations, so we change the code here.
+CML      if (i .lt. im .and. (ro .gt. eps1))  goto 4
+      if (i .lt. im .and. its .lt. maxits .and. (ro .gt. eps1)) goto 4
 C
 C     now compute solution. first solve upper triangular system.
 C
