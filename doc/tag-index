@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src:
+  - fix vertical inter/extra-polation of density factor rhoFacF (for anelastic)
+    for the case setCenterDr=T (delRc set from "data"); add output of rhoFacC&F.
+    Update output of exp. deep_anelastic (changes at truncation level).
 o tools:
   - add a hack in "remove_comments_sed" (used only with TAF) for recent
     version of OpenMPI (shipped with FC.23): comment out the new header
