@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/atm_phys:
+  - from Ruth Geen: add optical depth dependence on CO2 concentration.
 o model/src:
   - fix vertical inter/extra-polation of density factor rhoFacF (for anelastic)
     for the case setCenterDr=T (delRc set from "data"); add output of rhoFacC&F.
