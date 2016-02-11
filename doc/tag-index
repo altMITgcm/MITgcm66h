@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint65t (2016/02/10)
 o pkg/atm_phys:
   - from Ruth Geen: add optical depth dependence on CO2 concentration.
 o model/src:
