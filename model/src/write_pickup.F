@@ -265,7 +265,7 @@ C--   W velocity:
 #endif /*  ALLOW_ADAMSBASHFORTH_3 */
 
 C-    write Full Pressure for EOS in pressure:
-       IF ( useDynP_inEos_Zc ) THEN
+       IF ( storePhiHyd4Phys ) THEN
         j = j + 1
         CALL WRITE_REC_3D_RL( fn, fp, Nr,totPhiHyd,-j,myIter, myThid )
         IF (j.LE.listDim) wrFldList(j) = 'PhiHyd  '
@@ -400,7 +400,7 @@ c         CALL MNC_CW_RL_W('D',fn,0,0,'gW', gW, myThid)
 #endif
         ENDIF
 #endif
-        IF ( useDynP_inEos_Zc ) THEN
+        IF ( storePhiHyd4Phys ) THEN
           CALL MNC_CW_RL_W('D',fn,0,0,'phiHyd', totPhiHyd, myThid)
         ENDIF
         CALL MNC_FILE_CLOSE_ALL_MATCHING(fn, myThid)

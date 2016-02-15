@@ -85,7 +85,7 @@ c     ENDIF
 #ifdef ALLOW_CD_CODE
       CALL EXCH_UV_DGRID_3D_RL( uVelD,vVelD, .TRUE., Nr, myThid )
 #endif
-      IF ( useDynP_inEos_Zc )
+      IF ( storePhiHyd4Phys )
      & _EXCH_XYZ_RL( totPhiHyd , myThid )
 C-    if not useOffLine: end
       ENDIF

@@ -474,7 +474,8 @@ CML      pLoc = ABS(rC(kRef))*mtoSI
 
       IF ( usingZCoords ) THEN
 C     in Z coordinates the pressure is rho0 * (hydrostatic) Potential
-       IF ( useDynP_inEos_Zc ) THEN
+c      IF ( selectP_inEOS_Zc.GE.2 ) THEN
+       IF ( storePhiHyd4Phys ) THEN
 C----------
 C     NOTE: For now, totPhiHyd only contains the Potential anomaly
 C           since PhiRef is not available for Atmos and has not (yet)
