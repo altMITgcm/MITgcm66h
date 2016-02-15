@@ -140,7 +140,7 @@ c--   use weight as mask
 
 c     IF ( SHELFICEloadAnomalyFile .EQ. ' ' ) THEN
 C-   In case we need shelficeLoadAnomaly in phi0surf for initial pressure
-C    calculation when useDynP_inEos_Zc
+C    calculation (if using selectP_inEOS_Zc=2 or 3)
        DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
          DO j = 1-OLy, sNy+OLy
