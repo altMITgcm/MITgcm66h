@@ -355,7 +355,7 @@ C     Error in cal_CheckDate
          CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
          CALL PRINT_ERROR( msgBuf , 1)
          WRITE(msgBuf,'(A)')
-     &    '               --> This only means that the format is ok!'
+     &    '   This only means that the format is ok'
          CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1)
          CALL PRINT_ERROR( msgBuf , 1)
         else if (nerrcode .eq. 1) then
