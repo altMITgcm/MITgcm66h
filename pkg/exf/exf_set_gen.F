@@ -91,6 +91,9 @@ C     msgBuf     :: Informational/error message buffer
       INTEGER bi, bj, i, j
       _RL     fac
       CHARACTER*(128) genfile0, genfile1
+#ifdef ALLOW_EXF_OUTPUT_INTERP
+      CHARACTER*(128) outfile0, outfile1
+#endif
 
 C     == end of interface ==
 
@@ -176,6 +179,12 @@ C-    get record numbers and interpolation factor for gen
 #endif /* USE_EXF_INTERPOLATION */
 
             CALL exf_filter_rl( gen1, genmask, myThid )
+
+#ifdef ALLOW_EXF_OUTPUT_INTERP
+           j = ILNBLNK(genfile0)
+           WRITE(outfile0,'(2A)') 'out_',genfile0(1:j)
+           CALL WRITE_REC_XY_RL(outfile0,gen1,count0,myIter,myThid)
+#endif
          ENDIF
 
          IF ( first .OR. changed ) THEN
@@ -214,6 +223,12 @@ C-    get record numbers and interpolation factor for gen
 #endif /* USE_EXF_INTERPOLATION */
 
             CALL exf_filter_rl( gen1, genmask, myThid )
+
+#ifdef ALLOW_EXF_OUTPUT_INTERP
+           j = ILNBLNK(genfile1)
+           WRITE(outfile1,'(2A)') 'out_',genfile1(1:j)
+           CALL WRITE_REC_XY_RL(outfile1,gen1,count1,myIter,myThid)
+#endif
          ENDIF
 
 C     Loop over tiles.
