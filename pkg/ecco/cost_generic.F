@@ -415,7 +415,14 @@ c--     output model-data difference to disk
      &    WRITE_REC_XYZ_RL(fname3,localdifmeanOut,1,eccoiter,mythid)
         endif
       endif
-
+      if ( outlev.GT.1 ) then
+          il=ilnblnk(outname)
+          write(fname3(1:128),'(2a)') 'weight_', outname(1:il)
+          if ( nnzobs.EQ.1 ) CALL
+     &    WRITE_REC_XY_RL( fname3, localweight,irec, eccoiter, mythid )
+          if ( nnzobs.EQ.nr ) CALL
+     &    WRITE_REC_XYZ_RL( fname3, localweight,irec, eccoiter, mythid )
+      endif
 
 
 #endif /* ALLOW_ECCO */
