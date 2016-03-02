@@ -90,8 +90,8 @@ c     == end of interface ==
 
       kgen=0
       do k=1,NGENCOST
-      if ( (gencost_barfile(k)(1:4).EQ.'m_bp').AND.
-     &     (using_gencost(k)) ) kgen=k
+        if ( (gencost_name(k).EQ.'bpv4-grace').AND.
+     &       (using_gencost(k)) ) kgen=k
       enddo
 
       if (kgen.GT.0) then
@@ -288,13 +288,13 @@ c--    Smooth field of anomalies
 
 #ifdef ALLOW_SMOOTH
       if ( useSMOOTH )
-     &  call smooth_basic2D(bpdifanom,maskc,500000. _d 0,5000,mythid)
+     &  call smooth_basic2D(bpdifanom,maskc,300000. _d 0,3000,mythid)
 #endif
 
       if (gencost_outputlevel(kgen).GT.0) then
 #ifdef ALLOW_SMOOTH
       if ( useSMOOTH ) 
-     &  call smooth_basic2D(bpdatanom,maskc,500000. _d 0,5000,mythid)
+     &  call smooth_basic2D(bpdatanom,maskc,300000. _d 0,3000,mythid)
 #endif
 
       write(fname4test(1:80),'(1a)') 'bpdifanom_smooth'
