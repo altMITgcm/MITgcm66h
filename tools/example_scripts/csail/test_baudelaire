@@ -101,7 +101,10 @@ do
   #- define list of additional experiences to test:
   addExp=''
   if test $typ = 'mp2' -o $typ = 'ifc' ; then
-    addExp='offline_cheapaml atm_gray'
+    addExp="offline_cheapaml atm_gray"
+  fi
+  if test $typ = 'gfo' -o $typ = 'ifc' ; then
+    addExp="$addExp shelfice_remeshing"
   fi
   #- check day and time:
   curDay=`date +%d` ; curHour=`date +%H`
