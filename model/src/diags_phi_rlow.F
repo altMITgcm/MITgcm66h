@@ -88,7 +88,7 @@ C  --  Finite Volume Form
            IF ( k .EQ. kLowC(i,j,bi,bj) ) THEN
              ddRloc = rC(k)-R_low(i,j,bi,bj)
              phiHydLow(i,j,bi,bj) = phiHydC(i,j)
-     &            + ddRloc*gravity*alphRho(i,j)*recip_rhoConst
+     &        + ddRloc*gravFacC(k)*gravity*alphRho(i,j)*recip_rhoConst
            ENDIF
           ENDDO
          ENDDO
@@ -100,6 +100,8 @@ C  --  Finite Difference Form
          ratioRp = oneRL
          IF (k.GT.1 ) ratioRm = halfRL*drC(k)/(rF(k)-rC(k))
          IF (k.LT.Nr) ratioRp = halfRL*drC(k+1)/(rC(k)-rF(k+1))
+         ratioRm = ratioRm*gravFacF(k)
+         ratioRp = ratioRp*gravFacF(k+1)
 
          DO j=jMin,jMax
           DO i=iMin,iMax

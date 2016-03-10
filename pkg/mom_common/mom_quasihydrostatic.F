@@ -57,7 +57,8 @@ CEOP
       IF ( usingZCoords ) THEN
 C--   Z-coordinate case: Input is density anomaly
 
-        scalingFactor=rhoConst*gravitySign*recip_gravity
+        scalingFactor = rhoConst*gravitySign
+     &                          *recip_gravity*recip_gravFacC(k)
 C-    to reproduce old (wrong) results:
 c       scalingFactor=gravitySign*recip_gravity
 
