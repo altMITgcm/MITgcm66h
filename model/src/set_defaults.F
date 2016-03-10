@@ -46,6 +46,7 @@ C-    Vertical gridding
       delRcFile           = ' '
       hybSigmFile         = ' '
       Ro_SeaLevel         = 0.
+      phi0Ref             = UNSET_RL
       rSigmaBnd           = UNSET_RL
       selectSigmaCoord    = 0
       DO k=1,Nr
@@ -64,7 +65,6 @@ C-    vertical profile
        tRef(k)            = UNSET_RL
        sRef(k)            = UNSET_RL
       ENDDO
-      phi0Ref             = 0.
 
 C-    Horizontal gridding
       delXFile            = ' '
