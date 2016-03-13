@@ -63,6 +63,30 @@ C ENUM_SOM_LIMITER :: 2nd Order-Moment Advection Scheme, Prather Limiter
       INTEGER ENUM_SOM_LIMITER
       PARAMETER(ENUM_SOM_LIMITER=81)
 
+C ENUM_PPM_NULL :: piecewise parabolic method with "null" limiter
+      INTEGER ENUM_PPM_NULL_LIMIT
+      PARAMETER(ENUM_PPM_NULL_LIMIT=40)
+
+C ENUM_PPM_MONO :: piecewise parabolic method with "mono" limiter
+      INTEGER ENUM_PPM_MONO_LIMIT
+      PARAMETER(ENUM_PPM_MONO_LIMIT=41)
+
+C ENUM_PPM_WENO :: piecewise parabolic method with "weno" limiter
+      INTEGER ENUM_PPM_WENO_LIMIT
+      PARAMETER(ENUM_PPM_WENO_LIMIT=42)
+
+C ENUM_PQM_NULL :: piecewise quartic method with "null" limiter
+      INTEGER ENUM_PQM_NULL_LIMIT
+      PARAMETER(ENUM_PQM_NULL_LIMIT=50)
+
+C ENUM_PQM_MONO :: piecewise quartic method with "mono" limiter
+      INTEGER ENUM_PQM_MONO_LIMIT
+      PARAMETER(ENUM_PQM_MONO_LIMIT=51)
+
+C ENUM_PQM_WENO :: piecewise quartic method with "weno" limiter
+      INTEGER ENUM_PQM_WENO_LIMIT
+      PARAMETER(ENUM_PQM_WENO_LIMIT=52)
+
 C GAD_Scheme_MaxNum :: maximum possible number for an advection scheme
       INTEGER GAD_Scheme_MaxNum
       PARAMETER( GAD_Scheme_MaxNum = 100 )

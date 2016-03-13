@@ -55,6 +55,12 @@ C-  Set advection scheme parameter (overlap minimum size) for each scheme:
       CALL GAD_ADVSCHEME_SET( ENUM_OS7MP         , 4, errCode, myThid )
       CALL GAD_ADVSCHEME_SET( ENUM_SOM_PRATHER   , 1, errCode, myThid )
       CALL GAD_ADVSCHEME_SET( ENUM_SOM_LIMITER   , 1, errCode, myThid )
+      CALL GAD_ADVSCHEME_SET( ENUM_PPM_NULL_LIMIT, 3, errCode, myThid )
+      CALL GAD_ADVSCHEME_SET( ENUM_PPM_MONO_LIMIT, 3, errCode, myThid )
+      CALL GAD_ADVSCHEME_SET( ENUM_PPM_WENO_LIMIT, 3, errCode, myThid )
+      CALL GAD_ADVSCHEME_SET( ENUM_PQM_NULL_LIMIT, 4, errCode, myThid )
+      CALL GAD_ADVSCHEME_SET( ENUM_PQM_MONO_LIMIT, 4, errCode, myThid )
+      CALL GAD_ADVSCHEME_SET( ENUM_PQM_WENO_LIMIT, 4, errCode, myThid )
       IF ( errCode.GT.0 ) THEN
         WRITE(msgBuf,'(A)')
      &     'GAD_INIT_FIXED: Invalid Advection-Scheme Number setting'
