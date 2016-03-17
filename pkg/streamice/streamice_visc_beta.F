@@ -89,7 +89,6 @@ C     LOCAL VARIABLES
 
            second_inv = 
      &      sqrt(exx**2+eyy**2+exx*eyy+exy**2+eps_glen_min**2)
-              
 
 
            visc_streamice(i,j,bi,bj) = 
