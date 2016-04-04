@@ -26,9 +26,9 @@ C     !USES:
 # include "W2_EXCH2_TOPOLOGY.h"
 #endif /* ALLOW_EXCH2 */
 #include "EOS.h"
-#include "SET_GRID.h"
-C- needed to save, in rF(1), half retired param Ro_SeaLevel value:
+C- need GRID.h to save, in rF(1), half retired param Ro_SeaLevel value:
 #include "GRID.h"
+#include "SET_GRID.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     myThid :: Number of this instance of INI_PARMS
