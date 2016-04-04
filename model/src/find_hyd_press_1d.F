@@ -79,7 +79,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT, myThid )
 
-      pInt(1)  = rhoConst*phi0Ref
+      pInt(1)  = top_Pres
       searchForP = .TRUE.
       nUnderCrit = 0
       DO n=1,maxIterNb

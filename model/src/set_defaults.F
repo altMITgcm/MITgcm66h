@@ -45,8 +45,8 @@ C-    Vertical gridding
       delRFile            = ' '
       delRcFile           = ' '
       hybSigmFile         = ' '
-      Ro_SeaLevel         = 0.
-      phi0Ref             = UNSET_RL
+      seaLev_Z            = UNSET_RL
+      top_Pres            = UNSET_RL
       rSigmaBnd           = UNSET_RL
       selectSigmaCoord    = 0
       DO k=1,Nr
