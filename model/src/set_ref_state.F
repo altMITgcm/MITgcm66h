@@ -173,7 +173,7 @@ C--   Compute reference density profile
      O                          rhoRef(k), myThid )
         ENDDO
 
-        IF ( selectP_inEOS_Zc.EQ.1 ) THEN
+        IF ( selectP_inEOS_Zc.GE.1 ) THEN
 C--   Find reference pressure in hydrostatic balance with updated ref density
           maxResid = rhoConst* 1. _d -14
           belowCritNb = 5
@@ -369,7 +369,7 @@ C-    write gravity vertical profile factor to binary file:
         CALL WRITE_GLVEC_RL( 'GravFacC',' ',gravFacC, Nr, -1, myThid )
         CALL WRITE_GLVEC_RL( 'GravFacF',' ',gravFacF,Nr+1,-1, myThid )
       ENDIF
-      IF ( selectP_inEOS_Zc.EQ.1 ) THEN
+      IF ( selectP_inEOS_Zc.GE.1 ) THEN
 C-    write (to binary file) Hyd-Pressure used in EOS:
         CALL WRITE_GLVEC_RL( 'PRef4EOS',' ',pRef4EOS, Nr, -1, myThid )
 c       CALL WRITE_GLVEC_RL( 'PRefLocF',' ',pRefLocF,Nr+1,-1, myThid )
