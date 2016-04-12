@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o verification/halfpipe_streamice:
+  - update both TAF and OpenAD adm output (machine truncation differences)
+
 checkpoint65v (2016/04/08)
 o verification/advect_xz:
   - increase overlap size from 3 to 4 and add new secondary test for PQM
