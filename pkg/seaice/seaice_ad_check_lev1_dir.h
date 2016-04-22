@@ -39,6 +39,9 @@ CADJ STORE stressdivergencey = comlev1, key=ikey_dynamics, kind=isbyte
 #  ifdef SEAICE_CGRID
 CADJ STORE etan        = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE dwatn       = comlev1, key=ikey_dynamics, kind=isbyte
+#ifdef SEAICE_ALLOW_BOTTOMDRAG
+CADJ STORE cbotc       = comlev1, key=ikey_dynamics, kind=isbyte
+#endif
 CADJ STORE seaicemasku = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE seaicemaskv = comlev1, key=ikey_dynamics, kind=isbyte
 #  endif

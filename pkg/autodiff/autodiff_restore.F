@@ -469,6 +469,9 @@ cph          TICES(I,J,bi,bj)     = StoreSEAICE(I,J,bi,bj,6)
           ETA(I,J,bi,bj)       = StoreSEAICE(I,J,bi,bj,10)
 #  ifdef SEAICE_CGRID
           dwatn(I,J,bi,bj)          = StoreSEAICE(I,J,bi,bj,11)
+#   ifdef SEAICE_ALLOW_BOTTOMDRAG
+          cbotc(I,J,bi,bj)          = StoreSEAICE(I,J,bi,bj,12)
+#   endif /* SEAICE_ALLOW_BOTTOMDRAG */
 CML          seaicemasku(I,J,bi,bj)    = StoreSEAICE(I,J,bi,bj,12)
 CML          seaicemaskv(I,J,bi,bj)    = StoreSEAICE(I,J,bi,bj,13)
 #  endif /* SEAICE_CGRID */

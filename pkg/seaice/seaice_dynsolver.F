@@ -125,7 +125,8 @@ C--   NOW SET UP MASS PER UNIT AREA AND CORIOLIS TERM
 
 #ifndef ALLOW_AUTODIFF_TAMC
       IF ( SEAICE_maskRHS ) THEN
-C     dynamic masking of areas with no ice
+C     dynamic masking of areas with no ice, not recommended
+C     and only kept for testing purposes
        DO bj=myByLo(myThid),myByHi(myThid)
         DO bi=myBxLo(myThid),myBxHi(myThid)
          DO j=1-OLy+1,sNy+OLy
@@ -336,6 +337,9 @@ CADJ &     key=ikey_dynamics, kind=isbyte
 CADJ STORE stressDivergenceY  = comlev1,
 CADJ &     key=ikey_dynamics, kind=isbyte
 CADJ STORE DWATN  = comlev1, key=ikey_dynamics, kind=isbyte
+#ifdef SEAICE_ALLOW_BOTTOMDRAG
+CADJ STORE CbotC  = comlev1, key=ikey_dynamics, kind=isbyte
+#endif /* SEAICE_ALLOW_BOTTOMDRAG */
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C Calculate ocean surface stress

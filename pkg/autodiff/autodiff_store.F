@@ -567,9 +567,13 @@ C-      2D arrays
           StoreSEAICE(I,J,bi,bj,10) = ETA(I,J,bi,bj)
 #  ifdef SEAICE_CGRID
           StoreSEAICE(I,J,bi,bj,11) = dwatn(I,J,bi,bj)
+#   ifdef SEAICE_ALLOW_BOTTOMDRAG
+          StoreSEAICE(I,J,bi,bj,12) = cbotc(I,J,bi,bj)
+#   else
+          StoreSEAICE(I,J,bi,bj,12) = 0.0
+#   endif /* SEAICE_ALLOW_BOTTOMDRAG */
 CML          StoreSEAICE(I,J,bi,bj,12) = seaicemasku(I,J,bi,bj)
 CML          StoreSEAICE(I,J,bi,bj,13) = seaicemaskv(I,J,bi,bj)
-          StoreSEAICE(I,J,bi,bj,12) = 0.0
           StoreSEAICE(I,J,bi,bj,13) = 0.0
 #  else
           StoreSEAICE(I,J,bi,bj,11) = 0.0

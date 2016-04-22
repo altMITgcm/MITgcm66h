@@ -116,6 +116,9 @@ cphCADJ STORE eta   = comlev1, key=ikey_dynamics, kind=isbyte
 cphCADJ STORE zeta  = comlev1, key=ikey_dynamics, kind=isbyte
 cph(
 CADJ STORE dwatn    = comlev1, key=ikey_dynamics, kind=isbyte
+#ifdef SEAICE_ALLOW_BOTTOMDRAG
+CADJ STORE cbotc    = comlev1, key=ikey_dynamics, kind=isbyte
+#endif /* SEAICE_ALLOW_BOTTOMDRAG */
 cccCADJ STORE press0   = comlev1, key=ikey_dynamics, kind=isbyte
 cccCADJ STORE taux   = comlev1, key=ikey_dynamics, kind=isbyte
 cccCADJ STORE tauy  = comlev1, key=ikey_dynamics, kind=isbyte
