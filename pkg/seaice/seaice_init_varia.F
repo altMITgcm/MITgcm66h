@@ -299,6 +299,9 @@ C
           GWATY(i,j,bi,bj)  = 0. _d 0
 #endif /* SEAICE_CGRID */
           DWATN(i,j,bi,bj)  = 0. _d 0
+#ifdef SEAICE_ALLOW_BOTTOMDRAG
+          CbotC(i,j,bi,bj)  = 0. _d 0
+#endif /* SEAICE_ALLOW_BOTTOMDRAG */
           PRESS0(i,j,bi,bj) = 0. _d 0
           FORCEX0(i,j,bi,bj)= 0. _d 0
           FORCEY0(i,j,bi,bj)= 0. _d 0

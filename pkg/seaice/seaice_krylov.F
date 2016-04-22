@@ -205,6 +205,17 @@ C     the Krylov iteration)
      I      uIceLin, vIceLin,
      O      DWATN,
      I      0, myTime, myIter, myThid )
+#ifdef SEAICE_ALLOW_BOTTOMDRAG
+       IF (SEAICEbasalDragK2.GT.0. _d 0) CALL SEAICE_BOTTOMDRAG_COEFFS(
+     I      uIceLin, vIceLin,
+#ifdef SEAICE_ITD
+     I      HEFFITD, AREAITD, AREA,
+#else
+     I      HEFF, AREA,
+#endif      
+     O      CbotC,
+     I      0, myTime, myIter, myThid )
+#endif /* SEAICE_ALLOW_BOTTOMDRAG */
        CALL SEAICE_CALC_STRAINRATES(
      I      uIceLin, vIceLin,
      O      e11, e22, e12,
