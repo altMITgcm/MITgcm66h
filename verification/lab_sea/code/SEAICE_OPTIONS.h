@@ -101,6 +101,9 @@ C     This modification improves the convergence of the vector code
 C     dramatically, so that is may actually be useful in general, but
 C     that needs to be tested. Can be used without vectorization options.
 # define SEAICE_LSR_ZEBRA
+C     Use parameterisation of grounding ice for a better representation
+C     of fastice in shallow seas
+# define SEAICE_ALLOW_BOTTOMDRAG
 #else /* not SEAICE_CGRID, but old B-grid */
 C--   By default for B-grid dynamics solver wind stress under sea-ice is
 C     set to the same value as it would be if there was no sea-ice.
