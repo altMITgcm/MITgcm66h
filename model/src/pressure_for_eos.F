@@ -58,7 +58,7 @@ C-     use full (hydrostatic+non-hydrostatic) dynamical pressure:
           DO i=1-OLx,sNx+OLx
             locPres(i,j) = rhoConst*(
      &                   totPhiHyd(i,j,k,bi,bj)
-     &                 + phi_nh(i,j,k,bi,bj)
+     &                 +( phi_nh(i,j,k,bi,bj) - dPhiNH(i,j,bi,bj) )
      &                 + phiRef(2*k) )
 c    &                             *maskC(i,j,k,bi,bj)
           ENDDO
