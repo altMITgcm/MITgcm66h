@@ -120,7 +120,7 @@ c    &                                   *(wVel(i,j,1,bi,bj)+PmE)
         ENDDO
        ENDDO
        IF ( selectNHfreeSurf.GE.1 .AND.
-     &      implicitNHPress.LT.1. _d 0 ) THEN
+     &  ( implicitNHPress.LT.oneRL .OR. selectP_inEOS_Zc.EQ.3 ) ) THEN
          CALL EXCH_XY_RL( dPhiNH, myThid )
        ENDIF
       ENDIF
