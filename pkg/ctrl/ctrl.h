@@ -307,7 +307,7 @@ C
       common /controlvars_r_openad/
      &        xx_place_holder
 # ifdef ECCO_CTRL_DEPRECATED
-     &        xx_theta
+     &      , xx_theta
      &      , xx_salt
      &      , xx_uvel
      &      , xx_vvel
