@@ -419,7 +419,7 @@ CML            deltaCreg  = SQRT(deltaSq + deltaMinSq)
             deltaCreg  = MAX(deltaC(I,J,bi,bj),SEAICE_deltaMin)
 #endif /* SEAICE_DELTA_SMOOTHREG */
             zetaC(I,J) = HALF*( press0(I,J,bi,bj) 
-     &           + tensileStrength(I,J,bi,bj) 
+     &           * ( 1. _d 0 + tensileStrFac(I,J,bi,bj) )
      &           )/deltaCreg
            ENDDO
           ENDDO
@@ -480,10 +480,11 @@ C     masked by boundaries/land points
 C     recompute pressure
           DO j=0,sNy+1
            DO i=0,sNx+1
-            pressC(I,J) = press0(I,J,bi,bj)
-     &           * ( 1. _d 0 - SEAICEpressReplFac )
-     &           +TWO*zetaC(I,J)*deltaC(I,J,bi,bj)*SEAICEpressReplFac
-     &           - 2. _d 0 * tensileStrength(I,J,bi,bj)
+            pressC(I,J) = 
+     &           ( press0(I,J,bi,bj) * ( 1. _d 0 - SEAICEpressReplFac )
+     &           + TWO*zetaC(I,J)*deltaC(I,J,bi,bj)*SEAICEpressReplFac
+     &             /(1. _d 0 + tensileStrFac(I,J,bi,bj))
+     &           ) * (1. _d 0 - tensileStrFac(I,J,bi,bj))
            ENDDO
           ENDDO
 #ifdef ALLOW_DIAGNOSTICS

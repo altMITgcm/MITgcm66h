@@ -99,7 +99,7 @@ C     viscosities are required
      O     e11, e22, e12,
      I     krylovIter, myTime, myIter, myThid )
       CALL SEAICE_CALC_VISCOSITIES(
-     I     e11, e22, e12, zMin, zMax, hEffM, press0, tensileStrength,
+     I     e11, e22, e12, zMin, zMax, hEffM, press0, tensileStrFac,
      O     eta, etaZ, zeta, zetaZ, press, deltaC,
      I     krylovIter, myTime, myIter, myThid )
 
