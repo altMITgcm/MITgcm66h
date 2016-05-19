@@ -189,6 +189,9 @@ c  Initialize output and diagnostics
               N_den_benthic(i,j,k)= 0. _d 0
               P_uptake(i,j,k)     = 0. _d 0
               Fe_uptake(i,j,k)    = 0. _d 0
+              N_dvm(i,j,k)        = 0. _d 0
+              P_dvm(i,j,k)        = 0. _d 0
+              Fe_dvm(i,j,k)       = 0. _d 0
               CaCO3_uptake(i,j,k) = 0. _d 0
               DON_prod(i,j,k)     = 0. _d 0
               DOP_prod(i,j,k)     = 0. _d 0

@@ -125,63 +125,63 @@ C     Define diagnostics Names :
 
       diagName  = 'BLGFESPM'
       diagTitle = 'Iron sinking particle flux'
-      diagUnits = 'mol Fe/m3/s      '
+      diagUnits = 'mol Fe/m3/s     '
       diagCode  = 'SM P    MR      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I       diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
       diagName  = 'BLGFEREC'
       diagTitle = 'Iron recycling'
-      diagUnits = 'mol Fe/m3/s      '
+      diagUnits = 'mol Fe/m3/s     '
       diagCode  = 'SM P    MR      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I       diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
       diagName  = 'BLGFERD '
       diagTitle = 'Iron remin from Diel Vertical Migration'
-      diagUnits = 'mol Fe/m3/s      '
+      diagUnits = 'mol Fe/m3/s     '
       diagCode  = 'SM P    MR      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I       diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
       diagName  = 'BLGFEADI'
       diagTitle = 'Iron inorganic adsorption'
-      diagUnits = 'mol Fe/m3/s      '
+      diagUnits = 'mol Fe/m3/s     '
       diagCode  = 'SM P    MR      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I       diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
       diagName  = 'BLGFEADO'
       diagTitle = 'Iron organic adsorption'
-      diagUnits = 'mol Fe/m3/s      '
+      diagUnits = 'mol Fe/m3/s     '
       diagCode  = 'SM P    MR      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I       diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
       diagName  = 'BLGFEREM'
       diagTitle = 'Iron remin of sinking organic matter'
-      diagUnits = 'mol Fe/m3/s      '
+      diagUnits = 'mol Fe/m3/s     '
       diagCode  = 'SM P    MR      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I       diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
       diagName  = 'BLGFESED'
       diagTitle = 'Iron sediment source'
-      diagUnits = 'mol Fe/m3/s      '
+      diagUnits = 'mol Fe/m3/s     '
       diagCode  = 'SM P    MR      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I       diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
       diagName  = 'BLGFEBUR'
       diagTitle = 'Iron burial into sediment'
-      diagUnits = 'mol Fe/m3/s      '
+      diagUnits = 'mol Fe/m3/s     '
       diagCode  = 'SM P    M1      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I       diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
       diagName  = 'BLGFEUP '
       diagTitle = 'Iron uptake by bio'
-      diagUnits = 'mol Fe/m3/s      '
+      diagUnits = 'mol Fe/m3/s     '
       diagCode  = 'SM P    MR      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I       diagName, diagCode, diagUnits, diagTitle, 0, myThid )
