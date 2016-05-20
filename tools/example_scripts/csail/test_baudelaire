@@ -104,6 +104,9 @@ do
     addExp="offline_cheapaml atm_gray"
   fi
   if test $typ = 'gfo' ; then
+    addExp="$addExp global_oce_biogeo_bling"
+  fi
+  if test $typ = 'gfo' ; then
     addExp="$addExp shelfice_remeshing"
   fi
   #- check day and time:
