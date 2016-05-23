@@ -303,6 +303,11 @@ C     == Global variables ==
 #  include "DIC_ATMOS.h"
 #  include "DIC_COST.h"
 # endif
+# ifdef ALLOW_BLING
+#  include "BLING_VARS.h"
+#  include "BLING_LOAD.h"
+#  include "BLING_COST.h"
+# endif
 # ifdef ALLOW_OBCS
 #  include "OBCS_PARAMS.h"
 #  include "OBCS_FIELDS.h"
@@ -885,7 +890,7 @@ C--   Apply Filters to u*,v* before SOLVE_FOR_PRESSURE
 #ifdef ALLOW_SHAP_FILT
       IF (useSHAP_FILT .AND. shap_filt_uvStar) THEN
         CALL TIMER_START('SHAP_FILT_UV        [FORWARD_STEP]',myThid)
-        IF (implicDiv2Dflow.LT.1.) THEN
+        IF (implicDiv2DFlow.LT.1.) THEN
 C--   Explicit+Implicit part of the Barotropic Flow Divergence
 C      => Filtering of uVel,vVel is necessary
           CALL SHAP_FILT_APPLY_UV( uVel,vVel,
@@ -898,7 +903,7 @@ C      => Filtering of uVel,vVel is necessary
 #ifdef ALLOW_ZONAL_FILT
       IF (useZONAL_FILT .AND. zonal_filt_uvStar) THEN
         CALL TIMER_START('ZONAL_FILT_UV       [FORWARD_STEP]',myThid)
-        IF (implicDiv2Dflow.LT.1.) THEN
+        IF (implicDiv2DFlow.LT.1.) THEN
 C--   Explicit+Implicit part of the Barotropic Flow Divergence
 C      => Filtering of uVel,vVel is necessary
           CALL ZONAL_FILT_APPLY_UV( uVel, vVel, myThid )
