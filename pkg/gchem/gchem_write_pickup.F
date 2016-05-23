@@ -48,6 +48,13 @@ C     !LOCAL VARIABLES:
       ENDIF
 #endif /* ALLOW_DIC */
 
+#ifdef ALLOW_BLING
+      IF ( useBLING ) THEN
+        CALL BLING_WRITE_PICKUP( permPickup, suff,
+     I                         myTime, myIter, myThid )
+      ENDIF
+#endif /* ALLOW_BLING */
+
 #ifdef ALLOW_DARWIN
       IF ( useDARWIN ) THEN
         CALL DARWIN_WRITE_PICKUP( permPickup, suff,

@@ -43,8 +43,9 @@ C  to test the flag before any corresponding pkg S/R call
 
       NAMELIST /GCHEM_PARM01/
      &                   nsubtime,
-     &                   useDIC,
      &                   useCFC,
+     &                   useDIC,
+     &                   useBLING,
      &                   useDARWIN,
      &                   Filename1,
      &                   Filename2,
@@ -73,8 +74,9 @@ C     print a (weak) warning if data.gchem is found
       _BEGIN_MASTER(myThid)
 
 C Set defaults values for parameters in GCHEM.h
-       useDIC = .FALSE.
        useCFC = .FALSE.
+       useDIC = .FALSE.
+       useBLING  = .FALSE.
        useDARWIN = .FALSE.
        tIter0 = UNSET_I
        nsubtime=1
@@ -132,15 +134,21 @@ c      nRetired = nRetired+1
 C Everyone else must wait for the parameters to be loaded
       _BARRIER
 
+#ifdef ALLOW_CFC
+      IF ( useCFC ) THEN
+        CALL CFC_READPARMS(myThid)
+      ENDIF
+#endif
+
 #ifdef ALLOW_DIC
       IF ( useDIC ) THEN
         CALL DIC_READPARMS(myThid)
       ENDIF
 #endif
 
-#ifdef ALLOW_CFC
-      IF ( useCFC ) THEN
-        CALL CFC_READPARMS(myThid)
+#ifdef ALLOW_BLING
+      IF ( useBLING ) THEN
+        CALL BLING_READPARMS(myThid)
       ENDIF
 #endif
 

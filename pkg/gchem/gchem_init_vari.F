@@ -2,8 +2,11 @@ C $Header$
 C $Name$
 
 #include "GCHEM_OPTIONS.h"
+#ifdef ALLOW_BLING
+# include "BLING_OPTIONS.h"
+#endif
 #ifdef ALLOW_DARWIN
-#include "DARWIN_OPTIONS.h"
+# include "DARWIN_OPTIONS.h"
 #endif
 
 C !INTERFACE: ==========================================================
@@ -51,6 +54,18 @@ ccccccccccccccccccccccccccc
       ENDIF
 # endif
 #endif /* ALLOW_DIC */
+
+#ifdef ALLOW_BLING
+# ifndef ALLOW_AUTODIFF_TAMC
+      IF ( useBLING ) THEN
+# endif
+         CALL BLING_INIT_VARIA(myThid)
+         CALL BLING_INI_FORCING(myThid)
+         CALL BLING_CARBONATE_INIT(myThid)
+# ifndef ALLOW_AUTODIFF_TAMC
+      ENDIF
+# endif
+#endif /* ALLOW_BLING */
 
 #ifdef ALLOW_DARWIN
       IF ( useDARWIN ) THEN
