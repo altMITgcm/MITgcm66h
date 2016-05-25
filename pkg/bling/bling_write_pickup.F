@@ -74,7 +74,7 @@ C       record number < 0 : a hack not to write meta files now:
 
         j = j + 1
         CALL WRITE_REC_3D_RL( fn, prec, Nr, P_sm, -j, myIter, myThid )
-        IF (j.LE.listDim) wrFldList(j) = 'BLG_Plg '
+        IF (j.LE.listDim) wrFldList(j) = 'BLG_Psm '
 
         j = j + 1
         CALL WRITE_REC_3D_RL( fn, prec, Nr, P_lg, -j, myIter, myThid )
