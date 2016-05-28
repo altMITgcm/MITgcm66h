@@ -559,6 +559,13 @@ c     diagTitle = 'Square of ocean bottom pressure / top. geo-Potential'
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
+      diagName  = 'PHI_SURF'
+      diagTitle = DIAGS_MK_TITLE('Surface Dynamical '//pTitle,myThid)
+      diagUnits = 'm^2/s^2         '
+      diagCode  = 'SM      M1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
 #ifdef NONLIN_FRSURF
       diagName  = 'PHIHYDcR'
       diagTitle = DIAGS_MK_TITLE( 'Hydrostatic '
