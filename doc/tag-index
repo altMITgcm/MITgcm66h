@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint65x (2016/06/11)
+o add a license text file in main MITgcm tree.
 o added pkg/bling:
   - intermediate complexity biogeochemical model
   - see bling_description.txt for details
