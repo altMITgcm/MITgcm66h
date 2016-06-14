@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/dic & seaice:
+  - fix compilation of ocean component for coupled atm+ocn model with
+    seaice dynamics & dic.
+
 checkpoint65x (2016/06/11)
 o add a license text file in main MITgcm tree.
 o added pkg/bling:
