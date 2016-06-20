@@ -77,8 +77,6 @@ C     PO4_lim       :: phosphate limitation
 C     Fe_lim        :: iron limitation for phytoplankton
 C     Fe_lim_diaz   :: iron limitation for diazotrophs
 C     alpha_Fe      :: initial slope of the P-I curve
-C     theta_Fe      :: Chl:C ratio
-C     theta_Fe_max  :: Fe-replete maximum Chl:C ratio
 C     irrk          :: nut-limited efficiency of algal photosystems
 C     Pc_m          :: light-saturated max photosynthesis rate for phyt
 C     Pc_m_diaz     :: light-saturated max photosynthesis rate for diaz
