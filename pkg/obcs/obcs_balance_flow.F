@@ -356,7 +356,7 @@ C--   Add correction:
 #endif /* ALLOW_OBCS_WEST */
 
 #ifdef ALLOW_OBCS_NORTH
-      IF ( OBCS_balanceFacW.NE.0. ) THEN
+      IF ( OBCS_balanceFacN.NE.0. ) THEN
        DO bj=myByLo(myThid),myByHi(myThid)
         DO bi=myBxLo(myThid),myBxHi(myThid)
          IF ( tileHasOBN(bi,bj) ) THEN
