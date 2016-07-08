@@ -123,7 +123,7 @@ def flat(fld, **kwargs):
 
     ndims = len(fld.shape)
     if ndims == 2: 
-        gfld = _flat2D(fld)
+        gfld = _flat2D(fld, **kwargs)
     elif ndims == 3: 
         gfld = [ _flat2D(fld[a,:,:], **kwargs) 
                  for a in range(fld.shape[0]) ] 
@@ -212,7 +212,7 @@ def mds(fld,center='Atlantic'):
 
     ndims = len(fld.shape)
     if ndims == 2: 
-        mdsfld = _mds2D(fld)
+        mdsfld = _mds2D(fld, **kwargs)
     elif ndims == 3: 
         mdsfld = [ _mds2D(fld[a,:,:], **kwargs) 
                  for a in range(fld.shape[0]) ] 
