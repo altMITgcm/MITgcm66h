@@ -123,8 +123,12 @@ C     LOCAL VARIABLES
       _EXCH_XY_RL( tau_beta_eff_streamice , myThid )
       _EXCH_XY_RL( visc_streamice , myThid )
 
+! to stop ifort complaining
+        err_init = 0. _d 0
+
       if (STREAMICE_chkresidconvergence .or.
      &    (streamice_maxnliter_cpl.eq.0 .and. myIter.eq.0)) then
+
 
         CALL STREAMICE_GET_VEL_RESID_ERR ( err_init, myThid )
 
