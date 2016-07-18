@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/monitor:
+  - add new routine to compute Advective CFL within tracer time-stepping with
+    writing delayed until next monitor output.
 o pkg/obcs:
   - fix bug in OBCS_BALANCE_FLOW (OBCS_balanceFacN misspelled OBCS_balanceFacW)
 o pkg/dic & seaice:
