@@ -148,6 +148,14 @@ C       Print the basic statistics of external forcing
      &            maskInS, maskInS, rAs, drF, dummyRL, myThid )
         ENDIF
 
+C       Print numerical stablility parameters for lastest tracer advection
+        IF ( monitorSelect.GE.2 ) THEN
+         CALL MON_SET_PREF( 'trAdv_CFL', myThid )
+         CALL MON_OUT_RL( '_u', mon_trAdvCFL(1), mon_foot_max,myThid )
+         CALL MON_OUT_RL( '_v', mon_trAdvCFL(2), mon_foot_max,myThid )
+         CALL MON_OUT_RL( '_w', mon_trAdvCFL(3), mon_foot_max,myThid )
+        ENDIF
+
 C       Print the numerical stablility parameters for current state
         CALL MON_SET_PREF( 'advcfl', myThid )
         dT = MAX(dTtracerLev(1),deltaTmom)

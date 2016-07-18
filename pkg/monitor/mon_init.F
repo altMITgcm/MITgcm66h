@@ -37,13 +37,19 @@ C     and prefix monitor "variables" with mon by default.
       CALL MON_SET_PREF  ( mon_string_none    , myThid )
 
       _BEGIN_MASTER(myThid)
+
 C     Internal parameter for continuing when monitor_solution would
 C     otherwise decide to stop the code.
 c     mon_overrideStop=.FALSE.
       monSolutionMaxRange = 1. _d +4
       IF ( fluidIsWater ) monSolutionMaxRange = 1. _d +3
+
       mon_output_AM = fluidIsAir .AND. useCoriolis
      &                           .AND. selectCoriMap.GE.2
+      mon_trAdvCFL(1) = 0.
+      mon_trAdvCFL(2) = 0.
+      mon_trAdvCFL(3) = 0.
+
       _END_MASTER(myThid)
 
       _BARRIER
