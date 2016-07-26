@@ -6,14 +6,13 @@ C $Name$
       SUBROUTINE DEBUG_STATS_RS(
      I                myNr, arr, arrName,
      I                myThid )
-C     /==========================================================\
+C     *==========================================================*
 C     | SUBROUTINE DEBUG_STATS_RS                                |
 C     | o Prints to STDOUT the bare statistics of global array   |
 C     |   "_RS arr" with label "arrName"                         |
-C     | o This is an exact copy of MON_PRINTSTATS_RS but with    |
+C     | o This routine is similar to MON_WRITESTATS_RS but with  |
 C     |   a different label at left of screen                    |
-C     |==========================================================|
-C     \==========================================================/
+C     *==========================================================*
       IMPLICIT NONE
 
 C     === Global data ===
@@ -33,8 +32,8 @@ C     === Local variables ====
       _RL theSD
 
       CALL DEBUG_FLD_STATS_RS(
-     I                myNr, arr,
-     O                theMin,theMax,theMean,theSD,
+     I                myNr, arr, zeroRS,
+     O                theMin, theMax, theMean, theSD,
      I                myThid )
 
       _BEGIN_MASTER( myThid )
