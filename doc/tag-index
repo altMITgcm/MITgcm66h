@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint65y (2016/07/29)
 o pkg/debug (stats):
   - change GLOBAL_SUM to GLOBAL_SUM_TILE (result independent of tile to
     proc/thread mapping);
