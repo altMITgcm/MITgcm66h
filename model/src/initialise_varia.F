@@ -6,6 +6,9 @@ C $Name$
 #ifdef ALLOW_AUTODIFF
 # include "AUTODIFF_OPTIONS.h"
 #endif
+#ifdef ALLOW_CTRL
+# include "CTRL_OPTIONS.h"
+#endif
 
 CBOP
 C     !ROUTINE: INITIALISE_VARIA
@@ -84,6 +87,11 @@ C     == Global variables ==
 #include "PARAMS.h"
 #include "DYNVARS.h"
 #include "SURFACE.h"
+#ifdef ALLOW_AUTODIFF
+# include "GRID.h"
+# include "FFIELDS.h"
+# include "CTRL_FIELDS.h"
+#endif
 
 C     !INPUT/OUTPUT PARAMETERS:
 C     == Routine arguments ==
@@ -166,6 +174,11 @@ C--   Initialise active fields to help TAMC
 C--   Initialize variable data for packages
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_CALL('PACKAGES_INIT_VARIABLES',myThid)
+#endif
+#ifdef ALLOW_AUTODIFF_TAMC
+# ifdef NONLIN_FRSURF
+CADJ STORE recip_hFacC = tapelev_init, key = 1
+# endif
 #endif
       CALL PACKAGES_INIT_VARIABLES( myThid )
 
