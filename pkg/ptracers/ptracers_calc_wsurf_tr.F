@@ -75,6 +75,14 @@ C-- sum over tiles
      &                          myThid )
       ENDDO
 
+      IF ( globalArea.GT.0. ) THEN
+       _BEGIN_MASTER( myThid )
+       DO itr=1,PTRACERS_numInUse
+        totSurfCorPTr(iTr) = totSurfCorPTr(iTr) / globalArea
+       ENDDO
+       _END_MASTER( myThid )
+      ENDIF
+
       _BARRIER
 
       RETURN
