@@ -138,8 +138,13 @@ C     Write vertical grid arrays
          CALL WRITE_GLVEC_RS('DAHybSigC',' ',dAHybSigC,1+Nr,-1,myThid )
          CALL WRITE_GLVEC_RS('DBHybSigC',' ',dBHybSigC,1+Nr,-1,myThid )
         ENDIF
-C--  comment out the "if": also usefull for the Ocean (to get the full Presure)
-c       IF (buoyancyRelation .EQ. 'ATMOSPHERIC') THEN
+
+      ENDIF
+
+C--  Comment out the "if": also useful for the Ocean (to get the full
+C    Pressure) and write also these MDS file when writegrid_mdsio=F
+C    (since missing from MNC grid-file)
+c      IF (buoyancyRelation .EQ. 'ATMOSPHERIC') THEN
         DO k=1,Nr+1
           tmpVar(k) = phiRef(2*k-1)
         ENDDO
@@ -148,9 +153,7 @@ c       IF (buoyancyRelation .EQ. 'ATMOSPHERIC') THEN
           tmpVar(k) = phiRef(2*k)
         ENDDO
         CALL WRITE_GLVEC_RS( 'PHrefC',' ',tmpVar, Nr, -1, myThid )
-c       ENDIF
-
-      ENDIF
+c      ENDIF
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
