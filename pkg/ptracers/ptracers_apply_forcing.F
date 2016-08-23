@@ -86,12 +86,12 @@ C     because it is needed by KPP_TRANSPORT_PTR.
         ENDDO
       ENDIF
 
-      IF (PTRACERS_calcSurfCor) THEN
+      IF (PTRACERS_linFSConserve(iTracer)) THEN
         IF (k .EQ. kSurface) THEN
           DO j=0,sNy+1
            DO i=0,sNx+1
             gPtracer(i,j) = gPtracer(i,j)
-     &           +totSurfCorPTr(iTracer)*recip_drF(k)
+     &           +meanSurfCorPTr(iTracer)*recip_drF(k)
      &           *_recip_hFacC(i,j,k,bi,bj)
            ENDDO
           ENDDO

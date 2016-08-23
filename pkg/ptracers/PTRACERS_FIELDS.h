@@ -27,7 +27,8 @@ C     surfaceForcingPTr :: passive tracer surface forcing
      &              pTracer, gpTrNm1, surfaceForcingPTr
 
       _RL totSurfCorPTr(PTRACERS_num)
-      COMMON /PTRACERS_SURFCOR_FIELDS/ totSurfCorPTr
+      _RL meanSurfCorPTr(PTRACERS_num)
+      COMMON /PTRACERS_SURFCOR_FIELDS/ totSurfCorPTr, meanSurfCorPTr
 
 #endif /* ALLOW_PTRACERS */
 

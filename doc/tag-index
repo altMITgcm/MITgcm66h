@@ -6,6 +6,7 @@ $Name$
 
 o pkg/ptracers: add Bruno Deremble's code to complete the linear surface 
   correction for tracer conservation
+  - enabled for individual ptracers by PTRACERS_linFSConserve(iTr)=.TRUE.
 
 checkpoint65y (2016/07/29)
 o pkg/debug (stats):
