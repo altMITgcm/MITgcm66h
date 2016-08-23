@@ -151,7 +151,15 @@ CADJ STORE theta,salt,wvel = comlev1, key = ikey_dynamics, byte=isbyte
 #endif /* ALLOW_LAYERS */
 
 #ifdef DO_PTRACERS_HERE
+#ifdef ALLOW_AUTODIFF_TAMC
+      DO k=1,PTRACERS_numInUse
+       totSurfCorPTr(k) = 0.0 _d 0
+      ENDDO
+#endif
       IF ( PTRACERS_calcSurfCor ) THEN
+#ifdef ALLOW_AUTODIFF_TAMC
+CADJ STORE ptracer = comlev1, key = ikey_dynamics, byte=isbyte
+#endif
        CALL PTRACERS_CALC_WSURF_TR(wVel,myTime,myIter,myThid)
       ENDIF
 #endif
