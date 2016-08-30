@@ -228,7 +228,6 @@ c    &                    'snowPr_ave',ice_snowPr_Ave,myThid)
        ENDIF
 #endif
 
-
 C--    Reset averages to zero
        DO bj = myByLo(myThid), myByHi(myThid)
         DO bi = myBxLo(myThid), myBxHi(myThid)
@@ -262,7 +261,10 @@ C     Dump a snap-shot of main state variables:
      &                             myTime.EQ.startTime  )
      &   ) THEN
 
-        IF ( thSIce_snapshot_mdsio ) THEN
+        IF ( thSIce_snapshot_mdsio .AND.
+     &       ( myTime.NE.startTime .OR. .NOT.thSIce_skipThermo
+     &                             .OR. .NOT.useCoupler )
+     &     ) THEN
 
           WRITE(suff,'(I10.10)') myIter
 
