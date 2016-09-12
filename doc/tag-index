@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/bling:
+  - Cleaned package. Removed not needed code and comments. 
+  - adjoint example now works 
+    (MITgcm_contrib/verification_other/global_oce_biogeo_bling/code_ad)
+
 o pkg/ptracers:
   - add Bruno Deremble's code to complete the linear surface correction
     for tracer conservation;
