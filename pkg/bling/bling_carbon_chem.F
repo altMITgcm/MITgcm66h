@@ -893,7 +893,7 @@ C Weiss (1974) Marine Chemistry
            B1 = -1636.75 _d 0 + 12.0408 _d 0*tk - 0.0327957 _d 0*tk*tk
            B = B1 + 3.16528 _d 0*tk*tk*tk*(0.00001 _d 0)
 CMM(
-#ifdef USE_EXF_APRESS
+#ifdef USE_EXF_ATMPRES
 CMM apresure in N/m2. move to bars
            fugf(i,j,bi,bj) = exp( (B+2. _d 0*delta) * 
      &                            (apressure (i,j,bi,bj) * 0.00001)
