@@ -10,7 +10,7 @@ CBOP
 
 C     ==========================================================
 C     | subroutine bling_read_pickup
-C     | o 
+C     | o Read BLING arrays from a pickup file 
 C     ==========================================================
 
       implicit none
@@ -68,16 +68,16 @@ C--   Read pickup file
 
         CALL READ_REC_3D_RL( fn, fp, Nr, irr_mem, 2, myIter, myThid )
         CALL READ_REC_3D_RL( fn, fp, Nr, chl, 3, myIter, myThid )
-        CALL READ_REC_3D_RL( fn, fp, Nr, P_sm, 4, myIter, myThid )
-        CALL READ_REC_3D_RL( fn, fp, Nr, P_lg, 5, myIter, myThid )
-        CALL READ_REC_3D_RL( fn, fp, Nr, P_diaz, 6, myIter, myThid )
+        CALL READ_REC_3D_RL( fn, fp, Nr, phyto_sm, 4, myIter, myThid )
+        CALL READ_REC_3D_RL( fn, fp, Nr, phyto_lg, 5, myIter, myThid )
+        CALL READ_REC_3D_RL( fn, fp, Nr, phyto_diaz, 6, myIter, myThid )
 
         _EXCH_XYZ_RL( pH, myThid )
         _EXCH_XYZ_RL( irr_mem, myThid )
         _EXCH_XYZ_RL( chl, myThid )
-        _EXCH_XYZ_RL( P_sm, myThid )
-        _EXCH_XYZ_RL( P_lg, myThid )
-        _EXCH_XYZ_RL( P_diaz, myThid )
+        _EXCH_XYZ_RL( phyto_sm, myThid )
+        _EXCH_XYZ_RL( phyto_lg, myThid )
+        _EXCH_XYZ_RL( phyto_diaz, myThid )
 
       ELSE
         pH_isLoaded = .FALSE.

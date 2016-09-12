@@ -11,11 +11,7 @@ CBOP
      
 C     =================================================================
 C     | subroutine bling_mixedlayer
-C     | o 
-C     | - irr_mix is the same as irr_inst, but averaged throughout   
-C     |   the mixed layer. This quantity is intended to represent the 
-C     |   light to which phytoplankton subject to turbulent transport in 
-C     |   the mixed-layer would be exposed.
+C     | o Calculate mixed layer depth based on density criterion 
 C     =================================================================
 
       implicit none

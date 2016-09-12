@@ -73,15 +73,18 @@ C       record number < 0 : a hack not to write meta files now:
         IF (j.LE.listDim) wrFldList(j) = 'BLG_chl '
 
         j = j + 1
-        CALL WRITE_REC_3D_RL( fn, prec, Nr, P_sm, -j, myIter, myThid )
+        CALL WRITE_REC_3D_RL( fn, prec, Nr, phyto_sm, -j, myIter, 
+     & myThid )
         IF (j.LE.listDim) wrFldList(j) = 'BLG_Psm '
 
         j = j + 1
-        CALL WRITE_REC_3D_RL( fn, prec, Nr, P_lg, -j, myIter, myThid )
+        CALL WRITE_REC_3D_RL( fn, prec, Nr, phyto_lg, -j, myIter, 
+     & myThid )
         IF (j.LE.listDim) wrFldList(j) = 'BLG_Plg '
 
         j = j + 1
-        CALL WRITE_REC_3D_RL( fn, prec, Nr, P_diaz, -j, myIter, myThid )
+        CALL WRITE_REC_3D_RL( fn, prec, Nr, phyto_diaz, -j, myIter, 
+     & myThid )
         IF (j.LE.listDim) wrFldList(j) = 'BLG_Pdia'
 
 C--------------------------

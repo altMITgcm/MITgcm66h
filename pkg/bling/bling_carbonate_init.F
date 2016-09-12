@@ -8,9 +8,9 @@ CBOP
       subroutine BLING_CARBONATE_INIT( myThid )
 
 C     ==========================================================
-C     | subroutine bling_surfforcing_init
+C     | subroutine bling_carbonate_init
 C     | o Calculate first guess of pH
-C     |   Adapted from pkg/dic/dic_surfforcing_init
+C     |   Adapted from pkg/dic/dic_surfforcing_init.F
 C     ==========================================================
 
       implicit none

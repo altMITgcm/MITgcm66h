@@ -9,7 +9,7 @@ CBOP
 
 C     =================================================================
 C     | subroutine bling_cost
-C     | o
+C     | o Define cost contribution from bling variables
 C     =================================================================
 
       implicit none

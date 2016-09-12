@@ -9,12 +9,11 @@ CADJ STORE fice              = tapelev4, key = ilev_4
 CADJ STORE silica            = tapelev4, key = ilev_4
 
 CADJ STORE irr_mem           = tapelev4, key = ilev_4
-CADJ STORE P_sm              = tapelev4, key = ilev_4 
-CADJ STORE P_lg              = tapelev4, key = ilev_4 
-CADJ STORE P_diaz            = tapelev4, key = ilev_4
+CADJ STORE phyto_sm          = tapelev4, key = ilev_4 
+CADJ STORE phyto_lg          = tapelev4, key = ilev_4 
+CADJ STORE phyto_diaz        = tapelev4, key = ilev_4
 CADJ STORE chl               = tapelev4, key = ilev_4
 
-C CMM(
 CADJ STORE atmosp0        = tapelev4, key = ilev_4
 CADJ STORE atmosp1        = tapelev4, key = ilev_4
 CADJ STORE feinput0       = tapelev4, key = ilev_4
@@ -23,7 +22,9 @@ CADJ STORE ice0           = tapelev4, key = ilev_4
 CADJ STORE ice1           = tapelev4, key = ilev_4
 CADJ STORE silica0        = tapelev4, key = ilev_4
 CADJ STORE silica1        = tapelev4, key = ilev_4
-C CMM)
+CADJ STORE dicwind0       = tapelev4, key = ilev_4
+CADJ STORE dicwind1       = tapelev4, key = ilev_4
+
 #ifdef ALLOW_BLING_COST
 CADJ STORE totcost  = tapelev4, key = ilev_4
 #endif
