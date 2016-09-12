@@ -192,10 +192,6 @@ C   using old rotation formulae (instead of grid-angles)
 C   for interpolation around N & S pole, use the old formulation
 C   (no pole symmetry, single vector-comp interp, reset to 0 zonal-comp @ N.pole)
 #undef EXF_USE_OLD_INTERP_POLE
-C   when interpolation is used, output the interpolation result 
-C   before any other operation is done (e.g. rescaling) with 
-C   the same organization of records as in the input files 
-#undef ALLOW_EXF_OUTPUT_INTERP
 
 #define EXF_INTERP_USE_DYNALLOC
 #if ( defined (EXF_INTERP_USE_DYNALLOC) && defined (USING_THREADS) )

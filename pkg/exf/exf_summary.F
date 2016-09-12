@@ -99,6 +99,11 @@ C--   Print general parameters:
      &  ' /* use 2-digit year extension */')
       CALL WRITE_0D_L( useExfCheckRange, INDEX_NONE,
      &  'useExfCheckRange =', ' /* check for fields range */')
+#ifdef USE_EXF_INTERPOLATION
+      CALL WRITE_0D_L( exf_output_interp, INDEX_NONE,
+     &  'exf_output_interp =',
+     &  ' /* output directly interpolation result */')
+#endif
       CALL WRITE_0D_I( exf_debugLev, INDEX_NONE, 'exf_debugLev =',
      &  ' /* select EXF-debug printing level */')
       CALL WRITE_0D_RL( exf_monFreq, INDEX_NONE, 'exf_monFreq  =',
