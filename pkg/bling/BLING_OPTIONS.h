@@ -10,7 +10,7 @@ C $Name$
 C     Package-specific Options & Macros go here
 
 c Active tracer for total phytoplankton biomass
-#define ADVECT_PHYTO
+#undef ADVECT_PHYTO
 
 c Prevents negative values in nutrient fields
 #define BLING_NO_NEG
@@ -27,14 +27,13 @@ c Determine PAR from shortwave radiation from EXF package
 #define USE_EXFQSW
 
 c Use local atmospheric pressure from EXF package for fugacity factor
-#define USE_EXF_ATMPRES
+#undef USE_EXF_ATMPRES
 
 c Sub grid scale sediments
 #undef  USE_SGS_SED
 
 c Read atmospheric pCO2 values from EXF package
-c *** to be specified in ECCO_CPPOPTIONS.h ***
-c #define USE_EXFCO2
+#undef USE_EXFCO2
 
 c In the DVM routine, assume fixed mixed layer depth 
 c (so no need to calc MLD in bling_production)
