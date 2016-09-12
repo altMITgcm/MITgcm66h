@@ -4,8 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
-o pkg/ptracers: add Bruno Deremble's code to complete the linear surface 
-  correction for tracer conservation
+o pkg/ptracers:
+  - add Bruno Deremble's code to complete the linear surface correction
+    for tracer conservation;
   - enabled for individual ptracers by PTRACERS_linFSConserve(iTr)=.TRUE.
 
 checkpoint65y (2016/07/29)
@@ -21,6 +22,9 @@ o pkg/monitor:
     writing delayed until next monitor output.
 o pkg/obcs:
   - fix bug in OBCS_BALANCE_FLOW (OBCS_balanceFacN misspelled OBCS_balanceFacW)
+o pkg/cal:
+  - calandar-dump: treat case myTime < timePhase in the same way as in
+    eesupp/src/diff_phase_multiple.F (when not using calandar-dump).
 o pkg/dic & seaice:
   - fix compilation of ocean component for coupled atm+ocn model with
     seaice dynamics & dic.
