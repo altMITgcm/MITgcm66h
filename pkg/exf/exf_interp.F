@@ -398,7 +398,7 @@ C--   Do interpolation using lon & lat index mapping
         CALL EXF_INTERPOLATE(
      I                inFile, irecord, method,
      I                nxIn, nyIn, x_in, y_in,
-     O                arrayin,
+     I                arrayin,
      O                arrayout,
      I                xG, yG,
      I                w_ind, s_ind,
