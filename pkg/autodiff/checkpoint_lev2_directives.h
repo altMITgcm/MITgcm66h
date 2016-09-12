@@ -172,6 +172,10 @@ CADJ &     tapelev2, key = ilev_2
 # include "dic_ad_check_lev2_dir.h"
 #endif
 
+#ifdef ALLOW_BLING
+# include "bling_ad_check_lev2_dir.h"
+#endif
+
 #ifdef ALLOW_GENERIC_ADVDIFF
 # include "gad_ad_check_lev2_dir.h"
 #endif

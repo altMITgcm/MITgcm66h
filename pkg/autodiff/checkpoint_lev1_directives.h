@@ -220,6 +220,10 @@ CADJ STORE uice,vice       = comlev1, key=ikey_dynamics, kind=isbyte
 # include "dic_ad_check_lev1_dir.h"
 #endif
 
+#ifdef ALLOW_BLING
+# include "bling_ad_check_lev1_dir.h"
+#endif
+
 #ifdef ALLOW_GENERIC_ADVDIFF
 # include "gad_ad_check_lev1_dir.h"
 #endif

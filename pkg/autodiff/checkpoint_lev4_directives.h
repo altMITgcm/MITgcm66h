@@ -172,6 +172,10 @@ CADJ &     tapelev4, key = ilev_4
 # include "dic_ad_check_lev4_dir.h"
 #endif
 
+#ifdef ALLOW_BLING
+# include "bling_ad_check_lev4_dir.h"
+#endif
+
 #ifdef ALLOW_GENERIC_ADVDIFF
 # include "gad_ad_check_lev4_dir.h"
 #endif
