@@ -120,6 +120,7 @@ C     PTRACERS_useRecords    :: snap-shot output: put all pTracers in one file
      &     PTRACERS_useGMRedi,
      &     PTRACERS_useDWNSLP,
      &     PTRACERS_useKPP,
+     &     PTRACERS_linFSConserve,
      &     PTRACERS_doAB_onGpTr,
      &     PTRACERS_addSrelax2EmP,
      &     PTRACERS_startAllTrc,
