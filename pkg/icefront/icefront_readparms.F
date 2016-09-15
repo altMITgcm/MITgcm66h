@@ -48,7 +48,7 @@ CEOP
 #ifdef ALLOW_EXF
       NAMELIST /ICEFRONT_EXF_PARM02/
      &     SGRunOffstartdate1, SGRunOffstartdate2,
-     &     SGRunOffperiod,
+     &     SGRunOffperiod,     SGRunOffFile,
      &     SGRunOffconst,      SGRunOff_inscal,
      &     SGRunOff_remov_intercept, SGRunOff_remov_slope
 #endif /* ALLOW_EXF */
