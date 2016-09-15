@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/icefront & pkg/exf:
+  - move setting of icefront Sub-Glacial RunOff forcing (currently unused)
+    from pkg/exf (read from data.exf) to pkg/icefront (read from data.icefront)
 o pkg/exf:
   - replace CPP option ALLOW_EXF_OUTPUT_INTERP with run-time parameter
     "exf_output_interp" (in namelist: EXF_NML_04); change output file name
