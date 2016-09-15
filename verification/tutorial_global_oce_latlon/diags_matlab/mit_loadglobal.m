@@ -105,6 +105,32 @@ mit_plotstreamfunctions
 mit_plotzonalvelocity
 
 if meanfields
+  % plot some mean fields
+  figure('PaperPosition',[0.31 0.25 10.5 7.88],'PaperOrientation','landscape')
+  k=kmax;
+  mySST =   t(:,:,1,k);
+  mySSS =   s(:,:,1,k);
+  myETA = eta(:,:,k);
+  myVEL = sqrt(u(:,:,1,k).*u(:,:,1,k)+v(:,:,1,k).*v(:,:,1,k));
+%
+  clear sh;
+  sh(1) = subplot(2,2,1);imagesc(grd.lonc,grd.latc,mySST'.*grd.hfacc(:,:,1)'); 
+  title(['Sea Surface Temperature [degC]']) 
+  sh(2) = subplot(2,2,2);imagesc(grd.lonc,grd.latc,mySSS'.*grd.hfacc(:,:,1)'); 
+  title(['Sea Surface Salinity [psu]']) 
+  sh(3) = subplot(2,2,3);imagesc(grd.lonc,grd.latc,myETA'); 
+  title(['Sea Surface Height [m]']) 
+  sh(4) = subplot(2,2,4);imagesc(grd.lonc,grd.latc,myVEL'.*grd.hfacc(:,:,1)'); 
+  title(['Sea Surface Speed [m/s]']) 
+%
+  axis(sh,'image'); axis(sh,'xy')
+  set(gcf,'currentAxes',sh(1));colorbar('h')
+  set(gcf,'currentAxes',sh(2));colorbar('h')
+  set(gcf,'currentAxes',sh(3));colorbar('h')
+  set(gcf,'currentAxes',sh(4));colorbar('h')
+end
+
+if meanfields
   % compute actual heat and E-P fluxes from time averages 
   % this only makes sense when you load the time averaged fields
   tauTheta = mit_getparm('data','tauThetaClimRelax');
