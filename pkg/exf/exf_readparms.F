@@ -229,14 +229,6 @@ C     Surface flux data.
      & exf_output_interp
 #endif /* USE_EXF_INTERPOLATION */
 
-#ifdef ALLOW_ICEFRONT
-      NAMELIST /EXF_NML_SGRUNOFF/
-     &    sgrunoffstartdate1, sgrunoffstartdate2,
-     &    sgrunoffstartdate,  sgrunoffperiod,
-     &    sgrunoffconst,      sgrunoff_exfremo_intercept,
-     &    sgrunoff_exfremo_slope, exf_inscal_sgrunoff
-#endif /* ALLOW_ICEFRONT */
-
 #ifdef ALLOW_OBCS
       NAMELIST /EXF_NML_OBCS/
      &    useOBCSYearlyFields,
@@ -506,15 +498,6 @@ C     Calendar data.
       climvstrconst         = 0.0 _d 0
       climvstr_exfremo_intercept = 0.0 _d 0
       climvstr_exfremo_slope = 0.0 _d 0
-
-      sgrunoffstartdate1         = 0
-      sgrunoffstartdate2         = 0
-      sgrunoffstartdate          = 0.
-      sgrunoffperiod             = 0.0 _d 0
-      sgrunoffconst              = 0.0 _d 0
-      sgrunoff_exfremo_intercept = 0.0 _d 0
-      sgrunoff_exfremo_slope     = 0.0 _d 0
-      exf_inscal_sgrunoff        = 1. _d 0
 
       useOBCSYearlyFields = .FALSE.
       obcsNstartdate1    = 0
@@ -872,16 +855,6 @@ C     Next, read the forcing data file.
      &     SQUEEZE_RIGHT , 1)
       READ(  iUnit, nml = EXF_NML_04 )
 #endif /* USE_EXF_INTERPOLATION */
-
-#ifdef ALLOW_ICEFRONT
-      IF ( useIcefront ) THEN
-       WRITE(msgBuf,'(A)')
-     &      'EXF_READPARMS: reading EXF_NML_SGRUNOFF'
-       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &      SQUEEZE_RIGHT , 1)
-       READ(  iUnit, nml = EXF_NML_SGRUNOFF )
-      ENDIF
-#endif /* ALLOW_ICEFRONT */
 
 #ifdef ALLOW_OBCS
       IF ( useOBCS ) THEN
