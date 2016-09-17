@@ -158,6 +158,9 @@ C--   passive tracer surface forcing:
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE surfaceForcingS = comlev1, key = ikey_dynamics,
 CADJ &    kind = isbyte
+#ifdef ALLOW_BLING
+CADJ STORE EmPmR = comlev1, key = ikey_dynamics,  kind = isbyte
+#endif
 #endif
       IF ( usePTRACERS ) THEN
        DO bj=myByLo(myThid),myByHi(myThid)
