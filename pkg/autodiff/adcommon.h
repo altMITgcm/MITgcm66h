@@ -14,7 +14,7 @@ C--   heimbach@mit.edu 11-Jan-2001
      &                     adetan,
      &                     aduvel, advvel, adwvel,
      &                     adtheta, adsalt,
-     &                     adgu, adgv, adgt, adgs,
+     &                     adgu, adgv, 
 #ifdef ALLOW_ADAMSBASHFORTH_3
      &                     adgunm, adgvnm, adgtnm, adgsnm
 #else
