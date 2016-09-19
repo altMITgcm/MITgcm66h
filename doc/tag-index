@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/exf:
+  - interpolation near South Pole: fix criteria on input field latitude.
 o pkg/icefront & pkg/exf:
   - move setting of icefront Sub-Glacial RunOff forcing (currently unused)
     from pkg/exf (read from data.exf) to pkg/icefront (read from data.icefront)
