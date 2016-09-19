@@ -148,14 +148,14 @@ C-    Add 2 row @ southern end; if one is beyond S.pole, put one @ S.pole
       j = 0
       IF ( ABS(y_in(j+1)).LT.yPole .AND. ABS(y_in(j)).GT.yPole ) THEN
          y_in(j) = -yPole
-         y_in(j-1) = -2.*yPole - y_in(1)
+         y_in(j-1) = -2.*yPole - y_in(j+1)
 #ifdef ALLOW_DEBUG
          prtPole(j)   = 1.
          prtPole(j-1) = 2.
 #endif
       ENDIF
       j = -1
-      IF ( ABS(y_in(j+1)).GT.yPole .AND. ABS(y_in(j)).GT.yPole ) THEN
+      IF ( ABS(y_in(j+1)).LT.yPole .AND. ABS(y_in(j)).GT.yPole ) THEN
          y_in(j) = -yPole
 #ifdef ALLOW_DEBUG
          prtPole(j)   = 1.
