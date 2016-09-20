@@ -70,7 +70,7 @@ c     == end of interface ==
          endif
 
          nrecloc= gencost_nrec(k)
-         nrecperiodloc= gencost_nrecperiod(k)
+         nrecperiodloc= gencost_nrec(k)
 
          call cost_generic(
      &     nnzbar, gencost_barfile(k), gencost_dummy(k),

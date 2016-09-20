@@ -614,7 +614,7 @@ c boxmean/horflux masks
 c deprecated:
         gencost_nrecperiod(k) = 0
         gencost_scalefile(k)  = ' '
-        gencost_smooth2Ddiffnbt(k) = 300
+        gencost_smooth2Ddiffnbt(k) = 0
         gencost_timevaryweight(k)  = .FALSE.
       enddo
 

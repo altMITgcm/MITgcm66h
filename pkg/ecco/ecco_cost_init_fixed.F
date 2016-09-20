@@ -206,8 +206,6 @@ c--    set time averaging parameters
            STOP
      &      'ecco_cost_init_fixed: gencost_avgperiod wrongly specified'
          endif
-         if ( gencost_nrecperiod(k).EQ.0)
-     &     gencost_nrecperiod(k)=gencost_nrec(k)
        endif
 
 c--    set observation start/enddate
