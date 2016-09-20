@@ -120,6 +120,9 @@ c    &     .TRUE.,.TRUE.,.TRUE.,1,myThid)
          elseif (gencost_barfile(k)(1:9).EQ.'m_boxmean') then
            gencost_modfld(i,j,bi,bj,k) = 
      &      gencost_storefld(i,j,bi,bj,k)
+         elseif (gencost_barfile(k)(1:9).EQ.'m_horflux') then
+           gencost_modfld(i,j,bi,bj,k) = 
+     &      gencost_storefld(i,j,bi,bj,k)
          elseif (gencost_barfile(k)(1:5).EQ.'m_sst') then
            gencost_modfld(i,j,bi,bj,k) = 
      &      THETA(i,j,1,bi,bj)*maskC(i,j,1,bi,bj)

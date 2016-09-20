@@ -72,8 +72,7 @@ c     == end of interface ==
 
 c-- detect the relevant gencost indices
       do kgen=1,NGENCOST
-        if ( (gencost_name(kgen)(1:7).EQ.'boxmean').AND.
-     &     (using_gencost(kgen)) ) then
+        if ( (gencost_flag(kgen).EQ.-3).AND.(using_gencost(kgen)) ) then
 
 c ========
 
@@ -156,7 +155,7 @@ c global sums for display of time series
       CALL GLOBAL_SUM_TILE_RL( tmpSumTile, tmpSumGlo, myThid )
 
       WRITE(msgBuf,'(A,I3,A,1PE21.14)')
-     &    'boxmean :',irec,' ',tmpSumGlo
+     &    'boxmean/horflux :',irec,' ',tmpSumGlo
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &    SQUEEZE_RIGHT, myThid )
 
@@ -169,13 +168,13 @@ c global sums for cost function
       CALL GLOBAL_SUM_TILE_RL( objf_gencost(1,1,kgen),
      &   mySumGlo, myThid )
 
-      WRITE(msgBuf,'(A,1PE21.14)') 'boxmean fc :',mySumGlo
+      WRITE(msgBuf,'(A,1PE21.14)') 'boxmean/horflux fc :',mySumGlo
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &    SQUEEZE_RIGHT, myThid )
 
 c ========
 
-      endif !if ( (gencost_name(kgen)(1:7).EQ.'boxmean').AND.
+      endif !if ( (gencost_flag(kgen).EQ.-3).AND.
       enddo !do kgen=1,NGENCOST
 
 #endif /* ALLOW_GENCOST_CONTRIBUTION */
