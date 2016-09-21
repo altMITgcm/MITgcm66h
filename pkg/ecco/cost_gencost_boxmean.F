@@ -119,10 +119,10 @@ c read bar field
         enddo
       enddo
 
-      il = ilnblnk(gencost_errfile(kgen))
-      write(tempfile(1:128),'(2A)') gencost_errfile(kgen)(1:il),'T'
+      il = ilnblnk(gencost_mask(kgen))
+      write(tempfile(1:128),'(2A)') gencost_mask(kgen)(1:il),'T'
       inquire( file=tempfile(1:il+1), exist=exst )
-      if ( (.NOT.exst).OR.(gencost_errfile(kgen).EQ.' ') ) then
+      if ( (.NOT.exst).OR.(gencost_mask(kgen).EQ.' ') ) then
        gencost_mskTemporal=nrecloc
        gencost_mskTemporal=1. _d 0 / gencost_mskTemporal
       else

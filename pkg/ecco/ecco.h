@@ -314,7 +314,7 @@ c     objf_gencost - gencost user defined contribution
       character*(MAX_LEN_FNAM) gencost_posproc_c(NGENPPROC,NGENCOST)
       character*(MAX_LEN_FNAM) gencost_posproc(NGENPPROC,NGENCOST)
       character*(MAX_LEN_FNAM) gencost_preproc_c(NGENPPROC,NGENCOST)
-      character*(1)            gencost_mask(NGENCOST)
+      character*(MAX_LEN_FNAM) gencost_mask(NGENCOST)
 
 #endif /* ALLOW_GENCOST_CONTRIBUTION */
 
