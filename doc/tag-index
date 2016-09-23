@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/seaice: make seaice_fgmres.F fit for multithreading; this first
+  attempt appears to be a bit of a hack and my need some repair down the road
 o pkg/exf:
   - interpolation near South Pole: fix criteria on input field latitude.
 o pkg/icefront & pkg/exf:
