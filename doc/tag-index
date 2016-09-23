@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o MITgcm manual:
+ - add uptodate pkg/ecco documentation to the manual (section 8.1; 
+   ecco.tex), preliminary documentation for generic controls (8.3;
+   ctrl.tex), a placeholder for smooth (8.4; smooth.tex), and 
+   comment out the deprecated ecco_costfunction.tex
 o pkg/ecco:
  - update and cleanup list of CCP options
  - re-assign gencost_mask to specify masks rather than gencost_errfile; 'c'
