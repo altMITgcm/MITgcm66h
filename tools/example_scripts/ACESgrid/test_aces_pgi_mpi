@@ -136,6 +136,12 @@ echo ./testreport $options -of $OPTFILE -command \"$EXE\" -odir ${dNam}-$sfx \
 ./testreport $options -of $OPTFILE -command "$EXE" -odir ${dNam}-$sfx \
   -send "$SEND" -sd $SavD -a jmc@mitgcm.org
 
+retVal=$?
+if [ $retVal -ne 0 ] ; then
+  echo " testreport returns value = '$retVal' --> skip tst_2+2"
+  exit
+fi
+
 echo ''
 echo ../tools/do_tst_2+2 -mpi -exe \"$EXE\" -o ${dNam}-$sfx \
   -send \"$SEND\" -sd $SavD -a jmc@mitgcm.org
