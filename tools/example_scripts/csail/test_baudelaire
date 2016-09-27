@@ -173,6 +173,9 @@ do
           echo " link dir 'other_input/gael_oce_cs32_input' to 'input_fields'"
           ( cd verification/${exp2add}
             ln -s ../../../other_input/gael_oce_cs32_input input_fields )
+          echo " link dir 'other_input/core2_cnyf' in here"
+          ( cd verification/${exp2add}
+            ln -s ../../../other_input/core2_cnyf . )
         fi
         if test $exp2add = 'shelfice_remeshing' ; then
           echo " link dir 'other_input/remeshing_code' to 'extra_code'"
