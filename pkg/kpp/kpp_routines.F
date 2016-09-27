@@ -886,6 +886,16 @@ c-----------------------------------------------------------------------
          if (zehat .le. zmax) then
 
             zdiff = zehat - zmin
+C     For extremely negative buoyancy forcing bfsfc, zehat and hence
+C     zdiff can become very negative (default value of zmin = 4.e-7) and
+C     the extrapolation beyond the limit zmin of the lookup table can
+C     give very bad values and may make the model crash. Here is a
+C     simple fix (thanks to Dimitry Sidorenko) that effectively replaces
+C     linear extrapolation with nearest neighbor extrapolation so that
+C     only the lower limit values of the lookup tables wmt/wst are used.
+C     Alternatively, one can get rid of the lookup table altogether
+C     and compute the coefficients online (done in NEMO, for example).
+C           zdiff = max( 0. _d 0, zehat - zmin )
             iz    = int( zdiff / deltaz )
             iz    = min( iz, nni )
             iz    = max( iz, 0 )
