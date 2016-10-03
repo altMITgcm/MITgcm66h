@@ -140,14 +140,16 @@ C$TAF LOOP = parallel
 C$TAF LOOP = parallel
         DO i=imin,imax
 
-        DO k=1,Nr
-
 C  Initialize upper flux
         PONflux_u            = 0. _d 0
         POPflux_u            = 0. _d 0
         PFEflux_u            = 0. _d 0
         CaCO3flux_u          = 0. _d 0
-        Fe_ads_org(i,j,k)    = 0. _d 0
+
+        DO k=1,Nr
+
+C Initialization here helps taf
+         Fe_ads_org(i,j,k)    = 0. _d 0
 
 C ARE WE ON THE BOTTOM
          bttmlyr = 1
