@@ -25,6 +25,8 @@ C     !USES:
 C     == Global variables ===
 #include "SIZE.h"
 #include "GRID.h"
+#include "EEPARAMS.h"
+#include "PARAMS.h"
 #include "GAD.h"
 
 C     !INPUT/OUTPUT PARAMETERS:
@@ -60,7 +62,8 @@ C     rLimit       :: centered (vs upwind) fraction
 C     rCenter      :: centered contribution
 C     rUpwind      :: upwind   contribution
       INTEGER i,j
-      _RL w_CFL, rLimit
+c     _RL w_CFL
+      _RL rLimit
       _RL rCenter, rUpwind
       _RL deltaTcfl
 
@@ -76,8 +79,9 @@ C--    Add centered & upwind contributions
        deltaTcfl = deltaTarg(k)
        DO j=jMin,jMax
          DO i=iMin,iMax
-           w_CFL = deltaTcfl*ABS(rTrans(i,j))
-     &            *recip_rA(i,j,bi,bj)*recip_drC(k)
+c          w_CFL = deltaTcfl*ABS(rTrans(i,j))
+c    &            *recip_rA(i,j,bi,bj)*recip_drC(k)
+c    &            *recip_deepFac2F(k)*recip_rhoFacF(k)
            rCenter = 0.5 _d 0 *rTrans(i,j)*recip_rA(i,j,bi,bj)*rkSign
            rUpwind = ABS(rCenter)
      &             * ( 1. _d 0 - rLimit )
@@ -85,15 +89,19 @@ c    &             * ( 1. _d 0 - rLimit*( 1. _d 0 + w_CFL ) )
            a3d(i,j,k)   = a3d(i,j,k)
      &                  - (rCenter+rUpwind)*deltaTarg(k)
      &                   *recip_hFac(i,j,k)*recip_drF(k)
+     &                   *recip_deepFac2C(k)*recip_rhoFacC(k)
            b3d(i,j,k)   = b3d(i,j,k)
      &                  - (rCenter-rUpwind)*deltaTarg(k)
      &                    *recip_hFac(i,j,k)*recip_drF(k)
+     &                   *recip_deepFac2C(k)*recip_rhoFacC(k)
            b3d(i,j,k-1) = b3d(i,j,k-1)
      &                  + (rCenter+rUpwind)*deltaTarg(k-1)
      &                    *recip_hFac(i,j,k-1)*recip_drF(k-1)
+     &                   *recip_deepFac2C(k-1)*recip_rhoFacC(k-1)
            c3d(i,j,k-1) = c3d(i,j,k-1)
      &                  + (rCenter-rUpwind)*deltaTarg(k-1)
      &                    *recip_hFac(i,j,k-1)*recip_drF(k-1)
+     &                   *recip_deepFac2C(k-1)*recip_rhoFacC(k-1)
          ENDDO
        ENDDO
 

@@ -66,15 +66,19 @@ C--    Add centered contribution
            a3d(i,j,k)   = a3d(i,j,k)
      &                  - rCenter*deltaTarg(k)
      &                   *recip_hFac(i,j,k)*recip_drF(k)
+     &                   *recip_deepFac2C(k)*recip_rhoFacC(k)
            b3d(i,j,k)   = b3d(i,j,k)
      &                  - rCenter*deltaTarg(k)
      &                   *recip_hFac(i,j,k)*recip_drF(k)
+     &                   *recip_deepFac2C(k)*recip_rhoFacC(k)
            b3d(i,j,k-1) = b3d(i,j,k-1)
      &                  + rCenter*deltaTarg(k-1)
      &                   *recip_hFac(i,j,k-1)*recip_drF(k-1)
+     &                   *recip_deepFac2C(k-1)*recip_rhoFacC(k-1)
            c3d(i,j,k-1) = c3d(i,j,k-1)
      &                  + rCenter*deltaTarg(k-1)
      &                   *recip_hFac(i,j,k-1)*recip_drF(k-1)
+     &                   *recip_deepFac2C(k-1)*recip_rhoFacC(k-1)
          ENDDO
        ENDDO
 
