@@ -145,7 +145,9 @@ C-     Main diagonal :
        DO k=1,Nr
         DO j=jMin,jMax
          DO i=iMin,iMax
-           c5d(i,j,k) = 1. _d 0 - b5d(i,j,k) - d5d(i,j,k)
+           c5d(i,j,k) = 1. _d 0 - ( b5d(i,j,k) + d5d(i,j,k) )
+C      to recover older (prior to 2016-10-05) results:
+c          c5d(i,j,k) = 1. _d 0 - b5d(i,j,k) - d5d(i,j,k)
          ENDDO
         ENDDO
        ENDDO

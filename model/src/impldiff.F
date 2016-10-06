@@ -184,7 +184,9 @@ C--   Old aCenter
        DO j=jMin,jMax
         DO i=iMin,iMax
 #endif
-          b(i,j,k) = 1. _d 0 - c(i,j,k) - a(i,j,k)
+          b(i,j,k) = 1. _d 0 - ( a(i,j,k) + c(i,j,k) )
+C-    to recover older (prior to 2016-10-05) results:
+c         b(i,j,k) = 1. _d 0 - c(i,j,k) - a(i,j,k)
         ENDDO
        ENDDO
       ENDDO
