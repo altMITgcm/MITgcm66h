@@ -288,9 +288,9 @@ if test "x$ADDRESS" != xNONE -a "x$ADDRESS" != x ; then
             echo
             echo "An email containing results was sent to the following address:"
             echo "  \"$ADDRESS\""
+            test -f ${SAVDIR}/${DRESULTS}".tar" &&  rm -f ${SAVDIR}/${DRESULTS}".tar"
+            test -f ${SAVDIR}/${DRESULTS}".tar.gz" &&  rm -f ${SAVDIR}/${DRESULTS}".tar.gz"
         fi
-        test -f ${SAVDIR}/${DRESULTS}".tar" &&  rm -f ${SAVDIR}/${DRESULTS}".tar"
-        test -f ${SAVDIR}/${DRESULTS}".tar.gz" &&  rm -f ${SAVDIR}/${DRESULTS}".tar.gz"
     fi
 fi
 echo '' ; echo '=====  Summary (tst_2+2_out.txt):  ======'
