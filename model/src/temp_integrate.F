@@ -481,7 +481,9 @@ C-    Integrate forward in time, storing in gT_loc:  gT <= T + dt*gT
 C--   Implicit vertical advection & diffusion
 
 #ifdef INCLUDE_IMPLVERTADV_CODE
-      IF ( tempImplVertAdv ) THEN
+      IF ( tempImplVertAdv .OR. implicitDiffusion ) THEN
+C     to recover older (prior to 2016-10-05) results:
+c     IF ( tempImplVertAdv ) THEN
 #ifdef ALLOW_AUTODIFF_TAMC
 CADJ STORE kappaRk(:,:,:) = comlev1_bibj , key=itdkey, byte=isbyte
 CADJ STORE gT_loc(:,:,:) = comlev1_bibj , key=itdkey, byte=isbyte
