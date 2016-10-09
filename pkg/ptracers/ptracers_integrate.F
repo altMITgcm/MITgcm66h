@@ -436,7 +436,9 @@ CADJ &     key=iptrkey, byte=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 #ifdef INCLUDE_IMPLVERTADV_CODE
-        IF ( PTRACERS_ImplVertAdv(iTracer) ) THEN
+        IF ( PTRACERS_ImplVertAdv(iTracer) .OR. implicitDiffusion ) THEN
+C      to recover older (prior to 2016-10-05) results:
+c       IF ( PTRACERS_ImplVertAdv(iTracer) ) THEN
           CALL GAD_IMPLICIT_R(
      I         PTRACERS_ImplVertAdv(iTracer),
      I         PTRACERS_advScheme(iTracer), GAD_TR,
