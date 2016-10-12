@@ -54,22 +54,15 @@ C     Define diagnostics Names :
      I       diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
       diagName  = 'BLGCFLX '
-      diagTitle = 'Flux of CO2 - air-sea exch (mol/m2/s)'
+      diagTitle = 'Flux of CO2 due to air-sea exch (mol/m2/s)'
       diagUnits = 'mol/m2/sec      '
       diagCode  = 'SM P    L1      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I       diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
-      diagName  = 'BLGTFLX '
-      diagTitle = 'Tendency of DIC due to air-sea exch (mol/m3/s)'
-      diagUnits = 'mol C/m3/sec    '
-      diagCode  = 'SM P    L1      '
-      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
-     I       diagName, diagCode, diagUnits, diagTitle, 0, myThid )
-
       diagName  = 'BLGOFLX '
-      diagTitle = 'Tendency of O2 due to air-sea exch (mol/m3/s)'
-      diagUnits = 'mol O2/m3/sec   '
+      diagTitle = 'Flux of O2 due to air-sea exch (mol/m2/s)'
+      diagUnits = 'mol/m2/sec   '
       diagCode  = 'SM P    L1      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I       diagName, diagCode, diagUnits, diagTitle, 0, myThid )
