@@ -73,6 +73,9 @@ C     ' ' = no masking; 'c' = centered mask; 'w' = western mask; 's' = southern
       climsssmask  = 'c'
       climustrmask = 'w'
       climvstrmask = 's'
+#ifdef USE_EXFCO2
+      apco2mask = 'c'
+#endif
 
       IF ( useSEAICE ) THEN
 C     Avoid masking of vector fields with pkg/seaice (for B/C-grid interp.)
@@ -100,6 +103,9 @@ c      climsstmask  = ' '
 c      climsssmask  = ' '
        climustrmask = ' '
        climvstrmask = ' '
+#ifdef USE_EXFCO2
+       apco2mask = ' '
+#endif
       ENDIF
 
 C--   Complete the start date specifications for the forcing

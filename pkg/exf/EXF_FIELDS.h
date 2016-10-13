@@ -317,3 +317,10 @@ C     zen_fsol_daily     :: incoming solar radiation (daily mean)
       _RL climvstr1      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 #endif
 
+#ifdef USE_EXFCO2
+      COMMON /exf_atm_pco2/ apco2, apco20, apco21
+      _RL apco2      (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL apco20     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL apco21     (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+#endif
+

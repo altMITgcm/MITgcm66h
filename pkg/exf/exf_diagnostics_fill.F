@@ -66,6 +66,9 @@ C     == local variables ==
 #ifdef ALLOW_RUNOFTEMP
          CALL DIAGNOSTICS_FILL(runoftemp,  'EXFroft ',0,1,0,1,1,myThid)
 #endif
+#ifdef USE_EXFCO2
+         CALL DIAGNOSTICS_FILL(apco2,      'EXFapco2',0,1,0,1,1,myThid)
+#endif
 
       ENDIF
 #endif /* ALLOW_DIAGNOSTICS */

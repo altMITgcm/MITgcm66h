@@ -146,6 +146,11 @@ cph        CALL WRITE_REC_3D_RL(
 cph     &       'ADJevap.'//suff, writeBinaryPrec, 1,
 cph     &        adevap, 1, myIter, myThid )
 # endif
+# ifdef USE_EXFCO2
+        CALL WRITE_REC_3D_RL(
+     &       'ADJapco2.'//suff, writeBinaryPrec, 1,
+     &        adapco2, 1, myIter, myThid )
+# endif
 
       ENDIF
 

@@ -12,6 +12,11 @@ CADJ STORE areamask0    = tapelev2, key = ilev_2
 CADJ STORE areamask1    = tapelev2, key = ilev_2
 # endif
 
+# ifdef USE_EXFCO2
+CADJ STORE apco20        = tapelev2, key = ilev_2
+CADJ STORE apco21        = tapelev2, key = ilev_2
+# endif
+
 # ifdef ALLOW_HFLUX_CONTROL
 CADJ STORE xx_hflux0     = tapelev2, key = ilev_2
 CADJ STORE xx_hflux1     = tapelev2, key = ilev_2

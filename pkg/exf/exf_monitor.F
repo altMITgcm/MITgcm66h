@@ -202,6 +202,12 @@ C       Print some statistics about input forcing fields
      &             maskInC, maskInC, rA , drF, dummyRL, myThid )
         ENDIF
 #endif
+#ifdef USE_EXFCO2
+        IF ( apco2file .NE. ' ' ) THEN
+          CALL MON_WRITESTATS_RL( 1, apco2, '_apco2',
+     &             maskInC, maskInC, rA , drF, dummyRL, myThid )
+        ENDIF
+#endif
 #ifdef ALLOW_CLIMSST_RELAXATION
         IF ( climsstfile .NE. ' ' ) THEN
           CALL MON_WRITESTATS_RL( 1, climsst, '_climsst',

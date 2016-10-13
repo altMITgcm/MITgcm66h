@@ -839,6 +839,32 @@ C--   fractional ice-covered area MASK.
 #endif
 #endif /* EXF_SEAICE_FRACTION */
 
+#ifdef USE_EXFCO2
+C--   Atmospheric pCO2
+      il = ilnblnk(apco2file)
+      write(msgbuf,'(a)') ' '
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a,f12.0)')
+     &'   Atmospheric pCO2 forcing starts at       ',
+     &    apco2startdate
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a,f12.0)')
+     &'   Atmospheric pCO2 forcing period is       ',
+     &    apco2period
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a)')
+     &'   Atmospheric pCO2 forcing is read from file:'
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+      write(msgbuf,'(a,a,a)')
+     &'   >>  ',apco2file(1:il),'  <<'
+      call print_message( msgbuf, standardmessageunit,
+     &                    SQUEEZE_RIGHT , mythid)
+#endif
+
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
       write(msgbuf,'(a)') ' '

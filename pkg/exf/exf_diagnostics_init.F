@@ -201,6 +201,15 @@ C--   surface fluxes:
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
+#ifdef USE_EXFCO2
+      diagName  = 'EXFapco2 '
+      diagTitle = 'Atmospheric partial pressure of CO2'
+      diagUnits = '10^-6 ppm       '
+      diagCode  = 'SM      U1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+#endif
+
 #endif /* ALLOW_DIAGNOSTICS */
 
       RETURN
