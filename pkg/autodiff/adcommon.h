@@ -173,10 +173,6 @@ C--   heimbach@mit.edu 11-Jan-2001
       common /adexf_clim_sss_r/ adclimsss
 # endif
 
-# ifdef USE_EXFCO2 
-      _RL adapco2(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
-      common /adexf_co2_r/ adapco2
-# endif
 #endif /* ALLOW_EXF */
 
 #ifdef ALLOW_SEAICE
@@ -215,13 +211,5 @@ C--   heimbach@mit.edu 11-Jan-2001
       common /adgrid_r_s/ adhfacs
       common /adgrid_r_w/ adhfacw
 #endif /* ALLOW_DEPTH_CONTROL */
-
-#ifdef ALLOW_BLING
-      _RL adncp       (1-olx:snx+olx,1-oly:sny+oly,1:nr,nsx,nsy)
-      _RL adcar       (1-olx:snx+olx,1-oly:sny+oly,1:nr,nsx,nsy)
-      _RL adpco2sat   (1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
-      _RL adomar      (1-olx:snx+olx,1-oly:sny+oly,1:nr,nsx,nsy)
-      common /adbling_prod_r/ adncp, adcar, adpco2sat, adomar
-#endif
 
 #endif /* ALLOW_AUTODIFF_MONITOR */
