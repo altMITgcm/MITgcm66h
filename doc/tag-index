@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/exf:
+  - EXF package will now load in atmospheric pCO2 file for use with BGC packages. 
+    Enable with #define USE_EXFCO2 in EXF_OPTIONS.h 
 o model/src & pkg/ptracers:
   - with INCLUDE_IMPLVERTADV_CODE defined, also call MOM_U,V_IMPLICIT_R &
     GAD_IMPLICIT_R (instead of IMPLDIFF) when just implicitViscosity and
