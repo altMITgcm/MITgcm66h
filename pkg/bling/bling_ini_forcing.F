@@ -18,6 +18,10 @@ C     === Global variables ===
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#ifdef USE_EXFCO2
+# include "EXF_OPTIONS.h"
+# include "EXF_PARAM.h"
+#endif
 #include "BLING_VARS.h"
 #include "BLING_LOAD.h"
 
@@ -82,6 +86,18 @@ c set reasonable values to those that need at least something
        ENDDO
 
 c       total_atmos_carbon = 0. _d 0
+
+#ifdef USE_EXFCO2
+      call exf_init_gen (
+     &     apco2file, apco2period, exf_inscal_apco2, apco2mask,
+     &     apco2const, apco2, apco20, apco21,
+# ifdef USE_EXF_INTERPOLATION
+     &     apco2_lon0, apco2_lon_inc,
+     &     apco2_lat0, apco2_lat_inc,
+     &     apco2_nlon, apco2_nlat, xC, yC, apco2_interpMethod,
+# endif
+     &     mythid )
+#endif
 
 #endif /* ALLOW_BLING */
       RETURN

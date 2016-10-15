@@ -31,10 +31,11 @@ C     === Global variables ===
 #include "PARAMS.h"
 #include "GRID.h"
 #include "FFIELDS.h"
-#include "BLING_VARS.h"
 #ifdef ALLOW_EXF
+# include "EXF_PARAM.h"
 # include "EXF_FIELDS.h"
 #endif
+#include "BLING_VARS.h"
 #ifdef ALLOW_AUTODIFF
 # include "tamc.h"
 #endif

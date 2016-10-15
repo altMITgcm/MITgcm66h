@@ -21,6 +21,11 @@ CADJ STORE phyto_lg          = comlev1, key = ikey_dynamics, kind=isbyte
 CADJ STORE phyto_diaz        = comlev1, key = ikey_dynamics, kind=isbyte
 CADJ STORE chl               = comlev1, key = ikey_dynamics, kind=isbyte
 
+# ifdef USE_EXFCO2
+CADJ STORE apco20        = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE apco21        = comlev1, key=ikey_dynamics, kind=isbyte
+# endif
+
 #ifdef ALLOW_BLING_COST
 CADJ STORE totcost           = comlev1, key = ikey_dynamics, kind=isbyte
 #endif

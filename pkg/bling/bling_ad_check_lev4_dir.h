@@ -25,6 +25,11 @@ CADJ STORE silica1        = tapelev4, key = ilev_4
 CADJ STORE dicwind0       = tapelev4, key = ilev_4
 CADJ STORE dicwind1       = tapelev4, key = ilev_4
 
+# ifdef USE_EXFCO2
+CADJ STORE apco20        = tapelev4, key = ilev_4
+CADJ STORE apco21        = tapelev4, key = ilev_4
+# endif
+
 #ifdef ALLOW_BLING_COST
 CADJ STORE totcost  = tapelev4, key = ilev_4
 #endif
