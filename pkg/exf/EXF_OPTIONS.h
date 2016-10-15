@@ -176,9 +176,6 @@ C   unless to reproduce old results (obtained with inconsistent old code)
 # define EXF_LWDOWN_WITH_EMISSIVITY
 #endif
 
-C Use EXF package to prescribe atmopsheric pCO2 for use in BGC packages
-#undef  USE_EXFCO2
-
 C   Relaxation to monthly climatologies.
 #define ALLOW_CLIMSST_RELAXATION
 #define ALLOW_CLIMSSS_RELAXATION

@@ -95,11 +95,6 @@ CADJ STORE areamask0     = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE areamask1     = comlev1, key=ikey_dynamics, kind=isbyte
 # endif
 
-# ifdef USE_EXFCO2
-CADJ STORE apco20        = comlev1, key=ikey_dynamics, kind=isbyte
-CADJ STORE apco21        = comlev1, key=ikey_dynamics, kind=isbyte
-# endif
-
 # ifdef ALLOW_HFLUX_CONTROL
 CADJ STORE xx_hflux0     = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE xx_hflux1     = comlev1, key=ikey_dynamics, kind=isbyte

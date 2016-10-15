@@ -28,6 +28,10 @@ C     !USES:
 #ifdef ALLOW_MNC
 # include "MNC_PARAMS.h"
 #endif
+#ifdef ALLOW_BLING
+# include "BLING_OPTIONS.h"
+# include "BLING_VARS.h"
+#endif
 
 C     !INPUT PARAMETERS:
       _RL myTime
