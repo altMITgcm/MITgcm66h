@@ -76,6 +76,17 @@ C       The 0 is the "iteration" argument. The ' ' is an empty suffix
         WRITE(msgBuf,'(A)') 'INIT CALVE MASK - NOT IMPLENTED'
         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT , 1)
+
+        DO bj = myByLo(myThid), myByHi(myThid)
+         DO bi = myBxLo(myThid), myBxHi(myThid)
+          DO j=1,sNy
+           DO i=1,sNx
+            streamice_calve_mask(i,j,bi,bj) = 0. _d 0
+           ENDDO
+          ENDDO
+         ENDDO
+        ENDDO
+
        ENDIF
       ENDIF
 
