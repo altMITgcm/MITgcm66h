@@ -17,6 +17,7 @@ C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "PARAMS.h"
+#ifdef USE_EXFCO2
 #include "EXF_OPTIONS.h"
 #ifdef USE_EXF_INTERPOLATION
 # ifdef ALLOW_EXCH2
@@ -27,6 +28,7 @@ C     === Global variables ===
 #endif /* USE_EXF_INTERPOLATION */
 #include "EXF_PARAM.h"
 #include "EXF_CONSTANTS.h"
+#endif
 #include "BLING_VARS.h"
 
 C     === Routine arguments ===
