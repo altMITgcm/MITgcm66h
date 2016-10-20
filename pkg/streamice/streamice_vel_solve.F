@@ -60,7 +60,9 @@ C     LOCAL VARIABLES
 !       _RL taudx (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 !       _RL taudy (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 
-      IF (STREAMICE_ppm_driving_stress) THEN
+      IF (STREAMICE_alt_driving_stress) THEN
+       CALL STREAMICE_DRIVING_STRESS_FD (myThid)
+      ELSEIF (STREAMICE_ppm_driving_stress) THEN
        CALL STREAMICE_DRIVING_STRESS_PPM (myThid)
       ELSE
        CALL STREAMICE_DRIVING_STRESS (myThid)
