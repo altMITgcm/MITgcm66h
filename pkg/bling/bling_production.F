@@ -757,7 +757,7 @@ c  Oxic
      &                   + DON_remin(i,j,k)
           ENDIF    
 
-          NCP(i,j,k) = (N_uptake(i,j,k) + N_fix(i,j,k)-
+          NCP(i,j,k) = (N_uptake(i,j,k) + N_fix(i,j,k)
      &                   - N_recycle(i,j,k) - (1. _d 0 - phi_DOM) *
      &                   (N_reminp(i,j,k) - N_remindvm(i,j,k))
      &                   - DON_remin(i,j,k) ) * CtoN
