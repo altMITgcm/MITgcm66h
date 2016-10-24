@@ -61,8 +61,8 @@ C     LOCAL VARIABLES
 
       DO bj = myByLo(myThid), myByHi(myThid)
        DO bi = myBxLo(myThid), myBxHi(myThid)
-        DO j=1-OLy+1,sNy+OLy-1
-         DO i=1-OLx+1,sNx+OLx-1
+        DO j=1,sNy
+         DO i=1,sNx
 
           IF (streamice_hmask(i,j,bi,bj) .eq. 1) THEN
 
