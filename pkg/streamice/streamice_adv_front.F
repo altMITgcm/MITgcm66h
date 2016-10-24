@@ -147,8 +147,7 @@ CADJ STORE streamice_hmask(i,j,bi,bj)
 CADJ &     = comlev1_stream_ij, key = ikey_1
 #endif
 
-!            IF (.not. STREAMICE_calve_to_mask .OR.
-             IF(
+            IF (.not. STREAMICE_calve_to_mask .OR.
      &       STREAMICE_calve_mask (i,j,bi,bj) .eq. 1.0) THEN
 
             IF ((Gi .ge. 1) .and. (Gi .le. Nx) .and.
