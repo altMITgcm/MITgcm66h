@@ -153,7 +153,7 @@ c-----------------------------------------------------------------------
        ENDDO
       ENDDO
       IF ( IDEMIX_tau_h .GT. 0. _d 0 ) THEN
-C     horizontal diffusion of IW energy can become unstable for long 
+C     horizontal diffusion of IW energy can become unstable for long
 C     time steps, so limit horizontal group velocity to satisfy simple
 C     CFL-like criterion:
 C     tau_h V0**2 *dt/dx**2 < 0.25 <=> V0 < sqrt( 0.25 * dx**2/(dt*tau_h) )
@@ -422,6 +422,7 @@ C     Apply flux boundary condition
       ENDDO
 
 C     solve tri-diagonal system
+      errCode = -1
       CALL SOLVE_TRIDIAGONAL( iMin,iMax, jMin,jMax,
      I                        a3d, b3d, c3d,
      U                        IDEMIX_E(1-OLx,1-OLy,1,bi,bj),

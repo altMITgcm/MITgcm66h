@@ -658,6 +658,7 @@ C      Dirichlet bottom boundary condition for TKE = GGL90TKEbottom
       ENDIF
 
 C     solve tri-diagonal system
+      errCode = -1
       CALL SOLVE_TRIDIAGONAL( iMin,iMax, jMin,jMax,
      I                        a3d, b3d, c3d,
      U                        GGL90TKE(1-OLx,1-OLy,1,bi,bj),

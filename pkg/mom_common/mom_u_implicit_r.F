@@ -203,6 +203,7 @@ C--   end if momImplVertAdv
 
       IF ( diagonalNumber .EQ. 3 ) THEN
 C--   Solve tri-diagonal system :
+        errCode = -1
         CALL SOLVE_TRIDIAGONAL( iMin,iMax, jMin,jMax,
      I                          b5d, c5d, d5d,
      U                          gU(1-OLx,1-OLy,1,bi,bj),
