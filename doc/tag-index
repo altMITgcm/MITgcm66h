@@ -4,6 +4,13 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o model/src:
+  - modify SOLVE_DIAGONAL_LOWMEMORY version of solve_tridiagonal.F
+    & solve_pentadiagonal.F to enable to re-used inverse matrix for solving
+    similar A.X'=Y' system (with same matrix A) in subsequent calls;
+    switch based on errCode (In/Out) argument value; in calling routines,
+    initialise errCode before first call.
+
 checkpoint66a (2016/10/18)
 o pkg/bling:
   - BLING package now loads in atmospheric pCO2 file using exf package routines
