@@ -231,7 +231,7 @@ C  Maximum value added for numerical stability.
 
            POC_sed = PONflux_l * CtoN
 
-           Fe_sed(i,j,k) = min(1. _d -11,
+           Fe_sed(i,j,k) = min(1. _d -13,
      &            max(epsln, FetoC_sed * POC_sed * recip_drF(k)
      &            *recip_hFacC(i,j,k,bi,bj)))
 
