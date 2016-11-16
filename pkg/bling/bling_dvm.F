@@ -321,19 +321,6 @@ c  Calculate the remineralization terms as the divergence of the flux
        enddo
       enddo
 
-c ---------------------------------------------------------------------
-
-#ifdef ALLOW_DIAGNOSTICS
-      IF ( useDiagnostics ) THEN
-
-        CALL DIAGNOSTICS_FILL(Fe_dvm,'BLGFEDVM',0,Nr,2,bi,bj,myThid)
-        CALL DIAGNOSTICS_FILL(N_dvm,'BLGNDVM ',0,Nr,2,bi,bj,myThid)
-        CALL DIAGNOSTICS_FILL(P_dvm,'BLGPDVM ',0,Nr,2,bi,bj,myThid)
-        CALL DIAGNOSTICS_FILL(dvm,'BLGDVM  ',0,Nr,2,bi,bj,myThid)
-
-      ENDIF
-#endif /* ALLOW_DIAGNOSTICS */
-
 #endif /* ALLOW_BLING */
 
       RETURN

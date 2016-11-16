@@ -42,7 +42,9 @@ c For exf undefined cannot use exf fields
 c  this one ok. In FFIELDS.h. #undef USE_EXFQSW
 #endif
 
-c In the DVM routine, assume fixed mixed layer depth 
+c  apply remineralization from diel vertical migration
+#undef USE_BLING_DVM
+c In the DVM routine, assume fixed mixed layer depth
 c (so no need to calc MLD in bling_production)
 #define FIXED_MLD_DVM
 
