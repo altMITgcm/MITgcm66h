@@ -74,6 +74,7 @@ C--   File Precision is different from "new grid IO" (always 64-bits precision)
 C     which should probably be changed to the standard file-prec (= readBinaryPrec)
       fp = readBinaryPrec
 
+# ifdef ALLOW_MDSIO
 C-    Cell centered quantities
       CALL READ_REC_3D_RS( 'LONC.bin', fp, 1, xC, 1, 0, myThid )
       CALL READ_REC_3D_RS( 'LATC.bin', fp, 1, yC, 1, 0, myThid )
@@ -174,6 +175,15 @@ C-    Staggered (u,v pairs) quantities
       CALL READ_REC_3D_RS( 'DXG.bin', fp, 1, dxG, 1, 0, myThid )
       CALL READ_REC_3D_RS( 'DYG.bin', fp, 1, dyG, 1, 0, myThid )
       CALL EXCH_UV_XY_RS(dyG,dxG,.FALSE.,myThid)
+# else /* ALLOW_MDSIO */
+      WRITE(msgBuf,'(2A)')
+     &  'INI_CURVILINEAR_GRID: In order to use OLD_GRID_IO code,'
+      CALL PRINT_ERROR( msgBuf, myThid )
+      WRITE(msgBuf,'(2A)')
+     &  'INI_CURVILINEAR_GRID: needs to compile MDSIO pkg'
+      CALL PRINT_ERROR( msgBuf, myThid )
+      STOP 'ABNORMAL END: S/R INI_CURVILINEAR_GRID'
+# endif /* ALLOW_MDSIO */
 
 c     write(10) xC
 c     write(10) yC
