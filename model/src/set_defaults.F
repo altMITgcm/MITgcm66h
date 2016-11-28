@@ -203,7 +203,7 @@ C-    viscosity and diffusivity default value:
       useStrainTensionVisc= .FALSE.
       implicitDiffusion   = .FALSE.
       implicitViscosity   = .FALSE.
-      implBottomFriction  = .FALSE.
+      selectImplicitDrag  = 0
       momImplVertAdv      = .FALSE.
       tempImplVertAdv     = .FALSE.
       saltImplVertAdv     = .FALSE.
@@ -245,7 +245,7 @@ C--   Set (free)surface-related parameters
       implicitFreeSurface = .FALSE.
       rigidLid            = .FALSE.
       implicSurfPress     = 1. _d 0
-      implicDiv2Dflow     = 1. _d 0
+      implicDiv2DFlow     = 1. _d 0
       exactConserv        = .FALSE.
       linFSConserveTr     = .FALSE.
       uniformLin_PhiSurf  = .TRUE.
