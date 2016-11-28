@@ -483,6 +483,9 @@ c
 #ifdef SEAICE_ITD
       CALL WRITE_0D_I (SEAICE_multDim,INDEX_NONE,'nITD              ='
      & , ' /* number of ice thickness categories */')
+      CALL WRITE_0D_L ( SEAICEuseLinRemapITD, INDEX_NONE,
+     & 'SEAICEuseLinRemapITD  =',
+     & ' /* select linear remapping scheme for ITD */')
       CALL WRITE_0D_L ( useHibler79IceStrength, INDEX_NONE,
      & 'useHibler79IceStrength  =',
      & ' /* select ice strength parameterizationd */')
