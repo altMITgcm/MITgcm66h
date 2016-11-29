@@ -150,6 +150,7 @@ c    &     .TRUE.,.TRUE.,.TRUE.,1,myThid)
          elseif (gencost_barfile(k)(1:7).EQ.'m_vwind') then
            gencost_modfld(i,j,bi,bj,k) =
      &      merwind(i,j,bi,bj)*maskC(i,j,1,bi,bj)
+#ifdef ALLOW_ATM_TEMP
          elseif (gencost_barfile(k)(1:7).EQ.'m_atemp') then
            gencost_modfld(i,j,bi,bj,k) =
      &      atemp(i,j,bi,bj)*maskC(i,j,1,bi,bj)
@@ -159,12 +160,15 @@ c    &     .TRUE.,.TRUE.,.TRUE.,1,myThid)
          elseif (gencost_barfile(k)(1:8).EQ.'m_precip') then
            gencost_modfld(i,j,bi,bj,k) =
      &      precip(i,j,bi,bj)*maskC(i,j,1,bi,bj)
+#endif
+#ifdef ALLOW_DOWNWARD_RADIATION
          elseif (gencost_barfile(k)(1:8).EQ.'m_swdown') then
            gencost_modfld(i,j,bi,bj,k) =
      &      swdown(i,j,bi,bj)*maskC(i,j,1,bi,bj)
          elseif (gencost_barfile(k)(1:8).EQ.'m_lwdown') then
            gencost_modfld(i,j,bi,bj,k) =
      &      lwdown(i,j,bi,bj)*maskC(i,j,1,bi,bj)
+#endif
          elseif (gencost_barfile(k)(1:8).EQ.'m_wspeed') then
            gencost_modfld(i,j,bi,bj,k) =
      &      wspeed(i,j,bi,bj)*maskC(i,j,1,bi,bj)
