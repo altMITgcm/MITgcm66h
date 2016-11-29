@@ -104,6 +104,9 @@ C     iUnit      :: Work variable for IO unit number
      &     useStreamiceFlowlineButtr,
 #endif
      &     STREAMICE_allow_cpl
+#ifdef ALLOW_OPENAD
+     &     ,streamice_smooth_thick_adjoint
+#endif
 
 #ifdef ALLOW_STREAMICE_2DTRACER
       NAMELIST /STREAMICE_PARMTRACER/
@@ -213,6 +216,9 @@ C--   Default values for STREAMICE
       streamice_max_nl_iter = 100
       streamice_maxcgiter_cpl = 0
       streamice_maxnliter_cpl = 0
+#ifdef ALLOW_OPENAD
+      streamice_smooth_thick_adjoint = 0
+#endif
 !      streamice_n_sub_regularize = 4
       streamice_CFL_factor = .5
       streamice_adjDump = 0.
