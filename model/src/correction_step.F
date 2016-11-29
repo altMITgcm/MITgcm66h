@@ -52,7 +52,9 @@ C     i,j          :: Loop counters
 C     psFac, nhFac :: Scaling parameters for supressing gradients
       INTEGER i,j
       _RL     psFac, nhFac
+#ifdef ALLOW_SOLVE4_PS_AND_DRAG
       _RL     deltaT_ps
+#endif
 CEOP
 
 #ifdef ALLOW_SOLVE4_PS_AND_DRAG
