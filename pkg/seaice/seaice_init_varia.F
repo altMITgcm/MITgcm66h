@@ -49,7 +49,9 @@ C     i,j,k,bi,bj :: Loop counters
 #ifdef OBCS_UVICE_OLD
       INTEGER I_obc, J_obc
 #endif /* ALLOW_OBCS */
+#ifdef SEAICE_CGRID
       _RL recip_tensilDepth
+#endif
 
       IF ( buoyancyRelation .EQ. 'OCEANICP' ) THEN
        kSurface = Nr
@@ -246,7 +248,6 @@ C--   Choose a proxy level for geostrophic velocity,
        ENDDO
       ENDDO
 #endif /* SEAICE_CGRID */
-
 
 C--   Initialise all variables in common blocks:
       DO bj=myByLo(myThid),myByHi(myThid)
@@ -694,11 +695,11 @@ C---  Complete initialization
       ENDDO
 #ifdef SEAICE_CGRID
 C     compute tensile strength factor k: tensileStrength = k*PRESS
-C     can be done in initialisation phase as long as it depends only 
+C     can be done in initialisation phase as long as it depends only
 C     on depth
       IF ( SEAICE_tensilFac .NE. 0. _d 0 ) THEN
        recip_tensilDepth = 0. _d 0
-       IF ( SEAICE_tensilDepth .GT. 0. _d 0 ) 
+       IF ( SEAICE_tensilDepth .GT. 0. _d 0 )
      &      recip_tensilDepth = 1. _d 0 / SEAICE_tensilDepth
        DO bj=myByLo(myThid),myByHi(myThid)
         DO bi=myBxLo(myThid),myBxHi(myThid)

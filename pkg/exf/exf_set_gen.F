@@ -91,7 +91,9 @@ C     msgBuf     :: Informational/error message buffer
       INTEGER bi, bj, i, j
       _RL     fac
       CHARACTER*(128) genfile0, genfile1
+#ifdef USE_EXF_INTERPOLATION
       CHARACTER*(MAX_LEN_FNAM) out_file
+#endif
 
 C     == end of interface ==
 
