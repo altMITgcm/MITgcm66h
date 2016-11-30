@@ -152,7 +152,7 @@ c     Rib    (imt,Nr      ) - bulk Richardson number
       _RL sigma  (imt         )
       _RL Rib    (imt,Nr      )
 
-      integer i, k, md, kl
+      integer i, k, md
 
 c-----------------------------------------------------------------------
 c compute interior mixing coefficients everywhere, due to constant
