@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint66b (2016/12/01)
 o model & momentum pkgs:
   - implement fully implicit bottom friction combined with implicit surf.
     pressure, for now, only in hydrostic formulation:
