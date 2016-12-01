@@ -87,10 +87,14 @@ CADJ STORE streamice_hmask  = comlev1, key=ikey_dynamics
 
           hflux_x_SI (i,j,bi,bj) = 0. _d 0
           hflux_y_SI (i,j,bi,bj) = 0. _d 0
-!          h_after_uflux_SI(i,j,bi,bj) = H_streamice(i,j,bi,bj)
-!          h_after_vflux_SI(i,j,bi,bj) = H_streamice(i,j,bi,bj)
-          h_after_uflux_SI(i,j,bi,bj) = 0. _d 0
-          h_after_vflux_SI(i,j,bi,bj) = 0. _d 0
+          
+          IF (STREAMICE_hmask(i,j,bi,bj).eq.1.0) THEN
+           h_after_uflux_SI(i,j,bi,bj) = 0. _d 0
+           h_after_vflux_SI(i,j,bi,bj) = 0. _d 0
+          ELSE
+           h_after_uflux_SI(i,j,bi,bj) = H_streamice(i,j,bi,bj)
+           h_after_vflux_SI(i,j,bi,bj) = H_streamice(i,j,bi,bj)
+          ENDIF
 
           IF (STREAMICE_ufacemask(i,j,bi,bj).eq.3.0) THEN
            BCMASKX(i,j,bi,bj) = 3.0
