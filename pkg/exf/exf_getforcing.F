@@ -267,9 +267,10 @@ C     Get values of the surface flux anomalies.
 # endif
 #endif
 
-#ifdef SHORTWAVE_HEATING
+#ifdef ALLOW_ATM_TEMP
+# ifdef SHORTWAVE_HEATING
 C     Treatment of qnet
-C     The location of te summation of Qnet in exf_mapfields is unfortunate.
+C     The location of the summation of Qnet in exf_mapfields is unfortunate:
 C     For backward compatibility issues we want it to happen after
 C     applying control variables, but before exf_diagnostics_fill.
 C     Therefore, we DO it exactly here:
@@ -282,7 +283,8 @@ C     Therefore, we DO it exactly here:
         ENDDO
        ENDDO
       ENDDO
-#endif
+# endif /* SHORTWAVE_HEATING */
+#endif /* ALLOW_ATM_TEMP */
 
 C     Diagnostics output
       CALL exf_diagnostics_fill( myTime, myIter, myThid )
