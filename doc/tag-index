@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/exf:
+  - change definition of "hflux" input file to always include Short-Wave;
+    this is now consistent with hflux computation (if using bulk-formulae) 
+    and hflux diagnostic & documentation (in EXF_FIELDS.h).
+
 checkpoint66b (2016/12/01)
 o model & momentum pkgs:
   - implement fully implicit bottom friction combined with implicit surf.
