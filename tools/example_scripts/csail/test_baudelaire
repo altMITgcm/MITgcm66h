@@ -201,7 +201,7 @@ do
   else
     comm="$comm -md cyrus-makedepend"
   fi
-  comm="$comm -odir $outDir -a jmc@mitgcm.org"
+  comm="$comm -odir $outDir -a jmc@dev.mitgcm.org"
 #-- set the optfile (+ mpi & match-precision)
   MPI=0
   case $typ in
@@ -271,7 +271,7 @@ do
   if test $tt != $typ
   then
     echo "testing restart using:"	| tee -a $tdir/output_$tt
-    comm="../tools/do_tst_2+2 -o $outDir -a jmc@mitgcm.org"
+    comm="../tools/do_tst_2+2 -o $outDir -a jmc@dev.mitgcm.org"
     if test $MPI = 0 ; then
       echo "  \"$comm\""		| tee -a $tdir/output_$tt
       echo "======================"
