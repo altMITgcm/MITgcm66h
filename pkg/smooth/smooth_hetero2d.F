@@ -38,8 +38,8 @@ c#include "tamc.h"
 
       smooth2DtotTime=nbt_in*smooth2DdelTime
 
-      call mdsreadfield( dist_file,
-     &    32, 'RL', 1, dist_in, 1, mythid)
+      CALL READ_REC_3D_RL(dist_file,smoothprec,
+     &           1,dist_in,1,1,mythid)
 
       DO bj=myByLo(myThid),myByHi(myThid)
        DO bi=myBxLo(myThid),myBxHi(myThid)
