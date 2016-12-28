@@ -79,6 +79,30 @@ INCLUDEDIRS=''
 INCLUDES=''
 LIBS=''
 
+if [ "x$NETCDF_ROOT" != x ] ; then
+    INCLUDEDIR="${NETCDF_ROOT}/include"
+    INCLUDES="-I${NETCDF_ROOT}/include"
+    LIBDIR="${NETCDF_ROOT}/lib"
+    LIBS="-L${NETCDF_ROOT}/lib"
+elif [ "x$NETCDF_HOME" != x ]; then
+    INCLUDEDIR="${NETCDF_HOME}/include"
+    INCLUDES="-I${NETCDF_HOME}/include"
+    LIBDIR="${NETCDF_HOME}/lib"
+    LIBS="-L${NETCDF_HOME}/lib"
+elif [ "x$NETCDF_INC" != x -a "x$NETCDF_LIB" != x ]; then
+    NETCDF_INC=`echo $NETCDF_INC | sed 's/-I//g'`
+    NETCDF_LIB=`echo $NETCDF_LIB | sed 's/-L//g'`
+    INCLUDEDIR="${NETCDF_INC}"
+    INCLUDES="-I${NETCDF_INC}"
+    LIBDIR="${NETCDF_LIB}"
+    LIBS="-L${NETCDF_LIB}"
+elif [ "x$NETCDF_INCDIR" != x -a "x$NETCDF_LIBDIR" != x ]; then
+    INCLUDEDIR="${NETCDF_INCDIR}"
+    INCLUDES="-I${NETCDF_INCDIR}"
+    LIBDIR="${NETCDF_LIBDIR}"
+    LIBS="-L${NETCDF_LIBDIR}"
+fi
+
 if [ -n "$MPI_INC_DIR" -a "x$MPI" = xtrue ] ; then
     INCLUDES="$INCLUDES -I$MPI_INC_DIR"
     INCLUDEDIRS="$INCLUDEDIRS $MPI_INC_DIR"
