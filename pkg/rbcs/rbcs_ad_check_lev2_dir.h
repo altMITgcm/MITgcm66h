@@ -5,6 +5,7 @@ CADJ STORE rbct0 = tapelev2, key = ilev_2
 CADJ STORE rbct1 = tapelev2, key = ilev_2
 CADJ STORE rbcs0 = tapelev2, key = ilev_2
 CADJ STORE rbcs1 = tapelev2, key = ilev_2
+CADJ STORE rbcsldrec = tapelev2, key = ilev_2
 
 #ifndef DISABLE_RBCS_MOM
 CADJ STORE rbcu0 = tapelev2, key = ilev_2

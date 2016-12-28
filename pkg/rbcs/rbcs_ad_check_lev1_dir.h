@@ -5,6 +5,7 @@ CADJ STORE rbct0 = comlev1, key = ikey_dynamics
 CADJ STORE rbct1 = comlev1, key = ikey_dynamics
 CADJ STORE rbcs0 = comlev1, key = ikey_dynamics
 CADJ STORE rbcs1 = comlev1, key = ikey_dynamics
+CADJ STORE rbcsldrec = comlev1, key = ikey_dynamics
 
 #ifndef DISABLE_RBCS_MOM
 CADJ STORE rbcu0 = comlev1, key = ikey_dynamics
