@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/exf:
+  - check: count errors and stop cleanly at the end (call to ALL_PROC_DIE);
+  - summary: skip detailed field report if not used (empty file-name).
 o tools/xmakedepend:
   - In case line editor "ed" is missing, switch to "sed" command to clean-up
     Makefile from previous dependencies (anything after "# DO NOT DELETE" line).
