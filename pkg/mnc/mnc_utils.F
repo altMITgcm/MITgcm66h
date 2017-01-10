@@ -61,7 +61,8 @@ C     Functions
         lenm = ILNBLNK(msgbuf)
         print *, msgbuf(1:lenm)
         CALL print_error(msgbuf(1:lenm), mythid)
-        stop 'ABNORMAL END: package MNC'
+        CALL ALL_PROC_DIE( myThid )
+        STOP 'ABNORMAL END: S/R MNC_HANDLE_ERR'
       ENDIF
       RETURN
       END
