@@ -5,7 +5,7 @@ $Name$
     ==============================
 
 o pkg/mnc:
-  - mnc_utils.F: call ALL_PROC_DIE before 'stop', edit stop message
+  - mnc_utils.F: edit stop message
 o pkg/autodiff:
   - autodiff_ini_model_io.F: PRINT_MESSAGE, clean-up comments, add _*_MASTER
 o pkg/profiles:
