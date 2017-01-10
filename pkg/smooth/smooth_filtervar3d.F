@@ -138,7 +138,8 @@ c adjoint:
       WRITE(errorMessageUnit,'(A,/,A)' )
      & "you need to have adsmooth_diff3D compiled and then:",
      & "uncomment the line below and comment the stop"
-             STOP 'ABNORMAL END: S/R smooth_filtervar3D'
+      CALL ALL_PROC_DIE( myThid )
+      STOP 'ABNORMAL END: S/R smooth_filtervar3D'
 c      call adsmooth_diff3D(smoothTmpFld,nbt_in,myThid)
 
 c division by sqrt(volume)*sqrt(volume) [1 to end adj, 1 to begin fwd]
