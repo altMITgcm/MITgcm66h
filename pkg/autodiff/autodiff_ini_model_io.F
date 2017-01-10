@@ -50,6 +50,7 @@ C     !FUNCTIONS
       EXTERNAL ILNBLNK
 
 C     !LOCAL VARIABLES:
+      CHARACTER*(MAX_LEN_MBUF) msgBuf
       CHARACTER*(MAX_LEN_FNAM) namBuf
       INTEGER iL, pIL, myLev
 CEOP
@@ -59,9 +60,11 @@ c     initialize ad dump record number (used only if dumpAdByRec is true)
       dumpAdRecDy=0
       dumpAdRecSi=0
 
+      _BEGIN_MASTER( myThid )
+
       IF ( adTapeDir .NE. ' ' ) THEN
        iL = ILNBLNK( adTapeDir )
-C      append "/", if necessay
+C      append "/", if necessary
        IF ( iL.LT.MAX_LEN_FNAM .AND. adTapeDir(iL:iL).NE.'/' ) THEN
         namBuf(1:iL) = adTapeDir(1:iL)
         WRITE(adTapeDir(1:iL+1),'(2A)') namBuf(1:iL),'/'
@@ -70,11 +73,15 @@ C      create directory
        iL = ILNBLNK( adTapeDir ) -1
        WRITE(namBuf,'(2A)') ' mkdir -p ', adTapeDir(1:iL)
        pIL = 1 + ILNBLNK( namBuf )
-       WRITE(standardMessageUnit,'(3A)')
+       WRITE(msgBuf,'(3A)')
      &  '==> SYSTEM CALL (from AUTODIFF_INI_MODEL_IO): >',
      &                                 namBuf(1:pIL), '<'
+       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                     SQUEEZE_RIGHT, myThid )
        CALL SYSTEM( namBuf(1:pIL) )
       ENDIF
+
+      _END_MASTER( myThid )
 
 #ifdef ALLOW_AUTODIFF_WHTAPEIO
 
