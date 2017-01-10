@@ -46,6 +46,7 @@ C- skip reserved unit numbers
             WRITE(msgBuf,'(A)')
      &        ' PROFILES_FINDUNIT: inquire statement failed!'
             CALL PRINT_ERROR( msgBuf, myThid )
+            CALL ALL_PROC_DIE( myThid )
             STOP 'ABNORMAL END: S/R PROFILES_FINDUNIT'
           ENDIF
           IF ( .NOT.op ) THEN
@@ -60,6 +61,7 @@ C Was there an available unit number
         WRITE(msgBuf,'(A)')
      &    ' PROFILES_FINDUNIT: could not find an available unit number!'
         CALL PRINT_ERROR( msgBuf, myThid )
+        CALL ALL_PROC_DIE( myThid )
         STOP 'ABNORMAL END: S/R PROFILES_FINDUNIT'
       ENDIF
 

@@ -108,6 +108,7 @@ c--   == end of interface ==
         WRITE(msgBuf,'(2A)') 'PROFILES_INIT_FIXED: ',
      &  'unless usingSphericalGrid=.TRUE. and rotateGrid=.FALSE.'
         CALL PRINT_ERROR( msgBuf , myThid )
+        CALL ALL_PROC_DIE( myThid )
         STOP 'ABNORMAL END: S/R PROFILES_INIT_FIXED'
       ENDIF
 
@@ -134,6 +135,7 @@ c--   == end of interface ==
      &                    SQUEEZE_RIGHT , mythid)
 
       _BEGIN_MASTER( mythid )
+
       DO bj=1,nSy
       DO bi=1,nSx
 
@@ -804,12 +806,14 @@ cgf YC grid
 c2) stop after other kind of errors
       CALL GLOBAL_SUM_INT( stopProfiles , myThid )
       if ( stopProfiles.GE.1) then
-             STOP 'ABNORMAL END: S/R PROFILES_INIT_FIXED'
+        CALL ALL_PROC_DIE( myThid )
+        STOP 'ABNORMAL END: S/R PROFILES_INIT_FIXED'
       endif
 
       CALL GLOBAL_SUM_INT( stopGenericGrid , myThid )
       if ( stopGenericGrid.GE.1) then
-             STOP 'ABNORMAL END: S/R PROFILES_INIT_FIXED'
+        CALL ALL_PROC_DIE( myThid )
+        STOP 'ABNORMAL END: S/R PROFILES_INIT_FIXED'
       endif
 
       write(msgbuf,'(a)') ' '

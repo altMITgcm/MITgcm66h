@@ -139,6 +139,7 @@ c--     Next, read the cost data file.
              WRITE(errorMessageUnit,'(2A)')
      &         'ERROR in PROFILES_READPARMS: inconsistent ',
      &         'prof_names and prof_namesmod'
+             CALL ALL_PROC_DIE( myThid )
              STOP 'ABNORMAL END: S/R PROFILES_READPARMS'
             endif
           enddo
