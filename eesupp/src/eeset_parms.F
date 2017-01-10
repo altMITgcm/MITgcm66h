@@ -226,7 +226,9 @@ C     writing scratchFile1 before opening it
         CALL MPI_BARRIER( MPI_COMM_MODEL, mpiRC )
       ENDIF
 # endif
+#ifdef HAVE_SYSTEM
       CALL SYSTEM('sleep 1')
+#endif
       OPEN(UNIT=scrUnit1, FILE=scratchFile1, STATUS='OLD')
 #endif /* SINGLE_DISK_IO */
 
