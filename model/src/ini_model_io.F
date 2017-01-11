@@ -212,9 +212,11 @@ C       belonging to the core dynamical model
 #endif
 
 #ifdef ALLOW_PROFILES
-      IF ( usePROFILES ) THEN
-        CALL PROFILES_INI_IO( myThid )
-      ENDIF
+      IF ( usePROFILES ) CALL PROFILES_INI_IO( myThid )
+#endif
+
+#ifdef ALLOW_DIAGNOSTICS
+      IF ( useDiagnostics ) CALL DIAGNOSTICS_INI_IO( myThid )
 #endif
 
 #ifdef ALLOW_MONITOR
