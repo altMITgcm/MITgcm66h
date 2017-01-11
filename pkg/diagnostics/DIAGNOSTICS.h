@@ -146,7 +146,7 @@ C    diagMdsDirCreate :: system call to mkdir to create diagMdsDir
       LOGICAL diag_pickup_read,        diag_pickup_write
       LOGICAL diag_pickup_read_mdsio,  diag_pickup_write_mdsio
       LOGICAL diag_pickup_read_mnc,    diag_pickup_write_mnc
-      character*(MAX_LEN_FNAM) diagMdsDir
+      CHARACTER*(MAX_LEN_FNAM) diagMdsDir
 
       COMMON / DIAG_PARAMS_I /
      &     diagLoc_ioUnit

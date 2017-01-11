@@ -510,9 +510,9 @@ C     Echo History List Data Structure
       CALL WRITE_0D_L( diag_mnc,   INDEX_NONE,
      & ' diag_mnc =', '   /* write NetCDF output files */')
       IF ( diag_mdsio.AND.(diagMdsDir.NE.' ') ) THEN
-        CALL WRITE_0D_C( diagMdsDir, -1, INDEX_NONE,
+       CALL WRITE_0D_C( diagMdsDir, -1, INDEX_NONE,
      &   'diagMdsDir =', ' /* directory for mds diagnostics output */')
-      CALL WRITE_0D_L( diagMdsDirCreate, INDEX_NONE,
+       CALL WRITE_0D_L( diagMdsDirCreate, INDEX_NONE,
      & ' diagMdsDirCreate =', ' /* call mkdir to create diagMdsDir */')
       ENDIF
       CALL WRITE_0D_L( useMissingValue, INDEX_NONE,
