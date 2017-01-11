@@ -201,6 +201,13 @@ C--   surface fluxes:
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
+      diagName  = 'EXFsalfx'
+      diagTitle = 'upward salt flux, > 0 decreases salinity'
+      diagUnits = 'psu.kg/m^2/s    '
+      diagCode  = 'SM      U1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I          diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
 #endif /* ALLOW_DIAGNOSTICS */
 
       RETURN

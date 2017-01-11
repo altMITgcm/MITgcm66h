@@ -200,6 +200,12 @@ C       Print some statistics about input forcing fields
         ENDIF
 # endif
 #endif
+#ifdef EXF_SALTFLX
+        IF ( saltflxfile .NE. ' ' ) THEN
+          CALL MON_WRITESTATS_RL( 1, saltflx,'_saltflx',
+     &             maskInC, maskInC, rA , drF, dummyRL, myThid )
+        ENDIF
+#endif
 #ifdef EXF_SEAICE_FRACTION
         IF ( areamaskfile .NE. ' ' ) THEN
           CALL MON_WRITESTATS_RL( 1, areamask,'_areamask',

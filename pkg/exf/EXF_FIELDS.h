@@ -104,6 +104,12 @@ C                  Input or input/output field
 c
 C     runoftemp :: Temperature of runoff in deg C
 c
+C     saltflx   :: Net upward salt flux in psu.kg/m^2/s
+C                  > 0 for decrease in SSS.
+C                  Typical origin: salty sea-ice formation / melting.
+C                  Units: when salinity (unit= psu) is expressed
+C                       in g/kg, saltflx unit becomes g/m^2/s.
+c
 C     swdown    :: Downward shortwave radiation in W/m^2
 C                  > 0 for increase in theta (ocean warming)
 C                  Typical range: 0 < swdown < 450
@@ -276,6 +282,13 @@ C     zen_fsol_daily     :: incoming solar radiation (daily mean)
       _RL runoftemp (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL runoftemp0(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
       _RL runoftemp1(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+#endif
+
+#ifdef ALLOW_SALTFLX
+      COMMON /exfl_saltflx_r/ saltflx, saltflx0, saltflx1
+      _RL saltflx (1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL saltflx0(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
+      _RL saltflx1(1-OLx:sNx+OLx,1-OLy:sNy+OLy,nSx,nSy)
 #endif
 
 #ifdef EXF_SEAICE_FRACTION

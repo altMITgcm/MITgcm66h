@@ -320,6 +320,20 @@ C      will be over-written at first time-step when calling EXF_SET_UV.
 # endif /* ALLOW_RUNOFTEMP */
 #endif /* ALLOW_RUNOFF */
 
+#ifdef ALLOW_SALTFLX
+      CALL EXF_INIT_GEN (
+     &     saltflxfile, saltflxperiod,
+     &     exf_inscal_saltflx, saltflxmask,
+     &     saltflxconst, saltflx, saltflx0, saltflx1,
+#ifdef USE_EXF_INTERPOLATION
+     &     saltflx_lon0, saltflx_lon_inc,
+     &     saltflx_lat0, saltflx_lat_inc,
+     &     saltflx_nlon, saltflx_nlat, xC, yC,
+     &     saltflx_interpMethod,
+#endif
+     &     myThid )
+#endif /* ALLOW_SALTFLX */
+
 #ifdef ALLOW_CLIMSST_RELAXATION
       CALL EXF_INIT_GEN (
      &     climsstfile, climsstperiod, exf_inscal_climsst, climsstmask,

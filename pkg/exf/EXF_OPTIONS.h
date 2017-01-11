@@ -60,6 +60,9 @@ C
 C   >>> ALLOW_RUNOFF <<<
 C       If defined, river and glacier runoff can be read-in from files.
 C
+C   >>> ALLOW_SALTFLX <<<
+C       If defined, upward salt flux can be read-in from files.
+C
 C   >>> ALLOW_RUNOFTEMP <<<
 C       If defined, river and glacier runoff temperature
 C       can be read-in from files.
@@ -157,6 +160,7 @@ C   Bulk formulae related flags.
 #define  ALLOW_DOWNWARD_RADIATION
 #define  ALLOW_RUNOFF
 #undef   ALLOW_RUNOFTEMP
+#undef   ALLOW_SALTFLX
 #if (defined (ALLOW_ATM_TEMP) || defined (ALLOW_ATM_WIND))
 # define ALLOW_BULKFORMULAE
 # undef  ALLOW_BULK_LARGEYEAGER04

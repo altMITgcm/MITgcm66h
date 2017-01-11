@@ -66,6 +66,9 @@ C     == local variables ==
 #ifdef ALLOW_RUNOFTEMP
          CALL DIAGNOSTICS_FILL(runoftemp,  'EXFroft ',0,1,0,1,1,myThid)
 #endif
+#ifdef ALLOW_SALTFLX
+         CALL DIAGNOSTICS_FILL(saltflx,    'EXFsalfx',0,1,0,1,1,myThid)
+#endif
 
       ENDIF
 #endif /* ALLOW_DIAGNOSTICS */

@@ -85,7 +85,7 @@ c     Heat flux.
            exferr = 1
           endif
 c
-c     Salt flux.
+c     Freshwater flux.
           if ( ABS(sflux(i,j,bi,bj)) .GT. 1.E-6 .AND.
      &         maskC(i,j,1,bi,bj) .NE. 0. ) then
            write(standardmessageunit,'(A,5(1X,I6),2X,D22.15)')
