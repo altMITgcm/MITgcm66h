@@ -48,6 +48,7 @@ C      append "/", if necessary
         namBuf(1:iL) = profilesDir(1:iL)
         WRITE(profilesDir(1:iL+1),'(2A)') namBuf(1:iL),'/'
        ENDIF
+#ifdef HAVE_SYSTEM
 C      create directory
        iL = ILNBLNK( profilesDir ) -1
        WRITE(namBuf,'(2A)') ' mkdir -p ', profilesDir(1:iL)
@@ -57,6 +58,12 @@ C      create directory
        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                     SQUEEZE_RIGHT, myThid )
        CALL SYSTEM( namBuf(1:pIL) )
+#else
+       WRITE(msgBuf,'(2A)') '** WARNING ** PROFILES_INI_IO: cannot ',
+     &       'call mkdir -> please create profilesDir manually'
+       CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+     &                     SQUEEZE_RIGHT, myThid )
+#endif
       ENDIF
 
       _END_MASTER( myThid )
