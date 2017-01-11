@@ -45,6 +45,25 @@ C     Check diagnostics parameter consistency
      &                      SQUEEZE_RIGHT , myThid )
       ENDIF
 
+      IF ( diag_mnc.AND.(diagMdsDir.NE.' ') ) THEN
+        WRITE(msgBuf,'(A,A)') 'S/R DIAGNOSTICS_CHECK: diagMdsDir ',
+     &       'and pkg/mnc cannot be used together'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        CALL ALL_PROC_DIE( 0 )
+        STOP 'ABNORMAL END: S/R DIAGNOSTICS_CHECK'
+      ENDIF
+
+      IF ( (mdsioLocalDir.NE.' ').AND.(diagMdsDir.NE.' ') ) THEN
+        WRITE(msgBuf,'(A)')
+     &   'S/R DIAGNOSTICS_CHECK: mdsioLocalDir and diagMdsDir cannot be'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        WRITE(msgBuf,'(A)')
+     &   'S/R DIAGNOSTICS_CHECK: specified at the same time'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        CALL ALL_PROC_DIE( 0 )
+        STOP 'ABNORMAL END: S/R DIAGNOSTICS_CHECK'
+      ENDIF
+
 #ifdef DIAGNOSTICS_HAS_PICKUP
       IF ( diag_pickup_read ) THEN
         WRITE(msgBuf,'(2A)') '**CAUTION** (DIAGNOSTICS_CHECK): ',
