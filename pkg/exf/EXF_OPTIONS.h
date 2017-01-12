@@ -160,7 +160,7 @@ C   Bulk formulae related flags.
 #define  ALLOW_DOWNWARD_RADIATION
 #define  ALLOW_RUNOFF
 #undef   ALLOW_RUNOFTEMP
-#undef   ALLOW_SALTFLX
+#define  ALLOW_SALTFLX
 #if (defined (ALLOW_ATM_TEMP) || defined (ALLOW_ATM_WIND))
 # define ALLOW_BULKFORMULAE
 # undef  ALLOW_BULK_LARGEYEAGER04
