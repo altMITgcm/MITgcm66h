@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o verification:
+  - add new option "-src" to testreport to only produce source code (*.f),
+    including taf output src code (if using '-adm'/'-tlm' option).
 o pkg/exf:
   - add saltflx :: Net upward salt flux in psu.kg/m^2/s
 o pkg/diagnostics:
