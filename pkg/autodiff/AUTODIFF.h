@@ -32,7 +32,7 @@ c ad dump record number (used only if dumpAdByRec is true)
       PARAMETER (NDV3D  = 10)
 #endif
       PARAMETER (NDV2D  = 23)
-      PARAMETER (NEXF1  = 21)
+      PARAMETER (NEXF1  = 23)
       PARAMETER (NEXF2  = 20)
       PARAMETER (NCTRL1 = 20)
       PARAMETER (NOB = 20)

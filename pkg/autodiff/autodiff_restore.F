@@ -203,6 +203,10 @@ C-      2D arrays
           climsst0(I,J,bi,bj)          = StoreEXF1(I,J,bi,bj,20)
           climsst1(I,J,bi,bj)          = StoreEXF1(I,J,bi,bj,21)
 # endif
+# ifdef ALLOW_SALTFLX
+          saltflx0(I,J,bi,bj)          = StoreEXF1(I,J,bi,bj,22)
+          saltflx1(I,J,bi,bj)          = StoreEXF1(I,J,bi,bj,23)
+# endif
          ENDDO
         ENDDO
        ENDDO

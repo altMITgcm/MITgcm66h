@@ -229,6 +229,13 @@ C-      2D arrays
           StoreEXF1(I,J,bi,bj,20) = 0.0
           StoreEXF1(I,J,bi,bj,21) = 0.0
 # endif
+# ifdef ALLOW_SALTFLX
+          StoreEXF1(I,J,bi,bj,22) = saltflx0(I,J,bi,bj)
+          StoreEXF1(I,J,bi,bj,23) = saltflx1(I,J,bi,bj)
+# else
+          StoreEXF1(I,J,bi,bj,22) = 0.0
+          StoreEXF1(I,J,bi,bj,23) = 0.0
+# endif
          ENDDO
         ENDDO
        ENDDO
