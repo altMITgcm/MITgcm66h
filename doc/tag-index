@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+checkpoint66c (2017/01/19)
 o verification:
   - add new option "-src" to testreport to only produce source code (*.f),
     including taf output src code (if using '-adm'/'-tlm' option).
