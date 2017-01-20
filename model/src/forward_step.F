@@ -524,8 +524,11 @@ C-    calculate qnet (and wind stress)
 
 #ifdef ALLOW_CTRL
 C--   Add control vector for forcing and parameter fields
-      IF ( ( useCTRL ).AND.( myIter .EQ. nIter0 ) )
-     &     CALL CTRL_MAP_FORCING (myThid)
+      IF ( useCTRL ) THEN
+       CALL TIMER_START('CTRL_MAP_FORCING  [FORWARD_STEP]',myThid)
+       CALL CTRL_MAP_FORCING( myTime, myIter, myThid )
+       CALL TIMER_STOP ('CTRL_MAP_FORCING  [FORWARD_STEP]',myThid)
+      ENDIF
 #endif
 
 #ifdef ALLOW_AUTODIFF_MONITOR
