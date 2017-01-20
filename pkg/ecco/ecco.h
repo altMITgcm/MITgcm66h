@@ -267,7 +267,8 @@ c     objf_gencost - gencost user defined contribution
      &       gencost_enddate1, gencost_enddate2,
      &       gencost_startdate, gencost_enddate,
      &       gencost_pointer3d, gencost_smooth2Ddiffnbt,
-     &       gencost_preproc_i, gencost_posproc_i
+     &       gencost_preproc_i, gencost_posproc_i,
+     &       gencost_itracer
 
       integer gencost_nrec(NGENCOST)
       integer gencost_nrecperiod(NGENCOST)
@@ -283,6 +284,7 @@ c     objf_gencost - gencost user defined contribution
       integer  gencost_smooth2Ddiffnbt(NGENCOST)
       integer gencost_preproc_i(NGENPPROC,NGENCOST)
       integer gencost_posproc_i(NGENPPROC,NGENCOST)
+      integer gencost_itracer(NGENCOST)
 
       common /ecco_gencost_l_1/
      &       gencost_timevaryweight, gencost_barskip,

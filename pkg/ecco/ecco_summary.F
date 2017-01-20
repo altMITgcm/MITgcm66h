@@ -809,6 +809,12 @@ c
          il = ilnblnk(gencost_barfile(k))
          write(msgbuf,'(a,a)') ' model file = ',gencost_barfile(k)(1:il)
          call print_message( msgbuf, msgunit, SQUEEZE_RIGHT , mythid)
+         if ((gencost_barfile(k)(1:9).EQ.'m_ptracer').OR.
+     &       (gencost_barfile(k)(1:17).EQ.'m_boxmean_ptracer')) then
+           write(msgbuf,'(a,i2)') ' gencost_itracer = ',
+     &           gencost_itracer(k)
+           call print_message( msgbuf, msgunit, SQUEEZE_RIGHT , mythid)
+         endif
          il = ilnblnk(gencost_errfile(k))
          write(msgbuf,'(a,a)') ' error file = ',gencost_errfile(k)(1:il)
          call print_message( msgbuf, msgunit, SQUEEZE_RIGHT , mythid)

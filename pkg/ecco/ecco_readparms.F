@@ -177,6 +177,7 @@ c--   Read the namelist input.
      &         gencost_name,
      &         gencost_scalefile,
      &         gencost_errfile,
+     &         gencost_itracer,
      &         gencost_preproc,
      &         gencost_preproc_c,
      &         gencost_preproc_i,
@@ -593,6 +594,7 @@ c--   Set default values.
          enddo
          gencost_outputlevel(k)= 0
          gencost_errfile(k)    = ' '
+         gencost_itracer(k)    = 1
          gencost_mask(k)       = ' '
          gencost_barfile(k)    = ' '
          gencost_spmin(k)      = 0. _d 0
