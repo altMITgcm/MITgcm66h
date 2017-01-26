@@ -99,6 +99,16 @@ C     == end of interface ==
 
       IF ( genfile .NE. ' ' .AND. genperiod .NE. 0. ) THEN
 
+         IF ( exf_debugLev.GE.debLevD ) THEN
+           _BEGIN_MASTER( myThid )
+           j = ILNBLNK(genfile)
+           WRITE(msgBuf,'(3A)') ' EXF_SET_GEN: ',
+     &       'processing file: ', genfile(1:j)
+           CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
+     &                         SQUEEZE_RIGHT, myThid )
+           _END_MASTER( myThid )
+         ENDIF
+
          IF ( genperiod .EQ. -12. ) THEN
 C-    genperiod=-12 means input file contains 12 monthly means
 C     records, corresponding to Jan. (rec=1) through Dec. (rec=12)
@@ -125,11 +135,6 @@ C-    get record numbers and interpolation factor for gen
          ENDIF
          IF ( exf_debugLev.GE.debLevD ) THEN
            _BEGIN_MASTER( myThid )
-           j = ILNBLNK(genfile)
-           WRITE(msgBuf,'(3A)') ' EXF_SET_GEN: ',
-     &       'processing file: ', genfile(1:j)
-           CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                         SQUEEZE_RIGHT, myThid )
            WRITE(msgBuf,'(2A,I10,2I7)') ' EXF_SET_GEN: ',
      &       ' myIter, count0, count1:', myIter, count0, count1
            CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
