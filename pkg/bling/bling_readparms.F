@@ -124,8 +124,10 @@ C ==========================================================
      &          bling_forcingPeriod, bling_forcingCycle,
      &          bling_pCO2, river_conc_trac,
      &          bling_Pc_2dFile, bling_Pc_2d_diazFile,
-     &          bling_alpha_photo2dFile,
-     &          bling_k_Fe2dFile, bling_k_Fe_diaz2dFile
+     &          bling_alpha_photo2dFile,bling_phi_DOM2dFile,
+     &          bling_k_Fe2dFile, bling_k_Fe_diaz2dFile,
+     &          bling_gamma_POM2dFile, bling_wsink0_2dFile,
+     &          bling_phi_sm2dFile,bling_phi_lg2dFile
 #ifdef USE_EXFCO2
      &          ,apco2file
      &          ,apco2startdate1,   apco2startdate2,  apco2period
@@ -286,6 +288,11 @@ cav      k_PO4                = 1. _d -8 / permil
       bling_alpha_photo2dFile= ' '
       bling_k_Fe2dFile       = ' '
       bling_k_Fe_diaz2dFile  = ' '
+      bling_gamma_POM2dFile  = ' '
+      bling_wsink0_2dFile    = ' '
+      bling_phi_DOM2dFile    = ' '
+      bling_phi_sm2dFile     = ' '
+      bling_phi_lg2dFile     = ' '
 
 #ifdef USE_EXFCO2
       apco2startdate1   = 0

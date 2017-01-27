@@ -163,14 +163,14 @@ C          we are not yet at the bottom
 C  Sinking speed is evaluated at the bottom of the cell
           depth_l=-rF(k+1)
           IF (depth_l .LE. wsink0z)  THEN
-           wsink = wsink0
+           wsink = wsink0_2d(i,j,bi,bj)
           ELSE
-           wsink = wsinkacc * (depth_l - wsink0z) + wsink0
+           wsink = wsinkacc * (depth_l - wsink0z) + wsink0_2d(i,j,bi,bj)
           ENDIF
 
 C  Nutrient remineralization lengthscale
 C  Not an e-folding scale: this term increases with remineralization.
-          zremin = gamma_POM * ( PTR_O2(i,j,k)**2 /
+          zremin = gamma_POM2d(i,j,bi,bj) * ( PTR_O2(i,j,k)**2 /
      &               (k_O2**2 + PTR_O2(i,j,k)**2) * (1-remin_min)
      &               + remin_min )/(wsink + epsln)
 
@@ -351,7 +351,7 @@ c     &           *CtoP/NUTfac*12.01/wsink)**(0.58)*FreeFe
      &             * MasstoN)**(0.58)*FreeFe
 #else
             Fe_ads_org(i,j,k) =
-     &           kFE_org*(PONflux_l/(epsln + wsink0)
+     &           kFE_org*(PONflux_l/(epsln + wsink0_2d(i,j,bi,bj))
      &             * MasstoN)**(0.58)*FreeFe
 #endif
            ENDIF
