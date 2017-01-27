@@ -60,7 +60,7 @@ CADJ STORE uwind1    = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE vwind0    = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE vwind1    = comlev1, key=ikey_dynamics, kind=isbyte
 
-# ifdef ALLOW_BULKFORMULAE
+# if (defined ALLOW_BULKFORMULAE) || (defined ALLOW_DOWNWARD_RADIATION)
 CADJ STORE theta     = comlev1, key=ikey_dynamics, kind=isbyte
 # endif
 # ifdef ALLOW_CLIMSSS_RELAXATION
