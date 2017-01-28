@@ -8,7 +8,7 @@ CBOP
 C     !ROUTINE: EEBOOT
 
 C     !INTERFACE:
-      SUBROUTINE EEBOOT
+      SUBROUTINE EEBOOT( myComm )
 
 C     !DESCRIPTION:
 C     *==========================================================*
@@ -47,6 +47,12 @@ C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
 #include "EESUPPORT.h"
+
+C     !ROUTINE ARGUMENTS
+C     == Routine arguments ==
+C     myComm     :: Communicator that is passed down from
+C                   upper level driver (if there is one).
+      INTEGER myComm
 
 C     !LOCAL VARIABLES:
 C     == Local variables ==
@@ -108,7 +114,7 @@ C     If necessary ( COMPONENT_MODULE defined ) add a 1rst preliminary
 C     call to eeset_params (in EEBOOT_MINIMAL) to set useCoupler (needed
 C     very early, and the stardard call eeset_params below comes too late)
 C jmc: This needs to be sorted-out in a cleaner way.
-      CALL EEBOOT_MINIMAL
+      CALL EEBOOT_MINIMAL( myComm )
       IF ( eeBootError ) GOTO 999
 
 C--   Now we can write a startup message
