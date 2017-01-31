@@ -11,7 +11,7 @@ C--   o EXF_INIT_GEN
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
       SUBROUTINE EXF_SET_GEN(
-     &     genfile, genstartdate, genperiod,
+     &     genfile, genStartTime, genperiod,
      &     exf_inscal_gen, genremove_intercept, genremove_slope,
      &     genfld, gen0, gen1, genmask,
 #ifdef USE_EXF_INTERPOLATION
@@ -51,7 +51,7 @@ C     == global variables ==
 #include "EXF_CONSTANTS.h"
 
 C     == routine arguments ==
-      _RL genstartdate, genperiod
+      _RL genStartTime, genperiod
       _RL exf_inscal_gen
       _RL genremove_intercept, genremove_slope
       _RL genfld(1-olx:snx+olx,1-oly:sny+oly,nsx,nsy)
@@ -126,7 +126,7 @@ C     records, corresponding to Jan. (rec=1) through Dec. (rec=12)
          ELSE
 C-    get record numbers and interpolation factor for gen
             CALL exf_GetFFieldRec(
-     I           genstartdate, genperiod,
+     I           genStartTime, genperiod,
      I           useExfYearlyFields,
      O           fac, first, changed,
      O           count0, count1, year0, year1,
