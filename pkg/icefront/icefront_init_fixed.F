@@ -47,7 +47,7 @@ C     I,J,K,bi,bj - Loop counters
 # endif
        CALL EXF_GETFIELD_START( useExfYearlyFields,
      I                          SGRunOffstartdate1, SGRunOffstartdate2,
-     O                          SGRunOffstartdate,
+     O                          SGRunOffStartTime,
      I                          myThid )
        _END_MASTER( myThid )
        _BARRIER
@@ -110,7 +110,7 @@ C              print*, 'IsInterface=', '2' , ',xuyun'
 
 #ifdef ALLOW_DIAGNOSTICS
       IF ( useDiagnostics ) THEN
-       CALL ICEFRONT_DIAGNOSTICS_INIT(myThid)
+       CALL ICEFRONT_DIAGNOSTICS_INIT( myThid )
       ENDIF
 #endif /* ALLOW_DIAGNOSTICS */
 #endif /* ALLOW_ICEFRONT */

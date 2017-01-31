@@ -96,7 +96,7 @@ C     the following variables are used in conjunction
 C     with pkg/exf to specify sub-glacial runoff
       INTEGER SGRunOffstartdate1
       INTEGER SGRunOffstartdate2
-      _RL     SGRunOffstartdate
+      _RL     SGRunOffStartTime
       _RL     SGRunOffperiod
       _RL     SGRunOffconst
       _RL     SGRunOff_inscal
@@ -108,7 +108,7 @@ C     with pkg/exf to specify sub-glacial runoff
       COMMON /ICEFRONT_EXF_PAR_I/
      &       SGRunOffstartdate1, SGRunOffstartdate2
       COMMON /ICEFRONT_EXF_PAR_R/
-     &       SGRunOffstartdate,  SGRunOffperiod,
+     &       SGRunOffStartTime,  SGRunOffperiod,
      &       SGRunOffconst,      SGRunOff_inscal,
      &       SGRunOff_remov_intercept, SGRunOff_remov_slope
       COMMON /ICEFRONT_EXF_PAR_C/
