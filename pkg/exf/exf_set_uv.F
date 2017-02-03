@@ -117,14 +117,15 @@ C     == end of interface ==
      &                         SQUEEZE_RIGHT, myThid )
           _END_MASTER( myThid )
         ENDIF
-        IF ( uvecperiod .EQ. -12. ) THEN
+        IF ( useCAL .AND. uvecperiod .EQ. -12. ) THEN
+#ifdef ALLOW_CAL
 C-    genperiod=-12 means input file contains 12 monthly means
 C     records, corresponding to Jan. (rec=1) through Dec. (rec=12)
           CALL cal_GetMonthsRec(
      O             fac, first, changed,
      O             count0, count1,
      I             myTime, myIter, myThid )
-
+#endif /* ALLOW_CAL */
         ELSEIF ( uvecperiod .LT. 0. ) THEN
           j = ILNBLNK(uvecfile)
           WRITE(msgBuf,'(A,1PE16.8,2A)')

@@ -109,13 +109,15 @@ C     == end of interface ==
            _END_MASTER( myThid )
          ENDIF
 
-         IF ( genperiod .EQ. -12. ) THEN
+         IF ( useCAL .AND. genperiod .EQ. -12. ) THEN
+#ifdef ALLOW_CAL
 C-    genperiod=-12 means input file contains 12 monthly means
 C     records, corresponding to Jan. (rec=1) through Dec. (rec=12)
             CALL cal_GetMonthsRec(
      O           fac, first, changed,
      O           count0, count1,
      I           myTime, myIter, myThid )
+#endif /* ALLOW_CAL */
          ELSEIF ( genperiod .LT. 0. ) THEN
            j = ILNBLNK(genfile)
            WRITE(msgBuf,'(A,1PE16.8,2A)')
@@ -379,14 +381,13 @@ C-    apply mask
 
 C     Loop over tiles and scale genfld
          DO bj = myByLo(myThid),myByHi(myThid)
-            DO bi = myBxLo(myThid),mybxhi(myThid)
-               DO j = 1,sny
-                  DO i = 1,snx
-                     genfld(i,j,bi,bj) =
-     &                    exf_inscal_gen * genfld(i,j,bi,bj)
-                  ENDDO
-               ENDDO
+          DO bi = myBxLo(myThid),mybxhi(myThid)
+           DO j = 1,sNy
+            DO i = 1,sNx
+              genfld(i,j,bi,bj) = exf_inscal_gen*genfld(i,j,bi,bj)
             ENDDO
+           ENDDO
+          ENDDO
          ENDDO
 
       ENDIF
