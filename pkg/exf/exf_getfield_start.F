@@ -41,6 +41,8 @@ C     myThid          :: My Thread Id number
       _RL fld_start_time
       INTEGER myThid
 
+#ifdef ALLOW_CAL
+
 C !FUNCTIONS:
 
 C !LOCAL VARIABLES:
@@ -72,6 +74,8 @@ C--   with "PARAMS.h" header file:
         CALL cal_ToSeconds ( difftime, fld_start_time, myThid)
         fld_start_time = startTime  + fld_start_time
       ENDIF
+
+#endif /* ALLOW_CAL */
 
       RETURN
       END
