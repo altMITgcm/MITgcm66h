@@ -29,8 +29,15 @@ The following utilities are available in this directory:
   test_nc_add.m             :: script to help use cube and netcdf
 
 
-And more complete directions for each script are:
+Subdirectories:
 
+  Graphix                   :: cubed-sphere data manipulation and plotting package
+  cs_grid                   :: cubed-sphere and lat-lon-cap routines
+  gmt                       :: general MITgcm tiles/topologies
+  ocean_basin               :: basin mask generation routines
+
+
+And more complete directions for each script are:
 
 ===  mnc_assembly.m  ===
 

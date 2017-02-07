@@ -4,6 +4,8 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o utils/matlab:
+  - adding ocean_basin routines for defining basin masks.
 o pkg/exf:
   - new S/R EXF_GETFFIELD_START replacing EXF_GETFIELD_START, but with more
     arguments, allowing to check (and stop) if parameter setting of
