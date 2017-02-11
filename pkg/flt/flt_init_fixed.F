@@ -69,6 +69,7 @@ C Set domain dependent constants:
      &                       SQUEEZE_RIGHT, myThid )
       _END_MASTER(myThid)
 
+#ifndef DEVEL_FLT_EXCH2
 #ifdef ALLOW_EXCH2
       IF (nFacets .GT. 1) THEN
         WRITE(msgBuf,'(2A)') 'FLT_INIT_FIXED:',
@@ -76,6 +77,7 @@ C Set domain dependent constants:
         CALL PRINT_ERROR( msgBuf, myThid )
         STOP 'ABNORMAL END: S/R FLT_INIT_FIXED'
       ENDIF
+#endif
 #endif
 
       RETURN
