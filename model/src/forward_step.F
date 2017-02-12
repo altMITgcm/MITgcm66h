@@ -1181,6 +1181,11 @@ C--     this is done after exchanges to allow interpolation
       CALL TIMER_STOP ('COST_TILE           [FORWARD_STEP]',myThid)
 #endif
 
+#ifdef ALLOW_ECCO
+C--   Diagnoze variables for pkg/ecco averaging and cost function purposes
+      IF ( useECCO ) CALL ECCO_PHYS( myThid )
+#endif
+
 C--   Check if it has reached the end of simulation
       modelEnd = myTime.EQ.endTime .OR. myIter.EQ.nEndIter
 #ifdef HAVE_SIGREG
