@@ -61,18 +61,40 @@ C     check for consistency
        errCount = errCount + 1
       ENDIF
 
-      IF (repeatPeriod.lt.0.) THEN
+      IF ( repeatPeriod.LT.0. ) THEN
        WRITE(msgBuf,'(A)')
      &      'S/R EXF_CHECK: repeatPeriod must be positive'
        CALL PRINT_ERROR( msgBuf, myThid )
        errCount = errCount + 1
       ENDIF
 
-      IF (useExfYearlyFields.and.repeatPeriod.ne.0.) THEN
-       WRITE(msgBuf,'(A,A)') 'S/R EXF_CHECK: The use of ',
-     $      'useExfYearlyFields AND repeatPeriod is not implemented'
-       CALL PRINT_ERROR( msgBuf, myThid )
-       errCount = errCount + 1
+      IF ( useExfYearlyFields ) THEN
+       IF ( .NOT.useCAL ) THEN
+        WRITE(msgBuf,'(2A)') 'S/R EXF_CHECK: ',
+     &       'useExfYearlyFields requires to use pkg/cal (useCAL=T)'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        errCount = errCount + 1
+       ENDIF
+       IF ( repeatPeriod.NE.0. ) THEN
+        WRITE(msgBuf,'(2A)') 'S/R EXF_CHECK: The use of ',
+     &       'useExfYearlyFields AND repeatPeriod is not implemented'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        errCount = errCount + 1
+       ENDIF
+      ENDIF
+      IF ( useOBCS .AND. useOBCSYearlyFields ) THEN
+       IF ( .NOT.useCAL ) THEN
+        WRITE(msgBuf,'(2A)') 'S/R EXF_CHECK: ',
+     &       'useOBCSYearlyFields requires to use pkg/cal (useCAL=T)'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        errCount = errCount + 1
+       ENDIF
+       IF ( repeatPeriod.NE.0. ) THEN
+        WRITE(msgBuf,'(2A)') 'S/R EXF_CHECK: ',
+     &       'useOBCSYearlyFields not implemented for repeatPeriod <> 0'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        errCount = errCount + 1
+       ENDIF
       ENDIF
 
       IF ( useAtmWind ) THEN
