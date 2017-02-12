@@ -170,7 +170,7 @@ C-  Bulk formulae related flags.
 #define ALLOW_ATM_WIND
 #define ALLOW_DOWNWARD_RADIATION
 #ifdef ALLOW_ATM_TEMP
-C Note: To use ALLOW_BULKFORMULAE, ALLOW_ATM_TEMP needs to be defined
+C Note: To use ALLOW_BULKFORMULAE or EXF_READ_EVAP, needs #define ALLOW_ATM_TEMP
 # define ALLOW_BULKFORMULAE
 # undef  ALLOW_BULK_LARGEYEAGER04
 # undef  EXF_READ_EVAP
