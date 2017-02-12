@@ -264,6 +264,20 @@ C     Net long wave radiative flux.
 #endif
      &     myTime, myIter, myThid )
 
+#ifdef EXF_READ_EVAP
+C     Evaporation
+      CALL EXF_SET_GEN  (
+     &     evapfile, evapStartTime, evapperiod,
+     &     exf_inscal_evap,
+     &     evap_exfremo_intercept, evap_exfremo_slope,
+     &     evap, evap0, evap1, evapmask,
+#ifdef USE_EXF_INTERPOLATION
+     &     evap_lon0, evap_lon_inc, evap_lat0, evap_lat_inc,
+     &     evap_nlon, evap_nlat, xC, yC, evap_interpMethod,
+#endif
+     &     myTime, myIter, myThid )
+#endif /* EXF_READ_EVAP */
+
 C     Precipitation.
       CALL EXF_SET_GEN(
      &     precipfile, precipStartTime, precipperiod,
@@ -318,20 +332,6 @@ C     Net short wave radiative flux.
 #endif
      &     myTime, myIter, myThid )
 #endif
-
-#ifdef EXF_READ_EVAP
-C     Evaporation
-      CALL EXF_SET_GEN  (
-     &     evapfile, evapStartTime, evapperiod,
-     &     exf_inscal_evap,
-     &     evap_exfremo_intercept, evap_exfremo_slope,
-     &     evap, evap0, evap1, evapmask,
-#ifdef USE_EXF_INTERPOLATION
-     &     evap_lon0, evap_lon_inc, evap_lat0, evap_lat_inc,
-     &     evap_nlon, evap_nlat, xC, yC, evap_interpMethod,
-#endif
-     &     myTime, myIter, myThid )
-#endif /* EXF_READ_EVAP */
 
 #ifdef ALLOW_DOWNWARD_RADIATION
 

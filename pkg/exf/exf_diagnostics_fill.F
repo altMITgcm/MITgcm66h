@@ -47,11 +47,9 @@ C     == local variables ==
          CALL DIAGNOSTICS_FILL(hs    ,     'EXFhs   ',0,1,0,1,1,myThid)
          CALL DIAGNOSTICS_FILL(hl    ,     'EXFhl   ',0,1,0,1,1,myThid)
          CALL DIAGNOSTICS_FILL(lwflux,     'EXFlwnet',0,1,0,1,1,myThid)
+         CALL DIAGNOSTICS_FILL(evap,       'EXFevap ',0,1,0,1,1,myThid)
          CALL DIAGNOSTICS_FILL(precip,     'EXFpreci',0,1,0,1,1,myThid)
          CALL DIAGNOSTICS_FILL(snowprecip, 'EXFsnow ',0,1,0,1,1,myThid)
-#endif
-#if (defined (ALLOW_ATM_TEMP) || defined (EXF_READ_EVAP))
-         CALL DIAGNOSTICS_FILL(evap,       'EXFevap ',0,1,0,1,1,myThid)
 #endif
 #ifdef ALLOW_DOWNWARD_RADIATION
          CALL DIAGNOSTICS_FILL(lwdown,     'EXFlwdn ',0,1,0,1,1,myThid)

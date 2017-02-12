@@ -151,6 +151,10 @@ C       Print some statistics about input forcing fields
           CALL MON_WRITESTATS_RL( 1, lwflux,  '_lwflux',
      &             maskInC, maskInC, rA , drF, dummyRL, myThid )
         ENDIF
+        IF ( computed .OR. evapfile .NE. ' ' ) THEN
+          CALL MON_WRITESTATS_RL( 1, evap,    '_evap',
+     &             maskInC, maskInC, rA , drF, dummyRL, myThid )
+        ENDIF
         IF ( precipfile .NE. ' ' ) THEN
           CALL MON_WRITESTATS_RL( 1, precip,  '_precip',
      &             maskInC, maskInC, rA , drF, dummyRL, myThid )
@@ -163,12 +167,6 @@ C       Print some statistics about input forcing fields
 #if defined(ALLOW_ATM_TEMP) || defined(SHORTWAVE_HEATING)
         IF ( swdownfile .NE. ' ' .OR. swfluxfile .NE. ' ' ) THEN
           CALL MON_WRITESTATS_RL( 1, swflux,  '_swflux',
-     &             maskInC, maskInC, rA , drF, dummyRL, myThid )
-        ENDIF
-#endif
-#if defined(ALLOW_ATM_TEMP) || defined(EXF_READ_EVAP)
-        IF ( computed .OR. evapfile .NE. ' ' ) THEN
-          CALL MON_WRITESTATS_RL( 1, evap,    '_evap',
      &             maskInC, maskInC, rA , drF, dummyRL, myThid )
         ENDIF
 #endif

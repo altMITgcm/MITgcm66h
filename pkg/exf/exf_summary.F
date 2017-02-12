@@ -693,6 +693,7 @@ C--   Evaporation.
      &'// EXF_READ_EVAP:                      defined'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT, myThid )
+# ifdef ALLOW_ATM_TEMP
       IF ( evapfile.NE.' ' ) THEN
        il = ILNBLNK(evapfile)
 c      CALL PRINT_MESSAGE( blkLin, standardMessageUnit,
@@ -722,6 +723,7 @@ c    &                     SQUEEZE_RIGHT, myThid )
 #endif
        prtBlkLn = .TRUE.
       ENDIF
+# endif /* ALLOW_ATM_TEMP */
 #else /* EXF_READ_EVAP */
       WRITE(msgBuf,'(A)')
      &'// EXF_READ_EVAP:                  NOT defined'
