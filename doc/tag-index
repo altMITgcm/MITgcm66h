@@ -4,6 +4,11 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o verification/global_ocean.cs32x15:
+  - turn off pkg/cal (useCAL=F) in secondary FWD exp. "icedyn".
+    Note: exf setting (data.exf) can be compared to other exf secondary exp
+    "seaice" (kept with useCAL=T) which has same time dependent forcing.
+
 checkpoint66d (2017/02/13)
 o pkg/exf:
   - remove setting of useCAL=T when using pkg/exf (useEXF=T); add warning
