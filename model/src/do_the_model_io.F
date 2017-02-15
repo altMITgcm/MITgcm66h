@@ -163,7 +163,7 @@ C     Do GMRedi output.
 
 #ifdef ALLOW_KPP
 C     Do KPP diagnostics.
-      IF ( useKPP .AND. .NOT.useOffLine )
+      IF ( useKPP )
      &     CALL KPP_OUTPUT( myTime, myIter, myThid )
 #endif
 
