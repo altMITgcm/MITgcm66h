@@ -2504,8 +2504,8 @@ if  test "x${PKG_DEPEND}" != x ; then
 	    echo "  the dependency rules for \"$pname\""
 	    exit 1
 	fi
-	i=`echo "$i + 1" | bc -l`
-	#i=$(( $i + 1 ))
+	i=`expr $i + 1`
+	#i=`echo "$i + 1" | bc -l`
     done
     ck=$ck"t"
   done
