@@ -74,11 +74,9 @@ C      create directory
        iL = ILNBLNK( adTapeDir ) -1
        WRITE(namBuf,'(2A)') ' mkdir -p ', adTapeDir(1:iL)
        pIL = 1 + ILNBLNK( namBuf )
-       WRITE(msgBuf,'(3A)')
+       WRITE(standardMessageUnit,'(3A)')
      &  '==> SYSTEM CALL (from AUTODIFF_INI_MODEL_IO): >',
      &                                 namBuf(1:pIL), '<'
-       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                     SQUEEZE_RIGHT, myThid )
        CALL SYSTEM( namBuf(1:pIL) )
 #else
        WRITE(msgBuf,'(2A)') '** WARNING ** AUTODIFF_INI_MODEL_IO: ',
