@@ -53,10 +53,8 @@ C      create directory
        iL = ILNBLNK( profilesDir ) -1
        WRITE(namBuf,'(2A)') ' mkdir -p ', profilesDir(1:iL)
        pIL = 1 + ILNBLNK( namBuf )
-       WRITE(msgBuf,'(3A)')
+       WRITE(standardMessageUnit,'(3A)')
      & '==> SYSTEM CALL (from PROFILES_INI_IO): >',namBuf(1:pIL),'<'
-       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
-     &                     SQUEEZE_RIGHT, myThid )
        CALL SYSTEM( namBuf(1:pIL) )
 #else
        WRITE(msgBuf,'(2A)') '** WARNING ** PROFILES_INI_IO: cannot ',
