@@ -1286,8 +1286,10 @@ C     only master thread of master CPU open and write to file
         write(standardmessageunit,'(A,D22.15)')
      &           ' --> objf_hmean           =',objf_hmean
 #endif /* ECCO_CTRL_DEPRECATED */
-        write(standardmessageunit,'(A,D22.15)')
+        write(msgBuf,'(A,D22.15)')
      &           ' --> fc               =', locfc
+        call print_message( msgBuf, standardmessageunit,
+     &                      SQUEEZE_RIGHT , mythid)
 
         write(cfname,'(A,i4.4)') 'costfunction',eccoiter
         open(unit=ifc,file=cfname)
