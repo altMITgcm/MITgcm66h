@@ -42,7 +42,7 @@ C     convective adjustment might be needed even with ggl90
       IF ( cAdjFreq.NE.0. .OR. ivdc_kappa.NE.0. ) THEN
          WRITE(msgBuf,'(A)')
      &  'GGL90_CHECK: Some form of convection has been enabled'
-         CALL PRINT_MESSAGE( msgBuf, errorMessageUnit,
+         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                       SQUEEZE_RIGHT, myThid )
       ENDIF
 
