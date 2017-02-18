@@ -81,6 +81,12 @@ cph not used so far
 cphCADJ STORE climtemp0  = comlev1, key=ikey_dynamics, kind=isbyte
 cphCADJ STORE climtemp1  = comlev1, key=ikey_dynamics, kind=isbyte
 # endif
+# ifdef ALLOW_READ_TURBFLUXES
+CADJ STORE hs0   = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE hs1   = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE hl0   = comlev1, key=ikey_dynamics, kind=isbyte
+CADJ STORE hl1   = comlev1, key=ikey_dynamics, kind=isbyte
+# endif
 # ifdef ATMOSPHERIC_LOADING
 CADJ STORE apressure0    = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE apressure1    = comlev1, key=ikey_dynamics, kind=isbyte

@@ -281,6 +281,18 @@ C-      2D arrays
           StoreEXF2(I,J,bi,bj,18) = uwind1(I,J,bi,bj)
           StoreEXF2(I,J,bi,bj,19) = vwind0(I,J,bi,bj)
           StoreEXF2(I,J,bi,bj,20) = vwind1(I,J,bi,bj)
+# ifdef ALLOW_READ_TURBFLUXES
+          StoreEXF2(I,J,bi,bj,21) = hs0(I,J,bi,bj)
+          StoreEXF2(I,J,bi,bj,22) = hs1(I,J,bi,bj)
+          StoreEXF2(I,J,bi,bj,23) = hl0(I,J,bi,bj)
+          StoreEXF2(I,J,bi,bj,24) = hl1(I,J,bi,bj)
+#  else
+          StoreEXF2(I,J,bi,bj,21) = 0.0
+          StoreEXF2(I,J,bi,bj,22) = 0.0
+          StoreEXF2(I,J,bi,bj,23) = 0.0
+          StoreEXF2(I,J,bi,bj,24) = 0.0
+# endif
+
          ENDDO
         ENDDO
        ENDDO
