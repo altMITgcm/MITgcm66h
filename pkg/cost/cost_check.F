@@ -24,7 +24,7 @@ C     === Local variables ===
 C     msgBuf      - Informational/error meesage buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 
-      WRITE(msgBuf,'(A)') 'COST_CHECK: cost package'
+      WRITE(msgBuf,'(A)') 'COST_CHECK: #define ALLOW_COST'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &     SQUEEZE_RIGHT , 1)
 #ifdef ALLOW_ECCO
