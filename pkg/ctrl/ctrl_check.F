@@ -41,7 +41,7 @@ C     msgBuf      - Informational/error message buffer
 #endif
 #endif
 
-      WRITE(msgBuf,'(A)') 'CTRL_CHECK: ctrl package'
+      WRITE(msgBuf,'(A)') 'CTRL_CHECK: #define ALLOW_CTRL'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT, myThid )
 
