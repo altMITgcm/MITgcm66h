@@ -643,7 +643,7 @@ c check that one of the used gencost term defines etaday (needed in sshv4)
      &       (using_gencost(k)) )  igen_etaday=k
       enddo
 
-      if (igen_etaday.EQ.0) then
+      if ((igen_etaday.EQ.0).AND.(using_cost_altim)) then
 c warn user as we override using_cost_altim
         using_cost_altim = .FALSE.
         WRITE(msgBuf,'(2A)')
