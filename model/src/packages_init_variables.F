@@ -49,7 +49,7 @@ C       |-- BBL_INIT_VARIA
 C       |
 C       |-- DWNSLP_INIT_VARIA
 C       |
-C       |-- EXF_INIT
+C       |-- EXF_INIT_VARIA
 C       |
 C       |-- BULKF_INIT_VARIA
 C       |
@@ -244,9 +244,9 @@ C--   Initialize GM/Redi parameterization
 #ifdef ALLOW_EXF
       IF (useEXF) THEN
 # ifdef ALLOW_DEBUG
-       IF (debugMode) CALL DEBUG_CALL('EXF_INIT',myThid)
+       IF (debugMode) CALL DEBUG_CALL('EXF_INIT_VARIA',myThid)
 # endif
-       CALL EXF_INIT( myThid )
+       CALL EXF_INIT_VARIA( myThid )
       ENDIF
 #endif /* ALLOW_EXF */
 
