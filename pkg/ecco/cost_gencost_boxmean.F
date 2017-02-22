@@ -59,6 +59,7 @@ c     == local variables ==
       CHARACTER*(128) tempfile
       _RS     dummyRS(1)
       _RL     gencost_mskTemporal
+      _RL     tmpVar(1)
 
 c     == external functions ==
 
@@ -128,7 +129,8 @@ c read bar field
       else
        ioUnit = 0
        call MDS_READVEC_LOC(tempfile,cost_iprec,ioUnit,'RL',
-     &      1, gencost_mskTemporal, dummyRS, 0, 0, iRec, myThid )
+     &      1, tmpVar, dummyRS, 0, 0, iRec, myThid )
+       gencost_mskTemporal = tmpVar(1)
       endif
 
 c compute cost
@@ -162,7 +164,6 @@ c global sums for display of time series
       enddo
 
 c ========
-
 
 c global sums for cost function
       CALL GLOBAL_SUM_TILE_RL( objf_gencost(1,1,kgen),
