@@ -72,12 +72,12 @@ C --------------------------
 
 #ifdef ALLOW_CAL
       IF ( useCAL ) THEN
+       CALL cal_GetDate( myIter, myTime, mydate, myThid )
+       year0         = INT(mydate(1)/10000.)
        secondsInYear = ndaysnoleap * secondsperday
        IF ( cal_IsLeap(year0,myThid) .EQ. 2)
      &       secondsInYear = ndaysleap * secondsperday
 
-       CALL cal_GetDate( myIter, myTime, mydate, myThid )
-       year0            = int(mydate(1)/10000.)
        yearStartDate(1) = year0 * 10000 + 101
        yearStartDate(2) = 0
        yearStartDate(3) = mydate(3)
