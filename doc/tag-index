@@ -6,6 +6,7 @@ $Name$
 
 o pkg/exf:
   - fix bug in exf_zenithangle.F for cases select_ZenAlbedo > 0 with useCAL=T.
+  - exf_check: MAX_LAT_INC need only be "loc_nlat-1", not equal to loc_nlat
 o pkg/bling, USE_EXFCO2 code:
   - add parameter "apco2RepCycle" (set to pkg/exf "repeatPeriod" by default);
   - update calls to EXF S/R (use new version: EXF_INIT_FLD & EXF_SET_FLD).
