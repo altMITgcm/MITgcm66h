@@ -4,6 +4,12 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/mom_vecinv:
+  - add storage directives to avoid recomputations within mom_vecinv.F
+    which were generating seg. fault with gfortran -devel 
+o pkg/ctrl, pkg/smooth:
+  - initialize array halos which were generating seg. fault with 
+    gfortran -devel in adjoint mode
 o pkg/exf:
   - for each input field, enable to specify a field specific repeat-cycle
     ({FLD}RepCycle) which defaults to pkg/exf main "repeatPeriod".
