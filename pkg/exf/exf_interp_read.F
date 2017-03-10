@@ -19,12 +19,12 @@ C !USES:
 C Global variables / common blocks
 #include "SIZE.h"
 #include "EEPARAMS.h"
+#include "PARAMS.h"
+#include "EXF_INTERP_SIZE.h"
 #include "EXF_PARAM.h"
 #ifdef ALLOW_USE_MPI
 # include "EESUPPORT.h"
 #endif /* ALLOW_USE_MPI */
-#include "PARAMS.h"
-
 
 C !INPUT/OUTPUT PARAMETERS:
 C  infile      (string)  :: name of the binary input file (direct access)
@@ -33,7 +33,6 @@ C  arrayin     ( _RL )   :: array to read file into
 C  irecord     (integer) :: record number to read
 C  nx_in,ny_in (integer) :: size in x & y direction of input file to read
 C  myThid      (integer) :: My Thread Id number
-
       CHARACTER*(*) infile
       INTEGER       filePrec, irecord, nx_in, ny_in
        _RL          arrayin( -1:nx_in+2 , -1:ny_in+2 )
