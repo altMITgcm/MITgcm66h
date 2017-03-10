@@ -34,6 +34,7 @@ C !USES:
 C     == global variables ==
 #include "EEPARAMS.h"
 #include "SIZE.h"
+#include "EXF_INTERP_SIZE.h"
 #include "EXF_PARAM.h"
 
 C !INPUT/OUTPUT PARAMETERS:
@@ -78,6 +79,11 @@ C !LOCAL VARIABLES:
 C     msgBuf     :: Informational/error message buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       INTEGER bi, bj, i, j, count
+#ifdef USE_EXF_INTERPOLATION
+# ifndef EXF_INTERP_USE_DYNALLOC
+      _RL     bufArr( exf_interp_bufferSize )
+# endif
+#endif /* USE_EXF_INTERPOLATION */
 CEOP
 
       DO bj = myByLo(myThid), myByHi(myThid)
@@ -109,7 +115,11 @@ CEOP
          IF ( interp_method.GE.1 ) THEN
               CALL EXF_INTERP(
      I             fldFile, exf_iprec,
+#ifdef EXF_INTERP_USE_DYNALLOC
      O             fldArr,
+#else
+     O             fldArr, bufArr,
+#endif
      I             count, fld_xout, fld_yout,
      I             fld_lon0, fld_lon_inc, fld_lat0, fld_lat_inc,
      I             fld_nlon, fld_nlat, interp_method, 0, myThid )
