@@ -90,5 +90,8 @@ C   Relaxation to monthly climatologies.
 #define  ALLOW_CLIMSST_RELAXATION
 #define  ALLOW_CLIMSSS_RELAXATION
 
+#define USE_EXF_INTERPOLATION
+#define EXF_INTERP_USE_DYNALLOC
+
 C ********************************************************************
 #endif /* ECCO_CPPOPTIONS_H */
