@@ -4,6 +4,12 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/bling:
+  - Many small changes intended to clean the code. 
+    Unnecessary ADJOINT_SAFEs removed
+    removed BLING_COST.h BLING_CTRL.h bling_cost.F 
+    diagnostics added
+
 checkpoint66e (2017/03/14)
 o pkg/exf:
   - interpolation with #undef EXF_INTERP_USE_DYNALLOC: move buffer size
