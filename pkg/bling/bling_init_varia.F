@@ -8,7 +8,7 @@ CBOP
 
 C     ==========================================================
 C     | subroutine bling_init_varia
-C     | o Initialize variable quantities
+C     | o Initialize variable parameters
 C     ==========================================================
 
       implicit none

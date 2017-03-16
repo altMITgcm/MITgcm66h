@@ -8,7 +8,7 @@ CBOP
 
 C     ==========================================================
 C     | subroutine bling_init_fixed
-C     | o Initialize fixed quantities
+C     | o Initialize fixed parameters
 C     ==========================================================
 
       implicit none
