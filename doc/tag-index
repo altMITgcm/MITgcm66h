@@ -4,11 +4,14 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkg/mom_vecinv:
+  - highOrderVorticity in selectVortScheme=2 case: fix c4 coeff in splitted
+    vorticity flux (keep same sum in case vBarXm=vBaXp, uBarYm=uBarYp).
 o pkg/bling:
-  - Many small changes intended to clean the code. 
-    Unnecessary ADJOINT_SAFEs removed
-    removed BLING_COST.h BLING_CTRL.h bling_cost.F 
-    diagnostics added
+  - Many small changes intended to clean the code.
+    Unnecessary ADJOINT_SAFEs removed ;
+    removed BLING_COST.h BLING_CTRL.h bling_cost.F ;
+    diagnostics added.
 
 checkpoint66e (2017/03/14)
 o pkg/exf:
