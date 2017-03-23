@@ -188,8 +188,8 @@ c       DO i=2-Olx,sNx+Olx
           Rjm =   vort3r(i, j ) - vort3r(i,j-1)
 #endif
           Rj  =   vort3r(i,j+1) - vort3r(i, j )
-          Rjp = vort3r(i,j+1) -oneSixth*( Rjp+Rj )
-          Rjm = vort3r(i, j ) +oneSixth*( Rj+Rjm )
+          Rjp = vort3r(i,j+1) -oneSixth*( Rjp-Rj )
+          Rjm = vort3r(i, j ) -oneSixth*( Rj-Rjm )
 c         Rjp = vort3r(i,j+1) -oneSixth*( vort3r(i,j+2)-vort3r(i, j ) )
 c         Rjm = vort3r(i, j ) +oneSixth*( vort3r(i,j+1)-vort3r(i,j-1) )
           vort3u=0.5*( vBarXm*Rjm + vBarXp*Rjp )
