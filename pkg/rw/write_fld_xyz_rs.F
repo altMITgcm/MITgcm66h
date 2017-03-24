@@ -37,6 +37,8 @@ C     e.g. U.0000000100
       s1Hi = ILNBLNK(pref)
       IF ( suff .EQ. ' ' ) THEN
        WRITE( fullName, '(A)' ) pref(s1Lo:s1Hi)
+      ELSEIF ( suff .EQ. 'I10' ) THEN
+       WRITE( fullName, '(A,A,I10.10)' ) pref(s1Lo:s1Hi),'.',myIter
       ELSE
        s2Lo = IFNBLNK(suff)
        s2Hi = ILNBLNK(suff)
