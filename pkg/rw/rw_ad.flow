@@ -187,3 +187,8 @@ C----------------------------------------
 CADJ SUBROUTINE READ_MFLDS_RENAME  INPUT  = 1,2,  4
 CADJ SUBROUTINE READ_MFLDS_RENAME  OUTPUT =     3
 
+C----------------------------------------
+C subroutine  RW_GET_SUFFIX
+C----------------------------------------
+CADJ SUBROUTINE RW_GET_SUFFIX  INPUT  =   2,3,4
+CADJ SUBROUTINE RW_GET_SUFFIX  OUTPUT = 1
