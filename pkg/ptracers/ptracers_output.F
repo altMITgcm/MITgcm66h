@@ -35,13 +35,15 @@ CEOP
 C     !LOCAL VARIABLES:
 
 C     Write snapshot output
-      CALL PTRACERS_WRITE_STATE( myIter, myTime, myThid )
+      CALL PTRACERS_WRITE_STATE( myTime, myIter, myThid )
+
 #ifdef ALLOW_TIMEAVE
 C     Write time average output
       IF ( PTRACERS_taveFreq.GT.0. .AND. myIter.NE.nIter0 ) THEN
        CALL PTRACERS_WRITE_TIMEAVE( myTime, myIter, myThid )
       ENDIF
 #endif /* ALLOW_TIMEAVE */
+
 #ifdef ALLOW_MONITOR
 C     Compute and print monitor statistics
       CALL PTRACERS_MONITOR( myIter, myTime, myThid )
