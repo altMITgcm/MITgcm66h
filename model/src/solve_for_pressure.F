@@ -63,7 +63,6 @@ C     == Local variables ==
       _RL sumEmP, tileEmP(nSx,nSy)
       LOGICAL putPmEinXvector
       INTEGER ioUnit
-      CHARACTER*10 sufx
       CHARACTER*(MAX_LEN_MBUF) msgBuf
 #ifdef ALLOW_NONHYDROSTATIC
       LOGICAL zeroPsNH, zeroMeanPnh, oldFreeSurfTerm
@@ -262,8 +261,7 @@ C-    end bi,bj loops
       ENDIF
 #endif
       IF ( DIFFERENT_MULTIPLE(diagFreq, myTime, deltaTClock) ) THEN
-       WRITE(sufx,'(I10.10)') myIter
-       CALL WRITE_FLD_XY_RL( 'cg2d_b.', sufx, cg2d_b, myIter, myThid )
+       CALL WRITE_FLD_XY_RL( 'cg2d_b', 'I10', cg2d_b, myIter, myThid )
       ENDIF
 
 C--   Find the surface pressure using a two-dimensional conjugate
@@ -379,8 +377,7 @@ C--   Transfert the 2D-solution to "etaN" :
 #ifdef ALLOW_NONHYDROSTATIC
       IF ( use3Dsolver ) THEN
        IF ( DIFFERENT_MULTIPLE(diagFreq, myTime, deltaTClock) ) THEN
-        WRITE(sufx,'(I10.10)') myIter
-        CALL WRITE_FLD_XY_RL( 'cg2d_x.',sufx, cg2d_x, myIter, myThid )
+        CALL WRITE_FLD_XY_RL( 'cg2d_x','I10', cg2d_x, myIter, myThid )
        ENDIF
 
 C--   Solve for a three-dimensional pressure term (NH or IGW or both ).
@@ -403,8 +400,7 @@ C                             4) add vertical velocity contribution.
        ENDIF
 #endif
        IF ( DIFFERENT_MULTIPLE( diagFreq, myTime, deltaTClock) ) THEN
-        WRITE(sufx,'(I10.10)') myIter
-        CALL WRITE_FLD_XYZ_RL('cg3d_b.',sufx, cg3d_b, myIter,myThid )
+        CALL WRITE_FLD_XYZ_RL('cg3d_b','I10', cg3d_b, myIter,myThid )
        ENDIF
 
        firstResidual=0.
@@ -445,8 +441,7 @@ C--   Separate the Hydrostatic Surface Pressure adjusment (=> put it in dPhiNH)
 C     from the Non-hydrostatic pressure (since cg3d_x contains both contribution)
        IF ( nonHydrostatic .AND. exactConserv ) THEN
         IF ( DIFFERENT_MULTIPLE( diagFreq, myTime, deltaTClock) ) THEN
-         WRITE(sufx,'(I10.10)') myIter
-         CALL WRITE_FLD_XYZ_RL('cg3d_x.',sufx, phi_nh, myIter,myThid )
+         CALL WRITE_FLD_XYZ_RL('cg3d_x','I10', phi_nh, myIter,myThid )
         ENDIF
         CALL POST_CG3D(
      I                  zeroPsNH, zeroMeanPnh,
