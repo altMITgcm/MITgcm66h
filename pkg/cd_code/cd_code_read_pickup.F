@@ -36,10 +36,14 @@ C     !LOCAL VARIABLES:
       INTEGER prec
 
 C     Suffix for pickup files
-      IF (pickupSuff.EQ.' ') THEN
-         WRITE(suff,'(I10.10)') myIter
+      IF ( pickupSuff.EQ.' ' ) THEN
+        IF ( rwSuffixType.EQ.0 ) THEN
+          WRITE(suff,'(I10.10)') myIter
+        ELSE
+          CALL RW_GET_SUFFIX( suff, startTime, myIter, myThid )
+        ENDIF
       ELSE
-         WRITE(suff,'(A10)') pickupSuff
+        WRITE(suff,'(A10)') pickupSuff
       ENDIF
       prec = precFloat64
 

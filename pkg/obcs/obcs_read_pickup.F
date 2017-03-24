@@ -41,7 +41,11 @@ C     !LOCAL VARIABLES:
       INTEGER prec
 
       IF ( pickupSuff.EQ.' ' ) THEN
-        WRITE(suff,'(I10.10)') myIter
+        IF ( rwSuffixType.EQ.0 ) THEN
+          WRITE(suff,'(I10.10)') myIter
+        ELSE
+          CALL RW_GET_SUFFIX( suff, startTime, myIter, myThid )
+        ENDIF
       ELSE
         suff = pickupSuff
       ENDIF

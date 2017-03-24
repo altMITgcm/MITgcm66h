@@ -10,11 +10,11 @@ CBOP
 
 C     ==========================================================
 C     | subroutine bling_read_pickup
-C     | o Read BLING arrays from a pickup file 
+C     | o Read BLING arrays from a pickup file
 C     ==========================================================
 
-      implicit none
-      
+      IMPLICIT NONE
+
 C     === Global variables ===
 #include "SIZE.h"
 #include "EEPARAMS.h"
@@ -32,7 +32,7 @@ C     myThid  :: my Thread Id number
 C     !FUNCTIONS
 
 C     !LOCAL VARIABLES:
-C     == Local variables ==
+      CHARACTER*(10) suff
       CHARACTER*(MAX_LEN_FNAM) fn, filNam
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       LOGICAL useCurrentDir, fileExist
@@ -44,7 +44,12 @@ CEOP
 
 C--   pickup file name :
       IF (pickupSuff.EQ.' ') THEN
-        WRITE(fn,'(A,I10.10)') 'pickup_bling.', myIter
+        IF ( rwSuffixType.EQ.0 ) THEN
+          WRITE(fn,'(A,I10.10)') 'pickup_bling.', myIter
+        ELSE
+          CALL RW_GET_SUFFIX( suff, startTime, myIter, myThid )
+          WRITE(fn,'(A,A)') 'pickup_bling.', myIter
+        ENDIF
       ELSE
         WRITE(fn,'(A,A10)') 'pickup_bling.', pickupSuff
       ENDIF

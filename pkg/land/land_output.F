@@ -76,7 +76,11 @@ C jmc: previously done from LAND_DO_DIAGS, but much better here.
 
         IF ( land_snapshot_mdsio ) THEN
 
-          WRITE(suff,'(I10.10)') myIter
+          IF ( rwSuffixType.EQ.0 ) THEN
+            WRITE(suff,'(I10.10)') myIter
+          ELSE
+            CALL RW_GET_SUFFIX( suff, myTime, myIter, myThid )
+          ENDIF
 
 C--   Write ground Temp and soil moisture :
           CALL WRITE_FLD_3D_RL( 'land_groundT.', suff, land_nLev,
@@ -206,7 +210,12 @@ C      Normalize by integrated time
 
        IF ( land_timeave_mdsio ) THEN
 
-        WRITE(fn,'(A,I10.10)') 'land_tave.', myIter
+        IF ( rwSuffixType.EQ.0 ) THEN
+          WRITE(suff,'(I10.10)') myIter
+        ELSE
+          CALL RW_GET_SUFFIX( suff, myTime, myIter, myThid )
+        ENDIF
+        WRITE(fn,'(2A)') 'land_tave.', suff
         CALL WRITE_REC_3D_RL( fn, writeBinaryPrec, land_nLev,
      &                        land_grTtave, 1, myIter, myThid )
         CALL WRITE_REC_3D_RL( fn, writeBinaryPrec, land_nLev,

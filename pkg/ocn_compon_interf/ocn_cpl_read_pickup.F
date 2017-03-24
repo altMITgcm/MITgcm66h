@@ -42,12 +42,18 @@ CEOP
 
 C     !LOCAL VARIABLES:
       INTEGER prec, rec_ind
+      CHARACTER*(10) suff
       CHARACTER*(MAX_LEN_FNAM) fn
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 
        IF ( pickupSuff.EQ.' ' ) THEN
-         WRITE(fn,'(A,I10.10)') 'pickup_cpl.',myIter
+         IF ( rwSuffixType.EQ.0 ) THEN
+           WRITE(fn,'(A,I10.10)') 'pickup_cpl.', myIter
+         ELSE
+           CALL RW_GET_SUFFIX( suff, startTime, myIter, myThid )
+           WRITE(fn,'(A,A)') 'pickup_cpl.', suff
+         ENDIF
        ELSE
          WRITE(fn,'(A,A10)') 'pickup_cpl.', pickupSuff
        ENDIF

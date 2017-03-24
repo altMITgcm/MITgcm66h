@@ -45,7 +45,7 @@ C     == Function
 
 C     == Local variables ==
       INTEGER bi, bj
-      CHARACTER*(MAX_LEN_MBUF) suff
+      CHARACTER*(10) suff
 
 C     Dump files and restart average computation if needed
       IF ( DIFFERENT_MULTIPLE(blk_taveFreq,myTime,deltaTClock)
@@ -80,7 +80,11 @@ C      Normalize by integrated time
         ENDDO
        ENDDO
 
-       WRITE(suff,'(I10.10)') myIter
+       IF ( rwSuffixType.EQ.0 ) THEN
+         WRITE(suff,'(I10.10)') myIter
+       ELSE
+         CALL RW_GET_SUFFIX( suff, myTime, myIter, myThid )
+       ENDIF
        CALL WRITE_FLD_XY_RL( 'BULK_Qnet.', suff,
      &                        BULK_Qnet_Ave,     myIter, myThid )
        CALL WRITE_FLD_XY_RL( 'BULK_EmPmR.', suff,

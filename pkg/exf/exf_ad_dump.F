@@ -11,7 +11,7 @@ C     !INTERFACE:
 
 C     !DESCRIPTION: \bv
 C     *==========================================================*
-C     | SUBROUTINE exf_ad_dump                           |
+C     | SUBROUTINE exf_ad_dump                                   |
 C     *==========================================================*
 C     Extract adjoint variable from TAMC/TAF-generated
 C     adjoint common blocks, contained in adcommon.h
@@ -19,7 +19,7 @@ C     and write fields to file;
 C     Make sure common blocks in adcommon.h are up-to-date
 C     w.r.t. current adjoint code.
 C     *==========================================================*
-C     | SUBROUTINE exf_ad_dump                           |
+C     | SUBROUTINE exf_ad_dump                                   |
 C     *==========================================================*
 C     \ev
 
@@ -61,7 +61,7 @@ C     !LOCAL VARIABLES:
 c     == local variables ==
 C     suff   :: Hold suffix part of a filename
 C     msgBuf :: Error message buffer
-      CHARACTER*(MAX_LEN_FNAM) suff
+      CHARACTER*(10) suff
 c     CHARACTER*(MAX_LEN_MBUF) msgBuf
 
 c     == end of interface ==
@@ -74,7 +74,11 @@ CEOP
      & ) THEN
 
 C--     Set suffix for this set of data files.
-        WRITE(suff,'(I10.10)') myIter
+        IF ( rwSuffixType.EQ.0 ) THEN
+          WRITE(suff,'(I10.10)') myIter
+        ELSE
+          CALL RW_GET_SUFFIX( suff, myTime, myIter, myThid )
+        ENDIF
 C ==>> Resetting run-time parameter writeBinaryPrec in the middle of a run
 C ==>>  is very very very nasty !!!
 c       writeBinaryPrec = writeStatePrec

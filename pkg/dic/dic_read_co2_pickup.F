@@ -28,6 +28,7 @@ C     !FUNCTIONS
 C     !LOCAL VARIABLES:
 C     == Local variables ==
       INTEGER fp, ioUnit
+      CHARACTER*(10) suff
       CHARACTER*(MAX_LEN_FNAM) fn, filNam
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       LOGICAL useCurrentDir, fileExist
@@ -38,7 +39,12 @@ CEOP
       IF ( dic_int1.EQ.3 ) THEN
 
         IF (pickupSuff.EQ.' ') THEN
-          WRITE(fn,'(A,I10.10)') 'pickup_dic_co2atm.', myIter
+          IF ( rwSuffixType.EQ.0 ) THEN
+            WRITE(fn,'(A,I10.10)') 'pickup_dic_co2atm.', myIter
+          ELSE
+            CALL RW_GET_SUFFIX( suff, startTime, myIter, myThid )
+            WRITE(fn,'(A,A)') 'pickup_dic_co2atm.', suff
+          ENDIF
         ELSE
           WRITE(fn,'(A,A10)') 'pickup_dic_co2atm.', pickupSuff
         ENDIF

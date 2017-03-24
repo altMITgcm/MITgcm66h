@@ -40,9 +40,13 @@ CEOP
 
 C--   Suffix for pickup files
       IF (pickupSuff.EQ.' ') THEN
-         WRITE(suff,'(I10.10)') myIter
+        IF ( rwSuffixType.EQ.0 ) THEN
+          WRITE(suff,'(I10.10)') myIter
+        ELSE
+          CALL RW_GET_SUFFIX( suff, startTime, myIter, myThid )
+        ENDIF
       ELSE
-         WRITE(suff,'(A10)') pickupSuff
+        WRITE(suff,'(A10)') pickupSuff
       ENDIF
 
       _BARRIER
@@ -51,8 +55,6 @@ C--   Suffix for pickup files
 
       WRITE(fn,'(A,A10)') 'pickup_ggl90.',suff
       CALL READ_REC_3D_RL( fn, prec, Nr, GGL90TKE, 1, myIter, myThid )
-
-c     _BARRIER
 
       _EXCH_XYZ_RL( GGL90TKE, myThid )
 

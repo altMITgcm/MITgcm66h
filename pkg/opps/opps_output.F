@@ -65,7 +65,7 @@ C     !FUNCTIONS:
 
 C     !LOCAL VARIABLES:
 C     == Local variables ==
-      CHARACTER*(MAX_LEN_MBUF) suff
+      CHARACTER*(10) suff
       INTEGER bi, bj
       _RL DDTT
 #endif /* ALLOW_TIMEAVE */
@@ -108,7 +108,7 @@ C     Initialize averages to zero
 
        ELSE
 C     Cumulate OPPS fields (for Time Average)
-        DDTT=deltaTclock
+        DDTT = deltaTClock
         DO bj = myByLo(myThid), myByHi(myThid)
          DO bi = myBxLo(myThid), myBxHi(myThid)
           CALL TIMEAVE_CUMULATE( OPPSconvCountTave, OPPSconvectCount,
@@ -133,7 +133,11 @@ C     Normalize by integrated time
         ENDDO
 
 C     Write each snap-shot as a new file
-        WRITE(suff,'(I10.10)') myIter
+        IF ( rwSuffixType.EQ.0 ) THEN
+          WRITE(suff,'(I10.10)') myIter
+        ELSE
+          CALL RW_GET_SUFFIX( suff, myTime, myIter, myThid )
+        ENDIF
         CALL WRITE_FLD_XYZ_RL('OPPSconvtave.',suff,OPPSconvCountTave,
      &      myIter,myThid)
 
