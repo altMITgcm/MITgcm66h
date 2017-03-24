@@ -46,6 +46,7 @@ C     msgBuf      :: Informational/error message buffer
       INTEGER missFldDim, nMissing
       INTEGER j, nj, ioUnit
       PARAMETER( missFldDim = 12 )
+      CHARACTER*(10) suff
       CHARACTER*(MAX_LEN_FNAM) fn
       CHARACTER*(8) missFldList(missFldDim)
       CHARACTER*(MAX_LEN_MBUF) msgBuf
@@ -57,9 +58,14 @@ C-    for now, only needs pickup if stepping forward SST
       IF ( .NOT.atmPhys_stepSST ) RETURN
 
        IF ( pickupSuff.EQ.' ' ) THEN
-        WRITE(fn,'(A,I10.10)') 'pickup_atmPhys.',myIter
+        IF ( rwSuffixType.EQ.0 ) THEN
+          WRITE(fn,'(A,I10.10)') 'pickup_atmPhys.', myIter
+        ELSE
+          CALL RW_GET_SUFFIX( suff, startTime, myIter, myThid )
+          WRITE(fn,'(A,A)') 'pickup_atmPhys.', suff
+        ENDIF
        ELSE
-        WRITE(fn,'(A,A10)')    'pickup_atmPhys.',pickupSuff
+        WRITE(fn,'(A,A10)') 'pickup_atmPhys.', pickupSuff
        ENDIF
        fp = precFloat64
 
