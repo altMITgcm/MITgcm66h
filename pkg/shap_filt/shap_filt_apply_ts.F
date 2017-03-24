@@ -50,8 +50,7 @@ C     bi,bj,k :: loop index
       INTEGER bi, bj, k
 #endif /* USE_OLD_SHAPIRO_FILTERS */
       INTEGER exchInOut
-      CHARACTER*(MAX_LEN_MBUF) suff
-
+      CHARACTER*(10) suff
 CEOP
 
       IF (nShapT.GT.0 .OR. nShapS.GT.0) THEN
@@ -111,7 +110,11 @@ C               is directly proportional to Delta-Tr due to the Filter
      &     DIFFERENT_MULTIPLE(Shap_diagFreq,myTime,deltaTClock)
      &       ) THEN
            _BARRIER
-           WRITE(suff,'(I10.10)') myIter
+           IF ( rwSuffixType.EQ.0 ) THEN
+             WRITE(suff,'(I10.10)') myIter
+           ELSE
+             CALL RW_GET_SUFFIX( suff, myTime, myIter, myThid )
+           ENDIF
            CALL WRITE_FLD_XYZ_RL( 'shap_dT.', suff, Shap_tmpFld1,
      &                            myIter, myThid)
            _BARRIER
@@ -156,7 +159,11 @@ C               is directly proportional to Delta-Tr due to the Filter
      &     DIFFERENT_MULTIPLE(Shap_diagFreq,myTime,deltaTClock)
      &       ) THEN
            _BARRIER
-           WRITE(suff,'(I10.10)') myIter
+           IF ( rwSuffixType.EQ.0 ) THEN
+             WRITE(suff,'(I10.10)') myIter
+           ELSE
+             CALL RW_GET_SUFFIX( suff, myTime, myIter, myThid )
+           ENDIF
            CALL WRITE_FLD_XYZ_RL( 'shap_dS.', suff, Shap_tmpFld1,
      &                            myIter, myThid)
            _BARRIER

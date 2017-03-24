@@ -44,7 +44,6 @@ C     bi,bj  :: Loop counters
 C     i,j    :: Loop counters
       INTEGER bi, bj
       INTEGER i, j
-      INTEGER prec
 c     CHARACTER*(MAX_LEN_FNAM) fn
       _RL v2Loc
       _RL Tf
@@ -117,8 +116,7 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
      &     ( nIter0.NE.0  .OR. pickupSuff.NE.' ' )
      &   ) THEN
 C--     Read ice pickup fields
-        prec=precFloat64
-        CALL THSICE_READ_PICKUP( prec, nIter0, myThid )
+        CALL THSICE_READ_PICKUP( nIter0, myThid )
 
       ELSE
 C--     Read initial conditions:

@@ -62,7 +62,7 @@ C     bi,bj,k :: loop index
       INTEGER bi, bj, k
 #else /* USE_OLD_SHAPIRO_FILTERS */
       LOGICAL diag_dKE
-      CHARACTER*(MAX_LEN_MBUF) suff
+      CHARACTER*(10) suff
 #if ( defined ALLOW_FRICTION_HEATING ) || ( defined ALLOW_DIAGNOSTICS )
       INTEGER bi, bj, k, i, j
       _RL dKE_shap(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
@@ -118,7 +118,11 @@ C             are directly proportional to Delta-U,V due to the Filter
         IF ( Shap_funct.NE.1 .AND. Shap_funct.NE.4 .AND.
      &     DIFFERENT_MULTIPLE(Shap_diagFreq,myTime,deltaTClock)
      &     ) THEN
-          WRITE(suff,'(I10.10)') myIter
+          IF ( rwSuffixType.EQ.0 ) THEN
+            WRITE(suff,'(I10.10)') myIter
+          ELSE
+            CALL RW_GET_SUFFIX( suff, myTime, myIter, myThid )
+          ENDIF
           CALL WRITE_FLD_XYZ_RL( 'shap_dU.', suff, Shap_tmpFld1,
      &                            myIter,myThid)
           CALL WRITE_FLD_XYZ_RL( 'shap_dV.', suff, Shap_tmpFld2,
