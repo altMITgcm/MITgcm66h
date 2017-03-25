@@ -738,8 +738,8 @@ C---
       CALL WRITE_0D_L(pickup_read_mnc,INDEX_NONE,
      &     'pickup_read_mnc =', '   /* Model IO flag. */')
 #endif
-      CALL WRITE_0D_L(pickup_write_immed,INDEX_NONE,
-     &     'pickup_write_immed =','   /* Model IO flag. */')
+c     CALL WRITE_0D_L(pickup_write_immed,INDEX_NONE,
+c    &     'pickup_write_immed =','   /* Model IO flag. */')
       CALL WRITE_0D_L(writePickupAtEnd,INDEX_NONE,
      &     'writePickupAtEnd =','   /* Model IO flag. */')
       CALL WRITE_0D_RL( dumpFreq, INDEX_NONE,'dumpFreq =',
