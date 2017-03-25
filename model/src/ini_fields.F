@@ -39,12 +39,6 @@ C     Set model variables to initial/restart conditions
 #endif
       ELSEIF ( .NOT.useOffLine .OR. nonlinFreeSurf.GT.0 ) THEN
         CALL READ_PICKUP( nIter0, myThid )
-
-c       IF (pickup_write_immed) THEN
-c         CALL WRITE_PICKUP(
-c    I                       .TRUE., startTime, nIter0, myThid )
-c       ENDIF
-
       ENDIF
 
 #ifdef ALLOW_NONHYDROSTATIC
