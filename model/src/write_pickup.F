@@ -48,7 +48,7 @@ C     myTime          :: Current time of simulation ( s )
 C     myIter          :: Iteration number
 C     myThid          :: Thread number for this instance of the routine.
       LOGICAL permPickup
-      CHARACTER(*) suffix
+      CHARACTER*(*) suffix
       _RL     myTime
       INTEGER myIter
       INTEGER myThid
