@@ -18,30 +18,6 @@ CADJ SUBROUTINE do_write_pickup  DEPEND = 1,2,3,4
 CADJ SUBROUTINE do_write_pickup  REQUIRED
 
 C----------------------------------------
-C subroutine  write_pickup
-C----------------------------------------
-CADJ SUBROUTINE write_pickup  INPUT  = 1,2,3,4
-CADJ SUBROUTINE write_pickup  OUTPUT =
-CADJ SUBROUTINE write_pickup  DEPEND = 1,2,3,4
-CADJ SUBROUTINE write_pickup  REQUIRED
-
-C----------------------------------------
-C subroutine  packages_write_pickup
-C----------------------------------------
-CADJ SUBROUTINE packages_write_pickup  INPUT  = 1,2,3,4
-CADJ SUBROUTINE packages_write_pickup  OUTPUT =
-CADJ SUBROUTINE packages_write_pickup  DEPEND = 1,2,3,4
-CADJ SUBROUTINE packages_write_pickup  REQUIRED
-
-C----------------------------------------
-C subroutine  write_checkpoint
-C----------------------------------------
-CADJ SUBROUTINE write_checkpoint  INPUT  = 1,2,3,4
-CADJ SUBROUTINE write_checkpoint  OUTPUT =
-CADJ SUBROUTINE write_checkpoint  DEPEND = 1,2,3,4
-CADJ SUBROUTINE write_checkpoint  REQUIRED
-
-C----------------------------------------
 C subroutine  check_pickup
 C----------------------------------------
 CADJ SUBROUTINE check_pickup  INPUT  = 1,2,3,4,5
