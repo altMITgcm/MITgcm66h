@@ -268,9 +268,11 @@ C     Fill Diagnostics Common Block with Namelist Info
 
 C     remove trailing "/":
       iLen = ILNBLNK( diagMdsDir )
-      IF ( iLen.GE.2 .AND. diagMdsDir(iLen:iLen).EQ.'/' ) THEN
+      IF ( iLen.GE.2 ) THEN
+       IF ( diagMdsDir(iLen:iLen).EQ.'/' ) THEN
          namBuf = diagMdsDir
          WRITE(diagMdsDir,'(A)') namBuf(1:iLen-1)
+       ENDIF
       ENDIF
 
       DO l = 1,ldimLoc
