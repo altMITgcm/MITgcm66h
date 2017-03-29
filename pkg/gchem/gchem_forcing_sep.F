@@ -287,12 +287,6 @@ C       tendency multiplied by maskInC)
 # endif /* ALLOW_AUTODIFF */
 #endif /* ALLOW_DIC */
 
-#ifdef ALLOW_BLING
-# ifdef ALLOW_BLING_COST
-       CALL BLING_COST( myTime, myIter, myThid )
-# endif /* ALLOW_BLING_COST */
-#endif /* ALLOW_BLING */
-
 #ifdef ALLOW_DEBUG
       IF (debugMode) CALL DEBUG_LEAVE('GCHEM_FORCING_SEP',myThid)
 #endif
