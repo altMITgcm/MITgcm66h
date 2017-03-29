@@ -30,9 +30,5 @@ CADJ STORE apco20        = tapelev4, key = ilev_4
 CADJ STORE apco21        = tapelev4, key = ilev_4
 # endif
 
-#ifdef ALLOW_BLING_COST
-CADJ STORE totcost  = tapelev4, key = ilev_4
-#endif
-
 #endif /* ALLOW_BLING */
 

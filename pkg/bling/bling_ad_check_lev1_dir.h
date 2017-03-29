@@ -26,9 +26,5 @@ CADJ STORE apco20        = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE apco21        = comlev1, key=ikey_dynamics, kind=isbyte
 # endif
 
-#ifdef ALLOW_BLING_COST
-CADJ STORE totcost           = comlev1, key = ikey_dynamics, kind=isbyte
-#endif
-
 #endif /* ALLOW_BLING */
 
