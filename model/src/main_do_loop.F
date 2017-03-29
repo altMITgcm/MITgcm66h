@@ -105,8 +105,6 @@ c**************************************
 # ifdef ALLOW_BLING
 #  include "BLING_VARS.h"
 #  include "BLING_LOAD.h"
-#  include "BLING_CTRL.h"
-#  include "BLING_COST.h"
 # endif
 # ifdef ALLOW_OBCS
 #  include "OBCS_PARAMS.h"
