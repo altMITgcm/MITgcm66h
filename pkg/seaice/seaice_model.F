@@ -106,6 +106,7 @@ CADJ STORE heffm = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE area  = comlev1, key=ikey_dynamics, kind=isbyte
 # ifdef SEAICE_ALLOW_DYNAMICS
 #  ifdef SEAICE_CGRID
+CADJ STORE hsnow = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE seaicemasku = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE seaicemaskv = comlev1, key=ikey_dynamics, kind=isbyte
 CADJ STORE fu    = comlev1, key=ikey_dynamics, kind=isbyte
