@@ -91,6 +91,7 @@ c     == end of interface ==
       kgen=0
       do k=1,NGENCOST
         if ( (gencost_name(k).EQ.'bpv4-grace').AND.
+     &       (.NOT.gencost_is1d(k)).AND.
      &       (using_gencost(k)) ) kgen=k
       enddo
 

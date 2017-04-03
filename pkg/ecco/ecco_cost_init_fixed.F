@@ -229,6 +229,43 @@ c--    set observation start/enddate
      &     gencost_enddate(1,k),mythid)
        endif
 
+#ifdef ALLOW_GENCOST_1D
+      if ( (gencost_name(k).EQ.'gmbp') .OR.
+     &     (gencost_name(k).EQ.'gmsl')) then
+       if(gencost_nrec(k).GT.N1DDATA)then
+        WRITE(msgBuf,'(2A,2i8)') 'ecco_cost_init_fixed: ',
+     &   'Increase N1DDATA', N1DDATA, gencost_nrec(k)
+        CALL PRINT_ERROR( msgBuf, myThid)
+       endif
+
+      do irec = 1, N1DDATA
+       gencost_1DDATA(irec,k) = 0. _d 0
+      enddo
+
+      if(gencost_wei1d(k).NE.0. _d 0)then
+        gencost_wei1d(k) = 1. _d 0 / gencost_wei1d(k)
+     &      /gencost_wei1d(k)
+      endif
+
+      if ( gencost_datafile(k) .NE. ' ' ) then
+      ilo = ifnblnk(gencost_datafile(k))
+      ihi = ilnblnk(gencost_datafile(k))
+
+      CALL OPEN_COPY_DATA_FILE(
+     I                          gencost_datafile(k)(ilo:ihi),
+     I                          'ECCO_COST_INIT_FIXED: ',
+     O                          gwunit,
+     I                          myThid )
+      do irec = 1, gencost_nrec(k)
+         read(gwunit,*) gencost_1DDATA(irec,k)
+      enddo
+      close(gwunit)
+      _BARRIER
+      endif
+
+      endif
+#endif /* ALLOW_GENCOST_1D */
+
       enddo !do k = 1, NGENCOST
 #endif /* ALLOW_GENCOST_CONTRIBUTION */
 

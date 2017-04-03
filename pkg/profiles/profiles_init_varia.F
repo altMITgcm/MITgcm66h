@@ -63,6 +63,10 @@ c--   Initialize the tiled cost function contributions.
             profiles_dummy(num_file,num_var,bi,bj)=0. _d 0
            enddo
           enddo
+          do num_var=1,NVARMAX
+           objf_profiles_mean(num_var,bi,bj)= 0. _d 0
+           num_profiles_mean(num_var,bi,bj) = 0. _d 0
+          enddo
         enddo
       enddo
 

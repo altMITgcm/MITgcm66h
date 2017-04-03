@@ -212,15 +212,15 @@ cph Initial wind stress adjustments are too vigorous.
 #endif
 
       if ( gencount0 .LE. 2 .AND.
-     &     ( xx_gen_file .EQ. xx_tauu_file .OR.
-     &       xx_gen_file .EQ. xx_tauv_file ) .AND.
+     &     ( xx_gen_file(1:7) .EQ. xx_tauu_file .OR.
+     &       xx_gen_file(1:7) .EQ. xx_tauv_file ) .AND.
      &     ( xx_genperiod .NE. 0 ) ) then
          doCtrlUpdate = .FALSE.
       else
          doCtrlUpdate = .TRUE.
       endif
-      if ( xx_gen_file .EQ. xx_tauu_file .OR.
-     &     xx_gen_file .EQ. xx_tauv_file ) then
+      if ( xx_gen_file(1:7) .EQ. xx_tauu_file .OR.
+     &     xx_gen_file(1:7) .EQ. xx_tauv_file ) then
          gensign = -1.
       else
          gensign = 1.

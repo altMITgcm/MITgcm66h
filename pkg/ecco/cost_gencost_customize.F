@@ -137,7 +137,14 @@ c    &     .TRUE.,.TRUE.,.TRUE.,1,myThid)
      &      SALT(i,j,1,bi,bj)*maskC(i,j,1,bi,bj)
          elseif (gencost_barfile(k)(1:4).EQ.'m_bp') then
            gencost_modfld(i,j,bi,bj,k) = 
-     &      phiHydLow(i,j,bi,bj)*maskC(i,j,1,bi,bj)
+     &      (phiHydLow(i,j,bi,bj)+
+#ifdef ALLOW_PSBAR_STERIC
+C add back the correction due to the global mean steric ssh change, 
+C     i.e. sterGloH computed in ecco_phys.F (units converted from m to m2/s2)
+     &       sterGloH * gravity
+#endif
+     &      )*maskC(i,j,1,bi,bj)
+
 #ifdef ALLOW_GEOTHERMAL_FLUX
          elseif (gencost_barfile(k)(1:16).EQ.'m_geothermalflux') then
            gencost_modfld(i,j,bi,bj,k) =
