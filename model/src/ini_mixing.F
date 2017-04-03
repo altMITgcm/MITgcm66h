@@ -95,14 +95,24 @@ CEOP
        ENDIF
 #endif /* ALLOW_3D_DIFFKR */
 #ifdef ALLOW_CTRL
-# ifdef ALLOW_KAPGM_CONTROL
+#ifdef ALLOW_KAPGM_CONTROL
+#ifdef ALLOW_KAPGM_3DFILE
+       IF ( GM_background_K3dFile .NE. ' ' ) THEN
+          CALL READ_FLD_XYZ_RL(GM_background_K3dFile,' ',KapGM,0,myThid)
+       ENDIF
+#endif
        _EXCH_XYZ_RL( kapGM, myThid )
        CALL WRITE_FLD_XYZ_RL( 'KapGM', ' ', kapGM, 0, myThid )
-# endif
-# ifdef ALLOW_KAPREDI_CONTROL
+#endif
+#ifdef ALLOW_KAPREDI_CONTROL
+#ifdef ALLOW_KAPREDI_3DFILE
+       IF ( GM_isopycK3dFile .NE. ' ' ) THEN
+          CALL READ_FLD_XYZ_RL(GM_isopycK3dFile,' ',KapRedi,0,myThid)
+       ENDIF
+#endif
        _EXCH_XYZ_RL( kapRedi, myThid )
        CALL WRITE_FLD_XYZ_RL( 'KapRedi', ' ', kapRedi, 0, myThid )
-# endif
+#endif
 #endif /* ALLOW_CTRL */
       RETURN
       END

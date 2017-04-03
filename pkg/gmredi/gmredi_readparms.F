@@ -50,6 +50,8 @@ C     GM_slopeSqCutoff :: slope^2 cut-off value
      &          GM_background_K,
      &          GM_iso2dFile, GM_iso1dFile,
      &          GM_bol2dFile, GM_bol1dFile,
+     &          GM_background_K3dFile,
+     &          GM_isopycK3dFile,
      &          GM_taper_scheme,
      &          GM_maxSlope,
      &          GM_Kmin_horiz,
@@ -109,6 +111,8 @@ C--   Default values GM/Redi
       GM_iso1dFile        = ' '
       GM_bol2dFile        = ' '
       GM_bol1dFile        = ' '
+      GM_background_K3dFile = ' '
+      GM_isopycK3dFile      = ' '
 
 C--   Default values GM/Redi I/O control
 c     GM_dumpFreq         = -1.
