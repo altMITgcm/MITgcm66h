@@ -991,7 +991,7 @@ c ------------------------------------------------------
      &        tpob(i,j,bi,bj)
            anom_psMslaobs_NUM(i,j,bi,bj)=
      &        anom_psMslaobs_NUM(i,j,bi,bj)+1. _d 0
-           if ( (2*jrec.EQ.ndaysave).OR.(2*jrec+1.EQ.ndaysave) ) 
+           if ( (2*jrec.EQ.ndaysave).OR.(2*jrec-1.EQ.ndaysave) ) 
      &        anom_psMslaobs_MSK(i,j,bi,bj)  = 1. _d 0
       endif
       if ( ersma(i,j,bi,bj)*mean_psMslaobs_MSK(i,j,bi,bj)
@@ -1003,7 +1003,7 @@ c ------------------------------------------------------
      &        ersob(i,j,bi,bj)
            anom_psMslaobs_NUM(i,j,bi,bj)=
      &        anom_psMslaobs_NUM(i,j,bi,bj)+1. _d 0
-           if ( (2*jrec.EQ.ndaysave).OR.(2*jrec+1.EQ.ndaysave) )
+           if ( (2*jrec.EQ.ndaysave).OR.(2*jrec-1.EQ.ndaysave) )
      &        anom_psMslaobs_MSK(i,j,bi,bj)  = 1. _d 0
       endif
       if ( gfoma(i,j,bi,bj)*mean_psMslaobs_MSK(i,j,bi,bj)
@@ -1015,7 +1015,7 @@ c ------------------------------------------------------
      &        gfoob(i,j,bi,bj)
            anom_psMslaobs_NUM(i,j,bi,bj)=
      &        anom_psMslaobs_NUM(i,j,bi,bj)+1. _d 0
-           if ( (2*jrec.EQ.ndaysave).OR.(2*jrec+1.EQ.ndaysave) )
+           if ( (2*jrec.EQ.ndaysave).OR.(2*jrec-1.EQ.ndaysave) )
      &        anom_psMslaobs_MSK(i,j,bi,bj)  = 1. _d 0
       endif
           enddo
