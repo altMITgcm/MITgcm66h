@@ -23,6 +23,9 @@ C !USES: ===============================================================
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#include "PTRACERS_SIZE.h"
+#include "PTRACERS_PARAMS.h"
+#include "PTRACERS_FIELDS.h"
 
 C !INPUT PARAMETERS: ===================================================
 C  gPtracer             :: the tendency array
@@ -82,12 +85,25 @@ C     because it is needed by KPP_TRANSPORT_PTR.
          ENDDO
         ENDDO
       ELSE
+C-    Case of age-tracer: in the interior, set aging tendency to one:
         DO j=jMin,jMax
          DO i=iMin,iMax
           gPtracer(i,j) = gPtracer(i,j)
      &                  + 1. _d 0 * maskC(i,j,k,bi,bj)
          ENDDO
         ENDDO
+      ENDIF
+
+      IF (PTRACERS_linFSConserve(iTracer)) THEN
+        IF (k .EQ. kSurface) THEN
+          DO j=0,sNy+1
+           DO i=0,sNx+1
+            gPtracer(i,j) = gPtracer(i,j)
+     &           +meanSurfCorPTr(iTracer)*recip_drF(k)
+     &           *_recip_hFacC(i,j,k,bi,bj)
+           ENDDO
+          ENDDO
+        ENDIF
       ENDIF
 
 #ifdef ALLOW_RBCS
