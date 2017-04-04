@@ -103,7 +103,7 @@ CEOP
 
 C     Generaly only thread 1 does IO here. It can not start until
 C     all threads fields are ready.
-      IF (debugMode) THEN
+      IF ( plotLevel.GE.debLevD ) THEN
         IF ( DIFFERENT_MULTIPLE(dumpFreq,myTime,deltaTClock)
      &     ) THEN
 

@@ -149,7 +149,7 @@ c     ELSEIF ( allowFreezing ) THEN
 c      CALL FREEZE_SURFACE( startTime, nIter0, myThid )
       ENDIF
 
-      IF ( debugLevel.GE.debLevC ) THEN
+      IF ( plotLevel.GE.debLevC ) THEN
         CALL PLOT_FIELD_XYZRL( theta, 'Initial Temperature',
      &                         Nr, 1, myThid )
       ENDIF
