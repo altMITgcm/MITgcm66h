@@ -83,7 +83,7 @@ c          tauX  = -tauMax*cos(2. _d 0*PI*distY)
 
       _EXCH_XY_RS( Run, myThid )
 
-      IF ( debugLevel.GE.debLevC ) THEN
+      IF ( plotLevel.GE.debLevC ) THEN
         CALL PLOT_FIELD_XYRS( SST, 'Theta Climatology' , 1, myThid )
         CALL PLOT_FIELD_XYRS( SSS, 'Salt  Climatology' , 1, myThid )
         CALL PLOT_FIELD_XYRS( Run, 'Runoff Climatology', 1, myThid )

@@ -55,7 +55,7 @@ C     o Plot ocean depths
       IF ( debugLevel.GE.debLevB ) THEN
         CALL WRITE_FLD_XY_RL( 'Ocn_MxlD', ' ', ocMxlD, 0, myThid )
       ENDIF
-      IF ( debugLevel.GE.debLevC ) THEN
+      IF ( plotLevel.GE.debLevC ) THEN
         CALL PLOT_FIELD_XYRL( ocMxlD,
      &                  'Ocean mixed-layer depth on atmos grid',
      &                  1, myThid )

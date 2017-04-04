@@ -445,7 +445,7 @@ C--   Update overlap regions
 #endif
 
 C--   Now lets look at all these beasts
-      IF ( debugLevel .GE. debLevC ) THEN
+      IF ( plotLevel.GE.debLevC ) THEN
          CALL PLOT_FIELD_XYRL( HEFFM   , 'Current HEFFM   ' ,
      &        nIter0, myThid )
 #ifdef SEAICE_CGRID

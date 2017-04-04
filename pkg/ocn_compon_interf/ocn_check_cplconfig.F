@@ -52,7 +52,7 @@ C     o Plot atmosphere land-mask
       IF ( debugLevel.GE.debLevB ) THEN
         CALL WRITE_FLD_XY_RL( 'Atm_Land', ' ', landMask, 0, myThid )
       ENDIF
-      IF ( debugLevel.GE.debLevC ) THEN
+      IF ( plotLevel.GE.debLevC ) THEN
         CALL PLOT_FIELD_XYRL( landMask,
      &                  'Atmosphere land/sea mask on ocean grid',
      &                  1, myThid )
