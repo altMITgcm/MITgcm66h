@@ -82,7 +82,6 @@ C--   generic 2D control variables
 
       if (igen_etan.GT.0) then
             call ctrl_map_genarr2d(etaN,igen_etan,myThid)
-            call ctrl_map_genarr2d(etaH,igen_etan,myThid)
       endif
 #ifdef ALLOW_BOTTOMDRAG_CONTROL
       if (igen_bdrag.GT.0)
