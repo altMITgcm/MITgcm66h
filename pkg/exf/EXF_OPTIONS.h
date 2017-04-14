@@ -221,7 +221,7 @@ C   (no pole symmetry, single vector-comp interp, reset to 0 zonal-comp @ N.pole
 #undef EXF_USE_OLD_INTERP_POLE
 
 #define EXF_INTERP_USE_DYNALLOC
-#if ( defined (EXF_INTERP_USE_DYNALLOC) && defined (USING_THREADS) )
+#if ( defined USE_EXF_INTERPOLATION && defined EXF_INTERP_USE_DYNALLOC && defined USING_THREADS )
 # define EXF_IREAD_USE_GLOBAL_POINTER
 #endif
 
