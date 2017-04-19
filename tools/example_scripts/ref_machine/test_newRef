@@ -35,7 +35,7 @@ TESTDIR="/home/jm_c/test_${dNam}"
 #outDir=`hostname -s`
 #outDir="${outDir}-${tst_grp}"
 outDir="charles-B"
-MC=10
+MC=11
 sepDir=1
 option=
 
