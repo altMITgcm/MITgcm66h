@@ -6,6 +6,9 @@
 #PBS -e /u/jcampin/test_pleiades/output/tst_ieee.stderr
 #PBS -o /u/jcampin/test_pleiades/output/tst_ieee.stdout
 
+# $Header$
+# $Name$
+
 if test -f /etc/profile.d/modules.sh ; then
     . /etc/profile.d/modules.sh
 fi

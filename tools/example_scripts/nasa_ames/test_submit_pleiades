@@ -28,7 +28,7 @@ logPfix='test_submit'
 SUB_DIR="$HERE/nasa_ames"
 OUT_DIR="$HERE/output"
 LOG_FIL="$OUT_DIR/$logPfix."`date +%m%d`".log"
-SUB_DIR="$HERE/temp"
+#SUB_DIR="$HERE/temp"
 
 #-- clean up old log files and start a new one:
 cd $OUT_DIR
