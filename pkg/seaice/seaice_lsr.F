@@ -476,8 +476,8 @@ C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
      I        myTime, myIter, myThid )
          DO J=jMin,jMax
           DO I=jMin,jMax
-           rhsU(I,J,bi,bj) = rhsU(I,J,bi,bj) - gUmom(I,J)
-           rhsV(I,J,bi,bj) = rhsV(I,J,bi,bj) - gVmom(I,J)
+           rhsU(I,J,bi,bj) = rhsU(I,J,bi,bj) + gUmom(I,J)
+           rhsV(I,J,bi,bj) = rhsV(I,J,bi,bj) + gVmom(I,J)
           ENDDO
          ENDDO
         ENDIF
