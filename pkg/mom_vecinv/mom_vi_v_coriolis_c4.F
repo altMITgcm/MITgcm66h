@@ -8,6 +8,7 @@ C     !ROUTINE: MOM_VI_V_CORIOLIS_C4
 C     !INTERFACE:
       SUBROUTINE MOM_VI_V_CORIOLIS_C4(
      I        bi,bj,k,
+     I        selectVortScheme,highOrderVorticity,upwindVorticity,
      I        uFld,omega3,r_hFacZ,
      O        vCoriolisTerm,
      I        myThid)
@@ -26,7 +27,6 @@ C     !USES:
 C     == Global variables ==
 #include "SIZE.h"
 #include "EEPARAMS.h"
-#include "PARAMS.h"
 #include "GRID.h"
 #ifdef ALLOW_EXCH2
 #include "W2_EXCH2_SIZE.h"
@@ -40,6 +40,8 @@ C     == Routine arguments ==
       _RL omega3(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RS r_hFacZ(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
       _RL vCoriolisTerm(1-OLx:sNx+OLx,1-OLy:sNy+OLy)
+      INTEGER selectVortScheme
+      LOGICAL highOrderVorticity,upwindVorticity
       INTEGER myThid
 CEOP
 
