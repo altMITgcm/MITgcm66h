@@ -442,6 +442,15 @@ C--   SEAICE_ALLOW_DYNAMICS and SEAICEuseDYNAMICS
       ENDIF
 #endif
 
+#ifndef SEAICE_ALLOW_MOM_ADVECTION
+      IF ( SEAICEmomAdvection ) THEN 
+       WRITE(msgBuf,'(A)')
+     &   'SEAICE_ALLOW_MOM_ADVECTION needed for SEAICEmomAdvection'
+       CALL PRINT_ERROR( msgBuf, myThid )
+       STOP 'ABNORMAL END: S/R SEAICE_CHECK'
+      ENDIF
+#endif
+
 C--   SEAICE_EXTERNAL_FORCING is obsolete: issue warning but continue.
 #ifdef SEAICE_EXTERNAL_FORCING
         WRITE(msgBuf,'(2A)') '** WARNING ** SEAICE_CHECK: ',

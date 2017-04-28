@@ -97,6 +97,8 @@ C     (not thoroughly) test version on a C-grid
 
 C--   Only for the C-grid version it is possible to
 #ifdef SEAICE_CGRID
+C     enable advection of sea ice momentum
+# undef SEAICE_ALLOW_MOM_ADVECTION
 C     enable JFNK code by defining the following flag
 # define SEAICE_ALLOW_JFNK
 C     enable Krylov code by defining the following flag
