@@ -794,6 +794,9 @@ c    &     'pickup_write_immed =','   /* Model IO flag. */')
       CALL WRITE_0D_L( usingCurvilinearGrid, INDEX_NONE,
      & 'usingCurvilinearGrid =',
      & ' /* Curvilinear coordinates flag ( True/False ) */')
+      CALL WRITE_0D_L( useMin4hFacEdges, INDEX_NONE,
+     & 'useMin4hFacEdges =',
+     & ' /* set hFacW,S as minimum of adjacent hFacC factor */')
       CALL WRITE_0D_I( selectSigmaCoord, INDEX_NONE,
      & 'selectSigmaCoord =',
      & ' /* Hybrid-Sigma Vert. Coordinate option */')

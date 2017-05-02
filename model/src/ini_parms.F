@@ -276,7 +276,7 @@ C--   Gridding parameters
      & phiEuler, thetaEuler, psiEuler,
      & rSphere, radius_fromHorizGrid, deepAtmosphere, seaLev_Z,
      & top_Pres, delZ, delP, delR, delRc, delRFile, delRcFile,
-     & selectSigmaCoord, rSigmaBnd, hybSigmFile,
+     & useMin4hFacEdges, selectSigmaCoord, rSigmaBnd, hybSigmFile,
      & Ro_SeaLevel, rkFac, groundAtK1, thetaMin, phiMin
 
 C--   Input files

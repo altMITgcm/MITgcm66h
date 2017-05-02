@@ -55,6 +55,7 @@ C-    Vertical gridding
       DO k=1,Nr+1
        delRc(k)           = UNSET_RL
       ENDDO
+      useMin4hFacEdges    = .FALSE.
 C-    vertical profile
       tRefFile            = ' '
       sRefFile            = ' '
