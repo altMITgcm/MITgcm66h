@@ -4,6 +4,7 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+
 o model/src:
   - new run-time param (useMin4hFacEdges) to select method for setting hFacW,S:
     originally, set as minimum of adjacent hFacC factor ; now (new default)
