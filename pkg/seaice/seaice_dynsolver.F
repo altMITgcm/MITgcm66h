@@ -196,7 +196,7 @@ CADJ STORE vice = comlev1, key=ikey_dynamics, kind=isbyte
 # endif /* ALLOW_AUTODIFF_TAMC */
 C--   interface of dynamics with atmopheric forcing fields (wind/stress)
       CALL SEAICE_GET_DYNFORCING (
-     I     uIce, vIce,
+     I     uIce, vIce, AREA,
      O     TAUX, TAUY,
      I     myTime, myIter, myThid )
 
