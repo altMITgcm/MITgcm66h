@@ -118,14 +118,14 @@ C--   surface fluxes:
      I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
       diagName  = 'EXFuwind'
-      diagTitle = 'zonal 10-m wind speed, >0 increases uVel'
+      diagTitle = 'zonal 10-m wind speed, >0 eastward'
       diagUnits = 'm/s             '
       diagCode  = 'UM      U1      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
       diagName  = 'EXFvwind'
-      diagTitle = 'meridional 10-m wind speed, >0 increases uVel'
+      diagTitle = 'meridional 10-m wind speed, >0 northward'
       diagUnits = 'm/s             '
       diagCode  = 'VM      U1      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
