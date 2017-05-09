@@ -43,6 +43,7 @@ if test $tst_grp = 'a' ; then
  checkOut=2
 #tst_list='g7a mpa mth mp2+rs mpi oad'
  tst_list='mpa adm mpi gfo+rs mth+rs'
+ tst_list="$tst_list oad"
 else
  checkOut=3
  tst_list='adm g77 gfo+rs ifc'
