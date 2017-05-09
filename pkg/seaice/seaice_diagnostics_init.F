@@ -251,7 +251,7 @@ c    I     diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
      I     diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
 
       diagName  = 'SItauy  '
-      diagTitle = 'SEAICE merid. surface wind stress, >0 increases uIce'
+      diagTitle = 'SEAICE merid surface wind stress, >0 increases vIce'
       diagUnits = 'N/m^2           '
       diagCode  = 'VV      U1      '
       diagMate  = diagNum
@@ -267,7 +267,7 @@ c    I     diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
      I     diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
 
       diagName  = 'SIatmTy '
-      diagTitle = 'Merid. surface wind stress over Ocean+SeaIce'
+      diagTitle = 'Merid surface wind stress over Ocean+SeaIce'
       diagUnits = 'N/m^2           '
       diagCode  = 'VV      U1      '
       diagMate  = diagNum
