@@ -188,7 +188,7 @@ CADJ STORE heffm  = comlev1, key=ikey_dynamics, kind=isbyte
 #endif /* ALLOW_AUTODIFF_TAMC */
 
 C     After advection, the sea ice variables may have unphysical values
-C     e.g., < 0, that are regularized here. Concentration as a special case 
+C     e.g., < 0, that are regularized here. Concentration as a special case
 C     may be > 1 in convergent motion and a ridging algorithm redistributes
 C     the ice to limit the concentration to 1.
       CALL SEAICE_REG_RIDGE( myTime, myIter, myThid )
@@ -274,11 +274,11 @@ c      ENDIF
 C     diagnostics for "non-state variables" that are modified by
 C     the seaice model
 # ifdef ALLOW_EXF
-        CALL DIAGNOSTICS_FILL(UWIND   ,'SIuwind ',0,1 ,0,1,1,myThid)
-        CALL DIAGNOSTICS_FILL(VWIND   ,'SIvwind ',0,1 ,0,1,1,myThid)
+c       CALL DIAGNOSTICS_FILL(UWIND   ,'SIuwind ',0,1 ,0,1,1,myThid)
+c       CALL DIAGNOSTICS_FILL(VWIND   ,'SIvwind ',0,1 ,0,1,1,myThid)
 # endif
-        CALL DIAGNOSTICS_FILL_RS(FU   ,'SIfu    ',0,1 ,0,1,1,myThid)
-        CALL DIAGNOSTICS_FILL_RS(FV   ,'SIfv    ',0,1 ,0,1,1,myThid)
+c       CALL DIAGNOSTICS_FILL_RS(FU   ,'SIfu    ',0,1 ,0,1,1,myThid)
+c       CALL DIAGNOSTICS_FILL_RS(FV   ,'SIfv    ',0,1 ,0,1,1,myThid)
         CALL DIAGNOSTICS_FILL_RS(EmPmR,'SIempmr ',0,1 ,0,1,1,myThid)
         CALL DIAGNOSTICS_FILL_RS(Qnet ,'SIqnet  ',0,1 ,0,1,1,myThid)
         CALL DIAGNOSTICS_FILL_RS(Qsw  ,'SIqsw   ',0,1 ,0,1,1,myThid)
