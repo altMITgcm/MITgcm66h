@@ -562,22 +562,6 @@ C--   advective flux
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I     diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
 
-      diagName  = 'SIuheff '
-      diagTitle = 'Zonal      Transport of eff ice thickn (centered)'
-      diagUnits = 'm^2/s           '
-      diagCode  = 'UU      M1      '
-      diagMate  = diagNum + 2
-      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
-     I     diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
-
-      diagName  = 'SIvheff '
-      diagTitle = 'Meridional Transport of eff ice thickn (centered)'
-      diagUnits = 'm^2/s           '
-      diagCode  = 'VV      M1      '
-      diagMate  = diagNum
-      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
-     I     diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
-
 C--   Diffusive flux:
       diagName  = 'DFxE'//diagSufx
       diagTitle = 'Zonal      Diffusive Flux of '//locName
@@ -693,6 +677,23 @@ C--   Diffusive flux:
 
       diagName  = 'DFyE'//diagSufx
       diagTitle = 'Meridional Diffusive Flux of '//locName
+      diagCode  = 'VV      M1      '
+      diagMate  = diagNum
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I     diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
+
+C--   effective thickness transport (centered in space, 1 time-step lag)
+      diagName  = 'SIuheff '
+      diagTitle = 'Zonal      Transport of eff ice thickn (centered)'
+      diagUnits = 'm^2/s           '
+      diagCode  = 'UU      M1      '
+      diagMate  = diagNum + 2
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I     diagName, diagCode, diagUnits, diagTitle, diagMate, myThid )
+
+      diagName  = 'SIvheff '
+      diagTitle = 'Meridional Transport of eff ice thickn (centered)'
+      diagUnits = 'm^2/s           '
       diagCode  = 'VV      M1      '
       diagMate  = diagNum
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
