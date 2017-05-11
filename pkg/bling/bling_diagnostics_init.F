@@ -187,6 +187,13 @@ c oxygen
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I       diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
+      diagName  = 'BLGO2SAT'
+      diagTitle = 'surface O2 saturation (percent)'
+      diagUnits = 'percent      '
+      diagCode  = 'SM P    L1      '
+      CALL DIAGNOSTICS_ADDTOLIST( diagNum,
+     I       diagName, diagCode, diagUnits, diagTitle, 0, myThid )
+
 c iron
 
       diagName  = 'BLGSURFE'
