@@ -36,7 +36,7 @@ C     == local variables ==
          CALL DIAGNOSTICS_FILL(wspeed,     'EXFwspee',0,1,0,1,1,myThid)
          CALL DIAGNOSTICS_FILL(sflux,      'EXFempmr',0,1,0,1,1,myThid)
          CALL DIAGNOSTICS_FILL(hflux,      'EXFqnet ',0,1,0,1,1,myThid)
-#ifdef SHORTWAVE_HEATING
+#if defined(ALLOW_ATM_TEMP) || defined(SHORTWAVE_HEATING)
          CALL DIAGNOSTICS_FILL(swflux,     'EXFswnet',0,1,0,1,1,myThid)
 #endif
          CALL DIAGNOSTICS_FILL(uwind,      'EXFuwind',0,1,0,1,1,myThid)
