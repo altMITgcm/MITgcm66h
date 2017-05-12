@@ -4,6 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o pkf/exf:
+  - add a stop if useRelativeWind with un-updated uwind/vwind (e.g., constant);
+    similarly, stop if rotateStressOnAgrid with constant wind-stress.
 o pkg/seaice:
   - remove (comment out) diagnostics SIuwind,SIvwind,SIfu,SIfv (duplicate of
     EXFuwind,EXFvwind,oceTAUX,oceTAUY) and point them to their equivalent.
