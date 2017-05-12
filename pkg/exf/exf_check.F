@@ -113,6 +113,14 @@ C-    Check wind parameters:
         CALL PRINT_ERROR( msgBuf, myThid )
         errCount = errCount + 1
        ENDIF
+       IF ( useRelativeWind .AND.
+     &      ( uwindfile .EQ. ' ' .OR. uwindperiod.EQ.0. .OR.
+     &        vwindfile .EQ. ' ' .OR. vwindperiod.EQ.0. ) ) THEN
+        WRITE(msgBuf,'(2A)') 'EXF_CHECK: useRelativeWind ',
+     &       'requires to update u/vwind'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        errCount = errCount + 1
+       ENDIF
       ENDIF
 
       IF ( .NOT.useAtmWind ) THEN
@@ -544,6 +552,14 @@ C-    stop if one expects interp+rotation (Curvilin-G) which will not happen
        IF (rotateStressOnAgrid.AND..NOT.readStressOnAgrid) THEN
         WRITE(msgBuf,'(2A)') 'EXF_CHECK: rotateStressOnAgrid ',
      &       'only applies to cases readStressOnAgrid is true'
+        CALL PRINT_ERROR( msgBuf, myThid )
+        errCount = errCount + 1
+       ENDIF
+       IF ( rotateStressOnAgrid .AND.
+     &      ( ustressfile .EQ. ' ' .OR. ustressperiod .EQ. 0. .OR.
+     &        vstressfile .EQ. ' ' .OR. vstressperiod .EQ. 0. ) ) THEN
+        WRITE(msgBuf,'(2A)') 'EXF_CHECK: rotateStressOnAgrid ',
+     &       'requires to update u/vstress'
         CALL PRINT_ERROR( msgBuf, myThid )
         errCount = errCount + 1
        ENDIF
