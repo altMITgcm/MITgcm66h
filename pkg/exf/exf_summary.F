@@ -382,6 +382,19 @@ C--   Meridional wind.
        prtBlkLn = .TRUE.
       ENDIF
 
+C--   Surface wind speed
+      IF ( wspeedfile.NE.' ' ) THEN
+       CALL EXF_FLD_SUMMARY( 'Surface wind speed',
+     I      wspeedfile, wspeedRepCycle, wspeedperiod,
+     I      wspeedStartTime, useExfYearlyFields, addBlkLn, myThid )
+#ifdef USE_EXF_INTERPOLATION
+       CALL EXF_PRINT_INTERP( 'wspeed',
+     &  wspeed_lon0, wspeed_lon_inc, wspeed_lat0, wspeed_lat_inc,
+     &  wspeed_nlon, wspeed_nlat, wspeed_interpMethod, myThid )
+#endif
+       prtBlkLn = .TRUE.
+      ENDIF
+
 #ifdef ALLOW_ATM_TEMP
 C--   Atmospheric temperature.
       IF ( atempfile.NE.' ' ) THEN
