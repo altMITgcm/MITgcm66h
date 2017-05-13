@@ -6,7 +6,7 @@
 MAILTO=jmc@ocean.mit.edu
 
 05 00 * * * /u/u2/jmc/testing/csail/test_baudelaire a
-25 00 * * * /u/u2/jmc/testing/csail/test_baudelaire b
+15 00 * * * /u/u2/jmc/testing/csail/test_baudelaire b
 
 ------------------------------------
 # and the update of ~jmc/testing/csail/ dir is part of the script
