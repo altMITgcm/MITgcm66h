@@ -38,7 +38,8 @@ dInWeek=`date +%a`
 
 dNam=`hostname -s | tr '[:upper:]' '[:lower:]'`
 TESTDIR="/scratch/jmc/test_${dName}"
-outDir=`hostname -s`
+outDir="${dNam}-${tst_grp}"
+#outDir=`hostname -s`
 MC=13
 sepDir=1
 option=
