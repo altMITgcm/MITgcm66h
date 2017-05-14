@@ -37,7 +37,7 @@ cmdCVS='cvs -d /u/gcmpack'
 dInWeek=`date +%a`
 
 dNam=`hostname -s | tr '[:upper:]' '[:lower:]'`
-TESTDIR="/scratch/jmc/test_${dName}"
+TESTDIR="/scratch/jmc/test_${dNam}"
 outDir="${dNam}-${tst_grp}"
 #outDir=`hostname -s`
 MC=13
