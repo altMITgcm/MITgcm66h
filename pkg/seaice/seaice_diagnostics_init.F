@@ -722,14 +722,14 @@ C=============== dynamics ============
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
-      diagName  = 'SIsigI  '
+      diagName  = 'SIsig1  '
       diagTitle = 'SEAICE normalized principle stress, component one'
       diagUnits = 'no units        '
       diagCode  = 'SM      M1      '
       CALL DIAGNOSTICS_ADDTOLIST( diagNum,
      I     diagName, diagCode, diagUnits, diagTitle, 0, myThid )
 
-      diagName  = 'SIsigII '
+      diagName  = 'SIsig2  '
       diagTitle = 'SEAICE normalized principle stress, component two'
       diagUnits = 'no units        '
       diagCode  = 'SM      M1      '
