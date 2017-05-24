@@ -379,9 +379,9 @@ c ---------------------------------------------------------------------
       IF ( useDiagnostics ) THEN
 
 c 3d local variables
-        CALL DIAGNOSTICS_FILL(Fe_ads_org,   'BLGFEAO ',0,Nr,2,bi,bj,
+        CALL DIAGNOSTICS_FILL(Fe_ads_org,   'BLGFEADO',0,Nr,2,bi,bj,
      &       myThid)
-        CALL DIAGNOSTICS_FILL(Fe_ads_inorg, 'BLGFEAI ',0,Nr,2,bi,bj,
+        CALL DIAGNOSTICS_FILL(Fe_ads_inorg, 'BLGFEADI',0,Nr,2,bi,bj,
      &       myThid)
         CALL DIAGNOSTICS_FILL(Fe_sed,   'BLGFESED',0,Nr,2,bi,bj,myThid)
         CALL DIAGNOSTICS_FILL(Fe_reminp,'BLGFEREM',0,Nr,2,bi,bj,myThid)
