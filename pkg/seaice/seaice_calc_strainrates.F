@@ -165,7 +165,6 @@ c$$$     &         - hFacV * k1AtZ(i,j,bi,bj) * vave(i,j)
 c$$$     &         - hFacU * k2AtZ(i,j,bi,bj) * uave(i,j)
          ENDDO
         ENDDO
-
        ENDDO
       ENDDO
 
