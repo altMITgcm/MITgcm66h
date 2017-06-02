@@ -4,8 +4,9 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
-o pkg/seaice: 
-  - add new routines to compute stress tensor components and stress tensor 
+checkpoint66h (2017/06/02)
+o pkg/seaice:
+  - add new routines to compute stress tensor components and stress tensor
     divergence to be reused in s/r seaice_lsr and s/r seaice_calc_lhs
   - change names of diagnostics SIsigI/II (commonly used for invariants)
     to SIsig1/sig2 (more common for principal components) to avoid confusion
