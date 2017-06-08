@@ -284,6 +284,9 @@ that are described in the MITgcm Getting Started and MITgcm Parameters
 notes.
 
 .. literalinclude:: ../../verification/tutorial_barotropic_gyre/input/data
+    :linenos:
+    :caption: verification/tutorial_barotropic_gyre/input/data
+
 
 \begin{small}
 \input{s_examples/barotropic_gyre/input/data}

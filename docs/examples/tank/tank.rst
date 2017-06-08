@@ -30,7 +30,7 @@ Discrete Numerical Configuration
 --------------------------------
 
 The domain is discretised with a uniform cylindrical grid spacing in
-the horizontal set to $\Delta a=1$~cm and $\Delta \phi=3^{\circ}$, so
+the horizontal set to :math:`\Delta a=1`~cm and :math:`\Delta \phi=3^{\circ}`, so
 that there are 120 grid cells in the azimuthal direction and
 thirty-one grid cells in the radial, representing a tank 62cm in
 diameter.  The bathymetry file sets the depth=0 in the nine lowest
@@ -63,19 +63,18 @@ contain the code customizations and parameter settings for this
 experiments. Below we describe the customizations
 to these files associated with this experiment.
 
-\subsubsection{File {\it input/data}}
-%\label{www:tutorials}
+File `input/data`
++++++++++++++++++
 
 This file, reproduced completely below, specifies the main parameters 
 for the experiment. The parameters that are significant for this configuration
 are
 
-\begin{itemize}
+ - Lines 9-10, 
 
-\item Lines 9-10, \begin{verbatim} 
-viscAh=5.0E-6, 
-viscAz=5.0E-6,
-\end{verbatim} 
+   - `viscAh=5.0E-6,`
+   - `viscAz=5.0E-6,`
+
 
 
 These lines set the Laplacian friction coefficient in the horizontal
@@ -207,7 +206,8 @@ that are described in the MITgcm Getting Started and MITgcm Parameters
 notes.
 
 .. literalinclude:: ../../verification/rotating_tank/input/data
-
+    :linenos:
+    :caption: `verification/rotating_tank/input/data`
 
 \begin{small}
 \input{s_examples/rotating_tank/input/data}
