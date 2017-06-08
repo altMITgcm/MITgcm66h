@@ -16,7 +16,8 @@ instructions in a text file called {\it README}.  The examples are
 located in subdirectories under the directory \texttt{verification}.
 Each example is briefly described below.
 
-\subsection{Full list of model examples}
+Full list of model examples
+===========================
 
 \begin{enumerate}
 
@@ -428,43 +429,30 @@ Once you have chosen the example you want to run, you are ready to
 compile the code.
 
 
-\newpage
 
 .. include:: barotropic_gyre/barotropic_gyre.rst
 
-\newpage
 \input{s_examples/baroclinic_gyre/fourlayer.tex}
 
-\newpage
 \input{s_examples/advection_in_gyre/adv_gyre.tex}
 
-\newpage
 \input{s_examples/global_oce_latlon/climatalogical_ogcm.tex}
 
-\newpage
 \input{s_examples/global_oce_in_p/ogcm_in_pressure.tex}
 
-\newpage
 \input{s_examples/held_suarez_cs/held_suarez_cs.tex}
 
-\newpage
 \input{s_examples/deep_convection/convection.tex}
 
-\newpage
 \input{s_examples/plume_on_slope/plume_on_slope.tex}
 
-\newpage
 \input{s_examples/global_oce_biogeo/biogeochem.tex}
 
-\newpage
 \input{s_examples/global_oce_optim/global_oce_estimation.tex}
 
-\newpage
 \input{s_examples/tracer_adjsens/doc_ad_examples.tex}
 
-\newpage
 \input{s_examples/cfc_offline/offline_tutorial.tex}
 
 
 .. include:: tank/tank.rst
-
