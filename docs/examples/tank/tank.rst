@@ -3,38 +3,33 @@
 A Rotating Tank in Cylindrical Coordinates
 ==========================================
 
-\begin{center}
-(in directory: {\it verification/rotating\_tank/})
-\end{center}
+  (in directory: :code:`verification/rotating_tank/`)
 
-\subsection{Overview}
-%\label{www:tutorials}
-                                                                          
+
+Overview
+--------
+
 This example configuration demonstrates using the MITgcm to simulate a
 laboratory demonstration using a differentially heated rotating
 annulus of water.  The simulation is configured for a laboratory scale
-on a $3^{\circ}\times1\mathrm{cm}$ cyclindrical grid with twenty-nine
+on a :math:`3^{\circ}\times1\mathrm{cm}` cyclindrical grid with twenty-nine
 vertical levels of 0.5cm each.  This is a typical laboratory setup for
 illustration principles of GFD, as well as for a laboratory data
 assimilation project. The files for this experiment can be found in
-the verification directory under rotating\_tank.
-\\
+the verification directory under :code:`rotating_tank`.
+
 
 example illustration from GFD lab here
-\\
-
-
-
  
 
-\subsection{Equations Solved}
-%\label{www:tutorials}
+Equations Solved
+----------------
 
 
-\subsection{Discrete Numerical Configuration}
-%\label{www:tutorials}
+Discrete Numerical Configuration
+--------------------------------
 
- The domain is discretised with a uniform cylindrical grid spacing in
+The domain is discretised with a uniform cylindrical grid spacing in
 the horizontal set to $\Delta a=1$~cm and $\Delta \phi=3^{\circ}$, so
 that there are 120 grid cells in the azimuthal direction and
 thirty-one grid cells in the radial, representing a tank 62cm in
@@ -42,25 +37,27 @@ diameter.  The bathymetry file sets the depth=0 in the nine lowest
 radial rows to represent the central of the annulus.  Vertically the
 model is configured with twenty-nine layers of uniform 0.5cm
 thickness.
-\\
+
+
 something about heat flux
 
-\subsection{Code Configuration}
-%\label{www:tutorials}
-\label{sec:eg-tank-code_config}
+
+.. _sec_eg_tank_code_config:
+
+Code Configuration
+------------------
 
 The model configuration for this experiment resides under the
-directory {\it verification/rotatingi\_tank/}.  The experiment files
-\begin{itemize}
-\item {\it input/data}
-\item {\it input/data.pkg}
-\item {\it input/eedata},
-\item {\it input/bathyPol.bin},
-\item {\it input/thetaPol.bin},
-\item {\it code/CPP\_EEOPTIONS.h}
-\item {\it code/CPP\_OPTIONS.h},
-\item {\it code/SIZE.h}.
-\end{itemize}
+directory :code:`verification/rotatingi_tank/`.  The experiment files
+
+ - :code:`input/data`
+ - :code:`input/data.pkg`
+ - :code:`input/eedata`
+ - :code:`input/bathyPol.bin`
+ - :code:`input/thetaPol.bin`
+ - :code:`code/CPP\_EEOPTIONS.h`
+ - :code:`code/CPP\_OPTIONS.h`
+ - :code:`code/SIZE.h`
 
 contain the code customizations and parameter settings for this 
 experiments. Below we describe the customizations
@@ -208,6 +205,9 @@ the inside and room temperature on the outside.
 \noindent Other lines in the file {\it input/data} are standard values
 that are described in the MITgcm Getting Started and MITgcm Parameters
 notes.
+
+.. literalinclude:: ../../verification/rotating_tank/input/data
+
 
 \begin{small}
 \input{s_examples/rotating_tank/input/data}
