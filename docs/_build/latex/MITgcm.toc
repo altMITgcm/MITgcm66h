@@ -1,0 +1,24 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}Overview}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Introduction}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Illustrations of the model in action}{3}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Convection and mixing over topography}{4}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Boundary forced internal waves}{5}{subsection.1.2.2}
+\contentsline {chapter}{\numberline {2}Physical Parameterizations - Packages I}{19}{chapter.2}
+\contentsline {section}{\numberline {2.1}Packages Related to Hydrodynamical Kernel}{19}{section.2.1}
+\contentsline {section}{\numberline {2.2}General purpose numerical infrastructure packages}{21}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}OBCS: Open boundary conditions for regional modeling}{21}{subsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.1.1}Introduction}{21}{subsubsection.2.2.1.1}
+\contentsline {subsubsection}{\numberline {2.2.1.2}OBCS configuration and compiling}{21}{subsubsection.2.2.1.2}
+\contentsline {subsubsection}{\numberline {2.2.1.3}Run-time parameters}{22}{subsubsection.2.2.1.3}
+\contentsline {paragraph}{Enabling the package}{22}{paragraph*.15}
+\contentsline {paragraph}{Package flags and parameters}{22}{paragraph*.16}
+\contentsline {subsection}{\numberline {2.2.2}Equations and key routines}{25}{subsection.2.2.2}
+\contentsline {section}{\numberline {2.3}Ocean Packages}{28}{section.2.3}
+\contentsline {chapter}{\numberline {3}Getting Started with MITgcm}{29}{chapter.3}
+\contentsline {section}{\numberline {3.1}Where to find information}{29}{section.3.1}
+\contentsline {chapter}{\numberline {4}MITgcm Example Experiments}{41}{chapter.4}
+\contentsline {section}{\numberline {4.1}Barotropic Gyre MITgcm Example}{46}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Equations Solved}{47}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Code Configuration}{48}{subsection.4.1.2}
+\contentsline {chapter}{Bibliography}{53}{chapter*.20}
