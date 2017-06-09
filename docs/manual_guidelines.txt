@@ -1,6 +1,10 @@
 manual guidelines
 *****************
 
+
+Section headings
+================
+
 Chapter headings - underlined with `****`
  - These are the main headings with integer numbers
 
@@ -18,5 +22,29 @@ paragraph headings - underlined with `###`
 
 subparagraph headings - underlined with ``
 
+N.B. all underlinings should be the same lenght as the heading
+
+
+Cross referencing
+=================
 
 Labels go above the section they refer to, with the format ".. _LABELNAME:" The leading underscore is important.
+
+To reference sections by number use this format for the reference: 
+section :numref:`sec_eg_baro`
+
+To reference sections by name use this format:
+:ref:`sec_eg_baro`
+
+
+Maths
+=====
+
+Inline maths is done with :math:`LATEX_HERE`
+
+Equations on their own lines are produced with:
+
+.. math::
+    :label: eqn_label_here
+
+    LATEX_HERE
