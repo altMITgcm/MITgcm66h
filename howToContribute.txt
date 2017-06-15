@@ -1,4 +1,4 @@
-How to contribute to a project on GitHub:
+How to contribute to the MITgcm on GitHub:
 
 You will need a GitHub account, but that's pretty much it!
 
