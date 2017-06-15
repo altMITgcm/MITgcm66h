@@ -25,7 +25,7 @@ $git pull upstream master && git push origin master
 Next make a new branch. Naming it something useful helps. 
 $git checkout -b bugfix/contributingHowTo
 
-Do the work!
+Do the work! Be sure to include useful and detailed commit messages.
 
 3: Now we create a pull request (PR), this is where we push our branch into the origin remote.
 
