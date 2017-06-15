@@ -1,0 +1,51 @@
+How to contribute to a project on GitHub:
+
+You will need a GitHub account, but that's pretty much it!
+
+1: Fork the project and create a local clone (copy)
+
+You can fork by clicking the button, and create a clone either also by using the button, or in a terminal:
+$git clone https://github.com/user_name/MITgcm66h.git
+(subtitute your own user name on github)
+
+move into the new directory:
+$cd MITgcm66h
+
+Finally, we need to set up a remote that points to the original project:
+$git remote add upstream git@github.com:edoddridge/MITgcm66h.git
+
+This means that we have two "remotes" of the project, one pointing to your space (origin), and one pointing to the orginal (upstream). You can read and write into your "origin" version, but not into the "upstream" version. 
+
+2: Doing stuff! This usually comes in two flavours; Fixing bugs or adding a feature. Here we will assume we are fixing a bug and branch from the master, but if adding a new feature branching from develop is usually the way it works.
+
+To fix this "bug" we check out the master branch, and make sure we're up to date.
+$git checkout master
+$git pull upstream master && git push origin master
+
+Next make a new branch. Naming it something useful helps. 
+$git checkout -b bugfix/contributingHowTo
+
+Do the work!
+
+3: Now we create a pull request (PR), this is where we push our branch into the origin remote.
+
+$git push -u origin bugfix/contributingHowTo
+
+Now in a browser, go to the fork of the project that you made. There is a button for "Compare and Pull" in your recent branches. Click the button! Now you can add a nice and succinct description of what you've done and flag up any issues.
+
+
+4: Review by the maintainers! 
+
+
+
+To sum up from https://akrabat.com/the-beginners-guide-to-contributing-to-a-github-project/
+
+...The fundamentals are:
+
+1    Fork the project & clone locally.
+2    Create an upstream remote and sync your local copy before you branch.
+3    Branch for each separate piece of work.
+4    Do the work, write good commit messages, and read the CONTRIBUTING file if there is one.
+5    Push to your origin repository.
+6    Create a new PR in GitHub.
+6    Respond to any code review feedback.
