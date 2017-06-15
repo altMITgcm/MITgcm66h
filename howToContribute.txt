@@ -27,14 +27,14 @@ $git checkout -b bugfix/contributingHowTo
 
 Do the work! Be sure to include useful and detailed commit messages.
 
-3: Now we create a pull request (PR), this is where we push our branch into the origin remote.
+3: Now we push our branch into the origin remote.
 
 $git push -u origin bugfix/contributingHowTo
 
-Now in a browser, go to the fork of the project that you made. There is a button for "Compare and Pull" in your recent branches. Click the button! Now you can add a nice and succinct description of what you've done and flag up any issues.
+4: Then create a pull request (PR). In a browser, go to the fork of the project that you made. There is a button for "Compare and Pull" in your recent branches. Click the button! Now you can add a nice and succinct description of what you've done and flag up any issues.
 
 
-4: Review by the maintainers! 
+5: Review by the maintainers! 
 
 
 
