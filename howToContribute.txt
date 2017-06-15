@@ -6,7 +6,7 @@ You will need a GitHub account, but that's pretty much it!
 
 You can fork by clicking the button, and create a clone either also by using the button, or in a terminal:
 $git clone https://github.com/user_name/MITgcm66h.git
-(subtitute your own user name on github)
+(substitute your own user name on github)
 
 move into the new directory:
 $cd MITgcm66h
@@ -14,7 +14,7 @@ $cd MITgcm66h
 Finally, we need to set up a remote that points to the original project:
 $git remote add upstream git@github.com:edoddridge/MITgcm66h.git
 
-This means that we have two "remotes" of the project, one pointing to your space (origin), and one pointing to the orginal (upstream). You can read and write into your "origin" version, but not into the "upstream" version. 
+This means that we have two "remotes" of the project, one pointing to your space (origin), and one pointing to the original (upstream). You can read and write into your "origin" version, but not into the "upstream" version. 
 
 2: Doing stuff! This usually comes in two flavours; Fixing bugs or adding a feature. Here we will assume we are fixing a bug and branch from the master, but if adding a new feature branching from develop is usually the way it works.
 
