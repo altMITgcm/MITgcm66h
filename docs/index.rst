@@ -15,4 +15,5 @@ Welcome to MITgcm's user manual
    phys_pkgs/phys_pkgs
    getting_started/getting_started
    examples/examples
+   contributing
    zreferences
