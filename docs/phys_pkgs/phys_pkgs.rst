@@ -52,39 +52,9 @@ separate subdirectory in the MITgcm code distribution
 The name of this subdirectory is used as the package name in
 table \ref{tab:package_summary_tab}.
 
-%% In this chapter the schemes for parameterizing processes that are not
-%% represented explicitly in MITgcm are described.  Some of these
-%% processes are sub-grid scale (SGS) phenomena, other processes, such as
-%% open-boundaries, are external to the simulation.
-
-\begin{table}
-\caption{~}
-\label{tab:package_summary_tab}.
-\end{table}
-
-% Overview
-\newpage
-\input{s_phys_pkgs/text/packages.tex}
-
 Packages Related to Hydrodynamical Kernel
 =========================================
 
-\input{s_phys_pkgs/text/generic_advdiff.tex}
-
-\newpage
-\input{s_phys_pkgs/text/shap_filt.tex}
-
-\newpage
-\input{s_phys_pkgs/text/zonal_filt.tex}
-
-\newpage
-\input{s_phys_pkgs/text/exch2.tex}
-
-\newpage
-\input{s_phys_pkgs/text/gridalt.tex}
-
-% Some Mention of Packages that are part of the main model document
-\newpage
 
 General purpose numerical infrastructure packages
 =================================================
@@ -92,77 +62,6 @@ General purpose numerical infrastructure packages
 .. include:: obcs.rst
 
 
-\newpage
-\input{s_phys_pkgs/text/rbcs.tex}
-
-\newpage
-\input{s_phys_pkgs/text/ptracers.tex}
-
-% Ocean Packages
-\newpage
 
 Ocean Packages
 ==============
-
-\input{s_phys_pkgs/text/gmredi.tex}
-
-\newpage
-\input{s_phys_pkgs/text/kpp.tex}
-
-\newpage
-\input{s_phys_pkgs/text/ggl90.tex}
-
-\newpage
-\input{s_phys_pkgs/text/opps.tex}
-
-\newpage
-\input{s_phys_pkgs/text/kl10.tex}
-
-\newpage
-\input{s_phys_pkgs/text/bulk_force.tex}
-
-\newpage
-\input{s_phys_pkgs/text/exf.tex}
-
-\newpage
-\input{s_phys_pkgs/text/cal.tex}
-
-\newpage
-\section{Atmosphere Packages}
-\input{s_phys_pkgs/text/aim.tex}
-
-\newpage
-\input{s_phys_pkgs/text/land.tex}
-
-\newpage
-\input{s_phys_pkgs/text/fizhi.tex}
-
-\newpage
-\section{Sea Ice Packages}
-\input{s_phys_pkgs/text/thsice.tex}
-
-\newpage
-\input{s_phys_pkgs/text/seaice.tex}
-
-\newpage
-\input{s_phys_pkgs/text/shelfice.tex}
-
-\newpage
-\input{s_phys_pkgs/text/streamice.tex}
-
-\newpage
-\section{Packages Related to Coupled Model}
-\input{s_phys_pkgs/text/aim_compon_interf.tex}
-
-\newpage
-\input{s_phys_pkgs/text/atm_ocn_coupler.tex}
-
-\newpage
-\input{s_phys_pkgs/text/component_communications.tex}
-
-\newpage
-\section{Biogeochemistry Packages}
-\input{s_phys_pkgs/text/gchem.tex}
-
-\newpage
-\input{s_phys_pkgs/text/dic.tex}
