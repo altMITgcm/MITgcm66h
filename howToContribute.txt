@@ -12,7 +12,7 @@ move into the new directory:
 $cd MITgcm66h
 
 Finally, we need to set up a remote that points to the original project:
-$git remote add upstream git@github.com:edoddridge/MITgcm66h.git
+$git remote add upstream https://github.com/altMITgcm/MITgcm66h.git
 
 This means that we have two "remotes" of the project, one pointing to your space (origin), and one pointing to the original (upstream). You can read and write into your "origin" version, but not into the "upstream" version. 
 
