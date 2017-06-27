@@ -48,14 +48,43 @@ Contributing to the manual
 ==========================
 
 
+Section headings
+++++++++++++++++
 
-Quickstart Guide
-----------------
+Chapter headings - these are the main headings with integer numbers - underlined with ``****``
+
+section headings - headings with number format X.Y - underlined with ``====``
+
+subsection headings - headings with number format X.Y.Z - underlined with ``---``
+
+subsubsection headings - headings with number format X.Y.Z.A - underlined with ``+++``
+
+paragraph headings - headings with no numbers - underlined with ``###``
+
+N.B. all underlinings should be the same length as the heading
 
 
+Cross referencing
++++++++++++++++++
 
-Detailed guide
---------------
+Labels go above the section they refer to, with the format ``.. _LABELNAME:``. The leading underscore is important.
+
+To reference sections by number use this format for the reference: ``section :numref:`sec_eg_baro```
+
+To reference sections by name use this format: ``:ref:`sec_eg_baro```
+
+
+Maths
++++++
+
+Inline maths is done with ``:math:`LATEX_HERE```
+
+Separate equations, which will be typeset on their own lines, are produced with::
+
+  .. math::
+      :label: eqn_label_here
+
+      LATEX_HERE
 
 
 .. _subsec_manual_style_guide:
