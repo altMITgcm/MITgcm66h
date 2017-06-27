@@ -30,6 +30,63 @@ To contribute to the source code of the model you will need to fork the reposito
 
 Quickstart Guide
 ----------------
+You will need a GitHub account, but that's pretty much it!
+
+1: Fork the project and create a local clone (copy)
+
+  You can fork by clicking the button, and create a clone either also by using the button, or in a terminal:
+  ``git clone https://github.com/user_name/MITgcm66h.git``
+  (substitute your own user name on github)
+
+  move into the new directory:
+  ``cd MITgcm66h``
+
+  Finally, we need to set up a remote that points to the original project:
+  ``git remote add upstream https://github.com/altMITgcm/MITgcm66h.git``
+
+  This means that we have two "remotes" of the project, one pointing to your space (origin), and one pointing to the original (upstream). You can read and write into your "origin" version, but not into the "upstream" version. 
+
+2: Doing stuff! This usually comes in two flavours; Fixing bugs or adding a feature. Here we will assume we are fixing a bug and branch from the master, but if adding a new feature branching from develop is usually the way it works.
+
+  To fix this "bug" we check out the master branch, and make sure we're up to date.
+  ``git checkout master``
+  ``git pull upstream master && git push origin master``
+
+  Next make a new branch. Naming it something useful helps. 
+  ``git checkout -b bugfix/contributingHowTo``
+
+  Do the work! Be sure to include useful and detailed commit messages.
+  To do this you should:
+
+    - edit the relevant file(s)
+    - use ``git add FILENAME`` to stage the file(s) ready for a commit command
+    - use ``git commit`` to commit the files
+    - type a succint (<70 character) summary of what the commit did
+    - leave a blank line and type a longer description of why the action in this commit was appropriate
+    - it is good practice to link with issues using the syntax ``#ISSUE_NUMBER`` in one or both of the above.
+
+3: Now we push our branch into the origin remote.
+
+  ``git push -u origin bugfix/contributingHowTo``
+
+4: Then create a pull request (PR). In a browser, go to the fork of the project that you made. There is a button for "Compare and Pull" in your recent branches. Click the button! Now you can add a nice and succinct description of what you've done and flag up any issues.
+
+
+5: Review by the maintainers! 
+
+
+
+To sum up from https://akrabat.com/the-beginners-guide-to-contributing-to-a-github-project/ 
+
+The fundamentals are:
+
+  #.  Fork the project & clone locally.
+  #.  Create an upstream remote and sync your local copy before you branch.
+  #.  Branch for each separate piece of work.
+  #.  Do the work, write good commit messages, and read the guidelines in the manual.
+  #.  Push to your origin repository.
+  #.  Create a new PR in GitHub.
+  #.  Respond to any code review feedback.
 
 
 
