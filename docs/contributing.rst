@@ -106,7 +106,7 @@ Contributing to the manual
 
 
 Section headings
-++++++++++++++++
+----------------
 
 Chapter headings - these are the main headings with integer numbers - underlined with ``****``
 
@@ -122,7 +122,7 @@ N.B. all underlinings should be the same length as the heading
 
 
 Cross referencing
-+++++++++++++++++
+-----------------
 
 Labels go above the section they refer to, with the format ``.. _LABELNAME:``. The leading underscore is important.
 
@@ -132,7 +132,7 @@ To reference sections by name use this format: ``:ref:`sec_eg_baro```
 
 
 Maths
-+++++
+-----
 
 Inline maths is done with ``:math:`LATEX_HERE```
 
