@@ -1,0 +1,18 @@
+# Travis file for running some basic set of testreport checks on each commit
+#
+#
+services: 
+ - docker
+ 
+before_install:
+ - docker pull mitgcm/testreport-images:fc11-base-20170715
+ - docker run  -v `pwd`:/MITgcm --name fc11-testreport -t -d mitgcm/testreport-images:fc11-base-20170715 /bin/bash
+ - docker exec -i fc11-testreport rpm -vv --rebuilddb
+ - docker exec -i fc11-testreport df -h
+ - docker exec -i fc11-testreport ls -altr /MITgcm
+ - docker exec -i fc11-testreport yum install python-pip
+ - docker exec -i fc11-testreport yum install gcc-gfortran
+
+script: 
+ - echo `pwd`
+ - docker exec -i fc11-testreport bash -c "cd /MITgcm/verification; ./testreport -t tutorial_barotropic_gyre"
