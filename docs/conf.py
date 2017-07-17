@@ -173,7 +173,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     (master_doc, 'MITgcm', u'MITgcm Documentation',
-     author, 'MITgcm', 'One line description of project.',
+     author, 'MITgcm', 'A highly configurable general circulation model.',
      'Miscellaneous'),
 ]
 

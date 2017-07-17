@@ -93,6 +93,18 @@ The fundamentals are:
 Detailed guide
 --------------
 
+To be completed.
+
+
+ .. figure:: figs/git_setup.*
+    :width: 70%
+    :align: center
+    :alt: Conceptual model of GitHub
+    :name: fig_48tile
+
+    A conceptual map of the GitHub setup. Text in serif font are labels or concepts, text in sans serif represent commands.
+
+
 
 .. _subsec_code_style_guide:
 
@@ -100,25 +112,39 @@ Style guide
 -----------
 
 
+Automatic testing with Travis-CI
+--------------------------------
+
+The MITgcm uses the continuous integration service Travis-CI to test code before it is accepted into the repository. When you submit a pull request your contributions will be automatically tested. However, it is a good idea to test before submitting a pull request, so that you have time to fix any issues that are identified. To do this, you will need to activate Travis-CI for your fork of the repository.
+
+**Detailed instructions or link to be added.**
+
+
 
 Contributing to the manual
 ==========================
+
+Whether you are correcting typos or describing currently undocumented packages, we welcome all contributions to the manual. The following information will help you make sure that your contribution is consistent with the style of the MITgcm documentation. (We know that not all of the current documentation follows these guidelines - we're working on it)
+
+Once you've made your changes to the manual, you should build it locally to verify that it works as expected. To do this you will need a working python installation with the following modules installed (use :code:`pip install MODULE` in the terminal):
+
+ - sphinx
+ - sphinxcontrib-bibtex
+ - sphinx_rtd_theme
+
+Then, run :code:`make html` in the :code:`docs` directory.
 
 
 Section headings
 ----------------
 
-Chapter headings - these are the main headings with integer numbers - underlined with ``****``
+- Chapter headings - these are the main headings with integer numbers - underlined with ``****``
+- section headings - headings with number format X.Y - underlined with ``====``
+- Subsection headings - headings with number format X.Y.Z - underlined with ``---``
+- Subsubsection headings - headings with number format X.Y.Z.A - underlined with ``+++``
+- Paragraph headings - headings with no numbers - underlined with ``###``
 
-section headings - headings with number format X.Y - underlined with ``====``
-
-subsection headings - headings with number format X.Y.Z - underlined with ``---``
-
-subsubsection headings - headings with number format X.Y.Z.A - underlined with ``+++``
-
-paragraph headings - headings with no numbers - underlined with ``###``
-
-N.B. all underlinings should be the same length as the heading
+N.B. all underlinings should be the same length as the heading. If they are too short an error will be produced.
 
 
 Cross referencing
@@ -126,7 +152,7 @@ Cross referencing
 
 Labels go above the section they refer to, with the format ``.. _LABELNAME:``. The leading underscore is important.
 
-To reference sections by number use this format for the reference: ``section :numref:`sec_eg_baro```
+To reference sections/figures/tables/equations by number use this format for the reference: ``:numref:`sec_eg_baro```
 
 To reference sections by name use this format: ``:ref:`sec_eg_baro```
 
@@ -146,5 +172,60 @@ Separate equations, which will be typeset on their own lines, are produced with:
 
 .. _subsec_manual_style_guide:
 
-Style guide
-----------------------
+
+Units
+-----
+
+Units should be typeset in normal text, and exponents added with the ``:sup:`` command. 
+
+::
+
+  100 N m\ :sup:`--2`
+
+If the exponent is negative use two dashes ``--`` to make the minus sign long enough. The backslash removes the space between the unit and the exponent.
+
+
+
+
+Describing subroutine inputs and outputs
+----------------------------------------
+
+This information should go in an 'adominition' block. The source code to achieve this is:
+
+::
+
+  .. admonition:: Subroutine
+    :class: note
+
+    S/R GMREDI_CALC_TENSOR (*pkg/gmredi/gmredi_calc_tensor.F*)
+
+    :math:`\sigma_x`: **SlopeX** (argument on entry)
+
+    :math:`\sigma_y`: **SlopeY** (argument on entry)
+
+    :math:`\sigma_z`: **SlopeY** (argument)
+
+    :math:`S_x`: **SlopeX** (argument on exit)
+
+    :math:`S_y`: **SlopeY** (argument on exit)
+
+
+
+Reviewing pull requests
+=======================
+
+The only people with write access to the main repository are a small number of core MITgcm developers. They are the people that will eventually merge your pull requests. However, before your PR gets merged, it will undergo the automated testing on Travis-CI, and it will be assessed by the MITgcm community.
+
+**Everyone can review and comment on pull requests.** Even if you are not one of the core developers you can still comment on a pull request.
+
+To test pull requests locally you should:
+
+ - add the repository of the user proposing the pull request as a remote, :code:`git remote add upstream https://github.com/USERNAME/MITgcm66h.git` where USERNAME is replaced by the user name of the person who has made the pull request;
+
+ - download a local version of the branch from the pull request, :code:`git fetch USERNAME` followed by :code:`git checkout --track USERNAME/foo`;
+
+ - run tests locally; and
+
+ - possibly push fixes or changes directly to the pull request.
+
+None of these steps, apart from the final one, require write access to the main repository. This means that anyone can review pull requests. However, unless you are one of the core developers you won't be able to directly push changes. You will instead have to make a comment describing any problems you find.
