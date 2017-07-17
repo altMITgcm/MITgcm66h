@@ -220,7 +220,7 @@ The only people with write access to the main repository are a small number of c
 
 To test pull requests locally you should:
 
- - add the repository of the user proposing the pull request as a remote, :code:`git remote add upstream https://github.com/USERNAME/MITgcm66h.git` where USERNAME is replaced by the user name of the person who has made the pull request;
+ - add the repository of the user proposing the pull request as a remote, :code:`git remote add USERNAME https://github.com/USERNAME/MITgcm66h.git` where USERNAME is replaced by the user name of the person who has made the pull request;
 
  - download a local version of the branch from the pull request, :code:`git fetch USERNAME` followed by :code:`git checkout --track USERNAME/foo`;
 
