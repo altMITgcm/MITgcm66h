@@ -15,7 +15,7 @@ and selected to perform a specific experiment. Each of the specific experiments
 described in section \ref{sec:modelExamples} uses a particular combination
 of packages.
 
-:numref:`package_organigramme` shows the full set of packages that
+:numref:`fig_package_organigramme` shows the full set of packages that
 are available. As shown in the figure packages are classified into different
 groupings that layer on top of each other. The top layer packages are
 generally specialized to specific simulation types. In this layer there are
@@ -34,13 +34,13 @@ I/O and time-keeping functions that are used in many different scenarios.
     :width: 70%
     :align: center
     :alt: One model for atmospheric and oceanic simulations
-    :name: package_organigramme
+    :name: fig_package_organigramme
 
     Hierarchy of code layers that are assembled to make up an MITgcm simulation. Conceptually (and in terms of code organization) MITgcm consists of several layers. At the base is a layer of core software that provides a basic numerical and computational foundation for MITgcm simulations. This layer is shown marked *Foundation Code* at the bottom of the figure and corresponds to code in the italicised subdirectories on the figure. This layer is not organized into packages. All code above the foundation layer is organized as packages.  Much of the code in MITgcm is contained in packages which serve as a useful way of organizing and layering the different levels of functionality that make up the full MITgcm software distribution. The figure shows the different packages in MITgcm as boxes containing bold face upper case names.  Directly above the foundation layer are two layers of general purpose infrastructure software that consist of computational and numerical packages.  These general purpose packages can be applied to both online and offline simulations and are used in many different physical simulation types.  Above these layers are more specialized packages.
 
 
 The following sections describe the packages shown in
-figure \ref{fig:package_organigramme}. Section \ref{sec:pkg:using}
+:numref:`fig_package_organigramme`. Section \ref{sec:pkg:using}
 describes the general procedure for using any package in MITgcm.
 Following that sections \ref{sec:pkg:gad}-\ref{sec:pkg:monitor}
 layout the algorithms implemented in specific packages
@@ -52,16 +52,68 @@ separate subdirectory in the MITgcm code distribution
 The name of this subdirectory is used as the package name in
 table \ref{tab:package_summary_tab}.
 
+
+Overview
+========
+
+.. toctree::
+   :maxdepth: 3
+
+   packages_overview.rst
+
+
 Packages Related to Hydrodynamical Kernel
 =========================================
 
+.. toctree::
+   :maxdepth: 3
+
+   generic_advdiff.rst
+   shap_filt.rst
+   zonal_filt.rst
+   exch2.rst
+   gridalt.rst
 
 General purpose numerical infrastructure packages
 =================================================
 
-.. include:: obcs.rst
-
-
+.. toctree::
+   :maxdepth: 3
+   
+   obcs.rst
+   rbcs.rst
+   ptracers.rst
 
 Ocean Packages
 ==============
+
+.. toctree::
+   :maxdepth: 3
+   
+   gmredi.rst
+   kpp.rst
+   ggl90.rst
+   opps.rst
+   kl10.rst
+   bulk_force.rst
+   exf.rst
+   cal.rst
+
+Atmosphere Packages
+===================
+
+.. toctree::
+   :maxdepth: 3
+
+   aim.rst
+   land.rst
+   fizhi.rst
+
+Sea Ice Packages
+================
+
+.. toctree::
+   :maxdepth: 3
+
+   thsice.rst
+   seaice.rst
