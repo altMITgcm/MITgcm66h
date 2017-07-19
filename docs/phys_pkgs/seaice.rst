@@ -364,15 +364,8 @@ Surface forcing[sec:pkg:seaice:surfaceforcing]
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 |  
-| The sea ice model requires the following input fields: 10-m winds, 2-m
-air temperature and specific humidity, downward longwave and shortwave
-radiations, precipitation, evaporation, and river and glacier runoff.
-The sea ice model also requires surface temperature from the ocean model
-and the top level horizontal velocity. Output fields are surface wind
-stress, evaporation minus precipitation minus runoff, net surface heat
-flux, and net shortwave flux. The sea-ice model is global: in ice-free
-regions bulk formulae are used to estimate oceanic forcing from the
-atmospheric fields.
+
+The sea ice model requires the following input fields: 10-m winds, 2-m air temperature and specific humidity, downward longwave and shortwave radiations, precipitation, evaporation, and river and glacier runoff. The sea ice model also requires surface temperature from the ocean model and the top level horizontal velocity. Output fields are surface wind stress, evaporation minus precipitation minus runoff, net surface heat flux, and net shortwave flux. The sea-ice model is global: in ice-free regions bulk formulae are used to estimate oceanic forcing from the atmospheric fields.
 
 Dynamics[sec:pkg:seaice:dynamics]
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
