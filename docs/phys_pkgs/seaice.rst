@@ -384,18 +384,18 @@ The momentum equation of the sea-ice model is
 .. math::
 
    \label{eq:momseaice}
-     m \frac{D{\ensuremath{\vec{\mathbf{u}}}}}{Dt} = -mf{\ensuremath{\vec{\mathbf{k}}}}\times{\ensuremath{\vec{\mathbf{u}}}} + {{\ensuremath{\vec{\mathbf{\mathbf{\tau}}}}}}_{air} +
-     {{\ensuremath{\vec{\mathbf{\mathbf{\tau}}}}}}_{ocean} - m \nabla{\phi(0)} + {\ensuremath{\vec{\mathbf{F}}}},
+     m \frac{D{{\vec{\mathbf{u}}}}}{Dt} = -mf{{\vec{\mathbf{k}}}}\times{{\vec{\mathbf{u}}}} + {{{\vec{\mathbf{\mathbf{\tau}}}}}}_{air} +
+     {{{\vec{\mathbf{\mathbf{\tau}}}}}}_{ocean} - m \nabla{\phi(0)} + {{\vec{\mathbf{F}}}},
 
 where :math:`m=m_{i}+m_{s}` is the ice and snow mass per unit area;
-:math:`{\ensuremath{\vec{\mathbf{u}}}}=u{\ensuremath{\vec{\mathbf{i}}}}+v{\ensuremath{\vec{\mathbf{j}}}}`
-is the ice velocity vector; :math:`{\ensuremath{\vec{\mathbf{i}}}}`,
-:math:`{\ensuremath{\vec{\mathbf{j}}}}`, and
-:math:`{\ensuremath{\vec{\mathbf{k}}}}` are unit vectors in the
+:math:`{{\vec{\mathbf{u}}}}=u{{\vec{\mathbf{i}}}}+v{{\vec{\mathbf{j}}}}`
+is the ice velocity vector; :math:`{{\vec{\mathbf{i}}}}`,
+:math:`{{\vec{\mathbf{j}}}}`, and
+:math:`{{\vec{\mathbf{k}}}}` are unit vectors in the
 :math:`x`, :math:`y`, and :math:`z` directions, respectively; :math:`f`
 is the Coriolis parameter;
-:math:`{{\ensuremath{\vec{\mathbf{\mathbf{\tau}}}}}}_{air}` and
-:math:`{{\ensuremath{\vec{\mathbf{\mathbf{\tau}}}}}}_{ocean}` are the
+:math:`{{{\vec{\mathbf{\mathbf{\tau}}}}}}_{air}` and
+:math:`{{{\vec{\mathbf{\mathbf{\tau}}}}}}_{ocean}` are the
 wind-ice and ocean-ice stresses, respectively; :math:`g` is the gravity
 accelation; :math:`\nabla\phi(0)` is the gradient (or tilt) of the sea
 surface height; :math:`\phi(0) = g\eta + p_{a}/\rho_{0} + mg/\rho_{0}`
@@ -403,7 +403,7 @@ is the sea surface height potential in response to ocean dynamics
 (:math:`g\eta`), to atmospheric pressure loading
 (:math:`p_{a}/\rho_{0}`, where :math:`\rho_{0}` is a reference density)
 and a term due to snow and ice loading ; and
-:math:`{\ensuremath{\vec{\mathbf{F}}}}=\nabla\cdot\sigma` is the
+:math:`{{\vec{\mathbf{F}}}}=\nabla\cdot\sigma` is the
 divergence of the internal ice stress tensor :math:`\sigma_{ij}`.
 Advection of sea-ice momentum is neglected. The wind and ice-ocean
 stress terms are given by
@@ -411,12 +411,12 @@ stress terms are given by
 .. math::
 
    \begin{aligned}
-     {{\ensuremath{\vec{\mathbf{\mathbf{\tau}}}}}}_{air}   = & \rho_{air}  C_{air}   |{\ensuremath{\vec{\mathbf{U}}}}_{air}  -{\ensuremath{\vec{\mathbf{u}}}}|
-                      R_{air}  ({\ensuremath{\vec{\mathbf{U}}}}_{air}  -{\ensuremath{\vec{\mathbf{u}}}}), \\ 
-     {{\ensuremath{\vec{\mathbf{\mathbf{\tau}}}}}}_{ocean} = & \rho_{ocean}C_{ocean} |{\ensuremath{\vec{\mathbf{U}}}}_{ocean}-{\ensuremath{\vec{\mathbf{u}}}}| 
-                      R_{ocean}({\ensuremath{\vec{\mathbf{U}}}}_{ocean}-{\ensuremath{\vec{\mathbf{u}}}}),\end{aligned}
+     {{{\vec{\mathbf{\mathbf{\tau}}}}}}_{air}   = & \rho_{air}  C_{air}   |{{\vec{\mathbf{U}}}}_{air}  -{{\vec{\mathbf{u}}}}|
+                      R_{air}  ({{\vec{\mathbf{U}}}}_{air}  -{{\vec{\mathbf{u}}}}), \\ 
+     {{{\vec{\mathbf{\mathbf{\tau}}}}}}_{ocean} = & \rho_{ocean}C_{ocean} |{{\vec{\mathbf{U}}}}_{ocean}-{{\vec{\mathbf{u}}}}| 
+                      R_{ocean}({{\vec{\mathbf{U}}}}_{ocean}-{{\vec{\mathbf{u}}}}),\end{aligned}
 
-where :math:`{\ensuremath{\vec{\mathbf{U}}}}_{air/ocean}` are the
+where :math:`{{\vec{\mathbf{U}}}}_{air/ocean}` are the
 surface winds of the atmosphere and surface currents of the ocean,
 respectively; :math:`C_{air/ocean}` are air and ocean drag coefficients;
 :math:`\rho_{air/ocean}` are reference densities; and
@@ -515,15 +515,15 @@ written as
 .. math::
 
    \label{eq:matrixmom}
-     {\ensuremath{\mathbf{A}}}({\ensuremath{\vec{\mathbf{x}}}})\,{\ensuremath{\vec{\mathbf{x}}}} = {\ensuremath{\vec{\mathbf{b}}}}({\ensuremath{\vec{\mathbf{x}}}}).
+     {{\mathbf{A}}}({{\vec{\mathbf{x}}}})\,{{\vec{\mathbf{x}}}} = {{\vec{\mathbf{b}}}}({{\vec{\mathbf{x}}}}).
 
-The solution vector :math:`{\ensuremath{\vec{\mathbf{x}}}}` consists of
+The solution vector :math:`{{\vec{\mathbf{x}}}}` consists of
 the two velocity components :math:`u` and :math:`v` that contain the
 velocity variables at all grid points and at one time level. The
 standard (and default) method for solving Eq.([eq:matrixmom]) in the sea
 ice component of the , as in many sea ice models, is an iterative Picard
 solver: in the :math:`k`-th iteration a linearized form
-:math:`{\ensuremath{\mathbf{A}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})\,{\ensuremath{\vec{\mathbf{x}}}}^{k} = {\ensuremath{\vec{\mathbf{b}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})`
+:math:`{{\mathbf{A}}}({{\vec{\mathbf{x}}}}^{k-1})\,{{\vec{\mathbf{x}}}}^{k} = {{\vec{\mathbf{b}}}}({{\vec{\mathbf{x}}}}^{k-1})`
 is solved (in the case of the MITgcm it is a Line Successive (over)
 Relaxation (LSR) algorithm ). Picard solvers converge slowly, but
 generally the iteration is terminated after only a few non-linear steps
@@ -536,42 +536,42 @@ In order to overcome the poor convergence of the Picard-solver,
 introduced a Jacobian-free Newton-Krylov solver for the sea ice momentum
 equations. This solver is also implemented in the MITgcm . The Newton
 method transforms minimizing the residual
-:math:`{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}) = {\ensuremath{\mathbf{A}}}({\ensuremath{\vec{\mathbf{x}}}})\,{\ensuremath{\vec{\mathbf{x}}}} -
-{\ensuremath{\vec{\mathbf{b}}}}({\ensuremath{\vec{\mathbf{x}}}})` to
+:math:`{{\vec{\mathbf{F}}}}({{\vec{\mathbf{x}}}}) = {{\mathbf{A}}}({{\vec{\mathbf{x}}}})\,{{\vec{\mathbf{x}}}} -
+{{\vec{\mathbf{b}}}}({{\vec{\mathbf{x}}}})` to
 finding the roots of a multivariate Taylor expansion of the residual
 :math:`\vec{\mathbf{F}}` around the previous (:math:`k-1`) estimate
-:math:`{\ensuremath{\vec{\mathbf{x}}}}^{k-1}`:
+:math:`{{\vec{\mathbf{x}}}}^{k-1}`:
 
 .. math::
 
    \label{eq:jfnktaylor}
-     {\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1}+\delta{\ensuremath{\vec{\mathbf{x}}}}^{k}) = 
-     {\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1}) + {\ensuremath{\vec{\mathbf{F}}}}'({\ensuremath{\vec{\mathbf{x}}}}^{k-1})\,\delta{\ensuremath{\vec{\mathbf{x}}}}^{k}
+     {{\vec{\mathbf{F}}}}({{\vec{\mathbf{x}}}}^{k-1}+\delta{{\vec{\mathbf{x}}}}^{k}) = 
+     {{\vec{\mathbf{F}}}}({{\vec{\mathbf{x}}}}^{k-1}) + {{\vec{\mathbf{F}}}}'({{\vec{\mathbf{x}}}}^{k-1})\,\delta{{\vec{\mathbf{x}}}}^{k}
 
 with the Jacobian
-:math:`{\ensuremath{\mathbf{J}}}\equiv{\ensuremath{\vec{\mathbf{F}}}}'`.
+:math:`{{\mathbf{J}}}\equiv{{\vec{\mathbf{F}}}}'`.
 The root
-:math:`{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1}+\delta{\ensuremath{\vec{\mathbf{x}}}}^{k})=0`
+:math:`{{\vec{\mathbf{F}}}}({{\vec{\mathbf{x}}}}^{k-1}+\delta{{\vec{\mathbf{x}}}}^{k})=0`
 is found by solving
 
 .. math::
 
    \label{eq:jfnklin}
-     {\ensuremath{\mathbf{J}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})\,\delta{\ensuremath{\vec{\mathbf{x}}}}^{k} = -{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})
+     {{\mathbf{J}}}({{\vec{\mathbf{x}}}}^{k-1})\,\delta{{\vec{\mathbf{x}}}}^{k} = -{{\vec{\mathbf{F}}}}({{\vec{\mathbf{x}}}}^{k-1})
 
-for :math:`\delta{\ensuremath{\vec{\mathbf{x}}}}^{k}`. The next
+for :math:`\delta{{\vec{\mathbf{x}}}}^{k}`. The next
 (:math:`k`-th) estimate is given by
-:math:`{\ensuremath{\vec{\mathbf{x}}}}^{k}={\ensuremath{\vec{\mathbf{x}}}}^{k-1}+a\,\delta{\ensuremath{\vec{\mathbf{x}}}}^{k}`.
+:math:`{{\vec{\mathbf{x}}}}^{k}={{\vec{\mathbf{x}}}}^{k-1}+a\,\delta{{\vec{\mathbf{x}}}}^{k}`.
 In order to avoid overshoots the factor :math:`a` is iteratively reduced
 in a line search
 (:math:`a=1, \frac{1}{2}, \frac{1}{4}, \frac{1}{8}, \ldots`) until
-:math:`\|{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^k)\| < \|{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})\|`,
+:math:`\|{{\vec{\mathbf{F}}}}({{\vec{\mathbf{x}}}}^k)\| < \|{{\vec{\mathbf{F}}}}({{\vec{\mathbf{x}}}}^{k-1})\|`,
 where :math:`\|\cdot\|=\int\cdot\,dx^2` is the :math:`L_2`-norm. In
 practice, the line search is stopped at :math:`a=\frac{1}{8}`. The line
 search starts after :math:`\code{SEAICE\_JFNK\_lsIter}` non-linear
 Newton iterations (off by default).
 
-Forming the Jacobian :math:`{\ensuremath{\mathbf{J}}}` explicitly is
+Forming the Jacobian :math:`{{\mathbf{J}}}` explicitly is
 often avoided as “too error prone and time consuming” . Instead, Krylov
 methods only require the action of :math:`\mathbf{J}` on an arbitrary
 vector :math:`\vec{\mathbf{w}}` and hence allow a matrix free algorithm
@@ -581,8 +581,8 @@ approximated by a first-order Taylor series expansion:
 .. math::
 
    \label{eq:jfnkjacvecfd}
-     {\ensuremath{\mathbf{J}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})\,{\ensuremath{\vec{\mathbf{w}}}} \approx
-     \frac{{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1}+\epsilon{\ensuremath{\vec{\mathbf{w}}}}) - {\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})}
+     {{\mathbf{J}}}({{\vec{\mathbf{x}}}}^{k-1})\,{{\vec{\mathbf{w}}}} \approx
+     \frac{{{\vec{\mathbf{F}}}}({{\vec{\mathbf{x}}}}^{k-1}+\epsilon{{\vec{\mathbf{w}}}}) - {{\vec{\mathbf{F}}}}({{\vec{\mathbf{x}}}}^{k-1})}
      {\epsilon}
 
 or computed exactly with the help of automatic differentiation (AD)
@@ -591,45 +591,45 @@ tools. sets the step size :math:`\epsilon`.
 We use the Flexible Generalized Minimum RESidual method with right-hand
 side preconditioning to solve Eq.([eq:jfnklin]) iteratively starting
 from a first guess of
-:math:`\delta{\ensuremath{\vec{\mathbf{x}}}}^{k}_{0} = 0`. For the
+:math:`\delta{{\vec{\mathbf{x}}}}^{k}_{0} = 0`. For the
 preconditioning matrix :math:`\mathbf{P}` we choose a simplified form of
 the system matrix
-:math:`{\ensuremath{\mathbf{A}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})`
-where :math:`{\ensuremath{\vec{\mathbf{x}}}}^{k-1}` is the estimate of
+:math:`{{\mathbf{A}}}({{\vec{\mathbf{x}}}}^{k-1})`
+where :math:`{{\vec{\mathbf{x}}}}^{k-1}` is the estimate of
 the previous Newton step :math:`k-1`. The transformed
 equation([eq:jfnklin]) becomes
 
 .. math::
 
    \label{eq:jfnklinpc}
-     {\ensuremath{\mathbf{J}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})\,{\ensuremath{\mathbf{P}}}^{-1}\delta{\ensuremath{\vec{\mathbf{z}}}} =
-     -{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1}), 
-     \quad\text{with}\quad \delta{\ensuremath{\vec{\mathbf{z}}}}={\ensuremath{\mathbf{P}}}\delta{\ensuremath{\vec{\mathbf{x}}}}^{k}.
+     {{\mathbf{J}}}({{\vec{\mathbf{x}}}}^{k-1})\,{{\mathbf{P}}}^{-1}\delta{{\vec{\mathbf{z}}}} =
+     -{{\vec{\mathbf{F}}}}({{\vec{\mathbf{x}}}}^{k-1}), 
+     \quad\text{with}\quad \delta{{\vec{\mathbf{z}}}}={{\mathbf{P}}}\delta{{\vec{\mathbf{x}}}}^{k}.
 
 The Krylov method iteratively improves the approximate solution
 to ([eq:jfnklinpc]) in subspace
-(:math:`{\ensuremath{\vec{\mathbf{r}}}}_0`,
-:math:`{\ensuremath{\mathbf{J}}}{\ensuremath{\mathbf{P}}}^{-1}{\ensuremath{\vec{\mathbf{r}}}}_0`,
-:math:`({\ensuremath{\mathbf{J}}}{\ensuremath{\mathbf{P}}}^{-1})^2{\ensuremath{\vec{\mathbf{r}}}}_0`,
+(:math:`{{\vec{\mathbf{r}}}}_0`,
+:math:`{{\mathbf{J}}}{{\mathbf{P}}}^{-1}{{\vec{\mathbf{r}}}}_0`,
+:math:`({{\mathbf{J}}}{{\mathbf{P}}}^{-1})^2{{\vec{\mathbf{r}}}}_0`,
 …,
-:math:`({\ensuremath{\mathbf{J}}}{\ensuremath{\mathbf{P}}}^{-1})^m{\ensuremath{\vec{\mathbf{r}}}}_0`)
+:math:`({{\mathbf{J}}}{{\mathbf{P}}}^{-1})^m{{\vec{\mathbf{r}}}}_0`)
 with increasing :math:`m`;
-:math:`{\ensuremath{\vec{\mathbf{r}}}}_0 = -{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})
--{\ensuremath{\mathbf{J}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})\,\delta{\ensuremath{\vec{\mathbf{x}}}}^{k}_{0}`
+:math:`{{\vec{\mathbf{r}}}}_0 = -{{\vec{\mathbf{F}}}}({{\vec{\mathbf{x}}}}^{k-1})
+-{{\mathbf{J}}}({{\vec{\mathbf{x}}}}^{k-1})\,\delta{{\vec{\mathbf{x}}}}^{k}_{0}`
 is the initial residual of ([eq:jfnklin]);
-:math:`{\ensuremath{\vec{\mathbf{r}}}}_0=-{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})`
+:math:`{{\vec{\mathbf{r}}}}_0=-{{\vec{\mathbf{F}}}}({{\vec{\mathbf{x}}}}^{k-1})`
 with the first guess
-:math:`\delta{\ensuremath{\vec{\mathbf{x}}}}^{k}_{0}=0`. We allow a
+:math:`\delta{{\vec{\mathbf{x}}}}^{k}_{0}=0`. We allow a
 Krylov-subspace of dimension \ :math:`m=50` and we do not use restarts.
 The preconditioning operation involves applying
-:math:`{\ensuremath{\mathbf{P}}}^{-1}` to the basis vectors
-:math:`{\ensuremath{\vec{\mathbf{v}}}}_0,
-{\ensuremath{\vec{\mathbf{v}}}}_1, {\ensuremath{\vec{\mathbf{v}}}}_2, \ldots, {\ensuremath{\vec{\mathbf{v}}}}_m`
+:math:`{{\mathbf{P}}}^{-1}` to the basis vectors
+:math:`{{\vec{\mathbf{v}}}}_0,
+{{\vec{\mathbf{v}}}}_1, {{\vec{\mathbf{v}}}}_2, \ldots, {{\vec{\mathbf{v}}}}_m`
 of the Krylov subspace. This operation is approximated by solving the
 linear system
-:math:`{\ensuremath{\mathbf{P}}}\,{\ensuremath{\vec{\mathbf{w}}}}={\ensuremath{\vec{\mathbf{v}}}}_i`.
-Because :math:`{\ensuremath{\mathbf{P}}} \approx
-{\ensuremath{\mathbf{A}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})`, we
+:math:`{{\mathbf{P}}}\,{{\vec{\mathbf{w}}}}={{\vec{\mathbf{v}}}}_i`.
+Because :math:`{{\mathbf{P}}} \approx
+{{\mathbf{A}}}({{\vec{\mathbf{x}}}}^{k-1})`, we
 can use the LSR-algorithm already implemented in the Picard solver. Each
 preconditioning operation uses a fixed number of 10 LSR-iterations
 avoiding any termination criterion. More details and results can be
@@ -641,11 +641,11 @@ defining (see above) for better convergence. The non-linear Newton
 iteration is terminated when the :math:`L_2`-norm of the residual is
 reduced by :math:`\gamma_{\mathrm{nl}}` (runtime parameter will already
 lead to expensive simulations) with respect to the initial norm:
-:math:`\|{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^k)\| <
-\gamma_{\mathrm{nl}}\|{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^0)\|`.
+:math:`\|{{\vec{\mathbf{F}}}}({{\vec{\mathbf{x}}}}^k)\| <
+\gamma_{\mathrm{nl}}\|{{\vec{\mathbf{F}}}}({{\vec{\mathbf{x}}}}^0)\|`.
 Within a non-linear iteration, the linear FGMRES solver is terminated
 when the residual is smaller than
-:math:`\gamma_k\|{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})\|`
+:math:`\gamma_k\|{{\vec{\mathbf{F}}}}({{\vec{\mathbf{x}}}}^{k-1})\|`
 where :math:`\gamma_k` is determined by
 
 .. math::
@@ -653,10 +653,10 @@ where :math:`\gamma_k` is determined by
    \label{eq:jfnkgammalin}
      \gamma_k = 
      \begin{cases} 
-       \gamma_0 &\text{for $\|{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})\| \geq r$},  \\ 
+       \gamma_0 &\text{for $\|{{\vec{\mathbf{F}}}}({{\vec{\mathbf{x}}}}^{k-1})\| \geq r$},  \\ 
        \max\left(\gamma_{\min},
-       \frac{\|{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})\|}{\|{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-2})\|}\right)  
-       &\text{for $\|{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})\| < r$,}
+       \frac{\|{{\vec{\mathbf{F}}}}({{\vec{\mathbf{x}}}}^{k-1})\|}{\|{{\vec{\mathbf{F}}}}({{\vec{\mathbf{x}}}}^{k-2})\|}\right)  
+       &\text{for $\|{{\vec{\mathbf{F}}}}({{\vec{\mathbf{x}}}}^{k-1})\| < r$,}
      \end{cases}
 
 so that the linear tolerance parameter :math:`\gamma_k` decreases with
@@ -665,7 +665,7 @@ This inexact Newton method is generally more robust and computationally
 more efficient than exact methods . Typical parameter choices are
 :math:`\gamma_0=\code{JFNKgamma\_lin\_max}=0.99`,
 :math:`\gamma_{\min}=\code{JFNKgamma\_lin\_min}=0.1`, and :math:`r = 
-\code{JFNKres\_tFac}\times\|{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{0})\|`
+\code{JFNKres\_tFac}\times\|{{\vec{\mathbf{F}}}}({{\vec{\mathbf{x}}}}^{0})\|`
 with :math:`\code{JFNKres\_tFac} = \frac{1}{2}`. We recommend a maximum
 number of non-linear iterations :math:`\code{SEAICEnewtonIterMax} = 100`
 and a maximum number of Krylov iterations
@@ -849,17 +849,17 @@ Ice-Ocean stress [sec:pkg:seaice:iceoceanstress]
 
 |  
 | Moving sea ice exerts a stress on the ocean which is the opposite of
-the stress :math:`{{\ensuremath{\vec{\mathbf{\mathbf{\tau}}}}}}_{ocean}`
+the stress :math:`{{{\vec{\mathbf{\mathbf{\tau}}}}}}_{ocean}`
 in Eq. [eq:momseaice]. This stess is applied directly to the surface
 layer of the ocean model. An alternative ocean stress formulation is
 given by . Rather than applying
-:math:`{{\ensuremath{\vec{\mathbf{\mathbf{\tau}}}}}}_{ocean}` directly,
+:math:`{{{\vec{\mathbf{\mathbf{\tau}}}}}}_{ocean}` directly,
 the stress is derived from integrating over the ice thickness to the
 bottom of the oceanic surface layer. In the resulting equation for the
 *combined* ocean-ice momentum, the interfacial stress cancels and the
 total stress appears as the sum of windstress and divergence of internal
 ice stresses:
-:math:`\delta(z) ({{\ensuremath{\vec{\mathbf{\mathbf{\tau}}}}}}_{air} + {\ensuremath{\vec{\mathbf{F}}}})/\rho_0`,
+:math:`\delta(z) ({{{\vec{\mathbf{\mathbf{\tau}}}}}}_{air} + {{\vec{\mathbf{F}}}})/\rho_0`,
 . The disadvantage of this formulation is that now the velocity in the
 surface layer of the ocean that is used to advect tracers, is really an
 average over the ocean surface velocity and the ice velocity leading to
@@ -1118,7 +1118,7 @@ concentration :math:`c` and effective snow thickness
 .. math::
 
    \label{eq:advection}
-     \frac{\partial{X}}{\partial{t}} = - \nabla\cdot\left({\ensuremath{\vec{\mathbf{u}}}}\,X\right) +
+     \frac{\partial{X}}{\partial{t}} = - \nabla\cdot\left({{\vec{\mathbf{u}}}}\,X\right) +
      \Gamma_{X} + D_{X}
 
 where :math:`\Gamma_X` are the thermodynamic source terms and
