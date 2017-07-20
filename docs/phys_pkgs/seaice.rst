@@ -15,11 +15,11 @@ Introduction
 Package “seaice” provides a dynamic and thermodynamic interactive
 sea-ice model.
 
-CPP options enable or disable different aspects of the package (Section
-[sec:pkg:seaice:config]). Run-Time options, flags, filenames and
-field-related dates/times are set in (Section [sec:pkg:seaice:runtime]).
+CPP options enable or disable different aspects of the package
+(Section :numref:`para_phys_pkg_seaice_compile`). Run-Time options, flags, filenames and
+field-related dates/times are set in data.seaice (Section :numref:`para_phys_pkg_seaice_runtime`).
 A description of key subroutines is given in Section
-[sec:pkg:seaice:subroutines]. Input fields, units and sign conventions
+:numref:`para_phys_pkg_seaice_subroutines`. Input fields, units and sign conventions
 are summarized in Section [sec:pkg:seaice:fields:sub:`u`\ nits], and
 available diagnostics output is listed in Section
 [sec:pkg:seaice:diagnostics].
@@ -49,7 +49,7 @@ time
 (see Section [sec:buildingCode]).
 
 Parts of the SEAICE code can be enabled or disabled at compile time via
-CPP preprocessor flags. These options are set in SEAICE_OPTIONS.h. :numref:`tab_phys_pkg_seaice_cpp` summarizes the most important ones. For more
+CPP preprocessor flags. These options are set in ``SEAICE_OPTIONS.h``. :numref:`tab_phys_pkg_seaice_cpp` summarizes the most important ones. For more
 options see the default ``pkg/seaice/SEAICE_OPTIONS.h``.
 
 .. table:: Some of the most relevant CPP preporocessor flags in the ``seaice``-package. 
@@ -92,12 +92,12 @@ Run-time parameters
 ###################
 
 Run-time parameters (see :numref:`tab_phys_pkg_seaice_runtimeparms`) are set in
-files :code:`data.pkg` (read in :code:`packages_readparms.F`), and :code:`data.seaice` (read in :code:`seaice_readparms.F`).
+files `data.pkg` (read in `packages_readparms.F`), and `data.seaice` (read in `seaice_readparms.F`).
 
 Enabling the package
 ^^^^^^^^^^^^^^^^^^^^
 
-A package is switched on/off at run-time by setting (e.g. for SEAICE :code:`useSEAICE = .TRUE.` in :code:`data.pkg`).
+A package is switched on/off at run-time by setting (e.g. for SEAICE `useSEAICE = .TRUE.` in `data.pkg`).
 
 General flags and parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -161,17 +161,17 @@ General flags and parameters
   +------------------------------+------------------------------+------------------------------------------------------------------------------------------------+
   | SEAICEaEVPalphaMin           | 5                            | aEVP parameter   :cite:`kimmritz16`                                                            |
   +------------------------------+------------------------------+------------------------------------------------------------------------------------------------+
-  | SEAICE_elasticParm           | :math:`\frac{1}{3    }`      | EVP paramter :math:`E_0`                                                                       |
+  | SEAICE_elasticParm           | :math:`\frac{1}{3}`          | EVP paramter :math:`E_0`                                                                       |
   +------------------------------+------------------------------+------------------------------------------------------------------------------------------------+
-  | SEAICE_evpTauRelax           | :math:`\Delta{t}_    {EVP}   | relaxation time scale :math:`T` for EVP waves                                                  |
+  | SEAICE_evpTauRelax           | :math:`\Delta{t}_{EVP}`      | relaxation time scale :math:`T` for EVP waves                                                  |
   +------------------------------+------------------------------+------------------------------------------------------------------------------------------------+
-  | SEAICEnewtonIterMax          | 10                           | maximum number of JFNK-Newton iterations                                                       |
+  | SEAICEnonLinIterMax          | 10                           |  maximum number of JFNK-Newton iterations (non-linear)                                         |
   +------------------------------+------------------------------+------------------------------------------------------------------------------------------------+
-  | SEAICEkrylovIterMax          | 10                           | maximum number of JFNK-Krylov iterations                                                       |
+  | SEAICElinearIterMax          | 10                           | maximum number of JFNK-Krylov iterations (linear)                                              |
   +------------------------------+------------------------------+------------------------------------------------------------------------------------------------+
   | SEAICE_JFNK_lsIter           | (off)                        | start line search after “lsIter” Newton iterations                                             |
   +------------------------------+------------------------------+------------------------------------------------------------------------------------------------+
-  | JFNKgamma_nonlin             | 1.0E-05                      | non-linear tolerance parameter for JFNK solver                                                 |
+  | SEAICEnonLinTol              | 1.0E-05                      | non-linear tolerance parameter for JFNK solver                                                 |
   +------------------------------+------------------------------+------------------------------------------------------------------------------------------------+
   | JFNKgamma_lin_min/max        | 0.10/0.99                    | tolerance parameters for linear JFNK solver                                                    |
   +------------------------------+------------------------------+------------------------------------------------------------------------------------------------+
@@ -278,13 +278,13 @@ General flags and parameters
 Input fields and units
 ^^^^^^^^^^^^^^^^^^^^^^
 
- - :code:`HeffFile`: Initial sea ice thickness averaged over grid cell in meters; initializes variable :code:`HEFF`;
+ - `HeffFile`: Initial sea ice thickness averaged over grid cell in meters; initializes variable `HEFF`;
 
- - :code:`AreaFile`: Initial fractional sea ice cover, range :math:`[0,1]`; initializes variable :code:`AREA`;
+ - `AreaFile`: Initial fractional sea ice cover, range :math:`[0,1]`; initializes variable `AREA`;
 
- - :code:`HsnowFile`: Initial snow thickness on sea ice averaged over grid cell in meters; initializes variable :code:`HSNOW`;
+ - `HsnowFile`: Initial snow thickness on sea ice averaged over grid cell in meters; initializes variable `HSNOW`;
 
- - :code:`HsaltFile`: Initial salinity of sea ice averaged over grid cell in g/m\ :math:`^2`; initializes variable :code:`HSALT`;
+ - `HsaltFile`: Initial salinity of sea ice averaged over grid cell in g/m\ :math:`^2`; initializes variable `HSALT`;
 
 
 .. _ssub_phys_pkg_seaice_descr:
@@ -307,7 +307,7 @@ original code have been modified and improved :cite:`losch10:_mitsim`:
 -  three different solution methods for solving the nonlinear momentum
    equations have been adopted: LSOR :cite:`zhang97`, EVP :cite:`hun97`, JFNK :cite:`lemieux10,losch14:_jfnk`;
 
--  ice-ocean stress can be formulated as in :cite:`hibler87`or as in :cite:`cam08`;
+-  ice-ocean stress can be formulated as in :cite:`hibler87` or as in :cite:`cam08`;
 
 -  ice variables are advected by sophisticated, conservative advection
    schemes with flux limiting;
@@ -336,10 +336,10 @@ free-drift implemtation can be selected with runtime flags.
 
 .. _para_phys_pkg_seaice_thsice:
 
-Compatibility with ice-thermodynamics package
-#############################################
+Compatibility with ice-thermodynamics ``thsice`` package
+########################################################
 
-Note, that by default the -package includes the orginial so-called
+Note, that by default the ``seaice``-package includes the orginial so-called
 zero-layer thermodynamics following with a snow cover as in . The
 zero-layer thermodynamic model assumes that ice does not store heat and,
 therefore, tends to exaggerate the seasonal variability in ice
@@ -350,52 +350,42 @@ The reformulation improves model physics by representing the brine
 content of the upper ice with a variable heat capacity. It also improves
 model numerics and consumes less computer time and memory.
 
-The Winton sea-ice thermodynamics have been ported to the MIT GCM; they
-currently reside under . The package is described in
-section [sec:pkg:thsice]; it is fully compatible with the packages and .
-When turned on together with , the zero-layer thermodynamics are
-replaced by the Winton thermodynamics. In order to use the -package with
-the thermodynamics of , compile both packages and turn both package on
-in ; see an example in . Note, that once is turned on, the variables and
-diagnostics associated to the default thermodynamics are meaningless,
-and the diagnostics of have to be used instead.
+The Winton sea-ice thermodynamics have been ported to the MIT GCM; they currently reside under ``pkg/seaice``. The package ``thsice`` is described in section [sec:pkg:thsice]; it is fully compatible with the packages ``seaice`` and ``exf``.  When turned on together with ``seaice``, the zero-layer thermodynamics are replaced by the Winton thermodynamics. In order to use the ``seaice``-package with the thermodynamics of ``thsice``, compile both packages and turn both package on in ``data.pkg``; see an example in ``global_ocean.cs32x15/input.icedyn``. Note, that once ``thsice`` is turned on, the variables and diagnostics associated to the default thermodynamics are meaningless, and the diagnostics of ``thsice`` have to be used instead.
 
-Surface forcing[sec:pkg:seaice:surfaceforcing]
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _para_phys_pkg_seaice_surfaceforcing:
+
+Surface forcing
+###############
 
 |  
-| The sea ice model requires the following input fields: 10-m winds, 2-m
-air temperature and specific humidity, downward longwave and shortwave
-radiations, precipitation, evaporation, and river and glacier runoff.
-The sea ice model also requires surface temperature from the ocean model
-and the top level horizontal velocity. Output fields are surface wind
-stress, evaporation minus precipitation minus runoff, net surface heat
-flux, and net shortwave flux. The sea-ice model is global: in ice-free
-regions bulk formulae are used to estimate oceanic forcing from the
-atmospheric fields.
 
-Dynamics[sec:pkg:seaice:dynamics]
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The sea ice model requires the following input fields: 10-m winds, 2-m air temperature and specific humidity, downward longwave and shortwave radiations, precipitation, evaporation, and river and glacier runoff. The sea ice model also requires surface temperature from the ocean model and the top level horizontal velocity. Output fields are surface wind stress, evaporation minus precipitation minus runoff, net surface heat flux, and net shortwave flux. The sea-ice model is global: in ice-free regions bulk formulae are used to estimate oceanic forcing from the atmospheric fields.
+
+.. _para_phys_pkg_seaice_dynamics:
+
+Dynamics
+########
 
 |  
 
 The momentum equation of the sea-ice model is
 
 .. math::
-
-   \label{eq:momseaice}
-     m \frac{D{\ensuremath{\vec{\mathbf{u}}}}}{Dt} = -mf{\ensuremath{\vec{\mathbf{k}}}}\times{\ensuremath{\vec{\mathbf{u}}}} + {{\ensuremath{\vec{\mathbf{\mathbf{\tau}}}}}}_{air} +
-     {{\ensuremath{\vec{\mathbf{\mathbf{\tau}}}}}}_{ocean} - m \nabla{\phi(0)} + {\ensuremath{\vec{\mathbf{F}}}},
+   :label: eq_momseaice
+	   
+     m \frac{D\mathbf{u}}{Dt} = -mf\mathbf{k}\times\mathbf{u} +
+     \mathbf{\tau}_{air} + \mathbf\tau}_{ocean}
+     - m \nabla{\phi(0)} + \mathbf{F},
 
 where :math:`m=m_{i}+m_{s}` is the ice and snow mass per unit area;
-:math:`{\ensuremath{\vec{\mathbf{u}}}}=u{\ensuremath{\vec{\mathbf{i}}}}+v{\ensuremath{\vec{\mathbf{j}}}}`
-is the ice velocity vector; :math:`{\ensuremath{\vec{\mathbf{i}}}}`,
-:math:`{\ensuremath{\vec{\mathbf{j}}}}`, and
-:math:`{\ensuremath{\vec{\mathbf{k}}}}` are unit vectors in the
+:math:`\mathbf{u}=u\mathbf{i}+v\mathbf{j}`
+is the ice velocity vector; :math:`\mathbf{i}`,
+:math:`\mathbf{j}`, and
+:math:`\mathbf{k}` are unit vectors in the
 :math:`x`, :math:`y`, and :math:`z` directions, respectively; :math:`f`
 is the Coriolis parameter;
-:math:`{{\ensuremath{\vec{\mathbf{\mathbf{\tau}}}}}}_{air}` and
-:math:`{{\ensuremath{\vec{\mathbf{\mathbf{\tau}}}}}}_{ocean}` are the
+:math:`\mathbf{\tau}_{air}` and
+:math:`\mathbf{\tau}_{ocean}` are the
 wind-ice and ocean-ice stresses, respectively; :math:`g` is the gravity
 accelation; :math:`\nabla\phi(0)` is the gradient (or tilt) of the sea
 surface height; :math:`\phi(0) = g\eta + p_{a}/\rho_{0} + mg/\rho_{0}`
@@ -403,7 +393,7 @@ is the sea surface height potential in response to ocean dynamics
 (:math:`g\eta`), to atmospheric pressure loading
 (:math:`p_{a}/\rho_{0}`, where :math:`\rho_{0}` is a reference density)
 and a term due to snow and ice loading ; and
-:math:`{\ensuremath{\vec{\mathbf{F}}}}=\nabla\cdot\sigma` is the
+:math:`\mathbf{F}=\nabla\cdot\sigma` is the
 divergence of the internal ice stress tensor :math:`\sigma_{ij}`.
 Advection of sea-ice momentum is neglected. The wind and ice-ocean
 stress terms are given by
@@ -411,29 +401,35 @@ stress terms are given by
 .. math::
 
    \begin{aligned}
-     {{\ensuremath{\vec{\mathbf{\mathbf{\tau}}}}}}_{air}   = & \rho_{air}  C_{air}   |{\ensuremath{\vec{\mathbf{U}}}}_{air}  -{\ensuremath{\vec{\mathbf{u}}}}|
-                      R_{air}  ({\ensuremath{\vec{\mathbf{U}}}}_{air}  -{\ensuremath{\vec{\mathbf{u}}}}), \\ 
-     {{\ensuremath{\vec{\mathbf{\mathbf{\tau}}}}}}_{ocean} = & \rho_{ocean}C_{ocean} |{\ensuremath{\vec{\mathbf{U}}}}_{ocean}-{\ensuremath{\vec{\mathbf{u}}}}| 
-                      R_{ocean}({\ensuremath{\vec{\mathbf{U}}}}_{ocean}-{\ensuremath{\vec{\mathbf{u}}}}),\end{aligned}
+     \mathbf{\tau}_{air}   = & \rho_{air}  C_{air}
+     |\mathbf{U}_{air} -\mathbf{u}|  R_{air}  (\mathbf{U}_{air}
+     -\mathbf{u}), \\
+     \mathbf{\tau}_{ocean} = & \rho_{ocean}C_{ocean}
+     |\mathbf{U}_{ocean}-\mathbf{u}|
+     R_{ocean}(\mathbf{U}_{ocean}-\mathbf{u}),
+   \end{aligned}
 
-where :math:`{\ensuremath{\vec{\mathbf{U}}}}_{air/ocean}` are the
+where :math:`\mathbf{U}_{air/ocean}` are the
 surface winds of the atmosphere and surface currents of the ocean,
 respectively; :math:`C_{air/ocean}` are air and ocean drag coefficients;
 :math:`\rho_{air/ocean}` are reference densities; and
 :math:`R_{air/ocean}` are rotation matrices that act on the wind/current
 vectors.
 
-Viscous-Plastic (VP) Rheology[sec:pkg:seaice:VPrheology]
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _para_phys_pkg_seaice_VPrheology:
+
+Viscous-Plastic (VP) Rheology
+#############################
 
 |  
-| For an isotropic system the stress tensor :math:`\sigma_{ij}`
-(:math:`i,j=1,2`) can be related to the ice strain rate and strength by
-a nonlinear viscous-plastic (VP) constitutive law :
+
+For an isotropic system the stress tensor :math:`\sigma_{ij}`
+(:math:`i,j=1,2`) can be related to the ice strain rate and strength 
+by a nonlinear viscous-plastic (VP) constitutive law :
 
 .. math::
-
-   \label{eq:vpequation}
+   :label: eq_vpequation
+	   
      \sigma_{ij}=2\eta(\dot{\epsilon}_{ij},P)\dot{\epsilon}_{ij} 
      + \left[\zeta(\dot{\epsilon}_{ij},P) -
        \eta(\dot{\epsilon}_{ij},P)\right]\dot{\epsilon}_{kk}\delta_{ij}  
@@ -456,7 +452,7 @@ depends on both thickness :math:`h` and compactness (concentration)
    P_{\max} = P^{*}c\,h\,\exp\{-C^{*}\cdot(1-c)\},
    \label{eq:icestrength}
 
-with the constants :math:`P^{*}` (run-time parameter ) and
+with the constants :math:`P^{*}` (run-time parameter ``SEAICE_strength``) and
 :math:`C^{*}=20`. The nonlinear bulk and shear viscosities :math:`\eta`
 and :math:`\zeta` are functions of ice strain rate invariants and ice
 strength such that the principal components of the stress lie on an
@@ -469,7 +465,7 @@ equal to :math:`2`; they are given by:
      \zeta =& \min\left(\frac{P_{\max}}{2\max(\Delta,\Delta_{\min})},
       \zeta_{\max}\right) \\
      \eta =& \frac{\zeta}{e^2} \\
-     \intertext{with the abbreviation}
+     & \text{with the abbreviation} \\
      \Delta = & \left[
        \left(\dot{\epsilon}_{11}^2+\dot{\epsilon}_{22}^2\right)
        (1+e^{-2}) +  4e^{-2}\dot{\epsilon}_{12}^2 + 
@@ -477,18 +473,17 @@ equal to :math:`2`; they are given by:
      \right]^{\frac{1}{2}}.\end{aligned}
 
 The bulk viscosities are bounded above by imposing both a minimum
-:math:`\Delta_{\min}` (for numerical reasons, run-time parameter with a
-default value of :math:`10^{-10}\text{\,s}^{-1}`) and a maximum
-:math:`\zeta_{\max} =
-P_{\max}/\Delta^*`, where
-:math:`\Delta^*=(5\times10^{12}/2\times10^4)\text{\,s}^{-1}`. (There is
-also the option of bounding :math:`\zeta` from below by setting run-time
-parameter :math:`>0`, but this is generally not recommended). For stress
-tensor computation the replacement pressure :math:`P
-= 2\,\Delta\zeta` is used so that the stress state always lies on the
-elliptic yield curve by definition.
+:math:`\Delta_{\min}` (for numerical reasons, run-time parameter
+``SEAICE_EPS`` with a default value of :math:`10^{-10}\text{\,s}^{-1}`)
+and a maximum :math:`\zeta_{\max} = P_{\max}/\Delta^*`, where
+:math:`\Delta^*=(5\times10^{12}/2\times10^4)\text{\,s}^{-1}`. (There
+is also the option of bounding :math:`\zeta` from below by setting
+run-time parameter ``SEAICE_zetaMin`` :math:`>0`, but this is generally not
+recommended). For stress tensor computation the replacement pressure
+:math:`P = 2\,\Delta\zeta` is used so that the stress state always
+lies on the elliptic yield curve by definition.
 
-Defining the CPP-flag in before compiling replaces the method for
+Defining the CPP-flag ``SEAICE_ZETA_SMOOTHREG`` in ``SEAICE_OPTIONS.h`` before compiling replaces the method for
 bounding :math:`\zeta` by a smooth (differentiable) expression:
 
 .. math::
@@ -504,8 +499,10 @@ bounding :math:`\zeta` by a smooth (differentiable) expression:
 where :math:`\Delta_{\min}=10^{-20}\text{\,s}^{-1}` is chosen to avoid
 divisions by zero.
 
-LSR and JFNK solver [sec:pkg:seaice:LSRJFNK]
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _para_phys_pkg_seaice_LSRJFNK:
+
+LSR and JFNK solver
+###################
 
 |  
 
@@ -513,198 +510,178 @@ In the matrix notation, the discretized momentum equations can be
 written as
 
 .. math::
+   :label: eq_matrixmom
+	   
+     \mathbf{A}(\mathbf{x})\,\mathbf{x} = \mathbf{b}(\mathbf{x}).
 
-   \label{eq:matrixmom}
-     {\ensuremath{\mathbf{A}}}({\ensuremath{\vec{\mathbf{x}}}})\,{\ensuremath{\vec{\mathbf{x}}}} = {\ensuremath{\vec{\mathbf{b}}}}({\ensuremath{\vec{\mathbf{x}}}}).
-
-The solution vector :math:`{\ensuremath{\vec{\mathbf{x}}}}` consists of
-the two velocity components :math:`u` and :math:`v` that contain the
-velocity variables at all grid points and at one time level. The
-standard (and default) method for solving Eq.([eq:matrixmom]) in the sea
-ice component of the , as in many sea ice models, is an iterative Picard
-solver: in the :math:`k`-th iteration a linearized form
-:math:`{\ensuremath{\mathbf{A}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})\,{\ensuremath{\vec{\mathbf{x}}}}^{k} = {\ensuremath{\vec{\mathbf{b}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})`
-is solved (in the case of the MITgcm it is a Line Successive (over)
-Relaxation (LSR) algorithm ). Picard solvers converge slowly, but
-generally the iteration is terminated after only a few non-linear steps
-and the calculation continues with the next time level. This method is
-the default method in the MITgcm. The number of non-linear iteration
-steps or pseudo-time steps can be controlled by the runtime parameter
+The solution vector :math:`\mathbf{x}` consists of the two velocity
+components :math:`u` and :math:`v` that contain the velocity variables
+at all grid points and at one time level. The standard (and default)
+method for solving Eq. :eq:`eq_matrixmom` in the sea ice component of
+the MITgcm, as in many sea ice models, is an iterative Picard solver: in the
+:math:`k`-th iteration a linearized form
+:math:`\mathbf{A}(\mathbf{x}^{k-1})\,\mathbf{x}^{k} =
+\mathbf{b}(\mathbf{x}^{k-1})` is solved (in the case of the MITgcm it
+is a Line Successive (over) Relaxation (LSR) algorithm ). Picard
+solvers converge slowly, but generally the iteration is terminated
+after only a few non-linear steps and the calculation continues with
+the next time level. This method is the default method in the
+MITgcm. The number of non-linear iteration steps or pseudo-time steps
+can be controlled by the runtime parameter ``SEAICEnonLinIterMax``
 (default is 2).
 
 In order to overcome the poor convergence of the Picard-solver,
 introduced a Jacobian-free Newton-Krylov solver for the sea ice momentum
 equations. This solver is also implemented in the MITgcm . The Newton
 method transforms minimizing the residual
-:math:`{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}) = {\ensuremath{\mathbf{A}}}({\ensuremath{\vec{\mathbf{x}}}})\,{\ensuremath{\vec{\mathbf{x}}}} -
-{\ensuremath{\vec{\mathbf{b}}}}({\ensuremath{\vec{\mathbf{x}}}})` to
-finding the roots of a multivariate Taylor expansion of the residual
-:math:`\vec{\mathbf{F}}` around the previous (:math:`k-1`) estimate
-:math:`{\ensuremath{\vec{\mathbf{x}}}}^{k-1}`:
+:math:`\mathbf{F}(\mathbf{x}) = \mathbf{A}(\mathbf{x})\,\mathbf{x} -
+\mathbf{b}(\mathbf{x})` to finding the roots of a multivariate Taylor
+expansion of the residual :math:`\mathbf{F}` around the previous
+(:math:`k-1`) estimate :math:`\mathbf{x}^{k-1}`:
 
 .. math::
+   :label: eq_jfnktaylor
 
-   \label{eq:jfnktaylor}
-     {\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1}+\delta{\ensuremath{\vec{\mathbf{x}}}}^{k}) = 
-     {\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1}) + {\ensuremath{\vec{\mathbf{F}}}}'({\ensuremath{\vec{\mathbf{x}}}}^{k-1})\,\delta{\ensuremath{\vec{\mathbf{x}}}}^{k}
+      \mathbf{F}(\mathbf{x}^{k-1}+\delta\mathbf{x}^{k}) =
+      \mathbf{F}(\mathbf{x}^{k-1}) + \mathbf{F}'(\mathbf{x}^{k-1})
+      \,\delta\mathbf{x}^{k}
 
 with the Jacobian
-:math:`{\ensuremath{\mathbf{J}}}\equiv{\ensuremath{\vec{\mathbf{F}}}}'`.
+:math:`\mathbf{J}\equiv\mathbf{F}'`.
 The root
-:math:`{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1}+\delta{\ensuremath{\vec{\mathbf{x}}}}^{k})=0`
+:math:`\mathbf{F}(\mathbf{x}^{k-1}+\delta\mathbf{x}^{k})=0`
 is found by solving
 
 .. math::
+   :label: eq_jfnklin
+	   
+      \mathbf{J}(\mathbf{x}^{k-1})\,\delta\mathbf{x}^{k} =
+      -\mathbf{F}(\mathbf{x}^{k-1})
 
-   \label{eq:jfnklin}
-     {\ensuremath{\mathbf{J}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})\,\delta{\ensuremath{\vec{\mathbf{x}}}}^{k} = -{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})
-
-for :math:`\delta{\ensuremath{\vec{\mathbf{x}}}}^{k}`. The next
+for :math:`\delta\mathbf{x}^{k}`. The next
 (:math:`k`-th) estimate is given by
-:math:`{\ensuremath{\vec{\mathbf{x}}}}^{k}={\ensuremath{\vec{\mathbf{x}}}}^{k-1}+a\,\delta{\ensuremath{\vec{\mathbf{x}}}}^{k}`.
+:math:`\mathbf{x}^{k}=\mathbf{x}^{k-1}+a\,\delta\mathbf{x}^{k}`.
 In order to avoid overshoots the factor :math:`a` is iteratively reduced
 in a line search
 (:math:`a=1, \frac{1}{2}, \frac{1}{4}, \frac{1}{8}, \ldots`) until
-:math:`\|{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^k)\| < \|{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})\|`,
+:math:`\|\mathbf{F}(\mathbf{x}^k)\| <  \|\mathbf{F}(\mathbf{x}^{k-1})\|`,
 where :math:`\|\cdot\|=\int\cdot\,dx^2` is the :math:`L_2`-norm. In
 practice, the line search is stopped at :math:`a=\frac{1}{8}`. The line
-search starts after :math:`\code{SEAICE\_JFNK\_lsIter}` non-linear
+search starts after ``SEAICE_JFNK_lsIter`` non-linear
 Newton iterations (off by default).
 
-Forming the Jacobian :math:`{\ensuremath{\mathbf{J}}}` explicitly is
+Forming the Jacobian :math:`\mathbf{J}` explicitly is
 often avoided as “too error prone and time consuming” . Instead, Krylov
 methods only require the action of :math:`\mathbf{J}` on an arbitrary
-vector :math:`\vec{\mathbf{w}}` and hence allow a matrix free algorithm
-for solving Eq.([eq:jfnklin]) . The action of :math:`\mathbf{J}` can be
+vector :math:`\mathbf{w}` and hence allow a matrix free algorithm
+for solving Eq. :eq:`eq_jfnklin`. The action of :math:`\mathbf{J}` can be
 approximated by a first-order Taylor series expansion:
 
 .. math::
+   :label: eq_jfnkjacvecfd
 
-   \label{eq:jfnkjacvecfd}
-     {\ensuremath{\mathbf{J}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})\,{\ensuremath{\vec{\mathbf{w}}}} \approx
-     \frac{{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1}+\epsilon{\ensuremath{\vec{\mathbf{w}}}}) - {\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})}
-     {\epsilon}
+	   \mathbf{J}(\mathbf{x}^{k-1})\,\mathbf{w} \approx
+	   \frac{\mathbf{F}(\mathbf{x}^{k-1}+\epsilon\mathbf{w})
+	   - \mathbf{F}(\mathbf{x}^{k-1})} \epsilon
 
 or computed exactly with the help of automatic differentiation (AD)
-tools. sets the step size :math:`\epsilon`.
+tools. ``SEAICE_JFNKepsilon`` sets the step size :math:`\epsilon`.
 
-We use the Flexible Generalized Minimum RESidual method with right-hand
-side preconditioning to solve Eq.([eq:jfnklin]) iteratively starting
-from a first guess of
-:math:`\delta{\ensuremath{\vec{\mathbf{x}}}}^{k}_{0} = 0`. For the
-preconditioning matrix :math:`\mathbf{P}` we choose a simplified form of
-the system matrix
-:math:`{\ensuremath{\mathbf{A}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})`
-where :math:`{\ensuremath{\vec{\mathbf{x}}}}^{k-1}` is the estimate of
-the previous Newton step :math:`k-1`. The transformed
-equation([eq:jfnklin]) becomes
+We use the Flexible Generalized Minimum RESidual method with
+right-hand side preconditioning to solve Eq. :eq:`eq_jfnklin`
+iteratively starting from a first guess of
+:math:`\delta\mathbf{x}^{k}_{0} = 0`. For the preconditioning matrix
+:math:`\mathbf{P}` we choose a simplified form of the system matrix
+:math:`\mathbf{A}(\mathbf{x}^{k-1})` where :math:`\mathbf{x}^{k-1}` is
+the estimate of the previous Newton step :math:`k-1`. The transformed
+equation :eq:`eq_jfnklin` becomes
 
 .. math::
+   :label: eq_jfnklinpc
 
-   \label{eq:jfnklinpc}
-     {\ensuremath{\mathbf{J}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})\,{\ensuremath{\mathbf{P}}}^{-1}\delta{\ensuremath{\vec{\mathbf{z}}}} =
-     -{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1}), 
-     \quad\text{with}\quad \delta{\ensuremath{\vec{\mathbf{z}}}}={\ensuremath{\mathbf{P}}}\delta{\ensuremath{\vec{\mathbf{x}}}}^{k}.
+   \mathbf{J}(\mathbf{x}^{k-1})\,\mathbf{P}^{-1}\delta\mathbf{z} =
+   -\mathbf{F}(\mathbf{x}^{k-1}), \quad\text{with} \quad
+   \delta{\mathbf{z}} = \mathbf{P}\delta\mathbf{x}^{k}.
 
 The Krylov method iteratively improves the approximate solution
-to ([eq:jfnklinpc]) in subspace
-(:math:`{\ensuremath{\vec{\mathbf{r}}}}_0`,
-:math:`{\ensuremath{\mathbf{J}}}{\ensuremath{\mathbf{P}}}^{-1}{\ensuremath{\vec{\mathbf{r}}}}_0`,
-:math:`({\ensuremath{\mathbf{J}}}{\ensuremath{\mathbf{P}}}^{-1})^2{\ensuremath{\vec{\mathbf{r}}}}_0`,
-…,
-:math:`({\ensuremath{\mathbf{J}}}{\ensuremath{\mathbf{P}}}^{-1})^m{\ensuremath{\vec{\mathbf{r}}}}_0`)
+to Eq. :eq:`eq_jfnklinpc` in subspace
+(:math:`\mathbf{r}_0`, :math:`\mathbf{J}\mathbf{P}^{-1}\mathbf{r}_0`,
+:math:`(\mathbf{J}\mathbf{P}^{-1})^2\mathbf{r}_0`, 
+:math:`\dots`, 
+:math:`(\mathbf{J}\mathbf{P}^{-1})^m\mathbf{r}_0`)
 with increasing :math:`m`;
-:math:`{\ensuremath{\vec{\mathbf{r}}}}_0 = -{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})
--{\ensuremath{\mathbf{J}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})\,\delta{\ensuremath{\vec{\mathbf{x}}}}^{k}_{0}`
-is the initial residual of ([eq:jfnklin]);
-:math:`{\ensuremath{\vec{\mathbf{r}}}}_0=-{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})`
+:math:`\mathbf{r}_0 = -\mathbf{F}(\mathbf{x}^{k-1})      -\mathbf{J}(\mathbf{x}^{k-1})\,\delta\mathbf{x}^{k}_{0}`
+is the initial residual of Eq. :eq:`eq_jfnklin`;
+:math:`\mathbf{r}_0=-\mathbf{F}(\mathbf{x}^{k-1})`
 with the first guess
-:math:`\delta{\ensuremath{\vec{\mathbf{x}}}}^{k}_{0}=0`. We allow a
+:math:`\delta\mathbf{x}^{k}_{0}=0`. We allow a
 Krylov-subspace of dimension \ :math:`m=50` and we do not use restarts.
 The preconditioning operation involves applying
-:math:`{\ensuremath{\mathbf{P}}}^{-1}` to the basis vectors
-:math:`{\ensuremath{\vec{\mathbf{v}}}}_0,
-{\ensuremath{\vec{\mathbf{v}}}}_1, {\ensuremath{\vec{\mathbf{v}}}}_2, \ldots, {\ensuremath{\vec{\mathbf{v}}}}_m`
+:math:`\mathbf{P}^{-1}` to the basis vectors
+:math:`\mathbf{v}_0, \mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_m`
 of the Krylov subspace. This operation is approximated by solving the
 linear system
-:math:`{\ensuremath{\mathbf{P}}}\,{\ensuremath{\vec{\mathbf{w}}}}={\ensuremath{\vec{\mathbf{v}}}}_i`.
-Because :math:`{\ensuremath{\mathbf{P}}} \approx
-{\ensuremath{\mathbf{A}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})`, we
+:math:`\mathbf{P}\,\mathbf{w}=\mathbf{v}_i`.
+Because :math:`\mathbf{P} \approx \mathbf{A}(\mathbf{x}^{k-1})`, we
 can use the LSR-algorithm already implemented in the Picard solver. Each
 preconditioning operation uses a fixed number of 10 LSR-iterations
 avoiding any termination criterion. More details and results can be
 found in .
 
-To use the JFNK-solver set in the namelist file ; needs to be defined in
-and we recommend using a smooth regularization of :math:`\zeta` by
-defining (see above) for better convergence. The non-linear Newton
-iteration is terminated when the :math:`L_2`-norm of the residual is
-reduced by :math:`\gamma_{\mathrm{nl}}` (runtime parameter will already
-lead to expensive simulations) with respect to the initial norm:
-:math:`\|{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^k)\| <
-\gamma_{\mathrm{nl}}\|{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^0)\|`.
+To use the JFNK-solver set ``SEAICEuseJNFK = .TRUE.,`` in the namelist file
+``data.seaice``; ``SEAICE_ALLOW_JFNK`` needs to be defined in ``SEAICE_OPTIONS.h`` and we recommend using a smooth regularization of :math:`\zeta` by defining ``SEAICE_ZETA_SMOOTHREG`` (see above) for better convergence. The non-linear Newton iteration is terminated when the :math:`L_2`-norm of the residual is reduced by :math:`\gamma_{\mathrm{nl}}` (runtime parameter ``SEAICEnonLinTol = 1.E-4,`` will already lead to expensive simulations) with respect to the initial norm: :math:`\|\mathbf{F}(\mathbf{x}^k)\| <
+\gamma_{\mathrm{nl}}\|\mathbf{F}(\mathbf{x}^0)\|`.
 Within a non-linear iteration, the linear FGMRES solver is terminated
-when the residual is smaller than
-:math:`\gamma_k\|{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})\|`
-where :math:`\gamma_k` is determined by
+when the residual is smaller than :math:`\gamma_k\|\mathbf{F}(\mathbf{x}^{k-1})\|` where :math:`\gamma_k` is determined by
 
 .. math::
+   :label: eq_jfnkgammalin
 
-   \label{eq:jfnkgammalin}
-     \gamma_k = 
-     \begin{cases} 
-       \gamma_0 &\text{for $\|{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})\| \geq r$},  \\ 
+	   \gamma_k = 
+      \begin{cases} 
+	   \gamma_0 &\text{for $\|\mathbf{F}(\mathbf{x}^{k-1})\| \geq r$},  \\ 
        \max\left(\gamma_{\min},
-       \frac{\|{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})\|}{\|{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-2})\|}\right)  
-       &\text{for $\|{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{k-1})\| < r$,}
+       \frac{\|\mathbf{F}(\mathbf{x}^{k-1})\|}
+       {\|\mathbf{F}(\mathbf{x}^{k-2})\|}\right)  
+       &\text{for $\|\mathbf{F}(\mathbf{x}^{k-1})\| < r$,}
      \end{cases}
 
 so that the linear tolerance parameter :math:`\gamma_k` decreases with
 the non-linear Newton step as the non-linear solution is approached.
-This inexact Newton method is generally more robust and computationally
-more efficient than exact methods . Typical parameter choices are
-:math:`\gamma_0=\code{JFNKgamma\_lin\_max}=0.99`,
-:math:`\gamma_{\min}=\code{JFNKgamma\_lin\_min}=0.1`, and :math:`r = 
-\code{JFNKres\_tFac}\times\|{\ensuremath{\vec{\mathbf{F}}}}({\ensuremath{\vec{\mathbf{x}}}}^{0})\|`
-with :math:`\code{JFNKres\_tFac} = \frac{1}{2}`. We recommend a maximum
-number of non-linear iterations :math:`\code{SEAICEnewtonIterMax} = 100`
-and a maximum number of Krylov iterations
-:math:`\code{SEAICEkrylovIterMax} = 50`, because the Krylov subspace has
-a fixed dimension of 50.
+This inexact Newton method is generally more robust and
+computationally more efficient than exact methods . Typical parameter
+choices are :math:`\gamma_0` = ``JFNKgamma_lin_max`` = 0.99,
+:math:`\gamma_{\min}` = ``JFNKgamma_lin_min`` = 0.1, and :math:`r` =
+``JFNKres_tFac``
+:math:`\times\|\mathbf{F}(\mathbf{x}^{0})\|` with
+``JFNKres_tFac`` = 0.5. We recommend a maximum number of
+non-linear iterations ``SEAICEnewtonIterMax`` = 100 and a maximum number
+of Krylov iterations ``SEAICEkrylovIterMax`` = 50, because the Krylov
+subspace has a fixed dimension of 50.
 
-Setting turns on “strength implicit coupling” in the LSR-solver and in
-the LSR-preconditioner for the JFNK-solver. In this mode, the different
-contributions of the stress divergence terms are re-ordered in order to
-increase the diagonal dominance of the system matrix. Unfortunately, the
-convergence rate of the LSR solver is increased only slightly, while the
-JFNK-convergence appears to be unaffected.
+Setting ``SEAICEuseStrImpCpl = .TRUE.,`` turns on “strength implicit
+coupling” :cite:`hutchings04` in the LSR-solver and in the LSR-preconditioner for the JFNK-solver. In this mode, the different contributions of the stress
+divergence terms are re-ordered in order to increase the diagonal dominance of the system matrix. Unfortunately, the convergence rate of the LSR solver is increased only slightly, while the JFNK-convergence appears to be unaffected.
 
-Elastic-Viscous-Plastic (EVP) Dynamics[sec:pkg:seaice:EVPdynamics]
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _para_phys_pkg_seaice_EVPdynamics:
 
-|  
-| ’s introduced an elastic contribution to the strain rate in order to
-regularize Eq. [eq:vpequation] in such a way that the resulting
-elastic-viscous-plastic (EVP) and VP models are identical at steady
-state,
+Elastic-Viscous-Plastic (EVP) Dynamics
+######################################
+
+:cite:`hun97` introduced an elastic contribution to the strain rate in
+order to regularize :eq:`eq_vpequation` in such a way that the
+resulting elastic-viscous-plastic (EVP) and VP models are identical at steady state,
 
 .. math::
+   :label: eq_evpequation
 
-   \label{eq:evpequation}
-     \frac{1}{E}\frac{\partial\sigma_{ij}}{\partial{t}} +
+   \frac{1}{E}\frac{\partial\sigma_{ij}}{\partial{t}} +
      \frac{1}{2\eta}\sigma_{ij} 
      + \frac{\eta - \zeta}{4\zeta\eta}\sigma_{kk}\delta_{ij}  
      + \frac{P}{4\zeta}\delta_{ij}
      = \dot{\epsilon}_{ij}.
 
-The EVP-model uses an explicit time stepping scheme with a short
-timestep. According to the recommendation of , the EVP-model should be
-stepped forward in time 120 times
-(:math:`\code{SEAICE\_deltaTevp} = \code{SEAICIE\_deltaTdyn}/120`)
-within the physical ocean model time step (although this parameter is
-under debate), to allow for elastic waves to disappear. Because the
-scheme does not require a matrix inversion it is fast in spite of the
-small internal timestep and simple to implement on parallel computers .
+The EVP-model uses an explicit time stepping scheme with a short timestep. According to the recommendation of :cite:`hun97`, the EVP-model should be stepped forward in time 120 times (``SEAICE_deltaTevp`` = ``SEAICIE_deltaTdyn``/120) within the physical ocean model time step (although this parameter is under debate), to allow for elastic waves to disappear. Because the scheme does not require a matrix inversion it is fast in spite of the small internal timestep and simple to implement on parallel computers .
 For completeness, we repeat the equations for the components of the
 stress tensor :math:`\sigma_{1} =
 \sigma_{11}+\sigma_{22}`, :math:`\sigma_{2}= \sigma_{11}-\sigma_{22}`,
@@ -713,7 +690,7 @@ and :math:`\sigma_{12}`. Introducing the divergence :math:`D_D =
 shearing strain rates, :math:`D_T =
 \dot{\epsilon}_{11}-\dot{\epsilon}_{22}` and :math:`D_S =
 2\dot{\epsilon}_{12}`, respectively, and using the above abbreviations,
-the equations [eq:evpequation] can be written as:
+the equations :eq:`eq_evpequation` can be written as:
 
 .. math::
 
@@ -738,74 +715,71 @@ the external (long) timestep :math:`\Delta{t}`.
 :math:`E_{0} = \frac{1}{3}` is the default value in the code and close
 to what and recommend.
 
-To use the EVP solver, make sure that both and are defined in (default).
-The solver is turned on by setting the sub-cycling time step to a value
-larger than zero. The choice of this time step is under debate.
-recommend order(120) time steps for the EVP solver within one model time
-step :math:`\Delta{t}` (). One can also choose order(120) time steps
-within the forcing time scale, but then we recommend adjusting the
-damping time scale :math:`T` accordingly, by setting either
-(:math:`E_{0}`), so that
-:math:`E_{0}\Delta{t}=\mbox{forcing time scale}`, or directly
-(:math:`T`) to the forcing time scale.
+To use the EVP solver, make sure that both ``SEAICE_CGRID`` and
+``SEAICE_ALLOW_EVP`` are defined in ``SEAICE_OPTIONS.h``
+(default). The solver is turned on by setting the sub-cycling time
+step ``SEAICE_deltaTevp`` to a value larger than zero. The choice of
+this time step is under debate.  :cite:`hun97` recommend order(120)
+time steps for the EVP solver within one model time step
+:math:`\Delta{t}` (``deltaTmom``). One can also choose order(120) time
+steps within the forcing time scale, but then we recommend adjusting
+the damping time scale :math:`T` accordingly, by setting either ``SEAICE_elasticPlarm`` (:math:`E_{0}`), so that :math:`E_{0}\Delta{t}=` forcing time scale, or directly ``SEAICE_evpTauRelax`` (:math:`T`) to the forcing time scale. (NOTE: with the improved EVP variants of the next section, the above recommendations are obsolete. Use mEVP or aEVP instead.)
 
-More stable variants of Elastic-Viscous-Plastic Dynamics: EVP\* , mEVP, and aEVP [sec:pkg:seaice:EVPstar]
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _para_phys_pkg_seaice_EVPstar:
 
-|  
-| The genuine EVP schemes appears to give noisy solutions . This has
-lead to a modified EVP or EVP\* ; here, we refer to these variants by
-modified EVP (mEVP) and adaptive EVP (aEVP) . The main idea is to modify
-the “natural” time-discretization of the momentum equations:
+More stable variants of Elastic-Viscous-Plastic Dynamics: EVP\* , mEVP, and aEVP
+################################################################################
+
+The genuine EVP schemes appears to give noisy solu tions :cite:`hun01,lemieux12,bouillon13`. This has lead to a modified EVP or EVP\* :cite:`lemieux12,bouillon13,kimmritz15`; here, we refer to these variants by modified EVP (mEVP) and adaptive EVP (aEVP) :cite:`kimmritz16`. The main idea is to modify the “natural” time-discretization of the momentum equations:
 
 .. math::
-
-   \label{eq:evpstar}
-     m\frac{D\vec{u}}{Dt} \approx m\frac{u^{p+1}-u^{n}}{\Delta{t}}
-     + \beta^{*}\frac{u^{p+1}-u^{p}}{\Delta{t}_{\mathrm{EVP}}}
+   :label: eq_evpstar
+	   
+     m\frac{D\mathbf{u}}{Dt} \approx
+     m\frac{\mathbf{u}^{p+1}-\mathbf{u}^{n}}{\Delta{t}} +
+     \beta^{*}\frac{\mathbf{u}^{p+1}-\mathbf{u}^{p}}{\Delta{t}_{\mathrm{EVP}}}
 
 where :math:`n` is the previous time step index, and :math:`p` is the
 previous sub-cycling index. The extra “intertial” term
-:math:`m\,(u^{p+1}-u^{n})/\Delta{t})` allows the definition of a
-residual :math:`|u^{p+1}-u^{p}|` that, as
-:math:`u^{p+1} \rightarrow u^{n+1}`, converges to :math:`0`. In this way
-EVP can be re-interpreted as a pure iterative solver where the
-sub-cycling has no association with time-relation (through
-:math:`\Delta{t}_{\mathrm{EVP}}`) . Using the terminology of , the
-evolution equations of stress :math:`\sigma_{ij}` and momentum
-:math:`\vec{u}` can be written as:
+:math:`m\,(\mathbf{u}^{p+1}-\mathbf{u}^{n})/\Delta{t})` allows the
+definition of a residual :math:`|\mathbf{u}^{p+1}-\mathbf{u}^{p}|`
+that, as :math:`\mathbf{u}^{p+1} \rightarrow \mathbf{u}^{n+1}`,
+converges to :math:`0`. In this way EVP can be re-interpreted as a
+pure iterative solver where the sub-cycling has no association with
+time-relation (through :math:`\Delta{t}_{\mathrm{EVP}}`) . Using the
+terminology of , the evolution equations of stress :math:`\sigma_{ij}`
+and momentum :math:`\mathbf{u}` can be written as:
 
 .. math::
 
    \begin{aligned}
      \label{eq:evpstarsigma}
      \sigma_{ij}^{p+1}&=\sigma_{ij}^p+\frac{1}{\alpha}
-     \Big(\sigma_{ij}(\vec{u}^p)-\sigma_{ij}^p\Big),
+     \Big(\sigma_{ij}(\mathbf{u}^p)-\sigma_{ij}^p\Big),
      \phantom{\int}\\
      \label{eq:evpstarmom}
-     \vec{u}^{p+1}&=\vec{u}^p+\frac{1}{\beta}
+     \mathbf{u}^{p+1}&=\mathbf{u}^p+\frac{1}{\beta}
      \Big(\frac{\Delta t}{m}\nabla \cdot{\bf \sigma}^{p+1}+
-     \frac{\Delta t}{m}\vec{R}^{p}+\vec{u}_n-\vec{u}^p\Big).\end{aligned}
+     \frac{\Delta t}{m}\mathbf{R}^{p}+\mathbf{u}_n
+     -\mathbf{u}^p\Big).\end{aligned}
 
-:math:`\vec{R}` contains all terms in the momentum equations except for
-the rheology terms and the time derivative; :math:`\alpha` and
-:math:`\beta` are free parameters (, ) that replace the time stepping
-parameters (:math:`\Delta{T}_{\mathrm{EVP}}`), (:math:`E_{0}`), or
-(:math:`T`). :math:`\alpha` and :math:`\beta` determine the speed of
-convergence and the stability. Usually, it makes sense to use
-:math:`\alpha = \beta`, and :math:`\gg
-(\alpha,\,\beta)` . Currently, there is no termination criterion and the
-number of mEVP iterations is fixed to .
+:math:`\mathbf{R}` contains all terms in the momentum equations except
+for the rheology terms and the time derivative; :math:`\alpha` and
+:math:`\beta` are free parameters (``SEAICE_evpAlpha``, ``SEAICE_evpBeta``) that replace the time stepping parameters ``SEAICE_deltaTevp`` (:math:`\Delta{T}_{\mathrm{EVP}}`), ``SEAICE_elasticParm`` (:math:`E_{0}`), or ``SEAICE_evpTauRelax`` (:math:`T`). :math:`\alpha` and :math:`\beta` determine the speed of convergence and the stability. Usually, it makes sense to use
+:math:`\alpha = \beta`, and ``SEAICEnEVPstarSteps`` :math:`\gg (\alpha,\,\beta)` :cite:`kimmritz15`. Currently,
+there is no termination criterion and the number of mEVP iterations is
+fixed to ``SEAICEnEVPstarSteps``.
 
-In order to use mEVP in the MITgcm, set in . If the actual form of
+In order to use mEVP in the MITgcm, set ``SEAICEuseEVPstar = .TRUE.,``
+in ``data.seaice``. If ``SEAICEuseEVPrev =.TRUE.,`` the actual form of
 equations ([eq:evpstarsigma]) and ([eq:evpstarmom]) is used with fewer
 implicit terms and the factor of :math:`e^{2}` dropped in the stress
-equations ([eq:evpstresstensor2]) and ([eq:evpstresstensor12]). Although
-this modifies the original EVP-equations, it turns out to improve
-convergence .
+equations ([eq:evpstresstensor2]) and
+([eq:evpstresstensor12]). Although this modifies the original
+EVP-equations, it turns out to improve convergence :cite:`bouillon13`.
 
-Another variant is the aEVP scheme , where the value of :math:`\alpha`
-is set dynamically based on the stability criterion
+Another variant is the aEVP scheme :cite:`kimmritz16`, where the value
+of :math:`\alpha` is set dynamically based on the stability criterion
 
 .. math::
 
@@ -817,22 +791,18 @@ with the grid cell area :math:`A_c` and the ice and snow mass :math:`m`.
 This choice sacrifices speed of convergence for stability with the
 result that aEVP converges quickly to VP where :math:`\alpha` can be
 small and more slowly in areas where the equations are stiff. In
-practice, aEVP leads to an overall better convergence than mEVP . To use
-aEVP in the MITgcm set :math:`= \tilde{c}`; this also sets the default
-values of (:math:`c=4`) and (:math:`\alpha_{\min}=5`). Good convergence
-has been obtained with setting these values :
+practice, aEVP leads to an overall better convergence than mEVP :cite:`kimmritz16`. To use aEVP in the MITgcm set ``SEAICEaEVPcoeff`` :math:`= \tilde{c}`; this also sets the default values of ``SEAICEaEVPcStar`` (:math:`c=4`) and ``SEAICEaEVPalphaMin`` (:math:`\alpha_{\min}=5`). Good convergence has been obtained with setting these values :cite:`kimmritz16`:
+``SEAICEaEVPcoeff = 0.5, SEAICEnEVPstarSteps = 500, SEAICEuseEVPstar = .TRUE., SEAICEuseEVPrev = .TRUE.``
 
 Note, that probably because of the C-grid staggering of velocities and
-stresses, mEVP may not converge as successfully as in , and that
-convergence at very high resolution (order 5km) has not been studied
-yet.
+stresses, mEVP may not converge as successfully as in :cite:`kimmritz15`, and that convergence at very high resolution (order 5km) has not been studied yet.
 
-Truncated ellipse method (TEM) for yield curve [sec:pkg:seaice:TEM]
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _para_phys_pkg_seaice_TEM:
 
-|  
-| In the so-called truncated ellipse method the shear viscosity
-:math:`\eta` is capped to suppress any tensile stress :
+Truncated ellipse method (TEM) for yield curve
+##############################################
+
+In the so-called truncated ellipse method the shear viscosity :math:`\eta` is capped to suppress any tensile stress:
 
 .. math::
 
@@ -842,35 +812,40 @@ Truncated ellipse method (TEM) for yield curve [sec:pkg:seaice:TEM]
      {\sqrt{\max(\Delta_{\min}^{2},(\dot{\epsilon}_{11}-\dot{\epsilon}_{22})^2
          +4\dot{\epsilon}_{12}^2})}\right).
 
-To enable this method, set in and turn it on with in .
+To enable this method, set ``#define SEAICE_ALLOW_TEM`` in
+``SEAICE_OPTIONS.h`` and turn it on with ``SEAICEuseTEM`` in ``data.seaice``.
 
-Ice-Ocean stress [sec:pkg:seaice:iceoceanstress]
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _para_phys_pkg_seaice_iceoceanstress:
 
-|  
-| Moving sea ice exerts a stress on the ocean which is the opposite of
-the stress :math:`{{\ensuremath{\vec{\mathbf{\mathbf{\tau}}}}}}_{ocean}`
-in Eq. [eq:momseaice]. This stess is applied directly to the surface
+Ice-Ocean stress
+################
+
+Moving sea ice exerts a stress on the ocean which is the opposite of
+the stress :math:`\mathbf{\tau}_{ocean}` in
+Eq. :eq:`eq_momseaice`. This stess is applied directly to the surface
 layer of the ocean model. An alternative ocean stress formulation is
-given by . Rather than applying
-:math:`{{\ensuremath{\vec{\mathbf{\mathbf{\tau}}}}}}_{ocean}` directly,
-the stress is derived from integrating over the ice thickness to the
-bottom of the oceanic surface layer. In the resulting equation for the
-*combined* ocean-ice momentum, the interfacial stress cancels and the
-total stress appears as the sum of windstress and divergence of internal
-ice stresses:
-:math:`\delta(z) ({{\ensuremath{\vec{\mathbf{\mathbf{\tau}}}}}}_{air} + {\ensuremath{\vec{\mathbf{F}}}})/\rho_0`,
-. The disadvantage of this formulation is that now the velocity in the
-surface layer of the ocean that is used to advect tracers, is really an
-average over the ocean surface velocity and the ice velocity leading to
-an inconsistency as the ice temperature and salinity are different from
-the oceanic variables. To turn on the stress formulation of , set in .
+given by :cite:`hibler87`. Rather than applying
+:math:`\mathbf{\tau}_{ocean}` directly, the stress is derived from
+integrating over the ice thickness to the bottom of the oceanic
+surface layer. In the resulting equation for the *combined* ocean-ice
+momentum, the interfacial stress cancels and the total stress appears
+as the sum of windstress and divergence of internal ice stresses:
+:math:`\delta(z) (\mathbf{\tau}_{air} + \mathbf{F})/\rho_0`, see alse
+Eq. 2 of :cite:`hibler87`. The disadvantage of this formulation is
+that now the velocity in the surface layer of the ocean that is used
+to advect tracers, is really an average over the ocean surface
+velocity and the ice velocity leading to an inconsistency as the ice
+temperature and salinity are different from the oceanic variables. To
+turn on the stress formulation of :cite:`hibler87`, set
+``useHB87StressCoupling=.TRUE.``, in ``data.seaice``.
 
-Finite-volume discretization of the stress tensor divergence[sec:pkg:seaice:discretization]
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _para_phys_pkg_seaice_discretization:
 
-|  
-| On an Arakawa C grid, ice thickness and concentration and thus ice
+
+Finite-volume discretization of the stress tensor divergence
+############################################################
+
+On an Arakawa C grid, ice thickness and concentration and thus ice
 strength :math:`P` and bulk and shear viscosities :math:`\zeta` and
 :math:`\eta` are naturally defined a C-points in the center of the grid
 cell. Discretization requires only averaging of :math:`\zeta` and
@@ -1049,21 +1024,24 @@ to zeros. In analogy to :math:`(\epsilon_{12})^Z=0` on boundaries, we
 set :math:`\sigma_{21}^{Z}=0`, or equivalently :math:`\eta_{i,j}^{Z}=0`,
 on boundaries.
 
-Thermodynamics[sec:pkg:seaice:thermodynamics]
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _para_phys_pkg_seaice_thermodynamics:
 
-|  
-| **NOTE: THIS SECTION IS TERRIBLY OUT OF DATE**
-| In its original formulation the sea ice model uses simple
-thermodynamics following the appendix of . This formulation does not
-allow storage of heat, that is, the heat capacity of ice is zero. Upward
-conductive heat flux is parameterized assuming a linear temperature
-profile and together with a constant ice conductivity. It is expressed
-as :math:`(K/h)(T_{w}-T_{0})`, where :math:`K` is the ice conductivity,
-:math:`h` the ice thickness, and :math:`T_{w}-T_{0}` the difference
-between water and ice surface temperatures. This type of model is often
-refered to as a “zero-layer” model. The surface heat flux is computed in
-a similar way to that of and .
+Thermodynamics
+##############
+
+| ``**NOTE: THIS SECTION IS TERRIBLY OUT OF DATE**``
+
+In its original formulation the sea ice model uses simple
+thermodynamics following the appendix of :cite:`sem76`. This
+formulation does not allow storage of heat, that is, the heat capacity
+of ice is zero. Upward conductive heat flux is parameterized assuming
+a linear temperature profile and together with a constant ice
+conductivity. It is expressed as :math:`(K/h)(T_{w}-T_{0})`, where
+:math:`K` is the ice conductivity, :math:`h` the ice thickness, and
+:math:`T_{w}-T_{0}` the difference between water and ice surface
+temperatures. This type of model is often refered to as a “zero-layer”
+model. The surface heat flux is computed in a similar way to that of
+and .
 
 The conductive heat flux depends strongly on the ice thickness
 :math:`h`. However, the ice thickness in the model represents a mean
@@ -1074,13 +1052,7 @@ thickness categories :math:`H_{n}` that are equally distributed between
 :math:`2h` and a minimum imposed ice thickness of :math:`5\text{\,cm}`
 by :math:`H_n= \frac{2n-1}{7}\,h` for :math:`n\in[1,N]`. The heat fluxes
 computed for each thickness category is area-averaged to give the total
-heat flux . To use this thickness category parameterization set to the
-number of desired categories (7 is a good guess, for anything larger
-than 7 modify ) in ; note that this requires different restart files and
-switching this flag on in the middle of an integration is not advised.
-In order to include the same distribution for snow, set ; only then, the
-parameterization of always having a fraction of thin ice is efficient
-and generally thicker ice is produced .
+heat flux :cite:`hibler84`. To use this thickness category parameterization set ``SEAICE_multDim`` to the number of desired categories in ``data.seaice`` (7 is a good guess, for anything larger than 7 modify ``SEAICE_SIZE.h``); note that this requires different restart files and switching this flag on in the middle of an integration is not advised. In order to include the same distribution for snow, set ``SEAICE_useMultDimSnow = .TRUE.``; only then, the parameterization of always having a fraction of thin ice is efficient and generally thicker ice is produce :cite:`castro-morales14`.
 
 The atmospheric heat flux is balanced by an oceanic heat flux from
 below. The oceanic flux is proportional to
@@ -1088,14 +1060,11 @@ below. The oceanic flux is proportional to
 :math:`c_{p}` are the density and heat capacity of sea water and
 :math:`T_{fr}` is the local freezing point temperature that is a
 function of salinity. This flux is not assumed to instantaneously melt
-or create ice, but a time scale of three days (run-time parameter ) is
-used to relax :math:`T_{w}` to the freezing point. The parameterization
-of lateral and vertical growth of sea ice follows that of ; the
-so-called lead closing parameter :math:`h_{0}` (run-time parameter ) has
+or create ice, but a time scale of three days (run-time parameter ``SEAICE_gamma_t``) is used to relax :math:`T_{w}` to the freezing point. The parameterization of lateral and vertical growth of sea ice follows that of  :cite:`hib79,hib80`; the so-called lead closing parameter :math:`h_{0}` (run-time parameter ``HO``) has
 a default value of 0.5 meters.
 
 On top of the ice there is a layer of snow that modifies the heat flux
-and the albedo . Snow modifies the effective conductivity according to
+and the albedo :cite:`zha98a`. Snow modifies the effective conductivity according to
 
 .. math:: \frac{K}{h} \rightarrow \frac{1}{\frac{h_{s}}{K_{s}}+\frac{h}{K}},
 
@@ -1104,21 +1073,21 @@ thickness. If enough snow accumulates so that its weight submerges the
 ice and the snow is flooded, a simple mass conserving parameterization
 of snowice formation (a flood-freeze algorithm following Archimedes’
 principle) turns snow into ice until the ice surface is back at
-:math:`z=0` . The flood-freeze algorithm is enabled with the CPP-flag
-and turned on with run-time parameter .
+:math:`z=0` :cite:`leppaeranta83`. The flood-freeze algorithm is enabled with the CPP-flag ``SEAICE_ALLOW_FLOODDING`` and turned on with run-time parameter ``SEAICEuseFlooding=.TRUE.``.
 
-Advection of thermodynamic variables[sec:pkg:seaice:advection]
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _para_phys_pkg_seaice_advection:
 
-|  
-| Effective ice thickness (ice volume per unit area, :math:`c\cdot{h}`),
+Advection of thermodynamic variables
+####################################
+
+Effective ice thickness (ice volume per unit area, :math:`c\cdot{h}`),
 concentration :math:`c` and effective snow thickness
 (:math:`c\cdot{h}_{s}`) are advected by ice velocities:
 
 .. math::
 
    \label{eq:advection}
-     \frac{\partial{X}}{\partial{t}} = - \nabla\cdot\left({\ensuremath{\vec{\mathbf{u}}}}\,X\right) +
+     \frac{\partial{X}}{\partial{t}} = - \nabla\cdot\left({{\vec{\mathbf{u}}}}\,X\right) +
      \Gamma_{X} + D_{X}
 
 where :math:`\Gamma_X` are the thermodynamic source terms and
@@ -1129,34 +1098,38 @@ schemes to preserve sharp gradients and edges that are typical of sea
 ice distributions and to rule out unphysical over- and undershoots
 (negative thickness or concentration). These schemes conserve volume and
 horizontal area and are unconditionally stable, so that we can set
-:math:`D_{X}=0`. Run-timeflags: (default=2, is the historic 2nd-order,
-centered difference scheme), = :math:`D_{X}/\Delta{x}` (default=0.004).
+:math:`D_{X}=0`. Run-timeflags: ``SEAICEadvScheme ``(default=2, is the historic 2nd-order, centered difference scheme), ``DIFF`` = :math:`D_{X}/\Delta{x}` (default=0.004).
 
 The MITgcm sea ice model provides the option to use the thermodynamics
-model of , which in turn is based on the 3-layer model of and which
-treats brine content by means of enthalpy conservation; the
-corresponding package is described in section [sec:pkg:thsice]. This
-scheme requires additional state variables, namely the enthalpy of the
-two ice layers (instead of effective ice salinity), to be advected by
-ice velocities. The internal sea ice temperature is inferred from ice
-enthalpy. To avoid unphysical (negative) values for ice thickness and
-concentration, a positive 2nd-order advection scheme with a SuperBee
-flux limiter should be used to advect all sea-ice-related quantities of
-the thermodynamic model (runtime flag and =\ :math:`D_{X}`\ =0 in ,
-defaults are 0). Because of the non-linearity of the advection scheme,
-care must be taken in advecting these quantities: when simply using ice
-velocity to advect enthalpy, the total energy (i.e., the volume integral
-of enthalpy) is not conserved. Alternatively, one can advect the energy
-content (i.e., product of ice-volume and enthalpy) but then false
-enthalpy extrema can occur, which then leads to unrealistic ice
-temperature. In the currently implemented solution, the sea-ice mass
-flux is used to advect the enthalpy in order to ensure conservation of
-enthalpy and to prevent false enthalpy extrema.
+model of :cite:`win00`, which in turn is based on the 3-layer model of
+:cite:`sem76` and which treats brine content by means of enthalpy
+conservation; the corresponding package ``thsice`` is described in
+section [sec:pkg:thsice]. This scheme requires additional state
+variables, namely the enthalpy of the two ice layers (instead of
+effective ice salinity), to be advected by ice velocities. The
+internal sea ice temperature is inferred from ice enthalpy. To avoid
+unphysical (negative) values for ice thickness and concentration, a
+positive 2nd-order advection scheme with a SuperBee flux limiter
+:cite:`roe:85` should be used to advect all sea-ice-related quantities
+of the :cite:`win00` thermodynamic model (runtime flag
+``thSIceAdvScheme=77`` and ``thSIce_diffK`` =\ :math:`D_{X}`\ =0 in
+``data.ice``, defaults are 0). Because of the non-linearity of the
+advection scheme, care must be taken in advecting these quantities:
+when simply using ice velocity to advect enthalpy, the total energy
+(i.e., the volume integral of enthalpy) is not
+conserved. Alternatively, one can advect the energy content (i.e.,
+product of ice-volume and enthalpy) but then false enthalpy extrema
+can occur, which then leads to unrealistic ice temperature. In the
+currently implemented solution, the sea-ice mass flux is used to
+advect the enthalpy in order to ensure conservation of enthalpy and to
+prevent false enthalpy extrema.
 
-Key subroutines [sec:pkg:seaice:subroutines]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. _para_phys_pkg_seaice_subroutines:
 
-Top-level routine:
+Key subroutines
+###############
+
+Top-level routine: ``seaice_model.F``
 
 ::
 
@@ -1175,7 +1148,6 @@ Top-level routine:
     c  |     |-- < dynamic masking of areas with no ice >
     c  |     |
     c  |     |
-
     c  |   #ELSE
     c  |     DYNSOLVER
     c  |   #ENDIF
@@ -1185,6 +1157,8 @@ Top-level routine:
     c  |
     c  |-- if ( SEAICEadvHeff .OR. SEAICEadvArea .OR. SEAICEadvSnow .OR. SEAICEadvSalt )
     c  |     SEAICE_ADVDIFF
+    c  |
+    c  |   SEAICE_REG_RIDGE
     c  |
     c  |-- if ( usePW79thermodynamics ) 
     c  |     SEAICE_GROWTH
@@ -1201,22 +1175,21 @@ Top-level routine:
     c  |
     c  o
 
-SEAICE diagnostics [sec:pkg:seaice:diagnostics]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. _para_phys_pkg_seaice_diagnostics:
+
+SEAICE diagnostics
+##################
 
 Diagnostics output is available via the diagnostics package (see Section
 [sec:pkg:diagnostics]). Available output fields are summarized in Table
 [tab:pkg:seaice:diagnostics].
 
 Experiments and tutorials that use seaice
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#########################################
 
--  Labrador Sea experiment in verification directory.
-
--  , based on
-
--  , based on
-
--  and , global cubed-sphere-experiment with combinations of and
+- Labrador Sea experiment in ``lab_sea`` verification directory. }
+- ``seaice_obcs``, based on ``lab_sea``
+- ``offline_exf_seaice/input.seaicetd``, based on ``lab_sea``
+- ``global_ocean.cs32x15/input.icedyn`` and ``global_ocean.cs32x15/input.seaice``, global cubed-sphere-experiment with combinations of ``seaice`` and ``thsice``
 
 

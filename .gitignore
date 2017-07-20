@@ -4,10 +4,11 @@ TAGS
 .make.state
 .nse_depinfo
 *~
-#*
+\#*
 .#*
 ,*
 _$*
+_*
 *$
 *.old
 *.bak
