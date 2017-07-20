@@ -50,7 +50,7 @@ You will need a GitHub account, but that's pretty much it!
 
   To fix this "bug" we check out the master branch, and make sure we're up to date.
   ``git checkout master``
-  ``git pull upstream master && git push origin master``
+  ``git fetch upstream && git rebase upstream/master``
 
   Next make a new branch. Naming it something useful helps. 
   ``git checkout -b bugfix/contributingHowTo``
@@ -81,7 +81,7 @@ To sum up from https://akrabat.com/the-beginners-guide-to-contributing-to-a-gith
 The fundamentals are:
 
   #.  Fork the project & clone locally.
-  #.  Create an upstream remote and sync your local copy before you branch.
+  #.  Create an upstream remote and sync (i.e. rebase) your local copy before you branch.
   #.  Branch for each separate piece of work.
   #.  Do the work, write good commit messages, and read the guidelines in the manual.
   #.  Push to your origin repository.
