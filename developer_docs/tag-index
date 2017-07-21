@@ -4,6 +4,10 @@ $Name$
     Notes on tags used in MITgcmUV
     ==============================
 
+o replace opening temporay files with STATUS='SCRATCH' by opening them with
+  STATUS='UNKNOWN' and a unique file name and closing them with 
+  STATUS='DELETE'. This is a test of git as well.
+
 checkpoint66h (2017/06/02)
 o pkg/seaice:
   - add new routines to compute stress tensor components and stress tensor
