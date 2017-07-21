@@ -84,7 +84,7 @@ C     Read parameters from open data file
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT, myThid )
 C     Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
       IF ( atmPhys_tauDampUV.LE.zeroRL ) THEN
        DO k=1,Nr

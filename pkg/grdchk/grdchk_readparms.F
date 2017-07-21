@@ -137,7 +137,7 @@ c       Next, read the calendar data file.
         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                SQUEEZE_RIGHT , 1)
 
-        CLOSE( iUnit )
+        CLOSE( iUnit, STATUS='DELETE' )
 
         IF ( iGloPos .GT. sNx .OR. jGloPos .GT. sNy ) THEN
            WRITE(msgBuf,'(A)') 'i/j GloPos must be <= sNx/y'

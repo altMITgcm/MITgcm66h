@@ -122,7 +122,7 @@ C-    Parameters for coupling interface:
       CALL PRINT_MESSAGE( msgBuf,standardMessageUnit,SQUEEZE_RIGHT,1 )
 
 C--   Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
 C---+----1----+----2----+----3----+----4----+----5----+----6----+----7-|--+----|
 C--   Check for retired parameters:

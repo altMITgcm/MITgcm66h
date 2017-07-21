@@ -87,7 +87,7 @@ C Open and read the data.pp file
      &                   SQUEEZE_RIGHT , 1)
 
 C Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
       _END_MASTER(myThid)
 
 C Everyone else must wait for the parameters to be loaded

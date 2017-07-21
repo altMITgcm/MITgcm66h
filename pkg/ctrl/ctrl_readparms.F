@@ -515,7 +515,7 @@ c--     Next, read the cost data file.
         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                  SQUEEZE_RIGHT , 1)
 
-        CLOSE( iUnit )
+        CLOSE( iUnit, STATUS='DELETE' )
 
 #ifdef ALLOW_AUTODIFF
 c allow for switching off correl2d in adjoint

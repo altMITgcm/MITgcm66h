@@ -72,7 +72,7 @@ C     Read parameters from open data file
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT, myThid )
 C     Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
 C     Do some checks
 c     IF ( useFLT .AND. useOBCS ) THEN

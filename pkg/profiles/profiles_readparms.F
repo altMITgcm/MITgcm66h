@@ -131,7 +131,7 @@ c--     Next, read the cost data file.
         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                  SQUEEZE_RIGHT , 1)
 
-        CLOSE( iUnit )
+        CLOSE( iUnit, STATUS='DELETE' )
 
         do num_file=1,NFILESPROFMAX
 

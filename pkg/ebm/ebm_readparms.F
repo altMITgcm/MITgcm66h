@@ -89,7 +89,7 @@ C      CALL MODELDATA_EXAMPLE( myThid )
        STOP 'ABNORMAL END: S/R EBM_READPARMS'
       ENDIF
 C     Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
       WRITE(msgBuf,'(A)') ' EBM_READPARMS: finished reading data.ebm'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,

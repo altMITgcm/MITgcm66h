@@ -417,7 +417,7 @@ C     Read parameters from open data file
      &    'STREAMICE_READPARMS: read third param block'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &    SQUEEZE_RIGHT , 1)
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
 !#ifdef ALLOW_STREAMICE_FLUX_CONTROL
 !
@@ -431,7 +431,7 @@ C     Read parameters from open data file
 !     &    'STREAMICE_READPARMS: read flux_ctrl param block'
 !      CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
 !     &    SQUEEZE_RIGHT , 1)
-!      CLOSE(iUnit)
+!      CLOSE(iUnit,STATUS='DELETE')
 !#endif
 
       streamice_nstep_velocity = NINT (streamice_vel_update / deltaT)

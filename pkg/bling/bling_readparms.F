@@ -367,7 +367,7 @@ C-    forcing filenames and parameters
      I                    SQUEEZE_RIGHT, myThid )
 
 C--   Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
 C-    derive other parameters:
 

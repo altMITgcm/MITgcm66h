@@ -171,7 +171,7 @@ C     Open and read the data.ptracers file
      &                    SQUEEZE_RIGHT , myThid )
 
 C     Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
 C     Check for retired parameters:
 C     Tracer 1 climatology relaxation time scale (<- but the code is gone !)

@@ -147,7 +147,7 @@ C--   Open and read the data.rbcs file
      &                   SQUEEZE_RIGHT , 1)
 
 C--   Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
 C---  Check RBCS config and params:
 #ifdef DISABLE_RBCS_MOM

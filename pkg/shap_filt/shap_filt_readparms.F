@@ -99,7 +99,7 @@ C--   Read parameters from open data file
      &                    SQUEEZE_RIGHT , 1)
 
 C--   Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
 C     for backward compatibility:
       IF (nShapS.EQ.-1) nShapS = nShapT

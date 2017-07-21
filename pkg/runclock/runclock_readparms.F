@@ -70,7 +70,7 @@ C--   Read parameters from open data file
      &                    SQUEEZE_RIGHT , 1)
 
 C--   Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
       IF (RC_maxtime_hr.LT.0) THEN
       WRITE(msgBuf,'(A)') ' RUNCLOCK_READPARMS: ERR! RC_maxtime_hr<0'

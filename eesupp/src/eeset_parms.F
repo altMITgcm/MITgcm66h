@@ -52,10 +52,8 @@ C     record :: Temp. for textual I/O
       INTEGER iUnit
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       CHARACTER*(MAX_LEN_PREC) record
-#if defined (TARGET_BGL) || defined (TARGET_CRAYXT) || defined (SINGLE_DISK_IO)
       CHARACTER*(MAX_LEN_FNAM) scratchFile1
       CHARACTER*(MAX_LEN_FNAM) scratchFile2
-#endif
 #ifdef SINGLE_DISK_IO
 C     mpiRC  :: Error code reporting variable used with MPI.
       INTEGER mpiRC
@@ -144,15 +142,10 @@ C     Stop if called from eeboot_minimal.F before myProcId is set
          OPEN(UNIT=scrUnit2, FILE=scratchFile2, STATUS='UNKNOWN')
       ENDIF
 #else /* ifndef SINGLE_DISK_IO */
-# if defined (TARGET_BGL) || defined (TARGET_CRAYXT)
       WRITE(scratchFile1,'(A,I4.4)') 'scratch1.', myProcId
       WRITE(scratchFile2,'(A,I4.4)') 'scratch2.', myProcId
       OPEN(UNIT=scrUnit1, FILE=scratchFile1, STATUS='UNKNOWN')
       OPEN(UNIT=scrUnit2, FILE=scratchFile2, STATUS='UNKNOWN')
-# else
-      OPEN(UNIT=scrUnit1,STATUS='SCRATCH')
-      OPEN(UNIT=scrUnit2,STATUS='SCRATCH')
-# endif
 #endif /* SINGLE_DISK_IO */
 
 #ifdef SINGLE_DISK_IO
@@ -213,11 +206,11 @@ C--   Report contents of parameter file
        WRITE(msgBuf,'(A)') ' '
        CALL PRINT_MESSAGE(msgBuf,standardMessageUnit, SQUEEZE_RIGHT, 1)
       ENDIF
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
 #ifdef SINGLE_DISK_IO
       CALL FLUSH(scrUnit1)
-      CLOSE(scrUnit1)
+      CLOSE(scrUnit1,STATUS='DELETE')
       ENDIF
 # ifdef ALLOW_USE_MPI
 C--   all processes must wait for process 0 to complete
@@ -250,7 +243,7 @@ C--   Read namelist
    4  CONTINUE
 
 C--   Execution Environment parameter file read
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
 #ifdef ALLOW_USE_MPI
 #ifdef ALWAYS_USE_MPI

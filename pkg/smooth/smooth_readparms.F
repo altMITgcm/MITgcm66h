@@ -103,7 +103,7 @@ C--   Read settings from model parameter file "data.smooth".
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                  SQUEEZE_RIGHT , 1)
 
-      CLOSE( iUnit )
+      CLOSE( iUnit, STATUS='DELETE' )
 
 C--   Print pkg/smooth settings to standard output:
       WRITE(msgBuf,'(A)')

@@ -93,7 +93,7 @@ c--     Next, read the cost data file.
         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                  SQUEEZE_RIGHT , 1)
 
-        CLOSE( iUnit )
+        CLOSE( iUnit, STATUS='DELETE' )
 
         IF ( MOD(lastinterval,deltaTclock) .GT. 0. )
      &       lastinterval = MAX(

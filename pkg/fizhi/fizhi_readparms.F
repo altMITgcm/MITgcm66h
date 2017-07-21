@@ -71,7 +71,7 @@ C     Read Fizhi Namelist
       CALL OPEN_COPY_DATA_FILE('data.fizhi', 'FIZHI_READPARMS',
      &     ku,myThid )
       read  (ku,NML=fizhi_list)
-      close (ku)
+      close (ku,STATUS='DELETE')
 
 C     Read Supplemental Ascii File with Current Time Info
       CALL MDSFINDUNIT( ku2, myThid )

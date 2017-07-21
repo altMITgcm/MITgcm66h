@@ -211,7 +211,7 @@ C--   Read parameters from open data file
 #endif
 
 C--   Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
 C-    neutral default:
       IF ( hNewIceMax .EQ. UNSET_RL ) hNewIceMax = hiMax

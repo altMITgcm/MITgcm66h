@@ -124,7 +124,7 @@ C     Read parameters from open data file
      &    'W2_READPARMS: finished reading data.exch2'
         CALL PRINT_MESSAGE( msgBuf, stdUnit, SQUEEZE_RIGHT , myThid )
 C     Close the open data file
-        CLOSE(iUnit)
+        CLOSE(iUnit,STATUS='DELETE')
       ELSE
         WRITE(msgBuf,'(A)') 'W2_READPARMS: file data.exch2 not found'
         CALL PRINT_MESSAGE( msgBuf, stdUnit, SQUEEZE_RIGHT , myThid )

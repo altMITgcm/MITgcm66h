@@ -131,7 +131,7 @@ C     Set the file name
       CALL OPEN_COPY_DATA_FILE(data_file(1:nl),'MNC_READPARMS',
      &     ku, myThid )
       READ(ku,NML=MNC_01)
-      CLOSE(ku)
+      CLOSE(ku,STATUS='DELETE')
 
       WRITE(msgBuf,'(a)') ' MNC_READPARMS: finished reading data.mnc'
       CALL PRINT_MESSAGE(msgBuf,standardMessageUnit,

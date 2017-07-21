@@ -113,7 +113,7 @@ C Open and read the data.gchem file
      &                   SQUEEZE_RIGHT , 1)
 
 C Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
 C- Check for retired parameters:
       IF ( tIter0 .NE. UNSET_I ) THEN

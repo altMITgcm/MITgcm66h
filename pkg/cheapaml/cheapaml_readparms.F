@@ -203,7 +203,7 @@ C--   Read parameters from open data file
      &                    SQUEEZE_RIGHT, myThid )
 
 C--   Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 C compute derivative values
 C energy flux conversion factor
         xef=1. _d 0 /rhoa/cpair

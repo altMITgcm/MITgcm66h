@@ -1455,7 +1455,7 @@ C      use the solver minimum residual solution (cg2dUseMinResSol=1).
       ENDIF
 
 C--   Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
       WRITE(msgBuf,'(A)') ' INI_PARMS: finished reading file "data"'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,

@@ -94,7 +94,7 @@ C     Read parameters from open data file
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &    SQUEEZE_RIGHT , 1)
 C     Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
 C--   Process old params setting (single averaging tracer)
       IF ( LAYER_nb.LT.0 .OR. LAYER_nb.GT.3 ) THEN

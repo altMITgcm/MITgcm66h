@@ -182,7 +182,7 @@ C      CALL MODELDATA_EXAMPLE( myThid )
       ENDIF
 #endif /* ALLOW_GGL90_IDEMIX */
 
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
       WRITE(msgBuf,'(A)')
      &     ' GGL90_READPARMS: finished reading data.ggl90'

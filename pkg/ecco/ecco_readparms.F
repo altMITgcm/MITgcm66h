@@ -893,7 +893,7 @@ catn -- checking boxmean and transp
 
       _BEGIN_MASTER( myThid )
 
-      CLOSE( iUnit )
+      CLOSE( iUnit, STATUS = 'DELETE' )
 
       _END_MASTER( myThid )
 
