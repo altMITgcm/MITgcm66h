@@ -1031,6 +1031,7 @@ C Logical flags for selecting packages
       LOGICAL useREGRID
       LOGICAL useLayers
       LOGICAL useMNC
+      LOGICAL useNF90IO
       LOGICAL useRunClock
       LOGICAL useEMBED_FILES
       LOGICAL useMYPACKAGE
@@ -1046,7 +1047,7 @@ C Logical flags for selecting packages
      &        useStreamIce, useICEFRONT, useThSIce, useLand,
      &        useATM2D, useAIM, useAtm_Phys, useFizhi, useGridAlt,
      &        useDiagnostics, useREGRID, useLayers, useMNC,
-     &        useRunClock, useEMBED_FILES,
+     &        useRunClock, useEMBED_FILES, useNF90IO,
      &        useMYPACKAGE
 
 CEH3 ;;; Local Variables: ***
