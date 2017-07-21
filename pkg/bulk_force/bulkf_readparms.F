@@ -179,7 +179,7 @@ c -- default
 #endif /* CONSERV_BULKF */
 
 C--   Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
 C-  check that CPP option is "defined" when running-flag parameter is on:
 #ifndef ALLOW_FORMULA_AIM

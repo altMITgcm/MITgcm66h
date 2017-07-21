@@ -221,7 +221,7 @@ C-    set default for statistics output according to the main flag
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT , 1)
 
-      CLOSE (ku)
+      CLOSE (ku, STATUS = 'DELETE')
 
 C     Initialise DIAG_SELECT common block (except pointers)
       nlists = 0

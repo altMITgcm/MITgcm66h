@@ -181,7 +181,7 @@ C--   Read parameters from open data file
      &                    SQUEEZE_RIGHT , myThid )
 
 C--   Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
 C--   packages with hard-coded switch
 #ifndef HAVE_NETCDF

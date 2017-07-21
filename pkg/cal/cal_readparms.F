@@ -102,7 +102,7 @@ C       Next, read the calendar data file.
      &     'CAL_READPARMS: finished reading data.cal'
         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                SQUEEZE_RIGHT , 1)
-        CLOSE( iUnit )
+        CLOSE( iUnit, STATUS='DELETE' )
 
       _END_MASTER(myThid)
 

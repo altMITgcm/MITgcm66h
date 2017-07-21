@@ -80,7 +80,7 @@ C--   Read settings from model parameter file "data.sbo".
       READ(UNIT=iUnit,NML=SBO_PARM01)
 
 C     Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
       WRITE(msgBuf,'(A)') ' SBO_READPARMS: finished reading data.sbo'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,

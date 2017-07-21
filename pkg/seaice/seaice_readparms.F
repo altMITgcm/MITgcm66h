@@ -639,7 +639,7 @@ C--   Read settings from model parameter file "data.seaice".
       READ(UNIT=iUnit,NML=SEAICE_PARM03)
 #endif /* ALLOW_SITRACER */
 
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
 #ifdef SEAICE_ITD
 C SEAICE_multDim has become a runtime parameter but if SEAICE_ITD is defined

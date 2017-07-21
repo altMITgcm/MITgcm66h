@@ -97,7 +97,7 @@ C     Read parameters from open data file
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &    SQUEEZE_RIGHT , 1)
 C     Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
        IF ( SaltPlumeCriterion .EQ. UNSET_RL ) THEN
           IF ( CriterionType .EQ. 1 ) THEN

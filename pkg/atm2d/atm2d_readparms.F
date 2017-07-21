@@ -104,7 +104,7 @@ c
      &                    SQUEEZE_RIGHT , 1)
 
 C--   Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
       IF (tauThetaRelax .NE. 0. _d 0)
      &                  r_tauThetaRelax= 1. _d 0/tauThetaRelax

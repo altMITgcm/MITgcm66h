@@ -105,7 +105,7 @@ C--   Read parameters from open data file
      &                    SQUEEZE_RIGHT, myThid )
 
 C--   Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
 C--   Check for retired parameters still being used
       IF ( KPP_ghatFile .NE.

@@ -80,7 +80,7 @@ C      Read parameters from open data file
        CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                     SQUEEZE_RIGHT , 1)
 C     Close the open data file
-       CLOSE(iUnit)
+       CLOSE(iUnit,STATUS='DELETE')
 
       CALL GCM_PARAMS_INIT(
      I         UNSET_RS, UNSET_RL, UNSET_I,

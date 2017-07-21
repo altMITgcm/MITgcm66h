@@ -79,7 +79,7 @@ C     Open and read the data.longstep file
      &                    SQUEEZE_RIGHT , myThid )
 
 C     Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
 C     Now set-up any remaining parameters that result from the input
 C     parameters

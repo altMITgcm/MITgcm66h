@@ -47,10 +47,8 @@ C     === Local variables ===
 C     msgBuf    :: Informational/error message buffer
       CHARACTER*(MAX_LEN_MBUF) msgBuf
       CHARACTER*(MAX_LEN_PREC) record
-#if defined (TARGET_BGL) || defined (TARGET_CRAYXT) || defined (SINGLE_DISK_IO)
       CHARACTER*(MAX_LEN_FNAM) scratchFile1
       CHARACTER*(MAX_LEN_FNAM) scratchFile2
-#endif
       INTEGER  errIO,IL
       LOGICAL  exst
 #ifdef SINGLE_DISK_IO
@@ -86,15 +84,10 @@ C     Make scratch copies of eedata with and without comments
        OPEN(UNIT=scrUnit2, FILE=scratchFile2, STATUS='UNKNOWN')
       ENDIF
 #else /* ifndef SINGLE_DISK_IO */
-# if defined (TARGET_BGL) || defined (TARGET_CRAYXT)
       WRITE(scratchFile1,'(A,I4.4)') 'scratch1.', myProcId
       WRITE(scratchFile2,'(A,I4.4)') 'scratch2.', myProcId
       OPEN(UNIT=scrUnit1, FILE=scratchFile1, STATUS='UNKNOWN')
       OPEN(UNIT=scrUnit2, FILE=scratchFile2, STATUS='UNKNOWN')
-# else
-      OPEN(UNIT=scrUnit1,STATUS='SCRATCH')
-      OPEN(UNIT=scrUnit2,STATUS='SCRATCH')
-# endif
 #endif /* SINGLE_DISK_IO */
 
 #ifdef SINGLE_DISK_IO
@@ -147,7 +140,7 @@ C--   Report contents of model parameter file
      &                     SQUEEZE_RIGHT, myThid )
       ENDDO
  2001 CONTINUE
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
       WRITE(msgBuf,'(A)') ' '
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT, myThid )

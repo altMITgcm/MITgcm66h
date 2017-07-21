@@ -1017,7 +1017,7 @@ C-
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                    SQUEEZE_RIGHT, myThid )
 
-      CLOSE( iUnit )
+      CLOSE( iUnit, STATUS='DELETE' )
 
 C--   Retired parameters
       IF ( exf_yftype.NE.'RL' ) THEN

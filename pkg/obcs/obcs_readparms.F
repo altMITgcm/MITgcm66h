@@ -419,7 +419,7 @@ C     seaice sponge layer is turned off by default
      &                    SQUEEZE_RIGHT , myThid )
 
 C--   Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
 C-    retired parameter
       IF ( nRetired .GT. 0 ) THEN

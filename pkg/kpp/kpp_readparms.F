@@ -166,7 +166,7 @@ C      CALL MODELDATA_EXAMPLE( myThid )
        STOP 'ABNORMAL END: S/R KPP_INIT'
       ENDIF
 
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
       WRITE(msgBuf,'(A)') ' KPP_INIT: finished reading data.kpp'
       CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,

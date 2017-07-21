@@ -101,7 +101,7 @@ c--     Set default values.
         CALL PRINT_MESSAGE( msgBuf, standardMessageUnit,
      &                  SQUEEZE_RIGHT , 1)
 
-        CLOSE( iUnit )
+        CLOSE( iUnit, STATUS='DELETE' )
 
       _END_MASTER( mythid )
 

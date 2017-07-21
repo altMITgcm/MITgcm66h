@@ -84,7 +84,7 @@ C-    forcing filenames and parameters
      I                    SQUEEZE_RIGHT, myThid )
 
 C--   Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
       IF ( atmCFC_timeOffset .EQ. UNSET_RL ) THEN
 C-    Assume that cfcTime=0 corresponds to the beginning of the 1rst record

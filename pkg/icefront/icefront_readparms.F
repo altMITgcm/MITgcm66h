@@ -141,7 +141,7 @@ C Open and read the data.icefront file
      &                    SQUEEZE_RIGHT, myThid )
 
 C Close the open data file
-      CLOSE(iUnit)
+      CLOSE(iUnit,STATUS='DELETE')
 
 C Now set-up any remaining parameters that result from the input parameters
       IF ( ICEFRONTlatentHeat .NE. 0. _d 0 )
