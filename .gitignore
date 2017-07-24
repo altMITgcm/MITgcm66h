@@ -28,3 +28,5 @@ _*
 core
 # CVS default ignores end
 notes
+build/
+run/
