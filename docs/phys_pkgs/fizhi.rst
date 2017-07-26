@@ -1,5 +1,7 @@
 .. _sub_phys_pkg_fizhi:
 
+.. include:: ../defs.hrst
+
 Fizhi: High-end Atmospheric Physics
 -----------------------------------
 
@@ -14,7 +16,6 @@ and land surface processes. The collection of atmospheric physics
 parameterizations were originally used together as part of the GEOS-3
 (Goddard Earth Observing System-3) GCM developed at the NASA/Goddard
 Global Modelling and Assimilation Office (GMAO).
-:math:`\newcommand{\pp}[2]{\frac{\partial #1}{\partial #2}}`
 
 Equations
 +++++++++
