@@ -11,7 +11,7 @@ barotropic tidal currents imposed through open boundary conditions.
 :numref:`slope_TU` shows the influence of cross-slope topographic variations on internal wave breaking - the cross-slope velocity is in color, the density contoured. The internal waves are excited by application of open boundary conditions on the left. They propagate to the sloping boundary (represented using MITgcm's finite volume spatial discretization) where they break under nonhydrostatic dynamics. 
 
 
-  .. figure:: figs/TUt8000slopecrop.*
+  .. figure:: figs/TUt8000slope.*
     :width: 80%
     :align: center
     :alt: slope_TU
