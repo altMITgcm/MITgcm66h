@@ -3167,7 +3167,7 @@ cat >>$MAKEFILE <<EOF
 all: fwd_exe_target
 fwd_exe_target:
 	@echo Update AD_CONFIG.h and make \$(EXECUTABLE)
-	@$BASH\$(TOOLSDIR)/convert_cpp_cmd2defines "Forward version" -bAD_CONFIG_H -UALLOW_ADJOINT_RUN -UALLOWTANGENTLINEAR_RUN > ad_config.template
+	@$BASH\$(TOOLSDIR)/convert_cpp_cmd2defines "Forward version" -bAD_CONFIG_H -UALLOW_ADJOINT_RUN -UALLOW_TANGENTLINEAR_RUN > ad_config.template
 	@cmp ad_config.template AD_CONFIG.h || cat ad_config.template > AD_CONFIG.h
 	@-rm -f ad_config.template
 	\$(MAKE) -f \$(MAKEFILE) \$(EXECUTABLE)
