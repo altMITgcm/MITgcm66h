@@ -1086,9 +1086,9 @@ EOF
     echo " --> set HAVE_NETCDF='$HAVE_NETCDF'" >> $LOGFILE
 }
 
-check_nf90io_libs()  {
+check_nf90io_mpi_libs()  {
     if test ! "x$SKIP_NF90IO_CHECK" = x ; then
-	return
+	    return
     fi
     echo >> $LOGFILE
     echo "running: check_nf90io_libs()" >> $LOGFILE
@@ -1122,7 +1122,7 @@ check_nf90io_libs()  {
 	else
 	# try again with "-lnetcdff" added to the libs
 	    echo "==> try again with added '-lnetcdff -lnetcdf'" > f90tst_parallel.log
-	    
+
 	    echo "$FC $FFLAGS $FOPTIM -c f90tst_parallel.f90 \ " >> f90tst_parallel.log
 	    echo "  &&  $LINK $FFLAGS $FOPTIM -o f90tst_parallel.o $LIBS -lnetcdf" >> f90tst_parallel.log
 	    $FC $FFLAGS $FOPTIM  $INCLUDES -c  ${TOOLSDIR}/maketests/f90tst_parallel.f90 >> f90tst_parallel.log 2>&1  \
@@ -1138,6 +1138,61 @@ check_nf90io_libs()  {
 	fi
     fi
     rm -f f90tst_parallel*
+    echo " --> set HAVE_NF90IO='$HAVE_NF90IO'" >> $LOGFILE
+}
+
+check_nf90io_nompi_libs()  {
+    if test ! "x$SKIP_NF90IO_CHECK" = x ; then
+	    return
+    fi
+    echo >> $LOGFILE
+    echo "running: check_nf90io_libs()" >> $LOGFILE
+    echo "===  f90tst_vars.f90  >>>" > f90tst_parallel.log
+    #cat genmake_tnc.F >> f90tst_vars.log
+    echo "<<<  f90tst_vars.f90 ===" >> f90tst_vars.log
+    echo "$FC $FFLAGS $FOPTIM -c f90tst_vars.f90 \ " >> f90tst_parallel.log
+    echo "  &&  $LINK $FFLAGS $FOPTIM -o f90tst_vars.o $LIBS" >> f90tst_vars.log
+    $FC $FFLAGS $FOPTIM  $INCLUDES -c ${TOOLSDIR}/maketests/f90tst_vars.f90 >> f90tst_vars.log 2>&1  \
+	&&  $LINK $FFLAGS $FOPTIM -o  f90tst_vars f90tst_vars.o $LIBS >> f90tst_vars.log 2>&1
+    RET_COMPILE=$?
+    cat f90tst_vars.log >> $LOGFILE
+
+    if test "x$RET_COMPILE" = x0 ; then
+	HAVE_NF90IO=t
+	echo "check_nf90io_libs: successful" >> $LOGFILE
+    else
+	# try again with "-lnetcdf" added to the libs
+	echo "==> try again with added '-lnetcdf'" > f90tst_vars.log
+	echo "$FC $FFLAGS $FOPTIM -c f90tst_vars.f90 \ " >> f90tst_vars.log
+	echo "  &&  $LINK $FFLAGS $FOPTIM -o f90tst_vars.o $LIBS -lnetcdf" >> f90tst_vars.log
+	$FC $FFLAGS $FOPTIM  $INCLUDES -c  ${TOOLSDIR}/maketests/f90tst_vars.f90 >> f90tst_vars.log 2>&1  \
+	    &&  $LINK $FFLAGS $FOPTIM -o  f90tst_vars f90tst_vars.o $LIBS -lnetcdf >> f90tst_vars.log 2>&1
+	RET_COMPILE=$?
+	echo >> $LOGFILE
+	cat f90tst_vars.log >> $LOGFILE
+	if test "x$RET_COMPILE" = x0 ; then
+	    LIBS="$LIBS -lnetcdf"
+	    HAVE_NF90IO=t
+	    echo "check_nf90io_libs: successful" >> $LOGFILE
+	else
+	# try again with "-lnetcdff" added to the libs
+	    echo "==> try again with added '-lnetcdff -lnetcdf'" > f90tst_vars.log
+
+	    echo "$FC $FFLAGS $FOPTIM -c f90tst_vars.f90 \ " >> f90tst_vars.log
+	    echo "  &&  $LINK $FFLAGS $FOPTIM -o f90tst_vars.o $LIBS -lnetcdf" >> f90tst_vars.log
+	    $FC $FFLAGS $FOPTIM  $INCLUDES -c  ${TOOLSDIR}/maketests/f90tst_vars.f90 >> f90tst_vars.log 2>&1  \
+		&&  $LINK $FFLAGS $FOPTIM -o f90tst_vars f90tst_vars.o $LIBS -lnetcdf -lnetcdff >> f90tst_vars.log 2>&1
+	    RET_COMPILE=$?
+	    echo >> $LOGFILE
+	    cat f90tst_vars.log >> $LOGFILE
+	    if test "x$RET_COMPILE" = x0 ; then
+		LIBS="$LIBS -lnetcdf -lnetcdff"
+		HAVE_NF90IO=t
+		echo "check_nf90io_libs: successful" >> $LOGFILE
+	    fi
+	fi
+    fi
+    rm -f f90tst_vars*
     echo " --> set HAVE_NF90IO='$HAVE_NF90IO'" >> $LOGFILE
 }
 
@@ -2143,7 +2198,13 @@ fi
 
 
 printf "  Can we create NF90-enabled binaries...  "
-check_nf90io_libs
+if  [[ $DEFINES ==  *"-DALLOW_USE_MPI"* ]]; then
+    printf "with mpi...  "
+    check_nf90io_mpi_libs
+else
+    printf "without mpi...  "
+    check_nf90io_nompi_libs
+fi
 if test "x$HAVE_NF90IO" != x ; then
     DEFINES="$DEFINES -DHAVE_NF90IO"
     echo "yes"
@@ -3106,7 +3167,7 @@ cat >>$MAKEFILE <<EOF
 all: fwd_exe_target
 fwd_exe_target:
 	@echo Update AD_CONFIG.h and make \$(EXECUTABLE)
-	@$BASH\$(TOOLSDIR)/convert_cpp_cmd2defines "Forward version" -bAD_CONFIG_H -UALLOW_ADJOINT_RUN -UALLOW_TANGENTLINEAR_RUN > ad_config.template
+	@$BASH\$(TOOLSDIR)/convert_cpp_cmd2defines "Forward version" -bAD_CONFIG_H -UALLOW_ADJOINT_RUN -UALLOWTANGENTLINEAR_RUN > ad_config.template
 	@cmp ad_config.template AD_CONFIG.h || cat ad_config.template > AD_CONFIG.h
 	@-rm -f ad_config.template
 	\$(MAKE) -f \$(MAKEFILE) \$(EXECUTABLE)

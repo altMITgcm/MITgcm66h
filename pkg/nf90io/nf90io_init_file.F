@@ -12,13 +12,15 @@ C     !INTERFACE:
         use netcdf
         IMPLICIT NONE
 
-#include "mpif.h"
 #include "SIZE.h"
 #include "BUILD_INFO.h"
 #include "EEPARAMS.h"
+#include "EESUPPORT.h"
+C #include "mpif.h"  EESupport already includes this
 C #include "NF90IO.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#include "NF90IO.h"
 #include "DYNVARS.h"
 #ifdef ALLOW_NONHYDROSTATIC
 #include "NH_VARS.h"
@@ -41,10 +43,17 @@ C #include "NF90IO.h"
 
 C initialize this new file...
         mode_flag = IOR(nf90_netcdf4, nf90_classic_model)
-        mode_flag = IOR(mode_flag, nf90_mpiio)
-        err = nf90_create(ncfilename, mode_flag, ncid, comm =
-     $       MPI_COMM_WORLD,info = MPI_INFO_NULL)
-        CALL nf90ERR(err,"Opening netcdf file",myThid)
+        IF (usingMPI) THEN
+#ifdef ALLOW_USE_MPI
+              mode_flag = IOR(mode_flag, nf90_mpiio)
+              err = nf90_create(ncfilename, mode_flag, ncid, comm =
+     $             MPI_COMM_WORLD,info = MPI_INFO_NULL)
+              CALL nf90ERR(err,"Opening netcdf file w/ MPI",myThid)
+#endif
+        ELSE
+          err = nf90_create(ncfilename, mode_flag, ncid)
+          CALL nf90ERR(err,"Opening netcdf file non-MPI",myThid)
+        ENDIF
 C Set the dimensions...
 C record is my unlimited.  Other mitgcms seem to use time...
         err = nf90_def_dim(ncid, "record", nf90_unlimited, rec_dimid)
@@ -70,43 +79,43 @@ C Define co-ordinate variables (i.e. data that goes w/ each dimension)
         err = nf90_def_var(ncid, "record", NF90_INT, (/ rec_dimid /),
      $       varid)
         CALL nf90ERR(err,"Adding record variable",myThid)
-        err = nf90_put_att(ncid, varid, 
-     $       "standard_name", 
+        err = nf90_put_att(ncid, varid,
+     $       "standard_name",
      $       "")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "Sequential record number")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "")
         CALL nf90ERR(err,"Setting attributes",myThid)
-        
+
         err = nf90_def_var(ncid, "i", NF90_INT, (/ i_dimid /), varid)
         CALL nf90ERR(err,"Adding i variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "x_grid_index")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "x-dimension of the t grid")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "")
         CALL nf90ERR(err,"Setting attributes",myThid)
-        
+
         err = nf90_def_var(ncid, "i_g", NF90_INT, (/ ig_dimid /),
      $       varid)
         CALL nf90ERR(err,"Adding i_g variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "x_grid_index_at_u_location")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "x-dimension of the u grid")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "c_grid_axis_shift",
      $       -0.5)
         CALL nf90ERR(err,"Setting attributes",myThid)
@@ -114,12 +123,12 @@ C Define co-ordinate variables (i.e. data that goes w/ each dimension)
         err = nf90_def_var(ncid, "j", NF90_INT, (/ j_dimid /), varid)
         CALL nf90ERR(err,"Adding j variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "y_grid_index_at_t_location")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "y-dimension of the t grid")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "")
         CALL nf90ERR(err,"Setting attributes",myThid)
@@ -128,27 +137,27 @@ C Define co-ordinate variables (i.e. data that goes w/ each dimension)
      $       varid)
         CALL nf90ERR(err,"Adding j_g variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "y_grid_index_at_v_location")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "y-dimension of the v grid")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "c_grid_axis_shift",
      $       -0.5)
 
         err = nf90_def_var(ncid, "k", NF90_INT, (/ k_dimid /), varid)
         CALL nf90ERR(err,"Adding k variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "z_grid_index")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "z-dimension of the t grid")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "")
 
@@ -158,15 +167,15 @@ C Define co-ordinate variables (i.e. data that goes w/ each dimension)
      $       varid)
         CALL nf90ERR(err,"Adding k_l variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "z_grid_index_at_upper_w_location")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "z-dimension of the w grid")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "c_grid_axis_shift",
      $       0.5)
 
@@ -175,15 +184,15 @@ C Define co-ordinate variables (i.e. data that goes w/ each dimension)
      $       varid)
         CALL nf90ERR(err,"Adding k_u variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "z_grid_index_at_lower_w_location")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "z-dimension of the w grid")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "c_grid_axis_shift",
      $       -0.5)
 
@@ -192,15 +201,15 @@ C Define co-ordinate variables (i.e. data that goes w/ each dimension)
      $       varid)
         CALL nf90ERR(err,"Adding k_p1 variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "z_grid_index_at_w_location")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "z-dimension of the w grid")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "c_grid_axis_shift",
      $       (/ -0.5, 0.5/))
 
@@ -209,9 +218,9 @@ C     record-like variables...
      $       varid)
         CALL nf90ERR(err,"Adding iter variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "timestep")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "model timestep number")
 
@@ -219,19 +228,19 @@ C     record-like variables...
      $       varid)
         CALL nf90ERR(err,"Adding iter variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "time")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "Time")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "seconds")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "axis",
      $       "T")
 C     NOT SURE IF THIS IS A VARIABLE?
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "calendar",
      $       "gregorian")
 
@@ -240,15 +249,15 @@ C     Water depth
      $       j_dimid /),varid)
         CALL nf90ERR(err,"Adding Depth variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "ocean_depth")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "ocean depth")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "m")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "coordinate",
      $       "XC YC")
 
@@ -258,15 +267,15 @@ C     Do the grid variables...
      $       j_dimid /),varid)
         CALL nf90ERR(err,"Adding XC variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "plane_x_coordinate")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "x coordinate")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "m")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "coordinate",
      $       "YC XC")
 
@@ -274,15 +283,15 @@ C     Do the grid variables...
      $       jg_dimid /),varid)
         CALL nf90ERR(err,"Adding XG variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "plane_x_coordinate_at_f_location")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "x coordinate")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "m")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "coordinate",
      $       "YG XG")
 
@@ -290,15 +299,15 @@ C     Do the grid variables...
      $       j_dimid /),varid)
         CALL nf90ERR(err,"Adding YC variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "plane_y_coordinate")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "y coordinate")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "m")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "coordinate",
      $       "YC XC")
 
@@ -306,15 +315,15 @@ C     Do the grid variables...
      $       jg_dimid /),varid)
         CALL nf90ERR(err,"Adding YG variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "plane_y_coordinate_at_f_location")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "y coordinate")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "m")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "coordinate",
      $       "YG XG")
 
@@ -323,18 +332,18 @@ C     Do the grid variables...
      $       ,varid)
         CALL nf90ERR(err,"Adding Z variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "depth")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "vertical coordinate of cell center")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "m")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "positive",
      $       "down")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "coordinate",
      $       "Z")
 
@@ -342,15 +351,15 @@ C     Do the grid variables...
      $       ,varid)
         CALL nf90ERR(err,"Adding Zu variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "depth_at_lower_w_location")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "vertical coordinate of lower cell interface")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "m")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "positive",
      $       "down")
 
@@ -358,15 +367,15 @@ C     Do the grid variables...
      $       ,varid)
         CALL nf90ERR(err,"Adding Zl variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "depth_at_upper_w_location")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "vertical coordinate of upper cell interface")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "m")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "positive",
      $       "down")
 
@@ -374,15 +383,15 @@ C     Do the grid variables...
      $       ,varid)
         CALL nf90ERR(err,"Adding Zp1 variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "depth_at_w_location")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "vertical coordinate of cell interface")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "m")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "positive",
      $       "down")
 
@@ -392,15 +401,15 @@ C     rAs Areas
      $       j_dimid /),varid)
         CALL nf90ERR(err,"Adding rA variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "cell_area")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "cell area")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "m2")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "coordinates",
      $       "YC XC")
 
@@ -408,15 +417,15 @@ C     rAs Areas
      $       j_dimid /),varid)
         CALL nf90ERR(err,"Adding rAw variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "cell_area_at_u_location")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "cell area")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "m2")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "coordinates",
      $       "YC XG")
 
@@ -424,15 +433,15 @@ C     rAs Areas
      $       jg_dimid /),varid)
         CALL nf90ERR(err,"Adding rAs variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "cell_area_at_v_location")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "cell area")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "m2")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "coordinates",
      $       "YG XC")
 
@@ -440,15 +449,15 @@ C     rAs Areas
      $       jg_dimid /),varid)
         CALL nf90ERR(err,"Adding rAz variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "cell_area_at_f_location")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "cell area")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "m2")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "coordinates",
      $       "YG XG")
 
@@ -457,15 +466,15 @@ C     dx dy:
      $       jg_dimid /),varid)
         CALL nf90ERR(err,"Adding dxG variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "cell_x_size_at_v_location")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "cell x size")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "m")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "coordinates",
      $       "YG XC")
 
@@ -473,15 +482,15 @@ C     dx dy:
      $       j_dimid /),varid)
         CALL nf90ERR(err,"Adding dyG variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "cell_y_size_at_u_location")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "cell y size")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "m")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "coordinates",
      $       "YC XG")
 
@@ -489,15 +498,15 @@ C     dx dy:
      $       j_dimid /),varid)
         CALL nf90ERR(err,"Adding dxC variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "cell_x_size_at_u_location")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "cell y size")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "m")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "coordinates",
      $       "YC XG")
 
@@ -505,15 +514,15 @@ C     dx dy:
      $       jg_dimid /),varid)
         CALL nf90ERR(err,"Adding dyC variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "cell_y_size_at_v_location")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "cell y size")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "m")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "coordinates",
      $       "YG XC")
 
@@ -522,12 +531,12 @@ C     drs
      $       ,varid)
         CALL nf90ERR(err,"Adding drC variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "cell_z_size_at_w_location")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "cell z size")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "m")
 
@@ -535,12 +544,12 @@ C     drs
      $       ,varid)
         CALL nf90ERR(err,"Adding drF variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "cell_z_size")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "cell z size")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "m")
 
@@ -549,9 +558,9 @@ C     hFacs:
      $       j_dimid, k_dimid/),varid)
         CALL nf90ERR(err,"Adding hFacC variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "cell_vertical_fraction")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "vertical fraction of open cell")
 
@@ -559,9 +568,9 @@ C     hFacs:
      $       j_dimid, k_dimid/),varid)
         CALL nf90ERR(err,"Adding hFacW variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "cell_vertical_fraction_at_u_location")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "vertical fraction of open cell")
 
@@ -569,9 +578,9 @@ C     hFacs:
      $       jg_dimid, k_dimid/),varid)
         CALL nf90ERR(err,"Adding hFacS variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "cell_vertical_fraction_at_v_location")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "vertical fraction of open cell")
 
@@ -581,12 +590,12 @@ C     Define pHrefs
      $       ,varid)
         CALL nf90ERR(err,"Adding PHrefC variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "cell_reference_pressure")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "Reference Hydrostatif Pressure")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "m2 s-2")
 
@@ -594,12 +603,12 @@ C     Define pHrefs
      $       ,varid)
         CALL nf90ERR(err,"Adding PHrefF variable",myThid)
         err = nf90_put_att(ncid, varid,
-     $       "standard_name", 
+     $       "standard_name",
      $       "cell_reference_pressure")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "long_name",
      $       "Reference Hydrostatif Pressure")
-        err = nf90_put_att(ncid, varid, 
+        err = nf90_put_att(ncid, varid,
      $       "units",
      $       "m2 s-2")
 
@@ -610,7 +619,7 @@ C     Stop defining stuff and start filling
 C     co-ordinate k:
         err = nf90_inq_varid(ncid, "k", varid)
         CALL nf90ERR(err, "Getting k varid",myThid)
-        err = nf90_var_par_access(ncid, varid, nf90_collective)
+        err = nf90io_var_par_access(ncid, varid)
         CALL nf90ERR(err, "Setting k variable to par access",myThid)
         ks(1:Nr) = (/  (I, I = 0, Nr-1)  /)
         err = nf90_put_var(ncid, varid, kS(1:Nr),
@@ -620,7 +629,7 @@ C     co-ordinate k:
 C     co-ordinate i:
         err = nf90_inq_varid(ncid, "i", varid)
         CALL nf90ERR(err, "Getting i varid",myThid)
-        err = nf90_var_par_access(ncid, varid, nf90_collective)
+        err = nf90io_var_par_access(ncid, varid)
         CALL nf90ERR(err, "Setting i variable to par access",myThid)
         do bj = 1,nSy
            do bi = 1,nSx
@@ -639,7 +648,7 @@ C     maybe incorrect.
 C     co-ordinate i_g:
         err = nf90_inq_varid(ncid, "i_g", varid)
         CALL nf90ERR(err, "Getting i_g varid",myThid)
-        err = nf90_var_par_access(ncid, varid, nf90_collective)
+        err = nf90io_var_par_access(ncid, varid)
         CALL nf90ERR(err, "Setting i_g variable to par access",myThid)
         do bj = 1,nSy
            do bi = 1,nSx
@@ -658,7 +667,7 @@ C     maybe incorrect.
 C     co-ordinate j:
         err = nf90_inq_varid(ncid, "j", varid)
         CALL nf90ERR(err, "Getting j varid",myThid)
-        err = nf90_var_par_access(ncid, varid, nf90_collective)
+        err = nf90io_var_par_access(ncid, varid)
         CALL nf90ERR(err, "Setting j variable to par access",myThid)
 
         do bj = 1,nSy
@@ -678,9 +687,9 @@ C     maybe incorrect.
 C     co-ordinate j:
         err = nf90_inq_varid(ncid, "j_g", varid)
         CALL nf90ERR(err, "Getting j_g varid",myThid)
-        err = nf90_var_par_access(ncid, varid, nf90_collective)
+        err = nf90io_var_par_access(ncid, varid)
         CALL nf90ERR(err, "Setting j_g variable to par access",myThid)
-        
+
         do bj = 1,nSy
            do bi = 1,nSx
 C     NOT tested w/ more than one thread be processor, so
@@ -706,7 +715,7 @@ C     co-ordinate ks:
               err = nf90_inq_varid(ncid, "k_l", varid)
            endif
            CALL nf90ERR(err, "Getting k varid",myThid)
-           err = nf90_var_par_access(ncid, varid, nf90_collective)
+           err = nf90io_var_par_access(ncid, varid)
            CALL nf90ERR(err, "Setting k variable to par access"
      $          ,myThid)
 
@@ -721,7 +730,7 @@ C     co-ordinate ks:
 C     co-ordinate k+:
         err = nf90_inq_varid(ncid, "k_p1", varid)
         CALL nf90ERR(err, "Getting k_p1 varid",myThid)
-        err = nf90_var_par_access(ncid, varid, nf90_collective)
+        err = nf90io_var_par_access(ncid, varid)
         CALL nf90ERR(err, "Setting k_p1 variable to par access"
      $       ,myThid)
         ks(1:Nr+1) = (/  (I, I = 0,Nr)  /)
@@ -737,7 +746,7 @@ C     Now fill the grid data from variables...
 C     z-s
         err = nf90_inq_varid(ncid, "Z", varid)
         CALL nf90ERR(err, "Getting Z varid",myThid)
-        err = nf90_var_par_access(ncid, varid, nf90_collective)
+        err = nf90io_var_par_access(ncid, varid)
         err = nf90_put_var(ncid, varid,
      &       rC,
      &       start = (/ 1 /) ,
@@ -745,7 +754,7 @@ C     z-s
 
         err = nf90_inq_varid(ncid, "Zp1", varid)
         CALL nf90ERR(err, "Getting Zp1 varid",myThid)
-        err = nf90_var_par_access(ncid, varid, nf90_collective)
+        err = nf90io_var_par_access(ncid, varid)
         err = nf90_put_var(ncid, varid,
      &       rF,
      &       start = (/ 1 /) ,
@@ -753,7 +762,7 @@ C     z-s
 
         err = nf90_inq_varid(ncid, "Zu", varid)
         CALL nf90ERR(err, "Getting Zu varid",myThid)
-        err = nf90_var_par_access(ncid, varid, nf90_collective)
+        err = nf90io_var_par_access(ncid, varid)
         err = nf90_put_var(ncid, varid,
      &       rF(2:Nr+1),
      &       start = (/ 1 /) ,
@@ -761,7 +770,7 @@ C     z-s
 
         err = nf90_inq_varid(ncid, "drC", varid)
         CALL nf90ERR(err, "Getting drC varid",myThid)
-        err = nf90_var_par_access(ncid, varid, nf90_collective)
+        err = nf90io_var_par_access(ncid, varid)
         err = nf90_put_var(ncid, varid,
      &       drC(1:Nr+1),
      &       start = (/ 1 /) ,
@@ -770,7 +779,7 @@ C     z-s
 
         err = nf90_inq_varid(ncid, "drF", varid)
         CALL nf90ERR(err, "Getting drF varid",myThid)
-        err = nf90_var_par_access(ncid, varid, nf90_collective)
+        err = nf90io_var_par_access(ncid, varid)
         err = nf90_put_var(ncid, varid,
      &       drF(1:Nr),
      &       start = (/ 1 /) ,
@@ -780,7 +789,7 @@ C     z-s
 
         err = nf90_inq_varid(ncid, "Zl", varid)
         CALL nf90ERR(err, "Getting Zl varid",myThid)
-        err = nf90_var_par_access(ncid, varid, nf90_collective)
+        err = nf90io_var_par_access(ncid, varid)
         err = nf90_put_var(ncid, varid,
      &       rF(1:Nr),
      &       start = (/ 1 /) ,
@@ -809,7 +818,7 @@ C     Hfacs
 C     Depth:  Special because model doesn't store
         err = nf90_inq_varid(ncid, "Depth", varid)
         CALL nf90ERR(err, "Getting varid Depth",myThid)
-        err = nf90_var_par_access(ncid, varid, nf90_collective)
+        err = nf90io_var_par_access(ncid, varid)
         count(1:2) = (/  sNx, sNy /)
         do bj = 1,nSy
            do bi = 1,nSx
@@ -818,7 +827,7 @@ C     maybe incorrect.
               start(1:2) = (/ myXGlobalLo+(bi-1)*sNx,
      &             myYGlobalLo+(bj-1)*sNy /)
               err = nf90_put_var(ncid, varid,
-     &             Ro_surf(1:sNx, 1:sNy,bi,bj) - 
+     &             Ro_surf(1:sNx, 1:sNy,bi,bj) -
      &             R_low(1:sNx, 1:sNy,bi,bj),
      &             start = start(1:2), count = count(1:2))
               CALL nf90ERR(err, "Putting Depth into file", myThid)
@@ -832,18 +841,18 @@ C     Reference densities...
         ENDDO
         err = nf90_inq_varid(ncid, "PHrefF", varid)
         CALL nf90ERR(err, "Getting PHRefF varid",myThid)
-        err = nf90_var_par_access(ncid, varid, nf90_collective)
+        err = nf90io_var_par_access(ncid, varid)
         err = nf90_put_var(ncid, varid,
      &       ks(1:NR+1),
      &       start = (/ 1 /) ,
      &       count = (/ Nr+1 /) )
-        
+
         DO k=1,Nr
            ks(k) = phiRef(2*k)
         ENDDO
         err = nf90_inq_varid(ncid, "PHrefC", varid)
         CALL nf90ERR(err, "Getting PHRefC varid",myThid)
-        err = nf90_var_par_access(ncid, varid, nf90_collective)
+        err = nf90io_var_par_access(ncid, varid)
         err = nf90_put_var(ncid, varid,
      &       ks(1:NR),
      &       start = (/ 1 /) ,
@@ -855,7 +864,7 @@ C     Set file attributes
         err = nf90_redef(ncid)
         CALL nf90ERR(err, "Entering Def mode for file attributes"
      $       ,myThid)
-        
+
         err = nf90_put_att(ncid, NF90_GLOBAL, 'the_run_name',
      $       the_run_name)
 
@@ -870,11 +879,11 @@ C     Set file attributes
      &       THISUSER)
 #endif
 #ifdef THISHOST
-        err = nf90_put_att( ncid, NF90_GLOBAL, 'build_host', 
+        err = nf90_put_att( ncid, NF90_GLOBAL, 'build_host',
      &       THISHOST)
 #endif
 #ifdef THISDATE
-        err = nf90_put_att( ncid, NF90_GLOBAL, 'build_date', 
+        err = nf90_put_att( ncid, NF90_GLOBAL, 'build_date',
      &       THISDATE)
 #endif
 
@@ -887,11 +896,11 @@ C     Set file attributes
         err = nf90_enddef(ncid)
         CALL nf90ERR(err, "Ending def mode file attributes",myThid)
 
-        
+
 CCCCCCCCCCCCCCCCCC
 C     Close
         err = nf90_close(ncid)
         CALL nf90ERR(err, "Closing after setting up grids",myThid)
-        
+
         RETURN
         END

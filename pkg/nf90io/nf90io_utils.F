@@ -2,6 +2,60 @@
 #include "CPP_OPTIONS.h"
 
 CCCCCCCCCCCCCCC
+      FUNCTION NF90IO_VAR_PAR_ACCESS(ncid, varid)
+
+      use netcdf
+#include "SIZE.h"
+#include "EEPARAMS.h"
+#include "EESUPPORT.h"
+
+      
+
+C     !DESCRIPTION:
+C     Convenience wrappper around NF90_VAR_PAR_ACCESS that 
+C     doesnt do anything if usingMPI is false
+
+      INTEGER, intent(in) :: ncid,varid
+      INTEGER  :: err
+      IF (usingMPI) THEN
+         err = nf90_var_par_access(ncid, varid, nf90_collective)
+      ELSE
+         err = NF90_NOERR
+      ENDIF
+      NF90IO_VAR_PAR_ACCESS = err
+      END FUNCTION
+
+CCCCCCCCCCCCCCC
+      FUNCTION NF90IO_OPEN(fname, ncid)
+
+      use netcdf
+#include "SIZE.h"
+#include "EEPARAMS.h"
+#include "EESUPPORT.h"
+
+C     !DESCRIPTION:
+C     Convenience wrappper around NF90_OPEN that 
+C     opens in non-parallel if usingMPI not set
+
+      CHARACTER (LEN=*), intent(in) :: fname
+      INTEGER  :: ncid, err
+
+      IF (usingMPI) THEN
+#ifdef ALLOW_USE_MPI
+         err = nf90_open(fname, IOR(nf90_write, nf90_mpiio),
+     $        ncid,
+     $        comm=MPI_COMM_WORLD, info=MPI_INFO_NULL)
+#endif
+      ELSE
+         err = nf90_open(fname, nf90_write,ncid)
+      ENDIF
+
+      NF90IO_OPEN = err
+      END FUNCTION
+      
+
+
+CCCCCCCCCCCCCCC
       SUBROUTINE NF90IO_FILL_3Dnorec(ncid, vname, dat, myThid)
 
 C     !DESCRIPTION:
@@ -13,6 +67,7 @@ C     errors.
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#include "NF90IO.h"
 
 
       character*(*) vname
@@ -24,8 +79,8 @@ C     errors.
 
       err = nf90_inq_varid(ncid, vname, varid)
       CALL nf90ERR(err, "Getting varid",myThid)
-      err = nf90_var_par_access(ncid, varid, nf90_collective)
-      CALL nf90ERR(err, "Setting varid paraccess",myThid)
+      err = nf90io_var_par_access(ncid, varid)
+      CALL nf90ERR(err, "Setting varid paraccess 3D",myThid)
 
       count = (/  sNx, sNy, Nr /)
       do bj = 1,nSy
@@ -58,6 +113,7 @@ C     errors.
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#include "NF90IO.h"
 
 
       character*(*) vname
@@ -69,8 +125,8 @@ C     errors.
 
       err = nf90_inq_varid(ncid, vname, varid)
       CALL nf90ERR(err, "Getting varid",myThid)
-      err = nf90_var_par_access(ncid, varid, nf90_collective)
-      CALL nf90ERR(err, "Setting varid paraccess",myThid)
+      err = nf90io_var_par_access(ncid, varid)
+      CALL nf90ERR(err, "Setting varid paraccess 4d",myThid)
 
       count = (/  sNx, sNy, Nr, 1 /)
       do bj = 1,nSy
@@ -105,6 +161,7 @@ C     errors.
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#include "NF90IO.h"
 
       character*(*) vname
       INTEGER ncid, myThid, nlev, iRec
@@ -115,8 +172,8 @@ C     errors.
 
       err = nf90_inq_varid(ncid, vname, varid)
       CALL nf90ERR(err, "Getting varid",myThid)
-      err = nf90_var_par_access(ncid, varid, nf90_collective)
-      CALL nf90ERR(err, "Setting varid paraccess",myThid)
+      err = nf90io_var_par_access(ncid, varid)
+      CALL nf90ERR(err, "Setting varid paraccess 4dN",myThid)
 
       count = (/  sNx, sNy, nlev, 1 /)
       do bj = 1,nSy
@@ -151,6 +208,7 @@ C     errors.
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#include "NF90IO.h"
 
 
       character*(*) vname
@@ -162,8 +220,8 @@ C     errors.
 
       err = nf90_inq_varid(ncid, vname, varid)
       CALL nf90ERR(err, "Getting varid",myThid)
-      err = nf90_var_par_access(ncid, varid, nf90_collective)
-      CALL nf90ERR(err, "Setting varid paraccess",myThid)
+      err = nf90io_var_par_access(ncid, varid)
+      CALL nf90ERR(err, "Setting varid paraccess 3d",myThid)
 
       count = (/  sNx, sNy, 1 /)
       do bj = 1,nSy
@@ -195,6 +253,7 @@ C     errors.
 #include "EEPARAMS.h"
 #include "PARAMS.h"
 #include "GRID.h"
+#include "NF90IO.h"
 
 
       character*(*) vname
@@ -206,8 +265,8 @@ C     errors.
 
       err = nf90_inq_varid(ncid, vname, varid)
       CALL nf90ERR(err, "Getting varid",myThid)
-      err = nf90_var_par_access(ncid, varid, nf90_collective)
-      CALL nf90ERR(err, "Setting varid paraccess",myThid)
+      err = nf90io_var_par_access(ncid, varid)
+      CALL nf90ERR(err, "Setting varid paraccess 2dnr",myThid)
 
       count = (/  sNx, sNy /)
       do bj = 1,nSy
