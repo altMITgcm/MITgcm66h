@@ -23,6 +23,6 @@ before_install:
 script: 
  - echo `pwd`
  - docker exec -i c7-n001 /bin/bash /MITgcm/ci/travis/functions/simple_mpi_travis_docker_check.sh
- - source /MITgcm/ci/travis/functions/simple_sourced_file_test.sh 
+ - source ./ci/travis/functions/simple_sourced_file_test.sh 
  - docker exec -i fc11-testreport bash -c "cd /MITgcm/verification; ./testreport -t tutorial_barotropic_gyre"
  - docker exec -i c7-n001 bash -c "cd /MITgcm/verification; ./testreport -t tutorial_barotropic_gyre"
