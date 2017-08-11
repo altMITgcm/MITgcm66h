@@ -1,0 +1,9 @@
+#
+# File that lists MITgcm verification/ tests to be executed as part of Travis CI.
+# 
+global_ocean.cs32x15/
+isomip/
+offline_exf_seaice/
+tutorial_deep_convection/
+aim.5l_cs/
+hs94.128x64x5/
