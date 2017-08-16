@@ -18,7 +18,7 @@ there are no mountains or land-sea contrast.
 
 
   .. figure:: figs/eddy_on_cubic_globe.*
-    :width: 50%
+    :width: 60%
     :align: center
     :alt: cubic eddies figure
     :name: cubic_eddies_figure
