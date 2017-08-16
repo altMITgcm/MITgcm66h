@@ -1,11 +1,11 @@
-Global atmosphere: `Held-Suarez' benchmark
+Global atmosphere: ‘Held-Suarez’ benchmark
 ------------------------------------------
 
 
 A novel feature of MITgcm is its ability to simulate, using one basic algorithm, 
 both atmospheric and oceanographic flows at both small and large scales.
 
-:numref:`cubic_eddies_figure` shows an instantaneous plot of the 500mb
+:numref:`cubic_eddies_figure` shows an instantaneous plot of the 500 mb
 temperature field obtained using the atmospheric isomorph of MITgcm run at
 2.8° resolution on the cubed sphere. We see cold air over the pole
 (blue) and warm air along an equatorial band (red). Fully developed
@@ -13,7 +13,7 @@ baroclinic eddies spawned in the northern hemisphere storm track are
 evident. There are no mountains or land-sea contrast in this calculation,
 but you can easily put them in. The model is driven by relaxation to a
 radiative-convective equilibrium profile, following the description set out
-in Held and Suarez; 1994 designed to test atmospheric hydrodynamical cores -
+in Held and Suarez (1994) :cite:`held-suar:94` designed to test atmospheric hydrodynamical cores -
 there are no mountains or land-sea contrast.
 
 
@@ -23,12 +23,12 @@ there are no mountains or land-sea contrast.
     :alt: cubic eddies figure
     :name: cubic_eddies_figure
 
-    Instantaneous plot of the temperature field at 500mb obtained using the atmospheric isomorph of MITgcm
+    Instantaneous plot of the temperature field at 500 mb obtained using the atmospheric isomorph of MITgcm
 
 
-As described in Adcroft (2001), a `cubed sphere' is used to discretize the
+As described in Adcroft et al. (2004) :cite:`adcroft:04b`, a ‘cubed sphere’ is used to discretize the
 globe permitting a uniform griding and obviated the need to Fourier filter.
-The `vector-invariant' form of MITgcm supports any orthogonal curvilinear
+The ‘vector-invariant’ form of MITgcm supports any orthogonal curvilinear
 grid, of which the cubed sphere is just one of many choices.
 
 :numref:`hs_zave_u_figure` shows the 5-year mean, zonally averaged zonal

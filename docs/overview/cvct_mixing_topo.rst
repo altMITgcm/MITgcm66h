@@ -18,7 +18,7 @@ instability of the along-slope current.
   .. figure:: figs/plume.*
     :width: 70%
     :align: center
-    :alt: Finit volume techniques
+    :alt: Non-hydrostatic plume over a shelf
     :name: fig_convect_and_topo
 
     MITgcm run in a non-hydrostatic configuration to study convection over a slope.

@@ -3,7 +3,7 @@ Parameter sensitivity using the adjoint of MITgcm
 
 
 Forward and tangent linear counterparts of MITgcm are supported using an
-`automatic adjoint compiler'. These can be used in parameter sensitivity and
+‘automatic adjoint compiler’. These can be used in parameter sensitivity and
 data assimilation studies.
 
 As one example of application of the MITgcm adjoint, :numref:`adj_hf_ocean_figure`

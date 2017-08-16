@@ -9,7 +9,7 @@ carbon dioxide and oxygen between the ocean and atmosphere. :numref:`biogeo_figu
 shows the annual air-sea flux of oxygen and its
 relation to density outcrops in the southern oceans from a single year
 of a global, interannually varying simulation. The simulation is run
-at 1°x1° resolution telescoping to ⅓°x⅓° in the tropics (not shown).
+at 1°x1° resolution telescoping to :math:`\frac{1}{3}^{\circ}` x :math:`\frac{1}{3}^{\circ}` in the tropics (not shown).
 
 
   .. figure:: figs/polar.*
@@ -18,4 +18,4 @@ at 1°x1° resolution telescoping to ⅓°x⅓° in the tropics (not shown).
     :alt: biogeo_figure
     :name: biogeo_figure
 
-    Annual air-sea flux of oxygen (shaded) plotted along with potential density outcrops of the surface of the southern ocean from a global 1°x1° integation with a telescoping grid (to ⅓°) at the equator.
+    Annual air-sea flux of oxygen (shaded) plotted along with potential density outcrops of the surface of the southern ocean from a global 1°x1° integration with a telescoping grid (to :math:`\frac{1}{3}^{\circ}` ) at the equator.

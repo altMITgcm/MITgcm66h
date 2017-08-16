@@ -6,8 +6,8 @@ Global ocean circulation
 :numref:`large-scale-circ` shows the pattern of ocean
 currents at the surface of a 4° global ocean model run with
 15 vertical levels. Lopped cells are used to represent topography on a
-regular *lat-lon* grid extending from 70N to
-70S. The model is driven using monthly-mean winds with
+regular *lat-lon* grid extending from 70°N to
+70°S. The model is driven using monthly-mean winds with
 mixed boundary conditions on temperature and salinity at the surface.
 The transfer properties of ocean eddies, convection and mixing is
 parameterized in this model.

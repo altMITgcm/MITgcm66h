@@ -8,7 +8,7 @@ presence of complex geometry makes it an ideal tool to study internal wave
 dynamics and mixing in oceanic canyons and ridges driven by large amplitude
 barotropic tidal currents imposed through open boundary conditions.
 
-:numref:`slope_TU` shows the influence of cross-slope topographic variations on internal wave breaking - the cross-slope velocity is in color, the density contoured. The internal waves are excited by application of open boundary conditions on the left. They propagate to the sloping boundary (represented using MITgcm's finite volume spatial discretization) where they break under nonhydrostatic dynamics. 
+:numref:`slope_TU` shows the influence of cross-slope topographic variations on internal wave breaking - the cross-slope velocity is in color, the density contoured. The internal waves are excited by application of open boundary conditions on the left. They propagate to the sloping boundary (represented using MITgcm's finite volume spatial discretization) where they break under non-hydrostatic dynamics. 
 
 
   .. figure:: figs/TUt8000slope.*
