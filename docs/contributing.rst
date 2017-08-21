@@ -30,36 +30,6 @@ To contribute to the source code of the model you will need to fork the reposito
 
 Quickstart Guide
 ----------------
-
-1: Fork the project on Github (using the fork button) and create a local clone, if you haven’t already:
-**git clone https://github.com/user_name/MITgcm66h.git**
-
-2: Move into your local clone directory (cd MITgcm66h) and and set up a remote that points to the original:
-**git remote add upstream https://github.com/altMITgcm/MITgcm66h.git**
-
-3: checkout the master branch and sync everywhere:
-**git checkout master**
-**git pull upstream master**
-**git push origin master**
-
-4: Make a new branch (name it something appropriate, here assuming a bugfix) and make edits on this branch:
-**git checkout -b bugfix**
-
-5: When edits are done, do all **git add**s and **git commit**. In the commit, make a succinct (<70 char) summary, followed by a blank line and a longer description. Reference any outstanding issues addressed using the syntax **#ISSUE_NUMBER <#>**.
-
-6: Push the edited branch to the origin remote (i.e. your fork) on github:
-**git push -u origin bugfix**
-
-7. On github, go to your fork and hot the pull request (PR) button, and wait for the MITgcm head developers to review your proposed changes.
-You may get additional questions or requests before your changes are accepted into the primary MITgcm source code.
-
-
-Detailed Guide for those less familiar with Git and Github
-----------------------------------------------------------
-
-What is Git? Git is the version control system used to maintain the MITgcm, coordinating work among the many model contributors, and tracking changes in model code.
-If you are familiar with the older form of version control used by the MITgcm (CVS), there are many similarities, but we now take advantage of the modern capabilities offered by Git. 
-
 You will need a GitHub account, but that's pretty much it!
 
 1: Fork the project and create a local clone (copy)
