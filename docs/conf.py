@@ -141,6 +141,7 @@ latex_elements = {
     # Additional stuff for the LaTeX preamble.
     #
     # 'preamble': '',
+    'preamble': '\setcounter{secnumdepth}{3}',
 
     # Latex figure (float) alignment
     #
