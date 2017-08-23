@@ -141,6 +141,12 @@ latex_elements = {
     # Additional stuff for the LaTeX preamble.
     #
     # 'preamble': '',
+    'preamble': r'''
+    \newcommand{\p}[1]{\frac{\partial }{\partial #1}}
+    \newcommand{\pp}[2]{\frac{\partial #1}{\partial #2}}
+    \newcommand{\dd}[2]{\frac{d #1}{d #2}}
+    \newcommand{\h}{\frac{1}{2}}
+    ''',
 
     # Latex figure (float) alignment
     #
