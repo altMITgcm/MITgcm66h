@@ -26,7 +26,8 @@ surface’ in the resting fluid and :math:`\eta` is the departure from
 Horizontal
 ~~~~~~~~~~
 
-.. math:: \vec{\mathbf{v}}\cdot \vec{\mathbf{n}}=0  \label{eq:noflow}
+.. math:: \vec{\mathbf{v}}\cdot \vec{\mathbf{n}}=0
+   :label: noflow
 
 where :math:`\vec{\mathbf{n}}` is the normal to a solid boundary.
 

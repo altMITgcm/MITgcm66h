@@ -37,7 +37,7 @@ where
 
 In the above the ideal gas law, :math:`p=\rho RT`, has been expressed in
 terms of the Exner function :math:`\Pi (p)` given by :eq:`exner`
-(see also :ref:`atmos_appendix`)
+(see also :numref:`atmos_appendix`)
 
 .. math:: \Pi (p)=c_{p}(\frac{p}{p_{c}})^{\kappa }
    :label: exner
@@ -72,6 +72,6 @@ The boundary conditions at top and bottom are given by:
 Then the (hydrostatic form of) equations
 :eq:`horiz-mtm`-:eq:`humidity-salt` yields a consistent set of
 atmospheric equations which, for convenience, are written out in
-:math:`p-`\coordinates in :ref:`atmos_appendix` - see
+:math:`p-`\coordinates in :numref:`atmos_appendix` - see
 eqs. :eq:`atmos-prime`-:eq:`atmos-prime5`.
 

@@ -46,6 +46,6 @@ where :math:`\eta` is the elevation of the free surface.
 
 Then equations :eq:`horiz-mtm`- :eq:`humidity-salt` yield a
 consistent set of oceanic equations which, for convenience, are written
-out in :math:`z-`\coordinates in :ref:`ocean_appendix` - see eqs. :eq:`eq-ocean-mom`
+out in :math:`z-`\coordinates in :numref:`ocean_appendix` - see eqs. :eq:`eq-ocean-mom`
 to :eq:`eq-ocean-salt`.
 
