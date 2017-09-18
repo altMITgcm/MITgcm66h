@@ -30,3 +30,5 @@ core
 notes
 build/
 run/
+# OSX system files
+.DS_store
