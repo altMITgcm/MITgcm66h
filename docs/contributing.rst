@@ -3,7 +3,7 @@
 Contributing to the MITgcm
 **************************
 
-The MITgcm is an open source project that relies on the participation of its users, and we welcome  contributions. This chapter sets out how you can contribute to the MITgcm.
+The MITgcm is an open source project that relies on the participation of its users, and we welcome contributions. This chapter sets out how you can contribute to the MITgcm.
 
 
 Bugs and feature requests
@@ -32,26 +32,33 @@ Quickstart Guide
 ----------------
 
 1. Fork the project on GitHub (using the fork button) and create a local clone, if you haven’t already:
-``git clone https://github.com/user_name/MITgcm66h.git``
+
+  ``git clone https://github.com/user_name/MITgcm66h.git``
 
 2. Move into your local clone directory (cd MITgcm66h) and and set up a remote that points to the original:
-``git remote add upstream https://github.com/altMITgcm/MITgcm66h.git``
+
+  ``git remote add upstream https://github.com/altMITgcm/MITgcm66h.git``
 
 3. Checkout the master branch and sync everywhere:
-``git checkout master``
-``git pull upstream master``
-``git push origin master``
+
+|  ``git checkout master``
+|  ``git pull upstream master``
+|  ``git push origin master``
+|  
 
 4. Make a new branch (name it something appropriate, here assuming some bugfix) and make edits on this branch:
-``git checkout -b bugfix``
 
-5. When edits are done, do all git add’s and git commit’s. In the commit, make a succinct (<70 char) summary, followed by a blank line and a longer description. Reference any outstanding issues addressed using the syntax ``#ISSUE_NUMBER <#>``.
+  ``git checkout -b bugfix``
+
+5. When edits are done, do all git add’s and git commit’s. In the commit, make a succinct (<70 char) summary, followed by a blank line and a longer description. Reference any outstanding issues addressed using the syntax ``#ISSUE_NUMBER``.
+
+|  
 
 6. Push the edited branch to the origin remote (i.e. your fork) on GitHub:
-``git push -u origin bugfix``
 
-7. On GitHub, go to your fork and hit the pull request (PR) button, and wait for the MITgcm head developers to review your proposed changes.
-You may get additional questions or requests before your changes are accepted into the primary MITgcm source code.
+  ``git push -u origin bugfix``
+
+7. On GitHub, go to your fork and hit the pull request (PR) button, and wait for the MITgcm head developers to review your proposed changes. You may get additional questions or requests before your changes are accepted into the primary MITgcm source code.
 
 
 Detailed guide for those less familiar with Git and GitHub
@@ -59,7 +66,15 @@ Detailed guide for those less familiar with Git and GitHub
 
 What is Git? Git is a version control software tool used to help coordinate work among the many MITgcm model contributors. Version control is a management system to track changes in code over time, not only facilitating ongoing changes to code, but also as a means to check differences and/or obtain code from any past time in the project history. Without such a tool, keeping track of bug fixes and new features submitted by the global network of MITgcm contributors would be virtually impossible. If you are familiar with the older form of version control used by the MITgcm (CVS), there are many similarities, but we now take advantage of the modern capabilities offered by Git.  
 
-Git itself is open source linux software (typically included with any new linux installation, check with your sys-admin if it seems missing) that is necessary for tracking changes in files, etc. through your local computer’s terminal session. All Git-related terminal commands are typed of form “git <arguments>”.  Important functions include syncing or updating your code library, adding files to a collection of files with edits, and commands to “finalize” these changes for sending back to the MITgcm maintainers. There are numerous other Git command-line tools to help along the way (see man pages via ``man git``).
+Git itself is open source linux software (typically included with any new linux installation, check with your sys-admin if it seems to be missing) that is necessary for tracking changes in files, etc. through your local computer’s terminal session. All Git-related terminal commands are of the form ``git <arguments>``.  Important functions include syncing or updating your code library, adding files to a collection of files with edits, and commands to “finalize” these changes for sending back to the MITgcm maintainers. There are numerous other Git command-line tools to help along the way (see man pages via ``man git``).
+
+The most common git commands are:
+
+ - ``git clone`` download (clone) a repository to your local machine
+ - ``git status`` obtain information about the local git repository
+ - ``git diff`` highlight differences between the current version of a file and the version from the most recent commit
+ - ``git add`` stage a file, or changes to a file, so that they are ready for ``git commit``
+ - ``git commit`` create a commit. A commit is a snapshot of the repository with an associated message that describes the changes.
 
 What is GitHub then? GitHub is a website that has three major purposes: 1) Code Viewer: through your browser, you can view all source code and all changes to such over time; 2) “Pull Requests”: facilitates the process whereby code developers submit changes to the primary MITgcm maintainers; 3) the “Cloud”: GitHub functions as a cloud server to store different copies of the code. The utility of #1 is fairly obvious. For #2 and #3, without GitHub, one might envision making a big tarball of edited files and emailing the maintainers for inclusion in the main repository. Instead, GitHub effectively does something like this for you in a much more elegant way.  Note unlike using (linux terminal command) git, GitHub commands are NOT typed in a terminal, but are typically invoked by hitting a button on the web interface, or clicking on a webpage link etc. To contribute edits to MITgcm, you need to obtain a github account. It’s free; do this first if you don’t have one already. 
 
@@ -79,14 +94,16 @@ To better understand this process, :numref:`git_setup` shows a conceptual map of
 One other aspect of Git that requires some explanation to the uninitiated: your local linux copy of the code repository can contain different “branches”, each branch being a different copy of the code repository (this can occur in all git-aware directories). When you switch branches, basic unix commands such as ``ls`` or ``cat`` will show a different set of files specific to current branch. In other words, Git interacts with your local file system so that edits or newly created files only appear in the current branch, i.e., such changes do not appear in any other branches. So if you swore you made some changes to a particular file, and now it appears those changes have vanished, first check which branch you are on (``git status`` is a useful command here), all is probably not lost.
 
 
-A detailed explanation of steps to contributing MITgcm code edits:
+A detailed explanation of steps for contributing MITgcm code edits:
 
-1. On GitHub, create a local clone (copy) of the repository in your GitHub cloud user space. From the main repository (https://github.com/altMITgcm/MITgcm) hit the **Fork** button. If you have already download the code onto your local computer using the git clone command, you are all set, but if you instead downloaded the code through a tarball or some other means, you also need to obtain a new, local, git-aware clone copy via
+1. On GitHub, create a local clone (copy) of the repository in your GitHub cloud user space. From the main repository (https://github.com/altMITgcm/MITgcm) hit the **Fork** button. You now need to download the code onto your local computer using the git clone command. If you previously downloaded the code through a tarball or some other means, you will need to obtain a new, local, git-aware version via
+
   ``git clone https://github.com/user_name/MITgcm66h.git``
 
   from your terminal (technically, here you are copying the forked “origin” version from the cloud, not the “upstream” version, but these will be identical at this point).
 
 2. Move into the local clone directory on your computer:
+
   ``cd MITgcm66h``
 
   Finally, we need to set up a remote that points to the main repository:
@@ -98,24 +115,31 @@ A detailed explanation of steps to contributing MITgcm code edits:
 
 3. Switch to the master branch, and make sure we're up to date. 
   ``git checkout master``
-   Git checkout is the command to switch branches; this puts you on master branch, in the event you were sufficiently git-savy already to have created different branches in your git-cloned local repository. (It won’t hurt to type this if you are already on the master branch)
-  ``git pull upstream master`` 
-   This command will synchronize your local master branch with the main MITgcm repository master branch (i.e. “pull” any new changes that might have occurred in the upstream repository into your local clone). Note if you have made changes to files in the master branch, git will complain (files you created will not cause complaints, however) -- this is why we recommend doing other general MITgcm work (editing and running) on a separate branch and thus not working on the master branch. This command is necessary so that you use the most recently available code to begin your edits.
-  ``git push origin master`` 
-   The “push” command does the opposite of “pull”, so here you are synchronizing your GitHub cloud copy master branch to your local master branch (which you just updated). If you had performed step #1 above in the last few minutes, this step is not going to do anything (since you had just forked the “origin” from the “upstream” in step #1), but if any time elapsed, it will be necessary (the current version of the MITgcm source code is updated regularly).
 
-4.  Next make a new branch. 
+  Git checkout is the command to switch branches; this puts you on master branch, in the event you were sufficiently git-savy already to have created different branches in your git-cloned local repository. (It won’t hurt to type this if you are already on the master branch)
+
+  ``git pull upstream master``
+   
+  This command will synchronize your local master branch with the main MITgcm repository master branch (i.e. “pull” any new changes that might have occurred in the upstream repository into your local clone). Note if you have made changes to files in the master branch, git will complain (files you created will not cause complaints, however) -- this is why we recommend doing other general MITgcm work (editing and running) on a separate branch and thus not working on the master branch. This command is necessary so that you use the most recently available code to begin your edits.
+
+  ``git push origin master``
+  
+  The “push” command does the opposite of “pull”, so here you are synchronizing your GitHub cloud copy master branch to your local master branch (which you just updated). If you had performed step #1 above in the last few minutes, this step is not going to do anything (since you had just forked the “origin” from the “upstream” in step #1), but if any time elapsed, it will be necessary (the current version of the MITgcm source code is updated regularly).
+
+4.  Next make a new branch.
+  
   ``git checkout -b bugfix_thebug``
   
-You will make edits on this new branch, to keep these new edits separate from any other changes to the repository in the course of your work (say through normal running of the model or any other separate research and/or modifications to repository files). Note that this command above not only creates the new branch ‘bugfix_thebug’, it switches you onto this newly created branch.  Naming the branch something descriptive helps. 
+  You will make edits on this new branch, to keep these new edits separate from any other changes to the repository in the course of your work (say through normal running of the model or any other separate research and/or modifications to repository files). Note that this command above not only creates the new branch ‘bugfix_thebug’, it switches you onto this newly created branch.  Naming the branch something descriptive helps. 
 
 5. Doing stuff! This usually comes in two flavors, fixing bugs or adding a feature. To do this you should:
 
-    - edit the relevant file(s) and/or create new files. Refer to :ref:`subsec_code_style_guide` for details on expected documentation standards and code style requirements. Of course, changes should thoroughly tested to compile and run successfully!
+    - edit the relevant file(s) and/or create new files. Refer to :ref:`subsec_code_style_guide` for details on expected documentation standards and code style requirements. Of course, changes should be thoroughly tested to ensure they compile and run successfully!
     - type ``git add <FILENAME1> <FILENAME2> ...`` to stage the file(s) ready for a commit command (note both existing and brand new files need to be added). “Stage” effectively means to notify Git of the the list of files you plan to “commit” for changes into the version tracking system. Note you can change other files and NOT have them sent to model developers; only staged files will be sent. You can repeat this ``git add`` command as many times as you like and it will continue to augment the list of files.  ``git diff`` and ``git status`` are useful commands to see what you have done so far.
-    - use ``git commit`` to commit the files. This is the first step in bundling a collection of files together to be sent off to the MITgcm maintainers. When you enter this command, an editor window will pop up. On the top line, type a succinct (<70 character) summary of what these changes accomplished. Then, leave a blank line and type a longer description of why the action in this commit was appropriate. It is good practice to link with known issues using the syntax ``#ISSUE_NUMBER`` in either the summary line or detailed comment. Note that all the changes do not have to be handled in a single commit (i.e. you can git add some files, do a commit, than continue anew by adding different files, do another commit etc.); git commit does not submit anything to maintainers.  If you are fixing a more involved bug or adding a new feature, such that many files are changed, it is in fact preferable to break into several git commits (each documented separately) rather than one large massive bundle.
+    - use ``git commit`` to commit the files. This is the first step in bundling a collection of files together to be sent off to the MITgcm maintainers. When you enter this command, an editor window will pop up. On the top line, type a succinct (<70 character) summary of what these changes accomplished. Then, leave a blank line and type a longer description of why the action in this commit was appropriate. It is good practice to link with known issues using the syntax ``#ISSUE_NUMBER`` in either the summary line or detailed comment. Note that all the changes do not have to be handled in a single commit (i.e. you can git add some files, do a commit, than continue anew by adding different files, do another commit etc.); git commit does not submit anything to maintainers.  
+    - if you are fixing a more involved bug or adding a new feature, such that many changes are required, it is preferable to break your contribution into multiple commits (each documented separately) rather than submitting one massive commit; each commit should encompass a single conceptual change to the code base, regardless of how many files it touches. This will allow the MITgcm maintainers to more easily understand your proposed changes and will expedite the review process.
 
-6. Now we “push” our modified branch with committed changes onto the origin remote in the GitHub cloud. This effectively updates your GitHub cloud copy of the MITgcm repo to reflect the wonderful changes you have contributed.
+6. Now we “push” our modified branch with committed changes onto the origin remote in the GitHub cloud. This effectively updates your GitHub cloud copy of the MITgcm repo to reflect the wonderful changes you are contributing.
   ``git push -u origin bugfix``
 
 7. Finally create a “pull request” (a.k.a. “PR”; in other words, you are requesting that the maintainers pull your changes into the main code repository). In GitHub, go to the fork of the project that you made (https://github.com/user_name/MITgcm66h.git). There is a button for "Compare and Pull" in your newly created branch. Click the button! Now you can add a final succinct summary description of what you've done in your commit(s), and flag up any issues. At last the maintainers will be notified and be able to peruse your changes! While the PR remains open, you can go back to step #5 and make additional edits, git adds, git commits, and then redo step #6; such changes will be added to the PR (and maintainers re-notified). The pull request remains open until either the maintainers fully accept and merge your code changes into the main repository, or decide to reject your changes. But much more likely than the latter, you will instead be asked to respond to feedback, modify your code changes in some way, and/or clean up your code to better satisfy our style requirements, etc., and the pull request will remain open instead of outright rejection.
