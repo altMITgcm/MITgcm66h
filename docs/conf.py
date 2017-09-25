@@ -92,7 +92,7 @@ numfig = True
 # number figures within section
 numfig_secnum_depth = 1
 
-math_number_all = True
+#math_number_all = True
 
 numfig_format = {'figure': 'Figure %s', 'table': 'Table %s', 'code-block': 'Listing %s', 'section': 'Section %s'}
 
@@ -141,6 +141,7 @@ latex_elements = {
     # Additional stuff for the LaTeX preamble.
     #
     # 'preamble': '',
+    'preamble': '\setcounter{secnumdepth}{3}',
 
     # Latex figure (float) alignment
     #
