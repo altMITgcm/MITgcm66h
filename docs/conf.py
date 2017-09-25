@@ -92,7 +92,7 @@ numfig = True
 # number figures within section
 numfig_secnum_depth = 1
 
-math_number_all = True
+#math_number_all = True
 
 numfig_format = {'figure': 'Figure %s', 'table': 'Table %s', 'code-block': 'Listing %s', 'section': 'Section %s'}
 
@@ -142,6 +142,7 @@ latex_elements = {
     #
     # 'preamble': '',
     'preamble': r'''
+    \setcounter{secnumdepth}{3}
     \newcommand{\p}[1]{\frac{\partial }{\partial #1}}
     \newcommand{\pp}[2]{\frac{\partial #1}{\partial #2}}
     \newcommand{\dd}[2]{\frac{d #1}{d #2}}
