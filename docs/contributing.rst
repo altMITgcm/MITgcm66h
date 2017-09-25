@@ -39,16 +39,19 @@ Quickstart Guide
 
   ``git remote add upstream https://github.com/altMITgcm/MITgcm66h.git``
 
-3. Checkout the master branch and sync everywhere:
+3. This step is optional, but highly recommended. It will ensure that your GitHub repo stays up to date with the main repository. Checkout the master branch and sync everywhere:
 
 |  ``git checkout master``
 |  ``git pull upstream master``
 |  ``git push origin master``
 |  
 
-4. Make a new branch (name it something appropriate, here assuming some bugfix) and make edits on this branch:
 
-  ``git checkout -b bugfix``
+4. Make a new branch from `upstream/master` (name it something appropriate, here we assume it is a bugfix) and make edits on this branch:
+
+| ``git fetch upstream``
+| ``git checkout -b bugfix upstream/master``
+|
 
 5. When edits are done, do all git add’s and git commit’s. In the commit, make a succinct (<70 char) summary, followed by a blank line and a longer description. Reference any outstanding issues addressed using the syntax ``#ISSUE_NUMBER``.
 
@@ -128,9 +131,11 @@ A detailed explanation of steps for contributing MITgcm code edits:
 
 4.  Next make a new branch.
   
-  ``git checkout -b bugfix_thebug``
-  
-  You will make edits on this new branch, to keep these new edits separate from any other changes to the repository in the course of your work (say through normal running of the model or any other separate research and/or modifications to repository files). Note that this command above not only creates the new branch ‘bugfix_thebug’, it switches you onto this newly created branch.  Naming the branch something descriptive helps. 
+| ``git fetch upstream``
+| ``git checkout -b bugfix_thebug upstream/master``
+|
+
+  You will make edits on this new branch, to keep these new edits separate from any other changes to the repository in the course of your work (say through normal running of the model or any other separate research and/or modifications to repository files). Note that this command above not only creates the new branch ‘bugfix_thebug’ from the `upstream/master` branch, it switches you onto this newly created branch.  Naming the branch something descriptive helps. 
 
 5. Doing stuff! This usually comes in two flavors, fixing bugs or adding a feature. To do this you should:
 
