@@ -40,7 +40,7 @@ Boundary conditions are:
 
 .. math::
    w=\frac{D\eta }{Dt}\text{ at }r=R_{moving}=\eta \text{  (ocean surface)}
-   :label: moving-bc-ocean}}
+   :label: moving-bc-ocean
 
 where :math:`\eta` is the elevation of the free surface.
 

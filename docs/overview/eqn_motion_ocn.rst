@@ -22,7 +22,7 @@ obtained. The non-Boussinesq equations for oceanic motion are:
    :label: eq-zns-cont
 
 .. math::
-   \rho  = \rho (\theta ,S,p) \label{eq-zns-eos}
+   \rho  = \rho (\theta ,S,p)
    :label: eq-zns-eos
 
 .. math::
@@ -204,7 +204,7 @@ equations for the ocean are then:
 .. math::
    \mathbf{\nabla }_{z}\cdot \vec{\mathbf{v}}_{h}+\frac{1}{\rho _{o}}\frac{
    \partial \left( \rho _{o}w\right) }{\partial z} = 0
-   :label: eq-zab-cont} 
+   :label: eq-zab-cont
 
 .. math::
    \rho = \rho (\theta ,S,p_{o}(z))
