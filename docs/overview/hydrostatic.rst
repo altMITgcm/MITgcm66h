@@ -163,6 +163,8 @@ supported.
 Hydrostatic and quasi-hydrostatic
 '''''''''''''''''''''''''''''''''
 
+
+
 The hydrostatic set is written out in :math:`p-`\ coordinates in
 :ref:`atmos_appendix` - see eqs. :eq:`atmos-prime` to :eq:`atmos-prime5`.
 
